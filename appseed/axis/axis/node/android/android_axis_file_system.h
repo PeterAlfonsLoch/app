@@ -10,7 +10,8 @@ namespace android
 
 
       class CLASS_DECL_AXIS file_system:
-         virtual public ::file::system
+         virtual public ::android::file_system,
+         virtual public ::file::axis::system
       {
       public:
 

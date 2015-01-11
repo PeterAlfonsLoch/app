@@ -186,7 +186,7 @@
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalOptions>-Wnarrowing -std=c++11 -std=c++11</AdditionalOptions>
+      <AdditionalOptions>-Wnarrowing -std=c++11 -fpermissive</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>

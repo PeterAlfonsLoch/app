@@ -617,11 +617,11 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="axis\install\install_small_bell.h" />
     <ClInclude Include="axis\install\install_trace.h" />
     <ClInclude Include="axis\node\android\android.h" />
+    <ClInclude Include="axis\node\android\android_axis_dir.h" />
+    <ClInclude Include="axis\node\android\android_axis_file_system.h" />
     <ClInclude Include="axis\node\android\android_crypto.h" />
-    <ClInclude Include="axis\node\android\android_dir.h" />
     <ClInclude Include="axis\node\android\android_factory_exchange.h" />
     <ClInclude Include="axis\node\android\android_file_set.h" />
-    <ClInclude Include="axis\node\android\android_file_system.h" />
     <ClInclude Include="axis\node\android\android_ip_enum.h" />
     <ClInclude Include="axis\node\android\android_port_forward.h" />
     <ClInclude Include="axis\node\ansios\ansios.h" />
@@ -740,6 +740,10 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="database\sqlitedb\sqlitedb_base.h" />
     <ClInclude Include="database\sqlitedb\sqlitedb_set.h" />
     <ClInclude Include="filesystem\filesystem.h" />
+    <ClInclude Include="filesystem\filesystem\filesystem_axis_application.h" />
+    <ClInclude Include="filesystem\filesystem\filesystem_axis_system.h" />
+    <ClInclude Include="filesystem\filesystem\filesystem_dir_axis_application.h" />
+    <ClInclude Include="filesystem\filesystem\filesystem_dir_axis_system.h" />
     <ClInclude Include="filesystem\fs\fs.h" />
     <ClInclude Include="filesystem\fs\fs_data.h" />
     <ClInclude Include="filesystem\fs\fs_fs.h" />

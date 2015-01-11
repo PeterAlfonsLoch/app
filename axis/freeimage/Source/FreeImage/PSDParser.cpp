@@ -24,7 +24,7 @@
 
 #include  "FreeImageFramework.h"
 //#include "Utilities.h"
-#include "PSDParser.h"
+//#include "PSDParser.h"
 
 // --------------------------------------------------------------------------
 
@@ -993,6 +993,10 @@ FIBITMAP* psdParser::ReadImageData(FreeImageIO *io, fi_handle handle) {
 
 	return bitmap;
 }
+
+
+#undef Load
+
 
 FIBITMAP* psdParser::Load(FreeImageIO *io, fi_handle handle, int s_format_id, int flags) {
 	FIBITMAP *Bitmap = NULL;

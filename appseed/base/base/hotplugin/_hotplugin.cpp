@@ -10,7 +10,9 @@
 #include "hotplugin_container_launcher.cpp"
 #include "hotplugin_host.cpp"
 #include "hotplugin_plugin.cpp"
+#ifdef WINDOWS
 #include "hotplugin_windows.cpp"
+#endif
 //2015-01-05  20:47                 0 _hotplugin.cpp"
 //               7 arquivo(s)         56.087 bytes
 //               0 pasta(s)   35.857.911.808 bytes dispon¡veis

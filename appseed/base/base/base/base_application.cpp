@@ -465,7 +465,7 @@ namespace base
    {
 
       dappy(string(typeid(*this).name()) + " : SetCurrentHandles 1 : " + ::str::from(m_iReturnCode));
-      m_pimpl->set_os_data(::get_current_thread());
+      m_pimpl->set_os_data((void *) ::get_current_thread());
       if(m_pthreadimpl->get_os_data() == NULL)
       {
          m_pthreadimpl->set_os_data(m_pimpl->get_os_data());

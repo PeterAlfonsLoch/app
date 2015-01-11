@@ -275,6 +275,12 @@
     <ClCompile Include="Source\FreeImage\PSDParser.cpp">
       <Filter>Source Files\Plugins</Filter>
     </ClCompile>
+    <ClCompile Include="Source\FreeImageToolkit\_Toolkit.cpp">
+      <Filter>Toolkit Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FreeImage\_FreeImage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="FreeImage.rc">
@@ -327,10 +333,16 @@
     <ClInclude Include="Source\OpenEXR\Half\half.h">
       <Filter>Source\OpenEXR\Half</Filter>
     </ClInclude>
+    <ClInclude Include="Source\FreeImage\_Plugin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="axisfreeimage.def">
       <Filter>Source Files</Filter>
+    </None>
+    <None Include="Source\Metadata\_Metadata.txt">
+      <Filter>Source Files\Metadata</Filter>
     </None>
   </ItemGroup>
 </Project>

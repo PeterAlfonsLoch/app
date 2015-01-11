@@ -22,6 +22,9 @@
 #include  "FreeImageFramework.h"
 //#include "Utilities.h"
 
+#undef s_format_id
+#define s_format_id s_format_id_cut
+
 // ----------------------------------------------------------
 //   Constants + headers
 // ----------------------------------------------------------

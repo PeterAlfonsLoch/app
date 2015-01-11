@@ -95,9 +95,9 @@ static FIBITMAP * DLL_CALLCONV
 Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 	if(handle) {
 		psdParser parser;
-
+#undef Load
 		FIBITMAP *dib = parser.Load(io, handle, s_format_id, flags);
-
+#define Load LoadPSD
 		return dib;
 	}
 

@@ -270,6 +270,9 @@
     <Filter Include="Source Files\filesystem\filesystem">
       <UniqueIdentifier>{94b07492-0c09-4918-bcfd-0f563f2040e2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\filesystem\filesystem">
+      <UniqueIdentifier>{606e8001-561a-41b9-b9ec-7cdf83c69696}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="net\net.h">
@@ -695,16 +698,10 @@
     <ClInclude Include="axis\node\android\android.h">
       <Filter>Header Files\axis\node\android</Filter>
     </ClInclude>
-    <ClInclude Include="axis\node\android\android_dir.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
     <ClInclude Include="axis\node\android\android_factory_exchange.h">
       <Filter>Header Files\axis\node\android</Filter>
     </ClInclude>
     <ClInclude Include="axis\node\android\android_file_set.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_file_system.h">
       <Filter>Header Files\axis\node\android</Filter>
     </ClInclude>
     <ClInclude Include="axis\node\android\android_ip_enum.h">
@@ -1036,6 +1033,24 @@
     </ClInclude>
     <ClInclude Include="net\net_email_departament.h">
       <Filter>Header Files\net</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\android\android_axis_dir.h">
+      <Filter>Header Files\axis\node\android</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\android\android_axis_file_system.h">
+      <Filter>Header Files\axis\node\android</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\filesystem_axis_application.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\filesystem_axis_system.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\filesystem_dir_axis_application.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\filesystem_dir_axis_system.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1719,9 +1734,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>

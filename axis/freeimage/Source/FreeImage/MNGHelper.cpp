@@ -737,7 +737,8 @@ Load a FIBITMAP from a MNG or a JNG stream
 @return Returns a dib if successful, returns NULL otherwise
 */
 FIBITMAP*
-mng_ReadChunks(int format_id, FreeImageIO *io, fi_handle handle, long Offset, int flags = 0) {
+//mng_ReadChunks(int format_id, FreeImageIO *io, fi_handle handle, long Offset, int flags = 0) {
+mng_ReadChunks(int format_id,FreeImageIO *io,fi_handle handle,long Offset,int flags) {
 	DWORD mLength = 0;
 	BYTE mChunkName[5];
 	BYTE *mChunk = NULL;

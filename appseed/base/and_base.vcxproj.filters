@@ -63,9 +63,6 @@
     <Filter Include="Source Files\base\os\android">
       <UniqueIdentifier>{58b6201f-03a2-4896-ae5a-477d9ea6a138}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\base\os\windows">
-      <UniqueIdentifier>{a9fa6c5c-4118-45a3-a636-0a71e98bcdb4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\base\os\ansios">
       <UniqueIdentifier>{68334ac9-3045-461a-9922-b6f49f0a803d}</UniqueIdentifier>
     </Filter>
@@ -83,9 +80,6 @@
     </Filter>
     <Filter Include="Source Files\base\node">
       <UniqueIdentifier>{57540175-8b21-49ef-a8b9-0ccf5f3f4a56}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\base\node\windows">
-      <UniqueIdentifier>{bf60306d-2d73-4340-8890-4402c6ebccab}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\base\node\android">
       <UniqueIdentifier>{8e87a155-a76c-44a0-8114-25921d3dd914}</UniqueIdentifier>
@@ -694,35 +688,11 @@
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="base\os\windows\windows_dll.cpp">
-      <Filter>Source Files\base\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\windows\windows_simple_app.cpp">
-      <Filter>Source Files\base\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\windows\windows_window_gdi.cpp">
-      <Filter>Source Files\base\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="base\os\cross\metrowin\cross_metrowin_user.cpp">
       <Filter>Source Files\base\os\cross\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="base\node\windows\windows_copydesk.cpp">
-      <Filter>Source Files\base\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\windows\windows_factory_exchange.cpp">
-      <Filter>Source Files\base\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\windows\windows_print_job.cpp">
-      <Filter>Source Files\base\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\windows\windows_window_draw.cpp">
-      <Filter>Source Files\base\node\windows</Filter>
-    </ClCompile>
     <ClCompile Include="user\simple_ui\simple_ui_interaction.cpp">
       <Filter>Source Files\user\simple_ui</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\node.cpp">
-      <Filter>Source Files\base\node</Filter>
     </ClCompile>
     <ClCompile Include="base\message\message_user.cpp">
       <Filter>Source Files\base\message</Filter>
@@ -805,20 +775,8 @@
     <ClCompile Include="user\user\user_scroll_bar.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="base\node\windows\windows_interaction_impl.cpp">
-      <Filter>Source Files\base\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\windows\windows_gdi.cpp">
-      <Filter>Source Files\base\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\file\file_edit_buffer.cpp">
       <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\windows\windows_message_queue.cpp">
-      <Filter>Source Files\base\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\windows\windows.cpp">
-      <Filter>Source Files\base\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="user\user\user_scroll_control.cpp">
       <Filter>Source Files\user\user</Filter>
@@ -843,9 +801,6 @@
     </ClCompile>
     <ClCompile Include="base\os\android\android_trace_message.cpp">
       <Filter>Source Files\base\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\windows\windows_trace_message.cpp">
-      <Filter>Source Files\base\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="base\node\android\android_interaction_impl.cpp">
       <Filter>Source Files\base\node\android</Filter>
@@ -930,6 +885,24 @@
     </ClCompile>
     <ClCompile Include="base\hotplugin\_hotplugin.cpp">
       <Filter>Source Files\base\hotplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\_base_base.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\_node.cpp">
+      <Filter>Source Files\base\node</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\_os.cpp">
+      <Filter>Source Files\base\os</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\android\_android_os.cpp">
+      <Filter>Source Files\base\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\android\_android_node.cpp">
+      <Filter>Source Files\base\node\android</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\ansios\_ansios_os.cpp">
+      <Filter>Source Files\base\os\ansios</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

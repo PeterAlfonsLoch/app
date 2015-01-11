@@ -38,7 +38,7 @@ static int s_format_id;
 //   mng interface (see MNGHelper.cpp)
 // ----------------------------------------------------------
 
-FIBITMAP* mng_ReadChunks(int format_id, FreeImageIO *io, fi_handle handle, long Offset, int flags = 0);
+//FIBITMAP* mng_ReadChunks(int format_id, FreeImageIO *io, fi_handle handle, long Offset, int flags = 0);
 
 
 // ==========================================================

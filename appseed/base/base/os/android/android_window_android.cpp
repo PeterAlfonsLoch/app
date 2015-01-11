@@ -68,7 +68,7 @@ void window_android::update_window(oswindow interaction_impl, COLORREF * pOsBitm
 {
 
 
-   copy_colorref(width(rect), height(rect), (COLORREF *) m_mem.get_data(), pOsBitmapData, iStride);
+   ::draw2d::copy_colorref(width(rect), height(rect), (COLORREF *) m_mem.get_data(), scan, pOsBitmapData, iStride);
 
 
 }

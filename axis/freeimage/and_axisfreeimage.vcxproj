@@ -514,6 +514,7 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\FreeImageToolkit\_Toolkit.cpp" />
     <ClCompile Include="Source\FreeImage\BitmapAccess.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|Android'">Use</PrecompiledHeader>
@@ -530,6 +531,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\ColorLookup.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -547,6 +554,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\FreeImage.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -564,6 +577,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\FreeImageC.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
@@ -605,6 +624,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\GetType.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -622,6 +647,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\MemoryIO.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -639,6 +670,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PixelAccess.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -656,6 +693,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\MNGHelper.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -673,6 +716,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\Plugin.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -690,6 +739,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginBMP.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -707,6 +762,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginCUT.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -724,6 +785,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginDDS.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -741,6 +808,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginGIF.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -758,6 +831,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginHDR.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -775,6 +854,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginICO.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -792,6 +877,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginIFF.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -809,6 +900,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginJNG.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -826,6 +923,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginKOALA.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -843,6 +946,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginMNG.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -860,6 +969,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginPCD.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -877,6 +992,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginPCX.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -894,6 +1015,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginPFM.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -911,6 +1038,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginPICT.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -928,6 +1061,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginPNM.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -945,6 +1084,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginPSD.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -962,6 +1107,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginRAS.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -979,6 +1130,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginSGI.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -996,6 +1153,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginTARGA.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -1013,6 +1176,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginWBMP.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -1030,6 +1199,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginXBM.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -1047,6 +1222,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginXPM.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -1064,6 +1245,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PSDParser.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -1081,6 +1268,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\TIFFLogLuv.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -1098,6 +1291,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\Conversion.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -1115,6 +1314,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\Conversion16_555.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -1132,6 +1337,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\Conversion16_565.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -1149,6 +1360,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\Conversion24.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -1166,6 +1383,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\Conversion32.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -1183,6 +1406,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\Conversion4.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -1200,6 +1429,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\Conversion8.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -1217,6 +1452,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\ConversionFloat.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -1234,6 +1475,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\ConversionRGB16.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -1251,6 +1498,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\ConversionRGBF.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -1268,6 +1521,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\ConversionType.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -1285,6 +1544,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\ConversionUINT16.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -1302,6 +1567,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\Halftoning.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -1319,6 +1590,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\tmoColorConvert.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -1336,6 +1613,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\tmoDrago03.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -1353,6 +1636,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\tmoFattal02.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -1370,6 +1659,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\tmoReinhard05.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -1387,6 +1682,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\ToneMapping.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -1404,6 +1705,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\NNQuantizer.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -1421,6 +1728,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\WuQuantizer.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -1438,6 +1751,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\DeprecationManager\Deprecated.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -1489,6 +1808,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\MultiPage.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -1506,6 +1831,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\ZLibInterface.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -1523,7 +1854,14 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Source\FreeImage\_FreeImage.cpp" />
     <ClCompile Include="Source\Metadata\Exif.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|Android'">Use</PrecompiledHeader>
@@ -1540,6 +1878,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\Metadata\FIRational.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -1557,6 +1901,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\Metadata\FreeImageTag.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -1574,6 +1924,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\Metadata\IPTC.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -1591,6 +1947,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\Metadata\TagConversion.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -1608,6 +1970,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\Metadata\TagLib.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -1625,6 +1993,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImageToolkit\Background.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -1642,6 +2016,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImageToolkit\BSplineRotate.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -1659,6 +2039,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImageToolkit\Channels.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -1676,6 +2062,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImageToolkit\ClassicRotate.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -1693,6 +2085,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImageToolkit\Colors.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -1710,6 +2108,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImageToolkit\CopyPaste.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -1727,6 +2131,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImageToolkit\Display.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -1744,6 +2154,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImageToolkit\Flip.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -1761,6 +2177,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImageToolkit\MultigridPoissonSolver.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -1778,6 +2200,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImageToolkit\Rescale.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -1795,6 +2223,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\FreeImageToolkit\Resize.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -1812,6 +2246,12 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Source\OpenEXR\Half\half.cpp" />
   </ItemGroup>
@@ -1828,6 +2268,7 @@
     <ClInclude Include="Source\CacheFile.h" />
     <ClInclude Include="Source\DeprecationManager\DeprecationMgr.h" />
     <ClInclude Include="Source\FreeImage\FreeImageFramework.h" />
+    <ClInclude Include="Source\FreeImage\_Plugin.h" />
     <ClInclude Include="Source\Metadata\FIRational.h" />
     <ClInclude Include="Source\FreeImage.h" />
     <ClInclude Include="Source\FreeImageIO.h" />
@@ -1843,6 +2284,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="axisfreeimage.def" />
+    <None Include="Source\Metadata\_Metadata.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\appseed\aura\aura.vcxproj" />

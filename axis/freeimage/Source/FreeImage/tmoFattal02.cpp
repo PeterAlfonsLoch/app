@@ -32,7 +32,7 @@
 // San Antonio, Texas, vol. 21(3), pp. 257-266, 2002.
 // ----------------------------------------------------------
 
-static const float EPSILON = 1e-4F;
+static const float EPSILON_04 = 1e-4F;
 
 /**
 Performs a 5 by 5 gaussian filtering using two 1D convolutions,
@@ -263,7 +263,7 @@ static FIBITMAP* PhiMatrix(FIBITMAP **gradients, float *avgGrad, int nlevels, fl
 			// that is there to correct for the fact that an average gradient avgGrad(H) over 2**k pixels
 			// in the original image will appear as a gradient grad(Hk) = 2**k*avgGrad(H) over a single pixel in Hk.
 			float ALPHA =  alpha * avgGrad[k] * (float)((int)1 << k);
-			if(ALPHA == 0) ALPHA = EPSILON;
+			if(ALPHA == 0) ALPHA = EPSILON_04;
 
 			phi[k] = FreeImage_AllocateT(FIT_FLOAT, width, height);
 			if(!phi[k]) throw(1);
@@ -450,7 +450,7 @@ static FIBITMAP* LogLuminance(FIBITMAP *Y) {
 			float *pixel = (float*)bits;
 			for(unsigned x = 0; x < width; x++) {
 				const float value = (pixel[x] - minLum) * scale;
-				pixel[x] = log(value + EPSILON);
+				pixel[x] = log(value + EPSILON_04);
 			}
 			// next line
 			bits += pitch;
@@ -477,7 +477,7 @@ static void ExpLuminance(FIBITMAP *Y) {
 	for(unsigned y = 0; y < height; y++) {
 		float *pixel = (float*)bits;
 		for(unsigned x = 0; x < width; x++) {
-			pixel[x] = exp(pixel[x]) - EPSILON;
+			pixel[x] = exp(pixel[x]) - EPSILON_04;
 		}
 		bits += pitch;
 	}

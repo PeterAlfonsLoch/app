@@ -628,8 +628,58 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="base\hotplugin\_hotplugin.cpp" />
-    <ClCompile Include="base\os\android\android_simple_app.cpp" />
+    <ClCompile Include="base\hotplugin\_hotplugin.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\node\android\_android_node.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\node\_node.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\os\android\android_simple_app.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\os\android\_android_os.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\os\ansios\_ansios_os.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\os\_os.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\_base_base.cpp" />
     <ClCompile Include="database\database\database_user_interaction.cpp" />
     <ClCompile Include="user\_user.cpp" />
     <ClInclude Include="base\hotplugin\hotplugin.h" />
@@ -688,85 +738,291 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="base\base_policy\base_policy_objcpp.h" />
     <ClInclude Include="base\base_policy\base_policy_winrt.h" />
     <ClInclude Include="base\message\message_user.h" />
-    <ClCompile Include="base\base\base_application.cpp" />
-    <ClCompile Include="base\base\base_core_copydesk.cpp" />
-    <ClCompile Include="base\base\base_print_job.cpp" />
-    <ClCompile Include="base\base\base_session.cpp" />
-    <ClCompile Include="base\base\base_static_start.cpp" />
-    <ClCompile Include="base\base\base_system.cpp" />
-    <ClCompile Include="base\hotplugin\hotplugin.cpp" />
-    <ClCompile Include="base\hotplugin\hotplugin_composer.cpp" />
-    <ClCompile Include="base\hotplugin\hotplugin_container_launcher.cpp" />
-    <ClCompile Include="base\hotplugin\hotplugin_host.cpp" />
-    <ClCompile Include="base\hotplugin\hotplugin_plugin.cpp" />
+    <ClCompile Include="base\base\base_application.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\base\base_core_copydesk.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\base\base_print_job.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\base\base_session.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\base\base_static_start.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\base\base_system.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\hotplugin\hotplugin.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\hotplugin\hotplugin_composer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\hotplugin\hotplugin_container_launcher.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\hotplugin\hotplugin_host.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\hotplugin\hotplugin_plugin.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="base\hotplugin\hotplugin_windows.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="base\install\install_plugin.cpp" />
-    <ClCompile Include="base\install\install_plugin_bare_paint_discreet.cpp" />
-    <ClCompile Include="base\install\install_plugin_bare_paint_full_screen.cpp" />
-    <ClCompile Include="base\install\install_plugin_bare_paint_veri_discreet.cpp" />
-    <ClCompile Include="base\install\install_starter_start.cpp" />
-    <ClCompile Include="base\message\message.cpp" />
-    <ClCompile Include="base\message\message_user.cpp" />
-    <ClCompile Include="base\node\android\android_android.cpp" />
-    <ClCompile Include="base\node\android\android1.cpp" />
-    <ClCompile Include="base\node\android\android2.cpp" />
-    <ClCompile Include="base\node\android\android_copydesk.cpp" />
-    <ClCompile Include="base\node\android\android_factory_exchange.cpp" />
-    <ClCompile Include="base\node\android\android_trace.cpp" />
-    <ClCompile Include="base\node\android\android_util.cpp" />
-    <ClCompile Include="base\node\android\android_window_draw.cpp" />
-    <ClCompile Include="base\node\android\android_interaction_impl.cpp" />
-    <ClCompile Include="base\node\android\android_message_queue.cpp" />
-    <ClCompile Include="base\node\node.cpp" />
-    <ClCompile Include="base\node\windows\windows_copydesk.cpp">
+    <ClCompile Include="base\install\install_plugin.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="base\node\windows\windows_factory_exchange.cpp">
+    <ClCompile Include="base\install\install_plugin_bare_paint_discreet.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="base\node\windows\windows_interaction_impl.cpp">
+    <ClCompile Include="base\install\install_plugin_bare_paint_full_screen.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="base\node\windows\windows_print_job.cpp">
+    <ClCompile Include="base\install\install_plugin_bare_paint_veri_discreet.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="base\node\windows\windows_window_draw.cpp">
+    <ClCompile Include="base\install\install_starter_start.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="base\node\windows\windows_message_queue.cpp">
+    <ClCompile Include="base\message\message.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="base\os\android\android_trace_message.cpp" />
-    <ClCompile Include="base\os\ansios\ansios_cross_win.cpp" />
-    <ClCompile Include="base\os\ansios\ansios_cross_windows_user.cpp" />
-    <ClCompile Include="base\os\ansios\ansios_cross_win_file.cpp" />
-    <ClCompile Include="base\os\ansios\ansios_file_std.cpp" />
-    <ClCompile Include="base\os\ansios\ansios_multithreading.cpp" />
+    <ClCompile Include="base\message\message_user.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\node\android\android_android.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\node\android\android1.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\node\android\android2.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\node\android\android_copydesk.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\node\android\android_factory_exchange.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\node\android\android_trace.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\node\android\android_util.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\node\android\android_window_draw.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\node\android\android_interaction_impl.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\node\android\android_message_queue.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\os\android\android_trace_message.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\os\ansios\ansios_cross_win.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\os\ansios\ansios_cross_windows_user.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\os\ansios\ansios_cross_win_file.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\os\ansios\ansios_file_std.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\os\ansios\ansios_multithreading.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClInclude Include="database\database\database_user_interaction.h" />
     <ClInclude Include="filesystem\file\file_edit_buffer.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="graphics\graphics_window_graphics.h" />
     <ClInclude Include="graphics\graphics.h" />
-    <ClCompile Include="base\os\windows\windows.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="base\os\windows\windows_dll.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="base\os\windows\windows_gdi.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="base\os\windows\windows_simple_app.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="base\os\windows\windows_trace_message.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="base\os\windows\windows_window_gdi.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="filesystem\file\file_edit_buffer.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Create</PrecompiledHeader>
@@ -847,14 +1103,70 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="user\user\user_window_util.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="base\base\base.cpp" />
-    <ClCompile Include="base\os\android\android.cpp" />
-    <ClCompile Include="base\os\android\android_message_loop.cpp" />
-    <ClCompile Include="base\os\android\android_multithreading.cpp" />
-    <ClCompile Include="base\os\android\android_windowing.cpp" />
-    <ClCompile Include="base\os\android\android_window_android.cpp" />
-    <ClCompile Include="base\os\android\android_win_base.cpp" />
-    <ClCompile Include="base\os\cross\metrowin\cross_metrowin_user.cpp" />
+    <ClCompile Include="base\base\base.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\os\android\android.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\os\android\android_message_loop.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\os\android\android_multithreading.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\os\android\android_windowing.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\os\android\android_window_android.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\os\android\android_win_base.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\os\cross\metrowin\cross_metrowin_user.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="graphics\graphics_window_graphics.cpp" />
     <ClCompile Include="user\fontopus\fontopus.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
@@ -1051,6 +1363,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     </ProjectReference>
     <ProjectReference Include="..\aura\aura.vcxproj">
       <Project>{03e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\axis\and_axis.vcxproj">
+      <Project>{73a245f9-c92f-4487-aef7-cb0531f665bd}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
