@@ -39,6 +39,9 @@
     <Filter Include="Source\OpenEXR\Half">
       <UniqueIdentifier>{9c4b6b71-f603-46aa-bac0-279d4c71a8bd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\NewFilter1">
+      <UniqueIdentifier>{91709439-3715-4cfc-af13-222f5f9767b7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\FreeImage\BitmapAccess.cpp">
@@ -277,6 +280,9 @@
     </ClCompile>
     <ClCompile Include="Source\FreeImageToolkit\_Toolkit.cpp">
       <Filter>Toolkit Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FreeImage\_FreeImage.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
