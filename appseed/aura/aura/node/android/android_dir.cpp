@@ -291,15 +291,36 @@ namespace android
 
       }
 
+      return true;
+
    }
 
-   void dir::rls(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, e_extract eextract)
+   
+   bool dir::rls(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, e_extract eextract)
    {
-      rls_pattern(papp, lpcsz, "*.*", pstraPath, pstraTitle, pstraRelative, NULL, NULL, eextract);
+
+      if(::file::dir::system::rls(papp,lpcsz,pstraPath,pstraTitle,pstraRelative,eextract))
+      {
+
+         return true;
+
+      }
+
+      return rls_pattern(papp, lpcsz, "*.*", pstraPath, pstraTitle, pstraRelative, NULL, NULL, eextract);
+
    }
 
-   void dir::rls_pattern(::aura::application * papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, bool_array * pbaIsDir, int64_array * piaSize, e_extract eextract)
+
+   bool dir::rls_pattern(::aura::application * papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, bool_array * pbaIsDir, int64_array * piaSize, e_extract eextract)
    {
+
+
+      if(::file::dir::system::rls_pattern(papp,lpcsz,pszPattern,pstraPath,pstraTitle,pstraRelative,pbaIsDir,piaSize,eextract))
+      {
+
+         return true;
+
+      }
 
       stringa straDir;
 
@@ -419,10 +440,20 @@ namespace android
 
       }
 
+      return true;
+
    }
 
-   void dir::rls_dir(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative)
+
+   bool dir::rls_dir(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative)
    {
+
+      if(::file::dir::system::rls_dir(papp,lpcsz,pstraPath,pstraTitle,pstraRelative))
+      {
+
+         return true;
+
+      }
 
       stringa stra;
 
@@ -497,11 +528,20 @@ namespace android
 
       }
 
+      return true;
+
    }
 
 
-   void dir::ls_dir(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
+   bool dir::ls_dir(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
    {
+
+      if(::file::dir::system::ls_dir(papp,lpcsz,pstraPath,pstraTitle))
+      {
+
+         return true;
+
+      }
 
       stringa stra;
 
@@ -546,10 +586,20 @@ namespace android
 
       }
 
+      return true;
+
    }
 
-   void dir::ls_file(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
+
+   bool dir::ls_file(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
    {
+
+      if(::file::dir::system::ls_file(papp,lpcsz,pstraPath,pstraTitle))
+      {
+
+         return true;
+
+      }
 
       stringa stra;
 
@@ -595,10 +645,22 @@ namespace android
 
       }
 
+      return true;
+
    }
 
-   void dir::ls(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, int64_array * piaSize)
+
+   bool dir::ls(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, int64_array * piaSize)
    {
+
+
+      if(::file::dir::system::ls(papp,lpcsz,pstraPath,pstraTitle,pbaIsDir,piaSize))
+      {
+
+         return true;
+
+      }
+
 
       stringa stra;
 
@@ -675,6 +737,8 @@ namespace android
 
 
       }
+
+      return true;
 
    }
 
@@ -821,17 +885,17 @@ namespace android
          return true;
       }
 
-      strsize iFind = ::str::find_ci(".zip:", str);
+      //strsize iFind = ::str::find_ci(".zip:", str);
 
-      if(papp->m_bZipIsDir && iFind >= 0 && iFind < iLast)
-      {
-         bool bHasSubFolder;
-         if(m_isdirmap.lookup(str, bHasSubFolder, dwLastError))
-            return bHasSubFolder;
-         bHasSubFolder = m_pziputil->HasSubFolder(papp, str);
-         m_isdirmap.set(str.Left(iLast + 1), bHasSubFolder, bHasSubFolder ? 0 : ::GetLastError());
-         return bHasSubFolder;
-      }
+      //if(papp->m_bZipIsDir && iFind >= 0 && iFind < iLast)
+      //{
+      //   bool bHasSubFolder;
+      //   if(m_isdirmap.lookup(str, bHasSubFolder, dwLastError))
+      //      return bHasSubFolder;
+      //   bHasSubFolder = m_pziputil->HasSubFolder(papp, str);
+      //   m_isdirmap.set(str.Left(iLast + 1), bHasSubFolder, bHasSubFolder ? 0 : ::GetLastError());
+      //   return bHasSubFolder;
+      //}
 
 
       wstring wstrPath;
@@ -863,12 +927,12 @@ namespace android
       return bIsDir;
    }
 
-   string dir::votagus(const char * lpcsz, const char * lpcsz2)
-   {
-      string strVotagusFolder = System.get_ca2_module_folder();
-      System.file().path().eat_end_level(strVotagusFolder, 2, "\\");
-      return dir::path(strVotagusFolder, lpcsz, lpcsz2);
-   }
+   //string dir::votagus(const char * lpcsz, const char * lpcsz2)
+   //{
+   //   string strVotagusFolder = System.get_ca2_module_folder();
+   //   System.file().path().eat_end_level(strVotagusFolder, 2, "\\");
+   //   return dir::path(strVotagusFolder, lpcsz, lpcsz2);
+   //}
 
    string dir::time(const char * lpcsz, const char * lpcsz2)
    {
@@ -877,7 +941,7 @@ namespace android
 
    string dir::stage(const char * lpcsz, const char * lpcsz2)
    {
-      return dir::path(ca2("stage"), lpcsz, lpcsz2);
+      return dir::path(element("stage"), lpcsz, lpcsz2);
    }
 
    string dir::stageapp(const char * lpcsz, const char * lpcsz2)
@@ -891,7 +955,7 @@ namespace android
    }
 
    // stage in ccvotagus spalib
-   string dir::ca2(const char * lpcsz, const char * lpcsz2)
+   string dir::element(const char * lpcsz,const char * lpcsz2)
    {
 
       single_lock sl(&m_mutex, true);
@@ -900,7 +964,7 @@ namespace android
 
    }
 
-   string dir::ca2(const string & str, const char * lpcsz2)
+   string dir::element(const string & str,const char * lpcsz2)
    {
 
       single_lock sl(&m_mutex, true);
@@ -909,7 +973,7 @@ namespace android
 
    }
 
-   string dir::ca2(const char * lpcsz, const string & str2)
+   string dir::element(const char * lpcsz,const string & str2)
    {
 
       single_lock sl(&m_mutex, true);
@@ -918,7 +982,7 @@ namespace android
 
    }
 
-   string dir::ca2(const string & str, const string & str2)
+   string dir::element(const string & str,const string & str2)
    {
 
       single_lock sl(&m_mutex, true);
@@ -927,7 +991,7 @@ namespace android
 
    }
 
-   string dir::ca2(const string & str)
+   string dir::element(const string & str)
    {
 
       single_lock sl(&m_mutex, true);
@@ -936,7 +1000,7 @@ namespace android
 
    }
 
-   string dir::ca2()
+   string dir::element()
    {
 
       single_lock sl(&m_mutex, true);
@@ -1164,7 +1228,7 @@ namespace android
 #endif
 
       if(m_strNetSeedFolder.is_empty())
-         m_strNetSeedFolder = ca2("net/netseed");
+         m_strNetSeedFolder = element("net/netseed");
 
       mk(m_strTimeFolder, get_app());
 
@@ -1218,7 +1282,7 @@ namespace android
 
       str = path(getenv("HOME"), ".ca2/appdata");
       string strRelative;
-      strRelative = ca2();
+      strRelative = element();
       //index iFind = strRelative.find(':');
       //if(iFind >= 0)
       {
@@ -1229,6 +1293,44 @@ namespace android
          //strRelative = strRelative.Left(iFind - 1) + "_" + strRelative.Mid(iStart, iFind - iStart) + strRelative.Mid(iFind + 1);
       }
       return path(path(str, "ca2", strRelative), lpcsz, lpcsz2);
+   }
+
+   string dir::commonappdata(const char * lpcsz,const char * lpcsz2)
+   {
+
+      string str;
+
+      str = m_strCommonAppData;
+
+      return element_commonappdata(element(),lpcsz,lpcsz2);
+
+   }
+
+
+   string dir::element_commonappdata(const string & strElement,const char * lpcsz,const char * lpcsz2)
+   {
+
+      string strRelative;
+
+      strRelative = strElement;
+
+      index iFind = strRelative.find(':');
+
+      if(iFind >= 0)
+      {
+
+         strsize iFind1 = strRelative.reverse_find("\\",iFind);
+
+         strsize iFind2 = strRelative.reverse_find("/",iFind);
+
+         strsize iStart = MAX(iFind1 + 1,iFind2 + 1);
+
+         strRelative = strRelative.Left(iFind - 1) + "_" + strRelative.Mid(iStart,iFind - iStart) + strRelative.Mid(iFind + 1);
+
+      }
+
+      return path(path(m_strCommonAppData,"ca2",strRelative),lpcsz,lpcsz2);
+
    }
 
    string dir::usersystemappdata(::aura::application * papp, const char * lpcszPrefix, const char * lpcsz, const char * lpcsz2)
@@ -1260,7 +1362,7 @@ namespace android
       str = getenv("HOME");
 
       string strRelative;
-      strRelative = ca2();
+      strRelative = element();
       index iFind = strRelative.find(':');
       if(iFind >= 0)
       {
