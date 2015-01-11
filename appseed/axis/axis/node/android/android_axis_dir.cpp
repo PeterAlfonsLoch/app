@@ -15,7 +15,8 @@ namespace android
 
       dir::dir(::aura::application * papp):
          ::element(papp),
-         ::file::dir::system(papp)
+         ::file::dir::system(papp),
+         ::android::dir(papp)
          //, m_path(papp)
       {
 
