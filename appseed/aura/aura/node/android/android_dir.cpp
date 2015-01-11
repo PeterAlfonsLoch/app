@@ -11,23 +11,16 @@ namespace android
 
    dir::dir(::aura::application * papp) :
       ::element(papp),
-      ::file::dir::system(papp),
-      m_path(papp)
+      ::file::dir::system(papp)
    {
 
-      string strca2Module = ca2module();
+      string strCa2Module = ca2module();
 
-      m_strca2 = strca2Module;
+      m_strCa2 = strCa2Module;
 
-      System.file().path().eat_end_level(m_strca2, 2, "/");
+      System.file().path().eat_end_level(m_strCa2, 2, "/");
 
    }
-
-   path::path(::aura::application * papp) :
-      element(papp)
-   {
-   }
-
 
    inline bool myspace(char ch)
    {
@@ -188,11 +181,6 @@ namespace android
       }
    }
 
-   bool path::is_equal(const char * lpcsz1, const char * lpcsz2)
-   {
-      return strcmp(lpcsz1, lpcsz2) == 0;
-   }
-
    void dir::root_ones(stringa & stra, ::aura::application * papp)
    {
       stra.add("/");
@@ -217,13 +205,13 @@ namespace android
       free(lpszAlloc);*/
    }
 
-   void dir::ls_pattern(::aura::application * papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, int64_array * piaSize)
+   bool dir::ls_pattern(::aura::application * papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, int64_array * piaSize)
    {
 
-      if(::file::dir::system::is(lpcsz, papp)) // if axis class "already" "says" it is a dir, let it handle it: may be not a operational system dir, e.g., zip or compressed directory...
+      if(::file::dir::system::ls_pattern(papp, lpcsz, pszPattern, pstraPath, pstraTitle, pbaIsDir, piaSize))
       {
 
-         return ::file::dir::system::ls_pattern(papp, lpcsz, pszPattern, pstraPath, pstraTitle, pbaIsDir, piaSize);
+         return true;
 
       }
 
@@ -908,7 +896,7 @@ namespace android
 
       single_lock sl(&m_mutex, true);
 
-      return dir::path(m_strca2, lpcsz, lpcsz2);
+      return dir::path(m_strCa2, lpcsz, lpcsz2);
 
    }
 
@@ -917,7 +905,7 @@ namespace android
 
       single_lock sl(&m_mutex, true);
 
-      return dir::path(m_strca2, str, lpcsz2);
+      return dir::path(m_strCa2, str, lpcsz2);
 
    }
 
@@ -926,7 +914,7 @@ namespace android
 
       single_lock sl(&m_mutex, true);
 
-      return dir::path(m_strca2, lpcsz, str2);
+      return dir::path(m_strCa2, lpcsz, str2);
 
    }
 
@@ -935,7 +923,7 @@ namespace android
 
       single_lock sl(&m_mutex, true);
 
-      return dir::path(m_strca2, str, str2);
+      return dir::path(m_strCa2, str, str2);
 
    }
 
@@ -944,7 +932,7 @@ namespace android
 
       single_lock sl(&m_mutex, true);
 
-      return dir::path(m_strca2, str);
+      return dir::path(m_strCa2, str);
 
    }
 
@@ -953,7 +941,7 @@ namespace android
 
       single_lock sl(&m_mutex, true);
 
-      return m_strca2;
+      return m_strCa2;
 
    }
 

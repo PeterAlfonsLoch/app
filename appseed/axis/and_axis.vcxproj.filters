@@ -1399,16 +1399,10 @@
     <ClCompile Include="filesystem\fs\fs_link.cpp">
       <Filter>Source Files\filesystem\fs</Filter>
     </ClCompile>
-    <ClCompile Include="axis\node\android\android_dir.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
     <ClCompile Include="axis\node\android\android_factory_exchange.cpp">
       <Filter>Source Files\axis\node\android</Filter>
     </ClCompile>
     <ClCompile Include="axis\node\android\android_file_set.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_file_system.cpp">
       <Filter>Source Files\axis\node\android</Filter>
     </ClCompile>
     <ClCompile Include="axis\node\android\android_ip_enum.cpp">
@@ -1746,6 +1740,15 @@
     </ClCompile>
     <ClCompile Include="axis\node\_node.cpp">
       <Filter>Source Files\axis\node</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\android\_android_node.cpp">
+      <Filter>Source Files\axis\node\android</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\android\android_axis_dir.cpp">
+      <Filter>Source Files\axis\node\android</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\android\android_axis_file_system.cpp">
+      <Filter>Source Files\axis\node\android</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

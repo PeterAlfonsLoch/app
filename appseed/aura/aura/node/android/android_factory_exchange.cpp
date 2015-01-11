@@ -12,6 +12,12 @@ namespace android
          element(papp)
       {
 
+
+         // axis will put things in the axis, (at least in this case... :-)
+         System.factory().creatable_small    < ::android::file_system   >(System.type_info < ::file::system              >(),1);
+         System.factory().creatable_small    < ::android::dir           >(System.type_info < ::file::dir::system         >(),1);
+
+
          System.factory().cloneable_large < stdio_file            >(System. type_info < ::file::text_buffer       >());
          System.factory().cloneable_large < file                  >(System. type_info < ::file::binary_buffer     >());
          System.factory().creatable < application                 >(System. type_info < ::aura::application       >(),1);

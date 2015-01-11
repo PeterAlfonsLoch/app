@@ -35,6 +35,9 @@ CLASS_DECL_AURA void AfxResetMsgCache();
 #include "android_thread.h"
 #include "android_os.h"
 
+#include "android_dir.h"
+#include "android_file_system.h"
+
 #define NULL_REF(class) (*((class *) NULL))
 // xxx CLASS_DECL_AURA WNDPROC AfxGetAfxWndProc();
 #define AfxWndProc (*AfxGetAfxWndProc())

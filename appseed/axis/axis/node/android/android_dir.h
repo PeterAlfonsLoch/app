@@ -5,32 +5,34 @@ namespace android
 {
 
 
-   class CLASS_DECL_AURA dir :
+   //class CLASS_DECL_AXIS path :
+   //   virtual public ::file::path
+   //{
+   //public:
+   //   path(::aura::application * papp);
+   //   virtual bool  is_equal(const char * lpszFilPathA, const char * lpszFilPathB);
+   //};
+
+
+   class CLASS_DECL_AXIS dir :
       virtual public ::file::dir::system
    {
    public:
 
 
-      string            m_strTimeFolder;
-      string            m_strNetSeedFolder;
 
-      string            m_strCa2;
-      string            m_strCommonAppData;
-      string            m_strProfile;
-      string            m_strAppData;
-      string            m_strPrograms;
-      string            m_strCommonPrograms;
+
+      string      m_strca2;
 
 
       dir(::aura::application * papp);
 
 
-      using ::file::dir::system::path;
-      virtual class ::file::path & path();
-      virtual string path(const char * pszFolder, strsize iLenFolder, const char * pszRelative, strsize iLenRelative, const char * psz2, strsize iLen2, bool bUrl);
-
-      virtual string relpath(const char * lpcszSource, const char * lpcszRelative, const char * lpcsz2 = NULL);
-
+//      using ::file::dir::system::path;
+////      virtual class ::file::path & path();
+//      virtual string path(const char * pszFolder, strsize iLenFolder, const char * pszRelative, strsize iLenRelative, const char * psz2, strsize iLen2, bool bUrl);
+//
+//      virtual string relpath(const char * lpcszSource, const char * lpcszRelative, const char * lpcsz2 = NULL);
 
       virtual bool  ls_pattern(::aura::application * papp, const char * lpcsz, const char * lpcszPattern, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, bool_array * pbaIsDir = NULL, int64_array * piaSize = NULL);
       virtual bool  ls(::aura::application * papp,const char * lpcsz,stringa * pstraPath = NULL,stringa * pstraTitle = NULL,bool_array * pbaIsDir = NULL,int64_array * piaSize = NULL);
@@ -38,9 +40,8 @@ namespace android
       virtual bool  rls(::aura::application * papp,const char * lpcsz,stringa * pstraPath = NULL,stringa * pstraTitle = NULL,stringa * pstraRelative = NULL,e_extract eextract = extract_first);
       virtual bool  rls_dir(::aura::application * papp,const char * lpcsz,stringa * pstraPath = NULL,stringa * pstraTitle = NULL,stringa * pstraRelative = NULL);
       virtual bool  ls_dir(::aura::application * papp,const char * lpcsz,stringa * pstraPath = NULL,stringa * pstraTitle = NULL);
+      
       virtual bool  ls_file(::aura::application * papp,const char * lpcsz,stringa * pstraPath = NULL,stringa * pstraTitle = NULL);
-
-
       virtual bool  is(const char * lpcsz, ::aura::application * papp);
       virtual bool  is(const string & str, ::aura::application * papp);
       virtual bool  is_inside(const char * lpcszDir, const char * lpcszPath, ::aura::application * papp);
@@ -56,19 +57,19 @@ namespace android
       virtual string name(const char * lpcsz);
       virtual string name(const string & str);
 
-      //virtual string votagus(const char * lpcsz = NULL, const char * lpcsz2 = NULL);
+      virtual string votagus(const char * lpcsz = NULL, const char * lpcsz2 = NULL);
       virtual string time(const char * lpcsz = NULL, const char * lpcsz2 = NULL);
       virtual string stage(const char * lpcsz = NULL, const char * lpcsz2 = NULL);
       virtual string stageapp(const char * lpcsz = NULL, const char * lpcsz2 = NULL);
       virtual string netseed(const char * lpcsz = NULL, const char * lpcsz2 = NULL);
 
       // stage in ccvotagus spalib
-      virtual string element(const char * lpcsz, const char * lpcsz2 = NULL);
-      virtual string element();
-      virtual string element(const string & str);
-      virtual string element(const string & str,const string & str2);
-      virtual string element(const char * lpcsz,const string & str2);
-      virtual string element(const string & str,const char * lpcsz2);
+      virtual string ca2(const char * lpcsz, const char * lpcsz2 = NULL);
+      virtual string ca2();
+      virtual string ca2(const string & str);
+      virtual string ca2(const string & str, const string & str2);
+      virtual string ca2(const char * lpcsz, const string & str2);
+      virtual string ca2(const string & str, const char * lpcsz2);
 
       virtual string module(const char * lpcsz = NULL, const char * lpcsz2 = NULL);
       virtual string ca2module(const char * lpcsz = NULL, const char * lpcsz2 = NULL);
@@ -79,8 +80,6 @@ namespace android
       virtual string trash_that_is_not_trash(const char * psz);
 
       virtual string appdata(const char * lpcsz = NULL, const char * lpcsz2 = NULL);
-      virtual string commonappdata(const char * lpcsz = NULL,const char * lpcsz2 = NULL);
-      virtual string element_commonappdata(const string & strElement,const char * lpcsz = NULL,const char * lpcsz2 = NULL);
 
 
       virtual string usersystemappdata(::aura::application * papp, const char * lpcszPrefix, const char * lpcsz = NULL, const char * lpcsz2 = NULL);
@@ -97,7 +96,10 @@ namespace android
       virtual string commonprograms(const char * pszRelativePath = NULL, const char * lpcsz2 = NULL);
 
       virtual bool initialize();
-
+   protected:
+      class path     m_path;
+      string         m_strTimeFolder;
+      string         m_strNetSeedFolder;
    };
 
 } // namespace android
