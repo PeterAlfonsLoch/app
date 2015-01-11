@@ -31,7 +31,7 @@ string get_error_message(DWORD dwError);
 
 //#include "android1.h"
 //#include "android_implementation.h"
-#include "android_dir.h"
+#include "android_axis_dir.h"
 #include "android_factory_exchange.h"
 //#include "android_window_draw.h"
 //#include "android_thread.h"
@@ -91,7 +91,7 @@ int32_t CLASS_DECL_AXIS __android_main(int32_t argc, char * argv[]);
 
 
 #include "android_file_set.h"
-#include "android_file_system.h"
+#include "android_axis_file_system.h"
 
 
 

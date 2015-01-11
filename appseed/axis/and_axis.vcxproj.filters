@@ -135,9 +135,6 @@
     <Filter Include="Header Files\axis\os\android">
       <UniqueIdentifier>{1d998585-d816-43da-8e2f-dd16e84dde53}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\axis\os\windows">
-      <UniqueIdentifier>{719bbac6-b1e2-43be-9042-48cec85915ad}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\axis\os\ansios">
       <UniqueIdentifier>{d8fdcc30-b719-4944-8c43-76d53cfb6b94}</UniqueIdentifier>
     </Filter>
@@ -146,9 +143,6 @@
     </Filter>
     <Filter Include="Header Files\axis\node">
       <UniqueIdentifier>{cbc7bdb2-868d-47ca-9594-7ff7e1135989}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\axis\node\windows">
-      <UniqueIdentifier>{8a9f35dd-3924-4dfe-bc44-6a823f0200b7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\axis\node\android">
       <UniqueIdentifier>{7e1d30ab-0995-45f2-b0b9-64e3a5d68c5a}</UniqueIdentifier>
@@ -695,26 +689,8 @@
     <ClInclude Include="filesystem\fs\fs_link.h">
       <Filter>Header Files\filesystem\fs</Filter>
     </ClInclude>
-    <ClInclude Include="axis\os\windows\windows.h">
-      <Filter>Header Files\axis\os\windows</Filter>
-    </ClInclude>
     <ClInclude Include="axis\node\node.h">
       <Filter>Header Files\axis\node</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_dir.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_factory_exchange.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_file_set.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_file_system.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_ip_enum.h">
-      <Filter>Header Files\axis\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="axis\node\android\android.h">
       <Filter>Header Files\axis\node\android</Filter>
@@ -742,12 +718,6 @@
     </ClInclude>
     <ClInclude Include="axis\node\android\android_crypto.h">
       <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_crypto.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_port_forward.h">
-      <Filter>Header Files\axis\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="graphics\graphics.h">
       <Filter>Header Files\graphics</Filter>
@@ -826,9 +796,6 @@
     </ClInclude>
     <ClInclude Include="net\http\http_listener.h">
       <Filter>Header Files\net\http</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows.h">
-      <Filter>Header Files\axis\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_server_context.h">
       <Filter>Header Files\net\sockets\bsd\basic</Filter>

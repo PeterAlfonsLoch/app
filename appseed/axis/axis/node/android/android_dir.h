@@ -10,7 +10,7 @@ namespace android
 
 
       class CLASS_DECL_AXIS dir:
-         virtual public ::android::dir,
+         virtual public ::windows::dir,
          virtual public ::file::dir::axis::system
       {
       public:
