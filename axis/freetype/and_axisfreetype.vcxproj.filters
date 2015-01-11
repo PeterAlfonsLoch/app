@@ -56,9 +56,6 @@
     <ClCompile Include="src\smooth\smooth.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="builds\windows\ftdebug.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\gzip\ftgzip.c">
       <Filter>Source Files</Filter>
     </ClCompile>

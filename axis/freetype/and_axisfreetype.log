@@ -1,0 +1,4 @@
+﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Platforms\Android\Microsoft.Cpp.Android.Targets(473,5): error : Could not find the Android NDK, check that your ANDROID_NDK_ROOT path is correct!
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Platforms\Android\Microsoft.Cpp.Android.Targets(473,5): error : It's currently: ''
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Platforms\Android\Microsoft.Cpp.Android.Targets(473,5): error : The NDK can be downloaded at this URL:
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Platforms\Android\Microsoft.Cpp.Android.Targets(473,5): error : http://developer.android.com/sdk/ndk/index.html

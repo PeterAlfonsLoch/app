@@ -3853,7 +3853,10 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <None Include="primitive\str\str.inl" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\aqua\aqua.vcxproj">
+    <ProjectReference Include="..\..\atom\iconv\and_atomiconv.vcxproj">
+      <Project>{7cfb99a0-47a8-4485-beff-3d0104d66509}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\aqua\and_aqua.vcxproj">
       <Project>{51778453-c0aa-419d-a87f-4338c9dde3fa}</Project>
     </ProjectReference>
   </ItemGroup>

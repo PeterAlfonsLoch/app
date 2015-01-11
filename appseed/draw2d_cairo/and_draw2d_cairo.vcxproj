@@ -479,9 +479,6 @@
       <Project>{e6c58c82-71e5-48e6-98ed-1b505d6f10c2}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\axis\freetype\axisfreetype.vcxproj" />
-    <ProjectReference Include="..\..\axis\openssl\axisopenssl.vcxproj">
-      <Project>{29676444-4d0f-4dd0-9104-0499d94da2c9}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\aura\aura.vcxproj">
       <Project>{03e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
     </ProjectReference>

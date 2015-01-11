@@ -252,6 +252,8 @@
 #  define PNG_INTERNAL_DATA(type, name, array) extern type name array
 #endif
 
+#undef extern
+
 #ifndef PNG_INTERNAL_FUNCTION
 #  define PNG_INTERNAL_FUNCTION(type, name, args, attributes)\
       extern PNG_FUNCTION(type, name, args, PNG_EMPTY attributes)

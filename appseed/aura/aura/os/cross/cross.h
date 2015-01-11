@@ -14,7 +14,7 @@ class event;
 
 #endif
 
-#include <pthread.h>
+//#include <pthread.h>
 
 typedef pthread_t HTHREAD;
 
