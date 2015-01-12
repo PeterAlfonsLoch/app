@@ -78,21 +78,26 @@ namespace visual
       bool b24 = false;
       int iFreeImageSave = 0;
       FREE_IMAGE_FORMAT eformat = (FREE_IMAGE_FORMAT) 0;
+      string strFile;
       switch(psaveimage->m_eformat)
       {
       case ::visual::image::format_png:
          eformat = FIF_PNG;
+         strFile = "foo.png";
          break;
       case ::visual::image::format_bmp:
          eformat = FIF_BMP;
+         strFile= "foo.bmp";
          break;
       case ::visual::image::format_gif:
          b8 = true;
          eformat = FIF_GIF;
+         strFile = "foo.gif";
          break;
       case ::visual::image::format_jpeg:
          b24 = true;
          eformat = FIF_JPEG;
+         strFile = "foo.jpg";
          if(psaveimage->m_iQuality > 80)
          {
             iFreeImageSave |= JPEG_QUALITYSUPERB;
@@ -118,6 +123,7 @@ namespace visual
          return false;
       }
 
+      eformat = FreeImage_GetFIFFromFilename(strFile);
 
 
       FIMEMORY * pfm1 = FreeImage_OpenMemory();

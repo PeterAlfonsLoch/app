@@ -1,3 +1,4 @@
-LIBRARY      "axispng"
+LIBRARY      "axispng.fip"
 
 EXPORTS
+_Init@8
