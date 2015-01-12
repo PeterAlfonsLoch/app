@@ -51,6 +51,7 @@ namespace user
 
 
 
+
       combo_box(::aura::application * papp);
       virtual ~combo_box();
 
@@ -86,6 +87,8 @@ namespace user
 
       DECL_GEN_SIGNAL(_001OnLButtonDown);
       DECL_GEN_SIGNAL(_001OnLButtonUp);
+      DECL_GEN_SIGNAL(_001OnKeyDown);
+      DECL_GEN_SIGNAL(_001OnOnKeyUp);
       DECL_GEN_SIGNAL(_001OnSetFocus);
       DECL_GEN_SIGNAL(_001OnMouseMove);
 
@@ -93,7 +96,11 @@ namespace user
       virtual void _001ToggleDropDown();
 
 
-      void defer_create_combo_list();
+      virtual void defer_create_combo_list();
+
+      virtual bool has_action_hover();
+      virtual bool has_text_input();
+      virtual bool is_drop_down();
 
 
 
@@ -184,6 +191,8 @@ namespace user
       virtual string _001GetCurSelStringValue();
 
 
+      virtual COLORREF get_action_hover_border_color();
+
 
       //virtual void _001OnDraw(::draw2d::graphics * pdc);
 
@@ -194,6 +203,12 @@ namespace user
 
 //      virtual index AddString(const char * lpszString,uint_ptr dwItemData);
       virtual index AddString(const char * lpszString,const string & strValue);
+
+
+      virtual bool keyboard_focus_is_focusable();
+
+
+
 
 
    };

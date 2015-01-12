@@ -56,7 +56,9 @@ namespace user
 
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pdispatch, this, &combo_box::_001OnLButtonDown);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pdispatch, this, &combo_box::_001OnLButtonUp);
-      IGUI_WIN_MSG_LINK(WM_SETFOCUS, pdispatch, this, &combo_box::_001OnSetFocus);
+      IGUI_WIN_MSG_LINK(WM_KEYDOWN,pdispatch,this,&combo_box::_001OnKeyDown);
+      IGUI_WIN_MSG_LINK(WM_KEYUP,pdispatch,this,&combo_box::_001OnKeyUp);
+      IGUI_WIN_MSG_LINK(WM_SETFOCUS,pdispatch,this,&combo_box::_001OnSetFocus);
       IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pdispatch, this, &combo_box::_001OnMouseMove);
 
    }
@@ -179,23 +181,34 @@ namespace user
 
          pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         br->create_solid(ARGB(84, 255, 255, 255));
+         //if(m_bDropDownHover)
+         //{
 
-         pdc->SelectObject(br);
+         //   br->create_solid(ARGB(184,180,230,140));
 
-         pdc->FillRectangle(rectClient);
+         //}
+         //else
+         //{
 
-         pdc->set_alpha_mode(::draw2d::alpha_mode_set);
+         //   br->create_solid(ARGB(84,255,255,255));
 
-         color ca;
+         //}
 
-         ca.set_rgb(RGB(227, 227, 210));
+         //pdc->SelectObject(br);
 
-         ca.hls_rate(0.0, -0.33, -0.23);
+         //pdc->FillRectangle(rectClient);
 
-         COLORREF crBorder = ca.get_rgb() | (0xff << 24);
+         //pdc->set_alpha_mode(::draw2d::alpha_mode_set);
 
-         pdc->Draw3dRect(rectClient, crBorder, crBorder);
+         //color ca;
+
+         //ca.set_rgb(RGB(227, 227, 210));
+
+         //ca.hls_rate(0.0, -0.33, -0.23);
+
+         //COLORREF crBorder = ca.get_rgb() | (0xff << 24);
+
+         //pdc->Draw3dRect(rectClient, crBorder, crBorder);
 
          _001OnDrawStaticText(pdc);
 
@@ -506,16 +519,45 @@ namespace user
 
    }
 
+   void combo_box::_001OnKeyDown(signal_details * pobj)
+   {
+
+      SCAST_PTR(::message::key,pkey,pobj);
+
+      if(pkey->m_ekey == ::user::key_down)
+      {
+
+         if(!is_drop_down())
+         {
+
+            _001ShowDropDown();
+
+         }
+
+      }
+
+   }
+
+
+   void combo_box::_001OnKeyUp(signal_details * pobj)
+   {
+
+      SCAST_PTR(::message::key,pkey,pobj);
+
+   }
+
    void combo_box::_001OnLButtonDown(signal_details * pobj)
    {
 
       SCAST_PTR(::message::mouse, pmouse, pobj);
 
+      pmouse->previous();
+
       point pt = pmouse->m_pt;
 
       ScreenToClient(&pt);
 
-      if(hit_test(pt) == element_drop_down)
+      if(!m_bEdit || hit_test(pt) == element_drop_down)
       {
 
          _001ToggleDropDown();
@@ -531,6 +573,8 @@ namespace user
 
       SCAST_PTR(::message::mouse, pmouse, pobj);
 
+      pmouse->previous();
+
       point pt = pmouse->m_pt;
 
       ScreenToClient(&pt);
@@ -538,11 +582,14 @@ namespace user
       if (hit_test(pt) == element_drop_down)
       {
 
+
          pmouse->m_ecursor = ::visual::cursor_arrow;
 
          pmouse->m_bRet = true;
 
       }
+
+
 
    }
 
@@ -1394,6 +1441,32 @@ namespace user
 
    }
 
+
+   bool combo_box::has_action_hover()
+   {
+
+      return ::user::edit_plain_text::has_action_hover() || is_drop_down();
+
+   }
+
+   bool combo_box::has_text_input()
+   {
+
+      return m_bEdit && ::user::edit_plain_text::has_text_input();
+
+   }
+
+
+   COLORREF combo_box::get_action_hover_border_color()
+   {
+
+      //return ARGB(184,120,255,190);
+
+      return ::user::edit_plain_text::get_action_hover_border_color();
+
+   }
+
+
    void combo_box::_001SetCurSelByStringValue(const string & strValue,::action::context actioncontext)
    {
 
@@ -1454,6 +1527,22 @@ namespace user
          return "";
 
       return *((string *)ui);
+
+   }
+
+
+   bool combo_box::keyboard_focus_is_focusable()
+   {
+
+      return true;
+
+   }
+
+   
+   bool combo_box::is_drop_down()
+   {
+
+      return m_plist != NULL && m_plist->IsWindowVisible();
 
    }
 

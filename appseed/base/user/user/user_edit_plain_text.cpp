@@ -29,6 +29,9 @@ namespace user
          m_bReadOnly          = false;
          m_bSendEnterKey      = false;
 
+         m_bActionHover       = false;
+
+
 
          m_straSep.add("\n");
          m_straSep.add("\r");
@@ -1663,16 +1666,57 @@ namespace user
 
       ScreenToClient(&pt);
 
-      pmouse->m_ecursor = ::visual::cursor_text_select;
-
-      if(m_bMouseDown)
+      if(has_text_input())
       {
 
-         ::draw2d::memory_graphics pdc(allocer());
+         pmouse->m_ecursor = ::visual::cursor_text_select;
 
-         m_ptree->m_iSelEnd = char_hit_test(pdc,pt.x,pt.y);
+         if(m_bMouseDown)
+         {
+
+            ::draw2d::memory_graphics pdc(allocer());
+
+            m_ptree->m_iSelEnd = char_hit_test(pdc,pt.x,pt.y);
+
+         }
 
       }
+      else
+      {
+
+         pmouse->m_ecursor = ::visual::cursor_arrow;
+
+
+
+      }
+
+      ::rect rectClient;
+
+      GetClientRect(rectClient);
+
+      if(rectClient.contains(pt))
+      {
+
+         if(GetCapture() != this)
+         {
+
+            SetCapture(this);
+
+         }
+
+         m_bActionHover = true;
+
+      }
+      else
+      {
+
+         ReleaseCapture();
+
+         m_bActionHover = false;
+
+      }
+
+
 
    }
 
@@ -2870,6 +2914,20 @@ namespace user
 
    }
 
+
+   bool edit_plain_text::has_action_hover()
+   {
+
+      return is_window_enabled() && m_bActionHover;
+
+   }
+
+   bool edit_plain_text::has_text_input()
+   {
+
+      return is_window_enabled();
+
+   }
 
 
 

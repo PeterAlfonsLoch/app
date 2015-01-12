@@ -781,7 +781,7 @@ namespace html
          }
 
 
-         cy += m_sizea[i].cy;
+         cy += m_sizea[MIN(i, m_sizea.get_upper_bound())].cy;
          lim += strLine.get_length();
         }
         //pdc->FillSolidRect(0, 0, 100, 100, RGB(0, 255, 0));

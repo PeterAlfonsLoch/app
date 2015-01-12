@@ -75,7 +75,9 @@ namespace simple_ui
       virtual void simple_ui_draw_back_01_old(style::e_schema eschema,rect m_rect,::draw2d::graphics * pgraphics);
       virtual void simple_ui_draw_back_01_new(rect m_rect,::draw2d::graphics * pgraphics);
 
-
+      virtual bool has_action_hover();
+      virtual bool has_text_input();
+      virtual COLORREF get_action_hover_border_color();
 
       DECL_GEN_SIGNAL(_001OnChar);
       DECL_GEN_SIGNAL(_001OnLButtonDown);

@@ -308,6 +308,26 @@ namespace simple_ui
 
    }
 
+   bool interaction::has_action_hover()
+   {
+
+      return false;
+
+   }
+
+   bool interaction::has_text_input()
+   {
+
+      return false;
+
+   }
+   
+   COLORREF interaction::get_action_hover_border_color()
+   {
+      
+      return ARGB(135,120,190,255);
+
+   }
 
    void interaction::simple_ui_draw_focus_rect(::draw2d::graphics * pgraphics)
    {
@@ -323,12 +343,34 @@ namespace simple_ui
       rectClient.left--;
       rectClient.top--;
 
-      if(Session.user()->get_keyboard_focus() == this)
+      if(Session.user()->get_keyboard_focus() == this || has_action_hover())
       {
+
+         ::draw2d::brush_sp brush(allocer());
+
+         if(has_action_hover() && !has_text_input())
+         {
+
+            brush->create_solid(ARGB(184,150,230,180));
+
+            pgraphics->SelectObject(brush);
+
+            pgraphics->FillRectangle(rectClient);
+
+         }
 
          if (iStyle == 1)
          {
 
+            if(has_action_hover())
+            {
+
+               ::draw2d::pen_sp pen(pgraphics,1.0,get_action_hover_border_color());
+
+               pgraphics->DrawRect(rectClient,pen);
+
+            }
+            else
             {
 
                //::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(255, 108, 149, 255));
@@ -337,153 +379,158 @@ namespace simple_ui
                pgraphics->DrawRect(rectClient,pen);
 
             }
-            rectClient.left--;
-            rectClient.right++;
-            rectClient.top--;
-            rectClient.bottom++;
 
+
+            if(Session.user()->get_keyboard_focus() == this)
             {
 
-               //::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(255, 108, 149, 255));
-               ::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(135, 120, 190, 255));
+               rectClient.left--;
+               rectClient.right++;
+               rectClient.top--;
+               rectClient.bottom++;
 
-               pgraphics->DrawRect(rectClient, pen);
+               {
 
-            }
+                  //::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(255, 108, 149, 255));
+                  ::draw2d::pen_sp pen(pgraphics,1.0,ARGB(135,120,190,255));
 
-            rectClient.left--;
-            rectClient.right++;
-            rectClient.top--;
-            rectClient.bottom++;
+                  pgraphics->DrawRect(rectClient,pen);
 
-            {
+               }
 
-               /*::draw2d::path_sp pathRound(allocer());
+               rectClient.left--;
+               rectClient.right++;
+               rectClient.top--;
+               rectClient.bottom++;
 
-               pathRound->begin_figure(true, ::draw2d::fill_mode_winding);
+               {
 
-               pathRound->add_round_rect(rectClient, 1 * 2);
+                  /*::draw2d::path_sp pathRound(allocer());
 
-               pathRound->end_figure(true);*/
+                  pathRound->begin_figure(true, ::draw2d::fill_mode_winding);
 
-               //::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(84, 108, 149, 255));
-               ::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(105, 140, 200, 255));
+                  pathRound->add_round_rect(rectClient, 1 * 2);
 
-               pgraphics->SelectObject(pen);
+                  pathRound->end_figure(true);*/
 
-               pgraphics->DrawRect(rectClient, pen);
+                  //::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(84, 108, 149, 255));
+                  ::draw2d::pen_sp pen(pgraphics,1.0,ARGB(105,140,200,255));
 
-            }
+                  pgraphics->SelectObject(pen);
 
-            rectClient.left--;
-            rectClient.right++;
-            rectClient.top--;
-            rectClient.bottom++;
+                  pgraphics->DrawRect(rectClient,pen);
 
-            {
+               }
 
-               ::draw2d::path_sp pathRound(allocer());
+               rectClient.left--;
+               rectClient.right++;
+               rectClient.top--;
+               rectClient.bottom++;
 
-               pathRound->begin_figure(true, ::draw2d::fill_mode_winding);
+               {
 
-               pathRound->add_round_rect(rectClient, 1 * 2);
+                  ::draw2d::path_sp pathRound(allocer());
 
-               pathRound->end_figure(true);
+                  pathRound->begin_figure(true,::draw2d::fill_mode_winding);
 
-               //::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(72, 108, 149, 255));
-               ::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(95, 160, 210, 255));
+                  pathRound->add_round_rect(rectClient,1 * 2);
 
-               pgraphics->SelectObject(pen);
+                  pathRound->end_figure(true);
 
-               pgraphics->DrawRect(rectClient, pen);
+                  //::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(72, 108, 149, 255));
+                  ::draw2d::pen_sp pen(pgraphics,1.0,ARGB(95,160,210,255));
 
-            }
+                  pgraphics->SelectObject(pen);
 
-            rectClient.left--;
-            rectClient.right++;
-            rectClient.top--;
-            rectClient.bottom++;
+                  pgraphics->DrawRect(rectClient,pen);
 
-            {
+               }
 
-               ::draw2d::path_sp pathRound(allocer());
+               rectClient.left--;
+               rectClient.right++;
+               rectClient.top--;
+               rectClient.bottom++;
 
-               pathRound->begin_figure(true, ::draw2d::fill_mode_winding);
+               {
 
-               pathRound->add_round_rect(rectClient, 1 * 2);
+                  ::draw2d::path_sp pathRound(allocer());
 
-               pathRound->end_figure(true);
+                  pathRound->begin_figure(true,::draw2d::fill_mode_winding);
 
-               //::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(60, 108, 149, 255));
-               ::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(75, 180, 220, 255));
+                  pathRound->add_round_rect(rectClient,1 * 2);
 
-               pgraphics->SelectObject(pen);
+                  pathRound->end_figure(true);
 
-               pgraphics->DrawRect(rectClient, pen);
+                  //::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(60, 108, 149, 255));
+                  ::draw2d::pen_sp pen(pgraphics,1.0,ARGB(75,180,220,255));
 
-            }
+                  pgraphics->SelectObject(pen);
 
+                  pgraphics->DrawRect(rectClient,pen);
 
-            rectClient.left--;
-            rectClient.right++;
-            rectClient.top--;
-            rectClient.bottom++;
-
-            {
-
-               ::draw2d::path_sp pathRound(allocer());
-
-               pathRound->begin_figure(true, ::draw2d::fill_mode_winding);
-
-               pathRound->add_round_rect(rectClient, 1 * 2);
-
-               pathRound->end_figure(true);
-
-               //::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(48, 108, 149, 255));
-               ::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(55, 200, 230, 255));
-
-               pgraphics->SelectObject(pen);
-
-               pgraphics->DrawRect(rectClient, pen);
-
-            }
+               }
 
 
+               rectClient.left--;
+               rectClient.right++;
+               rectClient.top--;
+               rectClient.bottom++;
 
-            rectClient.left--;
-            rectClient.right++;
-            rectClient.top--;
-            rectClient.bottom++;
+               {
 
-            {
+                  ::draw2d::path_sp pathRound(allocer());
 
-               ::draw2d::path_sp pathRound(allocer());
+                  pathRound->begin_figure(true,::draw2d::fill_mode_winding);
 
-               pathRound->begin_figure(true, ::draw2d::fill_mode_winding);
+                  pathRound->add_round_rect(rectClient,1 * 2);
 
-               pathRound->add_round_rect(rectClient, 1 * 2);
+                  pathRound->end_figure(true);
 
-               pathRound->end_figure(true);
+                  //::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(48, 108, 149, 255));
+                  ::draw2d::pen_sp pen(pgraphics,1.0,ARGB(55,200,230,255));
 
-               //::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(36, 108, 149, 255));
-               ::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(45, 220, 240, 255));
+                  pgraphics->SelectObject(pen);
 
-               pgraphics->SelectObject(pen);
+                  pgraphics->DrawRect(rectClient,pen);
 
-               pgraphics->DrawRect(rectClient, pen);
-
-            }
+               }
 
 
 
+               rectClient.left--;
+               rectClient.right++;
+               rectClient.top--;
+               rectClient.bottom++;
 
-            /*
-            rectClient.left--;
-            rectClient.right++;
-            rectClient.top--;
-            rectClient.bottom++;
+               {
 
-            {
+                  ::draw2d::path_sp pathRound(allocer());
+
+                  pathRound->begin_figure(true,::draw2d::fill_mode_winding);
+
+                  pathRound->add_round_rect(rectClient,1 * 2);
+
+                  pathRound->end_figure(true);
+
+                  //::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(36, 108, 149, 255));
+                  ::draw2d::pen_sp pen(pgraphics,1.0,ARGB(45,220,240,255));
+
+                  pgraphics->SelectObject(pen);
+
+                  pgraphics->DrawRect(rectClient,pen);
+
+               }
+
+
+
+
+               /*
+               rectClient.left--;
+               rectClient.right++;
+               rectClient.top--;
+               rectClient.bottom++;
+
+               {
 
                ::draw2d::path_sp pathRound(allocer());
 
@@ -501,8 +548,10 @@ namespace simple_ui
 
                pgraphics->DrawRect(rectClient, pen);
 
+               }
+               */
+
             }
-            */
 
          }
          else

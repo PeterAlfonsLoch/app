@@ -76,6 +76,7 @@ namespace user
       ::data::tree_item *           m_pitem;
 
 
+      bool                          m_bActionHover;
 
 
 
@@ -120,7 +121,7 @@ namespace user
       virtual bool keyboard_focus_is_focusable();
       virtual bool keyboard_focus_OnSetFocus();
 
-
+      
 
       void clipboard_copy();
       void clipboard_paste();
@@ -150,6 +151,8 @@ namespace user
 
 
 
+      virtual bool has_action_hover();
+      virtual bool has_text_input();
 
 
       virtual void on_updata_data(::data::simple_data * pdata, int32_t iHint);
