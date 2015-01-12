@@ -142,6 +142,7 @@ namespace visual
       }
       else
       {
+         //FreeImage_SetTransparent(pfi8,true);
          pfi8 = pfi7;
          bConv = false;
       }

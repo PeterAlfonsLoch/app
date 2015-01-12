@@ -141,7 +141,15 @@ FIBITMAP * imaging::HBITMAPtoFI(::draw2d::bitmap_sp pbitmap)
    ::GetObject(hbitmap,sizeof(BITMAP),(char *)&bm);
    if(bm.bmWidth <= 0 || bm.bmHeight <= 0)
       return NULL;
-   FIBITMAP * fi = FreeImage_Allocate(bm.bmWidth,bm.bmHeight,bm.bmBitsPixel);
+   FIBITMAP * fi;
+   if(bm.bmBitsPixel == 32)
+   {
+      fi = FreeImage_AllocateT(FIT_UINT32,bm.bmWidth,bm.bmHeight,bm.bmBitsPixel);
+   }
+   else
+   {
+      fi = FreeImage_Allocate(bm.bmWidth,bm.bmHeight,bm.bmBitsPixel);
+   }
    // The GetDIBits function clears the biClrUsed and biClrImportant BITMAPINFO members (dont't know why)
    // So we save these infos below. This is needed for palettized images only.
    int32_t nColors = FreeImage_GetColorsUsed(fi);
