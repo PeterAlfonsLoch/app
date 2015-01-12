@@ -82,6 +82,28 @@ namespace user
       try
       {
 
+         Application.remove_frame(this);
+
+      }
+      catch(...)
+      {
+
+      }
+
+      try
+      {
+
+         Session.remove_frame(this);
+
+      }
+      catch(...)
+      {
+
+      }
+
+      try
+      {
+
          System.remove_frame(this);
 
       }

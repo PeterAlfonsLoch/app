@@ -753,9 +753,17 @@ namespace html
          {
             m_pimpl->_001OnDraw(pdata);
          }
-         for (int32_t i = 0; i < m_elementalptra.get_size(); i++)
+         for (int32_t i = 0; i < m_elementalptra.get_size(); )
          {
-            m_elementalptra[i]->_001OnDraw(pdata);
+            try
+            {
+               m_elementalptra[i]->_001OnDraw(pdata);
+               i++;
+            }
+            catch(...)
+            {
+               m_elementalptra.remove_at(i);
+            }
          }
       }
 
@@ -1205,6 +1213,22 @@ namespace html
    {
 
       m_propertyset.clear();
+
+      if(m_pparent != NULL)
+      {
+
+         try
+         {
+
+            m_pparent->m_elementalptra.remove(this);
+
+         }
+         catch(...)
+         {
+
+         }
+
+      }
 
       try
       {

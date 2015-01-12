@@ -1645,6 +1645,8 @@ namespace base
       }
       catch(...)
       {
+         
+         pobj->m_bRet = true;
 
       }
 

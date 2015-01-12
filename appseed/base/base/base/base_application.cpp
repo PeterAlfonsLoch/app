@@ -1922,12 +1922,14 @@ namespace base
 
       single_lock sl(&pimpl->m_mutexUiPtra,TRUE);
 
+      ::user::interaction * pui = NULL;
 
-      if(lCount <= 0 && pimpl->m_spuiptra.is_set())
+
+      if(lCount <= 0)
       {
-         for(int32_t i = 0; i <pimpl-> m_spuiptra->get_count();)
+         while(get_frame(pui))
          {
-            ::user::interaction * pui = (::user::interaction *) pimpl->m_spuiptra->element_at(i)->m_pvoidUserInteraction;
+            //::user::interaction * pui = (::user::interaction *) pimpl->m_spuiptra->element_at(i)->m_pvoidUserInteraction;
             bool bOk = false;
             try
             {
@@ -1939,7 +1941,27 @@ namespace base
             }
             if(!bOk)
             {
-               pimpl->m_spuiptra->remove_at(i);
+               try
+               {
+                  Application.remove_frame(pui);
+               }
+               catch(...)
+               {
+               }
+               try
+               {
+                  Session.remove_frame(pui);
+               }
+               catch(...)
+               {
+               }
+               try
+               {
+                  System.remove_frame(pui);
+               }
+               catch(...)
+               {
+               }
             }
             else
             {
@@ -1953,7 +1975,6 @@ namespace base
 
                }
                sl.lock();
-               i++;
             }
          }
 

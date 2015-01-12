@@ -17,6 +17,7 @@ namespace user
 
       m_pcombo                      = NULL;
 
+      m_iHover                      = -1;
    }
 
 
@@ -52,13 +53,13 @@ namespace user
       if(m_pcombo->m_estyle == ::user::combo_box::style_simply)
       {
 
-         _001OnDrawSimply(pdc);
+         _002OnDrawSimply(pdc);
 
       }
       else
       {
 
-         _001OnDrawVerisimple(pdc);
+         _002OnDrawVerisimple(pdc);
 
       }
 
@@ -261,6 +262,211 @@ namespace user
 
    }
 
+
+   void combo_list::_002OnDrawVerisimple(::draw2d::graphics * pdc)
+   {
+
+      ::count ca = m_pcombo->_001GetListCount();
+
+      string strItem;
+
+      rect rectClient;
+
+      GetClientRect(rectClient);
+
+      ::draw2d::brush_sp br(allocer());
+
+      br->create_solid(ARGB(230,255,255,255));
+
+      pdc->SelectObject(br);
+
+      pdc->FillRectangle(rectClient);
+
+      {
+
+         color ca;
+
+         ca.set_rgb(RGB(227,227,210));
+
+         ca.hls_rate(0.0,-0.33,-0.23);
+
+         COLORREF crBorder = ca.get_rgb() | (0xff << 24);
+
+         pdc->Draw3dRect(rectClient,crBorder,crBorder);
+
+      }
+
+      rect rectItem;
+
+      rectItem = rectClient;
+
+      if(m_pcombo->m_bEdit)
+      {
+
+         rectItem.bottom = rectClient.top + _001GetItemHeight();
+
+      }
+      else
+      {
+
+         rectItem.bottom = 0;
+
+      }
+
+      point ptCursor;
+
+      Session.get_cursor_pos(&ptCursor);
+
+      ScreenToClient(&ptCursor);
+
+      //br->create_solid(ARGB(255,84,84,77));
+
+      //      int32_t dSize = (int32_t) ( _001GetItemHeight() * 0.7);
+
+      //    GetFont()->m_dFontSize = dSize;
+      //  GetFont()->m_eunitFontSize = ::draw2d::unit_pixel;
+      //      GetFont()->m_bUpdated = false;
+
+      select_font(pdc);
+
+      //pdc->SelectObject(br);
+
+      int iHover = m_iHover;
+
+      if(iHover < 0 || iHover >= ca)
+      {
+
+         iHover = m_pcombo->_001GetCurSel();
+
+      }
+
+      for(index i = 0; i < ca; i++)
+      {
+         rectItem.top = rectItem.bottom;
+         rectItem.bottom = rectItem.top + _001GetItemHeight();
+         if(iHover == i)
+         {
+            br->create_solid(ARGB(184,77,184,63));
+            pdc->SelectObject(br);
+            pdc->FillRectangle(rectItem);
+            br->create_solid(ARGB(255,255,255,240));
+            m_pcombo->_001GetListText(i,strItem);
+            pdc->SelectObject(br);
+            pdc->draw_text(strItem,rectItem,0);
+         }
+         else
+         {
+            pdc->set_text_color(ARGB(255,84,84,77));
+            m_pcombo->_001GetListText(i,strItem);
+            pdc->draw_text(strItem,rectItem,0);
+         }
+      }
+
+   }
+
+
+   void combo_list::_002OnDrawSimply(::draw2d::graphics * pdc)
+   {
+
+      ::count ca = m_pcombo->_001GetListCount();
+
+      string strItem;
+
+      rect rectClient;
+
+      GetClientRect(rectClient);
+
+      ::draw2d::brush_sp br(allocer());
+
+      br->create_solid(ARGB(230,255,255,255));
+
+      pdc->SelectObject(br);
+
+      pdc->FillRectangle(rectClient);
+
+      {
+
+         color ca;
+
+         ca.set_rgb(RGB(227,227,210));
+
+         ca.hls_rate(0.0,-0.33,-0.23);
+
+         COLORREF crBorder = ca.get_rgb() | (0xff << 24);
+
+         pdc->Draw3dRect(rectClient,crBorder,crBorder);
+
+      }
+
+      rect rectItem;
+
+      rectItem = rectClient;
+
+      if(m_pcombo->m_bEdit)
+      {
+
+         rectItem.bottom = rectClient.top + _001GetItemHeight();
+
+      }
+      else
+      {
+         
+         rectItem.bottom = 0;
+
+      }
+
+      point ptCursor;
+
+      Session.get_cursor_pos(&ptCursor);
+
+      ScreenToClient(&ptCursor);
+
+      //br->create_solid(ARGB(255,84,84,77));
+
+      //int32_t dSize = (int32_t) (_001GetItemHeight() * 0.7);
+
+      //GetFont()->m_dFontSize = dSize;
+      //GetFont()->m_eunitFontSize = ::draw2d::unit_pixel;
+      //GetFont()->m_bUpdated = false;
+
+      select_font(pdc);
+
+      //pdc->SelectObject(br);
+
+      int iHover = m_iHover;
+
+      if(iHover < 0 || iHover >= ca)
+      {
+
+         iHover = m_pcombo->_001GetCurSel();
+
+      }
+
+      for(index i = 0; i < ca; i++)
+      {
+         rectItem.top = rectItem.bottom;
+         rectItem.bottom = rectItem.top + _001GetItemHeight();
+         if(i == iHover)
+         {
+            br->create_solid(ARGB(184,77,184,63));
+            pdc->SelectObject(br);
+            pdc->FillRectangle(rectItem);
+            br->create_solid(ARGB(255,255,255,240));
+            m_pcombo->_001GetListText(i,strItem);
+            pdc->SelectObject(br);
+            pdc->draw_text(strItem,rectItem,0);
+         }
+         else
+         {
+            pdc->set_text_color(ARGB(255,84,84,77));
+            m_pcombo->_001GetListText(i,strItem);
+            pdc->draw_text(strItem,rectItem,0);
+         }
+      }
+
+
+   }
+
    void combo_list::query_full_size(LPSIZE lpsize) const
    {
 
@@ -312,7 +518,16 @@ namespace user
 
       }
 
-      lpsize->cy = (LONG) (_001GetItemHeight() * (m_pcombo->_001GetListCount() + 1));
+      int iAddUp = 0;
+
+      if(m_pcombo->m_bEdit)
+      {
+
+         iAddUp = 1;
+
+      }
+
+      lpsize->cy = (LONG) (_001GetItemHeight() * (m_pcombo->_001GetListCount() + iAddUp));
 
    }
 
@@ -510,10 +725,17 @@ namespace user
    void combo_list::_001OnMouseMove(signal_details * pobj)
    {
 
-//      SCAST_PTR(::message::mouse, pmouse, pobj);
+      SCAST_PTR(::message::mouse, pmouse, pobj);
 
       pobj->m_bRet = true;
 
+      point pt = pmouse->m_pt;
+
+      ScreenToClient(&pt);
+
+      e_element eelement;
+
+      m_iHover = hit_test(pt,eelement);
 
    }
 
@@ -539,10 +761,19 @@ namespace user
 
       rectItem = rectClient;
 
+      int iAddUp = 0;
+
+      if(m_pcombo->m_bEdit)
+      {
+
+         iAddUp = 1;
+
+      }
+
       for(int32_t i = 0; i < ca; i++)
       {
 
-         rectItem.top = rectClient.top + (_001GetItemHeight() * (1 + i));
+         rectItem.top = rectClient.top + (_001GetItemHeight() * (iAddUp + i));
          rectItem.bottom = rectItem.top + _001GetItemHeight();
 
          if(rectItem.contains(pt))

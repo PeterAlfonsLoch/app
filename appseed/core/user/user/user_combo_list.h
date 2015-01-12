@@ -24,6 +24,7 @@ namespace user
       bool                                m_bComboList;
       combo_box *                         m_pcombo;
       int32_t                             m_iItemHeight;
+      int                                 m_iHover;
 
       ::user::interaction *               m_puiDeactivateTogether;
       ::user::wndfrm::frame::WorkSet *    m_puiDeactivateTogetherSet;
@@ -37,9 +38,12 @@ namespace user
 
 
       virtual void _001OnDraw(::draw2d::graphics * pdc);
+
       virtual void _001OnDrawVerisimple(::draw2d::graphics * pdc);
       virtual void _001OnDrawSimply(::draw2d::graphics * pdc);
 
+      virtual void _002OnDrawVerisimple(::draw2d::graphics * pdc);
+      virtual void _002OnDrawSimply(::draw2d::graphics * pdc);
 
       virtual void query_full_size(LPSIZE lpsize) const;
 
