@@ -16,6 +16,7 @@ namespace message
       m_bDestroyed         = false;
       m_pwnd               = NULL;
       m_plresult           = &m_lresult;
+      m_bDoSystemDefault   = true;
 
    }
 
@@ -27,6 +28,7 @@ namespace message
 
       m_lresult            = 0;
       m_bDestroyed         = false;
+      m_bDoSystemDefault   = true;
       set(pwnd,uiMessage,wparam,lparam,lresult);
 
       //Application.tellme_destroyed(pwnd, &m_bDestroyed);
@@ -43,6 +45,7 @@ namespace message
       m_lparam             = base.m_lparam;
       m_bConditional       = base.m_bConditional;
       m_bReflect           = base.m_bReflect;
+      m_bDoSystemDefault   = base.m_bDoSystemDefault;
       m_bDestroyed         = false;
 
       //Application.tellme_destroyed(m_pwnd, &m_bDestroyed);

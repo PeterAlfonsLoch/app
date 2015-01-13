@@ -37,7 +37,7 @@ inline CLASS_DECL_AURA RECT & inflate_rect(RECT & rect, LONG dleft, LONG dtop, L
    rect.left -= dleft;
    rect.right += dtop;
    rect.top -= dright;
-   rect.top += dbottom;
+   rect.bottom += dbottom;
    return rect;
 }
 
@@ -46,19 +46,66 @@ inline CLASS_DECL_AURA LPRECT inflate_rect(LPRECT lprect, LONG dleft, LONG dtop,
    return &inflate_rect(*lprect, dleft, dtop, dright, dbottom);
 }
 
-inline CLASS_DECL_AURA RECT & deflate_rect(RECT & rect, LONG dleft, LONG dtop, LONG dright, LONG dbottom)
+template < typename R >
+inline R * deflate_rect(R * prect,decltype(R::left) dleft,decltype(R::top) dtop,decltype(R::right) dright,decltype(R::bottom) dbottom)
 {
-   rect.left += dleft;
-   rect.right -= dtop;
-   rect.top += dright;
-   rect.top -= dbottom;
-   return rect;
+   prect->left += dleft;
+   prect->right -= dtop;
+   prect->top += dright;
+   prect->bottom -= dbottom;
+   return prect;
 }
 
-inline CLASS_DECL_AURA LPRECT deflate_rect(LPRECT lprect, LONG dleft, LONG dtop, LONG dright, LONG dbottom)
+template < typename R >
+inline R & deflate_rect(R & prect,decltype(R::left) dleft,decltype(R::top) dtop,decltype(R::right) dright,decltype(R::bottom) dbottom)
 {
-   return &deflate_rect(*lprect, dleft, dtop, dright, dbottom);
+   return *deflate_rect(&prect, dleft, dtop, dright, dbottom);
 }
+
+template < typename R >
+inline R * deflate_rect(R * prect,decltype(R::left) horz,decltype(R::top) vert)
+{
+   return deflate_rect(prect, horz, vert, horz, vert);
+}
+
+template < typename R >
+inline R & deflate_rect(R & prect,decltype(R::left) horz,decltype(R::top) vert)
+{
+   return *deflate_rect(&prect,horz,vert);
+}
+
+template < typename R >
+inline R * deflate_rect(R * prect,decltype(R::left) dim)
+{
+   return deflate_rect(prect,dim,dim);
+}
+
+template < typename R >
+inline R & deflate_rect(R & prect,decltype(R::left) dim)
+{
+   return *deflate_rect(&prect,dim);
+}
+
+
+//inline CLASS_DECL_AURA LPRECT deflate_rect(LPRECT lprect, LONG dleft, LONG dtop, LONG dright, LONG dbottom)
+//{
+//   return &deflate_rect(*lprect, dleft, dtop, dright, dbottom);
+//}
+
+//inline CLASS_DECL_AURA __rect64 & deflate_rect(__rect64 & rect,LONG dleft,LONG dtop,LONG dright,LONG dbottom)
+//{
+//   rect.left += dleft;
+//   rect.right -= dtop;
+//   rect.top += dright;
+//   rect.top -= dbottom;
+//   return rect;
+//}
+//
+//
+//inline CLASS_DECL_AURA __rect64 * deflate_rect(__rect64 * lprect,LONG dleft,LONG dtop,LONG dright,LONG dbottom)
+//{
+//   return &deflate_rect(*lprect,dleft,dtop,dright,dbottom);
+//}
 
 inline CLASS_DECL_AURA RECT & inflate_rect(RECT & rect, LONG dx, LONG dy)
 {
@@ -70,16 +117,27 @@ inline CLASS_DECL_AURA LPRECT inflate_rect(LPRECT lprect, LONG dx, LONG dy)
    return &inflate_rect(*lprect, dx, dy);
 }
 
-inline CLASS_DECL_AURA RECT & deflate_rect(RECT & rect, LONG dx, LONG dy)
-{
-   return deflate_rect(rect, dx, dy, dx, dy);
-}
-
-inline CLASS_DECL_AURA LPRECT deflate_rect(LPRECT lprect, LONG dx, LONG dy)
-{
-   return &deflate_rect(*lprect, dx, dy);
-}
-
+//inline CLASS_DECL_AURA RECT & deflate_rect(RECT & rect, LONG dx, LONG dy)
+//{
+//   return deflate_rect(rect, dx, dy, dx, dy);
+//}
+//
+//inline CLASS_DECL_AURA LPRECT deflate_rect(LPRECT lprect, LONG dx, LONG dy)
+//{
+//   return &deflate_rect(*lprect, dx, dy);
+//}
+//
+//inline CLASS_DECL_AURA __rect64 & deflate_rect(__rect64 & rect,LONG dx,LONG dy)
+//{
+//   return deflate_rect(rect,dx,dy,dx,dy);
+//}
+//
+//
+//inline CLASS_DECL_AURA __rect64 * deflate_rect(__rect64 * lprect,LONG dx,LONG dy)
+//{
+//   return &deflate_rect(*lprect,dx,dy);
+//}
+//
 inline CLASS_DECL_AURA RECT & inflate_rect(RECT & rect, LONG d)
 {
    return inflate_rect(rect, d, d);
@@ -90,15 +148,25 @@ inline CLASS_DECL_AURA LPRECT inflate_rect(LPRECT lprect, LONG d)
    return &inflate_rect(*lprect, d);
 }
 
-inline CLASS_DECL_AURA RECT & deflate_rect(RECT & rect, LONG d)
-{
-   return deflate_rect(rect, d, d);
-}
-
-inline CLASS_DECL_AURA LPRECT deflate_rect(LPRECT lprect, LONG d)
-{
-   return &deflate_rect(*lprect, d);
-}
+//inline CLASS_DECL_AURA RECT & deflate_rect(RECT & rect, LONG d)
+//{
+//   return deflate_rect(rect, d, d);
+//}
+//
+//inline CLASS_DECL_AURA LPRECT deflate_rect(LPRECT lprect, LONG d)
+//{
+//   return &deflate_rect(*lprect, d);
+//}
+//
+//inline CLASS_DECL_AURA __rect64 & deflate_rect(__rect64 & rect,LONG d)
+//{
+//   return deflate_rect(rect,d,d);
+//}
+//
+//inline CLASS_DECL_AURA __rect64 * deflate_rect(__rect64  * lprect,LONG d)
+//{
+//   return &deflate_rect(*lprect,d);
+//}
 
 inline CLASS_DECL_AURA RECT & rect_by_dimension(RECT & rect, LONG x, LONG y, LONG cx, LONG cy)
 {

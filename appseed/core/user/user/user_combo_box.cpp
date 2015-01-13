@@ -694,7 +694,7 @@ namespace user
             rectList.top = rectWindow.bottom + 1;
 
             sizeList.cy = MIN(sizeFull.cy, (rectMonitor.bottom - rectWindow.bottom));
-            sizeList.cy -= sizeList.cy % m_plist->_001GetItemHeight();
+            //sizeList.cy -= sizeList.cy % m_plist->_001GetItemHeight();
 
 
             rectList.bottom = rectList.top + sizeList.cy;
@@ -708,13 +708,13 @@ namespace user
             rectList.bottom = rectWindow.top - 1;
 
             sizeList.cy = MIN(sizeFull.cy, (rectWindow.top - rectMonitor.top));
-            sizeList.cy -= sizeList.cy % m_plist->_001GetItemHeight();
+            //sizeList.cy -= sizeList.cy % m_plist->_001GetItemHeight();
 
             rectList.top = rectList.bottom - sizeList.cy;
 
          }
 
-         m_plist->SetWindowPos(ZORDER_TOPMOST, rectList.left, rectList.top, rectList.width(), rectList.height(), SWP_SHOWWINDOW);
+         m_plist->SetWindowPos(ZORDER_TOPMOST,rectList.left - m_plist->m_iBorder,rectList.top - m_plist->m_iBorder,rectList.width() + m_plist->m_iBorder * 2,rectList.height() + m_plist->m_iBorder * 2,SWP_SHOWWINDOW);
 
          m_plist->SetActiveWindow();
 

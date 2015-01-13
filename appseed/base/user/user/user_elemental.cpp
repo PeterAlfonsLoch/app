@@ -116,6 +116,13 @@ namespace user
       return true;
    }
 
+   
+   void elemental::keyboard_focus_OnKillFocus()
+   {
+
+
+   }
+
 
    elemental * elemental::keyboard_get_next_focusable(elemental * pfocus,bool bSkipChild,bool bSkipSiblings,bool bSkipParent)
    {

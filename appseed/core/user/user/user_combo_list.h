@@ -25,6 +25,7 @@ namespace user
       combo_box *                         m_pcombo;
       int32_t                             m_iItemHeight;
       int                                 m_iHover;
+      int                                 m_iBorder;
 
       ::user::interaction *               m_puiDeactivateTogether;
       ::user::wndfrm::frame::WorkSet *    m_puiDeactivateTogetherSet;
@@ -52,6 +53,11 @@ namespace user
       bool pre_create_window(::user::create_struct & cs);
 
 
+      using ::user::control::GetClientRect;
+      virtual void GetClientRect(__rect64 * lprect);
+
+
+      DECL_GEN_SIGNAL(_001OnSetFocus);
       DECL_GEN_SIGNAL(_001OnKillFocus);
       DECL_GEN_SIGNAL(_001OnClose);
       DECL_GEN_SIGNAL(_001OnActivate);
@@ -66,7 +72,8 @@ namespace user
       virtual index hit_test(point pt, e_element & eelement);
 
 
-
+      virtual bool keyboard_focus_is_focusable();
+      virtual void keyboard_focus_OnKillFocus();
 
 
    };

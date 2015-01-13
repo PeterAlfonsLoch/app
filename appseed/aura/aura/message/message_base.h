@@ -19,6 +19,7 @@ namespace message
       bool                       m_bConditional;
       bool                       m_bReflect;
       bool                       m_bDestroyed;
+      bool                       m_bDoSystemDefault;
 
       base(::aura::application * papp,class ::signal * psignal = NULL);
       base(::aura::application * papp,::aura::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);

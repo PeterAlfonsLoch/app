@@ -443,6 +443,28 @@ namespace user
    {
       if(pkeyboardfocus == NULL || pkeyboardfocus->keyboard_focus_OnSetFocus())
       {
+         
+         if(m_pkeyboardfocus != NULL && m_pkeyboardfocus != pkeyboardfocus)
+         {
+
+            ::user::elemental * pkeyboardfocusOld = m_pkeyboardfocus;
+
+            try
+            {
+               
+               m_pkeyboardfocus = NULL;
+
+               pkeyboardfocusOld->keyboard_focus_OnKillFocus();
+
+            }
+            catch(...)
+            {
+
+            }
+
+         }
+
+
          m_pkeyboardfocus = pkeyboardfocus;
 
          if(m_pkeyboardfocus != NULL)

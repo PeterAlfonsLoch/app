@@ -1457,6 +1457,7 @@ namespace windows
          return;
       }
       ::user::interaction_impl::message_handler(pobj);
+      //if(pobj->m_bRet && !pbase->m_bDoSystemDefault)
       if(pobj->m_bRet)
          return;
       if(m_pui != NULL)

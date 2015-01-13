@@ -79,38 +79,7 @@ namespace user
 
       DestroyWindow();
 
-      try
-      {
-
-         Application.remove_frame(this);
-
-      }
-      catch(...)
-      {
-
-      }
-
-      try
-      {
-
-         Session.remove_frame(this);
-
-      }
-      catch(...)
-      {
-
-      }
-
-      try
-      {
-
-         System.remove_frame(this);
-
-      }
-      catch(...)
-      {
-
-      }
+      user_interaction_on_destroy();
 
    }
 
@@ -522,6 +491,14 @@ namespace user
 
       UNREFERENCED_PARAMETER(pobj);
 
+      user_interaction_on_destroy();
+
+
+   }
+
+   void interaction::user_interaction_on_hide()
+   {
+
       try
       {
 
@@ -533,14 +510,47 @@ namespace user
 
       }
 
-
       try
       {
 
          if(Session.user()->m_pkeyboardfocus == this)
          {
 
-            Session.user()->m_pkeyboardfocus = NULL;
+            ::user::elemental * pnext = NULL;
+
+            try
+            {
+
+               pnext = keyboard_get_next_focusable();
+
+            }
+            catch(...)
+            {
+
+            }
+
+            if(pnext != NULL && pnext != this)
+            {
+
+               try
+               {
+
+                  pnext->keyboard_set_focus();
+
+               }
+               catch(...)
+               {
+
+               }
+
+            }
+
+            if(Session.user()->m_pkeyboardfocus == this)
+            {
+
+               Session.user()->m_pkeyboardfocus = NULL;
+
+            }
 
          }
 
@@ -549,6 +559,14 @@ namespace user
       {
 
       }
+
+   }
+
+
+   void interaction::user_interaction_on_destroy()
+   {
+
+      user_interaction_on_hide();
 
 
       try
@@ -658,7 +676,7 @@ namespace user
             try
             {
 
-               single_lock sl(GetParent()->m_spmutex, true);
+               single_lock sl(GetParent()->m_spmutex,true);
 
                GetParent()->m_uiptraChild.remove(this);
 
@@ -690,7 +708,7 @@ namespace user
 
             }
 
-            TRACE("removed = %d", c);
+            TRACE("removed = %d",c);
 
          }
 
@@ -726,7 +744,6 @@ namespace user
       m_pparent.release();
 
    }
-
 
 
    void interaction::_001OnSize(signal_details * pobj)
@@ -1626,7 +1643,12 @@ namespace user
    bool interaction::ShowWindow(int32_t nCmdShow)
    {
 
-      m_pimpl->ShowWindow(nCmdShow);
+      if(m_pimpl.is_null())
+      {
+
+         m_pimpl->ShowWindow(nCmdShow);
+
+      }
 
       if(nCmdShow != SW_HIDE)
       {
@@ -5736,12 +5758,7 @@ namespace user
       if(!pshowwindow->m_bShow)
       {
 
-         if(Session.user()->m_pkeyboardfocus == this)
-         {
-
-            Session.user()->set_keyboard_focus(NULL);
-
-         }
+         user_interaction_on_hide();
 
       }
 

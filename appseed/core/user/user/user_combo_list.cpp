@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   combo_list::combo_list(::aura::application * papp) :
+   combo_list::combo_list(::aura::application * papp):
       element(papp)
    {
 
@@ -18,6 +18,9 @@ namespace user
       m_pcombo                      = NULL;
 
       m_iHover                      = -1;
+
+      m_iBorder                     = 6;
+
    }
 
 
@@ -31,6 +34,7 @@ namespace user
 
       ::user::control::install_message_handling(pdispatch);
 
+      IGUI_WIN_MSG_LINK(WM_SETFOCUS,pdispatch,this,&combo_list::_001OnSetFocus);
       IGUI_WIN_MSG_LINK(WM_KILLFOCUS, pdispatch, this, &combo_list::_001OnKillFocus);
       IGUI_WIN_MSG_LINK(WM_CLOSE, pdispatch, this, &combo_list::_001OnClose);
       IGUI_WIN_MSG_LINK(WM_ACTIVATE, pdispatch, this, &combo_list::_001OnActivate);
@@ -402,16 +406,12 @@ namespace user
 
       rectItem = rectClient;
 
+      rectItem.bottom = rectClient.top;
+
       if(m_pcombo->m_bEdit)
       {
 
-         rectItem.bottom = rectClient.top + _001GetItemHeight();
-
-      }
-      else
-      {
-         
-         rectItem.bottom = 0;
+         rectItem.bottom += _001GetItemHeight();
 
       }
 
@@ -529,6 +529,16 @@ namespace user
 
       lpsize->cy = (LONG) (_001GetItemHeight() * (m_pcombo->_001GetListCount() + iAddUp));
 
+      //lpsize->cx += m_iBorder * 2;
+
+      ::rect rectComboClient;
+
+      m_pcombo->GetClientRect(rectComboClient);
+
+      lpsize->cx = MAX(lpsize->cx,rectComboClient.width());
+
+      //lpsize->cy += m_iBorder * 2;
+
    }
 
    int32_t combo_list::_001GetItemHeight() const
@@ -538,7 +548,29 @@ namespace user
 
    }
 
+   void combo_list::GetClientRect(__rect64 * lprect)
+   {
+      
+      ::user::control::GetClientRect(lprect);
 
+      ::deflate_rect(lprect,m_iBorder);
+
+   }
+
+
+   bool combo_list::keyboard_focus_is_focusable()
+   {
+
+      return true;
+
+   }
+
+   void combo_list::keyboard_focus_OnKillFocus()
+   {
+
+      m_pcombo->_001ShowDropDown(false);
+
+   }
 
 
    bool combo_list::pre_create_window(::user::create_struct & cs)
@@ -563,9 +595,26 @@ namespace user
    void combo_list::_001OnKillFocus(signal_details * pobj)
    {
 
+      SCAST_PTR(::message::base,pbase,pobj);
+      
+      pbase->m_bRet = true;
 
+      pbase->set_lresult(0);
 
    }
+
+   void combo_list::_001OnSetFocus(signal_details * pobj)
+   {
+
+      SCAST_PTR(::message::set_focus,psetfocus,pobj);
+
+      psetfocus->m_bRet = true;
+
+      psetfocus->set_lresult(0);
+
+   }
+
+
 
    void combo_list::_001OnActivate(signal_details * pobj)
    {
@@ -610,6 +659,15 @@ namespace user
 
 
       }
+      else
+      {
+
+         Session.user()->set_keyboard_focus(this);
+
+
+      }
+
+
 
          //m_pcombo->_001ShowDropDown(false);
 

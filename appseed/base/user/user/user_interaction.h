@@ -681,6 +681,10 @@ namespace user
       virtual bool up_down_target_is_down();
       virtual bool is_up_down_target();
 
+
+      void user_interaction_on_destroy();
+      void user_interaction_on_hide();
+
    };
 
 

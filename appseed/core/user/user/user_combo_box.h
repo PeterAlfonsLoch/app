@@ -88,7 +88,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnLButtonDown);
       DECL_GEN_SIGNAL(_001OnLButtonUp);
       DECL_GEN_SIGNAL(_001OnKeyDown);
-      DECL_GEN_SIGNAL(_001OnOnKeyUp);
+      DECL_GEN_SIGNAL(_001OnKeyUp);
       DECL_GEN_SIGNAL(_001OnSetFocus);
       DECL_GEN_SIGNAL(_001OnMouseMove);
 

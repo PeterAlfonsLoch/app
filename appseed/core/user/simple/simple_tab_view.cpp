@@ -49,6 +49,9 @@ void simple_tab_view::GetClientRect(LPRECT lprect)
 }
 
 
+
+
+
 void simple_tab_view::_001OnCreate(signal_details * pobj)
 {
 
