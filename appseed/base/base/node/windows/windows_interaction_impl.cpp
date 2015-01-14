@@ -1419,7 +1419,7 @@ namespace windows
 
          sp(::user::interaction) puiFocus = Session.user()->get_keyboard_focus();
          
-         if(puiFocus != NULL && puiFocus->IsWindow())
+         if(puiFocus != NULL && puiFocus->IsWindow() && puiFocus != m_pui)
          {
          
             puiFocus->send(pkey);

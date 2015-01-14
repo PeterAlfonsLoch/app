@@ -780,8 +780,15 @@ namespace html
             pdc->TextOut(left, top, strLine);
          }
 
+         int iLine = MIN(i,m_sizea.get_upper_bound());
 
-         cy += m_sizea[MIN(i, m_sizea.get_upper_bound())].cy;
+         if(iLine < m_sizea.get_size())
+         {
+         
+            cy += m_sizea[iLine].cy;
+
+         }
+
          lim += strLine.get_length();
         }
         //pdc->FillSolidRect(0, 0, 100, 100, RGB(0, 255, 0));

@@ -1643,7 +1643,7 @@ namespace user
    bool interaction::ShowWindow(int32_t nCmdShow)
    {
 
-      if(m_pimpl.is_null())
+      if(m_pimpl.is_set())
       {
 
          m_pimpl->ShowWindow(nCmdShow);

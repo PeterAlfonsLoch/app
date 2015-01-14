@@ -39,7 +39,9 @@ namespace user
       IGUI_WIN_MSG_LINK(WM_CLOSE, pdispatch, this, &combo_list::_001OnClose);
       IGUI_WIN_MSG_LINK(WM_ACTIVATE, pdispatch, this, &combo_list::_001OnActivate);
       IGUI_WIN_MSG_LINK(WM_MOUSEACTIVATE, pdispatch, this, &combo_list::_001OnMouseActivate);
-      IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pdispatch, this, &combo_list::_001OnLButtonDown);
+      IGUI_WIN_MSG_LINK(WM_KEYDOWN,pdispatch,this,&combo_list::_001OnKeyDown);
+      IGUI_WIN_MSG_LINK(WM_KEYUP,pdispatch,this,&combo_list::_001OnKeyUp);
+      IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN,pdispatch,this,&combo_list::_001OnLButtonDown);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pdispatch, this, &combo_list::_001OnLButtonUp);
       IGUI_WIN_MSG_LINK(WM_MBUTTONDOWN, pdispatch, this, &combo_list::_001OnMButtonDown);
       IGUI_WIN_MSG_LINK(WM_RBUTTONDOWN, pdispatch, this, &combo_list::_001OnRButtonDown);
@@ -689,6 +691,56 @@ namespace user
       SCAST_PTR(::message::mouse, pmouse, pobj);
 
       pmouse->m_bRet = true;
+
+   }
+
+   void combo_list::_001OnKeyDown(signal_details * pobj)
+   {
+
+      SCAST_PTR(::message::key,pkey,pobj);
+
+      if(pkey->m_ekey == ::user::key_escape)
+      {
+
+         m_pcombo->ShowDropDown(false);
+
+      }
+      else if(pkey->m_ekey == ::user::key_tab)
+      {
+
+         m_pcombo->ShowDropDown(false);
+
+         sp(::user::elemental) pelemental = m_pcombo->keyboard_get_next_focusable();
+
+         if(pelemental.is_set())
+         {
+
+            pelemental->keyboard_set_focus();
+
+         }
+
+
+      }
+      else if(pkey->m_ekey == ::user::key_down)
+      {
+
+         m_iHover = MIN(m_iHover + 1, m_pcombo->_001GetListCount() -1);
+
+      }
+      else if(pkey->m_ekey == ::user::key_up)
+      {
+
+         m_iHover = MAX(m_iHover - 1,0);
+
+      }
+
+   }
+
+
+   void combo_list::_001OnKeyUp(signal_details * pobj)
+   {
+
+      UNREFERENCED_PARAMETER(pobj);
 
    }
 
