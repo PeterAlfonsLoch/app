@@ -88,7 +88,7 @@ int bspatch(const char * oldfile, const char * newfile, const char * patchfile)
    off_t ctrl[3];
    off_t lenread;
    off_t i;
-   errno_t errno_result;
+   //errno_t errno_result;
 
    /* fopen patch file */
    if ((f = fopen(patchfile, "rb")) == NULL)
