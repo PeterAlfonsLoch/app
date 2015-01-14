@@ -2103,15 +2103,29 @@ namespace user
    void interaction_base::on_keyboard_focus(::user::elemental * pfocus)
    {
 
+      if(GetActiveWindow() != GetWindow())
+      {
+
+         GetWindow()->SetActiveWindow();
+
+      }
+
+      if(GetFocus() != GetWindow())
+      {
+
+         GetWindow()->SetFocus();
+
+      }
+
       RedrawWindow();
 
    }
 
 
-   ::user::interaction * interaction_base::get_os_focus_uie()
+   ::user::interaction * interaction_base::GetFocus()
    {
 
-      ::exception::throw_interface_only(get_app());
+      throw interface_only_exception(get_app());
 
       return NULL;
 

@@ -1720,11 +1720,15 @@ namespace user
                pui =  pui.is_set() ? pui->keyboard_get_next_focusable() : keyboard_get_next_focusable();
 
                if(pui != NULL)
+               {
+
                   pui->keyboard_set_focus();
 
-            }
+                  pkey->m_bRet      = true;
 
-            pkey->m_bRet      = true;
+               }
+
+            }
 
          }
 
@@ -2323,11 +2327,25 @@ namespace user
 
    ::user::interaction * interaction::SetFocus()
    {
+
       if(m_pimpl == NULL)
          return NULL;
       else
          return m_pimpl->SetFocus();
+
    }
+
+
+   ::user::interaction * interaction::GetFocus()
+   {
+
+      if(m_pimpl == NULL)
+         return NULL;
+      else
+         return m_pimpl->GetFocus();
+
+   }
+
 
 
    ::user::interaction * interaction::SetActiveWindow()

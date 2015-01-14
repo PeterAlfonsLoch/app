@@ -14,7 +14,7 @@ extern CLASS_DECL_BASE thread_int_ptr < DWORD_PTR > t_time1;
 thread_int_ptr < HHOOK > t_hHookOldCbtFilter;
 thread_pointer < ::windows::interaction_impl  > t_pwndInit;
 
-LRESULT CALLBACK __activation_window_procedure(oswindow oswindow,UINT nMsg,WPARAM wParam,LPARAM lParam);
+//LRESULT CALLBACK __activation_window_procedure(oswindow oswindow,UINT nMsg,WPARAM wParam,LPARAM lParam);
 
 const char * gen_OldWndProc = "::core::OldWndProc423";
 
@@ -4136,7 +4136,7 @@ namespace windows
    }
 
 
-   ::window_sp interaction_impl::GetDesktopWindow()
+   ::user::interaction *  interaction_impl::GetDesktopWindow()
    {
 
       return ::windows::interaction_impl::from_handle(::GetDesktopWindow());
@@ -4494,7 +4494,7 @@ namespace windows
 
    }
 
-   ::window_sp interaction_impl::GetForegroundWindow()
+   ::user::interaction * interaction_impl::GetForegroundWindow()
    {
 
       return ::windows::interaction_impl::from_handle(::GetForegroundWindow());
@@ -5649,27 +5649,27 @@ __handle_activate(::window_sp pwindow,WPARAM nState,::window_sp pWndOther)
    }
 }
 
-__STATIC bool CLASS_DECL_BASE
-__handle_set_cursor(::window_sp pwindow,UINT nHitTest,UINT nMsg)
-{
-   if(nHitTest == HTERROR &&
-      (nMsg == WM_LBUTTONDOWN || nMsg == WM_MBUTTONDOWN ||
-      nMsg == WM_RBUTTONDOWN))
-   {
-      // activate the last active interaction_impl if not active
-      sp(::user::interaction) pLastActive = NODE_WINDOW(pwindow)->GetTopLevel();
-      if(pLastActive != NULL)
-         pLastActive = pLastActive->GetLastActivePopup();
-      if(pLastActive != NULL &&
-         pLastActive != ::windows::interaction_impl::GetForegroundWindow() &&
-         pLastActive->is_window_enabled())
-      {
-         pLastActive->SetForegroundWindow();
-         return TRUE;
-      }
-   }
-   return FALSE;
-}
+//__STATIC bool CLASS_DECL_BASE
+//__handle_set_cursor(::window_sp pwindow,UINT nHitTest,UINT nMsg)
+//{
+//   if(nHitTest == HTERROR &&
+//      (nMsg == WM_LBUTTONDOWN || nMsg == WM_MBUTTONDOWN ||
+//      nMsg == WM_RBUTTONDOWN))
+//   {
+//      // activate the last active interaction_impl if not active
+//      sp(::user::interaction) pLastActive = NODE_WINDOW(pwindow)->GetTopLevel();
+//      if(pLastActive != NULL)
+//         pLastActive = pLastActive->GetLastActivePopup();
+//      if(pLastActive != NULL &&
+//         pLastActive != ::windows::interaction_impl::GetForegroundWindow() &&
+//         pLastActive->is_window_enabled())
+//      {
+//         pLastActive->SetForegroundWindow();
+//         return TRUE;
+//      }
+//   }
+//   return FALSE;
+//}
 
 
 
@@ -5718,66 +5718,66 @@ string CLASS_DECL_BASE get_user_interaction_window_class(::user::interaction * p
 // Special WndProcs (activation handling & gray dialogs)
 
 
-LRESULT CALLBACK
-__activation_window_procedure(oswindow oswindow,UINT nMsg,WPARAM wParam,LPARAM lParam)
-{
-   WNDPROC oldWndProc = (WNDPROC)::GetProp(oswindow,gen_OldWndProc);
-   ASSERT(oldWndProc != NULL);
-
-   LRESULT lResult = 0;
-   try
-   {
-      bool bCallDefault = TRUE;
-      switch(nMsg)
-      {
-      case WM_INITDIALOG:
-      {
-                           rect rectOld;
-                           ::window_sp pwindow = ::windows::interaction_impl::from_handle(oswindow);
-                           bCallDefault = FALSE;
-                           lResult = CallWindowProc(oldWndProc,oswindow,nMsg,wParam,lParam);
-      }
-         break;
-
-      case WM_ACTIVATE:
-         __handle_activate(::windows::interaction_impl::from_handle(oswindow),wParam,
-            ::windows::interaction_impl::from_handle((::oswindow) lParam));
-         break;
-
-      case WM_SETCURSOR:
-         bCallDefault = !__handle_set_cursor(::windows::interaction_impl::from_handle(oswindow),
-            (int16_t)LOWORD(lParam),HIWORD(lParam));
-         break;
-
-      case WM_NCDESTROY:
-         SetWindowLongPtr(oswindow,GWLP_WNDPROC,reinterpret_cast<int_ptr>(oldWndProc));
-         RemoveProp(oswindow,gen_OldWndProc);
-         GlobalDeleteAtom(GlobalFindAtom(gen_OldWndProc));
-         break;
-      }
-
-      // call original wndproc for default handling
-      if(bCallDefault)
-         lResult = CallWindowProc(oldWndProc,oswindow,nMsg,wParam,lParam);
-   }
-   catch(::exception::base * pe)
-   {
-      // handle exception
-      MSG msg;
-      msg.hwnd = oswindow;
-      msg.message = nMsg;
-      msg.wParam = wParam;
-      msg.lParam = lParam;
-
-      //lResult = __process_window_procedure_exception(pe, &msg);
-      //      TRACE(::aura::trace::category_AppMsg, 0, "Warning: Uncaught exception in __activation_window_procedure (returning %ld).\n",
-      //       lResult);
-      pe->Delete();
-   }
-
-
-   return lResult;
-}
+//LRESULT CALLBACK
+//__activation_window_procedure(oswindow oswindow,UINT nMsg,WPARAM wParam,LPARAM lParam)
+//{
+//   WNDPROC oldWndProc = (WNDPROC)::GetProp(oswindow,gen_OldWndProc);
+//   ASSERT(oldWndProc != NULL);
+//
+//   LRESULT lResult = 0;
+//   try
+//   {
+//      bool bCallDefault = TRUE;
+//      switch(nMsg)
+//      {
+//      case WM_INITDIALOG:
+//      {
+//                           rect rectOld;
+//                           ::window_sp pwindow = ::windows::interaction_impl::from_handle(oswindow);
+//                           bCallDefault = FALSE;
+//                           lResult = CallWindowProc(oldWndProc,oswindow,nMsg,wParam,lParam);
+//      }
+//         break;
+//
+//      case WM_ACTIVATE:
+//         __handle_activate(::windows::interaction_impl::from_handle(oswindow),wParam,
+//            ::windows::interaction_impl::from_handle((::oswindow) lParam));
+//         break;
+//
+//      case WM_SETCURSOR:
+////         bCallDefault = !__handle_set_cursor(::windows::interaction_impl::from_handle(oswindow),
+//  //          (int16_t)LOWORD(lParam),HIWORD(lParam));
+//         break;
+//
+//      case WM_NCDESTROY:
+//         SetWindowLongPtr(oswindow,GWLP_WNDPROC,reinterpret_cast<int_ptr>(oldWndProc));
+//         RemoveProp(oswindow,gen_OldWndProc);
+//         GlobalDeleteAtom(GlobalFindAtom(gen_OldWndProc));
+//         break;
+//      }
+//
+//      // call original wndproc for default handling
+//      if(bCallDefault)
+//         lResult = CallWindowProc(oldWndProc,oswindow,nMsg,wParam,lParam);
+//   }
+//   catch(::exception::base * pe)
+//   {
+//      // handle exception
+//      MSG msg;
+//      msg.hwnd = oswindow;
+//      msg.message = nMsg;
+//      msg.wParam = wParam;
+//      msg.lParam = lParam;
+//
+//      //lResult = __process_window_procedure_exception(pe, &msg);
+//      //      TRACE(::aura::trace::category_AppMsg, 0, "Warning: Uncaught exception in __activation_window_procedure (returning %ld).\n",
+//      //       lResult);
+//      pe->Delete();
+//   }
+//
+//
+//   return lResult;
+//}
 
 
 

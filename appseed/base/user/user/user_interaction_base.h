@@ -255,7 +255,7 @@ namespace user
       virtual bool update_data(bool bSaveAndValidate = true);
 
 
-      virtual ::user::interaction * get_os_focus_uie();
+      virtual ::user::interaction * GetFocus();
 
 
       virtual void on_keyboard_focus(::user::elemental * pfocus);

@@ -105,9 +105,9 @@ namespace user
             if(m_iHover == 0 || Session.m_puiLastLButtonDown == this)
             {
 
-               pdc->Draw3dRect(rectClient,m_pschema->_001GetColor(color_border_hover),m_pschema->_001GetColor(color_border_hover));
+               //pdc->Draw3dRect(rectClient,m_pschema->_001GetColor(color_border_hover),m_pschema->_001GetColor(color_border_hover));
 
-               rectClient.deflate(1,1);
+               //rectClient.deflate(1,1);
 
                pdc->FillSolidRect(rectClient,m_pschema->_001GetColor(color_background_hover));
 
@@ -117,9 +117,9 @@ namespace user
             else
             {
 
-               pdc->Draw3dRect(rectClient,m_pschema->_001GetColor(color_border_normal),m_pschema->_001GetColor(color_border_normal));
+               //pdc->Draw3dRect(rectClient,m_pschema->_001GetColor(color_border_normal),m_pschema->_001GetColor(color_border_normal));
 
-               rectClient.deflate(1,1);
+               //rectClient.deflate(1,1);
 
                pdc->FillSolidRect(rectClient,m_pschema->_001GetColor(color_background_normal));
 
@@ -209,6 +209,7 @@ namespace user
                ev.m_eevent = ::user::event_mouse_enter;
                GetParent()->send_message(
                   ::message::message_event, 0, (LPARAM)&ev);
+               m_bActionHover = true;
             }
             else if(iHover == -1)
             {
@@ -217,6 +218,7 @@ namespace user
                ev.m_eevent = ::user::event_mouse_leave;
                GetParent()->send_message(
                   ::message::message_event, 0, (LPARAM)&ev);
+               m_bActionHover = false;
             }
             track_mouse_hover();
          }
@@ -1079,7 +1081,12 @@ namespace user
    }
 
 
+   bool button::has_hover_action()
+   {
 
+      return m_bActionHover;
+
+   }
 
 } // namespace user
 

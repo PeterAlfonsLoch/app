@@ -62,6 +62,7 @@ namespace user
       bitmap *                            m_pbitmap;
 
       list *                              m_plist;
+      bool                                m_bActionHover;
 
 
 
@@ -103,6 +104,8 @@ namespace user
       ::size calc_text_size();
 
       virtual bool keyboard_focus_is_focusable();
+
+      virtual bool has_action_hover(); 
 
       bool LoadBitmaps(::var var,::var varSel = ::var::type_null,::var varFocus = ::var::type_null,::var varDisabled = ::var::type_null,::var varHover = ::var::type_null);
 

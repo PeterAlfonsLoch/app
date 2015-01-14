@@ -266,7 +266,7 @@ namespace windows
 
       // the foreground interaction_impl applies only to top-level windows (frame windows)
       virtual bool SetForegroundWindow();
-      static ::window_sp GetForegroundWindow();
+      virtual ::user::interaction * GetForegroundWindow();
 
 
 
@@ -277,9 +277,9 @@ namespace windows
       virtual ::user::interaction * GetCapture();
       virtual ::user::interaction * SetFocus();
 
-      static  ::user::interaction * GetFocus();
+      virtual ::user::interaction * GetFocus();
 
-      static ::window_sp GetDesktopWindow();
+      virtual ::user::interaction * GetDesktopWindow();
 
       // Obsolete and non-portable APIs - not recommended for new code
       virtual void CloseWindow();
@@ -288,8 +288,7 @@ namespace windows
       // Dialog-Box Item Functions
       // (NOTE: Dialog-Box Items/Controls are not necessarily in dialog boxes!)
       virtual void CheckDlgButton(int32_t nIDButton,UINT nCheck);
-      virtual void CheckRadioButton(int32_t nIDFirstButton,int32_t nIDLastButton,
-         int32_t nIDCheckButton);
+      virtual void CheckRadioButton(int32_t nIDFirstButton,int32_t nIDLastButton,  int32_t nIDCheckButton);
       virtual int32_t GetCheckedRadioButton(int32_t nIDFirstButton,int32_t nIDLastButton);
       virtual int32_t DlgDirList(__inout_z LPTSTR lpPathSpec,__in int32_t nIDListBox,
          __in int32_t nIDStaticPath,__in UINT nFileType);

@@ -329,6 +329,7 @@ namespace user
 
       virtual bool has_focus();
       virtual ::user::interaction * SetFocus();
+      virtual ::user::interaction * GetFocus();
       virtual bool SetForegroundWindow();
       virtual interaction * GetActiveWindow();
       virtual interaction * SetActiveWindow();
