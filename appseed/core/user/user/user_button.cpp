@@ -209,7 +209,7 @@ namespace user
                ev.m_eevent = ::user::event_mouse_enter;
                GetParent()->send_message(
                   ::message::message_event, 0, (LPARAM)&ev);
-               m_bActionHover = true;
+//               m_bActionHover = true;
             }
             else if(iHover == -1)
             {
@@ -218,7 +218,7 @@ namespace user
                ev.m_eevent = ::user::event_mouse_leave;
                GetParent()->send_message(
                   ::message::message_event, 0, (LPARAM)&ev);
-               m_bActionHover = false;
+  //             m_bActionHover = false;
             }
             track_mouse_hover();
          }
@@ -1081,10 +1081,10 @@ namespace user
    }
 
 
-   bool button::has_hover_action()
+   bool button::has_action_hover()
    {
 
-      return m_bActionHover;
+      return m_iHover >= 0;
 
    }
 

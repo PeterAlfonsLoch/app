@@ -62,7 +62,7 @@ namespace user
       bitmap *                            m_pbitmap;
 
       list *                              m_plist;
-      bool                                m_bActionHover;
+      //bool                                m_bActionHover;
 
 
 

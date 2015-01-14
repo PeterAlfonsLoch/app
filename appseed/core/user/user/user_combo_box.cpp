@@ -714,6 +714,15 @@ namespace user
 
          }
 
+         m_plist->m_iHover = _001GetCurSel();
+
+         if(m_plist->m_iHover < 0)
+         {
+
+            m_plist->m_iHover = 0;
+
+         }
+
          m_plist->SetWindowPos(ZORDER_TOPMOST,rectList.left - m_plist->m_iBorder,rectList.top - m_plist->m_iBorder,rectList.width() + m_plist->m_iBorder * 2,rectList.height() + m_plist->m_iBorder * 2,SWP_SHOWWINDOW);
 
          m_plist->SetActiveWindow();
@@ -735,6 +744,8 @@ namespace user
             m_plist.release();
 
          }
+
+         keyboard_set_focus();
 
       }
 
@@ -1059,6 +1070,8 @@ namespace user
       //ASSERT(IsWindow());
 
       //send_message( CB_SHOWDROPDOWN, bShowIt, 0);
+
+      _001ShowDropDown(bShowIt);
 
    }
 

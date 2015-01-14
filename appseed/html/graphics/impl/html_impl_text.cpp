@@ -713,84 +713,80 @@ namespace html
          }
 
 
-        for(int32_t i = 0; i < m_straLines.get_size(); i++)
-        {
-         string strLine = m_straLines[i];
-         float left = i == 0 ? x : m_bound.left;
-         float top = y + cy;
-         if(pdata->m_bEdit)
+         if(m_straLines.get_size() == m_sizea.get_size())
          {
-            float y = top;
-            stringa stra;
-            strsize i1 = iSelStart - lim;
-            strsize i2 = iSelEnd - lim;
-            strsize i3 = iCursor - lim;
-            strsize iStart = MAX(0, i1);
-            strsize iEnd = MIN(i2, strLine.get_length());
-            str1 = strLine.Mid(0, iStart);
-            str2 = strLine.Mid(iStart, iEnd - iStart);
-            str3 = strLine.Mid(iEnd);
-            strExtent1 = str1;
-            strExtent2 = str2;
-            strExtent3 = str3;
-            strExtent1.replace("\t", "   ");
-            strExtent2.replace("\t", "   ");
-            strExtent3.replace("\t", "   ");
-            //pdc->SetBkMode(TRANSPARENT);
-            brushText->create_solid(cr);
-            pdc->SelectObject(brushText);
-            //pdc->SetBkColor(crBkSel);
-            pdc->TextOut(left, y, strExtent1);
-            ::size size1 = pdc->GetTextExtent(strExtent1);
 
-            brushBackground->create_solid(crBkSel);
-            //pdc->SetBkMode(OPAQUE);
-            pdc->SelectObject(brushBackground);
-            ::size size2 = pdc->GetTextExtent(strExtent2);
-            pdc->FillSolidRect((int32_t ) ( left + size1.cx), (int32_t) y, size2.cx, size2.cy, crBkSel);
-
-            //pdc->set_text_color(crSel);
-            brushText->create_solid(crSel);
-            pdc->SelectObject(brushText);
-            pdc->TextOut(left + size1.cx, y, strExtent2);
-
-//            pdc->set_text_color(cr);
-            brushText->create_solid(cr);
-            pdc->SelectObject(brushText);
-            //pdc->SetBkColor(RGB(120, 240, 180));
-  //          pdc->SetBkMode(TRANSPARENT);
-            pdc->TextOut(left + size1.cx + size2.cx, y, strExtent3);
-
-            maxcy = MAX(size1.cy, size2.cy);
-            maxcy = MAX(maxcy, size3.cy);
-            if(m_bFocus && bCaretOn && i3 == str1.get_length())
+            for(int32_t i = 0; i < m_straLines.get_size(); i++)
             {
-               pdc->MoveTo(left + size1.cx, y);
-               pdc->LineTo(left + size1.cx, y + maxcy);
+               string strLine = m_straLines[i];
+               float left = i == 0 ? x : m_bound.left;
+               float top = y + cy;
+               if(pdata->m_bEdit)
+               {
+                  float y = top;
+                  stringa stra;
+                  strsize i1 = iSelStart - lim;
+                  strsize i2 = iSelEnd - lim;
+                  strsize i3 = iCursor - lim;
+                  strsize iStart = MAX(0,i1);
+                  strsize iEnd = MIN(i2,strLine.get_length());
+                  str1 = strLine.Mid(0,iStart);
+                  str2 = strLine.Mid(iStart,iEnd - iStart);
+                  str3 = strLine.Mid(iEnd);
+                  strExtent1 = str1;
+                  strExtent2 = str2;
+                  strExtent3 = str3;
+                  strExtent1.replace("\t","   ");
+                  strExtent2.replace("\t","   ");
+                  strExtent3.replace("\t","   ");
+                  //pdc->SetBkMode(TRANSPARENT);
+                  brushText->create_solid(cr);
+                  pdc->SelectObject(brushText);
+                  //pdc->SetBkColor(crBkSel);
+                  pdc->TextOut(left,y,strExtent1);
+                  ::size size1 = pdc->GetTextExtent(strExtent1);
+
+                  brushBackground->create_solid(crBkSel);
+                  //pdc->SetBkMode(OPAQUE);
+                  pdc->SelectObject(brushBackground);
+                  ::size size2 = pdc->GetTextExtent(strExtent2);
+                  pdc->FillSolidRect((int32_t)(left + size1.cx),(int32_t)y,size2.cx,size2.cy,crBkSel);
+
+                  //pdc->set_text_color(crSel);
+                  brushText->create_solid(crSel);
+                  pdc->SelectObject(brushText);
+                  pdc->TextOut(left + size1.cx,y,strExtent2);
+
+                  //            pdc->set_text_color(cr);
+                  brushText->create_solid(cr);
+                  pdc->SelectObject(brushText);
+                  //pdc->SetBkColor(RGB(120, 240, 180));
+                  //          pdc->SetBkMode(TRANSPARENT);
+                  pdc->TextOut(left + size1.cx + size2.cx,y,strExtent3);
+
+                  maxcy = MAX(size1.cy,size2.cy);
+                  maxcy = MAX(maxcy,size3.cy);
+                  if(m_bFocus && bCaretOn && i3 == str1.get_length())
+                  {
+                     pdc->MoveTo(left + size1.cx,y);
+                     pdc->LineTo(left + size1.cx,y + maxcy);
+                  }
+                  if(m_bFocus && bCaretOn && i3 == (str1.get_length() + str2.get_length()))
+                  {
+                     pdc->MoveTo(left + size1.cx + size2.cx,y);
+                     pdc->LineTo(left + size1.cx + size2.cx,y + maxcy);
+                  }
+
+               }
+               else
+               {
+                  pdc->TextOut(left,top,strLine);
+               }
+
+               cy += m_sizea[i].cy;
+               lim += strLine.get_length();
             }
-            if(m_bFocus && bCaretOn && i3 == (str1.get_length() + str2.get_length()))
-            {
-               pdc->MoveTo(left + size1.cx + size2.cx, y);
-               pdc->LineTo(left + size1.cx + size2.cx, y + maxcy);
-            }
-
          }
-         else
-         {
-            pdc->TextOut(left, top, strLine);
-         }
-
-         int iLine = MIN(i,m_sizea.get_upper_bound());
-
-         if(iLine < m_sizea.get_size())
-         {
-         
-            cy += m_sizea[iLine].cy;
-
-         }
-
-         lim += strLine.get_length();
-        }
         //pdc->FillSolidRect(0, 0, 100, 100, RGB(0, 255, 0));
 
       }

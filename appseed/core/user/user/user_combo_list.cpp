@@ -288,19 +288,19 @@ namespace user
 
       pdc->FillRectangle(rectClient);
 
-      {
+      //{
 
-         color ca;
+      //   color ca;
 
-         ca.set_rgb(RGB(227,227,210));
+      //   ca.set_rgb(RGB(227,227,210));
 
-         ca.hls_rate(0.0,-0.33,-0.23);
+      //   ca.hls_rate(0.0,-0.33,-0.23);
 
-         COLORREF crBorder = ca.get_rgb() | (0xff << 24);
+      //   COLORREF crBorder = ca.get_rgb() | (0xff << 24);
 
-         pdc->Draw3dRect(rectClient,crBorder,crBorder);
+      //   pdc->Draw3dRect(rectClient,crBorder,crBorder);
 
-      }
+      //}
 
       rect rectItem;
 
@@ -390,19 +390,19 @@ namespace user
 
       pdc->FillRectangle(rectClient);
 
-      {
+      //{
 
-         color ca;
+      //   color ca;
 
-         ca.set_rgb(RGB(227,227,210));
+      //   ca.set_rgb(RGB(227,227,210));
 
-         ca.hls_rate(0.0,-0.33,-0.23);
+      //   ca.hls_rate(0.0,-0.33,-0.23);
 
-         COLORREF crBorder = ca.get_rgb() | (0xff << 24);
+      //   COLORREF crBorder = ca.get_rgb() | (0xff << 24);
 
-         pdc->Draw3dRect(rectClient,crBorder,crBorder);
+      //   pdc->Draw3dRect(rectClient,crBorder,crBorder);
 
-      }
+      //}
 
       rect rectItem;
 
@@ -703,6 +703,8 @@ namespace user
       {
 
          m_pcombo->ShowDropDown(false);
+
+         
 
       }
       else if(pkey->m_ekey == ::user::key_tab)
