@@ -19,7 +19,7 @@ public:
    operator ::count() { return count();  }
 
    void offset(int32_t x, int32_t y);
-   void offset(class point point);
+   void offset(class point point) { offset(point.x,point.y); }
 
    void rotate(double dAngle);
 
@@ -29,12 +29,16 @@ public:
 
    bool bounding_rect_contains_pt(point pt);
 
+   bool polygon_contains(point pt);
+
    __inline index add(int32_t x, int32_t y) {return array < point >::add(point(x, y)); }
    __inline index add(POINT point) {return add(point.x, point.y); }
    __inline point_array & operator =(const point_array & pointset) { copy(pointset); return *this; }
 
    virtual void xml_import(::xml::input_tree & xmlif);
    virtual void xml_export(::xml::output_tree & xmlof);
+
+   
 
 };
 
