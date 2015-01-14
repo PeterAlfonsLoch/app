@@ -1,5 +1,8 @@
 //#include "framework.h"
 
+#ifdef WINDOWS
+#include <Shcore.h>
+#endif
 
 
 namespace primitive
@@ -401,6 +404,17 @@ namespace primitive
 
    }
 
+#ifdef WINDOWS
+   IStream * memory_base::CreateIStream()
+   {
+
+      if(get_data() == NULL)
+         return NULL;
+
+      return SHCreateMemStream(get_data(),get_size());
+
+   }
+#endif
 
 } // namespace primitive
 

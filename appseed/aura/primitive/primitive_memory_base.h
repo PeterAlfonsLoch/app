@@ -192,6 +192,11 @@ namespace primitive
 
        memory_base & erase(::primitive::memory_offset pos = 0,::primitive::memory_offset len = -1);
 
+#ifdef WINDOWS
+       IStream * CreateIStream();
+#endif
+
+
    };
 
 
@@ -791,6 +796,8 @@ namespace primitive
       return from_string(psz);
 
    }
+
+
 
 #if defined(METROWIN) && defined(__cplusplus_winrt)
 

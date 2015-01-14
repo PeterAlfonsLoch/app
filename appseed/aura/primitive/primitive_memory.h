@@ -13,7 +13,6 @@ namespace primitive
    {
    public:
    
-   
       typedef memory data_type;
 
 
