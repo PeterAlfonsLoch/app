@@ -360,14 +360,6 @@ namespace draw2d
    }
 
 
-   bool path::add_line(point p)
-   {
-
-      return add_line(p.x, p.y);
-
-   }
-
-
    bool path::add_line(pointd p)
    {
 
@@ -406,13 +398,6 @@ namespace draw2d
       }
 
       return bOk;
-
-   }
-
-   bool path::add_move(point p)
-   {
-
-      return add_move(p.x, p.y);
 
    }
 
@@ -488,10 +473,10 @@ namespace draw2d
    void path::get_bounding_rect(LPRECT lprect,rect & r)
    {
 
-      lprect->left = r.m_x;
-      lprect->top = r.m_y;
-      lprect->right= r.m_x+r.m_cx;
-      lprect->bottom = r.m_y+r.m_cy;
+      lprect->left = (LONG) r.m_x;
+      lprect->top = (LONG)r.m_y;
+      lprect->right= (LONG)(r.m_x + r.m_cx);
+      lprect->bottom = (LONG)(r.m_y + r.m_cy);
 
    }
 

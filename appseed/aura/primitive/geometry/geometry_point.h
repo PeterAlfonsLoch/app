@@ -18,6 +18,8 @@ public:
    point(const POINT * pinitPt) throw();
    point(__point64 initPt) throw();
    point(const __point64 * pinitPt) throw();
+   point(POINTD initPt) throw();
+   point(const POINTD * pinitPt) throw();
    // create from a size
    point(SIZE initSize) throw();
    // create from an LPARAM: x = LOWORD(dw) y = HIWORD(dw)

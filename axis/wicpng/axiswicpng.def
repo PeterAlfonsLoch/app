@@ -1,4 +1,4 @@
 LIBRARY      "axiswicpng.fip"
 
 EXPORTS
-_Init@8
+Init

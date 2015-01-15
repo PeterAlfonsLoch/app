@@ -141,7 +141,21 @@ namespace draw2d
       return 0;
    }
 
-   bool brush::CreateLinearGradientBrush(point p1, point p2, COLORREF cr1, COLORREF cr2)
+   bool brush::CreateLinearGradientBrush(point p1,point p2,COLORREF cr1,COLORREF cr2)
+   {
+
+      return CreateLinearGradientBrush((pointd)p1,(pointd)p2,cr1,cr2);
+
+   }
+
+   bool brush::CreateRadialGradientBrush(point p1,size p2,COLORREF cr1,COLORREF cr2)
+   {
+
+      return CreateRadialGradientBrush((pointd)p1,(sized)p2,cr1,cr2);
+
+   }
+
+   bool brush::CreateLinearGradientBrush(pointd p1, pointd p2, COLORREF cr1, COLORREF cr2)
    {
 
       if (m_etype == type_linear_gradient_point_color
@@ -162,7 +176,7 @@ namespace draw2d
 
    }
 
-   bool brush::CreateRadialGradientBrush(point p,size s,COLORREF cr1,COLORREF cr2)
+   bool brush::CreateRadialGradientBrush(pointd p,sized s,COLORREF cr1,COLORREF cr2)
    {
 
       if(m_etype == type_radial_gradient_color

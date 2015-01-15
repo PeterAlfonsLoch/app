@@ -88,60 +88,100 @@ PluginList::PluginList() :
 m_plugin_map(),
 m_node_count(0) {
 }
+FREE_IMAGE_FORMAT
+PluginList::AddNode(Plugin * plugin,PluginNode * node,void *instance,const char *format,const char *description,const char *extension,const char *regexpr) {
+
+   // get the format string (two possible ways)
+
+   const char *the_format = NULL;
+
+   if(format != NULL) {
+      the_format = format;
+   }
+   else if(plugin->format_proc != NULL) {
+      the_format = plugin->format_proc();
+   }
+
+   // add the node if it wasn't there already
+
+   if(the_format == NULL)
+   {
+      delete plugin;
+      delete node;
+
+      return FIF_UNKNOWN;
+   }
+   node->m_id = (int)m_plugin_map.size();
+   node->m_instance = instance;
+   node->m_plugin = plugin;
+   node->m_format = format;
+   node->m_description = description;
+   node->m_extension = extension;
+   node->m_regexpr = regexpr;
+   node->m_enabled = TRUE;
+
+   m_plugin_map[(const int)m_plugin_map.size()] = node;
+
+   return (FREE_IMAGE_FORMAT)node->m_id;
+
+   // something went wrong while allocating the plugin... cleanup
+
+}
 
 FREE_IMAGE_FORMAT
-PluginList::AddNode(FI_InitProc init_proc, void *instance, const char *format, const char *description, const char *extension, const char *regexpr) {
-	if (init_proc != NULL) {
-		PluginNode *node = new PluginNode;
-		Plugin *plugin = new Plugin;
-		if(!node || !plugin) {
-			if(node) delete node;
-			if(plugin) delete plugin;
-			FreeImage_OutputMessageProc(FIF_UNKNOWN, FI_MSG_ERROR_MEMORY);
-			return FIF_UNKNOWN;
-		}
+PluginList::AddNode(FI_InitProc init_proc, void *instance, const char *format, const char *description, const char *extension, const char *regexpr) 
+{
+   
+   if(init_proc == NULL) 
+      return FIF_UNKNOWN;
+   
+   PluginNode *node = new PluginNode;
+   Plugin *plugin = new Plugin;
+   if(!node || !plugin) 
+   {
+      if(node) delete node;
+      if(plugin) delete plugin;
+      FreeImage_OutputMessageProc(FIF_UNKNOWN,FI_MSG_ERROR_MEMORY);
+      return FIF_UNKNOWN;
+   }
 
-		memset(plugin, 0, sizeof(Plugin));
+   memset(plugin,0,sizeof(Plugin));
 
-		// fill-in the plugin structure
-		// note we have memset to 0, so all unset pointers should be NULL)
+   // fill-in the plugin structure
+   // note we have memset to 0, so all unset pointers should be NULL)
 
-		init_proc(plugin, (int)m_plugin_map.size());
+   init_proc(plugin,(int)m_plugin_map.size());
 
-		// get the format string (two possible ways)
+   return AddNode(plugin,node,instance,format,description,extension,regexpr);
 
-		const char *the_format = NULL;
+}
 
-		if (format != NULL) {
-			the_format = format;
-		} else if (plugin->format_proc != NULL) {
-			the_format = plugin->format_proc();
-		}
 
-		// add the node if it wasn't there already
+FREE_IMAGE_FORMAT
+   PluginList::AddNode(FI_InitProc2 init_proc,void *instance,const char *format,const char *description,const char *extension,const char *regexpr)
+{
+   if(init_proc == NULL)
+      return FIF_UNKNOWN;
 
-		if (the_format != NULL) {
-			node->m_id = (int)m_plugin_map.size();
-			node->m_instance = instance;
-			node->m_plugin = plugin;
-			node->m_format = format;
-			node->m_description = description;
-			node->m_extension = extension;
-			node->m_regexpr = regexpr;
-			node->m_enabled = TRUE;
+   PluginNode *node = new PluginNode;
+   Plugin *plugin = new Plugin;
+   if(!node || !plugin) 
+   {
+      if(node) delete node;
+      if(plugin) delete plugin;
+      FreeImage_OutputMessageProc(FIF_UNKNOWN,FI_MSG_ERROR_MEMORY);
+      return FIF_UNKNOWN;
+   }
 
-			m_plugin_map[(const int)m_plugin_map.size()] = node;
+   memset(plugin,0,sizeof(Plugin));
 
-			return (FREE_IMAGE_FORMAT)node->m_id;
-		}
+   // fill-in the plugin structure
+   // note we have memset to 0, so all unset pointers should be NULL)
 
-		// something went wrong while allocating the plugin... cleanup
+   init_proc(plugin,(int)m_plugin_map.size());
 
-		delete plugin;
-		delete node;
-	}
+   return AddNode(plugin,node,instance,format,description,extension,regexpr);
 
-	return FIF_UNKNOWN;
 }
 
 PluginNode *
@@ -327,7 +367,7 @@ TagLib::instance();
                         FARPROC proc_address = GetProcAddress(instance,"Init");
 
 								if (proc_address != NULL) {
-									s_plugins->AddNode((FI_InitProc)proc_address, (void *)instance);
+									s_plugins->AddNode((FI_InitProc2)proc_address, (void *)instance);
 								} else {
 									FreeLibrary(instance);
 								}

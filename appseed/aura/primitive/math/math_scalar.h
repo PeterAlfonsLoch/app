@@ -405,7 +405,7 @@ bool scalar_source < SCALAR > ::set_rate(e_scalar escalar,double dValue,int iFla
 
    SCALAR iDenominator = iMax - iMin;
 
-   on_set_scalar(escalar,dValue * iDenominator + iMin,iFlags);
+   on_set_scalar(escalar,(SCALAR) (dValue * iDenominator) + iMin,iFlags);
 
    return true;
 

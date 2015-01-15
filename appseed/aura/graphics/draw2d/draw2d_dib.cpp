@@ -3026,7 +3026,7 @@ namespace draw2d
       if(a == r && a == g && a == b)
       {
 
-         memset(m_pcolorref,a,area() * sizeof(COLORREF));
+         memset(m_pcolorref,a,(size_t) (area() * sizeof(COLORREF)));
 
       }
       else

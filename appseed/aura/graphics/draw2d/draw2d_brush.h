@@ -24,12 +24,12 @@ namespace draw2d
 
       COLORREF    m_cr;
       e_type      m_etype;
-      point       m_pt1;
-      point       m_pt2;
+      pointd      m_pt1;
+      pointd      m_pt2;
       COLORREF    m_cr1;
       COLORREF    m_cr2;
-      point       m_pt;
-      size        m_size;
+      pointd      m_pt;
+      sized       m_size;
 
 
       brush();
@@ -53,6 +53,8 @@ namespace draw2d
 
       virtual bool CreateLinearGradientBrush(point p1, point p2, COLORREF cr1, COLORREF cr2);
       virtual bool CreateRadialGradientBrush(point p,size s,COLORREF cr1,COLORREF cr2);
+      virtual bool CreateLinearGradientBrush(pointd p1,pointd p2,COLORREF cr1,COLORREF cr2);
+      virtual bool CreateRadialGradientBrush(pointd p,sized s,COLORREF cr1,COLORREF cr2);
 
       virtual int32_t GetLogBrush(LOGBRUSH* pLogBrush);
 

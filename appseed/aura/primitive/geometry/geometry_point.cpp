@@ -11,11 +11,23 @@ point::point(SIZE initSize) throw()
    { *(SIZE*)this = initSize; }
 point::point(__point64 pt) throw()
    { x = (int32_t) pt.x; y = (int32_t) pt.y; }
+point::point(const __point64 * ppt) throw()
+{
+   x = (int32_t)ppt->x; y = (int32_t)ppt->y;
+}
 point::point(const ::lparam & dwPoint) throw()
    {
       x = (int16_t)GET_X_LPARAM(dwPoint.m_lparam);
       y = (int16_t)GET_Y_LPARAM(dwPoint.m_lparam);
    }
+point::point(POINTD pt) throw()
+{
+   x = (int32_t)pt.x; y = (int32_t)pt.y;
+}
+point::point(const POINTD * ppt) throw()
+{
+   x = (int32_t)ppt->x; y = (int32_t)ppt->y;
+}
 
 point::operator POINT *() throw()
    { return this; }

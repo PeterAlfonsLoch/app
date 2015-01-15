@@ -20,6 +20,8 @@ public:
    size(SIZE initSize) throw();
    size(__size64 initSize) throw();
    size(const __size64 * pinitSize) throw();
+   size(SIZED initSize) throw();
+   size(const SIZED * pinitSize) throw();
    // create from a point
    size(POINT initPt) throw();
    // create from a uint32_t: cx = LOWORD(dw) cy = HIWORD(dw)
@@ -168,6 +170,8 @@ public:
    sized(SIZED initSize) throw();
    sized(__size64 initSize) throw();
    sized(const __size64 * pinitSize) throw();
+   sized(SIZE initSize) throw();
+   sized(const SIZE * pinitSize) throw();
    // create from a pointd
    sized(POINT initPt) throw();
    // create from a uint32_t: cx = LOWORD(dw) cy = HIWORD(dw)

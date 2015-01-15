@@ -380,7 +380,7 @@ namespace primitive
 
       }
 
-      len = MIN(len,get_size() - pos);
+      len = MIN(natural(len),get_size() - pos);
 
       if(len <= 0)
       {
@@ -389,7 +389,7 @@ namespace primitive
 
       }
 
-      if(pos >= get_size())
+      if(natural(pos) >= get_size())
       {
 
          return *this;

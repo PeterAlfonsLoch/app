@@ -166,13 +166,11 @@ namespace draw2d
 
       virtual bool add_line(int32_t x, int32_t y);
       virtual bool add_line(double x,double y);
-      virtual bool add_line(point p);
       virtual bool add_line(pointd p);
 
       virtual bool add_move(double x,double y);
       virtual bool add_move(pointd p);
       virtual bool add_move(int32_t x, int32_t y);
-      virtual bool add_move(point p);
 
       virtual bool add_rect(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
       virtual bool add_rect(const RECT & rect);

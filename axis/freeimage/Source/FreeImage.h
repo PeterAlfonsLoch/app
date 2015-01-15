@@ -648,6 +648,7 @@ FI_STRUCT (Plugin) {
 };
 
 typedef void (DLL_CALLCONV *FI_InitProc)(Plugin *plugin, int format_id);
+typedef void (*FI_InitProc2)(Plugin *plugin,int format_id);
 
 #endif // PLUGINS
 

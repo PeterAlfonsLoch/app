@@ -55,6 +55,14 @@ size::size(__size64  initSize) throw()
    { cx = (int32_t) initSize.cx; cy = (int32_t) initSize.cy; }
 size::size(const __size64 *  pinitSize) throw()
    { cx = (int32_t) pinitSize->cx; cy = (int32_t) pinitSize->cy; }
+size::size(SIZED  initSize) throw()
+{
+   cx = (int32_t)initSize.cx; cy = (int32_t)initSize.cy;
+}
+size::size(const SIZED *  pinitSize) throw()
+{
+   cx = (int32_t)pinitSize->cx; cy = (int32_t)pinitSize->cy;
+}
 size::size(POINT initPt) throw()
    { *(POINT*)this = initPt; }
 size::size(uint32_t dwSize) throw()
@@ -310,24 +318,45 @@ LPARAM    size64::lparam() const throw()
 
 // sized
 sized::sized() throw()
-   { /* random filled */ }
-sized::sized(double initCX, double initCY) throw()
-   { cx = (int32_t) initCX; cy = (int32_t) initCY; }
+{ /* random filled */
+}
+sized::sized(double initCX,double initCY) throw()
+{
+   cx = (int32_t)initCX; cy = (int32_t)initCY;
+}
 sized::sized(SIZED initSize) throw()
-   { *(SIZED*)this = initSize; }
+{
+   *(SIZED*)this = initSize;
+}
 sized::sized(const SIZED * pinitSize) throw()
-   { *(SIZED*)this = *pinitSize; }
+{
+   *(SIZED*)this = *pinitSize;
+}
 sized::sized(__size64  initSize) throw()
-   { cx = (int32_t) initSize.cx; cy = (int32_t) initSize.cy; }
+{
+   cx = (int32_t)initSize.cx; cy = (int32_t)initSize.cy;
+}
 sized::sized(const __size64 *  pinitSize) throw()
-   { cx = (int32_t) pinitSize->cx; cy = (int32_t) pinitSize->cy; }
+{
+   cx = (int32_t)pinitSize->cx; cy = (int32_t)pinitSize->cy;
+}
+sized::sized(SIZE  initSize) throw()
+{
+   cx = (int32_t)initSize.cx; cy = (int32_t)initSize.cy;
+}
+sized::sized(const SIZE *  pinitSize) throw()
+{
+   cx = (int32_t)pinitSize->cx; cy = (int32_t)pinitSize->cy;
+}
 sized::sized(POINT initPt) throw()
-   { *(POINT*)this = initPt; }
+{
+   *(POINT*)this = initPt;
+}
 sized::sized(uint32_t dwSize) throw()
-   {
-      cx = (int16_t)LOWORD(dwSize);
-      cy = (int16_t)HIWORD(dwSize);
-   }
+{
+   cx = (int16_t)LOWORD(dwSize);
+   cy = (int16_t)HIWORD(dwSize);
+}
 
 sized::operator SIZED *() throw()
    { return this; }
