@@ -184,20 +184,20 @@ PluginList::AddNode(FI_InitProc init_proc, void *instance, const char *format, c
 //
 //}
 //
-//PluginNode *
-//PluginList::FindNodeFromFormat(const char *format) {
-//	for (std::map<int, PluginNode *>::iterator i = m_plugin_map.begin(); i != m_plugin_map.end(); ++i) {
-//		const char *the_format = ((*i).m_element2->m_format != NULL) ? (*i).m_element2->m_format : (*i).m_element2->m_plugin->format_proc();
-//
-//		if ((*i).m_element2->m_enabled) {
-//			if (FreeImage_stricmp(the_format, format) == 0) {
-//				return (*i).m_element2;
-//			}
-//		}
-//	}
-//
-//	return NULL;
-//}
+PluginNode *
+PluginList::FindNodeFromFormat(const char *format) {
+	for (std::map<int, PluginNode *>::iterator i = m_plugin_map.begin(); i != m_plugin_map.end(); ++i) {
+		const char *the_format = ((*i).m_element2->m_format != NULL) ? (*i).m_element2->m_format : (*i).m_element2->m_plugin->format_proc();
+
+		if ((*i).m_element2->m_enabled) {
+			if (FreeImage_stricmp(the_format, format) == 0) {
+				return (*i).m_element2;
+			}
+		}
+	}
+
+	return NULL;
+}
 
 PluginNode *
 PluginList::FindNodeFromMime(const char *mime) {
