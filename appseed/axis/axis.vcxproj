@@ -304,7 +304,7 @@
     <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
     <IncludePath>$(VCInstallDir)include;$(WindowsSDK_IncludePath);</IncludePath>
     <GenerateManifest>false</GenerateManifest>
-    <EmbedManifest>true</EmbedManifest>
+    <EmbedManifest>false</EmbedManifest>
     <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
     <PreBuildEventUseInBuild>
     </PreBuildEventUseInBuild>
@@ -336,7 +336,7 @@
     <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
     <IncludePath>$(VCInstallDir)include;$(WindowsSDK_IncludePath);</IncludePath>
     <GenerateManifest>false</GenerateManifest>
-    <EmbedManifest>true</EmbedManifest>
+    <EmbedManifest>false</EmbedManifest>
     <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
     <PreBuildEventUseInBuild />
     <PreLinkEventUseInBuild />

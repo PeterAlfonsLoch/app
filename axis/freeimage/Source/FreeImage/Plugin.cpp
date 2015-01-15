@@ -323,7 +323,8 @@ TagLib::instance();
 							HINSTANCE instance = LoadLibrary(buffer);
 
 							if (instance != NULL) {
-								FARPROC proc_address = GetProcAddress(instance, "_Init@8");
+								//FARPROC proc_address = GetProcAddress(instance, "_Init@8");
+                        FARPROC proc_address = GetProcAddress(instance,"Init");
 
 								if (proc_address != NULL) {
 									s_plugins->AddNode((FI_InitProc)proc_address, (void *)instance);

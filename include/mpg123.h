@@ -9,7 +9,7 @@
 
 //#ifndef __MANGLE_H
 //
-#include "nodeapp/operational_system/inttypes.h"
+#include <inttypes.h>
 //
 //#endif
 
@@ -31,7 +31,7 @@ typedef unsigned __int32 uint32_t;
 #include <stdint.h>
 #endif
 
-#define PRIiMAX "I64i"
+//#define PRIiMAX "I64i"
 typedef __int64 intmax_t;
 // ftell returns long, _ftelli64 returns __int64
 // off_t is long, not __int64, use ftell
