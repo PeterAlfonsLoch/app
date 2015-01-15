@@ -157,47 +157,47 @@ PluginList::AddNode(FI_InitProc init_proc, void *instance, const char *format, c
 }
 
 
-FREE_IMAGE_FORMAT
-   PluginList::AddNode(FI_InitProc2 init_proc,void *instance,const char *format,const char *description,const char *extension,const char *regexpr)
-{
-   if(init_proc == NULL)
-      return FIF_UNKNOWN;
-
-   PluginNode *node = new PluginNode;
-   Plugin *plugin = new Plugin;
-   if(!node || !plugin) 
-   {
-      if(node) delete node;
-      if(plugin) delete plugin;
-      FreeImage_OutputMessageProc(FIF_UNKNOWN,FI_MSG_ERROR_MEMORY);
-      return FIF_UNKNOWN;
-   }
-
-   memset(plugin,0,sizeof(Plugin));
-
-   // fill-in the plugin structure
-   // note we have memset to 0, so all unset pointers should be NULL)
-
-   init_proc(plugin,(int)m_plugin_map.size());
-
-   return AddNode(plugin,node,instance,format,description,extension,regexpr);
-
-}
-
-PluginNode *
-PluginList::FindNodeFromFormat(const char *format) {
-	for (std::map<int, PluginNode *>::iterator i = m_plugin_map.begin(); i != m_plugin_map.end(); ++i) {
-		const char *the_format = ((*i).m_element2->m_format != NULL) ? (*i).m_element2->m_format : (*i).m_element2->m_plugin->format_proc();
-
-		if ((*i).m_element2->m_enabled) {
-			if (FreeImage_stricmp(the_format, format) == 0) {
-				return (*i).m_element2;
-			}
-		}
-	}
-
-	return NULL;
-}
+//FREE_IMAGE_FORMAT
+//   PluginList::AddNode(FI_InitProc2 init_proc,void *instance,const char *format,const char *description,const char *extension,const char *regexpr)
+//{
+//   if(init_proc == NULL)
+//      return FIF_UNKNOWN;
+//
+//   PluginNode *node = new PluginNode;
+//   Plugin *plugin = new Plugin;
+//   if(!node || !plugin) 
+//   {
+//      if(node) delete node;
+//      if(plugin) delete plugin;
+//      FreeImage_OutputMessageProc(FIF_UNKNOWN,FI_MSG_ERROR_MEMORY);
+//      return FIF_UNKNOWN;
+//   }
+//
+//   memset(plugin,0,sizeof(Plugin));
+//
+//   // fill-in the plugin structure
+//   // note we have memset to 0, so all unset pointers should be NULL)
+//
+//   init_proc(plugin,(int)m_plugin_map.size());
+//
+//   return AddNode(plugin,node,instance,format,description,extension,regexpr);
+//
+//}
+//
+//PluginNode *
+//PluginList::FindNodeFromFormat(const char *format) {
+//	for (std::map<int, PluginNode *>::iterator i = m_plugin_map.begin(); i != m_plugin_map.end(); ++i) {
+//		const char *the_format = ((*i).m_element2->m_format != NULL) ? (*i).m_element2->m_format : (*i).m_element2->m_plugin->format_proc();
+//
+//		if ((*i).m_element2->m_enabled) {
+//			if (FreeImage_stricmp(the_format, format) == 0) {
+//				return (*i).m_element2;
+//			}
+//		}
+//	}
+//
+//	return NULL;
+//}
 
 PluginNode *
 PluginList::FindNodeFromMime(const char *mime) {
