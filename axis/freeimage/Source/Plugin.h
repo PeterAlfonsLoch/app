@@ -68,7 +68,7 @@ public :
 	~PluginList();
 
 	//FREE_IMAGE_FORMAT AddNode(FI_InitProc proc, void *instance = NULL, const char *format = 0, const char *description = 0, const char *extension = 0, const char *regexpr = 0);
-   FREE_IMAGE_FORMAT AddNode(FI_InitProc2 proc,void *instance = NULL,const char *format = 0,const char *description = 0,const char *extension = 0,const char *regexpr = 0);
+   FREE_IMAGE_FORMAT AddNode(FI_InitProc proc,void *instance = NULL,const char *format = 0,const char *description = 0,const char *extension = 0,const char *regexpr = 0);
    FREE_IMAGE_FORMAT AddNode(Plugin * pplugin,PluginNode * node, void *instance = NULL,const char *format = 0,const char *description = 0,const char *extension = 0,const char *regexpr = 0);
 	PluginNode *FindNodeFromFormat(const char *format);
 	PluginNode *FindNodeFromMime(const char *mime);

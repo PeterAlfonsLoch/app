@@ -1420,8 +1420,7 @@ io->write_proc(mem.get_data(),mem.get_size(), 1, handle);
 // ==========================================================
 //   Init
 // ==========================================================
-extern "C"
-void Init(Plugin *plugin, int format_id) {
+void FreeImage_InitPlugin(Plugin *plugin,int format_id) {
 	s_format_id = format_id;
 
 	plugin->format_proc = Format;

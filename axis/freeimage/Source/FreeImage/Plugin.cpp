@@ -350,12 +350,12 @@ TagLib::instance();
 
 				while (count < s_search_list_size) {
 					_finddata_t find_data;
-					long find_handle;
+               intptr_t find_handle;
 
 					strcpy(buffer, s_search_list[count]);
 					strcat(buffer, "*.fip");
 
-					if ((find_handle = (long)_findfirst(buffer, &find_data)) != -1L) {
+               if((find_handle = (intptr_t)_findfirst(buffer,&find_data)) != -1L) {
 						do {
 							strcpy(buffer, s_search_list[count]);
 							strncat(buffer, find_data.name, MAX_PATH + 200);
@@ -364,10 +364,10 @@ TagLib::instance();
 
 							if (instance != NULL) {
 								//FARPROC proc_address = GetProcAddress(instance, "_Init@8");
-                        FARPROC proc_address = GetProcAddress(instance,"Init");
+                        FARPROC proc_address = GetProcAddress(instance,"FreeImage_InitPlugin");
 
 								if (proc_address != NULL) {
-									s_plugins->AddNode((FI_InitProc2)proc_address, (void *)instance);
+									s_plugins->AddNode((FI_InitProc)proc_address, (void *)instance);
 								} else {
 									FreeLibrary(instance);
 								}
