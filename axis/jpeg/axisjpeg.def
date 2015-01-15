@@ -1,3 +1,4 @@
-LIBRARY      "axisjpeg"
+LIBRARY      "axisjpeg.fip"
 
 EXPORTS
+_Init@8
