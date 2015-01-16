@@ -342,7 +342,7 @@ namespace aura
    bool application::is_user_service()
    {
 
-      return false;
+      return true;
 
    }
 

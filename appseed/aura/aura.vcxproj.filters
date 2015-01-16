@@ -3416,9 +3416,6 @@
     <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\x86\msvcr120d.dll">
       <Filter>Binary Files\Debug\x86</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\x86\msvcp120d.dll">
-      <Filter>Binary Files\Debug\x86</Filter>
-    </CustomBuild>
     <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\x86\vcomp120d.dll">
       <Filter>Binary Files\Debug\x86</Filter>
     </CustomBuild>
@@ -3448,6 +3445,9 @@
     </CustomBuild>
     <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\x64\msvcr120d.dll">
       <Filter>Binary Files\Debug\x64</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\x86\msvcp120d.dll">
+      <Filter>Binary Files\Debug\x86</Filter>
     </CustomBuild>
   </ItemGroup>
 </Project>
