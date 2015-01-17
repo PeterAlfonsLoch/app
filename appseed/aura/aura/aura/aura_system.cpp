@@ -16,6 +16,13 @@
 
 void dappy(const char * psz);
 
+string get_user_name()
+{
+   WCHAR wsz[1024];
+   DWORD dwSize = sizeof(wsz) / sizeof(WCHAR);
+  ::GetUserNameW(wsz,&dwSize);
+  return string(wsz);
+}
 
 namespace aura
 {
@@ -26,9 +33,7 @@ namespace aura
 
 
    system::system(::aura::application * papp) :
-      m_process(this),
-      m_mutexUserAppData(this,false,"Local\\ca2.UserAppData"),
-      m_mutexSystemAppData(this, false,"Local\\ca2.SystemAppData")
+      m_process(this)
    {
 
       m_bAdvancedGUI = true;

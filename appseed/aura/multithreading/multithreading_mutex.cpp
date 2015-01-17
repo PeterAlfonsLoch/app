@@ -38,7 +38,25 @@ mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrNa
    if(m_object == NULL)
    {
 
-      throw resource_exception(papp);
+      DWORD dwError1 = ::GetLastError();
+
+
+
+      if(pstrName != NULL)
+      {
+
+         m_object = ::OpenMutexW(SYNCHRONIZE,FALSE,::str::international::utf8_to_unicode(pstrName));
+
+      }
+
+      if(m_object == NULL)
+      {
+
+         DWORD dwError2 = ::GetLastError();
+
+         throw resource_exception(papp);
+
+      }
 
    }
 

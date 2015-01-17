@@ -978,6 +978,28 @@ namespace windows
       return m_path;
    }
 
+   /*!
+   * Print a known folder.
+   */
+   string get_known_folder(REFKNOWNFOLDERID kfid)
+   {
+      string str;
+      PWSTR pszPath = NULL;
+      HANDLE hToken = NULL;
+      ::OpenProcessToken(::GetCurrentProcess(),TOKEN_QUERY | TOKEN_IMPERSONATE | TOKEN_DUPLICATE,&hToken);
+         HRESULT hr = SHGetKnownFolderPath(kfid,0,hToken,&pszPath);
+      if(SUCCEEDED(hr))
+      {
+         str = pszPath;
+         // The calling application is responsible for calling CoTaskMemFree 
+         // to free this resource after use.
+         CoTaskMemFree(pszPath);
+      }
+      else
+      {
+      }
+      return str;
+   }
 
    bool dir::initialize()
    {
@@ -1008,6 +1030,8 @@ namespace windows
             m_strAppData,
             CSIDL_APPDATA,
             FALSE);
+         m_strAppData = get_known_folder(FOLDERID_RoamingAppData);
+         
          SHGetSpecialFolderPath(
             NULL,
             m_strPrograms,

@@ -163,7 +163,7 @@ namespace core
 
 
       virtual bool find_applications_from_cache();
-      virtual bool find_applications_to_cache();
+      virtual bool find_applications_to_cache(bool bSave = true);
       virtual bool map_application_library(const char * pszLibrary);
 
 

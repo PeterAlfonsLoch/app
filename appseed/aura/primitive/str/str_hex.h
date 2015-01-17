@@ -113,31 +113,25 @@ namespace hex
    template < typename INT >
    inline string lower_from(INT iValue)
    {
-      count c = sizeof(INT) * 2;
-      string str;
-      LPSTR sz = str.GetBufferSetLength(c);
-      for(index i = 0; i < c; i++)
-      {
-         sz[i] = lower_from((byte) ((iValue >> (4 * i)) &  0xf));
-      }
-      sz[c] = '\0';
-      str.ReleaseBuffer(c);
-      return str;
+      return upper_from(iValue).lowered();
    }
 
    template < typename INT >
    inline string upper_from(INT iValue)
    {
+      char sz[sizeof(INT) * 2 + 1];
       count c = sizeof(INT) * 2;
-      string str;
-      LPSTR sz = str.GetBufferSetLength(c);
-      for(index i = 0; i < c; i++)
-      {
-         sz[i] = upper_from((byte) ((iValue >> (4 * i)) &  0xf));
-      }
       sz[c] = '\0';
-      str.ReleaseBuffer(c);
-      return str;
+      string str;
+      index i = c-1;
+      for(; i >=0; i--)
+      {
+         sz[i] = upper_from((byte) (iValue & 0xf));
+         iValue  = iValue >> 4;
+         if(iValue == 0)
+            break;
+      }
+      return &sz[i];
    }
 
 } // namespace hex

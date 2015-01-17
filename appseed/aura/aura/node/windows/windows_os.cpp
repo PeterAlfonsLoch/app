@@ -1030,6 +1030,7 @@ namespace windows
       WCHAR pszName[CREDUI_MAX_USERNAME_LENGTH + CREDUI_MAX_DOMAIN_TARGET_LENGTH + 1];
       WCHAR pszPass[CREDUI_MAX_PASSWORD_LENGTH + 1];
 
+
       if(App(papp).is_user_service())
       {
 
@@ -1049,7 +1050,7 @@ namespace windows
 
       }
 
-      return create_service(strServiceName, strDisplayName, strCalling, pszName, pszPass);
+      return create_service(strServiceName,strDisplayName,strCalling,pname,ppass);
 
    }
 

@@ -2,6 +2,11 @@
 //#include "core/filesystem/filemanager/filemanager.h"
 //#include "core/user/user/user.h"
 
+#include <Wtsapi32.h>
+
+
+#include <Userenv.h>
+
 
 #ifdef LINUX
 
@@ -1600,88 +1605,184 @@ namespace core
 
          not_installed & notinstalled = dynamic_cast <not_installed &> (e);
 
+
          if((::is_debugger_attached() && !file_exists_dup("C:\\ca2\\config\\plugin\\disable_manual_install_warning.txt")
             && !file_exists_dup("C:\\ca2\\config\\system\\skip_debug_install.txt")) || file_exists_dup("C:\\ca2\\config\\system\\enable_debug_install.txt"))
+            //|| (App(notinstalled.get_app()).is_serviceable() && !App(notinstalled.get_app()).is_user_service()))
          {
 
             try
             {
 
-               if(!(bool)System.oprop("not_installed_message_already_shown"))
-               {
+               string strModuleFilePath;
 
-                  if(IDYES == ::simple_message_box(NULL,"Debug only message, please install:\n\n\n\t" + notinstalled.m_strId + "\n\ttype = " + notinstalled.m_strType + "\n\tlocale = " + notinstalled.m_strLocale + "\n\tschema = " + notinstalled.m_strSchema + "\n\tbuild number = " + notinstalled.m_strBuild + "\n\n\nThere are helper scripts under <solution directory>/nodeapp/stage/install/","Debug only message, please install.",MB_ICONINFORMATION | MB_YESNO))
-                  {
+               DWORD dwExitCode = 0;
 
-                     string strPath = notinstalled.m_strId;
+               bool bTimedOut = false;
 
-                     strPath = System.dir().ca2module("app");
+               string strParam;
 
-                     string strParam;
+               string strPath = notinstalled.m_strId;
 
-                     string strBuildNumber = "latest";
+               strPath = System.dir().ca2module("app");
+
+               string strBuildNumber = "latest";
 
 #ifdef WINDOWS
 
-                     strPath += ".exe";
+               strPath += ".exe";
 
 #elif defined(APPLEOS)
 
 
-//                     strPath += ".app/Contents/MacOS/app";
-                     strPath += ".app/Contents/MacOS/app";
-//                     setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
-//                     setenv("DYLD_FALLBACK_LIBRARY_PATH",strPath, 1 );
+               //                     strPath += ".app/Contents/MacOS/app";
+               strPath += ".app/Contents/MacOS/app";
+               //                     setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
+               //                     setenv("DYLD_FALLBACK_LIBRARY_PATH",strPath, 1 );
 
 #endif
+               
+               strModuleFilePath = strPath;
 
-//#if defined(APPLEOS)
-  //                   strPath = "/usr/bin/open -n " + strPath + " --args : app=" + notinstalled.m_strId + " install build_number=" + strBuildNumber + " locale=" + notinstalled.m_strLocale + " schema=" + //notinstalled.m_strSchema;
-//#else
-                     strParam = " : app=" + notinstalled.m_strId + " install build_number=" + notinstalled.m_strBuild + " version=" + notinstalled.m_strVersion + " locale=" + notinstalled.m_strLocale + " schema=" + notinstalled.m_strSchema;
-//#endif
+               //#if defined(APPLEOS)
+               //                   strPath = "/usr/bin/open -n " + strPath + " --args : app=" + notinstalled.m_strId + " install build_number=" + strBuildNumber + " locale=" + notinstalled.m_strLocale + " schema=" + //notinstalled.m_strSchema;
+               //#else
+               strParam = " : app=" + notinstalled.m_strId + " install build_number=" + notinstalled.m_strBuild + " version=" + notinstalled.m_strVersion + " locale=" + notinstalled.m_strLocale + " schema=" + notinstalled.m_strSchema;
+               //#endif
 
-                     bool bTimedOut = false;
+//               if(App(notinstalled.get_app()).is_serviceable() && !App(notinstalled.get_app()).is_user_service())
+//               {
+//
+//                  
+//                  HANDLE hToken = NULL;
+//
+//                  //if(LogonUserW(L"LocalServer",L"NT AUTHORITY",NULL,LOGON32_LOGON_SERVICE,LOGON32_PROVIDER_DEFAULT,&hToken))
+//                  //{
+//                  //   
+//                  //   ::simple_message_box(NULL,"Failed to Login at Local System Account","Debug only message, please install.",MB_ICONINFORMATION | MB_OK);
+//                  //}
+//
+//                  // os << "Impersonation OK!!<br>";
+//                  
+////                  strPath = "\"" + System.file().name_(strModuleFilePath) + "\" : install";
+//                  string strCmdLine = strPath + strParam;
+//                  wstring wstrCmdLine = strCmdLine;
+//                  string strModuleFolder = System.get_module_folder();
+//                  wstring wstrModuleFolder = strModuleFolder;
+//                  LPSTR lpsz = (char *)(const char *)(strCmdLine);
+//                  LPWSTR lpwsz = (wchar_t *)(const wchar_t *)(wstrCmdLine);
+//                  STARTUPINFO m_si;
+//                  PROCESS_INFORMATION m_pi;
+//                  memset(&m_si,0,sizeof(m_si));
+//                  memset(&m_pi,0,sizeof(m_pi));
+//                  m_si.cb = sizeof(m_si);
+//                  m_si.wShowWindow = SW_HIDE;
+//
+//                  if(LaunchAppIntoSystemAcc(strModuleFilePath,lpsz,strModuleFolder,&m_si,&m_pi))
+//                  //if(LaunchAppIntoDifferentSession(strModuleFilePath,lpsz,strModuleFolder,&m_si,&m_pi, 0))
+//                  //if(::CreateProcessAsUserW(hToken,wstring(strModuleFilePath),lpsz,NULL,NULL,TRUE,CREATE_NEW_CONSOLE,NULL,wstrModuleFolder,&m_si,&m_pi))
+//                  {
+//                     TRACE("Launched");
+//
+//
+//                  }
+//                  else
+//                  {
+//                     uint32_t dwLastError = ::GetLastError();
+//                     TRACE("Not Launched");
+//
+//                     WCHAR wsz[1024];
+//
+//                     DWORD dwSize = sizeof(wsz) / sizeof(WCHAR);
+//
+//                     GetUserNameW(wsz,&dwSize);
+//
+//                     string strUserName = wsz;
+//
+//                     if(strUserName != "NetworkService")
+//                     {
+//
+//                        goto Launch;
+//
+//                     }
+//
+//                  }
+//
+//                  dwExitCode = 0;
+//
+//                  while(::GetExitCodeProcess(m_pi.hProcess,&dwExitCode))
+//                  {
+//
+//                     if(dwExitCode == STILL_ACTIVE)
+//                     {
+//
+//                        Sleep(84);
+//
+//                     }
+//                     else
+//                     {
+//                        break;
+//                     }
+//
+//                  }
+//
+//               }
+               //else
+               {
 
-                     ::duration durationWait = seconds((1.9841115 + 1.9770402 + 1.9510422) * 3.0); // less than 18 seconds
+                  Launch:
 
-//#ifdef MACOS
-                     
-  //                   TRACE0(strPath);
+                  if(!(bool)System.oprop("not_installed_message_already_shown"))
+                  {
 
-    //                 DWORD dwExitCode = System.process().synch(strPath,SW_HIDE,durationWait,&bTimedOut);
-                     
-//#else
-
-                     DWORD dwExitCode = System.process().elevated_synch(strPath + strParam,SW_HIDE,durationWait,&bTimedOut);
-                     
-//#endif
-
-                     if(bTimedOut)
+                     if((App(notinstalled.get_app()).is_serviceable() && !App(notinstalled.get_app()).is_user_service())
+                      || (IDYES == ::simple_message_box(NULL,"Debug only message, please install:\n\n\n\t" + notinstalled.m_strId + "\n\ttype = " + notinstalled.m_strType + "\n\tlocale = " + notinstalled.m_strLocale + "\n\tschema = " + notinstalled.m_strSchema + "\n\tbuild number = " + notinstalled.m_strBuild + "\n\n\nThere are helper scripts under <solution directory>/nodeapp/stage/install/","Debug only message, please install.",MB_ICONINFORMATION | MB_YESNO)))
                      {
 
-                        ::simple_message_box(NULL, " - " + notinstalled.m_strId + "\nhas timed out while trying to install.\n\nFor developers it is recommended to\nfix this installation timeout problem.\n\nIt is recommended to kill manually :\n - \"" +strPath +strParam+ "\"\nif it has not been terminated yet.","Debug only message, please install.",MB_ICONINFORMATION | MB_OK);
+
+
+
+                        ::duration durationWait = seconds((1.9841115 + 1.9770402 + 1.9510422) * 3.0); // less than 18 seconds
+
+                        //#ifdef MACOS
+
+                        //                   TRACE0(strPath);
+
+                        //                 DWORD dwExitCode = System.process().synch(strPath,SW_HIDE,durationWait,&bTimedOut);
+
+                        //#else
+
+                       dwExitCode = System.process().elevated_synch(strPath + strParam,SW_HIDE,durationWait,&bTimedOut);
+
+                        //#endif
 
                      }
-                     else if(dwExitCode == 0)
-                     {
 
-                        ::simple_message_box(NULL,"Successfully run : " + strPath + strParam,"Debug only message, please install.",MB_ICONINFORMATION | MB_OK);
-
-                     }
-                     else
-                     {
-
-                        ::simple_message_box(NULL, strPath + strParam + "\n\nFailed return code : " + ::str::from((uint32_t) dwExitCode),"Debug only message, please install.",MB_ICONINFORMATION | MB_OK);
-
-                     }
 
                   }
+                
+               }
+               if(bTimedOut)
+               {
 
-                  System.oprop("not_installed_message_already_shown") = true;
+                  ::simple_message_box(NULL," - " + notinstalled.m_strId + "\nhas timed out while trying to install.\n\nFor developers it is recommended to\nfix this installation timeout problem.\n\nIt is recommended to kill manually :\n - \"" + strPath + strParam + "\"\nif it has not been terminated yet.","Debug only message, please install.",MB_ICONINFORMATION | MB_OK);
+
+               }
+               else if(dwExitCode == 0)
+               {
+
+                  ::simple_message_box(NULL,"Successfully run : " + strPath + strParam,"Debug only message, please install.",MB_ICONINFORMATION | MB_OK);
+
+               }
+               else
+               {
+
+                  ::simple_message_box(NULL,strPath + strParam + "\n\nFailed return code : " + ::str::from((uint32_t)dwExitCode),"Debug only message, please install.",MB_ICONINFORMATION | MB_OK);
 
                }
 
+
+               System.oprop("not_installed_message_already_shown") = true;
             }
             catch(...)
             {
@@ -4175,3 +4276,324 @@ namespace core
 
 
 
+
+
+
+BOOL LaunchAppIntoDifferentSession(const char * pszProcess,const char * pszCommand,const char * pszDir,STARTUPINFO * psi,PROCESS_INFORMATION * ppi, int iSession)
+{
+   //PROCESS_INFORMATION pi;
+   //STARTUPINFO si;
+   BOOL bResult = FALSE;
+   DWORD dwSessionId,winlogonPid;
+   HANDLE hUserToken,hUserTokenDup,hPToken,hProcess;
+   DWORD dwCreationFlags;
+
+   // Log the client on to the local computer.
+
+   if(iSession < 0)
+   {
+      dwSessionId = WTSGetActiveConsoleSessionId();
+   }
+   else
+   {
+      dwSessionId = iSession;
+   }
+
+   //////////////////////////////////////////
+   // Find the winlogon process
+   ////////////////////////////////////////
+
+   PROCESSENTRY32 procEntry;
+
+   HANDLE hSnap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS,0);
+   if(hSnap == INVALID_HANDLE_VALUE)
+   {
+      return 1 ;
+   }
+
+   procEntry.dwSize = sizeof(PROCESSENTRY32);
+
+   if(!Process32First(hSnap,&procEntry))
+   {
+      return 1 ;
+   }
+
+   do
+   {
+      if(_stricmp(procEntry.szExeFile,"winlogon.exe") == 0)
+      {
+         // We found a winlogon process...
+         // make sure it's running in the console session
+         DWORD winlogonSessId = 0;
+         HANDLE h = ::OpenProcess(PROCESS_QUERY_INFORMATION,FALSE,procEntry.th32ProcessID);
+         if(ProcessIdToSessionId(procEntry.th32ProcessID,&winlogonSessId))
+         {
+            if(winlogonSessId == dwSessionId)
+            {
+               winlogonPid = procEntry.th32ProcessID;
+               break;
+
+            }
+         }
+         else
+         {
+            DWORD dwLastError = GetLastError();
+
+            APPTRACE(::get_thread_app())("%d", dwLastError);
+         }
+      }
+
+   } while(Process32Next(hSnap,&procEntry));
+
+   ////////////////////////////////////////////////////////////////////////
+
+   WTSQueryUserToken(dwSessionId,&hUserToken);
+   dwCreationFlags = NORMAL_PRIORITY_CLASS | CREATE_NEW_CONSOLE;
+   //ZeroMemory(&si,sizeof(STARTUPINFO));
+   psi->cb= sizeof(STARTUPINFO);
+   psi->lpDesktop = "winsta0\\default";
+   //ZeroMemory(&pi,sizeof(pi));
+   TOKEN_PRIVILEGES tp;
+   LUID luid;
+   hProcess = OpenProcess(MAXIMUM_ALLOWED,FALSE,winlogonPid);
+
+   if(!::OpenProcessToken(hProcess,TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY
+      | TOKEN_DUPLICATE | TOKEN_ASSIGN_PRIMARY | TOKEN_ADJUST_SESSIONID
+      | TOKEN_READ | TOKEN_WRITE,&hPToken))
+   {
+      int abcd = GetLastError();
+      printf("Process token open Error: %u\n",GetLastError());
+   }
+
+   if(!LookupPrivilegeValue(NULL,SE_DEBUG_NAME,&luid))
+   {
+      printf("Lookup Privilege value Error: %u\n",GetLastError());
+   }
+   tp.PrivilegeCount =1;
+   tp.Privileges[0].Luid =luid;
+   tp.Privileges[0].Attributes =SE_PRIVILEGE_ENABLED;
+
+   DuplicateTokenEx(hPToken,MAXIMUM_ALLOWED,NULL,
+      SecurityIdentification,TokenPrimary,&hUserTokenDup);
+   int dup = GetLastError();
+
+   //Adjust Token privilege
+   SetTokenInformation(hUserTokenDup,
+      TokenSessionId,(void*)dwSessionId,sizeof(DWORD));
+
+   if(!AdjustTokenPrivileges(hUserTokenDup,FALSE,&tp,sizeof(TOKEN_PRIVILEGES),
+      (PTOKEN_PRIVILEGES)NULL,NULL))
+   {
+      int abc =GetLastError();
+      printf("Adjust Privilege value Error: %u\n",GetLastError());
+   }
+
+   if(GetLastError() == ERROR_NOT_ALL_ASSIGNED)
+   {
+      printf("Token does not have the provilege\n");
+   }
+
+   LPVOID pEnv =NULL;
+
+   if(CreateEnvironmentBlock(&pEnv,hUserTokenDup,TRUE))
+   {
+      dwCreationFlags|=CREATE_UNICODE_ENVIRONMENT;
+   }
+   else
+      pEnv=NULL;
+
+   // Launch the process in the client's logon session.
+
+   bResult = CreateProcessAsUser(
+      hUserTokenDup,                     // client's access token
+      pszProcess,    // file to execute
+      (char *) pszCommand,                 // command line
+      NULL,            // pointer to process SECURITY_ATTRIBUTES
+      NULL,               // pointer to thread SECURITY_ATTRIBUTES
+      FALSE,              // handles are not inheritable
+      dwCreationFlags,     // creation flags
+      pEnv,               // pointer to new environment block
+      pszDir,               // name of current directory
+      psi,               // pointer to STARTUPINFO structure
+      ppi                // receives information about new process
+      );
+   // End impersonation of client.
+
+   //GetLastError Shud be 0
+
+   int iResultOfCreateProcessAsUser = GetLastError();
+
+   //Perform All the Close Handles tasks
+
+   CloseHandle(hProcess);
+   CloseHandle(hUserToken);
+   CloseHandle(hUserTokenDup);
+   CloseHandle(hPToken);
+
+   return 0;
+}
+
+bool enable_windows_token_privilege(HANDLE h,LPCSTR lpcszName)
+{
+
+   TOKEN_PRIVILEGES tp;
+
+   if(!LookupPrivilegeValue(NULL,SE_DEBUG_NAME,&tp.Privileges[0].Luid))
+   {
+
+      int iError = GetLastError();
+
+      printf("Lookup Privilege value Error: %u\n",iError);
+
+      return false;
+
+   }
+
+   tp.PrivilegeCount = 1;
+
+   tp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
+
+   if(!AdjustTokenPrivileges(h,FALSE,&tp,sizeof(TOKEN_PRIVILEGES),(PTOKEN_PRIVILEGES)NULL,NULL))
+   {
+      
+      int iError = GetLastError();
+
+      printf("Adjust Privilege value Error: %u\n",iError);
+
+      return false;
+
+   }
+
+   return true;
+
+}
+
+BOOL LaunchAppIntoSystemAcc(const char * pszProcess,const char * pszCommand,const char * pszDir,STARTUPINFO * psi,PROCESS_INFORMATION * ppi)
+{
+   //PROCESS_INFORMATION pi;
+   //STARTUPINFO si;
+   BOOL bResult = FALSE;
+   DWORD dwSessionId,winlogonPid;
+   HANDLE hUserTokenDup,hProcess,hPToken;
+   DWORD dwCreationFlags;
+   HANDLE hUserToken = NULL;
+
+
+   // Log the client on to the local computer.
+
+   dwCreationFlags = NORMAL_PRIORITY_CLASS | CREATE_NEW_CONSOLE;
+   //ZeroMemory(&si,sizeof(STARTUPINFO));
+   psi->cb= sizeof(STARTUPINFO);
+   psi->lpDesktop = "winsta0\\default";
+   //ZeroMemory(&pi,sizeof(pi));
+   
+   LUID luid;
+   //hProcess = OpenProcess(MAXIMUM_ALLOWED,FALSE,winlogonPid);
+   hProcess = ::GetCurrentProcess();
+
+   //hPToken = hUserToken;
+
+   if(!::OpenProcessToken(hProcess, TOKEN_ALL_ACCESS,&hPToken))
+   {
+      int abcd = GetLastError();
+      printf("Process token open Error: %u\n",GetLastError());
+   }
+
+   if(!enable_windows_token_privilege(hPToken,SE_DEBUG_NAME))
+   {
+      
+      return FALSE;
+
+   }
+
+   if(!enable_windows_token_privilege(hPToken,SE_CREATE_TOKEN_NAME))
+   {
+      return FALSE;
+   }
+
+   if(!enable_windows_token_privilege(hPToken,SE_TCB_NAME))
+   {
+
+      return FALSE;
+
+   }
+
+   if(!enable_windows_token_privilege(hPToken,SE_ASSIGNPRIMARYTOKEN_NAME))
+   {
+
+      return FALSE;
+
+   }
+
+   if(!enable_windows_token_privilege(hPToken,SE_INCREASE_QUOTA_NAME))
+   {
+
+      return FALSE;
+
+   }
+
+   //if(GetLastError() == ERROR_NOT_ALL_ASSIGNED)
+   //{
+   //   printf("Token does not have the provilege\n");
+   //}
+   // "LOCAL SERVICE" or "LocalService" ?
+   // "NETWORK SERVICE" or "NetworkService" ?
+   if(!LogonUserW(L"LocalService",L"NT AUTHORITY",NULL,LOGON32_LOGON_SERVICE,LOGON32_PROVIDER_DEFAULT,&hUserToken))
+   {
+      DWORD dwError = ::GetLastError();
+      string str;
+      str.Format("Lookup Privilege value Error: %u\n",dwError);
+      ::MessageBox(NULL,str,"Help Me",MB_OK);
+      return FALSE;
+   }
+   if(!DuplicateTokenEx(hUserToken,TOKEN_ALL_ACCESS,NULL,SecurityDelegation,TokenPrimary,&hUserTokenDup))
+   {
+      int dup = GetLastError();
+      printf("DuplicateTokenEx Error: %u\n",GetLastError());
+   }
+
+   //Adjust Token privilege
+   //SetTokenInformation(hUserTokenDup,
+   //   TokenSessionId,(void*)dwSessionId,sizeof(DWORD));
+
+
+
+   LPVOID pEnv =NULL;
+
+   if(CreateEnvironmentBlock(&pEnv,hUserTokenDup,TRUE))
+   {
+      dwCreationFlags|=CREATE_UNICODE_ENVIRONMENT;
+   }
+   else
+      pEnv=NULL;
+
+   // Launch the process in the client's logon session.
+
+   bResult = CreateProcessAsUser(
+      hUserTokenDup,                     // client's access token
+      pszProcess,    // file to execute
+      (char *)pszCommand,                 // command line
+      NULL,            // pointer to process SECURITY_ATTRIBUTES
+      NULL,               // pointer to thread SECURITY_ATTRIBUTES
+      FALSE,              // handles are not inheritable
+      dwCreationFlags,     // creation flags
+      pEnv,               // pointer to new environment block
+      pszDir,               // name of current directory
+      psi,               // pointer to STARTUPINFO structure
+      ppi                // receives information about new process
+      );
+   // End impersonation of client.
+
+   //GetLastError Shud be 0
+
+   //int iResultOfCreateProcessAsUser = GetLastError();
+
+   //Perform All the Close Handles tasks
+
+   //CloseHandle(hProcess);
+   //CloseHandle(hUserToken);
+   //CloseHandle(hUserTokenDup);
+   //CloseHandle(hPToken);
+
+   return TRUE;
+}

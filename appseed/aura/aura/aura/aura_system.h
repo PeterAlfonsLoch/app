@@ -59,8 +59,8 @@ namespace aura
 
 
 
-      mutex                                        m_mutexUserAppData;
-      mutex                                        m_mutexSystemAppData;
+      sp(mutex)                                    m_spmutexUserAppData;
+      sp(mutex)                                    m_spmutexSystemAppData;
 
 
 

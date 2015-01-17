@@ -1876,6 +1876,7 @@ namespace core
    sp(::aura::application) platform::get_new_app(sp(::aura::application) pappNewApplicationParent,const char * pszType,const char * pszAppId)
    {
 
+
       string strId(pszAppId);
 
       string strApplicationId;
@@ -1915,15 +1916,6 @@ namespace core
 
 #elif !defined(METROWIN)
 
-      if(!System.directrix()->m_varTopicQuery.has_property("install")
-         && !System.directrix()->m_varTopicQuery.has_property("uninstall")
-         && strId.has_char()
-         && !System.install().is(System.install().m_strVersion,strBuildNumber,pszType,strApplicationId,Session.m_strLocale,Session.m_strSchema))
-      {
-
-         throw not_installed(get_app(),System.install().m_strVersion,strBuildNumber,pszType,strApplicationId,Session.m_strLocale,Session.m_strSchema);
-
-      }
 
 #endif
 
@@ -1943,12 +1935,21 @@ namespace core
 
       if(strLibrary.is_empty())
       {
+         
+         System.find_applications_to_cache(false);
 
-         if(System.directrix()->m_varTopicQuery.has_property("uninstall") &&
-            System.directrix()->m_varTopicQuery["app"] == strApplicationId)
-            return NULL;
+         strLibrary = System.m_mapAppLibrary[pszAppId];
 
-         throw not_installed(get_app(),System.install().m_strVersion,strBuildNumber,pszType,strApplicationId,Session.m_strLocale,Session.m_strSchema);
+         if(strLibrary.is_empty())
+         {
+
+            if(System.directrix()->m_varTopicQuery.has_property("uninstall") &&
+               System.directrix()->m_varTopicQuery["app"] == strApplicationId)
+               return NULL;
+
+            throw not_installed(get_app(),System.install().m_strVersion,strBuildNumber,pszType,strApplicationId,Session.m_strLocale,Session.m_strSchema);
+
+         }
 
       }
 
@@ -1963,6 +1964,36 @@ namespace core
          return NULL;
 
       papp = library.get_new_app(pszAppId);
+
+      WCHAR wsz[1024];
+
+      DWORD dwSize = sizeof(wsz) / sizeof(WCHAR);
+
+      GetUserNameW(wsz,&dwSize);
+
+      string strUserName = wsz;
+
+      
+
+      if(((!System.directrix()->m_varTopicQuery.has_property("install")
+         && !System.directrix()->m_varTopicQuery.has_property("uninstall"))
+) //         || (papp->is_serviceable() && !papp->is_user_service() && strUserName != "NetworkService"))
+         && strId.has_char()
+         && !System.install().is(System.install().m_strVersion,strBuildNumber,pszType,strApplicationId,Session.m_strLocale,Session.m_strSchema))
+      {
+
+         throw not_installed(papp,System.install().m_strVersion,strBuildNumber,pszType,strApplicationId,Session.m_strLocale,Session.m_strSchema);
+
+      }
+
+      if(!papp->is_serviceable() || papp->is_user_service())
+      {
+      
+         System.m_spmutexUserAppData = canew(mutex(m_paurasystem,false,"Local\\ca2.UserAppData"));
+         System.m_spmutexSystemAppData = canew(mutex(m_paurasystem,false,"Local\\ca2.SystemAppData"));
+
+      }
+
 
       if(papp == NULL)
          return NULL;

@@ -330,7 +330,7 @@ namespace core
 
 
 
-   bool system::find_applications_to_cache()
+   bool system::find_applications_to_cache(bool bSave)
    {
 
       /*      m_spfilehandler(new ::core::filehandler::handler(this));*/
@@ -363,6 +363,9 @@ namespace core
          }
 
       }
+
+      if(!bSave)
+         return true;
 
       ::file::binary_buffer_sp file;
 
