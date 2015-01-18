@@ -1,6 +1,8 @@
 #pragma once
 
 
+
+
 template < class root_derived >
 inline int64_t add_ref(root_derived * pca);
 
@@ -187,3 +189,59 @@ public:
 };
 
 
+
+
+#define COMPP(cptr) IID_PPV_ARGS(&cptr.get())
+template <class T>
+class comptr
+{
+public:
+   T* ptr;
+
+   comptr(T *p=NULL): ptr(p) { }
+   ~comptr()
+   {
+      if(ptr) { ptr->Release(); }
+   }
+
+   operator T * ()
+   {
+      return ptr;
+   }
+
+   T * & get()
+   {
+      return ptr;
+   }
+
+   T * operator -> ()
+   {
+      return ptr;
+   }
+
+   comptr & operator = (const comptr & c)
+   {
+      if(ptr != c.ptr)
+      {
+         try
+         {
+            if(ptr != NULL)
+            {
+               ptr->Release();
+            }
+         }
+         catch(...)
+         {
+         }
+         ptr = c.ptr;
+
+         if(ptr != NULL)
+         {
+            ptr->AddRef();
+         }
+
+      }
+      return *this;
+   }
+
+};

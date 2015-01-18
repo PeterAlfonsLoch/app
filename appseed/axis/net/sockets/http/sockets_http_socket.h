@@ -47,6 +47,8 @@ namespace sockets
       http_socket(base_socket_handler& );
       ~http_socket();
 
+      virtual void OnEndChunk();
+
       void OnRawData(char *buf,size_t len);
       void OnLine(const string & line);
 

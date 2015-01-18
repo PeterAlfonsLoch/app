@@ -109,6 +109,7 @@ namespace sockets
                      ptr += sz;
                      if (!m_chunk_size)
                      {
+                        OnEndChunk();
                         m_chunk_state = 2;
                      }
                   }
@@ -409,6 +410,11 @@ namespace sockets
       if (m_request.m_propertysetHeader[__id(host)].get_string().has_char())
       {
          strLine = "Host: " + m_request.m_propertysetHeader[__id(host)];
+         if((m_iConnectPort != 80 && !IsSSL()) || (m_iConnectPort != 443 && IsSSL()))
+         {
+            strLine += ":";
+            strLine += ::str::from(m_iConnectPort);
+         }
          msg += strLine + "\r\n";
       }
       for(int i = 0; i < m_request.m_propertysetHeader.m_propertya.get_count(); i++)
@@ -564,7 +570,9 @@ namespace sockets
 
    }
 
-
+   void http_socket::OnEndChunk()
+   {
+   }
 } // namespace sockets
 
 
