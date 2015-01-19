@@ -828,10 +828,13 @@ void ssl_sigpipe_handle( int x );
          buffer(buf, len);
          return;
       }
-      int32_t n = (int32_t) try_write(buf, len);
-      if (n >= 0 && n < (int32_t)len)
+      else
       {
-         buffer(buf + n, len - n);
+         int32_t n = (int32_t)try_write(buf,len);
+         if(n >= 0 && n < (int32_t)len)
+         {
+            buffer(buf + n,len - n);
+         }
       }
       // if ( data in buffer || !IsConnected )
       // {
