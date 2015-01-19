@@ -102,6 +102,8 @@ namespace sockets
       ::net::address          m_addressRemoteClient; ///< Address of last connect()
       ::file::buffer_sp       m_spfileTrafficMonitor;
 
+      bool                 m_b_chunked;
+
 
       ::file::memory_buffer   m_memfileInput;
       bool                    m_bEnd; // should finish by not sending no more writes

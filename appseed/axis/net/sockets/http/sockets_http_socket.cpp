@@ -26,7 +26,6 @@ namespace sockets
       m_body_size_left(0),
       m_b_http_1_1(false),
       m_b_keepalive(false),
-      m_b_chunked(false),
       m_chunk_size(0),
       m_chunk_state(0)
    {
