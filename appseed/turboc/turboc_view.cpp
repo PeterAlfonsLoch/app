@@ -7,7 +7,7 @@
 void rainbow_main();
 
 
-namespace tc4
+namespace turboc
 {
 
 
@@ -120,7 +120,7 @@ namespace tc4
 
       }
 
-      Application.start_main(rainbow_main);
+      Application.start_main();
 
 
    }
@@ -148,7 +148,7 @@ namespace tc4
       if(m_bHelloLayoutOn001Layout)
       {
 
-         ::tc4::view::layout();
+         ::turboc::view::layout();
 
       }
       else
@@ -193,7 +193,7 @@ namespace tc4
       if(Application.m_etype == application::type_mili)
       {
 
-         string strHelloMultiverse = get_processed_tc4();
+         string strHelloMultiverse = get_processed_turboc();
 
          if(m_bNewLayout)
          {
@@ -285,7 +285,7 @@ namespace tc4
 
             m_bFast = false;
 
-            tc4_fast_render(get_processed_tc4());
+            turboc_fast_render(get_processed_turboc());
 
             m_bFirstDone = false;
 
@@ -407,7 +407,7 @@ namespace tc4
 
    }
 
-   void view::tc4_fast_render(const string & strHelloMultiverse)
+   void view::turboc_fast_render(const string & strHelloMultiverse)
    {
 
       if(m_cx <= 0 || m_cy <= 0)
@@ -493,7 +493,7 @@ namespace tc4
 
    }
 
-   void view::tc4_render()
+   void view::turboc_render()
    {
 
       {
@@ -504,7 +504,7 @@ namespace tc4
 
          pdib->Fill(0,0,0,0);
 
-         tc4_render(pdib);
+         turboc_render(pdib);
 
 
       }
@@ -593,14 +593,14 @@ namespace tc4
       }
 
 
-      tc4_render();
+      turboc_render();
 
       if(m_bFirstDone)
       {
 
          synch_lock slUser(m_spmutex);
 
-         tc4_draw();
+         turboc_draw();
 
       }
       else
@@ -674,7 +674,7 @@ namespace tc4
    }
 
 
-   void view::tc4_draw()
+   void view::turboc_draw()
    {
 
       if(m_bVoidTransfer)
@@ -781,10 +781,10 @@ namespace tc4
    }
 
 
-   string view::get_processed_tc4()
+   string view::get_processed_turboc()
    {
 
-      string str = get_tc4();
+      string str = get_turboc();
 
       if(::str::begins_eat_ci(str,"image:"))
       {
@@ -842,7 +842,7 @@ namespace tc4
    }
 
 
-   string view::get_tc4()
+   string view::get_turboc()
    {
 
       synch_lock sl(&m_mutexText);
@@ -860,13 +860,13 @@ namespace tc4
          if(m_bAlternate)
          {
 
-            return Application.m_strAlternateHelloMultiverse;
+            return Application.m_strAlternateTurboC;
 
          }
          else
          {
 
-            return Application.m_strHelloMultiverse;
+            return Application.m_strTurboC;
 
          }
 
@@ -881,7 +881,7 @@ namespace tc4
    }
 
 
-   void view::tc4_render(::draw2d::dib * pdib)
+   void view::turboc_render(::draw2d::dib * pdib)
    {
 
       if(m_dibImage.is_set() && m_dibImage->area() > 0)
@@ -902,20 +902,20 @@ namespace tc4
       if(m_bLite)
       {
 
-         tc4_render_lite_view(pdib->get_graphics());
+         turboc_render_lite_view(pdib->get_graphics());
 
       }
       else
       {
 
-         tc4_render_full_view(pdib->get_graphics());
+         turboc_render_full_view(pdib->get_graphics());
 
       }
 
    }
 
 
-} // namespace tc4
+} // namespace turboc
 
 
 

@@ -2,7 +2,7 @@
 #include <math.h>
 
 
-namespace tc4
+namespace turboc
 {
 
 
@@ -88,15 +88,15 @@ namespace tc4
    }
 
 
-   void lite_view::tc4_render(::draw2d::graphics * pdc)
+   void lite_view::turboc_render(::draw2d::graphics * pdc)
    {
 
-      tc4_render_lite_view(pdc);
+      turboc_render_lite_view(pdc);
 
    }
 
 
-   void view::tc4_render_lite_view(::draw2d::graphics * pdc)
+   void view::turboc_render_lite_view(::draw2d::graphics * pdc)
    {
 
 
@@ -162,7 +162,7 @@ namespace tc4
       //   iBlur = i;
       //else
       //   iBlur = iCount - i;
-      string strHelloMultiverse = get_processed_tc4();
+      string strHelloMultiverse = get_processed_turboc();
 
       pdc->set_font(m_font);
 
@@ -221,7 +221,7 @@ namespace tc4
 
       }
 
-      if(strHelloMultiverse != get_processed_tc4() || m_cxCache1 != m_cx || m_cyCache1 != m_cy || m_dibTemplate->area() <= 0)
+      if(strHelloMultiverse != get_processed_turboc() || m_cxCache1 != m_cx || m_cyCache1 != m_cy || m_dibTemplate->area() <= 0)
          return;
 
       ::color ca;
@@ -307,7 +307,7 @@ namespace tc4
       //pdc->FillSolidRect(200,200,100,100,ARGB(128,128,128,0));
 
 
-      if(strHelloMultiverse == get_processed_tc4() && m_cxCache1 == m_cx && m_cyCache1 == m_cy)
+      if(strHelloMultiverse == get_processed_turboc() && m_cxCache1 == m_cx && m_cyCache1 == m_cy)
       {
 
          m_bFirstDone = true;
@@ -324,7 +324,7 @@ namespace tc4
 
 
 
-} // namespace tc4
+} // namespace turboc
 
 
 

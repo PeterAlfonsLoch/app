@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace tc4
+namespace turboc
 {
 
 
-   class CLASS_DECL_APP_CORE_TC4 toggle_view:
+   class CLASS_DECL_TURBOC toggle_view:
       virtual public ::aura::impact,
       virtual public ::user::button
    {
@@ -31,7 +31,7 @@ namespace tc4
    };
 
 
-} // namespace tc4
+} // namespace turboc
 
 
 

@@ -820,6 +820,7 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, uint32_t dwDefaultSt
 
    if (!create_window_ex(0L, NULL, lpszTitle, dwDefaultStyle, rectFrame, pParentWnd, /*nIDResource*/ 0, pContext))
    {
+
       return FALSE;   // will self destruct on failure normally
    }
 

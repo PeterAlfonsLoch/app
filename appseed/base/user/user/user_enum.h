@@ -22,6 +22,7 @@ namespace user
       AppearanceBottomRight,
       AppearanceZoomed,
       AppearanceFullScreen,
+      AppearanceMinimal,
       AppearanceNotifyIcon,
       AppearanceUp,
       AppearanceDown,

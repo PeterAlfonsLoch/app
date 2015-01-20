@@ -23,6 +23,9 @@ namespace console
       inline prompt & console_prompt() { return *m_spprompt; }
 
 
+      void pre_translate_message(::signal_details * pobj);
+
+
    };
 
 

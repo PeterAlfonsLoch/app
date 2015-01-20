@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace tc4
+namespace turboc
 {
 
 
-   class CLASS_DECL_APP_CORE_TC4 document :
+   class CLASS_DECL_TURBOC document :
       public ::aura::document
    {
    public:
@@ -29,7 +29,7 @@ namespace tc4
    };
 
 
-} // namespace tc4
+} // namespace turboc
 
 
 

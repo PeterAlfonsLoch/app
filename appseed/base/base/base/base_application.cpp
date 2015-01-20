@@ -1968,7 +1968,7 @@ namespace base
                sl.unlock();
                try
                {
-                  pui->send_message(WM_IDLEUPDATECMDUI,(WPARAM)TRUE);
+                  //pui->send_message(WM_IDLEUPDATECMDUI,(WPARAM)TRUE);
                }
                catch(...)
                {

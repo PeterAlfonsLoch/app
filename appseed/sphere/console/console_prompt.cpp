@@ -28,26 +28,24 @@ namespace console
    }
 
 
-   prompt_impact & prompt::impact(bool bShow)
+   prompt_impact & prompt::impact(bool bShow, bool bCreateMini)
    {
 
-      if(m_pdoctemplate->get_document() == NULL)
+
+      /*if(m_pdoctemplate->get_document() == NULL)
       {
          
          m_pdoctemplate->open_document_file(NULL,false);
 
-      }
+      }*/
 
-      prompt_impact & i = *m_pdoctemplate->get_document()->get_typed_view < prompt_impact >();
+      manual_reset_event ev(get_app());
 
-      if(bShow)
-      {
-         
-         i.GetTopLevel()->WfiRestore();
+      Application.post_thread_message(WM_APP + 3243, (bShow ? 1 : 0) | (bCreateMini ? 2 : 0), &ev);
 
-      }
-         
-      return i;
+      ev.wait();
+
+      return *m_pdoctemplate->get_document()->get_typed_view < prompt_impact >();
 
    }
 

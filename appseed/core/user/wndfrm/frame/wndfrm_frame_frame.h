@@ -96,6 +96,7 @@ namespace user
             virtual rect * get_margin_rect();
             virtual int32_t get_caption_height();
             virtual int32_t calc_caption_height();
+            virtual int32_t calc_caption_height(::user::EAppearance eappearance);
 
             virtual int32_t title_bar_layout(bool bInitialControlBoxPosition);
 

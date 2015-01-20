@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace tc4
+namespace turboc
 {
 
 
-   class CLASS_DECL_APP_CORE_TC4 edit_view:
+   class CLASS_DECL_TURBOC edit_view:
       virtual public ::user::edit_plain_text_view
    {
    public:
@@ -30,7 +30,7 @@ namespace tc4
    };
 
 
-} // namespace tc4
+} // namespace turboc
 
 
 

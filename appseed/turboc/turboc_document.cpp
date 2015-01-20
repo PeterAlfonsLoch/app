@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace tc4
+namespace turboc
 {
 
 
@@ -67,7 +67,7 @@ namespace tc4
       else if(get_typed_view < pane_view >() != NULL)
       {
 
-         get_typed_view < pane_view >()->set_cur_tab_by_id(::tc4::PaneViewHelloMultiverse);
+         get_typed_view < pane_view >()->set_cur_tab_by_id(::turboc::PaneViewHelloMultiverse);
       }
 
       return true;
@@ -91,7 +91,7 @@ namespace tc4
 
 
 
-} // namespace tc4
+} // namespace turboc
 
 
 

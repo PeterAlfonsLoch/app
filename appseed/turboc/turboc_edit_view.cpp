@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace tc4
+namespace turboc
 {
 
 
@@ -73,7 +73,7 @@ namespace tc4
 
 
 
-} // namespace tc4
+} // namespace turboc
 
 
 

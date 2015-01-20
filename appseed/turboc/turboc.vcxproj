@@ -331,7 +331,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>__APP_TURBOC_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_APP_TURBOC_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(ProjectDir)framework;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/base/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -354,6 +354,7 @@
       <DisableSpecificWarnings>4018</DisableSpecificWarnings>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
+      <AdditionalOptions>-Zm384 /bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -924,10 +925,22 @@ ml64 /Zi /Fo"$(IntDir)gvmat64.o" /c /Fl"$(IntDir)gvmat.lst" "$(ProjectDir)contri
     <ClInclude Include="turboc.h" />
     <ClInclude Include="turboc_application.h" />
     <ClInclude Include="turboc_context.h" />
+    <ClInclude Include="turboc_document.h" />
+    <ClInclude Include="turboc_edit_view.h" />
+    <ClInclude Include="turboc_frame.h" />
+    <ClInclude Include="turboc_full_view.h" />
+    <ClInclude Include="turboc_lite_view.h" />
     <ClInclude Include="turboc_main.h" />
+    <ClInclude Include="turboc_main_view.h" />
+    <ClInclude Include="turboc_pane_view.h" />
+    <ClInclude Include="turboc_pane_view_update_hint.h" />
     <ClInclude Include="turboc_pos.h" />
     <ClInclude Include="turboc_pre.h" />
     <ClInclude Include="turboc_private.h" />
+    <ClInclude Include="turboc_switcher_view.h" />
+    <ClInclude Include="turboc_toggle_view.h" />
+    <ClInclude Include="turboc_top_view.h" />
+    <ClInclude Include="turboc_view.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -2489,8 +2502,20 @@ ml64 /Zi /Fo"$(IntDir)gvmat64.o" /c /Fl"$(IntDir)gvmat.lst" "$(ProjectDir)contri
     <ClCompile Include="turboc_application.cpp" />
     <ClCompile Include="turboc.cpp" />
     <ClCompile Include="turboc_context.cpp" />
+    <ClCompile Include="turboc_document.cpp" />
+    <ClCompile Include="turboc_edit_view.cpp" />
+    <ClCompile Include="turboc_frame.cpp" />
+    <ClCompile Include="turboc_full_view.cpp" />
+    <ClCompile Include="turboc_lite_view.cpp" />
     <ClCompile Include="turboc_main.cpp" />
+    <ClCompile Include="turboc_main_view.cpp" />
+    <ClCompile Include="turboc_pane_view.cpp" />
+    <ClCompile Include="turboc_pane_view_update_hint.cpp" />
+    <ClCompile Include="turboc_switcher_view.cpp" />
+    <ClCompile Include="turboc_toggle_view.cpp" />
+    <ClCompile Include="turboc_top_view.cpp" />
     <ClCompile Include="turboc_turboc.cpp" />
+    <ClCompile Include="turboc_view.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="turboc.def" />

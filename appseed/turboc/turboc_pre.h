@@ -2,10 +2,13 @@
 
 #include <math.h>
 #include <time.h>
-#ifdef __APP_TURBOC_LIBRARY
+
+#ifndef CLASS_DECL_TURBOC
+#ifdef _APP_TURBOC_LIBRARY
 #define CLASS_DECL_TURBOC  CLASS_DECL_EXPORT
 #else
 #define CLASS_DECL_TURBOC  CLASS_DECL_IMPORT
+#endif
 #endif
 
 #define WITH_X

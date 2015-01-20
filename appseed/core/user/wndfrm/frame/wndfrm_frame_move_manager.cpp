@@ -187,7 +187,11 @@ namespace user
                   //TRACE("MoveManager::Ry call time6= %d ms",::get_tick_count() - t_time1.operator DWORD_PTR());
 
                }
-               GetMoveWindow()->set_appearance(::user::AppearanceNormal);
+               if(GetMoveWindow()->get_appearance() != ::user::AppearanceNormal
+                  && GetMoveWindow()->get_appearance() != ::user::AppearanceMinimal)
+               {
+                  GetMoveWindow()->set_appearance(::user::AppearanceNormal);
+               }
                if(pmouse->m_uiMessage == WM_MOUSEMOVE)
                {
                   //TRACE("message_handler call time1= %d ms", dwTime1);

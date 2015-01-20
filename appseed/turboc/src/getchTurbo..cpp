@@ -131,6 +131,9 @@ KeypadDigit (int *KeyCode)
 int
 getchTurbo (void)
 {
+#undef getch
+   return get_console_application().console_prompt().getch();
+#define getch getchTurbo
 #define MAX_ESCAPE_SEQUENCE 16
   char c;
   int KeyCode;

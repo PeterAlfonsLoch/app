@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace tc4
+namespace turboc
 {
 
 
-   class CLASS_DECL_APP_CORE_TC4 frame :
+   class CLASS_DECL_TURBOC frame :
       virtual public simple_frame_window
    {
    public:
@@ -26,7 +26,7 @@ namespace tc4
    };
 
 
-} // namespace tc4
+} // namespace turboc
 
 
 

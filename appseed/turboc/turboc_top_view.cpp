@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace tc4
+namespace turboc
 {
 
 
@@ -70,10 +70,10 @@ namespace tc4
 
       SetPane(0,m_peditview,false);
 
-      if(m_id == "tc4_top")
+      if(m_id == "turboc_top")
       {
 
-         m_ptoggleview = create_view < toggle_view >(NULL,::null_rect(),NULL,"tc4_toggle");
+         m_ptoggleview = create_view < toggle_view >(NULL,::null_rect(),NULL,"turboc_toggle");
 
       }
       else
@@ -101,7 +101,7 @@ namespace tc4
 
 
 
-} // namespace tc4
+} // namespace turboc
 
 
 

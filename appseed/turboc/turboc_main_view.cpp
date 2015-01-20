@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace tc4
+namespace turboc
 {
 
 
@@ -65,7 +65,7 @@ namespace tc4
       if(Application.m_bMultiverseChat)
       {
 
-         m_ptopview = create_view < top_view >(NULL,::null_rect(),NULL,"tc4_top");
+         m_ptopview = create_view < top_view >(NULL,::null_rect(),NULL,"turboc_top");
 
          if(m_ptopview == NULL)
          {
@@ -114,7 +114,7 @@ namespace tc4
       if(pevent->m_eevent == ::user::event_button_clicked)
       {
 
-         if(pevent->m_puie->m_id == "tc4_toggle")
+         if(pevent->m_puie->m_id == "turboc_toggle")
          {
 
             if(m_pview->m_bLite && !Application.m_bLoadAiFont)
@@ -137,7 +137,8 @@ namespace tc4
 
    }
 
-} // namespace tc4
+
+} // namespace turboc
 
 
 

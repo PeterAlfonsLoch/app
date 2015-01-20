@@ -2085,7 +2085,20 @@ namespace user
    bool frame_window::get_window_minimum_size(::size & sizeMin)
    {
 
-      Session.get_window_minimum_size(&sizeMin);
+      if(get_appearance() == ::user::AppearanceMinimal)
+      {
+
+         sizeMin.cx = 8;
+
+         sizeMin.cy = 8;
+
+      }
+      else
+      {
+
+         Session.get_window_minimum_size(&sizeMin);
+
+      }
 
       return true;
 

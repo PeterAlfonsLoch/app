@@ -243,7 +243,7 @@ namespace console
       if(pobj->m_bRet)
          return;
 
-      if(!data_get("DockPosition", (int32_t &) m_eposition))
+      if(!data_get(".local://DockPosition", (int32_t &) m_eposition))
       {
 
          m_eposition = position_left;
@@ -265,20 +265,20 @@ namespace console
 
 
 
-	   if (!LoadToolBar(0,"command\\toolbar.xml") )
+	   /*if (!LoadToolBar(0,"command\\toolbar.xml") )
 	   {
 		   pcreate->failed("Failed to create toolbar\n");
          pcreate->set_lresult(-1);
          pcreate->m_bRet = true;
          return;
-	   }
+	   }*/
 
-      if(!m_spqueue->create_message_queue("::ca2::fontopus::message_wnd::command", this))
-      {
-         pcreate->set_lresult(-1);
-         pcreate->m_bRet = true;
-         return;
-      }
+      //if(!m_spqueue->create_message_queue("::ca2::fontopus::message_wnd::command", this))
+      //{
+      //   pcreate->set_lresult(-1);
+      //   pcreate->m_bRet = true;
+      //   return;
+      //}
 
    }
 
@@ -466,6 +466,36 @@ namespace console
       return false;
    }
 
+   sp(::user::wndfrm::frame::frame) prompt_frame::create_frame_schema()
+   {
+
+      sp(::user::wndfrm::frame::frame) pschema = Application.wndfrm().get_frame_schema("wndfrm_core","001");
+
+      pschema->m_typeinfoControlBoxButton = System.type_info < MetaButton >();
+
+      //      pschema->get_control_box()->hide_button(::user::wndfrm::frame::button_maximize);
+      //    pschema->get_control_box()->hide_button(::user::wndfrm::frame::button_minimize);
+      //  pschema->get_control_box()->hide_button(::user::wndfrm::frame::button_restore);
+
+      return pschema;
+
+   }
+
+   bool prompt_frame::show_mini()
+   {
+      ::rect r;
+      System.get_monitor_rect(0,&r);
+      int iHeight = m_workset.m_pframeschema->calc_caption_height(::user::AppearanceNormal);
+      r.left += 100;
+      r.top = r.bottom - 100 - iHeight;
+      r.bottom -= 100;
+      r.right -= 400;
+      m_workset.SetAppearance(::user::AppearanceMinimal);
+      set_appearance(::user::AppearanceMinimal);
+      SetWindowPos(0,r,SWP_SHOWWINDOW);
+      m_workset.m_pframeschema->title_bar_layout(true);
+      return true;
+   }
 
 } // namespace command
 

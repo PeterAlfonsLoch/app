@@ -40,6 +40,8 @@ namespace turboc
 
       }
 
+      System.post_thread_message(WM_QUIT);
+
       return m_iReturnCode;
 
    }

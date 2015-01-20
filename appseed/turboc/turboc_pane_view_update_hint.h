@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace tc4
+namespace turboc
 {
 
 
@@ -14,7 +14,7 @@ namespace tc4
    };
 
 
-   class CLASS_DECL_APP_CORE_TC4 pane_view_update_hint :
+   class CLASS_DECL_TURBOC pane_view_update_hint :
       public object  
    {
    public:
@@ -46,7 +46,7 @@ namespace tc4
    };
 
 
-} // namespace tc4
+} // namespace turboc
 
 
 

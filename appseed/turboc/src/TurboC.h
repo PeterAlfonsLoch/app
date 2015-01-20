@@ -51,9 +51,9 @@
 */
 #pragma once
 
-
+#ifndef __SPHERE_H
 #include "sphere/sphere.h"
-
+#endif
 
 #include "turboc/turboc_pre.h"
 

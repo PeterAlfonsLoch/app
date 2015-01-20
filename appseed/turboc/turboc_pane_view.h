@@ -1,17 +1,17 @@
 #pragma once
 
 
-namespace tc4
+namespace turboc
 {
 
 
-   class CLASS_DECL_APP_CORE_TC4 pane_view : 
+   class CLASS_DECL_TURBOC pane_view : 
       public ::userex::pane_tab_view
    {
    public:
 
 
-      ::tc4::view *                     m_pflagview;
+      ::turboc::view *                     m_pflagview;
 
 
       pane_view(::aura::application * papp);
@@ -31,7 +31,7 @@ namespace tc4
    };
 
 
-} // namespace tc4
+} // namespace turboc
 
 
 

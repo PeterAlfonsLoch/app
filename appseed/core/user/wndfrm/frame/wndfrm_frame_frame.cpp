@@ -87,7 +87,12 @@ namespace user
 
             ::size sizeMin;
 
-            Session.get_window_minimum_size(sizeMin);
+            if(!get_draw_window()->get_window_minimum_size(sizeMin))
+            {
+
+               Session.get_window_minimum_size(sizeMin);
+
+            }
 
             return sizeMin;
 
@@ -536,23 +541,34 @@ namespace user
          }
 
 
-         int32_t frame::calc_caption_height()
+         int32_t frame::calc_caption_height(::user::EAppearance eappearance)
          {
 
-            if (m_pworkset->get_appearance()->GetAppearance() == AppearanceFullScreen)
+            if(eappearance == AppearanceFullScreen)
                return 0;
 
-            rect * prectControlBoxMargin = get_control_box_margin_rect();
+            if(eappearance == AppearanceMinimal)
+               return 0;
 
             rect * prectMargin = get_margin_rect();
+
+            rect * prectControlBoxMargin = get_control_box_margin_rect();
 
             int32_t iMargin = prectMargin->top + prectControlBoxMargin->top + prectControlBoxMargin->bottom;
 
             int32_t iCaptionHeight = 0;
 
-            iCaptionHeight = MAX(m_spcontrolbox->calc_control_box_height() + iMargin, iCaptionHeight);
+            iCaptionHeight = MAX(m_spcontrolbox->calc_control_box_height() + iMargin,iCaptionHeight);
 
             return iCaptionHeight;
+
+         }
+
+
+         int32_t frame::calc_caption_height()
+         {
+
+            return calc_caption_height(m_pworkset->get_appearance()->GetAppearance());
 
          }
 

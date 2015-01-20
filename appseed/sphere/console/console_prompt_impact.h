@@ -22,7 +22,9 @@ namespace console
 
       string               m_strCommand;
 
-      int                  m_iNewCh;
+      event                m_evNewChar;
+
+      int                  m_iNewChar;
 
 
       prompt_impact(::aura::application * papp);
@@ -35,7 +37,7 @@ namespace console
       virtual int getch();
       virtual int ungetch(int c);
 
-
+      void simple_ui_draw_focus_rect(::draw2d::graphics * pgraphics);
       virtual bool keyboard_focus_is_focusable();
 
       DECL_GEN_SIGNAL(_001OnCreate);

@@ -2,7 +2,7 @@
 #include <math.h>
 
 
-namespace tc4
+namespace turboc
 {
 
 
@@ -11,7 +11,7 @@ namespace tc4
       simple_frame_window(papp)
    {
 
-      m_dataid = "::core::tc4::frame";
+      m_dataid = "::core::turboc::frame";
 
       WfiEnableFullScreen();
 
@@ -68,7 +68,7 @@ namespace tc4
    }
 
 
-} // namespace tc4
+} // namespace turboc
 
 
 

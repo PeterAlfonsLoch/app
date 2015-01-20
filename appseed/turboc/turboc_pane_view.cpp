@@ -1,7 +1,9 @@
 #include "framework.h"
 
-namespace tc4
+
+namespace turboc
 {
+
 
    pane_view::pane_view(::aura::application * papp) :
       element(papp),
@@ -52,12 +54,12 @@ namespace tc4
       if(pobj->previous())
          return;
 
-      set_tab("tc4", ::tc4::PaneViewHelloMultiverse);
-      set_tab("switcher",::tc4::PaneViewHelloMultiverseSwitcher);
+      set_tab("turboc", ::turboc::PaneViewHelloMultiverse);
+      set_tab("switcher",::turboc::PaneViewHelloMultiverseSwitcher);
       set_tab("Open", "file_manager");
 
-      //set_cur_tab_by_id(::tc4::PaneViewHelloMultiverseSwitcher);
-      set_cur_tab_by_id(::tc4::PaneViewHelloMultiverse);
+      //set_cur_tab_by_id(::turboc::PaneViewHelloMultiverseSwitcher);
+      set_cur_tab_by_id(::turboc::PaneViewHelloMultiverse);
 
    }
 
@@ -100,4 +102,9 @@ namespace tc4
 
 
 
-} // namespace tc4
+} // namespace turboc
+
+
+
+
+

@@ -2,7 +2,7 @@
 #include <math.h>
 
 
-namespace tc4
+namespace turboc
 {
 
 
@@ -85,15 +85,15 @@ namespace tc4
 
    }
 
-   void full_view::tc4_render(::draw2d::graphics * pdc)
+   void full_view::turboc_render(::draw2d::graphics * pdc)
    {
 
-      tc4_render_full_view(pdc);
+      turboc_render_full_view(pdc);
 
    }
 
 
-   void view::tc4_render_full_view(::draw2d::graphics * pdc)
+   void view::turboc_render_full_view(::draw2d::graphics * pdc)
    {
 
       if(m_dibWork->area() <= 0)
@@ -174,7 +174,7 @@ namespace tc4
 
       pdc->set_font(m_font);
 
-      string strHelloMultiverse = get_processed_tc4();
+      string strHelloMultiverse = get_processed_turboc();
 
      ::size size = pdc->GetTextExtent(strHelloMultiverse);
 
@@ -409,7 +409,7 @@ namespace tc4
 
       GetClientRect(rectClient);
 
-      if(strHelloMultiverse == get_processed_tc4() && m_cx == rectClient.width() && m_cy == rectClient.height())
+      if(strHelloMultiverse == get_processed_turboc() && m_cx == rectClient.width() && m_cy == rectClient.height())
       {
 
          m_bFirstDone = true;
@@ -419,7 +419,7 @@ namespace tc4
    }
 
 
-} // namespace tc4
+} // namespace turboc
 
 
 

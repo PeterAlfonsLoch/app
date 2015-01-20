@@ -29,6 +29,8 @@ namespace console
 	   void ShowControlBars(bool bShow);
 	   void AnimateStatusBar();
 	   void SetAnimatedStatusBarText(const char * lpcsz);
+
+      bool show_mini();
 	
    #ifdef DEBUG
 	   virtual void assert_valid() const;
@@ -57,6 +59,8 @@ namespace console
 
 
       virtual void message_queue_message_handler(signal_details * pobj);
+
+      sp(::user::wndfrm::frame::frame) create_frame_schema();
    };
 
 

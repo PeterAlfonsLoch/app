@@ -8,12 +8,13 @@ namespace console
 
 
    prompt_impact::prompt_impact(::aura::application * papp) :
-      element(papp)
+      element(papp),
+      m_evNewChar(papp)
    {
 
       m_dwCaretPeriod   = 500;
 
-      m_iNewCh          = 0;
+      m_iNewChar        = 0;
          
    }
 
@@ -66,10 +67,12 @@ namespace console
       if(str.has_char())
       {
 
-         if(m_iNewCh == 0x80000000)
+         if(m_iNewChar == 0x80000000)
          {
             
-            m_iNewCh = str[0];
+            m_iNewChar = str[0];
+
+            m_evNewChar.SetEvent();
 
          }
          else
@@ -91,20 +94,26 @@ namespace console
 
    }
 
+   void prompt_impact::simple_ui_draw_focus_rect(::draw2d::graphics * pgraphics)
+   {
+      if(GetTypedParent <prompt_frame>()->get_appearance() != ::user::AppearanceMinimal)
+      {
+         ::aura::impact::simple_ui_draw_focus_rect(pgraphics);
+      }
+   }
+
 
    int prompt_impact::getch()
    {
 
       m_dwCaretPeriod = ::get_tick_count();
 
-      m_iNewCh = 0x80000000;
+      m_iNewChar = 0x80000000;
 
-      while(m_iNewCh == 0x80000000)
-      {
-         Sleep(84);
-      }
+      m_evNewChar.wait();
 
-      return m_iNewCh;
+      return m_iNewChar;
+
    }
 
    int prompt_impact::ungetch(int c)

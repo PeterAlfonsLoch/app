@@ -17,7 +17,7 @@ namespace console
       prompt(::aura::application * papp);
 
 
-      prompt_impact & impact(bool bShow = true);
+      prompt_impact & impact(bool bShow = true, bool bCreateMini = true);
       
 
       int getch();

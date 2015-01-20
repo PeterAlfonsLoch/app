@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace tc4
+namespace turboc
 {
 
 
-   class CLASS_DECL_APP_CORE_TC4 view :
+   class CLASS_DECL_TURBOC view :
       public ::aura::impact
    {
    public:
@@ -95,10 +95,10 @@ namespace tc4
 
       ::aura::document * get_document();
 
-      virtual void tc4_render();
-      virtual void tc4_render(::draw2d::dib * pdib);
-      virtual void tc4_fast_render(const string & strHelloMultiverse);
-      virtual void tc4_draw();
+      virtual void turboc_render();
+      virtual void turboc_render(::draw2d::dib * pdib);
+      virtual void turboc_fast_render(const string & strHelloMultiverse);
+      virtual void turboc_draw();
       virtual void full_render();
 
       static UINT thread_proc_render(void * pparam);
@@ -108,20 +108,20 @@ namespace tc4
       DECL_GEN_SIGNAL(_001OnLayout);
       DECL_GEN_SIGNAL(_001OnCreate);
 
-      virtual string get_tc4();
+      virtual string get_turboc();
 
-      virtual string get_processed_tc4();
+      virtual string get_processed_turboc();
 
       virtual bool in_anime();
 
 
-      virtual void tc4_render_lite_view(::draw2d::graphics * pdc);
-      virtual void tc4_render_full_view(::draw2d::graphics * pdc);
+      virtual void turboc_render_lite_view(::draw2d::graphics * pdc);
+      virtual void turboc_render_full_view(::draw2d::graphics * pdc);
 
    };
 
 
-} // namespace tc4
+} // namespace turboc
 
 
 

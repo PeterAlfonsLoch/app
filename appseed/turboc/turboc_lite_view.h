@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace tc4
+namespace turboc
 {
 
 
-   class CLASS_DECL_APP_CORE_TC4 lite_view:
+   class CLASS_DECL_TURBOC lite_view:
       virtual public view
    {
    public:
@@ -24,7 +24,7 @@ namespace tc4
 
       virtual void on_update(::aura::impact * pSender,LPARAM lHint,object* pHint);
 
-      virtual void tc4_render(::draw2d::graphics * pdcFull);
+      virtual void turboc_render(::draw2d::graphics * pdcFull);
 
       DECL_GEN_SIGNAL(_001OnCreate);
 
@@ -35,7 +35,7 @@ namespace tc4
    };
 
 
-} // namespace tc4
+} // namespace turboc
 
 
 

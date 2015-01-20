@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace tc4
+namespace turboc
 {
 
 
-   class CLASS_DECL_APP_CORE_TC4 switcher_view:
+   class CLASS_DECL_TURBOC switcher_view:
       virtual public ::user::split_view
    {
    public:
@@ -33,7 +33,7 @@ namespace tc4
    };
 
 
-} // namespace tc4
+} // namespace turboc
 
 
 
