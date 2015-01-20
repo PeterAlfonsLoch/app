@@ -59,7 +59,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{49021738-72FC-43C8-85B0-B9238183AE41}</ProjectGuid>
+    <ProjectGuid>{84517714-2000-419D-A87F-4338C9DDE3FA}</ProjectGuid>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
     <RootNamespace>math</RootNamespace>
