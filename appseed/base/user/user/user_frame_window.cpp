@@ -14,7 +14,7 @@ namespace user
 
    frame_window::frame_window()
    {
-
+      m_pviewMain = NULL;
       m_bAutoWindowFrame = true;
       m_bWindowFrame = true;
       m_nWindow = -1;                 // unknown interaction_impl ID

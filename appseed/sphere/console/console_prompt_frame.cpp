@@ -219,8 +219,20 @@ namespace console
 
    void prompt_frame::_001OnClose(signal_details * pobj)
    {
+      
       pobj->m_bRet = true;
+      
       ShowWindow(SW_HIDE);
+      
+      sp(prompt_impact) pview = m_pviewMain;
+
+      if(pview.is_set())
+      {
+
+         pview->clear();
+
+      }
+
    }
 
 

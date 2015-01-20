@@ -765,6 +765,9 @@ namespace aura
 
    element * system::on_alloc(::aura::application * papp,sp(type) & info)
    {
+
+      if(m_pfactory.is_null())
+         return NULL;
       /*string str;
       str.Format("Could not alloc %s", info.name());
       simple_message_box(str);*/

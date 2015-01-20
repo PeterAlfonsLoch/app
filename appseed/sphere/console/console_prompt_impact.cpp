@@ -44,6 +44,17 @@ namespace console
 
    }
 
+   
+   void prompt_impact::clear()
+   {
+   
+      m_strCommand.Empty();
+
+      m_iCursor = 0;
+
+   }
+
+
    void prompt_impact::_001OnShowWindow(::signal_details * pobj)
    {
       SCAST_PTR(::message::show_window,pshowwindow,pobj);
@@ -85,8 +96,11 @@ namespace console
 
       if(m_bOk)
       {
-         m_strCommand.Empty();
+         
+         clear();
+
       }
+
    }
 
    void prompt_impact::_001OnKeyDown(::signal_details * pobj)
@@ -105,7 +119,7 @@ namespace console
 
          ((::user::interaction *) Application.m_puiMain->m_pvoidUserInteraction)->SetActiveWindow();
 
-         m_strCommand.Empty();
+         clear();
 
       }
       else if(key.m_ekey == ::user::key_return)

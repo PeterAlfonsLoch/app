@@ -162,6 +162,15 @@ namespace aura
          TRACE(::aura::trace::category_AppMsg, 0, "Warning: Creating a pane with no ::aura::document.\n");
       }
 
+      ::user::frame_window * pframe = GetTypedParent < ::user::frame_window >();
+
+      if(pframe != NULL && pframe->m_pviewMain == NULL)
+      {
+
+         pframe->m_pviewMain = this;
+
+      }
+
       pcreate->set_lresult(0);
    }
 

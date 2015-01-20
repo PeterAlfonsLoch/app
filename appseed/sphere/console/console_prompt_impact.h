@@ -40,6 +40,7 @@ namespace console
 
       virtual int getch();
       virtual int ungetch(int c);
+      virtual void clear();
 
       void simple_ui_draw_focus_rect(::draw2d::graphics * pgraphics);
       virtual bool keyboard_focus_is_focusable();

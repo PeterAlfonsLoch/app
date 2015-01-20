@@ -167,6 +167,8 @@ namespace user
 
       UINT                       m_nIdleFlags;          // set of bit flags for idle processing
 
+      ::aura::impact *           m_pviewMain;
+
 
       frame_window();
       virtual ~frame_window();
