@@ -156,6 +156,14 @@ namespace user
          }
 
 
+         bool appearance::IsMinimal()
+         {
+
+            return GetAppearance() == AppearanceMinimal;
+
+         }
+
+
          bool appearance::IsIconic()
          {
 

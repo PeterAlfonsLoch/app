@@ -85,6 +85,7 @@ namespace user
             bool update();
             bool IsIconic();
             bool IsFullScreen();
+            bool IsMinimal();
             bool IsZoomed();
             bool IsDocked();
             bool IsEnabled();

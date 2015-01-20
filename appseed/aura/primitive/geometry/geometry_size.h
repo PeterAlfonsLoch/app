@@ -72,6 +72,8 @@ public:
    inline LONG set_normal_dimension(e_orientation eorientation,LONG l)  throw(){ return set_orthogonal_dimension(eorientation,l); }
    inline LONG set_normal(e_orientation eorientation,LONG l) throw() { return set_orthogonal_dimension(eorientation,l); }
 
+   inline ::size max(const size & s)const throw();
+
 };
 
 
@@ -244,6 +246,14 @@ inline LONG size::get_dimension(e_orientation eorientation) const throw()
    {
       return 0;
    }
+}
+
+
+inline ::size size::max(const ::size & s) const throw()
+{
+   
+   return ::size(MAX(cx,s.cx),MAX(cy,s.cy));
+
 }
 
 

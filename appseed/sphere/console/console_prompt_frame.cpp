@@ -47,102 +47,104 @@ namespace console
 
    void prompt_frame::_001OnTimer(signal_details * pobj)
    {
+      
       SCAST_PTR(::message::timer, ptimer, pobj);
-      UINT nIDEvent = ptimer->m_nIDEvent;
-      static float theta;
-      if(nIDEvent == 3)
-      {
-         //AnimateStatusBar();
-      }
-      else if(nIDEvent == 1000)
-      {
-         KillTimer(nIDEvent);
-         m_bTimerOn = false;
-
-#ifdef WINDOWSEX
-
-         bool bLControlKeyDown = (GetAsyncKeyState (VK_LCONTROL) >> ((sizeof(SHORT) * 8) - 1)) != 0;
-         bool bLAltKeyDown = (GetAsyncKeyState (VK_LMENU) >> ((sizeof(SHORT) * 8) - 1)) != 0;
-         if(bLControlKeyDown && !bLAltKeyDown)
-         {
-            OnHoverAction(true);
-         }
-         else
-         {
-            ShowWindow(SW_HIDE);
-         }
-
-#else
-
-         throw todo(get_app());
-
-#endif
-
-      }
-      else if(nIDEvent == 1001)
-      {
-         KillTimer(nIDEvent);
-         ShowWindow(SW_HIDE);
-      }
-      else if(nIDEvent == 8913)
-      {
-      }
-      // every 100 ms approximately
-      else if(nIDEvent == 4033)
-      {
-   /*      rect rectWindow;
-         GetWindowRect(rectWindow);
-         point pt;
-         Session.get_cursor_pos(&pt);
-         if(!rectWindow.contains(pt) && !m_bTimerHide)
-         {
-            m_bTimerHide = true;
-            SetTimer(1001, 800, NULL);
-         }
-         else
-         {
-            m_bTimerHide = false;
-            KillTimer(1001);
-         }*/
-         /*point pt;
-         if(m_bHoverMouse && get_tick_count() > m_dwLastHover + 300)
-         {
-            OnHoverAction();
-         }
-         if(Session.get_cursor_pos(&pt))
-         {
-            if(!m_bHoverMouse && pt.x == 0 && pt.y == 0)
-            {
-               m_dwLastHover = ::get_tick_count();
-               m_bHoverMouse = true;
-
-            }
-            else if(m_bHoverMouse && (pt.x > 10 || pt.y > 0))
-            {
-               m_bHoverMouse = false;
-            }
-
-         }*/
-   // OpenGL animation code goes here
-
-			   //glClearColor( 0.0f, 0.0f, 0.0f, 0.0f );
-			   //glClear( GL_COLOR_BUFFER_BIT );
-
-			   /*glPushMatrix();
-			   glRotatef( theta, 0.0f, 1.0f, 1.0f );
-			   glBegin( GL_TRIANGLES );
-			   glColor3f( 1.0f, 0.0f, 0.0f ); glVertgenf( 0.0f, 1.0f );
-			   glColor3f( 0.0f, 1.0f, 0.0f ); glVertgenf( 0.87f, -0.5f );
-			   glColor3f( 0.0f, 0.0f, 1.0f ); glVertgenf( -0.87f, -0.5f );
-			   glEnd();
-			   glPopMatrix();*/
-
-			   //SwapBuffers( m_hdcOpenGL );
-
-			   theta += 2.0f;
-
-      }
-   //	simple_frame_window::OnTimer(nIDEvent);
+      
+//      UINT nIDEvent = ptimer->m_nIDEvent;
+//      static float theta;
+//      if(nIDEvent == 3)
+//      {
+//         //AnimateStatusBar();
+//      }
+//      else if(nIDEvent == 1000)
+//      {
+//         KillTimer(nIDEvent);
+//         m_bTimerOn = false;
+//
+//#ifdef WINDOWSEX
+//
+//         bool bLControlKeyDown = (GetAsyncKeyState (VK_LCONTROL) >> ((sizeof(SHORT) * 8) - 1)) != 0;
+//         bool bLAltKeyDown = (GetAsyncKeyState (VK_LMENU) >> ((sizeof(SHORT) * 8) - 1)) != 0;
+//         if(bLControlKeyDown && !bLAltKeyDown)
+//         {
+//            OnHoverAction(true);
+//         }
+//         else
+//         {
+//            ShowWindow(SW_HIDE);
+//         }
+//
+//#else
+//
+//         throw todo(get_app());
+//
+//#endif
+//
+//      }
+//      else if(nIDEvent == 1001)
+//      {
+//         KillTimer(nIDEvent);
+//         ShowWindow(SW_HIDE);
+//      }
+//      else if(nIDEvent == 8913)
+//      {
+//      }
+//      // every 100 ms approximately
+//      else if(nIDEvent == 4033)
+//      {
+//   /*      rect rectWindow;
+//         GetWindowRect(rectWindow);
+//         point pt;
+//         Session.get_cursor_pos(&pt);
+//         if(!rectWindow.contains(pt) && !m_bTimerHide)
+//         {
+//            m_bTimerHide = true;
+//            SetTimer(1001, 800, NULL);
+//         }
+//         else
+//         {
+//            m_bTimerHide = false;
+//            KillTimer(1001);
+//         }*/
+//         /*point pt;
+//         if(m_bHoverMouse && get_tick_count() > m_dwLastHover + 300)
+//         {
+//            OnHoverAction();
+//         }
+//         if(Session.get_cursor_pos(&pt))
+//         {
+//            if(!m_bHoverMouse && pt.x == 0 && pt.y == 0)
+//            {
+//               m_dwLastHover = ::get_tick_count();
+//               m_bHoverMouse = true;
+//
+//            }
+//            else if(m_bHoverMouse && (pt.x > 10 || pt.y > 0))
+//            {
+//               m_bHoverMouse = false;
+//            }
+//
+//         }*/
+//   // OpenGL animation code goes here
+//
+//			   //glClearColor( 0.0f, 0.0f, 0.0f, 0.0f );
+//			   //glClear( GL_COLOR_BUFFER_BIT );
+//
+//			   /*glPushMatrix();
+//			   glRotatef( theta, 0.0f, 1.0f, 1.0f );
+//			   glBegin( GL_TRIANGLES );
+//			   glColor3f( 1.0f, 0.0f, 0.0f ); glVertgenf( 0.0f, 1.0f );
+//			   glColor3f( 0.0f, 1.0f, 0.0f ); glVertgenf( 0.87f, -0.5f );
+//			   glColor3f( 0.0f, 0.0f, 1.0f ); glVertgenf( -0.87f, -0.5f );
+//			   glEnd();
+//			   glPopMatrix();*/
+//
+//			   //SwapBuffers( m_hdcOpenGL );
+//
+//			   theta += 2.0f;
+//
+//      }
+//   //	simple_frame_window::OnTimer(nIDEvent);
    }
 
    void prompt_frame::SetAnimatedStatusBarText(const char * lpcsz)
@@ -253,9 +255,9 @@ namespace console
 
       m_bTimerOn = false;
 
-      SetTimer(8913, 5000, 0);
-      SetTimer(4033, 100, 0);
-      ModifyStyleEx(WS_EX_OVERLAPPEDWINDOW, 0);
+      //SetTimer(8913, 5000, 0);
+      //SetTimer(4033, 100, 0);
+      //ModifyStyleEx(WS_EX_OVERLAPPEDWINDOW, 0);
 
 
 
@@ -338,13 +340,15 @@ namespace console
 
    void prompt_frame::_001OnShowWindow(signal_details * pobj)
    {
-      SCAST_PTR(::message::show_window, pshowwindow, pobj)
+      
+      //SCAST_PTR(::message::show_window, pshowwindow, pobj)
 
-      if(!pshowwindow->m_bShow)
-      {
-         if(GetActiveDocument() != NULL)
-            GetActiveDocument()->update_all_views(NULL, 5432108);
-      }
+      //if(!pshowwindow->m_bShow)
+      //{
+      //   if(GetActiveDocument() != NULL)
+      //      GetActiveDocument()->update_all_views(NULL, 5432108);
+      //}
+
    }
 
 
@@ -469,7 +473,9 @@ namespace console
    sp(::user::wndfrm::frame::frame) prompt_frame::create_frame_schema()
    {
 
-      sp(::user::wndfrm::frame::frame) pschema = Application.wndfrm().get_frame_schema("wndfrm_core","001");
+      return simple_frame_window::create_frame_schema();
+
+      sp(::user::wndfrm::frame::frame) pschema = Application.wndfrm().get_frame_schema("wndfrm_core","002");
 
       pschema->m_typeinfoControlBoxButton = System.type_info < MetaButton >();
 
@@ -483,20 +489,59 @@ namespace console
 
    bool prompt_frame::show_mini()
    {
+      
       ::rect r;
+
       System.get_monitor_rect(0,&r);
-      int iHeight = m_workset.m_pframeschema->calc_caption_height(::user::AppearanceNormal);
+
+      int iHeight = m_workset.m_pframeschema->calc_caption_height(::user::AppearanceNormal) + m_workset.m_pframeschema->m_rectMarginNormal.top;
+
       r.left += 100;
+
       r.top = r.bottom - 100 - iHeight;
+
       r.bottom -= 100;
+
       r.right -= 400;
+
       m_workset.SetAppearance(::user::AppearanceMinimal);
+
       set_appearance(::user::AppearanceMinimal);
-      SetWindowPos(0,r,SWP_SHOWWINDOW);
+
+      SetWindowPos(ZORDER_TOP,r,SWP_SHOWWINDOW);
+
+      ShowWindow(SW_SHOW);
+
+      SetActiveWindow();
+
       m_workset.m_pframeschema->title_bar_layout(true);
+
       return true;
+
+   }
+   
+   bool prompt_frame::get_translucency(::user::ETranslucency & etranslucency)
+   {
+
+      etranslucency = ::user::TranslucencyPresent;
+
+      return true;
+
    }
 
+
+
 } // namespace command
+
+
+
+
+
+
+
+
+
+
+
 
 

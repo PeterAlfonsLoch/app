@@ -20,6 +20,17 @@ namespace user
          public:
 
 
+            enum e_element
+            {
+
+               ElementNone,
+               ElementTopLeftIcon,
+               ElementMoveGripMinimal,
+               ElementEnd,
+
+            };
+
+
             rect                                         m_rectCaption;
             rect                                         m_rectCaptionTextBk;
             rect                                         m_rectWindowText;
@@ -27,6 +38,7 @@ namespace user
             rect                                         m_rectControlBoxZoomed;
             rect                                         m_rectControlBoxNormal;
             point                                        m_pointWindowIcon;
+            point                                        m_pointMoveGripMinimal;
 
 
 
@@ -86,6 +98,7 @@ namespace user
 
             virtual void calc_window_client_rect(LPRECT lprect, const RECT & lprectWindow);
 
+            virtual bool get_element_rect(LPRECT lprect,e_element eelement);
 
             virtual sp(::user::interaction) get_draw_window();
             virtual sp(::user::interaction) get_window();

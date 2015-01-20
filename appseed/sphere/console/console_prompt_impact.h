@@ -26,6 +26,10 @@ namespace console
 
       int                  m_iNewChar;
 
+      DWORD                m_dwLastError;
+
+      bool                 m_bOk;
+
 
       prompt_impact(::aura::application * papp);
       virtual ~prompt_impact();
@@ -43,9 +47,12 @@ namespace console
       DECL_GEN_SIGNAL(_001OnCreate);
       DECL_GEN_SIGNAL(_001OnKeyDown);
       DECL_GEN_SIGNAL(_001OnKeyUp);
+      DECL_GEN_SIGNAL(_001OnShowWindow);
 
       virtual void _001OnDraw(::draw2d::graphics * pgraphics);
 
+
+      virtual void interpret_command();
 
    };
 

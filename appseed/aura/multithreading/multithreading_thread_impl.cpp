@@ -19,8 +19,6 @@ m_evFinish(papp),
 m_mutexUiPtra(papp)
 {
 
-
-
    CommonConstruct();
 
 }
@@ -389,11 +387,11 @@ uint32_t __thread_entry(void * pparam)
       ASSERT(pstartup->m_pthreadimpl != NULL);
       ASSERT(!pstartup->m_bError);
 
-
       ::thread * pthread = pstartup->m_pthread;
 
       ::thread_impl * pthreadimpl = pstartup->m_pthreadimpl;
 
+      IGUI_WIN_MSG_LINK(WM_APP + 3241,pthreadimpl,pthread,&thread::_001OnSendThreadMessage);
 
       try
       {
@@ -1204,12 +1202,9 @@ int32_t thread_impl::run()
 
    ASSERT_VALID(this);
 
-   // for tracking the idle time state
-   bool bIdle = TRUE;
-   LONG lIdleCount = 0;
+   //m_bIdle = TRUE;
 
-   // acquire and dispatch messages until a WM_QUIT message is received.
-   MESSAGE msg;
+   //m_lIdleCount = 0;
 
    sync_object_ptra soa;
 
@@ -1229,80 +1224,26 @@ int32_t thread_impl::run()
    while(m_pthread->m_bRun)
    {
 
-      // phase1: check to see if we can do idle work
-/*
-      while(bIdle && !::PeekMessage(&msg,NULL,0,0,PM_NOREMOVE))
+      if(m_spuiptra.is_set() && m_spuiptra->get_count() > 0)
       {
 
-         // call on_idle while in bIdle state
-         if(!on_idle(lIdleCount++))
-         {
+            ml.lock(millis(25),false,QS_ALLEVENTS);
 
-            lIdleCount = 0;
+      }
+      else
+      {
 
-            bIdle = FALSE; // assume "no idle" state
-
-         }
-
-         if(!m_pthread->on_run_step())
-            goto stop_run;
+            ml.lock(m_pthread->m_durationRunLock,false,QS_ALLEVENTS);
 
       }
 
-*/
-
-      // phase2: pump messages while available
-//      while(::PeekMessage(&msg,NULL,0,0,PM_NOREMOVE) != FALSE)
+      if(!defer_pump_message())
       {
 
-         if(m_spuiptra.is_set() && m_spuiptra->get_count() > 0)
-         {
-
-               ml.lock(millis(25),false,QS_ALLEVENTS);
-
-         }
-         else
-         {
-
-              ml.lock(m_pthread->m_durationRunLock,false,QS_ALLEVENTS);
-
-         }
-
-
-         while(::PeekMessage(&msg,NULL,0,0,PM_NOREMOVE) != FALSE)
-         {
-
-            // pump message, but quit on WM_QUIT
-            if(!m_pthread->m_bRun || !pump_message())
-            {
-
-               goto stop_run;
-
-            }
-
-         }
-
-         // reset "no idle" state after pumping "normal" message
-         //if (is_idle_message(&m_msgCur))
-         if(is_idle_message(&msg))
-         {
-
-            bIdle = TRUE;
-
-            lIdleCount = 0;
-
-         }
-
-         if(!m_pthread->on_run_step())
-            goto stop_run;
-
-
-         on_idle(0);
-
+         break;
 
       }
 
-      bIdle = true;
 
    }
 
@@ -1320,6 +1261,50 @@ void thread_impl::message_handler(signal_details * pobj)
 
 }
 
+
+bool thread_impl::defer_pump_message()
+{
+
+   MESSAGE msg;
+
+   while(::PeekMessage(&msg,NULL,0,0,PM_NOREMOVE) != FALSE)
+   {
+
+      // pump message, but quit on WM_QUIT
+      if(!m_pthread->m_bRun || !pump_message())
+      {
+
+         return false;
+
+      }
+
+   }
+
+   // reset "no idle" state after pumping "normal" message
+   //if (is_idle_message(&m_msgCur))
+   if(is_idle_message(&msg))
+   {
+
+      //m_bIdle = true;
+
+      //m_lIdleCount = 0;
+
+   }
+
+   if(!m_pthread->on_run_step())
+   {
+    
+      return false;
+
+   }
+
+
+   on_idle(0);
+
+   return true;
+
+
+}
 
 bool thread_impl::pump_message()
 {
@@ -1340,6 +1325,48 @@ bool thread_impl::pump_message()
          return false;
 
       }
+
+      process_message(&msg);
+
+      return true;
+
+   }
+   catch(exit_exception & e)
+   {
+
+      throw e;
+
+   }
+   catch(const ::exception::exception & e)
+   {
+
+      if(on_run_exception((::exception::exception &) e))
+         return true;
+
+      // get_app() may be it self, it is ok...
+      if(App(get_app()).final_handle_exception((::exception::exception &) e))
+         return true;
+
+      return false;
+
+   }
+   catch(...)
+   {
+
+      return false;
+
+   }
+
+}
+
+
+bool thread_impl::process_message(LPMESSAGE lpmessage)
+{
+
+   try
+   {
+
+      MESSAGE & msg = *lpmessage;
 
       //m_message = msg;
       //m_p->m_message = msg;
@@ -1498,9 +1525,9 @@ bool thread_impl::pump_message()
 
                //__pre_translate_message(spbase);
                //if(spbase->m_bRet)
-                 // return TRUE;
+               // return TRUE;
 
-          //     spbase.release();
+               //     spbase.release();
             }
 
          }

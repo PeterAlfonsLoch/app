@@ -37,6 +37,9 @@ class CLASS_DECL_AURA thread_impl :
 public:
 
 
+   //bool                                      m_bIdle;
+   //LONG                                      m_lIdleCount;
+
    thread *                                  m_pthread;
 
    sp(ptr_array < ::aura::interaction >)     m_spuiptra;
@@ -128,6 +131,8 @@ public:
 
 
    virtual bool pump_message();
+   virtual bool defer_pump_message();
+   virtual bool process_message(LPMESSAGE lpmessage);
 
 
 

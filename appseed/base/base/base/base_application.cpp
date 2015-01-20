@@ -1939,43 +1939,43 @@ namespace base
             catch(...)
             {
             }
-            if(!bOk)
-            {
-               try
-               {
-                  Application.remove_frame(pui);
-               }
-               catch(...)
-               {
-               }
-               try
-               {
-                  Session.remove_frame(pui);
-               }
-               catch(...)
-               {
-               }
-               try
-               {
-                  System.remove_frame(pui);
-               }
-               catch(...)
-               {
-               }
-            }
-            else
-            {
-               sl.unlock();
-               try
-               {
-                  //pui->send_message(WM_IDLEUPDATECMDUI,(WPARAM)TRUE);
-               }
-               catch(...)
-               {
+            //if(!bOk)
+            //{
+            //   try
+            //   {
+            //      Application.remove_frame(pui);
+            //   }
+            //   catch(...)
+            //   {
+            //   }
+            //   try
+            //   {
+            //      Session.remove_frame(pui);
+            //   }
+            //   catch(...)
+            //   {
+            //   }
+            //   try
+            //   {
+            //      System.remove_frame(pui);
+            //   }
+            //   catch(...)
+            //   {
+            //   }
+            //}
+            //else
+            //{
+            //   sl.unlock();
+            //   try
+            //   {
+            //      //pui->send_message(WM_IDLEUPDATECMDUI,(WPARAM)TRUE);
+            //   }
+            //   catch(...)
+            //   {
 
-               }
-               sl.lock();
-            }
+            //   }
+            //   sl.lock();
+            //}
          }
 
 

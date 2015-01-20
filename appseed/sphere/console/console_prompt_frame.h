@@ -48,6 +48,8 @@ namespace console
       virtual bool on_simple_update(cmd_ui * pcmdui);
 
 
+      virtual bool get_translucency(::user::ETranslucency & etranslucency);
+
 
 	   DECL_GEN_SIGNAL(_001OnCreate);
 	   DECL_GEN_SIGNAL(_001OnTimer);

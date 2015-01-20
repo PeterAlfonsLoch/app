@@ -118,6 +118,8 @@ namespace message
 
       m_bExt = (lparam & (1 << 24)) != 0;
 
+      Session.user()->keyboard().translate_os_key_message(this);
+
    }
 
 

@@ -31,23 +31,32 @@ namespace console
    prompt_impact & prompt::impact(bool bShow, bool bCreateMini)
    {
 
-
-      /*if(m_pdoctemplate->get_document() == NULL)
+      if(m_pdoctemplate->get_document() == NULL)
       {
-         
-         m_pdoctemplate->open_document_file(NULL,false);
 
-      }*/
+         Application.send_thread_message(WM_APP + 3243,(bShow ? 1 : 0) | (bCreateMini ? 2 : 0));
 
-      manual_reset_event ev(get_app());
+      }
 
-      Application.post_thread_message(WM_APP + 3243, (bShow ? 1 : 0) | (bCreateMini ? 2 : 0), &ev);
+      if(bShow && !m_pdoctemplate->get_document()->get_typed_view < prompt_impact >()->IsWindowVisible())
+      {
+         if(bCreateMini)
+         {
 
-      ev.wait();
+            m_pdoctemplate->get_document()->get_typed_view < prompt_impact >()->GetTypedParent < prompt_frame > ()->show_mini();
+         }
+         else
+         {
+            m_pdoctemplate->get_document()->get_typed_view < prompt_impact >()->WfiRestore();
+
+         }
+
+      }
 
       return *m_pdoctemplate->get_document()->get_typed_view < prompt_impact >();
 
    }
+
 
    int prompt::getch()
    {

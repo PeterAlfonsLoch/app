@@ -163,6 +163,8 @@ namespace user
 
             sp(::user::interaction) pwndDraw = get_draw_window();
 
+            title_bar_layout(false);
+
             update_window_client_rect();
 
             pwndDraw->GetWindowRect(rectWindow);
@@ -205,8 +207,6 @@ namespace user
                   pfrmwnd->SetBorderRect(rectBorder);
                }
             }
-
-            title_bar_layout(false);
 
             update_drawing_objects();
 
@@ -751,7 +751,35 @@ namespace user
 
             m_rectWindow = rectClient;
 
-            m_pointWindowIcon.x = prectMargin->left + prectControlBoxMargin->left + 5;
+            ::rect rectIcon;
+
+            if(pappearance->GetAppearance() == ::user::AppearanceMinimal)
+            {
+
+               if(get_element_rect(rectIcon,ElementTopLeftIcon))
+               {
+
+                  m_pointWindowIcon.x = get_control_box_rect()->left - 2 - get_control_box_rect()->height();
+
+               }
+               else
+               {
+
+                  m_pointWindowIcon.x = get_control_box_rect()->left;
+
+               }
+
+            }
+            else
+            {
+
+               m_pointWindowIcon.x = prectMargin->left + prectControlBoxMargin->left + 5;
+
+            }
+
+            m_pointMoveGripMinimal.x = m_pointWindowIcon.x - 2 - get_control_box_rect()->height();
+
+            m_pointMoveGripMinimal.y = prectMargin->top + prectControlBoxMargin->top;
 
             m_pointWindowIcon.y = prectMargin->top + prectControlBoxMargin->top;
 
@@ -831,8 +859,11 @@ namespace user
 
          void frame::get_window_client_rect(LPRECT lprect)
          {
+            
             *lprect = m_rectClient;
+
          }
+
 
          void frame::get_draw_client_rect(LPRECT lprect)
          {
@@ -915,7 +946,62 @@ namespace user
 
             ::rect * prectMargin = get_margin_rect();
 
-            rect.deflate(prectMargin->left, get_caption_height(), prectMargin->bottom, prectMargin->right);
+            int iTopDeflate;
+
+            int iLeftDeflate;
+
+            if(get_appearance()->GetAppearance() == ::user::AppearanceFullScreen)
+            {
+
+               iTopDeflate = 0;
+
+               iLeftDeflate = 0;
+
+            }
+            else if(get_appearance()->GetAppearance() == ::user::AppearanceMinimal)
+            {
+
+               iTopDeflate = prectMargin->top;
+
+               iLeftDeflate = prectMargin->left;
+
+            }
+            else
+            {
+
+               iTopDeflate = get_caption_height();
+
+               iLeftDeflate = prectMargin->left;
+
+            }
+
+            int iRightDeflate;
+            
+            if(get_appearance()->GetAppearance() == ::user::AppearanceMinimal)
+            {
+
+               iRightDeflate = (rect.right - get_control_box_rect()->left) + 2 ;
+
+               ::rect rectIcon;
+
+               if(get_element_rect(rectIcon,ElementTopLeftIcon))
+               {
+
+                  iRightDeflate += calc_caption_height(::user::AppearanceNormal);
+
+               }
+
+               iRightDeflate += calc_caption_height(::user::AppearanceNormal); // for the ElementMoveGripMinimal
+
+            }
+            else
+            {
+
+               iRightDeflate = prectMargin->right;
+
+            }
+
+            rect.deflate(iLeftDeflate,iTopDeflate,iRightDeflate, prectMargin->bottom);
 
             *lprect = rect;
 
@@ -971,6 +1057,12 @@ namespace user
 
          }
 
+         bool frame::get_element_rect(LPRECT lprect,e_element eelement)
+         {
+
+            return false;
+
+         }
 
          rect * frame::get_control_box_rect()
          {

@@ -1,6 +1,12 @@
 #include "framework.h"
 
+struct send_thread_message : public MESSAGE
+{
 
+   bool     m_bOk;
+
+
+};
 
 
 
@@ -137,6 +143,19 @@ HTHREAD thread::get_os_handle() const
 }
 
 
+
+void thread::_001OnSendThreadMessage(signal_details * pobj)
+{
+
+   SCAST_PTR(::message::base,pbase,pobj);
+
+   ::send_thread_message * pmessage = (::send_thread_message *) pbase->m_lparam;
+
+   process_message(pmessage);
+
+   pmessage->m_bOk = true;
+
+}
 
 
 void thread::start()
@@ -290,6 +309,47 @@ bool thread::post_thread_message(UINT message, WPARAM wParam, lparam lParam)
       return false;
 
    return m_pthreadimpl->post_thread_message(message, wParam, lParam);
+
+}
+
+bool thread::send_thread_message(UINT message,WPARAM wParam,lparam lParam, ::duration durWaitStep)
+{
+
+   ::send_thread_message * pmessage =  new ::send_thread_message;
+
+   ZEROP(pmessage);
+
+   pmessage->message = message;
+   pmessage->wParam = wParam;
+   pmessage->lParam = lParam;
+   pmessage->m_bOk = false;
+
+   post_thread_message(WM_APP + 3241,0, pmessage);
+
+   while(defer_pump_message())
+   {
+
+      if(pmessage->m_bOk)
+      {
+
+         break;
+
+      }
+
+      Sleep(durWaitStep.get_total_milliseconds());
+
+      if(pmessage->m_bOk)
+      {
+
+         break;
+
+      }
+
+   }
+
+   delete pmessage;
+
+   return true;
 
 }
 
@@ -527,6 +587,25 @@ bool thread::pump_message()
 
 }
 
+bool thread::defer_pump_message()
+{
+
+   if(m_pthreadimpl.is_null())
+      return false;
+
+   return m_pthreadimpl->defer_pump_message();
+
+}
+
+bool thread::process_message(LPMESSAGE lpmsg)
+{
+
+   if(m_pthreadimpl.is_null())
+      return false;
+
+   return m_pthreadimpl->process_message(lpmsg);
+
+}
 
 bool thread::on_idle(LONG lCount)
 {

@@ -26,6 +26,9 @@ namespace console
       void pre_translate_message(::signal_details * pobj);
 
 
+      DECL_GEN_SIGNAL(_001OnImpact);
+
+
    };
 
 
