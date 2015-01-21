@@ -150,6 +150,9 @@
     <Filter Include="Source Files\filesystem\file">
       <UniqueIdentifier>{2e674c0f-aa3c-44c7-acb1-ccb57c1efd07}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\core\NewFilter1">
+      <UniqueIdentifier>{c49111cc-ec66-43b9-84a4-40d43534207e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive.h">

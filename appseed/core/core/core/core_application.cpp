@@ -4339,7 +4339,7 @@ BOOL LaunchAppIntoDifferentSession(const char * pszProcess,const char * pszComma
          {
             DWORD dwLastError = GetLastError();
 
-            APPTRACE(::get_thread_app())("%d", dwLastError);
+//            APPTRACE(::get_thread_app())("%d", dwLastError);
          }
       }
 
