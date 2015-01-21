@@ -621,7 +621,7 @@ namespace filemanager
    sp(operation_document) manager::get_operation_doc(bool bSwitch)
    {
 
-      ::filemanager::tab_view * ptabview = get_typed_view < ::filemanager::tab_view >();
+      ::filemanager::tab_view * ptabview = Platform.filemanager().std().m_pdoctemplateMain->get_document(0)->get_typed_view < ::filemanager::tab_view >();
 
       if(ptabview == NULL)
          return NULL;

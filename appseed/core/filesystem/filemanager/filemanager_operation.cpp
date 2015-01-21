@@ -168,7 +168,7 @@ namespace filemanager
                                          m_pchBuffer = (char *)malloc(m_iBufferSize);
                                          string strName = System.dir().path(
                                             m_str,m_stra[m_iFile].Mid(m_strBase.get_length()));
-                                         if(m_str == m_strBase)
+                                         if(System.dir().path(m_str,"/") == System.dir().path(m_strBase,"/"))
                                          {
                                             make_duplicate_name(strName,m_str);
                                          }
@@ -459,6 +459,102 @@ namespace filemanager
       return m_daSize[iItem];
    }
 
+   bool has_digit(string strName)
+   {
+      for(index i= 0; i < strName.get_length(); i++)
+      {
+         if(::isdigit_dup(strName[i]))
+         {
+            return true;
+         }
+      }
+      return false;
+   }
+
+   string get_number_mask(string strName)
+   {
+
+      string strResult;
+      bool bFirst = true;
+      for(index i= 0; i < strName.get_length(); i++)
+      {
+         if(::isdigit_dup(strName[i]))
+         {
+            if(bFirst)
+            {
+               bFirst = false;
+               strResult += "1";
+            }
+            else
+            {
+               strResult += "X";
+            }
+         }
+         else
+         {
+            strResult += "0";
+         }
+      }
+      return strResult;
+   
+   }
+
+   int64_t get_number_value(string strName)
+   {
+      string strResult;
+      string strMask = get_number_mask(strName);
+      index i;
+      for(i= strMask.get_length() - 1; i >= 0 ; i--)
+      {
+         if(strMask[i] == '1' || strMask[i] == 'X')
+         {
+            strResult = strName[i] + strResult;
+         }
+         if(strMask[i] == '1')
+         {
+            break;
+         }
+      }
+      return atoi64_dup(strResult);
+
+   }
+
+
+   string set_number_value(string strName, int64_t iValue)
+   {
+      string strValue = ::str::from(iValue);
+      string strResult = strName;
+      string strMask = get_number_mask(strName);
+      int j = strValue.get_length() - 1;
+      index i;
+      for(i= strMask.get_length()-1; i >= 0 ; i--)
+      {
+         if(strMask[i] == 'X' || strMask[i] == '1')
+         {
+            if(j >= 0)
+            {
+               strResult.set_at(i,strValue[j]);
+               j--;
+            }
+            else
+            {
+               strResult.set_at(i, '0');
+            }
+            if(strMask[i] == '1')
+            {
+               break;
+            }
+         }
+      }
+      while(j >= 0)
+      {
+         strValue.Insert(i,strValue[j]);
+         j--;
+      }
+      return strResult;
+
+   }
+
    void operation::make_duplicate_name(string & str,const char * psz)
    {
       string strDir = System.dir().path(psz,"");
@@ -477,13 +573,31 @@ namespace filemanager
          strName = System.file().title_(str);
          strExtension = "." + System.file().extension(str);
       }
-      string strFormat;
-      for(int32_t i = 1; i < 1000; i++)
+
+
+      if(has_digit(strName))
       {
-         strFormat.Format("-Copy-%03d",i);
-         str = System.dir().path(strDir,strName + strFormat + strExtension);
-         if(!Application.file().exists(str))
-            return;
+         int64_t iValue = get_number_value(strName);
+         string strFormat;
+         for(int32_t i = 1; i < 1000; i++)
+         {
+            strFormat = set_number_value(strName, iValue + i);
+            str = System.dir().path(strDir,strFormat + strExtension);
+            if(!Application.file().exists(str))
+               return;
+         }
+      }
+      else
+      {
+
+         string strFormat;
+         for(int32_t i = 1; i < 1000; i++)
+         {
+            strFormat.Format("-Copy-%03d",i);
+            str = System.dir().path(strDir,strName + strFormat + strExtension);
+            if(!Application.file().exists(str))
+               return;
+         }
       }
    }
 

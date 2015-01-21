@@ -666,7 +666,7 @@ namespace filemanager
          ptabview->filemanager_manager().get_operation_doc(true)->m_thread.kick();
 
       }
-
+      pobj->m_bRet =true;
 
      /* for(int32_t i = 0; i < stra.get_size(); i++)
       {
