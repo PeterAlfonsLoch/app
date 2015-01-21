@@ -469,11 +469,19 @@ namespace html
 
    bool data::open_link(const char * pszPath)
    {
+      string strPath(pszPath);
+      if(::str::begins_eat(strPath,"ext://"))
+      {
+         Application.open_link(strPath);
+         /*         simple_shell_launcher launcher(NULL, "open", strUrl, "", "", SW_SHOWNORMAL);
+         launcher.execute();*/
+
+         return true;
+      }
       if(m_pform != NULL && m_pform->get_document() != NULL)
       {
          return m_pform->get_document()->on_open_document(pszPath);
       }
-      string strPath(pszPath);
       if(strPath.find(":") >= 0)
       {
          return open_document(strPath);

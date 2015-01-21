@@ -103,6 +103,7 @@ namespace hi5
 
          setDoc["authorization_link"] = m_strAuthorizationUrl;
 
+         setDoc["ext_authorization_link"] ="ext://" + m_strAuthorizationUrl;
          if(m_strLicense.is_empty())
          {
 
@@ -123,15 +124,15 @@ namespace hi5
 
          }
 
-         ::html::elemental * pelemental = m_pdocAuth->get_html_data()->get_element_by_id("authorization_link");
+         //::html::elemental * pelemental = m_pdocAuth->get_html_data()->get_element_by_id("authorization_link");
 
-         ::html::impl::text * ptext = dynamic_cast < ::html::impl::text * > (pelemental->m_pimpl);
+         //::html::impl::text * ptext = dynamic_cast < ::html::impl::text * > (pelemental->m_pimpl);
 
-         //sp(::user::interaction) ptext = m_pdocAuth->get_html_data()->get_child_by_id("authorization_link");
+         ////sp(::user::interaction) ptext = m_pdocAuth->get_html_data()->get_child_by_id("authorization_link");
 
-         ptext->m_strLink = "ext://" + m_strAuthorizationUrl;
+         //ptext->m_strLink = "ext://" + m_strAuthorizationUrl;
 
-         ptext->m_bLink = true;
+         //ptext->m_bLink = true;
 
          display_main_frame();
 
