@@ -5,4 +5,3 @@ Source\FreeImage\PluginWICPNG.cpp(425): warning C4244: 'argument' : conversion f
 Source\FreeImage\PluginWICPNG.cpp(894): warning C4018: '<' : signed/unsigned mismatch
 Source\FreeImage\PluginWICPNG.cpp(952): warning C4102: 'end' : unreferenced label
 Source\FreeImage\PluginWICPNG.cpp(1059): warning C4244: 'argument' : conversion from 'primitive::memory_size' to 'unsigned int', possible loss of data
-MSVCRT.lib(ti_inst.obj) : fatal error LNK1112: module machine type 'X86' conflicts with target machine type 'x64'
