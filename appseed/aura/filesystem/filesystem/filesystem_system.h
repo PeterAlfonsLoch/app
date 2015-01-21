@@ -106,47 +106,41 @@ namespace file
 
 
 
-      int32_t filterex_time_square(const char * pszPrefix, stringa & stra);
-      bool mk_time(const char * lpcszCandidate);
+      virtual int32_t filterex_time_square(const char * pszPrefix,stringa & stra);
+      virtual bool mk_time(const char * lpcszCandidate);
 
-      string as_string(var varFile, ::aura::application * papp);
-      string as_string(var varFile, var & varQuery, ::aura::application * papp);
-      void as_memory(var varFile, primitive::memory_base & mem, ::aura::application * papp);
-      void lines(stringa & stra, var varFile, ::aura::application * papp);
+      virtual string as_string(var varFile,::aura::application * papp);
+      virtual string as_string(var varFile,var & varQuery,::aura::application * papp);
+      virtual void as_memory(var varFile,primitive::memory_base & mem,::aura::application * papp);
+      virtual void lines(stringa & stra,var varFile,::aura::application * papp);
 
-      bool put_contents(var varFile, const void * pvoidContents, ::count count, ::aura::application * papp);
-      bool put_contents(var varFile, const char * lpcszContents, ::aura::application * papp);
-      bool put_contents(var varFile, ::file::reader & reader, ::aura::application * papp);
-      bool put_contents(var varFile, primitive::memory & mem, ::aura::application * papp);
-      bool put_contents_utf8(var varFile, const char * lpcszContents, ::aura::application * papp);
+      virtual bool put_contents(var varFile,const void * pvoidContents,::count count,::aura::application * papp);
+      virtual bool put_contents(var varFile,const char * lpcszContents,::aura::application * papp);
+      virtual bool put_contents(var varFile,::file::reader & reader,::aura::application * papp);
+      virtual bool put_contents(var varFile,primitive::memory & mem,::aura::application * papp);
+      virtual bool put_contents_utf8(var varFile,const char * lpcszContents,::aura::application * papp);
 
-      bool is_read_only(const char * psz);
+      virtual bool is_read_only(const char * psz);
 
-      string sys_temp(const char * pszName, const char * pszExtension, ::aura::application * papp);
-      string sys_temp_unique(const char * pszName);
-
-
-      string replace_extension(const char * pszFile, const char * pszExtension);
-      void set_extension(string & str, const char * pszExtension);
+      virtual string sys_temp(const char * pszName,const char * pszExtension,::aura::application * papp);
+      virtual string sys_temp_unique(const char * pszName);
 
 
-      void normalize(string & str);
-      int32_t cmp(const char * psz1, const char* psz2);
+      virtual string replace_extension(const char * pszFile,const char * pszExtension);
+      virtual void set_extension(string & str, const char * pszExtension);
 
 
-
-      string md5(const char * psz);
-      string nessie(const char * psz);
-
-      string nessie(::file::buffer_sp  pfile);
-
-//      path & path36();
+      virtual void normalize(string & str);
+      virtual int32_t cmp(const char * psz1,const char* psz2);
 
 
 
-      void is_valid_fileset(const char * pszFile, ::aura::application * papp);
+      virtual string md5(const char * psz);
+      virtual string nessie(const char * psz);
 
+      virtual string nessie(::file::buffer_sp  pfile);
 
+      virtual bool is_valid_fileset(const char * pszFile,::aura::application * papp);
 
       virtual bool resolve_link(string & strTarget,const char * pszSource,sp(::aura::interaction) puiMessageParentOptional = NULL);
 

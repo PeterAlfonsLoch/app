@@ -1562,6 +1562,22 @@ restart:
       str.ReleaseBuffer();
    }
 
+   
+   bool system::is_valid_fileset(const char * pszFile,::aura::application * papp)
+   {
+
+      if(!::file::system::is_valid_fileset(pszFile,papp))
+      {
+         
+         return false;
+
+      }
+
+      return true;
+
+   }
+
+
 
    bool system::resolve_link(string & strTarget,const char * pszSource,sp(::aura::interaction) puiMessageParentOptional)
    {

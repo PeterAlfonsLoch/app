@@ -1135,6 +1135,16 @@ restart:
    }
 
 
+   bool system::is_valid_fileset(const char * pszFile,::aura::application * papp)
+   {
+
+      throw interface_only_exception(get_app());
+
+      return false;
+
+   }
+
+
    string system::nessie(const char * psz)
    {
 

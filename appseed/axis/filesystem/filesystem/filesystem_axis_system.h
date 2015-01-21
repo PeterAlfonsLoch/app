@@ -110,21 +110,21 @@ namespace file
          void set_extension(string & str,const char * pszExtension);
 
 
-         void normalize(string & str);
-         int32_t cmp(const char * psz1,const char* psz2);
+         virtual void normalize(string & str);
+         virtual int32_t cmp(const char * psz1,const char* psz2);
 
 
 
-         string md5(const char * psz);
-         string nessie(const char * psz);
+         virtual string md5(const char * psz);
+         virtual string nessie(const char * psz);
 
-         string nessie(::file::buffer_sp  pfile);
+         virtual string nessie(::file::buffer_sp  pfile);
 
          //      path & path36();
 
 
 
-         void is_valid_fileset(const char * pszFile,::aura::application * papp);
+         virtual bool is_valid_fileset(const char * pszFile,::aura::application * papp);
 
 
 
