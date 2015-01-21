@@ -2300,7 +2300,7 @@ ret:
 
       }
 
-      string system::axis_appmatter_locator(const string & strBase, const string & strLibraryName, const string & strAppName)
+      string system::base_appmatter_locator(const string & strBase, const string & strLibraryName, const string & strAppName)
       {
 
          string strRoot;
@@ -2312,7 +2312,7 @@ ret:
 
       }
 
-      string system::axis_appmatter_locator(const string & strBase, const string & strAppName)
+      string system::base_appmatter_locator(const string & strBase, const string & strAppName)
       {
 
          string strRoot;
