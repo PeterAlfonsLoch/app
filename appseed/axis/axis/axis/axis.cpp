@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-#include "freeimage/Source/FreeImage.h"
+//#include "freeimage/Source/FreeImage.h"
 
 
 
@@ -95,7 +95,10 @@ bool axis_init()
    if(!__node_axis_pos_init())
       return false;*/
 
+#ifndef WINDOWSEX
 
+   // todo (casey tips) : do real/explicit dynamic linking
+   throw todo(get_thread_app());
    try
    {
 
@@ -111,6 +114,8 @@ bool axis_init()
 
    }
 
+#endif
+
 
    return true;
 
@@ -119,6 +124,10 @@ bool axis_init()
 
 bool axis_term()
 {
+#ifndef WINDOWSEX
+
+   // todo (casey tips) : do real/explicit dynamic linking
+   throw todo(get_thread_app());
    try
    {
 
@@ -129,7 +138,7 @@ bool axis_term()
    {
 
    }
-
+#endif
    /*__wait_threading_count(::millis((5000) * 8));
 
    __node_axis_pre_term();

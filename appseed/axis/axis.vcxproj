@@ -4740,9 +4740,6 @@
     <ProjectReference Include="..\..\axis\bzip2\axisbzip2.vcxproj">
       <Project>{a5a649e1-d516-4f29-a627-da6884dd421c}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\axis\freeimage\axisfreeimage.vcxproj">
-      <Project>{b39ed2b3-d53a-4077-b957-930979a3577d}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\..\axis\idn\axisidn.vcxproj">
       <Project>{e8ac3ef0-11c5-4e12-a944-5f7efed6e0c4}</Project>
     </ProjectReference>

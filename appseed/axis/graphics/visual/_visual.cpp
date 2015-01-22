@@ -1,9 +1,10 @@
 #include "framework.h"
 #include <math.h>
 
+#ifndef WINDOWSEX
 #include "freeimage/Source/FreeImage.h"
 #include "graphics/visual/visual_FreeImageFileProc.h"
-
+#endif
 
 
 
