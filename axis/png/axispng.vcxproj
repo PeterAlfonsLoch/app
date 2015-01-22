@@ -308,6 +308,7 @@
     <LinkIncremental>false</LinkIncremental>
     <IntDir>$(SolutionDir)..\..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
     <TargetExt>.fip</TargetExt>
+    <OutDir>$(SolutionDir)..\..\..\stage\x64\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">
     <LinkIncremental>false</LinkIncremental>
