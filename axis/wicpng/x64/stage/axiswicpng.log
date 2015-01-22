@@ -1,7 +1,0 @@
-﻿C:\Program Files (x86)\Windows Kits\8.1\Include\shared\intsafe.h(8554): warning C4005: 'LODWORD' : macro redefinition
-C:\Program Files (x86)\Windows Kits\8.1\Include\shared\intsafe.h(8555): warning C4005: 'HIDWORD' : macro redefinition
-Source\FreeImage\PluginWICPNG.cpp(412): warning C4244: 'argument' : conversion from 'primitive::memory_size' to 'unsigned int', possible loss of data
-Source\FreeImage\PluginWICPNG.cpp(425): warning C4244: 'argument' : conversion from 'primitive::memory_size' to 'UINT', possible loss of data
-Source\FreeImage\PluginWICPNG.cpp(894): warning C4018: '<' : signed/unsigned mismatch
-Source\FreeImage\PluginWICPNG.cpp(952): warning C4102: 'end' : unreferenced label
-Source\FreeImage\PluginWICPNG.cpp(1059): warning C4244: 'argument' : conversion from 'primitive::memory_size' to 'unsigned int', possible loss of data
