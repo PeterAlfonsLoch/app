@@ -1,4 +1,4 @@
 LIBRARY      "axiswicpng.fip"
 
 EXPORTS
-Init
+FreeImage_InitPlugin

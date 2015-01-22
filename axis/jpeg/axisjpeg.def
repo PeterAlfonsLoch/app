@@ -1,4 +1,4 @@
 LIBRARY      "axisjpeg.fip"
 
 EXPORTS
-Init
+FreeImage_InitPlugin
