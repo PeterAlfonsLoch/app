@@ -40,7 +40,9 @@
 #include "visual_fastblur.cpp"
 #include "visual_font.cpp"
 #include "visual_font_central.cpp"
+#ifndef WINDOWSEX
 #include "visual_FreeImageFileProc.cpp"
+#endif
 #include "visual_glyph.cpp"
 #include "visual_glyph_set.cpp"
 #include "visual_graphics_extension.cpp"

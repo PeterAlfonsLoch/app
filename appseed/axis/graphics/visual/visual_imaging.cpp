@@ -21,6 +21,7 @@
 #endif
 
 
+bool windows_load_dib_from_file(::draw2d::dib * pdib,::file::buffer_sp,::aura::application * papp);
 
 template <typename T>
 inline void SafeRelease(T *&p)
@@ -78,7 +79,7 @@ imaging::~imaging()
 
 
 
-
+#ifndef  WINDOWSEX
 
 FIBITMAP * imaging::LoadImageFile(var varFile,::aura::application * papp)
 {
@@ -583,41 +584,25 @@ return hBitmapSource;
 //}
 //*/
 
-/*****************************************************************************
-*
-* EmbossedTextOut
-*
-* draw embossed text in the given device context
-*
-* hDC                       - hDC to draw in
-* x, y                      - Upper left corner of text
-* lpsz                      - Pointer to the text
-* cb                        - Length of text
-* crText                    - color for text face
-* crShadow                  - color for text shadow
-* cx, cy                    - offset for shadow
-*
-* The text will be drawn with the currently selected font.
-*
-* If cb == -1, the lstrlen(lpsz) will be used.
-*
-* If crText == -1, COLOR_BTNTEXT will be used.
-*
-* If crShadow == -1, COLOR_BTNSHADOW will be used.
-*
-*****************************************************************************/
 
+#endif // WINDOWSEX
 
 bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application * papp)
 {
 
-   ::file::memory_buffer memfile(get_app());
+   ::file::memory_buffer_sp memfile(allocer());
 
-   System.file().as_memory(varFile,*memfile.get_memory(),papp);
+   System.file().as_memory(varFile,*memfile->get_memory(),papp);
 
-   if(memfile.get_size() <= 0)
+   if(memfile->get_size() <= 0)
       return false;
 
+#ifdef WINDOWSEX
+
+   return windows_load_dib_from_file(pdib, memfile, papp);
+
+
+#else
    FIBITMAP * pfi = LoadImageFile(&memfile);
 
    if(pfi == NULL)
@@ -629,6 +614,8 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
    if(!from(pdib,spgraphics,(FIBITMAP *)pfi,true))
       return false;
+
+#endif
 
    return true;
 

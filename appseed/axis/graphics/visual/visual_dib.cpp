@@ -1,5 +1,8 @@
 //#include "framework.h"
 
+#ifdef WINDOWS
+#include <wincodec.h>
+#endif
 
 
 ////#include "ft2build.h"
@@ -7,6 +10,8 @@
 
 ////#include FT_FREETYPE_H
 
+bool windows_write_dib_to_file(::file::buffer_sp,::draw2d::dib * pdib,::visual::save_image * psaveimage, ::aura::application * papp);
+bool windows_load_dib_from_file(::draw2d::dib * pdib,::file::buffer_sp,::aura::application * papp);
 
 namespace visual
 {
@@ -60,13 +65,16 @@ namespace visual
       return write_to_file(spfile, psaveimage);
    }
 
-   bool dib_sp::write_to_file(::file::buffer_sp  pfile, save_image * psaveimage)
+   bool dib_sp::write_to_file(::file::buffer_sp pfile, save_image * psaveimage)
    {
       save_image saveimageDefault;
       if(psaveimage == NULL)
          psaveimage = &saveimageDefault;
+#ifdef WINDOWSEX
 
-#ifdef METROWIN
+      return windows_write_dib_to_file(pfile, m_p, psaveimage, m_p->get_app());
+
+#elif METROWIN
 
       throw todo(m_p->m_pauraapp);
 
@@ -190,12 +198,17 @@ namespace visual
    }
 
 
+#ifndef  WINDOWSEX
+
    bool dib_sp::from(class draw2d::graphics * pgraphics,struct FIBITMAP * pfi,bool bUnload)
    {
 
       return Sys(m_p->m_pauraapp).visual().imaging().from(m_p,pgraphics,pfi,bUnload);
 
    }
+
+#endif
+
 
 } // namespace visual
 
@@ -275,3 +288,383 @@ CLASS_DECL_AXIS void draw_freetype_bitmap(::draw2d::dib * m_p,int32_t dx,int32_t
 
 #endif
 
+
+
+#ifdef WINDOWS
+
+bool windows_load_dib_from_file(::draw2d::dib * pdib,::file::buffer_sp pfile,::aura::application * papp)
+{
+   int iSize = pfile->get_length();
+
+   primitive::memory mem(papp);
+
+   mem.allocate(iSize);
+
+   pfile->read(mem.get_data(), iSize);
+   try
+   {
+
+      comptr<IStream> pstream = mem.CreateIStream();
+      comptr < IWICImagingFactory > piFactory = NULL;
+
+      comptr< IWICBitmapDecoder > decoder;
+      HRESULT hr = CoCreateInstance(
+         CLSID_WICImagingFactory,
+         NULL,
+         CLSCTX_INPROC_SERVER,
+         IID_IWICImagingFactory,
+         (LPVOID*)&piFactory);
+
+      if(SUCCEEDED(hr))
+      {
+
+         hr = piFactory->CreateDecoderFromStream(pstream, NULL, WICDecodeMetadataCacheOnDemand, &decoder.get());
+      }
+
+      //if(SUCCEEDED(hr))
+      //{
+
+      //   hr = decoder->Initialize(pstream,WICDecodeMetadataCacheOnDemand);
+
+      //}
+
+      comptr< IWICBitmapFrameDecode> pframe;
+
+      if(SUCCEEDED(hr))
+      {
+
+         hr = decoder->GetFrame(0,&pframe.get());
+
+      }
+
+      int color_type,palette_entries = 0;
+      int bit_depth,pixel_depth;		// pixel_depth = bit_depth * channels
+
+      WICPixelFormatGUID px;
+      ZERO(px);
+      if(pframe == NULL)
+      {
+         throw simple_exception(papp,"CreateDecoderFromStream failure");
+      }
+                  {
+                     hr =   pframe->GetPixelFormat(&px);
+
+                  }
+                  //if(SUCCEEDED(hr))
+                  //{
+
+                  //   if(!wic_info(&px,&color_type,&pixel_depth,&bit_depth))
+                  //   {
+                  //      color_type = PNG_COLOR_TYPE_RGB_ALPHA;
+                  //      pixel_depth = 32;
+                  //      bit_depth = 8;
+                  //   }
+
+                  //}
+                  //else
+                  //{
+                  //   color_type = PNG_COLOR_TYPE_RGB_ALPHA;
+                  //   pixel_depth = 32;
+                  //   bit_depth = 8;
+                  //}
+
+                  if(px == GUID_WICPixelFormat32bppBGRA)
+                  {
+                     UINT width=0;
+                     UINT height=0;
+
+                     pframe->GetSize(&width,&height);
+                     pdib->create(width,height);
+                     hr = pframe->CopyPixels(NULL,pdib->m_iScan,pdib->m_iScan * height,(BYTE *)pdib->m_pcolorref);
+
+                  }
+                  else
+                  {
+
+                     comptr<IWICFormatConverter> pbitmap;
+
+                     if(SUCCEEDED(hr))
+                     {
+
+                        hr = piFactory->CreateFormatConverter(&pbitmap.get());
+
+                     }
+
+
+
+                     px  = GUID_WICPixelFormat32bppBGRA;
+
+                     if(SUCCEEDED(hr))
+                     {
+
+                        hr = pbitmap->Initialize(pframe,px,WICBitmapDitherTypeNone,NULL,0.f,WICBitmapPaletteTypeCustom);
+                     }
+
+                     //Step 4: Create render target and D2D bitmap from IWICBitmapSource
+                     UINT width=0;
+                     UINT height=0;
+                     if(SUCCEEDED(hr))
+                     {
+                        hr = pbitmap->GetSize(&width,&height);
+                     }
+
+                     pdib->create(width,height);
+
+                     hr = pbitmap->CopyPixels(NULL,pdib->m_iScan,pdib->m_iScan * height,(BYTE *)pdib->m_pcolorref);
+
+                     //for(int k = 0; k < height; k++)
+                     //{
+                     //   memcpy(&pb[k * iStride],&mem.get_data()[(height - 1 - k) * iStride],iStride);
+                     //}
+
+                  }
+
+
+               end:;
+
+
+                  //synch_lock sl(&m_parea->m_mutex);
+                  //m_parea->m_iArea++;
+
+   }
+   catch(...)
+   {
+      return false;
+   }
+   //DWORD dw2 =::get_tick_count();
+   //TRACE("InPath %d ms\n",dw2 - dw1);
+   //dwLast = dw2;
+
+   //memfile.Truncate(0);
+
+//}
+   return true;
+
+}
+
+
+bool windows_write_dib_to_file(::file::buffer_sp pfile,::draw2d::dib * pdib,::visual::save_image * psaveimage, ::aura::application * papp)
+{
+   
+   comptr < IStream > pstream = SHCreateMemStream(NULL,NULL);
+
+   //m_spmemfile->Truncate(0);
+
+   //m_spmemfile->seek_to_begin();
+
+   comptr < IWICImagingFactory > piFactory = NULL;
+   comptr < IWICBitmapEncoder > piEncoder = NULL;
+   comptr < IWICBitmapFrameEncode > piBitmapFrame = NULL;
+   comptr < IPropertyBag2 > pPropertybag = NULL;
+
+   comptr < IWICStream > piStream = NULL;
+   UINT uiWidth = pdib->m_size.cx;
+   UINT uiHeight = pdib->m_size.cy;
+
+   HRESULT hr = CoCreateInstance(
+      CLSID_WICImagingFactory,
+      NULL,
+      CLSCTX_INPROC_SERVER,
+      IID_IWICImagingFactory,
+      (LPVOID*)&piFactory);
+
+   if(SUCCEEDED(hr))
+   {
+      hr = piFactory->CreateStream(&piStream.get());
+   }
+
+   if(SUCCEEDED(hr))
+   {
+      hr = piStream->InitializeFromIStream(pstream);
+   }
+
+   if(SUCCEEDED(hr))
+   {
+      switch(psaveimage->m_eformat)
+      {
+      case ::visual::image::format_bmp:
+         hr = piFactory->CreateEncoder(GUID_ContainerFormatBmp,NULL,&piEncoder.get());
+      break;
+      case ::visual::image::format_gif:
+         hr = piFactory->CreateEncoder(GUID_ContainerFormatGif,NULL,&piEncoder.get());
+         break;
+      case ::visual::image::format_jpeg:
+         hr = piFactory->CreateEncoder(GUID_ContainerFormatJpeg,NULL,&piEncoder.get());
+         break;
+      case ::visual::image::format_png:
+         hr = piFactory->CreateEncoder(GUID_ContainerFormatPng,NULL,&piEncoder.get());
+         break;
+      default:
+         break;
+      }
+   }
+
+   if(SUCCEEDED(hr))
+   {
+      hr = piEncoder->Initialize(piStream,WICBitmapEncoderNoCache);
+   }
+
+   if(SUCCEEDED(hr))
+   {
+      hr = piEncoder->CreateNewFrame(&piBitmapFrame.get(),&pPropertybag.get());
+   }
+
+   if(SUCCEEDED(hr))
+   {
+      //if(m_bJxr)
+      //{
+      //   //PROPBAG2 option ={0};
+      //   //option.pstrName = L"ImageQuality";
+      //   //VARIANT varValue;
+      //   //VariantInit(&varValue);
+      //   //varValue.vt = VT_R4;
+      //   //varValue.fltVal = 0.49f;
+      //   PROPBAG2 option ={0};
+      //   option.pstrName = L"UseCodecOptions";
+      //   VARIANT varValue;
+      //   VariantInit(&varValue);
+      //   varValue.vt = VT_BOOL;
+      //   varValue.boolVal = -1;
+      //   if(SUCCEEDED(hr))
+      //   {
+      //      hr = pPropertybag->Write(1,&option,&varValue);
+      //   }
+      //   option.pstrName = L"Quality";
+      //   VariantInit(&varValue);
+      //   varValue.vt = VT_UI1;
+      //   varValue.bVal = 184;
+      //   if(SUCCEEDED(hr))
+      //   {
+      //      hr = pPropertybag->Write(1,&option,&varValue);
+      //   }
+      //   option.pstrName = L"Subsampling";
+      //   VariantInit(&varValue);
+      //   varValue.vt = VT_UI1;
+      //   varValue.bVal = 1;
+      //   if(SUCCEEDED(hr))
+      //   {
+      //      hr = pPropertybag->Write(1,&option,&varValue);
+      //   }
+      //   option.pstrName = L"Overlap";
+      //   VariantInit(&varValue);
+      //   varValue.vt = VT_UI1;
+      //   varValue.bVal = 2;
+      //   if(SUCCEEDED(hr))
+      //   {
+      //      hr = pPropertybag->Write(1,&option,&varValue);
+      //   }
+      //   option.pstrName = L"StreamOnly";
+      //   VariantInit(&varValue);
+      //   varValue.vt = VT_BOOL;
+      //   varValue.boolVal = -1;
+      //   if(SUCCEEDED(hr))
+      //   {
+      //      hr = pPropertybag->Write(1,&option,&varValue);
+      //   }
+      //}
+      if(psaveimage->m_eformat == ::visual::image::format_jpeg)
+      {
+            PROPBAG2 option ={0};
+            option.pstrName = L"ImageQuality";
+            VARIANT varValue;
+            VariantInit(&varValue);
+            varValue.vt = VT_R4;
+            varValue.fltVal = MAX(0.f, MIN(1.f, psaveimage->m_iQuality / 100.0f));
+            if(SUCCEEDED(hr))
+            {
+               hr = pPropertybag->Write(1,&option,&varValue);
+            }
+      }
+      if(SUCCEEDED(hr))
+      {
+         hr = piBitmapFrame->Initialize(pPropertybag);
+      }
+   }
+
+   if(SUCCEEDED(hr))
+   {
+      hr = piBitmapFrame->SetSize(uiWidth,uiHeight);
+   }
+
+   WICPixelFormatGUID formatGUID = GUID_WICPixelFormat32bppBGRA;
+   if(SUCCEEDED(hr))
+   {
+      hr = piBitmapFrame->SetPixelFormat(&formatGUID);
+   }
+
+   if(SUCCEEDED(hr))
+   {
+      hr = IsEqualGUID(formatGUID,GUID_WICPixelFormat32bppBGRA) ? S_OK : E_FAIL;
+   }
+
+   if(SUCCEEDED(hr))
+   {
+      hr = piBitmapFrame->WritePixels(uiHeight,uiWidth * sizeof(COLORREF),uiHeight*uiWidth * sizeof(COLORREF),(BYTE *)pdib->m_pcolorref);
+   }
+
+   if(SUCCEEDED(hr))
+   {
+      hr = piBitmapFrame->Commit();
+   }
+
+   if(SUCCEEDED(hr))
+   {
+      hr = piEncoder->Commit();
+   }
+
+   //if(piFactory)
+   //   piFactory->Release();
+
+   //if(piBitmapFrame)
+   //   piBitmapFrame->Release();
+
+   //if(piEncoder)
+   //   piEncoder->Release();
+
+   //if(piStream)
+   //   piStream->Release();
+
+
+
+   STATSTG stg;
+   ZERO(stg);
+   pstream->Stat(&stg,STATFLAG_NONAME);
+   LARGE_INTEGER l;
+   l.QuadPart = 0;
+   pstream->Seek(l,STREAM_SEEK_SET,NULL);
+
+
+   primitive::memory mem(papp);
+
+   mem.allocate(1024 * 1024);
+
+   ULONG ulPos = 0;
+   ULONG ulRead;
+   ULONG ul;
+   do
+   {
+
+      ulRead = 0;
+
+      ul = stg.cbSize.QuadPart - ulPos;
+
+      pstream->Read(mem.get_data(),MIN(ul, mem.get_size()),&ulRead);
+
+      if(ulRead > 0)
+      {
+
+         pfile->write(mem.get_data(),ulRead);
+
+         ulPos+=ulRead;
+
+      }
+
+   } while(ulRead > 0 && stg.cbSize.QuadPart - ulPos > 0);
+
+   //pstream->Release();
+
+   return true;
+
+}
+
+#endif
