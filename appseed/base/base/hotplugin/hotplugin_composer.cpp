@@ -489,7 +489,7 @@ namespace hotplugin
 
       int32_t iReturnCode = 0;
 
-      ::axis::system * pbasesystem = (::axis::system *) lpVoid;
+      ::base::system * pbasesystem = (::base::system *) lpVoid;
 
       try
       {

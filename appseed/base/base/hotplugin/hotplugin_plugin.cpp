@@ -761,7 +761,7 @@ namespace hotplugin
 
          uint_ptr size = m_sizeBitmapData.cx * m_sizeBitmapData.cy * sizeof(COLORREF);
 
-         string strName = string("core\\app.plugin.container-") + m_strBitmapChannel;
+         string strName = Application.dir().userappdata("time", "core\\app.plugin.container-" + m_strBitmapChannel);
          
          if(!m_memBitmap.open(strName,true,true,bCreate,size))
          {
