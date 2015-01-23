@@ -25,7 +25,7 @@ CLASS_DECL_AURA void processor_cache_oriented_memory_free(void * p)
 
 #else
 
-   memory_free(s);
+   memory_free(p);
 
 #endif
 
