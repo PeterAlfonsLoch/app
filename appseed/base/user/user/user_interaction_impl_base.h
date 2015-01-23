@@ -19,6 +19,12 @@ namespace user
       interaction_impl_base();
       virtual ~interaction_impl_base();
 
+
+      virtual bool check_need_layout();
+      virtual void clear_need_layout();
+      virtual void set_need_layout();
+
+
       virtual void _001UpdateScreen();
       virtual void _001UpdateBuffer();
 
@@ -130,8 +136,8 @@ namespace user
       virtual bool IsDescendant(const ::user::interaction * puiIsDescendant) const;
 
 
-      virtual ::user::interaction * GetWindow() const;
-      virtual ::user::interaction * GetWindow(UINT nCmd) const;
+//      virtual ::user::interaction * get_wnd() const;
+      virtual ::user::interaction * get_wnd(UINT nCmd) const;
 
 
       virtual ::user::interaction * GetTopWindow() const;

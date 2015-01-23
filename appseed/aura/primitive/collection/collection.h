@@ -2,6 +2,8 @@
 
 
 
+#define forall(set) for(decltype(set)::BASE_TYPE & item : set)
+
 
 
 //#include "collection_iterator.h"

@@ -1,10 +1,18 @@
 //#include "framework.h"
 
 
-allocator::~allocator()
+namespace aura
 {
 
-}
+
+   allocator::~allocator()
+   {
+
+   }
+
+
+} // namespace aura
+
 
 
 element::element()
@@ -118,15 +126,31 @@ element * element::clone()
 }
 
 
-allocatorsp::allocatorsp(::aura::application * papp)
+namespace aura
 {
 
-   allocator * pallocator = canew(allocator());
+   
+   allocatorsp::allocatorsp(::aura::application * papp)
+   {
 
-   pallocator->m_pauraapp = papp;
+      allocator * pallocator = canew(allocator());
 
-   smart_pointer < allocator >::operator = (pallocator);
+      pallocator->m_pauraapp = papp;
 
-}
+      smart_pointer < allocator >::operator = (pallocator);
+
+   }
+
+
+} // namespace aura
+
+
+
+
+
+
+
+
+
 
 

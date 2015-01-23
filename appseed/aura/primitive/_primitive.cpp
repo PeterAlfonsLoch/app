@@ -71,7 +71,6 @@
 
 #include "collection/collection_2d_array.cpp"
 #include "collection/collection_array.cpp"
-#include "collection/collection_array_base.cpp"
 #include "collection/collection_bit_array.cpp"
 #include "collection/collection_class_sort_array.cpp"
 #include "collection/collection_comparable_array.cpp"

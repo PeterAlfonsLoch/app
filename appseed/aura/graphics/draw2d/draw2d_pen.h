@@ -94,7 +94,7 @@ namespace draw2d
       {
       }
 
-      pen_sp(const allocatorsp & allocer) :
+      pen_sp(const ::aura::allocatorsp & allocer) :
          smart_pointer < pen > (allocer)
       {
       }

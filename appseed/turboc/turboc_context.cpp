@@ -54,8 +54,6 @@ namespace turboc
 
    }
 
-#define forall(a) for(decltype(a)::BASE_TYPE & item : a)
-
    void context::resize(int x,int y)
    {
 

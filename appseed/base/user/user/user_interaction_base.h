@@ -405,8 +405,8 @@ namespace user
       ::user::interaction * get_child_by_id(id id,int32_t iLevel = -1);
 
 
-      virtual ::user::interaction * GetWindow() const;
-      virtual ::user::interaction * GetWindow(UINT nCmd) const;
+      virtual ::user::interaction * get_wnd() const;
+      virtual ::user::interaction * get_wnd(UINT nCmd) const;
 
 
       virtual ::user::interaction * SetParent(::user::interaction * pui);

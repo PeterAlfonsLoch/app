@@ -40,3 +40,37 @@ CLASS_DECL_AURA void   system_heap_free(void * pvoid);
 
 
 
+
+#if defined(__cplusplus)
+
+class CLASS_DECL_AURA default_memory_allocator
+{
+public:
+
+
+   inline static void * alloc(int iSize)
+   {
+
+      //TODO("jai"); jas = Jonathan Blow 
+      return memory_alloc(iSize);
+
+   }
+
+
+   inline static void free(void * p)
+   {
+
+      //TODO("jai"); jas = Jonathan Blow
+      memory_free(p);
+
+   }
+
+
+};
+
+
+
+#endif
+
+
+

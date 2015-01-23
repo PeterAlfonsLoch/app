@@ -6,9 +6,9 @@
 // array is an array that call default constructors, copy constructs and destructors in elements
 
 
-template<class TYPE, class ARG_TYPE = const TYPE &>
+template<class TYPE,class ARG_TYPE = const TYPE &,class ALLOCATOR = ::allocator::nodef < TYPE > >
 class raw_array :
-   public array_base
+   public array_base < TYPE >
 {
 public:
 

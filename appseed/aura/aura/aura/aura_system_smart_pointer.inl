@@ -2,12 +2,12 @@
 
 
 template < class T >
-void smart_pointer < T >::alloc(const allocatorsp & allocer)
+void smart_pointer < T >::alloc(const ::aura::allocatorsp & spallocator)
 {
-   static class id idType = CaSys(allocer).type_info < T > ()->m_id;
+   static class id idType = CaSys(spallocator).type_info < T >()->m_id;
    if(m_p != NULL)
       ::release(m_p);
-   element * pca = CaSys(allocer).alloc(allocer->m_pauraapp, idType);
+   element * pca = CaSys(spallocator).alloc(spallocator->m_pauraapp,idType);
    if(pca != NULL)
    {
       m_p = dynamic_cast < T * >(pca);

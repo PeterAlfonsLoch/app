@@ -30,6 +30,15 @@
 #include "aura_action_context.cpp"
 #include "aura_allocate_mid_big.cpp"
 #include "aura_allocate_system_heap.cpp"
+
+// THANK YOU ("jai") = Jonathan Blow - Data-Oriented intercourse
+#if defined(_M_IX86)
+#include "aura_allocate_x86_cache_oriented.cpp"
+#endif
+#include "aura_allocate_processor_cache_oriented.cpp"
+
+
+
 #include "aura_application.cpp"
 #include "aura_application_interface.cpp"
 #include "aura_argcargv.cpp"

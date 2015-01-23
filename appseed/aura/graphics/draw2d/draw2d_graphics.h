@@ -703,7 +703,7 @@ namespace draw2d
       {
       }
 
-      graphics_sp(const allocatorsp & allocer) :
+      graphics_sp(const ::aura::allocatorsp & allocer) :
          smart_pointer < graphics > (allocer)
       {
       }
@@ -716,7 +716,7 @@ namespace draw2d
    {
    public:
 
-      memory_graphics(const allocatorsp & allocer);
+      memory_graphics(const ::aura::allocatorsp & allocer);
       virtual ~memory_graphics();
 
    };

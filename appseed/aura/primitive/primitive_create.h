@@ -15,7 +15,7 @@ public:
 
 
    command_line_sp();
-   command_line_sp(const allocatorsp & allocer);
+   command_line_sp(const ::aura::allocatorsp & allocer);
 
 
    using smart_pointer < command_line >::operator =;

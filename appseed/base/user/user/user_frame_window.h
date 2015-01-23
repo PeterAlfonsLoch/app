@@ -169,6 +169,8 @@ namespace user
 
       ::aura::impact *           m_pviewMain;
 
+      
+
 
       frame_window();
       virtual ~frame_window();

@@ -1208,9 +1208,6 @@
     <ClInclude Include="aura\aura\aura_flags.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_heap.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
     <ClInclude Include="aura\aura\aura_id_pool.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
@@ -1984,6 +1981,12 @@
     </ClInclude>
     <ClInclude Include="net\net_url.h">
       <Filter>Header Files\net</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_allocate_heap.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_allocate_processor_cache_oriented.h">
+      <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -3220,9 +3223,6 @@
     <ClCompile Include="aura\aura\aura_assert_running_task.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\collection\collection_array_base.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
-    </ClCompile>
     <ClCompile Include="aura\os\android\android_c.cpp">
       <Filter>Source Files\aura\os\android</Filter>
     </ClCompile>
@@ -3361,6 +3361,12 @@
     <ClCompile Include="net\net_url.cpp">
       <Filter>Source Files\net</Filter>
     </ClCompile>
+    <ClCompile Include="aura\aura\aura_allocate_x86_cache_oriented.cpp">
+      <Filter>Source Files\aura\aura</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\aura\aura_allocate_processor_cache_oriented.cpp">
+      <Filter>Source Files\aura\aura</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -3409,6 +3415,9 @@
       <Filter>Header Files\primitive\collection</Filter>
     </None>
     <None Include="primitive\collection\collection_raw_array_impl.inl">
+      <Filter>Header Files\primitive\collection</Filter>
+    </None>
+    <None Include="primitive\collection\collection_array_base.inl">
       <Filter>Header Files\primitive\collection</Filter>
     </None>
   </ItemGroup>

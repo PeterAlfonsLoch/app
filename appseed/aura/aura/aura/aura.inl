@@ -384,7 +384,7 @@ namespace aura
 
 
 
-inline allocatorsp & element::allocer()
+inline ::aura::allocatorsp & element::allocer()
 {
 
    return m_pauraapp->m_allocer;

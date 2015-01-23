@@ -5,6 +5,12 @@ template < typename T > class numeric_array;
 typedef CLASS_DECL_AURA numeric_array < index > index_array;
 
 
+
+
+
+
+
+
 namespace constructor
 {
 
@@ -14,17 +20,16 @@ namespace constructor
    {
    public:
 
-      inline static void construct(void * pvoid)
+      inline static void construct(void * p)
       {
-         ::new(pvoid) TYPE;
+         ::new(p) TYPE;
       }
-      inline static void construct(void * pvoid, ::count c)
+      inline static void construct(void * p, ::count c)
       {
-         TYPE * p = (TYPE *) pvoid;
          while(c > 0)
          {
-            ::new((void *) p) TYPE;
-            p++;
+            ::new(p) TYPE;
+            ((TYPE*&)p)++;
             c--;
          }
       }
@@ -39,17 +44,15 @@ namespace constructor
    {
    public:
 
-      inline static void construct(void * pvoid)
+      inline static void construct(void * p)
       {
 
-         ::zero(pvoid, sizeof(TYPE));
+         ::zero(p, sizeof(TYPE));
 
       }
 
-      inline static void construct(void * pvoid, ::count c)
+      inline static void construct(void * p, ::count c)
       {
-
-         TYPE * p = (TYPE *)pvoid;
 
          while (c > 0)
          {
@@ -68,6 +71,8 @@ namespace constructor
 
    };
 
+
+   template < class TYPE >
    class nodef
    {
    public:
@@ -87,19 +92,234 @@ namespace constructor
 
 } // namespace constructor
 
+namespace destructor
+{
+
+
+   template < class TYPE >
+   class def
+   {
+   public:
+
+      inline static void destruct(TYPE * p)
+      {
+         p->~TYPE();
+      }
+      inline static void destruct(TYPE * p,::count c)
+      {
+         while(c > 0)
+         {
+            p->~TYPE();
+            p++;
+            c--;
+         }
+      }
+
+
+
+   };
+
+
+
+
+
+   template < class TYPE >
+   class nodef
+   {
+   public:
+
+      inline static void destruct(TYPE * p)
+      {
+         UNREFERENCED_PARAMETER(p);
+      }
+      inline static void destruct(TYPE * p,:: count c)
+      {
+         UNREFERENCED_PARAMETER(p);
+         UNREFERENCED_PARAMETER(c);
+      }
+
+   };
+
+
+} // namespace destructor
+
+
+namespace copier
+{
+
+
+   template < class TYPE >
+   class def
+   {
+   public:
+
+      inline static void copy(TYPE *pdst, const TYPE * psrc)
+      {
+         
+         *pdst = *psrc;
+
+      }
+      
+      inline static void copy(TYPE *pdst,const TYPE * psrc, ::count c)
+      {
+
+         while(c > 0)
+         {
+            *pdst = *psrc;
+            pdst++;
+            psrc++;
+            c--;
+         }
+
+      }
+
+
+   };
+
+
+} // namespace copier
+
+
+namespace memory
+{
+
+   template < class TYPE,class POOL >
+   class allocator
+   {
+   public:
+
+      inline static TYPE * alloc(::count c)
+      {
+
+         return (TYPE *)POOL::alloc(sizeof(TYPE) * c);
+
+      }
+
+
+      inline static void free(TYPE * p)
+      {
+
+         POOL::free((void *)p);
+
+      }
+
+
+   };
+
+
+   template < class TYPE >
+   class def:
+      public allocator < TYPE,default_memory_allocator>
+   {
+
+   };
+
+
+   template < class TYPE >
+   class processor_cache_oriented: // would it help for data-orientation-assumation ??!?!
+      public allocator < TYPE,processor_cache_oriented_memory_allocator >
+   {
+
+
+   };
+
+} // namespace memory
+
+
+namespace allocator
+{
+
+
+   template < class TYPE,class CONSTRUCTOR = constructor ::nodef< TYPE >,class DESTRUCTOR = destructor ::nodef< TYPE >,class COPIER = copier < TYPE >::def,class MEMORY_ALLOCATOR = memory::def < TYPE > >
+   class allocator
+   {
+   public:
+
+      inline static void construct(TYPE * p)
+      {
+         CONSTRUCTOR::construct(p);
+      }
+
+      inline static void construct(TYPE * p,:: count c)
+      {
+         CONSTRUCTOR::construct(p,c);
+
+      }
+
+      inline static void destruct(TYPE * p)
+      {
+         DESTRUCTOR::destruct(p);
+      }
+      inline static void destruct(TYPE * p,::count c)
+      {
+         DESTRUCTOR::destruct(p,c);
+      }
+
+
+      inline static void copy(TYPE *pdst,const TYPE * psrc)
+      {
+
+         COPIER::copy(pdst,psrc);
+
+      }
+
+
+      inline static void copy(TYPE *pdst,const TYPE * psrc, ::count c)
+      {
+
+         COPIER::copy(pdst,psrc, c);
+
+      }
+
+      inline static TYPE * alloc(::count c)
+      {
+
+         return MEMORY_ALLOCATOR::alloc(c);
+
+      }
+
+
+      inline static void free(TYPE * p)
+      {
+
+         MEMORY_ALLOCATOR::alloc(p);
+
+      }
+
+   };
+
+
+   template < class TYPE,class CONSTRUCTOR = constructor ::def< TYPE >,class DESTRUCTOR = destructor ::def< TYPE >,class COPIER = copier ::def < TYPE >,class MEMORY_ALLOCATOR = memory::def < TYPE > >
+   class def :
+      public allocator < TYPE, CONSTRUCTOR, DESTRUCTOR, COPIER >
+   {
+
+   };
+
+   template < class TYPE,class CONSTRUCTOR = constructor ::nodef< TYPE >,class DESTRUCTOR = destructor ::nodef< TYPE >,class COPIER = copier::def < TYPE >,class MEMORY_ALLOCATOR = memory::def < TYPE > >
+   class nodef:
+      public allocator < TYPE,CONSTRUCTOR,DESTRUCTOR,COPIER >
+   {
+
+   };
+
+
+} // namespace allocator
 
 // raw_array is an array that does not call constructors or destructor in elements
 // array is an array that call only copy constructor and destructor in elements
 // array is an array that call default constructors, copy constructs and destructors in elements
-class CLASS_DECL_AURA array_base:
+template < class TYPE, class ALLOCATOR = allocator::nodef < TYPE > >
+class array_base :
    virtual public ::object
 {
 public:
 
+   typedef TYPE BASE_TYPE;
 
-   bool           m_bRaw; // if raw, does not call destructors or constructors
-   int            m_iTypeSize;
-   void *         m_pData;    // the actual array of data
+
+   //bool           m_bRaw;     // if raw, does not call destructors or constructors
+   TYPE *         m_pData;    // the actual array of data
    ::count        m_nSize;    // # of elements (upperBound - 1)
    ::count        m_nMaxSize; // MAX allocated
    ::count        m_nGrowBy;  // grow amount
@@ -121,7 +341,7 @@ public:
    inline index get_upper_bound(index i = -1) const;
 
 
-   void * element_at(index i) const { return (byte *) m_pData + i * m_iTypeSize; }
+   TYPE * element_at(index i) const { return &m_pData[i]; }
 
    ::count set_size(index nNewSize,::count nGrowBy = -1); // does not call default constructors on new items/elements
    ::count allocate(index nNewSize,::count nGrowBy = -1); // does not call default constructors on new items/elements
@@ -139,12 +359,13 @@ public:
    inline ::count remove_all();
    inline void clear();
 
-   virtual void on_construct_element(void *);
-   virtual void on_construct_element(void *,::count);
-   virtual void on_destruct_element(void *);
-   virtual void on_copy_element(index i, const void *);
+   void on_construct_element(TYPE * p) { ALLOCATOR::construct(p); }
+   void on_construct_element(TYPE * p,::count c) { ALLOCATOR::construct(p,c); }
+   void on_destruct_element(TYPE * p) { ALLOCATOR::destruct(p); }
+   void on_copy_element(index i,const TYPE * p) { ALLOCATOR::copy(&m_pData[i],p); }
 
-   index insert_at(index nIndex,const void * newElement,::count nCount = 1);
+
+   index insert_at(index nIndex,const TYPE * newElement,::count nCount = 1);
    index remove_at(index nIndex,::count nCount = 1);
    index insert_at(index nStartIndex,array_base * pNewArray);
 
@@ -157,9 +378,9 @@ public:
 };
 
 
-template < class TYPE, class ARG_TYPE = const TYPE &, class DEFCONSTRUCTOR = ::constructor::def < TYPE > >
+template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = ::allocator::def < TYPE > >
 class array :
-   public ::array_base
+   public ::array_base < TYPE, ALLOCATOR >
 {
 public:
 
@@ -452,10 +673,6 @@ public:
    array(array && a);
    virtual ~array();
 
-   virtual void on_construct_element(void * p) { DEFCONSTRUCTOR::construct(p); }
-   virtual void on_construct_element(void * p, ::count c) { DEFCONSTRUCTOR::construct(p, c); }
-   virtual void on_destruct_element(void * p) { ((TYPE*)p)->~TYPE(); }
-   virtual void on_copy_element(index i,const void * p) { *((TYPE*)((byte *) m_pData + m_iTypeSize * i)) = *((const TYPE*)p); }
 
    inline const TYPE& get_at(index nIndex) const;
    inline TYPE& get_at(index nIndex);
@@ -593,7 +810,7 @@ public:
 
 template < class TYPE, class ARG_TYPE = const TYPE & >
 class nodefctr_array :
-   public array < TYPE, ARG_TYPE, ::constructor::nodef >
+   public array < TYPE, ARG_TYPE, ::constructor::nodef < TYPE > >
 {
 public:
 

@@ -1,24 +1,11 @@
 //#include "framework.h"
 
-#define construct_element(p) \
-   on_construct_element(p)
-
-#define construct_element_set(p, c) \
-   on_construct_element(p,c)
-
-#define destruct_element(p) \
-   try { on_destruct_element(p); } catch(...) {}
-
-#define copy_element(i,p) \
-   on_copy_element(i, p)
 
 
-
-array_base::array_base(int iTypeSize,bool bRaw)
+template < class TYPE, class ALLOCATOR >
+array_base < TYPE, ALLOCATOR >::array_base(int iTypeSize,bool bRaw)
 {
 
-   m_iTypeSize = iTypeSize;
-   m_bRaw = bRaw;
    m_nGrowBy = 32;
    m_pData = NULL;
    m_nSize = 0;
@@ -27,12 +14,11 @@ array_base::array_base(int iTypeSize,bool bRaw)
 }
 
 
-array_base::array_base(::aura::application * papp, int iTypeSize, bool bRaw):
+template < class TYPE,class ALLOCATOR >
+array_base < TYPE, ALLOCATOR >::array_base(::aura::application * papp, int iTypeSize, bool bRaw):
    element(papp)
 {
    
-   m_iTypeSize = iTypeSize;
-   m_bRaw = bRaw;
    m_nGrowBy = 32;
    m_pData = NULL;
    m_nSize = 0;
@@ -40,7 +26,9 @@ array_base::array_base(::aura::application * papp, int iTypeSize, bool bRaw):
 
 }
 
-array_base::~array_base()
+
+template < class TYPE,class ALLOCATOR >
+array_base < TYPE, ALLOCATOR >::~array_base ()
 {
 
    destroy();
@@ -48,25 +36,29 @@ array_base::~array_base()
 }
 
 
-::count array_base::resize(::count nNewSize,::count nGrowBy)
+template < class TYPE,class ALLOCATOR >
+::count array_base < TYPE, ALLOCATOR >::resize(::count nNewSize,::count nGrowBy)
 {
    return allocate(nNewSize,nGrowBy);
 }
 
-::count array_base::allocate_in_bytes(::count nNewSize,::count nGrowBy)
+
+template < class TYPE,class ALLOCATOR >
+::count array_base < TYPE, ALLOCATOR >::allocate_in_bytes(::count nNewSize,::count nGrowBy)
 {
    if(nGrowBy < 0)
    {
-      return allocate(nNewSize / m_iTypeSize,-1);
+      return allocate(nNewSize / sizeof(TYPE),-1);
    }
    else
    {
-      return allocate(nNewSize / m_iTypeSize,nGrowBy / m_iTypeSize);
+      return allocate(nNewSize / sizeof(TYPE),nGrowBy / sizeof(TYPE));
    }
 }
 
 
-index array_base::remove_at(index nIndex,::count nCount)
+template < class TYPE,class ALLOCATOR >
+index array_base < TYPE, ALLOCATOR >::remove_at(index nIndex,::count nCount)
 {
 
    //ASSERT_VALID(this);
@@ -78,22 +70,23 @@ index array_base::remove_at(index nIndex,::count nCount)
 
    // just remove a range
    ::count nMoveCount = m_nSize - (nUpperBound);
-   if(!m_bRaw)
-   {
-      for(int32_t i = 0; i < nCount; i++)
-         destruct_element((byte*)m_pData + (nIndex + i) *m_iTypeSize);
-   }
+
+   ALLOCATOR::destruct(&m_pData[nIndex], nCount);
 
    if(nMoveCount)
    {
-      ::aura::memmove_s((byte*)m_pData + nIndex*m_iTypeSize,(size_t)nMoveCount * m_iTypeSize, (byte*) m_pData + nUpperBound * m_iTypeSize,(size_t)nMoveCount * m_iTypeSize);
+      ::aura::memmove_s(&m_pData[nIndex],(size_t)nMoveCount * sizeof(TYPE),&m_pData[nUpperBound],(size_t)nMoveCount * sizeof(TYPE));
    }
+
    m_nSize -= nCount;
+
    return nIndex;
+
 }
 
 
-void array_base::free_extra()
+template < class TYPE,class ALLOCATOR >
+void array_base < TYPE, ALLOCATOR >::free_extra()
 {
    ASSERT_VALID(this);
 
@@ -101,59 +94,51 @@ void array_base::free_extra()
    {
       // shrink to desired size
 #ifdef SIZE_T_MAX
-      ASSERT(m_nSize <= SIZE_T_MAX / m_iTypeSize); // no overflow
+      ASSERT(m_nSize <= SIZE_T_MAX / sizeof(TYPE)); // no overflow
 #endif
-      byte* pNewData = NULL;
+      TYPE* pNewData = NULL;
       if(m_nSize != 0)
       {
-         pNewData = (byte *) memory_alloc(m_nSize * m_iTypeSize);
+         pNewData = (TYPE *)memory_alloc(m_nSize * sizeof(TYPE));
          // copy new data from old
-         ::aura::memcpy_s(pNewData,m_nSize * m_iTypeSize,
-            m_pData,m_nSize * m_iTypeSize);
+         ::aura::memcpy_s(pNewData,m_nSize * sizeof(TYPE),m_pData,m_nSize * sizeof(TYPE));
       }
 
       // get rid of old stuff (note: no destructors called)
       memory_free(m_pData);
       m_pData = pNewData;
       m_nMaxSize = m_nSize;
+
    }
+
 }
 
 
 
-//void array_base::construct_element(void * p) { on_construct_element(p); }
-//void array_base::construct_element(void * p,::count c) { on_construct_element(p,c); }
-//void array_base::destruct_element(void * p) { try { on_destruct_element(p); } catch(...) {} }
-//void array_base::copy_element(index i, const void * p) { on_copy_element(i, p); }
-
-
-void array_base::on_construct_element(void *) {}
-void array_base::on_construct_element(void *,::count) {}
-void array_base::on_destruct_element(void *) {}
-void array_base::on_copy_element(index i, const void * p) { ::memcpy((byte *) m_pData + i*m_iTypeSize,p,m_iTypeSize); }
-
-
-void array_base::destroy()
+template < class TYPE,class ALLOCATOR >
+void array_base < TYPE, ALLOCATOR >::destroy()
 {
+   
    ASSERT_VALID(this);
 
    if(m_pData != NULL)
    {
-      if(!m_bRaw)
-      {
-         for(int32_t i = 0; i < m_nSize; i++)
-            destruct_element((byte *)m_pData + i * m_iTypeSize);
-      }
+      
+      ALLOCATOR::destruct(m_pData, m_nSize);
+
       memory_free(m_pData);
+
       m_pData     = NULL;
       m_nSize     = 0;
       m_nMaxSize  = 0;
+
    }
 
 }
 
 
-index array_base::insert_at(index nIndex,const void * newElement,::count nCount /*=1*/)
+template < class TYPE,class ALLOCATOR >
+index array_base < TYPE, ALLOCATOR >::insert_at(index nIndex,const TYPE * newElement,::count nCount /*=1*/)
 {
 
    ASSERT_VALID(this);
@@ -178,12 +163,10 @@ index array_base::insert_at(index nIndex,const void * newElement,::count nCount 
       set_size(m_nSize + nCount,-1);  // grow it to new size
       // destroy intial data before copying over it
       // shift old data up to fill gap
-      ::aura::memmove_s((byte *) m_pData + (nIndex + nCount) * m_iTypeSize,(nOldSize - nIndex) * m_iTypeSize,(byte *) m_pData + nIndex * m_iTypeSize,(nOldSize - nIndex) * m_iTypeSize);
+      ::aura::memmove_s(m_pData + nIndex + nCount,(nOldSize - nIndex) * sizeof(TYPE),m_pData + nIndex,(nOldSize - nIndex) * sizeof(TYPE));
 
-      if(!m_bRaw)
-      {
-         construct_element_set((byte*)m_pData + nIndex*m_iTypeSize,nCount);
-      }
+      ALLOCATOR::construct(&m_pData[nIndex],nCount);
+
    }
 
    // insert new value in the gap
@@ -192,14 +175,19 @@ index array_base::insert_at(index nIndex,const void * newElement,::count nCount 
    index nIndexParam = nIndex;
 
    while(nCount--)
-      copy_element(nIndex++,newElement);
+   {
+
+      ALLOCATOR::copy(&m_pData[nIndex++], newElement);
+
+   }
 
    return nIndexParam;
 
 }
 
 
-::count array_base::append(const array_base & src)
+template < class TYPE,class ALLOCATOR >
+::count array_base < TYPE, ALLOCATOR >::append(const array_base < TYPE, ALLOCATOR > & src)
 {
 
    ASSERT_VALID(this);
@@ -210,14 +198,15 @@ index array_base::insert_at(index nIndex,const void * newElement,::count nCount 
 
    allocate(m_nSize + nSrcSize);
 
-   memcpy((byte *) m_pData + nOldSize * m_iTypeSize,src.m_pData,nSrcSize * m_iTypeSize);
+   ALLOCATOR::copy(&m_pData[nOldSize],src.m_pData,nSrcSize);
 
    return nOldSize;
 
 }
 
 
-void array_base::copy(const array_base & src)
+template < class TYPE,class ALLOCATOR >
+void array_base < TYPE, ALLOCATOR >::copy(const array_base < TYPE, ALLOCATOR > & src)
 {
 
    ASSERT_VALID(this);
@@ -227,7 +216,7 @@ void array_base::copy(const array_base & src)
 
    allocate(src.m_nSize);
 
-   memcpy(m_pData,src.m_pData,src.m_nSize * m_iTypeSize);
+   ALLOCATOR::copy(m_pData,src.m_pData,src.m_nSize);
 
 }
 
@@ -237,7 +226,8 @@ void array_base::copy(const array_base & src)
 // the index raw_array by sorting it and returning
 // only the indexes that could be removed
 // without indexes duplicates
-void array_base::_001RemoveIndexes(index_array & ia)
+template < class TYPE,class ALLOCATOR >
+void array_base < TYPE, ALLOCATOR >::_001RemoveIndexes(index_array & ia)
 {
 
    // sort
@@ -281,8 +271,8 @@ void array_base::_001RemoveIndexes(index_array & ia)
 }
 
 
-
-void array_base::remove_indexes(const index_array & ia)
+template < class TYPE,class ALLOCATOR >
+void array_base < TYPE, ALLOCATOR >::remove_indexes(const index_array & ia)
 {
 
 
@@ -297,8 +287,8 @@ void array_base::remove_indexes(const index_array & ia)
 }
 
 
-
-void array_base::remove_descending_indexes(const index_array & ia)
+template < class TYPE,class ALLOCATOR >
+void array_base < TYPE, ALLOCATOR >::remove_descending_indexes(const index_array & ia)
 {
 
    for(index i = 0; i < ia.get_count(); i++)
@@ -312,8 +302,8 @@ void array_base::remove_descending_indexes(const index_array & ia)
 
 
 
-
-index array_base::insert_at(index nStartIndex,array_base * pNewArray)
+template < class TYPE,class ALLOCATOR >
+index array_base < TYPE, ALLOCATOR >::insert_at(index nStartIndex,array_base < TYPE, ALLOCATOR > * pNewArray)
 {
    ASSERT_VALID(this);
    ASSERT(pNewArray != NULL);
@@ -335,8 +325,8 @@ index array_base::insert_at(index nStartIndex,array_base * pNewArray)
 }
 
 
-
-::count array_base::set_raw_size(::count nNewSize,::count nGrowBy)
+template < class TYPE,class ALLOCATOR >
+::count array_base < TYPE, ALLOCATOR >::set_raw_size(::count nNewSize,::count nGrowBy)
 {
    ::count countOld = get_count();
    ASSERT_VALID(this);
@@ -353,7 +343,7 @@ index array_base::insert_at(index nStartIndex,array_base * pNewArray)
       // shrink to nothing
       if(m_pData != NULL)
       {
-         delete[](BYTE*)m_pData;
+         memory_free(m_pData);
          m_pData = NULL;
       }
       m_nSize = m_nMaxSize = 0;
@@ -363,12 +353,12 @@ index array_base::insert_at(index nStartIndex,array_base * pNewArray)
       // create buffer big enough to hold number of requested elements or
       // m_nGrowBy elements, whichever is larger.
 #ifdef SIZE_T_MAX
-      if(nNewSize > SIZE_T_MAX / m_iTypeSize)
+      if(nNewSize > SIZE_T_MAX / sizeof(TYPE))
          throw memory_exception(get_app());
-      ASSERT(nNewSize <= SIZE_T_MAX / m_iTypeSize);    // no overflow
+      ASSERT(nNewSize <= SIZE_T_MAX / sizeof(TYPE));    // no overflow
 #endif
       ::count nAllocSize = MAX(nNewSize,m_nGrowBy);
-      m_pData = (byte *)memory_alloc(nAllocSize * m_iTypeSize);
+      m_pData = (TYPE *)memory_alloc(nAllocSize * sizeof(TYPE));
       m_nSize = nNewSize;
       m_nMaxSize = nAllocSize;
    }
@@ -399,16 +389,15 @@ index array_base::insert_at(index nStartIndex,array_base * pNewArray)
          throw invalid_argument_exception(get_app());
 
 #ifdef SIZE_T_MAX
-      ASSERT(nNewMax <= SIZE_T_MAX / m_iTypeSize); // no overflow
+      ASSERT(nNewMax <= SIZE_T_MAX / sizeof(TYPE)); // no overflow
 #endif
-      byte * pNewData = (byte *)memory_alloc(nNewMax * m_iTypeSize);
+      TYPE * pNewData = (TYPE *)memory_alloc(nNewMax * sizeof(TYPE));
       // copy new data from old
-      ::aura::memcpy_s(pNewData,(size_t)nNewMax * m_iTypeSize,
-         m_pData,(size_t)m_nSize * m_iTypeSize);
+      ::aura::memcpy_s(pNewData,(size_t)nNewMax * sizeof(TYPE),m_pData,(size_t)m_nSize * sizeof(TYPE));
 
-      for(int32_t i = 0; i < nNewSize - m_nSize; i++)
+      ///for(int32_t i = 0; i < nNewSize - m_nSize; i++)
          // get rid of old stuff (note: no destructors called)
-         memory_free(m_pData);
+      memory_free(m_pData);
       m_pData = pNewData;
       m_nSize = nNewSize;
       m_nMaxSize = nNewMax;
@@ -417,7 +406,10 @@ index array_base::insert_at(index nStartIndex,array_base * pNewArray)
    return countOld;
 
 }
-::count array_base::allocate(::count nNewSize,::count nGrowBy)
+
+
+template < class TYPE,class ALLOCATOR >
+::count array_base < TYPE, ALLOCATOR >::allocate(::count nNewSize,::count nGrowBy)
 {
 
    ::count countOld = get_count();
@@ -435,13 +427,13 @@ index array_base::insert_at(index nStartIndex,array_base * pNewArray)
       // shrink to nothing
       if(m_pData != NULL)
       {
-         if(!m_bRaw)
-         {
-            for(int32_t i = 0; i < m_nSize; i++)
-               destruct_element((byte *)m_pData + i * m_iTypeSize);
-         }
+
+         ALLOCATOR::destruct(m_pData,m_nSize);
+
          memory_free(m_pData);
+
          m_pData = NULL;
+
       }
       m_nSize = m_nMaxSize = 0;
    }
@@ -450,36 +442,40 @@ index array_base::insert_at(index nStartIndex,array_base * pNewArray)
       // create buffer big enough to hold number of requested elements or
       // m_nGrowBy elements, whichever is larger.
 #ifdef SIZE_T_MAX
-      if(nNewSize > SIZE_T_MAX / m_iTypeSize)
+      if(nNewSize > SIZE_T_MAX / sizeof(TYPE))
          throw memory_exception(get_app());
-      ASSERT(nNewSize <= SIZE_T_MAX / m_iTypeSize);    // no overflow
+      ASSERT(nNewSize <= SIZE_T_MAX / sizeof(TYPE));    // no overflow
 #endif
+
       ::count nAllocSize = MAX(nNewSize,m_nGrowBy);
-      m_pData = (byte *)memory_alloc(nAllocSize * m_iTypeSize);
-      if(!m_bRaw)
-      {
-         construct_element_set(m_pData, nNewSize);
-      }
+
+      m_pData = ALLOCATOR::alloc(nAllocSize);
+
+      ALLOCATOR::construct(m_pData,nNewSize);
+
       m_nSize = nNewSize;
+
       m_nMaxSize = nAllocSize;
+
    }
    else if(nNewSize <= m_nMaxSize)
    {
-      // it fits
-      if(!m_bRaw)
+      
+      if(nNewSize > m_nSize)
       {
-         if(nNewSize > m_nSize)
-         {
-            construct_element_set((byte *)m_pData + m_nSize * m_iTypeSize,nNewSize - m_nSize);
-         }
-         else if(m_nSize > nNewSize)
-         {
-            // destroy the old elements
-            for(int32_t i = 0; i < m_nSize - nNewSize; i++)
-               destruct_element((byte*)m_pData + (nNewSize + i) * m_iTypeSize);
-         }
+
+         ALLOCATOR::construct(&m_pData[m_nSize],nNewSize - m_nSize);
+
       }
+      else if(m_nSize > nNewSize)
+      {
+
+         ALLOCATOR::destruct(&m_pData[nNewSize],m_nSize - nNewSize);
+
+      }
+
       m_nSize = nNewSize;
+
    }
    else
    {
@@ -504,19 +500,16 @@ index array_base::insert_at(index nStartIndex,array_base * pNewArray)
          throw invalid_argument_exception(get_app());
 
 #ifdef SIZE_T_MAX
-      ASSERT(nNewMax <= SIZE_T_MAX / m_iTypeSize); // no overflow
+      ASSERT(nNewMax <= SIZE_T_MAX / sizeof(TYPE)); // no overflow
 #endif
-      byte* pNewData = (byte *)memory_alloc(nNewMax * m_iTypeSize);
+      TYPE* pNewData = (TYPE *)memory_alloc(nNewMax * sizeof(TYPE));
 
       // copy new data from old
-      ::aura::memcpy_s(pNewData,(size_t)nNewMax * m_iTypeSize,m_pData,(size_t)m_nSize * m_iTypeSize);
+      ::aura::memcpy_s(pNewData,(size_t)nNewMax * sizeof(TYPE),m_pData,(size_t)m_nSize * sizeof(TYPE));
 
       // construct remaining elements
       ASSERT(nNewSize > m_nSize);
-      if(!m_bRaw)
-      {
-         construct_element_set((byte *)pNewData + m_nSize * m_iTypeSize,nNewSize - m_nSize);
-      }
+      ALLOCATOR::construct(&pNewData[m_nSize],nNewSize - m_nSize);
       // get rid of old stuff (note: no destructors called)
       memory_free(m_pData);
       m_pData = pNewData;
@@ -528,8 +521,8 @@ index array_base::insert_at(index nStartIndex,array_base * pNewArray)
 
 
 
-
-void array_base::on_after_read()
+template < class TYPE,class ALLOCATOR >
+void array_base < TYPE, ALLOCATOR >::on_after_read()
 {
 
 

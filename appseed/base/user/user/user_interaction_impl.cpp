@@ -11,13 +11,18 @@ namespace user
    interaction_impl::interaction_impl()
    {
 
-      m_bOSNativeMouseMessagePosition = true;
-      m_bTranslateMouseMessageCursor = true;
-      m_pgraphics = NULL;
-      m_bComposite = true;
-      m_bUpdateGraphics = false;
-      m_oswindow = NULL;
-      m_spmutexDisplay = new mutex;
+      m_bOSNativeMouseMessagePosition  = true;
+      m_bTranslateMouseMessageCursor   = true;
+      m_pgraphics                      = NULL;
+      m_bComposite                     = true;
+      m_bUpdateGraphics                = false;
+      m_oswindow                       = NULL;
+      m_spmutexDisplay                 = new mutex;
+      m_bNeedLayout                    = false;
+
+
+
+
 
    }
 
@@ -39,6 +44,30 @@ namespace user
          }
 
       }
+
+   }
+
+
+   bool interaction_impl::check_need_layout()
+   {
+
+      return m_bNeedLayout;
+
+   }
+
+
+   void interaction_impl::clear_need_layout()
+   {
+
+      m_bNeedLayout = false;
+
+   }
+
+
+   void interaction_impl::set_need_layout()
+   {
+
+      m_bNeedLayout = true;
 
    }
 

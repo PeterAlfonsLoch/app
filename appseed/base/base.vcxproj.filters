@@ -102,9 +102,6 @@
     <Filter Include="Header Files\base\node\windows">
       <UniqueIdentifier>{8a9f35dd-3924-4dfe-bc44-6a823f0200b7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\base\node\android">
-      <UniqueIdentifier>{7e1d30ab-0995-45f2-b0b9-64e3a5d68c5a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\base\node\ansios">
       <UniqueIdentifier>{69195050-6ed5-49b9-b26e-60f94ca26561}</UniqueIdentifier>
     </Filter>
@@ -317,24 +314,6 @@
     <ClInclude Include="user\user\user_windowing.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="base\node\android\android.h">
-      <Filter>Header Files\base\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\android\android_copydesk.h">
-      <Filter>Header Files\base\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\android\android_factory_exchange.h">
-      <Filter>Header Files\base\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\android\android_implementation.h">
-      <Filter>Header Files\base\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\android\android_window_draw.h">
-      <Filter>Header Files\base\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\android\android1.h">
-      <Filter>Header Files\base\node\android</Filter>
-    </ClInclude>
     <ClInclude Include="base\node\ansios\ansios.h">
       <Filter>Header Files\base\node\ansios</Filter>
     </ClInclude>
@@ -427,12 +406,6 @@
     </ClInclude>
     <ClInclude Include="base\os\android\android.h">
       <Filter>Header Files\base\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\android\android_interaction_impl.h">
-      <Filter>Header Files\base\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\android\android_message_queue.h">
-      <Filter>Header Files\base\node\android</Filter>
     </ClInclude>
     <ClInclude Include="base\os\android\android_windowing.h">
       <Filter>Header Files\base\os\android</Filter>

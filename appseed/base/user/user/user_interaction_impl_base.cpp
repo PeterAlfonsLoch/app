@@ -15,9 +15,6 @@ namespace user
       m_bIgnoreSizeEvent   = false;
       m_bIgnoreMoveEvent   = false;
 
-
-
-
    }
 
 
@@ -25,6 +22,26 @@ namespace user
    {
 
       m_pui = NULL;
+
+   }
+
+
+   bool interaction_impl_base::check_need_layout()
+   {
+
+      return false;
+
+   }
+
+
+   void interaction_impl_base::clear_need_layout()
+   {
+
+   }
+
+
+   void interaction_impl_base::set_need_layout()
+   {
 
    }
 
@@ -529,12 +546,12 @@ namespace user
    }
 
 
-   ::user::interaction * interaction_impl_base::get_wnd() const
-   {
+   //::user::interaction * interaction_impl_base::get_wnd() const
+   //{
 
-      return m_pui->GetWindow();
+   //   return m_pui->get_wnd();
 
-   }
+   //}
 
 
 
@@ -802,18 +819,18 @@ namespace user
 
    }
 
-   ::user::interaction * interaction_impl_base::GetWindow() const
+   ::user::interaction * interaction_impl_base::get_wnd() const
    {
 
-      return m_pui->GetWindow();
+      return m_pui->get_wnd();
 
    }
 
 
-   ::user::interaction * interaction_impl_base::GetWindow(UINT nCmd) const
+   ::user::interaction * interaction_impl_base::get_wnd(UINT nCmd) const
    {
 
-      return m_pui->GetWindow(nCmd);
+      return m_pui->get_wnd(nCmd);
 
    }
 
@@ -821,7 +838,7 @@ namespace user
    ::user::interaction * interaction_impl_base::GetTopWindow() const
    {
 
-      sp(::user::interaction) pui = GetWindow();
+      sp(::user::interaction) pui = get_wnd();
 
       if(pui.is_null())
          return NULL;
@@ -953,7 +970,7 @@ namespace user
    ::user::interaction * interaction_impl_base::SetCapture(::user::interaction * pinterface)
    {
 
-      return GetWindow()->SetCapture(pinterface);
+      return get_wnd()->SetCapture(pinterface);
 
    }
 
@@ -961,7 +978,7 @@ namespace user
    ::user::interaction * interaction_impl_base::GetCapture()
    {
 
-      return GetWindow()->GetCapture();
+      return get_wnd()->GetCapture();
 
    }
 
@@ -969,7 +986,7 @@ namespace user
    ::user::interaction * interaction_impl_base::ReleaseCapture()
    {
 
-      return GetWindow()->ReleaseCapture();
+      return get_wnd()->ReleaseCapture();
 
    }
 

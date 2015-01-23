@@ -69,6 +69,8 @@ namespace user
                if(pui->m_bMayProDevian)
                {
 
+                  pui->defer_check_layout();
+
                   pui->_001UpdateBuffer();
 
                   pui->_001UpdateScreen();

@@ -228,7 +228,7 @@ namespace draw2d
       {
       }
 
-      path_sp(const allocatorsp & allocer) :
+      path_sp(const ::aura::allocatorsp & allocer) :
          smart_pointer < path > (allocer)
       {
       }

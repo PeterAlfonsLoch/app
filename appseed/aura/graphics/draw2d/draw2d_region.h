@@ -135,7 +135,7 @@ namespace draw2d
       {
       }
 
-      region_sp(const allocatorsp & allocer) :
+      region_sp(const ::aura::allocatorsp & allocer) :
          smart_pointer < region > (allocer)
       {
       }

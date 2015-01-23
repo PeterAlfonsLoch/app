@@ -33,6 +33,60 @@ namespace user
 
    }
 
+   
+   bool interaction::defer_check_layout()
+   {
+
+      if(!check_need_layout())
+         return false;
+
+      layout();
+
+      clear_need_layout();
+
+      return true;
+
+   }
+
+
+   bool interaction::check_need_layout()
+   {
+
+      ::user::interaction * pwnd = get_wnd();
+
+      if(pwnd == NULL)
+         return false;
+
+      return pwnd->m_pimpl->check_need_layout();
+
+   }
+
+
+   void interaction::clear_need_layout()
+   {
+      
+      ::user::interaction * pwnd = get_wnd();
+
+      if(pwnd == NULL)
+         return;
+
+      return pwnd->m_pimpl->clear_need_layout();
+
+   }
+
+
+   void interaction::set_need_layout()
+   {
+
+      ::user::interaction * pwnd = get_wnd();
+
+      if(pwnd == NULL)
+         return;
+
+      return pwnd->m_pimpl->set_need_layout();
+
+   }
+
    void interaction::user_interaction_common_construct()
    {
 
@@ -52,7 +106,6 @@ namespace user
       m_iModalCount              = 0;
       m_bRectOk                  = false;
       m_bVisible                 = true;
-
 
       m_psession                 = NULL;
       m_bMessageWindow           = false;
@@ -94,7 +147,7 @@ namespace user
 
       }
 
-      sp(interaction) pui = GetWindow();
+      sp(interaction) pui = get_wnd();
 
       if(pui.is_null())
          return NULL;
@@ -753,7 +806,7 @@ namespace user
 
       pobj->previous();
 
-//      keep<bool> lockWindowUpdate(&GetWindow()->m_bLockWindowUpdate, true, GetWindow()->m_bLockWindowUpdate, true);
+//      keep<bool> lockWindowUpdate(&get_wnd()->m_bLockWindowUpdate, true, get_wnd()->m_bLockWindowUpdate, true);
 
       if(psize->m_nType == SIZE_MINIMIZED)
       {
@@ -789,7 +842,7 @@ namespace user
       m_pimpl->set_viewport_org(pgraphics);
       /*      rect64 rectWindow;
       GetWindowRect(rectWindow);
-      GetWindow()->ScreenToClient(rectWindow);
+      get_wnd()->ScreenToClient(rectWindow);
       pgraphics->SetViewportOrg(point(rectWindow.top_left()));
       pgraphics->SelectClipRgn(NULL);
       */
@@ -1748,7 +1801,7 @@ namespace user
       try
       {
 
-         pwnd = GetWindow();
+         pwnd = get_wnd();
 
          if (pwnd == NULL)
             return NULL;
@@ -1772,7 +1825,7 @@ namespace user
       try
       {
 
-         pui = GetWindow();
+         pui = get_wnd();
 
          if(pui == NULL)
             return NULL;
@@ -2309,12 +2362,12 @@ namespace user
          return m_pimpl->GetTopWindow();
    }
 
-   ::user::interaction * interaction::GetWindow(UINT nCmd) const
+   ::user::interaction * interaction::get_wnd(UINT nCmd) const
    {
       if(m_pimpl == NULL)
          return NULL;
       else
-         return m_pimpl->GetWindow(nCmd);
+         return m_pimpl->get_wnd(nCmd);
    }
 
    ::user::interaction * interaction::GetActiveWindow()
@@ -3131,7 +3184,7 @@ namespace user
       oprop(string("RunModalLoop.thread(") + ::str::from(iLevel) + ")") = ::get_thread();
       m_iModalCount++;
 
-      //bool bAttach = AttachThreadInput(GetWindow()->get_os_int(), ::GetCurrentThreadId(), TRUE);
+      //bool bAttach = AttachThreadInput(get_wnd()->get_os_int(), ::GetCurrentThreadId(), TRUE);
 
       m_iaModalThread.add(::get_current_thread_id());
       sp(::aura::application) pappThis1 = (m_pimpl);
@@ -3442,7 +3495,7 @@ namespace user
 
       }
 
-      return GetWindow()->SetCapture(pinterface == NULL ? this : pinterface);
+      return get_wnd()->SetCapture(pinterface == NULL ? this : pinterface);
 
    }
 
@@ -3457,7 +3510,7 @@ namespace user
 
       }
 
-      return GetWindow()->GetCapture();
+      return get_wnd()->GetCapture();
 
    }
 
@@ -3472,7 +3525,7 @@ namespace user
 
       }
 
-      return GetWindow()->ReleaseCapture();
+      return get_wnd()->ReleaseCapture();
 
    }
 
@@ -3493,10 +3546,10 @@ namespace user
       if(pui == NULL)
          return;
 
-      if(pui->GetWindow() == NULL)
+      if(pui->get_wnd() == NULL)
          return;
 
-      pui->GetWindow()->mouse_hover_add(this);
+      pui->get_wnd()->mouse_hover_add(this);
 
    }
 
@@ -4026,7 +4079,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction::GetWindow() const
+   ::user::interaction * interaction::get_wnd() const
    {
 
       if(m_pimpl != NULL)
@@ -4042,7 +4095,7 @@ namespace user
       if(GetParent() == NULL)
          return NULL;
 
-      return GetParent()->GetWindow();
+      return GetParent()->get_wnd();
 
    }
 

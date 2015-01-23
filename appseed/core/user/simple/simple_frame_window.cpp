@@ -428,7 +428,7 @@ void simple_frame_window::layout()
 
    if (m_bWindowFrame && m_workset.IsAppearanceEnabled())
    {
-      //m_workset.layout();
+      m_workset.layout();
    }
    else
    {
@@ -1609,7 +1609,7 @@ void simple_frame_window::NotifyFloatingWindows(uint32_t dwFlags)
    if (oswindowDesktop.is_null())
       return;
 
-   sp(::user::interaction) oswindow = oswindowDesktop->GetWindow(GW_CHILD);
+   sp(::user::interaction) oswindow = oswindowDesktop->get_wnd(GW_CHILD);
 
    while (oswindow != NULL)
    {
@@ -1617,7 +1617,7 @@ void simple_frame_window::NotifyFloatingWindows(uint32_t dwFlags)
       if (::user::is_descendant(pParent, oswindow))
          oswindow->send_message(WM_FLOATSTATUS, dwFlags);
 
-      oswindow = oswindow->GetWindow(GW_HWNDNEXT);
+      oswindow = oswindow->get_wnd(GW_HWNDNEXT);
 
    }
 
@@ -2025,6 +2025,8 @@ bool simple_frame_window::create_bars()
 
    if(!on_create_bars())
       return false;
+
+   set_need_layout();
 
    return true;
 

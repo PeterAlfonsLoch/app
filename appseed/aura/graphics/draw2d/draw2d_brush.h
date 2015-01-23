@@ -84,13 +84,13 @@ namespace draw2d
       {
       }
 
-      brush_sp(const allocatorsp & allocer) :
+      brush_sp(const ::aura::allocatorsp & allocer) :
          smart_pointer < brush > (allocer)
       {
       }
 
       // create_solid
-      brush_sp(const allocatorsp & allocer, COLORREF crColor) :
+      brush_sp(const ::aura::allocatorsp & allocer, COLORREF crColor) :
          smart_pointer < brush > (allocer)
       {
          m_p->create_solid(crColor);

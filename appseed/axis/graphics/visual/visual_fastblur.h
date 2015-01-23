@@ -29,7 +29,7 @@ namespace visual
 
 
 
-      fastblur(const allocatorsp & allocer);
+      fastblur(const ::aura::allocatorsp & allocer);
 
 
       bool initialize(int32_t cx, int32_t cy, int32_t iRadius);

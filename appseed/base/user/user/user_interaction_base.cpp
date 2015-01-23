@@ -69,7 +69,7 @@ namespace user
 
       }
 
-      sp(::user::interaction) pui = GetWindow();
+      sp(::user::interaction) pui = get_wnd();
 
       //TRACE("interaction_base::_001RedrawWindow Is Window set?");
 
@@ -78,9 +78,9 @@ namespace user
 
          //TRACE("!! Yes !!");
 
-         GetWindow()->_001UpdateBuffer();
+         get_wnd()->_001UpdateBuffer();
 
-         GetWindow()->_001UpdateScreen();
+         get_wnd()->_001UpdateScreen();
 
       }
       else
@@ -168,7 +168,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction_base::GetWindow() const
+   ::user::interaction * interaction_base::get_wnd() const
    {
 
       return NULL;
@@ -240,7 +240,7 @@ namespace user
       for(int32_t i = 0; i < recta.get_size(); i++)
       {
 
-         if(!GetWindow()->RedrawWindow(recta[i]))
+         if(!get_wnd()->RedrawWindow(recta[i]))
             bOk = false;
 
       }
@@ -253,10 +253,10 @@ namespace user
    bool interaction_base::Redraw(LPCRECT lprect, ::draw2d::region * prgn)
    {
 
-      if(GetWindow() == NULL)
+      if(get_wnd() == NULL)
          return false;
 
-      return GetWindow()->RedrawWindow(lprect, prgn, RDW_INVALIDATE);
+      return get_wnd()->RedrawWindow(lprect, prgn, RDW_INVALIDATE);
 
    }
 
@@ -266,10 +266,10 @@ namespace user
 
       UNREFERENCED_PARAMETER(pdc);
 
-      if(GetWindow() == NULL)
+      if(get_wnd() == NULL)
          return false;
 
-      return GetWindow()->RedrawWindow();
+      return get_wnd()->RedrawWindow();
 
    }
 
@@ -1029,7 +1029,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction_base::GetWindow(UINT nCmd) const
+   ::user::interaction * interaction_base::get_wnd(UINT nCmd) const
    {
 
       ::exception::throw_interface_only(get_app());
@@ -2103,17 +2103,17 @@ namespace user
    void interaction_base::on_keyboard_focus(::user::elemental * pfocus)
    {
 
-      if(GetActiveWindow() != GetWindow())
+      if(GetActiveWindow() != get_wnd())
       {
 
-         GetWindow()->SetActiveWindow();
+         get_wnd()->SetActiveWindow();
 
       }
 
-      if(GetFocus() != GetWindow())
+      if(GetFocus() != get_wnd())
       {
 
-         GetWindow()->SetFocus();
+         get_wnd()->SetFocus();
 
       }
 

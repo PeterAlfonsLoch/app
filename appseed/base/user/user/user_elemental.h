@@ -41,7 +41,7 @@ namespace user
       virtual void keyboard_focus_OnKeyDown(signal_details * pobj);
       virtual void keyboard_focus_OnKeyUp(signal_details * pobj);
       virtual ::user::interaction * GetParent() const;
-      virtual ::user::interaction * GetWindow() const;
+      virtual ::user::interaction * get_wnd() const;
       virtual bool BaseOnControlEvent(control_event * pevent);
       virtual elemental * keyboard_get_next_focusable(elemental * pfocus = NULL,bool bSkipChild = false,bool bSkipSiblings = false,bool bSkipParent = false);
       virtual bool keyboard_set_focus();

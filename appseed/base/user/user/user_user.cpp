@@ -412,7 +412,7 @@ namespace user
          ::user::interaction * puieFocus = Application.get_focus_guie();
          if(m_pkeyboardfocus != NULL && puieFocus != NULL)
          {
-            if((bool)oprop("NativeWindowFocus") && puieFocus != m_pkeyboardfocus->GetWindow())
+            if((bool)oprop("NativeWindowFocus") && puieFocus != m_pkeyboardfocus->get_wnd())
                return NULL;
             return m_pkeyboardfocus;
          }
@@ -470,10 +470,10 @@ namespace user
          if(m_pkeyboardfocus != NULL)
          {
 
-            if(m_pkeyboardfocus->GetWindow() != NULL)
+            if(m_pkeyboardfocus->get_wnd() != NULL)
             {
 
-               m_pkeyboardfocus->GetWindow()->on_keyboard_focus(m_pkeyboardfocus);
+               m_pkeyboardfocus->get_wnd()->on_keyboard_focus(m_pkeyboardfocus);
 
             }
 

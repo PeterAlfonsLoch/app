@@ -14,7 +14,7 @@ namespace visual
 {
 
    
-   fastblur::fastblur(const allocatorsp & allocer) :
+   fastblur::fastblur(const ::aura::allocatorsp & allocer) :
       dib_sp(allocer)
    {
       

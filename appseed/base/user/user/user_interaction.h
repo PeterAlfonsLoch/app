@@ -98,6 +98,7 @@ namespace user
       ptr_array < thread >                m_threadptra;
       bool                                m_bDestroying;
 
+
       //ptr_array < bool >                  m_bptraTellMeDestroyed; // Telmo why!! :-)
 
 
@@ -107,6 +108,11 @@ namespace user
 
 
       void user_interaction_common_construct();
+
+      virtual bool defer_check_layout();
+      virtual bool check_need_layout();
+      virtual void clear_need_layout();
+      virtual void set_need_layout();
 
 
       virtual bool create_message_queue(const char * pszName);
@@ -406,8 +412,8 @@ namespace user
       virtual bool IsDescendant(const interaction * puiIsDescendant) const;
 
 
-      virtual ::user::interaction * GetWindow() const;
-      virtual ::user::interaction * GetWindow(UINT nCmd) const;
+      virtual ::user::interaction * get_wnd() const;
+      virtual ::user::interaction * get_wnd(UINT nCmd) const;
 
 
       virtual ::user::interaction * SetParent(::user::interaction * pui);

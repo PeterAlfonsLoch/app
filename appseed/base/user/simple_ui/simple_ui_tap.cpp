@@ -63,7 +63,7 @@ namespace simple_ui
       else
       {
          
-         GetWindow()->show_keyboard(false);
+         get_wnd()->show_keyboard(false);
          
       }
 

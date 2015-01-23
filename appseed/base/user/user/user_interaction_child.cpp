@@ -757,7 +757,7 @@ namespace user
    bool interaction_child::RedrawWindow(LPCRECT lpRectUpdate,::draw2d::region* prgnUpdate,UINT flags)
    {
 
-      if(System.get_twf() != NULL && System.get_twf()->m_bProDevianMode && GetWindow()->m_bMayProDevian)
+      if(System.get_twf() != NULL && System.get_twf()->m_bProDevianMode && get_wnd()->m_bMayProDevian)
          return true;
 
       if(!Session.m_bEnableOnDemandDrawing)

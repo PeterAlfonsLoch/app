@@ -39,7 +39,7 @@ namespace visual
    public:
 
       dib_sp();
-      dib_sp(const allocatorsp & allocer);
+      dib_sp(const ::aura::allocatorsp & allocer);
       virtual ~dib_sp();
 
 

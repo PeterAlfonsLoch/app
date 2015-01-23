@@ -33,9 +33,9 @@ public:
 #ifdef MOVE_SEMANTICS
    smart_pointer(smart_pointer < T > && t);
 #endif
-   smart_pointer(const allocatorsp & t);
+   smart_pointer(const ::aura::allocatorsp & t);
 #ifdef MOVE_SEMANTICS
-   smart_pointer(allocatorsp && t);
+   smart_pointer(::aura::allocatorsp && t);
 #endif
    template < class T2 >
    smart_pointer(T2 * p)
@@ -181,7 +181,7 @@ public:
 
 
    sp(T) clone() const;
-   void alloc(const allocatorsp & allocer);
+   void alloc(const ::aura::allocatorsp & spallocator);
 
 
 

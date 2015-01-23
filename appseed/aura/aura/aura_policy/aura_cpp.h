@@ -120,7 +120,6 @@ class ptra;
 class factory_item_base;
 class fixed_alloc_no_sync;
 class critical_section;
-class allocatorsp;
 class var_array;
 class pair_set_interface;
 class str_str_interface;
@@ -209,6 +208,8 @@ namespace html
 
 namespace aura
 {
+
+   class allocatorsp;
 
    template < typename T >
    inline void del(T * & p)
@@ -1103,7 +1104,7 @@ inline void string_format::printf(const char * & s)
 
 
 
-
+#include "aura/primitive/collection/collection_array_base.inl"
 #include "aura/primitive/collection/collection_array_impl.inl"
 #include "aura/primitive/collection/collection_raw_array_impl.inl"
 #include "aura/primitive/collection/collection_sort_array_impl.inl"

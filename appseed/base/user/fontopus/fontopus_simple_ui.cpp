@@ -427,7 +427,7 @@ namespace fontopus
       if (pobj->previous())
          return;
 
-      GetWindow()->show_keyboard(false);
+      get_wnd()->show_keyboard(false);
 
       m_bLButtonDown = true;
       m_bDrag = false;

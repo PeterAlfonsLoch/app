@@ -28,7 +28,7 @@ namespace aura
 
       string_to_ptr                                   m_appmap;
       string                                          m_strAppName;
-      allocatorsp                                     m_allocer;
+      ::aura::allocatorsp                                       m_allocer;
       sp(::command_thread)                            m_pcommandthread;
       sp(class signal)                                m_psignal;
 

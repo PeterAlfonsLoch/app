@@ -363,6 +363,21 @@ namespace windows
 
                }
 
+
+
+               try
+               {
+
+                  pui->defer_check_layout();
+
+               }
+               catch(...)
+               {
+
+               }
+
+
+
                try
                {
 
@@ -373,6 +388,8 @@ namespace windows
                {
 
                }
+
+
                try
                {
 

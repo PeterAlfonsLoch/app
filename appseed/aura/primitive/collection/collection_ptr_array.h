@@ -9,18 +9,18 @@ public:
 
 
 
-   inline raw_ptr_array() { this->m_bRaw = false;  }
-   inline raw_ptr_array(::aura::application * papp):element(papp) { this->m_bRaw = false;  }
-   inline raw_ptr_array(const raw_ptr_array & a) { this->m_bRaw = false; this->operator = (a); }
-   inline raw_ptr_array(raw_ptr_array && a) { this->m_bRaw = false; this->operator = (a); }
+   inline raw_ptr_array() {}
+   inline raw_ptr_array(::aura::application * papp):element(papp) {   }
+   inline raw_ptr_array(const raw_ptr_array & a) { this->operator = (a); }
+   inline raw_ptr_array(raw_ptr_array && a) { this->operator = (a); }
 
    virtual void on_construct_element(void * p)
    {
-      memset(p,0,this->m_iTypeSize);
+      zero(p,sizeof(BASE_TYPE));
    }
    virtual void on_construct_element(void *p,::count c)
    {
-      memset(p,0,this->m_iTypeSize *c);
+      zero(p,sizeof(BASE_TYPE)*c);
    }
 
    inline raw_ptr_array & operator = (const raw_ptr_array & a) { this->ARRAY_TYPE::operator = (a); return *this; }

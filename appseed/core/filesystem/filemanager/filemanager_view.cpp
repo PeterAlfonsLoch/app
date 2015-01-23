@@ -112,6 +112,15 @@ namespace filemanager
                      set_position(1, 49 + 49);
                      layout();
                   }
+                  sp(simple_frame_window) pframe = (GetParentFrame());
+
+                  if(pframe != NULL)
+                  {
+
+                      pframe->create_bars();
+
+                  }
+
                }
                else if (puh->is_type_of(update_hint::TypeSaveAsCancel))
                {

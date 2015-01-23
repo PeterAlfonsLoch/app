@@ -37,7 +37,7 @@ public:
 
    static void system(const char * pszProjectName);
 
-   inline allocatorsp & allocer();
+   inline ::aura::allocatorsp & allocer();
 
    inline ::aura::application * get_app() const { return m_pauraapp; }
 
@@ -65,27 +65,37 @@ public:
 };
 
 
-class CLASS_DECL_AURA allocator :
-   virtual public element
+namespace aura
 {
-public:
 
 
-   virtual ~allocator();
+   class CLASS_DECL_AURA allocator:
+      virtual public element
+   {
+   public:
 
 
-};
+      virtual ~allocator();
 
 
-class CLASS_DECL_AURA allocatorsp :
-   public sp(allocator)
-{
-public:
+   };
 
 
-   allocatorsp(::aura::application * papp);
+   class CLASS_DECL_AURA allocatorsp :
+      public sp(allocator)
+   {
+   public:
 
 
-};
+      allocatorsp(::aura::application * papp);
+
+
+   };
+
+
+
+} // namespace aura
+
+
 
 

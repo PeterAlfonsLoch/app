@@ -139,6 +139,8 @@ bool aura_term()
 
    ::aura::static_start::term();
 
+   processor_cache_oriented_destroy_all_memory_pools();
+
    return true;
 
 }

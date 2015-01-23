@@ -7,160 +7,161 @@
 // array is an array that call only copy constructor and destructor in elements
 // array is an array that call default constructors, copy constructs and destructors in elements
 
-//template<class TYPE, class ARG_TYPE>
-//inline ::count raw_array<TYPE, ARG_TYPE>::get_size() const
+//template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+//inline ::count raw_array < TYPE, ARG_TYPE, ALLOCATOR >::get_size() const
 //{
 //   return m_nSize;
 //}
 //
-//template<class TYPE, class ARG_TYPE>
-//inline ::count raw_array<TYPE, ARG_TYPE>::get_size_in_bytes() const
+//template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+//inline ::count raw_array < TYPE, ARG_TYPE, ALLOCATOR >::get_size_in_bytes() const
 //{
 //   return m_nSize * sizeof(TYPE);
 //}
 //
-//template<class TYPE, class ARG_TYPE>
-//inline ::count raw_array<TYPE, ARG_TYPE>::get_count() const
+//template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+//inline ::count raw_array < TYPE, ARG_TYPE, ALLOCATOR >::get_count() const
 //{
 //   return this->get_size();
 //}
 //
-//template<class TYPE, class ARG_TYPE>
-//inline ::count raw_array<TYPE, ARG_TYPE>::get_byte_count() const
+//template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+//inline ::count raw_array < TYPE, ARG_TYPE, ALLOCATOR >::get_byte_count() const
 //{
 //   return this->get_size_in_bytes();
 //}
 //
-//template<class TYPE, class ARG_TYPE>
-//inline ::count raw_array<TYPE, ARG_TYPE>::size() const
+//template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+//inline ::count raw_array < TYPE, ARG_TYPE, ALLOCATOR >::size() const
 //{
 //   return this->get_size();
 //}
 //
-//template<class TYPE, class ARG_TYPE>
-//inline ::count raw_array<TYPE, ARG_TYPE>::count() const
+//template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+//inline ::count raw_array < TYPE, ARG_TYPE, ALLOCATOR >::count() const
 //{
 //   return this->get_count();
 //}
 //
-//template<class TYPE, class ARG_TYPE>
-//inline bool raw_array<TYPE, ARG_TYPE>::is_empty(::count countMinimum) const
+//template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+//inline bool raw_array < TYPE, ARG_TYPE, ALLOCATOR >::is_empty(::count countMinimum) const
 //{
 //   return m_nSize < countMinimum;
 //}
 //
-//template<class TYPE, class ARG_TYPE>
-//inline bool raw_array<TYPE, ARG_TYPE>::empty(::count countMinimum) const
+//template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+//inline bool raw_array < TYPE, ARG_TYPE, ALLOCATOR >::empty(::count countMinimum) const
 //{
 //   return m_nSize < countMinimum;
 //}
 //
-//template<class TYPE, class ARG_TYPE>
-//inline bool raw_array<TYPE, ARG_TYPE>::has_elements(::count countMinimum) const
+//template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+//inline bool raw_array < TYPE, ARG_TYPE, ALLOCATOR >::has_elements(::count countMinimum) const
 //{
 //   return m_nSize >= countMinimum;
 //}
 //
-//template<class TYPE, class ARG_TYPE>
-//inline index raw_array<TYPE, ARG_TYPE>::get_upper_bound(index index) const
+//template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+//inline index raw_array < TYPE, ARG_TYPE, ALLOCATOR >::get_upper_bound(index index) const
 //{
 //   return m_nSize + index;
 //}
 //
-template<class TYPE, class ARG_TYPE>
-inline ::count raw_array<TYPE, ARG_TYPE>::remove_all()
+template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+inline ::count raw_array < TYPE, ARG_TYPE, ALLOCATOR >::remove_all()
 {
    return allocate(0, -1);
 }
 
-template <class TYPE, class ARG_TYPE>
-void raw_array<TYPE, ARG_TYPE>::
+template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+void raw_array < TYPE, ARG_TYPE, ALLOCATOR >::
    clear()
 {
    remove_all();
 }
 
 
-template<class TYPE, class ARG_TYPE>
-inline void raw_array<TYPE, ARG_TYPE>::remove_last()
+template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+inline void raw_array < TYPE, ARG_TYPE, ALLOCATOR >::remove_last()
 {
    remove_at(get_upper_bound());
 }
 
-template<class TYPE, class ARG_TYPE>
-inline TYPE& raw_array<TYPE, ARG_TYPE>::get_at(index nIndex)
+template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+inline TYPE& raw_array < TYPE, ARG_TYPE, ALLOCATOR >::get_at(index nIndex)
 {
    //   if(nIndex >= 0 && nIndex < m_nSize)
    return get_data()[nIndex];
    //   throw invalid_argument_exception(get_app());
 }
-template<class TYPE, class ARG_TYPE>
-inline const TYPE& raw_array<TYPE, ARG_TYPE>::get_at(index nIndex) const
+template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+inline const TYPE& raw_array < TYPE, ARG_TYPE, ALLOCATOR >::get_at(index nIndex) const
 {
    //   if(nIndex >= 0 && nIndex < m_nSize)
    return get_data()[nIndex];
    // throw invalid_argument_exception(get_app());
 }
-template<class TYPE, class ARG_TYPE>
-inline void raw_array<TYPE, ARG_TYPE>::set_at(index nIndex, ARG_TYPE newElement)
+template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+inline void raw_array < TYPE, ARG_TYPE, ALLOCATOR >::set_at(index nIndex, ARG_TYPE newElement)
 {
    //   if(nIndex >= 0 && nIndex < m_nSize)
    get_data()[nIndex] = newElement;
    // else
    //  throw invalid_argument_exception(get_app());
 }
-template<class TYPE, class ARG_TYPE>
-inline const TYPE& raw_array<TYPE, ARG_TYPE>::element_at(index nIndex) const
+template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+inline const TYPE& raw_array < TYPE, ARG_TYPE, ALLOCATOR >::element_at(index nIndex) const
 {
    //   if(nIndex >= 0 && nIndex < m_nSize)
    return get_data()[nIndex];
    // throw invalid_argument_exception(get_app());
 }
-template<class TYPE, class ARG_TYPE>
-inline TYPE& raw_array<TYPE, ARG_TYPE>::element_at(index nIndex)
+template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+inline TYPE& raw_array < TYPE, ARG_TYPE, ALLOCATOR >::element_at(index nIndex)
 {
    //   if(nIndex >= 0 && nIndex < m_nSize)
    return get_data()[nIndex];
    // throw invalid_argument_exception(get_app());
 }
-template<class TYPE, class ARG_TYPE>
-inline const TYPE& raw_array<TYPE, ARG_TYPE>::first(index nIndex) const
+template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+inline const TYPE& raw_array < TYPE, ARG_TYPE, ALLOCATOR >::first(index nIndex) const
 {
    return this->element_at(nIndex);
 }
-template<class TYPE, class ARG_TYPE>
-inline TYPE& raw_array<TYPE,ARG_TYPE>::first(index nIndex)
+template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+inline TYPE& raw_array < TYPE, ARG_TYPE, ALLOCATOR >::first(index nIndex)
 {
    return this->element_at(nIndex);
 }
-template<class TYPE, class ARG_TYPE>
-inline const TYPE& raw_array<TYPE, ARG_TYPE>::last(index index) const
+
+template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+inline const TYPE& raw_array < TYPE, ARG_TYPE, ALLOCATOR >::last(index index) const
 {
    return element_at(get_upper_bound(index));
 }
 
 
-template<class TYPE, class ARG_TYPE>
-inline TYPE& raw_array<TYPE,ARG_TYPE>::last(index index)
+template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+inline TYPE& raw_array < TYPE, ARG_TYPE, ALLOCATOR >::last(index index)
 {
    return element_at(get_upper_bound(index));
 }
 
 
-template<class TYPE, class ARG_TYPE>
-inline const TYPE* raw_array<TYPE, ARG_TYPE>::get_data() const
+template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+inline const TYPE* raw_array < TYPE, ARG_TYPE, ALLOCATOR >::get_data() const
 {
    return (const TYPE*)m_pData;
 }
 
-template<class TYPE, class ARG_TYPE>
-inline TYPE* raw_array<TYPE, ARG_TYPE>::get_data()
+template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+inline TYPE* raw_array < TYPE, ARG_TYPE, ALLOCATOR >::get_data()
 {
    return (TYPE*)m_pData;
 }
 
-template<class TYPE, class ARG_TYPE>
-inline index raw_array<TYPE, ARG_TYPE>::add(ARG_TYPE newElement)
+template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+inline index raw_array < TYPE, ARG_TYPE, ALLOCATOR >::add(ARG_TYPE newElement)
 {
    index nIndex = m_nSize;
    set_at_grow(nIndex, newElement);
@@ -168,30 +169,30 @@ inline index raw_array<TYPE, ARG_TYPE>::add(ARG_TYPE newElement)
 }
 
 
-template<class TYPE, class ARG_TYPE>
-inline index raw_array<TYPE, ARG_TYPE>::add(const raw_array & src)
+template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+inline index raw_array < TYPE, ARG_TYPE, ALLOCATOR >::add(const raw_array & src)
 {
    return append(src);
 }
 
 
-template<class TYPE, class ARG_TYPE>
-inline index raw_array<TYPE, ARG_TYPE>::add_new(::count count)
+template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+inline index raw_array < TYPE, ARG_TYPE, ALLOCATOR >::add_new(::count count)
 {
    allocate(m_nSize + count);
    return get_upper_bound();
 }
 
-template<class TYPE, class ARG_TYPE>
-inline TYPE & raw_array<TYPE, ARG_TYPE>::add_new()
+template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+inline TYPE & raw_array < TYPE, ARG_TYPE, ALLOCATOR >::add_new()
 {
    allocate(m_nSize + 1);
    return last();
 }
 
 
-template<class TYPE, class ARG_TYPE>
-inline TYPE raw_array<TYPE, ARG_TYPE>::pop(index n)
+template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+inline TYPE raw_array < TYPE, ARG_TYPE, ALLOCATOR >::pop(index n)
 {
 
    index i = get_upper_bound(n);
@@ -204,50 +205,50 @@ inline TYPE raw_array<TYPE, ARG_TYPE>::pop(index n)
 
 }
 
-template<class TYPE, class ARG_TYPE>
-inline void raw_array<TYPE, ARG_TYPE>::pop_back(index n)
+template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+inline void raw_array < TYPE, ARG_TYPE, ALLOCATOR >::pop_back(index n)
 {
 
    remove_at(get_upper_bound(n));
 
 }
 
-template<class TYPE, class ARG_TYPE>
-inline index raw_array<TYPE, ARG_TYPE>::push(ARG_TYPE newElement, index n)
+template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+inline index raw_array < TYPE, ARG_TYPE, ALLOCATOR >::push(ARG_TYPE newElement, index n)
 {
    return insert_at(get_upper_bound(n), newElement);
 }
 
-template<class TYPE, class ARG_TYPE>
-inline void raw_array<TYPE, ARG_TYPE>::push_back(ARG_TYPE newElement, index n)
+template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+inline void raw_array < TYPE, ARG_TYPE, ALLOCATOR >::push_back(ARG_TYPE newElement, index n)
 {
    insert_at(get_upper_bound(n), newElement);
 }
 
 
-template<class TYPE, class ARG_TYPE>
-inline const TYPE& raw_array<TYPE, ARG_TYPE>::operator[](index nIndex) const
+template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+inline const TYPE& raw_array < TYPE, ARG_TYPE, ALLOCATOR >::operator[](index nIndex) const
 {
    return element_at(nIndex);
 }
 
-template<class TYPE, class ARG_TYPE>
-inline TYPE& raw_array<TYPE, ARG_TYPE>::operator[](index nIndex)
+template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+inline TYPE& raw_array < TYPE, ARG_TYPE, ALLOCATOR >::operator[](index nIndex)
 {
    return this->element_at(nIndex);
 }
 
 
-template<class TYPE, class ARG_TYPE>
-inline void raw_array<TYPE, ARG_TYPE>::swap(index index1, index index2)
+template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+inline void raw_array < TYPE, ARG_TYPE, ALLOCATOR >::swap(index index1, index index2)
 {
    TYPE t = get_data()[index1];
    get_data()[index1] = get_data()[index2];
    get_data()[index2] = t;
 }
 
-template<class TYPE, class ARG_TYPE>
-inline raw_array<TYPE, ARG_TYPE> & raw_array<TYPE, ARG_TYPE>::operator = (const raw_array & src)
+template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+inline raw_array < TYPE, ARG_TYPE, ALLOCATOR > & raw_array < TYPE, ARG_TYPE, ALLOCATOR >::operator = (const raw_array & src)
 {
    if(&src != this)
    {
@@ -260,23 +261,23 @@ inline raw_array<TYPE, ARG_TYPE> & raw_array<TYPE, ARG_TYPE>::operator = (const 
 
 // out-of-line functions
 
-template<class TYPE, class ARG_TYPE>
-raw_array<TYPE, ARG_TYPE>::raw_array(::aura::application * papp, ::count nGrowBy) :
+template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+raw_array < TYPE, ARG_TYPE, ALLOCATOR >::raw_array(::aura::application * papp, ::count nGrowBy) :
 element(papp),
 array_base(papp, sizeof(TYPE), true)
 {
 }
 
-template<class TYPE, class ARG_TYPE>
-raw_array<TYPE, ARG_TYPE>::raw_array(const raw_array <TYPE, ARG_TYPE> & a) :
+template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+raw_array < TYPE, ARG_TYPE, ALLOCATOR >::raw_array(const raw_array <TYPE, ARG_TYPE> & a) :
 element(a.get_app()),
 array_base(a.get_app(),sizeof(TYPE),true)
 {
    operator = (a);
 }
 
-template<class TYPE,class ARG_TYPE>
-raw_array<TYPE,ARG_TYPE>::raw_array(raw_array <TYPE,ARG_TYPE> && a):
+template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+raw_array < TYPE, ARG_TYPE, ALLOCATOR >::raw_array(raw_array <TYPE,ARG_TYPE> && a):
 element(a.get_app()),
 array_base(a.get_app(),sizeof(TYPE),true)
 {
@@ -294,23 +295,23 @@ array_base(a.get_app(),sizeof(TYPE),true)
 }
 
 
-template<class TYPE, class ARG_TYPE>
-raw_array<TYPE, ARG_TYPE>:: raw_array(::count n) :
+template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+raw_array < TYPE, ARG_TYPE, ALLOCATOR >:: raw_array(::count n) :
 array_base(sizeof(TYPE),true)
 {
    allocate(n);
 }
 
-template<class TYPE, class ARG_TYPE>
-raw_array<TYPE, ARG_TYPE>::raw_array(ARG_TYPE t, ::count n) :
+template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+raw_array < TYPE, ARG_TYPE, ALLOCATOR >::raw_array(ARG_TYPE t, ::count n) :
 array_base(sizeof(TYPE),true)
 {
    insert_at(0, t, n);
 }
 
 
-template<class TYPE, class ARG_TYPE>
-raw_array<TYPE, ARG_TYPE>::raw_array(TYPE * ptypea, ::count n) :
+template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+raw_array < TYPE, ARG_TYPE, ALLOCATOR >::raw_array(TYPE * ptypea, ::count n) :
 array_base(sizeof(TYPE),true)
 {
    allocate(n);
@@ -322,16 +323,16 @@ array_base(sizeof(TYPE),true)
 
 
 
-template<class TYPE, class ARG_TYPE>
-raw_array<TYPE, ARG_TYPE>::~raw_array()
+template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+raw_array < TYPE, ARG_TYPE, ALLOCATOR >::~raw_array()
 {
 
    destroy();
 
 }
 
-//template<class TYPE, class ARG_TYPE>
-//void raw_array<TYPE, ARG_TYPE>::destroy()
+//template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+//void raw_array < TYPE, ARG_TYPE, ALLOCATOR >::destroy()
 //{
 //   if (m_pData != NULL)
 //   {
@@ -346,22 +347,22 @@ raw_array<TYPE, ARG_TYPE>::~raw_array()
 //}
 
 
-//template<class TYPE, class ARG_TYPE>
-//::count raw_array<TYPE, ARG_TYPE>::set_size(::count nNewSize, ::count nGrowBy)
+//template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+//::count raw_array < TYPE, ARG_TYPE, ALLOCATOR >::set_size(::count nNewSize, ::count nGrowBy)
 //{
 //   return allocate(nNewSize, nGrowBy);
 //}
 //
 //
-//template<class TYPE, class ARG_TYPE>
-//::count raw_array<TYPE, ARG_TYPE>::resize(::count nNewSize, ::count nGrowBy)
+//template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+//::count raw_array < TYPE, ARG_TYPE, ALLOCATOR >::resize(::count nNewSize, ::count nGrowBy)
 //{
 //   return allocate(nNewSize, nGrowBy);
 //}
 //
 //
-//template<class TYPE, class ARG_TYPE>
-//::count raw_array<TYPE, ARG_TYPE>::allocate_in_bytes(::count nNewSize, ::count nGrowBy)
+//template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+//::count raw_array < TYPE, ARG_TYPE, ALLOCATOR >::allocate_in_bytes(::count nNewSize, ::count nGrowBy)
 //{
 //   if(nGrowBy < 0)
 //   {
@@ -373,8 +374,8 @@ raw_array<TYPE, ARG_TYPE>::~raw_array()
 //   }
 //}
 
-//template<class TYPE, class ARG_TYPE>
-//::count raw_array<TYPE, ARG_TYPE>::allocate(::count nNewSize, ::count nGrowBy)
+//template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+//::count raw_array < TYPE, ARG_TYPE, ALLOCATOR >::allocate(::count nNewSize, ::count nGrowBy)
 //{
 //   ::count countOld = get_count();
 //   ASSERT_VALID(this);
@@ -488,8 +489,8 @@ raw_array<TYPE, ARG_TYPE>::~raw_array()
 //
 
 //
-//template<class TYPE, class ARG_TYPE>
-//void raw_array<TYPE, ARG_TYPE>::free_extra()
+//template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+//void raw_array < TYPE, ARG_TYPE, ALLOCATOR >::free_extra()
 //{
 //   ASSERT_VALID(this);
 //
@@ -515,8 +516,8 @@ raw_array<TYPE, ARG_TYPE>::~raw_array()
 //   }
 //}
 
-template<class TYPE, class ARG_TYPE>
-void raw_array<TYPE, ARG_TYPE>::set_at_grow(index nIndex, ARG_TYPE newElement)
+template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+void raw_array < TYPE, ARG_TYPE, ALLOCATOR >::set_at_grow(index nIndex, ARG_TYPE newElement)
 {
    //ASSERT_VALID(this);
    //ASSERT(nIndex >= 0);
@@ -529,15 +530,15 @@ void raw_array<TYPE, ARG_TYPE>::set_at_grow(index nIndex, ARG_TYPE newElement)
    get_data()[nIndex] = newElement;
 }
 
-template<class TYPE, class ARG_TYPE>
-TYPE raw_array<TYPE, ARG_TYPE>::get_at_grow(index nIndex)
+template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+TYPE raw_array < TYPE, ARG_TYPE, ALLOCATOR >::get_at_grow(index nIndex)
 {
    return element_at_grow(nIndex);
 }
 
 
-template<class TYPE, class ARG_TYPE>
-TYPE & raw_array<TYPE, ARG_TYPE>::element_at_grow(index nIndex)
+template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+TYPE & raw_array < TYPE, ARG_TYPE, ALLOCATOR >::element_at_grow(index nIndex)
 {
    ASSERT_VALID(this);
    ASSERT(nIndex >= 0);
@@ -551,15 +552,15 @@ TYPE & raw_array<TYPE, ARG_TYPE>::element_at_grow(index nIndex)
 }
 
 
-template<class TYPE, class ARG_TYPE>
-index raw_array<TYPE, ARG_TYPE>::insert_at(index nIndex, ARG_TYPE newElement, ::count nCount /*=1*/)
+template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+index raw_array < TYPE, ARG_TYPE, ALLOCATOR >::insert_at(index nIndex, ARG_TYPE newElement, ::count nCount /*=1*/)
 {
    return array_base::insert_at(nIndex,&newElement,nCount);
 }
 
 
-//template<class TYPE, class ARG_TYPE>
-//index raw_array<TYPE, ARG_TYPE>::insert_at(index nStartIndex, raw_array * pNewArray)
+//template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+//index raw_array < TYPE, ARG_TYPE, ALLOCATOR >::insert_at(index nStartIndex, raw_array * pNewArray)
 //{
 //   ASSERT_VALID(this);
 //   ASSERT(pNewArray != NULL);
@@ -581,8 +582,8 @@ index raw_array<TYPE, ARG_TYPE>::insert_at(index nIndex, ARG_TYPE newElement, ::
 //}
 
 
-template<class TYPE, class ARG_TYPE>
-void raw_array<TYPE, ARG_TYPE>::dump(dump_context & dumpcontext) const
+template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+void raw_array < TYPE, ARG_TYPE, ALLOCATOR >::dump(dump_context & dumpcontext) const
 {
    object::dump(dumpcontext);
 
@@ -596,8 +597,8 @@ void raw_array<TYPE, ARG_TYPE>::dump(dump_context & dumpcontext) const
    dumpcontext << "\n";
 }
 
-template<class TYPE, class ARG_TYPE>
-void raw_array<TYPE, ARG_TYPE>::assert_valid() const
+template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+void raw_array < TYPE, ARG_TYPE, ALLOCATOR >::assert_valid() const
 {
    object::assert_valid();
 
@@ -615,8 +616,8 @@ void raw_array<TYPE, ARG_TYPE>::assert_valid() const
    }
 }
 
-template<class TYPE, class ARG_TYPE>
-typename raw_array<TYPE, ARG_TYPE>::iterator raw_array<TYPE, ARG_TYPE>::erase(iterator pos)
+template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+typename raw_array < TYPE, ARG_TYPE, ALLOCATOR >::iterator raw_array < TYPE, ARG_TYPE, ALLOCATOR >::erase(iterator pos)
 {
    if(pos.m_parray == this)
    {
@@ -629,8 +630,8 @@ typename raw_array<TYPE, ARG_TYPE>::iterator raw_array<TYPE, ARG_TYPE>::erase(it
    }
 }
 
-template<class TYPE, class ARG_TYPE>
-typename  raw_array<TYPE, ARG_TYPE>::iterator raw_array<TYPE, ARG_TYPE>::erase(iterator begin, iterator last)
+template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+typename  raw_array < TYPE, ARG_TYPE, ALLOCATOR >::iterator raw_array < TYPE, ARG_TYPE, ALLOCATOR >::erase(iterator begin, iterator last)
 {
    if(begin.m_parray == this && last.m_parray == this)
    {
@@ -652,8 +653,8 @@ typename  raw_array<TYPE, ARG_TYPE>::iterator raw_array<TYPE, ARG_TYPE>::erase(i
 }
 
 
-template <class TYPE, class ARG_TYPE>
-index raw_array<TYPE, ARG_TYPE>::raw_find_first(TYPE *pt, index find, index last) const
+template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+index raw_array < TYPE, ARG_TYPE, ALLOCATOR >::raw_find_first(TYPE *pt, index find, index last) const
 {
    if(find < 0)
       find += this->get_count();
@@ -666,8 +667,8 @@ index raw_array<TYPE, ARG_TYPE>::raw_find_first(TYPE *pt, index find, index last
    }
    return -1;
 }
-template <class TYPE, class ARG_TYPE>
-index raw_array<TYPE, ARG_TYPE>::find_first(ARG_TYPE t, index ( * lpfnCompare )(ARG_TYPE, ARG_TYPE), index find, index last) const
+template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+index raw_array < TYPE, ARG_TYPE, ALLOCATOR >::find_first(ARG_TYPE t, index ( * lpfnCompare )(ARG_TYPE, ARG_TYPE), index find, index last) const
 {
    if(find < 0)
       find += this->get_count();
@@ -684,13 +685,13 @@ index raw_array<TYPE, ARG_TYPE>::find_first(ARG_TYPE t, index ( * lpfnCompare )(
 
 
 
-template <class TYPE, class ARG_TYPE>
-raw_array<TYPE, ARG_TYPE> & raw_array<TYPE, ARG_TYPE>::operator += (const raw_array & a)
+template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+raw_array < TYPE, ARG_TYPE, ALLOCATOR > & raw_array < TYPE, ARG_TYPE, ALLOCATOR >::operator += (const raw_array & a)
 {
 
    if(&a == this)
    {
-      raw_array<TYPE, ARG_TYPE> aCopy(a);
+      raw_array < TYPE, ARG_TYPE, ALLOCATOR > aCopy(a);
       add(aCopy);
    }
    else
@@ -701,10 +702,10 @@ raw_array<TYPE, ARG_TYPE> & raw_array<TYPE, ARG_TYPE>::operator += (const raw_ar
 
 }
 
-template <class TYPE, class ARG_TYPE>
-raw_array<TYPE, ARG_TYPE> raw_array<TYPE, ARG_TYPE>::operator + (const raw_array & a) const
+template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+raw_array < TYPE, ARG_TYPE, ALLOCATOR > raw_array < TYPE, ARG_TYPE, ALLOCATOR >::operator + (const raw_array & a) const
 {
-   raw_array<TYPE, ARG_TYPE> aNew(*this);
+   raw_array < TYPE, ARG_TYPE, ALLOCATOR > aNew(*this);
    aNew += a;
    return a;
 }
@@ -716,8 +717,8 @@ raw_array<TYPE, ARG_TYPE> raw_array<TYPE, ARG_TYPE>::operator + (const raw_array
 
 
 
-template <class TYPE, class ARG_TYPE>
-inline raw_array<TYPE, ARG_TYPE> & raw_array<TYPE, ARG_TYPE>::operator =(raw_array && a)
+template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+inline raw_array < TYPE, ARG_TYPE, ALLOCATOR > & raw_array < TYPE, ARG_TYPE, ALLOCATOR >::operator =(raw_array && a)
 {
 
 	return move(::move(a));
@@ -728,8 +729,8 @@ inline raw_array<TYPE, ARG_TYPE> & raw_array<TYPE, ARG_TYPE>::operator =(raw_arr
 
 
 
-template <class TYPE, class ARG_TYPE>
-inline raw_array<TYPE, ARG_TYPE> & raw_array<TYPE, ARG_TYPE>::move(raw_array && a)
+template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+inline raw_array < TYPE, ARG_TYPE, ALLOCATOR > & raw_array < TYPE, ARG_TYPE, ALLOCATOR >::move(raw_array && a)
 {
 
 	if (&a != this)

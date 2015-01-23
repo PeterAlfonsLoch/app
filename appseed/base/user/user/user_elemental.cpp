@@ -83,7 +83,7 @@ namespace user
 
    }
 
-   ::user::interaction * elemental::GetWindow() const
+   ::user::interaction * elemental::get_wnd() const
    {
 
       return NULL;

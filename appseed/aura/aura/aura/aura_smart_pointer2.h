@@ -48,7 +48,7 @@
    }
 
    template < class T >
-   smart_pointer < T > ::smart_pointer(const allocatorsp & a)
+   smart_pointer < T > ::smart_pointer(const ::aura::allocatorsp & a)
    {
       m_p = NULL;
       alloc(a);
@@ -56,7 +56,7 @@
 
 #ifdef MOVE_SEMANTICS
    template < class T >
-   smart_pointer < T > ::smart_pointer(allocatorsp && a)
+   smart_pointer < T > ::smart_pointer(::aura::allocatorsp && a)
    {
       m_p = NULL;
       alloc(a);
@@ -225,14 +225,25 @@
    template < class T >
    void smart_pointer < T > ::oattrib(const sp(T) & p)
    {
+      
       if(p.m_p == NULL)
       {
+         
          release();
+         
          return;
+
       }
+      
       if(is_null())
+      {
+
          alloc(p->allocer());
+
+      }
+
       *m_p = *p.m_p;
+
    }
 
 

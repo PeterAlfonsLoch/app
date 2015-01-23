@@ -76,9 +76,16 @@ namespace user
 
       ::user::interaction *         m_puiCapture;
 
+      bool                          m_bNeedLayout;
+
 
       interaction_impl();
 
+
+
+      virtual bool check_need_layout();
+      virtual void clear_need_layout();
+      virtual void set_need_layout();
 
       virtual bool create_message_queue(const char * pszName);
 
