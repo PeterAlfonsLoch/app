@@ -1844,6 +1844,12 @@ namespace base
    string application::get_license_id()
    {
 
+      if(m_strLicense.has_char())
+         return m_strLicense;
+
+      if(m_strInstallToken.has_char())
+         return m_strInstallToken;
+
       return m_strAppId;
 
    }

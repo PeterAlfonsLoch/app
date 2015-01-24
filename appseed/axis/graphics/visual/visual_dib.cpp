@@ -10,7 +10,7 @@
 
 ////#include FT_FREETYPE_H
 
-bool windows_write_dib_to_file(::file::buffer_sp,::draw2d::dib * pdib,::visual::save_image * psaveimage, ::aura::application * papp);
+bool windows_write_dib_to_file(::file::buffer_sp,::draw2d::dib * pdib,::visual::save_image * psaveimage,::aura::application * papp);
 bool windows_load_dib_from_file(::draw2d::dib * pdib,::file::buffer_sp,::aura::application * papp);
 
 namespace visual
@@ -21,7 +21,7 @@ namespace visual
    {
    }
 
-   dib_sp::dib_sp(const ::aura::allocatorsp & allocer) :
+   dib_sp::dib_sp(const ::aura::allocatorsp & allocer):
       ::draw2d::dib_sp(allocer)
    {
    }
@@ -32,10 +32,10 @@ namespace visual
 
 
 
-   bool dib_sp::load_from_file(var varFile, bool bCache)
+   bool dib_sp::load_from_file(var varFile,bool bCache)
    {
 
-      return Sys(m_p->m_pauraapp).visual().imaging().load_from_file(m_p, varFile, bCache, m_p->m_pauraapp);
+      return Sys(m_p->m_pauraapp).visual().imaging().load_from_file(m_p,varFile,bCache,m_p->m_pauraapp);
 
    }
 
@@ -43,7 +43,7 @@ namespace visual
    bool dib_sp::load_from_matter(const char * pszMatter)
    {
 
-      return Sys(m_p->m_pauraapp).visual().imaging().load_from_file(m_p, m_p->m_pauraapp->m_paxisapp->dir().matter(pszMatter), true, m_p->m_pauraapp);
+      return Sys(m_p->m_pauraapp).visual().imaging().load_from_file(m_p,m_p->m_pauraapp->m_paxisapp->dir().matter(pszMatter),true,m_p->m_pauraapp);
 
    }
 
@@ -51,28 +51,28 @@ namespace visual
    bool dib_sp::read_from_file(::file::buffer_sp spfile)
    {
 
-      return Sys(m_p->m_pauraapp).visual().imaging().read_from_file(m_p, spfile, m_p->m_pauraapp);
+      return Sys(m_p->m_pauraapp).visual().imaging().read_from_file(m_p,spfile,m_p->m_pauraapp);
 
    }
 
 
-   bool dib_sp::save_to_file(var varFile, save_image * psaveimage)
+   bool dib_sp::save_to_file(var varFile,save_image * psaveimage)
    {
       ::file::buffer_sp spfile;
-      spfile = Sess(m_p->m_pauraapp).file().get_file(varFile, ::file::mode_create | ::file::mode_write | ::file::type_binary | ::file::defer_create_directory);
+      spfile = Sess(m_p->m_pauraapp).file().get_file(varFile,::file::mode_create | ::file::mode_write | ::file::type_binary | ::file::defer_create_directory);
       if(spfile.is_null())
          return false;
-      return write_to_file(spfile, psaveimage);
+      return write_to_file(spfile,psaveimage);
    }
 
-   bool dib_sp::write_to_file(::file::buffer_sp pfile, save_image * psaveimage)
+   bool dib_sp::write_to_file(::file::buffer_sp pfile,save_image * psaveimage)
    {
       save_image saveimageDefault;
       if(psaveimage == NULL)
          psaveimage = &saveimageDefault;
 #ifdef WINDOWSEX
 
-      return windows_write_dib_to_file(pfile, m_p, psaveimage, m_p->get_app());
+      return windows_write_dib_to_file(pfile,m_p,psaveimage,m_p->get_app());
 
 #elif METROWIN
 
@@ -300,7 +300,7 @@ bool windows_load_dib_from_file(::draw2d::dib * pdib,::file::buffer_sp pfile,::a
 
    mem.allocate(iSize);
 
-   pfile->read(mem.get_data(), iSize);
+   pfile->read(mem.get_data(),iSize);
    try
    {
 
@@ -318,7 +318,7 @@ bool windows_load_dib_from_file(::draw2d::dib * pdib,::file::buffer_sp pfile,::a
       if(SUCCEEDED(hr))
       {
 
-         hr = piFactory->CreateDecoderFromStream(pstream, NULL, WICDecodeMetadataCacheOnDemand, &decoder.get());
+         hr = piFactory->CreateDecoderFromStream(pstream,NULL,WICDecodeMetadataCacheOnDemand,&decoder.get());
       }
 
       //if(SUCCEEDED(hr))
@@ -437,15 +437,15 @@ bool windows_load_dib_from_file(::draw2d::dib * pdib,::file::buffer_sp pfile,::a
 
    //memfile.Truncate(0);
 
-//}
+   //}
    return true;
 
 }
 
 
-bool windows_write_dib_to_file(::file::buffer_sp pfile,::draw2d::dib * pdib,::visual::save_image * psaveimage, ::aura::application * papp)
+bool windows_write_dib_to_file(::file::buffer_sp pfile,::draw2d::dib * pdib,::visual::save_image * psaveimage,::aura::application * papp)
 {
-   
+
    comptr < IStream > pstream = SHCreateMemStream(NULL,NULL);
 
    //m_spmemfile->Truncate(0);
@@ -484,7 +484,7 @@ bool windows_write_dib_to_file(::file::buffer_sp pfile,::draw2d::dib * pdib,::vi
       {
       case ::visual::image::format_bmp:
          hr = piFactory->CreateEncoder(GUID_ContainerFormatBmp,NULL,&piEncoder.get());
-      break;
+         break;
       case ::visual::image::format_gif:
          hr = piFactory->CreateEncoder(GUID_ContainerFormatGif,NULL,&piEncoder.get());
          break;
@@ -564,16 +564,16 @@ bool windows_write_dib_to_file(::file::buffer_sp pfile,::draw2d::dib * pdib,::vi
       //}
       if(psaveimage->m_eformat == ::visual::image::format_jpeg)
       {
-            PROPBAG2 option ={0};
-            option.pstrName = L"ImageQuality";
-            VARIANT varValue;
-            VariantInit(&varValue);
-            varValue.vt = VT_R4;
-            varValue.fltVal = MAX(0.f, MIN(1.f, psaveimage->m_iQuality / 100.0f));
-            if(SUCCEEDED(hr))
-            {
-               hr = pPropertybag->Write(1,&option,&varValue);
-            }
+         PROPBAG2 option ={0};
+         option.pstrName = L"ImageQuality";
+         VARIANT varValue;
+         VariantInit(&varValue);
+         varValue.vt = VT_R4;
+         varValue.fltVal = MAX(0.f,MIN(1.f,psaveimage->m_iQuality / 100.0f));
+         if(SUCCEEDED(hr))
+         {
+            hr = pPropertybag->Write(1,&option,&varValue);
+         }
       }
       if(SUCCEEDED(hr))
       {
@@ -594,13 +594,73 @@ bool windows_write_dib_to_file(::file::buffer_sp pfile,::draw2d::dib * pdib,::vi
 
    if(SUCCEEDED(hr))
    {
-      hr = IsEqualGUID(formatGUID,GUID_WICPixelFormat32bppBGRA) ? S_OK : E_FAIL;
+      if(IsEqualGUID(formatGUID,GUID_WICPixelFormat32bppBGRA))
+      {
+         if(SUCCEEDED(hr))
+         {
+            hr = piBitmapFrame->WritePixels(uiHeight,uiWidth * sizeof(COLORREF),uiHeight*uiWidth * sizeof(COLORREF),(BYTE *)pdib->m_pcolorref);
+         }
+      }
+      else
+      {
+
+         comptr <IWICBitmap> pbitmap;
+
+         if(SUCCEEDED(hr))
+         {
+            hr=piFactory->CreateBitmapFromMemory(
+               pdib->m_size.cx,
+               pdib->m_size.cy,
+               GUID_WICPixelFormat32bppBGRA,
+               pdib->m_iScan,
+               pdib->m_iScan * pdib->m_size.cy,
+               (BYTE *)pdib->m_pcolorref,
+               &pbitmap.get()
+               );
+         }
+
+         comptr<IWICFormatConverter> pconverter;
+
+         if(SUCCEEDED(hr))
+         {
+
+            hr = piFactory->CreateFormatConverter(&pconverter.get());
+
+         }
+
+
+
+         if(SUCCEEDED(hr))
+         {
+
+            hr = pconverter->Initialize(pbitmap,formatGUID,WICBitmapDitherTypeNone,NULL,0.f,WICBitmapPaletteTypeCustom);
+         }
+
+         //Step 4: Create render target and D2D bitmap from IWICBitmapSource
+         //UINT width=0;
+         //UINT height=0;
+         //if(SUCCEEDED(hr))
+         //{
+         //   hr = pbitmap->GetSize(&width,&height);
+         //}
+
+         //pdib->create(width,height);
+
+         if(SUCCEEDED(hr))
+         {
+            hr = piBitmapFrame->WriteSource(pconverter,NULL);
+         }
+
+
+         //for(int k = 0; k < height; k++)
+         //{
+         //   memcpy(&pb[k * iStride],&mem.get_data()[(height - 1 - k) * iStride],iStride);
+         //}
+
+      }
    }
 
-   if(SUCCEEDED(hr))
-   {
-      hr = piBitmapFrame->WritePixels(uiHeight,uiWidth * sizeof(COLORREF),uiHeight*uiWidth * sizeof(COLORREF),(BYTE *)pdib->m_pcolorref);
-   }
+
 
    if(SUCCEEDED(hr))
    {
@@ -648,7 +708,7 @@ bool windows_write_dib_to_file(::file::buffer_sp pfile,::draw2d::dib * pdib,::vi
 
       ul = stg.cbSize.QuadPart - ulPos;
 
-      pstream->Read(mem.get_data(),MIN(ul, mem.get_size()),&ulRead);
+      pstream->Read(mem.get_data(),MIN(ul,mem.get_size()),&ulRead);
 
       if(ulRead > 0)
       {

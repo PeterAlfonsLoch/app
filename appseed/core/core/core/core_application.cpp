@@ -433,7 +433,7 @@ namespace core
       if(!::base::application::initialize_instance())
          return false;
 
-      if(!is_session())
+      if(!is_session() && !is_system())
       {
 
          if(directrix()->m_varTopicQuery.has_property("install"))
@@ -441,6 +441,13 @@ namespace core
 
             if(is_user_service())
             {
+               
+               if(Session.fontopus()->get_user() != NULL && Session.fontopus()->get_user()->m_strLogin == "system")
+               {
+                  
+                  Session.fontopus()->m_puser = NULL;
+
+               }
 
                ApplicationUser;
 
