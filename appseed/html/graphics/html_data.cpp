@@ -155,7 +155,7 @@ namespace html
 
       m_focusptra.remove_all();
 
-      m_elemental.destroy();
+      m_elemental.destroy(this);
 
       m_bImplemented = false;
 
