@@ -867,3 +867,32 @@ void Free_check_pointer_in_cpp(void * p)
    }
 
 }
+
+#ifdef DEBUG
+void plex_heap_alloc_array::free(void * p,size_t size)
+{
+
+/*   int xxx = MIN(1024,size * 2 / 3);
+
+   memset(&((byte *)p)[xxx],0xCD,size - xxx); // attempt to invalidate memory so it get unusable (as it should be after free). // but preserve first xxx bytes so vtable indicating object type may be eventually preserved for debugging
+   */
+
+   memset(p,0xCD,size); // attempt to invalidate memory so it get unusable (as it should be after free). 
+
+   plex_heap_alloc * palloc = find(size);
+
+   if(palloc != NULL)
+   {
+
+      return palloc->Free(p);
+
+   }
+   else
+   {
+
+      return ::system_heap_free(p);
+
+   }
+
+}
+#endif

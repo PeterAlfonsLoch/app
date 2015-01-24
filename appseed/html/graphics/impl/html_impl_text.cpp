@@ -523,6 +523,13 @@ namespace html
 
       void text::_001OnDraw(data * pdata)
       {
+
+         if(pdata->is_locked())
+         {
+
+            // I am gonna blink and fail away (deleting?) // isn't new html page ready so you just call new drawing
+            return;
+         }
       
          COLORREF crBkSel = RGB(120, 240, 150);
          

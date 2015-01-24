@@ -18,7 +18,7 @@ namespace aura
       mutex                            m_mutex;
       string                           m_strTitle;
       string                           m_strPathName;
-      sp(::aura::impact_system)        m_pdocumentemplate;
+      sp(::aura::impact_system)        m_pimpactsystem;
       spa(::aura::impact)              m_viewptra;
       bool                             m_bModified;
       bool                             m_bNew;
@@ -116,12 +116,14 @@ namespace aura
       // Special notifications
       virtual void on_changed_view_list(single_lock * psl = NULL); // after add or remove ::aura::impact
       virtual void delete_contents(); // delete doc items etc
+      
 
       // File helpers
       virtual bool on_new_document();
       virtual bool on_open_document(var varFile);
       virtual bool on_save_document(var varFile);
       virtual void on_close_document(single_lock * psl = NULL);
+      virtual void close_document();
       virtual void report_save_load_exception(const char * lpszPathName, ::exception::base* e, bool bSaving, const char * nIDPDefault);
 
       // advanced overridables, closing down frame/doc, etc.

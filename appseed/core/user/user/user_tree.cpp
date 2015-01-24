@@ -761,11 +761,7 @@ namespace user
       if (is_selected(pitem))
          return;
 
-      //if (is_selected(pitem->m_pparent))
-      //{
-         selection_add(pitem);
-        // return;
-      //}
+      selection_set(pitem);
 
    }
 
@@ -1004,7 +1000,17 @@ namespace user
 
       actioncontext.add(this);
 
+      // TODO: if(m_bSelectOnClik) if(m_bInAJungleFeel)
+      // {
+      //_001SelectItem(pitem);
+      // } END TODO
+
       pitem->m_ptree->_001OnOpenItem(pitem, actioncontext);
+
+      // TODO: if(m_bSelectOnClik) if(m_bGlueFeel)
+      // {
+      _001SelectItem(pitem);
+      // } END TODO
 
    }
 

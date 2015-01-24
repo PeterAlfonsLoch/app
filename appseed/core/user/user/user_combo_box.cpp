@@ -1431,7 +1431,7 @@ namespace user
 
       m_straList.add(lpszString);
 
-      m_uiptra.add(dwItemData);
+      m_straValue.add(::str::from(dwItemData));
 
       return m_straList.get_upper_bound();
 
@@ -1448,7 +1448,7 @@ namespace user
 
       m_straList.add(lpszString);
 
-      m_uiptra.add((uint_ptr) id(strValue).m_psz);
+      m_straValue.add(strValue);
 
       return m_straList.get_upper_bound();
 
@@ -1483,7 +1483,12 @@ namespace user
    void combo_box::_001SetCurSelByStringValue(const string & strValue,::action::context actioncontext)
    {
 
-      _001SetCurSelByData((uint_ptr)id(strValue).m_psz,actioncontext);
+      index iSel = m_straValue.find_first(strValue);
+
+      if(iSel < 0)
+         return;
+
+      _001SetCurSel(iSel,actioncontext);
 
    }
 
@@ -1491,32 +1496,7 @@ namespace user
    void combo_box::_001SetCurSelByData(uint_ptr ui,::action::context actioncontext)
    {
 
-      //::count c = _001GetListCount();
-
-      //index iSel = -1;
-
-      //for(index i = 0; i < c; i++)
-      //{
-
-      //   if(GetItemData(i) == ui)
-      //   {
-
-      //      iSel = i;
-
-      //      break;
-
-      //   }
-
-      //}
-
-      //if(iSel < 0)
-      //   return;
-
-
-      //_001SetCurSel(iSel,actioncontext);
-
-
-      index iSel = m_uiptra.find_first(ui);
+      index iSel = m_straValue.find_first(::str::from(ui));
 
       if(iSel < 0)
          return;
@@ -1534,12 +1514,9 @@ namespace user
       if(iSel < 0)
          return "";
 
-      uint_ptr ui = m_uiptra[iSel];
+      string str = m_straValue[iSel];
 
-      if(ui == 0)
-         return "";
-
-      return *((string *)ui);
+      return str;
 
    }
 

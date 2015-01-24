@@ -45,9 +45,9 @@ namespace user
       e_style                    m_estyle;
 
       bool                       m_bEdit;
-      e_data_mode                   m_edatamode;
-      stringa                       m_straList;
-      uint_ptr_array    m_uiptra;
+      e_data_mode                m_edatamode;
+      stringa                    m_straList;
+      stringa                    m_straValue;
 
 
 

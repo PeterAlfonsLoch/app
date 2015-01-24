@@ -668,6 +668,8 @@ restart:
 
       ::draw2d::memory_graphics pdc(allocer());
 
+      ::data::lock l(this);
+
       m_pui  = pform;
 
       m_pform  = pform;

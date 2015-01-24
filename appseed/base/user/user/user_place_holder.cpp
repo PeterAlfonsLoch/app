@@ -14,6 +14,7 @@ namespace user
    {
    }
 
+
    place_holder::~place_holder()
    {
    }
@@ -139,6 +140,33 @@ namespace user
    {
 
       return ::user::interaction::create_window(NULL, NULL, WS_VISIBLE | WS_CHILD /*__WS_DEFAULT_VIEW*/, rect, pcontainer, id) != FALSE;
+
+   }
+
+   sp(place_holder) place_holder::create_shadow_clone()
+   {
+
+      sp(place_holder) pholder = canew(place_holder(get_app()));
+
+      if(pholder.is_null())
+      {
+
+         return NULL;
+
+      }
+
+      ::rect r;
+
+      GetWindowRect(r);
+
+      if(!pholder->::user::interaction::create_window(NULL,NULL,WS_CHILD /*__WS_DEFAULT_VIEW*/,r,GetParent(),m_id))
+      {
+
+         return NULL;
+
+      }
+
+      return pholder;
 
    }
 

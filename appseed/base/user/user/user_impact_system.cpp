@@ -57,16 +57,16 @@ namespace aura
 
    void impact_system::add_document(::aura::document * pdocument)
    {
-      ASSERT(pdocument->m_pdocumentemplate == NULL);   // no template attached yet
+      ASSERT(pdocument->m_pimpactsystem == NULL);   // no template attached yet
 //      Application.defer_add_document_template(this);
-      pdocument->m_pdocumentemplate = this;
+      pdocument->m_pimpactsystem = this;
       pdocument->install_message_handling(pdocument);
    }
 
    void impact_system::remove_document(::aura::document * pdocument)
    {
-      ASSERT(pdocument->m_pdocumentemplate == this);   // must be attached to us
-      pdocument->m_pdocumentemplate = NULL;
+      ASSERT(pdocument->m_pimpactsystem == this);   // must be attached to us
+      pdocument->m_pimpactsystem = NULL;
    }
 
    impact_system::Confidence impact_system::MatchDocType(const char * lpszPathName, ::aura::document *& rpDocMatch)
@@ -249,20 +249,27 @@ namespace aura
 
    void impact_system::close_all_documents(bool)
    {
+
       for (index index = 0; index < get_document_count(); index++)
       {
+
          try
          {
             sp(::aura::document) pdocument = get_document(index);
-            pdocument->on_close_document();
-            remove_document(pdocument);
-            pdocument.release();
+
+            pdocument->close_document();
+            
          }
          catch (...)
          {
+
          }
+
       }
+
    }
+   
+   
 
    void impact_system::on_idle()
    {

@@ -32,7 +32,7 @@ html_form::~html_form()
 void html_form::_001OnDraw(::draw2d::graphics * pdc)
 {
 
-   ::user::interaction::_001OnDraw(pdc);
+//   ::user::interaction::_001OnDraw(pdc);
 
 
    sp(::html::data) sphtmldata;

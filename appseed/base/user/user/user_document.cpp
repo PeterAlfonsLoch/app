@@ -12,7 +12,7 @@ namespace aura
       m_mutex(NULL)
    {
 
-      m_pdocumentemplate = NULL;
+      m_pimpactsystem = NULL;
       m_bModified = FALSE;
       m_bAutoDelete = TRUE;       // default to auto delete document
       m_bEmbedded = FALSE;        // default to file-based document
@@ -33,9 +33,9 @@ namespace aura
       disconnect_views();
       ASSERT(m_viewptra.is_empty());
 
-      if (m_pdocumentemplate != NULL)
-         m_pdocumentemplate->remove_document(this);
-      ASSERT(m_pdocumentemplate == NULL);     // must be detached
+      if (m_pimpactsystem != NULL)
+         m_pimpactsystem->remove_document(this);
+//      ASSERT(m_pimpactsystem == NULL);     // must be detached
    }
 
 
@@ -46,8 +46,8 @@ namespace aura
          return TRUE;
 
       // otherwise check template
-      if (m_pdocumentemplate != NULL &&
-         m_pdocumentemplate->_001OnCmdMsg(pcmdmsg))
+      if (m_pimpactsystem != NULL &&
+         m_pimpactsystem->_001OnCmdMsg(pcmdmsg))
          return TRUE;
 
       return FALSE;
@@ -61,7 +61,7 @@ namespace aura
       dumpcontext << "m_wstrTitle = " << m_strTitle;
       dumpcontext << "\nm_wstrPathName = " << m_strPathName;
       dumpcontext << "\nm_bModified = " << m_bModified;
-      dumpcontext << "\nm_pDocTemplate = " << (void *)m_pdocumentemplate;
+      dumpcontext << "\nm_pDocTemplate = " << (void *)m_pimpactsystem;
 
       if (dumpcontext.GetDepth() > 0)
       {
@@ -281,7 +281,7 @@ namespace aura
    }
    sp(impact_system) document::get_document_template() const
    {
-      ASSERT(this != NULL); return m_pdocumentemplate;
+      ASSERT(this != NULL); return m_pimpactsystem;
    }
    bool document::is_modified()
    {
@@ -583,6 +583,24 @@ namespace aura
       delete_contents();
 
       //release();
+   }
+
+   void document::close_document()
+   {
+
+      try
+      {
+
+         on_close_document();
+
+         m_pimpactsystem->remove_document(this);
+
+      }
+      catch(...)
+      {
+
+      }
+
    }
 
    void document::report_save_load_exception(const char * lpszPathName, ::exception::base* e, bool bSaving, const char * nIDPDefault)

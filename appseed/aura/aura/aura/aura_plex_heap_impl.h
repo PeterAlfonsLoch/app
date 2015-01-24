@@ -270,11 +270,9 @@ inline void * plex_heap_alloc_array::alloc(size_t size)
 
 }
 
-
-void plex_heap_alloc_array::free(void * p, size_t size)
+#ifndef DEBUG
+void plex_heap_alloc_array::free(void * p,size_t size)
 {
-
-   memset(p, 0xCD, size); // attempt to invalidate memory so it get unusable (as it should be after free).
 
    plex_heap_alloc * palloc = find(size);
 
@@ -292,7 +290,7 @@ void plex_heap_alloc_array::free(void * p, size_t size)
    }
 
 }
-
+#endif
 
 
 

@@ -102,6 +102,8 @@ namespace aura
       virtual void add_document(::aura::document * pDoc);      // must override
       virtual void remove_document(::aura::document * pDoc);   // must override
 
+
+
       virtual bool GetDocString(string & rString, enum DocStringIndex index) const; // get one of the info strings
       //sp(::user::frame_window) CreateOleFrame(::window_sp pParentWnd, ::aura::document * pDoc,
       //   bool bCreateView);

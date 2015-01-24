@@ -52,10 +52,11 @@ namespace user
 
    void multiple_document_template::remove_document(::aura::document * pdocument)
    {
-      if(m_docptra.remove(pdocument) > 0)
-      {
-         impact_system::remove_document(pdocument);
-      }
+      
+      m_docptra.remove(pdocument);
+
+      //impact_system::remove_document(pdocument);
+      
    }
 
 

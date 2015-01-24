@@ -988,7 +988,7 @@ namespace user
 
       ptraChild = m_uiptraChild;
 
-      sl.unlock();
+      //sl.unlock();
 
       for(index i = 0; i < ptraChild.get_count(); i++)
       {
@@ -2701,6 +2701,8 @@ namespace user
 
    bool interaction::DestroyWindow()
    {
+
+      single_lock sl(m_pauraapp->m_pmutex,true);
 
       if(!IsWindow())
       {
