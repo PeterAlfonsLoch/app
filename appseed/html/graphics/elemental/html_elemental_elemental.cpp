@@ -1236,7 +1236,7 @@ namespace html
             {
                if(pdoc->m_pform->m_phtmlform->m_pelementalHover == this)
                {
-                  pdoc->m_pform->m_phtmlform->m_pelementalHover == NULL;
+                  pdoc->m_pform->m_phtmlform->m_pelementalHover = NULL;
                }
 
             }

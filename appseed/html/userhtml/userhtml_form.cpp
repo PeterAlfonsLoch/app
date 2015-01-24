@@ -98,7 +98,7 @@ void html_form::_001OnImageLoaded(signal_details * pobj)
          ::data::lock lock(get_html_data());
 
          ::draw2d::memory_graphics pdc(allocer());
-         get_html_data()->delete_implementation(get_html_data());
+         get_html_data()->delete_implementation();
          get_html_data()->layout(pdc);
 
          RedrawWindow();

@@ -162,12 +162,12 @@ namespace html
    }
 
 
-   void data::delete_implementation(data * pdoc)
+   void data::delete_implementation()
    {
 
       m_focusptra.remove_all();
 
-      m_elemental.delete_implementation(pdoc);
+      m_elemental.delete_implementation(this);
 
       m_bImplemented = false;
 

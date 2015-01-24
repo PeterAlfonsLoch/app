@@ -199,7 +199,7 @@ namespace html
 
       void delete_contents();
       void destroy();
-      void delete_implementation(data * pdoc);
+      void delete_implementation();
 
       virtual bool contains(sp(::user::interaction) pui);
 
