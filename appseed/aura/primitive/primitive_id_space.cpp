@@ -76,7 +76,7 @@ id id_space::operator()(const char * psz)
 id id_space::operator()(int64_t i)
 {
 
-   return id(i);
+   return (int_ptr) i;
 
 }
 

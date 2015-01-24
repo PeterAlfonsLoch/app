@@ -16,27 +16,30 @@ property_set::~property_set()
 
 id property_set::get_new_id()
 {
+
    index iMax = -1;
-   index idx;
+
    ::property_pair pair(*this);
+
    while(pair())
    {
-      if(pair->name() == "0")
+
+      if(pair->name().m_etype == id::type_integer)
       {
-         idx = 0;
+
+         if(pair->name().m_i > iMax)
+         {
+
+            iMax = pair->name().m_i;
+
+         }
+
       }
-      else
-      {
-         idx = atoi(pair->name());
-         if(idx == 0)
-            idx = -1;
-      }
-      if(idx > iMax)
-         iMax = idx;
+
    }
-   string strName;
-   strName.Format("%d", iMax + 1);
-   return strName;
+
+   return iMax + 1;
+
 }
 
 

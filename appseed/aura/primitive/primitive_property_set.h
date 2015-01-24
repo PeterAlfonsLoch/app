@@ -469,7 +469,7 @@ inline property * property_set::find(string_interface & str) const
 
 inline var var::first() const
 {
-   return operator[]((var)(int32_t) 0);
+   return at(0);
 }
 
 inline var var::last() const
@@ -477,7 +477,20 @@ inline var var::last() const
    if(array_get_count() == 0)
       return first();
    else
-      return operator[](array_get_upper_bound());
+      return at(array_get_upper_bound());
+}
+
+inline var var::first()
+{
+   return at(0);
+}
+
+inline var var::last()
+{
+   if(array_get_count() == 0)
+      return first();
+   else
+      return at(array_get_upper_bound());
 }
 
 inline const var & var::operator[] (const char * pszKey) const
@@ -490,24 +503,39 @@ inline var & var::operator[] (const char * pszKey)
    return propset().operator[](pszKey).get_value();
 }
 
-inline const var & var::operator[] (var varKey) const
+inline var var::operator[] (var varKey) const
 {
-   return propset().operator[](varKey.get_string()).get_value();
+   if(varKey.is_integer())
+   {
+      return at(varKey.int64());
+   }
+   else
+   {
+      return &propset().operator[](varKey.get_string()).get_value();
+   }
 }
 
-inline var & var::operator[] (var varKey)
+inline var var::operator[] (var varKey)
 {
-   return propset().operator[](varKey.get_string()).get_value();
+   if(varKey.is_integer())
+   {
+      return at(varKey.int64());
+   }
+   else
+   {
+      return &propset().operator[](varKey.get_string()).get_value();
+   }
+
 }
 
-inline const var & var::operator[] (index iKey) const
+inline var var::operator[] (index iKey) const
 {
-   return propset().operator[](iKey).get_value();
+   return at(iKey);
 }
 
-inline var & var::operator[] (index iKey)
+inline var var::operator[] (index iKey)
 {
-   return propset().operator[](iKey).get_value();
+   return at(iKey);
 }
 
 inline const var & var::operator[] (string strKey) const
@@ -515,14 +543,28 @@ inline const var & var::operator[] (string strKey) const
    return propset().operator[](strKey).get_value();
 }
 
-inline var & var::operator[] (id idKey)
+inline var var::operator[] (id idKey)
 {
-   return propset().operator[](idKey).get_value();
+   if(idKey.m_etype == id::type_integer)
+   {
+      return at(idKey.m_i);
+   }
+   else
+   {
+      return &propset().operator[](idKey).get_value();
+   }
 }
 
-inline const var & var::operator[] (id idKey) const
+inline var var::operator[] (id idKey) const
 {
-   return propset().operator[](idKey).get_value();
+   if(idKey.m_etype == id::type_integer)
+   {
+      return at(idKey.m_i);
+   }
+   else
+   {
+      return &propset().operator[](idKey).get_value();
+   }
 }
 
 inline var & var::operator[] (string strKey)

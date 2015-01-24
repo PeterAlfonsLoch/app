@@ -493,17 +493,19 @@ public:
 
    var first() const;
    var last() const;
+   var first();
+   var last();
    inline ::count get_count() const;
-   const var & operator[] (var varKey) const;
+   var operator[] (var varKey) const;
    const var & operator[] (string strKey) const;
    const var & operator[] (const char * pszKey) const;
-   const var & operator[] (id idKey) const;
-   const var & operator[] (index iKey) const;
-   var & operator[] (var varKey);
+   var operator[] (id idKey) const;
+   var operator[] (index iKey) const;
+   var operator[] (var varKey);
    var & operator[] (string strKey);
    var & operator[] (const char * pszKey);
-   var & operator[] (id idKey);
-   var & operator[] (index iKey);
+   var operator[] (id idKey);
+   var operator[] (index iKey);
    var at(index i) const;
    var at(index i);
    var key(index i) const;

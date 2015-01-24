@@ -2007,7 +2007,7 @@ property_set & var::propset(::aura::application * papp)
       pset = canew(property_set());
       for(int32_t i = 0; i < array_get_count(); i++)
       {
-         pset->add(id(), at(i));
+         pset->add(id(i), at(i));
       }
       set_type(type_propset, false);
       //ASSERT(m_sp.is_null());
@@ -2136,19 +2136,19 @@ var var::at(index i) const
    switch(m_etype)
    {
    case type_inta:
-      return m_pia->element_at(i);
+      return &m_pia->element_at(i);
    case type_stra:
-      return m_pstra->element_at(i);
+      return &m_pstra->element_at(i);
    case type_vara:
-      return m_pvara->element_at(i);
+      return &m_pvara->element_at(i);
    case type_propset:
-      return m_pset->m_propertya[i];
+      return &m_pset->m_propertya[i];
    case type_pvar:
       return m_pvar->at(i);
    default:
       if(i == 0)
       {
-         return *this;
+         return this;
       }
       else
       {
@@ -2168,7 +2168,7 @@ var var::at(index i)
    case type_vara:
       return &m_pvara->element_at(i);
    case type_propset:
-      return &m_pset->m_propertya[i]->get_value();
+      return &m_pset->m_propertya[i];
    case type_pvar:
       return m_pvar->at(i);
    default:
@@ -2182,8 +2182,6 @@ var var::at(index i)
       }
    }
 }
-
-
 
 bool var::array_contains(const char * psz, index find, ::count count) const
 {

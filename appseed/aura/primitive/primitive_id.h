@@ -9,10 +9,10 @@ public:
    enum e_type : int64_t
    {
       
-      type_null,
-      type_empty,
-      type_integer,
-      type_text
+      type_null = 0,
+      type_empty = 1,
+      type_integer = 2,
+      type_text = 3
 
    };
 
