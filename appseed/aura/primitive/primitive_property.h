@@ -214,7 +214,7 @@ public:
    }
 
    template < typename ENUM >
-   int32_t int32(ENUM edefault = ::enum_default()) const
+   int32_t int32(ENUM edefault = ::enum_default < ENUM > ()) const
    {
       return get_value().e(edefault);
    }
