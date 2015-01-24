@@ -7,7 +7,7 @@ inline index BaseSortCompare(const id & id1, const id & id2)
 {
 
 
-   return (index) (id1.m_pstr - id2.m_pstr);
+   return (index) (id1.m_psz - id2.m_psz);
 
 
 }
@@ -21,13 +21,12 @@ class CLASS_DECL_AURA id_space
 protected:
 
 
-   index_array                      stackLowerBound;
-   index_array                      stackUpperBound;
-   array < id, const id & >     m_ida; // ordered as added
-   index_array                      m_iaStr; // ordered by chType and strcmp
+  // index_array                      stackLowerBound;
+   //index_array                      stackUpperBound;
+   ptr_array < const char  >        m_psza; 
 
-   void sort();
-   bool find(const id & id, index & iIndex);
+//   void sort();
+   bool find(const char * pszFind,index & iIndex);
 
 
 public:
@@ -40,7 +39,7 @@ public:
    virtual ~id_space();
 
    
-   id operator()(const string & str);
+   id operator()(const char * psz);
    id operator()(int64_t i);
 
    
@@ -57,7 +56,7 @@ protected:
 
    index_array                      stackLowerBound;
    index_array                      stackUpperBound;
-   ptr_array < const char >           m_idptra; // ordered as added
+   ptr_array < const char >         m_idptra; // ordered as added
    index_array                      m_iaId; // ordered by id_cmp
 
    

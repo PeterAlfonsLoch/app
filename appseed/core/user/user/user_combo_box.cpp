@@ -1448,7 +1448,7 @@ namespace user
 
       m_straList.add(lpszString);
 
-      m_uiptra.add((uint_ptr)id(strValue).m_pstr);
+      m_uiptra.add((uint_ptr) id(strValue).m_psz);
 
       return m_straList.get_upper_bound();
 
@@ -1483,7 +1483,7 @@ namespace user
    void combo_box::_001SetCurSelByStringValue(const string & strValue,::action::context actioncontext)
    {
 
-      _001SetCurSelByData((uint_ptr)id(strValue).m_pstr,actioncontext);
+      _001SetCurSelByData((uint_ptr)id(strValue).m_psz,actioncontext);
 
    }
 

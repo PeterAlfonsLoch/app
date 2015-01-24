@@ -26,7 +26,7 @@ bool sync_object::lock(const duration & durationTimeout)
 {
 #ifdef WINDOWS
 
-   uint32_t dwRet = ::WaitForSingleObjectEx(m_object, durationTimeout.os_lock_duration(), FALSE);
+   uint32_t dwRet = ::WaitForSingleObjectEx(m_object, durationTimeout.lock_duration(), FALSE);
    if (dwRet == WAIT_OBJECT_0 || dwRet == WAIT_ABANDONED)
       return TRUE;
    else
@@ -41,7 +41,7 @@ bool sync_object::lock(const duration & durationTimeout)
 wait_result sync_object::wait(const duration & durationTimeout)
 {
 #ifdef WINDOWS
-   return wait_result((uint32_t) ::WaitForSingleObjectEx(m_object,durationTimeout.os_lock_duration(), FALSE));
+   return wait_result((uint32_t) ::WaitForSingleObjectEx(m_object,durationTimeout.lock_duration(), FALSE));
 #else
    ::exception::throw_interface_only(get_app());
     

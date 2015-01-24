@@ -25,7 +25,7 @@ file_change_event::~file_change_event()
 
 bool file_change_event::lock(const duration & durationTimeout)
 {
-   uint32_t dwRet = ::WaitForSingleObject((HANDLE) item(), durationTimeout.os_lock_duration());
+   uint32_t dwRet = ::WaitForSingleObject((HANDLE) item(), durationTimeout.lock_duration());
    if (dwRet == WAIT_OBJECT_0 || dwRet == WAIT_ABANDONED)
       return true;
    else
@@ -50,7 +50,7 @@ void file_change_event::wait ()
 ///  \return	waiting action result as wait_result
 wait_result file_change_event::wait (const duration & duration)
 {
-   return wait_result((uint32_t) ::WaitForSingleObject((HANDLE)item(),duration.os_lock_duration()));
+   return wait_result((uint32_t) ::WaitForSingleObject((HANDLE)item(),duration.lock_duration()));
 }
 
 ///  \brief		requests that the operating system signal a change

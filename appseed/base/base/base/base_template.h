@@ -170,7 +170,7 @@ void SerializeElementsInsertExtract(CArchive& ar, TYPE* pElements,
 
 
 template<class TYPE, class ARG_TYPE>
-bool CompareElements(const TYPE* pElement1, const ARG_TYPE* pElement2)
+bool CompareElements(const TYPE* pElement1, const ARG_TYPE pElement2)
 {
 	ENSURE(pElement1 != NULL && pElement2 != NULL);
 	ASSERT(__is_valid_address(pElement1, sizeof(TYPE), FALSE));

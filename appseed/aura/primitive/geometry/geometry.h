@@ -14,7 +14,7 @@ enum e_orientation
 #include "geometry_align.h"
 
 
-#ifdef METROWIN
+#ifdef WINDOWS
 #include <intsafe.h>
 #else
 #ifndef LODWORD

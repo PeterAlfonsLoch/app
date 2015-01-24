@@ -365,7 +365,7 @@ namespace hotplugin
 
             ::rect rect = m_rect;
 
-            POINT pt;
+//            POINT pt;
 
             //::SetViewportOrgEx(hdc, rect.left, rect.top, &pt);
 

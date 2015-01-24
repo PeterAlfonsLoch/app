@@ -296,7 +296,8 @@ inline c_number<T> operator - (const c_number<T> & n1, const c_number<T> & n2)
 #endif
 
 //#ifdef WINDOWS
-DEFINE_C_NUMBER(CLASS_DECL_AURA, os_lock_duration, uint32_t)
+DEFINE_C_NUMBER(CLASS_DECL_AURA,lock_duration,uint32_t)
+DEFINE_C_NUMBER(CLASS_DECL_AURA,tick_duration,uint32_t)
 //#endif
 
 //DEFINE_C_NUMBER(CLASS_DECL_AURA, file_size        , uint64_t)

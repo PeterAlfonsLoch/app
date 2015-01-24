@@ -169,7 +169,7 @@ namespace userex
          || pcreatordata->m_id == "pick_file")
       {
 
-         ::filemanager::data * pfilemanagerdata = oprop("data." + *pcreatordata->m_id.m_pstr).cast < ::filemanager::data >();
+         ::filemanager::data * pfilemanagerdata = oprop("data." + pcreatordata->m_id.str()).cast < ::filemanager::data >();
 
          if(pfilemanagerdata == NULL)
             pfilemanagerdata = new ::filemanager::data(get_app());

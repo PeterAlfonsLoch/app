@@ -678,7 +678,7 @@ void thread_impl::post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam)
       try
       {
 
-         if(::PostThreadMessage(::multithreading::s_piaThread->element_at(i),message,wparam,lparam))
+         if(::PostThreadMessage((DWORD) ::multithreading::s_piaThread->element_at(i),message,wparam,lparam))
          {
 
          }
@@ -1247,7 +1247,7 @@ int32_t thread_impl::run()
 
    }
 
-stop_run:
+//stop_run:
 
    return m_pthread->m_iReturnCode;
 

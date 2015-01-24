@@ -13,10 +13,11 @@
 
 HBITMAP CreateAlphaBitmapV5(::draw2d::dib * pdib)
 {
-   HDC hMemDC;
+//   HDC hMemDC;
    DWORD dwWidth,dwHeight;
    BITMAPV5HEADER bi;
-   HBITMAP hBitmap,hOldBitmap;
+// HBITMAP hOldBitmap;
+   HBITMAP hBitmap;
    void *lpBits;
    HCURSOR hAlphaCursor = NULL;
 
@@ -62,7 +63,7 @@ HBITMAP CreateAlphaBitmapV5(::draw2d::dib * pdib)
    
    ::draw2d::copy_colorref(pdib->m_size.cx,pdib->m_size.cy,(COLORREF *)lpBits,iStrideDst, pdib->m_pcolorref,pdib->m_iScan);
 
-   return hBitmap;
+  return hBitmap;
 
 }
 

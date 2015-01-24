@@ -300,7 +300,7 @@ namespace file
 
       if(!bNull)
       {
-         *this << *id.m_pstr;
+         *this << id.m_psz;
       }
 
 

@@ -159,7 +159,7 @@ bool point_array::bounding_rect_contains_pt(point pt)
 bool point_array::polygon_contains(point pt)
 {
 
-   return ::polygon_contains(&pt,get_data(),get_size());
+   return ::polygon_contains(&pt,get_data(),(int) get_size());
 
 }
 

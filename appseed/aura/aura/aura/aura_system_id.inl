@@ -57,13 +57,17 @@ inline id::id(const char * psz)
 #if defined(_LP64) || defined(_AMD64_)
 inline id & id::operator = (int32_t i)
 {
-   return operator = (::aura::system::id(::str::from(i)));
+   m_etype     = type_integer;
+   m_i         = i;
+   return *this;
 }
 #endif
 
 inline id & id::operator = (int_ptr i)
 {
-   return operator = (::aura::system::id(::str::from(i)));
+   m_etype     = type_integer;
+   m_i         = i;
+   return *this;
 }
 
 

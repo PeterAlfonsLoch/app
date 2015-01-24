@@ -337,8 +337,9 @@ bool windows_load_dib_from_file(::draw2d::dib * pdib,::file::buffer_sp pfile,::a
 
       }
 
-      int color_type,palette_entries = 0;
-      int bit_depth,pixel_depth;		// pixel_depth = bit_depth * channels
+  //    int color_type,palette_entries = 0;
+      //int palette_entries = 0;
+//      int bit_depth,pixel_depth;		// pixel_depth = bit_depth * channels
 
       WICPixelFormatGUID px;
       ZERO(px);
@@ -420,7 +421,7 @@ bool windows_load_dib_from_file(::draw2d::dib * pdib,::file::buffer_sp pfile,::a
                   }
 
 
-               end:;
+//               end:;
 
 
                   //synch_lock sl(&m_parea->m_mutex);

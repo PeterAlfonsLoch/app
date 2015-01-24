@@ -231,11 +231,14 @@ namespace user
    class control_cmd_ui : public ::aura::cmd_ui
    {
    public:
+      
+      
+      id_to_id < >      m_mapControlCommand;
+
 
       control_cmd_ui(class ::signal * psignal);
 
 
-      map < id, id, id, id > m_mapControlCommand;
       virtual void Enable(bool bOn);
       virtual void SetCheck(int32_t nCheck);
       virtual void SetText(const char * lpszText);

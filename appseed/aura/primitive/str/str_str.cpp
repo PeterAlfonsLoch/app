@@ -2193,7 +2193,7 @@ namespace str
             if(iFind2 < 0)
             {
 
-               int iStart = iFind;
+               strsize iStart = iFind;
 
                i = iStart;
 

@@ -286,7 +286,7 @@ mutex::~mutex()
 wait_result mutex::wait(const duration & duration)
 {
 
-   uint32_t dwTimeout = duration.os_lock_duration();
+   uint32_t dwTimeout = duration.lock_duration();
 
    timespec delay;
 
@@ -407,7 +407,7 @@ bool mutex::lock(const duration & duration)
 wait_result mutex::wait(const duration & duration)
 {
 
-   uint32_t dwTimeout = duration.os_lock_duration();
+   uint32_t dwTimeout = duration.lock_duration();
 
    timespec delay;
 

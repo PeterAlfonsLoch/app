@@ -29,7 +29,7 @@ public:
          {
 
             int64_t              m_i;
-            const string *       m_pstr;
+            const char *         m_psz;
 
          };
 
@@ -53,6 +53,11 @@ public:
 
    };
 
+protected:
+   friend id_space;
+   inline id(const char * psz, id_space *);
+public:
+
 
    inline id();
    inline id(const id & id);
@@ -68,7 +73,7 @@ public:
    id(const var & var);
 
 
-   void raw_set(const string * pstr);
+   void raw_set(const char * psz);
 
 
    string str() const;
@@ -174,9 +179,17 @@ inline id::id(const id & id)
 
 }
 
+inline id::id(const char * psz,id_space *)
+{
+
+   m_etype = type_text;
+   m_psz    = psz;
+
+}
+
 inline bool id::operator == (const id & id) const
 {
-   return m_iType == id.m_iType && m_iBody == m_iBody;
+   return m_iType == id.m_iType && m_iBody == id.m_iBody;
 }
 
 inline bool id::operator != (const id & id) const
@@ -186,11 +199,11 @@ inline bool id::operator != (const id & id) const
 
 inline bool id::operator < (const id & id) const
 {
-   return m_iType < id.m_iType || ((m_iType == id.m_iType) && m_pstr < id.m_pstr);
+   return m_iType < id.m_iType || ((m_iType == id.m_iType) && m_iBody < id.m_iBody);
 }
 inline bool id::operator >(const id & id) const
 {
-   return m_iType > id.m_iType || ((m_iType == id.m_iType) && m_pstr > id.m_pstr);
+   return m_iType > id.m_iType || ((m_iType == id.m_iType) && m_iBody > id.m_iBody);
 }
 inline bool id::operator <= (const id & id) const
 {
@@ -231,7 +244,7 @@ namespace comparison
 
       inline static bool CompareElements(const id * pElement1, const id & element2)
       {
-         return pElement1->m_pstr == element2.m_pstr;
+         return strcmp(pElement1->m_psz, element2.m_psz) == 0;
       }
 
    };
@@ -259,7 +272,7 @@ namespace comparison
 
       inline static bool compare(const id & element1, const id & element2)
       {
-         return element1.m_pstr < element2.m_pstr;
+         return strcmp(element1.m_psz,  element2.m_psz) < 0;
       }
 
    };
@@ -278,9 +291,9 @@ namespace comparison
    {
    public:
 
-      inline static UINT HashKey (const id & key)
+      inline static UINT HashKey(const id & key)
       {
-         return (((UINT) key.m_iType) << 24) | (((UINT) key.m_iBody) >> 8);
+         return (((UINT)key.m_iType) << 24) | (((UINT)key.m_iBody) >> 8);
       }
 
    };
@@ -291,10 +304,11 @@ namespace comparison
    {
    public:
 
-      inline static UINT HashKey (const id & key)
+      inline static UINT HashKey(const id & key)
       {
          return strid_hash::HashKey(key);
       }
+
 
    };
 

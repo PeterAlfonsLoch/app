@@ -411,7 +411,7 @@ namespace primitive
       if(get_data() == NULL)
          return NULL;
 
-      return SHCreateMemStream(get_data(),get_size());
+      return SHCreateMemStream(get_data(),(UINT) get_size());
 
    }
 #endif

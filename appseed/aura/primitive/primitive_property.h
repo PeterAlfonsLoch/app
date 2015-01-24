@@ -120,13 +120,13 @@ public:
 #ifdef MOVE_SEMANTICS
    property(property && prop)
    {
-      m_idName.m_pstr = prop.m_idName.m_pstr;
+      m_idName.m_all = prop.m_idName.m_all;
       m_var.m_sp.release();
       m_var.m_str.~string();
       memcpy(&m_var, &prop.m_var, sizeof(var));
       prop.m_var.m_sp.m_p           = NULL;
       prop.m_var.m_str.m_pszData    = NULL;
-      prop.m_var.m_id.m_pstr        = NULL;
+      prop.m_var.m_id.m_all        ={};
    }
 #endif
    ~property()
@@ -359,7 +359,7 @@ public:
       {
          m_var.m_sp.release();
          m_var.m_str.~string();
-         m_idName.m_pstr = prop.m_idName.m_pstr;
+         m_idName.m_all = prop.m_idName.m_all;
          memcpy(&m_var, &prop.m_var, sizeof(var));
          prop.m_var.m_sp.m_p = NULL;
          prop.m_var.m_str.m_pszData = NULL;
@@ -681,7 +681,7 @@ public:
 };
 
 class CLASS_DECL_AURA property_map :
-   public id_to_index
+   public id_to_index < >
 {
 public:
 

@@ -53,13 +53,13 @@ wait_result multi_lock::lock(const duration & duration, bool bWaitForAll, uint32
    if (dwWakeMask == 0)
    {
 
-      iResult = ::WaitForMultipleObjectsEx((uint32_t) m_objecta.get_count(), m_objecta.get_data(), bWaitForAll, duration.os_lock_duration(), FALSE);
+      iResult = ::WaitForMultipleObjectsEx((uint32_t) m_objecta.get_count(), m_objecta.get_data(), bWaitForAll, duration.lock_duration(), FALSE);
 
    }
    else
    {
 
-      iResult = ::MsgWaitForMultipleObjects((uint32_t) m_objecta.get_count(), m_objecta.get_data(), bWaitForAll, duration.os_lock_duration(), dwWakeMask);
+      iResult = ::MsgWaitForMultipleObjects((uint32_t) m_objecta.get_count(), m_objecta.get_data(), bWaitForAll, duration.lock_duration(), dwWakeMask);
 
    }
 

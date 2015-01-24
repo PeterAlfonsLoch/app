@@ -1,7 +1,7 @@
 #pragma once
 
 
-template < typename POINTER,class ARRAY_TYPE = comparable_raw_array < void * >  >
+template < typename POINTER,class ARRAY_TYPE = comparable_raw_array < POINTER >  >
 class raw_ptr_array:
    public ARRAY_TYPE
 {
@@ -27,7 +27,7 @@ public:
    inline raw_ptr_array & operator = (raw_ptr_array && a){ this->ARRAY_TYPE::operator = (a); return *this; }
 
 
-   index add(POINTER newElement)  { return ARRAY_TYPE::add((void *)newElement); }
+   index add(POINTER newElement)  { return ARRAY_TYPE::add(newElement); }
    index add(const raw_ptr_array & src) { return ARRAY_TYPE::add(src); }
 
 

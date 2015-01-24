@@ -51,10 +51,12 @@ public:
 
    void normalize();
 
-   inline class os_lock_duration os_lock_duration() const;
+   inline class lock_duration lock_duration() const;
+   inline operator class lock_duration() const;
 
+   inline class tick_duration tick_duration() const;
+   inline operator class tick_duration() const;
 
-   inline operator class os_lock_duration() const;
 
    inline __time64_t GetTimeSpan() const;
 
@@ -64,7 +66,7 @@ public:
 };
 
 
-void duration::raw_set(int64_t iSeconds, int64_t iNanoseconds)
+inline void duration::raw_set(int64_t iSeconds,int64_t iNanoseconds)
 {
 
    m_iSeconds = iSeconds;
@@ -74,7 +76,7 @@ void duration::raw_set(int64_t iSeconds, int64_t iNanoseconds)
 }
 
 
-void duration::set(int64_t iSeconds, int64_t iNanoseconds)
+inline void duration::set(int64_t iSeconds,int64_t iNanoseconds)
 {
 
    raw_set(iSeconds, iNanoseconds);
@@ -84,14 +86,14 @@ void duration::set(int64_t iSeconds, int64_t iNanoseconds)
 }
 
 
-void duration::set_null()
+inline void duration::set_null()
 {
 
    raw_set(0, 0);
 
 }
 
-duration duration::raw_create(int64_t iSeconds, int64_t iNanoseconds)
+inline duration duration::raw_create(int64_t iSeconds,int64_t iNanoseconds)
 {
 
    duration duration;
@@ -104,7 +106,7 @@ duration duration::raw_create(int64_t iSeconds, int64_t iNanoseconds)
 
 
 
-duration duration::fcreate(double d, double dNano)
+inline duration duration::fcreate(double d,double dNano)
 {
 
    duration duration;
@@ -116,7 +118,7 @@ duration duration::fcreate(double d, double dNano)
 }
 
 
-duration duration::create(int64_t iSeconds, int64_t iNanoseconds)
+inline duration duration::create(int64_t iSeconds,int64_t iNanoseconds)
 {
 
    duration duration;
@@ -128,7 +130,7 @@ duration duration::create(int64_t iSeconds, int64_t iNanoseconds)
 }
 
 
-duration duration::create_null()
+inline duration duration::create_null()
 {
 
    duration duration;
@@ -140,7 +142,7 @@ duration duration::create_null()
 }
 
 
-int64_t duration::get_total_milliseconds() const
+inline int64_t duration::get_total_milliseconds() const
 {
 
    return m_iSeconds * 1000 + m_iNanoseconds / 1000000;
@@ -148,7 +150,7 @@ int64_t duration::get_total_milliseconds() const
 }
 
 
-os_lock_duration duration::os_lock_duration() const
+inline lock_duration duration::lock_duration() const
 {
 
    if(is_pos_infinity())
@@ -162,43 +164,77 @@ os_lock_duration duration::os_lock_duration() const
 }
 
 
-duration::operator ::os_lock_duration() const
+inline duration::operator ::lock_duration() const
 {
-   return ::duration::os_lock_duration();
+   return ::duration::lock_duration();
 }
 
-int64_t duration::total_milliseconds() const
+inline tick_duration duration::tick_duration() const
+{
+
+   if(is_pos_infinity())
+      return 0xffffffff;
+
+   auto uiTotal = get_total_milliseconds();
+
+   if(uiTotal >= ::numeric_info < decltype(uiTotal) >::max())
+      return ::numeric_info < decltype(uiTotal) >::max();
+
+   return (uint32_t)uiTotal;
+
+}
+
+
+inline duration::operator ::tick_duration() const
+{
+   return ::duration::tick_duration();
+}
+
+
+inline int64_t duration::total_milliseconds() const
 {
    return get_total_milliseconds();
 }
 
-bool duration::is_pos_infinity() const
+
+inline bool duration::is_pos_infinity() const
 {
+
    return m_iSeconds == 0x7fffffffffffffffLL && m_iNanoseconds == 999999999;
+
 }
 
-duration duration::infinite()
+inline duration duration::infinite()
 {
+
    return pos_infinity();
+
 }
 
-duration duration::pos_infinity()
+inline duration duration::pos_infinity()
 {
+
    return duration::raw_create(0x7fffffffffffffffLL, 999999999);
+
 }
 
-duration duration::zero()
+
+inline duration duration::zero()
 {
+
    return duration::create(0, 0);
+
 }
 
-bool duration::operator == (const duration & duration) const
+
+inline bool duration::operator == (const duration & duration) const
 {
    const_cast < class duration * >(this)->normalize();
    const_cast < class duration * >(&duration)->normalize();
    return m_iSeconds == duration.m_iSeconds
       && m_iNanoseconds == duration.m_iNanoseconds;
 }
+
 
 class CLASS_DECL_AURA millis :
    public duration

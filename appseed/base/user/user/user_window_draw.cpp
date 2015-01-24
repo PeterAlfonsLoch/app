@@ -14,7 +14,7 @@ namespace user
       m_eventFree(papp, TRUE, TRUE)
    {
 
-      g_bSuppressTwf = file_exists_dup("C:\\ca2\\config\\system\\suppress_twf.txt");
+      g_bSuppressTwf = file_exists_dup("C:\\ca2\\config\\system\\suppress_twf.txt") != 0;
 
       m_bProDevianMode                    = true;
       m_iFramesPerSecond                  = 24.0;

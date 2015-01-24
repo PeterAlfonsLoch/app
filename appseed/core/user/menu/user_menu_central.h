@@ -17,12 +17,12 @@ public:
    //bool MenuV033CreateImageMap(UINT uiaMenuV003Map [][2]);
    bool MenuV033AddImageMap(sp(::xml::node) lpnode);
 
-   UINT CommandToImage(id id);
-   id ImageToCommand(UINT uiImage);
+   int CommandToImage(id id);
+   id ImageToCommand(int iImage);
 
 
-   map < id, id, UINT, UINT > m_mapCommandToImage;
-   map < UINT, UINT, id, id > m_mapImageToCommand;
+   id_map < int > m_mapCommandToImage;
+   int_map < id > m_mapImageToCommand;
 
    sp(image_list)    m_pil;
    sp(image_list)    m_pilHue;

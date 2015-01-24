@@ -45,4 +45,11 @@ namespace lemon
 
 } // namespace lemon
 
-using id_to_index = ::map < id,id,index,index > ;
+template < typename TYPE,typename ARG_TYPE = const TYPE &, class HASH =::comparison::hash < const id & >,class EQUALS =::comparison::equals_type_arg_type < id, const id & >  >
+using id_map = ::map < id,const id &, TYPE, ARG_TYPE, HASH, EQUALS > ;
+
+template < class HASH =::comparison::hash < const id & >,class EQUALS =::comparison::equals_type_arg_type < id, const id & >  >
+using id_to_id = id_map < id,const id &,HASH,EQUALS > ;
+
+template < class HASH =::comparison::hash < const id & >,class EQUALS =::comparison::equals_type_arg_type < id, const id & >  >
+using id_to_index = id_map < index,index,HASH,EQUALS > ;

@@ -62,7 +62,7 @@ namespace str
       inline bool locale_schema::_add_locale_variant(id idLocale, id idStyle)
       {
 
-         return _add_locale_variant(*idLocale.m_pstr, idLocale.m_pstr->get_length(), idStyle);
+         return _add_locale_variant(idLocale.m_psz, strlen(idLocale.m_psz), idStyle);
 
       }
 

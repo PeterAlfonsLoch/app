@@ -5,23 +5,23 @@
 
 id::id(int_ptr i)
 {
-   operator = (::aura::system::id(i));
+   operator = (i);
 }
 
 id::id(uint_ptr ui)
 {
-   operator = (::aura::system::id(ui));
+   operator = ((int_ptr) ui);
 }
 
 #if defined(_LP64) || defined(_AMD64_)
 id::id(int32_t i)
 {
-   operator = (::aura::system::id(i));
+   operator = (i);
 }
 
 id::id(uint32_t ui)
 {
-   operator = (::aura::system::id(ui));
+   operator = ((int_ptr) ui);
 }
 #endif
 

@@ -3,7 +3,7 @@
 
 
 
-template <class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH = ::comparison::hash < ARG_KEY > , class EQUALS = ::comparison::equals_type_arg_type < KEY, ARG_KEY > >
+template <class KEY, class ARG_KEY, class VALUE, class ARG_VALUE = const VALUE &, class HASH = ::comparison::hash < ARG_KEY > , class EQUALS = ::comparison::equals_type_arg_type < KEY, ARG_KEY > >
 class map :
    virtual public ::object
 {

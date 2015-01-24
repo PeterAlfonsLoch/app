@@ -2830,8 +2830,7 @@ namespace user
    bool interaction_impl::is_composite()
    {
 
-      return GetExStyle() & WS_EX_LAYERED;
-
+      return (GetExStyle() & WS_EX_LAYERED) != 0;
 
    }
 

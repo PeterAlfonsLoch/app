@@ -566,9 +566,9 @@ namespace html
 
       }
 
-      id idConcatFallback = (id)(*id1.m_pstr + *id2.m_pstr);
+      id idConcatFallback = (id)(id1.str() + id2.str());
 
-      TRACE("id not pre setup concat html %s", idConcatFallback.m_pstr->c_str());
+      TRACE("id not pre setup concat html %s", idConcatFallback.m_psz);
 
       return idConcatFallback;
 

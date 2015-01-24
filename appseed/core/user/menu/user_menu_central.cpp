@@ -174,23 +174,23 @@ bool BaseMenuCentral::MenuV033AddImageMap(sp(::xml::node) lpnode)
     return ;
 }*/
 
-UINT BaseMenuCentral::CommandToImage(id id)
+int BaseMenuCentral::CommandToImage(id id)
 {
-   UINT uiImage;
-   if(m_mapCommandToImage.Lookup(id, uiImage))
+   int iImage;
+   if(m_mapCommandToImage.Lookup(id, iImage))
    {
-      return uiImage;
+      return iImage;
    }
    else
    {
-      return 0xffffffff;
+      return -1;
    }
 }
 
-id BaseMenuCentral::ImageToCommand(UINT uiImage)
+id BaseMenuCentral::ImageToCommand(int iImage)
 {
    id id;
-   if(m_mapImageToCommand.Lookup(uiImage, id))
+   if(m_mapImageToCommand.Lookup(iImage, id))
    {
       return id;
    }

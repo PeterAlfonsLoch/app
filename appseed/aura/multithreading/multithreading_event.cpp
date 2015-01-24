@@ -413,7 +413,7 @@ wait_result event::wait (const duration & durationTimeout)
 
 #ifdef WINDOWS
 
-   return wait_result((uint32_t) ::WaitForSingleObjectEx((HANDLE)item(),durationTimeout.os_lock_duration(),FALSE));
+   return wait_result((uint32_t) ::WaitForSingleObjectEx((HANDLE)item(),durationTimeout.lock_duration(),FALSE));
 
 #elif defined(ANDROID)
 
@@ -517,7 +517,7 @@ wait_result event::wait (const duration & durationTimeout)
 
       delay.tv_nsec = 1000 * 1000;
 
-      uint32_t timeout = durationTimeout.os_lock_duration();
+      uint32_t timeout = durationTimeout.lock_duration();
 
       uint32_t start = ::get_tick_count();
 
@@ -655,7 +655,7 @@ bool event::lock(const duration & durationTimeout)
 
 #ifdef WINDOWS
 
-   uint32_t dwRet = ::WaitForSingleObjectEx((HANDLE)m_object,durationTimeout.os_lock_duration(),FALSE);
+   uint32_t dwRet = ::WaitForSingleObjectEx((HANDLE)m_object,durationTimeout.lock_duration(),FALSE);
 
    if (dwRet == WAIT_OBJECT_0 || dwRet == WAIT_ABANDONED)
       return true;
@@ -719,7 +719,7 @@ bool event::lock(const duration & durationTimeout)
    else
    {
 
-      uint32_t timeout = durationTimeout.os_lock_duration();
+      uint32_t timeout = durationTimeout.lock_duration();
 
       uint32_t start = ::get_tick_count();
 

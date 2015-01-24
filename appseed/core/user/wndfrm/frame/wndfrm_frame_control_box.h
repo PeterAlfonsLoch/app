@@ -42,8 +42,8 @@ namespace user
             COLORREF                      m_crButtonForeFocus;
             COLORREF                      m_crButtonForeDisabled;
 
-            map < e_button, e_button, id, id >           m_mapButtonId;
-            map < id, id, e_button, e_button >           m_mapIdButton;
+            map < e_button, e_button, id >           m_mapButtonId;
+            id_map < e_button >           m_mapIdButton;
             map < e_button, e_button, bool, bool >       m_buttonmapPresent;
 
 

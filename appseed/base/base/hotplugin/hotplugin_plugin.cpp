@@ -740,7 +740,7 @@ namespace hotplugin
 
          dir::mk(dir::path(dir::userappdata("time"), "core"));
 
-         int32_t iOpen;
+         //int32_t iOpen;
 
 //         if(bCreateFile)
 //         {

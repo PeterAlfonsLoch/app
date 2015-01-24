@@ -22,7 +22,7 @@ namespace user
       sp(image_list) m_pimagelist;
       sp(image_list) m_pimagelistDisable;
       ///CBaseNumericDiscreteRelation < UINT, UINT, UINT, UINT > m_rel;
-      map < id, id, UINT, UINT > m_rel;
+      id_map < int > m_rel;
 
    };
 

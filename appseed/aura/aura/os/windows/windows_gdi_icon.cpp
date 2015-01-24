@@ -15,8 +15,8 @@ CLASS_DECL_AURA HBITMAP get_icon_hbitmap(HICON hICON)
 //HICON hICON = /*your code here*/
 HBITMAP hBITMAPcopy;
 ICONINFOEX IconInfo;
-BITMAP BM_32_bit_color;
-BITMAP BM_1_bit_mask;
+//BITMAP BM_32_bit_color;
+//BITMAP BM_1_bit_mask;
 
 // 1. From HICON to HBITMAP for color and mask separately
 //.cbSize required

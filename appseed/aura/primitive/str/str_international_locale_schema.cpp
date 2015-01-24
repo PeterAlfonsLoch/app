@@ -76,7 +76,7 @@ namespace str
             _add_locale_variant(idLocale2, idSchema2);
          }
 
-         strsize iStart = idLocale2.m_pstr->get_length() + 1;
+         strsize iStart =idLocale2.str().get_length() + 1;
          strsize iEnd;
          strsize iLen;
          string str;
@@ -86,7 +86,7 @@ namespace str
             iEnd = iStart - 1;
             if((iEnd - 1) < 0)
                break;
-            iStart = idLocale2.m_pstr->reverse_find('-', iEnd - 1);
+            iStart = idLocale2.str().reverse_find('-', iEnd - 1);
             bEnd = iStart < 0;
             if(bEnd)
             {
@@ -97,7 +97,7 @@ namespace str
                iStart++;
             }
             iLen = iEnd - iStart;
-            ::id id = localeid(&((LPCSTR)*idLocale2.m_pstr)[iStart], iLen);
+            ::id id = localeid(&idLocale2.m_psz[iStart], iLen);
             if(defer_add_locale(id, idSchema2))
             {
                _add_locale_variant(id, idSchema2);

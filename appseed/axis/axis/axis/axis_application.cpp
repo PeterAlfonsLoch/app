@@ -161,7 +161,7 @@ namespace axis
 
       synch_lock sl(&m_mutexStr);
 
-      string strId(*id.m_pstr);
+      string strId(id.str());
       string strTable;
       string strString;
       string_to_string * pmap = NULL;

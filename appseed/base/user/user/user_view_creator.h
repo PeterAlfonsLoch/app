@@ -28,7 +28,7 @@ namespace user
 
 
       class CLASS_DECL_BASE view_map :
-         public map < id, id, ::user::view_creator_data *, ::user::view_creator_data * >
+         public id_map < ::user::view_creator_data * >
       {
       public:
       };

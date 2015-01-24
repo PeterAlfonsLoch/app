@@ -2,7 +2,7 @@
 
 
 template < class VALUE, class ARG_VALUE = const VALUE &, class HASH = ::comparison::strid_hash, class EQUALS = ::comparison::strid_equals  >
-using strid_map = map < id,const id &,VALUE,ARG_VALUE,HASH,EQUALS > ;
+using strid_map = id_map < VALUE,ARG_VALUE,HASH,EQUALS > ;
 
 template < class T >
 class CLASS_DECL_AURA string_to_pointer :

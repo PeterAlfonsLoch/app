@@ -151,7 +151,7 @@ void condition::wait ()
 wait_result condition::wait (const duration & duration)
 {
 
-	uint32_t timeout = duration.os_lock_duration();
+	uint32_t timeout = duration.lock_duration();
 
 #ifdef WINDOWS
 
@@ -240,7 +240,7 @@ bool condition::lock(const duration & durationTimeout)
 {
 #ifdef WINDOWS
 
-   if(SleepConditionVariableCS(&m_var, &m_sect, durationTimeout.os_lock_duration()) != FALSE)
+   if(SleepConditionVariableCS(&m_var, &m_sect, durationTimeout.lock_duration()) != FALSE)
       return true;
    else
       return false;
@@ -250,7 +250,7 @@ bool condition::lock(const duration & durationTimeout)
 
 #else
 
-   uint32_t timeout = durationTimeout.os_lock_duration();
+   uint32_t timeout = durationTimeout.lock_duration();
 
 	uint32_t start = ::get_tick_count();
 

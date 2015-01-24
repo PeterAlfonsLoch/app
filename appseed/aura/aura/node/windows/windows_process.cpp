@@ -219,7 +219,7 @@ namespace windows
 
       DWORD dwStart = ::get_tick_count();
 
-      DWORD dwTimeOut = durationTimeOut.get_total_milliseconds();
+      DWORD dwTimeOut = durationTimeOut.tick_duration();
 
       while(::get_tick_count() - dwStart < dwTimeOut)
       {

@@ -153,7 +153,7 @@ wait_result event_collection::wait(bool waitForAll, const duration & duration)
 {
    if ( m_objecta.is_empty() )
       return wait_result( wait_result::Failure );
-   os_lock_duration timeout = duration;
+   lock_duration timeout = duration;
 
    for (int32_t i = 0; i < m_waitableelementa.get_size(); i++)
       m_waitableelementa[i].item->init_wait();

@@ -1,8 +1,8 @@
 //#include "framework.h"
 //#include <stdarg.h>
 
-thread_int_ptr < int_ptr > g_iGenerateSyncIoError;
-thread_int_ptr < int_ptr > g_iSyncIoError;
+thread_int_ptr < int > g_iGenerateSyncIoError;
+thread_int_ptr < int > g_iSyncIoError;
 
 CLASS_DECL_AURA int get_sync_io_error()
 {

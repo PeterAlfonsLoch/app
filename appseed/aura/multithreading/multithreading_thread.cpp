@@ -336,7 +336,7 @@ bool thread::send_thread_message(UINT message,WPARAM wParam,lparam lParam, ::dur
 
       }
 
-      Sleep(durWaitStep.get_total_milliseconds());
+      Sleep(durWaitStep);
 
       if(pmessage->m_bOk)
       {

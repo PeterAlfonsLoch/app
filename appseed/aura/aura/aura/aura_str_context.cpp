@@ -347,7 +347,7 @@ namespace aura
 
          stra2.remove_all();
 
-         id2 = *id.m_pstr + "[" + ::str::from(i) + "]";
+         id2 = string(id.m_psz) + "[" + ::str::from(i) + "]";
 
          _get(stra2, pcontext, id2);
 

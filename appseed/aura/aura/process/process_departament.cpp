@@ -103,7 +103,7 @@ namespace process
       else
       {
 
-         m_uiTimeout = dur.get_total_milliseconds();
+         m_uiTimeout =  dur.tick_duration();
 
       }
 

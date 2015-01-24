@@ -124,7 +124,7 @@ inline id & id::operator = (const var & var)
 
    if(var.is_null())
    {
-      m_pstr = NULL;
+      m_all ={};
       return *this;
    }
    else if(var.is_empty())
@@ -153,7 +153,7 @@ inline id & id::operator = (const property & prop)
 
 inline id::id(const var & var)
 {
-
-   m_pstr = var.get_id().m_pstr;
+   m_all={};
+   operator = (var);
 
 }
