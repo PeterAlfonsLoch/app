@@ -2098,7 +2098,7 @@ namespace str
       if(i >= str.length())
          return "";
 
-      int iStart = i;
+      strsize iStart = i;
 
       while(i < str.length() && !isspace((byte) str[i]))
       {
@@ -2119,7 +2119,7 @@ namespace str
 
       string str(psz);
 
-      int iOldLen = str.length();
+      strsize iOldLen = str.length();
 
       string strResult = consume_spaced_value(str);
 
@@ -2134,7 +2134,7 @@ namespace str
 
       string str(psz, pszEnd - psz);
 
-      int iOldLen = str.length();
+      strsize iOldLen = str.length();
 
       string strResult = consume_spaced_value(str);
 
@@ -2150,7 +2150,7 @@ namespace str
 
       string strResult;
 
-      int iFind = str.find('\"');
+      strsize iFind = str.find('\"');
 
       if(iFind < 0)
       {
@@ -2171,7 +2171,7 @@ namespace str
          if(i < iFind)
          {
 
-            int iStart = i;
+            strsize iStart = i;
 
             while(i < iFind && !isspace((byte) str[i]))
             {
@@ -2188,7 +2188,7 @@ namespace str
 
             iFind++;
 
-            int iFind2 = str.find('\"', iFind);
+            strsize iFind2 = str.find('\"',iFind);
 
             if(iFind2 < 0)
             {
@@ -2230,7 +2230,7 @@ namespace str
 
       string str(psz);
 
-      int iOldLen = str.length();
+      strsize iOldLen = str.length();
 
       string strResult = consume_command_line_argument(str);
 
@@ -2245,7 +2245,7 @@ namespace str
 
       string str(psz, pszEnd - psz);
 
-      int iOldLen = str.length();
+      strsize iOldLen = str.length();
 
       string strResult = consume_command_line_argument(str);
 

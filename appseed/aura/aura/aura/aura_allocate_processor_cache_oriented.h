@@ -16,7 +16,7 @@ class CLASS_DECL_AURA processor_cache_oriented_memory_allocator
 {
 public:
 
-   inline static void * alloc(int iSize)
+   inline static void * alloc(size_t iSize)
    {
 
       //TODO("jai"); jas = Jonathan Blow 

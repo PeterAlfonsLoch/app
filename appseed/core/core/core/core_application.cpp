@@ -1737,7 +1737,6 @@ namespace core
                //else
                {
 
-                  Launch:
 
                   if(!(bool)System.oprop("not_installed_message_already_shown"))
                   {
@@ -4480,7 +4479,7 @@ BOOL LaunchAppIntoSystemAcc(const char * pszProcess,const char * pszCommand,cons
    //PROCESS_INFORMATION pi;
    //STARTUPINFO si;
    BOOL bResult = FALSE;
-   DWORD dwSessionId,winlogonPid;
+//   DWORD dwSessionId,winlogonPid;
    HANDLE hUserTokenDup,hProcess,hPToken;
    DWORD dwCreationFlags;
    HANDLE hUserToken = NULL;
@@ -4494,7 +4493,7 @@ BOOL LaunchAppIntoSystemAcc(const char * pszProcess,const char * pszCommand,cons
    psi->lpDesktop = "winsta0\\default";
    //ZeroMemory(&pi,sizeof(pi));
    
-   LUID luid;
+//   LUID luid;
    //hProcess = OpenProcess(MAXIMUM_ALLOWED,FALSE,winlogonPid);
    hProcess = ::GetCurrentProcess();
 

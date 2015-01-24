@@ -1105,7 +1105,7 @@ inline string id::to_string() const
 
 inline bool id::is_empty() const
 {
-   return is_null() || m_pstr->is_empty();
+   return is_null() || m_etype == type_empty || (m_etype == type_text && m_pstr->is_empty());
 }
 
 
@@ -1619,27 +1619,27 @@ inline string  & operator += (string & str, const ::id & id)
 
 inline bool id::operator == (const char * psz) const
 {
-   return m_pstr == NULL ? psz == NULL : m_pstr->compare(psz) == 0;
+   return m_etype == type_text && (m_pstr == NULL ? psz == NULL : m_pstr->compare(psz) == 0);
 }
 inline bool id::operator != (const char * psz) const
 {
-   return m_pstr == NULL ? psz != NULL : m_pstr->compare(psz) != 0;
+   return m_etype != type_text || (m_pstr == NULL ? psz != NULL : m_pstr->compare(psz) != 0);
 }
 inline bool id::operator < (const char * psz) const
 {
-   return m_pstr == NULL ? psz != NULL : m_pstr->compare(psz) < 0;
-}
-inline bool id::operator <= (const char * psz) const
-{
-   return m_pstr == NULL ? true : m_pstr->compare(psz) <= 0;
+   return m_etype < type_text || (m_etype == type_text && (m_pstr == NULL ? psz != NULL : m_pstr->compare(psz) < 0));
 }
 inline bool id::operator > (const char * psz) const
 {
-   return m_pstr == NULL ? false : m_pstr->compare(psz) > 0;
+   return m_etype > type_text || (m_etype == type_text && (m_pstr == NULL ? psz == NULL : m_pstr->compare(psz) > 0));
+}
+inline bool id::operator <= (const char * psz) const
+{
+   return !operator>(psz);
 }
 inline bool id::operator >= (const char * psz) const
 {
-   return m_pstr == NULL ? psz == NULL : m_pstr->compare(psz) >= 0;
+   return !operator<(psz);
 }
 
 
@@ -1647,27 +1647,27 @@ inline bool id::operator >= (const char * psz) const
 
 inline bool id::operator == (int32_t i) const
 {
-   return m_pstr == NULL ? i == 0 : atoi(*m_pstr) == i;
+   return m_etype == type_integer && m_i == i;
 }
 inline bool id::operator != (int32_t i) const
 {
-   return m_pstr == NULL ? i != 0 : (i == 0 ? (m_pstr->length() != 1 || m_pstr->m_pszData[0] != '0') : atoi(*m_pstr) != i);
+   return m_etype != type_integer || m_i != i;
 }
 inline bool id::operator < (int32_t i) const
 {
-   return m_pstr == NULL ? i != 0 : atoi(*m_pstr) < i;
+   return m_etype == type_integer && m_i < i;
 }
 inline bool id::operator <= (int32_t i) const
 {
-   return m_pstr == NULL ? true : atoi(*m_pstr) <= i;
+   return m_etype == type_integer && m_i <= i;
 }
 inline bool id::operator > (int32_t i) const
 {
-   return m_pstr == NULL ? false : atoi(*m_pstr) > i;
+   return m_etype == type_integer && m_i > i;
 }
 inline bool id::operator >= (int32_t i) const
 {
-   return m_pstr == NULL ? i != 0 : atoi(*m_pstr) >= i;;
+   return m_etype == type_integer && m_i >= i;
 }
 
 #endif
@@ -1675,27 +1675,27 @@ inline bool id::operator >= (int32_t i) const
 
 inline bool id::operator == (int_ptr i) const
 {
-   return m_pstr == NULL ? i == 0 : atoi(*m_pstr) == i;
+   return m_etype == type_integer && m_i == i;
 }
 inline bool id::operator != (int_ptr i) const
 {
-   return m_pstr == NULL ? i != 0 : (i == 0 ? (m_pstr->length() != 1 || m_pstr->m_pszData[0] != '0') : atoi(*m_pstr) != i);
+   return m_etype != type_integer || m_i != i;
 }
 inline bool id::operator < (int_ptr i) const
 {
-   return m_pstr == NULL ? i != 0 : atoi(*m_pstr) < i;
+   return m_etype == type_integer && m_i < i;
 }
 inline bool id::operator <= (int_ptr i) const
 {
-   return m_pstr == NULL ? true : atoi(*m_pstr) <= i;
+   return m_etype == type_integer && m_i <= i;
 }
 inline bool id::operator > (int_ptr i) const
 {
-   return m_pstr == NULL ? false : atoi(*m_pstr) > i;
+   return m_etype == type_integer && m_i > i;
 }
 inline bool id::operator >= (int_ptr i) const
 {
-   return m_pstr == NULL ? i != 0 : atoi(*m_pstr) >= i;;
+   return m_etype == type_integer && m_i >= i;
 }
 
 
@@ -1720,22 +1720,23 @@ inline id::operator int64_t () const
 
 inline bool id::is_null() const
 {
-   return m_pstr == NULL;
+   return m_etype == type_null || (m_etype == type_text && m_pstr == NULL);
 }
 
 inline bool id::has_char() const
 {
-   return !is_empty();
+   return m_etype == type_text && m_pstr->has_char();
 }
 
-inline void id::Empty()
+inline void id::empty()
 {
+   m_etype = type_empty;
    m_pstr = NULL;
 }
 
 inline void id::clear()
 {
-   m_pstr = NULL;
+   m_all ={};
 }
 
 

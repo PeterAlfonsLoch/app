@@ -48,7 +48,7 @@ class CLASS_DECL_AURA default_memory_allocator
 public:
 
 
-   inline static void * alloc(int iSize)
+   inline static void * alloc(size_t iSize)
    {
 
       //TODO("jai"); jas = Jonathan Blow 

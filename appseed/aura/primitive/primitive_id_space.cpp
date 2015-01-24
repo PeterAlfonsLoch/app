@@ -72,7 +72,7 @@ id id_space::operator()(const string & str)
 id id_space::operator()(int64_t i)
 {
 
-   return id_space::operator()(::str::from(i));
+   return id_space::operator()(i);
 
 
    

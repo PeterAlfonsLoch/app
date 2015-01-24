@@ -696,7 +696,7 @@ namespace windows
       BOOL    fSave = FALSE;
       WCHAR szDomainAndUser[CREDUI_MAX_USERNAME_LENGTH + CREDUI_MAX_DOMAIN_TARGET_LENGTH + 1];
       WCHAR szDomain[CREDUI_MAX_DOMAIN_TARGET_LENGTH + 1];
-      TOKEN_INFO ti;
+//      TOKEN_INFO ti;
 
       DWORD maxLenName = CREDUI_MAX_USERNAME_LENGTH + 1;
       DWORD maxLenPass = CREDUI_MAX_PASSWORD_LENGTH + 1;
@@ -713,7 +713,7 @@ namespace windows
 
 
       // Retrieve the user name and domain name.
-      SID_NAME_USE    SidUse;
+//      SID_NAME_USE    SidUse;
       DWORD           cchTmpUsername = CREDUI_MAX_USERNAME_LENGTH +1;
       DWORD           cchTmpDomain = CREDUI_MAX_DOMAIN_TARGET_LENGTH + 1;
       DWORD           cchDomainAndUser = CREDUI_MAX_USERNAME_LENGTH + CREDUI_MAX_DOMAIN_TARGET_LENGTH + 1;

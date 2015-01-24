@@ -1,13 +1,57 @@
 #pragma once
 
 
-
 class CLASS_DECL_AURA id
 {
 public:
 
 
-   const string *       m_pstr;
+   enum e_type : int64_t
+   {
+      
+      type_null,
+      type_empty,
+      type_integer,
+      type_text
+
+   };
+
+
+   union 
+   {
+
+      struct
+      {
+
+         e_type                  m_etype;
+
+         union
+         {
+
+            int64_t              m_i;
+            const string *       m_pstr;
+
+         };
+
+      };
+
+      struct
+      {
+
+         int64_t            m_iType;
+         int64_t            m_iBody;
+
+      };
+
+      struct all
+      {
+         
+         int64_t            m_iType;
+         int64_t            m_iBody;
+
+      } m_all;
+
+   };
 
 
    inline id();
@@ -104,7 +148,7 @@ public:
    inline bool is_null() const;
    inline bool is_empty() const;
    inline bool has_char() const;
-   inline void Empty();
+   inline void empty();
    inline void clear();
 
 
@@ -119,18 +163,20 @@ public:
 inline id::id()
 {
 
-   m_pstr = NULL;
+   m_all = {};
 
 }
 
 inline id::id(const id & id)
 {
-   m_pstr = id.m_pstr;
+   
+   m_all = id.m_all;
+
 }
 
 inline bool id::operator == (const id & id) const
 {
-   return m_pstr == id.m_pstr;
+   return m_iType == id.m_iType && m_iBody == m_iBody;
 }
 
 inline bool id::operator != (const id & id) const
@@ -140,24 +186,24 @@ inline bool id::operator != (const id & id) const
 
 inline bool id::operator < (const id & id) const
 {
-   return m_pstr < id.m_pstr;
+   return m_iType < id.m_iType || ((m_iType == id.m_iType) && m_pstr < id.m_pstr);
+}
+inline bool id::operator >(const id & id) const
+{
+   return m_iType > id.m_iType || ((m_iType == id.m_iType) && m_pstr > id.m_pstr);
 }
 inline bool id::operator <= (const id & id) const
 {
-   return m_pstr <= id.m_pstr;
-}
-inline bool id::operator > (const id & id) const
-{
-   return m_pstr > id.m_pstr;
+   return id > *this;
 }
 inline bool id::operator >= (const id & id) const
 {
-   return m_pstr >= id.m_pstr;
+   return id < *this;
 }
 
 inline id & id::operator = (const id & id)
 {
-   m_pstr         = id.m_pstr;
+   m_all         = id.m_all;
    return *this;
 }
 
@@ -173,7 +219,7 @@ namespace comparison
 
       inline static bool CompareElements(const id * pElement1, const id & element2)
       {
-         return pElement1->m_pstr == element2.m_pstr;
+         return *pElement1 == element2;
       }
 
    };
@@ -198,7 +244,7 @@ namespace comparison
 
       inline bool operator()(const id & element1, const id & element2) const
       {
-         return element1.m_pstr < element2.m_pstr;
+         return element1 < element2;
       }
 
    };
@@ -234,7 +280,7 @@ namespace comparison
 
       inline static UINT HashKey (const id & key)
       {
-         return (UINT) (*((int_ptr*)(&key.m_pstr)) >> 8);
+         return (((UINT) key.m_iType) << 24) | (((UINT) key.m_iBody) >> 8);
       }
 
    };

@@ -375,12 +375,12 @@ inline property property_set::operator[](id idName) const
 
 inline property & property_set::operator[](index iIndex)
 {
-   return operator[](::str::from(iIndex));
+   return operator[](::id(iIndex));
 }
 
 inline property property_set::operator[](index iIndex) const
 {
-   return operator[](::str::from(iIndex));
+   return operator[](::id(iIndex));
 }
 
 inline property & property_set::operator[](const var & var)
