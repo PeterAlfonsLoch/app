@@ -40,7 +40,7 @@ namespace html
          virtual ~elemental();
 
 
-         virtual void delete_implementation();
+         virtual void delete_implementation(data * pdoc);
 
 
          virtual bool get_color(COLORREF & cr);

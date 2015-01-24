@@ -25,7 +25,7 @@ namespace html
    elemental::~elemental()
    {
 
-      destroy();
+      destroy(m_pdata);
 
    }
 
@@ -1181,16 +1181,27 @@ namespace html
    }
 
 
-   void elemental::delete_implementation()
+   void elemental::delete_implementation(data * pdoc)
    {
 
       m_propertyset.clear();
 
       if(m_pimpl != NULL)
       {
+         if(pdoc->m_pform != NULL)
+         {
+            if(pdoc->m_pform->m_phtmlform != NULL)
+            {
+               if(pdoc->m_pform->m_phtmlform->m_pelementalHover == this)
+               {
+                  pdoc->m_pform->m_phtmlform->m_pelementalHover = NULL;
+               }
+            }
+         }
+
          try
          {
-            m_pimpl->delete_implementation();
+            m_pimpl->delete_implementation(pdoc);
          }
          catch(...)
          {
@@ -1204,15 +1215,39 @@ namespace html
          }
          m_pimpl = NULL;
 
+
       }
 
    }
 
 
-   void elemental::destroy()
+   void elemental::destroy(data * pdoc)
    {
 
       m_propertyset.clear();
+
+
+      try
+      {
+
+         if(pdoc->m_pform != NULL)
+         {
+            if(pdoc->m_pform->m_phtmlform != NULL)
+            {
+               if(pdoc->m_pform->m_phtmlform->m_pelementalHover == this)
+               {
+                  pdoc->m_pform->m_phtmlform->m_pelementalHover == NULL;
+               }
+
+            }
+         }
+      }
+      catch(...)
+      {
+
+      }
+
+
 
       if(m_pparent != NULL)
       {
@@ -1236,13 +1271,14 @@ namespace html
          for(int32_t i = 0; i < m_elementalptra.get_size(); i++)
          {
 
+       
             try
             {
 
                if(m_elementalptra[i] != NULL)
                {
 
-                  m_elementalptra[i]->destroy();
+                  m_elementalptra[i]->destroy(pdoc);
 
                }
 
@@ -1281,7 +1317,7 @@ namespace html
       {
          try
          {
-            m_pimpl->delete_implementation();
+            m_pimpl->delete_implementation(pdoc);
          }
          catch(...)
          {

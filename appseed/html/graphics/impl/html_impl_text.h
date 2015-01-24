@@ -39,7 +39,7 @@ namespace html
          void layout_phase1(data * pdata);
          void layout_phase3(data * pdata);
 
-         virtual void delete_implementation();
+         virtual void delete_implementation(data * pdoc);
 
          virtual bool get_color(COLORREF & cr);
          virtual bool has_link();

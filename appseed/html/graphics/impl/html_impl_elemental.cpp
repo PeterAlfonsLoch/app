@@ -29,7 +29,7 @@ namespace html
       }
 
 
-      void elemental::delete_implementation()
+      void elemental::delete_implementation(data * pdoc)
       {
          m_cxMax = -2;
          m_cxMin = -2;

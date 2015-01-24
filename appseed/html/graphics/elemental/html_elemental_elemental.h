@@ -41,9 +41,9 @@ namespace html
       DECL_GEN_SIGNAL(OnLButtonUp);
 
 
-      virtual void delete_implementation();
+      virtual void delete_implementation(data * pdoc);
 
-      void destroy();
+      void destroy(data * pdoc);
 
       
       

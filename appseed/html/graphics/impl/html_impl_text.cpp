@@ -24,7 +24,7 @@ namespace html
       }
 
 
-      void text::delete_implementation()
+      void text::delete_implementation(data * pdoc)
       {
 
          m_bLink = false;
