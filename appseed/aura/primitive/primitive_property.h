@@ -1,6 +1,7 @@
 #pragma once
 
 
+
 class property;
 
 
@@ -210,6 +211,12 @@ public:
    int32_t int32(int32_t iDefault = 0) const
    {
       return get_value().int32(iDefault);
+   }
+
+   template < typename ENUM >
+   int32_t int32(ENUM edefault = ::enum_default()) const
+   {
+      return get_value().e(edefault);
    }
 
    uint32_t uint32(uint32_t uiDefault = 0) const

@@ -18,6 +18,11 @@ enum para_return
 
 bool is_return_ok(para_return eret);
 
+template < typename ENUM >
+ENUM enum_default()
+{
+   return (ENUM) 0;
+}
 
 
 class CLASS_DECL_AURA var
@@ -176,6 +181,8 @@ public:
 
    bool                             get_bool(bool bDefault = false)     const;
    int32_t                          int32(int32_t iDefault = 0)  const;
+   template < typename ENUM >
+   ENUM                             e(ENUM edefault = enum_default())  const { return (ENUM) int64(); }
    uint32_t                         uint32(uint32_t uiDefault = 0)  const;
    int64_t                          int64(int64_t iDefault = 0)  const;
    uint64_t                         uint64(uint64_t uiDefault = 0)  const;
