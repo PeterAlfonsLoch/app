@@ -510,8 +510,8 @@ public:
    var at(index i);
    var key(index i) const;
 #if OSBIT != 32
-   inline const var & operator[] (int32_t iKey) const { return operator[]((index) iKey); }
-   inline var & operator[] (int32_t iKey) { return operator[]((index) iKey); }
+   inline var operator[] (int32_t iKey) const { return operator[]((index) iKey); }
+   inline var operator[] (int32_t iKey) { return operator[]((index) iKey); }
    inline var at(int32_t i) const { return at((index) i); }
    inline var at(int32_t i) { return at((index) i); }
    inline var key(int32_t i) const { return key((index) i); }

@@ -472,7 +472,7 @@ namespace fontopus
 #endif // WINDOWS
 
 
-         ::simple_message_box(NULL,"No license to use the application/feature \"" + string(psz) + "\" for the user \"" + ApplicationUser.m_strLogin + "\". Contact your system administrator.",psz,MB_ICONEXCLAMATION);
+         ::simple_message_box(NULL,"No license for using application/feature \"" + string(psz) + "\" by user \"" + ApplicationUser.m_strLogin + "\".\n\nPlease, contact your system administrator.",psz,MB_ICONEXCLAMATION);
 
 
          return false;

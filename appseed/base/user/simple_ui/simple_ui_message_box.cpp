@@ -205,14 +205,22 @@ namespace simple_ui
 
       pdc->set_text_color(ARGB(255,49,49,42));
 
-      for(int i = 0; i < m_stra.get_size(); i++)
-      {
+      string strMessage = m_stra.implode("\n");
 
-         pdc->TextOut(10,y,m_stra[i]);
+      ::rect r(rectClient);
 
-         y+= iHeight;
+      r.deflate(10, 10);
 
-      }
+      pdc->draw_text(strMessage,r,DT_LEFT | DT_TOP);
+
+      //for(int i = 0; i < m_stra.get_size(); i++)
+      //{
+
+      //   pdc->TextOut(10,y,m_stra[i]);
+
+      //   y+= iHeight;
+
+      //}
 
 
    }

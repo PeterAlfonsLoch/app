@@ -1546,7 +1546,7 @@ namespace axis
          // current application startup won't be
          // exited by timeout.
 
-         int32_t iRetry = 3;
+         int32_t iRetry = 1;
 
       retry_license:
 
