@@ -63,6 +63,7 @@ public:
 //   HGLRC                         m_hglrc;
 //#endif
    bool                                m_bFullScreenAlt;
+   bool                                m_bFullScreenCtrl;
    bool                                m_bblur_Background;
    visual::dib_sp                      m_dibBk;
    bool                                m_bCustomFrameBefore;

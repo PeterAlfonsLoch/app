@@ -873,13 +873,21 @@ void simple_frame_window::pre_translate_message(signal_details * pobj)
          m_bFullScreenAlt = false;
 
       }
-      else if (pkey->m_ekey == ::user::key_return)
+      else if(pkey->m_ekey == ::user::key_control || pkey->m_ekey == ::user::key_lcontrol || pkey->m_ekey == ::user::key_rcontrol)
+      {
+
+         m_bFullScreenCtrl = false;
+
+      }
+      else if(pkey->m_ekey == ::user::key_return)
       {
 
          if (Session.is_key_pressed(::user::key_control) && Session.is_key_pressed(::user::key_alt))
          {
 
             m_bFullScreenAlt = true;
+
+            m_bFullScreenCtrl = true;
 
             if (!IsFullScreen())
             {
@@ -908,7 +916,7 @@ void simple_frame_window::pre_translate_message(signal_details * pobj)
       if(pkey->m_ekey == ::user::key_alt || pkey->m_ekey == ::user::key_lalt || pkey->m_ekey == ::user::key_ralt)
       {
 
-         if (IsFullScreen() && Session.is_key_pressed(::user::key_control) && !m_bFullScreenAlt)
+         if (IsFullScreen() && Session.is_key_pressed(::user::key_control) && !m_bFullScreenAlt && !m_bFullScreenCtrl)
          {
 
             if (WfiRestore(m_eappearanceBefore != ::user::AppearanceFullScreen))
@@ -930,7 +938,7 @@ void simple_frame_window::pre_translate_message(signal_details * pobj)
       else if(pkey->m_ekey == ::user::key_control || pkey->m_ekey == ::user::key_lcontrol || pkey->m_ekey == ::user::key_rcontrol)
       {
 
-         if(IsFullScreen() && Session.is_key_pressed(::user::key_alt) && !m_bFullScreenAlt)
+         if(IsFullScreen() && Session.is_key_pressed(::user::key_alt) && !m_bFullScreenAlt && !m_bFullScreenCtrl)
          {
 
             if(WfiRestore(m_eappearanceBefore != ::user::AppearanceFullScreen))

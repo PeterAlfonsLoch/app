@@ -133,6 +133,13 @@ namespace database
 
             bool bRestore = good_restore(NULL,null_rect(),true) >= 0;
 
+            if(!bRestore)
+            {
+
+               layout(); // did not changed size, but appearance may have change (e.g., Full Screen to Normal)
+
+            }
+
             return bRestore;
 
          }
@@ -328,6 +335,8 @@ namespace database
          set_appearance(::user::AppearanceNormal);
 
          WindowDataLoadWindowRect(true);
+
+         
 
       }
 
