@@ -12,6 +12,9 @@ inline UINT _gen_GetConversionACP()
 }
 
 
+#ifdef WINDOWS
+#define stricmp _stricmp
+#endif
 
 
 #undef new
