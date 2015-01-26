@@ -386,7 +386,6 @@
     <ClInclude Include="draw2d_direct2d_bitmap.h" />
     <ClInclude Include="draw2d_direct2d_brush.h" />
     <ClInclude Include="draw2d_direct2d_dib.h" />
-    <ClInclude Include="draw2d_direct2d_directx.h" />
     <ClInclude Include="draw2d_direct2d_factory_exchange.h" />
     <ClInclude Include="draw2d_direct2d_font.h" />
     <ClInclude Include="draw2d_direct2d_graphics.h" />

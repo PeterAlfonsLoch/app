@@ -104,9 +104,6 @@
     <ClInclude Include="draw2d_direct2d_path.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="draw2d_direct2d_directx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="framework\framework.h">
       <Filter>Header Files\framework</Filter>
     </ClInclude>

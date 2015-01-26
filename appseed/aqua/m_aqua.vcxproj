@@ -39,7 +39,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{106E3938-FA19-4D4D-83D5-A36692C93E86}</ProjectGuid>
+    <ProjectGuid>{19518477-75C4-4DF7-ACC2-325FA81A640C}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <ProjectName>aqua</ProjectName>
     <RootNamespace>aqua</RootNamespace>

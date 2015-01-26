@@ -211,27 +211,6 @@
     <Filter Include="Header Files\aura\os\ansios">
       <UniqueIdentifier>{bc1f34ec-82da-4af1-82cd-fe91ec180b90}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Binary Files">
-      <UniqueIdentifier>{ecd53e95-f515-4398-8e14-ccb433ec825c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Binary Files\Release">
-      <UniqueIdentifier>{bda63bc6-214c-4764-ad29-c5557c74b457}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Binary Files\Release\x86">
-      <UniqueIdentifier>{cd9f4e63-229a-4b09-ae5f-75d0b0716902}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Binary Files\Release\x64">
-      <UniqueIdentifier>{d3cbe779-2dea-4f05-9ca7-ba66c4366987}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Binary Files\Debug">
-      <UniqueIdentifier>{9d17096a-2600-4cc0-bb7a-d59fc0758f69}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Binary Files\Debug\x86">
-      <UniqueIdentifier>{e537d7cd-d5a2-47a5-a577-4602233920ce}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Binary Files\Debug\x64">
-      <UniqueIdentifier>{1081be4a-3c65-491b-9e1d-71981699a58f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\aura\os\ansios">
       <UniqueIdentifier>{1f75a137-d5d2-4ceb-bfa9-899b0dc9fba4}</UniqueIdentifier>
     </Filter>
@@ -286,9 +265,6 @@
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive_command_thread.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive_create_context.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive_edit.h">
@@ -1551,9 +1527,6 @@
     <ClInclude Include="aura\aura\aura_gudo_application.inl">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_heap.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
     <ClInclude Include="aura\aura\aura_heap_item.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
@@ -2051,6 +2024,12 @@
     </ClInclude>
     <ClInclude Include="aura\node\metrowin\metrowin_file_system.h">
       <Filter>Header Files\aura\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_allocate_heap.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive_create.h">
+      <Filter>Header Files\primitive</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -3462,43 +3441,5 @@
     <ResourceCompile Include="aura.rc">
       <Filter>Source Files</Filter>
     </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\x86\msvcp120.dll">
-      <Filter>Binary Files\Release\x86</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\x86\msvcr120.dll">
-      <Filter>Binary Files\Release\x86</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\x86\vcomp120.dll">
-      <Filter>Binary Files\Release\x86</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\x64\msvcp120.dll">
-      <Filter>Binary Files\Release\x64</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\x64\msvcr120.dll">
-      <Filter>Binary Files\Release\x64</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\x64\vcomp120.dll">
-      <Filter>Binary Files\Release\x64</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\x86\msvcp120d.dll">
-      <Filter>Binary Files\Debug\x86</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\x86\msvcr120d.dll">
-      <Filter>Binary Files\Debug\x86</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\x86\vcomp120d.dll">
-      <Filter>Binary Files\Debug\x86</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\x64\msvcp120d.dll">
-      <Filter>Binary Files\Debug\x64</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\x64\msvcr120d.dll">
-      <Filter>Binary Files\Debug\x64</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\x64\vcomp120d.dll">
-      <Filter>Binary Files\Debug\x64</Filter>
-    </CustomBuild>
   </ItemGroup>
 </Project>

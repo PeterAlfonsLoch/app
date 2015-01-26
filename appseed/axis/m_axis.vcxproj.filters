@@ -55,9 +55,6 @@
     <Filter Include="Header Files\axis\node">
       <UniqueIdentifier>{488988f3-0850-471a-a079-23c034032133}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\axis\node\windows">
-      <UniqueIdentifier>{4c80bce6-6d1e-401f-bc42-6945d935f365}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\axis\fontopus">
       <UniqueIdentifier>{ca92050f-9ab9-4a13-b388-bcba7e3cf04d}</UniqueIdentifier>
     </Filter>
@@ -72,9 +69,6 @@
     </Filter>
     <Filter Include="Header Files\filesystem\fs">
       <UniqueIdentifier>{5194d879-2777-418d-b496-82d46c22a4ec}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\filesystem\file">
-      <UniqueIdentifier>{84e071d9-61dc-4b36-bfb6-4cc21e196928}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\graphics">
       <UniqueIdentifier>{971e6e8f-6aa1-4db8-bd78-dabf3e958c1a}</UniqueIdentifier>
@@ -552,30 +546,6 @@
     <ClInclude Include="axis\node\node.h">
       <Filter>Header Files\axis\node</Filter>
     </ClInclude>
-    <ClInclude Include="axis\node\windows\windows.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_crypto.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_dir.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_factory_exchange.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_file_set.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_file_system.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_ip_enum.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_port_forward.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="axis\fontopus\fontopus.h">
       <Filter>Header Files\axis\fontopus</Filter>
     </ClInclude>
@@ -656,18 +626,6 @@
     </ClInclude>
     <ClInclude Include="filesystem\fs\fs_set.h">
       <Filter>Header Files\filesystem\fs</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_application.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_dir_application.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_dir_system.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_system.h">
-      <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
     <ClInclude Include="graphics\graphics.h">
       <Filter>Header Files\graphics</Filter>
