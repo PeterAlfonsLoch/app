@@ -277,7 +277,7 @@ namespace file
 
    }
 
-   void byte_output_stream:: write (const serializable & serializable)
+   void byte_output_stream:: write (serializable & serializable)
    {
       serializable.write(*this);
 

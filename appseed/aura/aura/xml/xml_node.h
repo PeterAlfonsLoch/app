@@ -197,7 +197,7 @@ namespace xml
       void close();
 
 
-      virtual void write(::file::output_stream & ostream) const;
+      virtual void write(::file::output_stream & ostream);
       virtual void read(::file::input_stream & istream);
 
 

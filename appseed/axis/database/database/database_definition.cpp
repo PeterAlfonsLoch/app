@@ -150,7 +150,7 @@ namespace database
 
    }
 
-   void result_set::write(::file::output_stream & ostream) const
+   void result_set::write(::file::output_stream & ostream)
    {
       ostream << record_header;
       ostream << records;
@@ -162,7 +162,7 @@ namespace database
       istream >> records;
    }
 
-   void field_properties::write(::file::output_stream & ostream) const
+   void field_properties::write(::file::output_stream & ostream)
    {
       ostream << name;
       ostream << display_name;

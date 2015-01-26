@@ -49,7 +49,7 @@ namespace xml
 
    }
 
-   void edit_item::write(::file::output_stream & ostream) const
+   void edit_item::write(::file::output_stream & ostream)
    {
 
       ostream << (int32_t) m_eaction;

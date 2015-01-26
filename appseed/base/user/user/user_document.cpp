@@ -227,7 +227,7 @@ namespace aura
       return m_bNew;
    }
 
-   void document::write(::file::output_stream & ostream) const
+   void document::write(::file::output_stream & ostream)
    {
       UNREFERENCED_PARAMETER(ostream);
    }

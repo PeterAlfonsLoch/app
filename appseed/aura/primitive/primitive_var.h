@@ -485,7 +485,7 @@ public:
    bool operator > (int32_t i) const;
    bool operator > (bool b) const;
 
-   void write(::file::output_stream & ostream) const;
+   void write(::file::output_stream & ostream);
    void read(::file::input_stream & ostream);
 
    string implode(const char * pszGlue) const;

@@ -943,7 +943,7 @@ void var::read(::file::input_stream & is)
    }
 }
 
-void var::write(::file::output_stream & ostream) const
+void var::write(::file::output_stream & ostream)
 {
    int32_t i = get_type();
    ostream << i;

@@ -211,7 +211,7 @@ namespace primitive
    }
 
 
-   void memory_base::write(::file::output_stream & ostream) const
+   void memory_base::write(::file::output_stream & ostream)
    {
 
       transfer_to(ostream);

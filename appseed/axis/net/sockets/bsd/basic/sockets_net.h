@@ -121,7 +121,7 @@ namespace sockets
          dns_cache_item(const dns_cache_item & item);
 
 
-         virtual void write(::file::output_stream & ostream) const;
+         virtual void write(::file::output_stream & ostream);
          virtual void read(::file::input_stream & istream);
 
          dns_cache_item & operator = (const dns_cache_item & item);
@@ -145,7 +145,7 @@ namespace sockets
          reverse_cache_item(const reverse_cache_item & item);
 
 
-         virtual void write(::file::output_stream & ostream) const;
+         virtual void write(::file::output_stream & ostream);
          virtual void read(::file::input_stream & istream);
 
          reverse_cache_item & operator = (const reverse_cache_item & item);

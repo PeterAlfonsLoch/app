@@ -367,7 +367,7 @@ var property::at(index iIndex) const
    return this->element_at(iIndex);
 }
 
-void property::write(::file::output_stream & ostream) const
+void property::write(::file::output_stream & ostream)
 {
    ostream << m_idName;
    ostream << get_value();

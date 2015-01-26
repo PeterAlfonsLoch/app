@@ -193,7 +193,7 @@ namespace filehandler
 
    }
 
-   void handler::write(::file::output_stream & ostream) const
+   void handler::write(::file::output_stream & ostream)
    {
       sp(::data::tree_item) pitem = m_sptree->get_base_item();
 

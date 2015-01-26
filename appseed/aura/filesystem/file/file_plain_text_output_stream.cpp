@@ -127,7 +127,7 @@ namespace file
       
    }
 
-   void plain_text_output_stream:: write (const serializable & serializable)
+   void plain_text_output_stream:: write (serializable & serializable)
    {
       serializable.write(*this);
       

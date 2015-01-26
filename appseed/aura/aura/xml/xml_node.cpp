@@ -2102,7 +2102,7 @@ namespace xml
 
    }
 
-   void node::write(::file::output_stream & ostream) const
+   void node::write(::file::output_stream & ostream)
    {
 
       string str = get_xml();

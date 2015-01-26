@@ -34,7 +34,7 @@ namespace file
       virtual void write (LPCRECT lpcrect);
       virtual void write (const SIZE & size);
       virtual void write (const sp(type) info);
-      virtual void write (const serializable & serializable);
+      virtual void write (serializable & serializable);
       virtual void write (const char * psz);
 
       virtual void raw_print(const string & str);

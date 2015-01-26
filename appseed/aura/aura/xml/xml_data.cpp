@@ -22,7 +22,7 @@ namespace xml
    }
    
 
-   void data::write(::file::output_stream & ostream) const
+   void data::write(::file::output_stream & ostream)
    {
 
       ostream << (::xml::document &) *this;

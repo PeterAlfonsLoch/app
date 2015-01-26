@@ -145,7 +145,7 @@ public:
    string get_http_post();
    string get_json();
 
-   virtual void write(::file::output_stream & ostream) const;
+   virtual void write(::file::output_stream & ostream);
    virtual void read(::file::input_stream & ostream);
 
    virtual string implode(const char * pszGlue) const;

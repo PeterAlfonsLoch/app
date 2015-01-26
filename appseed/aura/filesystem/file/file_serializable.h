@@ -21,7 +21,7 @@ namespace file
 #endif
 
 
-      virtual void write(output_stream & ostream) const = 0;
+      virtual void write(output_stream & ostream) = 0;
       virtual void read(input_stream & istream) = 0;
 
 
