@@ -182,6 +182,8 @@ inline id::id(const id & id)
 inline id::id(const char * psz,id_space *)
 {
 
+   m_all ={};
+
    m_etype = type_text;
    m_psz    = psz;
 

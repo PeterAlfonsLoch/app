@@ -100,6 +100,13 @@ element * base_factory::create(::aura::application * papp, sp(type) & info)
 
    sp(factory_item_base) & pitem = m_mapItem[info->m_id];
 
+   if(pitem.is_null())
+   {
+
+      return NULL;
+
+   }
+
    if(m_bSimpleFactoryRequest)
    {
       m_typeinfoptraSimpleFactoryRequest.add(info);

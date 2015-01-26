@@ -51,6 +51,9 @@ namespace aura
 
 inline id::id(const char * psz)
 {
+   m_all ={};
+
+
    operator = (::aura::system::id(psz));
 }
 
