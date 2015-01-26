@@ -245,6 +245,8 @@ namespace metrowin
 
       //   on_set_parent(pparent);
 
+      m_oswindow = oswindow_get(m_pui);
+
       return true;
 
 #ifdef WINDOWSEX
@@ -351,6 +353,8 @@ namespace metrowin
       m_window = pinitialize->window;
 
       m_pwindow->m_pwindow  = pinitialize->pwindow;
+
+      m_oswindow = oswindow_get(m_pui);
 
 //      m_pthread = dynamic_cast <::thread *> (::get_thread());
 
@@ -4280,7 +4284,7 @@ namespace metrowin
 
    void interaction_impl::GetClientRect(__rect64 * lprect)
    {
-      if(::IsWindow(get_handle()))
+      if(!::IsWindow(get_handle()))
          return;
 
       GetWindowRect(lprect);
@@ -5103,20 +5107,24 @@ namespace metrowin
    ::user::interaction *  interaction_impl::GetActiveWindow()
    {
 
-      throw todo(get_app());
+      //throw todo(get_app());
 
-      //return ::metrowin::interaction_impl::from_handle(::GetActiveWindow());
+      oswindow window = ::GetActiveWindow();
+
+      return window == NULL ? NULL : window->m_pui;
 
    }
 
    ::user::interaction *  interaction_impl::SetActiveWindow()
    {
 
-      throw todo(get_app());
+      //throw todo(get_app());
 
       //ASSERT(::IsWindow(get_handle()));
       //
-      //return ::metrowin::interaction_impl::from_handle(::SetActiveWindow(get_handle()));
+      oswindow window = ::SetActiveWindow(get_handle());
+
+      return window == NULL ? NULL : window->m_pui;
 
    }
 

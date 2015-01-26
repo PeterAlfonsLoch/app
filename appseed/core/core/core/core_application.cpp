@@ -4283,7 +4283,7 @@ namespace core
 
 
 
-
+#ifdef WINDOWSEX
 
 BOOL LaunchAppIntoDifferentSession(const char * pszProcess,const char * pszCommand,const char * pszDir,STARTUPINFO * psi,PROCESS_INFORMATION * ppi, int iSession)
 {
@@ -4603,3 +4603,11 @@ BOOL LaunchAppIntoSystemAcc(const char * pszProcess,const char * pszCommand,cons
 
    return TRUE;
 }
+
+
+#endif // WINDOWSEX
+
+
+
+
+

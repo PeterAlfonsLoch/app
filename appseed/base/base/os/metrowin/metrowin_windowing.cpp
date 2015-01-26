@@ -171,6 +171,32 @@ oswindow WINAPI ReleaseCapture()
 }
 
 
+static oswindow g_oswindowActive;
+
+
+oswindow WINAPI GetActiveWindow()
+{
+
+   return g_oswindowActive;
+
+}
+
+oswindow WINAPI SetActiveWindow(oswindow __oswindow)
+{
+
+   ::oswindow oswindowOldActive = g_oswindowActive;
+
+   g_oswindowActive = __oswindow;
+
+   // todo
+   //SendMessage(__oswindow, WM_SETFOCUS, WPARAM, (LPARAM) (void *) oswindowOldFocus)
+   //SendMessage(oswindowOldFocus, WM_KILLFOCUS, WPARAM, (LPARAM) (void *) __oswindow)
+
+   return oswindowOldActive;
+
+}
+
+
 
 oswindow_data * WINAPI GetParent(oswindow_data * pdata)
 {

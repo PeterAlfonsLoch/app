@@ -593,11 +593,13 @@ typedef sp(::aura::application) (*LPFN_instantiate_application)(sp(::aura::appli
 
 extern CLASS_DECL_CORE LPFN_instantiate_application g_lpfn_instantiate_application;
 
+#ifdef WINDOWSEX
+
 CLASS_DECL_CORE BOOL LaunchAppIntoDifferentSession(const char * pszProcess, const char * pszCommand, const char * pszDir, STARTUPINFO * psi, PROCESS_INFORMATION * ppi, int iSession = -1);
 
 CLASS_DECL_CORE BOOL LaunchAppIntoSystemAcc(const char * pszProcess,const char * pszCommand,const char * pszDir,STARTUPINFO * psi,PROCESS_INFORMATION * ppi);
 
-
+#endif // WINDOWSEX
 
 
 

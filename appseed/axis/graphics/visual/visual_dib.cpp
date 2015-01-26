@@ -194,7 +194,7 @@ namespace visual
    }
 
 
-#ifndef  WINDOWSEX
+#ifndef  WINDOWS
 
    bool dib_sp::from(class draw2d::graphics * pgraphics,struct FIBITMAP * pfi,bool bUnload)
    {

@@ -41,6 +41,8 @@ CLASS_DECL_BASE oswindow WINAPI GetCapture();
 CLASS_DECL_BASE oswindow WINAPI SetCapture(oswindow oswindow);
 CLASS_DECL_BASE oswindow WINAPI ReleaseCapture();
 
+CLASS_DECL_BASE oswindow WINAPI GetActiveWindow();
+CLASS_DECL_BASE oswindow WINAPI SetActiveWindow(oswindow oswindow);
 
 
 

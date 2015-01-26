@@ -295,7 +295,7 @@ public:
    virtual bool LoadImageFile(::draw2d::dib * pdib, var varFile, ::aura::application * papp);
    virtual bool LoadImageSync(::draw2d::dib * pdib, const char * lpcszImageFilePath, ::aura::application * papp);
 
-#ifndef WINDOWSEX
+#ifndef WINDOWS
 
    virtual ::draw2d::bitmap_sp CreateDIBitmap(::draw2d::graphics * pdc,FIBITMAP * pFreeImage);
    virtual ::draw2d::bitmap_sp CreateBitmap(::draw2d::graphics * pdc,FIBITMAP * pFreeImage);

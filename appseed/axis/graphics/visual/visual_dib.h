@@ -54,7 +54,7 @@ namespace visual
       virtual bool save_to_file(var varFile, save_image * psaveimage = NULL);
       virtual bool write_to_file(::file::buffer_sp  pfile, save_image * psaveimage = NULL);
 
-#ifndef  WINDOWSEX
+#ifndef  WINDOWS
       virtual bool from(::draw2d::graphics * pgraphics, FIBITMAP * pfibitmap, bool bUnloadFI);
 #endif
 

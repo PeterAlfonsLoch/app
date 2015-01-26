@@ -302,7 +302,7 @@ namespace metrowin
       virtual ::user::interaction *  SetCapture(::user::interaction *  pinterface = NULL);
       virtual ::user::interaction *  ReleaseCapture();
       //virtual ::user::interaction *  GetCapture();
-      static ::user::interaction *  GetFocus();
+      virtual ::user::interaction *  GetFocus();
       virtual ::user::interaction *  SetFocus() override;
 
       static ::user::interaction *  GetDesktopWindow();

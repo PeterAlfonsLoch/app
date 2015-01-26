@@ -1940,6 +1940,7 @@ namespace user
       m_signalptra.remove_all();
       m_pimpl = (Application.alloc(System.type_info < interaction_impl >()));
       m_pimpl->m_pui = this;
+      
       //m_pui = this;
       if (!m_pimpl->initialize(pinitialize))
       {

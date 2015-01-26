@@ -1969,11 +1969,18 @@ namespace core
 
       DWORD dwSize = sizeof(wsz) / sizeof(WCHAR);
 
+
+#ifdef WINDOWSEX
+
       GetUserNameW(wsz,&dwSize);
 
       string strUserName = wsz;
 
+#endif // WINDOWSEX
+
       
+#ifndef METROWIN
+
 
       if(((!System.directrix()->m_varTopicQuery.has_property("install")
          && !System.directrix()->m_varTopicQuery.has_property("uninstall"))
@@ -1985,6 +1992,8 @@ namespace core
          throw not_installed(papp,System.install().m_strVersion,strBuildNumber,pszType,strApplicationId,Session.m_strLocale,Session.m_strSchema);
 
       }
+
+#endif
 
       if(!papp->is_serviceable() || papp->is_user_service())
       {
