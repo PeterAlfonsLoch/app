@@ -5260,7 +5260,15 @@ synch_lock ml(m_spmutex);
 
    bool graphics::set(const ::draw2d_cairo::path::arc & a)
    {
-synch_lock ml(m_spmutex);
+
+      if(a.m_dRadiusX <= 0.0000001)
+         return 0;
+
+      if(a.m_dRadiusY <= 0.0000001)
+         return 0;
+
+      synch_lock ml(m_spmutex);
+      
       cairo_keep keep(m_pdc);
 
       cairo_translate(m_pdc, a.m_xCenter, a.m_yCenter);

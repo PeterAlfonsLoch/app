@@ -149,12 +149,52 @@ namespace draw2d
       e->u.m_arc.m_dRadiusY    = (double) rect.bottom - e->u.m_arc.m_yCenter;
       e->u.m_arc.m_dAngle1     = dStart * g_dPi / 180.0;
       e->u.m_arc.m_dAngle2     = e->u.m_arc.m_dAngle1 + dAngle * g_dPi / 180.0;
+      e->u.m_arc.m_dAngle      = dAngle * g_dPi / 180.0;
+      e->u.m_arc.m_ptStart.x   = e->u.m_arc.m_xCenter + e->u.m_arc.m_dRadiusX * cos(e->u.m_arc.m_dAngle1);
+      e->u.m_arc.m_ptStart.y   = e->u.m_arc.m_yCenter + e->u.m_arc.m_dRadiusY * sin(e->u.m_arc.m_dAngle1);
+      e->u.m_arc.m_ptEnd.x     = e->u.m_arc.m_xCenter + e->u.m_arc.m_dRadiusX * cos(e->u.m_arc.m_dAngle2);
+      e->u.m_arc.m_ptEnd.y     = e->u.m_arc.m_yCenter + e->u.m_arc.m_dRadiusY * sin(e->u.m_arc.m_dAngle2);
 
       m_elementa.add(e);
 
       m_bHasPoint = true;
-      m_pt.x = (LONG) (e->u.m_arc.m_xCenter + e->u.m_arc.m_dRadiusX * cos(e->u.m_arc.m_dAngle2));
-      m_pt.y = (LONG) (e->u.m_arc.m_yCenter + e->u.m_arc.m_dRadiusY * sin(e->u.m_arc.m_dAngle2));
+      m_pt.x = (LONG)e->u.m_arc.m_ptEnd.x;
+      m_pt.y = (LONG)e->u.m_arc.m_ptEnd.y;
+
+      m_bUpdated = false;
+
+      return true;
+
+   }
+
+   bool path::add_arc(const RECTD & rect,double dStart,double dAngle)
+   {
+
+      if(width(rect) <= 0 || height(rect) <= 0)
+         return true;
+
+      sp(element) e;
+
+      e = canew(element);
+
+      e->m_etype               = element::type_arc;
+      e->u.m_arc.m_xCenter     = (rect.right + rect.left) / 2.0;
+      e->u.m_arc.m_yCenter     = (rect.bottom + rect.top) / 2.0;
+      e->u.m_arc.m_dRadiusX    = rect.right - e->u.m_arc.m_xCenter;
+      e->u.m_arc.m_dRadiusY    = rect.bottom - e->u.m_arc.m_yCenter;
+      e->u.m_arc.m_dAngle1     = dStart * g_dPi / 180.0;
+      e->u.m_arc.m_dAngle      = dAngle * g_dPi / 180.0;
+      e->u.m_arc.m_dAngle2     = e->u.m_arc.m_dAngle1 + e->u.m_arc.m_dAngle;
+      e->u.m_arc.m_ptStart.x   = e->u.m_arc.m_xCenter + e->u.m_arc.m_dRadiusX * cos(e->u.m_arc.m_dAngle1);
+      e->u.m_arc.m_ptStart.y   = e->u.m_arc.m_yCenter + e->u.m_arc.m_dRadiusY * sin(e->u.m_arc.m_dAngle1);
+      e->u.m_arc.m_ptEnd.x     = e->u.m_arc.m_xCenter + e->u.m_arc.m_dRadiusX * cos(e->u.m_arc.m_dAngle2);
+      e->u.m_arc.m_ptEnd.y     = e->u.m_arc.m_yCenter + e->u.m_arc.m_dRadiusY * sin(e->u.m_arc.m_dAngle2);
+
+      m_elementa.add(e);
+
+      m_bHasPoint = true;
+      m_pt.x = e->u.m_arc.m_ptEnd.x;
+      m_pt.y = e->u.m_arc.m_ptEnd.y;
 
       m_bUpdated = false;
 
@@ -829,8 +869,8 @@ namespace draw2d
    bool path::add_arc_label(LPCRECT lpcrect)
    {
 
-      ::rect r;
-      ::rect r2;
+      ::rectd r;
+      ::rectd r2;
 
       {
 
@@ -839,15 +879,15 @@ namespace draw2d
          r.right = lpcrect->left + height(lpcrect);
          r.bottom = lpcrect->bottom;
 
-         add_arc(r,-90,180);
+         add_arc(r,90,180);
 
       }
 
       {
 
-         r2.left = lpcrect->left + height(lpcrect) / 2;
+         r2.left = lpcrect->left + height(lpcrect) / 2.0;
          r2.top = lpcrect->top;
-         r2.right = lpcrect->right - height(lpcrect) / 2;
+         r2.right = lpcrect->right - height(lpcrect) / 2.0;
          r2.bottom = lpcrect->bottom;
 
          add_line(r2.right, r2.top);
@@ -861,7 +901,7 @@ namespace draw2d
          r.left = lpcrect->right - height(lpcrect);
          r.bottom = lpcrect->bottom;
 
-         add_arc(r,90,180);
+         add_arc(r,-90,180);
 
       }
 

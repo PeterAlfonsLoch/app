@@ -22,6 +22,9 @@ namespace draw2d
          double   m_dRadiusY;
          double   m_dAngle1;
          double   m_dAngle2;
+         double   m_dAngle;
+         POINTD   m_ptStart;
+         POINTD   m_ptEnd;
 
 
       };
@@ -155,6 +158,7 @@ namespace draw2d
       //virtual point current_point();
 
       virtual bool add_arc(const RECT & rect,double iStart,double iAngle);
+      virtual bool add_arc(const RECTD & rect,double iStart,double iAngle);
 
       using ::draw2d::object::add_line;
       virtual bool add_line(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
