@@ -989,8 +989,17 @@ namespace axis
             m_spfsdata = new ::fs::set(this);
 
          ::fs::set * pset = dynamic_cast < ::fs::set * > ((class ::fs::data *) m_spfsdata);
-         pset->m_spafsdata.add(m_pifs);
-         pset->m_spafsdata.add(m_prfs);
+         if(pset != NULL)
+         {
+            pset->m_spafsdata.add(m_pifs);
+            pset->m_spafsdata.add(m_prfs);
+         }
+
+         stringa straPath;
+
+         stringa straTitle;
+
+         m_spfsdata->root_ones(straPath,straTitle);
 
       }
 
