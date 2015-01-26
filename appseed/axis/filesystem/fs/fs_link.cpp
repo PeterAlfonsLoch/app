@@ -265,7 +265,15 @@ namespace fs
 
 #endif
 
+#ifdef METROWIN
+
+      TRACE("Not filling OS USER!!!! In METRO WIN In WinRT");
+
+#else
+
       Application.dir().ls(m_strPath,&m_straPath);
+
+#endif
 
 
    }

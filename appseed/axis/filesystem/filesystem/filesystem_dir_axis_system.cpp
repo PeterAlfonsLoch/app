@@ -2525,7 +2525,7 @@ ret:
 
          synch_lock sl(&m_mutex);
 
-         if(&Session == NULL || Session.fontopus().is_null())
+         if(&Session == NULL || Session.fontopus().is_null() || Session.fontopus().m_p->m_pthreadCreatingUser != NULL)
             return "api.ca2.cc";
 
          string strApiServer;
@@ -2544,6 +2544,13 @@ ret:
          strApiServer = strFontopusServer;
 
          strApiServer.replace("account", "api");
+
+         if(strApiServer.is_empty())
+         {
+
+            strApiServer = "api.ca2.cc";
+
+         }
 
          m_strApiCc = strApiServer;
 

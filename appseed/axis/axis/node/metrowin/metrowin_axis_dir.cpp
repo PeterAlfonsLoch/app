@@ -549,8 +549,14 @@ namespace metrowin
 
          mk(m_strTimeFolder, get_app());
 
-         if(!is(m_strTimeFolder, get_app()))
+         if(!is(m_strTimeFolder,get_app()))
+         {
+
+            TRACE("Failed to create time folder");
+
             return false;
+            
+         }
 
          mk(path(m_strTimeFolder, "time"), get_app());
 

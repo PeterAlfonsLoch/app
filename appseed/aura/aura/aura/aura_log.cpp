@@ -301,13 +301,24 @@ namespace aura
             if(!(plog->m_pfile = fopen(*m_pstrLogPath, "at")))
             {
                int32_t iError = errno;
-               if(iError == EAGAIN)
+               if(iError == ENOENT)
                {
+                  goto skip_further_possible_recursive_impossible_logging_in_file;
                }
-               iRetry++;
-               if(iRetry >= 100000)
-                  return;
-               goto retry;
+               else
+               {
+                  if(iError == EAGAIN)
+                  {
+                  }
+                  else
+                  {
+                     iRetry++;
+                     if(iRetry >= 100000)
+                        return;
+                     goto retry;
+
+                  }
+               }
             }
          }
          catch(...)
@@ -332,21 +343,43 @@ namespace aura
          plog->m_iYear     = time.GetYear();
          plog->m_iMonth    = time.GetMonth();
          plog->m_iDay      = time.GetDay();
-         plog->print("<log>Starting Log</log>");
+         plog->print("<log>Starting Log</log>"); // <<  this is one of the "...possible_recursive_impossible_logging_in_file"...
       }
-      fseek(plog->m_pfile, 0, SEEK_END);
+
+   skip_further_possible_recursive_impossible_logging_in_file:
+      
+      if(plog->m_pfile != NULL)
+      {
+      
+         fseek(plog->m_pfile,0,SEEK_END);
+
+      }
+
       for(int32_t i = 0; i < stra.get_size(); i++)
       {
+
          string strLine = strPre + strTick + stra[i] + "\r\n";
+
          try
          {
+            
             ::OutputDebugStringW(::str::international::utf8_to_unicode(strLine));
-            fputs(strLine, plog->m_pfile);
+
+            if(plog->m_pfile)
+            {
+
+               fputs(strLine,plog->m_pfile);
+
+            }
+
          }
          catch(::exception::exception &)
          {
+
             // Ignore exception here because this class/function is used for debugging
+
          }
+
       }
 
    }

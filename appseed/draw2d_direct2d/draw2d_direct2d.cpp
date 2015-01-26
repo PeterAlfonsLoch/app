@@ -8,8 +8,7 @@
 #ifdef METROWIN
 [MTAThread]
 #endif
-extern "C" int APIENTRY
-DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
+WINBOOL APIENTRY DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
 {
    UNREFERENCED_PARAMETER(lpReserved);
 
@@ -68,7 +67,6 @@ DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
 
 
 
-      ::OutputDebugStringW(L"::core:: draw2d_direct2d.dll :: terminating!\n");
 
    }
 

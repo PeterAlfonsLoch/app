@@ -457,7 +457,7 @@ namespace core
          else
          {
 
-            Session.user()->keyboard();
+            //Session.user()->keyboard();
 
          }
 
