@@ -2142,13 +2142,13 @@ var var::at(index i) const
    case type_vara:
       return &m_pvara->element_at(i);
    case type_propset:
-      return &m_pset->m_propertya[i];
+      return &m_pset->m_propertya[i].m_p->m_var;
    case type_pvar:
       return m_pvar->at(i);
    default:
       if(i == 0)
       {
-         return this;
+         return (var *) this;
       }
       else
       {
@@ -2168,7 +2168,7 @@ var var::at(index i)
    case type_vara:
       return &m_pvara->element_at(i);
    case type_propset:
-      return &m_pset->m_propertya[i];
+      return &m_pset->m_propertya[i].m_p->m_var;
    case type_pvar:
       return m_pvar->at(i);
    default:

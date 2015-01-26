@@ -80,7 +80,7 @@ int gcvt_dup(char *buf,int nchar,double arg,int ndigits)
 
    gcvt_internal(arg,ndigits,sz);
 
-   if(strlen(sz) > nchar)
+   if(strlen(sz) > natural(nchar))
       return EINVAL;
 
    strcpy(buf,sz);

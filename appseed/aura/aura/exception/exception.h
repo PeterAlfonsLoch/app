@@ -220,7 +220,7 @@ CLASS_DECL_AURA void __dump(const object* pOb); // dump an object from CodeView
 #ifdef DEBUG
 #ifndef TRACE
 #define TRACE ::aura::trace_add_file_and_line(m_pauraapp, __FILE__, __LINE__)
-#define APPTRACE(papp) ::aura::trace_add_file_and_line(papp, __FILE__, __LINE__)
+#define APPTRACE ::aura::trace_add_file_and_line(papp, __FILE__, __LINE__)
 //#define TRACE2 TRACE
 #endif
 #define THIS_FILE          __FILE__
@@ -240,19 +240,20 @@ CLASS_DECL_AURA void __dump(const object* pOb); // dump an object from CodeView
 #define __dump1(spgraphics, sz, p1) dumpcontext << _T(sz) << p1
 
 
-#define DEBUG_ONLY(f)      (f)
+#define DEBUG_ONLY(f)      f
 
 #else
 
-#define DEBUG_ONLY(f)      ((void)0)
+#define DEBUG_ONLY(f)      
 
 //#define VERIFY(f)          ((void)(f))
-#define DEBUG_ONLY(f)      ((void)0)
+//#define DEBUG_ONLY(f)      ((void)0)
 #pragma warning(push)
 #pragma warning(disable : 4793)
 inline void c_cdecl __trace(...) { }
 #pragma warning(pop)
 #define TRACE              __noop
+#define APPTRACE           __noop
 #define TRACE0(sz)
 #define TRACE1(sz, p1)
 #define TRACE2(sz, p1, p2)

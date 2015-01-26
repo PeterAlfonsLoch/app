@@ -116,7 +116,8 @@ public:
       {
          lpb = (LPBYTE) memory_alloc(c);
          // can use string because messed all with cache out hot hit !!/^`}{{ **!
-         APPTRACE(get_thread_app())("processor oriented cache: memory out of cache palace garden (size=%d)", c);
+         DEBUG_ONLY(::aura::application * papp = ::get_thread_app());
+         APPTRACE("processor oriented cache: memory out of cache palace garden (size=%d)", c);
       }
       return lpb;
       

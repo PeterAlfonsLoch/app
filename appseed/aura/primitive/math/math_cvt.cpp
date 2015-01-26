@@ -118,7 +118,7 @@ int ccvt_dup(char *buf, int nchar, double arg,int ndigits,int *decpt,int *sign,i
 
    ccvt_internal(arg,ndigits,decpt,sign,sz,eflag);
 
-   if(strlen(sz) > nchar)
+   if(strlen(sz) > natural(nchar))
       return EINVAL;
 
    strcpy(buf,sz);

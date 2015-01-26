@@ -30,7 +30,7 @@ id property_set::get_new_id()
          if(pair->name().m_i > iMax)
          {
 
-            iMax = pair->name().m_i;
+            iMax = (index) pair->name().m_i;
 
          }
 
