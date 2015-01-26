@@ -376,6 +376,7 @@ bool windows_load_dib_from_file(::draw2d::dib * pdib,::file::buffer_sp pfile,::a
 
                      pframe->GetSize(&width,&height);
                      pdib->create(width,height);
+                     pdib->map();
                      hr = pframe->CopyPixels(NULL,pdib->m_iScan,pdib->m_iScan * height,(BYTE *)pdib->m_pcolorref);
 
                   }
@@ -410,6 +411,8 @@ bool windows_load_dib_from_file(::draw2d::dib * pdib,::file::buffer_sp pfile,::a
                      }
 
                      pdib->create(width,height);
+
+                     pdib->map();
 
                      hr = pbitmap->CopyPixels(NULL,pdib->m_iScan,pdib->m_iScan * height,(BYTE *)pdib->m_pcolorref);
 
@@ -592,7 +595,7 @@ bool windows_write_dib_to_file(::file::buffer_sp pfile,::draw2d::dib * pdib,::vi
    {
       hr = piBitmapFrame->SetPixelFormat(&formatGUID);
    }
-
+   pdib->map();
    if(SUCCEEDED(hr))
    {
       if(IsEqualGUID(formatGUID,GUID_WICPixelFormat32bppBGRA))

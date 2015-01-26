@@ -36,7 +36,7 @@ namespace draw2d_direct2d
       //virtual bool has_current_point();
       //virtual point current_point();
 
-      virtual bool internal_add_arc(const RECT & rect, double dStart, double dEnd);
+      virtual bool internal_add_arc(const ::draw2d::path::arc & arc);
 
       virtual bool internal_add_line(int x1, int y1, int x2, int y2);
       
@@ -50,7 +50,7 @@ namespace draw2d_direct2d
       virtual bool internal_add_string(::draw2d_direct2d::graphics * pdc,int32_t x,int32_t y,const string & strText,::draw2d::font_sp spfont);
 
       virtual bool internal_prepare(D2D1_POINT_2F pt);
-      virtual bool internal_get_arc(D2D1_POINT_2F & pt, D2D1_ARC_SEGMENT & arcseg, const RECT & rect, double dStart,double dEnd);
+      virtual bool internal_get_arc(D2D1_POINT_2F & pt,D2D1_ARC_SEGMENT & arcseg,const ::draw2d::path::arc & arc);
 
       //virtual bool internal_add_rect(int x1, int y1, int x2, int y2);
 

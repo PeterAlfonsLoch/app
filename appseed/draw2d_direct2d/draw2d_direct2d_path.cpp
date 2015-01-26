@@ -67,19 +67,21 @@ namespace draw2d_direct2d
 
    }
 
-   bool graphics_path::internal_add_arc(const RECT & rect, double dStart, double dEnd)
+   bool graphics_path::internal_add_arc(const ::draw2d::path::arc & arc)
    {
 
       D2D1_POINT_2F pt;
 
       D2D1_ARC_SEGMENT arcseg;
 
-      internal_get_arc(pt, arcseg, rect, dStart, dEnd);
+      internal_get_arc(pt, arcseg, arc);
 
       if(!internal_prepare(pt))
          return false;
 
       m_psink->AddArc(arcseg);
+
+      
 
       return true;
 
@@ -215,26 +217,26 @@ namespace draw2d_direct2d
 
    }
 
-   bool graphics_path::internal_get_arc(D2D1_POINT_2F & pt, D2D1_ARC_SEGMENT & arcseg, const RECT & rect, double dStart, double dEnd)
+   bool graphics_path::internal_get_arc(D2D1_POINT_2F & pt,D2D1_ARC_SEGMENT & arcseg,const ::draw2d::path::arc & arc)
    {
 
       double pi = g_dPi;
 
       D2D1_POINT_2F ptCenter;
 
-      ptCenter.x = ((double) rect.left + (double) rect.right) / 2.0f;
-      ptCenter.y = ((double) rect.top + (double) rect.bottom) / 2.0f;
+      ptCenter.x = arc.m_xCenter;
+      ptCenter.y = arc.m_yCenter;
 
-      double rx = (double) rect.right    - ptCenter.x;
-      double ry = (double) rect.bottom   - ptCenter.y;
+      double rx = arc.m_dRadiusX;
+      double ry = arc.m_dRadiusY;
 
-      pt.x = ptCenter.x + cos(dStart * pi / 180.0) * rx;
-      pt.y = ptCenter.y - sin(dStart * pi / 180.0) * ry;
+      pt.x = arc.m_ptStart.x;
+      pt.y = arc.m_ptStart.y;
 
-      arcseg.point.x = ptCenter.x + cos((dEnd) * pi / 180.0) * rx;
-      arcseg.point.y = ptCenter.y - sin((dEnd) * pi / 180.0) * ry;
+      arcseg.point.x = arc.m_ptEnd.x;
+      arcseg.point.y = arc.m_ptEnd.y;
 
-      if(dEnd - dStart > 0)
+      if(arc.m_dAngle > 0.0)
       {
          arcseg.sweepDirection = D2D1_SWEEP_DIRECTION_CLOCKWISE;
       }
@@ -243,7 +245,7 @@ namespace draw2d_direct2d
          arcseg.sweepDirection = D2D1_SWEEP_DIRECTION_COUNTER_CLOCKWISE;
       }
 
-      if(abs(dEnd - dStart) < 180.0)
+      if(abs(arc.m_dAngle) < g_dPi)
       {
          arcseg.arcSize = D2D1_ARC_SIZE_SMALL;
       }
@@ -252,7 +254,7 @@ namespace draw2d_direct2d
          arcseg.arcSize = D2D1_ARC_SIZE_LARGE;
       }
 
-      arcseg.rotationAngle = abs(dEnd-dStart);
+      arcseg.rotationAngle = abs(arc.m_dAngle * 180.0 / g_dPi);
 
       arcseg.size.width    = rx;
 
@@ -377,7 +379,16 @@ namespace draw2d_direct2d
       rect.top       = (LONG) (arc.m_yCenter - arc.m_dRadiusY);
       rect.bottom    = (LONG) (arc.m_yCenter + arc.m_dRadiusY);
 
-      return internal_add_arc(rect,arc.m_dAngle1 * 180.0 / g_dPi,arc.m_dAngle2 * 180.0 / g_dPi);
+      bool bOk = internal_add_arc(arc);
+
+      //if(bOk)
+      //{
+
+      //   internal_add_move(arc.m_ptEnd.x,arc.m_ptEnd.y);
+
+      //}
+
+      return bOk;
 
    }
 
