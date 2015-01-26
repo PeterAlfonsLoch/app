@@ -61,6 +61,9 @@ CLASS_DECL_AURA void __try_cleanup();
 #include "metrowin_stdio_file.h"
 #include "metrowin_os.h"
 
+#include "metrowin_dir.h"
+#include "metrowin_file_system.h"
+
 #define NULL_REF(class) (*((class *) NULL))
 
 #define WIN_THREAD(pthread) (dynamic_cast < ::metrowin::thread * > (dynamic_cast < ::thread * >(pthread)))

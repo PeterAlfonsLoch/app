@@ -1,4 +1,10 @@
+#if defined(METROWIN)
+#pragma push_macro("System")
+#undef System
+using namespace ::Windows::System;
 
+#pragma pop_macro("System")
+#endif
 
 string dir::get_ca2_module_folder()
 {
@@ -972,9 +978,11 @@ string dir::default_os_user_path_prefix()
 
 #elif defined(METROWIN)
 
-   #undef System
+//#pragma push_macro("System")
+//#undef System
 
-   string str(::Windows::System::UserProfile::UserInformation::GetDomainNameAsync()->GetResults()->Data());
+   string str(UserProfile::UserInformation::GetDomainNameAsync()->GetResults()->Data());
+//#pragma pop_macro("System")
 
    return str;
 

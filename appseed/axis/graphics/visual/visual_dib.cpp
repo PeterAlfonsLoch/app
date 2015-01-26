@@ -70,13 +70,9 @@ namespace visual
       save_image saveimageDefault;
       if(psaveimage == NULL)
          psaveimage = &saveimageDefault;
-#ifdef WINDOWSEX
+#ifdef WINDOWS
 
       return windows_write_dib_to_file(pfile,m_p,psaveimage,m_p->get_app());
-
-#elif METROWIN
-
-      throw todo(m_p->m_pauraapp);
 
 #else
 
@@ -450,7 +446,21 @@ bool windows_load_dib_from_file(::draw2d::dib * pdib,::file::buffer_sp pfile,::a
 bool windows_write_dib_to_file(::file::buffer_sp pfile,::draw2d::dib * pdib,::visual::save_image * psaveimage,::aura::application * papp)
 {
 
+#ifdef METROWIN
+
+   Windows::Storage::Streams::InMemoryRandomAccessStream ^ randomAccessStream = ref new Windows::Storage::Streams::InMemoryRandomAccessStream();
+
+   //::wait(randomAccessStream->WriteAsync(get_os_buffer()));
+
+   comptr < IStream > pstream;
+
+   ::CreateStreamOverRandomAccessStream(randomAccessStream,IID_PPV_ARGS(&pstream.get()));
+
+#else
+
    comptr < IStream > pstream = SHCreateMemStream(NULL,NULL);
+
+#endif
 
    //m_spmemfile->Truncate(0);
 

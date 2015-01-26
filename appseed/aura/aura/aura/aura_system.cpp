@@ -15,7 +15,7 @@
 #endif
 
 void dappy(const char * psz);
-
+#ifdef WINDOWSEX
 string get_user_name()
 {
    WCHAR wsz[1024];
@@ -23,6 +23,7 @@ string get_user_name()
   ::GetUserNameW(wsz,&dwSize);
   return string(wsz);
 }
+#endif
 
 namespace aura
 {

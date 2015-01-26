@@ -12,7 +12,7 @@ namespace metrowin
 {
 
 
-   class file_system :
+   class CLASS_DECL_AURA file_system :
       virtual public ::file::system
    {
    public:

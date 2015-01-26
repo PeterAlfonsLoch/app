@@ -491,7 +491,7 @@ namespace metrowin
       if(pdraw != NULL)
       {
          retry_single_lock sl(&pdraw->m_eventFree,millis(84),millis(84));
-         pdraw->m_wndpaOut.remove(this);
+         //pdraw->m_wndpaOut.remove(this);
          pdraw->m_wndpaOut.remove(m_pui);
       }
    }

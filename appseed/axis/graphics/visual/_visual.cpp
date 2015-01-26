@@ -1,7 +1,7 @@
 #include "framework.h"
 #include <math.h>
 
-#ifndef WINDOWSEX
+#ifndef WINDOWS
 #include "freeimage/Source/FreeImage.h"
 #include "graphics/visual/visual_FreeImageFileProc.h"
 #endif
@@ -40,7 +40,7 @@
 #include "visual_fastblur.cpp"
 #include "visual_font.cpp"
 #include "visual_font_central.cpp"
-#ifndef WINDOWSEX
+#ifndef WINDOWS
 #include "visual_FreeImageFileProc.cpp"
 #endif
 #include "visual_glyph.cpp"

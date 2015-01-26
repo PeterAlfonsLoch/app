@@ -139,9 +139,6 @@
     <Filter Include="Source Files\filesystem\fs">
       <UniqueIdentifier>{1ce2aeeb-285b-4a7e-927e-5ba40cc08900}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\filesystem\file">
-      <UniqueIdentifier>{9c2de17a-dcab-47bf-8c84-f7830acf264a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\graphics">
       <UniqueIdentifier>{a882ca23-52db-4092-987b-b477bc7a0a3b}</UniqueIdentifier>
     </Filter>
@@ -261,6 +258,12 @@
     </Filter>
     <Filter Include="Header Files\net\sockets\winrt\basic">
       <UniqueIdentifier>{bb02404b-b1a7-45a6-9de2-d2678f2c3336}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\filesystem\filesystem">
+      <UniqueIdentifier>{eb76e6f8-6484-413b-8e6a-4fc9f0fe6d28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\filesystem\filesystem">
+      <UniqueIdentifier>{d115147e-3946-4ec3-9280-7e8dfd48bc44}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -870,16 +873,10 @@
     <ClInclude Include="axis\node\metrowin\metrowin_crypto.h">
       <Filter>Header Files\axis\node\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="axis\node\metrowin\metrowin_dir.h">
-      <Filter>Header Files\axis\node\metrowin</Filter>
-    </ClInclude>
     <ClInclude Include="axis\node\metrowin\metrowin_factory_exchange.h">
       <Filter>Header Files\axis\node\metrowin</Filter>
     </ClInclude>
     <ClInclude Include="axis\node\metrowin\metrowin_file_set.h">
-      <Filter>Header Files\axis\node\metrowin</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\metrowin\metrowin_file_system.h">
       <Filter>Header Files\axis\node\metrowin</Filter>
     </ClInclude>
     <ClInclude Include="axis\node\metrowin\metrowin_ip_enum.h">
@@ -1014,6 +1011,24 @@
     <ClInclude Include="net\sockets\winrt\sockets_sockets.h">
       <Filter>Header Files\net\sockets\winrt</Filter>
     </ClInclude>
+    <ClInclude Include="axis\node\metrowin\metrowin_axis_dir.h">
+      <Filter>Header Files\axis\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\filesystem_axis_application.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\filesystem_axis_system.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\filesystem_dir_axis_application.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\filesystem_dir_axis_system.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\metrowin\metrowin_axis_file_system.h">
+      <Filter>Header Files\axis\node\metrowin</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="axis\axis\axis.inl">
@@ -1068,18 +1083,6 @@
     </ClCompile>
     <ClCompile Include="filesystem\fs\fs_set.cpp">
       <Filter>Source Files\filesystem\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_application.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_dir_application.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_dir_system.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_system.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="graphics\visual\visual_api.cpp">
       <Filter>Source Files\graphics\visual</Filter>
@@ -1402,16 +1405,10 @@
     <ClCompile Include="axis\node\metrowin\metrowin_crypto.cpp">
       <Filter>Source Files\axis\node\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="axis\node\metrowin\metrowin_dir.cpp">
-      <Filter>Source Files\axis\node\metrowin</Filter>
-    </ClCompile>
     <ClCompile Include="axis\node\metrowin\metrowin_factory_exchange.cpp">
       <Filter>Source Files\axis\node\metrowin</Filter>
     </ClCompile>
     <ClCompile Include="axis\node\metrowin\metrowin_file_set.cpp">
-      <Filter>Source Files\axis\node\metrowin</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\metrowin\metrowin_file_system.cpp">
       <Filter>Source Files\axis\node\metrowin</Filter>
     </ClCompile>
     <ClCompile Include="axis\node\metrowin\metrowin_ip_enum.cpp">
@@ -1671,6 +1668,27 @@
     </ClCompile>
     <ClCompile Include="graphics\visual\_visual.cpp">
       <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\filesystem_axis_application.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\filesystem_axis_system.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\filesystem_dir_axis_application.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\filesystem_dir_axis_system.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\metrowin\metrowin_axis_dir.cpp">
+      <Filter>Source Files\axis\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\metrowin\metrowin_axis_file_system.cpp">
+      <Filter>Source Files\axis\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\metrowin\metrowin.cpp">
+      <Filter>Source Files\axis\os\metrowin</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -193,10 +193,12 @@
     <ClInclude Include="aura\node\metrowin\metrowin.h" />
     <ClInclude Include="aura\node\metrowin\metrowin1.h" />
     <ClInclude Include="aura\node\metrowin\metrowin_application.h" />
+    <ClInclude Include="aura\node\metrowin\metrowin_dir.h" />
     <ClInclude Include="aura\node\metrowin\metrowin_exception.h" />
     <ClInclude Include="aura\node\metrowin\metrowin_factory_exchange.h" />
     <ClInclude Include="aura\node\metrowin\metrowin_file.h" />
     <ClInclude Include="aura\node\metrowin\metrowin_file_find.h" />
+    <ClInclude Include="aura\node\metrowin\metrowin_file_system.h" />
     <ClInclude Include="aura\node\metrowin\metrowin_folder_watch.h" />
     <ClInclude Include="aura\node\metrowin\metrowin_implementation.h" />
     <ClInclude Include="aura\node\metrowin\metrowin_internal.h" />
@@ -505,6 +507,10 @@
     <ClInclude Include="aura\xml\xml_var_exchange.h" />
     <ClInclude Include="aura\xml\xml_xmlite.h" />
     <ClInclude Include="filesystem\filesystem.h" />
+    <ClInclude Include="filesystem\filesystem\filesystem_application.h" />
+    <ClInclude Include="filesystem\filesystem\filesystem_dir_application.h" />
+    <ClInclude Include="filesystem\filesystem\filesystem_dir_system.h" />
+    <ClInclude Include="filesystem\filesystem\filesystem_system.h" />
     <ClInclude Include="filesystem\file\file.h" />
     <ClInclude Include="filesystem\file\file_binary_buffer.h" />
     <ClInclude Include="filesystem\file\file_buffer.h" />
@@ -611,6 +617,8 @@
     <ClInclude Include="multithreading\multithreading_wait_result.h" />
     <ClInclude Include="multithreading\service\service_plain_service.h" />
     <ClInclude Include="multithreading\service\service_thread_pool.h" />
+    <ClInclude Include="net\net.h" />
+    <ClInclude Include="net\net_url.h" />
     <ClInclude Include="primitive\api\api.h" />
     <ClInclude Include="primitive\api\api_rotate.h" />
     <ClInclude Include="primitive\collection\collection.h" />
@@ -2052,6 +2060,14 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="aura\node\metrowin\metrowin_dir.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="aura\node\metrowin\metrowin_dll.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
@@ -2085,6 +2101,14 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="aura\node\metrowin\metrowin_file_find.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura\node\metrowin\metrowin_file_system.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
@@ -2669,6 +2693,10 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="aura\_aura_aura.cpp" />
+    <ClCompile Include="filesystem\filesystem\filesystem_application.cpp" />
+    <ClCompile Include="filesystem\filesystem\filesystem_dir_application.cpp" />
+    <ClCompile Include="filesystem\filesystem\filesystem_dir_system.cpp" />
+    <ClCompile Include="filesystem\filesystem\filesystem_system.cpp" />
     <ClCompile Include="filesystem\file\file.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
@@ -3383,6 +3411,7 @@
     </ClCompile>
     <ClCompile Include="multithreading\service\service_plain_service.cpp" />
     <ClCompile Include="multithreading\_multithreading.cpp" />
+    <ClCompile Include="net\net_url.cpp" />
     <ClCompile Include="primitive\collection\collection_2d_array.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
@@ -4702,7 +4731,7 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <ModuleDefinitionFile>$(TargetName).def</ModuleDefinitionFile>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <AdditionalDependencies>Oleaut32.lib;DWrite.lib;D3D11.lib;D2D1.lib;Wtsapi32.lib;version.lib;Shlwapi.lib;Secur32.lib;Crypt32.lib;Ole32.lib;Gdiplus.lib;psapi.lib;msimg32.lib;gdi32.lib;user32.lib;Winmm.lib;WinINet.lib;shell32.lib;advapi32.lib;kernel32.lib;Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Shcore.lib;Oleaut32.lib;DWrite.lib;D3D11.lib;D2D1.lib;Wtsapi32.lib;version.lib;Shlwapi.lib;Secur32.lib;Crypt32.lib;Ole32.lib;Gdiplus.lib;psapi.lib;msimg32.lib;gdi32.lib;user32.lib;Winmm.lib;WinINet.lib;shell32.lib;advapi32.lib;kernel32.lib;Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
     </Link>

@@ -13,8 +13,8 @@ namespace metrowin
       {
 
          System.factory().creatable_small < file_set              >(System.template type_info < ::file::set                 >());
-         System.factory().cloneable       < file_system           >(System.template type_info < ::file::system              >(),1);
-         System.factory().cloneable       < dir                   >(System.template type_info < ::file::dir::system         >(),1);
+         System.factory().cloneable       < axis::file_system     >(System.template type_info < ::file::system              >(),1);
+         System.factory().cloneable       < axis::dir             >(System.template type_info < ::file::dir::system         >(),1);
          System.factory().cloneable_small < folder_watch          >(System.template type_info < ::file::folder_watch        >());
          System.factory().creatable       < port_forward          >(System.template type_info < ::net::port_forward         >(),1);
          System.factory().creatable_small < crypto                >(System.template type_info < ::crypto::crypto            >(),1);

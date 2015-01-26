@@ -18,8 +18,11 @@
 
 //using namespace std;
 //using namespace Platform;
+#pragma push_macro("System")
+#undef System
 using namespace Windows::Foundation;
 using namespace Windows::System::Threading;
+#pragma pop_macro("System")
 
 //BEGIN_EXTERN_C
 //mutex * g_pmutexPendingThreadsLock = NULL;
@@ -102,7 +105,7 @@ void thread_data::set(void * p)
 //}
 
 // Thread local storage.
-typedef comparable_array < void *, void *, array < void *, void *, ::constructor::zero < void * > > > ThreadLocalData;
+typedef comparable_array < void *,void *,array < void *,void *,::allocator::allocator < void * , ::constructor::zero < void * > > > > ThreadLocalData;
 
 
 

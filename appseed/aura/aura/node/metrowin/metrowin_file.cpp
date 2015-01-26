@@ -87,7 +87,7 @@ namespace metrowin
 
       if(nOpenFlags & ::file::defer_create_directory)
       {
-         Application.dir_mk(Application.dir_name(lpszFileName));
+         Application.dir().mk(System.dir().name(lpszFileName));
       }
 
       m_bCloseOnDelete = FALSE;
@@ -917,7 +917,7 @@ namespace metrowin
       ::file::file_status status;
       GetStatus(status);
       string wstrResult;
-      wstrResult = System.file_name(status.m_strFullName);
+      wstrResult = System.file().name_(status.m_strFullName);
       return wstrResult;
    }
 
@@ -928,7 +928,7 @@ namespace metrowin
       ::file::file_status status;
       GetStatus(status);
       string wstrResult;
-      wstrResult = System.file_title(status.m_strFullName);
+      wstrResult = System.file().title_(status.m_strFullName);
       return wstrResult;
    }
 

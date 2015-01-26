@@ -56,7 +56,7 @@
 //#include "metrowin1.h"
 //#include "metrowin_implementation.h"
 //#include "metrowin_handle.h"
-#include "metrowin_dir.h"
+#include "metrowin_axis_dir.h"
 //#include "metrowin_folder_watch.h"
 #include "metrowin_factory_exchange.h"
 //#include "metrowin_uac_tools.h"
@@ -67,7 +67,7 @@
 //#include "metrowin_file.h"
 //#include "metrowin_stdio_file.h"
 #include "metrowin_file_set.h"
-#include "metrowin_file_system.h"
+#include "metrowin_axis_file_system.h"
 //#include "metrowin_os.h"
 #include "metrowin_ip_enum.h"
 //

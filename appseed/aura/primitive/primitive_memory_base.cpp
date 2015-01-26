@@ -37,7 +37,7 @@ namespace primitive
       if(msb < 7)
       {
          move_and_grow(1);
-         get_data()[0] = (BYTE) (get_size() - 1);
+         get_data()[0] = (BYTE)(get_size() - 1);
       }
       else
       {
@@ -45,7 +45,7 @@ namespace primitive
          move_and_grow(1 + iLen);
          get_data()[0] = 0x80 | iLen;
          auto s = get_size() - 1 - iLen;
-         byte * p = (byte *) &s;
+         byte * p = (byte *)&s;
          for(int32_t i = 1; i <= iLen; i++)
          {
             get_data()[i] = p[iLen - i];
@@ -144,35 +144,35 @@ namespace primitive
    void memory_base::FullLoad(::file::binary_buffer & file)
    {
 
-      if(!is_enabled())
-      {
-         ASSERT(false);
-         return;
-      }
+   if(!is_enabled())
+   {
+   ASSERT(false);
+   return;
+   }
 
-      uint64_t dwTemp;
-      memory_size cbStorage = (memory_size) file.get_length();
-      file.seek_to_begin();
-      allocate(cbStorage);
-      try
-      {
-         dwTemp = file.read(get_data(), cbStorage);
-      }
-#ifdef DEBUG
-      catch(::file::exception & e)
-#else
-      catch(::file::exception & )
-#endif
-      {
-         throw "smfOpenFile: read error on image!";
+   uint64_t dwTemp;
+   memory_size cbStorage = (memory_size) file.get_length();
+   file.seek_to_begin();
+   allocate(cbStorage);
+   try
+   {
+   dwTemp = file.read(get_data(), cbStorage);
+   }
    #ifdef DEBUG
-         e.dump(g_dumpcontext);
+   catch(::file::exception & e)
+   #else
+   catch(::file::exception & )
    #endif
-      }
-      if (cbStorage != dwTemp)
-      {
-         throw "smfOpenFile: read error on image!";
-      }
+   {
+   throw "smfOpenFile: read error on image!";
+   #ifdef DEBUG
+   e.dump(g_dumpcontext);
+   #endif
+   }
+   if (cbStorage != dwTemp)
+   {
+   throw "smfOpenFile: read error on image!";
+   }
 
    }
    */
@@ -192,19 +192,19 @@ namespace primitive
       while(true)
       {
 
-         allocate(uiSize + uiBufSize);
+      allocate(uiSize + uiBufSize);
 
-         uiRead = istream.read(&((byte *)get_data())[uiSize], uiBufSize);
+      uiRead = istream.read(&((byte *)get_data())[uiSize], uiBufSize);
 
-         if(uiRead < uiBufSize)
-         {
-            allocate(uiSize + uiRead);
+      if(uiRead < uiBufSize)
+      {
+      allocate(uiSize + uiRead);
 
-            break;
+      break;
 
-         }
+      }
 
-         uiSize += uiBufSize;
+      uiSize += uiBufSize;
 
       }*/
 
@@ -221,8 +221,8 @@ namespace primitive
 
 
 
-/*   ::primitive::memory_size memory_base::read(::file::binary_buffer & file)
-   {
+   /*   ::primitive::memory_size memory_base::read(::file::binary_buffer & file)
+      {
 
       file_size dwEnd = file.get_length();
 
@@ -238,13 +238,13 @@ namespace primitive
 
       return dwRead;
 
-   }
-   */
+      }
+      */
 
    void memory_base::delete_begin(memory_size iSize)
    {
 
-      iSize = MAX(0, MIN(get_size(), iSize));
+      iSize = MAX(0,MIN(get_size(),iSize));
 
       m_iOffset += iSize;
 
@@ -280,7 +280,7 @@ namespace primitive
    }
 
 
-   void memory_base::transfer_to(::file::writer & writer, ::primitive::memory_size uiBufferSize) const
+   void memory_base::transfer_to(::file::writer & writer,::primitive::memory_size uiBufferSize) const
    {
 
       if(get_data() == NULL || get_size() <= 0)
@@ -292,36 +292,36 @@ namespace primitive
          if(writer.get_internal_data() == get_data())
             return;
 
-         memmove(((byte *) writer.get_internal_data()) + writer.get_position() + get_size(), ((byte *) writer.get_internal_data()) + writer.get_position(), writer.get_internal_data_size() - get_size());
-         memcpy(((byte *) writer.get_internal_data()) + writer.get_position(), get_data(), get_size());
-         writer.seek(get_size(), ::file::seek_current);
+         memmove(((byte *)writer.get_internal_data()) + writer.get_position() + get_size(),((byte *)writer.get_internal_data()) + writer.get_position(),writer.get_internal_data_size() - get_size());
+         memcpy(((byte *)writer.get_internal_data()) + writer.get_position(),get_data(),get_size());
+         writer.seek(get_size(),::file::seek_current);
 
       }
       else
       {
 
-         writer.write(get_data(), get_size());
+         writer.write(get_data(),get_size());
 
       }
 
    }
 
-   void memory_base::transfer_from_begin(::file::reader & reader, ::primitive::memory_size uiBufferSize)
+   void memory_base::transfer_from_begin(::file::reader & reader,::primitive::memory_size uiBufferSize)
    {
 
       reader.seek_to_begin();
 
-      transfer_from(reader, uiBufferSize);
+      transfer_from(reader,uiBufferSize);
 
    }
 
-   void memory_base::transfer_from(::file::reader & reader, ::primitive::memory_size uiBufferSize)
+   void memory_base::transfer_from(::file::reader & reader,::primitive::memory_size uiBufferSize)
    {
 
       if(reader.get_internal_data() != NULL && reader.get_internal_data_size() > reader.get_position())
       {
 
-         append((byte *) reader.get_internal_data() + reader.get_position(), (::primitive::memory_size) (reader.get_internal_data_size() - reader.get_position()));
+         append((byte *)reader.get_internal_data() + reader.get_position(),(::primitive::memory_size) (reader.get_internal_data_size() - reader.get_position()));
 
       }
       else
@@ -336,7 +336,7 @@ namespace primitive
 
             allocate(uiSize + uiBufferSize);
 
-            uiRead = reader.read(&get_data()[uiSize], uiBufferSize);
+            uiRead = reader.read(&get_data()[uiSize],uiBufferSize);
 
             if(uiRead <= 0)
             {
@@ -361,14 +361,14 @@ namespace primitive
 
       if(pos < 0)
       {
-         
+
          len = get_size() + pos;
 
       }
 
       if(len < 0)
       {
-         
+
          len = get_size() - pos + len + 1;
 
       }
@@ -404,14 +404,36 @@ namespace primitive
 
    }
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
+
    IStream * memory_base::CreateIStream()
    {
 
       if(get_data() == NULL)
          return NULL;
 
-      return SHCreateMemStream(get_data(),(UINT) get_size());
+      return SHCreateMemStream(get_data(),(UINT)get_size());
+
+   }
+
+#elif defined(METROWIN)
+
+   IStream * memory_base::CreateIStream()
+   {
+
+      if(get_data() == NULL)
+         return NULL;
+
+      Windows::Storage::Streams::InMemoryRandomAccessStream ^ randomAccessStream = ref new Windows::Storage::Streams::InMemoryRandomAccessStream();
+
+      ::wait(randomAccessStream->WriteAsync(get_os_buffer()));
+
+      IStream * pstream = NULL;
+
+      ::CreateStreamOverRandomAccessStream(randomAccessStream,IID_PPV_ARGS(&pstream));
+
+      return pstream;
+
 
    }
 #endif

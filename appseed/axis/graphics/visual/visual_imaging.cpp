@@ -79,7 +79,7 @@ imaging::~imaging()
 
 
 
-#ifndef  WINDOWSEX
+#ifndef  WINDOWS
 
 FIBITMAP * imaging::LoadImageFile(var varFile,::aura::application * papp)
 {
@@ -597,7 +597,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
    if(memfile->get_size() <= 0)
       return false;
 
-#ifdef WINDOWSEX
+#ifdef WINDOWS
 
    return windows_load_dib_from_file(pdib, memfile, papp);
 

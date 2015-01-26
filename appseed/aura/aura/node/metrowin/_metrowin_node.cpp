@@ -12,11 +12,13 @@
 // Pasta de Y:\winmetro_hellomultiverse\app\appseed\aura\aura\node\metrowin
 
 #include "metrowin_application.cpp"
+#include "metrowin_dir.cpp"
 #include "metrowin_dll.cpp"
 #include "metrowin_error.cpp"
 #include "metrowin_factory_exchange.cpp"
 #include "metrowin_file.cpp"
 #include "metrowin_file_find.cpp"
+#include "metrowin_file_system.cpp"
 #include "metrowin_folder_watch.cpp"
 #include "metrowin_main.cpp"
 #include "metrowin_os.cpp"

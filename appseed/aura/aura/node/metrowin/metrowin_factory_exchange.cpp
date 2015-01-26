@@ -21,6 +21,8 @@ namespace metrowin
          System.factory().creatable_large < thread                >(System.template type_info < ::thread_impl               >());
          System.factory().creatable       < os                    >(System.template type_info < ::aura::os                  >(),1);
 
+         System.factory().cloneable       < file_system           >(System.template type_info < ::file::system              >(),1);
+         System.factory().cloneable       < dir                   >(System.template type_info < ::file::dir::system         >(),1);
 
       }
 

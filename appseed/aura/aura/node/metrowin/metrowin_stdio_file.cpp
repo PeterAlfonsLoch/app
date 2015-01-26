@@ -36,7 +36,7 @@ namespace metrowin
 
       if(nOpenFlags  & ::file::defer_create_directory)
       {
-         Application.dir_mk(Application.dir_name(lpszFileName));
+         Application.dir().mk(System.dir().name(lpszFileName));
       }
 
       m_pStream = NULL;

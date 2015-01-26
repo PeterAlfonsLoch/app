@@ -95,7 +95,7 @@ bool axis_init()
    if(!__node_axis_pos_init())
       return false;*/
 
-#ifndef WINDOWSEX
+#ifndef WINDOWS
 
    // todo (casey tips) : do real/explicit dynamic linking
    throw todo(get_thread_app());
@@ -124,7 +124,7 @@ bool axis_init()
 
 bool axis_term()
 {
-#ifndef WINDOWSEX
+#ifndef WINDOWS
 
    // todo (casey tips) : do real/explicit dynamic linking
    throw todo(get_thread_app());

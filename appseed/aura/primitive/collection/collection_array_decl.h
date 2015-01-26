@@ -59,7 +59,7 @@ namespace constructor
 
             ::zero(p, sizeof(TYPE));
 
-            p++;
+            ((byte*&)p)+=sizeof(TYPE);
 
             c--;
 
@@ -230,7 +230,7 @@ namespace allocator
 {
 
 
-   template < class TYPE,class CONSTRUCTOR = constructor ::nodef< TYPE >,class DESTRUCTOR = destructor ::nodef< TYPE >,class COPIER = copier < TYPE >::def,class MEMORY_ALLOCATOR = memory::def < TYPE > >
+   template < class TYPE,class CONSTRUCTOR = constructor ::nodef< TYPE >,class DESTRUCTOR = destructor ::nodef< TYPE >,class COPIER = copier::def< TYPE >,class MEMORY_ALLOCATOR = memory::def < TYPE > >
    class allocator
    {
    public:
