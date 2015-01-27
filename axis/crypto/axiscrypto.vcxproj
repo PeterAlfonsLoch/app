@@ -7740,16 +7740,6 @@ ml64 /Zi /Fo"$(IntDir)rc4md5.o" /c /Fl"$(IntDir)rc4md5.lst" "$(ProjectDir)crypto
     <ClInclude Include="e_os2.h" />
     <ClInclude Include="e_os2_ca2specific.h" />
     <ClInclude Include="e_os2_original.h" />
-    <ClInclude Include="ssl\dtls1.h" />
-    <ClInclude Include="ssl\kssl.h" />
-    <ClInclude Include="ssl\kssl_lcl.h" />
-    <ClInclude Include="ssl\srtp.h" />
-    <ClInclude Include="ssl\ssl.h" />
-    <ClInclude Include="ssl\ssl2.h" />
-    <ClInclude Include="ssl\ssl23.h" />
-    <ClInclude Include="ssl\ssl3.h" />
-    <ClInclude Include="ssl\ssl_locl.h" />
-    <ClInclude Include="ssl\tls1.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="asm\x64-win32-masm\aes\aes-x86_64.asm" />
