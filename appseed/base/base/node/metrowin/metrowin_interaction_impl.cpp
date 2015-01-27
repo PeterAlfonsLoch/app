@@ -4534,8 +4534,11 @@ namespace metrowin
       }
       else
       {
-         return interaction_impl::GetCapture()->GetCapture();
+
+         return ::user::interaction_impl::GetCapture()->GetCapture();
+
       }
+
    }
 
 
