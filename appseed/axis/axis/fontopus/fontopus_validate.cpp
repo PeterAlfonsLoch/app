@@ -11,7 +11,7 @@
 
 #endif
 
-string chunk_split(const string & body,int32_t chunklen = 76,const string & end = "\r\n");
+//string chunk_split(const string & body,int32_t chunklen = 76,const string & end = "\r\n");
 
 
 string chunk_split(const string & body,int32_t chunklen,const string & end)
