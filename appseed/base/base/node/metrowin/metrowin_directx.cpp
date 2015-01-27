@@ -368,28 +368,31 @@ namespace metrowin
    {
 
       // Only handle window size changed if there is no pending DPI change.
-      
-      ::Windows::Graphics::Display::DisplayInformation ^ displayinformation = ::Windows::Graphics::Display::DisplayInformation::GetForCurrentView();
 
-      if (m_dpi != displayinformation->LogicalDpi)
+      m_window->Dispatcher->RunAsync(CoreDispatcherPriority::Normal,ref new Windows::UI::Core::DispatchedHandler([this]()
       {
-         return;
-      }
 
-      if (m_window->Bounds.Width  != m_windowBounds.Width ||
-         m_window->Bounds.Height != m_windowBounds.Height)
-      {
-         m_d2dContext->SetTarget(nullptr);
-         m_d2dTargetBitmap = nullptr;
-         m_d3dRenderTargetView = nullptr;
-         m_d3dDepthStencilView = nullptr;
-         m_windowSizeChangeInProgress = true;
-         CreateWindowSizeDependentResources();
-      }
+         ::Windows::Graphics::Display::DisplayInformation ^ displayinformation = ::Windows::Graphics::Display::DisplayInformation::GetForCurrentView();
 
+         if(m_dpi != displayinformation->LogicalDpi)
+         {
+            return;
+         }
 
+         if(m_window->Bounds.Width != m_windowBounds.Width ||
+            m_window->Bounds.Height != m_windowBounds.Height)
+         {
+            m_d2dContext->SetTarget(nullptr);
+            m_d2dTargetBitmap = nullptr;
+            m_d3dRenderTargetView = nullptr;
+            m_d3dDepthStencilView = nullptr;
+            m_windowSizeChangeInProgress = true;
+            CreateWindowSizeDependentResources();
+         }
 
-      System.m_posdata->m_pui->SetWindowPos(ZORDER_TOP,0,0,m_window->Bounds.Width,m_window->Bounds.Height, SWP_SHOWWINDOW);
+         System.m_posdata->m_pui->SetWindowPos(ZORDER_TOP,0,0,m_window->Bounds.Width,m_window->Bounds.Height,SWP_SHOWWINDOW);
+
+      }));
 
    }
 
