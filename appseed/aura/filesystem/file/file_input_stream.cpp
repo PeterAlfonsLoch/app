@@ -60,8 +60,25 @@ namespace file
 
    void input_stream::full_read(void * lpBuf, ::primitive::memory_size nCount)
    {
+
+      if(fail())
+      {
+
+         return;
+
+      }
+
+
+      if(!m_spbuffer->full_read(lpBuf,nCount))
+      {
+
+         setstate(failbit);
+
+         return;
+
+      }
+
       
-      m_spbuffer->full_read(lpBuf, nCount);
 
       m_gcount = nCount;
       

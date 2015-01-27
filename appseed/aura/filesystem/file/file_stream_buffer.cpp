@@ -88,7 +88,7 @@ namespace file
    }
 
 
-   void stream_buffer::full_read(void * lpBuf, ::primitive::memory_size nCount)
+   bool stream_buffer::full_read(void * lpBuf, ::primitive::memory_size nCount)
    {
 
       ::primitive::memory_size uiRead;
@@ -102,15 +102,9 @@ namespace file
 
          if(uiRead <= 0)
          {
-            if(get_generate_sync_io_error())
-            {
-               set_sync_io_error(1);
-               return;
-            }
-            else
-            {
-               throw io_exception(get_app(),"stream_buffer::full_read");
-            }
+   
+            return false;
+
          }
 
          nCount   -= uiRead;
@@ -118,7 +112,10 @@ namespace file
 
       }
 
+      return true;
+
    }
+
 
    void stream_buffer::write(const void * lpBuf, ::primitive::memory_size nCount)
    {

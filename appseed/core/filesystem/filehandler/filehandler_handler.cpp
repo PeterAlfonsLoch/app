@@ -226,6 +226,10 @@ namespace filehandler
       {
          iPreviousLevel = iLevel;
          istream >> iLevel;
+         
+         if(istream.fail())
+            return;
+
          if(iLevel < 0)
             break;
          if(iLevel == iPreviousLevel)

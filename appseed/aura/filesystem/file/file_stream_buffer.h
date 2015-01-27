@@ -89,7 +89,7 @@ namespace file
 
 
       virtual ::primitive::memory_size read(void *lpBuf, ::primitive::memory_size nCount);
-      virtual void full_read(void *lpBuf, ::primitive::memory_size nCount);
+      virtual bool full_read(void *lpBuf, ::primitive::memory_size nCount);
       virtual void write(const void * lpBuf, ::primitive::memory_size nCount);
       virtual string get_location() const;
 

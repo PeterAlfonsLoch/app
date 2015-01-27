@@ -48,10 +48,20 @@ namespace file
          ::count count;
          //istream >> count;
          istream.read_arbitrary(count);
+
+         if(istream.fail())
+         {
+            return;
+         }
+
          a.allocate(count);
          for(index index = 0; index < count; index++)
          {
             istream >> a.element_at(index);
+            if(istream.fail())
+            {
+               return;
+            }
          }
          a.on_after_read();
       }

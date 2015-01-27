@@ -86,9 +86,20 @@ namespace file
 
    void byte_input_stream::read(uchar & uch)
    {
+      
+      if(fail())
+      {
 
-      if(m_spbuffer->read(&uch, sizeof(uch)) != sizeof(uch))
-         throw io_exception(get_app(), "byte_input_stream::read");
+         return;
+
+      }
+
+      if(m_spbuffer->read(&uch,sizeof(uch)) != sizeof(uch))
+      {
+         
+         setstate(failbit);
+
+      }
 
 
 
@@ -177,14 +188,23 @@ namespace file
    void byte_input_stream::read_arbitrary(void * p, ::count nMax)
    {
 
+      if(fail())
+         return;
+
       byte b;
 
-      full_read(&b, sizeof(b));
+      full_read(&b,sizeof(b));
+
+      if(fail())
+         return;
 
       if(b == 0)
       {
+
          memset(p, 0, nMax);
+
          return;
+
       }
 
       uint64_t uiRead = 0;
@@ -192,18 +212,32 @@ namespace file
       int len = b & 0x3f;
 
       if(len > sizeof(uiRead) || len > nMax)
-         throw io_exception(get_app(), "core::byte_input_stream::read_arbitrary : overflow");
+      {
 
-      full_read(&uiRead, len);
+         setstate(failbit);
+
+         return;
+
+      }
+
+      full_read(&uiRead,len);
+
+      if(fail())
+         return;
 
       if(b & 0x40)
       {
+         
          int64_t i = - ((int64_t) uiRead);
+
          memcpy(p, &i, nMax);
+
       }
       else
       {
+
          memcpy(p, &uiRead, nMax);
+
       }
 
    }

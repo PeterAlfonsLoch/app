@@ -342,7 +342,7 @@ namespace crypto
 
       iv.set(0);
 
-#ifdef METROWIN && !defined(OPENSSL_CRYPTO)
+#if defined(METROWIN) && !defined(OPENSSL_CRYPTO)
 
       ::Windows::Security::Cryptography::Core::SymmetricKeyAlgorithmProvider ^ cipher =
          ::Windows::Security::Cryptography::Core::SymmetricKeyAlgorithmProvider::OpenAlgorithm(::Windows::Security::Cryptography::Core::SymmetricAlgorithmNames::AesEcb);

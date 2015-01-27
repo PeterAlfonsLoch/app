@@ -637,9 +637,23 @@ void stringa::write(::file::output_stream & ostream)
 void stringa::read(::file::input_stream & istream)
 {
 
+   if(istream.fail())
+   {
+
+      return;
+
+   }
+
    ::count iSize;
 
    istream.read_arbitrary(iSize);
+
+   if(istream.fail())
+   {
+
+      return;
+
+   }
 
    remove_all();
 
@@ -651,10 +665,21 @@ void stringa::read(::file::input_stream & istream)
 
       istream >> this->element_at(i);
 
+      if(istream.fail())
+      {
+
+         return;
+
+      }
+
    }
 
    if(this->get_size() != iSize)
-      throw io_exception(get_app(), "stringa::read");
+   {
+
+      istream.setstate(::file::failbit);
+
+   }
 
 }
 
