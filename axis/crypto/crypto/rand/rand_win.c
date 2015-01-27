@@ -203,7 +203,7 @@ int RAND_poll(void)
         //OSVERSIONINFO osverinfo ;
         //osverinfo.dwOSVersionInfoSize = sizeof(OSVERSIONINFO) ;
         //GetVersionEx( &osverinfo ) ;
-
+#ifndef METROWIN
 #if defined(OPENSSL_SYS_WINCE)
 # if defined(_WIN32_WCE) && _WIN32_WCE>=300
 /* Even though MSDN says _WIN32_WCE>=210, it doesn't seem to be available
@@ -617,12 +617,16 @@ int RAND_poll(void)
 	}
 #endif /* !OPENSSL_SYS_WINCE */
 
+#endif // !METROWIN
 	/* timer data */
 	readtimer();
 	
+#ifndef METROWIN
 	/* memory usage statistics */
 	GlobalMemoryStatus(&m);
 	RAND_add(&m, sizeof(m), 1);
+
+#endif
 
 	/* process ID */
 	w = GetCurrentProcessId();
@@ -681,6 +685,14 @@ void RAND_screen(void) /* function available for backward compatibility */
 	readscreen();
 }
 
+#ifdef METROWIN
+DWORD get_tick_count()
+{
+
+   return (DWORD)(GetTickCount64() % 0x100000000ULL);
+
+}
+#endif
 
 /* feed timing information to the PRNG */
 static void readtimer(void)
@@ -708,15 +720,20 @@ static void readtimer(void)
 # define have_tsc 0
 #endif
 
+#ifdef METROWIN
 	if (have_perfc) {
 	  if (QueryPerformanceCounter(&l) == 0)
 	    have_perfc = 0;
 	  else
 	    RAND_add(&l, sizeof(l), 0);
 	}
-
+#endif
 	if (!have_tsc && !have_perfc) {
-	  w = GetTickCount();
+#ifdef METROWIN
+	  w = get_tick_count();
+#else
+      w = GetTickCount();
+#endif
 	  RAND_add(&w, sizeof(w), 0);
 	}
 }

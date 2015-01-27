@@ -1600,15 +1600,6 @@
     <ClCompile Include="net\net_url_domain.cpp">
       <Filter>Source Files\net</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\axis\openssl\crypto\md5\md5_dgst.c">
-      <Filter>Source Files\axis\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\axis\openssl\crypto\whrlpool\wp_block.c">
-      <Filter>Source Files\axis\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\axis\openssl\crypto\whrlpool\wp_dgst.c">
-      <Filter>Source Files\axis\crypto</Filter>
-    </ClCompile>
     <ClCompile Include="axis\compress\_compress.cpp">
       <Filter>Source Files\axis\compress</Filter>
     </ClCompile>

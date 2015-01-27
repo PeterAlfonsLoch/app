@@ -45,6 +45,9 @@
     <ProjectReference Include="..\..\axis\bzip2\m_axisbzip2.vcxproj">
       <Project>{802c98ed-0844-4be7-ae30-f417a92207bd}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\axis\crypto\m_axiscrypto.vcxproj">
+      <Project>{19518477-2015-1976-99a6-5c301430b0b5}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\axis\idn\m_axisidn.vcxproj">
       <Project>{f9917855-9c31-41a0-85b1-8ba8dfd6e3b6}</Project>
     </ProjectReference>
@@ -314,26 +317,6 @@
     <None Include="axis\axis\axis.inl" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\axis\openssl\crypto\md5\md5_dgst.c">
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(SolutionDir)../../../app/axis/openssl/crypto;$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../;$(SolutionDir)../../;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(SolutionDir)../../../app/axis/openssl/crypto;$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../;$(SolutionDir)../../;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</CompileAsWinRT>
-      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">false</CompileAsWinRT>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\..\axis\openssl\crypto\whrlpool\wp_block.c">
-      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</CompileAsWinRT>
-      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">false</CompileAsWinRT>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\..\axis\openssl\crypto\whrlpool\wp_dgst.c">
-      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</CompileAsWinRT>
-      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">false</CompileAsWinRT>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="axis\axis\axis.cpp" />
     <ClCompile Include="axis\axis\axis_application.cpp" />
     <ClCompile Include="axis\axis\axis_session.cpp" />

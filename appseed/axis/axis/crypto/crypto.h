@@ -2,6 +2,15 @@
 
 
 
+#if defined(METROWIN)
+
+#define OPENSSL_CRYPTO
+
+#else
+
+#define OPENSSL_CRYPTO
+
+#endif
 
 //CLASS_DECL_AXIS bool crypt_file_get(const char * pszFile, string & str, const char * pszSalt);
 
@@ -9,7 +18,7 @@
 
 #define AXIS_RSA_KEY SecKeyRef
 
-#elif defined(BSD_STYLE_SOCKETS)
+#elif defined(OPENSSL_CRYPTO)
 
 
 

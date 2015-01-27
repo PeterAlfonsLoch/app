@@ -1,14 +1,51 @@
 #pragma once
 
+typedef struct bio_st BIO;
 
 namespace metrowin
 {
+
+
+   class CLASS_DECL_AXIS SSLInitializer:
+      public element
+   {
+   public:
+      /**
+      init openssl
+      bio_err
+      create random file
+      */
+      SSLInitializer(::aura::application * papp);
+
+      /**
+      remove random file
+      */
+      ~SSLInitializer();
+
+      void DeleteRandFile();
+
+      /** SSL; mutex locking function callback. */
+      //static void SSL_locking_function(int32_t mode, int32_t n, const char *file, int32_t line);
+
+      /** Return thread id. */
+      //static unsigned long SSL_id_function();
+
+      BIO *bio_err;
+
+   private:
+      string m_rand_file;
+      long m_rand_size;
+
+   };
 
 
    class CLASS_DECL_AXIS crypto :
       virtual public ::crypto::crypto
    {
    public:
+
+      SSLInitializer *                             m_psslinit;
+
 
 
       crypto(::aura::application * papp);

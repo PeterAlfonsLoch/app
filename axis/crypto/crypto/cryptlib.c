@@ -782,7 +782,12 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason,
 #define alloca _alloca
 #endif
 
-#if defined(_WIN32_WINNT) && _WIN32_WINNT>=0x0333
+#if defined(METROWIN)
+int OPENSSL_isservice() {
+   return 0;
+}
+
+#elif defined(_WIN32_WINNT) && _WIN32_WINNT>=0x0333
 int OPENSSL_isservice(void)
 { HWINSTA h;
   DWORD len;
@@ -831,7 +836,7 @@ int OPENSSL_isservice(void)
 #else
 int OPENSSL_isservice(void) { return 0; }
 #endif
-
+#ifndef METROWIN
 void OPENSSL_showfatal (const char *fmta,...)
 { va_list ap;
   TCHAR buf[256];
@@ -899,6 +904,7 @@ void OPENSSL_showfatal (const char *fmta,...)
 #endif
 	MessageBox (NULL,buf,_T("OpenSSL: FATAL"),MB_OK|MB_ICONSTOP);
 }
+#endif
 #else
 void OPENSSL_showfatal (const char *fmta,...)
 { va_list ap;
@@ -910,6 +916,10 @@ void OPENSSL_showfatal (const char *fmta,...)
 int OPENSSL_isservice (void) { return 0; }
 #endif
 
+#ifdef METROWIN
+// actually do not die, if exception handled;
+void OpenSSLDie(const char *file,int line,const char *assertion);
+#else
 void OpenSSLDie(const char *file,int line,const char *assertion)
 	{
 	OPENSSL_showfatal(
@@ -923,6 +933,8 @@ void OpenSSLDie(const char *file,int line,const char *assertion)
 	_exit(3);
 #endif
 	}
+
+#endif
 
 void *OPENSSL_stderr(void)	{ return stderr; }
 

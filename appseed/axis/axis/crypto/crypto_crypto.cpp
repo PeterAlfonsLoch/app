@@ -4,7 +4,7 @@
 #include <openssl/whrlpool.h>
 
 
-#ifndef METROWIN
+#ifdef OPENSSL_CRYPTO
 
 #include <openssl/rsa.h>
 #include <openssl/ssl.h>
@@ -110,8 +110,55 @@ namespace crypto
 
       iv.set(0);
 
+#ifdef OPENSSL_CRYPTO
 
-#ifdef METROWIN
+
+      int32_t plainlen = (int32_t)storageDecrypt.get_size();
+
+      int32_t cipherlen,tmplen;
+
+      EVP_CIPHER_CTX ctx;
+
+      EVP_CIPHER_CTX_init(&ctx);
+
+      EVP_EncryptInit(&ctx,EVP_aes_256_ecb(),memSha1.get_data(),iv.get_data());
+
+      cipherlen = (int32_t)(storageDecrypt.get_size() + EVP_CIPHER_CTX_block_size(&ctx) - 1);
+
+      storageEncrypt.allocate(cipherlen);
+
+      if(!EVP_EncryptUpdate(&ctx,storageEncrypt.get_data(),&cipherlen,storageDecrypt.get_data(),plainlen))
+      {
+
+         storageEncrypt.allocate(0);
+
+         EVP_CIPHER_CTX_cleanup(&ctx);
+
+         return false;
+
+      }
+
+      if(!EVP_EncryptFinal(&ctx,storageEncrypt.get_data() + cipherlen,&tmplen))
+      {
+
+         storageEncrypt.allocate(0);
+
+         EVP_CIPHER_CTX_cleanup(&ctx);
+
+         return false;
+
+      }
+
+      cipherlen += tmplen;
+
+      storageEncrypt.allocate(cipherlen);
+
+      EVP_CIPHER_CTX_cleanup(&ctx);
+
+      return true;
+
+
+#elif defined(METROWIN)
 
       ::Windows::Security::Cryptography::Core::SymmetricKeyAlgorithmProvider ^ cipher =
          ::Windows::Security::Cryptography::Core::SymmetricKeyAlgorithmProvider::OpenAlgorithm(::Windows::Security::Cryptography::Core::SymmetricAlgorithmNames::AesEcb);
@@ -276,51 +323,6 @@ namespace crypto
 
       return true;
 
-#else
-
-      int32_t plainlen = (int32_t)storageDecrypt.get_size();
-
-      int32_t cipherlen, tmplen;
-
-      EVP_CIPHER_CTX ctx;
-
-      EVP_CIPHER_CTX_init(&ctx);
-
-      EVP_EncryptInit(&ctx, EVP_aes_256_ecb(), memSha1.get_data(), iv.get_data());
-
-      cipherlen = (int32_t)(storageDecrypt.get_size() + EVP_CIPHER_CTX_block_size(&ctx) - 1);
-
-      storageEncrypt.allocate(cipherlen);
-
-      if (!EVP_EncryptUpdate(&ctx, storageEncrypt.get_data(), &cipherlen, storageDecrypt.get_data(), plainlen))
-      {
-
-         storageEncrypt.allocate(0);
-
-         EVP_CIPHER_CTX_cleanup(&ctx);
-
-         return false;
-
-      }
-
-      if (!EVP_EncryptFinal(&ctx, storageEncrypt.get_data() + cipherlen, &tmplen))
-      {
-
-         storageEncrypt.allocate(0);
-
-         EVP_CIPHER_CTX_cleanup(&ctx);
-
-         return false;
-
-      }
-
-      cipherlen += tmplen;
-
-      storageEncrypt.allocate(cipherlen);
-
-      EVP_CIPHER_CTX_cleanup(&ctx);
-
-      return true;
 
 #endif
 
@@ -340,7 +342,7 @@ namespace crypto
 
       iv.set(0);
 
-#ifdef METROWIN
+#ifdef METROWIN && !defined(OPENSSL_CRYPTO)
 
       ::Windows::Security::Cryptography::Core::SymmetricKeyAlgorithmProvider ^ cipher =
          ::Windows::Security::Cryptography::Core::SymmetricKeyAlgorithmProvider::OpenAlgorithm(::Windows::Security::Cryptography::Core::SymmetricAlgorithmNames::AesEcb);
@@ -668,17 +670,17 @@ namespace crypto
    void crypto::md5(primitive::memory & memMd5,const primitive::memory & mem)
    {
 
-#ifdef METROWIN
-
-      throw interface_only_exception(get_app());
-
-#else
+//#ifdef METROWIN
+//
+//      throw interface_only_exception(get_app());
+//
+//#else
 
       memMd5.allocate(MD5_DIGEST_LENGTH);
 
       MD5(mem.get_data(),mem.get_size(),memMd5.get_data());
 
-#endif
+//#endif
 
    }
 
@@ -686,17 +688,17 @@ namespace crypto
    void crypto::sha1(primitive::memory & memSha1, const primitive::memory & mem)
    {
 
-#ifdef METROWIN
-
-      throw interface_only_exception(get_app());
-
-#else
+//#ifdef METROWIN
+//
+//      throw interface_only_exception(get_app());
+//
+//#else
 
       memSha1.allocate(SHA_DIGEST_LENGTH);
 
       SHA1(mem.get_data(), mem.get_size(), memSha1.get_data());
 
-#endif
+//#endif
 
    }
 
@@ -819,13 +821,13 @@ namespace crypto
    void crypto::hmac(void * result, const primitive::memory & memMessage, const primitive::memory & memKey)
    {
 
-#ifndef METROWIN
+//#ifndef METROWIN
 
       unsigned int md_len = 0;
 
       HMAC(EVP_sha1(), memKey.get_data(), memKey.get_size(), memMessage.get_data(), memMessage.get_size(), (unsigned char *) result, &md_len);
 
-#endif
+//#endif
 
    }
 
@@ -835,13 +837,13 @@ namespace crypto
    void crypto::hmac(void * result,const string & strMessage,const string & strKey)
    {
 
-#ifndef METROWIN
+//#ifndef METROWIN
 
       unsigned int md_len = 0;
 
       HMAC(EVP_sha1(),strKey,strKey.length(),(const unsigned char *)(const char *)strMessage,strMessage.length(),(unsigned char *)result,&md_len);
 
-#endif
+//#endif
 
    }
 
@@ -920,7 +922,7 @@ namespace crypto
    }
 
 
-#elif defined(BSD_STYLE_SOCKETS)
+#elif defined(OPENSSL_CRYPTO)
 
 
    sp(::crypto::rsa) crypto::generate_rsa_key()
@@ -992,7 +994,7 @@ namespace crypto
 
    void crypto::err_load_rsa_strings()
    {
-#if defined(BSD_STYLE_SOCKETS)
+#if defined(OPENSSL_CRYPTO)
       ERR_load_RSA_strings();
 
 #endif
@@ -1003,7 +1005,7 @@ namespace crypto
    void crypto::err_load_crypto_strings()
    {
 
-#if defined(BSD_STYLE_SOCKETS)
+#if defined(OPENSSL_CRYPTO)
       ERR_load_crypto_strings();
 #endif
 
@@ -1014,7 +1016,7 @@ namespace crypto
       element(papp),
       m_mutex(papp)
    {
-#ifdef METROWIN
+#if defined(METROWIN)  && !defined(OPENSSL_CRYPTO)
 
       m_prsa = nullptr;
 #else
@@ -1064,7 +1066,7 @@ namespace crypto
       CFRelease(keyData);
 
 
-#elif defined(METROWIN)
+#elif defined(METROWIN) && !defined(OPENSSL_CRYPTO)
 
 
       typedef struct _BCRYPT_RSAKEY_BLOB {
@@ -1159,7 +1161,7 @@ namespace crypto
 
    }
 
-#ifdef BSD_STYLE_SOCKETS
+#ifdef OPENSSL_CRYPTO
 
    rsa::rsa(::aura::application * papp,
       const string & n,
@@ -1199,7 +1201,7 @@ namespace crypto
          CFRelease(m_prsa);
          m_prsa = NULL;
       }
-#elif defined(METROWIN)
+#elif defined(METROWIN) && !defined(OPENSSL_CRYPTO)
 
       m_prsa = nullptr;
 
@@ -1297,7 +1299,7 @@ namespace crypto
 
       CFRelease(transform);
 
-#elif defined(METROWIN)
+#elif defined(METROWIN) && !defined(OPENSSL_CRYPTO)
 
 
 
@@ -1327,7 +1329,7 @@ namespace crypto
    {
 
 
-#if defined(METROWIN)
+#if defined(METROWIN) && !defined(OPENSSL_CRYPTO)
 
 
 
@@ -1445,7 +1447,7 @@ out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEn
 
       CFRelease(transform);
 
-#elif defined(METROWIN)
+#elif defined(METROWIN) && !defined(OPENSSL_CRYPTO)
 
 
 
@@ -1475,7 +1477,7 @@ out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEn
    {
 
 
-#if defined(METROWIN)
+#if defined(METROWIN) && !defined(OPENSSL_CRYPTO)
 
 
 
@@ -1627,12 +1629,12 @@ out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEn
    void crypto::np_make_zigbert_rsa(const string & strDir, const string & strSignerPath, const string & strKeyPath, const string & strOthersPath, const string & strSignature)
    {
 
-#ifndef METROWIN
+#if !defined(METROWIN) || defined(OPENSSL_CRYPTO)
 
       X509 * signer = NULL;
       {
          string strSigner = Application.file().as_string(strSignerPath);
-         BIO * pbio = BIO_new_mem_buf((void *)(LPCTSTR)strSigner, (int32_t)strSigner.get_length());
+         BIO * pbio = BIO_new_mem_buf((void *)(LPCSTR)strSigner, (int32_t)strSigner.get_length());
          //signer = PEM_read_bio_X509_AUX(pbio, NULL, 0, NULL);
          signer = PEM_read_bio_X509(pbio, NULL, 0, NULL);
          BIO_free(pbio);
@@ -1641,7 +1643,7 @@ out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEn
       EVP_PKEY * pkey;
       {
          string strKey = Application.file().as_string(strKeyPath);
-         BIO * pbio = BIO_new_mem_buf((void *)(LPCTSTR)strKey, (int32_t)strKey.get_length());
+         BIO * pbio = BIO_new_mem_buf((void *)(LPCSTR)strKey, (int32_t)strKey.get_length());
          pkey = PEM_read_bio_PrivateKey(pbio, NULL, NULL, NULL);
          BIO_free(pbio);
       }
@@ -1685,7 +1687,7 @@ out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEn
          }
       }
 
-      BIO * input = BIO_new_mem_buf((void *)(LPCTSTR)strSignature, (int32_t)strSignature.get_length());
+      BIO * input = BIO_new_mem_buf((void *)(LPCSTR)strSignature, (int32_t)strSignature.get_length());
 
       PKCS7 * pkcs7 = PKCS7_sign(signer, pkey, pstack509, input, PKCS7_BINARY | PKCS7_DETACHED);
 
@@ -1721,7 +1723,7 @@ stunCalculateIntegrity_longterm(char* hmac, const char* input, int32_t length,
 const char *username, const char *realm, const char *password)
 {
 
-#ifndef METROWIN
+#if !defined(METROWIN) || defined(OPENSSL_CRYPTO)
    uint32_t resultSize = 0;
    uchar HA1[16];
    char HA1_text[1024];
@@ -1739,7 +1741,7 @@ const char *username, const char *realm, const char *password)
 void
 stunCalculateIntegrity_shortterm(char* hmac, const char* input, int32_t length, const char* key)
 {
-#ifndef METROWIN
+#if !defined(METROWIN) || defined(OPENSSL_CRYPTO)
    uint32_t resultSize = 0;
    HMAC(EVP_sha1(),
       key, (int)strlen(key),
@@ -1750,7 +1752,7 @@ stunCalculateIntegrity_shortterm(char* hmac, const char* input, int32_t length, 
 
 void hmac_evp_sha1_1234(unsigned char * hmac, unsigned int * hmacSize, const unsigned char * buf, size_t bufLen)
 {
-#ifndef METROWIN
+#if !defined(METROWIN) || defined(OPENSSL_CRYPTO)
    
    HMAC(EVP_sha1(),
       "1234", 4,

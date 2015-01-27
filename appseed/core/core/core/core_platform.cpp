@@ -1921,6 +1921,13 @@ namespace core
 
       ::aura::library library(pappNewApplicationParent,0,NULL);
 
+#if defined(METROWIN)
+      string strLibrary = pszAppId;
+
+      strLibrary.replace("/","_");
+      strLibrary.replace("-","_");
+
+#else
 #ifdef CUBE
 
       string strLibrary = pszAppId;
@@ -1954,7 +1961,7 @@ namespace core
       }
 
 #endif
-
+#endif
       ::aura::application * papp = NULL;
 
       if(!library.open(strLibrary,false,false))

@@ -363,20 +363,20 @@ namespace fontopus
 
 #ifdef METROWIN
 
-      if(!System.directrix()->m_varTopicQuery.has_property("install")
-         && !System.directrix()->m_varTopicQuery.has_property("uninstall"))
-      {
+      //if(!System.directrix()->m_varTopicQuery.has_property("install")
+      //   && !System.directrix()->m_varTopicQuery.has_property("uninstall"))
+      //{
 
-         sp(::create) spcreatecontext(allocer());
+      //   sp(::create) spcreatecontext(allocer());
 
-         ::aura::application * papp = Session.start_application("application", "app-core/deepfish", spcreatecontext);
+      //   ::aura::application * papp = Session.start_application("application", "app-core/deepfish", spcreatecontext);
 
-         if(papp == NULL)
-         {
-            Application.simple_message_box("deepfish subsystem - responsible for running background applications - could not be started", MB_ICONEXCLAMATION);
-         }
+      //   if(papp == NULL)
+      //   {
+      //      Application.simple_message_box("deepfish subsystem - responsible for running background applications - could not be started", MB_ICONEXCLAMATION);
+      //   }
 
-      }
+      //}
 
 #endif
 
