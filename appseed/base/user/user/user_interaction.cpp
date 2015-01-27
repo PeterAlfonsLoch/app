@@ -613,6 +613,13 @@ namespace user
 
       }
 
+      if(GetCapture() == this)
+      {
+
+         SetCapture(NULL);
+
+      }
+
    }
 
 
@@ -3513,7 +3520,16 @@ namespace user
 
       }
 
-      return get_wnd()->GetCapture();
+      ::user::interaction * pwnd = get_wnd();
+
+      if(pwnd != NULL)
+      {
+
+         return pwnd->GetCapture();
+
+      }
+
+      return NULL;
 
    }
 

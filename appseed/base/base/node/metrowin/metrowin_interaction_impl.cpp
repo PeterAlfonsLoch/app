@@ -4357,7 +4357,7 @@ namespace metrowin
    bool interaction_impl::ShowWindow(int nCmdShow)
    {
 
-      throw todo(get_app());
+      //throw todo(get_app());
 
       //if(!::IsWindow(get_handle()))
       //   return false;
@@ -4405,6 +4405,21 @@ namespace metrowin
       //      m_pui->m_bVisible = m_bVisible;
       //   return m_bVisible;
       //}
+
+      try
+      {
+
+         return m_pui->m_bVisible;
+
+      }
+      catch(...)
+      {
+
+      }
+
+
+      return false;
+
    }
 
 
@@ -4584,7 +4599,7 @@ namespace metrowin
 
       smart_pointer < ::message::base > spbase;
 
-      spbase = get_base(uiMessage,wparam,lparam);
+      spbase = m_pui->get_base(uiMessage,wparam,lparam);
 
       /*      try
             {

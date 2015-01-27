@@ -1036,9 +1036,12 @@ restart:
       if(remove(psz) != 0)
       {
          int32_t err = errno;
-         string strError;
-         strError.Format("Failed to delete file error=%d", err);
-         throw strError;
+         if(err != ENOENT) // already does not exist - consider removal successful - does not issue an exception
+         {
+            string strError;
+            strError.Format("Failed to delete file error=%d",err);
+            throw strError;
+         }
       }
 #endif
 
