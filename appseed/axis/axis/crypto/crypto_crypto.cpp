@@ -20,7 +20,7 @@
 #define CA4_CRYPT_V5_FINAL_HASH_BYTES (WHIRLPOOL_DIGEST_LENGTH * 16)
 #define CA4_CRYPT_V5_SALT_BYTES (CA4_CRYPT_V5_FINAL_HASH_BYTES - WHIRLPOOL_DIGEST_LENGTH)
 
-
+string chunk_split(const string & body,int32_t chunklen = 76,const string & end = "\r\n");
 namespace crypto
 {
 
@@ -1024,7 +1024,8 @@ namespace crypto
    }
 
 
-   rsa::rsa(::aura::application * papp, const string & nParam)
+   rsa::rsa(::aura::application * papp, const string & nParam) :
+      element(papp)
    {
 
 #ifdef MACOS_DEPRECATED
@@ -1079,6 +1080,7 @@ namespace crypto
 
       ::file::memory_buffer memfile(get_app());
 
+      //blob.Magic = 0x31415352; // BCRYPT_RSAPUBLIC_MAGIC;
       blob.Magic = 0x31415352; // BCRYPT_RSAPUBLIC_MAGIC;
       blob.BitLength = 1024;
       blob.cbPublicExp = 3;
@@ -1086,11 +1088,11 @@ namespace crypto
       blob.cbPrime1 = 0;
       blob.cbPrime2 = 0;
 
-      primitive::memory memVer(get_app());
+//      primitive::memory memVer(get_app());
 
-      memVer.from_hex("00");
+  //    memVer.from_hex("00");
 
-      memVer.prefix_der_uint();
+    //  memVer.prefix_der_uint();
 
       memfile.write(&blob, sizeof(blob));
 
@@ -1108,7 +1110,7 @@ namespace crypto
 
       primitive::memory memExp(get_app());
 
-      memExp.from_hex("10001");
+      memExp.from_hex("010001");
 
       //memExp.reverse();
 
@@ -1122,24 +1124,25 @@ namespace crypto
          ::Windows::Security::Cryptography::Core::AsymmetricKeyAlgorithmProvider::OpenAlgorithm(::Windows::Security::Cryptography::Core::AsymmetricAlgorithmNames::RsaPkcs1);
 
 
-      primitive::memory memKey(get_app());
+      //primitive::memory memKey(get_app());
 
       //memKey = memVer;
       //memKey += memMod;
-      memKey = memMod;
-      memKey += memExp;
+      //memKey = memMod;
+      //memKey += memExp;
 
 
-      memKey.prefix_der_sequence();
+      //memKey.prefix_der_sequence();
 
-      //      string strRsaPrivateKey = "-----BEGIN RSA PRIVATE KEY-----\r\n";
-      //    strRsaPrivateKey += chunk_split(System.base64().encode(memKey));
-      //  strRsaPrivateKey += "-----END RSA PRIVATE KEY-----";
+      //string strRsaPrivateKey = "-----BEGIN RSA PUBLIC KEY-----\r\n";
+      //strRsaPrivateKey += chunk_split(System.base64().encode(memKey));
+      //strRsaPrivateKey += "-----END RSA PUBLIC KEY-----";
 
       //memKey.allocate(strRsaPrivateKey.get_length());
 
       //memcpy(memKey.get_data(), strRsaPrivateKey, memKey.get_size());
 
+      //m_prsa = cipher->ImportPublicKey(memKey.get_os_crypt_buffer(),::Windows::Security::Cryptography::Core::CryptographicPublicKeyBlobType::Pkcs1RsaPublicKey);
       m_prsa = cipher->ImportPublicKey(memfile.get_memory()->get_os_crypt_buffer(), ::Windows::Security::Cryptography::Core::CryptographicPublicKeyBlobType::BCryptPublicKey);
 
 #else

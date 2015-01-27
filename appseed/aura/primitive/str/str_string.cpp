@@ -784,6 +784,15 @@ stdstring < simple_string >(pstringmanager)
 
 #ifdef METROWIN
 
+string::string(Array <byte > ^ a):
+stdstring < simple_string >(string_trait::GetDefaultManager())
+{
+   //      if( !CheckImplicitLoad( pszSrc ) )
+   //      {
+   *this = string(a->begin(), a->Length);
+   //      }
+}
+
 string::string(Object ^ o) :
 stdstring < simple_string >(string_trait::GetDefaultManager())
 {

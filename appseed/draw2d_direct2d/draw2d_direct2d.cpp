@@ -29,41 +29,41 @@ WINBOOL APIENTRY DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
    else if(dwReason == DLL_THREAD_DETACH)
    {
 
-      try
-      {
+      //try
+      //{
 
-         IDWriteFactory * pfactory = TlsGetWriteFactory(false);
+      //   IDWriteFactory * pfactory = TlsGetWriteFactory(false);
 
-         if(pfactory != NULL)
-         {
+      //   if(pfactory != NULL)
+      //   {
 
-            pfactory->Release();
+      //      pfactory->Release();
 
-         }
+      //   }
 
-         try
-         {
+      //   try
+      //   {
 
-            ID2D1Factory1 * pfactory = GetD2D1Factory1(false);
+      //      ID2D1Factory1 * pfactory = GetD2D1Factory1(false);
 
-            if(pfactory != NULL)
-            {
+      //      if(pfactory != NULL)
+      //      {
 
-               pfactory->Release();
+      //         pfactory->Release();
 
-            }
+      //      }
 
-         }
-         catch(...)
-         {
-         }
+      //   }
+      //   catch(...)
+      //   {
+      //   }
 
 
 
-      }
-      catch(...)
-      {
-      }
+      //}
+      //catch(...)
+      //{
+      //}
 
 
 

@@ -826,7 +826,7 @@ namespace primitive
    inline void memory_base::set_os_bytes(Array < uchar, 1U > ^ a, memory_position pos, memory_size size)
    {
       
-      if (a == nullptr)
+      if (!a)
          return;
 
       if(pos > a->Length)

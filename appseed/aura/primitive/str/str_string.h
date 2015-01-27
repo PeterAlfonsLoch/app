@@ -197,6 +197,7 @@ public:
 
 #if defined(METROWIN) && defined(__cplusplus_winrt)
    string(Object ^ o);
+   string(Array < byte > ^ a);
 #endif
    string(const char * pszSrc,string_manager * pstringmanager );
    string(const wchar_t * pszSrc,string_manager * pstringmanager );

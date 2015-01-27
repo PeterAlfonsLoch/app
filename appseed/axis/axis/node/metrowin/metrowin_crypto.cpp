@@ -26,11 +26,15 @@ namespace metrowin
    bool crypto::decrypt(primitive::memory & storageDecrypt, const primitive::memory & storageEncrypt, const char * pszSalt)
    {
 
+
       UNREFERENCED_PARAMETER(pszSalt);
 
       ::Windows::Security::Cryptography::DataProtection::DataProtectionProvider ^ provider = ref new ::Windows::Security::Cryptography::DataProtection::DataProtectionProvider;
 
       ::Windows::Storage::Streams::IBuffer ^ bufferIn = storageEncrypt.get_os_crypt_buffer();
+
+      if(bufferIn == nullptr)
+         return false;
 
       ::Windows::Storage::Streams::IBuffer ^ bufferOut = ::wait(provider->UnprotectAsync(bufferIn));
 
