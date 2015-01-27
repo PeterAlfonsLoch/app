@@ -43,6 +43,12 @@
     <Filter Include="Source Files\userstack">
       <UniqueIdentifier>{29e41053-96d4-4f6a-8de8-ecc3f381410b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\console">
+      <UniqueIdentifier>{766bdde3-eeb1-4f84-b869-b33e9abffe27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\console">
+      <UniqueIdentifier>{9cc7358c-b18f-4cb0-9715-e6ae68deada6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -134,6 +140,21 @@
     </ClCompile>
     <ClCompile Include="userstack\userstack_view.cpp">
       <Filter>Source Files\userstack</Filter>
+    </ClCompile>
+    <ClCompile Include="console\console_application.cpp">
+      <Filter>Source Files\console</Filter>
+    </ClCompile>
+    <ClCompile Include="console\console_prompt.cpp">
+      <Filter>Source Files\console</Filter>
+    </ClCompile>
+    <ClCompile Include="console\console_prompt_document.cpp">
+      <Filter>Source Files\console</Filter>
+    </ClCompile>
+    <ClCompile Include="console\console_prompt_frame.cpp">
+      <Filter>Source Files\console</Filter>
+    </ClCompile>
+    <ClCompile Include="console\console_prompt_impact.cpp">
+      <Filter>Source Files\console</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -247,6 +268,24 @@
     </ClInclude>
     <ClInclude Include="userstack\userstack_view.h">
       <Filter>Header Files\userstack</Filter>
+    </ClInclude>
+    <ClInclude Include="console\console.h">
+      <Filter>Header Files\console</Filter>
+    </ClInclude>
+    <ClInclude Include="console\console_application.h">
+      <Filter>Header Files\console</Filter>
+    </ClInclude>
+    <ClInclude Include="console\console_prompt.h">
+      <Filter>Header Files\console</Filter>
+    </ClInclude>
+    <ClInclude Include="console\console_prompt_document.h">
+      <Filter>Header Files\console</Filter>
+    </ClInclude>
+    <ClInclude Include="console\console_prompt_frame.h">
+      <Filter>Header Files\console</Filter>
+    </ClInclude>
+    <ClInclude Include="console\console_prompt_impact.h">
+      <Filter>Header Files\console</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

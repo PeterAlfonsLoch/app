@@ -350,7 +350,30 @@ open_url::open_url(::aura::application * papp,const string & strLink,const strin
 bool open_url::start(::aura::application * papp,const string & strLink,const string & strTarget)
 {
 
+   string * pstrNew = new string(strLink);
+
+#ifdef METROWIN
+
+   Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::Windows::UI::Core::CoreDispatcherPriority::Normal,
+      ref new Windows::UI::Core::DispatchedHandler([pstrNew]()
+   {
+      ::Windows::Foundation::Uri ^ uri = ref new ::Windows::Foundation::Uri(*pstrNew);
+
+      delete pstrNew;
+
+      LauncherOptions ^ options = ref new LauncherOptions();
+      options->TreatAsUntrusted = false;
+      Launcher::LaunchUriAsync(uri,options);
+   }));
+
+
+return true;
+
+#else
+
    return __begin_thread(papp,&thread_proc,new open_url(papp,strLink,strTarget)) != FALSE;
+
+#endif
 
 }
 
@@ -380,16 +403,15 @@ bool open_url::open()
    ::ShellExecuteA(NULL,"open",strUrl,NULL,NULL,SW_SHOW);
    return true;
 #elif defined METROWIN
-#pragma push_macro("System")
-#undef System
+
    ::Windows::Foundation::Uri ^ uri = ref new ::Windows::Foundation::Uri(strLink);
-   ::Windows::System::LauncherOptions ^ options = ref new ::Windows::System::LauncherOptions();
-   options->TreatAsUntrusted = false;
-   bool success = ::wait(::Windows::System::Launcher::LaunchUriAsync(uri,options));
+   LauncherOptions ^ options = ref new LauncherOptions();
+   options->TreatAsUntrusted = true;
+   bool success = ::wait(Launcher::LaunchUriAsync(uri,options));
+   //bool success = ::wait(::Windows::System::Launcher::LaunchUriAsync(uri));
 
    return success;
 
-#pragma pop_macro("System")
 #elif defined(LINUX)
    ::system("xdg-open " + strLink);
    return true;

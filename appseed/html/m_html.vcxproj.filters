@@ -2,75 +2,411 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{0b3593e1-10d1-4115-b210-4b4bd3af5e9f}</UniqueIdentifier>
+      <UniqueIdentifier>{56cd8de9-8656-4b95-a31e-0cf3ac097326}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\kissfft">
-      <UniqueIdentifier>{0cf4d2bd-3900-4399-a537-d2993211cc7b}</UniqueIdentifier>
+    <Filter Include="Header Files\graphics">
+      <UniqueIdentifier>{d65b5fa8-fa99-4aab-abfc-6cace49bbcb2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\math">
-      <UniqueIdentifier>{39b5fc3f-a016-4fbd-874d-e881732077e4}</UniqueIdentifier>
+    <Filter Include="Header Files\graphics\impl">
+      <UniqueIdentifier>{b9648b8d-1634-40e8-a08a-26bac1e1711c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics\elemental">
+      <UniqueIdentifier>{ecf11c0c-bb6c-4fdc-ba8d-8fb19fbee77d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\html">
+      <UniqueIdentifier>{6a596dfa-d618-415d-9819-3b41cf404a64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\userhtml">
+      <UniqueIdentifier>{8859f2c8-bd07-4bc2-ad2d-022232b3fe9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\hi5">
+      <UniqueIdentifier>{236e1dc7-c636-453a-85b3-11d810c0fe05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\html_lite">
+      <UniqueIdentifier>{e9b98663-7e56-47fc-9bf3-0a233dcb0b9d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{53c823a6-a5fb-4437-8585-06b0262da1ae}</UniqueIdentifier>
+      <UniqueIdentifier>{a7b45c5b-e2fc-4dbf-bb9b-d592fdba0677}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\math">
-      <UniqueIdentifier>{b89289c5-fb5c-4c8e-9ae7-54b2211827c0}</UniqueIdentifier>
+    <Filter Include="Source Files\userhtml">
+      <UniqueIdentifier>{b9070d59-cccc-401f-ae3f-d3a75e59f011}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\kissfft">
-      <UniqueIdentifier>{a6791e20-5d5d-406b-aff7-2568b235c69f}</UniqueIdentifier>
+    <Filter Include="Source Files\graphics">
+      <UniqueIdentifier>{77c3d059-21b6-41e6-83b2-0fcf6d10691f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\impl">
+      <UniqueIdentifier>{ea5ece9e-6956-4be7-a876-791f8d838aef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\elemental">
+      <UniqueIdentifier>{1d4108e8-b64d-400c-956e-7aadb3949bbf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\hi5">
+      <UniqueIdentifier>{e23cdca2-25e5-4337-b64c-ddca08cb6958}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\html_lite">
+      <UniqueIdentifier>{78e8597e-67a3-4e74-9893-006018aafe08}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="html_application_interface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="kissfft\kissfft.h">
-      <Filter>Header Files\kissfft</Filter>
+    <ClInclude Include="graphics\html.h">
+      <Filter>Header Files\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="kissfft\kissfft_fftd.h">
-      <Filter>Header Files\kissfft</Filter>
+    <ClInclude Include="graphics\html2.h">
+      <Filter>Header Files\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="kissfft\kissfft_ifftd.h">
-      <Filter>Header Files\kissfft</Filter>
+    <ClInclude Include="graphics\html_attribute.h">
+      <Filter>Header Files\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="kissfft\kiss_fft.h">
-      <Filter>Header Files\kissfft</Filter>
+    <ClInclude Include="graphics\html_base.h">
+      <Filter>Header Files\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="kissfft\kiss_ifft.h">
-      <Filter>Header Files\kissfft</Filter>
+    <ClInclude Include="graphics\html_border.h">
+      <Filter>Header Files\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="kissfft\kiss_fft_guts.h">
-      <Filter>Header Files\kissfft</Filter>
+    <ClInclude Include="graphics\html_box.h">
+      <Filter>Header Files\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="kissfft\aaa_vmskissfftfKiss_want_to_remove_xxx.h">
-      <Filter>Header Files\kissfft</Filter>
+    <ClInclude Include="graphics\html_data.h">
+      <Filter>Header Files\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="math\math_math.h">
-      <Filter>Header Files\math</Filter>
+    <ClInclude Include="graphics\html_enum.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html_ex.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html_font.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html_form.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html_html.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html_html2.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html_point.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html_reader.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html_signal.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html_size.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html_style.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html_style_sheet.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html_style_sheet_array.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html_tag.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html_value.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\impl\html_impl.h">
+      <Filter>Header Files\graphics\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\impl\html_impl_cell.h">
+      <Filter>Header Files\graphics\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\impl\html_impl_elemental.h">
+      <Filter>Header Files\graphics\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\impl\html_impl_form.h">
+      <Filter>Header Files\graphics\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\impl\html_impl_image.h">
+      <Filter>Header Files\graphics\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\impl\html_impl_input_button.h">
+      <Filter>Header Files\graphics\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\impl\html_impl_input_checkbox.h">
+      <Filter>Header Files\graphics\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\impl\html_impl_input_text.h">
+      <Filter>Header Files\graphics\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\impl\html_impl_select.h">
+      <Filter>Header Files\graphics\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\impl\html_impl_table.h">
+      <Filter>Header Files\graphics\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\impl\html_impl_table_elemental.h">
+      <Filter>Header Files\graphics\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\impl\html_impl_table_row.h">
+      <Filter>Header Files\graphics\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\impl\html_impl_text.h">
+      <Filter>Header Files\graphics\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\elemental\html_elemental.h">
+      <Filter>Header Files\graphics\elemental</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\elemental\html_elemental_cell.h">
+      <Filter>Header Files\graphics\elemental</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\elemental\html_elemental_elemental.h">
+      <Filter>Header Files\graphics\elemental</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\elemental\html_elemental_form.h">
+      <Filter>Header Files\graphics\elemental</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\elemental\html_elemental_image.h">
+      <Filter>Header Files\graphics\elemental</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\elemental\html_elemental_input_button.h">
+      <Filter>Header Files\graphics\elemental</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\elemental\html_elemental_input_checkbox.h">
+      <Filter>Header Files\graphics\elemental</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\elemental\html_elemental_input_text.h">
+      <Filter>Header Files\graphics\elemental</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\elemental\html_elemental_select.h">
+      <Filter>Header Files\graphics\elemental</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\elemental\html_elemental_table.h">
+      <Filter>Header Files\graphics\elemental</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\elemental\html_elemental_table_elemental.h">
+      <Filter>Header Files\graphics\elemental</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\elemental\html_elemental_table_row.h">
+      <Filter>Header Files\graphics\elemental</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\elemental\html_elemental_text.h">
+      <Filter>Header Files\graphics\elemental</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html.h">
+      <Filter>Header Files\html</Filter>
+    </ClInclude>
+    <ClInclude Include="userhtml\userhtml.h">
+      <Filter>Header Files\userhtml</Filter>
+    </ClInclude>
+    <ClInclude Include="userhtml\userhtml_child_frame.h">
+      <Filter>Header Files\userhtml</Filter>
+    </ClInclude>
+    <ClInclude Include="userhtml\userhtml_document.h">
+      <Filter>Header Files\userhtml</Filter>
+    </ClInclude>
+    <ClInclude Include="userhtml\userhtml_form.h">
+      <Filter>Header Files\userhtml</Filter>
+    </ClInclude>
+    <ClInclude Include="userhtml\userhtml_form_view.h">
+      <Filter>Header Files\userhtml</Filter>
+    </ClInclude>
+    <ClInclude Include="userhtml\userhtml_frame.h">
+      <Filter>Header Files\userhtml</Filter>
+    </ClInclude>
+    <ClInclude Include="userhtml\userhtml_view.h">
+      <Filter>Header Files\userhtml</Filter>
+    </ClInclude>
+    <ClInclude Include="userhtml\userhtml_view_update_hint.h">
+      <Filter>Header Files\userhtml</Filter>
+    </ClInclude>
+    <ClInclude Include="hi5\hi5_twitter_authorization.h">
+      <Filter>Header Files\hi5</Filter>
+    </ClInclude>
+    <ClInclude Include="html_lite\html_lite.h">
+      <Filter>Header Files\html_lite</Filter>
+    </ClInclude>
+    <ClInclude Include="html_lite\html_lite_html_attributes.h">
+      <Filter>Header Files\html_lite</Filter>
+    </ClInclude>
+    <ClInclude Include="html_lite\html_lite_html_common.h">
+      <Filter>Header Files\html_lite</Filter>
+    </ClInclude>
+    <ClInclude Include="html_lite\html_lite_html_entity_resolver.h">
+      <Filter>Header Files\html_lite</Filter>
+    </ClInclude>
+    <ClInclude Include="html_lite\html_lite_html_reader.h">
+      <Filter>Header Files\html_lite</Filter>
+    </ClInclude>
+    <ClInclude Include="html_lite\html_lite_html_tag.h">
+      <Filter>Header Files\html_lite</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="kissfft\kissfft_fftd.cpp">
-      <Filter>Source Files\kissfft</Filter>
+    <ClCompile Include="html_application_interface.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="kissfft\kissfft_ifftd.cpp">
-      <Filter>Source Files\kissfft</Filter>
+    <ClCompile Include="userhtml\userhtml_child_frame.cpp">
+      <Filter>Source Files\userhtml</Filter>
     </ClCompile>
-    <ClCompile Include="kissfft\kiss_fft.cpp">
-      <Filter>Source Files\kissfft</Filter>
+    <ClCompile Include="userhtml\userhtml_document.cpp">
+      <Filter>Source Files\userhtml</Filter>
     </ClCompile>
-    <ClCompile Include="kissfft\kiss_fft_shared.cpp">
-      <Filter>Source Files\kissfft</Filter>
+    <ClCompile Include="userhtml\userhtml_form.cpp">
+      <Filter>Source Files\userhtml</Filter>
     </ClCompile>
-    <ClCompile Include="kissfft\kiss_ifft.cpp">
-      <Filter>Source Files\kissfft</Filter>
+    <ClCompile Include="userhtml\userhtml_form_view.cpp">
+      <Filter>Source Files\userhtml</Filter>
+    </ClCompile>
+    <ClCompile Include="userhtml\userhtml_frame.cpp">
+      <Filter>Source Files\userhtml</Filter>
+    </ClCompile>
+    <ClCompile Include="userhtml\userhtml_view.cpp">
+      <Filter>Source Files\userhtml</Filter>
+    </ClCompile>
+    <ClCompile Include="userhtml\userhtml_view_update_hint.cpp">
+      <Filter>Source Files\userhtml</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html_attribute.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html_base.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html_data.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html_font.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html_form.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html_html.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html_reader.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html_signal.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html_style.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html_style_sheet.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html_style_sheet_array.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html_tag.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html_value.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\impl\html_impl.cpp">
+      <Filter>Source Files\graphics\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\impl\html_impl_cell.cpp">
+      <Filter>Source Files\graphics\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\impl\html_impl_elemental.cpp">
+      <Filter>Source Files\graphics\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\impl\html_impl_form.cpp">
+      <Filter>Source Files\graphics\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\impl\html_impl_image.cpp">
+      <Filter>Source Files\graphics\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\impl\html_impl_input_button.cpp">
+      <Filter>Source Files\graphics\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\impl\html_impl_input_checkbox.cpp">
+      <Filter>Source Files\graphics\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\impl\html_impl_input_text.cpp">
+      <Filter>Source Files\graphics\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\impl\html_impl_select.cpp">
+      <Filter>Source Files\graphics\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\impl\html_impl_table.cpp">
+      <Filter>Source Files\graphics\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\impl\html_impl_table_elemental.cpp">
+      <Filter>Source Files\graphics\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\impl\html_impl_table_row.cpp">
+      <Filter>Source Files\graphics\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\impl\html_impl_text.cpp">
+      <Filter>Source Files\graphics\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\elemental\html_elemental_cell.cpp">
+      <Filter>Source Files\graphics\elemental</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\elemental\html_elemental_elemental.cpp">
+      <Filter>Source Files\graphics\elemental</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\elemental\html_elemental_form.cpp">
+      <Filter>Source Files\graphics\elemental</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\elemental\html_elemental_image.cpp">
+      <Filter>Source Files\graphics\elemental</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\elemental\html_elemental_input_button.cpp">
+      <Filter>Source Files\graphics\elemental</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\elemental\html_elemental_input_checkbox.cpp">
+      <Filter>Source Files\graphics\elemental</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\elemental\html_elemental_input_text.cpp">
+      <Filter>Source Files\graphics\elemental</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\elemental\html_elemental_select.cpp">
+      <Filter>Source Files\graphics\elemental</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\elemental\html_elemental_table.cpp">
+      <Filter>Source Files\graphics\elemental</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\elemental\html_elemental_table_elemental.cpp">
+      <Filter>Source Files\graphics\elemental</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\elemental\html_elemental_table_row.cpp">
+      <Filter>Source Files\graphics\elemental</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\elemental\html_elemental_text.cpp">
+      <Filter>Source Files\graphics\elemental</Filter>
+    </ClCompile>
+    <ClCompile Include="hi5\hi5_twitter_authorization.cpp">
+      <Filter>Source Files\hi5</Filter>
+    </ClCompile>
+    <ClCompile Include="html_lite\html_lite_html_attributes.cpp">
+      <Filter>Source Files\html_lite</Filter>
+    </ClCompile>
+    <ClCompile Include="html_lite\html_lite_html_entity_resolver.cpp">
+      <Filter>Source Files\html_lite</Filter>
+    </ClCompile>
+    <ClCompile Include="html_lite\html_lite_html_reader.cpp">
+      <Filter>Source Files\html_lite</Filter>
+    </ClCompile>
+    <ClCompile Include="html_lite\html_lite_html_tag.cpp">
+      <Filter>Source Files\html_lite</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="math.def">
+    <None Include="html.def">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>

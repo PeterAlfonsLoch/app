@@ -39,7 +39,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{106E3938-FA19-4D4D-83D5-A36692C93E86}</ProjectGuid>
+    <ProjectGuid>{B53F381B-5724-412B-99A6-5C301430B0B5}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <ProjectName>math</ProjectName>
     <RootNamespace>math</RootNamespace>
@@ -276,6 +276,15 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\FreeImage.dll" "$(OutDir)
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ProjectReference Include="..\aqua\m_aqua.vcxproj">
+      <Project>{19518477-75c4-4df7-acc2-325fa81a640c}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\aura\m_aura.vcxproj">
+      <Project>{55f3f6b8-8baf-4f22-9e77-bcf9d5a23960}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\axis\m_axis.vcxproj">
+      <Project>{3bae8362-f135-4513-9163-58532baba44a}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\base\m_base.vcxproj">
       <Project>{5487686f-8a2f-401a-a38e-fda8900e1984}</Project>
     </ProjectReference>
@@ -284,8 +293,15 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\FreeImage.dll" "$(OutDir)
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="calculator\calculator.h" />
+    <ClInclude Include="calculator\calculator_calculator.h" />
+    <ClInclude Include="calculator\numeric_element.h" />
+    <ClInclude Include="calculator\numeric_parser.h" />
+    <ClInclude Include="calculator\numeric_parser_exception.h" />
+    <ClInclude Include="calculator\numeric_scanner.h" />
+    <ClInclude Include="calculator\numeric_token.h" />
+    <ClInclude Include="calculator\numeric_value.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="kissfft\aaa_vmskissfftfKiss_want_to_remove_xxx.h" />
     <ClInclude Include="kissfft\kissfft.h" />
     <ClInclude Include="kissfft\kissfft_fftd.h" />
     <ClInclude Include="kissfft\kissfft_ifftd.h" />
@@ -295,6 +311,12 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\FreeImage.dll" "$(OutDir)
     <ClInclude Include="math\math_math.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="calculator\calculator_calculator.cpp" />
+    <ClCompile Include="calculator\numeric_element.cpp" />
+    <ClCompile Include="calculator\numeric_parser.cpp" />
+    <ClCompile Include="calculator\numeric_parser_exception.cpp" />
+    <ClCompile Include="calculator\numeric_scanner.cpp" />
+    <ClCompile Include="calculator\numeric_value.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
     </ClCompile>

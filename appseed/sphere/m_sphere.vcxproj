@@ -410,6 +410,12 @@
     <ClInclude Include="command\command_pane_view_update_hint.h" />
     <ClInclude Include="command\command_primary_view.h" />
     <ClInclude Include="command\command_view.h" />
+    <ClInclude Include="console\console.h" />
+    <ClInclude Include="console\console_application.h" />
+    <ClInclude Include="console\console_prompt.h" />
+    <ClInclude Include="console\console_prompt_document.h" />
+    <ClInclude Include="console\console_prompt_frame.h" />
+    <ClInclude Include="console\console_prompt_impact.h" />
     <ClInclude Include="filehandler\filehandler.h" />
     <ClInclude Include="filehandler\filehandler_application.h" />
     <ClInclude Include="filehandler\filehandler_document.h" />
@@ -445,6 +451,11 @@
     <ClCompile Include="command\command_pane_view_update_hint.cpp" />
     <ClCompile Include="command\command_primary_view.cpp" />
     <ClCompile Include="command\command_view.cpp" />
+    <ClCompile Include="console\console_application.cpp" />
+    <ClCompile Include="console\console_prompt.cpp" />
+    <ClCompile Include="console\console_prompt_document.cpp" />
+    <ClCompile Include="console\console_prompt_frame.cpp" />
+    <ClCompile Include="console\console_prompt_impact.cpp" />
     <ClCompile Include="filehandler\filehandler_application.cpp" />
     <ClCompile Include="filehandler\filehandler_document.cpp" />
     <ClCompile Include="filehandler\filehandler_frame.cpp" />
@@ -470,11 +481,26 @@
     <None Include="ca2.def" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\aqua\m_aqua.vcxproj">
+      <Project>{19518477-75c4-4df7-acc2-325fa81a640c}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\aura\m_aura.vcxproj">
+      <Project>{55f3f6b8-8baf-4f22-9e77-bcf9d5a23960}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\axis\m_axis.vcxproj">
+      <Project>{3bae8362-f135-4513-9163-58532baba44a}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\base\m_base.vcxproj">
       <Project>{5487686f-8a2f-401a-a38e-fda8900e1984}</Project>
     </ProjectReference>
     <ProjectReference Include="..\core\m_core.vcxproj">
       <Project>{420d7aeb-cfca-45de-bb6e-95055df21987}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\html\m_html.vcxproj">
+      <Project>{106e3938-fa19-4d4d-83d5-a36692c93e86}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\math\m_math.vcxproj">
+      <Project>{b53f381b-5724-412b-99a6-5c301430b0b5}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
