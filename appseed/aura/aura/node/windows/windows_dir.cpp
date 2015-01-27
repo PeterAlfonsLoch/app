@@ -253,8 +253,15 @@ namespace windows
    }
 
    
-   bool dir::rls(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, e_extract eextract)
+   bool dir::rls(::aura::application * papp,const char * lpcsz,stringa * pstraPath,stringa * pstraTitle,stringa * pstraRelative,e_extract eextract)
    {
+
+      if(::file::dir::system::rls(papp,lpcsz,pstraPath,pstraTitle,pstraRelative,eextract))
+      {
+
+         return true;
+
+      }
 
       return rls_pattern(papp, lpcsz, "*.*", pstraPath, pstraTitle, pstraRelative, NULL, NULL, eextract);
 
