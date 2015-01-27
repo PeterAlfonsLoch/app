@@ -1,1 +1,1 @@
-#include "app/axis/openssl/crypto/idea/idea.h"
+#include "app/axis/crypto/crypto/idea/idea.h"
