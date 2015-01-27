@@ -39,7 +39,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{B53F381B-5724-412B-99A6-5C301430B0B5}</ProjectGuid>
+    <ProjectGuid>{106E3938-FA19-4D4D-83D5-A36692C93E86}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <ProjectName>math</ProjectName>
     <RootNamespace>math</RootNamespace>

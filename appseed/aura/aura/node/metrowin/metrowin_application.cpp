@@ -566,9 +566,28 @@ namespace metrowin
 
    string application::multimedia_audio_get_default_library_name()
    {
-      return "audio_xaudio2";
+
+      return "audio_xaudio";
+
    }
+
+
 } // namespace metrowin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

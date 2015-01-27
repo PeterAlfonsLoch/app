@@ -194,7 +194,7 @@
 //
 //namespace dami
 //{
-//  typedef std::basic_string<char>           String;
+//  typedef std::basic_string<char>           ID3String;
 //  typedef std::basic_string<unsigned char> BString;
 //  typedef std::basic_string<wchar_t>       WString;
 //};
@@ -207,7 +207,7 @@
 namespace dami
 {
    
-   typedef string String;
+   typedef string ID3String;
    typedef bstring BString;
    typedef wstring WString;
 

@@ -908,3 +908,10 @@ bool __node_aura_pos_term()
 
 
 
+
+int_bool is_windows_7_or_lower()
+{
+
+   return false; // metro is from windows 8
+
+}

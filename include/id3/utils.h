@@ -79,23 +79,23 @@ namespace dami
 #endif
 
   size_t ID3_C_EXPORT renderNumber(uchar *buffer, uint32 val, size_t size = sizeof(uint32));
-  String ID3_C_EXPORT renderNumber(uint32 val, size_t size = sizeof(uint32));
+  ID3String ID3_C_EXPORT renderNumber(uint32 val, size_t size = sizeof(uint32));
 
-  String ID3_C_EXPORT toString(uint32 val);
+  ID3String ID3_C_EXPORT toString(uint32 val);
   WString ID3_C_EXPORT toWString(const unicode_t[], size_t);
   
   size_t ID3_C_EXPORT ucslen(const unicode_t *unicode);
-  String ID3_C_EXPORT convert(String data, ID3_TextEnc, ID3_TextEnc);
+  ID3String ID3_C_EXPORT convert(ID3String data, ID3_TextEnc, ID3_TextEnc);
 
   // file utils
   size_t ID3_C_EXPORT getFileSize(std::fstream&);
   size_t ID3_C_EXPORT getFileSize(std::ifstream&);
   size_t ID3_C_EXPORT getFileSize(std::ofstream&);
-  ID3_Err ID3_C_EXPORT createFile(String, std::fstream&);
-  ID3_Err ID3_C_EXPORT openWritableFile(String, std::fstream&);
-  ID3_Err ID3_C_EXPORT openWritableFile(String, std::ofstream&);
-  ID3_Err ID3_C_EXPORT openReadableFile(String, std::fstream&);
-  ID3_Err ID3_C_EXPORT openReadableFile(String, std::ifstream&);
+  ID3_Err ID3_C_EXPORT createFile(ID3String, std::fstream&);
+  ID3_Err ID3_C_EXPORT openWritableFile(ID3String, std::fstream&);
+  ID3_Err ID3_C_EXPORT openWritableFile(ID3String, std::ofstream&);
+  ID3_Err ID3_C_EXPORT openReadableFile(ID3String, std::fstream&);
+  ID3_Err ID3_C_EXPORT openReadableFile(ID3String, std::ifstream&);
 
 };
   

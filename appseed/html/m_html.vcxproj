@@ -27,7 +27,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{106E3938-FA19-4D4D-83D5-A36692C93E86}</ProjectGuid>
+    <ProjectGuid>{3B814DAF-FD98-487D-917E-9D708BE3BC61}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <ProjectName>html</ProjectName>
     <RootNamespace>html</RootNamespace>

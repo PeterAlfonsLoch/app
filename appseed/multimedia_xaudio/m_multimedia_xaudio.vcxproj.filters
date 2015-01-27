@@ -12,13 +12,13 @@
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="multimedia_xaudio2.h">
+    <ClInclude Include="multimedia_xaudio.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="multimedia_xaudio2_factory_exchange.h">
+    <ClInclude Include="multimedia_xaudio_factory_exchange.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="multimedia_xaudio2_translation.h">
+    <ClInclude Include="multimedia_xaudio_translation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -26,10 +26,10 @@
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="multimedia_xaudio2_translation.cpp">
+    <ClCompile Include="multimedia_xaudio_factory_exchange.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Z:\winmetro\nodeapp\appseed\multimedia_xaudio2\multimedia_xaudio2_factory_exchange.cpp">
+    <ClCompile Include="multimedia_xaudio_translation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

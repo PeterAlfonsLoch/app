@@ -1,5 +1,7 @@
 #pragma once
 
+
+/*
 class millis_timer
 {
 
@@ -93,6 +95,8 @@ public:
    }
 
 };
+
+*/
 
 namespace multimedia
 {

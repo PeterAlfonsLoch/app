@@ -111,7 +111,7 @@ ID3_C_VAR const int          ID3LIB_BINARY_AGE;
 #define ID3_TAGIDSIZE           (3)
 #define ID3_TAGHEADERSIZE       (10)
 
-/** String used for the description field of a comment tag converted from an
+/** ID3String used for the description field of a comment tag converted from an
  ** id3v1 tag to an id3v2 tag
  **
  ** \sa #ID3V1_Tag

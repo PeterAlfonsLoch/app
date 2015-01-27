@@ -42,10 +42,10 @@ namespace dami
   {
     class ID3_CPP_EXPORT StringReader : public ID3_Reader
     {
-      const String&  _string;
+      const ID3String&  _string;
       pos_type _cur;
      public:
-      StringReader(const String& string) : _string(string), _cur(0) { ; }
+      StringReader(const ID3String& string) : _string(string), _cur(0) { ; }
       virtual ~StringReader() { ; }
 
       virtual void close() { ; }
@@ -68,7 +68,7 @@ namespace dami
       virtual size_type readChars(char_type buf[], size_type len)
       {
         size_type size = min((unsigned int)len, (unsigned int)(_string.size() - _cur));
-        _string.copy(reinterpret_cast<String::value_type *>(buf), size, _cur);
+        _string.copy(reinterpret_cast<ID3String::value_type *>(buf), size, _cur);
         _cur += size;
         return size;
       }
@@ -182,21 +182,21 @@ namespace dami
 
     class ID3_CPP_EXPORT StringWriter : public ID3_Writer
     {
-      String& _string;
+      ID3String& _string;
      public:
-      StringWriter(String& string) : _string(string) { ; }
+      StringWriter(ID3String& string) : _string(string) { ; }
       virtual ~StringWriter() { ; }
 
       void close() { ; }
       void flush() { ; }
       virtual size_type writeChars(const char buf[], size_type len)
       { 
-        _string.append(reinterpret_cast<const String::value_type *>(buf), len);
+        _string.append(reinterpret_cast<const ID3String::value_type *>(buf), len);
         return len;
       }
       size_type writeChars(const char_type buf[], size_type len)
       {
-        _string.append(reinterpret_cast<const String::value_type *>(buf), len);
+        _string.append(reinterpret_cast<const ID3String::value_type *>(buf), len);
         return len;
       }
 

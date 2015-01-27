@@ -132,7 +132,7 @@
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)pch.pch</PrecompiledHeaderOutputFile>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(ProjectDir)framework;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/base/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">_MULTIMEDIA_XAUDIO2_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">_MULTIMEDIA_XAUDIO_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">_MULTIMEDIA_XAUDIO2_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">-Zm384 /bigobj %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">-Zm384 /bigobj %(AdditionalOptions)</AdditionalOptions>
@@ -148,17 +148,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
-    <ClInclude Include="multimedia_xaudio2.h" />
-    <ClInclude Include="multimedia_xaudio2_factory_exchange.h" />
-    <ClInclude Include="multimedia_xaudio2_translation.h" />
+    <ClInclude Include="multimedia_xaudio.h" />
+    <ClInclude Include="multimedia_xaudio_factory_exchange.h" />
+    <ClInclude Include="multimedia_xaudio_translation.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="multimedia_xaudio2_translation.cpp" />
-    <ClCompile Include="Z:\winmetro\nodeapp\appseed\multimedia_xaudio2\multimedia_xaudio2_factory_exchange.cpp" />
+    <ClCompile Include="multimedia_xaudio_factory_exchange.cpp" />
+    <ClCompile Include="multimedia_xaudio_translation.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\app-core\appseed\multimedia\m_multimedia.vcxproj">
@@ -169,6 +169,15 @@
     </ProjectReference>
     <ProjectReference Include="..\..\..\app\appseed\core\m_core.vcxproj">
       <Project>{420d7aeb-cfca-45de-bb6e-95055df21987}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\aqua\m_aqua.vcxproj">
+      <Project>{19518477-75c4-4df7-acc2-325fa81a640c}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\aura\m_aura.vcxproj">
+      <Project>{55f3f6b8-8baf-4f22-9e77-bcf9d5a23960}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\axis\m_axis.vcxproj">
+      <Project>{3bae8362-f135-4513-9163-58532baba44a}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
