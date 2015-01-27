@@ -996,6 +996,65 @@ namespace draw2d_direct2d
 
    }
 
+
+   bool graphics::FillEllipse(const RECTD & r)
+   {
+
+      if(m_spbrush.is_null())
+      {
+
+         ((graphics *) this)->m_spbrush.alloc(((graphics *) this)->allocer());
+         ((graphics *) this)->m_spbrush->m_powner = (void *)(graphics *) this;
+
+      }
+
+      if(m_spbrush.is_null())
+         return false;
+
+      D2D1_ELLIPSE ellipse;
+
+      ellipse.point.x = (r.right + r.left) / 2.0;
+      ellipse.point.y = (r.bottom + r.top) / 2.0;
+      ellipse.radiusX = (r.right - r.left) / 2.0;
+      ellipse.radiusY = (r.bottom - r.top) / 2.0;
+
+
+      m_pdevicecontext->FillEllipse(&ellipse,(dynamic_cast < ::draw2d_direct2d::brush * > (m_spbrush.m_p))->get_os_brush((graphics *) this));
+
+
+      return true;
+
+   }
+
+   bool graphics::DrawEllipse(const RECTD & r)
+   {
+
+      if(m_spbrush.is_null())
+      {
+
+         ((graphics *) this)->m_spbrush.alloc(((graphics *) this)->allocer());
+         ((graphics *) this)->m_spbrush->m_powner = (void *)(graphics *) this;
+
+      }
+
+      if(m_spbrush.is_null())
+         return false;
+
+      D2D1_ELLIPSE ellipse;
+
+      ellipse.point.x = (r.right + r.left) / 2.0;
+      ellipse.point.y = (r.bottom + r.top) / 2.0;
+      ellipse.radiusX = (r.right - r.left) / 2.0;
+      ellipse.radiusY = (r.bottom - r.top) / 2.0;
+
+
+      m_pdevicecontext->DrawEllipse(&ellipse,(dynamic_cast < ::draw2d_direct2d::brush * > (m_spbrush.m_p))->get_os_brush((graphics *) this));
+
+
+      return true;
+
+   }
+
    bool graphics::Pie(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4)
    {
 
@@ -1034,6 +1093,22 @@ namespace draw2d_direct2d
 
       return this->path(path);
 
+
+   }
+
+
+   bool graphics::fill_polygon(const POINTD * lpPoints,int32_t nCount)
+   {
+      
+      ::draw2d::path_sp path(allocer());
+
+      path->begin_figure(get_os_brush(m_spbrush) != NULL,::draw2d::fill_mode_winding);
+
+      path->add_lines(lpPoints,nCount);
+
+      path->end_figure(true);
+
+      return this->fill_path(path);
 
    }
 

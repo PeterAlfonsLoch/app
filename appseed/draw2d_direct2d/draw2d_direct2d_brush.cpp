@@ -205,6 +205,79 @@ namespace draw2d_direct2d
          return (ID2D1Brush *) m_plineargradientbrush.Get();
 
       }
+
+      else if(m_etype == type_radial_gradient_color)
+      {
+
+         if(!m_bUpdated || m_plineargradientbrush == NULL)
+         {
+
+            if(m_pbrush != NULL)
+            {
+
+               ((brush *)this)->destroy();
+
+            }
+
+            // Create an array of gradient stops to put in the gradient stop
+            // collection that will be used in the gradient brush.
+            ID2D1GradientStopCollection *pgradientstops = NULL;
+
+            D2D1_GRADIENT_STOP gradientstops[2];
+            gradientstops[0].color.a = argb_get_a_value(m_cr1) / 255.0f;
+            gradientstops[0].color.r = argb_get_r_value(m_cr1) / 255.0f;
+            gradientstops[0].color.g = argb_get_g_value(m_cr1) / 255.0f;
+            gradientstops[0].color.b = argb_get_b_value(m_cr1) / 255.0f;
+            gradientstops[0].position = 0.0f;
+            gradientstops[1].color.a = argb_get_a_value(m_cr2) / 255.0f;
+            gradientstops[1].color.r = argb_get_r_value(m_cr2) / 255.0f;
+            gradientstops[1].color.g = argb_get_g_value(m_cr2) / 255.0f;
+            gradientstops[1].color.b = argb_get_b_value(m_cr2) / 255.0f;
+            gradientstops[1].position = 1.0f;
+
+            // Create the ID2D1GradientStopCollection from a previously
+            // declared array of D2D1_GRADIENT_STOP structs.
+            HRESULT hr = pgraphics->m_prendertarget->CreateGradientStopCollection(
+               gradientstops,
+               2,
+               D2D1_GAMMA_2_2,
+               D2D1_EXTEND_MODE_CLAMP,
+               &pgradientstops
+               );
+
+
+
+            // The center of the gradient is in the center of the box.
+            // The gradient origin offset was set to zero(0, 0) or center in this case.
+            if(SUCCEEDED(hr))
+            {
+               hr = pgraphics->m_prendertarget->CreateRadialGradientBrush(
+                  D2D1::RadialGradientBrushProperties(
+                  D2D1::Point2F(75,75),
+                  D2D1::Point2F(0,0),
+                  75,
+                  75),
+                  pgradientstops,
+                  & ((brush *) this)->m_pradialgradientbrush
+                  );
+            }
+
+            pgradientstops->Release();
+
+            if(m_pradialgradientbrush != NULL)
+            {
+               ((font *) this)->m_bUpdated   = true;
+               ((font *) this)->m_pgraphics  = pgraphics;
+            }
+
+
+         }
+
+
+         return (ID2D1Brush *)m_pradialgradientbrush.Get();
+
+      }
+
       else
       {
 

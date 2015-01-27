@@ -966,20 +966,26 @@ namespace draw2d
 
    bool graphics::DrawEllipse(double x1,double y1,double x2,double y2)
    {
-      UNREFERENCED_PARAMETER(x1);
-      UNREFERENCED_PARAMETER(y1);
-      UNREFERENCED_PARAMETER(x2);
-      UNREFERENCED_PARAMETER(y2);
-      ::exception::throw_interface_only(get_app());
-      return false;
+
+      RECTD r;
+
+      r.left = x1;
+      r.top = y1;
+      r.right = x2;
+      r.bottom = y2;
+
+      return DrawEllipse(r);
+
    }
 
-   bool graphics::DrawEllipse(const RECTD & lpRect)
+
+   bool graphics::DrawEllipse(const RECTD & r)
    {
-      UNREFERENCED_PARAMETER(lpRect);
-      ::exception::throw_interface_only(get_app());
-      return false;
+      
+      return DrawEllipse(r.left, r.top, r.right, r.bottom);
+
    }
+
 
    bool graphics::FillEllipse(double x1,double y1,double x2,double y2)
    {

@@ -15,9 +15,10 @@ namespace draw2d_direct2d
       //      Gdiplus::Brush * m_pbrush;
 
 
-      Microsoft::WRL::ComPtr<ID2D1Brush>                  m_pbrush;
-      Microsoft::WRL::ComPtr<ID2D1SolidColorBrush>        m_psolidbrush;
-      Microsoft::WRL::ComPtr<ID2D1LinearGradientBrush>    m_plineargradientbrush;
+      Microsoft::WRL::ComPtr<ID2D1Brush>                 m_pbrush;
+      Microsoft::WRL::ComPtr<ID2D1SolidColorBrush>       m_psolidbrush;
+      Microsoft::WRL::ComPtr<ID2D1LinearGradientBrush>   m_plineargradientbrush;
+      Microsoft::WRL::ComPtr<ID2D1RadialGradientBrush>   m_pradialgradientbrush;
 
 
       brush(::aura::application * papp);

@@ -273,13 +273,18 @@ namespace draw2d_direct2d
       void DrawFocusRect(const RECT & lpRect);
       bool DrawEllipse(int x1, int y1, int x2, int y2);
       bool DrawEllipse(const RECT & lpRect);
+      bool DrawEllipse(const RECTD & lpRect);
       bool FillEllipse(int x1, int y1, int x2, int y2);
       bool FillEllipse(const RECT & lpRect);
+      bool FillEllipse(const RECTD & lpRect);
       bool Pie(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4);
       bool Pie(const RECT & lpRect, POINT ptStart, POINT ptEnd);
       bool Polygon(const POINT* lpPoints, int nCount);   
       bool Polygon(const POINTD* lpPoints,int nCount);
       bool PolyPolygon(const POINT* lpPoints, const INT* lpPolyCounts, int nCount);
+
+      virtual bool fill_polygon(const POINTD * lpPoints,int32_t nCount);
+
       bool Rectangle(int x1, int y1, int x2, int y2);
       bool Rectangle(const RECT & lpRect);
       virtual bool DrawRectangle(int x1, int y1, int x2, int y2);
