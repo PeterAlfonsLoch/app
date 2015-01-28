@@ -1283,9 +1283,6 @@
     <None Include="draw2d_cairo.def" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\axis\cairo\axiscairo.vcxproj">
-      <Project>{e6c58c82-71e5-48e6-98ed-1b505d6f10c2}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\..\axis\freetype\axisfreetype.vcxproj" />
     <ProjectReference Include="..\..\axis\openssl\axisopenssl.vcxproj">
       <Project>{29676444-4d0f-4dd0-9104-0499d94da2c9}</Project>

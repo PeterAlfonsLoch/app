@@ -188,6 +188,7 @@ namespace install
       straFile.add("aurasqlite.dll");
       straFile.add("axis.dll");
       straFile.add("axisbzip2.dll");
+      straFile.add("axiscrypto.dll");
       //straFile.add("axisfreeimage.dll");
       //straFile.add("axisfreetype.dll");
       straFile.add("axisidn.dll");

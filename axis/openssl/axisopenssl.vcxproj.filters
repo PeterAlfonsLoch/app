@@ -15,14 +15,8 @@
     <Filter Include="Header Files\ssl">
       <UniqueIdentifier>{eed9b93f-935f-476d-a750-f6ccb1d274ea}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\crypto">
-      <UniqueIdentifier>{58b58aad-3dc7-4ae1-bc1a-20cbf97fd5b1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\include">
       <UniqueIdentifier>{3c37128f-57ef-433c-9811-bd26450d5cfb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\crypto\asn1">
-      <UniqueIdentifier>{80eed971-0eae-4898-850a-e2de0ec4959d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\engines">
       <UniqueIdentifier>{bcb1da10-3c5b-4c8a-90e5-92cc7398f493}</UniqueIdentifier>
@@ -303,75 +297,6 @@
   <ItemGroup>
     <ClInclude Include="ssl\tls1.h">
       <Filter>Header Files\ssl</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\arm_arch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\cryptlib.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\crypto.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\ebcdic.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\fips_err.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\md32_common.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\o_dir.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\o_str.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\o_time.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\opensslconf.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\opensslv.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\ossl_typ.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\symhacks.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\vms_rms.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\asn1\asn1.h">
-      <Filter>Header Files\crypto\asn1</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\asn1\asn1_locl.h">
-      <Filter>Header Files\crypto\asn1</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\asn1\asn1_mac.h">
-      <Filter>Header Files\crypto\asn1</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\asn1\asn1t.h">
-      <Filter>Header Files\crypto\asn1</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\asn1\charmap.h">
-      <Filter>Header Files\crypto\asn1</Filter>
-    </ClInclude>
-    <ClInclude Include="e_os.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="e_os2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="e_os2_ca2specific.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="e_os2_original.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ssl\dtls1.h">
       <Filter>Header Files\ssl</Filter>
