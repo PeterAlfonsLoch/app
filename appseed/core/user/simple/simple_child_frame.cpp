@@ -59,8 +59,8 @@ bool simple_child_frame::_001OnCmdMsg(::aura::cmd_msg * pcmdmsg)
 bool simple_child_frame::get_translucency(::user::ETranslucency & etranslucency)
 {
 
-   etranslucency = ::user::TranslucencyTotal;
+   //etranslucency = ::user::TranslucencyTotal;
 
-   return true;
+   return false;
 
 }
