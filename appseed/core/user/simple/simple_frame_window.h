@@ -176,7 +176,7 @@ public:
    virtual bool WndFrameworkDownUpGetDownEnable();
 
    using ::user::wndfrm::frame::WorkSetListener::attach;
-   DECL_GEN_VSIGNAL(guserbaseOnInitialUpdate);
+   DECL_GEN_SIGNAL(guserbaseOnInitialUpdate);
 
    virtual class mini_dock_frame_window* CreateFloatingFrame(uint32_t dwStyle);
    virtual void NotifyFloatingWindows(uint32_t dwFlags);

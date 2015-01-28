@@ -412,7 +412,14 @@ inline dispatch::signal_item * dispatch::signal_item_array::GetSignalById(signal
 
 
 #define DECL_GEN_SIGNAL(function) void function(signal_details * pobj)
-#define DECL_GEN_VSIGNAL(function) virtual void function(signal_details * pobj)
+
+//  turned that virtual signals members are disfunctional
+// because signals are emitted to all registered handlers with abort semantics and even between different objects
+// virtual members and signal dispatching messes this, I don't know exactacly in what way, but in a configusing way
+// and even the signal dispatch sometimes seems to dispatch things to wrong functions more easily (bad handler->member matching).
+// #define DECL_GEN_V_SIGNAL(function) virtual void function(signal_details * pobj)
+
+
 #define BEG_GEN_SIGNAL(cl, function, signal_impl_class) void cl::function(signal_details * pobj) \
 { SCAST_PTR(signal_impl_class, pobj, psignal);
 #define END_GEN_SIGNAL() }

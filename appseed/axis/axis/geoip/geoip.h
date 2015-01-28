@@ -25,8 +25,8 @@ typedef struct GeoIPTag {
   char *file_path;
    uchar *cache;
    uchar *index_cache;
-   uint32_t *dataaxisSegments;
-   char dataaxisType;
+   uint32_t *databaseSegments;
+   char databaseType;
    time_t mtime;
    int32_t flags;
    off_t   size;
@@ -158,7 +158,7 @@ GEOIP_API void GeoIP_assign_region_by_inetaddr(GeoIP* gi, uint32_t inetaddr, Geo
 
 GEOIP_API void GeoIP_assign_region_by_inetaddr_v6(GeoIP* gi, geoipv6_t inetaddr, GeoIPRegion *gir);
 
-/* Used to query GeoIP Organization, ISP and AS Number dataaxiss */
+/* Used to query GeoIP Organization, ISP and AS Number databases */
 GEOIP_API char *GeoIP_name_by_ipnum (GeoIP* gi, uint32_t ipnum);
 GEOIP_API char *GeoIP_name_by_addr (GeoIP* gi, const char *addr);
 GEOIP_API char *GeoIP_name_by_name (GeoIP* gi, const char *host);
@@ -185,8 +185,8 @@ GEOIP_API int32_t GeoIP_id_by_code(const char *country);
 /** return return number of known countries */
 GEOIP_API uint32_t GeoIP_num_countries();
 
-GEOIP_API char *GeoIP_dataaxis_info (GeoIP* gi);
-GEOIP_API uchar GeoIP_dataaxis_edition (GeoIP* gi);
+GEOIP_API char *GeoIP_database_info (GeoIP* gi);
+GEOIP_API uchar GeoIP_database_edition (GeoIP* gi);
 
 GEOIP_API int32_t GeoIP_charset (GeoIP* gi);
 GEOIP_API int32_t GeoIP_set_charset (GeoIP* gi, int32_t charset);

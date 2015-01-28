@@ -76,13 +76,13 @@ namespace user
       sp(control) _001GetControlBySubItem(index iSubItem);
       virtual void _001OnClick(uint_ptr uiFlags, point point);
       virtual void _001OnClick(uint_ptr uiFlags, point point, index iItem, index iSubItem);
-      DECL_GEN_VSIGNAL(_001OnTimer);
+      DECL_GEN_SIGNAL(_001OnTimer);
 
       using list::_001GetSelection;
       virtual void _001GetSelection(::database::id & key, ::database::selection & selection);
 
-      DECL_GEN_VSIGNAL(_001OnNotify);
-      DECL_GEN_VSIGNAL(_001OnMessageNotify);
+      DECL_GEN_SIGNAL(_001OnNotify);
+      DECL_GEN_SIGNAL(_001OnMessageNotify);
 
       DECL_GEN_SIGNAL(_001OnVScroll);
       DECL_GEN_SIGNAL(_001OnHScroll);

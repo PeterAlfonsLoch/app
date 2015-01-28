@@ -979,7 +979,7 @@ namespace axis
       //if(!m_spuser->initialize())
       //   return false;
 
-      //user()->set_keyboard_layout(NULL,::action::source::dataaxis());
+      //user()->set_keyboard_layout(NULL,::action::source::database());
 
 
       if(m_bIfs)

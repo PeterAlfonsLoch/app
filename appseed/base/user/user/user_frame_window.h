@@ -198,7 +198,7 @@ namespace user
       virtual void install_message_handling(::message::dispatch * pinterface);
 
       DECL_GEN_SIGNAL(_guserbaseOnInitialUpdate);
-      DECL_GEN_VSIGNAL(guserbaseOnInitialUpdate);
+      DECL_GEN_SIGNAL(guserbaseOnInitialUpdate);
 
       virtual void on_set_parent(sp(::user::interaction) puiParent);
 

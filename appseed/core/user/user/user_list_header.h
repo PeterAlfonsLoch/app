@@ -143,10 +143,10 @@ namespace user
 
       // Message Handlers
    protected:
-      DECL_GEN_VSIGNAL(_001OnLButtonDown);
-      DECL_GEN_VSIGNAL(_001OnLButtonUp);
-      DECL_GEN_VSIGNAL(_001OnLButtonDblClk);
-         DECL_GEN_VSIGNAL(_001OnMouseMove);
+      DECL_GEN_SIGNAL(_001OnLButtonDown);
+      DECL_GEN_SIGNAL(_001OnLButtonUp);
+      DECL_GEN_SIGNAL(_001OnLButtonDblClk);
+         DECL_GEN_SIGNAL(_001OnMouseMove);
 
    };
 

@@ -57,7 +57,7 @@ namespace fontopus
 
 
       //DECL_GEN_SIGNAL(veiev_synch);
-      //DECL_GEN_VSIGNAL(on_end_veiev_synch);
+      //DECL_GEN_SIGNAL(on_end_veiev_synch);
 
 
       // if interactive flag is true, the function may interact with the user to authenticate her/him,

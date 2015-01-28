@@ -5870,6 +5870,8 @@ namespace user
 
             Session.user()->set_keyboard_focus(this);
 
+            Session.user()->set_mouse_focus_LButtonDown(this);
+
          }
 
       }

@@ -97,7 +97,7 @@ namespace http
       */
 
 
-      string strHost = Application.file().as_string(System.dir().appdata("dataaxis\\text\\last_good_known_fontopus_com.txt"));
+      string strHost = Application.file().as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
       stringa straRequestingServer;
       straRequestingServer.add("account.ca2.cc");
       //straRequestingServer.add("eu-account.ca2.cc");

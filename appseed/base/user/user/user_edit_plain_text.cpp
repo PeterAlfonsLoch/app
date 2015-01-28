@@ -81,16 +81,16 @@ namespace user
 
 
       IGUI_WIN_MSG_LINK(WM_CREATE,pinterface,this,&edit_plain_text::_001OnCreate);
-      IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN,pinterface,this,&edit_plain_text::_002OnLButtonDown);
-      IGUI_WIN_MSG_LINK(WM_LBUTTONUP,pinterface,this,&edit_plain_text::_002OnLButtonUp);
-      IGUI_WIN_MSG_LINK(WM_RBUTTONDOWN,pinterface,this,&edit_plain_text::_002OnRButtonDown);
-      IGUI_WIN_MSG_LINK(WM_RBUTTONUP,pinterface,this,&edit_plain_text::_002OnRButtonUp);
-      IGUI_WIN_MSG_LINK(WM_MOUSEMOVE,pinterface,this,&edit_plain_text::_002OnMouseMove);
-      IGUI_WIN_MSG_LINK(WM_KEYDOWN,pinterface,this,&edit_plain_text::_002OnKeyDown);
-      IGUI_WIN_MSG_LINK(WM_KEYUP,pinterface,this,&edit_plain_text::_002OnKeyUp);
-      IGUI_WIN_MSG_LINK(WM_CHAR,pinterface,this,&edit_plain_text::_002OnChar);
+      IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN,pinterface,this,&edit_plain_text::_001OnLButtonDown);
+      IGUI_WIN_MSG_LINK(WM_LBUTTONUP,pinterface,this,&edit_plain_text::_001OnLButtonUp);
+      IGUI_WIN_MSG_LINK(WM_RBUTTONDOWN,pinterface,this,&edit_plain_text::_001OnRButtonDown);
+      IGUI_WIN_MSG_LINK(WM_RBUTTONUP,pinterface,this,&edit_plain_text::_001OnRButtonUp);
+      IGUI_WIN_MSG_LINK(WM_MOUSEMOVE,pinterface,this,&edit_plain_text::_001OnMouseMove);
+      IGUI_WIN_MSG_LINK(WM_KEYDOWN,pinterface,this,&edit_plain_text::_001OnKeyDown);
+      IGUI_WIN_MSG_LINK(WM_KEYUP,pinterface,this,&edit_plain_text::_001OnKeyUp);
+      //IGUI_WIN_MSG_LINK(WM_CHAR,pinterface,this,&edit_plain_text::_001OnChar);
 
-      IGUI_WIN_MSG_LINK(WM_TIMER,pinterface,this,&::user::edit_plain_text::_002OnTimer);
+      IGUI_WIN_MSG_LINK(WM_TIMER,pinterface,this,&::user::edit_plain_text::_001OnTimer);
 
       IGUI_WIN_MSG_LINK(WM_SIZE,pinterface,this,&::user::edit_plain_text::_001OnSize);
 
@@ -544,42 +544,29 @@ namespace user
    void edit_plain_text::_001OnRButtonUp(signal_details * pobj)
    {
       SCAST_PTR(::message::mouse,pmouse,pobj)
-         //int32_t iItem;
-         //HRESULT hr;
-      class point point = pmouse->m_pt;
-      //      class point ptClient = point;
-      ClientToScreen(&point);
-      //ScreenToClient(&ptClient);
-      /*   ::aura::menu menu;
-         Ex1TextFile file;
 
-         ::aura::application * papp = ::core::get_app();
 
-         string strModuleFolder;
-         strModuleFolder = papp->m_pcoreapp->get_module_folder();
+            point pt = pmouse->m_pt;
 
-         if(!spfile->open(::core::dir().path(strModuleFolder, "devedge_contextmenu.xml"), ::file::type_text | ::file::mode_read))
-         return;
+         ScreenToClient(&pt);
 
-         string str;
-         spfile->read_full_string(str);
+         ::draw2d::memory_graphics pdc(allocer());
 
-         xml::node node(get_app());
+         m_ptree->m_iSelEnd = char_hit_test(pdc,pt.x,pt.y);
 
-         node.Load(str);
+         m_iColumn = SelToColumn(m_ptree->m_iSelEnd);
 
-         if (menu.LoadMenu(get_app(), &node))
-         {
-         //::aura::menu* pPopup = (::user::menu_item *) menu.GetSubMenu(0);
-         //ASSERT(pPopup != NULL);
-         sp(::user::frame_window) pframe = (sp(::user::frame_window)) (::window_sp) GetParentFrame();
-         //pPopup->TrackPopupMenu(
-         // point.x, point.y,
-         //(::window_sp) pframe);
-         menu.TrackPopupMenu(
-         point.x, point.y,
-         (::window_sp) pframe);
-         }*/
+         RedrawWindow();
+
+         m_bMouseDown = false;
+
+         track_popup_xml_matter_menu("ystem/edit_focus_popup.xml",0,pobj);
+
+         pmouse->set_lresult(1);
+
+         pmouse->m_bRet = true;
+
+
    }
 
 
@@ -593,7 +580,7 @@ namespace user
       pobj->previous();
    }
 
-   void edit_plain_text::_002OnTimer(signal_details * pobj)
+   void edit_plain_text::_001OnTimer(signal_details * pobj)
    {
       SCAST_PTR(::message::timer,ptimer,pobj)
       if(ptimer->m_nIDEvent >= 100
@@ -617,7 +604,7 @@ namespace user
    }
 
 
-   void edit_plain_text::_002OnKeyDown(signal_details * pobj)
+   void edit_plain_text::_001OnKeyDown(signal_details * pobj)
    {
 
       SCAST_PTR(::message::key,pkey,pobj)
@@ -774,7 +761,7 @@ namespace user
    }
 
 
-   void edit_plain_text::_002OnKeyUp(signal_details * pobj)
+   void edit_plain_text::_001OnKeyUp(signal_details * pobj)
    {
       SCAST_PTR(::message::key,pkey,pobj)
       if(pkey->m_ekey == ::user::key_return)
@@ -792,17 +779,6 @@ namespace user
       }
       m_bKeyPressed = false;
    }
-
-   void edit_plain_text::_002OnChar(signal_details * pobj)
-   {
-      UNREFERENCED_PARAMETER(pobj);
-      //      SCAST_PTR(::message::key, pkey, pobj)
-      if(m_bKeyPressed)
-      {
-         //key_to_char(&m_keymessageLast);
-      }
-   }
-
 
    void edit_plain_text::_001OnHScroll(signal_details * pobj)
    {
@@ -1061,7 +1037,7 @@ namespace user
    }
 
 
-   void edit_plain_text::_002OnLButtonDown(signal_details * pobj)
+   void edit_plain_text::_001OnLButtonDown(signal_details * pobj)
    {
 
       SCAST_PTR(::message::mouse,pmouse,pobj)
@@ -1094,7 +1070,7 @@ namespace user
    }
 
 
-   void edit_plain_text::_002OnLButtonUp(signal_details * pobj)
+   void edit_plain_text::_001OnLButtonUp(signal_details * pobj)
    {
 
       SCAST_PTR(::message::mouse,pmouse,pobj)
@@ -1120,7 +1096,7 @@ namespace user
    }
 
 
-   void edit_plain_text::_002OnRButtonDown(signal_details * pobj)
+   void edit_plain_text::_001OnRButtonDown(signal_details * pobj)
    {
 
       SCAST_PTR(::message::mouse,pmouse,pobj)
@@ -1149,33 +1125,6 @@ namespace user
 
    }
 
-
-   void edit_plain_text::_002OnRButtonUp(signal_details * pobj)
-   {
-
-      SCAST_PTR(::message::mouse,pmouse,pobj)
-
-         point pt = pmouse->m_pt;
-
-      ScreenToClient(&pt);
-
-      ::draw2d::memory_graphics pdc(allocer());
-
-      m_ptree->m_iSelEnd = char_hit_test(pdc,pt.x,pt.y);
-
-      m_iColumn = SelToColumn(m_ptree->m_iSelEnd);
-
-      RedrawWindow();
-
-      m_bMouseDown = false;
-
-      track_popup_xml_matter_menu("ystem/edit_focus_popup.xml",0,pobj);
-
-      pmouse->set_lresult(1);
-
-      pmouse->m_bRet = true;
-
-   }
 
 
    void edit_plain_text::_001OnCalcLayoutProc(::user::elemental * pview,::draw2d::graphics * pdc)
@@ -1657,7 +1606,7 @@ namespace user
    }
 
 
-   void edit_plain_text::_002OnMouseMove(signal_details * pobj)
+   void edit_plain_text::_001OnMouseMove(signal_details * pobj)
    {
 
       SCAST_PTR(::message::mouse,pmouse,pobj)
@@ -1690,36 +1639,18 @@ namespace user
 
       }
 
-      ::rect rectClient;
+      track_mouse_hover();
 
-      GetClientRect(rectClient);
-
-      if(rectClient.contains(pt))
-      {
-
-         if(GetCapture() != this)
-         {
-
-            SetCapture(this);
-
-         }
-
-         m_bActionHover = true;
-
-      }
-      else
-      {
-
-         ReleaseCapture();
-
-         m_bActionHover = false;
-
-      }
-
-
+      m_bActionHover = true;
 
    }
 
+   void edit_plain_text::_001OnMouseLeave(signal_details * pobj)
+   {
+
+      m_bActionHover = false;
+
+   }
 
    void edit_plain_text::_001GetViewSel(strsize &iSelStart,strsize &iSelEnd)
    {
@@ -2575,7 +2506,7 @@ namespace user
    void edit_plain_text::keyboard_focus_OnKeyDown(signal_details * pobj)
    {
 
-      _002OnKeyDown(pobj);
+      _001OnKeyDown(pobj);
 
    }
 
@@ -2583,7 +2514,7 @@ namespace user
    void edit_plain_text::keyboard_focus_OnKeyUp(signal_details * pobj)
    {
 
-      _002OnKeyUp(pobj);
+      _001OnKeyUp(pobj);
 
    }
 
@@ -2591,7 +2522,7 @@ namespace user
    void edit_plain_text::keyboard_focus_OnChar(signal_details * pobj)
    {
 
-      _002OnChar(pobj);
+      _001OnChar(pobj);
 
    }
 

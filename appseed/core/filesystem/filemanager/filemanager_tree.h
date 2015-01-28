@@ -75,7 +75,7 @@ namespace filemanager
       virtual void _001InsertColumns();
       virtual void _polishing_step(::single_lock & sl, ::data::tree_item * pitem, bool bLowLatency, e_step estep);
 
-      DECL_GEN_VSIGNAL(_001OnTimer);
+      DECL_GEN_SIGNAL(_001OnTimer);
 
 
       void install_message_handling(::message::dispatch * pinterface);

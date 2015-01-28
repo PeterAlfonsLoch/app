@@ -13,7 +13,7 @@ int32_t stop_service()
 	if (hdlSCM == 0) return ::GetLastError();
  
    SC_HANDLE hdlServ = ::OpenService(
-		hdlSCM,                    // SCManager dataaxis 
+		hdlSCM,                    // SCManager database 
 		"ca2_WinService_Spa_stage",               // name of service 
 		SC_MANAGER_ALL_ACCESS);                     // no password 
  
@@ -40,7 +40,7 @@ int32_t remove_service()
 	if (hdlSCM == 0) return ::GetLastError();
  
    SC_HANDLE hdlServ = ::OpenService(
-		hdlSCM,                    // SCManager dataaxis 
+		hdlSCM,                    // SCManager database 
 		"ca2_WinService_Spa_stage",               // name of service 
 		SC_MANAGER_ALL_ACCESS);                     // no password 
  

@@ -186,6 +186,8 @@ namespace user
 
       virtual void on_update(::aura::impact * pSender, LPARAM lHint, ::object* pHint);
 
+      virtual bool keyboard_focus_is_focusable();
+
    };
 
 

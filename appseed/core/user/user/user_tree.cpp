@@ -443,18 +443,20 @@ namespace user
       // trans   pobj->m_bRet = lresult != 0;
    }
 
+
    void tree::_001OnLButtonDown(signal_details * pobj)
    {
-      SCAST_PTR(::message::mouse, pmouse, pobj)
-         /*if(System.get_focus_guie() != this)
-         {
-         System.set_active_guie(this);
-         }*/
 
-         pmouse->previous();
+      SCAST_PTR(::message::mouse, pmouse, pobj)
+
+      pmouse->previous();
+      
       pobj->m_bRet = true;
+   
       pmouse->set_lresult(1);
+
    }
+
 
    void tree::_001OnLButtonUp(signal_details * pobj)
    {
@@ -690,12 +692,13 @@ namespace user
 
    void tree::install_message_handling(::message::dispatch * pdispatch)
    {
+      
       ::user::interaction_base::install_message_handling(pdispatch);
+      
       ::user::scroll_view::install_message_handling(pdispatch);
+
       IGUI_WIN_MSG_LINK(WM_CREATE        , pdispatch, this, &tree::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDBLCLK , pdispatch, this, &tree::_001OnLButtonDblClk);
-      IGUI_WIN_MSG_LINK(WM_LBUTTONUP     , pdispatch, this, &tree::_001OnLButtonUp);
-      IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN   , pdispatch, this, &tree::_001OnLButtonDown);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP     , pdispatch, this, &tree::_001OnLButtonUp);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN   , pdispatch, this, &tree::_001OnLButtonDown);
       IGUI_WIN_MSG_LINK(WM_RBUTTONUP     , pdispatch, this, &tree::_001OnRButtonUp);
@@ -705,6 +708,7 @@ namespace user
       IGUI_WIN_MSG_LINK(WM_HSCROLL       , pdispatch, this, &tree::_001OnHScroll);
       IGUI_WIN_MSG_LINK(WM_VSCROLL       , pdispatch, this, &tree::_001OnVScroll);
       IGUI_WIN_MSG_LINK(WM_TIMER         , pdispatch, this, &tree::_001OnTimer);
+
    }
 
    void tree::_001GetViewRect(LPRECT lprect)
@@ -1519,6 +1523,15 @@ namespace user
       }
 
    }
+
+
+   bool tree::keyboard_focus_is_focusable()
+   {
+
+      return true;
+
+   }
+
 
 
 } // namespace core

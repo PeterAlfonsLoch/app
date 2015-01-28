@@ -387,7 +387,7 @@ namespace user
       virtual DECL_GEN_SIGNAL(_002OnTimer);
 
 
-      DECL_GEN_VSIGNAL(_001OnBaseWndGetProperty);
+      DECL_GEN_SIGNAL(_001OnBaseWndGetProperty);
 
 
       virtual LRESULT _001BaseWndGetProperty(EProperty eproperty,LPARAM lparam);

@@ -90,33 +90,34 @@ namespace user
 
 
 
-      virtual DECL_GEN_SIGNAL(_002OnLButtonDown);
-      virtual DECL_GEN_SIGNAL(_002OnLButtonUp);
-         virtual DECL_GEN_SIGNAL(_002OnRButtonDown);
-         virtual DECL_GEN_SIGNAL(_002OnRButtonUp);
-         virtual DECL_GEN_SIGNAL(_002OnMouseMove);
-         virtual DECL_GEN_SIGNAL(_002OnKeyDown);
-         virtual DECL_GEN_SIGNAL(_002OnKeyUp);
-         virtual DECL_GEN_SIGNAL(_002OnTimer);
-         virtual DECL_GEN_SIGNAL(_002OnChar);
+      DECL_GEN_SIGNAL(_001OnLButtonDown);
+      DECL_GEN_SIGNAL(_001OnLButtonUp);
+      DECL_GEN_SIGNAL(_001OnRButtonDown);
+      DECL_GEN_SIGNAL(_001OnRButtonUp);
+      DECL_GEN_SIGNAL(_001OnMouseMove);
+      DECL_GEN_SIGNAL(_001OnMouseLeave);
+      DECL_GEN_SIGNAL(_001OnKeyDown);
+      DECL_GEN_SIGNAL(_001OnKeyUp);
+      DECL_GEN_SIGNAL(_001OnTimer);
+      DECL_GEN_SIGNAL(_001OnChar);
 
-         virtual DECL_GEN_SIGNAL(_001OnUpdateEditFocusCopy);
-         virtual DECL_GEN_SIGNAL(_001OnEditFocusCopy);
-         virtual DECL_GEN_SIGNAL(_001OnUpdateEditFocusPaste);
-         virtual DECL_GEN_SIGNAL(_001OnEditFocusPaste);
+      DECL_GEN_SIGNAL(_001OnUpdateEditFocusCopy);
+      DECL_GEN_SIGNAL(_001OnEditFocusCopy);
+      DECL_GEN_SIGNAL(_001OnUpdateEditFocusPaste);
+      DECL_GEN_SIGNAL(_001OnEditFocusPaste);
 
-      DECL_GEN_VSIGNAL(_009OnChar);
+      DECL_GEN_SIGNAL(_009OnChar);
 
       DECL_GEN_SIGNAL(_001OnHScroll);
 
-      DECL_GEN_SIGNAL(_001OnRButtonUp);
+//      DECL_GEN_SIGNAL(_001OnRButtonUp);
 
-      DECL_GEN_SIGNAL(_001OnChar);
+//      DECL_GEN_SIGNAL(_001OnChar);
       DECL_GEN_SIGNAL(_001OnSysChar);
 
-      virtual DECL_GEN_SIGNAL(keyboard_focus_OnKeyDown);
-      virtual DECL_GEN_SIGNAL(keyboard_focus_OnKeyUp);
-      virtual DECL_GEN_SIGNAL(keyboard_focus_OnChar);
+      DECL_GEN_SIGNAL(keyboard_focus_OnKeyDown);
+      DECL_GEN_SIGNAL(keyboard_focus_OnKeyUp);
+      DECL_GEN_SIGNAL(keyboard_focus_OnChar);
 
       virtual bool keyboard_focus_is_focusable();
       virtual bool keyboard_focus_OnSetFocus();

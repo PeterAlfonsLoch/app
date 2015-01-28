@@ -715,8 +715,10 @@ namespace aura
 
    void impact::_001OnLButtonDown(signal_details * pobj)
    {
+
       UNREFERENCED_PARAMETER(pobj);
-      //   SCAST_PTR(::message::mouse, pmouse, pobj);
+
+      pobj->previous();
 
       if (GetParentFrame() != NULL)
       {

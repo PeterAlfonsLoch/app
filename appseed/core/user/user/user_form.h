@@ -47,8 +47,8 @@ namespace user
       bool _001Validate(sp(control) pcontrol, var & var);
       bool _001SaveEdit(sp(control) pcontrol);
       virtual bool on_simple_action(id id);
-      DECL_GEN_VSIGNAL(_001OnNotify);
-      DECL_GEN_VSIGNAL(_001OnMessageNotify);
+      DECL_GEN_SIGNAL(_001OnNotify);
+      DECL_GEN_SIGNAL(_001OnMessageNotify);
       virtual void _001GetSelection(::database::id & key, ::database::selection & selection);
       void Update(bool bSave);
       bool _001SetData(id uiId, bool bData);
@@ -58,7 +58,7 @@ namespace user
 
       virtual void WfiOnClose();
       
-      DECL_GEN_VSIGNAL(_000OnPosCreate);
+      DECL_GEN_SIGNAL(_000OnPosCreate);
       DECL_GEN_SIGNAL(_001OnCreate);
 
       virtual void install_message_handling(::message::dispatch *pinterface);
@@ -82,7 +82,7 @@ namespace user
       bool OnCommandEdit(sp(control) pcontrol, UINT uiNotificationCode, LPARAM lparam);
 
 
-      DECL_GEN_VSIGNAL(data_on_after_change);
+      DECL_GEN_SIGNAL(data_on_after_change);
 
 
       virtual bool create_control(class control::descriptor * pdescriptor);
