@@ -442,9 +442,15 @@ namespace aura
          return FALSE;
       }
 
+      if(spfile.is_null())
+      {
+         report_save_load_exception(varFile,NULL,FALSE,"__IDP_FAILED_TO_OPEN_DOC");
+         return false;
+      }
 
 
       delete_contents();
+
       set_modified_flag();  // dirty during de-serialize
       ::file::input_stream is(spfile);
       try

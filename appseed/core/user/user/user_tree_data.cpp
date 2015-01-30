@@ -34,6 +34,23 @@ namespace user
    }
 
 
+   ::count tree_data::get_data_bound_view_count() const
+   {
+      
+      return m_treeptraBound.get_count();
+
+   }
+
+
+   ::aura::impact * tree_data::get_data_bound_view(index iView)
+   {
+
+      return m_treeptraBound[iView];
+
+   }
+
+
+
    sp(::data::tree_item) tree_data::find(::data::item * pitemdata,index * piIndex)
    {
 

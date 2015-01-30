@@ -163,6 +163,9 @@ namespace aura
       {
          TRACE(::aura::trace::category_AppMsg, 0, "Warning: Dynamic create of frame %hs failed.\n",
             m_typeinfoFrame->name());
+         string strMessage;
+         strMessage.Format("Warning: Dynamic create of frame %hs failed.\n\n(Does allocation was implemented)?",m_typeinfoFrame->name());
+         Application.simple_message_box(NULL, strMessage);
          return NULL;
       }
       ASSERT_KINDOF(frame_window, pFrame);

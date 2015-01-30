@@ -739,10 +739,18 @@ namespace base
       ::user::interaction * pwnd = ::window_from_handle(::GetFocus());
       if(pwnd != NULL)
       {
-         if(System.get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
-            || ::user::window_util::IsAscendant(System.get_active_guie()->get_safe_handle(),pwnd->get_safe_handle()))
+         ::user::interaction * puiActive = System.get_active_guie();
+         if(puiActive != NULL)
          {
-            return pwnd;
+            if(puiActive->get_safe_handle() == pwnd->get_safe_handle()
+               || ::user::window_util::IsAscendant(puiActive->get_safe_handle(),pwnd->get_safe_handle()))
+            {
+               return pwnd;
+            }
+            else
+            {
+               return NULL;
+            }
          }
          else
          {

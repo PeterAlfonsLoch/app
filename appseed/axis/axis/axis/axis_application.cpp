@@ -2942,7 +2942,7 @@ namespace axis
          try
          {
 
-            util.extract_all(strDir,&file);
+            util.extract_all(this, strDir,&file);
 
          }
          catch(...)

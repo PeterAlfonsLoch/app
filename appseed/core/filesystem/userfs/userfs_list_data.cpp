@@ -18,6 +18,9 @@ namespace userfs
 
    void list_data::_001GetItemText(::user::list_item * pitem)
    {
+      if(is_locked())
+         return;
+
       if(pitem->m_iSubItem == m_iNameSubItemText)
       {
          pitem->m_strText = m_itema.get_item(pitem->m_iItem).m_strName;
@@ -60,6 +63,8 @@ namespace userfs
 
    ::count list_data::_001GetItemCount()
    {
+      if(is_locked())
+         return 0;
       return m_itema.get_count();
    }
 
@@ -67,7 +72,8 @@ namespace userfs
 
    void list_data::_001GetItemImage(::user::list_item * pitem)
    {
-
+      if(is_locked())
+         return;
       if(pitem->m_iSubItem == m_iNameSubItemText)
       {
          pitem->m_iImage = m_itema.get_item(pitem->m_iItem).m_iImage;

@@ -68,12 +68,15 @@ namespace http
 
       domain.create(System.url().get_server(psignal->m_strUrl));
 
-      if(domain.m_strRadix == "ca2" && ::str::begins(System.url().get_object(psignal->m_strUrl), "/matter/"))
+
+      if(domain.m_strRadix == "ca2" && ::str::begins(System.url().get_object(psignal->m_strUrl),"/matter/"))
       {
 
          string strUrl(psignal->m_strUrl);
 
          property_set set(get_app());
+
+         set = psignal->m_set;
 
          single_lock sl(&System.http().m_mutexDownload, true);
 
@@ -91,12 +94,11 @@ namespace http
          }
 
       }
-      else if(psignal->m_puser == NULL)
-      {
-         psignal->m_puser = get_app()->m_paxissession->fontopus()->get_user(true, psignal->m_strUrl);
-         psignal->m_set["app"] = get_app();
-      }
+
+      psignal->m_set = process_set(psignal->m_set,  psignal->m_strUrl);
+
       System.http().get(pobj);
+
    }
 
 

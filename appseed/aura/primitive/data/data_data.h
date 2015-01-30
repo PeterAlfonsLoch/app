@@ -1,17 +1,8 @@
 #pragma once
 
 
-class base_edit;
-
-
 namespace data
 {
-
-
-   class listener;
-   class data;
-   class simple_data;
-   class data_container_base;
 
 
    typedef CLASS_DECL_AURA ptr_array < listener > data_listener_ptra;
@@ -95,6 +86,11 @@ namespace data
 
       data(::aura::application * papp);
       virtual ~data();
+
+
+      virtual ::count           get_data_bound_view_count() const;
+      virtual ::aura::impact *  get_data_bound_view(index iView);
+
 
 
       virtual bool is_locked() const;

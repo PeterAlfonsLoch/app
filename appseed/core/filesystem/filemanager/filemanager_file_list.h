@@ -87,9 +87,10 @@ namespace filemanager
       DECL_GEN_SIGNAL(_001OnUpdateOpenWith);
       DECL_GEN_SIGNAL(_001OnEditCopy);
       DECL_GEN_SIGNAL(_001OnUpdateEditCopy);
-      DECL_GEN_SIGNAL(_001OnEditPaste);
-      DECL_GEN_SIGNAL(_001OnUpdateEditPaste);
       DECL_GEN_SIGNAL(_001OnShowWindow);
+      
+
+      
 
       virtual id data_get_current_list_layout_id();
 

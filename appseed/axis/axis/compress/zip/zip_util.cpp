@@ -1,6 +1,42 @@
 //#include"framework.h"
 //#include"InFile.h"
+namespace str
+{
+   
+   ::index begins_eat_ci(string & str,stringa & stra)
+   {
 
+      for(index i = 0; i < stra.get_count(); i++)
+      {
+
+         if(::str::begins_eat_ci(str,stra[i]))
+            return i;
+
+      }
+
+      return -1;
+
+   }
+
+
+   ::index begins_eat(string & str,stringa & stra)
+   {
+
+      for(index i = 0; i < stra.get_count(); i++)
+      {
+
+         if(::str::begins_eat(str,stra[i]))
+            return i;
+
+      }
+
+      return -1;
+
+   }
+
+
+      
+}
 
 namespace zip
 {
@@ -310,10 +346,15 @@ namespace zip
 
    }
 
-   bool Util::extract_all(const char * pszDir, ::file::buffer_sp  pfile)
+   bool Util::extract_all(::aura::application * papp,const char * pszDir,var varFile, stringa * pstraFilter, bool_array * pbaBeginsFilterEat)
    {
 
-      InFile infile(pfile->get_app());
+      ::file::buffer_sp pfile(App(papp).file().get_file(varFile,::file::type_binary | ::file::mode_read));
+
+      if(pfile.is_null())
+         return false;
+
+      InFile infile(papp);
 
       if(!infile.unzip_open(pfile))
       {
@@ -347,7 +388,7 @@ namespace zip
             if(::str::ends(szTitle, "/") || ::str::ends(szTitle, "\\"))
             {
             }
-            else if(infile.locate(strTitle))
+            else if(infile.locate(strTitle) && (pstraFilter == NULL || ::str::begins_eat_ci(strTitle, *pstraFilter) >= 0))
             {
 
                ::file::binary_buffer_sp spfile = Sess(pfile->get_app()).file().get_file(

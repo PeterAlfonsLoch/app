@@ -191,6 +191,13 @@ namespace sockets
    void http_client_socket::OnData(const char *buf,size_t len)
    {
 
+      if(m_response.attr(__id(http_status_code)).int32() >= 300 && m_response.attr(__id(http_status_code)).int32() <= 399)
+      {
+
+         return;
+
+      }
+
       OnDataArrived(buf, len);
 
       increment_scalar(scalar_download_size, len);

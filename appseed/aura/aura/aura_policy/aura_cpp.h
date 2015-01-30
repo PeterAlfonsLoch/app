@@ -68,6 +68,8 @@ class property;
 class property_set;
 class object;
 class type;
+class base_edit;
+
 
 namespace aura
 {
@@ -80,10 +82,21 @@ namespace aura
    class command;
    class impact_system;
    class printer;
-
+   class impact;
 
 } // namespace aura
 
+namespace data
+{
+
+
+   class listener;
+   class data;
+   class simple_data;
+   class data_container_base;
+
+
+} // namespace data
 
 namespace sockets // only usable from base.dll and dependants
 { 

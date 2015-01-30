@@ -38,12 +38,17 @@ namespace sockets
 
       ::http::signal * psignal = new ::http::signal;
 
+      psignal->m_set = oprop("http_set").propset();
+
       psignal->m_set["file"]       = (sp(element)) m_pmemoryfileIn;
       psignal->m_set["file_out"]   = (sp(element)) m_ptimeoutfile;
 
       psignal->m_strUrl = lpszFileName; 
       //psignal->m_set["optional_ca2_login"] = true;
       psignal->m_set["noclose"] = false;
+
+      
+
 
       if((nOpenFlags & ::file::hint_unknown_length_supported) != 0)
       {

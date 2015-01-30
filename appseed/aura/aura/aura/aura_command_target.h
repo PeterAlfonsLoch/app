@@ -121,6 +121,24 @@ public:
       return m_dispatchCommand.AddMessageHandler(pid,dynamic_cast < T *> (this),pfn,true);
    }
    template < class T >
+   bool connect_update_cmd_ui(id id,T * psignalizable, void (T::*pfn)(signal_details *))
+   {
+      command_signalid signalid;
+      ::signalid * pid;
+      signalid.m_id = id;
+      pid = m_signalidaCommand.get(&signalid);
+      return m_dispatchUpdateCmdUi.AddMessageHandler(pid,psignalizable,pfn,true);
+   }
+   template < class T >
+   bool connect_command(id id,T * psignalizable,void (T::*pfn)(signal_details *))
+   {
+      command_signalid signalid;
+      ::signalid * pid;
+      signalid.m_id = id;
+      pid = m_signalidaCommand.get(&signalid);
+      return m_dispatchCommand.AddMessageHandler(pid,psignalizable,pfn,true);
+   }
+   template < class T >
    bool connect_update_cmd_range_ui(int32_t iStart,int32_t iEnd,void (T::*pfn)(signal_details *))
    {
       command_signalrange signalrange;

@@ -99,12 +99,12 @@ namespace filemanager
       return true;
    }
 
-   bool operation::open_src_dst(const char * pszSrc,const char * pszDst)
+   bool operation::open_src_dst(const char * pszSrc,string & strDst,const char * pszDir)
    {
 
       if(Application.dir().is(pszSrc) && !::str::ends_ci(pszSrc,".zip"))
       {
-         Application.dir().mk(System.dir().name(pszDst));
+         Application.dir().mk(System.dir().name(strDst));
          return false;
       }
 
@@ -131,19 +131,42 @@ namespace filemanager
                }*/
       }
 
-      Application.dir().mk(System.dir().name(pszDst));
+      if(Application.file().exists(strDst) || Application.dir().is(strDst))
+      {
 
-      m_fileDst = Application.file().get_file(pszDst,::file::mode_write | ::file::type_binary | ::file::mode_create);
+         int iResult = Application.simple_message_box(m_oswindowCallback,"Do you want to overwrite?\n\nThere is already a existing file with the same name: " + System.file().name_(strDst),MB_ICONQUESTION | MB_YESNOCANCEL);
+
+         if(iResult == IDYES)
+         {
+         }
+         else if(iResult == IDNO)
+         {
+            if(!make_duplicate_name(strDst,pszDir))
+            {
+               return false;
+            }
+         }
+         else
+         {
+            return false;
+         }
+
+      }
+
+      Application.dir().mk(System.dir().name(strDst));
+
+
+      m_fileDst = Application.file().get_file(strDst,::file::mode_write | ::file::type_binary | ::file::mode_create);
 
 
       if(m_fileDst.is_null())
       {
 
-         TRACE("\n Could not open dest file(%d)=%s",m_iFile,pszDst);
+         TRACE("\n Could not open dest file(%d)=%s",m_iFile,strDst);
 
          property_set propertyset;
 
-         propertyset["filepath"] = pszDst;
+         propertyset["filepath"] = strDst;
 
          System.message_box("filemanager\\not_accessible_destination_file.xhtml",propertyset);
 
@@ -151,7 +174,7 @@ namespace filemanager
 
       }
 
-      TRACE("\n%d Opened %s %s",m_iFile,pszSrc,pszDst);
+      TRACE("\n%d Opened %s %s",m_iFile,pszSrc,strDst);
 
       return true;
 
@@ -172,7 +195,7 @@ namespace filemanager
                                          {
                                             make_duplicate_name(strName,m_str);
                                          }
-                                         if(!open_src_dst(m_stra[m_iFile],strName))
+                                         if(!open_src_dst(m_stra[m_iFile],strName, m_str))
                                             return false;
       }
          break;
@@ -184,9 +207,7 @@ namespace filemanager
       {
                                          m_iFile = 0;
                                          m_pchBuffer = (char *)malloc(m_iBufferSize);
-                                         if(!open_src_dst(m_stra[m_iFile],
-                                            System.dir().path(
-                                            m_str,System.file().name_(m_stra[m_iFile]))))
+                                         if(!open_src_dst(m_stra[m_iFile],System.dir().path(m_str,System.file().name_(m_stra[m_iFile])),m_str))
                                             return false;
       }
          break;
@@ -285,7 +306,7 @@ namespace filemanager
                                             {
                                                make_duplicate_name(strName,m_str);
                                             }
-                                            if(!open_src_dst(m_stra[m_iFile],strName))
+                                            if(!open_src_dst(m_stra[m_iFile],strName, m_str))
                                             {
 
                                                return false;
@@ -317,9 +338,7 @@ namespace filemanager
                                             m_iFile++;
                                             if(m_iFile >= m_stra.get_size())
                                                return false;
-                                            if(!open_src_dst(m_stra[m_iFile],
-                                               System.dir().path(
-                                               m_str,System.file().name_(m_stra[m_iFile]))))
+                                            if(!open_src_dst(m_stra[m_iFile], System.dir().path( m_str,System.file().name_(m_stra[m_iFile])),m_str))
                                                return false;
                                          }
       }
@@ -555,7 +574,7 @@ namespace filemanager
 
    }
 
-   void operation::make_duplicate_name(string & str,const char * psz)
+   bool operation::make_duplicate_name(string & str,const char * psz)
    {
       string strDir = System.dir().path(psz,"");
       string strName = str.Mid(strDir.get_length());
@@ -584,7 +603,7 @@ namespace filemanager
             strFormat = set_number_value(strName, iValue + i);
             str = System.dir().path(strDir,strFormat + strExtension);
             if(!Application.file().exists(str))
-               return;
+               return true;
          }
       }
       else
@@ -596,9 +615,10 @@ namespace filemanager
             strFormat.Format("-Copy-%03d",i);
             str = System.dir().path(strDir,strName + strFormat + strExtension);
             if(!Application.file().exists(str))
-               return;
+               return true;
          }
       }
+      return false;
    }
 
    void operation::expand(stringa & straExpanded,stringa & straExpand)

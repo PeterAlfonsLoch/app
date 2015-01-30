@@ -83,12 +83,34 @@ namespace data
 
    data::~data()
    {
+
       data_listener_ptra listenerptra = m_listenerptra;
+
       for(int32_t i = 0; i < listenerptra.get_count(); i++)
       {
+
          listenerptra[i]->listen(this, false);
+
       }
+
    }
+
+
+   ::count data::get_data_bound_view_count() const
+   {
+
+      return  0;
+
+   }
+
+
+   ::aura::impact *  data::get_data_bound_view(index iView)
+   {
+
+      return NULL;
+
+   }
+
 
    bool data::is_locked() const
    {

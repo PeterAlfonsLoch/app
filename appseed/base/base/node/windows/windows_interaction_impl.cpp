@@ -1390,7 +1390,7 @@ namespace windows
             m_pui->_001OnTriggerMouseInside();
          }
          user::oswindow_array oswindowa;
-         user::interaction_spa wnda(get_app());
+         user::interaction_ptra wnda;
          wnda = System.m_uiptraFrame;
          oswindowa = wnda.get_hwnda();
          user::window_util::SortByZOrder(oswindowa);

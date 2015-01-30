@@ -5,7 +5,7 @@ namespace file
 {
 
 
-   buffered_buffer::buffered_buffer(::aura::application * papp, ::file::binary_buffer_sp pfile, ::primitive::memory_size iBufferSize) :
+   buffered_buffer::buffered_buffer(::aura::application * papp, ::file::buffer_sp pfile, ::primitive::memory_size iBufferSize) :
       element(papp)
    {
       m_storage.allocate(iBufferSize);
@@ -70,15 +70,24 @@ namespace file
       uint64_t uiNewPos;
       if(nFrom == ::file::seek_begin)
       {
+         if(lOff < 0)
+            lOff = 0;
          uiNewPos = lOff;
       }
       else if(nFrom == ::file::seek_end)
       {
+         if(lOff > m_pfile->get_length())
+            lOff = m_pfile->get_length();
          uiNewPos = m_pfile->get_length() + lOff;
       }
       else if(nFrom == ::file::seek_current)
       {
-         uiNewPos = m_uiPosition + lOff;
+         int64_t iNewPos = m_uiPosition + lOff;
+         if(iNewPos < 0)
+            iNewPos = 0;
+         else if(iNewPos > m_pfile->get_length())
+            iNewPos = m_pfile->get_length();
+         uiNewPos = iNewPos;
       }
       else
       {

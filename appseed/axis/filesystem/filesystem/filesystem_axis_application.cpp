@@ -312,7 +312,6 @@ namespace file
          else if(::str::find_ci(".zip:",strPath) >= 0)
          {
 
-            /* xxx
             zip::InFile * pinfile = new zip::InFile(get_app());
 
             if(pinfile != NULL)
@@ -330,8 +329,6 @@ namespace file
             }
 
             spfile = pinfile;
-
-            */
 
          }
          else if(::str::begins(strPath,"http://") || ::str::begins(strPath,"https://"))
@@ -479,6 +476,8 @@ namespace file
             {
 
                spfile = new ::sockets::http_buffer(get_app());
+
+               spfile->oprop("http_set") = varFile["http_set"];
 
                if(!spfile->open(strPath,nOpenFlags))
                {

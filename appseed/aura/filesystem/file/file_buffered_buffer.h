@@ -11,7 +11,7 @@ namespace file
    public:
 
 
-      ::file::binary_buffer_sp                m_pfile;
+      ::file::buffer_sp                m_pfile;
 
       ::primitive::memory_size   m_uiBufferSize;
       file_position              m_uiPosition;
@@ -23,7 +23,7 @@ namespace file
       primitive::memory          m_storage;
 
 
-      buffered_buffer(::aura::application * papp, ::file::binary_buffer_sp pfile, ::primitive::memory_size iBufferSize = 1024 * 128);
+      buffered_buffer(::aura::application * papp, ::file::buffer_sp pfile, ::primitive::memory_size iBufferSize = 1024 * 128);
       virtual ~buffered_buffer();
 
 

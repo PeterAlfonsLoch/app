@@ -33,8 +33,6 @@ namespace filemanager
 
       connect_update_cmd_ui("edit_copy", &file_list::_001OnUpdateEditCopy);
       connect_command("edit_copy", &file_list::_001OnEditCopy);
-      connect_update_cmd_ui("edit_paste", &file_list::_001OnUpdateEditPaste);
-      connect_command("edit_paste", &file_list::_001OnEditPaste);
       connect_update_cmd_ui("trash_that_is_not_trash", &file_list::_001OnUpdateTrashThatIsNotTrash);
       connect_command("trash_that_is_not_trash", &file_list::_001OnTrashThatIsNotTrash);
       connect_update_cmd_ui("open_with", &file_list::_001OnUpdateOpenWith);
@@ -63,6 +61,7 @@ namespace filemanager
       IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &file_list::_001OnTimer);
       connect_command_range(FILEMANAGER_SHELL_COMMAND_FIRST, FILEMANAGER_SHELL_COMMAND_LAST, &file_list::_001OnShellCommand);
       IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &file_list::_001OnShowWindow);
+      
 
    }
 
@@ -639,44 +638,6 @@ namespace filemanager
 
    }
 
-   void file_list::_001OnUpdateEditPaste(signal_details * pobj)
-   {
-      SCAST_PTR(::aura::cmd_ui, pcmdui, pobj)
-      pcmdui->m_pcmdui->Enable(Session.copydesk().get_file_count() > 0);
-      pobj->m_bRet = true;
-   }
-
-
-   void file_list::_001OnEditPaste(signal_details * pobj)
-   {
-      UNREFERENCED_PARAMETER(pobj);
-      stringa stra;
-
-      Session.copydesk().get_filea(stra);
-      string strDir;
-      strDir = get_filemanager_item().m_strPath;
-
-      tab_view * ptabview = GetTypedParent < tab_view >();
-
-      if (ptabview != NULL)
-      {
-
-         ptabview->filemanager_manager().get_operation_doc(true)->m_thread.queue_copy(stra, strDir, NULL, true);
-
-         ptabview->filemanager_manager().get_operation_doc(true)->m_thread.kick();
-
-      }
-      pobj->m_bRet =true;
-
-     /* for(int32_t i = 0; i < stra.get_size(); i++)
-      {
-         ::CopyFileW(
-            L"\\\\?\\" + ::str::international::utf8_to_unicode(stra[i]),
-            L"\\\\?\\" + ::str::international::utf8_to_unicode(System.dir().path(strDir, System.file().title(stra[i]))), TRUE);
-      }*/
-      //get_document()->update_all_views(NULL, 123);
-   }
-
    void file_list::_001OnUpdateTrashThatIsNotTrash(signal_details * pobj)
    {
       SCAST_PTR(::aura::cmd_ui, pcmdui, pobj)
@@ -686,19 +647,31 @@ namespace filemanager
       pobj->m_bRet = true;
    }
 
+
    void file_list::_001OnTrashThatIsNotTrash(signal_details * pobj)
    {
+
       UNREFERENCED_PARAMETER(pobj);
+
       ::fs::item_array itema;
+
       GetSelected(itema);
+
       stringa stra;
+
       for(int32_t i = 0; i < itema.get_size(); i++)
       {
+
          stra.add(itema[i]->m_strPath);
+
       }
+
       Application.file().trash_that_is_not_trash(stra);
-      browse_sync(::action::source_user);
+      
+      _001Refresh();
+
    }
+
 
    void file_list::_001OnUpdateOpenWith(signal_details * pobj)
    {
@@ -972,6 +945,7 @@ namespace filemanager
       //psize->m_str = psz;
       //__begin_thread(ThreadProc4, psize, THREAD_PRIORITY_IDLE);
    }
+
 
    void file_list::_001OnShowWindow(signal_details * pobj)
    {

@@ -27,6 +27,10 @@ namespace user
       virtual void remove_all();
 
 
+      virtual ::count           get_data_bound_view_count() const;
+      virtual ::aura::impact *  get_data_bound_view(index iView);
+
+
 
       virtual sp(::data::tree_item) find(::data::item * pitem,index * piIndex = NULL);
       virtual bool contains(::data::item * pitem);

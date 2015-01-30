@@ -52,11 +52,11 @@ namespace filemanager
       virtual bool step();
       //   virtual bool mark();
       virtual bool finish();
-      virtual void make_duplicate_name(string & str,const char * psz);
+      virtual bool make_duplicate_name(string & str,const char * psz);
 
 
       virtual bool initialize();
-      virtual bool open_src_dst(const char * pszSrc,const char * pszDst);
+      virtual bool open_src_dst(const char * pszSrc,string & strDst, const char * pszDir);
 
       virtual void set_operation(e_operation eoperation);
       virtual e_operation get_operation();

@@ -1307,6 +1307,11 @@ retry:
       }
 
 
+      if((bool)set["disable_common_name_cert_check"])
+      {
+         psocket->enable_cert_common_name_check(false);
+      }
+
       if (set["http_listener"].cast < ::http::listener >() != NULL)
       {
          psocket->::sockets::http_socket::m_plistener = set["http_listener"].cast < ::http::listener >();
@@ -1497,6 +1502,20 @@ retry:
 //            delete psocket;
             throw not_licensed(get_app(), strCa2Realm, strLocation);
             return NULL;
+         }
+         string strLocation = psocket->outheader("location");
+         if(strLocation.has_char())
+         {
+            if(strLocation.find_ci("http://") == 0
+               || strLocation.find_ci("https://") == 0)
+            {
+               return get(handler,strLocation,set);
+            }
+            else
+            {
+               strLocation = System.url().get_protocol(pszUrl) + System.url().get_server(pszUrl) + System.url().get_object(strLocation);
+               return get(handler,strLocation,set);
+            }
          }
       }
       else

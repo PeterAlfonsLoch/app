@@ -95,6 +95,8 @@ namespace zip {
         virtual void flush();
         virtual void close();
 
+        virtual void ls(bool bRecursive,/*stringa * pstraPath,*/stringa * pstraTitle,/*stringa * pstraRelative,*/bool_array * pbaIsDir,int64_array * piaSize,e_extract eextract);
+
         // Implementation
     public:
         virtual bool IsOpened();

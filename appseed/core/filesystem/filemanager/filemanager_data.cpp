@@ -37,6 +37,8 @@ namespace filemanager
 
    }
 
+   
+
    void data::OnFileManagerOpenContextMenuFolder(sp(::fs::item)  item, stringa & straCommand, stringa & straCommandTitle, ::action::context actioncontext)
    {
 

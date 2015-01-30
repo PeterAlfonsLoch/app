@@ -13,9 +13,9 @@ namespace zip
       virtual public ::object
    {
    public:
-      ::file::binary_buffer_sp              m_pfile;
-      ::file::binary_buffer_sp              m_pbuffile1;
-      ::file::binary_buffer_sp              m_pbuffile2;
+      ::file::buffer_sp              m_pfile;
+      ::file::buffer_sp              m_pbuffile1;
+      ::file::buffer_sp              m_pbuffile2;
       unzFile                    m_pfUnzip;
       zipFile                    m_pfZip;
       zlib_filefunc_def_s        m_filefuncdef;
@@ -29,10 +29,10 @@ namespace zip
       void write_to_file(::file::buffer_sp  pfile, const wchar_t * lpcsz);
 
       bool unzip_open(const char * lpcwsz);
-      bool unzip_open(::file::binary_buffer_sp pfile);
+      bool unzip_open(::file::buffer_sp pfile);
 
       bool zip_open(const char * lpcwsz);
-      bool zip_open(::file::binary_buffer_sp pfile);
+      bool zip_open(::file::buffer_sp pfile);
 
    };
 
