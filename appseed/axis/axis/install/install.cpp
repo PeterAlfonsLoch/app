@@ -195,6 +195,7 @@ namespace install
       straFile.add("axisopenssl.dll");
       straFile.add("axiszlib.dll");
       straFile.add("axis.dll");
+      straFile.add("base.dll");
       straFile.add("draw2d_gdiplus.dll");
 
       if(strVersion == "stage")
