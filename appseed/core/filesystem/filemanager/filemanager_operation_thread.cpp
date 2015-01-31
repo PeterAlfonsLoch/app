@@ -131,13 +131,13 @@ namespace filemanager
       begin();
    }
 
-   void operation_thread::queue_copy(stringa & stra,const char * pszDstBase,const char * pszSrcBase,bool bExpand,
-      sp(::user::interaction) oswindowCallback,UINT uiCallbackMessage,WPARAM wparamCallback)
+   void operation_thread::queue_copy(stringa & stra,const char * pszDstBase,const char * pszSrcBase,bool bExpand,bool bReplaceAll,sp(::user::interaction) oswindowCallback,UINT uiCallbackMessage,WPARAM wparamCallback)
    {
       ::filemanager::operation * poperation = new ::filemanager::operation(get_app());
       poperation->m_oswindowCallback = oswindowCallback;
       poperation->m_uiCallbackMessage = uiCallbackMessage;
       poperation->m_wparamCallback = wparamCallback;
+      poperation->m_bReplaceAll = bReplaceAll;
       poperation->set_app(get_app());
       poperation->set_copy(stra,pszDstBase,pszSrcBase,bExpand);
 

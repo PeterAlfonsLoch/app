@@ -269,7 +269,7 @@ namespace filemanager
       if(ptabview != NULL)
       {
 
-         ptabview->filemanager_manager().get_operation_doc(true)->m_thread.queue_copy(stra,strDir,NULL,true,this,WM_APP + 1024,4096);
+         ptabview->filemanager_manager().get_operation_doc(true)->m_thread.queue_copy(stra,strDir,NULL,true,false,this,WM_APP + 1024,4096);
 
          ptabview->filemanager_manager().get_operation_doc(true)->m_thread.kick();
 

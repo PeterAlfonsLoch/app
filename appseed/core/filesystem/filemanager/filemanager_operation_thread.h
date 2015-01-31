@@ -22,7 +22,7 @@ namespace filemanager
 
       operation_thread(::aura::application * papp);
 
-      void queue_copy(stringa & stra,const char * pszDest,const char * pszSrcBase,bool bExpand,sp(::user::interaction) oswindowCallback = NULL,UINT uiMessage = WM_USER,WPARAM wparam = 0x1000);
+      void queue_copy(stringa & stra,const char * pszDest,const char * pszSrcBase,bool bExpand,bool bReplaceAll,sp(::user::interaction) oswindowCallback = NULL,UINT uiMessage = WM_USER,WPARAM wparam = 0x1000);
       void kick();
 
       int32_t get_item_count();
