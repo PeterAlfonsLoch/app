@@ -121,34 +121,36 @@ namespace filemanager
 
       if(!m_bReplaceAll)
       {
-         /*      if(System.file().exists(pszDst))
+
+         //if(System.file().exists(pszDst))
+         //{
+         //   property_set propertyset;
+         //   propertyset["srcfile"].get_value().set_string(pszSrc);
+         //   propertyset["dstfile"].get_value().set_string(pszDst);
+         //   System.message_box("filemanager\\do_you_want_to_replace_the_file.xml", propertyset);
+         //   return false;
+         //}
+
+         if(Application.file().exists(strDst) || Application.dir().is(strDst))
+         {
+
+            int iResult = Application.simple_message_box(m_oswindowCallback,"Do you want to overwrite?\n\nThere is already a existing file with the same name: " + System.file().name_(strDst),MB_ICONQUESTION | MB_YESNOCANCEL);
+
+            if(iResult == IDYES)
+            {
+            }
+            else if(iResult == IDNO)
+            {
+               if(!make_duplicate_name(strDst,pszDir))
                {
-               property_set propertyset;
-               propertyset["srcfile"].get_value().set_string(pszSrc);
-               propertyset["dstfile"].get_value().set_string(pszDst);
-               System.message_box("filemanager\\do_you_want_to_replace_the_file.xml", propertyset);
-               return false;
-               }*/
-      }
-
-      if(Application.file().exists(strDst) || Application.dir().is(strDst))
-      {
-
-         int iResult = Application.simple_message_box(m_oswindowCallback,"Do you want to overwrite?\n\nThere is already a existing file with the same name: " + System.file().name_(strDst),MB_ICONQUESTION | MB_YESNOCANCEL);
-
-         if(iResult == IDYES)
-         {
-         }
-         else if(iResult == IDNO)
-         {
-            if(!make_duplicate_name(strDst,pszDir))
+                  return false;
+               }
+            }
+            else
             {
                return false;
             }
-         }
-         else
-         {
-            return false;
+
          }
 
       }
