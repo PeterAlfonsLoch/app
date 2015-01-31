@@ -342,7 +342,11 @@ namespace aura
    bool application::is_user_service()
    {
 
-      return true;
+      bool bIsUserService = true;
+
+      bool bIsService = is_serviceable();
+
+      return bIsUserService && bIsService;
 
    }
 
