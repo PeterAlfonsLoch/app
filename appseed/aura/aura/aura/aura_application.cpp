@@ -1615,6 +1615,8 @@ namespace aura
       m_bAuraProcessInitialize = true;
       m_bAuraProcessInitializeResult = false;
 
+      m_spdir.alloc(allocer());
+      m_spfile.alloc(allocer());
 
 
 

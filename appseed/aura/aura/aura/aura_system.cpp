@@ -390,6 +390,9 @@ namespace aura
 
       m_spdir.alloc(allocer());
 
+      if(!m_spdir->initialize())
+         throw simple_exception(this,"failed to construct system m_spdir->initialize");
+
       return true;
 
    }

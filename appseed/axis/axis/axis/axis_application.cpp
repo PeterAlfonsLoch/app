@@ -1926,8 +1926,6 @@ namespace axis
       m_bBaseProcessInitializeResult = false;
 
 
-      m_spdir.alloc(allocer());
-      m_spfile.alloc(allocer());
 
 
       if(!::aura::application::process_initialize())

@@ -128,8 +128,6 @@ namespace axis
 
       }
 
-      if(!m_spdir->initialize())
-         throw simple_exception(this,"failed to construct system m_spdir->initialize");
 
       return true;
 
