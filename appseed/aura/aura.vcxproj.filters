@@ -105,9 +105,6 @@
     <Filter Include="Source Files\aura\os\cross\windows">
       <UniqueIdentifier>{c2c59a3f-bfe4-4a34-af7d-9cbdd458db15}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\aura\os\android">
-      <UniqueIdentifier>{58b6201f-03a2-4896-ae5a-477d9ea6a138}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\aura\os\windows">
       <UniqueIdentifier>{a9fa6c5c-4118-45a3-a636-0a71e98bcdb4}</UniqueIdentifier>
     </Filter>
@@ -2767,42 +2764,6 @@
     <ClCompile Include="primitive\primitive_relation_set.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\android\android_cross_win_file.cpp">
-      <Filter>Source Files\aura\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\os\android\android_cross_win_gdi.cpp">
-      <Filter>Source Files\aura\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\os\android\android_file_watcher.cpp">
-      <Filter>Source Files\aura\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\os\android\android_launcher.cpp">
-      <Filter>Source Files\aura\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\os\android\android_library.cpp">
-      <Filter>Source Files\aura\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\os\android\android_lock.cpp">
-      <Filter>Source Files\aura\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\os\android\android_message_loop.cpp">
-      <Filter>Source Files\aura\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\os\android\android_process.cpp">
-      <Filter>Source Files\aura\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\os\android\android_process_pid.cpp">
-      <Filter>Source Files\aura\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\os\android\android_simple_shell_launcher.cpp">
-      <Filter>Source Files\aura\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\os\android\android_small_ipca_channel.cpp">
-      <Filter>Source Files\aura\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\os\android\android_win_base.cpp">
-      <Filter>Source Files\aura\os\android</Filter>
-    </ClCompile>
     <ClCompile Include="aura\os\os_binreloc.cpp">
       <Filter>Source Files\aura\os</Filter>
     </ClCompile>
@@ -2970,12 +2931,6 @@
     </ClCompile>
     <ClCompile Include="aura\os\ansios\ansios_base_file.cpp">
       <Filter>Source Files\aura\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\os\android\android_multithreading.cpp">
-      <Filter>Source Files\aura\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\os\android\android_base_file.cpp">
-      <Filter>Source Files\aura\os\android</Filter>
     </ClCompile>
     <ClCompile Include="aura\aura\aura_static_start.cpp">
       <Filter>Source Files\aura\aura</Filter>
@@ -3202,12 +3157,6 @@
     <ClCompile Include="filesystem\file\file_file_stream.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\android\android_base.cpp">
-      <Filter>Source Files\aura\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="android_MessageBoxA.cpp">
-      <Filter>Source Files\aura\os\android</Filter>
-    </ClCompile>
     <ClCompile Include="aura\os\ansios\ansios_message_loop.cpp">
       <Filter>Source Files\aura\os\ansios</Filter>
     </ClCompile>
@@ -3222,12 +3171,6 @@
     </ClCompile>
     <ClCompile Include="aura\aura\aura_assert_running_task.cpp">
       <Filter>Source Files\aura\aura</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\os\android\android_c.cpp">
-      <Filter>Source Files\aura\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\os\android\android_locale.cpp">
-      <Filter>Source Files\aura\os\android</Filter>
     </ClCompile>
     <ClCompile Include="primitive\datetime\datetime_mktime.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
