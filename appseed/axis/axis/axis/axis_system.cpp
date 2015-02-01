@@ -117,10 +117,6 @@ namespace axis
       //#endif
 
       dappy(string(typeid(*this).name()) + " : Going to ::axis::session " + ::str::from(m_iReturnCode));
-      m_spfile.alloc(allocer());
-
-
-      m_spdir.alloc(allocer());
 
 
       if(!alloc_session())

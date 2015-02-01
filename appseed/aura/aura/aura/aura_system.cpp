@@ -386,6 +386,9 @@ namespace aura
 
       }
 
+      m_spfile.alloc(allocer());
+
+      m_spdir.alloc(allocer());
 
       return true;
 
