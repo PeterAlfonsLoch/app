@@ -189,10 +189,10 @@ BOOL ca2rdp_post_connect(freerdp* instance)
    //gdi->width = instance->settings->DesktopWidth;
    //gdi->height = instance->settings->DesktopHeight;
 
-   ::draw2d::dib_alloc(context->m_papp, ca2rdpi->primary);
+   ::draw2d::dib_alloc(context->m_pappRdp, ca2rdpi->primary);
    ::draw2d::dib_create(ca2rdpi->primary, instance->settings->DesktopWidth,instance->settings->DesktopHeight);
 
-   ::draw2d::dib_alloc(context->m_papp, ca2rdpi->surface);
+   ::draw2d::dib_alloc(context->m_pappRdp, ca2rdpi->surface);
    ::draw2d::dib_create(ca2rdpi->surface, instance->settings->DesktopWidth,instance->settings->DesktopHeight);
 
 //   App(context->m_papp).alloc(ca2rdpi->primary);

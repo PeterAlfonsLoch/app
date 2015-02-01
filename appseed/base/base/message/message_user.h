@@ -91,6 +91,7 @@ namespace message
       point                   m_pt;
       ::visual::e_cursor      m_ecursor;
       bool                    m_bTranslated;
+      ::visual::cursor *      m_pcursor;
 
       mouse(::aura::application * papp);
       virtual ~mouse();

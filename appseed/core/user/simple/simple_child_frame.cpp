@@ -55,12 +55,23 @@ bool simple_child_frame::_001OnCmdMsg(::aura::cmd_msg * pcmdmsg)
 }
 
 
+void simple_child_frame::_001OnDraw(::draw2d::graphics * pgraphics)
+{
+
+   UNREFERENCED_PARAMETER(pgraphics);
+
+
+}
+
 
 bool simple_child_frame::get_translucency(::user::ETranslucency & etranslucency)
 {
 
-   //etranslucency = ::user::TranslucencyTotal;
+   // etranslucency = ::user::TranslucencyPresent for children that may ask the translucency guideline for this as parent,
+   // but simple_child_frame, at the moment of this remark writing, itself draw transparently.
 
-   return false;
+   etranslucency = ::user::TranslucencyPresent; 
+
+   return true;
 
 }

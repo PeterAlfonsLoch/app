@@ -168,6 +168,7 @@ namespace message
       ::message::base(papp),
       m_ecursor(::visual::cursor_unmodified)
    {
+      m_pcursor = NULL;
    }
 
    mouse::~mouse()
@@ -176,7 +177,13 @@ namespace message
       try
       {
 
-         if(m_ecursor != ::visual::cursor_unmodified && m_pauraapp != NULL && m_pauraapp->m_pbasesession != NULL)
+         if(m_pcursor != NULL && m_pauraapp != NULL && m_pauraapp->m_pbasesession != NULL)
+         {
+
+            Session.set_cursor(m_pcursor);
+
+         }
+         else if(m_ecursor != ::visual::cursor_unmodified && m_pauraapp != NULL && m_pauraapp->m_pbasesession != NULL)
          {
 
             Session.set_cursor(m_ecursor);

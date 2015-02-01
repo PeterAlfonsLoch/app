@@ -40,7 +40,7 @@ void ca2rdp_Pointer_New(rdpContext* context, rdpPointer* pointer)
 	ca2rdp_pointer->xhot = pointer->xPos;
 	ca2rdp_pointer->yhot = pointer->yPos;
 
-   ::visual::cursor_alloc(((ca2rdpContext*)context)->m_papp, ca2rdp_pointer->m_pcursor);
+   ::visual::cursor_alloc(((ca2rdpContext*)context)->m_pappRdp,ca2rdp_pointer->m_pcursor,pointer->xPos,pointer->yPos);
 
    ::draw2d::dib * dib = ::visual::cursor_get_dib(ca2rdp_pointer->m_pcursor);
 
@@ -68,6 +68,18 @@ void ca2rdp_Pointer_Free(rdpContext* context, rdpPointer* pointer)
 
 void ca2rdp_Pointer_Set(rdpContext* context, rdpPointer* pointer)
 {
+
+   ca2rdpInfo* ca2rdpi;
+   int result;
+   ca2rdpPointer* ca2rdp_pointer;
+   //DFBSurfaceDescription dsc;
+
+   ca2rdpContext* ctx = (ca2rdpContext*) context;
+   ca2rdpi = ctx->ca2rdpi;
+   ca2rdp_pointer = (ca2rdpPointer*)pointer;
+
+   ctx->m_pviewRdp->rdpclient_set_cursor(ca2rdp_pointer->m_pcursor);
+   
 /*	ca2rdpInfo* ca2rdpi;
 	DFBResult result;
 	ca2rdpPointer* ca2rdp_pointer;

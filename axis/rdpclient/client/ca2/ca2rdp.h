@@ -34,6 +34,8 @@ typedef struct ca2rdp_info ca2rdpInfo;
 
 CLASS_DECL_RDPCLIENT BOOL ca2rdp_pre_connect(freerdp* instance);
 
+
+
 namespace aura
 {
    class application;
@@ -48,9 +50,15 @@ namespace draw2d
 namespace visual
 {
    class cursor;
-   void cursor_alloc(::aura::application * papp, cursor * & pcursor);
+   void cursor_alloc(::aura::application * papp,cursor * & pcursor,int xHotspot,int yHotspot);
    ::draw2d::dib * cursor_get_dib(cursor * pcursor);
 }
+
+
+struct rdpclient_view_interface
+{
+   virtual void rdpclient_set_cursor(::visual::cursor * pcursor) = 0;
+};
 
 namespace message
 {
@@ -73,8 +81,9 @@ struct ca2rdp_context :
 
    DWORD mainThreadId;
    HANDLE thread;
-   ::aura::application * m_papp;
-
+   ::aura::application * m_pappRdp;
+   rdpclient_view_interface * m_pviewRdp;
+   
 	ca2rdpInfo* ca2rdpi;
 };
 

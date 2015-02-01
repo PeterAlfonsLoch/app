@@ -49,10 +49,13 @@ namespace visual
 #endif
 
 
-   void cursor_alloc(::aura::application * papp, cursor * & pdib)
+   void cursor_alloc(::aura::application * papp,cursor * & pdib,int xHotspot,int yHotspot)
    {
 
       pdib = new cursor(papp);
+
+      pdib->m_szHotspotOffset.cx = xHotspot;
+      pdib->m_szHotspotOffset.cy = yHotspot;
 
    }
 

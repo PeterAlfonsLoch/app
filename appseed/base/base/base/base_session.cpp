@@ -131,6 +131,23 @@ namespace base
 
 
 
+   void session::set_cursor(::visual::cursor * pcursor)
+   {
+
+      m_ecursor = ::visual::cursor_visual;
+
+#ifdef WINDOWSEX
+
+      if(pcursor != NULL)
+      {
+
+         ::SetCursor(pcursor->get_HCURSOR());
+
+      }
+
+#endif
+
+   }
 
    void session::set_cursor(::visual::e_cursor ecursor)
    {

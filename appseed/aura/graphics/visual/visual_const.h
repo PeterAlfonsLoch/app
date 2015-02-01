@@ -10,6 +10,7 @@ namespace visual
    {
 
       cursor_unmodified,
+      cursor_visual,
       cursor_default,
       cursor_none,
       cursor_system,
