@@ -103,22 +103,22 @@ namespace axis
             g_pfn_create_system = aura_create_system;
             if(defer_axis_init())
             {
-               ::output_debug_string("defer_axis_init Successful!!");
+               ::OutputDebugStringW(L"defer_axis_init Successful!!");
             }
             else
             {
-               ::output_debug_string("Failed to defer_axis_init!!");
+               ::OutputDebugStringW(L"Failed to defer_axis_init!!");
             }
          }
          ~static_start()
          {
             if(defer_axis_term())
             {
-               ::output_debug_string("defer_axis_term Successful!!");
+               ::OutputDebugStringW(L"defer_axis_term Successful!!");
             }
             else
             {
-               ::output_debug_string("Failed to defer_axis_term!!");
+               ::OutputDebugStringW(L"Failed to defer_axis_term!!");
             }
          }
       };

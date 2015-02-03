@@ -21,10 +21,10 @@ namespace axis
    static int32_t simple_app_main(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPTSTR lpCmdLine,int32_t nCmdShow)
    {
 
-      if(!defer_axis_init())
-      {
-         return -1;
-      }
+      //if(!defer_axis_init())
+      //{
+      //   return -1;
+      //}
 
       APP  * papp = new APP;
 
@@ -46,7 +46,7 @@ namespace axis
       {
       }
 
-      defer_axis_term();
+      //defer_axis_term();
 
       return iRet;
 

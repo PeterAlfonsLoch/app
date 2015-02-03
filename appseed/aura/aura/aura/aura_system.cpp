@@ -413,6 +413,34 @@ namespace aura
       if(!m_spdir->initialize())
          throw simple_exception(this,"failed to construct system m_spdir->initialize");
 
+      //#ifdef WINDOWSEX
+      //
+      //      dappy(string(typeid(*this).name()) + " : Going to ::aura::system::m_spwindow->create_window_ex : " + ::str::from(m_iReturnCode));
+      //
+      //      if(!m_spwindow->create_window_ex(0,NULL,NULL,0,null_rect(),NULL,"::aura::system::interaction_impl::no_twf"))
+      //      {
+      //
+      //         dappy(string(typeid(*this).name()) + " : ::aura::system::m_spwindow->create_window_ex failure : " + ::str::from(m_iReturnCode));
+      //
+      //         return false;
+      //
+      //      }
+      //
+      //#endif
+
+      dappy(string(typeid(*this).name()) + " : Going to ::axis::session " + ::str::from(m_iReturnCode));
+
+
+      if(!alloc_session())
+      {
+
+         TRACE("Failed to allocate session");
+
+         return false;
+
+      }
+
+
       return true;
 
    }
@@ -448,6 +476,14 @@ namespace aura
 
    bool system::initialize_instance()
    {
+
+      if(!m_paurasession->begin_synch(&m_iReturnCode))
+      {
+         return false;
+      }
+
+      dappy(string(typeid(*this).name()) + " : ::aura::session OK " + ::str::from(m_iReturnCode));
+
 
       m_pfactory->enable_simple_factory_request();
 

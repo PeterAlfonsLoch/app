@@ -197,10 +197,10 @@ namespace aura
    static int32_t simple_app_main(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPTSTR lpCmdLine,int32_t nCmdShow)
    {
 
-      if(!defer_aura_init())
-      {
-         return -1;
-      }
+      //if(!defer_aura_init())
+      //{
+      //   return -1;
+      //}
 
       APP  * papp = new APP;
 
@@ -222,7 +222,7 @@ namespace aura
       {
       }
 
-      defer_aura_term();
+      //defer_aura_term();
 
       return iRet;
 

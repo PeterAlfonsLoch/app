@@ -1139,7 +1139,7 @@ install_begin:;
                   && strMd5.has_char() && stricmp_dup(System.file().md5(strCandidate),strMd5) == 0)
                {
 
-                  bDownload  = !::file_copy_dup(strStageInplace,strCandidate);
+                  bDownload  = !::file_copy_dup(strStageInplace,strCandidate, true);
 
                }
 
@@ -1578,7 +1578,7 @@ install_begin:;
             }
             if(bOk)
             {
-               if(!file_copy_dup(inplace, dir3 + file2))
+               if(!file_copy_dup(inplace, dir3 + file2, true))
                {
                   System.install().trace().rich_trace("Failed to copy patched file: Need Restart Because Of Reserved File");
                   m_NeedRestartBecauseOfReservedFile = true;
@@ -2358,7 +2358,7 @@ install_begin:;
          else
          {
             dir::mk(dir::name(strStage));
-            file_copy_dup(strStage, strStageUnbz);
+            file_copy_dup(strStage, strStageUnbz, true);
          }
          d += 1.0;
          m_dProgress = d / ((double) stringa.get_count());

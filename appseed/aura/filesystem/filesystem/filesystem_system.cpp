@@ -700,7 +700,8 @@ restart:
 
    void system::copy(const char * pszNew, const char * psz, bool bFailIfExists, e_extract eextract, ::aura::application * papp)
    {
-      throw interface_only_exception(get_app());
+      
+      ::file_copy_dup(pszNew,psz,!bFailIfExists);
 
       return;
 

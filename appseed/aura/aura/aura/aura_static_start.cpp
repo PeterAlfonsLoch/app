@@ -412,22 +412,22 @@ namespace aura
             g_pfn_create_system = aura_create_system;
             if(defer_aura_init())
             {
-               ::output_debug_string("defer_aura_init Successful!!");
+               ::OutputDebugStringW(L"defer_aura_init Successful!!");
             }
             else
             {
-               ::output_debug_string("Failed to defer_aura_init!!");
+               ::OutputDebugStringW(L"Failed to defer_aura_init!!");
             }
          }
          ~static_start()
          {
             if(defer_aura_term())
             {
-               ::output_debug_string("defer_aura_term Successful!!");
+               ::OutputDebugStringW(L"defer_aura_term Successful!!");
             }
             else
             {
-               ::output_debug_string("Failed to defer_aura_term!!");
+               ::OutputDebugStringW(L"Failed to defer_aura_term!!");
             }
          }
       };

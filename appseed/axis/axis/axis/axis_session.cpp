@@ -56,26 +56,6 @@ namespace axis
       if(iPhase == 0)
       {
 
-         if(papp->is_system())
-         {
-
-            m_pfontopus = create_fontopus();
-
-            if(m_pfontopus == NULL)
-               throw simple_exception(this,"could not create fontopus for ::axis::session (::axis::session::construct)");
-
-            m_pfontopus->construct(this);
-
-         }
-         m_pifs                     = new ifs(this,"");
-         m_prfs                     = new ::fs::remote_native(this,"");
-
-         ::fs::set * pset = new class ::fs::set(this);
-         ::fs::link * plink = new ::fs::link(this);
-         plink->fill_os_user();
-         pset->m_spafsdata.add(plink);
-         pset->m_spafsdata.add(new ::fs::native(this));
-         m_spfsdata = pset;
 
       }
 
@@ -847,8 +827,34 @@ namespace axis
    bool session::process_initialize()
    {
 
+
+
       if(!::aura::session::process_initialize())
          return false;
+
+
+      if(m_pfontopus == NULL)
+      {
+
+         m_pfontopus = create_fontopus();
+
+         if(m_pfontopus == NULL)
+            throw simple_exception(this,"could not create fontopus for ::axis::session (::axis::session::construct)");
+
+         m_pfontopus->construct(this);
+
+      }
+      m_pifs                     = new ifs(this,"");
+      m_prfs                     = new ::fs::remote_native(this,"");
+
+      ::fs::set * pset = new class ::fs::set(this);
+      ::fs::link * plink = new ::fs::link(this);
+      plink->fill_os_user();
+      pset->m_spafsdata.add(plink);
+      pset->m_spafsdata.add(new ::fs::native(this));
+      m_spfsdata = pset;
+
+
 
       if(!::axis::application::process_initialize())
          return false;
