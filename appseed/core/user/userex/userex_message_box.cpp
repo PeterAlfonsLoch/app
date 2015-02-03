@@ -10,7 +10,6 @@ namespace userex // ca8 + cube
       ::user::scroll_view(papp),
       ::user::form_interface(papp),
       user::form(papp),
-      form_view(papp),
       dialog(papp),
       wait_message_dialog(papp)
    {

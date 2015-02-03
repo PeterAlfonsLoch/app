@@ -64,7 +64,7 @@ namespace user
       {
          if(pcontrol->descriptor().has_function(::user::control::function_action))
          {
-            if(pcontrol->descriptor().get_type() == ::user::control::type_button)
+            if(pcontrol->descriptor().get_type() == ::user::control_type_button)
             {
 
 
@@ -229,7 +229,7 @@ namespace user
 
       switch(pcontrol->descriptor().get_type())
       {
-      case control::type_edit:
+      case control_type_edit:
          switch(pnotify->m_uiCode)
          {
          case user::NotifyKeyDown:
@@ -291,8 +291,8 @@ namespace user
       for(int32_t i = 0; i < m_controldescriptorset.get_count(); i++)
       {
          class ::user::control::descriptor & control = m_controldescriptorset(i);
-         if(control.m_etype == type_edit
-         || control.m_etype == type_edit_plain_text)
+         if(control.m_etype == control_type_edit
+            || control.m_etype == control_type_edit_plain_text)
          {
             if(control.m_pcontrol != NULL)
             {
@@ -350,8 +350,8 @@ namespace user
    {
       if(pcontrol->m_pdescriptor != NULL)
       {
-         if(pcontrol->m_pdescriptor->m_etype == type_edit
-         || pcontrol->m_pdescriptor->m_etype == type_edit_plain_text)
+         if(pcontrol->m_pdescriptor->m_etype == control_type_edit
+            || pcontrol->m_pdescriptor->m_etype == control_type_edit_plain_text)
          {
             if(pcontrol == _001GetEditControl())
             {

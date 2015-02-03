@@ -11,9 +11,11 @@
 
 simple_menu_bar::simple_menu_bar(::aura::application * papp) :
    element(papp),
-   simple_toolbar(papp),
-   m_menu(papp)
+   simple_toolbar(papp)
 {
+
+   m_pmenu = new ::aura::menu(papp);
+
    m_bTracking = false;
    m_iTopMenuCount = 0;
    m_iTracking = -1;
@@ -24,6 +26,17 @@ simple_menu_bar::simple_menu_bar(::aura::application * papp) :
 
 simple_menu_bar::~simple_menu_bar()
 {
+
+   if(m_pmenu)
+   {
+
+      delete m_pmenu;
+
+      m_pmenu = NULL;
+
+   }
+
+
 }
 
 void simple_menu_bar::install_message_handling(::message::dispatch * pdispatch)

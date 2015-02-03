@@ -90,8 +90,8 @@ namespace html
       {
 
          System.factory().creatable_small < html_document >();
-         System.factory().creatable_small < html_child_frame >();
-         System.factory().creatable_small < html_frame >();
+         //System.factory().creatable_small < html_child_frame >();
+         //System.factory().creatable_small < html_frame >();
          System.factory().creatable_small < html_view >();
 
          
@@ -102,26 +102,28 @@ namespace html
             return;
          }
 
-         Platform.userex()->m_ptemplateForm = new ::user::multiple_document_template(
+         Application.set_form_impact_system(
+
+          new ::user::multiple_document_template(
             get_app(),
             "system/form",
             System.type_info < html_document >(),
-            System.type_info < html_frame >(),
-            System.type_info < html_view >());
+            System.get_simple_frame_window_type_info(),
+            System.type_info < html_view >()),
 
-         Platform.userex()->m_ptemplateChildForm = new ::user::multiple_document_template(
+         new ::user::multiple_document_template(
             get_app(),
             "system/form",
             System.type_info < html_document >(),
-            System.type_info < html_child_frame >(),
-            System.type_info < html_view >());
+            System.get_simple_child_frame_type_info(),
+            System.type_info < html_view >()),
 
-         Platform.userex()->m_ptemplatePlaceHolder = new ::user::multiple_document_template(
+         new ::user::multiple_document_template(
             get_app(),
             "system/form",
             System.type_info < ::aura::document >(),
-            System.type_info < simple_frame_window >(),
-            System.type_info < ::user::place_holder >());
+            System.get_simple_frame_window_type_info(),
+            System.type_info < ::user::place_holder >()));
 
 
 

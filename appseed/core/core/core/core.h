@@ -1024,7 +1024,7 @@ namespace html
 } // namespace html
 
 
-class form_view;
+class ::user::form;
 
 
 
@@ -1046,7 +1046,7 @@ class form_view;
 //#include "plane_system_ca2_factory.h"
 //#include "plane_system_primitive_string_format_spec.h"
 
-#include "app/appseed/core/filesystem/file/file_html_buffer.h"
+//#include "app/appseed/core/filesystem/file/file_html_buffer.h"
 
 
 

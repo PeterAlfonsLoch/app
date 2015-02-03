@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "core/core/core.h"
+#include "axis/axis/axis.h"
 
 
 #if defined(_CA2_PROGRAMMING_DLL)

@@ -270,6 +270,7 @@ namespace base
       //virtual ::user::interaction * get_focus_guie();
 
       virtual bool set_keyboard_layout(const char * pszPath,::action::context actioncontext);
+      virtual sp(type) user_default_controltype_to_typeinfo(::user::e_control_type e_type);
 
 
    };

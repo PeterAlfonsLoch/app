@@ -1,7 +1,7 @@
 #pragma once
 
 
-
+#include "core/user/user/user.h"
 
 //#include "::user::button.h"
 //#include "::user::combo_box.h"
@@ -58,5 +58,8 @@
 #include "simple_main_frame.h"
 
 
+
+
+#include "simple_user_interaction.inl"
 
 

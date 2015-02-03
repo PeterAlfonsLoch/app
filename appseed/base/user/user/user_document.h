@@ -10,7 +10,8 @@ namespace aura
       virtual public ::data::data_container_base,
       virtual public ::file::serializable,
       virtual public ::user::server,
-      virtual public ::database::client
+      virtual public ::database::client,
+      virtual public ::user::form_callback
    {
    public:
 
@@ -224,6 +225,20 @@ namespace aura
          m_datamap[pthis] = pdata;
          m_spadata.add(pdata);
       }
+
+
+      virtual void OnBeforeNavigate2(::html::data * pdata,var & varFile,uint32_t nFlags,const char * lpszTargetFrameName,byte_array& baPostedData,const char * lpszHeaders,bool* pbCancel);
+
+      virtual void form_document_set_property_set(const property_set & set);
+      virtual property_set * form_document_get_property_set();
+      virtual property_set & form_document_property_set();
+
+      virtual void form_document_set_view(::user::form * pview);
+      virtual void form_document_set_callback(form_callback * pcallback);
+
+
+      virtual bool open_document(var varFile);
+
 
    };
 

@@ -1301,7 +1301,7 @@ namespace filemanager
       for (i = 0; i < iCount; i++)
       {
          control.m_bTransparent = true;
-         control.set_type(user::control::type_button);
+         control.set_type(user::control_type_button);
          control.m_typeinfo = System.type_info < ::user::button >();
          control.m_id = 1000 + i;
          control.add_function(user::control::function_action);
@@ -1345,7 +1345,7 @@ namespace filemanager
          m_iSelectionSubItem = -1;
       }
 
-      control.set_type(user::control::type_edit_plain_text);
+      control.set_type(user::control_type_edit_plain_text);
       control.m_dataid = "FILE_MANAGER_ID_FILE_NAME";
       //pcontrol->descriptor().m_id = _vms::FILE_MANAGER_ID_FILE_NAME;
       control.set_data_type(user::control::DataTypeString);

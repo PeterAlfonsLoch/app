@@ -70,7 +70,19 @@ namespace user
    };
 }
 
+class BaseMenuCentral;
 
+class CLASS_DECL_CORE BaseMenuCentralContainer
+{
+public:
+   BaseMenuCentralContainer();
+   virtual ~BaseMenuCentralContainer();
+   virtual BaseMenuCentral * get_menucentral();
+   virtual bool initialize_central_container(::aura::application * papp);
+   virtual bool finalize_central_container();
+protected:
+   BaseMenuCentral * m_pmenucentral;
+};
 
 
 #include "user_front_end_schema.h"
@@ -103,9 +115,9 @@ namespace user
 
 #include "user_tree.h"
 
-#include "user_form.h"
+//#include "user_form.h"
 #include "user_form_list.h"
-#include "user_form_callback.h"
+
 
 
 //#include "user_place_holder.h"
@@ -223,7 +235,6 @@ class COleDataObject;   // forward reference (see afxole.h)
 //#include "user_job.h"
 
 
-#include "core/user/menu/user_menu_central.h"
 
 
 #include "user_xfplayer_view_line.h"
@@ -294,7 +305,7 @@ namespace user
 #include "user_edit_plain_text_view.h"
 
 
-#include "user_form.h"
+//#include "user_form.h"
 #include "user_tab_view.h"
 
 #include "user_tab_view_update_hint.h"
@@ -313,23 +324,14 @@ namespace user
 
 
 
-#include "core/user/menu/user_menu_button.h"
-#include "core/user/menu/user_menu_item.h"
-#include "core/user/menu/user_menu.h"
-#include "core/user/menu/user_menu_list_window.h"
-#include "core/user/menu/user_menu_list_view.h"
 
 #include "user_slider.h"
 #include "user_step_slider.h"
 #include "user_elastic_slider.h"
 
 
-// user simple
-#include "core/user/simple/simple.h"
 
 
-// user after simple
-#include "user_main_frame.h"
 
 #include "user_image_manager.h"
 
@@ -343,8 +345,6 @@ namespace user
 
 
 
-
-#include "core/user/userex/userex.h"
 
 
 

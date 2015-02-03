@@ -1,5 +1,14 @@
 #include "framework.h"
 #include "user/user.h"
+
+
+#include "core/user/simple/simple.h"
+#include "core/user/userex/userex.h"
+
+#include "core/user/menu/menu.h"
+
+
+
 #include "core/filesystem/filemanager/filemanager.h"
 #include <math.h>
 #ifdef WINDOWS
@@ -59,8 +68,8 @@
 #include "user/user_document_manager.cpp"
 #include "user/user_edit_plain_text_view.cpp"
 #include "user/user_elastic_slider.cpp"
-#include "user/user_form.cpp"
-#include "user/user_form_callback.cpp"
+//#include "user/user_form.cpp"
+//#include "user/user_form_callback.cpp"
 #include "user/user_form_list.cpp"
 #include "user/user_front_end.cpp"
 #include "user/user_front_end_schema.cpp"
@@ -72,7 +81,6 @@
 #include "user/user_list_data.cpp"
 #include "user/user_list_data_interface.cpp"
 #include "user/user_list_header.cpp"
-#include "user/user_main_frame.cpp"
 #include "user/user_menu_list_view.cpp"
 #include "user/user_meta_button.cpp"
 #include "user/user_meta_control_box.cpp"
@@ -113,7 +121,7 @@
 
 #include "userex/userex_dialog.cpp"
 #include "userex/userex_form_child_frame.cpp"
-#include "userex/userex_form_document.cpp"
+//#include "userex/userex_form_document.cpp"
 #include "userex/userex_form_frame.cpp"
 #include "userex/userex_form_update_hint.cpp"
 #include "userex/userex_form_view.cpp"
@@ -161,3 +169,6 @@
      //Total de Arquivos na Lista:
      //        116 arquivo(s)      1.256.456 bytes
      //          0 pasta(s)   65.377.120.256 bytes dispon¡veis
+
+
+#include "app/appseed/core/net/usernet/usernet_network_configuration.cpp"

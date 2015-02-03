@@ -2352,8 +2352,6 @@
     <ClInclude Include="primitive\data\data_simple_item.h" />
     <ClInclude Include="primitive\data\data_tree.h" />
     <ClInclude Include="primitive\data\data_tree_item.h" />
-    <ClInclude Include="primitive\datetime\datetime_departament.h" />
-    <ClInclude Include="primitive\datetime\datetime_value.h" />
     <ClInclude Include="programming\javascript\javascript.h" />
     <ClInclude Include="programming\javascript\javascript_functions.h" />
     <ClInclude Include="programming\javascript\javascript_tinyjs.h" />
@@ -4843,8 +4841,6 @@
     <ClCompile Include="primitive\data\data_simple_item.cpp" />
     <ClCompile Include="primitive\data\data_tree.cpp" />
     <ClCompile Include="primitive\data\data_tree_item.cpp" />
-    <ClCompile Include="primitive\datetime\datetime_departament.cpp" />
-    <ClCompile Include="primitive\datetime\datetime_value.cpp" />
     <ClCompile Include="programming\javascript\javascript.cpp" />
     <ClCompile Include="programming\javascript\javascript_functions.cpp" />
     <ClCompile Include="programming\javascript\javascript_tinyjs_functions.cpp" />

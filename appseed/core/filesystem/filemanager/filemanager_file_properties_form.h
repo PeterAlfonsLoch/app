@@ -14,8 +14,8 @@ namespace filemanager
 
 
       sp(::user::single_document_template)    m_ptemplatePane;
-      sp(::form_document)                           m_pdocGeneral;
-      sp(form_view)                               m_pviewGeneral;
+      sp(::aura::document)                           m_pdocGeneral;
+      sp(::user::form)                               m_pviewGeneral;
       sp(::userex::pane_tab_view)                 m_ptabview;
       ::fs::item_array                          m_itema;
 

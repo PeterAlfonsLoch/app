@@ -233,9 +233,6 @@
     <ClInclude Include="user\userex\userex_form_child_frame.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
-    <ClInclude Include="user\userex\userex_form_document.h">
-      <Filter>Header Files\user\userex</Filter>
-    </ClInclude>
     <ClInclude Include="user\userex\userex_form_frame.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
@@ -315,9 +312,6 @@
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\filemanager_form_update_hint.h">
-      <Filter>Header Files\filesystem\filemanager</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filemanager\filemanager_form_view.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\filemanager_fs_simple_list_view.h">
@@ -551,12 +545,6 @@
     <ClInclude Include="user\user\user_elastic_slider.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\user_form.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_form_callback.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\user\user_form_list.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
@@ -594,9 +582,6 @@
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user_list_header.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_main_frame.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user_meta_button.h">
@@ -884,11 +869,14 @@
     <ClInclude Include="core\core\core_platform.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\file\file_html_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
     <ClInclude Include="user\user\user_slider.h">
       <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\menu\menu.h">
+      <Filter>Header Files\user\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_form.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -967,9 +955,6 @@
     <ClCompile Include="user\userex\userex_form_child_frame.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
-    <ClCompile Include="user\userex\userex_form_document.cpp">
-      <Filter>Source Files\user\userex</Filter>
-    </ClCompile>
     <ClCompile Include="user\userex\userex_form_frame.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
@@ -1025,9 +1010,6 @@
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_form_update_hint.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filemanager\filemanager_form_view.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_list_view.cpp">
@@ -1237,12 +1219,6 @@
     <ClCompile Include="user\user\user_elastic_slider.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\user_form.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_form_callback.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\user_form_list.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -1274,9 +1250,6 @@
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\user_list_header.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_main_frame.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\user_menu_list_view.cpp">
@@ -1468,9 +1441,6 @@
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set_listener_array.cpp">
       <Filter>Source Files\user\wndfrm\frame</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_html_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\filemanager\_filemanager.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
@@ -1551,6 +1521,9 @@
     </ClCompile>
     <ClCompile Include="user\user\user_slider.cpp">
       <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_form.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

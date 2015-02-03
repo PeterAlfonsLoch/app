@@ -1043,7 +1043,89 @@ namespace aura
 
    }
 
+   //#include "framework.h"
 
+
+   /*document::document(::aura::application * papp):
+      element(papp),
+      ::data::data_container_base(papp),
+      ::aura::document(papp)
+   {
+   }
+*/
+   void document::OnBeforeNavigate2(::html::data * pdata,var & varFile,uint32_t nFlags,const char * lpszTargetFrameName,byte_array& baPostedData,const char * lpszHeaders,bool* pbCancel)
+   {
+
+      UNREFERENCED_PARAMETER(pdata);
+      string strUrl(varFile);
+      if(::str::begins_eat(strUrl,"ext://"))
+      {
+         Application.open_link(strUrl,lpszTargetFrameName);
+         /*         simple_shell_launcher launcher(NULL, "open", strUrl, "", "", SW_SHOWNORMAL);
+         launcher.execute();*/
+
+         *pbCancel = true;
+         return;
+      }
+      if(::str::begins_eat(strUrl,"hist://"))
+      {
+         System.hist_hist(strUrl);
+         *pbCancel = true;
+         return;
+      }
+
+   }
+
+
+   void document::form_document_set_property_set(const property_set & set)
+   {
+      UNREFERENCED_PARAMETER(set);
+   }
+
+
+   property_set * document::form_document_get_property_set()
+   {
+
+      return NULL;
+
+   }
+
+   property_set & document::form_document_property_set()
+   {
+
+      return *form_document_get_property_set();
+
+   }
+
+
+   void document::form_document_set_view(::user::form * pview)
+   {
+
+      UNREFERENCED_PARAMETER(pview);
+
+   }
+
+
+   void document::form_document_set_callback(form_callback * pcallback)
+   {
+
+      UNREFERENCED_PARAMETER(pcallback);
+
+   }
+
+
+
+
+
+
+   bool document::open_document(var varFile)
+   {
+
+      UNREFERENCED_PARAMETER(varFile);
+
+      return false;
+
+   }
 } // namespace aura
 
 

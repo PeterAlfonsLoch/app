@@ -126,6 +126,7 @@ namespace user
 
       };
 
+      bool                                m_bblur_Background;
 
       static bool                g_bFullScreenAlt;
       bool                       m_bAutoWindowFrame;

@@ -11,7 +11,7 @@ namespace dynamic_source
 {
    
    class script_instance;
-
+   class script_manager;
 
 
 

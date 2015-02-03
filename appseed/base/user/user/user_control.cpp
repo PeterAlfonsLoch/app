@@ -51,7 +51,7 @@ namespace user
    {
 
       m_id.is_empty();
-      m_etype                    = type_none;
+      m_etype                    = control_type_none;
       m_bTransparent             = false;
       m_bCreated                 = false;
       m_edatatype                = DataTypeString;
@@ -342,20 +342,20 @@ namespace user
    }
 
 
-   void control::descriptor::set_type(e_type e_type)
+   void control::descriptor::set_type(e_control_type e_type)
    {
       
       m_etype = e_type;
 
       switch(m_etype)
       {
-      case type_edit:
+      case control_type_edit:
 
       //         m_typeinfo = System.type_info < CSimpleFormListEdit > ();
 
          break;
 
-      case type_combo_box:
+      case control_type_combo_box:
          {
 
             throw todo(get_app());
@@ -371,7 +371,7 @@ namespace user
    }
 
 
-   control::e_type control::descriptor::get_type()
+   e_control_type control::descriptor::get_type()
    {
 
       return m_etype;
@@ -416,7 +416,7 @@ namespace user
       
       string str;
 
-      if(descriptor().get_type() == type_edit)
+      if(descriptor().get_type() == control_type_edit)
       {
 
          sp(::user::elemental) ptext = pwnd.m_p;

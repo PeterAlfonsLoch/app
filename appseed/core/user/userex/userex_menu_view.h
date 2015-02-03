@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_CORE menu_view :
-   virtual public form_view
+   virtual public ::user::form
 {
 public:
    menu_view(::aura::application * papp);

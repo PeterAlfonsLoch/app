@@ -97,7 +97,7 @@ CLASS_DECL_AURA string defer_solve_relative_name(const char * pszRelative,const 
 
 
 
-#
+
 
 namespace file
 {
@@ -108,3 +108,8 @@ namespace file
    using iostate = ::file::e_iostate;
    using seekdir = ::file::e_seek;
 }
+
+
+
+//#include "file_html_buffer.h"
+

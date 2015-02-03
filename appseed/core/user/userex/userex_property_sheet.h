@@ -6,7 +6,7 @@ namespace userex
 
 
    class CLASS_DECL_CORE property_sheet :
-      virtual public ::form_view
+      virtual public ::user::form
    {
    public:
 

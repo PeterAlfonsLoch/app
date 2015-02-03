@@ -29,7 +29,7 @@ public:
    int32_t                       m_iTracking;
    UINT                          m_uiResourceID;
    int32_t                       m_iTopMenuCount;
-   ::aura::menu                  m_menu;
+   ::aura::menu *                m_pmenu;
 
 
    simple_menu_bar(::aura::application * papp);

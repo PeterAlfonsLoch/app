@@ -188,7 +188,12 @@ namespace core
       void dump(dump_context & context) const;
 
       virtual int32_t main();
+      virtual void hist_hist(const char * psz);
 
+
+      virtual sp(type) get_pane_tab_view_type_info();
+      virtual sp(type) get_simple_frame_window_type_info();
+      virtual sp(type) get_simple_child_frame_type_info();
 
    };
 

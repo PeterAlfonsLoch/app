@@ -4266,6 +4266,63 @@ namespace core
 
    }
 
+   sp(type) application::user_default_controltype_to_typeinfo(::user::e_control_type e_type)
+   {
+
+      return Plat(this).userex()->controltype_to_typeinfo(e_type);
+
+
+   }
+
+   void application::set_form_impact_system(::aura::impact_system * pdoctemplate,::aura::impact_system * pdoctemplateChild,::aura::impact_system * pdoctemplatePlaceHolder)
+   {
+      Platform.userex()->m_ptemplateForm = pdoctemplate;
+      Platform.userex()->m_ptemplateChildForm = pdoctemplateChild;
+      Platform.userex()->m_ptemplatePlaceHolder = pdoctemplatePlaceHolder;
+
+   }
+
+
+   sp(::aura::document)   application::create_form(::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var)
+   {
+      
+      return Plat(this).userex()->create_form(pcallback,pwndParent,var);
+
+   }
+
+
+   sp(::aura::document)   application::create_form(sp(::user::form) pview,::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var)
+   {
+
+      return Plat(this).userex()->create_form(pview,pcallback,pwndParent,var);
+
+   }
+
+
+   sp(::aura::document)   application::create_child_form(::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var)
+   {
+
+      return Plat(this).userex()->create_child_form(pcallback, pwndParent, var);
+
+
+   }
+
+
+   sp(::aura::document)   application::create_child_form(sp(::user::form) pview,::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var)
+   {
+
+      return Plat(this).userex()->create_child_form(pview, pcallback,pwndParent,var);
+
+   }
+
+
+   ::aura::document * application::hold(sp(::user::interaction) pui)
+   {
+
+      return Plat(this).userex()->hold(pui);
+
+   }
+
 
 } // namespace core
 

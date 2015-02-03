@@ -4,8 +4,7 @@
 html_document::html_document(::aura::application * papp) :
    element(papp),
    ::data::data_container_base(papp),
-   ::aura::document(papp),
-   form_document(papp)
+   ::aura::document(papp)
 {
 
 
@@ -242,7 +241,7 @@ sp(::user::interaction) html_document::get_frame()
 
 
 
-void html_document::form_document_set_view(form_view * pview)
+void html_document::form_document_set_view(::user::form * pview)
 {
 
    get_html_data()->m_pform = pview;

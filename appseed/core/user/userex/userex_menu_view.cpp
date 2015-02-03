@@ -6,8 +6,7 @@ menu_view::menu_view(::aura::application * papp) :
    ::user::interaction(papp),
    ::user::scroll_view(papp),
    ::user::form_interface(papp),
-   ::user::form(papp),
-   form_view(papp)
+   ::user::form(papp)
 {
    m_pcallback = NULL;
 }
@@ -15,7 +14,7 @@ menu_view::menu_view(::aura::application * papp) :
 
 void menu_view::on_update(::aura::impact * pSender, LPARAM lHint, object* phint) 
 {
-   form_view::on_update(pSender, lHint, phint);
+   ::user::form::on_update(pSender, lHint, phint);
 }
 
 
@@ -46,7 +45,7 @@ bool menu_view::BaseOnControlEvent(::user::control_event * pevent)
 
 void menu_view::install_message_handling(::message::dispatch * pinterface)
 {
-   form_view::install_message_handling(pinterface);
+   ::user::form::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &menu_view::_001OnCreate);
    IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &menu_view::_001OnTimer);
    IGUI_WIN_MSG_LINK(WM_USER + 123, pinterface, this, &menu_view::_001OnUser123);

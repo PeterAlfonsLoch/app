@@ -36,14 +36,3 @@ public:
 };
 
 
-class CLASS_DECL_CORE BaseMenuCentralContainer
-{
-public:
-   BaseMenuCentralContainer();
-   virtual ~BaseMenuCentralContainer();
-   virtual BaseMenuCentral * get_menucentral();
-   virtual bool initialize_central_container(::aura::application * papp);
-   virtual bool finalize_central_container();
-protected:
-   BaseMenuCentral * m_pmenucentral;
-};

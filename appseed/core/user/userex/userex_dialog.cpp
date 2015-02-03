@@ -6,8 +6,7 @@ dialog::dialog(const char * pszMatter, sp(::user::interaction) puiParent) :
    element(puiParent->get_app()),
    user::scroll_view(puiParent->get_app()),
    ::user::form_interface(puiParent->get_app()),
-   user::form(puiParent->get_app()),
-   form_view(puiParent->get_app())
+   user::form(puiParent->get_app())
 {
    m_strMatter = pszMatter;
    m_pdocument    = NULL;
@@ -20,8 +19,7 @@ dialog::dialog(::aura::application * papp) :
    element(papp),
    ::user::scroll_view(papp),
    ::user::form_interface(papp),
-   user::form(papp),
-   form_view(papp)
+   user::form(papp)
 {
    m_pdocument    = NULL;
    m_pframe       = NULL;

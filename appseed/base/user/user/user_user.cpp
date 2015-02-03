@@ -126,31 +126,7 @@ namespace user
       if(!::aura::departament::initialize2())
          return false;
 
-      /* xxx
-
-            m_ptemplateForm = new ::user::multiple_document_template(
-            get_app(),
-            "system/form",
-            System.type_info < form_document > (),
-            System.type_info < form_frame > (),
-            System.type_info < form_view > ());
-
-            m_ptemplateChildForm = new ::user::multiple_document_template(
-            get_app(),
-            "system/form",
-            System.type_info < form_document > (),
-            System.type_info < form_child_frame > (),
-            System.type_info < form_view > ());
-
-            m_ptemplatePlaceHolder = new ::user::multiple_document_template(
-            get_app(),
-            "system/form",
-            System.type_info < ::aura::document > (),
-            System.type_info < simple_frame_window > (),
-            System.type_info < ::user::place_holder > ());
-
-            */
-
+      
       return true;
 
 
@@ -586,7 +562,7 @@ namespace user
    }
 
 
-   /* xxx    sp(type) user::controltype_to_typeinfo(::user::control::e_type e_type)
+   /* xxx    sp(type) user::controltype_to_typeinfo(::user::e_control_type e_type)
       {
 
       return sp(type)();

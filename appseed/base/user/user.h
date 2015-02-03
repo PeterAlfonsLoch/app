@@ -52,7 +52,7 @@ using user_interaction = ::user::interaction;
 
 
 
-
+#include "user/user/user_form_callback.h"
 
 
 #include "base/user/simple_ui/simple_ui_style.h"
@@ -102,6 +102,8 @@ using user_interaction = ::user::interaction;
 #include "user/user/user_plain_text_data.h"
 #include "user/user/user_edit_plain_text.h"
 
+#include "user/user/user_form.h"
+#include "user/user/user_form_update_hint.h"
 
 
 

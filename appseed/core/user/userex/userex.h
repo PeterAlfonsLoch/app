@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "core/user/user/user.h"
+#include "core/user/simple/simple.h"
 
 
 namespace filemanager
@@ -16,7 +16,7 @@ namespace filemanager
 
 #include "userex_form_frame.h"
 #include "userex_form_child_frame.h"
-#include "userex_form_document.h"
+//#include "userex_form_document.h"
 #include "userex_form_update_hint.h"
 #include "userex_form_view.h"
 

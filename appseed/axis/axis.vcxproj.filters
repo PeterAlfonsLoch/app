@@ -231,17 +231,11 @@
     <Filter Include="Header Files\primitive\data">
       <UniqueIdentifier>{c2632396-fa32-4ff4-baf6-ff2531410268}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\primitive\datetime">
-      <UniqueIdentifier>{1a859d2b-d142-4063-970a-9ff5768d370b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\primitive">
       <UniqueIdentifier>{944b09dd-6b10-45c3-af11-f1f1949d45ce}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\primitive\data">
       <UniqueIdentifier>{f7ad2647-47bf-4d92-9059-f448632e2d7b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\primitive\datetime">
-      <UniqueIdentifier>{0cb59b7e-2810-4e45-a4c9-3aea7616f232}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\database">
       <UniqueIdentifier>{a7546116-5d20-4a4e-b2ff-307fd83109dc}</UniqueIdentifier>
@@ -862,12 +856,6 @@
     </ClInclude>
     <ClInclude Include="primitive\data\data_tree_item.h">
       <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\datetime\datetime_departament.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\datetime\datetime_value.h">
-      <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
     <ClInclude Include="version.config.h">
       <Filter>Header Files</Filter>
@@ -1510,12 +1498,6 @@
     <ClCompile Include="primitive\data\data_tree_item.cpp">
       <Filter>Source Files\primitive\data</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\datetime\datetime_departament.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\datetime\datetime_value.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
     <ClCompile Include="database\database\database_application.cpp">
       <Filter>Source Files\database\database</Filter>
     </ClCompile>
@@ -1725,9 +1707,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>

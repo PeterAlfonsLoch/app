@@ -24,6 +24,8 @@ namespace aura
    {
    public:
 
+      sp(class ::datetime::departament)            m_pdatetime;
+
       stridsp(type)                                m_typemap;
       spa(service_base)                            m_serviceptra;
       sp(base_factory)                             m_pfactory;
@@ -33,7 +35,7 @@ namespace aura
       sp(math::math)                               m_pmath;
       sp(geometry::geometry)                       m_pgeometry;
 
-
+      ::aura::str *                                m_puserstr;
       ::exception::engine *                        m_peengine;
 
 
@@ -123,6 +125,7 @@ namespace aura
       class base_factory                           &  factory();
       ::exception::engine                          &  eengine();
 
+      ::aura::str                                  & str();
       ::process::departament                       &  process();
 
 
@@ -142,6 +145,7 @@ namespace aura
       inline ::file::system                        & file()    { return *m_spfile; }
       inline ::file::dir::system                   & dir()     { return *m_spdir; }
 
+      ::datetime::departament                      & datetime();
 
       virtual void on_allocation_error(::aura::application * papp,sp(type) & info);
       //   sp(element) alloc(::aura::application * papp, sp(type) info);
@@ -193,6 +197,8 @@ namespace aura
       virtual UINT os_post_to_all_threads(UINT uiMessage,WPARAM wparam,lparam lparam);
 
       virtual bool process_initialize();
+
+      virtual bool initialize1();
 
       virtual bool initialize2();
 

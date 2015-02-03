@@ -139,10 +139,10 @@ namespace filemanager
          sp(::create) createcontext(allocer());
          createcontext->m_bMakeVisible = false;
          createcontext->m_puiParent = pcreatordata->m_pholder;
-         sp(form_document) pdoc = Platform.filemanager().m_ptemplateForm->open_document_file(createcontext);
+         sp(::aura::document) pdoc = Platform.filemanager().m_ptemplateForm->open_document_file(createcontext);
          if (pdoc == NULL)
             return;
-         form_view * pformview = pdoc->get_typed_view < form_view >();
+         form * pformview = pdoc->get_typed_view < form >();
          form_update_hint uh;
          uh.m_etype = form_update_hint::type_browse;
          if (pcreatordata->m_id == "replace_name")
@@ -179,7 +179,7 @@ namespace filemanager
          if (pdoc == NULL)
             return;
          sp(::aura::impact) pview = pdoc->get_view(0);
-         //form_view * poperationview = dynamic_cast < form_view * > (pview);
+         //::user::form * poperationview = dynamic_cast < ::user::form * > (pview);
          pcreatordata->m_pwnd = (pview->GetParentFrame());
          //      operation_child_frame * pframe = dynamic_cast < operation_child_frame * >(pcreatordata->m_pwnd);
          //pframe->m_iTabId = iId;

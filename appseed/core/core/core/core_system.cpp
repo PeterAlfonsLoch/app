@@ -1198,6 +1198,35 @@ namespace core
 
    }
 
+   void system::hist_hist(const char * psz)
+   {
+      hist().hist(psz);
+   }
+
+
+   sp(type) system::get_pane_tab_view_type_info()
+   {
+
+      return System.type_info < userex::pane_tab_view >();
+
+   }
+
+
+   sp(type) system::get_simple_frame_window_type_info()
+   {
+
+      return System.type_info < simple_frame_window >();
+
+   }
+
+
+   sp(type) system::get_simple_child_frame_type_info()
+   {
+
+      return System.type_info < simple_child_frame >();
+
+   }
+
 
 } // namespace plane
 

@@ -174,7 +174,7 @@ namespace base
 
       virtual ::aura::session * on_create_session();
 
-
+      virtual void hist_hist(const char * psz);
 
    };
 

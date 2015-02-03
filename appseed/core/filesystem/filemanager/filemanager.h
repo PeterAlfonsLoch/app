@@ -2,6 +2,7 @@
 
 
 #include "core/user/user/user.h"
+#include "core/user/menu/menu.h"
 #include "core/filesystem/userfs/userfs.h"
 
 
@@ -103,7 +104,7 @@ namespace filemanager
 
 #include "filemanager_form_document.h"
 #include "filemanager_form_child_frame.h"
-#include "filemanager_form_view.h"
+#include "filemanager_form.h"
 #include "filemanager_form_update_hint.h"
 
 #include "filemanager_folder_selection_list_view.h"

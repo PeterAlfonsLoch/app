@@ -12,8 +12,8 @@ namespace usernet // ca8 + cube
    public:
 
 
-      sp(::form_document)               m_pdoc;
-      sp(form_view)                   m_pview;
+      sp(::aura::document)               m_pdoc;
+      sp(::user::form)                   m_pview;
 
 
       network_configuration(::aura::application * papp);

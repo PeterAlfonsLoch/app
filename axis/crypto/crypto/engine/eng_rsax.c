@@ -139,7 +139,7 @@ static const char *engine_e_rsax_id = "rsax";
 static const char *engine_e_rsax_name = "RSAX engine support";
 
 /* This internal function is used by ENGINE_rsax() */
-static int bind_helper(ENGINE *e)
+static int rsax_bind_helper(ENGINE *e)
 	{
 #ifndef OPENSSL_NO_RSA
 	const RSA_METHOD *meth1;
@@ -172,7 +172,7 @@ static ENGINE *ENGINE_rsax(void)
 	ENGINE *ret = ENGINE_new();
 	if(!ret)
 		return NULL;
-	if(!bind_helper(ret))
+	if(!rsax_bind_helper(ret))
 		{
 		ENGINE_free(ret);
 		return NULL;

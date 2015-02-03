@@ -8,6 +8,15 @@ typedef sp(::aura::application) (*LPFN_instantiate_application)(sp(::aura::appli
 extern CLASS_DECL_CORE LPFN_instantiate_application g_lpfn_instantiate_application;
 
 
+namespace user
+{
+   
+   class form_callback;
+
+
+} // namespace user
+
+
 namespace core
 {
 
@@ -22,8 +31,6 @@ namespace core
 //      ::calculator::calculator *             m_pcalculator;
 
       ::userfs::userfs *                     m_puserfs;
-
-      bool                                   m_bService;
 
       class signal                           m_signalAppLanguageChange;
       string                                 m_strHelpFilePath;
@@ -580,6 +587,16 @@ namespace core
       virtual int32_t GetVisibleFrameCount();
 
       virtual void on_create_keyboard();
+
+      virtual sp(type) user_default_controltype_to_typeinfo(::user::e_control_type e_type);
+
+      virtual void set_form_impact_system(::aura::impact_system * pdoctemplate,::aura::impact_system * pdoctemplateChild,::aura::impact_system * pdoctemplatePlaceHolder);
+
+      sp(::aura::document)   create_form(::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var = ::var(::var::type_empty_argument));
+      sp(::aura::document)   create_form(sp(::user::form) pview,::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var = ::var(::var::type_empty_argument));
+      sp(::aura::document)   create_child_form(::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var = ::var(::var::type_empty_argument));
+      sp(::aura::document)   create_child_form(sp(::user::form) pview,::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var = ::var(::var::type_empty_argument));
+      ::aura::document * hold(sp(::user::interaction) pui);
 
    };
 

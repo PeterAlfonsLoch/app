@@ -9,8 +9,7 @@ namespace userex
       element(papp),
       ::user::scroll_view(papp),
       ::user::form_interface(papp),
-      ::user::form(papp),
-      form_view(papp)
+      ::user::form(papp)
    {
 
    }

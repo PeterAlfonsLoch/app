@@ -114,6 +114,7 @@
 #include "datetime/datetime_time.cpp"
 #include "datetime/datetime_value.cpp"
  //              5 arquivo(s)         49.027 bytes
+#include "datetime/datetime_departament.cpp"
 
  //Pasta de Z:\nordroid\app\appseed\aura\primitive\geometry
 

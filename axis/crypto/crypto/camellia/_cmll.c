@@ -3,8 +3,10 @@
 
  //Pasta de Z:\ca2\app\axis\crypto\crypto\camellia
 
+#ifndef _M_X64
 #include "camellia.c"
 #include "cmll_cbc.c"
+#endif
 #include "cmll_cfb.c"
 #include "cmll_ctr.c"
 #include "cmll_ecb.c"

@@ -1,8 +1,9 @@
-#include "framework.h"
-#include "core/user/user/user.h"
-#include "core/filesystem/filemanager/filemanager.h"
-#include "usernet_network_configuration.h"
+//#include "framework.h"
+//#include "core/user/user/user.h"
+//#include "core/filesystem/filemanager/filemanager.h"
+//#include "usernet_network_configuration.h"
 
+// Included in _user.cpp
 
 namespace usernet // ca8 + cube
 {
@@ -24,7 +25,7 @@ namespace usernet // ca8 + cube
       m_pdoc = Platform.userex()->create_form(this, puiParent);
       if(m_pdoc != NULL)
       {
-         m_pview = m_pdoc->get_typed_view < form_view > ();
+         m_pview = m_pdoc->get_typed_view < ::user::form > ();
          m_pview->m_pcallback = this;
          return true;
       }
@@ -36,7 +37,7 @@ namespace usernet // ca8 + cube
       m_pdoc = Platform.userex()->create_child_form(this, puiParent);
       if(m_pdoc != NULL)
       {
-         m_pview = m_pdoc->get_typed_view < form_view > ();
+         m_pview = m_pdoc->get_typed_view < ::user::form > ();
          m_pview->m_pcallback = this;
          return true;
       }

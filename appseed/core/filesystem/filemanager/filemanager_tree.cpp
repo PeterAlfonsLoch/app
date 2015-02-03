@@ -498,7 +498,7 @@ namespace filemanager
 
       /*::user::form_control control;
 
-      control.set_type(::user::form_control::type_edit);
+      control.set_type(::user::form_control_type_edit);
       control.m_iKey = FILE_MANAGER_ID_FILE_NAME;
       pcontrol->descriptor().m_id = FILE_MANAGER_ID_FILE_NAME;
       control.set_data_type(::user::form_control::DataTypeString);

@@ -2382,6 +2382,12 @@ namespace base
     
    }
 
+   sp(type) application::user_default_controltype_to_typeinfo(::user::e_control_type e_type)
+   {
+
+      return sp(type)();
+
+   }
 
 } // namespace base
 

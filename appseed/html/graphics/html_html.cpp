@@ -276,8 +276,8 @@ namespace html
    {
 
          System.factory().creatable_small < html_document >();
-         System.factory().creatable_small < html_child_frame >();
-         System.factory().creatable_small < html_frame >();
+         //System.factory().creatable_small < html_child_frame >();
+         //System.factory().creatable_small < html_frame >();
          System.factory().creatable_small < html_view >();
          System.factory().creatable_small < ::html::data::image >();
          System.factory().creatable_small < ::html::data >();

@@ -19,7 +19,7 @@
 #include "filemanager_form_child_frame.cpp"
 #include "filemanager_form_document.cpp"
 #include "filemanager_form_update_hint.cpp"
-#include "filemanager_form_view.cpp"
+#include "filemanager_form.cpp"
 #include "filemanager_frame.cpp"
 #include "filemanager_fs_simple_list_view.cpp"
 #include "filemanager_fs_simple_tree.cpp"

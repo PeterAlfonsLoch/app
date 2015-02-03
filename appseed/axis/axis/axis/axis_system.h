@@ -14,7 +14,6 @@ namespace axis
 
 
       //::url::departament                           m_urldepartament;
-      sp(class ::datetime::departament)            m_pdatetime;
 
 
       ::http::system                               m_httpsystem;
@@ -28,7 +27,7 @@ namespace axis
       ::visual::visual                             m_visual;
 
       class ::fontopus::user_set                   m_userset;
-      ::aura::str *                                m_puserstr;
+      
 
       ::net::email_departament                     m_emaildepartament;
 
@@ -59,11 +58,10 @@ namespace axis
 
       ::fontopus::user_set                         & userset();
 
-      ::datetime::departament                      & datetime();
       ::net::email_departament               & email();
 
 
-      ::aura::str                                  & str();
+      
 
 
       virtual bool process_initialize();

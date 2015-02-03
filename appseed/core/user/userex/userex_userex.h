@@ -1,8 +1,8 @@
 #pragma once
 
 
-class form_document;
-class form_view;
+//class form_document;
+class ::user::form;
 
 
 namespace userex
@@ -68,7 +68,7 @@ namespace userex
       class keyboard & keyboard();
 
 
-      virtual sp(type) controltype_to_typeinfo(::user::control::e_type type);
+      virtual sp(type) controltype_to_typeinfo(::user::e_control_type type);
 
 
       virtual void SendMessageToWindows(UINT message, WPARAM wParam, LPARAM lParam);
@@ -106,10 +106,10 @@ namespace userex
 
 
 
-      sp(::form_document)   create_form(::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var = ::var(::var::type_empty_argument));
-      sp(::form_document)   create_form(sp(form_view) pview, ::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var = ::var(::var::type_empty_argument));
-      sp(::form_document)   create_child_form(::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var = ::var(::var::type_empty_argument));
-      sp(::form_document)   create_child_form(sp(form_view) pview, ::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var = ::var(::var::type_empty_argument));
+      sp(::aura::document)   create_form(::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var = ::var(::var::type_empty_argument));
+      sp(::aura::document)   create_form(sp(::user::form) pview, ::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var = ::var(::var::type_empty_argument));
+      sp(::aura::document)   create_child_form(::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var = ::var(::var::type_empty_argument));
+      sp(::aura::document)   create_child_form(sp(::user::form) pview, ::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var = ::var(::var::type_empty_argument));
       ::aura::document * hold(sp(::user::interaction) pui);
 
    };

@@ -143,7 +143,12 @@ namespace aura
       factory().creatable_small < ::file::application >();
       factory().creatable_small < ::file::dir::application >();
 
+
+
       __node_aura_factory_exchange(this);
+
+      m_pdatetime = new class ::datetime::departament(this);
+
 
       thread::s_bAllocReady = true;
 
@@ -297,6 +302,21 @@ namespace aura
 
    }
 
+   ::datetime::departament & system::datetime()
+   {
+
+      return *m_pdatetime;
+
+   }
+
+   ::aura::str & system::str()
+   {
+
+      return *m_puserstr;
+
+   }
+
+
 
    bool system::process_initialize()
    {
@@ -397,6 +417,23 @@ namespace aura
 
    }
 
+   bool system::initialize1()
+   {
+
+      if(!::aura::application::initialize1())
+         return false;
+
+      m_puserstr = new ::aura::str(this);
+
+      if(m_puserstr == NULL)
+         return false;
+
+      if(!str().initialize())
+         return false;
+
+      return true;
+
+   }
 
    bool system::initialize2()
    {
@@ -1434,6 +1471,8 @@ namespace aura
       return new ::aura::session(this);
 
    }
+
+
 
 } // namespace aura
 

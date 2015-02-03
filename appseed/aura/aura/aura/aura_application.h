@@ -42,6 +42,8 @@ namespace aura
       sp(::mutex)                                     m_pmutexGlobal;
       sp(::mutex)                                     m_pmutexGlobalId;
 
+      bool                                   m_bService;
+
 
 
       stringa                                         m_straMatterLocator;

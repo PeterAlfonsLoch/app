@@ -10,14 +10,14 @@ CLASS_DECL_CORE void DDX_Check(::user::data_exchange * pdx, id idControl, bool &
 
 
 class CLASS_DECL_CORE dialog :
-   virtual public form_view
+   virtual public ::user::form
 {
 public:
 
 
-   sp(::form_document)            m_pdocument;
-   sp(simple_frame_window)      m_pframe;
-   string                     m_strMatter;
+   sp(::aura::document)          m_pdocument;
+   sp(simple_frame_window)       m_pframe;
+   string                        m_strMatter;
 
 
    dialog(::aura::application * papp);

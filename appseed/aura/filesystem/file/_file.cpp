@@ -133,3 +133,7 @@ bool __win_file_find_is_dots(WIN32_FIND_DATA & data)
 //     Total de Arquivos na Lista:
 //              48 arquivo(s)        172.623 bytes
 //               0 pasta(s)   36.845.842.432 bytes dispon¡veis
+
+
+
+#include "file_html_buffer.h"

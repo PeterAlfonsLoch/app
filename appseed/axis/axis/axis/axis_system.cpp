@@ -34,9 +34,6 @@ namespace axis
 
       m_pcompress->set_app(this);
 
-      m_pdatetime = new class ::datetime::departament(this);
-
-
       factory().creatable_small < ::file::axis::application >(System.type_info < ::file::application > ());
       factory().creatable_small < ::file::dir::axis::application >(System.type_info < ::file::dir::application >());
 
@@ -62,13 +59,6 @@ namespace axis
    }
 
 
-
-   ::aura::str & system::str()
-   {
-
-      return *m_puserstr;
-
-   }
 
 
    bool system::process_initialize()
@@ -137,21 +127,15 @@ namespace axis
    bool system::initialize1()
    {
 
-      m_puserstr = new ::aura::str(this);
 
-      if(m_puserstr == NULL)
-         return false;
-
-      if(!str().initialize())
+      if(!::aura::system::initialize1())
          return false;
 
       Session.m_puserstrcontext->defer_ok(m_puserstr);
 
-      if(!::axis::application::initialize2())
+      if(!::axis::application::initialize1())
          return false;
 
-      if(!::aura::system::initialize2())
-         return false;
 
       return true;
 
@@ -163,6 +147,10 @@ namespace axis
 
       if(!::axis::application::initialize2())
          return false;
+
+      if(!::aura::system::initialize2())
+         return false;
+
 
       return true;
 
@@ -589,12 +577,6 @@ namespace axis
    }
 
 
-   ::datetime::departament & system::datetime()
-   {
-
-      return *m_pdatetime;
-
-   }
 
 
    ::aura::session * system::on_create_session()

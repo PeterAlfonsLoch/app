@@ -84,6 +84,9 @@ namespace aura
    class printer;
    class impact;
 
+   class str;
+   class str_context;
+
 } // namespace aura
 
 namespace data
@@ -182,6 +185,15 @@ namespace plane
 } // namespace plane
 
 class cmd_ui;
+
+namespace datetime
+{
+
+
+   class departament;
+
+
+} // namespace datetime
 
 
 namespace draw2d
@@ -937,7 +949,7 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 #include "aura/aura/aura/aura_machine_event.h"
 #include "aura/aura/aura/aura_machine_event_central.h"
 
-#include "aura/primitive/datetime/datetime_value.h"
+#include "aura/primitive/datetime/datetime.h"
 
 #include "aura/primitive/str/str_international_locale_schema.h"
 
@@ -1432,6 +1444,9 @@ CLASS_DECL_AURA void dappy(const char * psz);
 
 
 #include "aura/aura/aura/aura_str_context.h"
+
+
+#include "aura/filesystem/file/file_html_buffer.h"
 
 
 

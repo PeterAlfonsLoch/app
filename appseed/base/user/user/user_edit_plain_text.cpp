@@ -2703,7 +2703,7 @@ namespace user
 
    bool edit_plain_text::create_control(class control::descriptor * pdescriptor)
    {
-      ASSERT(pdescriptor->get_type() == control::type_edit_plain_text);
+      ASSERT(pdescriptor->get_type() == control_type_edit_plain_text);
       if(!create_window(pdescriptor->m_rect,pdescriptor->m_pform,pdescriptor->m_id))
       {
          TRACE("Failed to create control");

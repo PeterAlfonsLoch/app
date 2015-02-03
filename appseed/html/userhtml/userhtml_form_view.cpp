@@ -7,8 +7,7 @@ html_form_view::html_form_view(::aura::application * papp) :
    ::user::interaction(papp),
    ::user::scroll_view(papp),
    ::user::form_interface(papp),
-   ::user::form(papp),
-   form_view(papp)
+   ::user::form(papp)
 {
 
 }
@@ -130,10 +129,10 @@ void html_form_view::on_update(::aura::impact * pSender, LPARAM lHint, object* p
 
       if(phint != NULL)
       {
-         form_update_hint * puh = dynamic_cast < form_update_hint * > (phint);
+         ::user::form_update_hint * puh = dynamic_cast < ::user::form_update_hint * > (phint);
          if(puh != NULL)
          {
-            if(puh->m_etype == form_update_hint::type_browse)
+            if(puh->m_etype == ::user::form_update_hint::type_browse)
             {
                if(!puh->m_strForm.is_empty())
                {
@@ -145,7 +144,7 @@ void html_form_view::on_update(::aura::impact * pSender, LPARAM lHint, object* p
                   }
                }
             }
-            else if(puh->m_etype == form_update_hint::type_get_form_view)
+            else if(puh->m_etype == ::user::form_update_hint::type_get_form_view)
             {
                puh->m_pformview = this;
             }

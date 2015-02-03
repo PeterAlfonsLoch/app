@@ -12,7 +12,6 @@ namespace userex // ca8 + cube
       user::form(papp),
       //html_form(papp),
       //html_form_view(papp),
-      form_view(papp),
       dialog(papp)
    {
       m_dwStartTime = 0;

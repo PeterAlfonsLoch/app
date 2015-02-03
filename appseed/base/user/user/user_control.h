@@ -17,17 +17,6 @@ namespace user
       };
 
 
-      enum e_type
-      {
-         type_none,
-         type_static,
-         type_check_box,
-         type_edit,
-         type_simple_list,
-         type_button,
-         type_combo_box,
-         type_edit_plain_text,
-      };
       enum efunction
       {
          // Text got from control m_uiId member
@@ -93,7 +82,7 @@ namespace user
          index                   m_iSubItem;
          id                      m_idPrivateDataSection;
          bool                    m_bTransparent;
-         e_type                  m_etype;
+         e_control_type          m_etype;
          bool                    m_bCreated;
          bool                    m_bSubclassed;
          eddx                    m_eddx;
@@ -111,8 +100,8 @@ namespace user
          void clear();
          bool operator == (const descriptor & descriptor) const;
          descriptor & operator = (const descriptor & descriptor);
-         e_type get_type();
-         void set_type(e_type e_type);
+         e_control_type get_type();
+         void set_type(e_control_type e_type);
          void add_function(efunction efunction);
          void remove_function(efunction efunction);
          bool has_function(efunction efunction);

@@ -923,7 +923,9 @@ namespace base
 
    }
 
-
+   void system::hist_hist(const char * psz)
+   {
+   }
 
 } // namespace base
 

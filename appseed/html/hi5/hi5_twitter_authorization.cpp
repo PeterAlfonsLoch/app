@@ -22,9 +22,9 @@ namespace hi5
          m_ptemplatePane   = new ::user::single_document_template(
             papp,
             "system/auth",
-            System.type_info < form_document > (),
+            System.type_info < ::aura::document > (),
             System.type_info < simple_frame_window > (),
-            System.type_info < userex::pane_tab_view > ());
+            System.get_pane_tab_view_type_info());
          m_pviewAuth       = NULL;
          m_pdocAuth        = NULL;
          m_pdoc            = NULL;
@@ -63,7 +63,7 @@ namespace hi5
          if(m_pdoc == NULL)
             return;
 
-         sp(userex::pane_tab_view) pview = m_pdoc->get_typed_view < userex::pane_tab_view >();
+         sp(user::tab_view) pview = m_pdoc->get_typed_view < user::tab_view >();
          pview->set_view_creator(this);
          m_ptabview = pview;
          pview->add_tab("ca2open", 1);
@@ -154,7 +154,7 @@ namespace hi5
 
          rectOpen.top = iHeight * 2 / 3;
 
-         sp(simple_frame_window) pframe = m_pviewAuth->GetParentFrame();
+         sp(::user::frame_window) pframe = m_pviewAuth->GetParentFrame();
 
          if(pframe != NULL)
          {
@@ -208,10 +208,10 @@ namespace hi5
          {
          case 1:
             {
-               m_pdocAuth = Platform.userex()->create_child_form(this, pcreatordata->m_pholder);
+               m_pdocAuth = Application.create_child_form(this, pcreatordata->m_pholder);
                if(m_pdocAuth != NULL)
                {
-                  m_pviewAuth = m_pdocAuth->get_typed_view < form_view > ();
+                  m_pviewAuth = m_pdocAuth->get_typed_view < ::user::form > ();
                   m_pviewAuth->m_pcallback = this;
                   pcreatordata->m_pdoc = m_pdocAuth;
                   pcreatordata->m_pwnd = m_pviewAuth->GetParentFrame();
