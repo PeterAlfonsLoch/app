@@ -641,8 +641,15 @@ namespace aura
          catch(::exception::exception & e)
          {
 
-            if(!App(this).on_run_exception(e))
-               throw exit_exception(get_app());
+            // aura::session, axis::session and ::base::session, could get more specialized handling in core::application (core::system)
+            // Thank you Mummi (em São Paulo, cuidando do Lucinho e ajudando um monte a Carô 2015-02-03) !! Thank you God!!
+            if(!Sys(this).on_run_exception(e)) 
+            {
+               if(!App(this).on_run_exception(e))
+               {
+                  throw exit_exception(get_app());
+               }
+            }
 
          }
          catch(...)
@@ -856,6 +863,111 @@ namespace aura
 
    }
 
+
+
+   void session::request_create(sp(::create) pcreatecontext)
+   {
+      
+            //      if(m_pbergedgeInterface != NULL)
+            {
+      
+               if(m_pappCurrent != NULL && m_pappCurrent != this
+                  && (pcreatecontext->m_spCommandLine->m_strApp.is_empty()
+                  ||App(m_pappCurrent).m_strAppName == pcreatecontext->m_spCommandLine->m_strApp))
+               {
+                  //if(get_document() != NULL && get_document()->get_typed_view < ::bergedge::pane_view >() != NULL)
+                  //{
+                  //   get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + App(m_pappCurrent).m_strAppName);
+                  //}
+                  App(m_pappCurrent).request_create(pcreatecontext);
+                  //if(pcreatecontext->m_spCommandLine->m_varQuery["document"].cast < ::aura::document > () == NULL)
+                  {
+        //             goto alt1;
+                  }
+      
+               }
+               else
+               {
+      //alt1:
+                  if(pcreatecontext->m_spCommandLine->m_varFile.get_type() == var::type_string)
+                  {
+                     if(::str::ends_ci(pcreatecontext->m_spCommandLine->m_varFile, ".core"))
+                     {
+                        string strCommand = Application.file().as_string(pcreatecontext->m_spCommandLine->m_varFile);
+                        if(::str::begins_eat(strCommand, "ca2prompt\r")
+                           || ::str::begins_eat(strCommand, "ca2prompt\n"))
+                        {
+                           strCommand.trim();
+                           command()->add_fork_uri(strCommand);
+                        }
+                        return;
+                     }
+                     //else if(pcreatecontext->m_spCommandLine->m_strApp.has_char()
+                     //   && get_document() != NULL
+                     //   && get_document()->get_typed_view < ::bergedge::pane_view >() != NULL)
+                     //{
+                     //   get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + pcreatecontext->m_spCommandLine->m_strApp);
+                     //   App(m_pappCurrent).request_create(pcreatecontext);
+                     //}
+                     else
+                     {
+                        on_request(pcreatecontext);
+                     }
+                  }
+                  //else if(pcreatecontext->m_spCommandLine->m_strApp.has_char() &&
+                  //   get_document() != NULL && get_document()->get_typed_view < ::bergedge::pane_view >() != NULL
+                  //   && (!pcreatecontext->m_spApplicationBias.is_set() || pcreatecontext->m_spApplicationBias->m_puiParent == NULL))
+                  //{
+                  //   //simple_message_box(NULL, "request3", "request3", MB_ICONEXCLAMATION);
+                  //   get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + pcreatecontext->m_spCommandLine->m_strApp);
+                  //   App(m_pappCurrent).request_create(pcreatecontext);
+                  //}
+                  //else
+                  {
+                     //simple_message_box(NULL, "request4", "request4", MB_ICONEXCLAMATION);
+                     on_request(pcreatecontext);
+                  }
+               }
+               return;
+      
+            }
+      
+            if(pcreatecontext->m_spCommandLine->m_varFile.get_type() == var::type_string)
+            {
+               if(::str::ends_ci(pcreatecontext->m_spCommandLine->m_varFile, ".core"))
+               {
+                  string strCommand = Application.file().as_string(pcreatecontext->m_spCommandLine->m_varFile);
+                  if(::str::begins_eat(strCommand, "ca2prompt\r")
+                     || ::str::begins_eat(strCommand, "ca2prompt\n"))
+                  {
+                     strCommand.trim();
+                     command()->add_fork_uri(strCommand);
+                     System.m_bDoNotExitIfNoApplications = true;
+                  }
+                  return;
+               }
+               else
+               {
+                  on_request(pcreatecontext);
+               }
+            }
+            else if(m_pappCurrent != NULL && m_pappCurrent != this
+               && (pcreatecontext->m_spCommandLine->m_strApp.is_empty()
+               ||App(m_pappCurrent).m_strAppName == pcreatecontext->m_spCommandLine->m_strApp))
+            {
+      
+      
+               /*         if(get_document() != NULL && get_document()->get_typed_view < ::platform::pane_view >() != NULL)
+               {
+               get_document()->get_typed_view < ::platform::pane_view >()->set_cur_tab_by_id("app:" + App(m_pappCurrent).m_strAppName);
+               }*/
+               App(m_pappCurrent).request_create(pcreatecontext);
+            }
+            else
+            {
+               on_request(pcreatecontext);
+            }
+   }
 
 } // namespace aura
 

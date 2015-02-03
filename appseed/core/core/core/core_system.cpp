@@ -490,7 +490,7 @@ namespace core
    }
 
 
-   sp(::core::platform) system::get_session(index iEdge,application_bias * pbiasCreation)
+   sp(::core::platform) system::get_platform(index iEdge,application_bias * pbiasCreation)
    {
       sp(::core::platform) pbergedge = NULL;
       if(m_pbergedgemap == NULL)

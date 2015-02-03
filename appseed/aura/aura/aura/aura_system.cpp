@@ -490,6 +490,8 @@ namespace aura
       if(!::aura::application::initialize_instance())
          return false;
 
+      m_paurabergedgemap = new ::aura::session::map;
+
       return true;
 
    }
@@ -1733,7 +1735,7 @@ namespace aura
 
       }
 
-      psession->request_create(psession);
+      psession->request_create(pcreate);
 
 
    }

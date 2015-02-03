@@ -4172,6 +4172,15 @@ namespace core
 
    }
 
+
+   //sp(type) application::user_default_controltype_to_typeinfo(enum user::e_control_type econtroltype)
+   //{
+
+   //   return Plat(this).userex()->controltype_to_typeinfo(econtroltype);
+
+   //}
+
+
    bool application::platform_open_by_file_extension(int iEdge,const char * pszPathName,application_bias * pbiasCreate)
    {
 
@@ -4184,10 +4193,17 @@ namespace core
       return System.get_platform(iEdge)->open_by_file_extension(pcc);
    }
 
-   ::core::platform * application::create_platform(::aura::session * psession)
+   
+   ::aura::application * application::create_platform(::aura::session * psession)
    {
+
       return new ::core::platform(psession);
+
    }
+
+
+
+
 
 } // namespace core
 

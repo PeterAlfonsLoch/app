@@ -86,7 +86,7 @@ namespace aura
 
       virtual int32_t exit_instance();
 
-
+      virtual void request_create(sp(::create) pcreatecontext);
       virtual bool open_by_file_extension(const char * pszPathName,application_bias * pbiasCreate = NULL);
       virtual bool open_by_file_extension(::create * pcc);
 

@@ -195,7 +195,7 @@ namespace core
       virtual void unregister_bergedge_application(::aura::application * papp);
 
       virtual sp(::aura::application) application_get(const char * pszType,const char * pszId,bool bCreate = true,bool bSynch = true,application_bias * pbiasCreate = NULL);
-      virtual sp(::aura::application) get_new_app(sp(::aura::application) pappNewApplicationParent,const char * pszType,const char * pszId);
+      //virtual sp(::aura::application) get_new_app(sp(::aura::application) pappNewApplicationParent,const char * pszType,const char * pszId);
 //      virtual void open_by_file_extension(const char * pszPathName);
 
       virtual sp(::core::platform)             query_bergedge();

@@ -878,116 +878,116 @@ namespace core
 
    void platform::request_create(sp(::create) pcreatecontext)
    {
-
-      //      if(m_pbergedgeInterface != NULL)
-      {
-
-         if(m_pappCurrent != NULL && m_pappCurrent != this
-            && (pcreatecontext->m_spCommandLine->m_strApp.is_empty()
-            ||App(m_pappCurrent).m_strAppName == pcreatecontext->m_spCommandLine->m_strApp))
-         {
-            //if(get_document() != NULL && get_document()->get_typed_view < ::bergedge::pane_view >() != NULL)
-            //{
-            //   get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + App(m_pappCurrent).m_strAppName);
-            //}
-            App(m_pappCurrent).request_create(pcreatecontext);
-            if(pcreatecontext->m_spCommandLine->m_varQuery["document"].cast < ::aura::document > () == NULL)
-            {
-  //             goto alt1;
-            }
-
-         }
-         else
-         {
-//alt1:
-            if(pcreatecontext->m_spCommandLine->m_varFile.get_type() == var::type_string)
-            {
-               if(::str::ends_ci(pcreatecontext->m_spCommandLine->m_varFile, ".core"))
-               {
-                  string strCommand = Application.file().as_string(pcreatecontext->m_spCommandLine->m_varFile);
-                  if(::str::begins_eat(strCommand, "ca2prompt\r")
-                     || ::str::begins_eat(strCommand, "ca2prompt\n"))
-                  {
-                     strCommand.trim();
-                     command()->add_fork_uri(strCommand);
-                  }
-                  return;
-               }
-               //else if(pcreatecontext->m_spCommandLine->m_strApp.has_char()
-               //   && get_document() != NULL
-               //   && get_document()->get_typed_view < ::bergedge::pane_view >() != NULL)
-               //{
-               //   get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + pcreatecontext->m_spCommandLine->m_strApp);
-               //   App(m_pappCurrent).request_create(pcreatecontext);
-               //}
-               else
-               {
-                  on_request(pcreatecontext);
-               }
-            }
-            //else if(pcreatecontext->m_spCommandLine->m_strApp.has_char() &&
-            //   get_document() != NULL && get_document()->get_typed_view < ::bergedge::pane_view >() != NULL
-            //   && (!pcreatecontext->m_spApplicationBias.is_set() || pcreatecontext->m_spApplicationBias->m_puiParent == NULL))
-            //{
-            //   //simple_message_box(NULL, "request3", "request3", MB_ICONEXCLAMATION);
-            //   get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + pcreatecontext->m_spCommandLine->m_strApp);
-            //   App(m_pappCurrent).request_create(pcreatecontext);
-            //}
-            //else
-            {
-               //simple_message_box(NULL, "request4", "request4", MB_ICONEXCLAMATION);
-               on_request(pcreatecontext);
-            }
-         }
-         return;
-
-      }
-
-      if(pcreatecontext->m_spCommandLine->m_varFile.get_type() == var::type_string)
-      {
-         if(::str::ends_ci(pcreatecontext->m_spCommandLine->m_varFile, ".core"))
-         {
-            string strCommand = Application.file().as_string(pcreatecontext->m_spCommandLine->m_varFile);
-            if(::str::begins_eat(strCommand, "ca2prompt\r")
-               || ::str::begins_eat(strCommand, "ca2prompt\n"))
-            {
-               strCommand.trim();
-               command()->add_fork_uri(strCommand);
-               System.m_bDoNotExitIfNoApplications = true;
-            }
-            return;
-         }
-         else
-         {
-            on_request(pcreatecontext);
-         }
-      }
-      else if(m_pappCurrent != NULL && m_pappCurrent != this
-         && (pcreatecontext->m_spCommandLine->m_strApp.is_empty()
-         ||App(m_pappCurrent).m_strAppName == pcreatecontext->m_spCommandLine->m_strApp))
-      {
-
-
-         /*         if(get_document() != NULL && get_document()->get_typed_view < ::platform::pane_view >() != NULL)
-         {
-         get_document()->get_typed_view < ::platform::pane_view >()->set_cur_tab_by_id("app:" + App(m_pappCurrent).m_strAppName);
-         }*/
-         App(m_pappCurrent).request_create(pcreatecontext);
-      }
-      else
-      {
-         on_request(pcreatecontext);
-      }
+//
+//      //      if(m_pbergedgeInterface != NULL)
+//      {
+//
+//         if(m_pappCurrent != NULL && m_pappCurrent != this
+//            && (pcreatecontext->m_spCommandLine->m_strApp.is_empty()
+//            ||App(m_pappCurrent).m_strAppName == pcreatecontext->m_spCommandLine->m_strApp))
+//         {
+//            //if(get_document() != NULL && get_document()->get_typed_view < ::bergedge::pane_view >() != NULL)
+//            //{
+//            //   get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + App(m_pappCurrent).m_strAppName);
+//            //}
+//            App(m_pappCurrent).request_create(pcreatecontext);
+//            if(pcreatecontext->m_spCommandLine->m_varQuery["document"].cast < ::aura::document > () == NULL)
+//            {
+//  //             goto alt1;
+//            }
+//
+//         }
+//         else
+//         {
+////alt1:
+//            if(pcreatecontext->m_spCommandLine->m_varFile.get_type() == var::type_string)
+//            {
+//               if(::str::ends_ci(pcreatecontext->m_spCommandLine->m_varFile, ".core"))
+//               {
+//                  string strCommand = Application.file().as_string(pcreatecontext->m_spCommandLine->m_varFile);
+//                  if(::str::begins_eat(strCommand, "ca2prompt\r")
+//                     || ::str::begins_eat(strCommand, "ca2prompt\n"))
+//                  {
+//                     strCommand.trim();
+//                     command()->add_fork_uri(strCommand);
+//                  }
+//                  return;
+//               }
+//               //else if(pcreatecontext->m_spCommandLine->m_strApp.has_char()
+//               //   && get_document() != NULL
+//               //   && get_document()->get_typed_view < ::bergedge::pane_view >() != NULL)
+//               //{
+//               //   get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + pcreatecontext->m_spCommandLine->m_strApp);
+//               //   App(m_pappCurrent).request_create(pcreatecontext);
+//               //}
+//               else
+//               {
+//                  on_request(pcreatecontext);
+//               }
+//            }
+//            //else if(pcreatecontext->m_spCommandLine->m_strApp.has_char() &&
+//            //   get_document() != NULL && get_document()->get_typed_view < ::bergedge::pane_view >() != NULL
+//            //   && (!pcreatecontext->m_spApplicationBias.is_set() || pcreatecontext->m_spApplicationBias->m_puiParent == NULL))
+//            //{
+//            //   //simple_message_box(NULL, "request3", "request3", MB_ICONEXCLAMATION);
+//            //   get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + pcreatecontext->m_spCommandLine->m_strApp);
+//            //   App(m_pappCurrent).request_create(pcreatecontext);
+//            //}
+//            //else
+//            {
+//               //simple_message_box(NULL, "request4", "request4", MB_ICONEXCLAMATION);
+//               on_request(pcreatecontext);
+//            }
+//         }
+//         return;
+//
+//      }
+//
+//      if(pcreatecontext->m_spCommandLine->m_varFile.get_type() == var::type_string)
+//      {
+//         if(::str::ends_ci(pcreatecontext->m_spCommandLine->m_varFile, ".core"))
+//         {
+//            string strCommand = Application.file().as_string(pcreatecontext->m_spCommandLine->m_varFile);
+//            if(::str::begins_eat(strCommand, "ca2prompt\r")
+//               || ::str::begins_eat(strCommand, "ca2prompt\n"))
+//            {
+//               strCommand.trim();
+//               command()->add_fork_uri(strCommand);
+//               System.m_bDoNotExitIfNoApplications = true;
+//            }
+//            return;
+//         }
+//         else
+//         {
+//            on_request(pcreatecontext);
+//         }
+//      }
+//      else if(m_pappCurrent != NULL && m_pappCurrent != this
+//         && (pcreatecontext->m_spCommandLine->m_strApp.is_empty()
+//         ||App(m_pappCurrent).m_strAppName == pcreatecontext->m_spCommandLine->m_strApp))
+//      {
+//
+//
+//         /*         if(get_document() != NULL && get_document()->get_typed_view < ::platform::pane_view >() != NULL)
+//         {
+//         get_document()->get_typed_view < ::platform::pane_view >()->set_cur_tab_by_id("app:" + App(m_pappCurrent).m_strAppName);
+//         }*/
+//         App(m_pappCurrent).request_create(pcreatecontext);
+//      }
+//      else
+//      {
+//         on_request(pcreatecontext);
+//      }
    }
 
    void platform::request_topic_file(var & varQuery)
    {
-      request_file_query(m_varTopicFile, varQuery);
+      request_file_query(Session.m_varTopicFile, varQuery);
    }
 
    void platform::request_topic_file()
    {
-      request_file(m_varTopicFile);
+      request_file(Session.m_varTopicFile);
    }
 
    /*void platform::request_application(const char * pszId, var varFile, var varQuery, application_bias * pbiasCreate)
@@ -1060,7 +1060,7 @@ namespace core
 
    sp(::aura::application) platform::get_current_application()
    {
-      return m_pappCurrent;
+      return Session.m_pappCurrent;
    }
 
 
@@ -1302,11 +1302,11 @@ namespace core
       if(&App(papp) != NULL)
       {
 
-         m_pappCurrent = papp;
+         Session.m_pappCurrent = papp;
 
       }
 
-      if(m_bShowPlatform)
+      if(Session.m_bShowPlatform)
       {
          //sp(::simple_frame_window) pframeApp = get_document()->get_typed_view < ::bergedge::pane_view >()->get_view_uie();
          //if(pframeApp != NULL)
@@ -1339,11 +1339,11 @@ namespace core
          //}
       }
 
-      if(m_pappCurrent != NULL && m_pappCurrent->m_pbasesession->m_pfontopus->m_puser != NULL)
+      if(Session.m_pappCurrent != NULL && Session.m_pappCurrent->m_pbasesession->m_pfontopus->m_puser != NULL)
       {
          try
          {
-            get_view()->GetParentFrame()->SetWindowText(m_pappCurrent->m_pbasesession->m_pfontopus->m_puser->m_strLogin);
+            get_view()->GetParentFrame()->SetWindowText(Session.m_pappCurrent->m_pbasesession->m_pfontopus->m_puser->m_strLogin);
          }
          catch(...)
          {
@@ -1517,9 +1517,9 @@ namespace core
 
    void platform::check_topic_file_change()
    {
-      if(m_varCurrentViewFile != m_varTopicFile && !m_varTopicFile.is_empty())
+      if(Session.m_varCurrentViewFile != Session.m_varTopicFile && !Session.m_varTopicFile.is_empty())
       {
-         m_varCurrentViewFile = m_varTopicFile;
+         Session.m_varCurrentViewFile = Session.m_varTopicFile;
          request_topic_file();
       }
    }

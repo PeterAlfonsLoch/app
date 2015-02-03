@@ -10,7 +10,7 @@ namespace core
    {
 
 
-      CLASS_DECL_BASE void init()
+      CLASS_DECL_CORE void init()
       {
          
 
@@ -62,7 +62,7 @@ namespace core
 
 
 
-      CLASS_DECL_BASE void term()
+      CLASS_DECL_CORE void term()
       {
 
 
@@ -81,8 +81,6 @@ namespace core
          static_start()
          {
             g_pfn_create_system = aura_create_system;
-            static_start()
-         {
             if(defer_core_init())
             {
                ::output_debug_string("defer_core_init Successful!!");

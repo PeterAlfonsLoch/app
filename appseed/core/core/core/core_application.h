@@ -493,7 +493,7 @@ namespace core
 
 
 
-      virtual ::core::platform * create_platform(::aura::session * psession);
+      virtual ::aura::application * create_platform(::aura::session * psession) override;
 
 
 
@@ -596,6 +596,8 @@ namespace core
 
       virtual bool platform_open_by_file_extension(int iEdge,const char * pszPathName,application_bias * pbiasCreate = NULL);
       virtual bool platform_open_by_file_extension(int iEdge,::create * pcc);
+
+      
 
 
    };

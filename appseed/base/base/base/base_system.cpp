@@ -152,12 +152,12 @@ namespace base
          return false;
 
 
-      if(!m_pbasesession->begin_synch(&m_iReturnCode))
-      {
-         return false;
-      }
+      //if(!m_pbasesession->begin_synch(&m_iReturnCode))
+      //{
+      //   return false;
+      //}
 
-      dappy(string(typeid(*this).name()) + " : ::axis::session OK " + ::str::from(m_iReturnCode));
+      //dappy(string(typeid(*this).name()) + " : ::axis::session OK " + ::str::from(m_iReturnCode));
 
 
 

@@ -442,7 +442,7 @@ namespace aura
 
       virtual sp(::aura::application) instantiate_application(const char * pszType,const char * pszId,application_bias * pbias);
       virtual sp(::aura::application) create_application(const char * pszType,const char * pszId,bool bSynch,application_bias * pbias);
-      ::aura::application * create_platform(::aura::session * psession);
+      virtual ::aura::application * create_platform(::aura::session * psession);
       virtual bool start_application(bool bSynch,application_bias * pbias);
 
    };

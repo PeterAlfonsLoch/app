@@ -71,4 +71,12 @@ namespace user
 #include "wndfrm_frame_work_set.h"
 #include "wndfrm_frame_work_set_client_interface.h"
 #include "wndfrm_frame_work_set_listener.h"
+
+
 //#include "wndfrm_frame_up_down_target.h"
+
+
+#include "wndfrm_frame_control_box.h"
+
+
+
