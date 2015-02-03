@@ -33,7 +33,6 @@ namespace axis
       //::sockets::sockets *                                     m_psockets;
       bool                                                     m_bIfs;
       
-      ::aura::str_context *                                   m_puserstrcontext;
 
 
       sp(::fontopus::fontopus)                                 m_pfontopus;
@@ -73,7 +72,6 @@ namespace axis
 
       inline sp(class ::fs::data)               fs()           { return m_spfsdata; }
       //inline ::sockets::sockets &               sockets()      { return *m_psockets; }
-      ::aura::str_context *                        str_context() { return m_puserstrcontext;  }
 
 
       inline sp(::fontopus::fontopus)              fontopus()     { return m_pfontopus; }
@@ -104,7 +102,7 @@ namespace axis
       //virtual void  get_cursor_pos(LPPOINT lppoint);
 
 
-
+      virtual void on_request(sp(::create) pcreate);
       
 
       //virtual string matter_as_string(const char * pszMatter,const char * pszMatter2);

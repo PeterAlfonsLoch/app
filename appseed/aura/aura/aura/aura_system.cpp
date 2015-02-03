@@ -1510,6 +1510,419 @@ namespace aura
 
 
 
+
+
+   sp(::aura::session) system::get_session(index iEdge,application_bias * pbiasCreation)
+   {
+      
+      sp(::aura::session) paurasession = NULL;
+      
+      if(m_paurabergedgemap == NULL)
+         return NULL;
+
+      if(!m_paurabergedgemap->Lookup(iEdge,paurasession))
+      {
+      
+         // todo (camilo) real multiple session native support
+
+         //paurasession = create_application("application","session",true,pbiasCreation);
+
+         paurasession = m_paurasession; // note (camilo) by the time, assigns always the session "0"
+         
+         if(paurasession == NULL)
+            return NULL;
+
+         paurasession->m_iEdge = iEdge;
+
+         m_paurabergedgemap->set_at(iEdge,paurasession);
+
+      }
+
+      return paurasession;
+
+   }
+
+
+   string system::install_get_version()
+   {
+      
+      return "installed";
+
+   }
+
+   string system::install_get_latest_build_number(const char * pszVersion)
+   {
+
+      return "offline";
+
+   }
+
+   int32_t system::install_start(const char * pszCommandLine,const char * pszBuild)
+   {
+      return -1;
+   }
+
+   void system::on_start_find_applications_from_cache()
+   {
+
+   }
+
+   void system::on_end_find_applications_from_cache(::file::byte_input_stream & is)
+   {
+
+   }
+
+   void system::on_end_find_applications_to_cache(::file::byte_output_stream & os)
+   {
+
+   }
+
+   void system::on_map_application_library(::aura::library & library)
+   {
+
+      
+
+   }
+
+
+
+   bool system::install_is(const char * pszVersion,const char * pszBuild,const char * pszType,const char * pszId,const char * pszLocale,const char * pszSchema)
+   {
+      
+      synch_lock sl(m_pmutex);
+
+      string strPath;
+
+      strPath = System.dir().commonappdata("spa_install.xml");
+
+      string strContents;
+
+      strContents = Application.file().as_string(strPath);
+
+      ::xml::document doc(get_app());
+
+      if(strContents.is_empty())
+         return false;
+
+      try
+      {
+
+         if(!doc.load(strContents))
+            return false;
+
+      }
+      catch(...)
+      {
+
+         return false;
+
+      }
+
+      if(doc.get_root() == NULL)
+         return false;
+
+
+      if(string(pszVersion).is_empty())
+      {
+
+         if(install_get_version() == "basis")
+         {
+
+            pszVersion = "basis";
+
+         }
+         else
+         {
+
+            pszVersion = "stage";
+
+         }
+
+      }
+
+      sp(::xml::node) lpnodeVersion = doc.get_root()->get_child(pszVersion);
+
+      if(lpnodeVersion == NULL)
+         return false;
+
+      string strBuildNumber(pszBuild);
+
+      sp(::xml::node) lpnodeInstalled;
+
+      if(strBuildNumber == "latest")
+      {
+
+         strBuildNumber = install_get_latest_build_number(pszVersion);
+
+         lpnodeInstalled = lpnodeVersion->GetChildByAttr("installed","build",strBuildNumber);
+
+      }
+      else if(strBuildNumber == "installed" || strBuildNumber == "static")
+      {
+         for(index i = lpnodeVersion->get_children_count() - 1; i >= 0 ; i--)
+         {
+            if(lpnodeVersion->child_at(i)->get_name() == "installed")
+            {
+               lpnodeInstalled = lpnodeVersion->child_at(i);
+               break;
+            }
+
+         }
+         if(lpnodeInstalled.is_null())
+            return false;
+      }
+      else
+      {
+
+         lpnodeInstalled = lpnodeVersion->GetChildByAttr("installed","build",strBuildNumber);
+
+      }
+
+
+
+      if(lpnodeInstalled == NULL)
+         return false;
+
+      sp(::xml::node) lpnodeType = lpnodeInstalled->get_child(pszType);
+
+      if(lpnodeType == NULL)
+         return false;
+
+      sp(::xml::node) lpnode = lpnodeType->GetChildByAttr(pszType,"id",pszId);
+
+      if(lpnode == NULL)
+         return false;
+
+      stringa straName;
+      stringa straValue;
+
+      straName.add("locale");
+      straValue.add(pszLocale);
+
+
+      straName.add("schema");
+      straValue.add(pszSchema);
+
+      sp(::xml::node) lpnodeLocalization = lpnode->GetChildByAllAttr("localization",straName,straValue);
+
+      if(lpnodeLocalization == NULL)
+         return false;
+
+      return true;
+
+   }
+
+
+   void system::on_request(sp(::create) pcreate)
+   {
+
+      sp(::aura::session) psession = get_session(pcreate->m_spCommandLine->m_iEdge,pcreate->m_spCommandLine->m_pbiasCreate);
+
+      if(psession == NULL)
+      {
+
+         ::simple_message_box(get_splash(),"An error that prevents the application from starting has occurred.\r\n\r\nPlease run app-removal.exe and restart the application, or contact the administrator.","Startup Error",MB_ICONEXCLAMATION);
+
+#ifdef WINDOWSEX
+
+         ::ExitProcess(-17);
+
+#endif
+
+         return;
+
+      }
+
+      psession->request_create(psession);
+
+
+   }
+
+
+   bool system::find_applications_from_cache()
+   {
+
+      on_start_find_applications_from_cache();
+
+      if(directrix()->m_varTopicQuery.has_property("install"))
+         return true;
+
+      ::file::binary_buffer_sp file = Session.m_spfile->get_file(System.dir().appdata("applibcache.bin"),::file::type_binary | ::file::mode_read);
+
+      if(file.is_null())
+         return false;
+
+      ::file::byte_input_stream is(file);
+
+      is >> m_mapAppLibrary;
+
+      on_end_find_applications_from_cache(is);
+
+      return true;
+
+   }
+
+
+
+   bool system::find_applications_to_cache(bool bSave)
+   {
+
+      /*      m_spfilehandler(new ::core::filehandler::handler(this));*/
+
+      m_mapAppLibrary.remove_all();
+
+      string strLibraryId;
+      stringa straTitle;
+
+      Application.dir().ls_pattern(System.dir().ca2module(),"*.*",NULL,& straTitle);
+
+      for(int32_t i = 0; i < straTitle.get_count(); i++)
+      {
+
+         strLibraryId = straTitle[i];
+
+         if(::str::ends_eat_ci(strLibraryId,".dll")
+            || ::str::ends_eat_ci(strLibraryId,".so")
+            || ::str::ends_eat_ci(strLibraryId,".dylib"))
+         {
+
+            if(::str::begins_ci(strLibraryId,"libdraw2d_")
+               || ::str::begins_ci(strLibraryId,"libbase"))
+            {
+               continue;
+            }
+
+            map_application_library(strLibraryId);
+
+         }
+
+      }
+
+      if(!bSave)
+         return true;
+
+      ::file::binary_buffer_sp file;
+
+      try
+      {
+
+         file = Session.file().get_file(System.dir().appdata("applibcache.bin"),::file::defer_create_directory | ::file::type_binary | ::file::mode_create | ::file::mode_write);
+
+      }
+      catch(::exception::base &)
+      {
+
+         return false;
+
+      }
+
+      ::file::byte_output_stream os(file);
+
+      os << m_mapAppLibrary;
+
+      on_end_find_applications_to_cache(os);
+
+      return true;
+
+   }
+
+   bool system::map_application_library(const char * pszLibrary)
+   {
+
+      ::aura::library library(this,0,NULL);
+
+      if(!strcmp(pszLibrary,"app_core_rdpclient"))
+      {
+         TRACE("reach");
+      }
+
+      if(!stricmp_dup(pszLibrary,"app_core_hellomultiverse"))
+      {
+         TRACE("reach app_core_hellomultiverse");
+      }
+
+      if(!stricmp_dup(pszLibrary,"wndfrm_core"))
+      {
+         TRACE("reach wndfrm_core");
+      }
+
+      if(!stricmp_dup(pszLibrary,"app_core_hellomultiverse"))
+      {
+         TRACE("reach app_core_hellomultiverse");
+      }
+
+      if(!library.open(pszLibrary,true))
+         return false;
+
+      if(!library.open_ca2_library())
+         return false;
+
+      on_map_application_library(library);
+
+      stringa stra;
+
+      string strRoot = library.get_root();
+
+      library.get_app_list(stra);
+
+      if(stra.get_count() <= 0)
+         return false;
+
+      strRoot += "/";
+
+      if(stra.get_count() == 1)
+      {
+
+         m_mapAppLibrary.set_at(strRoot + stra[0],pszLibrary);
+
+      }
+
+      string strLibrary(pszLibrary);
+
+#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
+
+      if(strLibrary == "libbase")
+      {
+
+         strLibrary = "base";
+
+      }
+      else if(!::str::begins_eat(strLibrary,"libbase"))
+      {
+
+         ::str::begins_eat(strLibrary,"lib");
+
+      }
+
+#endif
+
+      string strPrefix = strRoot;
+
+      strPrefix.replace("-","_");
+
+      strPrefix.replace("/","_");
+
+      ::str::begins_eat_ci(strLibrary,strPrefix);
+
+      strRoot += strLibrary;
+
+      strRoot += "/";
+
+      for(int32_t i = 0; i < stra.get_count(); i++)
+      {
+
+         m_mapAppLibrary.set_at(strRoot + stra[i],pszLibrary);
+
+      }
+
+      return true;
+
+   }
+
+
+
+
+
 } // namespace aura
 
 

@@ -878,10 +878,6 @@ namespace axis
 
       m_splicensing = new class ::fontopus::licensing(this);
 
-      m_puserstrcontext = canew(::aura::str_context(this));
-
-      if(m_puserstrcontext == NULL)
-         return false;
 
 
 
@@ -1576,7 +1572,12 @@ namespace axis
 
    }
 
+   void session::on_request(sp(::create) pcreate)
+   {
 
+      ::aura::session::on_request(pcreate);
+
+   }
 
 } // namespace axis
 

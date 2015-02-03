@@ -34,7 +34,7 @@ namespace axis
 
       m_pcompress->set_app(this);
 
-      factory().creatable_small < ::file::axis::application >(System.type_info < ::file::application > ());
+      factory().creatable_small < ::file::axis::application >(System.type_info < ::file::application >());
       factory().creatable_small < ::file::dir::axis::application >(System.type_info < ::file::dir::application >());
 
 
@@ -59,7 +59,24 @@ namespace axis
    }
 
 
+   string system::install_get_version()
+   {
 
+      return install().m_strVersion;
+
+   }
+
+   string system::install_get_latest_build_number(const char * pszVersion)
+   {
+
+      return install().get_latest_build_number(pszVersion);
+
+   }
+
+   int32_t system::install_start(const char * pszCommandLine,const char * pszBuild)
+   {
+      return install().start(pszCommandLine,pszBuild);
+   }
 
    bool system::process_initialize()
    {
@@ -572,6 +589,12 @@ namespace axis
 
    }
 
+   void system::on_request(sp(::create) pcreate)
+   {
+
+      ::aura::system::on_request(pcreate);
+
+   }
 
 } // namespace axis
 

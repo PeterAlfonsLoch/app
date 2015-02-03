@@ -1791,6 +1791,13 @@ namespace base
 
    }
 
+   void session::on_request(sp(::create) pcreate)
+   {
+
+      ::axis::session::on_request(pcreate);
+
+   }
+
    string session::get_cred(::aura::application * papp,const string & strRequestUrlParam,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
    {
 

@@ -123,9 +123,6 @@
     <Filter Include="Source Files\net\mail">
       <UniqueIdentifier>{680a0322-4659-4b9e-9c33-fd5c55060730}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\axis\install">
-      <UniqueIdentifier>{90021ec4-d01a-4f04-a062-a622ecf9d870}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\axis\axis">
       <UniqueIdentifier>{5dc0d2bc-fc5d-4202-9b04-2343b93cccb5}</UniqueIdentifier>
     </Filter>
@@ -191,12 +188,6 @@
     </Filter>
     <Filter Include="Source Files\axis\os\windows">
       <UniqueIdentifier>{a9fa6c5c-4118-45a3-a636-0a71e98bcdb4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\install">
-      <UniqueIdentifier>{3199e756-cf18-4f55-8ef4-e1ef783b0fda}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\install\windows">
-      <UniqueIdentifier>{754bf363-6d72-4e59-a58c-2692948bf105}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\axis\axis">
       <UniqueIdentifier>{b15f9423-6971-4587-b04f-ca13192a9bcf}</UniqueIdentifier>
@@ -266,6 +257,15 @@
     </Filter>
     <Filter Include="Header Files\filesystem\filesystem">
       <UniqueIdentifier>{0b44d419-ef63-428c-950e-f55311b76efa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\axis\install">
+      <UniqueIdentifier>{21debc1a-57d6-4c24-92f9-f41fece8972b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\axis\install">
+      <UniqueIdentifier>{af9e0345-4f50-42bc-9e8b-a2a063de8e1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\axis\install\windows">
+      <UniqueIdentifier>{0d79609d-b177-469e-9ba3-1b032743d578}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -586,30 +586,6 @@
     </ClInclude>
     <ClInclude Include="axis\os\os.h">
       <Filter>Header Files\axis\os</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\install\install.h">
-      <Filter>Header Files\axis\install</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\install\install_canvas.h">
-      <Filter>Header Files\axis\install</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\install\install_cube_run.h">
-      <Filter>Header Files\axis\install</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\install\install_focus.h">
-      <Filter>Header Files\axis\install</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\install\install_install.h">
-      <Filter>Header Files\axis\install</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\install\install_installer.h">
-      <Filter>Header Files\axis\install</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\install\install_small_bell.h">
-      <Filter>Header Files\axis\install</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\install\install_trace.h">
-      <Filter>Header Files\axis\install</Filter>
     </ClInclude>
     <ClInclude Include="net\net_ip_enum.h">
       <Filter>Header Files\net</Filter>
@@ -1007,6 +983,36 @@
     <ClInclude Include="axis\node\windows\windows_axis_file_system.h">
       <Filter>Header Files\axis\node\windows</Filter>
     </ClInclude>
+    <ClInclude Include="axis\install\install.h">
+      <Filter>Header Files\axis\install</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\install\install_canvas.h">
+      <Filter>Header Files\axis\install</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\install\install_cube_run.h">
+      <Filter>Header Files\axis\install</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\install\install_focus.h">
+      <Filter>Header Files\axis\install</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\install\install_install.h">
+      <Filter>Header Files\axis\install</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\install\install_installer.h">
+      <Filter>Header Files\axis\install</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\install\install_installer_square.h">
+      <Filter>Header Files\axis\install</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\install\install_resource.h">
+      <Filter>Header Files\axis\install</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\install\install_small_bell.h">
+      <Filter>Header Files\axis\install</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\install\install_trace.h">
+      <Filter>Header Files\axis\install</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="net\net_net.cpp">
@@ -1272,42 +1278,6 @@
     </ClCompile>
     <ClCompile Include="net\mail\mail_simple_pop3.cpp">
       <Filter>Source Files\net\mail</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\windows\install_windows_boot.cpp">
-      <Filter>Source Files\axis\install\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\windows\install_windows_service.cpp">
-      <Filter>Source Files\axis\install\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\windows\install_windows_win.cpp">
-      <Filter>Source Files\axis\install\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_boot.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_bz.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_canvas.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_focus.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_install.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_installer.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_small_bell.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_trace.cpp">
-      <Filter>Source Files\axis\install</Filter>
     </ClCompile>
     <ClCompile Include="net\net_ip_enum.cpp">
       <Filter>Source Files\net</Filter>
@@ -1642,9 +1612,6 @@
     <ClCompile Include="axis\geoip\_geoip.cpp">
       <Filter>Source Files\axis\geoip</Filter>
     </ClCompile>
-    <ClCompile Include="axis\install\_install.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
     <ClCompile Include="axis\os\windows\_windows_os.cpp">
       <Filter>Source Files\axis\os\windows</Filter>
     </ClCompile>
@@ -1705,11 +1672,50 @@
     <ClCompile Include="axis\node\windows\windows_axis_file_system.cpp">
       <Filter>Source Files\axis\node\windows</Filter>
     </ClCompile>
+    <ClCompile Include="axis\install\windows\install_windows_boot.cpp">
+      <Filter>Source Files\axis\install\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\install\windows\install_windows_service.cpp">
+      <Filter>Source Files\axis\install\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\install\windows\install_windows_win.cpp">
+      <Filter>Source Files\axis\install\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\install\_install.cpp">
+      <Filter>Source Files\axis\install</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\install\install.cpp">
+      <Filter>Source Files\axis\install</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\install\install_boot.cpp">
+      <Filter>Source Files\axis\install</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\install\install_bz.cpp">
+      <Filter>Source Files\axis\install</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\install\install_canvas.cpp">
+      <Filter>Source Files\axis\install</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\install\install_focus.cpp">
+      <Filter>Source Files\axis\install</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\install\install_install.cpp">
+      <Filter>Source Files\axis\install</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\install\install_installer.cpp">
+      <Filter>Source Files\axis\install</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\install\install_installer_square.cpp">
+      <Filter>Source Files\axis\install</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\install\install_small_bell.cpp">
+      <Filter>Source Files\axis\install</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\install\install_trace.cpp">
+      <Filter>Source Files\axis\install</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>

@@ -41,7 +41,7 @@ namespace base
 
 
       ::user::interaction *                                   m_puiFocus;
-      map < ::user::e_key,::user::e_key,bool,bool > *         m_pmapKeyPressed;
+      ::map < ::user::e_key,::user::e_key,bool,bool > *         m_pmapKeyPressed;
       ::user::user *                                          m_puser;
 
 
@@ -162,6 +162,7 @@ namespace base
 
       virtual string get_cred(::aura::application * papp,const string & strRequestUrlParam,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive);
 
+      virtual void on_request(sp(::create) pcreate);
 
    };
 

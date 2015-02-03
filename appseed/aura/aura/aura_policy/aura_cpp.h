@@ -89,6 +89,16 @@ namespace aura
 
 } // namespace aura
 
+
+namespace install
+{
+
+   class install;
+
+
+} // namespace install
+
+
 namespace data
 {
 
@@ -905,6 +915,7 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 #include "aura/filesystem/filesystem/filesystem_dir_application.h"
 
 
+#include "aura/primitive/primitive_application_bias.h"
 
 
 #include "aura/aura/aura/aura_application_interface.h"
@@ -923,7 +934,6 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 
 
 
-#include "aura/primitive/primitive_application_bias.h"
 #include "aura/aura/exception/exception_engine.h"
 
 #include "aura/aura/aura/aura_fixed_alloc_impl.h"

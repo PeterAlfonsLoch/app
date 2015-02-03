@@ -103,7 +103,7 @@ namespace core
       bool set_history(::core::history * phistory);
 
 
-      virtual sp(::core::platform)             get_session(index iEdge,application_bias * pbiasCreation = NULL);
+      virtual sp(::core::platform)             get_platform(index iEdge,application_bias * pbiasCreation = NULL);
 
 
       virtual void on_request(sp(::create) pcreatecontext);
@@ -162,9 +162,6 @@ namespace core
 
 
 
-      virtual bool find_applications_from_cache();
-      virtual bool find_applications_to_cache(bool bSave = true);
-      virtual bool map_application_library(const char * pszLibrary);
 
 
       ::aura::document * place_hold(::user::interaction * pui);
@@ -195,6 +192,14 @@ namespace core
       virtual sp(type) get_simple_frame_window_type_info();
       virtual sp(type) get_simple_child_frame_type_info();
 
+      virtual void on_start_find_applications_from_cache() override;
+      virtual void on_end_find_applications_from_cache(::file::byte_input_stream & is) override;
+
+      virtual void on_end_find_applications_to_cache(::file::byte_output_stream & os) override;
+
+      virtual void on_map_application_library(::aura::library & library) override;
+
+      
    };
 
 

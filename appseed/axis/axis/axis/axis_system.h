@@ -61,7 +61,9 @@ namespace axis
       ::net::email_departament               & email();
 
 
-      
+      virtual string install_get_version() override;
+      virtual string install_get_latest_build_number(const char * pszVersion) override;
+      virtual int32_t install_start(const char * pszCommandLine,const char * pszBuild) override;
 
 
       virtual bool process_initialize();
@@ -88,6 +90,8 @@ namespace axis
 
 
       virtual ::aura::session * on_create_session();
+
+      virtual void on_request(sp(::create) pcreate);
 
    };
 

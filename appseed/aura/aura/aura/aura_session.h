@@ -16,7 +16,16 @@ namespace aura
    {
    public:
 
-      
+
+      class CLASS_DECL_AURA map:
+         virtual public ::map < index,index,sp(::aura::session),sp(::aura::session) >
+      {
+
+
+      };
+
+
+      int                                                      m_iEdge;
 
 
       bool                                                     m_bMatterFromHttpCache;
@@ -34,6 +43,14 @@ namespace aura
 
  
 
+      sp(::aura::application)                            m_pappCurrent;
+
+      var                                                m_varTopicFile;
+      var                                                m_varCurrentViewFile;
+      bool                                               m_bShowPlatform;
+
+      ::aura::str_context *                                   m_puserstrcontext;
+
 
 
 
@@ -47,6 +64,7 @@ namespace aura
 
       virtual ::sockets::sockets & sockets() { return *m_psockets;  }; // only usable from base.dll and dependants
 
+      ::aura::str_context *                        str_context() { return m_puserstrcontext; }
 
 
       virtual bool is_session();
@@ -68,6 +86,11 @@ namespace aura
 
       virtual int32_t exit_instance();
 
+
+      virtual bool open_by_file_extension(const char * pszPathName,application_bias * pbiasCreate = NULL);
+      virtual bool open_by_file_extension(::create * pcc);
+
+      sp(::aura::application) get_new_app(sp(::aura::application) pappNewApplicationParent,const char * pszType,const char * pszAppId);
 
       inline ::aura::savings &                  savings()      { return *m_psavings; }
 
@@ -92,6 +115,10 @@ namespace aura
 
       virtual bool is_licensed(const char * pszId,bool bInteractive = true);
 
+
+      virtual void on_request(sp(::create) pcreatecontext);
+
+      sp(::aura::application) application_get(const char * pszType,const char * pszId,bool bCreate,bool bSynch,application_bias * pbiasCreate);
 
    };
 

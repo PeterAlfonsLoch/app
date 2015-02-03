@@ -3502,70 +3502,70 @@ namespace core
 
 
 
-   bool application::start_application(bool bSynch,application_bias * pbias)
-   {
-      /*      try
-      {
-      if(pbias != NULL)
-      {
-      papp->m_pcoreapp->m_puiInitialPlaceHolderContainer = pbias->m_puiParent;
-      }
-      }
-      catch(...)
-      {
-      }*/
-      try
-      {
-         if(pbias != NULL)
-         {
-            if(pbias->m_pcallback != NULL)
-            {
-               pbias->m_pcallback->connect_to(this);
-            }
-         }
-      }
-      catch(...)
-      {
-      }
+   //bool application::start_application(bool bSynch,application_bias * pbias)
+   //{
+   //   /*      try
+   //   {
+   //   if(pbias != NULL)
+   //   {
+   //   papp->m_pcoreapp->m_puiInitialPlaceHolderContainer = pbias->m_puiParent;
+   //   }
+   //   }
+   //   catch(...)
+   //   {
+   //   }*/
+   //   try
+   //   {
+   //      if(pbias != NULL)
+   //      {
+   //         if(pbias->m_pcallback != NULL)
+   //         {
+   //            pbias->m_pcallback->connect_to(this);
+   //         }
+   //      }
+   //   }
+   //   catch(...)
+   //   {
+   //   }
 
-      manual_reset_event * peventReady = NULL;
+   //   manual_reset_event * peventReady = NULL;
 
-      if(bSynch)
-      {
-         peventReady = new manual_reset_event(get_app());
-         m_peventReady = peventReady;
-         peventReady->ResetEvent();
-      }
+   //   if(bSynch)
+   //   {
+   //      peventReady = new manual_reset_event(get_app());
+   //      m_peventReady = peventReady;
+   //      peventReady->ResetEvent();
+   //   }
 
-      m_pthreadimpl.alloc(allocer());
+   //   m_pthreadimpl.alloc(allocer());
 
-      m_pthreadimpl->m_pthread = this;
+   //   m_pthreadimpl->m_pthread = this;
 
-      if(pbias != NULL)
-      {
+   //   if(pbias != NULL)
+   //   {
 
-         m_biasCalling = *pbias;
+   //      m_biasCalling = *pbias;
 
-      }
+   //   }
 
-      if(bSynch)
-      {
+   //   if(bSynch)
+   //   {
 
-         if(!begin_synch(&m_iReturnCode))
-            return false;
+   //      if(!begin_synch(&m_iReturnCode))
+   //         return false;
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         begin();
+   //      begin();
 
-      }
+   //   }
 
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
 
@@ -3968,159 +3968,8 @@ namespace core
 
 
 
-   sp(::aura::application) application::instantiate_application(const char * pszType,const char * pszId,application_bias * pbias)
-   {
-
-      ::aura::application * papp = NULL;
-
-      string strId(pszId);
-
-      if(strId.CompareNoCase("session") == 0)
-      {
-
-         ::core::platform * psession = new ::core::platform(m_pauraapp->m_pbasesession);
-
-         papp = psession;
-
-         psession->construct("session");
-
-         psession->m_strAppId = "session";
-
-      }
-      else
-      {
-
-         string strNewId;
-
-         if(strId == "bergedge")
-         {
-
-            strNewId = "app/core/bergedge";
-
-         }
-         else if(strId == "cube")
-         {
-
-            strNewId = "app/core/cube";
-
-         }
-         else
-         {
-
-            strNewId = strId;
-
-         }
-
-         papp = Platform.get_new_app(this,pszType,strNewId);
-
-         if(papp == NULL)
-            return NULL;
-
-         papp->m_pcoreapp->m_paurasession = m_paurasession;
-
-         papp->m_pcoreapp->m_paxissession = m_paxissession;
-
-         papp->m_pcoreapp->m_pbasesession = m_pbasesession;
-
-         if(papp != NULL)
-         {
-
-            if(strId == "bergedge" || strId == "cube")
-            {
-
-               papp->m_pcoreapp->m_strAppId = strId;
-
-            }
-
-            if(papp->m_pcoreapp->m_strInstallToken.is_empty())
-            {
-
-               papp->m_pcoreapp->m_strInstallToken = papp->m_pcoreapp->m_strAppId;
-
-            }
-
-         }
-
-      }
-
-      papp->m_pcoreapp->m_pcoresystem = m_pcoresystem;
-
-      papp->m_pbasesystem = m_pbasesystem;
-
-      papp->m_pcoreapp->command_central()->consolidate(System.command_central());
-
-      papp->m_pcoreapp->command_central()->consolidate(command_central());
-
-      //   papp->m_pcoreapp->m_bSystemSynchronizedCursor = m_bSystemSynchronizedCursor;
-
-      if(pbias != NULL)
-      {
-
-         papp->m_pcoreapp->propset().merge(pbias->m_set);
-
-      }
-      else
-      {
-
-         papp->m_pcoreapp->oprop("SessionSynchronizedInput") = true;
-         papp->m_pcoreapp->oprop("NativeWindowFocus") = true;
-
-      }
-
-      if((papp == NULL || papp->m_pcoreapp->m_strAppId != strId)
-         &&
-         (!Application.command()->m_varTopicQuery.has_property("install")
-         && !Application.command()->m_varTopicQuery.has_property("uninstall")))
-      {
-
-         TRACE("Failed to instantiate %s, going to try installation through ca2_cube_install",strId);
-
-         string strCommandLine;
-
-         strCommandLine = " : app=" + strId;
-         strCommandLine += " locale=" + string(Session.str_context()->m_plocaleschema->m_idLocale);
-         strCommandLine += " style=" + string(Session.str_context()->m_plocaleschema->m_idSchema);
-         strCommandLine += " install";
-
-         System.install().start(strCommandLine,Application.command()->m_varTopicQuery["build_number"]);
-
-         throw installing_exception(get_app());
-
-         return NULL;
-
-      }
-
-      return papp;
-
-   }
 
 
-   sp(::aura::application) application::create_application(const char * pszType,const char * pszId,bool bSynch,application_bias * pbias)
-   {
-
-      sp(::aura::application) pbaseapp = instantiate_application(pszType,pszId,pbias);
-
-      if(pbaseapp == NULL)
-         return NULL;
-
-      ::aura::application * papp = (pbaseapp);
-
-      if(!papp->m_pcoreapp->start_application(bSynch,pbias))
-      {
-         try
-         {
-            pbaseapp.release();
-         }
-         catch(...)
-         {
-         }
-         return NULL;
-      }
-
-
-      return pbaseapp;
-
-   }
 
 
    ::aura::document * application::place_hold(::user::interaction * pui)
@@ -4323,6 +4172,22 @@ namespace core
 
    }
 
+   bool application::platform_open_by_file_extension(int iEdge,const char * pszPathName,application_bias * pbiasCreate)
+   {
+
+      return System.get_platform(iEdge)->open_by_file_extension(pszPathName,pbiasCreate);
+   }
+
+   bool application::platform_open_by_file_extension(int iEdge,::create * pcc)
+   {
+
+      return System.get_platform(iEdge)->open_by_file_extension(pcc);
+   }
+
+   ::core::platform * application::create_platform(::aura::session * psession)
+   {
+      return new ::core::platform(psession);
+   }
 
 } // namespace core
 

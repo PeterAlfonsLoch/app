@@ -12,9 +12,9 @@
 //#include <ctype.h>
 #endif
 
-//CLASS_DECL_AXIS void NESSIEinit(struct NESSIEstruct * const structpointer);
-//CLASS_DECL_AXIS void NESSIEadd(const uchar * const source, uint_ptr sourceBits, struct NESSIEstruct * const structpointer);
-//CLASS_DECL_AXIS void NESSIEfinalize(struct NESSIEstruct * const structpointer, uchar * const result);
+//CLASS_DECL_AURA void NESSIEinit(struct NESSIEstruct * const structpointer);
+//CLASS_DECL_AURA void NESSIEadd(const uchar * const source, uint_ptr sourceBits, struct NESSIEstruct * const structpointer);
+//CLASS_DECL_AURA void NESSIEfinalize(struct NESSIEstruct * const structpointer, uchar * const result);
 
 
 

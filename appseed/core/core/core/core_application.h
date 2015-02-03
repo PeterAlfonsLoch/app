@@ -35,7 +35,6 @@ namespace core
       class signal                           m_signalAppLanguageChange;
       string                                 m_strHelpFilePath;
 
-      application_bias                       m_biasCalling;
 
 
 #ifdef WINDOWS
@@ -140,7 +139,6 @@ namespace core
 
 
 
-      virtual bool start_application(bool bSynch,application_bias * pbias);
 
 
       //virtual bool update_module_paths();
@@ -495,10 +493,8 @@ namespace core
 
 
 
+      virtual ::core::platform * create_platform(::aura::session * psession);
 
-
-      virtual sp(::aura::application) instantiate_application(const char * pszType,const char * pszId,application_bias * pbias);
-      virtual sp(::aura::application) create_application(const char * pszType,const char * pszId,bool bSynch,application_bias * pbias);
 
 
 
@@ -597,6 +593,10 @@ namespace core
       sp(::aura::document)   create_child_form(::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var = ::var(::var::type_empty_argument));
       sp(::aura::document)   create_child_form(sp(::user::form) pview,::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var = ::var(::var::type_empty_argument));
       ::aura::document * hold(sp(::user::interaction) pui);
+
+      virtual bool platform_open_by_file_extension(int iEdge,const char * pszPathName,application_bias * pbiasCreate = NULL);
+      virtual bool platform_open_by_file_extension(int iEdge,::create * pcc);
+
 
    };
 

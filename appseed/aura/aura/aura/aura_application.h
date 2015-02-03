@@ -81,6 +81,7 @@ namespace aura
 
       ::file::dir::application_sp                     m_spdir;
       ::file::application_sp                          m_spfile;
+      application_bias                       m_biasCalling;
 
 
       application();
@@ -434,6 +435,15 @@ namespace aura
 
       virtual void defer_add_thread_run_wait(sync_object_ptra & soa);
 
+
+      virtual bool platform_open_by_file_extension(int iEdge, const char * pszPathName,application_bias * pbiasCreate = NULL);
+      virtual bool platform_open_by_file_extension(int iEdge,::create * pcc);
+
+
+      virtual sp(::aura::application) instantiate_application(const char * pszType,const char * pszId,application_bias * pbias);
+      virtual sp(::aura::application) create_application(const char * pszType,const char * pszId,bool bSynch,application_bias * pbias);
+      ::aura::application * create_platform(::aura::session * psession);
+      virtual bool start_application(bool bSynch,application_bias * pbias);
 
    };
 

@@ -176,6 +176,9 @@ namespace base
 
       virtual void hist_hist(const char * psz);
 
+
+      virtual void on_request(sp(::create) pcreate);
+
    };
 
 

@@ -24,6 +24,8 @@ namespace aura
    {
    public:
 
+      sp(::aura::session::map)                     m_paurabergedgemap;
+
       sp(class ::datetime::departament)            m_pdatetime;
 
       stridsp(type)                                m_typemap;
@@ -100,6 +102,9 @@ namespace aura
       ::file::dir::system_sp                       m_spdir;
 
 
+
+
+
       system(::aura::application * papp);
       virtual ~system();
 
@@ -146,6 +151,8 @@ namespace aura
       inline ::file::dir::system                   & dir()     { return *m_spdir; }
 
       ::datetime::departament                      & datetime();
+
+
 
       virtual void on_allocation_error(::aura::application * papp,sp(type) & info);
       //   sp(element) alloc(::aura::application * papp, sp(type) info);
@@ -340,12 +347,35 @@ namespace aura
       virtual void * & ftlibrary();
 
 
+      virtual bool find_applications_from_cache();
+      virtual bool find_applications_to_cache(bool bSave = true);
+      virtual bool map_application_library(const char * pszLibrary);
+
+
       virtual void install_progress_add_up(int iAddUp = 1);
 
       virtual bool alloc_session();
 
       virtual ::aura::session * on_create_session();
 
+      
+      virtual sp(::aura::session)             get_session(index iEdge,application_bias * pbiasCreation = NULL);
+
+      
+      virtual void on_request(sp(::create) pcreate);
+
+
+      virtual string install_get_version();
+      virtual bool install_is(const char * pszVersion,const char * pszBuild,const char * pszType,const char * pszId,const char * pszLocale,const char * pszSchema);
+      virtual string install_get_latest_build_number(const char * pszVersion);
+      virtual int32_t install_start(const char * pszCommandLine,const char * pszBuild);
+
+      virtual void on_start_find_applications_from_cache();
+      virtual void on_end_find_applications_from_cache(::file::byte_input_stream & is);
+
+      virtual void on_end_find_applications_to_cache(::file::byte_output_stream & os);
+
+      virtual void on_map_application_library(::aura::library & library);
 
    };
 

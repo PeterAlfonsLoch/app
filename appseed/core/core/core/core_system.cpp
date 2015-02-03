@@ -296,28 +296,6 @@ namespace core
    }
 
 
-   bool system::find_applications_from_cache()
-   {
-
-      m_spfilehandler->m_sptree->remove_all();
-
-      if(directrix()->m_varTopicQuery.has_property("install"))
-         return true;
-
-      ::file::binary_buffer_sp file = Session.m_spfile->get_file(System.dir().appdata("applibcache.bin"),::file::type_binary | ::file::mode_read);
-
-      if(file.is_null())
-         return false;
-
-      ::file::byte_input_stream is(file);
-
-      is >> m_mapAppLibrary;
-
-      is >> *m_spfilehandler.m_p;
-
-      return true;
-
-   }
 
 
    ::filehandler::handler & system::filehandler()
@@ -327,165 +305,33 @@ namespace core
 
    }
 
-
-
-
-   bool system::find_applications_to_cache(bool bSave)
+   void system::on_start_find_applications_from_cache()
    {
 
-      /*      m_spfilehandler(new ::core::filehandler::handler(this));*/
+      m_spfilehandler->m_sptree->remove_all();
 
-      m_mapAppLibrary.remove_all();
+   }
+   
+   void system::on_end_find_applications_from_cache(::file::byte_input_stream & is)
+   {
 
-      string strLibraryId;
-      stringa straTitle;
+      is >> *m_spfilehandler.m_p;
 
-      Application.dir().ls_pattern(System.dir().ca2module(),"*.*",NULL,& straTitle);
+   }
 
-      for(int32_t i = 0; i < straTitle.get_count(); i++)
-      {
-
-         strLibraryId = straTitle[i];
-
-         if(::str::ends_eat_ci(strLibraryId,".dll")
-            || ::str::ends_eat_ci(strLibraryId,".so")
-            || ::str::ends_eat_ci(strLibraryId,".dylib"))
-         {
-
-            if(::str::begins_ci(strLibraryId,"libdraw2d_")
-               || ::str::begins_ci(strLibraryId,"libbase"))
-            {
-               continue;
-            }
-
-            map_application_library(strLibraryId);
-
-         }
-
-      }
-
-      if(!bSave)
-         return true;
-
-      ::file::binary_buffer_sp file;
-
-      try
-      {
-
-         file = Session.file().get_file(System.dir().appdata("applibcache.bin"),::file::defer_create_directory | ::file::type_binary | ::file::mode_create | ::file::mode_write);
-
-      }
-      catch(::exception::base &)
-      {
-
-         return false;
-
-      }
-
-      ::file::byte_output_stream os(file);
-
-      os << m_mapAppLibrary;
+   void system::on_end_find_applications_to_cache(::file::byte_output_stream & os)
+   {
 
       os << *m_spfilehandler.m_p;
 
-      return true;
-
    }
 
-   bool system::map_application_library(const char * pszLibrary)
+   void system::on_map_application_library(::aura::library & library)
    {
-
-      ::aura::library library(this,0, NULL);
-
-      if(!strcmp(pszLibrary,"app_core_rdpclient"))
-      {
-         TRACE("reach");
-      }
-
-      if(!stricmp_dup(pszLibrary,"app_core_hellomultiverse"))
-      {
-         TRACE("reach app_core_hellomultiverse");
-      }
-
-      if(!stricmp_dup(pszLibrary,"wndfrm_core"))
-      {
-         TRACE("reach wndfrm_core");
-      }
-
-      if(!stricmp_dup(pszLibrary,"app_core_hellomultiverse"))
-      {
-         TRACE("reach app_core_hellomultiverse");
-      }
-
-      if(!library.open(pszLibrary,true))
-         return false;
-
-      if(!library.open_ca2_library())
-         return false;
 
       m_spfilehandler->defer_add_library(library.m_pca2library);
 
-      stringa stra;
-
-      string strRoot = library.get_root();
-
-      library.get_app_list(stra);
-
-      if(stra.get_count() <= 0)
-         return false;
-
-      strRoot += "/";
-
-      if(stra.get_count() == 1)
-      {
-
-         m_mapAppLibrary.set_at(strRoot + stra[0],pszLibrary);
-
-      }
-
-      string strLibrary(pszLibrary);
-
-#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
-
-      if(strLibrary == "libbase")
-      {
-
-         strLibrary = "base";
-
-      }
-      else if(!::str::begins_eat(strLibrary,"libbase"))
-      {
-
-         ::str::begins_eat(strLibrary,"lib");
-
-      }
-
-#endif
-
-      string strPrefix = strRoot;
-
-      strPrefix.replace("-","_");
-
-      strPrefix.replace("/","_");
-
-      ::str::begins_eat_ci(strLibrary,strPrefix);
-
-      strRoot += strLibrary;
-
-      strRoot += "/";
-
-      for(int32_t i = 0; i < stra.get_count(); i++)
-      {
-
-         m_mapAppLibrary.set_at(strRoot + stra[i],pszLibrary);
-
-      }
-
-      return true;
-
    }
-
-
 
    bool system::initialize3()
    {
@@ -723,27 +569,13 @@ namespace core
       }
    }
 
-   void system::on_request(sp(::create) pcreatecontext)
+   void system::on_request(sp(::create) pcreate)
    {
 
-      sp(::core::platform) psession = get_session(pcreatecontext->m_spCommandLine->m_iEdge,pcreatecontext->m_spCommandLine->m_pbiasCreate);
+      sp(::core::platform) pplatform = get_platform(pcreate->m_spCommandLine->m_iEdge,pcreate->m_spCommandLine->m_pbiasCreate);
 
-      if(psession == NULL)
-      {
-
-         ::simple_message_box(get_splash(),"An error that prevents the application from starting has occurred.\r\n\r\nPlease run app-removal.exe and restart the application, or contact the administrator.","Startup Error",MB_ICONEXCLAMATION);
-
-#ifdef WINDOWSEX
-
-         ::ExitProcess(-17);
-
-#endif
-
-         return;
-
-      }
-
-      psession->request_create(pcreatecontext);
+      ::base::system::on_request(pcreate);
+ 
 
    }
 

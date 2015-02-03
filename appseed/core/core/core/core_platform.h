@@ -47,13 +47,6 @@ namespace core
 
       index                                              m_iEdge;
 
-      bool                                               m_bShowPlatform;
-
-      sp(::aura::application)                            m_pappCurrent;
-
-      var                                                m_varTopicFile;
-      var                                                m_varCurrentViewFile;
-
       ::filemanager::filemanager *                       m_pfilemanager;
 
       ::user::single_document_template *                 m_ptemplate_bergedge;
