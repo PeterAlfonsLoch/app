@@ -172,6 +172,63 @@ namespace aura
       ::message::dispatch::install_message_handling(pdispatch);
       ::signalizable::install_message_handling(pdispatch);
 
+      IGUI_WIN_MSG_LINK(WM_APP + 2043,pdispatch,this,&application::_001OnApplicationRequest);
+
+
+   }
+
+
+   void application::_001OnApplicationRequest(signal_details * pobj)
+   {
+      SCAST_PTR(::message::base,pbase,pobj);
+      if(pbase->m_wparam == 2)
+      {
+         pobj->m_bRet = true;
+         // when wparam == 2 lparam is a pointer to a ::core::command_fork
+         // that should be treated as command_line on request, i.e.,
+         // a fork whose Forking part has been done, now
+         // the parameters are going to be passed to this new application
+         sp(::create) pcreatecontext(pbase->m_lparam);
+         try
+         {
+
+            pcreatecontext->set_app(this);
+
+            on_request(pcreatecontext);
+
+         }
+         catch(not_installed & e)
+         {
+
+            System.on_run_exception(e);
+
+            throw exit_exception(e.get_app());
+
+         }
+         catch(exit_exception & e)
+         {
+            throw e;
+         }
+         catch(...)
+         {
+         }
+
+         try
+         {
+            pcreatecontext->m_spCommandLine->m_varQuery["document"].unset();
+         }
+         catch(...)
+         {
+         }
+         //sp(::core::platform) pbergedge = pcreatecontext->m_spCommandLine->m_varQuery["bergedge_callback"].cast < ::core::platform >();
+         // todobergedge
+         /*if(pbergedge != NULL)
+         {
+         pbergedge->on_app_request_bergedge_callback(this);
+         }*/
+         pcreatecontext->m_spCommandLine->m_eventReady.SetEvent();
+
+      }
    }
 
 

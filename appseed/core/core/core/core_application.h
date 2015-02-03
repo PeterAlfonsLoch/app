@@ -165,11 +165,6 @@ namespace core
       virtual bool on_run_install();
       virtual bool on_run_uninstall();
 
-      DECL_GEN_SIGNAL(_001OnApplicationRequest);
-
-
-
-
       DECL_GEN_SIGNAL(on_application_signal);
 
 

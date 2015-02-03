@@ -436,6 +436,14 @@ namespace aura
       virtual void defer_add_thread_run_wait(sync_object_ptra & soa);
 
 
+      DECL_GEN_SIGNAL(_001OnApplicationRequest);
+
+
+
+
+
+
+
       virtual bool platform_open_by_file_extension(int iEdge, const char * pszPathName,application_bias * pbiasCreate = NULL);
       virtual bool platform_open_by_file_extension(int iEdge,::create * pcc);
 
