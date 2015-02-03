@@ -42,7 +42,7 @@ public:
       if(m_bAligned)
       {
 #if MEMDLEAK
-         return aligned_memory_alloc_dbg(m_uiAllocSize, 0, "typeid://" + *m_idType.m_pstr, 0);
+         return aligned_memory_alloc_dbg(m_uiAllocSize, 0, "typeid://" + string(m_idType.m_psz), 0);
 #else
          return aligned_memory_alloc(m_uiAllocSize);
 #endif
@@ -50,7 +50,7 @@ public:
       else
       {
 #if MEMDLEAK
-         return memory_alloc_dbg(m_uiAllocSize, 0, "typeid://" + *m_idType.m_pstr, 0);
+         return memory_alloc_dbg(m_uiAllocSize, 0, "typeid://" + string(m_idType.m_psz), 0);
 #else
          return memory_alloc(m_uiAllocSize);
 #endif

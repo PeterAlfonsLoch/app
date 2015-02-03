@@ -448,21 +448,60 @@ namespace dynamic_source
    void script_manager::clear_include_matches()
    {
 
+      try
       {
          single_lock sl(&m_mutexIncludeMatches, TRUE);
-         m_mapIncludeMatchesFileExists.remove_all();
-         m_mapIncludeMatchesIsDir.remove_all();
+         
+         try
+         {
+
+            m_mapIncludeMatchesFileExists.remove_all();
+
+         }
+         catch(...)
+         {
+
+         }
+
+         try
+         {
+
+            m_mapIncludeMatchesIsDir.remove_all();
+
+         }
+         catch(...)
+         {
+
+         }
+
+      }
+      catch(...)
+      {
+
       }
 
+
+      try
       {
          single_lock sl(&m_mutexIncludeHasScript, TRUE);
          m_mapIncludeHasScript.remove_all();
       }
+      catch(...)
+      {
 
+      }
+
+
+      try
       {
          single_lock sl(&m_mutexIncludeExpandMd5, TRUE);
          m_mapIncludeExpandMd5.remove_all();
       }
+      catch(...)
+      {
+
+      }
+
 
    }
 
@@ -556,14 +595,26 @@ namespace dynamic_source
       UNREFERENCED_PARAMETER(filename);
       UNREFERENCED_PARAMETER(eaction);
 
-      m_pmanager->clear_include_matches();
+      // Thank you (casey)!! For tip for ever writing down every todo
+      // todo (camilo) equal file comparison, for clearing include matching only changed files
       try
       {
-         m_pmanager->m_pcompiler->run_persistent();
+         
+         m_pmanager->clear_include_matches();
+
       }
       catch(...)
       {
+
       }
+
+      //try
+      //{
+      //   m_pmanager->m_pcompiler->run_persistent();
+      //}
+      //catch(...)
+      //{
+      //}
 
    }
 
