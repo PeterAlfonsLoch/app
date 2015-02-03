@@ -349,6 +349,10 @@ namespace core
 
 }
 
+typedef ::aura::system * CREATE_SYSTEM();
+typedef CREATE_SYSTEM * LPFN_CREATE_SYSTEM;
+
+CLASS_DECL_AURA extern LPFN_CREATE_SYSTEM g_pfn_create_system;
 
 namespace data
 {

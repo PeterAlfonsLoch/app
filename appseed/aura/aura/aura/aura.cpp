@@ -175,3 +175,9 @@ void set_aura(void * p,::aura::application * papp)
    return g_pmapAura->operator [](p);
 
 }
+
+
+
+
+// note (casey) : according to cmuratori (Casey Muratori) "non initialized" (for "static" variables) is zero initialized
+CLASS_DECL_AURA LPFN_CREATE_SYSTEM g_pfn_create_system;
