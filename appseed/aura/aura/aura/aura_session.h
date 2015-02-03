@@ -95,6 +95,8 @@ namespace aura
       inline ::aura::savings &                  savings()      { return *m_psavings; }
 
 
+
+      using ::aura::application::start_application;
       virtual sp(::aura::application) start_application(const char * pszType,const char * pszAppId,sp(::create) pcreatecontext);
 
       

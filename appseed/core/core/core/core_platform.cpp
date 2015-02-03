@@ -658,63 +658,11 @@ namespace core
    }
 
 
-   sp(::aura::application) platform::start_application(const char * pszType, const char * pszAppId, sp(::create) pcreatecontext)
-   {
-
-      string strApp(pszAppId);
-
-      sp(::aura::application) papp = application_get(pszType, strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate);
-      if(papp == NULL)
-         return NULL;
-
-      if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("install")
-         || pcreatecontext->m_spCommandLine->m_varQuery.has_property("uninstall"))
-      {
-
-         Session.appptra().remove(papp);
-
-         return NULL;
-
-      }
-
-      pcreatecontext->m_spCommandLine->m_eventReady.ResetEvent();
-
-      if(strApp != "session")
-      {
+   //sp(::aura::application) platform::start_application(const char * pszType, const char * pszAppId, sp(::create) pcreatecontext)
+   //{
 
 
-
-         UINT uiMessage = WM_APP + 2043;
-
-         papp->m_pcoreapp->post_thread_message(uiMessage, 2, pcreatecontext);
-
-         while(get_run())
-         {
-
-            if(pcreatecontext->m_spCommandLine->m_eventReady.wait(millis(84)).signaled())
-               break;
-
-         }
-
-         if(!get_run())
-         {
-            try
-            {
-               papp.release();
-            }
-            catch(...)
-            {
-            }
-            return NULL;
-         }
-
-      }
-
-      Session.m_appptra.add(papp);
-
-      return papp;
-
-   }
+   //}
 
 
    /*::sessionsp(::document) platform::get_document()

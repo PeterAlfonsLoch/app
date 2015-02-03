@@ -89,7 +89,58 @@ namespace aura
    sp(::aura::application) session::start_application(const char * pszType,const char * pszAppId,sp(::create) pcreatecontext)
    {
 
-      return m_pplatform->start_application(pszType,pszAppId,pcreatecontext);
+      string strApp(pszAppId);
+
+      sp(::aura::application) papp = application_get(pszType,strApp,true,true,pcreatecontext->m_spCommandLine->m_pbiasCreate);
+      if(papp == NULL)
+         return NULL;
+
+      if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("install")
+         || pcreatecontext->m_spCommandLine->m_varQuery.has_property("uninstall"))
+      {
+
+         Session.appptra().remove(papp);
+
+         return NULL;
+
+      }
+
+      pcreatecontext->m_spCommandLine->m_eventReady.ResetEvent();
+
+      if(strApp != "session")
+      {
+
+
+
+         UINT uiMessage = WM_APP + 2043;
+
+         papp->post_thread_message(uiMessage,2,pcreatecontext);
+
+         while(get_run())
+         {
+
+            if(pcreatecontext->m_spCommandLine->m_eventReady.wait(millis(84)).signaled())
+               break;
+
+         }
+
+         if(!get_run())
+         {
+            try
+            {
+               papp.release();
+            }
+            catch(...)
+            {
+            }
+            return NULL;
+         }
+
+      }
+
+      Session.m_appptra.add(papp);
+
+      return papp;
 
    }
 

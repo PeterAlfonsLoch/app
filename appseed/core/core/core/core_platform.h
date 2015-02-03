@@ -180,8 +180,8 @@ namespace core
 
       virtual bool is_remote_session();
 
-      using ::core::application::start_application;
-      sp(::aura::application) start_application(const char * pszType, const char * pszAppId, sp(::create) pcreatecontext);
+      //using ::core::application::start_application;
+      //sp(::aura::application) start_application(const char * pszType, const char * pszAppId, sp(::create) pcreatecontext);
 
 
       virtual ::visual::cursor * get_cursor();
