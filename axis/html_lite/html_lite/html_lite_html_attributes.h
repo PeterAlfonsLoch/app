@@ -15,7 +15,7 @@ class LiteHTMLAttributes;   // forward declaration
  * @version 1.0 (Mar 18, 2004)
  * @author Gurmeet S. Kochar
  */
-class CLASS_DECL_HTML LiteHTMLElemAttr
+class CLASS_DECL_HTML_LITE LiteHTMLElemAttr
 {
 public:
 

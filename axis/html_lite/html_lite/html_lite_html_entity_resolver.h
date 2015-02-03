@@ -41,7 +41,8 @@
  * @version 1.0 (Mar 17, 2004)
  * @author Gurmeet S. Kochar
  */
-class CLASS_DECL_HTML LiteHTMLEntityResolver
+class CLASS_DECL_HTML_LITE LiteHTMLEntityResolver :
+   virtual public html_entity_solver
 {
 private:
    class CharEntityRefs : public string_map < char, char >
@@ -69,6 +70,6 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   int32_t resolveEntity(const char * lpszEntity, string & strChar);
+   virtual int32_t resolveEntity(const char * lpszEntity, string & strChar);
 
 };

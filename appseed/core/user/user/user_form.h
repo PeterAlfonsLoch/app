@@ -17,7 +17,7 @@ namespace user
       control::descriptor_set    m_controldescriptorset;
       bool                       m_bInitialized;
       form_callback *            m_pcallback;
-
+      string                     m_strPath;
 
       form(::aura::application * papp);
       virtual ~form();

@@ -117,3 +117,20 @@
 //2015-01-05  07:52                 0 _aura.cpp"
 //              77 arquivo(s)        382.228 bytes
 //               0 pasta(s)   36.251.623.424 bytes dispon¡veis
+
+
+
+#include "aura_profiler.cpp"
+
+
+
+
+
+
+
+
+
+
+
+
+

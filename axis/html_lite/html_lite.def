@@ -1,3 +1,4 @@
 LIBRARY      "html"
 
 EXPORTS
+create_html_entity_solver

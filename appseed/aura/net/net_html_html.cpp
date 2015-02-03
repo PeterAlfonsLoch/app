@@ -7,10 +7,11 @@ namespace html
 
    html::html(::aura::application * papp) :
       element(papp),
-      ::aura::departament(papp)
+      ::aura::departament(papp),
+      m_libraryHtmlLite(papp)
    {
 
-      m_pentityresolver = new LiteHTMLEntityResolver(papp);
+      m_pentitysolver = NULL;
 
    }
 
@@ -18,7 +19,7 @@ namespace html
    html::~html()
    {
       
-      ::aura::del(m_pentityresolver);
+      ::aura::del(m_pentitysolver);
 
    }
 
@@ -263,11 +264,32 @@ namespace html
       return str;
    }
 
+   typedef html_entity_solver * CREATE_HTML_ENTITY_SOLVER(::aura::application * papp);
+   typedef CREATE_HTML_ENTITY_SOLVER * LPFN_CREATE_HTML_ENTITY_SOLVER;
 
    int32_t html::resolve_entity(const char * lpszEntity, string & strChar)
    {
 
-      return m_pentityresolver->resolveEntity(lpszEntity, strChar);
+      if(m_pentitysolver == NULL)
+      {
+
+         if(m_libraryHtmlLite.open("html_lite",false))
+         {
+            LPFN_CREATE_HTML_ENTITY_SOLVER pfnCreate= m_libraryHtmlLite.get < LPFN_CREATE_HTML_ENTITY_SOLVER >("create_html_entity_solver");
+
+            if(pfnCreate != NULL)
+            {
+
+               m_pentitysolver = pfnCreate(get_app());
+
+            }
+
+         }
+
+         //new LiteHTMLEntityResolver(papp)
+      }
+
+      return m_pentitysolver->resolveEntity(lpszEntity, strChar);
 
    }
 
@@ -275,18 +297,24 @@ namespace html
    bool html::initialize()
    {
 
-         System.factory().creatable_small < html_document >();
-         System.factory().creatable_small < html_child_frame >();
-         System.factory().creatable_small < html_frame >();
-         System.factory().creatable_small < html_view >();
-         System.factory().creatable_small < ::html::data::image >();
-         System.factory().creatable_small < ::html::data >();
 
       return true;
 
    }
 
+   bool html::tag_visible(e_tag etag)
+   {
 
+      return etag != tag_html
+         && etag != tag_head
+         && etag != tag_tbody
+         && etag != tag_title
+         && etag != tag_meta
+         && etag != tag_link
+         && etag != tag_style
+         && etag != tag_script;
+
+   }
    e_tag html::tag_name_to_id(id idTag)
    {
 
@@ -610,7 +638,7 @@ namespace html
 
       }
 
-      if (elemental::tag_visible(e_tag))
+      if (tag_visible(e_tag))
          return display_inline;
 
       return display_none;
@@ -642,7 +670,7 @@ namespace html
          break;
       }
 
-      if (elemental::tag_visible(etag))
+      if (tag_visible(etag))
          return display_inline;
 
       return display_none;

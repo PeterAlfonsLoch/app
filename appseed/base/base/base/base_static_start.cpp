@@ -34,6 +34,7 @@ namespace base
       CLASS_DECL_BASE void init()
       {
 
+
          ::set_simple_message_box(&::simple_ui_message_box);
 
          xxdebug_box("axis.dll base_static_start (0)", "box", MB_OK);
@@ -149,7 +150,43 @@ namespace base
 
       }
 
+      ::aura::system * aura_create_system()
+      {
+         return new ::base::system(NULL);
+      }
 
+      class static_start
+      {
+      public:
+         static_start()
+         {
+            g_pfn_create_system = aura_create_system;
+            static_start()
+         {
+            if(defer_base_init())
+            {
+               ::output_debug_string("defer_base_init Successful!!");
+            }
+            else
+            {
+               ::output_debug_string("Failed to defer_base_init!!");
+            }
+         }
+         static_start()
+         {
+            if(defer_base_term())
+            {
+               ::output_debug_string("defer_base_term Successful!!");
+            }
+            else
+            {
+               ::output_debug_string("Failed to defer_base_term!!");
+            }
+         }
+      };
+
+
+      static_start g_basestaticstart;
    } // namespace static_start
 
 

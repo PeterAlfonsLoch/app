@@ -1991,6 +1991,15 @@
     <ClInclude Include="primitive\datetime\datetime_departament.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
+    <ClInclude Include="net\net_html_html.h">
+      <Filter>Header Files\net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\net_html_enum.h">
+      <Filter>Header Files\net</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_profiler.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -3321,6 +3330,12 @@
     </ClCompile>
     <ClCompile Include="primitive\datetime\datetime_departament.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
+    </ClCompile>
+    <ClCompile Include="net\net_html_html.cpp">
+      <Filter>Source Files\net</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\aura\aura_profiler.cpp">
+      <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

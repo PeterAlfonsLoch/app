@@ -15,13 +15,13 @@ namespace core
 
 #ifdef WINDOWS
 
-      extern CLASS_DECL_CORE int64_t g_iFrequency;
+      extern CLASS_DECL_AURA int64_t g_iFrequency;
 
 #endif
 
-      CLASS_DECL_CORE void initialize();
+      CLASS_DECL_AURA void initialize();
 
-      CLASS_DECL_CORE int64_t micros();
+      CLASS_DECL_AURA int64_t micros();
 
 
       inline float millis()

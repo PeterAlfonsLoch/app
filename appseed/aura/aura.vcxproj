@@ -1443,6 +1443,7 @@
     <ClInclude Include="aura\aura\aura_platform_interface.h" />
     <ClInclude Include="aura\aura\aura_printer.h" />
     <ClInclude Include="aura\aura\aura_allocate_processor_cache_oriented.h" />
+    <ClInclude Include="aura\aura\aura_profiler.h" />
     <ClInclude Include="aura\aura\aura_progress.h" />
     <ClInclude Include="aura\aura\aura_keep_true.h" />
     <ClInclude Include="aura\aura\aura_launcher.h" />
@@ -2033,6 +2034,10 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura\aura\aura_profiler.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="aura\aura\aura_session_interface.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
@@ -2750,6 +2755,8 @@
     <ClInclude Include="multithreading\service\service_plain_service.h" />
     <ClInclude Include="multithreading\service\service_thread_pool.h" />
     <ClInclude Include="net\net.h" />
+    <ClInclude Include="net\net_html_enum.h" />
+    <ClInclude Include="net\net_html_html.h" />
     <ClInclude Include="net\net_url.h" />
     <ClInclude Include="primitive\api\api.h" />
     <ClInclude Include="primitive\api\api_rotate.h" />
@@ -3605,6 +3612,7 @@
     <ClCompile Include="graphics\visual\visual_icon.cpp" />
     <ClCompile Include="multithreading\service\service_plain_service.cpp" />
     <ClCompile Include="multithreading\_multithreading.cpp" />
+    <ClCompile Include="net\net_html_html.cpp" />
     <ClCompile Include="net\net_url.cpp" />
     <None Include="primitive\collection\collection_array_base.inl">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>

@@ -1,10 +1,14 @@
 #pragma once
 
 
-class form_view;
-class form_document;
+//class form_view;
+//class form_document;
 
+namespace html
+{
+   class data;
 
+}
 namespace user
 {
 
@@ -18,8 +22,8 @@ namespace user
    public:
 
 
-      strsp(::form_document)		                        m_mapdoc;
-      strsp(::form_view)		                        	m_mapview;
+      strsp(::aura::document)		                        m_mapdoc;
+      strsp(::user::form)		                        	m_mapview;
 
 
       form_callback();

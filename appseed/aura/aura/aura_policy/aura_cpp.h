@@ -1256,6 +1256,9 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 #include "aura/aura/aura/aura_simple_app.h"
 
 
+#include "aura/aura/aura/aura_profiler.h"
+
+
 
 
 

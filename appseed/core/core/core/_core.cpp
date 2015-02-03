@@ -20,7 +20,7 @@
 #include "core_os_history.cpp"
 #include "core_patch.cpp"
 #include "core_platform.cpp"
-#include "core_profiler.cpp"
+//#include "core_profiler.cpp"
 #include "core_simple_app.cpp"
 #include "core_strn.cpp"
 #include "core_str_format.cpp"
@@ -30,3 +30,9 @@
 #include "core_timer_listener.cpp"
 //19 arquivo(s)        191.595 bytes
 //0 pasta(s)   65.238.601.728 bytes dispon¡veis
+
+
+#include "core_static_start.cpp"
+
+
+

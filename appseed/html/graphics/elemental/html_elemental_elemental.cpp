@@ -91,7 +91,7 @@ namespace html
       else
       {
 
-         m_bTagVisible = tag_visible(m_etag);
+         m_bTagVisible = ::html::html::tag_visible(m_etag);
 
       }
 
@@ -1391,19 +1391,7 @@ namespace html
 
 
 
-   bool elemental::tag_visible(e_tag etag)
-   {
 
-      return etag != tag_html
-         && etag != tag_head
-         && etag != tag_tbody
-         && etag != tag_title
-         && etag != tag_meta
-         && etag != tag_link
-         && etag != tag_style
-         && etag != tag_script;
-
-   }
 
    bool elemental::get_color(COLORREF & cr,::user::e_color ecolor)
    {

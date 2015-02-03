@@ -25,7 +25,7 @@ namespace core
 
 
 #ifdef WINDOWS
-         if(!QueryPerformanceFrequency((LARGE_INTEGER *) &g_iFrequency))
+         if(!QueryPerformanceFrequency((LARGE_INTEGER *)&g_iFrequency))
          {
             g_iFrequency = 0;
          }
@@ -35,12 +35,12 @@ namespace core
       }
 
 
-      CLASS_DECL_CORE int64_t micros()
+      CLASS_DECL_AURA int64_t micros()
       {
 #ifdef WINDOWSEX
          int64_t iCount;
          if(g_iFrequency
-         && QueryPerformanceCounter((LARGE_INTEGER *) &iCount))
+            && QueryPerformanceCounter((LARGE_INTEGER *)&iCount))
          {
             return iCount * 1000 * 1000 / g_iFrequency;
          }
@@ -51,7 +51,7 @@ namespace core
 #elif defined(METROWIN)
          int64_t iCount;
          if(g_iFrequency
-         && QueryPerformanceCounter((LARGE_INTEGER *) &iCount))
+            && QueryPerformanceCounter((LARGE_INTEGER *)&iCount))
          {
             return iCount * 1000 * 1000 / g_iFrequency;
          }
@@ -61,7 +61,7 @@ namespace core
          }
 #else
          timeval t;
-         gettimeofday(&t, NULL);
+         gettimeofday(&t,NULL);
          return t.tv_sec * 1000 * 1000 + t.tv_usec;
 #endif
 

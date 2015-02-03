@@ -749,9 +749,6 @@
     <ClInclude Include="core\core\core_process_data.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
-    <ClInclude Include="core\core\core_profiler.h">
-      <Filter>Header Files\core\core</Filter>
-    </ClInclude>
     <ClInclude Include="core\core\core_progress_interface.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
@@ -1483,9 +1480,6 @@
     <ClCompile Include="core\core\core_platform.cpp">
       <Filter>Source Files\core\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\core\core_profiler.cpp">
-      <Filter>Source Files\core\core</Filter>
-    </ClCompile>
     <ClCompile Include="core\core\core_simple_app.cpp">
       <Filter>Source Files\core\core</Filter>
     </ClCompile>
@@ -1524,6 +1518,9 @@
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_form.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_static_start.cpp">
+      <Filter>Source Files\core\core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

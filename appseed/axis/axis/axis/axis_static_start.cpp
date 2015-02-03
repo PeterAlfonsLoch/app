@@ -14,7 +14,7 @@ namespace axis
       
       CLASS_DECL_AXIS void init()
       {
-   
+
          xxdebug_box("axis.dll axis_static_start (0)", "box", MB_OK);
          
    
@@ -86,9 +86,45 @@ namespace axis
    
 #endif
    
-         
+    
       }
 
+
+      ::aura::system * aura_create_system()
+      {
+         return new ::axis::system(NULL);
+      }
+
+      class static_start
+      {
+      public:
+         static_start()
+         {
+            g_pfn_create_system = aura_create_system;
+            if(defer_axis_init())
+            {
+               ::output_debug_string("defer_axis_init Successful!!");
+            }
+            else
+            {
+               ::output_debug_string("Failed to defer_axis_init!!");
+            }
+         }
+         ~static_start()
+         {
+            if(defer_axis_term())
+            {
+               ::output_debug_string("defer_axis_term Successful!!");
+            }
+            else
+            {
+               ::output_debug_string("Failed to defer_axis_term!!");
+            }
+         }
+      };
+
+
+      static_start g_axisstaticstart;
 
    } // namespace static_start
 

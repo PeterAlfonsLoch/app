@@ -648,7 +648,7 @@ namespace user
 
 
 
-#include "core_profiler.h"
+//#include "core_profiler.h"
 #include "core_history.h"
 
 

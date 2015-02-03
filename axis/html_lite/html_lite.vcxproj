@@ -62,7 +62,7 @@
     <ProjectGuid>{6C7004D3-FF6C-4872-8DDC-5D7F44B0BC57}</ProjectGuid>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
-    <RootNamespace>html</RootNamespace>
+    <RootNamespace>html_lite</RootNamespace>
     <VCTargetsPath Condition="'$(VCTargetsPath11)' != '' and '$(VSVersion)' == '' and $(VisualStudioVersion) == ''">$(VCTargetsPath11)</VCTargetsPath>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -386,7 +386,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_CA2_HTML_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CA2_HTML_LITE_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(ProjectDir)framework;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/base/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
@@ -444,7 +444,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_CA2_HTML_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CA2_HTML_LITE_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(ProjectDir)framework;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/base/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
@@ -502,7 +502,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_CA2_HTML_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CA2_HTML_LITE_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(ProjectDir)framework;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/base/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
@@ -560,7 +560,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_CA2_HTML_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CA2_HTML_LITE_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(ProjectDir)framework;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/base/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
@@ -623,7 +623,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>MEMDLEAK;_CA2_HTML_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MEMDLEAK;_CA2_HTML_LITE_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(ProjectDir)framework;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/base/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
@@ -675,7 +675,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_CA2_HTML_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CA2_HTML_LITE_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(ProjectDir)framework;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/base/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
@@ -725,7 +725,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_CA2_HTML_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CA2_HTML_LITE_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(ProjectDir)framework;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/base/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
@@ -784,7 +784,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_CA2_HTML_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CA2_HTML_LITE_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(ProjectDir)framework;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/base/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -850,7 +850,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_CA2_HTML_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CA2_HTML_LITE_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(ProjectDir)framework;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/base/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -916,7 +916,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_CA2_HTML_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CA2_HTML_LITE_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(ProjectDir)framework;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/base/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -982,7 +982,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_CA2_HTML_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CA2_HTML_LITE_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(ProjectDir)framework;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/base/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -1053,7 +1053,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>MEMDLEAK;_CA2_HTML_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MEMDLEAK;_CA2_HTML_LITE_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(ProjectDir)framework;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/base/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -1113,7 +1113,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_CA2_HTML_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CA2_HTML_LITE_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(ProjectDir)framework;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/base/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -1172,7 +1172,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_CA2_HTML_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CA2_HTML_LITE_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(ProjectDir)framework;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/base/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -1230,56 +1230,6 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="graphics\elemental\html_elemental.h" />
-    <ClInclude Include="graphics\elemental\html_elemental_cell.h" />
-    <ClInclude Include="graphics\elemental\html_elemental_elemental.h" />
-    <ClInclude Include="graphics\elemental\html_elemental_form.h" />
-    <ClInclude Include="graphics\elemental\html_elemental_image.h" />
-    <ClInclude Include="graphics\elemental\html_elemental_input_button.h" />
-    <ClInclude Include="graphics\elemental\html_elemental_input_checkbox.h" />
-    <ClInclude Include="graphics\elemental\html_elemental_input_text.h" />
-    <ClInclude Include="graphics\elemental\html_elemental_select.h" />
-    <ClInclude Include="graphics\elemental\html_elemental_table.h" />
-    <ClInclude Include="graphics\elemental\html_elemental_table_elemental.h" />
-    <ClInclude Include="graphics\elemental\html_elemental_table_row.h" />
-    <ClInclude Include="graphics\elemental\html_elemental_text.h" />
-    <ClInclude Include="graphics\html.h" />
-    <ClInclude Include="graphics\html2.h" />
-    <ClInclude Include="graphics\html_attribute.h" />
-    <ClInclude Include="graphics\html_base.h" />
-    <ClInclude Include="graphics\html_border.h" />
-    <ClInclude Include="graphics\html_box.h" />
-    <ClInclude Include="graphics\html_data.h" />
-    <ClInclude Include="graphics\html_enum.h" />
-    <ClInclude Include="graphics\html_ex.h" />
-    <ClInclude Include="graphics\html_font.h" />
-    <ClInclude Include="graphics\html_form.h" />
-    <ClInclude Include="graphics\html_html.h" />
-    <ClInclude Include="graphics\html_html2.h" />
-    <ClInclude Include="graphics\html_point.h" />
-    <ClInclude Include="graphics\html_reader.h" />
-    <ClInclude Include="graphics\html_signal.h" />
-    <ClInclude Include="graphics\html_size.h" />
-    <ClInclude Include="graphics\html_style.h" />
-    <ClInclude Include="graphics\html_style_sheet.h" />
-    <ClInclude Include="graphics\html_style_sheet_array.h" />
-    <ClInclude Include="graphics\html_tag.h" />
-    <ClInclude Include="graphics\html_value.h" />
-    <ClInclude Include="graphics\impl\html_impl.h" />
-    <ClInclude Include="graphics\impl\html_impl_cell.h" />
-    <ClInclude Include="graphics\impl\html_impl_elemental.h" />
-    <ClInclude Include="graphics\impl\html_impl_form.h" />
-    <ClInclude Include="graphics\impl\html_impl_image.h" />
-    <ClInclude Include="graphics\impl\html_impl_input_button.h" />
-    <ClInclude Include="graphics\impl\html_impl_input_checkbox.h" />
-    <ClInclude Include="graphics\impl\html_impl_input_text.h" />
-    <ClInclude Include="graphics\impl\html_impl_select.h" />
-    <ClInclude Include="graphics\impl\html_impl_table.h" />
-    <ClInclude Include="graphics\impl\html_impl_table_elemental.h" />
-    <ClInclude Include="graphics\impl\html_impl_table_row.h" />
-    <ClInclude Include="graphics\impl\html_impl_text.h" />
-    <ClInclude Include="hi5\hi5_twitter_authorization.h" />
-    <ClInclude Include="html\html.h" />
     <ClInclude Include="html_application_interface.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="html_lite\html_lite.h" />
@@ -1288,14 +1238,6 @@
     <ClInclude Include="html_lite\html_lite_html_entity_resolver.h" />
     <ClInclude Include="html_lite\html_lite_html_reader.h" />
     <ClInclude Include="html_lite\html_lite_html_tag.h" />
-    <ClInclude Include="userhtml\userhtml.h" />
-    <ClInclude Include="userhtml\userhtml_child_frame.h" />
-    <ClInclude Include="userhtml\userhtml_document.h" />
-    <ClInclude Include="userhtml\userhtml_form.h" />
-    <ClInclude Include="userhtml\userhtml_form_view.h" />
-    <ClInclude Include="userhtml\userhtml_frame.h" />
-    <ClInclude Include="userhtml\userhtml_view.h" />
-    <ClInclude Include="userhtml\userhtml_view_update_hint.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -1314,74 +1256,18 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="graphics\elemental\html_elemental_cell.cpp" />
-    <ClCompile Include="graphics\elemental\html_elemental_elemental.cpp" />
-    <ClCompile Include="graphics\elemental\html_elemental_form.cpp" />
-    <ClCompile Include="graphics\elemental\html_elemental_image.cpp" />
-    <ClCompile Include="graphics\elemental\html_elemental_input_button.cpp" />
-    <ClCompile Include="graphics\elemental\html_elemental_input_checkbox.cpp" />
-    <ClCompile Include="graphics\elemental\html_elemental_input_text.cpp" />
-    <ClCompile Include="graphics\elemental\html_elemental_select.cpp" />
-    <ClCompile Include="graphics\elemental\html_elemental_table.cpp" />
-    <ClCompile Include="graphics\elemental\html_elemental_table_elemental.cpp" />
-    <ClCompile Include="graphics\elemental\html_elemental_table_row.cpp" />
-    <ClCompile Include="graphics\elemental\html_elemental_text.cpp" />
-    <ClCompile Include="graphics\html_attribute.cpp" />
-    <ClCompile Include="graphics\html_base.cpp" />
-    <ClCompile Include="graphics\html_data.cpp" />
-    <ClCompile Include="graphics\html_font.cpp" />
-    <ClCompile Include="graphics\html_form.cpp" />
-    <ClCompile Include="graphics\html_html.cpp" />
-    <ClCompile Include="graphics\html_reader.cpp" />
-    <ClCompile Include="graphics\html_signal.cpp" />
-    <ClCompile Include="graphics\html_style.cpp" />
-    <ClCompile Include="graphics\html_style_sheet.cpp" />
-    <ClCompile Include="graphics\html_style_sheet_array.cpp" />
-    <ClCompile Include="graphics\html_tag.cpp" />
-    <ClCompile Include="graphics\html_value.cpp" />
-    <ClCompile Include="graphics\impl\html_impl.cpp" />
-    <ClCompile Include="graphics\impl\html_impl_cell.cpp" />
-    <ClCompile Include="graphics\impl\html_impl_elemental.cpp" />
-    <ClCompile Include="graphics\impl\html_impl_form.cpp" />
-    <ClCompile Include="graphics\impl\html_impl_image.cpp" />
-    <ClCompile Include="graphics\impl\html_impl_input_button.cpp" />
-    <ClCompile Include="graphics\impl\html_impl_input_checkbox.cpp" />
-    <ClCompile Include="graphics\impl\html_impl_input_text.cpp" />
-    <ClCompile Include="graphics\impl\html_impl_select.cpp" />
-    <ClCompile Include="graphics\impl\html_impl_table.cpp" />
-    <ClCompile Include="graphics\impl\html_impl_table_elemental.cpp" />
-    <ClCompile Include="graphics\impl\html_impl_table_row.cpp" />
-    <ClCompile Include="graphics\impl\html_impl_text.cpp" />
-    <ClCompile Include="hi5\hi5_twitter_authorization.cpp" />
-    <ClCompile Include="html_application_interface.cpp" />
     <ClCompile Include="html_lite\html_lite_html_attributes.cpp" />
     <ClCompile Include="html_lite\html_lite_html_entity_resolver.cpp" />
     <ClCompile Include="html_lite\html_lite_html_reader.cpp" />
     <ClCompile Include="html_lite\html_lite_html_tag.cpp" />
-    <ClCompile Include="userhtml\userhtml_child_frame.cpp" />
-    <ClCompile Include="userhtml\userhtml_document.cpp" />
-    <ClCompile Include="userhtml\userhtml_form.cpp" />
-    <ClCompile Include="userhtml\userhtml_form_view.cpp" />
-    <ClCompile Include="userhtml\userhtml_frame.cpp" />
-    <ClCompile Include="userhtml\userhtml_view.cpp" />
-    <ClCompile Include="userhtml\userhtml_view_update_hint.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\aura\aura.vcxproj">
+    <None Include="html_lite.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\appseed\aura\aura.vcxproj">
       <Project>{03e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\axis\axis.vcxproj">
-      <Project>{73a245f9-c92f-4487-aef7-cb0531f665bd}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\base\base.vcxproj">
-      <Project>{4d7d3626-ada6-4ca2-9566-ed7b131e3d51}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\core\core.vcxproj">
-      <Project>{e000ffaf-392f-4e32-bf51-fd7ed638991f}</Project>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="html.def" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

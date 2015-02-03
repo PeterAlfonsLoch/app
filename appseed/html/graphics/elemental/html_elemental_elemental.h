@@ -65,7 +65,6 @@ namespace html
       virtual bool get_color(COLORREF & cr, ::user::e_color ecolor);
       virtual bool get_font(::draw2d::font_sp & spfont);
 
-      static bool tag_visible(e_tag etag);
 
       void initialize();
 

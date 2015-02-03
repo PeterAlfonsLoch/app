@@ -30,12 +30,6 @@
     <Filter Include="Source Files\hi5">
       <UniqueIdentifier>{6a0a02d3-cd70-48a5-9c3f-9b75d8b2058b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\html_lite">
-      <UniqueIdentifier>{eb4027ab-ca86-456e-82a7-e07fe267b08c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\html_lite">
-      <UniqueIdentifier>{9abcf5b0-8aed-48f4-9b26-d9bdb3c85805}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\graphics\impl">
       <UniqueIdentifier>{88c6dc12-66ea-40dc-9621-32b5ece807fd}</UniqueIdentifier>
     </Filter>
@@ -145,24 +139,6 @@
     </ClInclude>
     <ClInclude Include="hi5\hi5_twitter_authorization.h">
       <Filter>Header Files\hi5</Filter>
-    </ClInclude>
-    <ClInclude Include="html_lite\html_lite.h">
-      <Filter>Header Files\html_lite</Filter>
-    </ClInclude>
-    <ClInclude Include="html_lite\html_lite_html_attributes.h">
-      <Filter>Header Files\html_lite</Filter>
-    </ClInclude>
-    <ClInclude Include="html_lite\html_lite_html_common.h">
-      <Filter>Header Files\html_lite</Filter>
-    </ClInclude>
-    <ClInclude Include="html_lite\html_lite_html_entity_resolver.h">
-      <Filter>Header Files\html_lite</Filter>
-    </ClInclude>
-    <ClInclude Include="html_lite\html_lite_html_reader.h">
-      <Filter>Header Files\html_lite</Filter>
-    </ClInclude>
-    <ClInclude Include="html_lite\html_lite_html_tag.h">
-      <Filter>Header Files\html_lite</Filter>
     </ClInclude>
     <ClInclude Include="graphics\impl\html_impl.h">
       <Filter>Header Files\graphics\impl</Filter>
@@ -316,18 +292,6 @@
     <ClCompile Include="hi5\hi5_twitter_authorization.cpp">
       <Filter>Source Files\hi5</Filter>
     </ClCompile>
-    <ClCompile Include="html_lite\html_lite_html_attributes.cpp">
-      <Filter>Source Files\html_lite</Filter>
-    </ClCompile>
-    <ClCompile Include="html_lite\html_lite_html_entity_resolver.cpp">
-      <Filter>Source Files\html_lite</Filter>
-    </ClCompile>
-    <ClCompile Include="html_lite\html_lite_html_reader.cpp">
-      <Filter>Source Files\html_lite</Filter>
-    </ClCompile>
-    <ClCompile Include="html_lite\html_lite_html_tag.cpp">
-      <Filter>Source Files\html_lite</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\impl\html_impl_cell.cpp">
       <Filter>Source Files\graphics\impl</Filter>
     </ClCompile>
@@ -414,9 +378,6 @@
     </ClCompile>
     <ClCompile Include="graphics\_graphics.cpp">
       <Filter>Source Files\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="html_lite\_html_lite.cpp">
-      <Filter>Source Files\html_lite</Filter>
     </ClCompile>
     <ClCompile Include="userhtml\_userhtml.cpp">
       <Filter>Source Files\userhtml</Filter>
