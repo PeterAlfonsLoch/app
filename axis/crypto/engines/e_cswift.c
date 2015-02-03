@@ -228,7 +228,7 @@ static const char *engine_cswift_name = "CryptoSwift hardware engine support";
 
 /* This internal function is used by ENGINE_cswift() and possibly by the
  * "dynamic" ENGINE support too */
-static int bind_helper(ENGINE *e)
+static int cswift_bind_helper(ENGINE *e)
 	{
 #ifndef OPENSSL_NO_RSA
 	const RSA_METHOD *meth1;
@@ -288,7 +288,7 @@ static ENGINE *engine_cswift(void)
 	ENGINE *ret = ENGINE_new();
 	if(!ret)
 		return NULL;
-	if(!bind_helper(ret))
+	if(!cswift_bind_helper(ret))
 		{
 		ENGINE_free(ret);
 		return NULL;
@@ -352,7 +352,7 @@ static const char *CSWIFT_F4 = "swReleaseAccContext";
  * called, the checking and error handling is probably down there. */
 
 /* utility function to obtain a context */
-static int get_context(SW_CONTEXT_HANDLE *hac)
+static int cswift_get_context(SW_CONTEXT_HANDLE *hac)
 	{
         SW_STATUS status;
  
@@ -363,7 +363,7 @@ static int get_context(SW_CONTEXT_HANDLE *hac)
 	}
  
 /* similarly to release one. */
-static void release_context(SW_CONTEXT_HANDLE hac)
+static void cswift_release_context(SW_CONTEXT_HANDLE hac)
 	{
         p_CSwift_ReleaseAccContext(hac);
 	}
@@ -416,12 +416,12 @@ static int cswift_init(ENGINE *e)
 	p_CSwift_ReleaseAccContext = p4;
 	/* Try and get a context - if not, we may have a DSO but no
 	 * accelerator! */
-	if(!get_context(&hac))
+	if(!cswift_get_context(&hac))
 		{
 		CSWIFTerr(CSWIFT_F_CSWIFT_INIT,CSWIFT_R_UNIT_FAILURE);
 		goto err;
 		}
-	release_context(hac);
+   cswift_release_context(hac);
 	/* Everything's fine. */
 	return 1;
 err:
@@ -505,7 +505,7 @@ static int cswift_mod_exp(BIGNUM *r, const BIGNUM *a, const BIGNUM *p,
 	to_return = 0; /* expect failure */
 	acquired = 0;
  
-	if(!get_context(&hac))
+   if(!cswift_get_context(&hac))
 		{
 		CSWIFTerr(CSWIFT_F_CSWIFT_MOD_EXP,CSWIFT_R_UNIT_FAILURE);
 		goto err;
@@ -574,7 +574,7 @@ static int cswift_mod_exp(BIGNUM *r, const BIGNUM *a, const BIGNUM *p,
 	to_return = 1;
 err:
 	if(acquired)
-		release_context(hac);
+      cswift_release_context(hac);
 	BN_CTX_end(ctx);
 	return to_return;
 	}
@@ -625,7 +625,7 @@ static int cswift_mod_exp_crt(BIGNUM *r, const BIGNUM *a, const BIGNUM *p,
 	sw_param.up.crt.dmq1.value = NULL;
 	sw_param.up.crt.iqmp.value = NULL;
  
-	if(!get_context(&hac))
+   if(!cswift_get_context(&hac))
 		{
 		CSWIFTerr(CSWIFT_F_CSWIFT_MOD_EXP_CRT,CSWIFT_R_UNIT_FAILURE);
 		goto err;
@@ -733,7 +733,7 @@ err:
 	if(argument)
 		BN_free(argument);
 	if(acquired)
-		release_context(hac);
+      cswift_release_context(hac);
 	return to_return;
 	}
 #endif
@@ -822,7 +822,7 @@ static DSA_SIG *cswift_dsa_sign(const unsigned char *dgst, int dlen, DSA *dsa)
 
 	if((ctx = BN_CTX_new()) == NULL)
 		goto err;
-	if(!get_context(&hac))
+   if(!cswift_get_context(&hac))
 		{
 		CSWIFTerr(CSWIFT_F_CSWIFT_DSA_SIGN,CSWIFT_R_UNIT_FAILURE);
 		goto err;
@@ -905,7 +905,7 @@ static DSA_SIG *cswift_dsa_sign(const unsigned char *dgst, int dlen, DSA *dsa)
 
 err:
 	if(acquired)
-		release_context(hac);
+      cswift_release_context(hac);
 	if(ctx)
 		{
 		BN_CTX_end(ctx);
@@ -933,7 +933,7 @@ static int cswift_dsa_verify(const unsigned char *dgst, int dgst_len,
 
 	if((ctx = BN_CTX_new()) == NULL)
 		goto err;
-	if(!get_context(&hac))
+   if(!cswift_get_context(&hac))
 		{
 		CSWIFTerr(CSWIFT_F_CSWIFT_DSA_VERIFY,CSWIFT_R_UNIT_FAILURE);
 		goto err;
@@ -1017,7 +1017,7 @@ static int cswift_dsa_verify(const unsigned char *dgst, int dgst_len,
 
 err:
 	if(acquired)
-		release_context(hac);
+      cswift_release_context(hac);
 	if(ctx)
 		{
 		BN_CTX_end(ctx);
@@ -1048,7 +1048,7 @@ static int cswift_rand_bytes(unsigned char *buf, int num)
 	unsigned char buf32[1024];
 
 
-	if (!get_context(&hac))
+   if(!cswift_get_context(&hac))
 	{
 		CSWIFTerr(CSWIFT_F_CSWIFT_RAND_BYTES, CSWIFT_R_UNIT_FAILURE);
 		goto err;
@@ -1099,7 +1099,7 @@ static int cswift_rand_bytes(unsigned char *buf, int num)
 	to_return = 1;  /* success */
 err:
 	if (acquired)
-		release_context(hac);
+      cswift_release_context(hac);
 
 	return to_return;
 }
@@ -1117,7 +1117,7 @@ static int bind_fn(ENGINE *e, const char *id)
 	{
 	if(id && (strcmp(id, engine_cswift_id) != 0))
 		return 0;
-	if(!bind_helper(e))
+	if(!cswift_bind_helper(e))
 		return 0;
 	return 1;
 	}       

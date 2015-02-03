@@ -61,7 +61,10 @@
 #include <openssl/bn.h>
 #include <openssl/dh.h>
 
+#ifndef DUMMY
+#define DUMMY
 static void *dummy=&dummy;
+#endif
 
 #ifndef OPENSSL_NO_DEPRECATED
 DH *DH_generate_parameters(int prime_len, int generator,

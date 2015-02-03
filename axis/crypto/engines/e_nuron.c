@@ -325,7 +325,7 @@ static const char *engine_nuron_name = "Nuron hardware engine support";
 
 /* This internal function is used by ENGINE_nuron() and possibly by the
  * "dynamic" ENGINE support too */
-static int bind_helper(ENGINE *e)
+static int nuron_bind_helper(ENGINE *e)
 	{
 #ifndef OPENSSL_NO_RSA
 	const RSA_METHOD *meth1;
@@ -396,7 +396,7 @@ static ENGINE *engine_nuron(void)
 	ENGINE *ret = ENGINE_new();
 	if(!ret)
 		return NULL;
-	if(!bind_helper(ret))
+	if(!nuron_bind_helper(ret))
 		{
 		ENGINE_free(ret);
 		return NULL;
@@ -422,7 +422,7 @@ static int bind_fn(ENGINE *e, const char *id)
 	{
 	if(id && (strcmp(id, engine_nuron_id) != 0))
 		return 0;
-	if(!bind_helper(e))
+	if(!nuron_bind_helper(e))
 		return 0;
 	return 1;
 	}       

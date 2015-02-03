@@ -171,7 +171,7 @@ static void int_rsa_free(EVP_PKEY *pkey)
 	}
 
 
-static void update_buflen(const BIGNUM *b, size_t *pbuflen)
+static void rsa_update_buflen(const BIGNUM *b, size_t *pbuflen)
 	{
 	size_t i;
 	if (!b)
@@ -188,17 +188,17 @@ static int do_rsa_print(BIO *bp, const RSA *x, int off, int priv)
 	int ret=0, mod_len = 0;
 	size_t buf_len=0;
 
-	update_buflen(x->n, &buf_len);
-	update_buflen(x->e, &buf_len);
+	rsa_update_buflen(x->n, &buf_len);
+	rsa_update_buflen(x->e, &buf_len);
 
 	if (priv)
 		{
-		update_buflen(x->d, &buf_len);
-		update_buflen(x->p, &buf_len);
-		update_buflen(x->q, &buf_len);
-		update_buflen(x->dmp1, &buf_len);
-		update_buflen(x->dmq1, &buf_len);
-		update_buflen(x->iqmp, &buf_len);
+		rsa_update_buflen(x->d, &buf_len);
+		rsa_update_buflen(x->p, &buf_len);
+		rsa_update_buflen(x->q, &buf_len);
+		rsa_update_buflen(x->dmp1, &buf_len);
+		rsa_update_buflen(x->dmq1, &buf_len);
+		rsa_update_buflen(x->iqmp, &buf_len);
 		}
 
 	m=(unsigned char *)OPENSSL_malloc(buf_len+10);

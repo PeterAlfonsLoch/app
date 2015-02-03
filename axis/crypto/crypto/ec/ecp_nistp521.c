@@ -2021,5 +2021,8 @@ int ec_GFp_nistp521_have_precompute_mult(const EC_GROUP *group)
 	}
 
 #else
+#ifndef DUMMY
+#define DUMMY
 static void *dummy=&dummy;
+#endif
 #endif

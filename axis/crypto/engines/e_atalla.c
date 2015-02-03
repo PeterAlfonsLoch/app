@@ -192,7 +192,7 @@ static const char *engine_atalla_name = "Atalla hardware engine support";
 
 /* This internal function is used by ENGINE_atalla() and possibly by the
  * "dynamic" ENGINE support too */
-static int bind_helper(ENGINE *e)
+static int atalla_bind_helper(ENGINE *e)
 	{
 #ifndef OPENSSL_NO_RSA
 	const RSA_METHOD *meth1;
@@ -263,7 +263,7 @@ static ENGINE *engine_atalla(void)
 	ENGINE *ret = ENGINE_new();
 	if(!ret)
 		return NULL;
-	if(!bind_helper(ret))
+   if(!atalla_bind_helper(ret))
 		{
 		ENGINE_free(ret);
 		return NULL;
@@ -595,7 +595,7 @@ static int bind_fn(ENGINE *e, const char *id)
 	{
 	if(id && (strcmp(id, engine_atalla_id) != 0))
 		return 0;
-	if(!bind_helper(e))
+   if(!atalla_bind_helper(e))
 		return 0;
 	return 1;
 	}

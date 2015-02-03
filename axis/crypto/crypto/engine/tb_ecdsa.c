@@ -60,7 +60,11 @@
 /* #define ENGINE_ECDSA_DEBUG */
 
 static ENGINE_TABLE *ecdsa_table = NULL;
+#ifndef DUMMY_NID_1
+#define DUMMY_NID_1
 static const int dummy_nid = 1;
+#endif
+
 
 void ENGINE_unregister_ECDSA(ENGINE *e)
 	{

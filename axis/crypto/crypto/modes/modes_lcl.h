@@ -5,6 +5,8 @@
  * ====================================================================
  */
 
+#pragma once
+
 #include <openssl/modes.h>
 
 
@@ -76,6 +78,8 @@ typedef unsigned char u8;
 #endif
 
 #if defined(BSWAP4) && !defined(STRICT_ALIGNMENT)
+#undef GETU32
+#undef PUTU32
 #define GETU32(p)	BSWAP4(*(const u32 *)(p))
 #define PUTU32(p,v)	*(u32 *)(p) = BSWAP4(v)
 #else

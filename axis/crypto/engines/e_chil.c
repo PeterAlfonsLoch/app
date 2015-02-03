@@ -269,7 +269,7 @@ struct HWCryptoHook_CallerContextValue
 #define MPI2BN(bn, mp) \
     {mp.size = bn->dmax * sizeof(BN_ULONG); mp.buf = (unsigned char *)bn->d;}
 
-static BIO *logstream = NULL;
+static BIO *chil_logstream = NULL;
 static int disable_mutex_callbacks = 0;
 
 /* One might wonder why these are needed, since one can pass down at least
@@ -290,7 +290,7 @@ static HWCryptoHook_CallerContext password_context = { NULL, NULL, NULL };
 /* Stuff to pass to the HWCryptoHook library */
 static HWCryptoHook_InitInfo hwcrhk_globals = {
 	HWCryptoHook_InitFlags_SimpleForkCheck,	/* Flags */
-	&logstream,		/* logstream */
+	&chil_logstream,		/* chil_logstream */
 	sizeof(BN_ULONG),	/* limbsize */
 	0,			/* mslimb first: false for BNs */
 	-1,			/* msbyte first: use native */
@@ -332,7 +332,7 @@ static HWCryptoHook_InitInfo hwcrhk_globals = {
 
 /* This internal function is used by ENGINE_chil() and possibly by the
  * "dynamic" ENGINE support too */
-static int bind_helper(ENGINE *e)
+static int chil_bind_helper(ENGINE *e)
 	{
 #ifndef OPENSSL_NO_RSA
 	const RSA_METHOD *meth1;
@@ -391,7 +391,7 @@ static ENGINE *engine_chil(void)
 	ENGINE *ret = ENGINE_new();
 	if(!ret)
 		return NULL;
-	if(!bind_helper(ret))
+	if(!chil_bind_helper(ret))
 		{
 		ENGINE_free(ret);
 		return NULL;
@@ -636,8 +636,8 @@ static int hwcrhk_finish(ENGINE *e)
 		goto err;
 		}
  err:
-	if (logstream)
-		BIO_free(logstream);
+	if (chil_logstream)
+		BIO_free(chil_logstream);
 	hwcrhk_dso = NULL;
 	p_hwcrhk_Init = NULL;
 	p_hwcrhk_Finish = NULL;
@@ -676,13 +676,13 @@ static int hwcrhk_ctrl(ENGINE *e, int cmd, long i, void *p, void (*f)(void))
 		BIO *bio = (BIO *)p;
 
 		CRYPTO_w_lock(CRYPTO_LOCK_ENGINE);
-		if (logstream)
+		if (chil_logstream)
 			{
-			BIO_free(logstream);
-			logstream = NULL;
+			BIO_free(chil_logstream);
+			chil_logstream = NULL;
 			}
 		if (CRYPTO_add(&bio->references,1,CRYPTO_LOCK_BIO) > 1)
-			logstream = bio;
+			chil_logstream = bio;
 		else
 			HWCRHKerr(HWCRHK_F_HWCRHK_CTRL,HWCRHK_R_BIO_WAS_FREED);
 		}
@@ -1344,7 +1344,7 @@ static int bind_fn(ENGINE *e, const char *id)
 	if(id && (strcmp(id, engine_hwcrhk_id) != 0) &&
 			(strcmp(id, engine_hwcrhk_id_alt) != 0))
 		return 0;
-	if(!bind_helper(e))
+	if(!chil_bind_helper(e))
 		return 0;
 	return 1;
 	}       

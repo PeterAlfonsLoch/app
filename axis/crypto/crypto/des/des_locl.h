@@ -105,6 +105,10 @@
 #define MAXWRITE	(1024*16)
 #define BSIZE		(MAXWRITE+4)
 
+#undef c2l
+#undef c2ln
+#undef n2l
+
 #define c2l(c,l)	(l =((DES_LONG)(*((c)++)))    , \
 			 l|=((DES_LONG)(*((c)++)))<< 8L, \
 			 l|=((DES_LONG)(*((c)++)))<<16L, \
@@ -161,6 +165,7 @@
 			}
 
 #if (defined(OPENSSL_SYS_WIN32) && defined(_MSC_VER)) || defined(__ICC)
+#undef ROTATE
 #define	ROTATE(a,n)	(_lrotr(a,n))
 #elif defined(__GNUC__) && __GNUC__>=2 && !defined(__STRICT_ANSI__) && !defined(OPENSSL_NO_ASM) && !defined(OPENSSL_NO_INLINE_ASM) && !defined(PEDANTIC)
 # if defined(__i386) || defined(__i386__) || defined(__x86_64) || defined(__x86_64__)

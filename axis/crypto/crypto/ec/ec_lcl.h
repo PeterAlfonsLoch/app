@@ -68,7 +68,7 @@
  * Sheueling Chang Shantz and Douglas Stebila of Sun Microsystems Laboratories.
  *
  */
-
+#pragma once
 
 #include <stdlib.h>
 

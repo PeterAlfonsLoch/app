@@ -200,7 +200,7 @@ static const char *engine_ubsec_name = "UBSEC hardware engine support";
 
 /* This internal function is used by ENGINE_ubsec() and possibly by the
  * "dynamic" ENGINE support too */
-static int bind_helper(ENGINE *e)
+static int ubsec_bind_helper(ENGINE *e)
 	{
 #ifndef OPENSSL_NO_RSA
 	const RSA_METHOD *meth1;
@@ -263,7 +263,7 @@ static ENGINE *engine_ubsec(void)
 	ENGINE *ret = ENGINE_new();
 	if(!ret)
 		return NULL;
-	if(!bind_helper(ret))
+	if(!ubsec_bind_helper(ret))
 		{
 		ENGINE_free(ret);
 		return NULL;
@@ -314,7 +314,7 @@ static t_UBSEC_math_accelerate_ioctl *p_UBSEC_math_accelerate_ioctl = NULL;
 static t_UBSEC_rng_ioctl *p_UBSEC_rng_ioctl = NULL;
 static t_UBSEC_max_key_len_ioctl *p_UBSEC_max_key_len_ioctl = NULL;
 
-static int max_key_len = 1024;  /* ??? */
+static int ubsec_max_key_len = 1024;  /* ??? */
 
 /* 
  * These are the static string constants for the DSO file name and the function
@@ -456,7 +456,7 @@ static int ubsec_init(ENGINE *e)
         p_UBSEC_max_key_len_ioctl = p13;
 
 	/* Perform an open to see if there's actually any unit running. */
-	if (((fd = p_UBSEC_ubsec_open(UBSEC_KEY_DEVICE_NAME)) > 0) && (p_UBSEC_max_key_len_ioctl(fd, &max_key_len) == 0))
+	if (((fd = p_UBSEC_ubsec_open(UBSEC_KEY_DEVICE_NAME)) > 0) && (p_UBSEC_max_key_len_ioctl(fd, &ubsec_max_key_len) == 0))
 	{
 	   p_UBSEC_ubsec_close(fd);
 	   return 1;
@@ -567,7 +567,7 @@ static int ubsec_mod_exp(BIGNUM *r, const BIGNUM *a, const BIGNUM *p,
 
 	/* Check if hardware can't handle this argument. */
 	y_len = BN_num_bits(m);
-	if (y_len > max_key_len) {
+	if (y_len > ubsec_max_key_len) {
 		UBSECerr(UBSEC_F_UBSEC_MOD_EXP, UBSEC_R_SIZE_TOO_LARGE_OR_TOO_SMALL);
                 return BN_mod_exp(r, a, p, m, ctx);
 	} 
@@ -635,7 +635,7 @@ static int ubsec_mod_exp_crt(BIGNUM *r, const BIGNUM *a, const BIGNUM *p,
 	y_len = BN_num_bits(p) + BN_num_bits(q);
 
 	/* Check if hardware can't handle this argument. */
-	if (y_len > max_key_len) {
+	if (y_len > ubsec_max_key_len) {
 		UBSECerr(UBSEC_F_UBSEC_MOD_EXP_CRT, UBSEC_R_SIZE_TOO_LARGE_OR_TOO_SMALL);
 		return FAIL_TO_SOFTWARE;
 	} 
@@ -713,7 +713,7 @@ static int ubsec_mod_exp_mont(BIGNUM *r, const BIGNUM *a, const BIGNUM *p,
 	int ret = 0;
 
  	/* Do in software if the key is too large for the hardware. */
-	if (BN_num_bits(m) > max_key_len)
+	if (BN_num_bits(m) > ubsec_max_key_len)
                 {
 		const RSA_METHOD *meth = RSA_PKCS1_SSLeay();
 		ret = (*meth->bn_mod_exp)(r, a, p, m, ctx, m_ctx);
@@ -1057,7 +1057,7 @@ static int bind_fn(ENGINE *e, const char *id)
 	{
 	if(id && (strcmp(id, engine_ubsec_id) != 0))
 		return 0;
-	if(!bind_helper(e))
+	if(!ubsec_bind_helper(e))
 		return 0;
 	return 1;
 	}

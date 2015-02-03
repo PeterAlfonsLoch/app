@@ -373,7 +373,7 @@ static const char *n_surewarehk_Rsa_Priv_Dec="SureWareHook_Rsa_Priv_Dec";
 static const char *n_surewarehk_Rsa_Sign="SureWareHook_Rsa_Sign";
 static const char *n_surewarehk_Dsa_Sign="SureWareHook_Dsa_Sign";
 static const char *n_surewarehk_Mod_Exp="SureWareHook_Mod_Exp";
-static BIO *logstream = NULL;
+static BIO *sureware_logstream = NULL;
 
 /* SureWareHook library functions and mechanics - these are used by the
  * higher-level functions further down. NB: As and where there's no
@@ -391,13 +391,13 @@ static int surewarehk_ctrl(ENGINE *e, int cmd, long i, void *p, void (*f)(void))
 		{
 			BIO *bio = (BIO *)p;
 			CRYPTO_w_lock(CRYPTO_LOCK_ENGINE);
-			if (logstream)
+			if (sureware_logstream)
 			{
-				BIO_free(logstream);
-				logstream = NULL;
+				BIO_free(sureware_logstream);
+				sureware_logstream = NULL;
 			}
 			if (CRYPTO_add(&bio->references,1,CRYPTO_LOCK_BIO) > 1)
-				logstream = bio;
+				sureware_logstream = bio;
 			else
 				SUREWAREerr(SUREWARE_F_SUREWAREHK_CTRL,SUREWARE_R_BIO_WAS_FREED);
 		}
@@ -560,8 +560,8 @@ static int surewarehk_finish(ENGINE *e)
 		goto err;
 		}
  err:
-	if (logstream)
-		BIO_free(logstream);
+	if (sureware_logstream)
+		BIO_free(sureware_logstream);
 	surewarehk_dso = NULL;
 	p_surewarehk_Init = NULL;
 	p_surewarehk_Finish = NULL;
@@ -604,10 +604,10 @@ static void surewarehk_error_handling(char *const msg,int func,int ret)
 	if (*msg)
 	{
 		ERR_add_error_data(1,msg);
-		if (logstream)
+		if (sureware_logstream)
 		{
 			CRYPTO_w_lock(CRYPTO_LOCK_BIO);
-			BIO_write(logstream, msg, strlen(msg));
+			BIO_write(sureware_logstream, msg, strlen(msg));
 			CRYPTO_w_unlock(CRYPTO_LOCK_BIO);
 		}
 	}

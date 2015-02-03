@@ -69,7 +69,10 @@
 #define HASH    EVP_sha1()
 #endif 
 
+#ifndef DUMMY
+#define DUMMY
 static void *dummy=&dummy;
+#endif
 
 #ifndef OPENSSL_NO_SHA
 

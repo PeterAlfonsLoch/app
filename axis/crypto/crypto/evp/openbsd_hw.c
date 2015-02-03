@@ -54,7 +54,10 @@
 
 /* This stuff should now all be supported through
  * crypto/engine/hw_openbsd_dev_crypto.c unless I botched it up */
+#ifndef DUMMY
+#define DUMMY
 static void *dummy=&dummy;
+#endif
 
 #if 0
 

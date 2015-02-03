@@ -92,10 +92,13 @@
 #  define RightRotate(x, s) _lrotr(x, s)
 #  define LeftRotate(x, s)  _lrotl(x, s)
 #  if _MSC_VER >= 1400
+#undef SWAP
 #   define SWAP(x) _byteswap_ulong(x)
 #  else
 #   define SWAP(x) (_lrotl(x, 8) & 0x00ff00ff | _lrotr(x, 8) & 0xff00ff00)
 #  endif
+#undef GETU32
+#undef PUTU32
 #  define GETU32(p)   SWAP(*((u32 *)(p)))
 #  define PUTU32(p,v) (*((u32 *)(p)) = SWAP((v)))
 # elif defined(__GNUC__) && __GNUC__>=2

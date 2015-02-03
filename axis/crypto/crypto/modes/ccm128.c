@@ -153,7 +153,7 @@ void CRYPTO_ccm128_aad(CCM128_CONTEXT *ctx,
 
 /* counter part of nonce may not be larger than L*8 bits,
  * L is not larger than 8, therefore 64-bit counter... */
-static void ctr64_inc(unsigned char *counter) {
+static void ccm128_ctr64_inc(unsigned char *counter) {
 	unsigned int n=8;
 	u8  c;
 
@@ -209,7 +209,7 @@ int CRYPTO_ccm128_encrypt(CCM128_CONTEXT *ctx,
 #endif
 		(*block)(ctx->cmac.c,ctx->cmac.c,key);
 		(*block)(ctx->nonce.c,scratch.c,key);
-		ctr64_inc(ctx->nonce.c);
+		ccm128_ctr64_inc(ctx->nonce.c);
 #if defined(STRICT_ALIGNMENT)
 		temp.u[0] ^= scratch.u[0];
 		temp.u[1] ^= scratch.u[1];
@@ -272,7 +272,7 @@ int CRYPTO_ccm128_decrypt(CCM128_CONTEXT *ctx,
 		union { u64 u[2]; u8 c[16]; } temp;
 #endif
 		(*block)(ctx->nonce.c,scratch.c,key);
-		ctr64_inc(ctx->nonce.c);
+		ccm128_ctr64_inc(ctx->nonce.c);
 #if defined(STRICT_ALIGNMENT)
 		memcpy (temp.c,inp,16);
 		ctx->cmac.u[0] ^= (scratch.u[0] ^= temp.u[0]);

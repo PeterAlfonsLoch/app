@@ -347,7 +347,10 @@ err:
 #else /* !OPENSSL_NO_RSA */
 
 # if PEDANTIC
+#ifndef DUMMY
+#define DUMMY
 static void *dummy=&dummy;
+#endif
 # endif
 
 #endif

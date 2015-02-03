@@ -4,7 +4,10 @@
 
 #include <openssl/e_os2.h>
 #if defined(PEDANTIC) || defined(__DECC) || defined(OPENSSL_SYS_MACOSX)
+#ifndef DUMMY
+#define DUMMY
 static void *dummy=&dummy;
+#endif
 #endif
 
 #else /*CHARSET_EBCDIC*/

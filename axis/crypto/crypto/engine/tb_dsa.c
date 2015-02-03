@@ -60,7 +60,11 @@
 /* #define ENGINE_DSA_DEBUG */
 
 static ENGINE_TABLE *dsa_table = NULL;
+#ifndef DUMMY_NID_1
+#define DUMMY_NID_1
 static const int dummy_nid = 1;
+#endif
+
 
 void ENGINE_unregister_DSA(ENGINE *e)
 	{

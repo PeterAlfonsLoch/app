@@ -75,7 +75,7 @@ STACK_OF(EVP_PKEY_METHOD) *app_pkey_methods = NULL;
 extern const EVP_PKEY_METHOD rsa_pkey_meth, dh_pkey_meth, dsa_pkey_meth;
 extern const EVP_PKEY_METHOD ec_pkey_meth, hmac_pkey_meth, cmac_pkey_meth;
 
-static const EVP_PKEY_METHOD *standard_methods[] =
+static const EVP_PKEY_METHOD *pmeth_standard_methods[] =
 	{
 #ifndef OPENSSL_NO_RSA
 	&rsa_pkey_meth,
@@ -117,8 +117,8 @@ const EVP_PKEY_METHOD *EVP_PKEY_meth_find(int type)
 		if (idx >= 0)
 			return sk_EVP_PKEY_METHOD_value(app_pkey_methods, idx);
 		}
-	ret = OBJ_bsearch_pmeth(&t, standard_methods,
-			  sizeof(standard_methods)/sizeof(EVP_PKEY_METHOD *));
+	ret = OBJ_bsearch_pmeth(&t, pmeth_standard_methods,
+			  sizeof(pmeth_standard_methods)/sizeof(EVP_PKEY_METHOD *));
 	if (!ret || !*ret)
 		return NULL;
 	return *ret;

@@ -418,7 +418,7 @@ static void int_dsa_free(EVP_PKEY *pkey)
 	DSA_free(pkey->pkey.dsa);
 	}
 
-static void update_buflen(const BIGNUM *b, size_t *pbuflen)
+static void dsa_update_buflen(const BIGNUM *b, size_t *pbuflen)
 	{
 	size_t i;
 	if (!b)
@@ -453,11 +453,11 @@ static int do_dsa_print(BIO *bp, const DSA *x, int off, int ptype)
 	else
 		ktype = "DSA-Parameters";
 
-	update_buflen(x->p, &buf_len);
-	update_buflen(x->q, &buf_len);
-	update_buflen(x->g, &buf_len);
-	update_buflen(priv_key, &buf_len);
-	update_buflen(pub_key, &buf_len);
+	dsa_update_buflen(x->p, &buf_len);
+	dsa_update_buflen(x->q, &buf_len);
+	dsa_update_buflen(x->g, &buf_len);
+	dsa_update_buflen(priv_key, &buf_len);
+	dsa_update_buflen(pub_key, &buf_len);
 
 	m=(unsigned char *)OPENSSL_malloc(buf_len+10);
 	if (m == NULL)
@@ -562,8 +562,8 @@ static int dsa_sig_print(BIO *bp, const X509_ALGOR *sigalg,
 		int rv = 0;
 		size_t buf_len = 0;
 		unsigned char *m=NULL;
-		update_buflen(dsa_sig->r, &buf_len);
-		update_buflen(dsa_sig->s, &buf_len);
+		dsa_update_buflen(dsa_sig->r, &buf_len);
+		dsa_update_buflen(dsa_sig->s, &buf_len);
 		m = OPENSSL_malloc(buf_len+10);
 		if (m == NULL)
 			{

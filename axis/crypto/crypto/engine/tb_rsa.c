@@ -60,7 +60,11 @@
 /* #define ENGINE_RSA_DEBUG */
 
 static ENGINE_TABLE *rsa_table = NULL;
+#ifndef DUMMY_NID_1
+#define DUMMY_NID_1
 static const int dummy_nid = 1;
+#endif
+
 
 void ENGINE_unregister_RSA(ENGINE *e)
 	{

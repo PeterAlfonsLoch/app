@@ -2167,5 +2167,8 @@ int ec_GFp_nistp256_have_precompute_mult(const EC_GROUP *group)
 		return 0;
 	}
 #else
+#ifndef DUMMY
+#define DUMMY
 static void *dummy=&dummy;
+#endif
 #endif

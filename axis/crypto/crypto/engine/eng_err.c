@@ -65,6 +65,8 @@
 /* BEGIN ERROR CODES */
 #ifndef OPENSSL_NO_ERR
 
+#undef ERR_FUNC
+#undef ERR_REASON
 #define ERR_FUNC(func) ERR_PACK(ERR_LIB_ENGINE,func,0)
 #define ERR_REASON(reason) ERR_PACK(ERR_LIB_ENGINE,0,reason)
 

@@ -75,7 +75,11 @@
 /* #define ENGINE_ECDH_DEBUG */
 
 static ENGINE_TABLE *ecdh_table = NULL;
+#ifndef DUMMY_NID_1
+#define DUMMY_NID_1
 static const int dummy_nid = 1;
+#endif
+
 
 void ENGINE_unregister_ECDH(ENGINE *e)
 	{
