@@ -836,6 +836,12 @@
     <ClCompile Include="mysys\myglobal_cc.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="strings\_strings.c">
+      <Filter>Source Files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="mysys\_mysys.c">
+      <Filter>Source Files\mysys</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="axismysql.def">
