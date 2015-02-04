@@ -1,5 +1,10 @@
 #pragma once
 
+namespace hotplugin
+{
+   class host;
+   class plugin;
+}
 
 namespace aura
 {
@@ -116,11 +121,12 @@ namespace aura
       bool load_cached_string_by_id(string & str,id id,const string & pszFallbackValue,bool bLoadStringTable);
       void load_string_table(const string & pszApp,const string & pszId);
 
-
+      virtual int32_t hotplugin_host_starter_start_sync(const char * pszCommandLine,::aura::application * papp,hotplugin::host * phost,hotplugin::plugin * pplugin = NULL);
 
       inline class ::file::dir::application &   dir()          { return *m_spdir; }
       inline class ::file::application &        file()         { return *m_spfile; }
 
+      virtual bool on_run_exception(::exception::exception & e);
 
       virtual bool is_system();
       virtual bool is_session();
