@@ -123,7 +123,7 @@ namespace dynamic_source
    bool script_manager::initialize_instance()
    {
 
-      m_spqueue->create_message_queue("::core::netnode::ca2");
+      //m_spqueue->create_message_queue("::core::netnode::ca2");
 
       if(m_bCompiler)
       {
