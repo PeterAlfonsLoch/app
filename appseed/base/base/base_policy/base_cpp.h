@@ -371,11 +371,6 @@ CLASS_DECL_BASE bool __node_base_pos_term();
 
 #include "base/base/base_application.h"
 
-#include "user/user/user_enum.h"
-
-#include "user/user/user_key_enum.h"
-
-#include "user/user/user_schema.h"
 
 #include "base/base/base_session.h"
 

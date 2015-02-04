@@ -1265,6 +1265,9 @@
     <ClInclude Include="axis\message\message_user.h">
       <Filter>Header Files\axis\message</Filter>
     </ClInclude>
+    <ClInclude Include="database\database\database_user_interaction.h">
+      <Filter>Header Files\database\database</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="net\net_net.cpp">
@@ -2151,6 +2154,9 @@
     </ClCompile>
     <ClCompile Include="axis\message\message_user.cpp">
       <Filter>Source Files\axis\message</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\database_user_interaction.cpp">
+      <Filter>Source Files\database\database</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -21,3 +21,9 @@
 //2014-12-24  21:51                 0 _database.cpp"
 //              15 arquivo(s)         36.951 bytes
 //               0 pasta(s)   65.368.506.368 bytes dispon¡veis
+
+
+#include "database_user_interaction.cpp"
+
+
+
