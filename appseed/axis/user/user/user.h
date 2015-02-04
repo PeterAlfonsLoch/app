@@ -293,13 +293,13 @@ CLASS_DECL_AXIS char * ::core::TaskStringW2A(const wchar_t * lpw);
 #include "user_inline.h"
 
 
-#include "base/base/hotplugin/hotplugin.h"
+#include "hotplugin/hotplugin.h"
 
 
-#include "base/install/install.h"
+#include "install/install.h"
 
 
-#include "base/user/fontopus/fontopus.h"
+#include "fontopus/fontopus.h"
 
 
 
