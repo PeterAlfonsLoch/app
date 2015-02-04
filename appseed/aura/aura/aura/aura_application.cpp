@@ -1240,6 +1240,16 @@ namespace aura
    bool application::on_install()
    {
 
+      if(is_serviceable())
+      {
+
+         if(!create_service())
+            return false;
+
+         start_service();
+
+      }
+
       return true;
 
    }

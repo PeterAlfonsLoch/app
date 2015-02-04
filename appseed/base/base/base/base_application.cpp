@@ -1235,15 +1235,6 @@ namespace base
          return false;
 
 
-      if(is_serviceable())
-      {
-
-         if(!create_service())
-            return false;
-
-         start_service();
-
-      }
 
       return true;
 
