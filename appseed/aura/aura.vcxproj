@@ -1746,6 +1746,7 @@
     <ClInclude Include="filesystem\file\file_circular_buffer.h" />
     <ClInclude Include="filesystem\file\file_composite.h" />
     <ClInclude Include="filesystem\file\file_dir.h" />
+    <ClInclude Include="filesystem\file\file_edit_buffer.h" />
     <ClInclude Include="filesystem\file\file_exception.h" />
     <ClInclude Include="filesystem\file\file_file_input_stream.h" />
     <ClInclude Include="filesystem\file\file_file_output_stream.h" />
@@ -3327,6 +3328,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="filesystem\file\file_edit_buffer.cpp" />
     <ClCompile Include="filesystem\file\file_file_input_stream.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
