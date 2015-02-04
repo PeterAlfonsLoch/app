@@ -12,17 +12,17 @@ namespace axis
    public:
 
 
-      bool                                            m_bBaseProcessInitialize;
-      bool                                            m_bBaseProcessInitializeResult;
+      bool                                            m_bAxisProcessInitialize;
+      bool                                            m_bAxisProcessInitializeResult;
 
-      bool                                            m_bBaseInitializeInstance;
-      bool                                            m_bBaseInitializeInstanceResult;
+      bool                                            m_bAxisInitializeInstance;
+      bool                                            m_bAxisInitializeInstanceResult;
 
-      bool                                            m_bBaseInitialize1;
-      bool                                            m_bBaseInitialize1Result;
+      bool                                            m_bAxisInitialize1;
+      bool                                            m_bAxisInitialize1Result;
 
-      bool                                            m_bBaseInitialize;
-      bool                                            m_bBaseInitializeResult;
+      bool                                            m_bAxisInitialize;
+      bool                                            m_bAxisInitializeResult;
 
       string                                          m_strLicense;
 

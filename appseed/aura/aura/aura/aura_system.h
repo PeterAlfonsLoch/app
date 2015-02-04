@@ -370,6 +370,7 @@ namespace aura
       virtual bool install_is(const char * pszVersion,const char * pszBuild,const char * pszType,const char * pszId,const char * pszLocale,const char * pszSchema);
       virtual string install_get_latest_build_number(const char * pszVersion);
       virtual int32_t install_start(const char * pszCommandLine,const char * pszBuild);
+      virtual int32_t install_progress_app_add_up(int iAddUp);
 
       virtual void on_start_find_applications_from_cache();
       virtual void on_end_find_applications_from_cache(::file::byte_input_stream & is);

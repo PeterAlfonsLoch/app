@@ -66,17 +66,17 @@ namespace axis
       m_bLicense                 = true;
 
 
-      m_bBaseProcessInitialize         = false;
-      m_bBaseProcessInitializeResult   = false;
+      m_bAxisProcessInitialize         = false;
+      m_bAxisProcessInitializeResult   = false;
 
-      m_bBaseInitialize1               = false;
-      m_bBaseInitialize1Result         = false;
+      m_bAxisInitialize1               = false;
+      m_bAxisInitialize1Result         = false;
 
-      m_bBaseInitialize                = false;
-      m_bBaseInitializeResult          = false;
+      m_bAxisInitialize                = false;
+      m_bAxisInitializeResult          = false;
 
-      m_bBaseInitializeInstance        = false;
-      m_bBaseInitializeInstanceResult  = false;
+      m_bAxisInitializeInstance        = false;
+      m_bAxisInitializeInstanceResult  = false;
 
 
 
@@ -1919,11 +1919,11 @@ namespace axis
    bool application::process_initialize()
    {
 
-      if(m_bBaseProcessInitialize)
-         return m_bBaseProcessInitializeResult;
+      if(m_bAxisProcessInitialize)
+         return m_bAxisProcessInitializeResult;
 
-      m_bBaseProcessInitialize = true;
-      m_bBaseProcessInitializeResult = false;
+      m_bAxisProcessInitialize = true;
+      m_bAxisProcessInitializeResult = false;
 
 
 
@@ -1975,7 +1975,7 @@ namespace axis
       //   return false;
 
 
-      m_bBaseProcessInitializeResult = true;
+      m_bAxisProcessInitializeResult = true;
 
       return true;
 
@@ -1985,111 +1985,20 @@ namespace axis
    bool application::initialize_instance()
    {
 
-      if(m_bBaseInitializeInstance)
-         return m_bBaseInitializeInstanceResult;
+      if(m_bAxisInitializeInstance)
+         return m_bAxisInitializeInstanceResult;
 
-      m_bBaseInitializeInstance = true;
-      m_bBaseInitializeInstanceResult = false;
+      m_bAxisInitializeInstance = true;
+      m_bAxisInitializeInstanceResult = false;
 
-      xxdebug_box("check_exclusive","check_exclusive",MB_ICONINFORMATION);
-
-      if(!is_system())
+      if(!::aura::application::initialize_instance())
       {
-         if(!check_exclusive())
-            return false;
-      }
 
-      xxdebug_box("check_exclusive ok","check_exclusive ok",MB_ICONINFORMATION);
-
-      m_dwAlive = ::get_tick_count();
-
-      //::simple_message_box(NULL,"e2.b","e2.b",MB_OK);
-
-      if(!initialize1())
-      {
-         dappy(string(typeid(*this).name()) + " : initialize1 failure : " + ::str::from(m_iReturnCode));
          return false;
+
       }
 
-
-
-      //::simple_message_box(NULL,"e3","e3",MB_OK);
-
-
-      System.install().m_progressApp()++; // 2
-
-      xxdebug_box("initialize1 ok","initialize1 ok",MB_ICONINFORMATION);
-
-      /*
-      string strWindow;
-
-      if(m_strAppName.has_char())
-         strWindow = m_strAppName;
-      else
-         strWindow = typeid(*this).name();
-
-#ifndef METROWIN
-
-      if(!create_message_queue(this,strWindow))
-      {
-         dappy(string(typeid(*this).name()) + " : create_message_queue failure : " + ::str::from(m_iReturnCode));
-         TRACE("Fatal error: could not initialize application message interaction_impl (name=\"%s\").",strWindow.c_str());
-         return false;
-      }
-
-#endif
-      */
-
-      m_dwAlive = ::get_tick_count();
-
-      if(!initialize2())
-      {
-         dappy(string(typeid(*this).name()) + " : initialize2 failure : " + ::str::from(m_iReturnCode));
-         return false;
-      }
-
-      System.install().m_progressApp()++; // 3
-
-      xxdebug_box("initialize2 ok","initialize2 ok",MB_ICONINFORMATION);
-
-      m_dwAlive = ::get_tick_count();
-
-      if(!initialize3())
-      {
-         dappy(string(typeid(*this).name()) + " : initialize3 failure : " + ::str::from(m_iReturnCode));
-         return false;
-      }
-
-      System.install().m_progressApp()++; // 4
-
-      xxdebug_box("initialize3 ok","initialize3 ok",MB_ICONINFORMATION);
-
-      m_dwAlive = ::get_tick_count();
-
-
-      dappy(string(typeid(*this).name()) + " : initialize3 ok : " + ::str::from(m_iReturnCode));
-      try
-      {
-
-         if(!initialize())
-         {
-            dappy(string(typeid(*this).name()) + " : initialize failure : " + ::str::from(m_iReturnCode));
-            return false;
-         }
-      }
-      catch(const char * psz)
-      {
-         if(!strcmp(psz,"You have not logged in! Exiting!"))
-         {
-            return false;
-         }
-         return false;
-      }
-
-
-      System.install().m_progressApp()++; // 5
-
-      m_bBaseInitializeInstanceResult = true;
+      m_bAxisInitializeInstanceResult = true;
 
       return true;
 
@@ -2109,19 +2018,19 @@ namespace axis
 
       set_data_server(simpledb().get_data_server());
 
-      if(m_bBaseInitialize1)
-         return m_bBaseInitialize1Result;
+      if(m_bAxisInitialize1)
+         return m_bAxisInitialize1Result;
 
-      m_bBaseInitialize1 = true;
+      m_bAxisInitialize1 = true;
 
-      m_bBaseInitialize1Result = false;
+      m_bAxisInitialize1Result = false;
 
       m_dwAlive = ::get_tick_count();
 
       if(!::aura::application::initialize1())
          return false;
 
-      m_bBaseInitialize1Result = true;
+      m_bAxisInitialize1Result = true;
 
       return true;
 
@@ -2159,11 +2068,11 @@ namespace axis
    bool application::initialize()
    {
 
-      if(m_bBaseInitialize)
-         return m_bBaseInitializeResult;
+      if(m_bAxisInitialize)
+         return m_bAxisInitializeResult;
 
-      m_bBaseInitialize = true;
-      m_bBaseInitializeResult = false;
+      m_bAxisInitialize = true;
+      m_bAxisInitializeResult = false;
 
       ::aura::application_signal_details signal(this,m_psignal,::aura::application_signal_initialize);
 
@@ -2240,7 +2149,7 @@ namespace axis
 
       m_dwAlive = ::get_tick_count();
 
-      m_bBaseInitializeResult = true;
+      m_bAxisInitializeResult = true;
 
       dappy(string(typeid(*this).name()) + " : initialize ok : " + ::str::from(m_iReturnCode));
 

@@ -65,7 +65,7 @@ namespace axis
       virtual void install_set_version(const char * pszVersion) override;
       virtual string install_get_latest_build_number(const char * pszVersion) override;
       virtual int32_t install_start(const char * pszCommandLine,const char * pszBuild) override;
-
+      virtual int32_t install_progress_app_add_up(int iAddUp = 1) override;
 
       virtual bool process_initialize();
 
@@ -87,7 +87,7 @@ namespace axis
 
       virtual string crypto_md5_text(const string & str);
 
-      virtual void install_progress_add_up(int iAddUp = 1);
+      
 
 
       virtual ::aura::session * on_create_session();

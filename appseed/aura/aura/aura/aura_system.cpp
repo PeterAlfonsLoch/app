@@ -1585,6 +1585,13 @@ namespace aura
       return -1;
    }
 
+   int32_t system::install_progress_app_add_up(int32_t iAddUp)
+   {
+
+      return -1;
+
+   }
+
    void system::on_start_find_applications_from_cache()
    {
 

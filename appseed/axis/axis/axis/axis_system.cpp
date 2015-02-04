@@ -85,6 +85,18 @@ namespace axis
       return install().start(pszCommandLine,pszBuild);
    }
 
+
+   void system::install_progress_app_add_up(int iAddUp)
+   {
+
+      UNREFERENCED_PARAMETER(iAddUp);
+
+      install().m_progressApp()++;
+
+   }
+
+
+
    bool system::process_initialize()
    {
 
@@ -568,15 +580,6 @@ namespace axis
 
    }
 
-
-   void system::install_progress_add_up(int iAddUp)
-   {
-
-      UNREFERENCED_PARAMETER(iAddUp);
-
-      install().m_progressApp()++;
-
-   }
 
 
 
