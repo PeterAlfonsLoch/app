@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_BASE interaction_child :
+   class CLASS_DECL_AXIS interaction_child :
       virtual public ::user::interaction_impl_base
    {
    public:

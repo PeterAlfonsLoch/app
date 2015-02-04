@@ -8,7 +8,7 @@ namespace user
    class place_holder_container;
 
 
-   class CLASS_DECL_BASE place_holder :
+   class CLASS_DECL_AXIS place_holder :
       virtual public interaction
    {
    public:
@@ -49,7 +49,7 @@ namespace user
 
    };
 
-   class CLASS_DECL_BASE place_holder_ptra :
+   class CLASS_DECL_AXIS place_holder_ptra :
       virtual public spa(place_holder)
    {
    public:

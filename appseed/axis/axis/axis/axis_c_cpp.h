@@ -219,7 +219,7 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 //#include "axis/database/simpledb/simpledb.h"
 
 
-
+#include "axis/user/user.h"
 
 #include "axis.inl"
 

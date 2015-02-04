@@ -8,7 +8,7 @@ namespace user
    class scroll_bar;
 
 
-   class CLASS_DECL_BASE scroll_view:
+   class CLASS_DECL_AXIS scroll_view:
       virtual public ::aura::impact,
       virtual public scroll_control
    {

@@ -18,7 +18,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_BASE window_draw :
+   class CLASS_DECL_AXIS window_draw :
       virtual public thread
    {
    public:

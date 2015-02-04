@@ -103,7 +103,7 @@ namespace user
 {
 
    
-   class CLASS_DECL_BASE control_bar :
+   class CLASS_DECL_AXIS control_bar :
       virtual public ::user::interaction
    {
    public:

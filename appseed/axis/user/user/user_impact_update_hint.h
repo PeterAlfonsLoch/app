@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_BASE view_update_hint :
+   class CLASS_DECL_AXIS view_update_hint :
       virtual public ::object
    {
    public:

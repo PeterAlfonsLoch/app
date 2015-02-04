@@ -8,7 +8,7 @@ namespace user
    class view_creator_data;
 
 
-   class CLASS_DECL_BASE view_container :
+   class CLASS_DECL_AXIS view_container :
       virtual public ::object
    {
    public:

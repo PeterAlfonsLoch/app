@@ -114,7 +114,7 @@ namespace user
 
 #if defined METROWIN
 
-   class CLASS_DECL_BASE native_window_initialize
+   class CLASS_DECL_AXIS native_window_initialize
    {
    public:
 
@@ -127,7 +127,7 @@ namespace user
 
 #elif defined(APPLE_IOS)
 
-   class CLASS_DECL_BASE native_window_initialize
+   class CLASS_DECL_AXIS native_window_initialize
    {
    public:
 
@@ -149,7 +149,7 @@ namespace user
 
 
 
-   CLASS_DECL_BASE bool is_descendant(::user::interaction * puiParent,::user::interaction * puiChild);
+   CLASS_DECL_AXIS bool is_descendant(::user::interaction * puiParent,::user::interaction * puiChild);
 
 
 } // namespace user
@@ -163,7 +163,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_BASE create_struct:
+   class CLASS_DECL_AXIS create_struct:
       public CREATESTRUCTA
    {
    public:
@@ -244,7 +244,7 @@ namespace user
 class Ex1FormInterfaceComboBox;
 
 /*
-class CLASS_DECL_BASE Ex1FormInterfaceComboBox:
+class CLASS_DECL_AXIS Ex1FormInterfaceComboBox:
    virtual public ::object
 {
 public:
@@ -329,7 +329,7 @@ namespace user
 {
 
 
-   CLASS_DECL_BASE void __reposition_window(__SIZEPARENTPARAMS* lpLayout,::user::interaction * pui,LPCRECT lpRect);
+   CLASS_DECL_AXIS void __reposition_window(__SIZEPARENTPARAMS* lpLayout,::user::interaction * pui,LPCRECT lpRect);
 
 
 } // namespace user
@@ -460,7 +460,7 @@ public:
 /////////////////////////////////////////////////////////////////////////////
 // CArchiveStream
 /*
-class CLASS_DECL_BASE CArchiveStream : public IStream
+class CLASS_DECL_AXIS CArchiveStream : public IStream
 {
 public:
 CArchiveStream(CArchive* pArchive);
@@ -489,12 +489,12 @@ HRes Clone)(LPSTREAM*);
 /////////////////////////////////////////////////////////////////////////////
 // Global UNICODE<>ANSI translation helpers
 
-CLASS_DECL_BASE void ::core::BSTR2String(string* pStr, BSTR bstr);
+CLASS_DECL_AXIS void ::core::BSTR2String(string* pStr, BSTR bstr);
 
 #if !defined(_UNICODE)
-CLASS_DECL_BASE BSTR::core::BSTR2ABSTR(BSTR bstrW);
-CLASS_DECL_BASE wchar_t * ::core::TaskStringA2W(const char * lpa);
-CLASS_DECL_BASE char * ::core::TaskStringW2A(const wchar_t * lpw);
+CLASS_DECL_AXIS BSTR::core::BSTR2ABSTR(BSTR bstrW);
+CLASS_DECL_AXIS wchar_t * ::core::TaskStringA2W(const char * lpa);
+CLASS_DECL_AXIS char * ::core::TaskStringW2A(const wchar_t * lpw);
 #endif
 
 #endif // __AFXPRIV2_H__DISP__

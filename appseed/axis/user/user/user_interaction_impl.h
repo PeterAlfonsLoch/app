@@ -8,7 +8,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_BASE native_window
+   class CLASS_DECL_AXIS native_window
    {
    public:
 
@@ -27,7 +27,7 @@ namespace user
 
 #elif defined(APPLE_IOS)
 
-class CLASS_DECL_BASE native_window
+class CLASS_DECL_AXIS native_window
 {
 public:
 
@@ -46,7 +46,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_BASE interaction_impl:
+   class CLASS_DECL_AXIS interaction_impl:
       virtual public ::user::interaction_impl_base
    {
    public:
@@ -729,7 +729,7 @@ namespace user
 
 
 
-   class CLASS_DECL_BASE guie_message_wnd:
+   class CLASS_DECL_AXIS guie_message_wnd:
       virtual public interaction_impl
    {
    public:

@@ -8,7 +8,7 @@ namespace user
    class scroll_bar;
 
 
-   class CLASS_DECL_BASE scroll_control :
+   class CLASS_DECL_AXIS scroll_control :
       virtual public control
    {
    public:

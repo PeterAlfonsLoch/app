@@ -1,7 +1,7 @@
 #pragma once
 namespace user{
 
-   class CLASS_DECL_BASE schema_layered_frame:
+   class CLASS_DECL_AXIS schema_layered_frame:
       virtual public ::user::schema
    {
    public:

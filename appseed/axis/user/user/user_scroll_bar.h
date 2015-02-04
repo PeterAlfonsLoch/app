@@ -16,7 +16,7 @@ namespace user
       int32_t      nTrackPos;
    };
 
-   class CLASS_DECL_BASE scroll_bar :
+   class CLASS_DECL_AXIS scroll_bar :
       virtual public ::user::control
    {
    public:

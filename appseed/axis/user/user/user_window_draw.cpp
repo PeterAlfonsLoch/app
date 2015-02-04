@@ -2,7 +2,7 @@
 //#include "base/user/user.h"
 
 
-CLASS_DECL_BASE bool g_bSuppressTwf = false;
+CLASS_DECL_AXIS bool g_bSuppressTwf = false;
 
 namespace user
 {

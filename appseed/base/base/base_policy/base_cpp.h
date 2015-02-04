@@ -389,7 +389,7 @@ CLASS_DECL_BASE bool __node_base_pos_term();
 
 #include "base/base/base_simple_app.h"
 
-#include "base/user/userpresence/userpresence.h"
+//#include "base/user/userpresence/userpresence.h"
 
 //#include "base/user/fontopus/fontopus.h"
 

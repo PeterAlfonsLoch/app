@@ -34,7 +34,7 @@ namespace user
 namespace aura
 {
 
-   class CLASS_DECL_BASE impact :
+   class CLASS_DECL_AXIS impact :
       virtual public ::database::user::interaction
    {
    public:

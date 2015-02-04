@@ -10,7 +10,7 @@ namespace user
    map < ::user::interaction *,::user::interaction *, oswindow,oswindow > * g_pmapHandle = NULL;
 
 
-   CLASS_DECL_BASE void init_windowing()
+   CLASS_DECL_AXIS void init_windowing()
    {
 
       g_pmutexUi = new mutex(NULL);
@@ -22,7 +22,7 @@ namespace user
 
    }
 
-   CLASS_DECL_BASE void term_windowing()
+   CLASS_DECL_AXIS void term_windowing()
    {
 
       delete g_pmapUi;
@@ -53,7 +53,7 @@ namespace user
 }
 #endif
 
-CLASS_DECL_BASE bool oswindow_assign(oswindow oswindow,::user::interaction * pui)
+CLASS_DECL_AXIS bool oswindow_assign(oswindow oswindow,::user::interaction * pui)
 {
 
    synch_lock slOsWindow(::user::g_pmutexUi);
@@ -67,7 +67,7 @@ CLASS_DECL_BASE bool oswindow_assign(oswindow oswindow,::user::interaction * pui
 }
 
 
-CLASS_DECL_BASE int_bool oswindow_remove(::user::interaction * pui)
+CLASS_DECL_AXIS int_bool oswindow_remove(::user::interaction * pui)
 {
 
    ASSERT(pui != NULL);

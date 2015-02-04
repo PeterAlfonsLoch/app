@@ -3,7 +3,7 @@
 #endif
 
 
-#include "base/base/base.h"
+#include "axis/axis/axis.h"
 
 #if defined(__cplusplus) || defined(__cplusplus_winrt)
 
@@ -18,6 +18,7 @@ namespace user
 
    class interaction;
    class create_struct;
+   class control_event;
 
 
 } // namespace user
@@ -138,55 +139,14 @@ using user_interaction = ::user::interaction;
 #include "base/user/simple/simple.h"
 #include "base/user/simple_ui/simple_ui.h"
 
+#include "base/user/userpresence/userpresence.h"
+
 
 
 
 #include "base/user/user.inl"
 
 
-
-
-
-
-
-
-
-
-
-
-#ifdef WINDOWSEX
-
-
-namespace base
-{
-
-   // top level window for receiving system messages broadcasted to top level windows in Windows
-
-   class CLASS_DECL_BASE system_interaction_impl:
-      virtual public ::user::interaction
-   {
-   public:
-
-      system_interaction_impl(::aura::application * papp);
-
-      void install_message_handling(::message::dispatch * pdispath);
-
-      DECL_GEN_SIGNAL(_001MessageHub);
-
-
-   };
-
-
-} // namespace base
-
-
-
-#endif
-
-
-
-
-#endif // __cplusplus
 
 
 

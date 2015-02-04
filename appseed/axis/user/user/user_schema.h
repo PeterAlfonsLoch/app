@@ -30,7 +30,7 @@ namespace user
 
    };
 
-   class CLASS_DECL_BASE schema :
+   class CLASS_DECL_AXIS schema :
       virtual public ::object
    {
    public:

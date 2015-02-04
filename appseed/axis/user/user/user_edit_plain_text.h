@@ -16,7 +16,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_BASE edit_plain_text :
+   class CLASS_DECL_AXIS edit_plain_text :
       virtual public scroll_control,
       virtual public ::data::listener
    {

@@ -100,7 +100,7 @@ namespace user
 
    };
 
-   class CLASS_DECL_BASE frame_window :
+   class CLASS_DECL_AXIS frame_window :
       virtual public ::user::interaction,
       virtual public ::aura::frame_window
    {

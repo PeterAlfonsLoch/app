@@ -22,7 +22,7 @@ namespace user
    class form;
 
 
-   class CLASS_DECL_BASE form_callback:
+   class CLASS_DECL_AXIS form_callback:
       virtual public ::object
    {
    public:

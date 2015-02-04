@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_BASE form:
+   class CLASS_DECL_AXIS form:
       virtual public ::user::form_interface
    {
    public:

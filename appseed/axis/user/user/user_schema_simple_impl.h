@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_BASE schema_simple_impl:
+   class CLASS_DECL_AXIS schema_simple_impl:
       virtual public ::user::schema
    {
    public:
