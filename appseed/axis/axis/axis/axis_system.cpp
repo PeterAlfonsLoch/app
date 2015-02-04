@@ -141,14 +141,15 @@ namespace axis
    bool system::initialize1()
    {
 
-
       if(!::aura::system::initialize1())
+         return false;
+
+      if(!::axis::application::initialize1())
          return false;
 
       Session.m_puserstrcontext->defer_ok(m_puserstr);
 
-      if(!::axis::application::initialize1())
-         return false;
+
 
 
       return true;
@@ -159,10 +160,10 @@ namespace axis
    bool system::initialize2()
    {
 
-      if(!::axis::application::initialize2())
+      if(!::aura::system::initialize2())
          return false;
 
-      if(!::aura::system::initialize2())
+      if(!::axis::application::initialize2())
          return false;
 
 
@@ -174,13 +175,14 @@ namespace axis
    bool system::initialize_instance()
    {
 
-      m_pfactory->enable_simple_factory_request();
+      if(!::aura::system::initialize_instance())
+         return false;
+
 
       if(!::axis::application::initialize_instance())
          return false;
 
-      if(!::aura::system::initialize_instance())
-         return false;
+
 
       return true;
 
