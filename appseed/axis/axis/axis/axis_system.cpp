@@ -176,6 +176,9 @@ namespace axis
 
       m_pfactory->enable_simple_factory_request();
 
+      if(!::axis::application::initialize_instance())
+         return false;
+
       if(!::aura::system::initialize_instance())
          return false;
 
