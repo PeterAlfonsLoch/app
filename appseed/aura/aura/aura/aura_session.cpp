@@ -829,7 +829,7 @@ namespace aura
 
 #endif
 #endif
-      ::aura::application * papp = NULL;
+      sp(::aura::application) papp;
 
       if(!library.open(strLibrary,false,false))
          return NULL;

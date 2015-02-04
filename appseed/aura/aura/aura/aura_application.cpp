@@ -3616,7 +3616,7 @@ namespace aura
    sp(::aura::application) application::instantiate_application(const char * pszType,const char * pszId,application_bias * pbias)
    {
 
-      ::aura::application * papp = NULL;
+      sp(::aura::application) papp;
 
       string strId(pszId);
 
