@@ -448,6 +448,13 @@ namespace aura
    bool system::initialize1()
    {
 
+      if(!directrix()->m_varTopicQuery.has_property("install")
+         && !directrix()->m_varTopicQuery.has_property("uninstall"))
+      {
+         m_pfnVerb = &system::common_verb;
+      }
+
+
       if(!::aura::application::initialize1())
          return false;
 

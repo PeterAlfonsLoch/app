@@ -245,12 +245,6 @@ namespace core
    {
 
 
-      if(!directrix()->m_varTopicQuery.has_property("install")
-         && !directrix()->m_varTopicQuery.has_property("uninstall"))
-      {
-         m_pfnVerb = &system::common_verb;
-      }
-
       m_visual.construct(this);
 
       if(!m_visual.initialize1())
