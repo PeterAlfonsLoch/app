@@ -289,6 +289,8 @@ CLASS_DECL_AXIS char * ::core::TaskStringW2A(const wchar_t * lpw);
 #include "user_menu_base.h"
 
 
+#include "user_copydesk.h"
+
 
 #include "user_inline.h"
 
