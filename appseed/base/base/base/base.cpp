@@ -89,8 +89,6 @@ bool base_init()
 
    //::base::static_start::init();
 
-   ::user::init_windowing();
-
    if(!__node_base_pos_init())
       return false;
 
@@ -106,7 +104,7 @@ bool base_term()
 
    __node_base_pre_term();
 
-   ::user::term_windowing();
+   //::user::term_windowing();
 
    __node_base_pos_term();
 

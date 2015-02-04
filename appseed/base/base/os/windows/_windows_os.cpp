@@ -8,7 +8,7 @@
 
 #include "windows.cpp"
 #include "windows_dll.cpp"
-#include "windows_gdi.cpp"
+//#include "windows_gdi.cpp"
 #include "windows_simple_app.cpp"
 //#include "windows_trace_message.cpp"
 //2015-01-06  04:25                 0 _windows_os.cpp"

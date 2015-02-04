@@ -35,8 +35,6 @@ namespace base
       {
 
 
-         ::set_simple_message_box(&::simple_ui_message_box);
-
          xxdebug_box("axis.dll base_static_start (0)", "box", MB_OK);
 
 

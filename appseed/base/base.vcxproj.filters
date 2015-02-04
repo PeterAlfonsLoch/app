@@ -229,26 +229,17 @@
     <ClCompile Include="base\os\windows\windows_simple_app.cpp">
       <Filter>Source Files\base\os\windows</Filter>
     </ClCompile>
-    <ClCompile Include="base\os\windows\windows_window_gdi.cpp">
-      <Filter>Source Files\base\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="base\node\windows\windows_factory_exchange.cpp">
       <Filter>Source Files\base\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="base\message\message_user.cpp">
       <Filter>Source Files\base\message</Filter>
     </ClCompile>
-    <ClCompile Include="base\os\windows\windows_gdi.cpp">
-      <Filter>Source Files\base\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="base\os\windows\windows.cpp">
       <Filter>Source Files\base\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="base\message\message.cpp">
       <Filter>Source Files\base\message</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\windows\windows_trace_message.cpp">
-      <Filter>Source Files\base\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="base\hotplugin\hotplugin.cpp">
       <Filter>Source Files\base\hotplugin</Filter>

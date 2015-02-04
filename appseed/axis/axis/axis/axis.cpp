@@ -84,9 +84,11 @@ bool axis_init()
    __init_threading_count();
 
    ::multithreading::init_multithreading();
+   */
+
 
    ::user::init_windowing();
-
+   /*
    ::os_thread::s_pmutex = new mutex();
 
    ::os_thread::s_pptra = new ptr_array <  os_thread >();
@@ -142,9 +144,9 @@ bool axis_term()
    /*__wait_threading_count(::millis((5000) * 8));
 
    __node_axis_pre_term();
-
+   */
    ::user::term_windowing();
-
+   /*
    ::multithreading::term_multithreading();
 
    __term_threading_count();

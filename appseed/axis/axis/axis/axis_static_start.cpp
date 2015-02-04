@@ -17,7 +17,9 @@ namespace axis
 
          xxdebug_box("axis.dll axis_static_start (0)", "box", MB_OK);
          
-   
+         ::set_simple_message_box(&::simple_ui_message_box);
+
+
     
 #ifdef BSD_STYLE_SOCKETS
    
