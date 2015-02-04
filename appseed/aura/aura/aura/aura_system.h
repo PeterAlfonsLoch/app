@@ -101,7 +101,7 @@ namespace aura
       ::file::system_sp                            m_spfile;
       ::file::dir::system_sp                       m_spdir;
 
-
+      string                                       m_strInstallVersion;
 
 
 
@@ -366,6 +366,7 @@ namespace aura
 
 
       virtual string install_get_version();
+      virtual void install_set_version(const char * pszVersion);
       virtual bool install_is(const char * pszVersion,const char * pszBuild,const char * pszType,const char * pszId,const char * pszLocale,const char * pszSchema);
       virtual string install_get_latest_build_number(const char * pszVersion);
       virtual int32_t install_start(const char * pszCommandLine,const char * pszBuild);
@@ -376,6 +377,8 @@ namespace aura
       virtual void on_end_find_applications_to_cache(::file::byte_output_stream & os);
 
       virtual void on_map_application_library(::aura::library & library);
+
+      virtual bool set_main_init_data(::aura::main_init_data * pdata);
 
    };
 

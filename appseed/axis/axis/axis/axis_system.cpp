@@ -66,6 +66,13 @@ namespace axis
 
    }
 
+   void system::install_set_version(const char * pszVersion)
+   {
+
+      install().m_strVersion = pszVersion;
+
+   }
+
    string system::install_get_latest_build_number(const char * pszVersion)
    {
 

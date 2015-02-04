@@ -62,6 +62,7 @@ namespace axis
 
 
       virtual string install_get_version() override;
+      virtual void install_set_version(const char * pszVersion) override;
       virtual string install_get_latest_build_number(const char * pszVersion) override;
       virtual int32_t install_start(const char * pszCommandLine,const char * pszBuild) override;
 

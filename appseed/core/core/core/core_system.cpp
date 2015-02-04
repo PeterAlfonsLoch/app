@@ -883,61 +883,8 @@ namespace core
    bool system::set_main_init_data(::aura::main_init_data * pdata)
    {
 
-      if(pdata != NULL)
-      {
-         if(!::core::application::set_main_init_data(pdata))
-            return false;
-      }
-
-      if(pdata == NULL)
-         return true;
-
-      property_set set(this);
-
-      var varFile;
-      string strApp;
-
-      set._008ParseCommandFork(pdata->m_vssCommandLine,varFile,strApp);
-
-      if(set.has_property("version"))
-      {
-
-         install().m_strVersion = set["version"];
-
-      }
-
-
-      if((varFile.is_empty() && ((!set.has_property("app") && !directrix()->m_varTopicQuery.has_property("appid") && !set.has_property("show_platform"))
-         || set["app"] == "bergedge" || directrix()->m_varTopicQuery["appid"] == "bergedge")) &&
-         !(set.has_property("install") || set.has_property("uninstall")))
-      {
-         if(!set.has_property("show_platform") || set["show_platform"] == 1)
-         {
-            command()->add_line(" : show_platform=1");
-         }
-      }
-      else
-      {
-         string strCommandLine = pdata->m_vssCommandLine;
-         strCommandLine.trim();
-         if(strCommandLine[0] == '\"')
-         {
-            strsize iFind = strCommandLine.find("\"",1);
-            strCommandLine = strCommandLine.Mid(iFind + 1);
-         }
-         else
-         {
-            strsize iFind = strCommandLine.find(" ",1);
-            strCommandLine = strCommandLine.Mid(iFind + 1);
-         }
-         command()->add_line(strCommandLine);
-      }
-
-
-      //if(!::core::application::set_main_init_data(pdata))
-      // return false;
-
-      return true;
+   
+      return base::system::set_main_init_data(pdata);
 
    }
 
