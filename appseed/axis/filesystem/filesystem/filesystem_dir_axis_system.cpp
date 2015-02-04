@@ -1861,7 +1861,7 @@ else
 
             if(papp->m_paxissession != NULL && papp->m_paxissession != papp &&
                (sp(::aura::application)) papp->m_paxissystem != (sp(::aura::application)) papp
-               && papp->m_paxissession->m_bBaseInitialize1)
+               && papp->m_paxissession->m_bAxisInitialize1)
             {
                strPath = matter(papp->m_paxissession, str, str2, bDir);
                if(bDir)
@@ -1882,7 +1882,7 @@ else
 
          if(papp->m_paxissystem != NULL && papp->m_paxissystem != papp &&
             (sp(::aura::application)) papp->m_paxissystem != (sp(::aura::application)) papp->m_paxissession
-            && papp->m_paxissystem->m_bBaseInitialize1)
+            && papp->m_paxissystem->m_bAxisInitialize1)
          {
             strPath = matter(papp->m_paxissystem, str, str2, bDir);
             if(bDir)

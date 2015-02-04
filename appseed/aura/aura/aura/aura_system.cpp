@@ -1556,7 +1556,7 @@ namespace aura
 
 #else
 
-         return= "stage";
+         return "stage";
 
 #endif
 

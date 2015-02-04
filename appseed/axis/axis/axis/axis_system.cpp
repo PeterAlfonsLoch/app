@@ -86,12 +86,12 @@ namespace axis
    }
 
 
-   void system::install_progress_app_add_up(int iAddUp)
+   int32_t system::install_progress_app_add_up(int32_t iAddUp)
    {
 
       UNREFERENCED_PARAMETER(iAddUp);
 
-      install().m_progressApp()++;
+      return install().m_progressApp()++;
 
    }
 
