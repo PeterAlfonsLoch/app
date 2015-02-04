@@ -306,6 +306,12 @@
     <Filter Include="Header Files\user\userpresence">
       <UniqueIdentifier>{20a08a2f-da63-484b-be52-c238e6e48b2a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\axis\message">
+      <UniqueIdentifier>{e9a2cf8e-4ff6-48a6-ae06-99effd65f5b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\axis\message">
+      <UniqueIdentifier>{a6676ac7-785c-4d8a-8606-48757ffcd623}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="net\net.h">
@@ -1256,6 +1262,9 @@
     <ClInclude Include="user\user.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
+    <ClInclude Include="axis\message\message_user.h">
+      <Filter>Header Files\axis\message</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="net\net_net.cpp">
@@ -2133,6 +2142,15 @@
     </ClCompile>
     <ClCompile Include="user\simple_ui\simple_ui_tap.cpp">
       <Filter>Source Files\user\simple_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\message\_message.cpp">
+      <Filter>Source Files\axis\message</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\message\message.cpp">
+      <Filter>Source Files\axis\message</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\message\message_user.cpp">
+      <Filter>Source Files\axis\message</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

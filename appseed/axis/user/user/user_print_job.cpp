@@ -10,12 +10,14 @@ namespace user
 
    print_job::print_job(::aura::application * papp) :
       element(papp),
-      ::print_job(papp),
       ::job(papp),
       ::user::job(papp),
       thread(papp)
    {
 
+      m_iPageStart = -1;
+      m_iPageCount = -1;
+      m_iPrintingPage = 0;
    }
 
 

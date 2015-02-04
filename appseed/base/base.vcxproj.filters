@@ -428,9 +428,6 @@
     <ClInclude Include="base\base\base_platform_interface.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
-    <ClInclude Include="base\base\base_print_job.h">
-      <Filter>Header Files\base\base</Filter>
-    </ClInclude>
     <ClInclude Include="base\base\base_session.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
@@ -767,9 +764,6 @@
       <Filter>Source Files\base\base</Filter>
     </ClCompile>
     <ClCompile Include="base\base\base_core_copydesk.cpp">
-      <Filter>Source Files\base\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base\base_print_job.cpp">
       <Filter>Source Files\base\base</Filter>
     </ClCompile>
     <ClCompile Include="base\base\base_session.cpp">

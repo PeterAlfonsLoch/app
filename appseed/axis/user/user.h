@@ -26,14 +26,14 @@ namespace user
 
 using user_interaction = ::user::interaction;
 
-
+#include "axis/user/user/user.h"
 
 //#include "user/user/user_keyboard_focus.h"
 //#include "user/user/user_mouse_focus.h"
 #include "user/user/user_elemental.h"
 //#include "user/user/user_check_interface.h"
 #include "graphics/visual/visual_const.h"
-#include "base/base/message/message_user.h"
+#include "axis/axis/message/message_user.h"
 #include "user/user/user_schema_simple_impl.h"
 #include "user/user/user_schema_layered_frame.h"
 //#include "user/user/user_text_interface.h"
