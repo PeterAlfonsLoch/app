@@ -324,6 +324,9 @@
     <Filter Include="Source Files\user\install">
       <UniqueIdentifier>{0d1e0b7d-c747-42f6-a011-8f75e7511ca8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\filesystem\file">
+      <UniqueIdentifier>{ec94a243-1709-44eb-9551-5718edde2734}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="net\net.h">
@@ -1304,6 +1307,27 @@
     <ClInclude Include="user\hotplugin\hotplugin_plugin.h">
       <Filter>Header Files\user\hotplugin</Filter>
     </ClInclude>
+    <ClInclude Include="axis\node\windows\windows_copydesk.h">
+      <Filter>Header Files\axis\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\windows\windows_interaction_impl.h">
+      <Filter>Header Files\axis\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\windows\windows_message_queue.h">
+      <Filter>Header Files\axis\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\windows\windows_print_job.h">
+      <Filter>Header Files\axis\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\windows\windows_printer.h">
+      <Filter>Header Files\axis\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\windows\windows_window_draw.h">
+      <Filter>Header Files\axis\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics_window_graphics.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="net\net_net.cpp">
@@ -2232,6 +2256,24 @@
     </ClCompile>
     <ClCompile Include="user\hotplugin\hotplugin_windows.cpp">
       <Filter>Source Files\user\hotplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\windows\windows_copydesk.cpp">
+      <Filter>Source Files\axis\node\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\windows\windows_interaction_impl.cpp">
+      <Filter>Source Files\axis\node\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\windows\windows_message_queue.cpp">
+      <Filter>Source Files\axis\node\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\windows\windows_print_job.cpp">
+      <Filter>Source Files\axis\node\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\windows\windows_window_draw.cpp">
+      <Filter>Source Files\axis\node\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\graphics_window_graphics.cpp">
+      <Filter>Source Files\graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
