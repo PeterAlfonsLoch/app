@@ -158,9 +158,6 @@ namespace axis
       virtual bool finalize();
 
 
-      virtual bool is_installing();
-      virtual bool is_uninstalling();
-
 
       virtual int32_t run();
 

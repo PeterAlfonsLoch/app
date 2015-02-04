@@ -1272,6 +1272,12 @@ namespace aura
 
    }
 
+   bool application::is_installing()
+   {
+
+      return directrix()->has_property("install");
+
+   }
 
 
    bool application::os_native_bergedge_start()

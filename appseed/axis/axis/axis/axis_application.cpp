@@ -1693,78 +1693,11 @@ namespace axis
    int32_t application::run()
    {
 
-      if(is_system() || is_session())
-      {
-
-         return ::thread::run();
-
-      }
-      else if((command()->m_varTopicQuery.has_property("install")
-         || command()->m_varTopicQuery.has_property("uninstall"))
-         &&
-         ((is_session() && command()->m_varTopicQuery["session_start"] == "session")))
-      {
-      }
-      else if(!is_system() && !is_session())
-      {
-         if(command()->m_varTopicQuery.has_property("install")
-            || command()->m_varTopicQuery.has_property("uninstall"))
-         {
-
-         }
-         else if(command()->m_varTopicQuery.has_property("service"))
-         {
-            create_new_service();
-            ::service_base::serve(*m_pservice);
-         }
-         else if(command()->m_varTopicQuery.has_property("run") || is_serviceable())
-         {
-            create_new_service();
-            m_pservice->Start(0);
-            return ::thread::run();
-         }
-         else
-         {
-            return ::thread::run();
-         }
-      }
-      else
-      {
-         return ::thread::run();
-      }
-
-      return 0;
+      return ::aura::application::run();
 
    }
 
 
-   //bool application::safe_is_running()
-   //{
-
-   //   bool bRunning = false;
-
-   //   try
-   //   {
-
-   //      if(is_running())
-   //      {
-
-   //         bRunning = true;
-
-   //      }
-
-   //   }
-   //   catch(...)
-   //   {
-
-   //      bRunning = false;
-
-   //   }
-
-
-   //   return bRunning;
-
-   //}
 
 
    sp(::aura::application) application::assert_running(const char * pszAppId)
