@@ -3852,7 +3852,7 @@ namespace aura
       if(pbaseapp == NULL)
          return NULL;
 
-      ::aura::application * papp = (pbaseapp);
+      sp(::aura::application) papp = pbaseapp;
 
       if(!papp->start_application(bSynch,pbias))
       {
