@@ -97,3 +97,8 @@
 //Total de Arquivos na Lista:
 //62 arquivo(s)        777.568 bytes
 //0 pasta(s)   65.245.597.696 bytes dispon¡veis
+
+
+
+#include "hotplugin/_hotplugin.cpp"
+#include "install/_install.cpp"

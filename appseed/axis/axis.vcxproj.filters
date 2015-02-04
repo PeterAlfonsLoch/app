@@ -312,6 +312,18 @@
     <Filter Include="Source Files\axis\message">
       <UniqueIdentifier>{a6676ac7-785c-4d8a-8606-48757ffcd623}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\user\hotplugin">
+      <UniqueIdentifier>{57fe5f9d-d92f-4bd8-9b9b-a8dfd55c6164}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\install">
+      <UniqueIdentifier>{b749b587-10d2-47ff-9910-a4c8124ad7b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\hotplugin">
+      <UniqueIdentifier>{9994ae1e-8461-4e88-8b1c-8c0cd7ac8342}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\install">
+      <UniqueIdentifier>{0d1e0b7d-c747-42f6-a011-8f75e7511ca8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="net\net.h">
@@ -1268,6 +1280,30 @@
     <ClInclude Include="database\database\database_user_interaction.h">
       <Filter>Header Files\database\database</Filter>
     </ClInclude>
+    <ClInclude Include="user\install\install.h">
+      <Filter>Header Files\user\install</Filter>
+    </ClInclude>
+    <ClInclude Include="user\install\install_plugin.h">
+      <Filter>Header Files\user\install</Filter>
+    </ClInclude>
+    <ClInclude Include="user\install\install_starter_start.h">
+      <Filter>Header Files\user\install</Filter>
+    </ClInclude>
+    <ClInclude Include="user\hotplugin\hotplugin.h">
+      <Filter>Header Files\user\hotplugin</Filter>
+    </ClInclude>
+    <ClInclude Include="user\hotplugin\hotplugin_composer.h">
+      <Filter>Header Files\user\hotplugin</Filter>
+    </ClInclude>
+    <ClInclude Include="user\hotplugin\hotplugin_container_launcher.h">
+      <Filter>Header Files\user\hotplugin</Filter>
+    </ClInclude>
+    <ClInclude Include="user\hotplugin\hotplugin_host.h">
+      <Filter>Header Files\user\hotplugin</Filter>
+    </ClInclude>
+    <ClInclude Include="user\hotplugin\hotplugin_plugin.h">
+      <Filter>Header Files\user\hotplugin</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="net\net_net.cpp">
@@ -2157,6 +2193,45 @@
     </ClCompile>
     <ClCompile Include="database\database\database_user_interaction.cpp">
       <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="user\install\_install.cpp">
+      <Filter>Source Files\user\install</Filter>
+    </ClCompile>
+    <ClCompile Include="user\install\install_plugin.cpp">
+      <Filter>Source Files\user\install</Filter>
+    </ClCompile>
+    <ClCompile Include="user\install\install_plugin_bare_paint_discreet.cpp">
+      <Filter>Source Files\user\install</Filter>
+    </ClCompile>
+    <ClCompile Include="user\install\install_plugin_bare_paint_full_screen.cpp">
+      <Filter>Source Files\user\install</Filter>
+    </ClCompile>
+    <ClCompile Include="user\install\install_plugin_bare_paint_veri_discreet.cpp">
+      <Filter>Source Files\user\install</Filter>
+    </ClCompile>
+    <ClCompile Include="user\install\install_starter_start.cpp">
+      <Filter>Source Files\user\install</Filter>
+    </ClCompile>
+    <ClCompile Include="user\hotplugin\_hotplugin.cpp">
+      <Filter>Source Files\user\hotplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="user\hotplugin\hotplugin.cpp">
+      <Filter>Source Files\user\hotplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="user\hotplugin\hotplugin_composer.cpp">
+      <Filter>Source Files\user\hotplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="user\hotplugin\hotplugin_container_launcher.cpp">
+      <Filter>Source Files\user\hotplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="user\hotplugin\hotplugin_host.cpp">
+      <Filter>Source Files\user\hotplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="user\hotplugin\hotplugin_plugin.cpp">
+      <Filter>Source Files\user\hotplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="user\hotplugin\hotplugin_windows.cpp">
+      <Filter>Source Files\user\hotplugin</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

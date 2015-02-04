@@ -13,14 +13,14 @@ namespace hotplugin
    uint32_t c_cdecl base_system_main(LPVOID lpVoid);
 
 
-   CLASS_DECL_BASE ::base::system * get_base_system()
+   CLASS_DECL_AXIS ::base::system * get_base_system()
    {
       
       return g_pbasesystem;
 
    }
 
-   CLASS_DECL_BASE bool defer_start_base_system()
+   CLASS_DECL_AXIS bool defer_start_base_system()
    {
 
       if(g_pbasesystem != NULL)
@@ -136,14 +136,14 @@ namespace hotplugin
 
    HINSTANCE g_hinstance = NULL; // hotplugin plugin dll HINSTANCE
 
-   CLASS_DECL_BASE HINSTANCE get_hinstance()
+   CLASS_DECL_AXIS HINSTANCE get_hinstance()
    {
 
       return g_hinstance;
 
    }
 
-   CLASS_DECL_BASE void set_hinstance(HINSTANCE hinstance)
+   CLASS_DECL_AXIS void set_hinstance(HINSTANCE hinstance)
    {
 
       g_hinstance = hinstance;
@@ -153,7 +153,7 @@ namespace hotplugin
 #endif
 
 
-   CLASS_DECL_BASE void defer_stop_base_system()
+   CLASS_DECL_AXIS void defer_stop_base_system()
    {
 
       g_iSystemCount--;
