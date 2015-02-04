@@ -12,7 +12,7 @@ namespace windows
 
    copydesk::copydesk(::aura::application * papp) :
       element(papp),
-      ::base::copydesk(papp),
+      ::user::copydesk(papp),
       ::user::interaction(papp)
    {
    }
@@ -108,7 +108,7 @@ namespace windows
    bool copydesk::initialize()
    {
       
-      if(!::base::copydesk::initialize())
+      if(!::user::copydesk::initialize())
          return false;
 
       if(!create_window_ex())
@@ -124,7 +124,7 @@ namespace windows
 
       bool bOk;
       
-      bOk = ::base::copydesk::finalize();
+      bOk = ::user::copydesk::finalize();
 
       return bOk;
 

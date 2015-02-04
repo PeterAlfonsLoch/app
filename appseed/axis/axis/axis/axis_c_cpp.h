@@ -35,6 +35,48 @@ namespace install
 } // namespace install
 
 
+namespace message
+{
+
+
+   class mouse;
+
+
+} // namespace message
+
+
+namespace user
+{
+
+
+   class interaction;
+   class interaction_impl;
+   class schema;
+   class schema_simple_impl;
+   class user;
+   class copydesk;
+   class create_struct;
+   class window_draw;
+
+
+} // namespace user
+
+
+namespace axis
+{
+
+
+   class system_interaction_impl;
+
+
+} // namespace axis
+
+
+typedef sp(::user::interaction_impl) window_sp;
+
+
+
+
 #undef CaSys
 #undef Sys
 #define CaSys(pca) (*pca->m_pauraapp->m_paxissystem)
@@ -134,6 +176,15 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 
 
 #include "axis/graphics/graphics.h"
+
+
+#include "axis/user/user/user_enum.h"
+
+#include "axis/user/user/user_key_enum.h"
+
+#include "axis/user/user/user_schema.h"
+
+//#include "axis/axis/message/message_user.h"
 
 
 //#include "axis/primitive/datetime/datetime_value.h"

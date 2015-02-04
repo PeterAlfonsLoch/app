@@ -65,7 +65,6 @@ namespace install
       ::simple_ui::style(papp),
       ::aura::session(papp),
       ::axis::session(papp),
-      ::base::session(papp),
       hotplugin::plugin(papp),
       m_canvas(papp),
       m_startca2(papp)

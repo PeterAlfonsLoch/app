@@ -88,6 +88,8 @@
 #include "user/user_window_util.cpp"
 //47 arquivo(s)        656.222 bytes
 
+#include "user/user_copydesk.cpp"
+
 //Pasta de Z:\nordroid\app\appseed\base\user\userpresence
 
 #include "userpresence/userpresence_userpresence.cpp"

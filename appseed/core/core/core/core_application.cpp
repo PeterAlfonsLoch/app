@@ -3092,7 +3092,7 @@ namespace core
 
    void application::install_message_handling(::message::dispatch * pdispatch)
    {
-      thread::install_message_handling(pdispatch);
+      base::application::install_message_handling(pdispatch);
    }
 
 

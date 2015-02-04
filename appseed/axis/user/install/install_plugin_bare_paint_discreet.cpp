@@ -2,7 +2,7 @@
 //#include "base/user/user.h"
 
 
-//#include <math.h>
+#include <math.h>
 
 
 namespace hotplugin

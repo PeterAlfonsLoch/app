@@ -1,7 +1,8 @@
 //#include "framework.h" // from "axis/user/user.h"
 //#include "base/user/user.h"
 
-namespace base
+
+namespace user
 {
 
 
@@ -86,6 +87,6 @@ namespace base
    }
 
 
-} // namespace core
+} // namespace user
 
 

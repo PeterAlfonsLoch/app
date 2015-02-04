@@ -17,8 +17,7 @@ namespace plugin
       ::user::interaction(papp),
       plugin(papp),
       ::aura::session(papp),
-      ::axis::session(papp),
-      ::base::session(papp)
+      ::axis::session(papp)
    {
 
       m_pfile           = NULL;

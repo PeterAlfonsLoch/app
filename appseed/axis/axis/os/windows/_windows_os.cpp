@@ -16,3 +16,4 @@
 
 
 #include "windows_window_gdi.cpp"
+#include "windows_trace_message.cpp"

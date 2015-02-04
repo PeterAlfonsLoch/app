@@ -110,7 +110,7 @@ namespace windows
    interaction_impl::~interaction_impl()
    {
 
-      if(m_pauraapp != NULL &&  m_pauraapp->m_pbasesession != NULL &&  m_pauraapp->m_pbasesession->m_puser != NULL)
+      if(m_pauraapp != NULL &&  m_pauraapp->m_paxissession != NULL &&  m_pauraapp->m_paxissession->m_puser != NULL)
       {
 
          if(Session.user()->m_pwindowmap != NULL)
@@ -5589,7 +5589,7 @@ CLASS_DECL_AXIS const char * __register_window_class(::aura::application * papp,
 
    // see if the class already exists
    WNDCLASS wndcls;
-   if(::GetClassInfo(papp->m_pbasesystem->m_hinstance,lpszName,&wndcls))
+   if(::GetClassInfo(papp->m_paxissystem->m_hinstance,lpszName,&wndcls))
    {
       // already registered, assert everything is good
       ASSERT(wndcls.style == nClassStyle);
@@ -5605,7 +5605,7 @@ CLASS_DECL_AXIS const char * __register_window_class(::aura::application * papp,
    wndcls.style = nClassStyle;
    wndcls.lpfnWndProc = DefWindowProc;
    wndcls.cbClsExtra = wndcls.cbWndExtra = 0;
-   wndcls.hInstance = papp->m_pbasesystem->m_hinstance;
+   wndcls.hInstance = papp->m_paxissystem->m_hinstance;
    wndcls.hIcon = hIcon;
    //wndcls.hCursor = hCursor;
    wndcls.hCursor = NULL;

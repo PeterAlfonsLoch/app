@@ -48,7 +48,7 @@ namespace hotplugin
 
 
 
-   ::hotplugin::host * composer::create_host(sp(::base::system) psystem)
+   ::hotplugin::host * composer::create_host(sp(::axis::system) psystem)
    {
 
       return NULL;
@@ -71,7 +71,7 @@ namespace hotplugin
          else
          {
 
-            if(::hotplugin::get_base_system() == NULL)
+            if(::hotplugin::get_axis_system() == NULL)
             {
 
                ::hotplugin::defer_start_base_system();
@@ -81,15 +81,15 @@ namespace hotplugin
             {
 
 
-               if(::hotplugin::get_base_system()->m_bReady)
+               if(::hotplugin::get_axis_system()->m_bReady)
                {
 
-                  if(::hotplugin::get_base_system()->m_iReturnCode != 0)
+                  if(::hotplugin::get_axis_system()->m_iReturnCode != 0)
                   {
 
                      string str;
                      
-                     str.Format("::hotplugin::g_pbasesystem initialization error %d",::hotplugin::get_base_system()->m_iReturnCode);
+                     str.Format("::hotplugin::g_pbasesystem initialization error %d",::hotplugin::get_axis_system()->m_iReturnCode);
 
                      ::output_debug_string(str);
 
@@ -194,7 +194,7 @@ namespace hotplugin
 
                      string str;
 
-                     str.Format("::hotplugin::composer::m_paxishost initialization error %d",::hotplugin::get_base_system()->m_iReturnCode);
+                     str.Format("::hotplugin::composer::m_paxishost initialization error %d",::hotplugin::get_axis_system()->m_iReturnCode);
 
                      ::output_debug_string(str);
 
@@ -445,31 +445,31 @@ namespace hotplugin
       try
       {
 
-         m_pcomposersystem = new ::base::system(NULL);
+         m_pcomposersystem = new ::axis::system(NULL);
 
-         ::base::system * pbasesystem = m_pcomposersystem;
+         ::axis::system * paxissystem = m_pcomposersystem;
 
-         pbasesystem->m_bMatterFromHttpCache = true;
+         paxissystem->m_bMatterFromHttpCache = true;
 
-         pbasesystem->m_bSystemSynchronizedCursor = false;
+         paxissystem->m_bSystemSynchronizedCursor = false;
 
-         pbasesystem->m_bShouldInitializeGTwf = false;
+         paxissystem->m_bShouldInitializeGTwf = false;
 
-         pbasesystem->m_bEnableOnDemandDrawing = false;
+         paxissystem->m_bEnableOnDemandDrawing = false;
 
-         pbasesystem->construct(NULL);
+         paxissystem->construct(NULL);
 
 #ifdef WINDOWS
 
-         pbasesystem->m_hinstance = (HINSTANCE)get_hinstance();
+         paxissystem->m_hinstance = (HINSTANCE)get_hinstance();
 
 #endif
 
          xxdebug_box("box1","box1",MB_ICONINFORMATION);
 
-         pbasesystem->m_bReady = false;
+         paxissystem->m_bReady = false;
 
-         ::create_thread(NULL,0,&::hotplugin::composer::composer_system_main,pbasesystem,0,NULL);
+         ::create_thread(NULL,0,&::hotplugin::composer::composer_system_main,paxissystem,0,NULL);
 
       }
       catch(...)
@@ -489,22 +489,22 @@ namespace hotplugin
 
       int32_t iReturnCode = 0;
 
-      ::base::system * pbasesystem = (::base::system *) lpVoid;
+      ::axis::system * paxissystem = (::axis::system *) lpVoid;
 
       try
       {
 
-         if(!pbasesystem->pre_run())
+         if(!paxissystem->pre_run())
          {
 
-            if(pbasesystem->m_iReturnCode == 0)
+            if(paxissystem->m_iReturnCode == 0)
             {
 
-               pbasesystem->m_iReturnCode = -1;
+               paxissystem->m_iReturnCode = -1;
 
             }
 
-            pbasesystem->m_bReady = true;
+            paxissystem->m_bReady = true;
 
             return -1;
 
@@ -514,20 +514,20 @@ namespace hotplugin
       catch(...)
       {
 
-         if(pbasesystem->m_iReturnCode == 0)
+         if(paxissystem->m_iReturnCode == 0)
          {
 
-            pbasesystem->m_iReturnCode = -1;
+            paxissystem->m_iReturnCode = -1;
 
          }
 
-         pbasesystem->m_bReady = true;
+         paxissystem->m_bReady = true;
 
          return -1;
 
       }
 
-      return pbasesystem->main();
+      return paxissystem->main();
 
    }
 

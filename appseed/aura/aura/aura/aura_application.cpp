@@ -171,6 +171,7 @@ namespace aura
 
       ::message::dispatch::install_message_handling(pdispatch);
       ::signalizable::install_message_handling(pdispatch);
+      ::thread::install_message_handling(pdispatch);
 
       IGUI_WIN_MSG_LINK(WM_APP + 2043,pdispatch,this,&application::_001OnApplicationRequest);
 
@@ -1258,7 +1259,20 @@ namespace aura
    bool application::on_uninstall()
    {
 
-      return true;
+      //bool bOk = axis::application::on_uninstall();
+
+      bool bOk = true;
+
+
+      if(is_serviceable())
+      {
+
+         if(!remove_service())
+            bOk = false;
+
+      }
+
+      return bOk;
 
    }
 

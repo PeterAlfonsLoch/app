@@ -7,8 +7,8 @@
 
 #include "base.cpp"
 #include "base_application.cpp"
-#include "base_core_copydesk.cpp"
-#include "base_print_job.cpp"
+//#include "base_core_copydesk.cpp"
+//#include "base_print_job.cpp"
 #include "base_session.cpp"
 #include "base_static_start.cpp"
 #include "base_system.cpp"

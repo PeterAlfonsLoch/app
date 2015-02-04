@@ -41,8 +41,7 @@ namespace plugin
       ::user::interaction(papp),
       hotplugin::plugin(papp),
       ::aura::session(papp),
-      ::axis::session(papp),
-      ::base::session(papp)
+      ::axis::session(papp)
    {
 
       m_puiHost               = NULL;

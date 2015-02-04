@@ -1,6 +1,8 @@
 //#include "framework.h" // from "axis/user/user.h"
 //#include "base/user/user.h"
 
+#include "base/node/node.h"
+
 //void dappy(const char * psz);
 
 #ifdef WINDOWSEX
@@ -65,8 +67,8 @@ namespace base
 
    system::system(::aura::application * papp):
       ::aura::system(this),
-      ::axis::system(this),
-      m_libraryDraw2d(this)
+      ::axis::system(this) //,
+      //m_libraryDraw2d(this)
    {
 
       m_ptwf            = NULL;
@@ -119,12 +121,12 @@ namespace base
    }
 
 
-   void system::construct(const char * pszAppId)
-   {
+   //void system::construct(const char * pszAppId)
+   //{
 
-      ::base::application::construct(pszAppId);
+   //   ::base::application::construct(pszAppId);
 
-   }
+   //}
 
 
    system::~system()
@@ -134,885 +136,885 @@ namespace base
 
 
 
-   bool system::process_initialize()
-   {
-
-
-
-
-      enum_display_monitors();
-
-
-
-      if(!::base::application::process_initialize())
-         return false;
-
-
-      if(!::axis::system::process_initialize())
-         return false;
-
-
-      //if(!m_pbasesession->begin_synch(&m_iReturnCode))
-      //{
-      //   return false;
-      //}
-
-      //dappy(string(typeid(*this).name()) + " : ::axis::session OK " + ::str::from(m_iReturnCode));
-
-
-
-
-      return true;
-
-   }
-
-
-   bool system::defer_create_system_frame_window()
-   {
-
-
-#ifdef WINDOWSEX
-
-      if(m_psystemwindow != NULL)
-         return true;
-
-      m_psystemwindow = new system_interaction_impl(this);
-
-#endif
-
-
-
-#ifdef WINDOWSEX
-
-      dappy(string(typeid(*this).name()) + " : Going to ::axis::system::m_spwindow->create_window_ex : " + ::str::from(m_iReturnCode));
-
-      if(!m_psystemwindow->create_window_ex(0,NULL,NULL,0,null_rect(),NULL,"::axis::system::interaction_impl::no_twf"))
-      {
-
-         dappy(string(typeid(*this).name()) + " : ::axis::system::m_spwindow->create_window_ex failure : " + ::str::from(m_iReturnCode));
-
-         return false;
-
-      }
-
-#endif
-
-      return true;
-
-   }
-
-   bool system::initialize1()
-   {
-
-      if(!::axis::system::initialize1())
-         return false;
-
-      if(!::base::application::initialize1())
-         return false;
-
-
-      return true;
-
-   }
-
-   bool system::initialize2()
-   {
-
-      if(!::axis::system::initialize2())
-         return false;
-
-      if(!::base::application::initialize2())
-         return false;
-
-
-      return true;
-
-   }
-
-
-   bool system::initialize_instance()
-   {
-
-      if(!::axis::system::initialize_instance())
-         return false;
-
-      if(!::base::application::initialize_instance())
-         return false;
-
-      return true;
-
-   }
-
-
-   bool system::finalize()
-   {
-
-      __wait_threading_count_except(this,::millis((5000) * 77));
-
-
-
-      bool bOk = false;
-
-
-      try
-      {
-
-         bOk = ::base::application::finalize();
-
-      }
-      catch(...)
-      {
-
-         bOk = false;
-
-      }
-
-      try
-      {
-
-         bOk = ::axis::system::finalize();
-
-      }
-      catch(...)
-      {
-
-         bOk = false;
-
-      }
-
-
-      return bOk;
-
-   }
-
-
-   int32_t system::exit_instance()
-   {
-
-      __wait_threading_count(::millis((5000) * 8));
-
-      int32_t iRet = 0;
-
-
-
-      try
-      {
-
-         iRet = ::base::application::exit_instance();
-
-      }
-      catch(...)
-      {
-
-      }
-
-
-
-#ifdef METROWIN
-//      m_pdevicecontext = nullptr;
-
-//      m_pmutexDc.release();
-#endif
-
-#ifdef WINDOWSEX
-
-      try
-      {
-
-         ::release(m_psystemwindow);
-
-      }
-      catch(...)
-      {
-
-         m_iReturnCode = -2;
-
-      }
-
-
-#endif
-
-      try
-      {
-
-         iRet = ::axis::system::exit_instance();
-
-      }
-      catch(...)
-      {
-
-      }
-
-
-
-      return iRet;
-
-   }
-
-
-   void system::wait_twf()
-   {
-
-   }
-
-
-   bool system::verb()
-   {
-
-      return ::axis::system::verb();
-
-   }
-
-
-
-   bool system::is_system()
-   {
-
-      return true;
-
-   }
-
-
-
-
-
-
-   sp(::user::window_draw) system::get_twf()
-   {
-
-      return m_ptwf;
-
-   }
-
-
-
-
-   ::aura::document * system::place_hold(::user::interaction * pui)
-   {
-
-
-      //if(m_pcubeInterface != NULL)
-      //{
-      // return m_pcubeInterface->hold(pui);
-      //}
-
-      return NULL;
-
-   }
-
-
-   sp(::aura::session) system::query_session(index iEdge)
-   {
-
-      return NULL;
-
-   }
-
-
-   bool system::initialize_twf()
-   {
-
-      if(m_ptwf != NULL)
-         return true;
-
-      sp(::user::window_draw) pwindow = alloc(System.type_info < ::user::window_draw >());
-
-      m_ptwf = pwindow;
-
-      m_ptwf->add_ref();
-
-      if(m_ptwf->twf_start())
-         return false;
-
-      return true;
-
-   }
-
-
-   index system::get_main_monitor(LPRECT lprect)
-   {
-
-      int iMainMonitor = 0;
-
-#ifdef WINDOWSEX
-
-      HMONITOR hmonitorPrimary = GetPrimaryMonitorHandle();
-
-      for(index iMonitor = 0; iMonitor < get_monitor_count(); iMonitor++)
-      {
-
-         if(m_hmonitora[iMonitor] == hmonitorPrimary)
-         {
-
-            iMainMonitor = iMonitor;
-
-            break;
-
-         }
-
-      }
-
-
-#endif
-
-      if(lprect != NULL)
-      {
-
-         get_monitor_rect(iMainMonitor,lprect);
-
-      }
-
-      return iMainMonitor;
-
-   }
-
-
-   ::count system::get_monitor_count()
-   {
-
-#ifdef WINDOWSEX
-
-      return m_monitorinfoa.get_count();
-
-#elif defined(MACOS)
-
-      return GetScreenCount();
-
-#else
-
-      return 1;
-
-#endif
-
-   }
-
-
-   bool system::get_monitor_rect(index iMonitor,LPRECT lprect)
-   {
-
-#ifdef WINDOWSEX
-
-      if(iMonitor < 0 || iMonitor >= get_monitor_count())
-         return false;
-
-      *lprect = m_monitorinfoa[iMonitor].rcMonitor;
-
-#elif defined(METROWIN)
-
-
-      get_window_rect(m_posdata->m_pwindow,lprect);
-
-
-#elif defined(LINUX)
-
-      xdisplay  d;
-
-      if(!d.open(NULL))
-         return false;
-
-      lprect->left = 0;
-      lprect->right = WidthOfScreen(DefaultScreenOfDisplay(d.m_pdisplay));
-      lprect->top = 0;
-      lprect->bottom= HeightOfScreen(DefaultScreenOfDisplay(d.m_pdisplay));
-
-#elif defined(APPLEOS)
-
-      if(iMonitor < 0 || iMonitor >= get_monitor_count())
-         return false;
-
-      GetScreenRect(lprect, iMonitor);
-
-#else
-
-      throw todo(get_app());
-
-      ::GetWindowRect(::GetDesktopWindow(),lprect);
-
-#endif
-
-      return true;
-
-   }
-
-
-   ::count system::get_desk_monitor_count()
-   {
-
-      return get_monitor_count();
-
-   }
-
-
-   bool system::get_desk_monitor_rect(index iMonitor,LPRECT lprect)
-   {
-
-      return get_monitor_rect(iMonitor,lprect);
-
-   }
-
-
-   index system::get_ui_wkspace(::user::interaction * pui)
-   {
-
-      int iMainWkspace = 0;
-
-#ifdef WINDOWSEX
-
-      HMONITOR hwkspacePrimary = GetUiMonitorHandle(pui->get_handle());
-
-      for(index iWkspace = 0; iWkspace < get_wkspace_count(); iWkspace++)
-      {
-
-         if(m_hmonitora[iWkspace] == hwkspacePrimary)
-         {
-
-            iMainWkspace = iWkspace;
-
-            break;
-
-         }
-
-      }
-
-
-#endif
-
-      return iMainWkspace;
-
-   }
-
-
-   index system::get_main_wkspace(LPRECT lprect)
-   {
-
-      int iMainWkspace = 0;
-
-#ifdef WINDOWSEX
-
-      HMONITOR hwkspacePrimary = GetPrimaryMonitorHandle();
-
-      for(index iWkspace = 0; iWkspace < get_wkspace_count(); iWkspace++)
-      {
-
-         if(m_hmonitora[iWkspace] == hwkspacePrimary)
-         {
-
-            iMainWkspace = iWkspace;
-
-            break;
-
-         }
-
-      }
-
-
-#endif
-
-      if(lprect != NULL)
-      {
-
-         get_wkspace_rect(iMainWkspace,lprect);
-
-      }
-
-      return iMainWkspace;
-
-   }
-
-
-   ::count system::get_wkspace_count()
-   {
-
-#ifdef WINDOWSEX
-
-      return m_monitorinfoa.get_count();
-
-#else
-
-      return 1;
-
-#endif
-
-   }
-
-
-   bool system::get_wkspace_rect(index iWkspace,LPRECT lprect)
-   {
-
-#ifdef WINDOWSEX
-
-      if(iWkspace < 0 || iWkspace >= get_wkspace_count())
-         return false;
-
-      *lprect = m_monitorinfoa[iWkspace].rcWork;
-
-#elif defined(METROWIN)
-
-      return get_monitor_rect(iWkspace,lprect);
-
-#elif defined(LINUX)
-
-      xdisplay  d;
-
-      if(!d.open(NULL))
-         return false;
-
-      lprect->left = 0;
-      lprect->right = WidthOfScreen(DefaultScreenOfDisplay(d.m_pdisplay));
-      lprect->top = 0;
-      lprect->bottom= HeightOfScreen(DefaultScreenOfDisplay(d.m_pdisplay));
-
-#elif defined(APPLEOS)
-
-      if(iWkspace < 0 || iWkspace >= get_wkspace_count())
-         return false;
-
-      GetWkspaceRect(lprect, iWkspace);
-
-//      lprect->top += ::mac::get_system_main_menu_bar_height();
-  //    lprect->bottom -= ::mac::get_system_dock_height();
-
-#else
-
-      throw todo(get_app());
-
-      ::GetWindowRect(::GetDesktopWindow(),lprect);
-
-#endif
-
-      return true;
-
-   }
-
-
-   ::count system::get_desk_wkspace_count()
-   {
-
-      return get_wkspace_count();
-
-   }
-
-
-   bool system::get_desk_wkspace_rect(index iWkspace,LPRECT lprect)
-   {
-
-      return get_wkspace_rect(iWkspace,lprect);
-
-   }
-
-
-
-   ::user::interaction * system::get_active_guie()
-   {
-
-#if defined(WINDOWSEX) || defined(LINUX) || defined(APPLEOS)
-
-      return window_from_os_data(::GetActiveWindow());
-
-#else
-
-      ::user::interaction * pui = NULL;
-
-      get_frame(pui);
-
-      return pui;
-
-#endif
-
-   }
-
-
-   ::user::interaction * system::get_focus_guie()
-   {
-
-#if defined (METROWIN)
-
-      oswindow window = GetFocus();
-
-      if(window == NULL)
-         return NULL;
-
-      return window->m_pui;
-
-#elif defined(WINDOWSEX) || defined(LINUX)
-
-      ::user::interaction * pwnd = ::window_from_handle(::GetFocus());
-      if(pwnd != NULL)
-      {
-         ::user::interaction * puiActive = System.get_active_guie();
-         if(puiActive != NULL)
-         {
-            if(puiActive->get_safe_handle() == pwnd->get_safe_handle()
-               || ::user::window_util::IsAscendant(puiActive->get_safe_handle(),pwnd->get_safe_handle()))
-            {
-               return pwnd;
-            }
-            else
-            {
-               return NULL;
-            }
-         }
-         else
-         {
-            return NULL;
-         }
-      }
-      pwnd = System.window_from_os_data(::GetFocus());
-      if(pwnd != NULL)
-      {
-         if(System.get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
-            || ::user::window_util::IsAscendant(System.get_active_guie()->get_safe_handle(),pwnd->get_safe_handle()))
-         {
-            return pwnd;
-         }
-         else
-         {
-            return NULL;
-         }
-      }
-      return NULL;
-#else
-
-      return System.get_active_guie();
-
-#endif
-
-   }
-
-/*
-
-   string system::get_ca2_module_folder()
-   {
-
-      single_lock sl(m_pmutex,true);
-
-      return m_strCa2ModuleFolder;
-
-   }
-
-
-
-   string system::get_module_folder()
-   {
-
-      return m_strModuleFolder;
-
-   }
-
-
-   string system::get_module_file_path()
-   {
-
-#ifdef WINDOWSEX
-
-      wchar_t lpszModuleFilePath[MAX_PATH + 1];
-
-      GetModuleFileNameW(NULL,lpszModuleFilePath,MAX_PATH + 1);
-
-      string strModuleFileName(lpszModuleFilePath);
-
-      return strModuleFileName;
-
-#elif defined(METROWIN)
-
-      return "m_app.exe";
-
-#else
-
-      char * lpszModuleFilePath = br_find_exe_dir("app");
-
-      if(lpszModuleFilePath == NULL)
-         return "";
-
-      string strModuleFileName(lpszModuleFilePath);
-
-      free(lpszModuleFilePath);
-
-      return strModuleFileName;
-
-#endif
-
-   }
-
-
-   string system::get_module_title()
-   {
-
-      return file_title(get_module_file_path());
-
-   }
-
-
-   string system::get_module_name()
-   {
-
-      return file_name(get_module_file_path());
-
-   }
-
-
-*/
-
-   //string system::dir_appmatter_locator(::aura::application * papp)
-   //{
-
-   //   ::exception::throw_not_implemented(get_app());
-
-   //   return "";
-   //}
-
-
-   uint32_t _thread_proc_start_system(void * p)
-   {
-
-      ::axis::system * psystem = (::axis::system *)p;
-
-      return psystem->main();
-
-   }
-
-   CLASS_DECL_BASE void __start_system(::axis::system * psystem)
-   {
-
-      ::create_thread(NULL,0,&_thread_proc_start_system,(LPVOID)psystem,0,0);
-
-   }
-
-
-#ifdef METROWIN
-
-
-
-   CLASS_DECL_BASE bool get_window_rect(::base::system_window ^ pwindow,RECTD * lprect)
-   {
-
-      Windows::Foundation::Rect rect =  pwindow->get_window_rect();
-
-      lprect->left = rect.X;
-      lprect->top = rect.Y;
-      lprect->right = lprect->left + rect.Width;
-      lprect->bottom = lprect->top + rect.Height;
-
-      return true;
-   }
-
-
-   CLASS_DECL_BASE bool get_window_rect(::base::system_window ^ pwindow,LPRECT lprect)
-   {
-
-      rectd r;
-
-      if(!get_window_rect(pwindow,&r))
-         return false;
-
-      if(!::copy(lprect,r))
-         return false;
-
-      return true;
-
-   }
-
-
-#endif
-
-
+//   bool system::process_initialize()
+//   {
+//
+//
+//
+//
+//      enum_display_monitors();
+//
+//
+//
+//      if(!::base::application::process_initialize())
+//         return false;
+//
+//
+//      if(!::axis::system::process_initialize())
+//         return false;
+//
+//
+//      //if(!m_pbasesession->begin_synch(&m_iReturnCode))
+//      //{
+//      //   return false;
+//      //}
+//
+//      //dappy(string(typeid(*this).name()) + " : ::axis::session OK " + ::str::from(m_iReturnCode));
+//
+//
+//
+//
+//      return true;
+//
+//   }
+//
+//
+//   bool system::defer_create_system_frame_window()
+//   {
+//
+//
+//#ifdef WINDOWSEX
+//
+//      if(m_psystemwindow != NULL)
+//         return true;
+//
+//      m_psystemwindow = new system_interaction_impl(this);
+//
+//#endif
+//
+//
+//
+//#ifdef WINDOWSEX
+//
+//      dappy(string(typeid(*this).name()) + " : Going to ::axis::system::m_spwindow->create_window_ex : " + ::str::from(m_iReturnCode));
+//
+//      if(!m_psystemwindow->create_window_ex(0,NULL,NULL,0,null_rect(),NULL,"::axis::system::interaction_impl::no_twf"))
+//      {
+//
+//         dappy(string(typeid(*this).name()) + " : ::axis::system::m_spwindow->create_window_ex failure : " + ::str::from(m_iReturnCode));
+//
+//         return false;
+//
+//      }
+//
+//#endif
+//
+//      return true;
+//
+//   }
+//
+//   bool system::initialize1()
+//   {
+//
+//      if(!::axis::system::initialize1())
+//         return false;
+//
+//      if(!::base::application::initialize1())
+//         return false;
+//
+//
+//      return true;
+//
+//   }
+//
+//   bool system::initialize2()
+//   {
+//
+//      if(!::axis::system::initialize2())
+//         return false;
+//
+//      if(!::base::application::initialize2())
+//         return false;
+//
+//
+//      return true;
+//
+//   }
+//
+//
+//   bool system::initialize_instance()
+//   {
+//
+//      if(!::axis::system::initialize_instance())
+//         return false;
+//
+//      if(!::base::application::initialize_instance())
+//         return false;
+//
+//      return true;
+//
+//   }
+//
+//
+//   bool system::finalize()
+//   {
+//
+//      __wait_threading_count_except(this,::millis((5000) * 77));
+//
+//
+//
+//      bool bOk = false;
+//
+//
+//      try
+//      {
+//
+//         bOk = ::base::application::finalize();
+//
+//      }
+//      catch(...)
+//      {
+//
+//         bOk = false;
+//
+//      }
+//
+//      try
+//      {
+//
+//         bOk = ::axis::system::finalize();
+//
+//      }
+//      catch(...)
+//      {
+//
+//         bOk = false;
+//
+//      }
+//
+//
+//      return bOk;
+//
+//   }
+//
+//
+//   int32_t system::exit_instance()
+//   {
+//
+//      __wait_threading_count(::millis((5000) * 8));
+//
+//      int32_t iRet = 0;
+//
+//
+//
+//      try
+//      {
+//
+//         iRet = ::base::application::exit_instance();
+//
+//      }
+//      catch(...)
+//      {
+//
+//      }
+//
+//
+//
+//#ifdef METROWIN
+////      m_pdevicecontext = nullptr;
+//
+////      m_pmutexDc.release();
+//#endif
+//
+//#ifdef WINDOWSEX
+//
+//      try
+//      {
+//
+//         ::release(m_psystemwindow);
+//
+//      }
+//      catch(...)
+//      {
+//
+//         m_iReturnCode = -2;
+//
+//      }
+//
+//
+//#endif
+//
+//      try
+//      {
+//
+//         iRet = ::axis::system::exit_instance();
+//
+//      }
+//      catch(...)
+//      {
+//
+//      }
+//
+//
+//
+//      return iRet;
+//
+//   }
+//
+//
+//   void system::wait_twf()
+//   {
+//
+//   }
+//
+//
+//   bool system::verb()
+//   {
+//
+//      return ::axis::system::verb();
+//
+//   }
+//
+//
+//
+//   bool system::is_system()
+//   {
+//
+//      return true;
+//
+//   }
+//
+//
+//
+//
+//
+//
+//   sp(::user::window_draw) system::get_twf()
+//   {
+//
+//      return m_ptwf;
+//
+//   }
+//
+//
+//
+//
+//   ::aura::document * system::place_hold(::user::interaction * pui)
+//   {
+//
+//
+//      //if(m_pcubeInterface != NULL)
+//      //{
+//      // return m_pcubeInterface->hold(pui);
+//      //}
+//
+//      return NULL;
+//
+//   }
+//
+//
+//   sp(::aura::session) system::query_session(index iEdge)
+//   {
+//
+//      return NULL;
+//
+//   }
+//
+//
+//   bool system::initialize_twf()
+//   {
+//
+//      if(m_ptwf != NULL)
+//         return true;
+//
+//      sp(::user::window_draw) pwindow = alloc(System.type_info < ::user::window_draw >());
+//
+//      m_ptwf = pwindow;
+//
+//      m_ptwf->add_ref();
+//
+//      if(m_ptwf->twf_start())
+//         return false;
+//
+//      return true;
+//
+//   }
+//
+//
+//   index system::get_main_monitor(LPRECT lprect)
+//   {
+//
+//      int iMainMonitor = 0;
+//
+//#ifdef WINDOWSEX
+//
+//      HMONITOR hmonitorPrimary = GetPrimaryMonitorHandle();
+//
+//      for(index iMonitor = 0; iMonitor < get_monitor_count(); iMonitor++)
+//      {
+//
+//         if(m_hmonitora[iMonitor] == hmonitorPrimary)
+//         {
+//
+//            iMainMonitor = iMonitor;
+//
+//            break;
+//
+//         }
+//
+//      }
+//
+//
+//#endif
+//
+//      if(lprect != NULL)
+//      {
+//
+//         get_monitor_rect(iMainMonitor,lprect);
+//
+//      }
+//
+//      return iMainMonitor;
+//
+//   }
+//
+//
+//   ::count system::get_monitor_count()
+//   {
+//
+//#ifdef WINDOWSEX
+//
+//      return m_monitorinfoa.get_count();
+//
+//#elif defined(MACOS)
+//
+//      return GetScreenCount();
+//
+//#else
+//
+//      return 1;
+//
+//#endif
+//
+//   }
+//
+//
+//   bool system::get_monitor_rect(index iMonitor,LPRECT lprect)
+//   {
+//
+//#ifdef WINDOWSEX
+//
+//      if(iMonitor < 0 || iMonitor >= get_monitor_count())
+//         return false;
+//
+//      *lprect = m_monitorinfoa[iMonitor].rcMonitor;
+//
+//#elif defined(METROWIN)
+//
+//
+//      get_window_rect(m_posdata->m_pwindow,lprect);
+//
+//
+//#elif defined(LINUX)
+//
+//      xdisplay  d;
+//
+//      if(!d.open(NULL))
+//         return false;
+//
+//      lprect->left = 0;
+//      lprect->right = WidthOfScreen(DefaultScreenOfDisplay(d.m_pdisplay));
+//      lprect->top = 0;
+//      lprect->bottom= HeightOfScreen(DefaultScreenOfDisplay(d.m_pdisplay));
+//
+//#elif defined(APPLEOS)
+//
+//      if(iMonitor < 0 || iMonitor >= get_monitor_count())
+//         return false;
+//
+//      GetScreenRect(lprect, iMonitor);
+//
+//#else
+//
+//      throw todo(get_app());
+//
+//      ::GetWindowRect(::GetDesktopWindow(),lprect);
+//
+//#endif
+//
+//      return true;
+//
+//   }
+//
+//
+//   ::count system::get_desk_monitor_count()
+//   {
+//
+//      return get_monitor_count();
+//
+//   }
+//
+//
+//   bool system::get_desk_monitor_rect(index iMonitor,LPRECT lprect)
+//   {
+//
+//      return get_monitor_rect(iMonitor,lprect);
+//
+//   }
+//
+//
+//   index system::get_ui_wkspace(::user::interaction * pui)
+//   {
+//
+//      int iMainWkspace = 0;
+//
+//#ifdef WINDOWSEX
+//
+//      HMONITOR hwkspacePrimary = GetUiMonitorHandle(pui->get_handle());
+//
+//      for(index iWkspace = 0; iWkspace < get_wkspace_count(); iWkspace++)
+//      {
+//
+//         if(m_hmonitora[iWkspace] == hwkspacePrimary)
+//         {
+//
+//            iMainWkspace = iWkspace;
+//
+//            break;
+//
+//         }
+//
+//      }
+//
+//
+//#endif
+//
+//      return iMainWkspace;
+//
+//   }
+//
+//
+//   index system::get_main_wkspace(LPRECT lprect)
+//   {
+//
+//      int iMainWkspace = 0;
+//
+//#ifdef WINDOWSEX
+//
+//      HMONITOR hwkspacePrimary = GetPrimaryMonitorHandle();
+//
+//      for(index iWkspace = 0; iWkspace < get_wkspace_count(); iWkspace++)
+//      {
+//
+//         if(m_hmonitora[iWkspace] == hwkspacePrimary)
+//         {
+//
+//            iMainWkspace = iWkspace;
+//
+//            break;
+//
+//         }
+//
+//      }
+//
+//
+//#endif
+//
+//      if(lprect != NULL)
+//      {
+//
+//         get_wkspace_rect(iMainWkspace,lprect);
+//
+//      }
+//
+//      return iMainWkspace;
+//
+//   }
+//
+//
+//   ::count system::get_wkspace_count()
+//   {
+//
+//#ifdef WINDOWSEX
+//
+//      return m_monitorinfoa.get_count();
+//
+//#else
+//
+//      return 1;
+//
+//#endif
+//
+//   }
+//
+//
+//   bool system::get_wkspace_rect(index iWkspace,LPRECT lprect)
+//   {
+//
+//#ifdef WINDOWSEX
+//
+//      if(iWkspace < 0 || iWkspace >= get_wkspace_count())
+//         return false;
+//
+//      *lprect = m_monitorinfoa[iWkspace].rcWork;
+//
+//#elif defined(METROWIN)
+//
+//      return get_monitor_rect(iWkspace,lprect);
+//
+//#elif defined(LINUX)
+//
+//      xdisplay  d;
+//
+//      if(!d.open(NULL))
+//         return false;
+//
+//      lprect->left = 0;
+//      lprect->right = WidthOfScreen(DefaultScreenOfDisplay(d.m_pdisplay));
+//      lprect->top = 0;
+//      lprect->bottom= HeightOfScreen(DefaultScreenOfDisplay(d.m_pdisplay));
+//
+//#elif defined(APPLEOS)
+//
+//      if(iWkspace < 0 || iWkspace >= get_wkspace_count())
+//         return false;
+//
+//      GetWkspaceRect(lprect, iWkspace);
+//
+////      lprect->top += ::mac::get_system_main_menu_bar_height();
+//  //    lprect->bottom -= ::mac::get_system_dock_height();
+//
+//#else
+//
+//      throw todo(get_app());
+//
+//      ::GetWindowRect(::GetDesktopWindow(),lprect);
+//
+//#endif
+//
+//      return true;
+//
+//   }
+//
+//
+//   ::count system::get_desk_wkspace_count()
+//   {
+//
+//      return get_wkspace_count();
+//
+//   }
+//
+//
+//   bool system::get_desk_wkspace_rect(index iWkspace,LPRECT lprect)
+//   {
+//
+//      return get_wkspace_rect(iWkspace,lprect);
+//
+//   }
+//
+//
+//
+//   ::user::interaction * system::get_active_guie()
+//   {
+//
+//#if defined(WINDOWSEX) || defined(LINUX) || defined(APPLEOS)
+//
+//      return window_from_os_data(::GetActiveWindow());
+//
+//#else
+//
+//      ::user::interaction * pui = NULL;
+//
+//      get_frame(pui);
+//
+//      return pui;
+//
+//#endif
+//
+//   }
+//
+//
+//   ::user::interaction * system::get_focus_guie()
+//   {
+//
+//#if defined (METROWIN)
+//
+//      oswindow window = GetFocus();
+//
+//      if(window == NULL)
+//         return NULL;
+//
+//      return window->m_pui;
+//
+//#elif defined(WINDOWSEX) || defined(LINUX)
+//
+//      ::user::interaction * pwnd = ::window_from_handle(::GetFocus());
+//      if(pwnd != NULL)
+//      {
+//         ::user::interaction * puiActive = System.get_active_guie();
+//         if(puiActive != NULL)
+//         {
+//            if(puiActive->get_safe_handle() == pwnd->get_safe_handle()
+//               || ::user::window_util::IsAscendant(puiActive->get_safe_handle(),pwnd->get_safe_handle()))
+//            {
+//               return pwnd;
+//            }
+//            else
+//            {
+//               return NULL;
+//            }
+//         }
+//         else
+//         {
+//            return NULL;
+//         }
+//      }
+//      pwnd = System.window_from_os_data(::GetFocus());
+//      if(pwnd != NULL)
+//      {
+//         if(System.get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
+//            || ::user::window_util::IsAscendant(System.get_active_guie()->get_safe_handle(),pwnd->get_safe_handle()))
+//         {
+//            return pwnd;
+//         }
+//         else
+//         {
+//            return NULL;
+//         }
+//      }
+//      return NULL;
+//#else
+//
+//      return System.get_active_guie();
+//
+//#endif
+//
+//   }
+//
+///*
+//
+//   string system::get_ca2_module_folder()
+//   {
+//
+//      single_lock sl(m_pmutex,true);
+//
+//      return m_strCa2ModuleFolder;
+//
+//   }
+//
+//
+//
+//   string system::get_module_folder()
+//   {
+//
+//      return m_strModuleFolder;
+//
+//   }
+//
+//
+//   string system::get_module_file_path()
+//   {
+//
+//#ifdef WINDOWSEX
+//
+//      wchar_t lpszModuleFilePath[MAX_PATH + 1];
+//
+//      GetModuleFileNameW(NULL,lpszModuleFilePath,MAX_PATH + 1);
+//
+//      string strModuleFileName(lpszModuleFilePath);
+//
+//      return strModuleFileName;
+//
+//#elif defined(METROWIN)
+//
+//      return "m_app.exe";
+//
+//#else
+//
+//      char * lpszModuleFilePath = br_find_exe_dir("app");
+//
+//      if(lpszModuleFilePath == NULL)
+//         return "";
+//
+//      string strModuleFileName(lpszModuleFilePath);
+//
+//      free(lpszModuleFilePath);
+//
+//      return strModuleFileName;
+//
+//#endif
+//
+//   }
+//
+//
+//   string system::get_module_title()
+//   {
+//
+//      return file_title(get_module_file_path());
+//
+//   }
+//
+//
+//   string system::get_module_name()
+//   {
+//
+//      return file_name(get_module_file_path());
+//
+//   }
+//
+//
+//*/
+//
+//   //string system::dir_appmatter_locator(::aura::application * papp)
+//   //{
+//
+//   //   ::exception::throw_not_implemented(get_app());
+//
+//   //   return "";
+//   //}
+//
+//
+//   uint32_t _thread_proc_start_system(void * p)
+//   {
+//
+//      ::axis::system * psystem = (::axis::system *)p;
+//
+//      return psystem->main();
+//
+//   }
+//
+//   CLASS_DECL_BASE void __start_system(::axis::system * psystem)
+//   {
+//
+//      ::create_thread(NULL,0,&_thread_proc_start_system,(LPVOID)psystem,0,0);
+//
+//   }
+//
+//
+//#ifdef METROWIN
+//
+//
+//
+//   CLASS_DECL_BASE bool get_window_rect(::base::system_window ^ pwindow,RECTD * lprect)
+//   {
+//
+//      Windows::Foundation::Rect rect =  pwindow->get_window_rect();
+//
+//      lprect->left = rect.X;
+//      lprect->top = rect.Y;
+//      lprect->right = lprect->left + rect.Width;
+//      lprect->bottom = lprect->top + rect.Height;
+//
+//      return true;
+//   }
+//
+//
+//   CLASS_DECL_BASE bool get_window_rect(::base::system_window ^ pwindow,LPRECT lprect)
+//   {
+//
+//      rectd r;
+//
+//      if(!get_window_rect(pwindow,&r))
+//         return false;
+//
+//      if(!::copy(lprect,r))
+//         return false;
+//
+//      return true;
+//
+//   }
+//
+//
+//#endif
+//
+//
    ::aura::session * system::on_create_session()
    {
 
       return new ::base::session(this);
 
    }
-
-   void system::hist_hist(const char * psz)
-   {
-   }
-
-   void system::on_request(sp(::create) pcreate)
-   {
-
-      ::axis::system::on_request(pcreate);
-
-   }
-
-} // namespace base
-
-
-
-
-
-
-
-
-
-
-
-
-
-#ifdef WINDOWSEX
-
-
-namespace base
-{
-
-   system_interaction_impl::system_interaction_impl(::aura::application * papp):
-      element(papp),
-      ::user::interaction(papp)
-   {
-
-   }
-
-   void system_interaction_impl::install_message_handling(::message::dispatch * pdispatch)
-   {
-
-      ::user::interaction::install_message_handling(pdispatch);
-
-      IGUI_WIN_MSG_LINK(WM_SETTINGCHANGE,pdispatch,this,&system_interaction_impl::_001MessageHub);
-      IGUI_WIN_MSG_LINK(WM_DISPLAYCHANGE,pdispatch,this,&system_interaction_impl::_001MessageHub);
-
-   }
-
-   void system_interaction_impl::_001MessageHub(signal_details * pobj)
-   {
-
-      SCAST_PTR(::message::base,pbase,pobj);
-
-      if(pbase != NULL)
-      {
-
-         if(pbase->m_uiMessage == WM_DISPLAYCHANGE ||
-            (pbase->m_uiMessage == WM_SETTINGCHANGE &&
-            (pbase->m_wparam == SPI_SETWORKAREA)))
-         {
-
-            System.enum_display_monitors();
-
-            ::user::interaction * pui = NULL;
-
-            while(System.get_frame(pui))
-            {
-
-               try
-               {
-
-                  pui->post_message(WM_APP + 1984 + 21);
-
-               }
-               catch(...)
-               {
-               }
-
-            }
-
-
-         }
-
-      }
-
-   }
-
-
+//
+//   void system::hist_hist(const char * psz)
+//   {
+//   }
+//
+//   void system::on_request(sp(::create) pcreate)
+//   {
+//
+//      ::axis::system::on_request(pcreate);
+//
+//   }
 
 } // namespace base
 
 
-#endif
+
+
+
+
+
+
+
+
+
+//
+//
+//#ifdef WINDOWSEX
+//
+//
+//namespace base
+//{
+//
+//   system_interaction_impl::system_interaction_impl(::aura::application * papp):
+//      element(papp),
+//      ::user::interaction(papp)
+//   {
+//
+//   }
+//
+//   void system_interaction_impl::install_message_handling(::message::dispatch * pdispatch)
+//   {
+//
+//      ::user::interaction::install_message_handling(pdispatch);
+//
+//      IGUI_WIN_MSG_LINK(WM_SETTINGCHANGE,pdispatch,this,&system_interaction_impl::_001MessageHub);
+//      IGUI_WIN_MSG_LINK(WM_DISPLAYCHANGE,pdispatch,this,&system_interaction_impl::_001MessageHub);
+//
+//   }
+//
+//   void system_interaction_impl::_001MessageHub(signal_details * pobj)
+//   {
+//
+//      SCAST_PTR(::message::base,pbase,pobj);
+//
+//      if(pbase != NULL)
+//      {
+//
+//         if(pbase->m_uiMessage == WM_DISPLAYCHANGE ||
+//            (pbase->m_uiMessage == WM_SETTINGCHANGE &&
+//            (pbase->m_wparam == SPI_SETWORKAREA)))
+//         {
+//
+//            System.enum_display_monitors();
+//
+//            ::user::interaction * pui = NULL;
+//
+//            while(System.get_frame(pui))
+//            {
+//
+//               try
+//               {
+//
+//                  pui->post_message(WM_APP + 1984 + 21);
+//
+//               }
+//               catch(...)
+//               {
+//               }
+//
+//            }
+//
+//
+//         }
+//
+//      }
+//
+//   }
+//
+//
+//
+//} // namespace base
+//
+//
+//#endif

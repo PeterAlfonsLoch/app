@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "base/user/user.h"
+#include "axis/user/user.h"
 #ifdef LINUX
 #include "axis/os/linux/linux_cross_win_gdi_internal.h"
 #elif defined(ANDROID)
@@ -28,9 +28,9 @@
 
 
 #include "base/_base_base_base.cpp"
-#include "hotplugin/_hotplugin.cpp"
-#include "install/_install.cpp"
-#include "message/_message.cpp"
+//#include "hotplugin/_hotplugin.cpp"
+//#include "install/_install.cpp"
+//#include "message/_message.cpp"
 #include "node/_node.cpp"
 #include "os/_os.cpp"
 

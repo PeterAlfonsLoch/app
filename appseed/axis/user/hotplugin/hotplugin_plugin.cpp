@@ -16,7 +16,7 @@
 #ifdef WINDOWSEX
 #define min MIN
 #define max MAX
-//#include <gdiplus.h>
+#include <gdiplus.h>
 #undef min
 #undef max
 #endif
@@ -40,8 +40,7 @@ namespace hotplugin
       ::simple_ui::style(papp),
       ::thread(papp),
       ::aura::session(papp),
-      ::axis::session(papp),
-      ::base::session(papp)
+      ::axis::session(papp)
    {
 
       m_pstyle          = this;
