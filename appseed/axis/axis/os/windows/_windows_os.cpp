@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "windows_window_gdi.h"
 //O volume na unidade Z ‚ eco
  //O N£mero de S‚rie do Volume ‚ 4A91-94E4
 
@@ -12,3 +13,6 @@
 //2015-01-05  13:05                 0 _windows_os.cpp"
 //               5 arquivo(s)          9.891 bytes
 //               0 pasta(s)   32.759.701.504 bytes dispon¡veis
+
+
+#include "windows_window_gdi.cpp"
