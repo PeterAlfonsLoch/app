@@ -3916,32 +3916,32 @@ namespace core
 
 
 
-   sp(::aura::application) application::create_application(const char * pszType,const char * pszId,bool bSynch,application_bias * pbias)
-   {
+   //sp(::aura::application) application::create_application(const char * pszType,const char * pszId,bool bSynch,application_bias * pbias)
+   //{
 
-      sp(::aura::application) pbaseapp = instantiate_application(pszType,pszId,pbias);
+   //   sp(::aura::application) pbaseapp = instantiate_application(pszType,pszId,pbias);
 
-      if(pbaseapp == NULL)
-         return NULL;
+   //   if(pbaseapp == NULL)
+   //      return NULL;
 
-      ::aura::application * papp = (pbaseapp);
+   //   ::aura::application * papp = (pbaseapp);
 
-      if(!papp->m_pcoreapp->start_application(bSynch,pbias))
-      {
-         try
-         {
-            pbaseapp.release();
-         }
-         catch(...)
-         {
-         }
-         return NULL;
-      }
+   //   if(!papp->m_pcoreapp->start_application(bSynch,pbias))
+   //   {
+   //      try
+   //      {
+   //         pbaseapp.release();
+   //      }
+   //      catch(...)
+   //      {
+   //      }
+   //      return NULL;
+   //   }
 
 
-      return pbaseapp;
+   //   return pbaseapp;
 
-   }
+   //}
 
 
    ::aura::document * application::place_hold(::user::interaction * pui)

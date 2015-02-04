@@ -73,6 +73,8 @@ CLASS_DECL_AURA int_bool defer_aura_init()
    if(g_iAuraRefCount > 1)
       return TRUE;
 
+   g_pszCooperativeLevel = "aura";
+
    if(!aura_init())
       return FALSE;
 
@@ -181,3 +183,5 @@ void set_aura(void * p,::aura::application * papp)
 
 // note (casey) : according to cmuratori (Casey Muratori) "non initialized" (for "static" variables) is zero initialized
 CLASS_DECL_AURA LPFN_CREATE_SYSTEM g_pfn_create_system;
+
+CLASS_DECL_AURA const char * g_pszCooperativeLevel;

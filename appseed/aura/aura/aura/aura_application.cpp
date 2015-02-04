@@ -3873,6 +3873,9 @@ namespace aura
 
                string strBuildNumber = "latest";
 
+               if(strcmp(g_pszCooperativeLevel,"core") != NULL)
+                  strPath += "." + string(g_pszCooperativeLevel);
+
 #ifdef WINDOWS
 
                strPath += ".exe";

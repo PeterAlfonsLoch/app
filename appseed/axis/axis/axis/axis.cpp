@@ -33,6 +33,8 @@ CLASS_DECL_AXIS int_bool defer_axis_init()
    if(!__node_axis_pre_init())
       return false;
 
+   g_pszCooperativeLevel = "axis";
+
    if(!axis_init())
       return false;
 
