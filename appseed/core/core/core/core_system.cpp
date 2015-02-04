@@ -100,8 +100,6 @@ namespace core
 
          m_prunstartinstaller       = NULL;
          m_bLicense                 = false;
-         m_strAppName               = "system";
-         m_strInstallToken          = "system";
 
 
       }

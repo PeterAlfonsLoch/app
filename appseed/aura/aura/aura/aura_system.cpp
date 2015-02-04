@@ -178,6 +178,10 @@ namespace aura
 
       m_pcompress = NULL;
 
+      m_strAppName               = "system";
+      m_strInstallToken          = "system";
+
+
    }
 
 
