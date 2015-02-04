@@ -3850,9 +3850,6 @@
     <ClInclude Include="net\sockets\sockets_link_out_socket.h" />
     <ClInclude Include="net\sockets\sockets_logger.h" />
     <ClInclude Include="net\sockets\sockets_trace_logger.h" />
-    <ClInclude Include="primitive\data\data_simple_item.h" />
-    <ClInclude Include="primitive\data\data_tree.h" />
-    <ClInclude Include="primitive\data\data_tree_item.h" />
     <ClInclude Include="programming\javascript\javascript.h" />
     <ClInclude Include="programming\javascript\javascript_functions.h" />
     <ClInclude Include="programming\javascript\javascript_tinyjs.h" />
@@ -6223,9 +6220,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="net\_net.cpp" />
-    <ClCompile Include="primitive\data\data_simple_item.cpp" />
-    <ClCompile Include="primitive\data\data_tree.cpp" />
-    <ClCompile Include="primitive\data\data_tree_item.cpp" />
     <ClCompile Include="programming\javascript\javascript.cpp" />
     <ClCompile Include="programming\javascript\javascript_functions.cpp" />
     <ClCompile Include="programming\javascript\javascript_tinyjs_functions.cpp" />

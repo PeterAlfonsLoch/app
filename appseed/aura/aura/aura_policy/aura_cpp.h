@@ -1465,6 +1465,17 @@ CLASS_DECL_AURA void dappy(const char * psz);
 
 
 #include "aura/filesystem/file/file_html_buffer.h"
+
+
+#include "aura/primitive/data/data_simple_item.h"
+
+
+#include "aura/primitive/data/data_tree_item.h"
+
+
+#include "aura/primitive/data/data_tree.h"
+
+
 #include "aura/filesystem/file/file_edit_buffer.h"
 
 

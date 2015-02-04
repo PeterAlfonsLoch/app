@@ -219,14 +219,8 @@
     <Filter Include="Header Files\primitive">
       <UniqueIdentifier>{3720e2ae-fc8c-4049-be3d-6960616d2669}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\primitive\data">
-      <UniqueIdentifier>{c2632396-fa32-4ff4-baf6-ff2531410268}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\primitive">
       <UniqueIdentifier>{944b09dd-6b10-45c3-af11-f1f1949d45ce}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\primitive\data">
-      <UniqueIdentifier>{f7ad2647-47bf-4d92-9059-f448632e2d7b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\database">
       <UniqueIdentifier>{a7546116-5d20-4a4e-b2ff-307fd83109dc}</UniqueIdentifier>
@@ -883,15 +877,6 @@
     </ClInclude>
     <ClInclude Include="axis\fontopus\fontopus_validate.h">
       <Filter>Header Files\axis\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\data\data_simple_item.h">
-      <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\data\data_tree.h">
-      <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\data\data_tree_item.h">
-      <Filter>Header Files\primitive\data</Filter>
     </ClInclude>
     <ClInclude Include="version.config.h">
       <Filter>Header Files</Filter>
@@ -1774,15 +1759,6 @@
     <ClCompile Include="axis\fontopus\fontopus_validate.cpp">
       <Filter>Source Files\axis\fontopus</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\data\data_simple_item.cpp">
-      <Filter>Source Files\primitive\data</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\data\data_tree.cpp">
-      <Filter>Source Files\primitive\data</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\data\data_tree_item.cpp">
-      <Filter>Source Files\primitive\data</Filter>
-    </ClCompile>
     <ClCompile Include="database\database\database_application.cpp">
       <Filter>Source Files\database\database</Filter>
     </ClCompile>
@@ -2277,9 +2253,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>

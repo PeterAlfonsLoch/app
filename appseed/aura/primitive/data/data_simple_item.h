@@ -5,7 +5,7 @@ namespace data
 {
 
 
-   class CLASS_DECL_AXIS simple_item :
+   class CLASS_DECL_AURA simple_item :
       public item
    {
    public:

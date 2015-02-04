@@ -106,6 +106,10 @@
 #include "data/data_item.cpp"
  //              4 arquivo(s)          5.747 bytes
 
+#include "data/data_simple_item.cpp"
+#include "data/data_tree.cpp"
+#include "data/data_tree_item.cpp"
+
  //Pasta de Z:\nordroid\app\appseed\aura\primitive\datetime
 
 #include "datetime/datetime.cpp"
