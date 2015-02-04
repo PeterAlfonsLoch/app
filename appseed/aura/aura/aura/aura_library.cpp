@@ -416,7 +416,7 @@ namespace aura
             if(strAppName.is_empty())
                return NULL;
 
-            ::aura::application * papp = get_ca2_library()->get_new_app(strAppName);
+            sp(::aura::application) papp = get_ca2_library()->get_new_app(strAppName);
 
             if(papp == NULL)
                return NULL;
