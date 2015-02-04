@@ -74,7 +74,7 @@ namespace user
       int32_t                             m_iModal;
       int32_t                             m_iModalCount;
       bool                                m_bRectOk;
-      sp(::base::session)                 m_psession;
+      sp(::axis::session)                 m_psession;
       bool                                m_bMessageWindow;
 
       string                              m_strWindowText;

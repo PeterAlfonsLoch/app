@@ -356,7 +356,7 @@ using user_interaction = ::user::interaction;
 #include "user/user/user_view_creator.h"
 
 
-#include "base/base/base_core_copydesk.h"
+#include "user/user/user_copydesk.h"
 
 
 
@@ -373,23 +373,26 @@ using user_interaction = ::user::interaction;
 
 
 
-#include "app/appseed/base/base/node/node.h"
+#include "app/appseed/axis/axis/node/node.h"
 
 
 
-#include "base/user/simple/simple.h"
-#include "base/user/simple_ui/simple_ui.h"
+#include "axis/user/simple/simple.h"
+#include "axis/user/simple_ui/simple_ui.h"
 
-#include "base/user/userpresence/userpresence.h"
-
-
+#include "axis/user/userpresence/userpresence.h"
 
 
-#include "base/user/user.inl"
+
+
+#include "axis/user/user.inl"
 
 
 
 
 #include "axis/user/user/user.h"
 
+
+
+#endif // __cplusplus
 

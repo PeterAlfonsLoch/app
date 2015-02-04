@@ -4409,6 +4409,7 @@
     <ClInclude Include="user\user\user_control.h" />
     <ClInclude Include="user\user\user_control_bar.h" />
     <ClInclude Include="user\user\user_control_event.h" />
+    <ClInclude Include="user\user\user_copydesk.h" />
     <ClInclude Include="user\user\user_document.h" />
     <ClInclude Include="user\user\user_document_data_map.h" />
     <ClInclude Include="user\user\user_edit_plain_text.h" />

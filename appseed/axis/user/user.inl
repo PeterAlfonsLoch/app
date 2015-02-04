@@ -106,8 +106,5 @@ namespace base
 
 
 
-#endif // __cplusplus
-
-
 
 
