@@ -2373,6 +2373,7 @@ namespace base
     
    }
 
+
    sp(type) application::user_default_controltype_to_typeinfo(::user::e_control_type e_type)
    {
 
@@ -2380,11 +2381,14 @@ namespace base
 
    }
 
+
    int32_t application::hotplugin_host_starter_start_sync(const char * pszCommandLine,::aura::application * papp,hotplugin::host * phost,hotplugin::plugin * pplugin)
    {
 
-      hotplugin::host::host_starter_start_sync(pszCommandLine,get_app(),NULL);
+      return hotplugin::host::host_starter_start_sync(pszCommandLine,get_app(),NULL);
+
    }
+
 
 } // namespace base
 
