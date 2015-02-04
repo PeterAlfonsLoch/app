@@ -71,6 +71,10 @@ namespace base
       //m_libraryDraw2d(this)
    {
 
+      g_pszCooperativeLevel = "base";
+
+
+
       m_ptwf            = NULL;
 
       //m_psimpleui       = NULL;

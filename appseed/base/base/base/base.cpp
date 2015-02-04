@@ -52,8 +52,6 @@ CLASS_DECL_BASE int_bool defer_base_init()
    if(g_iAxisRefCount > 1)
       return TRUE;
 
-   g_pszCooperativeLevel = "base";
-
    if(!base_init())
       return FALSE;
 

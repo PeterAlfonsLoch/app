@@ -37,6 +37,9 @@ namespace aura
       m_process(this)
    {
 
+      g_pszCooperativeLevel = "aura";
+
+
       m_bAdvancedGUI = true;
 
 #ifdef MATTER_CACHE_FROM_HTTP_SERVER

@@ -26,6 +26,10 @@ namespace core
       m_mutex(this)
    {
 
+      g_pszCooperativeLevel = "core";
+
+
+
 #ifdef METROWIN
          m_window                                  = nullptr;
 #endif

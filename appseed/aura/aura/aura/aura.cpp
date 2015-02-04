@@ -73,8 +73,6 @@ CLASS_DECL_AURA int_bool defer_aura_init()
    if(g_iAuraRefCount > 1)
       return TRUE;
 
-   g_pszCooperativeLevel = "aura";
-
    if(!aura_init())
       return FALSE;
 

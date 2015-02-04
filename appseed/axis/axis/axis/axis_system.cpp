@@ -20,6 +20,8 @@ namespace axis
       m_emaildepartament(this),
       m_libraryDraw2d(this)
    {
+      g_pszCooperativeLevel = "axis";
+
 
       m_puserstr                 = NULL;
 
