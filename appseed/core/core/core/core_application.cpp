@@ -449,7 +449,12 @@ namespace core
 
                }
 
-               ApplicationUser;
+               if(m_strAppId != "app-core/netnodelite" && m_strAppId != "app-core/mydns")
+               {
+
+                  ApplicationUser;
+
+               }
 
             }
 
