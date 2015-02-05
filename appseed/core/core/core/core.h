@@ -465,10 +465,17 @@ inline int16_t APIENTRY GetFileTitle(const char * lpszFile, LPTSTR lpszTitle, WO
 
    class command_target;            // a target for ::fontopus::user commands
 
+   namespace aura
+   {
+
+      class impact;
+
+      
+   } // namespace aura
+
    namespace user
    {
       class edit_plain_text;            // Edit control
-      class view;            // a ::aura::impact on a document
       class document_manager;      // impact_system manager object
       class frame_window;        // standard SDI frame
       class interaction_child;

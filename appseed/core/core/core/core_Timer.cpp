@@ -23,7 +23,7 @@ namespace core
 
       ::user::interaction::install_message_handling(pdispatch);
 
-      IGUI_WIN_MSG_LINK(WM_CREATE,pdispatch,this,&timer::_001OnTimer);
+      IGUI_WIN_MSG_LINK(WM_CREATE,pdispatch,this,&timer::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_DESTROY,pdispatch,this,&timer::_001OnDestroy);
       IGUI_WIN_MSG_LINK(WM_CLOSE,pdispatch,this,&timer::_001OnClose);
       IGUI_WIN_MSG_LINK(WM_USER,pdispatch,this,&timer::_001OnUser);

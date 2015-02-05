@@ -79,6 +79,8 @@ public:
    string str() const;
 
 
+
+
    inline bool operator == (const id & id) const;
    inline bool operator != (const id & id) const;
    inline bool operator < (const id & id) const;
@@ -159,6 +161,10 @@ public:
 
    inline int_ptr CompareNoCase(const char * psz) { return compare_ci(psz); }
    inline int_ptr compare_ci(const char * psz);
+
+
+   inline bool is_text() { return m_etype == type_text; }
+   inline bool is_integer() { return m_etype == type_integer; }
 
 };
 

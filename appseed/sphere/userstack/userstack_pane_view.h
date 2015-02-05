@@ -13,7 +13,7 @@ namespace userstack
    public:
 
 
-      sp(form_view)                          m_pformOptions;
+      sp(::user::form)                          m_pformOptions;
       visual::dib_sp                         m_dibBk;
       int32_t                                m_iNewArea;
       int32_t                                m_iArea;

@@ -131,7 +131,7 @@ namespace userstack
          sp(::aura::application) pappTab;
          if(Session.m_mapApplication.Lookup("application:" + strId, pappTab))
          {
-            Platform.m_pappCurrent = pappTab;
+            Session.m_pappCurrent = pappTab;
             //Platform.m_pappCurrent = pappTab;
          }
 /*            sp(::simple_frame_window) pframeApp = dynamic_cast < sp(::simple_frame_window) > (m_pviewdata->m_pwnd);
@@ -239,7 +239,7 @@ namespace userstack
 
          }
 
-         sp(::aura::application) pappCurrent = Platform.m_pappCurrent;
+         sp(::aura::application) pappCurrent = Session.m_pappCurrent;
 
          Application.m_mapApplication[strId] = pappCurrent;
 
@@ -248,7 +248,7 @@ namespace userstack
          string strIcon = Sess(pappCurrent).dir().matter("mainframe/icon48.png");
          pane * ppane = (pane *) get_pane_by_id(pcreatordata->m_id);
 
-         pappCurrent = Platform.m_pappCurrent;
+         pappCurrent = Session.m_pappCurrent;
 
          if(Sess(pappCurrent).file().exists(strIcon))
          {
@@ -543,7 +543,7 @@ namespace userstack
       class user::control::descriptor control;
 
       control.m_bTransparent = true;
-      control.set_type(user::control::type_check_box);
+      control.set_type(user::control_type_check_box);
       control.m_id = "save_display_bandwidth";
       control.set_ddx_dbflags(
             "ca2.savings",
@@ -552,7 +552,7 @@ namespace userstack
       pform->_001AddControl(control);
 
       control.m_bTransparent = true;
-      control.set_type(user::control::type_check_box);
+      control.set_type(user::control_type_check_box);
       control.m_id = "save_processing";
       control.set_ddx_dbflags(
             "ca2.savings",
@@ -561,7 +561,7 @@ namespace userstack
       pform->_001AddControl(control);
 
       control.m_bTransparent = true;
-      control.set_type(user::control::type_check_box);
+      control.set_type(user::control_type_check_box);
       control.m_id = "save_memory";
       control.set_ddx_dbflags(
             "ca2.savings",
@@ -570,7 +570,7 @@ namespace userstack
       pform->_001AddControl(control);
 
       control.m_bTransparent = true;
-      control.set_type(user::control::type_check_box);
+      control.set_type(user::control_type_check_box);
       control.m_id = "enable_wallpaper";
       control.set_ddx_dbflags(
             "ca2.bergedge",

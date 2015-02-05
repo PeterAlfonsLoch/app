@@ -9,7 +9,6 @@ namespace filehandler
       element(papp),
       ::data::data_container_base(papp),
       ::aura::document(papp),
-      form_document(papp),
       html_document(papp)
    {
    }

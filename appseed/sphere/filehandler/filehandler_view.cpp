@@ -13,7 +13,6 @@ namespace filehandler
       ::user::form(papp),
       html_form(papp),
       html_view(papp),
-      form_view(papp),
       m_document(papp),
       m_spfont(allocer())
    {
@@ -24,7 +23,7 @@ namespace filehandler
 
    void view::install_message_handling(::message::dispatch * pinterface)
    {
-      form_view::install_message_handling(pinterface);
+      ::user::form::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &view::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &view::_001OnTimer);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &view::_001OnLButtonUp);
