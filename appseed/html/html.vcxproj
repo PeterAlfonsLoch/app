@@ -2037,7 +2037,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\axis\html_lite\html_lite.vcxproj">
-      <Project>{6c7004d3-ff6c-4872-8ddc-5d7f44b0bc57}</Project>
+      <Project>{56a793cc-ef05-45c6-b401-4577bca695b7}</Project>
     </ProjectReference>
     <ProjectReference Include="..\aura\aura.vcxproj">
       <Project>{03e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
