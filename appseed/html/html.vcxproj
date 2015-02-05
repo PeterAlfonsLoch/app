@@ -59,7 +59,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{AA504C58-371E-4D48-8955-1093E1AF1E3D}</ProjectGuid>
+    <ProjectGuid>{6C7004D3-FF6C-4872-8DDC-5D7F44B0BC57}</ProjectGuid>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
     <RootNamespace>html</RootNamespace>
