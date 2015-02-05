@@ -355,8 +355,13 @@ void ssl_sigpipe_handle( int x );
       if (IsSSL())
       {
 
-         if (!Ready())
-            throw io_exception(get_app(), "not ready");
+         if(!Ready())
+         {
+          
+            TRACE("tcp_socket::recv not ready");
+            return 0;
+
+         }
 
          n = SSL_read(m_ssl, buf, (int) nBufSize);
          if (n == -1)
@@ -389,7 +394,7 @@ void ssl_sigpipe_handle( int x );
                SetFlushBeforeClose(false);
                SetLost();
             }
-            throw io_exception(get_app(), "ssl error");
+            TRACE("tcp_socket::recv ssl error(1)");
          }
          else
          if (!n)
@@ -399,7 +404,8 @@ void ssl_sigpipe_handle( int x );
             SetFlushBeforeClose(false);
             SetLost();
             SetShutdown(SHUT_WR);
-            throw io_exception(get_app(), "ssl disconnect");
+            TRACE("tcp_socket::recv ssl disconnect(2)");
+
          }
          else if (n > 0 && n <= nBufSize)
          {
@@ -408,7 +414,8 @@ void ssl_sigpipe_handle( int x );
          else
          {
             log("tcp_socket::recv(ssl)", (int) n, "abnormal value from SSL_read", ::aura::log::level_error);
-            throw io_exception(get_app(),"abnormal value from SSL_read");
+            TRACE("tcp_socket::recv ssl abnormal value from SSL_read(3)");
+            
          }
       }
       else
@@ -428,7 +435,7 @@ void ssl_sigpipe_handle( int x );
             SetCloseAndDelete(true);
             SetFlushBeforeClose(false);
             SetLost();
-            throw io_exception(get_app(), "recv error (" + string(StrError(Errno)) + ")");
+            TRACE("tcp_socket::recv (B1) recv error(" + string(StrError(Errno)) + ")");
          }
          else
          if (!n)
@@ -438,7 +445,7 @@ void ssl_sigpipe_handle( int x );
             SetFlushBeforeClose(false);
             SetLost();
             SetShutdown(SHUT_WR);
-            throw io_exception(get_app(),"recv disconnect");
+            TRACE("tcp_socket::recv (B2) recv disconnect");
          }
          else
          if (n > 0 && n <= nBufSize)
@@ -448,10 +455,12 @@ void ssl_sigpipe_handle( int x );
          else
          {
             log("tcp_socket::recv", (int32_t) n, "abnormal value from recv", ::aura::log::level_error);
-            throw io_exception(get_app(),"abnormal value from recv");
+            TRACE("tcp_socket::recv (B3) recv abnormal value from recv");
          }
 
       }
+
+      return 0;
 
    }
 

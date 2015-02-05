@@ -6,7 +6,7 @@
 #include FT_FREETYPE_H
 #endif
 
-
+#include "html_lite/html_lite/html_lite.h"
 
 namespace axis
 {
@@ -87,6 +87,8 @@ namespace axis
 
 #endif
 
+      m_phtml = new html::html(this);
+         
 
    }
 
