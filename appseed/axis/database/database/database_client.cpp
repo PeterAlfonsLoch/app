@@ -355,12 +355,15 @@ namespace database
    }
 
 
-   bool client::update_data_id()
+   void client::defer_update_data_id()
    {
-      
-      m_dataid = calc_data_id();
 
-      return true;
+      if(m_dataid.m_id.is_empty())
+      {
+
+         m_dataid = calc_data_id();
+
+      }
 
    }
 

@@ -5021,8 +5021,11 @@ namespace user
 
    id list::data_get_current_list_layout_id()
    {
-      return "list";
+      
+      return "list." + m_dataid.m_id.str();
+
    }
+
 
    bool list::query_drop(index iDisplayDrop, index iDisplayDrag)
    {

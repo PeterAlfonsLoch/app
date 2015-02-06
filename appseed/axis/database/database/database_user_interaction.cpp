@@ -52,7 +52,7 @@ namespace database
 
          }
 
-         update_data_id();
+         defer_update_data_id();
 
       }
 
@@ -471,7 +471,7 @@ namespace database
 
          }
 
-         update_data_id();
+         defer_update_data_id();
 
       }
 

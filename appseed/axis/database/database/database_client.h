@@ -169,7 +169,7 @@ namespace database
 
       virtual id get_data_id();
       virtual id calc_data_id();
-      virtual bool update_data_id();
+      virtual void defer_update_data_id();
 
 
 
