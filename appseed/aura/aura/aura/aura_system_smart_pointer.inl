@@ -5,7 +5,7 @@ template < class T >
 void smart_pointer < T >::alloc(const ::aura::allocatorsp & spallocator)
 {
 
-   if(spallocator.is_null)
+   if(spallocator.is_null())
       return;
    
    static class id idType = CaSys(spallocator).type_info < T >()->m_id;
