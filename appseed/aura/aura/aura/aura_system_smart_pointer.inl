@@ -4,19 +4,33 @@
 template < class T >
 void smart_pointer < T >::alloc(const ::aura::allocatorsp & spallocator)
 {
+
+   if(spallocator.is_null)
+      return;
+   
    static class id idType = CaSys(spallocator).type_info < T >()->m_id;
+
    if(m_p != NULL)
       ::release(m_p);
+
    element * pca = CaSys(spallocator).alloc(spallocator->m_pauraapp,idType);
+
    if(pca != NULL)
    {
+
       m_p = dynamic_cast < T * >(pca);
+
       if(m_p != NULL)
       {
+
          ::add_ref(m_p);
+
       }
+
    }
+
 }
+
 
 template < class T >
 sp(T) smart_pointer <T>::clone() const
