@@ -121,7 +121,7 @@ namespace core
 
       inline ::filemanager::filemanager            & filemanager() { return *m_pfilemanager; }
 
-
+      string filemanager_get_initial_browse_path();
       void on_exclusive_instance_conflict(EExclusiveInstance eexclusive);
 
       void launch_app(const char * psz);

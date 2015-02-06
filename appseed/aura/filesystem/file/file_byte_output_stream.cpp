@@ -300,7 +300,8 @@ namespace file
 
       if(!bNull)
       {
-         *this << id.m_psz;
+         string str = id.m_psz;
+         *this << str;
       }
 
 

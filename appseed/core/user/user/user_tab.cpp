@@ -187,12 +187,12 @@ namespace user
 
          var_array vara;
 
-         data_load("restore_tab", vara);
+         data_load(".local://restore_tab", vara);
 
          if(vara.remove_ci(id) > 0)
          {
 
-            data_save("restore_tab", vara);
+            data_save(".local://restore_tab", vara);
 
          }
 
@@ -1483,7 +1483,9 @@ namespace user
 
       pbase->set_lresult(0);
 
-      post_message(WM_USER + 1342);
+      //post_message(WM_USER + 1342);
+
+      _011OnCreate(pobj);
 
    }
 
@@ -2126,7 +2128,7 @@ namespace user
       {
          var_array vara;
          get_restore_tab(vara);
-         data_save("restore_tab", vara);
+         data_save(".local://restore_tab", vara);
       }
    }
 
@@ -2240,10 +2242,12 @@ namespace user
             continue;
          if(vara[i].get_type() == var::type_string && vara[i].get_string() == "app:")
             continue;
-         if(stra.add_unique(vara[i]) >= 0)
-         {
-            ensure_tab_by_id(stra.last());
-         }
+         //if(stra.add_unique(vara[i]) >= 0)
+         //{
+            //ensure_tab_by_id(stra.last());
+
+         set_cur_tab_by_id(vara[i].get_id());
+         //}
       }
    }
 

@@ -1032,6 +1032,11 @@ namespace core
 
    }
 
+   string platform::filemanager_get_initial_browse_path()
+   {
+      return filemanager().get_initial_browse_path();
+   }
+
    void platform::on_exclusive_instance_conflict(EExclusiveInstance eexclusive)
    {
       if(eexclusive == ExclusiveInstanceLocalId)

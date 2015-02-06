@@ -13,7 +13,7 @@ void command_line::common_construct()
    m_bShowSplash     = TRUE;
    m_bRunEmbedded    = FALSE;
    m_bRunAutomated   = FALSE;
-   m_ecommand        = command_file_new;
+   m_ecommand        = command_application_start;
    m_iEdge           = 0;
    m_puiParent       = NULL;
    m_pbiasCreate     = NULL;
