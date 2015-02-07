@@ -15,6 +15,10 @@ class CLASS_DECL_AXIS imaging :
    virtual public ::object
 {
 public:
+
+   mutex       m_mutex;
+
+
    class CSysColorMap
    {
       public:

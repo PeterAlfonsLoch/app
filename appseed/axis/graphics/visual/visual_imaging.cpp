@@ -65,7 +65,8 @@ const imaging::CSysColorMap imaging::s_psyscolormap[] =
 #endif
 
 imaging::imaging(::aura::application * papp):
-element(papp)
+element(papp),
+m_mutex(papp)
 {
 }
 
@@ -6629,6 +6630,8 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
    bool imaging::load_from_file(::draw2d::dib * pdib,var varFile,bool bCache,::aura::application * papp)
    {
+      
+      single_lock sl(&m_mutex);
 
       if(papp == NULL)
          papp = get_app();
@@ -6645,7 +6648,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
          strFile.replace("/","\\");
          strFile = System.dir().time("cache",strFile);
          strFile += ".dib";
-         if(false && Sess(papp).file().exists(strFile))
+         if(Sess(papp).file().exists(strFile))
          {
             try
             {

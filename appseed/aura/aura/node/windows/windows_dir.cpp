@@ -980,7 +980,7 @@ namespace windows
    }
 
 
-   class ::file::path & dir::path()
+   class ::file::file_path & dir::path()
    {
       return m_path;
    }

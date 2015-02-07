@@ -15,10 +15,6 @@ namespace file
    public:
 
       serializable();
-      serializable(const serializable & s);
-#ifdef MOVE_SEMANTICS
-      serializable(serializable && s);
-#endif
 
 
       virtual void write(output_stream & ostream) = 0;
@@ -38,7 +34,7 @@ namespace file
          ostream.write_arbitrary(count);
          for(index index = 0; index < count; index++)
          {
-            ostream << a.element_at(index);
+            ostream << (serializable &) a.element_at(index);
          }
       }
 

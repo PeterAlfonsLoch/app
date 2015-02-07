@@ -26,7 +26,7 @@ namespace windows
 
 
       using ::file::dir::system::path;
-      virtual class ::file::path & path();
+      virtual class ::file::file_path & path();
       virtual string path(const char * pszFolder, strsize iLenFolder, const char * pszRelative, strsize iLenRelative, const char * psz2, strsize iLen2, bool bUrl);
 
       virtual string relpath(const char * lpcszSource, const char * lpcszRelative, const char * lpcsz2 = NULL);

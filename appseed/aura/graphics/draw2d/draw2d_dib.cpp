@@ -3557,10 +3557,10 @@ namespace draw2d
       int32_t width;
       int32_t height;
       istream >> width;
-      if(width < 0)
+      if(width <= 0)
          return;
       istream >> height;
-      if(height < 0)
+      if(height <= 0)
          return;
       if((width * height) <= 0)
          return;

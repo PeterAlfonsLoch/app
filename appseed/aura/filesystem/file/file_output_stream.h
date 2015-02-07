@@ -63,7 +63,7 @@ namespace file
       inline output_stream & operator << (const LPCRECT lpcrect                ) { write(lpcrect         ); return *this;}
       inline output_stream & operator << (const SIZE & size                    ) { write(size            ); return *this;}
       inline output_stream & operator << (const sp(type) info                  ) { write(info            ); return *this;}
-      inline output_stream & operator << (const serializable & serializable    ) { write(serializable    ); return *this;}
+      inline output_stream & operator << (serializable & serializable    ) { write(serializable    ); return *this;}
       inline output_stream & operator << (const char * psz                     ) { write(psz             ); return *this;}
       inline output_stream & operator << (const id & id                        ) { write(id              ); return *this;}
       inline output_stream & operator << (const var & var                      ) { write(var             ); return *this;}
@@ -97,7 +97,7 @@ namespace file
       virtual void write (LPCRECT lpcrect);
       virtual void write (const SIZE & size);
       virtual void write (const sp(type) info);
-      virtual void write (const serializable & serializable);
+      virtual void write (serializable & serializable);
       virtual void write (const char * psz);
       virtual void write (const id & id);
       virtual void write (const var & var);
