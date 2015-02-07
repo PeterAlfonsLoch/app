@@ -4,6 +4,15 @@
 //#include "freeimage/Source/FreeImage.h"
 
 
+namespace user
+{
+
+
+   void init_windowing();
+   void term_windowing();
+
+
+} // namespace user
 
 int g_iBaseRefCount = 0;
 
