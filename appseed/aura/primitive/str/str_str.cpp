@@ -2013,31 +2013,37 @@ namespace str
 
    string consume_quoted_value(const char * & pszXml)
    {
+
+      ::str::utf8_char utf8char;
+
       const char * psz = pszXml;
-      string qc = get_utf8_char(psz); // quote character
-      if(qc != "\"" && qc != "\\")
+      utf8char.parse(psz); // quote character
+      if(utf8char.m_chLen != 1)
       {
          throw_parsing_exception("Quote character is required here");
          return "";
       }
+      char qc = utf8char.m_sz[0];
+      if(qc != '\"' && qc != '\\')
+      {
+         throw_parsing_exception("Quote character is required here");
+         return "";
+      }
+      int iPos = utf8char.m_chLen;
       string str;
-      string qc2;
       while(true)
       {
-         psz = utf8_inc(psz);
-         qc2 = get_utf8_char(psz);
-         //string str = ::str::international::utf8_to_unicode(qc2);
-         if(qc2.is_empty())
+         iPos += utf8char.parse(&psz[iPos]);
+         if(utf8char.m_chLen <= 0)
          {
             throw_parsing_exception("Quote character is required here, premature end");
             return "";
          }
-         if(qc2 == qc)
+         if(utf8char.m_chLen == 1 && utf8char.m_sz[0] == qc)
             break;
-         str += qc2;
+         str += utf8char.m_sz;
       }
-      psz = utf8_inc(psz);
-      pszXml = psz;
+      pszXml = &psz[iPos];
       return str;
    }
 

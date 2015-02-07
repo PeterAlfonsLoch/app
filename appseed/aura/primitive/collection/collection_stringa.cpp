@@ -102,19 +102,19 @@ void stringa::add_lines(const string & str,bool bAddEmpty)
    do
    {
 
-      iFindA = str.find('\n');
+      iFindA = str.find('\n', iPos);
 
       if(iFindA < 0)
          goto r_only;
 
-      iFindB = str.find('\r');
+      iFindB = str.find('\r',iPos);
 
       if(iFindB < 0)
          goto n_only;
 
       iFind1 = MIN(iFindA,iFindB);
 
-      iFind2 = MAX(iFindB,iFindB);
+      iFind2 = MAX(iFindA,iFindB);
 
       if(iFind1 > iPos)
       {
@@ -151,7 +151,7 @@ void stringa::add_lines(const string & str,bool bAddEmpty)
    do
    {
 
-      iFindA = str.find('\n');
+      iFindA = str.find('\n',iPos);
 
       if(iFindA < 0)
          goto end;
@@ -178,7 +178,7 @@ r_only:
    do
    {
 
-      iFindB = str.find('\r');
+      iFindB = str.find('\r',iPos);
 
       if(iFindB < 0)
          goto end;

@@ -36,7 +36,7 @@ namespace str
    public:
 
 
-      char     m_sz[11];
+      char     m_sz[32];
       char     m_chLen;
 
 
