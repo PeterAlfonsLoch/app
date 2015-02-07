@@ -10,11 +10,34 @@ namespace exception
       printf("log:exception");
       //::MessageBox(NULL,"abc123","abc123",MB_OK);
 
+      m_bHandled = false;
+
+      m_bContinue = true;
+
    }
 
 
    exception::~exception()
    {
+
+      if(m_bContinue)
+      {
+         printf("-continue");
+      }
+      else
+      {
+         printf("-should_not_continue(fatal_exception_instance_candidate)");
+      }
+
+      if(m_bHandled)
+      {
+         printf("-explicitly_handled");
+      }
+      else
+      {
+         printf("-not_handled_explicitly");
+      }
+
       printf("\n");
 
    }

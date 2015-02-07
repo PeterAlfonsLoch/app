@@ -127,6 +127,7 @@ namespace aura
       inline class ::file::application &        file()         { return *m_spfile; }
 
       virtual bool on_run_exception(::exception::exception & e);
+      virtual bool handle_not_installed(::not_installed & notinstalled);
 
       virtual bool is_system();
       virtual bool is_session();

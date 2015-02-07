@@ -11,7 +11,9 @@ namespace exception
    public:
 
 
-      string m_strMessage;
+      bool        m_bHandled;
+      bool        m_bContinue;
+      string      m_strMessage;
 
 
       exception();

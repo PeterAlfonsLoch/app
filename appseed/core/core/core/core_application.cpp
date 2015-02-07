@@ -1610,207 +1610,21 @@ namespace core
    bool application::on_run_exception(::exception::exception & e)
    {
 
-      ::output_debug_string("An unexpected error has occurred and no special exception handling is available.");
+      ::output_debug_string("core::application::on_run_exception An unexpected error has occurred and no special exception handling is available.");
+
+      if(e.m_bHandled)
+      {
+
+         return !e.m_bContinue;
+
+      }
 
       if(typeid(e) == typeid(not_installed))
       {
 
          not_installed & notinstalled = dynamic_cast <not_installed &> (e);
 
-
-         if((::is_debugger_attached() && !file_exists_dup("C:\\ca2\\config\\plugin\\disable_manual_install_warning.txt")
-            && !file_exists_dup("C:\\ca2\\config\\system\\skip_debug_install.txt")) || file_exists_dup("C:\\ca2\\config\\system\\enable_debug_install.txt"))
-            //|| (App(notinstalled.get_app()).is_serviceable() && !App(notinstalled.get_app()).is_user_service()))
-         {
-
-            try
-            {
-
-               string strModuleFilePath;
-
-               DWORD dwExitCode = 0;
-
-               bool bTimedOut = false;
-
-               string strParam;
-
-               string strPath = notinstalled.m_strId;
-
-               strPath = System.dir().ca2module("app");
-
-               string strBuildNumber = "latest";
-
-#ifdef WINDOWS
-
-               strPath += ".exe";
-
-#elif defined(APPLEOS)
-
-
-               //                     strPath += ".app/Contents/MacOS/app";
-               strPath += ".app/Contents/MacOS/app";
-               //                     setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
-               //                     setenv("DYLD_FALLBACK_LIBRARY_PATH",strPath, 1 );
-
-#endif
-               
-               strModuleFilePath = strPath;
-
-               //#if defined(APPLEOS)
-               //                   strPath = "/usr/bin/open -n " + strPath + " --args : app=" + notinstalled.m_strId + " install build_number=" + strBuildNumber + " locale=" + notinstalled.m_strLocale + " schema=" + //notinstalled.m_strSchema;
-               //#else
-               strParam = " : app=" + notinstalled.m_strId + " install build_number=" + notinstalled.m_strBuild + " version=" + notinstalled.m_strVersion + " locale=" + notinstalled.m_strLocale + " schema=" + notinstalled.m_strSchema;
-               //#endif
-
-//               if(App(notinstalled.get_app()).is_serviceable() && !App(notinstalled.get_app()).is_user_service())
-//               {
-//
-//                  
-//                  HANDLE hToken = NULL;
-//
-//                  //if(LogonUserW(L"LocalServer",L"NT AUTHORITY",NULL,LOGON32_LOGON_SERVICE,LOGON32_PROVIDER_DEFAULT,&hToken))
-//                  //{
-//                  //   
-//                  //   ::simple_message_box(NULL,"Failed to Login at Local System Account","Debug only message, please install.",MB_ICONINFORMATION | MB_OK);
-//                  //}
-//
-//                  // os << "Impersonation OK!!<br>";
-//                  
-////                  strPath = "\"" + System.file().name_(strModuleFilePath) + "\" : install";
-//                  string strCmdLine = strPath + strParam;
-//                  wstring wstrCmdLine = strCmdLine;
-//                  string strModuleFolder = System.get_module_folder();
-//                  wstring wstrModuleFolder = strModuleFolder;
-//                  LPSTR lpsz = (char *)(const char *)(strCmdLine);
-//                  LPWSTR lpwsz = (wchar_t *)(const wchar_t *)(wstrCmdLine);
-//                  STARTUPINFO m_si;
-//                  PROCESS_INFORMATION m_pi;
-//                  memset(&m_si,0,sizeof(m_si));
-//                  memset(&m_pi,0,sizeof(m_pi));
-//                  m_si.cb = sizeof(m_si);
-//                  m_si.wShowWindow = SW_HIDE;
-//
-//                  if(LaunchAppIntoSystemAcc(strModuleFilePath,lpsz,strModuleFolder,&m_si,&m_pi))
-//                  //if(LaunchAppIntoDifferentSession(strModuleFilePath,lpsz,strModuleFolder,&m_si,&m_pi, 0))
-//                  //if(::CreateProcessAsUserW(hToken,wstring(strModuleFilePath),lpsz,NULL,NULL,TRUE,CREATE_NEW_CONSOLE,NULL,wstrModuleFolder,&m_si,&m_pi))
-//                  {
-//                     TRACE("Launched");
-//
-//
-//                  }
-//                  else
-//                  {
-//                     uint32_t dwLastError = ::GetLastError();
-//                     TRACE("Not Launched");
-//
-//                     WCHAR wsz[1024];
-//
-//                     DWORD dwSize = sizeof(wsz) / sizeof(WCHAR);
-//
-//                     GetUserNameW(wsz,&dwSize);
-//
-//                     string strUserName = wsz;
-//
-//                     if(strUserName != "NetworkService")
-//                     {
-//
-//                        goto Launch;
-//
-//                     }
-//
-//                  }
-//
-//                  dwExitCode = 0;
-//
-//                  while(::GetExitCodeProcess(m_pi.hProcess,&dwExitCode))
-//                  {
-//
-//                     if(dwExitCode == STILL_ACTIVE)
-//                     {
-//
-//                        Sleep(84);
-//
-//                     }
-//                     else
-//                     {
-//                        break;
-//                     }
-//
-//                  }
-//
-//               }
-               //else
-               {
-
-
-                  if(!(bool)System.oprop("not_installed_message_already_shown"))
-                  {
-
-                     if((App(notinstalled.get_app()).is_serviceable() && !App(notinstalled.get_app()).is_user_service())
-                      || (IDYES == ::simple_message_box(NULL,"Debug only message, please install:\n\n\n\t" + notinstalled.m_strId + "\n\ttype = " + notinstalled.m_strType + "\n\tlocale = " + notinstalled.m_strLocale + "\n\tschema = " + notinstalled.m_strSchema + "\n\tbuild number = " + notinstalled.m_strBuild + "\n\n\nThere are helper scripts under <solution directory>/nodeapp/stage/install/","Debug only message, please install.",MB_ICONINFORMATION | MB_YESNO)))
-                     {
-
-
-
-
-                        ::duration durationWait = seconds((1.9841115 + 1.9770402 + 1.9510422) * 3.0); // less than 18 seconds
-
-                        //#ifdef MACOS
-
-                        //                   TRACE0(strPath);
-
-                        //                 DWORD dwExitCode = System.process().synch(strPath,SW_HIDE,durationWait,&bTimedOut);
-
-                        //#else
-
-                       dwExitCode = System.process().elevated_synch(strPath + strParam,SW_HIDE,durationWait,&bTimedOut);
-
-                        //#endif
-
-                     }
-
-
-                  }
-                
-               }
-               if(bTimedOut)
-               {
-
-                  ::simple_message_box(NULL," - " + notinstalled.m_strId + "\nhas timed out while trying to install.\n\nFor developers it is recommended to\nfix this installation timeout problem.\n\nIt is recommended to kill manually :\n - \"" + strPath + strParam + "\"\nif it has not been terminated yet.","Debug only message, please install.",MB_ICONINFORMATION | MB_OK);
-
-               }
-               else if(dwExitCode == 0)
-               {
-
-                  ::simple_message_box(NULL,"Successfully run : " + strPath + strParam,"Debug only message, please install.",MB_ICONINFORMATION | MB_OK);
-
-               }
-               else
-               {
-
-                  ::simple_message_box(NULL,strPath + strParam + "\n\nFailed return code : " + ::str::from((uint32_t)dwExitCode),"Debug only message, please install.",MB_ICONINFORMATION | MB_OK);
-
-               }
-
-
-               System.oprop("not_installed_message_already_shown") = true;
-            }
-            catch(...)
-            {
-
-            }
-
-         }
-         else
-         {
-
-            //::MessageBoxA(NULL, "teste", "teste", MB_OK);
-
-            hotplugin::host::host_starter_start_sync(": app=" + notinstalled.m_strId + " app_type=" + notinstalled.m_strType + " install locale=" + notinstalled.m_strLocale + " schema=" + notinstalled.m_strSchema + " version=" + notinstalled.m_strVersion,get_app(),NULL);
-
-         }
-
-         return false;
+         return handle_not_installed(notinstalled);
 
       }
 
