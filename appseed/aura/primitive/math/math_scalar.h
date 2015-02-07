@@ -1,20 +1,20 @@
 #pragma once
 
 template < typename SCALAR >
-static_inline string get_default_scalar_format()
+inline string get_default_scalar_format()
 {
    return "";
 }
 
 
 template <  >
-static_inline string get_default_scalar_format < double >()
+inline string get_default_scalar_format < double >()
 {
    return "%d";
 }
 
 template <  >
-static_inline string get_default_scalar_format < int64_t >()
+inline string get_default_scalar_format < int64_t >()
 {
    return "%lli";
 }
@@ -23,7 +23,7 @@ namespace str
 {
 
    template < typename FORMATABLE >
-   static_inline string format(const string & strFormat, const FORMATABLE & f)
+   inline string format(const string & strFormat, const FORMATABLE & f)
    {
 
       string str;
@@ -87,7 +87,7 @@ class CLASS_DECL_AURA scalar_base
 {
 public:
 
-   
+
    string            m_strFormat;
 
 
@@ -120,10 +120,10 @@ class  scalar :
 {
 public:
 
-   
+
    scalar(scalar_source < SCALAR > * psource = NULL,e_scalar escalar = scalar_none,const string & strFormat = ::get_default_scalar_format< SCALAR>());
 
-   
+
    scalar_source < SCALAR > *    m_psource;
    e_scalar                      m_escalar;
 

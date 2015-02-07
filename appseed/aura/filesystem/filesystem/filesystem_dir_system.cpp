@@ -1317,7 +1317,7 @@ namespace file
       }
 
 
-      class ::file::path & system::path()
+      class ::file::file_path & system::path()
       {
          throw interface_only_exception(get_app(), "this is an interface");
       }

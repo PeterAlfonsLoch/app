@@ -84,7 +84,7 @@ void raw_array < TYPE, ARG_TYPE, ALLOCATOR >::
 template<class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline void raw_array < TYPE, ARG_TYPE, ALLOCATOR >::remove_last()
 {
-   remove_at(this->get_upper_bound());
+   this->remove_at(this->get_upper_bound());
 }
 
 template<class TYPE, class ARG_TYPE, class ALLOCATOR >
