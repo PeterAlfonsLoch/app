@@ -1,5 +1,12 @@
 #pragma once
 
+struct id_all
+{
+
+   int64_t            m_iType;
+   int64_t            m_iBody;
+
+};
 
 class CLASS_DECL_AURA id
 {
@@ -8,7 +15,7 @@ public:
 
    enum e_type : int64_t
    {
-      
+
       type_null = 0,
       type_empty = 1,
       type_integer = 2,
@@ -17,7 +24,7 @@ public:
    };
 
 
-   union 
+   union
    {
 
       struct
@@ -43,13 +50,7 @@ public:
 
       };
 
-      struct all
-      {
-         
-         int64_t            m_iType;
-         int64_t            m_iBody;
-
-      } m_all;
+      id_all                  m_all;
 
    };
 
@@ -180,7 +181,7 @@ inline id::id()
 
 inline id::id(const id & id)
 {
-   
+
    m_all = id.m_all;
 
 }

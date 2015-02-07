@@ -16,7 +16,7 @@ namespace file
 {
 
 
-   class CLASS_DECL_AURA path :
+   class CLASS_DECL_AURA file_path :
       virtual public ::object
 
    {
@@ -76,19 +76,19 @@ namespace file
          is_dir_map        m_isdirmap;
          mutex             m_mutex;
          string            m_strApiCc;
-         path              m_path;
+         file_path              m_path;
 
 
          system(::aura::application * papp);
          virtual ~system();
 
 
-         virtual class ::file::path & path();
+         virtual class ::file::file_path & path();
 
 
          virtual string sibling(const string & strPath,const string & strRelative,bool bUrl);
          virtual string sibling(const string & strPath,const string & strRelative,const string & str2,bool bUrl);
-         
+
          virtual string sibling(const string & strFolder,const string & strRelative);
          virtual string sibling(const string & strFolder,const string & strRelative,const string & str2);
 

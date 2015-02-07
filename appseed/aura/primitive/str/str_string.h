@@ -1139,9 +1139,9 @@ inline string id::str() const
    }
    else if(m_etype == type_text)
    {
-      return m_psz == NULL ? string() : m_psz;
+      return m_psz;
    }
-   else if(m_etype == type_text)
+   else if(m_etype == type_integer)
    {
       return ::str::from(m_i);
    }
@@ -1727,7 +1727,7 @@ inline bool id::operator >= (int_ptr i) const
 
 inline id::operator int64_t () const
 {
-   
+
    return m_etype == type_integer ? m_i : 0x8000000000000000ll;
 
 }

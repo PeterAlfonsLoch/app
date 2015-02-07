@@ -16,7 +16,7 @@ namespace file
 {
 
 
-   bool path::is_equal(const char * lpcsz1, const char * lpcsz2)
+   bool file_path::is_equal(const char * lpcsz1, const char * lpcsz2)
    {
       UNREFERENCED_PARAMETER(lpcsz1);
       UNREFERENCED_PARAMETER(lpcsz2);
@@ -440,15 +440,15 @@ namespace file
 
       bool system::ls(::aura::application * papp,const char * lpcsz,stringa * pstraPath,stringa * pstraTitle,bool_array * pbaIsDir,int64_array * piaSize)
       {
-         
+
          return false;
 
       }
 
-      
+
       bool system::rls(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, e_extract eextract)
       {
-         
+
          return false;
 
       }
@@ -458,12 +458,12 @@ namespace file
       {
 
          return false;
-         
+
       }
 
       bool system::ls_dir(::aura::application * papp,const char * lpcsz,stringa * pstraPath,stringa * pstraTitle)
       {
-         
+
          return false;
 
       }
@@ -475,10 +475,10 @@ namespace file
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      
+
       bool system::ls_file(::aura::application * papp,const char * lpcsz,stringa * pstraPath,stringa * pstraTitle)
       {
-         
+
          return false;
 
       }

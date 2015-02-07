@@ -50,6 +50,7 @@
 			<Add option="-Wno-attributes" />
 			<Add option="-Winvalid-pch" />
 			<Add option="-fPIC" />
+			<Add option="-fpermissive" />
 			<Add option="-DLINUX" />
 			<Add directory="../../../include" />
 			<Add directory="framework" />

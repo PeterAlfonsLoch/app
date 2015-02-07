@@ -137,31 +137,31 @@ inline void array_base < TYPE, ALLOCATOR > ::remove_last()
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline TYPE& array < TYPE, ARG_TYPE, ALLOCATOR > ::get_at(index nIndex)
 {
-   ASSERT(nIndex >= 0 && nIndex < m_nSize);
+   ASSERT(nIndex >= 0 && nIndex < this->m_nSize);
    return get_data()[nIndex];
 }
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline const TYPE& array < TYPE, ARG_TYPE, ALLOCATOR > ::get_at(index nIndex) const
 {
-   ASSERT(nIndex >= 0 && nIndex < m_nSize);
+   ASSERT(nIndex >= 0 && nIndex < this->m_nSize);
    return get_data()[nIndex];
 }
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline void array < TYPE, ARG_TYPE, ALLOCATOR > ::set_at(index nIndex, ARG_TYPE newElement)
 {
-   ASSERT(nIndex >= 0 && nIndex < m_nSize);
+   ASSERT(nIndex >= 0 && nIndex < this->m_nSize);
    get_data()[nIndex] = newElement;
 }
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline const TYPE& array < TYPE, ARG_TYPE, ALLOCATOR > ::element_at(index nIndex) const
 {
-   ASSERT(nIndex >= 0 && nIndex < m_nSize);
+   ASSERT(nIndex >= 0 && nIndex < this->m_nSize);
    return get_data()[nIndex];
 }
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline TYPE& array < TYPE, ARG_TYPE, ALLOCATOR > ::element_at(index nIndex)
 {
-   ASSERT(nIndex >= 0 && nIndex < m_nSize);
+   ASSERT(nIndex >= 0 && nIndex < this->m_nSize);
    return get_data()[nIndex];
 }
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
@@ -177,14 +177,14 @@ inline TYPE& array < TYPE, ARG_TYPE, ALLOCATOR > ::first(index nIndex)
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline const TYPE& array < TYPE, ARG_TYPE, ALLOCATOR > ::last(index index) const
 {
-   return element_at(get_upper_bound(index));
+   return element_at(this->get_upper_bound(index));
 }
 
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline TYPE& array < TYPE, ARG_TYPE, ALLOCATOR > ::last(index index)
 {
-   return element_at(get_upper_bound(index));
+   return element_at(this->get_upper_bound(index));
 }
 
 
@@ -193,21 +193,21 @@ inline TYPE& array < TYPE, ARG_TYPE, ALLOCATOR > ::last(index index)
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline const TYPE* array < TYPE, ARG_TYPE, ALLOCATOR > ::get_data() const
 {
-   return (const TYPE*)m_pData;
+   return (const TYPE*)this->m_pData;
 }
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline TYPE* array < TYPE, ARG_TYPE, ALLOCATOR > ::get_data()
 {
-   return (TYPE*)m_pData;
+   return (TYPE*)this->m_pData;
 }
 
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline index array < TYPE, ARG_TYPE, ALLOCATOR > ::add(ARG_TYPE newElement)
 {
-   index nIndex = m_nSize;
-   allocate(nIndex + 1);
+   index nIndex = this->m_nSize;
+   this->allocate(nIndex + 1);
    last() = newElement;
    return nIndex;
 }
@@ -262,21 +262,21 @@ inline array < TYPE, ARG_TYPE, ALLOCATOR >  & array < TYPE, ARG_TYPE, ALLOCATOR 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 array < TYPE, ARG_TYPE, ALLOCATOR > ::array(::aura::application * papp, ::count nGrowBy) :
 element(papp),
-array_base(papp,sizeof(TYPE),false)
+array_base < TYPE, ALLOCATOR >(papp,sizeof(TYPE),false)
 {
-   m_nGrowBy = MAX(0, nGrowBy);
-   m_pData = NULL;
-   m_nSize = m_nMaxSize = 0;
+//   this->m_nGrowBy = MAX(0, nGrowBy);
+//   this->m_pData = NULL;
+//   this->m_nSize = this->m_nMaxSize = 0;
 }
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 array < TYPE, ARG_TYPE, ALLOCATOR > ::array(const array <TYPE, ARG_TYPE> & a) :
 element(a.get_app()),
-array_base(a.get_app(),sizeof(TYPE),false)
+array_base < TYPE, ALLOCATOR > (a.get_app(),sizeof(TYPE),false)
 {
-   m_nGrowBy = 32;
-   m_pData = NULL;
-   m_nSize = m_nMaxSize = 0;
+//   m_nGrowBy = 32;
+//   m_pData = NULL;
+//   m_nSize = m_nMaxSize = 0;
    operator = (a);
 }
 
@@ -286,12 +286,12 @@ array_base(a.get_app(),sizeof(TYPE),false)
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 array < TYPE, ARG_TYPE, ALLOCATOR > :: array(::count n) :
-array_base(sizeof(TYPE),false)
+array_base < TYPE, ALLOCATOR >(sizeof(TYPE),false)
 {
-   m_nGrowBy = 32;
-   m_pData = NULL;
-   m_nSize = m_nMaxSize = 0;
-   allocate(n);
+//   m_nGrowBy = 32;
+//   m_pData = NULL;
+//   m_nSize = m_nMaxSize = 0;
+   this->allocate(n);
 }
 
 
@@ -301,7 +301,7 @@ array_base(sizeof(TYPE),false)
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 array < TYPE, ARG_TYPE, ALLOCATOR > ::~array()
 {
-   remove_all(); // on_destruct_element is virtual and won't be available for array_base
+   this->remove_all(); // on_destruct_element is virtual and won't be available for array_base
 }
 
 
@@ -314,11 +314,11 @@ inline index array < TYPE, ARG_TYPE, ALLOCATOR > ::append(const array& src)
    ASSERT(this != &src);   // cannot append to itself
 
    if(this == &src)
-      throw invalid_argument_exception(get_app());
+      throw invalid_argument_exception(this->get_app());
 
-   ::count nOldSize = m_nSize;
-   allocate(m_nSize + src.m_nSize);
-   CopyElements<TYPE>(&m_pData[nOldSize], src.m_pData, src.m_nSize);
+   ::count nOldSize = this->m_nSize;
+   this->allocate(this->m_nSize + src.m_nSize);
+   CopyElements<TYPE>(&this->m_pData[nOldSize], src.m_pData, src.m_nSize);
    return nOldSize;
 }
 
@@ -330,8 +330,8 @@ inline void array < TYPE, ARG_TYPE, ALLOCATOR > ::copy(const array& src)
 
    if(this != &src)
    {
-      allocate(src.m_nSize);
-      CopyElements<TYPE>(m_pData,src.m_pData,src.m_nSize);
+      this->allocate(src.m_nSize);
+      CopyElements<TYPE>(this->m_pData,src.m_pData,src.m_nSize);
    }
 }
 
@@ -346,11 +346,11 @@ void array < TYPE, ARG_TYPE, ALLOCATOR > ::dump(dump_context & dumpcontext) cons
 {
    object::dump(dumpcontext);
 
-   dumpcontext << "with " << m_nSize << " elements";
+   dumpcontext << "with " << this->m_nSize << " elements";
    if (dumpcontext.GetDepth() > 0)
    {
       dumpcontext << "\n";
-      dump_elements<TYPE>(dumpcontext, get_data(), m_nSize);
+      dump_elements<TYPE>(dumpcontext, this->get_data(), this->m_nSize);
    }
 
    dumpcontext << "\n";
@@ -361,17 +361,17 @@ void array < TYPE, ARG_TYPE, ALLOCATOR > ::assert_valid() const
 {
    object::assert_valid();
 
-   if (m_pData == NULL)
+   if (this->m_pData == NULL)
    {
-      ASSERT(m_nSize == 0);
-      ASSERT(m_nMaxSize == 0);
+      ASSERT(this->m_nSize == 0);
+      ASSERT(this->m_nMaxSize == 0);
    }
    else
    {
-      ASSERT(m_nSize >= 0);
-      ASSERT(m_nMaxSize >= 0);
-      ASSERT(m_nSize <= m_nMaxSize);
-      ASSERT(__is_valid_address(m_pData, m_nMaxSize * sizeof(TYPE)));
+      ASSERT(this->m_nSize >= 0);
+      ASSERT(this->m_nMaxSize >= 0);
+      ASSERT(this->m_nSize <= this->m_nMaxSize);
+      ASSERT(__is_valid_address(this->m_pData, this->m_nMaxSize * sizeof(TYPE)));
    }
 }
 
@@ -380,7 +380,7 @@ inline typename array < TYPE, ARG_TYPE, ALLOCATOR > ::iterator array < TYPE, ARG
 {
    if(pos.m_parray == this)
    {
-      remove_at(pos.m_i);
+      this->remove_at(pos.m_i);
       return iterator(pos.m_i, this);
    }
    else
@@ -453,26 +453,26 @@ index array < TYPE, ARG_TYPE, ALLOCATOR > ::insert_at(index nIndex, ARG_TYPE new
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline TYPE & array < TYPE, ARG_TYPE, ALLOCATOR > ::add_new()
 {
-   set_size(m_nSize + 1);
+  this-> set_size(this->m_nSize + 1);
    return last();
 }
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline index array < TYPE, ARG_TYPE, ALLOCATOR > ::add_new(::count count)
 {
-   set_size(m_nSize + count);
-   return get_upper_bound();
+   this->set_size(this->m_nSize + count);
+   return this->get_upper_bound();
 }
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline TYPE array < TYPE, ARG_TYPE, ALLOCATOR >::pop(index n)
 {
 
-   index i = get_upper_bound(n);
+   index i = this->get_upper_bound(n);
 
    TYPE t = element_at(i);
 
-   remove_at(i);
+   this->remove_at(i);
 
    return t;
 
@@ -482,20 +482,20 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline void array < TYPE, ARG_TYPE, ALLOCATOR >::pop_back(index n)
 {
 
-   remove_at(get_upper_bound(n));
+   remove_at(this->get_upper_bound(n));
 
 }
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline index array < TYPE, ARG_TYPE, ALLOCATOR >::push(ARG_TYPE newElement,index n)
 {
-   return insert_at(get_upper_bound(n),newElement);
+   return insert_at(this->get_upper_bound(n),newElement);
 }
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline void array < TYPE, ARG_TYPE, ALLOCATOR >::push_back(ARG_TYPE newElement,index n)
 {
-   insert_at(get_upper_bound(n),newElement);
+   insert_at(this->get_upper_bound(n),newElement);
 }
 
 
@@ -508,8 +508,8 @@ inline void array < TYPE, ARG_TYPE, ALLOCATOR > ::set_at_grow(index nIndex, ARG_
 
    ASSERT(nIndex >= 0);
 
-   if (nIndex >= m_nSize)
-      set_size(nIndex+1, -1);
+   if (nIndex >= this->m_nSize)
+      this->set_size(nIndex+1, -1);
 
    get_data()[nIndex] = newElement;
 
@@ -525,8 +525,8 @@ inline TYPE & array < TYPE, ARG_TYPE, ALLOCATOR > ::element_at_grow(index nIndex
 
    ASSERT(nIndex >= 0);
 
-   if (nIndex >= m_nSize)
-      set_size(nIndex+1, -1);
+   if (nIndex >= this->m_nSize)
+      this->set_size(nIndex+1, -1);
 
    return get_data()[nIndex];
 
@@ -538,13 +538,13 @@ inline TYPE & array < TYPE, ARG_TYPE, ALLOCATOR > ::element_at_grow(index nIndex
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 array < TYPE, ARG_TYPE, ALLOCATOR >::array(array && a) :
 element(a.get_app()),
-array_base(a.get_app(), sizeof(TYPE), false)
+array_base < TYPE, ALLOCATOR >(a.get_app(), sizeof(TYPE), false)
 {
 
-	m_nGrowBy = a.m_nGrowBy;
-	m_pData = a.m_pData;
-	m_nSize = a.m_nSize;
-	m_nMaxSize = a.m_nMaxSize;
+	this->m_nGrowBy = a.m_nGrowBy;
+	this->m_pData = a.m_pData;
+	this->m_nSize = a.m_nSize;
+	this->m_nMaxSize = a.m_nMaxSize;
 
 	a.m_pData = NULL;
 	a.m_nSize = 0;
@@ -559,12 +559,13 @@ inline array < TYPE, ARG_TYPE, ALLOCATOR > & array < TYPE, ARG_TYPE, ALLOCATOR >
 
 	if (&a != this)
 	{
-		destroy();
 
-		m_nGrowBy = a.m_nGrowBy;
-		m_pData = a.m_pData;
-		m_nSize = a.m_nSize;
-		m_nMaxSize = a.m_nMaxSize;
+		this->destroy();
+
+		this->m_nGrowBy = a.m_nGrowBy;
+		this->m_pData = a.m_pData;
+		this->m_nSize = a.m_nSize;
+		this->m_nMaxSize = a.m_nMaxSize;
 
 		a.m_pData = NULL;
 		a.m_nSize = 0;

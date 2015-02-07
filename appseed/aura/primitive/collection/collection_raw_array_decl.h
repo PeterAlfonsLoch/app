@@ -393,7 +393,7 @@ public:
       index iEnd;
 
       if(nCount < 0)
-         iEnd = get_upper_bound(nCount);
+         iEnd = this->get_upper_bound(nCount);
       else
          iEnd = iStart + nCount - 1;
 

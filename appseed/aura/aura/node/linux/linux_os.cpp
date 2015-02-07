@@ -157,21 +157,32 @@ namespace linux
       return false;
    }
 
+
    bool os::get_pid_by_title(const char * pszName, DWORD & dwPid)
    {
+
       uint_array dwa;
+
       get_all_processes(dwa);
+
       for(int32_t i = 0; i < dwa.get_count(); i++)
       {
-         if(System.file_title(get_process_path(dwa[i]))
-            .CompareNoCase(pszName) == 0)
+
+         if(System.file().title_(get_process_path(dwa[i])).CompareNoCase(pszName) == 0)
          {
+
             dwPid = dwa[i];
+
             return true;
+
          }
+
       }
+
       return false;
+
    }
+
 
    string os::get_process_path(DWORD dwPid)
    {

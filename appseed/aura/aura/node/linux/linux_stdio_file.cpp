@@ -26,14 +26,19 @@ stdio_file::~stdio_file()
       close();
 }
 
+
 bool stdio_file::open(const char * lpszFileName, UINT nOpenFlags)
 {
+
    ASSERT(lpszFileName != NULL);
+
    //ASSERT(AfxIsValidString(lpszFileName));
 
    if(nOpenFlags  & ::file::defer_create_directory)
    {
-      Application.dir_mk(Application.dir_name(lpszFileName));
+
+      Application.dir().mk(System.dir().name(lpszFileName));
+
    }
 
    m_pStream = NULL;

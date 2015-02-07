@@ -14,14 +14,6 @@ public:
    inline raw_ptr_array(const raw_ptr_array & a) { this->operator = (a); }
    inline raw_ptr_array(raw_ptr_array && a) { this->operator = (a); }
 
-   virtual void on_construct_element(void * p)
-   {
-      zero(p,sizeof(BASE_TYPE));
-   }
-   virtual void on_construct_element(void *p,::count c)
-   {
-      zero(p,sizeof(BASE_TYPE)*c);
-   }
 
    inline raw_ptr_array & operator = (const raw_ptr_array & a) { this->ARRAY_TYPE::operator = (a); return *this; }
    inline raw_ptr_array & operator = (raw_ptr_array && a){ this->ARRAY_TYPE::operator = (a); return *this; }

@@ -155,11 +155,11 @@ namespace copier
 
       inline static void copy(TYPE *pdst, const TYPE * psrc)
       {
-         
+
          *pdst = *psrc;
 
       }
-      
+
       inline static void copy(TYPE *pdst,const TYPE * psrc, ::count c)
       {
 
@@ -763,7 +763,7 @@ public:
       index iEnd;
 
       if(nCount < 0)
-         iEnd = get_upper_bound(nCount);
+         iEnd = this->get_upper_bound(nCount);
       else
          iEnd = iStart + nCount - 1;
 
@@ -815,9 +815,9 @@ class nodefctr_array :
 public:
 
 
-   nodefctr_array(::aura::application * papp = NULL, ::count nGrowBy = 32) : array < TYPE, ARG_TYPE, ::constructor::nodef > (papp, nGrowBy) {}
-   nodefctr_array(const array <TYPE, ARG_TYPE> & a) : array < TYPE, ARG_TYPE, ::constructor::nodef > (a) {}
-   nodefctr_array(::count n) : array < TYPE, ARG_TYPE, ::constructor::nodef > (n){}
+   nodefctr_array(::aura::application * papp = NULL, ::count nGrowBy = 32) : array < TYPE, ARG_TYPE, ::constructor::nodef < TYPE > > (papp, nGrowBy) {}
+   nodefctr_array(const array <TYPE, ARG_TYPE> & a) : array < TYPE, ARG_TYPE, ::constructor::nodef < TYPE >  > (a) {}
+   nodefctr_array(::count n) : array < TYPE, ARG_TYPE, ::constructor::nodef < TYPE > > (n){}
    virtual ~nodefctr_array() {}
 
 };
