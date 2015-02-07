@@ -136,5 +136,6 @@ bool __win_file_find_is_dots(WIN32_FIND_DATA & data)
 
 
 
-#include "file_html_buffer.h"
-#include "file_edit_buffer.h"
+#include "file_html_buffer.cpp"
+#include "file_edit_buffer.cpp"
+

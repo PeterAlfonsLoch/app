@@ -18,12 +18,6 @@
     <Filter Include="Header Files\include">
       <UniqueIdentifier>{3c37128f-57ef-433c-9811-bd26450d5cfb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\engines">
-      <UniqueIdentifier>{bcb1da10-3c5b-4c8a-90e5-92cc7398f493}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\engines\ccgost">
-      <UniqueIdentifier>{bd327091-7384-4e82-9808-f60ce3a2637f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Assembler Files">
       <UniqueIdentifier>{ed1652d6-6243-4c53-aad9-093b00530b76}</UniqueIdentifier>
     </Filter>
@@ -203,95 +197,8 @@
     <ClCompile Include="ssl\tls_srp.c">
       <Filter>Source Files\ssl</Filter>
     </ClCompile>
-    <ClCompile Include="engines\e_4758cca.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\e_aep.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\e_atalla.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\e_capi.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\e_chil.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\e_cswift.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\e_gmp.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\e_nuron.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\e_padlock.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\e_sureware.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\e_ubsec.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\ccgost\e_gost_err.c">
-      <Filter>Source Files\engines\ccgost</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\ccgost\gost_ameth.c">
-      <Filter>Source Files\engines\ccgost</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\ccgost\gost_asn1.c">
-      <Filter>Source Files\engines\ccgost</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\ccgost\gost_crypt.c">
-      <Filter>Source Files\engines\ccgost</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\ccgost\gost_ctl.c">
-      <Filter>Source Files\engines\ccgost</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\ccgost\gost_eng.c">
-      <Filter>Source Files\engines\ccgost</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\ccgost\gost_keywrap.c">
-      <Filter>Source Files\engines\ccgost</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\ccgost\gost_md.c">
-      <Filter>Source Files\engines\ccgost</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\ccgost\gost_params.c">
-      <Filter>Source Files\engines\ccgost</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\ccgost\gost_pmeth.c">
-      <Filter>Source Files\engines\ccgost</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\ccgost\gost_sign.c">
-      <Filter>Source Files\engines\ccgost</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\ccgost\gost89.c">
-      <Filter>Source Files\engines\ccgost</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\ccgost\gost94_keyx.c">
-      <Filter>Source Files\engines\ccgost</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\ccgost\gost2001.c">
-      <Filter>Source Files\engines\ccgost</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\ccgost\gost2001_keyx.c">
-      <Filter>Source Files\engines\ccgost</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\ccgost\gosthash.c">
-      <Filter>Source Files\engines\ccgost</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\ccgost\gostsum.c">
-      <Filter>Source Files\engines\ccgost</Filter>
-    </ClCompile>
     <ClCompile Include="ssl\_ssl.c">
       <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\ccgost\_ccgost.c">
-      <Filter>Source Files\engines\ccgost</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
