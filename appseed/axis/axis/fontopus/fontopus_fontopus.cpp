@@ -466,8 +466,11 @@ namespace fontopus
 
       string strNode;
 
+
       try
       {
+
+         DWORD dwBeg = ::get_tick_count();
 
          ::property_set set(get_app());
 
@@ -478,6 +481,10 @@ namespace fontopus
          psession = System.http().request(psession,strGetFontopus,set);
 
          strNode = set["get_response"];
+
+         DWORD dwEnd = ::get_tick_count();
+
+         TRACE("get_fontopus_login HTTP GET time = %dms", dwEnd - dwBeg);
 
       }
       catch (...)

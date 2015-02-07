@@ -619,6 +619,11 @@ namespace http
 
       }
 
+      uint32_t dwTimeProfileMid = get_tick_count();
+
+      TRACE("just before open open http_session ::http::system::open %d, %d, %d",dwTimeProfile1,dwTimeProfileMid, dwTimeProfileMid - dwTimeProfile1);
+
+
       if(!psession->open(bConfigProxy))
       {
 /*            if(pestatus != NULL)
@@ -724,9 +729,18 @@ retry:
       {
          try
          {
+            
+            DWORD dwBeg = ::get_tick_count();
+
             psession = open(System.url().get_server(pszRequest), System.url().get_protocol(pszRequest), set, set["user"].cast < ::fontopus::user > (), set["http_protocol_version"]);
+            
             if(psession == NULL)
                return NULL;
+
+            DWORD dwEnd = ::get_tick_count();
+
+            TRACE("opening system::request time(%d) = %d, %d, %d\n",0,dwEnd,dwBeg,dwEnd - dwBeg);
+
          }
          catch(...)
          {
@@ -734,6 +748,7 @@ retry:
          }
       }
 
+      DWORD dwBegA = ::get_tick_count();
 
       try
       {
@@ -888,11 +903,17 @@ retry:
             keeplive.keep(&Sess(papp));
             keeplive.keep(&Sys(papp));
          }
+
+         DWORD dwEndA = ::get_tick_count();
+
+         TRACE("opening preparation system::request time(%d) = %d, %d, %d\n",0,dwEndA,dwBegA,dwEndA - dwBegA);
+
+
          oprop("dw").get_value().set_type(var::type_uint32);
          dw1 = oprop("dw");
          dw2 = ::get_tick_count();
 
-         TRACE("intertime system::request time(%d) = %d, %d, %d\n", iIteration, dw1, dw2, dw2 - dw1);
+         TRACE("Higher Level Diagnosis : iNTERTIMe system::request time(%d) = %d, %d, %d\n", iIteration, dw1, dw2, dw2 - dw1);
 
          while(psession->m_phandler->get_count() > 0 && !psession->m_bRequestComplete && (::get_thread() == NULL || ::get_thread()->m_bRun))
          //while(psession->m_phandler->get_count() > 0 && !psession->m_bRequestComplete) // should only exit in case of process exit signal

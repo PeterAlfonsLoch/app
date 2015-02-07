@@ -24,8 +24,15 @@ bool machine_event_central::initialize()
    if(m_bInitialized)
       return true;
 
+   // todo (camilo) instead of sleeping (at machine_event_central::run) , wait for change messages pooling in the machine event data file.
+
+   // meanwhile, not being used, so exit... It is a problem for Instrumentation Profiling, as function timing (and not cpu usage), counts.
+#if 0
+
    if(!begin())
       return false;
+
+#endif
 
    m_bInitialized = true;
 
@@ -36,6 +43,12 @@ bool machine_event_central::initialize()
 
 int32_t machine_event_central::run()
 {
+
+   // todo (camilo) instead of sleeping, wait for change messages pooling in the machine event data file.
+
+   // meanwhile, not being used, so exit... It is a problem for Instrumentation Profiling, as function timing (and not cpu usage), counts.
+
+#if 0
 
    while(get_run())
    {
@@ -53,6 +66,8 @@ int32_t machine_event_central::run()
       Sleep(484);
 
    }
+
+#endif
 
    return 0;
 

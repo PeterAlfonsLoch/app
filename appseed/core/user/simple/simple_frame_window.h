@@ -41,23 +41,23 @@ public:
 
    sp(::user::wndfrm::frame::frame)       m_pframeschema;
 
-   class helper_task:
-      public thread
-   {
-   public:
+   //class helper_task:
+   //   public thread
+   //{
+   //public:
 
-      simple_frame_window *      m_pframe;
-      bool                       m_bSaveWindowRect;
+   //   simple_frame_window *      m_pframe;
+   //   //bool                       m_bSaveWindowRect;
+   //   manual_reset_event                  m_evSizeMove;
 
+   //   helper_task(simple_frame_window * pframe);
 
-      helper_task(simple_frame_window * pframe);
+   //   int32_t run();
 
-      int32_t run();
+   //};
 
-   };
-
-
-   helper_task *        m_phelpertask;
+   //
+   //helper_task *                       m_phelpertask;
 //   HDC                           m_hdcOpenGL;
 //#ifdef WINDOWS
 //   HGLRC                         m_hglrc;

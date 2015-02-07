@@ -7,37 +7,37 @@
 
 extern CLASS_DECL_CORE thread_int_ptr < DWORD_PTR > t_time1;
 
-simple_frame_window::helper_task::helper_task(simple_frame_window * pframe) :
-::thread(pframe->get_app()),
-m_pframe(pframe) 
-{
-   m_bSaveWindowRect = false;
-   begin(); 
-}
-
-
-int simple_frame_window::helper_task::run()
-{
-   while(m_bRun)
-   {
-      if(m_bSaveWindowRect)
-      {
-         try
-         {
-            if(m_pframe->does_display_match())
-            {
-               m_pframe->WindowDataSaveWindowRect();
-            }
-         }
-         catch(...)
-         {
-         }
-         m_bSaveWindowRect = false;
-      }
-      Sleep(184);
-   }
-   return 0;
-}
+//simple_frame_window::helper_task::helper_task(simple_frame_window * pframe) :
+//::thread(pframe->get_app()),
+//m_pframe(pframe) ,
+//m_evSizeMove(pframe->get_app())
+//{
+//   begin(); 
+//}
+//
+//
+//int simple_frame_window::helper_task::run()
+//{
+//   while(m_bRun)
+//   {
+//      if(m_evSizeMove.wait(millis(84)).signaled())
+//      {
+//         m_evSizeMove.ResetEvent();
+//         try
+//         {
+//            if(m_pframe->does_display_match())
+//            {
+//               m_pframe->WindowDataSaveWindowRect();
+//            }
+//         }
+//         catch(...)
+//         {
+//         }
+//         
+//      }
+//   }
+//   return 0;
+//}
 
 
 simple_frame_window::simple_frame_window(::aura::application * papp) :
@@ -52,7 +52,7 @@ m_fastblur(allocer())
    m_bLayered = true;
    m_pframeschema = NULL;
 
-   m_phelpertask = new helper_task(this);
+//   m_phelpertask = new helper_task(this);
 
 }
 
@@ -367,14 +367,17 @@ void simple_frame_window::_001OnSize(signal_details * pobj)
 
    UNREFERENCED_PARAMETER(pobj);
 
- /*  if (does_display_match())
+   if (does_display_match())
    {
 
       WindowDataSaveWindowRect();
 
-   }*/
+   }
 
-   m_phelpertask->m_bSaveWindowRect = true;
+   //m_phelpertask->m_evSizeMove.set_event();
+
+   //WindowDataSaveWindowRect();
+
 }
 
 
@@ -390,7 +393,17 @@ void simple_frame_window::_001OnMove(signal_details * pobj)
 
    //post_message(WM_APP + 184, 123);
 
-   m_phelpertask->m_bSaveWindowRect = true;
+   //m_phelpertask->m_evSizeMove.set_event();
+
+//   WindowDataSaveWindowRect();
+
+   if(does_display_match())
+   {
+
+      WindowDataSaveWindowRect();
+
+   }
+
 
 }
 
