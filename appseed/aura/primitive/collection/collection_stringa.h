@@ -136,7 +136,7 @@ public:
    void get_format_string(string & str, const char * lpcszSeparator) const;
    void add_tokens(const char * lpcsz, const char * lpcszSeparator, bool bAddEmpty = true);
    void add_smallest_tokens(const char * lpcsz, stringa & straSeparator, bool bAddEmpty = true, bool bWithSeparator = FALSE);
-   void add_lines(const string & str);
+   void add_lines(const string & str, bool bAddEmpty = true);
 
 
    bool is_empty(::count countMinimum = 1);

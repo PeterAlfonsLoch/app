@@ -665,7 +665,7 @@ ml /safeseh /coff /Zi /Fo"$(IntDir)rc4.o" /c /Fl"$(IntDir)rc4.lst" "$(ProjectDir
       <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <FixedBaseAddress>false</FixedBaseAddress>
-      <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(IntDir);$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
@@ -677,6 +677,10 @@ ml /safeseh /coff /Zi /Fo"$(IntDir)rc4.o" /c /Fl"$(IntDir)rc4.lst" "$(ProjectDir
       <Command>
       </Command>
     </PostBuildEvent>
+    <PreLinkEvent>
+      <Command>ml /safeseh /coff /Zi /Fo"$(IntDir)wp.o" /c /Fl"$(IntDir)wp-mmx.lst" "$(ProjectDir)crypto/whrlpool/asm/wp-mmx.asm"
+ml /safeseh /coff /Zi /Fo"$(IntDir)rc4.o" /c /Fl"$(IntDir)rc4.lst" "$(ProjectDir)crypto/rc4/asm/rc4-586.asm"</Command>
+    </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">
     <Midl>
@@ -752,6 +756,10 @@ ml /safeseh /coff /Zi /Fo"$(IntDir)rc4.o" /c /Fl"$(IntDir)rc4.lst" "$(ProjectDir
       <TargetMachine>MachineX86</TargetMachine>
       <SubSystem>Windows</SubSystem>
     </Lib>
+    <PreLinkEvent>
+      <Command>ml /safeseh /coff /Zi /Fo"$(IntDir)wp.o" /c /Fl"$(IntDir)wp-mmx.lst" "$(ProjectDir)crypto/whrlpool/asm/wp-mmx.asm"
+ml /safeseh /coff /Zi /Fo"$(IntDir)rc4.o" /c /Fl"$(IntDir)rc4.lst" "$(ProjectDir)crypto/rc4/asm/rc4-586.asm"</Command>
+    </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">
     <Midl>
@@ -814,7 +822,7 @@ ml /safeseh /coff /Zi /Fo"$(IntDir)rc4.o" /c /Fl"$(IntDir)rc4.lst" "$(ProjectDir
       <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <FixedBaseAddress>false</FixedBaseAddress>
-      <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(IntDir);$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
@@ -825,6 +833,10 @@ ml /safeseh /coff /Zi /Fo"$(IntDir)rc4.o" /c /Fl"$(IntDir)rc4.lst" "$(ProjectDir
       <Command>
       </Command>
     </PostBuildEvent>
+    <PreLinkEvent>
+      <Command>ml /safeseh /coff /Zi /Fo"$(IntDir)wp.o" /c /Fl"$(IntDir)wp-mmx.lst" "$(ProjectDir)crypto/whrlpool/asm/wp-mmx.asm"
+ml /safeseh /coff /Zi /Fo"$(IntDir)rc4.o" /c /Fl"$(IntDir)rc4.lst" "$(ProjectDir)crypto/rc4/asm/rc4-586.asm"</Command>
+    </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">
     <Midl>
@@ -889,7 +901,7 @@ ml /safeseh /coff /Zi /Fo"$(IntDir)rc4.o" /c /Fl"$(IntDir)rc4.lst" "$(ProjectDir
       <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <FixedBaseAddress>false</FixedBaseAddress>
-      <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(IntDir);$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <Profile>true</Profile>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
@@ -901,6 +913,10 @@ ml /safeseh /coff /Zi /Fo"$(IntDir)rc4.o" /c /Fl"$(IntDir)rc4.lst" "$(ProjectDir
       <Command>
       </Command>
     </PostBuildEvent>
+    <PreLinkEvent>
+      <Command>ml /safeseh /coff /Zi /Fo"$(IntDir)wp.o" /c /Fl"$(IntDir)wp-mmx.lst" "$(ProjectDir)crypto/whrlpool/asm/wp-mmx.asm"
+ml /safeseh /coff /Zi /Fo"$(IntDir)rc4.o" /c /Fl"$(IntDir)rc4.lst" "$(ProjectDir)crypto/rc4/asm/rc4-586.asm"</Command>
+    </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
     <Midl>
@@ -9819,6 +9835,9 @@ ml64 /Zi /Fo"$(IntDir)x64cpuid.o" /c /Fl"$(IntDir)x64cpuid.lst" "$(ProjectDir)as
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="crypto\rc4\rc4_skey.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -9830,6 +9849,9 @@ ml64 /Zi /Fo"$(IntDir)x64cpuid.o" /c /Fl"$(IntDir)x64cpuid.lst" "$(ProjectDir)as
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="crypto\rc4\rc4_utl.c" />
     <ClCompile Include="crypto\rc5\rc5cfb64.c">

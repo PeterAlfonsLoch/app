@@ -431,12 +431,8 @@ namespace aura
    bool str::load_uistr_file(const ::id & pszLang, const ::id & pszStyle, const char * pszFile)
    {
       stringa straLines;
-      stringa straSep;
-      straSep.add("\r\n");
-      straSep.add("\r");
-      straSep.add("\n");
-      straSep.add("\n\r");
-      straLines.add_smallest_tokens(Application.file().as_string(pszFile), straSep, false);
+
+      straLines.add_lines(Application.file().as_string(pszFile), false);
 
       string str;
       string strLine;
