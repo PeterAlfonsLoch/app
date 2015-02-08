@@ -1,14 +1,17 @@
 #include "framework.h"
 
+
 void dappy(const char * psz);
 
-namespace axis
+
+namespace base
 {
 
 
    simple_app::simple_app():
       ::aura::system(this),
-      ::axis::system(this)
+      ::axis::system(this),
+      ::base::system(this)
    {
 
    }
@@ -32,15 +35,20 @@ namespace axis
       // Skip program name
       if(*cmd == _T('"'))
       {
+
          while(*cmd && *cmd != _T('"'))
             cmd++;
+
          if(*cmd == _T('"'))
             cmd++;
+
       }
       else
       {
+
          while(*cmd > _T(' '))
             cmd++;
+
       }
 
       // Skip any white space
@@ -168,23 +176,32 @@ namespace axis
       }
       catch(...)
       {
+
       }
 
    }
 
+
    bool simple_app::intro()
    {
+
       return true;
+
    }
+
 
    int32_t simple_app::refrain()
    {
 
       while(true)
       {
+
          GetMessage(&m_msg,NULL,0,0xffffffffu);
+
          TranslateMessage(&m_msg);
+
          DispatchMessage(&m_msg);
+
       }
 
       return 0;
@@ -214,11 +231,16 @@ namespace axis
 
    int32_t simple_app::simple_app_pre_run()
    {
+
       return 0;
+
    }
 
 
 } // namespace aura
+
+
+
 
 
 
