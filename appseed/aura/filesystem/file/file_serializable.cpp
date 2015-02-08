@@ -5,10 +5,10 @@ namespace file
 {
 
       
-   serializable::serializable()
-   {
+   //serializable::serializable()
+   //{
 
-   }
+   //}
 
 
 } // namespace file

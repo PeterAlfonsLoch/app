@@ -286,9 +286,9 @@ var_array & var_array::operator = (const int_array & inta)
 var_array & var_array::operator = (const property_set & propset)
 {
    remove_all();
-   for(int32_t i = 0; i < propset.m_propertya.get_count(); i++)
+   for(int32_t i = 0; i < propset.m_propertyptra.get_count(); i++)
    {
-      add(propset.m_propertya[i]);
+      add(*propset.m_propertyptra[i]);
    }
    return *this;
 }

@@ -1058,9 +1058,9 @@ namespace xml
          // <?TAG Attr1="Val1"
          if(m_attra.has_properties())
             ostring += ' ';
-         for( int32_t i = 0 ; i < m_attra.m_propertya.get_size(); i++ )
+         for( int32_t i = 0 ; i < m_attra.m_propertyptra.get_size(); i++ )
          {
-            ostring += m_attra.m_propertya[i]->get_xml(opt);
+            ostring += m_attra.m_propertyptra[i]->get_xml(opt);
          }
          //?>
          ostring += szXMLPIClose;
@@ -1091,9 +1091,9 @@ namespace xml
       // <TAG Attr1="Val1"
       if(m_attra.has_properties())
          ostring += ' ';
-      for( int32_t i = 0 ; i < m_attra.m_propertya.get_count(); i++ )
+      for( int32_t i = 0 ; i < m_attra.m_propertyptra.get_count(); i++ )
       {
-         ostring += m_attra.m_propertya[i]->get_xml(opt);
+         ostring += m_attra.m_propertyptra[i]->get_xml(opt);
       }
 
       if( m_nodea.is_empty() && m_strValue.is_empty() )
@@ -1214,9 +1214,9 @@ namespace xml
    attr * node::find_attr( const char * attrname )
    {
       return m_attra.find(attrname);
-      /*for( int32_t i = 0 ; i < m_attra.m_propertya.get_size(); i++ )
+      /*for( int32_t i = 0 ; i < m_attra.m_propertyptra.get_size(); i++ )
       {
-         ::xml::attr * attr = &m_attra.m_propertya[i];
+         ::xml::attr * attr = &m_attra.m_propertyptra[i];
          if(attr != NULL)
          {
             if(attr->name() == attrname)
@@ -1240,13 +1240,13 @@ namespace xml
 
       attr_array attra(get_app());
 
-      for( int32_t i = 0 ; i < m_attra.m_propertya.get_count(); i++ )
+      for( int32_t i = 0 ; i < m_attra.m_propertyptra.get_count(); i++ )
       {
-         ::xml::attr * attr = &m_attra.m_propertya[i];
+         ::xml::attr * attr = &m_attra.m_propertyptra[i];
          if(attr != NULL)
          {
             if(attr->name() == pszName)
-               attra.m_propertya.add(*attr);
+               attra.m_propertyptra.add(*attr);
          }
       }
 
@@ -1644,7 +1644,7 @@ namespace xml
    //========================================================
    attr * node::attr_at( index i )
    {
-      return m_attra.m_propertya[i];
+      return m_attra.m_propertyptra[i];
    }
 
 
@@ -1751,7 +1751,7 @@ namespace xml
       if(find >= 0)
       {
          a
-         m_attra.m_propertya.remove_at(find);
+         m_attra.m_propertyptra.remove_at(find);
          return attr;
       }
       return NULL;

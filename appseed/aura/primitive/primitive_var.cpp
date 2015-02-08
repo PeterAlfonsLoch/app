@@ -927,7 +927,7 @@ void var::read(::file::input_stream & is)
          {
             throw "object allocation is not implemented";
          }
-         sp(::file::serializable) pserializable = m_sp;
+         ::file::serializable * pserializable = m_sp.cast < ::file::serializable >();
          if(pserializable != NULL)
          {
             pserializable->read(is);
@@ -991,7 +991,9 @@ void var::write(::file::output_stream & ostream)
       {
          sp(type) info(Sys(ostream.m_spbuffer->get_app()).get_type_info(typeid(*m_sp.m_p)));
          ostream << info;
-         sp(::file::serializable) pserializable = m_sp;
+         
+         ::file::serializable * pserializable = m_sp.cast < ::file::serializable > ();
+
          if(pserializable != NULL)
          {
             pserializable->write(ostream);
@@ -2048,10 +2050,9 @@ property & var::prop()
    }
    if(m_sp.is_null())
    {
-      m_pprop = canew(property());
-      m_sp = m_pprop;
+      m_pprop = new property();
    }
-   return *dynamic_cast < property * > (m_sp.m_p);
+   return *m_pprop;
 }
 
 
@@ -2103,7 +2104,7 @@ var var::key(index i) const
    case type_vara:
       return i;
    case type_propset:
-      return m_pset->m_propertya[i]->name();
+      return m_pset->m_propertyptra[i]->name();
    default:
       throw "not supported";
    }
@@ -2142,7 +2143,7 @@ var var::at(index i) const
    case type_vara:
       return &m_pvara->element_at(i);
    case type_propset:
-      return &m_pset->m_propertya[i].m_p->m_var;
+      return &m_pset->m_propertyptra[i]->m_var;
    case type_pvar:
       return m_pvar->at(i);
    default:
@@ -2168,7 +2169,7 @@ var var::at(index i)
    case type_vara:
       return &m_pvara->element_at(i);
    case type_propset:
-      return &m_pset->m_propertya[i].m_p->m_var;
+      return &m_pset->m_propertyptra[i]->m_var;
    case type_pvar:
       return m_pvar->at(i);
    default:

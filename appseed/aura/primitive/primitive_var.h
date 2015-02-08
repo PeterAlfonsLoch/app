@@ -391,7 +391,7 @@ public:
 
 
    template < class T >
-   sp(T) cast()
+   T * cast()
    {
 
       if(m_etype == type_pvar && m_pvar != NULL)
@@ -400,18 +400,14 @@ public:
       if(m_etype != type_element)
          return NULL;
 
-      sp(T) p = m_sp;
+      return m_sp.cast < T >();
 
-      if(p.is_null())
-         return NULL;
-
-      return p;
 
    }
 
 
    template < class T >
-   sp(T) cast() const
+   T * cast() const
    {
       return ((var *) this)->cast < T >();
    }

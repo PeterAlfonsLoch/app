@@ -470,7 +470,7 @@ bool ifs::file_move(const char * pszDst, const char * pszSrc)
       }
       else
       {
-         strUrl = varFile.propset().m_propertya[0]->get_value();
+         strUrl = varFile.propset().m_propertyptra[0]->get_value();
       }
    }
    else

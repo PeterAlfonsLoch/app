@@ -12,7 +12,7 @@ public:
 
 
    property_map         m_map;
-   property_array       m_propertya;
+   property_ptra        m_propertyptra;
    class signal         m_signal;
    bool                 m_bAutoAdd;
    bool                 m_bMultiValue;
@@ -224,11 +224,11 @@ inline property * property_set::add(id idName)
    if(idName.is_null())
       idName = get_new_id();
 
-   m_propertya.add(canew(property(idName)));
+   property * pproperty = new property(idName);
 
-   m_map.set_at(idName, m_propertya.get_upper_bound());
+   m_map.set_at(idName,m_propertyptra.add(pproperty));
 
-   return m_propertya.last_ptr();
+   return pproperty;
 
 }
 
@@ -239,11 +239,11 @@ inline property * property_set::add(id idName, var var)
    if(idName.is_null())
       idName = get_new_id();
 
-   m_propertya.add(canew(property(idName, var)));
+   property * pproperty = new property(idName, var);
 
-   m_map.set_at(idName, m_propertya.get_upper_bound());
+   m_map.set_at(idName,m_propertyptra.add(pproperty));
 
-   return m_propertya.last_ptr();
+   return pproperty;
 
 }
 
@@ -264,12 +264,12 @@ public:
 
    property * operator ->()
    {
-      return m_set.m_propertya[m_ppair->m_element2];
+      return m_set.m_propertyptra[m_ppair->m_element2];
    }
 
    const property * operator ->() const
    {
-      return m_set.m_propertya[m_ppair->m_element2];
+      return m_set.m_propertyptra[m_ppair->m_element2];
    }
 
    operator property_map::pair * ()
@@ -309,12 +309,12 @@ public:
 
    const property * operator ->()
    {
-      return m_set.m_propertya[m_ppair->m_element2];
+      return m_set.m_propertyptra[m_ppair->m_element2];
    }
 
    const property * operator ->() const
    {
-      return m_set.m_propertya[m_ppair->m_element2];
+      return m_set.m_propertyptra[m_ppair->m_element2];
    }
 
    operator const property_map::pair * () const
@@ -453,7 +453,7 @@ inline property * property_set::find(id idName) const
    if(i < 0)
       return NULL;
 
-   return ((property_set *) this)->m_propertya[i];
+   return ((property_set *) this)->m_propertyptra[i];
 
 }
 

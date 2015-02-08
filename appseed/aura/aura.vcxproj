@@ -4228,6 +4228,7 @@
     <ClCompile Include="multithreading\_multithreading.cpp" />
     <ClCompile Include="net\net_html_html.cpp" />
     <ClCompile Include="net\net_url.cpp" />
+    <None Include="aura\os\windows\windows.inl" />
     <None Include="primitive\collection\collection_array_base.inl">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>

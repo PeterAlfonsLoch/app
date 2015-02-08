@@ -59,6 +59,7 @@ namespace file
       virtual void write (const char * psz);
       virtual void write (const id & id);
       virtual void write (const var & var);
+      virtual void write (const property & property);
       virtual void write (const string & str);
 
       virtual string get_location() const;

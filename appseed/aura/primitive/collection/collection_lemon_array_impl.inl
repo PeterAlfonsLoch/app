@@ -48,6 +48,29 @@ namespace lemon
 
    }
 
+   namespace ptra
+   {
+
+      template < class TDST,class TSRC >
+      ::count copy(ptr_array < TDST > & dsta,const ptr_array < TSRC > & srca)
+      {
+
+         ::count ca = 0;
+
+         dsta.remove_all();
+
+         for(int i = 0; i < srca.get_size(); i++)
+         {
+            dsta.add(new TSRC(srca(i)));
+            ca++;
+         }
+
+         return ca;
+
+      }
+
+
+   }
 
 
    template < class A, class A2D >

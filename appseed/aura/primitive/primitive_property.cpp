@@ -152,8 +152,7 @@ const string_composite str_str_interface::operator[](const char * pszName) const
    return str::empty_string();
 }
 
-property::property(::aura::application * papp) :
-::element(papp)
+property::property(::aura::application * papp)
 {
 }
 
@@ -1338,7 +1337,7 @@ property_map::property_map()
    InitHashTable(64);
 }
 
-property_array::property_array(::aura::application * papp) :
+property_ptra::property_ptra(::aura::application * papp):
    element(papp)
 {
    set_size(0, 64);
@@ -1367,7 +1366,9 @@ string property::get_xml(::xml::disp_option * opt /*= &optDefault*/ )
 
    if(opt == ((::xml::disp_option *) 1))
    {
-      opt = System.xml().m_poptionDefault;
+      
+      opt = Sys(::get_thread_app()).xml().m_poptionDefault;
+
    }
 
    string str;

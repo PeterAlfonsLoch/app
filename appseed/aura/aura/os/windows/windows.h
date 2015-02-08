@@ -39,3 +39,6 @@ CLASS_DECL_AURA string read_resource_as_string_dup(HINSTANCE hinst, UINT nID, LP
 
 CLASS_DECL_AURA int WinRegGetValueW(HKEY hkey, LPCWSTR lpSubKey, LPCWSTR lpValue, DWORD dwFlags, LPDWORD pdwType, PVOID pvData, LPDWORD pcbData);
 
+
+
+#include "windows.inl"

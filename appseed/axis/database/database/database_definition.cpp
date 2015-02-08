@@ -127,10 +127,12 @@ namespace database
    {
    }
 
+   
    result_set::result_set(::aura::application * papp) :
    element(papp)
    {
    }
+
 
    result_set::result_set(const result_set & set) :
    element(set.get_app())

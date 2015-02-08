@@ -203,10 +203,18 @@ namespace file
 
    }
 
+
    void output_stream:: write (const var & var)
    {
 
    }
+
+
+   void output_stream:: write(const property & property)
+   {
+
+   }
+
 
    output_stream & output_stream::operator = (const output_stream & ostream)
    {

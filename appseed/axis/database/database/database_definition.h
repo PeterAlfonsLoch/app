@@ -134,7 +134,8 @@ namespace database
    typedef array < field_properties, field_properties & > record_properties;
 
    class CLASS_DECL_AXIS result_set :
-      public ::file::serializable
+      virtual public object,
+      virtual public ::file::serializable
    {
    public:
 

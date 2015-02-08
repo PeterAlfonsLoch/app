@@ -98,9 +98,7 @@ class property_set;
 class property_map;
 
 
-class CLASS_DECL_AURA property :
-   public object,
-   public ::file::serializable
+class CLASS_DECL_AURA property
 {
 protected:
 
@@ -667,13 +665,13 @@ public:
 
 
 
-class CLASS_DECL_AURA property_array :
-   public spa(property)
+class CLASS_DECL_AURA property_ptra :
+   public ptr_array < property >
 {
 public:
 
 
-   property_array(::aura::application * papp = NULL);
+   property_ptra(::aura::application * papp = NULL);
 
 
 

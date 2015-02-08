@@ -67,6 +67,7 @@ namespace file
       inline input_stream & operator >> (serializable    & serializable    ) { read(serializable   ); return *this; }
       inline input_stream & operator >> (id              & id              ) { read(id             ); return *this; }
       inline input_stream & operator >> (var             & var             ) { read(var            ); return *this; }
+      inline input_stream & operator >> (property        & property        ) { read(property       ); return *this; }
       inline input_stream & operator >> (string          & str             ) { read(str            ); return *this; }
 
 
@@ -97,6 +98,7 @@ namespace file
       virtual void read (serializable & serializable);
       virtual void read (id & id);
       virtual void read (var & var);
+      virtual void read (property & property);
       virtual void read (string & str);
 
       virtual input_stream & getline(char * sz, strsize n);

@@ -3414,6 +3414,9 @@
     <None Include="primitive\collection\collection_array_base.inl">
       <Filter>Header Files\primitive\collection</Filter>
     </None>
+    <None Include="aura\os\windows\windows.inl">
+      <Filter>Header Files\aura\os\windows</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\x86\msvcr120d.dll">

@@ -21,9 +21,9 @@ namespace xml
       if(m_ppropertyset == NULL)
          return;
       var_exchange varexchange(get_app());
-      for(int32_t i = 0; i < m_ppropertyset->m_propertya.get_size(); i++)
+      for(int32_t i = 0; i < m_ppropertyset->m_propertyptra.get_size(); i++)
       {
-         property & property = m_ppropertyset->m_propertya(i);
+         property & property = m_ppropertyset->m_propertyptra(i);
          varexchange.m_pvar = &property.get_value();
          xmlot.export_node(property.name(), varexchange);
       }
@@ -35,9 +35,9 @@ namespace xml
       if(m_ppropertyset == NULL)
          return;
       var_exchange varexchange(get_app());
-      for(int32_t i = 0; i < m_ppropertyset->m_propertya.get_size(); i++)
+      for(int32_t i = 0; i < m_ppropertyset->m_propertyptra.get_size(); i++)
       {
-         property & property = m_ppropertyset->m_propertya(i);
+         property & property = m_ppropertyset->m_propertyptra(i);
          varexchange.m_pvar = &property.get_value();
          xmlit.import_node(property.name(), varexchange);
       }

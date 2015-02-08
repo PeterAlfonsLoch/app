@@ -16,6 +16,15 @@ namespace lemon
       return a;
    }
 
+   namespace ptra
+   {
+
+      template < class TDST,class TSRC >
+      ::count copy(ptr_array < TDST > & dsta,const ptr_array < TSRC > & srca);
+
+
+   }
+
    namespace array
    {
 

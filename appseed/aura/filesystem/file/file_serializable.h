@@ -9,12 +9,9 @@ namespace file
    class output_stream;
 
 
-   class CLASS_DECL_AURA serializable:
-      virtual public element
+   class CLASS_DECL_AURA serializable
    {
    public:
-
-      serializable();
 
 
       virtual void write(output_stream & ostream) = 0;
@@ -65,6 +62,46 @@ namespace file
 
    } // namespace array
 
+   namespace ptra
+   {
+
+      template < class ARRAY >
+      void write(output_stream & ostream,const ARRAY & a)
+      {
+         ::count count = a.get_count();
+         ostream.write_arbitrary(count);
+         for(index index = 0; index < count; index++)
+         {
+            ostream << *a.element_at(index);
+         }
+      }
+
+      template < class ARRAY >
+      void read(input_stream & istream,ARRAY & a)
+      {
+         ::count count;
+         //istream >> count;
+         istream.read_arbitrary(count);
+
+         if(istream.fail())
+         {
+            return;
+         }
+
+         a.allocate(count);
+         for(index index = 0; index < count; index++)
+         {
+            istream >> *a.element_at(index);
+            if(istream.fail())
+            {
+               return;
+            }
+         }
+         a.on_after_read();
+      }
+
+
+   } // namespace array
 
    namespace map
    {
@@ -139,5 +176,18 @@ template<class TYPE,class ARG_TYPE = const TYPE &>
 }
 
 
+template < class TYPE,class ARRAY_TYPE = raw_ptr_array < TYPE * > >
+::file::output_stream & operator << (::file::output_stream & os,const ptr_array < TYPE,ARRAY_TYPE> & a)
+{
+   ::file::ptra::write(os,a);
+   return os;
+}
+
+template < class TYPE,class ARRAY_TYPE = raw_ptr_array < TYPE * > >
+::file::input_stream & operator >> (::file::input_stream & is,ptr_array < TYPE,ARRAY_TYPE > & a)
+{
+   ::file::ptra::read(is,a);
+   return is;
+}
 
 

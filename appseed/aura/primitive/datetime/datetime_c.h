@@ -8,7 +8,7 @@ BEGIN_EXTERN_C
 
 // struct tm;
 
-CLASS_DECL_AURA dword get_tick_count();
+inline dword get_tick_count();
 
 
 

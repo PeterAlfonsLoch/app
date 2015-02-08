@@ -177,7 +177,7 @@ namespace mail
                m_estate = state_receive_top_headers;
                m_ppop3->m_iHeaderLine = 0;
                m_strKey = "";
-               m_ppop3->m_setHeaders.m_propertya.remove_all();
+               m_ppop3->m_setHeaders.m_propertyptra.remove_all();
          }
          break;
       case state_retr_start:
@@ -187,7 +187,7 @@ namespace mail
                m_estate = state_retr_headers;
                m_ppop3->m_iHeaderLine = 0;
                m_strKey = "";
-               m_ppop3->m_setHeaders.m_propertya.remove_all();
+               m_ppop3->m_setHeaders.m_propertyptra.remove_all();
          }
          break;
       case state_retr_only_headers_start:
@@ -197,7 +197,7 @@ namespace mail
                m_estate = state_retr_only_headers;
                m_ppop3->m_iHeaderLine = 0;
                m_strKey = "";
-               m_ppop3->m_setHeaders.m_propertya.remove_all();
+               m_ppop3->m_setHeaders.m_propertyptra.remove_all();
          }
          break;
       case state_listmessages_start:

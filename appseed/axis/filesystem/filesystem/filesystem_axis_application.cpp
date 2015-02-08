@@ -273,7 +273,7 @@ namespace file
 
             strPath = varFile;
 
-            strPath.trim("\"'");
+            //strPath.trim("\"'");
 
          }
          else if(varFile.get_type() == var::type_stra)
@@ -286,7 +286,7 @@ namespace file
 
             }
 
-            strPath.trim("\"'");
+            //strPath.trim("\"'");
 
          }
          else if(varFile.get_type() == var::type_propset)
@@ -297,7 +297,7 @@ namespace file
 
                strPath = varFile["url"];
 
-               strPath.trim("\"'");
+               //strPath.trim("\"'");
 
             }
 

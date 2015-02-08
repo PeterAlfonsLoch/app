@@ -186,10 +186,10 @@ namespace sockets
 
       // fields
       {
-         for(int i = 0; i < m_fields.m_propertya.get_count(); i++)
+         for(int i = 0; i < m_fields.m_propertyptra.get_count(); i++)
          {
-            string name = m_fields.m_propertya[i]->name();
-            var & var = m_fields.m_propertya[i]->get_value();
+            string name = m_fields.m_propertyptra[i]->name();
+            var & var = m_fields.m_propertyptra[i]->get_value();
             tmp = "--" + m_boundary + "\r\n"
                "content-disposition: form-data; name=\"" + name + "\"\r\n"
                "\r\n";
@@ -256,10 +256,10 @@ namespace sockets
 
       // send fields
       {
-         for(int i = 0; i < m_fields.m_propertya.get_count(); i++)
+         for(int i = 0; i < m_fields.m_propertyptra.get_count(); i++)
          {
-            string name = m_fields.m_propertya[i]->name();
-            var & var = m_fields.m_propertya[i]->get_value();
+            string name = m_fields.m_propertyptra[i]->name();
+            var & var = m_fields.m_propertyptra[i]->get_value();
             tmp = "--" + m_boundary + "\r\n"
                "content-disposition: form-data; name=\"" + name + "\"\r\n"
                "\r\n";

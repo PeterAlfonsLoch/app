@@ -308,11 +308,21 @@ namespace file
 
    }
 
+
    void byte_output_stream:: write (const var & var)
    {
+
       ((::var *)&var)->write(*this);
 
    }
+
+   void byte_output_stream:: write(const property & property)
+   {
+
+      ((::property *)&property)->write(*this);
+
+   }
+
 
    string byte_output_stream::get_location() const
    {

@@ -331,11 +331,21 @@ namespace file
 
    }
 
+
    void byte_input_stream::read(var & var)
    {
+
       var.read(*this);
 
    }
+
+   void byte_input_stream::read(property & property)
+   {
+
+      property.read(*this);
+
+   }
+
 
    string byte_input_stream::get_location() const
    {

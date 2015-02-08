@@ -251,7 +251,14 @@ namespace file
    }
 
 
-   void input_stream::read (string & str)
+   void input_stream::read(property & property)
+   {
+      UNREFERENCED_PARAMETER(property);
+      ::exception::throw_interface_only(get_app());
+   }
+
+
+   void input_stream::read(string & str)
    {
       UNREFERENCED_PARAMETER(str);
       ::exception::throw_interface_only(get_app());

@@ -267,10 +267,10 @@ namespace sockets
          put_byte(msg, ptr, 0x04); // send headers
          put_integer(msg, ptr, (int16_t)(int32_t)m_response.attr("http_status_code"));
          put_string(msg, ptr, m_response.attr("http_status"));
-         put_integer(msg, ptr, (int16_t)m_response.headers().m_propertya.get_size() );
-         for (int32_t i = 0; i < m_response.headers().m_propertya.get_size(); i++)
+         put_integer(msg, ptr, (int16_t)m_response.headers().m_propertyptra.get_size() );
+         for (int32_t i = 0; i < m_response.headers().m_propertyptra.get_size(); i++)
          {
-            string strNameLower(m_response.headers().m_propertya[i]->name());
+            string strNameLower(m_response.headers().m_propertyptra[i]->name());
             strNameLower;
             int32_t iValue;
             if(Session.sockets().m_pajpaxissocketinit->ResponseHeader.Lookup(strNameLower, iValue))
@@ -279,9 +279,9 @@ namespace sockets
             }
             else
             {
-               put_string(msg, ptr, m_response.headers().m_propertya[i]->name());
+               put_string(msg, ptr, m_response.headers().m_propertyptra[i]->name());
             }
-            put_string(msg, ptr, m_response.headers().m_propertya[i]->name());
+            put_string(msg, ptr, m_response.headers().m_propertyptra[i]->name());
          }
          ::exception::throw_not_implemented(get_app());
    /*      list<string> vec = m_response.CookieNames();

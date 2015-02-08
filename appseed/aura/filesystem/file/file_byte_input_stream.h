@@ -51,6 +51,7 @@ namespace file
       virtual void read (serializable & serializable);
       virtual void read (id & id);
       virtual void read (var & var);
+      virtual void read (property & property);
       virtual void read (string & str);
 
       // read until MSB is not set ignoring this MSB when writing to target
