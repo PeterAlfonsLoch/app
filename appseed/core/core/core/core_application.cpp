@@ -2,10 +2,11 @@
 //#include "core/filesystem/filemanager/filemanager.h"
 //#include "core/user/user/user.h"
 
+
+#ifdef WINDOWS
 #include <Wtsapi32.h>
-
-
 #include <Userenv.h>
+#endif
 
 
 #ifdef LINUX
@@ -441,10 +442,10 @@ namespace core
 
             if(is_user_service())
             {
-               
+
                if(Session.fontopus()->get_user() != NULL && Session.fontopus()->get_user()->m_strLogin == "system")
                {
-                  
+
                   Session.fontopus()->m_puser = NULL;
 
                }
@@ -3371,7 +3372,7 @@ namespace core
 
    ::user::wndfrm::wndfrm          &application::wndfrm()
    {
-   
+
       return *m_pwndfrm.cast < ::user::wndfrm::wndfrm>() ;
 
    }
@@ -3379,7 +3380,7 @@ namespace core
 
    ::user::document_manager          &application::document_manager()
    {
-      
+
       return *m_pdocmanager.cast < ::user::document_manager >() ;
 
    }
@@ -3830,7 +3831,7 @@ namespace core
 
       if(m_pdocmanager == NULL)
          m_pdocmanager = canew(::user::document_manager(get_app()));
-      
+
       //m_pdocmanager->add_ref();
 
       document_manager().add_document_template(ptemplate);
@@ -3871,7 +3872,7 @@ namespace core
 
    int32_t application::GetVisibleFrameCount()
    {
-      
+
       ::user::interaction_spa wnda = m_uiptraFrame;
 
       int32_t iCount = 0;
@@ -3925,7 +3926,7 @@ namespace core
 
    sp(::aura::document)   application::create_form(::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var)
    {
-      
+
       return Plat(this).userex()->create_form(pcallback,pwndParent,var);
 
    }
@@ -3984,7 +3985,7 @@ namespace core
       return System.get_platform(iEdge)->open_by_file_extension(pcc);
    }
 
-   
+
    ::aura::application * application::create_platform(::aura::session * psession)
    {
 
@@ -4190,7 +4191,7 @@ bool enable_windows_token_privilege(HANDLE h,LPCSTR lpcszName)
 
    if(!AdjustTokenPrivileges(h,FALSE,&tp,sizeof(TOKEN_PRIVILEGES),(PTOKEN_PRIVILEGES)NULL,NULL))
    {
-      
+
       int iError = GetLastError();
 
       printf("Adjust Privilege value Error: %u\n",iError);
@@ -4221,7 +4222,7 @@ BOOL LaunchAppIntoSystemAcc(const char * pszProcess,const char * pszCommand,cons
    psi->cb= sizeof(STARTUPINFO);
    psi->lpDesktop = "winsta0\\default";
    //ZeroMemory(&pi,sizeof(pi));
-   
+
 //   LUID luid;
    //hProcess = OpenProcess(MAXIMUM_ALLOWED,FALSE,winlogonPid);
    hProcess = ::GetCurrentProcess();
@@ -4236,7 +4237,7 @@ BOOL LaunchAppIntoSystemAcc(const char * pszProcess,const char * pszCommand,cons
 
    if(!enable_windows_token_privilege(hPToken,SE_DEBUG_NAME))
    {
-      
+
       return FALSE;
 
    }

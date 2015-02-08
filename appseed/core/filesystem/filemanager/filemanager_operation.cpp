@@ -209,7 +209,8 @@ namespace filemanager
       {
                                          m_iFile = 0;
                                          m_pchBuffer = (char *)malloc(m_iBufferSize);
-                                         if(!open_src_dst(m_stra[m_iFile],System.dir().path(m_str,System.file().name_(m_stra[m_iFile])),m_str))
+                                         string strPath = System.dir().path(m_str,System.file().name_(m_stra[m_iFile]));
+                                         if(!open_src_dst(m_stra[m_iFile],strPath,m_str))
                                             return false;
       }
          break;
@@ -340,7 +341,10 @@ namespace filemanager
                                             m_iFile++;
                                             if(m_iFile >= m_stra.get_size())
                                                return false;
-                                            if(!open_src_dst(m_stra[m_iFile], System.dir().path( m_str,System.file().name_(m_stra[m_iFile])),m_str))
+
+                                             string strPath = System.dir().path( m_str,System.file().name_(m_stra[m_iFile]));
+
+                                            if(!open_src_dst(m_stra[m_iFile], strPath,m_str))
                                                return false;
                                          }
       }
@@ -517,7 +521,7 @@ namespace filemanager
          }
       }
       return strResult;
-   
+
    }
 
    int64_t get_number_value(string strName)
