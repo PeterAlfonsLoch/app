@@ -3,7 +3,10 @@
 #include "ansios.h"
 
 
-CLASS_DECL_BASE int_bool WINAPI PostMessageW(oswindow oswindow,UINT Msg,WPARAM wParam,LPARAM lParam)
+#ifdef LINUX
+
+
+CLASS_DECL_AXIS int_bool WINAPI PostMessageW(oswindow oswindow,UINT Msg,WPARAM wParam,LPARAM lParam)
 {
 
    HTHREAD  h = window_from_handle(oswindow)->m_pauraapp->get_os_handle();
@@ -40,5 +43,8 @@ CLASS_DECL_BASE int_bool WINAPI PostMessageW(oswindow oswindow,UINT Msg,WPARAM w
 }
 
 
+
+
+#endif
 
 

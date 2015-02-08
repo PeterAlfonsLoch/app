@@ -147,6 +147,7 @@
 		<Unit filename="base/node/ios/round_window.h" />
 		<Unit filename="base/node/linux/linux.h" />
 		<Unit filename="base/node/linux/linux_copydesk.h" />
+		<Unit filename="base/node/linux/linux_factory_exchange.cpp" />
 		<Unit filename="base/node/linux/linux_factory_exchange.h" />
 		<Unit filename="base/node/linux/linux_interaction_impl.h" />
 		<Unit filename="base/node/linux/linux_internal.h" />

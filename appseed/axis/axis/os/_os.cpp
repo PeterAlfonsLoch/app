@@ -7,13 +7,17 @@
 
 #elif defined(ANDROID)
 
+
+#include "ansios/_ansios_os.cpp"
 #include "android/android.cpp"
-#include "ansios/ansios_crypt.cpp"
+
 
 #elif defined(LINUX)
 
+
+#include "ansios/_ansios_os.cpp"
 #include "linux/_linux_os.cpp"
 #include "x11/_x11.cpp"
-#include "ansios/ansios_crypt.cpp"
+
 
 #endif
