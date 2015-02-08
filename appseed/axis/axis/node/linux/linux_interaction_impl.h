@@ -20,13 +20,14 @@ namespace linux
       spa(::user::interaction)      m_guieptraMouseHover;
       string                        m_strWindowText;
       ::user::interaction_base *    m_pbasewnd;
-      ::user::interaction *       m_puicapture;
+      ::user::interaction *         m_puicapture;
       bool                          m_bExposing;
       XWindowAttributes             m_attr;
       int32_t                       m_iDepth;
       int32_t                       m_iScreen;
       XVisualInfo                   m_visualinfo;
       rect64                        m_rectParentClient;
+      bool                          m_bEnabled;
 
 
       interaction_impl();
@@ -296,7 +297,7 @@ namespace linux
       virtual ::user::interaction * SetCapture(::user::interaction * pinterface = NULL);
       virtual ::user::interaction * ReleaseCapture();
       //virtual ::user::interaction * get_capture();
-      static ::user::interaction * PASCAL GetFocus();
+      virtual ::user::interaction * GetFocus();
       ::user::interaction * SetFocus();
 
       static ::user::interaction * PASCAL GetDesktopWindow();
@@ -532,8 +533,8 @@ namespace linux
       void OnTimer(uint_ptr nIDEvent);
 
    // Initialization message handler member functions
-      void OnInitMenu(::user::menu* pMenu);
-      void OnInitMenuPopup(::user::menu* pPopupMenu, UINT nIndex, bool bSysMenu);
+      void OnInitMenu(::aura::menu* pMenu);
+      void OnInitMenuPopup(::aura::menu* pPopupMenu, UINT nIndex, bool bSysMenu);
 
    // Clipboard message handler member functions
       void OnAskCbFormatName(UINT nMaxCount, LPTSTR lpszString);

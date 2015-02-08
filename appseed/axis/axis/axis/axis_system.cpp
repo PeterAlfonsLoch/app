@@ -88,7 +88,7 @@ namespace axis
 #endif
 
       m_phtml = new html::html(this);
-         
+
 
    }
 
@@ -174,7 +174,7 @@ namespace axis
       if(!::aura::system::process_initialize())
          return false;
 
-      
+
 
       m_spos.alloc(allocer());
 
@@ -598,7 +598,7 @@ namespace axis
 
    ::fontopus::user_set & system::userset()
    {
-      
+
       return m_userset;
 
    }
@@ -676,7 +676,7 @@ namespace axis
 
    ::net::email_departament & system::email()
    {
-      
+
       return m_emaildepartament;
 
    }
@@ -1082,9 +1082,9 @@ namespace axis
       if(m_ptwf != NULL)
          return true;
 
-      sp(::user::window_draw) pwindow = alloc(System.type_info < ::user::window_draw >());
+      sp(::user::window_draw) pwindowdraw = alloc(System.type_info < ::user::window_draw >());
 
-      m_ptwf = pwindow;
+      m_ptwf = pwindowdraw;
 
       m_ptwf->add_ref();
 

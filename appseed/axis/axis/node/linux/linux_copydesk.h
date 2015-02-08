@@ -6,7 +6,7 @@ namespace linux
 
 
    class CLASS_DECL_AXIS copydesk :
-      virtual public ::axis::copydesk
+      virtual public ::user::copydesk
    {
    public:
 

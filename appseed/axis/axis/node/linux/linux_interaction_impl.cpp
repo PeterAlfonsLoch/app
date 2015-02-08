@@ -77,10 +77,11 @@ namespace linux
    interaction_impl::interaction_impl()
    {
 
-      m_oswindow = NULL;
-      m_bMouseHover = false;
-      m_puicapture = NULL;
-      m_bExposing = false;
+      m_oswindow     = NULL;
+      m_bMouseHover  = false;
+      m_puicapture   = NULL;
+      m_bExposing    = false;
+      m_bEnabled     = true;
 
    }
 
@@ -88,10 +89,11 @@ namespace linux
    void interaction_impl::construct(oswindow hWnd)
    {
 
-      m_oswindow = hWnd;
-      m_bMouseHover = false;
-      m_puicapture = NULL;
-      m_bExposing = false;
+      m_oswindow  = hWnd;
+      m_bMouseHover  = false;
+      m_puicapture   = NULL;
+      m_bExposing    = false;
+      m_bEnabled     = true;
 
    }
 
@@ -99,10 +101,11 @@ namespace linux
       element(papp)
    {
 
-      m_oswindow = NULL;
-      m_bMouseHover = false;
-      m_puicapture = NULL;
-      m_bExposing = false;
+      m_oswindow     = NULL;
+      m_bMouseHover  = false;
+      m_puicapture   = NULL;
+      m_bExposing    = false;
+      m_bEnabled     = true;
 
    }
 
@@ -271,7 +274,7 @@ namespace linux
       LPVOID lpParam /* = NULL */)
    {
 
-      if(!native_create_window_ex(dwExStyle, lpszClassName, lpszWindowName, dwStyle, rect, puiParent->get_safe_handle(), id, lpParam))
+      if(!native_create_window_ex(dwExStyle, lpszClassName, lpszWindowName, dwStyle, rect, puiParent == NULL ? NULL : puiParent->get_safe_handle(), id, lpParam))
          return false;
 
       return true;
@@ -536,7 +539,7 @@ d.unlock();
       const char * lpszWindowName, DWORD dwStyle,
       const RECT& rect,
       ::user::interaction * pParentWnd, id id,
-      ::create_context* pContext)
+      ::user::create_context * pContext)
    {
       // can't use for desktop or pop-up windows (use CreateEx instead)
       ASSERT(pParentWnd != NULL);
@@ -4770,13 +4773,7 @@ if(psurface == g_cairosurface)
    bool interaction_impl::IsWindowEnabled()
    {
 
-      return true;
-
-/*      if(!::IsWindow((oswindow) get_handle()))
-         return false;
-
-      return ::IsWindowEnabled(get_handle()) != FALSE;
-*/
+      return m_bEnabled;
 
    }
 
@@ -4784,29 +4781,21 @@ if(psurface == g_cairosurface)
    bool interaction_impl::EnableWindow(bool bEnable)
    {
 
-/*      ASSERT(::IsWindow((oswindow) get_handle()));
-
-      return ::EnableWindow(get_handle(), bEnable) != FALSE;
-*/
-
-      return true;
+      return m_bEnabled = bEnable;
 
    }
 
    ::user::interaction * interaction_impl::GetActiveWindow()
    {
 
-      throw not_implemented(get_app());
-      //return ::linux::interaction_impl::from_handle(::GetActiveWindow());
+      return ::linux::interaction_impl::from_handle(::GetActiveWindow());
 
    }
 
    ::user::interaction * interaction_impl::SetActiveWindow()
    {
 
-      throw not_implemented(get_app());
-      //ASSERT(::IsWindow((oswindow) get_handle()));
-      //return ::linux::interaction_impl::from_handle(::SetActiveWindow(get_handle()));
+      return ::linux::interaction_impl::from_handle(::SetActiveWindow(get_handle()));
 
    }
 
@@ -5344,7 +5333,7 @@ if(psurface == g_cairosurface)
    { Default(); }
    void interaction_impl::OnKillFocus(::user::interaction *)
    { Default(); }
-   LRESULT interaction_impl::OnMenuChar(UINT, UINT, ::user::menu*)
+   LRESULT interaction_impl::OnMenuChar(UINT, UINT, ::aura::menu*)
    { return Default(); }
    void interaction_impl::OnMenuSelect(UINT, UINT, HMENU)
    { Default(); }
@@ -5504,9 +5493,9 @@ if(psurface == g_cairosurface)
    { Default(); }
    void interaction_impl::OnTimer(uint_ptr)
    { Default(); }
-   void interaction_impl::OnInitMenu(::user::menu*)
+   void interaction_impl::OnInitMenu(::aura::menu*)
    { Default(); }
-   void interaction_impl::OnInitMenuPopup(::user::menu*, UINT, bool)
+   void interaction_impl::OnInitMenuPopup(::aura::menu*, UINT, bool)
    { Default(); }
    void interaction_impl::OnAskCbFormatName(UINT nMaxCount, LPTSTR pszName)
    {
