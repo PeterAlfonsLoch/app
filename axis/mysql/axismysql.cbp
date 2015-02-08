@@ -68,6 +68,7 @@
 			<Add option="-ldl" />
 			<Add option="-lpthread" />
 			<Add option="-laxiszlib" />
+			<Add option="-laxiscrypto" />
 			<Add option="-laxisopenssl" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />

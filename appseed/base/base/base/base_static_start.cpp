@@ -42,7 +42,7 @@ namespace base
 
 #if defined(LINUX)
 
-         set_defer_process_x_message(&axis_defer_process_x_message);
+         set_defer_process_x_message(&base_defer_process_x_message);
 
          set_TranslateMessage(&axis_TranslateMessage);
 

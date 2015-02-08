@@ -55,6 +55,7 @@
 			<Add option="-DUSE_JPIP" />
 			<Add option="-DNO_JASPER" />
 			<Add option="-DNO_LCMS" />
+			<Add option="-DBASE_FREEIMAGE" />
 			<Add directory="../../../include" />
 			<Add directory="../../include" />
 			<Add directory="framework" />

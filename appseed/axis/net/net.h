@@ -54,12 +54,12 @@ namespace sockets
 
 
 
-#include "net/http/http_output_stream.h"
+#include "axis/net/http/http_output_stream.h"
 
 
 
 
-#include "net/http/http_http.h"
+#include "axis/net/http/http_http.h"
 
 
 

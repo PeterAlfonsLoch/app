@@ -18,6 +18,11 @@ namespace linux
    {
    }
 
+
+   file_system::~file_system()
+   {
+   }
+
    bool file_system::file_path::is_equal(const char * lpszFilPathA, const char * lpszFilPathB)
    {
       string stra(lpszFilPathA);
@@ -919,45 +924,45 @@ namespace linux
    }
 
 
-   string file_system::copy(const char * psz, ::aura::application *  papp)
-   {
-      string strCopy("copy");
-      string strNew;
-      if(System.dir().is(psz, papp))
-      {
-         int32_t i = 1;
-         while( i <= 100)
-         {
-            strNew.Format("%s-%s-%d", psz, strCopy.c_str(), i);
-            if(!exists(strNew, papp))
-            {
-               copy(strNew, psz, false, extract_all, papp);
-               return strNew;
-            }
-            i++;
-         }
-      }
-      else
-      {
-         string strExt = extension(psz);
-         if(!strExt.is_empty())
-         {
-            strExt = "-" + strExt;
-         }
-         int32_t i = 1;
-         while( i <= 100)
-         {
-            strNew.Format("%s-%s-%d%s", psz, strCopy.c_str(), i, strExt.c_str());
-            if(!exists(strNew, papp))
-            {
-               copy(strNew, psz, false, extract_all, papp);
-               return strNew;
-            }
-            i++;
-         }
-      }
-      return "";
-   }
+//   string file_system::copy(const char * psz, ::aura::application *  papp)
+//   {
+//      string strCopy("copy");
+//      string strNew;
+//      if(System.dir().is(psz, papp))
+//      {
+//         int32_t i = 1;
+//         while( i <= 100)
+//         {
+//            strNew.Format("%s-%s-%d", psz, strCopy.c_str(), i);
+//            if(!exists(strNew, papp))
+//            {
+//               copy(strNew, psz, false, extract_all, papp);
+//               return strNew;
+//            }
+//            i++;
+//         }
+//      }
+//      else
+//      {
+//         string strExt = extension(psz);
+//         if(!strExt.is_empty())
+//         {
+//            strExt = "-" + strExt;
+//         }
+//         int32_t i = 1;
+//         while( i <= 100)
+//         {
+//            strNew.Format("%s-%s-%d%s", psz, strCopy.c_str(), i, strExt.c_str());
+//            if(!exists(strNew, papp))
+//            {
+//               copy(strNew, psz, false, extract_all, papp);
+//               return strNew;
+//            }
+//            i++;
+//         }
+//      }
+//      return "";
+//   }
 
 
    bool file_system::exists(const char * pszPath, ::aura::application *  papp)

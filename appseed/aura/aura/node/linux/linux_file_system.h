@@ -26,13 +26,15 @@ namespace linux
 
 
       file_system(::aura::application *  papp);
+      virtual ~file_system();
+
 
       file_path & path();
 
-      virtual void copy(const char * pszNew, const char * psz, bool bFailIfExists, e_extract eextract, ::aura::application *  app);
+//      virtual void copy(const char * pszNew, const char * psz, bool bFailIfExists, e_extract eextract, ::aura::application *  app);
       virtual void move(const char * pszNew, const char * psz);
       virtual void del(const char * psz);
-      virtual string copy(const char * psz, ::aura::application *  papp);
+      //virtual string copy(const char * psz, ::aura::application *  papp);
       virtual string paste(const char * pszLocation, const char * path, ::aura::application *  papp);
 
       virtual void trash_that_is_not_trash(const char * psz, ::aura::application *  papp);

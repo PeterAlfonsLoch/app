@@ -272,7 +272,7 @@ CLASS_DECL_AXIS char * ::core::TaskStringW2A(const wchar_t * lpw);
 
 /////////////////////////////////////////////////////////////////////////////
 
-#include "database/database/database_user_interaction.h"
+#include "axis/database/database/database_user_interaction.h"
 
 
 #include "user_impact_update_hint.h"

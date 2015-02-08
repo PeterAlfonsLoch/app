@@ -7,7 +7,7 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="../../../stage/x86/libbase.so" prefix_auto="0" extension_auto="0" />
+				<Option output="../../../stage/x86/libaxis.so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="../../../stage/x86/" />
 				<Option object_output="../../../time/intermediate/app/base" />
 				<Option type="3" />
@@ -23,9 +23,9 @@
 				</Linker>
 			</Target>
 			<Target title="memdleak">
-				<Option output="../../../stage/x86/libbase.so" prefix_auto="0" extension_auto="0" />
+				<Option output="../../../stage/x86/libaxis.so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="../../../stage/x86/" />
-				<Option object_output="../../../time/intermediate/app/base" />
+				<Option object_output="../../../time/intermediate/app/axis" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -72,8 +72,10 @@
 			<Add option="-lX11" />
 			<Add option="-lXmu" />
 			<Add option="-laura" />
+			<Add option="-laurasqlite" />
 			<Add option="-laxiszlib" />
 			<Add option="-laxisbzip2" />
+			<Add option="-laxiscrypto" />
 			<Add option="-laxisopenssl" />
 			<Add option="-laxisfreeimage" />
 			<Add option="-laxisfreetype" />
@@ -184,11 +186,11 @@
 		<Unit filename="axis/node/ios/os.h" />
 		<Unit filename="axis/node/ios/round_window.h" />
 		<Unit filename="axis/node/linux/linux.h" />
+		<Unit filename="axis/node/linux/linux_axis_dir.h" />
+		<Unit filename="axis/node/linux/linux_axis_file_system.h" />
 		<Unit filename="axis/node/linux/linux_crypto.h" />
-		<Unit filename="axis/node/linux/linux_dir.h" />
 		<Unit filename="axis/node/linux/linux_factory_exchange.h" />
 		<Unit filename="axis/node/linux/linux_file_set.h" />
-		<Unit filename="axis/node/linux/linux_file_system.h" />
 		<Unit filename="axis/node/linux/linux_ip_enum.h" />
 		<Unit filename="axis/node/linux/linux_port_forward.h" />
 		<Unit filename="axis/node/macos/macos.h" />
@@ -280,6 +282,7 @@
 		<Unit filename="axis/os/ios_copy/macos.h" />
 		<Unit filename="axis/os/linux/linux.h" />
 		<Unit filename="axis/os/linux/linux_cross_win_gdi.h" />
+		<Unit filename="axis/os/linux/linux_cross_win_gdi_internal.h" />
 		<Unit filename="axis/os/linux/linux_osdisplay.h" />
 		<Unit filename="axis/os/linux/linux_oswindow.h" />
 		<Unit filename="axis/os/linux/linux_user_impl.h" />
@@ -439,8 +442,10 @@
 		<Unit filename="net/net_sockets.h" />
 		<Unit filename="net/net_url_departament.h" />
 		<Unit filename="net/net_url_domain.h" />
+		<Unit filename="net/sockets/_sockets.cpp" />
 		<Unit filename="net/sockets/base/sockets_base_socket.h" />
 		<Unit filename="net/sockets/base/sockets_base_socket_handler.h" />
+		<Unit filename="net/sockets/bsd/_bsd.cpp" />
 		<Unit filename="net/sockets/bsd/asynch_dns/resolv_server.h" />
 		<Unit filename="net/sockets/bsd/asynch_dns/resolv_socket.h" />
 		<Unit filename="net/sockets/bsd/basic/sockets_listen_socket.h" />

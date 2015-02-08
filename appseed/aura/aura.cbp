@@ -228,8 +228,10 @@
 		<Unit filename="aura/node/ansios/ansios_thread_impl.h" />
 		<Unit filename="aura/node/linux/linux.h" />
 		<Unit filename="aura/node/linux/linux_application.h" />
+		<Unit filename="aura/node/linux/linux_dir.h" />
 		<Unit filename="aura/node/linux/linux_factory_exchange.h" />
 		<Unit filename="aura/node/linux/linux_file.h" />
+		<Unit filename="aura/node/linux/linux_file_system.h" />
 		<Unit filename="aura/node/linux/linux_internal.h" />
 		<Unit filename="aura/node/linux/linux_os.h" />
 		<Unit filename="aura/node/linux/linux_root_tools.h" />
@@ -237,6 +239,8 @@
 		<Unit filename="aura/node/linux/linux_stdio_file.h" />
 		<Unit filename="aura/node/linux/linux_thread.h" />
 		<Unit filename="aura/node/node.h" />
+		<Unit filename="aura/node/windows/windows_dir.h" />
+		<Unit filename="aura/node/windows/windows_file_system.h" />
 		<Unit filename="aura/os/ansios/ansios.h" />
 		<Unit filename="aura/os/ansios/ansios_file.h" />
 		<Unit filename="aura/os/ansios/ansios_multithreading.h" />
@@ -275,6 +279,7 @@
 		<Unit filename="aura/os/cross/windows/windows_user.h" />
 		<Unit filename="aura/os/cross/windows/windows_winnt.h" />
 		<Unit filename="aura/os/linux/linux.h" />
+		<Unit filename="aura/os/linux/linux.inl" />
 		<Unit filename="aura/os/linux/linux_cross_win_file.h" />
 		<Unit filename="aura/os/linux/linux_cross_win_gdi.h" />
 		<Unit filename="aura/os/linux/linux_cross_win_gdi_internal.h" />
@@ -444,6 +449,7 @@
 		<Unit filename="multithreading/multithreading_thread_os.h" />
 		<Unit filename="multithreading/multithreading_wait_result.h" />
 		<Unit filename="multithreading/multithreading_waitable.h" />
+		<Unit filename="multithreading/service/service_plain_service.cpp" />
 		<Unit filename="multithreading/service/service_plain_service.h" />
 		<Unit filename="multithreading/service/service_thread_pool.h" />
 		<Unit filename="net/net.h" />

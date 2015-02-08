@@ -946,6 +946,11 @@ namespace linux
       return dir::path(m_strTimeFolder, lpcsz, lpcsz2);
    }
 
+   string dir::element_commonappdata(const string & strElement, const char * lpcsz, const char * lpcsz2)
+   {
+      return dir::path(path(strElement,"commonappdata"), lpcsz, lpcsz2);
+   }
+
    string dir::stage(const char * lpcsz, const char * lpcsz2)
    {
       return dir::path(element("stage"), lpcsz, lpcsz2);
@@ -1288,6 +1293,30 @@ namespace linux
          FALSE);*/
 
       str = path(getenv("HOME"), ".ca2/appdata");
+      string strRelative;
+      strRelative = element();
+      //index iFind = strRelative.find(':');
+      //if(iFind >= 0)
+      {
+        // strsize iFind1 = strRelative.reverse_find("\\", iFind);
+         //strsize iFind2 = strRelative.reverse_find("/", iFind);
+         //strsize iStart = MAX(iFind1 + 1, iFind2 + 1);
+
+         //strRelative = strRelative.Left(iFind - 1) + "_" + strRelative.Mid(iStart, iFind - iStart) + strRelative.Mid(iFind + 1);
+      }
+      return path(path(str, "ca2", strRelative), lpcsz, lpcsz2);
+   }
+
+   string dir::commonappdata(const char * lpcsz, const char * lpcsz2)
+   {
+      string str;
+      /*SHGetSpecialFolderPath(
+         NULL,
+         str,
+         CSIDL_COMMON_APPDATA,
+         FALSE);*/
+
+      str = path(getenv("HOME"), ".ca2/commonappdata");
       string strRelative;
       strRelative = element();
       //index iFind = strRelative.find(':');

@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "axis/user/user.h"
 #ifdef LINUX
-#include "axis/os/linux/linux_cross_win_gdi_internal.h"
+//#include "axis/os/linux/linux_cross_win_gdi_internal.h"
 #elif defined(ANDROID)
 //#include "axis/os/android/android_cross_win_gdi_internal.h"
 #endif

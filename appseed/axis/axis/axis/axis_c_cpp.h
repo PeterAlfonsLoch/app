@@ -121,7 +121,7 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 
 #if defined(LINUX)
 
-#include "axis/os/ansios/ansios.h"
+#include "axis/axis/os/ansios/ansios.h"
 
 #elif defined(METROWIN)
 
@@ -213,15 +213,15 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 
 #include "axis/filesystem/filesystem/filesystem_dir_axis_system.h"
 
-#include "axis/compress/compress.h"
+#include "axis/axis/compress/compress.h"
 
-#include "axis/crypto/crypto.h"
+#include "axis/axis/crypto/crypto.h"
 
 #include "axis/net/net_email_departament.h"
 
 #include "axis_system.h"
 
-#include "axis/install/install.h"
+#include "axis/axis/install/install.h"
 
 
 
