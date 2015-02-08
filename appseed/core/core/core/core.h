@@ -134,7 +134,7 @@ namespace dynamic_source
 
 inline ::core::platform & plat(::aura::application * papp)
 {
-   
+
    return *papp->m_pcoreplatform;
 
 }
@@ -470,7 +470,7 @@ inline int16_t APIENTRY GetFileTitle(const char * lpszFile, LPTSTR lpszTitle, WO
 
       class impact;
 
-      
+
    } // namespace aura
 
    namespace user
@@ -483,7 +483,7 @@ inline int16_t APIENTRY GetFileTitle(const char * lpszFile, LPTSTR lpszTitle, WO
    } // namespace user
 
 
-      
+
          class dialog;          // a dialog
 
          // standard windows controls
@@ -1031,7 +1031,7 @@ namespace html
 } // namespace html
 
 
-class ::user::form;
+//class ::user::form;
 
 
 
