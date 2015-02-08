@@ -39,6 +39,8 @@ public:
 
    inline ::aura::allocatorsp & allocer();
 
+   inline ::aura::allocatorsp & allocer() const { return ((element *)this)->allocer();  }
+
    inline ::aura::application * get_app() const { return m_pauraapp; }
 
    virtual void set_app(::aura::application * papp);

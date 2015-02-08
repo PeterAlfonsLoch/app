@@ -20,6 +20,24 @@ image_list::image_list(::aura::application * papp) :
 }
 
 
+image_list::image_list(const image_list & imagelist):
+element(imagelist.get_app()),
+m_spdib(imagelist.allocer()),
+m_spdibWork(imagelist.allocer()),
+m_spdibWork2(imagelist.allocer()),
+m_spdibWork3(imagelist.allocer())
+{
+
+   m_iSize = 0;
+   m_iGrow = 1;
+   m_size.cx = 0;
+   m_size.cy = 0;
+
+   operator = (imagelist);
+
+}
+
+
 image_list::~image_list()
 {
 
@@ -71,19 +89,26 @@ bool image_list::realize(::draw2d::graphics * pdc) const
 }
 
 
-bool image_list::create(sp(image_list) pimagelist)
+image_list & image_list::operator=(const image_list & imagelist)
 {
-   
-   *m_spdib    = *pimagelist->m_spdib;
 
-   m_size      = pimagelist->m_size;
+   if(this != &imagelist)
+   {
 
-   m_iSize     = pimagelist->m_iSize;
-   m_iGrow     = pimagelist->m_iGrow;
-   m_size      = pimagelist->m_size;
+      *m_spdib    = *imagelist.m_spdib;
 
-   return true;
+      m_size      = imagelist.m_size;
+
+      m_iSize     = imagelist.m_iSize;
+      m_iGrow     = imagelist.m_iGrow;
+      m_size      = imagelist.m_size;
+
+   }
+
+   return *this;
+
 }
+
 
 /*bool image_list::create(const char * lpszBitmapID, int32_t cx, int32_t nGrow, COLORREF crMask)
 {

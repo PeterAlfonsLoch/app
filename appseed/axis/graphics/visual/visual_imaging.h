@@ -233,19 +233,8 @@ public:
       int32_t cy,
       COLORREF crAlpha);
 
-   bool CreateHueImageList(
-      ::draw2d::graphics * pdc,
-      sp(image_list) pilGray,
-      sp(image_list) pilParam,
-      COLORREF crHue,
-      double dCompress);
-
-
-   bool Createcolor_blend_ImageList(
-      sp(image_list) pilGray,
-      sp(image_list) pilParam,
-      COLORREF cr,
-      BYTE bAlpha);
+   bool CreateHueImageList(::draw2d::graphics * pdc, image_list * pilGray, image_list * pilParam, COLORREF crHue, double dCompress);
+   bool Createcolor_blend_ImageList(image_list * pilGray, image_list * pilParam, COLORREF cr, BYTE bAlpha);
 
 
 
@@ -319,7 +308,7 @@ public:
 
    bool load_from_file(::draw2d::dib * pdib, var varFile, bool bCache = true, ::aura::application * papp = NULL);
    bool load_from_matter(::draw2d::dib * pdib, var varFile, ::aura::application * papp = NULL);
-   bool read_from_file(::draw2d::dib * pdib, ::file::buffer_sp buffer, ::aura::application * papp = NULL);
+   bool read_from_file(::draw2d::dib * pdib, ::file::stream_buffer * buffer, ::aura::application * papp = NULL);
 
    bool load_from_file(::visual::cursor * pcursor, var varFile, ::aura::application * papp = NULL);
    bool load_from_matter(::visual::cursor * pcursor, var varFile, ::aura::application * papp = NULL);

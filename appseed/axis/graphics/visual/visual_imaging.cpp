@@ -994,13 +994,12 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
 
 
-   bool imaging::CreateHueImageList(::draw2d::graphics * pdc,sp(image_list) pilGray,sp(image_list) pilParam,COLORREF crHue,double dCompress)
+   bool imaging::CreateHueImageList(::draw2d::graphics * pdc, image_list * pilGray, image_list * pilParam,COLORREF crHue,double dCompress)
    {
       //synch_lock ml(&user_mutex());
-      sp(image_list) pil = pilGray;
+      image_list * pil = pilGray;
 
-      if(!pil->create(pilParam))
-         return false;
+      *pil = *pilParam;
 
       ::draw2d::graphics_sp spgraphics(allocer());
 
@@ -1014,7 +1013,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
    }
 
 
-   bool imaging::Createcolor_blend_ImageList(sp(image_list) pilGray,sp(image_list) pilParam,COLORREF cr,BYTE bAlpha)
+   bool imaging::Createcolor_blend_ImageList(image_list * pilGray, image_list * pilParam,COLORREF cr,BYTE bAlpha)
    {
 
       //synch_lock ml(&user_mutex());
@@ -1022,10 +1021,9 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
       try
       {
 
-         sp(image_list) pil = pilGray;
+         image_list * pil = pilGray;
 
-         if(!pil->create(pilParam))
-            return false;
+         *pil = *pilParam;
 
          if(pil->m_spdib->get_graphics() == NULL)
             return false;
@@ -6695,7 +6693,8 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
    }
 
-   bool imaging::read_from_file(::draw2d::dib * pdib,::file::buffer_sp  pfile,::aura::application * papp)
+
+   bool imaging::read_from_file(::draw2d::dib * pdib, ::file::stream_buffer *  pfile,::aura::application * papp)
    {
 
       if(papp == NULL)

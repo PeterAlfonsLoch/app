@@ -2,6 +2,9 @@
 
 // Thank you (casey) : what is IUnknown for:?!?!?! my IUnknown / My root, default operations you can do in any IUnkown/root/Rute type (but not in any unknown/rot/rut type...)
 // Thank you Rute (Rutinha...)
+// Thank you VS profiling!! I add_ref and dec_ref should be faster.
+
+
 
 class CLASS_DECL_AURA root
 {
@@ -25,18 +28,67 @@ public:
 
    inline int64_t get_ref_count()
    {
+
       return m_countReference;
+
    }
 
    inline bool is_heap()
    {
+
       return m_bHeap;
+
    }
 
 
-   virtual int64_t add_ref();
-   virtual int64_t dec_ref();
-   virtual int64_t release();
+   inline int64_t add_ref()
+   {
+
+#ifdef WINDOWS
+
+      return InterlockedIncrement64(&m_countReference);
+
+#else
+
+      return __sync_add_and_fetch(&m_countReference,1);
+
+#endif
+
+   }
+
+
+   inline int64_t dec_ref()
+   {
+
+#ifdef WINDOWS
+
+      return InterlockedDecrement64(&m_countReference);
+
+#else
+
+      return  __sync_sub_and_fetch(&m_countReference,1);
+
+#endif
+
+   }
+
+
+   inline int64_t release()
+   {
+
+      int64_t i = dec_ref();
+
+      if(i == 0)
+      {
+
+         delete_this();
+
+      }
+
+      return i;
+
+   }
+
 
 
 };
