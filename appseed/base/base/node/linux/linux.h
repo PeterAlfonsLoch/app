@@ -50,10 +50,10 @@ CLASS_DECL_AXIS oswindow _AfxChildWindowFromPoint(oswindow, POINT);
 extern int32_t _afxComCtlVersion;
 DWORD _AfxGetComCtlVersion();
 #include "linux_factory_exchange.h"
-#include "linux_window_draw.h"
-#include "linux_interaction_impl.h"
-#include "linux_copydesk.h"
-#include "linux_message_queue.h"
+//#include "linux_window_draw.h"
+//#include "linux_interaction_impl.h"
+//#include "linux_copydesk.h"
+//#include "linux_message_queue.h"
 
 #define AfxWndProc (*AfxGetAfxWndProc())
 

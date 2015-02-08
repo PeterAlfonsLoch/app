@@ -102,7 +102,7 @@ namespace linux
          const char * lpszWindowName, DWORD dwStyle,
          const RECT& rect,
          ::user::interaction * pParentWnd, id id,
-         ::create_context* pContext = NULL);
+         ::user::create_context* pContext = NULL);
 
       // advanced creation (allows access to extended styles)
       virtual bool create_window_ex(DWORD dwExStyle = 0, const char * lpszClassName = NULL,
@@ -451,7 +451,7 @@ namespace linux
       //xxx bool OnHelpInfo(HELPINFO* lpHelpInfo);
       void OnIconEraseBkgnd(::draw2d::graphics * pgraphics);
       void OnKillFocus(::user::interaction * pNewWnd);
-      LRESULT OnMenuChar(UINT nChar, UINT nFlags, ::user::menu* pMenu);
+      LRESULT OnMenuChar(UINT nChar, UINT nFlags, ::aura::menu* pMenu);
       void OnMenuSelect(UINT nItemID, UINT nFlags, HMENU hSysMenu);
       void OnMove(int32_t x, int32_t y);
       DECL_GEN_SIGNAL(_001OnPaint);
