@@ -6,7 +6,7 @@ namespace sockets
 {
 
 
-   udp_socket::udp_socket(base_socket_handler& h, int32_t ibufsz, bool ipv6, int32_t retries) : 
+   udp_socket::udp_socket(base_socket_handler& h, int32_t ibufsz, bool ipv6, int32_t retries) :
       element(h.get_app())
       ,base_socket(h)
       ,socket(h)
@@ -47,7 +47,7 @@ namespace sockets
    {
 
       ::net::address ad(intf, port);
-      
+
       if (ad.is_valid())
       {
          if(ad.is_ipv6())
@@ -60,7 +60,7 @@ namespace sockets
          }
 
       }
-         
+
       SetCloseAndDelete();
 
       return -1;
@@ -252,7 +252,7 @@ namespace sockets
    /** send to connected address */
    void udp_socket::write(const void *data, ::primitive::memory_size len)
    {
-      
+
       if (!IsConnected())
       {
 
@@ -261,7 +261,7 @@ namespace sockets
          return;
 
       }
-      
+
       if ((m_last_size_written = send(GetSocket(), (const char *) data, (int32_t)len, m_iWriteFlags)) == -1)
       {
 
@@ -294,7 +294,7 @@ namespace sockets
       struct cmsghdr *cmsg;
       struct timeval *tv;
 
-      vec[0].iov_axis = ioBuf;
+      vec[0].iov_base = ioBuf;
       vec[0].iov_len = inBufSize;
 
       memset(&msg, 0, sizeof(msg));

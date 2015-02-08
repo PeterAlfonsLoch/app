@@ -1,7 +1,4 @@
-#include "framework.h"
-#include "linux.h"
-#include <sys/stat.h>
-#include <ctype.h>
+
 
 
 struct PROCESS_INFO_t
@@ -16,11 +13,12 @@ namespace linux
 
 
    file_system::file_system(::aura::application *  papp) :
-      element(papp)
+      element(papp),
+      ::file::system(papp)
    {
    }
 
-   bool file_system::path::is_equal(const char * lpszFilPathA, const char * lpszFilPathB)
+   bool file_system::file_path::is_equal(const char * lpszFilPathA, const char * lpszFilPathB)
    {
       string stra(lpszFilPathA);
       string wstrb(lpszFilPathB);
@@ -39,7 +37,7 @@ namespace linux
    }
 
 
-   bool file_system::path::eat_end_level(string & str, int32_t iLevelCount, const char * lpSeparator)
+   bool file_system::file_path::eat_end_level(string & str, int32_t iLevelCount, const char * lpSeparator)
    {
 
       strsize iLast = str.length() - 1;
@@ -78,7 +76,7 @@ namespace linux
 
    }
 
-   bool file_system::path::is_relative(const char * psz)
+   bool file_system::file_path::is_relative(const char * psz)
    {
       string strPath(psz);
       if(strPath.find(':') != -1 && strPath.find(':') < 10)
@@ -93,7 +91,7 @@ namespace linux
       stringa stra;
       get_ascendants_name(lpcsz, stra);
       string str;
-      bool bUrl = System.url().is_url(lpcsz);
+      bool bUrl = ::url::is_url(lpcsz);
 #ifdef LINUX
       bool bLinux = true;
       str += "/";
@@ -336,16 +334,17 @@ namespace linux
          string strFilePath(varFile);
          if(!exists(strFilePath, papp))
             return "";
-         if(papp->m_bZipIsDir && (::str::find_ci(".zip:", strFilePath) >= 0))
-         {
-            ::file::memory_buffer memfile(papp, &storage);
-            zip::InFile infile(get_app());
-            if(!infile.unzip_open(strFilePath, 0))
-               return "";
-            if(!infile.dump(&memfile))
-               return "";
-         }
-         else if(::str::begins_eat_ci(strFilePath, "file:///"))
+//         if(papp->m_bZipIsDir && (::str::find_ci(".zip:", strFilePath) >= 0))
+//         {
+//            ::file::memory_buffer memfile(papp, &storage);
+//            zip::InFile infile(get_app());
+//            if(!infile.unzip_open(strFilePath, 0))
+//               return "";
+//            if(!infile.dump(&memfile))
+//               return "";
+//         }
+//         else
+         if(::str::begins_eat_ci(strFilePath, "file:///"))
          {
             as_memory(strFilePath, storage, papp);
          }
@@ -353,50 +352,50 @@ namespace linux
          {
             as_memory(strFilePath, storage, papp);
          }
-         else if(::str::begins_ci(strFilePath, "http://")
-         || ::str::begins_ci(strFilePath, "https://"))
-         {
-
-            if(varQuery.has_property("post"))
-            {
-               //varpost = varQuery["post"].propset();
-            }
-            if(varQuery.has_property("in_headers"))
-            {
-               varQuery["headers"] = varQuery["in_headers"].propset();
-            }
-            if(varQuery.propset()["disable_ca2_sessid"])
-            {
-
-               App(papp).http().get(strFilePath, storage, varQuery.propset());
-
-            }
-            else if(varQuery.propset()["optional_ca2_sessid"])
-            {
-               App(papp).http().get(strFilePath, storage, varQuery.propset());
-            }
-            else if(strFilePath.contains("/matter.ca2.cc/") || strFilePath.contains(".matter.ca2.cc/"))
-            {
-               try
-               {
-                  storage.transfer_from(*App(papp).file().get_file(strFilePath, ::file::type_binary | ::file::mode_read));
-               }
-               catch(...)
-               {
-               }
-            }
-            else
-            {
-
-               varQuery.propset().set_app(papp);
-
-               App(papp).http().get(strFilePath, storage, varQuery.propset());
-
-            }
-
-            varQuery["out_headers"] = varQuery["get_headers"];
-
-         }
+//         else if(::str::begins_ci(strFilePath, "http://")
+//         || ::str::begins_ci(strFilePath, "https://"))
+//         {
+//
+//            if(varQuery.has_property("post"))
+//            {
+//               //varpost = varQuery["post"].propset();
+//            }
+//            if(varQuery.has_property("in_headers"))
+//            {
+//               varQuery["headers"] = varQuery["in_headers"].propset();
+//            }
+//            if(varQuery.propset()["disable_ca2_sessid"])
+//            {
+//
+//               App(papp).http().get(strFilePath, storage, varQuery.propset());
+//
+//            }
+//            else if(varQuery.propset()["optional_ca2_sessid"])
+//            {
+//               App(papp).http().get(strFilePath, storage, varQuery.propset());
+//            }
+//            else if(strFilePath.contains("/matter.ca2.cc/") || strFilePath.contains(".matter.ca2.cc/"))
+//            {
+//               try
+//               {
+//                  storage.transfer_from(*App(papp).file().get_file(strFilePath, ::file::type_binary | ::file::mode_read));
+//               }
+//               catch(...)
+//               {
+//               }
+//            }
+//            else
+//            {
+//
+//               varQuery.propset().set_app(papp);
+//
+//               App(papp).http().get(strFilePath, storage, varQuery.propset());
+//
+//            }
+//
+//            varQuery["out_headers"] = varQuery["get_headers"];
+//
+//         }
          else
          {
             as_memory(strFilePath, storage, papp);
@@ -445,16 +444,16 @@ namespace linux
 
          strPath.trim("\"'");
 
-         if((::str::begins(strPath, "http://") || ::str::begins(strPath, "https://")))
-         {
-
-            property_set set(papp);
-
-            App(papp).http().get(strPath, mem, set);
-
-            return;
-
-         }
+//         if((::str::begins(strPath, "http://") || ::str::begins(strPath, "https://")))
+//         {
+//
+//            property_set set(papp);
+//
+//            App(papp).http().get(strPath, mem, set);
+//
+//            return;
+//
+//         }
 
       }
 
@@ -586,7 +585,7 @@ namespace linux
 
    }
 
-   void file_system::path::split(stringa & stra, const char * lpcszPath)
+   void file_system::file_path::split(stringa & stra, const char * lpcszPath)
    {
       stringa straSeparator;
       straSeparator.add("\\");
@@ -594,7 +593,7 @@ namespace linux
       stra.add_smallest_tokens(lpcszPath, straSeparator, FALSE);
    }
 
-   class file_system::path & file_system::path()
+   class file_system::file_path & file_system::path()
    {
       return m_path;
    }
@@ -694,145 +693,145 @@ namespace linux
 
    }
 
-   void file_system::copy(const char * pszNew, const char * psz, bool bFailIfExists, e_extract eextract, ::aura::application *  papp)
-   {
-      if(bFailIfExists)
-      {
-         if(exists(pszNew, papp))
-            throw "Failed to copy file";
-      }
-      if(System.dir().is(psz, papp) && (eextract == extract_first || eextract == extract_all || !(::str::ends_ci(psz, ".zip"))))
-      {
-         stringa straPath;
-         System.dir().rls(papp, psz, &straPath);
-         string strDst;
-         string strSrc;
-         string strDirSrc(psz);
-         string strDirDst(pszNew);
-         if(papp->m_bZipIsDir && (::str::ends(strDirSrc, ".zip")))
-         {
-            strDirSrc += ":";
-         }
-         for(int32_t i = 0; i < straPath.get_size(); i++)
-         {
-            strSrc = straPath[i];
-            strDst = strSrc;
-            ::str::begins_eat_ci(strDst, strDirSrc);
-            strDst = System.dir().path(strDirDst, strDst);
-            if(System.dir().is(strSrc, papp))
-            {
-               if((eextract == extract_first || eextract == extract_none) && (::str::ends_ci(psz, ".zip")))
-               {
-               }
-               else
-               {
-                  System.dir().mk(strDst, papp);
-               }
-            }
-            else
-            {
-               if(!System.dir().is(System.dir().name(strDst), papp))
-               {
-                  System.dir().mk(System.dir().name(strDst), papp);
-               }
-               copy(strDst, strSrc, bFailIfExists, eextract == extract_all ? extract_all : extract_none, papp);
-            }
-         }
-      }
-      else
-      {
-
-         string strNew;
-
-         if(System.dir().is(pszNew, papp))
-         {
-            strNew = System.dir().path(pszNew, name_(psz));
-         }
-         else
-         {
-            strNew = pszNew;
-         }
-
-         ::file::buffer_sp ofile;
-
-         ofile = App(papp).file().get_file(strNew, ::file::mode_write | ::file::type_binary | ::file::mode_create | ::file::defer_create_directory | ::file::share_deny_write);
-
-         if(ofile.is_null())
-         {
-            string strError;
-            strError.Format("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=could not open output file", psz, pszNew, bFailIfExists);
-            throw strError;
-         }
-
-         ::file::buffer_sp ifile;
-
-         ifile = App(papp).file().get_file(psz, ::file::mode_read | ::file::type_binary | ::file::share_deny_none);
-
-         if(ifile.is_null())
-         {
-            string strError;
-            strError.Format("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=could not open input file", psz, pszNew, bFailIfExists);
-            throw strError;
-         }
-
-         ::file::output_stream ostream(ofile);
-
-         ::file::input_stream istream(ifile);
-
-         System.compress().null(ostream, istream);
-
-
-
-         bool bOutputFail = false;
-         bool bInputFail = false;
-         try
-         {
-            ofile->close();
-         }
-         catch(...)
-         {
-            bOutputFail = true;
-         }
-
-         ::file::file_status st;
-
-         ifile->GetStatus(st);
-
-         System.os().set_file_status(strNew, st);
-
-         try
-         {
-            ifile->close();
-         }
-         catch(...)
-         {
-            bInputFail = true;
-         }
-         if(bInputFail)
-         {
-            if(bOutputFail)
-            {
-               string strError;
-               strError.Format("During copy, failed to close both input file \"%s\" and output file \"%s\" bFailIfExists=%d", psz, pszNew, bFailIfExists);
-               throw strError;
-            }
-            else
-            {
-               string strError;
-               strError.Format("During copy, failed to close input file \"%s\" bFailIfExists=%d", psz, bFailIfExists);
-               throw strError;
-            }
-         }
-         else if(bOutputFail)
-         {
-            string strError;
-            strError.Format("During copy, failed to close output file \"%s\" bFailIfExists=%d", pszNew, bFailIfExists);
-            throw strError;
-         }
-
-      }
-
-   }
+//   void file_system::copy(const char * psznew, const char * psz, bool bfailifexists, e_extract eextract, ::aura::application *  papp)
+//   {
+//      if(bfailifexists)
+//      {
+//         if(exists(psznew, papp))
+//            throw "failed to copy file";
+//      }
+//      if(system.dir().is(psz, papp) && (eextract == extract_first || eextract == extract_all || !(::str::ends_ci(psz, ".zip"))))
+//      {
+//         stringa strapath;
+//         system.dir().rls(papp, psz, &strapath);
+//         string strdst;
+//         string strsrc;
+//         string strdirsrc(psz);
+//         string strdirdst(psznew);
+//         if(papp->m_bzipisdir && (::str::ends(strdirsrc, ".zip")))
+//         {
+//            strdirsrc += ":";
+//         }
+//         for(int32_t i = 0; i < strapath.get_size(); i++)
+//         {
+//            strsrc = strapath[i];
+//            strdst = strsrc;
+//            ::str::begins_eat_ci(strdst, strdirsrc);
+//            strdst = system.dir().path(strdirdst, strdst);
+//            if(system.dir().is(strsrc, papp))
+//            {
+//               if((eextract == extract_first || eextract == extract_none) && (::str::ends_ci(psz, ".zip")))
+//               {
+//               }
+//               else
+//               {
+//                  system.dir().mk(strdst, papp);
+//               }
+//            }
+//            else
+//            {
+//               if(!system.dir().is(system.dir().name(strdst), papp))
+//               {
+//                  system.dir().mk(system.dir().name(strdst), papp);
+//               }
+//               copy(strdst, strsrc, bfailifexists, eextract == extract_all ? extract_all : extract_none, papp);
+//            }
+//         }
+//      }
+//      else
+//      {
+//
+//         string strnew;
+//
+//         if(system.dir().is(psznew, papp))
+//         {
+//            strnew = system.dir().path(psznew, name_(psz));
+//         }
+//         else
+//         {
+//            strnew = psznew;
+//         }
+//
+//         ::file::buffer_sp ofile;
+//
+//         ofile = app(papp).file().get_file(strnew, ::file::mode_write | ::file::type_binary | ::file::mode_create | ::file::defer_create_directory | ::file::share_deny_write);
+//
+//         if(ofile.is_null())
+//         {
+//            string strerror;
+//            strerror.format("failed to copy file \"%s\" to \"%s\" bfailifexists=%d error=could not open output file", psz, psznew, bfailifexists);
+//            throw strerror;
+//         }
+//
+//         ::file::buffer_sp ifile;
+//
+//         ifile = app(papp).file().get_file(psz, ::file::mode_read | ::file::type_binary | ::file::share_deny_none);
+//
+//         if(ifile.is_null())
+//         {
+//            string strerror;
+//            strerror.format("failed to copy file \"%s\" to \"%s\" bfailifexists=%d error=could not open input file", psz, psznew, bfailifexists);
+//            throw strerror;
+//         }
+//
+//         ::file::output_stream ostream(ofile);
+//
+//         ::file::input_stream istream(ifile);
+//
+//         system.compress().null(ostream, istream);
+//
+//
+//
+//         bool boutputfail = false;
+//         bool binputfail = false;
+//         try
+//         {
+//            ofile->close();
+//         }
+//         catch(...)
+//         {
+//            boutputfail = true;
+//         }
+//
+//         ::file::file_status st;
+//
+//         ifile->getstatus(st);
+//
+//         system.os().set_file_status(strnew, st);
+//
+//         try
+//         {
+//            ifile->close();
+//         }
+//         catch(...)
+//         {
+//            binputfail = true;
+//         }
+//         if(binputfail)
+//         {
+//            if(boutputfail)
+//            {
+//               string strerror;
+//               strerror.format("during copy, failed to close both input file \"%s\" and output file \"%s\" bfailifexists=%d", psz, psznew, bfailifexists);
+//               throw strerror;
+//            }
+//            else
+//            {
+//               string strerror;
+//               strerror.format("during copy, failed to close input file \"%s\" bfailifexists=%d", psz, bfailifexists);
+//               throw strerror;
+//            }
+//         }
+//         else if(boutputfail)
+//         {
+//            string strerror;
+//            strerror.format("during copy, failed to close output file \"%s\" bfailifexists=%d", psznew, bfailifexists);
+//            throw strerror;
+//         }
+//
+//      }
+//
+//   }
 
    void file_system::move(const char * pszNew, const char * psz)
    {
@@ -964,33 +963,8 @@ namespace linux
    bool file_system::exists(const char * pszPath, ::aura::application *  papp)
    {
 
-      if(::str::begins_ci_iws(pszPath, "uifs://"))
-      {
-         return AppUser(papp).m_pifs->file_exists(pszPath);
-      }
-      else if(::str::begins_ci_iws(pszPath, "http://") || ::str::begins_ci_iws(pszPath, "https://"))
-      {
+      //if(::file::system::exists(pszPath, papp))
 
-         property_set set(papp);
-
-         return App(papp).http().exists(pszPath, set);
-
-      }
-
-      if(papp->m_bZipIsDir)
-      {
-
-         strsize iFind = ::str::find_ci(".zip:", pszPath);
-
-         zip::Util ziputil;
-
-         if(iFind >= 0)
-            return ziputil.exists(papp, pszPath);
-
-         if(!Sys(papp).dir().name_is(pszPath, papp))
-            return false;
-
-      }
 
 #ifdef WINDOWS
 
@@ -1016,41 +990,7 @@ namespace linux
    bool file_system::exists(const string & strPath, ::aura::application *  papp)
    {
 
-      if(::str::begins_ci_iws(strPath, "uifs://"))
-      {
-         return AppUser(papp).m_pifs->file_exists(strPath);
-      }
 
-      if(::str::begins_ci_iws(strPath, "http://")
-      || ::str::begins_ci_iws(strPath, "https://"))
-      {
-
-         property_set set(papp);
-
-         return App(papp).http().exists(strPath, set);
-
-      }
-
-
-      if(papp->m_bZipIsDir)
-      {
-
-         strsize iFind = ::str::find_ci(".zip:", strPath);
-
-         zip::Util ziputil;
-
-         if(iFind >= 0)
-         {
-
-            if(!exists(strPath.Mid(0, iFind + 4), papp))
-               return false;
-
-            return ziputil.exists(papp, strPath);
-
-         }
-
-
-      }
 
       //if(!papp->m_psystem->dir().name_is(strPath, papp))
         // return false;

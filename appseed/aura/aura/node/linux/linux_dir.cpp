@@ -16,13 +16,13 @@ namespace linux
 
       string strca2Module = ca2module();
 
-      m_strca2 = strca2Module;
+      m_strCa2 = strca2Module;
 
-      System.file().path().eat_end_level(m_strca2, 2, "/");
+      System.file().path().eat_end_level(m_strCa2, 2, "/");
 
    }
 
-   path::path(::aura::application *  papp) :
+   file_path::file_path(::aura::application *  papp) :
       element(papp)
    {
    }
@@ -187,7 +187,7 @@ namespace linux
       }
    }
 
-   bool path::is_equal(const char * lpcsz1, const char * lpcsz2)
+   bool file_path::is_equal(const char * lpcsz1, const char * lpcsz2)
    {
       return strcmp(lpcsz1, lpcsz2) == 0;
    }
@@ -217,7 +217,7 @@ namespace linux
       free(lpszAlloc);*/
    }
 
-   void dir::ls_pattern(::aura::application *  papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, int64_array * piaSize)
+   bool dir::ls_pattern(::aura::application *  papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, int64_array * piaSize)
    {
 
       if(::file::dir::system::is(lpcsz, papp)) // if base class "already" "says" it is a dir, let it handle it: may be not a operational system dir, e.g., zip or compressed directory...
@@ -305,13 +305,30 @@ namespace linux
 
    }
 
-   void dir::rls(::aura::application *  papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, e_extract eextract)
+   bool dir::rls(::aura::application *  papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, e_extract eextract)
    {
-      rls_pattern(papp, lpcsz, "*.*", pstraPath, pstraTitle, pstraRelative, NULL, NULL, eextract);
+
+      if(::file::dir::system::rls(papp, lpcsz, pstraPath, pstraTitle, pstraRelative, eextract))
+      {
+
+         return true;
+
+      }
+
+      return rls_pattern(papp, lpcsz, "*.*", pstraPath, pstraTitle, pstraRelative, NULL, NULL, eextract);
+
    }
 
-   void dir::rls_pattern(::aura::application *  papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, bool_array * pbaIsDir, int64_array * piaSize, e_extract eextract)
+
+   bool dir::rls_pattern(::aura::application *  papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, bool_array * pbaIsDir, int64_array * piaSize, e_extract eextract)
    {
+
+      if(::file::dir::system::rls_pattern(papp, lpcsz, pszPattern, pstraPath, pstraTitle, pstraRelative, pbaIsDir, piaSize, eextract))
+      {
+
+         return true;
+
+      }
 
       stringa straDir;
 
@@ -431,10 +448,21 @@ namespace linux
 
       }
 
+      return true;
+
    }
 
-   void dir::rls_dir(::aura::application *  papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative)
+
+   bool dir::rls_dir(::aura::application *  papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative)
    {
+
+      if(::file::dir::system::rls_dir(papp, lpcsz, pstraPath, pstraTitle, pstraRelative))
+      {
+
+         return true;
+
+      }
+
 
       stringa stra;
 
@@ -509,11 +537,20 @@ namespace linux
 
       }
 
+      return true;
+
    }
 
 
-   void dir::ls_dir(::aura::application *  papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
+   bool dir::ls_dir(::aura::application *  papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
    {
+
+      if(::file::dir::system::ls_dir(papp, lpcsz, pstraPath, pstraTitle))
+      {
+
+         return true;
+
+      }
 
       stringa stra;
 
@@ -558,10 +595,20 @@ namespace linux
 
       }
 
+      return true;
+
    }
 
-   void dir::ls_file(::aura::application *  papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
+   bool dir::ls_file(::aura::application *  papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
    {
+
+      if(::file::dir::system::ls_file(papp, lpcsz, pstraPath, pstraTitle))
+      {
+
+         return true;
+
+      }
+
 
       stringa stra;
 
@@ -607,10 +654,20 @@ namespace linux
 
       }
 
+      return true;
+
    }
 
-   void dir::ls(::aura::application *  papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, int64_array * piaSize)
+   bool dir::ls(::aura::application *  papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, int64_array * piaSize)
    {
+
+
+      if(::file::dir::system::ls(papp, lpcsz, pstraPath, pstraTitle, pbaIsDir, piaSize))
+      {
+
+         return true;
+
+      }
 
       stringa stra;
 
@@ -687,6 +744,8 @@ namespace linux
 
 
       }
+
+      return true;
 
    }
 
@@ -833,18 +892,18 @@ namespace linux
          return true;
       }
 
-      strsize iFind = ::str::find_ci(".zip:", str);
-
-      if(papp->m_bZipIsDir && iFind >= 0 && iFind < iLast)
-      {
-         bool bHasSubFolder;
-         if(m_isdirmap.lookup(str, bHasSubFolder, dwLastError))
-            return bHasSubFolder;
-         bHasSubFolder = m_pziputil->HasSubFolder(papp, str);
-         m_isdirmap.set(str.Left(iLast + 1), bHasSubFolder, bHasSubFolder ? 0 : ::GetLastError());
-         return bHasSubFolder;
-      }
-
+//      strsize iFind = ::str::find_ci(".zip:", str);
+//
+//      if(papp->m_bZipIsDir && iFind >= 0 && iFind < iLast)
+//      {
+//         bool bHasSubFolder;
+//         if(m_isdirmap.lookup(str, bHasSubFolder, dwLastError))
+//            return bHasSubFolder;
+//         bHasSubFolder = m_pziputil->HasSubFolder(papp, str);
+//         m_isdirmap.set(str.Left(iLast + 1), bHasSubFolder, bHasSubFolder ? 0 : ::GetLastError());
+//         return bHasSubFolder;
+//      }
+//
 
       wstring wstrPath;
 
@@ -875,12 +934,12 @@ namespace linux
       return bIsDir;
    }
 
-   string dir::votagus(const char * lpcsz, const char * lpcsz2)
-   {
-      string strVotagusFolder = System.get_ca2_module_folder();
-      System.file().path().eat_end_level(strVotagusFolder, 2, "\\");
-      return dir::path(strVotagusFolder, lpcsz, lpcsz2);
-   }
+//   string dir::votagus(const char * lpcsz, const char * lpcsz2)
+//   {
+//      string strVotagusFolder = System.get_ca2_module_folder();
+//      System.file().path().eat_end_level(strVotagusFolder, 2, "\\");
+//      return dir::path(strVotagusFolder, lpcsz, lpcsz2);
+//   }
 
    string dir::time(const char * lpcsz, const char * lpcsz2)
    {
@@ -908,7 +967,7 @@ namespace linux
 
       single_lock sl(&m_mutex, true);
 
-      return dir::path(m_strca2, lpcsz, lpcsz2);
+      return dir::path(m_strCa2, lpcsz, lpcsz2);
 
    }
 
@@ -917,7 +976,7 @@ namespace linux
 
       single_lock sl(&m_mutex, true);
 
-      return dir::path(m_strca2, str, lpcsz2);
+      return dir::path(m_strCa2, str, lpcsz2);
 
    }
 
@@ -926,7 +985,7 @@ namespace linux
 
       single_lock sl(&m_mutex, true);
 
-      return dir::path(m_strca2, lpcsz, str2);
+      return dir::path(m_strCa2, lpcsz, str2);
 
    }
 
@@ -935,7 +994,7 @@ namespace linux
 
       single_lock sl(&m_mutex, true);
 
-      return dir::path(m_strca2, str, str2);
+      return dir::path(m_strCa2, str, str2);
 
    }
 
@@ -944,7 +1003,7 @@ namespace linux
 
       single_lock sl(&m_mutex, true);
 
-      return dir::path(m_strca2, str);
+      return dir::path(m_strCa2, str);
 
    }
 
@@ -953,7 +1012,7 @@ namespace linux
 
       single_lock sl(&m_mutex, true);
 
-      return m_strca2;
+      return m_strCa2;
 
    }
 
@@ -1143,7 +1202,7 @@ namespace linux
    }
 
 
-   class ::file::path & dir::path()
+   class ::file::file_path & dir::path()
    {
       return m_path;
    }

@@ -14,79 +14,84 @@ struct PROCESS_INFO_t
 namespace linux
 {
 
+   namespace axis
+   {
 
    file_system::file_system(::aura::application *  papp) :
-      element(papp)
+      element(papp),
+      ::file::system(papp),
+      ::file::axis::system(papp),
+      ::linux::file_system(papp)
    {
    }
 
-   bool file_system::path::is_equal(const char * lpszFilPathA, const char * lpszFilPathB)
-   {
-      string stra(lpszFilPathA);
-      string wstrb(lpszFilPathB);
-
-   //   ::str::international::ACPToUnicode(stra, lpszFilPathA);
-   //   ::str::international::ACPToUnicode(wstrb, lpszFilPathB);
-      if(stra == wstrb)
-         return true;
-
-      /*if(_GetShortPathName(stra, lpszFilPathA) == 0)
-         return false;
-      if(_GetShortPathName(wstrb, lpszFilPathB) == 0)
-         return false;*/
-      return stra == wstrb;
-
-   }
-
-
-   bool file_system::path::eat_end_level(string & str, int32_t iLevelCount, const char * lpSeparator)
-   {
-
-      strsize iLast = str.length() - 1;
-
-      if(iLast < 0)
-         return iLevelCount <= 0;
-
-      while(str[iLast] == '/' || str[iLast] == '\\')
-         iLast--;
-
-      for(int32_t i = 0; i < iLevelCount; i++)
-      {
-
-         strsize iFind1 = str.reverse_find('/', iLast);
-
-         strsize iFind2 = str.reverse_find('\\', iLast);
-
-         strsize iFind = MAX(iFind1, iFind2);
-
-         if(iFind >= iLast)
-            return false;
-
-         if(iFind < 0)
-            return false;
-
-         iLast = iFind;
-
-         while(str[iLast] == '/' || str[iLast] == '\\')
-            iLast--;
-
-      }
-
-      str.Truncate(iLast + 1);
-
-      return true;
-
-   }
-
-   bool file_system::path::is_relative(const char * psz)
-   {
-      string strPath(psz);
-      if(strPath.find(':') != -1 && strPath.find(':') < 10)
-         return false;
-      if(strPath.find('/') == 0 || strPath.find('\\') == 0)
-         return false;
-      return true;
-   }
+//   bool file_system::path::is_equal(const char * lpszFilPathA, const char * lpszFilPathB)
+//   {
+//      string stra(lpszFilPathA);
+//      string wstrb(lpszFilPathB);
+//
+//   //   ::str::international::ACPToUnicode(stra, lpszFilPathA);
+//   //   ::str::international::ACPToUnicode(wstrb, lpszFilPathB);
+//      if(stra == wstrb)
+//         return true;
+//
+//      /*if(_GetShortPathName(stra, lpszFilPathA) == 0)
+//         return false;
+//      if(_GetShortPathName(wstrb, lpszFilPathB) == 0)
+//         return false;*/
+//      return stra == wstrb;
+//
+//   }
+//
+//
+//   bool file_system::path::eat_end_level(string & str, int32_t iLevelCount, const char * lpSeparator)
+//   {
+//
+//      strsize iLast = str.length() - 1;
+//
+//      if(iLast < 0)
+//         return iLevelCount <= 0;
+//
+//      while(str[iLast] == '/' || str[iLast] == '\\')
+//         iLast--;
+//
+//      for(int32_t i = 0; i < iLevelCount; i++)
+//      {
+//
+//         strsize iFind1 = str.reverse_find('/', iLast);
+//
+//         strsize iFind2 = str.reverse_find('\\', iLast);
+//
+//         strsize iFind = MAX(iFind1, iFind2);
+//
+//         if(iFind >= iLast)
+//            return false;
+//
+//         if(iFind < 0)
+//            return false;
+//
+//         iLast = iFind;
+//
+//         while(str[iLast] == '/' || str[iLast] == '\\')
+//            iLast--;
+//
+//      }
+//
+//      str.Truncate(iLast + 1);
+//
+//      return true;
+//
+//   }
+//
+//   bool file_system::path::is_relative(const char * psz)
+//   {
+//      string strPath(psz);
+//      if(strPath.find(':') != -1 && strPath.find(':') < 10)
+//         return false;
+//      if(strPath.find('/') == 0 || strPath.find('\\') == 0)
+//         return false;
+//      return true;
+//   }
 
    void file_system::get_ascendants_path(const char * lpcsz, stringa & straParam)
    {
@@ -586,18 +591,18 @@ namespace linux
 
    }
 
-   void file_system::path::split(stringa & stra, const char * lpcszPath)
-   {
-      stringa straSeparator;
-      straSeparator.add("\\");
-      straSeparator.add("/");
-      stra.add_smallest_tokens(lpcszPath, straSeparator, FALSE);
-   }
+//   void file_system::path::split(stringa & stra, const char * lpcszPath)
+//   {
+//      stringa straSeparator;
+//      straSeparator.add("\\");
+//      straSeparator.add("/");
+//      stra.add_smallest_tokens(lpcszPath, straSeparator, FALSE);
+//   }
 
-   class file_system::path & file_system::path()
-   {
-      return m_path;
-   }
+//   class file_system::path & file_system::path()
+//   {
+//      return m_path;
+//   }
 
    string file_system::title_(const char * path)
    {
@@ -1265,6 +1270,7 @@ namespace linux
       strFile = strFile.Left(iEnd) + ::str::has_char(pszExtension, ".");
    }
 
+   } // namespace axis
 
 } // namespace linux
 

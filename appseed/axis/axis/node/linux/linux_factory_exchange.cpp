@@ -5,7 +5,7 @@
 namespace linux
 {
 
-   namespace base
+   namespace axis
    {
 
       factory_exchange::factory_exchange(sp(::aura::application) papp) :
@@ -28,16 +28,16 @@ namespace linux
       }
 
 
-   } // namespace base
+   } // namespace axis
 
 
 } // namespace win
 
 
-void __node_base_factory_exchange(::aura::application * papp)
+void __node_axis_factory_exchange(::aura::application * papp)
 {
 
-   linux::base::factory_exchange factoryexchange(papp);
+   linux::axis::factory_exchange factoryexchange(papp);
 
 }
 

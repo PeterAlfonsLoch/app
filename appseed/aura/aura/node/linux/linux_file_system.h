@@ -6,13 +6,13 @@ namespace linux
 
 
 
-   class CLASS_DECL_AXIS file_system :
-      public ::file::system
+   class CLASS_DECL_AURA file_system :
+      virtual public ::file::system
    {
    public:
 
 
-      class CLASS_DECL_AXIS file_path :
+      class CLASS_DECL_AURA file_path :
         public ::file::system::path
       {
       public:

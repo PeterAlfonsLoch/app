@@ -130,6 +130,10 @@ DWORD _AfxGetComCtlVersion();
 #include "linux_shell.h"
 
 
+#include "linux_dir.h"
+#include "linux_file_system.h"
+
+
 
 
 CLASS_DECL_AURA void AfxProcessWndProcException(::exception::base*, ::signal_details * pobj);
