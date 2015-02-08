@@ -71,7 +71,7 @@
 			<Add option="-Wl,-z,origin" />
 			<Add option="-ldl" />
 			<Add option="-lpthread" />
-			<Add option="-laxisopenssl" />
+			<Add option="-laxiscrypto" />
 			<Add option="-laxisfreeimage" />
 			<Add option="-laxiszlib" />
 			<Add option="-laxisbzip2" />

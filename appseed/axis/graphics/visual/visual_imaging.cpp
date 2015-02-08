@@ -604,7 +604,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
 
 #else
-   FIBITMAP * pfi = LoadImageFile(&memfile);
+   FIBITMAP * pfi = LoadImageFile(memfile);
 
    if(pfi == NULL)
       return false;

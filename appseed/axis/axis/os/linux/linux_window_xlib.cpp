@@ -106,7 +106,7 @@ void window_xlib::update_window(COLORREF * pOsBitmapData, const RECT & lpcrect, 
 
    //memset(pOsBitmapData, 0x44, min(iStride * 16, iStride * m_size.cy));
 
-   copy_colorref(cxParam, cyParam, (COLORREF *) m_mem.get_data(), pOsBitmapData, iStride);
+   ::draw2d::copy_colorref(cxParam, cyParam, (COLORREF *) m_mem.get_data(), m_iScan, pOsBitmapData, iStride);
 
 
 

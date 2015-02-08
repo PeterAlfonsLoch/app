@@ -5,7 +5,7 @@ namespace linux
 {
 
 
-   class CLASS_DECL_BASE file_set :
+   class CLASS_DECL_AXIS file_set :
       public ::file::set
    {
    public:

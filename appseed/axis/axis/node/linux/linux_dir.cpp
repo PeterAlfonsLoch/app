@@ -22,7 +22,7 @@ namespace linux
 
    }
 
-   path::path(::aura::application *  papp) :
+   file_path::file_path(::aura::application *  papp) :
       element(papp)
    {
    }
@@ -187,127 +187,63 @@ namespace linux
       }
    }
 
-   bool path::is_equal(const char * lpcsz1, const char * lpcsz2)
+   bool file_path::is_equal(const char * lpcsz1, const char * lpcsz2)
    {
       return strcmp(lpcsz1, lpcsz2) == 0;
    }
 
-   void dir::root_ones(stringa & straPath, stringa & straTitle, ::aura::application *  papp)
+//   void dir::root_ones(stringa & straPath, stringa & straTitle, ::aura::application *  papp)
+//   {
+//      straPath.add("/");
+//      straTitle.add("");
+///*      DWORD dwSize = ::GetLogicalDriveStrings(0, NULL);
+//      LPTSTR lpszAlloc = (LPTSTR) malloc(dwSize + 1);
+//      LPTSTR lpsz = lpszAlloc;
+//      dwSize = ::GetLogicalDriveStrings(dwSize + 1, lpsz);
+//
+//      string str;
+//      while(*lpsz)
+//      {
+//         str.Empty();
+//         while(*lpsz)
+//         {
+//            str += *lpsz;
+//            lpsz++;
+//         }
+//         stra.add(str);
+//         lpsz++;
+//      }
+//
+//      free(lpszAlloc);*/
+//   //}
+//
+   bool dir::ls_pattern(::aura::application *  papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, int64_array * piaSize)
    {
-      straPath.add("/");
-      straTitle.add("");
-/*      DWORD dwSize = ::GetLogicalDriveStrings(0, NULL);
-      LPTSTR lpszAlloc = (LPTSTR) malloc(dwSize + 1);
-      LPTSTR lpsz = lpszAlloc;
-      dwSize = ::GetLogicalDriveStrings(dwSize + 1, lpsz);
 
-      string str;
-      while(*lpsz)
-      {
-         str.Empty();
-         while(*lpsz)
-         {
-            str += *lpsz;
-            lpsz++;
-         }
-         stra.add(str);
-         lpsz++;
-      }
-
-      free(lpszAlloc);*/
-   }
-
-   void dir::ls_pattern(::aura::application *  papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, int64_array * piaSize)
-   {
-
-      if(::file::dir::system::is(lpcsz, papp)) // if base class "already" "says" it is a dir, let it handle it: may be not a operational system dir, e.g., zip or compressed directory...
+      if(::file::dir::axis::ls_patter(papp, lpcsz, psszPattern, pstraPath, pstraTitle, pbaIsDir, piaSize))
       {
 
-         return ::file::dir::system::ls_pattern(papp, lpcsz, pszPattern, pstraPath, pstraTitle, pbaIsDir, piaSize);
+         return true;
 
       }
 
-      string strDir(lpcsz);
+      return linux::dir::ls_pattern(papp, lpcsz, psszPattern, pstraPath, pstraTitle, pbaIsDir, piaSize);
 
-      if(!::str::ends(strDir, "/"))
-      {
-
-         strDir += "/";
-
-      }
-
-      stringa stra;
-
-      ::dir::ls(stra, lpcsz);
-
-      for(int32_t i = 0; i < stra.get_count(); i++)
-      {
-
-         string strPath = stra[i];
-
-         string strName = strPath;
-
-         if(!::str::begins_eat(strName, strDir))
-            continue;
-
-         if(!matches_wildcard_criteria(pszPattern, strName))
-            continue;
-
-         if(pstraPath != NULL)
-         {
-
-            pstraPath->add(strPath);
-
-         }
-
-         if(pstraTitle != NULL)
-         {
-
-            pstraTitle->add(strName);
-
-         }
-
-         bool bIsDir;
-
-         if(pbaIsDir != NULL || piaSize != NULL)
-         {
-
-            bIsDir = ::dir::is(strPath);
-
-         }
-
-         if(pbaIsDir != NULL)
-         {
-
-            pbaIsDir->add(bIsDir);
-
-         }
-
-         if(piaSize != NULL)
-         {
-
-            if(bIsDir)
-            {
-
-               piaSize->add(0);
-
-            }
-            else
-            {
-
-               piaSize->add(file_length_dup(strPath));
-
-            }
-
-         }
-
-      }
 
    }
 
    void dir::rls(::aura::application *  papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, e_extract eextract)
    {
-      rls_pattern(papp, lpcsz, "*.*", pstraPath, pstraTitle, pstraRelative, NULL, NULL, eextract);
+
+      if(::file::dir::axis::rls_patter(papp, lpcsz, pstraPath, pstraTitle, pbaIsDir, piaSize))
+      {
+
+         return true;
+
+      }
+
+      return linux::dir::rls_pattern(papp, lpcsz, pstraPath, pstraTitle, pbaIsDir, piaSize);
+
    }
 
    void dir::rls_pattern(::aura::application *  papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, bool_array * pbaIsDir, int64_array * piaSize, e_extract eextract)

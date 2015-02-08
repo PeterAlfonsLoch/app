@@ -2,6 +2,7 @@
 
 #if defined(LINUX)
 #include <netdb.h>
+#define in_addr6 in6_addr
 #endif
 
 

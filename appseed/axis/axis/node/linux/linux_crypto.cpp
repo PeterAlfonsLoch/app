@@ -35,7 +35,11 @@ namespace linux
 
       memIn.append(storageEncrypt.get_data(), storageEncrypt.get_size());
 
-      if(!::crypto_decrypt(memOut, memIn, pszSalt))
+      ::primitive::memory memSalt;
+
+      memSalt.append(pszSalt, strlen(pszSalt));
+
+      if(!::crypto_decrypt(memOut, memIn, memSalt))
          return false;
 
 
@@ -54,7 +58,11 @@ namespace linux
 
       memIn.append(storageDecrypt.get_data(), storageDecrypt.get_size());
 
-      if(!::crypto_encrypt(memOut, memIn, pszSalt))
+      ::primitive::memory memSalt;
+
+      memSalt.append(pszSalt, strlen(pszSalt));
+
+      if(!::crypto_encrypt(memOut, memIn, memSalt))
          return false;
 
 

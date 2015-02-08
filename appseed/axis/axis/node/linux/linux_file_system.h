@@ -6,13 +6,13 @@ namespace linux
 
 
 
-   class CLASS_DECL_BASE file_system :
+   class CLASS_DECL_AXIS file_system :
       public ::file::system
    {
    public:
 
 
-      class CLASS_DECL_BASE path :
+      class CLASS_DECL_AXIS file_path :
         public ::file::system::path
       {
       public:
@@ -22,12 +22,12 @@ namespace linux
          bool is_relative(const char * psz);
       };
 
-      class file_system::path m_path;
+      class file_system::file_path m_path;
 
 
       file_system(::aura::application *  papp);
 
-      path & path();
+      file_path & path();
 
       virtual void copy(const char * pszNew, const char * psz, bool bFailIfExists, e_extract eextract, ::aura::application *  app);
       virtual void move(const char * pszNew, const char * psz);

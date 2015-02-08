@@ -1,28 +1,30 @@
 #pragma once
 
 
-class CLASS_DECL_AURA device_context
-{
-public:
+WINBOOL GetCursorPos(LPPOINT lpptCursor);
 
-
-   ::Display *             m_pdisplay;
-   ::Drawable              m_drawable;
-   ::GC                    m_gc;
-   ::Pixmap                m_pixmap;
-   ::Window                m_window;
-   int                     m_iDepth;
-   int                     m_iScreen;
-
-   point                   m_pt;
-   point                   m_ptOffset;
-
-   XFontSet                m_fontset;
-
-   device_context();
-
-
-};
+//class CLASS_DECL_AURA device_context
+//{
+//public:
+//
+//
+//   ::Display *             m_pdisplay;
+//   ::Drawable              m_drawable;
+//   ::GC                    m_gc;
+//   ::Pixmap                m_pixmap;
+//   ::Window                m_window;
+//   int                     m_iDepth;
+//   int                     m_iScreen;
+//
+//   point                   m_pt;
+//   point                   m_ptOffset;
+//
+//   XFontSet                m_fontset;
+//
+//   device_context();
+//
+//
+//};
 
 
 /*HDC GetDC(oswindow hwnd);

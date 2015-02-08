@@ -292,8 +292,8 @@
 1418510537 /ca2/app/axis/freetype/src/base/md5.h
 	<openssl/md5.h>
 
-1418510472 /ca2/app/include/openssl/md5.h
-	"app/axis/openssl/crypto/md5/md5.h"
+1423332094 /ca2/app/include/openssl/md5.h
+	"app/axis/crypto/crypto/md5/md5.h"
 
 1418510580 /ca2/app/axis/openssl/crypto/md5/md5.h
 	<openssl/e_os2.h>
@@ -306,8 +306,8 @@
 	<openssl/opensslconf.h>
 	<sys/socket.h>
 
-1418510474 /ca2/app/include/openssl/opensslconf.h
-	"app/axis/openssl/crypto/opensslconf.h"
+1423332095 /ca2/app/include/openssl/opensslconf.h
+	"app/axis/crypto/crypto/opensslconf.h"
 
 1418510572 /ca2/app/axis/openssl/crypto/opensslconf.h
 
@@ -1420,4 +1420,10 @@
 	<stdio.h>
 	<setjmp.h>
 	<time.h>
+
+1423332102 /ca2/app/axis/crypto/crypto/md5/md5.h
+	<openssl/e_os2.h>
+	<stddef.h>
+
+1423332102 /ca2/app/axis/crypto/crypto/opensslconf.h
 

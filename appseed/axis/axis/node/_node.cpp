@@ -7,4 +7,8 @@
 
 #include "android/_android_node.cpp"
 
+#elif defined(LINUX)
+
+#include "linux/_linux_node.cpp"
+
 #endif

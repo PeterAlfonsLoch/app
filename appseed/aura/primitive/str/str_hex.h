@@ -12,7 +12,7 @@ namespace hex
 
    //CLASS_DECL_AURA string           pad_from(int64_t i, int32_t iPad);
 
-   
+
    inline CLASS_DECL_AURA int32_t to(char ch)
    {
       if(ch >= '0' && ch <= '9')
@@ -109,6 +109,9 @@ namespace hex
       str.ReleaseBuffer(s * 2);
       return str;
    }
+
+   template < typename INT >
+   inline string upper_from(INT iValue);
 
    template < typename INT >
    inline string lower_from(INT iValue)

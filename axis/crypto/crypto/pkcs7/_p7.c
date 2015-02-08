@@ -8,7 +8,7 @@
 #include "pk7_attr.c"
 #include "pk7_dgst.c"
 #include "pk7_doit.c"
-#include "pk7_enc.c"
+//#include "pk7_enc.c"
 #include "pk7_lib.c"
 #include "pk7_mime.c"
 #include "pk7_smime.c"

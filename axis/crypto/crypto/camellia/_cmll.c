@@ -3,7 +3,7 @@
 
  //Pasta de Z:\ca2\app\axis\crypto\crypto\camellia
 
-#ifndef _M_X64
+#if !defined(_M_X64) && !defined(_LP64)
 #include "camellia.c"
 #include "cmll_cbc.c"
 #endif

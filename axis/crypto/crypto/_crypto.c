@@ -6,7 +6,9 @@
 //#include "armcap.c"
 #include "cpt_err.c"
 #include "cryptlib.c"
+#ifndef LINUX
 #include "cversion.c"
+#endif
 #include "ebcdic.c"
 #include "ex_data.c"
 #include "fips_ers.c"
@@ -17,7 +19,9 @@
 //#include "LPdir_win32.c"
 //#include "LPdir_wince.c"
 #include "mem.c"
+#ifndef LINUX
 #include "mem_clr.c"
+#endif
 #include "mem_dbg.c"
 #include "o_dir.c"
 //#include "o_dir_test.c"

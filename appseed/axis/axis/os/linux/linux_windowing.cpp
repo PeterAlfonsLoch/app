@@ -19,7 +19,7 @@ oswindow_data::oswindow_data()
 
    m_plongmap              = new int_to_int();
 
-   m_hthread               = NULL;
+   m_hthread               = 0;
 
    m_window                = None;
 

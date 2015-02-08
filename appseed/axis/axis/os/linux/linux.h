@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "linux_cross_win_gdi.h"
+
+
 #include "linux_osdisplay.h"
 
 

@@ -209,7 +209,7 @@ template<class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline void raw_array < TYPE, ARG_TYPE, ALLOCATOR >::pop_back(index n)
 {
 
-   remove_at(this->get_upper_bound(n));
+   this->remove_at(this->get_upper_bound(n));
 
 }
 
