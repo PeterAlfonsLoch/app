@@ -122,7 +122,7 @@ namespace str
 
       bool is_digit(const char * pszUtf8Char)
       {
-      
+
          int64_t iUniIndex = uni_index(pszUtf8Char);
 
          return is_digit(iUniIndex);
@@ -260,35 +260,6 @@ namespace str
 
 
 
-      int64_t uni_index(const char * pszUtf8)
-      {
-         uchar * source = (uchar *) pszUtf8;
-         int64_t ch = 0;
-         int32_t extraBytesToRead = trailingBytesForUTF8[*source];
-/*         if(natural(extraBytesToRead) >= strlen(pszUtf8))
-         }*/
-//         if(natural(extraBytesToRead) >= strlen(pszUtf8))
-  //       {
-    //        return -1; // source exhausted
-      //   }
-         if(*source == '\0') return -1;
-         switch (extraBytesToRead)
-         {
-            case 5: ch += *source++; ch <<= 6;
-                if(*source == '\0') return -1;
-            case 4: ch += *source++; ch <<= 6;
-                if(*source == '\0') return -1;
-            case 3: ch += *source++; ch <<= 6;
-                if(*source == '\0') return -1;
-            case 2: ch += *source++; ch <<= 6;
-                if(*source == '\0') return -1;
-            case 1: ch += *source++; ch <<= 6;
-                if(*source == '\0') return -1;
-            case 0: ch += *source++;
-         }
-         ch -= offsetsFromUTF8[extraBytesToRead];
-         return ch;
-      }
 
 
 
@@ -318,8 +289,8 @@ namespace str
          ch -= offsetsFromUTF8[extraBytesToRead];
          return ch;
       }
-       
-       
+
+
        void * char_bidi_names_non_usage_warning()
        {
            return char_bidi_names;

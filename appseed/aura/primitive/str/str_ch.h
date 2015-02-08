@@ -87,7 +87,7 @@ namespace str
       //    1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1, 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
       //    2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2, 3,3,3,3,3,3,3,3,4,4,4,4,5,5,5,5
       //};
-      // return UTF8 Extra Bytes based on supplied First Char 
+      // return UTF8 Extra Bytes based on supplied First Char
       inline int64_t utf8_e(uchar c)
       {
          if(c < 192)
@@ -105,7 +105,8 @@ namespace str
       }
 
 
-      inline  int64_t uni_index(const char * pszUtf8);
+      inline int64_t uni_index(const char * pszUtf8);
+      inline int64_t _uni_index(const char * pszUtf8);
       inline int64_t _uni_index_len(const char * pszUtf8,strsize & len);
       inline int64_t uni_index_len(const char * pszUtf8, strsize & len);
 
@@ -140,11 +141,57 @@ namespace str
          }
       }
 
-      char _uni_len(const char * pszUtf8)
+      inline char _uni_len(const char * pszUtf8)
       {
          return utf8_e(*pszUtf8) + 1;
       }
 
+
+      inline int64_t uni_index(const char * pszUtf8)
+      {
+         if(*pszUtf8 < 192)
+         {
+            return *pszUtf8;
+         }
+         else
+         {
+            return _uni_index(pszUtf8);
+         }
+      }
+
+
+      inline  int64_t _uni_index(const char * pszUtf8)
+      {
+         uchar * source = (uchar *) pszUtf8;
+         int64_t ch = 0;
+         uchar c;
+         char len = 0;
+         char extraBytesToRead = utf8_o(*source);
+         if(*source == '\0') return -1;
+         switch(extraBytesToRead)
+         {
+         case 5:
+            ch += c = source[len++]; ch <<= 6;
+            if(c == '\0') return -1;
+         case 4:
+            ch += c = source[len++]; ch <<= 6;
+            if(c == '\0') return -1;
+         case 3:
+            ch += c = source[len++]; ch <<= 6;
+            if(c == '\0') return -1;
+         case 2:
+            ch += c = source[len++]; ch <<= 6;
+            if(c == '\0') return -1;
+         case 1:
+            ch += c = source[len++]; ch <<= 6;
+            if(c == '\0') return -1;
+         case 0:
+            ch += c = source[len++];
+            if(c == '\0' && extraBytesToRead) return -1;
+         }
+         ch -= utf8_e(extraBytesToRead);
+         return ch;
+      }
 
       int64_t _uni_index_len(const char * pszUtf8,strsize & len)
       {
@@ -267,6 +314,8 @@ namespace str
 
       /** @deprecated For debug purposes only. */
       CLASS_DECL_AURA int32_t size_of_tables();
+
+
 
 
    }

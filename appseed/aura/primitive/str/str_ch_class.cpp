@@ -6,10 +6,6 @@
 void * gen_ch_class_reference_tables();
 
 
-inline bool is_legal_uni_index(int64_t ca)
-{
-   return ca >= ((uint64_t) 0xffff) ? false : true;
-}
 
 void * gen_ch_class_reference_tables()
 {
@@ -395,7 +391,7 @@ namespace str
    bool ch_class::in_class(const char * pszUtf8Char) const
    {
       int64_t ca = ::str::ch::uni_index(pszUtf8Char);
-      if(!is_legal_uni_index(ca))
+      if(!::str::ch::is_legal_uni_index(ca))
          return false;
       bit_array * tablePos = infoIndex[ca>>8];
       if(tablePos == NULL)
