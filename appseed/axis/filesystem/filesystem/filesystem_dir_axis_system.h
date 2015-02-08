@@ -111,11 +111,11 @@ namespace file
             virtual stringa locale_schema_matter(const string & strLocator,const string & strLocale,const string & strStyle);
             virtual string matter(::aura::application * papp,const stringa & stra,bool bDir = false,const char * pszRoot = NULL,const char * pszApp = NULL);
             virtual string matter(::aura::application * papp,const string & str,const string & str2,bool bDir = false,const char * pszRoot = NULL,const char * pszApp = NULL);
-            virtual string matter(::aura::application * papp,const string & str,const char * psz,bool bDir = false,const char * pszRoot = NULL,const char * pszApp = NULL);
-            virtual string matter(::aura::application * papp,const char * psz,const string & str,bool bDir = false,const char * pszRoot = NULL,const char * pszApp = NULL);
-            virtual string matter(::aura::application * papp,const char * psz,const char * psz2,bool bDir = false,const char * pszRoot = NULL,const char * pszApp = NULL);
+            //virtual string matter(::aura::application * papp,const string & str,const char * psz,bool bDir = false,const char * pszRoot = NULL,const char * pszApp = NULL);
+            //virtual string matter(::aura::application * papp,const char * psz,const string & str,bool bDir = false,const char * pszRoot = NULL,const char * pszApp = NULL);
+            //virtual string matter(::aura::application * papp,const char * psz,const char * psz2,bool bDir = false,const char * pszRoot = NULL,const char * pszApp = NULL);
             virtual string matter(::aura::application * papp,const string & str,bool bDir = false,const char * pszRoot = NULL,const char * pszApp = NULL);
-            virtual string matter(::aura::application * papp,const char * psz,bool bDir = false,const char * pszRoot = NULL,const char * pszApp = NULL);
+            //virtual string matter(::aura::application * papp,const char * psz,bool bDir = false,const char * pszRoot = NULL,const char * pszApp = NULL);
 
             virtual void   matter_ls(::aura::application * papp,const string & str,stringa & stra);
             virtual void   matter_ls_file(::aura::application * papp,const string & str,stringa & stra);

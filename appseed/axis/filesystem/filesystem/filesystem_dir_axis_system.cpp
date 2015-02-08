@@ -1495,20 +1495,20 @@ else
 
       }
 
-      string system::matter(::aura::application * papp, const char * psz, const char * psz2, bool bDir, const char * pszRoot, const char * pszApp)
-      {
-         return matter(papp, string(psz), string(psz2), bDir, pszRoot, pszApp);
-      }
+      //string system::matter(::aura::application * papp, const char * psz, const char * psz2, bool bDir, const char * pszRoot, const char * pszApp)
+      //{
+      //   return matter(papp, string(psz), string(psz2), bDir, pszRoot, pszApp);
+      //}
 
-      string system::matter(::aura::application * papp, const string & str, const char * psz, bool bDir, const char * pszRoot, const char * pszApp)
-      {
-         return matter(papp, str, string(psz), bDir, pszRoot, pszApp);
-      }
+      //string system::matter(::aura::application * papp, const string & str, const char * psz, bool bDir, const char * pszRoot, const char * pszApp)
+      //{
+      //   return matter(papp, str, string(psz), bDir, pszRoot, pszApp);
+      //}
 
-      string system::matter(::aura::application * papp, const char * psz, const string & str, bool bDir, const char * pszRoot, const char * pszApp)
-      {
-         return matter(papp, string(psz), str, bDir, pszRoot, pszApp);
-      }
+      //string system::matter(::aura::application * papp, const char * psz, const string & str, bool bDir, const char * pszRoot, const char * pszApp)
+      //{
+      //   return matter(papp, string(psz), str, bDir, pszRoot, pszApp);
+      //}
 
 
       string system::matter(::aura::application * papp, const string & str, const string & str2, bool bDir, const char * pszRoot, const char * pszApp)
@@ -1973,12 +1973,12 @@ ret:
          return path(locale_schema_matter(papp, strEmpty, strEmpty), str, str2);*/
       }
 
-      string system::matter(::aura::application * papp, const char * psz, bool bDir, const char * pszRoot, const char * pszApp)
-      {
-         string str(psz);
-         string str2;
-         return matter(papp, str, str2, bDir, pszRoot, pszApp);
-      }
+      //string system::matter(::aura::application * papp, const char * psz, bool bDir, const char * pszRoot, const char * pszApp)
+      //{
+      //   string str(psz);
+      //   string str2;
+      //   return matter(papp, str, str2, bDir, pszRoot, pszApp);
+      //}
 
       string system::matter(::aura::application * papp, const string & str, bool bDir, const char * pszRoot, const char * pszApp)
       {
