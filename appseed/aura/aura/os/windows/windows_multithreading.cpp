@@ -26,20 +26,6 @@ thread_data::~thread_data()
 }
 
 
-void * thread_data::get()
-{
-   
-   return TlsGetValue(g_dwTlsIndex);
-
-}
-   
-
-void thread_data::set(void * p)
-{
-
-   TlsSetValue(g_dwTlsIndex, (LPVOID) p);
-
-}
 
 
 

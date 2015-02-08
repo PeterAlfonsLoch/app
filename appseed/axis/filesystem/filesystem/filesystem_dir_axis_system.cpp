@@ -383,7 +383,7 @@ namespace file
       {
          UNREFERENCED_PARAMETER(pstraRelative);
          UNREFERENCED_PARAMETER(pszPattern);
-         if(eextract != extract_none && ::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (::str::ends_ci(lpcsz,".zip") || ::str::find_ci(".zip:",lpcsz) >= 0))
+         if(eextract != extract_none && ::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (::str::ends_ci(lpcsz,".zip") || ::str::find_file_extension("zip:",lpcsz) >= 0))
          {
             throw "should implement recursive zip";
             m_pziputil->ls(papp, lpcsz, false, pstraPath, pstraTitle, NULL, pbaIsDir, piaSize, eextract == extract_all ? extract_all : extract_none);
@@ -417,7 +417,7 @@ namespace file
 
          }
 
-         if(::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (::str::ends_ci(lpcsz,".zip") || ::str::find_ci(".zip:",lpcsz) >= 0))
+         if(::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (::str::ends_ci(lpcsz,".zip") || ::str::find_file_extension("zip:",lpcsz) >= 0))
          {
 
             return m_pziputil->ls(papp, lpcsz, false, pstraPath, pstraTitle, NULL, pbaIsDir, piaSize);
@@ -440,7 +440,7 @@ namespace file
       bool system::rls(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, e_extract eextract)
       {
       
-         if(eextract != extract_none && ::get_thread() != NULL && get_thread()->m_bZipIsDir && (::str::ends_ci(lpcsz,".zip") || ::str::find_ci(".zip:",lpcsz) >= 0))
+         if(eextract != extract_none && ::get_thread() != NULL && get_thread()->m_bZipIsDir && (::str::ends_ci(lpcsz,".zip") || ::str::find_file_extension("zip:",lpcsz) >= 0))
          {
 
             return m_pziputil->ls(papp, lpcsz, false, pstraPath, pstraTitle, pstraRelative, NULL, NULL, eextract == extract_all ? extract_all : extract_none);
@@ -463,7 +463,7 @@ namespace file
       bool system::ls_dir(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
       {
 
-         if(::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (::str::ends_ci(lpcsz,".zip") || ::str::find_ci(".zip:",lpcsz) >= 0))
+         if(::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (::str::ends_ci(lpcsz,".zip") || ::str::find_file_extension("zip:",lpcsz) >= 0))
          {
             
             return m_pziputil->ls_dir(papp, lpcsz, pstraPath, pstraTitle);
@@ -508,7 +508,7 @@ namespace file
             return true;
          }
 
-         if(::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (::str::find_ci(".zip:",lpcszPath) >= 0))
+         if(::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (::str::find_file_extension("zip:",lpcszPath) >= 0))
          {
 
             bool bHasSubFolder;
@@ -591,7 +591,7 @@ namespace file
             m_isdirmap.set(strPath, true, 0);
             return true;
          }
-         if(::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (::str::find_ci(".zip:",strPath) >= 0))
+         if(::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (::str::find_file_extension("zip:",strPath) >= 0))
          {
             bool bHasSubFolder;
             uint32_t dwLastError;
@@ -622,7 +622,7 @@ namespace file
             m_isdirmap.set(strPath, true, 0);
             return true;
          }
-         if(::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (::str::find_ci(".zip:",strPath) >= 0))
+         if(::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (::str::find_file_extension("zip:",strPath) >= 0))
          {
             bool bHasSubFolder;
             uint32_t dwLastError;

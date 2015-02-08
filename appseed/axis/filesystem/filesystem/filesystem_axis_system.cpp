@@ -123,12 +123,12 @@ namespace file
    bool system::exists(const string & strPath, var * pvarQuery, ::aura::application * papp)
    {
 
-      if (::str::begins_ci_iws(strPath, "uifs://"))
+      if (::str::begins(strPath, "uifs://"))
       {
          return AppUser(papp).m_pifs->file_exists(strPath);
       }
 
-      if (::str::begins_ci_iws(strPath, "http://") || ::str::begins_ci_iws(strPath, "https://"))
+      if (::str::begins(strPath, "http://") || ::str::begins(strPath, "https://"))
       {
 
          property_set set(papp);
@@ -148,7 +148,7 @@ namespace file
       if (::get_thread() != NULL && ::get_thread()->m_bZipIsDir)
       {
 
-         strsize iFind = ::str::find_ci(".zip:", strPath);
+         strsize iFind = ::str::find_file_extension("zip:",strPath);
 
          zip::Util ziputil;
 
@@ -420,7 +420,7 @@ restart:
       else
       {
          string strFilePath(varFile);
-         if(::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (::str::find_ci(".zip:",strFilePath) >= 0))
+         if(::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (::str::find_file_extension("zip:",strFilePath) >= 0))
          {
             if(!exists(strFilePath, papp))
                return "";

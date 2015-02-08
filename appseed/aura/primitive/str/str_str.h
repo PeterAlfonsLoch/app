@@ -120,6 +120,10 @@ namespace str
    strsize CLASS_DECL_AURA find_ci(const char   * pszFind   , const string & str, strsize iStart = 0);
    strsize CLASS_DECL_AURA find_ci(const char   * pszFind   , const char   * psz, strsize iStart = 0);
 
+
+   strsize CLASS_DECL_AURA find_ci(const char   * pszFind,const string & str,strsize iStart, strsize iLast);
+   strsize CLASS_DECL_AURA find_file_extension(const char * pszExtension,const string & str,strsize iStart = 0, strsize iLast = -1);
+
    strsize CLASS_DECL_AURA find_ww(const char * pszFind, const char * psz, strsize iStart = 0);
    strsize CLASS_DECL_AURA find_wwci(const char * pszFind, const char * psz, strsize iStart = 0);
    strsize CLASS_DECL_AURA find_aww(const char * pszFind, const char * psz, strsize iStart = 0);

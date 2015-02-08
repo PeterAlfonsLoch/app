@@ -241,31 +241,31 @@ namespace file
          spfile = varFile.propset()["file"].cast < ::file::binary_buffer >();
 
       }
-      else if(::str::find_ci(".zip:", strPath) >= 0)
-      {
+      //else if(::str::find_file_extension("zip:", strPath) >= 0)
+      //{
 
-         /* xxx
-         zip::InFile * pinfile = new zip::InFile(get_app());
+      //   /* xxx
+      //   zip::InFile * pinfile = new zip::InFile(get_app());
 
-         if(pinfile != NULL)
-         {
+      //   if(pinfile != NULL)
+      //   {
 
-            if(!pinfile->unzip_open(strPath, 0))
-            {
+      //      if(!pinfile->unzip_open(strPath, 0))
+      //      {
 
-               delete pinfile;
+      //         delete pinfile;
 
-               pinfile = NULL;
+      //         pinfile = NULL;
 
-            }
+      //      }
 
-         }
+      //   }
 
-         spfile = pinfile;
+      //   spfile = pinfile;
 
-         */
+      //   */
 
-      }
+      //}
       else if(::str::begins_eat_ci(strPath, "matter://"))
       {
 

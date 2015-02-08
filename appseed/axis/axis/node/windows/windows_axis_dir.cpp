@@ -452,7 +452,7 @@ namespace windows
          return true;
       }
       
-      strsize iFind = ::str::find_ci(".zip:", str);
+      strsize iFind = ::str::find_file_extension("zip:", str, 0, iLast);
 
       if(::get_thread() != NULL && ::get_thread()->m_bZipIsDir && iFind >= 0 && iFind < iLast)
       {

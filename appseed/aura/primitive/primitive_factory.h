@@ -348,7 +348,7 @@ public:
    }
 
    template < class T >
-   sp(factory_allocator) & get_allocator(int32_t iCount, bool bAligned);
+   factory_allocator * get_allocator(int32_t iCount, bool bAligned);
 
 
    inline bool is_set(::id id) {  return m_mapItem[id].is_set(); }

@@ -150,7 +150,7 @@ void * aligned_memory_alloc(size_t size)
    if(g_pheap == NULL)
    {
    
-       void * pbase = malloc(heap_memory::aligned_provision_get_size(size));
+       void * pbase = system_heap_alloc(heap_memory::aligned_provision_get_size(size));
        
        if (pbase == NULL)
        {
@@ -213,11 +213,11 @@ void * aligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * szF
    UNREFERENCED_PARAMETER(nLine);
 
    //TODO: to do the dbg version
-   //byte * p = (byte *) _malloc_dbg(nSize + ALIGN_BYTE_COUNT + 32, nBlockUse, szFileName, nLine);
+   //byte * p = (byte *) _system_heap_alloc_dbg(nSize + ALIGN_BYTE_COUNT + 32, nBlockUse, szFileName, nLine);
     if(g_pheap == NULL)
     {
         
-        void * pbase = malloc(heap_memory::aligned_provision_get_size(size));
+        void * pbase = system_heap_alloc(heap_memory::aligned_provision_get_size(size));
         
         if (pbase == NULL)
         {
@@ -261,7 +261,7 @@ void * unaligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * s
    UNREFERENCED_PARAMETER(nLine);
 
    //TODO: to do the dbg version
-   //byte * p = (byte *) _malloc_dbg(nSize + ALIGN_BYTE_COUNT + 32, nBlockUse, szFileName, nLine);
+   //byte * p = (byte *) _system_heap_alloc_dbg(nSize + ALIGN_BYTE_COUNT + 32, nBlockUse, szFileName, nLine);
    void * pbase = g_pheap->alloc_dbg(heap_memory::unaligned_provision_get_size(size), nBlockUse, szFileName, nLine);
 
    if (pbase == NULL)
@@ -451,7 +451,7 @@ void memory_free_dbg(void * pmemory, int32_t iBlockType)
    else if (blockuse == 128)
     {
         
-        free(heap_memory::base_get(pmemory));
+        system_heap_free(heap_memory::base_get(pmemory));
         
     }
     else if (blockuse == 129)
@@ -459,7 +459,7 @@ void memory_free_dbg(void * pmemory, int32_t iBlockType)
         
         //TODO: to do the dbg version
         
-        free(heap_memory::base_get(pmemory));
+        system_heap_free(heap_memory::base_get(pmemory));
         
     }
    else if (blockuse == 2)
@@ -504,14 +504,14 @@ size_t memory_size_dbg(void * pmemory, int32_t iBlockType)
 void * aligned_memory_alloc(size_t size)
 {
 
-   return malloc(size);
+   return system_heap_alloc(size);
 
 }
 
 void * unaligned_memory_alloc(size_t size)
 {
 
-   return malloc(size);
+   return system_heap_alloc(size);
 
 }
 
@@ -519,14 +519,14 @@ void * unaligned_memory_alloc(size_t size)
 void * aligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * szFileName, int32_t nLine)
 {
 
-   return malloc(size);
+   return system_heap_alloc(size);
 
 }
 
 void * unaligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * szFileName, int32_t nLine)
 {
 
-   return malloc(size);
+   return system_heap_alloc(size);
 
 }
 
@@ -536,7 +536,7 @@ void * unaligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * s
 void * memory_alloc(size_t size)
 {
 
-   return malloc(size);
+   return system_heap_alloc(size);
 
 }
 
@@ -552,7 +552,7 @@ void * memory_calloc(size_t size, size_t bytes)
 void * memory_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine)
 {
 
-   return malloc(nSize);
+   return system_heap_alloc(nSize);
 
 }
 
@@ -560,7 +560,7 @@ void * memory_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName
 void * memory_realloc(void * pvoid, size_t nSize)
 {
 
-   return realloc(pvoid, nSize);
+   return system_heap_realloc(pvoid, nSize);
 
 }
 
@@ -569,7 +569,7 @@ void * memory_realloc_dbg(void * pvoid, size_t size, int32_t nBlockUse, const ch
 {
 
 
-   return realloc(pvoid, size);
+   return system_heap_realloc(pvoid, size);
 
 
 
@@ -577,7 +577,7 @@ void * memory_realloc_dbg(void * pvoid, size_t size, int32_t nBlockUse, const ch
 
 void memory_free(void * pvoid)
 {
-   return free(pvoid);
+   return system_heap_free(pvoid);
 }
 
 
@@ -586,7 +586,7 @@ size_t memory_size(void * pvoid)
 #ifdef WINDOWS
    return _msize(pvoid);
 #else
-   return malloc_size(pvoid);
+   return system_heap_alloc_size(pvoid);
 #endif
 }
 
@@ -605,7 +605,7 @@ size_t memory_size_dbg(void * pvoid, int32_t iBlockType)
    return _msize(pvoid);
 #else
 
-   return malloc_size(pvoid);
+   return system_heap_alloc_size(pvoid);
 #endif
 }
 

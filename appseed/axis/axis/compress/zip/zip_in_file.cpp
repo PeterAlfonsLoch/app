@@ -52,7 +52,7 @@ namespace zip
 
       index iFind = -1;
       index iStart = 0;
-      while((iFind = ::str::find_ci(".zip:",lpszFileName,iStart)) >= 0)
+      while((iFind = ::str::find_file_extension("zip:",lpszFileName,iStart)) >= 0)
       {
          m_straPath.add(string(&lpszFileName[iStart],iFind + strlen(".zip")));
          iStart = iFind + strlen(".zip:");

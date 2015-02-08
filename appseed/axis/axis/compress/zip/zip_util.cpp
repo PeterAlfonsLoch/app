@@ -62,7 +62,7 @@ namespace zip
          strLastZip = strZip;
          strZip += ":";
       }
-      else if(::str::find_ci(".zip:", lpszFileName) >= 0)
+      else if(::str::find_file_extension("zip:", lpszFileName) >= 0)
       {
          strZip = lpszFileName;
          strRemain = strZip.Mid(strZip.reverse_find(".zip:") + strlen(".zip:"));

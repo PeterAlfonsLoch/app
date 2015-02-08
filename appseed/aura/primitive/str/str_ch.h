@@ -49,14 +49,141 @@ namespace str
    namespace ch
    {
 
-      CLASS_DECL_AURA  int64_t uni_index(const char * pszUtf8);
-      CLASS_DECL_AURA  int64_t uni_index_len(const char * pszUtf8, strsize & len);
-      CLASS_DECL_AURA  int64_t uni_index(const char * pszUtf8, const char * pszEnd);
+      // return UTF8 offset
+      inline int64_t utf8_o(char cExtraBytes)
+      {
+         switch(cExtraBytes)
+         {
+         case 0:
+            return 0x00000000UL;
+         case 1:
+            return 0x00003080UL;
+         case 2:
+            return 0x000E2080UL;
+         case 3:
+            return 0x03C82080UL;
+         case 4:
+            return 0xFA082080UL;
+         case 5:
+            return 0x82082080UL;
+         default:
+            return -1;
+         };
+      }
+      //    /*
+      // * Index into the table below with the first byte of a UTF-8 sequence to
+      // * get the number of trailing bytes that are supposed to follow it.
+      // * Note that *legal* UTF-8 values can't have 4 or 5-bytes. The table is
+      // * left as-is for anyone who may want to do such conversion, which was
+      // * allowed in earlier algorithms.
+      // */
+      //static const char trailingBytesForUTF8[256] = {
+      //    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+      //    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+      //    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+      //    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+      //    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+      //    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+      //    1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1, 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+      //    2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2, 3,3,3,3,3,3,3,3,4,4,4,4,5,5,5,5
+      //};
+      // return UTF8 Extra Bytes based on supplied First Char 
+      inline int64_t utf8_e(uchar c)
+      {
+         if(c < 192)
+            return 0;
+         else if(c < 192 + 32)
+            return 1;
+         else if(c < 192 + 32 + 16)
+            return 2;
+         else if(c < 192 + 32 + 16 + 8)
+            return 3;
+         else if(c < 192 + 32 + 16 + 8 + 4)
+            return 4;
+         else
+            return 5;
+      }
+
+
+      inline  int64_t uni_index(const char * pszUtf8);
+      inline int64_t _uni_index_len(const char * pszUtf8,strsize & len);
+      inline int64_t uni_index_len(const char * pszUtf8, strsize & len);
+
+      // ATTENTION: it does not check validity of entire UTF8 char, you should check if the (last position + uni_len) is greater than the working string length
+      inline  char _uni_len(const char * pszUtf8);
+      char uni_len(const char * pszUtf8);
+
+      CLASS_DECL_AURA  int64_t uni_index(const char * pszUtf8,const char * pszEnd);
+
+      inline int64_t uni_index_len(const char * pszUtf8,strsize & len)
+      {
+         if(*pszUtf8 < 192)
+         {
+            len = 1;
+            return *pszUtf8;
+         }
+         else
+         {
+            return _uni_index_len(pszUtf8, len);
+         }
+      }
+
+      inline char uni_len(const char * pszUtf8)
+      {
+         if(*pszUtf8 < 192)
+         {
+            return 1;
+         }
+         else
+         {
+            return _uni_len(pszUtf8);
+         }
+      }
+
+      char _uni_len(const char * pszUtf8)
+      {
+         return utf8_e(*pszUtf8) + 1;
+      }
+
+
+      int64_t _uni_index_len(const char * pszUtf8,strsize & len)
+      {
+         uchar * source = (uchar *)pszUtf8;
+         uchar ch = 0;
+         uchar c;
+         char extraBytesToRead = utf8_e(*source);
+         len = 0;
+         if(*source == '\0') return 0;
+         switch(extraBytesToRead)
+         {
+         case 5:
+            ch += c = source[len++]; ch <<= 6;
+            if(c == '\0') return -1;
+         case 4:
+            ch += c = source[len++]; ch <<= 6;
+            if(c == '\0') return -1;
+         case 3:
+            ch += c = source[len++]; ch <<= 6;
+            if(c == '\0') return -1;
+         case 2:
+            ch += c = source[len++]; ch <<= 6;
+            if(c == '\0') return -1;
+         case 1:
+            ch += c = source[len++]; ch <<= 6;
+            if(c == '\0') return -1;
+         case 0:
+            ch += c = source[len++];
+            if(c == '\0' && extraBytesToRead) return -1;
+         }
+         ch -= utf8_o(extraBytesToRead);
+         return ch;
+      }
 
 
       inline bool is_legal_uni_index(int64_t ca)
       {
-         return ca >= ((uint64_t) 0xffff) ? false : true;
+         return ca >= ((uint64_t) 0xffffffffu) ? false : true;
+         //return true;
       }
 
       inline bool is_space_char(wchar_t wch)

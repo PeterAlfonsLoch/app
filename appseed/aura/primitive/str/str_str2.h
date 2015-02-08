@@ -279,10 +279,10 @@ namespace str
 
 
 CLASS_DECL_AURA const char * utf8_inc(const char * psz);
-CLASS_DECL_AURA int32_t uni_index(const char * pszUtf8);
 CLASS_DECL_AURA int32_t uni_to_utf8(char * psz, int32_t w);;
 CLASS_DECL_AURA ::count utf16_len(const char * psz);
 CLASS_DECL_AURA void utf8_to_utf16(wchar_t * pwsz, const char * psz);
 CLASS_DECL_AURA int32_t utf8_len(const wchar_t * pwsz);
 CLASS_DECL_AURA void utf16_to_utf8(char * psz, const wchar_t * pwsz);
+
 

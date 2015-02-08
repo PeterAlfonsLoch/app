@@ -309,7 +309,7 @@ namespace file
             spfile = varFile.propset()["file"].cast < ::file::binary_buffer >();
 
          }
-         else if(::str::find_ci(".zip:",strPath) >= 0)
+         else if(::str::find_file_extension("zip:",strPath) >= 0)
          {
 
             zip::InFile * pinfile = new zip::InFile(get_app());

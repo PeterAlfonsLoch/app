@@ -629,73 +629,233 @@ namespace str
 
       index iLen = str.get_length() - iStart;
 
-      if(iFindLen > iLen)
-         return -1;
 
-      if(iFindLen < 256)
+      strsize len1;
+      strsize len2;
+
+      const char * psz1 = str;
+      const char * psz2 = pszFind;
+
+      while(true)
       {
 
-         char szFind[256];
+         if(*psz1 == '\0')
+         {
+            break;
+         }
+            
+         if(*psz2 == '\0')
+         {
+            break;
+         }
 
-         memcpy(szFind, pszFind, iFindLen + 1);
+         const char * pszC1 = psz1;
+         const char * pszC2 = psz2;
 
-         make_lower(szFind);
+         while(true)
+         {
+               
+            if(ch::to_lower_case(ch::uni_index_len(pszC1,len1)) == ch::to_lower_case(ch::uni_index_len(pszC2,len2)))
+            {
+               pszC1 += len1;
+               pszC2 += len2;
+               if(*pszC2 == '\0')
+               {
+                  return psz1 - (const char *) str;
+               }
+               if(*pszC1 == '\0')
+               {
+                  return -1;
+               }
+            }
+            else
+            {
+               ch::uni_index_len(psz1,len1);
+               psz1 += len1;
+               break;
+            }
+         }
 
-         if(iLen < 256)
+      }
+
+      return -1;
+
+   }
+
+
+   index find_ci(const char * pszFind,const string & str,index iStart, index iLast)
+   {
+
+      ::count iFindLen = strlen(pszFind);
+
+      index iLen = str.get_length() - iStart;
+
+      if(iLast < 0)
+         iLast +=iLen;
+
+      strsize len1;
+      strsize len2;
+
+      const char * psz1 = str;
+      const char * psz2 = pszFind;
+
+      strsize iPos = 0;
+
+      while(iPos <= iLast)
+      {
+
+         if(*psz1 == '\0')
+         {
+            break;
+         }
+
+         if(*psz2 == '\0')
+         {
+            break;
+         }
+
+         const char * pszC1 = psz1;
+         const char * pszC2 = psz2;
+
+         while(true)
          {
 
-            char sz[256];
+            if(ch::to_lower_case(ch::uni_index_len(pszC1,len1)) == ch::to_lower_case(ch::uni_index_len(pszC2,len2)))
+            {
+               pszC1 += len1;
+               pszC2 += len2;
+               if(*pszC2 == '\0')
+               {
+                  return psz1 - (const char *)str;
+               }
+               if(*pszC1 == '\0')
+               {
+                  return -1;
+               }
+            }
+            else
+            {
+               ch::uni_index_len(psz1,len1);
+               psz1 += len1;
+               iPos += len1;
+               break;
+            }
+         }
 
-            memcpy(sz, &((LPCSTR)str)[iStart], iLen + 1);
+      }
 
-            make_lower(sz);
+      return -1;
 
-            pszFind = strstr(sz, szFind);
+   }
 
-            if(pszFind == NULL)
-               return -1;
 
-            return iStart + (pszFind - sz);
+
+
+   index find_file_extension(const char * pszFind,const string & str,index iStart, index iLast)
+   {
+
+      if(pszFind == NULL || pszFind[0] == '\0') // do not search for empty Extensions
+         return -1;
+
+      // for dir::name_is (check if base name of a file is a directory, checking if there is a simple ansi '.', may be very good start point definitive false).
+      // if there is a dot, it may still does not have a Latin dot, if the dot is inside a Multibyte UTF8 char, anyway, algo following should check it properly.
+
+      index iLen = str.get_length() - iStart;
+
+      if(iLast < 0)
+         iLast += iLen;
+
+      {
+
+         const char * pszOkToContinue = strchr(str,'.');
+
+         if(pszOkToContinue == NULL || pszOkToContinue - (const char *)str >= iLast)
+            return -1;
+
+      }
+
+      ::count iFindLen = strlen(pszFind);
+
+
+
+      strsize len1;
+      strsize len2;
+
+      const char * psz1 = str;
+      const char * psz2 = pszFind;
+
+      strsize iPos = 0;
+      strsize iPos2 = 0;
+
+      while(iPos <= iLast)
+      {
+
+         if(*psz1 == '\0')
+         {
+            break;
+         }
+
+         if(*psz2 == '\0')
+         {
+            break;
+         }
+
+         if(*psz1 != '.')
+         {
+
+            len1 = ch::uni_len(psz1);
+
+            psz1 += len1;
+
+            iPos += len1;
 
          }
          else
          {
 
-            string strLow(&((LPCSTR)str)[iStart], iLen); // avoid optimized read only string copy
+            psz1 += 1;
 
-            strLow.make_lower();
+            iPos += 1;
 
-            const char * psz = strLow;
+            if(iPos > iLast)
+               break;
 
-            pszFind = strstr(psz, szFind);
+            const char * pszC1 = psz1;
+            const char * pszC2 = psz2;
 
-            if(pszFind == NULL)
-               return -1;
+            iPos2 = iPos;
 
-            return iStart + (pszFind - psz);
+            while(true)
+            {
+
+               if(ch::to_lower_case(ch::uni_index_len(pszC1,len1)) == ch::to_lower_case(ch::uni_index_len(pszC2,len2)))
+               {
+                  pszC1 += len1;
+                  pszC2 += len2;
+                  iPos2 += len1;
+                  if(*pszC2 == '\0')
+                  {
+                     return (psz1 - (const char *)str) - 1; // "-1" because find file extension returns the index of the dot
+                  }
+                  if(*pszC1 == '\0' || iPos2 > iLast)
+                  {
+                     return -1;
+                  }
+               }
+               else
+               {
+                  ch::uni_index_len(psz1,len1);
+                  psz1 += len1;
+                  iPos += len1;
+                  break;
+               }
+            }
 
          }
 
       }
-      else
-      {
 
-         string strFindLow(pszFind, iFindLen); // avoid optimized read only string copy
-
-         strFindLow.make_lower();
-
-         string strLow(&((LPCSTR)str)[iStart], iLen); // avoid optimized read only string copy
-
-         strLow.make_lower();
-
-         index iFind = strLow.find(strFindLow);
-
-         if(iFind < 0)
-            return -1;
-
-         return iStart + iFind;
-
-      }
+      return -1;
 
    }
 

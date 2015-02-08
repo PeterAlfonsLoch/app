@@ -7,9 +7,9 @@ class thread_pointer :
 {
 public:
 
-   operator T *() { return (T *)get(); }
-   T * operator ->() { return operator T *(); }
-   thread_pointer & operator = (T * pt) { set(pt); return *this; }
+   inline operator T *() { return (T *)get(); }
+   inline T * operator ->() { return operator T *(); }
+   inline thread_pointer & operator = (T * pt) { set(pt); return *this; }
 
 };
 

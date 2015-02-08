@@ -49,35 +49,6 @@ const char * utf8_inc(const char * psz)
 }
 
 
-int32_t uni_index(const char * pszUtf8)
-{
-   uchar * source = (uchar *) pszUtf8;
-   int32_t ch = 0;
-   int32_t extraBytesToRead = trailingBytesForUTF8[*source];
-   /*         if(natural(extraBytesToRead) >= strlen(pszUtf8))
-   }*/
-   //         if(natural(extraBytesToRead) >= strlen(pszUtf8))
-   //       {
-   //        return -1; // source exhausted
-   //   }
-   if(*source == '\0') return -1;
-   switch (extraBytesToRead)
-   {
-   case 5: ch += *source++; ch <<= 6;
-      if(*source == '\0') return -1;
-   case 4: ch += *source++; ch <<= 6;
-      if(*source == '\0') return -1;
-   case 3: ch += *source++; ch <<= 6;
-      if(*source == '\0') return -1;
-   case 2: ch += *source++; ch <<= 6;
-      if(*source == '\0') return -1;
-   case 1: ch += *source++; ch <<= 6;
-      if(*source == '\0') return -1;
-   case 0: ch += *source++;
-   }
-   ch -= offsetsFromUTF8[extraBytesToRead];
-   return ch;
-}
 
 int32_t uni_to_utf8(char * psz, int32_t w)
 {
@@ -117,10 +88,11 @@ int32_t uni_to_utf8(char * psz, int32_t w)
 
 void utf8_to_utf16(wchar_t * pwsz, const char * psz)
 {
+   strsize len;
    while(psz != NULL && *psz != '\0')
    {
-      *pwsz++ = uni_index(psz);
-      psz = utf8_inc(psz);
+      *pwsz++ = ::str::ch::uni_index_len(psz, len);
+      psz += len;
    }
    if(psz != NULL)
    {
