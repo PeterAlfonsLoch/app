@@ -171,6 +171,8 @@ DWORD WaitForSingleObject(waitable * pwaitable, DWORD dwTimeout)
 thread_data::thread_data()
 {
 
+   m_pkey = new pthread_key_t;
+
    pthread_key_create((pthread_key_t *) m_pkey, NULL);
 
 }

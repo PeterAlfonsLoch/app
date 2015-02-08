@@ -20,9 +20,9 @@
 
 void clock_getrealtime(struct timespec * pts)
 {
-    
+
 #ifdef __MACH__ // OS X does not have clock_gettime, use clock_get_time
-    
+
     clock_serv_t cclock;
     mach_timespec_t mts;
     host_get_clock_service(mach_host_self(), CALENDAR_CLOCK, &cclock);
@@ -30,13 +30,13 @@ void clock_getrealtime(struct timespec * pts)
     mach_port_deallocate(mach_task_self(), cclock);
     pts->tv_sec = mts.tv_sec;
     pts->tv_nsec = mts.tv_nsec;
-    
+
 #else
-    
+
     clock_gettime(CLOCK_REALTIME, pts);
-    
+
 #endif
-    
+
 }
 
 #endif
@@ -116,6 +116,10 @@ event::event(::aura::application * papp, bool bInitiallyOwn, bool bManualReset, 
    if(bManualReset)
    {
 
+      m_pmutex = new pthread_mutex_t;
+
+      m_pcond = new pthread_cond_t;
+
       pthread_mutex_init((pthread_mutex_t *) m_pmutex, 0);
 
       pthread_cond_init((pthread_cond_t *) m_pcond, 0);
@@ -125,6 +129,10 @@ event::event(::aura::application * papp, bool bInitiallyOwn, bool bManualReset, 
    }
    else
    {
+
+      m_pmutex = NULL;
+
+      m_pcond = NULL;
 
       if(pstrName != NULL && *pstrName != '\0')
       {
@@ -175,6 +183,10 @@ event:: ~event()
    semun ignored_argument;
 
    semctl(m_object, 0, IPC_RMID, ignored_argument);
+
+   ::aura::del((pthread_mutex_t * &)m_pmutex);
+
+   ::aura::del((pthread_cond_t * &)m_pcond);
 
 #elif defined(ANDROID)
 
