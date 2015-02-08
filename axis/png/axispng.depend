@@ -355,7 +355,7 @@
 
 1418509510 /ca2/app/appseed/aura/primitive/primitive_memory_c.h
 
-1418509525 /ca2/app/appseed/aura/primitive/datetime/datetime_c.h
+1423400492 /ca2/app/appseed/aura/primitive/datetime/datetime_c.h
 
 1418509499 /ca2/app/appseed/aura/aura/aura/aura_number.h
 
@@ -399,7 +399,7 @@
 
 1418509450 /ca2/app/appseed/aura/aura/os/macos/macos_multithreading.h
 
-1418509450 /ca2/app/appseed/aura/aura/os/linux/linux.h
+1423401450 /ca2/app/appseed/aura/aura/os/linux/linux.h
 	"aura/os/ansios/ansios_file.h"
 	"linux_debug.h"
 
@@ -415,12 +415,13 @@
 
 1420593792 /ca2/app/appseed/aura/aura/os/metrowin/metrowin_multithreading.h
 
-1418509451 /ca2/app/appseed/aura/aura/os/windows/windows.h
+1423400495 /ca2/app/appseed/aura/aura/os/windows/windows.h
 	<shellapi.h>
 	<wincrypt.h>
 	"windows_base_file.h"
 	"windows_multithreading.h"
 	"windows_utils.h"
+	"windows.inl"
 
 1418509452 /ca2/app/appseed/aura/aura/os/windows/windows_base_file.h
 
@@ -786,7 +787,7 @@
 
 1418560430 /ca2/app/appseed/aura/primitive/collection/collection_comparable_raw_array.h
 
-1423336296 /ca2/app/appseed/aura/primitive/collection/collection_ptr_array.h
+1423401181 /ca2/app/appseed/aura/primitive/collection/collection_ptr_array.h
 
 1418526563 /ca2/app/appseed/aura/primitive/collection/collection_lemon_heap.h
 
@@ -1066,17 +1067,17 @@
 
 1423332072 /ca2/app/appseed/aura/filesystem/file/file_stream_buffer.h
 
-1418509502 /ca2/app/appseed/aura/filesystem/file/file_input_stream.h
+1423400497 /ca2/app/appseed/aura/filesystem/file/file_input_stream.h
 
 1418509502 /ca2/app/appseed/aura/filesystem/file/file_output_stream_flush.h
 
-1418509502 /ca2/app/appseed/aura/filesystem/file/file_output_stream.h
+1423400492 /ca2/app/appseed/aura/filesystem/file/file_output_stream.h
 
 1420372855 /ca2/app/appseed/aura/filesystem/file/file_stream.h
 
-1418509502 /ca2/app/appseed/aura/filesystem/file/file_byte_input_stream.h
+1423400497 /ca2/app/appseed/aura/filesystem/file/file_byte_input_stream.h
 
-1423332072 /ca2/app/appseed/aura/filesystem/file/file_byte_output_stream.h
+1423400492 /ca2/app/appseed/aura/filesystem/file/file_byte_output_stream.h
 
 1418509502 /ca2/app/appseed/aura/filesystem/file/file_byte_stream.h
 
@@ -1095,7 +1096,7 @@
 
 1418509502 /ca2/app/appseed/aura/filesystem/file/file_composite.h
 
-1423332078 /ca2/app/appseed/aura/filesystem/file/file_serializable.h
+1423400497 /ca2/app/appseed/aura/filesystem/file/file_serializable.h
 
 1418509510 /ca2/app/appseed/aura/filesystem/file/file_simple_binary_buffer.h
 
@@ -1246,17 +1247,17 @@
 
 1418509528 /ca2/app/appseed/aura/primitive/collection/collection_string_array.h
 
-1423332083 /ca2/app/appseed/aura/primitive/primitive_var.h
+1423400498 /ca2/app/appseed/aura/primitive/primitive_var.h
 
 1423340731 /ca2/app/appseed/aura/primitive/collection/collection_stringa.h
 
 1418509528 /ca2/app/appseed/aura/primitive/collection/collection_var_array.h
 
-1423332077 /ca2/app/appseed/aura/primitive/primitive_property.h
+1423400498 /ca2/app/appseed/aura/primitive/primitive_property.h
 
 1423332083 /ca2/app/appseed/aura/primitive/primitive_signal.h
 
-1423332077 /ca2/app/appseed/aura/primitive/primitive_property_set.h
+1423400493 /ca2/app/appseed/aura/primitive/primitive_property_set.h
 
 1418509514 /ca2/app/appseed/aura/primitive/primitive_relation_set.h
 
@@ -1289,7 +1290,7 @@
 
 1418509528 /ca2/app/appseed/aura/primitive/collection/collection_string_sort_array.h
 
-1418523556 /ca2/app/appseed/aura/primitive/collection/collection_lemon_array.h
+1423400493 /ca2/app/appseed/aura/primitive/collection/collection_lemon_array.h
 
 1418509520 /ca2/app/appseed/aura/primitive/collection/collection_unique_array.h
 
@@ -1550,7 +1551,7 @@
 
 1418509423 /ca2/app/appseed/aura/aura/xml/xml_base_array.h
 
-1423332066 /ca2/app/appseed/aura/aura/xml/xml_edit.h
+1423400495 /ca2/app/appseed/aura/aura/xml/xml_edit.h
 
 1423332066 /ca2/app/appseed/aura/aura/xml/xml_data.h
 
@@ -1740,7 +1741,7 @@
 
 1418509519 /ca2/app/appseed/aura/primitive/collection/collection_sort_array_impl.inl
 
-1418509528 /ca2/app/appseed/aura/primitive/collection/collection_lemon_array_impl.inl
+1423400492 /ca2/app/appseed/aura/primitive/collection/collection_lemon_array_impl.inl
 
 1418509519 /ca2/app/appseed/aura/primitive/collection/collection_list_impl.inl
 
@@ -1807,7 +1808,7 @@
 
 1418509450 /ca2/app/appseed/aura/aura/os/macos/macos_file_watcher.h
 
-1418509455 /ca2/app/appseed/aura/aura/os/linux/linux_linux.h
+1423401449 /ca2/app/appseed/aura/aura/os/linux/linux_linux.h
 	<wchar.h>
 	"linux_graphics.h"
 	"linux_process.h"
@@ -1816,6 +1817,7 @@
 	"linux_file.h"
 	"linux_file_watcher.h"
 	"linux_cross_win_gdi_internal.h"
+	"linux.inl"
 
 1418509450 /ca2/app/appseed/aura/aura/os/linux/linux_graphics.h
 	<X11/Xlib.h>
@@ -2040,4 +2042,8 @@
 1423332078 /ca2/app/appseed/aura/primitive/data/data_tree.h
 
 1423332073 /ca2/app/appseed/aura/filesystem/file/file_edit_buffer.h
+
+1423400495 /ca2/app/appseed/aura/aura/os/windows/windows.inl
+
+1423401564 /ca2/app/appseed/aura/aura/os/linux/linux.inl
 

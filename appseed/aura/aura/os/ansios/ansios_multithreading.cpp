@@ -210,7 +210,7 @@ CLASS_DECL_AURA DWORD get_current_thread_id()
 
 
 
-typedef ptr_array < void > ThreadLocalData;
+typedef void_ptra ThreadLocalData;
 
 
 

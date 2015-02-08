@@ -17,7 +17,7 @@
 
 
 
-DWORD get_tick_count();
+inline DWORD get_tick_count();
 
 
 
@@ -46,6 +46,12 @@ extern oswindow g_oswindowDesktop;
 
 CLASS_DECL_AURA bool main_initialize();
 CLASS_DECL_AURA bool main_finalize();
+
+
+
+
+
+#include "linux.inl"
 
 
 

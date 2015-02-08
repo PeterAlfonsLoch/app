@@ -63,8 +63,8 @@ public:
    //inline ptr_array & operator = (ptr_array && a){ this->ARRAY_TYPE::operator = (a); return *this; }
 
 
-   inline TYPE & operator()(index i) { return *element_at(i); }
-   inline const TYPE & operator()(index i) const { return *element_at(i); }
+   inline TYPE & operator()(index i) { return *this->element_at(i); }
+   inline const TYPE & operator()(index i) const { return *this->element_at(i); }
 
 };
 
