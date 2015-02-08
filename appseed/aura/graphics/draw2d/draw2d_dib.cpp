@@ -183,7 +183,7 @@ namespace draw2d
    }
 
 
-   bool dib::Destroy ()
+   bool dib::destroy ()
    {
 
       ::exception::throw_interface_only(get_app());

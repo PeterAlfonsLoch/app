@@ -167,7 +167,7 @@ namespace draw2d
       virtual bool create(class size);
       virtual bool create(int32_t iWidth, int32_t iHeight);
       virtual bool create(::draw2d::graphics * pdc);
-      virtual bool Destroy();
+      virtual bool destroy();
 
       // realization is semantically const
       // dib keeps an image and image will be the same, 
