@@ -72,8 +72,6 @@ namespace html
       if(psignal->m_esignal == ::aura::application_signal_process_initialize)
       {
          
-         m_pauraapp->m_pcoresystem->m_phtml = create_html();
-
          m_pauraapp->m_pcoresystem->add_ref();
 
          if(m_pauraapp->m_pcoresystem->m_phtml == NULL)

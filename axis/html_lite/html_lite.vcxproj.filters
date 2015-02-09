@@ -38,7 +38,7 @@
     <ClInclude Include="html_lite\html_lite_html_tag.h">
       <Filter>Header Files\html_lite</Filter>
     </ClInclude>
-    <ClInclude Include="html_application_interface.h">
+    <ClInclude Include="html_lite_application_interface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -57,6 +57,9 @@
     </ClCompile>
     <ClCompile Include="html_lite\html_lite_html_tag.cpp">
       <Filter>Source Files\html_lite</Filter>
+    </ClCompile>
+    <ClCompile Include="html_lite_application_application.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

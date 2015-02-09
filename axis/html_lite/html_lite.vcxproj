@@ -1272,7 +1272,7 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="html_application_interface.h" />
+    <ClInclude Include="html_lite_application_interface.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="html_lite\html_lite.h" />
     <ClInclude Include="html_lite\html_lite_html_attributes.h" />
@@ -1302,6 +1302,7 @@
     <ClCompile Include="html_lite\html_lite_html_entity_resolver.cpp" />
     <ClCompile Include="html_lite\html_lite_html_reader.cpp" />
     <ClCompile Include="html_lite\html_lite_html_tag.cpp" />
+    <ClCompile Include="html_lite_application_application.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="html_lite.def" />

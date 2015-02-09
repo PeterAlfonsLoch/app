@@ -33,6 +33,11 @@ class lite_html_reader;
 
 
 
+#include "axis/html_lite/html_lite_application_interface.h"
+
+
+
+
 
 
 

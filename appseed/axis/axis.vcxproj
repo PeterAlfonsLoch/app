@@ -6892,9 +6892,6 @@
     <ProjectReference Include="..\..\axis\crypto\axiscrypto.vcxproj">
       <Project>{39807406-816f-4c0d-a632-4bb8ab13887b}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\axis\html_lite\html_lite.vcxproj">
-      <Project>{28b69ce8-8b1e-4ae0-9b96-1abc24b797a6}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\..\axis\idn\axisidn.vcxproj">
       <Project>{e8ac3ef0-11c5-4e12-a944-5f7efed6e0c4}</Project>
     </ProjectReference>
