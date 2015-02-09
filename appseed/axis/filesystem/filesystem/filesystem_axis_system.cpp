@@ -552,9 +552,17 @@ restart:
          if(spfile.is_null())
             return;
 
-         ::file::byte_input_stream is(spfile);
+         ::file_size filesize = spfile->get_length();
 
-         is >> mem;
+         mem.allocate(filesize);
+
+         byte * pdata = mem.get_data();
+
+         ::primitive::memory_size memsize = mem.get_size();
+
+         ::file_size uiRead = spfile->read(pdata, memsize);
+
+         mem.allocate(uiRead);
 
       }
       catch(...)
@@ -1269,7 +1277,7 @@ restart:
       ::file::binary_buffer_sp fileOut = App(papp).file().get_file(name, ::file::mode_create | ::file::type_binary | ::file::mode_write);
 
       if(fileOut.is_null())
-         throw ::file::exception(papp, -1, ::file::exception::none, name);
+         throw ::file::exception(papp, ::file::exception::none, -1L, name);
 
       return fileOut;
 

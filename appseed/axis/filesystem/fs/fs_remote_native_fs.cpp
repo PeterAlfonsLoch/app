@@ -309,16 +309,34 @@ namespace fs
    }
 
 
-   ::file::buffer_sp remote_native::get_file(var varFile, UINT nOpenFlags)
+   ::file::buffer_sp remote_native::get_file(var varFile, UINT nOpenFlags, fesp * pfesp)
    {
+
+      if(pfesp != NULL)
+      {
+         ::release(pfesp->m_p);
+      }
+
+      ::fesp fesp;
 
       ::file::buffer_sp spfile;
 
       spfile = new remote_native_file(get_app(), varFile);
 
-      if(!spfile->open(varFile.get_string(), nOpenFlags))
+      fesp = spfile->open(varFile.get_string(),nOpenFlags);
+
+      if(!fesp)
       {
-         throw ::file::exception(get_app(), ::file::exception::none, -1, varFile.get_string());
+
+         spfile.release();
+      
+         if(pfesp != NULL)
+         {
+
+            *pfesp = fesp;
+
+         }
+         
       }
 
       return spfile;

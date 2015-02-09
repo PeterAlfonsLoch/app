@@ -12,6 +12,42 @@ struct send_thread_message : public MESSAGE
 
 bool thread::s_bAllocReady = false;
 
+thread::file_info::file_info()
+{
+   m_durationFileSharingViolationTimeout = seconds(1984);
+}
+
+thread::file_info::~file_info()
+{
+}
+
+
+thread::file_info * thread::get_file_info()
+{
+   
+   if(m_pfileinfo != NULL)
+      return m_pfileinfo;
+
+   m_pfileinfo = new file_info();
+
+   return m_pfileinfo;
+
+}
+
+DWORD thread::get_file_sharing_violation_timeout_total_milliseconds()
+{
+   
+   return get_file_info()->m_durationFileSharingViolationTimeout.get_total_milliseconds();
+
+}
+
+::duration thread::set_file_sharing_violation_timeout(::duration duration)
+{
+   
+   return get_file_info()->m_durationFileSharingViolationTimeout = duration;
+
+}
+
 
 thread::thread()
 {
@@ -98,6 +134,8 @@ void thread::CommonConstruct()
 
    m_bAutoDelete = true;
 
+   m_pfileinfo = NULL;
+
 
 }
 
@@ -111,6 +149,8 @@ thread::~thread()
 
    if(m_peventEvent == NULL)
       delete m_peventEvent;
+
+   ::aura::del(m_pfileinfo);
 
 }
 

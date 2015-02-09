@@ -4,24 +4,54 @@
 //#include <Shellapi.h>
 #endif
 
+/////////////////////////////////////////////////////////////////////////////
+// file_exception helpers
+
+#ifdef DEBUG
+static const char * rgszFileExceptionCause[] =
+{
+   "none",
+   "generic",
+   "fileNotFound",
+   "badPath",
+   "tooManyOpenFiles",
+   "accessDenied",
+   "invalidFile",
+   "removeCurrentDir",
+   "directoryFull",
+   "badSeek",
+   "hardIO",
+   "sharingViolation",
+   "lockViolation",
+   "diskFull",
+   "endOfFile",
+};
+static const char szUnknown[] = "unknown";
+#endif
 
 namespace file
 {
 
 
-   exception::exception(::aura::application * papp, int32_t cause , LONG lOsError, const char * lpszArchiveName) :
+   exception::exception(::aura::application * papp, exception::e_cause cause , LONG lOsError, const char * lpszArchiveName) :
       element(papp),
       ::call_stack(papp),
       ::exception::base(papp),
       ::simple_exception(papp),
       ::io_exception(papp)
    {
-         printf(":file(%d,%d,%s)", cause, lOsError, string(lpszArchiveName).c_str());
+      const char * lpsz;
+
+      if(cause >= 0 && cause < _countof(rgszFileExceptionCause))
+         lpsz = rgszFileExceptionCause[cause];
+      else
+         lpsz = szUnknown;
+      printf(":file(%hs(%d),%d,%s)",lpsz, cause,lOsError,string(lpszArchiveName).c_str());
       Construct(cause, lOsError, lpszArchiveName);
    }
 
 
-   void exception::Construct(int32_t cause, LONG lOsError, const char * pstrFileName /* = NULL */)
+   void exception::Construct(exception::e_cause cause,LONG lOsError,const char * pstrFileName /* = NULL */)
    {
 
       m_cause              = cause;
@@ -242,30 +272,6 @@ namespace file
 
 
 
-/////////////////////////////////////////////////////////////////////////////
-// file_exception helpers
-
-#ifdef DEBUG
-static const char * rgszFileExceptionCause[] =
-{
-   "none",
-   "generic",
-   "fileNotFound",
-   "badPath",
-   "tooManyOpenFiles",
-   "accessDenied",
-   "invalidFile",
-   "removeCurrentDir",
-   "directoryFull",
-   "badSeek",
-   "hardIO",
-   "sharingViolation",
-   "lockViolation",
-   "diskFull",
-   "endOfFile",
-};
-static const char szUnknown[] = "unknown";
-#endif
 
 
 
@@ -325,7 +331,7 @@ static const char szUnknown[] = "unknown";
 #endif
 
 
-void throw_file_exception(::aura::application * papp, int32_t cause, LONG lOsError,   const char * lpszFileName /* == NULL */ )
+void throw_file_exception(::aura::application * papp,::file::exception::e_cause cause,LONG lOsError,const char * lpszFileName /* == NULL */)
 {
 
 #ifdef DEBUG
@@ -339,9 +345,9 @@ void throw_file_exception(::aura::application * papp, int32_t cause, LONG lOsErr
 
    string strFormat;
 
-   strFormat.Format("file exception: %hs, file %s, App error information = %ld.\n",  lpsz, (lpszFileName == NULL) ? "Unknown" : lpszFileName, lOsError);
+   strFormat.Format("file exception: %hs, file %s, App error information = %s (%ld).\n",lpsz,(lpszFileName == NULL) ? "Unknown" : lpszFileName,FormatMessageFromSystem(lOsError), lOsError);
 
-   ::output_debug_string(strFormat);
+   APPTRACE(strFormat);
 
 #endif
 

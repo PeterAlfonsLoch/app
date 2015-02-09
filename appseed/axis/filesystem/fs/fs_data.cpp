@@ -149,8 +149,12 @@ namespace fs
       }
    }
 
-   ::file::buffer_sp data::get_file(var varFile, UINT nOpenFlags)
+   ::file::buffer_sp data::get_file(var varFile, UINT nOpenFlags, fesp * pfesp)
    {
+      if(pfesp != NULL)
+      {
+         *pfesp = fesp(get_app());
+      }
       UNREFERENCED_PARAMETER(varFile);
       UNREFERENCED_PARAMETER(nOpenFlags);
       return NULL;

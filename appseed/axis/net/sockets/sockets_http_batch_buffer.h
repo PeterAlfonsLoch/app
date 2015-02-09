@@ -17,7 +17,7 @@ namespace sockets
 
       http_batch_buffer(::aura::application * papp);
 
-      virtual bool open(const char * lpszFileName, UINT nOpenFlags);
+      virtual fesp open(const char * lpszFileName, UINT nOpenFlags);
       virtual void close();
       virtual void flush();
 

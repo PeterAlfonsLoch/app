@@ -27,7 +27,7 @@ namespace file
       virtual void SetFilePath(const char * lpszNewName);
 
 
-      virtual bool open(const char * lpszFileName, UINT nOpenFlags);
+      virtual ::file::exception_sp open(const char * lpszFileName, UINT nOpenFlags);
 
       //virtual void Rename(const char * lpszOldName, const char * lpszNewName);
       //virtual void remove(const char * lpszFileName);

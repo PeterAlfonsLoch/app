@@ -45,11 +45,11 @@ namespace file
       return NULL;
    }
 
-   bool stream_buffer::open(const char * lpszFileName, UINT nOpenFlags)
+   exception_sp stream_buffer::open(const char * lpszFileName, UINT nOpenFlags)
    {
       UNREFERENCED_PARAMETER(lpszFileName);
       UNREFERENCED_PARAMETER(nOpenFlags);
-      return FALSE;
+      return fesp(get_app());
    }
 
    file_position stream_buffer::seek(file_offset lOff, ::file::e_seek nFrom)

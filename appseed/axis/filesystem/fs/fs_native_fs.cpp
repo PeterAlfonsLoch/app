@@ -129,16 +129,34 @@ namespace fs
    }
 
 
-   ::file::buffer_sp native::get_file(var varFile, UINT nOpenFlags)
+   ::file::buffer_sp native::get_file(var varFile, UINT nOpenFlags, fesp * pfesp)
    {
+
+      if(pfesp != NULL)
+      {
+         ::release(pfesp->m_p);
+      }
+
+
+      ::fesp fesp;
 
       ::file::binary_buffer_sp spfile(allocer());
 
       // ::file::mode_read | ::file::share_deny_none | ::file::type_binary
-      if(!spfile->open(varFile.get_string(), nOpenFlags))
+      fesp  = spfile->open(varFile.get_string(),nOpenFlags);
+
+      if(!fesp)
       {
 
-         throw new ::file::exception(get_app(), ::file::exception::none, 01, varFile.get_string());
+         spfile.release();
+
+         if(pfesp != NULL)
+         {
+
+
+            *pfesp = fesp;
+
+         }
 
       }
 

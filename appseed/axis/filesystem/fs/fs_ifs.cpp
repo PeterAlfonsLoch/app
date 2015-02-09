@@ -453,12 +453,19 @@ bool ifs::file_move(const char * pszDst, const char * pszSrc)
 }
 
 
-::file::buffer_sp ifs::get_file(var varFile, UINT nOpenFlags)
+::file::buffer_sp ifs::get_file(var varFile, UINT nOpenFlags, fesp * pfesp)
 {
+
+   if(pfesp != NULL)
+   {
+      ::release(pfesp->m_p);
+   }
+
+   ::fesp fesp;
 
    ::file::buffer_sp spfile;
 
-   spfile = new ifs_file(get_app(), varFile);
+   spfile = canew(ifs_file(get_app(), varFile));
 
    string strUrl;
 
@@ -478,9 +485,20 @@ bool ifs::file_move(const char * pszDst, const char * pszSrc)
       strUrl = varFile;
    }
 
-   if(!spfile->open(strUrl, nOpenFlags))
+   fesp = spfile->open(strUrl,nOpenFlags);
+
+   if(!fesp)
    {
-      throw new ::file::exception(get_app(), ::file::exception::none, 01, varFile.get_string());
+      
+      spfile.release();
+
+      if(pfesp != NULL)
+      {
+
+         *pfesp = fesp;
+
+      }
+
    }
 
    return spfile;

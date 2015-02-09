@@ -31,7 +31,7 @@ namespace file
 
       
    // Operations
-      virtual bool open(const char * lpszFileName, UINT nOpenFlags);
+      virtual ::file::exception_sp open(const char * lpszFileName, UINT nOpenFlags);
 
       //virtual void Rename(const char * lpszOldName, const char * lpszNewName);
       //virtual void remove(const char * lpszFileName);
@@ -86,7 +86,7 @@ namespace file
    };
 
 
-   void CLASS_DECL_AURA throw_exception(::aura::application * papp, int32_t cause, LONG lOsError, const char * lpszFileName = NULL);
+   void CLASS_DECL_AURA throw_exception(::aura::application * papp, ::file::exception::e_cause cause,LONG lOsError,const char * lpszFileName = NULL);
 
 } // namespace file
 

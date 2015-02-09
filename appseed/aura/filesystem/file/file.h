@@ -9,6 +9,9 @@ CLASS_DECL_AURA string defer_solve_relative_compresions(const char * pszAbsolute
 CLASS_DECL_AURA string defer_solve_relative_name(const char * pszRelative,const char * pszAbsolute);
 
 
+#include "file_exception.h"
+
+
 #include "file_status.h"
 
 
@@ -52,8 +55,6 @@ CLASS_DECL_AURA string defer_solve_relative_name(const char * pszRelative,const 
 #include "file_byte_output_stream_binary_buffer.h"
 
 
-
-#include "file_exception.h"
 
 #include "file_opened.h"
 

@@ -16,7 +16,7 @@ namespace sockets
       virtual ~http_buffer();
 
 
-      virtual bool open(const char * lpszFileName, UINT nOpenFlags);
+      virtual fesp open(const char * lpszFileName, UINT nOpenFlags);
 
 
       DECL_GEN_SIGNAL(on_http_request_response);

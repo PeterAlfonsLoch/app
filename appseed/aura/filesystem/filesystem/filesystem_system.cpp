@@ -1031,7 +1031,7 @@ restart:
       ::file::binary_buffer_sp fileOut = App(papp).file().get_file(name, ::file::mode_create | ::file::type_binary | ::file::mode_write);
 
       if(fileOut.is_null())
-         throw ::file::exception(papp, -1, ::file::exception::none, name);
+         throw ::file::exception(papp, ::file::exception::none,-1L, name);
 
       return fileOut;
 

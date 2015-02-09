@@ -60,11 +60,11 @@ namespace file
          string sys_temp(const char * pszName,const char * pszExtension);
 
 
-         virtual ::file::buffer_sp get_file(var varFile,UINT nOpenFlags);
+         virtual ::file::buffer_sp get_file(var varFile,UINT nOpenFlags,fesp * pfesp);
          //virtual ::file::byte_stream get_byte_stream(var varFile, UINT nOpenFlags);
 
          // get a file and if there are exceptions, should show end user friendly messages
-         virtual ::file::buffer_sp friendly_get_file(var varFile,UINT nOpenFlags);
+         virtual ::file::buffer_sp friendly_get_file(var varFile,UINT nOpenFlags,fesp * pfesp);
 
 
          void dtf(const char * pszFile,const char * pszDir);

@@ -50,11 +50,11 @@ namespace file
       return NULL;
    }
 
-   bool binary_buffer::open(const char * lpszFileName, UINT nOpenFlags)
+   exception_sp binary_buffer::open(const char * lpszFileName, UINT nOpenFlags)
    {
       UNREFERENCED_PARAMETER(lpszFileName);
       UNREFERENCED_PARAMETER(nOpenFlags);
-      return FALSE;
+      return canew(::file::exception(get_app()));
    }
 
    file_position binary_buffer::seek(file_offset lOff, ::file::e_seek nFrom)

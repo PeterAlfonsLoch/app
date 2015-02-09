@@ -45,7 +45,7 @@ namespace file
       return NULL;
    }
 
-   bool streambuf::open(const char * lpszFileName,UINT nOpenFlags)
+   exception_sp streambuf::open(const char * lpszFileName,UINT nOpenFlags)
    {
 
       string str;
@@ -71,9 +71,9 @@ namespace file
       m_pfile = fopen_dup(lpszFileName,str);
 
       if(m_pfile == NULL)
-         return false;
+         return canew(::file::exception(get_app()));
       
-      return true;
+      return ::file::no_exception();
 
    }
 

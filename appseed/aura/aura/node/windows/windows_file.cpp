@@ -72,13 +72,13 @@ namespace windows
    }
 
 
-   bool file::open(const char * lpszFileName, UINT nOpenFlags)
+   fesp file::open(const char * lpszFileName, UINT nOpenFlags)
    {
 
       if(lpszFileName == NULL || *lpszFileName == '\0') 
       {
          TRACE("windows::file::open file with empty name!!");
-         return false;
+         return fesp(get_app());
       }
 
       if (m_hFile != (UINT)hFileNull)
@@ -169,6 +169,7 @@ namespace windows
       HANDLE hFile = INVALID_HANDLE_VALUE;
       int iRetrySharingViolation = 0;
       DWORD dwWaitSharingViolation = 84;
+      DWORD dwStart = ::get_tick_count();
 retry:
       // attempt file creation
       //HANDLE hFile = shell::CreateFile(::str::international::utf8_to_unicode(m_strFileName), dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -177,7 +178,7 @@ retry:
       {
          DWORD dwLastError = ::GetLastError();
 
-         if(dwLastError == ERROR_SHARING_VIOLATION && iRetrySharingViolation < 49)
+         if(dwLastError == ERROR_SHARING_VIOLATION && (::get_tick_count() - dwStart) < ::get_thread()->get_file_sharing_violation_timeout_total_milliseconds())
          {
             iRetrySharingViolation++;
             Sleep(dwWaitSharingViolation);
@@ -203,7 +204,7 @@ retry:
             {*/
 
 
-            throw_file_exception(get_app(), file_exception::OsErrorToException(dwLastError), dwLastError, lpszFileName);
+            return fesp(get_app(), file_exception::OsErrorToException(dwLastError), dwLastError, lpszFileName);
 
             //}
 
@@ -226,7 +227,7 @@ retry:
          }
          catch(...)
          {
-            return FALSE;
+            return fesp(get_app());
          }
 
          m_strFileName = ::str::international::unicode_to_utf8(m_wstrFileName);
@@ -263,7 +264,7 @@ retry:
 
 
             DWORD dwLastError = ::GetLastError();
-            throw_file_exception(get_app(), file_exception::OsErrorToException(dwLastError), dwLastError, lpszFileName);
+            return fesp(get_app(), file_exception::OsErrorToException(dwLastError), dwLastError, lpszFileName);
 
 
             //}
@@ -275,11 +276,11 @@ retry:
       m_hFile = (HFILE)hFile;
 
       if(m_hFile == (HFILE)INVALID_HANDLE_VALUE)
-         return false;
+         return fesp(get_app());
 
       m_dwAccessMode = dwAccess;
 
-      return true;
+      return ::file::no_exception();
 
    }
 
@@ -614,7 +615,7 @@ retry:
 
 
 
-   int32_t file_exception::OsErrorToException(LONG lOsErr)
+   ::file::exception::e_cause file_exception::OsErrorToException(LONG lOsErr)
    {
       // NT Error codes
       switch ((UINT)lOsErr)
@@ -1575,7 +1576,7 @@ UINT CLASS_DECL_AURA vfxGetFileName(const wchar_t * lpszPathName, wchar_t * lpsz
 namespace windows
 {
 
-   int32_t file_exception::ErrnoToException(int32_t nErrno)
+   ::file::exception::e_cause file_exception::ErrnoToException(int32_t nErrno)
    {
       switch(nErrno)
       {

@@ -16,6 +16,17 @@ class CLASS_DECL_AURA thread :
 {
 public:
 
+   class CLASS_DECL_AURA file_info
+   {
+   public:
+
+
+      file_info();
+      ~file_info();
+
+      ::duration                             m_durationFileSharingViolationTimeout;
+
+   };
 
    ::duration                             m_durationRunLock;
 
@@ -47,11 +58,18 @@ public:
 
    manual_reset_event *                   m_peventEvent;
 
+   file_info *                            m_pfileinfo;
 
    thread();
    thread(::aura::application * papp);
    thread(::aura::application * papp, __THREADPROC pfnThreadProc, LPVOID pParam);
    virtual ~thread();
+
+
+   // file related stuff
+   file_info * get_file_info();
+   DWORD get_file_sharing_violation_timeout_total_milliseconds();
+   ::duration set_file_sharing_violation_timeout(::duration duration);
 
 
    ///  \brief		starts thread on first call

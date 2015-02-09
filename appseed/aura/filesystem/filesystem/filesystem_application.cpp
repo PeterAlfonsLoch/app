@@ -172,11 +172,16 @@ namespace file
 
 
 
-   ::file::buffer_sp application::friendly_get_file(var varFile, UINT nOpenFlags)
+   ::file::buffer_sp application::friendly_get_file(var varFile, UINT nOpenFlags, fesp * pfesp)
    {
+      if(pfesp != NULL)
+      {
+         ::release(pfesp->m_p);
+      }
+
       try
       {
-         return get_file(varFile, nOpenFlags);
+         return get_file(varFile, nOpenFlags, pfesp);
       }
       catch(...)
       {
@@ -184,8 +189,15 @@ namespace file
       }
    }
 
-   ::file::buffer_sp application::get_file(var varFile, UINT nOpenFlags)
+   ::file::buffer_sp application::get_file(var varFile, UINT nOpenFlags, fesp * pfesp)
    {
+
+      if(pfesp != NULL)
+      {
+         ::release(pfesp->m_p);
+      }
+
+      ::fesp fesp;
 
       ::file::buffer_sp spfile;
 
@@ -289,19 +301,21 @@ namespace file
 
          spfile = Application.alloc(System.type_info < ::file::binary_buffer > ());
 
-         if(!spfile->open(strPath, nOpenFlags))
-         {
-
-            spfile.release();
-
-         }
+         fesp = spfile->open(strPath,nOpenFlags);
 
       }
 
-      if(spfile.is_null())
+      if(!fesp)
       {
 
-         throw ::file::exception(m_pauraapp, ::file::exception::none, -1, strPath);
+         spfile.release();
+
+         if(pfesp != NULL)
+         {
+
+            *pfesp = fesp;
+
+         }
 
       }
 

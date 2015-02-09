@@ -72,7 +72,7 @@ namespace windows
       virtual string GetFilePath() const;
       virtual void SetFilePath(const char * lpszNewName);
 
-      virtual bool open(const char * lpszFileName, UINT nOpenFlags);
+      virtual ::fesp open(const char * lpszFileName, UINT nOpenFlags);
 
       virtual bool GetStatus(const char * lpszFileName, ::file::file_status& rStatus);
 
@@ -109,8 +109,8 @@ namespace windows
    {
 
 
-      int32_t OsErrorToException(LONG lOsError);
-      int32_t ErrnoToException(int32_t nErrno);
+      ::file::exception::e_cause OsErrorToException(LONG lOsError);
+      ::file::exception::e_cause ErrnoToException(int32_t nErrno);
       void ThrowOsError(::aura::application * papp, LONG lOsError, const char * lpszFileName = NULL);
       void ThrowErrno(::aura::application * papp, int32_t nErrno, const char * lpszFileName = NULL);
 

@@ -38,7 +38,7 @@ namespace file
    }
 
 
-   bool simple_binary_buffer::open(const char * lpszFileName, UINT nOpenFlags)
+   exception_sp simple_binary_buffer::open(const char * lpszFileName, UINT nOpenFlags)
    {
 
       ASSERT(lpszFileName != NULL);
@@ -86,10 +86,10 @@ namespace file
       if (m_pfile == NULL)
       {
          Abort();
-         return FALSE;
+         return fesp(get_app());
       }
 
-      return TRUE;
+      return ::file::no_exception();
 
    }
 
@@ -363,7 +363,7 @@ namespace file
    static const char szUnknown[] = "unknown";
 #endif
 
-   void CLASS_DECL_AURA throw_exception(::aura::application * papp, int32_t cause, LONG lOsError, const char * lpszFileName /* == NULL */)
+   void CLASS_DECL_AURA throw_exception(::aura::application * papp,::file::exception::e_cause cause,LONG lOsError,const char * lpszFileName /* == NULL */)
    {
    #ifdef DEBUG
       const char * lpsz;

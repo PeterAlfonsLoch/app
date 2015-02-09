@@ -30,7 +30,7 @@ namespace sockets
    }
 
       
-   bool http_buffer::open(const char * lpszFileName, UINT nOpenFlags)
+   fesp http_buffer::open(const char * lpszFileName, UINT nOpenFlags)
    {
 
 //         if(!Application.http_buffer().exists(lpszFileName))
@@ -61,7 +61,7 @@ namespace sockets
 
       ::emit(get_app(), this, &http_buffer::on_http_request_response, &Application.http(), &::http::application::get, psignal);
 
-      return TRUE;
+      return ::file::no_exception();
 
    }
 

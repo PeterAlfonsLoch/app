@@ -4,7 +4,6 @@
 #include "file_opened.h"
 
 
-
 namespace file
 {
 
@@ -15,7 +14,8 @@ namespace file
    public:
 
 
-      enum
+
+      enum e_cause
       {
          none,
          type_generic,
@@ -34,13 +34,10 @@ namespace file
          endOfFile
       };
 
-
-
-
-      int32_t      m_cause;
-      LONG     m_lOsError;
-      string   m_strFileName;
-      string   m_strAdd;
+      e_cause           m_cause;
+      LONG              m_lOsError;
+      string            m_strFileName;
+      string            m_strAdd;
 
 
 
@@ -55,9 +52,9 @@ namespace file
             printf(":file");
       }
 
-      exception(::aura::application * papp, int32_t cause = exception::none, LONG lOsError = -1, const char * lpszArchiveName = NULL);
+      exception(::aura::application * papp,e_cause cause = exception::none,LONG lOsError = -1,const char * lpszArchiveName = NULL);
 
-      virtual void Construct(int32_t cause = exception::none, LONG lOsError = -1, const char * lpszArchiveName = NULL);
+      virtual void Construct(e_cause cause = exception::none, LONG lOsError = -1, const char * lpszArchiveName = NULL);
 
       virtual ~exception();
 
@@ -81,11 +78,42 @@ namespace file
    };
 
 
+   struct no_exception
+   {
+
+   };
+
+   class CLASS_DECL_AURA exception_sp :
+      public sp(exception)
+   {
+   public:
+
+
+      exception_sp() {}
+      exception_sp(no_exception) {}
+      exception_sp(::aura::application * papp,exception::e_cause cause = exception::none,LONG lOsError = -1,const char * lpszArchiveName = NULL)
+      {
+         m_p = canew(exception(papp,cause,lOsError,lpszArchiveName));
+         if(m_p != NULL)
+         {
+            m_p->add_ref();
+         }
+      }
+      exception_sp(exception * p) { m_p = p;if(m_p != NULL) m_p->add_ref(); }
+      ~exception_sp() { release(); }
+
+
+      operator bool() { return is_null(); }
+
+   };
+
+   
+
 } // namespace file
 
+typedef ::file::exception_sp fesp;
 
-
-CLASS_DECL_AURA void throw_file_exception(::aura::application * papp, int32_t cause, LONG lOsError,   const char * lpszFileName = NULL);
+CLASS_DECL_AURA void throw_file_exception(::aura::application * papp,::file::exception::e_cause cause,LONG lOsError,const char * lpszFileName = NULL);
 
 
 

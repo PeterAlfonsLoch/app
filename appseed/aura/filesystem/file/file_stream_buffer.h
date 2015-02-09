@@ -67,7 +67,7 @@ namespace file
       virtual void SetFilePath(const char * lpszNewName);
 
       
-      virtual bool open(const char * lpszFileName, UINT nOpenFlags);
+      virtual ::file::exception_sp open(const char * lpszFileName, UINT nOpenFlags);
 
       virtual bool GetStatus(const char * lpszFileName, file_status& rStatus);
       virtual void SetStatus(const char * lpszFileName, const file_status& status);

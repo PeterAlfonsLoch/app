@@ -15,7 +15,7 @@ namespace sockets
 
    }
 
-   bool http_batch_buffer::open(const char * lpszFileName, UINT nOpenFlags)
+   fesp http_batch_buffer::open(const char * lpszFileName, UINT nOpenFlags)
    {
 
       m_strPath = lpszFileName;
@@ -29,7 +29,7 @@ namespace sockets
 
       }
 
-      return TRUE;
+      return ::file::no_exception();
 
    }
 

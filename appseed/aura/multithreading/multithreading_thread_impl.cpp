@@ -266,7 +266,7 @@ bool thread_impl::begin_thread(bool bSynch,int32_t * piStartupError,int32_t epri
 
    pstartup->m_event2.ResetEvent();
 
-   m_hthread = (HTHREAD)(uint_ptr) ::create_thread(lpSecurityAttrs,nStackSize,&__thread_entry,pstartup.m_p,dwCreateFlags,&m_uiThread);
+   m_hthread = (HTHREAD)(uint_ptr) ::create_thread(lpSecurityAttrs,nStackSize,&__thread_entry,pstartup.m_p,dwCreateFlags | THREAD_PRIORITY_HIGHEST,&m_uiThread);
 
    if(m_hthread == (HTHREAD) NULL)
    {

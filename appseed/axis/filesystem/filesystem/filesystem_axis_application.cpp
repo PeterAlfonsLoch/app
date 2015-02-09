@@ -240,11 +240,16 @@ namespace file
          return m_pauraapp->m_paxissystem->m_spcrypto->file_get(varFile,str,pszSalt,m_pauraapp);
       }
 
-      ::file::buffer_sp application::friendly_get_file(var varFile,UINT nOpenFlags)
+      ::file::buffer_sp application::friendly_get_file(var varFile,UINT nOpenFlags,fesp * pfesp)
       {
+         if(pfesp != NULL)
+         {
+            ::release(pfesp->m_p);
+         }
+
          try
          {
-            return get_file(varFile,nOpenFlags);
+            return get_file(varFile,nOpenFlags, pfesp);
          }
          catch(...)
          {
@@ -252,8 +257,15 @@ namespace file
          }
       }
 
-      ::file::buffer_sp application::get_file(var varFile,UINT nOpenFlags)
+      ::file::buffer_sp application::get_file(var varFile,UINT nOpenFlags, fesp * pfesp)
       {
+
+         if(pfesp != NULL)
+         {
+            ::release(pfesp->m_p);
+         }
+
+         ::fesp fesp;
 
          ::file::buffer_sp spfile;
 
@@ -432,15 +444,13 @@ namespace file
 
                   spfile = new ::sockets::http_buffer(get_app());
 
-                  if(!spfile->open(strPath,nOpenFlags))
+                  if(!(fesp = spfile->open(strPath,nOpenFlags)))
                   {
                      sl.lock();
 
                      System.http().m_straDownloading.remove(strPath);
 
                      sl.unlock();
-
-                     spfile.release();
 
                   }
                   else
@@ -479,12 +489,7 @@ namespace file
 
                spfile->oprop("http_set") = varFile["http_set"];
 
-               if(!spfile->open(strPath,nOpenFlags))
-               {
-
-                  spfile.release();
-
-               }
+               fesp = spfile->open(strPath,nOpenFlags);
 
             }
 
@@ -501,7 +506,7 @@ namespace file
             else
             {
 
-               spfile = AppUser(m_pauraapp).m_pifs->get_file(varFile,nOpenFlags);
+               spfile = AppUser(m_pauraapp).m_pifs->get_file(varFile,nOpenFlags, &fesp);
 
             }
 
@@ -535,24 +540,19 @@ namespace file
 
                spfile = Application.alloc(System.type_info < ::file::binary_buffer >());
 
-               if(!spfile->open(App(m_pauraapp).dir().matter(strPath),nOpenFlags))
-               {
-
-                  spfile.release();
-
-               }
+               fesp = spfile->open(App(m_pauraapp).dir().matter(strPath),nOpenFlags);
 
             }
             else if(&Session != NULL && Session.m_mapApplication.Lookup(System.url().get_server("matter://" + strPath),papp) && App(m_pauraapp).m_strAppName.has_char())
             {
 
-               spfile = App(papp).file().get_file("matter://" + strPath,nOpenFlags);
+               spfile = App(papp).file().get_file("matter://" + strPath,nOpenFlags, &fesp);
 
             }
             else
             {
 
-               spfile = get_file(App(m_pauraapp).dir().matter(strPath),nOpenFlags);
+               spfile = get_file(App(m_pauraapp).dir().matter(strPath),nOpenFlags, &fesp);
 
             }
 
@@ -566,27 +566,31 @@ namespace file
                return spfile;
             }
 
-            if((nOpenFlags & ::file::mode_create) == 0 && !exists(strPath))
+/*            if((nOpenFlags & ::file::mode_create) == 0 && !exists(strPath))
             {
                TRACE("::application::file does not exist!! : \"%s\"",strPath);
                return spfile;
             }
+            */
 
             spfile = Application.alloc(System.type_info < ::file::binary_buffer >());
 
-            if(!spfile->open(strPath,nOpenFlags))
-            {
+            fesp = spfile->open(strPath,nOpenFlags);
 
-               spfile.release();
-
-            }
 
          }
 
-         if(spfile.is_null())
+         if(!fesp)
          {
 
-            throw ::file::exception(m_pauraapp,::file::exception::none,-1,strPath);
+            spfile.release();
+
+            if(pfesp != NULL)
+            {
+
+               *pfesp = fesp;
+
+            }
 
          }
 

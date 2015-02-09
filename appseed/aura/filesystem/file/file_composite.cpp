@@ -61,7 +61,7 @@ namespace file
 
    }
 
-   bool composite::open(const char * lpszFileName, UINT nOpenFlags)
+   exception_sp composite::open(const char * lpszFileName, UINT nOpenFlags)
    {
 
       return m_spfile->open(lpszFileName, nOpenFlags);

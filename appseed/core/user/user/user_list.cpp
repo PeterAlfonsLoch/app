@@ -1545,6 +1545,23 @@ namespace user
 
    bool list::_001DisplayHitTest(POINT pt, int_ptr &iItemParam)
    {
+      
+      {
+
+         class rect rectClient;
+
+         GetClientRect(&rectClient);
+
+         if(pt.x < -m_scrollinfo.m_rectMargin.left
+            || pt.x > rectClient.right + m_scrollinfo.m_rectMargin.right
+            || pt.y < -m_scrollinfo.m_rectMargin.top
+            || pt.x > rectClient.bottom + m_scrollinfo.m_rectMargin.bottom)
+         {
+            return false;
+         }
+
+
+      }
       if(m_eview == ViewReport)
       {
          index iy = pt.y + m_scrollinfo.m_ptScroll.y;
@@ -2431,7 +2448,17 @@ namespace user
       int_ptr iItem;
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
-      if(!m_bHoverSelect)
+      if(m_bHoverSelect)
+      {
+         if(_001DisplayHitTest(pt,iItem))
+         {
+         }
+         else
+         {
+            m_rangeSelection.clear();
+         }
+      }
+      else
       {
          if(m_bMultiSelect && Session.is_key_pressed(::user::key_shift))
          {
@@ -4855,12 +4882,14 @@ namespace user
          {
             if (m_bHoverSelect &&
                (m_iSubItemEnter != iSubItemEnter ||
-               m_iItemEnter != iItemEnter))
+               m_iItemEnter != iItemEnter)
+               && !m_rangeSelection.has_item(iItemEnter))
             {
                m_iMouseFlagEnter = pmouse->m_nFlags;
                m_iItemEnter = iItemEnter;
                m_iSubItemEnter = iSubItemEnter;
-               SetTimer(12321, 840, NULL);
+               //SetTimer(12321, 840, NULL);
+               SetTimer(12321, 184 + 177 + 151, NULL);
             }
          }
 
