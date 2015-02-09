@@ -6650,7 +6650,8 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
          {
             try
             {
-               ::file::byte_input_stream istream(Sess(papp).file().get_file(strFile,::file::mode_read | ::file::share_deny_write | ::file::type_binary));
+               ::file::buffer_sp file = Sess(papp).file().get_file(strFile,::file::mode_read | ::file::share_deny_write | ::file::type_binary);
+               ::file::byte_input_stream istream(file);
                istream >> *pdib;
                return true;
             }
@@ -6663,8 +6664,8 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
       try
       {
-
-         if(!read_from_file(pdib,App(papp).file().get_file(varFile,::file::mode_read | ::file::share_deny_write | ::file::type_binary),papp))
+         ::file::buffer_sp file = App(papp).file().get_file(varFile,::file::mode_read | ::file::share_deny_write | ::file::type_binary);
+         if(!read_from_file(pdib,file, papp))
             return false;
 
       }
@@ -6681,7 +6682,9 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
       {
          try
          {
-            ::file::byte_output_stream ostream(App(papp).file().get_file(strFile,::file::mode_create | ::file::mode_write | ::file::type_binary | ::file::defer_create_directory));
+
+            ::file::buffer_sp file =App(papp).file().get_file(strFile,::file::mode_create | ::file::mode_write | ::file::type_binary | ::file::defer_create_directory);
+            ::file::byte_output_stream ostream(file);
             ostream << *pdib;
          }
          catch(...)
