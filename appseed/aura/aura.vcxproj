@@ -3084,7 +3084,6 @@
     <ClInclude Include="multithreading\service\service_plain_service.h" />
     <ClInclude Include="multithreading\service\service_thread_pool.h" />
     <ClInclude Include="net\net.h" />
-    <ClInclude Include="net\net_html_enum.h" />
     <ClInclude Include="net\net_url.h" />
     <ClInclude Include="primitive\api\api.h" />
     <ClInclude Include="primitive\api\api_rotate.h" />
