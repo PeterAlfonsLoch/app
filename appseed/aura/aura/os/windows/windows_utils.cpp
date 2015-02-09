@@ -94,7 +94,7 @@ HANDLE ExtractAndInstallDrv()
         string csFilePath;
         LPTSTR lpPath = csFilePath.GetBuffer( MAX_PATH );
         GetModuleFileName( hModule,lpPath , MAX_PATH );
-        PathRemoveFileSpec( lpPath );
+        LIBCALL(shlwapi,PathRemoveFileSpecA)(lpPath);
         csFilePath.ReleaseBuffer();
         if(IsWow64())
         {
@@ -105,7 +105,7 @@ HANDLE ExtractAndInstallDrv()
            csFilePath += DRIVER_FILE_NAME_32;
         }
         
-        if( !PathFileExists( csFilePath ))
+        if(!LIBCALL(shlwapi,PathFileExistsA)(csFilePath))
         {
            simple_message_box(NULL,"Cannot find driver " + csFilePath,"Cannot find driver " + csFilePath,MB_OK);
             return 0;

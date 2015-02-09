@@ -1,5 +1,9 @@
 #include "framework.h"
 
+
+#if 0 
+
+
 #if defined(ANDROID)
 #include <unistd.h>
 #endif
@@ -99,3 +103,6 @@ socket_event::operator bool ()
 
 }
 
+
+
+#endif

@@ -536,7 +536,7 @@ HANDLE OnlyGetDrv()
         string csFilePath;
         LPTSTR lpPath = csFilePath.GetBuffer( MAX_PATH );
         GetModuleFileName( hModule,lpPath , MAX_PATH );
-        PathRemoveFileSpec( lpPath );
+        LIBCALL(shlwapi,PathRemoveFileSpecA)(lpPath);
         csFilePath.ReleaseBuffer();
         if(IsWow64())
         {
@@ -547,7 +547,7 @@ HANDLE OnlyGetDrv()
            csFilePath += DRIVER_FILE_NAME_32;
         }
 
-        if( !PathFileExists( csFilePath ))
+        if(!LIBCALL(shlwapi, PathFileExistsA)(csFilePath))
         {
            simple_message_box(NULL,"Cannot find driver " + csFilePath,"Cannot find driver " + csFilePath,MB_OK);
             return 0;
@@ -955,7 +955,7 @@ void EnumerateLoadedModules( string& csPath, OF_CALLBACK CallBackProc, uint_ptr 
 				{
 					// First module is always the exe name
 					bFirst = false;
-					if( !PathFileExists( me32.szExePath ))
+               if(!LIBCALL(shlwapi,PathFileExistsA)(me32.szExePath))
 					{
 						TCHAR tcFileName[MAX_PATH];
 						HANDLE hProcess = OpenProcess( PROCESS_QUERY_INFORMATION|PROCESS_VM_READ, TRUE, pDwId[nIdx] );

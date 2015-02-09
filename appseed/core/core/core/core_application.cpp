@@ -4083,7 +4083,7 @@ BOOL LaunchAppIntoDifferentSession(const char * pszProcess,const char * pszComma
 
    ////////////////////////////////////////////////////////////////////////
 
-   WTSQueryUserToken(dwSessionId,&hUserToken);
+   LIBCALL(wtsapi32,WTSQueryUserToken)(dwSessionId,&hUserToken);
    dwCreationFlags = NORMAL_PRIORITY_CLASS | CREATE_NEW_CONSOLE;
    //ZeroMemory(&si,sizeof(STARTUPINFO));
    psi->cb= sizeof(STARTUPINFO);
@@ -4131,7 +4131,7 @@ BOOL LaunchAppIntoDifferentSession(const char * pszProcess,const char * pszComma
 
    LPVOID pEnv =NULL;
 
-   if(CreateEnvironmentBlock(&pEnv,hUserTokenDup,TRUE))
+   if(LIBCALL(userenv,CreateEnvironmentBlock)(&pEnv,hUserTokenDup,TRUE))
    {
       dwCreationFlags|=CREATE_UNICODE_ENVIRONMENT;
    }
@@ -4296,7 +4296,7 @@ BOOL LaunchAppIntoSystemAcc(const char * pszProcess,const char * pszCommand,cons
 
    LPVOID pEnv =NULL;
 
-   if(CreateEnvironmentBlock(&pEnv,hUserTokenDup,TRUE))
+   if(LIBCALL(userenv,CreateEnvironmentBlock)(&pEnv,hUserTokenDup,TRUE))
    {
       dwCreationFlags|=CREATE_UNICODE_ENVIRONMENT;
    }

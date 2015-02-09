@@ -13,7 +13,8 @@
 #include "windows_crypto.h"
 //#include "windows_ip_enum.h"
 
-
+int32_t crypto_encrypt(::primitive::memory & storageEncrypt,const ::primitive::memory & storageDecrypt,::primitive::memory & key);
+int32_t crypto_decrypt(::primitive::memory & storageDecrypt,const ::primitive::memory & storageEncrypt,::primitive::memory & key);
 
 namespace windows
 {
@@ -33,6 +34,9 @@ namespace windows
 
    bool crypto::decrypt(primitive::memory & storageDecrypt, const primitive::memory & storageEncrypt, const char * pszSalt)
    {
+
+#if 0
+
       DATA_BLOB DataIn;
       DATA_BLOB DataOut;
 
@@ -82,10 +86,31 @@ namespace windows
          TRACE("crypto::decrypt Decryption error! (1)");
          return false;
       }
+#else
+      ::primitive::memory memOut;
+
+      ::primitive::memory memIn;
+
+      memIn.append(storageEncrypt.get_data(),storageEncrypt.get_size());
+
+      ::primitive::memory memSalt;
+
+      memSalt.append(pszSalt,strlen(pszSalt));
+
+      if(!::crypto_decrypt(memOut,memIn,memSalt))
+         return false;
+
+
+      storageDecrypt = memOut;
+
+      return true;
+
+#endif
    }
 
    bool crypto::encrypt(primitive::memory & storageEncrypt, const primitive::memory & storageDecrypt, const char * pszSalt)
    {
+#if 0 
       DATA_BLOB DataIn;
       DATA_BLOB DataOut;
 
@@ -134,6 +159,26 @@ namespace windows
          TRACE("crypto::encrypt Encryption error! (1)");
           return false;
       }
+#else
+
+      ::primitive::memory memOut;
+
+      ::primitive::memory memIn;
+
+      memIn.append(storageDecrypt.get_data(),storageDecrypt.get_size());
+
+      ::primitive::memory memSalt;
+
+      memSalt.append(pszSalt,strlen(pszSalt));
+
+      if(!::crypto_encrypt(memOut,memIn,memSalt))
+         return false;
+
+
+      storageEncrypt = memOut;
+
+      return true;
+#endif
 
    }
 

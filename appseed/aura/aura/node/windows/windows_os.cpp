@@ -2,6 +2,16 @@
 //#include "windows.h"
 //#include "aura/graphics/draw2d/draw2d.h"
 
+CREDUIAPI
+BOOL
+WINAPI
+CredPackAuthenticationBufferWfoo(
+_In_ DWORD                                      dwFlags,
+_In_ LPWSTR                                     pszUserName,
+_In_ LPWSTR                                     pszPassword,
+_Out_writes_bytes_opt_(*pcbPackedCredentials) PBYTE   pPackedCredentials,
+_Inout_ DWORD*                                  pcbPackedCredentials
+);
 
 
 //#include <Wtsapi32.h>
@@ -90,7 +100,7 @@ namespace windows
       }
 
 
-      if(!WTSShutdownSystem(WTS_CURRENT_SERVER_HANDLE, WTS_WSD_REBOOT))
+      if(!LIBCALL(wtsapi32,WTSShutdownSystem)(WTS_CURRENT_SERVER_HANDLE,WTS_WSD_REBOOT))
       {
          TRACELASTERROR();
          return false;
@@ -770,7 +780,8 @@ namespace windows
 
       // Call CredPackAuthenticationBufferW once to determine the size,
       // in bytes, of the authentication buffer.
-      if(!LIBCALL(credui, CredPackAuthenticationBufferW)(
+      
+      if(!LIBCALL(credui,CredPackAuthenticationBufferW)(
          0,                // Reserved
          szDomainAndUser,  // Domain\User name
          szPassword,       // User Password

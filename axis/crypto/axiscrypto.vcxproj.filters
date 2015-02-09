@@ -2186,9 +2186,6 @@
     <ClCompile Include="engines\e_atalla.c">
       <Filter>Source Files\engines</Filter>
     </ClCompile>
-    <ClCompile Include="engines\e_capi.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
     <ClCompile Include="engines\e_chil.c">
       <Filter>Source Files\engines</Filter>
     </ClCompile>
@@ -2401,6 +2398,9 @@
     </ClCompile>
     <ClCompile Include="crypto\ecdh\_ech.c">
       <Filter>Source Files\crypto\ecdh</Filter>
+    </ClCompile>
+    <ClCompile Include="engines\e_capi.c">
+      <Filter>Source Files\engines</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

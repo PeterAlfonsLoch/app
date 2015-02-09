@@ -125,7 +125,7 @@ namespace file
             {
                GetDrive( tcFileName, csModule, false );
                CloseHandle( hProcess );
-               PathStripPath( tcFileName );
+               LIBCALL(shlwapi,PathStripPathA)(tcFileName);
                stInfo.csProcess = tcFileName;
                SHFILEINFO stIcon = {0};
                /*			   if( SHGetFileInfo( csModule, 0, &stIcon, sizeof( stIcon), SHGFI_ICON ))

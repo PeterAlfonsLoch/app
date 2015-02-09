@@ -21,6 +21,12 @@ namespace hotplugin
    void entry_hall_windows_on_paint(HDC hdc,const RECT & rect,const string & strEntryHallText)
    {
 
+#if 1
+
+      throw "TODO trying to get rid of GDI PLUS dependency on Windows, is it possible to use GDI with coached alpha extensions?";
+
+#else
+
 #ifndef METROWIN
 
       Graphics g(hdc);
@@ -162,6 +168,8 @@ namespace hotplugin
       SolidBrush b(Color(184,255,255,255));
 
       pgraphics->DrawString(wstr, wstr.get_length(), &f, PointF(rectBar.left,rectBar.top), &b);
+
+#endif
 
 #endif
 

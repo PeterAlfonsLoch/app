@@ -58,12 +58,30 @@
 #include <openssl/buffer.h>
 #include <openssl/bn.h>
 
+#include <openssl/bn.h>
+
 #ifdef OPENSSL_SYS_WIN32
 #ifndef OPENSSL_NO_CAPIENG
 
 #include <openssl/rsa.h>
 
 #include <windows.h>
+
+HMODULE crypt32_lib()
+{
+   static HMODULE hmodule = NULL;
+   if(hmodule == NULL)
+   {
+      hmodule = LoadLibrary("crypt32.dll");
+   }
+   return hmodule;
+}
+
+void * crypt32_function(const char * psz)
+{
+   return GetProcAddress(crypt32_lib(),psz);
+}
+
 
 #ifndef _WIN32_WINNT
 #define _WIN32_WINNT 0x0400
@@ -1341,7 +1359,7 @@ HCERTSTORE capi_open_store(CAPI_CTX *ctx, char *storename)
 		storename = "MY";
 	CAPI_trace(ctx, "Opening certificate store %s\n", storename);
 
-	hstore = CertOpenStore(CERT_STORE_PROV_SYSTEM_A, 0, 0, 
+	hstore = LIBCALL(crypt32,CertOpenStore)(CERT_STORE_PROV_SYSTEM_A, 0, 0, 
 				ctx->store_flags, storename);
 	if (!hstore)
 		{
@@ -1376,7 +1394,7 @@ int capi_list_certs(CAPI_CTX *ctx, BIO *out, char *id)
 			goto err;
 			}
 		capi_dump_cert(ctx, out, cert);
-		CertFreeCertificateContext(cert);
+      LIBCALL(crypt32,CertFreeCertificateContext)(cert);
 		}
 	else
 		{
@@ -1501,7 +1519,7 @@ CAPI_KEY *capi_find_key(CAPI_CTX *ctx, const char *id)
 		if (cert)
 			{
 			key = capi_get_cert_key(ctx, cert);
-			CertFreeCertificateContext(cert);
+         LIBCALL(crypt32,CertFreeCertificateContext)(cert);
 			}
 		CertCloseStore(hstore, 0);
 		break;
@@ -1522,7 +1540,7 @@ void capi_free_key(CAPI_KEY *key)
 	CryptDestroyKey(key->key);
 	CryptReleaseContext(key->hprov, 0);
 	if (key->pcert)
-		CertFreeCertificateContext(key->pcert);
+      LIBCALL(crypt32,CertFreeCertificateContext)(key->pcert);
 	OPENSSL_free(key);
 	}
 
@@ -1687,9 +1705,9 @@ static int capi_load_ssl_client_cert(ENGINE *e, SSL *ssl,
 		}
 
 	if (cert)
-		CertFreeCertificateContext(cert);
+      LIBCALL(crypt32,CertFreeCertificateContext)(cert);
 	if (hstore)
-		CertCloseStore(hstore, 0);
+      LIBCALL(crypt32,CertCloseStore)(hstore,0);
 
 	if (!certs)
 		return 0;

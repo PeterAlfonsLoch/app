@@ -458,7 +458,7 @@ bool windows_write_dib_to_file(::file::buffer_sp pfile,::draw2d::dib * pdib,::vi
 
 #else
 
-   comptr < IStream > pstream = SHCreateMemStream(NULL,NULL);
+   comptr < IStream > pstream = LIBCALL(shlwapi,SHCreateMemStream)(NULL,NULL);
 
 #endif
 

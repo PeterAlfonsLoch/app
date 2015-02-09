@@ -1,5 +1,6 @@
 #pragma once
 
+#if 0
 
 /// This class represents events for socket communication.
 class CLASS_DECL_AURA socket_event :
@@ -42,3 +43,6 @@ public:
 	void exit_wait();
 	void SetUsedBySocketWaiterThread();
 };
+
+
+#endif
