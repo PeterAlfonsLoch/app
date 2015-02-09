@@ -5,7 +5,7 @@ namespace html
 {
 
 
-   class CLASS_DECL_HTML application_interface :
+   class CLASS_DECL_HTML_LITE application_interface :
       virtual public ::html_lite::application_interface
    {
    public:
