@@ -7,11 +7,10 @@ namespace html
 
    html::html(::aura::application * papp):
       element(papp),
-      ::aura::departament(papp),
-      m_libraryHtmlLite(papp)
+      ::aura::departament(papp)
    {
 
-      m_pentitysolver = NULL;
+      m_pentitysolver = new LiteHTMLEntityResolver(papp);
 
    }
 
@@ -264,30 +263,8 @@ namespace html
       return str;
    }
 
-   typedef html_entity_solver * CREATE_HTML_ENTITY_SOLVER(::aura::application * papp);
-   typedef CREATE_HTML_ENTITY_SOLVER * LPFN_CREATE_HTML_ENTITY_SOLVER;
-
    int32_t html::resolve_entity(const char * lpszEntity,string & strChar)
    {
-
-      if(m_pentitysolver == NULL)
-      {
-
-         if(m_libraryHtmlLite.open("html_lite",false))
-         {
-            LPFN_CREATE_HTML_ENTITY_SOLVER pfnCreate= m_libraryHtmlLite.get < LPFN_CREATE_HTML_ENTITY_SOLVER >("create_html_entity_solver");
-
-            if(pfnCreate != NULL)
-            {
-
-               m_pentitysolver = pfnCreate(get_app());
-
-            }
-
-         }
-
-         //new LiteHTMLEntityResolver(papp)
-      }
 
       return m_pentitysolver->resolveEntity(lpszEntity,strChar);
 

@@ -430,7 +430,8 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>user32.lib</AdditionalDependencies>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(IntDir);$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -1307,7 +1308,6 @@
     <ClCompile Include="html_lite\html_lite_html_entity_resolver.cpp" />
     <ClCompile Include="html_lite\html_lite_html_reader.cpp" />
     <ClCompile Include="html_lite\html_lite_html_tag.cpp" />
-    <ClCompile Include="html_lite_application_application.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="html_lite.def" />

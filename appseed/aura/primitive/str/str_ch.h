@@ -88,7 +88,7 @@ namespace str
       //    2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2, 3,3,3,3,3,3,3,3,4,4,4,4,5,5,5,5
       //};
       // return UTF8 Extra Bytes based on supplied First Char
-      inline int64_t utf8_e(uchar c)
+      inline char utf8_e(uchar c)
       {
          if(c < 192)
             return 0;
@@ -166,7 +166,7 @@ namespace str
          int64_t ch = 0;
          uchar c;
          char len = 0;
-         char extraBytesToRead = utf8_o(*source);
+         char extraBytesToRead = utf8_e(*source);
          if(*source == '\0') return -1;
          switch(extraBytesToRead)
          {
@@ -196,7 +196,7 @@ namespace str
       int64_t _uni_index_len(const char * pszUtf8,strsize & len)
       {
          uchar * source = (uchar *)pszUtf8;
-         uchar ch = 0;
+         int64_t ch = 0;
          uchar c;
          char extraBytesToRead = utf8_e(*source);
          len = 0;

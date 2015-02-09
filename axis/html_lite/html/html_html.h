@@ -4,14 +4,6 @@
 typedef string_map < COLORREF > string_to_colorref;
 
 
-class html_entity_solver
-{
-public:
-
-   virtual int32_t resolveEntity(const char * lpszEntity,string & strChar) = 0;
-
-};
-
 namespace html
 {
 
@@ -19,19 +11,17 @@ namespace html
    typedef string_to_colorref CNamedColors;
 
 
-   class CLASS_DECL_AURA html:
+   class CLASS_DECL_HTML_LITE html:
       public ::aura::departament
    {
    public:
 
 
 
-      ::aura::library               m_libraryHtmlLite;
-
       COLORREF                      m_clrInvalid;   // an invalid color
       uint16_t                      m_percentMax;   // maximum allowable percentage value
       CNamedColors                  m_namedColors;   // collection of named colors
-      html_entity_solver  *         m_pentitysolver;
+      LiteHTMLEntityResolver  *     m_pentitysolver;
 
 
       html(::aura::application * papp);

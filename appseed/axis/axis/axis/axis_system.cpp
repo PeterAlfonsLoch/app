@@ -86,9 +86,6 @@ namespace axis
 
 #endif
 
-      m_phtml = new html::html(this);
-
-
    }
 
 

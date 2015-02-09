@@ -73,9 +73,6 @@
     <ClCompile Include="html_lite\html_lite_html_tag.cpp">
       <Filter>Source Files\html_lite</Filter>
     </ClCompile>
-    <ClCompile Include="html_lite_application_application.cpp">
-      <Filter>Source Files\html_lite</Filter>
-    </ClCompile>
     <ClCompile Include="html_lite\html_lite_application_application.cpp">
       <Filter>Source Files\html_lite</Filter>
     </ClCompile>
