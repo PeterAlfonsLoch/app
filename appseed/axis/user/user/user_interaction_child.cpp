@@ -795,7 +795,7 @@ namespace user
    }
 
 
-   void interaction_child::GetClientRect(__rect64 * lprect)
+   void interaction_child::GetClientRect(RECT64 * lprect)
    {
 
       *lprect = m_rectParentClient;
@@ -807,7 +807,7 @@ namespace user
    }
 
 
-   void interaction_child::GetWindowRect(__rect64 * lprect)
+   void interaction_child::GetWindowRect(RECT64 * lprect)
    {
 
       *lprect = m_rectParentClient;
@@ -876,7 +876,7 @@ namespace user
    }
 
 
-   void interaction_child::ClientToScreen(__rect64 * lprect)
+   void interaction_child::ClientToScreen(RECT64 * lprect)
    {
 
       lprect->left   += m_rectParentClient.left;
@@ -901,7 +901,7 @@ namespace user
    }
 
 
-   void interaction_child::ClientToScreen(__point64 * lppoint)
+   void interaction_child::ClientToScreen(POINT64 * lppoint)
    {
 
       lppoint->x     += m_rectParentClient.left;
@@ -967,7 +967,7 @@ namespace user
    }
 
 
-   void interaction_child::ScreenToClient(__rect64 * lprect)
+   void interaction_child::ScreenToClient(RECT64 * lprect)
    {
 
       lprect->left   -= m_rectParentClient.left;
@@ -992,7 +992,7 @@ namespace user
    }
 
 
-   void interaction_child::ScreenToClient(__point64 * lppoint)
+   void interaction_child::ScreenToClient(POINT64 * lppoint)
    {
 
       lppoint->x     -= m_rectParentClient.left;

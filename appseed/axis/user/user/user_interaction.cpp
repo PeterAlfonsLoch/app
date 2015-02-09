@@ -361,7 +361,7 @@ namespace user
 
    void interaction::GetClientRect(LPRECT lprect)
    {
-      __rect64 rect;
+      RECT64 rect;
       GetClientRect(&rect);
       lprect->left = (LONG)rect.left;
       lprect->top = (LONG)rect.top;
@@ -381,7 +381,7 @@ namespace user
 
 
 
-   void interaction::GetWindowRect(__rect64 * lprect)
+   void interaction::GetWindowRect(RECT64 * lprect)
    {
 
       if(m_pimpl == NULL)
@@ -5640,7 +5640,7 @@ namespace user
    }
 
 
-   void interaction::ClientToScreen(__rect64 * lprect)
+   void interaction::ClientToScreen(RECT64 * lprect)
    {
 
       if(m_pimpl == NULL)
@@ -5651,7 +5651,7 @@ namespace user
    }
 
 
-   void interaction::ClientToScreen(__point64 * lppoint)
+   void interaction::ClientToScreen(POINT64 * lppoint)
    {
 
       if(m_pimpl == NULL)
@@ -5684,7 +5684,7 @@ namespace user
    }
 
 
-   void interaction::ScreenToClient(__rect64 * lprect)
+   void interaction::ScreenToClient(RECT64 * lprect)
    {
 
       if(m_pimpl == NULL)
@@ -5695,7 +5695,7 @@ namespace user
    }
 
 
-   void interaction::ScreenToClient(__point64 * lppoint)
+   void interaction::ScreenToClient(POINT64 * lppoint)
    {
 
       if(m_pimpl == NULL)
@@ -5706,7 +5706,7 @@ namespace user
    }
 
 
-   void interaction::GetClientRect(__rect64 * lprect)
+   void interaction::GetClientRect(RECT64 * lprect)
    {
 
       if(m_pimpl == NULL)

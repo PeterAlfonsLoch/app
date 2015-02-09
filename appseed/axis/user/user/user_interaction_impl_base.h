@@ -38,17 +38,17 @@ namespace user
       virtual void RepositionBars(UINT nIDFirst,UINT nIDLast,id nIdLeftOver,UINT nFlags,LPRECT lpRectParam,LPCRECT lpRectClient,bool bStretch);
 
       virtual void GetClientRect(LPRECT lprect);
-      virtual void GetClientRect(__rect64 * lprect);
+      virtual void GetClientRect(RECT64 * lprect);
       virtual void GetWindowRect(LPRECT lprect);
-      virtual void GetWindowRect(__rect64 * lprect);
+      virtual void GetWindowRect(RECT64 * lprect);
       virtual void ClientToScreen(LPRECT lprect);
-      virtual void ClientToScreen(__rect64 * lprect);
+      virtual void ClientToScreen(RECT64 * lprect);
       virtual void ClientToScreen(LPPOINT lppoint);
-      virtual void ClientToScreen(__point64 * lppoint);
+      virtual void ClientToScreen(POINT64 * lppoint);
       virtual void ScreenToClient(LPRECT lprect);
-      virtual void ScreenToClient(__rect64 * lprect);
+      virtual void ScreenToClient(RECT64 * lprect);
       virtual void ScreenToClient(LPPOINT lppoint);
-      virtual void ScreenToClient(__point64 * lprect);
+      virtual void ScreenToClient(POINT64 * lprect);
       virtual rect GetWindowRect();
       virtual rect64 GetWindowRect64();
       virtual bool SetPlacement(const RECT & rect,UINT nFlags = SWP_SHOWWINDOW);

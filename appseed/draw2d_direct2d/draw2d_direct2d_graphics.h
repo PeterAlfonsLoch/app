@@ -459,7 +459,7 @@ namespace draw2d_direct2d
       void DrawDragRect(const RECT & lpRect, SIZE size,
          const RECT & lpRectLast, SIZE sizeLast,
          ::draw2d::brush* pBrush = NULL, ::draw2d::brush* pBrushLast = NULL);
-      void FillSolidRect(const __rect64 * lpRect, COLORREF clr);
+      void FillSolidRect(const RECT64 * lpRect, COLORREF clr);
       void FillSolidRect(const RECT & lpRect, COLORREF clr);
       void FillSolidRect(int x, int y, int cx, int cy, COLORREF clr);
       void Draw3dRect(const RECT & lpRect, COLORREF clrTopLeft, COLORREF clrBottomRight);

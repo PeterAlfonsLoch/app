@@ -111,7 +111,7 @@ namespace visual
       return -1;
    }*/
 
-   void graphics_extension::FillSolidRect(HDC hdc, const __rect64 * lpRect, COLORREF clr)
+   void graphics_extension::FillSolidRect(HDC hdc, const RECT64 * lpRect, COLORREF clr)
    {
 
 #ifdef WINDOWSEX

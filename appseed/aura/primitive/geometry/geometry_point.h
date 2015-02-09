@@ -16,8 +16,8 @@ public:
    // create from another point
    point(POINT initPt) throw();
    point(const POINT * pinitPt) throw();
-   point(__point64 initPt) throw();
-   point(const __point64 * pinitPt) throw();
+   point(POINT64 initPt) throw();
+   point(const POINT64 * pinitPt) throw();
    point(POINTD initPt) throw();
    point(const POINTD * pinitPt) throw();
    // create from a size
@@ -80,9 +80,9 @@ public:
 inline point null_point() { return point(0, 0); }
 
 /////////////////////////////////////////////////////////////////////////////
-// point64 - A 2-D point64, similar to Windows __point64 structure.
+// point64 - A 2-D point64, similar to Windows POINT64 structure.
 
-class CLASS_DECL_AURA point64 : public __point64
+class CLASS_DECL_AURA point64 : public POINT64
 {
 public:
 // Constructors
@@ -92,44 +92,44 @@ public:
    // create from two integers
    point64(int64_t initX, int64_t initY) throw();
    // create from another point64
-   point64(__point64 initPt) throw();
+   point64(POINT64 initPt) throw();
    point64(POINT pt) throw();
-   point64(const __point64 * pinitPt) throw();
+   point64(const POINT64 * pinitPt) throw();
    // create from a size
-   point64(__size64 initSize) throw();
+   point64(SIZE64 initSize) throw();
    // create from an UINT64: x = LODWORD(dw) y = HIDWORD(dw)
    point64(uint64_t dwPoint) throw();
 
-   operator __point64 *() throw();
-   operator const __point64 *() const throw();
+   operator POINT64 *() throw();
+   operator const POINT64 *() const throw();
 
 // Operations
 
 // translate the point64
    void offset(int64_t xOffset, int64_t yOffset) throw();
-   void offset(__point64 point64) throw();
-   void offset(__size64 size) throw();
+   void offset(POINT64 point64) throw();
+   void offset(SIZE64 size) throw();
    void SetPoint(int64_t X, int64_t Y) throw();
 
-   bool operator==(__point64 point64) const throw();
-   bool operator!=(__point64 point64) const throw();
-   void operator+=(__size64 size) throw();
-   void operator-=(__size64 size) throw();
-   void operator+=(__point64 point64) throw();
-   void operator-=(__point64 point64) throw();
+   bool operator==(POINT64 point64) const throw();
+   bool operator!=(POINT64 point64) const throw();
+   void operator+=(SIZE64 size) throw();
+   void operator-=(SIZE64 size) throw();
+   void operator+=(POINT64 point64) throw();
+   void operator-=(POINT64 point64) throw();
 
 // Operators returning point64 values
-   point64 operator+(__size64 size) const throw();
-   point64 operator-(__size64 size) const throw();
+   point64 operator+(SIZE64 size) const throw();
+   point64 operator-(SIZE64 size) const throw();
    point64 operator-() const throw();
-   point64 operator+(__point64 point64) const throw();
+   point64 operator+(POINT64 point64) const throw();
 
 // Operators returning size values
-   size64 operator-(__point64 point64) const throw();
+   size64 operator-(POINT64 point64) const throw();
 
 // Operators returning rect values
-   rect64 operator+(const __rect64 * lpRect) const throw();
-   rect64 operator-(const __rect64 * lpRect) const throw();
+   rect64 operator+(const RECT64 * lpRect) const throw();
+   rect64 operator-(const RECT64 * lpRect) const throw();
 
    uint32_t ui32() const throw();
    uint64_t ui64() const throw();
@@ -159,7 +159,7 @@ public:
 /////////////////////////////////////////////////////////////////////////////
 // pointd - A 2-D pointd, similar to Windows POINTD structure.
 
-class CLASS_DECL_AURA pointd : public tagPOINTD
+class CLASS_DECL_AURA pointd : public POINTD
 {
 public:
 // Constructors
@@ -172,8 +172,8 @@ public:
    pointd(POINTD initPt) throw();
    pointd(POINT initPt) throw();
    pointd(const POINTD * pinitPt) throw();
-   pointd(__point64 initPt) throw();
-   pointd(const __point64 * pinitPt) throw();
+   pointd(POINT64 initPt) throw();
+   pointd(const POINT64 * pinitPt) throw();
    // create from a sized
    pointd(SIZED initSize) throw();
    // create from an LPARAM: x = LOWORD(dw) y = HIWORD(dw)

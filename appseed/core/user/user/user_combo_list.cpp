@@ -550,7 +550,7 @@ namespace user
 
    }
 
-   void combo_list::GetClientRect(__rect64 * lprect)
+   void combo_list::GetClientRect(RECT64 * lprect)
    {
       
       ::user::control::GetClientRect(lprect);

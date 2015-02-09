@@ -150,13 +150,13 @@ CLASS_DECL_AURA bool top_left_null_intersect_rect(LPRECT lprect,LPCRECT lpcrect1
    }
 }
 
-bool copy(tagRECTD * prectDest, const tagRECTD * prectSrc)
+bool copy(RECTD * prectDest, const RECTD * prectSrc)
 {
    *prectDest = *prectSrc;
    return TRUE;
 }
 
-bool copy(tagRECTD * prectDest, const RECT * prectSrc)
+bool copy(RECTD * prectDest, const RECT * prectSrc)
 {
    prectDest->left      = prectSrc->left;
    prectDest->top       = prectSrc->top;
@@ -165,7 +165,7 @@ bool copy(tagRECTD * prectDest, const RECT * prectSrc)
    return TRUE;
 }
 
-bool copy(RECT * prectDest, const tagRECTD * prectSrc)
+bool copy(RECT * prectDest, const RECTD * prectSrc)
 {
    if(!is32integer(prectSrc->left) || !is32integer(prectSrc->top) || !is32integer(prectSrc->right) || !is32integer(prectSrc->bottom))
       return FALSE;
@@ -176,7 +176,7 @@ bool copy(RECT * prectDest, const tagRECTD * prectSrc)
    return TRUE;
 }
 
-bool copy(tagRECTD * prectDest, const __rect64 * prectSrc)
+bool copy(RECTD * prectDest, const RECT64 * prectSrc)
 {
    if(!is_double(prectSrc->left) || !is_double(prectSrc->top) || !is_double(prectSrc->right) || !is_double(prectSrc->bottom))
       return FALSE;
@@ -187,7 +187,7 @@ bool copy(tagRECTD * prectDest, const __rect64 * prectSrc)
    return TRUE;
 }
 
-bool copy(__rect64 * prectDest, const tagRECTD * prectSrc)
+bool copy(RECT64 * prectDest, const RECTD * prectSrc)
 {
    prectDest->left      = (LONG) prectSrc->left;
    prectDest->top       = (LONG) prectSrc->top;
@@ -195,20 +195,20 @@ bool copy(__rect64 * prectDest, const tagRECTD * prectSrc)
    prectDest->bottom    = (LONG) prectSrc->bottom;
    return TRUE;
 }
-bool is_empty(const tagRECTD * prect)
+bool is_empty(const RECTD * prect)
 {
    return
       prect->left   >= prect->right
       && prect->top >= prect->bottom;
 }
 
-bool contains(const tagRECTD * prect, POINTD pt)
+bool contains(const RECTD * prect, POINTD pt)
 {
    return
       pt.x >= prect->left && pt.x <= prect->right
       && pt.y >= prect->top && pt.y <= prect->bottom;
 }
-bool set_rect(tagRECTD * prectDest, double x1, double y1, double x2, double y2)
+bool set_rect(RECTD * prectDest, double x1, double y1, double x2, double y2)
 {
    prectDest->left      = x1;
    prectDest->top       = y1;
@@ -216,7 +216,7 @@ bool set_rect(tagRECTD * prectDest, double x1, double y1, double x2, double y2)
    prectDest->bottom    = y2;
    return TRUE;
 }
-bool null(tagRECTD * prectDest)
+bool null(RECTD * prectDest)
 {
    prectDest->left      = 0;
    prectDest->top       = 0;
@@ -224,7 +224,7 @@ bool null(tagRECTD * prectDest)
    prectDest->bottom    = 0;
    return true;
 }
-bool is_equal(const tagRECTD * prect1, const tagRECTD * prect2)
+bool is_equal(const RECTD * prect1, const RECTD * prect2)
 {
 
    return
@@ -236,7 +236,7 @@ bool is_equal(const tagRECTD * prect1, const tagRECTD * prect2)
 }
 
 
-bool inflate(tagRECTD * prect, double x, double y)
+bool inflate(RECTD * prect, double x, double y)
 {
 
    prect->left      -= x;
@@ -248,7 +248,7 @@ bool inflate(tagRECTD * prect, double x, double y)
 }
 
 
-bool deflate(tagRECTD * prect, double x, double y)
+bool deflate(RECTD * prect, double x, double y)
 {
 
    prect->left      += x;
@@ -260,7 +260,7 @@ bool deflate(tagRECTD * prect, double x, double y)
 }
 
 
-bool offset(tagRECTD * prect, double x, double y)
+bool offset(RECTD * prect, double x, double y)
 {
 
    prect->left      += x;
@@ -272,7 +272,7 @@ bool offset(tagRECTD * prect, double x, double y)
 }
 
 
-bool x_intersect_rect(tagRECTD * prect, const tagRECTD * prect1, const tagRECTD * prect2)
+bool x_intersect_rect(RECTD * prect, const RECTD * prect1, const RECTD * prect2)
 {
    prect->left    = MAX(prect1->left   , prect2->left);
    prect->right   = MIN(prect1->right  , prect2->right);
@@ -287,7 +287,7 @@ bool x_intersect_rect(tagRECTD * prect, const tagRECTD * prect1, const tagRECTD 
 }
 
 
-bool y_intersect_rect(tagRECTD * prect, const tagRECTD * prect1, const tagRECTD * prect2)
+bool y_intersect_rect(RECTD * prect, const RECTD * prect1, const RECTD * prect2)
 {
    prect->top     = MAX(prect1->top    , prect2->top);
    prect->bottom  = MIN(prect1->bottom , prect2->bottom);
@@ -305,7 +305,7 @@ bool y_intersect_rect(tagRECTD * prect, const tagRECTD * prect1, const tagRECTD 
 
 
 
-bool x_null_intersect_rect(tagRECTD * prect,const tagRECTD * prect1,const tagRECTD * prect2)
+bool x_null_intersect_rect(RECTD * prect,const RECTD * prect1,const RECTD * prect2)
 {
    prect->left    = MAX(prect1->left,prect2->left);
    prect->right   = MIN(prect1->right,prect2->right);
@@ -320,7 +320,7 @@ bool x_null_intersect_rect(tagRECTD * prect,const tagRECTD * prect1,const tagREC
 }
 
 
-bool y_null_intersect_rect(tagRECTD * prect,const tagRECTD * prect1,const tagRECTD * prect2)
+bool y_null_intersect_rect(RECTD * prect,const RECTD * prect1,const RECTD * prect2)
 {
    prect->top     = MAX(prect1->top,prect2->top);
    prect->bottom  = MIN(prect1->bottom,prect2->bottom);
@@ -336,7 +336,7 @@ bool y_null_intersect_rect(tagRECTD * prect,const tagRECTD * prect1,const tagREC
 }
 
 
-bool intersect(tagRECTD * prect, const tagRECTD * prect1, const tagRECTD * prect2)
+bool intersect(RECTD * prect, const RECTD * prect1, const RECTD * prect2)
 {
    if(x_intersect_rect(prect, prect1, prect2)
    && y_intersect_rect(prect, prect1, prect2))
@@ -351,7 +351,7 @@ bool intersect(tagRECTD * prect, const tagRECTD * prect1, const tagRECTD * prect
 }
 
 
-bool unite(tagRECTD * prect, const tagRECTD * prect1, const tagRECTD * prect2)
+bool unite(RECTD * prect, const RECTD * prect1, const RECTD * prect2)
 {
    if(is_empty(prect1))
    {
@@ -422,13 +422,13 @@ CLASS_DECL_AURA double height(const RECTD & rect)
 
 
 
-bool copy(__rect64 * prectDest, const __rect64 * prectSrc)
+bool copy(RECT64 * prectDest, const RECT64 * prectSrc)
 {
    *prectDest = *prectSrc;
    return TRUE;
 }
 
-bool copy(__rect64 * prectDest, const RECT * prectSrc)
+bool copy(RECT64 * prectDest, const RECT * prectSrc)
 {
    prectDest->left      = prectSrc->left;
    prectDest->top       = prectSrc->top;
@@ -437,7 +437,7 @@ bool copy(__rect64 * prectDest, const RECT * prectSrc)
    return TRUE;
 }
 
-bool copy(RECT * prectDest, const __rect64 * prectSrc)
+bool copy(RECT * prectDest, const RECT64 * prectSrc)
 {
    if(!is32integer(prectSrc->left) || !is32integer(prectSrc->top) || !is32integer(prectSrc->right) || !is32integer(prectSrc->bottom))
       return FALSE;
@@ -447,7 +447,7 @@ bool copy(RECT * prectDest, const __rect64 * prectSrc)
    prectDest->bottom    = (LONG) prectSrc->bottom;
    return TRUE;
 }
-bool is_empty(const __rect64 * prect)
+bool is_empty(const RECT64 * prect)
 {
    return
       prect->left   >= prect->right
@@ -455,7 +455,7 @@ bool is_empty(const __rect64 * prect)
 }
 
 
-bool contains(const __rect64 * prect, point64 pt)
+bool contains(const RECT64 * prect, point64 pt)
 {
 
    return
@@ -464,7 +464,7 @@ bool contains(const __rect64 * prect, point64 pt)
 
 }
 
-bool set_rect(__rect64 * prectDest, int64_t x1, int64_t y1, int64_t x2, int64_t y2)
+bool set_rect(RECT64 * prectDest, int64_t x1, int64_t y1, int64_t x2, int64_t y2)
 {
 
    prectDest->left      = x1;
@@ -476,7 +476,7 @@ bool set_rect(__rect64 * prectDest, int64_t x1, int64_t y1, int64_t x2, int64_t 
 }
 
 
-bool null(__rect64 * prectDest)
+bool null(RECT64 * prectDest)
 {
 
    prectDest->left      = 0;
@@ -487,7 +487,7 @@ bool null(__rect64 * prectDest)
 
 }
 
-bool is_equal(const __rect64 * prect1, const __rect64 * prect2)
+bool is_equal(const RECT64 * prect1, const RECT64 * prect2)
 {
    return
       prect1->left      == prect2->left &&
@@ -496,7 +496,7 @@ bool is_equal(const __rect64 * prect1, const __rect64 * prect2)
       prect1->bottom    == prect2->bottom;
 }
 
-bool inflate(__rect64 * prect, int64_t x, int64_t y)
+bool inflate(RECT64 * prect, int64_t x, int64_t y)
 {
 
    prect->left      -= x;
@@ -507,7 +507,7 @@ bool inflate(__rect64 * prect, int64_t x, int64_t y)
 
 }
 
-bool deflate(__rect64 * prect, int64_t x, int64_t y)
+bool deflate(RECT64 * prect, int64_t x, int64_t y)
 {
 
    prect->left      += x;
@@ -519,7 +519,7 @@ bool deflate(__rect64 * prect, int64_t x, int64_t y)
 }
 
 
-bool offset(__rect64 * prect, int64_t x, int64_t y)
+bool offset(RECT64 * prect, int64_t x, int64_t y)
 {
 
    prect->left      += x;
@@ -530,7 +530,7 @@ bool offset(__rect64 * prect, int64_t x, int64_t y)
 
 }
 
-bool x_intersect_rect(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect2)
+bool x_intersect_rect(RECT64 * prect, const RECT64 * prect1, const RECT64 * prect2)
 {
 
    prect->left    = MAX(prect1->left   , prect2->left);
@@ -548,7 +548,7 @@ bool x_intersect_rect(__rect64 * prect, const __rect64 * prect1, const __rect64 
 }
 
 
-bool y_intersect_rect(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect2)
+bool y_intersect_rect(RECT64 * prect, const RECT64 * prect1, const RECT64 * prect2)
 {
    prect->top     = MAX(prect1->top    , prect2->top);
    prect->bottom  = MIN(prect1->bottom , prect2->bottom);
@@ -565,7 +565,7 @@ bool y_intersect_rect(__rect64 * prect, const __rect64 * prect1, const __rect64 
 }
 
 
-bool intersect(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect2)
+bool intersect(RECT64 * prect, const RECT64 * prect1, const RECT64 * prect2)
 {
    if(x_intersect_rect(prect, prect1, prect2)
    && y_intersect_rect(prect, prect1, prect2))
@@ -581,7 +581,7 @@ bool intersect(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect
 }
 
 
-bool unite(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect2)
+bool unite(RECT64 * prect, const RECT64 * prect1, const RECT64 * prect2)
 {
    if(is_empty(prect1))
    {
@@ -680,7 +680,7 @@ bool polygon_contains(LPPOINTD lppt,LPPOINTD lpptPolygon,int iCount)
 
 }
 
-CLASS_DECL_AURA bool copy(__point64 * lpptDst,const POINT * lpptSrc)
+CLASS_DECL_AURA bool copy(POINT64 * lpptDst,const POINT * lpptSrc)
 {
    
    lpptDst->x = lpptSrc->x;
@@ -692,7 +692,7 @@ CLASS_DECL_AURA bool copy(__point64 * lpptDst,const POINT * lpptSrc)
 }
 
 
-CLASS_DECL_AURA bool copy(LPPOINT lpptDst,const __point64 * lpptSrc)
+CLASS_DECL_AURA bool copy(LPPOINT lpptDst,const POINT64 * lpptSrc)
 {
 
    lpptDst->x = (LONG)lpptSrc->x;

@@ -581,7 +581,7 @@ namespace hotplugin
    }
 
 
-   void host::GetWindowRect(__rect64 * prect)
+   void host::GetWindowRect(RECT64 * prect)
    {
 
       ::copy(prect, m_rectWindow);
@@ -589,7 +589,7 @@ namespace hotplugin
    }
 
 
-   void host::GetClientRect(__rect64 * prect)
+   void host::GetClientRect(RECT64 * prect)
    {
 
       ::copy(prect,m_rectClient);

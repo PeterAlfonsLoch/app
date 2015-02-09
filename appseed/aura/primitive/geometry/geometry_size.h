@@ -9,8 +9,10 @@ class CLASS_DECL_AURA size : public tagSIZE
 public:
 
 // Constructors
-   // construct an uninitialized size
+   // construct an zero-initialized size
    size() throw();
+   // construct an uninitialized size
+   size(no_init) throw();
    // create from two integers
    size(int64_t initCX, int64_t initCY) throw();
    // create from another size
@@ -18,8 +20,8 @@ public:
    size(const RECT & rect) throw();
    size(LPCRECT lpcrect) throw();
    size(SIZE initSize) throw();
-   size(__size64 initSize) throw();
-   size(const __size64 * pinitSize) throw();
+   size(SIZE64 initSize) throw();
+   size(const SIZE64 * pinitSize) throw();
    size(SIZED initSize) throw();
    size(const SIZED * pinitSize) throw();
    // create from a point
@@ -85,46 +87,48 @@ inline bool size::is_empty() const throw()
 /////////////////////////////////////////////////////////////////////////////
 // size64 - An extent, similar to Windows SIZE structure.
 
-class CLASS_DECL_AURA size64 : public __size64
+class CLASS_DECL_AURA size64 : public SIZE64
 {
 public:
 
 // Constructors
-   // construct an uninitialized size64
+   // construct a zero-initialized size64
    size64() throw();
+   // construct an uninitialized size64
+   size64(no_init) throw();
    // create from two integers
    size64(int64_t initCX, int64_t initCY) throw();
    // create from another size64
-   size64(__size64 initSize) throw();
-   size64(const __size64 *pinitSize) throw();
+   size64(SIZE64 initSize) throw();
+   size64(const SIZE64 *pinitSize) throw();
    // create from a point
-   size64(__point64 initPt) throw();
+   size64(POINT64 initPt) throw();
    // create from a uint32_t: cx = LODWORD(dw) cy = HIDWORD(dw)
    size64(uint64_t dwSize) throw();
 
 
-   operator __size64 *() throw();
-   operator const __size64 *() const throw();
+   operator SIZE64 *() throw();
+   operator const SIZE64 *() const throw();
 
 // Operations
-   bool operator==(__size64 size64) const throw();
-   bool operator!=(__size64 size64) const throw();
-   void operator+=(__size64 size64) throw();
-   void operator-=(__size64 size64) throw();
+   bool operator==(SIZE64 size64) const throw();
+   bool operator!=(SIZE64 size64) const throw();
+   void operator+=(SIZE64 size64) throw();
+   void operator-=(SIZE64 size64) throw();
    void set_size(int64_t CX, int64_t CY) throw();
 
 // Operators returning size64 values
-   size64 operator+(__size64 size64) const throw();
-   size64 operator-(__size64 size64) const throw();
+   size64 operator+(SIZE64 size64) const throw();
+   size64 operator-(SIZE64 size64) const throw();
    size64 operator-() const throw();
 
 // Operators returning point values
-   point64 operator+(__point64 point) const throw();
-   point64 operator-(__point64 point) const throw();
+   point64 operator+(POINT64 point) const throw();
+   point64 operator-(POINT64 point) const throw();
 
 // Operators returning rect values
-   rect64 operator+(const __rect64 * lpRect) const throw();
-   rect64 operator-(const __rect64 * lpRect) const throw();
+   rect64 operator+(const RECT64 * lpRect) const throw();
+   rect64 operator-(const RECT64 * lpRect) const throw();
 
    int64_t area() const throw();
    inline bool is_empty() const throw();
@@ -158,20 +162,22 @@ inline bool size64::is_empty() const throw()
 /////////////////////////////////////////////////////////////////////////////
 // sized - An extent, similar to Windows SIZE structure.
 
-class CLASS_DECL_AURA sized : public tagSIZED
+class CLASS_DECL_AURA sized : public SIZED
 {
 public:
 
 // Constructors
-   // construct an uninitialized sized
+   // construct a 0.-initialized sized
    sized() throw();
+   // construct an uninitialized sized
+   sized(no_init) throw();
    // create from two integers
    sized(double initCX, double initCY) throw();
    // create from another sized
    sized(const SIZED * pinitSize) throw();
    sized(SIZED initSize) throw();
-   sized(__size64 initSize) throw();
-   sized(const __size64 * pinitSize) throw();
+   sized(SIZE64 initSize) throw();
+   sized(const SIZE64 * pinitSize) throw();
    sized(SIZE initSize) throw();
    sized(const SIZE * pinitSize) throw();
    // create from a pointd

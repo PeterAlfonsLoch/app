@@ -400,7 +400,7 @@ void rect64::SetBottomRightSize(int64_t iWidth, int64_t iHeight)
     bottom = top + iHeight;
 }
 
-void rect64::ExtendOnCenter(const __rect64 *  lpcrect)
+void rect64::ExtendOnCenter(const RECT64 *  lpcrect)
 {
     int64_t cx = width();
     int64_t cy = height();
@@ -418,7 +418,7 @@ void rect64::ExtendOnCenter(const __rect64 *  lpcrect)
 }
 
 
-void rect64::FitOnCenterOf(const __rect64 *  lpcrect)
+void rect64::FitOnCenterOf(const RECT64 *  lpcrect)
 {
     int64_t cx = width();
     int64_t cy = height();
@@ -454,7 +454,7 @@ void rect64::ScaleHeightAspect(int64_t iNewHeight, int64_t iCenterX, int64_t iCe
    }
 }
 
-void rect64::Align(int64_t align, const __rect64 *  lpcrect)
+void rect64::Align(int64_t align, const RECT64 *  lpcrect)
 {
 
    point64 pt(0, 0);
@@ -489,7 +489,7 @@ void rect64::Align(int64_t align, const __rect64 *  lpcrect)
 
 }
 
-void rect64::ConstraintV5(const __rect64 *  lpcrect, const class size sizeMin)
+void rect64::ConstraintV5(const RECT64 *  lpcrect, const class size sizeMin)
 {
    if(left < lpcrect->left)
       left = lpcrect->left;
@@ -507,7 +507,7 @@ void rect64::ConstraintV5(const __rect64 *  lpcrect, const class size sizeMin)
 
 }
 
-bool rect64::contains(const __rect64 *  lpcrect) const
+bool rect64::contains(const RECT64 *  lpcrect) const
 {
    return lpcrect->left >= left
       && lpcrect->right <= right
@@ -516,7 +516,7 @@ bool rect64::contains(const __rect64 *  lpcrect) const
 }
 
 // Subtract minor from major and return the greatest box around.
-void rect64::SubtractRectMajor(const __rect64 *  lpcrectMajor, const __rect64 *  lpcrectMinor)
+void rect64::SubtractRectMajor(const RECT64 *  lpcrectMajor, const RECT64 *  lpcrectMinor)
 {
    rect64 rectIntersect;
    rect64 rectRet(*this);
@@ -591,7 +591,7 @@ void rect64::SubtractRectMajor(const __rect64 *  lpcrectMajor, const __rect64 * 
 
 }
 
-void rect64::SubtractRectMinor(const __rect64 *  lpcrectMajor, const __rect64 *  lpcrectMinor)
+void rect64::SubtractRectMinor(const RECT64 *  lpcrectMajor, const RECT64 *  lpcrectMinor)
 {
    UNREFERENCED_PARAMETER(lpcrectMajor);
    UNREFERENCED_PARAMETER(lpcrectMinor);
@@ -702,7 +702,7 @@ rect::rect(int64_t l, int64_t t, int64_t r, int64_t b) throw()
    { left = (int32_t) l; top = (int32_t) t; right = (int32_t) r; bottom = (int32_t) b; }
 rect::rect(const RECT& srcRect) throw()
    { ::CopyRect(this, (LPCRECT) &srcRect); }
-rect::rect(const __rect64& srcRect) throw()
+rect::rect(const RECT64& srcRect) throw()
    { ::copy(this, &srcRect); }
 rect::rect(LPCRECT lpSrcRect) throw()
    { ::CopyRect(this, lpSrcRect); }
@@ -987,17 +987,17 @@ rect64::rect64() throw()
    { /* random filled */ }
 rect64::rect64(int64_t l, int64_t t, int64_t r, int64_t b) throw()
    { left = l; top = t; right = r; bottom = b; }
-rect64::rect64(const __rect64 & srcRect) throw()
+rect64::rect64(const RECT64 & srcRect) throw()
    { ::copy(this, &srcRect); }
 rect64::rect64(const RECT & srcRect) throw()
    { ::copy(this, &srcRect); }
-rect64::rect64(const __rect64 * lpSrcRect) throw()
+rect64::rect64(const RECT64 * lpSrcRect) throw()
    { ::copy(this, lpSrcRect); }
 rect64::rect64(const RECT * lpSrcRect) throw()
    { ::copy(this, lpSrcRect); }
-rect64::rect64(__point64 point64, __size64 size64) throw()
+rect64::rect64(POINT64 point64, SIZE64 size64) throw()
    { right = (left = point64.x) + size64.cx; bottom = (top = point64.y) + size64.cy; }
-rect64::rect64(__point64 topLeft, __point64 bottomRight) throw()
+rect64::rect64(POINT64 topLeft, POINT64 bottomRight) throw()
    { left = topLeft.x; top = topLeft.y;
       right = bottomRight.x; bottom = bottomRight.y; }
 int64_t rect64::width() const throw()
@@ -1015,42 +1015,42 @@ const point64& rect64::top_left() const throw()
 const point64& rect64::bottom_right() const throw()
    { return *((point64*)this+1); }
 void rect64::swap_left_right() throw()
-   { swap_left_right((__rect64 *)(this)); }
-void WINAPI rect64::swap_left_right(__rect64 * lpRect) throw()
+   { swap_left_right((RECT64 *)(this)); }
+void WINAPI rect64::swap_left_right(RECT64 * lpRect) throw()
    { int64_t temp = lpRect->left; lpRect->left = lpRect->right; lpRect->right = temp; }
-rect64::operator __rect64 *() throw()
+rect64::operator RECT64 *() throw()
    { return this; }
-rect64::operator const __rect64 *() const throw()
+rect64::operator const RECT64 *() const throw()
    { return this; }
 rect64::operator rect() const
 {
    return rect(*this);
 }
-bool rect64::contains(__point64 point) const throw()
+bool rect64::contains(POINT64 point) const throw()
    { return ::contains(this, point); }
 void rect64::set(int64_t x1, int64_t y1, int64_t x2, int64_t y2) throw()
    { ::set_rect(this, x1, y1, x2, y2); }
-void rect64::set(__point64 topLeft, __point64 bottomRight) throw()
+void rect64::set(POINT64 topLeft, POINT64 bottomRight) throw()
    { ::set_rect(this, topLeft.x, topLeft.y, bottomRight.x, bottomRight.y); }
 void rect64::null() throw()
    { ::null(this); }
-void rect64::copy(const __rect64 * lpSrcRect) throw()
+void rect64::copy(const RECT64 * lpSrcRect) throw()
    { ::copy(this, lpSrcRect); }
-bool rect64::is_equal(const __rect64 * lpRect) const throw()
+bool rect64::is_equal(const RECT64 * lpRect) const throw()
    { return ::is_equal(this, lpRect); }
 void rect64::inflate(int64_t x, int64_t y) throw()
    { ::inflate(this, x, y); }
-void rect64::inflate(__size64 size64) throw()
+void rect64::inflate(SIZE64 size64) throw()
    { ::inflate(this, size64.cx, size64.cy); }
 void rect64::deflate(int64_t x, int64_t y) throw()
    { ::inflate(this, -x, -y); }
-void rect64::deflate(__size64 size64) throw()
+void rect64::deflate(SIZE64 size64) throw()
    { ::inflate(this, -size64.cx, -size64.cy); }
 void rect64::offset(int64_t x, int64_t y) throw()
    { ::offset(this, x, y); }
-void rect64::offset(__point64 point64) throw()
+void rect64::offset(POINT64 point64) throw()
    { ::offset(this, point64.x, point64.y); }
-void rect64::offset(__size64 size64) throw()
+void rect64::offset(SIZE64 size64) throw()
    { ::offset(this, size64.cx, size64.cy); }
 void rect64::move_to_y(int64_t y) throw()
    { bottom = height() + y; top = y; }
@@ -1058,53 +1058,53 @@ void rect64::move_to_x(int64_t x) throw()
    { right = width() + x; left = x; }
 void rect64::move_to(int64_t x, int64_t y) throw()
    { move_to_x(x); move_to_y(y); }
-void rect64::move_to(__point64 pt) throw()
+void rect64::move_to(POINT64 pt) throw()
    { move_to_x(pt.x); move_to_y(pt.y); }
-bool rect64::intersect(const __rect64 * lpRect1, const __rect64 * lpRect2) throw()
+bool rect64::intersect(const RECT64 * lpRect1, const RECT64 * lpRect2) throw()
    { return ::intersect(this, lpRect1, lpRect2);}
-bool rect64::unite(const __rect64 * lpRect1, const __rect64 * lpRect2) throw()
+bool rect64::unite(const RECT64 * lpRect1, const RECT64 * lpRect2) throw()
    { return ::unite(this, lpRect1, lpRect2); }
-void rect64::operator=(const __rect64& srcRect) throw()
+void rect64::operator=(const RECT64& srcRect) throw()
    { ::copy(this, &srcRect); }
-bool rect64::operator==(const __rect64& rect64) const throw()
+bool rect64::operator==(const RECT64& rect64) const throw()
    { return ::is_equal(this, &rect64); }
-bool rect64::operator!=(const __rect64& rect64) const throw()
+bool rect64::operator!=(const RECT64& rect64) const throw()
    { return !::is_equal(this, &rect64); }
-void rect64::operator+=(__point64 point64) throw()
+void rect64::operator+=(POINT64 point64) throw()
    { ::offset(this, point64.x, point64.y); }
-void rect64::operator+=(__size64 size64) throw()
+void rect64::operator+=(SIZE64 size64) throw()
    { ::offset(this, size64.cx, size64.cy); }
-void rect64::operator+=(const __rect64 * lpRect) throw()
+void rect64::operator+=(const RECT64 * lpRect) throw()
    { inflate(lpRect); }
-void rect64::operator-=(__point64 point64) throw()
+void rect64::operator-=(POINT64 point64) throw()
    { ::offset(this, -point64.x, -point64.y); }
-void rect64::operator-=(__size64 size64) throw()
+void rect64::operator-=(SIZE64 size64) throw()
    { ::offset(this, -size64.cx, -size64.cy); }
-void rect64::operator-=(const __rect64 * lpRect) throw()
+void rect64::operator-=(const RECT64 * lpRect) throw()
    { deflate(lpRect); }
-void rect64::operator&=(const __rect64& rect64) throw()
+void rect64::operator&=(const RECT64& rect64) throw()
    { ::intersect(this, this, &rect64); }
-void rect64::operator|=(const __rect64& rect64) throw()
+void rect64::operator|=(const RECT64& rect64) throw()
    { ::unite(this, this, &rect64); }
-rect64 rect64::operator+(__point64 pt) const throw()
+rect64 rect64::operator+(POINT64 pt) const throw()
    { rect64 rect64(*this); ::offset(&rect64, pt.x, pt.y); return rect64; }
-rect64 rect64::operator-(__point64 pt) const throw()
+rect64 rect64::operator-(POINT64 pt) const throw()
    { rect64 rect64(*this); ::offset(&rect64, -pt.x, -pt.y); return rect64; }
-rect64 rect64::operator+(__size64 size64) const throw()
+rect64 rect64::operator+(SIZE64 size64) const throw()
    { rect64 rect64(*this); ::offset(&rect64, size64.cx, size64.cy); return rect64; }
-rect64 rect64::operator-(__size64 size64) const throw()
+rect64 rect64::operator-(SIZE64 size64) const throw()
    { rect64 rect64(*this); ::offset(&rect64, -size64.cx, -size64.cy); return rect64; }
-rect64 rect64::operator+(const __rect64 * lpRect) const throw()
+rect64 rect64::operator+(const RECT64 * lpRect) const throw()
    { rect64 rect64(this); rect64.inflate(lpRect); return rect64; }
-rect64 rect64::operator-(const __rect64 * lpRect) const throw()
+rect64 rect64::operator-(const RECT64 * lpRect) const throw()
    { rect64 rect64(this); rect64.deflate(lpRect); return rect64; }
-rect64 rect64::operator&(const __rect64& rect2) const throw()
+rect64 rect64::operator&(const RECT64& rect2) const throw()
    { rect64 rect64; ::intersect(&rect64, this, &rect2);
       return rect64; }
-rect64 rect64::operator|(const __rect64& rect2) const throw()
+rect64 rect64::operator|(const RECT64& rect2) const throw()
    { rect64 rect64; ::unite(&rect64, this, &rect2);
       return rect64; }
-//bool rect64::subtract(const __rect64 * lpRectSrc1, const __rect64 * lpRectSrc2) throw()
+//bool rect64::subtract(const RECT64 * lpRectSrc1, const RECT64 * lpRectSrc2) throw()
 //   { return ::subtract(this, lpRectSrc1, lpRectSrc2); }
 
 void rect64::normalize() throw()
@@ -1124,7 +1124,7 @@ void rect64::normalize() throw()
       }
    }
 
-void rect64::inflate(const __rect64 * lpRect) throw()
+void rect64::inflate(const RECT64 * lpRect) throw()
    {
       left -= lpRect->left;      top -= lpRect->top;
       right += lpRect->right;      bottom += lpRect->bottom;
@@ -1136,7 +1136,7 @@ void rect64::inflate(int64_t l, int64_t t, int64_t r, int64_t b) throw()
       right += r;         bottom += b;
    }
 
-void rect64::deflate(const __rect64 * lpRect) throw()
+void rect64::deflate(const RECT64 * lpRect) throw()
    {
       left += lpRect->left;   top += lpRect->top;
       right -= lpRect->right;   bottom -= lpRect->bottom;
@@ -1215,7 +1215,7 @@ rectd::rectd(double l, double t, double r, double b) throw()
    { left = (double) l; top = (double) t; right = (double) r; bottom = (double) b; }
 rectd::rectd(const RECTD& srcRect) throw()
    { ::copy(this, &srcRect); }
-rectd::rectd(const __rect64& srcRect) throw()
+rectd::rectd(const RECT64& srcRect) throw()
    { ::copy(this, &srcRect); }
 rectd::rectd(LPCRECTD lpSrcRect) throw()
    { ::copy(this, lpSrcRect); }

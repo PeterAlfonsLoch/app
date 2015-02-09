@@ -38,12 +38,9 @@ namespace draw2d
 
    double dib::dPi;
 
+
    dib::dib()
    {
-
-      m_size.cx      = 0;
-
-      m_size.cy      = 0;
 
       m_iScan    = 0;
 

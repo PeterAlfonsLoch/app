@@ -40,11 +40,11 @@ namespace plugin
 
       
       using ::database::user::interaction::GetWindowRect;
-      virtual void GetWindowRect(__rect64 * lprect);
+      virtual void GetWindowRect(RECT64 * lprect);
 
       
       using ::database::user::interaction::GetClientRect;
-      virtual void GetClientRect(__rect64 * lprect);
+      virtual void GetClientRect(RECT64 * lprect);
 
       
       virtual bool IsWindowVisible();

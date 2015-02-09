@@ -85,10 +85,10 @@ namespace hotplugin
       //virtual bool SetWindowPos(int32_t z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags = SWP_SHOWWINDOW);
 
       using ::simple_ui::interaction::GetWindowRect;
-      virtual void GetWindowRect(__rect64 * prect);
+      virtual void GetWindowRect(RECT64 * prect);
 
       using ::simple_ui::interaction::GetClientRect;
-      virtual void GetClientRect(__rect64 * lprect);
+      virtual void GetClientRect(RECT64 * lprect);
 
 
 

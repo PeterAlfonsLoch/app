@@ -2265,7 +2265,7 @@ namespace draw2d
       ::exception::throw_interface_only(get_app());
    }
 
-   void graphics::FillSolidRect(const __rect64 * lpRect, COLORREF clr)
+   void graphics::FillSolidRect(const RECT64 * lpRect, COLORREF clr)
    {
       UNREFERENCED_PARAMETER(lpRect);
       UNREFERENCED_PARAMETER(clr);

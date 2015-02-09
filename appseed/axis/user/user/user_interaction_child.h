@@ -117,18 +117,18 @@ namespace user
       virtual ::user::interaction * GetOwner() const;
 
       using ::user::interaction_impl_base::GetWindowRect;
-      void GetWindowRect(__rect64 * lprect);
+      void GetWindowRect(RECT64 * lprect);
       using ::user::interaction_impl_base::GetClientRect;
-      void GetClientRect(__rect64 * lprect);
+      void GetClientRect(RECT64 * lprect);
 
       virtual void ClientToScreen(LPRECT lprect);
-      virtual void ClientToScreen(__rect64 * lprect);
+      virtual void ClientToScreen(RECT64 * lprect);
       virtual void ClientToScreen(LPPOINT lppoint);
-      virtual void ClientToScreen(__point64 * lppoint);
+      virtual void ClientToScreen(POINT64 * lppoint);
       virtual void ScreenToClient(LPRECT lprect);
-      virtual void ScreenToClient(__rect64 * lprect);
+      virtual void ScreenToClient(RECT64 * lprect);
       virtual void ScreenToClient(LPPOINT lppoint);
-      virtual void ScreenToClient(__point64 * lppoint);
+      virtual void ScreenToClient(POINT64 * lppoint);
 
 
    };

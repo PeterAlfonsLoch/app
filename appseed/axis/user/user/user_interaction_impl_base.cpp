@@ -306,7 +306,7 @@ namespace user
    }
 
 
-   void interaction_impl_base::ClientToScreen(__rect64 * lprect)
+   void interaction_impl_base::ClientToScreen(RECT64 * lprect)
    {
 
       m_pui->ClientToScreen(lprect);
@@ -314,7 +314,7 @@ namespace user
    }
 
 
-   void interaction_impl_base::ClientToScreen(__point64 * lppoint)
+   void interaction_impl_base::ClientToScreen(POINT64 * lppoint)
    {
 
       m_pui->ClientToScreen(lppoint);
@@ -338,7 +338,7 @@ namespace user
    }
 
 
-   void interaction_impl_base::ScreenToClient(__rect64 * lprect)
+   void interaction_impl_base::ScreenToClient(RECT64 * lprect)
    {
 
       m_pui->ScreenToClient(lprect);
@@ -346,7 +346,7 @@ namespace user
    }
 
 
-   void interaction_impl_base::ScreenToClient(__point64 * lppoint)
+   void interaction_impl_base::ScreenToClient(POINT64 * lppoint)
    {
 
       m_pui->ScreenToClient(lppoint);
@@ -370,7 +370,7 @@ namespace user
    }
 
 
-   void interaction_impl_base::GetClientRect(__rect64 * lprect)
+   void interaction_impl_base::GetClientRect(RECT64 * lprect)
    {
 
       m_pui->GetClientRect(lprect);
@@ -378,7 +378,7 @@ namespace user
    }
 
 
-   void interaction_impl_base::GetWindowRect(__rect64 * lprect)
+   void interaction_impl_base::GetWindowRect(RECT64 * lprect)
    {
 
       m_pui->GetWindowRect(lprect);

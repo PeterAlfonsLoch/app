@@ -189,7 +189,7 @@ namespace user
       virtual void layout_pane(index iPane);
 
       virtual void GetTabClientRect(LPRECT lprect);
-      virtual void GetTabClientRect(__rect64 * lprect);
+      virtual void GetTabClientRect(RECT64 * lprect);
 
       virtual bool add_tab(const char * lpcsz, id idTab = id(), bool bVisible = true, bool bPermanent = false);
       virtual bool set_tab(const char * lpcsz, id idTab = id(), bool bVisible = true);

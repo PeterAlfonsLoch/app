@@ -2906,7 +2906,7 @@ namespace draw2d_direct2d
 
    }
 
-   void graphics::FillSolidRect(const __rect64 * lpRect, COLORREF clr)
+   void graphics::FillSolidRect(const RECT64 * lpRect, COLORREF clr)
    {
       rect rect32;
       ::copy(rect32, lpRect);

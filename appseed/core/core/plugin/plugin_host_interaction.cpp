@@ -191,7 +191,7 @@ namespace plugin
    }
 
 
-   void host_interaction::GetWindowRect(__rect64 * lprect)
+   void host_interaction::GetWindowRect(RECT64 * lprect)
    {
       RECT rect;
       m_pplugin->GetWindowRect(&rect);
@@ -199,7 +199,7 @@ namespace plugin
    }
 
 
-   void host_interaction::GetClientRect(__rect64 * lprect)
+   void host_interaction::GetClientRect(RECT64 * lprect)
    {
       RECT rect;
       m_pplugin->GetClientRect(&rect);

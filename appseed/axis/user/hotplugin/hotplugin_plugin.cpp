@@ -920,7 +920,7 @@ namespace hotplugin
    }
 
 
-   void plugin::GetWindowRect(__rect64 * prect)
+   void plugin::GetWindowRect(RECT64 * prect)
    {
 
       if(m_phost != NULL)
@@ -933,7 +933,7 @@ namespace hotplugin
    }
 
 
-   void plugin::GetClientRect(__rect64 * prect)
+   void plugin::GetClientRect(RECT64 * prect)
    {
 
       if(m_phost != NULL)

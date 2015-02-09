@@ -54,7 +54,7 @@ namespace user
 
 
       using ::user::control::GetClientRect;
-      virtual void GetClientRect(__rect64 * lprect);
+      virtual void GetClientRect(RECT64 * lprect);
 
 
       DECL_GEN_SIGNAL(_001OnSetFocus);

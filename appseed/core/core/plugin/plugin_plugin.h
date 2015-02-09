@@ -1,8 +1,6 @@
 #pragma once
 
 
-class __rect64;
-
 int32_t spaboot_start(const char * pszVersion, const char * pszId);
 
 

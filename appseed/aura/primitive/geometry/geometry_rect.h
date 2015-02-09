@@ -17,7 +17,7 @@ public:
    rect(int64_t l, int64_t t, int64_t r, int64_t b) throw();
    // copy constructor
    rect(const RECT& srcRect) throw();
-   rect(const __rect64& srcRect) throw();
+   rect(const RECT64& srcRect) throw();
    // from a pointer to another rect
    rect(LPCRECT lpSrcRect) throw();
    // from a point and size
@@ -193,7 +193,7 @@ public:
 /////////////////////////////////////////////////////////////////////////////
 // rect64 - A 2-D rect64angle, similar to Windows RECT structure.
 
-class CLASS_DECL_AURA rect64 : public __rect64
+class CLASS_DECL_AURA rect64 : public RECT64
 {
 // Constructors
 public:
@@ -204,15 +204,15 @@ public:
    // copy constructor
    rect64(const RECT& srcRect) throw();
    // copy constructor
-   rect64(const __rect64 & srcRect) throw();
+   rect64(const RECT64 & srcRect) throw();
    // from a point64_ter to another rect64
    rect64(const RECT * lpSrcRect) throw();
    // from a point64_ter to another rect64
-   rect64(const __rect64 * lpSrcRect) throw();
-   // from a __point64 and size
-   rect64(__point64 __point64, __size64 size) throw();
+   rect64(const RECT64 * lpSrcRect) throw();
+   // from a POINT64 and size
+   rect64(POINT64 POINT64, SIZE64 size) throw();
    // from two point64_ts
-   rect64(__point64 topLeft, __point64 bottomRight) throw();
+   rect64(POINT64 topLeft, POINT64 bottomRight) throw();
 
 // Attributes (in addition to RECT members)
 
@@ -222,43 +222,43 @@ public:
    int64_t height() const throw();
    // returns the size
    size64 size() const throw();
-   // reference to the top-left __point64
+   // reference to the top-left POINT64
    point64& top_left() throw();
-   // reference to the bottom-right __point64
+   // reference to the bottom-right POINT64
    point64& bottom_right() throw();
-   // const reference to the top-left __point64
+   // const reference to the top-left POINT64
    const point64& top_left() const throw();
-   // const reference to the bottom-right __point64
+   // const reference to the bottom-right POINT64
    const point64& bottom_right() const throw();
-   // the geometric center __point64 of the rect64angle
+   // the geometric center POINT64 of the rect64angle
    point64 center() const throw();
    // swap the left and right
    void swap_left_right() throw();
-   static void WINAPI swap_left_right(__rect64 * lpRect) throw();
+   static void WINAPI swap_left_right(RECT64 * lpRect) throw();
 
-   // convert between rect64 and __rect64 */const __rect64 * (no need for &)
-   operator __rect64 *() throw();
-   operator const __rect64 *() const throw();
+   // convert between rect64 and RECT64 */const RECT64 * (no need for &)
+   operator RECT64 *() throw();
+   operator const RECT64 *() const throw();
    operator rect() const;
 
    // returns TRUE if rect64angle has no area
    bool is_empty() const throw();
    // returns TRUE if rect64angle is at (0,0) and has no area
    bool is_null() const throw();
-   // returns TRUE if __point64 is within rect64angle
-   bool contains(__point64 pt) const throw();
+   // returns TRUE if POINT64 is within rect64angle
+   bool contains(POINT64 pt) const throw();
 
 // Operations
 
    // set rect64angle from left, top, right, and bottom
    void set(int64_t x1, int64_t y1, int64_t x2, int64_t y2) throw();
-   void set(__point64 topLeft, __point64 bottomRight) throw();
+   void set(POINT64 topLeft, POINT64 bottomRight) throw();
    // is_empty the rect64angle
    void null() throw();
    // copy from another rect64angle
-   void copy(const __rect64 * lpSrcRect) throw();
+   void copy(const RECT64 * lpSrcRect) throw();
    // TRUE if exactly the same as another rect64angle
-   bool is_equal(const __rect64 * lpRect) const throw();
+   bool is_equal(const RECT64 * lpRect) const throw();
 
    // Inflate rect64angle's width and height by
    // x units to the left and right ends of the rect64angle
@@ -267,86 +267,86 @@ public:
    // Inflate rect64angle's width and height by
    // size.cx units to the left and right ends of the rect64angle
    // and size.cy units to the top and bottom.
-   void inflate(__size64 size) throw();
+   void inflate(SIZE64 size) throw();
    // Inflate rect64angle's width and height by moving individual sides.
    // Left side is moved to the left, right side is moved to the right,
    // top is moved up and bottom is moved down.
-   void inflate(const __rect64 * lpRect) throw();
+   void inflate(const RECT64 * lpRect) throw();
    void inflate(int64_t l, int64_t t, int64_t r, int64_t b) throw();
 
    // deflate the rect64angle's width and height without
    // moving its top or left
    void deflate(int64_t x, int64_t y) throw();
-   void deflate(__size64 size) throw();
-   void deflate(const __rect64 * lpRect) throw();
+   void deflate(SIZE64 size) throw();
+   void deflate(const RECT64 * lpRect) throw();
    void deflate(int64_t l, int64_t t, int64_t r, int64_t b) throw();
 
    // translate the rect64angle by moving its top and left
    void offset(int64_t x, int64_t y) throw();
-   void offset(__size64 size) throw();
-   void offset(__point64 __point64) throw();
+   void offset(SIZE64 size) throw();
+   void offset(POINT64 POINT64) throw();
    void normalize() throw();
 
    // absolute position of rect64angle
    void move_to_y(int64_t y) throw();
    void move_to_x(int64_t x) throw();
    void move_to(int64_t x, int64_t y) throw();
-   void move_to(__point64 pt) throw();
+   void move_to(POINT64 pt) throw();
 
    // set this rect64angle to int64_tersection of two others
-   bool intersect(const __rect64 * lpRect1, const __rect64 * lpRect2) throw();
+   bool intersect(const RECT64 * lpRect1, const RECT64 * lpRect2) throw();
 
    // set this rect64angle to bounding union of two others
-   bool unite(const __rect64 * lpRect1, const __rect64 * lpRect2) throw();
+   bool unite(const RECT64 * lpRect1, const RECT64 * lpRect2) throw();
 
    // set this rect64angle to minimum of two others
-//   bool subtract(const __rect64 * lpRectSrc1, const __rect64 * lpRectSrc2) throw();
+//   bool subtract(const RECT64 * lpRectSrc1, const RECT64 * lpRectSrc2) throw();
 
 // Additional Operations
-   void operator=(const __rect64& srcRect) throw();
-   bool operator==(const __rect64& rect64) const throw();
-   bool operator!=(const __rect64& rect64) const throw();
-   void operator+=(__point64 __point64) throw();
-   void operator+=(__size64 size) throw();
-   void operator+=(const __rect64 * lpRect) throw();
-   void operator-=(__point64 __point64) throw();
-   void operator-=(__size64 size) throw();
-   void operator-=(const __rect64 * lpRect) throw();
-   void operator&=(const __rect64& rect64) throw();
-   void operator|=(const __rect64& rect64) throw();
+   void operator=(const RECT64& srcRect) throw();
+   bool operator==(const RECT64& rect64) const throw();
+   bool operator!=(const RECT64& rect64) const throw();
+   void operator+=(POINT64 POINT64) throw();
+   void operator+=(SIZE64 size) throw();
+   void operator+=(const RECT64 * lpRect) throw();
+   void operator-=(POINT64 POINT64) throw();
+   void operator-=(SIZE64 size) throw();
+   void operator-=(const RECT64 * lpRect) throw();
+   void operator&=(const RECT64& rect64) throw();
+   void operator|=(const RECT64& rect64) throw();
 
 // Operators returning rect64 values
-   rect64 operator+(__point64 __point64) const throw();
-   rect64 operator-(__point64 __point64) const throw();
-   rect64 operator+(const __rect64 * lpRect) const throw();
-   rect64 operator+(__size64 size) const throw();
-   rect64 operator-(__size64 size) const throw();
-   rect64 operator-(const __rect64 * lpRect) const throw();
-   rect64 operator&(const __rect64 & rect642) const throw();
-   rect64 operator|(const __rect64& rect642) const throw();
+   rect64 operator+(POINT64 POINT64) const throw();
+   rect64 operator-(POINT64 POINT64) const throw();
+   rect64 operator+(const RECT64 * lpRect) const throw();
+   rect64 operator+(SIZE64 size) const throw();
+   rect64 operator-(SIZE64 size) const throw();
+   rect64 operator-(const RECT64 * lpRect) const throw();
+   rect64 operator&(const RECT64 & rect642) const throw();
+   rect64 operator|(const RECT64& rect642) const throw();
    rect64 MulDiv(int64_t nMultiplier, int64_t nDivisor) const throw();
 
    int64_t area();
-   bool contains(const __rect64 * lpcrect) const;
-   bool contains(const __rect64 * lpcrect);
-   void ConstraintV5(const __rect64 * lpcrect, const class size sizeMin);
-   void Align(int64_t align, const __rect64 * lpcrect);
+   bool contains(const RECT64 * lpcrect) const;
+   bool contains(const RECT64 * lpcrect);
+   void ConstraintV5(const RECT64 * lpcrect, const class size sizeMin);
+   void Align(int64_t align, const RECT64 * lpcrect);
    void ScaleHeightAspect(int64_t iNewHeight, int64_t iCenterX, int64_t iCenterY);
    void ScaleRect(double dx, double dy, int64_t ix, int64_t iy);
-   void ExtendOnCenter(const __rect64 * lpcrect);
-   void FitOnCenterOf(const __rect64 * lpcrect);
+   void ExtendOnCenter(const RECT64 * lpcrect);
+   void FitOnCenterOf(const RECT64 * lpcrect);
    void DeflateBottomRightSizeByRate(double dRate);
    void SetBottomRightSize(int64_t iWidth, int64_t iHeight);
 
    inline point64 top_right() const throw();
    inline point64 bottom_left() const throw();
 
-   void SubtractRectMajor(const __rect64 * lpcrectMajor, const __rect64 * lpcrectMinor);
-   void SubtractRectMinor(const __rect64 * lpcrectMajor, const __rect64 * lpcrectMinor);
+   void SubtractRectMajor(const RECT64 * lpcrectMajor, const RECT64 * lpcrectMinor);
+   void SubtractRectMinor(const RECT64 * lpcrectMajor, const RECT64 * lpcrectMinor);
 
 
-   void assign(const __rect64 * lpcrect,e_orientation eorientation) throw();
-   void assign_normal(const __rect64 * lpcrect,e_orientation eorientation) throw();
+   void assign(const RECT64 * lpcrect,e_orientation eorientation) throw();
+   void assign_normal(const RECT64 * lpcrect,e_orientation eorientation) throw();
 
 
    int64_t minimum_dimension() const throw(){ return MIN(width(),height()); }
@@ -451,7 +451,7 @@ class pointd_array;
 /////////////////////////////////////////////////////////////////////////////
 // rect - A 2-D rectangle, similar to Windows RECT structure.
 
-class CLASS_DECL_AURA rectd : public tagRECTD
+class CLASS_DECL_AURA rectd : public RECTD
 {
 // Constructors
 public:
@@ -461,7 +461,7 @@ public:
    rectd(double l, double t, double r, double b) throw();
    // copy constructor
    rectd(const RECTD& srcRect) throw();
-   rectd(const __rect64& srcRect) throw();
+   rectd(const RECT64& srcRect) throw();
    // from a pointer to another rectd
    rectd(LPCRECTD lpSrcRect) throw();
    // from a point and size
@@ -603,8 +603,8 @@ public:
    void get_bounding_rect(const POINTD * lppoint, ::count count);
    void get_bounding_rect(const pointd_array & pointa);
 
-   void assign(const tagRECTD * lpcrect,e_orientation eorientation) throw();
-   void assign_normal(const tagRECTD * lpcrect,e_orientation eorientation) throw();
+   void assign(const RECTD * lpcrect,e_orientation eorientation) throw();
+   void assign_normal(const RECTD * lpcrect,e_orientation eorientation) throw();
 
    double minimum_dimension() const throw(){ return MIN(width(),height()); }
    double maximum_dimension() const throw(){ return MAX(width(),height()); }
@@ -671,7 +671,7 @@ inline void rect::assign_normal(const RECT & rect,e_orientation eorientation) th
 
 }
 
-inline void rect64::assign(const __rect64 * lpcrect,e_orientation eorientation) throw()
+inline void rect64::assign(const RECT64 * lpcrect,e_orientation eorientation) throw()
 {
 
    if(eorientation == orientation_horizontal)
@@ -692,7 +692,7 @@ inline void rect64::assign(const __rect64 * lpcrect,e_orientation eorientation) 
 }
 
 
-inline void rect64::assign_normal(const __rect64 * lpcrect,e_orientation eorientation) throw()
+inline void rect64::assign_normal(const RECT64 * lpcrect,e_orientation eorientation) throw()
 {
 
    if(eorientation == orientation_horizontal)
@@ -712,7 +712,7 @@ inline void rect64::assign_normal(const __rect64 * lpcrect,e_orientation eorient
 
 }
 
-inline void rectd::assign(const tagRECTD * lpcrect,e_orientation eorientation) throw()
+inline void rectd::assign(const RECTD * lpcrect,e_orientation eorientation) throw()
 {
 
    if(eorientation == orientation_horizontal)
@@ -733,7 +733,7 @@ inline void rectd::assign(const tagRECTD * lpcrect,e_orientation eorientation) t
 }
 
 
-inline void rectd::assign_normal(const tagRECTD * lpcrect,e_orientation eorientation) throw()
+inline void rectd::assign_normal(const RECTD * lpcrect,e_orientation eorientation) throw()
 {
 
    if(eorientation == orientation_horizontal)

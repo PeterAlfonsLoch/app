@@ -287,7 +287,7 @@ struct __SIZEPARENTPARAMS
 };
 
 
-typedef struct tagRECTD RECTD;
+typedef struct RECTD RECTD;
 
 
 namespace aura

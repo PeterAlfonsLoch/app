@@ -202,17 +202,17 @@ namespace user
 
       using ::user::interaction_base::GetWindowRect;
       virtual void GetClientRect(LPRECT lprect);
-      virtual void GetClientRect(__rect64 * lprect);
+      virtual void GetClientRect(RECT64 * lprect);
       virtual void GetWindowRect(LPRECT lprect);
-      virtual void GetWindowRect(__rect64 * lprect);
+      virtual void GetWindowRect(RECT64 * lprect);
       virtual void ClientToScreen(LPRECT lprect);
-      virtual void ClientToScreen(__rect64 * lprect);
+      virtual void ClientToScreen(RECT64 * lprect);
       virtual void ClientToScreen(LPPOINT lppoint);
-      virtual void ClientToScreen(__point64 * lppoint);
+      virtual void ClientToScreen(POINT64 * lppoint);
       virtual void ScreenToClient(LPRECT lprect);
-      virtual void ScreenToClient(__rect64 * lprect);
+      virtual void ScreenToClient(RECT64 * lprect);
       virtual void ScreenToClient(LPPOINT lppoint);
-      virtual void ScreenToClient(__point64 * lprect);
+      virtual void ScreenToClient(POINT64 * lprect);
       virtual bool SetPlacement(const RECT & rect,UINT nFlags = SWP_SHOWWINDOW);
       virtual bool RepositionWindow(const RECT & rect, UINT nFlags = SWP_SHOWWINDOW);
       virtual bool RepositionWindow(int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags = SWP_SHOWWINDOW);

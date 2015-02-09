@@ -290,7 +290,7 @@ namespace user
    }
 
 
-   void interaction_base::ClientToScreen(__rect64 * lprect)
+   void interaction_base::ClientToScreen(RECT64 * lprect)
    {
 
       ::exception::throw_interface_only(get_app());
@@ -298,7 +298,7 @@ namespace user
    }
 
 
-   void interaction_base::ClientToScreen(__point64 * lppoint)
+   void interaction_base::ClientToScreen(POINT64 * lppoint)
    {
 
       ::exception::throw_interface_only(get_app());
@@ -322,7 +322,7 @@ namespace user
    }
 
 
-   void interaction_base::ScreenToClient(__rect64 * lprect)
+   void interaction_base::ScreenToClient(RECT64 * lprect)
    {
 
       ::exception::throw_interface_only(get_app());
@@ -330,7 +330,7 @@ namespace user
    }
 
 
-   void interaction_base::ScreenToClient(__point64 * lppoint)
+   void interaction_base::ScreenToClient(POINT64 * lppoint)
    {
 
       ::exception::throw_interface_only(get_app());
@@ -354,7 +354,7 @@ namespace user
    }
 
 
-   void interaction_base::GetClientRect(__rect64 * lprect)
+   void interaction_base::GetClientRect(RECT64 * lprect)
    {
 
       ::exception::throw_interface_only(get_app());
@@ -362,7 +362,7 @@ namespace user
    }
 
 
-   void interaction_base::GetWindowRect(__rect64 * lprect)
+   void interaction_base::GetWindowRect(RECT64 * lprect)
    {
 
       ::exception::throw_interface_only(get_app());

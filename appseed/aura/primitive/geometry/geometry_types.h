@@ -92,7 +92,7 @@ inline R & deflate_rect(R & prect,decltype(R::left) dim)
 //   return &deflate_rect(*lprect, dleft, dtop, dright, dbottom);
 //}
 
-//inline CLASS_DECL_AURA __rect64 & deflate_rect(__rect64 & rect,LONG dleft,LONG dtop,LONG dright,LONG dbottom)
+//inline CLASS_DECL_AURA RECT64 & deflate_rect(RECT64 & rect,LONG dleft,LONG dtop,LONG dright,LONG dbottom)
 //{
 //   rect.left += dleft;
 //   rect.right -= dtop;
@@ -102,7 +102,7 @@ inline R & deflate_rect(R & prect,decltype(R::left) dim)
 //}
 //
 //
-//inline CLASS_DECL_AURA __rect64 * deflate_rect(__rect64 * lprect,LONG dleft,LONG dtop,LONG dright,LONG dbottom)
+//inline CLASS_DECL_AURA RECT64 * deflate_rect(RECT64 * lprect,LONG dleft,LONG dtop,LONG dright,LONG dbottom)
 //{
 //   return &deflate_rect(*lprect,dleft,dtop,dright,dbottom);
 //}
@@ -127,13 +127,13 @@ inline CLASS_DECL_AURA LPRECT inflate_rect(LPRECT lprect, LONG dx, LONG dy)
 //   return &deflate_rect(*lprect, dx, dy);
 //}
 //
-//inline CLASS_DECL_AURA __rect64 & deflate_rect(__rect64 & rect,LONG dx,LONG dy)
+//inline CLASS_DECL_AURA RECT64 & deflate_rect(RECT64 & rect,LONG dx,LONG dy)
 //{
 //   return deflate_rect(rect,dx,dy,dx,dy);
 //}
 //
 //
-//inline CLASS_DECL_AURA __rect64 * deflate_rect(__rect64 * lprect,LONG dx,LONG dy)
+//inline CLASS_DECL_AURA RECT64 * deflate_rect(RECT64 * lprect,LONG dx,LONG dy)
 //{
 //   return &deflate_rect(*lprect,dx,dy);
 //}
@@ -158,12 +158,12 @@ inline CLASS_DECL_AURA LPRECT inflate_rect(LPRECT lprect, LONG d)
 //   return &deflate_rect(*lprect, d);
 //}
 //
-//inline CLASS_DECL_AURA __rect64 & deflate_rect(__rect64 & rect,LONG d)
+//inline CLASS_DECL_AURA RECT64 & deflate_rect(RECT64 & rect,LONG d)
 //{
 //   return deflate_rect(rect,d,d);
 //}
 //
-//inline CLASS_DECL_AURA __rect64 * deflate_rect(__rect64  * lprect,LONG d)
+//inline CLASS_DECL_AURA RECT64 * deflate_rect(RECT64  * lprect,LONG d)
 //{
 //   return &deflate_rect(*lprect,d);
 //}

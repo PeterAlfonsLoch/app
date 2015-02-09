@@ -1,6 +1,10 @@
 #pragma once
 
 
+// flag classes
+struct no_init {};
+
+
 // from 7-zip
 
 namespace aura

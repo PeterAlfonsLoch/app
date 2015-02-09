@@ -61,10 +61,10 @@ namespace hotplugin
 
 
       using ::hotplugin::plugin::GetWindowRect;
-      virtual void GetWindowRect(__rect64 * prect);
+      virtual void GetWindowRect(RECT64 * prect);
 
       using ::hotplugin::plugin::GetClientRect;
-      virtual void GetClientRect(__rect64 * lprect);
+      virtual void GetClientRect(RECT64 * lprect);
 
       virtual bool hotplugin_host_begin();
       virtual bool hotplugin_host_is_initialized();

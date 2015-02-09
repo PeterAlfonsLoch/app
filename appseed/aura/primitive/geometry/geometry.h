@@ -39,88 +39,102 @@ enum e_orientation
 
 
 
-class __size64;
+struct SIZE64;
+struct POINT64;
+struct RECT64;
 class size;
 class size64;
 class sized;
-class __point64;
 class point;
 class point64;
 class pointd;
-class __rect64;
 class rect;
 class rect64;
 class rectd;
 
-class CLASS_DECL_AURA __point64
+struct POINT64
 {
-public:
     int64_t    x;
     int64_t    y;
 };
+
+typedef POINT64 * LPPOINT64;
+typedef const POINT64 * LPCPOINT64;
+
 
 typedef uchar      byte;
 typedef uint16_t     uint16_t;
 //typedef unsigned long      dword;
 typedef uint64_t         qword;
 
-class __size64;
+struct POINT64;
+struct SIZE64;
+struct RECT64;
+struct POINTD;
+struct SIZED;
+struct RECTD;
+
 class size;
 class size64;
-struct tagSIZED;
 class sized;
-class __point64;
 class point;
 class point64;
-struct tagPOINTD;
 class pointd;
-class __rect64;
 class rect;
 class rect64;
-struct tagRECTD;
 class rectd;
 
-class CLASS_DECL_AURA __size64
+struct SIZE64
 {
 public:
    int64_t     cx;
    int64_t     cy;
 };
 
-class CLASS_DECL_AURA __rect64
+
+typedef SIZE64 * LPSIZE64;
+typedef const SIZE64 * LPCSIZE64;
+
+struct RECT64
 {
-public:
    int64_t     left;
    int64_t     top;
    int64_t     right;
    int64_t     bottom;
 };
 
+typedef RECT64 * LPRECT64;
+typedef const RECT64 * LPCRECT64;
 
-typedef struct tagPOINTD
+
+struct POINTD
 {
     double  x;
     double  y;
-} POINTD, *PPOINTD, NEAR *NPPOINTD, FAR *LPPOINTD;
+};
 
-typedef struct tagSIZED
+typedef POINTD * LPPOINTD;
+typedef const POINTD * LPCPOINTD;
+
+struct SIZED
 {
     double        cx;
     double        cy;
-} SIZED, *PSIZED, *LPSIZED;
+};
 
-typedef struct tagRECTD
+typedef SIZED * LPSIZED;
+typedef const SIZED * LPCSIZED;
+
+struct RECTD
 {
     double  left;
     double  top;
     double  right;
     double  bottom;
-} RECTD, *PRECTD, NEAR *NPRECTD, FAR *LPRECTD;
+};
 
-typedef const RECTD FAR* LPCRECTD;
-
-
-
+typedef RECTD * LPRECTD;
+typedef const RECTD * LPCRECTD;
 
 
 
@@ -177,8 +191,8 @@ CLASS_DECL_AURA inline bool is_double(uint64_t ui)
    return (ui & 0xfff0000000000000 ) == 0;
 }
 
-CLASS_DECL_AURA bool copy(__point64 * lpptDest,const POINT * lpptSrc);
-CLASS_DECL_AURA bool copy(LPPOINT lpptDest,const __point64 * lpptSrc);
+CLASS_DECL_AURA bool copy(POINT64 * lpptDest,const POINT * lpptSrc);
+CLASS_DECL_AURA bool copy(LPPOINT lpptDest,const POINT64 * lpptSrc);
 
 
 CLASS_DECL_AURA bool null(LPRECT prectDest);
@@ -192,45 +206,45 @@ CLASS_DECL_AURA bool y_top_null_intersect_rect(LPRECT lprect,LPCRECT lpcrect1,LP
 CLASS_DECL_AURA bool top_left_null_intersect_rect(LPRECT lprect,LPCRECT lpcrect1,LPCRECT lpcrect2);
 
 
-CLASS_DECL_AURA bool copy(tagRECTD * prectDest, const tagRECTD * prectSrc);
-CLASS_DECL_AURA bool copy(tagRECTD * prectDest, const RECT * prectSrc);
-CLASS_DECL_AURA bool copy(RECT * prectDest, const tagRECTD * prectSrc);
-CLASS_DECL_AURA bool copy(tagRECTD * prectDest, const __rect64 * prectSrc);
-CLASS_DECL_AURA bool copy(__rect64 * prectDest, const tagRECTD * prectSrc);
-CLASS_DECL_AURA bool is_empty(const tagRECTD * prect);
-CLASS_DECL_AURA bool contains(const tagRECTD * prect, POINTD pt);
-CLASS_DECL_AURA bool set_rect(tagRECTD * prectDest, double x1, double y1, double x2, double y2);
-CLASS_DECL_AURA bool null(tagRECTD * prectDest);
-CLASS_DECL_AURA bool is_equal(const tagRECTD * prect1, const tagRECTD * prect2);
-CLASS_DECL_AURA bool inflate(tagRECTD * prect, double x, double y);
-CLASS_DECL_AURA bool deflate(tagRECTD * prect, double x, double y);
-CLASS_DECL_AURA bool offset(tagRECTD * prect, double x, double y);
-CLASS_DECL_AURA bool x_intersect_rect(tagRECTD * prect, const tagRECTD * prect1, const tagRECTD * prect2);
-CLASS_DECL_AURA bool y_intersect_rect(tagRECTD * prect, const tagRECTD * prect1, const tagRECTD * prect2);
-CLASS_DECL_AURA bool x_null_intersect_rect(tagRECTD * prect,const tagRECTD * prect1,const tagRECTD * prect2);
-CLASS_DECL_AURA bool y_null_intersect_rect(tagRECTD * prect,const tagRECTD * prect1,const tagRECTD * prect2);
-CLASS_DECL_AURA bool intersect(tagRECTD * prect,const tagRECTD * prect1,const tagRECTD * prect2);
-CLASS_DECL_AURA bool unite(tagRECTD * prect, const tagRECTD * prect1, const tagRECTD * prect2);
+CLASS_DECL_AURA bool copy(RECTD * prectDest, const RECTD * prectSrc);
+CLASS_DECL_AURA bool copy(RECTD * prectDest, const RECT * prectSrc);
+CLASS_DECL_AURA bool copy(RECT * prectDest, const RECTD * prectSrc);
+CLASS_DECL_AURA bool copy(RECTD * prectDest, const RECT64 * prectSrc);
+CLASS_DECL_AURA bool copy(RECT64 * prectDest, const RECTD * prectSrc);
+CLASS_DECL_AURA bool is_empty(const RECTD * prect);
+CLASS_DECL_AURA bool contains(const RECTD * prect, POINTD pt);
+CLASS_DECL_AURA bool set_rect(RECTD * prectDest, double x1, double y1, double x2, double y2);
+CLASS_DECL_AURA bool null(RECTD * prectDest);
+CLASS_DECL_AURA bool is_equal(const RECTD * prect1, const RECTD * prect2);
+CLASS_DECL_AURA bool inflate(RECTD * prect, double x, double y);
+CLASS_DECL_AURA bool deflate(RECTD * prect, double x, double y);
+CLASS_DECL_AURA bool offset(RECTD * prect, double x, double y);
+CLASS_DECL_AURA bool x_intersect_rect(RECTD * prect, const RECTD * prect1, const RECTD * prect2);
+CLASS_DECL_AURA bool y_intersect_rect(RECTD * prect, const RECTD * prect1, const RECTD * prect2);
+CLASS_DECL_AURA bool x_null_intersect_rect(RECTD * prect,const RECTD * prect1,const RECTD * prect2);
+CLASS_DECL_AURA bool y_null_intersect_rect(RECTD * prect,const RECTD * prect1,const RECTD * prect2);
+CLASS_DECL_AURA bool intersect(RECTD * prect,const RECTD * prect1,const RECTD * prect2);
+CLASS_DECL_AURA bool unite(RECTD * prect, const RECTD * prect1, const RECTD * prect2);
 CLASS_DECL_AURA double width(LPCRECTD lpcrect);
 CLASS_DECL_AURA double height(LPCRECTD lpcrect);
 CLASS_DECL_AURA double width(const RECTD & rect);
 CLASS_DECL_AURA double height(const RECTD & rect);
 
-CLASS_DECL_AURA bool copy(__rect64 * prectDest, const __rect64 * prectSrc);
-CLASS_DECL_AURA bool copy(__rect64 * prectDest, const RECT * prectSrc);
-CLASS_DECL_AURA bool copy(RECT * prectDest, const __rect64 * prectSrc);
-CLASS_DECL_AURA bool is_empty(const __rect64 * prect);
-CLASS_DECL_AURA bool contains(const __rect64 * prect, point64 pt);
-CLASS_DECL_AURA bool set_rect(__rect64 * prectDest, int64_t x1, int64_t y1, int64_t x2, int64_t y2);
-CLASS_DECL_AURA bool null(__rect64 * prectDest);
-CLASS_DECL_AURA bool is_equal(const __rect64 * prect1, const __rect64 * prect2);
-CLASS_DECL_AURA bool inflate(__rect64 * prect, int64_t x, int64_t y);
-CLASS_DECL_AURA bool deflate(__rect64 * prect, int64_t x, int64_t y);
-CLASS_DECL_AURA bool offset(__rect64 * prect, int64_t x, int64_t y);
-CLASS_DECL_AURA bool x_intersect_rect(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect2);
-CLASS_DECL_AURA bool y_intersect_rect(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect2);
-CLASS_DECL_AURA bool intersect(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect2);
-CLASS_DECL_AURA bool unite(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect2);
+CLASS_DECL_AURA bool copy(RECT64 * prectDest, const RECT64 * prectSrc);
+CLASS_DECL_AURA bool copy(RECT64 * prectDest, const RECT * prectSrc);
+CLASS_DECL_AURA bool copy(RECT * prectDest, const RECT64 * prectSrc);
+CLASS_DECL_AURA bool is_empty(const RECT64 * prect);
+CLASS_DECL_AURA bool contains(const RECT64 * prect, point64 pt);
+CLASS_DECL_AURA bool set_rect(RECT64 * prectDest, int64_t x1, int64_t y1, int64_t x2, int64_t y2);
+CLASS_DECL_AURA bool null(RECT64 * prectDest);
+CLASS_DECL_AURA bool is_equal(const RECT64 * prect1, const RECT64 * prect2);
+CLASS_DECL_AURA bool inflate(RECT64 * prect, int64_t x, int64_t y);
+CLASS_DECL_AURA bool deflate(RECT64 * prect, int64_t x, int64_t y);
+CLASS_DECL_AURA bool offset(RECT64 * prect, int64_t x, int64_t y);
+CLASS_DECL_AURA bool x_intersect_rect(RECT64 * prect, const RECT64 * prect1, const RECT64 * prect2);
+CLASS_DECL_AURA bool y_intersect_rect(RECT64 * prect, const RECT64 * prect1, const RECT64 * prect2);
+CLASS_DECL_AURA bool intersect(RECT64 * prect, const RECT64 * prect1, const RECT64 * prect2);
+CLASS_DECL_AURA bool unite(RECT64 * prect, const RECT64 * prect1, const RECT64 * prect2);
 
 
 CLASS_DECL_AURA bool deflate(LPRECT prect, const RECT & rect);
@@ -245,6 +259,11 @@ CLASS_DECL_AURA bool deflate(LPRECT prect, const RECT & rect);
 
 #include "geometry_types.h"
 
+
+
+
+
+#include "geometry_size.inl"
 
 
 

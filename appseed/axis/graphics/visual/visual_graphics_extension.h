@@ -19,7 +19,7 @@ namespace visual
 
       bool TextOut(::draw2d::graphics * pdc, int32_t x, int32_t y, const char * lpcwsz, strsize iCount);
       
-      void FillSolidRect(HDC hdc, const __rect64 * lpRect, COLORREF clr);
+      void FillSolidRect(HDC hdc, const RECT64 * lpRect, COLORREF clr);
       void FillSolidRect(HDC hdc, LPCRECT lpRect, COLORREF clr);
       void FillSolidRect(HDC hdc, int32_t x, int32_t y, int32_t cx, int32_t cy, COLORREF clr);
 

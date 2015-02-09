@@ -3417,6 +3417,9 @@
     <None Include="aura\os\windows\windows.inl">
       <Filter>Header Files\aura\os\windows</Filter>
     </None>
+    <None Include="primitive\geometry\geometry_size.inl">
+      <Filter>Header Files\primitive\geometry</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\x86\msvcr120d.dll">

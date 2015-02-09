@@ -2733,7 +2733,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
    bool imaging::color_blend(
       ::draw2d::graphics * pdc,
-      const __rect64 * lpcrect,
+      const RECT64 * lpcrect,
       COLORREF cr,
       BYTE alpha)
    {

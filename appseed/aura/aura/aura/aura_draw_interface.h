@@ -21,7 +21,7 @@ namespace aura
       virtual void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics * pdc) = 0;
 
       virtual void GetWindowRect(LPRECT lprect) = 0;
-      virtual void GetWindowRect(__rect64 * lprect) = 0;
+      virtual void GetWindowRect(RECT64 * lprect) = 0;
       virtual rect GetWindowRect() = 0;
       virtual rect64 GetWindowRect64() = 0;
 

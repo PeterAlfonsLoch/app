@@ -125,7 +125,7 @@ public:
    bool color_blend(::draw2d::graphics * pdc, int32_t x, int32_t y, int32_t cx, int32_t cy, COLORREF cr, BYTE bAlpha);
    bool color_blend(::draw2d::graphics * pdc, point pt, size size, COLORREF cr, BYTE alpha);
    bool color_blend(::draw2d::graphics * pdc, const RECT & rect, COLORREF cr, BYTE alpha);
-   bool color_blend(::draw2d::graphics * pdc,   const __rect64 * lpcrect, COLORREF cr,   BYTE alpha);
+   bool color_blend(::draw2d::graphics * pdc,   const RECT64 * lpcrect, COLORREF cr,   BYTE alpha);
 
    bool clip_color_blend(::draw2d::graphics * pdc, point pt, size size, COLORREF cr, BYTE alpha);
    bool clip_color_blend(::draw2d::graphics * pdc, const RECT & rect, COLORREF cr, BYTE alpha);

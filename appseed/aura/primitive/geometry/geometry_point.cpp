@@ -9,9 +9,9 @@ point::point(POINT initPt) throw()
    { *(POINT*)this = initPt; }
 point::point(SIZE initSize) throw()
    { *(SIZE*)this = initSize; }
-point::point(__point64 pt) throw()
+point::point(POINT64 pt) throw()
    { x = (int32_t) pt.x; y = (int32_t) pt.y; }
-point::point(const __point64 * ppt) throw()
+point::point(const POINT64 * ppt) throw()
 {
    x = (int32_t)ppt->x; y = (int32_t)ppt->y;
 }
@@ -95,14 +95,14 @@ point64::point64() throw()
    { /* random filled */ }
 point64::point64(int64_t initX, int64_t initY) throw()
    { x = initX; y = initY; }
-point64::point64(__point64 initPt) throw()
-   { *(__point64*)this = initPt; }
+point64::point64(POINT64 initPt) throw()
+   { *(POINT64*)this = initPt; }
 point64::point64(POINT initPt) throw()
    { x = initPt.x; y = initPt.y; }
-point64::point64(const __point64 * pinitPt) throw()
-   { *(__point64*)this = *pinitPt; }
-point64::point64(__size64 initSize) throw()
-   { *(__size64*)this = initSize; }
+point64::point64(const POINT64 * pinitPt) throw()
+   { *(POINT64*)this = *pinitPt; }
+point64::point64(SIZE64 initSize) throw()
+   { *(SIZE64*)this = initSize; }
 point64::point64(uint64_t dwPoint) throw()
    {
       x = (int32_t)GET_X_LPARAM64(dwPoint);
@@ -110,45 +110,45 @@ point64::point64(uint64_t dwPoint) throw()
    }
 
 
-point64::operator __point64 *() throw()
+point64::operator POINT64 *() throw()
    { return this; }
-point64::operator const __point64 *() const throw()
+point64::operator const POINT64 *() const throw()
    { return this; }
 
 
 void point64::offset(int64_t xOffset, int64_t yOffset) throw()
    { x += xOffset; y += yOffset; }
-void point64::offset(__point64 point64) throw()
+void point64::offset(POINT64 point64) throw()
    { x += point64.x; y += point64.y; }
-void point64::offset(__size64 size64) throw()
+void point64::offset(SIZE64 size64) throw()
    { x += size64.cx; y += size64.cy; }
 void point64::SetPoint(int64_t X, int64_t Y) throw()
    { x = X; y = Y; }
-bool point64::operator==(__point64 point64) const throw()
+bool point64::operator==(POINT64 point64) const throw()
    { return (x == point64.x && y == point64.y); }
-bool point64::operator!=(__point64 point64) const throw()
+bool point64::operator!=(POINT64 point64) const throw()
    { return (x != point64.x || y != point64.y); }
-void point64::operator+=(__size64 size64) throw()
+void point64::operator+=(SIZE64 size64) throw()
    { x += size64.cx; y += size64.cy; }
-void point64::operator-=(__size64 size64) throw()
+void point64::operator-=(SIZE64 size64) throw()
    { x -= size64.cx; y -= size64.cy; }
-void point64::operator+=(__point64 point64) throw()
+void point64::operator+=(POINT64 point64) throw()
    { x += point64.x; y += point64.y; }
-void point64::operator-=(__point64 point64) throw()
+void point64::operator-=(POINT64 point64) throw()
    { x -= point64.x; y -= point64.y; }
-point64 point64::operator+(__size64 size64) const throw()
+point64 point64::operator+(SIZE64 size64) const throw()
    { return point64(x + size64.cx, y + size64.cy); }
-point64 point64::operator-(__size64 size64) const throw()
+point64 point64::operator-(SIZE64 size64) const throw()
    { return point64(x - size64.cx, y - size64.cy); }
 point64 point64::operator-() const throw()
    { return point64(-x, -y); }
-point64 point64::operator+(__point64 pt) const throw()
+point64 point64::operator+(POINT64 pt) const throw()
    { return point64(x + pt.x, y + pt.y); }
-size64 point64::operator-(__point64 pt) const throw()
+size64 point64::operator-(POINT64 pt) const throw()
    { return size64(x - pt.x, y - pt.y); }
-rect64 point64::operator+(const __rect64 * lpRect) const throw()
+rect64 point64::operator+(const RECT64 * lpRect) const throw()
    { return rect64(lpRect) + *this; }
-rect64 point64::operator-(const __rect64 * lpRect) const throw()
+rect64 point64::operator-(const RECT64 * lpRect) const throw()
    { return rect64(lpRect) - *this; }
 
 uint32_t point64::ui32() const throw()
@@ -209,7 +209,7 @@ pointd::pointd(POINT initPt) throw()
 }
 pointd::pointd(SIZED initSize) throw()
    { *(SIZED*)this = initSize; }
-pointd::pointd(__point64 pt) throw()
+pointd::pointd(POINT64 pt) throw()
    { x = (int32_t) pt.x; y = (int32_t) pt.y; }
 pointd::pointd(LPARAM dwPoint) throw()
    {

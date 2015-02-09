@@ -877,7 +877,7 @@ namespace user
       *lprect = get_data()->m_rectTabClient;
    }
 
-   void tab::GetTabClientRect(__rect64 * lprect)
+   void tab::GetTabClientRect(RECT64 * lprect)
    {
       rect rectClient;
       GetClientRect(rectClient);
