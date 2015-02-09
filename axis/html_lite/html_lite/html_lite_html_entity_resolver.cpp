@@ -239,8 +239,3 @@ int32_t LiteHTMLEntityResolver::resolveEntity(const char * lpszEntity, string & 
 
 
 
-extern "C"
-html_entity_solver * create_html_entity_solver(::aura::application * papp)
-{
-   return new LiteHTMLEntityResolver(papp);
-}

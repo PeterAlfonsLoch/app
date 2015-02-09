@@ -1,4 +1,3 @@
 LIBRARY      "html_lite"
 
 EXPORTS
-create_html_entity_solver

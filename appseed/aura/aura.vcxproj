@@ -3085,7 +3085,6 @@
     <ClInclude Include="multithreading\service\service_thread_pool.h" />
     <ClInclude Include="net\net.h" />
     <ClInclude Include="net\net_html_enum.h" />
-    <ClInclude Include="net\net_html_html.h" />
     <ClInclude Include="net\net_url.h" />
     <ClInclude Include="primitive\api\api.h" />
     <ClInclude Include="primitive\api\api_rotate.h" />
@@ -4226,7 +4225,6 @@
     <ClCompile Include="graphics\visual\visual_icon.cpp" />
     <ClCompile Include="multithreading\service\service_plain_service.cpp" />
     <ClCompile Include="multithreading\_multithreading.cpp" />
-    <ClCompile Include="net\net_html_html.cpp" />
     <ClCompile Include="net\net_url.cpp" />
     <None Include="aura\os\windows\windows.inl" />
     <None Include="primitive\collection\collection_array_base.inl">

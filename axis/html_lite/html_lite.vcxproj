@@ -1272,9 +1272,12 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="html_lite_application_interface.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="html\html.h" />
+    <ClInclude Include="html\html_enum.h" />
+    <ClInclude Include="html\html_html.h" />
     <ClInclude Include="html_lite\html_lite.h" />
+    <ClInclude Include="html_lite\html_lite_application_interface.h" />
     <ClInclude Include="html_lite\html_lite_html_attributes.h" />
     <ClInclude Include="html_lite\html_lite_html_common.h" />
     <ClInclude Include="html_lite\html_lite_html_entity_resolver.h" />
@@ -1298,6 +1301,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="html\html_html.cpp" />
+    <ClCompile Include="html_lite\html_lite_application_application.cpp" />
     <ClCompile Include="html_lite\html_lite_html_attributes.cpp" />
     <ClCompile Include="html_lite\html_lite_html_entity_resolver.cpp" />
     <ClCompile Include="html_lite\html_lite_html_reader.cpp" />

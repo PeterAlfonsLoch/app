@@ -11,17 +11,9 @@
 
 
 
-
-
-
-
-
-
-
-
-
 class lite_html_tag;
 class lite_html_reader;
+
 
 
 #include "html_lite_html_common.h"
@@ -32,8 +24,10 @@ class lite_html_reader;
 
 
 
+#include "axis/html_lite/html/html.h"
 
-#include "axis/html_lite/html_lite_application_interface.h"
+
+#include "html_lite_application_interface.h"
 
 
 
@@ -75,4 +69,8 @@ me to keep updating it.
 
 
 */
+
+
+
+
 

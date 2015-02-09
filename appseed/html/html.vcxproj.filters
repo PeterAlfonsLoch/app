@@ -42,6 +42,9 @@
     <Filter Include="Header Files\graphics\elemental">
       <UniqueIdentifier>{98f18235-0298-4c94-86a3-3c9f88d6a7c4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\NewFilter1">
+      <UniqueIdentifier>{823a685c-181e-461a-84db-a4df44888f6e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">

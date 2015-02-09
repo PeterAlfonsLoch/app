@@ -15,6 +15,12 @@
     <Filter Include="Source Files\html_lite">
       <UniqueIdentifier>{9abcf5b0-8aed-48f4-9b26-d9bdb3c85805}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\html">
+      <UniqueIdentifier>{b2edab26-1956-4064-807e-83868936b327}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\html">
+      <UniqueIdentifier>{a28b5b2c-3f7f-4ff5-91ff-e4a887c931c2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -38,8 +44,17 @@
     <ClInclude Include="html_lite\html_lite_html_tag.h">
       <Filter>Header Files\html_lite</Filter>
     </ClInclude>
-    <ClInclude Include="html_lite_application_interface.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="html_lite\html_lite_application_interface.h">
+      <Filter>Header Files\html_lite</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html.h">
+      <Filter>Header Files\html</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html_html.h">
+      <Filter>Header Files\html</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html_enum.h">
+      <Filter>Header Files\html</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -59,7 +74,13 @@
       <Filter>Source Files\html_lite</Filter>
     </ClCompile>
     <ClCompile Include="html_lite_application_application.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\html_lite</Filter>
+    </ClCompile>
+    <ClCompile Include="html_lite\html_lite_application_application.cpp">
+      <Filter>Source Files\html_lite</Filter>
+    </ClCompile>
+    <ClCompile Include="html\html_html.cpp">
+      <Filter>Source Files\html</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
