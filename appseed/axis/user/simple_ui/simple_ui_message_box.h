@@ -4,13 +4,13 @@
 namespace simple_ui
 {
 
-   
+
    class CLASS_DECL_AXIS message_box :
       virtual public ::simple_ui::interaction
    {
    public:
 
-   
+
       stringa                 m_stra;
       spa(tap)                m_tapaA;
       spa(tap)                m_tapaB;
@@ -19,7 +19,7 @@ namespace simple_ui
       string                  m_strMessage;
       string                  m_strTitle;
       manual_reset_event      m_evReady;
-      
+
 
       message_box(::aura::application * papp,const char * pszMessage,const char * pszCaption,uint32_t uiFlags);
       virtual ~message_box();
@@ -39,7 +39,9 @@ namespace simple_ui
 
 
       virtual void pre_translate_message(signal_details * pobj);
-      
+
+      //virtual void EndModalLoop(id nResult);
+
 
    };
 

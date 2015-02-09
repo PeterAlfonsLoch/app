@@ -126,7 +126,7 @@ namespace user
       if(!::aura::departament::initialize2())
          return false;
 
-      
+
       return true;
 
 
@@ -419,7 +419,7 @@ namespace user
    {
       if(pkeyboardfocus == NULL || pkeyboardfocus->keyboard_focus_OnSetFocus())
       {
-         
+
          if(m_pkeyboardfocus != NULL && m_pkeyboardfocus != pkeyboardfocus)
          {
 
@@ -427,10 +427,15 @@ namespace user
 
             try
             {
-               
+
                m_pkeyboardfocus = NULL;
 
-               pkeyboardfocusOld->keyboard_focus_OnKillFocus();
+               if(pkeyboardfocusOld != NULL)
+               {
+
+                  pkeyboardfocusOld->keyboard_focus_OnKillFocus();
+
+               }
 
             }
             catch(...)
@@ -534,7 +539,7 @@ namespace user
 
       if(m_pkeyboard == NULL)
       {
-         
+
          m_pkeyboard = new ::user::keyboard(m_pauraapp);
 
          if(m_pkeyboard == NULL)

@@ -377,6 +377,15 @@ namespace simple_ui
    }
 
 
+//   void message::EndModalLoop(id nResult)
+//   {
+//
+//      simple_ui::interacion::EndModalLoop(nResult);
+//
+//   }
+
+
+
 } // namespace simple_ui
 
 

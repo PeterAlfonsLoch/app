@@ -33,7 +33,7 @@ namespace user
 
    }
 
-   
+
    bool interaction::defer_check_layout()
    {
 
@@ -64,7 +64,7 @@ namespace user
 
    void interaction::clear_need_layout()
    {
-      
+
       ::user::interaction * pwnd = get_wnd();
 
       if(pwnd == NULL)
@@ -566,7 +566,7 @@ namespace user
       try
       {
 
-         if(Session.user()->m_pkeyboardfocus == this)
+         if(GetParent() != NULL && !GetParent()->m_bDestroying && Session.user()->m_pkeyboardfocus == this)
          {
 
             ::user::elemental * pnext = NULL;
@@ -1136,7 +1136,7 @@ namespace user
 
       if(pdrawcontext != NULL)
       {
-       
+
          rectClient     = pdrawcontext->m_rectClient;
 
       }
@@ -1947,7 +1947,7 @@ namespace user
       m_signalptra.remove_all();
       m_pimpl = (Application.alloc(System.type_info < interaction_impl >()));
       m_pimpl->m_pui = this;
-      
+
       //m_pui = this;
       if (!m_pimpl->initialize(pinitialize))
       {
@@ -2718,6 +2718,8 @@ namespace user
          return true;
 
       }
+
+      m_bDestroying = true;
 
       sp(::user::interaction) pui = this; // keep a reference to this while destroying
 
@@ -5859,7 +5861,7 @@ namespace user
    {
 
 //      SCAST_PTR(::message::mouse,pmouse,pobj);
-       
+
        UNREFERENCED_PARAMETER(pobj);
 
       try

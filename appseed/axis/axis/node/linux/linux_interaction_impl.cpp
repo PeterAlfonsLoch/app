@@ -3994,7 +3994,7 @@ throw not_implemented(get_app());
       if(!::IsWindow((oswindow) get_handle()))
       {
 
-         throw simple_exception(get_app(), "no more a window");
+         return;
 
       }
 
