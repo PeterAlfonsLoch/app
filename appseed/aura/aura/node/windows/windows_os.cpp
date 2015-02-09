@@ -684,6 +684,10 @@ namespace windows
    bool getCredentialsForService(::aura::application * papp, const string & strService,WCHAR * szUsername,WCHAR *szPassword)
    {
 
+      
+
+      
+
 
       HRESULT hr = S_OK;
       DWORD   dwResult;
@@ -766,7 +770,7 @@ namespace windows
 
       // Call CredPackAuthenticationBufferW once to determine the size,
       // in bytes, of the authentication buffer.
-      if(!CredPackAuthenticationBufferW(
+      if(!LIBCALL(credui, CredPackAuthenticationBufferW)(
          0,                // Reserved
          szDomainAndUser,  // Domain\User name
          szPassword,       // User Password
@@ -790,7 +794,7 @@ namespace windows
 
       // Call CredPackAuthenticationBufferW again to retrieve the
       // authentication buffer.
-      if(!CredPackAuthenticationBufferW(
+      if(!LIBCALL(credui,CredPackAuthenticationBufferW)(
          0,
          szDomainAndUser,
          szPassword,
@@ -818,7 +822,7 @@ namespace windows
 
    retry:
 
-      dwResult = CredUIPromptForWindowsCredentialsW(
+      dwResult = LIBCALL(credui,CredUIPromptForWindowsCredentialsW)(
          &ui,             // Customizing information
          dwLastError,               // Error code to display
          &ulAuthPackage,  // Authorization package
@@ -840,7 +844,7 @@ namespace windows
          DWORD lenDomain = maxLenDomain;
          DWORD lenPass = maxLenPass;
 
-         bOk = CredUnPackAuthenticationBufferW(CRED_PACK_PROTECTED_CREDENTIALS,
+         bOk = LIBCALL(credui, CredUnPackAuthenticationBufferW)(CRED_PACK_PROTECTED_CREDENTIALS,
             pvAuthBlob,
             cbAuthBlob,
             szUsername,
@@ -865,7 +869,7 @@ namespace windows
 
          ::GetUserNameExW(NameSamCompatible,szDomainAndUser,&l);
 
-         bOk = CredUIParseUserNameW(
+         bOk = LIBCALL(credui,CredUIParseUserNameW)(
             szDomainAndUser,
             szUsername,
             CREDUI_MAX_USERNAME_LENGTH,

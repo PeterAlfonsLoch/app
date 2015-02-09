@@ -185,68 +185,68 @@ retry:
             dwWaitSharingViolation += 84 + 77 + 49;
             goto retry;
          }
-         else
-         if(dwLastError != ERROR_FILE_NOT_FOUND && dwLastError != ERROR_PATH_NOT_FOUND)
-         {
-            /*         if (pException != NULL)
-            {
-            pException->alloc(allocer());
-            ::file::exception * pfe = dynamic_cast < ::file::exception * > (pException->m_p);
-            if(pfe != NULL)
-            {
-            pfe->m_lOsError = dwLastError;
-            pfe->m_cause = file_exception::OsErrorToException(pfe->m_lOsError);
-            pfe->m_strFileName = lpszFileName;
-            }
-            return FALSE;
-            }
-            else
-            {*/
-
-
-            return fesp(get_app(), file_exception::OsErrorToException(dwLastError), dwLastError, lpszFileName);
-
-            //}
-
-         }
-
-         try
-         {
-
-            wstring wstrFileIn;
-            wstrFileIn = m_wstrFileName;
-            wstring wstrFileOut;
-            bool b = vfxFullPath(wstrFileOut,wstrFileIn) != FALSE;
-            if(b)
-            {
-               m_wstrFileName = wstrFileOut;
-            }
-
-//            ::windows::file_system fs(get_app());
-  //          fs.FullPath(m_wstrFileName, m_wstrFileName);
-         }
-         catch(...)
-         {
-            return fesp(get_app());
-         }
-
-         m_strFileName = ::str::international::unicode_to_utf8(m_wstrFileName);
-
-         DWORD dwFlags;
-
-         if(dwCreateFlag & CREATE_ALWAYS)
-         {
-            dwFlags = FILE_ATTRIBUTE_NORMAL;
-         }
-         else
-         {
-            dwFlags = FILE_FLAG_OPEN_REPARSE_POINT;
-         }
-
-         hFile = ::CreateFileW(m_wstrFileName,dwAccess,dwShareMode,&sa,dwCreateFlag, dwFlags,NULL);
-
-         if (hFile == INVALID_HANDLE_VALUE)
-         {
+         //else
+         //if(dwLastError != ERROR_FILE_NOT_FOUND && dwLastError != ERROR_PATH_NOT_FOUND)
+//         {
+//            /*         if (pException != NULL)
+//            {
+//            pException->alloc(allocer());
+//            ::file::exception * pfe = dynamic_cast < ::file::exception * > (pException->m_p);
+//            if(pfe != NULL)
+//            {
+//            pfe->m_lOsError = dwLastError;
+//            pfe->m_cause = file_exception::OsErrorToException(pfe->m_lOsError);
+//            pfe->m_strFileName = lpszFileName;
+//            }
+//            return FALSE;
+//            }
+//            else
+//            {*/
+//
+//
+//            return fesp(get_app(), file_exception::OsErrorToException(dwLastError), dwLastError, lpszFileName);
+//
+//            //}
+//
+//         }
+//
+//         try
+//         {
+//
+//            wstring wstrFileIn;
+//            wstrFileIn = m_wstrFileName;
+//            wstring wstrFileOut;
+//            bool b = vfxFullPath(wstrFileOut,wstrFileIn) != FALSE;
+//            if(b)
+//            {
+//               m_wstrFileName = wstrFileOut;
+//            }
+//
+////            ::windows::file_system fs(get_app());
+//  //          fs.FullPath(m_wstrFileName, m_wstrFileName);
+//         }
+//         catch(...)
+//         {
+//            return fesp(get_app());
+//         }
+//
+//         m_strFileName = ::str::international::unicode_to_utf8(m_wstrFileName);
+//
+//         DWORD dwFlags;
+//
+//         if(dwCreateFlag & CREATE_ALWAYS)
+//         {
+//            dwFlags = FILE_ATTRIBUTE_NORMAL;
+//         }
+//         else
+//         {
+//            dwFlags = FILE_FLAG_OPEN_REPARSE_POINT;
+//         }
+//
+//         hFile = ::CreateFileW(m_wstrFileName,dwAccess,dwShareMode,&sa,dwCreateFlag, dwFlags,NULL);
+//
+//         if (hFile == INVALID_HANDLE_VALUE)
+//         {
             /*if (pException != NULL)
             {
             pException->alloc(allocer());
@@ -263,13 +263,13 @@ retry:
             {*/
 
 
-            DWORD dwLastError = ::GetLastError();
+            //DWORD dwLastError = ::GetLastError();
             return fesp(get_app(), file_exception::OsErrorToException(dwLastError), dwLastError, lpszFileName);
 
 
             //}
 
-         }
+         //}
 
       }
 

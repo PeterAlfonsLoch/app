@@ -7,7 +7,6 @@
 /////////////////////////////////////////////////////////////////////////////
 // file_exception helpers
 
-#ifdef DEBUG
 static const char * rgszFileExceptionCause[] =
 {
    "none",
@@ -27,7 +26,6 @@ static const char * rgszFileExceptionCause[] =
    "endOfFile",
 };
 static const char szUnknown[] = "unknown";
-#endif
 
 namespace file
 {

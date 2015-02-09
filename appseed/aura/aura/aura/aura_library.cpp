@@ -572,3 +572,18 @@ namespace aura
 
 
 
+::aura::library & lib(const char * psz)
+{
+   static string_map < sp(::aura::library) > * pmap;
+   if(pmap == NULL)
+      pmap = new string_map < sp(::aura::library) >;
+   sp(::aura::library) & lib = pmap->operator[](psz);
+   if(lib.is_null())
+   {
+      lib = canew(::aura::library(::get_thread_app()));
+      lib->open(psz);
+   }
+   return *lib;
+}
+
+
