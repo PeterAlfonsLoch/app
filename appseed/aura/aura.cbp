@@ -453,9 +453,6 @@
 		<Unit filename="multithreading/service/service_plain_service.h" />
 		<Unit filename="multithreading/service/service_thread_pool.h" />
 		<Unit filename="net/net.h" />
-		<Unit filename="net/net_html_enum.h" />
-		<Unit filename="net/net_html_html.cpp" />
-		<Unit filename="net/net_html_html.h" />
 		<Unit filename="net/net_url.cpp" />
 		<Unit filename="net/net_url.h" />
 		<Unit filename="primitive/_primitive.cpp" />
