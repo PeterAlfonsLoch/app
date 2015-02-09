@@ -117,8 +117,8 @@ namespace  sort
       index iSize,
       ::array < ARG_COMPARE_FUNCTION, ARG_COMPARE_FUNCTION > & comparefna,
       ::array < ARG_SWAP_FUNCTION, ARG_SWAP_FUNCTION > & swapfna,
-      ::raw_ptr_array < void * > & comparearga,
-      ::raw_ptr_array < void * > & swaparga)
+      void_ptra & comparearga,
+      void_ptra & swaparga)
    {
       
       index_array stackLowerBound;
