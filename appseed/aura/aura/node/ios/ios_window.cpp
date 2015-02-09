@@ -4446,7 +4446,7 @@ namespace ios
    }
 
 
-   void window::ClientToScreen(__rect64 * lprect)
+   void window::ClientToScreen(RECT64 * lprect)
    {
       class rect rectWindow;
       m_pui->GetWindowRect(rectWindow);
@@ -4458,7 +4458,7 @@ namespace ios
 
    }
 
-   void window::ClientToScreen(__point64 * lppoint)
+   void window::ClientToScreen(POINT64 * lppoint)
    {
       class rect64 rectWindow;
       m_pui->GetWindowRect(rectWindow);
@@ -4490,7 +4490,7 @@ namespace ios
    }
 
 
-   void window::ScreenToClient(__rect64 * lprect)
+   void window::ScreenToClient(RECT64 * lprect)
    {
       class rect64 rectWindow;
       m_pui->GetWindowRect(rectWindow);
@@ -4502,7 +4502,7 @@ namespace ios
 
    }
 
-   void window::ScreenToClient(__point64 * lppoint)
+   void window::ScreenToClient(POINT64 * lppoint)
    {
       class rect64 rectWindow;
       m_pui->GetWindowRect(rectWindow);
@@ -4512,7 +4512,7 @@ namespace ios
    }
 
 
-   void window::GetWindowRect(__rect64 * lprect)
+   void window::GetWindowRect(RECT64 * lprect)
    {
       if(!::IsWindow(get_handle()))
          throw simple_exception(get_app(), "no more a window");
@@ -4529,7 +4529,7 @@ namespace ios
       }
    }
 
-   void window::GetClientRect(__rect64 * lprect)
+   void window::GetClientRect(RECT64 * lprect)
    {
       ASSERT(::IsWindow(get_handle()));
       // if it is temporary window - probably not ca2 wrapped window

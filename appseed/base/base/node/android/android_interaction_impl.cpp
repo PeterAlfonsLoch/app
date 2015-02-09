@@ -4082,7 +4082,7 @@ namespace android
 
    oswindow interaction_impl::UnsubclassWindow()
    {
-      
+
       if(::IsWindow((oswindow)get_handle()))
          return NULL;
 
@@ -4333,7 +4333,7 @@ namespace android
    }
 
 
-   void interaction_impl::ClientToScreen(__rect64 * lprect)
+   void interaction_impl::ClientToScreen(RECT64 * lprect)
    {
       class rect rectWindow;
       GetWindowRect(rectWindow);
@@ -4345,7 +4345,7 @@ namespace android
 
    }
 
-   void interaction_impl::ClientToScreen(__point64 * lppoint)
+   void interaction_impl::ClientToScreen(POINT64 * lppoint)
    {
       class rect64 rectWindow;
       GetWindowRect(rectWindow);
@@ -4377,7 +4377,7 @@ namespace android
    }
 
 
-   void interaction_impl::ScreenToClient(__rect64 * lprect)
+   void interaction_impl::ScreenToClient(RECT64 * lprect)
    {
       class rect64 rectWindow;
       GetWindowRect(rectWindow);
@@ -4389,7 +4389,7 @@ namespace android
 
    }
 
-   void interaction_impl::ScreenToClient(__point64 * lppoint)
+   void interaction_impl::ScreenToClient(POINT64 * lppoint)
    {
       class rect64 rectWindow;
       GetWindowRect(rectWindow);
@@ -4399,7 +4399,7 @@ namespace android
    }
 
 
-   void interaction_impl::GetWindowRect(__rect64 * lprect)
+   void interaction_impl::GetWindowRect(RECT64 * lprect)
    {
 
       if(!::IsWindow((oswindow)get_handle()))
@@ -4422,7 +4422,7 @@ namespace android
       }
    }
 
-   void interaction_impl::GetClientRect(__rect64 * lprect)
+   void interaction_impl::GetClientRect(RECT64 * lprect)
    {
       ASSERT(::IsWindow((oswindow)get_handle()));
       // if it is temporary interaction_impl - probably not ca2 wrapped interaction_impl
@@ -5114,7 +5114,7 @@ namespace android
 
    ::user::interaction * interaction_impl::GetDescendantWindow(id id)
    {
-      
+
       if(::IsWindow((oswindow)get_handle()))
          return NULL;
 

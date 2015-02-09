@@ -458,7 +458,7 @@
 
 1418509525 /ca2/app/appseed/aura/primitive/api/api_rotate.h
 
-1423332068 /ca2/app/appseed/aura/aura/aura_policy/aura_cpp.h
+1423488860 /ca2/app/appseed/aura/aura/aura_policy/aura_cpp.h
 	"nodeapp/operational_system/operational_system.h"
 	"aura/aura/aura/aura_definition.h"
 	"aura/aura/aura/aura_action_source.h"
@@ -690,7 +690,7 @@
 1418510159 /ca2/nodeapp/operational_system/operational_system.h
 	<typeinfo>
 
-1418509488 /ca2/app/appseed/aura/aura/aura/aura_definition.h
+1423488861 /ca2/app/appseed/aura/aura/aura/aura_definition.h
 
 1418509499 /ca2/app/appseed/aura/aura/aura/aura_action_source.h
 
@@ -821,7 +821,7 @@
 	"str_base64.h"
 	"str_parse.h"
 
-1423420978 /ca2/app/appseed/aura/primitive/str/str_ch.h
+1423488862 /ca2/app/appseed/aura/primitive/str/str_ch.h
 	"aura/primitive/str/x/x_charcategory.h"
 	"aura/primitive/str/x/x_defines.h"
 	"aura/primitive/str/x/x_tables.h"
@@ -1116,23 +1116,24 @@
 
 1418509502 /ca2/app/appseed/aura/filesystem/file/file_file_stream.h
 
-1423332077 /ca2/app/appseed/aura/primitive/geometry/geometry.h
+1423488863 /ca2/app/appseed/aura/primitive/geometry/geometry.h
 	"geometry_align.h"
 	<intsafe.h>
 	"geometry_point.h"
 	"geometry_size.h"
 	"geometry_rect.h"
 	"geometry_types.h"
+	"geometry_size.inl"
 
 1418509523 /ca2/app/appseed/aura/primitive/geometry/geometry_align.h
 
-1423332077 /ca2/app/appseed/aura/primitive/geometry/geometry_point.h
+1423488863 /ca2/app/appseed/aura/primitive/geometry/geometry_point.h
 
-1423332077 /ca2/app/appseed/aura/primitive/geometry/geometry_size.h
+1423488859 /ca2/app/appseed/aura/primitive/geometry/geometry_size.h
 
-1418519538 /ca2/app/appseed/aura/primitive/geometry/geometry_rect.h
+1423488863 /ca2/app/appseed/aura/primitive/geometry/geometry_rect.h
 
-1423332077 /ca2/app/appseed/aura/primitive/geometry/geometry_types.h
+1423488863 /ca2/app/appseed/aura/primitive/geometry/geometry_types.h
 
 1423332082 /ca2/app/appseed/aura/primitive/collection/collection.h
 	"collection_pair.h"
@@ -1267,7 +1268,7 @@
 
 1418509519 /ca2/app/appseed/aura/primitive/collection/collection_typed_pointer_map.h
 
-1418609760 /ca2/app/appseed/aura/primitive/collection/collection_sort.h
+1423488863 /ca2/app/appseed/aura/primitive/collection/collection_sort.h
 	"collection_key_sort_array.h"
 
 1418509519 /ca2/app/appseed/aura/primitive/collection/collection_key_sort_array.h
@@ -1590,7 +1591,7 @@
 	"aura_draw_context.h"
 	"aura_printer.h"
 
-1420372851 /ca2/app/appseed/aura/aura/aura/aura_draw_interface.h
+1423488861 /ca2/app/appseed/aura/aura/aura/aura_draw_interface.h
 
 1420372852 /ca2/app/appseed/aura/aura/aura/aura_interaction.h
 
@@ -2004,10 +2005,8 @@
 
 1423332077 /ca2/app/appseed/aura/aura/aura/aura_allocate_processor_cache_oriented.h
 
-1423332074 /ca2/app/appseed/aura/net/net.h
-	"net_html_enum.h"
+1423488861 /ca2/app/appseed/aura/net/net.h
 	"net_url.h"
-	"net_html_html.h"
 
 1423332072 /ca2/app/appseed/aura/net/net_html_enum.h
 
@@ -2046,4 +2045,6 @@
 1423400495 /ca2/app/appseed/aura/aura/os/windows/windows.inl
 
 1423401564 /ca2/app/appseed/aura/aura/os/linux/linux.inl
+
+1423488863 /ca2/app/appseed/aura/primitive/geometry/geometry_size.inl
 

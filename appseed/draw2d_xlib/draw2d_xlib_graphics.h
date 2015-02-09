@@ -483,7 +483,7 @@ namespace draw2d_xlib
       void DrawDragRect(LPCRECT lpRect, SIZE size,
          LPCRECT lpRectLast, SIZE sizeLast,
          ::draw2d::brush* pBrush = NULL, ::draw2d::brush* pBrushLast = NULL);
-      void FillSolidRect(const __rect64 * lpRect, COLORREF clr);
+      void FillSolidRect(const RECT64 * lpRect, COLORREF clr);
       void FillSolidRect(LPCRECT lpRect, COLORREF clr);
       void FillSolidRect(int32_t x, int32_t y, int32_t cx, int32_t cy, COLORREF clr);
       void Draw3dRect(LPCRECT lpRect, COLORREF clrTopLeft, COLORREF clrBottomRight);

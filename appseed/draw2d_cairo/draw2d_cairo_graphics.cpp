@@ -3018,7 +3018,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
       ::ExtTextOutTextOut(get_handle1(), 0, 0, ETO_OPAQUE, lpRect, NULL, 0, NULL);
    }*/
 
-   void graphics::FillSolidRect(const __rect64 * lpRect, COLORREF clr)
+   void graphics::FillSolidRect(const RECT64 * lpRect, COLORREF clr)
    {
       rect rect32;
       ::copy(rect32, lpRect);
@@ -5268,7 +5268,7 @@ synch_lock ml(m_spmutex);
          return 0;
 
       synch_lock ml(m_spmutex);
-      
+
       cairo_keep keep(m_pdc);
 
       cairo_translate(m_pdc, a.m_xCenter, a.m_yCenter);

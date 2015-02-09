@@ -673,26 +673,26 @@ namespace macos
       Detach();
       ASSERT(get_handle() == NULL);
       m_pfnDispatchWindowProc = &interaction_impl::_start_user_message_handler;
-      
+
       signalizable_disconnect_all();
-      
+
       if(m_pui != NULL)
       {
-      
+
          m_pui->signalizable_disconnect_all();
-         
+
       }
-      
+
       // call special post-cleanup routine
       PostNcDestroy();
-      
+
       if(m_pui != NULL)
       {
-      
+
          m_pui->PostNcDestroy();
-         
+
       }
-      
+
    }
 
    void interaction_impl::PostNcDestroy()
@@ -1229,16 +1229,16 @@ namespace macos
       {
          if(pbase->m_uiMessage == WM_LBUTTONDOWN)
          {
-            
+
 //            TRACE("WM_LBUTTONDOWN");
-            
+
          }
-         
+
          ::message::mouse * pmouse = (::message::mouse *) pbase;
 
-         
+
          // user presence status activity reporting
-         
+
          Session.on_ui_mouse_message(pmouse);
 
 
@@ -3737,13 +3737,13 @@ namespace macos
          return ::SetWindowPos(get_handle(), pWndInsertAfter->get_handle(),
          x, y, cx, cy, nFlags) != FALSE;
       */
-      
+
       ::rect rectBefore;
-      
+
       ::GetWindowRect(m_oswindow, rectBefore);
-      
+
       ::rect rectNew = rectBefore;
-      
+
       if(nFlags & SWP_NOSIZE)
       {
          if(nFlags & SWP_NOMOVE)
@@ -3772,8 +3772,8 @@ namespace macos
             rectNew.bottom = y + cy;
          }
       }
-      
-      
+
+
       if(rectNew != rectBefore)
       {
 
@@ -3784,21 +3784,21 @@ namespace macos
                      (int) cx,
                      (int)cy,
                      nFlags);
-         
+
       }
 
       if(rectBefore.top_left() != rectNew.top_left())
       {
 
          send_message(WM_MOVE);
-         
+
       }
-      
+
       if(rectBefore.size() != rectNew.size())
       {
 
          send_message(WM_SIZE);
-         
+
       }
 
 
@@ -3914,7 +3914,7 @@ namespace macos
    }
 
 
-   void interaction_impl::ClientToScreen(__rect64 * lprect)
+   void interaction_impl::ClientToScreen(RECT64 * lprect)
    {
       class rect rectWindow;
       m_pui->GetWindowRect(rectWindow);
@@ -3926,7 +3926,7 @@ namespace macos
 
    }
 
-   void interaction_impl::ClientToScreen(__point64 * lppoint)
+   void interaction_impl::ClientToScreen(POINT64 * lppoint)
    {
       class rect64 rectWindow;
       m_pui->GetWindowRect(rectWindow);
@@ -3958,7 +3958,7 @@ namespace macos
    }
 
 
-   void interaction_impl::ScreenToClient(__rect64 * lprect)
+   void interaction_impl::ScreenToClient(RECT64 * lprect)
    {
       class rect64 rectWindow;
       m_pui->GetWindowRect(rectWindow);
@@ -3970,7 +3970,7 @@ namespace macos
 
    }
 
-   void interaction_impl::ScreenToClient(__point64 * lppoint)
+   void interaction_impl::ScreenToClient(POINT64 * lppoint)
    {
       class rect64 rectWindow;
       m_pui->GetWindowRect(rectWindow);
@@ -3980,7 +3980,7 @@ namespace macos
    }
 
 
-   void interaction_impl::GetWindowRect(__rect64 * lprect)
+   void interaction_impl::GetWindowRect(RECT64 * lprect)
    {
 //      if(!::IsWindow(get_handle()))
   //       throw simple_exception(get_app(), "no more a user::interaction");
@@ -3992,7 +3992,7 @@ namespace macos
       ::copy(lprect, rect32);
    }
 
-   void interaction_impl::GetClientRect(__rect64 * lprect)
+   void interaction_impl::GetClientRect(RECT64 * lprect)
    {
       ASSERT(::IsWindow(get_handle()));
          rect rect32;
@@ -4239,7 +4239,7 @@ namespace macos
 
    LRESULT interaction_impl::send_message(UINT message, WPARAM wparam, lparam lparam)
    {
-      
+
       return ::user::interaction_impl::send_message(message, wparam, lparam);
 
 //      ::smart_pointer < ::message::base > spbase;
@@ -5723,15 +5723,15 @@ namespace macos
       g->attach(cgc);
 
       //       ::rect rectClient;
-      
+
       //       GetClientRect(rectClient);
 
       //       g->BitBlt(0, 0, rectClient.width(), rectClient.height(), m_spdib->get_graphics(), 0, 0, SRCCOPY);
-      
+
       g->BitBlt(0, 0, m_spdib->m_size.cx, m_spdib->m_size.cy, m_spdib->get_graphics(), 0, 0, SRCCOPY);
-      
+
       //       g->set_alpha_mode(::draw2d::alpha_mode_blend);
-      
+
       //       g->FillSolidRect(rectClient, ARGB(128, 0, 255, 0));
 
    }
@@ -6117,7 +6117,7 @@ namespace macos
       ::user::interaction_impl::_001UpdateBuffer();
 
        ::user::interaction_impl::_001UpdateScreen();
-       
+
       if(!m_pui->m_bMayProDevian)
       {
          round_window_redraw();

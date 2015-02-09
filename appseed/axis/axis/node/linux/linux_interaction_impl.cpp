@@ -3922,7 +3922,7 @@ throw not_implemented(get_app());
    }
 
 
-   void interaction_impl::ClientToScreen(__rect64 * lprect)
+   void interaction_impl::ClientToScreen(RECT64 * lprect)
    {
       class rect rectWindow;
       GetWindowRect(rectWindow);
@@ -3934,7 +3934,7 @@ throw not_implemented(get_app());
 
    }
 
-   void interaction_impl::ClientToScreen(__point64 * lppoint)
+   void interaction_impl::ClientToScreen(POINT64 * lppoint)
    {
       class rect64 rectWindow;
       GetWindowRect(rectWindow);
@@ -3966,7 +3966,7 @@ throw not_implemented(get_app());
    }
 
 
-   void interaction_impl::ScreenToClient(__rect64 * lprect)
+   void interaction_impl::ScreenToClient(RECT64 * lprect)
    {
       class rect64 rectWindow;
       GetWindowRect(rectWindow);
@@ -3978,7 +3978,7 @@ throw not_implemented(get_app());
 
    }
 
-   void interaction_impl::ScreenToClient(__point64 * lppoint)
+   void interaction_impl::ScreenToClient(POINT64 * lppoint)
    {
       class rect64 rectWindow;
       GetWindowRect(rectWindow);
@@ -3988,7 +3988,7 @@ throw not_implemented(get_app());
    }
 
 
-   void interaction_impl::GetWindowRect(__rect64 * lprect)
+   void interaction_impl::GetWindowRect(RECT64 * lprect)
    {
 
       if(!::IsWindow((oswindow) get_handle()))
@@ -4011,7 +4011,7 @@ throw not_implemented(get_app());
       }
    }
 
-   void interaction_impl::GetClientRect(__rect64 * lprect)
+   void interaction_impl::GetClientRect(RECT64 * lprect)
    {
       ASSERT(::IsWindow((oswindow) get_handle()));
       // if it is temporary interaction_impl - probably not ca2 wrapped interaction_impl
