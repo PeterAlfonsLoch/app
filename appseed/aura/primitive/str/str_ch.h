@@ -118,7 +118,7 @@ namespace str
 
       inline int64_t uni_index_len(const char * pszUtf8,strsize & len)
       {
-         if(*pszUtf8 < 192)
+         if(((uchar) *pszUtf8) < 192)
          {
             len = 1;
             return *pszUtf8;
@@ -131,7 +131,7 @@ namespace str
 
       inline char uni_len(const char * pszUtf8)
       {
-         if(*pszUtf8 < 192)
+         if(((uchar ) *pszUtf8) < 192)
          {
             return 1;
          }
@@ -149,7 +149,7 @@ namespace str
 
       inline int64_t uni_index(const char * pszUtf8)
       {
-         if(*pszUtf8 < 192)
+         if(((uchar) *pszUtf8) < 192)
          {
             return *pszUtf8;
          }
