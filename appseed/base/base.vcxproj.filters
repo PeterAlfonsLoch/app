@@ -137,9 +137,6 @@
     <ClInclude Include="base\base\base_system.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
-    <ClInclude Include="base\base\base_system_str.h">
-      <Filter>Header Files\base\base</Filter>
-    </ClInclude>
     <ClInclude Include="base\base\base_template.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>

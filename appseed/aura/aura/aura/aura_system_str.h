@@ -43,10 +43,10 @@ namespace str
 
    }
 
-   inline bool begins_eat(property & property, const char * lpcszPrefix)
+   inline bool begins_eat(property & property, const string & strPrefix)
    {
 
-      return begins_eat(property.m_var, lpcszPrefix);
+      return begins_eat(property.m_var,strPrefix);
 
    }
 
