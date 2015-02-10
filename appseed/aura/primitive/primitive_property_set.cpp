@@ -387,7 +387,7 @@ void property_set::_008Parse(bool bApp, const char * pszCmdLine, var & varFile, 
    };
 
 
-   ::str::parse parse(pszCmdLine, "= ");
+   ::str::parse parse(pszCmdLine, strlen(pszCmdLine), "= ");
 
    parse.EnableQuote(true);
 

@@ -188,7 +188,7 @@ namespace windows
 
       HANDLE h = NULL;
 
-      ::str::parse parse(pszCmdLine,"= ");
+      ::str::parse parse(pszCmdLine,strlen(pszCmdLine), "= ");
 
       parse.EnableQuote(true);
 

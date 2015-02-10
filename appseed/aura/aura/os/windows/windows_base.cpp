@@ -79,9 +79,9 @@ bool __node_aura_pre_init()
 
    }
 
-   OutputDebugStringW(L"draw2d_gdiplus.dll initializing!\n");
+   OutputDebugStringW(L"__node_aura_pre_init\n");
 
-   xxdebug_box("draw2d_gdiplus.dll DllMain","box",MB_OK);
+   xxdebug_box("__node_aura_pre_init","box",MB_OK);
    g_pgdiplusStartupInput     = new Gdiplus::GdiplusStartupInput();
    g_pgdiplusStartupOutput    = new Gdiplus::GdiplusStartupOutput();
    g_gdiplusToken             = NULL;

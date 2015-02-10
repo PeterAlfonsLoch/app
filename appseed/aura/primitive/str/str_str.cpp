@@ -803,7 +803,7 @@ namespace str
          if(*psz1 != '.')
          {
 
-            len1 = ch::uni_len(psz1);
+            len1 = str_uni_len(psz1);
 
             psz1 += len1;
 

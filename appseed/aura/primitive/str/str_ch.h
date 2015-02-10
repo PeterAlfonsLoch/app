@@ -26,6 +26,12 @@
     @ingroup unicode
 */
 
+extern CLASS_DECL_AURA const char trailingBytesForUTF8[256];
+
+#define ch_uni_len(c) (trailingBytesForUTF8[(uchar)c] + 1)
+#define str_uni_len(pszUtf8) (ch_uni_len(*(pszUtf8)))
+
+
 
 namespace str
 {
@@ -111,8 +117,8 @@ namespace str
       inline int64_t uni_index_len(const char * pszUtf8, strsize & len);
 
       // ATTENTION: it does not check validity of entire UTF8 char, you should check if the (last position + uni_len) is greater than the working string length
-      inline  char _uni_len(const char * pszUtf8);
-      char uni_len(const char * pszUtf8);
+      //inline  char uni_len(const char * pszUtf8);
+      //char uni_len(const char * pszUtf8);
 
       CLASS_DECL_AURA  int64_t uni_index(const char * pszUtf8,const char * pszEnd);
 
@@ -128,24 +134,6 @@ namespace str
             return _uni_index_len(pszUtf8, len);
          }
       }
-
-      inline char uni_len(const char * pszUtf8)
-      {
-         if(((uchar ) *pszUtf8) < 192)
-         {
-            return 1;
-         }
-         else
-         {
-            return _uni_len(pszUtf8);
-         }
-      }
-
-      inline char _uni_len(const char * pszUtf8)
-      {
-         return utf8_e(*pszUtf8) + 1;
-      }
-
 
       inline int64_t uni_index(const char * pszUtf8)
       {

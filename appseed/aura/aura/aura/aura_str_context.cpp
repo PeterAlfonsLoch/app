@@ -428,64 +428,330 @@ namespace aura
 
    }
 
-   bool str::load_uistr_file(const ::id & pszLang, const ::id & pszStyle, const char * pszFile)
+   struct range_sz_item
    {
-      ::str::parse parse(Application.file().as_string(pszFile));
+      strsize s;
+      strsize e;
+   };
 
-      
+   struct range_sz
+   {
+
+      range_sz_item stack[8];
+      int m_pos = 0;
+
+      char m_szAlloca[8 * 1024];
+      char * m_szMerge = m_szAlloca;
+      int m_iSize =0;
+      int m_iMaxSize=sizeof(m_szAlloca);
+      bool m_bOwn = false;
+
+
+      ~range_sz()
+      {
+         if(m_szMerge != NULL && m_szMerge != m_szAlloca && m_bOwn)
+         {
+            memory_free(m_szMerge);
+         }
+      }
+
+      void append(strsize start,strsize end,char * pszTopic)
+      {
+         stack[m_pos].s = start;
+         stack[m_pos].e = end;
+         m_pos++;
+         if(m_pos >= 8)
+         {
+            merge(pszTopic);
+         }
+      }
+
+      void merge(char * pszTopic)
+      {
+
+         if(m_pos <= 0)
+            return;
+         
+         strsize oldlen = m_iSize;
+
+         strsize newlen;
+         
+         if(oldlen == 0 && m_pos == 1)
+         {
+
+            newlen = stack[0].e - stack[0].s;
+
+            m_szMerge = &pszTopic[stack[0].s];
+
+         }
+         else
+         {
+
+            newlen = m_iSize + calc_merge_len();
+
+            if(oldlen == newlen)
+            {
+
+               m_pos = 0;
+
+               return;
+
+            }
+
+            if(newlen >= m_iMaxSize) // extra 1 byte
+            {
+               m_iMaxSize = newlen + 1024; // extra 1 byte plus 1023
+               if(m_iMaxSize > sizeof(m_szAlloca))
+               {
+                  if(m_szMerge == m_szAlloca || !m_bOwn)
+                  {
+                     m_szMerge = (char *)memory_alloc(m_iMaxSize);
+                     memcpy(m_szMerge,m_szAlloca,oldlen);
+                  }
+                  else
+                  {
+                     m_szMerge = (char *)memory_realloc(m_szMerge,m_iMaxSize);
+                  }
+                  m_bOwn = true;
+               }
+            }
+
+            strsize pos = 0;
+            strsize len;
+            for(index i = 0; i < m_pos; i++)
+            {
+               len = stack[i].e - stack[i].s;
+               memcpy(&m_szMerge[oldlen + pos],&pszTopic[stack[i].s],len);
+               pos+=len;
+            }
+
+         }
+
+         m_iSize = newlen;
+         
+         //m_szMerge[m_iSize] = '\0'; // for optmization purposes, m_szMerge is not forced to be 0 finished, so CHECK m_iSize!!
+
+         m_pos = 0;
+
+      }
+
+      int calc_merge_len()
+      {
+         if(m_pos <= 0)
+            return 0;
+         if(m_pos == 1)
+            return stack[0].e - stack[0].s;
+         strsize len = 0;
+         for(index i = 0; i < m_pos; i++)
+         {
+            len += stack[i].e - stack[i].s;
+         }
+         return len;
+      }
+
+      //char * get_string(char string & strTopic)
+      //{
+      //   merge(strTopic);
+      //   if(m_iSize == 0)
+      //      return NULL;
+      //   return m_szMerge;
+      //}
+      void clear()
+      {
+         m_iSize = 0;
+         m_pos = 0;
+      }
+   };
+
+   bool str::load_uistr_file(const ::id & pszLang, const ::id & pszStyle, const char * pszFilePath)
+   {
+
+      ::primitive::memory mem;
+
+      Application.file().as_memory(pszFilePath,mem);
+
+
+      strsize len;
+
+      char * pszFile = mem.get_psz(len);
+
+      ::str::parse parse(pszFile, len);
 
       string str;
       
       int32_t i = 0;
-      //string strLine;
-      while(parse.getrestlen() > 0)
+
+      strsize start;
+
+      strsize end;
+
+      char q;
+
+      ::str::utf8_char c;
+
+      bool bFinal;
+
+      bool bEof = false;
+
+      const char * s;
+
+      char * wr;
+
+      const char * rd;
+
+      strsize l;
+
+      range_sz rstr;
+
+      const char * pszEnd;
+
+      string strRoot;
+
+      string strBody;
+
+      while(parse.has_char())
       {
 
-         //parse.get_expandable_line(strLine);
-         parse.get_expandable_line(str);
+         rstr.clear();
+
+         bFinal = false;
          
-         //for(; i < straLines.get_count(); i++)
-         //{
-         //   strLine = straLines[i];
-         //   if(strLine.Right(1) == "\\")
-         //   {
-         //      str += strLine.Left(strLine.get_length() - 1);
-         //   }
-         //   else
-         //   {
-         //      str += strLine;
-         //      i++;
-         //      break;
-         //   }
-         //}
-         str.trim();
-         if(str.is_empty())
+         while(!bFinal)
+         {
+         
+            parse._get_expandable_line(start,end,bFinal);
+
+            rstr.append(start,end,pszFile);
+
+         }
+
+         rstr.merge(pszFile);
+
+         char * psz = rstr.m_szMerge;
+
+         pszEnd = psz + rstr.m_iSize;
+
+         while(::str::ch::is_whitespace(psz))
+         {
+            psz += str_uni_len(psz);
+            if(psz >= pszEnd)
+               goto cont;
+         }
+
+         // going to consume a quoted value
+
+         q = *psz;
+
+         if(q != '\'' && q != '\"') 
+         {
+            goto cont;
+         }
+
+         psz++;
+         s = psz;
+         
+         while(*psz != q)
+         {
+            psz += str_uni_len(psz);
+            if(psz >= pszEnd)
+               goto cont;
+         }
+         strRoot.SetString(s, psz - s);
+         psz++;
+
+         while(::str::ch::is_whitespace(psz))
+         {
+            psz += str_uni_len(psz);
+            if(psz >= pszEnd)
+               goto end;
+         }
+
+         if(*psz != '=') 
             continue;
-         try
+
+         psz++;
+
+         while(::str::ch::is_whitespace(psz))
          {
-            const char * psz = str;
-            while(isspace(*psz))
-               psz++;
-            string strRoot = ::str::consume_quoted_value(psz);
-            while(isspace(*psz))
-               psz++;
-            if(*psz != '=')
-               continue;
-            psz++;
-            while(isspace(*psz))
-               psz++;
-            string strBody = ::str::consume_quoted_value(psz);
-            set(
-               strRoot,
-               pszLang,
-               pszStyle,
-               body(strBody));
-            str.Empty();
+            psz += str_uni_len(psz);
+            if(psz >= pszEnd)
+               goto end;
          }
-         catch(...)
+
+         // going to consume another quoted value
+
+         q = *psz;
+
+         if(q != '\'' && q != '\"')
          {
+            goto cont;
          }
+
+         psz++;
+         s = psz;
+         wr = psz;
+         rd = psz;
+         while(*rd != q)
+         {
+            if(*rd == '\\')
+            {
+               if(*(rd + 1) == 'r')
+               {
+                  *wr = '\r';
+                  wr++;
+                  rd+=2;
+                  goto cont2;
+               }
+               else if(*(rd + 1) == 'n')
+               {
+                  *wr = '\n';
+                  wr++;
+                  rd+=2;
+                  goto cont2;
+               }
+               else
+               {
+                  *wr = '\\';
+                  wr++;
+                  rd++;
+                  goto cont2;
+               }
+            }
+            l = str_uni_len(psz);
+            if(wr != rd)
+            {
+               while(l > 0)
+               {
+                  *wr=*rd;
+                  wr++;
+                  rd++;
+                  l--;
+               }
+            }
+            else
+            {
+               wr+=l;
+               rd+=l;
+            }
+            cont2:
+            if(psz >= pszEnd)
+               goto cont;
+         }
+         strBody.SetString(s,wr - s);
+         psz++;
+
+         
+
+         //body(strBody)
+         //strBody.replace("\\r","\r");
+
+         //strBody.replace("\\n","\n"); already done
+
+         set(strRoot, pszLang, pszStyle, strBody);
+
+      cont:;
       }
+      end:
 
       return true;
    }

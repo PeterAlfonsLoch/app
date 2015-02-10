@@ -37,54 +37,58 @@ namespace str {
 /* implementation of class parse */
 
    parse::parse()
-   :pa_the_str("")
+   :m_psz(NULL)
    ,pa_splits("")
-   ,pa_ord("")
-   ,pa_the_ptr(0)
+   ,m_strWord("")
+   ,m_iPos(0)
    ,pa_breakchar(0)
    ,pa_enable(0)
    ,pa_disable(0)
    ,pa_nospace(0)
-   ,pa_quote(false)
+   ,m_bQuote(false)
+   ,m_iLen(0)
    {
    }
 
-   parse::parse(const string &s)
-   :pa_the_str(s)
+   parse::parse(const char * psz, strsize iLen)
+      :m_psz(psz)
    ,pa_splits("")
-   ,pa_ord("")
-   ,pa_the_ptr(0)
+   ,m_strWord("")
+   ,m_iPos(0)
    ,pa_breakchar(0)
    ,pa_enable(0)
    ,pa_disable(0)
    ,pa_nospace(0)
-   ,pa_quote(false)
+   ,m_bQuote(false)
+   ,m_iLen(iLen)
    {
    }
 
-   parse::parse(const string &s,const string &sp)
-   :pa_the_str(s)
+   parse::parse(const char * s,strsize iLen,const string &sp)
+   :m_psz(s)
    ,pa_splits(sp)
-   ,pa_ord("")
-   ,pa_the_ptr(0)
+   ,m_strWord("")
+   ,m_iPos(0)
    ,pa_breakchar(0)
    ,pa_enable(0)
    ,pa_disable(0)
    ,pa_nospace(0)
-   ,pa_quote(false)
+   ,m_bQuote(false)
+   ,m_iLen(iLen)
    {
    }
 
-   parse::parse(const string &s,const string &sp,int16_t nospace)
-   :pa_the_str(s)
+   parse::parse(const char *s,strsize iLen,const string &sp,int16_t nospace)
+   :m_psz(s)
    ,pa_splits(sp)
-   ,pa_ord("")
-   ,pa_the_ptr(0)
+   ,m_strWord("")
+   ,m_iPos(0)
    ,pa_breakchar(0)
    ,pa_enable(0)
    ,pa_disable(0)
    ,pa_nospace(1)
-   ,pa_quote(false)
+   ,m_bQuote(false)
+   ,m_iLen(iLen)
    {
       UNREFERENCED_PARAMETER(nospace);
    }
@@ -94,8 +98,8 @@ namespace str {
    {
    }
 
-   #define C ((pa_the_ptr<pa_the_str.get_length()) ? ((const char *) pa_the_str)[pa_the_ptr] : 0)
-#define CPREV ((pa_the_ptr-1 >=0)&&(pa_the_ptr-1<pa_the_str.get_length()) ? ((const char *) pa_the_str)[pa_the_ptr-1] : 0)
+   #define C ((m_iPos<m_iLen) ? m_psz[m_iPos] : 0)
+//#define CPREV ((m_iPos-1 >=0)&&(m_iPos-1<m_str.get_length()) ? (m_str.get_at(m_iPos-1) : 0)
 
    int16_t parse::issplit(const char ca)
    {
@@ -114,49 +118,49 @@ namespace str {
 
       if (C == '=')
       {
-         x = pa_the_ptr++;
-         if (x == pa_the_ptr && C == '=')
-            pa_the_ptr++;
+         x = m_iPos++;
+         if (x == m_iPos && C == '=')
+            m_iPos++;
       }
       else if (pa_nospace)
       {
          while (C && issplit(C))
-            pa_the_ptr++;
-         x = pa_the_ptr;
+            m_iPos++;
+         x = m_iPos;
          while (C && !issplit(C) && C != '=' && (C != pa_breakchar || !pa_breakchar || disabled))
          {
             if (pa_breakchar && C == pa_disable)
                disabled = 1;
             if (pa_breakchar && C == pa_enable)
                disabled = 0;
-            if (pa_quote && C == '"')
+            if (m_bQuote && C == '"')
                quote = 1;
-            pa_the_ptr++;
+            m_iPos++;
             while (quote && C && C != '"')
             {
-               pa_the_ptr++;
+               m_iPos++;
             }
-            if (pa_quote && C == '"')
+            if (m_bQuote && C == '"')
             {
-               pa_the_ptr++;
+               m_iPos++;
             }
             quote = 0;
          }
-         if (x == pa_the_ptr && C == '=')
-            pa_the_ptr++;
+         if (x == m_iPos && C == '=')
+            m_iPos++;
       }
       else
       {
          if (C == pa_breakchar && pa_breakchar)
          {
-            x = pa_the_ptr++;
+            x = m_iPos++;
             rem = 1;
          }
          else
          {
             while (C && (C == ' ' || C == 9 || C == 13 || C == 10 || issplit(C)))
-               pa_the_ptr++;
-            x = pa_the_ptr;
+               m_iPos++;
+            x = m_iPos;
             while (C && C != ' ' && C != 9 && C != 13 && C != 10 && !issplit(C) && C != '=' &&
                (C != pa_breakchar || !pa_breakchar || disabled))
             {
@@ -164,34 +168,45 @@ namespace str {
                   disabled = 1;
                if (pa_breakchar && C == pa_enable)
                   disabled = 0;
-               if (pa_quote && C == '"')
+               if (m_bQuote && C == '"')
                {
                   quote = 1;
-                  pa_the_ptr++;
+                  m_iPos++;
                   while (quote && C && C != '"')
                   {
-                     pa_the_ptr++;
+                     m_iPos++;
                   }
-                  if (pa_quote && C == '"')
+                  if (m_bQuote && C == '"')
                   {
-                     pa_the_ptr++;
+                     m_iPos++;
                   }
                }
                else
-                  pa_the_ptr++;
+                  m_iPos++;
                quote = 0;
             }
             if (C != '=')
             {
-               pa_the_ptr++;
+               m_iPos++;
                rem = 1;
             }
          }
-         if (x == pa_the_ptr && ((C == pa_breakchar && pa_breakchar) || C == '='))
-            pa_the_ptr++;
+         if (x == m_iPos && ((C == pa_breakchar && pa_breakchar) || C == '='))
+            m_iPos++;
       }
 
-      pa_ord = (x < pa_the_str.get_length()) ? pa_the_str.Mid(x, pa_the_ptr - x - rem) : "";
+      if(x < m_iLen)
+      {
+
+         m_strWord.SetString(&m_psz[x],m_iPos - x - rem);
+
+      }
+      else
+      {
+
+         m_strWord.Empty();
+
+      }
 
    }
 
@@ -201,18 +216,31 @@ namespace str {
 
       if (C == '=')
       {
-         x = pa_the_ptr++;
+         x = m_iPos++;
       } else
       {
          while (C && (issplit(C)))
-            pa_the_ptr++;
-         x = pa_the_ptr;
+            m_iPos++;
+         x = m_iPos;
          while (C && !issplit(C) && C != '=')
-            pa_the_ptr++;
+            m_iPos++;
       }
-      if (x == pa_the_ptr && C == '=')
-         pa_the_ptr++;
-      pa_ord = (x < pa_the_str.get_length()) ? pa_the_str.Mid(x,pa_the_ptr - x) : "";
+      if (x == m_iPos && C == '=')
+         m_iPos++;
+
+      if(x < m_iLen)
+      {
+
+         m_strWord.SetString(&m_psz[x],m_iPos - x);
+
+      }
+      else
+      {
+
+         m_strWord.Empty();
+
+      }
+
    }
 
    string parse::getword()
@@ -225,24 +253,24 @@ namespace str {
       if (pa_nospace)
       {
          while (C && issplit(C))
-            pa_the_ptr++;
-         x = pa_the_ptr;
+            m_iPos++;
+         x = m_iPos;
          while (C && !issplit(C) && (C != pa_breakchar || !pa_breakchar || disabled))
          {
             if (pa_breakchar && C == pa_disable)
                disabled = 1;
             if (pa_breakchar && C == pa_enable)
                disabled = 0;
-            if (pa_quote && C == '"')
+            if (m_bQuote && C == '"')
                quote = 1;
-            pa_the_ptr++;
+            m_iPos++;
             while (quote && C && C != '"')
             {
-               pa_the_ptr++;
+               m_iPos++;
             }
-            if (pa_quote && C == '"')
+            if (m_bQuote && C == '"')
             {
-               pa_the_ptr++;
+               m_iPos++;
             }
             quote = 0;
          }
@@ -250,13 +278,13 @@ namespace str {
       {
          if (C == pa_breakchar && pa_breakchar)
          {
-            x = pa_the_ptr++;
+            x = m_iPos++;
             rem = 1;
          } else
          {
             while (C && (C == ' ' || C == 9 || C == 13 || C == 10 || issplit(C)))
-               pa_the_ptr++;
-            x = pa_the_ptr;
+               m_iPos++;
+            x = m_iPos;
             while (C && C != ' ' && C != 9 && C != 13 && C != 10 && !issplit(C) &&
              (C != pa_breakchar || !pa_breakchar || disabled))
             {
@@ -264,38 +292,42 @@ namespace str {
                   disabled = 1;
                if (pa_breakchar && C == pa_enable)
                   disabled = 0;
-               if (pa_quote && C == '"')
+               if (m_bQuote && C == '"')
                {
                   quote = 1;
-               pa_the_ptr++;
+               m_iPos++;
                while (quote && C && C != '"')
                {
-                  pa_the_ptr++;
+                  m_iPos++;
                }
-               if (pa_quote && C == '"')
+               if (m_bQuote && C == '"')
                {
-                  pa_the_ptr++;
+                  m_iPos++;
                }
                }
                else
-                  pa_the_ptr++;
+                  m_iPos++;
                quote = 0;
             }
-            pa_the_ptr++;
+            m_iPos++;
             rem = 1;
          }
-         if (x == pa_the_ptr && C == pa_breakchar && pa_breakchar)
-            pa_the_ptr++;
+         if (x == m_iPos && C == pa_breakchar && pa_breakchar)
+            m_iPos++;
       }
-      if (x < pa_the_str.get_length())
+      if(x < m_iLen)
       {
-         pa_ord = pa_the_str.Mid(x,pa_the_ptr - x - rem);
+
+         m_strWord.SetString(&m_psz[x],m_iPos - x - rem);
+
       }
       else
       {
-         pa_ord = "";
+
+         m_strWord.Empty();
+
       }
-      return pa_ord;
+      return m_strWord;
    }
 
    void parse::getword(string &s)
@@ -306,7 +338,7 @@ namespace str {
    void parse::getsplit(string &s)
    {
       parse::getsplit();
-      s = pa_ord;
+      s = m_strWord;
    }
 
 
@@ -315,7 +347,7 @@ namespace str {
       
       parse::getsplitword();
       
-      s = pa_ord;
+      s = m_strWord;
 
    }
 
@@ -324,31 +356,55 @@ namespace str {
    {
       parse::getword();
       s = "";
-      while (s.get_length() + pa_ord.get_length() < (index)l)
+      while (s.get_length() + m_strWord.get_length() < (index)l)
          s += fill;
-      s += pa_ord;
+      s += m_strWord;
    }
 
    string parse::getrest()
    {
       string s;
       while (C && (C == ' ' || C == 9 || issplit(C)))
-         pa_the_ptr++;
-      s = (pa_the_ptr < pa_the_str.get_length()) ? pa_the_str.Mid(pa_the_ptr) : "";
+         m_iPos++;
+      if(m_iPos < m_iLen)
+      {
+
+         m_strWord.SetString(&m_psz[m_iPos],m_iLen - m_iPos);
+
+      }
+      else
+      {
+
+         m_strWord.Empty();
+
+      }
       return s;
    }
 
    void parse::getrest(string &s)
    {
       while (C && (C == ' ' || C == 9 || issplit(C)))
-         pa_the_ptr++;
-      s = (pa_the_ptr < pa_the_str.get_length()) ? pa_the_str.Mid(pa_the_ptr) : "";
+         m_iPos++;
+      if(m_iPos < m_iLen)
+      {
+
+         m_strWord.SetString(&m_psz[m_iPos],m_iLen - m_iPos);
+
+      }
+      else
+      {
+
+         m_strWord.Empty();
+
+      }
+
+      s = m_strWord;
    }
 
    long parse::getvalue()
    {
       parse::getword();
-      return atol(pa_ord);
+      return atol(m_strWord);
    }
 
    void parse::setbreak(const char ca)
@@ -358,36 +414,36 @@ namespace str {
 
    int32_t parse::getwordlen()
    {
-      index x,y = pa_the_ptr,len;
+      index x,y = m_iPos,len;
 
       if (C == pa_breakchar && pa_breakchar)
       {
-         x = pa_the_ptr++;
+         x = m_iPos++;
       } else
       {
          while (C && (C == ' ' || C == 9 || C == 13 || C == 10 || issplit(C)))
-            pa_the_ptr++;
-         x = pa_the_ptr;
+            m_iPos++;
+         x = m_iPos;
          while (C && C != ' ' && C != 9 && C != 13 && C != 10 && !issplit(C) && (C != pa_breakchar || !pa_breakchar))
-            pa_the_ptr++;
+            m_iPos++;
       }
-      if (x == pa_the_ptr && C == pa_breakchar && pa_breakchar)
-         pa_the_ptr++;
-      len = pa_the_ptr - x;
-      pa_the_ptr = y;
-      return (int32_t)len;
+      if (x == m_iPos && C == pa_breakchar && pa_breakchar)
+         m_iPos++;
+      len = m_iPos - x;
+      m_iPos = y;
+      return (int32_t)MAX(0,len);
    }
 
    int32_t parse::getrestlen()
    {
-      index y = pa_the_ptr;
+      index y = m_iPos;
       index len;
 
       while (C && (C == ' ' || C == 9 || issplit(C)))
-         pa_the_ptr++;
-      len = strlen(pa_the_str.Mid(pa_the_ptr));
-      pa_the_ptr = y;
-      return (int32_t)len;
+         m_iPos++;
+      len = m_iLen - m_iPos;
+      m_iPos = y;
+      return (int32_t)MAX(0, len);
    }
 
 
@@ -397,58 +453,80 @@ namespace str {
    {
       index x;
 
-      x = pa_the_ptr;
+      x = m_iPos;
       while (C && C != 13 && C != 10)
-         pa_the_ptr++;
-      pa_ord = (x < pa_the_str.get_length()) ? pa_the_str.Mid(x,pa_the_ptr - x) : "";
+         m_iPos++;
+
+      if(x < m_iLen)
+      {
+
+         m_strWord.SetString(&m_psz[x],m_iPos - x);
+
+      }
+      else
+      {
+
+         m_strWord.Empty();
+
+      }
+
+      
       if (C == 13)
-         pa_the_ptr++;
+         m_iPos++;
       if (C == 10)
-         pa_the_ptr++;
+         m_iPos++;
    }
 
 
    void parse::getline(string &s)
    {
       getline();
-      s = pa_ord;
+      s = m_strWord;
    }
 
-   bool parse::get_expandable_line()
+   void parse::_get_expandable_line(strsize & start, strsize & end, bool & bFinal)
    {
-      index x;
       
-      x = pa_the_ptr;
-      string str;
-      repeat:
-      while(C && C != 13 && C != 10)
-         pa_the_ptr++;
+      start = m_iPos;
       
-      if(CPREV == '\\')
+      while(m_iPos < m_iLen && m_psz[m_iPos] != '\r' && m_psz[m_iPos] != '\n')
+         m_iPos+=ch_uni_len(m_psz[m_iPos]);
+
+      end = m_iPos;
+
+      bFinal = m_iPos >= m_iLen || m_iPos < 1 || m_psz[m_iPos - 1] != '\\';
+
+      if(m_iPos < m_iLen &&  m_psz[m_iPos] == '\r')
+         m_iPos++;
+
+      if(m_iPos < m_iLen &&  m_psz[m_iPos] == '\n')
+         m_iPos++;
+      
+   }
+
+
+   void parse::_get_expandable_line(string & s)
+   {
+      strsize start;
+      strsize end;
+      bool bFinal;
+      while(has_char())
       {
-         if(C == 13)
-            pa_the_ptr++;
-         if(C == 10)
-            pa_the_ptr++;
-         str += (x < pa_the_str.get_length()) ? pa_the_str.Mid(x,pa_the_ptr - x) : "";
-         goto repeat;
+         _get_expandable_line(start,end,bFinal);
+
+         s += string(&m_psz[start],end - start);
+         if(bFinal)
+            break;
       }
-
-      pa_ord = str;
-      if(C == 13)
-         pa_the_ptr++;
-      if(C == 10)
-         pa_the_ptr++;
-
-      return has_char();
+      
    }
 
-
-   bool parse::get_expandable_line(string &s)
+   void parse::get_expandable_line()
    {
-      get_expandable_line();
-      s = pa_ord;
-      return has_char();
+
+      m_strWord.Empty();
+      _get_expandable_line(m_strWord);
+
    }
 
 } // namespace str

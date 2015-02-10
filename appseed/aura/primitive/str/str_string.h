@@ -120,7 +120,7 @@ public:
 
 
 
-
+extern CLASS_DECL_AURA string_manager * s_pstringmanager;
 
 
 class string_trait :
@@ -128,10 +128,9 @@ class string_trait :
 {
 public:
 
-   CLASS_DECL_AURA static string_manager * GetDefaultManager() throw()
+   inline static string_manager * GetDefaultManager() throw()
    {
-      static string_manager * s_pdefaultManager = __get_string_manager();
-      return s_pdefaultManager;
+      return s_pstringmanager;
    }
 
 };

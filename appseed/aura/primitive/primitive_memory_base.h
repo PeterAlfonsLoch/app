@@ -105,6 +105,8 @@ namespace primitive
       inline const LPBYTE     data() const;
       inline LPBYTE           data();
 
+      char *                  get_psz(strsize & len);
+
 
       memory_base & operator = (const memory_base & s);
       memory_base & operator += (const memory_base & s);

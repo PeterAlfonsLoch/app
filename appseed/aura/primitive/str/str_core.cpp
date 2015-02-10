@@ -27,7 +27,7 @@ template<> UINT HashKey<const wchar_t *> (const wchar_t * key)
 
 
 
-string_manager * s_pstringmanager = NULL;
+CLASS_DECL_AURA string_manager * s_pstringmanager = NULL;
 
 
 string_manager * __get_string_manager()

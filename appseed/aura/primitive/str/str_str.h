@@ -26,7 +26,7 @@ namespace core
 }
 
 
-extern const char trailingBytesForUTF8[256];
+extern CLASS_DECL_AURA const char trailingBytesForUTF8[256];
 
 
 namespace str

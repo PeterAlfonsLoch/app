@@ -175,7 +175,7 @@
 
 
 
-#include "str/_str_pool.cpp";
+#include "str/_str_pool.cpp"
 
 
 

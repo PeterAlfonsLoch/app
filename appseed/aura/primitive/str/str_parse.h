@@ -41,20 +41,24 @@ namespace str
    public:
 
       // publicy made(camilo already xpced a good public, so i said first :-), <=but with casey kick)
-      string   pa_the_str;
+      const char * m_psz;
       string   pa_splits;
-      string   pa_ord;
-      strsize  pa_the_ptr;
+      string   m_strWord;
+      strsize  m_iPos;
       char     pa_breakchar;
       char     pa_enable;
       char     pa_disable;
       int16_t    pa_nospace;
-      bool     pa_quote;
+      bool     m_bQuote;
+      strsize  m_iLen;
 
       parse();
-      parse(const string &);
-      parse(const string &, const string &);
-      parse(const string &, const string &, int16_t);
+      parse(const string & str):parse((const char *) str, str.get_length()) {}
+      parse(const string & str,const string & splits):parse((const char *)str,str.get_length(),splits) {}
+      parse(const string & str,const string & splits,int16_t nospace):parse((const char *)str,str.get_length(),splits,nospace) {}
+      parse(const char * psz, strsize iLen);
+      parse(const char * psz, strsize iLen,const string &);
+      parse(const char * psz, strsize iLen,const string &,int16_t);
       ~parse();
       int16_t issplit(const char);
       void getsplit();
@@ -71,7 +75,7 @@ namespace str
       int32_t getwordlen();
       int32_t getrestlen();
 
-      inline bool has_char() const { return pa_the_ptr < pa_the_str.get_length(); }
+      inline bool has_char() const { return m_iPos < m_iLen; }
       inline bool is_eostr() const { return !has_char();  }
       
 
@@ -86,10 +90,14 @@ namespace str
       }
       void getline();
       void getline(string &);
-      bool get_expandable_line();
-      bool get_expandable_line(string &);
-      index getptr() { return pa_the_ptr; }
-      void EnableQuote(bool b) { pa_quote = b; }
+
+      // operational functions that does not store resulting word (pa_the_ord) starts with underscore.
+      void _get_expandable_line(strsize & start, strsize & end, bool & bFinal);
+      void _get_expandable_line(string &);
+      void get_expandable_line();
+
+      index get_pos() { return m_iPos; }
+      void EnableQuote(bool b) { m_bQuote = b; }
 
    };
 

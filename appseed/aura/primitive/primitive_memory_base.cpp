@@ -438,6 +438,50 @@ namespace primitive
    }
 #endif
 
+
+   char * memory_base::get_psz(strsize & len)
+   {
+
+      if(get_size() >= 2
+         && get_data()[0] == 255
+         && get_data()[1] == 60)
+      {
+         ::primitive::memory mem;
+         mem = *this;
+         allocate(utf8_len_len((const wchar_t *)&get_data()[2],get_size() - 2));
+         utf16_to_utf8_len((char *) get_data(),(const wchar_t *)&mem.get_data()[2],(int32_t)(mem.get_size() - 2));
+         len = get_size();
+         return (char *) get_data();
+      }
+      else if(get_size() >= 3
+         && get_data()[0] == 255
+         && get_data()[1] == 254
+         && get_data()[2] == 0x73)
+      {
+         ::primitive::memory mem;
+         mem = *this;
+         allocate(utf8_len_len((const wchar_t *)&get_data()[3],get_size() - 3));
+         utf16_to_utf8_len((char *)get_data(),(const wchar_t *)&mem.get_data()[3],(int32_t)(mem.get_size() - 3));
+         len = get_size();
+         return (char *)get_data();
+      }
+      else if(get_size() >= 3
+         && get_data()[0] == 0xef
+         && get_data()[1] == 0xbb
+         && get_data()[2] == 0xbf)
+      {
+         len = get_size() - 3;
+         return (char *)&get_data()[3];
+      }
+      else
+      {
+         len = get_size();
+         return (char *)get_data();
+      }
+
+
+   }
+
 } // namespace primitive
 
 

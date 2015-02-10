@@ -88,24 +88,26 @@ inline simple_string::simple_string(const string_data  * pdata, string_manager *
 #endif
    }
 
-      inline const char & simple_string::operator [](strsize iChar ) const
+   // besides returning a reference (and const does not really impedes changing), do not change a simple_string (or string) directly,
+   // there may be multiple instances of a string (all referencing the same pointer).
+   inline const char & simple_string::operator [](strsize iChar ) const
    {
       
       //ASSERT( (iChar >= 0) && (iChar <= get_length()) );  // Indexing the '\0' is OK
 
-      if( (iChar < 0) || (iChar > get_length()) )
-         throw invalid_argument_exception(get_thread_app());
+      //if( (iChar < 0) || (iChar > get_length()) )
+        // throw invalid_argument_exception(get_thread_app());
 
       return m_pszData[iChar];
 
    }
    inline char simple_string::get_at(strsize iChar ) const
    {
-      ASSERT( (iChar >= 0) && (iChar <= get_length()) );  // Indexing the '\0' is OK
-      if( (iChar < 0) || (iChar > get_length()) )
-         throw invalid_argument_exception(get_thread_app());
+      //ASSERT( (iChar >= 0) && (iChar <= get_length()) );  // Indexing the '\0' is OK
+      //if( (iChar < 0) || (iChar > get_length()) )
+        // throw invalid_argument_exception(get_thread_app());
 
-      return( m_pszData[iChar] );
+      return m_pszData[iChar];
    }
 
 

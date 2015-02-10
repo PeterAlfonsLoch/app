@@ -85,6 +85,19 @@ int32_t uni_to_utf8(char * psz, int32_t w)
    return count;
 }
 
+::count utf16_len_len(const char * psz, strsize srclen)
+{
+   if(psz == NULL)
+      return -1;
+   int32_t count = 0;
+   while(srclen > 0 && (psz = utf8_inc(psz)) != NULL)
+   {
+      count++;
+      srclen--;
+   }
+   return count;
+}
+
 
 void utf8_to_utf16(wchar_t * pwsz, const char * psz)
 {
@@ -93,6 +106,20 @@ void utf8_to_utf16(wchar_t * pwsz, const char * psz)
    {
       *pwsz++ = ::str::ch::uni_index_len(psz, len);
       psz += len;
+   }
+   if(psz != NULL)
+   {
+      *pwsz = L'\0';
+   }
+}
+void utf8_to_utf16_len(wchar_t * pwsz,const char * psz, strsize srclen)
+{
+   strsize len;
+   while(srclen > 0 && psz != NULL && *psz != '\0')
+   {
+      *pwsz++ = ::str::ch::uni_index_len(psz,len);
+      psz += len;
+      srclen -= len;
    }
    if(psz != NULL)
    {
@@ -135,6 +162,26 @@ int32_t utf8_len(const wchar_t * pwsz)
    return count;
 }
 
+int32_t utf8_len_len(const wchar_t * pwsz, strsize srclen)
+{
+   if(pwsz == NULL)
+      return -1;
+   int32_t count = 0;
+   int32_t n;
+   char sz[16];
+   while(srclen > 0 && *pwsz != L'\0')
+   {
+      n = uni_to_utf8(sz,*pwsz);
+      if(n <= 0)
+         break;
+      count += n;
+      srclen -= n;
+      pwsz++;
+   }
+   return count;
+}
+
+
 void utf16_to_utf8(char * psz, const wchar_t * pwsz)
 {
    int32_t n;
@@ -145,6 +192,21 @@ void utf16_to_utf8(char * psz, const wchar_t * pwsz)
          break;
       pwsz++;
       psz += n;
+   }
+   *psz = L'\0';
+}
+
+void utf16_to_utf8_len(char * psz,const wchar_t * pwsz, strsize srclen)
+{
+   int32_t n;
+   while(srclen > 0 && *pwsz != L'\0')
+   {
+      n = uni_to_utf8(psz,*pwsz);
+      if(n <= 0)
+         break;
+      pwsz++;
+      psz += n;
+      srclen--;
    }
    *psz = L'\0';
 }

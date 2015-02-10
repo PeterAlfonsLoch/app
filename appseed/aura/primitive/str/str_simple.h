@@ -527,14 +527,13 @@ public:
    }
 
 
-   inline const char & operator [](strsize iChar ) const;
+   // besides returning a reference (and const does not really impedes changing), do not change a simple_string (or string) directly,
+   // there may be multiple instances of a string (all referencing the same pointer).
+   inline const char & operator [](strsize iChar) const;
 
    // non error at
-   char s_at(strsize iChar) const
+   inline char s_at(strsize iChar) const
    {
-
-      if((iChar < 0) || (iChar > get_length()))
-         return '\0';
 
       return m_pszData[iChar];
 
@@ -683,7 +682,9 @@ public:
    {
       return( get_data()->nAllocLength );
    }
+   
    inline char get_at(strsize iChar ) const;
+
    char * GetBuffer()
    {
       string_data* pData = get_data();
@@ -852,20 +853,21 @@ public:
    }
 #endif
 
-   static strsize __cdecl StringLength(const char * psz ) NOTHROW
+   inline static strsize __cdecl StringLength(const char * psz ) NOTHROW
    {
-      strsize nLength = 0;
-      if( psz != NULL )
-      {
-         const char* pch = psz;
-         while( *pch != 0 )
-         {
-            nLength++;
-            pch++;
-         }
-      }
+      return psz == NULL ? 0 : strlen(psz);
+      //strsize nLength = 0;
+      //if( psz != NULL )
+      //{
+      //   const char* pch = psz;
+      //   while( *pch != 0 )
+      //   {
+      //      nLength++;
+      //      pch++;
+      //   }
+      //}
 
-      return( nLength );
+      //return( nLength );
    }
 
 protected:

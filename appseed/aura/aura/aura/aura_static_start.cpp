@@ -28,8 +28,6 @@ extern string_map < INT_PTR,INT_PTR > * g_pmapLibrary;
 
 extern plex_heap_alloc_array * g_pheap;
 
-extern string_manager * s_pstringmanager;
-
 extern mutex * g_pmutexSystemHeap;
 
 extern plex_heap_alloc_array * g_pheap;
