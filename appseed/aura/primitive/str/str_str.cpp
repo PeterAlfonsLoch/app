@@ -2191,6 +2191,7 @@ namespace str
       }
       int iPos = utf8char.m_chLen;
       string str;
+      int iPosStart = iPos;
       while(true)
       {
          iPos += utf8char.parse(&psz[iPos]);
@@ -2201,8 +2202,9 @@ namespace str
          }
          if(utf8char.m_chLen == 1 && utf8char.m_sz[0] == qc)
             break;
-         str += utf8char.m_sz;
+         
       }
+      str = string(&psz[iPosStart], iPos - iPosStart - 1);
       pszXml = &psz[iPos];
       return str;
    }
