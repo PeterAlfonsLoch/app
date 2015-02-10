@@ -14,13 +14,20 @@ namespace user
 
 } // namespace user
 
-int g_iBaseRefCount = 0;
+int g_iAxisRefCount = 0;
 
 
 CLASS_DECL_AXIS int get_axis_init()
 {
 
-   return g_iBaseRefCount;
+   return g_iAxisRefCount;
+
+}
+
+::aura::system * axis_create_aura_system()
+{
+
+   return new ::axis::system(NULL);
 
 }
 
@@ -32,9 +39,9 @@ CLASS_DECL_AXIS int_bool defer_axis_init()
    if(!defer_aura_init())
       return false;
 
-   g_iBaseRefCount++;
+   g_iAxisRefCount++;
 
-   if(g_iBaseRefCount > 1)
+   if(g_iAxisRefCount > 1)
       return TRUE;
 
    ::axis::static_start::init();
@@ -48,6 +55,8 @@ CLASS_DECL_AXIS int_bool defer_axis_init()
    if(!__node_axis_pos_init())
       return false;
 
+   g_pfn_create_system = axis_create_aura_system;
+
    return true;
 
 }
@@ -56,9 +65,9 @@ CLASS_DECL_AXIS int_bool defer_axis_init()
 CLASS_DECL_AXIS int_bool defer_axis_term()
 {
 
-   g_iBaseRefCount--;
+   g_iAxisRefCount--;
 
-   if(g_iBaseRefCount >= 1)
+   if(g_iAxisRefCount >= 1)
       return TRUE;
 
    __node_axis_pre_term();
@@ -80,10 +89,10 @@ CLASS_DECL_AXIS int_bool defer_axis_term()
 bool axis_init()
 {
 
-   if(!defer_axis_init())
-      return false;
+   //if(!defer_axis_init())
+     // return false;
 
-   ::axis::static_start::init();
+   //::axis::static_start::init();
 
    /*if(!__node_axis_pre_init())
       return false;
@@ -162,9 +171,9 @@ bool axis_term()
 
    __node_axis_pos_term();*/
 
-   ::axis::static_start::term();
+//   ::axis::static_start::term();
 
-   defer_axis_term();
+   //defer_axis_term();
 
    return true;
 

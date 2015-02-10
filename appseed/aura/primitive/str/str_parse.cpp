@@ -95,6 +95,7 @@ namespace str {
    }
 
    #define C ((pa_the_ptr<pa_the_str.get_length()) ? ((const char *) pa_the_str)[pa_the_ptr] : 0)
+#define CPREV ((pa_the_ptr-1 >=0)&&(pa_the_ptr-1<pa_the_str.get_length()) ? ((const char *) pa_the_str)[pa_the_ptr-1] : 0)
 
    int16_t parse::issplit(const char ca)
    {
@@ -389,6 +390,9 @@ namespace str {
       return (int32_t)len;
    }
 
+
+
+
    void parse::getline()
    {
       index x;
@@ -403,10 +407,48 @@ namespace str {
          pa_the_ptr++;
    }
 
+
    void parse::getline(string &s)
    {
       getline();
       s = pa_ord;
+   }
+
+   bool parse::get_expandable_line()
+   {
+      index x;
+      
+      x = pa_the_ptr;
+      string str;
+      repeat:
+      while(C && C != 13 && C != 10)
+         pa_the_ptr++;
+      
+      if(CPREV == '\\')
+      {
+         if(C == 13)
+            pa_the_ptr++;
+         if(C == 10)
+            pa_the_ptr++;
+         str += (x < pa_the_str.get_length()) ? pa_the_str.Mid(x,pa_the_ptr - x) : "";
+         goto repeat;
+      }
+
+      pa_ord = str;
+      if(C == 13)
+         pa_the_ptr++;
+      if(C == 10)
+         pa_the_ptr++;
+
+      return has_char();
+   }
+
+
+   bool parse::get_expandable_line(string &s)
+   {
+      get_expandable_line();
+      s = pa_ord;
+      return has_char();
    }
 
 } // namespace str

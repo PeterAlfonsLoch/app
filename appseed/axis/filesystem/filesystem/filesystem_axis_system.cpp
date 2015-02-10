@@ -120,12 +120,12 @@ namespace file
    bool system::exists(const string & strPath, var * pvarQuery, ::aura::application * papp)
    {
 
-      if (::str::begins(strPath, g_strUifsProtocol))
+      if (::str::begins(strPath, astr.strUifsProtocol))
       {
          return AppUser(papp).m_pifs->file_exists(strPath);
       }
 
-      if (::str::begins(strPath, g_strHttpProtocol) || ::str::begins(strPath, g_strHttpsProtocol))
+      if (::str::begins(strPath, astr.strHttpProtocol) || ::str::begins(strPath, astr.strHttpsProtocol))
       {
 
          property_set set(papp);
@@ -440,8 +440,8 @@ restart:
                return "";
             as_memory(strFilePath, storage, papp);
          }
-         else if(::str::begins(strFilePath,g_strHttpProtocol)
-            || ::str::begins(strFilePath, g_strHttpsProtocol))
+         else if(::str::begins(strFilePath,astr.strHttpProtocol)
+            || ::str::begins(strFilePath, astr.strHttpsProtocol))
          {
             if(!exists(strFilePath, &varQuery, papp))
                return "";
@@ -524,7 +524,7 @@ restart:
 
          strPath.trim("\"'");
 
-         if((::str::begins(strPath, g_strHttpProtocol) || ::str::begins(strPath, g_strHttpsProtocol)))
+         if((::str::begins(strPath, astr.strHttpProtocol) || ::str::begins(strPath, astr.strHttpsProtocol)))
          {
 
             property_set set(get_app());

@@ -35,7 +35,7 @@ void url_domain_axis::create(const char * pszServerName)
       psz++;
    }
    psz = m_strOriginalName;
-   m_bHasWww = ::str::begins(pszServerName, g_strWwwDot);
+   m_bHasWww = ::str::begins(pszServerName, astr.strWwwDot);
    if(m_bHasWww)
    {
       psz += 4;

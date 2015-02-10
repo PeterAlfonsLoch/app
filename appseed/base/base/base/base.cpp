@@ -33,13 +33,21 @@ namespace std
 
 
 
-int g_iAxisRefCount = 0;
+int g_iBaseRefCount = 0;
 
 
 CLASS_DECL_BASE int get_base_init()
 {
 
-   return g_iAxisRefCount;
+   return g_iBaseRefCount;
+
+}
+
+
+::aura::system * base_create_aura_system()
+{
+
+   return new ::base::system(NULL);
 
 }
 
@@ -47,13 +55,15 @@ CLASS_DECL_BASE int get_base_init()
 CLASS_DECL_BASE int_bool defer_base_init()
 {
 
-   g_iAxisRefCount++;
+   g_iBaseRefCount++;
 
-   if(g_iAxisRefCount > 1)
+   if(g_iBaseRefCount > 1)
       return TRUE;
 
    if(!base_init())
       return FALSE;
+
+   g_pfn_create_system = base_create_aura_system;
 
    return TRUE;
 
@@ -63,9 +73,9 @@ CLASS_DECL_BASE int_bool defer_base_init()
 CLASS_DECL_BASE int_bool defer_base_term()
 {
 
-   g_iAxisRefCount--;
+   g_iBaseRefCount--;
 
-   if(g_iAxisRefCount >= 1)
+   if(g_iBaseRefCount >= 1)
       return TRUE;
 
    base_term();

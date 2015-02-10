@@ -582,30 +582,41 @@ namespace str
 
 
 
+class CLASS_DECL_AURA aura_str_pool
+{
+public:
+
+   const string strUifsProtocol = "uifs://";
+   const string strIfsProtocol = "ifs://";
+   const string strHttpProtocol = "http://";
+   const string strHttpsProtocol = "https://";
+   const string strFsProtocol = "fs://";
+   const string strSlash = "/";
+   const string strDoubleBackSlash = "\\\\";
+   const string strSystem = "system";
+   const string strAppCoreDeepfish = "app-core/deepfish_";
+   const string stringSysCommand = "syscommand::";
+   const string strPassthroughUri = "/passthrough/";
+   const string strMatterUri = "/matter/";
+   const string str200Space = "200 ";
+   const string strWwwDot = "www.";
+
+   const string szXMLPIOpen = "<?";
+   const string szXMLPIClose = "?>";
+   const string szXMLDOCTYPEOpen = "<!DOCTYPE";
+   const string szXMLDOCTYPEClose = ">";
+   const string szXMLCommentOpen = "<!--";
+   const string szXMLCommentClose = "-->";
+   const string szXMLCDATAOpen = "<![CDATA[";
+   const string szXMLCDATAClose = "]]>";
 
 
 
 
+};
 
 
 
-extern CLASS_DECL_AURA const string g_strUifsProtocol;
-extern CLASS_DECL_AURA const string g_strIfsProtocol;
-extern CLASS_DECL_AURA const string g_strHttpProtocol;
-extern CLASS_DECL_AURA const string g_strHttpsProtocol;
-extern CLASS_DECL_AURA const string g_strFsProtocol;
-extern CLASS_DECL_AURA const string g_strSlash;
-extern CLASS_DECL_AURA const string g_strDoubleBackSlash;
-extern CLASS_DECL_AURA const string g_strSystem;
-extern CLASS_DECL_AURA const string g_strAppCoreDeepfish;
-extern CLASS_DECL_AURA const string g_stringSysCommand;
-extern CLASS_DECL_AURA const string g_strPassthroughUri;
-extern CLASS_DECL_AURA const string g_strMatterUri;
-extern CLASS_DECL_AURA const string g_str200Space;
-extern CLASS_DECL_AURA const string g_strWwwDot;
+extern CLASS_DECL_AURA aura_str_pool * s_paurastrpool;
 
-
-
-
-
-
+#define astr (*s_paurastrpool)

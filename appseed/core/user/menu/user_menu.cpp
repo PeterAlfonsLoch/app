@@ -338,7 +338,7 @@ namespace aura
 
             if(pitem != NULL && !pitem->m_bPopup)
             {
-               if(::str::begins((const char *) pevent->m_puie->m_id, g_stringSysCommand))
+               if(::str::begins((const char *) pevent->m_puie->m_id, astr.stringSysCommand))
                {
                   m_oswindowParent->_001SendCommand(pevent->m_puie->m_id);
                }

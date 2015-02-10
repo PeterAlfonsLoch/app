@@ -9,14 +9,6 @@ namespace xml
    static const CHAR chXMLTagPre   = '/';
    static const CHAR chXMLEscape = '\\';   // for m_strValue field escape
 
-   static const string szXMLPIOpen = "<?";
-   static const string szXMLPIClose = "?>";
-   static const string szXMLDOCTYPEOpen = "<!DOCTYPE";
-//   static const CHAR szXMLDOCTYPEClose[] = ">";
-   static const string szXMLCommentOpen = "<!--";
-   static const string szXMLCommentClose = "-->";
-   static const string szXMLCDATAOpen = "<![CDATA[";
-   static const string szXMLCDATAClose = "]]>";
 
    node::node(::aura::application * papp) :
       element(papp),
@@ -437,7 +429,7 @@ namespace xml
          pparseinfo = System.xml().m_pparseinfoDefault;
 
       // find the end of pparseinfo
-      char * end = _tcsenistr( pszXml, szXMLPIClose, sizeof(szXMLPIClose)-1, pparseinfo ? pparseinfo->m_chEscapeValue : 0 );
+      char * end = _tcsenistr( pszXml, astr.szXMLPIClose, astr.szXMLPIClose.get_length(), pparseinfo ? pparseinfo->m_chEscapeValue : 0 );
       if(end == NULL)
          return NULL;
 
@@ -457,7 +449,7 @@ namespace xml
          pnode->m_pdoc = m_pdoc;
          pnode->m_etype = node_pi;
 
-         xml += sizeof(szXMLPIOpen)-1;
+         xml += astr.szXMLPIOpen.get_length();
          CHAR* pTagEnd = strpbrk( xml, " ?>" );
          _SetString( xml, pTagEnd, &pnode->m_strName );
          xml = pTagEnd;
@@ -467,7 +459,7 @@ namespace xml
          m_pdoc->m_nodea.add( pnode );
       }
 
-      end += sizeof(szXMLPIClose)-1;
+      end += astr.szXMLPIClose.get_length();
       return end;
    }
 
@@ -584,7 +576,7 @@ namespace xml
          pparseinfo = System.xml().m_pparseinfoDefault;
 
       // find the end of comment
-      char * end = _tcsenistr( pszXml, szXMLCommentClose, sizeof(szXMLCommentClose)-1, pparseinfo ? pparseinfo->m_chEscapeValue : 0 );
+      char * end = _tcsenistr( pszXml, astr.szXMLCommentClose, astr.szXMLCommentClose.get_length(), pparseinfo ? pparseinfo->m_chEscapeValue : 0 );
       if( end == NULL )
          return NULL;
 
@@ -595,7 +587,7 @@ namespace xml
       if( par )
       {
          char * xml = (char *)pszXml;
-         xml += sizeof(szXMLCommentOpen)-1;
+         xml += astr.szXMLCommentOpen.get_length();
 
          node * pnode = new node(this);
          pnode->m_pnodeParent = par;
@@ -607,7 +599,7 @@ namespace xml
          par->m_nodea.add( pnode );
       }
 
-      end += sizeof(szXMLCommentClose)-1;
+      end += astr.szXMLCommentClose.get_length();
       return end;
    }
 
@@ -629,7 +621,7 @@ namespace xml
          pparseinfo = System.xml().m_pparseinfoDefault;
 
       // find the end of CDATA
-      char * end = _tcsenistr( pszXml, szXMLCDATAClose, sizeof(szXMLCDATAClose)-1, pparseinfo ? pparseinfo->m_chEscapeValue : 0 );
+      char * end = _tcsenistr( pszXml, astr.szXMLCDATAClose, astr.szXMLCDATAClose.get_length(), pparseinfo ? pparseinfo->m_chEscapeValue : 0 );
       if( end == NULL )
          return NULL;
 
@@ -640,7 +632,7 @@ namespace xml
       if( pnodeParent )
       {
          char * xml = (char *)pszXml;
-         xml += sizeof(szXMLCDATAOpen)-1;
+         xml += astr.szXMLCDATAOpen.get_length();
 
          node * pnode = new node(this);
          pnode->m_pnodeParent = this;
@@ -652,7 +644,7 @@ namespace xml
          pnodeParent->m_nodea.add( pnode );
       }
 
-      end += sizeof(szXMLCDATAClose)-1;
+      end += astr.szXMLCDATAClose.get_length();
       return end;
    }
 
@@ -686,7 +678,7 @@ namespace xml
          xml = _tcsskip( xml );
          char * prev = xml;
          // is PI( Processing Instruction ) Node?
-         if(strnicmp_dup( xml, szXMLPIOpen, sizeof(szXMLPIOpen)-1 ) == 0 )
+         if(strnicmp_dup( xml, astr.szXMLPIOpen, astr.szXMLPIOpen.get_length() ) == 0 )
          {
             // processing instrunction parse
             // return pointer is next node of pparseinfo
@@ -704,7 +696,7 @@ namespace xml
          if(m_pnodeParent != NULL && m_pnodeParent->m_etype == node_document)
          {
             // is DOCTYPE
-            if(::str::begins(xml, szXMLDOCTYPEOpen))
+            if(::str::begins(xml, astr.szXMLDOCTYPEOpen))
             {
                // processing instrunction parse
                // return pointer is next node of pparseinfo
@@ -721,7 +713,7 @@ namespace xml
          }
 
          // is comment Node?
-         if(strnicmp_dup( xml, szXMLCommentOpen, sizeof(szXMLCommentOpen)-1 ) == 0 )
+         if(strnicmp_dup( xml, astr.szXMLCommentOpen, astr.szXMLCommentOpen.get_length() ) == 0 )
          {
             // processing comment parse
             // return pointer is next node of comment
@@ -743,7 +735,7 @@ namespace xml
          xml = _tcsskip( xml );
          prev = xml;
          // is CDATA Node?
-         if(strnicmp_dup( xml, szXMLCDATAOpen, sizeof(szXMLCDATAOpen)-1 ) == 0 )
+         if(strnicmp_dup( xml, astr.szXMLCDATAOpen, astr.szXMLCDATAOpen.get_length() ) == 0 )
          {
             // processing CDATA parse
             // return pointer is next node of CDATA
@@ -1054,7 +1046,7 @@ namespace xml
       if( m_etype == node_pi )
       {
          // <?TAG
-         ostring += szXMLPIOpen + m_strName;
+         ostring += astr.szXMLPIOpen + m_strName;
          // <?TAG Attr1="Val1"
          if(m_attra.has_properties())
             ostring += ' ';
@@ -1063,25 +1055,25 @@ namespace xml
             ostring += m_attra.m_propertyptra[i]->get_xml(opt);
          }
          //?>
-         ostring += szXMLPIClose;
+         ostring += astr.szXMLPIClose;
          return ostring;
       }
       else
       if( m_etype == node_comment )
       {
          // <--comment
-         ostring += szXMLCommentOpen + m_strValue;
+         ostring += astr.szXMLCommentOpen + m_strValue;
          //-->
-         ostring += szXMLCommentClose;
+         ostring += astr.szXMLCommentClose;
          return ostring;
       }
       else
       if( m_etype == node_cdata )
       {
          // <--comment
-         ostring += szXMLCDATAOpen + m_strValue;
+         ostring += astr.szXMLCDATAOpen + m_strValue;
          //-->
-         ostring += szXMLCDATAClose;
+         ostring += astr.szXMLCDATAClose;
          return ostring;
       }
 

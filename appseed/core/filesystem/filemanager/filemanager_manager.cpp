@@ -291,8 +291,8 @@ namespace filemanager
       if(actioncontext.is_user_source())
       {
 
-         if(::str::begins(strPath,g_strUifsProtocol)
-            || ::str::begins(strPath,g_strFsProtocol))
+         if(::str::begins(strPath,astr.strUifsProtocol)
+            || ::str::begins(strPath,astr.strFsProtocol))
          {
             data_set(".local://InitialBrowsePath",strPath);
          }

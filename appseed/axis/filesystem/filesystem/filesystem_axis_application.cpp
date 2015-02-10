@@ -345,14 +345,14 @@ namespace file
             spfile = pinfile;
 
          }
-         else if(::str::begins(strPath,g_strHttpProtocol) || ::str::begins(strPath,g_strHttpsProtocol))
+         else if(::str::begins(strPath,astr.strHttpProtocol) || ::str::begins(strPath,astr.strHttpsProtocol))
          {
 
             ::url_domain domain;
 
             domain.create(System.url().get_server(strPath));
 
-            if(domain.m_strRadix == "ca2" && ::str::begins(System.url().get_object(strPath),g_strMatterUri))
+            if(domain.m_strRadix == "ca2" && ::str::begins(System.url().get_object(strPath),astr.strMatterUri))
             {
 
                string strFile(strPath);
@@ -496,7 +496,7 @@ namespace file
             }
 
          }
-         else if(::str::begins(strPath,g_strIfsProtocol) || ::str::begins(strPath,g_strUifsProtocol))
+         else if(::str::begins(strPath,astr.strIfsProtocol) || ::str::begins(strPath,astr.strUifsProtocol))
          {
 
             if(&AppUser(m_pauraapp) == NULL)

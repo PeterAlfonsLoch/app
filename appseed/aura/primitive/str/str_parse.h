@@ -39,6 +39,18 @@ namespace str
    class CLASS_DECL_AURA parse
    {
    public:
+
+      // publicy made(camilo already xpced a good public, so i said first :-), <=but with casey kick)
+      string   pa_the_str;
+      string   pa_splits;
+      string   pa_ord;
+      strsize  pa_the_ptr;
+      char     pa_breakchar;
+      char     pa_enable;
+      char     pa_disable;
+      int16_t    pa_nospace;
+      bool     pa_quote;
+
       parse();
       parse(const string &);
       parse(const string &, const string &);
@@ -59,6 +71,10 @@ namespace str
       int32_t getwordlen();
       int32_t getrestlen();
 
+      inline bool has_char() const { return pa_the_ptr < pa_the_str.get_length(); }
+      inline bool is_eostr() const { return !has_char();  }
+      
+
       void enablebreak(const char ca)
       {
          pa_enable = ca;
@@ -70,19 +86,11 @@ namespace str
       }
       void getline();
       void getline(string &);
+      bool get_expandable_line();
+      bool get_expandable_line(string &);
       index getptr() { return pa_the_ptr; }
       void EnableQuote(bool b) { pa_quote = b; }
 
-   private:
-      string   pa_the_str;
-      string   pa_splits;
-      string   pa_ord;
-      strsize  pa_the_ptr;
-      char     pa_breakchar;
-      char     pa_enable;
-      char     pa_disable;
-      int16_t    pa_nospace;
-      bool     pa_quote;
    };
 
 

@@ -150,7 +150,7 @@ namespace windows
       const char * pszRequest;
       if(::url::is_url(lpcszSource, &pszRequest))
       {
-         if(::str::begins(lpcszRelative,g_strSlash))
+         if(::str::begins(lpcszRelative,astr.strSlash))
          {
             return path((const char *) string(lpcszSource, pszRequest - lpcszSource), lpcszRelative);
          }
@@ -540,7 +540,7 @@ namespace windows
       string strPath(lpcszPath);
       if(strPath.get_length() >= MAX_PATH)
       {
-         if(::str::begins(strPath,g_strDoubleBackSlash))
+         if(::str::begins(strPath,astr.strDoubleBackSlash))
          {
             strPath = "\\\\?\\UNC" + strPath.Mid(1);
          }

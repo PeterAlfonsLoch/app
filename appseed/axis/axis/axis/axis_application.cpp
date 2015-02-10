@@ -1535,7 +1535,6 @@ namespace axis
 
       }
 
-
       string strLicense = get_license_id();
 
       var & varTopicQuey = System.directrix()->m_varTopicQuery;

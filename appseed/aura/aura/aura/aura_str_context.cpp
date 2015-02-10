@@ -430,29 +430,34 @@ namespace aura
 
    bool str::load_uistr_file(const ::id & pszLang, const ::id & pszStyle, const char * pszFile)
    {
-      stringa straLines;
+      ::str::parse parse(Application.file().as_string(pszFile));
 
-      straLines.add_lines(Application.file().as_string(pszFile), false);
+      
 
       string str;
-      string strLine;
+      
       int32_t i = 0;
-      while(i < straLines.get_count())
+      //string strLine;
+      while(parse.getrestlen() > 0)
       {
-         for(; i < straLines.get_count(); i++)
-         {
-            strLine = straLines[i];
-            if(strLine.Right(1) == "\\")
-            {
-               str += strLine.Left(strLine.get_length() - 1);
-            }
-            else
-            {
-               str += strLine;
-               i++;
-               break;
-            }
-         }
+
+         //parse.get_expandable_line(strLine);
+         parse.get_expandable_line(str);
+         
+         //for(; i < straLines.get_count(); i++)
+         //{
+         //   strLine = straLines[i];
+         //   if(strLine.Right(1) == "\\")
+         //   {
+         //      str += strLine.Left(strLine.get_length() - 1);
+         //   }
+         //   else
+         //   {
+         //      str += strLine;
+         //      i++;
+         //      break;
+         //   }
+         //}
          str.trim();
          if(str.is_empty())
             continue;

@@ -21,10 +21,14 @@ namespace axis
    static int32_t simple_app_main(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPTSTR lpCmdLine,int32_t nCmdShow)
    {
 
-      //if(!defer_axis_init())
-      //{
-      //   return -1;
-      //}
+      if(!defer_axis_init())
+      {
+
+         ::OutputDebugString("Failed to defer_axis_init.");
+
+         return -2;
+
+      }
 
       APP  * papp = new APP;
 
@@ -46,7 +50,14 @@ namespace axis
       {
       }
 
-      //defer_axis_term();
+      if(!defer_axis_init())
+      {
+
+         ::OutputDebugString("Failed to defer_axis_term.");
+
+         iRet -= 9011;
+
+      }
 
       return iRet;
 

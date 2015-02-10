@@ -404,36 +404,6 @@ namespace aura
          return new ::aura::system(NULL);
       }
 
-      class static_start
-      {
-      public:
-         static_start()
-         {
-            g_pfn_create_system = aura_create_system;
-            if(defer_aura_init())
-            {
-               ::OutputDebugStringW(L"defer_aura_init Successful!!");
-            }
-            else
-            {
-               ::OutputDebugStringW(L"Failed to defer_aura_init!!");
-            }
-         }
-         ~static_start()
-         {
-            if(defer_aura_term())
-            {
-               ::OutputDebugStringW(L"defer_aura_term Successful!!");
-            }
-            else
-            {
-               ::OutputDebugStringW(L"Failed to defer_aura_term!!");
-            }
-         }
-      };
-
-
-      static_start g_aurastaticstart;
 
 
    } // namespace static_start

@@ -313,7 +313,7 @@ namespace str
    bool CLASS_DECL_AURA simple_escaped(const string & str, strsize pos);
 
 
-   inline bool CLASS_DECL_AURA begins(const id & id, const char * lpcszPrefix) { return begins(id.m_psz, lpcszPrefix); }
+   //inline bool begins(const id & id, const string & strPrefix) { return begins(id.m_psz, strPrefix); }
 
 
 } // namespace str

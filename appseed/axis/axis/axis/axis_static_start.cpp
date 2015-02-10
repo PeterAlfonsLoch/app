@@ -144,41 +144,6 @@ namespace axis
       }
 
 
-      ::aura::system * aura_create_system()
-      {
-         return new ::axis::system(NULL);
-      }
-
-      class static_start
-      {
-      public:
-         static_start()
-         {
-            g_pfn_create_system = aura_create_system;
-            if(defer_axis_init())
-            {
-               ::OutputDebugStringW(L"defer_axis_init Successful!!");
-            }
-            else
-            {
-               ::OutputDebugStringW(L"Failed to defer_axis_init!!");
-            }
-         }
-         ~static_start()
-         {
-            if(defer_axis_term())
-            {
-               ::OutputDebugStringW(L"defer_axis_term Successful!!");
-            }
-            else
-            {
-               ::OutputDebugStringW(L"Failed to defer_axis_term!!");
-            }
-         }
-      };
-
-
-      static_start g_axisstaticstart;
 
    } // namespace static_start
 

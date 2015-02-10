@@ -65,6 +65,14 @@ CLASS_DECL_AURA int get_aura_init()
 }
 
 
+::aura::system * aura_create_aura_system()
+{
+
+   return new ::aura::system(NULL);
+
+}
+
+
 CLASS_DECL_AURA int_bool defer_aura_init()
 {
 
@@ -75,6 +83,10 @@ CLASS_DECL_AURA int_bool defer_aura_init()
 
    if(!aura_init())
       return FALSE;
+
+   g_pfn_create_system = aura_create_aura_system;
+
+   s_paurastrpool = new aura_str_pool();
 
    return TRUE;
 
@@ -137,9 +149,9 @@ bool aura_term()
 
    __node_aura_pos_term();
 
-   ::aura::static_start::term();
-
    processor_cache_oriented_destroy_all_memory_pools();
+
+   ::aura::static_start::term();
 
    return true;
 

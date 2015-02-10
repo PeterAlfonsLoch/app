@@ -16,7 +16,7 @@ BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
 
 //   ASSERT(FALSE);
 
-   xxdebug_box("aura.dll DllMain (0)", "box", MB_OK);
+   xxdebug_box("base.dll DllMain (0)", "box", MB_OK);
 
    UNREFERENCED_PARAMETER(hInstance);
    UNREFERENCED_PARAMETER(lpReserved);
@@ -28,43 +28,15 @@ BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
    if (dwReason == DLL_PROCESS_ATTACH)
    {
 
-      OutputDebugStringW(L"aura.dll initializing!\n");
+      OutputDebugStringW(L"base.dll initializing!\n");
 
-      xxdebug_box("aura.dll DllMain", "box", MB_OK);
+      xxdebug_box("base.dll DllMain", "box", MB_OK);
       
    }
    else if (dwReason == DLL_PROCESS_DETACH)
    {
 
-      HMODULE hmodule;
-
-      try
-      {
-
-         if(::GetModuleHandleExA(GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,"ca.dll",&hmodule) != FALSE)
-         {
-
-            try
-            {
-
-               ::FreeLibrary(hmodule);
-
-            }
-            catch(...)
-            {
-
-            }
-
-         }
-
-      }
-      catch(...)
-      {
-      }
-
-
-      OutputDebugStringW(L"aura.dll terminating!\n");
-
+      OutputDebugStringW(L"base.dll terminating!\n");
 
    }
 

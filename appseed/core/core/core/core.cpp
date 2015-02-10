@@ -6,7 +6,7 @@
 #endif
 
 
-// CLASS_DECL_CORE string g_strNote;
+// CLASS_DECL_CORE string astr.strNote;
 
 
 namespace core
@@ -175,6 +175,14 @@ void gen_CrtErrorCheck(int32_t i)
 int g_iCoreRefCount = 0;
 
 
+::aura::system * core_create_aura_system()
+{
+
+   return new ::core::system(NULL);
+
+}
+
+
 CLASS_DECL_CORE bool defer_core_init()
 {
 
@@ -185,6 +193,8 @@ CLASS_DECL_CORE bool defer_core_init()
 
    if(!::core::init_core())
       return false;
+
+   g_pfn_create_system = core_create_aura_system;
 
    return true;
 

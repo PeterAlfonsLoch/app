@@ -84,7 +84,7 @@ namespace sockets
                {
                   strStatus = str.Mid(iPos + 1);
                }
-               if(::str::begins(strStatus, g_str200Space))
+               if(::str::begins(strStatus, astr.str200Space))
                {
                   m_estate = state_proxy_ok;
                }

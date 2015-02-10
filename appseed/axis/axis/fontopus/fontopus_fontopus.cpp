@@ -97,9 +97,9 @@ namespace fontopus
 
 
          if(m_puser != NULL
-            && !::str::begins(m_puser->m_strLogin, g_strSystem)
+            && !::str::begins(m_puser->m_strLogin, astr.strSystem)
             && m_pauraapp->m_strAppId != "app-core/deepfish"
-            && !::str::begins(m_pauraapp->m_strAppName, g_strAppCoreDeepfish)
+            && !::str::begins(m_pauraapp->m_strAppName, astr.strAppCoreDeepfish)
             && !m_pauraapp->is_serviceable())
          {
 

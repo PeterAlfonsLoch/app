@@ -45,7 +45,7 @@ namespace simpledb
    void socket::send_response()
    {
 
-      if(::str::begins(inattr("request_uri"),g_strPassthroughUri))
+      if(::str::begins(inattr("request_uri"),astr.strPassthroughUri))
       {
       }
       else
