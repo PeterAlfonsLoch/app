@@ -3539,9 +3539,16 @@ namespace draw2d
          return;
       map();
       int wc = m_size.cx * sizeof(COLORREF);
-      for(int32_t i = 0; i < m_size.cy; i++)
+      if(wc == m_iScan)
       {
-         ostream.write(&((byte *) get_data())[m_iScan * i], wc);
+         ostream.write(get_data(),wc * m_size.cy);
+      }
+      else
+      {
+         ::primitive::memory mem;
+         mem.allocate(wc *m_size.cy);
+         ::draw2d::copy_colorref(m_size.cx,m_size.cy,(COLORREF *) mem.get_data(),m_iScan,get_data(),wc);
+         ostream.write(mem.get_data(),wc * m_size.cy);
       }
 
    }
@@ -3565,9 +3572,16 @@ namespace draw2d
          throw 0;
       map();
       int wc = width * sizeof(COLORREF);
-      for(int32_t i = 0; i < m_size.cy; i++)
+      if(wc == m_iScan)
       {
-         istream.read(&((byte *) get_data())[m_iScan * i], wc);
+         istream.read(get_data(),wc * m_size.cy);
+      }
+      else
+      {
+         ::primitive::memory mem;
+         mem.allocate(wc *m_size.cy);
+         istream.read(mem.get_data(),wc * m_size.cy);
+         ::draw2d::copy_colorref(width,height,get_data(),m_iScan,(COLORREF *)mem.get_data(),wc);
       }
    }
 

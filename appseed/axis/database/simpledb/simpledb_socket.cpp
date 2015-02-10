@@ -3,7 +3,6 @@
 //#include "simpledb_socket.h"
 //#include "simpledb_socket_thread.h"
 
-
 namespace simpledb
 {
 
@@ -46,7 +45,7 @@ namespace simpledb
    void socket::send_response()
    {
 
-      if(::str::begins(inattr("request_uri"), "/passthrough/"))
+      if(::str::begins(inattr("request_uri"),g_strPassthroughUri))
       {
       }
       else

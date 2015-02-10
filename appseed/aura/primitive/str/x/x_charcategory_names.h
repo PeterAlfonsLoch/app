@@ -5,10 +5,13 @@
 */
 
 // ansi class names
-static char char_category_names[][3] = { "Cn", "Cc", "Cf", "Cs", "Ll", "Lm", "Lo", "Lt", "Lu", "Mc", "Me", "Mn", "Nd", "Nl", "No", "Pc", "Pd", "Pe", "Pf", "Pi", "Po", "Ps", "Sc", "Sk", "Sm", "So", "Zl", "Zp", "Zs",  };
+
+
+static string char_category_names[] = {"Cn","Cc","Cf","Cs","Ll","Lm","Lo","Lt","Lu","Mc","Me","Mn","Nd","Nl","No","Pc","Pd","Pe","Pf","Pi","Po","Ps","Sc","Sk","Sm","So","Zl","Zp","Zs",""};
+
 
 // ansi class names
-static char char_bidi_names[][4] = { "AL", "AN", "B", "BN", "CS", "EN", "ES", "ET", "L", "LRE", "LRO", "NSM", "ON", "PDF", "R", "RLE", "RLO", "S", "WS",  };
+static string char_bidi_names[] ={"AL","AN","B","BN","CS","EN","ES","ET","L","LRE","LRO","NSM","ON","PDF","R","RLE","RLO","S","WS",""};
 
 /*
 // unc class names

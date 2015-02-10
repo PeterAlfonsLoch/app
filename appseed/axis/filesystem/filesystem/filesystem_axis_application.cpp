@@ -2,6 +2,8 @@
 #include "axis/net/net_sockets.h"
 
 
+
+
 namespace file
 {
 
@@ -343,14 +345,14 @@ namespace file
             spfile = pinfile;
 
          }
-         else if(::str::begins(strPath,"http://") || ::str::begins(strPath,"https://"))
+         else if(::str::begins(strPath,g_strHttpProtocol) || ::str::begins(strPath,g_strHttpsProtocol))
          {
 
             ::url_domain domain;
 
             domain.create(System.url().get_server(strPath));
 
-            if(domain.m_strRadix == "ca2" && ::str::begins(System.url().get_object(strPath),"/matter/"))
+            if(domain.m_strRadix == "ca2" && ::str::begins(System.url().get_object(strPath),g_strMatterUri))
             {
 
                string strFile(strPath);
@@ -494,7 +496,7 @@ namespace file
             }
 
          }
-         else if(::str::begins(strPath,"ifs://") || ::str::begins(strPath,"uifs://"))
+         else if(::str::begins(strPath,g_strIfsProtocol) || ::str::begins(strPath,g_strUifsProtocol))
          {
 
             if(&AppUser(m_pauraapp) == NULL)

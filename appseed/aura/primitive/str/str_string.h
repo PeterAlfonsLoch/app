@@ -1809,7 +1809,7 @@ inline CLASS_DECL_AURA string operator + (const string & str, const id & id)
 }
 
 
-inline int_ptr id::compare_ci(const char * psz)
+inline int_ptr id::compare_ci(const char * psz) const
 {
    if(m_psz == NULL)
    {

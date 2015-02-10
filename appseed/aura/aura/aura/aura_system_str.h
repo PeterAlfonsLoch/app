@@ -22,42 +22,42 @@ namespace str
    }
 
 
-   inline bool CLASS_DECL_AURA begins_eat(var & var, const char * lpcszPrefix)
+   inline bool begins_eat(var & var, const string & strPrefix)
    {
 
-      return begins_eat(var.get_ref_string(), lpcszPrefix);
+      return begins_eat(var.get_ref_string(),strPrefix);
 
    }
 
-   inline bool CLASS_DECL_AURA begins_eat_ci(var & var, const char * lpcszPrefix) // case insensitive
+   inline bool begins_eat_ci(var & var, const char * lpcszPrefix) // case insensitive
    {
 
       return begins_eat_ci(var.get_ref_string(), lpcszPrefix);
 
    }
 
-   inline bool CLASS_DECL_AURA begins_eat_ci(var & var, const char * lpcszPrefix, const char * pszSeparator) // case insensitive
+   inline bool begins_eat_ci(var & var, const char * lpcszPrefix, const char * pszSeparator) // case insensitive
    {
 
       return begins_eat_ci(var.get_ref_string(), lpcszPrefix, pszSeparator);
 
    }
 
-   inline bool CLASS_DECL_AURA begins_eat(property & property, const char * lpcszPrefix)
+   inline bool begins_eat(property & property, const char * lpcszPrefix)
    {
 
       return begins_eat(property.m_var, lpcszPrefix);
 
    }
 
-   inline bool CLASS_DECL_AURA begins_eat_ci(property & property, const char * lpcszPrefix) // case insensitive
+   inline bool begins_eat_ci(property & property, const char * lpcszPrefix) // case insensitive
    {
 
       return begins_eat_ci(property.m_var, lpcszPrefix);
 
    }
 
-   inline bool CLASS_DECL_AURA begins_eat_ci(property & property, const char * lpcszPrefix, const char * pszSeparator) // case insensitive
+   inline bool begins_eat_ci(property & property, const char * lpcszPrefix, const char * pszSeparator) // case insensitive
    {
 
       return begins_eat_ci(property.m_var, lpcszPrefix, pszSeparator);

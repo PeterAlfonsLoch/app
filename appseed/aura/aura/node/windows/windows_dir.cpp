@@ -2,6 +2,7 @@
 #include "windows.h"
 
 
+
 namespace windows
 {
 
@@ -149,7 +150,7 @@ namespace windows
       const char * pszRequest;
       if(::url::is_url(lpcszSource, &pszRequest))
       {
-         if(::str::begins(lpcszRelative, "/"))
+         if(::str::begins(lpcszRelative,g_strSlash))
          {
             return path((const char *) string(lpcszSource, pszRequest - lpcszSource), lpcszRelative);
          }
@@ -539,7 +540,7 @@ namespace windows
       string strPath(lpcszPath);
       if(strPath.get_length() >= MAX_PATH)
       {
-         if(::str::begins(strPath, "\\\\"))
+         if(::str::begins(strPath,g_strDoubleBackSlash))
          {
             strPath = "\\\\?\\UNC" + strPath.Mid(1);
          }

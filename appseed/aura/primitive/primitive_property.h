@@ -704,7 +704,7 @@ inline property & property::operator[](const char * pszName)
 
 namespace str
 {
-   inline bool CLASS_DECL_AURA begins(const property & property, const char * lpcszPrefix) { return begins(property.get_string(), lpcszPrefix); };
+   inline bool CLASS_DECL_AURA begins(const property & property, const string & strPrefix) { return begins(property.get_string(), strPrefix); };
 }
 
 

@@ -20,9 +20,6 @@
 
 
 
-
-
-
 namespace file
 {
 
@@ -123,12 +120,12 @@ namespace file
    bool system::exists(const string & strPath, var * pvarQuery, ::aura::application * papp)
    {
 
-      if (::str::begins(strPath, "uifs://"))
+      if (::str::begins(strPath, g_strUifsProtocol))
       {
          return AppUser(papp).m_pifs->file_exists(strPath);
       }
 
-      if (::str::begins(strPath, "http://") || ::str::begins(strPath, "https://"))
+      if (::str::begins(strPath, g_strHttpProtocol) || ::str::begins(strPath, g_strHttpsProtocol))
       {
 
          property_set set(papp);
@@ -431,20 +428,20 @@ restart:
             if(!infile.dump(&memfile))
                return "";
          }
-         else if(::str::begins_eat_ci(strFilePath, "file:///"))
+         else if(::str::begins_eat(strFilePath, "file:///"))
          {
             if(!exists(strFilePath, papp))
                return "";
             as_memory(strFilePath, storage, papp);
          }
-         else if(::str::begins_eat_ci(strFilePath, "file:\\\\\\"))
+         else if(::str::begins_eat(strFilePath, "file:\\\\\\"))
          {
             if(!exists(strFilePath, papp))
                return "";
             as_memory(strFilePath, storage, papp);
          }
-         else if(::str::begins_ci(strFilePath, "http://")
-            || ::str::begins_ci(strFilePath, "https://"))
+         else if(::str::begins(strFilePath,g_strHttpProtocol)
+            || ::str::begins(strFilePath, g_strHttpsProtocol))
          {
             if(!exists(strFilePath, &varQuery, papp))
                return "";
@@ -527,7 +524,7 @@ restart:
 
          strPath.trim("\"'");
 
-         if((::str::begins(strPath, "http://") || ::str::begins(strPath, "https://")))
+         if((::str::begins(strPath, g_strHttpProtocol) || ::str::begins(strPath, g_strHttpsProtocol)))
          {
 
             property_set set(get_app());

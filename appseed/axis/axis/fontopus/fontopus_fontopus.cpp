@@ -1,6 +1,8 @@
 //#include "framework.h" // from "axis/net/net_sockets.h"
 //#include "axis/net/net_sockets.h"
 
+
+
 namespace fontopus
 {
 
@@ -95,9 +97,9 @@ namespace fontopus
 
 
          if(m_puser != NULL
-            && !::str::begins(m_puser->m_strLogin, "system")
+            && !::str::begins(m_puser->m_strLogin, g_strSystem)
             && m_pauraapp->m_strAppId != "app-core/deepfish"
-            && !::str::begins(m_pauraapp->m_strAppName, "app-core/deepfish_")
+            && !::str::begins(m_pauraapp->m_strAppName, g_strAppCoreDeepfish)
             && !m_pauraapp->is_serviceable())
          {
 

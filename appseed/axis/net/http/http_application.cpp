@@ -1,6 +1,7 @@
 #include "framework.h" // from "axis/net/net_sockets.h"
 #include "axis/net/net_sockets.h"
 
+
 namespace http
 {
 
@@ -69,7 +70,7 @@ namespace http
       domain.create(System.url().get_server(psignal->m_strUrl));
 
 
-      if(domain.m_strRadix == "ca2" && ::str::begins(System.url().get_object(psignal->m_strUrl),"/matter/"))
+      if(domain.m_strRadix == "ca2" && ::str::begins(System.url().get_object(psignal->m_strUrl),g_strMatterUri))
       {
 
          string strUrl(psignal->m_strUrl);

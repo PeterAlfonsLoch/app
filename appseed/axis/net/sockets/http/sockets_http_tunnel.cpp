@@ -2,6 +2,7 @@
 #include "axis/net/net_sockets.h"
 
 
+
 namespace sockets
 {
 
@@ -83,7 +84,7 @@ namespace sockets
                {
                   strStatus = str.Mid(iPos + 1);
                }
-               if(::str::begins(strStatus, "200 "))
+               if(::str::begins(strStatus, g_str200))
                {
                   m_estate = state_proxy_ok;
                }

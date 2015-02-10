@@ -507,6 +507,104 @@ inline void std_string_assign(stdstring < ::primitive::memory > & t,const bstrin
 
 
 
+namespace str
+{
+
+
+
+
+   inline bool begins(const char * psz,const string & strPrefix)
+   {
+
+      return psz != NULL && strncmp(psz,strPrefix,strPrefix.get_length()) == 0;
+
+   }
+
+
+   inline bool begins(const string & str,const string & strPrefix)
+   {
+
+      return strncmp(str,strPrefix,strPrefix.get_length()) == 0;
+
+   }
+
+
+   inline bool begins(const id & id,const string & strPrefix)
+   {
+
+      return id.is_text() && id.m_psz != NULL && strncmp(id.m_psz,strPrefix,strPrefix.get_length()) == 0;
+
+   }
+
+
+   inline bool begins_with(const char * psz,const string & strPrefix)
+   {
+
+      return psz != NULL && strncmp(psz,strPrefix,strPrefix.get_length()) == 0;
+
+   }
+
+
+   inline bool begins_with(const string & str,const string & strPrefix)
+   {
+
+      return strncmp(str,strPrefix,strPrefix.get_length()) == 0;
+
+   }
+
+
+   inline bool begins_eat(string & str,const string & strPrefix)
+   {
+
+      if(strncmp(str,strPrefix,strPrefix.get_length()) == 0)
+      {
+
+         str = str.Mid(strPrefix.get_length());
+
+         return true;
+
+      }
+
+      return false;
+
+   }
+
+
+
+} // namespace str
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+extern CLASS_DECL_AURA const string g_strUifsProtocol;
+extern CLASS_DECL_AURA const string g_strIfsProtocol;
+extern CLASS_DECL_AURA const string g_strHttpProtocol;
+extern CLASS_DECL_AURA const string g_strHttpsProtocol;
+extern CLASS_DECL_AURA const string g_strFsProtocol;
+extern CLASS_DECL_AURA const string g_strSlash;
+extern CLASS_DECL_AURA const string g_strDoubleBackSlash;
+extern CLASS_DECL_AURA const string g_strSystem;
+extern CLASS_DECL_AURA const string g_strAppCoreDeepfish;
+extern CLASS_DECL_AURA const string g_stringSysCommand;
+extern CLASS_DECL_AURA const string g_strPassthroughUri;
+extern CLASS_DECL_AURA const string g_strMatterUri;
+extern CLASS_DECL_AURA const string g_str200Space;
+extern CLASS_DECL_AURA const string g_strWwwDot;
+
+
 
 
 

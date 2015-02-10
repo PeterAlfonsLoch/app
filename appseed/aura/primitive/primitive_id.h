@@ -160,12 +160,12 @@ public:
    inline void clear();
 
 
-   inline int_ptr CompareNoCase(const char * psz) { return compare_ci(psz); }
-   inline int_ptr compare_ci(const char * psz);
+   inline int_ptr CompareNoCase(const char * psz) const { return compare_ci(psz); }
+   inline int_ptr compare_ci(const char * psz) const;
 
 
-   inline bool is_text() { return m_etype == type_text; }
-   inline bool is_integer() { return m_etype == type_integer; }
+   inline bool is_text() const { return m_etype == type_text; }
+   inline bool is_integer() const { return m_etype == type_integer; }
 
 };
 

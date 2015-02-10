@@ -1,6 +1,7 @@
 //#include "framework.h"
 
 
+
 namespace filemanager
 {
 
@@ -290,8 +291,8 @@ namespace filemanager
       if(actioncontext.is_user_source())
       {
 
-         if(::str::begins(strPath,"uifs://")
-            || ::str::begins(strPath,"fs://"))
+         if(::str::begins(strPath,g_strUifs)
+            || ::str::begins(strPath,g_strFs))
          {
             data_set(".local://InitialBrowsePath",strPath);
          }

@@ -22,10 +22,10 @@ namespace str
    }
 
 
-   inline bool CLASS_DECL_BASE begins_eat(var & var, const char * lpcszPrefix)
+   inline bool CLASS_DECL_BASE begins_eat(var & var, const string & strPrefix)
    {
 
-      return begins_eat(var.get_ref_string(), lpcszPrefix);
+      return begins_eat(var.get_ref_string(), strPrefix);
 
    }
 

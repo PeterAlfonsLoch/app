@@ -9,14 +9,14 @@ namespace xml
    static const CHAR chXMLTagPre   = '/';
    static const CHAR chXMLEscape = '\\';   // for m_strValue field escape
 
-   static const CHAR szXMLPIOpen[] = "<?";
-   static const CHAR szXMLPIClose[] = "?>";
-   static const CHAR szXMLDOCTYPEOpen[] = "<!DOCTYPE";
+   static const string szXMLPIOpen = "<?";
+   static const string szXMLPIClose = "?>";
+   static const string szXMLDOCTYPEOpen = "<!DOCTYPE";
 //   static const CHAR szXMLDOCTYPEClose[] = ">";
-   static const CHAR szXMLCommentOpen[] = "<!--";
-   static const CHAR szXMLCommentClose[] = "-->";
-   static const CHAR szXMLCDATAOpen[] = "<![CDATA[";
-   static const CHAR szXMLCDATAClose[] = "]]>";
+   static const string szXMLCommentOpen = "<!--";
+   static const string szXMLCommentClose = "-->";
+   static const string szXMLCDATAOpen = "<![CDATA[";
+   static const string szXMLCDATAClose = "]]>";
 
    node::node(::aura::application * papp) :
       element(papp),

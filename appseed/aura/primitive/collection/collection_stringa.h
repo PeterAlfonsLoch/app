@@ -69,7 +69,7 @@ public:
 
 
    index find_first_begins_ci(const char * lpcsz, index find = 0, index last = -1) const;
-   index find_first_begins(const char * lpcsz, index find = 0, index last = -1) const;
+   index find_first_begins(const string & strPrefix, index find = 0, index last = -1) const;
 
    index str_find_first_begins_ci(const char * lpcsz, index find = 0, index last = -1) const;
    index str_find_first_begins(const char * lpcsz, index find = 0, index last = -1) const;

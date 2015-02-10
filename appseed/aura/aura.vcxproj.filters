@@ -3352,6 +3352,9 @@
     <ClCompile Include="primitive\data\data_tree_item.cpp">
       <Filter>Source Files\primitive\data</Filter>
     </ClCompile>
+    <ClCompile Include="primitive\str\_str_pool.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">

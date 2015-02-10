@@ -60,11 +60,11 @@ namespace str
 
 
 
-   bool CLASS_DECL_AURA begins(const char * psz, const char * lpcszPrefix);
-   bool CLASS_DECL_AURA begins(const string & str, const char * lpcszPrefix);
-   inline bool CLASS_DECL_AURA begins(const id & id, const char * lpcszPrefix);
-   bool CLASS_DECL_AURA begins_with(const char * psz, const char * lpcszPrefix);
-   bool CLASS_DECL_AURA begins_with(const string & str, const char * lpcszPrefix);
+   inline bool begins(const char * psz, const string & strPrefix);
+   inline bool begins(const string & str, const string & strPrefix);
+   inline bool begins(const id & id, const string & strPrefix);
+   inline bool begins_with(const char * psz, const string & strPrefix);
+   inline bool begins_with(const string & str, const string & strPrefix);
 
 
    void CLASS_DECL_AURA begin(wstring & wstr, const wchar_t * lpcszPrefix);
@@ -89,14 +89,13 @@ namespace str
 
 
 
-
-   bool CLASS_DECL_AURA begins_eat(string & str, const char * lpcszPrefix);
+   inline bool begins_eat(string & str, const string & strPrefix);
    bool CLASS_DECL_AURA begins_eat_ci(string & str, const char * lpcszPrefix); // case insensitive
    bool CLASS_DECL_AURA begins_eat_ci(string & str, const char * lpcszPrefix, const char * pszSeparator); // case insensitive
-   bool CLASS_DECL_AURA begins_eat(var & var, const char * lpcszPrefix);
+   inline bool begins_eat(var & var,const string & strPrefix);
    bool CLASS_DECL_AURA begins_eat_ci(var & var, const char * lpcszPrefix); // case insensitive
    bool CLASS_DECL_AURA begins_eat_ci(var & var, const char * lpcszPrefix, const char * pszSeparator); // case insensitive
-   bool CLASS_DECL_AURA begins_eat(property & property, const char * lpcszPrefix);
+   inline bool begins_eat(property & property, const string & strPrefix);
    bool CLASS_DECL_AURA begins_eat_ci(property & property, const char * lpcszPrefix); // case insensitive
    bool CLASS_DECL_AURA begins_eat_ci(property & property, const char * lpcszPrefix, const char * pszSeparator); // case insensitive
    bool CLASS_DECL_AURA while_begins_with_chars_eat(string & str, const char * lpcszChars);

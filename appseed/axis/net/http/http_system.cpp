@@ -1766,7 +1766,7 @@ retry:
 
       domain.create(System.url().get_server(pszUrl));
 
-      if (::str::begins(System.url().get_object(pszUrl), "/matter/"))
+      if (::str::begins(System.url().get_object(pszUrl), g_strMatterUri))
       {
 
          set["raw_http"] = true;
@@ -1803,7 +1803,7 @@ retry:
 
       domain.create(System.url().get_server(pszUrl));
 
-      if (::str::begins(System.url().get_object(pszUrl), "/matter/"))
+      if (::str::begins(System.url().get_object(pszUrl), g_strMatterUri))
       {
 
          set["disable_ca2_sessid"] = true;

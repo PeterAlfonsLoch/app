@@ -378,7 +378,8 @@ index stringa::find_first_begins_ci(const char * lpcsz,index find,index last) co
    return -1;
 }
 
-index stringa::find_first_begins(const char * lpcsz,index find,index last) const
+
+index stringa::find_first_begins(const string & strPrefix,index find,index last) const
 {
    if(find < 0)
       find += this->get_count();
@@ -386,7 +387,7 @@ index stringa::find_first_begins(const char * lpcsz,index find,index last) const
       last += this->get_count();
    for(; find < this->get_count(); find++)
    {
-      if(::str::begins(this->element_at(find),lpcsz))
+      if(::str::begins(this->element_at(find),strPrefix))
          return find;
    }
    return -1;

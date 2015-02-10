@@ -3,8 +3,6 @@
 
 #include "idna.h"
 
-
-
 namespace url
 {
 
@@ -1413,7 +1411,7 @@ namespace url
       if(bOverrideQuery && strQuery.is_empty())
          strQuery = strQueryOver;
 
-      if(!::str::begins(strScript, "/"))
+      if(!::str::begins(strScript,g_strSlash))
          strScript = "/" + strScript;
 
       return strProtocol + "://" + strRoot + strScript + ::str::has_char(strQuery, "?");
@@ -1444,7 +1442,7 @@ namespace url
       if(strQueryOver.has_char())
          strQuery = strQueryOver;
 
-      if(!::str::begins(strScript, "/"))
+      if(!::str::begins(strScript, g_strSlash))
          strScript = "/" + strScript;
 
       return strProtocol + "://" + strRoot + strScript + ::str::has_char(strQuery, "?");
