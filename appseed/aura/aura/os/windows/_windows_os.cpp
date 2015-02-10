@@ -24,7 +24,6 @@
 // Pasta de Z:\ca2\app\appseed\aura\aura\os\windows
 //
 #include "windows_ansi_file.cpp"
-#include "windows_base.cpp"
 #include "windows_base_file.cpp"
 #include "windows_base_process.cpp"
 #include "windows_base_registry.cpp"
@@ -55,3 +54,9 @@
 //2015-01-05  08:08                 0 _windows_os.cpp"
 //              30 arquivo(s)        121.416 bytes
 //               0 pasta(s)   35.770.142.720 bytes dispon¡veis
+
+
+
+
+
+#include "windows_base.cpp"
