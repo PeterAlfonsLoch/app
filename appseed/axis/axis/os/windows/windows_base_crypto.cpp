@@ -6,6 +6,7 @@
 int32_t crypto_decrypt(::primitive::memory & storageDecrypt, const ::primitive::memory & storageEncrypt, ::primitive::memory & memorySalt)
 {
 
+
    DATA_BLOB DataIn;
    DATA_BLOB DataOut;
 

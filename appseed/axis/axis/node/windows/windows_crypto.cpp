@@ -30,10 +30,19 @@ namespace windows
    crypto::~crypto()
    {
    }
+   
+   string crypto::get_crypt_key_file_path()
+   {
+
+      return Application.dir().userappdata(".ca2/databin.bin");
+
+   }
 
 
    bool crypto::decrypt(primitive::memory & storageDecrypt, const primitive::memory & storageEncrypt, const char * pszSalt)
    {
+
+      return ::crypto::crypto::decrypt(storageDecrypt, storageEncrypt, pszSalt);
 
 #if 0
 
@@ -110,6 +119,8 @@ namespace windows
 
    bool crypto::encrypt(primitive::memory & storageEncrypt, const primitive::memory & storageDecrypt, const char * pszSalt)
    {
+
+      return ::crypto::crypto::encrypt(storageEncrypt, storageDecrypt, pszSalt);
 #if 0 
       DATA_BLOB DataIn;
       DATA_BLOB DataOut;
