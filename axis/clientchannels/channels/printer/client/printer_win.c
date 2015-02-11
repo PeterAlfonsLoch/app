@@ -55,7 +55,7 @@ struct rdp_win_printer
 struct rdp_win_print_job
 {
 	rdpPrintJob printjob;
-	DOC_INFO_1W di;
+	DOC_INFO_1 di;
 	DWORD handle;
 
 	void* printjob_object;
@@ -139,7 +139,7 @@ static rdpPrintJob* printer_win_create_printjob(rdpPrinter* printer, UINT32 id)
 	win_printjob->printjob.Close = printer_win_close_printjob;
 
 	win_printer->printjob = win_printjob;
-
+	
 	return (rdpPrintJob*) win_printjob;
 }
 
@@ -172,7 +172,7 @@ static rdpPrinter* printer_win_new_printer(rdpWinPrinterDriver* win_driver, cons
 	rdpWinPrinter* win_printer;
 	wchar_t wname[256];
 	DWORD needed;
-	PRINTER_INFO_2W *prninfo=NULL;
+	PRINTER_INFO_2 *prninfo=NULL;
 	size_t charsConverted;
 
 	win_printer = (rdpWinPrinter*) calloc(1, sizeof(rdpWinPrinter));
@@ -186,11 +186,11 @@ static rdpPrinter* printer_win_new_printer(rdpWinPrinterDriver* win_driver, cons
 	win_printer->printer.Free = printer_win_free_printer;
 
 	swprintf(wname, 256, L"%hs", name);
-	OpenPrinterW(wname, &(win_printer->hPrinter), NULL);
+	OpenPrinter(wname, &(win_printer->hPrinter), NULL);
 
-	GetPrinterW(win_printer->hPrinter, 2, (LPBYTE) prninfo, 0, &needed);
-	prninfo = (PRINTER_INFO_2W*) GlobalAlloc(GPTR,needed);
-	GetPrinterW(win_printer->hPrinter, 2, (LPBYTE) prninfo, needed, &needed);
+	GetPrinter(win_printer->hPrinter, 2, (LPBYTE) prninfo, 0, &needed);
+	prninfo = (PRINTER_INFO_2*) GlobalAlloc(GPTR,needed);
+	GetPrinter(win_printer->hPrinter, 2, (LPBYTE) prninfo, needed, &needed);
 
 	win_printer->printer.driver = malloc(1000);
 	wcstombs_s(&charsConverted, win_printer->printer.driver, 1000, prninfo->pDriverName, _TRUNCATE);
@@ -205,7 +205,7 @@ static rdpPrinter** printer_win_enum_printers(rdpPrinterDriver* driver)
 	int i;
 	char pname[1000];
 	size_t charsConverted;
-	PRINTER_INFO_2W* prninfo = NULL;
+	PRINTER_INFO_2* prninfo = NULL;
 	DWORD needed, returned;
 
 	/* find required size for the buffer */
@@ -213,10 +213,10 @@ static rdpPrinter** printer_win_enum_printers(rdpPrinterDriver* driver)
 
 
 	/* allocate array of PRINTER_INFO structures */
-	prninfo = (PRINTER_INFO_2W*) GlobalAlloc(GPTR,needed);
-
+	prninfo = (PRINTER_INFO_2*) GlobalAlloc(GPTR,needed);
+ 
 	/* call again */
-	if (!EnumPrintersW(PRINTER_ENUM_LOCAL|PRINTER_ENUM_CONNECTIONS, NULL, 2, (LPBYTE) prninfo, needed, &needed, &returned))
+	if (!EnumPrinters(PRINTER_ENUM_LOCAL|PRINTER_ENUM_CONNECTIONS, NULL, 2, (LPBYTE) prninfo, needed, &needed, &returned))
 	{
 
 	}
@@ -240,9 +240,9 @@ static rdpPrinter* printer_win_get_printer(rdpPrinterDriver* driver, const char*
 {
 	rdpWinPrinterDriver* win_driver = (rdpWinPrinterDriver*)driver;
 	rdpPrinter *myPrinter = NULL;
-
+	
 	myPrinter = printer_win_new_printer(win_driver, name, L"", win_driver->id_sequence == 1 ? TRUE : FALSE);
-
+	
 	return myPrinter;
 }
 

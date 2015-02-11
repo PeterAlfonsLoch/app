@@ -22,8 +22,17 @@
 #endif
 
 #include <winpr/crt.h>
+#include <winpr/synch.h>
 
 #include <winpr/winsock.h>
+
+#ifdef HAVE_UNISTD_H
+#include <unistd.h>
+#endif
+
+#ifndef _WIN32
+#include <fcntl.h>
+#endif
 
 /**
  * ws2_32.dll:
@@ -276,7 +285,145 @@ int WSACleanup(void)
 
 void WSASetLastError(int iError)
 {
+	switch (iError)
+	{
+		/* Base error codes */
 
+		case WSAEINTR:
+			errno = EINTR;
+			break;
+		case WSAEBADF:
+			errno = EBADF;
+			break;
+		case WSAEACCES:
+			errno = EACCES;
+			break;
+		case WSAEFAULT:
+			errno = EFAULT;
+			break;
+		case WSAEINVAL:
+			errno = EINVAL;
+			break;
+		case WSAEMFILE:
+			errno = EMFILE;
+			break;
+
+		/* BSD sockets error codes */
+
+		case WSAEWOULDBLOCK:
+			errno = EWOULDBLOCK;
+			break;
+		case WSAEINPROGRESS:
+			errno = EINPROGRESS;
+			break;
+		case WSAEALREADY:
+			errno = EALREADY;
+			break;
+		case WSAENOTSOCK:
+			errno = ENOTSOCK;
+			break;
+		case WSAEDESTADDRREQ:
+			errno = EDESTADDRREQ;
+			break;
+		case WSAEMSGSIZE:
+			errno = EMSGSIZE;
+			break;
+		case WSAEPROTOTYPE:
+			errno = EPROTOTYPE;
+			break;
+		case WSAENOPROTOOPT:
+			errno = ENOPROTOOPT;
+			break;
+		case WSAEPROTONOSUPPORT:
+			errno = EPROTONOSUPPORT;
+			break;
+		case WSAESOCKTNOSUPPORT:
+			errno = ESOCKTNOSUPPORT;
+			break;
+		case WSAEOPNOTSUPP:
+			errno = EOPNOTSUPP;
+			break;
+		case WSAEPFNOSUPPORT:
+			errno = EPFNOSUPPORT;
+			break;
+		case WSAEAFNOSUPPORT:
+			errno = EAFNOSUPPORT;
+			break;
+		case WSAEADDRINUSE:
+			errno = EADDRINUSE;
+			break;
+		case WSAEADDRNOTAVAIL:
+			errno = EADDRNOTAVAIL;
+			break;
+		case WSAENETDOWN:
+			errno = ENETDOWN;
+			break;
+		case WSAENETUNREACH:
+			errno = ENETUNREACH;
+			break;
+		case WSAENETRESET:
+			errno = ENETRESET;
+			break;
+		case WSAECONNABORTED:
+			errno = ECONNABORTED;
+			break;
+		case WSAECONNRESET:
+			errno = ECONNRESET;
+			break;
+		case WSAENOBUFS:
+			errno = ENOBUFS;
+			break;
+		case WSAEISCONN:
+			errno = EISCONN;
+			break;
+		case WSAENOTCONN:
+			errno = ENOTCONN;
+			break;
+		case WSAESHUTDOWN:
+			errno = ESHUTDOWN;
+			break;
+		case WSAETOOMANYREFS:
+			errno = ETOOMANYREFS;
+			break;
+		case WSAETIMEDOUT:
+			errno = ETIMEDOUT;
+			break;
+		case WSAECONNREFUSED:
+			errno = ECONNREFUSED;
+			break;
+		case WSAELOOP:
+			errno = ELOOP;
+			break;
+		case WSAENAMETOOLONG:
+			errno = ENAMETOOLONG;
+			break;
+		case WSAEHOSTDOWN:
+			errno = EHOSTDOWN;
+			break;
+		case WSAEHOSTUNREACH:
+			errno = EHOSTUNREACH;
+			break;
+		case WSAENOTEMPTY:
+			errno = ENOTEMPTY;
+			break;
+#ifdef EPROCLIM
+		case WSAEPROCLIM:
+			errno = EPROCLIM;
+			break;
+#endif
+		case WSAEUSERS:
+			errno = EUSERS;
+			break;
+		case WSAEDQUOT:
+			errno = EDQUOT;
+			break;
+		case WSAESTALE:
+			errno = ESTALE;
+			break;
+		case WSAEREMOTE:
+			errno = EREMOTE;
+			break;
+	}
 }
 
 int WSAGetLastError(void)
@@ -290,23 +437,18 @@ int WSAGetLastError(void)
 		case EINTR:
 			iError = WSAEINTR;
 			break;
-
 		case EBADF:
 			iError = WSAEBADF;
 			break;
-
 		case EACCES:
 			iError = WSAEACCES;
 			break;
-
 		case EFAULT:
 			iError = WSAEFAULT;
 			break;
-
 		case EINVAL:
 			iError = WSAEINVAL;
 			break;
-
 		case EMFILE:
 			iError = WSAEMFILE;
 			break;
@@ -463,6 +605,51 @@ int WSAGetLastError(void)
 	return iError;
 }
 
+HANDLE WSACreateEvent(void)
+{
+	return CreateEvent(NULL, TRUE, FALSE, NULL);
+}
+
+BOOL WSASetEvent(HANDLE hEvent)
+{
+	return SetEvent(hEvent);
+}
+
+BOOL WSAResetEvent(HANDLE hEvent)
+{
+	return ResetEvent(hEvent);
+}
+
+BOOL WSACloseEvent(HANDLE hEvent)
+{
+	BOOL status;
+
+	status = CloseHandle(hEvent);
+
+	if (!status)
+		SetLastError(6);
+
+	return status;
+}
+
+int WSAEventSelect(SOCKET s, WSAEVENT hEventObject, LONG lNetworkEvents)
+{
+	u_long arg = 1;
+
+	if (_ioctlsocket(s, FIONBIO, &arg) != 0)
+		return SOCKET_ERROR;
+
+	if (SetEventFileDescriptor(hEventObject, s) < 0)
+		return SOCKET_ERROR;
+
+	return 0;
+}
+
+DWORD WSAWaitForMultipleEvents(DWORD cEvents, const HANDLE* lphEvents, BOOL fWaitAll, DWORD dwTimeout, BOOL fAlertable)
+{
+	return WaitForMultipleObjectsEx(cEvents, lphEvents, fWaitAll, dwTimeout, fAlertable);
+}
+
 SOCKET _accept(SOCKET s, struct sockaddr* addr, int* addrlen)
 {
 	int status;
@@ -481,6 +668,9 @@ int _bind(SOCKET s, const struct sockaddr* addr, int namelen)
 	int fd = (int) s;
 
 	status = bind(fd, addr, (socklen_t) namelen);
+
+	if (status < 0)
+		return SOCKET_ERROR;
 
 	return status;
 }
@@ -502,11 +692,34 @@ int _connect(SOCKET s, const struct sockaddr* name, int namelen)
 
 	status = connect(fd, name, (socklen_t) namelen);
 
+	if (status < 0)
+		return SOCKET_ERROR;
+
 	return status;
 }
 
 int _ioctlsocket(SOCKET s, long cmd, u_long* argp)
 {
+	int fd = (int) s;
+
+	if (cmd == FIONBIO)
+	{
+		int flags;
+
+		if (!argp)
+			return SOCKET_ERROR;
+
+		flags = fcntl(fd, F_GETFL);
+
+		if (flags == -1)
+			return SOCKET_ERROR;
+
+		if (*argp)
+			fcntl(fd, F_SETFL, flags | O_NONBLOCK);
+		else
+			fcntl(fd, F_SETFL, flags & ~(O_NONBLOCK));
+	}
+
 	return 0;
 }
 
@@ -684,9 +897,15 @@ int _shutdown(SOCKET s, int how)
 
 SOCKET _socket(int af, int type, int protocol)
 {
+	int fd;
 	SOCKET s;
 
-	s = (SOCKET) socket(af, type, protocol);
+	fd = socket(af, type, protocol);
+
+	if (fd < 1)
+		return INVALID_SOCKET;
+
+	s = (SOCKET) fd;
 
 	return s;
 }

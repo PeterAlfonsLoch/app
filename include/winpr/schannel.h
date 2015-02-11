@@ -32,7 +32,7 @@
 #define SCHANNEL_NAME_A		"Schannel"
 #define SCHANNEL_NAME_W		L"Schannel"
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef _UNICODE
 #define SCHANNEL_NAME	SCHANNEL_NAME_W
 #else
 #define SCHANNEL_NAME	SCHANNEL_NAME_A

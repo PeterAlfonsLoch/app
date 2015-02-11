@@ -33,17 +33,22 @@
 
 #include <freerdp/client/remdesk.h>
 
+#include <freerdp/channels/log.h>
+#define TAG CHANNELS_TAG("remdesk.client")
+
 struct remdesk_plugin
 {
 	CHANNEL_DEF channelDef;
 	CHANNEL_ENTRY_POINTS_FREERDP channelEntryPoints;
 
+	RemdeskClientContext* context;
+
 	HANDLE thread;
 	wStream* data_in;
 	void* InitHandle;
 	DWORD OpenHandle;
-	wMessagePipe* MsgPipe;
 	rdpSettings* settings;
+	wMessageQueue* queue;
 
 	UINT32 Version;
 	char* ExpertBlob;

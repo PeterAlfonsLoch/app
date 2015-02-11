@@ -20,6 +20,8 @@
 #ifndef FREERDP_CODEC_CLEAR_H
 #define FREERDP_CODEC_CLEAR_H
 
+typedef struct _CLEAR_CONTEXT CLEAR_CONTEXT;
+
 #include <freerdp/api.h>
 #include <freerdp/types.h>
 
@@ -59,7 +61,6 @@ struct _CLEAR_CONTEXT
 	UINT32 ShortVBarStorageCursor;
 	CLEAR_VBAR_ENTRY ShortVBarStorage[16384];
 };
-typedef struct _CLEAR_CONTEXT CLEAR_CONTEXT;
 
 #ifdef __cplusplus
 extern "C" {
@@ -70,7 +71,7 @@ FREERDP_API int clear_compress(CLEAR_CONTEXT* clear, BYTE* pSrcData, UINT32 SrcS
 FREERDP_API int clear_decompress(CLEAR_CONTEXT* clear, BYTE* pSrcData, UINT32 SrcSize,
 		BYTE** ppDstData, DWORD DstFormat, int nDstStep, int nXDst, int nYDst, int nWidth, int nHeight);
 
-FREERDP_API void clear_context_reset(CLEAR_CONTEXT* clear);
+FREERDP_API int clear_context_reset(CLEAR_CONTEXT* clear);
 
 FREERDP_API CLEAR_CONTEXT* clear_context_new(BOOL Compressor);
 FREERDP_API void clear_context_free(CLEAR_CONTEXT* clear);
@@ -80,4 +81,4 @@ FREERDP_API void clear_context_free(CLEAR_CONTEXT* clear);
 #endif
 
 #endif /* FREERDP_CODEC_CLEAR_H */
-
+ 

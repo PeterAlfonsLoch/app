@@ -22,7 +22,6 @@
 #endif
 
 #include <winpr/crypto.h>
-#include <winpr/wtypes.h>
 
 /**
  * CertOpenStore

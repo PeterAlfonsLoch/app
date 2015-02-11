@@ -66,4 +66,4 @@ FREERDP_API void zgfx_context_free(ZGFX_CONTEXT* zgfx);
 #endif
 
 #endif /* FREERDP_CODEC_ZGFX_H */
-
+ 

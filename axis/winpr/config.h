@@ -1,92 +1,98 @@
 #ifndef __CONFIG_H
 #define __CONFIG_H
 
-#define FREERDP_DATA_PATH "${FREERDP_DATA_PATH}"
-#define FREERDP_KEYMAP_PATH "${FREERDP_KEYMAP_PATH}"
-#define FREERDP_PLUGIN_PATH "${FREERDP_PLUGIN_PATH}"
+#define FREERDP_DATA_PATH "C:/Program Files (x86)/FreeRDP/share/freerdp"
+#define FREERDP_KEYMAP_PATH ""
+#define FREERDP_PLUGIN_PATH "lib/freerdp"
 
-#define FREERDP_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}"
+#define FREERDP_INSTALL_PREFIX "C:/Program Files (x86)/FreeRDP"
 
-#define FREERDP_LIBRARY_PATH "${FREERDP_LIBRARY_PATH}"
+#define FREERDP_LIBRARY_PATH "lib"
 
-#define FREERDP_ADDIN_PATH "${FREERDP_ADDIN_PATH}"
+#define FREERDP_ADDIN_PATH "lib/freerdp"
+
+#define CMAKE_SHARED_LIBRARY_SUFFIX ".dll"
+#define CMAKE_SHARED_LIBRARY_PREFIX  ""
 
 /* Include files */
 #define HAVE_FCNTL_H
-#ifdef LINUX
-#define HAVE_UNISTD_H
-#endif
+/* #undef HAVE_UNISTD_H */
 #define HAVE_STDINT_H
 #define HAVE_INTTYPES_H
-#define HAVE_SYS_MODEM_H
-#define HAVE_SYS_FILIO_H
-#define HAVE_SYS_SELECT_H
-#define HAVE_SYS_STRTIO_H
-#define HAVE_EVENTFD_H
-#define HAVE_TIMERFD_H
-#define HAVE_TM_GMTOFF
-#define HAVE_AIO_H
-//#define HAVE_POLL_H
-//#define HAVE_PTHREAD_GNU_EXT
-//#define HAVE_VALGRIND_MEMCHECK_H
-//#define HAVE_EXECINFO_H
+/* #undef HAVE_SYS_MODEM_H */
+/* #undef HAVE_SYS_FILIO_H */
+/* #undef HAVE_SYS_SELECT_H */
+/* #undef HAVE_SYS_STRTIO_H */
+/* #undef HAVE_EVENTFD_H */
+/* #undef HAVE_TIMERFD_H */
+/* #undef HAVE_TM_GMTOFF */
+/* #undef HAVE_AIO_H */
+/* #undef HAVE_POLL_H */
+/* #undef HAVE_PTHREAD_GNU_EXT */
+/* #undef HAVE_VALGRIND_MEMCHECK_H */
+/* #undef HAVE_EXECINFO_H */
+
+/* Features */
+/* #undef HAVE_ALIGNED_REQUIRED */
 
 /* Options */
-#define WITH_PROFILER
-#define WITH_GPROF
+/* #undef WITH_PROFILER */
+/* #undef WITH_GPROF */
 #define WITH_SSE2
-#define WITH_NEON
-#define WITH_IPP
-//#define WITH_NATIVE_SSPI
-#define WITH_JPEG
-#define WITH_WIN8
-#define WITH_RDPSND_DSOUND
+/* #undef WITH_NEON */
+/* #undef WITH_IPP */
+/* #define WITH_NATIVE_SSPI */
+/* #undef WITH_JPEG */
+/* #undef WITH_WIN8 */
+/* #undef WITH_RDPSND_DSOUND */
 
-#define WITH_FFMPEG
-#define WITH_GSTREAMER_1_0
-#define WITH_GSTREAMER_0_10
+/* #undef WITH_FFMPEG */
+/* #undef WITH_GSTREAMER_1_0 */
+/* #undef WITH_GSTREAMER_0_10 */
 #define WITH_WINMM
-#define WITH_MACAUDIO
-#define WITH_ALSA
-#define WITH_PULSE
-#define WITH_IOSAUDIO
-#define WITH_OPENSLES
-#define WITH_GSM
+/* #undef WITH_MACAUDIO */
+/* #undef WITH_ALSA */
+/* #undef WITH_PULSE */
+/* #undef WITH_IOSAUDIO */
+/* #undef WITH_OPENSLES */
+/* #undef WITH_GSM */
 
 /* Plugins */
 #define STATIC_CHANNELS
-#define WITH_RDPDR
+/* #undef WITH_RDPDR */
 
 
 /* Debug */
-#define WITH_DEBUG_CERTIFICATE
-#define WITH_DEBUG_CAPABILITIES
-#define WITH_DEBUG_CHANNELS
-#define WITH_DEBUG_CLIPRDR
-#define WITH_DEBUG_DVC
-#define WITH_DEBUG_TSMF
-#define WITH_DEBUG_GDI
-#define WITH_DEBUG_KBD
-#define WITH_DEBUG_LICENSE
-#define WITH_DEBUG_NEGO
-#define WITH_DEBUG_NLA
-#define WITH_DEBUG_NTLM
-#define WITH_DEBUG_TSG
-#define WITH_DEBUG_ORDERS
-#define WITH_DEBUG_RAIL
-#define WITH_DEBUG_RDP
-#define WITH_DEBUG_REDIR
-#define WITH_DEBUG_RFX
-#define WITH_DEBUG_SCARD
-#define WITH_DEBUG_SND
-#define WITH_DEBUG_SVC
-#define WITH_DEBUG_RDPEI
-#define WITH_DEBUG_TIMEZONE
-#define WITH_DEBUG_TRANSPORT
-#define WITH_DEBUG_WND
-#define WITH_DEBUG_X11
-#define WITH_DEBUG_X11_CLIPRDR
-#define WITH_DEBUG_X11_LOCAL_MOVESIZE
-#define WITH_DEBUG_XV
-#define WITH_DEBUG_ANDROID_JNI
+/* #undef WITH_DEBUG_CERTIFICATE */
+/* #undef WITH_DEBUG_CAPABILITIES */
+/* #undef WITH_DEBUG_CHANNELS */
+/* #undef WITH_DEBUG_CLIPRDR */
+/* #undef WITH_DEBUG_DVC */
+/* #undef WITH_DEBUG_TSMF */
+/* #undef WITH_DEBUG_GDI */
+/* #undef WITH_DEBUG_KBD */
+/* #undef WITH_DEBUG_LICENSE */
+/* #undef WITH_DEBUG_NEGO */
+/* #undef WITH_DEBUG_NLA */
+/* #undef WITH_DEBUG_NTLM */
+/* #undef WITH_DEBUG_TSG */
+/* #undef WITH_DEBUG_ORDERS */
+/* #undef WITH_DEBUG_RAIL */
+/* #undef WITH_DEBUG_RDP */
+/* #undef WITH_DEBUG_REDIR */
+/* #undef WITH_DEBUG_RFX */
+/* #undef WITH_DEBUG_SCARD */
+/* #undef WITH_DEBUG_SND */
+/* #undef WITH_DEBUG_SVC */
+/* #undef WITH_DEBUG_RDPEI */
+/* #undef WITH_DEBUG_TIMEZONE */
+/* #undef WITH_DEBUG_THREADS */
+/* #undef WITH_DEBUG_TRANSPORT */
+/* #undef WITH_DEBUG_WND */
+/* #undef WITH_DEBUG_X11 */
+/* #undef WITH_DEBUG_X11_CLIPRDR */
+/* #undef WITH_DEBUG_X11_LOCAL_MOVESIZE */
+/* #undef WITH_DEBUG_XV */
+/* #undef WITH_DEBUG_ANDROID_JNI */
+/* #undef WITH_DEBUG_RINGBUFFER */
 #endif

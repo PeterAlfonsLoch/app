@@ -23,9 +23,6 @@
 #include "config.h"
 #endif
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include <assert.h>
 
 #include <winpr/crt.h>
@@ -44,100 +41,148 @@ const char* smartcard_get_ioctl_string(UINT32 ioControlCode, BOOL funcName)
 	{
 		case SCARD_IOCTL_ESTABLISHCONTEXT:
 			return funcName ? "SCardEstablishContext" : "SCARD_IOCTL_ESTABLISHCONTEXT";
+
 		case SCARD_IOCTL_RELEASECONTEXT:
 			return funcName ? "SCardReleaseContext" : "SCARD_IOCTL_RELEASECONTEXT";
+
 		case SCARD_IOCTL_ISVALIDCONTEXT:
 			return funcName ? "SCardIsValidContext" : "SCARD_IOCTL_ISVALIDCONTEXT";
+
 		case SCARD_IOCTL_LISTREADERGROUPSA:
 			return funcName ? "SCardListReaderGroupsA" : "SCARD_IOCTL_LISTREADERGROUPSA";
+
 		case SCARD_IOCTL_LISTREADERGROUPSW:
 			return funcName ? "SCardListReaderGroupsW" : "SCARD_IOCTL_LISTREADERGROUPSW";
+
 		case SCARD_IOCTL_LISTREADERSA:
 			return funcName ? "SCardListReadersA" : "SCARD_IOCTL_LISTREADERSA";
+
 		case SCARD_IOCTL_LISTREADERSW:
 			return funcName ? "SCardListReadersW" : "SCARD_IOCTL_LISTREADERSW";
+
 		case SCARD_IOCTL_INTRODUCEREADERGROUPA:
 			return funcName ? "SCardIntroduceReaderGroupA" : "SCARD_IOCTL_INTRODUCEREADERGROUPA";
+
 		case SCARD_IOCTL_INTRODUCEREADERGROUPW:
 			return funcName ? "SCardIntroduceReaderGroupW" : "SCARD_IOCTL_INTRODUCEREADERGROUPW";
+
 		case SCARD_IOCTL_FORGETREADERGROUPA:
 			return funcName ? "SCardForgetReaderGroupA" : "SCARD_IOCTL_FORGETREADERGROUPA";
+
 		case SCARD_IOCTL_FORGETREADERGROUPW:
 			return funcName ? "SCardForgetReaderGroupW" : "SCARD_IOCTL_FORGETREADERGROUPW";
+
 		case SCARD_IOCTL_INTRODUCEREADERA:
 			return funcName ? "SCardIntroduceReaderA" : "SCARD_IOCTL_INTRODUCEREADERA";
+
 		case SCARD_IOCTL_INTRODUCEREADERW:
 			return funcName ? "SCardIntroduceReaderW" : "SCARD_IOCTL_INTRODUCEREADERW";
+
 		case SCARD_IOCTL_FORGETREADERA:
 			return funcName ? "SCardForgetReaderA" : "SCARD_IOCTL_FORGETREADERA";
+
 		case SCARD_IOCTL_FORGETREADERW:
 			return funcName ? "SCardForgetReaderW" : "SCARD_IOCTL_FORGETREADERW";
+
 		case SCARD_IOCTL_ADDREADERTOGROUPA:
 			return funcName ? "SCardAddReaderToGroupA" : "SCARD_IOCTL_ADDREADERTOGROUPA";
+
 		case SCARD_IOCTL_ADDREADERTOGROUPW:
 			return funcName ? "SCardAddReaderToGroupW" : "SCARD_IOCTL_ADDREADERTOGROUPW";
+
 		case SCARD_IOCTL_REMOVEREADERFROMGROUPA:
 			return funcName ? "SCardRemoveReaderFromGroupA" : "SCARD_IOCTL_REMOVEREADERFROMGROUPA";
+
 		case SCARD_IOCTL_REMOVEREADERFROMGROUPW:
 			return funcName ? "SCardRemoveReaderFromGroupW" : "SCARD_IOCTL_REMOVEREADERFROMGROUPW";
+
 		case SCARD_IOCTL_LOCATECARDSA:
 			return funcName ? "SCardLocateCardsA" : "SCARD_IOCTL_LOCATECARDSA";
+
 		case SCARD_IOCTL_LOCATECARDSW:
 			return funcName ? "SCardLocateCardsW" : "SCARD_IOCTL_LOCATECARDSW";
+
 		case SCARD_IOCTL_GETSTATUSCHANGEA:
 			return funcName ? "SCardGetStatusChangeA" : "SCARD_IOCTL_GETSTATUSCHANGEA";
+
 		case SCARD_IOCTL_GETSTATUSCHANGEW:
 			return funcName ? "SCardGetStatusChangeW" : "SCARD_IOCTL_GETSTATUSCHANGEW";
+
 		case SCARD_IOCTL_CANCEL:
 			return funcName ? "SCardCancel" : "SCARD_IOCTL_CANCEL";
+
 		case SCARD_IOCTL_CONNECTA:
 			return funcName ? "SCardConnectA" : "SCARD_IOCTL_CONNECTA";
+
 		case SCARD_IOCTL_CONNECTW:
 			return funcName ? "SCardConnectW" : "SCARD_IOCTL_CONNECTW";
+
 		case SCARD_IOCTL_RECONNECT:
 			return funcName ? "SCardReconnect" : "SCARD_IOCTL_RECONNECT";
+
 		case SCARD_IOCTL_DISCONNECT:
 			return funcName ? "SCardDisconnect" : "SCARD_IOCTL_DISCONNECT";
+
 		case SCARD_IOCTL_BEGINTRANSACTION:
 			return funcName ? "SCardBeginTransaction" : "SCARD_IOCTL_BEGINTRANSACTION";
+
 		case SCARD_IOCTL_ENDTRANSACTION:
 			return funcName ? "SCardEndTransaction" : "SCARD_IOCTL_ENDTRANSACTION";
+
 		case SCARD_IOCTL_STATE:
 			return funcName ? "SCardState" : "SCARD_IOCTL_STATE";
+
 		case SCARD_IOCTL_STATUSA:
 			return funcName ? "SCardStatusA" : "SCARD_IOCTL_STATUSA";
+
 		case SCARD_IOCTL_STATUSW:
 			return funcName ? "SCardStatusW" : "SCARD_IOCTL_STATUSW";
+
 		case SCARD_IOCTL_TRANSMIT:
 			return funcName ? "SCardTransmit" : "SCARD_IOCTL_TRANSMIT";
+
 		case SCARD_IOCTL_CONTROL:
 			return funcName ? "SCardControl" : "SCARD_IOCTL_CONTROL";
+
 		case SCARD_IOCTL_GETATTRIB:
 			return funcName ? "SCardGetAttrib" : "SCARD_IOCTL_GETATTRIB";
+
 		case SCARD_IOCTL_SETATTRIB:
 			return funcName ? "SCardSetAttrib" : "SCARD_IOCTL_SETATTRIB";
+
 		case SCARD_IOCTL_ACCESSSTARTEDEVENT:
 			return funcName ? "SCardAccessStartedEvent" : "SCARD_IOCTL_ACCESSSTARTEDEVENT";
+
 		case SCARD_IOCTL_LOCATECARDSBYATRA:
 			return funcName ? "SCardLocateCardsByATRA" : "SCARD_IOCTL_LOCATECARDSBYATRA";
+
 		case SCARD_IOCTL_LOCATECARDSBYATRW:
 			return funcName ? "SCardLocateCardsByATRB" : "SCARD_IOCTL_LOCATECARDSBYATRW";
+
 		case SCARD_IOCTL_READCACHEA:
 			return funcName ? "SCardReadCacheA" : "SCARD_IOCTL_READCACHEA";
+
 		case SCARD_IOCTL_READCACHEW:
 			return funcName ? "SCardReadCacheW" : "SCARD_IOCTL_READCACHEW";
+
 		case SCARD_IOCTL_WRITECACHEA:
 			return funcName ? "SCardWriteCacheA" : "SCARD_IOCTL_WRITECACHEA";
+
 		case SCARD_IOCTL_WRITECACHEW:
 			return funcName ? "SCardWriteCacheW" : "SCARD_IOCTL_WRITECACHEW";
+
 		case SCARD_IOCTL_GETTRANSMITCOUNT:
 			return funcName ? "SCardGetTransmitCount" : "SCARD_IOCTL_GETTRANSMITCOUNT";
+
 		case SCARD_IOCTL_RELEASESTARTEDEVENT:
 			return funcName ? "SCardReleaseStartedEvent" : "SCARD_IOCTL_RELEASESTARTEDEVENT";
+
 		case SCARD_IOCTL_GETREADERICON:
 			return funcName ? "SCardGetReaderIcon" : "SCARD_IOCTL_GETREADERICON";
+
 		case SCARD_IOCTL_GETDEVICETYPEID:
 			return funcName ? "SCardGetDeviceTypeId" : "SCARD_IOCTL_GETDEVICETYPEID";
+
 		default:
 			return funcName ? "SCardUnknown" : "SCARD_IOCTL_UNKNOWN";
 	}
@@ -154,9 +199,7 @@ static UINT32 smartcard_EstablishContext_Decode(SMARTCARD_DEVICE* smartcard, SMA
 		return STATUS_NO_MEMORY;
 
 	status = smartcard_unpack_establish_context_call(smartcard, irp->input, call);
-
 	smartcard_trace_establish_context_call(smartcard, call);
-
 	return status;
 }
 
@@ -166,23 +209,18 @@ static UINT32 smartcard_EstablishContext_Call(SMARTCARD_DEVICE* smartcard, SMART
 	SCARDCONTEXT hContext = -1;
 	EstablishContext_Return ret;
 	IRP* irp = operation->irp;
-
 	status = ret.ReturnCode = SCardEstablishContext(call->dwScope, NULL, NULL, &hContext);
 
 	if (ret.ReturnCode == SCARD_S_SUCCESS)
 	{
 		SMARTCARD_CONTEXT* pContext;
-		void* key = (void*) (size_t) hContext;
-
+		void* key = (void*)(size_t) hContext;
 		pContext = smartcard_context_new(smartcard, hContext);
-
 		ListDictionary_Add(smartcard->rgSCardContextList, key, (void*) pContext);
 	}
 
 	smartcard_scard_context_native_to_redir(smartcard, &(ret.hContext), hContext);
-
 	smartcard_trace_establish_context_return(smartcard, &ret);
-
 	status = smartcard_pack_establish_context_return(smartcard, irp->output, &ret);
 
 	if (status)
@@ -200,11 +238,8 @@ static UINT32 smartcard_ReleaseContext_Decode(SMARTCARD_DEVICE* smartcard, SMART
 		return STATUS_NO_MEMORY;
 
 	status = smartcard_unpack_context_call(smartcard, irp->input, call);
-
 	smartcard_trace_context_call(smartcard, call, "ReleaseContext");
-
 	operation->hContext = smartcard_scard_context_native_from_redir(smartcard, &(call->hContext));
-
 	return status;
 }
 
@@ -212,21 +247,17 @@ static UINT32 smartcard_ReleaseContext_Call(SMARTCARD_DEVICE* smartcard, SMARTCA
 {
 	UINT32 status;
 	Long_Return ret;
-
 	status = ret.ReturnCode = SCardReleaseContext(operation->hContext);
 
 	if (ret.ReturnCode == SCARD_S_SUCCESS)
 	{
 		SMARTCARD_CONTEXT* pContext;
-		void* key = (void*) (size_t) operation->hContext;
-
+		void* key = (void*)(size_t) operation->hContext;
 		pContext = (SMARTCARD_CONTEXT*) ListDictionary_Remove(smartcard->rgSCardContextList, key);
-
 		smartcard_context_free(pContext);
 	}
 
 	smartcard_trace_long_return(smartcard, &ret, "ReleaseContext");
-
 	return ret.ReturnCode;
 }
 
@@ -239,11 +270,8 @@ static UINT32 smartcard_IsValidContext_Decode(SMARTCARD_DEVICE* smartcard, SMART
 		return STATUS_NO_MEMORY;
 
 	status = smartcard_unpack_context_call(smartcard, irp->input, call);
-
 	smartcard_trace_context_call(smartcard, call, "IsValidContext");
-
 	operation->hContext = smartcard_scard_context_native_from_redir(smartcard, &(call->hContext));
-
 	return status;
 }
 
@@ -251,11 +279,8 @@ static UINT32 smartcard_IsValidContext_Call(SMARTCARD_DEVICE* smartcard, SMARTCA
 {
 	UINT32 status;
 	Long_Return ret;
-
 	status = ret.ReturnCode = SCardIsValidContext(operation->hContext);
-
 	smartcard_trace_long_return(smartcard, &ret, "IsValidContext");
-
 	return ret.ReturnCode;
 }
 
@@ -268,11 +293,8 @@ static UINT32 smartcard_ListReadersA_Decode(SMARTCARD_DEVICE* smartcard, SMARTCA
 		return STATUS_NO_MEMORY;
 
 	status = smartcard_unpack_list_readers_call(smartcard, irp->input, call);
-
 	smartcard_trace_list_readers_call(smartcard, call, FALSE);
-
 	operation->hContext = smartcard_scard_context_native_from_redir(smartcard, &(call->hContext));
-
 	return status;
 }
 
@@ -291,21 +313,23 @@ static UINT32 smartcard_ListReadersA_Call(SMARTCARD_DEVICE* smartcard, SMARTCARD
 	ret.msz = (BYTE*) mszReaders;
 	ret.cBytes = cchReaders;
 
-	if (status)
+	if (call->mszGroups)
+	{
+		free(call->mszGroups);
+		call->mszGroups = NULL;
+	}
+
+	if (status != SCARD_S_SUCCESS)
 		return status;
 
 	smartcard_trace_list_readers_return(smartcard, &ret, FALSE);
-
 	status = smartcard_pack_list_readers_return(smartcard, irp->output, &ret);
 
-	if (status)
+	if (status != SCARD_S_SUCCESS)
 		return status;
 
 	if (mszReaders)
 		SCardFreeMemory(operation->hContext, mszReaders);
-
-	if (call->mszGroups)
-		free(call->mszGroups);
 
 	return ret.ReturnCode;
 }
@@ -321,7 +345,6 @@ static UINT32 smartcard_ListReadersW_Decode(SMARTCARD_DEVICE* smartcard, SMARTCA
 	status = smartcard_unpack_list_readers_call(smartcard, irp->input, call);
 
 	smartcard_trace_list_readers_call(smartcard, call, TRUE);
-
 	operation->hContext = smartcard_scard_context_native_from_redir(smartcard, &(call->hContext));
 
 	return status;
@@ -337,10 +360,17 @@ static UINT32 smartcard_ListReadersW_Call(SMARTCARD_DEVICE* smartcard, SMARTCARD
 
 	cchReaders = SCARD_AUTOALLOCATE;
 
-	status = ret.ReturnCode = SCardListReadersW(operation->hContext, (LPCWSTR) call->mszGroups, (LPWSTR) &mszReaders, &cchReaders);
+	status = ret.ReturnCode = SCardListReadersW(operation->hContext,
+			(LPCWSTR) call->mszGroups, (LPWSTR) &mszReaders, &cchReaders);
 
 	ret.msz = (BYTE*) mszReaders;
 	ret.cBytes = cchReaders * 2;
+
+	if (call->mszGroups)
+	{
+		free(call->mszGroups);
+		call->mszGroups = NULL;
+	}
 
 	if (status != SCARD_S_SUCCESS)
 		return status;
@@ -355,9 +385,6 @@ static UINT32 smartcard_ListReadersW_Call(SMARTCARD_DEVICE* smartcard, SMARTCARD
 	if (mszReaders)
 		SCardFreeMemory(operation->hContext, mszReaders);
 
-	if (call->mszGroups)
-		free(call->mszGroups);
-
 	return ret.ReturnCode;
 }
 
@@ -370,11 +397,8 @@ static UINT32 smartcard_GetStatusChangeA_Decode(SMARTCARD_DEVICE* smartcard, SMA
 		return STATUS_NO_MEMORY;
 
 	status = smartcard_unpack_get_status_change_a_call(smartcard, irp->input, call);
-
 	smartcard_trace_get_status_change_a_call(smartcard, call);
-
 	operation->hContext = smartcard_scard_context_native_from_redir(smartcard, &(call->hContext));
-
 	return status;
 }
 
@@ -386,14 +410,19 @@ static UINT32 smartcard_GetStatusChangeA_Call(SMARTCARD_DEVICE* smartcard, SMART
 	LPSCARD_READERSTATEA rgReaderState = NULL;
 	IRP* irp = operation->irp;
 
-	status = ret.ReturnCode = SCardGetStatusChangeA(operation->hContext, call->dwTimeOut, call->rgReaderStates, call->cReaders);
+	status = ret.ReturnCode = SCardGetStatusChangeA(operation->hContext,
+			call->dwTimeOut, call->rgReaderStates, call->cReaders);
 
-	if (status && (status != SCARD_E_TIMEOUT) && (status != SCARD_E_CANCELLED)){
-		call->cReaders=0;
+	if (status && (status != SCARD_E_TIMEOUT) && (status != SCARD_E_CANCELLED))
+	{
+		call->cReaders = 0;
 	}
 
 	ret.cReaders = call->cReaders;
 	ret.rgReaderStates = (ReaderState_Return*) calloc(ret.cReaders, sizeof(ReaderState_Return));
+
+	if (!ret.rgReaderStates)
+		return STATUS_NO_MEMORY;
 
 	for (index = 0; index < ret.cReaders; index++)
 	{
@@ -404,7 +433,6 @@ static UINT32 smartcard_GetStatusChangeA_Call(SMARTCARD_DEVICE* smartcard, SMART
 	}
 
 	smartcard_trace_get_status_change_return(smartcard, &ret, FALSE);
-
 	status = smartcard_pack_get_status_change_return(smartcard, irp->output, &ret);
 
 	if (status)
@@ -419,11 +447,11 @@ static UINT32 smartcard_GetStatusChangeA_Call(SMARTCARD_DEVICE* smartcard, SMART
 			if (rgReaderState->szReader)
 				free((void*) rgReaderState->szReader);
 		}
+
 		free(call->rgReaderStates);
 	}
 
 	free(ret.rgReaderStates);
-
 	return ret.ReturnCode;
 }
 
@@ -436,11 +464,8 @@ static UINT32 smartcard_GetStatusChangeW_Decode(SMARTCARD_DEVICE* smartcard, SMA
 		return STATUS_NO_MEMORY;
 
 	status = smartcard_unpack_get_status_change_w_call(smartcard, irp->input, call);
-
 	smartcard_trace_get_status_change_w_call(smartcard, call);
-
 	operation->hContext = smartcard_scard_context_native_from_redir(smartcard, &(call->hContext));
-
 	return status;
 }
 
@@ -451,15 +476,18 @@ static UINT32 smartcard_GetStatusChangeW_Call(SMARTCARD_DEVICE* smartcard, SMART
 	GetStatusChange_Return ret;
 	LPSCARD_READERSTATEW rgReaderState = NULL;
 	IRP* irp = operation->irp;
-
 	status = ret.ReturnCode = SCardGetStatusChangeW(operation->hContext, call->dwTimeOut, call->rgReaderStates, call->cReaders);
 
-	if (status && (status != SCARD_E_TIMEOUT) && (status != SCARD_E_CANCELLED)){
+	if (status && (status != SCARD_E_TIMEOUT) && (status != SCARD_E_CANCELLED))
+	{
 		call->cReaders=0;
 	}
 
 	ret.cReaders = call->cReaders;
 	ret.rgReaderStates = (ReaderState_Return*) calloc(ret.cReaders, sizeof(ReaderState_Return));
+
+	if (!ret.rgReaderStates)
+		return STATUS_NO_MEMORY;
 
 	for (index = 0; index < ret.cReaders; index++)
 	{
@@ -470,7 +498,6 @@ static UINT32 smartcard_GetStatusChangeW_Call(SMARTCARD_DEVICE* smartcard, SMART
 	}
 
 	smartcard_trace_get_status_change_return(smartcard, &ret, TRUE);
-
 	status = smartcard_pack_get_status_change_return(smartcard, irp->output, &ret);
 
 	if (status)
@@ -485,11 +512,11 @@ static UINT32 smartcard_GetStatusChangeW_Call(SMARTCARD_DEVICE* smartcard, SMART
 			if (rgReaderState->szReader)
 				free((void*) rgReaderState->szReader);
 		}
+
 		free(call->rgReaderStates);
 	}
 
 	free(ret.rgReaderStates);
-
 	return ret.ReturnCode;
 }
 
@@ -502,11 +529,8 @@ static UINT32 smartcard_Cancel_Decode(SMARTCARD_DEVICE* smartcard, SMARTCARD_OPE
 		return STATUS_NO_MEMORY;
 
 	status = smartcard_unpack_context_call(smartcard, irp->input, call);
-
 	smartcard_trace_context_call(smartcard, call, "Cancel");
-
 	operation->hContext = smartcard_scard_context_native_from_redir(smartcard, &(call->hContext));
-
 	return status;
 }
 
@@ -514,11 +538,8 @@ static UINT32 smartcard_Cancel_Call(SMARTCARD_DEVICE* smartcard, SMARTCARD_OPERA
 {
 	LONG status;
 	Long_Return ret;
-
 	status = ret.ReturnCode = SCardCancel(operation->hContext);
-
 	smartcard_trace_long_return(smartcard, &ret, "Cancel");
-
 	return ret.ReturnCode;
 }
 
@@ -531,19 +552,16 @@ static UINT32 smartcard_ConnectA_Decode(SMARTCARD_DEVICE* smartcard, SMARTCARD_O
 		return STATUS_NO_MEMORY;
 
 	status = smartcard_unpack_connect_a_call(smartcard, irp->input, call);
-
 	smartcard_trace_connect_a_call(smartcard, call);
-
 	operation->hContext = smartcard_scard_context_native_from_redir(smartcard, &(call->Common.hContext));
-
 	return status;
 }
 
 static UINT32 smartcard_ConnectA_Call(SMARTCARD_DEVICE* smartcard, SMARTCARD_OPERATION* operation, ConnectA_Call* call)
 {
 	LONG status;
-	SCARDHANDLE hCard;
-	Connect_Return ret;
+	SCARDHANDLE hCard = 0;
+	Connect_Return ret = { 0 };
 	IRP* irp = operation->irp;
 
 	if ((call->Common.dwPreferredProtocols == SCARD_PROTOCOL_UNDEFINED) &&
@@ -553,11 +571,10 @@ static UINT32 smartcard_ConnectA_Call(SMARTCARD_DEVICE* smartcard, SMARTCARD_OPE
 	}
 
 	status = ret.ReturnCode = SCardConnectA(operation->hContext, (char*) call->szReader, call->Common.dwShareMode,
-			call->Common.dwPreferredProtocols, &hCard, &ret.dwActiveProtocol);
+						call->Common.dwPreferredProtocols, &hCard, &ret.dwActiveProtocol);
 
 	smartcard_scard_context_native_to_redir(smartcard, &(ret.hContext), operation->hContext);
 	smartcard_scard_handle_native_to_redir(smartcard, &(ret.hCard), hCard);
-
 	smartcard_trace_connect_return(smartcard, &ret);
 
 	if (status)
@@ -583,9 +600,7 @@ static UINT32 smartcard_ConnectW_Decode(SMARTCARD_DEVICE* smartcard, SMARTCARD_O
 		return STATUS_NO_MEMORY;
 
 	status = smartcard_unpack_connect_w_call(smartcard, irp->input, call);
-
 	smartcard_trace_connect_w_call(smartcard, call);
-
 	operation->hContext = smartcard_scard_context_native_from_redir(smartcard, &(call->Common.hContext));
 
 	return status;
@@ -594,8 +609,8 @@ static UINT32 smartcard_ConnectW_Decode(SMARTCARD_DEVICE* smartcard, SMARTCARD_O
 static UINT32 smartcard_ConnectW_Call(SMARTCARD_DEVICE* smartcard, SMARTCARD_OPERATION* operation, ConnectW_Call* call)
 {
 	LONG status;
-	SCARDHANDLE hCard;
-	Connect_Return ret;
+	SCARDHANDLE hCard = 0;
+	Connect_Return ret = { 0 };
 	IRP* irp = operation->irp;
 
 	if ((call->Common.dwPreferredProtocols == SCARD_PROTOCOL_UNDEFINED) &&
@@ -605,11 +620,10 @@ static UINT32 smartcard_ConnectW_Call(SMARTCARD_DEVICE* smartcard, SMARTCARD_OPE
 	}
 
 	status = ret.ReturnCode = SCardConnectW(operation->hContext, (WCHAR*) call->szReader, call->Common.dwShareMode,
-			call->Common.dwPreferredProtocols, &hCard, &ret.dwActiveProtocol);
+							call->Common.dwPreferredProtocols, &hCard, &ret.dwActiveProtocol);
 
 	smartcard_scard_context_native_to_redir(smartcard, &(ret.hContext), operation->hContext);
 	smartcard_scard_handle_native_to_redir(smartcard, &(ret.hCard), hCard);
-
 	smartcard_trace_connect_return(smartcard, &ret);
 
 	if (status)
@@ -635,12 +649,9 @@ static UINT32 smartcard_Reconnect_Decode(SMARTCARD_DEVICE* smartcard, SMARTCARD_
 		return STATUS_NO_MEMORY;
 
 	status = smartcard_unpack_reconnect_call(smartcard, irp->input, call);
-
 	smartcard_trace_reconnect_call(smartcard, call);
-
 	operation->hContext = smartcard_scard_context_native_from_redir(smartcard, &(call->hContext));
 	operation->hCard = smartcard_scard_handle_native_from_redir(smartcard, &(call->hCard));
-
 	return status;
 }
 
@@ -649,12 +660,9 @@ static UINT32 smartcard_Reconnect_Call(SMARTCARD_DEVICE* smartcard, SMARTCARD_OP
 	LONG status;
 	Reconnect_Return ret;
 	IRP* irp = operation->irp;
-
 	status = ret.ReturnCode = SCardReconnect(operation->hCard, call->dwShareMode,
-			call->dwPreferredProtocols, call->dwInitialization, &ret.dwActiveProtocol);
-
+							  call->dwPreferredProtocols, call->dwInitialization, &ret.dwActiveProtocol);
 	smartcard_trace_reconnect_return(smartcard, &ret);
-
 	status = smartcard_pack_reconnect_return(smartcard, irp->output, &ret);
 
 	if (status != SCARD_S_SUCCESS)
@@ -672,12 +680,9 @@ static UINT32 smartcard_Disconnect_Decode(SMARTCARD_DEVICE* smartcard, SMARTCARD
 		return STATUS_NO_MEMORY;
 
 	status = smartcard_unpack_hcard_and_disposition_call(smartcard, irp->input, call);
-
 	smartcard_trace_hcard_and_disposition_call(smartcard, call, "Disconnect");
-
 	operation->hContext = smartcard_scard_context_native_from_redir(smartcard, &(call->hContext));
 	operation->hCard = smartcard_scard_handle_native_from_redir(smartcard, &(call->hCard));
-
 	return status;
 }
 
@@ -685,9 +690,7 @@ static UINT32 smartcard_Disconnect_Call(SMARTCARD_DEVICE* smartcard, SMARTCARD_O
 {
 	LONG status;
 	Long_Return ret;
-
 	status = ret.ReturnCode = SCardDisconnect(operation->hCard, call->dwDisposition);
-
 	smartcard_trace_long_return(smartcard, &ret, "Disconnect");
 
 	if (status != SCARD_S_SUCCESS)
@@ -705,12 +708,9 @@ static UINT32 smartcard_BeginTransaction_Decode(SMARTCARD_DEVICE* smartcard, SMA
 		return STATUS_NO_MEMORY;
 
 	status = smartcard_unpack_hcard_and_disposition_call(smartcard, irp->input, call);
-
 	smartcard_trace_hcard_and_disposition_call(smartcard, call, "BeginTransaction");
-
 	operation->hContext = smartcard_scard_context_native_from_redir(smartcard, &(call->hContext));
 	operation->hCard = smartcard_scard_handle_native_from_redir(smartcard, &(call->hCard));
-
 	return status;
 }
 
@@ -718,11 +718,8 @@ static UINT32 smartcard_BeginTransaction_Call(SMARTCARD_DEVICE* smartcard, SMART
 {
 	LONG status;
 	Long_Return ret;
-
 	status = ret.ReturnCode = SCardBeginTransaction(operation->hCard);
-
 	smartcard_trace_long_return(smartcard, &ret, "BeginTransaction");
-
 	return ret.ReturnCode;
 }
 
@@ -735,12 +732,9 @@ static UINT32 smartcard_EndTransaction_Decode(SMARTCARD_DEVICE* smartcard, SMART
 		return STATUS_NO_MEMORY;
 
 	status = smartcard_unpack_hcard_and_disposition_call(smartcard, irp->input, call);
-
 	smartcard_trace_hcard_and_disposition_call(smartcard, call, "EndTransaction");
-
 	operation->hContext = smartcard_scard_context_native_from_redir(smartcard, &(call->hContext));
 	operation->hCard = smartcard_scard_handle_native_from_redir(smartcard, &(call->hCard));
-
 	return status;
 }
 
@@ -748,11 +742,8 @@ static UINT32 smartcard_EndTransaction_Call(SMARTCARD_DEVICE* smartcard, SMARTCA
 {
 	LONG status;
 	Long_Return ret;
-
 	status = ret.ReturnCode = SCardEndTransaction(operation->hCard, call->dwDisposition);
-
 	smartcard_trace_long_return(smartcard, &ret, "EndTransaction");
-
 	return ret.ReturnCode;
 }
 
@@ -765,10 +756,8 @@ static UINT32 smartcard_State_Decode(SMARTCARD_DEVICE* smartcard, SMARTCARD_OPER
 		return STATUS_NO_MEMORY;
 
 	status = smartcard_unpack_state_call(smartcard, irp->input, call);
-
 	operation->hContext = smartcard_scard_context_native_from_redir(smartcard, &(call->hContext));
 	operation->hCard = smartcard_scard_handle_native_from_redir(smartcard, &(call->hCard));
-
 	return status;
 }
 
@@ -777,11 +766,8 @@ static UINT32 smartcard_State_Call(SMARTCARD_DEVICE* smartcard, SMARTCARD_OPERAT
 	LONG status;
 	State_Return ret;
 	IRP* irp = operation->irp;
-
 	ret.cbAtrLen = SCARD_ATR_LENGTH;
-
 	status = ret.ReturnCode = SCardState(operation->hCard, &ret.dwState, &ret.dwProtocol, (BYTE*) &ret.rgAtr, &ret.cbAtrLen);
-
 	status = smartcard_pack_state_return(smartcard, irp->output, &ret);
 
 	if (status != SCARD_S_SUCCESS)
@@ -799,12 +785,9 @@ static DWORD smartcard_StatusA_Decode(SMARTCARD_DEVICE* smartcard, SMARTCARD_OPE
 		return STATUS_NO_MEMORY;
 
 	status = smartcard_unpack_status_call(smartcard, irp->input, call);
-
 	smartcard_trace_status_call(smartcard, call, FALSE);
-
 	operation->hContext = smartcard_scard_context_native_from_redir(smartcard, &(call->hContext));
 	operation->hCard = smartcard_scard_handle_native_from_redir(smartcard, &(call->hCard));
-
 	return status;
 }
 
@@ -821,11 +804,10 @@ static DWORD smartcard_StatusA_Call(SMARTCARD_DEVICE* smartcard, SMARTCARD_OPERA
 
 	ret.cbAtrLen = call->cbAtrLen;
 	ZeroMemory(ret.pbAtr, 32);
-
 	cchReaderLen = SCARD_AUTOALLOCATE;
 
 	status = ret.ReturnCode = SCardStatusA(operation->hCard, (LPSTR) &mszReaderNames, &cchReaderLen,
-			&ret.dwState, &ret.dwProtocol, (BYTE*) &ret.pbAtr, &ret.cbAtrLen);
+					&ret.dwState, &ret.dwProtocol, (BYTE*) &ret.pbAtr, &ret.cbAtrLen);
 
 	if (status == SCARD_S_SUCCESS)
 	{
@@ -834,7 +816,6 @@ static DWORD smartcard_StatusA_Call(SMARTCARD_DEVICE* smartcard, SMARTCARD_OPERA
 	}
 
 	smartcard_trace_status_return(smartcard, &ret, FALSE);
-
 	status = smartcard_pack_status_return(smartcard, irp->output, &ret);
 
 	if (status != SCARD_S_SUCCESS)
@@ -855,12 +836,9 @@ static DWORD smartcard_StatusW_Decode(SMARTCARD_DEVICE* smartcard, SMARTCARD_OPE
 		return STATUS_NO_MEMORY;
 
 	status = smartcard_unpack_status_call(smartcard, irp->input, call);
-
 	smartcard_trace_status_call(smartcard, call, TRUE);
-
 	operation->hContext = smartcard_scard_context_native_from_redir(smartcard, &(call->hContext));
 	operation->hCard = smartcard_scard_handle_native_from_redir(smartcard, &(call->hCard));
-
 	return status;
 }
 
@@ -877,17 +855,14 @@ static DWORD smartcard_StatusW_Call(SMARTCARD_DEVICE* smartcard, SMARTCARD_OPERA
 
 	ret.cbAtrLen = call->cbAtrLen;
 	ZeroMemory(ret.pbAtr, 32);
-
 	cchReaderLen = SCARD_AUTOALLOCATE;
 
 	status = ret.ReturnCode = SCardStatusW(operation->hCard, (LPWSTR) &mszReaderNames, &cchReaderLen,
-			&ret.dwState, &ret.dwProtocol, (BYTE*) &ret.pbAtr, &ret.cbAtrLen);
+						&ret.dwState, &ret.dwProtocol, (BYTE*) &ret.pbAtr, &ret.cbAtrLen);
 
 	ret.mszReaderNames = (BYTE*) mszReaderNames;
 	ret.cBytes = cchReaderLen * 2;
-
 	smartcard_trace_status_return(smartcard, &ret, TRUE);
-
 	status = smartcard_pack_status_return(smartcard, irp->output, &ret);
 
 	if (status != SCARD_S_SUCCESS)
@@ -922,7 +897,6 @@ static UINT32 smartcard_Transmit_Call(SMARTCARD_DEVICE* smartcard, SMARTCARD_OPE
 	LONG status;
 	Transmit_Return ret;
 	IRP* irp = operation->irp;
-
 	ret.cbRecvLength = 0;
 	ret.pbRecvBuffer = NULL;
 
@@ -933,15 +907,15 @@ static UINT32 smartcard_Transmit_Call(SMARTCARD_DEVICE* smartcard, SMARTCARD_OPE
 
 		ret.cbRecvLength = call->cbRecvLength;
 		ret.pbRecvBuffer = (BYTE*) malloc(ret.cbRecvLength);
+
+		if (!ret.pbRecvBuffer)
+			return STATUS_NO_MEMORY;
 	}
 
 	ret.pioRecvPci = call->pioRecvPci;
-
 	status = ret.ReturnCode = SCardTransmit(operation->hCard, call->pioSendPci, call->pbSendBuffer,
-			call->cbSendLength, ret.pioRecvPci, ret.pbRecvBuffer, &(ret.cbRecvLength));
-
+				call->cbSendLength, ret.pioRecvPci, ret.pbRecvBuffer, &(ret.cbRecvLength));
 	smartcard_trace_transmit_return(smartcard, &ret);
-
 	status = smartcard_pack_transmit_return(smartcard, irp->output, &ret);
 
 	if (status != SCARD_S_SUCCESS)
@@ -949,10 +923,13 @@ static UINT32 smartcard_Transmit_Call(SMARTCARD_DEVICE* smartcard, SMARTCARD_OPE
 
 	if (call->pbSendBuffer)
 		free(call->pbSendBuffer);
+
 	if (ret.pbRecvBuffer)
 		free(ret.pbRecvBuffer);
+
 	if (call->pioSendPci)
 		free(call->pioSendPci);
+
 	if (call->pioRecvPci)
 		free(call->pioRecvPci);
 
@@ -968,12 +945,9 @@ static UINT32 smartcard_Control_Decode(SMARTCARD_DEVICE* smartcard, SMARTCARD_OP
 		return STATUS_NO_MEMORY;
 
 	status = smartcard_unpack_control_call(smartcard, irp->input, call);
-
 	smartcard_trace_control_call(smartcard, call);
-
 	operation->hContext = smartcard_scard_context_native_from_redir(smartcard, &(call->hContext));
 	operation->hCard = smartcard_scard_handle_native_from_redir(smartcard, &(call->hCard));
-
 	return status;
 }
 
@@ -982,7 +956,6 @@ static UINT32 smartcard_Control_Call(SMARTCARD_DEVICE* smartcard, SMARTCARD_OPER
 	LONG status;
 	Control_Return ret;
 	IRP* irp = operation->irp;
-
 	ret.cbOutBufferSize = call->cbOutBufferSize;
 	ret.pvOutBuffer = (BYTE*) malloc(call->cbOutBufferSize);
 
@@ -994,7 +967,6 @@ static UINT32 smartcard_Control_Call(SMARTCARD_DEVICE* smartcard, SMARTCARD_OPER
 			ret.pvOutBuffer, call->cbOutBufferSize, &ret.cbOutBufferSize);
 
 	smartcard_trace_control_return(smartcard, &ret);
-
 	status = smartcard_pack_control_return(smartcard, irp->output, &ret);
 
 	if (status != SCARD_S_SUCCESS)
@@ -1002,6 +974,7 @@ static UINT32 smartcard_Control_Call(SMARTCARD_DEVICE* smartcard, SMARTCARD_OPER
 
 	if (call->pvInBuffer)
 		free(call->pvInBuffer);
+
 	if (ret.pvOutBuffer)
 		free(ret.pvOutBuffer);
 
@@ -1017,12 +990,9 @@ static UINT32 smartcard_GetAttrib_Decode(SMARTCARD_DEVICE* smartcard, SMARTCARD_
 		return STATUS_NO_MEMORY;
 
 	status = smartcard_unpack_get_attrib_call(smartcard, irp->input, call);
-
 	smartcard_trace_get_attrib_call(smartcard, call);
-
 	operation->hContext = smartcard_scard_context_native_from_redir(smartcard, &(call->hContext));
 	operation->hCard = smartcard_scard_handle_native_from_redir(smartcard, &(call->hCard));
-
 	return status;
 }
 
@@ -1030,6 +1000,7 @@ static UINT32 smartcard_GetAttrib_Call(SMARTCARD_DEVICE* smartcard, SMARTCARD_OP
 {
 	LONG status;
 	DWORD cbAttrLen;
+	BOOL autoAllocate;
 	GetAttrib_Return ret;
 	IRP* irp = operation->irp;
 
@@ -1038,12 +1009,20 @@ static UINT32 smartcard_GetAttrib_Call(SMARTCARD_DEVICE* smartcard, SMARTCARD_OP
 	if (call->fpbAttrIsNULL)
 		call->cbAttrLen = 0;
 
-	if (call->cbAttrLen)
+	autoAllocate = (call->cbAttrLen == SCARD_AUTOALLOCATE) ? TRUE : FALSE;
+
+	if (call->cbAttrLen && !autoAllocate)
+	{
 		ret.pbAttr = (BYTE*) malloc(call->cbAttrLen);
+
+		if (!ret.pbAttr)
+			return SCARD_E_NO_MEMORY;
+	}
 
 	cbAttrLen = call->cbAttrLen;
 
-	status = ret.ReturnCode = SCardGetAttrib(operation->hCard, call->dwAttrId, ret.pbAttr, &cbAttrLen);
+	status = ret.ReturnCode = SCardGetAttrib(operation->hCard, call->dwAttrId,
+			autoAllocate ? (LPBYTE) &(ret.pbAttr) : ret.pbAttr, &cbAttrLen);
 
 	ret.cbAttrLen = cbAttrLen;
 
@@ -1051,11 +1030,11 @@ static UINT32 smartcard_GetAttrib_Call(SMARTCARD_DEVICE* smartcard, SMARTCARD_OP
 
 	if (ret.ReturnCode)
 	{
-		WLog_Print(smartcard->log, WLOG_WARN,
-				"SCardGetAttrib: %s (0x%08X) cbAttrLen: %d\n",
+		WLog_WARN(TAG, "SCardGetAttrib: %s (0x%08X) cbAttrLen: %d",
 				SCardGetAttributeString(call->dwAttrId), call->dwAttrId, call->cbAttrLen);
-
 		Stream_Zero(irp->output, 256);
+
+		free(ret.pbAttr);
 		return ret.ReturnCode;
 	}
 
@@ -1065,7 +1044,6 @@ static UINT32 smartcard_GetAttrib_Call(SMARTCARD_DEVICE* smartcard, SMARTCARD_OP
 		return status;
 
 	free(ret.pbAttr);
-
 	return ret.ReturnCode;
 }
 
@@ -1078,13 +1056,12 @@ static UINT32 smartcard_AccessStartedEvent_Decode(SMARTCARD_DEVICE* smartcard, S
 
 	if (Stream_GetRemainingLength(irp->input) < 4)
 	{
-		WLog_Print(smartcard->log, WLOG_WARN, "AccessStartedEvent is too short: %d",
-				(int) Stream_GetRemainingLength(irp->input));
+		WLog_WARN(TAG, "AccessStartedEvent is too short: %d",
+				   (int) Stream_GetRemainingLength(irp->input));
 		return SCARD_F_INTERNAL_ERROR;
 	}
 
 	Stream_Read_UINT32(irp->input, call->LongValue); /* Unused (4 bytes) */
-
 	return SCARD_S_SUCCESS;
 }
 
@@ -1092,7 +1069,6 @@ static UINT32 smartcard_AccessStartedEvent_Call(SMARTCARD_DEVICE* smartcard, SMA
 {
 	UINT32 status;
 	Long_Return ret;
-
 	status = ret.ReturnCode = SCARD_S_SUCCESS;
 
 	if (!smartcard->StartedEvent)
@@ -1102,6 +1078,115 @@ static UINT32 smartcard_AccessStartedEvent_Call(SMARTCARD_DEVICE* smartcard, SMA
 		status = ret.ReturnCode = SCARD_E_NO_SERVICE;
 
 	return status;
+}
+
+static UINT32 smartcard_LocateCardsByATRA_Decode(SMARTCARD_DEVICE* smartcard, SMARTCARD_OPERATION* operation, LocateCardsByATRA_Call* call)
+{
+	LONG status;
+	IRP* irp = operation->irp;
+
+	if (!call)
+		return STATUS_NO_MEMORY;
+
+	status = smartcard_unpack_locate_cards_by_atr_a_call(smartcard, irp->input, call);
+	smartcard_trace_locate_cards_by_atr_a_call(smartcard, call);
+	operation->hContext = smartcard_scard_context_native_from_redir(smartcard, &(call->hContext));
+	return status;
+}
+
+static UINT32 smartcard_LocateCardsByATRA_Call(SMARTCARD_DEVICE* smartcard, SMARTCARD_OPERATION* operation, LocateCardsByATRA_Call* call)
+{
+	LONG status;
+	BOOL equal;
+	DWORD i, j, k;
+	GetStatusChange_Return ret;
+	LPSCARD_READERSTATEA state = NULL;
+	LPSCARD_READERSTATEA states = NULL;
+	IRP* irp = operation->irp;
+
+	states = (LPSCARD_READERSTATEA) calloc(call->cReaders, sizeof(SCARD_READERSTATEA));
+
+	if (!states)
+		return STATUS_NO_MEMORY;
+
+	for (i = 0; i < call->cReaders; i++)
+	{
+		states[i].szReader = (LPCSTR) call->rgReaderStates[i].szReader;
+		states[i].dwCurrentState = call->rgReaderStates[i].Common.dwCurrentState;
+		states[i].dwEventState = call->rgReaderStates[i].Common.dwEventState;
+		states[i].cbAtr = call->rgReaderStates[i].Common.cbAtr;
+		CopyMemory(&(states[i].rgbAtr), &(call->rgReaderStates[i].Common.rgbAtr), 36);
+	}
+
+	status = ret.ReturnCode = SCardGetStatusChangeA(operation->hContext, 0x000001F4, states, call->cReaders);
+
+	if (status && (status != SCARD_E_TIMEOUT) && (status != SCARD_E_CANCELLED))
+	{
+		call->cReaders = 0;
+	}
+
+	for (i = 0; i < call->cAtrs; i++)
+	{
+		for (j = 0; j < call->cReaders; j++)
+		{
+			equal = TRUE;
+
+			for (k = 0; k < call->rgAtrMasks[i].cbAtr; k++)
+			{
+				if ((call->rgAtrMasks[i].rgbAtr[k] & call->rgAtrMasks[i].rgbMask[k]) !=
+				    (states[j].rgbAtr[k] & call->rgAtrMasks[i].rgbMask[k]))
+				{
+					equal = FALSE;
+					break;
+				}
+				if (equal)
+				{
+					states[j].dwEventState |= SCARD_STATE_ATRMATCH;
+				}
+			}
+		}
+	}
+
+	ret.cReaders = call->cReaders;
+	ret.rgReaderStates = (ReaderState_Return*) calloc(ret.cReaders, sizeof(ReaderState_Return));
+
+	if (!ret.rgReaderStates)
+		return STATUS_NO_MEMORY;
+
+	for (i = 0; i < ret.cReaders; i++)
+	{
+		state = &states[i];
+		ret.rgReaderStates[i].dwCurrentState = state->dwCurrentState;
+		ret.rgReaderStates[i].dwEventState = state->dwEventState;
+		ret.rgReaderStates[i].cbAtr = state->cbAtr;
+		CopyMemory(&(ret.rgReaderStates[i].rgbAtr), &(state->rgbAtr), 32);
+	}
+	free(states);
+
+	smartcard_trace_get_status_change_return(smartcard, &ret, FALSE);
+	status = smartcard_pack_get_status_change_return(smartcard, irp->output, &ret);
+
+	if (status)
+		return status;
+
+	if (call->rgReaderStates)
+	{
+		for (i = 0; i < call->cReaders; i++)
+		{
+			state = (LPSCARD_READERSTATEA) &call->rgReaderStates[i];
+
+			if (state->szReader) {
+				free((void*) state->szReader);
+				state->szReader = NULL;
+			}
+		}
+
+		free(call->rgReaderStates);
+		call->rgReaderStates = NULL;
+	}
+
+	free(ret.rgReaderStates);
+	return ret.ReturnCode;
 }
 
 UINT32 smartcard_irp_device_control_decode(SMARTCARD_DEVICE* smartcard, SMARTCARD_OPERATION* operation)
@@ -1118,8 +1203,8 @@ UINT32 smartcard_irp_device_control_decode(SMARTCARD_DEVICE* smartcard, SMARTCAR
 
 	if (Stream_GetRemainingLength(irp->input) < 32)
 	{
-		WLog_Print(smartcard->log, WLOG_WARN, "Device Control Request is too short: %d",
-				(int) Stream_GetRemainingLength(irp->input));
+		WLog_WARN(TAG, "Device Control Request is too short: %d",
+				   (int) Stream_GetRemainingLength(irp->input));
 		return SCARD_F_INTERNAL_ERROR;
 	}
 
@@ -1127,24 +1212,18 @@ UINT32 smartcard_irp_device_control_decode(SMARTCARD_DEVICE* smartcard, SMARTCAR
 	Stream_Read_UINT32(irp->input, inputBufferLength); /* InputBufferLength (4 bytes) */
 	Stream_Read_UINT32(irp->input, ioControlCode); /* IoControlCode (4 bytes) */
 	Stream_Seek(irp->input, 20); /* Padding (20 bytes) */
-
 	operation->ioControlCode = ioControlCode;
 
 	if (Stream_Length(irp->input) != (Stream_GetPosition(irp->input) + inputBufferLength))
 	{
-		WLog_Print(smartcard->log, WLOG_WARN,
-				"InputBufferLength mismatch: Actual: %d Expected: %d\n",
+		WLog_WARN(TAG, "InputBufferLength mismatch: Actual: %d Expected: %d",
 				Stream_Length(irp->input), Stream_GetPosition(irp->input) + inputBufferLength);
 		return SCARD_F_INTERNAL_ERROR;
 	}
 
-	WLog_Print(smartcard->log, WLOG_DEBUG, "%s (0x%08X) FileId: %d CompletionId: %d",
-			smartcard_get_ioctl_string(ioControlCode, TRUE), ioControlCode, irp->FileId, irp->CompletionId);
-
-#if 0
-	CLOG_DBG("%s (0x%08X) FileId: %d CompletionId: %d\n",
-		smartcard_get_ioctl_string(ioControlCode, TRUE), ioControlCode, irp->FileId, irp->CompletionId);
-#endif
+	WLog_DBG(TAG, "%s (0x%08X) FileId: %d CompletionId: %d",
+		smartcard_get_ioctl_string(ioControlCode, TRUE),
+		ioControlCode, irp->FileId, irp->CompletionId);
 
 	if ((ioControlCode != SCARD_IOCTL_ACCESSSTARTEDEVENT) &&
 			(ioControlCode != SCARD_IOCTL_RELEASESTARTEDEVENT))
@@ -1338,7 +1417,8 @@ UINT32 smartcard_irp_device_control_decode(SMARTCARD_DEVICE* smartcard, SMARTCAR
 			break;
 
 		case SCARD_IOCTL_LOCATECARDSBYATRA:
-			status = SCARD_F_INTERNAL_ERROR;
+			call = calloc(1, sizeof(LocateCardsByATRA_Call));
+			status = smartcard_LocateCardsByATRA_Decode(smartcard, operation, (LocateCardsByATRA_Call*) call);
 			break;
 
 		case SCARD_IOCTL_LOCATECARDSBYATRW:
@@ -1386,35 +1466,27 @@ UINT32 smartcard_irp_device_control_decode(SMARTCARD_DEVICE* smartcard, SMARTCAR
 			(ioControlCode != SCARD_IOCTL_RELEASESTARTEDEVENT))
 	{
 		offset = (RDPDR_DEVICE_IO_REQUEST_LENGTH + RDPDR_DEVICE_IO_CONTROL_REQ_HDR_LENGTH);
-
 		smartcard_unpack_read_size_align(smartcard, irp->input,
-				Stream_GetPosition(irp->input) - offset, 8);
+					Stream_GetPosition(irp->input) - offset, 8);
 	}
 
 	if (((size_t) Stream_GetPosition(irp->input)) < Stream_Length(irp->input))
 	{
 		UINT32 difference;
-
-		difference = (int) (Stream_Length(irp->input) - Stream_GetPosition(irp->input));
-
-		WLog_Print(smartcard->log, WLOG_WARN,
-			"IRP was not fully parsed %s (0x%08X): Actual: %d, Expected: %d, Difference: %d",
-			smartcard_get_ioctl_string(ioControlCode, TRUE), ioControlCode,
-			(int) Stream_GetPosition(irp->input), (int) Stream_Length(irp->input), difference);
-
-		winpr_HexDump(Stream_Pointer(irp->input), difference);
+		difference = (int)(Stream_Length(irp->input) - Stream_GetPosition(irp->input));
+		WLog_WARN(TAG, "IRP was not fully parsed %s (0x%08X): Actual: %d, Expected: %d, Difference: %d",
+				smartcard_get_ioctl_string(ioControlCode, TRUE), ioControlCode,
+				(int) Stream_GetPosition(irp->input), (int) Stream_Length(irp->input), difference);
+		winpr_HexDump(TAG, WLOG_WARN, Stream_Pointer(irp->input), difference);
 	}
 
 	if (((size_t) Stream_GetPosition(irp->input)) > Stream_Length(irp->input))
 	{
 		UINT32 difference;
-
-		difference = (int) (Stream_GetPosition(irp->input) - Stream_Length(irp->input));
-
-		WLog_Print(smartcard->log, WLOG_WARN,
-			"IRP was parsed beyond its end %s (0x%08X): Actual: %d, Expected: %d, Difference: %d",
-			smartcard_get_ioctl_string(ioControlCode, TRUE), ioControlCode,
-			(int) Stream_GetPosition(irp->input), (int) Stream_Length(irp->input), difference);
+		difference = (int)(Stream_GetPosition(irp->input) - Stream_Length(irp->input));
+		WLog_WARN(TAG, "IRP was parsed beyond its end %s (0x%08X): Actual: %d, Expected: %d, Difference: %d",
+				smartcard_get_ioctl_string(ioControlCode, TRUE), ioControlCode,
+				(int) Stream_GetPosition(irp->input), (int) Stream_Length(irp->input), difference);
 	}
 
 	if (status != SCARD_S_SUCCESS)
@@ -1424,7 +1496,6 @@ UINT32 smartcard_irp_device_control_decode(SMARTCARD_DEVICE* smartcard, SMARTCAR
 	}
 
 	operation->call = call;
-
 	return status;
 }
 
@@ -1437,7 +1508,6 @@ UINT32 smartcard_irp_device_control_call(SMARTCARD_DEVICE* smartcard, SMARTCARD_
 	UINT32 ioControlCode;
 	UINT32 outputBufferLength;
 	UINT32 objectBufferLength;
-
 	irp = operation->irp;
 	call = operation->call;
 	ioControlCode = operation->ioControlCode;
@@ -1453,10 +1523,8 @@ UINT32 smartcard_irp_device_control_call(SMARTCARD_DEVICE* smartcard, SMARTCARD_
 
 	/* Device Control Response */
 	Stream_Seek_UINT32(irp->output); /* OutputBufferLength (4 bytes) */
-
 	Stream_Seek(irp->output, SMARTCARD_COMMON_TYPE_HEADER_LENGTH); /* CommonTypeHeader (8 bytes) */
 	Stream_Seek(irp->output, SMARTCARD_PRIVATE_TYPE_HEADER_LENGTH); /* PrivateTypeHeader (8 bytes) */
-
 	Stream_Seek_UINT32(irp->output); /* Result (4 bytes) */
 
 	/* Call */
@@ -1616,7 +1684,7 @@ UINT32 smartcard_irp_device_control_call(SMARTCARD_DEVICE* smartcard, SMARTCARD_
 			break;
 
 		case SCARD_IOCTL_LOCATECARDSBYATRA:
-			result = SCARD_F_INTERNAL_ERROR;
+			result = smartcard_LocateCardsByATRA_Call(smartcard, operation, (LocateCardsByATRA_Call*) call);
 			break;
 
 		case SCARD_IOCTL_LOCATECARDSBYATRW:
@@ -1672,16 +1740,13 @@ UINT32 smartcard_irp_device_control_call(SMARTCARD_DEVICE* smartcard, SMARTCARD_
 			(ioControlCode != SCARD_IOCTL_RELEASESTARTEDEVENT))
 	{
 		offset = (RDPDR_DEVICE_IO_RESPONSE_LENGTH + RDPDR_DEVICE_IO_CONTROL_RSP_HDR_LENGTH);
-
-		smartcard_pack_write_size_align(smartcard, irp->output,
-				Stream_GetPosition(irp->output) - offset, 8);
+		smartcard_pack_write_size_align(smartcard, irp->output, Stream_GetPosition(irp->output) - offset, 8);
 	}
 
 	if ((result != SCARD_S_SUCCESS) && (result != SCARD_E_TIMEOUT) &&
 			(result != SCARD_E_NO_READERS_AVAILABLE) && (result != SCARD_E_NO_SERVICE))
 	{
-		WLog_Print(smartcard->log, WLOG_WARN,
-			"IRP failure: %s (0x%08X), status: %s (0x%08X)",
+		WLog_WARN(TAG, "IRP failure: %s (0x%08X), status: %s (0x%08X)",
 			smartcard_get_ioctl_string(ioControlCode, TRUE), ioControlCode,
 			SCardGetErrorString(result), result);
 	}
@@ -1691,29 +1756,22 @@ UINT32 smartcard_irp_device_control_call(SMARTCARD_DEVICE* smartcard, SMARTCARD_
 	if ((result & 0xC0000000) == 0xC0000000)
 	{
 		/* NTSTATUS error */
-
 		irp->IoStatus = result;
 		Stream_SetPosition(irp->output, RDPDR_DEVICE_IO_RESPONSE_LENGTH);
-
-		WLog_Print(smartcard->log, WLOG_WARN,
-			"IRP failure: %s (0x%08X), ntstatus: 0x%08X",
+		WLog_WARN(TAG, "IRP failure: %s (0x%08X), ntstatus: 0x%08X",
 			smartcard_get_ioctl_string(ioControlCode, TRUE), ioControlCode, result);
 	}
 
 	Stream_SealLength(irp->output);
-
 	outputBufferLength = Stream_Length(irp->output) - RDPDR_DEVICE_IO_RESPONSE_LENGTH - 4;
 	objectBufferLength = outputBufferLength - RDPDR_DEVICE_IO_RESPONSE_LENGTH;
 	Stream_SetPosition(irp->output, RDPDR_DEVICE_IO_RESPONSE_LENGTH);
 
 	/* Device Control Response */
 	Stream_Write_UINT32(irp->output, outputBufferLength); /* OutputBufferLength (4 bytes) */
-
 	smartcard_pack_common_type_header(smartcard, irp->output); /* CommonTypeHeader (8 bytes) */
 	smartcard_pack_private_type_header(smartcard, irp->output, objectBufferLength); /* PrivateTypeHeader (8 bytes) */
-
 	Stream_Write_UINT32(irp->output, result); /* Result (4 bytes) */
-
 	Stream_SetPosition(irp->output, Stream_Length(irp->output));
 
 	return SCARD_S_SUCCESS;

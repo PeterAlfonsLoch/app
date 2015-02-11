@@ -24,9 +24,8 @@
 #include <freerdp/gdi/gdi.h>
 
 #ifdef __cplusplus
-extern "C" {
+ extern "C" {
 #endif
-
 
 FREERDP_API HGDI_RGN gdi_CreateRectRgn(int nLeftRect, int nTopRect, int nRightRect, int nBottomRect);
 FREERDP_API HGDI_RECT gdi_CreateRect(int xLeft, int yTop, int xRight, int yBottom);
@@ -47,9 +46,8 @@ FREERDP_API int gdi_CopyRect(HGDI_RECT dst, HGDI_RECT src);
 FREERDP_API int gdi_PtInRect(HGDI_RECT rc, int x, int y);
 FREERDP_API int gdi_InvalidateRegion(HGDI_DC hdc, int x, int y, int w, int h);
 
-
 #ifdef __cplusplus
-} // extern "C"
+ }
 #endif
 
 #endif /* FREERDP_GDI_REGION_H */

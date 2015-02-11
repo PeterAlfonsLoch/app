@@ -158,7 +158,7 @@ typedef struct pvalueW
 	DWORD pv_type;
 } PVALUEW, *PPVALUEW;
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 typedef PVALUEW PVALUE;
 typedef PPVALUEW PPVALUE;
 #else
@@ -182,7 +182,7 @@ typedef struct value_entW
 	DWORD ve_type;
 } VALENTW, *PVALENTW;
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 typedef VALENTW VALENT;
 typedef PVALENTW PVALENT;
 #else
@@ -195,7 +195,7 @@ WINPR_API LONG RegCloseKey(HKEY hKey);
 WINPR_API LONG RegCopyTreeW(HKEY hKeySrc, LPCWSTR lpSubKey, HKEY hKeyDest);
 WINPR_API LONG RegCopyTreeA(HKEY hKeySrc, LPCSTR lpSubKey, HKEY hKeyDest);
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define RegCopyTree RegCopyTreeW
 #else
 #define RegCopyTree RegCopyTreeA
@@ -206,7 +206,7 @@ WINPR_API LONG RegCreateKeyExW(HKEY hKey, LPCWSTR lpSubKey, DWORD Reserved, LPWS
 WINPR_API LONG RegCreateKeyExA(HKEY hKey, LPCSTR lpSubKey, DWORD Reserved, LPSTR lpClass, DWORD dwOptions,
 		REGSAM samDesired, LPSECURITY_ATTRIBUTES lpSecurityAttributes, PHKEY phkResult, LPDWORD lpdwDisposition);
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define RegCreateKeyEx RegCreateKeyExW
 #else
 #define RegCreateKeyEx RegCreateKeyExA
@@ -215,7 +215,7 @@ WINPR_API LONG RegCreateKeyExA(HKEY hKey, LPCSTR lpSubKey, DWORD Reserved, LPSTR
 WINPR_API LONG RegDeleteKeyExW(HKEY hKey, LPCWSTR lpSubKey, REGSAM samDesired, DWORD Reserved);
 WINPR_API LONG RegDeleteKeyExA(HKEY hKey, LPCSTR lpSubKey, REGSAM samDesired, DWORD Reserved);
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define RegDeleteKeyEx RegDeleteKeyExW
 #else
 #define RegDeleteKeyEx RegDeleteKeyExA
@@ -224,7 +224,7 @@ WINPR_API LONG RegDeleteKeyExA(HKEY hKey, LPCSTR lpSubKey, REGSAM samDesired, DW
 WINPR_API LONG RegDeleteTreeW(HKEY hKey, LPCWSTR lpSubKey);
 WINPR_API LONG RegDeleteTreeA(HKEY hKey, LPCSTR lpSubKey);
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define RegDeleteTree RegDeleteTreeW
 #else
 #define RegDeleteTree RegDeleteTreeA
@@ -233,7 +233,7 @@ WINPR_API LONG RegDeleteTreeA(HKEY hKey, LPCSTR lpSubKey);
 WINPR_API LONG RegDeleteValueW(HKEY hKey, LPCWSTR lpValueName);
 WINPR_API LONG RegDeleteValueA(HKEY hKey, LPCSTR lpValueName);
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define RegDeleteValue RegDeleteValueW
 #else
 #define RegDeleteValue RegDeleteValueA
@@ -246,7 +246,7 @@ WINPR_API LONG RegEnumKeyExW(HKEY hKey, DWORD dwIndex, LPWSTR lpName, LPDWORD lp
 WINPR_API LONG RegEnumKeyExA(HKEY hKey, DWORD dwIndex, LPSTR lpName, LPDWORD lpcName,
 		LPDWORD lpReserved, LPSTR lpClass, LPDWORD lpcClass, PFILETIME lpftLastWriteTime);
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define RegEnumKeyEx RegEnumKeyExW
 #else
 #define RegEnumKeyEx RegEnumKeyExA
@@ -257,7 +257,7 @@ WINPR_API LONG RegEnumValueW(HKEY hKey, DWORD dwIndex, LPWSTR lpValueName,
 WINPR_API LONG RegEnumValueA(HKEY hKey, DWORD dwIndex, LPSTR lpValueName,
 		LPDWORD lpcchValueName, LPDWORD lpReserved, LPDWORD lpType, LPBYTE lpData, LPDWORD lpcbData);
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define RegEnumValue RegEnumValueW
 #else
 #define RegEnumValue RegEnumValueA
@@ -273,7 +273,7 @@ WINPR_API LONG RegGetValueW(HKEY hkey, LPCWSTR lpSubKey, LPCWSTR lpValue,
 WINPR_API LONG RegGetValueA(HKEY hkey, LPCSTR lpSubKey, LPCSTR lpValue,
 		DWORD dwFlags, LPDWORD pdwType, PVOID pvData, LPDWORD pcbData);
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define RegGetValue RegGetValueW
 #else
 #define RegGetValue RegGetValueA
@@ -284,7 +284,7 @@ WINPR_API LONG RegLoadAppKeyW(LPCWSTR lpFile, PHKEY phkResult,
 WINPR_API LONG RegLoadAppKeyA(LPCSTR lpFile, PHKEY phkResult,
 		REGSAM samDesired, DWORD dwOptions, DWORD Reserved);
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define RegLoadAppKey RegLoadAppKeyW
 #else
 #define RegLoadAppKey RegLoadAppKeyA
@@ -293,7 +293,7 @@ WINPR_API LONG RegLoadAppKeyA(LPCSTR lpFile, PHKEY phkResult,
 WINPR_API LONG RegLoadKeyW(HKEY hKey, LPCWSTR lpSubKey, LPCWSTR lpFile);
 WINPR_API LONG RegLoadKeyA(HKEY hKey, LPCSTR lpSubKey, LPCSTR lpFile);
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define RegLoadKey RegLoadKeyW
 #else
 #define RegLoadKey RegLoadKeyA
@@ -304,7 +304,7 @@ WINPR_API LONG RegLoadMUIStringW(HKEY hKey, LPCWSTR pszValue, LPWSTR pszOutBuf,
 WINPR_API LONG RegLoadMUIStringA(HKEY hKey, LPCSTR pszValue, LPSTR pszOutBuf,
 		DWORD cbOutBuf, LPDWORD pcbData, DWORD Flags, LPCSTR pszDirectory);
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define RegLoadMUIString RegLoadMUIStringW
 #else
 #define RegLoadMUIString RegLoadMUIStringA
@@ -317,7 +317,7 @@ WINPR_API LONG RegOpenCurrentUser(REGSAM samDesired, PHKEY phkResult);
 WINPR_API LONG RegOpenKeyExW(HKEY hKey, LPCWSTR lpSubKey, DWORD ulOptions, REGSAM samDesired, PHKEY phkResult);
 WINPR_API LONG RegOpenKeyExA(HKEY hKey, LPCSTR lpSubKey, DWORD ulOptions, REGSAM samDesired, PHKEY phkResult);
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define RegOpenKeyEx RegOpenKeyExW
 #else
 #define RegOpenKeyEx RegOpenKeyExA
@@ -334,7 +334,7 @@ WINPR_API LONG RegQueryInfoKeyA(HKEY hKey, LPSTR lpClass, LPDWORD lpcClass, LPDW
 		LPDWORD lpcValues, LPDWORD lpcMaxValueNameLen, LPDWORD lpcMaxValueLen,
 		LPDWORD lpcbSecurityDescriptor, PFILETIME lpftLastWriteTime);
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define RegQueryInfoKey RegQueryInfoKeyW
 #else
 #define RegQueryInfoKey RegQueryInfoKeyA
@@ -345,7 +345,7 @@ WINPR_API LONG RegQueryValueExW(HKEY hKey, LPCWSTR lpValueName,
 WINPR_API LONG RegQueryValueExA(HKEY hKey, LPCSTR lpValueName,
 		LPDWORD lpReserved, LPDWORD lpType, LPBYTE lpData, LPDWORD lpcbData);
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define RegQueryValueEx RegQueryValueExW
 #else
 #define RegQueryValueEx RegQueryValueExA
@@ -354,7 +354,7 @@ WINPR_API LONG RegQueryValueExA(HKEY hKey, LPCSTR lpValueName,
 WINPR_API LONG RegRestoreKeyW(HKEY hKey, LPCWSTR lpFile, DWORD dwFlags);
 WINPR_API LONG RegRestoreKeyA(HKEY hKey, LPCSTR lpFile, DWORD dwFlags);
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define RegRestoreKey RegRestoreKeyW
 #else
 #define RegRestoreKey RegRestoreKeyA
@@ -363,7 +363,7 @@ WINPR_API LONG RegRestoreKeyA(HKEY hKey, LPCSTR lpFile, DWORD dwFlags);
 WINPR_API LONG RegSaveKeyExW(HKEY hKey, LPCWSTR lpFile, LPSECURITY_ATTRIBUTES lpSecurityAttributes, DWORD Flags);
 WINPR_API LONG RegSaveKeyExA(HKEY hKey, LPCSTR lpFile, LPSECURITY_ATTRIBUTES lpSecurityAttributes, DWORD Flags);
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define RegSaveKeyEx RegSaveKeyExW
 #else
 #define RegSaveKeyEx RegSaveKeyExA
@@ -374,7 +374,7 @@ WINPR_API LONG RegSetKeySecurity(HKEY hKey, SECURITY_INFORMATION SecurityInforma
 WINPR_API LONG RegSetValueExW(HKEY hKey, LPCWSTR lpValueName, DWORD Reserved, DWORD dwType, const BYTE* lpData, DWORD cbData);
 WINPR_API LONG RegSetValueExA(HKEY hKey, LPCSTR lpValueName, DWORD Reserved, DWORD dwType, const BYTE* lpData, DWORD cbData);
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define RegSetValueEx RegSetValueExW
 #else
 #define RegSetValueEx RegSetValueExA
@@ -383,7 +383,7 @@ WINPR_API LONG RegSetValueExA(HKEY hKey, LPCSTR lpValueName, DWORD Reserved, DWO
 WINPR_API LONG RegUnLoadKeyW(HKEY hKey, LPCWSTR lpSubKey);
 WINPR_API LONG RegUnLoadKeyA(HKEY hKey, LPCSTR lpSubKey);
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define RegUnLoadKey RegUnLoadKeyW
 #else
 #define RegUnLoadKey RegUnLoadKeyA

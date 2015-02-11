@@ -156,6 +156,8 @@ static int remdesk_send_ctl_version_info_pdu(RemdeskServerContext* context)
 
 	remdesk_virtual_channel_write(context, s);
 
+	Stream_Free(s, TRUE);
+
 	return 1;
 }
 
@@ -209,9 +211,8 @@ static int remdesk_recv_ctl_remote_control_desktop_pdu(RemdeskServerContext* con
 	if (status <= 0)
 		return -1;
 
-	printf("RaConnectionString: %s\n",
-			pdu.raConnectionString);
-
+	WLog_INFO(TAG, "RaConnectionString: %s",
+			  pdu.raConnectionString);
 	free(pdu.raConnectionString);
 
 	remdesk_send_ctl_result_pdu(context, 0);
@@ -281,9 +282,8 @@ static int remdesk_recv_ctl_authenticate_pdu(RemdeskServerContext* context, wStr
 	if (status <= 0)
 		return -1;
 
-	printf("RaConnectionString: %s ExpertBlob: %s\n",
-			pdu.raConnectionString, pdu.expertBlob);
-
+	WLog_INFO(TAG, "RaConnectionString: %s ExpertBlob: %s",
+			  pdu.raConnectionString, pdu.expertBlob);
 	free(pdu.raConnectionString);
 	free(pdu.expertBlob);
 
@@ -305,9 +305,7 @@ static int remdesk_recv_ctl_verify_password_pdu(RemdeskServerContext* context, w
 	cbExpertBlobW = header->DataLength - 4;
 
 	status = ConvertFromUnicode(CP_UTF8, 0, expertBlobW, cbExpertBlobW / 2, &pdu.expertBlob, 0, NULL, NULL);
-
-	printf("ExpertBlob: %s\n", pdu.expertBlob);
-
+	WLog_INFO(TAG, "ExpertBlob: %s", pdu.expertBlob);
 	remdesk_send_ctl_result_pdu(context, 0);
 
 	return 1;
@@ -322,8 +320,7 @@ static int remdesk_recv_ctl_pdu(RemdeskServerContext* context, wStream* s, REMDE
 		return -1;
 
 	Stream_Read_UINT32(s, msgType); /* msgType (4 bytes) */
-
-	printf("msgType: %d\n", msgType);
+	WLog_INFO(TAG, "msgType: %d", msgType);
 
 	switch (msgType)
 	{
@@ -362,7 +359,7 @@ static int remdesk_recv_ctl_pdu(RemdeskServerContext* context, wStream* s, REMDE
 			break;
 
 		default:
-			fprintf(stderr, "remdesk_recv_control_pdu: unknown msgType: %d\n", msgType);
+			WLog_ERR(TAG, "remdesk_recv_control_pdu: unknown msgType: %d", msgType);
 			status = -1;
 			break;
 	}
@@ -376,11 +373,12 @@ static int remdesk_server_receive_pdu(RemdeskServerContext* context, wStream* s)
 	REMDESK_CHANNEL_HEADER header;
 
 #if 0
-	printf("RemdeskReceive: %d\n", Stream_GetRemainingLength(s));
+	WLog_INFO(TAG, "RemdeskReceive: %d", Stream_GetRemainingLength(s));
 	winpr_HexDump(Stream_Pointer(s), Stream_GetRemainingLength(s));
 #endif
 
-	remdesk_read_channel_header(s, &header);
+	if (remdesk_read_channel_header(s, &header) < 0)
+		return -1;
 
 	if (strcmp(header.ChannelName, "RC_CTL") == 0)
 	{

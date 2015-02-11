@@ -23,10 +23,13 @@
 
 #include <winpr/crt.h>
 #include <winpr/stream.h>
+#include <freerdp/log.h>
 
 #include "rdpgfx_common.h"
 
 #include "rdpgfx_codec.h"
+
+#define TAG CHANNELS_TAG("rdpgfx.client")
 
 int rdpgfx_decode_uncompressed(RDPGFX_PLUGIN* gfx, RDPGFX_SURFACE_COMMAND* cmd)
 {
@@ -54,6 +57,9 @@ int rdpgfx_read_h264_metablock(RDPGFX_PLUGIN* gfx, wStream* s, RDPGFX_H264_METAB
 	RDPGFX_RECT16* regionRect;
 	RDPGFX_H264_QUANT_QUALITY* quantQualityVal;
 
+	meta->regionRects = NULL;
+	meta->quantQualityVals = NULL;
+
 	if (Stream_GetRemainingLength(s) < 4)
 		return -1;
 
@@ -72,15 +78,14 @@ int rdpgfx_read_h264_metablock(RDPGFX_PLUGIN* gfx, wStream* s, RDPGFX_H264_METAB
 	if (!meta->quantQualityVals)
 		return -1;
 
-	printf("H264_METABLOCK: numRegionRects: %d\n", (int) meta->numRegionRects);
+	WLog_DBG(TAG, "H264_METABLOCK: numRegionRects: %d", (int) meta->numRegionRects);
 
 	for (index = 0; index < meta->numRegionRects; index++)
 	{
 		regionRect = &(meta->regionRects[index]);
 		rdpgfx_read_rect16(s, regionRect);
-
-		printf("regionRects[%d]: left: %d top: %d right: %d bottom: %d\n",
-				index, regionRect->left, regionRect->top, regionRect->right, regionRect->bottom);
+		WLog_DBG(TAG, "regionRects[%d]: left: %d top: %d right: %d bottom: %d",
+				 index, regionRect->left, regionRect->top, regionRect->right, regionRect->bottom);
 	}
 
 	if (Stream_GetRemainingLength(s) < (meta->numRegionRects * 2))
@@ -95,9 +100,8 @@ int rdpgfx_read_h264_metablock(RDPGFX_PLUGIN* gfx, wStream* s, RDPGFX_H264_METAB
 		quantQualityVal->qp = quantQualityVal->qpVal & 0x3F;
 		quantQualityVal->r = (quantQualityVal->qpVal >> 6) & 1;
 		quantQualityVal->p = (quantQualityVal->qpVal >> 7) & 1;
-
-		printf("quantQualityVals[%d]: qp: %d r: %d p: %d qualityVal: %d\n",
-				index, quantQualityVal->qp, quantQualityVal->r, quantQualityVal->p, quantQualityVal->qualityVal);
+		WLog_DBG(TAG, "quantQualityVals[%d]: qp: %d r: %d p: %d qualityVal: %d",
+				 index, quantQualityVal->qp, quantQualityVal->r, quantQualityVal->p, quantQualityVal->qualityVal);
 	}
 
 	return 1;
@@ -118,7 +122,13 @@ int rdpgfx_decode_h264(RDPGFX_PLUGIN* gfx, RDPGFX_SURFACE_COMMAND* cmd)
 	status = rdpgfx_read_h264_metablock(gfx, s, &(h264.meta));
 
 	if (status < 0)
+	{
+		if (h264.meta.regionRects)
+			free(h264.meta.regionRects);
+		if (h264.meta.quantQualityVals)
+			free(h264.meta.quantQualityVals);
 		return -1;
+	}
 
 	h264.data = Stream_Pointer(s);
 	h264.length = (UINT32) Stream_GetRemainingLength(s);

@@ -81,7 +81,7 @@ struct _SecPkgInfoW
 typedef struct _SecPkgInfoW SecPkgInfoW;
 typedef SecPkgInfoW* PSecPkgInfoW;
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define SecPkgInfo SecPkgInfoW
 #define PSecPkgInfo PSecPkgInfoW
 #else
@@ -462,7 +462,7 @@ struct _SecPkgCredentials_NamesW
 typedef struct _SecPkgCredentials_NamesW SecPkgCredentials_NamesW;
 typedef SecPkgCredentials_NamesW* PSecPkgCredentials_NamesW;
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define SecPkgCredentials_Names SecPkgCredentials_NamesW
 #define PSecPkgCredentials_Names PSecPkgCredentials_NamesW
 #else
@@ -690,7 +690,7 @@ typedef void (SEC_ENTRY * SEC_GET_KEY_FN)(void* Arg, void* Principal, UINT32 Key
 typedef SECURITY_STATUS (SEC_ENTRY * ENUMERATE_SECURITY_PACKAGES_FN_A)(ULONG* pcPackages, PSecPkgInfoA* ppPackageInfo);
 typedef SECURITY_STATUS (SEC_ENTRY * ENUMERATE_SECURITY_PACKAGES_FN_W)(ULONG* pcPackages, PSecPkgInfoW* ppPackageInfo);
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define EnumerateSecurityPackages EnumerateSecurityPackagesW
 #define ENUMERATE_SECURITY_PACKAGES_FN ENUMERATE_SECURITY_PACKAGES_FN_W
 #else
@@ -701,7 +701,7 @@ typedef SECURITY_STATUS (SEC_ENTRY * ENUMERATE_SECURITY_PACKAGES_FN_W)(ULONG* pc
 typedef SECURITY_STATUS (SEC_ENTRY * QUERY_CREDENTIALS_ATTRIBUTES_FN_A)(PCredHandle phCredential, ULONG ulAttribute, void* pBuffer);
 typedef SECURITY_STATUS (SEC_ENTRY * QUERY_CREDENTIALS_ATTRIBUTES_FN_W)(PCredHandle phCredential, ULONG ulAttribute, void* pBuffer);
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define QueryCredentialsAttributes QueryCredentialsAttributesW
 #define QUERY_CREDENTIALS_ATTRIBUTES_FN QUERY_CREDENTIALS_ATTRIBUTES_FN_W
 #else
@@ -716,7 +716,7 @@ typedef SECURITY_STATUS (SEC_ENTRY * ACQUIRE_CREDENTIALS_HANDLE_FN_W)(LPWSTR psz
 		ULONG fCredentialUse, void* pvLogonID, void* pAuthData, SEC_GET_KEY_FN pGetKeyFn,
 		void* pvGetKeyArgument, PCredHandle phCredential, PTimeStamp ptsExpiry);
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define AcquireCredentialsHandle AcquireCredentialsHandleW
 #define ACQUIRE_CREDENTIALS_HANDLE_FN ACQUIRE_CREDENTIALS_HANDLE_FN_W
 #else
@@ -735,7 +735,7 @@ typedef SECURITY_STATUS (SEC_ENTRY * INITIALIZE_SECURITY_CONTEXT_FN_W)(PCredHand
 		PSecBufferDesc pInput, ULONG Reserved2, PCtxtHandle phNewContext,
 		PSecBufferDesc pOutput, PULONG pfContextAttr, PTimeStamp ptsExpiry);
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define InitializeSecurityContext InitializeSecurityContextW
 #define INITIALIZE_SECURITY_CONTEXT_FN INITIALIZE_SECURITY_CONTEXT_FN_W
 #else
@@ -756,7 +756,7 @@ typedef SECURITY_STATUS (SEC_ENTRY * APPLY_CONTROL_TOKEN_FN)(PCtxtHandle phConte
 typedef SECURITY_STATUS (SEC_ENTRY * QUERY_CONTEXT_ATTRIBUTES_FN_A)(PCtxtHandle phContext, ULONG ulAttribute, void* pBuffer);
 typedef SECURITY_STATUS (SEC_ENTRY * QUERY_CONTEXT_ATTRIBUTES_FN_W)(PCtxtHandle phContext, ULONG ulAttribute, void* pBuffer);
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define QueryContextAttributes QueryContextAttributesW
 #define QUERY_CONTEXT_ATTRIBUTES_FN QUERY_CONTEXT_ATTRIBUTES_FN_W
 #else
@@ -777,7 +777,7 @@ typedef SECURITY_STATUS (SEC_ENTRY * FREE_CONTEXT_BUFFER_FN)(void* pvContextBuff
 typedef SECURITY_STATUS (SEC_ENTRY * QUERY_SECURITY_PACKAGE_INFO_FN_A)(SEC_CHAR* pszPackageName, PSecPkgInfoA* ppPackageInfo);
 typedef SECURITY_STATUS (SEC_ENTRY * QUERY_SECURITY_PACKAGE_INFO_FN_W)(SEC_WCHAR* pszPackageName, PSecPkgInfoW* ppPackageInfo);
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define QuerySecurityPackageInfo QuerySecurityPackageInfoW
 #define QUERY_SECURITY_PACKAGE_INFO_FN QUERY_SECURITY_PACKAGE_INFO_FN_W
 #else
@@ -790,7 +790,7 @@ typedef SECURITY_STATUS (SEC_ENTRY * EXPORT_SECURITY_CONTEXT_FN)(PCtxtHandle phC
 typedef SECURITY_STATUS (SEC_ENTRY * IMPORT_SECURITY_CONTEXT_FN_A)(SEC_CHAR* pszPackage, PSecBuffer pPackedContext, HANDLE pToken, PCtxtHandle phContext);
 typedef SECURITY_STATUS (SEC_ENTRY * IMPORT_SECURITY_CONTEXT_FN_W)(SEC_WCHAR* pszPackage, PSecBuffer pPackedContext, HANDLE pToken, PCtxtHandle phContext);
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define ImportSecurityContext ImportSecurityContextW
 #define IMPORT_SECURITY_CONTEXT_FN IMPORT_SECURITY_CONTEXT_FN_W
 #else
@@ -803,7 +803,7 @@ typedef SECURITY_STATUS (SEC_ENTRY * ADD_CREDENTIALS_FN_A)(PCredHandle hCredenti
 typedef SECURITY_STATUS (SEC_ENTRY * ADD_CREDENTIALS_FN_W)(PCredHandle hCredentials, SEC_WCHAR* pszPrincipal, SEC_WCHAR* pszPackage,
 	UINT32 fCredentialUse, void* pAuthData, SEC_GET_KEY_FN pGetKeyFn, void* pvGetKeyArgument, PTimeStamp ptsExpiry);
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define AddCredentials AddCredentialsW
 #define ADD_CREDENTIALS_FN ADD_CREDENTIALS_FN_W
 #else
@@ -820,7 +820,7 @@ typedef SECURITY_STATUS (SEC_ENTRY * DECRYPT_MESSAGE_FN)(PCtxtHandle phContext, 
 typedef SECURITY_STATUS (SEC_ENTRY * SET_CONTEXT_ATTRIBUTES_FN_A)(PCtxtHandle phContext, ULONG ulAttribute, void* pBuffer, ULONG cbBuffer);
 typedef SECURITY_STATUS (SEC_ENTRY * SET_CONTEXT_ATTRIBUTES_FN_W)(PCtxtHandle phContext, ULONG ulAttribute, void* pBuffer, ULONG cbBuffer);
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define SetContextAttributes SetContextAttributesW
 #define SET_CONTEXT_ATTRIBUTES_FN SET_CONTEXT_ATTRIBUTES_FN_W
 #else
@@ -904,7 +904,7 @@ typedef SecurityFunctionTableW* PSecurityFunctionTableW;
 typedef PSecurityFunctionTableA (SEC_ENTRY * INIT_SECURITY_INTERFACE_A)(void);
 typedef PSecurityFunctionTableW (SEC_ENTRY * INIT_SECURITY_INTERFACE_W)(void);
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define InitSecurityInterface InitSecurityInterfaceW
 #define SecurityFunctionTable SecurityFunctionTableW
 #define PSecurityFunctionTable PSecurityFunctionTableW
@@ -1061,15 +1061,15 @@ WINPR_API void sspi_GlobalFinish(void);
 WINPR_API void* sspi_SecBufferAlloc(PSecBuffer SecBuffer, ULONG size);
 WINPR_API void sspi_SecBufferFree(PSecBuffer SecBuffer);
 
-WINPR_API int sspi_SetAuthIdentity(SEC_WINNT_AUTH_IDENTITY_W* identity, const char* user, const char* domain, const char* password);
-WINPR_API int sspi_CopyAuthIdentity(SEC_WINNT_AUTH_IDENTITY_W* identity, SEC_WINNT_AUTH_IDENTITY_W* srcIdentity);
+WINPR_API int sspi_SetAuthIdentity(SEC_WINNT_AUTH_IDENTITY* identity, const char* user, const char* domain, const char* password);
+WINPR_API int sspi_CopyAuthIdentity(SEC_WINNT_AUTH_IDENTITY* identity, SEC_WINNT_AUTH_IDENTITY* srcIdentity);
 
 WINPR_API const char* GetSecurityStatusString(SECURITY_STATUS status);
 
 WINPR_API SecurityFunctionTableW* SEC_ENTRY InitSecurityInterfaceExW(DWORD flags);
 WINPR_API SecurityFunctionTableA* SEC_ENTRY InitSecurityInterfaceExA(DWORD flags);
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define InitSecurityInterfaceEx InitSecurityInterfaceExW
 #define INIT_SECURITY_INTERFACE_EX INIT_SECURITY_INTERFACE_EX_W
 #else

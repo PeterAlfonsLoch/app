@@ -25,7 +25,7 @@
 
 #include <freerdp/codec/mppc.h>
 
-#pragma pack(push,1)
+#pragma pack(push, 1)
 
 struct _XCRUSH_MATCH_INFO
 {
@@ -113,4 +113,4 @@ FREERDP_API void xcrush_context_free(XCRUSH_CONTEXT* xcrush);
 #endif
 
 #endif /* FREERDP_CODEC_XCRUSH_H */
-
+ 

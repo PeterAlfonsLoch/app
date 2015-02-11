@@ -23,7 +23,7 @@
 #include <winpr/winpr.h>
 #include <winpr/wtypes.h>
 
-#if defined(_WIN32)
+#ifdef _WIN32
 
 #include <winerror.h>
 

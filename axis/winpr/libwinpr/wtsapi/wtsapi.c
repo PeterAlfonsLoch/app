@@ -3,6 +3,7 @@
  * Windows Terminal Services API
  *
  * Copyright 2013 Marc-Andre Moreau <marcandre.moreau@gmail.com>
+ * Copyright 2015 DI (FH) Martin Haimberger <martin.haimberger@thincast.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,6 +32,13 @@
 #include <winpr/wtsapi.h>
 
 #include "wtsapi.h"
+
+#ifdef _WIN32
+#include "wtsapi_win32.h"
+#endif
+
+#include "../log.h"
+#define TAG WINPR_TAG("wtsapi")
 
 /**
  * Remote Desktop Services API Functions:
@@ -190,6 +198,8 @@ int WtsApi32_InitializeWtsApi(void)
 	WTSAPI32_LOAD_PROC(IsChildSessionsEnabled, WTS_IS_CHILD_SESSIONS_ENABLED_FN);
 	WTSAPI32_LOAD_PROC(GetChildSessionId, WTS_GET_CHILD_SESSION_ID_FN);
 	WTSAPI32_LOAD_PROC(GetActiveConsoleSessionId, WTS_GET_ACTIVE_CONSOLE_SESSION_ID_FN);
+
+	Win32_InitializeWinSta(&WtsApi32_WtsApiFunctionTable);
 #endif
 
 	g_WtsApi = &WtsApi32_WtsApiFunctionTable;
@@ -325,17 +335,17 @@ BOOL WINAPI WTSSetUserConfigA(LPSTR pServerName, LPSTR pUserName, WTS_CONFIG_CLA
 }
 
 BOOL WINAPI WTSSendMessageW(HANDLE hServer, DWORD SessionId, LPWSTR pTitle, DWORD TitleLength,
-		LPWSTR pMessage, DWORD MessageLength, DWORD Style, DWORD Timeout, DWORD* pResponse, BOOL bWait)
+							LPWSTR pMessage, DWORD MessageLength, DWORD Style, DWORD Timeout, DWORD* pResponse, BOOL bWait)
 {
 	WTSAPI_STUB_CALL_BOOL(SendMessageW, hServer, SessionId, pTitle, TitleLength,
-			pMessage, MessageLength, Style, Timeout, pResponse, bWait);
+						  pMessage, MessageLength, Style, Timeout, pResponse, bWait);
 }
 
 BOOL WINAPI WTSSendMessageA(HANDLE hServer, DWORD SessionId, LPSTR pTitle, DWORD TitleLength,
-		LPSTR pMessage, DWORD MessageLength, DWORD Style, DWORD Timeout, DWORD* pResponse, BOOL bWait)
+							LPSTR pMessage, DWORD MessageLength, DWORD Style, DWORD Timeout, DWORD* pResponse, BOOL bWait)
 {
 	WTSAPI_STUB_CALL_BOOL(SendMessageA, hServer, SessionId, pTitle, TitleLength,
-			pMessage, MessageLength, Style, Timeout, pResponse, bWait);
+						  pMessage, MessageLength, Style, Timeout, pResponse, bWait);
 }
 
 BOOL WINAPI WTSDisconnectSession(HANDLE hServer, DWORD SessionId, BOOL bWait)
@@ -469,47 +479,47 @@ BOOL WINAPI WTSQueryListenerConfigA(HANDLE hServer, PVOID pReserved, DWORD Reser
 }
 
 BOOL WINAPI WTSCreateListenerW(HANDLE hServer, PVOID pReserved, DWORD Reserved,
-		LPWSTR pListenerName, PWTSLISTENERCONFIGW pBuffer, DWORD flag)
+							   LPWSTR pListenerName, PWTSLISTENERCONFIGW pBuffer, DWORD flag)
 {
 	WTSAPI_STUB_CALL_BOOL(CreateListenerW, hServer, pReserved, Reserved, pListenerName, pBuffer, flag);
 }
 
 BOOL WINAPI WTSCreateListenerA(HANDLE hServer, PVOID pReserved, DWORD Reserved,
-		LPSTR pListenerName, PWTSLISTENERCONFIGA pBuffer, DWORD flag)
+							   LPSTR pListenerName, PWTSLISTENERCONFIGA pBuffer, DWORD flag)
 {
 	WTSAPI_STUB_CALL_BOOL(CreateListenerA, hServer, pReserved, Reserved, pListenerName, pBuffer, flag);
 }
 
 BOOL WINAPI WTSSetListenerSecurityW(HANDLE hServer, PVOID pReserved, DWORD Reserved,
-		LPWSTR pListenerName, SECURITY_INFORMATION SecurityInformation,
-		PSECURITY_DESCRIPTOR pSecurityDescriptor)
+									LPWSTR pListenerName, SECURITY_INFORMATION SecurityInformation,
+									PSECURITY_DESCRIPTOR pSecurityDescriptor)
 {
 	WTSAPI_STUB_CALL_BOOL(SetListenerSecurityW, hServer, pReserved, Reserved,
-			pListenerName, SecurityInformation, pSecurityDescriptor);
+						  pListenerName, SecurityInformation, pSecurityDescriptor);
 }
 
 BOOL WINAPI WTSSetListenerSecurityA(HANDLE hServer, PVOID pReserved, DWORD Reserved,
-		LPSTR pListenerName, SECURITY_INFORMATION SecurityInformation,
-		PSECURITY_DESCRIPTOR pSecurityDescriptor)
+									LPSTR pListenerName, SECURITY_INFORMATION SecurityInformation,
+									PSECURITY_DESCRIPTOR pSecurityDescriptor)
 {
 	WTSAPI_STUB_CALL_BOOL(SetListenerSecurityA, hServer, pReserved, Reserved,
-			pListenerName, SecurityInformation, pSecurityDescriptor);
+						  pListenerName, SecurityInformation, pSecurityDescriptor);
 }
 
 BOOL WINAPI WTSGetListenerSecurityW(HANDLE hServer, PVOID pReserved, DWORD Reserved,
-		LPWSTR pListenerName, SECURITY_INFORMATION SecurityInformation,
-		PSECURITY_DESCRIPTOR pSecurityDescriptor, DWORD nLength, LPDWORD lpnLengthNeeded)
+									LPWSTR pListenerName, SECURITY_INFORMATION SecurityInformation,
+									PSECURITY_DESCRIPTOR pSecurityDescriptor, DWORD nLength, LPDWORD lpnLengthNeeded)
 {
 	WTSAPI_STUB_CALL_BOOL(GetListenerSecurityW, hServer, pReserved, Reserved, pListenerName,
-			SecurityInformation, pSecurityDescriptor, nLength, lpnLengthNeeded);
+						  SecurityInformation, pSecurityDescriptor, nLength, lpnLengthNeeded);
 }
 
 BOOL WINAPI WTSGetListenerSecurityA(HANDLE hServer, PVOID pReserved, DWORD Reserved,
-		LPSTR pListenerName, SECURITY_INFORMATION SecurityInformation,
-		PSECURITY_DESCRIPTOR pSecurityDescriptor, DWORD nLength, LPDWORD lpnLengthNeeded)
+									LPSTR pListenerName, SECURITY_INFORMATION SecurityInformation,
+									PSECURITY_DESCRIPTOR pSecurityDescriptor, DWORD nLength, LPDWORD lpnLengthNeeded)
 {
 	WTSAPI_STUB_CALL_BOOL(GetListenerSecurityA, hServer, pReserved, Reserved, pListenerName,
-			SecurityInformation, pSecurityDescriptor, nLength, lpnLengthNeeded);
+						  SecurityInformation, pSecurityDescriptor, nLength, lpnLengthNeeded);
 }
 
 BOOL CDECL WTSEnableChildSessions(BOOL bEnable)
@@ -525,6 +535,16 @@ BOOL CDECL WTSIsChildSessionsEnabled(PBOOL pbEnabled)
 BOOL CDECL WTSGetChildSessionId(PULONG pSessionId)
 {
 	WTSAPI_STUB_CALL_BOOL(GetChildSessionId, pSessionId);
+}
+
+BOOL CDECL WTSLogonUser(HANDLE hServer, LPCSTR username, LPCSTR password, LPCSTR domain)
+{
+	WTSAPI_STUB_CALL_BOOL(LogonUser, hServer, username, password, domain);
+}
+
+BOOL CDECL WTSLogoffUser(HANDLE hServer)
+{
+	WTSAPI_STUB_CALL_BOOL(LogoffUser, hServer);
 }
 
 #ifndef _WIN32
@@ -546,6 +566,78 @@ DWORD WINAPI WTSGetActiveConsoleSessionId(void)
 
 #endif
 
+const CHAR* WTSErrorToString(UINT error)
+{
+	switch(error)
+	{
+	case CHANNEL_RC_OK:
+		return "CHANNEL_RC_OK";
+
+	case CHANNEL_RC_ALREADY_INITIALIZED:
+		return "CHANNEL_RC_ALREADY_INITIALIZED";
+
+	case CHANNEL_RC_NOT_INITIALIZED:
+		return "CHANNEL_RC_NOT_INITIALIZED";
+
+	case CHANNEL_RC_ALREADY_CONNECTED:
+		return "CHANNEL_RC_ALREADY_CONNECTED";
+
+	case CHANNEL_RC_NOT_CONNECTED:
+		return "CHANNEL_RC_NOT_CONNECTED";
+
+	case CHANNEL_RC_TOO_MANY_CHANNELS:
+		return "CHANNEL_RC_TOO_MANY_CHANNELS";
+
+	case CHANNEL_RC_BAD_CHANNEL:
+		return "CHANNEL_RC_BAD_CHANNEL";
+
+	case CHANNEL_RC_BAD_CHANNEL_HANDLE:
+		return "CHANNEL_RC_BAD_CHANNEL_HANDLE";
+
+	case CHANNEL_RC_NO_BUFFER:
+		return "CHANNEL_RC_NO_BUFFER";
+
+	case CHANNEL_RC_BAD_INIT_HANDLE:
+		return "CHANNEL_RC_BAD_INIT_HANDLE";
+
+	case CHANNEL_RC_NOT_OPEN:
+		return "CHANNEL_RC_NOT_OPEN";
+
+	case CHANNEL_RC_BAD_PROC:
+		return "CHANNEL_RC_BAD_PROC";
+
+	case CHANNEL_RC_NO_MEMORY:
+		return "CHANNEL_RC_NO_MEMORY";
+
+	case CHANNEL_RC_UNKNOWN_CHANNEL_NAME:
+		return "CHANNEL_RC_UNKNOWN_CHANNEL_NAME";
+
+	case CHANNEL_RC_ALREADY_OPEN:
+		return "CHANNEL_RC_ALREADY_OPEN";
+
+	case CHANNEL_RC_NOT_IN_VIRTUALCHANNELENTRY:
+		return "CHANNEL_RC_NOT_IN_VIRTUALCHANNELENTRY";
+
+	case CHANNEL_RC_NULL_DATA:
+		return "CHANNEL_RC_NULL_DATA";
+
+	case CHANNEL_RC_ZERO_LENGTH:
+		return "CHANNEL_RC_ZERO_LENGTH";
+
+	case CHANNEL_RC_INVALID_INSTANCE:
+		return "CHANNEL_RC_INVALID_INSTANCE";
+
+	case CHANNEL_RC_UNSUPPORTED_VERSION:
+		return "CHANNEL_RC_UNSUPPORTED_VERSION";
+
+	case CHANNEL_RC_INITIALIZATION_ERROR:
+		return "CHANNEL_RC_INITIALIZATION_ERROR";
+
+	default:
+		return "UNKNOWN";
+	}
+}
+
 BOOL WTSRegisterWtsApiFunctionTable(PWtsApiFunctionTable table)
 {
 	g_WtsApi = table;
@@ -553,7 +645,7 @@ BOOL WTSRegisterWtsApiFunctionTable(PWtsApiFunctionTable table)
 	return TRUE;
 }
 
-static BOOL LoadAndInitialize(char *library)
+static BOOL LoadAndInitialize(char* library)
 {
 	INIT_WTSAPI_FN pInitWtsApi;
 	g_WtsApiModule = LoadLibraryA(library);
@@ -567,6 +659,7 @@ static BOOL LoadAndInitialize(char *library)
 	{
 		return FALSE;
 	}
+
 	g_WtsApi = pInitWtsApi();
 	return TRUE;
 }
@@ -597,33 +690,31 @@ void InitializeWtsApiStubs_Env()
 
 void InitializeWtsApiStubs_FreeRDS()
 {
-	char* prefix;
-	char* libdir;
 	wIniFile* ini;
+	const char* prefix;
+	const char* libdir;
 
 	if (g_WtsApi)
 		return;
 
 	ini = IniFile_New();
 
-	if (IniFile_Parse(ini, "/var/run/freerds.instance") < 0)
+	if (IniFile_ReadFile(ini, "/var/run/freerds.instance") < 0)
 	{
 		IniFile_Free(ini);
-		fprintf(stderr, "failed to parse freerds.instance\n");
+		WLog_ERR(TAG, "failed to parse freerds.instance");
 		LoadAndInitialize(FREERDS_LIBRARY_NAME);
 		return;
 	}
 
 	prefix = IniFile_GetKeyValueString(ini, "FreeRDS", "prefix");
 	libdir = IniFile_GetKeyValueString(ini, "FreeRDS", "libdir");
-
-	fprintf(stderr, "FreeRDS (prefix / libdir): %s / %s\n", prefix, libdir);
+	WLog_INFO(TAG, "FreeRDS (prefix / libdir): %s / %s", prefix, libdir);
 
 	if (prefix && libdir)
 	{
 		char* prefix_libdir;
 		char* wtsapi_library;
-
 		prefix_libdir = GetCombinedPath(prefix, libdir);
 		wtsapi_library = GetCombinedPath(prefix_libdir, FREERDS_LIBRARY_NAME);
 
@@ -645,7 +736,6 @@ void InitializeWtsApiStubs(void)
 		return;
 
 	g_Initialized = TRUE;
-
 	InitializeWtsApiStubs_Env();
 
 #ifdef _WIN32

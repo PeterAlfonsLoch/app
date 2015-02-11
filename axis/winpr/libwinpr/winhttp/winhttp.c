@@ -25,7 +25,7 @@
 
 /**
  * winhttp.dll:
- *
+ * 
  * WinHttpAddRequestHeaders
  * WinHttpAutoProxySvcMain
  * WinHttpCheckPlatform

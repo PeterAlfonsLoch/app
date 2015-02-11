@@ -76,7 +76,7 @@ typedef struct _STARTUPINFOW
 	HANDLE hStdError;
 } STARTUPINFOW, *LPSTARTUPINFOW;
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 typedef STARTUPINFOW	STARTUPINFO;
 typedef LPSTARTUPINFOW	LPSTARTUPINFO;
 #else
@@ -122,7 +122,7 @@ WINPR_API BOOL CreateProcessWithTokenW(HANDLE hToken, DWORD dwLogonFlags,
 		LPCWSTR lpApplicationName, LPWSTR lpCommandLine, DWORD dwCreationFlags, LPVOID lpEnvironment,
 		LPCWSTR lpCurrentDirectory, LPSTARTUPINFOW lpStartupInfo, LPPROCESS_INFORMATION lpProcessInformation);
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define CreateProcess		CreateProcessW
 #define CreateProcessAsUser	CreateProcessAsUserW
 #define CreateProcessWithLogon	CreateProcessWithLogonW
@@ -146,7 +146,7 @@ WINPR_API BOOL TerminateProcess(HANDLE hProcess, UINT uExitCode);
 
 WINPR_API LPWSTR* CommandLineToArgvW(LPCWSTR lpCmdLine, int* pNumArgs);
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define CommandLineToArgv	CommandLineToArgvW
 #else
 #define CommandLineToArgv	CommandLineToArgvA
@@ -163,7 +163,7 @@ WINPR_API HANDLE CreateThread(LPSECURITY_ATTRIBUTES lpThreadAttributes, SIZE_T d
 WINPR_API HANDLE CreateRemoteThread(HANDLE hProcess, LPSECURITY_ATTRIBUTES lpThreadAttributes, SIZE_T dwStackSize,
 		LPTHREAD_START_ROUTINE lpStartAddress, LPVOID lpParameter, DWORD dwCreationFlags, LPDWORD lpThreadId);
 
-DECLSPEC_NORETURN WINPR_API VOID ExitThread(DWORD dwExitCode);
+WINPR_API DECLSPEC_NORETURN VOID ExitThread(DWORD dwExitCode);
 WINPR_API BOOL GetExitCodeThread(HANDLE hThread, LPDWORD lpExitCode);
 
 WINPR_API HANDLE _GetCurrentThread(void);
@@ -200,7 +200,11 @@ WINPR_API BOOL TlsFree(DWORD dwTlsIndex);
 
 /* CommandLineToArgvA is not present in the original Windows API, WinPR always exports it */
 
-WINPR_API LPSTR* CommandLineToArgvA(LPCSTR lpCmdLine, int* pNumArgs);
+WINPR_API LPSTR *CommandLineToArgvA(LPCSTR lpCmdLine, int *pNumArgs);
+
+#if defined(WITH_DEBUG_THREADS)
+WINPR_API VOID DumpThreadHandles(void);
+#endif
 
 #ifdef __cplusplus
 }

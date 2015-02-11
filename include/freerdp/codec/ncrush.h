@@ -61,4 +61,4 @@ FREERDP_API void ncrush_context_free(NCRUSH_CONTEXT* ncrush);
 #endif
 
 #endif /* FREERDP_CODEC_NCRUSH_H */
-
+ 

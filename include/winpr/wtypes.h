@@ -84,12 +84,9 @@ typedef unsigned long ULONG;
 
 typedef unsigned char BYTE, *PBYTE, *LPBYTE;
 typedef BYTE BOOLEAN, *PBOOLEAN;
-typedef wchar_t WCHAR, *PWCHAR;
+typedef unsigned short WCHAR, *PWCHAR;
 typedef WCHAR* BSTR;
-
-#define CHAR char
-#define PCHAR char *
-//typedef char CHAR, *PCHAR;
+typedef char CHAR, *PCHAR;
 typedef DWORD *PDWORD, *LPDWORD;
 typedef unsigned int DWORD32;
 typedef unsigned __int64 DWORD64;
@@ -142,26 +139,11 @@ typedef signed int LONG32;
 typedef signed __int64 LONG64;
 #endif
 
+typedef CHAR *PSTR, *LPSTR, *LPCH;
+typedef const CHAR *LPCSTR,*PCSTR;
 
-#define LPSTR CHAR *
-#define PSTR CHAR *
-#define LPCH CHAR *
-
-#define LPCSTR const CHAR *
-#define PCSTR const CHAR *
-
-
-//typedef CHAR *PSTR, *LPSTR, *LPCH;
-//typedef const CHAR *LPCSTR,*PCSTR;
-
-#define LPWSTR WCHAR *
-#define PWSTR WCHAR *
-#define LPWCH WCHAR *
-
-
-#define LPCWSTR const WCHAR *
-#define PCWSTR const WCHAR *
-
+typedef WCHAR *LPWSTR, *PWSTR, *LPWCH;
+typedef const WCHAR *LPCWSTR,*PCWSTR;
 
 typedef unsigned __int64 QWORD;
 
@@ -211,17 +193,17 @@ typedef struct _LUID
 typedef GUID IID;
 typedef IID* REFIID;
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define _T(x)	L ## x
 #else
 #define _T(x)	x
 #endif
 
-#ifdef BYEWINDOWS_UNICODE
-#define PTSTR LPWSTR
-#define LPTCH LPWSTR
-#define LPTSTR LPWSTR
-#define LPCTSTR LPCWSTR
+#ifdef UNICODE
+typedef LPWSTR PTSTR;
+typedef LPWSTR LPTCH;
+typedef LPWSTR LPTSTR;
+typedef LPCWSTR LPCTSTR;
 #else
 typedef LPSTR PTSTR;
 typedef LPSTR LPTCH;
@@ -396,5 +378,7 @@ typedef PDWORD PLCID;
 typedef WORD LANGID;
 
 #endif
+
+#include <winpr/user.h>
 
 #endif /* WINPR_WTYPES_H */

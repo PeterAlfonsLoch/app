@@ -96,7 +96,7 @@ struct winpr_timer
 	BOOL bManualReset;
 	PTIMERAPCROUTINE pfnCompletionRoutine;
 	LPVOID lpArgToCompletionRoutine;
-
+	
 #ifdef WITH_POSIX_TIMER
 	timer_t tid;
 	struct itimerspec timeout;
@@ -109,7 +109,7 @@ typedef struct winpr_timer_queue_timer WINPR_TIMER_QUEUE_TIMER;
 struct winpr_timer_queue
 {
 	WINPR_HANDLE_DEF();
-
+	
 	pthread_t thread;
 	pthread_attr_t attr;
 	pthread_mutex_t mutex;
@@ -132,7 +132,7 @@ struct winpr_timer_queue_timer
 	DWORD Period;
 	PVOID Parameter;
 	WAITORTIMERCALLBACK Callback;
-
+	
 	int FireCount;
 
 	struct timespec StartTime;

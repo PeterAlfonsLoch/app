@@ -98,6 +98,7 @@ The first release.
 //#include "framework.h"
 //#include "windows.h"
 
+#include <VersionHelpers.h>
 
 #ifdef IMPLEMENT_VISTA_TOOLS
 
@@ -175,7 +176,7 @@ namespace VistaTools
    bool IsVista()
    {
 
-      return is_windows_vista_or_greater() != FALSE;
+      return IsWindowsVistaOrGreater() != FALSE;
 
       /*
       OSVERSIONINFO osver;

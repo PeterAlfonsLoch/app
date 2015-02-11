@@ -79,7 +79,7 @@ struct _AUDIN_PLUGIN
 
 	/* Parsed plugin data */
 	UINT16 fixed_format;
-	UINT16 fixed_channel;
+	UINT16 fixed_channel;	
 	UINT32 fixed_rate;
 	char* subsystem;
 	char* device_name;
@@ -102,7 +102,7 @@ static int audin_process_version(IWTSVirtualChannelCallback* pChannelCallback, w
 	out = Stream_New(NULL, 5);
 	Stream_Write_UINT8(out, MSG_SNDIN_VERSION);
 	Stream_Write_UINT32(out, Version);
-	error = callback->channel->Write(callback->channel, (UINT32) Stream_GetPosition(s), Stream_Buffer(s), NULL);
+	error = callback->channel->Write(callback->channel, (UINT32) Stream_GetPosition(out), Stream_Buffer(out), NULL);
 	Stream_Free(out, TRUE);
 
 	return error;
@@ -133,7 +133,7 @@ static int audin_process_formats(IWTSVirtualChannelCallback* pChannelCallback, w
 	DEBUG_DVC("NumFormats %d", NumFormats);
 	if ((NumFormats < 1) || (NumFormats > 1000))
 	{
-		CLOG_ERR("bad NumFormats %d", NumFormats);
+		WLog_ERR(TAG, "bad NumFormats %d", NumFormats);
 		return 1;
 	}
 	Stream_Seek_UINT32(s); /* cbSizeFormatsPacket */
@@ -157,7 +157,7 @@ static int audin_process_formats(IWTSVirtualChannelCallback* pChannelCallback, w
 		Stream_Read_UINT16(s, format.cbSize);
 		format.data = Stream_Pointer(s);
 		Stream_Seek(s, format.cbSize);
-
+		
 		DEBUG_DVC("wFormatTag=%d nChannels=%d nSamplesPerSec=%d "
 			"nBlockAlign=%d wBitsPerSample=%d cbSize=%d",
 			format.wFormatTag, format.nChannels, format.nSamplesPerSec,
@@ -262,8 +262,8 @@ static int audin_process_open(IWTSVirtualChannelCallback* pChannelCallback, wStr
 
 	if (initialFormat >= (UINT32) callback->formats_count)
 	{
-		CLOG_ERR("invalid format index %d (total %d)",
-			initialFormat, callback->formats_count);
+		WLog_ERR(TAG, "invalid format index %d (total %d)",
+				 initialFormat, callback->formats_count);
 		return 1;
 	}
 
@@ -293,8 +293,8 @@ static int audin_process_format_change(IWTSVirtualChannelCallback* pChannelCallb
 
 	if (NewFormat >= (UINT32) callback->formats_count)
 	{
-		CLOG_ERR("invalid format index %d (total %d)",
-			NewFormat, callback->formats_count);
+		WLog_ERR(TAG, "invalid format index %d (total %d)",
+				 NewFormat, callback->formats_count);
 		return 1;
 	}
 
@@ -340,7 +340,7 @@ static int audin_on_data_received(IWTSVirtualChannelCallback* pChannelCallback, 
 			break;
 
 		default:
-			CLOG_ERR("unknown MessageId=0x%x", MessageId);
+			WLog_ERR(TAG, "unknown MessageId=0x%x", MessageId);
 			error = 1;
 			break;
 	}
@@ -412,10 +412,15 @@ static int audin_plugin_terminated(IWTSPlugin* pPlugin)
 
 	if (audin->device)
 	{
-		IFCALL(audin->device->Close, audin->device);
 		IFCALL(audin->device->Free, audin->device);
 		audin->device = NULL;
 	}
+
+	free(audin->subsystem);
+	audin->subsystem = NULL;
+
+	free(audin->device_name);
+	audin->device_name = NULL;
 
 	free(audin->listener_callback);
 	free(audin);
@@ -429,7 +434,7 @@ static void audin_register_device_plugin(IWTSPlugin* pPlugin, IAudinDevice* devi
 
 	if (audin->device)
 	{
-		CLOG_ERR("existing device, abort.");
+		WLog_ERR(TAG, "existing device, abort.");
 		return;
 	}
 
@@ -454,7 +459,7 @@ static BOOL audin_load_device_plugin(IWTSPlugin* pPlugin, const char* name, ADDI
 
 	if (entry(&entryPoints) != 0)
 	{
-		CLOG_ERR("%s entry returns error.", name);
+		WLog_ERR(TAG, "%s entry returns error.", name);
 		return FALSE;
 	}
 
@@ -613,7 +618,7 @@ int DVCPluginEntry(IDRDYNVC_ENTRY_POINTS* pEntryPoints)
 
 	if (audin->device == NULL)
 	{
-		CLOG_ERR("no sound device.");
+		WLog_ERR(TAG, "no sound device.");
 	}
 
 	return error;

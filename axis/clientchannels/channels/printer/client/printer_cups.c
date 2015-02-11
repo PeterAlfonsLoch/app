@@ -188,7 +188,7 @@ static rdpPrintJob* printer_cups_create_printjob(rdpPrinter* printer, UINT32 id)
 #endif
 
 	cups_printer->printjob = cups_printjob;
-
+	
 	return (rdpPrintJob*)cups_printjob;
 }
 

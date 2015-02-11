@@ -21,8 +21,6 @@
 #include "config.h"
 #endif
 
-#include <winsock2.h>
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -34,7 +32,7 @@
 #include <winpr/cmdline.h>
 #include <freerdp/addin.h>
 
-#include "../audin_main.h"
+#include "audin_main.h"
 
 typedef struct _AudinWinmmDevice
 {
@@ -219,7 +217,7 @@ static BOOL audin_winmm_format_supported(IAudinDevice* device, audinFormat* form
 				winmm->ppwfx = realloc(winmm->ppwfx, sizeof(PWAVEFORMATEX) * winmm->ppwfx_size);
 			}
 			winmm->ppwfx[winmm->cFormats++] = pwfx;
-
+	
 			return 1;
 		}
 	}

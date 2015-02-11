@@ -376,8 +376,8 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(ProjectDir)../../include;.;framework;$(SolutionDir)../../../include;$(SolutionDir)../../../app/include/;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>BYEWINDOWS_UNICODE;HAVE_CONFIG_H;FREERDP_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)../../include;.;framework;$(SolutionDir)../../../include;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../;$(ProjectDir)../../;$(ProjectDir)../;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>BYEWINDOWS_UNICODE;HAVE_CONFIG_H;FREERDP_EXPORTS;_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;_X86_;UNICODE;_UNICODE;WIN32_LEAN_AND_MEAN;WINVER=0x0501;WIN32_WINNT=0x0501;WINPR_EXPORTS;_DEBUG;freerdp_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>false</StringPooling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -1433,6 +1433,7 @@
     <ClInclude Include="..\..\include\freerdp\types.h" />
     <ClInclude Include="..\..\include\freerdp\update.h" />
     <ClInclude Include="..\..\include\freerdp\window.h" />
+    <ClInclude Include="config.h" />
     <ClInclude Include="libfreerdp\codec\nsc_encode.h" />
     <ClInclude Include="libfreerdp\codec\nsc_sse2.h" />
     <ClInclude Include="libfreerdp\codec\nsc_types.h" />
@@ -1510,9 +1511,7 @@
     <ClCompile Include="libfreerdp\cache\cache_palette.c" />
     <ClCompile Include="libfreerdp\cache\cache_pointer.c" />
     <ClCompile Include="libfreerdp\codec\audio.c" />
-    <ClCompile Include="libfreerdp\codec\bitmap_decode.c" />
-    <ClCompile Include="libfreerdp\codec\bitmap_encode.c" />
-    <ClCompile Include="libfreerdp\codec\clear.c" />
+    <ClCompile Include="libfreerdp\codec\bitmap.c" />
     <ClCompile Include="libfreerdp\codec\color.c" />
     <ClCompile Include="libfreerdp\codec\dsp.c" />
     <ClCompile Include="libfreerdp\codec\h264.c" />
@@ -1611,10 +1610,12 @@
     <ClCompile Include="libfreerdp\gdi\gdi_pen.c" />
     <ClCompile Include="libfreerdp\gdi\gdi_region.c" />
     <ClCompile Include="libfreerdp\gdi\gdi_shape.c" />
+    <ClCompile Include="libfreerdp\gdi\gfx.c" />
     <ClCompile Include="libfreerdp\locale\keyboard.c" />
     <ClCompile Include="libfreerdp\locale\keyboard_layout.c" />
     <ClCompile Include="libfreerdp\locale\locale.c" />
     <ClCompile Include="libfreerdp\locale\locale_timezone.c" />
+    <ClCompile Include="libfreerdp\locale\timezone.c" />
     <ClCompile Include="libfreerdp\locale\xkb_layout_ids.c" />
     <ClCompile Include="libfreerdp\primitives\primitives.c" />
     <ClCompile Include="libfreerdp\primitives\prim_16to32bpp.c" />
@@ -1640,6 +1641,13 @@
     <ClCompile Include="libfreerdp\rail\rail_rail.c" />
     <ClCompile Include="libfreerdp\rail\rail_window.c" />
     <ClCompile Include="libfreerdp\rail\rail_window_list.c" />
+    <ClCompile Include="libfreerdp\utils\msusb.c" />
+    <ClCompile Include="libfreerdp\utils\passphrase.c" />
+    <ClCompile Include="libfreerdp\utils\pcap.c" />
+    <ClCompile Include="libfreerdp\utils\profiler.c" />
+    <ClCompile Include="libfreerdp\utils\ringbuffer.c" />
+    <ClCompile Include="libfreerdp\utils\signal.c" />
+    <ClCompile Include="libfreerdp\utils\stopwatch.c" />
     <ClCompile Include="libfreerdp\utils\utils_bitmap.c" />
     <ClCompile Include="libfreerdp\utils\utils_event.c" />
     <ClCompile Include="libfreerdp\utils\utils_msusb.c" />

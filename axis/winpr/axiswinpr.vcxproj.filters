@@ -193,6 +193,12 @@
     <Filter Include="Header Files\libwinpr\smartcard">
       <UniqueIdentifier>{c38da6b6-19cb-4699-b729-437b7ed7e6e7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\libwinpr\bitmap">
+      <UniqueIdentifier>{1a71e4dc-4e0f-438d-b880-7bbe8c7614c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libwinpr\sspi\lodepng">
+      <UniqueIdentifier>{a4d68820-4d5b-4625-9b23-a304b55d1133}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="libwinpr\asn1\asn1.c">
@@ -411,9 +417,6 @@
     <ClCompile Include="libwinpr\utils\cmdline.c">
       <Filter>Source Files\libwinpr\utils</Filter>
     </ClCompile>
-    <ClCompile Include="libwinpr\utils\ntlm.c">
-      <Filter>Source Files\libwinpr\utils</Filter>
-    </ClCompile>
     <ClCompile Include="libwinpr\utils\print.c">
       <Filter>Source Files\libwinpr\utils</Filter>
     </ClCompile>
@@ -546,9 +549,6 @@
     <ClCompile Include="libwinpr\sspi\NTLM\ntlm_message.c">
       <Filter>Source Files\libwinpr\sspi\NTLM</Filter>
     </ClCompile>
-    <ClCompile Include="libwinpr\sspi\NTLM\ntlm_ntlm.c">
-      <Filter>Source Files\libwinpr\sspi\NTLM</Filter>
-    </ClCompile>
     <ClCompile Include="libwinpr\sspi\Negotiate\negotiate.c">
       <Filter>Source Files\libwinpr\sspi\Negotiate</Filter>
     </ClCompile>
@@ -590,6 +590,24 @@
     </ClCompile>
     <ClCompile Include="libwinpr\sspi\sspi_export.c">
       <Filter>Source Files\libwinpr\sspi</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\wlog\CallbackAppender.c">
+      <Filter>Source Files\libwinpr\utils\wlog</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\sspi\NTLM\ntlm.c">
+      <Filter>Source Files\libwinpr\sspi\NTLM</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\utils_ntlm.c">
+      <Filter>Source Files\libwinpr\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\image.c">
+      <Filter>Source Files\libwinpr\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\lodepng\lodepng.c">
+      <Filter>Source Files\libwinpr\sspi\lodepng</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\wtsapi\wtsapi_win32.c">
+      <Filter>Source Files\libwinpr\wtsapi</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

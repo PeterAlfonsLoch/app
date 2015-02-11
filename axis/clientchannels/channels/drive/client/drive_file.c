@@ -49,7 +49,9 @@
 #endif
 
 #ifdef HAVE_FCNTL_H
+#define __USE_GNU /* for O_PATH */
 #include <fcntl.h>
+#undef __USE_GNU
 #endif
 
 #ifdef _WIN32
@@ -143,7 +145,7 @@ static BOOL drive_file_remove_dir(const char* path)
 		{
 			ret = TRUE;
 		}
-
+		
 		free(p);
 
 		if (!ret)
@@ -192,6 +194,11 @@ static BOOL drive_file_init(DRIVE_FILE* file, UINT32 DesiredAccess, UINT32 Creat
 	if (STAT(file->fullpath, &st) == 0)
 	{
 		file->is_dir = (S_ISDIR(st.st_mode) ? TRUE : FALSE);
+		if (!file->is_dir && !S_ISREG(st.st_mode))
+		{
+			file->err = EPERM;
+			return TRUE;
+		}
 #ifndef WIN32
 		if (st.st_size > (unsigned long) 0x07FFFFFFF)
 			largeFile = TRUE;
@@ -305,6 +312,25 @@ DRIVE_FILE* drive_file_new(const char* base_path, const char* path, UINT32 id,
 		drive_file_free(file);
 		return NULL;
 	}
+
+#if defined(__linux__) && defined(O_PATH)
+	if (file->fd < 0 && file->err == EACCES)
+	{
+		/**
+		 * We have no access permissions for the file or directory but if the
+		 * peer is only interested in reading the object's attributes we can try
+		 * to obtain a file descriptor who's only purpose is to perform
+		 * operations that act purely at the file descriptor level.
+		 * See open(2)
+		 **/
+		 {
+			if ((file->fd = OPEN(file->fullpath, O_PATH)) >= 0)
+			{
+				file->err = 0;
+			}
+		 }
+	}
+#endif
 
 	return file;
 }
@@ -461,7 +487,7 @@ BOOL drive_file_set_information(DRIVE_FILE* file, UINT32 FsInformationClass, UIN
 	int status;
 	char* fullpath;
 	struct STAT st;
-#if defined(__linux__) && !defined(ANDROID)
+#if defined(__linux__) && !defined(ANDROID) || defined(sun)
 	struct timespec tv[2];
 #else
 	struct timeval tv[2];
@@ -493,9 +519,9 @@ BOOL drive_file_set_information(DRIVE_FILE* file, UINT32 FsInformationClass, UIN
 			tv[0].tv_usec = 0;
 			tv[1].tv_usec = 0;
 			utimes(file->fullpath, tv);
-#elif defined (__linux__)
+#elif defined (__linux__) || defined (sun)
 			tv[0].tv_nsec = 0;
-			tv[1].tv_nsec = 0;
+			tv[1].tv_nsec = 0;			
 			futimens(file->fd, tv);
 #else
 			tv[0].tv_usec = 0;

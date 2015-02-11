@@ -61,8 +61,8 @@ WINPR_API BOOL SetEnvironmentVariableW(LPCWSTR lpName, LPCWSTR lpValue);
  * http://blogs.msdn.com/b/oldnewthing/archive/2013/01/17/10385718.aspx
  */
 
-WINPR_API char * GetEnvironmentStrings(VOID);
-WINPR_API LPWSTR GetEnvironmentStringsW(VOID);
+WINPR_API LPCH GetEnvironmentStrings(VOID);
+WINPR_API LPWCH GetEnvironmentStringsW(VOID);
 
 WINPR_API BOOL SetEnvironmentStringsA(LPCH NewEnvironment);
 WINPR_API BOOL SetEnvironmentStringsW(LPWCH NewEnvironment);
@@ -73,17 +73,11 @@ WINPR_API DWORD ExpandEnvironmentStringsW(LPCWSTR lpSrc, LPWSTR lpDst, DWORD nSi
 WINPR_API BOOL FreeEnvironmentStringsA(LPCH lpszEnvironmentBlock);
 WINPR_API BOOL FreeEnvironmentStringsW(LPWCH lpszEnvironmentBlock);
 
-WINPR_API LPCH MergeEnvironmentStrings(PCSTR original, PCSTR merge);
-
-WINPR_API DWORD GetEnvironmentVariableEBA(LPCSTR envBlock, LPCSTR lpName, LPSTR lpBuffer, DWORD nSize);
-WINPR_API BOOL SetEnvironmentVariableEBA(LPSTR * envBlock,LPCSTR lpName, LPCSTR lpValue);
-
 #ifdef __cplusplus
 }
 #endif
 
-
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define GetCurrentDirectory		GetCurrentDirectoryW
 #define SetCurrentDirectory		SetCurrentDirectoryW
 #define SearchPath			SearchPathW
@@ -103,12 +97,25 @@ WINPR_API BOOL SetEnvironmentVariableEBA(LPSTR * envBlock,LPCSTR lpName, LPCSTR 
 #define NeedCurrentDirectoryForExePath	NeedCurrentDirectoryForExePathA
 #define GetEnvironmentVariable		GetEnvironmentVariableA
 #define SetEnvironmentVariable		SetEnvironmentVariableA
-x//#define GetEnvironmentStringsA		GetEnvironmentStrings
+#define GetEnvironmentStringsA		GetEnvironmentStrings
 #define SetEnvironmentStrings		SetEnvironmentStringsA
 #define ExpandEnvironmentStrings	ExpandEnvironmentStringsA
 #define FreeEnvironmentStrings		FreeEnvironmentStringsA
 #endif
 
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+WINPR_API LPCH MergeEnvironmentStrings(PCSTR original, PCSTR merge);
+
+WINPR_API DWORD GetEnvironmentVariableEBA(LPCSTR envBlock, LPCSTR lpName, LPSTR lpBuffer, DWORD nSize);
+WINPR_API BOOL SetEnvironmentVariableEBA(LPSTR* envBlock, LPCSTR lpName, LPCSTR lpValue);
+
+#ifdef __cplusplus
+}
 #endif
 
 #endif /* WINPR_ENVIRONMENT_H */

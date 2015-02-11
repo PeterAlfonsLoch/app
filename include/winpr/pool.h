@@ -132,10 +132,10 @@ typedef VOID (*PTP_WAIT_CALLBACK)(PTP_CALLBACK_INSTANCE Instance, PVOID Context,
 
 #endif
 
-/*
-There is a bug in the Win8 header that defines the IO
+/* 
+There is a bug in the Win8 header that defines the IO 
 callback unconditionally. Versions of Windows greater
-than XP will conditionally define it. The following
+than XP will conditionally define it. The following 
 logic tries to fix that.
 */
 #ifdef _THREADPOOLAPISET_H_

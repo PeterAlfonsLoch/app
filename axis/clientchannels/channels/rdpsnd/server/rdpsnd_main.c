@@ -52,7 +52,7 @@ BOOL rdpsnd_server_send_formats(RdpsndServerContext* context, wStream* s)
 	Stream_Write_UINT8(s, context->block_no); /* cLastBlockConfirmed */
 	Stream_Write_UINT16(s, 0x06); /* wVersion */
 	Stream_Write_UINT8(s, 0); /* bPad */
-
+	
 	for (i = 0; i < context->num_server_formats; i++)
 	{
 		Stream_Write_UINT16(s, context->server_formats[i].wFormatTag); /* wFormatTag (WAVE_FORMAT_PCM) */
@@ -103,14 +103,13 @@ static BOOL rdpsnd_server_recv_waveconfirm(RdpsndServerContext* context, wStream
 static BOOL rdpsnd_server_recv_quality_mode(RdpsndServerContext* context, wStream* s)
 {
 	UINT16 quality;
-
+	
 	if (Stream_GetRemainingLength(s) < 4)
 		return FALSE;
 
 	Stream_Read_UINT16(s, quality);
 	Stream_Seek_UINT16(s); // reserved
-
-	CLOG_ERR( "Client requested sound quality: %#0X\n", quality);
+	WLog_ERR(TAG,  "Client requested sound quality: %#0X", quality);
 	return TRUE;
 }
 
@@ -118,7 +117,7 @@ static BOOL rdpsnd_server_recv_formats(RdpsndServerContext* context, wStream* s)
 {
 	int i, num_known_format = 0;
 	UINT32 flags, vol, pitch;
-	UINT16 udpPort, version;
+	UINT16 udpPort;
 	BYTE lastblock;
 
 	if (Stream_GetRemainingLength(s) < 20)
@@ -130,7 +129,7 @@ static BOOL rdpsnd_server_recv_formats(RdpsndServerContext* context, wStream* s)
 	Stream_Read_UINT16(s, udpPort); /* wDGramPort */
 	Stream_Read_UINT16(s, context->num_client_formats); /* wNumberOfFormats */
 	Stream_Read_UINT8(s, lastblock); /* cLastBlockConfirmed */
-	Stream_Read_UINT16(s, version); /* wVersion */
+	Stream_Read_UINT16(s, context->clientVersion); /* wVersion */
 	Stream_Seek_UINT8(s); /* bPad */
 
 	/* this check is only a guess as cbSize can influence the size of a format record */
@@ -139,7 +138,7 @@ static BOOL rdpsnd_server_recv_formats(RdpsndServerContext* context, wStream* s)
 
 	if (!context->num_client_formats)
 	{
-		CLOG_ERR( "%s: client doesn't support any format!\n", __FUNCTION__);
+		WLog_ERR(TAG,  "client doesn't support any format!");
 		return FALSE;
 	}
 
@@ -176,7 +175,7 @@ static BOOL rdpsnd_server_recv_formats(RdpsndServerContext* context, wStream* s)
 
 	if (!context->num_client_formats)
 	{
-		CLOG_ERR( "%s: client doesn't support any known format!\n", __FUNCTION__);
+		WLog_ERR(TAG,  "client doesn't support any known format!");
 		goto out_free;
 	}
 
@@ -210,7 +209,7 @@ static void* rdpsnd_server_thread(void* arg)
 		if (WaitForSingleObject(context->priv->StopEvent, 0) == WAIT_OBJECT_0)
 			break;
 
-		if (!rdpsnd_server_handle_messages(context))
+		if (rdpsnd_server_handle_messages(context) == 0)
 			break;
 	}
 
@@ -232,19 +231,19 @@ static BOOL rdpsnd_server_select_format(RdpsndServerContext* context, int client
 
 	if (client_format_index < 0 || client_format_index >= context->num_client_formats)
 	{
-		CLOG_ERR( "%s: index %d is not correct.\n", __FUNCTION__, client_format_index);
+		WLog_ERR(TAG,  "index %d is not correct.", client_format_index);
 		return FALSE;
 	}
-
+	
 	context->priv->src_bytes_per_sample = context->src_format.wBitsPerSample / 8;
 	context->priv->src_bytes_per_frame = context->priv->src_bytes_per_sample * context->src_format.nChannels;
 
 	context->selected_client_format = client_format_index;
 	format = &context->client_formats[client_format_index];
-
+	
 	if (format->nSamplesPerSec == 0)
 	{
-		CLOG_ERR( "%s: invalid Client Sound Format!!\n", __FUNCTION__);
+		WLog_ERR(TAG,  "invalid Client Sound Format!!");
 		return FALSE;
 	}
 
@@ -271,7 +270,7 @@ static BOOL rdpsnd_server_select_format(RdpsndServerContext* context, int client
 	context->priv->out_pending_frames = 0;
 
 	out_buffer_size = context->priv->out_frames * context->priv->src_bytes_per_frame;
-
+	
 	if (context->priv->out_buffer_size < out_buffer_size)
 	{
 		BYTE *newBuffer;
@@ -477,8 +476,9 @@ static int rdpsnd_server_start(RdpsndServerContext* context)
 
 	if (!WTSVirtualChannelQuery(priv->ChannelHandle, WTSVirtualEventHandle, &buffer, &bytesReturned) || (bytesReturned != sizeof(HANDLE)))
 	{
-		CLOG_ERR( "%s: error during WTSVirtualChannelQuery(WTSVirtualEventHandle) or invalid returned size(%d)\n",
-				__FUNCTION__, bytesReturned);
+		WLog_ERR(TAG,  "error during WTSVirtualChannelQuery(WTSVirtualEventHandle) or invalid returned size(%d)",
+				 bytesReturned);
+
 		if (buffer)
 			WTSFreeMemory(buffer);
 		goto out_close;
@@ -527,8 +527,12 @@ static int rdpsnd_server_stop(RdpsndServerContext* context)
 
 			WaitForSingleObject(context->priv->Thread, INFINITE);
 			CloseHandle(context->priv->Thread);
+			CloseHandle(context->priv->StopEvent);
 		}
 	}
+
+	if (context->priv->rdpsnd_pdu)
+		Stream_Free(context->priv->rdpsnd_pdu, TRUE);
 
 	return 0;
 }
@@ -591,23 +595,17 @@ void rdpsnd_server_context_reset(RdpsndServerContext *context)
 
 void rdpsnd_server_context_free(RdpsndServerContext* context)
 {
-	if (!context->priv->StopEvent)
-	{
-		SetEvent(context->priv->StopEvent);
-		WaitForSingleObject(context->priv->Thread, INFINITE);
-	}
-
 	if (context->priv->ChannelHandle)
 		WTSVirtualChannelClose(context->priv->ChannelHandle);
-
-	if (context->priv->rdpsnd_pdu)
-		Stream_Free(context->priv->rdpsnd_pdu, TRUE);
 
 	if (context->priv->out_buffer)
 		free(context->priv->out_buffer);
 
 	if (context->priv->dsp_context)
 		freerdp_dsp_context_free(context->priv->dsp_context);
+
+  if (context->priv->input_stream)
+    Stream_Free(context->priv->input_stream, TRUE);
 
 	if (context->client_formats)
 		free(context->client_formats);
@@ -620,7 +618,16 @@ HANDLE rdpsnd_server_get_event_handle(RdpsndServerContext *context)
 	return context->priv->channelEvent;
 }
 
-BOOL rdpsnd_server_handle_messages(RdpsndServerContext *context)
+/*
+ * Handle rpdsnd messages - server side
+ *
+ * @param Server side context
+ *
+ * @return -1 if no data could be read,
+ *          0 on error (like connection close),
+ *          1 on succsess (also if further bytes need to be read)
+ */
+int rdpsnd_server_handle_messages(RdpsndServerContext *context)
 {
 	DWORD bytesReturned;
 	BOOL ret;
@@ -631,17 +638,18 @@ BOOL rdpsnd_server_handle_messages(RdpsndServerContext *context)
 	if (!WTSVirtualChannelRead(priv->ChannelHandle, 0, (PCHAR)Stream_Pointer(s), priv->expectedBytes, &bytesReturned))
 	{
 		if (GetLastError() == ERROR_NO_DATA)
-			return TRUE;
+			return -1;
 
-		CLOG_ERR( "%s: channel connection closed\n", __FUNCTION__);
-		return FALSE;
+		WLog_ERR(TAG,  "channel connection closed");
+		return 0;
 	}
 	priv->expectedBytes -= bytesReturned;
 	Stream_Seek(s, bytesReturned);
 
 	if (priv->expectedBytes)
-		return TRUE;
+		return 1;
 
+	Stream_SealLength(s);
 	Stream_SetPosition(s, 0);
 	if (priv->waitingHeader)
 	{
@@ -655,13 +663,13 @@ BOOL rdpsnd_server_handle_messages(RdpsndServerContext *context)
 		if (priv->expectedBytes)
 		{
 			Stream_EnsureCapacity(s, priv->expectedBytes);
-			return TRUE;
+			return 1;
 		}
 	}
 
 	/* when here we have the header + the body */
 #ifdef WITH_DEBUG_SND
-	CLOG_ERR( "%s: message type %d\n", __FUNCTION__, priv->msgType);
+	WLog_DBG(TAG,  "message type %d", priv->msgType);
 #endif
 	priv->expectedBytes = 4;
 	priv->waitingHeader = TRUE;
@@ -674,24 +682,29 @@ BOOL rdpsnd_server_handle_messages(RdpsndServerContext *context)
 
 		case SNDC_FORMATS:
 			ret = rdpsnd_server_recv_formats(context, s);
+
+			if (ret && context->clientVersion < 6)
+				IFCALL(context->Activated, context);
+
 			break;
 
 		case SNDC_QUALITYMODE:
 			ret = rdpsnd_server_recv_quality_mode(context, s);
 			Stream_SetPosition(s, 0); /* in case the Activated callback tries to treat some messages */
 
-			if (ret)
-			{
+			if (ret && context->clientVersion >= 6)
 				IFCALL(context->Activated, context);
-			}
 			break;
 
 		default:
-			CLOG_ERR( "%s: UNKOWN MESSAGE TYPE!! (%#0X)\n\n", __FUNCTION__, priv->msgType);
+			WLog_ERR(TAG,  "UNKOWN MESSAGE TYPE!! (%#0X)", priv->msgType);
 			ret = FALSE;
 			break;
 	}
 	Stream_SetPosition(s, 0);
 
-	return ret;
+	if (ret)
+		return 1;
+	else
+		return 0;
 }

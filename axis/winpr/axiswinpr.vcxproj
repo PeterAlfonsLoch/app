@@ -135,7 +135,7 @@
     <ClCompile Include="libwinpr\sspicli\sspicli.c" />
     <ClCompile Include="libwinpr\sspi\CredSSP\credssp.c" />
     <ClCompile Include="libwinpr\sspi\Negotiate\negotiate.c" />
-    <ClCompile Include="libwinpr\sspi\NTLM\ntlm_ntlm.c" />
+    <ClCompile Include="libwinpr\sspi\NTLM\ntlm.c" />
     <ClCompile Include="libwinpr\sspi\NTLM\ntlm_av_pairs.c" />
     <ClCompile Include="libwinpr\sspi\NTLM\ntlm_compute.c" />
     <ClCompile Include="libwinpr\sspi\NTLM\ntlm_message.c" />
@@ -182,8 +182,10 @@
     <ClCompile Include="libwinpr\utils\collections\Stack.c" />
     <ClCompile Include="libwinpr\utils\collections\StreamPool.c" />
     <ClCompile Include="libwinpr\utils\debug.c" />
+    <ClCompile Include="libwinpr\utils\image.c" />
     <ClCompile Include="libwinpr\utils\ini.c" />
-    <ClCompile Include="libwinpr\utils\ntlm.c" />
+    <ClCompile Include="libwinpr\utils\lodepng\lodepng.c" />
+    <ClCompile Include="libwinpr\utils\utils_ntlm.c" />
     <ClCompile Include="libwinpr\utils\print.c" />
     <ClCompile Include="libwinpr\utils\sam.c" />
     <ClCompile Include="libwinpr\utils\ssl.c" />
@@ -193,6 +195,7 @@
     <ClCompile Include="libwinpr\utils\trio\triostr.c" />
     <ClCompile Include="libwinpr\utils\wlog\Appender.c" />
     <ClCompile Include="libwinpr\utils\wlog\BinaryAppender.c" />
+    <ClCompile Include="libwinpr\utils\wlog\CallbackAppender.c" />
     <ClCompile Include="libwinpr\utils\wlog\ConsoleAppender.c" />
     <ClCompile Include="libwinpr\utils\wlog\DataMessage.c" />
     <ClCompile Include="libwinpr\utils\wlog\FileAppender.c" />
@@ -205,6 +208,7 @@
     <ClCompile Include="libwinpr\winhttp\winhttp.c" />
     <ClCompile Include="libwinpr\winsock\winsock.c" />
     <ClCompile Include="libwinpr\wtsapi\wtsapi.c" />
+    <ClCompile Include="libwinpr\wtsapi\wtsapi_win32.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\winpr\asn1.h" />
@@ -681,7 +685,7 @@
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <SubSystem>Windows</SubSystem>
-      <AdditionalDependencies>Shlwapi.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Dbghelp.lib;ws2_32.lib;rpcrt4.lib;credui.lib;Shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ShowProgress>NotSet</ShowProgress>
     </Link>
     <PostBuildEvent>

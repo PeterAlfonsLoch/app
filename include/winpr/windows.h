@@ -22,11 +22,7 @@
 
 /* Windows header include order is important, use this instead of including windows.h directly */
 
-#if defined(_WIN32) && !defined(_WINDOWS_)
-
-
-#define _WIN32_WINNT 0x0603
-
+#ifdef _WIN32
 
 #ifndef WIN32_LEAN_AND_MEAN
 #define WIN32_LEAN_AND_MEAN

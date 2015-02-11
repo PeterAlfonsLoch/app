@@ -40,7 +40,6 @@ struct _MAKECERT_CONTEXT
 	int argc;
 	char** argv;
 
-	BIO* bio;
 	RSA* rsa;
 	X509* x509;
 	EVP_PKEY* pkey;
@@ -447,6 +446,7 @@ int makecert_context_parse_arguments(MAKECERT_CONTEXT* context, int argc, char**
 
 int makecert_context_set_output_file_name(MAKECERT_CONTEXT* context, char* name)
 {
+	free(context->output_file);
 	context->output_file = _strdup(name);
 	return 1;
 }
@@ -454,7 +454,9 @@ int makecert_context_set_output_file_name(MAKECERT_CONTEXT* context, char* name)
 int makecert_context_output_certificate_file(MAKECERT_CONTEXT* context, char* path)
 {
 	FILE* fp;
+	int status;
 	int length;
+	int offset;
 	char* filename;
 	char* fullpath;
 
@@ -485,6 +487,9 @@ int makecert_context_output_certificate_file(MAKECERT_CONTEXT* context, char* pa
 
 	if (fp)
 	{
+		BIO* bio;
+		BYTE* x509_str;
+
 		if (context->pfxFormat)
 		{
 			if (!context->password)
@@ -497,17 +502,196 @@ int makecert_context_output_certificate_file(MAKECERT_CONTEXT* context, char* pa
 			OpenSSL_add_all_ciphers();
 			OpenSSL_add_all_digests();
 
-			context->pkcs12 = PKCS12_create(context->password, context->default_name, context->pkey,
-					context->x509, NULL, 0, 0, 0, 0, 0);
+			context->pkcs12 = PKCS12_create(context->password, context->default_name,
+						context->pkey, context->x509, NULL, 0, 0, 0, 0, 0);
 
-			i2d_PKCS12_fp(fp, context->pkcs12);
+			bio = BIO_new(BIO_s_mem());
+
+			if (!bio)
+			{
+				free(filename);
+				free(fullpath);
+				fclose (fp);
+				return -1;
+			}
+
+			status = i2d_PKCS12_bio(bio, context->pkcs12);
+
+			offset = 0;
+			length = 2048;
+			x509_str = (BYTE*) malloc(length);
+
+			if (!x509_str)
+			{
+				free(filename);
+				free(fullpath);
+				fclose (fp);
+				return -1;
+			}
+
+			status = BIO_read(bio, x509_str, length);
+		
+			if (status < 0)
+			{
+				free(x509_str);
+				free(filename);
+				free(fullpath);
+				fclose (fp);
+				return -1;
+			}
+		
+			offset += status;
+
+			while (offset >= length)
+			{
+				length *= 2;
+				x509_str = (BYTE*) realloc(x509_str, length);
+
+				status = BIO_read(bio, &x509_str[offset], length);
+
+				if (status < 0)
+					break;
+
+				offset += status;
+			}
+
+			if (status < 0)
+			{
+			free(x509_str);
+				free(filename);
+				free(fullpath);
+				fclose (fp);
+				return -1;
+			}
+			length = offset;
+
+			fwrite((void*) x509_str, length, 1, fp);
+
+			free(x509_str);
+			BIO_free(bio);
 		}
 		else
 		{
-			PEM_write_X509(fp, context->x509);
+			bio = BIO_new(BIO_s_mem());
+
+			if (!bio)
+			{
+				free(filename);
+				free(fullpath);
+				fclose (fp);
+				return -1;
+			}
+
+			status = PEM_write_bio_X509(bio, context->x509);
+
+			offset = 0;
+			length = 2048;
+			x509_str = (BYTE*) malloc(length);
+
+			status = BIO_read(bio, x509_str, length);
+		
+			if (status < 0)
+			{
+				free(filename);
+				free(fullpath);
+				fclose (fp);
+				return -1;
+			}
+		
+			offset += status;
+
+			while (offset >= length)
+			{
+				length *= 2;
+				x509_str = (BYTE*) realloc(x509_str, length);
+
+				status = BIO_read(bio, &x509_str[offset], length);
+
+				if (status < 0)
+					break;
+
+				offset += status;
+			}
+
+			if (status < 0)
+			{
+				if (x509_str)
+					free (x509_str);
+				free(filename);
+				free(fullpath);
+				fclose (fp);
+				return -1;
+			}
+		
+			length = offset;
+
+			fwrite((void*) x509_str, length, 1, fp);
+
+			free(x509_str);
+			BIO_free(bio);
 
 			if (context->pemFormat)
-				PEM_write_PrivateKey(fp, context->pkey, NULL, NULL, 0, NULL, NULL);
+			{
+				bio = BIO_new(BIO_s_mem());
+
+				if (!bio)
+				{
+					free(filename);
+					free(fullpath);
+					fclose (fp);
+					return -1;
+				}
+
+				status = PEM_write_bio_PrivateKey(bio, context->pkey, NULL, NULL, 0, NULL, NULL);
+
+				offset = 0;
+				length = 2048;
+				x509_str = (BYTE*) malloc(length);
+
+				status = BIO_read(bio, x509_str, length);
+		
+				if (status < 0)
+				{
+					if (x509_str)
+						free(x509_str);
+					free(filename);
+					free(fullpath);
+					fclose (fp);
+					return -1;
+				}
+		
+				offset += status;
+
+				while (offset >= length)
+				{
+					length *= 2;
+					x509_str = (BYTE*) realloc(x509_str, length);
+
+					status = BIO_read(bio, &x509_str[offset], length);
+
+					if (status < 0)
+						break;
+
+					offset += status;
+				}
+
+				if (status < 0)
+				{
+					if (x509_str)
+						free(x509_str);
+					free(filename);
+					free(fullpath);
+					fclose (fp);
+					return -1;
+				}
+		
+				length = offset;
+
+				fwrite((void*) x509_str, length, 1, fp);
+
+				free(x509_str);
+				BIO_free(bio);
+			}
 		}
 
 		fclose(fp);
@@ -522,7 +706,9 @@ int makecert_context_output_certificate_file(MAKECERT_CONTEXT* context, char* pa
 int makecert_context_output_private_key_file(MAKECERT_CONTEXT* context, char* path)
 {
 	FILE* fp;
+	int status;
 	int length;
+	int offset;
 	char* filename;
 	char* fullpath;
 
@@ -551,7 +737,65 @@ int makecert_context_output_private_key_file(MAKECERT_CONTEXT* context, char* pa
 
 	if (fp)
 	{
-		PEM_write_PrivateKey(fp, context->pkey, NULL, NULL, 0, NULL, NULL);
+		BIO* bio;
+		BYTE* x509_str;
+
+		bio = BIO_new(BIO_s_mem());
+
+		if (!bio)
+		{
+			free (filename);
+			free(fullpath);
+			fclose(fp);
+			return -1;
+		}
+
+		status = PEM_write_bio_PrivateKey(bio, context->pkey, NULL, NULL, 0, NULL, NULL);
+
+		offset = 0;
+		length = 2048;
+		x509_str = (BYTE*) malloc(length);
+
+		status = BIO_read(bio, x509_str, length);
+		
+		if (status < 0)
+		{
+			free (filename);
+			free(fullpath);
+			fclose(fp);
+			return -1;
+		}
+		
+		offset += status;
+
+		while (offset >= length)
+		{
+			length *= 2;
+			x509_str = (BYTE*) realloc(x509_str, length);
+
+			status = BIO_read(bio, &x509_str[offset], length);
+
+			if (status < 0)
+				break;
+
+			offset += status;
+		}
+
+		if (status < 0)
+		{
+			free (filename);
+			free(fullpath);
+			fclose(fp);
+			return -1;
+		}
+		
+		length = offset;
+
+		fwrite((void*) x509_str, length, 1, fp);
+
+		free(x509_str);
+		BIO_free(bio);
+
 		fclose(fp);
 	}
 
@@ -581,9 +825,6 @@ int makecert_context_process(MAKECERT_CONTEXT* context, int argc, char** argv)
 
 	if (!context->common_name)
 		context->common_name = _strdup(context->default_name);
-
-	CRYPTO_mem_ctrl(CRYPTO_MEM_CHECK_ON);
-	context->bio = BIO_new_fp(stderr, BIO_NOCLOSE);
 
 	if (!context->pkey)
 		context->pkey = EVP_PKEY_new();
@@ -634,7 +875,7 @@ int makecert_context_process(MAKECERT_CONTEXT* context, int argc, char** argv)
 	{
 		X509_gmtime_adj(X509_get_notAfter(context->x509), (long) (60 * 60 * 24 * 365 * context->duration_years));
 	}
-
+	
 	X509_set_pubkey(context->x509, context->pkey);
 
 	name = X509_get_subject_name(context->x509);
@@ -712,7 +953,55 @@ int makecert_context_process(MAKECERT_CONTEXT* context, int argc, char** argv)
 	 */
 
 	if (!context->silent)
-		X509_print_fp(stdout, context->x509);
+	{
+		BIO* bio;
+		int status;
+		int length;
+		int offset;
+		BYTE* x509_str;
+
+		bio = BIO_new(BIO_s_mem());
+
+		if (!bio)
+			return -1;
+
+		status = X509_print(bio, context->x509);
+
+		offset = 0;
+		length = 2048;
+		x509_str = (BYTE*) malloc(length + 1);
+
+		status = BIO_read(bio, x509_str, length);
+		
+		if (status < 0)
+			return -1;
+		
+		offset += status;
+
+		while (offset >= length)
+		{
+			length *= 2;
+			x509_str = (BYTE*) realloc(x509_str, length + 1);
+
+			status = BIO_read(bio, &x509_str[offset], length);
+
+			if (status < 0)
+				break;
+
+			offset += status;
+		}
+
+		if (status < 0)
+			return -1;
+		
+		length = offset;
+		x509_str[length] = '\0';
+
+		printf("%s", x509_str);
+
+		free(x509_str);
+		BIO_free(bio);
+	}
 
 	/**
 	 * Output certificate and private key to files
@@ -754,11 +1043,9 @@ void makecert_context_free(MAKECERT_CONTEXT* context)
 		EVP_PKEY_free(context->pkey);
 
 		free(context->default_name);
+		free(context->common_name);
 
 		CRYPTO_cleanup_all_ex_data();
-
-		CRYPTO_mem_leaks(context->bio);
-		BIO_free(context->bio);
 
 		free(context);
 	}

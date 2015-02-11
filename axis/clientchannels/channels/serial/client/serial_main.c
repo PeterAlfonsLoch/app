@@ -44,7 +44,7 @@
 /* TODO: all #ifdef __linux__ could be removed once only some generic
  * functions will be used. Replace CommReadFile by ReadFile,
  * CommWriteFile by WriteFile etc..  */
-#if defined __linux__ && !defined ANDROID
+#if defined __linux__ && !defined ANDROID 
 
 #define MAX_IRP_THREADS	5
 
@@ -53,6 +53,7 @@ typedef struct _SERIAL_DEVICE SERIAL_DEVICE;
 struct _SERIAL_DEVICE
 {
 	DEVICE device;
+	BOOL permissive;
 	SERIAL_DRIVER_ID ServerSerialDriverId;
 	HANDLE* hComm;
 
@@ -164,7 +165,7 @@ static void serial_process_irp_create(SERIAL_DEVICE* serial, IRP* irp)
 	CreateDisposition = OPEN_EXISTING;
 #endif
 
-	serial->hComm = CreateFileA(serial->device.name,
+	serial->hComm = CreateFile(serial->device.name,
 				DesiredAccess,
 				SharedAccess,
 				NULL,			/* SecurityAttributes */
@@ -174,7 +175,7 @@ static void serial_process_irp_create(SERIAL_DEVICE* serial, IRP* irp)
 
 	if (!serial->hComm || (serial->hComm == INVALID_HANDLE_VALUE))
 	{
-		WLog_Print(serial->log, WLOG_WARN, "CreateFile failure: %s last-error: Ox%lX\n", serial->device.name, GetLastError());
+		WLog_Print(serial->log, WLOG_WARN, "CreateFile failure: %s last-error: 0x%lX\n", serial->device.name, GetLastError());
 
 		irp->IoStatus = STATUS_UNSUCCESSFUL;
 		goto error_handle;
@@ -182,11 +183,7 @@ static void serial_process_irp_create(SERIAL_DEVICE* serial, IRP* irp)
 
 	_comm_setServerSerialDriver(serial->hComm, serial->ServerSerialDriverId);
 
-	/* FIXME: Appeared to be useful to setup some devices. Guess
-	 * the device driver asked to setup some unsupported feature
-	 * that were not eventually used. TODO: collecting more
-	 * details, a command line argument? */
-	/* _comm_set_permissive(serial->hComm, TRUE); */
+	_comm_set_permissive(serial->hComm, serial->permissive);
 
 	/* NOTE: binary mode/raw mode required for the redirection. On
 	 * Linux, CommCreateFileA forces this setting.
@@ -808,14 +805,29 @@ int DeviceServiceEntry(PDEVICE_SERVICE_ENTRY_POINTS pEntryPoints)
 				assert(FALSE);
 
 				WLog_Print(serial->log, WLOG_DEBUG, "Unknown server's serial driver: %s. SerCx2 will be used", driver);
-				serial->ServerSerialDriverId = SerialDriverSerCx2Sys;
+				serial->ServerSerialDriverId = SerialDriverSerialSys;
 			}
 		}
 		else
 		{
 			/* default driver */
-			serial->ServerSerialDriverId = SerialDriverSerCx2Sys;
+			serial->ServerSerialDriverId = SerialDriverSerialSys;
 		}
+
+
+		if (device->Permissive != NULL)
+		{
+			if (_stricmp(device->Permissive, "permissive") == 0)
+			{
+				serial->permissive = TRUE;
+			}
+			else
+			{
+				WLog_Print(serial->log, WLOG_DEBUG, "Unknown flag: %s", device->Permissive);
+				assert(FALSE);
+			}
+		}
+
 
 		WLog_Print(serial->log, WLOG_DEBUG, "Server's serial driver: %s (id: %d)", driver, serial->ServerSerialDriverId);
 		/* TODO: implement auto detection of the server's serial driver */

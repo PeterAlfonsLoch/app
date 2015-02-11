@@ -39,7 +39,7 @@ int statvfs(const char *path, struct statvfs *buf)
 	unicodestr = (LPWSTR) malloc(len);
 	MultiByteToWideChar(CP_ACP, 0, path, -1, unicodestr, len);
 
-	res = GetDiskFreeSpaceW(unicodestr, &lpSectorsPerCluster, &lpBytesPerSector, &lpNumberOfFreeClusters, &lpTotalNumberOfClusters);
+	res = GetDiskFreeSpace(unicodestr, &lpSectorsPerCluster, &lpBytesPerSector, &lpNumberOfFreeClusters, &lpTotalNumberOfClusters);
 
 	buf->f_bsize = lpBytesPerSector; /* file system block size */
 	buf->f_frsize = 0; /* fragment size */
@@ -52,6 +52,6 @@ int statvfs(const char *path, struct statvfs *buf)
 	buf->f_fsid = lpNumberOfFreeClusters & 0xffff; /* file system ID */
 	buf->f_flag = 0; /* mount flags */
 	buf->f_namemax = 250; /* maximum filename length */
-
+	
 	return res;
 }

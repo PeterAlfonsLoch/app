@@ -72,8 +72,8 @@ static BOOL audin_alsa_set_params(AudinALSADevice* alsa, snd_pcm_t* capture_hand
 
 	if ((error = snd_pcm_hw_params_malloc(&hw_params)) < 0)
 	{
-		CLOG_ERR("snd_pcm_hw_params_malloc (%s)",
-			 snd_strerror(error));
+		WLog_ERR(TAG, "snd_pcm_hw_params_malloc (%s)",
+				 snd_strerror(error));
 		return FALSE;
 	}
 
@@ -206,7 +206,7 @@ static void* audin_alsa_thread_func(void* arg)
 	{
 		if ((error = snd_pcm_open(&capture_handle, alsa->device_name, SND_PCM_STREAM_CAPTURE, 0)) < 0)
 		{
-			CLOG_ERR("snd_pcm_open (%s)", snd_strerror(error));
+			WLog_ERR(TAG, "snd_pcm_open (%s)", snd_strerror(error));
 			break;
 		}
 
@@ -226,7 +226,7 @@ static void* audin_alsa_thread_func(void* arg)
 			}
 			else if (error < 0)
 			{
-				CLOG_ERR("snd_pcm_readi (%s)", snd_strerror(error));
+				WLog_ERR(TAG, "snd_pcm_readi (%s)", snd_strerror(error));
 				break;
 			}
 
@@ -342,7 +342,7 @@ static void audin_alsa_open(IAudinDevice* device, AudinReceive receive, void* us
 	alsa->buffer = (BYTE*) malloc(tbytes_per_frame * alsa->frames_per_packet);
 	ZeroMemory(alsa->buffer, tbytes_per_frame * alsa->frames_per_packet);
 	alsa->buffer_frames = 0;
-
+	
 	alsa->stopEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
 	alsa->thread = CreateThread(NULL, 0,
 			(LPTHREAD_START_ROUTINE) audin_alsa_thread_func, alsa, 0, NULL);
@@ -354,17 +354,22 @@ static void audin_alsa_close(IAudinDevice* device)
 
 	DEBUG_DVC("");
 
-	SetEvent(alsa->stopEvent);
-	WaitForSingleObject(alsa->thread, INFINITE);
-	CloseHandle(alsa->stopEvent);
-	CloseHandle(alsa->thread);
+	if (alsa->stopEvent)
+	{
+		SetEvent(alsa->stopEvent);
+		WaitForSingleObject(alsa->thread, INFINITE);
+
+		CloseHandle(alsa->stopEvent);
+		alsa->stopEvent = NULL;
+
+		CloseHandle(alsa->thread);
+		alsa->thread = NULL;
+	}
 
 	if (alsa->buffer)
 		free(alsa->buffer);
 	alsa->buffer = NULL;
 
-	alsa->stopEvent = NULL;
-	alsa->thread = NULL;
 	alsa->receive = NULL;
 	alsa->user_data = NULL;
 }

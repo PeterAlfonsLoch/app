@@ -156,19 +156,23 @@ FREERDP_ADDIN** freerdp_channels_list_dynamic_addins(LPSTR pszName, LPSTR pszSub
 
 	if (pszName && pszSubsystem && pszType)
 	{
-		sprintf_s(pszPattern, cchPattern, "%s-client-%s-%s.%s", pszName, pszSubsystem, pszType, pszExtension);
+		sprintf_s(pszPattern, cchPattern, CMAKE_SHARED_LIBRARY_PREFIX"%s-client-%s-%s.%s",
+				  pszName, pszSubsystem, pszType, pszExtension);
 	}
 	else if (pszName && pszType)
 	{
-		sprintf_s(pszPattern, cchPattern, "%s-client-?-%s.%s", pszName, pszType, pszExtension);
+		sprintf_s(pszPattern, cchPattern, CMAKE_SHARED_LIBRARY_PREFIX"%s-client-?-%s.%s",
+				  pszName, pszType, pszExtension);
 	}
 	else if (pszName)
 	{
-		sprintf_s(pszPattern, cchPattern, "%s-client*.%s", pszName, pszExtension);
+		sprintf_s(pszPattern, cchPattern, CMAKE_SHARED_LIBRARY_PREFIX"%s-client*.%s",
+				  pszName, pszExtension);
 	}
 	else
 	{
-		sprintf_s(pszPattern, cchPattern, "?-client*.%s", pszExtension);
+		sprintf_s(pszPattern, cchPattern, CMAKE_SHARED_LIBRARY_PREFIX"?-client*.%s",
+				  pszExtension);
 	}
 
 	cchPattern = strlen(pszPattern);
@@ -299,7 +303,7 @@ void freerdp_channels_addin_list_free(FREERDP_ADDIN** ppAddins)
 	free(ppAddins);
 }
 
-void* freerdp_channels_load_static_addin_entry(LPCSTR pszName, LPCSTR pszSubsystem, LPCSTR pszType, DWORD dwFlags)
+void* freerdp_channels_load_static_addin_entry(LPCSTR pszName, LPSTR pszSubsystem, LPSTR pszType, DWORD dwFlags)
 {
 	int i, j;
 	STATIC_SUBSYSTEM_ENTRY* subsystems;

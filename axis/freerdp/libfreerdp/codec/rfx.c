@@ -36,6 +36,7 @@
 #include <winpr/registry.h>
 #include <winpr/tchar.h>
 
+#include <freerdp/log.h>
 #include <freerdp/codec/rfx.h>
 #include <freerdp/constants.h>
 #include <freerdp/primitives.h>
@@ -52,6 +53,9 @@
 #include "rfx_sse2.h"
 #include "rfx_neon.h"
 
+
+
+#define TAG FREERDP_TAG("codec")
 
 #ifndef RFX_INIT_SIMD
 #define RFX_INIT_SIMD(_rfx_context) do { } while (0)
@@ -248,7 +252,7 @@ RFX_CONTEXT* rfx_context_new(BOOL encoder)
 	 * dwt_buffer: 32 * 32 * 2 * 2 * sizeof(INT16) = 8192, maximum sub-band width is 32
 	 *
 	 * Additionally we add 32 bytes (16 in front and 16 at the back of the buffer)
-	 * in order to allow optimized functions (SEE, NEON) to read from positions
+	 * in order to allow optimized functions (SEE, NEON) to read from positions 
 	 * that are actually in front/beyond the buffer. Offset calculations are
 	 * performed at the BufferPool_Take function calls in rfx_encode/decode.c.
 	 *
@@ -261,23 +265,18 @@ RFX_CONTEXT* rfx_context_new(BOOL encoder)
 
 #ifdef _WIN32
 	{
+		//BOOL isVistaOrLater;
+		//OSVERSIONINFOA verinfo;
 
-/*
+		//ZeroMemory(&verinfo, sizeof(OSVERSIONINFOA));
+		//verinfo.dwOSVersionInfoSize = sizeof(OSVERSIONINFOA);
 
-      BOOL isVistaOrLater;
-		OSVERSIONINFOA verinfo;
+		//GetVersionExA(&verinfo);
+		//isVistaOrLater = ((verinfo.dwMajorVersion >= 6) && (verinfo.dwMinorVersion >= 0)) ? TRUE : FALSE;
 
-		ZeroMemory(&verinfo, sizeof(OSVERSIONINFOA));
-		verinfo.dwOSVersionInfoSize = sizeof(OSVERSIONINFOA);
+		//priv->UseThreads = isVistaOrLater;
 
-		GetVersionExA(&verinfo);
-		isVistaOrLater = ((verinfo.dwMajorVersion >= 6) && (verinfo.dwMinorVersion >= 0)) ? TRUE : FALSE;
-
-		priv->UseThreads = isVistaOrLater;
-
-*/
-
-      priv->UseThreads = TRUE;
+      priv->UseThreads = IsWindowV
 
 	}
 #else
@@ -332,15 +331,15 @@ RFX_CONTEXT* rfx_context_new(BOOL encoder)
 
 	/* create profilers for default decoding routines */
 	rfx_profiler_create(context);
-
+	
 	/* set up default routines */
-	context->quantization_decode = rfx_quantization_decode;
-	context->quantization_encode = rfx_quantization_encode;
+	context->quantization_decode = rfx_quantization_decode;	
+	context->quantization_encode = rfx_quantization_encode;	
 	context->dwt_2d_decode = rfx_dwt_2d_decode;
 	context->dwt_2d_encode = rfx_dwt_2d_encode;
 
 	RFX_INIT_SIMD(context);
-
+	
 	context->state = RFX_STATE_SEND_HEADERS;
 	return context;
 
@@ -384,7 +383,7 @@ void rfx_context_free(RFX_CONTEXT* context)
 			free(priv->tileWorkParams);
 
 #ifdef WITH_PROFILER
-		DEBUG_WARN( "\nWARNING: Profiling results probably unusable with multithreaded RemoteFX codec!\n");
+		WLog_VRB(TAG,  "WARNING: Profiling results probably unusable with multithreaded RemoteFX codec!");
 #endif
 	}
 
@@ -424,10 +423,11 @@ void rfx_context_set_pixel_format(RFX_CONTEXT* context, RDP_PIXEL_FORMAT pixel_f
 	}
 }
 
-void rfx_context_reset(RFX_CONTEXT* context)
+int rfx_context_reset(RFX_CONTEXT* context)
 {
 	context->state = RFX_STATE_SEND_HEADERS;
 	context->frameIdx = 0;
+	return 1;
 }
 
 static BOOL rfx_process_message_sync(RFX_CONTEXT* context, wStream* s)
@@ -437,14 +437,14 @@ static BOOL rfx_process_message_sync(RFX_CONTEXT* context, wStream* s)
 	/* RFX_SYNC */
 	if (Stream_GetRemainingLength(s) < 6)
 	{
-		DEBUG_WARN("RfxSync packet too small");
+		WLog_ERR(TAG, "RfxSync packet too small");
 		return FALSE;
 	}
 	Stream_Read_UINT32(s, magic); /* magic (4 bytes), 0xCACCACCA */
 
 	if (magic != WF_MAGIC)
 	{
-		DEBUG_WARN("invalid magic number 0x%X", magic);
+		WLog_ERR(TAG, "invalid magic number 0x%X", magic);
 		return FALSE;
 	}
 
@@ -452,7 +452,7 @@ static BOOL rfx_process_message_sync(RFX_CONTEXT* context, wStream* s)
 
 	if (context->version != WF_VERSION_1_0)
 	{
-		DEBUG_WARN("unknown version number 0x%X", context->version);
+		WLog_ERR(TAG, "unknown version number 0x%X", context->version);
 		return FALSE;
 	}
 
@@ -467,20 +467,20 @@ static BOOL rfx_process_message_codec_versions(RFX_CONTEXT* context, wStream* s)
 
 	if (Stream_GetRemainingLength(s) < 1)
 	{
-		DEBUG_WARN("RfxCodecVersion packet too small");
+		WLog_ERR(TAG, "RfxCodecVersion packet too small");
 		return FALSE;
 	}
 	Stream_Read_UINT8(s, numCodecs); /* numCodecs (1 byte), must be set to 0x01 */
 
 	if (numCodecs != 1)
 	{
-		DEBUG_WARN("numCodecs: %d, expected:1", numCodecs);
+		WLog_ERR(TAG, "numCodecs: %d, expected:1", numCodecs);
 		return FALSE;
 	}
 
 	if (Stream_GetRemainingLength(s) < (size_t) (2 * numCodecs))
 	{
-		DEBUG_WARN("RfxCodecVersion packet too small for numCodecs=%d", numCodecs);
+		WLog_ERR(TAG, "RfxCodecVersion packet too small for numCodecs=%d", numCodecs);
 		return FALSE;
 	}
 
@@ -500,24 +500,24 @@ static BOOL rfx_process_message_channels(RFX_CONTEXT* context, wStream* s)
 
 	if (Stream_GetRemainingLength(s) < 1)
 	{
-		DEBUG_WARN("RfxMessageChannels packet too small");
+		WLog_ERR(TAG, "RfxMessageChannels packet too small");
 		return FALSE;
 	}
 
 	Stream_Read_UINT8(s, numChannels); /* numChannels (1 byte), must bet set to 0x01 */
 
-	/* In RDVH sessions, numChannels will represent the number of virtual monitors
+	/* In RDVH sessions, numChannels will represent the number of virtual monitors 
 	 * configured and does not always be set to 0x01 as [MS-RDPRFX] said.
 	 */
 	if (numChannels < 1)
 	{
-		DEBUG_WARN("numChannels:%d, expected:1", numChannels);
+		WLog_ERR(TAG, "numChannels:%d, expected:1", numChannels);
 		return TRUE;
 	}
 
 	if (Stream_GetRemainingLength(s) < (size_t) (numChannels * 5))
 	{
-		DEBUG_WARN("RfxMessageChannels packet too small for numChannels=%d", numChannels);
+		WLog_ERR(TAG, "RfxMessageChannels packet too small for numChannels=%d", numChannels);
 		return FALSE;
 	}
 
@@ -543,7 +543,7 @@ static BOOL rfx_process_message_context(RFX_CONTEXT* context, wStream* s)
 
 	if (Stream_GetRemainingLength(s) < 5)
 	{
-		DEBUG_WARN("RfxMessageContext packet too small");
+		WLog_ERR(TAG, "RfxMessageContext packet too small");
 		return FALSE;
 	}
 
@@ -579,7 +579,7 @@ static BOOL rfx_process_message_context(RFX_CONTEXT* context, wStream* s)
 			break;
 
 		default:
-			DEBUG_WARN("unknown RLGR algorithm.");
+			WLog_ERR(TAG, "unknown RLGR algorithm.");
 			break;
 	}
 
@@ -593,7 +593,7 @@ static BOOL rfx_process_message_frame_begin(RFX_CONTEXT* context, RFX_MESSAGE* m
 
 	if (Stream_GetRemainingLength(s) < 6)
 	{
-		DEBUG_WARN("RfxMessageFrameBegin packet too small");
+		WLog_ERR(TAG, "RfxMessageFrameBegin packet too small");
 		return FALSE;
 	}
 
@@ -616,7 +616,7 @@ static BOOL rfx_process_message_region(RFX_CONTEXT* context, RFX_MESSAGE* messag
 
 	if (Stream_GetRemainingLength(s) < 3)
 	{
-		DEBUG_WARN("RfxMessageRegion packet too small");
+		WLog_ERR(TAG, "RfxMessageRegion packet too small");
 		return FALSE;
 	}
 
@@ -628,8 +628,7 @@ static BOOL rfx_process_message_region(RFX_CONTEXT* context, RFX_MESSAGE* messag
 		/* Unfortunately, it isn't documented.
 		It seems that server asks to clip whole session when numRects = 0.
 		Issue: https://github.com/FreeRDP/FreeRDP/issues/1738 */
-
-		DEBUG_WARN("no rects. Clip whole session.");
+		WLog_ERR(TAG, "no rects. Clip whole session.");
 		message->numRects = 1;
 		message->rects = (RFX_RECT*) realloc(message->rects, message->numRects * sizeof(RFX_RECT));
 		if (!message->rects)
@@ -644,7 +643,7 @@ static BOOL rfx_process_message_region(RFX_CONTEXT* context, RFX_MESSAGE* messag
 
 	if (Stream_GetRemainingLength(s) < (size_t) (8 * message->numRects))
 	{
-		DEBUG_WARN("RfxMessageRegion packet too small for num_rects=%d", message->numRects);
+		WLog_ERR(TAG, "RfxMessageRegion packet too small for num_rects=%d", message->numRects);
 		return FALSE;
 	}
 
@@ -699,7 +698,7 @@ static BOOL rfx_process_message_tileset(RFX_CONTEXT* context, RFX_MESSAGE* messa
 
 	if (Stream_GetRemainingLength(s) < 14)
 	{
-		DEBUG_WARN("RfxMessageTileSet packet too small");
+		WLog_ERR(TAG, "RfxMessageTileSet packet too small");
 		return FALSE;
 	}
 
@@ -707,7 +706,7 @@ static BOOL rfx_process_message_tileset(RFX_CONTEXT* context, RFX_MESSAGE* messa
 
 	if (subtype != CBT_TILESET)
 	{
-		DEBUG_WARN("invalid subtype, expected CBT_TILESET.");
+		WLog_ERR(TAG, "invalid subtype, expected CBT_TILESET.");
 		return FALSE;
 	}
 
@@ -719,7 +718,7 @@ static BOOL rfx_process_message_tileset(RFX_CONTEXT* context, RFX_MESSAGE* messa
 
 	if (context->numQuant < 1)
 	{
-		DEBUG_WARN("no quantization value.");
+		WLog_ERR(TAG, "no quantization value.");
 		return TRUE;
 	}
 
@@ -727,7 +726,7 @@ static BOOL rfx_process_message_tileset(RFX_CONTEXT* context, RFX_MESSAGE* messa
 
 	if (message->numTiles < 1)
 	{
-		DEBUG_WARN("no tiles.");
+		WLog_ERR(TAG, "no tiles.");
 		return TRUE;
 	}
 
@@ -740,7 +739,7 @@ static BOOL rfx_process_message_tileset(RFX_CONTEXT* context, RFX_MESSAGE* messa
 	/* quantVals */
 	if (Stream_GetRemainingLength(s) < (size_t) (context->numQuant * 5))
 	{
-		DEBUG_WARN("RfxMessageTileSet packet too small for num_quants=%d", context->numQuant);
+		WLog_ERR(TAG, "RfxMessageTileSet packet too small for num_quants=%d", context->numQuant);
 		return FALSE;
 	}
 
@@ -808,7 +807,7 @@ static BOOL rfx_process_message_tileset(RFX_CONTEXT* context, RFX_MESSAGE* messa
 		/* RFX_TILE */
 		if (Stream_GetRemainingLength(s) < 6)
 		{
-			DEBUG_WARN("RfxMessageTileSet packet too small to read tile %d/%d", i, message->numTiles);
+			WLog_ERR(TAG, "RfxMessageTileSet packet too small to read tile %d/%d", i, message->numTiles);
 			rc = FALSE;
 			break;
 		}
@@ -818,8 +817,8 @@ static BOOL rfx_process_message_tileset(RFX_CONTEXT* context, RFX_MESSAGE* messa
 
 		if (Stream_GetRemainingLength(s) < blockLen - 6)
 		{
-			DEBUG_WARN("RfxMessageTileSet not enough bytes to read tile %d/%d with blocklen=%d",
-					i, message->numTiles, blockLen);
+			WLog_ERR(TAG, "RfxMessageTileSet not enough bytes to read tile %d/%d with blocklen=%d",
+					 i, message->numTiles, blockLen);
 			rc = FALSE;
 			break;
 		}
@@ -828,7 +827,7 @@ static BOOL rfx_process_message_tileset(RFX_CONTEXT* context, RFX_MESSAGE* messa
 
 		if (blockType != CBT_TILE)
 		{
-			DEBUG_WARN("unknown block type 0x%X, expected CBT_TILE (0xCAC3).", blockType);
+			WLog_ERR(TAG, "unknown block type 0x%X, expected CBT_TILE (0xCAC3).", blockType);
 			break;
 		}
 
@@ -921,13 +920,13 @@ RFX_MESSAGE* rfx_process_message(RFX_CONTEXT* context, BYTE* data, UINT32 length
 
 		if (blockLen == 0)
 		{
-			DEBUG_WARN("zero blockLen");
+			WLog_ERR(TAG, "zero blockLen");
 			break;
 		}
 
 		if (Stream_GetRemainingLength(s) < blockLen - 6)
 		{
-			DEBUG_WARN("rfx_process_message: packet too small for blocklen=%d", blockLen);
+			WLog_ERR(TAG, "rfx_process_message: packet too small for blocklen=%d", blockLen);
 			break;
 		}
 
@@ -941,7 +940,7 @@ RFX_MESSAGE* rfx_process_message(RFX_CONTEXT* context, BYTE* data, UINT32 length
 			/* channelId (1 byte) must be set to 0x00 */
 			if (!Stream_SafeSeek(s, 2))
 			{
-				DEBUG_WARN("rfx_process_message: unable to skip RFX_CODEC_CHANNELT");
+				WLog_ERR(TAG, "rfx_process_message: unable to skip RFX_CODEC_CHANNELT");
 				break;
 			}
 		}
@@ -981,7 +980,7 @@ RFX_MESSAGE* rfx_process_message(RFX_CONTEXT* context, BYTE* data, UINT32 length
 				break;
 
 			default:
-				DEBUG_WARN("unknown blockType 0x%X", blockType);
+				WLog_ERR(TAG, "unknown blockType 0x%X", blockType);
 				break;
 		}
 
@@ -1434,7 +1433,7 @@ out_clean_tiles:
 	free(message->tiles);
 	region16_uninit(&tilesRegion);
 out_free_message:
-	DEBUG_WARN( "remoteFx error\n");
+	WLog_ERR(TAG,  "remoteFx error");
 	region16_uninit(&rectsRegion);
 	free(message);
 	return 0;

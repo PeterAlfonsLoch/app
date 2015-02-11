@@ -22,9 +22,6 @@
 #endif
 
 #include <assert.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 #include <winpr/crt.h>
 #include <winpr/wlog.h>
@@ -130,6 +127,8 @@ int rdpgfx_recv_caps_confirm_pdu(RDPGFX_CHANNEL_CALLBACK* callback, wStream* s)
 	Stream_Read_UINT32(s, capsSet.version); /* version (4 bytes) */
 	Stream_Read_UINT32(s, capsDataLength); /* capsDataLength (4 bytes) */
 	Stream_Read_UINT32(s, capsSet.flags); /* capsData (4 bytes) */
+	
+	/*TODO: interpret this answer*/
 
 	WLog_Print(gfx->log, WLOG_DEBUG, "RecvCapsConfirmPdu: version: 0x%04X flags: 0x%04X",
 			capsSet.version, capsSet.flags);
@@ -204,7 +203,10 @@ int rdpgfx_recv_reset_graphics_pdu(RDPGFX_CHANNEL_CALLBACK* callback, wStream* s
 	pad = 340 - (RDPGFX_HEADER_SIZE + 12 + (pdu.monitorCount * 20));
 
 	if (Stream_GetRemainingLength(s) < (size_t) pad)
+	{
+		free(pdu.monitorDefArray);
 		return -1;
+	}
 
 	Stream_Seek(s, pad); /* pad (total size is 340 bytes) */
 
@@ -338,7 +340,7 @@ int rdpgfx_recv_start_frame_pdu(RDPGFX_CHANNEL_CALLBACK* callback, wStream* s)
 	Stream_Read_UINT32(s, pdu.timestamp); /* timestamp (4 bytes) */
 	Stream_Read_UINT32(s, pdu.frameId); /* frameId (4 bytes) */
 
-	WLog_Print(gfx->log, WLOG_DEBUG, "RecvStartFramePdu: frameId: %d timestamp: 0x%04X\n",
+	WLog_Print(gfx->log, WLOG_DEBUG, "RecvStartFramePdu: frameId: %d timestamp: 0x%04X",
 			pdu.frameId, pdu.timestamp);
 
 	if (context && context->StartFrame)
@@ -363,7 +365,7 @@ int rdpgfx_recv_end_frame_pdu(RDPGFX_CHANNEL_CALLBACK* callback, wStream* s)
 
 	Stream_Read_UINT32(s, pdu.frameId); /* frameId (4 bytes) */
 
-	WLog_Print(gfx->log, WLOG_DEBUG, "RecvEndFramePdu: frameId: %d\n", pdu.frameId);
+	WLog_Print(gfx->log, WLOG_DEBUG, "RecvEndFramePdu: frameId: %d", pdu.frameId);
 
 	if (context && context->EndFrame)
 	{
@@ -546,6 +548,8 @@ int rdpgfx_recv_solid_fill_pdu(RDPGFX_CHANNEL_CALLBACK* callback, wStream* s)
 	{
 		context->SolidFill(context, &pdu);
 	}
+	
+	free(pdu.fillRects);
 
 	return 1;
 }
@@ -590,6 +594,8 @@ int rdpgfx_recv_surface_to_surface_pdu(RDPGFX_CHANNEL_CALLBACK* callback, wStrea
 	{
 		context->SurfaceToSurface(context, &pdu);
 	}
+
+	free(pdu.destPts);
 
 	return 1;
 }
@@ -810,8 +816,8 @@ int rdpgfx_recv_pdu(RDPGFX_CHANNEL_CALLBACK* callback, wStream* s)
 
 	if (status < 0)
 	{
-		CLOG_ERR( "Error while parsing GFX cmdId: %s (0x%04X)\n",
-				rdpgfx_get_cmd_id_string(header.cmdId), header.cmdId);
+		WLog_ERR(TAG,  "Error while parsing GFX cmdId: %s (0x%04X)",
+				 rdpgfx_get_cmd_id_string(header.cmdId), header.cmdId);
 		return -1;
 	}
 
@@ -819,9 +825,8 @@ int rdpgfx_recv_pdu(RDPGFX_CHANNEL_CALLBACK* callback, wStream* s)
 
 	if (end != (beg + header.pduLength))
 	{
-		CLOG_ERR( "Unexpected gfx pdu end: Actual: %d, Expected: %d\n",
-				end, (beg + header.pduLength));
-
+		WLog_ERR(TAG,  "Unexpected gfx pdu end: Actual: %d, Expected: %d",
+				 end, (beg + header.pduLength));
 		Stream_SetPosition(s, (beg + header.pduLength));
 	}
 
@@ -841,7 +846,7 @@ static int rdpgfx_on_data_received(IWTSVirtualChannelCallback* pChannelCallback,
 
 	if (status < 0)
 	{
-		CLOG_DBG("zgfx_decompress failure! status: %d\n", status);
+		WLog_DBG(TAG, "zgfx_decompress failure! status: %d", status);
 		return 0;
 	}
 
@@ -856,6 +861,9 @@ static int rdpgfx_on_data_received(IWTSVirtualChannelCallback* pChannelCallback,
 	}
 
 	Stream_Free(s, TRUE);
+	
+	//free(Stream_Buffer(data));
+	//Stream_Free(data,TRUE);
 
 	return status;
 }
@@ -944,9 +952,16 @@ static int rdpgfx_plugin_terminated(IWTSPlugin* pPlugin)
 	WLog_Print(gfx->log, WLOG_DEBUG, "Terminated");
 
 	if (gfx->listener_callback)
+	{
 		free(gfx->listener_callback);
+		gfx->listener_callback = NULL;
+	}
 
-	zgfx_context_free(gfx->zgfx);
+	if (gfx->zgfx)
+	{
+		zgfx_context_free(gfx->zgfx);
+		gfx->zgfx = NULL;
+	}
 
 	count = HashTable_GetKeys(gfx->SurfaceTable, &pKeys);
 
@@ -982,6 +997,8 @@ static int rdpgfx_plugin_terminated(IWTSPlugin* pPlugin)
 			gfx->CacheSlots[index] = NULL;
 		}
 	}
+
+	free(context);
 
 	free(gfx);
 
@@ -1041,7 +1058,11 @@ void* rdpgfx_get_cache_slot_data(RdpgfxClientContext* context, UINT16 cacheSlot)
 	return pData;
 }
 
-int rdpgfx_DVCPluginEntry(IDRDYNVC_ENTRY_POINTS* pEntryPoints)
+#ifdef STATIC_CHANNELS
+#define DVCPluginEntry		rdpgfx_DVCPluginEntry
+#endif
+
+int DVCPluginEntry(IDRDYNVC_ENTRY_POINTS* pEntryPoints)
 {
 	int status = 0;
 	RDPGFX_PLUGIN* gfx;
@@ -1056,7 +1077,7 @@ int rdpgfx_DVCPluginEntry(IDRDYNVC_ENTRY_POINTS* pEntryPoints)
 		if (!gfx)
 			return -1;
 
-		gfx->log = WLog_Get("com.freerdp.gfx.client");
+		gfx->log = WLog_Get(TAG);
 		gfx->settings = (rdpSettings*) pEntryPoints->GetRdpSettings(pEntryPoints);
 
 		gfx->iface.Initialize = rdpgfx_plugin_initialize;
@@ -1067,7 +1088,10 @@ int rdpgfx_DVCPluginEntry(IDRDYNVC_ENTRY_POINTS* pEntryPoints)
 		gfx->SurfaceTable = HashTable_New(TRUE);
 
 		if (!gfx->SurfaceTable)
+		{
+			free (gfx);
 			return -1;
+		}
 
 		gfx->ThinClient = gfx->settings->GfxThinClient;
 		gfx->SmallCache = gfx->settings->GfxSmallCache;
@@ -1086,7 +1110,10 @@ int rdpgfx_DVCPluginEntry(IDRDYNVC_ENTRY_POINTS* pEntryPoints)
 		context = (RdpgfxClientContext*) calloc(1, sizeof(RdpgfxClientContext));
 
 		if (!context)
+		{
+			free(gfx);
 			return -1;
+		}
 
 		context->handle = (void*) gfx;
 
@@ -1100,7 +1127,11 @@ int rdpgfx_DVCPluginEntry(IDRDYNVC_ENTRY_POINTS* pEntryPoints)
 		gfx->zgfx = zgfx_context_new(FALSE);
 
 		if (!gfx->zgfx)
+		{
+			free(gfx);
+			free(context);
 			return -1;
+		}
 
 		status = pEntryPoints->RegisterPlugin(pEntryPoints, "rdpgfx", (IWTSPlugin*) gfx);
 	}

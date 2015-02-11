@@ -4313,6 +4313,13 @@ namespace draw2d
    graphics * dib_get_graphics(dib * pdib)
    {
 
+      if(pdib == NULL)
+      {
+
+         return NULL;
+
+      }
+
       return pdib->get_graphics();
 
    }

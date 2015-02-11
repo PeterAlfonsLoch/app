@@ -57,8 +57,8 @@ static wLog *_Log = NULL;
 
 struct comm_device
 {
-	LPSTR name;
-	LPSTR path;
+	LPTSTR name;
+	LPTSTR path;
 };
 
 typedef struct comm_device COMM_DEVICE;
@@ -93,7 +93,7 @@ static void _CommInit()
 	{
 		_CommHandleCreator->IsHandled = IsCommDevice;
 		_CommHandleCreator->CreateFileA = CommCreateFileA;
-
+		
 		RegisterHandleCreator(_CommHandleCreator);
 	}
 
@@ -102,7 +102,7 @@ static void _CommInit()
 	{
 		_CommHandleCloseCb->IsHandled = CommIsHandled;
 		_CommHandleCloseCb->CloseHandle = CommCloseHandle;
-
+		
 		RegisterHandleCloseCb(_CommHandleCloseCb);
 	}
 
@@ -471,6 +471,7 @@ BOOL GetCommState(HANDLE hFile, LPDCB lpDCB)
 
 
 	memcpy(lpDCB, lpLocalDcb, lpDCB->DCBlength);
+	free(lpLocalDcb);
 	return TRUE;
 
 
@@ -959,7 +960,7 @@ BOOL WaitCommEvent(HANDLE hFile, PDWORD lpEvtMask, LPOVERLAPPED lpOverlapped)
 
 /* Extended API */
 
-static BOOL _IsReservedCommDeviceName(LPCSTR lpName)
+static BOOL _IsReservedCommDeviceName(LPCTSTR lpName)
 {
 	int i;
 
@@ -969,20 +970,26 @@ static BOOL _IsReservedCommDeviceName(LPCSTR lpName)
 	/* Serial ports, COM1-9 */
 	for (i=1; i<10; i++)
 	{
-		CHAR genericName[5];
-		sprintf(genericName, "COM%d", i);
+		TCHAR genericName[5];
+		if (_stprintf_s(genericName, 5, _T("COM%d"), i) < 0)
+		{
+			return FALSE;
+		}
 
-		if (strcmp(genericName, lpName) == 0)
+		if (_tcscmp(genericName, lpName) == 0)
 			return TRUE;
 	}
 
 	/* Parallel ports, LPT1-9 */
 	for (i=1; i<10; i++)
 	{
-		CHAR genericName[5];
-		sprintf(genericName, "LPT%d", i);
+		TCHAR genericName[5];
+		if (_stprintf_s(genericName, 5, _T("LPT%d"), i) < 0)
+		{
+			return FALSE;
+		}
 
-		if (strcmp(genericName, lpName) == 0)
+		if (_tcscmp(genericName, lpName) == 0)
 			return TRUE;
 	}
 
@@ -1001,11 +1008,11 @@ static BOOL _IsReservedCommDeviceName(LPCSTR lpName)
  *   ERROR_OUTOFMEMORY was not possible to get mappings.
  *   ERROR_INVALID_DATA was not possible to add the device.
  */
-BOOL DefineCommDevice(/* DWORD dwFlags,*/ LPCSTR lpDeviceName, LPCSTR lpTargetPath)
+BOOL DefineCommDevice(/* DWORD dwFlags,*/ LPCTSTR lpDeviceName, LPCTSTR lpTargetPath)
 {
 	int i = 0;
-	LPSTR storedDeviceName = NULL;
-	LPSTR storedTargetPath = NULL;
+	LPTSTR storedDeviceName = NULL;
+	LPTSTR storedTargetPath = NULL;
 
 	if (!CommInitialized())
 		return FALSE;
@@ -1018,7 +1025,7 @@ BOOL DefineCommDevice(/* DWORD dwFlags,*/ LPCSTR lpDeviceName, LPCSTR lpTargetPa
 		goto error_handle;
 	}
 
-	if (strncmp(lpDeviceName, "\\\\.\\", 4) != 0)
+	if (_tcsncmp(lpDeviceName, _T("\\\\.\\"), 4) != 0)
 	{
 		if (!_IsReservedCommDeviceName(lpDeviceName))
 		{
@@ -1027,14 +1034,14 @@ BOOL DefineCommDevice(/* DWORD dwFlags,*/ LPCSTR lpDeviceName, LPCSTR lpTargetPa
 		}
 	}
 
-	storedDeviceName = strdup(lpDeviceName);
+	storedDeviceName = _tcsdup(lpDeviceName);
 	if (storedDeviceName == NULL)
 	{
 		SetLastError(ERROR_OUTOFMEMORY);
 		goto error_handle;
 	}
 
-	storedTargetPath = strdup(lpTargetPath);
+	storedTargetPath = _tcsdup(lpTargetPath);
 	if (storedTargetPath == NULL)
 	{
 		SetLastError(ERROR_OUTOFMEMORY);
@@ -1045,7 +1052,7 @@ BOOL DefineCommDevice(/* DWORD dwFlags,*/ LPCSTR lpDeviceName, LPCSTR lpTargetPa
 	{
 		if (_CommDevices[i] != NULL)
 		{
-			if (strcmp(_CommDevices[i]->name, storedDeviceName) == 0)
+			if (_tcscmp(_CommDevices[i]->name, storedDeviceName) == 0)
 			{
 				/* take over the emplacement */
 				free(_CommDevices[i]->name);
@@ -1110,10 +1117,10 @@ BOOL DefineCommDevice(/* DWORD dwFlags,*/ LPCSTR lpDeviceName, LPCSTR lpTargetPa
  *   ERROR_INVALID_DATA was not possible to retrieve any device information.
  *   ERROR_INSUFFICIENT_BUFFER too small lpTargetPath
  */
-DWORD QueryCommDevice(LPCSTR lpDeviceName, LPSTR lpTargetPath, DWORD ucchMax)
+DWORD QueryCommDevice(LPCTSTR lpDeviceName, LPTSTR lpTargetPath, DWORD ucchMax)
 {
 	int i;
-	LPSTR storedTargetPath;
+	LPTSTR storedTargetPath;
 
 	SetLastError(ERROR_SUCCESS);
 
@@ -1139,7 +1146,7 @@ DWORD QueryCommDevice(LPCSTR lpDeviceName, LPSTR lpTargetPath, DWORD ucchMax)
 	{
 		if (_CommDevices[i] != NULL)
 		{
-			if (strcmp(_CommDevices[i]->name, lpDeviceName) == 0)
+			if (_tcscmp(_CommDevices[i]->name, lpDeviceName) == 0)
 			{
 				storedTargetPath = _CommDevices[i]->path;
 				break;
@@ -1159,24 +1166,24 @@ DWORD QueryCommDevice(LPCSTR lpDeviceName, LPSTR lpTargetPath, DWORD ucchMax)
 		return 0;
 	}
 
-	if (strlen(storedTargetPath) + 2 > ucchMax)
+	if (_tcslen(storedTargetPath) + 2 > ucchMax)
 	{
 		SetLastError(ERROR_INSUFFICIENT_BUFFER);
 		return 0;
 	}
 
-	strcpy(lpTargetPath, storedTargetPath);
-	lpTargetPath[strlen(storedTargetPath) + 1] = '\0'; /* 2nd final '\0' */
+	_tcscpy(lpTargetPath, storedTargetPath);
+	lpTargetPath[_tcslen(storedTargetPath) + 1] = '\0'; /* 2nd final '\0' */
 
-	return strlen(lpTargetPath) + 2;
+	return _tcslen(lpTargetPath) + 2;
 }
 
 /**
  * Checks whether lpDeviceName is a valid and registered Communication device.
  */
-BOOL IsCommDevice(LPCSTR lpDeviceName)
+BOOL IsCommDevice(LPCTSTR lpDeviceName)
 {
-	CHAR lpTargetPath[MAX_PATH];
+	TCHAR lpTargetPath[MAX_PATH];
 
 	if (!CommInitialized())
 		return FALSE;
@@ -1248,7 +1255,7 @@ HANDLE CommCreateFileA(LPCSTR lpDeviceName, DWORD dwDesiredAccess, DWORD dwShare
 
 	if (!CommInitialized())
 		return INVALID_HANDLE_VALUE;
-
+	
 	if (dwDesiredAccess != (GENERIC_READ | GENERIC_WRITE))
 	{
 		CommLog_Print(WLOG_WARN, "unexpected access to the device: 0x%lX", dwDesiredAccess);
@@ -1367,9 +1374,17 @@ HANDLE CommCreateFileA(LPCSTR lpDeviceName, DWORD dwDesiredAccess, DWORD dwShare
 
 	if (ioctl(pComm->fd, TIOCGICOUNT, &(pComm->counters)) < 0)
 	{
-		CommLog_Print(WLOG_WARN, "TIOCGICOUNT ioctl failed, errno=[%d] %s", errno, strerror(errno));
-		SetLastError(ERROR_IO_DEVICE);
-		goto error_handle;
+		CommLog_Print(WLOG_WARN, "TIOCGICOUNT ioctl failed, errno=[%d] %s.", errno, strerror(errno));
+		CommLog_Print(WLOG_WARN, "could not read counters.");
+
+		/* could not initialize counters but keep on. 
+		 *
+		 * Not all drivers, especially for USB to serial
+		 * adapters (e.g. those based on pl2303), does support
+		 * this call.
+		 */
+
+		ZeroMemory(&(pComm->counters), sizeof(struct serial_icounter_struct));
 	}
 
 

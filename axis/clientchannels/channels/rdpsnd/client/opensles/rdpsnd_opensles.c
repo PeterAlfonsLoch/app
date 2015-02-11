@@ -161,7 +161,7 @@ static void rdpsnd_opensles_set_format(rdpsndDevicePlugin* device,
 				opensles->format = format->wFormatTag;
 				break;
 		}
-
+	
 		opensles->wformat = format->wFormatTag;
 		opensles->block_size = format->nBlockAlign;
 	}
@@ -178,7 +178,7 @@ static void rdpsnd_opensles_open(rdpsndDevicePlugin* device,
 
 	DEBUG_SND("opensles=%p format=%p, latency=%d, rate=%d",
 			opensles, format, latency, opensles->rate);
-
+	
 	if( rdpsnd_opensles_check_handle(opensles))
 		return;
 
@@ -187,7 +187,7 @@ static void rdpsnd_opensles_open(rdpsndDevicePlugin* device,
 	assert(opensles->stream);
 
 	if (!opensles->stream)
-		CLOG_ERR("android_OpenAudioDevice failed");
+		WLog_ERR(TAG, "android_OpenAudioDevice failed");
 	else
 		rdpsnd_opensles_set_volume(device, opensles->volume);
 
@@ -286,7 +286,7 @@ static UINT32 rdpsnd_opensles_get_volume(rdpsndDevicePlugin* device)
 			opensles->volume = (vol << 16) | (vol & 0xFFFF);
 		}
 	}
-
+		
 	return opensles->volume;
 }
 
@@ -294,7 +294,7 @@ static void rdpsnd_opensles_set_volume(rdpsndDevicePlugin* device,
 		UINT32 value)
 {
 	rdpsndopenslesPlugin* opensles = (rdpsndopenslesPlugin*) device;
-
+	
 	DEBUG_SND("opensles=%p, value=%d", opensles, value);
 	assert(opensles);
 
@@ -325,7 +325,7 @@ static void rdpsnd_opensles_play(rdpsndDevicePlugin* device,
 	} src;
 	int ret;
 	rdpsndopenslesPlugin* opensles = (rdpsndopenslesPlugin*) device;
-
+	
 	DEBUG_SND("opensles=%p, data=%p, size=%d", opensles, data, size);
 	if (!rdpsnd_opensles_check_handle(opensles))
 		return;
@@ -345,17 +345,17 @@ static void rdpsnd_opensles_play(rdpsndDevicePlugin* device,
 	{
 		DEBUG_SND("dsp_context=%p, channels=%d, block_size=%d",
 				opensles->dsp_context, opensles->channels, opensles->block_size);
-
+		
 		opensles->dsp_context->decode_ima_adpcm(opensles->dsp_context,
 				data, size, opensles->channels, opensles->block_size);
-
+		
 		size = opensles->dsp_context->adpcm_size;
 		src.b = opensles->dsp_context->adpcm_buffer;
 	}
 	else
-	{
+	{   
 		src.b = data;
-	}
+	} 
 
 	DEBUG_SND("size=%d, src=%p", size, src.b);
 	assert(0 == size % 2);
@@ -364,7 +364,7 @@ static void rdpsnd_opensles_play(rdpsndDevicePlugin* device,
 
 	ret = android_AudioOut(opensles->stream, src.s, size / 2);
 	if (ret < 0)
-		CLOG_ERR("android_AudioOut failed (%d)", ret);
+		WLog_ERR(TAG, "android_AudioOut failed (%d)", ret);
 }
 
 static void rdpsnd_opensles_start(rdpsndDevicePlugin* device)

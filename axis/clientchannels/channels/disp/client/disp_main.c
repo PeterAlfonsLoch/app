@@ -101,7 +101,7 @@ int disp_send_display_control_monitor_layout_pdu(DISP_CHANNEL_CALLBACK* callback
 
 	Stream_Write_UINT32(s, NumMonitors); /* NumMonitors (4 bytes) */
 
-	//CLOG_ERR( "NumMonitors: %d\n", NumMonitors);
+	//WLog_ERR(TAG,  "NumMonitors: %d", NumMonitors);
 
 	for (index = 0; index < NumMonitors; index++)
 	{
@@ -110,8 +110,17 @@ int disp_send_display_control_monitor_layout_pdu(DISP_CHANNEL_CALLBACK* callback
 		if (Monitors[index].Width < 200)
 			Monitors[index].Width = 200;
 
+		if (Monitors[index].Width > 8192)
+			Monitors[index].Width = 8192;
+
+		if (Monitors[index].Width % 2)
+			Monitors[index].Width++;
+
 		if (Monitors[index].Height < 200)
 			Monitors[index].Height = 200;
+
+		if (Monitors[index].Height > 8192)
+			Monitors[index].Height = 8192;
 
 		Stream_Write_UINT32(s, Monitors[index].Flags); /* Flags (4 bytes) */
 		Stream_Write_UINT32(s, Monitors[index].Left); /* Left (4 bytes) */
@@ -125,14 +134,14 @@ int disp_send_display_control_monitor_layout_pdu(DISP_CHANNEL_CALLBACK* callback
 		Stream_Write_UINT32(s, Monitors[index].DeviceScaleFactor); /* DeviceScaleFactor (4 bytes) */
 
 #if 0
-		CLOG_ERR( "\t: Flags: 0x%04X\n", Monitors[index].Flags);
-		CLOG_ERR( "\t: Left: %d\n", Monitors[index].Left);
-		CLOG_ERR( "\t: Top: %d\n", Monitors[index].Top);
-		CLOG_ERR( "\t: Width: %d\n", Monitors[index].Width);
-		CLOG_ERR( "\t: Height: %d\n", Monitors[index].Height);
-		CLOG_ERR( "\t: PhysicalWidth: %d\n", Monitors[index].PhysicalWidth);
-		CLOG_ERR( "\t: PhysicalHeight: %d\n", Monitors[index].PhysicalHeight);
-		CLOG_ERR( "\t: Orientation: %d\n", Monitors[index].Orientation);
+		WLog_DBG(TAG,  "\t: Flags: 0x%04X", Monitors[index].Flags);
+		WLog_DBG(TAG,  "\t: Left: %d", Monitors[index].Left);
+		WLog_DBG(TAG,  "\t: Top: %d", Monitors[index].Top);
+		WLog_DBG(TAG,  "\t: Width: %d", Monitors[index].Width);
+		WLog_DBG(TAG,  "\t: Height: %d", Monitors[index].Height);
+		WLog_DBG(TAG,  "\t: PhysicalWidth: %d", Monitors[index].PhysicalWidth);
+		WLog_DBG(TAG,  "\t: PhysicalHeight: %d", Monitors[index].PhysicalHeight);
+		WLog_DBG(TAG,  "\t: Orientation: %d", Monitors[index].Orientation);
 #endif
 	}
 
@@ -157,8 +166,7 @@ int disp_recv_display_control_caps_pdu(DISP_CHANNEL_CALLBACK* callback, wStream*
 	Stream_Read_UINT32(s, disp->MaxNumMonitors); /* MaxNumMonitors (4 bytes) */
 	Stream_Read_UINT32(s, disp->MaxMonitorAreaFactorA); /* MaxMonitorAreaFactorA (4 bytes) */
 	Stream_Read_UINT32(s, disp->MaxMonitorAreaFactorB); /* MaxMonitorAreaFactorB (4 bytes) */
-
-	//CLOG_ERR( "DisplayControlCapsPdu: MaxNumMonitors: %d MaxMonitorWidth: %d MaxMonitorHeight: %d\n",
+	//WLog_ERR(TAG,  "DisplayControlCapsPdu: MaxNumMonitors: %d MaxMonitorWidth: %d MaxMonitorHeight: %d",
 	//       disp->MaxNumMonitors, disp->MaxMonitorWidth, disp->MaxMonitorHeight);
 
 	return 0;
@@ -175,7 +183,7 @@ int disp_recv_pdu(DISP_CHANNEL_CALLBACK* callback, wStream* s)
 	Stream_Read_UINT32(s, type); /* Type (4 bytes) */
 	Stream_Read_UINT32(s, length); /* Length (4 bytes) */
 
-	//CLOG_ERR( "Type: %d Length: %d\n", type, length);
+	//WLog_ERR(TAG,  "Type: %d Length: %d", type, length);
 
 	switch (type)
 	{
@@ -284,7 +292,11 @@ int disp_send_monitor_layout(DispClientContext* context, UINT32 NumMonitors, DIS
 	return 1;
 }
 
-int disp_DVCPluginEntry(IDRDYNVC_ENTRY_POINTS* pEntryPoints)
+#ifdef STATIC_CHANNELS
+#define DVCPluginEntry		disp_DVCPluginEntry
+#endif
+
+int DVCPluginEntry(IDRDYNVC_ENTRY_POINTS* pEntryPoints)
 {
 	int error = 0;
 	DISP_PLUGIN* disp;
@@ -307,7 +319,10 @@ int disp_DVCPluginEntry(IDRDYNVC_ENTRY_POINTS* pEntryPoints)
 		context = (DispClientContext*) calloc(1, sizeof(DispClientContext));
 
 		if (!context)
+		{
+			free(disp);
 			return -1;
+		}
 
 		context->handle = (void*) disp;
 

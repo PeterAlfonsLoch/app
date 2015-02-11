@@ -6653,7 +6653,10 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
                ::file::buffer_sp file = Sess(papp).file().get_file(strFile,::file::mode_read | ::file::share_deny_write | ::file::type_binary);
                ::file::byte_input_stream istream(file);
                istream >> *pdib;
-               return true;
+               if(!istream.fail())
+               {
+                  return true;
+               }
             }
             catch(...)
             {

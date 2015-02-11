@@ -43,13 +43,14 @@ DEFINE_EVENT_BEGIN(ResizeWindow)
 DEFINE_EVENT_END(ResizeWindow)
 
 DEFINE_EVENT_BEGIN(PanningChange)
-	int XPan;
-	int YPan;
+	int dx;
+	int dy;
 DEFINE_EVENT_END(PanningChange)
 
-DEFINE_EVENT_BEGIN(ScalingFactorChange)
-	double ScalingFactor;
-DEFINE_EVENT_END(ScalingFactorChange)
+DEFINE_EVENT_BEGIN(ZoomingChange)
+	int dx;
+	int dy;
+DEFINE_EVENT_END(ZoomingChange)
 
 DEFINE_EVENT_BEGIN(LocalResizeWindow)
 	int width;

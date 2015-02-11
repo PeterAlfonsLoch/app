@@ -66,8 +66,8 @@ typedef struct opensl_stream {
   in frames. Returns a handle to the OpenSL stream
   */
   OPENSL_STREAM* android_OpenAudioDevice(int sr, int outchannels, int bufferframes);
-  /*
-  Close the audio device
+  /* 
+  Close the audio device 
   */
   void android_CloseAudioDevice(OPENSL_STREAM *p);
   /*
@@ -78,7 +78,7 @@ typedef struct opensl_stream {
 	 * Set the volume input level.
 	 */
 	void android_SetOutputVolume(OPENSL_STREAM *p, int level);
-	/*
+	/* 
 	 * Get the current output mute setting.
 	 */
 	int android_GetOutputMute(OPENSL_STREAM *p);

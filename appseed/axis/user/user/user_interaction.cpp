@@ -566,29 +566,24 @@ namespace user
       try
       {
 
-         if(GetParent() != NULL && !GetParent()->m_bDestroying && Session.user()->m_pkeyboardfocus == this)
+         if(GetParent() != NULL && Session.user()->m_pkeyboardfocus == this)
          {
 
-            ::user::elemental * pnext = NULL;
-
-            try
+            if(GetParent()->m_bDestroying || !GetParent()->IsWindowVisible())
             {
 
-               pnext = keyboard_get_next_focusable();
+               Session.user()->m_pkeyboardfocus = NULL;
 
             }
-            catch(...)
+            else
             {
 
-            }
-
-            if(pnext != NULL && pnext != this)
-            {
+               ::user::elemental * pnext = NULL;
 
                try
                {
 
-                  pnext->keyboard_set_focus();
+                  pnext = keyboard_get_next_focusable();
 
                }
                catch(...)
@@ -596,12 +591,28 @@ namespace user
 
                }
 
-            }
+               if(pnext != NULL && pnext != this)
+               {
 
-            if(Session.user()->m_pkeyboardfocus == this)
-            {
+                  try
+                  {
 
-               Session.user()->m_pkeyboardfocus = NULL;
+                     pnext->keyboard_set_focus();
+
+                  }
+                  catch(...)
+                  {
+
+                  }
+
+               }
+
+               if(Session.user()->m_pkeyboardfocus == this)
+               {
+
+                  Session.user()->m_pkeyboardfocus = NULL;
+
+               }
 
             }
 

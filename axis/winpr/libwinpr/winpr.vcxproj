@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|Win32">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|Win32">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGUID>{D27210AD-1886-49C9-A99A-6A43FDC1A195}</ProjectGUID>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>Win32</Platform>
+    <ProjectName>winpr</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Z:\FreeRDP-master\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">winpr.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">winpr</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Z:\FreeRDP-master\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">winpr.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">winpr</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Z:\FreeRDP-master\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">winpr.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">winpr</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Z:\FreeRDP-master\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">winpr.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">winpr</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>Z:\FreeRDP-master;Z:\FreeRDP-master\include;Z:\FreeRDP-master\winpr\include;Z:\FreeRDP-master\winpr\libwinpr\utils\lodepng;Z:\FreeRDP-master\winpr\libwinpr\utils\trio;Z:\FreeRDP-master\winpr\libwinpr\utils\.;C:\OpenSSL-Win32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>Debug/</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CallingConvention>Cdecl</CallingConvention>
+      <CompileAs>CompileAsC</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_X86_;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;WIN32_LEAN_AND_MEAN;WINVER=0x0501;WIN32_WINNT=0x0501;WINPR_EXPORTS;FREERDP_EXPORTS;WINPR_EXPORTS;_DEBUG;HAVE_CONFIG_H;CMAKE_INTDIR="Debug";winpr_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_X86_;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;WIN32_LEAN_AND_MEAN;WINVER=0x0501;WIN32_WINNT=0x0501;WINPR_EXPORTS;FREERDP_EXPORTS;WINPR_EXPORTS;_DEBUG;HAVE_CONFIG_H;CMAKE_INTDIR=\"Debug\";winpr_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>Z:\FreeRDP-master;Z:\FreeRDP-master\include;Z:\FreeRDP-master\winpr\include;Z:\FreeRDP-master\winpr\libwinpr\utils\lodepng;Z:\FreeRDP-master\winpr\libwinpr\utils\trio;Z:\FreeRDP-master\winpr\libwinpr\utils\.;C:\OpenSSL-Win32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>Z:\FreeRDP-master;Z:\FreeRDP-master\include;Z:\FreeRDP-master\winpr\include;Z:\FreeRDP-master\winpr\libwinpr\utils\lodepng;Z:\FreeRDP-master\winpr\libwinpr\utils\trio;Z:\FreeRDP-master\winpr\libwinpr\utils\.;C:\OpenSSL-Win32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalOptions> /machine:X86 /debug %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>crypt32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;ntdsapi.lib;crypt32.lib;C:\OpenSSL-Win32\lib\VC\ssleay32MD.lib;C:\OpenSSL-Win32\lib\VC\libeay32MD.lib;Dbghelp.lib;ws2_32.lib;rpcrt4.lib;credui.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ImportLibrary>Z:/FreeRDP-master/Debug/winpr.lib</ImportLibrary>
+      <ProgramDataBaseFile>Z:/FreeRDP-master/Debug/winpr.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version>
+      </Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>Z:\FreeRDP-master;Z:\FreeRDP-master\include;Z:\FreeRDP-master\winpr\include;Z:\FreeRDP-master\winpr\libwinpr\utils\lodepng;Z:\FreeRDP-master\winpr\libwinpr\utils\trio;Z:\FreeRDP-master\winpr\libwinpr\utils\.;C:\OpenSSL-Win32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>Release/</AssemblerListingLocation>
+      <CallingConvention>Cdecl</CallingConvention>
+      <CompileAs>CompileAsC</CompileAs>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_X86_;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;WIN32_LEAN_AND_MEAN;WINVER=0x0501;WIN32_WINNT=0x0501;WINPR_EXPORTS;FREERDP_EXPORTS;WINPR_EXPORTS;NDEBUG;HAVE_CONFIG_H;CMAKE_INTDIR="Release";winpr_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_X86_;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;WIN32_LEAN_AND_MEAN;WINVER=0x0501;WIN32_WINNT=0x0501;WINPR_EXPORTS;FREERDP_EXPORTS;WINPR_EXPORTS;NDEBUG;HAVE_CONFIG_H;CMAKE_INTDIR=\"Release\";winpr_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>Z:\FreeRDP-master;Z:\FreeRDP-master\include;Z:\FreeRDP-master\winpr\include;Z:\FreeRDP-master\winpr\libwinpr\utils\lodepng;Z:\FreeRDP-master\winpr\libwinpr\utils\trio;Z:\FreeRDP-master\winpr\libwinpr\utils\.;C:\OpenSSL-Win32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>Z:\FreeRDP-master;Z:\FreeRDP-master\include;Z:\FreeRDP-master\winpr\include;Z:\FreeRDP-master\winpr\libwinpr\utils\lodepng;Z:\FreeRDP-master\winpr\libwinpr\utils\trio;Z:\FreeRDP-master\winpr\libwinpr\utils\.;C:\OpenSSL-Win32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalOptions> /machine:X86 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;ntdsapi.lib;crypt32.lib;C:\OpenSSL-Win32\lib\VC\ssleay32MD.lib;C:\OpenSSL-Win32\lib\VC\libeay32MD.lib;Dbghelp.lib;ws2_32.lib;rpcrt4.lib;credui.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <ImportLibrary>Z:/FreeRDP-master/Release/winpr.lib</ImportLibrary>
+      <ProgramDataBaseFile>Z:/FreeRDP-master/Release/winpr.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version>
+      </Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>Z:\FreeRDP-master;Z:\FreeRDP-master\include;Z:\FreeRDP-master\winpr\include;Z:\FreeRDP-master\winpr\libwinpr\utils\lodepng;Z:\FreeRDP-master\winpr\libwinpr\utils\trio;Z:\FreeRDP-master\winpr\libwinpr\utils\.;C:\OpenSSL-Win32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>MinSizeRel/</AssemblerListingLocation>
+      <CallingConvention>Cdecl</CallingConvention>
+      <CompileAs>CompileAsC</CompileAs>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_X86_;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;WIN32_LEAN_AND_MEAN;WINVER=0x0501;WIN32_WINNT=0x0501;WINPR_EXPORTS;FREERDP_EXPORTS;WINPR_EXPORTS;NDEBUG;HAVE_CONFIG_H;CMAKE_INTDIR="MinSizeRel";winpr_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_X86_;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;WIN32_LEAN_AND_MEAN;WINVER=0x0501;WIN32_WINNT=0x0501;WINPR_EXPORTS;FREERDP_EXPORTS;WINPR_EXPORTS;NDEBUG;HAVE_CONFIG_H;CMAKE_INTDIR=\"MinSizeRel\";winpr_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>Z:\FreeRDP-master;Z:\FreeRDP-master\include;Z:\FreeRDP-master\winpr\include;Z:\FreeRDP-master\winpr\libwinpr\utils\lodepng;Z:\FreeRDP-master\winpr\libwinpr\utils\trio;Z:\FreeRDP-master\winpr\libwinpr\utils\.;C:\OpenSSL-Win32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>Z:\FreeRDP-master;Z:\FreeRDP-master\include;Z:\FreeRDP-master\winpr\include;Z:\FreeRDP-master\winpr\libwinpr\utils\lodepng;Z:\FreeRDP-master\winpr\libwinpr\utils\trio;Z:\FreeRDP-master\winpr\libwinpr\utils\.;C:\OpenSSL-Win32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalOptions> /machine:X86 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;ntdsapi.lib;crypt32.lib;C:\OpenSSL-Win32\lib\VC\ssleay32MD.lib;C:\OpenSSL-Win32\lib\VC\libeay32MD.lib;Dbghelp.lib;ws2_32.lib;rpcrt4.lib;credui.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <ImportLibrary>Z:/FreeRDP-master/MinSizeRel/winpr.lib</ImportLibrary>
+      <ProgramDataBaseFile>Z:/FreeRDP-master/MinSizeRel/winpr.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version>
+      </Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>Z:\FreeRDP-master;Z:\FreeRDP-master\include;Z:\FreeRDP-master\winpr\include;Z:\FreeRDP-master\winpr\libwinpr\utils\lodepng;Z:\FreeRDP-master\winpr\libwinpr\utils\trio;Z:\FreeRDP-master\winpr\libwinpr\utils\.;C:\OpenSSL-Win32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>RelWithDebInfo/</AssemblerListingLocation>
+      <CallingConvention>Cdecl</CallingConvention>
+      <CompileAs>CompileAsC</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_X86_;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;WIN32_LEAN_AND_MEAN;WINVER=0x0501;WIN32_WINNT=0x0501;WINPR_EXPORTS;FREERDP_EXPORTS;WINPR_EXPORTS;NDEBUG;HAVE_CONFIG_H;CMAKE_INTDIR="RelWithDebInfo";winpr_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_X86_;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;WIN32_LEAN_AND_MEAN;WINVER=0x0501;WIN32_WINNT=0x0501;WINPR_EXPORTS;FREERDP_EXPORTS;WINPR_EXPORTS;NDEBUG;HAVE_CONFIG_H;CMAKE_INTDIR=\"RelWithDebInfo\";winpr_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>Z:\FreeRDP-master;Z:\FreeRDP-master\include;Z:\FreeRDP-master\winpr\include;Z:\FreeRDP-master\winpr\libwinpr\utils\lodepng;Z:\FreeRDP-master\winpr\libwinpr\utils\trio;Z:\FreeRDP-master\winpr\libwinpr\utils\.;C:\OpenSSL-Win32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>Z:\FreeRDP-master;Z:\FreeRDP-master\include;Z:\FreeRDP-master\winpr\include;Z:\FreeRDP-master\winpr\libwinpr\utils\lodepng;Z:\FreeRDP-master\winpr\libwinpr\utils\trio;Z:\FreeRDP-master\winpr\libwinpr\utils\.;C:\OpenSSL-Win32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalOptions> /machine:X86 /debug %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;ntdsapi.lib;crypt32.lib;C:\OpenSSL-Win32\lib\VC\ssleay32MD.lib;C:\OpenSSL-Win32\lib\VC\libeay32MD.lib;Dbghelp.lib;ws2_32.lib;rpcrt4.lib;credui.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ImportLibrary>Z:/FreeRDP-master/RelWithDebInfo/winpr.lib</ImportLibrary>
+      <ProgramDataBaseFile>Z:/FreeRDP-master/RelWithDebInfo/winpr.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+      <Version>
+      </Version>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="synch\synch.h" />
+    <ClInclude Include="pipe\pipe.h" />
+    <ClInclude Include="crypto\crypto.h" />
+    <ClInclude Include="registry\registry_reg.h" />
+    <ClInclude Include="io\io.h" />
+    <ClInclude Include="memory\memory.h" />
+    <ClInclude Include="utils\lodepng\lodepng.h" />
+    <ClInclude Include="utils\trio\strio.h" />
+    <ClInclude Include="utils\trio\trio.h" />
+    <ClInclude Include="utils\trio\triodef.h" />
+    <ClInclude Include="utils\trio\trionan.h" />
+    <ClInclude Include="utils\trio\triop.h" />
+    <ClInclude Include="utils\trio\triostr.h" />
+    <ClInclude Include="utils\wlog\wlog.h" />
+    <ClInclude Include="utils\wlog\Layout.h" />
+    <ClInclude Include="utils\wlog\Message.h" />
+    <ClInclude Include="utils\wlog\TextMessage.h" />
+    <ClInclude Include="utils\wlog\DataMessage.h" />
+    <ClInclude Include="utils\wlog\ImageMessage.h" />
+    <ClInclude Include="utils\wlog\PacketMessage.h" />
+    <ClInclude Include="utils\wlog\Appender.h" />
+    <ClInclude Include="utils\wlog\FileAppender.h" />
+    <ClInclude Include="utils\wlog\BinaryAppender.h" />
+    <ClInclude Include="utils\wlog\CallbackAppender.h" />
+    <ClInclude Include="utils\wlog\ConsoleAppender.h" />
+    <ClInclude Include="pool\pool.h" />
+    <ClInclude Include="handle\handle.h" />
+    <ClInclude Include="handle\nonehandle.h" />
+    <ClInclude Include="thread\thread.h" />
+    <ClInclude Include="sspi\NTLM\ntlm_av_pairs.h" />
+    <ClInclude Include="sspi\NTLM\ntlm_compute.h" />
+    <ClInclude Include="sspi\NTLM\ntlm_message.h" />
+    <ClInclude Include="sspi\NTLM\ntlm.h" />
+    <ClInclude Include="sspi\Negotiate\negotiate.h" />
+    <ClInclude Include="sspi\Schannel\schannel_openssl.h" />
+    <ClInclude Include="sspi\Schannel\schannel.h" />
+    <ClInclude Include="sspi\sspi_winpr.h" />
+    <ClInclude Include="sspi\sspi.h" />
+    <ClInclude Include="crt\utf.h" />
+    <ClInclude Include="rpc\ndr_array.h" />
+    <ClInclude Include="rpc\ndr_context.h" />
+    <ClInclude Include="rpc\ndr_correlation.h" />
+    <ClInclude Include="rpc\ndr_pointer.h" />
+    <ClInclude Include="rpc\ndr_private.h" />
+    <ClInclude Include="rpc\ndr_simple.h" />
+    <ClInclude Include="rpc\ndr_string.h" />
+    <ClInclude Include="rpc\ndr_structure.h" />
+    <ClInclude Include="rpc\ndr_union.h" />
+    <ClInclude Include="wtsapi\wtsapi.h" />
+    <ClInclude Include="wtsapi\wtsapi_win32.h" />
+    <ClInclude Include="wnd\wnd.h" />
+    <ClInclude Include="smartcard\smartcard.h" />
+    <ClInclude Include="smartcard\smartcard_pcsc.h" />
+    <ClInclude Include="smartcard\smartcard_inspect.h" />
+    <ClInclude Include="smartcard\smartcard_winscard.h" />
+    <ClInclude Include="clipboard\clipboard.h" />
+    <ClCompile Include="synch\address.c" />
+    <ClCompile Include="synch\barrier.c" />
+    <ClCompile Include="synch\condition.c" />
+    <ClCompile Include="synch\critical.c" />
+    <ClCompile Include="synch\event.c" />
+    <ClCompile Include="synch\init.c" />
+    <ClCompile Include="synch\mutex.c" />
+    <ClCompile Include="synch\semaphore.c" />
+    <ClCompile Include="synch\sleep.c" />
+    <ClCompile Include="synch\srw.c" />
+    <ClCompile Include="synch\timer.c">
+      <ObjectFileName>$(IntDir)/synch/timer.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="synch\wait.c" />
+    <ClCompile Include="locale\locale.c" />
+    <ClCompile Include="library\library.c" />
+    <ClCompile Include="file\file.c" />
+    <ClCompile Include="file\pattern.c" />
+    <ClCompile Include="pipe\pipe.c" />
+    <ClCompile Include="interlocked\interlocked.c" />
+    <ClCompile Include="security\security.c" />
+    <ClCompile Include="environment\environment.c" />
+    <ClCompile Include="crypto\crypto.c" />
+    <ClCompile Include="crypto\cert.c" />
+    <ClCompile Include="registry\registry_reg.c" />
+    <ClCompile Include="registry\registry.c" />
+    <ClCompile Include="credentials\credentials.c" />
+    <ClCompile Include="path\path.c" />
+    <ClCompile Include="path\shell.c" />
+    <ClCompile Include="io\device.c" />
+    <ClCompile Include="io\io.c">
+      <ObjectFileName>$(IntDir)/io/io.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="memory\memory.c">
+      <ObjectFileName>$(IntDir)/memory/memory.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="input\virtualkey.c" />
+    <ClCompile Include="input\scancode.c" />
+    <ClCompile Include="input\keycode.c" />
+    <ClCompile Include="heap\heap.c" />
+    <ClCompile Include="utils\ini.c" />
+    <ClCompile Include="utils\sam.c" />
+    <ClCompile Include="utils\ntlm.c">
+      <ObjectFileName>$(IntDir)/utils/ntlm.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="utils\image.c" />
+    <ClCompile Include="utils\print.c" />
+    <ClCompile Include="utils\stream.c" />
+    <ClCompile Include="utils\debug.c" />
+    <ClCompile Include="utils\cmdline.c" />
+    <ClCompile Include="utils\ssl.c" />
+    <ClCompile Include="utils\collections\Queue.c" />
+    <ClCompile Include="utils\collections\Stack.c" />
+    <ClCompile Include="utils\collections\PubSub.c" />
+    <ClCompile Include="utils\collections\BitStream.c" />
+    <ClCompile Include="utils\collections\Reference.c" />
+    <ClCompile Include="utils\collections\ArrayList.c" />
+    <ClCompile Include="utils\collections\Dictionary.c" />
+    <ClCompile Include="utils\collections\LinkedList.c" />
+    <ClCompile Include="utils\collections\HashTable.c" />
+    <ClCompile Include="utils\collections\ListDictionary.c" />
+    <ClCompile Include="utils\collections\KeyValuePair.c" />
+    <ClCompile Include="utils\collections\CountdownEvent.c" />
+    <ClCompile Include="utils\collections\BufferPool.c" />
+    <ClCompile Include="utils\collections\ObjectPool.c" />
+    <ClCompile Include="utils\collections\StreamPool.c" />
+    <ClCompile Include="utils\collections\MessageQueue.c" />
+    <ClCompile Include="utils\collections\MessagePipe.c" />
+    <ClCompile Include="utils\lodepng\lodepng.c" />
+    <ClCompile Include="utils\trio\trio.c" />
+    <ClCompile Include="utils\trio\trionan.c" />
+    <ClCompile Include="utils\trio\triostr.c" />
+    <ClCompile Include="utils\wlog\wlog.c" />
+    <ClCompile Include="utils\wlog\Layout.c" />
+    <ClCompile Include="utils\wlog\Message.c" />
+    <ClCompile Include="utils\wlog\TextMessage.c" />
+    <ClCompile Include="utils\wlog\DataMessage.c" />
+    <ClCompile Include="utils\wlog\ImageMessage.c" />
+    <ClCompile Include="utils\wlog\PacketMessage.c" />
+    <ClCompile Include="utils\wlog\Appender.c" />
+    <ClCompile Include="utils\wlog\FileAppender.c" />
+    <ClCompile Include="utils\wlog\BinaryAppender.c" />
+    <ClCompile Include="utils\wlog\CallbackAppender.c" />
+    <ClCompile Include="utils\wlog\ConsoleAppender.c" />
+    <ClCompile Include="error\error.c" />
+    <ClCompile Include="com\com.c" />
+    <ClCompile Include="timezone\timezone.c" />
+    <ClCompile Include="sysinfo\sysinfo.c" />
+    <ClCompile Include="pool\synch.c" />
+    <ClCompile Include="pool\work.c" />
+    <ClCompile Include="pool\timer.c">
+      <ObjectFileName>$(IntDir)/pool/timer.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="pool\io.c">
+      <ObjectFileName>$(IntDir)/pool/io.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="pool\cleanup_group.c" />
+    <ClCompile Include="pool\pool.c" />
+    <ClCompile Include="pool\callback_environment.c" />
+    <ClCompile Include="pool\callback.c" />
+    <ClCompile Include="pool\callback_cleanup.c" />
+    <ClCompile Include="handle\handle.c" />
+    <ClCompile Include="handle\nonehandle.c" />
+    <ClCompile Include="thread\argv.c" />
+    <ClCompile Include="thread\process.c" />
+    <ClCompile Include="thread\processor.c" />
+    <ClCompile Include="thread\thread.c" />
+    <ClCompile Include="thread\tls.c" />
+    <ClCompile Include="winsock\winsock.c" />
+    <ClCompile Include="sspi\NTLM\ntlm_av_pairs.c" />
+    <ClCompile Include="sspi\NTLM\ntlm_compute.c" />
+    <ClCompile Include="sspi\NTLM\ntlm_message.c" />
+    <ClCompile Include="sspi\NTLM\ntlm.c">
+      <ObjectFileName>$(IntDir)/sspi/NTLM/ntlm.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="sspi\Negotiate\negotiate.c" />
+    <ClCompile Include="sspi\Schannel\schannel_openssl.c" />
+    <ClCompile Include="sspi\Schannel\schannel.c" />
+    <ClCompile Include="sspi\CredSSP\credssp.c" />
+    <ClCompile Include="sspi\sspi_winpr.c" />
+    <ClCompile Include="sspi\sspi_export.c" />
+    <ClCompile Include="sspi\sspi.c" />
+    <ClCompile Include="winhttp\winhttp.c" />
+    <ClCompile Include="asn1\asn1.c" />
+    <ClCompile Include="sspicli\sspicli.c" />
+    <ClCompile Include="crt\alignment.c" />
+    <ClCompile Include="crt\conversion.c" />
+    <ClCompile Include="crt\buffer.c" />
+    <ClCompile Include="crt\memory.c">
+      <ObjectFileName>$(IntDir)/crt/memory.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="crt\string.c" />
+    <ClCompile Include="crt\unicode.c" />
+    <ClCompile Include="crt\utf.c" />
+    <ClCompile Include="bcrypt\bcrypt.c" />
+    <ClCompile Include="rpc\rpc.c" />
+    <ClCompile Include="rpc\ndr.c" />
+    <ClCompile Include="rpc\ndr_array.c" />
+    <ClCompile Include="rpc\ndr_context.c" />
+    <ClCompile Include="rpc\ndr_correlation.c" />
+    <ClCompile Include="rpc\ndr_pointer.c" />
+    <ClCompile Include="rpc\ndr_private.c" />
+    <ClCompile Include="rpc\ndr_simple.c" />
+    <ClCompile Include="rpc\ndr_string.c" />
+    <ClCompile Include="rpc\ndr_structure.c" />
+    <ClCompile Include="rpc\ndr_union.c" />
+    <ClCompile Include="rpc\midl.c" />
+    <ClCompile Include="credui\credui.c" />
+    <ClCompile Include="wtsapi\wtsapi.c" />
+    <ClCompile Include="wtsapi\wtsapi_win32.c" />
+    <ClCompile Include="dsparse\dsparse.c" />
+    <ClCompile Include="wnd\wnd.c" />
+    <ClCompile Include="smartcard\smartcard.c" />
+    <ClCompile Include="smartcard\smartcard_pcsc.c" />
+    <ClCompile Include="smartcard\smartcard_inspect.c" />
+    <ClCompile Include="smartcard\smartcard_winscard.c" />
+    <ClCompile Include="nt\nt.c" />
+    <ClCompile Include="clipboard\synthetic.c" />
+    <ClCompile Include="clipboard\clipboard.c" />
+    <ResourceCompile Include="version.rc" />
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

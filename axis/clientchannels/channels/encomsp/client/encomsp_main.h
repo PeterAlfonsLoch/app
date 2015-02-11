@@ -27,21 +27,26 @@
 #include <winpr/collections.h>
 
 #include <freerdp/api.h>
+#include <freerdp/channels/log.h>
 #include <freerdp/svc.h>
 #include <freerdp/addin.h>
 
 #include <freerdp/client/encomsp.h>
+
+#define TAG CHANNELS_TAG("encomsp.client")
 
 struct encomsp_plugin
 {
 	CHANNEL_DEF channelDef;
 	CHANNEL_ENTRY_POINTS_FREERDP channelEntryPoints;
 
+	EncomspClientContext* context;
+
 	HANDLE thread;
 	wStream* data_in;
 	void* InitHandle;
 	DWORD OpenHandle;
-	wMessagePipe* MsgPipe;
+	wMessageQueue* queue;
 };
 typedef struct encomsp_plugin encomspPlugin;
 

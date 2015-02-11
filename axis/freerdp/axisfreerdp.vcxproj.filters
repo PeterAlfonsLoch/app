@@ -351,6 +351,9 @@
     <ClInclude Include="libfreerdp\core\autodetect.h">
       <Filter>Header Files\libfreerdp\core</Filter>
     </ClInclude>
+    <ClInclude Include="config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="libfreerdp\cache\cache_bitmap.c">
@@ -378,12 +381,6 @@
       <Filter>Source Files\libfreerdp\cache</Filter>
     </ClCompile>
     <ClCompile Include="libfreerdp\codec\audio.c">
-      <Filter>Source Files\libfreerdp\codec</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\codec\bitmap_decode.c">
-      <Filter>Source Files\libfreerdp\codec</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\codec\bitmap_encode.c">
       <Filter>Source Files\libfreerdp\codec</Filter>
     </ClCompile>
     <ClCompile Include="libfreerdp\codec\color.c">
@@ -680,9 +677,6 @@
     <ClCompile Include="libfreerdp\crypto\crypto_tls.c">
       <Filter>Source Files\libfreerdp\crypto</Filter>
     </ClCompile>
-    <ClCompile Include="libfreerdp\codec\clear.c">
-      <Filter>Source Files\libfreerdp\codec</Filter>
-    </ClCompile>
     <ClCompile Include="libfreerdp\codec\h264.c">
       <Filter>Source Files\libfreerdp\codec</Filter>
     </ClCompile>
@@ -811,6 +805,36 @@
     </ClCompile>
     <ClCompile Include="libfreerdp\utils\utils_uds.c">
       <Filter>Source Files\libfreerdp\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\codec\bitmap.c">
+      <Filter>Source Files\libfreerdp\codec</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\utils\msusb.c">
+      <Filter>Source Files\libfreerdp\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\utils\passphrase.c">
+      <Filter>Source Files\libfreerdp\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\utils\pcap.c">
+      <Filter>Source Files\libfreerdp\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\utils\profiler.c">
+      <Filter>Source Files\libfreerdp\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\utils\ringbuffer.c">
+      <Filter>Source Files\libfreerdp\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\utils\signal.c">
+      <Filter>Source Files\libfreerdp\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\utils\stopwatch.c">
+      <Filter>Source Files\libfreerdp\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\gdi\gfx.c">
+      <Filter>Source Files\libfreerdp\gdi</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\locale\timezone.c">
+      <Filter>Source Files\libfreerdp\locale</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
