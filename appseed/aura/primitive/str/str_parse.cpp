@@ -364,20 +364,7 @@ namespace str {
    string parse::getrest()
    {
       string s;
-      while (C && (C == ' ' || C == 9 || issplit(C)))
-         m_iPos++;
-      if(m_iPos < m_iLen)
-      {
-
-         m_strWord.SetString(&m_psz[m_iPos],m_iLen - m_iPos);
-
-      }
-      else
-      {
-
-         m_strWord.Empty();
-
-      }
+		   getrest(s);  //--**\/\/\!!??
       return s;
    }
 
@@ -388,17 +375,16 @@ namespace str {
       if(m_iPos < m_iLen)
       {
 
-         m_strWord.SetString(&m_psz[m_iPos],m_iLen - m_iPos);
+         s.SetString(&m_psz[m_iPos],m_iLen - m_iPos);
 
       }
       else
       {
 
-         m_strWord.Empty();
+         s.Empty();
 
       }
 
-      s = m_strWord;
    }
 
    long parse::getvalue()
