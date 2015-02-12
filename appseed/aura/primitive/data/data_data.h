@@ -28,7 +28,7 @@ namespace data
 
 
    class CLASS_DECL_AURA simple_data :
-      virtual public root
+      virtual public object
    {
    public:
 
