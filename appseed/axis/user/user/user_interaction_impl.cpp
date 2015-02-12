@@ -48,6 +48,15 @@ namespace user
    }
 
 
+
+   ::user::interaction_impl * interaction_impl::get_user_interaction_impl()
+   {
+
+      return this;
+
+   }
+
+
    bool interaction_impl::check_need_layout()
    {
 

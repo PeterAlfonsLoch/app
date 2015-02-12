@@ -454,7 +454,7 @@ void FileSystemSizeWnd::_001OnCopyData(signal_details * pobj)
       ::file::byte_stream_memory_buffer file(get_app(), pstruct->lpData, pstruct->cbData);
       size.read(file);
 
-      single_lock sl(&m_cs, TRUE);
+      cslock sl(&m_cs);
       size.m_oswindow = (oswindow) pbase->m_wparam;
       size.m_bRet =  pcentral->m_pfilesystemsizeset->get_fs_size(
          size.m_iSize,
@@ -501,7 +501,7 @@ void FileSystemSizeWnd::_001OnTimer(signal_details * pobj)
 
          while(m_sizea.get_size() > 0)
          {
-            single_lock sl(&m_cs, TRUE);
+            cslock sl(&m_cs);
             file_size_table::get_fs_size & size = m_sizea[0];
             file.m_spmemorybuffer->Truncate(0);
             size.write(file);

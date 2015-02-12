@@ -18,13 +18,14 @@ HANDLE g_system_heap()
 #endif
 
 
-mutex * g_pmutexSystemHeap = NULL;
+critical_section * g_pmutexSystemHeap = NULL;
 
 
 void * system_heap_alloc(size_t size)
 {
 
-   synch_lock lock(g_pmutexSystemHeap);
+   //synch_lock lock(g_pmutexSystemHeap);
+   cslock csl(g_pmutexSystemHeap);
 
 //#if ZEROED_ALLOC
   // byte * p = (byte *) ::HeapAlloc(g_hSystemHeap, HEAP_ZERO_MEMORY, ((size + 4 + 3) & ~3));
@@ -58,7 +59,7 @@ void * system_heap_alloc(size_t size)
 void * system_heap_realloc(void * p, size_t size)
 {
 
-   synch_lock lock(g_pmutexSystemHeap);
+   cslock lock(g_pmutexSystemHeap);
 
 #if defined(WINDOWSEX) && !defined(PREFER_MALLOC)
 
@@ -76,7 +77,7 @@ void * system_heap_realloc(void * p, size_t size)
 void system_heap_free(void * p)
 {
 
-   synch_lock lock(g_pmutexSystemHeap);
+   cslock lock(g_pmutexSystemHeap);
 
 #if defined(WINDOWSEX) && !defined(PREFER_MALLOC)
 

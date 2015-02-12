@@ -4117,7 +4117,7 @@ namespace user
       if(m_pimpl != NULL)
       {
 
-         ::window_sp pwnd = m_pimpl;
+         ::user::interaction_impl * pwnd = m_pimpl->get_user_interaction_impl();
 
          if(pwnd != NULL)
             return (::user::interaction *) this;

@@ -27,7 +27,7 @@ namespace aura
 
       bool                    m_bTrace;
       ::aura::trace::trace *     m_ptrace;
-      critical_section *      m_pcsTrace;
+      mutex *      m_pcsTrace;
       stringa *               m_pstraSeparator;
       FILE *                  m_pfile;
       mutex *                 m_pmutex;

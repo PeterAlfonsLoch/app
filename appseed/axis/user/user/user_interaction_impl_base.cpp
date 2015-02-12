@@ -26,6 +26,23 @@ namespace user
    }
 
 
+   ::user::interaction_impl * interaction_impl_base::get_user_interaction_impl()
+   {
+
+      return NULL;
+
+   }
+   
+   
+   ::user::interaction_child * interaction_impl_base::get_user_interaction_child()
+   {
+
+      return NULL;
+
+   }
+
+
+
    bool interaction_impl_base::check_need_layout()
    {
 

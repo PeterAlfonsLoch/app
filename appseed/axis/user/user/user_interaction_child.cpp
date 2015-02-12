@@ -36,6 +36,14 @@ namespace user
    }
 
 
+   ::user::interaction_child * interaction_child::get_user_interaction_child()
+   {
+
+      return this;
+
+   }
+
+
    interaction_child::~interaction_child()
    {
 

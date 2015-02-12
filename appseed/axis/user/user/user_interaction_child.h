@@ -27,6 +27,9 @@ namespace user
       interaction_child(::aura::application * papp);
       virtual ~interaction_child();
 
+      ::user::interaction_child * get_user_interaction_child() override;
+
+
       using ::user::interaction_base::message_handler;
       virtual void message_handler(signal_details * pobj);
       //bool ShowWindow(int32_t nCmdShow);

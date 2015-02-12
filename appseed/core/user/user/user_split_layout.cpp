@@ -138,7 +138,7 @@ namespace user
          ScreenToClient(&ptClient);
          if((fwKeys & MK_LBUTTON) > 0 && (m_iState == stateDragging) && (iIndex == m_iIndex))
          {
-            single_lock sl(&m_mutex, true);
+            cslock sl(&m_mutex);
             {
    //      TRACE("split_layout::RelayChildEvent LOWORD(lpMsg->lParam) %d\n", LOWORD(lpMsg->lParam));
    //      TRACE("split_layout::RelayChildEvent HIWORD(lpMsg->lParam) %d\n", HIWORD(lpMsg->lParam));
@@ -775,7 +775,7 @@ namespace user
          int32_t yPos = splitRect.top + (int16_t) HIWORD(lParam);  // vertical position of cursor
          if((fwKeys & MK_LBUTTON) > 0 && (m_iState == stateDragging) && (iSplitBar == m_iIndex))
          {
-            if(m_mutex.lock(duration::zero()))
+            cslock lock(&m_mutex);
             {
          TRACE("split_layout::RelayChildEvent LOWORD(lParam) %d\n", LOWORD(lParam));
          TRACE("split_layout::RelayChildEvent HIWORD(lParam) %d\n", HIWORD(lParam));

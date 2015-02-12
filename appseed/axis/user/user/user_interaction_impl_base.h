@@ -20,6 +20,10 @@ namespace user
       virtual ~interaction_impl_base();
 
 
+      virtual ::user::interaction_impl * get_user_interaction_impl();
+      virtual ::user::interaction_child * get_user_interaction_child();
+
+
       virtual bool check_need_layout();
       virtual void clear_need_layout();
       virtual void set_need_layout();

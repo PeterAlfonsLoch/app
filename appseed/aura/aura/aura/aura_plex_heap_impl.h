@@ -8,7 +8,7 @@ void Free_check_pointer_in_cpp(void * p);
 inline void * plex_heap_alloc_sync::Alloc()
 {
 
-   synch_lock sl(&m_protect);
+   cslock sl(&m_protect);
 
    void * pdata = NULL;
    try
@@ -39,7 +39,7 @@ inline void plex_heap_alloc_sync::Free(void * p)
    Free_check_pointer_in_cpp(p);
    #endif
 
-   synch_lock sl(&m_protect);
+   cslock sl(&m_protect);
    
    memset(p, 0xCD, m_nAllocSize); // attempt to invalidate memory so it get unusable (as it should be after freed).
 

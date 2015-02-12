@@ -27,7 +27,7 @@ critical_section::critical_section()
 
    bSuccess = Init();
    if (!bSuccess)
-      throw memory_exception(get_app());
+      throw memory_exception(get_thread_app());
 }
 
 critical_section::operator CRITICAL_SECTION*()

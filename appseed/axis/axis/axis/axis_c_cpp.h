@@ -51,6 +51,7 @@ namespace user
 
    class interaction;
    class interaction_impl;
+   class interaction_child;
    class schema;
    class schema_simple_impl;
    class user;

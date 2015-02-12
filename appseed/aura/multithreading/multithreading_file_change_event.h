@@ -6,7 +6,6 @@
 
 /// This class represents events for file changes
 class CLASS_DECL_AURA file_change_event :
-   virtual public waitable,
    virtual public event_base
 {
 public:

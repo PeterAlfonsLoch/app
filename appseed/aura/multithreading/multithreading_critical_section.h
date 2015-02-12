@@ -1,8 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA critical_section :
-   virtual public waitable
+class CLASS_DECL_AURA critical_section
 {
 public:
 
@@ -14,7 +13,7 @@ public:
 #endif
 
    critical_section();
-   virtual ~critical_section();
+   ~critical_section();
 
 
 #ifdef WINDOWS
@@ -23,13 +22,11 @@ public:
    operator void * ();           // pthread_mutex_t
 #endif
 
-   bool unlock();
-   void lock();
-   bool lock(const duration & durationTimeout);
+   inline void unlock();
+   inline void lock();
 
 
 private:
-   using waitable::unlock;
    bool Init();
 
 };
@@ -39,29 +36,43 @@ private:
 
 inline void critical_section::lock()
 {
-   try
+   //try
    {
       ::EnterCriticalSection(&m_sect);
    }
-   catch(...)
-   {
-      throw resource_exception(get_app());
-   }
+   //catch(...)
+   //{
+     // throw resource_exception(get_app());
+   //}
 }
 
 
-inline bool critical_section::lock(const duration & durationTimeout)
-{
-   ASSERT(durationTimeout.is_pos_infinity());
-   (void)durationTimeout;
-   lock();
-   return true;
-}
+//inline bool critical_section::lock(const duration & durationTimeout)
+//{
+//   ASSERT(durationTimeout.is_pos_infinity());
+//   (void)durationTimeout;
+//   lock();
+//   return true;
+//}
 
-inline bool critical_section::unlock()
+inline void critical_section::unlock()
 {
    ::LeaveCriticalSection(&m_sect);
-   return TRUE;
+   //return TRUE;
 }
 
 #endif
+
+
+class CLASS_DECL_AURA cslock
+{
+public:
+
+   critical_section * m_pcs;
+
+
+   inline cslock(critical_section * pcs): m_pcs(pcs) { if(m_pcs != NULL) m_pcs->lock(); }
+   inline ~cslock() { if(m_pcs != NULL) m_pcs->unlock(); }
+
+
+};

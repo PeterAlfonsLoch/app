@@ -82,6 +82,8 @@ namespace user
       interaction_impl();
 
 
+      virtual ::user::interaction_impl * get_user_interaction_impl() override;
+
 
       virtual bool check_need_layout();
       virtual void clear_need_layout();

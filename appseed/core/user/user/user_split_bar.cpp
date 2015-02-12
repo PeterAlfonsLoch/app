@@ -86,7 +86,7 @@ namespace user
    void split_bar::_001OnLButtonDown(signal_details * pobj)
    {
       SCAST_PTR(::message::mouse, pmouse, pobj);
-      single_lock sl(&m_pparent->m_mutex, TRUE);
+      cslock sl(&m_pparent->m_mutex);
       m_pparent->m_iIndex = m_iIndex;
       if(m_iIndex >= 0 && m_iIndex < m_pparent->m_splitbara.get_count()
          && !m_pparent->m_panea[m_iIndex]->m_bFixedSize)
@@ -101,7 +101,7 @@ namespace user
    void split_bar::_001OnLButtonUp(signal_details * pobj)
    {
       SCAST_PTR(::message::mouse, pmouse, pobj);
-      single_lock sl(&m_pparent->m_mutex, TRUE);
+      cslock sl(&m_pparent->m_mutex);
       if(m_pparent->m_iIndex == m_iIndex)
       {
          m_pparent->m_iState = split_layout::stateInitial;
@@ -116,7 +116,7 @@ namespace user
 
       SCAST_PTR(::message::mouse, pmouse, pobj);
 
-      single_lock sl(&m_pparent->m_mutex, TRUE);
+      cslock sl(&m_pparent->m_mutex);
 
       point ptClient = pmouse->m_pt;
 

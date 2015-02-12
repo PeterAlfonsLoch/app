@@ -29,7 +29,7 @@ namespace aura
       m_bTrace          = ::file_exists_dup("/etc/core/trace.txt") || ::is_debugger_attached();
 #endif
 
-      m_pcsTrace        = new critical_section();
+      m_pcsTrace        = new mutex();
       m_pmutex          = new mutex(papp);
       m_ptrace          = new ::aura::trace::trace(papp);
       m_pstraSeparator  = new stringa;

@@ -28,7 +28,7 @@ extern string_map < INT_PTR,INT_PTR > * g_pmapLibrary;
 
 extern plex_heap_alloc_array * g_pheap;
 
-extern mutex * g_pmutexSystemHeap;
+extern critical_section * g_pmutexSystemHeap;
 
 extern plex_heap_alloc_array * g_pheap;
 
@@ -158,7 +158,7 @@ namespace aura
 
          //g_pstrLastGlsStatus = new string();
 
-         g_pmutexSystemHeap = new mutex();
+         g_pmutexSystemHeap = new critical_section();
 
          g_pmutgen = new mutex();
 
