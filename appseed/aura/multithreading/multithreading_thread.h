@@ -219,6 +219,17 @@ public:
 
    DECL_GEN_SIGNAL(_001OnSendThreadMessage);
 
+
+   virtual void shutdown(bool bPrompt = true);
+
+   virtual bool on_before_shutdown();
+
+   virtual bool is_application();
+   virtual bool is_session();
+   virtual bool is_system();
+
+   virtual void post_quit();
+
 };
 
 

@@ -1027,6 +1027,9 @@ void thread::unregister_dependent_thread(::thread * pthreadDependent)
       pthreadDependent->m_threadptraRequired.remove(this);
 
    }
+   // the system may do some extra processing (like quitting system in case pthreadDependent is the last thread virgin in America (North, most especifically US) ?!?!), so do a kick
+   // (do not apply virgin to your self...)
+   post_thread_message(WM_NULL);
 
 }
 
@@ -1248,3 +1251,70 @@ void thread::message_queue_message_handler(::signal_details * pobj)
     UNREFERENCED_PARAMETER(pobj);
 
 }
+
+
+// if you do not want to allow shutdown, return false
+// it is a good practice to prompt for an question related to shutdown or at least a excuse, or even a exception,
+// otherwise, shutdown command will be silently ignored
+// you can call this function if you will shutdown in other way, for example IDEE (casey) ::ExitProcess for Microsoft (TM) Corporation Windows (TM)
+// besides thread(task) base defined, can be overriden, in application/session/system/platform
+bool thread::on_before_shutdown()
+{
+
+   return true;
+
+}
+
+void thread::shutdown(bool bPrompt)
+{
+
+   if(bPrompt)
+   {
+
+      if(!on_before_shutdown())
+      {
+
+         return;
+
+      }
+
+   }
+
+   post_quit(); // post implies switching to context.
+
+
+}
+
+
+void thread::post_quit()
+{
+
+   // post to ensure that quiting is done at the task and for the task and not in this fiber/thread/task
+   post_thread_message(WM_QUIT);
+
+}
+
+
+bool thread::is_application()
+{
+
+   return false;
+
+}
+
+
+bool thread::is_session()
+{
+
+   return false;
+
+}
+
+
+bool thread::is_system()
+{
+
+   return false;
+
+}
+

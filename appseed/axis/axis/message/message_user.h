@@ -89,6 +89,7 @@ namespace message
 
       uint_ptr                m_nFlags;
       point                   m_pt;
+      point                   m_ptDesired;
       ::visual::e_cursor      m_ecursor;
       bool                    m_bTranslated;
       ::visual::cursor *      m_pcursor;

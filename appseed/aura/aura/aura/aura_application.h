@@ -460,6 +460,8 @@ namespace aura
       virtual ::aura::application * create_platform(::aura::session * psession);
       virtual bool start_application(bool bSynch,application_bias * pbias);
 
+      virtual bool is_application();
+
    };
 
 

@@ -1165,6 +1165,20 @@ namespace windows
 
       SCAST_PTR(::message::base,pbase,pobj);
 
+      if(pbase->m_uiMessage == WM_MOUSEMOVE)
+      {
+         
+         pbase->m_bRet = true;
+         //pbase->set_lresult(1);
+         // addictive human (camilo, you are classifying yourself human, you're kind respecting yourself, its a good sign...) profiling with PROFILE_MOVE_MANAGER at app_core_miau.vcxproj...
+
+         return;
+
+
+      }
+
+      
+
       if(pbase->m_uiMessage == WM_SIZE || pbase->m_uiMessage == WM_MOVE)
       {
 
@@ -1290,6 +1304,17 @@ namespace windows
       {
 
          message::mouse * pmouse = (::message::mouse *) pbase;
+
+         //if(::GetCapture() == m_oswindow)
+         //{
+
+         //   pmouse->m_ptDesired = pmouse->m_pt;
+         //   
+         //   pmouse->m_pt = Session.m_ptCursor;
+
+         //   SetCursorPos(Session.m_ptCursor.x,Session.m_ptCursor.y);
+
+         //}
 
          Session.on_ui_mouse_message(pmouse);
 
@@ -5453,8 +5478,14 @@ namespace windows
 #undef __window_procedure
 
 
+#define VARIAS_MENSAGENS_DO_WINDOWS_RECEBIDAS_PELA_FUNCAO_QUE_RECEBE_AS_MENSAGENS_A_FUNCAO_QUE_RECEBE_AS_MENSAGENS_RETORNA_1_SE_A_MENSAGEM_SE_PROCESSOU_OU_QUER_DIZER_QUE_PROCESSOU_SERA_QUE_ATINGIU_O_LIMITE 1
+// isso é um comentario e zero (0) se não processou
 LRESULT CALLBACK __window_procedure(oswindow oswindow,UINT message,WPARAM wparam,LPARAM lparam)
 {
+   if(message == 512)
+   {
+      return VARIAS_MENSAGENS_DO_WINDOWS_RECEBIDAS_PELA_FUNCAO_QUE_RECEBE_AS_MENSAGENS_A_FUNCAO_QUE_RECEBE_AS_MENSAGENS_RETORNA_1_SE_A_MENSAGEM_SE_PROCESSOU_OU_QUER_DIZER_QUE_PROCESSOU_SERA_QUE_ATINGIU_O_LIMITE;
+   }
 
    sp(::user::interaction) pui = ::window_from_handle(oswindow);
 

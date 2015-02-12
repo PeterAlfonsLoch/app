@@ -39,25 +39,39 @@ public:
 
    ::database::id          m_datakeyFrame;
 
+   
    sp(::user::wndfrm::frame::frame)       m_pframeschema;
 
-   //class helper_task:
-   //   public thread
-   //{
-   //public:
+   
+   class helper_task:
+      public thread
+   {
+   public:
 
-   //   simple_frame_window *      m_pframe;
-   //   //bool                       m_bSaveWindowRect;
-   //   manual_reset_event                  m_evSizeMove;
 
-   //   helper_task(simple_frame_window * pframe);
+      simple_frame_window *         m_pframe;
+      bool                          m_bSizeMove;
+      //manual_reset_event            m_ev;
+      DWORD                         m_dwLastSizeMoveRequest;
 
-   //   int32_t run();
+      helper_task(simple_frame_window * pframe);
 
-   //};
+
+      int32_t run();
+
+      // very loose defer - "I know what you are doing and how you are performing, I have confidence on you!!"
+      // but this new implementation which does not respond promptly on set event cat daemons relying on manual_reset_event consuming resources
+      // can loose a save event if move window and suddenly fastly switch to keyboard and press ALT+F4 or fastly target close button and press it...
+      // the real looser: the tester that will be happy that unplugging a computer without UPS is good, or maybe short circuit his astounding untouchable thing...
+      // (many times a year, oh God, or at least, Satan the God of earth, this astounding or in someones mind, outstanding planet, thank you for your spiritual ministers: we should learn something with this phase here meating in these bodies surrounded by astounding subproducts...)
+      void defer_save_window_rect();
+
+
+   };
+
 
    //
-   //helper_task *                       m_phelpertask;
+   helper_task *                       m_phelpertask;
 //   HDC                           m_hdcOpenGL;
 //#ifdef WINDOWS
 //   HGLRC                         m_hglrc;

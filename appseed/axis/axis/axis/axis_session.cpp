@@ -3268,7 +3268,12 @@ namespace axis
 
       //::axis::session::on_ui_mouse_message(pmouse);
 
-      m_ptCursor = pmouse->m_pt;
+      if(pmouse->m_pt == pmouse->m_ptDesired)
+      {
+
+         m_ptCursor = pmouse->m_pt;
+
+      }
 
 
 

@@ -17,6 +17,43 @@ namespace user
       namespace frame
       {
 
+         MoveManager * g_pmovemanager;
+         HHOOK g_hhook;
+
+         LRESULT CALLBACK move_LowLevelMouseProc(
+            _In_  int nCode,
+            _In_  WPARAM wParam,
+            _In_  LPARAM lParam
+            )
+         {
+            ::aura::application * papp = g_pmovemanager->get_app();
+            LPMSLLHOOKSTRUCT p = (LPMSLLHOOKSTRUCT)lParam;
+            //APPTRACE("LowLevelMouseProc x=%d, y=%d",p->pt.x,p->pt.y);
+
+            ::message::mouse m(papp);
+
+            Sess(papp).m_ptCursor = p->pt;
+
+
+
+            p->pt.x = MAX(0,MIN(1920,p->pt.x));
+            p->pt.y = MAX(0,MIN(1080,p->pt.y));
+
+            LRESULT lresult;
+            m.set(g_pmovemanager->GetMoveWindow(),wParam,p->mouseData, MAKELPARAM(p->pt.x,p->pt.y), lresult);
+
+            g_pmovemanager->Relay(&m);
+
+            ::SetCursorPos(p->pt.x,p->pt.y);
+
+            if(nCode < 0 || !g_pmovemanager->m_bMoving)
+            {
+               return ::CallNextHookEx(g_hhook,nCode,wParam,lParam);
+            }
+            return 1;
+         }
+
+
 
          MoveManager::MoveManager(WorkSet * pworkset) :
             element(pworkset->get_app())
@@ -56,6 +93,14 @@ namespace user
             m_pworkset->get_draw_window()->GetWindowRect(rectWindow);
             m_ptWindowOrigin = rectWindow.top_left();
             GetEventWindow()->SetCapture();
+            g_pmovemanager = this;
+            g_hhook = SetWindowsHookEx(
+               WH_MOUSE_LL,
+               (HOOKPROC)move_LowLevelMouseProc,
+               ::GetModuleHandle("core.dll"),
+               0
+               );
+
             m_bMoving = true;
             pmouse->m_bRet = true;
             return true;
@@ -130,11 +175,16 @@ namespace user
                {
                   //TRACE("MoveManager::message_handler oswindow ReleaseCapture %x\n", System.get_capture_uie().m_p);
                   System.release_capture_uie();
+                  UnhookWindowsHookEx(g_hhook);
+
                }
                return false;
             }
 
+            //class point ptCursor = pmouse->m_ptDesired;
             class point ptCursor = pmouse->m_pt;
+
+
             if(pmouse->m_uiMessage == WM_MOUSEMOVE
                || pmouse->m_uiMessage == WM_LBUTTONUP)
             {
@@ -169,6 +219,7 @@ namespace user
 
             if(bMove && rectWindow.top_left() != pt)
             {
+               
                class point ptMove = pt;
                if(GetMoveWindow()->GetParent() != NULL)
                {
@@ -198,8 +249,9 @@ namespace user
                   //TRACE("MoveManager::Ry call time7= %d ms",::get_tick_count() - t_time1.operator DWORD_PTR());
 
                }
-
+               //::SetCursorPos(pmouse->m_ptDesired.x,pmouse->m_ptDesired.y);
             }
+            
 
             sp(WorkSetClientInterface) pinterface = m_pworkset->GetEventWindow();
 
@@ -242,6 +294,7 @@ namespace user
 
                }
                System.release_capture_uie();
+               UnhookWindowsHookEx(g_hhook);
                m_bMoving = false;
             }
             if(pmouse->m_uiMessage == WM_MOUSEMOVE)

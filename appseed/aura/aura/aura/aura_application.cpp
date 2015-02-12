@@ -4205,7 +4205,17 @@ namespace aura
 
    int32_t application::hotplugin_host_starter_start_sync(const char * pszCommandLine,::aura::application * papp,hotplugin::host * phost,hotplugin::plugin * pplugin)
    {
+
       return -1;
+
+   }
+
+
+   bool application::is_application()
+   {
+      
+      return !is_session() && !is_system();
+
    }
 
 

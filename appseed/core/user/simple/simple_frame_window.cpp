@@ -7,37 +7,71 @@
 
 extern CLASS_DECL_CORE thread_int_ptr < DWORD_PTR > t_time1;
 
-//simple_frame_window::helper_task::helper_task(simple_frame_window * pframe) :
-//::thread(pframe->get_app()),
-//m_pframe(pframe) ,
-//m_evSizeMove(pframe->get_app())
-//{
-//   begin(); 
-//}
-//
-//
-//int simple_frame_window::helper_task::run()
-//{
-//   while(m_bRun)
-//   {
-//      if(m_evSizeMove.wait(millis(84)).signaled())
-//      {
-//         m_evSizeMove.ResetEvent();
-//         try
-//         {
-//            if(m_pframe->does_display_match())
-//            {
-//               m_pframe->WindowDataSaveWindowRect();
-//            }
-//         }
-//         catch(...)
-//         {
-//         }
-//         
-//      }
-//   }
-//   return 0;
-//}
+
+simple_frame_window::helper_task::helper_task(simple_frame_window * pframe) :
+::thread(pframe->get_app()),
+m_pframe(pframe) //,
+//m_ev(pframe->get_app())
+{
+
+   m_bSizeMove = false;
+   
+   begin();
+
+}
+
+
+int simple_frame_window::helper_task::run()
+{
+   
+   while(m_bRun)
+   {
+      // the computer maybe blown here, where there is no code (when it is not running)... by falling into a curve in a road from a truck or by the multiverses bramas collapsing into a high energy dot.com... and bubble restarts when the spirtual world decides for restarting the virtual machine - with some pauses - as we does not detect change in time vector, as it is a non-readable, executable/paused/non existent only register in the parent processor... Imagine a overhaul upgrade with much more strings in the chords, why they mantain consitency between virtual machines versions... they like to hinder a lot!! strange, this is a hello 666... // and the time they have to overhaul is infinite, because they can pause our ticker... besides I hope no ones stops their tick counters...
+      if(m_bSizeMove) // not here, any error here (or am i wrong, the OpSys may not have started the FULLStack DevOp).... because it is lInUx... its not ADVENTURE_Clean_NoERRORs_may_be_old_tommorrow_just_EX_OS...
+      {
+
+         if(::get_tick_count() - m_dwLastSizeMoveRequest > 584 // slim and clean people (no drugs) do not like fatty acids double check in the bag( unless they are slim and clean?!?!?!)
+            && ::get_tick_count() - m_pframe->m_dwLastSizeMove > 586)// the tester (without UPS) can loose a save specially here (where is the error, sixes or 666) // Halloween is coming
+            // this a reason for using manual_reset_event for every simple_frame_window, accepts the candy, and the trick? you get both, this the whole trick!!!
+         {
+
+            m_bSizeMove = false;// the tester (without UPS) can loose a save here
+
+            try
+            {
+
+               TRACE("m_pframe->does_display_match() the tester is about to get close to get sad... (yes, he is mad...)");
+               if(m_pframe->does_display_match()) // the tester (without UPS) can loose a save even here 
+               {
+
+                  TRACE("m_pframe->WindowDataSaveWindowRect() the tester is close to get sad... (yes, he is mad...)");
+                  m_pframe->WindowDataSaveWindowRect(); // the tester (without UPS) can loose a save here
+
+               }
+
+            }
+            catch(...)
+            {
+
+            }
+
+         }
+
+      }
+      Sleep(184); // the tester (without UPS) can loose a save here
+
+   }
+
+   return 0;
+
+}
+
+
+void simple_frame_window::helper_task::defer_save_window_rect()
+{
+   m_bSizeMove = true;
+   m_dwLastSizeMoveRequest = ::get_tick_count();
+}
 
 
 simple_frame_window::simple_frame_window(::aura::application * papp) :
@@ -52,7 +86,7 @@ m_fastblur(allocer())
    m_bLayered = true;
    m_pframeschema = NULL;
 
-//   m_phelpertask = new helper_task(this);
+   m_phelpertask = new helper_task(this);
 
 }
 
@@ -367,14 +401,18 @@ void simple_frame_window::_001OnSize(signal_details * pobj)
 
    UNREFERENCED_PARAMETER(pobj);
 
-   if (does_display_match())
-   {
+   //if (does_display_match())
+   //{
 
-      WindowDataSaveWindowRect();
+   //   WindowDataSaveWindowRect();
 
-   }
+   //}
 
-   //m_phelpertask->m_evSizeMove.set_event();
+   //m_phelpertask->m_bSizeMove = true;
+
+   m_phelpertask->defer_save_window_rect();
+
+//   m_phelpertask->m_ev.set_event();
 
    //WindowDataSaveWindowRect();
 
@@ -397,12 +435,18 @@ void simple_frame_window::_001OnMove(signal_details * pobj)
 
 //   WindowDataSaveWindowRect();
 
-   if(does_display_match())
-   {
+   //if(does_display_match())
+   //{
 
-      WindowDataSaveWindowRect();
+   //   WindowDataSaveWindowRect();
 
-   }
+   //}
+
+   //m_phelpertask->m_bSizeMove = true;
+
+   //m_phelpertask->m_ev.set_event();
+
+   m_phelpertask->defer_save_window_rect();
 
 
 }

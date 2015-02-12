@@ -2,6 +2,7 @@
 //#include "base/user/user.h"
 //#include "windows.h"
 
+#define DISABLE_UPDATE_BUFFER 1
 
 extern void _001DeferPaintLayeredWindowBackground(oswindow oswindow,::draw2d::graphics * pdc);
 
@@ -337,6 +338,12 @@ namespace windows
    // lprect should be in screen coordinates
    bool window_draw::UpdateBuffer()
    {
+
+#if DISABLE_UPDATE_BUFFER
+
+      return false;
+
+#endif
 
       if(m_bRender)
          return false;
