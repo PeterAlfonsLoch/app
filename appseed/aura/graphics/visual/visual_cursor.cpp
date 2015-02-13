@@ -6,7 +6,7 @@ namespace visual
 {
 
    cursor::cursor(::aura::application * papp) :
-      element(papp),
+      object(papp),
       m_dib(allocer())
       //,m_dibWork(allocer())
    {

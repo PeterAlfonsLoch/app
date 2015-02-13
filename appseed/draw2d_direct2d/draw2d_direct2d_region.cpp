@@ -6,7 +6,7 @@ namespace draw2d_direct2d
 
    
    region::region(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    { 
       
       m_bUpdated = false;

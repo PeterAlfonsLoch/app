@@ -10,7 +10,7 @@ public:
 
 
    inline raw_ptr_array() {}
-   inline raw_ptr_array(::aura::application * papp):element(papp) {   }
+   inline raw_ptr_array(::aura::application * papp):object(papp) {   }
    inline raw_ptr_array(const raw_ptr_array & a) { this->operator = (a); }
    inline raw_ptr_array(raw_ptr_array && a) { this->operator = (a); }
 

@@ -72,7 +72,7 @@ namespace user
 
 
    struct __STATUSPANE :
-      virtual public element
+      virtual public object
    {
 
 

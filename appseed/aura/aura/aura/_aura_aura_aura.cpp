@@ -98,7 +98,6 @@
 #include "aura_printer.cpp"
 #include "aura_printf.cpp"
 #include "aura_progress.cpp"
-#include "aura_root.cpp"
 #include "aura_savings.cpp"
 #include "aura_session.cpp"
 #include "aura_session_interface.cpp"

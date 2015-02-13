@@ -6,7 +6,7 @@ namespace user
 
 
    combo_box::combo_box(::aura::application * papp) :
-      element(papp),
+      object(papp),
       ::data::listener(papp),
       ::user::edit_plain_text(papp)
    {
@@ -759,7 +759,7 @@ namespace user
       if(m_plist == NULL)
       {
 
-         sp(element) pca = Application.alloc(m_typeComboList);
+         sp(object) pca = Application.alloc(m_typeComboList);
 
          m_plist =  (pca);
 

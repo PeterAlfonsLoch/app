@@ -62,7 +62,7 @@ thread::thread()
 
 
 thread::thread(::aura::application * papp) :
-element(papp)
+object(papp)
 {
 
    CommonConstruct();
@@ -87,7 +87,7 @@ element(papp)
 
 
 thread::thread(::aura::application * papp, __THREADPROC pfnThreadProc, LPVOID pParam) :
-element(papp)
+object(papp)
 {
 
    CommonConstruct();
@@ -1237,7 +1237,7 @@ void thread::set_end_thread()
 }
 
 
-void thread::defer_add_thread_run_wait(sync_object_ptra & soa)
+void thread::defer_add_thread_run_wait(object_spa & soa)
 {
 
     UNREFERENCED_PARAMETER(soa);

@@ -4,14 +4,14 @@ namespace xml
 {
 
    tree_base::tree_base(::aura::application * papp) :
-      element(papp),
+      object(papp),
       m_varexchange(papp)
    {
       m_pschema = NULL;
    }
 
    tree_base::tree_base(::aura::application * papp, tree_schema * pschema) :
-      element(papp),
+      object(papp),
       m_varexchange(papp)
    {
       m_pschema = pschema;

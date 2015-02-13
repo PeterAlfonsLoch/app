@@ -24,7 +24,7 @@ namespace user
 
 
    interaction_child::interaction_child(::aura::application * papp):
-      element(papp)
+      ::object(papp)
    {
 
       m_rectParentClient.null();

@@ -6,16 +6,17 @@ namespace aura
 
 
    class CLASS_DECL_AURA live_signal :
-      virtual public ::aura::live_object,
-      virtual protected ptr_array < live_object >
+      virtual public object
    {
    public:
+
+      object_spa       m_ptraLive;
 
       live_signal();
       live_signal(const live_signal & signal);
 
-      void keep(live_object * pliveobject);
-      void unkeep(live_object * pliveobject);
+      void keep(object * pliveobject);
+      void unkeep(object * pliveobject);
 
       virtual void on_keep_alive();
       virtual bool is_alive();

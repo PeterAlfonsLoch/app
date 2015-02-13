@@ -384,23 +384,20 @@ namespace aura
 
 
 
-inline ::aura::allocatorsp & element::allocer()
-{
 
-   return m_pauraapp->m_allocer;
-
-}
-
-
-
-inline sp(::command_thread) object::command_thread()
-{
-
-   return m_pauraapp->command_thread();
-
-}
-
-
+//void object::keep_alive()
+//{
+//   try
+//   {
+//      on_keep_alive();
+//   }
+//   catch(...)
+//   {
+//   }
+//}
+//
+//void on_keep_alive();
+//virtual bool is_alive();
 
 
 

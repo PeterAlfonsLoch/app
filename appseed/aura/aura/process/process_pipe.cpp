@@ -6,7 +6,7 @@ namespace process
 
 
    pipe::pipe(::aura::application * papp) :
-      element(papp)
+      object(papp)
    {
 
       m_bBlock = false;

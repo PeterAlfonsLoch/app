@@ -89,7 +89,7 @@ namespace aura
    {
    public:
 
-      single_application_library(::aura::application * papp,const char * pszRoot): element(papp),::aura::library(papp,0, pszRoot) {}
+      single_application_library(::aura::application * papp,const char * pszRoot): object(papp),::aura::library(papp,0, pszRoot) {}
 
       // impl
       virtual sp(::aura::application) get_new_app(const char * pszAppId);

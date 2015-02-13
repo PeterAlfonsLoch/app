@@ -7,7 +7,7 @@ namespace sockets
 
 
    http_post_socket::http_post_socket(base_socket_handler& h) :
-      element(h.get_app()),
+      object(h.get_app()),
       base_socket(h),
       socket(h),
       stream_socket(h),
@@ -25,7 +25,7 @@ namespace sockets
 
 
    http_post_socket::http_post_socket(base_socket_handler& h,const string & url_in) :
-      element(h.get_app()),
+      object(h.get_app()),
       base_socket(h),
       socket(h),
       stream_socket(h),

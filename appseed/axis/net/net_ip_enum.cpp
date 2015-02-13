@@ -6,7 +6,7 @@ namespace net
 
 
    ip_enum::ip_enum(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
 
    }

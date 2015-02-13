@@ -73,7 +73,7 @@ namespace primitive
 
 
    memory::memory(::aura::application * papp) :
-      element(papp)
+      object(papp)
    {
 
       m_pprimitivememory   = this;
@@ -88,7 +88,7 @@ namespace primitive
    }
 
    memory::memory(::aura::application * papp, bool bAligned) :
-      element(papp)
+      object(papp)
    {
 
       m_pprimitivememory = this;

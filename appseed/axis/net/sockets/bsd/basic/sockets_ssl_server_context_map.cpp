@@ -7,7 +7,7 @@ namespace sockets
 
 
    ssl_server_context_map::ssl_server_context_map(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       m_mutex(papp)
    {
    }

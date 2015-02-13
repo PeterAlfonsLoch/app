@@ -8,7 +8,7 @@ namespace windows
 
 
    dir::dir(::aura::application * papp) :
-      ::element(papp),
+      ::object(papp),
       ::file::dir::system(papp)
    {
       

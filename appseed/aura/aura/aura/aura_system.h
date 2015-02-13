@@ -3,7 +3,7 @@
 
 
 class CLASS_DECL_AURA ptra:
-   virtual public spa(element)
+   virtual public spa(object)
 {
 public:
 
@@ -11,8 +11,8 @@ public:
 };
 
 
-typedef ::map < sp(element),sp(element),sp(element),sp(element) > element_map;
-typedef ::map < sp(element),sp(element),ptra,ptra > map_many;
+typedef ::map < sp(object),sp(object),sp(object),sp(object) > element_map;
+typedef ::map < sp(object),sp(object),ptra,ptra > map_many;
 
 
 namespace aura
@@ -155,27 +155,33 @@ namespace aura
 
 
       virtual void on_allocation_error(::aura::application * papp,sp(type) & info);
-      //   sp(element) alloc(::aura::application * papp, sp(type) info);
-      element * alloc(::aura::application * papp,const std_type_info & info);
-      //   virtual sp(element) on_alloc(::aura::application * papp, sp(type) info);
+      //   sp(object) alloc(::aura::application * papp, sp(type) info);
+      object * alloc(::aura::application * papp,const std_type_info & info);
+      //   virtual sp(object) on_alloc(::aura::application * papp, sp(type) info);
 
 
 
       using ::aura::application::alloc;
-      virtual element * alloc(::aura::application * papp,sp(type)  &info);
-      virtual element * alloc(::aura::application * papp,const class id & idType);
+      virtual object * alloc(::aura::application * papp,sp(type)  &info);
+      virtual object * alloc(::aura::application * papp,const class id & idType);
 
-      virtual element * on_alloc(::aura::application * papp,sp(type) & info);
-      virtual element * clone();
-      template < class T >
-      sp(T) clone(sp(T) p)
-      {
-         return System.factory().clone(p);
-      }
+      virtual object * on_alloc(::aura::application * papp,sp(type) & info);
+      virtual object * clone();
+      
+      
+      //template < class T >
+      //sp(T) clone(sp(T) p)
+      //{
+
+      //   return System.factory().clone(p);
+
+      //}
+
+
       template < typename T >
       inline T * cast_clone(T * pt)
       {
-         return dynamic_cast <T *> (clone(dynamic_cast <sp(element)> (pt)));
+         return dynamic_cast <T *> (clone(dynamic_cast <sp(object)> (pt)));
       }
 
       template < class T >
@@ -195,7 +201,7 @@ namespace aura
       }
 
 
-      virtual void discard_to_factory(sp(element) pca);
+      virtual void discard_to_factory(sp(object) pca);
 
 
 

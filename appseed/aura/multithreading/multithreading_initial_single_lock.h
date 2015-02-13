@@ -7,8 +7,8 @@ class CLASS_DECL_AURA initial_single_lock :
 public:
 
 
-   explicit initial_single_lock(waitable * pObject) :
-      single_lock(pObject, true)
+   explicit initial_single_lock(object * pobject) :
+      single_lock(pobject,true)
    { 
    
    }

@@ -6,7 +6,7 @@ namespace filemanager
 
 
    tree::tree(::aura::application * papp) :
-      element(papp),
+      object(papp),
       ::data::data(papp),
       ::data::tree(papp),
       ::user::tree_data(papp),
@@ -732,7 +732,7 @@ namespace filemanager
 
 
    tree::polishing::polishing(::aura::application * papp, ::filemanager::tree * ptree,::user::tree * pusertree, bool bLowLatency) :
-      element(papp),
+      object(papp),
       thread(papp)
    {
 

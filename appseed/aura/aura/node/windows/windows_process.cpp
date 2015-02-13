@@ -8,7 +8,7 @@ namespace windows
 
 
    process::process(::aura::application * papp):
-      element(papp),
+      object(papp),
       ::process::process(papp)
    {
 

@@ -2,7 +2,7 @@
 
 
 //string_to_string::string_to_string(::aura::application * papp, int_ptr nBlockSize) :
-//   element(papp),
+//   object(papp),
 //   base_string_to_string(papp,  nBlockSize)
 //{
 //

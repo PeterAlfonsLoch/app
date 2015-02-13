@@ -201,6 +201,8 @@ void window_gdi::update_window(COLORREF * pcolorref,const RECT & rect,int cxPara
 
       bool bOk = ::UpdateLayeredWindow(m_hwnd, m_hdcScreen, &pt, &sz, m_hdc, &ptSrc, RGB(0, 0, 0), &blendPixelFunction, ULW_ALPHA) != FALSE;
 
+      ::SwitchToThread();
+
 
    }
    else

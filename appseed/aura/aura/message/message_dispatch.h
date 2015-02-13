@@ -16,7 +16,7 @@ namespace message
 
 
       class CLASS_DECL_AURA HandlerItemBase:
-         virtual public root
+         virtual public object
       {
       public:
 
@@ -61,7 +61,7 @@ namespace message
 
 
       class CLASS_DECL_AURA Signal:
-         virtual public element
+         virtual public object
       {
       public:
 

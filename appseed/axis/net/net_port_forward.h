@@ -50,7 +50,7 @@ namespace net
 	   // GetPortMappingVector() and GetDeviceInformationContainer() methods
 
       class CLASS_DECL_AXIS port_map :
-         virtual public element
+         virtual public object
 	   {
 	   public:
 		   string ExternalIPAddress;
@@ -63,7 +63,7 @@ namespace net
 	   };
 
       class CLASS_DECL_AXIS device :
-         virtual public element
+         virtual public object
 	   {
 	   public:
 		   // see http://msdn.microsoft.com/library/en-us/upnp/upnp/iupnpdevice.asp

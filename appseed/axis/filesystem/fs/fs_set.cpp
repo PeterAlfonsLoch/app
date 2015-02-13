@@ -6,7 +6,7 @@ namespace fs
 
 
    set::set(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       ::data::data(papp),
       ::fs::data(papp)
    {

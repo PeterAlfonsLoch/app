@@ -6,7 +6,7 @@ namespace user
 
 
    tool_tip_window::tool_tip_window(::aura::application * papp) :
-      element(papp),
+      object(papp),
       m_font(allocer())
    {
       m_ealignDefault = (EAlign) (AlignRight | AlignTop);

@@ -9,7 +9,7 @@ namespace install
 
 
    starter_start::starter_start(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
 
    }

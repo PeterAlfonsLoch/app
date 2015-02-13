@@ -21,7 +21,7 @@ bool is_debugger_attached()
 
 
 assert_exception::assert_exception(const assert_exception & e) :
-   element(e),
+   object(e),
    ::call_stack(e),
    ::exception::base(e),
    simple_exception(e)
@@ -30,7 +30,7 @@ assert_exception::assert_exception(const assert_exception & e) :
 }
 
 assert_exception::assert_exception(::aura::application * papp, const char * pszFile, long lLine) :
-   element(papp),
+   object(papp),
    ::call_stack(papp),
    ::exception::base(papp),
    simple_exception(papp)
@@ -80,7 +80,7 @@ assert_exception::~assert_exception()
 }
 
 misc_exception::misc_exception(const misc_exception & e) :
-   element(e),
+   object(e),
    ::call_stack(e),
    ::exception::base(e),
    simple_exception(e),
@@ -90,7 +90,7 @@ misc_exception::misc_exception(const misc_exception & e) :
 }
 
 misc_exception::misc_exception(::aura::application * papp, const char * pszMessage) :
-   element(papp),
+   object(papp),
    ::call_stack(papp),
    ::exception::base(papp),
    simple_exception(papp)

@@ -97,7 +97,7 @@ namespace draw2d
    }
 
    path::path(::aura::application * papp) :
-      ::element(papp)
+      ::object(papp)
    {
 
       m_bUpdated     = false;
@@ -344,7 +344,7 @@ namespace draw2d
       e->m_stringpath.m_x            = x;
       e->m_stringpath.m_y            = y;
       e->m_stringpath.m_strText      = strText;
-      e->m_stringpath.m_spfont       = spfont.clone();
+      e->m_stringpath.m_spfont       = ::clone(spfont);
 
       m_elementa.add(e);
 

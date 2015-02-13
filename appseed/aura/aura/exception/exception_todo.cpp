@@ -2,7 +2,7 @@
 
 
 todo::todo(::aura::application * papp, const char * pszTip) :
-   element(papp),
+   object(papp),
    ::call_stack(papp),
    ::exception::base(papp),
    not_implemented(papp, pszTip)
@@ -12,7 +12,7 @@ todo::todo(::aura::application * papp, const char * pszTip) :
 
 
 todo::todo(const todo & e) :
-   element(e),
+   object(e),
    ::call_stack(e),
    ::exception::base(e),
    not_implemented(e)

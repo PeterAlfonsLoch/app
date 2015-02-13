@@ -2,7 +2,7 @@
 
 
 not_implemented::not_implemented(const not_implemented & e) : 
-   element(e),
+   object(e),
    ::call_stack(e),
    ::exception::base(e),
    m_strTip(e.m_strTip)
@@ -11,7 +11,7 @@ not_implemented::not_implemented(const not_implemented & e) :
    }
 
 not_implemented::not_implemented(::aura::application * papp, const char * pszTip) : 
-   element(papp),
+   object(papp),
    ::call_stack(papp),
    ::exception::base(papp),
    m_strTip(pszTip)

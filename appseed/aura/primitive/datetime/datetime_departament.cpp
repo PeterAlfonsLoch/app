@@ -13,7 +13,7 @@ namespace datetime
 
 
    departament::departament(::aura::application * papp):
-      element(papp),
+      object(papp),
       ::aura::departament(papp),
       m_international(papp),
       m_str(papp)
@@ -114,7 +114,7 @@ namespace datetime
    }
 
    departament::international::international(::aura::application * papp):
-      element(papp)
+      object(papp)
    {
    }
 

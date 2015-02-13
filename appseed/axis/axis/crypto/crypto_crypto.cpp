@@ -26,7 +26,7 @@ namespace crypto
 
 
    crypto::crypto(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
    }
 
@@ -1013,7 +1013,7 @@ namespace crypto
 
 
    rsa::rsa(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       m_mutex(papp)
    {
 #if defined(METROWIN)  && !defined(OPENSSL_CRYPTO)
@@ -1027,7 +1027,7 @@ namespace crypto
 
 
    rsa::rsa(::aura::application * papp, const string & nParam) :
-      element(papp)
+      ::object(papp)
    {
 
 #ifdef MACOS_DEPRECATED
@@ -1172,7 +1172,7 @@ namespace crypto
       const string & dmp1,
       const string & dmq1,
       const string & iqmp) :
-      element(papp),
+      ::object(papp),
       m_mutex(papp)
    {
 

@@ -38,7 +38,7 @@ namespace fontopus
 {
 
    validate::validate(::aura::application * papp,const char * pszForm,bool bAuth,bool bInteractive):
-      element(papp),
+      ::object(papp),
       m_loginthread(papp)
    {
 
@@ -496,7 +496,7 @@ namespace fontopus
 
 
    login_thread::login_thread(::aura::application * papp):
-      element(papp),
+      ::object(papp),
       thread(papp),
       simple_thread(papp)
    {

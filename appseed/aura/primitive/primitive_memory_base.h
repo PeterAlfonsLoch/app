@@ -34,7 +34,7 @@ namespace primitive
 
 
    class CLASS_DECL_AURA memory_base :
-      public object,
+      virtual public object,
       public ::file::serializable
    {
    public:

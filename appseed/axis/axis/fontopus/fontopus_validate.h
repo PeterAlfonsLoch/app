@@ -40,7 +40,7 @@ namespace fontopus
 
 
    class CLASS_DECL_AXIS http_execute :
-      virtual public element
+      virtual public object
    {
    public:
       

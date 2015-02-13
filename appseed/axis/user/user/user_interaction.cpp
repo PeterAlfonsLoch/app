@@ -25,7 +25,7 @@ namespace user
    }
 
    interaction::interaction(::aura::application * papp):
-      element(papp),
+      ::object(papp),
       ::user::interaction_base(papp)
    {
 
@@ -121,6 +121,8 @@ namespace user
 
 
       m_bDefaultWalkPreTranslateParentTree = false;
+
+      m_bMoving                  = false;
 
    }
 
@@ -850,6 +852,16 @@ namespace user
    void interaction::_001OnMove(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
+
+      if(m_bMoving && !(GetExStyle() & WS_EX_LAYERED))
+      {
+
+         Session.m_ptCursor = m_ptMoveCursor;
+         
+         ::SetCursorPos(m_ptMoveCursor.x,m_ptMoveCursor.y);
+
+      }
+
    }
 
    void interaction::set_viewport_org(::draw2d::graphics * pgraphics)
@@ -3177,7 +3189,7 @@ namespace user
    }
 
 
-   id interaction::run_modal_loop(::user::interaction * pui,uint32_t dwFlags,::aura::live_object * pliveobject)
+   id interaction::run_modal_loop(::user::interaction * pui,uint32_t dwFlags,::object * pliveobject)
    {
 
       return pui->_001RunModalLoop(dwFlags,pliveobject);
@@ -3185,7 +3197,7 @@ namespace user
    }
 
 
-   id interaction::RunModalLoop(uint32_t dwFlags,::aura::live_object * pliveobject)
+   id interaction::RunModalLoop(uint32_t dwFlags,::object * pliveobject)
    {
 
       return _001RunModalLoop(dwFlags,pliveobject);
@@ -3193,7 +3205,7 @@ namespace user
    }
 
 
-   id interaction::_001RunModalLoop(uint32_t dwFlags,::aura::live_object * pliveobject)
+   id interaction::_001RunModalLoop(uint32_t dwFlags,::object * pliveobject)
    {
 
       // for tracking the idle time state
@@ -4836,7 +4848,7 @@ namespace user
    }
 
 
-   void interaction::keep_alive(::aura::live_object * pliveobject)
+   void interaction::keep_alive(::object * pliveobject)
    {
 
       m_pauraapp->keep_alive();

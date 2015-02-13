@@ -2,7 +2,7 @@
 
 
 resource_exception::resource_exception(::aura::application * papp) :
-   element(papp),
+   object(papp),
    ::call_stack(papp),
    ::exception::base(papp),
    simple_exception(papp)

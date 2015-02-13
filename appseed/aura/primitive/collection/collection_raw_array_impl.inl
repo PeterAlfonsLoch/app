@@ -263,14 +263,14 @@ inline raw_array < TYPE, ARG_TYPE, ALLOCATOR > & raw_array < TYPE, ARG_TYPE, ALL
 
 template<class TYPE, class ARG_TYPE, class ALLOCATOR >
 raw_array < TYPE, ARG_TYPE, ALLOCATOR >::raw_array(::aura::application * papp, ::count nGrowBy) :
-element(papp),
+object(papp),
 array_base < TYPE, ALLOCATOR > (papp, sizeof(TYPE), true)
 {
 }
 
 template<class TYPE, class ARG_TYPE, class ALLOCATOR >
 raw_array < TYPE, ARG_TYPE, ALLOCATOR >::raw_array(const raw_array <TYPE, ARG_TYPE> & a) :
-element(a.get_app()),
+object(a.get_app()),
 array_base < TYPE, ALLOCATOR > (a.get_app(),sizeof(TYPE),true)
 {
    operator = (a);
@@ -278,7 +278,7 @@ array_base < TYPE, ALLOCATOR > (a.get_app(),sizeof(TYPE),true)
 
 template<class TYPE, class ARG_TYPE, class ALLOCATOR >
 raw_array < TYPE, ARG_TYPE, ALLOCATOR >::raw_array(raw_array <TYPE,ARG_TYPE> && a):
-element(a.get_app()),
+object(a.get_app()),
 array_base < TYPE, ALLOCATOR > (a.get_app(),sizeof(TYPE),true)
 {
 

@@ -16,7 +16,7 @@ namespace user
 
 
          DockManager::DockManager(WorkSet * pworkset) :
-            element(pworkset->get_app())
+            object(pworkset->get_app())
          {
             
             ASSERT(pworkset != NULL);

@@ -41,7 +41,7 @@ namespace data
    };
 
    class CLASS_DECL_AURA tree_item :
-      virtual public root
+      virtual public object
    {
    public:
 

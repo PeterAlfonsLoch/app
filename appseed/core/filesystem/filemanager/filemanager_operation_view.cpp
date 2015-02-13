@@ -6,7 +6,7 @@ namespace filemanager
 
 
    operation_view::operation_view(::aura::application * papp):
-      element(papp),
+      object(papp),
       ::user::split_layout(papp),
 
       ::user::split_view(papp),

@@ -6,7 +6,7 @@ namespace userex
 
 
    pane_tab_view::pane_tab_view(::aura::application * papp):
-      element(papp),
+      object(papp),
 
       ::user::tab_view(papp),
       ::user::tab(papp),

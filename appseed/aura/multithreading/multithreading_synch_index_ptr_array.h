@@ -7,7 +7,7 @@ class CLASS_DECL_AURA synch_index_ptr_array:
 public:
 
    
-   ::mutex * m_pmutex;
+   //::mutex * m_pmutex;
 
 
    synch_index_ptr_array(mutex * pmutex) { m_pmutex = pmutex; }

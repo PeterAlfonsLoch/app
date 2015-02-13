@@ -1,7 +1,7 @@
 //#include "framework.h"
 
 XfplayerViewLines::XfplayerViewLines(::aura::application * papp) :
-   element(papp)
+   object(papp)
 {
     m_iFirstVisible = -1;
     m_iLastVisible = -1;

@@ -9,7 +9,7 @@ namespace draw2d_direct2d
 
 
    graphics_path::graphics_path(::aura::application * papp) :
-      ::element(papp)
+      ::object(papp)
    {
 
       m_bFigureEnded = true;

@@ -21,7 +21,7 @@ namespace file
 
 
    simple_binary_buffer::simple_binary_buffer(::aura::application * papp) :
-      element(papp)
+      object(papp)
    {
 
       m_pfile = NULL;

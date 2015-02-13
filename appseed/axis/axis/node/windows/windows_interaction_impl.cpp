@@ -86,7 +86,7 @@ namespace windows
 
 
    interaction_impl::interaction_impl(::aura::application * papp):
-      element(papp)
+      ::object(papp)
    {
 
       m_guieptraMouseHover = canew(ptr_array < ::user::interaction >);
@@ -1165,17 +1165,17 @@ namespace windows
 
       SCAST_PTR(::message::base,pbase,pobj);
 
-      if(pbase->m_uiMessage == WM_MOUSEMOVE)
-      {
-         
-         pbase->m_bRet = true;
-         //pbase->set_lresult(1);
-         // addictive human (camilo, you are classifying yourself human, you're kind respecting yourself, its a good sign...) profiling with PROFILE_MOVE_MANAGER at app_core_miau.vcxproj...
+      //if(pbase->m_uiMessage == WM_MOUSEMOVE)
+      //{
+      //   
+      //   pbase->m_bRet = true;
+      //   //pbase->set_lresult(1);
+      //   // addictive human (camilo, you are classifying yourself human, you're kind respecting yourself, its a good sign...) profiling with PROFILE_MOVE_MANAGER at app_core_miau.vcxproj...
 
-         return;
+      //   return;
 
 
-      }
+      //}
 
       
 
@@ -2209,7 +2209,7 @@ namespace windows
       HDC m_hdc;
 
       print_window(::aura::application * papp,oswindow oswindow,HDC hdc,uint32_t dwTimeout):
-         ::element(papp),
+         ::object(papp),
          m_event(papp)
       {
             m_event.ResetEvent();
@@ -3010,7 +3010,7 @@ namespace windows
 
 
    /*   ::user::view_update_hint::user::view_update_hint(::aura::application * papp) :
-   element(papp)
+   ::object(papp)
    {
    }
    */
@@ -5482,10 +5482,10 @@ namespace windows
 // isso é um comentario e zero (0) se não processou
 LRESULT CALLBACK __window_procedure(oswindow oswindow,UINT message,WPARAM wparam,LPARAM lparam)
 {
-   if(message == 512)
-   {
-      return VARIAS_MENSAGENS_DO_WINDOWS_RECEBIDAS_PELA_FUNCAO_QUE_RECEBE_AS_MENSAGENS_A_FUNCAO_QUE_RECEBE_AS_MENSAGENS_RETORNA_1_SE_A_MENSAGEM_SE_PROCESSOU_OU_QUER_DIZER_QUE_PROCESSOU_SERA_QUE_ATINGIU_O_LIMITE;
-   }
+   //if(message == 512)
+   //{
+   //   return VARIAS_MENSAGENS_DO_WINDOWS_RECEBIDAS_PELA_FUNCAO_QUE_RECEBE_AS_MENSAGENS_A_FUNCAO_QUE_RECEBE_AS_MENSAGENS_RETORNA_1_SE_A_MENSAGEM_SE_PROCESSOU_OU_QUER_DIZER_QUE_PROCESSOU_SERA_QUE_ATINGIU_O_LIMITE;
+   //}
 
    sp(::user::interaction) pui = ::window_from_handle(oswindow);
 

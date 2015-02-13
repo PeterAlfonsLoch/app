@@ -21,7 +21,7 @@ namespace aura
 
 
 cmd_ui::cmd_ui(::aura::application * papp):
-element(papp)
+object(papp)
 {
 
    m_iIndex                      = 0;

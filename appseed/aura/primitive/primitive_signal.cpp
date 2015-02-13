@@ -3,7 +3,7 @@
 
 
 signal_details::signal_details(::aura::application * papp) :
-   element(papp)
+   object(papp)
 {
    m_iParam    = 0;
    m_psignal   = NULL;
@@ -13,8 +13,27 @@ signal_details::signal_details(::aura::application * papp) :
 }
 
 
-signal_details::signal_details(class signal * psignal)
+signal_details::signal_details(class signal * psignal) :
+   object(psignal->get_app())
 {
+   m_iParam    = 0;
+   m_psignal   = psignal;
+   m_bRet      = false;
+   m_iIndex    = 0;
+   m_pset      = NULL;
+}
+
+signal_details::signal_details(::aura::application * papp,class signal * psignal):
+   object(papp)
+{
+
+   if(m_pauraapp == NULL)
+   {
+
+      m_pauraapp = psignal->m_pauraapp;
+
+   }
+
    m_iParam    = 0;
    m_psignal   = psignal;
    m_bRet      = false;

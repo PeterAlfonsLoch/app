@@ -3,7 +3,7 @@
 const int32_t simple_list_header_control::s_iDividerWidth = 4;
 
 simple_list_header_control::simple_list_header_control(::aura::application * papp) :
-   element(papp),
+   object(papp),
    ::user::list_header(papp)
 {
    

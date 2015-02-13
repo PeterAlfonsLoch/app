@@ -6,7 +6,7 @@ namespace draw2d_direct2d
 
 
    pen::pen(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    { 
 
       m_bMetroColor     = false;

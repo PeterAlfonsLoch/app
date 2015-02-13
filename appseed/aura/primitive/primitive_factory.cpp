@@ -14,7 +14,7 @@
 bool is_safe_set(void * p);
 
 base_factory::base_factory(::aura::application * papp) :
-   element(papp)
+   object(papp)
 {
    m_pmutex = new mutex(papp);
    m_bSimpleFactoryRequest = false;
@@ -35,7 +35,7 @@ base_factory::~base_factory()
 
 
 
-void base_factory::discard(sp(element) pobject)
+void base_factory::discard(sp(object) pobject)
 {
    single_lock sl(m_pmutex, TRUE);
    sp(factory_allocator) & pallocator = m_mapAllocator[typeid(*pobject).name()];
@@ -77,7 +77,7 @@ void base_factory::enable_simple_factory_request(bool bEnable)
 
 
 
-element * base_factory::create(::aura::application * papp, sp(type) & info)
+object * base_factory::create(::aura::application * papp, sp(type) & info)
 {
 
    if(info->m_spmutex.is_null())
@@ -119,7 +119,7 @@ element * base_factory::create(::aura::application * papp, sp(type) & info)
 
 
 
-element * base_factory::base_clone(element * pobject)
+object * base_factory::base_clone(object * pobject)
 {
 
    return typed_clone((id) typeid(*pobject).name(), pobject);
@@ -127,7 +127,7 @@ element * base_factory::base_clone(element * pobject)
 }
 
 
-element * base_factory::typed_clone(id idType, element * pobject)
+object * base_factory::typed_clone(id idType,object * pobject)
 {
 
    single_lock sl(m_pmutex,TRUE);
@@ -145,7 +145,7 @@ element * base_factory::typed_clone(id idType, element * pobject)
 }
 
 
-element * factory_item_base::create(::aura::application * papp)
+object * factory_item_base::create(::aura::application * papp)
 {
    
    UNREFERENCED_PARAMETER(papp);
@@ -155,14 +155,14 @@ element * factory_item_base::create(::aura::application * papp)
 }
 
 
-element * factory_item_base::create()
+object * factory_item_base::create()
 {
 
    return NULL;
 
 }
 
-element * factory_item_base::clone(sp(element) pobject)
+object * factory_item_base::clone(sp(object) pobject)
 {
 
    UNREFERENCED_PARAMETER(pobject);
@@ -231,13 +231,13 @@ CLASS_DECL_AURA mutex * g_pmutexFactory = NULL;
 
 
 
-CLASS_DECL_AURA bool safe_destroy_element(element * pelement)
+CLASS_DECL_AURA bool safe_destroy_element(object * pelement)
 {
 
    try
    {
 
-      pelement->~element();
+      pelement->~object();
 
    }
    catch(...)

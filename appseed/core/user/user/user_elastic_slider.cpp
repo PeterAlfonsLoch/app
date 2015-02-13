@@ -6,7 +6,7 @@ namespace user
 
 
    elastic_slider::elastic_slider(::aura::application * papp) :
-      element(papp),
+      object(papp),
       ::user::interaction(papp)
    {
 

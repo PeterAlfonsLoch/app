@@ -7,7 +7,7 @@ namespace sockets
 
 
    base_socket_handler::base_socket_handler(::aura::application * papp, logger * plogger) :
-      element(papp),
+      ::object(papp),
       m_splogger(plogger)
    {
 

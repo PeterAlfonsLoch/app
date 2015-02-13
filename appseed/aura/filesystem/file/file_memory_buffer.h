@@ -33,7 +33,7 @@ namespace file
       virtual bool IsValid() const;
       ::primitive::memory_size remove_begin(void * lpBuf, ::primitive::memory_size uiCount);
       void load_string(string & str);
-      using ::request_interface::create;
+      using ::object::create;
       void create(::primitive::memory_size iSize = -1);
       file_position seek(file_offset lOff, ::file::e_seek  nFrom);
       file_position get_position() const;

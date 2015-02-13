@@ -5,7 +5,7 @@ thread_int_ptr < int_ptr > t_iAvoidParsingException;
 
 
 parsing_exception::parsing_exception(::aura::application * papp,const string & strMessage) :
-   element(papp),
+   object(papp),
    ::call_stack(get_app()),
    ::exception::base(get_app()),
    simple_exception(papp, strMessage)

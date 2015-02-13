@@ -6,7 +6,7 @@ namespace colorertake5
 {
 
    HRCParserImpl::HRCParserImpl(::aura::application * papp) :
-      element(papp),
+      object(papp),
       fileTypeHash(papp, 200),
       schemeHash(papp, 4000),
       regionNamesHash(papp, 1000)

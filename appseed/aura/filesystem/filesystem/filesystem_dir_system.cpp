@@ -29,7 +29,7 @@ namespace file
 
 
       system::system(::aura::application * papp) :
-         ::element(papp),
+         ::object(papp),
          m_mutex(papp),
          m_isdirmap(papp)
       {

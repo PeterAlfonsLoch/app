@@ -7,7 +7,7 @@ namespace visual
 
 
    graphics_extension::graphics_extension(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
 
    }

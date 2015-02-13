@@ -17,7 +17,7 @@ namespace filemanager
 
 
          list_view::list_view(::aura::application * papp) :
-         element(papp),
+         object(papp),
             ::user::scroll_view(papp),
             ::user::list(papp),
             ::user::form_interface(papp),

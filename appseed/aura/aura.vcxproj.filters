@@ -1286,9 +1286,6 @@
     <ClInclude Include="aura\aura\aura_printf.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_root.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
     <ClInclude Include="aura\aura\aura_session.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
@@ -2737,9 +2734,6 @@
     <ClCompile Include="aura\aura\aura_printf.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_root.cpp">
-      <Filter>Source Files\aura\aura</Filter>
-    </ClCompile>
     <ClCompile Include="aura\aura\aura_session.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
@@ -3413,6 +3407,9 @@
     </None>
     <None Include="primitive\geometry\geometry_size.inl">
       <Filter>Header Files\primitive\geometry</Filter>
+    </None>
+    <None Include="primitive\primitive.inl">
+      <Filter>Header Files\primitive</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

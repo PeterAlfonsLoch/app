@@ -113,7 +113,7 @@ namespace colorertake5
    };
 
    ParserFactory::ParserFactory(::aura::application * papp) :
-      element(papp)
+      object(papp)
    {
 
       fileErrorHandler = NULL;
@@ -127,7 +127,7 @@ namespace colorertake5
    }
 
    ParserFactory::ParserFactory(::aura::application * papp, string catalogPath) :
-      element(papp)
+      object(papp)
    {
 
       fileErrorHandler = NULL;

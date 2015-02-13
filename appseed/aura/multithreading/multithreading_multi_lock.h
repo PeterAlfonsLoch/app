@@ -7,19 +7,19 @@ class CLASS_DECL_AURA multi_lock
 public:
 
 
-   sync_object_ptra           m_syncobjectptra;
+   object_spa                   m_syncobjectptra;
 #ifdef WINDOWS
    raw_ptr_array < HANDLE >      m_objecta;
 #else
-   ptr_array < waitable >  m_objecta;
+   ptr_array < waitable >        m_objecta;
 #endif
-   bool_array                 m_baLocked;
+   bool_array                    m_baLocked;
 
 
-   multi_lock(sync_object_ptra syncobjectptra, bool bInitialLock = FALSE);
+   multi_lock(object_spa syncobjectptra, bool bInitialLock = FALSE);
    ~multi_lock();
 
-   void construct(const sync_object_ptra & syncobjectptra, bool bInitialLock = FALSE);
+   void construct(const object_spa & syncobjectptra, bool bInitialLock = FALSE);
 
    wait_result lock(const duration & dwTimeOut = duration::infinite(), bool bWaitForAll = TRUE, uint32_t dwWakeMask = 0);
    bool unlock();

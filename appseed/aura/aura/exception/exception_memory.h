@@ -29,7 +29,7 @@ namespace std
 
 
       bad_alloc() :
-         element(::get_thread_app()),
+         object(::get_thread_app()),
          ::call_stack(::get_thread_app()),
          ::exception::base(::get_thread_app()),
          simple_exception(::get_thread_app()),

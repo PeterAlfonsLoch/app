@@ -13,7 +13,7 @@ void smart_pointer < T >::alloc(const ::aura::allocatorsp & spallocator)
    if(m_p != NULL)
       ::release(m_p);
 
-   element * pca = CaSys(spallocator).alloc(spallocator->m_pauraapp,idType);
+   object * pca = CaSys(spallocator).alloc(spallocator->m_pauraapp,idType);
 
    if(pca != NULL)
    {
@@ -32,13 +32,13 @@ void smart_pointer < T >::alloc(const ::aura::allocatorsp & spallocator)
 }
 
 
-template < class T >
-sp(T) smart_pointer <T>::clone() const
-{
-   if(m_p == NULL)
-      return NULL;
-   if(m_p->get_app() == NULL)
-      return NULL;
-   return CaSys(m_p).clone(*this);
-}
-
+//template < class T >
+//sp(T) smart_pointer <T>::clone() const
+//{
+//   if(m_p == NULL)
+//      return NULL;
+//   if(m_p->get_app() == NULL)
+//      return NULL;
+//   return CaSys(m_p).clone(*this);
+//}
+//

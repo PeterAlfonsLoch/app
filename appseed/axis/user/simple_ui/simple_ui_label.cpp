@@ -7,7 +7,7 @@ namespace simple_ui
 
 
    label::label(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
 
    }

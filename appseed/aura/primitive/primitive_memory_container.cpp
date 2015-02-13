@@ -6,7 +6,7 @@ namespace primitive
 
 
    memory_container ::memory_container(::aura::application * papp) :
-      element(papp)
+      object(papp)
    {
       
 //      m_spmemory = canew(primitive::memory(papp));
@@ -18,7 +18,7 @@ namespace primitive
 
 
    memory_container ::memory_container(::aura::application * papp, void * pmemory, memory_size dwSize) :
-      element(papp)
+      object(papp)
    {
       m_pvppa = NULL;
       m_spmemory = canew(primitive::memory(this, pmemory, dwSize));
@@ -26,7 +26,7 @@ namespace primitive
 
 
    memory_container ::memory_container(::aura::application * papp, memory_base * pmemory) :
-      element(papp)
+      object(papp)
    {
       m_pvppa = NULL;
       m_spmemory = pmemory;

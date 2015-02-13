@@ -8,7 +8,7 @@ namespace ansios
 
 
    thread_impl::thread_impl(::aura::application * papp) :
-   element(papp),
+   object(papp),
    ::thread_impl(papp)
    {
 

@@ -7,7 +7,7 @@ namespace sockets
 
 
    listen_socket_axis::listen_socket_axis(base_socket_handler & h) : 
-      element(h.get_app()), 
+      object(h.get_app()), 
       base_socket(h),
       socket(h), 
       m_depth(0),
@@ -17,7 +17,7 @@ namespace sockets
    }
 
    listen_socket_axis::listen_socket_axis(const listen_socket_axis& s) : 
-      element(s.get_app()), 
+      object(s.get_app()), 
       base_socket(s),
       socket(s)
    {

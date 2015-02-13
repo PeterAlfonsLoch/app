@@ -28,7 +28,7 @@ application_bias::application_bias()
 }
 
 application_bias::application_bias(::aura::application * papp) :
-   element(papp)
+   object(papp)
 {
    m_set["SessionSynchronizedInput"]      = true;
    m_set["NativeWindowFocus"]             = true;

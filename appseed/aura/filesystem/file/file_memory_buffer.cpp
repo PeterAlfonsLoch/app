@@ -6,7 +6,7 @@ namespace file
 
 
    memory_buffer::memory_buffer(::aura::application * papp, ::primitive::memory_size iSize) :
-      element(papp),
+      object(papp),
       memory_container (papp)
    {
 
@@ -21,7 +21,7 @@ namespace file
 
 
    memory_buffer::memory_buffer(::aura::application * papp, void * pMemory, ::primitive::memory_size dwSize) :
-      element(papp),
+      object(papp),
       memory_container(papp, pMemory, dwSize)
    {
 
@@ -31,7 +31,7 @@ namespace file
 
 
    memory_buffer::memory_buffer(::aura::application * papp, const memory_buffer & memoryfile) :
-      element(papp),
+      object(papp),
       memory_container (papp, ((memory_buffer &) memoryfile).get_memory())
    {
 
@@ -41,7 +41,7 @@ namespace file
 
 
    memory_buffer::memory_buffer(::aura::application * papp, ::primitive::memory_base * pmemory) :
-      element(papp),
+      object(papp),
       memory_container (papp, pmemory)
    {
 

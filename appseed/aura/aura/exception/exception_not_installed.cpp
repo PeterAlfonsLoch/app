@@ -2,7 +2,7 @@
 
 
 not_installed::not_installed(::aura::application * papp, const char * pszVersion, const char * pszBuild, const char * pszType, const char * pszId, const char * pszLocale, const char * pszSchema) :
-   element(papp),
+   object(papp),
    ::call_stack(papp),
    ::exception::base(papp)
 {
@@ -24,7 +24,7 @@ not_installed::not_installed(::aura::application * papp, const char * pszVersion
 }
 
 not_installed::not_installed(const not_installed & e) :
-   element(e),
+   object(e),
    ::call_stack(e),
    ::exception::base(e)
 {

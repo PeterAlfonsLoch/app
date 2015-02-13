@@ -7,7 +7,7 @@ namespace user
 
 
    view_update_hint::view_update_hint(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
 
       m_ehint     = hint_none;

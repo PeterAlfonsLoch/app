@@ -21,7 +21,7 @@ namespace filemanager
             ItemTypeSong,
          };
          class Item :
-            virtual public element
+            virtual public object
          {
          public:
             int64_t     m_iParent;

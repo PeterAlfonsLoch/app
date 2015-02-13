@@ -6,7 +6,7 @@ namespace visual
 
 
    font::font(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       m_spfont(allocer())
    {
       m_pDC       = NULL;

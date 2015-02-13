@@ -12,7 +12,7 @@ namespace http
 #define TMPSIZE 32000
 
    form::form(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       m_setGet(papp),
       m_setPost(papp)
    {

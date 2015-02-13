@@ -9,7 +9,7 @@ namespace user
 
 
    plain_text_tree::plain_text_tree(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       ::data::data(papp),
       ::data::tree(papp),
       m_editfile(papp)

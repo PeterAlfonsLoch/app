@@ -194,7 +194,7 @@ mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrNa
 #ifdef WINDOWS
 
 mutex::mutex(::aura::application * papp, const char * pstrName, HANDLE h) :
-   element(papp),
+   object(papp),
    sync_object(pstrName)
 {
 

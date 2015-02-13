@@ -4,7 +4,7 @@ namespace simpledb
 {
 
    database::database(::aura::application * papp):
-      element(papp)
+      ::object(papp)
    {
       m_protocol = 0;
    }

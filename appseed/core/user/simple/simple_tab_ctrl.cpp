@@ -3,7 +3,7 @@
 
 
 simple_tab_control::simple_tab_control(::aura::application * papp):
-   element(papp),
+   object(papp),
    ::user::interaction(papp),
    
    ::user::tab(papp),

@@ -6,7 +6,7 @@ namespace user
 
 
    menu_list_view::menu_list_view(::aura::application * papp) :
-      element(papp),
+      object(papp),
       menu_base(papp),
       menu(papp),
       menu_list_window(papp)

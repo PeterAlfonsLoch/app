@@ -14,7 +14,7 @@ namespace user
 {
 
    keyboard::keyboard(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
       
 

@@ -10,7 +10,7 @@ namespace install
 {
 
    canvas::canvas(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
 
       m_iMode = 0;

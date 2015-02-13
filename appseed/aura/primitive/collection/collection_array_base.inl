@@ -16,7 +16,7 @@ array_base < TYPE, ALLOCATOR >::array_base(int iTypeSize,bool bRaw)
 
 template < class TYPE,class ALLOCATOR >
 array_base < TYPE, ALLOCATOR >::array_base(::aura::application * papp, int iTypeSize, bool bRaw):
-   element(papp)
+   object(papp)
 {
    
    m_nGrowBy = 32;

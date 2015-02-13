@@ -8,7 +8,7 @@ namespace http
 
    // --------------------------------------------------------------------------------------
    request::request(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       transaction(papp),
       m_memfileBody(papp),
       m_ostream(&m_memfileBody),
@@ -19,7 +19,7 @@ namespace http
 
    // --------------------------------------------------------------------------------------
    request::request(const request& src) :
-   element(((request&) src).get_app()),
+   ::object(((request&) src).get_app()),
    transaction(src),
    m_null(src.m_null),
    m_memfileBody(((request&) src).get_app()),

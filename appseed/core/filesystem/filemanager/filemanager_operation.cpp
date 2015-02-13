@@ -6,7 +6,7 @@ namespace filemanager
 
 
    operation::operation(::aura::application * papp):
-      element(papp)
+      object(papp)
    {
 
       m_oswindowCallback = NULL;

@@ -6,7 +6,7 @@ namespace process
 
 
    departament::departament(::aura::application * papp):
-      element(papp),
+      object(papp),
       ::aura::departament(papp)
    {
 
@@ -86,7 +86,7 @@ namespace process
 
 
    departament::process_thread::process_thread(::aura::application * papp,const string & strCmdLine,const ::duration & dur,bool * pbPotentialTimeout,string * pstrRead,bool bElevated):
-      element(papp),
+      object(papp),
       thread(papp),
       simple_thread(papp),
       m_spprocess(allocer()),
@@ -269,7 +269,7 @@ namespace process
 
 
    departament::process_processor::process_processor(::aura::application * papp,const string & strCmdLine,const duration & dur,bool * pbPotentialTimeout,string * pstrRead,bool bElevated):
-      element(papp),
+      object(papp),
       m_evReady(papp)
    {
    

@@ -8,7 +8,7 @@ namespace user
 {
 
    place_holder_container::place_holder_container(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       m_holdera(papp)
    {
    }

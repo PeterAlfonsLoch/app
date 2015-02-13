@@ -7,7 +7,7 @@ namespace aura
 
 
    document::document(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       ::data::data_container_base(papp),
       m_mutex(NULL)
    {
@@ -383,7 +383,7 @@ namespace aura
    void document::on_changed_view_list(single_lock * psl)
    {
       single_lock sl(&m_mutex, false);
-      if (psl == NULL || psl->m_psyncobject != &m_mutex)
+      if (psl == NULL || psl->m_pobjectSync != &m_mutex)
          psl = &sl;
       psl->lock();
       // if no more views on the document_interface, delete ourself
@@ -559,7 +559,7 @@ namespace aura
       // must close all views now (no prompting) - usually destroys this
    {
       single_lock sl(&m_mutex, false);
-      if (psl == NULL || psl->m_psyncobject != &m_mutex)
+      if (psl == NULL || psl->m_pobjectSync != &m_mutex)
          psl = &sl;
       psl->lock();
       // destroy all frames viewing this document_interface
@@ -901,7 +901,7 @@ namespace aura
       // assumes 1 doc per frame
    {
       single_lock sl(&m_mutex, false);
-      if (psl == NULL || psl->m_psyncobject != &m_mutex)
+      if (psl == NULL || psl->m_pobjectSync != &m_mutex)
          psl = &sl;
       psl->lock();
       // walk all frames of views (mark and sweep approach)
@@ -1047,7 +1047,7 @@ namespace aura
 
 
    /*document::document(::aura::application * papp):
-      element(papp),
+      ::object(papp),
       ::data::data_container_base(papp),
       ::aura::document(papp)
    {

@@ -6,7 +6,7 @@ namespace userex
 
 
    property_page::property_page(::aura::application * papp) :
-      element(papp),
+      object(papp),
       
       ::user::place_holder_container(papp),
       ::user::tab(papp),

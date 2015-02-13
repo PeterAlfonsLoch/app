@@ -2,7 +2,7 @@
 
 
 void_implementation_exception::void_implementation_exception(::aura::application * papp, const char * pszTip) : 
-   element(papp),
+   object(papp),
    ::call_stack(papp),
    ::exception::base(papp),
    not_implemented(papp, pszTip)
@@ -19,7 +19,7 @@ void_implementation_exception::void_implementation_exception(::aura::application
 }
 
 void_implementation_exception::void_implementation_exception(const void_implementation_exception & e) : 
-   element(e),
+   object(e),
    ::call_stack(e),
    ::exception::base(e),
    not_implemented(e)

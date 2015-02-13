@@ -7,7 +7,7 @@ namespace simpledb
 {
 
    socket::socket(::sockets::base_socket_handler & h) :
-      element(h.get_app()),
+      object(h.get_app()),
       base_socket(h),
       ::sockets::socket(h),
       stream_socket(h),

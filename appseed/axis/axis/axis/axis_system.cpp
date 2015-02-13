@@ -56,7 +56,7 @@ namespace axis
       if(papp == NULL)
       {
 
-         oprop("parent_system") = (sp(element)) NULL;
+         oprop("parent_system") = (sp(object)) NULL;
 
       }
       else
@@ -549,7 +549,7 @@ namespace axis
 
    //}
 
-   //sp(element) system::clone()
+   //sp(object) system::clone()
    //{
    //   // by the time, it is not possible to clone a system
    //   return NULL;
@@ -557,7 +557,7 @@ namespace axis
 
 
 
-   //void system::discard_to_factory(sp(element) pca)
+   //void system::discard_to_factory(sp(object) pca)
    //{
 
    //   if(m_pfactory == NULL)
@@ -1618,7 +1618,7 @@ namespace axis
 {
 
    system_interaction_impl::system_interaction_impl(::aura::application * papp):
-      element(papp),
+      ::object(papp),
       ::user::interaction(papp)
    {
 

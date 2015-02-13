@@ -2,7 +2,7 @@
 
 
 last_error_exception::last_error_exception(::aura::application * papp) :
-   element(papp),
+   object(papp),
    ::call_stack(papp),
    ::exception::base(papp),
    hresult_exception(papp, HRESULT_FROM_WIN32(::GetLastError()))

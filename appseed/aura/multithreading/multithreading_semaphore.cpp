@@ -13,7 +13,7 @@
 
 
 semaphore::semaphore(::aura::application * papp, LONG lInitialCount, LONG lMaxCount, const char * pstrName, LPSECURITY_ATTRIBUTES lpsaAttributes) :
-   element(papp),
+   object(papp),
    sync_object(pstrName)
 {
 

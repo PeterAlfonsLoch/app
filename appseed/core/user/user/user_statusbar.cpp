@@ -713,7 +713,7 @@ namespace user
    };
 
    CStatusCmdUI::CStatusCmdUI(::aura::application * papp) :
-   element(papp),
+   object(papp),
       cmd_ui(papp)
 
 

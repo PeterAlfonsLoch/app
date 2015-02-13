@@ -10,7 +10,7 @@ namespace str
 
 
       locale_schema::locale_schema(::aura::application * papp) :
-         element(papp)
+         object(papp)
       {
 
 
@@ -23,7 +23,7 @@ namespace str
       }
 
       locale_schema::locale_schema(const locale_schema & ls) :
-         element(ls.get_app())
+         object(ls.get_app())
       {
 
          operator = (ls);

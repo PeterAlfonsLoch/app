@@ -42,7 +42,7 @@ namespace exception
 
 
    class CLASS_DECL_AURA engine :
-      virtual public element
+      virtual public object
    {
    public:
 

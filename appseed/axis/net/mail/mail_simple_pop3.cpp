@@ -7,7 +7,7 @@ namespace mail
 
 
    simple_pop3::simple_pop3(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       pop3(papp)
    {
 

@@ -6,7 +6,7 @@ namespace simple_ui
 
 
    style::style(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
 
       m_eschema = schema_darker;

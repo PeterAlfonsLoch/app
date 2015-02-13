@@ -12,7 +12,7 @@ namespace windows
 
 
    message_queue::message_queue(::aura::application * papp):
-      element(papp),
+      ::object(papp),
       ::aura::message_queue(papp)
    {
 

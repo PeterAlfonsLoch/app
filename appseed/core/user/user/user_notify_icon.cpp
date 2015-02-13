@@ -5,7 +5,7 @@ namespace user
 {
 
    notify_icon::notify_icon(::aura::application * papp) :
-      element(papp)
+      object(papp)
    {
 #ifdef WINDOWSEX
       m_nid.cbSize = sizeof(m_nid);

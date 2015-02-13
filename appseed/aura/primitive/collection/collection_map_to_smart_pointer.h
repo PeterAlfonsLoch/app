@@ -9,7 +9,7 @@ public:
 
 
    map_to_smart_pointer(::aura::application * papp = NULL, ::count nBlockSize = 10) :
-      element(papp),
+      object(papp),
       map < TYPE, ARG_TYPE, smart_pointer < T >, const smart_pointer < T > & > (papp, nBlockSize)
    {
    }
@@ -31,7 +31,7 @@ public:
 
 
    string_to_smart_pointer(::aura::application * papp = NULL, ::count nBlockSize = 10) :
-      element(papp),
+      object(papp),
       string_map < smart_pointer < T >, const smart_pointer < T > & > (papp, nBlockSize)
    {
 
@@ -53,7 +53,7 @@ public:
 
 
    int_to_smart_pointer(::aura::application * papp = NULL,::count nBlockSize = 10):
-      element(papp),
+      object(papp),
       int_ptr_map < smart_pointer < T >,const smart_pointer < T > & >(papp,nBlockSize)
    {
 

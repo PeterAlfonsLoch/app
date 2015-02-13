@@ -7,7 +7,7 @@ namespace userpresence
 
 
    userpresence::userpresence(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       ::aura::departament(papp),
       m_spqueue(allocer())
    {

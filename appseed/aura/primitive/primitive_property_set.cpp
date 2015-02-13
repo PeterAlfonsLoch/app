@@ -2,7 +2,7 @@
 
 
 property_set::property_set(::aura::application * papp, bool bAutoAdd, bool bMultiValue) :
-   element(papp),
+   object(papp),
    m_propertyptra(papp)
 {
    m_bAutoAdd = bAutoAdd;

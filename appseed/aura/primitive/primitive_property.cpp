@@ -1338,7 +1338,7 @@ property_map::property_map()
 }
 
 property_ptra::property_ptra(::aura::application * papp):
-   element(papp)
+   object(papp)
 {
    set_size(0, 64);
 }

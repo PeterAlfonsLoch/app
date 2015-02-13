@@ -31,7 +31,7 @@ file_size_table::get_fs_size & file_size_table::get_fs_size::operator = (const g
 
 
 file_size_table::file_size_table(::aura::application * papp) :
-   element(papp)
+   object(papp)
 {
    m_hmap = NULL;
    m_item.m_pitemParent = NULL;
@@ -236,7 +236,7 @@ void file_size_table::item::update_size_recursive(::aura::application * papp, in
 
 
 DBFileSystemSizeSet::DBFileSystemSizeSet(::aura::application * papp) :
-   element(papp), m_table(papp)
+   object(papp), m_table(papp)
 {
    m_iMaxIteration = 230;
 }
@@ -334,7 +334,7 @@ bool DBFileSystemSizeSet::get_fs_size(int64_t & i64Size, const char * pszPath, b
 }
 
 FileSystemSizeWnd::FileSystemSizeWnd(::aura::application * papp) :
-   element(papp)
+   object(papp)
 {
    m_pui = new ::user::interaction(papp);
 }
@@ -523,7 +523,7 @@ void FileSystemSizeWnd::_001OnTimer(signal_details * pobj)
 }
 
 FileSystemSizeServerThread::FileSystemSizeServerThread(::aura::application * papp) :
-   element(papp),
+   object(papp),
    thread(papp)
 {
 }

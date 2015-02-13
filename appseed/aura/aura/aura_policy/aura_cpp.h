@@ -293,7 +293,6 @@ typedef struct RECTD RECTD;
 namespace aura
 {
 
-   class live_object;
 
 //#if defined METROWIN && defined(__cplusplus_winrt)
 //
@@ -557,7 +556,6 @@ CLASS_DECL_AURA ::aura::application * get_thread_app();
 #include "aura/aura/aura/aura_auto_pointer.h"
 
 #include "aura/aura/aura/aura_smart_pointer1.h"
-#include "aura/aura/aura/aura_root.h"
 #include "aura/aura/aura/aura_smart_pointer2.h"
 
 
@@ -1509,5 +1507,8 @@ namespace aura
 
 } // namespace aura
 
+
+
+#include "aura/primitive/primitive.inl"
 
 

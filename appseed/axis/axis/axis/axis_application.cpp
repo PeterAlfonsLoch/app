@@ -310,12 +310,12 @@ namespace axis
    }
 
 
-   //sp(element) application::alloc(sp(type) info)
+   //sp(object) application::alloc(sp(type) info)
    //{
    //   return System.alloc(this,info);
    //}
 
-   //sp(element) application::alloc(const  id & idType)
+   //sp(object) application::alloc(const  id & idType)
    //{
    //   return System.alloc(this,idType);
    //}
@@ -1081,13 +1081,13 @@ namespace axis
       if(bBigIcon)
       {
 
-         pobject->oprop("big_icon").operator =((sp(element)) picon);
+         pobject->oprop("big_icon").operator =((sp(object)) picon);
 
       }
       else
       {
 
-         pobject->oprop("small_icon").operator =((sp(element)) picon);
+         pobject->oprop("small_icon").operator =((sp(object)) picon);
 
       }
 
@@ -1298,7 +1298,7 @@ namespace axis
 
       try
       {
-         ::aura::application_signal_details signal(this,m_psignal,::aura::application_signal_start);
+         ::aura::application_signal_details signal(m_psignal,::aura::application_signal_start);
          m_psignal->emit(&signal);
       }
       catch(...)
@@ -1696,7 +1696,7 @@ namespace axis
    void application::on_request(sp(::create) pcreatecontext)
    {
 
-      ::request_interface::on_request(pcreatecontext);
+      ::object::on_request(pcreatecontext);
 
       command()->consolidate(pcreatecontext);
 
@@ -2020,7 +2020,7 @@ namespace axis
       m_bAxisInitialize = true;
       m_bAxisInitializeResult = false;
 
-      ::aura::application_signal_details signal(this,m_psignal,::aura::application_signal_initialize);
+      ::aura::application_signal_details signal(m_psignal,::aura::application_signal_initialize);
 
       m_psignal->emit(&signal);
 
@@ -2163,7 +2163,7 @@ namespace axis
          if(m_psignal != NULL)
          {
 
-            ::aura::application_signal_details signal(this,m_psignal,::aura::application_signal_exit_instance);
+            ::aura::application_signal_details signal(m_psignal,::aura::application_signal_exit_instance);
 
             try
             {
@@ -3815,13 +3815,13 @@ namespace axis
       if(bBigIcon)
       {
 
-         pobject->oprop("big_icon").operator =((sp(element)) picon);
+         pobject->oprop("big_icon").operator =((sp(object)) picon);
 
       }
       else
       {
 
-         pobject->oprop("small_icon").operator =((sp(element)) picon);
+         pobject->oprop("small_icon").operator =((sp(object)) picon);
 
       }
 
@@ -4404,7 +4404,7 @@ namespace axis
    //void application::on_request(sp(::create) pcreatecontext)
    //{
 
-   //   ::request_interface::on_request(pcreatecontext);
+   //   ::object::on_request(pcreatecontext);
 
    //   command()->consolidate(pcreatecontext);
 

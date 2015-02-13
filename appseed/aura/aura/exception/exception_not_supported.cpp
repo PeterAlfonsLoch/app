@@ -2,7 +2,7 @@
 
 
 not_supported_exception::not_supported_exception(const not_supported_exception & e) :
-   element(e.get_app()),
+   object(e.get_app()),
    ::call_stack(e.get_app()),
    ::exception::base(e.get_app()),
    not_implemented(e),
@@ -12,7 +12,7 @@ not_supported_exception::not_supported_exception(const not_supported_exception &
 }
 
 not_supported_exception::not_supported_exception(::aura::application * papp, const char * pszTip) :
-   element(papp),
+   object(papp),
    ::call_stack(papp),
    ::exception::base(papp),
    not_implemented(papp, pszTip),

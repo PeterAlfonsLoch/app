@@ -12,7 +12,7 @@ namespace base
 
 
       factory_exchange::factory_exchange(::aura::application * papp):
-         element(papp)
+         object(papp)
       {
 
 

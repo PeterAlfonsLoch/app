@@ -12,7 +12,7 @@ namespace aura
 
 
    library::library(::aura::application * papp):
-      element(papp)
+      object(papp)
    {
 
       m_bAutoClose = true;
@@ -23,7 +23,7 @@ namespace aura
 
 
    library::library(::aura::application * papp,int iDesambig,const char * pszRoot):
-      element(papp)
+      object(papp)
    {
 
       m_bAutoClose = true;

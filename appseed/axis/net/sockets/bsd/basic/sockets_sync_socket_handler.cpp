@@ -5,7 +5,7 @@ namespace sockets
 {
 
    sync_socket_handler::sync_socket_handler(::aura::application * papp, logger * plog) :
-      element(papp),
+      ::object(papp),
       m_handler(papp, plog),
       m_file(papp)
    {

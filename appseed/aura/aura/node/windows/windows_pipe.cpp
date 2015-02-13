@@ -7,7 +7,7 @@ namespace windows
 
 
    pipe::pipe(::aura::application * papp) : 
-      element(papp),
+      object(papp),
       ::process::pipe(papp)
    {
 

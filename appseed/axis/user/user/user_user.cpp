@@ -7,7 +7,7 @@ namespace user
 
 
    user::user(::aura::application * papp):
-      element(papp),
+      ::object(papp),
       ::aura::departament(papp)
    {
 

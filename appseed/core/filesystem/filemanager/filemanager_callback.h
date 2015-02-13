@@ -6,7 +6,7 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE callback :
-      virtual public request_interface
+      virtual public ::object
    {
    public:
 

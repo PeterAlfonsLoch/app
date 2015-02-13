@@ -2,7 +2,6 @@
 
 
 relation_set::relation_set(::aura::application * papp) :
-element(papp),
 property_set(papp, true, true)
 {
 

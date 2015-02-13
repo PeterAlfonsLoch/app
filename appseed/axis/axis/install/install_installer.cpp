@@ -123,7 +123,7 @@ namespace install
 
 
    installer::installer(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
 
       m_mutex(papp),
       m_xmldocStringTable(papp),
@@ -3997,7 +3997,7 @@ RetryBuildNumber:
 
 
    installer::launcher::launcher(::aura::application * papp, const char * pszVersion, const char * pszBuild) :
-      element(papp)
+      ::object(papp)
    {
 
       m_strVersion   = pszVersion;

@@ -2,7 +2,7 @@
 
 
 command_thread::command_thread(::aura::application * papp) :
-   element(papp),
+   object(papp),
    m_mutex(papp),
    m_ev(papp)
 {

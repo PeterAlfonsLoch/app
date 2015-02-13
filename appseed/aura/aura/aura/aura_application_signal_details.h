@@ -34,7 +34,7 @@ namespace aura
       bool                             m_bOk;
 
 
-      application_signal_details(application * papp,class ::signal * psignal,e_application_signal esignal);
+      application_signal_details(class ::signal * psignal,e_application_signal esignal);
 
 
    };

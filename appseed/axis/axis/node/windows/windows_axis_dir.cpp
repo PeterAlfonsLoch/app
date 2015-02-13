@@ -11,7 +11,7 @@ namespace windows
 
 
    dir::dir(::aura::application * papp) :
-      ::element(papp),
+      ::object(papp),
       ::file::dir::system(papp),
       ::file::dir::axis::system(papp),
       ::windows::dir(papp)
@@ -21,7 +21,7 @@ namespace windows
    }
 
    //path::path(::aura::application * papp) :
-   //   element(papp)
+   //   ::object(papp)
    //{
    //}
 

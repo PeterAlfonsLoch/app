@@ -12,7 +12,7 @@ namespace user
    const UINT list::MESSAGE_ENDCOLUMNHEADERTRACK = WM_USER + 27;
 
    list::list(::aura::application * papp) :
-   element(papp),
+   object(papp),
    ::user::scroll_view(papp),
    m_columna(papp),
    m_font(allocer()),
@@ -3068,7 +3068,7 @@ namespace user
    }
 
    list_column_array::list_column_array(::aura::application * papp) :
-   element(papp)
+   object(papp)
    {
       m_plist = NULL;
    }
@@ -5328,7 +5328,7 @@ namespace user
    }
 
    list_item::list_item(list * plist) :
-      element(plist->get_app())
+      ::object(plist->get_app())
    {
 
       m_plist           = plist;
@@ -5351,7 +5351,7 @@ namespace user
    }
 
    draw_list_item::draw_list_item(list * plist) :
-      element(plist->get_app()),
+      ::object(plist->get_app()),
       list_item(plist)
    {
 

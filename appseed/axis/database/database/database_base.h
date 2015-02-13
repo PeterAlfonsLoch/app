@@ -65,7 +65,7 @@ namespace database
          const char *newLogin=NULL, const char *newPasswd=NULL,const char *newPort=NULL);
       virtual void disconnect() { active = false; }
       virtual int32_t reset() { return DB_COMMAND_OK; }
-      using ::request_interface::create;
+      using ::object::create;
       virtual int32_t create() { return DB_COMMAND_OK; }
       virtual int32_t drop() { return DB_COMMAND_OK; }
       virtual long nextid(const char* seq_name)=0;

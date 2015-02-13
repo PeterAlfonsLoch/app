@@ -6,7 +6,7 @@ namespace simpledb
 
 
    file_set::file_set(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       ::file::set_sp(allocer())
    {
 

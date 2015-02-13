@@ -25,7 +25,7 @@ namespace windows
 
 
    os::os(::aura::application * papp) :
-      element(papp),
+      object(papp),
       ::aura::os(papp)
    {
    }

@@ -6,7 +6,7 @@ namespace user
 
 
    tree_window::tree_window(::aura::application * papp) :
-      element(papp),
+      object(papp),
       ::user::interaction(papp),
       ::user::scroll_view(papp),
       ::user::tree(papp)

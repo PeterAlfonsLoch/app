@@ -7,7 +7,7 @@ namespace filemanager
 
 
    file_list::file_list(::aura::application * papp) :
-      element(papp),
+      object(papp),
       ::user::interaction(papp),
       ::user::form_interface(papp),
       ::user::form(papp),
@@ -1199,7 +1199,7 @@ namespace filemanager
    }
 
    file_list::create_image_list_thread::create_image_list_thread(::aura::application * papp) :
-      element(papp),
+      object(papp),
       thread(papp)
    {
    }

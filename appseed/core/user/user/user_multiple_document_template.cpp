@@ -6,7 +6,7 @@ namespace user
 
 
    multiple_document_template::multiple_document_template(::aura::application * papp, const char * pszMatter, sp(type) pDocClass, sp(type) pFrameClass, sp(type) pViewClass) :
-      element(papp),
+      object(papp),
       ::aura::impact_system(papp, pszMatter, pDocClass, pFrameClass, pViewClass)
    {
       ASSERT(m_docptra.is_empty());
@@ -63,7 +63,7 @@ namespace user
    void multiple_document_template::request_create(sp(::create) pcreatecontext)
    {
 
-      pcreatecontext->m_spCommandLine->m_varQuery["document"] = (sp(element)) NULL;
+      pcreatecontext->m_spCommandLine->m_varQuery["document"] = (sp(object)) NULL;
       bool bMakeVisible = pcreatecontext->m_bMakeVisible;
       //   sp(::user::interaction) pwndParent = pcreatecontext->m_spCommandLine->m_varQuery["parent_user_interaction"].cast < ::user::interaction > ();
       //   sp(::aura::impact) pviewAlloc = pcreatecontext->m_spCommandLine->m_varQuery["allocation_view"].cast < ::aura::impact > ();

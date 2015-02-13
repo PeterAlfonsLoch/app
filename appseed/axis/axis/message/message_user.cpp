@@ -58,7 +58,7 @@ namespace message
    }
 
    activate::activate(::aura::application * papp):
-      element(papp),
+      
       ::message::base(papp)
    {
       }
@@ -74,7 +74,7 @@ namespace message
 
 
    erase_bkgnd::erase_bkgnd(::aura::application * papp):
-      element(papp),
+      
       ::message::base(papp)
    {
       }
@@ -86,7 +86,7 @@ namespace message
 
 
    key::key(::aura::application * papp):
-      element(papp),
+      
       ::message::base(papp)
    {
 
@@ -94,7 +94,6 @@ namespace message
 
 
    key::key(const key & key) :
-      element(key),
       ::message::base(key)
    {
 
@@ -145,7 +144,7 @@ namespace message
 
 
    nc_activate::nc_activate(::aura::application * papp):
-      element(papp),
+      
       ::message::base(papp)
    {
       }
@@ -164,7 +163,7 @@ namespace message
    }
 
    mouse::mouse(::aura::application * papp):
-      element(papp),
+      
       ::message::base(papp),
       m_ecursor(::visual::cursor_unmodified)
    {

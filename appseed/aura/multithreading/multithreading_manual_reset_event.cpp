@@ -18,7 +18,7 @@
 //
 //*****************************************************************************
 manual_reset_event::manual_reset_event(::aura::application * papp, bool bInitiallyOwn) :
-   element(papp),
+   object(papp),
     ::event(papp, bInitiallyOwn, true)
 {
 }

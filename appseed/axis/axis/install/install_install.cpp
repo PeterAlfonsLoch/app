@@ -20,7 +20,7 @@ namespace install
 
 
    install::install(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       ::aura::departament(papp),
       //m_mutex(papp, false, "Global\\spa_boot_install"),
       m_mutex(papp),

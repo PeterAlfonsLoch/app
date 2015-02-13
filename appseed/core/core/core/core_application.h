@@ -53,7 +53,7 @@ namespace core
 
       // Pointer to ::user::document_manager used to manage document templates
       // for this application instance.
-      sp(::root)                             m_pdocmanager;
+      sp(::object)                             m_pdocmanager;
 
       // Support for Shift+F1 help mode.
       // TRUE if we're in SHIFT+F1 mode.
@@ -76,7 +76,7 @@ namespace core
 
       int32_t                                m_iResourceId;
 
-      sp(::root)                             m_pwndfrm;
+      sp(::object)                           m_pwndfrm;
 
 
       stringa                                m_straAppInterest;

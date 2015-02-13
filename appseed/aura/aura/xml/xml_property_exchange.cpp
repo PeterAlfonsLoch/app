@@ -4,7 +4,7 @@ namespace xml
 {
 
    property_set_exchange::property_set_exchange(::aura::application * papp) :
-      element(papp)
+      object(papp)
    {
       m_ppropertyset = NULL;
    }

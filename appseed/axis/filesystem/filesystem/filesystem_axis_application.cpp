@@ -13,7 +13,7 @@ namespace file
 
 
       application::application(::aura::application * papp) :
-         element(papp),
+         ::object(papp),
          ::file::application(papp)
       {
       }

@@ -5,7 +5,7 @@ namespace zip
 {
 
    File::File(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
       m_bOwnFile                 = false;
       m_filefuncdef.opaque       = (voidpf) this;

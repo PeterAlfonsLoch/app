@@ -6,7 +6,7 @@ int32_t g_idbchange;
 
 
 db_server::db_server(::aura::application * papp) :
-   element(papp)
+   ::object(papp)
 {
    
    m_pdb                = NULL;

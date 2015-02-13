@@ -41,7 +41,7 @@ namespace hi5
    *
    *--*/
    twit::twit(::aura::application * papp) :
-      element(papp),
+      object(papp),
 
       /* Constants */
       TWIT_COLON(":"),

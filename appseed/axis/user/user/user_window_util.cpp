@@ -1083,7 +1083,7 @@ namespace user
 
 
       interaction_spa::interaction_spa(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
 
    }

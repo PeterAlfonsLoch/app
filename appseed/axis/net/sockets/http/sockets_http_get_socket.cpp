@@ -7,7 +7,7 @@ namespace sockets
 
 
    http_get_socket::http_get_socket(base_socket_handler& h) :
-      element(h.get_app()),
+      object(h.get_app()),
       base_socket(h),
       socket(h),
       stream_socket(h),
@@ -23,7 +23,7 @@ namespace sockets
 
 
    http_get_socket::http_get_socket(base_socket_handler& h,const string & url_in) :
-      element(h.get_app()),
+      object(h.get_app()),
       base_socket(h),
       socket(h),
       stream_socket(h),
@@ -41,7 +41,7 @@ namespace sockets
 
 
    http_get_socket::http_get_socket(base_socket_handler& h,const string & host,port_t port,const string & url_in) :
-      element(h.get_app()),
+      object(h.get_app()),
       base_socket(h),
       socket(h),
       stream_socket(h),

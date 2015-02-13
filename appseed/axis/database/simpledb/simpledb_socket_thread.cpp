@@ -9,7 +9,7 @@ namespace simpledb
 
 
    socket_thread::socket_thread(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       thread(papp),
       ::sockets::socket_handler(papp),
       m_evCanInit(papp),

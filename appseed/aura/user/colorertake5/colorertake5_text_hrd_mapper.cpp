@@ -7,7 +7,7 @@ namespace colorertake5
 
 
    TextHRDMapper::TextHRDMapper(::aura::application * papp) :
-      element(papp),
+      object(papp),
       RegionMapperImpl(papp)
    {
    }

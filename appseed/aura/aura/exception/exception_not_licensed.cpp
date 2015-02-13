@@ -2,7 +2,7 @@
 
 
 not_licensed::not_licensed(::aura::application * papp, const char * pszRealm, const char * pszUrl) :
-   element(papp),
+   object(papp),
    ::call_stack(papp),
    ::exception::base(papp)
 {
@@ -16,7 +16,7 @@ not_licensed::not_licensed(::aura::application * papp, const char * pszRealm, co
 
 
 not_licensed::not_licensed(const not_licensed & e) :
-   element(e.get_app()),
+   object(e.get_app()),
    ::call_stack(e.get_app()),
    ::exception::base(e)
 {

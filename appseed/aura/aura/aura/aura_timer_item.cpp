@@ -6,7 +6,7 @@ namespace aura
 
 
    timer_item::timer_item(::aura::application * papp):
-      element(papp)
+      object(papp)
    {
 
    }

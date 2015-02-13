@@ -8,7 +8,7 @@ namespace fontopus
 
 
    fontopus::fontopus(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       ::aura::departament(papp),
       m_mutex(papp)
    {
@@ -122,7 +122,7 @@ namespace fontopus
 
       authuser.m_bDeferRegistration = true;
 
-      authuser.propset().merge(set);
+      authuser.oprop_set().merge(set);
 
       if(set.has_property("ruri"))
       {
@@ -641,7 +641,7 @@ namespace fontopus
 
 
    create_user_thread::create_user_thread(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       ::thread(papp),
       m_evReady(papp)
    {

@@ -6,7 +6,7 @@ namespace userfs
 
 
    list_data::list_data(::aura::application * papp) :
-      element(papp),
+      object(papp),
       ::user::list_data(papp),
       m_itema(papp)
    {

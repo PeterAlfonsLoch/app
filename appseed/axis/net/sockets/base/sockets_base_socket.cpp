@@ -824,7 +824,7 @@ namespace sockets
 
 
    base_socket::socket_thread::socket_thread(base_socket * p) :
-      element(p->get_app()),
+      ::object(p->get_app()),
       thread(p->get_app()),
       m_spsocket(p)
    {
@@ -832,7 +832,7 @@ namespace sockets
    }
 
    base_socket::socket_thread::socket_thread(const socket_thread& s) :
-      element(((socket_thread & )s).get_app()),
+      object(((socket_thread & )s).get_app()),
       thread(((socket_thread & )s).get_app()),
       m_spsocket(s.get_socket())
    {

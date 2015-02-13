@@ -2,7 +2,7 @@
 
 
 simple_thread::simple_thread(::aura::application * papp) :
-   element(papp),
+   object(papp),
    thread(papp)
 {
    

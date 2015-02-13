@@ -5,7 +5,7 @@ namespace userfs
 {
 
    item::item(::userfs::tree * ptree) :
-      root(ptree->get_app()),
+      ::object(ptree->get_app()),
       m_ptree(ptree)
    {
       m_iImage = -1;

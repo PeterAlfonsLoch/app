@@ -5,7 +5,7 @@ namespace zip
 {
 
    InFile::InFile(::aura::application * papp):
-      element(papp)
+      ::object(papp)
    {
 
    }

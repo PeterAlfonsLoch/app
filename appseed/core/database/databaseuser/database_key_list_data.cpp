@@ -7,7 +7,7 @@ namespace databaseuser
 
 
    data_key_list_data::data_key_list_data(::aura::application * papp) :
-      element(papp),
+      object(papp),
       ::user::list_data(papp)
    {
    }

@@ -2,7 +2,7 @@
 
 
 machine_event_central::machine_event_central(::aura::application * papp) :
-   element(papp), 
+   object(papp), 
    thread(papp),
    simple_thread(papp)
 {

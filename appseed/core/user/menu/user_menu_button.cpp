@@ -7,7 +7,7 @@ namespace user
       ::user::interaction(papp),
 
       ::user::button(papp),
-      element(papp)
+      object(papp)
    {
       m_pitem = NULL;
    }
@@ -112,7 +112,7 @@ namespace user
    }
 
    menu_button_cmd_ui::menu_button_cmd_ui(::aura::application * papp) :
-      element(papp),
+      object(papp),
       cmd_ui(papp)
    {
    }

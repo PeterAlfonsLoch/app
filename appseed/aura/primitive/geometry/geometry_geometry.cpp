@@ -7,7 +7,7 @@ namespace geometry
 
 
    geometry::geometry(::aura::application * papp) :
-      element(papp)
+      object(papp)
    {
 
    }

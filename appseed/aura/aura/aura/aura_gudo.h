@@ -26,7 +26,7 @@ namespace aura
 
    template < class AXIS >
    gudo < AXIS > ::gudo(sp(aura::application) papp,const string & strKey,bool bInitialGudoGet):
-      element(papp)
+      object(papp)
    {
 
       m_strKey = strKey;

@@ -3,7 +3,7 @@
 
 
 template < class CREATABLE_TYPE >
-element * creatable_factory_item < CREATABLE_TYPE > ::create(::aura::application * papp)
+object * creatable_factory_item < CREATABLE_TYPE > ::create(::aura::application * papp)
 {
 
    void * pv = NULL;
@@ -31,7 +31,7 @@ element * creatable_factory_item < CREATABLE_TYPE > ::create(::aura::application
 
    ::dereference_no_delete(pt);
 
-   pt->::element::set_ca_flag(element::flag_discard_to_factory);
+   pt->::object::set_ca_flag(::object::flag_discard_to_factory);
 
    pt->m_pfactoryitembase = this;
 
@@ -43,7 +43,7 @@ element * creatable_factory_item < CREATABLE_TYPE > ::create(::aura::application
 
 
 template < class CREATABLE_TYPE >
-element * creatable_factory_item < CREATABLE_TYPE > ::clone(sp(element) pobject)
+object * creatable_factory_item < CREATABLE_TYPE > ::clone(sp(object) pobject)
 {
 
    UNREFERENCED_PARAMETER(pobject);
@@ -56,7 +56,7 @@ element * creatable_factory_item < CREATABLE_TYPE > ::clone(sp(element) pobject)
 
 
 template < class CLONEABLE_TYPE >
-element * cloneable_factory_item < CLONEABLE_TYPE > ::clone(sp(element) pobject)
+object * cloneable_factory_item < CLONEABLE_TYPE > ::clone(sp(object) pobject)
 {
 
    const CLONEABLE_TYPE * ptSrc = dynamic_cast < const CLONEABLE_TYPE * > (pobject.m_p);
@@ -82,7 +82,7 @@ element * cloneable_factory_item < CLONEABLE_TYPE > ::clone(sp(element) pobject)
 
    ::dereference_no_delete(pt);
 
-   pt->::element::set_ca_flag(element::flag_discard_to_factory);
+   pt->::object::set_ca_flag(object::flag_discard_to_factory);
 
    pt->m_pfactoryitembase = this;
 
@@ -99,7 +99,7 @@ element * cloneable_factory_item < CLONEABLE_TYPE > ::clone(sp(element) pobject)
 
 
 template < class CREATABLE_TYPE >
-element * default_creatable_factory_item < CREATABLE_TYPE > ::create()
+object * default_creatable_factory_item < CREATABLE_TYPE > ::create()
 {
 
    void * pv = NULL;
@@ -127,7 +127,7 @@ element * default_creatable_factory_item < CREATABLE_TYPE > ::create()
 
    ::dereference_no_delete(pt);
 
-   pt->::element::set_ca_flag(element::flag_discard_to_factory);
+   pt->::object::set_ca_flag(object::flag_discard_to_factory);
 
    pt->m_pfactoryitembase = this;
 
@@ -139,7 +139,7 @@ element * default_creatable_factory_item < CREATABLE_TYPE > ::create()
 
 
 template < class CREATABLE_TYPE >
-element * default_creatable_factory_item < CREATABLE_TYPE > ::clone(sp(element) pobject)
+object * default_creatable_factory_item < CREATABLE_TYPE > ::clone(sp(object) pobject)
 {
 
    UNREFERENCED_PARAMETER(pobject);
@@ -152,7 +152,7 @@ element * default_creatable_factory_item < CREATABLE_TYPE > ::clone(sp(element) 
 
 
 template < class CLONEABLE_TYPE >
-element * default_cloneable_factory_item < CLONEABLE_TYPE > ::clone(sp(element) pobject)
+object * default_cloneable_factory_item < CLONEABLE_TYPE > ::clone(sp(object) pobject)
 {
 
    const CLONEABLE_TYPE * ptSrc = dynamic_cast < const CLONEABLE_TYPE * > (pobject.m_p);
@@ -178,7 +178,7 @@ element * default_cloneable_factory_item < CLONEABLE_TYPE > ::clone(sp(element) 
 
    ::dereference_no_delete(pt);
 
-   pt->::element::set_ca_flag(element::flag_discard_to_factory);
+   pt->::object::set_ca_flag(object::flag_discard_to_factory);
 
    pt->m_pfactoryitembase = this;
 

@@ -7,14 +7,14 @@ namespace sip
 
 
    transaction::transaction(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
 
    }
 
 
    transaction::transaction(const transaction & src) :
-      element(src.get_app()),
+      ::object(src.get_app()),
       m_propertysetAttribute(src.m_propertysetAttribute),
       m_propertysetHeader(src.m_propertysetHeader)
    {

@@ -2,7 +2,7 @@
 
 
 simple_form_list_view::simple_form_list_view(::aura::application * papp) :
-   element(papp),
+   object(papp),
    ::user::interaction(papp),
    ::user::form_interface(papp),
    ::user::form(papp), 

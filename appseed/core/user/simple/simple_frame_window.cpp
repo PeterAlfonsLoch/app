@@ -75,7 +75,7 @@ void simple_frame_window::helper_task::defer_save_window_rect()
 
 
 simple_frame_window::simple_frame_window(::aura::application * papp) :
-element(papp),
+object(papp),
 m_dibBk(allocer()),
 m_fastblur(allocer())
 {

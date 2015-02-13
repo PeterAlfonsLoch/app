@@ -17,7 +17,7 @@ namespace plugin
 
 
    host_interaction::host_interaction(::aura::application * papp) :
-      element(papp)
+      object(papp)
    {
 
       m_pframe = NULL;

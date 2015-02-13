@@ -27,7 +27,7 @@ service_base* service_base::s_pservice = 0;
 //
 //*****************************************************************************
 service_base::service_base(::aura::application * papp, uint32_t controlsAccepted) :
-element(papp),
+object(papp),
    m_bStopping(false),
    m_stopped(papp)
 #ifdef WINDOWSEx

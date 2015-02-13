@@ -6,7 +6,7 @@ namespace user
 
 
    front_end_schema::front_end_schema(::aura::application * papp) :
-      element(papp),
+      object(papp),
       m_menu(papp),
       m_sysmenu(papp),
       m_button(papp),

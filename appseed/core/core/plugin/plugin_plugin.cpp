@@ -36,7 +36,7 @@ namespace plugin
 
 
    plugin::plugin(::aura::application * papp) :
-      element(papp),
+      object(papp),
       ::simple_ui::style(papp),
       ::user::interaction(papp),
       hotplugin::plugin(papp),

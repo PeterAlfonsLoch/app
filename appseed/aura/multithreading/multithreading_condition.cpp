@@ -11,7 +11,7 @@
 
 
 condition::condition(::aura::application * papp) :
-   element(papp)
+   object(papp)
 {
 
    if(papp == NULL)

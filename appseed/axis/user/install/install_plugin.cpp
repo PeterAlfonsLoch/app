@@ -61,7 +61,7 @@ namespace install
    }
 
    plugin::plugin(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       ::simple_ui::style(papp),
       ::aura::session(papp),
       ::axis::session(papp),
@@ -367,7 +367,7 @@ namespace install
    }
 
    plugin::thread_start_ca2::thread_start_ca2(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       thread(papp)
    {
 

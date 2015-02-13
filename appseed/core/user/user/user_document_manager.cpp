@@ -45,7 +45,7 @@ namespace user
 
 
    document_manager::document_manager(::aura::application * papp) :
-      element(papp)
+      object(papp)
    {
    }
 

@@ -19,7 +19,7 @@ public:
       DST * psignalizableDst, void (DST::* pfnDst)(signal_details *),
       SRC * psignalizableSrc, void (SRC::* pfnSrc)(signal_details *),
       signal_details * pobj) :
-      element(papp),
+      object(papp),
       thread(papp)
    {
       m_bAutoDelete = true;

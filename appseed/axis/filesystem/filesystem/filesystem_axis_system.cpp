@@ -27,7 +27,7 @@ namespace file
    {
 
       system::system(::aura::application * papp) :
-         element(papp),
+         ::object(papp),
          ::file::system(papp)
       {
          m_path.m_pfile = this;

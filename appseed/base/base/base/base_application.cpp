@@ -794,13 +794,13 @@ namespace base
 //      if(bBigIcon)
 //      {
 //
-//         pobject->oprop("big_icon").operator =((sp(element)) picon);
+//         pobject->oprop("big_icon").operator =((sp(object)) picon);
 //
 //      }
 //      else
 //      {
 //
-//         pobject->oprop("small_icon").operator =((sp(element)) picon);
+//         pobject->oprop("small_icon").operator =((sp(object)) picon);
 //
 //      }
 //
@@ -1383,7 +1383,7 @@ namespace base
 //   void application::on_request(sp(::create) pcreatecontext)
 //   {
 //
-//      ::request_interface::on_request(pcreatecontext);
+//      ::object::on_request(pcreatecontext);
 //
 //      command()->consolidate(pcreatecontext);
 //

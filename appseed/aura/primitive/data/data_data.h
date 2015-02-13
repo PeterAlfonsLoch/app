@@ -7,7 +7,7 @@ namespace data
 
    typedef CLASS_DECL_AURA ptr_array < listener > data_listener_ptra;
    typedef CLASS_DECL_AURA ptr_array < data > data_ptra;
-   typedef CLASS_DECL_AURA comparable_array < sp(element) > ca_ptra;
+   typedef CLASS_DECL_AURA comparable_array < sp(object) > ca_ptra;
 
 
    class CLASS_DECL_AURA simple_lock :

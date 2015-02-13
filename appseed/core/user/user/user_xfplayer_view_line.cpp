@@ -4,7 +4,7 @@ const int32_t XfplayerViewLine::AlignLeft = 1;
 const int32_t XfplayerViewLine::AlignRight = 2;
 
 XfplayerViewLine::XfplayerViewLine(::aura::application * papp) :
-   element(papp),
+   object(papp),
    m_dibMain(allocer()),
    m_dcextension(papp),
    m_font(allocer())
@@ -34,7 +34,7 @@ XfplayerViewLine::XfplayerViewLine(::aura::application * papp) :
 }
 
 XfplayerViewLine::XfplayerViewLine(XfplayerViewLines * pContainer) :
-   element(pContainer->get_app()),
+   object(pContainer->get_app()),
    m_dibMain(pContainer->allocer()),
    m_dcextension(pContainer->get_app()),
    m_font(allocer())
@@ -61,7 +61,7 @@ XfplayerViewLine::XfplayerViewLine(XfplayerViewLines * pContainer) :
 }
 
 XfplayerViewLine::XfplayerViewLine(const XfplayerViewLine & line) :
-   element(line.get_app()),
+   object(line.get_app()),
    m_dibMain(allocer()),
    m_dcextension(line.get_app()),
    m_font(allocer())

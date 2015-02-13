@@ -6,7 +6,7 @@ namespace sockets
 {
 
    sip_server::sip_server(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       thread(papp)
    {
    }

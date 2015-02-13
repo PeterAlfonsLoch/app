@@ -384,7 +384,7 @@ namespace file
    }
 
    data_trigger_output_stream::data_trigger_output_stream(::database::client * pclient,class ::database::id id) :
-      ::element(pclient->get_app()),
+      ::object(pclient->get_app()),
       byte_stream_memory_buffer(pclient->get_app())
    {
 
@@ -411,7 +411,7 @@ namespace file
    }
 
    data_trigger_input_stream::data_trigger_input_stream(::database::client * pclient,class ::database::id id) :
-      ::element(pclient->get_app()),
+      ::object(pclient->get_app()),
       byte_stream_memory_buffer(pclient->get_app())
    {
       

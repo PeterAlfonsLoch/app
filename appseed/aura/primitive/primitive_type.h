@@ -5,7 +5,7 @@ class factory_item_base;
 
 
 class CLASS_DECL_AURA type :
-   virtual public element
+   virtual public object
 {
 public:
 

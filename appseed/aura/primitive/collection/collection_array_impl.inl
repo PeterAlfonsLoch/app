@@ -261,7 +261,7 @@ inline array < TYPE, ARG_TYPE, ALLOCATOR >  & array < TYPE, ARG_TYPE, ALLOCATOR 
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 array < TYPE, ARG_TYPE, ALLOCATOR > ::array(::aura::application * papp, ::count nGrowBy) :
-element(papp),
+object(papp),
 array_base < TYPE, ALLOCATOR >(papp,sizeof(TYPE),false)
 {
 //   this->m_nGrowBy = MAX(0, nGrowBy);
@@ -269,9 +269,10 @@ array_base < TYPE, ALLOCATOR >(papp,sizeof(TYPE),false)
 //   this->m_nSize = this->m_nMaxSize = 0;
 }
 
+
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 array < TYPE, ARG_TYPE, ALLOCATOR > ::array(const array <TYPE, ARG_TYPE> & a) :
-element(a.get_app()),
+object(a.get_app()),
 array_base < TYPE, ALLOCATOR > (a.get_app(),sizeof(TYPE),false)
 {
 //   m_nGrowBy = 32;
@@ -537,7 +538,7 @@ inline TYPE & array < TYPE, ARG_TYPE, ALLOCATOR > ::element_at_grow(index nIndex
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 array < TYPE, ARG_TYPE, ALLOCATOR >::array(array && a) :
-element(a.get_app()),
+object(a.get_app()),
 array_base < TYPE, ALLOCATOR >(a.get_app(), sizeof(TYPE), false)
 {
 

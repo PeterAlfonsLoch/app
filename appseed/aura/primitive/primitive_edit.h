@@ -73,7 +73,7 @@ public:
 
 template < class DATA >
 edit < DATA >::edit(::aura::application * papp) :
-   element(papp),
+   object(papp),
    base_edit(papp)
 {
 }

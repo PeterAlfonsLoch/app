@@ -6,6 +6,18 @@ class CLASS_DECL_AURA synch_lock :
 {
 public:
    
-   explicit synch_lock(waitable * pObject) : initial_single_lock(pObject) {}
+   
+   explicit synch_lock(object * pobject) :
+      initial_single_lock(pobject)
+   {
+   
+
+   }
+
 
 };
+
+
+
+
+

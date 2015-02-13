@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_AURA event_base :
-   virtual public waitable
+   virtual public object
 {
 public:
 

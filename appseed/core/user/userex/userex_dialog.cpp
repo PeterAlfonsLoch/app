@@ -3,7 +3,7 @@
 
 
 dialog::dialog(const char * pszMatter, sp(::user::interaction) puiParent) :
-   element(puiParent->get_app()),
+   object(puiParent->get_app()),
    user::scroll_view(puiParent->get_app()),
    ::user::form_interface(puiParent->get_app()),
    user::form(puiParent->get_app())
@@ -11,19 +11,19 @@ dialog::dialog(const char * pszMatter, sp(::user::interaction) puiParent) :
    m_strMatter = pszMatter;
    m_pdocument    = NULL;
    m_pframe       = NULL;
-   m_ulFlags      &= ~element::flag_auto_delete;
+   m_ulFlags      &= ~object::flag_auto_delete;
 }
 
 
 dialog::dialog(::aura::application * papp) :
-   element(papp),
+   object(papp),
    ::user::scroll_view(papp),
    ::user::form_interface(papp),
    user::form(papp)
 {
    m_pdocument    = NULL;
    m_pframe       = NULL;
-   m_ulFlags      &= ~element::flag_auto_delete;
+   m_ulFlags      &= ~object::flag_auto_delete;
 }
 
 dialog::~dialog()

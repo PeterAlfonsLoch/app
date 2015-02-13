@@ -3,7 +3,7 @@
 
 
 simple_scroll_bar::simple_scroll_bar(::aura::application * papp) :
-   element(papp),
+   ::object(papp),
    ::user::interaction(papp),
    m_penDraw(allocer()),
    m_brushDraw(allocer()),
@@ -914,7 +914,7 @@ public:
    point pt2;
 
 
-   trw(::aura::application * papp): element(papp),::user::interaction(papp)
+   trw(::aura::application * papp): ::object(papp),::user::interaction(papp)
    {
 
       if(create_window_ex(WS_EX_LAYERED,NULL,"",WS_VISIBLE,null_rect(),NULL, /*nIDResource*/ 0,NULL))

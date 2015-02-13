@@ -11,7 +11,7 @@ namespace plugin
 
 
    instance::instance(::aura::application * papp) :
-      element(papp),
+      object(papp),
       hotplugin::plugin(papp),
       ::simple_ui::style(papp),
       ::user::interaction(papp),

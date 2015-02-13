@@ -1,7 +1,7 @@
 //#include "framework.h"
 
 font_central::font_central(::aura::application * papp) :
-   element(papp),
+   ::object(papp),
    m_fontCaption(allocer()),
    m_fontMenu(allocer()),
    m_fontStandard(allocer()),

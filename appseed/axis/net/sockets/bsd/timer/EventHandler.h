@@ -53,7 +53,7 @@ namespace sockets
       port_t                        m_port;
 
 
-      EventHandler(::aura::application * papp, const EventHandler& ) : element(papp), socket_handler(papp) {} // copy constructor
+      EventHandler(::aura::application * papp, const EventHandler& ) : ::object(papp), socket_handler(papp) {} // copy constructor
       EventHandler& operator=(const EventHandler& ) { return *this; } // assignment operator
 
 

@@ -6,7 +6,7 @@ namespace file
 
 
    transfer_buffer::transfer_buffer(::aura::application * papp, mutex * pmutex) :
-      element(papp)
+      object(papp)
    {
 
       if (pmutex == NULL)
@@ -36,7 +36,7 @@ namespace file
    // it is not currently designed to call open.
    //
    transfer_buffer::transfer_buffer(::aura::application * papp, ::file::memory_buffer * pmemoryfileIn) :
-      element(papp)
+      object(papp)
    {
 
       if (pmemoryfileIn->get_memory()->m_spmutex.is_null())

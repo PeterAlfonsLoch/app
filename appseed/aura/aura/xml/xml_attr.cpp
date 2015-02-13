@@ -6,7 +6,6 @@ namespace xml
 
 
    attr_array::attr_array(::aura::application * papp) :
-      element(papp),
       property_set(papp)
    {
 

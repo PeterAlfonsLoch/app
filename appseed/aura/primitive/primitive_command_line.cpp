@@ -2,7 +2,7 @@
 
 
 command_line::command_line(::aura::application * papp) :
-   element(papp),
+   object(papp),
    m_eventReady(papp)
 {
    common_construct();

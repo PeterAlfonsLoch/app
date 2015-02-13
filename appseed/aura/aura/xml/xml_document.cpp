@@ -6,7 +6,7 @@ namespace xml
 
 
    document::document(::aura::application * papp, parse_info * pparseinfo) :
-      element(papp != NULL ? papp : get_thread_app()),
+      object(papp != NULL ? papp : get_thread_app()),
       data(papp != NULL ? papp : get_thread_app()),
       node(papp != NULL ? papp : get_thread_app())
    {

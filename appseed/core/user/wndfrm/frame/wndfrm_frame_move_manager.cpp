@@ -19,6 +19,91 @@ namespace user
 
          MoveManager * g_pmovemanager;
          HHOOK g_hhook;
+         
+
+         struct ll_info
+         {
+            WPARAM w;
+            LPARAM l;
+            MSLLHOOKSTRUCT ll;
+
+         } ;
+
+         struct ll_handler
+         {
+            ll_info info;
+            manual_reset_event m_ev;
+            bool  m_bRun;
+            ll_handler(::aura::application * papp): m_ev(papp) { }
+
+         }* g_plh;
+
+         void send_ll(uint32_t nMsg, MSLLHOOKSTRUCT * pll)
+         {
+            ::aura::application * papp = g_pmovemanager->get_app();
+
+            ::message::mouse m(papp);
+
+
+            int nVirtualWidth = GetSystemMetrics(SM_CXVIRTUALSCREEN) ;
+            int nVirtualHeight = GetSystemMetrics(SM_CYVIRTUALSCREEN) ;
+            int nVirtualLeft = GetSystemMetrics(SM_XVIRTUALSCREEN) ;
+            int nVirtualTop = GetSystemMetrics(SM_YVIRTUALSCREEN) ;
+
+            pll->pt.x = MAX(nVirtualLeft,MIN(nVirtualLeft+nVirtualWidth,pll->pt.x));
+            pll->pt.y = MAX(nVirtualTop,MIN(nVirtualTop + nVirtualHeight,pll->pt.y));
+
+            //g_pmovemanager->GetMoveWindow()->m_ptMoveCursor = pll->pt;
+
+
+            LRESULT lresult;
+            m.set(g_pmovemanager->GetMoveWindow(),nMsg,pll->mouseData,MAKELPARAM(pll->pt.x,pll->pt.y),lresult);
+
+            g_pmovemanager->Relay(&m);
+
+            ::SetCursorPos(pll->pt.x, pll->pt.y);
+            
+
+         }
+
+
+
+         UINT CDECL ll_proc(void * pvoid)
+         {
+
+
+            ::aura::application * papp = g_pmovemanager->get_app();
+
+            ll_handler * plh = g_plh;
+
+            while(plh->m_bRun)
+            {
+
+               if(plh->m_ev.lock(millis(84)))
+               {
+
+                  ll_info info = plh->info;
+
+                  uint32_t nMsg = info.w;
+                  MSLLHOOKSTRUCT s = info.ll;
+
+                  send_ll(nMsg, &s);
+
+
+                  
+
+               }
+
+            }
+            
+            delete g_plh;
+
+            g_plh = NULL;
+
+            return 0;
+
+         }
+
 
          LRESULT CALLBACK move_LowLevelMouseProc(
             _In_  int nCode,
@@ -27,26 +112,35 @@ namespace user
             )
          {
             ::aura::application * papp = g_pmovemanager->get_app();
-            LPMSLLHOOKSTRUCT p = (LPMSLLHOOKSTRUCT)lParam;
+
+
+            bool bCallNextHook;
+
+            if(wParam == WM_LBUTTONUP)
+            {
+               g_plh->m_bRun = false;
+               send_ll(wParam, (LPMSLLHOOKSTRUCT)lParam);
+               bCallNextHook = true;
+            }
+            else
+            {
+               if(g_plh != NULL)
+               {
+
+                  g_plh->info.ll = *(LPMSLLHOOKSTRUCT)lParam;
+                  g_plh->info.w = wParam;
+                  g_plh->m_ev.set_event();
+
+               }
+               bCallNextHook = false;
+            }
+
+            //__begin_thread(papp,&ll_proc,pll);
+            //LPMSLLHOOKSTRUCT p = ;
             //APPTRACE("LowLevelMouseProc x=%d, y=%d",p->pt.x,p->pt.y);
 
-            ::message::mouse m(papp);
 
-            Sess(papp).m_ptCursor = p->pt;
-
-
-
-            p->pt.x = MAX(0,MIN(1920,p->pt.x));
-            p->pt.y = MAX(0,MIN(1080,p->pt.y));
-
-            LRESULT lresult;
-            m.set(g_pmovemanager->GetMoveWindow(),wParam,p->mouseData, MAKELPARAM(p->pt.x,p->pt.y), lresult);
-
-            g_pmovemanager->Relay(&m);
-
-            ::SetCursorPos(p->pt.x,p->pt.y);
-
-            if(nCode < 0 || !g_pmovemanager->m_bMoving)
+            if(nCode < 0 || bCallNextHook || !g_pmovemanager->m_bMoving || g_plh == NULL)
             {
                return ::CallNextHookEx(g_hhook,nCode,wParam,lParam);
             }
@@ -56,7 +150,7 @@ namespace user
 
 
          MoveManager::MoveManager(WorkSet * pworkset) :
-            element(pworkset->get_app())
+            object(pworkset->get_app())
          {
             ASSERT(pworkset != NULL);
             m_pworkset = pworkset;
@@ -93,14 +187,19 @@ namespace user
             m_pworkset->get_draw_window()->GetWindowRect(rectWindow);
             m_ptWindowOrigin = rectWindow.top_left();
             GetEventWindow()->SetCapture();
+            
             g_pmovemanager = this;
+            g_plh = new ll_handler(get_app());
+            g_plh->m_bRun = true;
+            __begin_thread(get_app(),&ll_proc,NULL);
             g_hhook = SetWindowsHookEx(
                WH_MOUSE_LL,
                (HOOKPROC)move_LowLevelMouseProc,
                ::GetModuleHandle("core.dll"),
                0
                );
-
+            ::GetCursorPos(g_pmovemanager->GetMoveWindow()->m_ptMoveCursor);
+            GetEventWindow()->m_bMoving = true;
             m_bMoving = true;
             pmouse->m_bRet = true;
             return true;
@@ -113,6 +212,8 @@ namespace user
                || m_pworkset->m_bSizingCapture)
                return false;
 
+
+            return false;
 
             return Relay(pmouse);
 
@@ -162,7 +263,7 @@ namespace user
 #endif
 
                m_bMoving = false;
-
+               GetEventWindow()->m_bMoving = false;
                return false;
 
             }
@@ -176,7 +277,7 @@ namespace user
                   //TRACE("MoveManager::message_handler oswindow ReleaseCapture %x\n", System.get_capture_uie().m_p);
                   System.release_capture_uie();
                   UnhookWindowsHookEx(g_hhook);
-
+                  g_plh->m_bRun = false;
                }
                return false;
             }
@@ -232,6 +333,10 @@ namespace user
 
                }
                GetMoveWindow()->SetWindowPos(ZORDER_TOP,ptMove.x,ptMove.y,0,0,SWP_NOSIZE | SWP_NOZORDER);
+               if(GetMoveWindow()->GetExStyle() & WS_EX_LAYERED)
+               {
+                  GetMoveWindow()->_001UpdateScreen();
+               }
                if(pmouse->m_uiMessage == WM_MOUSEMOVE)
                {
                   //TRACE("message_handler call time1= %d ms", dwTime1);
@@ -296,6 +401,7 @@ namespace user
                System.release_capture_uie();
                UnhookWindowsHookEx(g_hhook);
                m_bMoving = false;
+               GetEventWindow()->m_bMoving = false;
             }
             if(pmouse->m_uiMessage == WM_MOUSEMOVE)
             {

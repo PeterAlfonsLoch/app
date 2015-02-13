@@ -36,7 +36,7 @@ namespace file
    }
 
    byte_stream_memory_buffer::byte_stream_memory_buffer(byte_stream_memory_buffer && b) :
-      element(b)
+      object(b)
    {
 
       m_spmemorybuffer = b.m_spmemorybuffer;

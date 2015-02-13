@@ -7,7 +7,7 @@ namespace draw2d_direct2d
 
 
    bitmap::bitmap(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    { 
 
 

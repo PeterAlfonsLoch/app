@@ -6,7 +6,7 @@ namespace user
 
 
    static_control::static_control(::aura::application * papp) :
-      element(papp)
+      object(papp)
    {
 
       m_etype = type_text;

@@ -6,7 +6,7 @@ namespace user
 
 
    form::form(::aura::application * papp):
-      element(papp),
+      ::object(papp),
       ::user::interaction(papp),
       ::user::scroll_view(papp),
       ::user::form_interface(papp)
@@ -997,7 +997,7 @@ namespace user
          TRACE("form::create_control: failed to create control, could not find proper type for allocation");
          return false;
       }
-      sp(element) pca = Application.alloc(pdescriptor->m_typeinfo);
+      sp(object) pca = Application.alloc(pdescriptor->m_typeinfo);
       if(pca == NULL)
       {
          TRACE("form::create_control: failed to create control, allocation error");

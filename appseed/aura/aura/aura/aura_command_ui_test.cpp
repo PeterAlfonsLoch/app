@@ -3,7 +3,7 @@
 
 
 CTestCmdUI::CTestCmdUI(::aura::application * papp):
-element(papp),
+object(papp),
 cmd_ui(papp)
 {
 

@@ -18,7 +18,7 @@ namespace windows
    //////////////////////////////////////////////////////////////////////
 
    port_forward::port_forward(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
 	   InitializeMembersToNull();
 	   ::InitializeCriticalSection( &m_cs );

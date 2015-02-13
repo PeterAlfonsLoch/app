@@ -180,7 +180,7 @@ public:
    void copy(T * po) { return oattrib(po); }
 
 
-   sp(T) clone() const;
+   //sp(T) clone() const;
    void alloc(const ::aura::allocatorsp & spallocator);
 
 

@@ -10,7 +10,7 @@ namespace core
 
 
       class CLASS_DECL_CORE item :
-         virtual public element
+         virtual public object
       {
       public:
          item() {}

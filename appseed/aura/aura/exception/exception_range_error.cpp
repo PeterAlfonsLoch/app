@@ -2,7 +2,7 @@
 
 
 range_error::range_error(::aura::application * papp, const char * pszError) :
-   element(papp),
+   object(papp),
    ::call_stack(papp),
    ::exception::base(papp),
    error_exception(papp, pszError)

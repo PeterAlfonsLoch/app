@@ -34,7 +34,7 @@ namespace windows
 
 
    thread::thread(::aura::application * papp):
-      element(papp),
+      object(papp),
       ::thread_impl(papp)
    {
 

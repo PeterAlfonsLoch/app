@@ -2,7 +2,7 @@
 
 
 invalid_index_exception::invalid_index_exception(::aura::application * papp) :
-   element(papp),
+   object(papp),
    ::call_stack(papp),
    ::exception::base(papp),
    ::simple_exception(papp),
@@ -14,7 +14,7 @@ invalid_index_exception::invalid_index_exception(::aura::application * papp) :
 
 
 invalid_index_exception::invalid_index_exception(::aura::application * papp, const char * pszMessage) :
-   element(papp),
+   object(papp),
    ::call_stack(papp),
    ::exception::base(papp),
    ::simple_exception(papp, pszMessage),

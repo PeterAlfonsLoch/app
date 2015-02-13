@@ -7,7 +7,7 @@ namespace plugin
 
 
    system::system(::aura::application * papp) :
-      element(papp),
+      object(papp),
       ::aura::system(papp),
       ::axis::system(papp),
       ::base::system(papp),

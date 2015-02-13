@@ -4,7 +4,7 @@ namespace user
 {
 
    network_configuration::network_configuration(::aura::application * papp) :
-      element(papp)
+      object(papp)
    {
 //      m_pdoc   = NULL;
   //    m_pview  = NULL;

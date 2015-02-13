@@ -6,7 +6,7 @@ namespace data
 
 
    tree::tree(::aura::application * papp) :
-      element(papp),
+      object(papp),
       ::data::data(papp),
       m_mutex(papp)
    {

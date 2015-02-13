@@ -44,7 +44,7 @@ void ssl_sigpipe_handle( int x );
    #pragma warning(disable:4355)
    #endif
    tcp_socket::tcp_socket(base_socket_handler& h) :
-   element(h.get_app()),
+   object(h.get_app()),
    base_socket(h),
    socket(h),
    stream_socket(h)
@@ -78,7 +78,7 @@ void ssl_sigpipe_handle( int x );
    #pragma warning(disable:4355)
    #endif
    tcp_socket::tcp_socket(base_socket_handler& h,size_t isize,size_t osize) :
-   element(h.get_app()),
+   object(h.get_app()),
    base_socket(h),
    socket(h),
    stream_socket(h)
@@ -876,7 +876,7 @@ void ssl_sigpipe_handle( int x );
    #pragma warning(disable:4355)
    #endif
    tcp_socket::tcp_socket(const tcp_socket& s) :
-      element(s.get_app()),
+      object(s.get_app()),
       base_socket(s),
       socket(s),
       stream_socket(s),

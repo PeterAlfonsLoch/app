@@ -10,7 +10,7 @@
 #define ITEMCHECKEDPADBOTTOM 2
 
 simple_menu_bar::simple_menu_bar(::aura::application * papp) :
-   element(papp),
+   object(papp),
    simple_toolbar(papp)
 {
 

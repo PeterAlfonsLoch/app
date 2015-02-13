@@ -5,7 +5,7 @@ namespace simpledb
 {
 
    server::server(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
       m_pbase = NULL;
    }

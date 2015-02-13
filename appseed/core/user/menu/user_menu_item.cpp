@@ -6,7 +6,7 @@ namespace user
 
 
    menu_item::menu_item(::aura::application * papp) :
-      element(papp),
+      object(papp),
       menu_base_item(papp),
       m_button(papp)
    {
@@ -123,7 +123,7 @@ namespace user
    }
 
    menu_item_ptra::menu_item_ptra(menu_item * pitemContainer) :
-      element(pitemContainer->get_app())
+      ::object(pitemContainer->get_app())
    {
       m_pitemContainer = pitemContainer;
    }

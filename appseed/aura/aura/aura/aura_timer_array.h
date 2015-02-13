@@ -26,7 +26,7 @@ namespace aura
       bool unset(interaction * pui,uint_ptr uiId);
       void unset(interaction * pui);
       void detach(spa(timer_item) & timera,interaction * pui);
-      interaction * find(element * pca);
+      interaction * find(object * pobject);
       index find(interaction * pui,uint_ptr uiId);
       index find_from(interaction * pui,index iStart);
 

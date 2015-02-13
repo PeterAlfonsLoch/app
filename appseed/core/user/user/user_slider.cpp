@@ -6,7 +6,7 @@ namespace user
 
 
    slider::slider(::aura::application * papp):
-      element(papp),
+      object(papp),
       ::user::interaction(papp)
    {
 

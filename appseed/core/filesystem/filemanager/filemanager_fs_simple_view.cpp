@@ -17,7 +17,7 @@ namespace filemanager
 
 
          view::view(::aura::application * papp) :
-            element(papp),
+            object(papp),
             ::user::split_layout(papp),
             
             ::user::split_view(papp),
@@ -156,7 +156,7 @@ namespace filemanager
 
          }
 
-         void view::set_request_interface(request_interface * prequestinterface)
+         void view::set_request_interface(::object * prequestinterface)
          {
             m_prequestinterface = prequestinterface;
          }

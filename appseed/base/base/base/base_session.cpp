@@ -7,7 +7,7 @@ namespace base
 
 
    session::session(::aura::application * papp) :
-      element(papp),
+      object(papp),
       ::thread(papp),
       ::aura::session(papp),
       axis::session(papp)

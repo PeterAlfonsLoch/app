@@ -35,7 +35,7 @@ namespace visual
 
 
    visual::visual(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       ::aura::departament(papp)
    {
       m_pimaging        = NULL;

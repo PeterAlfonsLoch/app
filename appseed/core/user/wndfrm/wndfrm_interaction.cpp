@@ -9,7 +9,7 @@ namespace user
 
 
       interaction::interaction(::aura::application * papp) :
-         element(papp)
+         object(papp)
       {
       }
 

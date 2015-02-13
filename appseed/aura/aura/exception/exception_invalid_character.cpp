@@ -2,7 +2,7 @@
 
 
 invalid_character::invalid_character(::aura::application * papp, const char * pszMessage) :
-   element(papp),
+   object(papp),
    ::call_stack(papp),
    ::exception::base(papp),
    simple_exception(papp, pszMessage)

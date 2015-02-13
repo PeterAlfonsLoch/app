@@ -6,7 +6,7 @@ namespace mysql
 {
 
    database::database(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
       m_pmysql = NULL;
 #ifdef WINDOWS

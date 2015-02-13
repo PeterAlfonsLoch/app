@@ -9,7 +9,7 @@ namespace user
 
 
    place_holder::place_holder(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       m_uiptraHold(papp)
    {
    }

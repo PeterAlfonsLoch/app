@@ -2,7 +2,7 @@
 
 
 
-multi_lock::multi_lock(sync_object_ptra syncobjectptra, bool bInitialLock)
+multi_lock::multi_lock(object_spa syncobjectptra, bool bInitialLock)
 {
    ASSERT(syncobjectptra.get_count() > 0 && syncobjectptra.get_count() <= MAXIMUM_WAIT_OBJECTS);
 
@@ -16,15 +16,15 @@ multi_lock::multi_lock(sync_object_ptra syncobjectptra, bool bInitialLock)
    // get list of handles from array of objects passed
    for (index i = 0; i < m_syncobjectptra.get_count(); i++)
    {
-      //ASSERT_VALID(dynamic_cast < request_interface * > (m_syncobjectptra[i]));
+      //ASSERT_VALID(dynamic_cast < ::object * > (m_syncobjectptra[i]));
       if(m_syncobjectptra[i] == NULL)
          throw invalid_argument_exception(::get_thread_app());
 
-      ASSERT(base_class < waitable >::bases (m_syncobjectptra[i]));
+      //ASSERT(base_class < object >::bases (m_syncobjectptra[i]));
 
       // can't wait for critical sections
 
-      ASSERT(!base_class < critical_section >::bases (m_syncobjectptra[i]));
+      //ASSERT(!base_class < critical_section >::bases (m_syncobjectptra[i]));
 
 #ifdef WINDOWS
       m_objecta[i] = (HANDLE) m_syncobjectptra[i]->get_os_data();

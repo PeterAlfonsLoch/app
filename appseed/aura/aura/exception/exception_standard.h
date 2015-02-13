@@ -31,7 +31,7 @@
     friend class translator; \
    protected: \
    name (::aura::application * papp, EXCEPTION_POINTERS * ppointers) : \
-      element(papp), \
+      object(papp), \
       ::call_stack(papp), \
       ::exception::base(papp), \
       ::standard_exception(papp, ppointers) \
@@ -90,7 +90,7 @@ public:
 
 #ifdef WINDOWS
    standard_exception(::aura::application * papp, EXCEPTION_POINTERS * ppointers) :
-      element(papp),
+      object(papp),
       ::call_stack(papp),
       ::exception::base(papp),
       m_ppointers(ppointers)
@@ -103,7 +103,7 @@ public:
    }
 
    standard_exception(const standard_exception & se) :
-      element(se.get_app()),
+      object(se.get_app()),
       ::call_stack(se.get_app()),
       ::exception::base(se),
       m_ppointers(se.m_ppointers)
@@ -116,7 +116,7 @@ public:
    static void * siginfodup(void * psiginfo);
    static void siginfofree(void * psiginfo);
    standard_exception(::aura::application * papp, int32_t iSignal, void * psiginfo, void * pc) :
-      element(papp),
+      object(papp),
       ::call_stack(papp),
       ::exception::base(papp),
       m_iSignal(iSignal),
@@ -168,14 +168,14 @@ namespace exception
    public:
 #if defined(ANDROID)
       standard_access_violation (::aura::application * papp, int32_t signal, void * psiginfo, void * pc) :
-         element(papp),
+         object(papp),
          ::call_stack(papp),
          ::exception::base(papp),
          ::standard_exception(papp, signal, psiginfo, pc)
       {printf(":standard");}
 #elif defined(LINUX) || defined(APPLEOS) || defined(SOLARIS)
       standard_access_violation (::aura::application * papp, int32_t signal, void * psiginfo, void * pc) :
-         element(papp),
+         object(papp),
 #ifdef LINUX
 #ifdef _LP64
          ::call_stack(papp, 3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.rip),
@@ -209,7 +209,7 @@ namespace exception
 
    #else
       standard_access_violation (::aura::application * papp, EXCEPTION_POINTERS * ppointers) :
-         element(papp),
+         object(papp),
          ::call_stack(papp),
          ::exception::base(papp),
          ::standard_exception(papp, ppointers)
@@ -227,7 +227,7 @@ namespace exception
    {
    public:
       standard_sigfpe(::aura::application * papp,int32_t iSignal,void * psiginfo,void * pc):
-         element(papp),
+         object(papp),
       ::call_stack(papp),
          ::exception::base(papp),
          standard_exception(papp, iSignal, psiginfo, pc) {printf(":sigfpe");}
@@ -241,7 +241,7 @@ namespace exception
    {
    public:
       standard_sigfpe (::aura::application * papp, int32_t iSignal, siginfo_t * psiginfo, void * pc) :
-         element(papp),
+         object(papp),
 #ifdef LINUX
 #ifdef _LP64
       ::call_stack(papp, 3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.rip),
@@ -275,7 +275,7 @@ namespace exception
    {
    public:
       standard_no_memory (::aura::application * papp, EXCEPTION_POINTERS * ppointers) :
-         element(papp),
+         object(papp),
          ::call_stack(papp),
          ::exception::base(papp),
          ::standard_exception(papp, ppointers)
@@ -342,7 +342,7 @@ private:
 {
    friend class translator;
 protected:
-   standard_sigsegv (::aura::application * papp, siginfo_t * psiginfo, void * pc) : element(papp), standard_exception(papp, psiginfo, pc) {}
+   standard_sigsegv (::aura::application * papp, siginfo_t * psiginfo, void * pc) : object(papp), standard_exception(papp, psiginfo, pc) {}
 public:
    //bool is_read_op() const { return !info()->ExceptionRecord->ExceptionInformation [0]; }
    //uint_ptr inaccessible_address() const { return info()->ExceptionRecord->ExceptionInformation [1]; }
@@ -352,7 +352,7 @@ public:
 {
    friend class translator;
 protected:
-   standard_sigfpe (::aura::application * papp, siginfo_t * psiginfo, void * pc) : element(papp), standard_exception(papp, psiginfo, pc) {}
+   standard_sigfpe (::aura::application * papp, siginfo_t * psiginfo, void * pc) : object(papp), standard_exception(papp, psiginfo, pc) {}
 public:
 //   bool is_read_op() const { return !info()->ExceptionRecord->ExceptionInformation [0]; }
   // uint_ptr inaccessible_address() const { return info()->ExceptionRecord->ExceptionInformation [1]; }

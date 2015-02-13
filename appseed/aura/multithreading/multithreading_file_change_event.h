@@ -36,7 +36,7 @@ public:
 
    virtual bool lock(const duration & durationTimeout = duration::infinite());
 
-   using waitable::unlock;
+   using object::unlock;
    virtual bool unlock();
 
 

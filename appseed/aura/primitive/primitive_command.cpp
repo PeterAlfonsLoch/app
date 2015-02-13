@@ -6,7 +6,7 @@ namespace primitive
 
 
    command::command(::aura::application * papp) :
-      element(papp)
+      object(papp)
    {
 
    }

@@ -6,7 +6,7 @@ namespace xml
 
 
    edit_item::edit_item(::aura::application * papp) :
-      element(papp)
+      object(papp)
    {
    }
 
@@ -72,7 +72,7 @@ namespace xml
 
 
    edit::edit(::aura::application * papp) :
-      element(papp),
+      object(papp),
       ::edit < ::xml::document > (papp)
    {
 

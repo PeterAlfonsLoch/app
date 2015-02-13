@@ -218,7 +218,7 @@ namespace sockets
       * needs to be used for the base_socket class. Note: the base_socket class still needs
       * the "default" constructor with one base_socket_handler& as input parameter.
       */
-      using ::request_interface::create;
+      using ::object::create;
       virtual base_socket *create() { return NULL; }
 
       /** Returns reference to sockethandler that owns the base_socket.

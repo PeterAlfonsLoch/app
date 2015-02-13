@@ -2,7 +2,7 @@
 
 
 OrtoButton::OrtoButton(::aura::application * papp):
-element(papp),
+object(papp),
 ::user::button(papp),
 ::user::wndfrm::frame::control_box_button(papp),
 m_spregion(allocer())

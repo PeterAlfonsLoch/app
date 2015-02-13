@@ -6,7 +6,7 @@ namespace exception
 
 
    base::base(::aura::application * papp, uint32_t uiSkip) :
-      element(papp),
+      object(papp),
       ::call_stack(papp, uiSkip)
    {
       // most exceptions are deleted when not needed
@@ -15,7 +15,7 @@ namespace exception
    }
 
    base::base(::aura::application * papp, bool bAutoDelete, uint32_t uiSkip) :
-      element(papp),
+      object(papp),
       ::call_stack(papp, uiSkip)
    {
       // for exceptions which are not auto-delete (usually)

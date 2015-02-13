@@ -6,7 +6,7 @@ namespace aura
 
 
    str_context::str_context(::aura::application * papp) :
-      element(papp)
+      object(papp)
    {
 
 
@@ -146,7 +146,7 @@ namespace aura
    }
 
    str::str(::aura::application * papp) :
-      element(papp)
+      object(papp)
    {
 
       InitHashTable(64);

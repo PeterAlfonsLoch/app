@@ -30,7 +30,7 @@ public:
    using event_base::lock;
    virtual bool lock(const duration & durationTimeout = duration::infinite());
 
-   using waitable::unlock;
+   using object::unlock;
    virtual bool unlock();
 
    virtual void * get_os_data() const;

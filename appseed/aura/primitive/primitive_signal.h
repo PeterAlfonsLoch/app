@@ -31,6 +31,7 @@ public:
 
    signal_details(::aura::application * papp = NULL);
    signal_details(class signal * psignal);
+   signal_details(::aura::application * pap, class signal * psignal);
    virtual ~signal_details();
 
 
@@ -120,13 +121,13 @@ public:
 };
 
 class CLASS_DECL_AURA signal :
-   virtual public root
+   virtual public object
 {
 protected:
 
 
    class signal_delegate :
-      virtual public element
+      virtual public object
    {
    public:
       virtual ~signal_delegate()

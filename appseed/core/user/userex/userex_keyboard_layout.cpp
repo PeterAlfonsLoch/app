@@ -6,7 +6,7 @@ namespace userex // ca8 + cube
 
 
    keyboard_layout::keyboard_layout(::aura::application * papp) :
-      element(papp),
+      object(papp),
       ::user::list_data(papp),
       ::user::split_layout(papp),
       

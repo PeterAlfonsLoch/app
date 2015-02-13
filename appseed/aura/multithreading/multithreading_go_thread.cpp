@@ -7,7 +7,7 @@
 
 
 go_thread::go_thread(::aura::application * papp, bool bRelease) :
-   element(papp),
+   object(papp),
    thread(papp),
    simple_thread(papp),
    m_bRelease(false),

@@ -6,7 +6,7 @@ namespace user
 
 
    split_bar::split_bar(::aura::application * papp) :
-      element(papp)
+      object(papp)
    {
 
       m_pparent                                 = NULL;

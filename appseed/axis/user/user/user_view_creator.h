@@ -58,7 +58,7 @@ namespace user
 
       virtual ::user::view_creator_data * allocate(id id);
 
-      using ::request_interface::create;
+      using ::object::create;
       virtual ::user::view_creator_data * create_impact(id id,LPCRECT lpcrectCreate);
 
       virtual ::user::view_creator_data * ensure_impact(id id, LPCRECT lpcrectCreate);

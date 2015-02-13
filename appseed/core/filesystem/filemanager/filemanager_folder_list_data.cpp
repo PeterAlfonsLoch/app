@@ -9,7 +9,7 @@ namespace filemanager
 
 
    folder_list_data::folder_list_data(::aura::application * papp) :
-      element(papp),
+      object(papp),
       ::user::list_data(papp)
    {
    }

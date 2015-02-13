@@ -14,7 +14,7 @@ namespace user
 
          
          control_box_button::control_box_button(::aura::application * papp) :
-            element(papp),
+            object(papp),
             ::user::button(papp)
          {
             

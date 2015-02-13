@@ -7,7 +7,7 @@ namespace mail
 
 
    pop3::pop3(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       m_handler(papp),
       m_evFinish(papp)
    {

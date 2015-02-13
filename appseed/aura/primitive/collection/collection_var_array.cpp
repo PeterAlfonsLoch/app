@@ -6,7 +6,7 @@
 
 
 var_array::var_array(::aura::application * papp) :
-   element(papp)
+   object(papp)
 {
    set_size(0, 64);
 }

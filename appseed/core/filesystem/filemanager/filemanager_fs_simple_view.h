@@ -26,7 +26,7 @@ namespace filemanager
             sp(::user::tree)     m_pusertree;
 
             sp(list_view)        m_plist;
-            request_interface *  m_prequestinterface;
+            ::object *  m_prequestinterface;
 
             
             view(::aura::application * papp);
@@ -41,7 +41,7 @@ namespace filemanager
             void start_root();
             void CreateViews();
 
-            void set_request_interface(request_interface * prequestinterface);
+            void set_request_interface(::object * prequestinterface);
 
          #ifdef DEBUG
             virtual void assert_valid() const;

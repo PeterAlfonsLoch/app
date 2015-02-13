@@ -10,7 +10,7 @@ namespace user
 {
 
    tool_cmd_ui::tool_cmd_ui(::aura::application * papp) :
-      element(papp),
+      object(papp),
       cmd_ui(papp)
    {
    }

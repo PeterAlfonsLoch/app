@@ -12,7 +12,7 @@ public:
 };
 
 class CLASS_DECL_AXIS db_long_set_queue_item:
-   virtual public element
+   virtual public object
 {
 public:
 
@@ -60,7 +60,7 @@ public:
    class db_long_sync_queue *                m_pqueue;
 
    db_long_set_core(db_server * pserver):
-      element(pserver->get_app()),
+      ::object(pserver->get_app()),
       db_set(pserver,"integertable"),
       m_handler(get_app()),
       m_mutex(get_app()),
@@ -93,7 +93,7 @@ public:
    smart_pointer_array < db_long_set_queue_item >           m_itema;
 
    db_long_sync_queue(::aura::application * papp):
-      element(papp),
+      ::object(papp),
       thread(papp),
       simple_thread(papp),
       m_handler(papp),
@@ -190,7 +190,7 @@ void db_long_sync_queue::queue(const char * pszKey,int64_t l)
 
 
 db_long_set::db_long_set(db_server * pserver):
-element(pserver->get_app())
+::object(pserver->get_app())
 {
 
    m_pcore = new db_long_set_core(pserver);

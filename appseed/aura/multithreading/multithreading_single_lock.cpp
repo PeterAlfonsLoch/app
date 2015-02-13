@@ -3,7 +3,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // single_lock
 
-single_lock::single_lock(waitable* psyncobject, bool bInitialLock)
+single_lock::single_lock(object * psyncobject, bool bInitialLock)
 {
 
    /*
@@ -24,7 +24,7 @@ single_lock::single_lock(waitable* psyncobject, bool bInitialLock)
    //if(pObject == NULL)
       //throw invalid_argument_exception(get_app());
 
-   m_psyncobject = psyncobject;
+   m_pobjectSync = psyncobject;
    //m_hObject = pObject->m_hObject;
    m_bAcquired = FALSE;
 
@@ -34,19 +34,19 @@ single_lock::single_lock(waitable* psyncobject, bool bInitialLock)
 
 bool single_lock::lock(const duration & durationTimeOut /* = INFINITE */)
 {
-   //ASSERT(m_psyncobject != NULL || m_hObject != NULL);
-   //ASSERT(m_psyncobject != NULL);
+   //ASSERT(m_pobjectSync != NULL || m_hObject != NULL);
+   //ASSERT(m_pobjectSync != NULL);
    //ASSERT(!m_bAcquired);
 
    if(m_bAcquired)
       return true;
 
-   if(m_psyncobject == NULL)
+   if(m_pobjectSync == NULL)
       return FALSE;
    try
    {
 
-      m_bAcquired = m_psyncobject->lock(durationTimeOut);
+      m_bAcquired = m_pobjectSync->lock(durationTimeOut);
    }
    catch(...)
    {
@@ -58,14 +58,14 @@ bool single_lock::lock(const duration & durationTimeOut /* = INFINITE */)
 bool single_lock::unlock()
 {
 
-   if(m_psyncobject == NULL)
+   if(m_pobjectSync == NULL)
       return FALSE;
 
    if (m_bAcquired)
    {
       try
       {
-         m_bAcquired = !m_psyncobject->unlock();
+         m_bAcquired = !m_pobjectSync->unlock();
       }
       catch(...)
       {
@@ -79,9 +79,9 @@ bool single_lock::unlock()
 
 bool single_lock::unlock(LONG lCount, LPLONG lpPrevCount /* = NULL */)
 {
-   ASSERT(m_psyncobject != NULL);
+   ASSERT(m_pobjectSync != NULL);
    if (m_bAcquired)
-      m_bAcquired = !m_psyncobject->unlock(lCount, lpPrevCount);
+      m_bAcquired = !m_pobjectSync->unlock(lCount, lpPrevCount);
 
    // successfully unlocking means it isn't acquired
    return !m_bAcquired;

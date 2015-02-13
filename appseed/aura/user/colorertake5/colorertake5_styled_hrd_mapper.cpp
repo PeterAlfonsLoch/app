@@ -11,7 +11,7 @@ const int32_t StyledRegion::RD_UNDERLINE = 4;
 const int32_t StyledRegion::RD_STRIKEOUT = 8;
 
 StyledHRDMapper::StyledHRDMapper(::aura::application * papp) :
-   element(papp),
+   object(papp),
    RegionMapperImpl(papp)
 {
 }

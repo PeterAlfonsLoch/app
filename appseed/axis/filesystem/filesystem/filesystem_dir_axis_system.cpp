@@ -25,7 +25,7 @@ namespace file
 
 
       system::system(::aura::application * papp) :
-         ::element(papp),
+         ::object(papp),
          ::file::dir::system(papp)
       {
 ////         m_pziputil = new zip::Util;

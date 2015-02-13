@@ -50,7 +50,7 @@ namespace user
       //void RepositionBars(UINT nIDFirst,UINT nIDLast,id nIDLeftOver,UINT nFlags,LPRECT lpRectParam,LPCRECT lpRectClient,bool bStretch);
 
 
-      //virtual int32_t RunModalLoop(uint32_t dwFlags = 0, ::aura::live_object * pliveobject = NULL);
+      //virtual int32_t RunModalLoop(uint32_t dwFlags = 0, ::object * pliveobject = NULL);
 
 
       virtual bool DestroyWindow();

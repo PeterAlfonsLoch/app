@@ -7,7 +7,7 @@ namespace sockets
 
 
    http_debug_socket::http_debug_socket(base_socket_handler& h) : 
-      element(h.get_app()),
+      object(h.get_app()),
       base_socket(h),
       socket(h),
       stream_socket(h),

@@ -12,7 +12,7 @@ namespace userex
    public:
 
       class menu :
-         virtual public element
+         virtual public object
       {
       public:
          string   m_strMatter;

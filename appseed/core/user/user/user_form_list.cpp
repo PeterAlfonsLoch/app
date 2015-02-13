@@ -6,7 +6,7 @@ namespace user
 
 
    form_list::form_list(::aura::application * papp) :
-      element(papp),
+      object(papp),
       ::user::interaction(papp),
       ::user::form_interface(papp),
       ::user::form(papp),

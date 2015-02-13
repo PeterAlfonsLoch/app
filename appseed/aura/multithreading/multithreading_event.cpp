@@ -44,7 +44,7 @@ void clock_getrealtime(struct timespec * pts)
 
 
 event::event(::aura::application * papp, bool bInitiallyOwn, bool bManualReset, const char * pstrName,LPSECURITY_ATTRIBUTES lpsaAttribute) :
-   element(papp)
+   object(papp)
 {
 
    //if(papp == NULL)

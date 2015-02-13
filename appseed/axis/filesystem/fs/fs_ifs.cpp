@@ -3,7 +3,7 @@
 
 
 ifs::ifs(::aura::application * papp, const char * pszRoot) :
-   element(papp),
+   ::object(papp),
    ::data::data(papp),
    ::fs::data(papp)
 {

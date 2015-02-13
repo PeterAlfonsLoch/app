@@ -96,8 +96,8 @@ namespace aura
       virtual void install_message_handling(::message::dispatch * pdispatch);
 
 
-      virtual element * alloc(sp(type) info);
-      virtual element * alloc(const id & idType);
+      virtual object * alloc(sp(type) info);
+      virtual object * alloc(const id & idType);
 
       template < typename T >
       void alloc(T * & pt);
@@ -185,7 +185,7 @@ namespace aura
 
 
       //virtual void on_allocation_error(const sp(type) & info);
-      //virtual sp(element) on_alloc(const sp(type) & info);
+      //virtual sp(object) on_alloc(const sp(type) & info);
 
       virtual bool verb();
 
@@ -440,7 +440,7 @@ namespace aura
       virtual void fill_locale_schema(::str::international::locale_schema & localeschema,const char * pszLocale,const char * pszSchema);
 
 
-      virtual void defer_add_thread_run_wait(sync_object_ptra & soa);
+      virtual void defer_add_thread_run_wait(object_spa & soa);
 
 
       DECL_GEN_SIGNAL(_001OnApplicationRequest);

@@ -8,7 +8,7 @@ namespace aura
 
 
    menu_base::menu_base(::aura::application * papp):
-      element(papp)
+      ::object(papp)
    {
 
       m_pitem = Application.alloc(System.type_info < menu_base_item > ());

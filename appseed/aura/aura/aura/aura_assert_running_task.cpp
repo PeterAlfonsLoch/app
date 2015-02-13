@@ -6,7 +6,7 @@ namespace aura
 
 
    assert_running_task::assert_running_task(::aura::application * papp,const string & strAppId):
-      element(papp),
+      object(papp),
       thread(papp)
    {
 

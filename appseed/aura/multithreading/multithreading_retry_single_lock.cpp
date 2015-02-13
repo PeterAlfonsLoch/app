@@ -3,10 +3,10 @@
 /////////////////////////////////////////////////////////////////////////////
 // retry_single_lock
 
-retry_single_lock::retry_single_lock(waitable * psyncobject, duration durationLock, duration durationSleep, int32_t iRetry, bool bInitialLock)
+retry_single_lock::retry_single_lock(object * psyncobject, duration durationLock, duration durationSleep, int32_t iRetry, bool bInitialLock)
 {
 
-   m_psyncobject     = psyncobject;
+   m_pobjectSync     = psyncobject;
    m_bAcquired       = FALSE;
    m_durationLock    = durationLock;
    m_durationSleep   = durationSleep;
@@ -24,14 +24,14 @@ retry_single_lock::retry_single_lock(waitable * psyncobject, duration durationLo
 bool retry_single_lock::lock()
 {
 
-   if(m_psyncobject == NULL)
+   if(m_pobjectSync == NULL)
       return FALSE;
 
    int32_t iRetry = 0;
 
    try
    {
-      while(!(m_bAcquired = m_psyncobject->lock(m_durationLock)))
+      while(!(m_bAcquired = m_pobjectSync->lock(m_durationLock)))
       {
 
          sleep(m_durationSleep);
@@ -54,14 +54,14 @@ bool retry_single_lock::lock()
 bool retry_single_lock::unlock()
 {
 
-   if(m_psyncobject == NULL)
+   if(m_pobjectSync == NULL)
       return FALSE;
 
    if (m_bAcquired)
    {
       try
       {
-         m_bAcquired = !m_psyncobject->unlock();
+         m_bAcquired = !m_pobjectSync->unlock();
       }
       catch(...)
       {

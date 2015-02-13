@@ -6,7 +6,7 @@ namespace draw2d_direct2d
 
 
    brush::brush(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    { 
 
    }

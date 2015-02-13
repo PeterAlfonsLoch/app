@@ -17,7 +17,7 @@ namespace user
 
 
    interaction_base::interaction_base(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       command_target_interface(papp)
    {
 
@@ -1645,7 +1645,7 @@ namespace user
    }
 
 
-   id interaction_base::run_modal_loop(::user::interaction * pui,uint32_t dwFlags,::aura::live_object * pliveobject)
+   id interaction_base::run_modal_loop(::user::interaction * pui,uint32_t dwFlags,::object * pliveobject)
    {
 
       ::exception::throw_interface_only(get_app());
@@ -1655,7 +1655,7 @@ namespace user
    }
 
 
-   id interaction_base::RunModalLoop(uint32_t dwFlags,::aura::live_object * pliveobject)
+   id interaction_base::RunModalLoop(uint32_t dwFlags,::object * pliveobject)
    {
 
       ::exception::throw_interface_only(get_app());
@@ -1665,7 +1665,7 @@ namespace user
    }
 
 
-   id interaction_base::_001RunModalLoop(uint32_t dwFlags,::aura::live_object * pliveobject)
+   id interaction_base::_001RunModalLoop(uint32_t dwFlags,::object * pliveobject)
    {
 
       ::exception::throw_interface_only(get_app());
@@ -2551,7 +2551,7 @@ namespace user
    }
 
 
-   void interaction_base::keep_alive(::aura::live_object * pliveobject)
+   void interaction_base::keep_alive(::object * pliveobject)
    {
 
       ::exception::throw_interface_only(get_app());

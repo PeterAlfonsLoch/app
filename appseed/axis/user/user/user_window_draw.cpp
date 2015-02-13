@@ -9,7 +9,7 @@ namespace user
 
 
    window_draw::window_draw(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       thread(papp),
       m_eventFree(papp, TRUE, TRUE)
    {

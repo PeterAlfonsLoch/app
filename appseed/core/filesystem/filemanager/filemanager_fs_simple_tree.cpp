@@ -17,7 +17,7 @@ namespace filemanager
 
 
          tree::tree(::aura::application * papp) :
-            element(papp),
+            object(papp),
             ::data::data(papp),
             ::data::tree(papp),
             ::user::tree_data(papp)

@@ -7,7 +7,7 @@ namespace file
 
 
    byte_input_stream_binary_buffer::byte_input_stream_binary_buffer(::aura::application * papp, const char * pszFilePath, uint32_t uiFlags) :
-      element(papp)
+      object(papp)
    {
 
       m_spbinarybuffer.alloc(allocer());

@@ -92,7 +92,7 @@ namespace base
       if(papp == NULL)
       {
 
-         oprop("parent_system") = (sp(element)) NULL;
+         oprop("parent_system") = (sp(object)) NULL;
 
       }
       else
@@ -961,7 +961,7 @@ namespace base
 //{
 //
 //   system_interaction_impl::system_interaction_impl(::aura::application * papp):
-//      element(papp),
+//      object(papp),
 //      ::user::interaction(papp)
 //   {
 //

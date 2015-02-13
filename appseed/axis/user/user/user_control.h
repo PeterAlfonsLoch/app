@@ -57,7 +57,7 @@ namespace user
       };
 
       class CLASS_DECL_AXIS descriptor :
-         virtual public element
+         virtual public object
       {
       public:
 

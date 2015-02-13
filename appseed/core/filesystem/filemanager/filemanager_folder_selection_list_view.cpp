@@ -9,7 +9,7 @@ namespace filemanager
 
 
    folder_selection_list_view::folder_selection_list_view(::aura::application * papp):
-      element(papp),
+      object(papp),
       ::user::split_layout(papp),
       ::user::split_view(papp),
       place_holder_container(papp)

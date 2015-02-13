@@ -65,7 +65,7 @@ const imaging::CSysColorMap imaging::s_psyscolormap[] =
 #endif
 
 imaging::imaging(::aura::application * papp):
-element(papp),
+::object(papp),
 m_mutex(papp)
 {
 }

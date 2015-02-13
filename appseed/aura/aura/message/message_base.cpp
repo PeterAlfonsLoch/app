@@ -8,8 +8,7 @@ namespace message
 
 
    base::base(::aura::application * papp,class ::signal * psignal):
-      element(papp),
-      signal_details(psignal)
+      signal_details(papp, psignal)
    {
 
       m_lresult            = 0;
@@ -22,7 +21,6 @@ namespace message
 
 
    base::base(::aura::application * papp,::aura::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult):
-      element(papp),
       signal_details(papp)
    {
 

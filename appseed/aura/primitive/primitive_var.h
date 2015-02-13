@@ -104,7 +104,7 @@ public:
    };
 
 
-   sp(element)                      m_sp;
+   sp(object)                      m_sp;
    string                           m_str;
    id                               m_id;
 
@@ -140,7 +140,7 @@ public:
    var(const SYSTEMTIME & time);
    var(string * pstr);
    var(var * pvar);
-   var(element * pca2);
+   var(object * pobject);
    var(const stringa & var);
    var(const int_array & var);
    var(const var_array & var);
@@ -305,7 +305,7 @@ public:
       return *this;
    }
 */
-   inline var & operator = (element * p)
+   inline var & operator = (object * p)
    {
       set_type(type_element, false);
       m_sp = p;

@@ -2,7 +2,7 @@
 
 
 invalid_argument_exception::invalid_argument_exception(::aura::application * papp) :
-   element(papp),
+   object(papp),
    ::call_stack(papp),
    ::exception::base(papp),
    simple_exception(papp)
@@ -13,7 +13,7 @@ invalid_argument_exception::invalid_argument_exception(::aura::application * pap
 
 
 invalid_argument_exception::invalid_argument_exception(::aura::application * papp, const char * pszMessage) :
-   element(papp),
+   object(papp),
    ::call_stack(papp),
    ::exception::base(papp),
    simple_exception(papp, pszMessage)

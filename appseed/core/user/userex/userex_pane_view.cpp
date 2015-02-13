@@ -6,7 +6,7 @@ namespace userex
 
 
    pane_view::pane_view(::aura::application * papp) :
-      element(papp)
+      object(papp)
    {
 
    }

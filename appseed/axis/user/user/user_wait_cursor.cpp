@@ -3,7 +3,7 @@
 
 
 wait_cursor::wait_cursor(::aura::application * papp) :
-   element(papp)
+   ::object(papp)
    { Application.BeginWaitCursor(); }
  wait_cursor::~wait_cursor()
 {

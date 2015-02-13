@@ -14,7 +14,7 @@ namespace user
 
 
          control_box::control_box(::aura::application * papp) :
-            element(papp),
+            object(papp),
             ::user::interaction(papp),
             m_fontMarlett(allocer()),
             m_brushButtonBack(allocer()),

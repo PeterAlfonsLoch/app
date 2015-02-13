@@ -6,7 +6,7 @@ namespace aura
 
 
    message_queue::message_queue(::aura::application * papp):
-      element(papp)
+      object(papp)
    {
 
       m_plistener          = NULL;

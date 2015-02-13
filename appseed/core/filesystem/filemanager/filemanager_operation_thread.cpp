@@ -6,7 +6,7 @@ namespace filemanager
 
 
    operation_thread::operation_thread(::aura::application * papp):
-      element(papp),
+      object(papp),
       thread(papp),
       simple_thread(papp),
       m_mutexFileOperationA(papp),

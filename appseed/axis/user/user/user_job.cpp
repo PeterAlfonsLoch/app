@@ -9,7 +9,7 @@ namespace user
 
 
    job::job(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       ::job(papp)
    {
 

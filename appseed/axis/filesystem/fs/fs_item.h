@@ -6,7 +6,7 @@ namespace fs
 
 
    class CLASS_DECL_AXIS item :
-      virtual public element
+      virtual public object
    {
    public:
 

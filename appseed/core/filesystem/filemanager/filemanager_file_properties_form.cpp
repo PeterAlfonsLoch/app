@@ -9,7 +9,7 @@ namespace filemanager
 
 
    file_properties_form::file_properties_form(::aura::application * papp) :
-      element(papp)
+      object(papp)
    {
       m_ptemplatePane = new ::user::single_document_template(
          papp,

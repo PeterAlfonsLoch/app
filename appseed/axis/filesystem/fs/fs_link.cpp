@@ -10,7 +10,7 @@ namespace fs
 
 
    link::link(::aura::application * papp):
-      element(papp),
+      ::object(papp),
       ::data::data(papp),
       ::fs::native(papp),
       ::fs::data(papp)

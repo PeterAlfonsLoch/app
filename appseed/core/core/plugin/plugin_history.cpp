@@ -8,7 +8,7 @@ namespace plugin
 {
 
    history::history(::aura::application * papp, plugin * pplugin) :
-      element(papp),
+      object(papp),
       ::core::history(papp),
       m_pplugin(pplugin)
    {

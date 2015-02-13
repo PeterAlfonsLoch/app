@@ -40,7 +40,7 @@ public: // re-implementations only
 
 
 simple_toolbar::simple_toolbar(::aura::application * papp) :
-element(papp),
+object(papp),
    m_dibDraft(allocer())
 {
    m_iHover = 0x80000000;
@@ -1509,7 +1509,7 @@ void simple_toolbar::_001OnImageListAttrib()
 // simple_toolbar idle update through SimpleToolCmdUI class
 
 SimpleToolCmdUI::SimpleToolCmdUI(::aura::application * papp) :
-element(papp),
+object(papp),
    cmd_ui(papp)
 {
 }

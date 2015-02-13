@@ -2,7 +2,7 @@
 
 
 os_history::os_history(::aura::application * papp) :
-   element(papp),
+   object(papp),
    ::core::history(papp)
 {
 }

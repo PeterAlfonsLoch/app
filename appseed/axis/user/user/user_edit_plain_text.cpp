@@ -12,7 +12,7 @@ namespace user
 
 
    edit_plain_text::edit_plain_text(::aura::application * papp):
-      element(papp),
+      ::object(papp),
       ::user::interaction(papp),
       ::data::listener(papp),
       m_keymessageLast(papp)

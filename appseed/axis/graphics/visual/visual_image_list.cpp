@@ -5,7 +5,7 @@
 #endif
 
 image_list::image_list(::aura::application * papp) :
-   element(papp),
+   ::object(papp),
    m_spdib(allocer()),
    m_spdibWork(allocer()),
    m_spdibWork2(allocer()),
@@ -21,7 +21,7 @@ image_list::image_list(::aura::application * papp) :
 
 
 image_list::image_list(const image_list & imagelist):
-element(imagelist.get_app()),
+::object(imagelist.get_app()),
 m_spdib(imagelist.allocer()),
 m_spdibWork(imagelist.allocer()),
 m_spdibWork2(imagelist.allocer()),

@@ -11,7 +11,6 @@ class CLASS_DECL_AURA thread :
 #ifdef WINDOWS
    virtual public ::exception::translator,
 #endif
-   virtual public ::aura::live_object,
    virtual public event_base
 {
 public:
@@ -213,7 +212,7 @@ public:
    virtual void set_run_thread(bool bRun = true);
    virtual void set_end_thread();
 
-   virtual void defer_add_thread_run_wait(sync_object_ptra & soa);
+   virtual void defer_add_thread_run_wait(object_spa & soa);
 
    virtual void message_queue_message_handler(::signal_details * pobj);
 

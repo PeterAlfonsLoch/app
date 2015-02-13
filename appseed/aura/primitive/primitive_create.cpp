@@ -3,7 +3,7 @@
 
 
 create::create(::aura::application * papp) :
-   element(papp),
+   object(papp),
    command(papp),
    m_spApplicationBias(allocer()),
    m_spCommandLine(allocer())
@@ -21,7 +21,7 @@ create::create(::aura::application * papp) :
 }
 
 create::create(sp(::command_thread) pthreadParent) :
-   element(pthreadParent->get_app()),
+   object(pthreadParent->get_app()),
    command(pthreadParent->get_app()),
    m_spApplicationBias(allocer()),
    m_spCommandLine(allocer()),
@@ -40,7 +40,7 @@ create::create(sp(::command_thread) pthreadParent) :
 }
 
 create::create(sp(::command_thread) pthreadParent, var varFile, bool bMakeVisible, ::aura::interaction * puiParent) :
-   element(pthreadParent->get_app()),
+   object(pthreadParent->get_app()),
    command(pthreadParent->get_app()),
    m_spApplicationBias(allocer()),
    m_spCommandLine(allocer()),
@@ -60,7 +60,7 @@ create::create(sp(::command_thread) pthreadParent, var varFile, bool bMakeVisibl
 }
 
 create::create(const create & createcontext) :
-   element(createcontext.get_app()),
+   object(createcontext.get_app()),
    command(createcontext.get_app()),
    m_spApplicationBias(allocer()),
    m_spCommandLine(allocer())

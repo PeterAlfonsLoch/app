@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_AURA dump_context :
-   virtual public element
+   virtual public object
 {
 public:
 

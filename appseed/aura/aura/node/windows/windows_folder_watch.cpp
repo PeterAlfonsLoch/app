@@ -7,7 +7,7 @@ namespace windows
 
 
    folder_watch::folder_watch(::aura::application * papp) :
-      element(papp),
+      object(papp),
       thread(papp)
    {
 

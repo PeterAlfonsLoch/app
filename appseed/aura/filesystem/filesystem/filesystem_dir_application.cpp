@@ -18,7 +18,7 @@ namespace file
 
 
       application::application(::aura::application * papp) :
-         element(papp)
+         object(papp)
       {
       }
 

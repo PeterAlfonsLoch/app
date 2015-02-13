@@ -335,7 +335,7 @@ void openURL(const string &url_str) {
 
 
 open_url::open_url(::aura::application * papp,const string & strLink,const string & pszTarget) :
-   element(papp)
+   object(papp)
 {
 
    m_strLink = strLink;

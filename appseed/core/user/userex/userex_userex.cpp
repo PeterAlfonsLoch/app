@@ -6,7 +6,7 @@ namespace userex
 
 
    userex::userex(::aura::application * papp):
-      element(papp),
+      object(papp),
       ::aura::departament(papp),
       ::user::core(papp)
    {

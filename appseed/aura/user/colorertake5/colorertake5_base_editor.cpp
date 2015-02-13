@@ -12,7 +12,7 @@ namespace colorertake5
 
 
    base_editor::base_editor(::aura::application * papp) :
-   element(papp)
+   object(papp)
    {
       textParser = NULL;
       lrSupport = NULL;

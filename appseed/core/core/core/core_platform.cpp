@@ -8,7 +8,7 @@ namespace core
 
 
    platform::platform(::aura::application * papp):
-      element(papp),
+      object(papp),
       ::thread(papp)
    {
 
@@ -458,7 +458,7 @@ namespace core
       if(papp == NULL)
          return false;
 
-      papp->m_pcoreapp->::request_interface::create(pcreatecontext);
+      papp->m_pcoreapp->::object::create(pcreatecontext);
 
       return true;
 

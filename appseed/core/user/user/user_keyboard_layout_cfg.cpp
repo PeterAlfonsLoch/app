@@ -4,7 +4,7 @@ namespace user
 {
 
    keyboard_layout_cfg::keyboard_layout_cfg(::aura::application * papp) :
-      element(papp)
+      object(papp)
 //      ::data::data(papp)
 //      ::user::list_data(papp),
   //    ::user::split_layout(papp),

@@ -8,7 +8,7 @@ namespace userex
 
 
    pane_split_view::pane_split_view(::aura::application * papp) :
-      element(papp),
+      object(papp),
       ::user::split_layout(papp),
       
       ::user::split_view(papp),

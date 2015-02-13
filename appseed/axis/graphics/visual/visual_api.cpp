@@ -6,7 +6,7 @@ namespace visual
 
 
    api::api(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
 
    }

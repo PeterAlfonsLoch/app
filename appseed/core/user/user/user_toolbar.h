@@ -6,7 +6,7 @@ namespace user
 
 
    class toolbar_item:
-      virtual public element
+      virtual public object
    {
    public:
 

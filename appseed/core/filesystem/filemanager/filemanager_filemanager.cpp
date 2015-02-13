@@ -9,7 +9,7 @@ namespace filemanager
 
 
    filemanager::filemanager(::aura::application * papp) :
-      element(papp),
+      object(papp),
       ::aura::departament(papp)
    {
       m_ptemplateStd       = NULL;

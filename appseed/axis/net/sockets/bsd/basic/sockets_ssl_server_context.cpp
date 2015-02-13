@@ -14,7 +14,7 @@ namespace sockets
 
 
    ssl_server_context::ssl_server_context(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       m_mutex(papp)
    {
       m_pcontext = NULL;

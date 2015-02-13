@@ -6,7 +6,7 @@ namespace filehandler
 
 
    tree_interface::tree_interface(::aura::application * papp) :
-      element(papp),
+      object(papp),
       ::data::data(papp),
       ::data::tree(papp)
    {

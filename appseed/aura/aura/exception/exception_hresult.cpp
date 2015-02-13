@@ -3,7 +3,7 @@
 
 
 hresult_exception::hresult_exception(::aura::application * papp, HRESULT hr) :
-   element(papp),
+   object(papp),
    ::call_stack(papp),
    ::exception::base(papp)
 {

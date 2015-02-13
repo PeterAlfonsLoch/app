@@ -28,7 +28,7 @@
 
 
 class CLASS_DECL_AURA call_stack :
-   virtual public element
+   virtual public object
 {
 public:
 

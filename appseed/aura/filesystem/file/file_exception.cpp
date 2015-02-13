@@ -32,7 +32,7 @@ namespace file
 
 
    exception::exception(::aura::application * papp, exception::e_cause cause , LONG lOsError, const char * lpszArchiveName) :
-      element(papp),
+      object(papp),
       ::call_stack(papp),
       ::exception::base(papp),
       ::simple_exception(papp),

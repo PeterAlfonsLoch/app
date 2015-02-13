@@ -9,7 +9,7 @@ namespace sqlite
    extern int32_t callback(void * res_ptr,int32_t ncol, char** reslt,char** cols);
 
    set::set(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       ::database::set()
    {
       errmsg      = NULL;
@@ -19,7 +19,7 @@ namespace sqlite
 
 
    set::set(base * newDb) :
-      element(newDb->get_app()),
+      object(newDb->get_app()),
       ::database::set(newDb)
    {
       errmsg      = NULL;

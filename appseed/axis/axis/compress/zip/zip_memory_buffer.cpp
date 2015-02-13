@@ -5,7 +5,7 @@ namespace zip
 {
 
    memory_buffer::memory_buffer(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       ::file::memory_buffer(papp),
       ::primitive::memory_container(papp)
    {
@@ -15,7 +15,7 @@ namespace zip
    }
 
    memory_buffer::memory_buffer(::aura::application * papp, ::primitive::memory_base * pmemory) :
-      element(papp),
+      ::object(papp),
       ::file::memory_buffer(papp, pmemory),
       ::primitive::memory_container(papp, pmemory)
    {

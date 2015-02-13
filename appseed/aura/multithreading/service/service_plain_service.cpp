@@ -2,7 +2,7 @@
 
 
 plain_service::plain_service(::aura::application * papp) :
-   element(papp),
+   object(papp),
    service_base(papp)
 {
 }

@@ -2,7 +2,7 @@
 
 
 os_exception::os_exception(::aura::application * papp) :
-   element(papp),
+   object(papp),
    ::call_stack(papp),
    ::exception::base(papp),
    ::simple_exception(papp)
@@ -12,7 +12,7 @@ os_exception::os_exception(::aura::application * papp) :
 
 
 os_exception::os_exception(::aura::application * papp, const char * pszMessage) :
-   element(papp),
+   object(papp),
    ::call_stack(papp),
    ::exception::base(papp),
    ::simple_exception(papp, pszMessage)

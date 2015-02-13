@@ -11,7 +11,7 @@ namespace aura
 
 
    menu::menu(::aura::application * papp) :
-      element(papp),
+      object(papp),
       menu_base(papp),
       m_buttonClose(papp)
    {
@@ -29,7 +29,7 @@ namespace aura
 
 
    menu::menu(::aura::application * papp,sp(::user::menu_item) pitem):
-      element(papp),
+      object(papp),
       menu_base(papp),
       m_buttonClose(papp)
    {

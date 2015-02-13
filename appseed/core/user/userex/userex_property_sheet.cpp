@@ -6,7 +6,7 @@ namespace userex
 
 
    property_sheet::property_sheet(::aura::application * papp) :
-      element(papp),
+      object(papp),
       ::user::scroll_view(papp),
       ::user::form_interface(papp),
       ::user::form(papp)

@@ -14,7 +14,7 @@ namespace colorertake5
    public:
 
       HRCParserException(::aura::application * papp) :
-         element(papp),
+         object(papp),
          ::call_stack(papp),
          ::exception::base(papp),
          ::colorertake5::exception(papp)
@@ -24,7 +24,7 @@ namespace colorertake5
 
 
       HRCParserException(::aura::application * papp, const string & msg) :
-         element(papp),
+         object(papp),
          ::call_stack(papp),
          ::exception::base(papp),
          ::colorertake5::exception(papp)

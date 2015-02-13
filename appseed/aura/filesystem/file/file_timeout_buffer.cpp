@@ -7,7 +7,7 @@ namespace file
    // uiExpectedSize = (uint64_t) -1 - initially unknown size
    // uiExpectedSize = (uint64_t) -2 - permanent or until end unknown size
    timeout_buffer::timeout_buffer(::aura::application * papp, ::file::buffer_sp  pfile, uint64_t uiExpectedSize) :
-      element(papp)
+      object(papp)
    {
       UNREFERENCED_PARAMETER(uiExpectedSize);
       m_pfile = pfile;

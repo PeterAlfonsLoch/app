@@ -56,7 +56,7 @@ namespace aura
 
       m_pdocument = NULL;
 
-      m_ulFlags |= element::flag_auto_delete;
+      m_ulFlags |= object::flag_auto_delete;
 
    }
 
@@ -191,7 +191,7 @@ namespace aura
    void impact::PostNcDestroy()
    {
       ::user::interaction::PostNcDestroy();
-/*      if (is_set_ca_flag(element::flag_auto_delete))
+/*      if (is_set_ca_flag(object::flag_auto_delete))
       {
          // default for views is to allocate them on the heap
          //  the default post-cleanup is to 'delete this'.
@@ -803,7 +803,7 @@ namespace aura
 
    //   //spadata.add(get_document()->m_spdata);
 
-   //   sync_object_ptra sync;
+   //   object_spa sync;
 
    //   for (index i = 0; i < spadata.get_count(); i++)
    //   {

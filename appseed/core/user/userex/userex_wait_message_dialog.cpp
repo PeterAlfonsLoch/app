@@ -6,7 +6,7 @@ namespace userex // ca8 + cube
 
 
    wait_message_dialog::wait_message_dialog(::aura::application * papp) :
-      element(papp),
+      object(papp),
       ::user::scroll_view(papp),
       ::user::form_interface(papp),
       user::form(papp),

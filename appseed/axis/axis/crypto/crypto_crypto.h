@@ -113,7 +113,7 @@ namespace crypto
 //#if (!defined(METROWIN) || defined(__cplusplus_winrt)) && ! defined(OPENSSL_CRYPTO)
 
    class CLASS_DECL_AXIS rsa :
-      virtual public element
+      virtual public object
    {
    public:
 

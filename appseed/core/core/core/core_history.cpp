@@ -9,7 +9,7 @@ namespace core
    }
 
    history::history(::aura::application * papp) :
-      element(papp)
+      object(papp)
    {
       m_phistory = NULL;
    }

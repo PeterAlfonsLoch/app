@@ -6,7 +6,7 @@ namespace net
 
 
    email::email(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
    }
 

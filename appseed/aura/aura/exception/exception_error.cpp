@@ -2,7 +2,7 @@
 
 
 error_exception::error_exception(::aura::application * papp, const char * pszError) :
-   element(papp),
+   object(papp),
    ::call_stack(papp),
    ::exception::base(papp)
 {

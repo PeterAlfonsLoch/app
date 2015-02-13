@@ -3,7 +3,7 @@
 
 
 BaseMenuCentral::BaseMenuCentral(::aura::application * papp) :
-   element(papp),
+   object(papp),
    m_fontMenu(allocer())
 {
 

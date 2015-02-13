@@ -2517,6 +2517,24 @@ namespace user
 
          m_spdib->update_window(m_pui,NULL);
 
+//         if(m_pui->m_bMoving && GetExStyle() && WS_EX_LAYERED)
+//         {
+//
+//            Session.m_ptCursor = m_pui->m_ptMoveCursor;
+//
+//#ifdef WINDOWSEX
+//
+//            ::SetCursorPos(m_pui->m_ptMoveCursor.x,m_pui->m_ptMoveCursor.y);
+//
+//
+//#endif
+//
+//         }
+
+      }
+      else
+      {
+         TRACE("Failed to update Screen");
       }
 
 
@@ -2614,20 +2632,22 @@ namespace user
       m_size.cy = 0;
 
 #endif
-      
-      //       ::rect rectClient;
-      
-      //       GetClientRect(rectClient);
-      
-      //       g->BitBlt(0, 0, rectClient.width(), rectClient.height(), m_spdib->get_graphics(), 0, 0, SRCCOPY);
-      
-      //       g->BitBlt(0, 0, m_spdib->m_size.cx, m_spdib->m_size.cy, m_spdib->get_graphics(), 0, 0, SRCCOPY);
-      
-      //       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
-      
-      //       pgraphics->FillSolidRect(rectClient, ARGB(128, 0, 255, 0));
-      
 
+      //       ::rect rectClient;
+
+      //       GetClientRect(rectClient);
+
+      //       g->BitBlt(0, 0, rectClient.width(), rectClient.height(), m_spdib->get_graphics(), 0, 0, SRCCOPY);
+
+      //       g->BitBlt(0, 0, m_spdib->m_size.cx, m_spdib->m_size.cy, m_spdib->get_graphics(), 0, 0, SRCCOPY);
+
+      //       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+
+      //       pgraphics->FillSolidRect(rectClient, ARGB(128, 0, 255, 0));
+      {
+         //point pt;
+         //::GetCursorPos(&pt);
+      }
    }
 
 
@@ -2702,7 +2722,7 @@ namespace user
 
 
    guie_message_wnd::guie_message_wnd(::aura::application * papp):
-      element(papp)
+      ::object(papp)
    {
       m_puiForward = NULL;
    }

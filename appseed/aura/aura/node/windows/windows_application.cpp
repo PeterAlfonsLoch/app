@@ -7,7 +7,7 @@ namespace windows
 
 
    application::application(::aura::application * papp) :
-      element(papp)
+      object(papp)
    {
 
       m_pthreadimpl.alloc(allocer());

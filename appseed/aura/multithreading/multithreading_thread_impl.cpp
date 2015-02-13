@@ -14,7 +14,7 @@
 uint32_t __thread_entry(void * pparam);
 
 thread_impl::thread_impl(::aura::application * papp):
-element(papp),
+object(papp),
 m_evFinish(papp),
 m_mutexUiPtra(papp)
 {
@@ -225,7 +225,7 @@ void thread_impl::process_message_filter(int32_t code,signal_details * pobj)
 
 
 thread_startup::thread_startup(::aura::application * papp) :
-   element(papp),
+   object(papp),
    m_event(papp),
    m_event2(papp)
 {
@@ -1206,7 +1206,7 @@ int32_t thread_impl::run()
 
    //m_lIdleCount = 0;
 
-   sync_object_ptra soa;
+   object_spa soa;
 
    if(m_pthread->m_peventEvent == NULL)
    {

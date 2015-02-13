@@ -6,7 +6,7 @@ namespace filemanager
 
 
    manager_template::manager_template(::aura::application * papp) :
-      element(papp)
+      object(papp)
    {
 
       m_iTemplate = -1;

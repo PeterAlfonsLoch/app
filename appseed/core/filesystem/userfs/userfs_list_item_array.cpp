@@ -17,7 +17,7 @@ namespace userfs
    }
 
    list_item_array::list_item_array(::aura::application * papp) :
-      element(papp)
+      object(papp)
    {
       m_itema.set_app(papp);
       m_pfnCompare = &BaseNullCompare < const sp(list_item) & >;

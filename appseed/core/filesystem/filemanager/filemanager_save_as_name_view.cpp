@@ -6,7 +6,7 @@ namespace filemanager
 
 
    save_as_view::save_as_view(::aura::application * papp):
-      element(papp),
+      object(papp),
       ::data::listener(papp),
       ::user::edit_plain_text(papp),
       ::user::edit_plain_text_view(papp),

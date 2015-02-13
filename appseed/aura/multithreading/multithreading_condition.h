@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_AURA condition :
-   virtual public waitable
+   virtual public object
 {
 public:
 
@@ -29,10 +29,10 @@ public:
    virtual ~condition();
 
 
-   using waitable::lock;
+   using object::lock;
    virtual bool lock(const duration & durationTimeout = duration::infinite());
 
-   using waitable::unlock;
+   using object::unlock;
    virtual bool unlock();
 
    virtual void * get_os_data() const;

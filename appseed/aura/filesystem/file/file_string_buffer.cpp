@@ -14,7 +14,7 @@ namespace file
    }
 
    string_buffer::string_buffer(::aura::application * papp) :
-      element(papp)
+      object(papp)
    {
       m_psz       = NULL;
       m_iSize     = 0;

@@ -18,7 +18,7 @@ namespace user
 
 
    struct CLASS_DECL_CORE TrayItemInfo :
-      virtual public element
+      virtual public object
    {
       oswindow    m_oswindow;
       UINT        uID;

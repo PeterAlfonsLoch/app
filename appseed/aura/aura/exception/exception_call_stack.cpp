@@ -6,11 +6,11 @@ bool call_stack::s_bDoStackTrace = false;
 
 #if defined(LINUX) || defined(APPLEOS) || defined(SOLARIS)
 call_stack::call_stack(::aura::application * papp, uint32_t uiSkip, void * address) :
-   element(papp)
+   object(papp)
    ,m_caller_address(address)
 #else
 call_stack::call_stack(::aura::application * papp, uint32_t uiSkip) :
-   element(papp)
+   object(papp)
 #endif
 {
 
@@ -24,7 +24,7 @@ call_stack::call_stack(::aura::application * papp, uint32_t uiSkip) :
 }
 
 call_stack::call_stack(const ::call_stack & cs) :
-   element(cs)
+object(cs)
 {
 
    m_strCallStack = cs.m_strCallStack;

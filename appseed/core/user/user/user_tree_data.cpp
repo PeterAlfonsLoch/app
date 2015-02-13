@@ -6,7 +6,7 @@ namespace user
 
 
    tree_data::tree_data(::aura::application * papp):
-      element(papp),
+      object(papp),
       ::data::data(papp),
       ::data::tree(papp)
    {

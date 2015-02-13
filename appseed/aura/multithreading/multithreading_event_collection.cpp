@@ -7,7 +7,7 @@
 /// of any kind of waitable items (threads, events, semaphores, ...).
 ///  \brief		default constructor
 event_collection::event_collection(::aura::application * papp) :
-   element(papp),
+   object(papp),
    callback_cnt(0)
 {
 

@@ -11,7 +11,7 @@ namespace simple_ui
 
 
    message_box::message_box(::aura::application * papp,const char * pszMessage,const char * pszCaption, uint32_t uiFlags):
-      element(papp),
+      ::object(papp),
       m_evReady(papp)
    {
 

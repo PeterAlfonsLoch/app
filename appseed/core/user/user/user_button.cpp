@@ -6,7 +6,7 @@ namespace user
 
 
    button::button(::aura::application * papp) :
-      element(papp),
+      object(papp),
       ::user::interaction(papp)
    {
       

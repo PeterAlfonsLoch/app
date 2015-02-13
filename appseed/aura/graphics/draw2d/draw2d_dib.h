@@ -314,7 +314,7 @@ namespace draw2d
    public:
 
       dibmap(::aura::application * papp) :
-         element(papp)
+         object(papp)
       {
       }
 
@@ -376,7 +376,7 @@ namespace draw2d
 
 
       dibmap_ex1(::aura::application * papp, int32_t iLimitCount = 500) :
-         element(papp)
+         object(papp)
       {
 
          m_iLimitCount = iLimitCount;

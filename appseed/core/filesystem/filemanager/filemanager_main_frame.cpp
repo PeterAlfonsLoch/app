@@ -7,7 +7,7 @@ namespace filemanager
 
 
    main_frame::main_frame(::aura::application * papp) :
-      element(papp),
+      object(papp),
       simple_frame_window(papp)
    {
    }

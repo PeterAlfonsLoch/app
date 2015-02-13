@@ -8,7 +8,7 @@ namespace axis
 
 
    session::session(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       ::thread(papp),
       ::aura::session(papp)
    {
@@ -1789,7 +1789,7 @@ namespace axis
 
 
    //session::session(::aura::application * papp):
-   //   element(papp),
+   //   ::object(papp),
    //   ::thread(papp),
    //   ::aura::session(papp),
    //   axis::session(papp)

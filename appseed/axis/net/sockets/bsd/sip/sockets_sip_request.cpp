@@ -7,7 +7,7 @@ namespace sip
 
    // --------------------------------------------------------------------------------------
    request::request(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       transaction(papp),
       m_file(papp),
       m_form(papp)
@@ -17,7 +17,7 @@ namespace sip
 
    // --------------------------------------------------------------------------------------
    request::request(const request& src) :
-   element(((request&) src).get_app()),
+      ::object(((request&)src).get_app()),
    transaction(src),
    m_null(src.m_null),
    m_file(((request&) src).get_app()),

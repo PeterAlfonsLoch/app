@@ -2,7 +2,7 @@
 
 
 simple_static::simple_static(::aura::application * papp) :
-   element(papp),
+   object(papp),
    
    ::user::static_control(papp),
    m_brushBkg(allocer())

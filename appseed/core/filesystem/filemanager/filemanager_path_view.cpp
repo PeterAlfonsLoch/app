@@ -7,7 +7,7 @@ namespace filemanager
 
 
    path_view::path_view(::aura::application * papp) :
-      element(papp),
+      object(papp),
       ::user::interaction(papp),
       ::user::scroll_view(papp),
       ::data::listener(papp),

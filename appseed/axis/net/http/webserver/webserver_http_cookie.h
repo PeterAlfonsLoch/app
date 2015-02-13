@@ -9,7 +9,7 @@ namespace http
 
 
    class CLASS_DECL_AXIS cookie :
-      virtual public root
+      virtual public object
    {
    public:
 

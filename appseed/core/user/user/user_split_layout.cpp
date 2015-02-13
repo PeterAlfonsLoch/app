@@ -10,7 +10,7 @@ namespace user
 
 
    split_layout::split_layout(::aura::application * papp) :
-      element(papp),
+      object(papp),
       m_splitbara(papp),
       m_panea(papp),
       place_holder_container(papp)
@@ -863,7 +863,7 @@ namespace user
 
 
    split_layout::Pane::Pane(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
 
       m_pholder = NULL;

@@ -2,7 +2,7 @@
 
 
 io_exception::io_exception(::aura::application * papp) :
-   element(papp),
+   object(papp),
    ::call_stack(papp),
    ::exception::base(papp),
    simple_exception(papp)
@@ -13,7 +13,7 @@ io_exception::io_exception(::aura::application * papp) :
 
 
 io_exception::io_exception(::aura::application * papp, const char * pszMessage) :
-   element(papp),
+   object(papp),
    ::call_stack(papp),
    ::exception::base(papp),
    simple_exception(papp, pszMessage)

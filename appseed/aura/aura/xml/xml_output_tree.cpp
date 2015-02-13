@@ -4,7 +4,7 @@ namespace xml
 {
 
    output_tree::output_tree(::aura::application * papp) :
-      element(papp),
+      object(papp),
       tree_base(papp)
    {
       m_pdocument = NULL;
@@ -12,7 +12,7 @@ namespace xml
    }
 
    output_tree::output_tree(::aura::application * papp, tree_schema * pschema) :
-      element(papp),
+      object(papp),
       tree_base(papp, pschema)
    {
       m_pdocument = NULL;

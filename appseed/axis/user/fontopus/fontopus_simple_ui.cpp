@@ -16,7 +16,7 @@ namespace fontopus
 
 
    simple_ui::simple_ui(::aura::application * papp, const string & strRequestUrl) :
-      element(papp),
+      ::object(papp),
       ::simple_ui::style(papp),
       m_login(papp, 0, 0, strRequestUrl)
    {

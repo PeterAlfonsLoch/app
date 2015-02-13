@@ -11,7 +11,7 @@ namespace xml
 
 
    node::node(::aura::application * papp) :
-      element(papp),
+      object(papp),
       m_nodea(papp),
       m_attra(papp)
    {
@@ -24,7 +24,7 @@ namespace xml
    }
 
    node::node(::xml::node * pnodeParent) :
-      element(pnodeParent->get_app()),
+      object(pnodeParent->get_app()),
       m_nodea(pnodeParent->get_app()),
       m_attra(pnodeParent->get_app())
    {
@@ -37,7 +37,7 @@ namespace xml
    }
 
    node::node(const node & node) :
-      element(node.get_app()),
+      object(node.get_app()),
       m_nodea(node.get_app()),
       m_attra(node.get_app())
    {

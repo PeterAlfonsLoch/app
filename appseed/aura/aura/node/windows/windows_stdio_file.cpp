@@ -12,7 +12,7 @@ namespace windows
 
 
    stdio_file::stdio_file(::aura::application * papp) :
-      element(papp),
+      object(papp),
       ::windows::file(papp)
    {
 

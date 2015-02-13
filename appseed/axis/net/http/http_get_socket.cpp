@@ -6,7 +6,7 @@ namespace http
 
 
    get_socket::get_socket(::sockets::socket_handler & handler, const string & url) :
-      element(handler.get_app()),
+      object(handler.get_app()),
       ::sockets::base_socket(handler),
       ::sockets::socket(handler),
       ::sockets::stream_socket(handler),
@@ -22,7 +22,7 @@ namespace http
 
       
    get_socket::get_socket(::sockets::socket_handler & handler, const string & host, port_t port, const string & url) :
-      element(handler.get_app()),
+      object(handler.get_app()),
       ::sockets::base_socket(handler),
       ::sockets::socket(handler),
       ::sockets::stream_socket(handler),

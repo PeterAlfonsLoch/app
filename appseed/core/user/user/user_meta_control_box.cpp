@@ -2,7 +2,7 @@
 
 
 MetaControlBox::MetaControlBox(::aura::application * papp) :
-element(papp),
+object(papp),
 ::user::interaction(papp),
 ::user::wndfrm::frame::control_box(papp)
 {

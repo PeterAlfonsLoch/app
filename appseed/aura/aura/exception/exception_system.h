@@ -8,7 +8,7 @@ class CLASS_DECL_AURA system_exception :
 public:
    HRESULT ErrorCode;
    system_exception(::aura::application * papp, HRESULT errorCode) :
-      element(papp),
+      object(papp),
       ::call_stack(papp),
       ::exception::base(papp),
       ::simple_exception(papp),

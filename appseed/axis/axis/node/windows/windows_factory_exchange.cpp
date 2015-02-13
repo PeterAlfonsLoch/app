@@ -14,7 +14,7 @@ namespace windows
 
 
    factory_exchange::factory_exchange(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
 
       System.factory().creatable_large    < file_set                       > (System.type_info < ::file::set                 >()       );

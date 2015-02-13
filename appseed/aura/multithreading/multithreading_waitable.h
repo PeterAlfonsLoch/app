@@ -38,42 +38,75 @@ public:
 };
 */
 
-class CLASS_DECL_AURA waitable :
-   virtual public request_interface
-{
-public:
-
-
-   mutex          *  m_pmutex;
-
-
-   waitable();
-   waitable(const waitable & objectSrc);
-   virtual ~waitable();
-
-
-   virtual void * get_os_data() const;
-
-
-   virtual void lock();
-   virtual bool lock(const duration & durationTimeout);
-   virtual bool unlock();
-   virtual bool unlock(LONG lCount, LPLONG lpPrevCount = NULL);
-
-
-	///  \brief		abstract function to initialize a waiting action without a timeout
-	virtual void wait();
-
-	///  \brief		*no more as of 2012-05-12* abstract function to initialize a waiting action with a timeout
-	///  \param		duration time period to wait for item
-	///  \return	waiting action result as wait_result
-	virtual wait_result wait(const duration & duration);
-
-
-	virtual bool is_locked() const;
-
-
-};
+//class CLASS_DECL_AURA waitable :
+//class CLASS_DECL_AURA object
+//   virtual public ::object
+//{
+//public:
+//
+//
+//   //mutex          *  m_pmutex;
+//
+//
+//   // OBJECT :: object :> is a waitable
+//
+//   //waitable();
+//   //waitable(const waitable & objectSrc);
+//   //virtual ~waitable();
+//
+//
+//   virtual void * get_os_data() const;
+//
+//
+//   virtual void lock();
+//   virtual bool lock(const duration & durationTimeout);
+//   virtual bool unlock();
+//   virtual bool unlock(LONG lCount, LPLONG lpPrevCount = NULL);
+//
+//
+//	///  \brief		abstract function to initialize a waiting action without a timeout
+//	virtual void wait();
+//
+//	///  \brief		*no more as of 2012-05-12* abstract function to initialize a waiting action with a timeout
+//	///  \param		duration time period to wait for item
+//	///  \return	waiting action result as wait_result
+//	virtual wait_result wait(const duration & duration);
+//
+//
+//	virtual bool is_locked() const;
+//
+//   property_set *     m_psetObject;
+//
+//
+//   //object();
+//   //object(const object & objectSrc);              // no implementation
+//   //virtual ~object();  // virtual destructors are necessary
+//
+//
+//   // OBJECT :: object :> is a object
+//
+//   void common_construct();
+//
+//   bool IsSerializable() const;
+//
+//
+//   property & oprop(const char * psz);
+//   property & oprop(const char * psz) const;
+//   property_set & oprop_set();
+//
+//
+//   virtual void assert_valid() const;
+//   virtual void dump(dump_context & dumpcontext) const;
+//
+//   object & operator = (const object & objectSrc);       // no implementation
+//
+//
+//   inline sp(::command_thread) command_thread();
+//
+//
+//   DECLARE_AND_IMPLEMENT_DEFAULT_ALLOCATION
+//
+//};
 
 
 
@@ -111,7 +144,7 @@ namespace aura
    {
 
 
-      typedef ::waitable WaitableItem;
+      typedef ::object WaitableItem;
 
 
    } // namespace pal - platform abstraction layer

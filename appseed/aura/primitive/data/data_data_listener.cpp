@@ -5,7 +5,7 @@ namespace data
 {
 
    listener::listener(::aura::application * papp) :
-      element(papp)
+      object(papp)
    {
 
    }

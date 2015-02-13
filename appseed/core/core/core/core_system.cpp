@@ -18,7 +18,7 @@ namespace core
 
 
    system::system(::aura::application * papp):
-      ::element(papp),
+      ::object(papp),
       ::aura::system(papp),
       ::axis::system(papp),
       ::base::system(papp),
@@ -41,7 +41,7 @@ namespace core
          if(papp == NULL)
          {
 
-            oprop("parent_system") = (sp(element)) NULL;
+            oprop("parent_system") = (sp(object)) NULL;
 
          }
          else
@@ -124,7 +124,7 @@ namespace core
 
 
 
-   void system::discard_to_factory(sp(element) pca)
+   void system::discard_to_factory(sp(object) pca)
    {
       UNREFERENCED_PARAMETER(pca);
    }
@@ -454,12 +454,12 @@ namespace core
    }
 
    /*
-   sp(element) system::on_alloc(::aura::application * papp, sp(type) & info)
+   sp(object) system::on_alloc(::aura::application * papp, sp(type) & info)
    {
    /*string str;
    str.Format("Could not alloc %s", info.name());
    simple_message_box(str);*/
-   /*sp(element) pobj = Sys(papp).factory().create(papp, info);
+   /*sp(object) pobj = Sys(papp).factory().create(papp, info);
    if(pobj != NULL)
    return pobj;
    on_allocation_error(papp, info);

@@ -49,7 +49,7 @@ public:
 
 
 class CLASS_DECL_AURA strid_array :
-   virtual public root
+   virtual public object
 {
 protected:
 

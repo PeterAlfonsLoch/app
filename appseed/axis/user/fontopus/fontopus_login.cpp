@@ -17,7 +17,7 @@ namespace fontopus
 
 
    login::login(::aura::application * papp, int left, int top, const string & strRequestUrl) :
-      element(papp)
+      ::object(papp)
    {
 
       m_strRequestUrl      = strRequestUrl;

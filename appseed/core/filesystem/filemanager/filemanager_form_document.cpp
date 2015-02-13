@@ -9,7 +9,7 @@
 //
 //
 //   form_document::form_document(::aura::application * papp):
-//      element(papp),
+//      object(papp),
 //      ::data::data_container_base(papp),
 //      ::aura::document(papp)
 //   {

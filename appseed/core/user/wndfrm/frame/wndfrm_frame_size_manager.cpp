@@ -12,7 +12,7 @@ namespace user
       {
 
          SizeManager::SizeManager(WorkSet * pworkset) :
-            element(pworkset->get_app()),
+            object(pworkset->get_app()),
             m_minSize(84, 84),
             m_minBorder(33, 33)
          {

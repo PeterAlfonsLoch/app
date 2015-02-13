@@ -21,7 +21,7 @@ namespace action
 
 
       class CLASS_DECL_AURA data :
-         virtual public root
+         virtual public object
       {
       public:
 

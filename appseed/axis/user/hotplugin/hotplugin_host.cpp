@@ -20,7 +20,7 @@ namespace hotplugin
 
 
    host::host() :
-      element(this),
+      ::object(this),
       hotplugin::plugin(this),
       ::simple_ui::style(this),
       ::aura::session(this),

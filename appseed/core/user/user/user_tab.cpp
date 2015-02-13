@@ -10,7 +10,7 @@ namespace user
 {
 
    tab::data::data(::aura::application * papp) :
-      element(papp),
+      object(papp),
       ::data::data(papp),
       m_imagelist(papp),
       m_pen(allocer()),
@@ -61,7 +61,7 @@ namespace user
    }
 
    tab::tab(::aura::application * papp) :
-      element(papp),
+      object(papp),
       place_holder_container(papp),
       m_dcextension(papp)
    {
@@ -1556,7 +1556,7 @@ namespace user
 
 
    tab::pane::pane(::aura::application * papp) :
-      element(papp),
+      object(papp),
       m_brushFill(allocer()),
       m_brushFillSel(allocer()),
       m_brushFillHover(allocer()),
@@ -1568,7 +1568,6 @@ namespace user
    }
 
    tab::pane::pane(const pane & pane) :
-      element(pane.get_app()),
       m_istrTitleEx(pane.get_app())
    {
       operator = (pane);
@@ -1604,7 +1603,7 @@ namespace user
 
 
    tab::pane_array::pane_array(::aura::application * papp) :
-      element(papp)
+      object(papp)
    {
    }
 

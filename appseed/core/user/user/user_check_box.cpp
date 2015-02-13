@@ -4,7 +4,7 @@ namespace user
 {
 
    check_box::check_box(::aura::application * papp) :
-      element(papp),
+      object(papp),
       ::user::interaction(papp)
    {
       m_echeck = check::unchecked;

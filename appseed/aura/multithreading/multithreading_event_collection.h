@@ -3,7 +3,8 @@
 
 /// This class represents a collection of waitable items. A collection can be mixed
 /// of any kind of waitable items (threads, events, semaphores, ...).
-class CLASS_DECL_AURA event_collection : public waitable
+class CLASS_DECL_AURA event_collection :
+   public object
 {
 public:
 #ifdef WINDOWS

@@ -6,7 +6,7 @@ namespace userfs
 
 
    list_item::list_item(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
       m_iIndex = -1;
       m_iArrange = -1;
@@ -91,7 +91,7 @@ namespace userfs
       if(&item == this)
          return *this;
 
-      set_app(item.get_app());
+      m_pauraapp  = item.m_pauraapp;
       m_strPath   = item.m_strPath;
       m_strName   = item.m_strName;
       m_iImage    = item.m_iImage;

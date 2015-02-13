@@ -10,7 +10,7 @@ namespace windows
 
 
       file_system::file_system(::aura::application * papp):
-         element(papp),
+         ::object(papp),
          ::file::system(papp),
          ::windows::file_system(papp),
          ::file::axis::system(papp)

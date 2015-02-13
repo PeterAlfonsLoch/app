@@ -12,7 +12,7 @@ namespace sockets
 
 
    http_session::http_session(sp(::sockets::base_socket_handler) phandler,const string & protocol,const string & host) :
-      element(phandler->get_app()),
+      ::object(phandler->get_app()),
       base_socket(*phandler),
       socket(*phandler),
       stream_socket(*phandler),

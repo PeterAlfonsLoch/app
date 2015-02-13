@@ -2,7 +2,7 @@
 
 
 simple_tab_view::simple_tab_view(::aura::application * papp) :
-   element(papp),
+   object(papp),
    ::user::interaction(papp), 
    ::user::tab(papp),
    place_holder_container(papp)

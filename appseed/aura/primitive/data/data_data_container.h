@@ -98,7 +98,7 @@ namespace data
 
       }
 
-      sync_object_ptra get_sync();
+      object_spa get_sync();
 
    };
 

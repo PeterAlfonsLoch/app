@@ -9,7 +9,7 @@ namespace user
 
 
    menu_list_window::menu_list_window(::aura::application * papp) :
-      element(papp),
+      object(papp),
       menu_base(papp),
       menu(papp),
       m_buttonClose(papp)
@@ -26,7 +26,7 @@ namespace user
 
 
    menu_list_window::menu_list_window(::aura::application * papp, sp(menu_item) pitem) :
-      element(papp),
+      object(papp),
       menu_base(papp),
       menu(papp),
       m_buttonClose(papp)

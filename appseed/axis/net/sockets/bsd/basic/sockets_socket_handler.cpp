@@ -28,7 +28,7 @@ namespace sockets
 
 
    socket_handler::socket_handler(::aura::application * papp, logger *plogger) :
-   element(papp),
+   ::object(papp),
    base_socket_handler(papp, plogger),
    m_pmutex(NULL),
    m_b_use_mutex(false)
@@ -55,7 +55,7 @@ namespace sockets
 
 
    socket_handler::socket_handler(::aura::application * papp, mutex& mutex, logger * plogger) :
-   element(papp),
+   ::object(papp),
    base_socket_handler(papp, plogger)
    ,m_pmutex(&mutex)
    ,m_b_use_mutex(true)

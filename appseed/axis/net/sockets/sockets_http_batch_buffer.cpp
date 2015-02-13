@@ -8,7 +8,7 @@ namespace sockets
 
 
    http_batch_buffer::http_batch_buffer(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
 
       m_nOpenFlags = 0;

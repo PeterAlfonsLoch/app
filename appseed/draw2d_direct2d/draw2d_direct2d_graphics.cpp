@@ -16,7 +16,7 @@ namespace draw2d_direct2d
 
    
    graphics::graphics(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       ::draw2d::graphics(papp)
    {
 

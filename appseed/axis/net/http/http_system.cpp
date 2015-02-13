@@ -6,7 +6,7 @@ namespace http
 
 
    system::system(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       m_mutexPac(papp),
       m_mutexProxy(papp),
       m_mutexDownload(papp)
@@ -134,7 +134,7 @@ namespace http
    }
 
    system::pac::pac(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
 
       m_pjs = new tinyjs(papp);
@@ -209,7 +209,7 @@ namespace http
 
 
    system::proxy::proxy(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
    }
 

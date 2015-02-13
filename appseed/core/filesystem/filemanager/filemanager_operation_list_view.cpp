@@ -6,7 +6,7 @@ namespace filemanager
 
 
    operation_list_view::operation_list_view(::aura::application * papp):
-      element(papp),
+      object(papp),
       m_headerctrl(papp),
 
       ::user::scroll_view(papp),

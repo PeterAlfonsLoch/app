@@ -6,7 +6,7 @@ namespace primitive
 
 
    virtual_memory::virtual_memory(::aura::application * papp) :
-      element(papp)
+      object(papp)
    {
       m_pbStorage = NULL;
       m_pbComputed = NULL;
@@ -34,7 +34,7 @@ namespace primitive
    }
 
    virtual_memory::virtual_memory(primitive::memory_container * pcontainer, void * pmemory, memory_size dwSize) :
-      element(pcontainer->get_app())
+      object(pcontainer->get_app())
    {
       m_pbStorage          = NULL;
       m_pbComputed = NULL;

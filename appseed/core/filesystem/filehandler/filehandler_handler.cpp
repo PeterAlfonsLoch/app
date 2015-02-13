@@ -6,7 +6,7 @@ namespace filehandler
 
 
    handler::handler(::aura::application * papp) :
-      element(papp)
+      object(papp)
    {
 
       m_sptree = new tree_interface(papp);

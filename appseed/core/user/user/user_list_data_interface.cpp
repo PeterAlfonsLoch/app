@@ -6,7 +6,7 @@ namespace user
 
 
    list_data::list_data(::aura::application * papp) :
-      element(papp),
+      object(papp),
       ::data::data(papp)
    {
    }

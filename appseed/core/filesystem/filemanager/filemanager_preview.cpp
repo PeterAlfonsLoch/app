@@ -6,7 +6,7 @@ namespace filemanager
 
 
    preview::preview(::aura::application * papp) :
-      element(papp)
+      object(papp)
    {
 
    }

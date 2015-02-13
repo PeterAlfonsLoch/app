@@ -500,7 +500,7 @@ namespace filemanager
 
 
    ImageSet::ImageSet(::aura::application * papp) :
-      element(papp),
+      object(papp),
       m_mutex(papp)
    {
       m_pil16 = new image_list(papp);

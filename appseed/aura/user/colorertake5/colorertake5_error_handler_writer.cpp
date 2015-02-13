@@ -2,7 +2,7 @@
 //#include "aura/user/colorertake5/colorertake5.h"
 
 ErrorHandlerWriter::ErrorHandlerWriter(::aura::application * papp) :
-element(papp)
+object(papp)
 {
 }
 

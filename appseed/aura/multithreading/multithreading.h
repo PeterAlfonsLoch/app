@@ -1,6 +1,5 @@
 #pragma once
 
-class waitable;
 class sync_object;
 class semaphore;
 class mutex;

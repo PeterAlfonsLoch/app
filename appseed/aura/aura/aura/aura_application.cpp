@@ -19,8 +19,7 @@ namespace aura
 {
 
 
-   application_signal_details::application_signal_details(application * papp,class ::signal * psignal,e_application_signal esignal):
-      element(papp),
+   application_signal_details::application_signal_details(class ::signal * psignal,e_application_signal esignal):
       ::signal_details(psignal)
    {
 
@@ -364,12 +363,12 @@ namespace aura
    }
 
 
-   element * application::alloc(sp(type) info)
+   object * application::alloc(sp(type) info)
    {
       return System.alloc(this,info);
    }
 
-   element * application::alloc(const  id & idType)
+   object * application::alloc(const  id & idType)
    {
       return System.alloc(this,idType);
    }
@@ -930,7 +929,7 @@ namespace aura
 
       try
       {
-         application_signal_details signal(this,m_psignal,application_signal_start);
+         application_signal_details signal(m_psignal,application_signal_start);
          m_psignal->emit(&signal);
       }
       catch(...)
@@ -1420,7 +1419,7 @@ namespace aura
    void application::on_request(sp(::create) pcreatecontext)
    {
 
-      ::request_interface::on_request(pcreatecontext);
+      ::object::on_request(pcreatecontext);
 
       command()->consolidate(pcreatecontext);
 
@@ -2121,7 +2120,7 @@ namespace aura
          if(m_psignal != NULL)
          {
 
-            application_signal_details signal(this,m_psignal,application_signal_exit_instance);
+            application_signal_details signal(m_psignal,application_signal_exit_instance);
 
             try
             {
@@ -2335,7 +2334,7 @@ namespace aura
    bool application::ca_initialize2()
    {
 
-      application_signal_details signal(this,m_psignal,application_signal_initialize2);
+      application_signal_details signal(m_psignal,application_signal_initialize2);
       m_psignal->emit(&signal);
       return signal.m_bOk;
 
@@ -2345,7 +2344,7 @@ namespace aura
    bool application::ca_initialize3()
    {
 
-      application_signal_details signal(this,m_psignal,application_signal_initialize3);
+      application_signal_details signal(m_psignal,application_signal_initialize3);
       m_psignal->emit(&signal);
       if(!signal.m_bOk)
          return false;
@@ -2557,14 +2556,14 @@ namespace aura
 
    bool application::ca_process_initialize()
    {
-      application_signal_details signal(this,m_psignal,application_signal_process_initialize);
+      application_signal_details signal(m_psignal,application_signal_process_initialize);
       m_psignal->emit(&signal);
       return true;
    }
 
    bool application::ca_initialize1()
    {
-      application_signal_details signal(this,m_psignal,application_signal_initialize1);
+      application_signal_details signal(m_psignal,application_signal_initialize1);
       m_psignal->emit(&signal);
       return signal.m_bOk;
    }
@@ -2573,7 +2572,7 @@ namespace aura
 
    bool application::ca_finalize()
    {
-      application_signal_details signal(this,m_psignal,application_signal_finalize);
+      application_signal_details signal(m_psignal,application_signal_finalize);
       try
       {
          m_psignal->emit(&signal);
@@ -3723,7 +3722,7 @@ namespace aura
    }
 
    
-   void application::defer_add_thread_run_wait(sync_object_ptra & soa)
+   void application::defer_add_thread_run_wait(object_spa & soa)
    {
 
       soa.add(&axiom()->m_ev);
@@ -3828,7 +3827,7 @@ namespace aura
       if(pbias != NULL)
       {
 
-         papp->propset().merge(pbias->m_set);
+         papp->oprop_set().merge(pbias->m_set);
 
       }
       else

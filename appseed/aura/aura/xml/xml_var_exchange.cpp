@@ -5,7 +5,7 @@ namespace xml
 {
 
    var_exchange::var_exchange(::aura::application * papp) :
-      element(papp)
+      object(papp)
    {
       m_pvar = NULL;
    }

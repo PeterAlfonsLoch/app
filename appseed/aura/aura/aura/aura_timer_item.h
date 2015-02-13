@@ -6,7 +6,7 @@ namespace aura
 
 
    class CLASS_DECL_AURA timer_item :
-      virtual public element
+      virtual public object
    {
    public:
 

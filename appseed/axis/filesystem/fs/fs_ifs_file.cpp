@@ -3,7 +3,7 @@
 
 
 ifs_file::ifs_file(::aura::application * papp, var varFile) :
-   element(papp),
+   ::object(papp),
    ::sockets::http_batch_buffer(papp),
    m_httpfile(canew(::sockets::http_buffer(papp))),
    m_memfile(papp),

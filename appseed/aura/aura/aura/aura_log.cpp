@@ -14,7 +14,7 @@ namespace aura
 
 
    log::log(::aura::application * papp) :
-      element(papp)
+      object(papp)
    {
 
 #if defined(WINDOWSEX)

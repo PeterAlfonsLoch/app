@@ -6,7 +6,7 @@ namespace aura
 
 
    savings::savings(::aura::application * papp) :
-      element(papp)
+      object(papp)
    {
 
    }

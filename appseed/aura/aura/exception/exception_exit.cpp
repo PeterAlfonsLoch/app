@@ -2,7 +2,7 @@
 
 
 exit_exception::exit_exception(::aura::application * papp, const char * pszMessage) :
-   element(papp),
+   object(papp),
    ::call_stack(papp),
    ::exception::base(papp),
    ::simple_exception(papp, pszMessage)
@@ -15,7 +15,7 @@ exit_exception::exit_exception(::aura::application * papp, const char * pszMessa
 
 
 exit_exception::exit_exception(const exit_exception & e) :
-   element(e),
+   object(e),
    ::call_stack(e),
    ::exception::base(e),
    ::simple_exception(e)

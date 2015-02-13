@@ -21,7 +21,7 @@ namespace filemanager
             FolderTypeArtist,
          };
          class Folder :
-            virtual public element
+            virtual public object
          {
          public:
             int64_t        m_iFolder;

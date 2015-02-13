@@ -13,7 +13,7 @@ namespace sockets
 
 
    sip_base_client_socket::sip_base_client_socket(base_socket_handler& h) :
-      element(h.get_app()),
+      object(h.get_app()),
       base_socket(h),
       socket(h),
       m_request(h.get_app()),
@@ -35,7 +35,7 @@ namespace sockets
    }
 
    sip_base_client_socket::sip_base_client_socket(const sip_base_client_socket& s) :
-      element(s.get_app()),
+      object(s.get_app()),
       base_socket(s),
       socket(s),
       m_request(s.get_app()),

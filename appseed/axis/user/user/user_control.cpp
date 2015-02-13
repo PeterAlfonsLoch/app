@@ -591,7 +591,7 @@ namespace user
       m_bControlExCommandEnabled    = true;
       m_pform                       = NULL;
       m_pformcallback               = NULL;
-      m_ulFlags                     &= ~element::flag_auto_delete;
+      m_ulFlags                     &= ~object::flag_auto_delete;
       m_bDefaultWalkPreTranslateParentTree = true;
    }
 

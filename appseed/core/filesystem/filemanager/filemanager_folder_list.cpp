@@ -9,7 +9,7 @@ namespace filemanager
 
 
    folder_list::folder_list(::aura::application * papp) :
-      element(papp),
+      object(papp),
       ::user::scroll_view(papp),
       ::user::list(papp),
       m_headerctrl(papp)

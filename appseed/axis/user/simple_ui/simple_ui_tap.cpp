@@ -7,7 +7,7 @@ namespace simple_ui
 
 
    tap::tap(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
 
       m_bAutoStockIconPenWidth   = true;

@@ -6,7 +6,7 @@ namespace xml
 
 
    departament::departament(::aura::application * papp) :
-      element(papp),
+      object(papp),
       ::aura::departament(papp)
    {
       

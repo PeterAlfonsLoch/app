@@ -11,7 +11,7 @@ var::var(const char * psz)
    set_string(psz);
 }
 
-var::var(::element * pelement)
+var::var(::object * pelement)
 {
    m_etype = type_new;
    operator = (pelement);

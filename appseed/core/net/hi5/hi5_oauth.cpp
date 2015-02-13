@@ -601,7 +601,7 @@ void CSHA1::GetHash(UINT_8 *puDest)
    *
    *--*/
    oauth::oauth(::aura::application * papp) :
-   element(papp),
+   object(papp),
    OAUTHLIB_CONSUMERKEY_KEY("oauth_consumer_key"),
    OAUTHLIB_CALLBACK_KEY("oauth_callback"),
    OAUTHLIB_VERSION_KEY("oauth_version"),

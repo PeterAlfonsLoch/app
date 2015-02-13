@@ -32,7 +32,7 @@ namespace sockets
 {
 
    class CLASS_DECL_AXIS SSLInitializer :
-      public element
+      public object
    {
    public:
       /**

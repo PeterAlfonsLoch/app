@@ -2,7 +2,7 @@
 
 
 base_edit::base_edit(::aura::application * papp) :
-   element(papp)
+   object(papp)
 {
 }
 

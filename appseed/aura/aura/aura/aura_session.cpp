@@ -7,7 +7,7 @@ namespace aura
 
 
    session::session(::aura::application * papp):
-      element(papp),
+      object(papp),
       ::thread(papp)
    {
 

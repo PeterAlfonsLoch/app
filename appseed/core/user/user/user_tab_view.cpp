@@ -6,7 +6,7 @@ namespace user
 
 
    tab_view::tab_view(::aura::application * papp) :
-      element(papp),
+      object(papp),
       ::user::tab(papp),
       place_holder_container(papp)
    {
@@ -548,7 +548,7 @@ namespace user
    }
 
    tab_drop_target_window::tab_drop_target_window(::user::tab * ptab, int32_t iPane) :
-      element(ptab->get_app())
+      ::object(ptab->get_app())
    {
       m_ptab            = ptab;
       m_iPane           = iPane;

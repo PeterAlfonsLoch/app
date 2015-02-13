@@ -7,7 +7,7 @@ namespace sockets
 
 
    http_buffer::http_buffer(::aura::application * papp, mutex * pmutex) :
-      element(papp),
+      ::object(papp),
       transfer_buffer(papp, pmutex)
    {
 
@@ -17,7 +17,7 @@ namespace sockets
    // it is not currently designed to call open.
    //
    http_buffer::http_buffer(::aura::application * papp, ::file::memory_buffer * pmemoryfileIn) :
-      element(papp),
+      ::object(papp),
       transfer_buffer(papp, pmemoryfileIn)
    {
 
@@ -40,8 +40,8 @@ namespace sockets
 
       psignal->m_set = oprop("http_set").propset();
 
-      psignal->m_set["file"]       = (sp(element)) m_pmemoryfileIn;
-      psignal->m_set["file_out"]   = (sp(element)) m_ptimeoutfile;
+      psignal->m_set["file"]       = (sp(object)) m_pmemoryfileIn;
+      psignal->m_set["file_out"]   = (sp(object)) m_ptimeoutfile;
 
       psignal->m_strUrl = lpszFileName; 
       //psignal->m_set["optional_ca2_login"] = true;

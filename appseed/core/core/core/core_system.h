@@ -63,7 +63,7 @@ namespace core
 
       virtual void construct(const char * pszAppId);
 
-      virtual void discard_to_factory(sp(element) pca);
+      virtual void discard_to_factory(sp(object) pca);
 
       virtual bool is_system();
 

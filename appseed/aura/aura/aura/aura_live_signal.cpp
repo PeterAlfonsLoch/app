@@ -17,25 +17,25 @@ namespace aura
 
    }
 
-   void live_signal::keep(live_object * pliveobject)
+   void live_signal::keep(object * pliveobject)
    {
 
       if(pliveobject != NULL)
       {
 
-         add(pliveobject);
+         m_ptraLive.add(pliveobject);
 
       }
 
    }
 
-   void live_signal::unkeep(live_object * pliveobject)
+   void live_signal::unkeep(object * pliveobject)
    {
 
       if(pliveobject != NULL)
       {
 
-         remove(pliveobject);
+         m_ptraLive.remove(pliveobject);
 
       }
 
@@ -44,13 +44,13 @@ namespace aura
    void live_signal::on_keep_alive()
    {
 
-      for(int32_t i = 0; i < this->get_count(); i++)
+      for(int32_t i = 0; i < m_ptraLive.get_count(); i++)
       {
 
          try
          {
 
-            this->element_at(i)->keep_alive();
+            m_ptraLive.element_at(i)->keep_alive();
 
          }
          catch(...)
@@ -67,13 +67,13 @@ namespace aura
 
       return true;
 
-      for(int32_t i = 0; i < this->get_count(); i++)
+      for(int32_t i = 0; i < m_ptraLive.get_count(); i++)
       {
 
          try
          {
 
-            if(!this->element_at(i)->is_alive())
+            if(!m_ptraLive.element_at(i)->is_alive())
                return false;
 
          }
@@ -95,7 +95,7 @@ namespace aura
 
       if(this != &signal)
       {
-         ptr_array < live_object >::operator = ((ptr_array < live_object >) (signal));
+         m_ptraLive = signal.m_ptraLive;
       }
 
       return *this;

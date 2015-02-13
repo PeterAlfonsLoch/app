@@ -10,7 +10,7 @@
 **/
 
 class CLASS_DECL_AURA sync_object :
-   public object
+   virtual public object
 {
 public:
 

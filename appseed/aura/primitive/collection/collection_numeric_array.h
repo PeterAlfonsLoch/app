@@ -780,7 +780,7 @@ inline TYPE numeric_array < TYPE > ::pop_to()
 template < class TYPE >
 unique_number_sort_array < TYPE >::
    unique_number_sort_array(::aura::application * papp) :
-   element(papp)
+   object(papp)
 {
 }
 

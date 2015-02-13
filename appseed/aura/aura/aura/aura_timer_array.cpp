@@ -7,7 +7,7 @@ namespace aura
 
 
    timer_array::timer_array(::aura::application * papp):
-      element(papp),
+      object(papp),
       m_mutex(papp)
    {
 

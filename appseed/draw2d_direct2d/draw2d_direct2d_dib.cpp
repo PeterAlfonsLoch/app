@@ -13,7 +13,7 @@ namespace draw2d_direct2d
 
 
    dib::dib(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       m_spbitmap(allocer()),
       m_spgraphics(allocer())
    {

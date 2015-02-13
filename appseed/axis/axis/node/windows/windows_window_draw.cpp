@@ -2,7 +2,7 @@
 //#include "base/user/user.h"
 //#include "windows.h"
 
-#define DISABLE_UPDATE_BUFFER 1
+#define DISABLE_UPDATE_BUFFER 0
 
 extern void _001DeferPaintLayeredWindowBackground(oswindow oswindow,::draw2d::graphics * pdc);
 
@@ -34,7 +34,7 @@ namespace windows
 {
 
    window_draw::window_draw(::aura::application * papp):
-      element(papp),
+      ::object(papp),
       thread(papp),
       ::user::window_draw(papp),
       ::aura::message_queue(papp),

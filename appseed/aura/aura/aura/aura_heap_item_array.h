@@ -66,11 +66,11 @@ public:
       return false;
    }
 
-   /*inline void set_heap_alloc(sp(element) pca)
+   /*inline void set_heap_alloc(sp(object) pca)
    {
    if(find(pca, true))
    {
-   pca->m_ulFlags |= element::flag_heap_alloc;
+   pca->m_ulFlags |= object::flag_heap_alloc;
    }
    }*/
 

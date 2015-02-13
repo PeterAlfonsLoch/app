@@ -27,7 +27,7 @@ namespace user
 
 
       class CLASS_DECL_CORE Pane :
-         virtual public element
+         virtual public object
       {
       public:
 

@@ -7,7 +7,7 @@ namespace filemanager
 
 
    manager::manager(::aura::application * papp):
-      element(papp),
+      object(papp),
       ::data::data_container_base(papp),
       ::aura::document(papp),
       ::userfs::document(papp)
@@ -727,7 +727,7 @@ namespace filemanager
    }
 
    full_browse::full_browse(::aura::application * papp):
-      element(papp),
+      object(papp),
       thread(papp)
    {
 

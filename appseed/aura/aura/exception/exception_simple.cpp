@@ -2,7 +2,7 @@
 
 
 simple_exception::simple_exception(::aura::application * papp) :
-   element(papp),
+   object(papp),
    ::call_stack(papp),
    ::exception::base(papp)
 {
@@ -10,7 +10,7 @@ simple_exception::simple_exception(::aura::application * papp) :
 }
 
 simple_exception::simple_exception(::aura::application * papp, const char * pszMessage) :
-   element(papp),
+   object(papp),
    ::call_stack(papp),
    ::exception::base(papp)
 {

@@ -30,7 +30,7 @@ namespace sockets
 
 
    socket::socket(base_socket_handler& h) :
-      element(h),
+      ::object(h),
       base_socket(h)
    {
 

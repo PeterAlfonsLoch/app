@@ -106,10 +106,10 @@ namespace data
 
    }
 
-   sync_object_ptra data_container_base::get_sync()
+   object_spa data_container_base::get_sync()
    {
 
-      sync_object_ptra ptra;
+      object_spa ptra;
 
       for(index i = 0; i < m_spadata.get_count(); i++)
       {

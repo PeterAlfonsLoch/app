@@ -82,7 +82,7 @@ namespace user
    }
 
    keyboard_layout::keyboard_layout(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
 
    }

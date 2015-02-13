@@ -7,7 +7,7 @@ namespace colorertake5
 
 
    exception::exception(const exception & e) :
-      element(e.get_app()),
+      object(e.get_app()),
       ::call_stack(e.get_app()),
       ::exception::base(e.get_app())
    {
@@ -17,7 +17,7 @@ namespace colorertake5
    }
 
    exception::exception(::aura::application * papp) :
-      element(papp),
+      object(papp),
       ::call_stack(papp),
       ::exception::base(papp)
    {
@@ -28,7 +28,7 @@ namespace colorertake5
    }
 
    exception::exception(::aura::application * papp, const string &msg) :
-      element(papp),
+      object(papp),
       ::call_stack(papp),
       ::exception::base(papp)
    {
@@ -43,7 +43,7 @@ namespace colorertake5
 
 
 /*   InputSourceException::InputSourceException(::aura::application * papp)
-         element(papp),
+         object(papp),
       ::call_stack(papp),
       ::exception::base(papp)
 

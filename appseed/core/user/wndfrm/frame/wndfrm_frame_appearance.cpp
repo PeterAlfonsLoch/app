@@ -14,12 +14,12 @@ namespace user
 
 
          appearance::CTool001::CTool001(::aura::application * papp) :
-            element(papp)
+            object(papp)
          {
          }
 
          appearance::appearance(WorkSet * pworkset) :
-            element(pworkset->get_app())
+            object(pworkset->get_app())
          {
             m_ptool001 = new CTool001(get_app());
             //m_pwndframeworkdownupinterface = this;

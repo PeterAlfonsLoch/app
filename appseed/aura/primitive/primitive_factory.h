@@ -7,7 +7,7 @@ class mutex;
 
 extern CLASS_DECL_AURA mutex * g_pmutexFactory;
 
-CLASS_DECL_AURA bool safe_destroy_element(element * pelement);
+CLASS_DECL_AURA bool safe_destroy_element(object * pobject);
 
 CLASS_DECL_AURA bool safe_free_memory(void * ptype);
 
@@ -25,7 +25,7 @@ public:
 
 
    factory_allocator(::aura::application * papp, int32_t iCount, UINT uiAllocSize, id idType, bool bAligned) :
-      element(papp),
+      object(papp),
       m_iCount(iCount),
       m_uiAllocSize(uiAllocSize),
       m_idType(idType),
@@ -58,7 +58,7 @@ public:
    }
 
 
-   virtual void discard(element * pca) = 0;
+   virtual void discard(object * pobject) = 0;
 
 };
 
@@ -81,7 +81,7 @@ public:
    }
 #endif
 
-   virtual void discard(element * pca)
+   virtual void discard(object * pca)
    {
       
       TYPE * ptype = (TYPE *) pca->m_pthis;
@@ -113,16 +113,14 @@ public:
    factory_allocator *    m_pallocator;
 
 
-   inline factory_item_base(::aura::application * papp, factory_allocator * pallocator) : element(papp), m_pallocator(pallocator) {}
+   inline factory_item_base(::aura::application * papp, factory_allocator * pallocator) : object(papp), m_pallocator(pallocator) {}
    virtual ~factory_item_base();
 
    
-   using ::object::create;
-   virtual element *  create(::aura::application * papp);
-   virtual element *  create();
+   virtual object *  create(::aura::application * papp);
+   virtual object *  create();
    
-   using ::object::clone;
-   virtual element * clone(sp(element) pobject);
+   virtual object * clone(sp(object) pobject);
 
 };
 
@@ -132,13 +130,13 @@ class creatable_factory_item :
 {
 public:
 
-   inline creatable_factory_item(::aura::application * papp, factory_allocator * pallocator) : element(papp), factory_item_base(papp, pallocator) {}
+   inline creatable_factory_item(::aura::application * papp, factory_allocator * pallocator) : object(papp), factory_item_base(papp, pallocator) {}
 
    using ::factory_item_base::create;
-   virtual element * create(::aura::application * papp);
+   virtual object * create(::aura::application * papp);
 
    using ::factory_item_base::clone;
-   virtual element * clone(sp(element) pobject);
+   virtual object * clone(sp(object) pobject);
 
 };
 
@@ -148,11 +146,11 @@ class cloneable_factory_item :
 {
 public:
 
-   inline cloneable_factory_item(::aura::application * papp, factory_allocator * pallocator) : element(papp), creatable_factory_item < CLONEABLE_TYPE > (papp, pallocator) {}
+   inline cloneable_factory_item(::aura::application * papp, factory_allocator * pallocator) : object(papp), creatable_factory_item < CLONEABLE_TYPE > (papp, pallocator) {}
 
    
    using creatable_factory_item < CLONEABLE_TYPE >::clone;
-   virtual element * clone(sp(element) pobject);
+   virtual object * clone(sp(object) pobject);
 
 };
 
@@ -162,13 +160,13 @@ class default_creatable_factory_item:
 {
 public:
 
-   inline default_creatable_factory_item(::aura::application * papp,factory_allocator * pallocator): element(papp),factory_item_base(papp,pallocator) {}
+   inline default_creatable_factory_item(::aura::application * papp,factory_allocator * pallocator): object(papp),factory_item_base(papp,pallocator) {}
 
    using ::factory_item_base::create;
-   virtual element * create();
+   virtual object * create();
 
    using ::factory_item_base::clone;
-   virtual element * clone(sp(element) pobject);
+   virtual object * clone(sp(object) pobject);
 
 };
 
@@ -178,11 +176,11 @@ class default_cloneable_factory_item:
 {
 public:
 
-   inline default_cloneable_factory_item(::aura::application * papp,factory_allocator * pallocator): element(papp),default_creatable_factory_item < CLONEABLE_TYPE >(papp,pallocator) {}
+   inline default_cloneable_factory_item(::aura::application * papp,factory_allocator * pallocator): object(papp),default_creatable_factory_item < CLONEABLE_TYPE >(papp,pallocator) {}
 
 
    using default_creatable_factory_item < CLONEABLE_TYPE >::clone;
-   virtual element * clone(sp(element) pobject);
+   virtual object * clone(sp(object) pobject);
 
 };
 
@@ -328,26 +326,12 @@ public:
 
 
    using ::object::create;
-   virtual element * create(::aura::application *  papp, sp(type) & info);
+   virtual object * create(::aura::application *  papp, sp(type) & info);
    
-   virtual element * base_clone(element * pobject);
+   virtual object * base_clone(object * pobject);
 
-   virtual element * typed_clone(id idType, element * pobject);
+   virtual object * typed_clone(id idType, object * pobject);
    
-   using ::object::clone;
-   template < class T >
-   T * clone(sp(T) pobject)
-   {
-      element * pca =
-#ifdef WINDOWS
-      pca = typed_clone(typeid(T).raw_name(), pobject);
-#else
-      pca = typed_clone(typeid(T).name(),pobject);
-#endif
-      if(pca == NULL)
-         return NULL;
-      return dynamic_cast < T * >(pca);
-   }
 
    template < class T >
    factory_allocator * get_allocator(int32_t iCount, bool bAligned);
@@ -356,7 +340,7 @@ public:
    inline bool is_set(::id id) {  return m_mapItem[id].is_set(); }
 
 
-   void discard(sp(element) pobject);
+   void discard(sp(object) pobject);
 
    void enable_simple_factory_request(bool bEnable = true);
 
@@ -365,3 +349,16 @@ public:
 
 
 
+template < class T >
+T * clone(sp(T) pobject)
+{
+   object * pca =
+#ifdef WINDOWS
+      pca = Sys(pobject->get_app()).factory().typed_clone(typeid(T).raw_name(),pobject);
+#else
+      pca = Sys(pobject->get_app()).factory().typed_clone(typeid(T).name(),pobject);
+#endif
+   if(pca == NULL)
+      return NULL;
+   return dynamic_cast < T * >(pca);
+}

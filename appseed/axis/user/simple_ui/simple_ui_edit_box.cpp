@@ -8,7 +8,7 @@ namespace simple_ui
 
 
    edit_box::edit_box(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       ::user::interaction(papp),
       ::data::listener(papp),
       ::user::edit_plain_text(papp)

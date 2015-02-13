@@ -40,8 +40,8 @@ namespace str
 
 
 template < typename SCALAR >
-class scalar_source :
-   virtual public object
+class scalar_source // :
+//   virtual public object
 {
 public:
 

@@ -6,7 +6,7 @@ namespace aura
 
 
    departament::departament(application * papp):
-      element(papp)
+      object(papp)
    {
 
    }

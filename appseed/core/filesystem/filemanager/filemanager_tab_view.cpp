@@ -6,7 +6,7 @@ namespace filemanager
 
 
    tab_view::tab_view(::aura::application * papp) :
-      element(papp),
+      object(papp),
       ::user::tab(papp),
       ::user::tab_view(papp),
       ::userex::pane_tab_view(papp),

@@ -7,7 +7,7 @@ namespace sockets
 
 
    sockets::sockets(::aura::application * papp) :
-     element(papp),
+     ::object(papp),
      ::aura::departament(papp),
       m_mutexHttpPostBoundary(papp),
       m_mutexResolvCache(papp),

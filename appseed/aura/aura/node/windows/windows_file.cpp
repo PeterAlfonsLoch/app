@@ -11,7 +11,7 @@ namespace windows
 
 
    file::file(::aura::application * papp) :
-      element(papp)
+      object(papp)
    {
 
       m_hFile = (UINT) hFileNull;
@@ -20,7 +20,7 @@ namespace windows
    }
 
    file::file(::aura::application * papp, int32_t hFile) :
-      element(papp)
+      object(papp)
    {
 
       m_hFile = hFile;
@@ -29,7 +29,7 @@ namespace windows
    }
 
    file::file(::aura::application * papp, const char * lpszFileName, UINT nOpenFlags) :
-      element(papp)
+      object(papp)
    {
 
       ASSERT(__is_valid_string(lpszFileName));

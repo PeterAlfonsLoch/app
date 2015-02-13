@@ -53,13 +53,13 @@ namespace core
       ::user::single_document_template *                 m_ptemplate_platform;
       ::user::single_document_template *                 m_ptemplate_nature;
       ::user::single_document_template *                 m_ptemplate_html;
-      sp(::root)                                         m_pbergedgedocument;
-      sp(::root)                                         m_pplatformdocument;
-      sp(::root)                                         m_pnaturedocument;
+      sp(::aura::document)                               m_pbergedgedocument;
+      sp(::aura::document)                               m_pplatformdocument;
+      sp(::aura::document)                               m_pnaturedocument;
       //nature::database *                                 m_pdatabase;
 
 
-      string_map < sp(::root) >                          m_mapUinteraction; // ::user::wndfrm::wndfrm
+      string_map < sp(::object) >                          m_mapUinteraction; // ::user::wndfrm::wndfrm
       
       ::userex::userex *                                 m_puserex;
       

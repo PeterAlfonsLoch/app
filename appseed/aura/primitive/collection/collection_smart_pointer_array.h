@@ -58,7 +58,7 @@ public:
 
 
    smart_pointer_array(::aura::application * papp) :
-      element(papp),
+      object(papp),
       array < smart_pointer < T > >(papp)
    {
    }
@@ -667,4 +667,4 @@ namespace xml
 #define spa(TYPE) ::smart_pointer_array < TYPE >
 #define xmlspa(TYPE) ::smart_pointer_array < TYPE >
 
-typedef spa(waitable) sync_object_ptra;
+typedef spa(object) object_spa;

@@ -72,7 +72,7 @@ namespace data
 
 
    data::data(::aura::application * papp) :
-      element(papp),
+      object(papp),
       m_pmutex(NULL)
    {
       

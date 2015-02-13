@@ -6,7 +6,7 @@ namespace filemanager
 
 
    operation_document::operation_document(::aura::application * papp):
-      element(papp),
+      object(papp),
       ::data::data_container_base(papp),
       ::aura::document(papp),
       m_thread(papp)

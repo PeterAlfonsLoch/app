@@ -37,7 +37,7 @@ namespace exception
 
 
    class CLASS_DECL_AURA translator :
-      virtual public element
+      virtual public object
    {
    public:
 

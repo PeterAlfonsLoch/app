@@ -6,7 +6,7 @@ namespace userfs
 
 
    document::document(::aura::application * papp) :
-      element(papp),
+      object(papp),
       ::data::data_container_base(papp),
       ::aura::document(papp)
    {
@@ -62,9 +62,12 @@ namespace userfs
 
          m_iaSize.set_size(m_straPath.get_count());
 
+         m_baDir.set_size(m_straPath.get_count());
+
          for(index i = 0; i < m_straPath.get_count(); i++)
          {
-            m_baDir.add(true);
+            m_iaSize[i] = 0;
+            m_baDir[i] = true;
          }
 
       }

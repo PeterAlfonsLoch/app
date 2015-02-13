@@ -16,7 +16,7 @@ public:
 
 
 class CLASS_DECL_AXIS db_str_set_queue_item:
-   virtual public element
+   virtual public object
 {
 public:
 
@@ -66,7 +66,7 @@ public:
 
 
    db_str_set_core(db_server * pserver):
-      element(pserver->get_app()),
+      ::object(pserver->get_app()),
       db_set(pserver,"stringtable"),
       m_handler(get_app()),
       m_mutex(get_app()),
@@ -102,7 +102,7 @@ public:
 
 
    db_str_sync_queue(::aura::application * papp):
-      element(papp),
+      ::object(papp),
       thread(papp),
       simple_thread(papp),
       m_handler(papp),
@@ -238,7 +238,7 @@ void db_str_sync_queue::queue(const char * pszKey,const char * psz)
 
 
 db_str_set::db_str_set(db_server * pserver):
-element(pserver->get_app()),
+::object(pserver->get_app()),
 m_mutex(pserver->get_app())
 {
 

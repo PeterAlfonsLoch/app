@@ -7,7 +7,7 @@ namespace sip
 
    // --------------------------------------------------------------------------------------
    response::response(::aura::application * papp, const string & version) :
-   element(papp),
+   ::object(papp),
    transaction(papp),
    m_memfileBody(papp )
    {
@@ -17,7 +17,7 @@ namespace sip
 
    // --------------------------------------------------------------------------------------
    response::response(const response& src) :
-   element(((response &)src).get_app()),
+   ::object(((response &)src).get_app()),
    transaction(src)
    , m_memfileBody(((response &)src).get_app() )
    {

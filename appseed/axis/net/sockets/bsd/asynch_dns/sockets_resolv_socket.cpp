@@ -44,7 +44,7 @@ namespace sockets
 
 
    resolv_socket::resolv_socket(base_socket_handler& h) :
-      element(h.get_app()),
+      object(h.get_app()),
       base_socket(h),
       socket(h),
       stream_socket(h),
@@ -59,7 +59,7 @@ namespace sockets
 
 
    resolv_socket::resolv_socket(base_socket_handler& h, base_socket *parent, const string & host, port_t port, bool ipv6) :
-      element(h.get_app()),
+      object(h.get_app()),
       base_socket(h),
       socket(h),
       stream_socket(h),
@@ -76,7 +76,7 @@ namespace sockets
 
 
    resolv_socket::resolv_socket(base_socket_handler& h, base_socket *parent, in_addr a) :
-      element(h.get_app()),
+      object(h.get_app()),
       base_socket(h),
       socket(h),
       stream_socket(h),
@@ -93,7 +93,7 @@ namespace sockets
 
 
    resolv_socket::resolv_socket(base_socket_handler& h, base_socket *parent, in6_addr& a) :
-      element(h.get_app()),
+      object(h.get_app()),
       base_socket(h),
       socket(h),
       stream_socket(h),

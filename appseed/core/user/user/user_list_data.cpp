@@ -6,7 +6,7 @@ namespace user
 
 
    simple_list_data::simple_list_data(::aura::application * papp) :
-      element(papp),
+      object(papp),
       ::user::list_data(papp)
    {
       m_bEnable = true;

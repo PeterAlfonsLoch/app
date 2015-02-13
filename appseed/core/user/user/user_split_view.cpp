@@ -6,7 +6,7 @@ namespace user
 
 
    split_view::split_view(::aura::application * papp) :
-      element(papp),
+      object(papp),
 
       split_layout(papp),
       place_holder_container(papp)

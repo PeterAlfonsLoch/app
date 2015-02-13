@@ -410,7 +410,7 @@ namespace windows
       // dialog support
       void UpdateDialogControls(command_target* pTarget,bool bDisableIfNoHndler);
       void CenterWindow(::user::interaction * pAlternateOwner = NULL);
-      //virtual id   RunModalLoop(uint32_t dwFlags = 0,::aura::live_object * pliveobject = NULL);
+      //virtual id   RunModalLoop(uint32_t dwFlags = 0,::object * pliveobject = NULL);
       virtual bool ContinueModal(int32_t iLevel);
       virtual void EndModalLoop(id nResult);
       virtual void EndAllModalLoops(id nResult);
