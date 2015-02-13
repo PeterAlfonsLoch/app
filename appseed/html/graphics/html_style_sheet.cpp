@@ -6,7 +6,7 @@ namespace html
 
 
    style_sheet::style_sheet(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
 
    }

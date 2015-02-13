@@ -22,7 +22,7 @@ ON_COMMAND(ID_FILE_PRINT_PREVIEW, ::aura::impact::OnFilePrintPreview)
 
 
 html_view::html_view(::aura::application * papp) :
-   element(papp),
+   ::object(papp),
    ::user::interaction(papp),
    ::user::scroll_view(papp),
    ::user::form_interface(papp),

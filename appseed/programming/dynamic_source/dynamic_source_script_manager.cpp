@@ -46,7 +46,7 @@ namespace dynamic_source
 
 
    script_manager::script_manager(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       thread(papp),
       m_spqueue(allocer()),
       m_mutexIncludeMatches(papp),

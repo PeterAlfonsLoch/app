@@ -74,7 +74,7 @@ namespace file
 
 
    stream_binder::stream_binder(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       _allBytesAreWritenEvent(papp),
       _thereAreBytesToReadEvent(papp),
       _readStreamIsClosedEvent(papp)

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 clock_interface::clock_interface(::aura::application * papp) :
-   element(papp)
+   ::object(papp)
 {
 }
 

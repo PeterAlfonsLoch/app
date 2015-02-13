@@ -1,7 +1,7 @@
 #include "framework.h"
 
 calendar::calendar(::aura::application * papp) :
-   element(papp),
+   ::object(papp),
    m_font(allocer()),
    m_fontYear(allocer()),
    m_fontMonth(allocer()),

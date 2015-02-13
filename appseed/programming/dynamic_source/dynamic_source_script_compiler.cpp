@@ -19,7 +19,7 @@ namespace dynamic_source
 
 
    script_compiler::script_compiler(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       m_memfileLibError(papp),
       m_mutexLibrary(papp),
       m_libraryLib(papp)

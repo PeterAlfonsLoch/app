@@ -5,7 +5,7 @@ thread_int_ptr < int_ptr > t_iAvoidDatetimeParserException;
 
 
 datetime_parser_exception::datetime_parser_exception(::aura::application * papp,const string & strMessage):
-element(papp),
+::object(papp),
 ::call_stack(get_app()),
 ::exception::base(get_app()),
 simple_exception(papp,strMessage)

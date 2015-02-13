@@ -1,7 +1,7 @@
 #include "framework.h"
 
 calendar_interface::calendar_interface(::aura::application * papp) :
-   element(papp)
+   ::object(papp)
 {
    ::datetime::time time = ::datetime::time::get_current_time();
    m_iYear = time.GetYear();

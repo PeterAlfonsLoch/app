@@ -7,7 +7,7 @@ namespace calculator
 {
 
    parser::parser(::aura::application * papp) :
-      ::element(papp),
+      ::object(papp),
       m_scanner(papp)
    {
    }

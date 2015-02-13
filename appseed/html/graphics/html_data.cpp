@@ -6,7 +6,7 @@ namespace html
 {
 
    data::image::image(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       m_spdib(allocer())
    {
    }
@@ -18,7 +18,7 @@ namespace html
 
 
    data::data(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       ::data::data(papp),
       m_imagea(papp),
       m_uiptra(papp),

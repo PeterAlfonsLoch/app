@@ -5,7 +5,7 @@ namespace core
 
    /*
    file_association::file_association(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
       m_hkeyClassesRoot = NULL;
    }

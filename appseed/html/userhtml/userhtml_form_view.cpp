@@ -2,7 +2,7 @@
 
 
 html_form_view::html_form_view(::aura::application * papp) :
-   element(papp),
+   ::object(papp),
    html_form(papp),
    ::user::interaction(papp),
    ::user::scroll_view(papp),

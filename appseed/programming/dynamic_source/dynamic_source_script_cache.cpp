@@ -7,7 +7,7 @@ namespace dynamic_source
 
 
    script_cache::script_cache(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
 
    }

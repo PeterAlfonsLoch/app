@@ -6,7 +6,7 @@ namespace filehandler
 
 
    view::view(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       ::user::interaction(papp),
       ::user::scroll_view(papp),
       ::user::form_interface(papp),
@@ -89,7 +89,7 @@ namespace filehandler
    }
 
    view::item::item(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
 
    }
@@ -140,7 +140,7 @@ namespace filehandler
 
 
    view::list::list(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
       m_iItemHeight = 30;
    }

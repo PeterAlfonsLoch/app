@@ -6,7 +6,7 @@ namespace console
 
 
    prompt::prompt(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
 
 

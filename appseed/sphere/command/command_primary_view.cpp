@@ -7,7 +7,7 @@ namespace command
 
 
    primary_view::primary_view(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       ::user::interaction(papp),
       ::user::scroll_view(papp),
       ::data::listener(papp),

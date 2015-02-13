@@ -8,7 +8,7 @@ namespace console
 
 
    prompt_impact::prompt_impact(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       m_evNewChar(papp)
    {
 

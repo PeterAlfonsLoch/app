@@ -6,7 +6,7 @@ namespace command
 
 
    view::view(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       ::user::interaction(papp)
    {
    }

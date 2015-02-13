@@ -2,7 +2,7 @@
 
 
 clock::clock(::aura::application * papp) :
-   element(papp),
+   ::object(papp),
    clock_interface(papp)
 {
 //   ::datetime::time time = ::datetime::time::get_current_time();

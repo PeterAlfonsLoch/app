@@ -21,7 +21,7 @@ namespace html
 
 
    style::style(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
 
       m_edisplay = display_inline;

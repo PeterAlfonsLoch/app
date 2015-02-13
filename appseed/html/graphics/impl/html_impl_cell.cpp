@@ -10,7 +10,7 @@ namespace html
 
 
       cell::cell(::aura::application * papp) :
-         element(papp),
+         ::object(papp),
          ::data::listener(papp),
          user::edit_plain_text(papp),
          ::html::impl::text(papp)

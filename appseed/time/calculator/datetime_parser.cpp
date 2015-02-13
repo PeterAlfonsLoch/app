@@ -8,7 +8,7 @@ namespace datetime
 {
 
    parser::parser(::aura::application * papp, ::aura::str_context * pcontext) :
-      element(papp),
+      ::object(papp),
       m_scanner(papp, pcontext)
    {
    }

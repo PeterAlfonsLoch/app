@@ -34,7 +34,7 @@
 };*/
 
 //html_frame::html_frame(::aura::application * papp) :
-//   element(papp),
+//   ::object(papp),
 //   simple_frame_window(papp)
 //{
 //   m_pimagelist = NULL;

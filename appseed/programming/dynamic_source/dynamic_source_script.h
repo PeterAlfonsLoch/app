@@ -108,7 +108,7 @@ namespace dynamic_source
 
 
       t_script(::aura::application * papp) : 
-         element(papp),
+         ::object(papp),
          script(papp)
       {
       };

@@ -17,7 +17,7 @@ namespace dynamic_source
 
 
    library_class::library_class(::aura::application * papp)
-      :  element(papp),
+      :  ::object(papp),
       m_memfileError(papp),
       m_library(papp)
    {

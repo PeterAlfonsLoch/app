@@ -21,7 +21,7 @@ namespace dynamic_source
 
 
    script::script(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       m_memfileError(papp),
       m_mutex(papp)
    {
@@ -46,7 +46,7 @@ namespace dynamic_source
    } LOADPARMS32;
 
    ds_script::ds_script(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       script(papp),
       m_evCreationEnabled(papp),
       m_library(papp)

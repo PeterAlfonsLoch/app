@@ -10,7 +10,7 @@ namespace html
 
 
       text::text(::aura::application * papp) :
-         element(papp),
+         ::object(papp),
          ::data::listener(papp),
          user::edit_plain_text(papp)
       {

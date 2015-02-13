@@ -15,7 +15,7 @@ namespace file
    {
    public:
       out_buffer_exception(::aura::application * papp, HRESULT errorCode) : 
-         element(papp),
+         ::object(papp),
          ::call_stack(papp),
          ::exception::base(papp),
          ::simple_exception(papp),

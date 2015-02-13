@@ -9,7 +9,7 @@ namespace primitive
 
 
    shared_file::shared_file(::aura::application * papp, UINT nAllocFlags, UINT nGrowBytes) :
-      element(papp),
+      ::object(papp),
       memory_container(papp),
       memory_buffer(papp)
    {
