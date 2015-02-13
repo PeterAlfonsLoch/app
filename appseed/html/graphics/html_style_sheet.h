@@ -1,12 +1,12 @@
 #pragma once
 
 
-
 namespace html
 {
 
+
    class CLASS_DECL_HTML style_sheet :
-      virtual public element
+      virtual public ::object
    {
    public:
 

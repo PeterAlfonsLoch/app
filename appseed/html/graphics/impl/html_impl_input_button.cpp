@@ -15,7 +15,7 @@ namespace html
          m_iFont = -1;
 
          m_pbutton = canew(::user::button(pdata->get_app()));
-         m_pbutton->m_ulFlags &= ~element::flag_auto_delete;
+         m_pbutton->m_ulFlags &= ~::object::flag_auto_delete;
 
       }
 

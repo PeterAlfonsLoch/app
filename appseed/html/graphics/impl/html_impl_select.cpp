@@ -14,7 +14,7 @@ namespace html
 
          m_iFont = -1;
          m_pcombo = new ::user::combo_box(pdata->get_app());
-         m_pcombo->m_ulFlags &= ~element::flag_auto_delete;
+         m_pcombo->m_ulFlags &= ~::object::flag_auto_delete;
          m_pcombo->m_bMultiLine = false;
 
       }

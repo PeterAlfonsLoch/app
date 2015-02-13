@@ -6,7 +6,7 @@ namespace html
 
 
    class CLASS_DECL_HTML font :
-      virtual public element
+      virtual public ::object
    {
    public:
       
@@ -31,6 +31,8 @@ namespace html
 
 
 } // namespace html
+
+
 
 
 

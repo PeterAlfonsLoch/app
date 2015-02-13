@@ -6,7 +6,7 @@ namespace html
 
 
    class attribute :
-      virtual public element
+      virtual public ::object
    {
    public:
 
@@ -40,5 +40,8 @@ namespace html
 
 
 } // namespace html
+
+
+
 
 

@@ -5,16 +5,19 @@
 namespace html
 {
 
+   
    class elemental;
 
+   
    /*enum edisplay
    {
       display_block,
       display_inline,
    };*/
 
+
    class CLASS_DECL_HTML style :
-      virtual public element
+      virtual public ::object
    {
    public:
 
@@ -62,4 +65,8 @@ namespace html
       
    };
 
+
 } // namespace html
+
+
+
