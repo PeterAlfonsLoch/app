@@ -42,6 +42,7 @@ namespace user
 
       e_updown                            m_eupdown;
       bool                                m_bMoving;
+      bool                                m_bMoveWindow;
       bool                                m_bMayProDevian;
       bool                                m_bVisible;
       bool                                m_bVoidPaint;
@@ -195,7 +196,7 @@ namespace user
       virtual void on_keyboard_focus(::user::elemental * pfocus);
 
 
-      virtual void _001UpdateScreen();
+      virtual void _001UpdateScreen(bool bUpdateBuffer = true);
       virtual void _001UpdateBuffer();
 
 
@@ -372,7 +373,6 @@ namespace user
       DECL_GEN_SIGNAL(_001OnDestroy);
       DECL_GEN_SIGNAL(_001OnSize);
       DECL_GEN_SIGNAL(_001OnCreate);
-      DECL_GEN_SIGNAL(_001OnMove);
       DECL_GEN_SIGNAL(_001OnUser184);
       DECL_GEN_SIGNAL(_001OnNcCalcSize);
       DECL_GEN_SIGNAL(_001OnClose);

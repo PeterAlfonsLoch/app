@@ -82,7 +82,6 @@ void simple_toolbar::install_message_handling(::message::dispatch * pdispatch)
    IGUI_WIN_MSG_LINK(WM_LBUTTONUP      , pdispatch, this, &simple_toolbar::_001OnLButtonUp);
    IGUI_WIN_MSG_LINK(WM_NCCALCSIZE     , pdispatch, this, &simple_toolbar::_001OnNcCalcSize);
    IGUI_WIN_MSG_LINK(WM_NCHITTEST      , pdispatch, this, &simple_toolbar::_001OnNcHitTest);
-   IGUI_WIN_MSG_LINK(WM_MOVE           , pdispatch, this, &simple_toolbar::_001OnMove);
    IGUI_WIN_MSG_LINK(WM_MOUSELEAVE     , pdispatch, this, &simple_toolbar::_001OnMouseLeave);
 }
 
@@ -2075,10 +2074,6 @@ size simple_toolbar::CalcDynamicLayout(int32_t nLength, uint32_t dwMode)
    return CalcLayout(dwMode, nLength);
 }
 
-void simple_toolbar::_001OnMove(signal_details * pobj)
-{
-   pobj->previous();
-}
 
 void simple_toolbar::_001OnMouseLeave(signal_details * pobj)
 {

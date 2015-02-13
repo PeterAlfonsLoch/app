@@ -40,64 +40,57 @@ inline void plex_heap_alloc_sync::Free(void * p)
    #endif
 
    cslock sl(&m_protect);
-   
+
+#ifdef DEBUG
    memset(p, 0xCD, m_nAllocSize); // attempt to invalidate memory so it get unusable (as it should be after freed).
+#endif
 
-   try
-   {
-
-      // simply return the node to the free list
-      node* pnode = (node*)p;
+   // simply return the node to the free list
+   node* pnode = (node*)p;
 
 #ifdef MEMDFREE // Free Debug - duplicate freeing ?
 
-      node * pnodeFree = m_pnodeFree;
+   node * pnodeFree = m_pnodeFree;
 
-      while(pnodeFree != NULL)
+   while(pnodeFree != NULL)
+   {
+
+      if(pnode == pnodeFree) // dbgsnp - debug snippet
       {
 
-         if(pnode == pnodeFree) // dbgsnp - debug snippet
+         // already in free list
+
+         if(is_debugger_attached())
          {
 
-            // already in free list
-
-            if(is_debugger_attached())
-            {
-
-               debug_break();
-
-            }
-
-            return;
+            debug_break();
 
          }
 
-         pnodeFree = pnodeFree->pNext;
+         return;
 
       }
+
+      pnodeFree = pnodeFree->pNext;
+
+   }
 
 #endif
 
 #if STORE_LAST_BLOCK
 
-      if(m_pnodeLastBlock != NULL)
-         system_heap_free(m_pnodeLastBlock);
+   if(m_pnodeLastBlock != NULL)
+      system_heap_free(m_pnodeLastBlock);
 
-      m_pnodeLastBlock = (node *) system_heap_alloc(m_nAllocSize + 32);
+   m_pnodeLastBlock = (node *) system_heap_alloc(m_nAllocSize + 32);
 
-      memcpy(m_pnodeLastBlock, pnode, m_nAllocSize + 32);
+   memcpy(m_pnodeLastBlock, pnode, m_nAllocSize + 32);
 
 #endif
 
-      pnode->pNext = m_pnodeFree;
+   pnode->pNext = m_pnodeFree;
 
-      m_pnodeFree = pnode;
-
-   }
-   catch(...)
-   {
-
-   }
+   m_pnodeFree = pnode;
 
 
 }

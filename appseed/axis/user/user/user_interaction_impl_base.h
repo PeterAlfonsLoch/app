@@ -29,7 +29,7 @@ namespace user
       virtual void set_need_layout();
 
 
-      virtual void _001UpdateScreen();
+      virtual void _001UpdateScreen(bool bUpdateBuffer = true);
       virtual void _001UpdateBuffer();
 
 

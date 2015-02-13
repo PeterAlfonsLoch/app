@@ -27,7 +27,6 @@ public:
    DECL_GEN_SIGNAL(_001OnTrack);
    DECL_GEN_SIGNAL(_001OnEndDrag);
    DECL_GEN_SIGNAL(_001OnCreate);
-   DECL_GEN_SIGNAL(_001OnMove);
 
 
 

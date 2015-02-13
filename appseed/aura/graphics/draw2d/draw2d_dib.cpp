@@ -4017,7 +4017,7 @@ namespace draw2d
    }
 
 
-   bool dib::update_window(::aura::draw_interface * pwnd,signal_details * pobj)
+   bool dib::update_window(::aura::draw_interface * pwnd,signal_details * pobj,bool bTransferBuffer)
    {
 
       UNREFERENCED_PARAMETER(pwnd);

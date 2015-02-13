@@ -63,7 +63,7 @@ namespace user
    }
 
 
-   void interaction_impl_base::_001UpdateScreen()
+   void interaction_impl_base::_001UpdateScreen(bool bUpdateBuffer)
    {
 
 

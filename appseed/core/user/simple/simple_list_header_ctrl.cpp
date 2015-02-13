@@ -28,7 +28,6 @@ void simple_list_header_control::install_message_handling(::message::dispatch * 
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &simple_list_header_control::_001OnCreate);
    IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &simple_list_header_control::_001OnLButtonDown);
    IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &simple_list_header_control::_001OnLButtonUp);
-   IGUI_WIN_MSG_LINK(WM_MOVE, pinterface, this, &simple_list_header_control::_001OnMove);
    IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pinterface, this, &simple_list_header_control::_001OnMouseMove);
 }
 
@@ -214,10 +213,4 @@ bool simple_list_header_control::create_window(UINT nStyle, const RECT & rect, s
 }
 
 
-void simple_list_header_control::_001OnMove(signal_details * pobj) 
-{
-   SCAST_PTR(::message::move, pmove, pobj)
-   point point(pmove->m_pt.x, pmove->m_pt.y);
-   pmove->m_bRet = false;
-}
 

@@ -463,7 +463,6 @@ namespace windows
          IGUI_WIN_MSG_LINK(WM_CAPTURECHANGED,pinterface,this,&interaction_impl::_001OnCaptureChanged);
          IGUI_WIN_MSG_LINK(WM_SETCURSOR,pinterface,this,&interaction_impl::_001OnSetCursor);
          IGUI_WIN_MSG_LINK(WM_ERASEBKGND,pinterface,this,&interaction_impl::_001OnEraseBkgnd);
-         IGUI_WIN_MSG_LINK(WM_MOVE,pinterface,this,&interaction_impl::_001OnMove);
          IGUI_WIN_MSG_LINK(WM_SIZE,pinterface,this,&interaction_impl::_001OnSize);
          IGUI_WIN_MSG_LINK(WM_WINDOWPOSCHANGING,pinterface,this,&interaction_impl::_001OnWindowPosChanging);
          IGUI_WIN_MSG_LINK(WM_WINDOWPOSCHANGED,pinterface,this,&interaction_impl::_001OnWindowPosChanged);
@@ -515,22 +514,6 @@ namespace windows
    }
 
 
-
-   void interaction_impl::_001OnMove(signal_details * pobj)
-   {
-
-      SCAST_PTR(::message::move,pmove,pobj);
-
-      if(m_bIgnoreMoveEvent)
-      {
-
-         pobj->m_bRet = true;
-
-         return;
-
-      }
-
-   }
 
 
    void interaction_impl::_001OnSize(signal_details * pobj)
@@ -3071,9 +3054,16 @@ namespace windows
 
          //}
 
+         keep < bool > keepMoveWindow(&m_pui->m_bMoveWindow,true,false,false);
+         if(nFlags & SWP_NOSIZE)
+         {
+            keepMoveWindow.Keep();
+         }
          
 
          ::SetWindowPos(get_handle(),(oswindow)z,x,y,cx,cy,nFlags);
+
+         keepMoveWindow.KeepAway();
 
          if(nFlags & SWP_SHOWWINDOW)
          {
@@ -3089,6 +3079,7 @@ namespace windows
             {
 
 //               _001UpdateScreen();
+               m_pui->_001UpdateScreen(false);
 
             }
             else
@@ -5482,54 +5473,31 @@ namespace windows
 // isso é um comentario e zero (0) se não processou
 LRESULT CALLBACK __window_procedure(oswindow oswindow,UINT message,WPARAM wparam,LPARAM lparam)
 {
-   //if(message == 512)
-   //{
-   //   return VARIAS_MENSAGENS_DO_WINDOWS_RECEBIDAS_PELA_FUNCAO_QUE_RECEBE_AS_MENSAGENS_A_FUNCAO_QUE_RECEBE_AS_MENSAGENS_RETORNA_1_SE_A_MENSAGEM_SE_PROCESSOU_OU_QUER_DIZER_QUE_PROCESSOU_SERA_QUE_ATINGIU_O_LIMITE;
-   //}
 
-   sp(::user::interaction) pui = ::window_from_handle(oswindow);
+   ::user::interaction * pui = ::window_from_handle(oswindow);
 
-   if(pui == NULL || pui->get_safe_handle() != oswindow)
+   if(pui == NULL)
       return ::DefWindowProc(oswindow,message,wparam,lparam);
 
-   ::aura::application * m_pauraapp = pui->get_app();
-
-   if(message == WM_LBUTTONDOWN)
-   {
-      
-      g_iMouseDown = 1;
-      t_time2 = ::get_tick_count();
-
-   }
-   else if(message == WM_LBUTTONUP)
+   if(pui->m_bMoving || pui->m_bMoveWindow)
    {
 
-      g_iMouseDown = 0;
+      if(message == WM_WINDOWPOSCHANGING)
+      {
 
-   }
+         return 0;
 
+      }
+      else if(message == WM_WINDOWPOSCHANGED)
+      {
 
-   if(message == WM_MOUSEMOVE && g_iMouseDown)
-   {
-      t_time1 = ::get_tick_count();
+         return 0;
 
-
-      //TRACE("between move time2= %d ms",::get_tick_count() - t_time2);
-
-      t_time2 = ::get_tick_count();
+      }
 
    }
 
    LRESULT lresult = pui->call_message_handler(message,wparam,lparam);
-
-   DWORD dwTime2 = ::get_tick_count();
-
-   if(message == WM_MOUSEMOVE && g_iMouseDown)
-   {
-
-      //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-
-   }
 
    return lresult;
 

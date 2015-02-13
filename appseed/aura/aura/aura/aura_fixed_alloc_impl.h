@@ -38,18 +38,16 @@ inline void * fixed_alloc_sync::Alloc()
 
 inline void fixed_alloc_sync::Free(void * p)
 {
+   
    if (p == NULL)
       return;
+   
    int32_t i = ((int32_t *)p)[-1];
-   m_protectptra.get_data()[i]->lock();
-   try
-   {
-      m_allocptra.get_data()[i]->Free(&((int32_t *)p)[-1]);
-   }
-   catch(...)
-   {
-   }
-   m_protectptra.get_data()[i]->unlock();
+   
+   cslock l(m_protectptra.get_data()[i]);
+   
+   m_allocptra.get_data()[i]->Free(&((int32_t *)p)[-1]);
+
 }
 
 

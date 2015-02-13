@@ -40,19 +40,16 @@ namespace user
 
 } // namespace user
 
-#if defined(WINDOWS) || defined(LINUX)
-::user::interaction * window_from_handle(oswindow oswindow)
-{
-
-   if(oswindow == NULL)
-      return NULL;
-
-   cslock slOsWindow(::user::g_pcsUi);
-
-   return ::user::g_pmapUi->operator[](oswindow);
-
-}
-#endif
+//#if defined(WINDOWS) || defined(LINUX)
+//::user::interaction * window_from_handle(oswindow oswindow)
+//{
+//
+//   cslock slOsWindow(::user::g_pcsUi);
+//
+//   return ::user::g_pmapUi->operator[](oswindow);
+//
+//}
+//#endif
 
 CLASS_DECL_AXIS bool oswindow_assign(oswindow oswindow,::user::interaction * pui)
 {

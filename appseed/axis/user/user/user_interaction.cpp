@@ -123,7 +123,7 @@ namespace user
       m_bDefaultWalkPreTranslateParentTree = false;
 
       m_bMoving                  = false;
-
+      m_bMoveWindow              = false;
    }
 
 
@@ -523,7 +523,6 @@ namespace user
          IGUI_WIN_MSG_LINK(WM_TIMER                , pinterface, this, &interaction::_001OnTimer);
          IGUI_WIN_MSG_LINK(WM_DESTROY,pinterface,this,&interaction::_001OnDestroy);
          IGUI_WIN_MSG_LINK(WM_SIZE,pinterface,this,&interaction::_001OnSize);
-         IGUI_WIN_MSG_LINK(WM_MOVE,pinterface,this,&interaction::_001OnMove);
          IGUI_WIN_MSG_LINK(WM_USER + 184,pinterface,this,&interaction::_001OnUser184);
          IGUI_WIN_MSG_LINK(WM_NCCALCSIZE,pinterface,this,&interaction::_001OnNcCalcSize);
       }
@@ -849,20 +848,6 @@ namespace user
 
    }
 
-   void interaction::_001OnMove(signal_details * pobj)
-   {
-      UNREFERENCED_PARAMETER(pobj);
-
-      if(m_bMoving && !(GetExStyle() & WS_EX_LAYERED))
-      {
-
-         Session.m_ptCursor = m_ptMoveCursor;
-         
-         ::SetCursorPos(m_ptMoveCursor.x,m_ptMoveCursor.y);
-
-      }
-
-   }
 
    void interaction::set_viewport_org(::draw2d::graphics * pgraphics)
    {
@@ -1848,9 +1833,9 @@ namespace user
 
 #else
 
-      sp(::user::interaction) pui;
+      ::user::interaction * pui;
 
-      ::window_sp pwnd;
+      ::user::interaction_impl * pwnd;
 
       try
       {
@@ -1860,7 +1845,10 @@ namespace user
          if(pui == NULL)
             return NULL;
 
-         pwnd = pui->m_pimpl;
+         if(pui->m_pimpl == NULL)
+            return NULL;
+
+         pwnd = pui->m_pimpl->get_user_interaction_impl();
 
          if(pwnd == NULL)
             return NULL;
@@ -3598,7 +3586,7 @@ namespace user
    }
 
 
-   void interaction::_001UpdateScreen()
+   void interaction::_001UpdateScreen(bool bUpdateBuffer)
    {
 
       if(m_bLockWindowUpdate)
@@ -3607,7 +3595,7 @@ namespace user
       if(m_pimpl == NULL)
          return;
 
-      m_pimpl->_001UpdateScreen();
+      m_pimpl->_001UpdateScreen(bUpdateBuffer);
 
    }
 

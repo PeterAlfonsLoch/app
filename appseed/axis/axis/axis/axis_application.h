@@ -433,7 +433,7 @@ namespace axis
       virtual ptr_array < ::thread > get_thread(::aura::interaction * pui);
       virtual void add_thread(::aura::interaction * pui,::thread * pthread);
       virtual void remove_thread(::aura::interaction * pui,::thread * pthread);
-      virtual void window_graphics_update_window(window_graphics * & pdata,oswindow interaction_impl,COLORREF * pOsBitmapData,const RECT & rect,int cxParam,int cyParam,int iStride = -1);
+      virtual void window_graphics_update_window(window_graphics * & pdata,oswindow interaction_impl,COLORREF * pOsBitmapData,const RECT & rect,int cxParam,int cyParam,int iStride = -1,bool bTransferBuffer = true);
 
 
 

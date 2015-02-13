@@ -45,7 +45,7 @@ void window_graphics::destroy_window_graphics()
 }
 
 
-void window_graphics::update_window(window_graphics * & pdata, oswindow interaction_impl, COLORREF * pOsBitmapData, const RECT & rect, int cxParam, int cyParam, int iStride)
+void window_graphics::update_window(window_graphics * & pdata,oswindow interaction_impl,COLORREF * pOsBitmapData,const RECT & rect,int cxParam,int cyParam,int iStride,bool bTransferBuffer)
 {
 
    if (pdata == NULL || (pdata->cx != cxParam || pdata->cy != cyParam))
@@ -87,14 +87,14 @@ void window_graphics::update_window(window_graphics * & pdata, oswindow interact
    if (pdata != NULL)
    {
 
-      pdata->update_window(pOsBitmapData, rect, cxParam, cyParam, iStride);
+      pdata->update_window(pOsBitmapData, rect, cxParam, cyParam, iStride, bTransferBuffer);
 
    }
 
 }
 
 
-void window_graphics::update_window(COLORREF * pOsBitmapData, const RECT & rect, int cxParam, int cyParam, int iStride)
+void window_graphics::update_window(COLORREF * pOsBitmapData,const RECT & rect,int cxParam,int cyParam,int iStride,bool bTransferBuffer)
 {
 
    UNREFERENCED_PARAMETER(pOsBitmapData);

@@ -58,7 +58,8 @@ namespace user
       bool                          m_bTranslateMouseMessageCursor;
       bool                          m_bComposite;
       bool                          m_bUpdateGraphics;
-      sp(mutex)                     m_spmutexDisplay;
+      //sp(mutex)                     m_spmutexDisplay;
+      critical_section            * m_pcsDisplay;
       point                         m_pt;
       size                          m_size;
 
@@ -707,13 +708,13 @@ namespace user
       virtual void _001BaseWndInterfaceMap();
 
 
-      virtual void _001UpdateScreen();
+      virtual void _001UpdateScreen(bool bUpdateBuffer = true);
       virtual void _001UpdateBuffer();
 
 
       virtual void update_graphics_resources();
 
-      virtual sp(mutex) mutex_display();
+      inline critical_section * cs_display() { return m_pcsDisplay; }
 
 
       virtual void set_handle(oswindow oswindow);

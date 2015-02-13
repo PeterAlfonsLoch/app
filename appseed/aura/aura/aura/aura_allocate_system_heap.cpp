@@ -1,6 +1,6 @@
 //#include "framework.h"
 
-#define PREFER_MALLOC 1
+#define PREFER_MALLOC 0
 
 // uint32_t aligned allocation
 
@@ -25,7 +25,6 @@ void * system_heap_alloc(size_t size)
 {
 
    //synch_lock lock(g_pmutexSystemHeap);
-   cslock csl(g_pmutexSystemHeap);
 
 //#if ZEROED_ALLOC
   // byte * p = (byte *) ::HeapAlloc(g_hSystemHeap, HEAP_ZERO_MEMORY, ((size + 4 + 3) & ~3));
@@ -33,7 +32,9 @@ void * system_heap_alloc(size_t size)
    
    void * p;
 
-#if defined(WINDOWSEX) && !defined(PREFER_MALLOC)
+#if defined(WINDOWSEX) && !PREFER_MALLOC
+
+   cslock csl(g_pmutexSystemHeap);
 
    p = ::HeapAlloc(g_system_heap(), 0, size);
 
@@ -59,9 +60,9 @@ void * system_heap_alloc(size_t size)
 void * system_heap_realloc(void * p, size_t size)
 {
 
-   cslock lock(g_pmutexSystemHeap);
+#if defined(WINDOWSEX) && !PREFER_MALLOC
 
-#if defined(WINDOWSEX) && !defined(PREFER_MALLOC)
+   cslock lock(g_pmutexSystemHeap);
 
    return ::HeapReAlloc(g_system_heap(), 0, p, size);
 
@@ -77,9 +78,9 @@ void * system_heap_realloc(void * p, size_t size)
 void system_heap_free(void * p)
 {
 
-   cslock lock(g_pmutexSystemHeap);
+#if defined(WINDOWSEX) && !PREFER_MALLOC
 
-#if defined(WINDOWSEX) && !defined(PREFER_MALLOC)
+   cslock lock(g_pmutexSystemHeap);
 
    if(!::HeapFree(g_system_heap(), 0, p))
    {

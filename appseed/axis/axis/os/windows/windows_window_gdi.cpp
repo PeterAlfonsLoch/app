@@ -132,53 +132,58 @@ void window_gdi::destroy_window_graphics()
 }
 
 
-void window_gdi::update_window(COLORREF * pcolorref,const RECT & rect,int cxParam,int cyParam,int iStride)
+void window_gdi::update_window(COLORREF * pcolorref,const RECT & rect,int cxParam,int cyParam,int iStride,bool bTransferBuffer)
 {
 
    if (width(rect) <= 0 || height(rect) <= 0)
       return;
 
 
-
-
-   ::SelectClipRgn(m_hdcScreen, NULL);
-
-   ::SelectClipRgn(m_hdc, NULL);
-
    RECT rectWindow;
-   
+
    rectWindow =rect;
 
-   RECT rectOutputClient;
+   bool bLayered = (::GetWindowLong(m_hwnd,GWL_EXSTYLE) & WS_EX_LAYERED) != 0;
 
-   rectOutputClient = rect;
-   
-   rectOutputClient.left   -= rect.left;
-   rectOutputClient.right  -= rect.left;
-   rectOutputClient.top    -= rect.top;
-   rectOutputClient.bottom -= rect.top;
-
-   bool bLayered = (::GetWindowLong(m_hwnd, GWL_EXSTYLE) & WS_EX_LAYERED) != 0;
-
-   try
+   if(bTransferBuffer)
    {
 
-      ::draw2d::copy_colorref(cxParam, cyParam,m_pcolorref,scan, pcolorref,iStride);
+      ::SelectClipRgn(m_hdcScreen,NULL);
+
+      ::SelectClipRgn(m_hdc,NULL);
+
+
+      RECT rectOutputClient;
+
+      rectOutputClient = rect;
+
+      rectOutputClient.left   -= rect.left;
+      rectOutputClient.right  -= rect.left;
+      rectOutputClient.top    -= rect.top;
+      rectOutputClient.bottom -= rect.top;
+
+      try
+      {
+
+         ::draw2d::copy_colorref(cxParam,cyParam,m_pcolorref,scan,pcolorref,iStride);
+
+      }
+      catch(...)
+      {
+
+      }
+
+      /*   for (int i = 1920 * 32; i < 1920 * 64; i++)
+         {
+         m_pcolorref[i] = ARGB(255, 127, 255, 127);
+         }*/
+
+      ::GdiFlush();
+
+      ::SetViewportOrgEx(m_hdcScreen,0,0,NULL);
+
 
    }
-   catch (...)
-   {
-
-   }
-
-/*   for (int i = 1920 * 32; i < 1920 * 64; i++)
-   {
-      m_pcolorref[i] = ARGB(255, 127, 255, 127);
-   }*/
-
-   ::GdiFlush();
-
-   ::SetViewportOrgEx(m_hdcScreen, 0, 0, NULL);
 
    if(bLayered)
    {

@@ -168,7 +168,6 @@ public:
    DECL_GEN_SIGNAL(_001OnDdeInitiate);
    DECL_GEN_SIGNAL(_001OnDestroy);
    DECL_GEN_SIGNAL(_001OnSize);
-   DECL_GEN_SIGNAL(_001OnMove);
    DECL_GEN_SIGNAL(_001OnClose);
    DECL_GEN_SIGNAL(_001OnSysCommand);
    DECL_GEN_SIGNAL(_001OnViewFullScreen);

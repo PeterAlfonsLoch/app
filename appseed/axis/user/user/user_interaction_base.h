@@ -261,7 +261,7 @@ namespace user
       virtual void on_keyboard_focus(::user::elemental * pfocus);
 
 
-      virtual void _001UpdateScreen();
+      virtual void _001UpdateScreen(bool bUpdateBuffer = true);
       virtual void _001UpdateBuffer();
 
 

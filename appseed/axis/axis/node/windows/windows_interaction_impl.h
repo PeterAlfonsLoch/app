@@ -73,7 +73,6 @@ namespace windows
       void _002OnDraw(::draw2d::graphics * pdc);
 
       DECL_GEN_SIGNAL(_001OnEraseBkgnd);
-      DECL_GEN_SIGNAL(_001OnMove);
       DECL_GEN_SIGNAL(_001OnSize);
       DECL_GEN_SIGNAL(_001OnShowWindow);
       DECL_GEN_SIGNAL(_001OnProdevianSynch);

@@ -138,7 +138,6 @@ void simple_frame_window::install_message_handling(::message::dispatch * pinterf
    IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &simple_frame_window::_001OnDestroy);
    IGUI_WIN_MSG_LINK(WM_CLOSE, pinterface, this, &simple_frame_window::_001OnClose);
    IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &simple_frame_window::_001OnSize);
-   IGUI_WIN_MSG_LINK(WM_MOVE, pinterface, this, &simple_frame_window::_001OnMove);
    IGUI_WIN_MSG_LINK(WM_SYSCOMMAND, pinterface, this, &simple_frame_window::_001OnSysCommand);
    IGUI_WIN_MSG_LINK(WM_GETMINMAXINFO, pinterface, this, &simple_frame_window::_001OnGetMinMaxInfo);
    IGUI_WIN_MSG_LINK(WM_USER + 184, pinterface, this, &simple_frame_window::_001OnUser184);
@@ -419,37 +418,6 @@ void simple_frame_window::_001OnSize(signal_details * pobj)
 }
 
 
-void simple_frame_window::_001OnMove(signal_details * pobj)
-{
-   UNREFERENCED_PARAMETER(pobj);
-   //if ((m_workset.GetMovingManager() == NULL ||
-   //   m_workset.GetSizingManager() == NULL) || (!m_workset.GetMovingManager()->IsMoving()
-   //   && !m_workset.GetSizingManager()->IsSizing()))
-   //{
-   //   RedrawWindow();
-   //}
-
-   //post_message(WM_APP + 184, 123);
-
-   //m_phelpertask->m_evSizeMove.set_event();
-
-//   WindowDataSaveWindowRect();
-
-   //if(does_display_match())
-   //{
-
-   //   WindowDataSaveWindowRect();
-
-   //}
-
-   //m_phelpertask->m_bSizeMove = true;
-
-   //m_phelpertask->m_ev.set_event();
-
-   m_phelpertask->defer_save_window_rect();
-
-
-}
 
 bool simple_frame_window::on_create_client(::user::create_struct * lpcs, sp(::create) pContext)
 {

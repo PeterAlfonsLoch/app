@@ -1797,7 +1797,7 @@ namespace user
    }
 
 
-   void interaction_base::_001UpdateScreen()
+   void interaction_base::_001UpdateScreen(bool bUpdateBuffer)
    {
 
       ::exception::throw_interface_only(get_app());

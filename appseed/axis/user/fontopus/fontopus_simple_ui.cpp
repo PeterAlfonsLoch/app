@@ -48,7 +48,6 @@ namespace fontopus
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN,pdispatch,this,&simple_ui::_001OnLButtonDown);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP,pdispatch,this,&simple_ui::_001OnLButtonUp);
       IGUI_WIN_MSG_LINK(WM_MOUSEMOVE,pdispatch,this,&simple_ui::_001OnMouseMove);
-      IGUI_WIN_MSG_LINK(WM_MOVE,pdispatch,this,&simple_ui::_001OnMove);
       IGUI_WIN_MSG_LINK(WM_SIZE,pdispatch,this,&simple_ui::_001OnSize);
       IGUI_WIN_MSG_LINK(WM_TIMER,pdispatch,this,&simple_ui::_001OnTimer);
 

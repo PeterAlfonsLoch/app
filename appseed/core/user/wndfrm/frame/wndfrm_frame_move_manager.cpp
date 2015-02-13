@@ -333,10 +333,10 @@ namespace user
 
                }
                GetMoveWindow()->SetWindowPos(ZORDER_TOP,ptMove.x,ptMove.y,0,0,SWP_NOSIZE | SWP_NOZORDER);
-               if(GetMoveWindow()->GetExStyle() & WS_EX_LAYERED)
-               {
-                  GetMoveWindow()->_001UpdateScreen();
-               }
+               //if(GetMoveWindow()->GetExStyle() & WS_EX_LAYERED)
+               //{
+               //   GetMoveWindow()->_001UpdateScreen();
+               //}
                if(pmouse->m_uiMessage == WM_MOUSEMOVE)
                {
                   //TRACE("message_handler call time1= %d ms", dwTime1);

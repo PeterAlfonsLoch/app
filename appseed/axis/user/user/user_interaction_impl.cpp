@@ -17,9 +17,8 @@ namespace user
       m_bComposite                     = true;
       m_bUpdateGraphics                = false;
       m_oswindow                       = NULL;
-      m_spmutexDisplay                 = new mutex;
       m_bNeedLayout                    = false;
-
+      m_pcsDisplay                     = NULL;
 
 
 
@@ -32,7 +31,7 @@ namespace user
 
       {
 
-         synch_lock sl(mutex_display());
+         cslock sl(m_pcsDisplay);
 
          m_spdib.release();
 
@@ -44,6 +43,8 @@ namespace user
          }
 
       }
+
+      ::aura::del(m_pcsDisplay);
 
    }
 
@@ -1867,7 +1868,7 @@ namespace user
       if(!m_pui->m_bMessageWindow)
       {
 
-         m_spmutexDisplay     = canew(mutex(get_app()));
+         m_pcsDisplay     = new critical_section;
 
       }
 
@@ -2507,15 +2508,15 @@ namespace user
    }
 
 
-   void interaction_impl::_001UpdateScreen()
+   void interaction_impl::_001UpdateScreen(bool bUpdateBuffer)
    {
 
-      single_lock sl(mutex_display(),true);
+      cslock sl(cs_display());
 
       if(m_spdib.is_set() && m_spdib->get_graphics() != NULL)
       {
 
-         m_spdib->update_window(m_pui,NULL);
+         m_spdib->update_window(m_pui,NULL, bUpdateBuffer);
 
 //         if(m_pui->m_bMoving && GetExStyle() && WS_EX_LAYERED)
 //         {
@@ -2609,7 +2610,7 @@ namespace user
       _001Print(pgraphics);
 
 
-      single_lock slDisplay(mutex_display(),true);
+      cslock slDisplay(cs_display());
 
       //if(m_spdib->get_data() == NULL || m_spdibBuffer->get_data() == NULL)
         // return;
@@ -2686,7 +2687,7 @@ namespace user
       //      return;
         // }
 
-         single_lock sl2(mutex_display(),true);
+         cslock sl2(cs_display());
 
          if(m_spdib.is_null())
             m_spdib.alloc(allocer());
@@ -2865,12 +2866,12 @@ namespace user
 
 
 
-   sp(mutex) interaction_impl::mutex_display()
-   {
+   //sp(mutex) interaction_impl::cs_display()
+   //{
 
-      return m_spmutexDisplay;
+   //   return m_spmutexDisplay;
 
-   }
+   //}
 
 
    window_graphics * & interaction_impl::get_window_graphics()

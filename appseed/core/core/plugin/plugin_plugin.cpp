@@ -330,7 +330,7 @@ namespace plugin
          if(dib->area() <= 0)
             return;
 
-         single_lock sl(pimpl->mutex_display(),true);
+         cslock sl(pimpl->cs_display());
 
 
          {

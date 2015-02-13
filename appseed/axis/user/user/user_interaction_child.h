@@ -102,8 +102,6 @@ namespace user
 
 
 
-      DECL_GEN_SIGNAL(_001OnSize);
-      DECL_GEN_SIGNAL(_001OnMove);
       DECL_GEN_SIGNAL(_001OnDestroy);
       DECL_GEN_SIGNAL(_001OnNcDestroy);
 

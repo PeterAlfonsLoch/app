@@ -28,7 +28,6 @@ namespace database
 
          DECL_GEN_SIGNAL(_001OnCreate);
          DECL_GEN_SIGNAL(_001OnSize);
-         DECL_GEN_SIGNAL(_001OnMove);
          DECL_GEN_SIGNAL(_001OnShowWindow);
 
          virtual void _001WindowRestore();

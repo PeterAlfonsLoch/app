@@ -71,7 +71,8 @@ namespace user
             bool                                         m_bInitialControlBoxPosition;
 
 
-
+            //virtual int get_control_box_right();
+            //virtual bool control_box_align_right();
 
 
             frame(::aura::application * papp);

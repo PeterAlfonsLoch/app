@@ -734,11 +734,11 @@ namespace aura
                rd+=l;
             }
             cont2:
-            if(psz >= pszEnd)
+            if(rd >= pszEnd)
                goto cont;
          }
          strBody.SetString(s,wr - s);
-         psz++;
+         //psz++;
 
          
 

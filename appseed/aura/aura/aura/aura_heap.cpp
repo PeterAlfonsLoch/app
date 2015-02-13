@@ -332,46 +332,46 @@ void * memory_realloc_dbg(void * pmemory, size_t size, int32_t nBlockUse, const 
 
    void * pbase = NULL;
 
-   if (blockuse == 0) // aligned
+   if(blockuse == 0) // aligned
    {
 
-      pbase = g_pheap->realloc(heap_memory::base_get(pmemory), heap_memory::aligned_provision_get_size(size), heap_memory::aligned_provision_get_size(sizeOld), ALIGN_BYTE_COUNT);
+      pbase = g_pheap->realloc(heap_memory::base_get(pmemory),heap_memory::aligned_provision_get_size(size),heap_memory::aligned_provision_get_size(sizeOld),ALIGN_BYTE_COUNT);
 
    }
-   else if (blockuse == 1) // aligned
+   else if(blockuse == 1) // aligned
    {
 
       //TODO: to do the dbg version
 
-      pbase = g_pheap->realloc_dbg(heap_memory::base_get(pmemory), heap_memory::aligned_provision_get_size(size), heap_memory::aligned_provision_get_size(sizeOld), ALIGN_BYTE_COUNT, nBlockUse, szFileName, nLine);
+      pbase = g_pheap->realloc_dbg(heap_memory::base_get(pmemory),heap_memory::aligned_provision_get_size(size),heap_memory::aligned_provision_get_size(sizeOld),ALIGN_BYTE_COUNT,nBlockUse,szFileName,nLine);
 
    }
-    else if (blockuse == 128) // aligned
-    {
-        
-        pbase = realloc(heap_memory::base_get(pmemory), heap_memory::aligned_provision_get_size(size));
-        
-    }
-    else if (blockuse == 129) // aligned
-    {
-        
-        //TODO: to do the dbg version
-        
-        pbase = realloc(heap_memory::base_get(pmemory), heap_memory::aligned_provision_get_size(size));
-        
-    }
-   else if (blockuse == 2) // unaligned
+   else if(blockuse == 128) // aligned
    {
 
-      pbase = g_pheap->realloc(heap_memory::base_get(pmemory), heap_memory::unaligned_provision_get_size(size), heap_memory::unaligned_provision_get_size(sizeOld), 0);
+      pbase = realloc(heap_memory::base_get(pmemory),heap_memory::aligned_provision_get_size(size));
 
    }
-   else if (blockuse == 3) // unaligned
+   else if(blockuse == 129) // aligned
    {
 
       //TODO: to do the dbg version
 
-      pbase = g_pheap->realloc_dbg(heap_memory::base_get(pmemory), heap_memory::unaligned_provision_get_size(size), heap_memory::unaligned_provision_get_size(sizeOld), 0, nBlockUse, szFileName, nLine);
+      pbase = realloc(heap_memory::base_get(pmemory),heap_memory::aligned_provision_get_size(size));
+
+   }
+   else if(blockuse == 2) // unaligned
+   {
+
+      pbase = g_pheap->realloc(heap_memory::base_get(pmemory),heap_memory::unaligned_provision_get_size(size),heap_memory::unaligned_provision_get_size(sizeOld),0);
+
+   }
+   else if(blockuse == 3) // unaligned
+   {
+
+      //TODO: to do the dbg version
+
+      pbase = g_pheap->realloc_dbg(heap_memory::base_get(pmemory),heap_memory::unaligned_provision_get_size(size),heap_memory::unaligned_provision_get_size(sizeOld),0,nBlockUse,szFileName,nLine);
 
    }
    else
@@ -381,28 +381,27 @@ void * memory_realloc_dbg(void * pmemory, size_t size, int32_t nBlockUse, const 
 
    }
 
-   if (pbase == NULL)
+   if(pbase == NULL)
    {
 
       throw memory_exception(get_thread_app());
 
    }
 
-   if (blockuse == 0 || blockuse == 1 || blockuse == 128 || blockuse == 129) // aligned
+   if(blockuse == 0 || blockuse == 1 || blockuse == 128 || blockuse == 129) // aligned
    {
 
-      return heap_memory::aligned(pbase, size, blockuse);
+      return heap_memory::aligned(pbase,size,blockuse);
 
    }
    else
    {
 
-      return heap_memory::unaligned(pbase, size, blockuse);
+      return heap_memory::unaligned(pbase,size,blockuse);
 
    }
 
-
-
+   return NULL;
 
 }
 
@@ -430,56 +429,65 @@ void memory_free_dbg(void * pmemory, int32_t iBlockType)
    if (pmemory == NULL)
       return;
 
-   byte blockuse = heap_memory::heap_get_block_use(pmemory);
-
-   size_t sizeOld = heap_memory::heap_get_size(pmemory);
-
-   if (blockuse == 0)
+   try
    {
 
-      g_pheap->free(heap_memory::base_get(pmemory), heap_memory::aligned_provision_get_size(sizeOld));
+      byte blockuse = heap_memory::heap_get_block_use(pmemory);
+
+      size_t sizeOld = heap_memory::heap_get_size(pmemory);
+
+      if(blockuse == 0)
+      {
+
+         g_pheap->free(heap_memory::base_get(pmemory),heap_memory::aligned_provision_get_size(sizeOld));
+
+      }
+      else if(blockuse == 1)
+      {
+
+         //TODO: to do the dbg version
+
+         g_pheap->free_dbg(heap_memory::base_get(pmemory),heap_memory::aligned_provision_get_size(sizeOld));
+
+      }
+      else if(blockuse == 128)
+      {
+
+         system_heap_free(heap_memory::base_get(pmemory));
+
+      }
+      else if(blockuse == 129)
+      {
+
+         //TODO: to do the dbg version
+
+         system_heap_free(heap_memory::base_get(pmemory));
+
+      }
+      else if(blockuse == 2)
+      {
+
+         g_pheap->free(heap_memory::base_get(pmemory),heap_memory::unaligned_provision_get_size(sizeOld));
+
+      }
+      else if(blockuse == 3)
+      {
+
+         //TODO: to do the dbg version
+
+         g_pheap->free_dbg(heap_memory::base_get(pmemory),heap_memory::unaligned_provision_get_size(sizeOld));
+
+      }
+      else
+      {
+
+         ::OutputDebugStringW(L"wrong free");
+
+      }
 
    }
-   else if (blockuse == 1)
+   catch(...)
    {
-
-      //TODO: to do the dbg version
-
-      g_pheap->free_dbg(heap_memory::base_get(pmemory), heap_memory::aligned_provision_get_size(sizeOld));
-
-   }
-   else if (blockuse == 128)
-    {
-        
-        system_heap_free(heap_memory::base_get(pmemory));
-        
-    }
-    else if (blockuse == 129)
-    {
-        
-        //TODO: to do the dbg version
-        
-        system_heap_free(heap_memory::base_get(pmemory));
-        
-    }
-   else if (blockuse == 2)
-   {
-
-      g_pheap->free(heap_memory::base_get(pmemory), heap_memory::unaligned_provision_get_size(sizeOld));
-
-   }
-   else if (blockuse == 3)
-   {
-
-      //TODO: to do the dbg version
-
-      g_pheap->free_dbg(heap_memory::base_get(pmemory), heap_memory::unaligned_provision_get_size(sizeOld));
-
-   }
-   else
-   {
-
-      ::OutputDebugStringW(L"wrong free");
 
    }
 

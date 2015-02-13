@@ -243,8 +243,7 @@ namespace user
       IGUI_WIN_MSG_LINK(WM_DESTROY,pinterface,this,&interaction_child::_001OnDestroy);
       IGUI_WIN_MSG_LINK(WM_NCDESTROY,pinterface,this,&interaction_child::_001OnNcDestroy);
       m_pui->install_message_handling(pinterface);
-      IGUI_WIN_MSG_LINK(WM_SIZE,pinterface,this,&interaction_child::_001OnSize);
-      IGUI_WIN_MSG_LINK(WM_MOVE,pinterface,this,&interaction_child::_001OnMove);
+      
    }
 
    void interaction_child::_002InstallMessageHandling(::message::dispatch * pinterface)
@@ -607,16 +606,6 @@ namespace user
          }
       }
 
-   }
-
-   void interaction_child::_001OnMove(signal_details * pobj)
-   {
-      UNREFERENCED_PARAMETER(pobj);
-   }
-
-   void interaction_child::_001OnSize(signal_details * pobj)
-   {
-      UNREFERENCED_PARAMETER(pobj);
    }
 
 

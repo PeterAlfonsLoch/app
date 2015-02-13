@@ -29,7 +29,6 @@ namespace database
 
          IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &interaction::_001OnCreate);
          IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &interaction::_001OnSize);
-         IGUI_WIN_MSG_LINK(WM_MOVE, pinterface, this, &interaction::_001OnMove);
          IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &interaction::_001OnShowWindow);
 
       }
@@ -53,14 +52,6 @@ namespace database
          }
 
          defer_update_data_id();
-
-      }
-
-
-      void interaction::_001OnMove(signal_details * pobj)
-      {
-
-         UNREFERENCED_PARAMETER(pobj);
 
       }
 

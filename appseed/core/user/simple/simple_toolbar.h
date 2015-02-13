@@ -119,7 +119,6 @@ public:
    DECL_GEN_SIGNAL(_001OnLButtonUp);
    DECL_GEN_SIGNAL(_001OnNcCalcSize);
    DECL_GEN_SIGNAL(_001OnNcHitTest);
-   DECL_GEN_SIGNAL(_001OnMove);
    DECL_GEN_SIGNAL(_001OnMouseLeave);
 
    virtual void install_message_handling(::message::dispatch * pdispatch);
