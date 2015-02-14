@@ -35,7 +35,7 @@
 
 #include <freerdp/addin.h>
 
-#include "rdpei_common.h"
+#include "../rdpei_common.h"
 
 #include "rdpei_main.h"
 

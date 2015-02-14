@@ -28,10 +28,9 @@
 #include <winpr/ssl.h>
 
 #include <winpr/stream.h>
-#include <freerdp/utils/tcp.h>
 #include <freerdp/utils/ringbuffer.h>
 
-#include <freerdp/utils/debug.h>
+#include <freerdp/log.h>
 #include <freerdp/crypto/tls.h>
 #include "../core/tcp.h"
 
@@ -39,6 +38,7 @@
 #include <poll.h>
 #endif
 
+#define TAG FREERDP_TAG("crypto")
 
 struct _BIO_RDP_TLS
 {
@@ -511,7 +511,7 @@ static CryptoCert tls_get_certificate(rdpTls* tls, BOOL peer)
 
 	if (!remote_cert)
 	{
-		DEBUG_WARN( "%s: failed to get the server TLS certificate\n", __FUNCTION__);
+		WLog_ERR(TAG, "failed to get the server TLS certificate");
 		return NULL;
 	}
 
@@ -581,10 +581,13 @@ BOOL tls_prepare(rdpTls* tls, BIO *underlying, SSL_METHOD *method, int options, 
 BOOL tls_prepare(rdpTls* tls, BIO *underlying, const SSL_METHOD *method, int options, BOOL clientMode)
 #endif
 {
+	rdpSettings* settings = tls->settings;
+
 	tls->ctx = SSL_CTX_new(method);
+
 	if (!tls->ctx)
 	{
-		DEBUG_WARN( "%s: SSL_CTX_new failed\n", __FUNCTION__);
+		WLog_ERR(TAG, "SSL_CTX_new failed");
 		return FALSE;
 	}
 
@@ -593,18 +596,20 @@ BOOL tls_prepare(rdpTls* tls, BIO *underlying, const SSL_METHOD *method, int opt
 	SSL_CTX_set_options(tls->ctx, options);
 	SSL_CTX_set_read_ahead(tls->ctx, 1);
 
-	if (tls->settings->PermittedTLSCiphers) {
-		if(!SSL_CTX_set_cipher_list(tls->ctx, tls->settings->PermittedTLSCiphers)) {
-			DEBUG_WARN( "SSL_CTX_set_cipher_list %s failed\n", tls->settings->PermittedTLSCiphers);
+	if (settings->AllowedTlsCiphers)
+	{
+		if (!SSL_CTX_set_cipher_list(tls->ctx, settings->AllowedTlsCiphers))
+		{
+			WLog_ERR(TAG, "SSL_CTX_set_cipher_list %s failed", settings->AllowedTlsCiphers);
 			return FALSE;
 		}
 	}
-
+ 
 	tls->bio = BIO_new_rdp_tls(tls->ctx, clientMode);
 
 	if (BIO_get_ssl(tls->bio, &tls->ssl) < 0)
 	{
-		DEBUG_WARN( "%s: unable to retrieve the SSL of the connection\n", __FUNCTION__);
+		WLog_ERR(TAG, "unable to retrieve the SSL of the connection");
 		return FALSE;
 	}
 
@@ -642,7 +647,7 @@ int tls_do_handshake(rdpTls* tls, BOOL clientMode)
 
 		if (fd < 0)
 		{
-			DEBUG_WARN( "%s: unable to retrieve BIO fd\n", __FUNCTION__);
+			WLog_ERR(TAG, "unable to retrieve BIO fd");
 			return -1;
 		}
 
@@ -666,7 +671,7 @@ int tls_do_handshake(rdpTls* tls, BOOL clientMode)
 #endif
 		if (status < 0)
 		{
-			DEBUG_WARN( "%s: error during select()\n", __FUNCTION__);
+			WLog_ERR(TAG, "error during select()");
 			return -1;
 		}
 	}
@@ -675,21 +680,21 @@ int tls_do_handshake(rdpTls* tls, BOOL clientMode)
 	cert = tls_get_certificate(tls, clientMode);
 	if (!cert)
 	{
-		DEBUG_WARN( "%s: tls_get_certificate failed to return the server certificate.\n", __FUNCTION__);
+		WLog_ERR(TAG, "tls_get_certificate failed to return the server certificate.");
 		return -1;
 	}
 
 	tls->Bindings = tls_get_channel_bindings(cert->px509);
 	if (!tls->Bindings)
 	{
-		DEBUG_WARN( "%s: unable to retrieve bindings\n", __FUNCTION__);
+		WLog_ERR(TAG, "unable to retrieve bindings");
 		verify_status = -1;
 		goto out;
 	}
 
 	if (!crypto_cert_get_public_key(cert, &tls->PublicKey, &tls->PublicKeyLength))
 	{
-		DEBUG_WARN( "%s: crypto_cert_get_public_key failed to return the server public key.\n", __FUNCTION__);
+		WLog_ERR(TAG, "crypto_cert_get_public_key failed to return the server public key.");
 		verify_status = -1;
 		goto out;
 	}
@@ -704,7 +709,7 @@ int tls_do_handshake(rdpTls* tls, BOOL clientMode)
 
 		if (verify_status < 1)
 		{
-			DEBUG_WARN( "%s: certificate not trusted, aborting.\n", __FUNCTION__);
+			WLog_ERR(TAG, "certificate not trusted, aborting.");
 			tls_disconnect(tls);
 			verify_status = 0;
 		}
@@ -755,8 +760,6 @@ int tls_connect(rdpTls* tls, BIO *underlying)
 	return tls_do_handshake(tls, TRUE);
 }
 
-
-
 BOOL tls_accept(rdpTls* tls, BIO *underlying, const char* cert_file, const char* privatekey_file)
 {
 	long options = 0;
@@ -781,7 +784,7 @@ BOOL tls_accept(rdpTls* tls, BIO *underlying, const char* cert_file, const char*
 #ifdef SSL_OP_NO_COMPRESSION
 	options |= SSL_OP_NO_COMPRESSION;
 #endif
-
+	 
 	/**
 	 * SSL_OP_TLS_BLOCK_PADDING_BUG:
 	 *
@@ -803,14 +806,14 @@ BOOL tls_accept(rdpTls* tls, BIO *underlying, const char* cert_file, const char*
 
 	if (SSL_use_RSAPrivateKey_file(tls->ssl, privatekey_file, SSL_FILETYPE_PEM) <= 0)
 	{
-		DEBUG_WARN( "%s: SSL_CTX_use_RSAPrivateKey_file failed\n", __FUNCTION__);
-		DEBUG_WARN( "PrivateKeyFile: %s\n", privatekey_file);
+		WLog_ERR(TAG, "SSL_CTX_use_RSAPrivateKey_file failed");
+		WLog_ERR(TAG, "PrivateKeyFile: %s", privatekey_file);
 		return FALSE;
 	}
 
 	if (SSL_use_certificate_file(tls->ssl, cert_file, SSL_FILETYPE_PEM) <= 0)
 	{
-		DEBUG_WARN( "%s: SSL_use_certificate_file failed\n", __FUNCTION__);
+		WLog_ERR(TAG, "SSL_use_certificate_file failed");
 		return FALSE;
 	}
 
@@ -876,7 +879,10 @@ BIO *findBufferedBio(BIO *front)
 
 int tls_write_all(rdpTls* tls, const BYTE* data, int length)
 {
-	int status, nchunks, commitedBytes;
+	int i;
+	int status;
+	int nchunks;
+	int committedBytes;
 	rdpTcp *tcp;
 #ifdef HAVE_POLL_H
 	struct pollfd pollfds;
@@ -892,7 +898,7 @@ int tls_write_all(rdpTls* tls, const BYTE* data, int length)
 
 	if (!bufferedBio)
 	{
-		DEBUG_WARN( "%s: error unable to retrieve the bufferedBio in the BIO chain\n", __FUNCTION__);
+		WLog_ERR(TAG, "error unable to retrieve the bufferedBio in the BIO chain");
 		return -1;
 	}
 
@@ -907,6 +913,7 @@ int tls_write_all(rdpTls* tls, const BYTE* data, int length)
 
 		if (!BIO_should_retry(bio))
 			return -1;
+		
 #ifdef HAVE_POLL_H
 		pollfds.fd = tcp->sockfd;
 		pollfds.revents = 0;
@@ -922,7 +929,7 @@ int tls_write_all(rdpTls* tls, const BYTE* data, int length)
 		}
 		else
 		{
-			DEBUG_WARN( "%s: weird we're blocked but the underlying is not read or write blocked !\n", __FUNCTION__);
+			WLog_ERR(TAG, "weird we're blocked but the underlying is not read or write blocked !");
 			USleep(10);
 			continue;
 		}
@@ -950,7 +957,7 @@ int tls_write_all(rdpTls* tls, const BYTE* data, int length)
 		}
 		else
 		{
-			DEBUG_WARN( "%s: weird we're blocked but the underlying is not read or write blocked !\n", __FUNCTION__);
+			WLog_ERR(TAG, "weird we're blocked but the underlying is not read or write blocked !");
 			USleep(10);
 			continue;
 		}
@@ -966,11 +973,19 @@ int tls_write_all(rdpTls* tls, const BYTE* data, int length)
 	while (TRUE);
 
 	/* make sure the output buffer is empty */
-	commitedBytes = 0;
-	while ((nchunks = ringbuffer_peek(&tcp->xmitBuffer, chunks, ringbuffer_used(&tcp->xmitBuffer))))
+	
+	do
 	{
-		int i;
-
+		committedBytes = 0;
+		
+		if (ringbuffer_used(&tcp->xmitBuffer) < 1)
+			break;
+		
+		nchunks = ringbuffer_peek(&tcp->xmitBuffer, chunks, ringbuffer_used(&tcp->xmitBuffer));
+		
+		if (nchunks < 1)
+			break;
+		
 		for (i = 0; i < nchunks; i++)
 		{
 			while (chunks[i].size)
@@ -981,7 +996,7 @@ int tls_write_all(rdpTls* tls, const BYTE* data, int length)
 				{
 					chunks[i].size -= status;
 					chunks[i].data += status;
-					commitedBytes += status;
+					committedBytes += status;
 					continue;
 				}
 
@@ -1011,14 +1026,17 @@ int tls_write_all(rdpTls* tls, const BYTE* data, int length)
 			}
 
 		}
-	}
-
-	ringbuffer_commit_read_bytes(&tcp->xmitBuffer, commitedBytes);
-	return length;
-
+		
+		ringbuffer_commit_read_bytes(&tcp->xmitBuffer, committedBytes);
+		continue;
+		
 out_fail:
-	ringbuffer_commit_read_bytes(&tcp->xmitBuffer, commitedBytes);
-	return -1;
+		ringbuffer_commit_read_bytes(&tcp->xmitBuffer, committedBytes);
+		return -1;
+	}
+	while (TRUE);
+
+	return length;
 }
 
 int tls_set_alert_code(rdpTls* tls, int level, int description)
@@ -1078,10 +1096,10 @@ int tls_verify_certificate(rdpTls* tls, CryptoCert cert, char* hostname, int por
 		 */
 
 		bio = BIO_new(BIO_s_mem());
-
+		
 		if (!bio)
 		{
-			DEBUG_WARN( "%s: BIO_new() failure\n", __FUNCTION__);
+			WLog_ERR(TAG, "BIO_new() failure");
 			return -1;
 		}
 
@@ -1089,22 +1107,22 @@ int tls_verify_certificate(rdpTls* tls, CryptoCert cert, char* hostname, int por
 
 		if (status < 0)
 		{
-			DEBUG_WARN( "%s: PEM_write_bio_X509 failure: %d\n", __FUNCTION__, status);
+			WLog_ERR(TAG, "PEM_write_bio_X509 failure: %d", status);
 			return -1;
 		}
-
+		
 		offset = 0;
 		length = 2048;
 		pemCert = (BYTE*) malloc(length + 1);
 
 		status = BIO_read(bio, pemCert, length);
-
+		
 		if (status < 0)
 		{
-			DEBUG_WARN( "%s: failed to read certificate\n", __FUNCTION__);
+			WLog_ERR(TAG, "failed to read certificate");
 			return -1;
 		}
-
+		
 		offset += status;
 
 		while (offset >= length)
@@ -1122,21 +1140,21 @@ int tls_verify_certificate(rdpTls* tls, CryptoCert cert, char* hostname, int por
 
 		if (status < 0)
 		{
-			DEBUG_WARN( "%s: failed to read certificate\n", __FUNCTION__);
+			WLog_ERR(TAG, "failed to read certificate");
 			return -1;
 		}
-
+		
 		length = offset;
 		pemCert[length] = '\0';
 
 		status = -1;
-
+		
 		if (instance->VerifyX509Certificate)
 		{
 			status = instance->VerifyX509Certificate(instance, pemCert, length, hostname, port, tls->isGatewayTransport);
 		}
-
-		DEBUG_WARN( "%s: (length = %d) status: %d\n%s\n", __FUNCTION__,	length, status, pemCert);
+		
+		WLog_ERR(TAG, "(length = %d) status: %d%s",	length, status, pemCert);
 
 		free(pemCert);
 		BIO_free(bio);
@@ -1247,7 +1265,7 @@ int tls_verify_certificate(rdpTls* tls, CryptoCert cert, char* hostname, int por
 		{
 			/* entry was found in known_hosts file, but fingerprint does not match. ask user to use it */
 			tls_print_certificate_error(hostname, fingerprint, tls->certificate_store->file);
-
+			
 			if (instance->VerifyChangedCertificate)
 			{
 				accept_certificate = instance->VerifyChangedCertificate(instance, subject, issuer, fingerprint, "");
@@ -1296,18 +1314,18 @@ int tls_verify_certificate(rdpTls* tls, CryptoCert cert, char* hostname, int por
 
 void tls_print_certificate_error(char* hostname, char* fingerprint, char *hosts_file)
 {
-	DEBUG_WARN( "The host key for %s has changed\n", hostname);
-	DEBUG_WARN( "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
-	DEBUG_WARN( "@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @\n");
-	DEBUG_WARN( "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
-	DEBUG_WARN( "IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!\n");
-	DEBUG_WARN( "Someone could be eavesdropping on you right now (man-in-the-middle attack)!\n");
-	DEBUG_WARN( "It is also possible that a host key has just been changed.\n");
-	DEBUG_WARN( "The fingerprint for the host key sent by the remote host is\n%s\n", fingerprint);
-	DEBUG_WARN( "Please contact your system administrator.\n");
-	DEBUG_WARN( "Add correct host key in %s to get rid of this message.\n", hosts_file);
-	DEBUG_WARN( "Host key for %s has changed and you have requested strict checking.\n", hostname);
-	DEBUG_WARN( "Host key verification failed.\n");
+	WLog_ERR(TAG, "The host key for %s has changed", hostname);
+	WLog_ERR(TAG, "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+	WLog_ERR(TAG, "@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @");
+	WLog_ERR(TAG, "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+	WLog_ERR(TAG, "IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!");
+	WLog_ERR(TAG, "Someone could be eavesdropping on you right now (man-in-the-middle attack)!");
+	WLog_ERR(TAG, "It is also possible that a host key has just been changed.");
+	WLog_ERR(TAG, "The fingerprint for the host key sent by the remote host is%s", fingerprint);
+	WLog_ERR(TAG, "Please contact your system administrator.");
+	WLog_ERR(TAG, "Add correct host key in %s to get rid of this message.", hosts_file);
+	WLog_ERR(TAG, "Host key for %s has changed and you have requested strict checking.", hostname);
+	WLog_ERR(TAG, "Host key verification failed.");
 }
 
 void tls_print_certificate_name_mismatch_error(char* hostname, char* common_name, char** alt_names, int alt_names_count)
@@ -1315,25 +1333,24 @@ void tls_print_certificate_name_mismatch_error(char* hostname, char* common_name
 	int index;
 
 	assert(NULL != hostname);
-
-	DEBUG_WARN( "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
-	DEBUG_WARN( "@           WARNING: CERTIFICATE NAME MISMATCH!           @\n");
-	DEBUG_WARN( "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
-	DEBUG_WARN( "The hostname used for this connection (%s) \n", hostname);
-	DEBUG_WARN( "does not match %s given in the certificate:\n", alt_names_count < 1 ? "the name" : "any of the names");
-	DEBUG_WARN( "Common Name (CN):\n");
-	DEBUG_WARN( "\t%s\n", common_name ? common_name : "no CN found in certificate");
+	WLog_ERR(TAG, "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+	WLog_ERR(TAG, "@           WARNING: CERTIFICATE NAME MISMATCH!           @");
+	WLog_ERR(TAG, "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+	WLog_ERR(TAG, "The hostname used for this connection (%s) ", hostname);
+	WLog_ERR(TAG, "does not match %s given in the certificate:", alt_names_count < 1 ? "the name" : "any of the names");
+	WLog_ERR(TAG, "Common Name (CN):");
+	WLog_ERR(TAG, "\t%s", common_name ? common_name : "no CN found in certificate");
 	if (alt_names_count > 0)
 	{
 		assert(NULL != alt_names);
-		DEBUG_WARN( "Alternative names:\n");
+		WLog_ERR(TAG, "Alternative names:");
 		for (index = 0; index < alt_names_count; index++)
 		{
 			assert(alt_names[index]);
-			DEBUG_WARN( "\t %s\n", alt_names[index]);
+			WLog_ERR(TAG, "\t %s", alt_names[index]);
 		}
 	}
-	DEBUG_WARN( "A valid certificate for the wrong name should NOT be trusted!\n");
+	WLog_ERR(TAG, "A valid certificate for the wrong name should NOT be trusted!");
 }
 
 rdpTls* tls_new(rdpSettings* settings)
@@ -1376,6 +1393,12 @@ void tls_free(rdpTls* tls)
 	{
 		SSL_CTX_free(tls->ctx);
 		tls->ctx = NULL;
+	}
+
+	if (tls->bio)
+	{
+		BIO_free(tls->bio);
+		tls->bio = NULL;
 	}
 
 	if (tls->PublicKey)

@@ -29,7 +29,9 @@
 
 #include <freerdp/settings.h>
 #include <freerdp/freerdp.h>
-#include <freerdp/utils/debug.h>
+#include <freerdp/log.h>
+
+#define TAG FREERDP_TAG("common")
 
 int freerdp_addin_set_argument(ADDIN_ARGV* args, char* argument)
 {
@@ -50,7 +52,7 @@ int freerdp_addin_set_argument(ADDIN_ARGV* args, char* argument)
 	return 0;
 }
 
-int freerdp_addin_replace_argument(ADDIN_ARGV* args, const char* previous, const char* argument)
+int freerdp_addin_replace_argument(ADDIN_ARGV* args, char* previous, char* argument)
 {
 	int i;
 
@@ -106,7 +108,7 @@ int freerdp_addin_set_argument_value(ADDIN_ARGV* args, char* option, char* value
 	return 0;
 }
 
-int freerdp_addin_replace_argument_value(ADDIN_ARGV* args, const char* previous, const char* option, const char* value)
+int freerdp_addin_replace_argument_value(ADDIN_ARGV* args, char* previous, char* option, char* value)
 {
 	int i;
 	char* str;
@@ -340,7 +342,7 @@ out_parallel_name_error:
 
 	}
 
-	DEBUG_WARN( "%s: unknown device type %d\n", __FUNCTION__, device->Type);
+	WLog_ERR(TAG, "unknown device type %d", device->Type);
 	return NULL;
 }
 
@@ -501,17 +503,20 @@ ADDIN_ARGV* freerdp_dynamic_channel_clone(ADDIN_ARGV* channel)
 	ADDIN_ARGV* _channel = NULL;
 
 	_channel = (ADDIN_ARGV*) malloc(sizeof(ADDIN_ARGV));
+
 	if (!_channel)
 		return NULL;
 
 	_channel->argc = channel->argc;
 	_channel->argv = (char**) malloc(sizeof(char*) * channel->argc);
+
 	if (!_channel->argv)
 		goto out_free;
 
 	for (index = 0; index < _channel->argc; index++)
 	{
 		_channel->argv[index] = _strdup(channel->argv[index]);
+
 		if (!_channel->argv[index])
 			goto out_release_args;
 	}
@@ -680,8 +685,8 @@ BOOL freerdp_get_param_bool(rdpSettings* settings, int id)
 		case FreeRDP_SupportDynamicTimeZone:
 			return settings->SupportDynamicTimeZone;
 
-		case FreeRDP_DisableEncryption:
-			return settings->DisableEncryption;
+		case FreeRDP_UseRdpSecurityLayer:
+			return settings->UseRdpSecurityLayer;
 
 		case FreeRDP_ConsoleSession:
 			return settings->ConsoleSession;
@@ -974,8 +979,11 @@ BOOL freerdp_get_param_bool(rdpSettings* settings, int id)
 		case FreeRDP_NSCodec:
 			return settings->NSCodec;
 
-		case FreeRDP_FrameAcknowledge:
-			return settings->FrameAcknowledge;
+		case FreeRDP_NSCodecAllowSubsampling:
+			return settings->NSCodecAllowSubsampling;
+
+		case FreeRDP_NSCodecAllowDynamicColorFidelity:
+			return settings->NSCodecAllowDynamicColorFidelity;
 
 		case FreeRDP_JpegCodec:
 			return settings->JpegCodec;
@@ -1029,7 +1037,7 @@ BOOL freerdp_get_param_bool(rdpSettings* settings, int id)
 			return settings->RedirectClipboard;
 
 		default:
-			DEBUG_WARN( "freerdp_get_param_bool: unknown id: %d\n", id);
+			WLog_ERR(TAG,  "freerdp_get_param_bool: unknown id: %d", id);
 			return -1;
 	}
 }
@@ -1070,8 +1078,8 @@ int freerdp_set_param_bool(rdpSettings* settings, int id, BOOL param)
 			settings->SupportDynamicTimeZone = param;
 			break;
 
-		case FreeRDP_DisableEncryption:
-			settings->DisableEncryption = param;
+		case FreeRDP_UseRdpSecurityLayer:
+			settings->UseRdpSecurityLayer = param;
 			break;
 
 		case FreeRDP_ConsoleSession:
@@ -1462,8 +1470,12 @@ int freerdp_set_param_bool(rdpSettings* settings, int id, BOOL param)
 			settings->NSCodec = param;
 			break;
 
-		case FreeRDP_FrameAcknowledge:
-			settings->FrameAcknowledge = param;
+		case FreeRDP_NSCodecAllowSubsampling:
+			settings->NSCodecAllowSubsampling = param;
+			break;
+
+		case FreeRDP_NSCodecAllowDynamicColorFidelity:
+			settings->NSCodecAllowDynamicColorFidelity = param;
 			break;
 
 		case FreeRDP_JpegCodec:
@@ -1535,7 +1547,7 @@ int freerdp_set_param_bool(rdpSettings* settings, int id, BOOL param)
 			break;
 
 		default:
-			DEBUG_WARN( "freerdp_set_param_bool: unknown id %d (param = %d)\n", id, param);
+			WLog_ERR(TAG,  "freerdp_set_param_bool: unknown id %d (param = %d)", id, param);
 			return -1;
 	}
 
@@ -1556,7 +1568,7 @@ int freerdp_get_param_int(rdpSettings* settings, int id)
 			return settings->YPan;
 
 		default:
-			DEBUG_WARN( "freerdp_get_param_int: unknown id: %d\n", id);
+			WLog_ERR(TAG,  "freerdp_get_param_int: unknown id: %d", id);
 			return 0;
 	}
 }
@@ -1574,7 +1586,7 @@ int freerdp_set_param_int(rdpSettings* settings, int id, int param)
 			break;
 
 		default:
-			DEBUG_WARN( "freerdp_set_param_int: unknown id %d (param = %d)\n", id, param);
+			WLog_ERR(TAG,  "freerdp_set_param_int: unknown id %d (param = %d)", id, param);
 			return -1;
 	}
 
@@ -1786,6 +1798,12 @@ UINT32 freerdp_get_param_uint32(rdpSettings* settings, int id)
 		case FreeRDP_NSCodecId:
 			return settings->NSCodecId;
 
+		case FreeRDP_FrameAcknowledge:
+			return settings->FrameAcknowledge;
+
+		case FreeRDP_NSCodecColorLossLevel:
+			return settings->NSCodecColorLossLevel;
+
 		case FreeRDP_JpegCodecId:
 			return settings->JpegCodecId;
 
@@ -1819,8 +1837,14 @@ UINT32 freerdp_get_param_uint32(rdpSettings* settings, int id)
 		case FreeRDP_DynamicChannelArraySize:
 			return settings->DynamicChannelArraySize;
 
+		case FreeRDP_SmartSizingWidth:
+			return settings->SmartSizingWidth;
+
+		case FreeRDP_SmartSizingHeight:
+			return settings->SmartSizingHeight;
+
 		default:
-			DEBUG_WARN( "freerdp_get_param_uint32: unknown id: %d\n", id);
+			WLog_ERR(TAG,  "freerdp_get_param_uint32: unknown id: %d", id);
 			return 0;
 	}
 }
@@ -2093,6 +2117,14 @@ int freerdp_set_param_uint32(rdpSettings* settings, int id, UINT32 param)
 			settings->NSCodecId = param;
 			break;
 
+		case FreeRDP_FrameAcknowledge:
+			settings->FrameAcknowledge = param;
+			break;
+
+		case FreeRDP_NSCodecColorLossLevel:
+			settings->NSCodecColorLossLevel = param;
+			break;
+
 		case FreeRDP_JpegCodecId:
 			settings->JpegCodecId = param;
 			break;
@@ -2138,7 +2170,7 @@ int freerdp_set_param_uint32(rdpSettings* settings, int id, UINT32 param)
 			break;
 
 		default:
-			DEBUG_WARN( "freerdp_set_param_uint32: unknown id %d (param = %u)\n", id, param);
+			WLog_ERR(TAG, "freerdp_set_param_uint32: unknown id %d (param = %u)", id, param);
 			return -1;
 	}
 
@@ -2156,7 +2188,7 @@ UINT64 freerdp_get_param_uint64(rdpSettings* settings, int id)
 			return settings->ParentWindowId;
 
 		default:
-			DEBUG_WARN( "freerdp_get_param_uint64: unknown id: %d\n", id);
+			WLog_ERR(TAG, "freerdp_get_param_uint64: unknown id: %d", id);
 			return -1;
 	}
 }
@@ -2170,7 +2202,7 @@ int freerdp_set_param_uint64(rdpSettings* settings, int id, UINT64 param)
 			break;
 
 		default:
-			DEBUG_WARN( "freerdp_set_param_uint64: unknown id %d (param = %u)\n", id, (UINT32) param);
+			WLog_ERR(TAG,  "freerdp_set_param_uint64: unknown id %d (param = %u)", id, (UINT32) param);
 			return -1;
 	}
 
@@ -2320,7 +2352,7 @@ char* freerdp_get_param_string(rdpSettings* settings, int id)
 			return settings->DrivesToRedirect;
 
 		default:
-			DEBUG_WARN( "freerdp_get_param_string: unknown id: %d\n", id);
+			WLog_ERR(TAG, "freerdp_get_param_string: unknown id: %d", id);
 			return NULL;
 	}
 }
@@ -2555,7 +2587,7 @@ int freerdp_set_param_string(rdpSettings* settings, int id, const char* param)
 			break;
 
 		default:
-			DEBUG_WARN( "freerdp_set_param_string: unknown id %d (param = %s)\n", id, param);
+			WLog_ERR(TAG, "unknown id %d (param = %s)", id, param);
 			return -1;
 	}
 
@@ -2564,35 +2596,3 @@ int freerdp_set_param_string(rdpSettings* settings, int id, const char* param)
 
 	return 0;
 }
-
-double freerdp_get_param_double(rdpSettings* settings, int id)
-{
-	switch (id)
-	{
-		case FreeRDP_ScalingFactor:
-			return settings->ScalingFactor;
-
-		default:
-			DEBUG_WARN( "freerdp_get_param_double: unknown id: %d\n", id);
-			return 0;
-	}
-}
-
-int freerdp_set_param_double(rdpSettings* settings, int id, double param)
-{
-	switch (id)
-	{
-		case FreeRDP_ScalingFactor:
-			settings->ScalingFactor = param;
-			break;
-
-		default:
-			return -1;
-	}
-
-	/* Mark field as modified */
-	settings->SettingsModified[id] = 1;
-
-	return 0;
-}
-

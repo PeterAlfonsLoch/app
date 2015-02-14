@@ -27,7 +27,7 @@
 
 #include <freerdp/freerdp.h>
 #include <freerdp/constants.h>
-#include <freerdp/utils/event.h>
+//#include <freerdp/utils/event.h>
 #include <freerdp/client/file.h>
 #include <freerdp/client/cmdline.h>
 #include <freerdp/client/channels.h>
@@ -37,7 +37,7 @@
 #include <winpr/synch.h>
 
 
-
+#define TAG CLIENT_TAG("axisrdpclient")
 
 int ca2rdp_context_new(freerdp* instance, rdpContext* context)
 {
@@ -284,41 +284,41 @@ static int ca2rdp_receive_channel_data(freerdp* instance, int channelId, BYTE* d
 	return freerdp_channels_data(instance, channelId, data, size, flags, total_size);
 }
 
-static void ca2rdp_process_cb_monitor_ready_event(rdpChannels* channels, freerdp* instance)
-{
-	wMessage* event;
-	RDP_CB_FORMAT_LIST_EVENT* format_list_event;
-
-	event = freerdp_event_new(CliprdrChannel_Class, CliprdrChannel_FormatList, NULL, NULL);
-
-	format_list_event = (RDP_CB_FORMAT_LIST_EVENT*) event;
-	format_list_event->num_formats = 0;
-
-	freerdp_channels_send_event(channels, event);
-}
-
-static void ca2rdp_process_channel_event(rdpChannels* channels, freerdp* instance)
-{
-	wMessage* event;
-
-	event = freerdp_channels_pop_event(channels);
-
-	if (event)
-	{
-		switch (GetMessageType(event->id))
-		{
-			case CliprdrChannel_MonitorReady:
-				ca2rdp_process_cb_monitor_ready_event(channels, instance);
-				break;
-
-			default:
-				DEBUG_WARN( "ca2rdp_process_channel_event: unknown event type %d\n", GetMessageType(event->id));
-				break;
-		}
-
-		freerdp_event_free(event);
-	}
-}
+//static void ca2rdp_process_cb_monitor_ready_event(rdpChannels* channels, freerdp* instance)
+//{
+//	wMessage* event;
+//	RDP_CB_FORMAT_LIST_EVENT* format_list_event;
+//
+//	event = freerdp_event_new(CliprdrChannel_Class, CliprdrChannel_FormatList, NULL, NULL);
+//
+//	format_list_event = (RDP_CB_FORMAT_LIST_EVENT*) event;
+//	format_list_event->num_formats = 0;
+//
+//	freerdp_channels_send_event(channels, event);
+//}
+//
+//static void ca2rdp_process_channel_event(rdpChannels* channels, freerdp* instance)
+//{
+//	wMessage* event;
+//
+//	event = freerdp_channels_pop_event(channels);
+//
+//	if (event)
+//	{
+//		switch (GetMessageType(event->id))
+//		{
+//			case CliprdrChannel_MonitorReady:
+//				ca2rdp_process_cb_monitor_ready_event(channels, instance);
+//				break;
+//
+//			default:
+//				WLog_ERR(TAG, "ca2rdp_process_channel_event: unknown event type %d\n", GetMessageType(event->id));
+//				break;
+//		}
+//
+//		freerdp_event_free(event);
+//	}
+//}
 
 static void ca2rdp_free(ca2rdpInfo* ca2rdpi)
 {
@@ -359,17 +359,17 @@ int ca2rdpreerdp_run(freerdp* instance)
 
 		if (freerdp_get_fds(instance, rfds, &rcount, wfds, &wcount) != TRUE)
 		{
-			DEBUG_WARN( "Failed to get FreeRDP file descriptor\n");
+			WLog_ERR(TAG, "Failed to get FreeRDP file descriptor\n");
 			break;
 		}
 		if (freerdp_channels_get_fds(channels, instance, rfds, &rcount, wfds, &wcount) != TRUE)
 		{
-			DEBUG_WARN( "Failed to get channel manager file descriptor\n");
+			WLog_ERR(TAG, "Failed to get channel manager file descriptor\n");
 			break;
 		}
 		if (ca2rdp_get_fds(instance, rfds, &rcount, wfds, &wcount) != TRUE)
 		{
-			DEBUG_WARN( "Failed to get ca2rdpreerdp file descriptor\n");
+			WLog_ERR(TAG, "Failed to get ca2rdpreerdp file descriptor\n");
 			break;
 		}
 
@@ -398,27 +398,27 @@ int ca2rdpreerdp_run(freerdp* instance)
 				(errno == EINPROGRESS) ||
 				(errno == EINTR))) /* signal occurred */
 			{
-				DEBUG_WARN( "ca2rdpreerdp_run: select failed\n");
+				WLog_ERR(TAG, "ca2rdpreerdp_run: select failed\n");
 				break;
 			}
 		}
 
 		if (freerdp_check_fds(instance) != TRUE)
 		{
-			DEBUG_WARN( "Failed to check FreeRDP file descriptor\n");
+			WLog_ERR(TAG, "Failed to check FreeRDP file descriptor\n");
 			break;
 		}
 		if (ca2rdp_check_fds(instance, &rfds_set) != TRUE)
 		{
-			DEBUG_WARN( "Failed to check ca2rdpreerdp file descriptor\n");
+			WLog_ERR(TAG, "Failed to check ca2rdpreerdp file descriptor\n");
 			break;
 		}
 		if (freerdp_channels_check_fds(channels, instance) != TRUE)
 		{
-			DEBUG_WARN( "Failed to check channel manager file descriptor\n");
+			WLog_ERR(TAG, "Failed to check channel manager file descriptor\n");
 			break;
 		}
-		ca2rdp_process_channel_event(channels, instance);
+//		ca2rdp_process_channel_event(channels, instance);
 	}
 
 	freerdp_channels_close(channels, instance);

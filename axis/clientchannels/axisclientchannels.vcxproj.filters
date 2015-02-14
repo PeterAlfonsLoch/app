@@ -121,6 +121,12 @@
     <Filter Include="Source Files\channels\remdesk">
       <UniqueIdentifier>{99d42a8c-f8aa-4769-8db4-482447a99760}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\channels\rdpei\client">
+      <UniqueIdentifier>{e4d406c9-740d-4e3f-8a7b-53f64d04355e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\channels\rdpei\NewFilter1">
+      <UniqueIdentifier>{d5475392-7d5c-43e1-8982-590e8f868113}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="axisclientchannels.def" />
@@ -251,9 +257,6 @@
     <ClCompile Include="channels\drdynvc\client\drdynvc_main.c">
       <Filter>Source Files\channels\drdynvc</Filter>
     </ClCompile>
-    <ClCompile Include="channels\drdynvc\client\dvcman.c">
-      <Filter>Source Files\channels\drdynvc</Filter>
-    </ClCompile>
     <ClCompile Include="channels\drive\client\drive_file.c">
       <Filter>Source Files\channels\drive</Filter>
     </ClCompile>
@@ -295,12 +298,6 @@
     </ClCompile>
     <ClCompile Include="channels\rdpdr\client\rdpdr_main.c">
       <Filter>Source Files\channels\rdpdr</Filter>
-    </ClCompile>
-    <ClCompile Include="channels\rdpei\client\rdpei_common.c">
-      <Filter>Source Files\channels\rdpei</Filter>
-    </ClCompile>
-    <ClCompile Include="channels\rdpei\client\rdpei_main.c">
-      <Filter>Source Files\channels\rdpei</Filter>
     </ClCompile>
     <ClCompile Include="channels\rdpgfx\client\rdpgfx_common.c">
       <Filter>Source Files\channels\rdpgfx</Filter>
@@ -361,6 +358,12 @@
     </ClCompile>
     <ClCompile Include="channels\client\tables_windows.c">
       <Filter>Source Files\channels\client</Filter>
+    </ClCompile>
+    <ClCompile Include="channels\rdpei\client\rdpei_main.c">
+      <Filter>Source Files\channels\rdpei\client</Filter>
+    </ClCompile>
+    <ClCompile Include="channels\rdpei\rdpei_common.c">
+      <Filter>Source Files\channels\rdpei</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

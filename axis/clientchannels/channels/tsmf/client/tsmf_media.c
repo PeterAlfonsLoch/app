@@ -307,7 +307,11 @@ static char* guid_to_string(const BYTE* guid, char* str, size_t len)
 		return NULL;
 
 	for (i=0; i<GUID_SIZE && len > 2*i; i++)
-		snprintf(str + (2*i), len - 2*i, "%02X", guid[i]);
+#ifdef _WIN32
+		_snprintf(str + (2*i), len - 2*i, "%02X", guid[i]);
+#else
+      snprintf(str + (2 * i),len - 2 * i,"%02X",guid[i]);
+#endif
 
 	return str;
 }
@@ -962,7 +966,7 @@ TSMF_STREAM *tsmf_stream_find_by_id(TSMF_PRESENTATION* presentation, UINT32 stre
 	UINT32 index;
 	UINT32 count;
 	BOOL found = FALSE;
-	TSMF_STREAM* stream;
+	TSMF_STREAM* stream = NULL;
 
 	ArrayList_Lock(presentation->stream_list);
 	count = ArrayList_Count(presentation->stream_list);

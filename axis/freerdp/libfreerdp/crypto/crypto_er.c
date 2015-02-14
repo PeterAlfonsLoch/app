@@ -36,11 +36,11 @@ void er_read_length(wStream* s, int* length)
 
 	if (!length)
 		return;
-
+	
 	*length = 0;
 	if (!s)
 		return;
-
+	
 	if (byte & 0x80)
 	{
 		byte &= ~(0x80);

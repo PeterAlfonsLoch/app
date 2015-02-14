@@ -37,8 +37,10 @@ static const char certificate_store_dir[] = "certs";
 static const char certificate_server_dir[] = "server";
 static const char certificate_known_hosts_file[] = "known_hosts";
 
-#include <freerdp/utils/debug.h>
+#include <freerdp/log.h>
 #include <freerdp/crypto/certificate.h>
+
+#define TAG FREERDP_TAG("crypto")
 
 int certificate_store_init(rdpCertificateStore* certificate_store)
 {
@@ -47,35 +49,10 @@ int certificate_store_init(rdpCertificateStore* certificate_store)
 
 	settings = certificate_store->settings;
 
-   char * dir = _strdup(settings->ConfigPath);
-
-   char * pch = strrchr(dir,'\\');
-
-   if(pch == NULL)
-   {
-      pch = strrchr(dir,'/');
-
-   }
-
-   if(pch != NULL)
-   {
-      *pch = '\0';
-
-         if(!PathFileExistsA(dir))
-         {
-         CreateDirectoryA(dir,0);
-         DEBUG_WARN("creating directory %s\n",dir);
-         }
-
-   }
-
-   free(dir);
-
-
 	if (!PathFileExistsA(settings->ConfigPath))
 	{
 		CreateDirectoryA(settings->ConfigPath, 0);
-		DEBUG_WARN( "creating directory %s\n", settings->ConfigPath);
+		WLog_INFO(TAG,  "creating directory %s", settings->ConfigPath);
 	}
 
 	certificate_store->path = GetCombinedPath(settings->ConfigPath, (char*) certificate_store_dir);
@@ -86,7 +63,7 @@ int certificate_store_init(rdpCertificateStore* certificate_store)
 	if (!PathFileExistsA(certificate_store->path))
 	{
 		CreateDirectoryA(certificate_store->path, 0);
-		DEBUG_WARN( "creating directory %s\n", certificate_store->path);
+		WLog_INFO(TAG,  "creating directory %s", certificate_store->path);
 	}
 
 	server_path = GetCombinedPath(settings->ConfigPath, (char*) certificate_server_dir);
@@ -97,7 +74,7 @@ int certificate_store_init(rdpCertificateStore* certificate_store)
 	if (!PathFileExistsA(server_path))
 	{
 		CreateDirectoryA(server_path, 0);
-		DEBUG_WARN( "creating directory %s\n", server_path);
+		WLog_INFO(TAG,  "creating directory %s", server_path);
 	}
 
 	free(server_path);
@@ -113,7 +90,7 @@ int certificate_store_init(rdpCertificateStore* certificate_store)
 
 		if (!certificate_store->fp)
 		{
-			DEBUG_WARN( "certificate_store_open: error opening [%s] for writing\n", certificate_store->file);
+			WLog_ERR(TAG,  "certificate_store_open: error opening [%s] for writing", certificate_store->file);
 			return -1;
 		}
 

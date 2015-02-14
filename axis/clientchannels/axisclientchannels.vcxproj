@@ -115,7 +115,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="channels\audin\client\audin_main.c" />
-    <ClCompile Include="channels\audin\client\winmm\audin_winmm.c" />
+    <ClCompile Include="channels\audin\client\winmm\audin_winmm.c">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">WIN32;_WINDOWS;_X86_;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;WIN32_LEAN_AND_MEAN;WINVER=0x0501;WIN32_WINNT=0x0501;WINPR_EXPORTS;FREERDP_EXPORTS;_DEBUG;HAVE_CONFIG_H;CMAKE_INTDIR="Debug";</PreprocessorDefinitions>
+    </ClCompile>
     <ClCompile Include="channels\client\addin.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
       </ExcludedFromBuild>
@@ -131,7 +133,6 @@
     <ClCompile Include="channels\cliprdr\client\cliprdr_main.c" />
     <ClCompile Include="channels\disp\client\disp_main.c" />
     <ClCompile Include="channels\drdynvc\client\drdynvc_main.c" />
-    <ClCompile Include="channels\drdynvc\client\dvcman.c" />
     <ClCompile Include="channels\drive\client\drive_file.c" />
     <ClCompile Include="channels\drive\client\drive_main.c" />
     <ClCompile Include="channels\drive\client\statvfs.c" />
@@ -162,13 +163,15 @@
     <ClCompile Include="channels\rdpdr\client\irp.c" />
     <ClCompile Include="channels\rdpdr\client\rdpdr_capabilities.c" />
     <ClCompile Include="channels\rdpdr\client\rdpdr_main.c" />
-    <ClCompile Include="channels\rdpei\client\rdpei_common.c" />
     <ClCompile Include="channels\rdpei\client\rdpei_main.c" />
+    <ClCompile Include="channels\rdpei\rdpei_common.c" />
     <ClCompile Include="channels\rdpgfx\client\rdpgfx_codec.c" />
     <ClCompile Include="channels\rdpgfx\client\rdpgfx_common.c" />
     <ClCompile Include="channels\rdpgfx\client\rdpgfx_main.c" />
     <ClCompile Include="channels\rdpsnd\client\rdpsnd_main.c" />
-    <ClCompile Include="channels\rdpsnd\client\winmm\rdpsnd_winmm.c" />
+    <ClCompile Include="channels\rdpsnd\client\winmm\rdpsnd_winmm.c">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">WIN32;_WINDOWS;_X86_;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;WIN32_LEAN_AND_MEAN;WINVER=0x0501;WIN32_WINNT=0x0501;WINPR_EXPORTS;FREERDP_EXPORTS;_DEBUG;HAVE_CONFIG_H;CMAKE_INTDIR="Debug";</PreprocessorDefinitions>
+    </ClCompile>
     <ClCompile Include="channels\remdesk\client\remdesk_main.c" />
     <ClCompile Include="channels\serial\client\serial_main.c" />
     <ClCompile Include="channels\smartcard\client\smartcard_main.c" />

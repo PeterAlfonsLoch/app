@@ -13,16 +13,16 @@
     <ClCompile Include="client\ca2\ca2rdp.cpp">
       <Filter>Source Files\client\ca2</Filter>
     </ClCompile>
-    <ClCompile Include="client\common\client.cpp">
+    <ClCompile Include="client\common\client.c">
       <Filter>Source Files\client\common</Filter>
     </ClCompile>
-    <ClCompile Include="client\common\cmdline.cpp">
+    <ClCompile Include="client\common\cmdline.c">
       <Filter>Source Files\client\common</Filter>
     </ClCompile>
-    <ClCompile Include="client\common\compatibility.cpp">
+    <ClCompile Include="client\common\compatibility.c">
       <Filter>Source Files\client\common</Filter>
     </ClCompile>
-    <ClCompile Include="client\common\file.cpp">
+    <ClCompile Include="client\common\file.c">
       <Filter>Source Files\client\common</Filter>
     </ClCompile>
   </ItemGroup>

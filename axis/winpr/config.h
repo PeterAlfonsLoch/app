@@ -41,7 +41,7 @@
 #define WITH_SSE2
 /* #undef WITH_NEON */
 /* #undef WITH_IPP */
-/* #define WITH_NATIVE_SSPI */
+//#define WITH_NATIVE_SSPI
 /* #undef WITH_JPEG */
 /* #undef WITH_WIN8 */
 /* #undef WITH_RDPSND_DSOUND */
