@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_CORE db_str_set :
+class CLASS_DECL_CA2_DATA db_str_set :
    virtual public ::object
 {
 public:

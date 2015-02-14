@@ -2,14 +2,14 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="math" />
+		<Option title="data" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="../../../stage/x86/libmath.so" prefix_auto="0" extension_auto="0" />
+				<Option output="../../../stage/x86/libdata.so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="../../../stage/x86/" />
-				<Option object_output="../../../time/intermediate/app/math" />
+				<Option object_output="../../../time/intermediate/app/data" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -59,33 +59,28 @@
 			<Add directory="../../../app/thirdparty/appseed" />
 			<Add directory="../core" />
 			<Add directory="../base" />
+			<Add directory="../axis" />
+			<Add directory="../aura" />
+			<Add directory="../../axis" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
 			<Add option="-Wl,-z,origin" />
+			<Add option="-laura" />
+			<Add option="-laxis" />
+			<Add option="-laxismysql" />
 			<Add option="-lbase" />
-			<Add option="-lcore" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 			<Add directory="/usr/lib64/mysql/" />
 		</Linker>
+		<Unit filename="data/data.h" />
 		<Unit filename="framework.cpp" />
-		<Unit filename="framework.h">
-			<Option compile="1" />
-			<Option weight="0" />
-		</Unit>
-		<Unit filename="kissfft/kiss_fft.cpp" />
-		<Unit filename="kissfft/kiss_fft.h" />
-		<Unit filename="kissfft/kiss_fft_guts.h" />
-		<Unit filename="kissfft/kiss_fft_shared.cpp" />
-		<Unit filename="kissfft/kiss_ifft.cpp" />
-		<Unit filename="kissfft/kiss_ifft.h" />
-		<Unit filename="kissfft/kissfft.h" />
-		<Unit filename="kissfft/kissfft_fftd.cpp" />
-		<Unit filename="kissfft/kissfft_fftd.h" />
-		<Unit filename="kissfft/kissfft_ifftd.cpp" />
-		<Unit filename="kissfft/kissfft_ifftd.h" />
-		<Unit filename="math/math.h" />
+		<Unit filename="framework.h" />
+		<Unit filename="simpledb/mysql_database.h" />
+		<Unit filename="simpledb/mysql_result.h" />
+		<Unit filename="simpledb/simpledb_mysql_database.cpp" />
+		<Unit filename="simpledb/simpledb_mysql_result.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />

@@ -32,7 +32,7 @@ namespace simpledb
 
    bool set::exec(const char * pszSql)
    {
-      database::result_set * r = (database::result_set *) &m_resultset;
+      ::database::result_set * r = (::database::result_set *) &m_resultset;
       r->record_header.remove_all();
       r->records.remove_all();
 
@@ -333,7 +333,7 @@ namespace simpledb
                {
                   return false;
                }
-               database::record rec;
+               ::database::record rec;
                rec.::var_array::operator = (recrow.m_var.vara());
                m_resultset.records.add(rec);
                recrow.m_var.vara().remove_all();
@@ -406,7 +406,7 @@ namespace simpledb
          rec.write(stream);
 
          {
-            database::record rec;
+            ::database::record rec;
             rec.add(string("one row inserted"));
             m_resultset.records.add(rec);
          }
@@ -414,7 +414,7 @@ namespace simpledb
       }
       catch(...)
       {
-         database::record rec;
+         ::database::record rec;
          rec.add(string("could not add row"));
          m_resultset.records.add(rec);
          return false;
@@ -500,7 +500,7 @@ namespace simpledb
             db->start_transaction();
 
          if(db == NULL)
-            throw database::DbErrors("No base Connection");
+            throw ::database::DbErrors("No base Connection");
 
          //close();
 
@@ -522,7 +522,7 @@ namespace simpledb
             db->commit_transaction();
 
          active = true;
-         ds_state = database::dsSelect;
+         ds_state = ::database::dsSelect;
          refresh();
 
       } // end of try
@@ -668,7 +668,7 @@ namespace simpledb
       }
       else
       {
-         ds_state = database::dsInactive;
+         ds_state = ::database::dsInactive;
       }
    }
 

@@ -17,9 +17,11 @@ namespace user
       namespace frame
       {
 
+      #ifdef WINDOWS
+
          MoveManager * g_pmovemanager;
          HHOOK g_hhook;
-         
+
 
          struct ll_info
          {
@@ -62,7 +64,7 @@ namespace user
             g_pmovemanager->Relay(&m);
 
             ::SetCursorPos(pll->pt.x, pll->pt.y);
-            
+
 
          }
 
@@ -90,12 +92,12 @@ namespace user
                   send_ll(nMsg, &s);
 
 
-                  
+
 
                }
 
             }
-            
+
             delete g_plh;
 
             g_plh = NULL;
@@ -147,7 +149,7 @@ namespace user
             return 1;
          }
 
-
+#endif
 
          MoveManager::MoveManager(WorkSet * pworkset) :
             object(pworkset->get_app())
@@ -187,7 +189,7 @@ namespace user
             m_pworkset->get_draw_window()->GetWindowRect(rectWindow);
             m_ptWindowOrigin = rectWindow.top_left();
             GetEventWindow()->SetCapture();
-            
+#ifdef WINDOWSEX
             g_pmovemanager = this;
             g_plh = new ll_handler(get_app());
             g_plh->m_bRun = true;
@@ -199,13 +201,14 @@ namespace user
                0
                );
             ::GetCursorPos(g_pmovemanager->GetMoveWindow()->m_ptMoveCursor);
+#endif
             GetEventWindow()->m_bMoving = true;
             m_bMoving = true;
             pmouse->m_bRet = true;
             return true;
          }
 
-         
+
          bool MoveManager::_000OnMouseMove(::message::mouse * pmouse)
          {
             if(!m_pworkset->IsMovingEnabled()
@@ -276,8 +279,10 @@ namespace user
                {
                   //TRACE("MoveManager::message_handler oswindow ReleaseCapture %x\n", System.get_capture_uie().m_p);
                   System.release_capture_uie();
+                  #ifdef WINDOWSEX
                   UnhookWindowsHookEx(g_hhook);
                   g_plh->m_bRun = false;
+                  #endif
                }
                return false;
             }
@@ -320,7 +325,7 @@ namespace user
 
             if(bMove && rectWindow.top_left() != pt)
             {
-               
+
                class point ptMove = pt;
                if(GetMoveWindow()->GetParent() != NULL)
                {
@@ -356,7 +361,7 @@ namespace user
                }
                //::SetCursorPos(pmouse->m_ptDesired.x,pmouse->m_ptDesired.y);
             }
-            
+
 
             sp(WorkSetClientInterface) pinterface = m_pworkset->GetEventWindow();
 
@@ -399,7 +404,9 @@ namespace user
 
                }
                System.release_capture_uie();
+               #ifdef WINDOWSEX
                UnhookWindowsHookEx(g_hhook);
+               #endif
                m_bMoving = false;
                GetEventWindow()->m_bMoving = false;
             }

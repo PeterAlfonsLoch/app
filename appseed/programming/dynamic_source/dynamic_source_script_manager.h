@@ -23,7 +23,7 @@ namespace webserver
 namespace dynamic_source
 {
 
-   
+
    CLASS_DECL_PROGRAMMING script_instance * get_seed_instance();
 
 
@@ -33,27 +33,27 @@ namespace dynamic_source
    {
    public:
 
-      
+
       class CLASS_DECL_PROGRAMMING clear_include_matches_folder_watch :
          virtual public ::file_watcher::listener_thread
-      
+
       {
       public:
 
-         
+
          sp(script_manager)   m_pmanager;
-         
+
          clear_include_matches_folder_watch(::aura::application * papp);
-         
+
          virtual void handle_file_action(::file_watcher::id watchid, const char * dir, const char * filename, ::file_watcher::e_action eaction);
-        
-         
+
+
       };
 
-      
+
 
       class CLASS_DECL_PROGRAMMING plugin_map_item :
-         virtual public element
+         virtual public ::object
       {
       public:
 
@@ -111,10 +111,10 @@ namespace dynamic_source
       string                                    m_strNetnodePath;
       string                                    m_strNetseedPath;
       string                                    m_strNetseedDsCa2Path;
-                                               
+
       mutex                                     m_mutexSimage;
       mutex                                     m_mutexSpider;
-                                               
+
       mutex                                     m_mutexRsa;
 
       ::crypto::rsaptra                         m_rsaptra;
@@ -191,7 +191,7 @@ namespace dynamic_source
       sp(::crypto::rsa) get_rsa_key();
 
       string get_rsa_key(script_interface * pscriptinterface);
-      
+
       void calc_rsa_key();
 
 

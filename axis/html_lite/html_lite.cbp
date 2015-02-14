@@ -2,14 +2,14 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="math" />
+		<Option title="html_lite" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="../../../stage/x86/libmath.so" prefix_auto="0" extension_auto="0" />
+				<Option output="../../../stage/x86/libhtml_lite.so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="../../../stage/x86/" />
-				<Option object_output="../../../time/intermediate/app/math" />
+				<Option object_output="../../../time/intermediate/app/html_lite" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -59,12 +59,14 @@
 			<Add directory="../../../app/thirdparty/appseed" />
 			<Add directory="../core" />
 			<Add directory="../base" />
+			<Add directory="../../appseed/axis" />
+			<Add directory="../../appseed" />
+			<Add directory="../../appseed/aura" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
 			<Add option="-Wl,-z,origin" />
-			<Add option="-lbase" />
-			<Add option="-lcore" />
+			<Add option="-laura" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 			<Add directory="/usr/lib64/mysql/" />
@@ -74,18 +76,22 @@
 			<Option compile="1" />
 			<Option weight="0" />
 		</Unit>
-		<Unit filename="kissfft/kiss_fft.cpp" />
-		<Unit filename="kissfft/kiss_fft.h" />
-		<Unit filename="kissfft/kiss_fft_guts.h" />
-		<Unit filename="kissfft/kiss_fft_shared.cpp" />
-		<Unit filename="kissfft/kiss_ifft.cpp" />
-		<Unit filename="kissfft/kiss_ifft.h" />
-		<Unit filename="kissfft/kissfft.h" />
-		<Unit filename="kissfft/kissfft_fftd.cpp" />
-		<Unit filename="kissfft/kissfft_fftd.h" />
-		<Unit filename="kissfft/kissfft_ifftd.cpp" />
-		<Unit filename="kissfft/kissfft_ifftd.h" />
-		<Unit filename="math/math.h" />
+		<Unit filename="html/html.h" />
+		<Unit filename="html/html_enum.h" />
+		<Unit filename="html/html_html.cpp" />
+		<Unit filename="html/html_html.h" />
+		<Unit filename="html_lite/html_lite.h" />
+		<Unit filename="html_lite/html_lite_application_application.cpp" />
+		<Unit filename="html_lite/html_lite_application_interface.h" />
+		<Unit filename="html_lite/html_lite_html_attributes.cpp" />
+		<Unit filename="html_lite/html_lite_html_attributes.h" />
+		<Unit filename="html_lite/html_lite_html_common.h" />
+		<Unit filename="html_lite/html_lite_html_entity_resolver.cpp" />
+		<Unit filename="html_lite/html_lite_html_entity_resolver.h" />
+		<Unit filename="html_lite/html_lite_html_reader.cpp" />
+		<Unit filename="html_lite/html_lite_html_reader.h" />
+		<Unit filename="html_lite/html_lite_html_tag.cpp" />
+		<Unit filename="html_lite/html_lite_html_tag.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

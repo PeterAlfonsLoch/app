@@ -5674,7 +5674,7 @@ if(psurface == g_cairosurface)
       return hWnd;    // return the owner as oswindow
    }
 
-   void interaction_impl::on_delete(element * pui)
+   void interaction_impl::on_delete(::object * pui)
    {
       UNREFERENCED_PARAMETER(pui);
    }

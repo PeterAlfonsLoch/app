@@ -6,7 +6,7 @@ namespace datetime
 
 
    class CLASS_DECL_CA2_TIME element :
-      virtual public ::element
+      virtual public ::object
    {
    public:
 
@@ -22,11 +22,11 @@ namespace datetime
 
       value get_value(sp(::aura::application) pbaseapp, ::aura::str_context * pcontext, int32_t & iPath, int32_t & iPathCount) const;
       string get_expression(sp(::aura::application) pbaseapp, ::aura::str_context * pcontext, int32_t & iPath, int32_t & iPathCount) const;
-         
 
 
 
-        
+
+
    };
 
 
