@@ -14,101 +14,101 @@
 
 __STATIC inline bool IsDirSep(WCHAR ch)
 {
-   
+
    return (ch == '\\' || ch == '/');
-   
+
 }
 
 
 namespace ios
 {
-   
-   
+
+
    file::file(sp(::aura::application) papp) :
-   element(papp)
+   ::object(papp)
    {
-      
+
       m_iFile = (UINT) hFileNull;
-      
+
       m_bCloseOnDelete = TRUE;
-      
+
    }
-   
+
    file::file(sp(::aura::application) papp, int32_t hFile) :
-   element(papp)
+   ::object(papp)
    {
-      
+
       m_iFile = hFile;
-      
+
       m_bCloseOnDelete = TRUE;
-      
+
    }
-   
+
    file::file(sp(::aura::application) papp, const char * lpszFileName, UINT nOpenFlags) :
-   element(papp)
+   ::object(papp)
    {
-      
+
       ASSERT(__is_valid_string(lpszFileName));
-      
+
       if(!open(lpszFileName, nOpenFlags))
          throw ::file::exception(papp, ::file::exception::none, -1, lpszFileName);
-      
+
    }
-   
+
    file::~file()
    {
-      
+
       if (m_iFile != (UINT)hFileNull && m_bCloseOnDelete)
          close();
-      
+
    }
-   
+
    sp(::file::stream_buffer) file::Duplicate() const
    {
       ASSERT_VALID(this);
       ASSERT(m_iFile != (UINT)hFileNull);
-      
+
       int32_t iNew = dup(m_iFile);
-      
+
       if(iNew == -1)
          return NULL;
-      
+
       file* pFile = new file(get_app(), iNew);
       pFile->m_iFile = (UINT)iNew;
       ASSERT(pFile->m_iFile != (UINT)hFileNull);
       pFile->m_bCloseOnDelete = m_bCloseOnDelete;
       return pFile;
    }
-   
+
    bool file::open(const char * lpszFileName, UINT nOpenFlags)
    {
-      
+
       if (m_iFile != (UINT)hFileNull)
          close();
-      
+
       ASSERT_VALID(this);
       ASSERT(__is_valid_string(lpszFileName));
       ASSERT((nOpenFlags & ::file::type_text) == 0);   // text mode not supported
-      
+
       // file objects are always binary and CreateFile does not need flag
       nOpenFlags &= ~(UINT)::file::type_binary;
-      
-      
+
+
       if(nOpenFlags & ::file::defer_create_directory)
       {
          System.dir_mk(System.dir_name(lpszFileName));
       }
-      
+
       m_bCloseOnDelete = FALSE;
       m_iFile = (UINT)hFileNull;
       m_strFileName.Empty();
-      
+
       m_strFileName     = lpszFileName;
       m_wstrFileName    = ::str::international::utf8_to_unicode(m_strFileName);
-      
+
       ASSERT(sizeof(HANDLE) == sizeof(uint_ptr));
       ASSERT(::file::share_compat == 0);
-      
+
       // ::collection::map read/write mode
       ASSERT((::file::mode_read|::file::mode_write|::file::mode_read_write) == 3);
       DWORD dwFlags =  0;
@@ -127,7 +127,7 @@ namespace ios
             dwFlags |=  O_RDONLY;
             break;
       }
-      
+
       // ::collection::map share mode
 //      DWORD dwShareMode = 0;
       switch (nOpenFlags & 0x70)    // ::collection::map compatibility mode to exclusive
@@ -148,29 +148,29 @@ namespace ios
             //dwFlags = FILE_SHARE_WRITE|FILE_SHARE_READ;
             break;
       }
-      
+
       if (nOpenFlags & ::file::mode_create)
       {
          dwFlags |= O_CREAT;
          if(!(nOpenFlags & ::file::mode_no_truncate))
             dwFlags |= O_TRUNC;
       }
-      
-      
+
+
       DWORD dwPermission = 0;
-      
-      
+
+
       dwPermission |= S_IRUSR | S_IWUSR | S_IXUSR;
       dwPermission |= S_IRGRP | S_IWGRP | S_IXGRP;
-      
-      
+
+
       // attempt file creation
       //HANDLE hFile = shell::CreateFile(::str::international::utf8_to_unicode(m_strFileName), dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, NULL);
       int32_t hFile = ::open(m_strFileName, dwFlags, dwPermission); //::open(m_strFileName, dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, NULL);
       if(hFile == -1)
       {
          DWORD dwLastError = ::GetLastError();
-         
+
          if(dwLastError != ERROR_FILE_NOT_FOUND && dwLastError != ERROR_PATH_NOT_FOUND)
          {
             /*         if (pException != NULL)
@@ -187,14 +187,14 @@ namespace ios
              }
              else
              {*/
-            
-            
+
+
             vfxThrowFileException(get_app(), ::ios::file_exception::OsErrorToException(dwLastError), dwLastError, m_strFileName);
-            
+
             //}
-            
+
          }
-         
+
          /*try
           {
           m_papp->m_psystem->m_spfilesystem.m_p->FullPath(m_wstrFileName, m_wstrFileName);
@@ -203,11 +203,11 @@ namespace ios
           {
           return FALSE;
           }
-          
+
           m_strFileName = ::str::international::unicode_to_utf8(m_wstrFileName);
-          
+
           hFile = ::open(m_strFileName, nOpenFlags);*/
-         
+
          if (hFile == -1)
          {
             /*if (pException != NULL)
@@ -224,36 +224,36 @@ namespace ios
              }
              else
              {*/
-            
-            
+
+
             DWORD dwLastError = ::GetLastError();
             vfxThrowFileException(get_app(), ::ios::file_exception::OsErrorToException(dwLastError), dwLastError, m_strFileName);
-            
-            
+
+
             //}
-            
+
          }
-         
+
       }
-      
+
       m_iFile = (int32_t)hFile;
-      
+
       m_bCloseOnDelete = TRUE;
-      
+
       return TRUE;
    }
-   
+
    ::primitive::memory_size file::read(void * lpBuf, ::primitive::memory_size nCount)
    {
       ASSERT_VALID(this);
       ASSERT(m_iFile != (UINT)hFileNull);
-      
+
       if (nCount == 0)
          return 0;   // avoid Win32 "null-read"
-      
+
       ASSERT(lpBuf != NULL);
       ASSERT(__is_valid_address(lpBuf, nCount));
-      
+
       ::primitive::memory_position pos = 0;
       ::primitive::memory_size sizeRead = 0;
       ::primitive::memory_size readNow;
@@ -266,7 +266,7 @@ namespace ios
             int32_t iError = errno;
             if(iError == EAGAIN)
             {
-               
+
             }
             ::ios::file_exception::ThrowOsError(get_app(), errno);
          }
@@ -274,26 +274,26 @@ namespace ios
          {
             break;
          }
-         
+
          nCount -= iRead;
          pos += iRead;
          sizeRead += iRead;
       }
-      
+
       return sizeRead;
    }
-   
+
    void file::write(const void * lpBuf, ::primitive::memory_size nCount)
    {
       ASSERT_VALID(this);
       ASSERT(m_iFile != (UINT)hFileNull);
-      
+
       if (nCount == 0)
          return;     // avoid Win32 "null-write" option
-      
+
       ASSERT(lpBuf != NULL);
       ASSERT(__is_valid_address(lpBuf, nCount, FALSE));
-      
+
       ::primitive::memory_position pos = 0;
       while(nCount > 0)
       {
@@ -303,88 +303,88 @@ namespace ios
          nCount -= iWrite;
          pos += iWrite;
       }
-      
+
       // Win32s will not return an error all the time (usually DISK_FULL)
       //if (iWrite != nCount)
       //vfxThrowFileException(get_app(), ::file::exception::diskFull, -1, m_strFileName);
    }
-   
-   
+
+
    file_position file::seek(file_offset lOff, ::file::e_seek nFrom)
    {
-      
+
       if(m_iFile == (UINT)hFileNull)
          ::ios::file_exception::ThrowOsError(get_app(), (LONG)0);
-      
+
       ASSERT_VALID(this);
       ASSERT(m_iFile != (UINT)hFileNull);
       ASSERT(nFrom == ::file::seek_begin || nFrom == ::file::seek_end || nFrom == ::file::seek_current);
       ASSERT(::file::seek_begin == SEEK_SET && ::file::seek_end == SEEK_END && ::file::seek_current == SEEK_CUR);
-      
+
       LONG lLoOffset = lOff & 0xffffffff;
       //LONG lHiOffset = (lOff >> 32) & 0xffffffff;
-      
+
       file_position posNew = ::lseek(m_iFile, lLoOffset, (DWORD)nFrom);
       //      posNew |= ((file_position) lHiOffset) << 32;
       if(posNew  == (file_position)-1)
          ::ios::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());
-      
+
       return posNew;
    }
-   
+
    file_position file::get_position() const
    {
       ASSERT_VALID(this);
       ASSERT(m_iFile != (UINT)hFileNull);
-      
+
       LONG lLoOffset = 0;
       //      LONG lHiOffset = 0;
-      
+
       file_position pos = ::lseek(m_iFile, lLoOffset, SEEK_CUR);
       //    pos |= ((file_position)lHiOffset) << 32;
       if(pos  == (file_position)-1)
          ::ios::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());
-      
+
       return pos;
    }
-   
+
    void file::Flush()
    {
-      
+
       /*      ::open
        ::read
        ::write
-       
+
        access the system directly no buffering : direct I/O - efficient for large writes - innefficient for lots of single byte writes
-       
+
        */
-      
+
       /*ASSERT_VALID(this);
-       
+
          if (m_iFile == (UINT)hFileNull)
        return;
-       
+
        if (!::FlushFileBuffers((HANDLE)m_iFile))
        ::ios::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());*/
    }
-   
+
    void file::close()
    {
       ASSERT_VALID(this);
       ASSERT(m_iFile != (UINT)hFileNull);
-      
+
       bool bError = FALSE;
       if (m_iFile != (UINT)hFileNull)
          bError = !::close(m_iFile);
-      
+
       m_iFile = (UINT) hFileNull;
       m_bCloseOnDelete = FALSE;
       m_strFileName.Empty();
-      
+
       if (bError)
          ::ios::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());
    }
-   
+
    void file::Abort()
    {
       ASSERT_VALID(this);
@@ -396,104 +396,104 @@ namespace ios
       }
       m_strFileName.Empty();
    }
-   
+
    void file::LockRange(file_position dwPos, file_size dwCount)
    {
       ASSERT_VALID(this);
       ASSERT(m_iFile != (UINT)hFileNull);
-      
+
       /*if (!::LockFile((HANDLE)m_iFile, LODWORD(dwPos), HIDWORD(dwPos), LODWORD(dwCount), HIDWORD(dwCount)))
        ::ios::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());*/
    }
-   
+
    void file::UnlockRange(file_position dwPos, file_size dwCount)
    {
       ASSERT_VALID(this);
       ASSERT(m_iFile != (UINT)hFileNull);
-      
+
       /*      if (!::UnlockFile((HANDLE)m_iFile,  LODWORD(dwPos), HIDWORD(dwPos), LODWORD(dwCount), HIDWORD(dwCount)))
        ::ios::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());*/
    }
-   
+
    void file::set_length(file_size dwNewLen)
    {
       ASSERT_VALID(this);
       ASSERT(m_iFile != (UINT)hFileNull);
-      
+
       seek((LONG)dwNewLen, (::file::e_seek)::file::seek_begin);
-      
+
       if (!::ftruncate(m_iFile, dwNewLen))
          ::ios::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());
    }
-   
+
    file_size file::get_length() const
    {
       ASSERT_VALID(this);
-      
+
       file_position dwLen, dwCur;
-      
+
       // seek is a non const operation
       file* pFile = (file*)this;
       dwCur = pFile->seek(0L, ::file::seek_current);
       dwLen = pFile->seek_to_end();
       VERIFY(dwCur == (uint64_t)pFile->seek((file_offset) dwCur, ::file::seek_begin));
-      
+
       return (file_size) dwLen;
    }
-   
+
    // file does not support direct buffering (CMemFile does)
    uint64_t file::GetBufferPtr(UINT nCommand, uint64_t /*nCount*/,
                                void ** /*ppBufStart*/, void ** /*ppBufMax*/)
    {
       ASSERT(nCommand == bufferCheck);
 //      UNUSED(nCommand);    // not used in retail build
-      
+
       return 0;   // no support
    }
-   
+
    /*
     void PASCAL file::Rename(const char * lpszOldName, const char * lpszNewName)
     {
     if (!::MoveFile((LPTSTR)lpszOldName, (LPTSTR)lpszNewName))
     ::win::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());
     }
-    
+
     void PASCAL file::remove(const char * lpszFileName)
     {
     if (!::DeleteFile((LPTSTR)lpszFileName))
     ::win::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());
     }
     */
-   
-   
-   
-   
-   
+
+
+
+
+
    /////////////////////////////////////////////////////////////////////////////
    // file diagnostics
-   
-   
+
+
    void file::assert_valid() const
    {
       ::object::assert_valid();
       // we permit the descriptor m_iFile to be any value for derived classes
    }
-   
+
    void file::dump(dump_context & dumpcontext) const
    {
       ::object::dump(dumpcontext);
-      
+
       dumpcontext << "with handle " << (UINT)m_iFile;
       dumpcontext << " and name \"" << m_strFileName << "\"";
       dumpcontext << "\n";
    }
-   
-   
-   
-   
+
+
+
+
    /////////////////////////////////////////////////////////////////////////////
    // FileException helpers
-   
+
 #ifdef DEBUG
    static const char * rgszFileExceptionCause[] =
    {
@@ -515,8 +515,8 @@ namespace ios
    };
    static const char szUnknown[] = "unknown";
 #endif
-   
-   
+
+
    /*void CLASS_DECL_BASE vfxThrowFileException(int32_t cause, LONG lOsError,
     //   const char * lpszFileName  == NULL */
    /*{
@@ -531,64 +531,64 @@ namespace ios
     #endif
     THROW(new FileException(cause, lOsError, lpszFileName));
     }*/
-   
+
    /* Error Codes */
-   
-   
+
+
    /////////////////////////////////////////////////////////////////////////////
    // file name handlers
-   
+
    string file::GetFileName() const
    {
       ASSERT_VALID(this);
-      
+
       ::file::file_status status;
       GetStatus(status);
       return System.file().name_(status.m_strFullName);
    }
-   
+
    string file::GetFileTitle() const
    {
       ASSERT_VALID(this);
-      
+
       ::file::file_status status;
       GetStatus(status);
       return System.file().title_(status.m_strFullName);
    }
-   
+
    string file::GetFilePath() const
    {
       ASSERT_VALID(this);
-      
+
       ::file::file_status status;
       GetStatus(status);
       return status.m_strFullName;
    }
-   
-   
-   
-   
+
+
+
+
    /////////////////////////////////////////////////////////////////////////////
    // FileException
-   
-   
+
+
    namespace file_exception
    {
-   
+
    void ThrowOsError(sp(::aura::application) papp, LONG lOsError, const char * lpszFileName /* = NULL */)
    {
       if (lOsError != 0)
          vfxThrowFileException(papp, ::ios::file_exception::OsErrorToException(lOsError), lOsError, lpszFileName);
    }
-   
+
    void ThrowErrno(sp(::aura::application) papp, int32_t nErrno, const char * lpszFileName /* = NULL */)
    {
       if (nErrno != 0)
          vfxThrowFileException(papp, ::ios::file_exception::ErrnoToException(nErrno), errno, lpszFileName);
    }
-   
-   
-   
+
+
+
    int32_t OsErrorToException(LONG lOsErr)
    {
       // NT Error codes
@@ -756,29 +756,29 @@ namespace ios
             return ::file::exception::type_generic;
       }
    }
-      
+
          } //      namespace file_exception
-   
-   
+
+
    // IMPLEMENT_DYNAMIC(WinFileException, ::exception::base)
-   
+
    /////////////////////////////////////////////////////////////////////////////
-   
-   
-   
-   
+
+
+
+
    /////////////////////////////////////////////////////////////////////////////
    // file Status implementation
-   
+
    bool file::GetStatus(::file::file_status& rStatus) const
    {
       ASSERT_VALID(this);
-      
+
       //memset(&rStatus, 0, sizeof(::ca2::file_status));
-      
+
       // copy file name from cached m_strFileName
       rStatus.m_strFullName = m_strFileName;
-      
+
       if (m_iFile != hFileNull)
       {
          struct ::stat st;
@@ -788,20 +788,20 @@ namespace ios
          /*FILETIME ftCreate, ftAccess, ftModify;
           if (!::GetFileTime((HANDLE)m_iFile, &ftCreate, &ftAccess, &ftModify))
           return FALSE;*/
-         
+
          rStatus.m_size = st.st_size;
-         
+
          //if ((rStatus.m_size = ::GetFileSize((HANDLE)m_iFile, NULL)) == (DWORD)-1L)
          // return FALSE;
-         
-         
+
+
          //if (m_strFileName.is_empty())
          // throw todo(get_app());
          rStatus.m_attribute = 0;
          /*         else
           {
           DWORD dwAttribute = ::GetFileAttributesW(::str::international::utf8_to_unicode(m_strFileName));
-          
+
           // don't return an error for this because previous versions of ca2 API didn't
           if (dwAttribute == 0xFFFFFFFF)
           rStatus.m_attribute = 0;
@@ -815,7 +815,7 @@ namespace ios
           #endif
           }
           }*/
-         
+
          // convert times as appropriate
          //rStatus.m_ctime = ::datetime::time(ftCreate);
          //rStatus.m_atime = ::datetime::time(ftAccess);
@@ -823,17 +823,17 @@ namespace ios
          rStatus.m_ctime = ::datetime::time(st.st_mtime);
          rStatus.m_atime = ::datetime::time(st.st_atime);
          rStatus.m_mtime = ::datetime::time(st.st_ctime);
-         
+
          if (rStatus.m_ctime.get_time() == 0)
             rStatus.m_ctime = rStatus.m_mtime;
-         
+
          if (rStatus.m_atime.get_time() == 0)
             rStatus.m_atime = rStatus.m_mtime;
       }
       return TRUE;
    }
-   
-   
+
+
    bool PASCAL file::GetStatus(const char * lpszFileName, ::file::file_status& rStatus)
    {
       // attempt to fully qualify path first
@@ -845,29 +845,29 @@ namespace ios
     //     rStatus.m_strFullName.Empty();
       //   return FALSE;
       //}
-      
+
       wstrFullName = wstrFileName;
-      
+
       ::str::international::unicode_to_utf8(rStatus.m_strFullName, wstrFullName);
-      
+
       struct ::stat st;
       if(stat(lpszFileName, &st) == -1)
          return false;
       //if (hFind == INVALID_HANDLE_VALUE)
       // return FALSE;
       //VERIFY(FindClose(hFind));
-      
+
       // strip attribute of NORMAL bit, our API doesn't have a "normal" bit.
       //rStatus.m_attribute = (BYTE) (findFileData.dwFileAttributes & ~FILE_ATTRIBUTE_NORMAL);
-      
+
       rStatus.m_attribute = 0;
-      
+
       // get just the low DWORD of the file size
       //ASSERT(findFileData.nFileSizeHigh == 0);
       //rStatus.m_size = (LONG)findFileData.nFileSizeLow;
-      
+
       rStatus.m_size = st.st_size;
-      
+
       // convert times as appropriate
       /*rStatus.m_ctime = ::datetime::time(findFileData.ftCreationTime);
        rStatus.m_atime = ::datetime::time(findFileData.ftLastAccessTime);
@@ -875,25 +875,25 @@ namespace ios
       rStatus.m_ctime = ::datetime::time(st.st_mtime);
       rStatus.m_atime = ::datetime::time(st.st_atime);
       rStatus.m_mtime = ::datetime::time(st.st_ctime);
-      
+
       if (rStatus.m_ctime.get_time() == 0)
          rStatus.m_ctime = rStatus.m_mtime;
-      
+
       if (rStatus.m_atime.get_time() == 0)
          rStatus.m_atime = rStatus.m_mtime;
-      
+
       return TRUE;
    }
-      
 
-   
+
+
    /*
     UINT CLASS_DECL_BASE vfxGetFileTitle(const wchar_t * lpszPathName, wchar_t * lpszTitle, UINT nMax)
     {
     ASSERT(lpszTitle == NULL ||
     __is_valid_address(lpszTitle, _MAX_FNAME));
     ASSERT(__is_valid_string(lpszPathName));
-    
+
     // use a temporary to avoid bugs in ::GetFileTitle when lpszTitle is NULL
     WCHAR szTemp[_MAX_PATH];
     wchar_t * lpszTemp = lpszTitle;
@@ -909,18 +909,18 @@ namespace ios
     }
     return lpszTitle == NULL ? lstrlenW(lpszTemp)+1 : 0;
     }
-    
-    
+
+
     bool vfxComparePath(const wchar_t * lpszPath1, const wchar_t * lpszPath2)
     {
     // use case insensitive compare as a starter
     if (lstrcmpiW(lpszPath1, lpszPath2) != 0)
     return FALSE;
-    
+
     // on non-DBCS systems, we are done
     if (!GetSystemMetrics(SM_DBCSENABLED))
     return TRUE;
-    
+
     // on DBCS systems, the file name may not actually be the same
     // in particular, the file system is case sensitive with respect to
     // "full width" roman characters.
@@ -929,7 +929,7 @@ namespace ios
     if (nLen != lstrlenW(lpszPath2))
     return FALSE;
     ASSERT(nLen < _MAX_PATH);
-    
+
     // need to get both CT_CTYPE1 and CT_CTYPE3 for each filename
     LCID lcid = GetThreadLocale();
     WORD aCharType11[_MAX_PATH];
@@ -942,7 +942,7 @@ namespace ios
     WORD aCharType23[_MAX_PATH];
     VERIFY(GetStringTypeExW(lcid, CT_CTYPE3, lpszPath2, -1, aCharType23));
     #endif
-    
+
     // for every C3_FULLWIDTH character, make sure it has same C1 value
     int32_t i = 0;
     for (const wchar_t * lpsz = lpszPath1; *lpsz != 0; lpsz = _wcsinc(lpsz))
@@ -953,7 +953,7 @@ namespace ios
     #ifdef DEBUG
     ASSERT(aCharType23[i] & C3_FULLWIDTH); // should always match!
     #endif
-    
+
     // if CT_CTYPE1 is different then file system considers these
     // file names different.
     if (aCharType11[i] != aCharType21[i])
@@ -964,7 +964,7 @@ namespace ios
     return TRUE; // otherwise file name is truly the same
     }
     */
-   
+
    /*
     void PASCAL file::SetStatus(const char * lpszFileName, const ::ca2::file_status& status)
     {
@@ -975,54 +975,54 @@ namespace ios
     LPFILETIME lpCreationTime = NULL;
     LPFILETIME lpLastAccessTime = NULL;
     LPFILETIME lpLastWriteTime = NULL;
-    
+
     if ((wAttr = GetFileAttributes((LPTSTR)lpszFileName)) == (DWORD)-1L)
     ::win::file_exception::ThrowOsError(get_app(), (LONG)GetLastError());
-    
+
     if ((DWORD)status.m_attribute != wAttr && (wAttr & readOnly))
     {
     // Set file attribute, only if currently readonly.
     // This way we will be able to modify the time assuming the
     // caller changed the file from readonly.
-    
+
     if (!SetFileAttributes((LPTSTR)lpszFileName, (DWORD)status.m_attribute))
     ::win::file_exception::ThrowOsError(get_app(), (LONG)GetLastError());
     }
-    
+
     // last modification time
     if (status.m_mtime.get_time() != 0)
     {
     ::ca2::TimeToFileTime(status.m_mtime, &lastWriteTime);
     lpLastWriteTime = &lastWriteTime;
-    
+
     // last access time
     if (status.m_atime.get_time() != 0)
     {
     ::ca2::TimeToFileTime(status.m_atime, &lastAccessTime);
     lpLastAccessTime = &lastAccessTime;
     }
-    
+
     // create time
     if (status.m_ctime.get_time() != 0)
     {
     ::ca2::TimeToFileTime(status.m_ctime, &creationTime);
     lpCreationTime = &creationTime;
     }
-    
+
     HANDLE hFile = ::CreateFile(lpszFileName, GENERIC_READ|GENERIC_WRITE,
     FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL,
     NULL);
-    
+
     if (hFile == INVALID_HANDLE_VALUE)
     ::win::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());
-    
+
     if (!SetFileTime((HANDLE)hFile, lpCreationTime, lpLastAccessTime, lpLastWriteTime))
     ::win::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());
-    
+
     if (!::CloseHandle(hFile))
     ::win::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());
     }
-    
+
     if ((DWORD)status.m_attribute != wAttr && !(wAttr & readOnly))
     {
     if (!SetFileAttributes((LPTSTR)lpszFileName, (DWORD)status.m_attribute))
@@ -1030,36 +1030,36 @@ namespace ios
     }
     }
     */
-   
+
    bool file::IsOpened()
    {
       return m_iFile != hFileNull;
    }
-   
-   
+
+
    void file::SetFilePath(const char * lpszNewName)
    {
       ASSERT_VALID(this);
       ASSERT(__is_valid_string(lpszNewName));
       m_strFileName = lpszNewName;
    }
-   
+
    uint64_t file::ReadHuge(void * lpBuffer, uint64_t dwCount)
    {
-      
+
        return  read(lpBuffer, (::primitive::memory_size) dwCount);
-      
+
    }
-   
+
    void file::WriteHuge(const void * lpBuffer, uint64_t dwCount)
    {
-      
+
       write(lpBuffer, (::primitive::memory_size) dwCount);
-      
+
    }
-   
-   
-   
+
+
+
 } // namespace win
 
 
@@ -1078,24 +1078,24 @@ bool CLASS_DECL_BASE vfxFullPath(wstring & wstrFullPath, const wstring & wstrPat
 // lpszFileIn = file, relative path or absolute path
 // (both in ANSI character set)
 {
-   
-   
+
+
    wstrFullPath = wstrPath;
-   
-   
+
+
    return true;
-   
+
    /*
-    
+
     strsize dwAllocLen = wstrPath.get_length() + _MAX_PATH;
-    
+
     wstrFullPath.alloc(dwAllocLen);
-    
+
     // first, fully qualify the path name
     wchar_t * lpszFilePart;
-    
+
     strsize dwLen = GetFullPathNameW(wstrPath, (DWORD) dwAllocLen, wstrFullPath, &lpszFilePart);
-    
+
     if(dwLen == 0)
     {
     #ifdef DEBUG
@@ -1107,11 +1107,11 @@ bool CLASS_DECL_BASE vfxFullPath(wstring & wstrFullPath, const wstring & wstrPat
     }
     else if(dwLen > dwAllocLen)
     {
-    
+
     dwAllocLen = dwLen + _MAX_PATH;
-    
+
     dwLen = GetFullPathNameW(wstrPath, (DWORD) dwAllocLen, wstrFullPath, &lpszFilePart);
-    
+
     if(dwLen == 0 || dwLen > dwAllocLen)
     {
     #ifdef DEBUG
@@ -1121,13 +1121,13 @@ bool CLASS_DECL_BASE vfxFullPath(wstring & wstrFullPath, const wstring & wstrPat
     wstrFullPath = wstrPath; // take it literally
     return FALSE;
     }
-    
+
     }
-    
+
     wstring wstrRoot;
     // determine the root name of the volume
     vfxGetRoot(wstrRoot, wstrFullPath);
-    
+
     // get file system information for the volume
     DWORD dwFlags, dwDummy;
     if (!GetVolumeInformationW(wstrRoot, NULL, 0, NULL, &dwDummy, &dwFlags, NULL, 0))
@@ -1135,11 +1135,11 @@ bool CLASS_DECL_BASE vfxFullPath(wstring & wstrFullPath, const wstring & wstrPat
     //      TRACE1("Warning: could not get volume information '%s'.\n", strRoot);
     return FALSE;   // preserving case may not be correct
     }
-    
+
     // not all characters have complete uppercase/lowercase
     if (!(dwFlags & FS_CASE_IS_PRESERVED))
     CharUpperW(wstrFullPath);
-    
+
     // assume non-UNICODE file systems, use OEM character set
     if (!(dwFlags & FS_UNICODE_STORED_ON_DISK))
     {
@@ -1212,11 +1212,11 @@ bool CLASS_DECL_BASE vfxFullPath(wstring & wstrFullPath, const wstring & wstrPat
  // use case insensitive compare as a starter
  if (lstrcmpi(lpszPath1, lpszPath2) != 0)
  return FALSE;
- 
+
  // on non-DBCS systems, we are done
  if (!GetSystemMetrics(SM_DBCSENABLED))
  return TRUE;
- 
+
  // on DBCS systems, the file name may not actually be the same
  // in particular, the file system is case sensitive with respect to
  // "full width" roman characters.
@@ -1225,7 +1225,7 @@ bool CLASS_DECL_BASE vfxFullPath(wstring & wstrFullPath, const wstring & wstrPat
  if (nLen != lstrlen(lpszPath2))
  return FALSE;
  ASSERT(nLen < _MAX_PATH);
- 
+
  // need to get both CT_CTYPE1 and CT_CTYPE3 for each filename
  LCID lcid = GetThreadLocale();
  WORD aCharType11[_MAX_PATH];
@@ -1238,7 +1238,7 @@ bool CLASS_DECL_BASE vfxFullPath(wstring & wstrFullPath, const wstring & wstrPat
  WORD aCharType23[_MAX_PATH];
  VERIFY(GetStringTypeEx(lcid, CT_CTYPE3, lpszPath2, -1, aCharType23));
  #endif
- 
+
  // for every C3_FULLWIDTH character, make sure it has same C1 value
  int32_t i = 0;
  for (const char * lpsz = lpszPath1; *lpsz != 0; lpsz = _tcsinc(lpsz))
@@ -1249,7 +1249,7 @@ bool CLASS_DECL_BASE vfxFullPath(wstring & wstrFullPath, const wstring & wstrPat
  #ifdef DEBUG
  ASSERT(aCharType23[i] & C3_FULLWIDTH); // should always match!
  #endif
- 
+
  // if CT_CTYPE1 is different then file system considers these
  // file names different.
  if (aCharType11[i] != aCharType21[i])
@@ -1265,7 +1265,7 @@ bool CLASS_DECL_BASE vfxFullPath(wstring & wstrFullPath, const wstring & wstrPat
  ASSERT(lpszTitle == NULL ||
  __is_valid_address(lpszTitle, _MAX_FNAME));
  ASSERT(__is_valid_string(lpszPathName));
- 
+
  // use a temporary to avoid bugs in ::GetFileTitle when lpszTitle is NULL
  char szTemp[_MAX_PATH];
  LPTSTR lpszTemp = lpszTitle;
@@ -1286,12 +1286,12 @@ CLASS_DECL_BASE void vfxGetModuleShortFileName(HINSTANCE hInst, string& strShort
 {
    throw todo(::get_thread_app());
    //link_map * plm;
-   
+
    //dlinfo(hInst, RTLD_DI_LINKMAP, &plm);
-   
+
    //strShortName = plm->l_name;
-   
-   
+
+
    /*   WCHAR szLongPathName[_MAX_PATH];
     wstring wstrShortName;
     ::GetModuleFileNameW(hInst, szLongPathName, _MAX_PATH);
@@ -1354,44 +1354,44 @@ CLASS_DECL_BASE string vfxStringFromCLSID(REFCLSID rclsid)
 
 CLASS_DECL_BASE bool vfxResolveShortcut(string & strTarget, const char * pszSource, ::user::interaction * puiMessageParentOptional)
 {
-   
-   
-   
+
+
+
    char realname[_POSIX_PATH_MAX * 4];
 //   int32_t rc = 0;
-   
+
    if(realpath(pszSource, realname) == 0)
       return false;
-   
+
    strTarget = realname;
-   
+
    return true;
-   
+
    /*
-    
+
     ::user::interaction * pui = puiMessageParentOptional;
-    
+
     wstring wstrFileOut;
     wstring wstrFileIn = ::str::international::utf8_to_unicode(pszSource);
-    
+
     DWORD dwVersion = GetVersion();
-    
+
     // get the Windows version.
-    
+
     DWORD dwWindowsMajorVersion =  (DWORD)(LOBYTE(LOWORD(dwVersion)));
     DWORD dwWindowsMinorVersion =  (DWORD)(HIBYTE(LOWORD(dwVersion)));
-    
+
     // get the build number.
-    
+
     DWORD dwBuild;
-    
+
     if (dwVersion < 0x80000000)              // Windows NT
     dwBuild = (DWORD)(HIWORD(dwVersion));
     else if (dwWindowsMajorVersion < 4)      // Win32s
     dwBuild = (DWORD)(HIWORD(dwVersion) & ~0x8000);
     else                                     // Windows Me/98/95
     dwBuild =  0;
-    
+
     bool bNativeUnicode;
     if (dwVersion < 0x80000000)              // Windows NT
     bNativeUnicode = TRUE;
@@ -1399,26 +1399,26 @@ CLASS_DECL_BASE bool vfxResolveShortcut(string & strTarget, const char * pszSour
     bNativeUnicode = FALSE;
     else                                     // Windows Me/98/95
     bNativeUnicode = FALSE;
-    
-    
+
+
     //   __COM com;
     IShellLinkW* psl;
     wstrFileOut = L"";
-    
+
     SHFILEINFOW info;
     if ((::win::shell::SHGetFileInfo(wstrFileIn, 0, &info, sizeof(info),
     SHGFI_ATTRIBUTES) == 0) || !(info.dwAttributes & SFGAO_LINK))
     {
     return FALSE;
     }
-    
+
     HRESULT hr ;
     if (FAILED(hr = CoCreateInstance(CLSID_ShellLink, NULL, CLSCTX_INPROC_SERVER, IID_IShellLinkW,
     (LPVOID*)&psl)))
     {
     return FALSE;
     }
-    
+
     IPersistFile *ppf;
     if (SUCCEEDED(psl->QueryInterface(IID_IPersistFile, (LPVOID*)&ppf)))
     {
@@ -1459,7 +1459,7 @@ CLASS_DECL_BASE bool vfxResolveShortcut(string & strTarget, const char * pszSour
 //{
 /*
  ASSERT(__is_valid_address(lpszPathOut, _MAX_PATH));
- 
+
  // first, fully qualify the path name
  wchar_t * lpszFilePart;
  if (!GetFullPathNameW(lpszFileIn, _MAX_PATH, lpszPathOut, &lpszFilePart))
@@ -1471,11 +1471,11 @@ CLASS_DECL_BASE bool vfxResolveShortcut(string & strTarget, const char * pszSour
  lstrcpynW(lpszPathOut, lpszFileIn, _MAX_PATH); // take it literally
  return FALSE;
  }
- 
+
  string strRoot;
  // determine the root name of the volume
  vfxGetRoot(lpszPathOut, strRoot);
- 
+
  // get file system information for the volume
  DWORD dwFlags, dwDummy;
  if (!GetVolumeInformationW(::str::international::utf8_to_unicode(strRoot), NULL, 0, NULL, &dwDummy, &dwFlags, NULL, 0))
@@ -1483,11 +1483,11 @@ CLASS_DECL_BASE bool vfxResolveShortcut(string & strTarget, const char * pszSour
  //      TRACE1("Warning: could not get volume information '%s'.\n", strRoot);
  return FALSE;   // preserving case may not be correct
  }
- 
+
  // not all characters have complete uppercase/lowercase
  if (!(dwFlags & FS_CASE_IS_PRESERVED))
  CharUpperW(lpszPathOut);
- 
+
  // assume non-UNICODE file systems, use OEM character set
  if (!(dwFlags & FS_UNICODE_STORED_ON_DISK))
  {
@@ -1600,7 +1600,7 @@ CLASS_DECL_BASE bool vfxResolveShortcut(string & strTarget, const char * pszSour
  // (both in ANSI character set)
  {
  ASSERT(__is_valid_address(lpszPathOut, _MAX_PATH));
- 
+
  // first, fully qualify the path name
  wchar_t * lpszFilePart;
  if (!shell::GetFullPathName(lpszFileIn, _MAX_PATH, lpszPathOut, &lpszFilePart))
@@ -1612,11 +1612,11 @@ CLASS_DECL_BASE bool vfxResolveShortcut(string & strTarget, const char * pszSour
  lstrcpynW(lpszPathOut, lpszFileIn, _MAX_PATH); // take it literally
  return FALSE;
  }
- 
+
  string wstrRoot;
  // determine the root name of the volume
  vfxGetRoot(lpszPathOut, wstrRoot);
- 
+
  // get file system information for the volume
  DWORD dwFlags, dwDummy;
  if (!shell::GetVolumeInformation(wstrRoot, NULL, 0, NULL, &dwDummy, &dwFlags,
@@ -1626,11 +1626,11 @@ CLASS_DECL_BASE bool vfxResolveShortcut(string & strTarget, const char * pszSour
  (const char *)wstrRoot);
  return FALSE;   // preserving case may not be correct
  }
- 
+
  // not all characters have complete uppercase/lowercase
  if (!(dwFlags & FS_CASE_IS_PRESERVED))
  CharUpperW(lpszPathOut);
- 
+
  // assume non-UNICODE file systems, use OEM character set
  if (!(dwFlags & FS_UNICODE_STORED_ON_DISK))
  {
@@ -1653,7 +1653,7 @@ CLASS_DECL_BASE bool vfxResolveShortcut(string & strTarget, const char * pszSour
  ASSERT(lpszTitle == NULL ||
  __is_valid_address(lpszTitle, _MAX_FNAME));
  ASSERT(__is_valid_string(lpszPathName));
- 
+
  // always capture the complete file name including extension (if present)
  const char * lpszTemp = (char *)lpszPathName;
  for (const char * lpsz = lpszPathName; *lpsz != '\0'; lpsz = lpsz++)
@@ -1662,11 +1662,11 @@ CLASS_DECL_BASE bool vfxResolveShortcut(string & strTarget, const char * pszSour
  if (*lpsz == '\\' || *lpsz == '/' || *lpsz == ':')
  lpszTemp = lpsz++;
  }
- 
+
  // lpszTitle can be NULL which just returns the number of bytes
  if (lpszTitle == NULL)
  return strlen_dup(lpszTemp)+1;
- 
+
  // otherwise copy it into the buffer provided
  strncpy(lpszTitle, lpszTemp, nMax);
  return 0;

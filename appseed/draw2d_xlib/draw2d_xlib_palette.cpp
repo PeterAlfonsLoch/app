@@ -6,7 +6,7 @@ namespace draw2d_xlib
 
 
    palette::palette(sp(::base::application) papp) :
-      element(papp)
+      ::object(papp)
    {
 
    }

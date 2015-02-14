@@ -105,7 +105,7 @@ namespace android
    }
 
    interaction_impl::interaction_impl(::aura::application * papp):
-      element(papp)
+      ::object(papp)
    {
       //m_pcallback = NULL;
       //m_nModalResult = 0;
@@ -4098,7 +4098,7 @@ namespace android
 
 
    /*   view_update_hint::view_update_hint(::aura::application * papp) :
-   element(papp)
+   ::object(papp)
    {
    }
    */
@@ -4456,7 +4456,7 @@ namespace android
 
 
    /*   guie_message_wnd::guie_message_wnd(::aura::application * papp) :
-   element(papp)
+   ::object(papp)
    {
    m_pguieForward = NULL;
    }

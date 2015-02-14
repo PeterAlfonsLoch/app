@@ -4216,7 +4216,7 @@ namespace ios
 
 
    /*   view_update_hint::view_update_hint(sp(::aura::application) papp) :
-    element(papp)
+    ::object(papp)
     {
     }
     */
@@ -4563,7 +4563,7 @@ namespace ios
    }
 
    /*   guie_message_wnd::guie_message_wnd(sp(::aura::application) papp) :
-    element(papp)
+    ::object(papp)
     {
     m_pguieForward = NULL;
     }

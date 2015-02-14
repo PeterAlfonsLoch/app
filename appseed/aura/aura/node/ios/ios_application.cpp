@@ -8,7 +8,7 @@ namespace ios
 
 
    application::application(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
       ::thread::m_p.create(allocer());
       ::thread::m_p->m_p = this;
@@ -77,18 +77,18 @@ namespace ios
       return FALSE;
    }
 
-   
+
    HINSTANCE application::GetHinstance()
    {
-      
+
       return NULL;
-      
+
    }
 
-   
+
    string application::get_version()
    {
-      
+
       return "";
 
 
@@ -107,12 +107,12 @@ namespace ios
 
 
 
-   
+
    bool application::process_initialize()
    {
 
       return true;
-      
+
    }
 
 
@@ -449,21 +449,21 @@ namespace ios
 
          if(file_exists_dup(::dir::path(strCurDir, "libcore.dylib")))
          {
-            
+
             m_strCa2ModuleFolder = strCurDir;
-            
+
          }
          else if(file_exists_dup(::dir::path(m_strModuleFolder, "libcore.dylib")))
          {
-            
+
             m_strCa2ModuleFolder = m_strModuleFolder;
-            
+
          }
          else
          {
 
             m_strCa2ModuleFolder = ::dir::name(::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libcore.dylib", "rfs")); // readable - normal file - non zero sized
-            
+
          }
 
       }
@@ -489,51 +489,51 @@ namespace ios
       return pprinter;
 
    }
-   
-   
+
+
    void application::ShowWaitCursor(bool bShow)
    {
-      
+
       UNREFERENCED_PARAMETER(bShow);
-      
+
    }
-   
-    
-    
+
+
+
     string application::draw2d_get_default_library_name()
     {
-        
+
         return "draw2d_quartz2d";
-        
+
     }
    string application::multimedia_audio_get_default_library_name()
    {
-      
+
       return "audio_core_audio";
-      
+
    }
 
    string application::multimedia_audio_mixer_get_default_library_name()
    {
-      
+
       return "audio_mixer_core_audio";
-   
+
    }
    string application::veriwell_multimedia_music_midi_get_default_library_name()
    {
-      
+
       return "music_midi_core_audio";
-      
+
    }
- 
+
    void application::ShowWaitCursor(bool bShow)
    {
-      
+
       UNREFERENCED_PARAMETER(bShow);
-      
+
    }
-   
-   
+
+
 } // namespace ios
 
 

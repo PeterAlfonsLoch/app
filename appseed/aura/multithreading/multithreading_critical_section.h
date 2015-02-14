@@ -60,6 +60,21 @@ inline void critical_section::unlock()
    ::LeaveCriticalSection(&m_sect);
    //return TRUE;
 }
+#else
+
+inline void critical_section::lock()
+{
+
+   pthread_mutex_lock ((pthread_mutex_t *) m_pmutex);
+
+}
+
+inline void critical_section::unlock()
+{
+
+   pthread_mutex_unlock ((pthread_mutex_t *) m_pmutex);
+
+}
 
 #endif
 

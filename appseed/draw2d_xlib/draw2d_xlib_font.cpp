@@ -13,7 +13,7 @@ namespace draw2d_xlib
 
 
    font::font(sp(::base::application) papp) :
-   element(papp)
+   ::object(papp)
    {
 
       m_pdisplay = NULL;

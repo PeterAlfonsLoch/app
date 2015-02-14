@@ -6,7 +6,7 @@ namespace draw2d_cairo
 
 
    palette::palette(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
 
    }

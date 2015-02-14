@@ -6,7 +6,7 @@ namespace draw2d_cairo
 
 
    factory_exchange::factory_exchange(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
 
       init_cairo_mutex(papp);

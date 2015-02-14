@@ -22,7 +22,7 @@ namespace linux
    }
 
    //path::path(::aura::application * papp) :
-   //   element(papp)
+   //   ::object(papp)
    //{
    //}
 

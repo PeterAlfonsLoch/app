@@ -6,7 +6,7 @@ namespace draw2d_xlib
 
 
    pen::pen(sp(::base::application) papp) :
-      element(papp)
+      ::object(papp)
    {
    }
    pen::~pen()

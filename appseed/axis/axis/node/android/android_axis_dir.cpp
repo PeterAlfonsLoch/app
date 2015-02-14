@@ -30,7 +30,7 @@ namespace android
       }
 
       //path::path(::aura::application * papp) :
-      //   element(papp)
+      //   ::object(papp)
       //{
       //}
 
@@ -267,7 +267,7 @@ namespace android
 
       }
 
-      
+
       bool dir::rls_dir(::aura::application * papp,const char * lpcsz,stringa * pstraPath,stringa * pstraTitle,stringa * pstraRelative)
       {
 

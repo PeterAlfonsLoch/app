@@ -26,7 +26,7 @@ retry_multi_lock::retry_multi_lock(object_spa syncobjectptra, duration durationL
       if(m_syncobjectptra[i] == NULL)
          throw invalid_argument_exception(get_thread_app());
 
-//      ASSERT(base_class < waitable >::bases (m_syncobjectptra[i]));
+//      ASSERT(base_class < object >::bases (m_syncobjectptra[i]));
 
       // can't wait for critical sections
 

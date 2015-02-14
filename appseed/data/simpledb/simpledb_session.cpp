@@ -5,7 +5,7 @@ namespace simpledb
 {
 
    session::session(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
       m_pserver = NULL;
    }

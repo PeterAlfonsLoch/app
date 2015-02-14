@@ -167,8 +167,8 @@ namespace aura
 
       virtual object * on_alloc(::aura::application * papp,sp(type) & info);
       virtual object * clone();
-      
-      
+
+
       //template < class T >
       //sp(T) clone(sp(T) p)
       //{
@@ -181,7 +181,7 @@ namespace aura
       template < typename T >
       inline T * cast_clone(T * pt)
       {
-         return dynamic_cast <T *> (clone(dynamic_cast <sp(object)> (pt)));
+         return dynamic_cast <T *> (::clone(dynamic_cast <sp(object)> (pt)));
       }
 
       template < class T >
@@ -217,8 +217,8 @@ namespace aura
 
       virtual void wait_twf();
 
-      
-      
+
+
       virtual bool verb();
       virtual bool common_verb();
       virtual bool install_uninstall_verb();
@@ -364,10 +364,10 @@ namespace aura
 
       virtual ::aura::session * on_create_session();
 
-      
+
       virtual sp(::aura::session)             get_session(index iEdge,application_bias * pbiasCreation = NULL);
 
-      
+
       virtual void on_request(sp(::create) pcreate);
 
 

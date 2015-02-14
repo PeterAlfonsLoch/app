@@ -6,7 +6,7 @@ namespace draw2d_cairo
 
 
    bitmap::bitmap(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
 
       m_psurface = NULL;

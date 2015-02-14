@@ -89,7 +89,7 @@ critical_section::critical_section()
 
    bSuccess = Init();
    if (!bSuccess)
-      throw memory_exception(get_app());
+      throw memory_exception(get_thread_app());
 }
 
 critical_section::operator void*()
@@ -106,41 +106,41 @@ critical_section::~critical_section()
 
 }
 
-void critical_section::lock()
-{
-
-   try
-   {
-
-      // Acquire the mutex to access the shared resource
-      pthread_mutex_lock ((pthread_mutex_t *) m_pmutex);
-
-   }
-   catch(...)
-   {
-
-      throw memory_exception(get_app());
-
-   }
-
-}
-
-
-bool critical_section::lock(const duration & durationTimeout)
-{
-   ASSERT(durationTimeout.is_pos_infinity());
-   (void)durationTimeout;
-   lock();
-   return true;
-
-}
-
-bool critical_section::unlock()
-{
-   // Release the mutex  and release the access to shared resource
-   pthread_mutex_unlock ((pthread_mutex_t *) m_pmutex);
-   return TRUE;
-}
+//void critical_section::lock()
+//{
+//
+//   try
+//   {
+//
+//      // Acquire the mutex to access the shared resource
+//      pthread_mutex_lock ((pthread_mutex_t *) m_pmutex);
+//
+//   }
+//   catch(...)
+//   {
+//
+//      throw memory_exception(get_app());
+//
+//   }
+//
+//}
+//
+//
+//bool critical_section::lock(const duration & durationTimeout)
+//{
+//   ASSERT(durationTimeout.is_pos_infinity());
+//   (void)durationTimeout;
+//   lock();
+//   return true;
+//
+//}
+//
+//bool critical_section::unlock()
+//{
+//   // Release the mutex  and release the access to shared resource
+//   pthread_mutex_unlock ((pthread_mutex_t *) m_pmutex);
+//   return TRUE;
+//}
 
 
 

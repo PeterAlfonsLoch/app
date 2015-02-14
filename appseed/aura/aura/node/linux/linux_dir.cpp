@@ -9,7 +9,7 @@ namespace linux
 
 
    dir::dir(::aura::application *  papp) :
-      ::element(papp),
+      ::object(papp),
       ::file::dir::system(papp),
       m_path(papp)
    {
@@ -23,7 +23,7 @@ namespace linux
    }
 
    file_path::file_path(::aura::application *  papp) :
-      element(papp)
+      ::object(papp)
    {
    }
 

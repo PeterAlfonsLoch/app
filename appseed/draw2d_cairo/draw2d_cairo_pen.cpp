@@ -6,7 +6,7 @@ namespace draw2d_cairo
 
 
    pen::pen(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
    }
    pen::~pen()

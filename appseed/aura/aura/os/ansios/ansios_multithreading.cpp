@@ -22,7 +22,7 @@ mq * get_mq()
 }
 
 
-DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, waitable * * pwaitableptra, DWORD dwTimeout, DWORD dwWakeMask, DWORD dwFlags)
+DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, object * * pobjectptra, DWORD dwTimeout, DWORD dwWakeMask, DWORD dwFlags)
 {
 
    DWORD start = 0;
@@ -67,24 +67,24 @@ DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, waitable * * pwaitableptra, DWOR
          {
             return WAIT_TIMEOUT;
          }
-         if(pwaitableptra[i]->is_locked())
+         if(pobjectptra[i]->is_locked())
          {
             for(j = 0; j < i; j++)
             {
-               pwaitableptra[j]->unlock();
+               pobjectptra[j]->unlock();
             }
             nanosleep(&delay, NULL);
             i = 0;
          }
          else
          {
-            pwaitableptra[i]->lock();
+            pobjectptra[i]->lock();
             i++;
          }
       }
 //      for(j = 0; j < dwSize; j++)
   //    {
-    //     pwaitableptra[j]->unlock();
+    //     pobjectptra[j]->unlock();
       //}
 
       return WAIT_OBJECT_0;
@@ -104,7 +104,7 @@ DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, waitable * * pwaitableptra, DWOR
             {
                return WAIT_TIMEOUT;
             }
-            if(pwaitableptra[i]->lock(millis(0)))
+            if(pobjectptra[i]->lock(millis(0)))
             {
                return WAIT_OBJECT_0 + i;
             }
@@ -126,42 +126,42 @@ DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, waitable * * pwaitableptra, DWOR
 
 }
 
-DWORD MsgWaitForMultipleObjects(DWORD dwSize, waitable ** pwaitableptra, WINBOOL bWaitForAll, DWORD dwTimeout, DWORD dwWakeMask)
+DWORD MsgWaitForMultipleObjects(DWORD dwSize, object ** pobjectptra, WINBOOL bWaitForAll, DWORD dwTimeout, DWORD dwWakeMask)
 {
 
-   return MsgWaitForMultipleObjectsEx(dwSize, pwaitableptra, dwTimeout, dwWakeMask, (bWaitForAll ?  MWMO_WAITALL : 0));
+   return MsgWaitForMultipleObjectsEx(dwSize, pobjectptra, dwTimeout, dwWakeMask, (bWaitForAll ?  MWMO_WAITALL : 0));
 
 }
 
 
-DWORD WaitForMultipleObjectsEx(DWORD dwSize, waitable ** pwaitableptra, WINBOOL bWaitForAll, DWORD dwTimeout, WINBOOL bAlertable)
+DWORD WaitForMultipleObjectsEx(DWORD dwSize, object ** pobjectptra, WINBOOL bWaitForAll, DWORD dwTimeout, WINBOOL bAlertable)
 {
 
-   return MsgWaitForMultipleObjectsEx(dwSize, pwaitableptra, dwTimeout, 0, (bWaitForAll ?  MWMO_WAITALL : 0) | (bAlertable ?  MWMO_ALERTABLE : 0));
+   return MsgWaitForMultipleObjectsEx(dwSize, pobjectptra, dwTimeout, 0, (bWaitForAll ?  MWMO_WAITALL : 0) | (bAlertable ?  MWMO_ALERTABLE : 0));
 
 }
 
 
-DWORD WaitForMultipleObjects(DWORD dwSize, waitable ** pwaitableptra, WINBOOL bWaitForAll, DWORD dwTimeout)
+DWORD WaitForMultipleObjects(DWORD dwSize, object ** pobjectptra, WINBOOL bWaitForAll, DWORD dwTimeout)
 {
 
-   return WaitForMultipleObjectsEx(dwSize, pwaitableptra, bWaitForAll, dwTimeout, FALSE);
+   return WaitForMultipleObjectsEx(dwSize, pobjectptra, bWaitForAll, dwTimeout, FALSE);
 
 }
 
 
-DWORD WaitForSingleObjectEx(waitable * pwaitable, DWORD dwTimeout, WINBOOL bAlertable)
+DWORD WaitForSingleObjectEx(object * pobject, DWORD dwTimeout, WINBOOL bAlertable)
 {
 
-   return WaitForMultipleObjectsEx(1, &pwaitable, TRUE, dwTimeout, bAlertable);
+   return WaitForMultipleObjectsEx(1, &pobject, TRUE, dwTimeout, bAlertable);
 
 }
 
 
-DWORD WaitForSingleObject(waitable * pwaitable, DWORD dwTimeout)
+DWORD WaitForSingleObject(object * pobject, DWORD dwTimeout)
 {
 
-   return WaitForSingleObjectEx(pwaitable, dwTimeout, FALSE);
+   return WaitForSingleObjectEx(pobject, dwTimeout, FALSE);
 
 }
 

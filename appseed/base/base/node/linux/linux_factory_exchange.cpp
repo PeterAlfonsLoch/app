@@ -11,7 +11,7 @@ namespace linux
 
 
       factory_exchange::factory_exchange(sp(::aura::application) papp) :
-         element(papp)
+         ::object(papp)
       {
 
 //         System.factory().creatable < window_draw                 >  (System. type_info < ::user::window_draw      > (), 1);

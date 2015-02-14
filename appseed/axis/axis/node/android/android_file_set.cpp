@@ -7,7 +7,7 @@ namespace android
 
 
    file_set::file_set(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
 
    }

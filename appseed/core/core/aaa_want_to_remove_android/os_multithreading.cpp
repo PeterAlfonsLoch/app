@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, waitable ** pwaitableptra, DWORD dwTimeout, DWORD UNUSED(dwWakeMask), DWORD dwFlags)
+DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, object ** pwaitableptra, DWORD dwTimeout, DWORD UNUSED(dwWakeMask), DWORD dwFlags)
 {
 
    DWORD start;
@@ -84,7 +84,7 @@ DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, waitable ** pwaitableptra, DWORD
 
 }
 
-DWORD MsgWaitForMultipleObjects(DWORD dwSize, waitable ** pwaitableptra, int_bool bWaitForAll, DWORD dwTimeout, DWORD dwWakeMask)
+DWORD MsgWaitForMultipleObjects(DWORD dwSize, object ** pwaitableptra, int_bool bWaitForAll, DWORD dwTimeout, DWORD dwWakeMask)
 {
 
    return MsgWaitForMultipleObjectsEx(dwSize, pwaitableptra, dwTimeout, dwWakeMask, (bWaitForAll ?  MWMO_WAITALL : 0));
@@ -92,7 +92,7 @@ DWORD MsgWaitForMultipleObjects(DWORD dwSize, waitable ** pwaitableptra, int_boo
 }
 
 
-DWORD WaitForMultipleObjectsEx(DWORD dwSize, waitable ** pwaitableptra, int_bool bWaitForAll, DWORD dwTimeout, int_bool bAlertable)
+DWORD WaitForMultipleObjectsEx(DWORD dwSize, object ** pwaitableptra, int_bool bWaitForAll, DWORD dwTimeout, int_bool bAlertable)
 {
 
    return MsgWaitForMultipleObjectsEx(dwSize, pwaitableptra, dwTimeout, 0, (bWaitForAll ?  MWMO_WAITALL : 0) | (bAlertable ?  MWMO_ALERTABLE : 0));
@@ -100,7 +100,7 @@ DWORD WaitForMultipleObjectsEx(DWORD dwSize, waitable ** pwaitableptra, int_bool
 }
 
 
-DWORD WaitForMultipleObjects(DWORD dwSize, waitable ** pwaitableptra, int_bool bWaitForAll, DWORD dwTimeout)
+DWORD WaitForMultipleObjects(DWORD dwSize, object ** pwaitableptra, int_bool bWaitForAll, DWORD dwTimeout)
 {
 
    return WaitForMultipleObjectsEx(dwSize, pwaitableptra, bWaitForAll, dwTimeout, FALSE);
@@ -108,7 +108,7 @@ DWORD WaitForMultipleObjects(DWORD dwSize, waitable ** pwaitableptra, int_bool b
 }
 
 
-DWORD WaitForSingleObjectEx(waitable * pwaitable, DWORD dwTimeout, int_bool bAlertable)
+DWORD WaitForSingleObjectEx(object * pwaitable, DWORD dwTimeout, int_bool bAlertable)
 {
 
    return WaitForMultipleObjectsEx(1, &pwaitable, TRUE, dwTimeout, bAlertable);
@@ -116,7 +116,7 @@ DWORD WaitForSingleObjectEx(waitable * pwaitable, DWORD dwTimeout, int_bool bAle
 }
 
 
-DWORD WaitForSingleObject(waitable * pwaitable, DWORD dwTimeout)
+DWORD WaitForSingleObject(object * pwaitable, DWORD dwTimeout)
 {
 
    return WaitForSingleObjectEx(pwaitable, dwTimeout, FALSE);

@@ -6,7 +6,7 @@ namespace draw2d_cairo
 
 
    font::font(::aura::application * papp) :
-   element(papp)
+   ::object(papp)
    {
 
       m_pfont = NULL;

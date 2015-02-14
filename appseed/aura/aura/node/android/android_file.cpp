@@ -26,7 +26,7 @@ namespace android
 
 
    file::file(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
 
       m_iFile = (UINT) hFileNull;
@@ -34,7 +34,7 @@ namespace android
    }
 
    file::file(::aura::application * papp, int32_t hFile) :
-      element(papp)
+      ::object(papp)
    {
 
       m_iFile = hFile;
@@ -42,7 +42,7 @@ namespace android
    }
 
    file::file(::aura::application * papp, const char * lpszFileName, UINT nOpenFlags) :
-      element(papp)
+      ::object(papp)
    {
 
       ASSERT(__is_valid_string(lpszFileName));

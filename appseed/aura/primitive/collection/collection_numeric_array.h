@@ -787,7 +787,7 @@ unique_number_sort_array < TYPE >::
 template < class TYPE >
 unique_number_sort_array < TYPE >::
    unique_number_sort_array(const unique_number_sort_array < TYPE > & a) :
-   element(a.get_app())
+   ::object(a.get_app())
 {
    numeric_array < TYPE > ::operator = (a);
 }

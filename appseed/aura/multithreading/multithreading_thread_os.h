@@ -230,7 +230,7 @@ CLASS_DECL_AURA void __term_thread(::aura::application * papp);
 
 #ifdef WINDOWS
 
-///  \brief		global function to wait on a waitable item for a specified time
+///  \brief		global function to wait on a object item for a specified time
 ///  \param		waitableItem item to wait for (can be event, socket, file, semaphore, ...)
 ///  \param		duration time period to wait for item (default: infinite)
 ///  \return	result of waiting action as defined in wait_result
@@ -239,7 +239,7 @@ inline wait_result wait(event_base & waitableItem,const duration & duration = du
    return waitableItem.wait(duration);
 }
 
-///  \brief		global function to wait on a waitable item for a specified time
+///  \brief		global function to wait on a object item for a specified time
 ///  \param		waitableItem item to wait for (item can be thread, event, socket, file, semaphore, ...)
 ///  \param		duration time period to wait for item (default: infinite)
 ///  \return	result of waiting action as defined in wait_result
@@ -247,13 +247,13 @@ wait_result wait(size_t numberOfItems,event_base * waitableItems[],const duratio
 
 #else
 
-///  \brief		global function to wait on a waitable item for a specified time
+///  \brief		global function to wait on a object item for a specified time
 ///  \param		waitableItem item to wait for (can be event, socket, file, semaphore, ...)
 ///  \param		duration time period to wait for item (default: infinite)
 ///  \return	result of waiting action as defined in wait_result
 wait_result wait(event_base & waitableItem,const duration & duration = duration::infinite());
 
-///  \brief		global function to wait on a waitable item for a specified time
+///  \brief		global function to wait on a object item for a specified time
 ///  \param		waitableItem item to wait for (item can be thread, event, socket, file, semaphore, ...)
 ///  \param		duration time period to wait for item (default: infinite)
 ///  \return	result of waiting action as defined in wait_result

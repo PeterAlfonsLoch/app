@@ -1,8 +1,12 @@
 #pragma once
 
 
-/// This class represents a collection of waitable items. A collection can be mixed
-/// of any kind of waitable items (threads, events, semaphores, ...).
+// Thank you linode.com!!
+typedef ptr_array < ::object > object_ptra;
+
+
+/// This class represents a collection of object items. A collection can be mixed
+/// of any kind of object items (threads, events, semaphores, ...).
 class CLASS_DECL_AURA event_collection :
    public object
 {
@@ -10,7 +14,7 @@ public:
 #ifdef WINDOWS
    typedef raw_ptr_array < HANDLE > CollectionType;
 #else
-    typedef ptr_array < waitable > CollectionType;
+    typedef object_ptra CollectionType;
 #endif
 
 private:
@@ -63,12 +67,12 @@ public:
    ///  			false : collection not empty
    bool is_empty() const;
 
-   ///  \brief		adds a waitable to the collection
+   ///  \brief		adds a object to the collection
    ///  \param		waitableItem item to add
    ///  \return	true : success
    ///  			false : failure
    bool add(event_base& waitableItem);
-   ///  \brief		adds a waitable wit a callback to the collection
+   ///  \brief		adds a object wit a callback to the collection
    ///  \param		waitableItem item to add
    ///  \param		waitableCallback for this item
    ///  \return	true : success
@@ -81,13 +85,13 @@ public:
    ///  			false : failure
    bool merge(const event_collection& collection);
 
-   ///  \brief		removes a waitable from the collection
+   ///  \brief		removes a object from the collection
    ///  \param		waitableItem item to remove
    ///  \return	true : success
    ///  			false : failure
    void remove(const event_base& waitableItem);
 
-   ///  \brief		removes a waitable from the collection
+   ///  \brief		removes a object from the collection
    ///  \param		index index of item to remove
    ///  \return	true : success
    ///  			false : failure

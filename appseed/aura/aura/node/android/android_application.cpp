@@ -11,7 +11,7 @@ namespace android
 
 
    application::application(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
       m_pthreadimpl.alloc(allocer());
       m_pthreadimpl->m_pthread = this;
@@ -194,7 +194,7 @@ namespace android
    }
 
 
-   
+
    /*void application::construct(__THREADPROC pfnThreadProc, LPVOID pParam)
    {
       ::win::thread::construct(pfnThreadProc, pParam);

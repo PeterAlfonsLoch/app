@@ -98,7 +98,7 @@ namespace linux
    }
 
    interaction_impl::interaction_impl(sp(::aura::application) papp) :
-      element(papp)
+      ::object(papp)
    {
 
       m_oswindow     = NULL;
@@ -3691,7 +3691,7 @@ throw not_implemented(get_app());
 
 
    /*   view_update_hint::view_update_hint(sp(::aura::application) papp) :
-   element(papp)
+   ::object(papp)
    {
    }
    */
@@ -4039,7 +4039,7 @@ throw not_implemented(get_app());
    }
 
    /*   guie_message_wnd::guie_message_wnd(sp(::aura::application) papp) :
-   element(papp)
+   ::object(papp)
    {
    m_puiForward = NULL;
    }

@@ -38,7 +38,7 @@ namespace metrowin
    }
 
    interaction_impl::interaction_impl(::aura::application * papp):
-      element(papp)
+      ::object(papp)
    {
 
       m_plistener = NULL;
@@ -4024,7 +4024,7 @@ namespace metrowin
 
 
    /*   view_update_hint::view_update_hint(::aura::application * papp) :
-   element(papp)
+   ::object(papp)
    {
    }
    */
@@ -4321,7 +4321,7 @@ namespace metrowin
    }
 
    /*   guie_message_wnd::guie_message_wnd(::aura::application * papp) :
-   element(papp)
+   ::object(papp)
    {
    m_pguieForward = NULL;
    }

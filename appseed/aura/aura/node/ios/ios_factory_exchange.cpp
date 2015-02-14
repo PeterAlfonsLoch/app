@@ -4,11 +4,11 @@
 namespace ios
 {
 
-   
+
    factory_exchange::factory_exchange(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
-      
+
       System.factory().cloneable_large < stdio_file           >   (System.type_info < ::file::text_buffer     > ());
       System.factory().cloneable_large < file                 >   (System.type_info < ::file::binary_buffer   > ());
       System.factory().creatable_large < file_set             >   (System.type_info < ::file::set             > ());
@@ -26,25 +26,25 @@ namespace ios
       System.factory().creatable < crypto                      >   (System.type_info < ::crypto::crypto           > (), 1);
       System.factory().creatable < copydesk                   >   (System.type_info < ::core::copydesk        > (), 1);
       System.factory().creatable < ::ios2::printer                   >   (System.type_info < ::user::printer        > (), 1);
-      
+
    }
 
-    
+
    factory_exchange::~factory_exchange()
    {
-       
+
    }
 
-    
+
 } // namespace ios
 
 
 
 void __node_factory_exchange(sp(::aura::application) papp)
 {
-   
+
    ios::factory_exchange factoryexchange(papp);
-   
+
 }
 
 

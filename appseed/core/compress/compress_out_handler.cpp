@@ -137,7 +137,7 @@ namespace libcompress
    };
 
     bool ConvertProperty(var srcProp, var::e_type varType, var &destProp);
-    
+
    bool ConvertProperty(var srcProp, var::e_type varType, var &destProp)
    {
       if (varType == srcProp.get_type())
@@ -196,7 +196,7 @@ namespace libcompress
    }
 
    out_handler::out_handler(sp(::axis::application) papp) :
-      element(papp)
+      ::object(papp)
    {
    }
 

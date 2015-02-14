@@ -13,7 +13,7 @@ namespace metrowin
 
 
    file::file(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
 
       m_hFile = (UINT) hFileNull;
@@ -23,7 +23,7 @@ namespace metrowin
    }
 
    file::file(::aura::application * papp, int hFile) :
-      element(papp)
+      ::object(papp)
    {
 
       m_hFile = hFile;
@@ -33,7 +33,7 @@ namespace metrowin
    }
 
    file::file(::aura::application * papp, const char * lpszFileName, UINT nOpenFlags) :
-      element(papp)
+      ::object(papp)
    {
 
       ASSERT(__is_valid_string(lpszFileName));
@@ -1630,7 +1630,7 @@ namespace metrowin
          return FALSE;
       }
 
-      HRESULT hr ; 
+      HRESULT hr ;
       if (FAILED(hr = CoCreateInstance(CLSID_ShellLink, NULL, CLSCTX_INPROC_SERVER, IID_IShellLinkW,
          (LPVOID*)&psl)))
       {

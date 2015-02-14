@@ -9,7 +9,7 @@ namespace metrowin
    {
 
       factory_exchange::factory_exchange(::aura::application * papp):
-         element(papp)
+         ::object(papp)
       {
 
          System.factory().creatable_small < file_set              >(System.template type_info < ::file::set                 >());

@@ -12,7 +12,7 @@ namespace linux
 {
 
    application::application(sp(::aura::application) papp) :
-      element(papp)
+      ::object(papp)
    {
 
       m_pthreadimpl.alloc(allocer());

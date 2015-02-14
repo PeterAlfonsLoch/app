@@ -52,7 +52,7 @@ namespace macos
 
 
    printer::document_properties::document_properties(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
       m_hdc = NULL;
 //      m_pdevmode = NULL;

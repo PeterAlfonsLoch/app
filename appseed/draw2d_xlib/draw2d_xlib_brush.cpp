@@ -6,7 +6,7 @@ namespace draw2d_xlib
 
 
    brush::brush(sp(::base::application) papp) :
-      element(papp)
+      ::object(papp)
    {
 
 

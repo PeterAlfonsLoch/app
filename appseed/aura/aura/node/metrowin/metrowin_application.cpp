@@ -10,7 +10,7 @@ namespace metrowin
 
 
    application::application(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
 
       m_pthreadimpl.alloc(allocer());
@@ -65,7 +65,7 @@ namespace metrowin
 
       DWORD dw;
 
-      DWORD dwResSize = GetFileVersionInfoSize(      
+      DWORD dwResSize = GetFileVersionInfoSize(
          lpszModuleFilePath,
          &dw);
 
@@ -73,7 +73,7 @@ namespace metrowin
       if(dwResSize > 0)
       {
          LPVOID lpdata = new BYTE[dwResSize];
-         if(GetFileVersionInfo(      
+         if(GetFileVersionInfo(
             lpszModuleFilePath,
             0,
             dwResSize,
@@ -87,7 +87,7 @@ namespace metrowin
 
             // read the list of languages and code pages.
 
-            VerQueryValue(lpdata, 
+            VerQueryValue(lpdata,
                TEXT("\\VarFileInfo\\Translation"),
                (LPVOID*)&lpTranslate,
                &cbTranslate);
@@ -112,11 +112,11 @@ namespace metrowin
                   lpTranslate[i].wLanguage,
                   lpTranslate[i].wCodePage);
 
-               // Retrieve file description for language and code page "i". 
-               VerQueryValue(lpdata, 
-                  (LPTSTR) (const char *) strKey, 
-                  (LPVOID *)&lpsz, 
-                  &uiSize); 
+               // Retrieve file description for language and code page "i".
+               VerQueryValue(lpdata,
+                  (LPTSTR) (const char *) strKey,
+                  (LPVOID *)&lpsz,
+                  &uiSize);
 
 
                string strVersion(lpsz, uiSize);
@@ -148,7 +148,7 @@ namespace metrowin
             return false;
          }
       }
-#endif 
+#endif
       return true;
    }
 
@@ -177,17 +177,17 @@ namespace metrowin
 
    // application
    HCURSOR application::LoadCursor(const char * lpszResourceName) const
-   { 
+   {
       return NULL;
    }
 
    HCURSOR application::LoadCursor(UINT nIDResource) const
-   { 
+   {
       return NULL;
    }
 
    HCURSOR application::LoadStandardCursor(const char * lpszCursorName) const
-   { 
+   {
 #ifdef WINDOWSEX
       return ::LoadCursor(NULL, lpszCursorName);
 #else
@@ -196,7 +196,7 @@ namespace metrowin
    }
 
    HCURSOR application::LoadOEMCursor(UINT nIDCursor) const
-   { 
+   {
 #ifdef WINDOWSEX
       return ::LoadCursor(NULL, MAKEINTRESOURCE(nIDCursor));
 #else
@@ -205,26 +205,26 @@ namespace metrowin
    }
 
    HICON application::LoadIcon(const char * lpszResourceName) const
-   { 
+   {
       return NULL;
    }
 
    HICON application::LoadIcon(UINT nIDResource) const
-   { 
+   {
       return NULL;
    }
 
    HICON application::LoadStandardIcon(const char * lpszIconName) const
-   { 
+   {
 #ifdef WINDOWSEX
       return ::LoadIcon(NULL, lpszIconName);
 #else
       throw todo(get_app());
 #endif
    }
-   
+
    HICON application::LoadOEMIcon(UINT nIDIcon) const
-   { 
+   {
 #ifdef WINDOWSEX
       return ::LoadIcon(NULL, MAKEINTRESOURCE(nIDIcon));
 #else
@@ -398,7 +398,7 @@ namespace metrowin
    }
 
 
-   
+
    void application::assert_valid() const
    {
       ::metrowin::thread::assert_valid();
@@ -409,7 +409,7 @@ namespace metrowin
       ::metrowin::thread::dump(dumpcontext);
    }
 
-   
+
    void application::CommonConstruct()
    {
       ::metrowin::thread::CommonConstruct();
@@ -436,11 +436,11 @@ namespace metrowin
 
       set_os_data(::get_current_thread());
       set_os_int(::GetCurrentThreadId());
-      
+
 
    }
 
-   
+
 
    void application::get_time(struct timeval *p)
    {
@@ -483,10 +483,10 @@ namespace metrowin
    #endif
    }
 
-   
+
    uint32_t application::get_thread_id()
    {
-      
+
       return ::GetCurrentThreadId();
 
    }

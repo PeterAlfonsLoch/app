@@ -1,20 +1,20 @@
 #pragma once
 
 
-class waitable;
+class object;
 
 
-DWORD WaitForMultipleObjectsEx(DWORD dwSize, waitable ** pwaitableptra, int_bool bWaitForAll, DWORD dwTimeout, int_bool bAlertable);
+DWORD WaitForMultipleObjectsEx(DWORD dwSize, object ** pwaitableptra, int_bool bWaitForAll, DWORD dwTimeout, int_bool bAlertable);
 
-DWORD WaitForMultipleObjects(DWORD dwSize, waitable ** pwaitableptra, int_bool bWaitForAll, DWORD dwTimeout);
+DWORD WaitForMultipleObjects(DWORD dwSize, object ** pwaitableptra, int_bool bWaitForAll, DWORD dwTimeout);
 
-DWORD MsgWaitForMultipleObjects(DWORD dwSize, waitable ** pwaitableptra, int_bool bWaitForAll, DWORD dwTimeout, DWORD dwWakeMask);
+DWORD MsgWaitForMultipleObjects(DWORD dwSize, object ** pwaitableptra, int_bool bWaitForAll, DWORD dwTimeout, DWORD dwWakeMask);
 
-DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, waitable ** pwaitableptra, DWORD dwTimeout, DWORD dwWakeMask, DWORD dwFlags);
+DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, object ** pwaitableptra, DWORD dwTimeout, DWORD dwWakeMask, DWORD dwFlags);
 
-DWORD WaitForSingleObject(waitable * pwaitable, DWORD dwMilliseconds);
+DWORD WaitForSingleObject(object * pwaitable, DWORD dwMilliseconds);
 
-DWORD WaitForSingleObjectEx(waitable * pwaitable, DWORD dwMilliseconds, int_bool bAlertable);
+DWORD WaitForSingleObjectEx(object * pwaitable, DWORD dwMilliseconds, int_bool bAlertable);
 
 
 #define MWMO_WAITALL        0x0001

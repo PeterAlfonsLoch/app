@@ -6,7 +6,7 @@ namespace draw2d_xlib
 
 
    factory_exchange::factory_exchange(sp(::base::application) papp) :
-      element(papp)
+      ::object(papp)
    {
 
       init_xlib_mutex(papp);

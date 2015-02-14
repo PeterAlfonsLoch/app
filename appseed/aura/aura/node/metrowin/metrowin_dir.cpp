@@ -20,7 +20,7 @@ namespace metrowin
    }
 
    path::path(::aura::application *  papp):
-      ::element(papp)
+      ::::object(papp)
    {
    }
 
@@ -419,7 +419,7 @@ namespace metrowin
 
    bool dir::ls_dir(::aura::application *  papp,const char * lpcsz,stringa * pstraPath,stringa * pstraTitle)
    {
-      
+
       if(::file::dir::system::ls_dir(papp,lpcsz,pstraPath,pstraTitle))
       {
 
@@ -853,7 +853,7 @@ namespace metrowin
                   }
                }
                string strError = get_system_error_message(dwError);
-               
+
                APPTRACE("dir::mk CreateDirectoryW last error(%d)=%s",dwError,strError);
                //m_isdirmap.set(stra[i], false);
             }

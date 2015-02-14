@@ -6,7 +6,7 @@ namespace sip
 
 
    transaction::transaction(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
 
    }

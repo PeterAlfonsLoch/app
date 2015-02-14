@@ -7,7 +7,7 @@ namespace linux
 
 
    file_set::file_set(sp(::aura::application) papp) :
-      element(papp)
+      ::object(papp)
    {
 
    }

@@ -7,7 +7,7 @@ namespace draw2d_cairo
 
 
    region::region(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
 
       m_pdc = NULL;

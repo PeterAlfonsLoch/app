@@ -9,7 +9,7 @@ namespace linux
    {
 
       factory_exchange::factory_exchange(sp(::aura::application) papp) :
-         element(papp)
+         ::object(papp)
       {
 
          System.factory().creatable_large < file_set              >  (System. type_info < ::file::set              > ());

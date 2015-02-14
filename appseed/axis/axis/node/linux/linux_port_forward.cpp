@@ -17,7 +17,7 @@ namespace linux
    //////////////////////////////////////////////////////////////////////
 
    port_forward::port_forward(sp(::aura::application) papp) :
-      element(papp)
+      ::object(papp)
    {
 //	   InitializeMembersToNull();
 	//   ::InitializeCriticalSection( &m_cs );

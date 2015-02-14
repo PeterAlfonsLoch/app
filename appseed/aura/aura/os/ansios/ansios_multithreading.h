@@ -17,20 +17,20 @@ void set_defer_process_x_message(bool (* pfn)(HTHREAD hthread,LPMESSAGE lpMsg,os
 #ifdef __cplusplus
 
 
-class waitable;
+class object;
 
 
-DWORD WaitForMultipleObjectsEx(DWORD dwSize, waitable ** pwaitableptra, WINBOOL bWaitForAll, DWORD dwTimeout, WINBOOL bAlertable);
+DWORD WaitForMultipleObjectsEx(DWORD dwSize, object ** pwaitableptra, WINBOOL bWaitForAll, DWORD dwTimeout, WINBOOL bAlertable);
 
-DWORD WaitForMultipleObjects(DWORD dwSize, waitable ** pwaitableptra, WINBOOL bWaitForAll, DWORD dwTimeout);
+DWORD WaitForMultipleObjects(DWORD dwSize, object ** pwaitableptra, WINBOOL bWaitForAll, DWORD dwTimeout);
 
-DWORD MsgWaitForMultipleObjects(DWORD dwSize, waitable ** pwaitableptra, WINBOOL bWaitForAll, DWORD dwTimeout, DWORD dwWakeMask);
+DWORD MsgWaitForMultipleObjects(DWORD dwSize, object ** pwaitableptra, WINBOOL bWaitForAll, DWORD dwTimeout, DWORD dwWakeMask);
 
-DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, waitable ** pwaitableptra, DWORD dwTimeout, DWORD dwWakeMask, DWORD dwFlags);
+DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, object ** pwaitableptra, DWORD dwTimeout, DWORD dwWakeMask, DWORD dwFlags);
 
-DWORD WaitForSingleObject(waitable * pwaitable, DWORD dwMilliseconds);
+DWORD WaitForSingleObject(object * pwaitable, DWORD dwMilliseconds);
 
-DWORD WaitForSingleObjectEx(waitable * pwaitable, DWORD dwMilliseconds, WINBOOL bAlertable);
+DWORD WaitForSingleObjectEx(object * pwaitable, DWORD dwMilliseconds, WINBOOL bAlertable);
 
 
 #endif

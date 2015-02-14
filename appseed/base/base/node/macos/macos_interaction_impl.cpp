@@ -89,7 +89,7 @@ namespace macos
 
 
     interaction_impl::interaction_impl(::aura::application * papp) :
-        element(papp)
+        ::object(papp)
     {
 
         //set_handle(NULL);
@@ -3684,7 +3684,7 @@ namespace macos
 
 
    /*   view_update_hint::view_update_hint(::aura::application * papp) :
-    element(papp)
+    ::object(papp)
     {
     }
     */
@@ -4017,7 +4017,7 @@ namespace macos
    }
 
    /*   guie_message_wnd::guie_message_wnd(::aura::application * papp) :
-    element(papp)
+    ::object(papp)
     {
     m_pguieForward = NULL;
     }

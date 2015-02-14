@@ -12,7 +12,7 @@ namespace linux
 
 
       factory_exchange::factory_exchange(sp(::aura::application) papp) :
-         element(papp)
+         ::object(papp)
       {
 
          System.factory().cloneable_large <stdio_file             >  (System. type_info < ::file::text_buffer        > ());

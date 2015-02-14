@@ -20,10 +20,10 @@ namespace windows
 
    bool printer::open(const char * pszDeviceName)
    {
-      
+
       if(is_opened())
          close();
-      
+
       if(!OpenPrinter((LPSTR) (LPCSTR) pszDeviceName, &m_hPrinter, NULL))
          return false;
 
@@ -62,7 +62,7 @@ namespace windows
 
 
    printer::document_properties::document_properties(sp(base_application) papp) :
-      element(papp)
+      ::object(papp)
    {
       m_hdc = NULL;
       m_pdevmode = NULL;

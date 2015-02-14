@@ -11,7 +11,7 @@ public:
 #ifdef WINDOWS
    raw_ptr_array < HANDLE >      m_objecta;
 #else
-   ptr_array < waitable >        m_objecta;
+   object_ptra        m_objecta;
 #endif
    bool_array                    m_baLocked;
 

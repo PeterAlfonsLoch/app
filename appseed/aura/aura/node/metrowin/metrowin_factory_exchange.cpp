@@ -11,7 +11,7 @@ namespace metrowin
 
 
       factory_exchange::factory_exchange(::aura::application * papp):
-         element(papp)
+         ::object(papp)
       {
 
          System.factory().cloneable_large < stdio_file            >(System.template type_info < ::file::text_buffer         >());
@@ -41,7 +41,7 @@ namespace metrowin
 
 void __node_aura_factory_exchange(::aura::application * papp)
 {
-   
+
    ::metrowin::aura::factory_exchange factoryexchange(papp);
 
 }

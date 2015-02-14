@@ -30,7 +30,7 @@ static HRESULT WriteBytes(::file::writer *stream, const void *data, ::primitive:
 namespace n7z
 {
    COutArchive::COutArchive(sp(::axis::application) papp) :
-      element(papp)
+      ::object(papp)
    {
      _outByte.create(1 << 16);
    }

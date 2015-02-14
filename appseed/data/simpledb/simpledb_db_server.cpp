@@ -6,9 +6,9 @@ int32_t g_idbchange;
 
 
 db_server::db_server(::aura::application * papp) :
-   element(papp)
+   ::object(papp)
 {
-   
+
    m_pdb                = NULL;
    m_plongset           = NULL;
    m_pstrset            = NULL;
@@ -204,9 +204,9 @@ bool db_server::destroy_message_queue()
 
 void db_server::_001OnTimer(signal_details * pobj)
 {
-   
+
    SCAST_PTR(::message::timer, ptimer, pobj);
-   
+
    if(ptimer->m_nIDEvent == 1258477)
    {
 

@@ -9,7 +9,7 @@ namespace metrowin
    {
 
       factory_exchange::factory_exchange(::aura::application * papp):
-         element(papp)
+         ::object(papp)
       {
 
          System.factory().creatable       < window_draw              >(System.template type_info < ::user::window_draw         >(),1);

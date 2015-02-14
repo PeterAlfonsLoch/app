@@ -76,17 +76,17 @@ public:
    const char *         name() const         { return ::exception::translator::name(code()); }
    const char *         description() const  { return ::exception::translator::description(code()); }
 #else
-   uint32_t         code() const;        
-   void *               address() const; 
+   uint32_t         code() const;
+   void *               address() const;
    const void *    info() const;    // siginfo_t *
-   const char *         name() const;      
-   const char *         description() const; 
+   const char *         name() const;
+   const char *         description() const;
 #ifndef ANDROID
-   const ucontext_t *   context() const;     
+   const ucontext_t *   context() const;
 #endif
 #endif
 
-   
+
 
 #ifdef WINDOWS
    standard_exception(::aura::application * papp, EXCEPTION_POINTERS * ppointers) :
@@ -95,7 +95,7 @@ public:
       ::exception::base(papp),
       m_ppointers(ppointers)
    {
-         
+
       printf(":standard");
 
       _ASSERTE(ppointers != 0);
@@ -126,7 +126,7 @@ public:
 #endif
        { /*_ASSERTE(psiginfo != 0);*/ }
    standard_exception(const standard_exception& se) :
-      element(se),
+      ::object(se),
       ::call_stack(se),
       ::exception::base(se),
       m_iSignal(se.m_iSignal),

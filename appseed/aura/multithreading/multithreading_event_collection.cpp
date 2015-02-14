@@ -3,8 +3,8 @@
 
 
 
-/// This class represents a collection of waitable items. A collection can be mixed
-/// of any kind of waitable items (threads, events, semaphores, ...).
+/// This class represents a collection of object items. A collection can be mixed
+/// of any kind of object items (threads, events, semaphores, ...).
 ///  \brief		default constructor
 event_collection::event_collection(::aura::application * papp) :
    object(papp),
@@ -37,7 +37,7 @@ size_t event_collection::size() const
 bool event_collection::is_empty() const
 { return m_objecta.is_empty(); }
 
-///  \brief		adds a waitable to the collection
+///  \brief		adds a object to the collection
 ///  \param		waitableItem item to add
 ///  \return	true : success
 ///  			false : failure
@@ -57,7 +57,7 @@ bool event_collection::add(event_base& waitableItem)
    return true;
 }
 
-///  \brief		adds a waitable wit a callback to the collection
+///  \brief		adds a object wit a callback to the collection
 ///  \param		waitableItem item to add
 ///  \param		waitableCallback for this item
 ///  \return	true : success
@@ -94,7 +94,7 @@ bool event_collection::merge(const event_collection& collection)
    return true;
 }
 
-///  \brief		removes a waitable from the collection
+///  \brief		removes a object from the collection
 ///  \param		waitableItem item to remove
 ///  \return	true : success
 ///  			false : failure
@@ -108,7 +108,7 @@ void event_collection::remove(const event_base& waitableItem)
    }
 }
 
-///  \brief		removes a waitable from the collection
+///  \brief		removes a object from the collection
 ///  \param		index index of item to remove
 ///  \return	true : success
 ///  			false : failure
@@ -176,7 +176,7 @@ wait_result event_collection::wait(bool waitForAll, const duration & duration)
 #ifdef WINDOWS
                winResult = ::WaitForMultipleObjectsEx(static_cast<uint32_t>(m_objecta.size()), &*m_objecta.begin(), waitForAll, start + timeout - ticks, true);
 #else
-               winResult = ::WaitForMultipleObjectsEx(static_cast<uint32_t>(m_objecta.size()), (waitable **) &*m_objecta.begin(), waitForAll, start + timeout - ticks, true);
+               winResult = ::WaitForMultipleObjectsEx(static_cast<uint32_t>(m_objecta.size()), (object **) &*m_objecta.begin(), waitForAll, start + timeout - ticks, true);
 #endif
 
          } while (winResult == WAIT_IO_COMPLETION);
@@ -185,7 +185,7 @@ wait_result event_collection::wait(bool waitForAll, const duration & duration)
 #ifdef WINDOWS
          winResult = ::WaitForMultipleObjectsEx(static_cast<uint32_t>(m_objecta.size()),&*m_objecta.begin(),waitForAll,0,FALSE);
 #else
-         winResult = ::WaitForMultipleObjectsEx(static_cast<uint32_t>(m_objecta.size()),(waitable **)&*m_objecta.begin(),waitForAll,0,FALSE);
+         winResult = ::WaitForMultipleObjectsEx(static_cast<uint32_t>(m_objecta.size()),(object **)&*m_objecta.begin(),waitForAll,0,FALSE);
 #endif
 
       //std_cout << "Finished waiting in wc" << std::endl;

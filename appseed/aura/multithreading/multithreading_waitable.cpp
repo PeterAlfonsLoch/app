@@ -6,14 +6,14 @@
 #include "framework.h"
 
 
-//waitable::waitable()
+//object::object()
 //{
 //
 //   m_pmutex = NULL;
 //
 //}
 //
-//waitable::waitable(const waitable & objectSrc)
+//object::object(const object & objectSrc)
 //{
 //
 //   UNREFERENCED_PARAMETER(objectSrc);
@@ -24,7 +24,7 @@
 //
 //
 /////  \brief		destructor
-//waitable::~waitable()
+//object::~object()
 //{
 //
 //   if(m_pmutex != NULL)
@@ -39,7 +39,7 @@
 //}
 //
 /////  \brief		abstract function to initialize a waiting action without a timeout
-//void waitable::wait()
+//void object::wait()
 //{
 //
 //   wait(duration::infinite());
@@ -49,14 +49,14 @@
 //	///  \brief		abstract function to initialize a waiting action with a timeout
 //	///  \param		duration time period to wait for item
 //	///  \return	waiting action result as wait_result
-//wait_result waitable::wait(const duration & duration )
+//wait_result object::wait(const duration & duration )
 //{
 //
 //
 //   if(m_pmutex == NULL)
 //   {
 //
-//      ((waitable *)this)->m_pmutex = new mutex();
+//      ((object *)this)->m_pmutex = new mutex();
 //
 //   }
 //
@@ -91,8 +91,8 @@
 ////};
 //
 //
-/////  \brief		pauses waitable for specified time
-/////  \param		duration sleeping time of waitable
+/////  \brief		pauses object for specified time
+/////  \param		duration sleeping time of object
 ///*CLASS_DECL_AURA void sleep(const duration & duration)
 //{
 //   Sleep((uint32_t)duration.total_milliseconds());
@@ -107,13 +107,13 @@
 //
 //
 //
-//void * waitable::get_os_data() const
+//void * object::get_os_data() const
 //{
 //
 //   if(m_pmutex == NULL)
 //   {
 //
-//      ((waitable *)this)->m_pmutex = new mutex();
+//      ((object *)this)->m_pmutex = new mutex();
 //
 //   }
 //
@@ -121,22 +121,22 @@
 //
 //}
 //
-//void waitable::lock()
+//void object::lock()
 //{
 //
 //   if(!lock(duration::infinite()))
 //      if(!lock(duration::infinite()))
-//         throw "failure to lock waitable";
+//         throw "failure to lock object";
 //
 //}
 //
-//bool waitable::lock(const duration & duration)
+//bool object::lock(const duration & duration)
 //{
 //
 //   if(m_pmutex == NULL)
 //   {
 //
-//      ((waitable *)this)->m_pmutex = new mutex();
+//      ((object *)this)->m_pmutex = new mutex();
 //
 //   }
 //
@@ -163,7 +163,7 @@
 //}
 //
 //
-//bool waitable::unlock()
+//bool object::unlock()
 //{
 //
 //   if(m_pmutex == NULL)
@@ -191,7 +191,7 @@
 //
 //}
 //
-//bool waitable::unlock(LONG lCount, LPLONG lpPrevCount)
+//bool object::unlock(LONG lCount, LPLONG lpPrevCount)
 //{
 //   UNREFERENCED_PARAMETER(lCount);
 //   UNREFERENCED_PARAMETER(lpPrevCount);
@@ -199,13 +199,13 @@
 //}
 //
 //
-//bool waitable::is_locked() const
+//bool object::is_locked() const
 //{
 //
 //   // CRITICAL SECTIONS does *NOT* support is locked and timed locks
-//   ASSERT(dynamic_cast < critical_section * > ( const_cast < waitable * > (this)) == NULL);
+//   ASSERT(dynamic_cast < critical_section * > ( const_cast < object * > (this)) == NULL);
 //
-//   single_lock sl(const_cast < waitable * > (this));
+//   single_lock sl(const_cast < object * > (this));
 //
 //   bool bWasLocked = !sl.lock(duration::zero());
 //

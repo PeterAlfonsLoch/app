@@ -18,7 +18,7 @@ namespace music
 
 
             window::window(sp(base_application) papp) :
-               element(papp)
+               ::object(papp)
             {
                m_pcallback = NULL;
             }
@@ -99,7 +99,7 @@ namespace music
                {
                case 3388:
                   {
-                     // Lyric ::view Event 
+                     // Lyric ::view Event
                      if(get_callback() != NULL)
                      {
                         get_callback()->OnMidiLyricEvent((array<::ikaraoke::lyric_event_v1, ::ikaraoke::lyric_event_v1&> *) pbase->m_lparam.m_lparam);
@@ -136,7 +136,7 @@ namespace music
                {
                case 3388:
                {
-               // Lyric ::view Event 
+               // Lyric ::view Event
                if(get_callback() != NULL)
                {
                get_callback()->OnMidiLyricEvent((array<::ikaraoke::lyric_event_v1, ::ikaraoke::lyric_event_v1&> *) pbase->m_lparam.m_lparam);

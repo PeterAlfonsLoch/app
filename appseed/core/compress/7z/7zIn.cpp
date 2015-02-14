@@ -355,7 +355,7 @@ HRESULT CInArchive::FindAndReadSignature(::file::input_stream *stream, const fil
 }
 
       CInArchive::CInArchive(sp(::axis::application) papp) :
-         element(papp)
+         ::object(papp)
       {
       }
       CInArchive::~CInArchive()

@@ -16,17 +16,17 @@ class event;
  **   \date  2004-10-30
  **   \author grymse@alhem.net
 **/
-/** waitable renamed to waitable
+/** object renamed to object
 Thank you Thomas Hoefer!!
 
 /// This class represents an item which can be waited for. Items can be threads, events, sockets,
 /// files, semaphores and so on.
-class CLASS_DECL_AURA waitable :
+class CLASS_DECL_AURA object :
    virtual public ::object
 {
 public:
 	///  \brief		destructor
-	virtual ~waitable();
+	virtual ~object();
 
 	///  \brief		abstract function to initialize a waiting action without a timeout
 	virtual void wait();
@@ -38,7 +38,7 @@ public:
 };
 */
 
-//class CLASS_DECL_AURA waitable :
+//class CLASS_DECL_AURA object :
 //class CLASS_DECL_AURA object
 //   virtual public ::object
 //{
@@ -48,11 +48,11 @@ public:
 //   //mutex          *  m_pmutex;
 //
 //
-//   // OBJECT :: object :> is a waitable
+//   // OBJECT :: object :> is a object
 //
-//   //waitable();
-//   //waitable(const waitable & objectSrc);
-//   //virtual ~waitable();
+//   //object();
+//   //object(const object & objectSrc);
+//   //virtual ~object();
 //
 //
 //   virtual void * get_os_data() const;
@@ -110,8 +110,8 @@ public:
 
 
 
-///  \brief		pauses waitable for specified time
-///  \param		duration sleeping time of waitable
+///  \brief		pauses object for specified time
+///  \param		duration sleeping time of object
 CLASS_DECL_AURA void sleep(const duration & duration);
 
 

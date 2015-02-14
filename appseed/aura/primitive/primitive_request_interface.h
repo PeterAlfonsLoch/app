@@ -10,7 +10,7 @@ class command_line;
 ////class CLASS_DECL_AURA ::object :
 //class CLASS_DECL_AURA object :
 //   virtual public element
-//   //class CLASS_DECL_AURA waitable :
+//   //class CLASS_DECL_AURA object :
 //   //class CLASS_DECL_AURA object
 //   //   virtual public ::object
 //
@@ -45,11 +45,11 @@ class command_line;
 //   //mutex          *  m_pmutex;
 //
 //
-//   // OBJECT :: object :> is a waitable
+//   // OBJECT :: object :> is a object
 //
-//   //waitable();
-//   //waitable(const waitable & objectSrc);
-//   //virtual ~waitable();
+//   //object();
+//   //object(const object & objectSrc);
+//   //virtual ~object();
 //
 //
 //   virtual void * get_os_data() const;

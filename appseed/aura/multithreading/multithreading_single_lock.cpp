@@ -7,7 +7,7 @@ single_lock::single_lock(object * psyncobject, bool bInitialLock)
 {
 
    /*
-   if(psyncobject != NULL && psyncobject == (waitable *)&user_mutex())
+   if(psyncobject != NULL && psyncobject == (object *)&user_mutex())
    {
       if(::get_thread() != NULL)
       {
@@ -19,7 +19,7 @@ single_lock::single_lock(object * psyncobject, bool bInitialLock)
    }*/
 
    //ASSERT(pObject != NULL);
-   //ASSERT(base_class < waitable >::bases(pObject));
+   //ASSERT(base_class < object >::bases(pObject));
 
    //if(pObject == NULL)
       //throw invalid_argument_exception(get_app());

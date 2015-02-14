@@ -95,7 +95,7 @@ bool thread_impl::initialize_instance()
 void thread_impl::dispatch_thread_message(signal_details * pbase)
 {
 
-   
+
    if(!pbase->m_bRet && pbase->m_uiMessage == WM_APP + 1984 && pbase->m_wparam == 77)
    {
       Application.dispatch_user_message(pbase);
@@ -266,7 +266,7 @@ bool thread_impl::begin_thread(bool bSynch,int32_t * piStartupError,int32_t epri
 
    pstartup->m_event2.ResetEvent();
 
-   m_hthread = (HTHREAD)(uint_ptr) ::create_thread(lpSecurityAttrs,nStackSize,&__thread_entry,pstartup.m_p,dwCreateFlags | THREAD_PRIORITY_HIGHEST,&m_uiThread);
+   m_hthread = (HTHREAD)(uint_ptr) ::create_thread(lpSecurityAttrs,nStackSize,&__thread_entry,pstartup.m_p,dwCreateFlags | ::multithreading::priority_highest,&m_uiThread);
 
    if(m_hthread == (HTHREAD) NULL)
    {
@@ -1293,7 +1293,7 @@ bool thread_impl::defer_pump_message()
 
    if(!m_pthread->on_run_step())
    {
-    
+
       return false;
 
    }

@@ -71,7 +71,7 @@ namespace linux
       virtual string GetFilePath() const;
       virtual void SetFilePath(const char * lpszNewName);
 
-      virtual bool open(const char * lpszFileName, UINT nOpenFlags);
+      virtual ::fesp open(const char * lpszFileName, UINT nOpenFlags);
 
       virtual bool PASCAL GetStatus(const char * lpszFileName, ::file::file_status& rStatus);
 

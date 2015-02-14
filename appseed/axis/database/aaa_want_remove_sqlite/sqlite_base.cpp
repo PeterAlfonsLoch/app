@@ -15,7 +15,7 @@ namespace sqlite
    extern int32_t callback(void * res_ptr,int32_t ncol, char** reslt,char** cols);
 
    base::base(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
 
       active = false;
@@ -216,7 +216,7 @@ namespace sqlite
       return str;
    }
 
-   
+
    void base::create_long_set(const string & strTable)
    {
 

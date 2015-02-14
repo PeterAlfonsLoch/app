@@ -11,13 +11,13 @@ namespace macos
 
 
    application::application(::aura::application * papp) :
-      element(papp)
+      ::object(papp)
    {
       m_pthreadimpl.alloc(allocer());
       m_pthreadimpl->m_pthread = this;
 
       shell::theLinuxShell.Initialize();
-      
+
    }
 
    application::~application()
@@ -51,18 +51,18 @@ namespace macos
       return FALSE;
    }
 
-   
+
    HINSTANCE application::GetHinstance()
    {
-      
+
       return NULL;
-      
+
    }
 
-   
+
    string application::get_version()
    {
-      
+
       return "";
 
 
@@ -80,7 +80,7 @@ namespace macos
    {
 
       return true;
-      
+
    }
 
 
@@ -118,23 +118,23 @@ namespace macos
 
       return iRet;
    }
-   
+
 
    ::thread * application::GetThread()
    {
 
       return ::get_thread();
-      
+
    }
-   
+
 
    void application::set_thread(::thread * pthread)
    {
-      
+
       ::set_thread(pthread);
-      
+
    }
-   
+
 
    ///////////////////////////////////////////////////////////////////////////
    // application Initialization
@@ -303,11 +303,11 @@ namespace macos
 
 
       {
-         
+
          System.m_strCa2ModuleFolder = ca2_module_folder_dup();
 
-/*         
- 
+/*
+
          char * pszCurDir = getcwd(NULL, 0);
 
          string strCurDir = pszCurDir;
@@ -316,21 +316,21 @@ namespace macos
 
          if(file_exists_dup(::dir::path(strCurDir, "libcore.dylib")))
          {
-            
+
             System.m_strCa2ModuleFolder = strCurDir;
-            
+
          }
          else if(file_exists_dup(::dir::path(System.m_strModuleFolder, "libcore.dylib")))
          {
-            
+
             System.m_strCa2ModuleFolder = System.m_strModuleFolder;
-            
+
          }
          else
          {
 
             System.m_strCa2ModuleFolder = ::dir::name(::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libcore.dylib", "rfs")); // readable - normal file - non zero sized
-            
+
          }
  */
 
@@ -341,46 +341,46 @@ namespace macos
 
    }
 
-   
-   
-    
-    
+
+
+
+
     string application::draw2d_get_default_library_name()
     {
-        
+
         return "draw2d_quartz2d";
-        
+
     }
    string application::multimedia_audio_get_default_library_name()
    {
-      
+
       return "audio_core_audio";
-      
+
    }
 
    string application::multimedia_audio_mixer_get_default_library_name()
    {
-      
+
       return "audio_mixer_core_audio";
-   
+
    }
    string application::veriwell_multimedia_music_midi_get_default_library_name()
    {
-      
+
       return "music_midi_core_audio";
-      
-   }
-   
-   
-   void application::ShowWaitCursor(bool bShow)
-   {
-      
-      UNREFERENCED_PARAMETER(bShow);
-      
+
    }
 
-   
-   
+
+   void application::ShowWaitCursor(bool bShow)
+   {
+
+      UNREFERENCED_PARAMETER(bShow);
+
+   }
+
+
+
 } // namespace macos
 
 
