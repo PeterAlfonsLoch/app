@@ -1573,17 +1573,17 @@ return TRUE;
 /////////////////////////////////////////////////////////////////////////////
 // WinFileException helpers
 
-void CLASS_DECL_AURA vfxThrowFileException(::aura::application * papp, int32_t cause, LONG lOsError, const char * lpszFileName /* == NULL */)
+void CLASS_DECL_AURA vfxThrowFileException(::aura::application * papp, ::file::exception::e_cause ecause, LONG lOsError, const char * lpszFileName /* == NULL */)
 {
 #ifdef DEBUG
    const char * lpsz;
-   if (cause >= 0 && cause < _countof(::android::rgszFileExceptioncause))
-      lpsz = ::android::rgszFileExceptioncause[cause];
+   if (ecause >= 0 && ecause < _countof(::android::rgszFileExceptioncause))
+      lpsz = ::android::rgszFileExceptioncause[ecause];
    else
       lpsz = ::android::szUnknown;
    //   TRACE3("file exception: %hs, file %s, App error information = %ld.\n", lpsz, (lpszFileName == NULL) ? "Unknown" : lpszFileName, lOsError);
 #endif
-   throw ::file::exception(papp, cause, lOsError, lpszFileName);
+   throw ::file::exception(papp, ecause, lOsError, lpszFileName);
 }
 
 namespace android
