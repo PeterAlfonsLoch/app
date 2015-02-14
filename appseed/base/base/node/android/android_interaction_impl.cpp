@@ -3134,7 +3134,7 @@ namespace android
       HDC m_hdc;
 
       print_window(::aura::application * papp,oswindow hwnd,HDC hdc,DWORD dwTimeout):
-         element(papp),
+         ::object(papp),
          m_event(papp)
 
       {
@@ -6592,7 +6592,7 @@ namespace android
 
 
 //CTestCmdUI::CTestCmdUI(::aura::application * papp):
-//element(papp),
+//::object(papp),
 //cmd_ui(papp)
 //{
 //   m_bEnabled = TRUE;  // assume it is enabled

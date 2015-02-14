@@ -2993,7 +2993,7 @@ namespace macos
       HDC m_hdc;
 
       print_window(::aura::application * papp, oswindow hwnd, HDC hdc, DWORD dwTimeout) :
-      element(papp),
+      ::object(papp),
       m_event(papp)
 
       {

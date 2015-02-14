@@ -6,14 +6,14 @@ namespace sockets
 
 
    EventHandler::EventHandler(::axis::application * papp, logger *p) :
-      element(papp),
+      ::object(papp),
       socket_handler(papp, p), m_quit(false), m_socket(NULL)
    {
    }
 
 
    EventHandler::EventHandler(::axis::application * papp, mutex & m,logger *p) :
-      element(papp),
+      ::object(papp),
       socket_handler(papp, m, p),
       m_quit(false), m_socket(NULL)
    {

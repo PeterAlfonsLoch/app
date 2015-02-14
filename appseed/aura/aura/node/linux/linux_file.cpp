@@ -86,7 +86,7 @@ namespace linux
       return pFile;
    }
 
-   bool file::open(const char * lpszFileName, UINT nOpenFlags)
+   ::fesp file::open(const char * lpszFileName, UINT nOpenFlags)
    {
 
       if (m_iFile != (UINT)hFileNull)
@@ -194,7 +194,9 @@ namespace linux
             {*/
 
 
-            vfxThrowFileException(get_app(), file_exception::OsErrorToException(dwLastError), dwLastError, m_strFileName);
+            //vfxThrowFileException(get_app(), file_exception::OsErrorToException(dwLastError), dwLastError, m_strFileName);
+
+            return ::fesp(get_app(), file_exception::OsErrorToException(dwLastError), dwLastError, m_strFileName);
 
             //}
 
@@ -232,7 +234,7 @@ namespace linux
 
 
             DWORD dwLastError = ::GetLastError();
-            vfxThrowFileException(get_app(), file_exception::OsErrorToException(dwLastError), dwLastError, m_strFileName);
+            return ::fesp(get_app(), file_exception::OsErrorToException(dwLastError), dwLastError, m_strFileName);
 
 
             //}
@@ -245,7 +247,7 @@ namespace linux
 
 //      m_bCloseOnDelete = TRUE;
 
-      return TRUE;
+      return ::file::no_exception();
    }
 
    ::primitive::memory_size file::read(void * lpBuf, ::primitive::memory_size nCount)
@@ -602,7 +604,7 @@ namespace linux
 
 
 
-   int32_t PASCAL file_exception::OsErrorToException(LONG lOsErr)
+   ::file::exception::e_cause PASCAL file_exception::OsErrorToException(LONG lOsErr)
    {
       // NT Error codes
       switch ((UINT)lOsErr)
@@ -1687,24 +1689,24 @@ return TRUE;
 /////////////////////////////////////////////////////////////////////////////
 // WinFileException helpers
 
-void CLASS_DECL_AURA vfxThrowFileException(sp(::aura::application) papp, int32_t cause, LONG lOsError, const char * lpszFileName /* == NULL */)
+void CLASS_DECL_AURA vfxThrowFileException(::aura::application * papp, ::file::exception::e_cause ecause, LONG lOsError, const char * lpszFileName /* == NULL */)
 {
 #ifdef DEBUG
    const char * lpsz;
-   if (cause >= 0 && cause < _countof(::linux::rgszFileExceptioncause))
-      lpsz = ::linux::rgszFileExceptioncause[cause];
+   if (ecause >= 0 && ecause < _countof(::linux::rgszFileExceptioncause))
+      lpsz = ::linux::rgszFileExceptioncause[ecause];
    else
       lpsz = ::linux::szUnknown;
    //   TRACE3("file exception: %hs, file %s, App error information = %ld.\n", lpsz, (lpszFileName == NULL) ? "Unknown" : lpszFileName, lOsError);
 #endif
-   throw ::file::exception(papp, cause, lOsError, lpszFileName);
+   throw ::file::exception(papp, ecause, lOsError, lpszFileName);
 }
 
 namespace linux
 {
 
 
-    int32_t PASCAL file_exception::ErrnoToException(int32_t nErrno)
+    ::file::exception::e_cause file_exception::ErrnoToException(int32_t nErrno)
     {
        switch(nErrno)
        {

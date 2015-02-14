@@ -29,7 +29,7 @@ namespace android
 
 
    window_draw::window_draw(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       ::thread(papp),
       ::user::window_draw(papp),
       m_mutexRendering(papp),

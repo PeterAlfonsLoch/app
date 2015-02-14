@@ -63,7 +63,7 @@ namespace os
    map < HWND, HWND, simple_ui *, simple_ui * > m_windowmap;
 
    simple_ui::simple_ui(sp(base_application) papp) :
-      element(papp),
+      ::object(papp),
       interaction(papp)
    {
 
@@ -179,7 +179,7 @@ namespace os
 
    }
 
-   
+
    bool simple_ui::destroy_window()
    {
 
@@ -468,7 +468,7 @@ namespace os
 
    void simple_ui::release_capture()
    {
-      
+
       ::ReleaseCapture();
 
    }
@@ -481,9 +481,9 @@ namespace os
 
       while (GetMessage(&msg, NULL, 0, 0))
       {
-         
+
          TranslateMessage(&msg);
-         
+
          DispatchMessage(&msg);
 
       }
@@ -497,7 +497,7 @@ namespace os
 
    bool simple_ui::move_window(int32_t x, int32_t y)
    {
-      
+
       SetWindowPos(m_window, NULL, m_pt.x, m_pt.y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
 
       return true;
@@ -507,7 +507,7 @@ namespace os
    bool simple_ui::set_window_pos(int32_t x, int32_t y, int32_t cx, int32_t cy, bool bShow)
    {
 
-      
+
       if (bShow)
       {
 
@@ -518,7 +518,7 @@ namespace os
       }
       else
       {
-         
+
          SetWindowPos(m_window, NULL, m_pt.x, m_pt.y, cx, cy, SWP_NOZORDER);
 
       }

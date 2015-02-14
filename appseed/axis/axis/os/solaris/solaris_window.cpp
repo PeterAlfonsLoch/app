@@ -23,7 +23,7 @@ oswindow_data::oswindow_data()
    m_bDestroying           = false;
 
    m_osdisplay             = NULL;
-   
+
    ZERO(m_visual);
 
 }
@@ -511,7 +511,7 @@ bool oswindow_data::show_window(int32_t nCmdShow)
       XMapWindow(display(), window());
 
    }
-   
+
    return TRUE;
 
 }
@@ -730,7 +730,7 @@ public:
 
    rect m_rectDesktop;
 
-   xlib_simple_message_box(sp(base_application) papp) : element(papp), ::os::simple_ui(papp), ::simple_ui::interaction(papp)
+   xlib_simple_message_box(sp(base_application) papp) : ::object(papp), ::os::simple_ui(papp), ::simple_ui::interaction(papp)
    {
    }
 

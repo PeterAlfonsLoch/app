@@ -11,14 +11,14 @@ namespace metrowin
 
 
       dir::dir(::aura::application *  papp) :
-         ::element(papp),
+         ::::object(papp),
          ::file::dir::system(papp),
          ::metrowin::dir(papp),
          ::file::dir::axis::system(papp)
       {
-      
+
          string strCa2Module = ca2module();
-      
+
          m_strCa2 = strCa2Module;
 
          System.file().path().eat_end_level(m_strCa2, 2, "\\");
@@ -190,7 +190,7 @@ namespace metrowin
             return true; // assume empty string is root_ones directory
          }
 
-      
+
          bool bIsDir;
          uint32_t dwLastError;
 
@@ -204,7 +204,7 @@ namespace metrowin
             m_isdirmap.set(str.Left(iLast + 1), true, 0);
             return true;
          }
-      
+
          strsize iFind = ::str::find_ci(".zip:", str);
 
          if(papp->m_bZipIsDir && iFind >= 0 && iFind < iLast)
@@ -220,7 +220,7 @@ namespace metrowin
 
 
          wstring wstrPath;
-      
+
          //strsize iLen = ::str::international::utf8_to_unicode_count(str, iLast + 1);
 
          //wstrPath.alloc(iLen + 32);
@@ -246,11 +246,11 @@ namespace metrowin
          {
             dwAttrib = GetFileAttributes(strPath);
          }*/
-      
+
       //   bIsDir = (dwAttrib != INVALID_FILE_ATTRIBUTES) && (dwAttrib & FILE_ATTRIBUTE_DIRECTORY);
 
          bIsDir = ::dir::is(::str::international::unicode_to_utf8(wstrPath));
-      
+
          m_isdirmap.set(str.Left(iLast + 1), bIsDir, ::GetLastError());
 
          return bIsDir;
@@ -286,7 +286,7 @@ namespace metrowin
       //// stage in ccvotagus spalib
       //string dir::element(const char * lpcsz, const char * lpcsz2)
       //{
-      //   
+      //
       //   single_lock sl(&m_mutex, true);
 
       //   return path(m_strCa2, lpcsz, lpcsz2);
@@ -295,7 +295,7 @@ namespace metrowin
 
       //string dir::element(const string & str, const char * lpcsz2)
       //{
-      //   
+      //
       //   single_lock sl(&m_mutex, true);
 
       //   return path(m_strCa2, str, lpcsz2);
@@ -304,7 +304,7 @@ namespace metrowin
 
       //string dir::element(const char * lpcsz, const string & str2)
       //{
-      //   
+      //
       //   single_lock sl(&m_mutex, true);
 
       //   return path(m_strCa2, lpcsz, str2);
@@ -313,7 +313,7 @@ namespace metrowin
 
       //string dir::element(const string & str, const string & str2)
       //{
-      //   
+      //
       //   single_lock sl(&m_mutex, true);
 
       //   return path(m_strCa2, str, str2);
@@ -322,7 +322,7 @@ namespace metrowin
 
       //string dir::element(const string & str)
       //{
-      //   
+      //
       //   single_lock sl(&m_mutex, true);
 
       //   return path(m_strCa2, str);
@@ -331,7 +331,7 @@ namespace metrowin
 
       //string dir::element()
       //{
-      //   
+      //
       //   single_lock sl(&m_mutex, true);
 
       //   return m_strCa2;
@@ -376,7 +376,7 @@ namespace metrowin
       //   {
       //      if(!is(stra[i], papp) && ::GetLastError() != ERROR_ACCESS_DENIED)
       //      {
-      //         
+      //
       //         if(!::CreateDirectoryW(::str::international::utf8_to_unicode("\\\\?\\" + stra[i]), NULL))
       //         {
       //            uint32_t dwError = ::GetLastError();
@@ -420,12 +420,12 @@ namespace metrowin
       //            m_isdirmap.set(stra[i], true, 0);
       //         }
       //         try1:
-      //         
+      //
       //         if(!is(stra[i], papp))
       //         {
       //            return false;
       //         }
-      //         
+      //
       //      }
       //   }
       //   return true;
@@ -437,7 +437,7 @@ namespace metrowin
       //   {
       //      stringa straPath;
       //      stringa straTitle;
-      //      ls(papp, psz, &straPath, &straTitle);         
+      //      ls(papp, psz, &straPath, &straTitle);
       //      for(int i = 0; i < straPath.get_count(); i++)
       //      {
       //         if(is(straPath[i], papp))
@@ -488,7 +488,7 @@ namespace metrowin
 
       //string dir::name(const string & str)
       //{
-      //   
+      //
       //   strsize iLast = str.get_length() - 1;
 
       //   while(iLast >= 0)
@@ -528,17 +528,17 @@ namespace metrowin
 
       bool dir::initialize()
       {
-      
+
          xml::document doc(get_app());
-      
+
          doc.load(Application.file().as_string(appdata("configuration\\directory.xml")));
-      
+
          if(doc.get_root()->get_name() == "directory_configuration")
          {
 
-            m_strTimeFolder = doc.get_root()->get_child_value("time"); 
+            m_strTimeFolder = doc.get_root()->get_child_value("time");
 
-            m_strNetSeedFolder = doc.get_root()->get_child_value("netseed"); 
+            m_strNetSeedFolder = doc.get_root()->get_child_value("netseed");
 
          }
          if(m_strTimeFolder.is_empty())
@@ -555,7 +555,7 @@ namespace metrowin
             TRACE("Failed to create time folder");
 
             return false;
-            
+
          }
 
          mk(path(m_strTimeFolder, "time"), get_app());

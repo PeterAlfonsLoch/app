@@ -7,7 +7,7 @@ namespace metrowin
 
 
    ip_enum::ip_enum(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       ::net::ip_enum(papp)
    {
 

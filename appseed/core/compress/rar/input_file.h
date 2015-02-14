@@ -35,7 +35,7 @@ namespace rar
       } Cause;
 
       input_file_exception(sp(::axis::application) papp, CCauseType cause) :
-         element(papp),
+         ::object(papp),
          ::call_stack(papp),
          ::exception::base(papp),
          simple_exception(papp),

@@ -26,7 +26,7 @@ namespace linux
 
 
    ip_enum::ip_enum(sp(::aura::application) papp) :
-      element(papp),
+      ::object(papp),
       ::net::ip_enum(papp)
    {
 

@@ -10,7 +10,7 @@ namespace multimedia
 
 
       audio_mixer::audio_mixer(sp(base_application) papp) :
-         element(papp),
+         ::object(papp),
          m_window(papp),
          ::multimedia::audio_mixer::audio_mixer(papp)
       {
@@ -163,7 +163,7 @@ namespace multimedia
 
          return true;
 
-      } 
+      }
 
 
       bool audio_mixer::get_control_type_name(LPMIXERCONTROL pmxctrl, string & strTypeName)
@@ -300,7 +300,7 @@ namespace multimedia
 
          return true;
 
-      } 
+      }
 
       void audio_mixer::OnMixerLineChange(HMIXER hMixer, uint32_t dwLineID)
       {

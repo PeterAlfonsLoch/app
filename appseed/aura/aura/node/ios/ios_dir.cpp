@@ -6,7 +6,7 @@ namespace ios
 
 
    dir::dir(sp(::aura::application)  papp) :
-      ::element(papp),
+      ::::object(papp),
       ::file::dir::system(papp),
    m_path(papp)
    {

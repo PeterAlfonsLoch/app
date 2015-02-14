@@ -69,7 +69,7 @@ public:
       m_pmysqldbUser(pserver->m_pmysqldbUser),
       m_strUser(pserver->m_strUser)
    {
-   
+
 
 
    }
@@ -93,7 +93,7 @@ public:
    smart_pointer_array < db_long_set_queue_item >           m_itema;
 
    db_long_sync_queue(::aura::application * papp):
-      element(papp),
+      ::object(papp),
       thread(papp),
       simple_thread(papp),
       m_handler(papp),
@@ -544,12 +544,12 @@ bool db_long_set::save(const char * lpKey, LPCRECT lpRect)
 
 bool db_long_set::MoveWindow_(const char * lpKey, ::window_sp pwindow)
 {
-   
+
    rect rect;
-   
+
    if(!load(lpKey, &rect))
       return false;
-   
+
    pwindow->SetPlacement(rect);
 
    return true;

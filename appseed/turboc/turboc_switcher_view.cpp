@@ -6,7 +6,7 @@ namespace turboc
 
 
    switcher_view::switcher_view(::aura::application * papp):
-      element(papp),
+      ::object(papp),
       ::user::split_layout(papp),
       ::user::split_view(papp),
       place_holder_container(papp)
@@ -127,7 +127,7 @@ namespace turboc
             SetPane(1,m_pview,false);
 
             pview->DestroyWindow();
-            
+
          }
 
       }

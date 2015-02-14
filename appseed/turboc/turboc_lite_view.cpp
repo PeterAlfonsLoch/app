@@ -7,7 +7,7 @@ namespace turboc
 
 
    lite_view::lite_view(::aura::application * papp):
-      element(papp),
+      ::object(papp),
       view(papp)
    {
 

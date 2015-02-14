@@ -8,7 +8,7 @@ namespace android
 
 
    copydesk::copydesk(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       ::base::copydesk(papp)
    {
 
@@ -31,9 +31,9 @@ namespace android
 
    void copydesk::get_filea(stringa & stra)
    {
-      
+
       int32_t iCount = get_file_count();
-      
+
       if(iCount <= 0)
          return;
 

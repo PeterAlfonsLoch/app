@@ -6,11 +6,11 @@ namespace turboc
 
 
    toggle_view::toggle_view(::aura::application * papp):
-      element(papp),
+      ::object(papp),
       ::user::interaction(papp),
       ::user::button(papp)
    {
-      
+
       m_ptopview = NULL;
 
    }
@@ -58,9 +58,9 @@ namespace turboc
 
    bool toggle_view::keyboard_focus_is_focusable()
    {
-      
+
       return ::user::button::keyboard_focus_is_focusable() ;
-      
+
    }
 
 

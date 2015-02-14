@@ -26,7 +26,7 @@ namespace metrowin
 
 
    crypto::crypto(::aura::application *  papp) :
-      element(papp),
+      ::object(papp),
       ::crypto::crypto(papp)
    {
 

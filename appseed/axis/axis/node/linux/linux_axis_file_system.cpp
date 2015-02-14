@@ -18,7 +18,7 @@ namespace linux
    {
 
    file_system::file_system(::aura::application *  papp) :
-      element(papp),
+      ::object(papp),
       ::file::system(papp),
       ::file::axis::system(papp),
       ::linux::file_system(papp)

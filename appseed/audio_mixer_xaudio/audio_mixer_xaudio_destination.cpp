@@ -9,7 +9,7 @@ namespace multimedia
    {
 
       destination::destination(sp(base_application) papp) :
-         element(papp),
+         ::object(papp),
          ::multimedia::audio_mixer::source(papp),
          ::multimedia::audio_mixer_mmsystem::source(papp),
          ::multimedia::audio_mixer::destination(papp)
@@ -86,7 +86,7 @@ namespace multimedia
             sourcea[i].GetLineControls();
 
          }
-         
+
          return ::multimedia::result_success;
 
       }

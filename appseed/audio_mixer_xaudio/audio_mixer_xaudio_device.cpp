@@ -10,7 +10,7 @@ namespace multimedia
 
 
       device::device(sp(base_application) papp) :
-         ::element(papp),
+         ::::object(papp),
          ::multimedia::audio_mixer::device(papp)
          //m_mixerdestinationa(papp)
       {
@@ -167,7 +167,7 @@ namespace multimedia
 
       ::multimedia::e_result device::get_destination(::multimedia::audio_mixer::e_destination edestination, ::multimedia::audio_mixer::destination **ppDestination)
       {
-         
+
          uint32_t dwComponentType;
 
          switch(edestination)
@@ -239,18 +239,18 @@ namespace multimedia
 
       void device::map_lines()
       {
-         
+
          m_mapIDToLine.remove_all();
-         
+
          for(int32_t i = 0; i < m_mixerdestinationa.get_size(); i++)
          {
-            
+
             sp(::multimedia::audio_mixer_mmsystem::destination) destination = m_mixerdestinationa(i);
-            
+
             m_mapIDToLine.set_at(destination->get_mixer_line().dwLineID, destination);
 
             ::multimedia::audio_mixer::source_array & sourcea = destination->get_source_info();
-            
+
             for(int32_t j = 0; j < sourcea.get_size(); j++)
             {
 

@@ -115,7 +115,7 @@
 
 
    ca2_library::ca2_library(sp(base_application) papp) :
-      element(papp),
+      ::object(papp),
       base_library(papp)
    {
 
@@ -123,7 +123,7 @@
 
 
    ca2_library::ca2_library(sp(base_application) papp, const char * pszOpen) :
-      element(papp),
+      ::object(papp),
       base_library(papp, pszOpen)
    {
 

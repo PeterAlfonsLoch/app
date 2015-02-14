@@ -14,7 +14,7 @@ namespace music
 
 
          buffer::buffer(sp(base_application) papp) :
-            element(papp),
+            ::object(papp),
             primitive::memory_container (papp),
             ::music::midi::file::buffer(papp)
          {
@@ -1996,7 +1996,7 @@ smf_Open_File_Cleanup:
 
             for(i = 0; i < m_ptracks->GetMidiTrackCount(); i++)
             {
-               
+
                ptrack = m_ptracks->MidiTrackAt(i);
                hpbSrc = ptrack->GetTrackImage();
                memcpy(hpbDest, hpbSrc, ptrack->GetTrackImageLength());
@@ -2460,13 +2460,13 @@ smf_Open_File_Cleanup:
 
          ::multimedia::e_result buffer::ImmediatePutTempoChange()
          {
-            
+
             ::music::midi::event * pevent = new ::music::midi::event;
-            
+
             GetTempoEvent(*pevent);
-            
+
             m_mepaImmediate.add(pevent);
-            
+
             return ::multimedia::result_success;
 
          }

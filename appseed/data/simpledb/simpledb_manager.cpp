@@ -8,7 +8,7 @@ namespace simpledb
 
 
    manager::manager(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       thread(papp),
       m_mutexSession(papp),
       m_mutexTagId(papp),

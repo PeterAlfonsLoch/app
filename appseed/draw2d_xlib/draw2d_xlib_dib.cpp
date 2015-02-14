@@ -15,7 +15,7 @@ namespace draw2d_xlib
 
 
    dib::dib(sp(::base::application) papp) :
-      element(papp),
+      ::object(papp),
       m_spbitmap(allocer()),
       m_spgraphics(allocer())
    {

@@ -9,7 +9,7 @@ namespace os
    map < oswindow, oswindow, simple_ui *, simple_ui * > m_windowmap;
 
    simple_ui::simple_ui(sp(base_application) papp) :
-      element(papp),
+      ::object(papp),
       interaction(papp),
       m_evDone(papp)
    {
@@ -29,23 +29,23 @@ namespace os
 
    bool simple_ui::create_window(LPCRECT lpcrect)
    {
-   
+
       CGRect rect;
-      
+
       rect.origin.x = lpcrect->left;
       rect.origin.y = lpcrect->top;
       rect.size.width = width(lpcrect);
       rect.size.height = height(lpcrect);
 
       m_window = oswindow_get(new_boot_window(this, rect));
-      
-      
-      
+
+
+
       if (!m_window)
       {
          return FALSE;
       }
-      
+
 
       return true;
 
@@ -65,17 +65,17 @@ namespace os
       return true;
 
    }
-   
-   
+
+
    bool simple_ui::destroy_window()
    {
-   
+
       boot_window_destroy();
-   
+
       m_evDone.set_event();
-   
+
       return true;
-   
+
    }
 
 
@@ -84,7 +84,7 @@ namespace os
 
       if (bShow)
       {
-      
+
          SetWindowPos(m_window, NULL, m_pt.x, m_pt.y, m_size.cx, m_size.cy, SWP_SHOWWINDOW);
 
          ShowWindow(m_window, SW_SHOW);
@@ -100,12 +100,12 @@ namespace os
          ShowWindow(m_window, SW_HIDE);
 
       }
-      
+
       if(!::simple_ui::interaction::show_window(bShow))
          return false;
-      
+
       return true;
-      
+
 
    }
 
@@ -393,7 +393,7 @@ namespace os
 
    void simple_ui::release_capture()
    {
-      
+
       ::ReleaseCapture();
 
    }
@@ -408,21 +408,21 @@ namespace os
     //  {
       //
         // TranslateMessage(&msg);
-         
+
 //         DispatchMessage(&msg);
 //
   //    }
 
       m_evDone.ResetEvent();
-      
+
       while(true)
       {
-      
+
          if(m_evDone.wait(millis(777)).signaled())
             break;
-         
+
          redraw_window();
-         
+
       }
 
       return true;
@@ -432,45 +432,45 @@ namespace os
 
    void simple_ui::boot_window_draw(CGContextRef pdc)
    {
-      
+
       ::draw2d::graphics_sp g(allocer());
-      
+
       g->attach(pdc);
-      
+
       draw(g);
-      
+
       g->detach();
-      
+
    }
-   
+
    void simple_ui::boot_window_mouse_down(double x, double y)
    {
       on_lbutton_down(x-m_pt.x, y-m_pt.y);
       redraw_window();
    }
-   
+
    void simple_ui::boot_window_mouse_up(double x, double y)
    {
       on_lbutton_up(x-m_pt.x, y-m_pt.y);
       redraw_window();
    }
-   
+
    void simple_ui::boot_window_mouse_moved(double x, double y)
    {
       on_mouse_move(x-m_pt.x, y-m_pt.y);
       redraw_window();
    }
-   
+
    void simple_ui::boot_window_mouse_dragged(double x, double y)
    {
       on_mouse_move(x-m_pt.x, y-m_pt.y);
       redraw_window();
    //   SetWindowPos(m_window, NULL, x, y, 0, 0, SWP_NOZORDER | SWP_NOSIZE);
    }
-   
+
    bool simple_ui::boot_window_key_down(::user::e_key ekey, const char * characters)
    {
-   
+
       if(strlen(characters) > 0 &&
       !(strlen(characters) == 1 && (characters[0]==0x7f || isspace(characters[0])))
       && strcmp(characters, "\xef\x9c\xa8"))
@@ -481,84 +481,84 @@ namespace os
       {
          on_char(ekey, "");
       }
-   
-   
+
+
       redraw_window();
 
       return true;
    }
-   
+
    bool simple_ui::boot_window_key_up(::user::e_key ekey, const char * characters)
    {
 //      on_key_up(ekey, "");
       redraw_window();
       return true;
    }
-   
+
    void simple_ui::redraw_window()
    {
-   
+
       boot_window_redraw();
-   
+
    }
-   
-   
+
+
    ::simple_ui::interaction * simple_ui::get_focus()
    {
-   
+
       if(!boot_window_has_focus())
          return NULL;
-      
+
       return ::simple_ui::interaction::get_focus();
-   
+
    }
 
 
-   
+
    bool simple_ui::move_window(int32_t x, int32_t y)
    {
-      
+
       m_pt.x = x;
       m_pt.y = y;
-      
+
       m_rect.left = m_pt.x;
       m_rect.top = m_pt.y;
       m_rect.right = m_pt.x + m_size.cx;
       m_rect.bottom = m_pt.y + m_size.cy;
-      
+
       SetWindowPos(m_window, NULL, m_pt.x, m_pt.y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
-      
+
       return true;
-      
+
    }
-   
+
    bool simple_ui::set_window_pos(int32_t x, int32_t y, int32_t cx, int32_t cy, bool bShow)
    {
-      
+
       m_pt.x = x;
       m_pt.y = y;
       m_size.cx = cx;
       m_size.cy = cy;
-      
+
       m_rect.left = m_pt.x;
       m_rect.top = m_pt.y;
       m_rect.right = m_pt.x + m_size.cx;
       m_rect.bottom = m_pt.y + m_size.cy;
-      
+
       SetWindowPos(m_window, NULL, m_pt.x, m_pt.y, cx, cy, SWP_NOZORDER);
-      
+
       if (bShow)
       {
-         
+
          show_window();
-         
+
       }
-      
+
       return true;
-      
+
    }
-   
-   
+
+
 } // namespace os
 
 

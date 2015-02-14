@@ -18,7 +18,7 @@ namespace music
 
 
             player::player(sp(base_application) papp) :
-               element(papp),
+               ::object(papp),
                thread(papp),
                ::music::midi::player::player(papp)
             {
@@ -152,7 +152,7 @@ namespace music
 
                if(success != (mmrc = get_sequence()->CloseFile()) && mmrc != EFunctionNotSupported)
                {
-                  
+
                   throw new exception(get_app(), EMidiPlayerClose);
 
                }
@@ -228,7 +228,7 @@ namespace music
 
             }
 
-            void player::pre_translate_message(::signal_details * pobj) 
+            void player::pre_translate_message(::signal_details * pobj)
             {
                SCAST_PTR(::message::base, pbase, pobj);
                //ASSERT(GetMainWnd() == NULL);
@@ -268,7 +268,7 @@ namespace music
 
             void player::SaveFile(const char * lpszPathName)
             {
-               
+
                e_result            mmrc;
 
                if((mmrc = get_sequence()->SaveFile(lpszPathName)) != success)
@@ -323,8 +323,8 @@ namespace music
             {
                m_pinterface = pinterface;
                get_sequence()->m_pthread   = m_psequencethread;
-               m_psequencethread->m_psequence = &get_sequence(); 
-               m_psequencethread->m_pplayer = this; 
+               m_psequencethread->m_psequence = &get_sequence();
+               m_psequencethread->m_pplayer = this;
                PostNotifyEvent(::music::midi::player::notify_event_set_sequence);
                return success;
             }
@@ -382,7 +382,7 @@ namespace music
                   ::music::midi::player::notify_event * pdata = new ::music::midi::player::notify_event;
                   pdata->m_pplayer = this;
                   pdata->m_enotifyevent = eevent;
-                  m_puie->post_message(::music::midi::player::message_notify_event, 0 , (LPARAM) pdata);      
+                  m_puie->post_message(::music::midi::player::message_notify_event, 0 , (LPARAM) pdata);
                }
             }
 
@@ -390,7 +390,7 @@ namespace music
             {
                if(m_puie != NULL)
                {
-                  m_puie->post_message(MMSG_DONE, (WPARAM) pSeq, (LPARAM) lpmdd);      
+                  m_puie->post_message(MMSG_DONE, (WPARAM) pSeq, (LPARAM) lpmdd);
                }
 
             }
@@ -477,7 +477,7 @@ namespace music
                pdata->m_pplayer = this;
                if(m_puie != NULL)
                {
-                  m_puie->post_message(::music::midi::player::message_notify_event, 0 , (LPARAM) pdata);      
+                  m_puie->post_message(::music::midi::player::message_notify_event, 0 , (LPARAM) pdata);
                }
                else
                {

@@ -7,7 +7,7 @@ namespace macos
 
 
    copydesk::copydesk(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       ::axis::copydesk(papp)
    {
    }
@@ -18,7 +18,7 @@ namespace macos
 
    int32_t copydesk::get_file_count()
    {
-   
+
 //      if(!OpenClipboard())
   //       return 0;
     //  int32_t iCount = 0;

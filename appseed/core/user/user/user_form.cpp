@@ -6,7 +6,7 @@ namespace user
 
 
    form::form(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       ::user::interaction(papp),
       ::user::scroll_view(papp),
       ::user::form_interface(papp)

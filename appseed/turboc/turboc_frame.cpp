@@ -7,7 +7,7 @@ namespace turboc
 
 
    frame::frame(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       simple_frame_window(papp)
    {
 

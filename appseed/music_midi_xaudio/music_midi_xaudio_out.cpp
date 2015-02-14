@@ -14,7 +14,7 @@ namespace music
 
 
          out::out(sp(base_application) papp) :
-            element(papp),
+            ::object(papp),
             ::music::midi::out(papp)
          {
 
@@ -72,7 +72,7 @@ namespace music
          }
 
 
-      } // 
+      } //
 
 
    } // namespace midi_mmsystem

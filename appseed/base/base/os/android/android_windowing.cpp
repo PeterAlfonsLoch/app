@@ -806,7 +806,7 @@ void message_box_paint(::draw2d::graphics * pdc, stringa & stra, bool_array  & b
 //
 //   rect m_rectDesktop;
 //
-//   xlib_simple_message_box(::aura::application * papp) : element(papp), ::user::interaction(papp)
+//   xlib_simple_message_box(::aura::application * papp) : ::object(papp), ::user::interaction(papp)
 //   {
 //   }
 //
@@ -1211,7 +1211,7 @@ oswindow GetFocus()
 
 int_bool GetClientRect(oswindow_data * pdata, RECT * prect)
 {
-   
+
    *prect = pdata->m_rect;
 
    prect->right -= prect->left;
@@ -1311,7 +1311,7 @@ int_bool IsAscendant(oswindow_data * pdata, oswindow_data * pdataAscendant)
       else
          return FALSE;
    }
-      
+
    while (pdataParent != NULL)
    {
 

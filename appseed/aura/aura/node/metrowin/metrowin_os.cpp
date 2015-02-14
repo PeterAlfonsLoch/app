@@ -14,7 +14,7 @@ namespace metrowin
 
 
    os::os(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       ::aura::os(papp)
    {
    }
@@ -98,7 +98,7 @@ namespace metrowin
          TRACELASTERROR();
          return false;
       }
-      /*if (!ExitWindowsEx(EWX_REBOOT | EWX_FORCE, 
+      /*if (!ExitWindowsEx(EWX_REBOOT | EWX_FORCE,
       SHTDN_REASON_MAJOR_SOFTWARE | SHTDN_REASON_MINOR_INSTALLATION))
       {
       DWORD dwLastError = ::GetLastError();
@@ -125,9 +125,9 @@ namespace metrowin
          TerminateProcess(hProcess, (UINT) -1);
          CloseHandle(hProcess);
          /*::EnumWindows((WNDENUMPROC)
-         CKillProcessHelper::TerminateAppEnum, 
+         CKillProcessHelper::TerminateAppEnum,
          (LPARAM) dwId);
-         // Wait on the handle. If it signals, great. 
+         // Wait on the handle. If it signals, great.
 
          //If it times out, then you kill it.
 
@@ -135,7 +135,7 @@ namespace metrowin
          !=WAIT_OBJECT_0)
          bResult = TerminateProcess(hProcess,0);
          else
-         bResult = TRUE; 
+         bResult = TRUE;
          CloseHandle(hProcess);
          return bResult == TRUE;*/
 
@@ -193,7 +193,7 @@ namespace metrowin
          HMODULE hMod;
          DWORD cbNeeded;
 
-         if(EnumProcessModules( hProcess, &hMod, sizeof(hMod), 
+         if(EnumProcessModules( hProcess, &hMod, sizeof(hMod),
             &cbNeeded) )
          {
             strName = get_module_path(hMod);
@@ -216,7 +216,7 @@ namespace metrowin
       {
          dwa.set_size(dwa.get_count() + 1024);
          if(!EnumProcesses(
-            dwa.get_data(), 
+            dwa.get_data(),
             (DWORD) (dwa.get_count() * sizeof(DWORD)),
             &cbNeeded))
          {
@@ -644,29 +644,29 @@ namespace metrowin
          //::GetLastError()
          return false;
       }
-    
+
       SC_HANDLE hdlServ = ::CreateService(
-         hdlSCM,                    // SCManager database 
-         "CGCLCSTvotagusCa2FontopusMain-" + papp->m_pcoreapp->m_strAppName,               // name of service 
-         "ccvotagus ca2 fontopus " + papp->m_pcoreapp->m_strAppName,        // service name to display 
-         STANDARD_RIGHTS_REQUIRED,  // desired access 
-         SERVICE_WIN32_OWN_PROCESS | SERVICE_INTERACTIVE_PROCESS, // service type 
-         SERVICE_AUTO_START,      // start type 
-         SERVICE_ERROR_NORMAL,      // error control type 
+         hdlSCM,                    // SCManager database
+         "CGCLCSTvotagusCa2FontopusMain-" + papp->m_pcoreapp->m_strAppName,               // name of service
+         "ccvotagus ca2 fontopus " + papp->m_pcoreapp->m_strAppName,        // service name to display
+         STANDARD_RIGHTS_REQUIRED,  // desired access
+         SERVICE_WIN32_OWN_PROCESS | SERVICE_INTERACTIVE_PROCESS, // service type
+         SERVICE_AUTO_START,      // start type
+         SERVICE_ERROR_NORMAL,      // error control type
          strCalling,                   // service's binary Path name
-         0,                      // no load ordering group 
-         0,                      // no tag identifier 
-         0,                      // no dependencies 
-         0,                      // LocalSystem account 
-         0);                     // no password 
-    
+         0,                      // no load ordering group
+         0,                      // no tag identifier
+         0,                      // no dependencies
+         0,                      // LocalSystem account
+         0);                     // no password
+
       if (!hdlServ)
       {
          CloseServiceHandle(hdlSCM);
          //Ret = ::GetLastError();
          return FALSE;
       }
-       
+
       CloseServiceHandle(hdlServ);
       CloseServiceHandle(hdlSCM);
 
@@ -677,9 +677,9 @@ namespace metrowin
 #endif
 
       return true;
-      
+
    }
-   
+
 
    bool os::remove_service(sp(::aura::application) papp)
    {
@@ -698,12 +698,12 @@ namespace metrowin
          //::GetLastError();
          return false;
       }
-    
+
       SC_HANDLE hdlServ = ::OpenService(
-         hdlSCM,                    // SCManager database 
-         "CGCLCSTvotagusCa2FontopusMain-" + papp->m_pcoreapp->m_strAppName,               // name of service 
-         DELETE);                     // no password 
-    
+         hdlSCM,                    // SCManager database
+         "CGCLCSTvotagusCa2FontopusMain-" + papp->m_pcoreapp->m_strAppName,               // name of service
+         DELETE);                     // no password
+
       if (!hdlServ)
       {
          // Ret = ::GetLastError();
@@ -746,20 +746,20 @@ namespace metrowin
          //::GetLastError();
          return false;
       }
-    
+
       SC_HANDLE hdlServ = ::OpenService(
-         hdlSCM,                    // SCManager database 
-         "CGCLCSTvotagusCa2FontopusMain-" + papp->m_pcoreapp->m_strAppName,               // name of service 
-         SERVICE_START);                     // no password 
-    
-    
+         hdlSCM,                    // SCManager database
+         "CGCLCSTvotagusCa2FontopusMain-" + papp->m_pcoreapp->m_strAppName,               // name of service
+         SERVICE_START);                     // no password
+
+
       if (!hdlServ)
       {
          CloseServiceHandle(hdlSCM);
          //Ret = ::GetLastError();
          return FALSE;
       }
-       
+
       bOk = StartService(hdlServ, 0, NULL) != FALSE;
 
       CloseServiceHandle(hdlServ);
@@ -793,12 +793,12 @@ namespace metrowin
          //::GetLastError();
          return false;
       }
-    
+
       SC_HANDLE hdlServ = ::OpenService(
-         hdlSCM,                    // SCManager database 
-         "CGCLCSTvotagusCa2FontopusMain-" + papp->m_pcoreapp->m_strAppName,               // name of service 
-         SERVICE_STOP);                     // no password 
-    
+         hdlSCM,                    // SCManager database
+         "CGCLCSTvotagusCa2FontopusMain-" + papp->m_pcoreapp->m_strAppName,               // name of service
+         SERVICE_STOP);                     // no password
+
       if (!hdlServ)
       {
          // Ret = ::GetLastError();
@@ -872,7 +872,7 @@ namespace metrowin
 //         {
 //
 //            bOk = true;
-//         
+//
 //            try
 //            {
 //               //pthread = dynamic_cast < ::thread * >(::metrowin::thread::s_threadptra[i]);

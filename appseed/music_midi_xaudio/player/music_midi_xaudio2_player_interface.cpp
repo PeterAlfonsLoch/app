@@ -18,7 +18,7 @@ namespace music
 
 
             player_interface::player_interface(sp(base_application) papp) :
-               element(papp),
+               ::object(papp),
                callback(papp),
                ::music::midi::player::player_interface(papp)
 
@@ -68,7 +68,7 @@ namespace music
                {
                   System.simple_message_box(NULL, _T("No primitive::memory to perform this operation." ));
                   pe->Delete();
-                  return false;        
+                  return false;
                }
 
                m_pmidiplayer->SetMidiCentral(m_psection);

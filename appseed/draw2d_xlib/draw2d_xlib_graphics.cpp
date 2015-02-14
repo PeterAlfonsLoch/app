@@ -11,7 +11,7 @@ namespace draw2d_xlib
 
 
    graphics::graphics(sp(::base::application) papp) :
-      element(papp),
+      ::object(papp),
       m_ui(papp)
    {
 

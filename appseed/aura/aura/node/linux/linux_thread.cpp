@@ -9,7 +9,7 @@ namespace linux
 
 
    thread::thread(sp(::aura::application) papp) :
-      element(papp),
+      ::object(papp),
       ::ansios::thread_impl(papp),
       ::thread_impl(papp)
    {

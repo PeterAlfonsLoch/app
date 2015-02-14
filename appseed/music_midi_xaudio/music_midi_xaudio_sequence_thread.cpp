@@ -14,7 +14,7 @@ namespace music
 
 
          sequence_thread::sequence_thread(sp(base_application) papp) :
-            element(papp),
+            ::object(papp),
             thread(papp),
             ::music::midi::sequence_thread(papp)
          {
@@ -108,7 +108,7 @@ namespace music
                      }
                      catch(exception *pe)
                      {
-                        //               SendMmsgDone(pseq, NULL);      
+                        //               SendMmsgDone(pseq, NULL);
                         pe->Delete();
                         return;
                      }
@@ -125,7 +125,7 @@ namespace music
                      }
                      catch(exception *pe)
                      {
-                        //               SendMmsgDone(pseq, NULL);      
+                        //               SendMmsgDone(pseq, NULL);
                         pe->Delete();
                         return;
                      }
@@ -149,7 +149,7 @@ namespace music
                      }
                      catch(exception *pe)
                      {
-                        //               SendMmsgDone(pseq, NULL);      
+                        //               SendMmsgDone(pseq, NULL);
                         pe->Delete();
                         return;
                      }
@@ -193,7 +193,7 @@ namespace music
             {
                ::music::midi::player::notify_event * pdata = new ::music::midi::player::notify_event;
                pdata->m_enotifyevent = eevent;
-               m_pplayer->post_thread_message(::music::midi::player::message_notify_event, 0, (LPARAM) pdata);      
+               m_pplayer->post_thread_message(::music::midi::player::message_notify_event, 0, (LPARAM) pdata);
             }
          }
 
@@ -344,7 +344,7 @@ namespace music
                   {
                      Play(spcommand->m_ticks);
                   }
-                  else 
+                  else
                   {
                      Play();
                   }

@@ -45,7 +45,7 @@ namespace n7z
          coderInfo.NumInStreams = coderStreamsInfo.NumInStreams;
          coderInfo.NumOutStreams = coderStreamsInfo.NumOutStreams;
          coderInfo.MethodID = decompressionMethods[i];
-         
+
       }
       for (i = 0; i < bindInfo.InStreams.get_count(); i++)
          folder.PackStreams.add(bindInfo.InStreams[i]);
@@ -288,7 +288,7 @@ namespace n7z
 
 
    CEncoder::CEncoder(sp(::axis::application) papp, const CCompressionMethodMode &options):
-      element(papp),
+      ::object(papp),
       _bindReverseConverter(0),
       _constructed(false)
    {

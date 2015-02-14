@@ -5,11 +5,11 @@
 class keep_event_reset
 {
 public:
-   
-   
+
+
    event * m_pevent;
-   
-   
+
+
    keep_event_reset(event * pevent)
    {
       m_pevent = pevent;
@@ -19,17 +19,17 @@ public:
    {
       m_pevent->SetEvent();
    }
-   
-   
+
+
 };
 
 
 namespace macos
 {
 
-   
+
    window_draw::window_draw(::aura::application * papp) :
-   element(papp),
+   ::object(papp),
    ::thread(papp),
    ::user::window_draw(papp),
    m_mutexRendering(papp),
@@ -45,19 +45,19 @@ namespace macos
 //      m_pbuffer->m_spdib.create(allocer());
       m_dwLastUpdate = false;
       m_bProDevianMode = true;
-      
+
    }
-   
+
    extern void _001DeferPaintLayeredWindowBackground(void * hwnd, ::draw2d::graphics * pdc);
    window_draw::~window_draw()
    {
-      
+
       //      ::DestroyWindow((oswindow) m_spwindowMessage->Detach());
-      
+
    }
-   
-   
-   
+
+
+
    /*
     void window_draw::OnPaint(void * hwnd, CPaintDC & spgraphics)
     {
@@ -65,7 +65,7 @@ namespace macos
     UNREFERENCED_PARAMETER(spgraphics);
     }
     */
-   
+
    void window_draw::message_queue_message_handler(signal_details * pobj)
    {
       SCAST_PTR(::message::base, pbase, pobj);
@@ -74,7 +74,7 @@ namespace macos
          _synch_redraw();
       }
    }
-   
+
    void window_draw::asynch_redraw()
    {
       DWORD dwTick = ::get_tick_count();
@@ -90,7 +90,7 @@ namespace macos
       }
       _asynch_redraw();
    }
-   
+
    void window_draw::_asynch_redraw()
    {
       if(!m_bProDevianMode)
@@ -98,21 +98,21 @@ namespace macos
          m_pthreadimpl->m_spqueue->message_queue_post_message(WM_USER + 1984 + 1977);
       }
    }
-   
+
    void window_draw::synch_redraw()
    {
-      
+
       /*      if(!m_bProDevianMode && ::IsWindow((oswindow) m_spwindowMessage->get_os_data()))
        {
        m_spwindowMessage->send_message(WM_USER + 1984 + 1977);
        }*/
    }
-   
+
    void window_draw::_synch_redraw()
    {
-      
+
       keep_event_reset keepeventreset(&m_eventFree);
-      
+
       static DWORD s_dwLastAnalysisFrame = 0;
       static DWORD s_dwLastFrameFrame = 0;
       static DWORD s_iAnalysisFrameFailureCount = 0;
@@ -193,41 +193,41 @@ namespace macos
             }
             s_iFrameFailureCount = 0;
          }
-         
+
       }
    }
-   
-   
+
+
    int32_t window_draw::run()
    {
       return RedrawProc();
    }
-   
-   
+
+
    bool window_draw::pre_run()
    {
-       
+
        if(!::thread::pre_run())
            return false;
 
        /*
       if(m_spqueue.is_null())
          return false;
-      
+
       if(!m_spqueue->create_message_queue("ca2::twf - ca2 Transparent Window Framework", this))
       {
-         
+
          TRACE("Could not initialize ca2::twf - ca2 Transparent Window Framework!");
-         
+
          return 0;
-         
+
       }*/
-      
+
       return true;
-      
+
    }
-   
-   
+
+
    UINT window_draw::RedrawProc()
    {
       MESSAGE msg;
@@ -265,38 +265,38 @@ namespace macos
       //delete this;
       return 0;
    }
-   
+
    DWORD g_dwLastWindowDraw;
    // lprect should be in screen coordinates
    bool window_draw::UpdateBuffer()
    {
-      
+
       return ::user::window_draw::UpdateBuffer();
-       
+
        if(m_bRender)
          return false;
-      
+
        single_lock sl(&m_mutexRender, FALSE);
-      
+
        if(!sl.lock(duration::zero()))
          return false;
 
        keep<bool> keepRender(&m_bRender, true, false, true);
-      
+
   //    user::interaction_ptra wndpa;
-      
+
 //      wndpa = get_wnda();
-      
+
       rect rectWindow;
 
        rect rect9;
-      
+
       user::oswindow_array wndaApp;
-      
+
       m_wndpaOut.remove_all();
-      
+
       ::user::interaction * pui = NULL;
-      
+
       while(System.get_frame(pui))
       {
          try
@@ -325,13 +325,13 @@ namespace macos
       }
 
       return true;
-      
+
    }
-   
-   
-   
-   
-   
+
+
+
+
+
 } // namespace macos
 
 

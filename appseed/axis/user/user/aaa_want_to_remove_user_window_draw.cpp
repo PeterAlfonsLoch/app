@@ -6,7 +6,7 @@
 //
 //
 //   window_draw::window_draw(sp(::aura::application) papp) :
-//      element(papp),
+//      ::object(papp),
 //      thread(papp),
 //      m_eventFree(papp, TRUE, TRUE)
 //   {
@@ -116,7 +116,7 @@
 //
 //   bool window_draw::ScreenOutput()
 //   {
-//      
+//
 //      ::exception::throw_interface_only(get_app());
 //
 //      return false;

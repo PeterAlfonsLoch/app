@@ -10,7 +10,7 @@ namespace multimedia
 
 
       thread::thread(sp(base_application) papp) :
-         element(papp),
+         ::object(papp),
          ::thread(papp)
       {
          SetMainWnd(NULL);

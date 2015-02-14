@@ -17,7 +17,7 @@ namespace sockets
 
 
    net::net(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       m_mutexCache(papp)
    {
 
@@ -196,7 +196,7 @@ namespace sockets
       if(InternetConnectionProfile->NetworkAdapter == nullptr)
          return;
 
-      //Pass the returned object to a function that accesses the connection data        
+      //Pass the returned object to a function that accesses the connection data
       //::String^ strConnectionProfileInfo = GetConnectionProfileInfo(InternetConnectionProfile);
 
       //Windows::Networking::Connectivity::NetworkAdapter ^ adp = InternetConnectionProfile->NetworkAdapter();
@@ -367,7 +367,7 @@ namespace sockets
       if(data->Size <= 0)
          return false;
 
-      string str = begin(data->GetAt(0)->RemoteHostName->DisplayName); 
+      string str = begin(data->GetAt(0)->RemoteHostName->DisplayName);
 
       if(!net::isipv4(str))
          return false;
@@ -387,7 +387,7 @@ namespace sockets
       if(data->Size <= 0)
          return false;
 
-      string str = begin(data->GetAt(0)->RemoteHostName->DisplayName); 
+      string str = begin(data->GetAt(0)->RemoteHostName->DisplayName);
 
       if(!net::isipv6(str))
          return false;
@@ -407,7 +407,7 @@ namespace sockets
       if(data->Size <= 0)
          return false;
 
-      str = begin(data->GetAt(0)->RemoteHostName->CanonicalName); 
+      str = begin(data->GetAt(0)->RemoteHostName->CanonicalName);
 
       return true;
 
@@ -422,7 +422,7 @@ namespace sockets
       if(data->Size <= 0)
          return false;
 
-      str = begin(data->GetAt(0)->RemoteHostName->CanonicalName); 
+      str = begin(data->GetAt(0)->RemoteHostName->CanonicalName);
 
       return true;
 
@@ -431,13 +431,13 @@ namespace sockets
 
    bool net::reverse(string & number, const string & hostname, int flags)
    {
-      
+
       ::net::address address(hostname);
 
       number = address.get_display_number();
 
       return true;
-      
+
    }
 
 /*

@@ -6,7 +6,7 @@ namespace simpledb
 
 
    file_set::file_set(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       ::file::set_sp(allocer())
    {
 
@@ -21,7 +21,7 @@ namespace simpledb
 
    void file_set::data_on_after_change(signal_details * pobj)
    {
-      
+
       SCAST_PTR(::database::change_event, pchange, pobj);
 
       if(pchange->m_key.m_id == m_dataid)
@@ -36,18 +36,18 @@ namespace simpledb
 
    bool file_set::refresh()
    {
-      
+
       m_p->clear_search();
 
       stringa stra;
 
       bool_array baRecursive;
-      
+
       if(!data_get(::base::system::idEmpty, stra))
          return false;
 
       data_get("recursive") >> baRecursive;
-      
+
       // add_search calls Ex2FileSet refresh internally
       m_p->add_search(stra, baRecursive);
 

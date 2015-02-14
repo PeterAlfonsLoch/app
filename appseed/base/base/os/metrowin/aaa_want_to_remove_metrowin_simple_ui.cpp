@@ -7,11 +7,11 @@ namespace os
 
 
    simple_ui::simple_ui(sp(::aura::application) papp) :
-      element(papp),
+      ::object(papp),
       simple_ui::interaction(papp),
       m_eventReady(papp)
    {
-      
+
          m_bLButtonDown = false;
       m_w = 840;
       m_h = 284;
@@ -70,7 +70,7 @@ namespace os
 
    bool simple_ui::create_window(LPCRECT lpcrect)
    {
-      
+
       m_bVisible = false;
 
       System.m_psimpleui = this;
@@ -213,7 +213,7 @@ namespace os
             m_bDrag = true;
             POINT ptNow;
             ::GetCursorPos(&ptNow);
-            
+
             m_pt.x = ptNow.x - m_ptLButtonDown.x + m_ptLButtonDownPos.x;
             m_pt.y = ptNow.y - m_ptLButtonDown.y + m_ptLButtonDownPos.y;
             m_rect.left = m_pt.x;
@@ -490,7 +490,7 @@ namespace os
 
    void simple_ui::client_to_screen(POINT * ppt)
    {
-   
+
       ::simple_ui::interaction::client_to_screen(ppt);
 
    }

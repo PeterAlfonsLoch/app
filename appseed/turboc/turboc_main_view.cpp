@@ -6,7 +6,7 @@ namespace turboc
 
 
    main_view::main_view(::aura::application * papp):
-      element(papp),
+      ::object(papp),
       ::user::split_layout(papp),
       ::user::split_view(papp),
       place_holder_container(papp)
@@ -107,7 +107,7 @@ namespace turboc
    }
 
 
-   
+
    bool main_view::BaseOnControlEvent(::user::control_event * pevent)
    {
 

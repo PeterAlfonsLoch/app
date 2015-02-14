@@ -11,7 +11,7 @@ namespace metrowin
 
 
       file_system::file_system(::aura::application * papp):
-         element(papp),
+         ::object(papp),
          ::file::system(papp),
          ::metrowin::file_system(papp),
          ::file::axis::system(papp)

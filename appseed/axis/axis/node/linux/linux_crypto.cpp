@@ -7,7 +7,7 @@ namespace linux
 
 
    crypto::crypto(sp(::aura::application) papp) :
-      element(papp),
+      ::object(papp),
       ::crypto::crypto(papp)
    {
    }

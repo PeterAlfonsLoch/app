@@ -6,7 +6,7 @@ namespace ios2
 
 
    printer::printer(sp(::aura::application) papp) :
-      element(papp),
+      ::object(papp),
       ::user::printer(papp),
       m_documentproperties(papp)
    {

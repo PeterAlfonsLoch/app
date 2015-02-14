@@ -100,7 +100,7 @@ namespace ios
 
 
    window::window(sp(::aura::application) papp) :
-   element(papp),
+   ::object(papp),
    ::user::interaction(papp)
    {
 
@@ -3162,7 +3162,7 @@ namespace ios
       HDC m_hdc;
 
       print_window(sp(::aura::application) papp, oswindow hwnd, HDC hdc, DWORD dwTimeout) :
-      element(papp),
+      ::object(papp),
       m_event(papp)
 
       {

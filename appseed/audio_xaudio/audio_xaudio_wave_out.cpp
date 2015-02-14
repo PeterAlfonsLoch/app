@@ -7,18 +7,18 @@ namespace multimedia
 
    namespace audio_xaudio
    {
-      
-      
+
+
 
       wave_out::wave_out(sp(::axis::application) papp) :
-         element(papp),
+         ::object(papp),
          ::thread(papp),
          wave_base(papp),
          ::multimedia::audio::wave_out(papp)
       {
 
 
-         
+
 
          m_estate             = state_initial;
          m_pthreadCallback    = NULL;
@@ -66,7 +66,7 @@ namespace multimedia
 
          return 0;
       }
-      
+
       bool wave_out::on_run_step()
       {
 
@@ -85,7 +85,7 @@ namespace multimedia
 
       ::multimedia::e_result wave_out::wave_out_open(thread * pthreadCallback, int32_t iBufferCount, int32_t iBufferSampleCount)
       {
-         
+
          single_lock sLock(&m_mutex, TRUE);
 
 
@@ -208,7 +208,7 @@ Opened:
             uiInterestSize = 200;
             uiSkippedSamplesCount = 1;
          }
-         
+
          wave_out_get_buffer()->PCMOutOpen(this, uiBufferSize, uiBufferCount, m_pwaveformat, m_pwaveformat);
 
          m_pprebuffer->open(
@@ -219,10 +219,10 @@ Opened:
 
 
          // TODO(casey): DSBCAPS_GETCURRENTPOSITION2
-         
 
-         
-         
+
+
+
          m_estate = state_opened;
 
          return ::multimedia::result_success;
@@ -260,8 +260,8 @@ Opened:
          // To see the trace output, you need to view ETW logs for this application:
          //    Go to Control Panel, Administrative Tools, Event Viewer.
          //    View->Show Analytic and Debug Logs.
-         //    Applications and Services Logs / Microsoft / Windows / XAudio2. 
-         //    Right click on Microsoft Windows XAudio2 debug logging, Properties, then Enable Logging, and hit OK 
+         //    Applications and Services Logs / Microsoft / Windows / XAudio2.
+         //    Right click on Microsoft Windows XAudio2 debug logging, Properties, then Enable Logging, and hit OK
          XAUDIO2_DEBUG_CONFIGURATION debug ={0};
          debug.TraceMask = XAUDIO2_LOG_ERRORS | XAUDIO2_LOG_WARNINGS;
          debug.BreakMask = XAUDIO2_LOG_ERRORS;
@@ -312,10 +312,10 @@ Opened:
 
 
 
-         
+
          wave_out_get_buffer()->PCMOutOpen(this, uiBufferSize, iBufferCount, m_pwaveformat, m_pwaveformat);
 
-         m_pprebuffer->open(this, m_pwaveformat->nChannels, iBufferCount, iBufferSampleCount); 
+         m_pprebuffer->open(this, m_pwaveformat->nChannels, iBufferCount, iBufferSampleCount);
 
          m_pprebuffer->SetMinL1BufferCount(wave_out_get_buffer()->GetBufferCount() + 4);
 
@@ -370,7 +370,7 @@ Opened:
          {
 
          }
-         
+
 
          //mmr = xaudio::translate(waveOutClose(m_hwaveout));
 
@@ -412,7 +412,7 @@ Opened:
 
          //single_lock sLock(&m_mutex,TRUE);
 
-         
+
 
          mmr = xaudio::translate(m_psourcevoice->SubmitSourceBuffer(&b));
 
@@ -429,7 +429,7 @@ Opened:
 
 
 
-      
+
       ::multimedia::e_result wave_out::wave_out_stop()
       {
 
@@ -602,11 +602,11 @@ Opened:
 
       imedia::position wave_out::wave_out_get_position()
       {
-         
+
          single_lock sLock(&m_mutex, TRUE);
 
          ::multimedia::e_result                mmr;
-         
+
          XAUDIO2_VOICE_STATE s;
 
          if (m_psourcevoice != NULL)
@@ -619,7 +619,7 @@ Opened:
          else
             return 0;
 
-         
+
       }
 
       void wave_out::wave_out_free(int iBuffer)
@@ -688,16 +688,16 @@ Opened:
       void wave_out::OnVoiceProcessingPassEnd()
       {
       }
-      
+
       void wave_out::OnBufferStart(void* pBufferContext)
       {
-         
+
          ::multimedia::audio::wave_buffer::buffer * pbuffer = (::multimedia::audio::wave_buffer::buffer *)pBufferContext;
 
          //pbuffer->m_bIsPlaying =  true;
 
       }
-      
+
       void wave_out::OnBufferEnd(void* pBufferContext)
       {
          ::multimedia::audio::wave_buffer::buffer * pbuffer = (::multimedia::audio::wave_buffer::buffer *)pBufferContext;

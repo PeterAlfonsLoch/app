@@ -10,7 +10,7 @@ namespace multimedia
 
 
       factory_exchange::factory_exchange(sp(::axis::application) papp) :
-         element(papp),
+         ::object(papp),
          ::multimedia::xaudio::factory_exchange(papp)
       {
 

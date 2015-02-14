@@ -8,7 +8,7 @@ namespace metrowin
 
 
    copydesk::copydesk(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       ::base::copydesk(papp)
    {
    }
@@ -19,7 +19,7 @@ namespace metrowin
 
    int copydesk::get_file_count()
    {
-      
+
       int iFileCount = 0;
 
       ::wait(
@@ -41,7 +41,7 @@ namespace metrowin
          }
          else if(view->Contains("FileDrop"))
          {
-         
+
             HGLOBAL hglobal;
 
             ::Windows::Storage::Streams::IInputStream ^ stream = (::Windows::Storage::Streams::IInputStream ^):: wait(view->GetDataAsync("FileDrop"));
@@ -63,7 +63,7 @@ namespace metrowin
          }
          else if(view->Contains(::Windows::ApplicationModel::DataTransfer::StandardDataFormats::StorageItems))
          {
-         
+
             ::Windows::Foundation::Collections::IVectorView < ::Windows::Storage::IStorageItem ^ > ^ items = ::wait(view->GetStorageItemsAsync());
 
             iFileCount = items->Size;
@@ -165,7 +165,7 @@ namespace metrowin
 
    bool copydesk::initialize()
    {
-      
+
       if(!::base::copydesk::initialize())
          return false;
 
@@ -181,7 +181,7 @@ namespace metrowin
    {
 
       bool bOk;
-      
+
       bOk = ::base::copydesk::finalize();
 
 /*      if(::user::window_sp::is_set() && ::user::window_sp::m_p->IsWindow())

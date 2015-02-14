@@ -7,7 +7,7 @@ namespace macos
 
 
    printer::printer(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       ::user::printer(papp),
       m_documentproperties(papp)
    {

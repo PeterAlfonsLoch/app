@@ -100,7 +100,7 @@ void thread::set_p(::thread * p)
    */
 
    thread::thread(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       ::thread_impl(papp)//,
       //message_queue(papp),//,
       //m_evFinish(FALSE, TRUE)
@@ -159,7 +159,7 @@ void thread::set_p(::thread * p)
             {
                try
                {
-                  if(WIN_THREAD(pui->m_pthread->m_pthread) == this 
+                  if(WIN_THREAD(pui->m_pthread->m_pthread) == this
                      || WIN_THREAD(pui->m_pthread->m_pthread->m_p) == WIN_THREAD(m_p->m_pthread)
                      || WIN_THREAD(pui->m_pthread->m_pthread) == WIN_THREAD(m_p->m_pthread))
                   {
@@ -172,7 +172,7 @@ void thread::set_p(::thread * p)
                try
                {
                   sp(::user::interaction) puie = pui->m_pguie;
-                  if(WIN_THREAD(puie->m_pthread->m_pthread) == this 
+                  if(WIN_THREAD(puie->m_pthread->m_pthread) == this
                      || WIN_THREAD(puie->m_pthread->m_pthread->m_p) == WIN_THREAD(m_p)
                      || WIN_THREAD(puie->m_pthread->m_pthread) == WIN_THREAD(m_p))
                   {
@@ -197,7 +197,7 @@ void thread::set_p(::thread * p)
       {
          try
          {
-            element * pca = m_captraDeletePool[i];            
+            element * pca = m_captraDeletePool[i];
             if(dynamic_cast < ::aura::application * > (pca) == m_papp)
             {
                m_papp = NULL;
@@ -232,7 +232,7 @@ void thread::set_p(::thread * p)
 
    }
 
-//   
+//
 //
 //   void * thread::get_os_data() const
 //   {
@@ -442,7 +442,7 @@ void thread::set_p(::thread * p)
 //      ENSURE(m_hThread == NULL);  // already created?
 //
 //      // setup startup structure for thread initialization
-//      ___THREAD_STARTUP startup; 
+//      ___THREAD_STARTUP startup;
 //      startup.bError = FALSE;
 //      startup.pfnNewHandler = NULL;
 //      //memset(&startup, 0, sizeof(startup));
@@ -725,7 +725,7 @@ void thread::set_p(::thread * p)
 //               sp(::user::interaction) pui = puiptra->element_at(i);
 //               if(pui->m_pthread != NULL)
 //               {
-//                  if(WIN_THREAD(pui->m_pthread.m_p) == this 
+//                  if(WIN_THREAD(pui->m_pthread.m_p) == this
 //                     || WIN_THREAD(pui->m_pthread->m_p.m_p) == WIN_THREAD(m_p.m_p)
 //                     )
 //                  {
@@ -947,15 +947,15 @@ void thread::set_p(::thread * p)
 //   }
 //
 //   __STATIC inline bool IsEnterKey(signal_details * pobj)
-//   { 
+//   {
 //      SCAST_PTR(::message::base, pbase, pobj);
-//      return pbase->m_uiMessage == WM_KEYDOWN && pbase->m_wparam == VK_RETURN; 
+//      return pbase->m_uiMessage == WM_KEYDOWN && pbase->m_wparam == VK_RETURN;
 //   }
 //
 //   __STATIC inline bool IsButtonUp(signal_details * pobj)
-//   { 
+//   {
 //      SCAST_PTR(::message::base, pbase, pobj);
-//      return pbase->m_uiMessage == WM_LBUTTONUP; 
+//      return pbase->m_uiMessage == WM_LBUTTONUP;
 //   }
 //
 //   void thread::ProcessMessageFilter(int code, signal_details * pobj)
@@ -1049,7 +1049,7 @@ void thread::set_p(::thread * p)
 //   {
 //      try
 //      {
-//         
+//
 //         MESSAGE msg;
 //
 //         ZERO(msg);
@@ -1313,27 +1313,27 @@ void thread::set_p(::thread * p)
 //
 //
 //   thread::operator HANDLE() const
-//   { 
+//   {
 //
-//      return this == NULL ? NULL : m_hThread; 
+//      return this == NULL ? NULL : m_hThread;
 //
 //   }
 //
 //   bool thread::set_thread_priority(int nPriority)
-//   { 
-//      ASSERT(m_hThread != NULL); 
+//   {
+//      ASSERT(m_hThread != NULL);
 //
-//      return ::SetThreadPriority(m_hThread, nPriority)  != FALSE; 
+//      return ::SetThreadPriority(m_hThread, nPriority)  != FALSE;
 //
 //   }
 //
 //   int thread::get_thread_priority()
-//   { 
-//      
-//      ASSERT(m_hThread != NULL); 
-//      
-//      return ::GetThreadPriority(m_hThread); 
-//   
+//   {
+//
+//      ASSERT(m_hThread != NULL);
+//
+//      return ::GetThreadPriority(m_hThread);
+//
 //   }
 //
 //   uint32_t thread::ResumeThread()
@@ -1348,7 +1348,7 @@ void thread::set_p(::thread * p)
 //
 //      throw todo(get_app());
 //
-//      /*ASSERT(m_hThread != NULL); return ::SuspendThread(m_hThread); 
+//      /*ASSERT(m_hThread != NULL); return ::SuspendThread(m_hThread);
 //      */
 //   }
 //
@@ -1356,7 +1356,7 @@ void thread::set_p(::thread * p)
 //   {
 //
 //      ASSERT(m_hThread != NULL);
-//      
+//
 //      return ::PostThreadMessage(m_nThreadID, message, wParam, lParam) != FALSE;
 //
 //   }
@@ -1629,7 +1629,7 @@ void thread::set_p(::thread * p)
 //   ///  \brief		gets thread priority
 //   ///  \param		priority
 //   int thread::priority()
-//   { 
+//   {
 //      return ::GetThreadPriority(m_hThread);
 //   }
 //
@@ -1833,9 +1833,9 @@ void thread::set_p(::thread * p)
 ////
 ////pThread->m_pThreadParams = NULL;
 ////if(pThread->begin(
-////nPriority, 
-////nStackSize, 
-////dwCreateFlags, 
+////nPriority,
+////nStackSize,
+////dwCreateFlags,
 ////lpSecurityAttrs))
 ////return pThread;
 ////else
@@ -1924,7 +1924,7 @@ void thread::set_p(::thread * p)
 ////#ifdef _WIN32
 //////   m_thread = ::CreateThread(NULL, 0, StartThread, this, 0, &m_dwThreadId);
 ////// create the thread (it may or may not start to run)
-////m_hThread = (HANDLE)(ulong_ptr)_beginthreadex(lpSecurityAttrs, nStackSize,  
+////m_hThread = (HANDLE)(ulong_ptr)_beginthreadex(lpSecurityAttrs, nStackSize,
 ////&__thread_entry, &startup, dwCreateFlags | CREATE_SUSPENDED, (UINT*)&m_nThreadID);
 ////#else
 ////pthread_attr_t attr;

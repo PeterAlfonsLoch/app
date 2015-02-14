@@ -6,7 +6,7 @@ namespace sip
 
 
    request::request(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       transaction(papp),
       m_file(papp),
       m_form(papp)

@@ -28,7 +28,7 @@ namespace ios
 
 
    window_draw::window_draw(sp(::aura::application) papp) :
-   element(papp),
+   ::object(papp),
    ::thread(papp),
    ::user::window_draw(papp),
    message_queue(papp),

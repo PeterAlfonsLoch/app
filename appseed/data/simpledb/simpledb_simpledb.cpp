@@ -9,7 +9,7 @@ namespace simpledb
 
 
    simpledb::simpledb(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       ::aura::departament(papp)
    {
 
@@ -121,7 +121,7 @@ namespace simpledb
          Application.m_spdataserver = m_pserver;
 
       }
-      
+
 
 //      ::core::application_request * prequest = System.get_application_request();
 

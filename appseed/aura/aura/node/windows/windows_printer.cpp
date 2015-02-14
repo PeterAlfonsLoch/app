@@ -8,7 +8,7 @@ namespace windows
 
 
    printer::printer(sp(base_application) papp) :
-      element(papp),
+      ::object(papp),
       ::user::printer(papp),
       m_documentproperties(papp)
    {

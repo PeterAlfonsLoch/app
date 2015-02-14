@@ -108,8 +108,8 @@ namespace linux
    {
 
 
-      int32_t PASCAL OsErrorToException(LONG lOsError);
-      int32_t PASCAL ErrnoToException(int32_t nErrno);
+      ::file::exception::e_cause PASCAL OsErrorToException(LONG lOsError);
+      ::file::exception::e_cause PASCAL ErrnoToException(int32_t nErrno);
       void PASCAL ThrowOsError(sp(::aura::application) papp, LONG lOsError, const char * lpszFileName = NULL);
       void PASCAL ThrowErrno(sp(::aura::application) papp, int32_t nErrno, const char * lpszFileName = NULL);
 

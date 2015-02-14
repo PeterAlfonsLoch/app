@@ -10,7 +10,7 @@ namespace linux
 
 
 stdio_file::stdio_file(sp(::aura::application) papp) :
-   element(papp),
+::object(papp),
    ::linux::file(papp)
 {
    m_pStream = NULL;
@@ -27,7 +27,7 @@ stdio_file::~stdio_file()
 }
 
 
-bool stdio_file::open(const char * lpszFileName, UINT nOpenFlags)
+::fesp stdio_file::open(const char * lpszFileName, UINT nOpenFlags)
 {
 
    ASSERT(lpszFileName != NULL);
@@ -102,12 +102,12 @@ bool stdio_file::open(const char * lpszFileName, UINT nOpenFlags)
       }
 
       ::linux::file::Abort(); // close m_hFile
-      return FALSE;
+      return ::fesp(get_app(), ::file::exception::none);
    }
 
    m_strFileName = lpszFileName;
 
-   return TRUE;
+   return ::file::no_exception();
 }
 
 DWORD_PTR stdio_file::read(void * lpBuf, DWORD_PTR nCount)

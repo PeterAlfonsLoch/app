@@ -10,7 +10,7 @@ namespace multimedia
 
 
       control::control(sp(base_application) papp) :
-         element(papp),
+         ::object(papp),
          ::multimedia::audio_mixer::control(papp)
       {
 
@@ -742,7 +742,7 @@ namespace multimedia
                               nRightValue ,
                               m_mixercontrol.Bounds.dwMaximum - m_mixercontrol.Bounds.dwMinimum,
                               nRange) +  m_mixercontrol.Bounds.dwMinimum;
-                           
+
                            ::multimedia::e_result mmrc = mmsystem::translate(mixerSetControlDetails((HMIXEROBJ) device->m_hMixer, &m_mixercontroldetails, MIXER_GETCONTROLDETAILSF_VALUE));
 
                            if (::multimedia::result_success == mmrc)
@@ -832,7 +832,7 @@ namespace multimedia
                         bool fValue = i == iSel ? 1 : 0;
                         pmxcd_f[cMultipleItems - i - 1].fValue = fValue;
                      }
-                     
+
                      ::multimedia::e_result mmrc = mmsystem::translate(mixerSetControlDetails((HMIXEROBJ) device->m_hMixer, &m_mixercontroldetails, MIXER_GETCONTROLDETAILSF_VALUE));
 
                      if(::multimedia::result_success == mmrc)
@@ -897,7 +897,7 @@ namespace multimedia
          return m_mixercontroldetails;
       }
 
-      
+
    } // namespace audio_mixer_mmsystem
 
 

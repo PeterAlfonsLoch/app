@@ -10,7 +10,7 @@ namespace android
 
 
    dir::dir(::aura::application * papp) :
-      ::element(papp),
+      ::::object(papp),
       ::file::dir::system(papp)
    {
 
@@ -295,7 +295,7 @@ namespace android
 
    }
 
-   
+
    bool dir::rls(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, e_extract eextract)
    {
 

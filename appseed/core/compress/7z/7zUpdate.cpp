@@ -195,7 +195,7 @@ namespace n7z
    };
 
     int32_t CompareFolderRepacks(const CFolderRepack *p1, const CFolderRepack *p2, void *param);
-    
+
    int32_t CompareFolderRepacks(const CFolderRepack *p1, const CFolderRepack *p2, void *param)
    {
       RINOZ_COMP(p1->Group, p2->Group);
@@ -387,7 +387,7 @@ namespace n7z
    }
    */
 
-   struct CSolidGroup : 
+   struct CSolidGroup :
       virtual element
    {
       array<uint32_t> Indices;
@@ -641,7 +641,7 @@ namespace n7z
 #endif
 
       CThreadDecoder(sp(::axis::application) papp):
-      element(papp),
+      ::object(papp),
       thread(papp),
       Decoder(papp, true)
       {

@@ -7,7 +7,7 @@ namespace android
 
 
    thread::thread(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       ::thread_impl(papp),
       ::ansios::thread_impl(papp)
    {

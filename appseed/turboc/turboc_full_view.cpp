@@ -7,7 +7,7 @@ namespace turboc
 
 
    full_view::full_view(::aura::application * papp):
-      element(papp),
+      ::object(papp),
       view(papp)
    {
 

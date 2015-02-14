@@ -8,7 +8,7 @@ namespace android
 
 
    message_queue::message_queue(sp(::aura::application) papp):
-      element(papp),
+      ::object(papp),
       ::aura::message_queue(papp)
    {
 

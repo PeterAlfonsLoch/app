@@ -6,7 +6,7 @@ namespace user
 
 
    main_frame::main_frame(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       simple_frame_window(papp)
    {
       m_bPlacing = false;
@@ -40,7 +40,7 @@ namespace user
    {
 
 //      SCAST_PTR(::message::create, pcreate, pobj)
-      
+
       m_bWindowFrame = !Application.directrix()->m_varTopicQuery["client_only"].is_set();
 
       if(pobj->previous())

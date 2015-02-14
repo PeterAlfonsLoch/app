@@ -9,7 +9,7 @@ namespace libcompress
    {
 
       CCoder2::CCoder2(sp(::axis::application) papp, uint32_t numInStreams, uint32_t numOutStreams):
-               element(papp),
+               ::object(papp),
             thread(papp),
          CCoderInfo2(numInStreams, numOutStreams)
       {
@@ -116,7 +116,7 @@ namespace libcompress
       }
 
       CCoderMixer2MT::CCoderMixer2MT(sp(::axis::application) papp) :
-         element(papp),
+         ::object(papp),
          _streamBinders(papp)
       {
       }

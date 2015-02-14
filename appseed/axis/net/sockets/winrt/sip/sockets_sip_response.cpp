@@ -6,7 +6,7 @@ namespace sip
 
 
    response::response(::aura::application * papp, const string & version) :
-   element(papp),
+   ::object(papp),
    transaction(papp),
    m_memfileBody(papp )
    {
@@ -55,6 +55,6 @@ namespace sip
    //   m_file = std::auto_ptr<IFile>(new MemFile);
    }
 
-} // namespace sip 
+} // namespace sip
 
 

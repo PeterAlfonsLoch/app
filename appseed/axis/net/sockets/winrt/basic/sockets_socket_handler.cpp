@@ -36,7 +36,7 @@ namespace sockets
 
 
    socket_handler::socket_handler(::aura::application * papp, logger * plogger) :
-   element(papp),
+   ::object(papp),
    base_socket_handler(papp, plogger),
    m_mutex(m_mutex),
    m_b_use_mutex(false)
@@ -52,7 +52,7 @@ namespace sockets
    ,m_next_trigger_id(0)
    ,m_slave(false)
    {
-      
+
       memset(&m_socks4_host, 0, sizeof(m_socks4_host));
 
 /*      FD_ZERO(&m_rfds);
@@ -62,7 +62,7 @@ namespace sockets
 
 
    socket_handler::socket_handler(::aura::application * papp, mutex& mutex, logger *plogger) :
-   element(papp),
+   ::object(papp),
    base_socket_handler(papp, plogger)
    ,m_mutex(mutex)
    ,m_b_use_mutex(true)
@@ -232,7 +232,7 @@ namespace sockets
 
    int socket_handler::select(int32_t lSeconds, int32_t lMicroseconds)
    {
-      
+
       struct timeval timeval;
 
       timeval.tv_sec    = lSeconds;
@@ -306,10 +306,10 @@ namespace sockets
                {
 
                   auto writer = pstreamsocket->m_posdata->m_writer;
-                  
+
                   psocket->m_event.ResetEvent();
 
-                  writer->StoreAsync()->Completed = ref new ::Windows::Foundation::AsyncOperationCompletedHandler < unsigned int > ([=] 
+                  writer->StoreAsync()->Completed = ref new ::Windows::Foundation::AsyncOperationCompletedHandler < unsigned int > ([=]
                      (::Windows::Foundation::IAsyncOperation < unsigned int > ^ action, ::Windows::Foundation::AsyncStatus status)
                   {
                      writer->DetachStream();

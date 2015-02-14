@@ -10,7 +10,7 @@ namespace draw2d_cairo
    FT_Face g_ft = NULL;
 
    graphics::graphics(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       ::draw2d::graphics(papp)
    {
 

@@ -2982,7 +2982,7 @@ namespace metrowin
       HDC m_hdc;
 
       print_window(::aura::application * papp,oswindow hwnd,HDC hdc,uint32_t dwTimeout):
-         element(papp),
+         ::object(papp),
          m_event(papp)
       {
          m_event.ResetEvent();

@@ -10,7 +10,7 @@ namespace multimedia
 
 
       factory_exchange::factory_exchange(sp(base_application) papp) :
-         element(papp),
+         ::object(papp),
          ::multimedia::mmsystem::factory_exchange(papp)
       {
 

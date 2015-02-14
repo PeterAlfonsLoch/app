@@ -10,7 +10,7 @@ namespace multimedia
 
 
       source::source(sp(base_application) papp) :
-         element(papp),
+         ::object(papp),
          ::multimedia::audio_mixer::source(papp)
       {
          m_mixercontrola.set_app(papp);
@@ -216,7 +216,7 @@ namespace multimedia
 
       ::multimedia::e_result source::mixerGetLineInfo(uint32_t dwSource, uint32_t dwDestination, uint32_t fdwInfo)
       {
-         
+
          m_mixerline.cbStruct       = sizeof(MIXERLINE);
          m_mixerline.dwDestination  = dwDestination;
          m_mixerline.dwSource       = dwSource;
@@ -240,7 +240,7 @@ namespace multimedia
 
       ::multimedia::e_result source::mixerGetLineInfo(uint32_t dwSource, ::multimedia::audio_mixer::destination * pdestination)
       {
-         
+
          sp(::multimedia::audio_mixer_mmsystem::destination) destination = pdestination;
 
          ::multimedia::e_result mmrc = mixerGetLineInfo(dwSource, destination->m_mixerline.dwDestination, MIXER_GETLINEINFOF_SOURCE);

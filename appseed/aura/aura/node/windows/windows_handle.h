@@ -1,12 +1,12 @@
 // This is core API library.
-// 
-// 
 //
-// 
-// 
-// 
-// 
-// 
+//
+//
+//
+//
+//
+//
+//
 
 /////////////////////////////////////////////////////////////////////////////
 // CHandleMap
@@ -126,8 +126,8 @@ template<class TYPE>
 struct ConstructDestruct
 {
    static void Construct(object* pObject)
-   { 
-      new (pObject) TYPE; 
+   {
+      new (pObject) TYPE;
    }
    static void Destruct(object* pObject)
    {
@@ -135,9 +135,9 @@ struct ConstructDestruct
       p->~TYPE();
    }
    static void Construct(TYPE * pObject)
-   { 
+   {
 #undef new
-      new (pObject) TYPE; 
+      new (pObject) TYPE;
 #define new AURA_NEW
    }
    static void Destruct(TYPE * pObject)
@@ -166,7 +166,7 @@ public:
 
    handle_map(sp(::aura::application) papp);
    virtual ~handle_map()
-   { 
+   {
       delete_temp();
    }
 
@@ -197,7 +197,7 @@ public:
 public:
 };*/
 
-/*class hgdiobj_map : 
+/*class hgdiobj_map :
    public handle_map < ::windows::hgdiobj_handle, ::windows::object >
 {
 public:
@@ -213,18 +213,18 @@ public:
 
 
 template < class HT, class CT >
-handle_map < HT, CT > ::handle_map(sp(::aura::application) papp) : 
-   element(papp),
-   m_permanentMap(papp, 1024), 
-   m_temporaryMap(papp, 1024), 
+handle_map < HT, CT > ::handle_map(sp(::aura::application) papp) :
+   ::object(papp),
+   m_permanentMap(papp, 1024),
+   m_temporaryMap(papp, 1024),
    m_alloc(sizeof(CT), 1024),
    m_mutex(papp)
 {
 
    ASSERT(HT::s_iHandleCount == 1 || HT::s_iHandleCount == 2);
 
-   m_permanentMap.InitHashTable(1024, TRUE); 
-   m_temporaryMap.InitHashTable(1024, TRUE); 
+   m_permanentMap.InitHashTable(1024, TRUE);
+   m_temporaryMap.InitHashTable(1024, TRUE);
 
    m_pfnConstructObject    = ConstructDestruct<CT>::Construct;
    m_pfnDestructObject     = ConstructDestruct<CT>::Destruct;
@@ -234,7 +234,7 @@ handle_map < HT, CT > ::handle_map(sp(::aura::application) papp) :
 template < class HT, class CT >
 CT* handle_map < HT, CT >::from_handle(HANDLE h, CT * (*pfnAllocator) (sp(::aura::application), HANDLE), sp(::aura::application) papp)
 {
-   
+
    single_lock sl(&m_mutex, TRUE);
 
    ASSERT(HT::s_iHandleCount == 1 || HT::s_iHandleCount == 2);
@@ -300,7 +300,7 @@ CT* handle_map < HT, CT >::from_handle(HANDLE h, CT * (*pfnAllocator) (sp(::aura
       //__enable_memory_tracking(bEnable);
       ::exception::rethrow(pe);
    }
-   
+
 
 #ifndef ___PORTABLE
    //__set_new_handler(pnhOldHandler);
@@ -320,7 +320,7 @@ CT* handle_map < HT, CT >::from_handle(HANDLE h, CT * (*pfnAllocator) (sp(::aura
 template < class HT, class CT >
 void handle_map < HT, CT >::set_permanent(HANDLE h, CT * permOb)
 {
-   
+
    single_lock sl(&m_mutex, TRUE);
 
    //bool bEnable = __enable_memory_tracking(FALSE);
@@ -334,7 +334,7 @@ void handle_map < HT, CT >::set_permanent(HANDLE h, CT * permOb)
 template < class HT, class CT >
 void handle_map < HT, CT > ::remove_handle(HANDLE h)
 {
-   
+
    single_lock sl(&m_mutex, TRUE);
 
    // make sure the handle entry is consistent before deleting
@@ -365,7 +365,7 @@ void handle_map < HT, CT > ::remove_handle(HANDLE h)
 template < class HT, class CT >
 void handle_map < HT, CT >::delete_temp()
 {
-   
+
    single_lock sl(&m_mutex, TRUE);
 
    if (::is_null(this))
@@ -416,7 +416,7 @@ inline void handle_map < HT, CT >::remove_handle(HANDLE h)
 
 template < class HT, class CT >
 inline CT* handle_map <HT, CT>::lookup_permanent(HANDLE h)
-{ 
+{
 
    single_lock sl(&m_mutex, TRUE);
 
@@ -434,7 +434,7 @@ inline CT* handle_map <HT, CT>::lookup_temporary(HANDLE h)
 
    single_lock sl(&m_mutex, TRUE);
 
-   CT * pt = m_temporaryMap.get(h, (CT*) NULL); 
+   CT * pt = m_temporaryMap.get(h, (CT*) NULL);
    if(pt != NULL && pt->get_os_data() == (void *) h)
       return pt;
    else

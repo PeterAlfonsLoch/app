@@ -5,8 +5,8 @@
 class keep_event_reset
 {
 public:
-   
-   
+
+
    event * m_pevent;
 
 
@@ -26,8 +26,8 @@ public:
 namespace metrowin
 {
 
-   window_draw::window_draw(::aura::application * papp) : 
-      element(papp),
+   window_draw::window_draw(::aura::application * papp) :
+      ::object(papp),
       ::thread(papp),
       ::user::window_draw(papp),
       //message_queue(papp),
@@ -85,7 +85,7 @@ namespace metrowin
 
    void window_draw::_synch_redraw()
    {
-      
+
 
       keep_event_reset keepeventreset(&m_eventFree);
 
@@ -308,18 +308,18 @@ namespace metrowin
       m_xapp->m_directx->Present();
 
       return true;
-      
+
 
    }
 
    //bool window_draw::ScreenOutput()
    //{
-   //   
+   //
    //   if(m_bRender)
    //      return false;
-   //   
+   //
    //   single_lock sl(&m_mutexRender, FALSE);
-   //   
+   //
    //   if(!sl.lock(duration::zero()))
    //      return false;
    //
@@ -332,7 +332,7 @@ namespace metrowin
    //      sp(::user::interaction) pwnd = m_wndpaOut[i];
 
    //   //   ScreenOutput(m_pbuffer, pwnd);
-   //   
+   //
    //   }
 
    //   return true;
@@ -442,7 +442,7 @@ namespace metrowin
 //      pguie->GetClientRect(rectClient);
 //      pguie->ClientToScreen(rectClient);
 //
-//      
+//
 //
 //
 //      rect rectIntersect;
@@ -454,13 +454,13 @@ namespace metrowin
 //
 //      if(!rectClient.contains(rectUpdate))
 //      {
-//         
+//
 //         return OptimizeNone;
 //      }
 //
 //   //    ::user::interaction_impl * pwnd = window::FromHandlePermanent(hwnd);
-//       
-//      
+//
+//
 //      if(ptwi == NULL)
 //      {
 //
@@ -473,7 +473,7 @@ namespace metrowin
 //   //         pwnd = ptwi->TwiGetWnd();
 //   //      }
 //      }
-//      
+//
 //      EOptimize eoptimize = OptimizeNone;
 //      if(ptwi != NULL)
 //      {
@@ -499,7 +499,7 @@ namespace metrowin
 //         return OptimizeNone;
 //      }
 //
-//      
+//
 //   }
 //
 //
@@ -579,16 +579,16 @@ namespace metrowin
 //      {
 //         ::SendMessage(
 //            hwnd,
-//            ::user::interaction_base::MessageBaseWndGetProperty, 
-//            ::user::interaction_base::PropertyDrawBaseWndInterface, 
+//            ::user::interaction_base::MessageBaseWndGetProperty,
+//            ::user::interaction_base::PropertyDrawBaseWndInterface,
 //            (LPARAM) &pwndi);
 //      }
 //
 //      if(hwndParam == hwnd ||
-//         (pwndi != NULL && 
+//         (pwndi != NULL &&
 //            pwndi->_001HasTranslucency()))
 //      {
-//      
+//
 //
 //         iCombine = ::CombineRgn(hrgn, hrgn, hrgnIntersect, RGN_DIFF);
 //
@@ -604,7 +604,7 @@ namespace metrowin
 //         {
 //            return false;
 //         }
-//         
+//
 //      }
 //      else
 //      {
@@ -629,7 +629,7 @@ namespace metrowin
 //      throw todo(get_app());
 //
 //#endif
-//      
+//
 //   }
 //
 //   // lpcrect must be in screen coordinates
@@ -644,9 +644,9 @@ namespace metrowin
 //      HRGN hrgn = ::CreateRectRgnIndirect(lpcrect);
 //      TwfGetTopWindow(
 //         hwnd,
-//         hwnda, 
-//         hrgna, 
-//         hwndtreea, 
+//         hwnda,
+//         hrgna,
+//         hwndtreea,
 //         hrgn);
 //      ::DeleteObject(hrgn);
 //#else
@@ -723,7 +723,7 @@ namespace metrowin
 ////      DWORD dwTimeIn = get_tick_count();
 //
 //      user::oswindow_array hwnda;
-//      
+//
 //      get_wnda(hwnda);
 //
 //      user::window_util::SortByZOrder(hwnda);
@@ -844,7 +844,7 @@ namespace metrowin
 //      //rgnClip->OffsetRgn( - rectWnd.top_left());
 //
 //   //   ::SelectClipRgn(hdcScreen, rgnClip);
-//      
+//
 //      // Debug
 //   #ifdef DEBUG
 //      //rect rectClip;
@@ -864,17 +864,17 @@ namespace metrowin
 //      //
 //      /////////////////////////////
 //
-//   /*   if(!::DrawDibDraw ( pbuffer->m_drawdib.m_hdrawdib, 
-//         hdcScreen, 
+//   /*   if(!::DrawDibDraw ( pbuffer->m_drawdib.m_hdrawdib,
+//         hdcScreen,
 //         rectOutputClient.left,
 //         rectOutputClient.top,
 //         rectOutputClient.width(),
-//         rectOutputClient.height(), 
-//         &(pbuffer->m_spdib.m_Info.bmiHeader), pbuffer->m_spdib.m_pcolorref, 
+//         rectOutputClient.height(),
+//         &(pbuffer->m_spdib.m_Info.bmiHeader), pbuffer->m_spdib.m_pcolorref,
 //         rectOutput.left,
 //         rectOutput.top,
 //         rectOutput.width(),
-//         rectOutput.height(), 
+//         rectOutput.height(),
 //         0))
 //      {
 //         TRACE0("Bitmap not painted.\n");
@@ -908,7 +908,7 @@ namespace metrowin
 //         class rect rcMonitor;
 //
 //         System.get_monitor_rect(0, &rcMonitor);
-//         
+//
 //         sz.cx = (LONG) min(rectWindow.right - pt.x, rcMonitor.right - pt.x);
 //         sz.cy = (LONG) min(rectWindow.bottom - pt.y, rcMonitor.bottom - pt.y);
 //
@@ -923,15 +923,15 @@ namespace metrowin
 //         if(rect(rectWindow) != rectWin || (pwnd->m_pguie != NULL && (bool) pwnd->m_pguie->oprop("pending_layout")))
 //         {
 //
-//            
+//
 //            if(pwnd->m_pguie != NULL && (bool) pwnd->m_pguie->oprop("pending_layout"))
 //            {
 //               oswindow hwndZOrder = (oswindow) pwnd->m_pguie->oprop("pending_zorder").get_integer();
-//               ::SetWindowPos(hwndParam, HWND_TOPMOST, 
+//               ::SetWindowPos(hwndParam, HWND_TOPMOST,
 //                  (int) rectWindow.left, (int) rectWindow.top, (int) rectWindow.width(), (int) rectWindow.height(), SWP_SHOWWINDOW);
-//               ::SetWindowPos(hwndParam, HWND_NOTOPMOST, 
+//               ::SetWindowPos(hwndParam, HWND_NOTOPMOST,
 //                  (int) rectWindow.left, (int) rectWindow.top, (int) rectWindow.width(), (int) rectWindow.height(), SWP_SHOWWINDOW);
-//               ::SetWindowPos(hwndParam, hwndZOrder, 
+//               ::SetWindowPos(hwndParam, hwndZOrder,
 //                  (int) rectWindow.left, (int) rectWindow.top, (int) rectWindow.width(), (int) rectWindow.height(), SWP_SHOWWINDOW | SWP_FRAMECHANGED);
 //               /*simple_frame_window * pframe = dynamic_cast < simple_frame_window * > (pwnd->m_pguie);
 //               if(pframe != NULL)
@@ -954,7 +954,7 @@ namespace metrowin
 //         (int) rectOutputClient.left,
 //         (int) rectOutputClient.top,
 //         (int) rectOutputClient.width(),
-//         (int) rectOutputClient.height(), 
+//         (int) rectOutputClient.height(),
 //         (HDC)(dynamic_cast<::metrowin::graphics * >(m_pbuffer->GetBuffer()))->get_os_data(),
 //         (int) rectWindow.left,
 //         (int) rectWindow.top,

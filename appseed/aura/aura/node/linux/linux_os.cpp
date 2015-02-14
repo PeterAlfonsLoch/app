@@ -12,7 +12,7 @@ namespace linux
 
 
    os::os(sp(::aura::application) papp) :
-      element(papp),
+      ::object(papp),
       ::aura::os(papp)
    {
    }

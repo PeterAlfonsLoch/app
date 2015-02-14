@@ -14,7 +14,7 @@ namespace music
 
 
          sequence::sequence(sp(base_application) papp) :
-            element(papp),
+            ::object(papp),
             ::ikaraoke::karaoke(papp),
             ::music::midi::sequence(papp)
          {
@@ -289,7 +289,7 @@ Seq_Open_File_Cleanup:
 
             if (GetState() != status_no_file)
             {
-               
+
                return EFunctionNotSupported;
 
             }
@@ -442,9 +442,9 @@ Seq_Open_File_Cleanup:
          ****************************************************************************/
          ::multimedia::e_result sequence::Preroll(::thread * pthread, ::music::midi::LPPREROLL lpPreroll, bool bThrow)
          {
-            
+
             UNREFERENCED_PARAMETER(pthread);
-            
+
             single_lock sl(&m_mutex, TRUE);
 
             int32_t                 i;
@@ -522,25 +522,25 @@ Seq_Open_File_Cleanup:
                }
 
                mptd.cbStruct  = sizeof(mptd);
-               
+
                mptd.dwTimeDiv = m_dwTimeDivision;
-               
+
                mmrc = translate_mmr(midiStreamProperty(m_hstream, (LPBYTE) &mptd, MIDIPROP_SET | MIDIPROP_TIMEDIV));
 
                if (mmrc != ::multimedia::result_success)
                {
-                  
+
                   TRACE( "midiStreamProperty() -> %04X", (WORD)mmrc);
-                  
+
                   midiStreamClose(m_hstream);
-                  
+
                   m_hstream = NULL;
-                  
+
                   mmrc = translate_mmr(::multimedia::result_not_ready);
 
                   if(bThrow)
                   {
-                     
+
                      SetState(status_opened);
 
                      throw new exception(get_app(), EMidiPlayerPrerollStreamProperty);
@@ -687,14 +687,14 @@ seq_Preroll_Cleanup:
          ***************************************************************************/
          ::multimedia::e_result sequence::Start()
          {
-            
+
             single_lock sl(&m_mutex, TRUE);
-            
+
             if (::music::midi::sequence::status_pre_rolled != GetState())
             {
-               
+
                TRACE( "seqStart(): State is wrong! [%u]", GetState());
-               
+
                return ::multimedia::result_unsupported_function;
 
             }
@@ -844,7 +844,7 @@ seq_Preroll_Cleanup:
 
             if(m_hstream != NULL)
             {
-               
+
                m_mmrcLastErr = translate_mmr(midiStreamStop(m_hstream));
 
                if(::multimedia::result_success != m_mmrcLastErr)
@@ -2091,7 +2091,7 @@ seq_Preroll_Cleanup:
                   ms2DNoteOffMillis[i],
                   ms2DNoteOnMillis[i]);
 
-               /*         
+               /*
                pLyricEventsV2->m_msaNotesDuration.Diff(
                ms2DNoteOffMillis[i],
                ms2DNoteOnMillis[i]);
@@ -2339,7 +2339,7 @@ seq_Preroll_Cleanup:
 
          ::multimedia::e_result sequence::buffer::midiOutPrepareHeader(HMIDIOUT hmidiout)
          {
-            
+
             ::multimedia::e_result mmr = ::multimedia::result_success;
 
             if(hmidiout == NULL)
@@ -2364,7 +2364,7 @@ seq_Preroll_Cleanup:
 
          ::multimedia::e_result sequence::buffer::midiOutUnprepareHeader(HMIDIOUT hmidiout)
          {
-            
+
             ::multimedia::e_result mmr = ::multimedia::result_success;
 
             if(hmidiout == NULL)

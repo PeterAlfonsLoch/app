@@ -102,7 +102,7 @@ public:
 
 
    db_str_sync_queue(::aura::application * papp):
-      element(papp),
+      ::object(papp),
       thread(papp),
       simple_thread(papp),
       m_handler(papp),

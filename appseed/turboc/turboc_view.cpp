@@ -12,7 +12,7 @@ namespace turboc
 
 
    view::view(::aura::application * papp):
-      element(papp),
+      ::object(papp),
       m_dib1(allocer()),
       m_dib2(allocer()),
       m_dib(allocer()),
@@ -456,7 +456,7 @@ namespace turboc
 
       m_dMaxRadius = m_dMinRadius * 2.3;
 
-      
+
 
       pdc->set_font(m_font);
 

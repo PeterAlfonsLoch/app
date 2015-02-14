@@ -11,7 +11,7 @@ namespace simpledb
 
 
    service::service(::aura::application * papp) :
-      element(papp),
+      ::object(papp),
       plain_service(papp)
    {
    }

@@ -7,7 +7,7 @@ namespace turboc
 
 
    context::context(::aura::application * papp):
-      element(papp),
+      ::object(papp),
       m_dib(allocer()),
       m_diba(papp)
    {
@@ -66,11 +66,11 @@ namespace turboc
 
       forall(m_diba)
       {
-         
+
          item.alloc(allocer());
-         
+
          item->create(x,y);
-         
+
          item->Fill(0,0,0,0);
 
       }

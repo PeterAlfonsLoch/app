@@ -9,7 +9,7 @@ namespace android
 
 
 stdio_file::stdio_file(::aura::application * papp) :
-   element(papp),
+   ::object(papp),
    ::android::file(papp)
 {
 

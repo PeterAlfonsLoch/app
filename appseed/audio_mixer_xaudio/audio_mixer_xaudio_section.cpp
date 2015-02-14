@@ -10,7 +10,7 @@ namespace multimedia
 
 
       departament::departament(sp(base_application) papp) :
-         element(papp),
+         ::object(papp),
          base_departament(papp)
       {
 
@@ -31,7 +31,7 @@ namespace multimedia
       }
 
 
-      bool departament::finalize() 
+      bool departament::finalize()
       {
 
          DestroyWindow();

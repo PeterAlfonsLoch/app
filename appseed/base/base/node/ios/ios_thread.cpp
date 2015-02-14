@@ -187,7 +187,7 @@ namespace ios
    }
 
    thread::thread(::aura::application * papp) :
-   element(papp),
+   ::object(papp),
    message_queue(papp),//,
    m_evFinish(papp, FALSE, TRUE),
    ::thread(NULL),
