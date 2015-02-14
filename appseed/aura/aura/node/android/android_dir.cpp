@@ -10,7 +10,7 @@ namespace android
 
 
    dir::dir(::aura::application * papp) :
-      ::::object(papp),
+      ::object(papp),
       ::file::dir::system(papp)
    {
 

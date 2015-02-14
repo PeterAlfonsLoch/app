@@ -8,7 +8,7 @@ namespace macos
 
 
    dir::dir(::aura::application *   papp) :
-      ::::object(papp),
+      ::object(papp),
       ::file::dir::system(papp),
    m_path(papp)
    {

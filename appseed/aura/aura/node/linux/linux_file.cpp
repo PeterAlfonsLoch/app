@@ -1689,7 +1689,7 @@ return TRUE;
 /////////////////////////////////////////////////////////////////////////////
 // WinFileException helpers
 
-void CLASS_DECL_AURA vfxThrowFileException(::aura::application * papp, ::file::exception::e_cause ecause, LONG lOsError, const char * lpszFileName /* == NULL */)
+void CLASS_DECL_AURA vfxThrowFileException(::aura::application * papp, ::file::exception::e_cause ecause, int lOsError, const char * lpszFileName /* == NULL */)
 {
 #ifdef DEBUG
    const char * lpsz;
@@ -1697,7 +1697,7 @@ void CLASS_DECL_AURA vfxThrowFileException(::aura::application * papp, ::file::e
       lpsz = ::linux::rgszFileExceptioncause[ecause];
    else
       lpsz = ::linux::szUnknown;
-   //   TRACE3("file exception: %hs, file %s, App error information = %ld.\n", lpsz, (lpszFileName == NULL) ? "Unknown" : lpszFileName, lOsError);
+   //   TRACE3("file exception: %hs, file %s, App error information = %d.\n", lpsz, (lpszFileName == NULL) ? "Unknown" : lpszFileName, lOsError);
 #endif
    throw ::file::exception(papp, ecause, lOsError, lpszFileName);
 }

@@ -6,7 +6,7 @@ namespace draw2d_cairo
 
 
    path::path(::aura::application * papp) :
-      ::::object(papp)
+      ::object(papp)
    {
 
    }

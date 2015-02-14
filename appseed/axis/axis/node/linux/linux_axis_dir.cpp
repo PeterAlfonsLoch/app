@@ -12,7 +12,7 @@ namespace linux
 
 
    dir::dir(::aura::application * papp) :
-      ::::object(papp),
+      ::object(papp),
       ::file::dir::system(papp),
       ::file::dir::axis::system(papp),
       ::linux::dir(papp)

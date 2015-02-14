@@ -6,7 +6,7 @@ namespace metrowin
 
 
    dir::dir(::aura::application *  papp):
-      ::::object(papp),
+      ::object(papp),
       ::file::dir::system(papp),
       m_path(papp)
    {
@@ -20,7 +20,7 @@ namespace metrowin
    }
 
    path::path(::aura::application *  papp):
-      ::::object(papp)
+      ::object(papp)
    {
    }
 

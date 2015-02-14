@@ -34,7 +34,7 @@ namespace linux
       interaction_impl(sp(::aura::application) papp);
       virtual void construct(oswindow hwnd);
 
-      virtual void on_delete(element * poc);
+      virtual void on_delete(::object * poc);
 
       virtual void mouse_hover_add(::user::interaction * pinterface);
       virtual void mouse_hover_remove(::user::interaction * pinterface);
