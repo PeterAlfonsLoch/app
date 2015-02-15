@@ -7,7 +7,7 @@ namespace dynamic_source
 
 
    script_instance::script_instance(script * pscript) :
-      element(pscript->get_app())
+      ::object(pscript->get_app())
    {
       m_pscript = pscript;
       m_pscriptScriptInstance = pscript;

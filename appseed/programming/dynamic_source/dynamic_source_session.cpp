@@ -7,7 +7,7 @@ namespace dynamic_source
 
 
    session::session(const string & strId, ::dynamic_source::script_manager * pmanager) :
-      element(pmanager->get_app()),
+      ::object(pmanager->get_app()),
       m_pmanager(pmanager),
       m_mutex(pmanager->get_app()),
       m_strId(strId)
@@ -30,14 +30,14 @@ namespace dynamic_source
    int64_t session::add_ref()
    {
 
-      return root::add_ref();
+      return object::add_ref();
 
    }
 
    int64_t session::release()
    {
 
-      return root::dec_ref();
+      return object::dec_ref();
 
    }
 

@@ -7,7 +7,7 @@ namespace dynamic_source
 
 
    httpd_socket::httpd_socket(::sockets::base_socket_handler& h) :
-      element(h.get_app()),
+      ::object(h.get_app()),
       base_socket(h),
       socket(h),
       stream_socket(h),
@@ -16,13 +16,13 @@ namespace dynamic_source
       http_socket(h),
       ::sockets::httpd_socket(h)
    {
-      
+
       m_iCa2FetchMode      = 0;
 
    }
 
    httpd_socket::httpd_socket(const httpd_socket& s) :
-      element(s.get_app()),
+      ::object(s.get_app()),
       base_socket(s),
       socket(s),
       stream_socket(s),

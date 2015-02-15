@@ -12,7 +12,7 @@ namespace dynamic_source
    public:
 
 
-      critical_section     m_cs;
+      mutex                m_cs;
       strsp(script)        m_map;
       sp(script_manager)   m_pmanager;
 

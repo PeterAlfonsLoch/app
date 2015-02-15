@@ -2,14 +2,14 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="math" />
+		<Option title="time" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="../../../stage/x86/libmath.so" prefix_auto="0" extension_auto="0" />
+				<Option output="../../../stage/x86/libtime.so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="../../../stage/x86/" />
-				<Option object_output="../../../time/intermediate/app/math" />
+				<Option object_output="../../../time/intermediate/app/time" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -57,35 +57,46 @@
 			<Add directory="../../thirdparty/appseed" />
 			<Add directory="../../../app/thirdparty/include" />
 			<Add directory="../../../app/thirdparty/appseed" />
-			<Add directory="../core" />
-			<Add directory="../base" />
+			<Add directory="../aura" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
 			<Add option="-Wl,-z,origin" />
-			<Add option="-lbase" />
-			<Add option="-lcore" />
+			<Add option="-laura" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 			<Add directory="/usr/lib64/mysql/" />
 		</Linker>
+		<Unit filename="calculator/calculator.h" />
+		<Unit filename="calculator/datetime_element.cpp" />
+		<Unit filename="calculator/datetime_element.h" />
+		<Unit filename="calculator/datetime_parser.cpp" />
+		<Unit filename="calculator/datetime_parser.h" />
+		<Unit filename="calculator/datetime_parser_exception.cpp" />
+		<Unit filename="calculator/datetime_parser_exception.h" />
+		<Unit filename="calculator/datetime_scanner.cpp" />
+		<Unit filename="calculator/datetime_scanner.h" />
+		<Unit filename="calculator/datetime_token.cpp" />
+		<Unit filename="calculator/datetime_token.h" />
+		<Unit filename="datetime/datetime.h" />
+		<Unit filename="datetime/datetime_calendar.cpp" />
+		<Unit filename="datetime/datetime_calendar.h" />
+		<Unit filename="datetime/datetime_calendar_interface.cpp" />
+		<Unit filename="datetime/datetime_calendar_interface.h" />
+		<Unit filename="datetime/datetime_clock.cpp" />
+		<Unit filename="datetime/datetime_clock.h" />
+		<Unit filename="datetime/datetime_clock_interface.cpp" />
+		<Unit filename="datetime/datetime_clock_interface.h" />
+		<Unit filename="datetime/datetime_float_time.cpp" />
+		<Unit filename="datetime/datetime_float_time.h" />
+		<Unit filename="datetime/datetime_windows_file_time.cpp" />
+		<Unit filename="datetime/datetime_windows_file_time.h" />
 		<Unit filename="framework.cpp" />
 		<Unit filename="framework.h">
 			<Option compile="1" />
 			<Option weight="0" />
 		</Unit>
-		<Unit filename="kissfft/kiss_fft.cpp" />
-		<Unit filename="kissfft/kiss_fft.h" />
-		<Unit filename="kissfft/kiss_fft_guts.h" />
-		<Unit filename="kissfft/kiss_fft_shared.cpp" />
-		<Unit filename="kissfft/kiss_ifft.cpp" />
-		<Unit filename="kissfft/kiss_ifft.h" />
-		<Unit filename="kissfft/kissfft.h" />
-		<Unit filename="kissfft/kissfft_fftd.cpp" />
-		<Unit filename="kissfft/kissfft_fftd.h" />
-		<Unit filename="kissfft/kissfft_ifftd.cpp" />
-		<Unit filename="kissfft/kissfft_ifftd.h" />
-		<Unit filename="math/math.h" />
+		<Unit filename="time/time.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />
