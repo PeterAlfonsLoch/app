@@ -147,7 +147,7 @@ bool axis_term()
 #ifndef WINDOWS
 
    // todo (casey tips) : do real/explicit dynamic linking
-   throw todo(get_thread_app());
+   //throw todo(get_thread_app());
    try
    {
 

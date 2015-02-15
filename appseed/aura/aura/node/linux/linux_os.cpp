@@ -588,11 +588,11 @@ namespace linux
 
    }
 
-   bool os::create_service(sp(::aura::application) papp)
+   bool os::create_service(::aura::application * papp)
    {
 
       //throw not_implemented(get_app());
-      return false;
+      return true;
 
 /*
       if(papp->m_strAppName.is_empty()
@@ -641,7 +641,7 @@ namespace linux
    }
 
 
-   bool os::remove_service(sp(::aura::application) papp)
+   bool os::remove_service(::aura::application * papp)
    {
 //      throw not_implemented(get_app());
       return false;
@@ -682,7 +682,7 @@ namespace linux
 */
    }
 
-   bool os::start_service(sp(::aura::application) papp)
+   bool os::start_service(::aura::application * papp)
    {
       //throw not_implemented(get_app());
       return false;
@@ -723,7 +723,7 @@ namespace linux
       */
    }
 
-   bool os::stop_service(sp(::aura::application) papp)
+   bool os::stop_service(::aura::application * papp)
    {
       throw not_implemented(get_app());
       return false;

@@ -83,7 +83,7 @@ void window_xlib::destroy_window_graphics()
 }
 
 
-void window_xlib::update_window(COLORREF * pOsBitmapData, const RECT & lpcrect, int cxParam, int cyParam, int iStride)
+void window_xlib::update_window(COLORREF * pOsBitmapData, const RECT & lpcrect, int cxParam, int cyParam, int iStride, bool bTransferBuffer)
 {
 
    //single_lock sl(&user_mutex());
@@ -103,10 +103,14 @@ void window_xlib::update_window(COLORREF * pOsBitmapData, const RECT & lpcrect, 
    if(m_size.area() <= 0)
       return;
 
+    if(bTransferBuffer)
+    {
 
    //memset(pOsBitmapData, 0x44, min(iStride * 16, iStride * m_size.cy));
 
    ::draw2d::copy_colorref(cxParam, cyParam, (COLORREF *) m_mem.get_data(), m_iScan, pOsBitmapData, iStride);
+
+   }
 
 
 
