@@ -10,6 +10,7 @@
 #endif
 
 
+
 namespace dynamic_source
 {
 
@@ -78,7 +79,7 @@ namespace dynamic_source
       //m_strSdk1 = "windows7.1sdk";
       m_strSdk1 = "vc120";
       string strPlat2;
-#ifdef _M_X64
+#ifdef OS64BIT
       m_strPlat1     = "64";
       strPlat2 = "  x86_amd64";
       m_strPlatform = "x64";
@@ -466,7 +467,7 @@ namespace dynamic_source
       str.replace("%LIBS_LIBS%", m_strLibsLibs);
       str.replace("%VS_VARS%", m_strEnv);
       string strPlat2;
-#ifdef _M_X64
+#ifdef OS64BIT
       strPlat2 = "x86_amd64";
 #else
       strPlat2 = " x86";
@@ -808,7 +809,7 @@ namespace dynamic_source
       strVars += "vc\\bin\\vcvars32.bat";*/
       str.replace("%VS_VARS%", m_strEnv);
       string strPlat2;
-#ifdef _M_X64
+#ifdef OS64BIT
       strPlat2 = "x86_amd64";
 #else
       strPlat2 = " x86";

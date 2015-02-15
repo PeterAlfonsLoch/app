@@ -678,7 +678,7 @@ void thread_impl::post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam)
       try
       {
 
-         if(::PostThreadMessage((DWORD) ::multithreading::s_piaThread->element_at(i),message,wparam,lparam))
+         if(::PostThreadMessage((IDTHREAD) ::multithreading::s_piaThread->element_at(i),message,wparam,lparam))
          {
 
          }

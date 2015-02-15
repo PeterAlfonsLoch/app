@@ -1350,7 +1350,7 @@ CLASS_DECL_AURA int_bool WINAPI PeekMessageW(LPMESSAGE lpMsg,oswindow oswindow,U
 //}
 
 
-CLASS_DECL_AURA int_bool WINAPI PostThreadMessageW(DWORD iThreadId,UINT Msg,WPARAM wParam,LPARAM lParam)
+CLASS_DECL_AURA int_bool WINAPI PostThreadMessageW(IDTHREAD iThreadId,UINT Msg,WPARAM wParam,LPARAM lParam)
 {
 
    //HTHREAD h = ::get_thread_handle(idThread);

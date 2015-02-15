@@ -32,6 +32,8 @@ public:
 
 };
 
+typedef HTHREAD idthread;
+
 CLASS_DECL_AURA mq * get_mq(HTHREAD h);
 
 CLASS_DECL_AURA int_bool WINAPI GetMessageW(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax);
@@ -46,7 +48,7 @@ CLASS_DECL_AURA DWORD WINAPI GetThreadId(HTHREAD Thread);
 
 #define PostThreadMessage  PostThreadMessageW
 
-CLASS_DECL_AURA int_bool WINAPI PostThreadMessageW(DWORD idThread, UINT Msg, WPARAM wParam, LPARAM lParam);
+CLASS_DECL_AURA int_bool WINAPI PostThreadMessageW(IDTHREAD idthread, UINT Msg, WPARAM wParam, LPARAM lParam);
 
 CLASS_DECL_AURA HTHREAD GetCurrentThread();
 

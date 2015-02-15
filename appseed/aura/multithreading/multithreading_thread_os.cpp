@@ -70,7 +70,7 @@
 //
 //   if(pfn != NULL)
 //   {
-//      
+//
 //      m_pfn = pfn;
 //
 //      m_pv = pv;
@@ -227,7 +227,7 @@
 //
 //   if(m_pfn == NULL)
 //   {
-//      
+//
 //      MESSAGE msg;
 //
 //      while(m_bRun)
@@ -263,7 +263,7 @@
 //
 //      attach_thread_input_to_main_thread(true);
 //
-//      
+//
 //
 //      try
 //      {
@@ -449,15 +449,15 @@ struct create_thread_data
 };
 
 
-CLASS_DECL_AURA HTHREAD create_thread(LPSECURITY_ATTRIBUTES lpsa,uint_ptr cbStack,uint32_t(*pfn)(void *),void * pv,uint32_t uiFlags,uint32_t * puiId)
+CLASS_DECL_AURA HTHREAD create_thread(LPSECURITY_ATTRIBUTES lpsa,uint_ptr cbStack,uint32_t(*pfn)(void *),void * pv,uint32_t uiFlags,IDTHREAD * puiId)
 {
 
 #ifdef WINDOWS
-   
+
    DWORD dwId = 0;
-   
+
    HTHREAD  hthread = CreateThread(lpsa,cbStack,&create_thread_data::os_thread_proc,new create_thread_data(pfn,pv),uiFlags,&dwId);
-   
+
    if(hthread == NULL)
    {
       return NULL;
@@ -503,6 +503,13 @@ CLASS_DECL_AURA HTHREAD create_thread(LPSECURITY_ATTRIBUTES lpsa,uint_ptr cbStac
    pthread_attr_setdetachstate(&threadAttr,PTHREAD_CREATE_DETACHED); // Set thread to detached state. No need for pthread_join
 
    pthread_create(&thread,&threadAttr,&create_thread_data::os_thread_proc,(LPVOID)new create_thread_data(pfn,pv)); // Create the thread
+
+   if(puiId != NULL)
+   {
+
+    *puiId = thread;
+
+   }
 
    return thread;
 

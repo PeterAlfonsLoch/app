@@ -33,15 +33,15 @@ namespace file_watcher
 
 //      uint32_t uiId = m_nId;
 
-      while(!m_bUpdating)
-      {
-         Sleep(100);
-      }
+      //while(m_bUpdating)
+    //  {
+  //       Sleep(100);
+//      }
 
       post_thread_message(WM_USER + 123, 0, (lparam) pop);
 
       pop->m_event.wait();
-      
+
       id id  = pop->m_id;
 
       delete pop;

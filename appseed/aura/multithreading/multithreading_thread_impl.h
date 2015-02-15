@@ -47,7 +47,7 @@ public:
 
    bool                                      m_bDupHandle;
    HTHREAD                                   m_hthread;
-   uint32_t                                  m_uiThread;
+   IDTHREAD                                  m_uiThread;
 
    list < ::aura::frame_window * >           m_frameList;
 

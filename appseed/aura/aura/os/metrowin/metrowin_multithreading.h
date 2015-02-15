@@ -52,7 +52,7 @@ CLASS_DECL_AURA WINBOOL WINAPI PeekMessageW(LPMESSAGE lpMsg, oswindow oswindow, 
 
 #define PostThreadMessage  PostThreadMessageW
 
-CLASS_DECL_AURA WINBOOL WINAPI PostThreadMessageW(DWORD idThread, UINT Msg, WPARAM wParam, LPARAM lParam);
+CLASS_DECL_AURA WINBOOL WINAPI PostThreadMessageW(IDTHREAD idthread, UINT Msg, WPARAM wParam, LPARAM lParam);
 
 CLASS_DECL_AURA void WINAPI TlsShutdown();
 

@@ -65,10 +65,19 @@
 //
 //};
 
+#ifdef WINDOWSEX
+
+typedef uint32_t IDTHREAD;
+
+#else
+
+typedef HTHREAD IDTHREAD;
+
+#endif
 
 CLASS_DECL_AURA HTHREAD start_thread(uint32_t (*)(void *), void * pv, int32_t iPriority = 0);
 
-CLASS_DECL_AURA HTHREAD create_thread(LPSECURITY_ATTRIBUTES lpsa, uint_ptr cbStack, uint32_t (*)(void *), void * pv, uint32_t uiFlags, uint32_t * puiId);
+CLASS_DECL_AURA HTHREAD create_thread(LPSECURITY_ATTRIBUTES lpsa, uint_ptr cbStack, uint32_t (*)(void *), void * pv, uint32_t uiFlags, IDTHREAD * puiId);
 
 
 //class CLASS_DECL_AURA thread_layer

@@ -52,7 +52,6 @@
 			<Add option="-fPIC" />
 			<Add option="-DLINUX" />
 			<Add option="-DUSE_SOCKETS" />
-			<Add option="-DOPENSSL_BN_ASM_MONT" />
 			<Add directory="../../../include" />
 			<Add directory="../../include" />
 			<Add directory="framework" />
