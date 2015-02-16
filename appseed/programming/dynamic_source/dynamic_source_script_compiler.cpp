@@ -80,11 +80,19 @@ namespace dynamic_source
       m_strSdk1 = "vc120";
       string strPlat2;
 #ifdef OS64BIT
+#ifdef LINUX
+      m_strPlat1     = "64";
+      strPlat2 = " x86";
+      m_strPlatform = "x86";
+      m_strStagePlatform = "x86";
+      m_strLibPlatform = "x86/";
+      #else
       m_strPlat1     = "64";
       strPlat2 = "  x86_amd64";
       m_strPlatform = "x64";
       m_strStagePlatform = "x64";
       m_strLibPlatform = "x64/";
+      #endif
 #else
       m_strPlat1     = "32";
       strPlat2 = " x86";
@@ -528,7 +536,7 @@ namespace dynamic_source
 
 #ifdef LINUX
 
-      Sleep(1984);
+      //Sleep(1984);
 
 #endif
       pscript->m_memfileError.m_spbuffer->set_length(0);
@@ -736,7 +744,7 @@ namespace dynamic_source
       strDest += "class " + m_pmanager->m_strNamespace + "_dynamic_source_script : virtual public ::" + m_pmanager->m_strNamespace + "::script_instance\r\n";
       strDest += "{\r\n";
       strDest += "public:\r\n";
-      strDest += "   " + m_pmanager->m_strNamespace + "_dynamic_source_script(dynamic_source::script * pscript) : element(pscript->get_app()), dynamic_source::script_instance(pscript), ::" + m_pmanager->m_strNamespace + "::script_instance(pscript), ::" + m_pmanager->m_strNamespace + "::script_impl(pscript) {};  \r\n";
+      strDest += "   " + m_pmanager->m_strNamespace + "_dynamic_source_script(dynamic_source::script * pscript) : ::object(pscript->get_app()), dynamic_source::script_instance(pscript), ::" + m_pmanager->m_strNamespace + "::script_instance(pscript), ::" + m_pmanager->m_strNamespace + "::script_impl(pscript) {};  \r\n";
       strDest += "   virtual void run();\r\n";
       strDest += "   \r\n\r\n";
       strDest += strDs;
@@ -1111,7 +1119,7 @@ namespace dynamic_source
       str.replace("%TARGET_NAME%", strTargetName);
       Application.dir().mk(System.dir().element("stage\\" + m_strStagePlatform + "\\library"));
 #ifdef LINUX
-      Sleep(1984);
+      //Sleep(1984);
       strCmd = System.dir().element("stage\\front\\libl1.bash");
 #else
       strCmd = System.dir().element("stage\\front\\libl1.bat");

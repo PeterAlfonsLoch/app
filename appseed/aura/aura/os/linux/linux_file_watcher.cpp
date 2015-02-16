@@ -104,7 +104,9 @@ namespace file_watcher
 		   for(index index = 0; index < stra.get_count(); index++)
 		   {
 
-		      int32_t inaw = inotify_add_watch (mFD, stra[index], IN_CLOSE_WRITE | IN_MOVED_TO | IN_CREATE | IN_MOVED_FROM | IN_DELETE);
+		   string strDirPath = stra[index];
+
+		      int32_t inaw = inotify_add_watch (mFD, strDirPath, IN_CLOSE_WRITE | IN_MOVED_TO | IN_CREATE | IN_MOVED_FROM | IN_DELETE);
 
             if(inaw < 0)
             {

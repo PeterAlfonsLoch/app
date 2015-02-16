@@ -436,7 +436,7 @@ namespace dynamic_source
       }
 
       memfile << m_strPersistentError;
-      
+
       return memfile.to_string();
 
    }
@@ -451,7 +451,7 @@ namespace dynamic_source
       try
       {
          single_lock sl(&m_mutexIncludeMatches, TRUE);
-         
+
          try
          {
 
@@ -599,7 +599,7 @@ namespace dynamic_source
       // todo (camilo) equal file comparison, for clearing include matching only changed files
       try
       {
-         
+
          m_pmanager->clear_include_matches();
 
       }
@@ -637,7 +637,7 @@ namespace dynamic_source
 #else
 #define is_absolute_path(psz) (psz[0] == '/')
 #endif
- 
+
    string script_manager::real_path(const string & str)
    {
 #ifdef WINDOWS
@@ -667,7 +667,7 @@ namespace dynamic_source
 
    sp(::dynamic_source::session) script_manager::get_session(const char * pszId)
    {
-      
+
       single_lock sl(&m_mutexSession, TRUE);
 
       strsp(::dynamic_source::session)::pair * ppair = m_mapSession.PLookup(pszId);
@@ -683,7 +683,7 @@ namespace dynamic_source
             return ppair->m_element2;
 
          }
-            
+
          ppair->m_element2.m_p->~session_parent;
 
 #undef new
@@ -694,7 +694,7 @@ namespace dynamic_source
          return ppair->m_element2;
 
       }
-         
+
       sp(::dynamic_source::session) psession = canew(::dynamic_source::session(pszId, this));
 
       psession->m_timeExpiry = ::datetime::time::get_current_time() + minutes(9);
@@ -788,7 +788,7 @@ namespace dynamic_source
 
       if(m_rsaptra.get_size() > 23)
       {
-         
+
          m_rsaptra.remove_at(0);
 
       }
@@ -1130,7 +1130,8 @@ namespace dynamic_source
       return System.dir().path("C:\\netnode\\stage\\"+m_pcompiler->m_strStagePlatform+"\\",strPath);
 #else
       ::str::begins_eat(strPath,".");
-      return System.dir().path("/ca2/stage/"+m_pcompiler->m_strStagePlatform+"/","lib" + strPath);
+      //return System.dir().path("/ca2/stage/"+m_pcompiler->m_strStagePlatform+"/","lib" + strPath);
+      return System.dir().path("/ca2/stage/x86/","lib" + strPath);
 #endif
 
    }
@@ -1146,7 +1147,7 @@ namespace dynamic_source
 
    string script_manager::get_script_path(const string & strName)
    {
-      
+
       string strTransformName = strName;
 
       strTransformName.replace(":","");

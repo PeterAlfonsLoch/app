@@ -120,7 +120,7 @@ string file_as_string_dup(const char * path)
 
    LPSTR lpsz = str.GetBufferSetLength(iSize);
 
-   ::count iRead = fread(lpsz, iSize, 1, f);
+   ::count iRead = fread(lpsz, 1,iSize, f);
 
    lpsz[iRead] = '\0';
 
