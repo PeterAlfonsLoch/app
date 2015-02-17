@@ -152,10 +152,10 @@ namespace draw2d
 
    }
 
-   
+
    bool dib::dc_select(bool bSelect)
    {
-   
+
       UNREFERENCED_PARAMETER(bSelect);
 
       ::exception::throw_interface_only(get_app());
@@ -200,7 +200,7 @@ namespace draw2d
 
    bool dib::to(::draw2d::graphics * pgraphics, point pt)
    {
-      
+
       return to(pgraphics, pt, size());
 
    }
@@ -263,7 +263,7 @@ namespace draw2d
    //   return true;
    //}
 
-   
+
    bool dib::from(::draw2d::graphics * pdc)
    {
 
@@ -1038,17 +1038,23 @@ namespace draw2d
 
    void dib::BitBlt(int cxParam, int cyParam, dib *pdib,int32_t op)
    {
+
       map();
 
       pdib->map();
 
       if(op == 1 && m_size == pdib->m_size && pdib->m_iScan == m_iScan) // op == 1 indicates can ignore cxParam and cyParam and perform full memcpy
       {
-         
+
+         if(cyParam <= 0)
+            return;
+
+         cyParam = MIN(cyParam, MIN(pdib->m_size.cy, m_size.cy));
+
 #if defined(APPLEOS)
 
          memcpy(&m_pcolorref[m_iScan / 4 * (pdib->m_size.cy - cyParam)],&pdib->m_pcolorref[m_iScan / 4 * (pdib->m_size.cy - cyParam)],cyParam * m_iScan);
-         
+
 #else
 
          memcpy(m_pcolorref,pdib->m_pcolorref,cyParam * m_iScan);
@@ -1059,6 +1065,15 @@ namespace draw2d
       else if(op == 0 || op == 1)
       {
 
+         if(cxParam <= 0)
+            return;
+
+         if(cyParam <= 0)
+            return;
+
+         cxParam = MIN(cxParam, MIN(pdib->m_size.cx, m_size.cx));
+
+         cyParam = MIN(cyParam, MIN(pdib->m_size.cy, m_size.cy));
 
          int iStrideSrc = pdib->m_iScan;
 
@@ -3313,15 +3328,15 @@ namespace draw2d
       ::exception::throw_interface_only(get_app());
    }
 
-   
+
    int32_t dib::cos(int32_t i, int32_t iAngle)
    {
-      
+
       UNREFERENCED_PARAMETER(i);
       UNREFERENCED_PARAMETER(iAngle);
 
       ::exception::throw_interface_only(get_app());
-      
+
       return 0;
 
    }
@@ -3329,7 +3344,7 @@ namespace draw2d
 
    int32_t dib::sin(int32_t i, int32_t iAngle)
    {
-      
+
       UNREFERENCED_PARAMETER(i);
       UNREFERENCED_PARAMETER(iAngle);
 
@@ -3342,7 +3357,7 @@ namespace draw2d
 
    int32_t dib::cos10(int32_t i, int32_t iAngle)
    {
-      
+
       UNREFERENCED_PARAMETER(i);
       UNREFERENCED_PARAMETER(iAngle);
 
@@ -3352,13 +3367,13 @@ namespace draw2d
 
    }
 
-   
+
    int32_t dib::sin10(int32_t i, int32_t iAngle)
    {
-      
+
       UNREFERENCED_PARAMETER(i);
       UNREFERENCED_PARAMETER(iAngle);
-      
+
       ::exception::throw_interface_only(get_app());
 
       return 0;
@@ -4036,7 +4051,7 @@ namespace draw2d
 
    bool dib::print_window(::aura::draw_interface * pwnd,signal_details * pobj)
    {
-   
+
       UNREFERENCED_PARAMETER(pwnd);
       UNREFERENCED_PARAMETER(pobj);
 
@@ -4329,7 +4344,7 @@ namespace draw2d
 
       if(this != &dib)
       {
-         
+
          from(&dib);
 
       }
