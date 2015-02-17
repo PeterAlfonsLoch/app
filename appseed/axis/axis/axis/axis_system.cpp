@@ -1174,9 +1174,9 @@ namespace axis
          return false;
 
       lprect->left = 0;
-      lprect->right = WidthOfScreen(DefaultScreenOfDisplay(d.m_pdisplay));
+      lprect->right = WidthOfScreen(DefaultScreenOfDisplay(d.m_pdata->m_pdisplay));
       lprect->top = 0;
-      lprect->bottom= HeightOfScreen(DefaultScreenOfDisplay(d.m_pdisplay));
+      lprect->bottom= HeightOfScreen(DefaultScreenOfDisplay(d.m_pdata->m_pdisplay));
 
 #elif defined(APPLEOS)
 
@@ -1321,9 +1321,9 @@ namespace axis
          return false;
 
       lprect->left = 0;
-      lprect->right = WidthOfScreen(DefaultScreenOfDisplay(d.m_pdisplay));
+      lprect->right = WidthOfScreen(DefaultScreenOfDisplay(d.m_pdata->m_pdisplay));
       lprect->top = 0;
-      lprect->bottom= HeightOfScreen(DefaultScreenOfDisplay(d.m_pdisplay));
+      lprect->bottom= HeightOfScreen(DefaultScreenOfDisplay(d.m_pdata->m_pdisplay));
 
 #elif defined(APPLEOS)
 

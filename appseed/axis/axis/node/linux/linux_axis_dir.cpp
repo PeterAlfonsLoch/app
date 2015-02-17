@@ -472,7 +472,7 @@ namespace linux
       }
 
 
-      bIsDir = ::dir::is(str);
+      bIsDir = ::dir::is(str.Left(iLast));
 
       m_isdirmap.set(str.Left(iLast + 1), bIsDir, bIsDir ? 0 : ::GetLastError());
 

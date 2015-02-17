@@ -15,7 +15,9 @@ Display * x11_get_display()
 
    if(s_pdisplay == NULL)
    {
+
       s_pdisplay =  XOpenDisplay(NULL);
+
    }
 
    return s_pdisplay;

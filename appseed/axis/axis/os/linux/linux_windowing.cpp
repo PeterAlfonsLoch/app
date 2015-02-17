@@ -708,7 +708,7 @@ bool oswindow_data::is_window_visible()
 
    xdisplay d(display());
 
-   if(d.m_pdisplay == NULL)
+   if(d.m_pdata->m_pdisplay == NULL)
     return false;
 
    XWindowAttributes attr;
@@ -792,6 +792,9 @@ oswindow SetFocus(oswindow window)
       return NULL;
 
    oswindow windowOld = ::GetFocus();
+
+   if(!IsWindowVisible(window))
+      return NULL;
 
    if(!XSetInputFocus(window->display(), window->window(), RevertToNone, CurrentTime))
       return NULL;
