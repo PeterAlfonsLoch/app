@@ -2142,10 +2142,36 @@ string& string::trim_left()
 
    const char * psz = GetString();
 
+   strsize iHere;
+
    while( string_trait::IsSpace( psz ) )
    {
+
       psz = string_trait::CharNext( psz );
+
+      iHere = (strsize) (psz-GetString());
+
+      if(iHere >= get_length())
+      {
+
+        if(iHere == get_length())
+        {
+
+            break;
+
+        }
+        else
+        {
+
+            return *this;
+
+        }
+
+
+      }
+
    }
+
 
    if( psz != GetString() )
    {
