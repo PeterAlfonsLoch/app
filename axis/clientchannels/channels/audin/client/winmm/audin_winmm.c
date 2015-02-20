@@ -32,7 +32,7 @@
 #include <winpr/cmdline.h>
 #include <freerdp/addin.h>
 
-#include "../audin_main.h"
+#include "audin_main.h"
 
 typedef struct _AudinWinmmDevice
 {

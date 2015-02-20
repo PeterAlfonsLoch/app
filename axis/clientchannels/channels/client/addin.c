@@ -21,8 +21,6 @@
 #include "config.h"
 #endif
 
-#define CMAKE_SHARED_LIBRARY_PREFIX ""
-
 #include <winpr/crt.h>
 #include <winpr/path.h>
 #include <winpr/file.h>

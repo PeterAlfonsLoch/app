@@ -20,7 +20,7 @@
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #endif
-#include <winsock2.h>
+
 #include <time.h>
 #include <openssl/des.h>
 #include <openssl/md4.h>

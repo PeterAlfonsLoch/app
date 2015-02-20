@@ -377,7 +377,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)../../include;.;framework;$(SolutionDir)../../../include;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../;$(ProjectDir)../../;$(ProjectDir)../;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>BYEWINDOWS_UNICODE;HAVE_CONFIG_H;FREERDP_EXPORTS;_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;_X86_;UNICODE;_UNICODE;WIN32_LEAN_AND_MEAN;WINVER=0x0501;WIN32_WINNT=0x0501;WINPR_EXPORTS;_DEBUG;freerdp_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>86_;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;WIN32_LEAN_AND_MEAN;WINVER=0x0501;WIN32_WINNT=0x0501;WINPR_EXPORTS;FREERDP_EXPORTS;_DEBUG;HAVE_CONFIG_H;EXT_PATH="C:/Program Files (x86)/FreeRDP/lib/freerdp/extensions";CMAKE_BUILD_TYPE=Release;CMAKE_INTDIR="Debug";freerdp_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>false</StringPooling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -1499,7 +1499,6 @@
     <ClInclude Include="libfreerdp\primitives\prim_shift.h" />
     <ClInclude Include="libfreerdp\primitives\prim_sign.h" />
     <ClInclude Include="libfreerdp\primitives\prim_templates.h" />
-    <ClInclude Include="libfreerdp\rail\librail.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="libfreerdp\cache\cache_bitmap.c" />
@@ -1510,33 +1509,33 @@
     <ClCompile Include="libfreerdp\cache\cache_offscreen.c" />
     <ClCompile Include="libfreerdp\cache\cache_palette.c" />
     <ClCompile Include="libfreerdp\cache\cache_pointer.c" />
-    <ClCompile Include="libfreerdp\codec\bitmap_audio.c" />
-    <ClCompile Include="libfreerdp\codec\bitmap_bitmap.c" />
-    <ClCompile Include="libfreerdp\codec\bitmap_clear.c" />
-    <ClCompile Include="libfreerdp\codec\bitmap_color.c" />
-    <ClCompile Include="libfreerdp\codec\bitmap_dsp.c" />
-    <ClCompile Include="libfreerdp\codec\bitmap_h264.c" />
-    <ClCompile Include="libfreerdp\codec\bitmap_interleaved.c" />
-    <ClCompile Include="libfreerdp\codec\bitmap_jpeg.c" />
-    <ClCompile Include="libfreerdp\codec\bitmap_mppc.c" />
-    <ClCompile Include="libfreerdp\codec\bitmap_ncrush.c" />
-    <ClCompile Include="libfreerdp\codec\bitmap_nsc.c" />
-    <ClCompile Include="libfreerdp\codec\bitmap_nsc_encode.c" />
-    <ClCompile Include="libfreerdp\codec\bitmap_nsc_sse2.c" />
-    <ClCompile Include="libfreerdp\codec\bitmap_planar.c" />
-    <ClCompile Include="libfreerdp\codec\bitmap_progressive.c" />
-    <ClCompile Include="libfreerdp\codec\bitmap_region.c" />
-    <ClCompile Include="libfreerdp\codec\bitmap_rfx.c" />
-    <ClCompile Include="libfreerdp\codec\bitmap_rfx_decode.c" />
-    <ClCompile Include="libfreerdp\codec\bitmap_rfx_differential.c" />
-    <ClCompile Include="libfreerdp\codec\bitmap_rfx_dwt.c" />
-    <ClCompile Include="libfreerdp\codec\bitmap_rfx_encode.c" />
-    <ClCompile Include="libfreerdp\codec\bitmap_rfx_neon.c" />
-    <ClCompile Include="libfreerdp\codec\bitmap_rfx_quantization.c" />
-    <ClCompile Include="libfreerdp\codec\bitmap_rfx_rlgr.c" />
-    <ClCompile Include="libfreerdp\codec\bitmap_rfx_sse2.c" />
-    <ClCompile Include="libfreerdp\codec\bitmap_xcrush.c" />
-    <ClCompile Include="libfreerdp\codec\bitmap_zgfx.c" />
+    <ClCompile Include="libfreerdp\codec\codec_audio.c" />
+    <ClCompile Include="libfreerdp\codec\codec_bitmap.c" />
+    <ClCompile Include="libfreerdp\codec\codec_clear.c" />
+    <ClCompile Include="libfreerdp\codec\codec_color.c" />
+    <ClCompile Include="libfreerdp\codec\codec_dsp.c" />
+    <ClCompile Include="libfreerdp\codec\codec_h264.c" />
+    <ClCompile Include="libfreerdp\codec\codec_interleaved.c" />
+    <ClCompile Include="libfreerdp\codec\codec_jpeg.c" />
+    <ClCompile Include="libfreerdp\codec\codec_mppc.c" />
+    <ClCompile Include="libfreerdp\codec\codec_ncrush.c" />
+    <ClCompile Include="libfreerdp\codec\codec_nsc.c" />
+    <ClCompile Include="libfreerdp\codec\codec_nsc_encode.c" />
+    <ClCompile Include="libfreerdp\codec\codec_nsc_sse2.c" />
+    <ClCompile Include="libfreerdp\codec\codec_planar.c" />
+    <ClCompile Include="libfreerdp\codec\codec_progressive.c" />
+    <ClCompile Include="libfreerdp\codec\codec_region.c" />
+    <ClCompile Include="libfreerdp\codec\codec_rfx.c" />
+    <ClCompile Include="libfreerdp\codec\codec_rfx_decode.c" />
+    <ClCompile Include="libfreerdp\codec\codec_rfx_differential.c" />
+    <ClCompile Include="libfreerdp\codec\codec_rfx_dwt.c" />
+    <ClCompile Include="libfreerdp\codec\codec_rfx_encode.c" />
+    <ClCompile Include="libfreerdp\codec\codec_rfx_neon.c" />
+    <ClCompile Include="libfreerdp\codec\codec_rfx_quantization.c" />
+    <ClCompile Include="libfreerdp\codec\codec_rfx_rlgr.c" />
+    <ClCompile Include="libfreerdp\codec\codec_rfx_sse2.c" />
+    <ClCompile Include="libfreerdp\codec\codec_xcrush.c" />
+    <ClCompile Include="libfreerdp\codec\codec_zgfx.c" />
     <ClCompile Include="libfreerdp\common\common_addin.c" />
     <ClCompile Include="libfreerdp\common\common_assistance.c" />
     <ClCompile Include="libfreerdp\common\common_settings.c" />
@@ -1598,26 +1597,27 @@
     <ClCompile Include="libfreerdp\crypto\crypto_er.c" />
     <ClCompile Include="libfreerdp\crypto\crypto_per.c" />
     <ClCompile Include="libfreerdp\crypto\crypto_tls.c" />
-    <ClCompile Include="libfreerdp\gdi\16bpp.c" />
-    <ClCompile Include="libfreerdp\gdi\32bpp.c" />
-    <ClCompile Include="libfreerdp\gdi\8bpp.c" />
+    <ClCompile Include="libfreerdp\gdi\gdi_16bpp.c" />
+    <ClCompile Include="libfreerdp\gdi\gdi_32bpp.c" />
+    <ClCompile Include="libfreerdp\gdi\gdi_8bpp.c" />
     <ClCompile Include="libfreerdp\gdi\gdi_bitmap.c" />
     <ClCompile Include="libfreerdp\gdi\gdi_brush.c" />
     <ClCompile Include="libfreerdp\gdi\gdi_clipping.c" />
     <ClCompile Include="libfreerdp\gdi\gdi_dc.c" />
     <ClCompile Include="libfreerdp\gdi\gdi_drawing.c" />
     <ClCompile Include="libfreerdp\gdi\gdi_gdi.c" />
+    <ClCompile Include="libfreerdp\gdi\gdi_gfx.c" />
     <ClCompile Include="libfreerdp\gdi\gdi_graphics.c" />
     <ClCompile Include="libfreerdp\gdi\gdi_line.c" />
     <ClCompile Include="libfreerdp\gdi\gdi_palette.c" />
     <ClCompile Include="libfreerdp\gdi\gdi_pen.c" />
     <ClCompile Include="libfreerdp\gdi\gdi_region.c" />
     <ClCompile Include="libfreerdp\gdi\gdi_shape.c" />
-    <ClCompile Include="libfreerdp\gdi\gfx.c" />
     <ClCompile Include="libfreerdp\locale\locale_keyboard.c" />
     <ClCompile Include="libfreerdp\locale\locale_keyboard_layout.c" />
     <ClCompile Include="libfreerdp\locale\locale_locale.c" />
     <ClCompile Include="libfreerdp\locale\locale_timezone.c" />
+    <ClCompile Include="libfreerdp\locale\locale_xkb_layout_ids.c" />
     <ClCompile Include="libfreerdp\primitives\primitives.c" />
     <ClCompile Include="libfreerdp\primitives\prim_16to32bpp.c" />
     <ClCompile Include="libfreerdp\primitives\prim_16to32bpp_opt.c" />

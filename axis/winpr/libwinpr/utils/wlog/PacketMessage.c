@@ -20,7 +20,7 @@
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #endif
-#include <winsock2.h>
+
 #include <winpr/wlog.h>
 
 #include "wlog/PacketMessage.h"
@@ -38,7 +38,7 @@
 #include <sys/timeb.h>
 #include <winpr/windows.h>
 
-int gettimeofday(struct timeval* tp, void* tz)
+static int gettimeofday(struct timeval* tp, void* tz)
 {
 	struct _timeb timebuffer;
 	_ftime(&timebuffer);

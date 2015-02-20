@@ -35,18 +35,16 @@
 #include <corkscrew/backtrace.h>
 #endif
 
-
-#include <winpr/crt.h>
-#include <winpr/wlog.h>
-#include <winpr/debug.h>
-
-
 #if defined(_WIN32) || defined(_WIN64)
 #include <io.h>
 #include <Windows.h>
 #include <Dbghelp.h>
 #define write _write
 #endif
+
+#include <winpr/crt.h>
+#include <winpr/wlog.h>
+#include <winpr/debug.h>
 
 #define TAG "com.winpr.utils.debug"
 #define LOGT(...) do { WLog_Print(WLog_Get(TAG), WLOG_TRACE, __VA_ARGS__); } while(0)

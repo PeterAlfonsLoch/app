@@ -17,7 +17,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#include <winsock2.h>
+
 #include <winpr/crt.h>
 #include <winpr/synch.h>
 #include <winpr/ssl.h>

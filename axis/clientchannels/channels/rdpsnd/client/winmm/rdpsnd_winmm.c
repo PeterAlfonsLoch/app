@@ -36,7 +36,7 @@
 #include <freerdp/codec/dsp.h>
 #include <freerdp/channels/log.h>
 
-#include "../rdpsnd_main.h"
+#include "rdpsnd_main.h"
 
 typedef struct rdpsnd_winmm_plugin rdpsndWinmmPlugin;
 
@@ -102,11 +102,11 @@ static void CALLBACK rdpsnd_winmm_callback_function(HWAVEOUT hwo, UINT uMsg, DWO
 	switch (uMsg)
 	{
 		case MM_WOM_OPEN:
-			WLog_ERR(TAG,  "MM_WOM_OPEN");
+			WLog_DBG(TAG,  "MM_WOM_OPEN");
 			break;
 		
 		case MM_WOM_CLOSE:
-			WLog_ERR(TAG,  "MM_WOM_CLOSE");
+			WLog_DBG(TAG,  "MM_WOM_CLOSE");
 			break;
 
 		case MM_WOM_DONE:
@@ -122,7 +122,7 @@ static void CALLBACK rdpsnd_winmm_callback_function(HWAVEOUT hwo, UINT uMsg, DWO
 				if (!wave)
 					return;
 
-				WLog_ERR(TAG,  "MM_WOM_DONE: dwBufferLength: %d cBlockNo: %d",
+				WLog_DBG(TAG,  "MM_WOM_DONE: dwBufferLength: %d cBlockNo: %d",
 						 lpWaveHdr->dwBufferLength, wave->cBlockNo);
 				wave->wLocalTimeB = GetTickCount();
 				wTimeDelta = wave->wLocalTimeB - wave->wLocalTimeA;
