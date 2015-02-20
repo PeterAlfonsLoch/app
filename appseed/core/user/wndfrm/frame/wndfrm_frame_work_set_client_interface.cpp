@@ -62,6 +62,13 @@ namespace user
 
          }
 
+         bool WorkSetClientInterface::WfiOnStartDock()
+         {
+
+            return true;
+
+         }
+
          void WorkSetClientInterface::WfiOnDock(EAppearance eapperance)
          {
 

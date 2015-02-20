@@ -360,14 +360,25 @@ namespace user
             rect.bottom = iButtonSize + rect.top;
 
 
-            rect.left = rect.right - iButtonSize;
-            get_box_button(button_close)->::user::interaction::SetWindowPos(ZORDER_TOP, rect.left, rect.top, rect.width(), rect.height(), SWP_SHOWWINDOW);
-            get_box_button(button_close)->UpdateWndRgn();
+            if(!has_button(button_close))
+            {
+               get_box_button(button_close)->ShowWindow(SW_HIDE);
+            }
+            else
+            {
+               rect.left = rect.right - iButtonSize;
+               get_box_button(button_close)->::user::interaction::SetWindowPos(ZORDER_TOP,rect.left,rect.top,rect.width(),rect.height(),SWP_SHOWWINDOW);
+               get_box_button(button_close)->UpdateWndRgn();
+            }
 
 
             sp(WorkSetClientInterface) pinterface = m_pworkset->m_pwndCommand;
 
-            if(pinterface->WndFrameworkDownUpGetUpEnable())
+            if(!has_button(button_up))
+            {
+               get_box_button(button_up)->ShowWindow(SW_HIDE);
+            }
+            else if(pinterface->WndFrameworkDownUpGetUpEnable())
             {
                rect.right = rect.left - m_iButtonMargin;
                rect.left = rect.right - iButtonSize;
@@ -379,7 +390,11 @@ namespace user
                get_box_button(button_up)->ShowWindow(SW_HIDE);
             }
 
-            if(pinterface->WndFrameworkDownUpGetDownEnable())
+            if(!has_button(button_down))
+            {
+               get_box_button(button_down)->ShowWindow(SW_HIDE);
+            }
+            else if(pinterface->WndFrameworkDownUpGetDownEnable())
             {
                rect.right = rect.left - m_iButtonMargin;
                rect.left = rect.right - iButtonSize;
@@ -397,7 +412,11 @@ namespace user
                get_box_button(button_down)->ShowWindow(SW_HIDE);
             }
 
-            if (pappearance->IsZoomed() || !has_button(button_maximize))
+            if(!has_button(button_maximize))
+            {
+               get_box_button(button_maximize)->ShowWindow(SW_HIDE);
+            }
+            else if (pappearance->IsZoomed())
             {
                get_box_button(button_maximize)->ShowWindow(SW_HIDE);
             }
@@ -415,7 +434,11 @@ namespace user
                get_box_button(button_maximize)->UpdateWndRgn();
             }
 
-            if (pappearance->IsIconic()
+            if(!has_button(button_restore))
+            {
+               get_box_button(button_restore)->ShowWindow(SW_HIDE);
+            }
+            else if (pappearance->IsIconic()
                || pappearance->IsFullScreen()
                || pappearance->IsZoomed()
                || pappearance->IsDocked())
@@ -448,7 +471,11 @@ namespace user
                get_box_button(button_minimize)->UpdateWndRgn();
             }
 
-            if (pappearance->IsNotifyIconEnabled())
+            if(!has_button(button_notify_icon))
+            {
+               get_box_button(button_notify_icon)->ShowWindow(SW_HIDE);
+            }
+            else if(pappearance->IsNotifyIconEnabled())
             {
                rect.right = rect.left - m_iButtonMargin;
                rect.left = rect.right - iButtonSize;
@@ -460,11 +487,18 @@ namespace user
                get_box_button(button_notify_icon)->ShowWindow(SW_HIDE);
             }
 
+            if(!has_button(button_dock))
+            {
+               get_box_button(button_dock)->ShowWindow(SW_HIDE);
+            }
+            else
+            {
+               rect.right = rect.left - m_iButtonMargin;
+               rect.left = rect.right - iButtonSize;
+               get_box_button(button_dock)->::user::interaction::SetWindowPos(ZORDER_TOP,rect.left,rect.top,rect.width(),rect.height(),SWP_SHOWWINDOW);
+               get_box_button(button_dock)->UpdateWndRgn();
 
-            rect.right = rect.left - m_iButtonMargin;
-            rect.left = rect.right - iButtonSize;
-            get_box_button(button_dock)->::user::interaction::SetWindowPos(ZORDER_TOP,rect.left,rect.top,rect.width(),rect.height(),SWP_SHOWWINDOW);
-            get_box_button(button_dock)->UpdateWndRgn();
+            }
 
          }
 

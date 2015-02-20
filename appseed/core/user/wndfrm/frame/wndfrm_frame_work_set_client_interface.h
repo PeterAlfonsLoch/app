@@ -63,6 +63,7 @@ namespace user
             virtual bool WfiOnSize(bool bTracking);
             virtual bool WfiOnMove(bool bTracking);
 
+            virtual bool WfiOnStartDock();
             virtual void WfiOnDock(EAppearance eapperance);
             virtual void WfiOnDown();
             virtual void WfiOnUp();

@@ -384,6 +384,9 @@ namespace user
                if(ebutton == ::user::wndfrm::frame::button_dock)
                {
 
+                  if(!pinterface->WfiOnStartDock())
+                     return false;
+
                   pinterface->m_workset.GetDockingManager()->_000OnLButtonDown(dynamic_cast <::message::mouse *> (pevent->m_pobj));
 
                   rect rectWindow;
