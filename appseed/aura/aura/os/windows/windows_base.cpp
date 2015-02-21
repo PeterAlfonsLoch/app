@@ -48,36 +48,36 @@ bool                             g_bCoInitialize            = false;
 bool __node_aura_pre_init()
 {
    
-   HRESULT hresult = ::CoInitializeEx(NULL,COINIT_MULTITHREADED);
+   //HRESULT hresult = ::CoInitializeEx(NULL,COINIT_MULTITHREADED);
 
-   if(FAILED(hresult))
-   {
+   //if(FAILED(hresult))
+   //{
 
-      if(hresult == RPC_E_CHANGED_MODE)
-      {
+   //   if(hresult == RPC_E_CHANGED_MODE)
+   //   {
 
-         hresult = ::CoInitializeEx(NULL,COINIT_APARTMENTTHREADED);
-         
-         if(FAILED(hresult))
-         {
+   //      hresult = ::CoInitializeEx(NULL,COINIT_APARTMENTTHREADED);
+   //      
+   //      if(FAILED(hresult))
+   //      {
 
-            ::simple_message_box(NULL,"Failed to ::CoInitializeEx(NULL, COINIT_APARTMENTTHREADED) at __node_pre_init","__node_pre_init failure",MB_ICONEXCLAMATION);
+   //         ::simple_message_box(NULL,"Failed to ::CoInitializeEx(NULL, COINIT_APARTMENTTHREADED) at __node_pre_init","__node_pre_init failure",MB_ICONEXCLAMATION);
 
-            return false;
+   //         return false;
 
-         }
+   //      }
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         ::simple_message_box(NULL,"Failed to ::CoInitializeEx(NULL, COINIT_MULTITHREADED) at __node_pre_init","__node_pre_init failure",MB_ICONEXCLAMATION);
+   //      ::simple_message_box(NULL,"Failed to ::CoInitializeEx(NULL, COINIT_MULTITHREADED) at __node_pre_init","__node_pre_init failure",MB_ICONEXCLAMATION);
 
-         return false;
+   //      return false;
 
-      }
+   //   }
 
-   }
+   //}
 
    OutputDebugStringW(L"__node_aura_pre_init\n");
 
@@ -159,7 +159,7 @@ bool __node_aura_pos_term()
 
    OutputDebugStringW(L"draw2d_gdiplus.dll terminating!\n");
 
-   ::CoUninitialize();
+   //::CoUninitialize();
 
    return true;
 

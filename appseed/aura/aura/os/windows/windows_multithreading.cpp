@@ -606,36 +606,36 @@ thread_int_ptr < HRESULT > t_hresultCoInitialize;
 bool __os_init_thread()
 {
 
-   t_hresultCoInitialize = ::CoInitializeEx(NULL,COINIT_MULTITHREADED);
+   //t_hresultCoInitialize = ::CoInitializeEx(NULL,COINIT_MULTITHREADED);
 
-   if(FAILED(t_hresultCoInitialize))
-   {
+   //if(FAILED(t_hresultCoInitialize))
+   //{
 
-      if(t_hresultCoInitialize.operator HRESULT() == RPC_E_CHANGED_MODE)
-      {
+   //   if(t_hresultCoInitialize.operator HRESULT() == RPC_E_CHANGED_MODE)
+   //   {
 
-         t_hresultCoInitialize = ::CoInitializeEx(NULL,COINIT_APARTMENTTHREADED);
+   //      t_hresultCoInitialize = ::CoInitializeEx(NULL,COINIT_APARTMENTTHREADED);
 
-         if(FAILED(t_hresultCoInitialize))
-         {
+   //      if(FAILED(t_hresultCoInitialize))
+   //      {
 
-            ::simple_message_box(NULL,"Failed to ::CoInitializeEx(NULL, COINIT_APARTMENTTHREADED) at __node_pre_init","__node_pre_init failure",MB_ICONEXCLAMATION);
+   //         ::simple_message_box(NULL,"Failed to ::CoInitializeEx(NULL, COINIT_APARTMENTTHREADED) at __node_pre_init","__node_pre_init failure",MB_ICONEXCLAMATION);
 
-            return false;
+   //         return false;
 
-         }
+   //      }
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         ::simple_message_box(NULL,"Failed to ::CoInitializeEx(NULL, COINIT_MULTITHREADED) at __node_pre_init","__node_pre_init failure",MB_ICONEXCLAMATION);
+   //      ::simple_message_box(NULL,"Failed to ::CoInitializeEx(NULL, COINIT_MULTITHREADED) at __node_pre_init","__node_pre_init failure",MB_ICONEXCLAMATION);
 
-         return false;
+   //      return false;
 
-      }
+   //   }
 
-   }
+   //}
 
    return true;
 

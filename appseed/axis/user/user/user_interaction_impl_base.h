@@ -186,6 +186,8 @@ namespace user
       void mouse_hover_remove(::user::interaction * pinterface);
 
 
+      virtual void register_drop_target();
+
    };
 
 

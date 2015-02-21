@@ -11,6 +11,7 @@ namespace message
    {
 
       message_create = USER_MESSAGE,
+      message_drag_and_drop,
       message_event = WM_APP + 1000,
       message_property = WM_APP + 1001,
       message_pos_create = WM_USER + 193,

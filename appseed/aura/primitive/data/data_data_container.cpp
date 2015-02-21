@@ -55,6 +55,8 @@ namespace data
 
       }
 
+      pdata->m_pcontainerbase = this;
+
       m_spadata.add(pdata);
 
       return true;
@@ -71,7 +73,9 @@ namespace data
 
          if(m_spadata.sp_at(i) == pdata)
          {
+
             m_spadata.remove_at(i);
+
             cRemove++;
          }
          else

@@ -1485,17 +1485,13 @@ namespace user
 
       //post_message(WM_USER + 1342);
 
-      _011OnCreate(pobj);
+      restore_tabs();
 
    }
 
 
-   void tab::_011OnCreate(signal_details * pobj)
+   void tab::restore_tabs()
    {
-
-      UNREFERENCED_PARAMETER(pobj);
-
-//      SCAST_PTR(::message::base, pbase, pobj);
 
       keep < bool > keepRestoringTabs(&m_bRestoringTabs, true, false, true);
 
@@ -1523,7 +1519,6 @@ namespace user
       IGUI_WIN_MSG_LINK(WM_MOUSEMOVE   , pinterface, this, &tab::_001OnMouseMove);
       IGUI_WIN_MSG_LINK(WM_MOUSELEAVE  , pinterface, this, &tab::_001OnMouseLeave);
       IGUI_WIN_MSG_LINK(WM_CREATE      , pinterface, this, &tab::_001OnCreate);
-      IGUI_WIN_MSG_LINK(WM_USER + 1342 , pinterface, this, &tab::_011OnCreate);
       IGUI_WIN_MSG_LINK(::base::application::APPM_LANGUAGE, pinterface, this, &tab::_001OnAppLanguage);
       IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &tab::_001OnTimer);
    }

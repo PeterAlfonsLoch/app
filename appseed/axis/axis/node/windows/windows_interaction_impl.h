@@ -10,7 +10,8 @@ namespace windows
 
 
    class CLASS_DECL_AXIS interaction_impl:
-      virtual public ::user::interaction_impl
+      virtual public ::user::interaction_impl,
+      virtual public IDropTarget
    {
    public:
 
@@ -25,7 +26,8 @@ namespace windows
 
       ::user::interaction_base *                m_pbasewnd;
 
-      
+      IDropTargetHelper* m_piDropHelper;
+      bool               m_bUseDnDHelper;
 
     //UINT                                      m_nFlags;            // see WF_ flags above
 
@@ -39,6 +41,32 @@ namespace windows
       interaction_impl();
       interaction_impl(::aura::application * papp);
       virtual ~interaction_impl();
+
+
+      virtual HRESULT STDMETHODCALLTYPE QueryInterface(REFIID riid,void **ppvObject);
+
+      virtual ULONG STDMETHODCALLTYPE AddRef(void);
+
+      virtual ULONG STDMETHODCALLTYPE Release(void);
+
+      virtual HRESULT STDMETHODCALLTYPE DragEnter(
+         /* [unique][in] */ __RPC__in_opt IDataObject *pDataObj,
+         /* [in] */ DWORD grfKeyState,
+         /* [in] */ POINTL pt,
+         /* [out][in] */ __RPC__inout DWORD *pdwEffect);
+
+      virtual HRESULT STDMETHODCALLTYPE DragOver(
+         /* [in] */ DWORD grfKeyState,
+         /* [in] */ POINTL pt,
+         /* [out][in] */ __RPC__inout DWORD *pdwEffect);
+
+      virtual HRESULT STDMETHODCALLTYPE DragLeave(void);
+
+      virtual HRESULT STDMETHODCALLTYPE Drop(
+         /* [unique][in] */ __RPC__in_opt IDataObject *pDataObj,
+         /* [in] */ DWORD grfKeyState,
+         /* [in] */ POINTL pt,
+         /* [out][in] */ __RPC__inout DWORD *pdwEffect);
 
 
       virtual void construct(oswindow oswindow);
@@ -651,6 +679,7 @@ namespace windows
 
       
       virtual bool get_rect_normal(LPRECT lprect);
+      virtual void register_drop_target();
 
       
    };

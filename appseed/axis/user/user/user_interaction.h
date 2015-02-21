@@ -277,6 +277,8 @@ namespace user
 #endif
 
 
+      virtual void register_drop_target();
+
 
 
 
@@ -361,6 +363,7 @@ namespace user
 
       virtual void _000OnMouse(::message::mouse * pmouse);
       virtual void _000OnKey(::message::key * pkey);
+      virtual void _000OnDrag(::message::drag_and_drop * pdrag);
       DECL_GEN_SIGNAL(_001OnLButtonDown);
       DECL_GEN_SIGNAL(_001OnShowWindow);
       DECL_GEN_SIGNAL(_001OnMouseMove);

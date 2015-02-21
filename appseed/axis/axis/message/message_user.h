@@ -1,6 +1,11 @@
 #pragma once
 
 
+#define MESSAGE_OLE_DRAGENTER WM_APP + 324
+#define MESSAGE_OLE_DRAGOVER WM_APP + 325
+#define MESSAGE_OLE_DRAGLEAVE WM_APP + 326
+#define MESSAGE_OLE_DRAGDROP WM_APP + 327
+
 namespace message
 {
 
@@ -351,6 +356,24 @@ namespace message
       bool get_enable();
    };
 
+
+   
+
+   class CLASS_DECL_AXIS drag_and_drop: public base
+   {
+   public:
+
+      drag_and_drop(::aura::interaction * pwnd,UINT uiMessage) :
+         base(pwnd->get_app(), pwnd, uiMessage, 0, 0, m_lresult = 0)
+      {
+      }
+
+      IDataObject *  pDataObj;// [in] DragEnter, Drop
+      POINTL         pt; // [in] DragEnter, DragOver, Drop
+      DWORD          grfKeyState; // [in] DragEnter, DragOver, Drop
+      DWORD          dwEffect; // [in][out] DragEnter, DragOver, Drop
+
+   };
 
 } // namespace message
 

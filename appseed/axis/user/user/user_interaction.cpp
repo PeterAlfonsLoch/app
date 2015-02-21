@@ -1325,6 +1325,69 @@ namespace user
    }
 
 
+   void interaction::_000OnDrag(::message::drag_and_drop * pdrag)
+   {
+
+      if(pdrag->m_uiMessage != MESSAGE_OLE_DRAGLEAVE)
+      {
+
+         try
+         {
+            if(!IsWindowVisible())
+               return;
+            if(!_001IsPointInside(point(pdrag->pt.x, pdrag->pt.y)))
+               return;
+         }
+         catch(...)
+         {
+            return;
+         }
+
+      }
+      // these try catchs are needed for multi threading : multi threaded windows: the hell
+      // Now I understand why Microsoft (TM) Windows (R) windows are single threaded.
+      sp(::user::interaction) pui = top_child();
+      //      int32_t iSize;
+      try
+      {
+         while(pui != NULL)
+         {
+            try
+            {
+               if(pui->IsWindowVisible() && (pdrag->m_uiMessage == MESSAGE_OLE_DRAGLEAVE || pui->_001IsPointInside(point(pdrag->pt.x,pdrag->pt.y))))
+               {
+                  try
+                  {
+                     pui->_000OnDrag(pdrag);
+                     if(pdrag->m_bRet)
+                        return;
+                  }
+                  catch(...)
+                  {
+                  }
+               }
+               pui = pui->under_sibling();
+            }
+            catch(...)
+            {
+            }
+         }
+      }
+      catch(...)
+      {
+      }
+      try
+      {
+         if(m_pimpl == NULL)
+            return;
+         (m_pimpl->*m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast <signal_details *> (pdrag));
+         if(pdrag->m_bRet)
+            return;
+      }
+      catch(...)
+      {
+      }
+   }
 
 
    void interaction::_000OnMouse(::message::mouse * pmouse)
@@ -3087,6 +3150,14 @@ namespace user
          return;
       else
          m_pimpl->UpdateWindow();
+   }
+
+   void interaction::register_drop_target()
+   {
+      if(m_pimpl == NULL)
+         return;
+      else
+         m_pimpl->register_drop_target();
    }
 
    void interaction::SetRedraw(bool bRedraw)

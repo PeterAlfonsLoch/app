@@ -62,7 +62,202 @@ namespace windows
       ZERO(m_pt);
 
       set_handle(NULL);
+      m_bUseDnDHelper = false;
+   }
 
+
+   HRESULT STDMETHODCALLTYPE interaction_impl::DragEnter(
+      /* [unique][in] */ __RPC__in_opt IDataObject *pDataObj,
+      /* [in] */ DWORD grfKeyState,
+      /* [in] */ POINTL pt,
+      /* [out][in] */ __RPC__inout DWORD *pdwEffect)
+   {
+
+      ::message::drag_and_drop m(this,MESSAGE_OLE_DRAGENTER);
+
+      m.pDataObj = pDataObj;
+      m.grfKeyState = grfKeyState;
+      m.pt = pt;
+      m.dwEffect = DROPEFFECT_NONE;
+
+      try
+      {
+
+         message_handler(&m);
+
+      }
+      catch(...)
+      {
+
+      }
+
+      // Call the drag and drop helper.
+      if(m_bUseDnDHelper)
+      {
+         // The DnD helper needs an IDataObject interface, so get one from
+         // the COleDataObject.  Note that the FALSE param means that
+         // GetIDataObject will not AddRef() the returned interface, so 
+         // we do not Release() it.
+         POINT p;
+         p.x = m.pt.x;
+         p.y = m.pt.y;
+         m_piDropHelper->DragEnter(get_handle(),m.pDataObj,&p,m.dwEffect);
+      }
+
+      *pdwEffect = m.dwEffect;
+
+      return S_OK;
+
+   }
+
+   HRESULT STDMETHODCALLTYPE interaction_impl::DragOver(
+      /* [in] */ DWORD grfKeyState,
+      /* [in] */ POINTL pt,
+      /* [out][in] */ __RPC__inout DWORD *pdwEffect)
+   {
+      ::message::drag_and_drop m(this,MESSAGE_OLE_DRAGOVER);
+
+      m.pDataObj = NULL;
+      m.grfKeyState = grfKeyState;
+      m.pt = pt;
+      m.dwEffect = DROPEFFECT_NONE;
+
+      try
+      {
+
+         message_handler(&m);
+
+      }
+      catch(...)
+      {
+
+      }
+
+      // Call the drag and drop helper.
+      if(m_bUseDnDHelper)
+      {
+         // The DnD helper needs an IDataObject interface, so get one from
+         // the COleDataObject.  Note that the FALSE param means that
+         // GetIDataObject will not AddRef() the returned interface, so 
+         // we do not Release() it.
+         POINT p;
+         p.x = m.pt.x;
+         p.y = m.pt.y;
+         m_piDropHelper->DragOver(&p,m.dwEffect);
+      }
+
+
+      *pdwEffect = m.dwEffect;
+
+      return S_OK;
+   }
+
+   HRESULT STDMETHODCALLTYPE interaction_impl::DragLeave(void)
+   {
+      ::message::drag_and_drop m(this,MESSAGE_OLE_DRAGLEAVE);
+
+      m.pDataObj = NULL;
+      m.grfKeyState = 0;
+      m.pt ={0,0};
+      m.dwEffect = DROPEFFECT_NONE;
+
+      try
+      {
+
+         message_handler(&m);
+
+      }
+      catch(...)
+      {
+
+      }
+
+      // Call the drag and drop helper.
+      if(m_bUseDnDHelper)
+      {
+         m_piDropHelper->DragLeave();
+      }
+
+
+      return S_OK;
+
+   }
+
+   HRESULT STDMETHODCALLTYPE interaction_impl::Drop(
+      /* [unique][in] */ __RPC__in_opt IDataObject *pDataObj,
+      /* [in] */ DWORD grfKeyState,
+      /* [in] */ POINTL pt,
+      /* [out][in] */ __RPC__inout DWORD *pdwEffect)
+   {
+
+      ::message::drag_and_drop m(this,MESSAGE_OLE_DRAGDROP);
+
+      m.pDataObj = pDataObj;
+      m.grfKeyState = grfKeyState;
+      m.pt = pt;
+      m.dwEffect = DROPEFFECT_NONE;
+
+      try
+      {
+
+         message_handler(&m);
+
+      }
+      catch(...)
+      {
+
+      }
+
+      // Call the drag and drop helper.
+      if(m_bUseDnDHelper)
+      {
+         // The DnD helper needs an IDataObject interface, so get one from
+         // the COleDataObject.  Note that the FALSE param means that
+         // GetIDataObject will not AddRef() the returned interface, so 
+         // we do not Release() it.
+         POINT p;
+         p.x = m.pt.x;
+         p.y = m.pt.y;
+         m_piDropHelper->Drop(m.pDataObj,&p,m.dwEffect);
+      }
+
+      *pdwEffect = m.dwEffect;
+
+      return S_OK;
+      
+   }
+
+   HRESULT STDMETHODCALLTYPE interaction_impl::QueryInterface(REFIID riid,void **ppvObject)
+   {
+
+      if(__uuidof(IDropTarget) == riid)
+      {
+         *ppvObject = this;
+      }
+      else if(__uuidof(IUnknown) == riid)
+      {
+         *ppvObject = this;
+      }
+      else
+      {
+         *ppvObject = NULL;
+         return E_FAIL;
+      }
+
+      this->AddRef();
+
+      return S_OK;
+
+   }
+
+   ULONG STDMETHODCALLTYPE interaction_impl::AddRef(void)
+   {
+      return m_countReference;
+   }
+
+   ULONG STDMETHODCALLTYPE interaction_impl::Release(void)
+   {
+      return m_countReference;
    }
 
 
@@ -1413,6 +1608,32 @@ namespace windows
             }
          }
          pbase->set_lresult(DefWindowProc(pbase->m_uiMessage,pbase->m_wparam,pbase->m_lparam));
+         return;
+      }
+      if(pbase->m_uiMessage == MESSAGE_OLE_DRAGENTER ||
+         pbase->m_uiMessage == MESSAGE_OLE_DRAGOVER ||
+         pbase->m_uiMessage == MESSAGE_OLE_DRAGLEAVE ||
+         pbase->m_uiMessage == MESSAGE_OLE_DRAGDROP)
+      {
+
+         message::drag_and_drop * pdrag = (::message::drag_and_drop *) pbase;
+
+
+         user::oswindow_array oswindowa;
+         user::interaction_ptra wnda;
+         wnda = System.m_uiptraFrame;
+         oswindowa = wnda.get_hwnda();
+         user::window_util::SortByZOrder(oswindowa);
+         for(int32_t i = 0; i < oswindowa.get_size(); i++)
+         {
+            sp(::user::interaction) pui = wnda.find_first(oswindowa[i]);
+            if(pui != NULL)
+            {
+               pui->_000OnDrag(pdrag);
+               if(pdrag->m_bRet)
+                  return;
+            }
+         }
          return;
       }
       if(pbase->m_uiMessage == WM_KEYDOWN ||
@@ -5459,6 +5680,26 @@ namespace windows
 
    }
 
+   void interaction_impl::register_drop_target()
+   {
+      m_bUseDnDHelper = false;
+      oswindow w = get_handle();
+
+      HRESULT hr = OleInitialize(NULL);
+         
+         hr = ::RegisterDragDrop(w,this);
+
+      TRACE("result of RegisterDragDrop = %d", hr);
+
+      if(SUCCEEDED(CoCreateInstance(CLSID_DragDropHelper,NULL,
+         CLSCTX_INPROC_SERVER,
+         IID_IDropTargetHelper,
+         (void**)&m_piDropHelper)))
+      {
+         m_bUseDnDHelper = true;
+      }
+
+   }
 
 
 

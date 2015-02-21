@@ -1187,6 +1187,11 @@ namespace user
    }
 
 
+   void interaction_impl_base::register_drop_target()
+   {
+   }
+
+
 } // namespace user
 
 
