@@ -1327,7 +1327,7 @@ namespace user
 
    void interaction::_000OnDrag(::message::drag_and_drop * pdrag)
    {
-
+#ifdef WINDOWS
       if(pdrag->m_uiMessage != MESSAGE_OLE_DRAGLEAVE)
       {
 
@@ -1387,6 +1387,7 @@ namespace user
       catch(...)
       {
       }
+      #endif
    }
 
 

@@ -357,7 +357,7 @@ namespace message
    };
 
 
-   
+
 
    class CLASS_DECL_AXIS drag_and_drop: public base
    {
@@ -368,10 +368,14 @@ namespace message
       {
       }
 
+      #ifdef WINDOWS
+
       IDataObject *  pDataObj;// [in] DragEnter, Drop
       POINTL         pt; // [in] DragEnter, DragOver, Drop
       DWORD          grfKeyState; // [in] DragEnter, DragOver, Drop
       DWORD          dwEffect; // [in][out] DragEnter, DragOver, Drop
+
+      #endif
 
    };
 
