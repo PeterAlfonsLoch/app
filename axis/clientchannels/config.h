@@ -88,3 +88,6 @@
 #define WITH_DEBUG_XV
 #define WITH_DEBUG_ANDROID_JNI
 #endif
+
+
+#define CMAKE_SHARED_LIBRARY_PREFIX "C:\\ca2\\modules\\freerdp\\client\\"

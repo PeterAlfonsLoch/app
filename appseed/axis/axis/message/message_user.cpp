@@ -65,10 +65,26 @@ namespace message
 
    void activate::set(::aura::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
    {
+      
       base::set(pwnd,uiMessage,wparam,lparam,lresult);
+      
       m_nState = (UINT)(LOWORD(wparam));
-      m_pWndOther = System.window_from_os_data((void *)lparam);
+      
+      if(lparam == 0)
+      {
+       
+         m_pWndOther = NULL;
+
+      }
+      else
+      {
+         
+         m_pWndOther = System.window_from_os_data((void *)lparam);
+
+      }
+      
       m_bMinimized = HIWORD(wparam) != FALSE;
+
    }
 
 

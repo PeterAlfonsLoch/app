@@ -427,7 +427,7 @@ bool open_url::open()
 
 BEGIN_EXTERN_C
 
-CLASS_DECL_AURA int_bool freerdp_authenticate(freerdp * instance, char** username,char** password,char** domain, const char * pszServerName)
+CLASS_DECL_AURA int_bool freerdp_authenticate(void * instance, char** username,char** password,char** domain, const char * pszServerName, int bInteractive)
 {
 
    ::aura::application * papp = ::get_aura(instance);
@@ -448,27 +448,59 @@ CLASS_DECL_AURA int_bool freerdp_authenticate(freerdp * instance, char** usernam
 
    strTitle = "Enter Credentials for : " + string(pszServerName);
 
-   if(App(papp).get_cred("", null_rect(),strUsername,strPassword,strToken,strTitle,true) != "ok")
-      return FALSE;
+   strUsername = file_as_string_dup("C:\\ca2\\config\\user.txt");
+
+   strPassword = file_as_string_dup("C:\\ca2\\config\\pass.txt");
+
+   if(strUsername.has_char() && strPassword.has_char())
+   {
+
+   }
+   else
+   {
+
+      if(App(papp).get_cred("",null_rect(),strUsername,strPassword,strToken,strTitle, bInteractive != FALSE) != "ok")
+         return FALSE;
+
+   }
 
    index iFind = strUsername.find('/');
 
    if(iFind > 0)
    {
+
       strUser = strUsername.Mid(iFind + 1);
+
       strDomain = strUsername.Left(iFind);
+
    }
    else
    {
+
       strUser = strUsername;
+
    }
 
-   *username = strdup(strUser);
+   if(username != NULL)
+   {
 
-   if(strDomain.has_char())
+      *username = strdup(strUser);
+
+   }
+
+   if(domain != NULL && strDomain.has_char())
+   {
+
       *domain = strdup(strDomain);
 
-   *password = strdup(strPassword);
+   }
+
+   if(password != NULL)
+   {
+
+      *password = strdup(strPassword);
+
+   }
 
    return TRUE;
 

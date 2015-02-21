@@ -632,6 +632,20 @@ namespace user
 
       }
 
+
+      if(System.get_active_guie() == this)
+      {
+
+//#ifdef WINDOWS
+         ::SetActiveWindow(NULL);
+//#else
+         //System.set_active_ui(NULL);
+//#endif
+
+      }
+
+
+
    }
 
 

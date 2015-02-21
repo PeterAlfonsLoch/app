@@ -78,7 +78,18 @@ void ca2rdp_Pointer_Set(rdpContext* context, rdpPointer* pointer)
    ca2rdpi = ctx->ca2rdpi;
    ca2rdp_pointer = (ca2rdpPointer*)pointer;
 
-   ctx->m_pviewRdp->rdpclient_set_cursor(ca2rdp_pointer->m_pcursor);
+   if(ca2rdp_pointer == NULL)
+   {
+
+      ctx->m_pviewRdp->rdpclient_set_cursor(NULL);
+
+   }
+   else
+   {
+
+      ctx->m_pviewRdp->rdpclient_set_cursor(ca2rdp_pointer->m_pcursor);
+
+   }
    
 /*	ca2rdpInfo* ca2rdpi;
 	DFBResult result;
