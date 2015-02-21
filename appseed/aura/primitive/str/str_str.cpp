@@ -1255,11 +1255,23 @@ namespace str
 
 #ifdef WINDOWSEX
 
-         int32_t nLen = ::GetWindowTextLength(oswindow);
+         DWORD_PTR lresult = 0;
 
-         ::GetWindowText(oswindow, str.GetBufferSetLength(nLen), nLen+1);
+         if(!::SendMessageTimeoutW(oswindow,WM_GETTEXTLENGTH,0,0,SMTO_ABORTIFHUNG,84,&lresult))
+            return "";
 
-         str.ReleaseBuffer();
+         wstring wstr;
+
+         if(!::SendMessageTimeoutW(oswindow,WM_GETTEXT,(LPARAM)wstr.alloc(lresult + 1),lresult + 1,SMTO_ABORTIFHUNG,84,&lresult))
+            return "";
+
+         str = wstr;
+
+         //int32_t nLen = ::GetWindowTextLength(oswindow);
+
+         //::GetWindowText(oswindow, str.GetBufferSetLength(nLen), nLen+1);
+
+         //str.ReleaseBuffer();
 
 #else
 
