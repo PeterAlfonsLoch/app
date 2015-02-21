@@ -111,7 +111,10 @@ namespace filemanager
       createcontext->oprop("filemanager::data") = pfilemanagerdata;
 
       pfilemanagerdata->m_pmanagertemplate = this;
-      pfilemanagerdata->m_pcallback = pcallback != NULL ? pcallback : &Platform.filemanager();
+      if(pfilemanagerdata->m_pcallback == NULL || pcallback != NULL)
+      {
+         pfilemanagerdata->m_pcallback = pcallback != NULL ? pcallback : &Platform.filemanager();
+      }
       pfilemanagerdata->m_pfilemanager = &Platform.filemanager();
       pfilemanagerdata->m_iTemplate = m_iTemplate;
       pfilemanagerdata->m_iDocument = m_iNextDocument++;

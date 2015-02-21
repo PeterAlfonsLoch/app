@@ -25,16 +25,27 @@ CLASS_DECL_AXIS int_bool oswindow_remove(::user::interaction * pui);
 
 
 #if defined(WINDOWS) || defined(LINUX)
+
 inline ::user::interaction * window_from_handle(oswindow oswindow);
+
 inline ::user::interaction * window_from_handle(oswindow oswindow)
 {
+
+   if(oswindow == NULL)
+   {
+
+      return NULL;
+
+   }
 
    cslock slOsWindow(::user::g_pcsUi);
 
    return ::user::g_pmapUi->operator[](oswindow);
 
 }
+
 #else
+
 CLASS_DECL_AXIS ::user::interaction * window_from_handle(oswindow oswindow);
 
 #endif

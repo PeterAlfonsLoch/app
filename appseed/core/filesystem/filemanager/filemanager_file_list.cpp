@@ -1367,7 +1367,7 @@ namespace filemanager
       }
       else
       {
-         m_iNameSubItemText = -1;
+         m_iNameSubItemText = i;
          column.m_iWidth = get_filemanager_data()->m_iIconSize;
       }
       get_fs_list_data()->m_iNameSubItemText = m_iNameSubItemText;

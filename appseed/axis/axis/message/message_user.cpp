@@ -69,20 +69,20 @@ namespace message
       base::set(pwnd,uiMessage,wparam,lparam,lresult);
       
       m_nState = (UINT)(LOWORD(wparam));
-      
+
       if(lparam == 0)
       {
-       
+
          m_pWndOther = NULL;
 
       }
       else
       {
-         
+
          m_pWndOther = System.window_from_os_data((void *)lparam);
 
       }
-      
+
       m_bMinimized = HIWORD(wparam) != FALSE;
 
    }

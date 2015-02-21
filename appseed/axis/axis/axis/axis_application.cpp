@@ -3472,6 +3472,13 @@ namespace axis
    ::user::interaction * application::window_from_os_data(void * pdata)
    {
 
+      if(pdata == NULL)
+      {
+
+         return NULL;
+
+      }
+
       return window_from_handle((oswindow)pdata);
 
    }
