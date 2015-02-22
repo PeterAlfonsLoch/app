@@ -1206,7 +1206,7 @@ int32_t thread_impl::run()
 
    //m_lIdleCount = 0;
 
-   object_spa soa;
+   sync_object_ptra soa;
 
    if(m_pthread->m_peventEvent == NULL)
    {

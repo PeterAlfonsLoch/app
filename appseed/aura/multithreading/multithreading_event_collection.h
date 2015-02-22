@@ -3,6 +3,7 @@
 
 // Thank you linode.com!!
 typedef ptr_array < ::object > object_ptra;
+typedef ptr_array < ::sync_object > sync_object_ptra;
 
 
 /// This class represents a collection of object items. A collection can be mixed

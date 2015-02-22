@@ -1,76 +1,107 @@
 #include "framework.h"
 
 
+#if defined(WINDOWS)
 
-multi_lock::multi_lock(object_spa syncobjectptra, bool bInitialLock)
+#define M_OBJECTA m_handlea
+
+#else
+
+#define M_OBJECTA m_objecta
+
+#endif
+
+
+multi_lock::multi_lock(const sync_object_ptra & syncobjectptra,bool bInitialLock)
 {
+
    ASSERT(syncobjectptra.get_count() > 0 && syncobjectptra.get_count() <= MAXIMUM_WAIT_OBJECTS);
 
    if(syncobjectptra.get_count() <= 0)
+   {
+
       throw invalid_argument_exception(::get_thread_app());
 
-   m_syncobjectptra  = syncobjectptra;
-   m_objecta.allocate(m_syncobjectptra.get_count());
-   m_baLocked.allocate(m_syncobjectptra.get_count());
-
-   // get list of handles from array of objects passed
-   for (index i = 0; i < m_syncobjectptra.get_count(); i++)
-   {
-      //ASSERT_VALID(dynamic_cast < ::object * > (m_syncobjectptra[i]));
-      if(m_syncobjectptra[i] == NULL)
-         throw invalid_argument_exception(::get_thread_app());
-
-      //ASSERT(base_class < object >::bases (m_syncobjectptra[i]));
-
-      // can't wait for critical sections
-
-      //ASSERT(!base_class < critical_section >::bases (m_syncobjectptra[i]));
-
-#ifdef WINDOWS
-      m_objecta[i] = (HANDLE) m_syncobjectptra[i]->get_os_data();
-#else
-      m_objecta[i] = m_syncobjectptra[i];
-#endif
-      m_baLocked[i] = FALSE;
    }
 
-   if (bInitialLock)
+   m_syncobjectptra  = syncobjectptra;
+
+   M_OBJECTA.allocate(m_syncobjectptra.get_count());
+
+   m_baLocked.allocate(m_syncobjectptra.get_count());
+
+   
+   for (index i = 0; i < m_syncobjectptra.get_count(); i++)
+   {
+
+      if(m_syncobjectptra[i] == NULL)
+      {
+
+         throw invalid_argument_exception(::get_thread_app());
+
+      }
+
+#ifdef WINDOWS
+
+      m_handlea[i] = (HANDLE) m_syncobjectptra[i]->get_os_data();
+
+#else
+
+      M_OBJECTA[i] = m_syncobjectptra[i];
+
+#endif
+
+      m_baLocked[i] = FALSE;
+
+   }
+
+   if(bInitialLock)
+   {
+
       lock();
+
+   }
+
 }
+
 
 multi_lock::~multi_lock()
 {
+
    unlock();
+
 }
+
 
 wait_result multi_lock::lock(const duration & duration, bool bWaitForAll, uint32_t dwWakeMask /* = 0 */)
 {
+
    int32_t iResult;
 
-   if(m_objecta.get_count() < 0)
+   if(M_OBJECTA.get_count() < 0)
       return wait_result(wait_result::Failure);
 
    if (dwWakeMask == 0)
    {
 
-      iResult = ::WaitForMultipleObjectsEx((uint32_t) m_objecta.get_count(), m_objecta.get_data(), bWaitForAll, duration.lock_duration(), FALSE);
+      iResult = ::WaitForMultipleObjectsEx((uint32_t) M_OBJECTA.get_count(), M_OBJECTA.get_data(), bWaitForAll, duration.lock_duration(), FALSE);
 
    }
    else
    {
 
-      iResult = ::MsgWaitForMultipleObjects((uint32_t) m_objecta.get_count(), m_objecta.get_data(), bWaitForAll, duration.lock_duration(), dwWakeMask);
+      iResult = ::MsgWaitForMultipleObjects((uint32_t) M_OBJECTA.get_count(), M_OBJECTA.get_data(), bWaitForAll, duration.lock_duration(), dwWakeMask);
 
    }
 
-   index iUpperBound = WAIT_OBJECT_0 + m_objecta.get_count();
+   index iUpperBound = WAIT_OBJECT_0 + M_OBJECTA.get_count();
    if (iResult >= WAIT_OBJECT_0 && iResult < iUpperBound)
    {
-      if (iUpperBound >= m_objecta.get_count() && iUpperBound >= WAIT_OBJECT_0)
+      if (iUpperBound >= M_OBJECTA.get_count() && iUpperBound >= WAIT_OBJECT_0)
       {
          if (bWaitForAll)
          {
-            for (index i = 0; i < m_objecta.get_count(); i++)
+            for (index i = 0; i < M_OBJECTA.get_count(); i++)
                m_baLocked[i] = TRUE;
          }
          else
@@ -86,7 +117,7 @@ wait_result multi_lock::lock(const duration & duration, bool bWaitForAll, uint32
 
 bool multi_lock::unlock()
 {
-   for (index i=0; i < m_objecta.get_count(); i++)
+   for (index i=0; i < M_OBJECTA.get_count(); i++)
    {
       if (m_baLocked[i])
          m_baLocked[i] = !m_syncobjectptra[i]->unlock();
@@ -97,11 +128,11 @@ bool multi_lock::unlock()
 bool multi_lock::unlock(LONG lCount, LPLONG lpPrevCount /* =NULL */)
 {
    bool bGotOne = false;
-   for (index i=0; i < m_objecta.get_count(); i++)
+   for (index i=0; i < M_OBJECTA.get_count(); i++)
    {
       if (m_baLocked[i])
       {
-         semaphore* pSemaphore = m_syncobjectptra[i].cast < semaphore >();
+         semaphore* pSemaphore = dynamic_cast < semaphore * > (m_syncobjectptra[i]);
          if (pSemaphore != NULL)
          {
             bGotOne = true;
@@ -118,7 +149,7 @@ bool multi_lock::unlock(LONG lCount, LPLONG lpPrevCount /* =NULL */)
 
 bool multi_lock::IsLocked(index dwObject)
 {
-   ASSERT(dwObject < m_objecta.get_count());
+   ASSERT(dwObject < M_OBJECTA.get_count());
    return m_baLocked[dwObject];
 }
 
