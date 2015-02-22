@@ -29,72 +29,69 @@ namespace linux
 {
 
 
-   file::file(sp(::aura::application) papp) :
+   file::file(::aura::application * papp) :
       ::object(papp)
    {
 
-      m_iFile = (UINT) hFileNull;
-
-//     m_bCloseOnDelete = TRUE;
+      m_iFile = INVALID_FILE;
 
    }
 
-   file::file(sp(::aura::application) papp, int32_t hFile) :
+
+   file::file(::aura::application * papp, int iFile) :
       ::object(papp)
    {
 
-      m_iFile = hFile;
-
-//      m_bCloseOnDelete = TRUE;
+      m_iFile = iFile;
 
    }
 
-   file::file(sp(::aura::application) papp, const char * lpszFileName, UINT nOpenFlags) :
+
+   file::file(::aura::application * papp, const char * lpszFileName, UINT nOpenFlags) :
       ::object(papp)
    {
 
-      ASSERT(__is_valid_string(lpszFileName));
+      m_iFile = INVALID_FILE;
 
       if(!open(lpszFileName, nOpenFlags))
          throw ::file::exception(papp, ::file::exception::none, -1, lpszFileName);
 
    }
 
+
    file::~file()
    {
 
-      //if (m_iFile != (UINT)hFileNull && m_bCloseOnDelete)
-      if (m_iFile != (UINT)hFileNull)
+      if (m_iFile != INVALID_FILE)
          close();
 
    }
 
    sp(::file::stream_buffer) file::Duplicate() const
+
    {
-      ASSERT_VALID(this);
-      ASSERT(m_iFile != (UINT)hFileNull);
 
       int32_t iNew = dup(m_iFile);
 
-      if(iNew == -1)
+      if(iNew == INVALID_FILE)
          return NULL;
 
-      file* pFile = new file(get_app(), iNew);
+      file* pFile = canew(file(get_app(), iNew));
       pFile->m_iFile = (UINT)iNew;
-      ASSERT(pFile->m_iFile != (UINT)hFileNull);
-///      pFile->m_bCloseOnDelete = m_bCloseOnDelete;
+      ASSERT(pFile->m_iFile != INVALID_FILE);
       return pFile;
+
    }
+
 
    ::fesp file::open(const char * lpszFileName, UINT nOpenFlags)
    {
 
-      if (m_iFile != (UINT)hFileNull)
+      if (m_iFile != INVALID_FILE)
          close();
 
-      ASSERT_VALID(this);
+
       ASSERT(__is_valid_string(lpszFileName));
-      ASSERT((nOpenFlags & ::file::type_text) == 0);   // text mode not supported
 
       // file objects are always binary and CreateFile does not need flag
       nOpenFlags &= ~(UINT) ::file::type_binary;
@@ -105,8 +102,7 @@ namespace linux
          Application.dir().mk(System.dir().name(lpszFileName));
       }
 
-//      m_bCloseOnDelete = FALSE;
-      m_iFile = (UINT)hFileNull;
+      m_iFile = INVALID_FILE;
       m_strFileName.Empty();
 
       m_strFileName     = lpszFileName;
@@ -170,90 +166,30 @@ namespace linux
 
       // attempt file creation
       //HANDLE hFile = shell::CreateFile(::str::international::utf8_to_unicode(m_strFileName), dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, NULL);
-      int32_t hFile = ::open(m_strFileName, dwFlags, dwPermission); //::open(m_strFileName, dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, NULL);
-      if(hFile == -1)
+      int iFile = ::open(m_strFileName, dwFlags, dwPermission); //::open(m_strFileName, dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, NULL);
+
+      if(iFile == INVALID_FILE)
       {
+
          int iError = errno;
+
          DWORD dwLastError = ::GetLastError();
 
-         if(dwLastError != ERROR_FILE_NOT_FOUND && dwLastError != ERROR_PATH_NOT_FOUND)
-         {
-            /*         if (pException != NULL)
-            {
-            pException->create(get_app());
-            ::file::exception * pfe = dynamic_cast < ::file::exception * > (pException->m_p);
-            if(pfe != NULL)
-            {
-            pfe->m_lOsError = dwLastError;
-            pfe->m_cause = ::win::file_exception::OsErrorToException(pfe->m_lOsError);
-            pfe->m_strFileName = lpszFileName;
-            }
-            return FALSE;
-            }
-            else
-            {*/
-
-
-            //vfxThrowFileException(get_app(), file_exception::OsErrorToException(dwLastError), dwLastError, m_strFileName);
-
-            return ::fesp(get_app(), file_exception::OsErrorToException(dwLastError), dwLastError, m_strFileName);
-
-            //}
-
-         }
-
-         /*try
-         {
-            m_papp->m_psystem->m_spfilesystem.m_p->FullPath(m_wstrFileName, m_wstrFileName);
-         }
-         catch(...)
-         {
-            return FALSE;
-         }
-
-         m_strFileName = ::str::international::unicode_to_utf8(m_wstrFileName);
-
-         hFile = ::open(m_strFileName, nOpenFlags);*/
-
-         if (hFile == -1)
-         {
-            /*if (pException != NULL)
-            {
-            pException->create(get_app());
-            ::file::exception * pfe = dynamic_cast < ::file::exception * > (pException->m_p);
-            if(pfe != NULL)
-            {
-            pfe->m_lOsError = ::GetLastError();
-            pfe->m_cause = ::win::file_exception::OsErrorToException(pfe->m_lOsError);
-            pfe->m_strFileName = lpszFileName;
-            }
-            return FALSE;
-            }
-            else
-            {*/
-
-
-            DWORD dwLastError = ::GetLastError();
-            return ::fesp(get_app(), file_exception::OsErrorToException(dwLastError), dwLastError, m_strFileName);
-
-
-            //}
-
-         }
+         return ::fesp(get_app(), file_exception::OsErrorToException(dwLastError), dwLastError, m_strFileName);
 
       }
 
-      m_iFile = (int32_t)hFile;
-
-//      m_bCloseOnDelete = TRUE;
+      m_iFile = iFile;
 
       return ::file::no_exception();
+
    }
+
 
    ::primitive::memory_size file::read(void * lpBuf, ::primitive::memory_size nCount)
    {
-      ASSERT_VALID(this);
-      ASSERT(m_iFile != (UINT)hFileNull);
+
+      ASSERT(m_iFile != INVALID_FILE);
 
       if (nCount == 0)
          return 0;   // avoid Win32 "null-read"
@@ -292,8 +228,8 @@ namespace linux
 
    void file::write(const void * lpBuf, ::primitive::memory_size nCount)
    {
-      ASSERT_VALID(this);
-      ASSERT(m_iFile != (UINT)hFileNull);
+
+      ASSERT(m_iFile != INVALID_FILE);
 
       if (nCount == 0)
          return;     // avoid Win32 "null-write" option
@@ -319,11 +255,11 @@ namespace linux
    file_position file::seek(file_offset lOff, ::file::e_seek nFrom)
    {
 
-      if(m_iFile == (UINT)hFileNull)
+      if(m_iFile == INVALID_FILE)
          file_exception::ThrowOsError(get_app(), (LONG)0);
 
-      ASSERT_VALID(this);
-      ASSERT(m_iFile != (UINT)hFileNull);
+
+      ASSERT(m_iFile != INVALID_FILE);
       ASSERT(nFrom == ::file::seek_begin || nFrom == ::file::seek_end || nFrom == ::file::seek_current);
       ASSERT(::file::seek_begin == SEEK_SET && ::file::seek_end == SEEK_END && ::file::seek_current == SEEK_CUR);
 
@@ -340,8 +276,8 @@ namespace linux
 
    file_position file::get_position() const
    {
-      ASSERT_VALID(this);
-      ASSERT(m_iFile != (UINT)hFileNull);
+
+      ASSERT(m_iFile != INVALID_FILE);
 
       LONG lLoOffset = 0;
 //      LONG lHiOffset = 0;
@@ -365,9 +301,9 @@ namespace linux
 
       */
 
-      /*ASSERT_VALID(this);
+      /*
 
-    /*  if (m_iFile == (UINT)hFileNull)
+    /*  if (m_iFile == INVALID_FILE)
          return;
 
       if (!::FlushFileBuffers((HANDLE)m_iFile))
@@ -376,37 +312,44 @@ namespace linux
 
    void file::close()
    {
-      ASSERT_VALID(this);
-      ASSERT(m_iFile != (UINT)hFileNull);
 
       bool bError = FALSE;
-      if (m_iFile != (UINT)hFileNull)
+
+      if (m_iFile != INVALID_FILE)
          bError = ::close(m_iFile) == -1;
 
-      m_iFile = (UINT) hFileNull;
-//      m_bCloseOnDelete = FALSE;
+      m_iFile = INVALID_FILE;
+
       m_strFileName.Empty();
 
       if (bError)
          file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());
+
    }
+
 
    void file::Abort()
    {
-      ASSERT_VALID(this);
-      if (m_iFile != (UINT)hFileNull)
+
+
+
+      if (m_iFile != INVALID_FILE)
       {
          // close but ignore errors
          ::close(m_iFile);
-         m_iFile = (UINT)hFileNull;
+
+         m_iFile = INVALID_FILE;
+
       }
+
       m_strFileName.Empty();
+
    }
 
    void file::LockRange(file_position dwPos, file_size dwCount)
    {
-      ASSERT_VALID(this);
-      ASSERT(m_iFile != (UINT)hFileNull);
+
+      ASSERT(m_iFile != INVALID_FILE);
 
       /*if (!::LockFile((HANDLE)m_iFile, LODWORD(dwPos), HIDWORD(dwPos), LODWORD(dwCount), HIDWORD(dwCount)))
          file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());*/
@@ -414,8 +357,8 @@ namespace linux
 
    void file::UnlockRange(file_position dwPos, file_size dwCount)
    {
-      ASSERT_VALID(this);
-      ASSERT(m_iFile != (UINT)hFileNull);
+
+      ASSERT(m_iFile != INVALID_FILE);
 
 /*      if (!::UnlockFile((HANDLE)m_iFile,  LODWORD(dwPos), HIDWORD(dwPos), LODWORD(dwCount), HIDWORD(dwCount)))
          file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());*/
@@ -423,8 +366,8 @@ namespace linux
 
    void file::set_length(file_size dwNewLen)
    {
-      ASSERT_VALID(this);
-      ASSERT(m_iFile != (UINT)hFileNull);
+
+      ASSERT(m_iFile != INVALID_FILE);
 
       seek((LONG)dwNewLen, (::file::e_seek)::file::seek_begin);
 
@@ -434,7 +377,7 @@ namespace linux
 
    file_size file::get_length() const
    {
-      ASSERT_VALID(this);
+
 
       file_position dwLen, dwCur;
 
@@ -547,7 +490,7 @@ namespace linux
    string file::GetFileName() const
    {
 
-      ASSERT_VALID(this);
+
 
       ::file::file_status status;
 
@@ -561,7 +504,7 @@ namespace linux
    string file::GetFileTitle() const
    {
 
-      ASSERT_VALID(this);
+
 
       ::file::file_status status;
 
@@ -574,7 +517,7 @@ namespace linux
 
    string file::GetFilePath() const
    {
-      ASSERT_VALID(this);
+
 
       ::file::file_status status;
       GetStatus(status);
@@ -785,7 +728,7 @@ namespace linux
 
    bool file::GetStatus(::file::file_status& rStatus) const
    {
-      ASSERT_VALID(this);
+
 
       //memset(&rStatus, 0, sizeof(::file::file_status));
 
@@ -1042,14 +985,14 @@ namespace linux
 
    bool file::IsOpened()
    {
-      return m_iFile != hFileNull;
+      return m_iFile != INVALID_FILE;
    }
 
 
    void file::SetFilePath(const char * lpszNewName)
    {
-      ASSERT_VALID(this);
-      ASSERT(__is_valid_string(lpszNewName));
+
+
       m_strFileName = lpszNewName;
    }
 

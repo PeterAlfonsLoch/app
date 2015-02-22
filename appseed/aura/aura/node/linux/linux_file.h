@@ -12,6 +12,7 @@ void CLASS_DECL_AURA vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath);
 /////////////////////////////////////////////////////////////////////////////
 // File - raw unbuffered disk file I/O
 
+#define INVALID_FILE -1
 
 namespace linux
 {
@@ -34,13 +35,6 @@ namespace linux
          archive =   0x20
       };
 
-      enum
-      {
-
-         hFileNull = -1
-
-      };
-
       enum BufferCommand
       {
 
@@ -53,12 +47,12 @@ namespace linux
 
       string         m_strFileName;
       wstring        m_wstrFileName;
-      int32_t        m_iFile;
+      int            m_iFile;
 
 
-      file(sp(::aura::application) papp);
-      file(sp(::aura::application) papp, int32_t hFile);
-      file(sp(::aura::application) papp, const char * lpszFileName, UINT nOpenFlags);
+      file(::aura::application * papp);
+      file(::aura::application * papp, int hFile);
+      file(::aura::application * papp, const char * lpszFileName, UINT nOpenFlags);
       virtual ~file();
 
 
