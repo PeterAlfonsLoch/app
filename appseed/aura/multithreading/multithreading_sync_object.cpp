@@ -88,6 +88,14 @@ void * sync_object::get_os_data() const
 
 bool sync_object::unlock(LONG /* lCount */, LPLONG /* lpPrevCount=NULL */)
 {
+
    return TRUE;
+
 }
 
+bool sync_object::unlock()
+{
+
+   return true;
+
+}

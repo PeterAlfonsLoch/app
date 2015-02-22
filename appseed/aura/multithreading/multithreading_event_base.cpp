@@ -5,8 +5,10 @@
 #include "framework.h"
 
 
-event_base::event_base(int_ptr item)
-   : m_object(item), m_bOwn(true)
+event_base::event_base(int_ptr item, const char * pszName) :
+sync_object(pszName), 
+m_object(item), 
+m_bOwn(true)
 {
 
 }

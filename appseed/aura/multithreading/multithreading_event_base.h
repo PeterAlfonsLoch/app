@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_AURA event_base :
-   virtual public object
+   public sync_object
 {
 public:
 
@@ -10,9 +10,10 @@ public:
    int_ptr        m_object;
 	bool           m_bOwn;
 
-	virtual ~event_base();
 
-   explicit event_base(int_ptr item = -1);
+   event_base(int_ptr item = -1, const char * pszName = NULL);
+   virtual ~event_base();
+
 
 	void release_ownership();
 

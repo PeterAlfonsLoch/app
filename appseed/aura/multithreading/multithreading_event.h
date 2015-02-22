@@ -6,7 +6,7 @@
 #endif
 
 class CLASS_DECL_AURA event :
-   virtual public event_base
+   public event_base
 {
 public:
 

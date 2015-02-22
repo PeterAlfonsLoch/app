@@ -33,7 +33,7 @@ public:
    using object::wait;
    virtual wait_result wait(const duration & durationTimeout);
 
-   virtual bool unlock() = 0;
+   virtual bool unlock();
    virtual bool unlock(LONG /* lCount */, LPLONG /* lpPrevCount=NULL */);
 
    virtual void assert_valid() const;
