@@ -217,7 +217,8 @@ namespace str
 
       inline bool is_legal_uni_index(int64_t ca)
       {
-         return ca >= ((uint64_t) 0xffffffffu) ? false : true;
+         //return ca >= ((uint64_t) 0xffffffffu) ? false : true;
+         return ca >= 65536 ? false : true;
          //return true;
       }
 
