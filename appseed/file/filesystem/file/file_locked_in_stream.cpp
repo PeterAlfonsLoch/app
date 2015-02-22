@@ -7,7 +7,7 @@ namespace file
 
    ::primitive::memory_size locked_in_stream::read(file_position startPos, void *data, ::primitive::memory_size size)
    {
-      single_lock sl(&_criticalSection, TRUE);
+      cslock sl(&_criticalSection);
       _stream->seek((file_offset) startPos, ::file::seek_begin);
       return _stream->read(data, size);
    }

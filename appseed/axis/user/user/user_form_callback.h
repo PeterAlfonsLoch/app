@@ -12,7 +12,7 @@ namespace html
    class data;
 
 }
-//class form_document;
+//class ::aura::document;
 
 
 namespace user

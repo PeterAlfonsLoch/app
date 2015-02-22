@@ -42,7 +42,7 @@ namespace file
       out_buffer();
       ~out_buffer();
 
-      using ::request_interface::create;
+      using ::object::create;
       bool create(::primitive::memory_size bufferSize);
       void free();
 

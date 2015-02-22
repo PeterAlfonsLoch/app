@@ -1,7 +1,7 @@
 #pragma once
 
 
-//class form_document;
+//class ::aura::document;
 //class ::user::form;
 
 

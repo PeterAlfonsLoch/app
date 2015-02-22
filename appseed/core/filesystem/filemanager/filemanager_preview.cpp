@@ -59,7 +59,7 @@ namespace filemanager
                }*/
             }
          }
-         else if (base_class < form_update_hint > ::bases(phint))
+         else if (base_class < ::user::form_update_hint > ::bases(phint))
          {
          }
 

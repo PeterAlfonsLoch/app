@@ -297,7 +297,7 @@ namespace filemanager
             strSql += ";";
 
 
-/*            single_lock sl(get_document()->m_pcsAlbum1, TRUE);
+/*            cslock sl(get_document()->m_pcsAlbum1);
             get_document()->m_pdsAlbum1->query(strSql);*/
 
             m_cache._001Invalidate();

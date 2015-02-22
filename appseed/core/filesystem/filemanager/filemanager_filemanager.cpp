@@ -88,7 +88,7 @@ namespace filemanager
       System.factory().creatable_small < preview > ();
       System.factory().creatable_small < main_frame > ();
       System.factory().creatable_small < tab_view > ();
-//      System.factory().creatable_small < form_document > ();
+//      System.factory().creatable_small < ::aura::document > ();
       System.factory().creatable_small < form_child_frame > ();
       System.factory().creatable_small < ::user::form > ();
       System.factory().creatable_small < ::filemanager::folder_selection_list_view > ();
