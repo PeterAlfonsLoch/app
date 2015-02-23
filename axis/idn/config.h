@@ -202,20 +202,26 @@
 /* Define to 1 if you have the `gettimeofday' function. */
 #undef HAVE_GETTIMEOFDAY
 
-#if defined(APPLEOS)
+#if defined(LINUX)
 
 /* Define if you have the iconv() function and it works. */
 //#define HAVE_ICONV 1
-#undef HAVE_ICONV
+//#undef HAVE_ICONV
+
+#define ICONV_CONST const
+
+#define HAVE_ICONV 1
+#define HAVE_ICONV_H
 
 /* Define to 1 if you have the <iconv.h> header file. */
 //#define HAVE_ICONV_H 1
-#undef HAVE_ICONV_H
+//#undef HAVE_ICONV_H
 //#include "atom/iconv/include/iconv.h"
 
 #else
 
 #undef HAVE_ICONV
+
 #undef HAVE_ICONV_H
 
 #endif

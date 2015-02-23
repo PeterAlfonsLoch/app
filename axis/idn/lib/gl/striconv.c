@@ -15,7 +15,7 @@
    You should have received a copy of the GNU Lesser General Public License
    along with this program; if not, see <http://www.gnu.org/licenses/>.  */
 
-#include <config.h>
+#include "config.h"
 
 /* Specification.  */
 #include "striconv.h"
@@ -25,7 +25,7 @@
 #include <string.h>
 
 #if HAVE_ICONV
-# include <iconv.h>
+# include "atom/iconv/include/iconv.h"
 /* Get MB_LEN_MAX, CHAR_BIT.  */
 # include <limits.h>
 #endif
@@ -70,7 +70,7 @@ mem_cd_iconv (const char *src, size_t srclen, iconv_t cd,
         char *outptr = tmpbuf;
         size_t outsize = tmpbufsize;
         size_t res = iconv (cd,
-                            (ICONV_CONST char **) &inptr, &insize,
+                            (char **) &inptr, &insize,
                             &outptr, &outsize);
 
         if (res == (size_t)(-1))
@@ -148,7 +148,7 @@ mem_cd_iconv (const char *src, size_t srclen, iconv_t cd,
     while (insize > 0)
       {
         size_t res = iconv (cd,
-                            (ICONV_CONST char **) &inptr, &insize,
+                            (char **) &inptr, &insize,
                             &outptr, &outsize);
 
         if (res == (size_t)(-1))
@@ -291,7 +291,7 @@ str_cd_iconv (const char *src, iconv_t cd)
         /* Here inptr + inbytes_remaining = src + strlen (src),
                 outptr + outbytes_remaining = result + result_size - 1.  */
         size_t res = iconv (cd,
-                            (ICONV_CONST char **) &inptr, &inbytes_remaining,
+                            ( char **) &inptr, &inbytes_remaining,
                             &outptr, &outbytes_remaining);
 
         if (res == (size_t)(-1))

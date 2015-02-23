@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1424660123 source:/home2/ca2/app/axis/idn/test/axisidn_test/main.c
+	<stdio.h>
+	<stdlib.h>
+	"idna.h"
+
+1424529269 /home2/ca2/app/include/idna.h
+	<stddef.h>
+
+1424666010 source:/home2/ca2/app/axis/idn/test/main.c
+	<stdio.h>
+	<stdlib.h>
+	"idna.h"
+
