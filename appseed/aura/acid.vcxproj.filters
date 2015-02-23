@@ -87,15 +87,6 @@
     <Filter Include="Header Files\aura\os\windows">
       <UniqueIdentifier>{719bbac6-b1e2-43be-9042-48cec85915ad}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\aura\os\cross">
-      <UniqueIdentifier>{e9b106f1-4ddd-4521-b7c1-6461c701be4f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\aura\os\cross\windows">
-      <UniqueIdentifier>{105dbf8b-8b00-4530-b1fa-ac561338c12e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\aura\os\ansios">
-      <UniqueIdentifier>{d8fdcc30-b719-4944-8c43-76d53cfb6b94}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\aura">
       <UniqueIdentifier>{225c8e24-bbc5-4bf4-9da8-92ec39a039ec}</UniqueIdentifier>
     </Filter>
@@ -107,9 +98,6 @@
     </Filter>
     <Filter Include="Header Files\aura\message">
       <UniqueIdentifier>{6ea91d16-af59-4653-ad87-aaa3548a7437}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\aura\node\ansios">
-      <UniqueIdentifier>{69195050-6ed5-49b9-b26e-60f94ca26561}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\primitive\data">
       <UniqueIdentifier>{ddf01975-333f-459f-a6b4-f5e9fdffa7f6}</UniqueIdentifier>
@@ -890,9 +878,6 @@
     <ClInclude Include="aura\os\os_process.h">
       <Filter>Header Files\aura\os</Filter>
     </ClInclude>
-    <ClInclude Include="aura\os\cross\cross.h">
-      <Filter>Header Files\aura\os\cross</Filter>
-    </ClInclude>
     <ClInclude Include="aura\exception\exception.h">
       <Filter>Header Files\aura\exception</Filter>
     </ClInclude>
@@ -1046,66 +1031,6 @@
     <ClInclude Include="primitive\primitive_relation_set.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_crt.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_defs.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_error.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_file.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_gdi.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_guid_def.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_internals.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_ole_automation.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_shared_memory.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_thread.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_thread_impl.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_time.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_types.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_user.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_winnt.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\ansios\ansios.h">
-      <Filter>Header Files\aura\os\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\ansios\ansios_file.h">
-      <Filter>Header Files\aura\os\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\ansios\ansios_multithreading.h">
-      <Filter>Header Files\aura\os\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\ansios\ansios_thread.h">
-      <Filter>Header Files\aura\os\ansios</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\math\math_mkint_c.h">
       <Filter>Header Files\primitive\math</Filter>
     </ClInclude>
@@ -1217,12 +1142,6 @@
     <ClInclude Include="multithreading\multithreading_thread_impl.h">
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
-    <ClInclude Include="aura\node\ansios\ansios.h">
-      <Filter>Header Files\aura\node\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\node\ansios\ansios_thread_impl.h">
-      <Filter>Header Files\aura\node\ansios</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\comparison\comparison_compare.h">
       <Filter>Header Files\primitive\comparison</Filter>
     </ClInclude>
@@ -1249,51 +1168,6 @@
     </ClInclude>
     <ClInclude Include="primitive\data\data_item.h">
       <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\e.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_base.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_base_tsd.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_common_controls.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_crtdefs.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_errno.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_mmeapi.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_mmsystem.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_nls.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_nt.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_ntstatus.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_poppack.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_pshpack2.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_pshpack4.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_pshpack8.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\file\file_folder_watch.h">
       <Filter>Header Files\filesystem\file</Filter>
@@ -1493,12 +1367,6 @@
     <ClInclude Include="aura\node\windows\windows_process.h">
       <Filter>Header Files\aura\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="aura\node\ansios\ansios_process.h">
-      <Filter>Header Files\aura\node\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\node\ansios\ansios_pipe.h">
-      <Filter>Header Files\aura\node\ansios</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\math\math_complex.h">
       <Filter>Header Files\primitive\math</Filter>
     </ClInclude>
@@ -1613,9 +1481,6 @@
     <ClInclude Include="aura\aura\aura_gudo_application.inl">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_heap.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
     <ClInclude Include="aura\aura\aura_heap_item.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
@@ -1713,9 +1578,6 @@
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
     <ClInclude Include="aura\aura\aura_progress.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\aura_root.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
     <ClInclude Include="aura\aura\aura_savings.h">
@@ -1907,9 +1769,6 @@
     </None>
     <None Include="primitive\collection\collection.inl">
       <Filter>Header Files\primitive\collection</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
