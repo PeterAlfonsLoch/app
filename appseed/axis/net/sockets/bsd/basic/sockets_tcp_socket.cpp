@@ -126,6 +126,12 @@ void ssl_sigpipe_handle( int x );
          SSL_free(m_ssl);
       }
    #endif
+   if(m_socket != INVALID_SOCKET)
+   {
+   ::closesocket(m_socket);
+   m_socket = INVALID_SOCKET;
+   }
+
    }
 
 
@@ -313,9 +319,9 @@ void ssl_sigpipe_handle( int x );
 
    void tcp_socket::OnResolved(int32_t id, const ::net::address & a)
    {
-      
+
        TRACE("tcp_socket::OnResolved id %d addr %s port %d\n", id, Session.sockets().net().canonical_name(a).c_str(), a.u.s.m_port);
-      
+
       if (id == m_resolver_id)
       {
          if (a.is_valid() && a.u.s.m_port)
@@ -357,7 +363,7 @@ void ssl_sigpipe_handle( int x );
 
          if(!Ready())
          {
-          
+
             TRACE("tcp_socket::recv not ready");
             return 0;
 
@@ -415,7 +421,7 @@ void ssl_sigpipe_handle( int x );
          {
             log("tcp_socket::recv(ssl)", (int) n, "abnormal value from SSL_read", ::aura::log::level_error);
             TRACE("tcp_socket::recv ssl abnormal value from SSL_read(3)");
-            
+
          }
       }
       else
@@ -1001,7 +1007,7 @@ void ssl_sigpipe_handle( int x );
 
    void tcp_socket::OnSSLConnect()
    {
-      
+
       SetNonblocking(true);
 
       synch_lock slMap(&Session.sockets().m_clientcontextmap.m_mutex);
@@ -1053,7 +1059,7 @@ void ssl_sigpipe_handle( int x );
 
    void tcp_socket::OnSSLAccept()
    {
-      
+
       SetNonblocking(true);
 
       synch_lock slMap(&Session.sockets().m_servercontextmap.m_mutex);
@@ -1670,7 +1676,7 @@ void ssl_sigpipe_handle( int x );
                      }
 
                   }
-                  
+
 
                }
             }
