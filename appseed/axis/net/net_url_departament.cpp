@@ -1454,7 +1454,7 @@ namespace url
 
       char * p = NULL;
 
-      Idna_rc rc = (Idna_rc) idna_to_ascii_lz(psz, &p, 0);
+      Idna_rc rc = (Idna_rc) idna_to_ascii_8z(psz, &p, IDNA_ALLOW_UNASSIGNED);
 
       if (rc != IDNA_SUCCESS)
       {
@@ -1476,7 +1476,7 @@ namespace url
          return "";
 
       {
-       
+
          string str(psz);
 
          str.trim();
@@ -1488,7 +1488,7 @@ namespace url
 
       char * p = NULL;
 
-      Idna_rc rc = (Idna_rc)idna_to_unicode_lzlz(psz, &p, 0);
+      Idna_rc rc = (Idna_rc)idna_to_unicode_8z8z(psz, &p, IDNA_ALLOW_UNASSIGNED);
 
       if (rc != IDNA_SUCCESS)
       {
