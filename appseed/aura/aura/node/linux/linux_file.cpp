@@ -735,7 +735,7 @@ namespace linux
       // copy file name from cached m_strFileName
       rStatus.m_strFullName = m_strFileName;
 
-      if (m_iFile != hFileNull)
+      if (m_iFile != INVALID_FILE)
       {
          struct stat st;
          if(fstat(m_iFile, &st) == -1)
