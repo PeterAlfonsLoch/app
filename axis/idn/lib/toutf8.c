@@ -44,7 +44,9 @@
 #include <string.h>
 
 /* Get iconv_string. */
-//#include "atom/iconv/lib/striconv.h"
+#ifdef LINUX
+#include "gl/striconv.h"
+#endif
 
 #ifdef _LIBC
 # define HAVE_ICONV 1

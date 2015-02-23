@@ -75,6 +75,7 @@
 		<Unit filename="lib/gl/striconv.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="lib/gl/striconv.h" />
 		<Unit filename="lib/gunibreak.h" />
 		<Unit filename="lib/gunicomp.h" />
 		<Unit filename="lib/gunidecomp.h" />
