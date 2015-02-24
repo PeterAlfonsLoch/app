@@ -59,6 +59,16 @@ namespace http
          return m_varValue.to_string();
       }
 
+      operator string() const
+      {
+         return to_string();
+      }
+
+      operator property() const
+      {
+         return property(m_strName,m_varValue);
+      }
+
    };
 
 

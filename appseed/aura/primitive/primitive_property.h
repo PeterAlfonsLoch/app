@@ -119,8 +119,8 @@ public:
    property(property && prop)
    {
       m_idName.m_all = prop.m_idName.m_all;
-      m_var.m_sp.release();
-      m_var.m_str.~string();
+      //m_var.m_sp.release();
+      //m_var.m_str.~string();
       memcpy(&m_var, &prop.m_var, sizeof(var));
       prop.m_var.m_sp.m_p           = NULL;
       prop.m_var.m_str.m_pszData    = NULL;
