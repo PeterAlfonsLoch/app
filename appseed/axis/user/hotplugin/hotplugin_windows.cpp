@@ -21,7 +21,7 @@ namespace hotplugin
    void entry_hall_windows_on_paint(HDC hdc,const RECT & rect,const string & strEntryHallText)
    {
 
-#if 1
+#if 0
 
       throw "TODO trying to get rid of GDI PLUS dependency on Windows, is it possible to use GDI with coached alpha extensions?";
 

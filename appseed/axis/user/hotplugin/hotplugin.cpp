@@ -39,6 +39,12 @@ namespace hotplugin
             debug_box("hotplugin boxmain NP_Initialize","ZZZzzz hotplugin box",MB_OK);
 
          }
+         if(file_exists_dup("C:\\ca2\\config\\plugin\\npca2_beg_sleep.txt"))
+         {
+
+            Sleep(10000);
+
+         }
 
          ::set_thread(g_paxissystem);
 
