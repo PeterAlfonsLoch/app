@@ -172,23 +172,23 @@ public:
 
 
    string(const stdstring< simple_string> & strSrc):
-      stdstring< simple_string>(strSrc)
+      stdstring< simple_string>(strSrc,string_trait::GetDefaultManager())
    {
    }
 
    string(const simple_string & strSrc):
-      stdstring< simple_string>(strSrc)
+      stdstring< simple_string>(strSrc,string_trait::GetDefaultManager())
    {
    }
 
 
    string(const stdstring< verisimple_wstring> & strSrc):
-      stdstring< simple_string>(strSrc)
+      stdstring< simple_string>(strSrc,string_trait::GetDefaultManager())
    {
    }
 
    string(const verisimple_wstring & strSrc):
-      stdstring< simple_string>(strSrc)
+      stdstring< simple_string>(strSrc,string_trait::GetDefaultManager())
    {
    }
 
