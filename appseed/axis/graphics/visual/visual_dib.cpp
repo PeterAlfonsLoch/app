@@ -341,7 +341,7 @@ bool windows_load_dib_from_file(::draw2d::dib * pdib,::file::buffer_sp pfile,::a
       ZERO(px);
       if(pframe == NULL)
       {
-         throw simple_exception(papp,"CreateDecoderFromStream failure");
+         return false;
       }
                   {
                      hr =   pframe->GetPixelFormat(&px);
