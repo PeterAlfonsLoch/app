@@ -112,7 +112,7 @@ namespace aura
 
       m_pcommandthread           = canew(::command_thread(this));
 
-      m_bLicense                 = true;
+      m_bLicense                 = false;
 
       m_bAuraProcessInitialize         = false;
       m_bAuraProcessInitializeResult   = false;
