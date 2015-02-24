@@ -63,7 +63,6 @@ namespace axis
 
 
 
-      m_bLicense                 = true;
 
 
       m_bAxisProcessInitialize         = false;
@@ -83,9 +82,7 @@ namespace axis
 
 
 
-      // initialize wait cursor state
-      m_bLicense                 = true;
-
+      
       // initialize wait cursor state
       m_iWaitCursorCount         = 0;
 
