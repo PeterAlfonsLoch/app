@@ -67,9 +67,7 @@ namespace str
        //bool CLASS_DECL_AURA OemToUtf8(string & str, const char * lpcsz, strsize nCount);
 
        bool CLASS_DECL_AURA unicode_to_utf8(string & str, const wchar_t * lpcsz);
-       CLASS_DECL_AURA wstring utf8_to_unicode(const char * lpcsz);
        CLASS_DECL_AURA wstring utf8_to_unicode(const string & str);
-       CLASS_DECL_AURA wstring utf8_to_unicode(const var & var);
        CLASS_DECL_AURA wstring utf8_to_unicode(const char * lpcsz, strsize iCount);
        bool CLASS_DECL_AURA unicode_to_utf8(string & str, const wchar_t * lpcsz, strsize iCount);
        string CLASS_DECL_AURA unicode_to_utf8(const wchar_t * lpcsz);
@@ -114,7 +112,6 @@ namespace str
       //CLASS_DECL_AURA bool OEMToUnicode(wchar_t * lpstrUnicode, strsize nCount, const char * lpcsz);
       //CLASS_DECL_AURA wstring OEMToUnicode(const char * lpcsz);
       CLASS_DECL_AURA bool unicode_to_utf8(string & str, const wchar_t * lpcsz);
-      CLASS_DECL_AURA wstring utf8_to_unicode(const char * lpcsz);
       CLASS_DECL_AURA strsize utf8_to_unicode_count(const char * lpcsz, strsize count = -1);
       CLASS_DECL_AURA strsize utf8_to_unicode_count(const string & str);
 

@@ -715,17 +715,17 @@ inline bool operator == (const string & str, const property & prop)
 }
 
 
-inline string::string(const property & prop) :
-stdstring<simple_string>(string_trait::GetDefaultManager())
-{
-
-   operator = (prop.to_string());
-
-}
-
-inline string & string::operator = (const property & prop)
-{
-
-   return operator = (prop.to_string());
-
-}
+//inline string::string(const property & prop) :
+//stdstring<simple_string>(string_trait::GetDefaultManager())
+//{
+//
+//   operator = (prop.to_string());
+//
+//}
+//
+//inline string & string::operator = (const property & prop)
+//{
+//
+//   return operator = (prop.to_string());
+//
+//}

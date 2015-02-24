@@ -460,7 +460,7 @@ CLASS_DECL_AXIS string c_inet_ntop(int32_t af, const void *src)
 
    }
 
-   return true;
+   return str;
 
 }
 

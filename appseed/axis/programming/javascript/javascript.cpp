@@ -1698,7 +1698,7 @@ CScriptVarLink *tinyjs::factor(bool &execute) {
           //l->match(':');
           if (execute) {
             CScriptVarLink *a = axis(execute);
-            contents->addChild(idx, a->var);
+            contents->addChild(::str::from(idx), a->var);
             CLEAN(a);
           }
           idx++;

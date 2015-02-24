@@ -154,18 +154,45 @@ public:
    static const int npos;
 
 
-   template < typename T >
-   friend inline string to_string(T & o);
-
-
    operator class string_composite ();
    operator class string_composite const () const;
    operator const char *() const throw();
    const char * c_str() const throw();
    const char * data() const throw();
 
-   void construct() throw();
    inline string() throw();
+   string(const string & strSrc);
+
+   string(string && strSrc):
+      stdstring< simple_string>(for_moving())
+   {
+      m_pszData = strSrc.m_pszData;
+      strSrc.m_pszData = NULL;
+   }
+
+
+   string(const stdstring< simple_string> & strSrc):
+      stdstring< simple_string>(strSrc)
+   {
+   }
+
+   string(const simple_string & strSrc):
+      stdstring< simple_string>(strSrc)
+   {
+   }
+
+
+   string(const stdstring< verisimple_wstring> & strSrc):
+      stdstring< simple_string>(strSrc)
+   {
+   }
+
+   string(const verisimple_wstring & strSrc):
+      stdstring< simple_string>(strSrc)
+   {
+   }
+
+   void construct() throw();
    explicit string( string_manager * pstringmanager ) throw();
    static void __cdecl Construct( string* pstring );
 
@@ -175,55 +202,42 @@ public:
    string(uchar * pszSrc);
    string(wchar_t * pszSrc);
    string(const wchar_t * pszSrc);
-   string(const string & strSrc);
    string(const string & strSrc, strsize npos, strsize len = -1);
-   string(const istring & istr);
-   string(const string_interface & str);
 
-   inline string(const id & id);
-   inline string(const var & var);
-   inline string(const property & prop);
 
-   template < typename T >
-   inline explicit string(T o) :
-      stdstring < simple_string >(string_trait::GetDefaultManager())
-   {
-
-      *this = to_string(o);
-
-   }
-
+   string(char ch,strsize nLength = 1);
+   string(strsize nLength, char ch);
+   string(wchar_t ch, strsize nLength = 1 );
+   string(const char* pch,strsize nLength);
+   string(const wchar_t* pch,strsize nLength);
 
 #if defined(METROWIN) && defined(__cplusplus_winrt)
    string(Object ^ o);
    string(Array < byte > ^ a);
 #endif
-   string(const char * pszSrc,string_manager * pstringmanager );
-   string(const wchar_t * pszSrc,string_manager * pstringmanager );
 
 
 
-   string(const uchar* pszSrc, string_manager * pstringmanager);
-   explicit string(char ch, strsize nLength = 1);
-   string(strsize nLength, char ch);
-   string(wchar_t ch, strsize nLength = 1 );
-   string(const char* pch, strsize nLength);
-   string(const char* pch, strsize nLength, string_manager * pstringmanager );
-   string(const wchar_t* pch, strsize nLength);
-   string(const wchar_t* pch, strsize nLength, string_manager * pstringmanager);
+   string(const char * pszSrc,string_manager * pstringmanager);
+   string(const wchar_t * pszSrc,string_manager * pstringmanager);
+   string(const uchar* pszSrc,string_manager * pstringmanager);
+   string(const char* pch,strsize nLength,string_manager * pstringmanager);
+   string(const wchar_t* pch,strsize nLength,string_manager * pstringmanager);
+
 #if defined(METROWIN) && defined(__cplusplus_winrt)
    string(Object ^ o, string_manager * pstringmanager);
 #endif
+
    ~string() throw();
 
 
 
-   inline string & operator = (const id & str);
-   inline string & operator = (const var & var);
-   inline string & operator = (const property & prop);
+   //inline string & operator = (const id & str);
+   //inline string & operator = (const var & var);
+   //inline string & operator = (const property & prop);
 
-   string & operator = (const string_interface & str );
-   //string & operator = (string strSrc);
+   //string & operator = (const string_interface & str );
+   ////string & operator = (string strSrc);
    string & operator = (const simple_string & strSrc);
    string & operator = (const string & strSrc);
    string & operator = (const char * pszSrc);
@@ -1058,20 +1072,20 @@ inline char string::last_char() const
 
 
 
-inline string::string(const id & id) :
-   stdstring<simple_string>(string_trait::GetDefaultManager())
-{
+//inline string::string(const id & id) :
+//   stdstring<simple_string>(string_trait::GetDefaultManager())
+//{
+//
+//   operator = (id.to_string());
+//
+//}
 
-   operator = (id.to_string());
-
-}
-
-inline string & string::operator = (const id & id)
-{
-
-   return operator = (id.to_string());
-
-}
+//inline string & string::operator = (const id & id)
+//{
+//
+//   return operator = (id.to_string());
+//
+//}
 
 inline id::operator const char *() const
 {

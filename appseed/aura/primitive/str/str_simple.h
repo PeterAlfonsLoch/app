@@ -408,7 +408,6 @@ public:
 
       class string_buffer;
 
-
 class CLASS_DECL_AURA simple_string
 {
 public:
@@ -419,6 +418,10 @@ public:
    
    typedef string_data data_type;
 
+
+   simple_string(for_moving)
+   {
+   }
 
    explicit simple_string(string_manager * pstringmanager )
    {

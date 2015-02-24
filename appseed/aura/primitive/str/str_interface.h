@@ -30,4 +30,6 @@ public:
 
    string_interface & operator = (const char * psz);
 
+   operator string () const;
+
 };

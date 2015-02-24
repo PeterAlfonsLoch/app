@@ -78,7 +78,7 @@ public:
 
 
    string str() const;
-
+   operator string() const; 
 
 
 

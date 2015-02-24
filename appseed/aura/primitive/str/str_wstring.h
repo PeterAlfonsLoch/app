@@ -117,6 +117,7 @@ protected:
 
 public:
 
+   verisimple_wstring(for_moving){};
    verisimple_wstring(manager * pstringmanager);
    void construct(manager * pstringmanager = NULL);
    verisimple_wstring(const verisimple_wstring & strSrc,manager * pstringmanager = NULL);
