@@ -4074,6 +4074,11 @@ RetryBuildNumber:
 
    }
 
+   typedef bool fn_defer_core_init();
+
+   typedef bool fn_defer_core_term();
+
+
 
    int32_t installer::ca2_app_install_run(const char * pszCommandLine, uint32_t & dwStartError, bool bSynch)
    {
@@ -4086,6 +4091,15 @@ RetryBuildNumber:
 #ifdef WINDOWS
       //::SetDllDirectory(dir::path(dir::element(), "stage\\" + strPlatform));
 #endif
+
+      ::aura::library libraryCore(get_app());
+
+      // load core library so that a core system is alloced
+      libraryCore.open(dir::path(dir::element(),"stage\\" + strPlatform + "\\core"));
+
+      fn_defer_core_init * pfn_core_init = libraryCore.get< fn_defer_core_init *>("defer_core_init");
+
+      fn_defer_core_term * pfn_core_term = libraryCore.get< fn_defer_core_term *>("defer_core_term");
 
       ::aura::library libraryOs(get_app());
 
@@ -4101,12 +4115,15 @@ RetryBuildNumber:
 
       strFullCommandLine = strFullCommandLine + pszCommandLine;
 
+      if(!pfn_core_init())
+         return -1;
 #ifdef WINDOWS
       pfn_ca2_main(::GetModuleHandleA(NULL), NULL, strFullCommandLine, SW_HIDE);
 #else
       pfn_ca2_main(strFullCommandLine, SW_HIDE);
 #endif
 #endif
+      pfn_core_term();
       return 0;
    }
 
