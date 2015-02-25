@@ -975,10 +975,10 @@ namespace user
 
    }
 
-   
+
    void list::_001OnInitialUpdate(signal_details * pobj)
    {
-      
+
       scroll_view::_001OnInitialUpdate(pobj);
 
       //_001UpdateColumns();
@@ -1545,7 +1545,7 @@ namespace user
 
    bool list::_001DisplayHitTest(POINT pt, int_ptr &iItemParam)
    {
-      
+
       {
 
          class rect rectClient;
@@ -4541,7 +4541,7 @@ namespace user
             {
                item.m_strText.make_lower();
                item.m_strText.replace("_", " ");
-               if(cregexp_util::match(item.m_strText, &m_reFilter1))
+               if(m_reFilter1.match(item.m_strText))
                {
                   if(m_eview == ViewIcon)
                   {
@@ -5050,7 +5050,7 @@ namespace user
 
    id list::data_get_current_list_layout_id()
    {
-      
+
       return "list." + m_dataid.m_id.str();
 
    }
