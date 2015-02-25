@@ -49,10 +49,10 @@ namespace http
          return m_varValue.is_new();
       }
 
-      operator var &()
+      /*operator var &()
       {
          return m_varValue;
-      }
+      }*/
 
       inline string & to_string(string & str) const
       {
@@ -70,7 +70,7 @@ namespace http
       }
 
 
-      operator string() const
+      /*operator string() const
       {
 
          string str;
@@ -79,7 +79,7 @@ namespace http
 
          return str;
 
-      }
+      }*/
 
       operator property() const
       {
