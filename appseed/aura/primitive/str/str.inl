@@ -665,6 +665,8 @@ inline string & to_string(string & str, stdstring<verisimple_wstring> & wstr)
 
    ::str::international::unicode_to_utf8(str, wstr, wstr.get_length());
 
+   return str;
+
 }
 
 
