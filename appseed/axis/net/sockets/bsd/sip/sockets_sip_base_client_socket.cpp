@@ -314,7 +314,7 @@ namespace sockets
       TRACE(strTrace + "\n");
       for(int32_t i = 0; i < m_response.m_propertysetHeader.m_propertyptra.get_size(); i++)
       {
-         strLine = m_response.m_propertysetHeader.m_propertyptra[i]->name().to_string() +
+         strLine = string(m_response.m_propertysetHeader.m_propertyptra[i]->name()) +
                    ": " +
                    m_response.m_propertysetHeader.m_propertyptra[i]->get_string();
          msg += strLine + "\r\n";
@@ -474,7 +474,7 @@ namespace sockets
    void sip_base_client_socket::OnHeader(id key, const string & value)
    {
       //sip_base_client_socket::OnHeader(key, value);
-      TRACE("  (request)OnHeader %s: %s\n", (const char *) key.to_string(), (const char *) value);
+      TRACE("  (request)OnHeader %s: %s\n", (const char *) string(key), (const char *) value);
       if(key == "cookie")
       {
          m_request.cookies().parse_header(value);

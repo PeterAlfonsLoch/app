@@ -8,13 +8,13 @@
 
 CLASS_DECL_AXIS int_bool from_string(in6_addr & addr,const string & str);
 template < >
-CLASS_DECL_AXIS string to_string(in6_addr & addr);
+CLASS_DECL_AXIS string & to_string(string & str, in6_addr & addr);
 CLASS_DECL_AXIS int_bool from_string(in_addr & addr,const string & str);
 template < >
-CLASS_DECL_AXIS string to_string(in_addr & addr);
+CLASS_DECL_AXIS string & to_string(string & str, in_addr & addr);
 #ifdef BSD_STYLE_SOCKETS
 template < >
-CLASS_DECL_AXIS string to_string(sockaddr & addr);
+CLASS_DECL_AXIS string & to_string(string & str, sockaddr & addr);
 #endif
 
 

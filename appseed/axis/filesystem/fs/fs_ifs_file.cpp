@@ -72,7 +72,7 @@ void ifs_file::get_file_data()
 
    m_httpfile->open(strUrl, ::file::type_binary | ::file::mode_read | dwAdd);
 }
- 
+
 void ifs_file::set_file_data()
 {
    string strUrl;
@@ -105,7 +105,7 @@ void ifs_file::set_file_data()
 
          MD5_Update(&ctx, m_varFile["xml"].cast < ::file::memory_buffer >()->get_primitive_memory()->get_data(),m_varFile["xml"].cast < ::file::memory_buffer >()->get_primitive_memory()->get_size());
 
-         strMd5Here = ::to_string(ctx);
+         to_string(strMd5Here, ctx);
 
       }
 

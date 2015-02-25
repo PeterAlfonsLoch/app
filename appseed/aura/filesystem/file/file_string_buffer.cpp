@@ -37,7 +37,7 @@ namespace file
       m_iSize     = 0;
       m_iPos     = 0;
       m_iAlloc    = 0;
-      append(text);
+      append(::to_string(text));
    }
 
    string_buffer::~string_buffer()

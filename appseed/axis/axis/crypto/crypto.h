@@ -45,14 +45,16 @@ typedef struct rsa_st RSA;
 #include <openssl/md5.h>
 
 template < >
-inline string to_string(MD5_CTX & ctx)
+inline string & to_string(string & str, MD5_CTX & ctx)
 {
 
    unsigned char digest[MD5_DIGEST_LENGTH];
 
    MD5_Final(digest,&ctx);
 
-   return ::hex::lower_from(digest,MD5_DIGEST_LENGTH);
+   str = ::hex::lower_from(digest,MD5_DIGEST_LENGTH);
+
+   return str;
 
 }
 

@@ -247,30 +247,24 @@ namespace net
 
 #endif
 
+      string str;
+
       if (is_ipv4())
       {
 
-         return to_string((in_addr &)u.m_addr.sin_addr);
+         to_string(str, (in_addr &)u.m_addr.sin_addr);
 
       }
       else if (is_ipv6())
       {
 
-         return to_string((in_addr6 &) u.m_addr6.sin6_addr);
+         to_string(str, (in_addr6 &) u.m_addr6.sin6_addr);
 
       }
-      else
-      {
 
-         return "";
-
-      }
+      return str;
 
    }
-
-
-
-
 
 
    bool address::is_in_same_net(const ::net::address & addr, const ::net::address & addrMask) const

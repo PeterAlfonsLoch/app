@@ -18,20 +18,23 @@ string_interface::operator string() const
 
    string str;
 
-   strsize iLen = get_length();
-
-   if(iLen <= 0)
-   {
-
-      return "";
-
-   }
-
-   get_string(str.GetBufferSetLength(iLen));
+   to_string(str);
 
    return str;
 
 }
+
+string & string_interface::to_string(string & str) const
+{
+
+   get_string(str.GetBufferSetLength(get_length()));
+
+   str.ReleaseBuffer(); // string is zero terminated. Here not trusting fully in get_length
+
+   return str;
+
+}
+
 
 void string_interface::set_string(const string & str,::action::context actioncontext)
 {

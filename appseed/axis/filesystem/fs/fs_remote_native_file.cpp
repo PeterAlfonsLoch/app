@@ -110,7 +110,7 @@ namespace fs
 
             MD5_Update(&ctx, m_varFile["xml"].cast < ::file::memory_buffer >()->get_primitive_memory()->get_data(),m_varFile["xml"].cast < ::file::memory_buffer >()->get_primitive_memory()->get_size());
 
-            strMd5Here =::to_string(ctx);
+            to_string(strMd5Here, ctx);
 
          }
 

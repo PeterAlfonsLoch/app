@@ -598,18 +598,18 @@ restart:
    {
 
       ::file::binary_buffer_sp spfile;
-      
+
       try
       {
 
          spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::share_deny_none | ::file::defer_create_directory);
-         
+
       }
       catch(...)
       {
-         
+
          return false;
-         
+
       }
 
       if(spfile.is_null())
@@ -1371,7 +1371,7 @@ restart:
 
       }
 
-      return ::to_string(ctx);
+      return to_string(ctx);
 
    }
 
@@ -1427,7 +1427,7 @@ restart:
             MD5_Update(&ctx, buf, uiRead);
          }
          spfile->seek(iPos, ::file::seek_begin);
-         strMd5 = ::to_string(ctx);
+         strMd5 = to_string(ctx);
          write_gen_string(spfile, NULL, strMd5);
          spfile->seek_to_end();
 
@@ -1478,7 +1478,7 @@ restart:
                iLen -= uiRead;
             }
             file2->close();
-            strMd5New = ::to_string(ctx);
+            strMd5New = to_string(ctx);
             if(strMd5 != strMd5New)
                throw "failed";
          }
@@ -1570,13 +1570,13 @@ restart:
       str.ReleaseBuffer();
    }
 
-   
+
    bool system::is_valid_fileset(const char * pszFile,::aura::application * papp)
    {
 
       if(!::file::system::is_valid_fileset(pszFile,papp))
       {
-         
+
          return false;
 
       }

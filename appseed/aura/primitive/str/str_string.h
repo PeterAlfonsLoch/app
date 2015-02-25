@@ -30,6 +30,9 @@ inline string & to_string(string & str, STRINGALBLE * po)
    return po->to_string(str);
 
 }
+
+
+
 //#ifdef __GNUC__
 //template < typename STRINGALBLE >
 //inline void to_string(string & str, const STRINGALBLE & stringable)
@@ -253,10 +256,11 @@ public:
 
 
 #ifdef __GNUC__
-   template < typename STRINGABLE >
-   string(STRINGABLE & stringable) {  ::to_string(*this, stringable);}
-   template < typename STRINGABLE >
-   string(STRINGABLE * pstringable) {  ::to_string(*this, pstringable);}
+   string(const var & var) { operator=((string &&)(string)var);}
+   string(const property & prop) { operator=((string &&)(string)prop);}
+   string(const id & id) { operator=((string &&)(string)id);}
+   string(const string_interface & istr) { operator=((string &&)(string)istr);}
+   string(const istring & istr) { operator=((string &&)(string)istr);}
 #endif
 
 
@@ -2077,3 +2081,29 @@ namespace comparison
 } // namespace comparison
 
 
+
+
+
+template < typename STRINGALBLE >
+inline string to_string(STRINGALBLE & stringable)
+{
+
+   string str;
+
+   to_string(str, stringable);
+
+   return str;
+
+}
+
+template < typename STRINGALBLE >
+inline string to_string(STRINGALBLE * pstringable)
+{
+
+   string str;
+
+   to_string(str, pstringable);
+
+   return str;
+
+}

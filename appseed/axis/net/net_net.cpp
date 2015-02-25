@@ -186,10 +186,10 @@ static const char *basis_hex = "0123456789abcdef";
 * is not set on failure.)
 */
 template < >
-CLASS_DECL_AXIS string to_string(in6_addr  & addr)
+CLASS_DECL_AXIS string & to_string(string & str, in6_addr  & addr)
 {
 
-   string str;
+   str.Empty();
 
 #define STUFF(c) { str += ((char)(c)); }
 
@@ -347,7 +347,7 @@ CLASS_DECL_AXIS int_bool from_string(in_addr & addrParam, const string & string)
 }
 
 template < >
-CLASS_DECL_AXIS string to_string(in_addr &  addrParam)
+CLASS_DECL_AXIS string & to_string(string & str, in_addr &  addrParam)
 {
 
    c_in_addr & addr = (c_in_addr &) addrParam;
@@ -356,7 +356,7 @@ CLASS_DECL_AXIS string to_string(in_addr &  addrParam)
 
    //addr.S_un.S_addr = NTOHL(paddr->S_un.S_addr);
 
-   string str;
+   str.Empty();
 
    str += itoa_dup(addr.S_un.S_un_b.s_b1);
 
@@ -378,19 +378,19 @@ CLASS_DECL_AXIS string to_string(in_addr &  addrParam)
 
 
 template < >
-CLASS_DECL_AXIS string to_string(sockaddr & addr)
+CLASS_DECL_AXIS string & to_string(string & str, sockaddr & addr)
 {
 
    if(addr.sa_family == AF_INET)
    {
 
-      return to_string(*(in_addr *)addr.sa_data);
+      to_string(str, *(in_addr *)addr.sa_data);
 
    }
    else if(addr.sa_family == AF_INET6)
    {
 
-      return to_string(*(in6_addr *)addr.sa_data);
+      to_string(str, *(in6_addr *)addr.sa_data);
 
    }
    else
@@ -399,6 +399,8 @@ CLASS_DECL_AXIS string to_string(sockaddr & addr)
       throw "unexpected address family";
 
    }
+
+   return str;
 
 }
 
@@ -448,7 +450,7 @@ CLASS_DECL_AXIS string c_inet_ntop(int32_t af, const void *src)
 
       in_addr & addr = *(in_addr *)src;
 
-      str = to_string(addr);
+      to_string(str, addr);
 
    }
    else if(af == AF_INET6)
@@ -456,7 +458,7 @@ CLASS_DECL_AXIS string c_inet_ntop(int32_t af, const void *src)
 
       in6_addr & addr = *(in6_addr *)src;
 
-      str = to_string(addr);
+      to_string(str, addr);
 
    }
 

@@ -261,6 +261,12 @@ public:
 
    property & operator =(const property & prop);
 
+   property & operator =(const property_set & propset)
+   {
+      get_value() = propset;
+      return *this;
+   }
+
    property & operator =(const var & var)
    {
       get_value() = var;

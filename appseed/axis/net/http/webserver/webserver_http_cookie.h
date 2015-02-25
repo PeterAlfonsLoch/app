@@ -54,14 +54,22 @@ namespace http
          return m_varValue;
       }
 
-      inline string to_string() const
+      inline string & to_string(string & str) const
       {
-         return m_varValue.to_string();
+
+         return m_varValue.to_string(str);
+
       }
 
       operator string() const
       {
-         return to_string();
+
+         string str;
+
+         to_string(str);
+
+         return str;
+
       }
 
       operator property() const
