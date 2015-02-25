@@ -193,7 +193,7 @@ public:
    string                           to_r_string() const;
    string                           get_string(const char * pszOnNull = NULL) const;
    string &                         get_ref_string(const char * pszOnNull = NULL);
-   string                           to_string() const;
+   string &                         to_string(string & str) const;
    id                               get_id(const char * pszOnNull = NULL)   const;
    id &                             get_ref_id(const char * pszOnNull = NULL);
    class primitive::memory &        memory();
@@ -366,15 +366,15 @@ public:
    template < class T >
    sp(T) cast(T * pDefault)
    {
-      
+
       if(m_etype == type_pvar && m_pvar != NULL)
          return m_pvar->cast < T > (pDefault);
-      
+
       if(m_etype != type_element)
          return NULL;
-      
+
       sp(T) p = m_sp;
-      
+
       if (p.is_null())
          return pDefault;
 
@@ -762,9 +762,11 @@ inline var & var::operator = (LPDWORD pui)
 #endif
 
 
-inline string var::to_string() const
+inline string & var::to_string(string & str) const
 {
-   return get_string();
+
+   return str = get_string();
+
 }
 
 

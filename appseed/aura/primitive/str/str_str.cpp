@@ -643,7 +643,7 @@ namespace str
          {
             break;
          }
-            
+
          if(*psz2 == '\0')
          {
             break;
@@ -654,7 +654,7 @@ namespace str
 
          while(true)
          {
-               
+
             if(ch::to_lower_case(ch::uni_index_len(pszC1,len1)) == ch::to_lower_case(ch::uni_index_len(pszC2,len2)))
             {
                pszC1 += len1;
@@ -1599,7 +1599,7 @@ namespace str
 
    const char * utf8_inc(const char * psz)
    {
-      
+
       clear_err();
 
       char len =  1 + ::str::trailingBytesForUTF8[(uchar) *psz];
@@ -2214,7 +2214,7 @@ namespace str
          }
          if(utf8char.m_chLen == 1 && utf8char.m_sz[0] == qc)
             break;
-         
+
       }
       str = string(&psz[iPosStart], iPos - iPosStart - 1);
       pszXml = &psz[iPos];
@@ -2740,22 +2740,22 @@ namespace str
       {
          if(str[i] >= '0' && str[i] <= '8')
          {
-            str = str.Left(i) + string((char)(str[i] + 1)) + str.Right(str.get_length() - i - 1);
+            str = str.Left(i) + string((char)(str[i] + 1), 1) + str.Right(str.get_length() - i - 1);
             break;
          }
          else if(str[i] == '9')
          {
-            str = str.Left(i) + string((char)('a')) + str.Right(str.get_length() - i - 1);
+            str = str.Left(i) + string((char)('a'), 1) + str.Right(str.get_length() - i - 1);
             break;
          }
          else if(str[i] >= 'a' && str[i] <= 'y')
          {
-            str = str.Left(i) + string((char)(str[i] + 1)) + str.Right(str.get_length() - i - 1);
+            str = str.Left(i) + string((char)(str[i] + 1), 1) + str.Right(str.get_length() - i - 1);
             break;
          }
          else if(str[i] == 'z')
          {
-            str = str.Left(i) + string((char)('0')) + str.Right(str.get_length() - i - 1);
+            str = str.Left(i) + string((char)('0'), 1) + str.Right(str.get_length() - i - 1);
             i--;
          }
       }

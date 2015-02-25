@@ -78,8 +78,9 @@ public:
 
 
    string str() const;
-   operator string() const; 
-
+#ifndef __GNUC__
+   operator string() const;
+#endif
 
 
    inline bool operator == (const id & id) const;
@@ -149,7 +150,7 @@ public:
 
 
    inline operator const char *() const;
-   inline string to_string() const;
+   inline string & to_string(string & str) const;
 
 
 

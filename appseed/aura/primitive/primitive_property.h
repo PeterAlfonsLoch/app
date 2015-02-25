@@ -242,9 +242,9 @@ public:
       return m_var.get_string();
    }
 
-   string to_string() const
+   string & to_string(string & str) const
    {
-      return get_string();
+      return str = get_string();
    }
 
 
@@ -656,8 +656,8 @@ public:
 
 
 //   DECLARE_AXIS_FIXED_ALLOC(property)
-    
-    
+
+
     void null() { m_var.null(); }
 
 

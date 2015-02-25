@@ -44,18 +44,24 @@ namespace str
          if(!is_legal_uni_index(ca))
             return "";
         uint32_t c1 = CHAR_PROP(ca);
+#ifdef __GNUC__
+        if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Ll) return string(wchar_t(ca), 1);
+        if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lt) return string(wchar_t(ca+1), 1);
+        return string(wchar_t(ca - (c1>>16)), 1);
+#else
         if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Ll) return string(wchar_t(ca));
         if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lt) return string(wchar_t(ca+1));
         return string(wchar_t(ca - (c1>>16)));
+#endif
       }
       string to_upper_case(const char * pszUtf8Char){
          int64_t ca = uni_index(pszUtf8Char);
          if(!is_legal_uni_index(ca))
             return "";
         uint32_t c1 = CHAR_PROP(ca);
-        if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lu) return string(wchar_t(ca));
-        if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lt) return string(wchar_t(ca-1));
-        return string(wchar_t(ca - (c1>>16)));
+        if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lu) return string(wchar_t(ca), 1);
+        if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lt) return string(wchar_t(ca-1), 1);
+        return string(wchar_t(ca - (c1>>16)), 1);
       }
       string to_title_case(const char * pszUtf8Char)
       {
@@ -64,13 +70,13 @@ namespace str
             return "";
         uint32_t c1 = CHAR_PROP(ca);
         if (TITLE_CASE(c1)){ // titlecase exists
-          if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lu) return string(wchar_t(ca+1));
-          if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Ll) return string(wchar_t(ca-1));
-          return string(wchar_t(ca));
+          if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lu) return string(wchar_t(ca+1), 1);
+          if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Ll) return string(wchar_t(ca-1), 1);
+          return string(wchar_t(ca), 1);
         }else // has no titlecase form
           if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Ll)
-            return string(wchar_t(ca - (c1>>16)));
-        return string(wchar_t(ca));
+            return string(wchar_t(ca - (c1>>16)), 1);
+        return string(wchar_t(ca), 1);
       }
 
 

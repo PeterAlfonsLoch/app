@@ -227,15 +227,27 @@ SRegInfo *next, *temp;
           break;
         case 't':
           next->op = ReSymb;
+          #ifdef __GNUC__
+          next->un.symbol = new string('\t', 1);
+          #else
           next->un.symbol = new string('\t');
+          #endif
           break;
         case 'n':
           next->op = ReSymb;
+          #ifdef __GNUC__
+          next->un.symbol = new string('\n',1);
+          #else
           next->un.symbol = new string('\n');
+          #endif
           break;
         case 'r':
           next->op = ReSymb;
+          #ifdef __GNUC__
+          next->un.symbol = new string('\r',1);
+          #else
           next->un.symbol = new string('\r');
+          #endif
           break;
         case 'b':
           next->op = ReMetaSymb;
@@ -1121,3 +1133,265 @@ bool cregexp::getBackTrace(string *str, SMatches **trace)
  * the terms of any one of the MPL, the GPL or the LGPL.
  *
  * ***** END LICENSE BLOCK ***** */
+
+
+
+
+
+
+index cregexp::match(string_array & stra, const string & lpcsz, strsize iSize)
+{
+   stra.remove_all();
+
+   if(iSize <= 0)
+      return 0;
+
+   string str(lpcsz);
+
+   SMatches matches;
+
+   setPositionMoves(true);
+
+   bool bMatch = parse(lpcsz, &matches);
+
+   for(index i = 0; i < matches.cMatch; i++)
+   {
+      strsize iStart   = matches.s[i];
+      strsize iEnd     = matches.e[i];
+      stra.add(str.Mid(iStart, iEnd - iStart));
+   }
+
+   return bMatch;
+}
+
+
+bool cregexp::find(string & strMatch, const string & str, index iSubString, strsize  * piStart, strsize  * piEnd)
+{
+
+   strsize iStart = piStart == NULL ? 0 : *piStart;
+
+   strsize iEnd = piEnd == NULL ? str.get_length() - 1 : *piEnd;
+
+   bool bOk = find(str, iSubString, &iStart, &iEnd);
+
+   if(bOk)
+   {
+      strMatch = str.substr(iStart, iEnd);
+   }
+
+   if(piStart != NULL)
+   {
+      *piStart = iStart;
+   }
+
+   if(piEnd != NULL)
+   {
+      *piEnd = iEnd;
+   }
+
+   return bOk;
+
+}
+
+
+
+bool cregexp::find(const string & str, index iSubString, strsize  * piStart, strsize  * piEnd)
+{
+
+   string strSubject;
+
+   strsize iStart;
+
+   strsize iEnd;
+
+   if(piStart != NULL)
+      iStart = *piStart;
+   else
+      iStart = 0;
+
+   if(piEnd != NULL)
+      iEnd = *piEnd;
+   else
+      iEnd = str.get_length() - 1;
+
+
+   if(iSubString < 0)
+      iSubString = 0;
+
+   iStart = MIN(str.get_length(), MAX(0, iStart));
+
+   iEnd = MIN(str.get_length(), MAX(0, iEnd));
+
+   SMatches matches;
+
+   matches.cMatch = 0;
+
+   const char * lpsz = str;
+
+   lpsz += iStart;
+
+   if(!parse(lpsz, &matches))
+      return false;
+
+   if(matches.cMatch == 0)
+      return false;
+
+   iEnd     = iStart + matches.e[iSubString];
+
+   iStart   = iStart + matches.s[iSubString];
+
+   if(piStart != NULL)
+   {
+      *piStart = iStart;
+   }
+
+   if(piEnd != NULL)
+   {
+      *piEnd = iEnd;
+   }
+
+   return true;
+
+}
+
+
+
+
+bool cregexp::split(string_array & stra, index_array & iaStart, index_array & iaEnd,  const string & str, int iLimit, bool bAddEmpty, bool bWithSeparator)
+{
+
+   strsize iStart = 0;
+   string strMatch;
+   strsize iPreviousStart;
+
+   ::count cInitial = stra.get_count();
+
+   while(true)
+   {
+
+      strsize iEnd = str.get_length() - 1;
+
+      iPreviousStart = iStart;
+
+      if(!find(strMatch, str, 0, &iStart, &iEnd))
+         break;
+
+      if(bAddEmpty || iStart > iPreviousStart)
+      {
+
+         if(bWithSeparator)
+         {
+            stra.add(str.substr(iPreviousStart, iEnd - iPreviousStart + 1));
+         }
+         else
+         {
+            stra.add(str.substr(iPreviousStart, iEnd - iStart));
+         }
+
+         iaStart.add(iStart);
+         iaEnd.add(iEnd);
+
+      }
+
+      iStart = iEnd + 1;
+
+      if(iStart >= str.length())
+         break;
+
+   }
+
+   return stra.get_count() > cInitial;
+
+}
+
+
+bool cregexp::split(string_array & stra, const string & str, int iLimit, bool bAddEmpty, bool bWithSeparator)
+{
+
+
+   strsize iStart = 0;
+   string strMatch;
+   strsize iPreviousStart;
+
+   ::count cInitial = stra.get_count();
+
+   while(true)
+   {
+
+      strsize iEnd = str.get_length() - 1;
+
+      iPreviousStart = iStart;
+
+      if(!find(strMatch, str,  0, &iStart, &iEnd))
+         break;
+
+      if(bAddEmpty || iStart > iPreviousStart)
+      {
+
+         if(bWithSeparator)
+         {
+            stra.add(str.substr(iPreviousStart, iEnd - iPreviousStart + 1));
+         }
+         else
+         {
+            stra.add(str.substr(iPreviousStart, iEnd - iStart));
+         }
+
+      }
+
+      iStart = iEnd + 1;
+
+      if(iStart >= str.length())
+         break;
+
+   }
+
+   return stra.get_count() > cInitial;
+
+}
+
+
+
+
+bool cregexp::match(const string & lpsz)
+{
+   string strSubject;
+
+
+   strSubject = lpsz;
+
+   string str;
+   string strToken;
+
+   SMatches matches;
+
+   return parse(strSubject, &matches);
+
+}
+
+
+
+bool cregexp::replace(string & str, const string & strTopicParam, index iSubString, const string & strReplace, strsize start, strsize end)
+{
+
+   str = strTopicParam;
+
+   return replace(str, iSubString, strReplace, start, end);
+
+}
+
+bool cregexp::replace(string & str, index iSubString, const string & strReplace, strsize start, strsize end)
+{
+   string strTopic(str.Left(end));
+   strsize iSubstLen = strReplace.length();
+   string strMatch;
+   while(true)
+   {
+      end = str.length();
+      if(!find(strMatch, str, iSubString, &start, &end))
+         break;
+      str = str.Left(start) + strReplace + str.Mid(end);
+      end = start + iSubstLen;
+   }
+   return true;
+}

@@ -262,7 +262,7 @@ bool string_format::parse(const char * & s)
          else
          {
 
-            pformat->append(string((char) ch));
+            pformat->append(string((char) ch, 1));
 
          }
 
@@ -272,7 +272,7 @@ bool string_format::parse(const char * & s)
       void format(string_format * pformat, uchar const & uch)
       {
 
-         pformat->append(string((char) uch));
+         pformat->append(string((char) uch, 1));
 
       }
 

@@ -12,83 +12,34 @@ cregexp_util::~cregexp_util()
 }
 
 
-index cregexp_util::match(string_array & stra, const char * lpcsz, cregexp * re, strsize iSize)
+
+
+index cregexp_util::match(string_array & stra, const string & lpcsz, const string & lpcszExp, bool bCaseInsensitive, strsize iSize)
 {
-   stra.remove_all();
 
-   if(iSize <= 0)
-      return 0;
+   sp(cregexp) pre = CompileExpression(lpcszExp, bCaseInsensitive);
 
-   string str(lpcsz);
+   if(pre.is_null())
+      return -1;
 
-   SMatches matches;
+   index i = pre->match(stra, lpcsz, iSize);
 
-   re->setPositionMoves(true);
-
-   bool bMatch = re->parse(lpcsz, &matches);
-
-   for(index i = 0; i < matches.cMatch; i++)
-   {
-      strsize iStart   = matches.s[i];
-      strsize iEnd     = matches.e[i];
-      stra.add(str.Mid(iStart, iEnd - iStart));
-   }
-
-   return bMatch;
-}
-
-index cregexp_util::match(string_array & stra, const char * lpcsz, const char * lpcszExp, bool bCaseInsensitive, strsize iSize)
-{
-   cregexp * pre = CompileExpression(lpcszExp, bCaseInsensitive);
-   index i = match(stra, lpcsz, pre, iSize);
-   delete pre;
    return i;
-}
-
-bool cregexp_util::find(string & strMatch, const string & str, cregexp * pre, index iSubString, strsize  * piStart, strsize  * piEnd)
-{
-
-   if(pre == NULL)
-      return false;
-
-   strsize iStart = piStart == NULL ? 0 : *piStart;
-
-   strsize iEnd = piEnd == NULL ? str.get_length() - 1 : *piEnd;
-
-   bool bOk = find(str, pre, iSubString, &iStart, &iEnd);
-
-   if(bOk)
-   {
-      strMatch = str.substr(iStart, iEnd);
-   }
-
-   if(piStart != NULL)
-   {
-      *piStart = iStart;
-   }
-
-   if(piEnd != NULL)
-   {
-      *piEnd = iEnd;
-   }
-
-   return bOk;
 
 }
+
 
 
 bool cregexp_util::find(string & strMatch, const string & str, const string & strExp, index iSubString, strsize  * piStart, strsize  * piEnd)
 {
 
-   cregexp * pre;
+   sp(cregexp) pre = CompileExpression(strExp, false);
 
-   pre = CompileExpression(strExp, false);
-
-   if(pre == NULL)
+   if(pre.is_null())
       return false;
 
 
-   bool bOk = find(strMatch, str, pre, iSubString, piStart, piEnd);
+   bool bOk = pre->find(strMatch, str, iSubString, piStart, piEnd);
 
    delete pre;
 
@@ -100,100 +51,38 @@ bool cregexp_util::find(string & strMatch, const string & str, const string & st
 bool cregexp_util::find(const string & str, const string & strExp, index iSubString, strsize  * piStart, strsize  * piEnd)
 {
 
-   cregexp * pre;
+   sp(cregexp) pre = CompileExpression(strExp, false);
 
-   pre = CompileExpression(strExp, false);
-
-   if(pre == NULL)
+   if(pre.is_null())
       return false;
 
-
-   bool bOk = find(str, pre, iSubString, piStart, piEnd);
-
-   delete pre;
-
+   bool bOk = pre->find(str, iSubString, piStart, piEnd);
 
    return bOk;
-}
-
-bool cregexp_util::find(const string & str, cregexp * re, index iSubString, strsize  * piStart, strsize  * piEnd)
-{
-
-   string strSubject;
-
-   strsize iStart;
-
-   strsize iEnd;
-
-   if(piStart != NULL)
-      iStart = *piStart;
-   else
-      iStart = 0;
-
-   if(piEnd != NULL)
-      iEnd = *piEnd;
-   else
-      iEnd = str.get_length() - 1;
-
-
-   if(iSubString < 0)
-      iSubString = 0;
-
-   iStart = MIN(str.get_length(), MAX(0, iStart));
-
-   iEnd = MIN(str.get_length(), MAX(0, iEnd));
-
-   SMatches matches;
-
-   matches.cMatch = 0;
-
-   const char * lpsz = str;
-
-   lpsz += iStart;
-
-   if(!re->parse(lpsz, &matches))
-      return false;
-
-   if(matches.cMatch == 0)
-      return false;
-
-   iEnd     = iStart + matches.e[iSubString];
-
-   iStart   = iStart + matches.s[iSubString];
-
-   if(piStart != NULL)
-   {
-      *piStart = iStart;
-   }
-
-   if(piEnd != NULL)
-   {
-      *piEnd = iEnd;
-   }
-
-   return true;
 
 }
 
-cregexp * cregexp_util::CompileExpression(const char * lpszExp, bool bCaseInsensitive)
+
+
+cregexp * cregexp_util::CompileExpression(const string & lpszExp, bool bCaseInsensitive)
 {
+
    UNREFERENCED_PARAMETER(bCaseInsensitive);
-   return new cregexp(lpszExp);
+
+   return canew(cregexp(lpszExp));
+
 }
+
 
 bool cregexp_util::split(string_array & stra, index_array & iaStart, index_array & iaEnd,  const string & str, const string & strExp, int iLimit, bool bAddEmpty, bool bWithSeparator)
 {
 
-   cregexp * pre;
+   sp(cregexp) pre = CompileExpression(strExp, false);
 
-   pre = CompileExpression(strExp, false);
-
-   if(pre == NULL)
+   if(pre.is_null())
       return false;
 
-   bool bFound = split(stra, iaStart, iaEnd, str, pre, iLimit, bAddEmpty, bWithSeparator);
-
-   delete pre;
+   bool bFound = pre->split(stra, iaStart, iaEnd, str, iLimit, bAddEmpty, bWithSeparator);
 
    return bFound;
 
@@ -203,118 +92,14 @@ bool cregexp_util::split(string_array & stra, index_array & iaStart, index_array
 bool    cregexp_util::split(string_array & stra, const string & str, const string & strExp, int iLimit, bool bAddEmpty, bool bWithSeparator)
 {
 
-   cregexp * pre;
+   sp(cregexp) pre = CompileExpression(strExp, false);
 
-   pre = CompileExpression(strExp, false);
-
-   if(pre == NULL)
+   if(pre.is_null())
       return false;
 
-   bool bFound = split(stra, str, pre, iLimit, bAddEmpty, bWithSeparator);
-
-   delete pre;
+   bool bFound = pre->split(stra, str, iLimit, bAddEmpty, bWithSeparator);
 
    return bFound;
-
-}
-
-bool cregexp_util::split(string_array & stra, index_array & iaStart, index_array & iaEnd,  const string & str, cregexp * pre, int iLimit, bool bAddEmpty, bool bWithSeparator)
-{
-
-   if(pre == NULL)
-      return false;
-
-   strsize iStart = 0;
-   string strMatch;
-   strsize iPreviousStart;
-
-   ::count cInitial = stra.get_count();
-
-   while(true)
-   {
-
-      strsize iEnd = str.get_length() - 1;
-
-      iPreviousStart = iStart;
-
-      if(!find(strMatch, str, pre, 0, &iStart, &iEnd))
-         break;
-
-      if(bAddEmpty || iStart > iPreviousStart)
-      {
-
-         if(bWithSeparator)
-         {
-            stra.add(str.substr(iPreviousStart, iEnd - iPreviousStart + 1));
-         }
-         else
-         {
-            stra.add(str.substr(iPreviousStart, iEnd - iStart));
-         }
-
-         iaStart.add(iStart);
-         iaEnd.add(iEnd);
-
-      }
-
-      iStart = iEnd + 1;
-
-      if(iStart >= str.length())
-         break;
-
-   }
-
-   delete pre;
-
-   return stra.get_count() > cInitial;
-
-}
-
-
-bool cregexp_util::split(string_array & stra, const string & str, cregexp * pre, int iLimit, bool bAddEmpty, bool bWithSeparator)
-{
-
-   if(pre == NULL)
-      return false;
-
-   strsize iStart = 0;
-   string strMatch;
-   strsize iPreviousStart;
-
-   ::count cInitial = stra.get_count();
-
-   while(true)
-   {
-
-      strsize iEnd = str.get_length() - 1;
-
-      iPreviousStart = iStart;
-
-      if(!find(strMatch, str, pre, 0, &iStart, &iEnd))
-         break;
-
-      if(bAddEmpty || iStart > iPreviousStart)
-      {
-
-         if(bWithSeparator)
-         {
-            stra.add(str.substr(iPreviousStart, iEnd - iPreviousStart + 1));
-         }
-         else
-         {
-            stra.add(str.substr(iPreviousStart, iEnd - iStart));
-         }
-
-      }
-
-      iStart = iEnd + 1;
-
-      if(iStart >= str.length())
-         break;
-
-   }
-
-   return stra.get_count() > cInitial;
 
 }
 
@@ -331,18 +116,12 @@ bool cregexp_util::split(string_array & stra, const string & str, cregexp * pre,
 // 'true' if successfull.
 //
 ///////////////////////////////////////////////////////////////////////////////
-bool cregexp_util::add_tokens(string_array & stra, const char * lpszSubject, const char * lpszExpression, index iSubString /* =0 */)
+bool cregexp_util::add_tokens(string_array & stra, const string & lpszSubject, const string & strExp, index iSubString /* =0 */)
 {
-   cregexp * pre;
 
-   string str;
+   sp(cregexp) pre = CompileExpression(strExp, false);
 
-   str = lpszExpression;
-
-   pre = CompileExpression(lpszExpression, false);
-
-   ASSERT(pre != NULL);
-   if(pre == NULL)
+   if(pre.is_null())
       return false;
 
    pre->setPositionMoves(true);
@@ -382,31 +161,18 @@ bool cregexp_util::add_tokens(string_array & stra, const char * lpszSubject, con
    return true;
 }
 
-bool cregexp_util::match(const char * lpsz, const string & strExp)
+bool cregexp_util::match(const string & lpsz, const string & strExp)
 {
 
    sp(cregexp) re;
 
    re = CompileExpression(strExp, true);
 
-   return match(lpsz, re);
+   return re->match(lpsz);
 
 }
 
-bool cregexp_util::match(const char * lpsz, cregexp * re)
-{
-   string strSubject;
 
-
-   strSubject = lpsz;
-
-   string str;
-   string strToken;
-
-   SMatches matches;
-
-   return re->parse(strSubject, &matches);
-}
 
 void cregexp_util::Format(string & str, string_array & wstraArg)
 {
@@ -418,13 +184,11 @@ void cregexp_util::Format(string & str, string_array & wstraArg)
 
       wstrExp.Format("/(%%%d)(\\d?!|$)/", i);
 
-      cregexp * pre = CompileExpression(wstrExp, false);
+      sp(cregexp) pre = CompileExpression(wstrExp, false);
 
       pre->setPositionMoves(true);
 
-      replace(str, pre, 1, wstraArg[i]);
-
-      delete pre;
+      pre->replace(str, 1, wstraArg[i]);
 
    }
 
@@ -437,7 +201,7 @@ bool cregexp_util::replace(string & str, const string & strTopicParam, const str
 
    re = CompileExpression(strExp, true);
 
-   return replace(str, strTopicParam, re, iSubString, strReplace, start, end);
+   return re->replace(str, strTopicParam, iSubString, strReplace, start, end);
 
 }
 
@@ -448,31 +212,7 @@ bool cregexp_util::replace(string & str, const string & strExp, index iSubString
 
    re = CompileExpression(strExp, true);
 
-   return replace(str, re, iSubString, strReplace, start, end);
+   return re->replace(str, iSubString, strReplace, start, end);
 
 }
 
-bool cregexp_util::replace(string & str, const string & strTopicParam, cregexp * re, index iSubString, const string & strReplace, strsize start, strsize end)
-{
-
-   str = strTopicParam;
-
-   return replace(str, re, iSubString, strReplace, start, end);
-
-}
-
-bool cregexp_util::replace(string & str, cregexp * re, index iSubString, const string & strReplace, strsize start, strsize end)
-{
-   string strTopic(str.Left(end));
-   strsize iSubstLen = strReplace.length();
-   string strMatch;
-   while(true)
-   {
-      end = str.length();
-      if(!find(strMatch, str, re, iSubString, &start, &end))
-         break;
-      str = str.Left(start) + strReplace + str.Mid(end);
-      end = start + iSubstLen;
-   }
-   return true;
-}

@@ -6,12 +6,47 @@ CLASS_DECL_AURA int64_t strtoi(const char * psz);
 CLASS_DECL_AURA int64_t strtoi(const wchar_t * psz);
 
 
+
 inline UINT _gen_GetConversionACP()
 {
    return CP_UTF8;
 }
 
+class string;
 
+
+template < typename STRINGALBLE >
+inline string & to_string(string & str, STRINGALBLE & stringable)
+{
+
+   return stringable.to_string(str);
+
+}
+
+template < typename STRINGALBLE >
+inline string & to_string(string & str, STRINGALBLE * po)
+{
+
+   return po->to_string(str);
+
+}
+//#ifdef __GNUC__
+//template < typename STRINGALBLE >
+//inline void to_string(string & str, const STRINGALBLE & stringable)
+//{
+//
+//   stringable.to_string(str);
+//
+//}
+//
+//template < typename STRINGALBLE >
+//inline void to_string(string & str, const STRINGALBLE * po)
+//{
+//
+//   po->to_string(str);
+//
+//}
+//#endif
 #ifdef WINDOWS
 #define stricmp _stricmp
 #endif
@@ -204,16 +239,24 @@ public:
    string(const wchar_t * pszSrc);
    string(const string & strSrc, strsize npos, strsize len = -1);
 
-
    string(char ch,strsize nLength = 1);
-   string(strsize nLength, char ch);
    string(wchar_t ch, strsize nLength = 1 );
+
+   string(strsize nLength, char ch);
    string(const char* pch,strsize nLength);
    string(const wchar_t* pch,strsize nLength);
 
 #if defined(METROWIN) && defined(__cplusplus_winrt)
    string(Object ^ o);
    string(Array < byte > ^ a);
+#endif
+
+
+#ifdef __GNUC__
+   template < typename STRINGABLE >
+   string(STRINGABLE & stringable) {  ::to_string(*this, stringable);}
+   template < typename STRINGABLE >
+   string(STRINGABLE * pstringable) {  ::to_string(*this, pstringable);}
 #endif
 
 
@@ -252,6 +295,10 @@ public:
    // Assignment operators
    template < typename T >
    inline string & operator = (T o);
+   //template < typename T >
+   //inline string & operator = (T & o);
+   //template < typename T >
+   //inline string & operator = (T * o);
 
    string& operator+=(const simple_string& str );
    string& operator+=(const char * pszSrc );
@@ -790,25 +837,37 @@ inline operator String ^()
 };
 
 
-template < typename T >
-inline string to_string(T & o)
-{
-
-   return o.to_string();
-
-}
-
-
-
 
 template < typename T >
 inline string & string::operator = (T o)
 {
 
-   return operator =(to_string(o));
+   to_string(*this, o);
+
+   return *this;
 
 }
 
+
+//template < typename T >
+//inline string & string::operator = (T & o)
+//{
+//
+//   to_string(*this,  o);
+//
+//   return *this;
+//
+//}
+//
+//template < typename T >
+//inline string & string::operator = (T * po)
+//{
+//
+//   to_string(*this,  po);
+//
+//   return *this;
+//
+//}
 
 template< strsize t_nSize >
 string& string::operator+=(const static_string<t_nSize >& strSrc )
@@ -1092,9 +1151,11 @@ inline id::operator const char *() const
    return (m_etype != type_text || m_psz == NULL) ? NULL : m_psz;
 }
 
-inline string id::to_string() const
+inline string &  id::to_string(string & strRet) const
 {
-    return str();
+
+    return strRet =  str();
+
 }
 
 
@@ -1356,8 +1417,11 @@ inline bool string::operator==(char ch) const
 
 inline bool string::operator==(wchar_t ch) const
 {
-
+#ifdef __GNUC__
+   return operator==(string(ch, 1));
+#else
    return operator==(string(ch));
+#endif
 
 }
 
@@ -1404,15 +1468,22 @@ inline bool string::operator<(const wchar_t * psz) const
 inline bool string::operator<(char ch) const
 {
 
-   return operator < (string(ch)) ;
+#ifdef __GNUC__
+    return operator < (string(ch,1)) ;
+#else
+    return operator < (string(ch)) ;
+#endif
 
 }
 
 
 inline bool string::operator<(wchar_t ch) const
 {
-
-   return operator < (string(ch));
+#ifdef __GNUC__
+    return operator < (string(ch,1)) ;
+#else
+    return operator < (string(ch));
+#endif
 
 }
 
@@ -1459,17 +1530,22 @@ inline bool string::operator>(const wchar_t * psz) const
 
 inline bool string::operator>(char ch) const
 {
-
+#ifdef __GNUC__
+   return operator > (string(ch, 1));
+#else
    return operator > (string(ch));
+#endif
 
 }
 
 
 inline bool string::operator>(wchar_t ch) const
 {
-
+#ifdef __GNUC__
+   return operator > (string(ch, 1));
+#else
    return operator > (string(ch));
-
+#endif
 }
 
 
@@ -1549,86 +1625,95 @@ inline bool CLASS_DECL_AURA operator<=(wchar_t ch,const string & str)           
 inline bool CLASS_DECL_AURA operator<=(int32_t i, const string & str)                      { return !::operator>(i, str); }
 
 
-
-
 template < >
-inline string to_string(const char * & psz)
+inline string & to_string(string & str, const string & strSrc)
 {
 
-   return string(psz);
+   str.assign(strSrc);
+
+   return str;
 
 }
 
 template < >
-inline string to_string(char * & psz)
+inline string & to_string(string & str, string & strSrc)
 {
 
-   return string(psz);
-
-}
-
-template < >
-inline string to_string(unsigned char * & psz)
-{
-
-   return string(psz);
-
-}
-
-template < >
-inline string to_string(const char & ch)
-{
-
-   return string((char) ch);
-
-}
-
-template < >
-inline string to_string(const wchar_t * & pwsz)
-{
-
-   return string(pwsz);
-
-}
-
-template < >
-inline string to_string(wchar_t * & pwsz)
-{
-
-   return string(pwsz);
-
-}
-
-template < >
-inline string to_string(string_composite & ca)
-{
-
-   string str;
-
-   ca.get_string(str.GetBufferSetLength(ca.get_length()));
-
-   str.ReleaseBuffer(ca.get_length());
+   str.assign(strSrc);
 
    return str;
 
 }
 
 
+
 template < >
-inline string to_string(verisimple_wstring & wstr)
+inline string & to_string(string & str, const char * psz)
 {
 
-   return string((const wchar_t *) wstr);
+   str = psz;
 
 }
 
 template < >
-inline string to_string(wstring & wstr)
+inline string & to_string(string & str, char * psz)
 {
 
-   return string((const wchar_t *) wstr);
+   str.assign(psz);
 
 }
+
+template < >
+inline string & to_string(string & str, unsigned char * psz)
+{
+
+   str.assign((const char *) psz);
+
+}
+
+template < >
+inline string & to_string(string & str, const char & ch)
+{
+
+   str = ch;
+
+}
+
+template < >
+inline string & to_string(string & str, const wchar_t * pwsz)
+{
+
+   str = pwsz;
+
+}
+
+
+template < >
+inline string & to_string(string & str, string_composite & ca)
+{
+
+   ca.get_string(str.GetBufferSetLength(ca.get_length()));
+
+   str.ReleaseBuffer(); // search for 0 termination (if you want a string that accepts nulls, use binary strng (bstring)
+
+}
+
+
+//template < >
+//inline void to_string(string & str, verisimple_wstring & wstr)
+//{
+//
+//   ::str::international::unicode_to_utf8(str, wstr, wstr.get_length());
+//
+//}
+
+//template < >
+//inline void to_string(string & str, wstring & wstr)
+//{
+//
+//   str= wstr;
+//
+//}
 
 #if defined(METROWIN) && defined(__cplusplus_winrt)
 
@@ -1802,14 +1887,14 @@ namespace str
 inline CLASS_DECL_AURA string operator + (const id & id, const char * psz)
 {
 
-   return id.to_string() + psz;
+   return string(id) + psz;
 
 }
 
 inline CLASS_DECL_AURA string operator + (const char * psz, const id & id)
 {
 
-   return psz + id.to_string();
+   return psz + string(id);
 
 }
 
@@ -1817,7 +1902,7 @@ inline CLASS_DECL_AURA string operator + (const char * psz, const id & id)
 inline CLASS_DECL_AURA string operator + (const string & str, const id & id)
 {
 
-   return str + id.to_string();
+   return str + string(id);
 
 }
 
@@ -1990,3 +2075,5 @@ namespace comparison
 
 
 } // namespace comparison
+
+

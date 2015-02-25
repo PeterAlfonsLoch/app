@@ -32,4 +32,6 @@ public:
 
    operator string () const;
 
+   string & to_string (string & str) const;
+
 };

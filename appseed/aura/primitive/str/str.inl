@@ -30,7 +30,7 @@ inline simple_string::simple_string(const string_data  * pdata, string_manager *
    if(pdata == NULL)
    {
       ENSURE( pstringmanager != NULL );
-      
+
       string_data* pData = pstringmanager->allocate( 0, sizeof( char ) );
       if( pData == NULL )
       {
@@ -92,7 +92,7 @@ inline simple_string::simple_string(const string_data  * pdata, string_manager *
    // there may be multiple instances of a string (all referencing the same pointer).
    inline const char & simple_string::operator [](strsize iChar ) const
    {
-      
+
       //ASSERT( (iChar >= 0) && (iChar <= get_length()) );  // Indexing the '\0' is OK
 
       //if( (iChar < 0) || (iChar > get_length()) )
@@ -269,7 +269,7 @@ inline void string_data::unlock() RELEASENOTHROW
       }
    }
 }
-      
+
 
 inline strsize string::replace_ci(const char * pszOld,const char * pszNew, strsize iStart)
 {
@@ -281,7 +281,7 @@ inline strsize string::replace_ci(const char * pszOld,const char * pszNew, strsi
 
 inline bool string::ends_ci(const string & strSuffixCandidate)
 {
-   
+
    return ::str::ends_ci(*this, strSuffixCandidate);
 
 }
@@ -337,7 +337,7 @@ strsize stdstring < BASE >::copy(typename BASE::value_type * s,strsize len,strsi
    typedef typename BASE::value_type char_type;
 
    typedef const char_type const_char_type;
-   
+
 
    memcpy(s,((const_char_type *)*this) + (pos * sizeof(char_type)),(len * sizeof(char_type)));
 
@@ -623,13 +623,44 @@ extern CLASS_DECL_AURA aura_str_pool * s_paurastrpool;
 
 #define astr (*s_paurastrpool)
 
-
+#ifndef __GNUC__
 inline id::operator string() const
 {
-   
-   return str(); 
+
+   return str();
+
+}
+#endif
+
+
+
+
+template < >
+inline string & to_string(string & str, wchar_t * pwsz)
+{
+
+   ::str::international::unicode_to_utf8(str,pwsz);
 
 }
 
+
+template < >
+inline string & to_string(string & str, verisimple_wstring & wstr)
+{
+
+   ::str::international::unicode_to_utf8(str, wstr, wstr.get_length());
+
+}
+
+
+
+
+template < >
+inline string & to_string(string & str, stdstring<verisimple_wstring> & wstr)
+{
+
+   ::str::international::unicode_to_utf8(str, wstr, wstr.get_length());
+
+}
 
 

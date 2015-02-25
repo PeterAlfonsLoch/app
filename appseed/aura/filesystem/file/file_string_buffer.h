@@ -85,7 +85,7 @@ namespace file
 
       void alloc(strsize iSize)
       {
-         
+
          if(iSize < 0)
             return;
 
@@ -153,10 +153,6 @@ namespace file
       }
 
 
-      void append(const char * psz)
-      {
-         append(psz, strlen(psz));
-      }
 
       operator const char *() const
       {
@@ -166,6 +162,14 @@ namespace file
          return m_psz;
       }
 
+      string & to_string(string &str) const
+      {
+
+         str.assign(m_psz, m_iSize);
+
+         return str;
+
+      }
 
       string_buffer & operator += (const string & str)
       {

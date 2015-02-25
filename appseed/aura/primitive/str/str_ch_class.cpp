@@ -86,7 +86,7 @@ namespace str
                cc->clear_class(cc_temp);
             }
             else if(categ.get_length())
-               cc->add_category(*categ);
+               cc->add_category(string(*categ, 1));
             pos += categ.get_length() + 1;
             prev_char = BAD_WCHAR;
             continue;
@@ -119,18 +119,18 @@ namespace str
                break;
             case 's':
                cc->add_category("Z");
-               cc->add_char(string(wchar_t(0x09)));
-               cc->add_char(string(wchar_t(0x0A)));
-               cc->add_char(string(wchar_t(0x0C)));
-               cc->add_char(string(wchar_t(0x0D)));
+               cc->add_char(string(wchar_t(0x09), 1));
+               cc->add_char(string(wchar_t(0x0A), 1));
+               cc->add_char(string(wchar_t(0x0C), 1));
+               cc->add_char(string(wchar_t(0x0D), 1));
                break;
             case 'S':
                cc_temp.fill();
                cc_temp.clear_category("Z");
-               cc_temp.clear_char(string(wchar_t(0x09)));
-               cc_temp.clear_char(string(wchar_t(0x0A)));
-               cc_temp.clear_char(string(wchar_t(0x0C)));
-               cc_temp.clear_char(string(wchar_t(0x0D)));
+               cc_temp.clear_char(string(wchar_t(0x09), 1));
+               cc_temp.clear_char(string(wchar_t(0x0A), 1));
+               cc_temp.clear_char(string(wchar_t(0x0C), 1));
+               cc_temp.clear_char(string(wchar_t(0x0D), 1));
                cc->add_class(cc_temp);
                break;
             default:

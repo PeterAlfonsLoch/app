@@ -16,7 +16,7 @@ namespace user
    keyboard::keyboard(::aura::application * papp) :
       ::object(papp)
    {
-      
+
 
       System.set_enum_name(key_0, "key_0");
       System.set_enum_name(key_1, "key_1");
@@ -331,7 +331,7 @@ namespace user
       if(m_playout == NULL)
       {
 
-         return (char) ekey;
+         return string((char) ekey, 1);
 
       }
 
@@ -419,11 +419,11 @@ namespace user
          return layoutida[i].m_strPath;
       }
    }
-   
+
 #elif defined(APPLEOS)
 
       string strSymbol = keyboard_input_source();
-      
+
       for(int32_t i = 0; i < layoutida.get_count(); i++)
       {
          if(layoutida[i].m_keylayout.has_char() && strSymbol.contains(layoutida[i].m_keylayout))
