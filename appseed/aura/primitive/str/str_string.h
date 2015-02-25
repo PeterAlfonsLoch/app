@@ -1663,7 +1663,7 @@ template < >
 inline string & to_string(string & str, const char * psz)
 {
 
-   str = psz;
+   return str = psz;
 
 }
 
@@ -1673,6 +1673,8 @@ inline string & to_string(string & str, char * psz)
 
    str.assign(psz);
 
+   return str;
+
 }
 
 template < >
@@ -1681,13 +1683,15 @@ inline string & to_string(string & str, unsigned char * psz)
 
    str.assign((const char *) psz);
 
+   return str;
+
 }
 
 template < >
 inline string & to_string(string & str, const char & ch)
 {
 
-   str = ch;
+   return str = ch;
 
 }
 
@@ -1695,7 +1699,7 @@ template < >
 inline string & to_string(string & str, const wchar_t * pwsz)
 {
 
-   str = pwsz;
+   return str = pwsz;
 
 }
 
@@ -1708,33 +1712,22 @@ inline string & to_string(string & str, string_composite & ca)
 
    str.ReleaseBuffer(); // search for 0 termination (if you want a string that accepts nulls, use binary strng (bstring)
 
+   return str;
+
 }
 
 
-//template < >
-//inline void to_string(string & str, verisimple_wstring & wstr)
-//{
-//
-//   ::str::international::unicode_to_utf8(str, wstr, wstr.get_length());
-//
-//}
-
-//template < >
-//inline void to_string(string & str, wstring & wstr)
-//{
-//
-//   str= wstr;
-//
-//}
 
 #if defined(METROWIN) && defined(__cplusplus_winrt)
 
 
 template < >
-inline string to_string(String ^ & str)
+inline string & to_string(string & str, String ^ & str)
 {
 
-   return (const wchar_t *) wstring(begin(str));
+   str= (const wchar_t *) wstring(begin(str));
+
+   return str;
 
 }
 

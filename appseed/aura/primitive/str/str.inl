@@ -641,6 +641,8 @@ inline string & to_string(string & str, wchar_t * pwsz)
 
    ::str::international::unicode_to_utf8(str,pwsz);
 
+   return str;
+
 }
 
 
@@ -649,6 +651,8 @@ inline string & to_string(string & str, verisimple_wstring & wstr)
 {
 
    ::str::international::unicode_to_utf8(str, wstr, wstr.get_length());
+
+   return str;
 
 }
 
