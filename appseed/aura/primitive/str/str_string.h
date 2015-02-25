@@ -256,11 +256,11 @@ public:
 
 
 #ifdef __GNUC__
-   string(const var & var):stdstring< simple_string> (string_trait::GetDefaultManager()) { operator=((string &&)(string)var);}
-   string(const property & prop):stdstring< simple_string> (string_trait::GetDefaultManager()) { operator=((string &&)(string)prop);}
-   string(const id & id):stdstring< simple_string> (string_trait::GetDefaultManager()) { operator=((string &&)(string)id);}
-   string(const string_interface & istr) :stdstring< simple_string> (string_trait::GetDefaultManager()){ operator=((string &&)(string)istr);}
-   string(const istring & istr):stdstring< simple_string> (string_trait::GetDefaultManager()) { operator=((string &&)(string)istr);}
+   string(const var & var);
+   string(const property & prop);
+   string(const id & id);
+   string(const string_interface & stri);
+   string(const istring & istr);
 #endif
 
 

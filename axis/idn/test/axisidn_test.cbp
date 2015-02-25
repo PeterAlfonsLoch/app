@@ -38,7 +38,7 @@
 			<Add option="-Wl,-z,origin" />
 			<Add option="-latomiconv" />
 			<Add option="-laura" />
-			<Add option="-laxisidn" />
+			<Add option="-laxis" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../../stage/x86" />
 		</Linker>
