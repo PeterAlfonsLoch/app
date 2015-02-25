@@ -734,15 +734,15 @@ stdstring < simple_string >(string_trait::GetDefaultManager())
 }
 
 
-string::string(char * pszSrc):
-stdstring < simple_string >(string_trait::GetDefaultManager())
-{
-   //if(!CheckImplicitLoad(pszSrc))
-   //{
-   // nDestLength is in XCHARs
-   *this = (const char *)pszSrc;
-   //      }
-}
+//string::string(char * pszSrc):
+//stdstring < simple_string >(string_trait::GetDefaultManager())
+//{
+//   //if(!CheckImplicitLoad(pszSrc))
+//   //{
+//   // nDestLength is in XCHARs
+//   *this = (const char *)pszSrc;
+//   //      }
+//}
 
 string::string(const char * pszSrc,string_manager * pstringmanager):
 stdstring < simple_string >(pstringmanager)
@@ -850,25 +850,25 @@ const char *psz = reinterpret_cast< const char* >( pszSrc );
 //  }
 }*/
 
-string::string(uchar* pszSrc):
-stdstring < simple_string >(string_trait::GetDefaultManager())
-{
-   const char *psz = reinterpret_cast<const char*>(pszSrc);
-   //      if (!CheckImplicitLoad( psz ))
-   //    {
-   *this = psz;
-   //  }
-}
-
-string::string(wchar_t* pszSrc):
-stdstring < simple_string >(string_trait::GetDefaultManager())
-{
-   const wchar_t *psz = reinterpret_cast<const wchar_t*>(pszSrc);
-   //if (!CheckImplicitLoad( psz ))
-   {
-      *this = psz;
-   }
-}
+//string::string(uchar* pszSrc):
+//stdstring < simple_string >(string_trait::GetDefaultManager())
+//{
+//   const char *psz = reinterpret_cast<const char*>(pszSrc);
+//   //      if (!CheckImplicitLoad( psz ))
+//   //    {
+//   *this = psz;
+//   //  }
+//}
+//
+//string::string(wchar_t* pszSrc):
+//stdstring < simple_string >(string_trait::GetDefaultManager())
+//{
+//   const wchar_t *psz = reinterpret_cast<const wchar_t*>(pszSrc);
+//   //if (!CheckImplicitLoad( psz ))
+//   {
+//      *this = psz;
+//   }
+//}
 
 //string::string(const istring & istr):
 //stdstring < simple_string >(string_trait::GetDefaultManager())

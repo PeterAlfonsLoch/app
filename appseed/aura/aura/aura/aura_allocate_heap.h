@@ -69,6 +69,112 @@ public:
 };
 
 
+class CLASS_DECL_AURA heap_base
+{
+public:
+
+
+   void *         m_p;
+   uint_ptr       m_uiSize;
+
+
+   heap_base()
+   {
+
+      m_p         = NULL;
+      m_uiSize    = 0;
+
+   }
+
+   heap_base(uint_ptr uiSize)
+   {
+
+      m_p         = NULL;
+      m_uiSize    = 0;
+
+      size(uiSize);
+
+   }
+
+   ~heap_base()
+   {
+
+      free();
+
+   }
+
+   uint_ptr size()
+   {
+
+      return m_uiSize;
+
+   }
+
+   uint_ptr size(uint_ptr uiSize)
+   {
+
+      if(m_p == NULL)
+      {
+
+         m_p = memory_alloc(uiSize);
+
+      }
+      else
+      {
+
+         m_p = memory_realloc(m_p, uiSize);
+
+      }
+
+      if(m_p != NULL)
+      {
+
+         m_uiSize = uiSize;
+
+      }
+
+      return m_uiSize;
+
+   }
+
+
+   void free()
+   {
+
+      if(m_p != NULL)
+      {
+
+         memory_free(m_p);
+
+         m_p = NULL;
+
+      }
+
+   }
+
+
+};
+
+
+template < typename T >
+class heap:
+   public heap_base
+{
+public:
+
+
+   heap()   {   }
+
+   heap(uint_ptr uiSize) :   heap_base(uiSize)   {   }
+
+   operator T * () { return (T *) m_p;}
+   operator const T * () const  { return (T *) m_p; }
+
+
+   uint_ptr count() { return size() / sizeof(T); }
+
+};
+
 
 #endif
 

@@ -198,9 +198,9 @@ public:
 
    string(const char * pszSrc);
    string(const uchar * pszSrc);
-   string(char * pszSrc);
-   string(uchar * pszSrc);
-   string(wchar_t * pszSrc);
+   //string(char * pszSrc);
+   //string(uchar * pszSrc);
+   //string(wchar_t * pszSrc);
    string(const wchar_t * pszSrc);
    string(const string & strSrc, strsize npos, strsize len = -1);
 

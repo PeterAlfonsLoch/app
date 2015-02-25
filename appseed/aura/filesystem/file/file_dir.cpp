@@ -6,6 +6,8 @@ using namespace ::Windows::System;
 #pragma pop_macro("System")
 #endif
 
+
+
 string dir::get_ca2_module_folder()
 {
 #if defined(METROWIN)
@@ -81,9 +83,11 @@ string dir::get_ca2_module_folder()
    return true;
 
 #elif defined(WINDOWS)
-   wchar_t lpszModuleFolder[MAX_PATH * 8];
 
-   wchar_t lpszModuleFilePath[MAX_PATH * 8];
+
+   heap < wchar_t > lpszModuleFolder(MAX_PATH * 8);
+
+   heap < wchar_t > lpszModuleFilePath(MAX_PATH * 8);
 
    HMODULE hmodule = ::GetModuleHandleA("core.dll");
 
@@ -116,12 +120,12 @@ string dir::get_ca2_module_folder()
 
    }
 
-   if(!GetModuleFileNameW(hmodule,lpszModuleFilePath,sizeof(lpszModuleFilePath) / sizeof(wchar_t)))
+   if(!GetModuleFileNameW(hmodule,lpszModuleFilePath, lpszModuleFilePath.count()))
       return "";
 
    LPWSTR lpszModuleFileName;
 
-   if (!GetFullPathNameW(lpszModuleFilePath, sizeof(lpszModuleFilePath) / sizeof(wchar_t), lpszModuleFolder, &lpszModuleFileName))
+   if (!GetFullPathNameW(lpszModuleFilePath, lpszModuleFilePath.count(), lpszModuleFolder, &lpszModuleFileName))
       return "";
 
    lpszModuleFolder[lpszModuleFileName - lpszModuleFolder] = '\0';
@@ -243,9 +247,9 @@ string dir::get_base_module_folder()
 
 #elif defined(WINDOWS)
 
-   wchar_t lpszModuleFolder[MAX_PATH * 8];
+   heap < wchar_t > lpszModuleFolder(MAX_PATH * 8);
 
-   wchar_t lpszModuleFilePath[MAX_PATH * 8];
+   heap < wchar_t > lpszModuleFilePath(MAX_PATH * 8);
 
    HMODULE hmodule = ::GetModuleHandleA("aura.dll");
 
@@ -278,12 +282,12 @@ string dir::get_base_module_folder()
 
    }
 
-   if(!GetModuleFileNameW(hmodule,lpszModuleFilePath,sizeof(lpszModuleFilePath) / sizeof(wchar_t)))
+   if(!GetModuleFileNameW(hmodule,lpszModuleFilePath, lpszModuleFilePath.count()))
       return "";
 
    LPWSTR lpszModuleFileName;
 
-   if (!GetFullPathNameW(lpszModuleFilePath, sizeof(lpszModuleFilePath) / sizeof(wchar_t), lpszModuleFolder, &lpszModuleFileName))
+   if (!GetFullPathNameW(lpszModuleFilePath, lpszModuleFilePath.count(), lpszModuleFolder, &lpszModuleFileName))
       return "";
 
    lpszModuleFolder[lpszModuleFileName - lpszModuleFolder] = '\0';
