@@ -102,7 +102,7 @@ void * __node_library_open(const char * pszPath)
          ::OutputDebugString("error " + ::str::from((uint32_t) dwError));
          if(dwError == 126)
          {
-            ::SetDllDirectory(::dir::get_base_module_folder());
+            ::SetDllDirectoryW(gen_utf8_to_16(::dir::get_base_module_folder()));
             plibrary = ::LoadLibraryW(gen_utf8_to_16(::dir::path(::dir::get_base_module_folder(),strPath)));
          }
       }
