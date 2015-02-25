@@ -61,6 +61,15 @@ namespace http
 
       }
 
+
+      inline string to_string() const
+      {
+
+         return m_varValue.to_string();
+
+      }
+
+
       operator string() const
       {
 

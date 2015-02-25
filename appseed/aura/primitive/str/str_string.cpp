@@ -25,7 +25,7 @@ string_interface::operator string() const
 }
 
 
-string_interface::to_string() const
+string string_interface::to_string() const
 {
 
    string str;

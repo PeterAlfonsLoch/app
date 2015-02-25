@@ -34,4 +34,6 @@ public:
 
    string & to_string (string & str) const;
 
+   string to_string () const;
+
 };
