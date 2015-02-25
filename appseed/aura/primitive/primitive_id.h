@@ -151,6 +151,7 @@ public:
 
    inline operator const char *() const;
    inline string & to_string(string & str) const;
+   inline string to_string() const;
 
 
 

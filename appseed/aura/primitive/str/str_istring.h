@@ -27,6 +27,9 @@ public:
 
    void update_string();
 
+   string & to_string(string & str) const { return str = m_str; };
+   string to_string() const { return m_str; };
+
 };
 
 

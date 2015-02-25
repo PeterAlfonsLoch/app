@@ -247,6 +247,10 @@ public:
       return str = get_string();
    }
 
+   string to_string() const
+   {
+      return get_string();
+   }
 
    void set_string(const char * psz)
    {

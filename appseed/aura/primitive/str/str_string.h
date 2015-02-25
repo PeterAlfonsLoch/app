@@ -1155,6 +1155,7 @@ inline id::operator const char *() const
    return (m_etype != type_text || m_psz == NULL) ? NULL : m_psz;
 }
 
+
 inline string &  id::to_string(string & strRet) const
 {
 
@@ -1162,6 +1163,13 @@ inline string &  id::to_string(string & strRet) const
 
 }
 
+
+inline string id::to_string() const
+{
+
+    return str();
+
+}
 
 
 

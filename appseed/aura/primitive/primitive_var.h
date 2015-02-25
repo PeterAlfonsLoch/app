@@ -194,6 +194,7 @@ public:
    string                           get_string(const char * pszOnNull = NULL) const;
    string &                         get_ref_string(const char * pszOnNull = NULL);
    string &                         to_string(string & str) const;
+   string                           to_string() const;
    id                               get_id(const char * pszOnNull = NULL)   const;
    id &                             get_ref_id(const char * pszOnNull = NULL);
    class primitive::memory &        memory();
@@ -769,6 +770,12 @@ inline string & var::to_string(string & str) const
 
 }
 
+inline string var::to_string() const
+{
+
+   return get_string();
+
+}
 
 //inline string::string(const var & var) :
 //stdstring<simple_string>(string_trait::GetDefaultManager())
