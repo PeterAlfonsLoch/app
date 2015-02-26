@@ -59,6 +59,7 @@ namespace user
 
       uint32_t                            m_dwLastFullUpdate;
 
+      bool                                m_bSizeMove;
       uint32_t                            m_dwLastSizeMove; // instead of u32, dw for dWindows the The Windows, sake of hating crisis... (now its like a old Honda Civic (TM))... the difference (one is Fatty the Other is Slim [and Cuts {The Head Out} unless you are Japanese or Sushi fan (in case of Civic), no hatings...)...)
 
 

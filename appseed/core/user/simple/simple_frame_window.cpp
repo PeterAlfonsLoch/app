@@ -14,8 +14,6 @@ m_pframe(pframe) //,
 //m_ev(pframe->get_app())
 {
 
-   m_bSizeMove = false;
-   
    begin();
 
 }
@@ -69,8 +67,6 @@ int simple_frame_window::helper_task::run()
 
 void simple_frame_window::helper_task::defer_save_window_rect()
 {
-   m_bSizeMove = true;
-   m_dwLastSizeMoveRequest = ::get_tick_count();
 }
 
 

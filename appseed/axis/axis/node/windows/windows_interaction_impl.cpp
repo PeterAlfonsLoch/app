@@ -3274,14 +3274,34 @@ namespace windows
          //   nFlags &= ~SWP_NOREDRAW;
 
          //}
+         if(!(nFlags & SWP_NOMOVE) || !(nFlags & SWP_NOSIZE))
+         {
+
+            rect r;
+
+            GetWindowRect(r);
+
+            if((!(nFlags & SWP_NOMOVE) && (x != r.left || y != r.top))
+            || (!(nFlags & SWP_NOSIZE) && (cx != r.width() || cy != r.height())))
+            {
+
+               m_pui->m_bSizeMove         = true;
+
+               m_pui->m_dwLastSizeMove    = ::get_tick_count();
+
+            }
+
+         }
 
          keep < bool > keepMoveWindow(&m_pui->m_bMoveWindow,true,false,false);
+
          if(nFlags & SWP_NOSIZE)
          {
+            
             keepMoveWindow.Keep();
+
          }
          
-
          ::SetWindowPos(get_handle(),(oswindow)z,x,y,cx,cy,nFlags);
 
          keepMoveWindow.KeepAway();
@@ -5726,13 +5746,13 @@ LRESULT CALLBACK __window_procedure(oswindow oswindow,UINT message,WPARAM wparam
       if(message == WM_WINDOWPOSCHANGING)
       {
 
-         return 0;
+         return ::DefWindowProc(oswindow,message,wparam,lparam);
 
       }
       else if(message == WM_WINDOWPOSCHANGED)
       {
 
-         return 0;
+         return ::DefWindowProc(oswindow,message,wparam,lparam);
 
       }
 

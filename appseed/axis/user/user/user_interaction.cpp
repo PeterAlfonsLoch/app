@@ -124,6 +124,9 @@ namespace user
 
       m_bMoving                  = false;
       m_bMoveWindow              = false;
+
+      m_bSizeMove                = false;
+
    }
 
 
