@@ -59,7 +59,7 @@ namespace user
       bool                          m_bComposite;
       bool                          m_bUpdateGraphics;
       //sp(mutex)                     m_spmutexDisplay;
-      critical_section            * m_pcsDisplay;
+      
       point                         m_pt;
       size                          m_size;
 
@@ -714,7 +714,7 @@ namespace user
 
       virtual void update_graphics_resources();
 
-      inline critical_section * cs_display() { return m_pcsDisplay; }
+      
 
 
       virtual void set_handle(oswindow oswindow);

@@ -32,6 +32,8 @@ int simple_frame_window::helper_task::run()
             && ::get_tick_count() - m_pframe->m_dwLastSizeMove > 586)// the tester (without UPS) can loose a save specially here (where is the error, sixes or 666) // Halloween is coming
             // this a reason for using manual_reset_event for every simple_frame_window, accepts the candy, and the trick? you get both, this the whole trick!!!
          {
+            
+            //::MessageBox(NULL, "Going to save window rect", "SaveWindowRect", MB_ICONEXCLAMATION);
 
             m_bSizeMove = false;// the tester (without UPS) can loose a save here
 
@@ -1849,7 +1851,7 @@ bool simple_frame_window::WfiOnMove(bool bTracking)
 {
    if (!bTracking)
    {
-      WindowDataSaveWindowRect();
+      //WindowDataSaveWindowRect();
    }
    return true;
 }

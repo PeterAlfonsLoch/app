@@ -530,6 +530,25 @@ bool offset(RECT64 * prect, int64_t x, int64_t y)
 
 }
 
+
+bool resize(RECT64 * prect,int64_t cx,int64_t cy)
+{
+   prect->right     = prect->left + cx;
+   prect->bottom    = prect->top + cy;
+   return true;
+
+}
+
+
+bool reverse_size(RECT64 * prect,int64_t cx,int64_t cy)
+{
+
+   prect->left      = prect->right  - cx;
+   prect->top       = prect->bottom - cy;
+   return true;
+
+}
+
 bool x_intersect_rect(RECT64 * prect, const RECT64 * prect1, const RECT64 * prect2)
 {
 

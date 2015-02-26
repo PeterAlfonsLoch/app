@@ -288,8 +288,14 @@ CLASS_DECL_AXIS void draw_freetype_bitmap(::draw2d::dib * m_p,int32_t dx,int32_t
 
 #ifdef WINDOWS
 
+
+
 bool windows_load_dib_from_file(::draw2d::dib * pdib,::file::buffer_sp pfile,::aura::application * papp)
 {
+
+   if(!defer_co_initialize_ex())
+      return false;
+
    int iSize = pfile->get_length();
 
    primitive::memory mem(papp);

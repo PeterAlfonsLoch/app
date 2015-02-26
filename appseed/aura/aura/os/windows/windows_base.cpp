@@ -43,41 +43,34 @@ LSTATUS
 
 LPFN_RegGetValueW g_pfnRegGetValueW = NULL;
 
-bool                             g_bCoInitialize            = false;
+CLASS_DECL_AURA thread_int_ptr < int_ptr >                             t_iCoInitialize;
+
+bool defer_co_initialize_ex()
+{
+
+   if(t_iCoInitialize != FALSE)
+      return true;
+
+   HRESULT hresult = ::CoInitializeEx(NULL,COINIT_MULTITHREADED);
+
+   if(FAILED(hresult))
+   {
+
+      ::output_debug_string("Failed to ::CoInitializeEx(NULL, COINIT_MULTITHREADED) at __node_pre_init");
+
+      return false;
+
+   }
+
+   t_iCoInitialize = TRUE;
+
+   return true;
+
+}
 
 bool __node_aura_pre_init()
 {
    
-   //HRESULT hresult = ::CoInitializeEx(NULL,COINIT_MULTITHREADED);
-
-   //if(FAILED(hresult))
-   //{
-
-   //   if(hresult == RPC_E_CHANGED_MODE)
-   //   {
-
-   //      hresult = ::CoInitializeEx(NULL,COINIT_APARTMENTTHREADED);
-   //      
-   //      if(FAILED(hresult))
-   //      {
-
-   //         ::simple_message_box(NULL,"Failed to ::CoInitializeEx(NULL, COINIT_APARTMENTTHREADED) at __node_pre_init","__node_pre_init failure",MB_ICONEXCLAMATION);
-
-   //         return false;
-
-   //      }
-
-   //   }
-   //   else
-   //   {
-
-   //      ::simple_message_box(NULL,"Failed to ::CoInitializeEx(NULL, COINIT_MULTITHREADED) at __node_pre_init","__node_pre_init failure",MB_ICONEXCLAMATION);
-
-   //      return false;
-
-   //   }
-
-   //}
 
    OutputDebugStringW(L"__node_aura_pre_init\n");
 

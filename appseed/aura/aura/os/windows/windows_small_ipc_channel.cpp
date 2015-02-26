@@ -325,7 +325,8 @@ ATOM small_ipc_rx_channel::register_class(HINSTANCE hInstance)
 	wcex.cbWndExtra	   = 0;
 	wcex.hInstance		   = hInstance;
 	wcex.hIcon			   = NULL;
-	wcex.hCursor		   = LoadCursor(NULL, IDC_ARROW);
+	//wcex.hCursor		   = LoadCursor(NULL, IDC_ARROW);
+   wcex.hCursor		   = NULL;
 	wcex.hbrBackground	= (HBRUSH)(COLOR_WINDOW+1);
    wcex.lpszMenuName	   = NULL;
 	wcex.lpszClassName	= "small_ipc_rx_channel_message_queue_class";

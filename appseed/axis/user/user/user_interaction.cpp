@@ -423,7 +423,7 @@ namespace user
    bool interaction::MoveWindow(int32_t x,int32_t y,UINT nFlags)
    {
 
-      return SetWindowPos(0,x,y,0,0,nFlags | SWP_NOSIZE);
+      return SetWindowPos(0,x,y,0,0,nFlags | SWP_NOSIZE | SWP_NOZORDER);
 
    }
 
@@ -437,7 +437,7 @@ namespace user
    bool interaction::SizeWindow(int32_t cx,int32_t cy,UINT nFlags)
    {
 
-      return SetWindowPos(0,0,0,cx,cy,nFlags | SWP_NOMOVE);
+      return SetWindowPos(0,0,0,cx,cy,nFlags | SWP_NOMOVE | SWP_NOZORDER);
 
    }
 
@@ -451,7 +451,7 @@ namespace user
    bool interaction::ResizeWindow(int32_t cx,int32_t cy,UINT nFlags)
    {
 
-      return SetWindowPos(0,0,0,cx,cy,nFlags | SWP_NOMOVE);
+      return SetWindowPos(0,0,0,cx,cy,nFlags | SWP_NOMOVE | SWP_NOZORDER);
 
    }
 
@@ -506,7 +506,18 @@ namespace user
 
       }
 
-      return SetWindowPos(z,x,y,cx,cy,nFlags);
+      bool bOk = SetWindowPos(z,x,y,cx,cy,nFlags);
+
+      if(bOk && (!(nFlags & SWP_NOMOVE) || !(nFlags & SWP_NOSIZE)))
+      {
+
+         m_bSizeMove         = true;
+
+         m_dwLastSizeMove    = ::get_tick_count();
+
+      }
+
+      return bOk;
 
    }
 

@@ -16,8 +16,6 @@ namespace windows
    public:
 
 
-      bool                                      m_bRectParentClient;
-      ::rect                                    m_rectParentClient;
       sp(ptr_array < ::user::interaction > )    m_guieptraMouseHover;
       bool                                      m_bUpdateGraphics;
 

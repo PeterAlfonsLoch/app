@@ -51,7 +51,7 @@ namespace windows
    {
 
       m_guieptraMouseHover = canew(ptr_array < ::user::interaction >);
-      m_bRectParentClient  = false;
+      //      m_bRectParentClient  = false;
       m_pfnSuper           = NULL;
       m_bMouseHover        = false;
       m_puiCapture         = NULL;
@@ -224,7 +224,7 @@ namespace windows
       *pdwEffect = m.dwEffect;
 
       return S_OK;
-      
+
    }
 
    HRESULT STDMETHODCALLTYPE interaction_impl::QueryInterface(REFIID riid,void **ppvObject)
@@ -265,7 +265,7 @@ namespace windows
    {
 
       m_guieptraMouseHover = canew(ptr_array < ::user::interaction >);
-      m_bRectParentClient  = false;
+      //      m_bRectParentClient  = false;
       m_pfnSuper           = NULL;
       m_bMouseHover        = false;
       m_puiCapture         = NULL;
@@ -285,7 +285,7 @@ namespace windows
    {
 
       m_guieptraMouseHover = canew(ptr_array < ::user::interaction >);
-      m_bRectParentClient  = false;
+      //      m_bRectParentClient  = false;
       m_pfnSuper           = NULL;
       m_bMouseHover        = false;
       m_puiCapture         = NULL;
@@ -392,7 +392,7 @@ namespace windows
       // no default processing
    }
 
-   
+
    bool interaction_impl::create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,::user::interaction * puiParent,id id,LPVOID lpParam)
    {
 
@@ -405,7 +405,7 @@ namespace windows
       }
       else
       {
-         
+
          if(!native_create_window_ex(dwExStyle,lpszClassName,lpszWindowName,dwStyle,rect,puiParent->get_safe_handle(),id,lpParam))
             return false;
 
@@ -642,7 +642,7 @@ namespace windows
 
    void interaction_impl::install_message_handling(::message::dispatch * pinterface)
    {
-      
+
       ::user::interaction_impl::install_message_handling(pinterface);
 
       IGUI_WIN_MSG_LINK(WM_NCDESTROY,pinterface,this,&interaction_impl::_001OnNcDestroy);
@@ -724,13 +724,31 @@ namespace windows
          return;
 
       }
+      else if(!(GetExStyle() & WS_EX_LAYERED))
+      {
+
+         ::rect r;
+
+         ::GetWindowRect(get_handle(),r);
+
+         ::copy(m_rectParentClient,r);
+
+         if(GetParent() != NULL)
+         {
+
+            GetParent()->ScreenToClient(m_rectParentClient);
+
+         }
+
+      }
+
 
    }
 
 
    void interaction_impl::_001OnShowWindow(signal_details * pobj)
    {
-      
+
       SCAST_PTR(::message::show_window,pshowwindow,pobj);
 
       if(pshowwindow->m_bShow != FALSE)
@@ -746,7 +764,7 @@ namespace windows
 
       }
 
-      
+
    }
 
    void interaction_impl::_001OnDestroy(signal_details * pobj)
@@ -1355,7 +1373,7 @@ namespace windows
 
       //}
 
-      
+
 
       if(pbase->m_uiMessage == WM_SIZE || pbase->m_uiMessage == WM_MOVE)
       {
@@ -1374,7 +1392,7 @@ namespace windows
 
          SCAST_PTR(::message::key,pkey,pobj);
 
-         
+
 
          if(pbase->m_uiMessage == WM_KEYDOWN || pbase->m_uiMessage == WM_SYSKEYDOWN)
          {
@@ -1503,7 +1521,7 @@ namespace windows
             if(m_bOSNativeMouseMessagePosition)
             {
                class rect rectWindow32;
-               GetWindowRect(rectWindow32);
+               ::GetWindowRect(get_handle(), rectWindow32);
                ::copy(rectWindow,rectWindow32);
             }
             else
@@ -1520,12 +1538,10 @@ namespace windows
             pmouse->m_pt.y += (LONG)rectWindow.top;
             }
             else*/
-            {
-               //if(rectWindow.left >= 0)
-                  pmouse->m_pt.x += (LONG)rectWindow.left;
-               //if(rectWindow.top >= 0)
-                  pmouse->m_pt.y += (LONG)rectWindow.top;
-            }
+            //if(rectWindow.left >= 0)
+            pmouse->m_pt.x += (LONG)rectWindow.left;
+            //if(rectWindow.top >= 0)
+            pmouse->m_pt.y += (LONG)rectWindow.top;
          }
 
          if(pbase->m_uiMessage == WM_MOUSEMOVE)
@@ -1647,10 +1663,10 @@ namespace windows
          message::key * pkey = (::message::key *) pbase;
 
          sp(::user::interaction) puiFocus = Session.user()->get_keyboard_focus();
-         
+
          if(puiFocus != NULL && puiFocus->IsWindow() && puiFocus != m_pui)
          {
-         
+
             puiFocus->send(pkey);
 
             if(pbase->m_bRet)
@@ -1659,7 +1675,7 @@ namespace windows
          }
          else if(!pkey->m_bRet)
          {
-            
+
             if(m_pui != NULL)
             {
 
@@ -2201,29 +2217,29 @@ namespace windows
          // special case for WM_COMMAND
       case WM_COMMAND:
       {
-                        // reflect the message through the message map as OCM_COMMAND
-                        keep < bool > keepReflect(&pbase->m_bReflect,true,pbase->m_bReflect,true);
-                        if(interaction_impl::OnCommand(pbase))
-                        {
-                           pbase->m_bRet = true;
-                           return true;
-                        }
+         // reflect the message through the message map as OCM_COMMAND
+         keep < bool > keepReflect(&pbase->m_bReflect,true,pbase->m_bReflect,true);
+         if(interaction_impl::OnCommand(pbase))
+         {
+            pbase->m_bRet = true;
+            return true;
+         }
       }
-         break;
+      break;
 
-         // special case for WM_NOTIFY
+      // special case for WM_NOTIFY
       case WM_NOTIFY:
       {
-                       // reflect the message through the message map as OCM_NOTIFY
-                       NMHDR* pNMHDR = (NMHDR*)pbase->m_lparam;
-                       //            int32_t nCode = pNMHDR->code;
-                       //            __NOTIFY notify;
-                       //          notify.pResult = pResult;
-                       //        notify.pNMHDR = pNMHDR;
-                       // xxxx         return interaction_impl::_001OnCommand(0, MAKELONG(nCode, WM_REFLECT_BASE+WM_NOTIFY), &notify, NULL);
+         // reflect the message through the message map as OCM_NOTIFY
+         NMHDR* pNMHDR = (NMHDR*)pbase->m_lparam;
+         //            int32_t nCode = pNMHDR->code;
+         //            __NOTIFY notify;
+         //          notify.pResult = pResult;
+         //        notify.pNMHDR = pNMHDR;
+         // xxxx         return interaction_impl::_001OnCommand(0, MAKELONG(nCode, WM_REFLECT_BASE+WM_NOTIFY), &notify, NULL);
       }
 
-         // other special cases (WM_CTLCOLOR family)
+      // other special cases (WM_CTLCOLOR family)
       default:
          if(pbase->m_uiMessage >= WM_CTLCOLORMSGBOX && pbase->m_uiMessage <= WM_CTLCOLORSTATIC)
          {
@@ -2416,15 +2432,15 @@ namespace windows
          ::object(papp),
          m_event(papp)
       {
-            m_event.ResetEvent();
-            m_oswindow = oswindow;
-            m_hdc = hdc;
-            __begin_thread(papp,&print_window::s_print_window,(LPVOID) this,::multithreading::priority_above_normal);
-            if(m_event.wait(millis(dwTimeout)).timeout())
-            {
-               TRACE("print_window::time_out");
-            }
+         m_event.ResetEvent();
+         m_oswindow = oswindow;
+         m_hdc = hdc;
+         __begin_thread(papp,&print_window::s_print_window,(LPVOID) this,::multithreading::priority_above_normal);
+         if(m_event.wait(millis(dwTimeout)).timeout())
+         {
+            TRACE("print_window::time_out");
          }
+      }
 
 
       static UINT c_cdecl s_print_window(LPVOID pvoid)
@@ -2752,7 +2768,7 @@ namespace windows
 
       m_spdib->get_graphics()->SetViewportOrg(0,0);
 
-      g->BitBlt(rectPaint.left,rectPaint.top, rectPaint.width(),rectPaint.height(), m_spdib->get_graphics(),rectUpdate.left,rectUpdate.top,SRCCOPY);
+      g->BitBlt(rectPaint.left,rectPaint.top,rectPaint.width(),rectPaint.height(),m_spdib->get_graphics(),rectUpdate.left,rectUpdate.top,SRCCOPY);
 
       g->Detach();
 
@@ -3255,80 +3271,94 @@ namespace windows
       if(GetExStyle() & WS_EX_LAYERED)
       {
 
+         ::rect rectBefore = m_rectParentClient;
+
+         ::rect rect = m_rectParentClient;
+
+         if(!(nFlags & SWP_NOMOVE))
+         {
+
+            rect.move_to(x,y);
+
+         }
+
          if(!(nFlags & SWP_NOSIZE))
          {
 
-            nFlags |= SWP_NOCOPYBITS;
-
-            nFlags |= SWP_NOREDRAW;
-
-            nFlags |= SWP_FRAMECHANGED;
-
+            rect.size(cx,cy);
 
          }
-         //else
-         //{
-         //   
-         //   nFlags &= ~SWP_NOCOPYBITS;
 
-         //   nFlags &= ~SWP_NOREDRAW;
+         keep < bool > keepLockWindowUpdate(&m_pui->m_bLockWindowUpdate,true,false,true);
 
-         //}
-         if(!(nFlags & SWP_NOMOVE) || !(nFlags & SWP_NOSIZE))
+         if(rectBefore.size() != rect.size() || m_pui->get_appearance() != m_eapperanceLayout)
          {
 
-            rect r;
+            m_rectParentClient = rect;
 
-            GetWindowRect(r);
+            m_eapperanceLayout = m_pui->get_appearance();
 
-            if((!(nFlags & SWP_NOMOVE) && (x != r.left || y != r.top))
-            || (!(nFlags & SWP_NOSIZE) && (cx != r.width() || cy != r.height())))
+            send_message(WM_SIZE,0,MAKELONG(MAX(0,rect.width()),MAX(0,rect.height())));
+
+            keepLockWindowUpdate.KeepAway();
+
             {
 
-               m_pui->m_bSizeMove         = true;
+               DWORD dwTime2 = ::get_tick_count();
 
-               m_pui->m_dwLastSizeMove    = ::get_tick_count();
+               //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+               //TRACE("OnSize::WndImpl call timem= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+
+            }
+
+
+
+            m_pui->_001UpdateBuffer();
+            {
+
+               DWORD dwTime2 = ::get_tick_count();
+
+               //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+               //TRACE("OnSize::WndImpl call timen= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+
+            }
+
+
+            m_pui->_001UpdateScreen();
+
+            {
+
+               DWORD dwTime2 = ::get_tick_count();
+
+               //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+               //TRACE("OnSize::WndImpl call timeo= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
 
             }
 
          }
-
-         keep < bool > keepMoveWindow(&m_pui->m_bMoveWindow,true,false,false);
-
-         if(nFlags & SWP_NOSIZE)
+         else if(rectBefore.top_left() != rect.top_left())
          {
-            
-            keepMoveWindow.Keep();
+
+            cslock cslDisplay(cs_display());
+
+            m_rectParentClient = rect;
+
+            m_pui->_001UpdateScreen(false);
+
+            keepLockWindowUpdate.KeepAway();
 
          }
-         
-         ::SetWindowPos(get_handle(),(oswindow)z,x,y,cx,cy,nFlags);
+         else
+         {
 
-         keepMoveWindow.KeepAway();
+            keepLockWindowUpdate.KeepAway();
+
+         }
 
          if(nFlags & SWP_SHOWWINDOW)
          {
 
             ShowWindow(SW_SHOW);
-
-         }
-
-         if(!(nFlags & SWP_NOREDRAW))
-         {
-
-            if(nFlags & SWP_NOSIZE)
-            {
-
-//               _001UpdateScreen();
-               m_pui->_001UpdateScreen(false);
-
-            }
-            else
-            {
-
-  //             _001RedrawWindow();
-
-            }
 
          }
 
@@ -3381,7 +3411,7 @@ namespace windows
 
    void interaction_impl::ClientToScreen(RECT64 * lprect)
    {
-      
+
       class rect rectWindow;
 
       GetWindowRect(rectWindow);
@@ -3395,7 +3425,7 @@ namespace windows
 
    void interaction_impl::ClientToScreen(POINT64 * lppoint)
    {
-      
+
       class rect64 rectWindow;
 
       m_pui->GetWindowRect(rectWindow);
@@ -3426,7 +3456,7 @@ namespace windows
 
    void interaction_impl::ScreenToClient(RECT64 * lprect)
    {
-      
+
       class rect64 rectWindow;
 
       m_pui->GetWindowRect(rectWindow);
@@ -3440,7 +3470,7 @@ namespace windows
 
    void interaction_impl::ScreenToClient(POINT64 * lppoint)
    {
-      
+
       class rect64 rectWindow;
 
       m_pui->GetWindowRect(rectWindow);
@@ -3456,29 +3486,33 @@ namespace windows
       if(!::IsWindow(get_handle()))
          return;
 
-      if(m_bRectParentClient)
-      {
-
-         ::copy(lprect,m_rectParentClient);
-
-         if(GetParent() != NULL)
-         {
-
-            GetParent()->ClientToScreen(lprect);
-
-         }
-
-      }
-      else
+      if(!(GetExStyle() & WS_EX_LAYERED))
       {
 
          rect rect32;
 
          ::GetWindowRect(get_handle(),rect32);
 
-         ::copy(lprect,rect32);
+         if(GetParent() != NULL)
+         {
+
+            GetParent()->ScreenToClient(rect32);
+
+         }
+
+         ::copy(m_rectParentClient,rect32);
 
       }
+
+      *lprect = m_rectParentClient;
+
+      if(GetParent() != NULL)
+      {
+
+         GetParent()->ClientToScreen(lprect);
+
+      }
+
 
    }
 
@@ -3491,7 +3525,7 @@ namespace windows
 
       rect rect32;
 
-      if(m_bRectParentClient)
+      //      if(m_bRectParentClient)
       {
 
          rect32 = m_rectParentClient;
@@ -3501,14 +3535,14 @@ namespace windows
          ::copy(lprect,rect32);
 
       }
-      else
-      {
+      /*    else
+          {
 
-         ::GetClientRect(get_handle(),rect32);
+          ::GetClientRect(get_handle(),rect32);
 
-         ::copy(lprect,rect32);
+          ::copy(lprect,rect32);
 
-      }
+          }*/
 
    }
 
@@ -3562,7 +3596,7 @@ namespace windows
             /*if(GetStyle() & WS_VISIBLE)
             {
 
-               ModifyStyle(get_handle(),WS_VISIBLE,0,0);
+            ModifyStyle(get_handle(),WS_VISIBLE,0,0);
 
             }*/
 
@@ -3600,13 +3634,13 @@ namespace windows
          else
          {
 
-//            if(nCmdShow != SW_HIDE)
-//            {
-//
-//               ::SetWindowPos(get_safe_handle(),0,(int)m_pui->m_rectParentClient.left,(int)m_pui->m_rectParentClient.top,
-//                  (int)m_pui->m_rectParentClient.width(),(int)m_pui->m_rectParentClient.height(),SWP_SHOWWINDOW | SWP_NOZORDER);
-//
-//            }
+            //            if(nCmdShow != SW_HIDE)
+            //            {
+            //
+            //               ::SetWindowPos(get_safe_handle(),0,(int)m_pui->m_rectParentClient.left,(int)m_pui->m_rectParentClient.top,
+            //                  (int)m_pui->m_rectParentClient.width(),(int)m_pui->m_rectParentClient.height(),SWP_SHOWWINDOW | SWP_NOZORDER);
+            //
+            //            }
 
             ::ShowWindow(get_handle(),nCmdShow);
 
@@ -3700,7 +3734,7 @@ namespace windows
       if(get_handle() == NULL)
          return NULL;
 
-      HWND hwndParent = ::GetWindow(get_handle(), GW_OWNER);
+      HWND hwndParent = ::GetWindow(get_handle(),GW_OWNER);
 
       if(hwndParent == NULL)
          return GetParent();
@@ -3909,7 +3943,7 @@ namespace windows
 
    void interaction_impl::SetWindowText(const char * lpszString)
    {
-      
+
       DWORD_PTR lresult = 0;
 
       ::SendMessageTimeoutW(get_handle(),WM_SETTEXT,0,(LPARAM)(const wchar_t *)wstring(m_pui->m_strWindowText),SMTO_ABORTIFHUNG,84,&lresult);
@@ -3918,12 +3952,12 @@ namespace windows
 
    strsize interaction_impl::GetWindowText(LPTSTR lpszString,strsize nMaxCount)
    {
-      
+
       string str;
 
       GetWindowText(str);
 
-      strncpy(lpszString,str,MIN(nMaxCount, str.get_length()));
+      strncpy(lpszString,str,MIN(nMaxCount,str.get_length()));
 
       return str.get_length();
 
@@ -4922,14 +4956,20 @@ namespace windows
 
    void interaction_impl::_001OnSetCursor(signal_details * pobj)
    {
+      
       SCAST_PTR(::message::base,pbase,pobj);
+
       if(Session.get_cursor() != NULL && Session.get_cursor()->m_ecursor != ::visual::cursor_system)
       {
-         //::SetCursor(NULL);
+
+         ::SetCursor(Session.get_cursor()->get_HCURSOR());
+
       }
+      
       pbase->set_lresult(1);
+      
       pbase->m_bRet = true;
-      //(bool)Default(); 
+      
    }
 
 
@@ -4955,8 +4995,8 @@ namespace windows
       Default();
 
    }
-   
-   
+
+
    void interaction_impl::_001OnWindowPosChanging(signal_details * pobj)
    {
 
@@ -4969,7 +5009,7 @@ namespace windows
 
          if(pwindowpos->m_pwindowpos->flags & 0x8000) // SWP_STATECHANGED
          {
-            
+
             pwindowpos->m_pwindowpos->flags |= SWP_NOSIZE;
             pwindowpos->m_pwindowpos->flags |= SWP_NOMOVE;
             pwindowpos->m_pwindowpos->flags |= 0x0800; // SWP_NOCLIENTSIZE
@@ -4981,11 +5021,11 @@ namespace windows
          else
          {
 
-            ::rect rectBefore;
+            ::rect rectBefore = m_rectParentClient;
 
-            ::GetWindowRect(get_handle(),rectBefore);
+            //::GetWindowRect(get_handle(),rectBefore);
 
-            m_rectParentClient = rectBefore;
+            //m_rectParentClient = rectBefore;
 
             ::rect rect = m_rectParentClient;
 
@@ -5017,7 +5057,7 @@ namespace windows
 
             m_rectParentClient = rect;
 
-            keep < bool > keepRectParentClient(&m_bRectParentClient,true,false,true);
+            //keep < bool > keepRectParentClient(&m_bRectParentClient,true,false,true);
 
             keep < bool > keepLockWindowUpdate(&m_pui->m_bLockWindowUpdate,true,false,true);
 
@@ -5038,7 +5078,7 @@ namespace windows
 
                m_eapperanceLayout = m_pui->get_appearance();
 
-               send_message(WM_SIZE, 0, MAKELONG(MAX(0, rect.width()), MAX(0, rect.height())));
+               send_message(WM_SIZE,0,MAKELONG(MAX(0,rect.width()),MAX(0,rect.height())));
 
                bUpdate = true;
 
@@ -5706,10 +5746,10 @@ namespace windows
       oswindow w = get_handle();
 
       HRESULT hr = OleInitialize(NULL);
-         
-         hr = ::RegisterDragDrop(w,this);
 
-      TRACE("result of RegisterDragDrop = %d", hr);
+      hr = ::RegisterDragDrop(w,this);
+
+      TRACE("result of RegisterDragDrop = %d",hr);
 
       if(SUCCEEDED(CoCreateInstance(CLSID_DragDropHelper,NULL,
          CLSCTX_INPROC_SERVER,
@@ -5735,22 +5775,54 @@ namespace windows
 LRESULT CALLBACK __window_procedure(oswindow oswindow,UINT message,WPARAM wparam,LPARAM lparam)
 {
 
+
+
    ::user::interaction * pui = ::window_from_handle(oswindow);
 
+   //if(message == WM_SETCURSOR)
+   //{
+
+   //   return 0;
+
+   //}
+
    if(pui == NULL)
+   {
+    
       return ::DefWindowProc(oswindow,message,wparam,lparam);
+
+   }
 
    if(pui->m_bMoving || pui->m_bMoveWindow)
    {
 
-      if(message == WM_WINDOWPOSCHANGING)
+      //if(message == WM_MOUSEMOVE)
+      //{
+      //   
+      //   return 0;
+
+      //}
+      //else 
+         if(message == WM_WINDOWPOSCHANGING)
       {
+
+         //return 0;
 
          return ::DefWindowProc(oswindow,message,wparam,lparam);
 
       }
       else if(message == WM_WINDOWPOSCHANGED)
       {
+
+         //return 0;
+
+         return ::DefWindowProc(oswindow,message,wparam,lparam);
+
+      }
+      else if(message == WM_MOVE)
+      {
+
+         //return 0;
 
          return ::DefWindowProc(oswindow,message,wparam,lparam);
 
@@ -5809,7 +5881,7 @@ CLASS_DECL_AXIS bool hook_window_create(::windows::interaction_impl * pwindow)
 
    if(t_pwndInit != pwindow)
       return false;
-   
+
    return true;
 
 }

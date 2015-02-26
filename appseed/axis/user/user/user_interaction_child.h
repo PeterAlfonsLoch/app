@@ -15,7 +15,6 @@ namespace user
       // this rectangle comes before in importance compared to m_rectWindow
       // m_rectWindow should be sychronized and recalculated based
       // on m_rectParentClient values of the interaction_impl and its ascendants.
-      rect64                              m_rectParentClient;
       size                                m_size;
       bool                                m_bEnabled;
       bool                                m_bCreate;

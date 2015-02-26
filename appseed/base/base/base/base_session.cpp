@@ -141,7 +141,7 @@ namespace base
 //      if(pcursor != NULL)
 //      {
 //
-//         ::SetCursor(pcursor->get_HCURSOR());
+//         ::winsetcursor(pcursor->get_HCURSOR());
 //
 //      }
 //
@@ -161,7 +161,7 @@ namespace base
 //      if(pcursor != NULL)
 //      {
 //
-//         ::SetCursor(pcursor->get_HCURSOR());
+//         ::winsetcursor(pcursor->get_HCURSOR());
 //
 //      }
 //
@@ -1683,7 +1683,7 @@ namespace base
 //   //      if(pcursor != NULL)
 //   //      {
 //   //
-//   //         ::SetCursor(pcursor->get_HCURSOR());
+//   //         ::winsetcursor(pcursor->get_HCURSOR());
 //   //
 //   //      }
 //   //

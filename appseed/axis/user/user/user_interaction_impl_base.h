@@ -10,16 +10,16 @@ namespace user
    {
    public:
 
-
-      ::user::interaction *         m_pui;
-      bool                          m_bIgnoreSizeEvent;
-      bool                          m_bIgnoreMoveEvent;
-
+      rect64                              m_rectParentClient;
+      ::user::interaction *               m_pui;
+      bool                                m_bIgnoreSizeEvent;
+      bool                                m_bIgnoreMoveEvent;
+      critical_section *                  m_pcsDisplay;
 
       interaction_impl_base();
       virtual ~interaction_impl_base();
 
-
+      inline critical_section * cs_display() { return m_pcsDisplay; }
       virtual ::user::interaction_impl * get_user_interaction_impl();
       virtual ::user::interaction_child * get_user_interaction_child();
 

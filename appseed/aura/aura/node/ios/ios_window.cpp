@@ -5908,18 +5908,23 @@ namespace ios
 
    void window::_001OnSetCursor(signal_details * pobj)
    {
+      
       SCAST_PTR(::message::aura, pbase, pobj);
-      if(Session.get_cursor() != NULL
-         && Session.get_cursor()->m_ecursor != ::visual::cursor_system)
+
+      if(Session.get_cursor() != NULL && Session.get_cursor()->m_ecursor != ::visual::cursor_system)
       {
 
          throw not_implemented(get_app());
-         //         ::SetCursor(NULL);
+         
       }
+
       pbase->set_lresult(1);
+
       pbase->m_bRet = true;
-      //(bool)Default();
+
+      
    }
+
    void window::OnShowWindow(bool, UINT)
    { Default(); }
    void window::OnSize(UINT, int32_t, int32_t)

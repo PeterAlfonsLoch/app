@@ -51,7 +51,7 @@ public:
    point operator+(POINT point) const throw();
 
 // Operators returning size values
-   size operator-(POINT point) const throw();
+   class size operator-(POINT point) const throw();
 
 // Operators returning rect values
    rect operator+(LPCRECT lpRect) const throw();

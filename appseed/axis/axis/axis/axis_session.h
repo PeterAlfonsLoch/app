@@ -61,6 +61,7 @@ namespace axis
 
 
       ::visual::e_cursor                                       m_ecursor;
+      ::visual::cursor *                                       m_pcursor;
       ::visual::e_cursor                                       m_ecursorDefault;
       ::user::copydesk *                                       m_pcopydesk;
 

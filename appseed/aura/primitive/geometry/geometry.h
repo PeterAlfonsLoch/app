@@ -241,6 +241,8 @@ CLASS_DECL_AURA bool is_equal(const RECT64 * prect1, const RECT64 * prect2);
 CLASS_DECL_AURA bool inflate(RECT64 * prect, int64_t x, int64_t y);
 CLASS_DECL_AURA bool deflate(RECT64 * prect, int64_t x, int64_t y);
 CLASS_DECL_AURA bool offset(RECT64 * prect, int64_t x, int64_t y);
+CLASS_DECL_AURA bool resize(RECT64 * prect,int64_t cx,int64_t cy);
+CLASS_DECL_AURA bool reverse_size(RECT64 * prect,int64_t cx,int64_t cy);
 CLASS_DECL_AURA bool x_intersect_rect(RECT64 * prect, const RECT64 * prect1, const RECT64 * prect2);
 CLASS_DECL_AURA bool y_intersect_rect(RECT64 * prect, const RECT64 * prect1, const RECT64 * prect2);
 CLASS_DECL_AURA bool intersect(RECT64 * prect, const RECT64 * prect1, const RECT64 * prect2);

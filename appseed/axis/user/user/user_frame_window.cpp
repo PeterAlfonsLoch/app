@@ -406,11 +406,14 @@ namespace user
       ENSURE_VALID(pFrameWnd);
       if (pFrameWnd->m_bHelpMode)
       {
-         //      SetCursor(afxData.hcurHelp);
+         
          return TRUE;
+
       }
       // trans   return user::frame_window::OnSetCursor(pwindow, nHitTest, message);
+
       return TRUE;
+
    }
 
    /*LRESULT frame_window::OnCommandHelp(WPARAM, LPARAM lParam)

@@ -14,7 +14,7 @@ namespace user
       m_pui                = NULL;
       m_bIgnoreSizeEvent   = false;
       m_bIgnoreMoveEvent   = false;
-
+      m_pcsDisplay         = NULL;    
    }
 
 
@@ -398,7 +398,7 @@ namespace user
    void interaction_impl_base::GetWindowRect(RECT64 * lprect)
    {
 
-      m_pui->GetWindowRect(lprect);
+      *lprect = m_rectParentClient;
 
    }
 

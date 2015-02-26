@@ -287,6 +287,9 @@ public:
    void offset(POINT64 POINT64) throw();
    void normalize() throw();
 
+   void size(int64_t cx,int64_t cy) throw();
+   void rsize(int64_t cx,int64_t cy) throw();
+
    // absolute position of rect64angle
    void move_to_y(int64_t y) throw();
    void move_to_x(int64_t x) throw();
