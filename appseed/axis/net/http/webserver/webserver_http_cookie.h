@@ -69,8 +69,8 @@ namespace http
 
       }
 
-
-      /*operator string() const
+#ifdef _MSC_VER
+      operator string() const
       {
 
          string str;
@@ -79,7 +79,8 @@ namespace http
 
          return str;
 
-      }*/
+      }
+#endif
 
       operator property() const
       {
