@@ -126,7 +126,7 @@ namespace aura
       m_bAuraInitializeInstance        = false;
       m_bAuraInitializeInstanceResult  = false;
 
-      m_pinitmaindata = NULL;
+      m_pinitmaindata                  = NULL;
 
    }
 
@@ -195,6 +195,14 @@ namespace aura
             pcreatecontext->set_app(this);
 
             on_request(pcreatecontext);
+
+            // Verry Sory for the per request overhead here for the needed information of only first request
+            if(System.m_dwAfterApplicationFirstRequest == 0) 
+            {
+
+               System.m_dwAfterApplicationFirstRequest = ::get_tick_count(); // cross your fingers that the first recorded is not 0, it will be cleaned up by other requests.
+
+            }
 
          }
          catch(not_installed & e)

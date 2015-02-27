@@ -1409,7 +1409,9 @@ namespace user
    {
       try
       {
-         if(!IsWindowVisible())
+         //if(!IsWindowVisible())
+         //   return;
+         if(!m_bVisible) // assume parent visibility already checked
             return;
          if(!_001IsPointInside(pmouse->m_pt)
             && !(System.get_capture_uie() == this ||

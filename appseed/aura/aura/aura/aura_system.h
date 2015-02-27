@@ -103,6 +103,9 @@ namespace aura
 
       string                                       m_strInstallVersion;
 
+      DWORD                                        m_dwMainStartTime;
+      DWORD                                        m_dwAfterApplicationFirstRequest;
+
 
 
       system(::aura::application * papp);

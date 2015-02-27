@@ -181,6 +181,9 @@ namespace aura
       m_strAppName               = "system";
       m_strInstallToken          = "system";
 
+      m_dwAfterApplicationFirstRequest = 0;
+
+
 
    }
 
