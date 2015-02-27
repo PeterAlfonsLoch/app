@@ -55,7 +55,7 @@ namespace calculator
       }
       else
       {
-         return atan(m_dR / m_dI);
+         return atan2(m_dR, m_dI);
       }
    }
 
@@ -98,7 +98,7 @@ namespace calculator
       return "";
    }
 
-   double g_dPi = ::atan(1.0) * 4;
+   double g_dPi = ::atan(1.0) * 4.0;
 
    double pi()
    {
@@ -189,6 +189,67 @@ namespace calculator
       value val;
       val.m_dR = ::log(val1.mod());
       val.m_dI = val1.arg();
+      return val;
+   }
+
+
+   value atan(const value & val1)
+   {
+      // TODO imaginary
+      value val;
+      double dMod = val1.mod();
+      val.m_dR = ::atan(dMod);
+      val.m_dI = 0;
+      return val;
+   }
+
+   value acos(const value & val1)
+   {
+      // TODO imaginary
+      value val;
+      double dMod = val1.mod();
+      val.m_dR = ::acos(dMod);
+      val.m_dI = 0;
+      return val;
+   }
+
+   value asin(const value & val1)
+   {
+      // TODO imaginary
+      value val;
+      double dMod = val1.mod();
+      val.m_dR = ::asin(dMod);
+      val.m_dI = 0;
+      return val;
+   }
+
+   value tan(const value & val1)
+   {
+      // TODO imaginary
+      value val;
+      double dMod = val1.mod();
+      val.m_dR = ::tan(dMod);
+      val.m_dI = 0;
+      return val;
+   }
+
+   value cos(const value & val1)
+   {
+      // TODO imaginary
+      value val;
+      double dMod = val1.mod();
+      val.m_dR = ::cos(dMod);
+      val.m_dI = 0;
+      return val;
+   }
+
+   value sin(const value & val1)
+   {
+      // TODO imaginary
+      value val;
+      double dMod = val1.mod();
+      val.m_dR = ::sin(dMod);
+      val.m_dI = 0;
       return val;
    }
 

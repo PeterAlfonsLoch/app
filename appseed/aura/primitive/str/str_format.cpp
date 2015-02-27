@@ -396,7 +396,7 @@ bool string_format::parse(const char * & s)
              }
 
              strResult += str.substr(0, decimal_point);
-             if(decimal_point > str.get_length())
+             if(decimal_point < str.get_length())
              {
                 strResult += ".";
                 strResult += str.substr(decimal_point);

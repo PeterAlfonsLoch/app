@@ -112,6 +112,13 @@ namespace calculator
          node->m_ptoken = m_scanner.m_ptoken;
          return node;
       }
+      else if(m_scanner.m_ptoken->value == token::identifier)
+      {
+         m_scanner.next();
+         node = new_node();
+         node->m_ptoken = m_scanner.m_ptoken;
+         return node;
+      }
       else if(m_scanner.m_ptoken->value == token::function)
       {
          m_scanner.next();
@@ -141,6 +148,30 @@ namespace calculator
          else if(node->m_ptoken->m_str == "pow")
          {
             iCount = 2;
+         }
+         else if(node->m_ptoken->m_str == "atan")
+         {
+            iCount = 1;
+         }
+         else if(node->m_ptoken->m_str == "asin")
+         {
+            iCount = 1;
+         }
+         else if(node->m_ptoken->m_str == "acos")
+         {
+            iCount = 1;
+         }
+         else if(node->m_ptoken->m_str == "tan")
+         {
+            iCount = 1;
+         }
+         else if(node->m_ptoken->m_str == "sin")
+         {
+            iCount = 1;
+         }
+         else if(node->m_ptoken->m_str == "cos")
+         {
+            iCount = 1;
          }
          else
          {

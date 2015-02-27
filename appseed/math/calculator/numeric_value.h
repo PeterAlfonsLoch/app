@@ -46,5 +46,13 @@ namespace calculator
    CLASS_DECL_CA2_MATH value exp(const value & val);
    CLASS_DECL_CA2_MATH value log(const value & val);
 
+   CLASS_DECL_CA2_MATH value atan(const value & val);
+   CLASS_DECL_CA2_MATH value acos(const value & val);
+   CLASS_DECL_CA2_MATH value asin(const value & val);
+
+   CLASS_DECL_CA2_MATH value tan(const value & val);
+   CLASS_DECL_CA2_MATH value cos(const value & val);
+   CLASS_DECL_CA2_MATH value sin(const value & val);
+
 } // namespace calculator
 

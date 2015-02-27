@@ -16,9 +16,24 @@ namespace calculator
    }
 
 
+    double pi();
+
    value element::get_value()
    {
-      if(m_ptoken->value == token::number)
+      if(m_ptoken->value == token::identifier)
+      {
+         value val;
+         if(m_ptoken->m_str.CompareNoCase("pi") == 0)
+         {
+            val.m_dR = pi();
+         }
+         else
+         {
+            throw "unknown identifier";
+         }
+         return val;
+      }
+      else if(m_ptoken->value == token::number)
       {
          value val;
          val.m_dR = atof(m_ptoken->m_str);
@@ -80,6 +95,30 @@ namespace calculator
          {
             return pow(m_pelement1->get_value(), m_pelement2->get_value());
          }
+         else if(m_ptoken->m_str == "atan")
+         {
+            return atan(m_pelement1->get_value());
+         }
+         else if(m_ptoken->m_str == "asin")
+         {
+            return asin(m_pelement1->get_value());
+         }
+         else if(m_ptoken->m_str == "acos")
+         {
+            return acos(m_pelement1->get_value());
+         }
+         else if(m_ptoken->m_str == "tan")
+         {
+            return tan(m_pelement1->get_value());
+         }
+         else if(m_ptoken->m_str == "sin")
+         {
+            return sin(m_pelement1->get_value());
+         }
+         else if(m_ptoken->m_str == "cos")
+         {
+            return cos(m_pelement1->get_value());
+         }
          else
          {
             throw "unknown function";
@@ -87,7 +126,7 @@ namespace calculator
       }
       return value();
    }
-   
+
    string element::get_expression()
    {
       if(m_ptoken->value == token::number || m_ptoken->value == token::identifier)
