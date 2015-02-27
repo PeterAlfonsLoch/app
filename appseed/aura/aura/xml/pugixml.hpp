@@ -393,7 +393,7 @@ namespace xml
       string get_name() const { return name(); }
       string get_value() const { return value(); }
 
-      string to_string() const { return get_value(); }
+      string & to_string(string & str) const { return str = get_value(); }
 
 		// Get ::xml::attribute value, or the default value if ::xml::attribute is empty
 		const char_t* as_string(const char_t* def = PUGIXML_TEXT("")) const;
