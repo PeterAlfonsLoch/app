@@ -568,14 +568,14 @@ namespace fontopus
 
       }
 
-      ::xml::node * pnodeForm = doc.root().get_child("form");
+      ::xml::node nodeForm = doc.root().get_child("form");
 
-      if(pnodeForm != NULL)
+      if(!nodeForm.empty())
       {
 
-         m_mapLabelUser[strFontopusServer] = pnodeForm->attr("email");
-         m_mapLabelPass[strFontopusServer] = pnodeForm->attr("senha");
-         m_mapLabelOpen[strFontopusServer] = pnodeForm->attr("abrir");
+         m_mapLabelUser[strFontopusServer] =nodeForm.attr("email");
+         m_mapLabelPass[strFontopusServer] =nodeForm.attr("senha");
+         m_mapLabelOpen[strFontopusServer] =nodeForm.attr("abrir");
 
       }
 

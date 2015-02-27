@@ -99,7 +99,7 @@ restart:
       {
          xml::document doc;
          doc.load(str);
-         xml::node & node = *doc.get_root();
+         xml::node & node = *doc.root();
          string strThread;
          if(node.get_name() == "messages" && node.get_children_count() > 0)
          {

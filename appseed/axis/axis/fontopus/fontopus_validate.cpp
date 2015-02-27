@@ -190,7 +190,7 @@ namespace fontopus
          m_loginthread.m_puser->m_sessionidmap[strHost] = Application.command_thread()->m_varTopicQuery["sessid"].get_string();
          m_loginthread.m_puser->m_strFontopusServerSessId = Application.command_thread()->m_varTopicQuery["sessid"].get_string();
          m_loginthread.m_puser->m_strRequestingServer = strHost;
-         xml::document documentBasicInfo(get_app());
+         xml::document documentBasicInfo;
 
          string strApiServer;
 

@@ -111,7 +111,7 @@ namespace sockets
          }
          else if (m_fields.has_property("xml") && m_fields["xml"].get_value().get_type() == var::type_element)
          {
-            ::xml::node * pnode = m_fields["xml"].cast < ::xml::node >();
+            ::xml::node node = m_fields["xml"].cast < ::xml::node >();
             body = node.get_xml();
             body.trim();
             if(inheader(__id(content_type)).get_string().find_ci("application/xml") < 0)

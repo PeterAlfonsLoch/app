@@ -23,7 +23,7 @@ namespace xml
 
    }
 
-   node::node(::xml::node * pnodeParent) :
+   node::node(::xml::node nodeParent) :
       object(pnodeParent->get_app()),
       m_nodea(pnodeParent->get_app()),
       m_attra(pnodeParent->get_app())
@@ -108,7 +108,7 @@ namespace xml
    attr * node::add_attr(const char * pszName, const var & var)
    {
 
-      ::xml::attr * pattr = (::xml::attr *) m_attra.add(pszName, var);
+      ::::xml::attribute pattr = (::::xml::attribute) m_attra.add(pszName, var);
 
       if(m_pdoc != NULL)
       {
@@ -129,7 +129,7 @@ namespace xml
    attr * node::set_attr(const char * lpcszName, const var & var)
    {
 
-      ::xml::attr * pattr = &(m_attra[lpcszName] = var);
+      ::::xml::attribute pattr = &(m_attra[lpcszName] = var);
 
       if(m_pdoc != NULL)
       {
@@ -351,7 +351,7 @@ namespace xml
 
 
             // add new attr
-            ::xml::attr * pattr = m_attra.add(strName);
+            ::::xml::attribute pattr = m_attra.add(strName);
             xml = pEnd;
 
             // XML Attr Value
@@ -512,7 +512,7 @@ namespace xml
             _SetString( xml, pEnd, &strName );
 
             // add new attr
-            ::xml::attr * pattr = m_attra.add(strName);
+            ::::xml::attribute pattr = m_attra.add(strName);
             xml = pEnd;
 
             // XML Attr Value
@@ -1208,7 +1208,7 @@ namespace xml
       return m_attra.find(attrname);
       /*for( int32_t i = 0 ; i < m_attra.m_propertyptra.get_size(); i++ )
       {
-         ::xml::attr * attr = &m_attra.m_propertyptra[i];
+         ::::xml::attribute attr = &m_attra.m_propertyptra[i];
          if(attr != NULL)
          {
             if(attr->name() == attrname)
@@ -1234,7 +1234,7 @@ namespace xml
 
       for( int32_t i = 0 ; i < m_attra.m_propertyptra.get_count(); i++ )
       {
-         ::xml::attr * attr = &m_attra.m_propertyptra[i];
+         ::::xml::attribute attr = &m_attra.m_propertyptra[i];
          if(attr != NULL)
          {
             if(attr->name() == pszName)
@@ -1533,7 +1533,7 @@ namespace xml
 
    string node::GetChildAttrValue( const char * pszName, const char * attrname )
    {
-      ::xml::attr * attr = GetChildAttr( pszName, attrname );
+      ::::xml::attribute attr = GetChildAttr( pszName, attrname );
       return attr ? attr->get_string() : string("");
    }
 
@@ -1667,7 +1667,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   bool node::remove_attr(::xml::attr * pattr )
+   bool node::remove_attr(::::xml::attribute pattr )
    {
       if(m_attra.remove_by_name(pattr->name()) > 0)
       {
@@ -1690,7 +1690,7 @@ namespace xml
  // /*   attr * node::add_attr( const char * pszName /*= NULL*/, /*const char * pszValue /*= NULL*/ /*)
   /* {
 
-      ::xml::attr * pattr = (::xml::attr *) m_attra.add(pszName, pszValue);
+      ::::xml::attribute pattr = (::::xml::attribute) m_attra.add(pszName, pszValue);
 
       if(m_pdoc != NULL)
       {
@@ -1737,7 +1737,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-/*   attr  node::detach_attr(::xml::attr * attr )
+/*   attr  node::detach_attr(::::xml::attribute attr )
    {
       attr = m_attra.m_propertymap[attr]find_first((property *) attr);
       if(find >= 0)

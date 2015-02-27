@@ -27,7 +27,7 @@ namespace aura
 
 
       bool create_menu(const stringa & straCommand, const stringa & straCommandTitle);
-      bool LoadMenu(::xml::node  lpnode);
+      bool LoadMenu(::xml::node node);
       bool LoadXmlMenu(const char * pszMatter);
 
 

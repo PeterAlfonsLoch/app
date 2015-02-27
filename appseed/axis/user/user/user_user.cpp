@@ -75,7 +75,7 @@ namespace user
 
       TRACE("::user::application::initialize");
 
-      xml::document docUser(get_app());
+      xml::document docUser;
       string strUser = Application.file_as_string(Application.dir_userappdata("langstyle_settings.xml"));
       string strLangUser;
       string strStyleUser;
@@ -83,11 +83,11 @@ namespace user
       {
          if(docUser.get_child("lang") != NULL)
          {
-            strLangUser = docUser.get_child("lang")->get_value();
+            strLangUser = docUser.get_child("lang").get_value();
          }
          if(docUser.get_child("style") != NULL)
          {
-            strStyleUser = docUser.get_child("style")->get_value();
+            strStyleUser = docUser.get_child("style").get_value();
          }
       }
 

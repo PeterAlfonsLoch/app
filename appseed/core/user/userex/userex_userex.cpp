@@ -52,7 +52,7 @@ namespace userex
 
       TRACE("::userex::application::initialize");
 
-      xml::document docUser(get_app());
+      xml::document docUser;
       string strUser = Application.file().as_string(Application.dir().userappdata("langstyle_settings.xml"));
       string strLangUser;
       string strStyleUser;

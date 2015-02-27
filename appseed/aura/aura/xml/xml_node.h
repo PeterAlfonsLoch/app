@@ -41,7 +41,7 @@
 //
 //
 //      node(::aura::application * papp);
-//      node(::xml::node * pnodeParent);
+//      node(::xml::node nodeParent);
 //
 //
 //   public:
@@ -120,7 +120,7 @@
 //
 //
 //      // in own attr list
-//      ::xml::attr *           find_attr(const char * attrname );
+//      ::::xml::attribute           find_attr(const char * attrname );
 //      var                     attr(const char * attrname);
 //      virtual bool            get_attr(const char * attrname, string & strValue);
 //      virtual bool            get_attr(const char * lpcszName, int32_t & iValue);
@@ -147,7 +147,7 @@
 //      node::array        children(const char * name);
 //      node::array &      children();
 //
-//      ::xml::attr *           GetChildAttr(const char * name, const char * attrname);
+//      ::::xml::attribute           GetChildAttr(const char * name, const char * attrname);
 //      string                  GetChildAttrValue(const char * name, const char * attrname);
 //      node *                  GetChildByAttr(const char * pszName, const char * pszAttrName, const char * pszAttrValue);
 //      node *                  GetChildByAnyAttr(const char * pszName, stringa & straName, stringa & straAttrValue);
@@ -178,12 +178,12 @@
 //      node *                  AppendChildBranch( node * node );
 //
 //      // modify attr
-//      ::xml::attr *           attr_at( index i );
-//      ::xml::attr *           add_attr(const char * pszName = NULL, const var & var = ::var(::var::type_new));
-//      ::xml::attr *           add_attr(const ::xml::attr & attr);
-//      ::xml::attr *           set_attr(const char * pszName, const var & var = ::var(::var::type_new));
-//      bool                    remove_attr(::xml::attr * attr);
-//      //::xml::attr           detach_attr(::xml::attr * attr);
+//      ::::xml::attribute           attr_at( index i );
+//      ::::xml::attribute           add_attr(const char * pszName = NULL, const var & var = ::var(::var::type_new));
+//      ::::xml::attribute           add_attr(const ::xml::attr & attr);
+//      ::::xml::attribute           set_attr(const char * pszName, const var & var = ::var(::var::type_new));
+//      bool                    remove_attr(::::xml::attribute attr);
+//      //::xml::attr           detach_attr(::::xml::attribute attr);
 //
 //
 //      bool from_row_column_v2(const string2a & str2a);

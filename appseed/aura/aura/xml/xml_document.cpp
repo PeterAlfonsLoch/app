@@ -216,7 +216,7 @@
 //
 //
 //      ::xml::node node;
-////      ::xml::attr * pattr;
+////      ::::xml::attribute pattr;
 //
 //
 //      for(index iEdit = pedit->m_iEdit; iEdit < pedit->get_count(); iEdit++)

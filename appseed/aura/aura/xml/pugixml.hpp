@@ -270,6 +270,18 @@ namespace xml
          }
          return c;
       }
+      template < typename pred >
+      typename It::value_type find_by_name(const char * name) const
+      {
+         for(It i = begin(); i != begin(); i++)
+         {
+            if((*i).get_name() == name)
+            {
+               return *i;
+            }
+         }
+         return typename It::value_type();
+      }
 
       typename It::value_type get_at(::index i)
       {
@@ -284,8 +296,15 @@ namespace xml
          else
             return typename It::value_type();
       }
-
-	private:
+      typename It::value_type operator [](::index i)
+      {
+         return get_at(i);
+      }
+      typename It::value_type operator [](const char * name)
+      {
+         return find_by_name(name);
+      }
+   private:
 		It _begin, _end;
 	};
 
@@ -363,6 +382,9 @@ namespace xml
 
 		// Check if ::xml::attribute is empty
 		bool empty() const;
+      bool is_empty() const { return empty(); }
+      bool is_null() const { return is_empty(); }
+      bool is_set() const { return !is_null(); }
 
 		// Get ::xml::attribute name/value, or "" if ::xml::attribute is empty
 		const char_t* name() const;
@@ -471,6 +493,9 @@ namespace xml
 
 		// Check if node is empty.
 		bool empty() const;
+      bool is_empty() const { return empty(); }
+      bool is_null() const { return is_empty(); }
+      bool is_set() const { return !is_null(); }
 
 		// Get node type
 		node_type type() const;
@@ -632,7 +657,8 @@ namespace xml
 		node insert_child_before(node_type type, const node& node);
 
 		// Add child element with specified name. Returns added node, or empty node on errors.
-		node append_child(const char_t* name);
+      node add_child(const char_t* name) { return append_child(name);  }
+      node append_child(const char_t* name);
 		node prepend_child(const char_t* name);
 		node insert_child_after(const char_t* name, const node& node);
 		node insert_child_before(const char_t* name, const node& node);
@@ -710,6 +736,8 @@ namespace xml
 			return node();
 		}
 
+      
+
 		// Find child node by ::xml::attribute name/value
 		node find_child_by_attribute(const char_t* name, const char_t* attr_name, const char_t* attr_value) const;
 		node find_child_by_attribute(const char_t* attr_name, const char_t* attr_value) const;
@@ -742,6 +770,7 @@ namespace xml
 		
 		// Print subtree using a writer object
 		void print(writer& writer, const char_t* indent = PUGIXML_TEXT("\t"), unsigned int flags = format_default, encoding encoding = encoding_auto, unsigned int depth = 0) const;
+      string get_xml(const char_t* indent = PUGIXML_TEXT("\t"),unsigned int flags = format_default,encoding encoding = encoding_auto,unsigned int depth = 0);
 
 	#ifndef PUGIXML_NO_STL
 		// Print subtree to stream
@@ -764,6 +793,7 @@ namespace xml
 		object_range<node_iterator> children() const;
 		object_range<named_node_iterator> children(const char_t* name) const;
 		object_range<attribute_iterator> attributes() const;
+      object_range<attribute_iterator> attrs() const;
 
 		// Get node offset in parsed file/string (in char_t units) for debugging purposes
 		ptrdiff_t offset_debug() const;
@@ -807,6 +837,9 @@ namespace xml
 
 		// Check if text object is empty
 		bool empty() const;
+      bool is_empty() const { return empty(); }
+      bool is_null() const { return is_empty(); }
+      bool is_set() const { return !is_null(); }
 
 		// Get text, or "" if object is empty
 		const char_t* get() const;
@@ -1406,6 +1439,9 @@ namespace xml
 		
 		// Check if collection is empty
 		bool empty() const;
+      bool is_empty() const { return empty(); }
+      bool is_null() const { return is_empty(); }
+      bool is_set() const { return !is_null(); }
 	
 	private:
 		type_t _type;

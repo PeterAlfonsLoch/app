@@ -91,18 +91,18 @@ namespace user
    {
       for(int32_t i = 0; i < node.get_children_count(); i++)
       {
-         ::xml::node  pchild = node.child_at(i);
-         if(pchild->get_name().CompareNoCase("item") == 0)
+         ::xml::node child = node.child_at(i);
+         if(child.get_name().CompareNoCase("item") == 0)
          {
-            string str = pchild->attr("char");
+            string str = child.attr("char");
             if(str.has_char())
             {
-               set[str] = pchild->attr("value");
+               set[str] = child.attr("value");
             }
          }
-         else if(pchild->get_name().CompareNoCase("escape") == 0)
+         else if(child.get_name().CompareNoCase("escape") == 0)
          {
-            process_escape(pchild, set[node.attr("value")].propset());
+            process_escape(child, set[node.attr("value")].propset());
          }
       }
    }
@@ -176,7 +176,7 @@ namespace user
          }
          else if(node.get_name().CompareNoCase("escape") == 0)
          {
-            process_escape(pnode, m_setEscape[node.attr("value")].propset());
+            process_escape(node, m_setEscape[node.attr("value")].propset());
          }
       }
 

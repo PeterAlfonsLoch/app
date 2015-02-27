@@ -11595,6 +11595,21 @@ namespace xml
       return children().get_at(i);
    }
 
+   object_range<attribute_iterator> node::attrs() const
+   {
+      return object_range<attribute_iterator>(attributes_begin(),attributes_end());
+   }
+
+   string node::get_xml(const char_t* indent,unsigned int flags,encoding encoding, unsigned int depth)
+   {
+
+      ::file::plain_text_output_stream_string_buffer os;
+
+      print(os,indent,flags,encoding,depth);
+
+      return os.str();
+
+   }
 
 } // namespace xml
 
