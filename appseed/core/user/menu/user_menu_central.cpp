@@ -85,7 +85,7 @@ bool BaseMenuCentral::MenuV033AddImageMap(::xml::node node)
    id id;
    for(int32_t i = 0; i < node.children().get_count(); i++)
    {
-      ::xml::node  lpchild = node.child_at(i);
+      ::xml::node child = node.child_at(i);
       string strId;
       lpchild->get_attr("id", strId);
       string strImage;

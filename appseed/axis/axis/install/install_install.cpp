@@ -407,10 +407,10 @@ namespace install
 
                lpnodeLocalization = lpnodeId->child_at(ui);
 
-               string strLocale = lpnodeLocalization->attr("locale");
-               string strSchema = lpnodeLocalization->attr("schema");
+               string strLocale = nodeLocalization.attr("locale");
+               string strSchema = nodeLocalization.attr("schema");
 
-               if (!strcmp(lpnodeLocalization->get_name(), "localization") && strLocale == pszLocale && strSchema == pszSchema)
+               if (!strcmp(nodeLocalization.get_name(), "localization") && strLocale == pszLocale && strSchema == pszSchema)
                {
 
                return true;
@@ -1021,16 +1021,16 @@ namespace install
       straName.add("schema");
       straValue.add(pszSchema);
 
-      ::xml::node  lpnodeLocalization = node.GetChildByAllAttr("localization", straName, straValue);
+      ::xml::node nodeLocalization = node.GetChildByAllAttr("localization", straName, straValue);
 
-      if (lpnodeLocalization == NULL)
+      if (nodeLocalization.is_null())
       {
 
          lpnodeLocalization = node.add_child("localization");
 
-         lpnodeLocalization->add_attr("locale", pszLocale);
+         nodeLocalization.add_attr("locale", pszLocale);
 
-         lpnodeLocalization->add_attr("schema", pszSchema);
+         nodeLocalization.add_attr("schema", pszSchema);
 
       }
 

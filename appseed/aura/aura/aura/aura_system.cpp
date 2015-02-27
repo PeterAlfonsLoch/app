@@ -1750,9 +1750,9 @@ namespace aura
       straName.add("schema");
       straValue.add(pszSchema);
 
-      ::xml::node  lpnodeLocalization = node.GetChildByAllAttr("localization",straName,straValue);
+      ::xml::node nodeLocalization = node.GetChildByAllAttr("localization",straName,straValue);
 
-      if(lpnodeLocalization == NULL)
+      if(nodeLocalization.is_null())
          return false;
 
       return true;
