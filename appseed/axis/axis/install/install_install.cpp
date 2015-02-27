@@ -405,7 +405,7 @@ namespace install
                for (int32_t ui = 0; ui < lpnodeId->get_children_count(); ui++)
                {
 
-               lpnodeLocalization = lpnodeId->child_at(ui);
+               nodeLocalization = lpnodeId->child_at(ui);
 
                string strLocale = nodeLocalization.attr("locale");
                string strSchema = nodeLocalization.attr("schema");
@@ -1026,7 +1026,7 @@ namespace install
       if (nodeLocalization.is_null())
       {
 
-         lpnodeLocalization = node.add_child("localization");
+         nodeLocalization = node.add_child("localization");
 
          nodeLocalization.add_attr("locale", pszLocale);
 
@@ -1034,11 +1034,12 @@ namespace install
 
       }
 
-      ::xml::disp_option opt = *System.xml().m_poptionDefault;
+//      ::xml::disp_option opt = *System.xml().m_poptionDefault;
 
-      opt.newline = true;
+  //    opt.newline = true;
 
-      Application.file().put_contents(strPath, doc.get_xml(&opt));
+      //Application.file().put_contents(strPath, doc.get_xml(&opt));
+      Application.file().put_contents(strPath,doc.get_xml());
 
       Application.file().put_contents(strBuildPath,strBuildNumber);
 

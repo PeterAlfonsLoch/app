@@ -71,7 +71,7 @@ namespace userex
    /* xxx           xml::node node(get_app());
                node.load(Application.file().as_string(Application.dir().matter(
                   "mplite_popup_lyricview.xml")));
-               pmenuview->LoadMenu(&node);*/
+               pmenuview->LoadMenu(node);*/
                pcreatordata->m_pwnd = pview;
             }
             break;

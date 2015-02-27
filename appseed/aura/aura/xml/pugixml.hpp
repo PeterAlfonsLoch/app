@@ -270,7 +270,7 @@ namespace xml
          }
          return c;
       }
-      template < typename pred >
+      
       typename It::value_type find_by_name(const char * name) const
       {
          for(It i = begin(); i != begin(); i++)
@@ -393,7 +393,7 @@ namespace xml
       string get_name() const { return name(); }
       string get_value() const { return value(); }
 
-
+      string to_string() const { return get_value(); }
 
 		// Get ::xml::attribute value, or the default value if ::xml::attribute is empty
 		const char_t* as_string(const char_t* def = PUGIXML_TEXT("")) const;

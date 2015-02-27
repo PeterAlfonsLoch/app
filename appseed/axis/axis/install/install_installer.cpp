@@ -124,9 +124,7 @@ namespace install
 
    installer::installer(::aura::application * papp) :
       ::object(papp),
-
       m_mutex(papp),
-      m_xmldocStringTable(papp),
       m_mutexOmp(papp)
    {
 
@@ -476,7 +474,7 @@ install_begin:;
 
          }
 
-         ::xml::document nodeInstall(get_app());
+         ::xml::document nodeInstall;
 
          nodeInstall.load(file_as_string_dup(dir::appdata("install.xml")));
 
@@ -560,7 +558,7 @@ install_begin:;
                      for(int32_t ui = 0; ui < nodeType.get_children_count(); ui++)
                      {
 
-                        string strId = nodeType.child_at(ui)->attr("id");
+                        string strId = nodeType.child_at(ui).attr("id");
 
                         if(strcmp_dup(strId, m_strApplicationId) != 0)
                         {
@@ -605,9 +603,9 @@ install_begin:;
          for(int32_t ui = 0; ui < nodeSpaStart.get_children_count(); ui++)
          {
 
-            strType     = nodeSpaStart.child_at(ui)->attr("type");
+            strType     = nodeSpaStart.child_at(ui).attr("type");
 
-            strStart    = nodeSpaStart.child_at(ui)->attr("id");
+            strStart    = nodeSpaStart.child_at(ui).attr("id");
 
             bool bGet   = true;
 
@@ -625,7 +623,7 @@ install_begin:;
                      for(int32_t ui = 0; ui < nodeType.get_children_count(); ui++)
                      {
 
-                        string strId = nodeType.child_at(ui)->attr("id");
+                        string strId = nodeType.child_at(ui).attr("id");
 
                         if(strId == strStart)
                         {
@@ -2380,32 +2378,32 @@ install_begin:;
    {
       if(node.get_name() == "spa" && node.get_children_count() > 0)
       {
-         ::xml::node node = &node;
+         ::xml::node node = node;
          for(int32_t ui = 0; ui < node.get_children_count(); ui++)
          {
-            if(node.child_at(ui)->get_name() == "index")
+            if(node.child_at(ui).get_name() == "index")
             {
-               if(node.child_at(ui)->attr("start").is_set())
+               if(node.child_at(ui).attr("start").is_set())
                {
-                  if(string(node.child_at(ui)->attr("start")).length() > 0)
+                  if(string(node.child_at(ui).attr("start")).length() > 0)
                   {
                      m_iStart = 4;
-                     m_strCommandLine = string(node.child_at(ui)->attr("start"));
+                     m_strCommandLine = string(node.child_at(ui).attr("start"));
                      m_strApplicationId = get_command_line_param(m_strCommandLine, "app").trimmed();
                   }
                }
-               if(node.child_at(ui)->attr("build").is_set())
+               if(node.child_at(ui).attr("build").is_set())
                {
-                  if(string(node.child_at(ui)->attr("build")).length() > 0)
+                  if(string(node.child_at(ui).attr("build")).length() > 0)
                   {
                      m_iStart = 4;
-                     m_strBuildResource = string(node.child_at(ui)->attr("build"));
+                     m_strBuildResource = string(node.child_at(ui).attr("build"));
                   }
                }
-               if(node.child_at(ui)->attr("type").is_set())
+               if(node.child_at(ui).attr("type").is_set())
                {
 #ifdef WINDOWSEX
-                  if(string(node.child_at(ui)->attr("type")) == "parse_file_name")
+                  if(string(node.child_at(ui).attr("type")) == "parse_file_name")
                   {
                      m_iStart = 4;
                      wchar_t buf[2048];
@@ -2429,24 +2427,24 @@ install_begin:;
                   }
                   else
 #endif
-                     if(string(node.child_at(ui)->attr("type")) == "online_default")
+                     if(string(node.child_at(ui).attr("type")) == "online_default")
                      {
                         m_bOfflineInstall = false;
                         m_strInstallGz = "http://ca2os.com/stage/";
                         m_strInstall = "http://ca2os.com/stage/";
                      }
-                     else if(string(node.child_at(ui)->attr("type")) == "offline")
+                     else if(string(node.child_at(ui).attr("type")) == "offline")
                      {
                         m_bOfflineInstall = true;
-                        m_strInstallGz = dir::path(node.child_at(ui)->attr("src"), "stage.bz\\");
-                        m_strInstall = dir::path(node.child_at(ui)->attr("src"), "stage\\");
+                        m_strInstallGz = dir::path(node.child_at(ui).attr("src"), "stage.bz\\");
+                        m_strInstall = dir::path(node.child_at(ui).attr("src"), "stage\\");
                      }
-                     else if(string(node.child_at(ui)->attr("type")) == "online")
+                     else if(string(node.child_at(ui).attr("type")) == "online")
                      {
                         m_bOfflineInstall = false;
                         m_bInstallSet = true;
-                        m_strInstallGz = node.child_at(ui)->attr("src");
-                        m_strInstall = node.child_at(ui)->attr("src");
+                        m_strInstallGz = node.child_at(ui).attr("src");
+                        m_strInstall = node.child_at(ui).attr("src");
                      }
                }
             }
@@ -2456,12 +2454,12 @@ install_begin:;
 
    string installer::load_string(const char * pszId, const char * pszDefault)
    {
-      ::xml::node node = &m_xmldocStringTable;
+      ::xml::node node = m_xmldocStringTable;
       for(int32_t ui = 0; ui < node.get_children_count(); ui++)
       {
-         if(string(node.child_at(ui)->attr("id")) == pszId)
+         if(string(node.child_at(ui).attr("id")) == pszId)
          {
-            return node.child_at(ui)->get_value();
+            return node.child_at(ui).get_value();
          }
       }
       return pszDefault;
@@ -2764,7 +2762,7 @@ install_begin:;
 
 
 
-      ::xml::document node(get_app());
+      ::xml::document doc;
 
       // simple_message_box(NULL, "BegInstall", "Caption", MB_OK);
       if(m_iStart != 4)
@@ -2780,8 +2778,8 @@ install_begin:;
          }
          if(strCa2sp.length() > 0)
          {
-            node.load(strCa2sp);
-            ParseSpaIndex(node);
+            doc.load(strCa2sp);
+            ParseSpaIndex(doc);
          }
          else
          {
@@ -3557,9 +3555,9 @@ RetryBuildNumber:
       if(!m_bOfflineInstall && (m_strApplicationId.length() == 0 || (!m_bForceUpdatedBuild && m_strBuildResource.length() == 0)))
       {
          string str = file_as_string_dup(dir::module_folder("spa.xml"));
-         ::xml::document node(get_app());
-         node.load(str);
-         ParseSpaIndex(node);
+         ::xml::document doc;
+         doc.load(str);
+         ParseSpaIndex(doc);
       }
 
 #ifdef WINDOWSEX
@@ -3568,9 +3566,9 @@ RetryBuildNumber:
       if(!m_bOfflineInstall && !m_bInstallSet && (m_strApplicationId.length() == 0 || (!m_bForceUpdatedBuild && m_strBuildResource.length() == 0)))
       {
          string str = read_resource_as_string_dup(NULL, 1984, "CA2SP");
-         ::xml::document node(get_app());
-         node.load(str);
-         ParseSpaIndex(node);
+         ::xml::document doc;
+         doc.load(str);
+         ParseSpaIndex(doc);
       }
 #else
       throw "NEEDED?TODO?";
@@ -3903,10 +3901,10 @@ RetryBuildNumber:
    {
       string strPath = dir::appdata("spa_start.xml");
       string strContents = file_as_string_dup(strPath);
-      ::xml::document node(get_app());
-      node.load(strContents);
-      node.set_name("spa");
-      ::xml::node node = node.GetChildByAttr("start", "id", pszId);
+      ::xml::document doc;
+      doc.load(strContents);
+      doc.set_name("spa");
+      ::xml::node node = doc.GetChildByAttr("start","id",pszId);
       if(node.is_null())
       {
          node = node.add_child("start");
@@ -3919,10 +3917,10 @@ RetryBuildNumber:
    {
       string strPath = dir::appdata("spa_start.xml");
       string strContents = file_as_string_dup(strPath);
-      ::xml::document node(get_app());
-      node.load(strContents);
-      node.set_name("spa");
-      ::xml::node node = node.GetChildByAttr("start", "id", pszId);
+      ::xml::document doc;
+      doc.load(strContents);
+      doc.set_name("spa");
+      ::xml::node node = doc.GetChildByAttr("start","id",pszId);
       if(node.is_set())
       {
          node.remove_child(node);
