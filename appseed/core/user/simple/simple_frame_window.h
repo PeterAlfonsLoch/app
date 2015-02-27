@@ -48,7 +48,7 @@ public:
    {
    public:
 
-
+      static manual_reset_event * g_pevent;
       simple_frame_window *         m_pframe;
       bool                          m_bSizeMove;
       //manual_reset_event            m_ev;

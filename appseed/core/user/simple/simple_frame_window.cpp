@@ -8,11 +8,20 @@
 extern CLASS_DECL_CORE thread_int_ptr < DWORD_PTR > t_time1;
 
 
+manual_reset_event * simple_frame_window::helper_task::g_pevent = NULL;
+
 simple_frame_window::helper_task::helper_task(simple_frame_window * pframe) :
 ::thread(pframe->get_app()),
 m_pframe(pframe) //,
 //m_ev(pframe->get_app())
 {
+   
+   if(g_pevent == NULL)
+   {
+      
+      g_pevent = new manual_reset_event(pframe->get_app());
+
+   }
 
    begin();
 
@@ -24,6 +33,10 @@ int simple_frame_window::helper_task::run()
    
    while(m_bRun)
    {
+
+      
+      g_pevent->wait(millis(484));
+
       // the computer maybe blown here, where there is no code (when it is not running)... by falling into a curve in a road from a truck or by the multiverses bramas collapsing into a high energy dot.com... and bubble restarts when the spirtual world decides for restarting the virtual machine - with some pauses - as we does not detect change in time vector, as it is a non-readable, executable/paused/non existent only register in the parent processor... Imagine a overhaul upgrade with much more strings in the chords, why they mantain consitency between virtual machines versions... they like to hinder a lot!! strange, this is a hello 666... // and the time they have to overhaul is infinite, because they can pause our ticker... besides I hope no ones stops their tick counters...
       if(m_bSizeMove) // not here, any error here (or am i wrong, the OpSys may not have started the FULLStack DevOp).... because it is lInUx... its not ADVENTURE_Clean_NoERRORs_may_be_old_tommorrow_just_EX_OS...
       {
@@ -58,7 +71,7 @@ int simple_frame_window::helper_task::run()
          }
 
       }
-      Sleep(184); // the tester (without UPS) can loose a save here
+      //Sleep(184); // the tester (without UPS) can loose a save here
 
    }
 

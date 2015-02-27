@@ -3289,10 +3289,10 @@ namespace windows
 
          }
 
-         keep < bool > keepLockWindowUpdate(&m_pui->m_bLockWindowUpdate,true,false,true);
-
          if(rectBefore.size() != rect.size() || m_pui->get_appearance() != m_eapperanceLayout)
          {
+
+            keep < bool > keepLockWindowUpdate(&m_pui->m_bLockWindowUpdate,true,false,true);
 
             m_rectParentClient = rect;
 
@@ -3339,19 +3339,13 @@ namespace windows
          else if(rectBefore.top_left() != rect.top_left())
          {
 
+
             cslock cslDisplay(cs_display());
 
             m_rectParentClient = rect;
 
             m_pui->_001UpdateScreen(false);
 
-            keepLockWindowUpdate.KeepAway();
-
-         }
-         else
-         {
-
-            keepLockWindowUpdate.KeepAway();
 
          }
 
