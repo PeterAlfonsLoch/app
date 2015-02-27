@@ -151,21 +151,35 @@ namespace axis
 
    bool application::load_cached_string(string & str,id id,bool bLoadStringTable)
    {
-      ::xml::document doc(this);
+
+      ::xml::document doc;
+
       if(!doc.load(id))
       {
+
          return load_cached_string_by_id(str,id,"",bLoadStringTable);
+
       }
-      sp(::xml::node) pnodeRoot = doc.get_root();
-      if(pnodeRoot->get_name() == "string")
+
+      ::xml::node  nodeRoot = doc.root();
+
+      if(nodeRoot.get_name() == "string")
       {
-         string strId = pnodeRoot->attr("id");
-         string strValue = pnodeRoot->get_value();
+
+         string strId = nodeRoot.attr("id");
+
+         string strValue = nodeRoot.get_value();
+
          return load_cached_string_by_id(str,strId,strValue,bLoadStringTable);
+
       }
+
       str = doc.get_name();
+
       return true;
+
    }
+
 
    bool application::load_cached_string_by_id(string & str,id id,const string & pszFallbackValue,bool bLoadStringTable)
    {
@@ -248,7 +262,7 @@ namespace axis
          strTableId += pszId;
       }
 
-      ::xml::document doc(get_app());
+      ::xml::document doc;
       string strFilePath = System.dir().matter_from_locator(Sess(this).str_context(),strLocator,strMatter);
       if(!System.file().exists(strFilePath,this))
       {
@@ -267,10 +281,10 @@ namespace axis
       if(!doc.load(strFile))
          return;
       string_to_string * pmapNew = new string_to_string;
-      for(int32_t i = 0; i < doc.get_root()->children().get_count(); i++)
+      for(int32_t i = 0; i < doc.root().children().get_count(); i++)
       {
-         string strId = doc.get_root()->child_at(i)->attr("id");
-         string strValue = doc.get_root()->child_at(i)->get_value();
+         string strId = doc.root().child_at(i).attr("id");
+         string strValue = doc.root().child_at(i).get_value();
          pmapNew->set_at(strId,strValue);
       }
 

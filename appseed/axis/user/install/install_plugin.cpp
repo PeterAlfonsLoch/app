@@ -794,7 +794,7 @@ namespace install
          if(pnode == NULL)
             goto run_install;
 
-         lpnodeType->remove_child(pnode);
+         lpnodeType->remove_child(node);
 
          file_put_contents_dup(dir::appdata("install.xml"), node.get_xml(NULL));
 

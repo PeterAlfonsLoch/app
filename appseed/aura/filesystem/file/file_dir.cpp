@@ -85,9 +85,9 @@ string dir::get_ca2_module_folder()
 #elif defined(WINDOWS)
 
 
-   heap < wchar_t > lpszModuleFolder(MAX_PATH * 8);
+   hwstring lpszModuleFolder(MAX_PATH * 8);
 
-   heap < wchar_t > lpszModuleFilePath(MAX_PATH * 8);
+   hwstring lpszModuleFilePath(MAX_PATH * 8);
 
    HMODULE hmodule = ::GetModuleHandleA("core.dll");
 
@@ -247,9 +247,9 @@ string dir::get_base_module_folder()
 
 #elif defined(WINDOWS)
 
-   heap < wchar_t > lpszModuleFolder(MAX_PATH * 8);
+   hwstring lpszModuleFolder(MAX_PATH * 8);
 
-   heap < wchar_t > lpszModuleFilePath(MAX_PATH * 8);
+   hwstring lpszModuleFilePath(MAX_PATH * 8);
 
    HMODULE hmodule = ::GetModuleHandleA("aura.dll");
 

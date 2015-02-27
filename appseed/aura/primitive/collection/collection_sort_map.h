@@ -1252,13 +1252,13 @@ typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::node
 
          pnodeNext = pnodeRoot;
 
-         pnodeRoot = pnodeRoot->left;
+         pnodeRoot = nodeRoot.left;
 
       }
       else if(compare(*pnodeRoot,*pnode))
       {
 
-         pnodeRoot = pnodeRoot->right;
+         pnodeRoot = nodeRoot.right;
 
       }
       else
@@ -1313,13 +1313,13 @@ sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::prev(const typenam
 
          pnodePrev = pnodeRoot;
 
-         pnodeRoot = pnodeRoot->right;
+         pnodeRoot = nodeRoot.right;
 
       }
       else if(compare(*pnode,*pnodeRoot))
       {
 
-         pnodeRoot = pnodeRoot->left;
+         pnodeRoot = nodeRoot.left;
 
       }
       else

@@ -1646,7 +1646,7 @@ namespace aura
 
       strContents = Application.file().as_string(strPath);
 
-      ::xml::document doc(get_app());
+      ::xml::document doc;
 
       if(strContents.is_empty())
          return false;
@@ -1665,7 +1665,7 @@ namespace aura
 
       }
 
-      if(doc.get_root() == NULL)
+      if(doc.root().empty())
          return false;
 
 
@@ -1687,41 +1687,41 @@ namespace aura
 
       }
 
-      sp(::xml::node) lpnodeVersion = doc.get_root()->get_child(pszVersion);
+      ::xml::node  lpnodeVersion = doc.root().get_child(pszVersion);
 
       if(lpnodeVersion == NULL)
          return false;
 
       string strBuildNumber(pszBuild);
 
-      sp(::xml::node) lpnodeInstalled;
+      ::xml::node  lpnodeInstalled;
 
       if(strBuildNumber == "latest")
       {
 
          strBuildNumber = install_get_latest_build_number(pszVersion);
 
-         lpnodeInstalled = lpnodeVersion->GetChildByAttr("installed","build",strBuildNumber);
+         lpnodeInstalled = lpnodeVersion.GetChildByAttr("installed","build",strBuildNumber);
 
       }
       else if(strBuildNumber == "installed" || strBuildNumber == "static")
       {
-         for(index i = lpnodeVersion->get_children_count() - 1; i >= 0 ; i--)
+         for(index i = lpnodeVersion.get_children_count() - 1; i >= 0 ; i--)
          {
-            if(lpnodeVersion->child_at(i)->get_name() == "installed")
+            if(lpnodeVersion.child_at(i).get_name() == "installed")
             {
-               lpnodeInstalled = lpnodeVersion->child_at(i);
+               lpnodeInstalled = lpnodeVersion.child_at(i);
                break;
             }
 
          }
-         if(lpnodeInstalled.is_null())
+         if(lpnodeInstalled.empty())
             return false;
       }
       else
       {
 
-         lpnodeInstalled = lpnodeVersion->GetChildByAttr("installed","build",strBuildNumber);
+         lpnodeInstalled = lpnodeVersion.GetChildByAttr("installed","build",strBuildNumber);
 
       }
 
@@ -1730,12 +1730,12 @@ namespace aura
       if(lpnodeInstalled == NULL)
          return false;
 
-      sp(::xml::node) lpnodeType = lpnodeInstalled->get_child(pszType);
+      ::xml::node  lpnodeType = lpnodeInstalled.get_child(pszType);
 
       if(lpnodeType == NULL)
          return false;
 
-      sp(::xml::node) lpnode = lpnodeType->GetChildByAttr(pszType,"id",pszId);
+      ::xml::node  lpnode = lpnodeType.GetChildByAttr(pszType,"id",pszId);
 
       if(lpnode == NULL)
          return false;
@@ -1750,7 +1750,7 @@ namespace aura
       straName.add("schema");
       straValue.add(pszSchema);
 
-      sp(::xml::node) lpnodeLocalization = lpnode->GetChildByAllAttr("localization",straName,straValue);
+      ::xml::node  lpnodeLocalization = lpnode.GetChildByAllAttr("localization",straName,straValue);
 
       if(lpnodeLocalization == NULL)
          return false;

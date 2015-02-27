@@ -97,7 +97,7 @@ restart:
       str.trim();
       if(str.has_char())
       {
-         xml::document doc(get_app());
+         xml::document doc;
          doc.load(str);
          xml::node & node = *doc.get_root();
          string strThread;
@@ -105,14 +105,14 @@ restart:
          {
             for(int32_t i = 0; i < node.get_children_count(); i++)
             {
-               sp(::xml::node) pnodeMessage = node.child_at(i);
+               ::xml::node  pnodeMessage = node.child_at(i);
                string strSender;
                string strBody;
-               sp(::xml::node) pnodeSender = pnodeMessage->get_child("sender");
+               ::xml::node  pnodeSender = pnodeMessage->get_child("sender");
                if(pnodeSender != NULL)
                   strSender = pnodeSender->get_value();
 //               int32_t iLength = strSender.get_length();
-               sp(::xml::node) pnodeBody = pnodeMessage->get_child("body");
+               ::xml::node  pnodeBody = pnodeMessage->get_child("body");
                if(pnodeBody != NULL)
                {
                   strBody = pnodeBody->get_value();

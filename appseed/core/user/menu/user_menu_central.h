@@ -15,7 +15,7 @@ public:
    sp(image_list) MenuV033GetImageListBlend();
    sp(image_list) MenuV033GetImageListHueLight();
    //bool MenuV033CreateImageMap(UINT uiaMenuV003Map [][2]);
-   bool MenuV033AddImageMap(sp(::xml::node) lpnode);
+   bool MenuV033AddImageMap(::xml::node  lpnode);
 
    int CommandToImage(id id);
    id ImageToCommand(int iImage);

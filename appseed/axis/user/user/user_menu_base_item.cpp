@@ -30,7 +30,7 @@ namespace aura
 
    }
 
-   bool menu_base_item::load_menu(sp(::xml::node) lpnode)
+   bool menu_base_item::load_menu(::xml::node  lpnode)
    {
 
       ::exception::throw_interface_only(get_app());

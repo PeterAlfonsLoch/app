@@ -11,41 +11,41 @@ namespace xml
    }
 
 
-   void edit_item::set_name(const sp(::xml::node) pnode)
+   void edit_item::set_name(const ::xml::node node)
    {
 
       m_eaction      = ::xml::set_name;
-      pnode->get_indexed_path(m_iaPath);
-      m_strName      = pnode->get_name();
+      node.get_indexed_path(m_iaPath);
+      m_strName      = node.get_name();
 
    }
 
-   void edit_item::set_value(const sp(::xml::node) pnode)
+   void edit_item::set_value(const ::xml::node node)
    {
 
       m_eaction      = ::xml::set_value;
-      pnode->get_indexed_path(m_iaPath);
-      m_strValue     = pnode->get_value();
+      node.get_indexed_path(m_iaPath);
+      m_strValue     = node.get_value();
 
    }
 
-   void edit_item::set_attr(const sp(::xml::node) pnode, const attr * pattr)
+   void edit_item::set_attr(const ::xml::node node, const ::xml::attribute * pattr)
    {
 
       m_eaction      = ::xml::set_attr;
-      pnode->get_indexed_path(m_iaPath);
+      node.get_indexed_path(m_iaPath);
       m_strName      = pattr->name();
-      m_strValue     = pattr->get_value();
+      m_strValue     = pattr->value();
 
    }
 
-   void edit_item::add_attr(const sp(::xml::node) pnode, const attr * pattr)
+   void edit_item::add_attr(const ::xml::node node, const xml::attribute * pattr)
    {
 
       m_eaction      = ::xml::add_attr;
-      pnode->get_indexed_path(m_iaPath);
+      node.get_indexed_path(m_iaPath);
       m_strName      = pattr->name();
-      m_strValue     = pattr->get_value();
+      m_strValue     = pattr->value();
 
    }
 
@@ -85,52 +85,52 @@ namespace xml
    }
 
 
-   void edit::set_name(const sp(::xml::node) pnode)
+   void edit::set_name(const ::xml::node node)
    {
 
-      if(pnode->get_document() != m_spdata.m_p)
+      if(node.root() != m_spdata.cast < data >()->m_document)
          throw simple_exception(get_app(), "unmatched xml document");
 
       edit_item * pitem = add_new();
 
-      pitem->set_name(pnode);
+      pitem->set_name(node);
 
    }
 
-   void edit::set_value(const sp(::xml::node) pnode)
+   void edit::set_value(const ::xml::node node)
    {
 
-      if(pnode->get_document() != m_spdata.m_p)
+      if(node.root() != m_spdata.cast < data >()->m_document)
          throw simple_exception(get_app(), "unmatched xml document");
 
       edit_item * pitem = add_new();
 
-      pitem->set_value(pnode);
+      pitem->set_value(node);
 
    }
 
-   void edit::set_attr(const sp(::xml::node) pnode, const ::xml::attr * pattr)
+   void edit::set_attr(const ::xml::node node, const ::xml::attribute * pattr)
    {
 
-      if(pnode->get_document() != m_spdata.m_p)
+      if(node.root() != m_spdata.cast < data >()->m_document)
          throw simple_exception(get_app(), "unmatched xml document");
 
       edit_item * pitem = add_new();
 
-      pitem->set_attr(pnode, pattr);
+      pitem->set_attr(node, pattr);
 
    }
 
 
-   void edit::add_attr(const sp(::xml::node) pnode, const ::xml::attr * pattr)
+   void edit::add_attr(const ::xml::node node, const ::xml::attribute * pattr)
    {
 
-      if(pnode->get_document() != m_spdata.m_p)
+      if(node.root() != m_spdata.cast < data >()->m_document)
          throw simple_exception(get_app(), "unmatched xml document");
 
       edit_item * pitem = add_new();
 
-      pitem->add_attr(pnode, pattr);
+      pitem->add_attr(node, pattr);
 
    }
 

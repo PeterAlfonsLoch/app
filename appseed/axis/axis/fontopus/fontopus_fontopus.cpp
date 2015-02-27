@@ -498,20 +498,20 @@ namespace fontopus
       if(strNode.is_empty())
          goto retry;
 
-      ::xml::document doc(get_app());
+      ::xml::document doc;
 
       if(!doc.load(strNode))
          goto retry;
 
-      if(doc.get_root()->get_name() != "login")
+      if(doc.root().get_name() != "login")
          goto retry;
 
-      string strSessId = doc.get_root()->attr("sessid");
+      string strSessId = doc.root().attr("sessid");
 
       if(strSessId.is_empty())
          goto retry;
 
-      strFontopusServer = doc.get_root()->attr("fontopus_server");
+      strFontopusServer = doc.root().attr("fontopus_server");
 
       string strIgnitionServer = file_as_string_dup("C:\\ca2\\config\\system\\ignition_server.txt");
 
@@ -537,14 +537,14 @@ namespace fontopus
 
       string strRsaModulus;
 
-      strRsaModulus = doc.get_root()->attr("rsa_modulus");
+      strRsaModulus = doc.root().attr("rsa_modulus");
 
       if(strRsaModulus.length() < 32)
          goto retry;
 
       string strSomeBrothersAndSisters;
 
-      strSomeBrothersAndSisters = doc.get_root()->attr("some_brothers_and_sisters");
+      strSomeBrothersAndSisters = doc.root().attr("some_brothers_and_sisters");
 
       ::sockets::net::dns_cache_item item = Session.sockets().net().m_mapCache[strHost];
 
@@ -568,7 +568,7 @@ namespace fontopus
 
       }
 
-      ::xml::node * pnodeForm = doc.get_root()->get_child("form");
+      ::xml::node * pnodeForm = doc.root().get_child("form");
 
       if(pnodeForm != NULL)
       {

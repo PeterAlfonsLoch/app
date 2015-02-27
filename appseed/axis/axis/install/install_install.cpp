@@ -833,11 +833,11 @@ namespace install
 
       strContents = Application.file().as_string(strPath);
 
-      ::xml::document doc(get_app());
+      ::xml::document doc;
 
       doc.load(strContents);
 
-      doc.get_root()->set_name("spa");
+      doc.root().set_name("spa");
 
       stringa straName;
       stringa straValue;
@@ -848,12 +848,12 @@ namespace install
       straName.add("id");
       straValue.add(pszId);
 
-      sp(::xml::node) lpnode = doc.get_root()->GetChildByAllAttr("start", straName, straValue);
+      ::xml::node  lpnode = doc.root().GetChildByAllAttr("start", straName, straValue);
 
       if (lpnode == NULL)
       {
 
-         lpnode = doc.get_root()->add_child("start");
+         lpnode = doc.root().add_child("start");
 
          lpnode->add_attr("type", pszType);
 
@@ -876,11 +876,11 @@ namespace install
 
       strContents = Application.file().as_string(strPath);
 
-      ::xml::document doc(get_app());
+      ::xml::document doc;
 
       doc.load(strContents);
 
-      doc.get_root()->set_name("spa");
+      doc.root().set_name("spa");
 
       stringa straName;
       stringa straValue;
@@ -891,12 +891,12 @@ namespace install
       straName.add("id");
       straValue.add(pszId);
 
-      sp(::xml::node) lpnode = doc.get_root()->GetChildByAllAttr("start", straName, straValue);
+      ::xml::node  lpnode = doc.root().GetChildByAllAttr("start", straName, straValue);
 
       if (lpnode != NULL)
       {
 
-         doc.get_root()->remove_child(lpnode);
+         doc.root().remove_child(lpnode);
 
          Application.file().put_contents(strPath, doc.get_xml());
 
@@ -919,29 +919,29 @@ namespace install
 
       System.dir().mk(System.dir().name(strPath), get_app());
 
-      ::xml::document doc(get_app());
+      ::xml::document doc;
 
       doc.load(Application.file().as_string(strPath));
 
-      if (doc.get_root()->get_name().is_empty())
+      if (doc.root().get_name().is_empty())
       {
 
-         doc.get_root()->set_name("install");
+         doc.root().set_name("install");
 
       }
 
-      sp(::xml::node) lpnodeVersion;
+      ::xml::node  lpnodeVersion;
 
       if(m_strVersion == "basis")
       {
 
-         lpnodeVersion = doc.get_root()->get_child("basis");
+         lpnodeVersion = doc.root().get_child("basis");
 
       }
       else
       {
 
-         lpnodeVersion = doc.get_root()->get_child("stage");
+         lpnodeVersion = doc.root().get_child("stage");
 
       }
 
@@ -951,13 +951,13 @@ namespace install
          if(m_strVersion == "basis")
          {
 
-            lpnodeVersion = doc.get_root()->add_child("basis");
+            lpnodeVersion = doc.root().add_child("basis");
 
          }
          else
          {
 
-            lpnodeVersion = doc.get_root()->add_child("stage");
+            lpnodeVersion = doc.root().add_child("stage");
 
          }
 
@@ -980,7 +980,7 @@ namespace install
       }
 
 
-      sp(::xml::node) lpnodeInstalled = lpnodeVersion->GetChildByAttr("installed","build",strBuildNumber);
+      ::xml::node  lpnodeInstalled = lpnodeVersion->GetChildByAttr("installed","build",strBuildNumber);
 
       if (lpnodeInstalled == NULL)
       {
@@ -991,7 +991,7 @@ namespace install
 
       }
 
-      sp(::xml::node) lpnodeType = lpnodeInstalled->get_child(pszType);
+      ::xml::node  lpnodeType = lpnodeInstalled->get_child(pszType);
 
       if (lpnodeType == NULL)
       {
@@ -1000,7 +1000,7 @@ namespace install
 
       }
 
-      sp(::xml::node) lpnode = lpnodeType->GetChildByAttr(pszType, "id", pszId);
+      ::xml::node  lpnode = lpnodeType->GetChildByAttr(pszType, "id", pszId);
 
       if (lpnode == NULL)
       {
@@ -1021,7 +1021,7 @@ namespace install
       straName.add("schema");
       straValue.add(pszSchema);
 
-      sp(::xml::node) lpnodeLocalization = lpnode->GetChildByAllAttr("localization", straName, straValue);
+      ::xml::node  lpnodeLocalization = lpnode->GetChildByAllAttr("localization", straName, straValue);
 
       if (lpnodeLocalization == NULL)
       {

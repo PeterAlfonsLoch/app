@@ -214,7 +214,7 @@ namespace user
          return false;
       }
 
-      ::xml::document doc(get_app());
+      ::xml::document doc;
 
       if(!doc.load(str))
       {
@@ -222,10 +222,10 @@ namespace user
          return false;
       }
 
-      for(int32_t i = 0; i < doc.get_root()->get_children_count(); i++)
+      for(int32_t i = 0; i < doc.root().get_children_count(); i++)
       {
 
-         sp(::xml::node) pnode = doc.get_root()->child_at(i);
+         ::xml::node node = doc.root().child_at(i);
 
          if(pnode->get_name().CompareNoCase("item") == 0)
          {
@@ -285,7 +285,7 @@ namespace user
       return *m_playout;
    }
 
-   void keyboard::process_escape(sp(::xml::node) pnode, property_set & set)
+   void keyboard::process_escape(::xml::node node, property_set & set)
    {
       m_playout->process_escape(pnode, set);
    }
@@ -463,22 +463,22 @@ namespace user
       if(str.is_empty())
          return false;
 
-      ::xml::document doc(get_app());
+      ::xml::document doc;
 
       if(!doc.load(str))
          return false;
 
       playoutid->m_strPath = pszPath;
 
-      playoutid->m_strName = doc.get_root()->attrs()["name"];
+      playoutid->m_strName = doc.root().attrs()["name"];
 
-      playoutid->m_countrycode = doc.get_root()->attrs()["cc"];
+      playoutid->m_countrycode = doc.root().attrs()["cc"];
 
-      playoutid->m_keylayout = doc.get_root()->attrs()["kl"];
+      playoutid->m_keylayout = doc.root().attrs()["kl"];
 
       stringa straHkl;
 
-      straHkl.explode(";", doc.get_root()->attr("hkla"));
+      straHkl.explode(";", doc.root().attr("hkla"));
 
 #ifdef WINDOWS
 

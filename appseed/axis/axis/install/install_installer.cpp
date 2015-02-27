@@ -399,9 +399,9 @@ install_begin:;
          //set2["raw_http"] = true;
 
          //string strInstallFilter = Application.http().get(strUrl, set2);
-         //for(int32_t ui = 0; ui < nodeInstallFilter.get_root()->get_children_count(); ui++)
+         //for(int32_t ui = 0; ui < nodeInstallFilter.root().get_children_count(); ui++)
          //{
-         //   ::xml::node * lpchild = nodeInstallFilter.get_root()->child_at(ui);
+         //   ::xml::node * lpchild = nodeInstallFilter.root().child_at(ui);
          //   string strId;
          //   strId = lpchild->attr("id");
          //   string strFilter;

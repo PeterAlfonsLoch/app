@@ -295,16 +295,16 @@ namespace aura
 
    bool application::load_cached_string(string & str,id id,bool bLoadStringTable)
    {
-      ::xml::document doc(this);
+      ::xml::document doc;
       if(!doc.load(id))
       {
          return load_cached_string_by_id(str,id,"",bLoadStringTable);
       }
-      sp(::xml::node) pnodeRoot = doc.get_root();
-      if(pnodeRoot->get_name() == "string")
+      ::xml::node nodeRoot = doc.root();
+      if(nodeRoot.get_name() == "string")
       {
-         string strId = pnodeRoot->attr("id");
-         string strValue = pnodeRoot->get_value();
+         string strId = nodeRoot.attr("id");
+         string strValue = nodeRoot.get_value();
          return load_cached_string_by_id(str,strId,strValue,bLoadStringTable);
       }
       str = doc.get_name();
@@ -1910,7 +1910,7 @@ namespace aura
 
          string strSystem = file().as_string(strPath);
 
-         ::xml::document docSystem(get_app());
+         ::xml::document docSystem;
 
          if(docSystem.load(strSystem))
          {
@@ -1918,14 +1918,14 @@ namespace aura
             if(docSystem.get_child("lang") != NULL)
             {
 
-               strLocaleSystem = docSystem.get_child("lang")->get_value();
+               strLocaleSystem = docSystem.get_child("lang").get_value();
 
             }
 
             if(docSystem.get_child("style") != NULL)
             {
 
-               strSchemaSystem = docSystem.get_child("style")->get_value();
+               strSchemaSystem = docSystem.get_child("style").get_value();
 
             }
 

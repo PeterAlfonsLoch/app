@@ -15,8 +15,8 @@ namespace xml
    public:
 
 
-      sp(::xml::document)     m_pdocument;
-      sp(::xml::node)         m_pnode;
+      ::xml::document      m_document;
+      ::xml::node          m_node;
 
 
       input_tree(::aura::application * papp);
@@ -24,9 +24,9 @@ namespace xml
       virtual ~input_tree();
 
 
-      virtual node * import_node(const char * lpcszName, importable & importable);
-      virtual node * import_node(const char * lpcszName, attr_array & attributea, importable & importable);
-      virtual node * import_node(const char * lpcszName, var & var);
+      virtual node import_node(const char * lpcszName, importable & importable);
+      virtual node import_node(const char * lpcszName, array < ::xml::attribute > & attributea, importable & importable);
+      virtual node import_node(const char * lpcszName, var & var);
 
       virtual bool get_attr(const char * lpcszName, string & strValue);
       virtual bool get_attr(const char * lpcszName, int32_t & iValue);

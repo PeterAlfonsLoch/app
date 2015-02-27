@@ -36,7 +36,7 @@ namespace fs
 
       defer_initialize();
 
-      xml::document doc(get_app());
+      xml::document doc;
 
       string strUrl;
 
@@ -54,10 +54,10 @@ namespace fs
       if(!doc.load(strSource))
          return false;
 
-      if(doc.get_root()->get_name() != "folder")
+      if(doc.root().get_name() != "folder")
          return false;
 
-      sp(::xml::node) pnode = doc.get_child("folder");
+      ::xml::node node = doc.get_child("folder");
 
       if(pnode == NULL)
          return false;
@@ -93,7 +93,7 @@ namespace fs
          return false;
       }
 
-      xml::document doc(get_app());
+      xml::document doc;
 
       string strUrl;
 
@@ -112,10 +112,10 @@ namespace fs
       if(!doc.load(strSource))
          return false;
 
-      if(doc.get_root()->get_name() != "folder")
+      if(doc.root().get_name() != "folder")
          return false;
 
-      sp(::xml::node) pnode = doc.get_root()->get_child("folder");
+      ::xml::node node = doc.root().get_child("folder");
 
       if(pnode != NULL)
       {
@@ -146,7 +146,7 @@ namespace fs
          }
       }
 
-      pnode = doc.get_root()->get_child("file");
+      pnode = doc.root().get_child("file");
 
       if(pnode != NULL)
       {

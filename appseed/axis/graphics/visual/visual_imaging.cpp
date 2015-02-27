@@ -6763,11 +6763,11 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
       str += ".xml";
       string strNode = Sess(papp).file().as_string(str);
-      ::xml::document doc(get_app());
+      ::xml::document doc;
       if(doc.load(strNode))
       {
-         pcursor->m_szHotspotOffset.cx = doc.get_root()->attr("x");
-         pcursor->m_szHotspotOffset.cy = doc.get_root()->attr("y");
+         pcursor->m_szHotspotOffset.cx = doc.root().attr("x");
+         pcursor->m_szHotspotOffset.cy = doc.root().attr("y");
       }
       return true;
    }

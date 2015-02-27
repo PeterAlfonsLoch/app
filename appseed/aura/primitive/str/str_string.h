@@ -242,6 +242,9 @@ public:
    string(const wchar_t * pszSrc);
    string(const string & strSrc, strsize npos, strsize len = -1);
 
+   string(const hstring & hstr) { operator = (hstr.operator const char *()); }
+   string(const hwstring & hwstr) { operator = (hwstr.operator const wchar_t *()); }
+
    string(char ch,strsize nLength = 1);
    string(wchar_t ch, strsize nLength = 1 );
 
@@ -329,7 +332,7 @@ public:
    template <class InputIterator>
    string & assign (InputIterator first, InputIterator last);
 
-
+   void swap(string & str);
 
    // Comparison
    int32_t Compare(const char * psz ) const;
@@ -2107,4 +2110,11 @@ inline string to_string(STRINGALBLE * pstringable)
 
    return str;
 
+}
+
+inline void string::swap(string & str)
+{
+   string strSwap = str;
+   str = *this;
+   *this = strSwap;
 }

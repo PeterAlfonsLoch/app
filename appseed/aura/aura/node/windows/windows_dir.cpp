@@ -1051,17 +1051,17 @@ namespace windows
             CSIDL_COMMON_PROGRAMS,
             FALSE);
 
-      xml::document doc(get_app());
+      xml::document doc;
       
       doc.load(System.file().as_string(appdata("configuration\\directory.xml"),get_app()));
       
       xxdebug_box("win_dir::initialize (configuration)", "win_dir::initialize", 0);
-      if(doc.get_root()->get_name() == "directory_configuration")
+      if(doc.root().get_name() == "directory_configuration")
       {
 
-         m_strTimeFolder = doc.get_root()->get_child_value("time"); 
+         m_strTimeFolder = doc.root().get_child_value("time"); 
 
-         m_strNetSeedFolder = doc.get_root()->get_child_value("netseed"); 
+         m_strNetSeedFolder = doc.root().get_child_value("netseed");
 
       }
       if(m_strTimeFolder.is_empty())

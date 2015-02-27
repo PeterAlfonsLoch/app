@@ -90,7 +90,7 @@ bool machine_event_central::is_close_application()
 }
 
 
-void machine_event_central::command(sp(::xml::node) pnode)
+void machine_event_central::command(::xml::node node)
 {
    
    synch_lock lockMachineEvent(&m_machineevent.m_mutex);
@@ -99,7 +99,7 @@ void machine_event_central::command(sp(::xml::node) pnode)
 
    m_machineevent.read(&data);
 
-   xml::document doc(get_app());
+   xml::document doc;
 
    if(data.m_blobCommand.m_pchData != NULL)
    {
@@ -111,9 +111,9 @@ void machine_event_central::command(sp(::xml::node) pnode)
    if(doc.get_name().is_empty())
       doc.set_name("command");
 
-   doc.add_child(pnode);
+//   doc.add_child(node);
 
-   data.m_blobCommand = doc.get_xml();
+   //data.m_blobCommand = doc.get_xml();
 
    m_machineevent.write(&data);
 

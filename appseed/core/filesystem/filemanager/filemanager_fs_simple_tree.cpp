@@ -53,7 +53,7 @@ namespace filemanager
          void tree::parse(const char * lpszSource)
          {
             string str;
-            xml::document doc(get_app());
+            xml::document doc;
             if(doc.load(lpszSource))
             {
                str  = doc.get_xml();
@@ -64,7 +64,7 @@ namespace filemanager
                return;
             }
 
-            m_iParentFolder = doc.get_root()->attr("id");
+            m_iParentFolder = doc.root().attr("id");
 
             sp(::data::tree_item) pdataitemParent;
             sp(::data::tree_item) pdataitemChild;
@@ -82,7 +82,7 @@ namespace filemanager
             // method 3: Selected Childs with GetChilds()
             // Result: Person, Person, Person
             index iNode = 0;
-            sp(::xml::node) pnodeFolder = doc.get_root()->get_child("folder");
+            ::xml::node  pnodeFolder = doc.root().get_child("folder");
 
 
    //         xml::node::array childs(get_app());
@@ -93,7 +93,7 @@ namespace filemanager
    //         index iNode = 0;
             for(int32_t i = 0 ; i < pnodeFolder->get_children_count(); i++)
             {
-               sp(::xml::node) pnodeItem = pnodeFolder->child_at(i);
+               ::xml::node  pnodeItem = pnodeFolder->child_at(i);
                folder.m_iFolder = pnodeItem->attr("id");
                folder.m_strName = pnodeItem->attr("name");
 

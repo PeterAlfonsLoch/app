@@ -26,7 +26,7 @@ namespace user
 
       virtual bool _001OnCmdMsg(::aura::cmd_msg * pcmdmsg);
 
-      bool LoadMenu(sp(::xml::node) pnode, sp(::user::interaction) puiNotify, UINT uiCallbackMessage);
+      bool LoadMenu(::xml::node node, sp(::user::interaction) puiNotify, UINT uiCallbackMessage);
          
    #ifdef DEBUG
       virtual void assert_valid() const;

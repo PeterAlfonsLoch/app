@@ -50,7 +50,7 @@ namespace aura
 
    }
 
-   bool menu_base::LoadMenu(sp(::xml::node) lpnode)
+   bool menu_base::LoadMenu(::xml::node  lpnode)
    {
 
       return m_pitem->load_menu(lpnode);
@@ -61,7 +61,7 @@ namespace aura
    {
 
 
-      xml::document doc(get_app());
+      xml::document doc;
 
       doc.load(Application.file_as_string(Application.dir_matter(pszMatter)));
 

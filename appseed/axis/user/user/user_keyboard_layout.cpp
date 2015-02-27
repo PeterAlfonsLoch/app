@@ -87,11 +87,11 @@ namespace user
 
    }
 
-   void keyboard_layout::process_escape(sp(::xml::node) pnode, property_set & set)
+   void keyboard_layout::process_escape(::xml::node node, property_set & set)
    {
       for(int32_t i = 0; i < pnode->get_children_count(); i++)
       {
-         sp(::xml::node) pchild = pnode->child_at(i);
+         ::xml::node  pchild = pnode->child_at(i);
          if(pchild->get_name().CompareNoCase("item") == 0)
          {
             string str = pchild->attr("char");
@@ -117,12 +117,12 @@ namespace user
       string str = Application.file_as_string(pszPath);
       if(str.is_empty())
          return false;
-      ::xml::document doc(get_app());
+      ::xml::document doc;
       if(!doc.load(str))
          return false;
-      for(int32_t i = 0; i < doc.get_root()->get_children_count(); i++)
+      for(int32_t i = 0; i < doc.root().get_children_count(); i++)
       {
-         sp(::xml::node) pnode = doc.get_root()->child_at(i);
+         ::xml::node node = doc.root().child_at(i);
          if(pnode->get_name().CompareNoCase("item") == 0)
          {
             string strCode = pnode->attr("code");

@@ -1575,14 +1575,14 @@ throw todo(get_app());
 
       m_itema.remove_all();
 
-      xml::document doc(get_app());
+      xml::document doc;
 
       if(!doc.load(lpszXml))
          return FALSE;
 
       xml::node::array childs(get_app());
 
-      childs = doc.get_root()->children();
+      childs = doc.root().children();
 
       //   ::aura::application * papp = (get_app());
 
@@ -1592,7 +1592,7 @@ throw todo(get_app());
 
       for(int32_t i = 0; i < childs.get_size(); i++)
       {
-         sp(::xml::node) pchild = childs[i];
+         ::xml::node  pchild = childs[i];
          if(pchild->get_name() == "button")
          {
             item = canew(::user::toolbar_item);

@@ -16,7 +16,7 @@ namespace aura
 
 
       virtual bool create_menu(const stringa & straCommand, const stringa & straCommandTitle);
-      virtual bool load_menu(sp(::xml::node) lpnode);
+      virtual bool load_menu(::xml::node  lpnode);
 
 
    };

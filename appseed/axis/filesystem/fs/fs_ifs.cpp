@@ -199,7 +199,7 @@ bool ifs::ls(const char * pszDir,stringa * pstraPath,stringa * pstraTitle,int64_
 
    }
 
-   xml::document doc(get_app());
+   xml::document doc;
 
    string strUrl;
 
@@ -231,7 +231,7 @@ bool ifs::ls(const char * pszDir,stringa * pstraPath,stringa * pstraTitle,int64_
 
    }
 
-   if(doc.get_root()->get_name() != "folder")
+   if(doc.root().get_name() != "folder")
    {
 
       m_maplsTimeout.set_at(strDir, get_tick_count() + ((5000) * 4));
@@ -240,7 +240,7 @@ bool ifs::ls(const char * pszDir,stringa * pstraPath,stringa * pstraTitle,int64_
 
    }
 
-   sp(::xml::node) pnode = doc.get_root()->get_child("folder");
+   ::xml::node node = doc.root().get_child("folder");
 
    if(pnode != NULL)
    {
@@ -263,7 +263,7 @@ bool ifs::ls(const char * pszDir,stringa * pstraPath,stringa * pstraTitle,int64_
       }
    }
 
-   pnode = doc.get_root()->get_child("file");
+   pnode = doc.root().get_child("file");
 
    if(pnode != NULL)
    {

@@ -348,7 +348,7 @@ namespace http
    void system::config_proxy(const char * pszUrl, ::http::system::proxy * pproxy)
    {
 
-      xml::document doc(get_app());
+      xml::document doc;
       string str = System.file().as_string(System.dir().appdata("proxy.xml"), &System);
       if(str.has_char() && str.find("<") < 0 && str.find(">") < 0)
       {
@@ -380,9 +380,9 @@ namespace http
          string strHost = System.url().get_server(pszUrl);
          int32_t iHostPort = System.url().get_port(pszUrl);
          ::net::address ipHost(strHost, iHostPort);
-         for(int32_t iNode = 0; iNode < doc.get_root()->get_children_count(); iNode++)
+         for(int32_t iNode = 0; iNode < doc.root().get_children_count(); iNode++)
          {
-            sp(::xml::node) pnode = doc.get_root()->child_at(iNode);
+            ::xml::node node = doc.root().child_at(iNode);
             if(pnode->get_name() == "proxy")
             {
                ::net::address ipAddress(pnode->attr("address").get_string(), 0);
@@ -414,8 +414,8 @@ namespace http
          else
          {
             pproxy->m_bDirect = false;
-            pproxy->m_strProxy = doc.get_root()->attr("server");
-            pproxy->m_iPort = doc.get_root()->attr("port");
+            pproxy->m_strProxy = doc.root().attr("server");
+            pproxy->m_iPort = doc.root().attr("port");
             return;
          }
       }

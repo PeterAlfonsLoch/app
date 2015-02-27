@@ -6,7 +6,9 @@ namespace xml
 
 
    data::data(::aura::application * papp, ::xml::parse_info * pparseinfo) :
-      ::xml::document(papp, pparseinfo)
+      ::object(papp),
+      ::data::data(papp)
+//      ::xml::document(papp) //, ppareserinfo)
    {
 
 

@@ -192,7 +192,7 @@ namespace xml
    */
       index node::find(node * pnode)
       {
-         return m_nodea.find_first(pnode);
+         return m_nodea.find_first(node);
       }
 
       node * node::get_next_sibling()
@@ -885,8 +885,8 @@ namespace xml
                xml = pnode->load( xml,pparseinfo );
                if(pnode->m_strName.has_char())
                {
-                  m_nodea.add(pnode);
-//                  ::release(pnode);
+                  m_nodea.add(node);
+//                  ::release(node);
                }
                else
                {
@@ -1586,7 +1586,7 @@ namespace xml
       node * pnode = new node(this);
       pnode->m_strName = pszName;
       pnode->m_strValue = pszValue;
-      return add_child(pnode);
+      return add_child(node);
    }
 
    //========================================================
@@ -1617,7 +1617,7 @@ namespace xml
    //========================================================
    bool node::remove_child( node * pnode )
    {
-      if(m_nodea.remove(pnode) > 0)
+      if(m_nodea.remove(node) > 0)
       {
          delete pnode;
          return true;
@@ -1784,7 +1784,7 @@ namespace xml
    void node::_CopyBranch( node * pnode )
    {
 
-      CopyNode(pnode);
+      CopyNode(node);
 
       for( int32_t i = 0 ; i < pnode->m_nodea.get_size(); i++)
       {
@@ -1812,7 +1812,7 @@ namespace xml
    node *   node::AppendChildBranch(node * pnode)
    {
       class node * pnodeNewChild = new class node(get_app());
-      pnodeNewChild->CopyBranch(pnode);
+      pnodeNewChild->CopyBranch(node);
       return add_child( pnodeNewChild );
    }
 
@@ -2033,7 +2033,7 @@ namespace xml
 
          for(index iCol = 0; iCol < iColCount; iCol++)
          {
-            sp(::xml::node) pcol = add_child("ca");
+            ::xml::node  pcol = add_child("ca");
             iRowCount = str2a[iCol].get_count();
             pcol->add_attr("row_count", iRowCount);
             for(int32_t iRow = 0; iRow < iRowCount; iRow++)
@@ -2066,10 +2066,10 @@ namespace xml
       }
       str2a.set_size(iColCount);
       ::count iRowCount = 0;
-      sp(::xml::node) pheader = m_nodea.element_at(0);
+      ::xml::node  pheader = m_nodea.element_at(0);
       for(::index iCol = 0; iCol < iColCount; iCol++)
       {
-         sp(::xml::node) pcol = pheader->m_nodea.element_at(iCol);
+         ::xml::node  pcol = pheader->m_nodea.element_at(iCol);
          str2a[iCol].set_size(pcol->attr("row_count"));
       }
 

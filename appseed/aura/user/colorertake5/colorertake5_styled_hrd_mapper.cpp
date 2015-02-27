@@ -33,34 +33,34 @@ void StyledHRDMapper::loadRegionMappings(::file::input_stream & istream)
    
    istream >> str;
 
-   xml::document hbasedoc(m_pauraapp);
+   xml::document hbasedoc;
 
    if(!hbasedoc.load(str))
    {
       throw exception(get_app(), "Error loading HRD file");
    }
 
-   xml::node & hbase = *hbasedoc.get_root();
+   xml::node hbase = hbasedoc.root();
 
    if(hbase.get_name() != "hrd")
    {
       throw exception(get_app(), "Error loading HRD file");
    }
 
-   for(sp(::xml::node)curel = hbase.first_child(); curel; curel = curel->get_next_sibling())
+   for(::xml::node curel = hbase.first_child(); curel; curel = curel.get_next_sibling())
    {
-      if (curel->get_type() == xml::node_element && curel->get_name() == "assign")
+      if (curel.get_type() == xml::node_element && curel.get_name() == "assign")
       {
-         string name = (curel)->attr("name");
+         string name = curel.attr("name");
          if(name.is_empty())
             continue;
 
 
-         bool bfore = isdigit_dup(curel->attr("fore").first()) != FALSE;
-         int32_t fore = atoi((curel)->attr("fore"));
-         bool bback = isdigit_dup((curel)->attr("back").last()) != FALSE;
-         int32_t back = atoi((curel)->attr("back"));
-         int32_t style = atoi((curel)->attr("style"));
+         bool bfore = isdigit_dup(curel.attr("fore").first()) != FALSE;
+         int32_t fore = atoi(curel.attr("fore"));
+         bool bback = isdigit_dup(curel.attr("back").last()) != FALSE;
+         int32_t back = atoi(curel.attr("back"));
+         int32_t style = atoi(curel.attr("style"));
          RegionDefine *rdef = new StyledRegion(bfore, bback, fore, back, style);
          regionDefines.set_at(name, rdef);
        }
