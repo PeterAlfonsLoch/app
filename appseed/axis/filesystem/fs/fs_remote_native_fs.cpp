@@ -59,10 +59,10 @@ namespace fs
 
       ::xml::node node = doc.get_child("folder");
 
-      if(pnode == NULL)
+      if(node.empty())
          return false;
 
-      if(pnode->get_children_count("folder") <= 0)
+      if(node.get_children_count("folder") <= 0)
          return false;
 
       return true;
@@ -117,12 +117,12 @@ namespace fs
 
       ::xml::node node = doc.root().get_child("folder");
 
-      if(pnode != NULL)
+      if(!node.empty())
       {
-         for(int32_t i = 0; i < pnode->get_children_count(); i++)
+         for(int32_t i = 0; i < node.get_children_count(); i++)
          {
-            string strName = pnode->child_at(i)->attr("name");
-            if(pnode->child_at(i)->get_name() != "folder")
+            string strName = node.child_at(i).attr("name");
+            if(node.child_at(i).get_name() != "folder")
                continue;
             string strPath = dir_path(pszDir, strName);
             m_mapdirTimeout[strPath] = ::get_tick_count() + (15 * 1000);
@@ -146,18 +146,18 @@ namespace fs
          }
       }
 
-      pnode = doc.root().get_child("file");
+      node = doc.root().get_child("file");
 
-      if(pnode != NULL)
+      if(!node.empty())
       {
-         for(int32_t i = 0; i < pnode->get_children_count(); i++)
+         for(int32_t i = 0; i < node.get_children_count(); i++)
          {
-            string strName = pnode->child_at(i)->attr("name");
-            //string strExtension = pnode->child_at(i)->attr("extension");
-            if(pnode->child_at(i)->get_name() != "file")
+            string strName = node.child_at(i).attr("name");
+            //string strExtension = node.child_at(i).attr("extension");
+            if(node.child_at(i).get_name() != "file")
                continue;
             string strPath = dir_path(pszDir, strName);
-            string strSize = pnode->child_at(i)->attr("size");
+            string strSize = node.child_at(i).attr("size");
             m_mapfileTimeout[strPath] = ::get_tick_count() + (15 * 1000);
             m_mapdirTimeout.remove_key(strPath);
             if(pstraPath != NULL)

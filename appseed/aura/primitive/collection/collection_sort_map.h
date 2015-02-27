@@ -420,7 +420,7 @@ public:
       node * pnode = NULL;
       while(sort_map.next(pnode) != NULL)
       {
-         set_at(pnode->m_element1, pnode->m_element2);
+         set_at(node.m_element1, node.m_element2);
       }
    }
 
@@ -709,7 +709,7 @@ VALUE& sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::operat
 
    }
 
-   return pnode->m_element2;  // return new reference
+   return node.m_element2;  // return new reference
 
 }
 
@@ -799,22 +799,22 @@ bool sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::remove_node(n
 
    }
 
-   if(pnode->left != NULL)
+   if(node.left != NULL)
    {
-      if(pnode->right != NULL)
+      if(node.right != NULL)
       {
-         node * succ = pnode->right->min();
-         pnode->copy_value(*succ);
+         node * succ = node.right->min();
+         node.copy_value(*succ);
          return remove_node(succ);
       }
       else
       {
-         return delete_node(pnode->left,pnode);
+         return delete_node(node.left,pnode);
       }
    }
-   else if(pnode->right != NULL)
+   else if(node.right != NULL)
    {
-      return delete_node(pnode->right,pnode);
+      return delete_node(node.right,pnode);
    }
    else
    {
@@ -834,7 +834,7 @@ sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::equally_keyed_next
    if(pnode == NULL)
       return NULL;
 
-   node * pnodeSearch = pnode->right;
+   node * pnodeSearch = node.right;
 
    while(pnodeSearch != NULL)
    {
@@ -1227,8 +1227,8 @@ typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::node
    sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::next(const typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::node * pnode)
 {
 
-   if(pnode->right != NULL)
-      return pnode->right->min();
+   if(node.right != NULL)
+      return node.right->min();
 
    node * pnodeNext = NULL;
 
@@ -1288,8 +1288,8 @@ typename sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::node*
 sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::prev(const typename sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::node * pnode)
 {
 
-   if(pnode->right != NULL)
-      return pnode->left->max();
+   if(node.right != NULL)
+      return node.left->max();
 
    node * pnodePrev = NULL;
 
@@ -1384,7 +1384,7 @@ VALUE sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey > ::
    if(pnode == NULL)
       return valueDefault;
    else
-      return pnode->m_element2;
+      return node.m_element2;
 }
 
 
@@ -1403,9 +1403,9 @@ void sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::dump(dum
       {
          pnode = PGetNextAssoc(pnode);
          dumpcontext << "\n\t[";
-         dump_elements<KEY>(dumpcontext, &pnode->m_element1, 1);
+         dump_elements<KEY>(dumpcontext, &node.m_element1, 1);
          dumpcontext << "] = ";
-         dump_elements<VALUE>(dumpcontext, &pnode->m_element2, 1);
+         dump_elements<VALUE>(dumpcontext, &node.m_element2, 1);
       }
    }
 

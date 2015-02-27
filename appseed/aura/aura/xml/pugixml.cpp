@@ -11580,6 +11580,21 @@ namespace xml
    //   return -1;
    //}
 
+   ::count node::get_children_count() const
+   { 
+      return children().get_count(); 
+   }
+
+   ::count node::get_children_count(const char * name) const
+   {
+      return children().get_count([name](node n){ return n.get_name() == name;});
+   }
+
+   ::xml::node node::child_at(::index i) const
+   {
+      return children().get_at(i);
+   }
+
 
 } // namespace xml
 

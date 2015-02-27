@@ -707,7 +707,7 @@ namespace filemanager
                   wstrType = pnodeItem->attr("type");
                   item.m_iParent = m_iParentFolder;
                   item.m_iFolder = -1;
-   //               item.m_iId = atoi(pnode->get_child_value("songfileid"));
+   //               item.m_iId = atoi(node.get_child_value("songfileid"));
                   item.m_strTitle = pnodeItem->attr("name");
                   item.m_strFileName = pnodeItem->attr("name");
                   item.m_strExtension = pnodeItem->attr("extension");

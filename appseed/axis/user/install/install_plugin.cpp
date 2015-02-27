@@ -791,7 +791,7 @@ namespace install
 
          ::xml::node * pnode = lpnodeType->GetChildByAttr(pszType, "id", pszInstall);
 
-         if(pnode == NULL)
+         if(node.empty())
             goto run_install;
 
          lpnodeType->remove_child(node);

@@ -29,15 +29,15 @@ namespace simpledb
       if(!m_xmldocumentMeta.load(is))
          throw 0;
 
-      ::xml::node  pfields = m_xmldocumentMeta.root().get_child("fields");
+      ::xml::node fields = m_xmldocumentMeta.root().get_child("fields");
 
-      for(int32_t i = 0; i < pfields->get_children_count(); i++)
+      for(int32_t i = 0; i < fields.get_children_count(); i++)
       {
-         ::xml::node  pfield = pfields->child_at(i);
-         if(pfield->get_name() != "field")
+         ::xml::node  pfield = fields.child_at(i);
+         if(pfield.get_name() != "field")
             continue;
          ::database::field_definition_item item;
-         item = *pfield;
+         item = pfield;
          m_fielddefinition.add(item);
       }
 

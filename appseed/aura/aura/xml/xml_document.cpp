@@ -235,7 +235,7 @@
 //                  pnode = get_node_from_indexed_path(pitem->m_iaPath);
 //                  if(pnode == NULL)
 //                     return;
-//                  pnode->set_name(pitem->m_strValue);
+//                  node.set_name(pitem->m_strValue);
 //               }
 //               break;
 //
@@ -244,7 +244,7 @@
 //                  pnode = get_node_from_indexed_path(pitem->m_iaPath);
 //                  if(pnode == NULL)
 //                     return;
-//                  pnode->set_value(pitem->m_strValue);
+//                  node.set_value(pitem->m_strValue);
 //               }
 //               break;
 //
@@ -253,7 +253,7 @@
 //                  pnode = get_node_from_indexed_path(pitem->m_iaPath);
 //                  if(pnode == NULL)
 //                     return;
-//                  pnode->set_attr(pitem->m_strName,pitem->m_strValue);
+//                  node.set_attr(pitem->m_strName,pitem->m_strValue);
 //               }
 //               break;
 //
@@ -262,7 +262,7 @@
 //                  pnode = get_node_from_indexed_path(pitem->m_iaPath);
 //                  if(pnode == NULL)
 //                     return;
-//                  pnode->add_attr(pitem->m_strName, pitem->m_strValue);
+//                  node.add_attr(pitem->m_strName, pitem->m_strValue);
 //               }
 //               break;
 //

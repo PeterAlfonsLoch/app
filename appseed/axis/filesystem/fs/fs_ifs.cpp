@@ -242,15 +242,15 @@ bool ifs::ls(const char * pszDir,stringa * pstraPath,stringa * pstraTitle,int64_
 
    ::xml::node node = doc.root().get_child("folder");
 
-   if(pnode != NULL)
+   if(!node.empty())
    {
 
-      for(int32_t i = 0; i < pnode->get_children_count(); i++)
+      for(int32_t i = 0; i < node.get_children_count(); i++)
       {
 
-         string strName = pnode->child_at(i)->attr("name");
+         string strName = node.child_at(i).attr("name");
 
-         if(pnode->child_at(i)->get_name() != "folder")
+         if(node.child_at(i).get_name() != "folder")
             continue;
 
          string strPath = dir_path(pszDir, strName);
@@ -263,17 +263,17 @@ bool ifs::ls(const char * pszDir,stringa * pstraPath,stringa * pstraTitle,int64_
       }
    }
 
-   pnode = doc.root().get_child("file");
+   node = doc.root().get_child("file");
 
-   if(pnode != NULL)
+   if(!node.empty())
    {
-      for(int32_t i = 0; i < pnode->get_children_count(); i++)
+      for(int32_t i = 0; i < node.get_children_count(); i++)
       {
-         string strName = pnode->child_at(i)->attr("name");
-         string strExtension = pnode->child_at(i)->attr("extension");
-         if(pnode->child_at(i)->get_name() != "file")
+         string strName = node.child_at(i).attr("name");
+         string strExtension = node.child_at(i).attr("extension");
+         if(node.child_at(i).get_name() != "file")
             continue;
-         string strSize = pnode->child_at(i)->attr("size");
+         string strSize = node.child_at(i).attr("size");
          string strPath = dir_path(pszDir, strName);
          m_mapfileTimeout[strPath] = ::get_tick_count() + (4 * 1000);
          m_mapdirTimeout.remove_key(strPath);

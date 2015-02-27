@@ -89,9 +89,9 @@ namespace user
 
    void keyboard_layout::process_escape(::xml::node node, property_set & set)
    {
-      for(int32_t i = 0; i < pnode->get_children_count(); i++)
+      for(int32_t i = 0; i < node.get_children_count(); i++)
       {
-         ::xml::node  pchild = pnode->child_at(i);
+         ::xml::node  pchild = node.child_at(i);
          if(pchild->get_name().CompareNoCase("item") == 0)
          {
             string str = pchild->attr("char");
@@ -102,7 +102,7 @@ namespace user
          }
          else if(pchild->get_name().CompareNoCase("escape") == 0)
          {
-            process_escape(pchild, set[pnode->attr("value")].propset());
+            process_escape(pchild, set[node.attr("value")].propset());
          }
       }
    }
@@ -123,17 +123,17 @@ namespace user
       for(int32_t i = 0; i < doc.root().get_children_count(); i++)
       {
          ::xml::node node = doc.root().child_at(i);
-         if(pnode->get_name().CompareNoCase("item") == 0)
+         if(node.get_name().CompareNoCase("item") == 0)
          {
-            string strCode = pnode->attr("code");
-            string strValue = pnode->attr("value");
-            string strEscape = pnode->attr("escape");
+            string strCode = node.attr("code");
+            string strValue = node.attr("value");
+            string strEscape = node.attr("escape");
             iMap = 0;
-            if(pnode->attr("shift") == 1)
+            if(node.attr("shift") == 1)
             {
                iMap |= 0x80000000;
             }
-            if(pnode->attr("ralt") == 1)
+            if(node.attr("ralt") == 1)
             {
                iMap |= 0x40000000;
             }
@@ -174,9 +174,9 @@ namespace user
                }
             }
          }
-         else if(pnode->get_name().CompareNoCase("escape") == 0)
+         else if(node.get_name().CompareNoCase("escape") == 0)
          {
-            process_escape(pnode, m_setEscape[pnode->attr("value")].propset());
+            process_escape(pnode, m_setEscape[node.attr("value")].propset());
          }
       }
 

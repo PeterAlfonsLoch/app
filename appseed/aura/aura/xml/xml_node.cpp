@@ -445,16 +445,16 @@ namespace xml
          char * xml = (char *)pszXml;
 
          node * pnode = new node(this);
-         pnode->m_pnodeParent = this;
-         pnode->m_pdoc = m_pdoc;
-         pnode->m_etype = node_pi;
+         node.m_pnodeParent = this;
+         node.m_pdoc = m_pdoc;
+         node.m_etype = node_pi;
 
          xml += astr.szXMLPIOpen.get_length();
          CHAR* pTagEnd = strpbrk( xml, " ?>" );
-         _SetString( xml, pTagEnd, &pnode->m_strName );
+         _SetString( xml, pTagEnd, &node.m_strName );
          xml = pTagEnd;
 
-         pnode->LoadAttributes( xml, end, pparseinfo );
+         node.LoadAttributes( xml, end, pparseinfo );
 
          m_pdoc->m_nodea.add( pnode );
       }
@@ -590,11 +590,11 @@ namespace xml
          xml += astr.szXMLCommentOpen.get_length();
 
          node * pnode = new node(this);
-         pnode->m_pnodeParent = par;
-         pnode->m_pdoc = m_pdoc;
-         pnode->m_etype = node_comment;
-         pnode->m_strName = "#COMMENT";
-         _SetString( xml, end, &pnode->m_strValue, FALSE );
+         node.m_pnodeParent = par;
+         node.m_pdoc = m_pdoc;
+         node.m_etype = node_comment;
+         node.m_strName = "#COMMENT";
+         _SetString( xml, end, &node.m_strValue, FALSE );
 
          par->m_nodea.add( pnode );
       }
@@ -635,11 +635,11 @@ namespace xml
          xml += astr.szXMLCDATAOpen.get_length();
 
          node * pnode = new node(this);
-         pnode->m_pnodeParent = this;
-         pnode->m_pdoc = m_pdoc;
-         pnode->m_etype = node_cdata;
-         pnode->m_strName = "#CDATA";
-         _SetString( xml, end, &pnode->m_strValue, FALSE );
+         node.m_pnodeParent = this;
+         node.m_pdoc = m_pdoc;
+         node.m_etype = node_cdata;
+         node.m_strName = "#CDATA";
+         _SetString( xml, end, &node.m_strValue, FALSE );
 
          pnodeParent->m_nodea.add( pnode );
       }
@@ -878,12 +878,12 @@ namespace xml
             while( xml && *xml )
             {
                node * pnode = new node(this);
-               pnode->m_pnodeParent = this;
-               pnode->m_pdoc = m_pdoc;
-               pnode->m_etype = m_etype;
+               node.m_pnodeParent = this;
+               node.m_pdoc = m_pdoc;
+               node.m_etype = m_etype;
 
-               xml = pnode->load( xml,pparseinfo );
-               if(pnode->m_strName.has_char())
+               xml = node.load( xml,pparseinfo );
+               if(node.m_strName.has_char())
                {
                   m_nodea.add(node);
 //                  ::release(node);
@@ -1388,7 +1388,7 @@ namespace xml
          return this;
       for(int32_t i = 0; i < stra.get_size(); i++)
       {
-         pnode = pnode->get_child_with_attr(pszName, pszAttr, stra[i]);
+         pnode = node.get_child_with_attr(pszName, pszAttr, stra[i]);
          if(pnode == NULL)
             return NULL;
       }
@@ -1400,8 +1400,8 @@ namespace xml
       string str;
       while(pnode != NULL && pnode != this)
       {
-         str = pnode->attr(pszAttr).get_string() + ::str::has_char(str, "/");
-         pnode = pnode->m_pnodeParent;
+         str = node.attr(pszAttr).get_string() + ::str::has_char(str, "/");
+         pnode = node.m_pnodeParent;
       }
       if(pnode == NULL)
          return "";
@@ -1421,7 +1421,7 @@ namespace xml
          return this;
       for(int32_t i = 0; i < stra.get_size(); i++)
       {
-         pnode = pnode->get_child(stra[i]);
+         pnode = node.get_child(stra[i]);
          if(pnode == NULL)
             return NULL;
       }
@@ -1444,10 +1444,10 @@ namespace xml
          if(iIndex < 0)
             return NULL;
 
-         if(iIndex >= pnode->get_children_count())
+         if(iIndex >= node.get_children_count())
             return NULL;
 
-         pnode = pnode->child_at(iIndex);
+         pnode = node.child_at(iIndex);
 
          if(pnode == NULL)
             return NULL;
@@ -1462,8 +1462,8 @@ namespace xml
       string str;
       while(pnode != NULL && pnode != this)
       {
-         str = pnode->m_strName + ::str::has_char(str, "/");
-         pnode = pnode->m_pnodeParent;
+         str = node.m_strName + ::str::has_char(str, "/");
+         pnode = node.m_pnodeParent;
       }
       if(pnode == NULL)
          return "";
@@ -1478,8 +1478,8 @@ namespace xml
       iaPath.remove_all();
       while(pnode != NULL && pnode != this)
       {
-         iaPath.insert_at(0, pnode->get_index());
-         pnode = pnode->m_pnodeParent;
+         iaPath.insert_at(0, node.get_index());
+         pnode = node.m_pnodeParent;
       }
 
    }
@@ -1584,8 +1584,8 @@ namespace xml
    node * node::add_child( const char * pszName /*= NULL*/, const char * pszValue /*= NULL*/ )
    {
       node * pnode = new node(this);
-      pnode->m_strName = pszName;
-      pnode->m_strValue = pszValue;
+      node.m_strName = pszName;
+      node.m_strValue = pszValue;
       return add_child(node);
    }
 
@@ -1786,9 +1786,9 @@ namespace xml
 
       CopyNode(node);
 
-      for( int32_t i = 0 ; i < pnode->m_nodea.get_size(); i++)
+      for( int32_t i = 0 ; i < node.m_nodea.get_size(); i++)
       {
-         class node * pnodeChild = pnode->m_nodea.element_at(i);
+         class node * pnodeChild = node.m_nodea.element_at(i);
          if(pnodeChild)
          {
             class node * pnodeNewChild = new class node(get_app());

@@ -227,16 +227,16 @@ namespace user
 
          ::xml::node node = doc.root().child_at(i);
 
-         if(pnode->get_name().CompareNoCase("item") == 0)
+         if(node.get_name().CompareNoCase("item") == 0)
          {
 
-            string strCode    = pnode->attr("code");
+            string strCode    = node.attr("code");
 
-            string strScan    = pnode->attr("scan");
+            string strScan    = node.attr("scan");
 
-            string strExt    = pnode->attr("ext");
+            string strExt    = node.attr("ext");
 
-            string strValue   = pnode->attr("value");
+            string strValue   = node.attr("value");
 
             ekey     = System.enum_from_name < ::user::e_key >(typeinfoKey,strValue);
 
@@ -285,10 +285,14 @@ namespace user
       return *m_playout;
    }
 
+   
    void keyboard::process_escape(::xml::node node, property_set & set)
    {
-      m_playout->process_escape(pnode, set);
+      
+      m_playout->process_escape(node, set);
+
    }
+
 
    bool keyboard::load_layout(const char * pszPath, ::action::context actioncontext)
    {

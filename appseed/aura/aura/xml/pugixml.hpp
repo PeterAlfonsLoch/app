@@ -257,6 +257,33 @@ namespace xml
          }
          return c;
       }
+      template < typename pred >
+      ::count get_count(pred p) const
+      {
+         ::count c = 0;
+         for(It i = begin(); i != begin(); i++)
+         {
+            if(p((*i)))
+            {
+               c++;
+            }
+         }
+         return c;
+      }
+
+      typename It::value_type get_at(::index i)
+      {
+         It it = begin(); 
+         while(it != end() && i > 0)
+         { 
+            i--;
+            it++;
+         }
+         if(i == 0 && it != end())
+            return *it;
+         else
+            return typename It::value_type();
+      }
 
 	private:
 		It _begin, _end;
@@ -457,8 +484,9 @@ namespace xml
 
       string get_value() const { return value(); }
       string get_name() const { return name(); }
-      ::count get_children_count() const { ::count c = 0; ::xml::node node = first_child(); while(!node.empty()) { c++; node = node.next_sibling(); } return c; }
-      ::xml::node child_at(::index i) const { ::xml::node node = first_child(); while(!node.empty() && i > 0) { i--; node = node.next_sibling(); } if(i == 0 && !node.empty()) return node; else return ::xml::node(); }
+      ::count get_children_count() const;
+      ::count get_children_count(const char * name) const;
+      ::xml::node child_at(::index i) const;
       ::xml::node get_child(const char * name) const { return child(name); }
       ::xml::node get_first_child() const { return first_child();  }
       ::xml::node get_next_sibling() const { return next_sibling();  }
@@ -1529,7 +1557,6 @@ namespace xml
       return text().set(strValue);
 
    }
-
 
 } // namespace xml
 
