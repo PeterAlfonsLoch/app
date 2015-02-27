@@ -25,19 +25,19 @@ namespace colorertake5
       string str;
       is >> str;
 
-      ::xml::document hbase;
-      hbase.load(str);
+      sp(::xml::document) hbase = new xml::document(m_pauraapp);
+      hbase->load(str);
 
-      if (hbase.get_name() != "hrd")
+      if (hbase->get_name() != "hrd")
       {
          throw exception(get_app(), string("Error loading HRD file"));
       };
 
-      for(::xml::node curel = hbase.first_child(); curel; curel = curel.get_next_sibling())
+      for(sp(::xml::node)curel = hbase->first_child(); curel; curel = curel->get_next_sibling())
       {
-         if (curel.get_type() == xml::node_element && curel.get_name() == "assign")
+         if (curel->get_type() == xml::node_element && curel->get_name() == "assign")
          {
-            string name = curel.attr("name");
+            string name = (curel)->attr("name");
             if(name.is_empty())
              continue;
 
@@ -53,13 +53,13 @@ namespace colorertake5
             string sback;
             string eback;
             string sval;
-            sval = curel.attr("stext");
+            sval = (curel)->attr("stext");
             if (sval.has_char()) stext = (sval);
-            sval = curel.attr("etext");
+            sval = (curel)->attr("etext");
             if (sval.has_char()) etext = (sval);
-            sval = curel.attr("sback");
+            sval = (curel)->attr("sback");
             if (sval.has_char()) sback = (sval);
-            sval = curel.attr("eback");
+            sval = (curel)->attr("eback");
             if (sval.has_char()) eback = (sval);
 
             RegionDefine *rdef = new TextRegion(stext, etext, sback, eback);

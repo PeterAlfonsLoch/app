@@ -156,9 +156,9 @@ namespace userex // ca8 + cube
             }
             else
             {
-               xml::document doc;
-               doc.root().set_name("proxy");
-               doc.root().add_attr("server", strServer);
+               xml::document doc(get_app());
+               doc.get_root()->set_name("proxy");
+               doc.get_root()->add_attr("server", strServer);
                pui = m_pview->get_child_by_name("port");
                ptext =  (pui.m_p);
                string strPort;

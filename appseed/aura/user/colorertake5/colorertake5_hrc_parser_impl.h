@@ -62,14 +62,14 @@ namespace colorertake5
      void loadFileType(file_type *filetype);
 
      void parseHRC(const char * psz);
-     void addPrototype(::xml::node elem);
-     void addType(::xml::node elem);
+     void addPrototype(sp(::xml::node)elem);
+     void addType(sp(::xml::node)elem);
 
-     void addScheme(::xml::node elem);
-     void addSchemeNodes(scheme_impl *scheme, ::xml::node elem);
+     void addScheme(sp(::xml::node)elem);
+     void addSchemeNodes(scheme_impl *scheme, sp(::xml::node)elem);
 
-     void loadBlockRegions(SchemeNode *node, ::xml::node el);
-     void loadRegions(SchemeNode *node, ::xml::node el, bool st);
+     void loadBlockRegions(SchemeNode *node, sp(::xml::node)el);
+     void loadRegions(SchemeNode *node, sp(::xml::node)el, bool st);
 
      string qualifyOwnName(const char *name);
      bool checkNameExist(const char *name, file_type_impl *parseType, QualifyNameType qntype, bool logErrors);
@@ -77,7 +77,7 @@ namespace colorertake5
 
      void updateLinks();
      string useEntities(const char * name);
-     class region *getNCRegion(::xml::node el, const char * tag);
+     class region *getNCRegion(sp(::xml::node)el, const char * tag);
      class region *getNCRegion(const char *name, bool logErrors);
 
 

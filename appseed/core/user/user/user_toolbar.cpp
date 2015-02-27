@@ -1575,14 +1575,14 @@ throw todo(get_app());
 
       m_itema.remove_all();
 
-      xml::document doc;
+      xml::document doc(get_app());
 
       if(!doc.load(lpszXml))
          return FALSE;
 
       xml::node::array childs(get_app());
 
-      childs = doc.root().children();
+      childs = doc.get_root()->children();
 
       //   ::aura::application * papp = (get_app());
 
@@ -1592,26 +1592,26 @@ throw todo(get_app());
 
       for(int32_t i = 0; i < childs.get_size(); i++)
       {
-         ::xml::node child = childs[i];
-         if(child.get_name() == "button")
+         sp(::xml::node) pchild = childs[i];
+         if(pchild->get_name() == "button")
          {
             item = canew(::user::toolbar_item);
-            ::xml::attribute pattr = child.find_attr("id");
+            xml::attr * pattr = pchild->find_attr("id");
             item->m_id = pattr->get_string();
-            item->m_str = child.get_value();
-            if(child.attr("image").get_string().has_char())
+            item->m_str = pchild->get_value();
+            if(pchild->attr("image").get_string().has_char())
             {
                item->m_spdib.alloc(allocer());
-               item->m_spdib.load_from_file(child.attr("image"));
+               item->m_spdib.load_from_file(pchild->attr("image"));
             }
-            if(child.attr("enable_if_has_command_handler").get_string().has_char())
+            if(pchild->attr("enable_if_has_command_handler").get_string().has_char())
             {
-               item->m_bEnableIfHasCommandHandler = child.attr("enable_if_has_command_handler").get_string().CompareNoCase("true") == 0;
+               item->m_bEnableIfHasCommandHandler = pchild->attr("enable_if_has_command_handler").get_string().CompareNoCase("true") == 0;
             }
             item->m_fsStyle &= ~TBBS_SEPARATOR;
             m_itema.add(item);
          }
-         else if(child.get_name() == "separator")
+         else if(pchild->get_name() == "separator")
          {
             item = canew(::user::toolbar_item);
             item->m_id = "separator";

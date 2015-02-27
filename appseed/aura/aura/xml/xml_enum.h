@@ -5,17 +5,17 @@ namespace xml
 {
 
    
-   //enum e_node
-   //{
-   //   
-   //   node_element,     // general node '<element>...</element>' or <element/>
-   //   node_pi,          // <?xml version="1.0" ?>
-   //   node_comment,     // <!-- comment -->
-   //   node_cdata,       // <![CDATA[ cdata ]]>
-   //   node_document,    // internal virtual root
-   //   node_text        // special node_element - final node element
-   //      
-   //};
+   enum e_node
+   {
+      
+      node_element,     // general node '<element>...</element>' or <element/>
+      node_pi,          // <?xml version="1.0" ?>
+      node_comment,     // <!-- comment -->
+      node_cdata,       // <![CDATA[ cdata ]]>
+      node_document,    // internal virtual root
+      node_text        // special node_element - final node element
+         
+   };
 
 
    enum e_parse_error

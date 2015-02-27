@@ -756,47 +756,47 @@ namespace install
 
       {
 
-         ::xml::document doc;
+         ::xml::document node;
 
          // remove install tag : should be turned into a function dependant of spalib at maximum
 
-         if(!doc.load(file_as_string_dup(dir::appdata("install.xml"))))
+         if(!node.load(file_as_string_dup(dir::appdata("install.xml"))))
             goto run_install;
 
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
-         ::xml::node nodeVersion = doc.get_child("basis");
+         ::xml::node * lpnodeVersion = node.get_child("basis");
 
 #else
 
-         ::xml::node nodeVersion = doc.get_child("stage");
+         ::xml::node * lpnodeVersion = node.get_child("stage");
 
 #endif
 
-         if(nodeVersion.is_empty())
+         if(lpnodeVersion == NULL)
             goto run_install;
 
          string strBuild = System.install().get_latest_build_number(NULL);
 
-         ::xml::node nodeInstalled = nodeVersion.GetChildByAttr("installed","build",strBuild);
+         ::xml::node * lpnodeInstalled = node.GetChildByAttr("installed", "build", strBuild);
 
-         if(nodeInstalled.is_empty())
+         if(lpnodeInstalled == NULL)
             goto run_install;
 
-         ::xml::node nodeType = nodeInstalled.get_child(pszType);
+         ::xml::node * lpnodeType = lpnodeInstalled->get_child(pszType);
 
-         if(nodeType == NULL)
+         if(lpnodeType == NULL)
             goto run_install;
 
-         ::xml::node node = nodeType.GetChildByAttr(pszType, "id", pszInstall);
+         ::xml::node * pnode = lpnodeType->GetChildByAttr(pszType, "id", pszInstall);
 
-         if(node.empty())
+         if(pnode == NULL)
             goto run_install;
 
-         nodeType.remove_child(node);
+         lpnodeType->remove_child(pnode);
 
-         file_put_contents_dup(dir::appdata("install.xml"), node.get_xml());
+         file_put_contents_dup(dir::appdata("install.xml"), node.get_xml(NULL));
 
       }
 

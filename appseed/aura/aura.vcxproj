@@ -1747,8 +1747,6 @@
     <ClInclude Include="aura\process\process_departament.h" />
     <ClInclude Include="aura\process\process_pipe.h" />
     <ClInclude Include="aura\process\process_process.h" />
-    <ClInclude Include="aura\xml\pugiconfig.hpp" />
-    <ClInclude Include="aura\xml\pugixml.hpp" />
     <ClInclude Include="aura\xml\xml.h" />
     <ClInclude Include="aura\xml\xml_attr.h" />
     <ClInclude Include="aura\xml\xml_base_array.h" />
@@ -3770,9 +3768,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="aura\xml\pugixml.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="aura\xml\_xml.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
@@ -9378,9 +9373,6 @@
     <ProjectReference Include="..\aqua\aqua.vcxproj">
       <Project>{51778453-c0aa-419d-a87f-4338c9dde3fa}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="aura\xml\pugixmlrefactor.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

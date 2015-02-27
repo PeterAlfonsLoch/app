@@ -170,13 +170,13 @@ namespace colorertak5
      void consumeXmlDecl();
      void consumeDTD();
      bool isElement();
-     void consumeElement(::xml::node root);
-     void consumeContent(::xml::node root);
+     void consumeElement(sp(::xml::node)root);
+     void consumeContent(sp(::xml::node)root);
 
-     void appendToLastTextNode(::xml::node root, string *stext);
+     void appendToLastTextNode(sp(::xml::node)root, string *stext);
      bool isCDataSection();
-     void consumeCDataSection(::xml::node root);
-     void consumeText(::xml::node root);
+     void consumeCDataSection(sp(::xml::node)root);
+     void consumeText(sp(::xml::node)root);
      bool isCharRef();
      wchar_t consumeCharRef();
      bool isEntityRef();
@@ -188,10 +188,10 @@ namespace colorertak5
      string *consumeNCName();
      string *consumeName();
      bool isComment();
-     void consumeComment(::xml::node root);
+     void consumeComment(sp(::xml::node)root);
      bool isPI();
-     void consumePI(::xml::node root);
-     void consumeMisc(::xml::node root);
+     void consumePI(sp(::xml::node)root);
+     void consumeMisc(sp(::xml::node)root);
      void consume(string &s);
      void consume(char *s, int32_t len = -1);
      void incDocumentLine();
@@ -233,7 +233,7 @@ namespace colorertak5
        return src[ppos++];
      }
 
-     ::xml::node next;
+     sp(::xml::node)next;
    };
 
    /**
@@ -254,12 +254,12 @@ namespace colorertak5
        return firstChild != NULL;
      }
 
-     ::xml::node getFirstChild()
+     sp(::xml::node)getFirstChild()
      {
        return firstChild;
      }
 
-     ::xml::node getLastChild()
+     sp(::xml::node)getLastChild()
      {
        if (firstChild == NULL){
          return NULL;
@@ -268,18 +268,18 @@ namespace colorertak5
        }
      }
 
-     ::xml::node getParent()
+     sp(::xml::node)getParent()
      {
        return parent;
      }
 
-     ::xml::node getNextSibling()
+     sp(::xml::node)getNextSibling()
      {
        if (parent == NULL) return NULL;
        return next != parent->firstChild ? next : NULL;
      }
 
-     ::xml::node getPrevSibling()
+     sp(::xml::node)getPrevSibling()
      {
        if (parent == NULL) return NULL;
        return this != parent->firstChild ? prev : NULL;
@@ -305,9 +305,9 @@ namespace colorertak5
        return ownerDocument;
      }
 
-     virtual ::xml::node appendChild(::xml::node newChild);
+     virtual sp(::xml::node)appendChild(sp(::xml::node)newChild);
 
-     //virtual ::xml::node cloneNode(bool deep) = 0;
+     //virtual sp(::xml::node)cloneNode(bool deep) = 0;
 
      virtual ~xml::node()
      {
@@ -315,8 +315,8 @@ namespace colorertak5
      };
    protected:
      int32_t type;
-     ::xml::node next, *prev;
-     ::xml::node parent, *firstChild;
+     sp(::xml::node)next, *prev;
+     sp(::xml::node)parent, *firstChild;
      const string *name;
      Document *ownerDocument;
      xml::node(int32_t _type, const string *_name): type(_type), name(_name),
@@ -331,12 +331,12 @@ namespace colorertak5
    class Document : public xml::node
    {
    public:
-     ::xml::node getDocumentElement()
+     sp(::xml::node)getDocumentElement()
      {
        return documentElement;
      }
 
-     ::xml::node appendChild(::xml::node newChild){
+     sp(::xml::node)appendChild(sp(::xml::node)newChild){
        if (newChild->getNodeType() == xml::node::ELEMENT_NODE)
        {
          if (documentElement != NULL)
@@ -349,14 +349,14 @@ namespace colorertak5
        return newChild;
      }
 
-     ::xml::node createElement(const string *tagName);
+     sp(::xml::node)createElement(const string *tagName);
      Text *createTextNode(const string *data);
      Comment *createComment(const string *data);
      ProcessingInstruction *createProcessingInstruction(const string *target, const string *data);
 
    protected:
      int32_t line, pos;
-     ::xml::node documentElement;
+     sp(::xml::node)documentElement;
      Document() : xml::node(xml::node::DOCUMENT_NODE, new string("#document")), documentElement(NULL) {};
      friend class DocumentBuilder;
    };

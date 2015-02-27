@@ -51,12 +51,12 @@ namespace usernet // ca8 + cube
          return;
       }
 
-      xml::document doc;
+      xml::document doc(get_app());
 
       if(doc.load(Session.file_as_string(System.dir().appdata("proxy.xml"))))
       {
-         string strProxy = doc.root().attr("server");
-         int32_t iProxyPort = doc.root().attr("port");
+         string strProxy = doc.get_root()->attr("server");
+         int32_t iProxyPort = doc.get_root()->attr("port");
          sp(::user::interaction) pui = m_pview->get_child_by_name("server");
          sp(::user::elemental) ptext =  (pui.m_p);
          ptext->_001SetText(strProxy, ::action::source::add(::action::source_data, ::action::source_load));
@@ -85,14 +85,14 @@ namespace usernet // ca8 + cube
             }
             else
             {
-               xml::document doc;
-               doc.root().set_name("proxy");
-               doc.root().add_attr("server", strServer);
+               xml::document doc(get_app());
+               doc.get_root()->set_name("proxy");
+               doc.get_root()->add_attr("server", strServer);
                pui = m_pview->get_child_by_name("port");
                ptext =  (pui.m_p);
                string strPort;
                ptext->_001GetText(strPort);
-               doc.root().add_attr("port", strPort);
+               doc.get_root()->add_attr("port", strPort);
                Application.file().put_contents(System.dir().appdata("proxy.xml"), doc.get_xml());
             }
          }

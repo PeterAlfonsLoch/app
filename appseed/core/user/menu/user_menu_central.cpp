@@ -71,7 +71,7 @@ BaseMenuCentral * BaseMenuCentral::GetMenuCentral(::aura::application * papp)
 
 */
 
-bool BaseMenuCentral::MenuV033AddImageMap(::xml::node node)
+bool BaseMenuCentral::MenuV033AddImageMap(sp(::xml::node) lpnode)
 {
 
 /*   if(!MenuV033GetImageList()->create(
@@ -83,9 +83,9 @@ bool BaseMenuCentral::MenuV033AddImageMap(::xml::node node)
    }*/
    int32_t iIndex;
    id id;
-   for(int32_t i = 0; i < node.children().get_count(); i++)
+   for(int32_t i = 0; i < lpnode->children().get_count(); i++)
    {
-      ::xml::node child = node.child_at(i);
+      sp(::xml::node) lpchild = lpnode->child_at(i);
       string strId;
       lpchild->get_attr("id", strId);
       string strImage;

@@ -49,7 +49,7 @@ namespace xml
       for(int32_t i = 0; i < this->get_size(); i++)
       {
          node * pnode = xmlof.export_node(xmlof.get_node_name(m_iNodeNameIndex), this->element_at(i));
-         node.add_attr("array_index", i);
+         pnode->add_attr("array_index", i);
       }
    }
 

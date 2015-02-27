@@ -363,27 +363,27 @@ namespace install
 
                nodeInstall.load(file_as_string_dup(dir::appdata("spa_install.xml")));
 
-               ::xml::node nodeVersion = nodeInstall.get_child(pszVersion);
+               ::xml::node * lpnodeVersion = nodeInstall.get_child(pszVersion);
 
-               if (nodeVersion == NULL)
+               if (lpnodeVersion == NULL)
                return false;
 
-               ::xml::node nodeInstalled = nodeVersion.GetChildByAttr("installed", "build", pszBuild);
+               ::xml::node * lpnodeInstalled = lpnodeVersion->GetChildByAttr("installed", "build", pszBuild);
 
-               if (nodeInstalled == NULL)
+               if (lpnodeInstalled == NULL)
                return false;
 
-               ::xml::node nodeType = nodeInstalled.get_child(pszType);
+               ::xml::node * lpnodeType = lpnodeInstalled->get_child(pszType);
 
-               if (nodeType.is_null())
+               if (lpnodeType == NULL)
                return false;
 
-               ::xml::node nodeId = NULL;
+               ::xml::node * lpnodeId = NULL;
 
-               for (int32_t ui = 0; ui < nodeType.get_children_count(); ui++)
+               for (int32_t ui = 0; ui < lpnodeType->get_children_count(); ui++)
                {
 
-               lpnodeId = nodeType.child_at(ui);
+               lpnodeId = lpnodeType->child_at(ui);
 
                string strId = lpnodeId->attr("id");
 
@@ -400,17 +400,17 @@ namespace install
 
                found_id:
 
-               ::xml::node nodeLocalization = NULL;
+               ::xml::node * lpnodeLocalization = NULL;
 
                for (int32_t ui = 0; ui < lpnodeId->get_children_count(); ui++)
                {
 
-               nodeLocalization = lpnodeId->child_at(ui);
+               lpnodeLocalization = lpnodeId->child_at(ui);
 
-               string strLocale = nodeLocalization.attr("locale");
-               string strSchema = nodeLocalization.attr("schema");
+               string strLocale = lpnodeLocalization->attr("locale");
+               string strSchema = lpnodeLocalization->attr("schema");
 
-               if (!strcmp(nodeLocalization.get_name(), "localization") && strLocale == pszLocale && strSchema == pszSchema)
+               if (!strcmp(lpnodeLocalization->get_name(), "localization") && strLocale == pszLocale && strSchema == pszSchema)
                {
 
                return true;
@@ -833,11 +833,11 @@ namespace install
 
       strContents = Application.file().as_string(strPath);
 
-      ::xml::document doc;
+      ::xml::document doc(get_app());
 
       doc.load(strContents);
 
-      doc.root().set_name("spa");
+      doc.get_root()->set_name("spa");
 
       stringa straName;
       stringa straValue;
@@ -848,16 +848,16 @@ namespace install
       straName.add("id");
       straValue.add(pszId);
 
-      ::xml::node node = doc.root().GetChildByAllAttr("start", straName, straValue);
+      sp(::xml::node) lpnode = doc.get_root()->GetChildByAllAttr("start", straName, straValue);
 
-      if (node.is_null())
+      if (lpnode == NULL)
       {
 
-         node = doc.root().add_child("start");
+         lpnode = doc.get_root()->add_child("start");
 
-         node.add_attr("type", pszType);
+         lpnode->add_attr("type", pszType);
 
-         node.add_attr("id", pszId);
+         lpnode->add_attr("id", pszId);
 
          Application.file().put_contents(strPath, doc.get_xml());
 
@@ -876,11 +876,11 @@ namespace install
 
       strContents = Application.file().as_string(strPath);
 
-      ::xml::document doc;
+      ::xml::document doc(get_app());
 
       doc.load(strContents);
 
-      doc.root().set_name("spa");
+      doc.get_root()->set_name("spa");
 
       stringa straName;
       stringa straValue;
@@ -891,12 +891,12 @@ namespace install
       straName.add("id");
       straValue.add(pszId);
 
-      ::xml::node node = doc.root().GetChildByAllAttr("start", straName, straValue);
+      sp(::xml::node) lpnode = doc.get_root()->GetChildByAllAttr("start", straName, straValue);
 
-      if (node.is_set())
+      if (lpnode != NULL)
       {
 
-         doc.root().remove_child(node);
+         doc.get_root()->remove_child(lpnode);
 
          Application.file().put_contents(strPath, doc.get_xml());
 
@@ -919,45 +919,45 @@ namespace install
 
       System.dir().mk(System.dir().name(strPath), get_app());
 
-      ::xml::document doc;
+      ::xml::document doc(get_app());
 
       doc.load(Application.file().as_string(strPath));
 
-      if (doc.root().get_name().is_empty())
+      if (doc.get_root()->get_name().is_empty())
       {
 
-         doc.root().set_name("install");
+         doc.get_root()->set_name("install");
 
       }
 
-      ::xml::node  nodeVersion;
+      sp(::xml::node) lpnodeVersion;
 
       if(m_strVersion == "basis")
       {
 
-         nodeVersion = doc.root().get_child("basis");
+         lpnodeVersion = doc.get_root()->get_child("basis");
 
       }
       else
       {
 
-         nodeVersion = doc.root().get_child("stage");
+         lpnodeVersion = doc.get_root()->get_child("stage");
 
       }
 
-      if (nodeVersion == NULL)
+      if (lpnodeVersion == NULL)
       {
 
          if(m_strVersion == "basis")
          {
 
-            nodeVersion = doc.root().add_child("basis");
+            lpnodeVersion = doc.get_root()->add_child("basis");
 
          }
          else
          {
 
-            nodeVersion = doc.root().add_child("stage");
+            lpnodeVersion = doc.get_root()->add_child("stage");
 
          }
 
@@ -980,34 +980,34 @@ namespace install
       }
 
 
-      ::xml::node nodeInstalled = nodeVersion.GetChildByAttr("installed","build",strBuildNumber);
+      sp(::xml::node) lpnodeInstalled = lpnodeVersion->GetChildByAttr("installed","build",strBuildNumber);
 
-      if (nodeInstalled == NULL)
+      if (lpnodeInstalled == NULL)
       {
 
-         nodeInstalled = nodeVersion.add_child("installed");
+         lpnodeInstalled = lpnodeVersion->add_child("installed");
 
-         nodeInstalled.add_attr("build",strBuildNumber);
+         lpnodeInstalled->add_attr("build",strBuildNumber);
 
       }
 
-      ::xml::node nodeType = nodeInstalled.get_child(pszType);
+      sp(::xml::node) lpnodeType = lpnodeInstalled->get_child(pszType);
 
-      if (nodeType.is_null())
+      if (lpnodeType == NULL)
       {
 
-         nodeType = nodeInstalled.add_child(pszType);
+         lpnodeType = lpnodeInstalled->add_child(pszType);
 
       }
 
-      ::xml::node node = nodeType.GetChildByAttr(pszType, "id", pszId);
+      sp(::xml::node) lpnode = lpnodeType->GetChildByAttr(pszType, "id", pszId);
 
-      if (node.is_null())
+      if (lpnode == NULL)
       {
 
-         node = nodeType.add_child(pszType);
+         lpnode = lpnodeType->add_child(pszType);
 
-         node.add_attr("id", pszId);
+         lpnode->add_attr("id", pszId);
 
       }
 
@@ -1021,25 +1021,24 @@ namespace install
       straName.add("schema");
       straValue.add(pszSchema);
 
-      ::xml::node nodeLocalization = node.GetChildByAllAttr("localization", straName, straValue);
+      sp(::xml::node) lpnodeLocalization = lpnode->GetChildByAllAttr("localization", straName, straValue);
 
-      if (nodeLocalization.is_null())
+      if (lpnodeLocalization == NULL)
       {
 
-         nodeLocalization = node.add_child("localization");
+         lpnodeLocalization = lpnode->add_child("localization");
 
-         nodeLocalization.add_attr("locale", pszLocale);
+         lpnodeLocalization->add_attr("locale", pszLocale);
 
-         nodeLocalization.add_attr("schema", pszSchema);
+         lpnodeLocalization->add_attr("schema", pszSchema);
 
       }
 
-//      ::xml::disp_option opt = *System.xml().m_poptionDefault;
+      ::xml::disp_option opt = *System.xml().m_poptionDefault;
 
-  //    opt.newline = true;
+      opt.newline = true;
 
-      //Application.file().put_contents(strPath, doc.get_xml(&opt));
-      Application.file().put_contents(strPath,doc.get_xml());
+      Application.file().put_contents(strPath, doc.get_xml(&opt));
 
       Application.file().put_contents(strBuildPath,strBuildNumber);
 

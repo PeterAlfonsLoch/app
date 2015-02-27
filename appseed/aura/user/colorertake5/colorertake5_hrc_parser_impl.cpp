@@ -157,14 +157,14 @@ namespace colorertake5
 
    void HRCParserImpl::parseHRC(const char * psz)
    {
-      xml::document doc;
-//      doc.m_pparseinfo->m_chEscapeValue = '\0';
+      xml::document doc(get_app());
+      doc.m_pparseinfo->m_chEscapeValue = '\0';
       doc.load(psz);
-      if(doc.root().empty())
+      if(doc.get_root() == NULL)
       {
          throw HRCParserException(get_app(), string("main '<hrc>' block not found"));
       }
-      xml::node types = doc.root();
+      xml::node & types = *doc.get_root();
 
       if(types.get_name() != "hrc")
       {
@@ -181,19 +181,16 @@ namespace colorertake5
       };
       for (strsize i = 0; i < types.get_children_count(); i++)
       {
-         ::xml::node elem = types.child_at(i);
-         if (elem.get_name() == "prototype")
-         {
+         sp(::xml::node)elem = types.child_at(i);
+         if (elem->get_name() == "prototype"){
             addPrototype(elem);
             continue;
          };
-         if (elem.get_name() == "package")
-         {
+         if (elem->get_name() == "package"){
             addPrototype(elem);
             continue;
          };
-         if (elem.get_name() == "type")
-         {
+         if (elem->get_name() == "type"){
             addType(elem);
             continue;
          };
@@ -206,12 +203,12 @@ namespace colorertake5
    }
 
 
-   void HRCParserImpl::addPrototype(::xml::node elem)
+   void HRCParserImpl::addPrototype(sp(::xml::node)elem)
    {
 
-      string typeName         = elem.attr("name");
-      string typeGroup        = elem.attr("group");
-      string typeDescription  = elem.attr("description");
+      string typeName         = elem->attr("name");
+      string typeGroup        = elem->attr("group");
+      string typeDescription  = elem->attr("description");
 
       if (typeName.is_empty())
       {
@@ -248,17 +245,17 @@ namespace colorertake5
 
       type->group          = typeGroup;
 
-      if (elem.get_name() == "package")
+      if (elem->get_name() == "package")
       {
 
          type->isPackage = true;
       }
 
-      for(::xml::node_iterator i = elem.begin(); i != elem.end(); i++)
+      for(strsize i = 0; i < elem->get_children_count(); i++)
       {
-         ::xml::node content = *i;
-         if (content.get_name() == "location"){
-            string locationLink = content.attr("link");
+         sp(::xml::node)content = elem->child_at(i);
+         if (content->get_name() == "location"){
+            string locationLink = (content)->attr("link");
             if (locationLink.is_empty())
             {
                if (errorHandler != NULL){
@@ -272,15 +269,15 @@ namespace colorertake5
             type->m_strSourceLocation);*/
 
          };
-         if (content.get_name() == "filename" || content.get_name() == "firstline")
+         if (content->get_name() == "filename" || content->get_name() == "firstline")
          {
-            if (content.get_children_count() > 0)
+            if (content->get_children_count() > 0)
             {
                if (errorHandler != NULL)
-                  errorHandler->warning(string("Bad '")+content.get_name()+"' element in prototype '"+typeName+"'");
+                  errorHandler->warning(string("Bad '")+content->get_name()+"' element in prototype '"+typeName+"'");
                continue;
             }
-            string match = content.get_value();
+            string match = content->get_value();
             cregexp *matchRE = new cregexp(match);
             matchRE->setPositionMoves(true);
             if (!matchRE->isOk())
@@ -292,25 +289,25 @@ namespace colorertake5
                delete matchRE;
                continue;
             };
-            int32_t ctype = content.get_name() == "filename" ? 0 : 1;
-            double prior = content.get_name() == "filename" ? 2 : 1;
-            if(!content.attribute("weight").empty())
+            int32_t ctype = content->get_name() == "filename" ? 0 : 1;
+            double prior = content->get_name() == "filename" ? 2 : 1;
+            if(content->find_attr("weight") != NULL)
             {
-               prior = atof(content.attr("weight"));
+               prior = atof((content)->attr("weight"));
             }
             FileTypeChooser *ftc = new FileTypeChooser(ctype, prior, matchRE);
             type->chooserVector.add(ftc);
          }
-         if (content.get_name() == "parameters")
+         if (content->get_name() == "parameters")
          {
-            for(strsize i = 0; i < content.get_children_count(); i++)
+            for(strsize i = 0; i < content->get_children_count(); i++)
             {
-               ::xml::node param = content.child_at(i);
-               if (param.get_name() == "param")
+               sp(::xml::node)param = content->child_at(i);
+               if (param->get_name() == "param")
                {
-                  string name    = param.attr("name");
-                  string value   = param.attr("value");
-                  string descr   = param.attr("description");
+                  string name    = (param)->attr("name");
+                  string value   = (param)->attr("value");
+                  string descr   = (param)->attr("description");
                   if(name.is_empty() || value.is_empty())
                   {
                      if (errorHandler != NULL)
@@ -338,9 +335,9 @@ namespace colorertake5
       }
    }
 
-   void HRCParserImpl::addType(::xml::node elem)
+   void HRCParserImpl::addType(sp(::xml::node)elem)
    {
-      string typeName = elem.attr("name");
+      string typeName = elem->attr("name");
 
       if (typeName.is_empty()){
          if (errorHandler != NULL){
@@ -365,14 +362,14 @@ namespace colorertake5
       file_type_impl *o_parseType = parseType;
       parseType = type;
 
-      for(::xml::node_iterator i = elem.begin(); i != elem.end(); i++){
-         ::xml::node xmlpar = *i;
-         if(xmlpar.get_name() == "region")
+      for(strsize i = 0; i < elem->get_children_count(); i++){
+         sp(::xml::node)xmlpar = elem->child_at(i);
+         if(xmlpar->get_name() == "region")
          {
 
-            string regionName    = xmlpar.attr("name");
-            string regionParent  = xmlpar.attr("parent");
-            string regionDescr   = xmlpar.attr("description");
+            string regionName    = (xmlpar)->attr("name");
+            string regionParent  = (xmlpar)->attr("parent");
+            string regionDescr   = (xmlpar)->attr("description");
             if (regionName.is_empty())
             {
                if (errorHandler != NULL)
@@ -403,9 +400,9 @@ namespace colorertake5
             regionNamesHash.set_at(qname1, region);
 
          };
-         if (xmlpar.get_name() == "entity"){
-            string entityName  = xmlpar.attr("name");
-            string entityValue = xmlpar.attr("value");
+         if (xmlpar->get_name() == "entity"){
+            string entityName  = (xmlpar)->attr("name");
+            string entityValue = (xmlpar)->attr("value");
             if (entityName.is_empty() || entityValue.is_empty())
             {
                if (errorHandler != NULL)
@@ -421,8 +418,8 @@ namespace colorertake5
                //delete qname1;
             };
          };
-         if (xmlpar.get_name() == "import"){
-            string typeParam = xmlpar.attr("type");
+         if (xmlpar->get_name() == "import"){
+            string typeParam = (xmlpar)->attr("type");
             if (typeParam.is_empty() || fileTypeHash[typeParam] == NULL){
                if (errorHandler != NULL){
                   errorHandler->error(string("Import with bad '")+typeParam+"' attribute in type '"+typeName+"'");
@@ -431,7 +428,7 @@ namespace colorertake5
             };
             type->importVector.add((typeParam));
          };
-         if (xmlpar.get_name() == "scheme"){
+         if (xmlpar->get_name() == "scheme"){
             addScheme(xmlpar);
             continue;
          };
@@ -452,9 +449,9 @@ namespace colorertake5
       parseType = o_parseType;
    }
 
-   void HRCParserImpl::addScheme(::xml::node elem)
+   void HRCParserImpl::addScheme(sp(::xml::node)elem)
    {
-      string schemeName = elem.attr("name");
+      string schemeName = elem->attr("name");
       string qSchemeName = qualifyOwnName(schemeName);
       if (qSchemeName.is_empty()){
          if (errorHandler != NULL) errorHandler->error(string("bad scheme name in type '")+parseType->getName()+"'");
@@ -471,29 +468,29 @@ namespace colorertake5
 
       schemeHash.set_at(scheme->schemeName, scheme);
 
-      string condIf = elem.attr("if");
-      string condUnless = elem.attr("unless");
+      string condIf = elem->attr("if");
+      string condUnless = elem->attr("unless");
       if ((condIf.has_char() && parseType->getParamValue(condIf) != "true") ||
          (condUnless.has_char() && parseType->getParamValue(condUnless) != "true")){
             //disabledSchemes.set_at(scheme->schemeName, 1);
             return;
       }
 
-      addSchemeNodes(scheme, elem.child_at(0));
+      addSchemeNodes(scheme, elem->child_at(0));
    }
 
-   void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, ::xml::node elem)
+   void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, sp(::xml::node)elem)
    {
       smart_pointer < SchemeNode > next;
-      for(::xml::node tmpel = elem; tmpel; tmpel = tmpel.get_next_sibling()){
-         if (tmpel.get_name().is_empty()) continue;
+      for(sp(::xml::node)tmpel = elem; tmpel; tmpel = tmpel->get_next_sibling()){
+         if (tmpel->get_name().is_empty()) continue;
 
          if (next == NULL){
             next = new SchemeNode();
          }
 
-         if (tmpel.get_name() == "inherit"){
-            string nqSchemeName = tmpel.attr("scheme");
+         if (tmpel->get_name() == "inherit"){
+            string nqSchemeName = tmpel->attr("scheme");
             if (nqSchemeName.is_empty() || nqSchemeName.get_length() == 0){
                if (errorHandler != NULL){
                   errorHandler->error(string("is_empty scheme name in inheritance operator in scheme '")+scheme->schemeName+"'");
@@ -525,13 +522,13 @@ namespace colorertake5
                next->schemeName = schemeName;
             };
 
-            if (tmpel.get_first_child() != NULL){
-               for(::xml::node vel = tmpel.get_first_child(); vel; vel = vel.get_next_sibling()){
-                  if (vel.get_name() != "virtual"){
+            if (tmpel->first_child() != NULL){
+               for(sp(::xml::node)vel = tmpel->first_child(); vel; vel = vel->get_next_sibling()){
+                  if (vel->get_name() != "virtual"){
                      continue;
                   }
-                  string schemeName = vel.attr("scheme");
-                  string substName = vel.attr("subst-scheme");
+                  string schemeName = (vel)->attr("scheme");
+                  string substName = (vel)->attr("subst-scheme");
                   if (schemeName.is_empty() || substName.is_empty())
                   {
                      if (errorHandler != NULL)
@@ -547,11 +544,11 @@ namespace colorertake5
             continue;
          };
 
-         if (tmpel.get_name() == "regexp"){
-            string matchParam = tmpel.attr("match");
-            if (matchParam.is_empty() && tmpel.get_first_child() && tmpel.get_first_child().get_type() == xml::node_element)
+         if (tmpel->get_name() == "regexp"){
+            string matchParam = tmpel->attr("match");
+            if (matchParam.is_empty() && tmpel->first_child() && tmpel->first_child()->get_type() == xml::node_text)
             {
-               matchParam = tmpel.get_first_child().get_value();
+               matchParam = tmpel->first_child()->get_value();
             }
             if (matchParam.is_empty())
             {
@@ -563,7 +560,7 @@ namespace colorertake5
                continue;
             };
             string entMatchParam = useEntities(matchParam);
-            next->lowPriority = tmpel.attr("priority") == "low";
+            next->lowPriority = tmpel->attr("priority") == "low";
             next->type = SNT_RE;
             next->start = new cregexp(entMatchParam);
             next->start->setPositionMoves(false);
@@ -582,29 +579,29 @@ namespace colorertake5
          };
 
 
-         if (tmpel.get_name() == "block"){
+         if (tmpel->get_name() == "block"){
 
-            string sParam = tmpel.attr("start");
-            string eParam = tmpel.attr("end");
+            string sParam = tmpel->attr("start");
+            string eParam = tmpel->attr("end");
 
-            ::xml::node eStart, eEnd;
+            sp(::xml::node)eStart = NULL, eEnd = NULL;
 
-            for(::xml::node blkn = tmpel.get_first_child(); blkn && !(eParam.has_char() && sParam.has_char()); blkn = blkn.get_next_sibling())
+            for(sp(::xml::node)blkn = tmpel->first_child(); blkn && !(eParam.has_char() && sParam.has_char()); blkn = blkn->get_next_sibling())
             {
-               ::xml::node blkel;
-               if(blkn.get_type() == xml::node_element) blkel = blkn;
+               sp(::xml::node)blkel;
+               if(blkn->get_type() == xml::node_element) blkel = blkn;
                else continue;
 
-               string p = (blkel.get_first_child() && blkel.get_first_child().get_type() == xml::node_element)
-                  ? (blkel.get_first_child()).get_value()
-                  : blkel.attr("match").get_string();
+               string p = (blkel->first_child() && blkel->first_child()->get_type() == xml::node_text)
+                  ? (blkel->first_child())->get_value()
+                  : blkel->attr("match").get_string();
 
-               if(blkel.get_name() == "start")
+               if(blkel->get_name() == "start")
                {
                   sParam = p;
                   eStart = blkel;
                }
-               if(blkel.get_name() == "end")
+               if(blkel->get_name() == "end")
                {
                   eParam = p;
                   eEnd = blkel;
@@ -629,7 +626,7 @@ namespace colorertake5
                }
                continue;
             };
-            string schemeName = tmpel.attr("scheme");
+            string schemeName = tmpel->attr("scheme");
             if (schemeName.is_empty())
             {
                if (errorHandler != NULL)
@@ -639,9 +636,9 @@ namespace colorertake5
                continue;
             };
             next->schemeName = (schemeName);
-            next->lowPriority = tmpel.attr("priority") == "low";
-            next->lowContentPriority = tmpel.attr("content-priority") == "low";
-            next->innerRegion = tmpel.attr("inner-region") == "yes";
+            next->lowPriority = tmpel->attr("priority") == "low";
+            next->lowContentPriority = tmpel->attr("content-priority") == "low";
+            next->innerRegion = tmpel->attr("inner-region") == "yes";
             next->type = SNT_SCHEME;
             next->start = new cregexp(startParam);
             next->start->setPositionMoves(false);
@@ -668,14 +665,14 @@ namespace colorertake5
             continue;
          };
 
-         if (tmpel.get_name() == "keywords"){
-            bool isCase = tmpel.attr("ignorecase") ? false : true;
-            next->lowPriority = tmpel.attr("priority") != "normal";
+         if (tmpel->get_name() == "keywords"){
+            bool isCase = tmpel->attr("ignorecase") ? false : true;
+            next->lowPriority = tmpel->attr("priority") != "normal";
             class region *brgn = getNCRegion(tmpel, "region");
             if (brgn == NULL){
                continue;
             }
-            string worddiv = tmpel.attr("worddiv");
+            string worddiv = tmpel->attr("worddiv");
 
             next->worddiv = NULL;
             if(worddiv.has_char())
@@ -690,9 +687,9 @@ namespace colorertake5
             };
 
             next->kwList = new KeywordList;
-            for(::xml::node keywrd_count = tmpel.get_first_child(); keywrd_count; keywrd_count = keywrd_count.get_next_sibling()){
-               if (keywrd_count.get_name() == "uint16_t" ||
-                  keywrd_count.get_name() == "symb")
+            for(sp(::xml::node)keywrd_count = tmpel->first_child(); keywrd_count; keywrd_count = keywrd_count->get_next_sibling()){
+               if (keywrd_count->get_name() == "uint16_t" ||
+                  keywrd_count->get_name() == "symb")
                {
                   next->kwList->num++;
                }
@@ -705,20 +702,20 @@ namespace colorertake5
             next->kwList->kwList = pIDs;
             next->type = SNT_KEYWORDS;
 
-            for(::xml::node keywrd = tmpel.get_first_child(); keywrd; keywrd = keywrd.get_next_sibling()){
+            for(sp(::xml::node)keywrd = tmpel->first_child(); keywrd; keywrd = keywrd->get_next_sibling()){
                strsize type = 0;
-               if (keywrd.get_name() == "uint16_t") type = 1;
-               if (keywrd.get_name() == "symb") type = 2;
+               if (keywrd->get_name() == "uint16_t") type = 1;
+               if (keywrd->get_name() == "symb") type = 2;
                if (!type){
                   continue;
                }
                string param;
-               if ((param = keywrd.attr("name")).is_empty()){
+               if ((param = (keywrd)->attr("name")).is_empty()){
                   continue;
                }
 
                class region *rgn = brgn;
-               if (keywrd.attr("region"))
+               if ((keywrd)->attr("region"))
                   rgn = getNCRegion(keywrd, string("region"));
 
                strsize pos = next->kwList->num;
@@ -749,7 +746,7 @@ namespace colorertake5
    };
 
 
-   void HRCParserImpl::loadRegions(SchemeNode *node, ::xml::node el, bool st)
+   void HRCParserImpl::loadRegions(SchemeNode *node, sp(::xml::node)el, bool st)
    {
       static char rg_tmpl[0x10] = "region\0\0";
 
@@ -780,7 +777,7 @@ namespace colorertake5
    }
 
 
-   void HRCParserImpl::loadBlockRegions(SchemeNode *node, ::xml::node el)
+   void HRCParserImpl::loadBlockRegions(SchemeNode *node, sp(::xml::node)el)
    {
       strsize i;
       static char rg_tmpl[0x10] = "region";
@@ -1045,9 +1042,9 @@ namespace colorertake5
       return reg;
    };
 
-   class region* HRCParserImpl::getNCRegion(::xml::node el, const char * tag)
+   class region* HRCParserImpl::getNCRegion(sp(::xml::node)el, const char * tag)
    {
-      string par = el.attr(tag);
+      string par = el->attr(tag);
       if (par.is_empty()) return NULL;
       return getNCRegion(par, true);
    };

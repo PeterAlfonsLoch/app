@@ -4562,14 +4562,14 @@ namespace user
    }
 
 
-   bool interaction::track_popup_menu(::xml::node node,int32_t iFlags)
+   bool interaction::track_popup_menu(sp(::xml::node) lpnode,int32_t iFlags)
    {
 
       point pt;
 
       Session.get_cursor_pos(&pt);
 
-      return track_popup_menu(node,iFlags,pt.x,pt.y);
+      return track_popup_menu(lpnode,iFlags,pt.x,pt.y);
 
    }
 
@@ -4601,7 +4601,7 @@ namespace user
    }
 
 
-   bool interaction::track_popup_menu(::xml::node node,int32_t iFlags,signal_details * pobj)
+   bool interaction::track_popup_menu(sp(::xml::node) lpnode,int32_t iFlags,signal_details * pobj)
    {
 
       SCAST_PTR(::message::mouse,pmouse,pobj);
@@ -4610,7 +4610,7 @@ namespace user
 
       ScreenToClient(&pt);
 
-      return track_popup_menu(node,iFlags,pt.x,pt.y);
+      return track_popup_menu(lpnode,iFlags,pt.x,pt.y);
 
    }
 
@@ -4649,12 +4649,12 @@ namespace user
 
    }
 
-   bool interaction::track_popup_menu(::xml::node node,int32_t iFlags,int32_t x,int32_t y)
+   bool interaction::track_popup_menu(sp(::xml::node) lpnode,int32_t iFlags,int32_t x,int32_t y)
    {
 
       m_spmenuPopup = Application.alloc(System.type_info < ::aura::menu_base >());
 
-      if(!m_spmenuPopup->LoadMenu(node))
+      if(!m_spmenuPopup->LoadMenu(lpnode))
       {
 
          m_spmenuPopup.release();

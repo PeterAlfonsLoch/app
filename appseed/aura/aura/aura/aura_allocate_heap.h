@@ -175,28 +175,6 @@ public:
 
 };
 
-class hstring:
-   public heap < char >
-{
-public:
-
-   hstring(): heap<char>()   {   }
-
-   hstring(uint_ptr uiSize): heap<char>(uiSize)   {   }
-
-};
-
-
-class hwstring:
-   public heap < wchar_t >
-{
-public:
-
-   hwstring() : heap<wchar_t>()   {   }
-
-   hwstring(uint_ptr uiSize) : heap<wchar_t>(uiSize)   {   }
-
-};
 
 #endif
 

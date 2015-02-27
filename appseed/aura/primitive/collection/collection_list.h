@@ -843,11 +843,8 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
 
       while(pnode != NULL)
       {
-         
          add_head(pnode->m_value);
-         
          pnode = pnode->m_pprev;
-
       }
 
    }

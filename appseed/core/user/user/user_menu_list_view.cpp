@@ -82,13 +82,13 @@ namespace user
       return impact::_001OnCmdMsg(pcmdmsg);
    }
 
-   bool menu_list_view::LoadMenu(::xml::node node, sp(::user::interaction) puiNotify, UINT uiCallbackMessage)
+   bool menu_list_view::LoadMenu(sp(::xml::node) pnode, sp(::user::interaction) puiNotify, UINT uiCallbackMessage)
    {
       
       m_uiMessage = uiCallbackMessage;
       m_bAutoClose = false;
 
-      if(!menu_list_window::LoadMenu(node))
+      if(!menu_list_window::LoadMenu(pnode))
          return false;
 
       MenuFill(this, GetParentFrame());

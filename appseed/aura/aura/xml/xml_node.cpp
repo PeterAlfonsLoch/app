@@ -23,7 +23,7 @@ namespace xml
 
    }
 
-   node::node(::xml::node nodeParent) :
+   node::node(::xml::node * pnodeParent) :
       object(pnodeParent->get_app()),
       m_nodea(pnodeParent->get_app()),
       m_attra(pnodeParent->get_app())
@@ -108,7 +108,7 @@ namespace xml
    attr * node::add_attr(const char * pszName, const var & var)
    {
 
-      ::::xml::attribute pattr = (::::xml::attribute) m_attra.add(pszName, var);
+      ::xml::attr * pattr = (::xml::attr *) m_attra.add(pszName, var);
 
       if(m_pdoc != NULL)
       {
@@ -129,7 +129,7 @@ namespace xml
    attr * node::set_attr(const char * lpcszName, const var & var)
    {
 
-      ::::xml::attribute pattr = &(m_attra[lpcszName] = var);
+      ::xml::attr * pattr = &(m_attra[lpcszName] = var);
 
       if(m_pdoc != NULL)
       {
@@ -192,7 +192,7 @@ namespace xml
    */
       index node::find(node * pnode)
       {
-         return m_nodea.find_first(node);
+         return m_nodea.find_first(pnode);
       }
 
       node * node::get_next_sibling()
@@ -351,7 +351,7 @@ namespace xml
 
 
             // add new attr
-            ::::xml::attribute pattr = m_attra.add(strName);
+            ::xml::attr * pattr = m_attra.add(strName);
             xml = pEnd;
 
             // XML Attr Value
@@ -445,16 +445,16 @@ namespace xml
          char * xml = (char *)pszXml;
 
          node * pnode = new node(this);
-         node.m_pnodeParent = this;
-         node.m_pdoc = m_pdoc;
-         node.m_etype = node_pi;
+         pnode->m_pnodeParent = this;
+         pnode->m_pdoc = m_pdoc;
+         pnode->m_etype = node_pi;
 
          xml += astr.szXMLPIOpen.get_length();
          CHAR* pTagEnd = strpbrk( xml, " ?>" );
-         _SetString( xml, pTagEnd, &node.m_strName );
+         _SetString( xml, pTagEnd, &pnode->m_strName );
          xml = pTagEnd;
 
-         node.LoadAttributes( xml, end, pparseinfo );
+         pnode->LoadAttributes( xml, end, pparseinfo );
 
          m_pdoc->m_nodea.add( pnode );
       }
@@ -512,7 +512,7 @@ namespace xml
             _SetString( xml, pEnd, &strName );
 
             // add new attr
-            ::::xml::attribute pattr = m_attra.add(strName);
+            ::xml::attr * pattr = m_attra.add(strName);
             xml = pEnd;
 
             // XML Attr Value
@@ -590,11 +590,11 @@ namespace xml
          xml += astr.szXMLCommentOpen.get_length();
 
          node * pnode = new node(this);
-         node.m_pnodeParent = par;
-         node.m_pdoc = m_pdoc;
-         node.m_etype = node_comment;
-         node.m_strName = "#COMMENT";
-         _SetString( xml, end, &node.m_strValue, FALSE );
+         pnode->m_pnodeParent = par;
+         pnode->m_pdoc = m_pdoc;
+         pnode->m_etype = node_comment;
+         pnode->m_strName = "#COMMENT";
+         _SetString( xml, end, &pnode->m_strValue, FALSE );
 
          par->m_nodea.add( pnode );
       }
@@ -635,11 +635,11 @@ namespace xml
          xml += astr.szXMLCDATAOpen.get_length();
 
          node * pnode = new node(this);
-         node.m_pnodeParent = this;
-         node.m_pdoc = m_pdoc;
-         node.m_etype = node_cdata;
-         node.m_strName = "#CDATA";
-         _SetString( xml, end, &node.m_strValue, FALSE );
+         pnode->m_pnodeParent = this;
+         pnode->m_pdoc = m_pdoc;
+         pnode->m_etype = node_cdata;
+         pnode->m_strName = "#CDATA";
+         _SetString( xml, end, &pnode->m_strValue, FALSE );
 
          pnodeParent->m_nodea.add( pnode );
       }
@@ -878,15 +878,15 @@ namespace xml
             while( xml && *xml )
             {
                node * pnode = new node(this);
-               node.m_pnodeParent = this;
-               node.m_pdoc = m_pdoc;
-               node.m_etype = m_etype;
+               pnode->m_pnodeParent = this;
+               pnode->m_pdoc = m_pdoc;
+               pnode->m_etype = m_etype;
 
-               xml = node.load( xml,pparseinfo );
-               if(node.m_strName.has_char())
+               xml = pnode->load( xml,pparseinfo );
+               if(pnode->m_strName.has_char())
                {
-                  m_nodea.add(node);
-//                  ::release(node);
+                  m_nodea.add(pnode);
+//                  ::release(pnode);
                }
                else
                {
@@ -1208,7 +1208,7 @@ namespace xml
       return m_attra.find(attrname);
       /*for( int32_t i = 0 ; i < m_attra.m_propertyptra.get_size(); i++ )
       {
-         ::::xml::attribute attr = &m_attra.m_propertyptra[i];
+         ::xml::attr * attr = &m_attra.m_propertyptra[i];
          if(attr != NULL)
          {
             if(attr->name() == attrname)
@@ -1234,7 +1234,7 @@ namespace xml
 
       for( int32_t i = 0 ; i < m_attra.m_propertyptra.get_count(); i++ )
       {
-         ::::xml::attribute attr = &m_attra.m_propertyptra[i];
+         ::xml::attr * attr = &m_attra.m_propertyptra[i];
          if(attr != NULL)
          {
             if(attr->name() == pszName)
@@ -1388,7 +1388,7 @@ namespace xml
          return this;
       for(int32_t i = 0; i < stra.get_size(); i++)
       {
-         pnode = node.get_child_with_attr(pszName, pszAttr, stra[i]);
+         pnode = pnode->get_child_with_attr(pszName, pszAttr, stra[i]);
          if(pnode == NULL)
             return NULL;
       }
@@ -1400,8 +1400,8 @@ namespace xml
       string str;
       while(pnode != NULL && pnode != this)
       {
-         str = node.attr(pszAttr).get_string() + ::str::has_char(str, "/");
-         pnode = node.m_pnodeParent;
+         str = pnode->attr(pszAttr).get_string() + ::str::has_char(str, "/");
+         pnode = pnode->m_pnodeParent;
       }
       if(pnode == NULL)
          return "";
@@ -1421,7 +1421,7 @@ namespace xml
          return this;
       for(int32_t i = 0; i < stra.get_size(); i++)
       {
-         pnode = node.get_child(stra[i]);
+         pnode = pnode->get_child(stra[i]);
          if(pnode == NULL)
             return NULL;
       }
@@ -1444,10 +1444,10 @@ namespace xml
          if(iIndex < 0)
             return NULL;
 
-         if(iIndex >= node.get_children_count())
+         if(iIndex >= pnode->get_children_count())
             return NULL;
 
-         pnode = node.child_at(iIndex);
+         pnode = pnode->child_at(iIndex);
 
          if(pnode == NULL)
             return NULL;
@@ -1462,8 +1462,8 @@ namespace xml
       string str;
       while(pnode != NULL && pnode != this)
       {
-         str = node.m_strName + ::str::has_char(str, "/");
-         pnode = node.m_pnodeParent;
+         str = pnode->m_strName + ::str::has_char(str, "/");
+         pnode = pnode->m_pnodeParent;
       }
       if(pnode == NULL)
          return "";
@@ -1478,8 +1478,8 @@ namespace xml
       iaPath.remove_all();
       while(pnode != NULL && pnode != this)
       {
-         iaPath.insert_at(0, node.get_index());
-         pnode = node.m_pnodeParent;
+         iaPath.insert_at(0, pnode->get_index());
+         pnode = pnode->m_pnodeParent;
       }
 
    }
@@ -1533,7 +1533,7 @@ namespace xml
 
    string node::GetChildAttrValue( const char * pszName, const char * attrname )
    {
-      ::::xml::attribute attr = GetChildAttr( pszName, attrname );
+      ::xml::attr * attr = GetChildAttr( pszName, attrname );
       return attr ? attr->get_string() : string("");
    }
 
@@ -1584,9 +1584,9 @@ namespace xml
    node * node::add_child( const char * pszName /*= NULL*/, const char * pszValue /*= NULL*/ )
    {
       node * pnode = new node(this);
-      node.m_strName = pszName;
-      node.m_strValue = pszValue;
-      return add_child(node);
+      pnode->m_strName = pszName;
+      pnode->m_strValue = pszValue;
+      return add_child(pnode);
    }
 
    //========================================================
@@ -1617,7 +1617,7 @@ namespace xml
    //========================================================
    bool node::remove_child( node * pnode )
    {
-      if(m_nodea.remove(node) > 0)
+      if(m_nodea.remove(pnode) > 0)
       {
          delete pnode;
          return true;
@@ -1667,7 +1667,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   bool node::remove_attr(::::xml::attribute pattr )
+   bool node::remove_attr(::xml::attr * pattr )
    {
       if(m_attra.remove_by_name(pattr->name()) > 0)
       {
@@ -1690,7 +1690,7 @@ namespace xml
  // /*   attr * node::add_attr( const char * pszName /*= NULL*/, /*const char * pszValue /*= NULL*/ /*)
   /* {
 
-      ::::xml::attribute pattr = (::::xml::attribute) m_attra.add(pszName, pszValue);
+      ::xml::attr * pattr = (::xml::attr *) m_attra.add(pszName, pszValue);
 
       if(m_pdoc != NULL)
       {
@@ -1737,7 +1737,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-/*   attr  node::detach_attr(::::xml::attribute attr )
+/*   attr  node::detach_attr(::xml::attr * attr )
    {
       attr = m_attra.m_propertymap[attr]find_first((property *) attr);
       if(find >= 0)
@@ -1784,11 +1784,11 @@ namespace xml
    void node::_CopyBranch( node * pnode )
    {
 
-      CopyNode(node);
+      CopyNode(pnode);
 
-      for( int32_t i = 0 ; i < node.m_nodea.get_size(); i++)
+      for( int32_t i = 0 ; i < pnode->m_nodea.get_size(); i++)
       {
-         class node * pnodeChild = node.m_nodea.element_at(i);
+         class node * pnodeChild = pnode->m_nodea.element_at(i);
          if(pnodeChild)
          {
             class node * pnodeNewChild = new class node(get_app());
@@ -1812,7 +1812,7 @@ namespace xml
    node *   node::AppendChildBranch(node * pnode)
    {
       class node * pnodeNewChild = new class node(get_app());
-      pnodeNewChild->CopyBranch(node);
+      pnodeNewChild->CopyBranch(pnode);
       return add_child( pnodeNewChild );
    }
 
@@ -2033,7 +2033,7 @@ namespace xml
 
          for(index iCol = 0; iCol < iColCount; iCol++)
          {
-            ::xml::node  pcol = add_child("ca");
+            sp(::xml::node) pcol = add_child("ca");
             iRowCount = str2a[iCol].get_count();
             pcol->add_attr("row_count", iRowCount);
             for(int32_t iRow = 0; iRow < iRowCount; iRow++)
@@ -2066,10 +2066,10 @@ namespace xml
       }
       str2a.set_size(iColCount);
       ::count iRowCount = 0;
-      ::xml::node  pheader = m_nodea.element_at(0);
+      sp(::xml::node) pheader = m_nodea.element_at(0);
       for(::index iCol = 0; iCol < iColCount; iCol++)
       {
-         ::xml::node  pcol = pheader->m_nodea.element_at(iCol);
+         sp(::xml::node) pcol = pheader->m_nodea.element_at(iCol);
          str2a[iCol].set_size(pcol->attr("row_count"));
       }
 

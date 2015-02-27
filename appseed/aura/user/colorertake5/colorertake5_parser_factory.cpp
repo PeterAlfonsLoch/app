@@ -18,10 +18,10 @@ namespace colorertake5
 #endif
       hrcParser = NULL;
       fileErrorHandler = NULL;
-      xml::document document;
+      xml::document document(get_app());
       try
       {
-         document.load(Session.file().as_string(catalogPath));
+         document.load_location(catalogPath);
       }
       catch(exception &e)
       {
@@ -34,19 +34,19 @@ namespace colorertake5
          throw ParserFactoryException(get_app(), str);
       }
 
-      ::xml::node catalog = document.root();
-      if(catalog == NULL || catalog.get_name() != "catalog")
+      sp(::xml::node) catalog = document.get_root();
+      if(catalog == NULL || catalog->get_name() != "catalog")
       {
          throw ParserFactoryException(get_app(), string("bad catalog structure"));
       }
 
-      ::xml::node elem = catalog.get_first_child();
-      while(!elem.empty())
+      sp(::xml::node) elem = catalog->first_child();
+      while(elem != NULL)
       {
          // hrc locations
-         if (elem.get_type() == xml::node_element && elem.get_name() == "hrc-sets")
+         if (elem->get_type() == xml::node_element && elem->get_name() == "hrc-sets")
          {
-            string logLocation = elem.attr("log-location");
+            string logLocation = (elem)->attr("log-location");
 
             if (logLocation.has_char())
             {
@@ -57,32 +57,32 @@ namespace colorertake5
             {
                fileErrorHandler = new DefaultErrorHandler();
             }
-            ::xml::node loc = elem.first_child();
-            while(!loc.empty())
+            sp(::xml::node)loc = elem->first_child();
+            while(loc != NULL)
             {
-               if(loc.get_type() == xml::node_element && loc.get_name() == "location")
+               if(loc->get_type() == xml::node_element && loc->get_name() == "location")
                {
-                  hrcLocations.add((const char *) loc.attr("link"));
+                  hrcLocations.add((const char *) (loc)->attr("link"));
                }
-               loc = loc.get_next_sibling();
+               loc = loc->get_next_sibling();
             }
          }
          // hrd locations
-         else if (elem.get_type() == xml::node_element && elem.get_name() == "hrd-sets")
+         else if (elem->get_type() == xml::node_element && elem->get_name() == "hrd-sets")
          {
-            ::xml::node hrd = elem.first_child();
-            while(!hrd.empty())
+            sp(::xml::node)hrd = elem->first_child();
+            while(hrd != NULL)
             {
-               if(hrd.get_type() == xml::node_element && hrd.get_name() == "hrd")
+               if(hrd->get_type() == xml::node_element && hrd->get_name() == "hrd")
                {
-                  string hrd_class = hrd.attr("class");
-                  string hrd_name = hrd.attr("name");
+                  string hrd_class = (hrd)->attr("class");
+                  string hrd_name = (hrd)->attr("name");
                   if(hrd_class.is_empty() || hrd_name.is_empty())
                   {
-                     hrd = hrd.get_next_sibling();
+                     hrd = hrd->get_next_sibling();
                      continue;
                   }
-                  string hrd_descr = hrd.attr("description");
+                  string hrd_descr = (hrd)->attr("description");
                   if(hrd_descr.is_empty())
                   {
                      hrd_descr = hrd_name;
@@ -90,20 +90,20 @@ namespace colorertake5
                   hrdDescriptions.set_at(hrd_class + "-" + hrd_name, hrd_descr);
                   string_map<stringa> & hrdClass = hrdLocations[hrd_class];
                   stringa & hrdLocV =  hrdClass[hrd_name];
-                  ::xml::node loc = hrd.first_child();
-                  while(!loc.empty())
+                  sp(::xml::node)loc = hrd->first_child();
+                  while(loc != NULL)
                   {
-                     if(loc.get_type() == xml::node_element && loc.get_name() == "location")
+                     if(loc->get_type() == xml::node_element && loc->get_name() == "location")
                      {
-                        hrdLocV.add((const char *) loc.attr("link"));
+                        hrdLocV.add((const char *) loc->attr("link"));
                      }
-                     loc = loc.get_next_sibling();
+                     loc = loc->get_next_sibling();
                   }
                }
-               hrd = hrd.get_next_sibling();
+               hrd = hrd->get_next_sibling();
             }
          }
-         elem = elem.get_next_sibling();
+         elem = elem->get_next_sibling();
       }
    }
 

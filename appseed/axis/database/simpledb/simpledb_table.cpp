@@ -8,7 +8,8 @@ namespace simpledb
    table::table(base * pdatabase, const char * pszName) :
       object(pdatabase->get_app()),
       m_spfileMeta(pdatabase->get_app()),
-      m_spfileFixed(pdatabase->get_app())
+      m_spfileFixed(pdatabase->get_app()),
+      m_xmldocumentMeta(pdatabase->get_app())
    {
 
 
@@ -29,19 +30,19 @@ namespace simpledb
       if(!m_xmldocumentMeta.load(is))
          throw 0;
 
-      ::xml::node fields = m_xmldocumentMeta.root().get_child("fields");
+      sp(::xml::node) pfields = m_xmldocumentMeta.get_root()->get_child("fields");
 
-      for(int32_t i = 0; i < fields.get_children_count(); i++)
+      for(int32_t i = 0; i < pfields->get_children_count(); i++)
       {
-         ::xml::node  pfield = fields.child_at(i);
-         if(pfield.get_name() != "field")
+         sp(::xml::node) pfield = pfields->child_at(i);
+         if(pfield->get_name() != "field")
             continue;
          ::database::field_definition_item item;
-         item = pfield;
+         item = *pfield;
          m_fielddefinition.add(item);
       }
 
-      string strFixedPath = m_xmldocumentMeta.root().attr("fixed_path");
+      string strFixedPath = m_xmldocumentMeta.get_root()->attr("fixed_path");
       if(strFixedPath.is_empty())
          strFixedPath = strMetaPath = System.dir().element("database/" + m_pdatabase->getDatabase() + "/" + m_strName, "fixed.txt");
 

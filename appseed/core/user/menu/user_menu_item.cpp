@@ -67,20 +67,20 @@ namespace user
 
    }
 
-   bool menu_item::load_menu(::xml::node node)
+   bool menu_item::load_menu(sp(::xml::node) lpnode)
    {
       m_iSeparatorCount = 0;
       m_iFullHeightItemCount = 0;
-      return load_menu(node, m_iLevel);
+      return load_menu(lpnode, m_iLevel);
    }
 
-   bool menu_item::load_menu(::xml::node node, int32_t iLevel)
+   bool menu_item::load_menu(sp(::xml::node) lpnode, int32_t iLevel)
    {
 
-      ::count iItemCount = node.get_children_count();
+      ::count iItemCount = lpnode->get_children_count();
       for(int32_t i = 0; i < iItemCount; i++)
       {
-         ::xml::node  pnodeChild = node.child_at(i);
+         sp(::xml::node) pnodeChild = lpnode->child_at(i);
 
          menu_item * pitemNewChild = new menu_item(get_app());
 

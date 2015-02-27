@@ -348,7 +348,7 @@ namespace http
    void system::config_proxy(const char * pszUrl, ::http::system::proxy * pproxy)
    {
 
-      xml::document doc;
+      xml::document doc(get_app());
       string str = System.file().as_string(System.dir().appdata("proxy.xml"), &System);
       if(str.has_char() && str.find("<") < 0 && str.find(">") < 0)
       {
@@ -380,16 +380,16 @@ namespace http
          string strHost = System.url().get_server(pszUrl);
          int32_t iHostPort = System.url().get_port(pszUrl);
          ::net::address ipHost(strHost, iHostPort);
-         for(int32_t iNode = 0; iNode < doc.root().get_children_count(); iNode++)
+         for(int32_t iNode = 0; iNode < doc.get_root()->get_children_count(); iNode++)
          {
-            ::xml::node node = doc.root().child_at(iNode);
-            if(node.get_name() == "proxy")
+            sp(::xml::node) pnode = doc.get_root()->child_at(iNode);
+            if(pnode->get_name() == "proxy")
             {
-               ::net::address ipAddress(node.attr("address").get_string(), 0);
-               ::net::address ipMask(node.attr("mask").get_string(), 0);
+               ::net::address ipAddress(pnode->attr("address").get_string(), 0);
+               ::net::address ipMask(pnode->attr("mask").get_string(), 0);
                if(ipHost.is_in_same_net(ipAddress, ipMask))
                {
-                  if(node.attr("server") == "DIRECT")
+                  if(pnode->attr("server") == "DIRECT")
                   {
                      pproxy->m_bDirect = true;
                      return;
@@ -397,10 +397,10 @@ namespace http
                   else
                   {
                      pproxy->m_bDirect = false;
-                     pproxy->m_strProxy = node.attr("server");
-                     pproxy->m_iPort = node.attr("port");
-                     TRACE("Select Proxy : address %s mask %s server %s port %d",node.attr("address").get_string(),
-                        node.attr("mask").get_string(), pproxy->m_strProxy, pproxy->m_iPort);
+                     pproxy->m_strProxy = pnode->attr("server");
+                     pproxy->m_iPort = pnode->attr("port");
+                     TRACE("Select Proxy : address %s mask %s server %s port %d",pnode->attr("address").get_string(),
+                        pnode->attr("mask").get_string(), pproxy->m_strProxy, pproxy->m_iPort);
                      return;
                   }
                }
@@ -414,8 +414,8 @@ namespace http
          else
          {
             pproxy->m_bDirect = false;
-            pproxy->m_strProxy = doc.root().attr("server");
-            pproxy->m_iPort = doc.root().attr("port");
+            pproxy->m_strProxy = doc.get_root()->attr("server");
+            pproxy->m_iPort = doc.get_root()->attr("port");
             return;
          }
       }

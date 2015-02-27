@@ -214,7 +214,7 @@ namespace user
          return false;
       }
 
-      ::xml::document doc;
+      ::xml::document doc(get_app());
 
       if(!doc.load(str))
       {
@@ -222,21 +222,21 @@ namespace user
          return false;
       }
 
-      for(int32_t i = 0; i < doc.root().get_children_count(); i++)
+      for(int32_t i = 0; i < doc.get_root()->get_children_count(); i++)
       {
 
-         ::xml::node node = doc.root().child_at(i);
+         sp(::xml::node) pnode = doc.get_root()->child_at(i);
 
-         if(node.get_name().CompareNoCase("item") == 0)
+         if(pnode->get_name().CompareNoCase("item") == 0)
          {
 
-            string strCode    = node.attr("code");
+            string strCode    = pnode->attr("code");
 
-            string strScan    = node.attr("scan");
+            string strScan    = pnode->attr("scan");
 
-            string strExt    = node.attr("ext");
+            string strExt    = pnode->attr("ext");
 
-            string strValue   = node.attr("value");
+            string strValue   = pnode->attr("value");
 
             ekey     = System.enum_from_name < ::user::e_key >(typeinfoKey,strValue);
 
@@ -285,14 +285,10 @@ namespace user
       return *m_playout;
    }
 
-   
-   void keyboard::process_escape(::xml::node node, property_set & set)
+   void keyboard::process_escape(sp(::xml::node) pnode, property_set & set)
    {
-      
-      m_playout->process_escape(node, set);
-
+      m_playout->process_escape(pnode, set);
    }
-
 
    bool keyboard::load_layout(const char * pszPath, ::action::context actioncontext)
    {
@@ -467,22 +463,22 @@ namespace user
       if(str.is_empty())
          return false;
 
-      ::xml::document doc;
+      ::xml::document doc(get_app());
 
       if(!doc.load(str))
          return false;
 
       playoutid->m_strPath = pszPath;
 
-      playoutid->m_strName = doc.root().attrs()["name"];
+      playoutid->m_strName = doc.get_root()->attrs()["name"];
 
-      playoutid->m_countrycode = doc.root().attrs()["cc"];
+      playoutid->m_countrycode = doc.get_root()->attrs()["cc"];
 
-      playoutid->m_keylayout = doc.root().attrs()["kl"];
+      playoutid->m_keylayout = doc.get_root()->attrs()["kl"];
 
       stringa straHkl;
 
-      straHkl.explode(";", doc.root().attr("hkla"));
+      straHkl.explode(";", doc.get_root()->attr("hkla"));
 
 #ifdef WINDOWS
 

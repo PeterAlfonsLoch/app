@@ -87,22 +87,22 @@ namespace user
 
    }
 
-   void keyboard_layout::process_escape(::xml::node node, property_set & set)
+   void keyboard_layout::process_escape(sp(::xml::node) pnode, property_set & set)
    {
-      for(int32_t i = 0; i < node.get_children_count(); i++)
+      for(int32_t i = 0; i < pnode->get_children_count(); i++)
       {
-         ::xml::node child = node.child_at(i);
-         if(child.get_name().CompareNoCase("item") == 0)
+         sp(::xml::node) pchild = pnode->child_at(i);
+         if(pchild->get_name().CompareNoCase("item") == 0)
          {
-            string str = child.attr("char");
+            string str = pchild->attr("char");
             if(str.has_char())
             {
-               set[str] = child.attr("value");
+               set[str] = pchild->attr("value");
             }
          }
-         else if(child.get_name().CompareNoCase("escape") == 0)
+         else if(pchild->get_name().CompareNoCase("escape") == 0)
          {
-            process_escape(child, set[node.attr("value")].propset());
+            process_escape(pchild, set[pnode->attr("value")].propset());
          }
       }
    }
@@ -117,23 +117,23 @@ namespace user
       string str = Application.file_as_string(pszPath);
       if(str.is_empty())
          return false;
-      ::xml::document doc;
+      ::xml::document doc(get_app());
       if(!doc.load(str))
          return false;
-      for(int32_t i = 0; i < doc.root().get_children_count(); i++)
+      for(int32_t i = 0; i < doc.get_root()->get_children_count(); i++)
       {
-         ::xml::node node = doc.root().child_at(i);
-         if(node.get_name().CompareNoCase("item") == 0)
+         sp(::xml::node) pnode = doc.get_root()->child_at(i);
+         if(pnode->get_name().CompareNoCase("item") == 0)
          {
-            string strCode = node.attr("code");
-            string strValue = node.attr("value");
-            string strEscape = node.attr("escape");
+            string strCode = pnode->attr("code");
+            string strValue = pnode->attr("value");
+            string strEscape = pnode->attr("escape");
             iMap = 0;
-            if(node.attr("shift") == 1)
+            if(pnode->attr("shift") == 1)
             {
                iMap |= 0x80000000;
             }
-            if(node.attr("ralt") == 1)
+            if(pnode->attr("ralt") == 1)
             {
                iMap |= 0x40000000;
             }
@@ -174,9 +174,9 @@ namespace user
                }
             }
          }
-         else if(node.get_name().CompareNoCase("escape") == 0)
+         else if(pnode->get_name().CompareNoCase("escape") == 0)
          {
-            process_escape(node, m_setEscape[node.attr("value")].propset());
+            process_escape(pnode, m_setEscape[pnode->attr("value")].propset());
          }
       }
 
