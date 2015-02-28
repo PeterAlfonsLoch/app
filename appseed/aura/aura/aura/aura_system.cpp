@@ -1814,6 +1814,11 @@ namespace aura
    bool system::find_applications_to_cache(bool bSave)
    {
 
+
+#ifdef CUBE
+      return true;
+#endif
+
       /*      m_spfilehandler(new ::core::filehandler::handler(this));*/
 
       m_mapAppLibrary.remove_all();

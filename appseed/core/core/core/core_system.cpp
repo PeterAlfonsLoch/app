@@ -763,6 +763,7 @@ namespace core
 
       }
 
+#ifndef CUBE
 
       try
       {
@@ -778,6 +779,7 @@ namespace core
 
       }
 
+#endif
 
       return true;
 
