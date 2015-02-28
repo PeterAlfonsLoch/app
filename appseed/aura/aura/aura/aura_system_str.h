@@ -46,21 +46,21 @@ namespace str
    inline bool begins_eat(property & property, const string & strPrefix)
    {
 
-      return begins_eat(property.m_var,strPrefix);
+      return begins_eat(property.m_element2,strPrefix);
 
    }
 
    inline bool begins_eat_ci(property & property, const char * lpcszPrefix) // case insensitive
    {
 
-      return begins_eat_ci(property.m_var, lpcszPrefix);
+      return begins_eat_ci(property.m_element2, lpcszPrefix);
 
    }
 
    inline bool begins_eat_ci(property & property, const char * lpcszPrefix, const char * pszSeparator) // case insensitive
    {
 
-      return begins_eat_ci(property.m_var, lpcszPrefix, pszSeparator);
+      return begins_eat_ci(property.m_element2, lpcszPrefix, pszSeparator);
 
    }
 

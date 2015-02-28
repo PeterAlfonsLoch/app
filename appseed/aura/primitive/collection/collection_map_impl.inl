@@ -1,8 +1,8 @@
 #pragma once
 
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
-void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::InitHashTable(
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR >
+void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::InitHashTable(
    UINT nHashSize, bool bAllocNow)
    //
    // Used to force allocation of a hash table or to override the default

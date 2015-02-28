@@ -242,6 +242,9 @@ public:
    string(const wchar_t * pszSrc);
    string(const string & strSrc, strsize npos, strsize len = -1);
 
+   string(const hstring & hstr) : stdstring< simple_string>(hstr.operator const char *(),string_trait::GetDefaultManager()){  }
+   string(const hwstring & hwstr) : stdstring< simple_string>(hwstr.operator const wchar_t *(),string_trait::GetDefaultManager()){  }
+
    string(char ch,strsize nLength = 1);
    string(wchar_t ch, strsize nLength = 1 );
 

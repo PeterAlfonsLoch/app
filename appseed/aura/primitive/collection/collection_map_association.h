@@ -1,14 +1,14 @@
 #pragma once
 
 
-template < typename T1, typename T2 >
+template < typename T1, typename T2, typename PAIR = pair < T1, T2 > >
 class map_association : 
-   public pair < T1, T2 >
+   public PAIR
 {
 public:
 
 
-   typedef ::pair < T1, T2 >       pair;
+   typedef PAIR                        pair;
    
 
    map_association *                   m_pprev;

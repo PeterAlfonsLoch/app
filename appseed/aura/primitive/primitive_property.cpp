@@ -198,11 +198,11 @@ property & property::operator = (const property & prop)
 {
    if(&prop != this)
    {
-      if(m_idName.is_empty())
+      if(m_element1.is_empty())
       {
-         m_idName      = prop.m_idName;
+         m_element1      = prop.m_element1;
       }
-      m_var = prop.m_var;
+      m_element2 = prop.m_element2;
    }
    return *this;
 }
@@ -221,12 +221,12 @@ property::property(const property & prop)
 
 property::property(id strName)
 {
-   m_idName = strName;
+   m_element1 = strName;
 }
 
 property::property(id strName, var var)
 {
-   m_idName = strName;
+   m_element1 = strName;
    set_value(var);
 }
 
@@ -276,15 +276,40 @@ void property::parse_json(const char * & pszJson, strsize length)
    parse_json(pszJson, pszJson + length - 1);
 }
 
-void property::parse_json(const char * & pszJson, const char * pszEnd)
+void property::parse_json(const char * & pszJson,const char * pszEnd)
+{
+   parse_json_id(m_element1, pszJson, pszEnd);
+   parse_json_value(m_element2,pszJson,pszEnd);
+}
+
+void property::parse_json_id(id & id, const char * & pszJson, const char * pszEnd)
 {
    ::str::consume_spaces(pszJson, 0, pszEnd);
    string str = ::str::consume_quoted_value(pszJson, pszEnd);
    str.make_lower();
-   m_idName = str;
-   ::str::consume(pszJson, ":", 1, pszEnd);
-   get_value().parse_json(pszJson, pszEnd);
+   id = str;
 }
+
+void property::parse_json_value(var & var, const char * & pszJson,const char * pszEnd)
+{
+   ::str::consume(pszJson,":",1,pszEnd);
+   var.parse_json(pszJson,pszEnd);
+}
+
+
+string & property::get_http_post(string & str) const
+{
+
+   str += m_element1;
+
+   str += "=";
+
+   str += url_encode_dup(m_element2.get_string());
+
+   return str;
+
+}
+
 
 stringa & property::stra()
 {
@@ -368,13 +393,13 @@ var property::at(index iIndex) const
 
 void property::write(::file::output_stream & ostream)
 {
-   ostream << m_idName;
+   ostream << m_element1;
    ostream << get_value();
 }
 
 void property::read(::file::input_stream & istream)
 {
-   istream >> m_idName;
+   istream >> m_element1;
    istream >> get_value();
 }
 
@@ -1704,6 +1729,7 @@ var  operator * (const property & prop1, const property & prop2)
 #define ROUND(x,y) (((x)+(y-1))&~(y-1))
 #define ROUND4(x) ROUND(x, 4)
 #undef new
+
 
 
 

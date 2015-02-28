@@ -357,10 +357,10 @@ namespace sockets
       if(!bContentLength)
          m_response.m_propertysetHeader.remove_by_name("Content-Length");
 
-      for(int i = 0; i < m_response.m_propertysetHeader.m_propertyptra.get_size(); i++)
+      for(auto property : m_response.m_propertysetHeader)
       {
-         string strKey = m_response.m_propertysetHeader.m_propertyptra[i]->name();
-         stringa & straValue = m_response.m_propertysetHeader.m_propertyptra[i]->m_var.stra();
+         string strKey = property.name();
+         stringa & straValue = property.stra();
          if(!http_filter_response_header(strKey, straValue))
             continue;
          if(strKey.CompareNoCase("host") == 0)
@@ -416,16 +416,16 @@ namespace sockets
          }
          msg += strLine + "\r\n";
       }
-      for(int i = 0; i < m_request.m_propertysetHeader.m_propertyptra.get_count(); i++)
+      for(auto property : m_request.m_propertysetHeader)
       {
-         string strValue = m_request.m_propertysetHeader.m_propertyptra[i]->get_string();
-         if (m_request.m_propertysetHeader.m_propertyptra[i]->name() == __id(content_type))
+         string strValue = property.get_value().get_string();
+         if (property.name() == __id(content_type))
          {
             msg += "Content-Type: " + strValue + "\r\n";
          }
          else
          {
-            string strKey = m_request.m_propertysetHeader.m_propertyptra[i]->name();
+            string strKey = property.name();
             if (strKey.CompareNoCase("host") == 0)
                continue;
             strValue.trim();

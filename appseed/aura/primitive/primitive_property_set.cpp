@@ -2,11 +2,10 @@
 
 
 property_set::property_set(::aura::application * papp, bool bAutoAdd, bool bMultiValue) :
-   object(papp),
-   m_propertyptra(papp)
+   object(papp)
 {
-   m_bAutoAdd = bAutoAdd;
-   m_bMultiValue = bMultiValue;
+//   m_bAutoAdd = bAutoAdd;
+  // m_bMultiValue = bMultiValue;
 }
 
 
@@ -19,18 +18,16 @@ id property_set::get_new_id()
 
    index iMax = -1;
 
-   ::property_pair pair(*this);
-
-   while(pair())
+   for(iterator it = begin(); it != end(); it++)
    {
 
-      if(pair->name().m_etype == id::type_integer)
+      if(it->m_element1.m_etype == id::type_integer)
       {
 
-         if(pair->name().m_i > iMax)
+         if(it->m_element1.m_i > iMax)
          {
 
-            iMax = (index) pair->name().m_i;
+            iMax = (index)it->m_element1.m_i;
 
          }
 
@@ -49,14 +46,11 @@ id property_set::get_new_id()
 
 property & property_set::defer_auto_add(id idName)
 {
-   if(m_bAutoAdd)
-   {
-      property * pproperty = add(idName);
-      if(pproperty != NULL)
-         return *pproperty;
-   }
-   throw simple_exception(get_app(), "property with specified name - and specified case sensitivity - does not exist and Auto add Flag is not set");
+
+   return *add(idName);
+
 }
+
 
 bool property_set::is_set_empty(::count countMinimum) const
 {
@@ -69,33 +63,33 @@ bool property_set::has_properties(::count countMinimum) const
 }
 
 
-index property_set::find_var_ci(const var & var) const
+property * property_set::find_var_ci(const var & var) const
 {
-   for(index find = 0; find < m_propertyptra.get_count(); find++)
+   for(const_iterator it = begin(); it != end(); it++)
    {
-      if(m_propertyptra[find]->get_value().compare_ci(var) == 0)
-         return find;
+      if(it->get_value().compare_ci(var) == 0)
+         return it.m_ppair;
    }
-   return -1;
+   return NULL;
 }
 
-index property_set::find_value_ci(var var) const
+property * property_set::find_value_ci(var var) const
 {
    return find_var_ci(var);
 }
 
 
-index property_set::find_var(const var & var) const
+property * property_set::find_var(const var & var) const
 {
-   for(index find = 0; find < m_propertyptra.get_count(); find++)
+   for(const_iterator it = begin(); it != end(); it++)
    {
-      if(m_propertyptra[find]->get_value() == var)
-         return find;
+      if(it->get_value() == var)
+         return it.m_ppair;
    }
-   return -1;
+   return NULL;
 }
 
-index property_set::find_value(var var) const
+property * property_set::find_value(var var) const
 {
    return find_var(var);
 }
@@ -147,46 +141,86 @@ bool property_set::contains_value(const char * psz, ::count countMin, ::count co
    return count >= countMin && conditional(countMax >= 0, count <= countMax);
 }
 
-index property_set::remove_first_var_ci(const var & var)
+
+bool property_set::remove_first_var_ci(const var & var)
 {
-   index find;
-   if((find = find_var_ci(var)) >= 0)
-      m_propertyptra.remove_at(find);
-   return find;
+   
+   property * pproperty = find_var_ci(var);
+   
+   if(pproperty != NULL)
+   {
+
+      return remove_key(pproperty->m_element1);
+
+   }
+
+   return false;
+
 }
 
-index property_set::remove_first_value_ci(var var)
+
+bool property_set::remove_first_value_ci(var var)
 {
+
    return remove_first_var_ci(var);
+
 }
 
-index property_set::remove_first_value_ci(const char * lpcsz)
+bool property_set::remove_first_value_ci(const char * lpcsz)
 {
-   index find;
-   if((find = find_value_ci(lpcsz)) >= 0)
-      m_propertyptra.remove_at(find);
-   return find;
+
+   property * pproperty = find_value_ci(lpcsz);
+
+   if(pproperty != NULL)
+   {
+
+      return remove_key(pproperty->m_element1);
+
+   }
+
+   return false;
+
 }
 
-index property_set::remove_first_var(const var & var)
+bool property_set::remove_first_var(const var & var)
 {
-   index find;
-   if((find = find_var(var)) >= 0)
-      m_propertyptra.remove_at(find);
-   return find;
+
+   property * pproperty = find_var(var);
+
+   if(pproperty != NULL)
+   {
+
+      return remove_key(pproperty->m_element1);
+
+   }
+
+   return false;
+
 }
 
-index property_set::remove_first_value(var var)
+
+bool property_set::remove_first_value(var var)
 {
+
    return remove_first_var(var);
+
 }
 
-index property_set::remove_first_value(const char * lpcsz)
+
+bool property_set::remove_first_value(const char * lpcsz)
 {
-   index find;
-   if((find = find_value(lpcsz)) >= 0)
-      m_propertyptra.remove_at(find);
-   return find;
+
+   property * pproperty = find_value(lpcsz);
+
+   if(pproperty != NULL)
+   {
+
+      return remove_key(pproperty->m_element1);
+
+   }
+
+   return false;
+
 }
 
 
@@ -195,59 +229,100 @@ index property_set::remove_first_value(const char * lpcsz)
    ::count count = 0;
    if(contains_var_ci(var, countMin, countMax))
       while(conditional(countMax >= 0, count < countMax)
-         && (remove_first_var_ci(var)) >= 0)
+         && (remove_first_var_ci(var)))
          count++;
    return count;
 }
+
 
 ::count property_set::remove_value_ci(var var, ::count countMin, ::count countMax)
 {
+
    return remove_var_ci(var, countMin, countMax);
+
 }
+
 
 ::count property_set::remove_value_ci(const char * psz, ::count countMin, ::count countMax)
 {
+   
    ::count count = 0;
-   if(contains_value_ci(psz, countMin, countMax))
-      while(conditional(countMax >= 0, count < countMax)
-         && (remove_first_value_ci(psz)) >= 0)
+
+   if(contains_value_ci(psz,countMin,countMax))
+   {
+
+      while(conditional(countMax >= 0,count < countMax) && remove_first_value_ci(psz))
+      {
+
          count++;
+
+      }
+
+   }
+
    return count;
+
 }
+
 
 ::count property_set::remove_var(const var & var, ::count countMin, ::count countMax)
 {
+
    ::count count = 0;
-   if(contains_var(var, countMin, countMax))
-      while(conditional(countMax >= 0, count < countMax)
-         && (remove_first_var(var)) >= 0)
+
+   if(contains_var(var,countMin,countMax))
+   {
+
+      while(conditional(countMax >= 0,count < countMax && remove_first_var(var)))
+      {
+
          count++;
+
+      }
+
+   }
+
    return count;
+
 }
+
 
 ::count property_set::remove_value(var var, ::count countMin, ::count countMax)
 {
+
    return remove_var(var, countMin, countMax);
+
 }
+
 
 ::count property_set::remove_value(const char * psz, ::count countMin, ::count countMax)
 {
+
    ::count count = 0;
-   if(contains_value(psz, countMin, countMax))
-      while(conditional(countMax >= 0, count < countMax)
-         && (remove_first_value(psz)) >= 0)
+
+   if(contains_value(psz,countMin,countMax))
+   {
+
+      while(conditional(countMax >= 0,count < countMax) && remove_first_value(psz))
+      {
+
          count++;
+
+      }
+
+   }
+
    return count;
+
 }
 
 
 ::count property_set::unset(id idName)
 {
-   property_map::pair * ppair = m_map.PLookup(idName);
+   property_map::pair * ppair = PLookup(idName);
    if(ppair == NULL)
       return 0;
-   m_propertyptra.remove_at(ppair->m_element2);
-   m_map.remove_key(ppair->m_element1);
+   remove_key(ppair->m_element1);
    return 1;
 }
 
@@ -508,9 +583,15 @@ void property_set::parse_json(const char * & pszJson, const char * pszEnd)
    ::str::consume_spaces(pszJson, 0, pszEnd);
    while(true)
    {
-      m_propertyptra.add(new property);
-      m_propertyptra.last()->parse_json(pszJson, pszEnd);
-      m_map.set_at(m_propertyptra.last()->name(), m_propertyptra.get_upper_bound());
+
+      ::id id;
+      
+      property::parse_json_id(id, pszJson,pszEnd);
+      
+      property * pproperty = get_assoc(id);
+      
+      property::parse_json_value(pproperty->m_element2,pszJson,pszEnd);
+
       ::str::consume_spaces(pszJson, 0, pszEnd);
       if(*pszJson == ',')
       {
@@ -531,26 +612,28 @@ void property_set::parse_json(const char * & pszJson, const char * pszEnd)
    }
 }
 
-string property_set::get_json()
+string & property_set::get_json(string & str) const
 {
-
-   string str;
 
    str = "{";
 
-   for (int i = 0; i < m_propertyptra.get_count(); i++)
+   const_iterator it = begin();
+
+   if(it != end())
    {
 
-      if (i > 0)
-      {
-         str += ", \r\n";
-      }
+      it->get_json(str);
 
-      str += "\"";
-      str += m_propertyptra.element_at(i)->name();
-      str += "\"";
-      str += ":";
-      str += m_propertyptra.element_at(i)->m_var.get_json();
+      it++;
+
+   }
+
+   for(; it != end(); it++)
+   {
+
+      str += ", \r\n";
+
+      it->get_json(str);
 
    }
 
@@ -745,224 +828,303 @@ string property_set::gen_eval(const char * psz)
 
 void property_set::clear()
 {
-   m_propertyptra.remove_all();
-   m_map.remove_all();
+   remove_all();
 }
 
 void property_set::write(::file::output_stream & ostream)
 {
-   ostream << m_bAutoAdd;
-   ostream << m_bMultiValue;
-   //ostream << m_bKeyCaseInsensitive;
-   ostream << m_propertyptra;
+
+   ostream << (const ::property_map &) *this;
+
 }
 
 void property_set::read(::file::input_stream & istream)
 {
-   istream >> m_bAutoAdd;
-   istream >> m_bMultiValue;
-   //istream >> m_bKeyCaseInsensitive;
-   istream >> m_propertyptra;
-   for (int32_t i = 0; i < m_propertyptra.get_count(); i++)
-   {
-      //if(m_bKeyCaseInsensitive)
-      /*{
-      m_map.set_at(m_propertyptra[i]->lowname(), i);
-      }
-      else
-      {*/
-      m_map.set_at(m_propertyptra[i]->name(), i);
-      //}
-   }
+
+   istream >> (::property_map &) *this;
+
 }
+
 
 string property_set::implode(const char * pszGlue) const
 {
+
    string str;
-   if (m_propertyptra.get_count() > 0)
+
+   const_iterator it = begin();
+
+   if(it != end())
    {
-      str = m_propertyptra[0]->get_value().get_string();
+
+      str = it->get_value().get_string();
+
+      it++;
+
    }
-   for (int32_t i = 1; i < m_propertyptra.get_count(); i++)
+
+   for(; it != end(); it++)
    {
+
       str += pszGlue;
-      str += m_propertyptra[i]->get_value().get_string();
+
+      str += it->get_value().get_string();
+
    }
+
    return str;
+
 }
 
-index property_set::find_value(const char * psz) const
+
+property * property_set::find_value(const char * psz) const
 {
-   for (index find = 0; find < m_propertyptra.get_count(); find++)
+
+   for(const_iterator it = begin(); it != end(); it++)
    {
-      if (m_propertyptra[find]->get_string() == psz)
-         return find;
+
+      if(it->get_string() == psz)
+      {
+
+         return it.m_ppair;
+
+      }
+
    }
-   return -1;
+
+   return NULL;
+
 }
 
-index property_set::find_value_ci(const char * psz) const
+
+property * property_set::find_value_ci(const char * psz) const
 {
-   for (index find = 0; find < m_propertyptra.get_count(); find++)
+   
+   for(const_iterator it = begin(); it != end(); it++)
    {
-      if (m_propertyptra[find]->get_string().CompareNoCase(psz) == 0)
-         return find;
+      
+      if(it->get_string().CompareNoCase(psz) == 0)
+      {
+       
+         return it.m_ppair;
+
+      }
    }
-   return -1;
+
+   return NULL;
+
 }
+
 
 property_set::property_set(const property_set & set)
 {
+
    operator = (set);
+
 }
+
 
 property_set::property_set(const pair_set_interface & set)
 {
+
    operator = (set);
+
 }
+
 
 property_set::property_set(const str_str_interface & set)
 {
+
    operator = (set);
+
 }
+
 
 property & property_set::at(index iIndex)
 {
-   if (iIndex >= m_propertyptra.get_size())
-   {
-      m_propertyptra.set_size(iIndex + 1);
-   }
-   return *m_propertyptra[iIndex];
+
+   return operator[](iIndex);
+
 }
 
 property property_set::at(index iIndex) const
 {
-   if (iIndex >= m_propertyptra.get_size())
-   {
-      const_cast < property_set * > (this)->m_propertyptra.set_size(iIndex + 1);
-   }
-   return *const_cast<property_set*>(this)->m_propertyptra[iIndex];
+
+   return operator[](iIndex);
+
 }
+
 
 property_set & property_set::operator = (const property_set & set)
 {
+
    if (&set != this)
    {
-      ::lemon::ptra::copy(m_propertyptra, set.m_propertyptra);
-      m_bAutoAdd = set.m_bAutoAdd;
-      m_bMultiValue = set.m_bMultiValue;
-      ::lemon::map::copy(m_map, set.m_map);
+
+      ::lemon::map::copy((property_map & )*this, (const property_map & ) set);
+
    }
+
    return *this;
+
 }
+
 
 property_set & property_set::add(const property_set & set)
 {
+
    if (&set != this)
    {
-      for (int32_t i = 0; i < set.m_propertyptra.get_count(); i++)
+
+      for(const_iterator it = set.begin(); it != set.end(); it++)
       {
-         ((property &)operator[](set.m_propertyptra[i]->name())).m_var = set.m_propertyptra[i]->get_value();
+
+         operator[](it->name()).m_element2 = it->get_value();
+
       }
+
    }
+
    return *this;
+
 }
+
 
 property_set & property_set::merge(const property_set & set)
 {
+
    if (&set != this)
    {
-      for (int32_t i = 0; i < set.m_propertyptra.get_count(); i++)
+
+      for(const_iterator it = set.begin(); it != set.end(); it++)
       {
-         const property * pproperty = set.m_propertyptra[i];
-         property * ppropertyThis = find(set.m_propertyptra[i]->name());
+
+         const property * pproperty = it.m_ppair;
+
+         property * ppropertyThis = find(pproperty->name());
+
          if (ppropertyThis != NULL)
          {
-            if (ppropertyThis->m_var.get_type() == ::var::type_element ||
-               pproperty->m_var.get_type() == ::var::type_element)
+
+            if (ppropertyThis->m_element2.get_type() == ::var::type_element || pproperty->m_element2.get_type() == ::var::type_element)
             {
-               ((property &)operator[](set.m_propertyptra[i]->name())).m_var = set.m_propertyptra[i]->m_var;
+               
+               operator[](pproperty->name()).m_element2 = pproperty->m_element2;
+
             }
-            else if (ppropertyThis->m_var.get_type() == ::var::type_propset)
+            else if (ppropertyThis->m_element2.get_type() == ::var::type_propset)
             {
-               if (pproperty->m_var.get_type() == ::var::type_propset)
+
+               if (pproperty->m_element2.get_type() == ::var::type_propset)
                {
+
                   ppropertyThis->propset().merge(pproperty->propset());
+
                }
                else
                {
+
                   index i = 0;
+
                   while (true)
                   {
+
                      if (!has_property(str::from(i)))
                      {
-                        operator[](str::from(i)).m_var = set.m_propertyptra[i]->m_var;
+
+                        operator[](str::from(i)).m_element2 = pproperty->m_element2;
+
                         break;
+
                      }
+
                      i++;
+
                   }
 
                }
 
             }
-            else if(((property &)operator[](set.m_propertyptra[i]->name())).is_empty())
+            else if(operator[](pproperty->name()).is_empty())
             {
-               ((property &)operator[](set.m_propertyptra[i]->name())) = set.m_propertyptra(i);
+
+               operator[](pproperty->name()) = pproperty->m_element2;
+
             }
             else
             {
-               try {
+               
+               try 
+               {
 
-               if(((property &)operator[](set.m_propertyptra[i]->name())) == set.m_propertyptra(i))
+                  if(operator[](pproperty->name()) == pproperty->m_element2)
+                  {
+                     
+                     continue;
+
+                  }
+
+               }
+               catch(...)
                {
-                  continue;
+
                }
-               } catch(...){
-               }
-               ((property &)operator[](set.m_propertyptra[i]->name())).stra().add_unique(set.m_propertyptra[i]->m_var.stra());
-               if (((property &)operator[](set.m_propertyptra[i]->name())).stra().get_size() == 1)
-               {
-                  ((property &)operator[](set.m_propertyptra[i]->name())) = ((property &)operator[](set.m_propertyptra[i]->name())).stra()[0];
-               }
+
+               operator[](pproperty->name()).vara().add_unique(operator[](pproperty->name()).vara());
+
             }
+
          }
          else
          {
-            ((property &)operator[](set.m_propertyptra[i]->name())).m_var = set.m_propertyptra[i]->m_var;
+
+            operator[](pproperty->name()).m_element2 = pproperty->m_element2;
+
          }
 
       }
+
    }
+
    return *this;
+
 }
+
 
 property_set & property_set::operator += (const property_set & set)
 {
+
    return add(set);
+
 }
+
 
 property_set & property_set::operator |= (const property_set & set)
 {
+
    return merge(set);
+
 }
+
 
 property_set & property_set::operator = (const pair_set_interface & set)
 {
-   //   if(&set != this)
+
+   remove_all();
+
+   int32_t iCount = set.pair_set_interface_get_count();
+
+   for (int32_t i = 0; i < iCount; i++)
    {
-      m_propertyptra.remove_all();
-      int32_t iCount = set.pair_set_interface_get_count();
-      for (int32_t i = 0; i < iCount; i++)
-      {
-         string strKey = set.pair_set_interface_get_key(i);
-         class var var = set.pair_set_interface_get_value(i);
-         m_propertyptra.add(new property(strKey, var));
-      }
-      // WOULD ANALYZE each of the following members parameters for
-      // auto discovery, calculation or leave as set.
-      m_bAutoAdd = set.get_auto_add();
+
+      string strKey = set.pair_set_interface_get_key(i);
+
+      class var var = set.pair_set_interface_get_value(i);
+
+      set_at(strKey, var);
    }
+
    return *this;
+
 }
 
 
@@ -974,48 +1136,58 @@ property_set & property_set::operator = (const pair_set_interface & set)
 
 property_set & property_set::operator = (const str_str_interface & set)
 {
-   //   if(&set != this)
+
+   remove_all();
+   
+   int32_t iCount = set.str_str_interface_get_count();
+
+   for (int32_t i = 0; i < iCount; i++)
    {
-      m_propertyptra.remove_all();
-      int32_t iCount = set.str_str_interface_get_count();
-      for (int32_t i = 0; i < iCount; i++)
-      {
-         string strKey = set.str_str_interface_get_key(i);
-         class var var = set.str_str_interface_get_value(i);
-         m_propertyptra.add(new property(strKey, var));
-      }
-      // WOULD ANALYZE each of the following members parameters for
-      // auto discovery, calculation or leave as set.
-      m_bAutoAdd = set.get_auto_add();
+      
+      string strKey = set.str_str_interface_get_key(i);
+
+      class var var = set.str_str_interface_get_value(i);
+
+      set_at(strKey, var);
    }
+
    return *this;
+
 }
 
 
-
-
-index property_set::str_find(const property & property, index find) const
+property * property_set::str_find(const property & property) const
 {
-   if (find < 0)
-      find = 0;
-   for (; find < this->get_count(); find++)
-   {
-      if (m_propertyptra[find]->str_compare(property) == 0)
-         return find;
-   }
-   return -1;
-}
 
+   for(const_iterator it = begin(); it != end(); it++)
+   {
+      
+      if(it->str_compare(property) == 0)
+      {
+
+         return it.m_ppair;
+
+      }
+
+   }
+
+   return NULL;
+
+}
 
 
 bool property_set::str_contains(const property_set & set) const
 {
 
-   for (index i = 0; i < set.m_propertyptra.get_count(); i++)
+   for(const_iterator it = begin(); it != end(); it++)
    {
       
-      if (str_find(set.m_propertyptra(i)) < 0)
+      if(str_find(*it.m_ppair) < 0)
+      {
+
          return false;
+
+      }
 
    }
 
@@ -1027,18 +1199,31 @@ bool property_set::str_contains(const property_set & set) const
 
 
 
-string property_set::get_http_post()
+string & property_set::get_http_post(string & strPost) const
 {
-   string strPost;
-   for (int32_t i = 0; i < m_propertyptra.get_size(); i++)
+
+   const_iterator it = begin();
+
+   if(it != end())
    {
-      strPost += m_propertyptra.element_at(i)->name();
-      strPost += "=";
-      strPost += url_encode_dup(m_propertyptra.element_at(i)->get_value().get_string());
-      if (i < m_propertyptra.get_size() - 1)
-         strPost += "&";
+
+      it->get_http_post(strPost);
+
+      it++;
+
    }
+
+   for(; it != end(); it++)
+   {
+
+      strPost += "&";
+
+      it->get_http_post(strPost);
+
+   }
+
    return strPost;
+
 }
 
 

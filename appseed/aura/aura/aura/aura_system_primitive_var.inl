@@ -145,7 +145,7 @@ inline id & id::operator = (const var & var)
 inline id & id::operator = (const property & prop)
 {
 
-   return operator = (prop.m_var);
+   return operator = (prop.m_element2);
 
 }
 

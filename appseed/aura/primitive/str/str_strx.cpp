@@ -101,31 +101,53 @@ int32_t uni_to_utf8(char * psz, int32_t w)
 
 void utf8_to_utf16(wchar_t * pwsz, const char * psz)
 {
+
    strsize len;
+
    while(psz != NULL && *psz != '\0')
    {
+      
       *pwsz++ = ::str::ch::uni_index_len(psz, len);
+
       psz += len;
+
    }
+
    if(psz != NULL)
    {
+
       *pwsz = L'\0';
+
    }
+
 }
+
+
 void utf8_to_utf16_len(wchar_t * pwsz,const char * psz, strsize srclen)
 {
+
    strsize len;
+
    while(srclen > 0 && psz != NULL && *psz != '\0')
    {
+
       *pwsz++ = ::str::ch::uni_index_len(psz,len);
+
       psz += len;
+
       srclen -= len;
+
    }
+
    if(psz != NULL)
    {
+
       *pwsz = L'\0';
+
    }
+
 }
+
 
 /*
 WCHAR * utf8_to_utf16(const char * psz)

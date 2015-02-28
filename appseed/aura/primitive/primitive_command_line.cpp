@@ -23,65 +23,125 @@ command_line::~command_line()
 {
 }
 
-void command_line::ParseParam(const char* pszParam, bool bFlag, bool bLast)
+
+void command_line::ParseParam(const string & strParam,bool bFlag,bool bLast)
 {
-   if (bFlag)
-      ParseParamFlag(pszParam);
+
+   if(bFlag)
+   {
+
+      ParseParamFlag(strParam);
+
+   }
    else
-      ParseParamNotFlag(pszParam);
+   {
+
+      ParseParamNotFlag(strParam);
+
+   }
 
    ParseLast(bLast);
+
 }
 
-void command_line::ParseParamFlag(const char* pszParam)
+
+void command_line::ParseParamFlag(const string & strParam)
 {
    // OLE command switches are case insensitive, while
    // shell command switches are case sensitive
 
-   if(stricmp_dup(pszParam, "pt") == 0)
+   if(strParam.CompareNoCase("pt") == 0)
+   {
+
       m_ecommand = command_file_print_to;
-   else if (stricmp_dup(pszParam, "p") == 0)
+
+   }
+   else if(strParam.CompareNoCase("p") == 0)
+   {
+
       m_ecommand = command_file_print;
-   else if (stricmp_dup(pszParam, "Unregister") == 0 ||
-      stricmp_dup(pszParam, "Unregserver") == 0)
+
+   }
+   else if(strParam.CompareNoCase("Unregister") == 0 || strParam.CompareNoCase("Unregserver") == 0)
+   {
+
       m_ecommand = command_app_unregister;
-   else if (stricmp_dup(pszParam, "dde") == 0)
+
+   }
+   else if(strParam.CompareNoCase("dde") == 0)
    {
+
       m_ecommand = command_file_dde;
+
    }
-   else if (stricmp_dup(pszParam, "Embedding") == 0)
+   else if(strParam.CompareNoCase("Embedding") == 0)
    {
+
       m_bRunEmbedded = TRUE;
+      
       m_bShowSplash = FALSE;
+
    }
-   else if (stricmp_dup(pszParam, "Automation") == 0)
+   else if(strParam.CompareNoCase("Automation") == 0)
    {
+
       m_bRunAutomated = TRUE;
+
       m_bShowSplash = FALSE;
+
    }
+
 }
 
-void command_line::ParseParamNotFlag(const char* pszParam)
+
+void command_line::ParseParamNotFlag(const string & strParam)
 {
-   if (m_varFile.is_empty())
-      m_varFile = pszParam;
-   else if (m_ecommand == command_file_print_to && m_strPrinterName.is_empty())
-      m_varFile = pszParam;
-   else if (m_ecommand == command_file_print_to && m_strDriverName.is_empty())
-      m_varFile = pszParam;
-   else if (m_ecommand == command_file_print_to && m_strPortName.is_empty())
-      m_varFile = pszParam;
+
+   if(m_varFile.is_empty())
+   {
+
+      m_varFile = strParam;
+
+   }
+   else if(m_ecommand == command_file_print_to && m_strPrinterName.is_empty())
+   {
+
+      m_varFile = strParam;
+
+   }
+   else if(m_ecommand == command_file_print_to && m_strDriverName.is_empty())
+   {
+
+      m_varFile = strParam;
+
+   }
+   else if(m_ecommand == command_file_print_to && m_strPortName.is_empty())
+   {
+
+      m_varFile = strParam;
+
+   }
+
 }
 
 void command_line::ParseLast(bool bLast)
 {
+   
    if (bLast)
    {
-      if (m_ecommand == command_file_new && !m_varFile.is_empty())
+      if(m_ecommand == command_file_new && !m_varFile.is_empty())
+      {
+
          m_ecommand = command_file_open;
+
+      }
+
       m_bShowSplash = !m_bRunEmbedded && !m_bRunAutomated;
+
    }
+
 }
+
 
 command_line & command_line::operator = (const command_line & info)
 {
@@ -97,49 +157,75 @@ command_line & command_line::operator = (const command_line & info)
 
 }
 
-void command_line::_001ParseCommandLine(const char * pszCommandLine)
+
+void command_line::_001ParseCommandLine(const string & strCommandLine)
 {
-   m_varQuery.propset()._008ParseCommandLine(pszCommandLine, m_varFile);
+
+   m_varQuery.propset()._008ParseCommandLine(strCommandLine,m_varFile);
+
    if(!m_varFile.is_empty())
    {
+
       m_ecommand = command_line::command_file_open;
+
    }
+
    if(m_varQuery.has_property("uri"))
    {
+
       if(m_varFile.has_char())
       {
+
          m_varFile += ";";
+
          m_varFile += m_varQuery["uri"];
+
       }
       else
       {
+
          m_varFile = m_varQuery["uri"];
+
       }
+
       if(m_ecommand == command_line::command_file_new)
+      {
+
          m_ecommand = command_line::command_file_open;
+
+      }
+
    }
+
    if(m_ecommand == command_line::command_file_open)
    {
+
       m_varQuery["show_platform"] = 1;
+
    }
 
    if(m_varQuery.propset().has_property("app"))
    {
+
       m_strApp = m_varQuery.propset()["app"];
+
    }
 
    if(m_strApp == "session" && m_varQuery.propset().has_property("session_start"))
    {
+
       m_strApp = m_varQuery.propset()["session_start"];
+
    }
 
    if(m_varQuery.propset().has_property("app_type"))
    {
+
       m_strAppType = m_varQuery.propset()["app_type"];
+
    }
 
-   if (!m_varQuery.propset().has_property("build_number")
-      || m_varQuery["build_number"].is_empty())
+   if (!m_varQuery.propset().has_property("build_number") || m_varQuery["build_number"].is_empty())
    {
 
       if (file_exists_dup("C:\\ca2\\config\\plugin\\build_number.txt"))
@@ -156,53 +242,78 @@ void command_line::_001ParseCommandLine(const char * pszCommandLine)
 }
 
 
-void command_line::_001ParseCommandLineUri(const char * pszCommandLine)
+void command_line::_001ParseCommandLineUri(const string & strCommandLine)
 {
 
    ::exception::throw_not_implemented(get_app());
 
 }
 
-void command_line::_001ParseCommandFork(const char * pszCommandFork)
+void command_line::_001ParseCommandFork(const string & strCommandFork)
 {
 
-   m_varQuery.propset()._008ParseCommandFork(pszCommandFork, m_varFile, m_strApp);
+   m_varQuery.propset()._008ParseCommandFork(strCommandFork,m_varFile,m_strApp);
+
    if(!m_varFile.is_empty())
    {
+
       m_ecommand = command_line::command_file_open;
+
    }
+   
    if(m_varQuery.has_property("uri"))
    {
+
       if(m_varFile.has_char())
       {
+
          m_varFile += ";";
+
          m_varFile += m_varQuery["uri"];
+
       }
       else
       {
+
          m_varFile = m_varQuery["uri"];
+
       }
+
       if(m_ecommand == command_line::command_file_new)
+      {
+
          m_ecommand = command_line::command_file_open;
+
+      }
+
    }
+
    if(m_ecommand == command_line::command_file_open)
    {
+
       m_varQuery["show_platform"] = 1;
+
    }
 
    if(m_varQuery.propset().has_property("app"))
    {
+
       m_strApp = m_varQuery.propset()["app"];
+
    }
 
    if(m_strApp == "session" && m_varQuery.propset().has_property("session_start"))
    {
+
       m_strApp = m_varQuery.propset()["session_start"];
+
    }
 
    if(m_varQuery.propset().has_property("app_type"))
    {
+
       m_strAppType = m_varQuery.propset()["app_type"];
+
    }
 
    //      m_pthreadParent->consolidate(this);
@@ -211,10 +322,10 @@ void command_line::_001ParseCommandFork(const char * pszCommandFork)
 
 
 
-void command_line::_001ParseCommandForkUri(const char * pszCommandFork)
+void command_line::_001ParseCommandForkUri(const string & strCommandFork)
 {
 
-   string strQuery(pszCommandFork);
+   string strQuery(strCommandFork);
 
    strsize iFind = strQuery.find('?');
 
@@ -223,7 +334,7 @@ void command_line::_001ParseCommandForkUri(const char * pszCommandFork)
    else
       strQuery = strQuery.Mid(iFind + 1);
 
-   string strScript(pszCommandFork);
+   string strScript(strCommandFork);
 
    strsize iPos = strScript.find("://");
 
@@ -260,15 +371,18 @@ void command_line::_001ParseCommandForkUri(const char * pszCommandFork)
 }
 
 
-
 command_line_sp::command_line_sp()
 {
+
 }
 
 
 command_line_sp::command_line_sp(const ::aura::allocatorsp & allocer) :
    smart_pointer < command_line > (allocer)
 {
+
 }
+
+
 
 

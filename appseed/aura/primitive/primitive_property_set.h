@@ -5,18 +5,13 @@
 
 // property set key is case insensitive
 class CLASS_DECL_AURA property_set :
-   public object,
+   public property_map,
    public ::file::serializable
 {
 public:
 
 
-   property_map         m_map;
-   property_ptra        m_propertyptra;
    class signal         m_signal;
-   bool                 m_bAutoAdd;
-   bool                 m_bMultiValue;
-
 
 
    property_set(::aura::application * papp = NULL, bool bAutoAdd = true, bool bMultiValue = false);
@@ -59,15 +54,15 @@ public:
    property & at(index iId);
    property at(index iId) const;
 
-   index find_var_ci(const var & var) const;
-   index find_value_ci(var var) const;
-   index find_value_ci(const char * psz) const;
-
-   index find_var(const var & var) const;
-   index find_value(var var) const;
-   index find_value(const char * psz) const;
-
-   index str_find(const property & property, index find = 0) const;
+   property * find_var_ci(const var & var) const;
+   property * find_value_ci(var var) const;
+   property * find_value_ci(const char * psz) const;
+   
+   property * find_var(const var & var) const;
+   property * find_value(var var) const;
+   property * find_value(const char * psz) const;
+   
+   property * str_find(const property & property) const;
 
    bool contains_var_ci(const var & var, ::count countMin = 1, ::count countMax = -1) const;
    bool contains_value_ci(var var, ::count countMin = 1, ::count countMax = -1) const;
@@ -79,13 +74,13 @@ public:
 
    bool str_contains(const property_set & set) const;
 
-   index remove_first_var_ci(const var & var);
-   index remove_first_value_ci(var var);
-   index remove_first_value_ci(const char * psz);
+   bool remove_first_var_ci(const var & var);
+   bool remove_first_value_ci(var var);
+   bool remove_first_value_ci(const char * psz);
 
-   index remove_first_var(const var & var);
-   index remove_first_value(var var);
-   index remove_first_value(const char * psz);
+   bool remove_first_var(const var & var);
+   bool remove_first_value(var var);
+   bool remove_first_value(const char * psz);
 
    ::count remove_var_ci(const var & var, ::count countMin = 0, ::count countMax = -1);
    ::count remove_value_ci(var var, ::count countMin = 0, ::count countMax = -1);
@@ -104,8 +99,9 @@ public:
    property * find(id idName) const;
    property * find(string_interface & str) const;
 
-   index find_index(id idName) const;
-   index find_index(string_interface & str) const;
+   //index find_index(id idName) const;
+   //index find_index(string_interface & str) const;
+
 
    ::count unset(id idName);
 
@@ -142,14 +138,14 @@ public:
    void parse_url_query(const char * pszUrl);
    void _parse_url_query(const char * pszUrlQuery);
    void parse_http_headers(const char * pszHeaders);
-   string get_http_post();
-   string get_json();
+   string & get_http_post(string & str) const;
+   string & get_json(string & str) const;
 
    virtual void write(::file::output_stream & ostream);
    virtual void read(::file::input_stream & ostream);
 
    virtual string implode(const char * pszGlue) const;
-   ::count get_count() const;
+   //::count get_count() const;
 
 
    property_set & operator = (const property_set & set);
@@ -211,11 +207,11 @@ public:
 };
 
 
-
-inline ::count property_set::get_count() const
-{
-   return m_map.get_count();
-}
+//
+//inline ::count property_set::get_count() const
+//{
+//   return get_count();
+//}
 
 
 inline property * property_set::add(id idName)
@@ -224,11 +220,7 @@ inline property * property_set::add(id idName)
    if(idName.is_null())
       idName = get_new_id();
 
-   property * pproperty = new property(idName);
-
-   m_map.set_at(idName,m_propertyptra.add(pproperty));
-
-   return pproperty;
+   return set_at(idName,property(idName));
 
 }
 
@@ -239,101 +231,98 @@ inline property * property_set::add(id idName, var var)
    if(idName.is_null())
       idName = get_new_id();
 
-   property * pproperty = new property(idName, var);
-
-   m_map.set_at(idName,m_propertyptra.add(pproperty));
-
-   return pproperty;
+   return set_at(idName,property(idName, var));
 
 }
 
-class property_pair
-{
-public:
 
-
-   property_map::pair * m_ppair;
-   property_set & m_set;
-
-
-   property_pair(property_set & set) :
-      m_set(set)
-   {
-      m_ppair = NULL;
-   }
-
-   property * operator ->()
-   {
-      return m_set.m_propertyptra[m_ppair->m_element2];
-   }
-
-   const property * operator ->() const
-   {
-      return m_set.m_propertyptra[m_ppair->m_element2];
-   }
-
-   operator property_map::pair * ()
-   {
-      return m_ppair;
-   }
-
-   operator const property_map::pair * () const
-   {
-      return m_ppair;
-   }
-
-   bool operator ()()
-   {
-      return m_set.m_map.next(m_ppair) != NULL;
-   }
-
-
-};
-
-
-class const_property_pair
-{
-public:
-
-
-   const property_map::pair * m_ppair;
-   const property_set & m_set;
-
-
-   const_property_pair(const property_set & set) :
-      m_set(set)
-
-   {
-      m_ppair = NULL;
-   }
-
-   const property * operator ->()
-   {
-      return m_set.m_propertyptra[m_ppair->m_element2];
-   }
-
-   const property * operator ->() const
-   {
-      return m_set.m_propertyptra[m_ppair->m_element2];
-   }
-
-   operator const property_map::pair * () const
-   {
-      return m_ppair;
-   }
-
-
-   bool operator ()()
-   {
-      return m_set.m_map.next(m_ppair) != NULL;
-   }
-
-};
+//class property_pair
+//{
+//public:
+//
+//
+//   property_map::pair * m_ppair;
+//   property_set & m_set;
+//
+//
+//   property_pair(property_set & set) :
+//      m_set(set)
+//   {
+//      m_ppair = NULL;
+//   }
+//
+//   property * operator ->()
+//   {
+//      return m_set.m_propertyptra[m_ppair->m_element2];
+//   }
+//
+//   const property * operator ->() const
+//   {
+//      return m_set.m_propertyptra[m_ppair->m_element2];
+//   }
+//
+//   operator property_map::pair * ()
+//   {
+//      return m_ppair;
+//   }
+//
+//   operator const property_map::pair * () const
+//   {
+//      return m_ppair;
+//   }
+//
+//   bool operator ()()
+//   {
+//      return m_set.next(m_ppair) != NULL;
+//   }
+//
+//
+//};
+//
+//
+//class const_property_pair
+//{
+//public:
+//
+//
+//   const property_map::pair * m_ppair;
+//   const property_set & m_set;
+//
+//
+//   const_property_pair(const property_set & set) :
+//      m_set(set)
+//
+//   {
+//      m_ppair = NULL;
+//   }
+//
+//   const property * operator ->()
+//   {
+//      return m_set.m_propertyptra[m_ppair->m_element2];
+//   }
+//
+//   const property * operator ->() const
+//   {
+//      return m_set.m_propertyptra[m_ppair->m_element2];
+//   }
+//
+//   operator const property_map::pair * () const
+//   {
+//      return m_ppair;
+//   }
+//
+//
+//   bool operator ()()
+//   {
+//      return m_set.next(m_ppair) != NULL;
+//   }
+//
+//};
 
 inline bool property_set::has_property(id idName) const
 {
    const property * pproperty = find(idName);
-   return pproperty != NULL && pproperty->m_var.m_etype != var::type_new;
+   return pproperty != NULL && pproperty->m_element2.m_etype != var::type_new;
 }
 
 inline bool property_set::has_property(string_interface & str) const
@@ -405,12 +394,12 @@ inline property & property_set::operator[](string strName)
    return operator[](id(strName));
 }
 
+
 inline property & property_set::operator[](id idName)
 {
-   property * pproperty = find(idName);
-   if(pproperty != NULL)
-      return *pproperty;
-   return defer_auto_add(idName);
+
+   return *get_assoc(idName);
+
 }
 
 inline var property_set::lookup(id idName) const
@@ -418,7 +407,7 @@ inline var property_set::lookup(id idName) const
    property * pproperty = find(idName);
    if (pproperty == NULL)
       return var(var::type_new);
-   return pproperty->m_var;
+   return pproperty->m_element2;
 }
 
 inline var property_set::lookup(id idName, var varDefault) const
@@ -426,36 +415,32 @@ inline var property_set::lookup(id idName, var varDefault) const
    property * pproperty = find(idName);
    if (pproperty == NULL)
       return varDefault;
-   return pproperty->m_var;
+   return pproperty->m_element2;
 }
 
 
 
-inline index property_set::find_index(id idName) const
-{
-   const property_map::pair * ppair = m_map.PLookup(idName);
-   if(ppair == NULL)
-      return -1;
-   return ppair->m_element2;
-}
-
-inline index property_set::find_index(string_interface & str) const
-{
-   return find_index((const char *) string(str));
-}
+//inline index property_set::find_index(id idName) const
+//{
+//   const property_map::pair * ppair = PLookup(idName);
+//   if(ppair == NULL)
+//      return -1;
+//   return ppair->m_element2;
+//}
+//
+//inline index property_set::find_index(string_interface & str) const
+//{
+//   return find_index((const char *) string(str));
+//}
 
 
 inline property * property_set::find(id idName) const
 {
-
-   index i = find_index(idName);
-
-   if(i < 0)
-      return NULL;
-
-   return ((property_set *) this)->m_propertyptra[i];
+   
+   return get_assoc(idName);
 
 }
+
 
 inline property * property_set::find(string_interface & str) const
 {

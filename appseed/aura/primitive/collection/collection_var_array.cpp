@@ -58,6 +58,31 @@ index var_array::add(var var)
    return this->get_count();
 }
 
+
+::count var_array::add_unique(const var_array & vara)
+{
+
+   ::count c = 0;
+   
+   for(int32_t i = 0; i < vara.get_size(); i++)
+   {
+
+      if(!contains(vara[i]))
+      {
+
+         add(vara[i]);
+
+         c++;
+
+      }
+
+   }
+
+   return c;
+
+}
+
+
 string var_array::implode(const char * pszGlue) const
 {
    string str;
@@ -283,15 +308,23 @@ var_array & var_array::operator = (const int_array & inta)
    return *this;
 }
 
+
 var_array & var_array::operator = (const property_set & propset)
 {
+   
    remove_all();
-   for(int32_t i = 0; i < propset.m_propertyptra.get_count(); i++)
+
+   for(auto property : propset)
    {
-      add(*propset.m_propertyptra[i]);
+
+      add(property);
+
    }
+
    return *this;
+
 }
+
 
 var_array & var_array::operator = (const var_array & vara)
 {
@@ -344,23 +377,34 @@ void var_array::parse_json(const char * & pszJson, const char * pszEnd)
 
 
 
-string var_array::get_json()
+string & var_array::get_json(string & str) const
 {
-   string str("[");
 
-   for (index i = 0; i < get_count(); i++)
+   str +="[";
+
+   if(get_count() > 0)
    {
-      if (i > 0)
-      {
-         str += ", \r\n";
-      }
 
-      str += element_at(i).get_json();
+      element_at(0).get_json(str);
 
    }
 
+   for (index i = 0; i < get_count(); i++)
+   {
+
+      str += ", \r\n";
+
+      element_at(i).get_json(str);
+
+   }
 
    str += "\r\n]";
 
    return str;
+
 }
+
+
+
+
+

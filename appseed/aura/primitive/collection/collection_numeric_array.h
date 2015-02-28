@@ -186,7 +186,7 @@ public:
    numeric_array & operator += (const numeric_array & a);
 
 
-   string get_json();
+   string & get_json(string & str) const;
 
 
    int compare(const numeric_array < TYPE > & a) const
@@ -314,27 +314,31 @@ public:
 
 
 template < typename T >
-string to_json(const T & t);
+string & to_json(string & str, const T & t);
 
 
 template < class TYPE >
-string numeric_array < TYPE >::get_json()
+string & numeric_array < TYPE >::get_json(string & str) const
 {
 
 
-   string str("[");
+   str += "[";
 
-   for (index i = 1; i < this->get_count(); i++)
+   if(this->get_count() > 0)
    {
-      if (i > 0)
-      {
-         str += ", \r\n";
-      }
 
-      str += to_json(this->element_at(i));
+      to_json(str, this->element_at(0));
 
    }
 
+   for (index i = 1; i < this->get_count(); i++)
+   {
+
+      str += ", \r\n";
+
+      to_json(str, this->element_at(i));
+
+   }
 
    str += "\r\n]";
 

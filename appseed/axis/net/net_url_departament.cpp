@@ -786,7 +786,11 @@ namespace url
 
       set.remove_by_name(pszKey);
 
-      return set.get_http_post();
+      string str;
+
+      set.get_http_post(str);
+
+      return str;
 
    }
 
@@ -824,7 +828,11 @@ namespace url
 
       set.remove_by_name(straKey);
 
-      return set.get_http_post();
+      string str;
+
+      set.get_http_post(str);
+
+      return str;
 
    }
 

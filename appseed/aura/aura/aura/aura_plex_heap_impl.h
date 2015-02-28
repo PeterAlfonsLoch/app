@@ -10,9 +10,9 @@ inline void * plex_heap_alloc_sync::Alloc()
 
    cslock sl(&m_protect);
 
-   void * pdata = NULL;
-   try
-   {
+   //void * pdata = NULL;
+//   try
+  // {
       if (m_pnodeFree == NULL)
       {
          NewBlock();
@@ -20,13 +20,13 @@ inline void * plex_heap_alloc_sync::Alloc()
       // remove the first available node from the free list
       void * pNode = m_pnodeFree;
       m_pnodeFree = m_pnodeFree->pNext;
-      pdata = pNode;
-   }
-   catch(...)
-   {
-   }
+      //pdata = pNode;
+   //}
+   //catch(...)
+   //{
+   //}
    //memset(pdata, 0, m_nAllocSize); // let constructors and algorithms initialize... "random initialization" of not initialized :-> C-:!!
-   return pdata;
+   return pNode;
 }
 
 inline void plex_heap_alloc_sync::Free(void * p)
@@ -105,9 +105,11 @@ class CLASS_DECL_AURA plex_heap_alloc :
 {
 public:
 
-
-   uint32_t                      m_ui;
+   // // Now alloc from any pool and release to any pool (not necessaraly the same allocated at) . save four bytes per allocation
+   uint32_t                      m_uiAlloc; // Now alloc from any pool 
+   uint32_t                      m_uiFree; // and release to any pool 
    uint32_t                      m_uiShareCount;
+   uint32_t                      m_uiShareBound;
    uint32_t                      m_uiAllocSize;
 
 
@@ -147,39 +149,19 @@ inline void * plex_heap_alloc::Alloc()
    // just fair well distributed
    // but very important is extremely fast
 
-   uint32_t ui = m_ui % m_uiShareCount;
-
-   m_ui++; // changed to unsigned (it was turning negative  by overflow and generating out of bound errors below)
-
-   uint32_t * pui = (uint32_t *) element_at(ui)->Alloc();
-
-   *pui = ui;
-
-   return &pui[1];
+   return element_at((m_uiAlloc++) % m_uiShareCount)->Alloc();
 
 }
 
 inline void plex_heap_alloc::Free(void * p)
 {
 
-   if (p == NULL)
-      return;
+   // veripseudo-random generator, don't need to be
+   // perfectly sequential or perfectly distributed,
+   // just fair well distributed
+   // but very important is extremely fast
 
-   uint32_t ui = ((uint32_t *)p)[-1];
-
-   if(ui < m_uiShareCount)
-   {
-
-      element_at(ui)->Free(&((uint32_t *)p)[-1]);
-
-   }
-   else
-   {
-
-      ::OutputDebugStringW(L"plex_heap_alloc::Free error");
-
-   }
-
+   element_at((m_uiFree++) % m_uiShareCount)->Free(p);
 
 }
 

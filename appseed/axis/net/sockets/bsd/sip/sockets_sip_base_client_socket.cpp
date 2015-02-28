@@ -312,11 +312,11 @@ namespace sockets
       strTrace = strLine;
       strTrace.replace("%", "%%");
       TRACE(strTrace + "\n");
-      for(int32_t i = 0; i < m_response.m_propertysetHeader.m_propertyptra.get_size(); i++)
+      for(auto property : m_response.m_propertysetHeader)
       {
-         strLine = string(m_response.m_propertysetHeader.m_propertyptra[i]->name()) +
+         strLine = string(property.name()) +
                    ": " +
-                   m_response.m_propertysetHeader.m_propertyptra[i]->get_string();
+                   property.get_string();
          msg += strLine + "\r\n";
          strTrace = strLine;
          strTrace.replace("%", "%%");
@@ -336,9 +336,9 @@ namespace sockets
    {
       string msg;
       msg = m_request.attr("http_method").get_string() + " " + m_request.attr("request_uri").get_string() + " " + m_request.attr("http_version").get_string() + "\r\n";
-      for(int32_t i = 0; i < m_response.m_propertysetHeader.m_propertyptra.get_count(); i++)
+      for(auto property : m_response.m_propertysetHeader)
       {
-         msg += m_response.m_propertysetHeader.m_propertyptra[i]->name() + ": " + m_response.m_propertysetHeader.m_propertyptra[i]->get_string() + "\r\n";
+         msg += property.name() + ": " + property.get_string() + "\r\n";
       }
       msg += "\r\n";
       write( msg );

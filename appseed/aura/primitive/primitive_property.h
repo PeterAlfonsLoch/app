@@ -98,17 +98,11 @@ class property_set;
 class property_map;
 
 
-class CLASS_DECL_AURA property
+
+class CLASS_DECL_AURA property :
+   public pair < id, var >
 {
-protected:
-
-
-   id                m_idName;
-
 public:
-
-   var               m_var;
-
 
    property(::aura::application * papp);
    property();
@@ -118,13 +112,13 @@ public:
 #ifdef MOVE_SEMANTICS
    property(property && prop)
    {
-      m_idName.m_all = prop.m_idName.m_all;
-      //m_var.m_sp.release();
-      //m_var.m_str.~string();
-      memcpy(&m_var, &prop.m_var, sizeof(var));
-      prop.m_var.m_sp.m_p           = NULL;
-      prop.m_var.m_str.m_pszData    = NULL;
-      prop.m_var.m_id.m_all        ={};
+      m_element1.m_all = prop.m_element1.m_all;
+      //m_element2.m_sp.release();
+      //m_element2.m_str.~string();
+      memcpy(&m_element2, &prop.m_element2, sizeof(var));
+      prop.m_element2.m_sp.m_p           = NULL;
+      prop.m_element2.m_str.m_pszData    = NULL;
+      prop.m_element2.m_id.m_all        ={};
    }
 #endif
    ~property()
@@ -133,22 +127,22 @@ public:
 
    inline id name()
    {
-      return m_idName;
+      return m_element1;
    }
 
    inline id name() const
    {
-      return m_idName;
+      return m_element1;
    }
 
    inline void set_name(id id)
    {
-      m_idName = id;
+      m_element1 = id;
    }
 
    inline void set_name(string str)
    {
-      m_idName = id(str);
+      m_element1 = id(str);
    }
 
    inline void set_name(const var & var)
@@ -160,6 +154,26 @@ public:
    {
       set_name(id(prop.get_string()));
    }
+
+
+   inline string & get_json(string & str) const
+   {
+
+      str += "\"";
+
+      str += m_element1;
+
+      str += "\"";
+
+      str += ":";
+
+      m_element2.get_json(str);
+
+      return str;
+
+   }
+
+   string & get_http_post(string & str) const;
 
    stringa & stra();
    int_array & inta();
@@ -180,15 +194,15 @@ public:
 
    inline var & get_value()
    {
-      return m_var;
+      return m_element2;
    }
    inline const var & get_value() const
    {
-      return m_var;
+      return m_element2;
    }
    inline void set_value(const var & var)
    {
-      m_var = var;
+      m_element2 = var;
    }
 
    void unset();
@@ -203,43 +217,43 @@ public:
 
    bool get_bool() const
    {
-      return get_value().get_bool();
+      return m_element2.get_bool();
    }
 
    int32_t int32(int32_t iDefault = 0) const
    {
-      return get_value().int32(iDefault);
+      return m_element2.int32(iDefault);
    }
 
    template < typename ENUM >
    int32_t int32(ENUM edefault = ::enum_default < ENUM > ()) const
    {
-      return get_value().e(edefault);
+      return m_element2.e(edefault);
    }
 
    uint32_t uint32(uint32_t uiDefault = 0) const
    {
-      return get_value().uint32(uiDefault);
+      return m_element2.uint32(uiDefault);
    }
 
    int64_t int64(int64_t iDefault = 0) const
    {
-      return get_value().int64(iDefault);
+      return m_element2.int64(iDefault);
    }
 
    uint64_t uint64(uint64_t uiDefault = 0) const
    {
-      return get_value().uint64(uiDefault);
+      return m_element2.uint64(uiDefault);
    }
 
    double get_double() const
    {
-      return get_value().get_double();
+      return m_element2.get_double();
    }
 
    string get_string() const
    {
-      return m_var.get_string();
+      return m_element2.get_string();
    }
 
    string & to_string(string & str) const
@@ -254,12 +268,12 @@ public:
 
    void set_string(const char * psz)
    {
-      get_value() = psz;
+      m_element2 = psz;
    }
 
    property & operator++(int32_t)
    {
-      get_value()++;
+      m_element2++;
       return *this;
    }
 
@@ -267,49 +281,55 @@ public:
 
    property & operator =(const property_set & propset)
    {
-      get_value() = propset;
+      m_element2 = propset;
       return *this;
    }
 
    property & operator =(const var & var)
    {
-      get_value() = var;
+      m_element2 = var;
       return *this;
    }
 
    property & operator =(const char * psz)
    {
-      get_value() = psz;
+      m_element2 = psz;
       return *this;
    }
 
    property & operator =(const string & str)
    {
-      get_value() = str;
+      m_element2 = str;
+      return *this;
+   }
+
+   property & operator =(string && str)
+   {
+      m_element2 = ::move(str);
       return *this;
    }
 
    property & operator =(const stringa & stra)
    {
-      get_value() = stra;
+      m_element2 = stra;
       return *this;
    }
 
    property & operator =(const id & id)
    {
-      get_value() = id;
+      m_element2 = id;
       return *this;
    }
 
    property & operator =(double d)
    {
-      get_value() = d;
+      m_element2 = d;
       return *this;
    }
 
    property & operator =(int32_t i)
    {
-      get_value() = i;
+      m_element2 = i;
       return *this;
    }
 
@@ -317,7 +337,7 @@ public:
 
    property & operator =(LONG l)
    {
-      get_value() = l;
+      m_element2 = l;
       return *this;
    }
 
@@ -325,39 +345,39 @@ public:
 
    property & operator =(uint32_t ui)
    {
-      get_value() = ui;
+      m_element2 = ui;
       return *this;
    }
 
 
    property & operator =(int64_t i)
    {
-      get_value() = i;
+      m_element2 = i;
       return *this;
    }
 
    property & operator =(uint64_t ui)
    {
-      get_value() = ui;
+      m_element2 = ui;
       return *this;
    }
 
    property & operator =(bool b)
    {
-      get_value() = b;
+      m_element2 = b;
       return *this;
    }
 
    template < class T >
    property & operator =(const smart_pointer < T > & p)
    {
-      get_value() = p.m_p;
+      m_element2 = p.m_p;
       return *this;
    }
 
    property & operator =(object * p)
    {
-      get_value() = p;
+      m_element2 = p;
       return *this;
    }
 #ifdef MOVE_SEMANTICS
@@ -365,12 +385,12 @@ public:
    {
       if(this != &prop)
       {
-         m_var.m_sp.release();
-         m_var.m_str.~string();
-         m_idName.m_all = prop.m_idName.m_all;
-         memcpy(&m_var, &prop.m_var, sizeof(var));
-         prop.m_var.m_sp.m_p = NULL;
-         prop.m_var.m_str.m_pszData = NULL;
+         m_element2.m_sp.release();
+         m_element2.m_str.~string();
+         m_element1.m_all = prop.m_element1.m_all;
+         memcpy(&m_element2, &prop.m_element2, sizeof(var));
+         prop.m_element2.m_sp.m_p = NULL;
+         prop.m_element2.m_str.m_pszData = NULL;
       }
       return *this;
    }
@@ -379,90 +399,90 @@ public:
    template < class T >
    sp(T) cast(T * pDefault = NULL)
    {
-      return get_value().cast < T >(pDefault);
+      return m_element2.cast < T >(pDefault);
    }
 
    template < class T >
    sp(T) cast(T * pDefault = NULL) const
    {
-      return ((property *) this)->get_value().cast < T >(pDefault);
+      return ((property *) this)->m_element2.cast < T >(pDefault);
    }
 
    operator const char *() const
    {
 
-      ((property *) this)->m_var.m_str = get_value().get_string();
+      ((property *) this)->m_element2.m_str = m_element2.get_string();
 
-      return m_var.m_str;
+      return m_element2.m_str;
 
    }
 
    operator string & ()
    {
 
-      return m_var.operator string &();
+      return m_element2.operator string &();
 
    }
 
    operator id()
    {
-      return m_var.get_id();
+      return m_element2.get_id();
    }
 
    /*      operator const id()
    {
-   return get_value().get_id();
+   return m_element2.get_id();
    }
 
    operator id &()
    {
-   get_value().m_id = get_value().get_id();
-   return get_value().m_id;
+   m_element2.m_id = m_element2.get_id();
+   return m_element2.m_id;
    }
 
    operator const id &()
    {
-   get_value().m_id = get_value().get_id();
-   return get_value().m_id;
+   m_element2.m_id = m_element2.get_id();
+   return m_element2.m_id;
    }*/
 
    operator double()
    {
-      return get_value().get_double();
+      return m_element2.get_double();
    }
 
    operator int32_t()
    {
-      return get_value().operator int32_t();
+      return m_element2.operator int32_t();
    }
 
 #ifdef WINDOWS
 
    operator LONG()
    {
-      return get_value().operator LONG();
+      return m_element2.operator LONG();
    }
 
 #endif
 
    operator uint32_t()
    {
-      return get_value().operator uint32_t();
+      return m_element2.operator uint32_t();
    }
 
    operator int64_t()
    {
-      return get_value().operator int64_t();
+      return m_element2.operator int64_t();
    }
 
    operator uint64_t()
    {
-      return get_value().operator uint64_t();
+      return m_element2.operator uint64_t();
    }
 
    operator bool()
    {
-      return get_value().operator bool();
+      return m_element2.operator bool();
    }
 
    var equals_ci_get(const char * pszCompare, var varOnEqual, var varOnDifferent) const;
@@ -658,8 +678,10 @@ public:
 
 
    void parse_json(const string & str);
-   void parse_json(const char * & pszJson, strsize length);
-   void parse_json(const char * & pszJson, const char * pszEnd);
+   void parse_json(const char * & pszJson,strsize length);
+   void parse_json(const char * & pszJson,const char * pszEnd);
+   static void parse_json_id(id & id, const char * & pszJson, const char * pszEnd);
+   static void parse_json_value(var & var,const char * & pszJson,const char * pszEnd);
 
 
    var explode(const char * pszSeparator, bool bAddEmpty = true) const;
@@ -668,7 +690,7 @@ public:
 //   DECLARE_AXIS_FIXED_ALLOC(property)
 
 
-    void null() { m_var.null(); }
+    void null() { m_element2.null(); }
 
 
 };
@@ -689,7 +711,7 @@ public:
 };
 
 class CLASS_DECL_AURA property_map :
-   public id_to_index < >
+   public id_map < var, const var &, ::comparison::hash < const id & >, ::comparison::equals_type_arg_type < id,const id & >, property >
 {
 public:
 

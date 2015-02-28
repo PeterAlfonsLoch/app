@@ -346,12 +346,14 @@ namespace xml
 
 
             string strName;
-              // XML Attr Name
-            _SetString( xml, pEnd, &strName );
+            
+            // XML Attr Name
+            _SetString(xml, pEnd, &strName);
 
 
             // add new attr
             ::xml::attr * pattr = m_attra.add(strName);
+
             xml = pEnd;
 
             // XML Attr Value
@@ -378,11 +380,22 @@ namespace xml
                      }
 
                      bool trim = pparseinfo->m_bTrimValue;
+                     
                      CHAR escape = pparseinfo->m_chEscapeValue;
+
                      //_SetString( xml, pEnd, &attr->m_strValue, trim, chXMLEscape );
-                     string strValue;
-                     _SetString( xml, pEnd, &strValue, trim, escape );
-                     pattr->set_string(strValue);
+
+                     {
+
+                        string strValue;
+
+                        _SetString(xml,pEnd,&strValue,trim,escape);
+
+                        pattr->set_string(::move(strValue));
+
+                     }
+
+
                      xml = pEnd;
                      // ATTRVALUE
                      if( pparseinfo->m_bEntityValue && pparseinfo->m_pentities )
@@ -1050,9 +1063,9 @@ namespace xml
          // <?TAG Attr1="Val1"
          if(m_attra.has_properties())
             ostring += ' ';
-         for( int32_t i = 0 ; i < m_attra.m_propertyptra.get_size(); i++ )
+         for(auto property : m_attra)
          {
-            ostring += m_attra.m_propertyptra[i]->get_xml(opt);
+            ostring += property.get_xml(opt);
          }
          //?>
          ostring += astr.szXMLPIClose;
@@ -1083,9 +1096,12 @@ namespace xml
       // <TAG Attr1="Val1"
       if(m_attra.has_properties())
          ostring += ' ';
-      for( int32_t i = 0 ; i < m_attra.m_propertyptra.get_count(); i++ )
+      
+      for(auto property : m_attra)
       {
-         ostring += m_attra.m_propertyptra[i]->get_xml(opt);
+
+         ostring += property.get_xml(opt);
+
       }
 
       if( m_nodea.is_empty() && m_strValue.is_empty() )
@@ -1206,7 +1222,7 @@ namespace xml
    attr * node::find_attr( const char * attrname )
    {
       return m_attra.find(attrname);
-      /*for( int32_t i = 0 ; i < m_attra.m_propertyptra.get_size(); i++ )
+      /*for( int32_t i = 0 ; i < m_attra.get_count(); i++ )
       {
          ::xml::attr * attr = &m_attra.m_propertyptra[i];
          if(attr != NULL)
@@ -1232,7 +1248,7 @@ namespace xml
 
       attr_array attra(get_app());
 
-      for( int32_t i = 0 ; i < m_attra.m_propertyptra.get_count(); i++ )
+      for( int32_t i = 0 ; i < m_attra.get_count(); i++ )
       {
          ::xml::attr * attr = &m_attra.m_propertyptra[i];
          if(attr != NULL)
@@ -1636,7 +1652,9 @@ namespace xml
    //========================================================
    attr * node::attr_at( index i )
    {
-      return m_attra.m_propertyptra[i];
+
+      return &m_attra.element_at(i);
+
    }
 
 

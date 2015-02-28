@@ -1445,9 +1445,11 @@ namespace std
 
 
 template < typename T >
-inline string to_json(const T & value)
+inline string & to_json(string & str, const T & value)
 {
-   return ::str::from(value);
+
+   return str = ::str::from(value);
+
 }
 
 

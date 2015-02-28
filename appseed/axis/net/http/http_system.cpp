@@ -877,7 +877,7 @@ retry:
             dynamic_cast < ::sockets::http_put_socket * > (psession)->m_file = set["put"].cast < ::file::binary_buffer >();
             psession->request("PUT",strRequest);
          }
-         else if (set["post"].propset().m_propertyptra.get_count() > 0 || set.lookup(__id(http_method)) == "POST")
+         else if (set["post"].propset().get_count() > 0 || set.lookup(__id(http_method)) == "POST")
          {
             bPost = true;
             bPut = false;
@@ -1311,7 +1311,7 @@ retry:
          dynamic_cast < ::sockets::http_put_socket * > (psocket.m_p)->m_file = set["put"].cast < ::file::stream_buffer >();
          psocket->m_emethod = ::sockets::http_method_put;
       }
-      else if (set["post"].propset().m_propertyptra.get_count() > 0)
+      else if (set["post"].propset().get_count() > 0)
       {
          bPost = true;
          bPut = false;
@@ -1623,14 +1623,14 @@ retry:
 
       set = psignal->m_set;
 
-      if (psignal->m_setPost.m_propertyptra.get_count() > 0)
+      if (psignal->m_setPost.get_count() > 0)
       {
 
          set["post"] = psignal->m_setPost;
 
       }
 
-      if (psignal->m_setHeaders.m_propertyptra.get_count() > 0)
+      if (psignal->m_setHeaders.get_count() > 0)
       {
 
          set["headers"] = psignal->m_setHeaders;

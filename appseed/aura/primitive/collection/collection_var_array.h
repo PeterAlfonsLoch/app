@@ -19,6 +19,7 @@ public:
 
    index add(var var);
    ::count add(const var_array & vara);
+   ::count add_unique(const var_array & vara);
 
    string implode(const char * pszGlue) const;
 
@@ -58,7 +59,8 @@ public:
    void parse_json(const char * & pszJson);
    void parse_json(const char * & pszJson, const char * pszEnd);
 
-   string get_json();
+   
+   string & get_json(string & str) const;
 
 
 };

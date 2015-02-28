@@ -103,7 +103,7 @@ namespace sockets
 
          if (m_fields.has_property("json") && m_fields["json"].get_value().get_type() == var::type_propset)
          {
-            body = m_fields["json"].propset().get_json();
+            m_fields["json"].propset().get_json(body);
             if (inheader(__id(content_type)).get_string().find_ci("application/json") < 0)
             {
                inheader(__id(content_type)) = "application/json" + ::str::has_char(inheader(__id(content_type)).get_string(), "; ");
@@ -121,7 +121,7 @@ namespace sockets
          }
          else
          {
-            body = m_fields.get_http_post();
+            m_fields.get_http_post(body);
             if(inheader(__id(content_type)).get_string().find_ci("application/x-www-form-urlencoded") < 0)
             {
                inheader(__id(content_type)) = "application/x-www-form-urlencoded; " + inheader(__id(content_type)).get_string();
@@ -186,10 +186,10 @@ namespace sockets
 
       // fields
       {
-         for(int i = 0; i < m_fields.m_propertyptra.get_count(); i++)
+         for(auto property : m_fields)
          {
-            string name = m_fields.m_propertyptra[i]->name();
-            var & var = m_fields.m_propertyptra[i]->get_value();
+            string name = property.name();
+            var & var = property.get_value();
             tmp = "--" + m_boundary + "\r\n"
                "content-disposition: form-data; name=\"" + name + "\"\r\n"
                "\r\n";
@@ -256,10 +256,10 @@ namespace sockets
 
       // send fields
       {
-         for(int i = 0; i < m_fields.m_propertyptra.get_count(); i++)
+         for(auto property : m_fields)
          {
-            string name = m_fields.m_propertyptra[i]->name();
-            var & var = m_fields.m_propertyptra[i]->get_value();
+            string name = property.name();
+            var & var = property.get_value();
             tmp = "--" + m_boundary + "\r\n"
                "content-disposition: form-data; name=\"" + name + "\"\r\n"
                "\r\n";

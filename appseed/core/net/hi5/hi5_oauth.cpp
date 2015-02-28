@@ -1101,7 +1101,7 @@ void CSHA1::GetHash(UINT_8 *puDest)
       set["headers"]["Authorization"] = "OAuth " + rawParams;
 
 
-      return set["headers"].propset().m_propertyptra.get_count() > 0 ? true : false;
+      return set["headers"].propset().get_count() > 0 ? true : false;
    }
 
    /*++
@@ -1131,10 +1131,10 @@ void CSHA1::GetHash(UINT_8 *puDest)
          /* Push key-value pairs to a list of strings */
          keyValueList.remove_all();
 
-         for(int32_t i=0 ; i < rawParamMap.get_count() ;i++ )
+         for(auto property : rawParamMap)
          {
-            string key = rawParamMap.m_propertyptra[i]->name();
-            string value = rawParamMap.m_propertyptra[i]->get_value();
+            string key = property.name();
+            string value = property.get_value();
             str = key ;
             str +=  "=" ;
             if( strSeparator == ", " )

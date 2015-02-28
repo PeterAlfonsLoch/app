@@ -11,6 +11,97 @@
 #include "collection_pair.h"
 
 
+// Range-based for loop support // Thank you PUGIXML
+template < typename CONST_ITERATOR >
+class const_range
+{
+public:
+
+   typedef CONST_ITERATOR const_iterator;
+
+   CONST_ITERATOR m_begin;
+   CONST_ITERATOR m_end;
+
+   const_range(CONST_ITERATOR b,CONST_ITERATOR e): m_begin(b),m_end(e) {}
+
+   CONST_ITERATOR begin() const { return m_begin; }
+   CONST_ITERATOR end() const { return m_end; }
+
+
+   typename CONST_ITERATOR::TYPE & element_at(::index iIndex)
+   {
+
+      CONST_ITERATOR it = begin();
+
+      while(iIndex > 0 && it != end())
+      {
+
+         iIndex--;
+
+      }
+
+      if(iIndex == 0)
+      {
+
+         return (*it);
+
+      }
+      else
+      {
+
+         throw invalid_argument_exception(::get_thread_app());
+
+      }
+
+   }
+};
+
+
+// Range-based for loop support // Thank you PUGIXML
+template < typename ITERATOR >
+class range
+{
+public:
+
+   typedef ITERATOR const_iterator;
+
+   ITERATOR m_begin;
+   ITERATOR m_end;
+
+   range(ITERATOR b,ITERATOR e): m_begin(b),m_end(e) { }
+
+   ITERATOR begin() const { return m_begin; }
+   ITERATOR end() const { return m_end; }
+
+   typename ITERATOR::TYPE& element_at(::index iIndex)
+   {
+      
+      ITERATOR it = begin();
+
+      while(iIndex > 0 && it != end())
+      {
+
+         iIndex--;
+
+      }
+
+      if(iIndex == 0)
+      {
+
+         return (*it);
+
+      }
+      else
+      {
+
+         throw invalid_argument_exception(::get_thread_app());
+
+      }
+
+   }
+
+};
+
 
 //#include "collection_comparable_eq_array.h"
 //#include "collection_comparable_array.h"

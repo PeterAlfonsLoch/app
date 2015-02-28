@@ -321,22 +321,6 @@ bool var::failed() const
    return get_type() == type_parareturn && !::is_return_ok(m_parareturn);
 }
 
-void var::set_string(const string & str)
-{
-   if(get_type() == type_pstring)
-   {
-      *m_pstr = str;
-   }
-   else if(get_type() == type_pvar)
-   {
-      *m_pvar = str;
-   }
-   else
-   {
-      set_type(type_string, false);
-      m_str = str;
-   }
-}
 
 void var::set_id(const id & id)
 {
@@ -510,11 +494,6 @@ class var & var::operator = (double d)
 }
 
 
-class var & var::operator = (string str)
-{
-   set_string(str);
-   return *this;
-}
 
 class var & var::operator = (string * pstr)
 {
@@ -530,11 +509,11 @@ class var & var::operator = (id * pid)
    return *this;
 }
 
-class var & var::operator = (const char * psz)
-{
-   set_string(psz);
-   return *this;
-}
+//class var & var::operator = (const char * psz)
+//{
+//   set_string(psz);
+//   return *this;
+//}
 
 class var & var::operator = (const wchar_t * lpcsz)
 {
@@ -2104,7 +2083,7 @@ var var::key(index i) const
    case type_vara:
       return i;
    case type_propset:
-      return m_pset->m_propertyptra[i]->name();
+      return i;
    default:
       throw "not supported";
    }
@@ -2143,7 +2122,7 @@ var var::at(index i) const
    case type_vara:
       return &m_pvara->element_at(i);
    case type_propset:
-      return &m_pset->m_propertyptra[i]->m_var;
+      return &m_pset->element_at(i).m_element2;
    case type_pvar:
       return m_pvar->at(i);
    default:
@@ -2169,7 +2148,7 @@ var var::at(index i)
    case type_vara:
       return &m_pvara->element_at(i);
    case type_propset:
-      return &m_pset->m_propertyptra[i]->m_var;
+      return &m_pset->element_at(i).m_element2;
    case type_pvar:
       return m_pvar->at(i);
    default:
@@ -3789,37 +3768,37 @@ var str_ends_get(const char * lpcsz, const char * lpcszSuffix)
 
 
 
-string var::get_json()
+string & var::get_json(string & str) const
 {
 
    if (get_type() == var::type_propset)
    {
 
-      return propset().get_json();
+      return propset().get_json(str);
 
    }
    else if (get_type() == var::type_stra)
    {
 
-      return stra().get_json();
+      return stra().get_json(str);
 
    }
    else if (get_type() == var::type_inta)
    {
 
-      return inta().get_json();
+      return inta().get_json(str);
 
    }
    else if (get_type() == var::type_int64a)
    {
 
-      return int64a().get_json();
+      return int64a().get_json(str);
 
    }
    else if (get_type() == var::type_vara)
    {
 
-      return vara().get_json();
+      return vara().get_json(str);
 
    }
    else if (is_numeric())

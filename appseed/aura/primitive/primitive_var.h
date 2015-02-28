@@ -232,8 +232,9 @@ public:
 
    ::comparison::var_strict strict_compare() const;
 
-
+   void           set_string(const char * psz);
    void           set_string(const string & str);
+   void           set_string(string && str);
    void           set_id(const id & id);
    void unset();
 
@@ -332,10 +333,12 @@ public:
    var & operator = (const ::datetime::time & time);
    var & operator = (const FILETIME & time);
    var & operator = (const SYSTEMTIME & time);
-   var & operator = (string str);
+   inline var & operator = (const char * psz);
+   inline var & operator = (const string & str);
+   inline var & operator = (string && str);
    var & operator = (string * pstr);
    var & operator = (var * pvar);
-   var & operator = (const char * psz);
+   //var & operator = (const char * psz);
    var & operator = (const wchar_t * lpcsz);
    var & operator = (const property & prop);
    var & operator = (const var & var);
@@ -609,7 +612,7 @@ public:
    void parse_json(const char * & pszJson);
    void parse_json(const char * & pszJson, const char * pszEnd);
 
-   string get_json();
+   string & get_json(string & str) const;
 
 
 //#undef new
@@ -846,4 +849,87 @@ inline var & var::operator = (var && v)
 
 #endif
 */
+
+
+inline class var & var::operator = (const char * psz)
+{
+
+   set_string(psz);
+
+   return *this;
+
+}
+
+
+inline class var & var::operator = (const string & str)
+{
+   
+   set_string(str);
+   
+   return *this;
+
+}
+
+
+inline class var & var::operator = (string && str)
+{
+
+   set_string(::move(str));
+
+   return *this;
+
+}
+
+
+inline void var::set_string(const char * psz)
+{
+   if(get_type() == type_pstring)
+   {
+      *m_pstr = psz;
+   }
+   else if(get_type() == type_pvar)
+   {
+      *m_pvar = psz;
+   }
+   else
+   {
+      set_type(type_string,false);
+      m_str = psz;
+   }
+}
+
+
+inline void var::set_string(const string & str)
+{
+   if(get_type() == type_pstring)
+   {
+      *m_pstr = str;
+   }
+   else if(get_type() == type_pvar)
+   {
+      *m_pvar = str;
+   }
+   else
+   {
+      set_type(type_string,false);
+      m_str = str;
+   }
+}
+
+inline void var::set_string(string && str)
+{
+   if(get_type() == type_pstring)
+   {
+      *m_pstr = ::move(str);
+   }
+   else if(get_type() == type_pvar)
+   {
+      *m_pvar = ::move(str);
+   }
+   else
+   {
+      set_type(type_string,false);
+      m_str = ::move(str);
+   }
+}
 

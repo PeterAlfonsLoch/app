@@ -817,18 +817,18 @@ namespace plugin
 
                         strCommandLine = ": app=session session_start=" + strId;
 
-                        for(int32_t i = 0; i < set.m_propertyptra.get_count(); i++)
+                        for(auto property : set)
                         {
 
-                           if(!set.m_propertyptra[i]->get_string().has_char()
+                           if(!property.get_string().has_char()
                            &&
-                             (set.m_propertyptra[i]->name() == "build_number"
-                           || set.m_propertyptra[i]->name() == "app_type"
-                           || set.m_propertyptra[i]->name() == "locale"
-                           || set.m_propertyptra[i]->name() == "schema"
-                           || set.m_propertyptra[i]->name() == "app"
-                           || set.m_propertyptra[i]->name() == "session_start"
-                           || set.m_propertyptra[i]->name() == "version"
+                             (property.name() == "build_number"
+                           || property.name() == "app_type"
+                           || property.name() == "locale"
+                           || property.name() == "schema"
+                           || property.name() == "app"
+                           || property.name() == "session_start"
+                           || property.name() == "version"
                              )
                            )
                               continue;
@@ -836,14 +836,14 @@ namespace plugin
 
                            strCommandLine += " ";
 
-                           strCommandLine += set.m_propertyptra[i]->name();
+                           strCommandLine += property.name();
 
-                           if(!set.m_propertyptra[i]->get_string().has_char())
+                           if(!property.get_string().has_char())
                               continue;
 
                            strCommandLine += "=";
 
-                           strCommandLine += set.m_propertyptra[i]->get_string();
+                           strCommandLine += property.get_string();
 
                         }
 
@@ -895,18 +895,18 @@ namespace plugin
 
                         strCommandLine = " : app=" + strId;
 
-                        for(int32_t i = 0; i < set.m_propertyptra.get_count(); i++)
+                        for(auto property : set)
                         {
 
-                           if(!set.m_propertyptra[i]->get_string().has_char()
+                           if(!property.get_string().has_char()
                               &&
-                              (set.m_propertyptra[i]->name() == "build_number"
-                              || set.m_propertyptra[i]->name() == "app_type"
-                              || set.m_propertyptra[i]->name() == "locale"
-                              || set.m_propertyptra[i]->name() == "schema"
-                              || set.m_propertyptra[i]->name() == "app"
-                              || set.m_propertyptra[i]->name() == "session_start"
-                              || set.m_propertyptra[i]->name() == "version"
+                              (property.name() == "build_number"
+                              || property.name() == "app_type"
+                              || property.name() == "locale"
+                              || property.name() == "schema"
+                              || property.name() == "app"
+                              || property.name() == "session_start"
+                              || property.name() == "version"
                               )
                               )
                               continue;
@@ -914,14 +914,14 @@ namespace plugin
 
                            strCommandLine += " ";
 
-                           strCommandLine += set.m_propertyptra[i]->name();
+                           strCommandLine += property.name();
 
-                           if(!set.m_propertyptra[i]->get_string().has_char())
+                           if(!property.get_string().has_char())
                               continue;
 
                            strCommandLine += "=";
 
-                           strCommandLine += set.m_propertyptra[i]->get_string();
+                           strCommandLine += property.get_string();
 
                         }
 

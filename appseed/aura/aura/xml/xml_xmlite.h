@@ -58,7 +58,8 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   CLASS_DECL_AURA void _tcsecpy( char * psz, int32_t escape, char * srt, char * end = NULL );
+   CLASS_DECL_AURA void _tcsecpy(char * psz, int32_t escape, char * srt, char * end = NULL);
+   CLASS_DECL_AURA void _tcsecpy2(char * psz,char escape,char * srt,char * * end = NULL);
 
    //========================================================
    // Name   : _tcsepbrk
@@ -113,9 +114,119 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   CLASS_DECL_AURA void _SetString( char * psz, char * end, string* ps, bool trim = FALSE, int32_t escape = 0 );
+   inline void _SetString( char * psz, char * end, string* ps, bool trim, int32_t escape);
+   inline void _SetString(char * psz,char * end,string* ps,bool trim); // no escape
+   inline void _SetString(char * psz,char * end,string* ps); // no trim, no escape
 
 
 
 
 } // namespace xml
+
+
+
+namespace xml
+{
+
+
+   //========================================================
+   // Name   : _SetString
+   // Desc   : put string of (psz~end) on ps string
+   // Param  : trim - will be trim?
+   // Return :
+   //--------------------------------------------------------
+   // Coder    Date                      Desc
+   // bro      2002-10-29
+   //========================================================
+   inline void _SetString(char * psz,char * end,string* ps,bool trim,int32_t escape)
+   {
+
+      if(trim)
+      {
+
+         while(psz < end && isspace(*psz))
+         {
+
+            psz++;
+
+         }
+
+         while((end - 1) && psz < (end - 1) && isspace(*(end - 1)))
+         {
+
+            end--;
+
+         }
+
+      }
+
+      if(psz >= end)
+      {
+
+         return;
+
+      }
+
+      if(escape)
+      {
+
+         char * pss = ps->GetBufferSetLength(end - psz);
+
+         _tcsecpy2(pss,escape,psz,&end);
+
+         ps->ReleaseBuffer(end - pss);
+
+      }
+      else
+      {
+         
+         ps->assign(psz,end - psz);
+
+      }
+
+   }
+
+
+   inline void _SetString(char * psz,char * end,string* ps,bool trim)
+   {
+
+      if(trim)
+      {
+
+         while(psz < end && isspace(*psz))
+         {
+
+            psz++;
+
+         }
+
+         while((end - 1) && psz < (end - 1) && isspace(*(end - 1)))
+         {
+
+            end--;
+
+         }
+
+      }
+
+      ps->assign(psz,end - psz);
+
+   }
+
+
+   inline void _SetString(char * psz,char * end,string* ps)
+   {
+
+      ps->assign(psz,end - psz);
+
+   }
+
+
+} // namespace xml
+
+
+
+
+
+
+

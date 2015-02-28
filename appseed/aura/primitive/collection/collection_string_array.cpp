@@ -683,9 +683,9 @@ void string_array::add(const var & var)
    }
    else if(var.get_type() == var::type_propset)
    {
-      for(int32_t i = 0; i < var.propset().m_propertyptra.get_count(); i++)
+      for(auto property : var.propset())
       {
-         add(var.propset().m_propertyptra[i]->get_value().get_string());
+         add(property.get_value().get_string());
       }
    }
    else

@@ -1463,17 +1463,26 @@ void stringa::decode_v16(const char * psz)
 }
 
 
-string stringa::get_json()
+string & stringa::get_json(string & str) const
 {
 
-   string str("[");
+   str += "[";
+
+   if(get_count() > 0)
+   {
+
+      str += "\"";
+
+      str += element_at(0);
+
+      str += "\"";
+
+   }
 
    for(index i = 1; i < get_count(); i++)
    {
-      if(i > 0)
-      {
-         str += ", \r\n";
-      }
+      
+      str += ", \r\n";
 
       str += "\"";
 
@@ -1483,8 +1492,8 @@ string stringa::get_json()
 
    }
 
-
    str += "\r\n]";
 
    return str;
+
 }

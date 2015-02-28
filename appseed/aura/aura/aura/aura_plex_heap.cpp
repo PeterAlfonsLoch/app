@@ -150,14 +150,17 @@ plex_heap_alloc::plex_heap_alloc(UINT nAllocSize, UINT nBlockSize)
 
    for(int32_t i = 0; i < get_count(); i++)
    {
-      set_at(i, new plex_heap_alloc_sync(nAllocSize + sizeof(int32_t), nBlockSize));
+      set_at(i, new plex_heap_alloc_sync(nAllocSize, nBlockSize));
    }
 
    m_uiShareCount = uiShareCount;
+
+   m_uiShareBound = uiShareCount - 1;
    
    m_uiAllocSize = nAllocSize;
 
-   m_ui = 0;
+   m_uiAlloc = 0;
+   m_uiFree = 0;
 
 }
 

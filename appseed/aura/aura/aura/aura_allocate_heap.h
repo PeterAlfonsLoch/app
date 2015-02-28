@@ -157,7 +157,7 @@ public:
 
 
 template < typename T >
-class heap:
+class heap :
    public heap_base
 {
 public:
@@ -172,6 +172,31 @@ public:
 
 
    uint_ptr count() { return size() / sizeof(T); }
+
+};
+
+typedef heap < char > hstring_base;
+
+class CLASS_DECL_AURA hstring:
+   public hstring_base
+{
+public:
+
+   hstring() {}
+   hstring(uint_ptr uiSize): hstring_base(uiSize) {}
+
+};
+
+
+typedef heap < wchar_t > hwstring_base;
+
+class CLASS_DECL_AURA hwstring:
+   public hwstring_base
+{
+public:
+
+   hwstring() {}
+   hwstring(uint_ptr uiSize): hwstring_base(uiSize) {}
 
 };
 
