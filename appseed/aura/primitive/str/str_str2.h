@@ -262,11 +262,16 @@ namespace str
    inline CLASS_DECL_AURA bool     trimmed_is_empty(const char * psz)
    {
 
-      string str(psz);
+      while(true)
+      {
+         if(*psz == '\0')
+            break;
+         if(!isspace(*psz))
+            return false;
+         psz++;
+      }
 
-      str.trim();
-
-      return str.is_empty();
+      return true;
 
    }
 

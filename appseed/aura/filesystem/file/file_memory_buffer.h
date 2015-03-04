@@ -52,6 +52,7 @@ namespace file
       
       using ::file::stream_buffer::write;
       virtual void write(const void * lpBuf, ::primitive::memory_size nCount);
+      virtual void write_from_hex(const void * lpBuf,::primitive::memory_size nCount);
 
       virtual uint64_t GetBufferPtr(UINT nCommand, uint64_t nCount = 0, void ** ppBufStart = NULL, void ** ppBufMax = NULL);
 

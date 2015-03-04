@@ -11,11 +11,7 @@
       {
          ENSURE( pstringmanager != NULL );
 
-         string_data* pData = pstringmanager->allocate( 0, sizeof( char ) );
-         if( pData == NULL )
-         {
-            throw_memory_exception();
-         }
+         string_data* pData = pstringmanager->allocate( 0 );
          attach( pData );
          set_length( 0 );
          return;
@@ -31,7 +27,7 @@ inline simple_string::simple_string(const string_data  * pdata, string_manager *
    {
       ENSURE( pstringmanager != NULL );
 
-      string_data* pData = pstringmanager->allocate( 0, sizeof( char ) );
+      string_data* pData = pstringmanager->allocate( 0);
       if( pData == NULL )
       {
          throw_memory_exception();
@@ -51,7 +47,7 @@ inline simple_string::simple_string(const string_data  * pdata, string_manager *
       ENSURE( pstringmanager != NULL );
 
       strsize nLength = StringLength( pszSrc );
-      string_data* pData = pstringmanager->allocate( nLength, sizeof( char ) );
+      string_data* pData = pstringmanager->allocate( nLength);
       if( pData == NULL )
       {
          throw_memory_exception();
@@ -74,7 +70,7 @@ inline simple_string::simple_string(const string_data  * pdata, string_manager *
       if(nLength < 0)
          nLength = (strsize) strlen(pchSrc);
 
-      string_data * pData = pstringmanager->allocate( nLength, sizeof( char ) );
+      string_data * pData = pstringmanager->allocate( nLength);
       if( pData == NULL )
       {
          throw_memory_exception();
@@ -205,22 +201,21 @@ inline simple_string::simple_string(const string_data  * pdata, string_manager *
       pData = pstringmanager->GetNilString();
       attach( pData );
    }
+   
    inline void simple_string::Reallocate(strsize nLength )
    {
-      string_data* pOldData = get_data();
-      ASSERT( pOldData->nAllocLength < nLength );
-      string_manager * pstringmanager = pOldData->pstringmanager;
-      if ( pOldData->nAllocLength >= nLength || nLength <= 0)
-      {
-         throw_memory_exception();
-         return;
-      }
-      string_data* pNewData = pstringmanager->Reallocate( pOldData, nLength, sizeof( char ) );
-      if( pNewData == NULL )
-      {
-         throw_memory_exception();
-      }
-      attach( pNewData );
+
+      attach(get_data()->Reallocate(nLength));
+
+   }
+
+   inline string_data * string_data::Reallocate(strsize nLength) // current data will be invalid after function call
+   {
+      
+      ASSERT(nAllocLength < nLength);
+      
+      return pstringmanager->Reallocate(this,nLength);
+
    }
 
 

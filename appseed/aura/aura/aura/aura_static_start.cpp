@@ -8,7 +8,7 @@
 //#include "framework.h"
 
 void init_draw2d_direct2_mutex();
-
+void aura_auto_debug_teste();
 
 namespace str
 {
@@ -228,6 +228,8 @@ namespace aura
 
          init_draw2d_direct2_mutex();
 
+         aura_auto_debug_teste();
+
       }
 
 
@@ -366,9 +368,7 @@ namespace aura
 
          g_pmutgen = NULL;
 
-         delete g_pmutexSystemHeap;
-
-         g_pmutexSystemHeap = NULL;
+         ::aura::del(g_pmutexSystemHeap);
 
          // delete g_pstrLastGlsStatus;
 

@@ -7,6 +7,9 @@ class  biunique :
 {
 public:
    biunique(::aura::application * papp = NULL);
+   virtual ~biunique()
+   {
+   }
 
    bool has_a(T a) const;
    bool has_b(T b) const;
@@ -477,6 +480,7 @@ class CLASS_DECL_CORE index_biunique :
 {
 public:
    index_biunique(::aura::application * papp = NULL);
+   virtual ~index_biunique() {}
 };
 
 class CLASS_DECL_CORE int_biunique :
@@ -484,7 +488,7 @@ class CLASS_DECL_CORE int_biunique :
 {
 public:
    int_biunique(::aura::application * papp = NULL);
-
+   virtual ~int_biunique() {}
 };
 
 

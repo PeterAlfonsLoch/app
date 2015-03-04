@@ -176,11 +176,14 @@ namespace exception
       clear();
 #endif
       //   if (m_bOk) guard::instance().clear();
-      delete m_pmutex;
+      ::aura::del(m_pmutex);
+
 #ifdef WINDOWSEX
 
-      delete m_pstackframe;
+      ::aura::del(m_pstackframe);
+
 #endif
+
    }
 
 #ifdef WINDOWSEX

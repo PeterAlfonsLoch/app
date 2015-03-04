@@ -102,7 +102,7 @@ namespace crypto
 
       primitive::memory memSha1(get_app());
 
-      sha1(memSha1, memKeyData);
+      nessie(memSha1,memKeyData);
 
       primitive::memory iv(get_app());
 
@@ -123,7 +123,7 @@ namespace crypto
 
       EVP_EncryptInit(&ctx,EVP_aes_256_ecb(),memSha1.get_data(),iv.get_data());
 
-      cipherlen = (int32_t)(storageDecrypt.get_size() + EVP_CIPHER_CTX_block_size(&ctx) - 1);
+      cipherlen = (int32_t)(storageDecrypt.get_size() + EVP_CIPHER_CTX_block_size(&ctx));
 
       storageEncrypt.allocate(cipherlen);
 
@@ -334,7 +334,7 @@ namespace crypto
 
       primitive::memory memSha1;
 
-      sha1(memSha1, memKeyData);
+      nessie(memSha1, memKeyData);
 
       primitive::memory iv;
 
@@ -516,6 +516,9 @@ namespace crypto
       EVP_CIPHER_CTX ctx;
 
       EVP_CIPHER_CTX_init(&ctx);
+
+      int iKeyLen = EVP_CIPHER_key_length(EVP_aes_256_ecb());
+      int iShaLen = memSha1.get_size();
 
       EVP_DecryptInit(&ctx, EVP_aes_256_ecb(), memSha1.get_data(), iv.get_data());
 
@@ -875,9 +878,9 @@ namespace crypto
          if (ch < 10)
             ch += '0';
          else if (ch < (10 + 26))
-            ch += 'a';
+            ch += 'a' - 10;
          else
-            ch += 'A';
+            ch += 'A' - (10 + 26);
 
          str += ch;
 

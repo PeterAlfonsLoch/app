@@ -341,18 +341,26 @@ namespace file
    
 
 
-   void byte_output_stream::write_from_hex(const char * psz)
+   void byte_output_stream::write_from_hex(const char * psz, strsize iLen)
    {
 
-      primitive::memory memory(get_app());
+      //primitive::memory memory(get_app());
 
-      memory.from_hex(psz);
+      //memory.from_hex(psz);
 
-      write(memory.get_data(), memory.get_size());
+      //write(memory.get_data(), memory.get_size());
+
+      ::file::output_stream::write_from_hex(psz,iLen < 0 ? strlen(psz) + iLen + 1 : iLen);
 
    }
 
 
+   void byte_output_stream::write_from_hex(const string & str)
+   {
+
+      ::file::output_stream::write_from_hex(str,str.get_length());
+
+   }
 
 
 

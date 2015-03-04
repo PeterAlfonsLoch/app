@@ -534,6 +534,36 @@ restart:
 
    }
 
+   bool system::add_contents(var varFile,const void * pvoidContents,::count count,::aura::application * papp)
+   {
+
+      ::file::binary_buffer_sp spfile;
+
+      try
+      {
+
+         spfile = App(papp).file().get_file(varFile,::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::mode_no_truncate | ::file::share_deny_none | ::file::defer_create_directory);
+
+      }
+      catch(...)
+      {
+
+         return false;
+
+      }
+
+      if(spfile.is_null())
+         return false;
+
+
+      spfile->seek_to_end();
+
+      spfile->write(pvoidContents,count);
+
+      return true;
+
+   }
+
    bool system::put_contents(var varFile, const char * lpcszContents, ::aura::application * papp)
    {
       if(lpcszContents == NULL)
@@ -544,6 +574,19 @@ restart:
       {
          return put_contents(varFile, lpcszContents, strlen(lpcszContents), papp);
       }
+   }
+
+
+   bool system::add_contents(var varFile,const char * lpcszContents,::aura::application * papp)
+   {
+      
+      if(lpcszContents != NULL)
+      {
+
+         return add_contents(varFile,lpcszContents,strlen(lpcszContents),papp);
+
+      }
+
    }
 
    bool system::put_contents(var varFile, ::file::reader & reader, ::aura::application * papp)

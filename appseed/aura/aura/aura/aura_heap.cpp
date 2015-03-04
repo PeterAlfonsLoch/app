@@ -426,70 +426,59 @@ size_t memory_size(void * pmemory)
 void memory_free_dbg(void * pmemory, int32_t iBlockType)
 {
 
-   if (pmemory == NULL)
-      return;
+   heap_memory * pheap =  ::heap_memory::heap_get(pmemory);
 
-   try
+   void * pbase = (void *)(((int_ptr)pmemory) - pheap->m_back);
+
+   if(pheap->m_blockuse == 0)
    {
 
-      byte blockuse = heap_memory::heap_get_block_use(pmemory);
-
-      size_t sizeOld = heap_memory::heap_get_size(pmemory);
-
-      if(blockuse == 0)
-      {
-
-         g_pheap->free(heap_memory::base_get(pmemory),heap_memory::aligned_provision_get_size(sizeOld));
-
-      }
-      else if(blockuse == 1)
-      {
-
-         //TODO: to do the dbg version
-
-         g_pheap->free_dbg(heap_memory::base_get(pmemory),heap_memory::aligned_provision_get_size(sizeOld));
-
-      }
-      else if(blockuse == 128)
-      {
-
-         system_heap_free(heap_memory::base_get(pmemory));
-
-      }
-      else if(blockuse == 129)
-      {
-
-         //TODO: to do the dbg version
-
-         system_heap_free(heap_memory::base_get(pmemory));
-
-      }
-      else if(blockuse == 2)
-      {
-
-         g_pheap->free(heap_memory::base_get(pmemory),heap_memory::unaligned_provision_get_size(sizeOld));
-
-      }
-      else if(blockuse == 3)
-      {
-
-         //TODO: to do the dbg version
-
-         g_pheap->free_dbg(heap_memory::base_get(pmemory),heap_memory::unaligned_provision_get_size(sizeOld));
-
-      }
-      else
-      {
-
-         ::OutputDebugStringW(L"wrong free");
-
-      }
+      g_pheap->free(pbase,heap_memory::aligned_provision_get_size(pheap->m_size));
 
    }
-   catch(...)
+   else if(pheap->m_blockuse == 1)
    {
 
+      //TODO: to do the dbg version
+
+      g_pheap->free_dbg(pbase,heap_memory::aligned_provision_get_size(pheap->m_size));
+
    }
+   else if(pheap->m_blockuse == 128)
+   {
+
+      system_heap_free(pbase);
+
+   }
+   else if(pheap->m_blockuse == 129)
+   {
+
+      //TODO: to do the dbg version
+
+      system_heap_free(pbase);
+
+   }
+   else if(pheap->m_blockuse == 2)
+   {
+
+      g_pheap->free(pbase,heap_memory::unaligned_provision_get_size(pheap->m_size));
+
+   }
+   else if(pheap->m_blockuse == 3)
+   {
+
+      //TODO: to do the dbg version
+
+      g_pheap->free_dbg(pbase,heap_memory::unaligned_provision_get_size(pheap->m_size));
+
+   }
+   else
+   {
+
+      ::OutputDebugStringW(L"wrong free");
+
+   }
+
 
 }
 

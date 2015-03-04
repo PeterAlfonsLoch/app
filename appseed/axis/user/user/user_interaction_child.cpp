@@ -611,55 +611,31 @@ namespace user
 
    bool interaction_child::IsWindowVisible()
    {
+      
       if(!IsWindow())
       {
-         //      string str;
-         //    m_pui->GetWindowText(str);
-         //      if (str == "r")
-         //    {
-         //     TRACE0("Hiding virtual user interface with text r Not is interaction_impl");
-         //}
-         return FALSE;
+         
+         return false;
 
       }
-      if(m_pui != NULL)
-      {
-         if(!m_pui->m_bVisible)
-         {
-            //         string str;
-            //       m_pui->GetWindowText(str);
-            // if (str == "r")
-            //         {
-            //          TRACE0("Hiding virtual user interface with text r !m_pui->m_bVisible");
-            //     }
-            return FALSE;
 
-         }
-         if(m_pui->GetParent() != NULL && !m_pui->GetParent()->IsWindowVisible())
-         {
-            //string str;
-            //m_pui->GetWindowText(str);
-            //   if (str == "r")
-            // {
-            //            TRACE0("Hiding virtual user interface with text r");
-            //       }
-
-            return FALSE;
-         }
-
-      }
       if(!m_pui->m_bVisible)
       {
-         //string str;
-         //  m_pui->GetWindowText(str);
-         //  if (str == "r")
-         //{
-         //         TRACE0("Hiding virtual user interface with text r");
-         //    }
-         return FALSE;
+         return false;
 
       }
-      return TRUE;
+      
+      ::user::interaction * puiParent = m_pui->GetParent();
+
+      if(puiParent != NULL && !puiParent->IsWindowVisible())
+      {
+
+         return false;
+
+      }
+
+      return true;
+
    }
 
 

@@ -52,7 +52,15 @@ namespace file
    }
 
 
-   void output_stream::write(const void *lpBuf, ::primitive::memory_size nCount)
+   void output_stream::write_from_hex(const void *lpBuf,::primitive::memory_size nCount)
+   {
+
+      m_spbuffer->write_from_hex(lpBuf,nCount);
+
+   }
+
+
+   void output_stream::write(const void *lpBuf,::primitive::memory_size nCount)
    {
       
       m_spbuffer->write(lpBuf, nCount);

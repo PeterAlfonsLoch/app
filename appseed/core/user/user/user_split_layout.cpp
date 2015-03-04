@@ -219,6 +219,8 @@ namespace user
    void split_layout::layout()
    {
 
+      bool bIsWindowVisible = IsWindowVisible();
+
       {
 
 //         DWORD dwTime2 = ::get_tick_count();
@@ -286,16 +288,16 @@ namespace user
          CalcSplitBarRect(i, &rectA);
          pwnd = m_splitbara.element_at(i);
          uiFlags = uiBaseFlags;
-         if(IsWindowVisible())
+         if(bIsWindowVisible)
          {
-            if(!pwnd->IsWindowVisible())
+            if(!pwnd->m_bVisible)
             {
                uiFlags = uiBaseFlags | SWP_SHOWWINDOW;
             }
          }
          else
          {
-            if(pwnd->IsWindowVisible())
+            if(pwnd->m_bVisible)
             {
                uiFlags = uiBaseFlags | SWP_HIDEWINDOW;
             }
@@ -410,16 +412,16 @@ namespace user
          if(pwnd != NULL)
          {
             uiFlags = uiBaseFlags;
-            if(IsWindowVisible())
+            if(bIsWindowVisible)
             {
-               if(!pwnd->IsWindowVisible())
+               if(!pwnd->m_bVisible)
                {
                   uiFlags = uiBaseFlags | SWP_SHOWWINDOW;
                }
             }
             else
             {
-               if(pwnd->IsWindowVisible())
+               if(pwnd->m_bVisible)
                {
                   uiFlags = uiBaseFlags | SWP_HIDEWINDOW;
                }

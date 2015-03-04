@@ -166,7 +166,13 @@ inline void plex_heap_alloc::Free(void * p)
 }
 
 
+#define PLEX_HEAP_ALLOC_ARRAY_AINDEX_COUNT 3
 
+#ifdef OS64BIT
+#define PLEX_HEAP_ALLOC_ARRAY_BINDEX_COUNT 6
+#else
+#define PLEX_HEAP_ALLOC_ARRAY_BINDEX_COUNT 5
+#endif
 
 class CLASS_DECL_AURA plex_heap_alloc_array :
    public ptr_array < plex_heap_alloc >
@@ -187,6 +193,13 @@ public:
    };
 
 
+   int            m_aa[PLEX_HEAP_ALLOC_ARRAY_AINDEX_COUNT];
+   int            m_aaSize[PLEX_HEAP_ALLOC_ARRAY_AINDEX_COUNT];
+
+
+   int            m_bb[PLEX_HEAP_ALLOC_ARRAY_BINDEX_COUNT];
+   int            m_bbSize[PLEX_HEAP_ALLOC_ARRAY_BINDEX_COUNT];
+
    ::count m_iWorkingSize;
 
 
@@ -194,6 +207,8 @@ public:
 
    plex_heap_alloc_array();
    virtual ~plex_heap_alloc_array();
+
+
 
 
    static ::count get_mem_info(int32_t ** ppiUse, const char *** ppszFile, int32_t ** ppiLine);
@@ -272,7 +287,44 @@ void plex_heap_alloc_array::free(void * p,size_t size)
 inline plex_heap_alloc * plex_heap_alloc_array::find(size_t nAllocSize)
 {
 
-   for(int32_t i = 0; i < m_iWorkingSize; i++)
+   int32_t iA = 0;
+
+   for(; iA < PLEX_HEAP_ALLOC_ARRAY_AINDEX_COUNT; iA++)
+   {
+
+      if(m_aaSize[iA] >= nAllocSize)
+      {
+
+         break;
+
+      }
+
+   }
+
+   if(iA >= PLEX_HEAP_ALLOC_ARRAY_AINDEX_COUNT)
+      return NULL;
+
+
+   int32_t iB = m_aa[iA];
+
+   for(; iB < PLEX_HEAP_ALLOC_ARRAY_BINDEX_COUNT; iB++)
+   {
+
+      if(m_bbSize[iB] >= nAllocSize)
+      {
+
+         break;
+
+      }
+
+   }
+
+   if(iB >= PLEX_HEAP_ALLOC_ARRAY_BINDEX_COUNT)
+      return NULL;
+
+   int32_t i = m_bb[iB];
+
+   for(; i < m_iWorkingSize; i++)
    {
 
       if(this->element_at(i)->GetAllocSize() >= nAllocSize)

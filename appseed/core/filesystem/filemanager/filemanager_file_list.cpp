@@ -1040,8 +1040,6 @@ namespace filemanager
       }
 
 
-
-
       stringa straStrictOrder;
 
       data_get(     data_get_current_sort_id() + "." + data_get_current_list_layout_id() + ".straStrictOrder",      straStrictOrder);
@@ -1102,7 +1100,6 @@ namespace filemanager
 
 
       _001OnUpdateItemCount();
-
       if(m_eview == ViewIcon)
       {
          /*   // primeiro, todos System arquivos que foram removidos
@@ -1163,6 +1160,7 @@ namespace filemanager
          m_iconlayout.m_iaDisplayToStrict = iaDisplayToStrictNew;
          data_set_DisplayToStrict();
       }
+
       _001ClearSelection();
 
       m_scrollinfo.m_ptScroll = m_scrollinfo.m_rectMargin.top_left();

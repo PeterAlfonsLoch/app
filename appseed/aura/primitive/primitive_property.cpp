@@ -1357,11 +1357,6 @@ property & property::operator *= (const property & prop)
 
 
 
-property_map::property_map()
-{
-   InitHashTable(64);
-}
-
 property_ptra::property_ptra(::aura::application * papp):
    object(papp)
 {

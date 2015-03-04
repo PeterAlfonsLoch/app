@@ -207,7 +207,7 @@ CLASS_DECL_AURA void __set_thread_note(const char * pszNote);
 
 
 
-CLASS_DECL_AURA bool __assert_failed_line(const char * lpszFileName, int32_t nLine);
+CLASS_DECL_AURA int __assert_failed_line(const char * lpszFileName, int nLine);
 
 CLASS_DECL_AURA void c_cdecl __trace(const char * lpszFormat, ...);
 // Note: file names are still ANSI strings (filenames rarely need UNICODE)
@@ -264,24 +264,6 @@ inline void c_cdecl __trace(...) { }
 #include "exception_debug.h"
 
 
-#ifdef DEBUG
-
-//#define ASSERT(f)          DEBUG_ONLY(() ((f) || !::__assert_failed_line(THIS_FILE, __LINE__) || (debug_break(), 0)))
-#define ASSERT(f)          ((void) ((f) || (is_debugger_attached() && !::__assert_failed_line(__FILE__, __LINE__) && (::debug_break(), 0)) || (!is_debugger_attached() && (throw assert_exception(get_thread_app(), __FILE__, __LINE__), 0))))
-/* see core headers for commentary on this */
-/* We use the name _ASSUME to avoid name clashes */
-#define _ASSUME(cond)       do { bool _gen__condVal=!!(cond); ASSERT(_gen__condVal); __analysis_assume(_gen__condVal); } while(0)
-//#define ASSERT_VALID(pOb)  DEBUG_ONLY((::assert_valid_object(pOb, THIS_FILE, __LINE__)))
-#define ASSERT_VALID(pOb)  ::assert_valid_object(pOb, __FILE__, __LINE__)
-#else
-#define ASSERT(f)
-#define _ASSUME(cond)
-#if defined(ANDROID)
-#define ASSERT_VALID(cond) 
-#else
-#define ASSERT_VALID(cond) __noop;
-#endif
-#endif
 
 // Debug ASSERTs then throws. Retail throws if condition not met
 #define ENSURE_THROW(cond, exception)   \

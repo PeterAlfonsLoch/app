@@ -41,6 +41,9 @@ namespace xml
       string ref_to_entity( const char * estr );
       string entity_to_ref( const char * str );   
 
+      void ref_to_entity(string & str, const char * estr);
+      void entity_to_ref(string & s, const char * str);
+
       void add_entity(char chEntity, const char * pszReference);
 
       

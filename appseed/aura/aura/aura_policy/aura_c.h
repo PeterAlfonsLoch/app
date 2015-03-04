@@ -16,7 +16,9 @@
 #include "aura/aura/aura_cpu_architecture.h"
 
 
-
+CLASS_DECL_AURA int __assert_failed_line(const char * lpszFileName,int iLineNumber);
+CLASS_DECL_AURA int is_debugger_attached();
+CLASS_DECL_AURA int throw_assert_exception(const char * lpszFileName,int iLineNumber);
 
 
 #ifndef __cplusplus
@@ -24,6 +26,27 @@
 //#include <assert.h>
 
 #define ASSERT assert
+
+#else
+#ifdef DEBUG
+
+//#define ASSERT(f)          DEBUG_ONLY(() ((f) || !::__assert_failed_line(THIS_FILE, __LINE__) || (debug_break(), 0)))
+#define ASSERT(f)          ((void) ((f) || (is_debugger_attached() && !::__assert_failed_line(__FILE__, __LINE__) && (::debug_break(), 0)) || (!is_debugger_attached() && (throw_assert_exception(__FILE__, __LINE__), 0))))
+/* see core headers for commentary on this */
+/* We use the name _ASSUME to avoid name clashes */
+#define _ASSUME(cond)       do { bool _gen__condVal=!!(cond); ASSERT(_gen__condVal); __analysis_assume(_gen__condVal); } while(0)
+//#define ASSERT_VALID(pOb)  DEBUG_ONLY((::assert_valid_object(pOb, THIS_FILE, __LINE__)))
+#define ASSERT_VALID(pOb)  ::assert_valid_object(pOb, __FILE__, __LINE__)
+#else
+#define ASSERT(f)
+#define _ASSUME(cond)
+#if defined(ANDROID)
+#define ASSERT_VALID(cond) 
+#else
+#define ASSERT_VALID(cond) __noop;
+#endif
+#endif
+
 
 #endif
 

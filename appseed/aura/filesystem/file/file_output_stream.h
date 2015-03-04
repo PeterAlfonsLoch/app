@@ -23,7 +23,7 @@ namespace file
       output_stream(const output_stream & pwriter);
       virtual ~output_stream();
 
-
+      virtual void write_from_hex(const void *lpBuf,::primitive::memory_size nCount);
       virtual void write(const void *lpBuf, ::primitive::memory_size nCount);
       virtual void write(const void *lpBuf, ::primitive::memory_size nCount, ::primitive::memory_size * dwWritten);
       template < typename T >

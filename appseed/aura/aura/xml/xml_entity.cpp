@@ -12,6 +12,8 @@ namespace xml
    entity::entity(char chEntity, const char * pszReference)
    {
       m_chEntity  = chEntity;
+      if(*pszReference == '&')
+         pszReference++;
       m_strRef    = pszReference;
       m_iRefLen   = (int32_t) strlen(pszReference);
    }
@@ -77,17 +79,26 @@ namespace xml
       char * pes = (char *)estr;
       char * ps = str;
       char * ps_end = ps+strlen;
-      while( pes && *pes && ps < ps_end )
+      while(*pes && ps < ps_end )
       {
-         entity * ent = get_entity( pes );
-         if( ent )
+         if(*pes == '&')
          {
-            // copy m_chEntity meanning char
-            *ps = ent->m_chEntity;
-            pes += ent->m_iRefLen;
+            entity * ent = get_entity(pes+1);
+            if(ent)
+            {
+               // copy m_chEntity meanning char
+               *ps = ent->m_chEntity;
+               pes += ent->m_iRefLen;
+            }
+            else
+            {
+               *ps = '&';   // default character copy
+            }
          }
          else
+         {
             *ps = *pes++;   // default character copy
+         }
          ps++;
       }
       *ps = '\0';
@@ -150,6 +161,40 @@ namespace xml
          s.ReleaseBuffer();
       }
       return s;
+   }
+
+   void entities::ref_to_entity(string & str, const char * pszSrc)
+   {
+      if(pszSrc != NULL)
+      {
+         strsize iLen = strlen(pszSrc);
+         char * pszRet = str.GetBufferSetLength(iLen);
+         if(pszRet != NULL)
+            iLen = ref_to_entity(pszSrc,pszRet,(int32_t)iLen);
+         str.ReleaseBuffer(iLen);
+      }
+      
+   }
+
+   void entities::entity_to_ref(string & s, const char * str)
+   {
+      if(str)
+      {
+         int32_t nEntityCount = get_entity_count(str);
+         if(nEntityCount == 0)
+         {
+            s = str;
+            return;
+         }
+         strsize len = strlen(str) + nEntityCount * 10 ;
+         char * sbuf = s.GetBufferSetLength(len + 1);
+         if(sbuf)
+         {
+            len = entity_to_ref(str,sbuf,(int32_t)len);
+         }
+         s.ReleaseBuffer(len);
+      }
+      
    }
 
 /*   string XRef2Entity( const char * estr )

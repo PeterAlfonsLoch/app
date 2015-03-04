@@ -11,14 +11,19 @@
    // Original bytes at the beginning of SetUnhandledExceptionFilter
 BYTE OriginalBytes[5] = {0};
 
-bool is_debugger_attached()
+CLASS_DECL_AURA int is_debugger_attached()
 {
    
    return __node_is_debugger_attached() != FALSE;
 
 }
 
+CLASS_DECL_AURA int throw_assert_exception(const char * lpszFileName,int iLineNumber)
+{
 
+   throw assert_exception(::get_thread_app(),lpszFileName,iLineNumber);
+
+}
 
 assert_exception::assert_exception(const assert_exception & e) :
    object(e),

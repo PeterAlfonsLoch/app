@@ -125,12 +125,16 @@ namespace file
       {
          ::count count;
          istream.read_arbitrary(count);
+         if(istream.fail())
+            return;
          typename type_map::AXIS_KEY key;
          typename type_map::AXIS_VALUE value;
          for(index index = 0; index < count; index++)
          {
             istream >> key;
             istream >> value;
+            if(istream.fail())
+               return;
             m.set_at(key,value);
          }
          m.on_after_read();

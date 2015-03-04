@@ -230,3 +230,78 @@ namespace xml
 
 
 
+namespace xml
+{
+
+   inline int32_t ch_isspace_dup(uchar uch)
+   {
+      return uch == ' ' || uch == '\t' || uch == '\r' || uch == '\n';
+   }
+
+
+   //========================================================
+   // Name   : _tcschrs
+   // Desc   : same with strpbrk
+   // Param  :
+   // Return :
+   //--------------------------------------------------------
+   // Coder    Date                      Desc
+   // bro      2002-10-29
+   //========================================================
+   inline char * _tcschrs(const char * psz,const char * pszchs)
+   {
+      while(*psz)
+      {
+         if(strchr(pszchs,*psz))
+            return (char *)psz;
+         psz++;
+      }
+      return NULL;
+   }
+
+   //========================================================
+   // Name   : _tcsskip
+   // Desc   : skip space
+   // Param  :
+   // Return : skiped string
+   //--------------------------------------------------------
+   // Coder    Date                      Desc
+   // bro      2002-10-29
+   //========================================================
+   inline char * _tcsskip(const char * psz)
+   {
+
+      while(ch_isspace_dup((uchar)*psz)) psz++;
+
+      return (char *)psz;
+
+   }
+
+} // namespace xml
+
+
+
+namespace xml
+{
+
+   // strpbrk(xml," />\t\r\n");
+
+   inline bool is_end_open_tag_name_char(uchar ch)
+   {
+      return ch == ' ' || ch == '/' || ch == '>' || ch == '\t' || ch == '\r' || ch == '\n' || ch == '\0';
+   }
+
+   inline char * end_open_tag_name(char * psz)
+   {
+      while(!is_end_open_tag_name_char(*psz))
+      {
+         psz++;
+      }
+      return psz;
+   }
+
+
+} // namespace xml
+
+
+

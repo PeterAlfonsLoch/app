@@ -20,6 +20,8 @@ struct CLASS_DECL_AURA string_data
    inline void lock() RELEASENOTHROW;
    inline void Release() RELEASENOTHROW;
    inline void unlock() RELEASENOTHROW;
+
+   inline string_data * Reallocate(strsize nLength); // current data will be invalid after function call
 };
 
 
@@ -66,7 +68,10 @@ public:
 
 
 
-
+// on 2015-03-01 with mummi thinking on carlos
+// with a lot of only my side friendship virtual friends...
+// turning string manager into a hard-coded nCharSize == 1 (char string_manager).
+// TIP you can create wstring_manager
 class string_manager
 {
 protected:
@@ -81,48 +86,45 @@ public:
    string_manager();
 
 
-   inline string_data * allocate(strsize nChars, int32_t nCharSize);
+   //inline string_data * allocate(strsize nChars, int32_t nCharSize);
+   inline string_data * allocate(strsize nChars);
    inline void Free(string_data * pData);
-   inline string_data * Reallocate(string_data * pData, strsize nChars, int32_t nCharSize);
+   inline string_data * Reallocate(string_data * pData,strsize nChars);
+   //inline string_data * Reallocate(string_data * pData, strsize nChars, int32_t nCharSize);
    inline string_data * GetNilString() ;
    inline string_manager * Clone() { return this; }
 
 };
 
-
-inline string_data * string_manager::allocate(strsize nChars, int32_t nCharSize )
+// TODO turn string manager into template so STRING_MANAGER_CHAR_SIZE 
+//inline string_data * string_manager::allocate(strsize nChars,int32_t nCharSize)
+inline string_data * string_manager::allocate(strsize nChars)
 {
-   size_t nTotalSize;
+   //size_t nTotalSize;
    string_data * pData;
-   size_t nDataBytes;
+   //size_t nDataBytes;
 
-//   ASSERT(nCharSize > 0);
+   //ASSERT(nCharSize > 0);
    
-   if(nChars < 0)
-   {
-//      ASSERT(FALSE);
-      return NULL;
-   }
-   
-   nDataBytes = (nChars+1)*nCharSize;
-   nTotalSize = sizeof( string_data  )+nDataBytes;
+   //nDataBytes = (nChars+1)*nCharSize;
+   //nTotalSize = sizeof( string_data  )+nDataBytes;
    
    //bool bEnable = __enable_memory_tracking(FALSE);
    
-   try
-   {
+   //try
+   //{
 //      pData = (string_data *) m_palloca->alloc(nTotalSize);
-      pData = (string_data *) memory_alloc(nTotalSize);
-   }
-   catch(...)
-   {
-      return NULL;
-   }
+      pData = (string_data *) memory_alloc(nChars + 1 + sizeof(string_data));
+   //}
+   //catch(...)
+   //{
+      //return NULL;
+   //}
 
    //__enable_memory_tracking(bEnable);
 
-   if (pData == NULL)
-      return NULL;
+   //if (pData == NULL)
+     // return NULL;
    pData->pstringmanager = this;
    pData->nRefs = 1;
    pData->nAllocLength = nChars;
@@ -137,48 +139,48 @@ inline void string_manager::Free(string_data * pData)
 //   m_palloca->free(pData, nTotalSize);
    memory_free_dbg(pData, 0);
 }
-
-inline string_data * string_manager::Reallocate(string_data * pOldData, strsize nChars, int32_t nCharSize)
+//inline string_data * string_manager::Reallocate(string_data * pOldData,strsize nChars,int32_t nCharSize)
+inline string_data * string_manager::Reallocate(string_data * pOldData, strsize nChars)
 {
-   string_data * pNewData = NULL;
-   size_t nNewTotalSize;
-   size_t nNewDataBytes;
-   size_t nOldTotalSize;
-   size_t nOldDataBytes;
+   //string_data * pNewData = NULL;
+   //size_t nNewTotalSize;
+   //size_t nNewDataBytes;
+   //size_t nOldTotalSize;
+   //size_t nOldDataBytes;
    
-//   ASSERT(nCharSize > 0);
+////   ASSERT(nCharSize > 0);
+//   
+//   if(nChars < 0)
+//   {
+////      ASSERT(FALSE);
+//      return NULL;
+//   }
    
-   if(nChars < 0)
-   {
-//      ASSERT(FALSE);
-      return NULL;
-   }
-   
-   nNewDataBytes = (nChars+1)*nCharSize;
-   nNewTotalSize = sizeof( string_data  )+nNewDataBytes;
-   nOldDataBytes = (pOldData->nAllocLength+1)*nCharSize;
-   nOldTotalSize = sizeof( string_data  ) + nOldDataBytes;
+   //nNewDataBytes = (nChars+1)*nCharSize;
+   //nNewTotalSize = sizeof( string_data  )+nNewDataBytes;
+   //nOldDataBytes = (pOldData->nAllocLength+1)*nCharSize;
+   //nOldTotalSize = sizeof( string_data  ) + nOldDataBytes;
    
    //bool bEnable = __enable_memory_tracking(FALSE);
    
-   try
-   {
+   //try
+   //{
 
 //      pNewData = (string_data *) m_palloca->realloc(pOldData, nOldTotalSize, nNewTotalSize);
-      pNewData = (string_data *) memory_realloc_dbg(pOldData, nNewTotalSize, 0, NULL, 0);
+      string_data *   pNewData = (string_data *)memory_realloc_dbg(pOldData,nChars + 1 + sizeof(string_data),0,NULL,0);
 
-   }
-   catch(...)
-   {
-   }
+   //}
+   //catch(...)
+   //{
+   //}
 
    //__enable_memory_tracking(bEnable);
 
 
-   if(pNewData == NULL)
-   {
-      return NULL;
-   }
+   //if(pNewData == NULL)
+   //{
+     // return NULL;
+   //}
 
    pNewData->nAllocLength = nChars;
 
@@ -662,7 +664,7 @@ public:
 
       if( !pOldData->IsLocked() )  // Don't reallocate a locked buffer that's shrinking
       {
-         string_data* pNewData = pstringmanager->allocate( nLength, sizeof( char ) );
+         string_data* pNewData = pstringmanager->allocate( nLength );
          if( pNewData == NULL )
          {
             set_length( nLength );
@@ -899,11 +901,11 @@ private:
    {
       string_data* pOldData = get_data();
       strsize nOldLength = pOldData->nDataLength;
-      string_data* pNewData = pOldData->pstringmanager->Clone()->allocate( nLength, sizeof( char ) );
-      if( pNewData == NULL )
-      {
-         throw_memory_exception();
-      }
+      string_data* pNewData = pOldData->pstringmanager->Clone()->allocate( nLength );
+      //if( pNewData == NULL )
+      //{
+        // throw_memory_exception();
+      //}
       strsize nCharsToCopy = ((nOldLength < nLength) ? nOldLength : nLength)+1;  // copy '\0'
 #if _SECURE_TEMPLATE
       CopyChars( char *( pNewData->data() ), nCharsToCopy, const char *( pOldData->data() ), nCharsToCopy );
@@ -961,13 +963,13 @@ private:
       }
    }
    inline void Reallocate(strsize nLength );
-   void set_length(strsize nLength )
+   inline void set_length(strsize nLength )
    {
 
-      if(nLength < 0 )
-         throw_error_exception("simple_string::set_length nLength < 0");
-      if(nLength > get_data()->nAllocLength)
-         throw_error_exception("simple_string::set_length nLength > get_data()->nAllocLength");
+      //ASSERT(nLength < 0);
+         //throw_error_exception("simple_string::set_length nLength < 0");
+      ASSERT(nLength <= get_data()->nAllocLength);
+      //throw_error_exception("simple_string::set_length nLength > get_data()->nAllocLength");
 
       get_data()->nDataLength = nLength;
       m_pszData[nLength] = 0;
@@ -986,11 +988,11 @@ private:
       }
       else
       {
-         pNewData = pNewStringMgr->allocate( pData->nDataLength, sizeof( char ) );
-         if( pNewData == NULL )
-         {
-            throw_memory_exception();
-         }
+         pNewData = pNewStringMgr->allocate( pData->nDataLength);
+         //if( pNewData == NULL )
+         //{
+         //   throw_memory_exception();
+         //}
          pNewData->nDataLength = pData->nDataLength;
 #if _SECURE_TEMPLATE
          CopyChars( char *( pNewData->data() ), pData->nDataLength+1, const char *( pData->data() ), pData->nDataLength+1 );  // copy '\0'

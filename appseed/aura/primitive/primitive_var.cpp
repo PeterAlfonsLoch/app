@@ -918,7 +918,8 @@ void var::read(::file::input_stream & is)
       }
       break;
    default:
-      throw "WHAT!!";
+      is.setstate(::file::failbit); // stream corrupt
+      break;
    }
 }
 

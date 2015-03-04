@@ -150,6 +150,11 @@ namespace file
       return m_pauraapp->m_paurasystem->m_spfile->put_contents(varFile, lpcszContents, m_pauraapp);
    }
 
+   bool application::add_contents(var varFile,const char * lpcszContents)
+   {
+      return m_pauraapp->m_paurasystem->m_spfile->add_contents(varFile,lpcszContents,m_pauraapp);
+   }
+
    bool application::put_contents(var varFile, ::file::reader & reader)
    {
       return m_pauraapp->m_paurasystem->m_spfile->put_contents(varFile, reader, m_pauraapp);

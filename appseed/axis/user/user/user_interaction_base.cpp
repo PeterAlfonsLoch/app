@@ -717,7 +717,7 @@ namespace user
    LRESULT interaction_base::send_message(UINT uiMessage,WPARAM wparam,lparam lparam)
    {
 
-      ::exception::throw_interface_only(get_app());
+//      ::exception::throw_interface_only(get_app());
 
       return 0;
 

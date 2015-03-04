@@ -32,7 +32,7 @@ protected:
 public:
 
    
-   mutex * m_pmutex;
+   critical_section * m_pcs;
    
 
    id_space();

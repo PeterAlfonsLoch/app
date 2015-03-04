@@ -95,6 +95,7 @@ public:
 };
 
 class property_set;
+
 class property_map;
 
 
@@ -710,15 +711,10 @@ public:
 
 };
 
-class CLASS_DECL_AURA property_map :
-   public id_map < var, const var &, ::comparison::hash < const id & >, ::comparison::equals_type_arg_type < id,const id & >, property >
+class property_map :
+   public id_map < var, const var &, ::comparison::hash < const id & >, ::comparison::equals_type_arg_type < id,const id & >, property, map_fixed_hash_table < 17, property > >
 {
 public:
-
-
-
-   property_map();
-
 
 
 

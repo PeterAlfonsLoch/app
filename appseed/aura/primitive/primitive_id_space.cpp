@@ -4,7 +4,7 @@
 
 id_space::id_space()
 {
-   m_pmutex = new mutex(NULL);
+   m_pcs = new critical_section();
 }
 
 // id_space is static, it goes aways only and with the application
@@ -49,7 +49,7 @@ id_space::~id_space()
 id id_space::operator()(const char * psz)
 {
 
-   single_lock sl(m_pmutex,TRUE);
+   cslock sl(m_pcs);
 
    index iIndex = 0;
 

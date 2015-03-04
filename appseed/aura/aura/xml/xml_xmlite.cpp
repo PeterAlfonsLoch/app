@@ -3,42 +3,7 @@
 namespace xml
 {
 
-   //========================================================
-   // Name   : _tcschrs
-   // Desc   : same with strpbrk
-   // Param  :
-   // Return :
-   //--------------------------------------------------------
-   // Coder    Date                      Desc
-   // bro      2002-10-29
-   //========================================================
-   char * _tcschrs(const char * psz,const char * pszchs)
-   {
-      while(psz && *psz)
-      {
-         if(strchr(pszchs,*psz))
-            return (char *)psz;
-         psz++;
-      }
-      return NULL;
-   }
 
-   //========================================================
-   // Name   : _tcsskip
-   // Desc   : skip space
-   // Param  :
-   // Return : skiped string
-   //--------------------------------------------------------
-   // Coder    Date                      Desc
-   // bro      2002-10-29
-   //========================================================
-   char * _tcsskip(const char * psz)
-   {
-      //while( psz && *psz == ' ' && *psz == 13 && *psz == 10 ) psz++;
-      while(psz && isspace((uchar)*psz)) psz++;
-
-      return (char *)psz;
-   }
 
    //========================================================
    // Name   : _tcsechr

@@ -3,7 +3,7 @@
 
 CLASS_DECL_AURA int __node_is_debugger_attached();
 
-CLASS_DECL_AURA bool is_debugger_attached();
+CLASS_DECL_AURA int is_debugger_attached();
 
 
 CLASS_DECL_AURA bool EnforceFilter( bool bEnforce );

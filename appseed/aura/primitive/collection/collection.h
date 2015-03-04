@@ -150,17 +150,17 @@ public:
    class pointer_list;             // list of void *
    class object_list;              // list of object*
 
-   // Maps (aka Dictionaries)
-   class CMapWordToOb;         // map from WORD to object*
-   class CMapWordToPtr;        // map from WORD to void *
-   class CMapPtrToWord;        // map from void * to WORD
-   class map_ptr_to_ptr;         // map from void * to void *
-
-   // Special string variants
-   class string_list;          // list of Strings
-   class CMapStringToPtr;      // map from string to void *
-   class CMapStringToOb;       // map from string to object*
-//   class string_to_string;   // map from string to string
+//   // Maps (aka Dictionaries)
+//   class CMapWordToOb;         // map from WORD to object*
+//   class CMapWordToPtr;        // map from WORD to void *
+//   class CMapPtrToWord;        // map from void * to WORD
+//   class map_ptr_to_ptr;         // map from void * to void *
+//
+//   // Special string variants
+//   class string_list;          // list of Strings
+//   class CMapStringToPtr;      // map from string to void *
+//   class CMapStringToOb;       // map from string to object*
+////   class string_to_string;   // map from string to string
 
 
 
@@ -224,10 +224,8 @@ public:
 
 
 #include "collection_string_to_string_map.h"
-//#include "collection_bit_array.h"
+#include "collection_bit_array.h"
 #include "collection_string_array.h"
-
-//#include "aura/datetime/datetime_time.h"
 
 #include "aura/primitive/primitive_var.h"
 

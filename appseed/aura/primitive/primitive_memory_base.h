@@ -155,7 +155,7 @@ namespace primitive
 
       inline void to_hex(string & str, memory_position iStart = 0, memory_size size = -1);
       inline string to_hex(memory_position iStart = 0, memory_size size = -1);
-      inline void from_hex(const char * psz);
+      inline void from_hex(const char * psz, strsize nCount = -1);
 
       inline void to_asc(string & str);
       inline void from_asc(const char * psz);
@@ -434,14 +434,14 @@ namespace primitive
 
    }
 
-   inline void memory_base::from_hex(const char * psz)
+   inline void memory_base::from_hex(const char * psz, strsize nCount)
    {
 
       char ch;
 
       bool bOdd = false;
 
-      strsize iLen = strlen(psz);
+      strsize iLen = nCount < 0 ? strlen(psz) + nCount + 1 : nCount;
 
       bOdd = (iLen % 2) != 0;
 

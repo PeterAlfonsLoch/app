@@ -66,7 +66,8 @@ namespace file
 
       output_stream & operator = (const output_stream & ostream);
 
-      virtual void write_from_hex(const char * psz);
+      virtual void write_from_hex(const char * psz, strsize iLen = -1);
+      virtual void write_from_hex(const string & str);
 
 
    };

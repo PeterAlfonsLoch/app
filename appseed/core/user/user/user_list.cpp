@@ -1553,9 +1553,9 @@ namespace user
          GetClientRect(&rectClient);
 
          if(pt.x < -m_scrollinfo.m_rectMargin.left
-            || pt.x > rectClient.right + m_scrollinfo.m_rectMargin.right
-            || pt.y < -m_scrollinfo.m_rectMargin.top
-            || pt.x > rectClient.bottom + m_scrollinfo.m_rectMargin.bottom)
+            || pt.x > rectClient.right - m_scrollinfo.m_rectMargin.right
+            || pt.y < m_scrollinfo.m_rectMargin.top
+            || pt.x > rectClient.bottom - m_scrollinfo.m_rectMargin.bottom)
          {
             return false;
          }

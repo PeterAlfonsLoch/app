@@ -52,6 +52,7 @@ namespace file
       virtual bool put_contents(var varFile, primitive::memory & mem);
       virtual bool put_contents_utf8(var varFile, const char * lpcszContents);
 
+      virtual bool add_contents(var varFile,const char * lpcszContents);
 
       string sys_temp(const char * pszName, const char * pszExtension);
 

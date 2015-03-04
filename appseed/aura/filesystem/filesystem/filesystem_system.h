@@ -120,6 +120,9 @@ namespace file
       virtual bool put_contents(var varFile,primitive::memory & mem,::aura::application * papp);
       virtual bool put_contents_utf8(var varFile,const char * lpcszContents,::aura::application * papp);
 
+      virtual bool add_contents(var varFile,const void * pvoidContents,::count count,::aura::application * papp);
+      virtual bool add_contents(var varFile,const char * lpcszContents,::aura::application * papp);
+
       virtual bool is_read_only(const char * psz);
 
       virtual string sys_temp(const char * pszName,const char * pszExtension,::aura::application * papp);

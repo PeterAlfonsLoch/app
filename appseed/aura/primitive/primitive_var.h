@@ -21,7 +21,7 @@ bool is_return_ok(para_return eret);
 template < typename ENUM >
 ENUM enum_default()
 {
-   return (ENUM) 0;
+   return (ENUM)0;
 }
 
 
@@ -125,10 +125,10 @@ public:
    var(uint32_t * pi);
    var(int64_t * pi);
    var(uint64_t * pui);
-//   var(int64_t l);
-//   var(uint64_t ul);
-//   var(int64_t int64_t ll);
-//   var(uint64_t int64_t ull);
+   //   var(int64_t l);
+   //   var(uint64_t ul);
+   //   var(int64_t int64_t ll);
+   //   var(uint64_t int64_t ull);
    var(float f);
    var(double d);
    var(const char * psz);
@@ -152,9 +152,9 @@ public:
    var(const string_composite & composite);
    var(const class duration & duration);
    var(class duration * pduration);
-//#if defined(MOVE_SEMANTICS)
-  // inline var(var && v);
-//#endif
+   //#if defined(MOVE_SEMANTICS)
+   // inline var(var && v);
+   //#endif
    template < class T >
    var(const sp(T) & sp)
    {
@@ -164,7 +164,7 @@ public:
 
    ~var();
 
-   void set_type(e_type e_type, bool bConvert = true);
+   void set_type(e_type e_type,bool bConvert = true);
    e_type get_type() const;
 
    bool is_numeric() const;
@@ -182,7 +182,7 @@ public:
    bool                             get_bool(bool bDefault = false)     const;
    int32_t                          int32(int32_t iDefault = 0)  const;
    template < typename ENUM >
-   ENUM                             e(ENUM edefault = enum_default < ENUM > ())  const { return (ENUM) int64(); }
+   ENUM                             e(ENUM edefault = enum_default < ENUM >())  const { return (ENUM)int64(); }
    uint32_t                         uint32(uint32_t uiDefault = 0)  const;
    int64_t                          int64(int64_t iDefault = 0)  const;
    uint64_t                         uint64(uint64_t uiDefault = 0)  const;
@@ -291,7 +291,7 @@ public:
 
    }
 
-   operator ::datetime::file_time () const;
+   operator ::datetime::file_time() const;
 
    operator ::datetime::time() const;
 
@@ -299,17 +299,17 @@ public:
 
    strsize get_length() const;
 
-/*   template < class T >
+   /*   template < class T >
    var & operator = (sp(T) p)
    {
-      set_type(type_element, false);
-      m_sp = p;
-      return *this;
+   set_type(type_element, false);
+   m_sp = p;
+   return *this;
    }
-*/
+   */
    inline var & operator = (object * p)
    {
-      set_type(type_element, false);
+      set_type(type_element,false);
       m_sp = p;
       return *this;
    }
@@ -354,9 +354,9 @@ public:
    var & operator = (id * pid);
    var & operator = (const class duration & pid);
    var & operator = (class duration * pduration);
-//#ifdef MOVE_SEMANTICS
+   //#ifdef MOVE_SEMANTICS
    //inline var & operator = (var && v);
-//#endif
+   //#endif
 
 
    template < class T >
@@ -372,14 +372,14 @@ public:
    {
 
       if(m_etype == type_pvar && m_pvar != NULL)
-         return m_pvar->cast < T > (pDefault);
+         return m_pvar->cast < T >(pDefault);
 
       if(m_etype != type_element)
          return NULL;
 
       sp(T) p = m_sp;
 
-      if (p.is_null())
+      if(p.is_null())
          return pDefault;
 
       return p;
@@ -431,17 +431,17 @@ public:
    bool strict_different(int32_t i) const;
    bool strict_different(bool b) const;
 
-   friend bool CLASS_DECL_AURA strict_equal(const char * psz, const var & var);
-   friend bool CLASS_DECL_AURA strict_equal(const string & str, const var & var);
-   friend bool CLASS_DECL_AURA strict_equal(double d, const var & var);
-   friend bool CLASS_DECL_AURA strict_equal(int32_t i, const var & var);
-   friend bool CLASS_DECL_AURA strict_equal(bool b, const var & var);
+   friend bool CLASS_DECL_AURA strict_equal(const char * psz,const var & var);
+   friend bool CLASS_DECL_AURA strict_equal(const string & str,const var & var);
+   friend bool CLASS_DECL_AURA strict_equal(double d,const var & var);
+   friend bool CLASS_DECL_AURA strict_equal(int32_t i,const var & var);
+   friend bool CLASS_DECL_AURA strict_equal(bool b,const var & var);
 
-   friend bool CLASS_DECL_AURA strict_different(const char * psz, const var & var);
-   friend bool CLASS_DECL_AURA strict_different(const string & str, const var & var);
-   friend bool CLASS_DECL_AURA strict_different(double d, const var & var);
-   friend bool CLASS_DECL_AURA strict_different(int32_t i, const var & var);
-   friend bool CLASS_DECL_AURA strict_different(bool b, const var & var);
+   friend bool CLASS_DECL_AURA strict_different(const char * psz,const var & var);
+   friend bool CLASS_DECL_AURA strict_different(const string & str,const var & var);
+   friend bool CLASS_DECL_AURA strict_different(double d,const var & var);
+   friend bool CLASS_DECL_AURA strict_different(int32_t i,const var & var);
+   friend bool CLASS_DECL_AURA strict_different(bool b,const var & var);
 
    int32_t compare(const var & var) const;
    int32_t compare(const char * psz) const;
@@ -489,7 +489,7 @@ public:
    void read(::file::input_stream & ostream);
 
    string implode(const char * pszGlue) const;
-   var explode(const char * pszGlue, bool bAddEmpty = true) const;
+   var explode(const char * pszGlue,bool bAddEmpty = true) const;
 
    var first() const;
    var last() const;
@@ -510,19 +510,19 @@ public:
    var at(index i);
    var key(index i) const;
 #if OSBIT != 32
-   inline var operator[] (int32_t iKey) const { return operator[]((index) iKey); }
-   inline var operator[] (int32_t iKey) { return operator[]((index) iKey); }
-   inline var at(int32_t i) const { return at((index) i); }
-   inline var at(int32_t i) { return at((index) i); }
-   inline var key(int32_t i) const { return key((index) i); }
+   inline var operator[] (int32_t iKey) const { return operator[]((index)iKey); }
+   inline var operator[] (int32_t iKey) { return operator[]((index)iKey); }
+   inline var at(int32_t i) const { return at((index)i); }
+   inline var at(int32_t i) { return at((index)i); }
+   inline var key(int32_t i) const { return key((index)i); }
 #endif
    inline ::count array_get_count() const;
    inline index array_get_upper_bound() const;
-   bool array_contains(const char * psz, index find = 0, ::count count = -1) const;
-   bool array_contains_ci(const char * psz, index find = 0, ::count count = -1) const;
+   bool array_contains(const char * psz,index find = 0,::count count = -1) const;
+   bool array_contains_ci(const char * psz,index find = 0,::count count = -1) const;
 
-   var equals_ci_get(const char * pszCompare, var varOnEqual, var varOnDifferent) const;
-   var equals_ci_get(const char * pszCompare, var varOnEqual) const;
+   var equals_ci_get(const char * pszCompare,var varOnEqual,var varOnDifferent) const;
+   var equals_ci_get(const char * pszCompare,var varOnEqual) const;
 
 
    var operator - (int32_t i) const;
@@ -531,12 +531,12 @@ public:
    var operator - (uint64_t ui) const;
    var operator - (double d) const;
 
-   friend var CLASS_DECL_AURA operator - (int32_t i, const var & var);
-   friend var CLASS_DECL_AURA operator - (uint32_t ui, const var & var);
-   friend var CLASS_DECL_AURA operator - (int64_t l, const var & var);
-   friend var CLASS_DECL_AURA operator - (uint64_t ul, const var & var);
-   friend var CLASS_DECL_AURA operator - (double d, const var & var);
-   friend var CLASS_DECL_AURA operator - (const var & var1, const var & var2);
+   friend var CLASS_DECL_AURA operator - (int32_t i,const var & var);
+   friend var CLASS_DECL_AURA operator - (uint32_t ui,const var & var);
+   friend var CLASS_DECL_AURA operator - (int64_t l,const var & var);
+   friend var CLASS_DECL_AURA operator - (uint64_t ul,const var & var);
+   friend var CLASS_DECL_AURA operator - (double d,const var & var);
+   friend var CLASS_DECL_AURA operator - (const var & var1,const var & var2);
 
    var operator + (int32_t i) const;
    var operator + (uint32_t ui) const;
@@ -544,12 +544,12 @@ public:
    var operator + (uint64_t ui) const;
    var operator + (double d) const;
 
-   friend var CLASS_DECL_AURA operator + (int32_t i, const var & var);
-   friend var CLASS_DECL_AURA operator + (uint32_t ui, const var & var);
-   friend var CLASS_DECL_AURA operator + (int64_t l, const var & var);
-   friend var CLASS_DECL_AURA operator + (uint64_t ul, const var & var);
-   friend var CLASS_DECL_AURA operator + (double d, const var & var);
-   friend var CLASS_DECL_AURA operator + (const var & var1, const var & var2);
+   friend var CLASS_DECL_AURA operator + (int32_t i,const var & var);
+   friend var CLASS_DECL_AURA operator + (uint32_t ui,const var & var);
+   friend var CLASS_DECL_AURA operator + (int64_t l,const var & var);
+   friend var CLASS_DECL_AURA operator + (uint64_t ul,const var & var);
+   friend var CLASS_DECL_AURA operator + (double d,const var & var);
+   friend var CLASS_DECL_AURA operator + (const var & var1,const var & var2);
 
    var operator / (int32_t i) const;
    var operator / (uint32_t ui) const;
@@ -557,12 +557,12 @@ public:
    var operator / (uint64_t ui) const;
    var operator / (double d) const;
 
-   friend var CLASS_DECL_AURA operator / (int32_t i, const var & var);
-   friend var CLASS_DECL_AURA operator / (uint32_t ui, const var & var);
-   friend var CLASS_DECL_AURA operator / (int64_t l, const var & var);
-   friend var CLASS_DECL_AURA operator / (uint64_t ul, const var & var);
-   friend var CLASS_DECL_AURA operator / (double d, const var & var);
-   friend var CLASS_DECL_AURA operator / (const var & var1, const var & var2);
+   friend var CLASS_DECL_AURA operator / (int32_t i,const var & var);
+   friend var CLASS_DECL_AURA operator / (uint32_t ui,const var & var);
+   friend var CLASS_DECL_AURA operator / (int64_t l,const var & var);
+   friend var CLASS_DECL_AURA operator / (uint64_t ul,const var & var);
+   friend var CLASS_DECL_AURA operator / (double d,const var & var);
+   friend var CLASS_DECL_AURA operator / (const var & var1,const var & var2);
 
    var operator * (int32_t i) const;
    var operator * (uint32_t ui) const;
@@ -570,12 +570,12 @@ public:
    var operator * (uint64_t ui) const;
    var operator * (double d) const;
 
-   friend var CLASS_DECL_AURA operator * (int32_t i, const var & var);
-   friend var CLASS_DECL_AURA operator * (uint32_t ui, const var & var);
-   friend var CLASS_DECL_AURA operator * (int64_t l, const var & var);
-   friend var CLASS_DECL_AURA operator * (uint64_t ul, const var & var);
-   friend var CLASS_DECL_AURA operator * (double d, const var & var);
-   friend var CLASS_DECL_AURA operator * (const var & var1, const var & var2);
+   friend var CLASS_DECL_AURA operator * (int32_t i,const var & var);
+   friend var CLASS_DECL_AURA operator * (uint32_t ui,const var & var);
+   friend var CLASS_DECL_AURA operator * (int64_t l,const var & var);
+   friend var CLASS_DECL_AURA operator * (uint64_t ul,const var & var);
+   friend var CLASS_DECL_AURA operator * (double d,const var & var);
+   friend var CLASS_DECL_AURA operator * (const var & var1,const var & var2);
 
    var & operator -= (int32_t i);
    var & operator -= (uint32_t ui);
@@ -606,19 +606,19 @@ public:
    var & operator *= (const var & var);
 
    void consume_number(const char * & psz);
-   void consume_number(const char * & psz, const char * pszEnd);
+   void consume_number(const char * & psz,const char * pszEnd);
    void consume_identifier(const char * & psz);
-   void consume_identifier(const char * & psz, const char * pszEnd);
+   void consume_identifier(const char * & psz,const char * pszEnd);
    void parse_json(const char * & pszJson);
-   void parse_json(const char * & pszJson, const char * pszEnd);
+   void parse_json(const char * & pszJson,const char * pszEnd);
 
    string & get_json(string & str) const;
 
 
-//#undef new
-  // DECLARE_AXIS_FIXED_ALLOC(var)
+   //#undef new
+   // DECLARE_AXIS_FIXED_ALLOC(var)
 
-    void null();
+   void null();
 
 };
 
@@ -638,7 +638,7 @@ namespace str
 } // namespace str
 
 
-inline string CLASS_DECL_AURA operator+ (const char * psz, const var & var)
+inline string CLASS_DECL_AURA operator+ (const char * psz,const var & var)
 {
 
    string strResult(psz);
@@ -649,7 +649,7 @@ inline string CLASS_DECL_AURA operator+ (const char * psz, const var & var)
 }
 
 
-inline string CLASS_DECL_AURA operator+ (const var & var, const char * psz)
+inline string CLASS_DECL_AURA operator+ (const var & var,const char * psz)
 {
 
    string strResult(var.get_string());
@@ -660,7 +660,7 @@ inline string CLASS_DECL_AURA operator+ (const var & var, const char * psz)
 }
 
 
-inline string CLASS_DECL_AURA operator+ (const string & str, const var & var)
+inline string CLASS_DECL_AURA operator+ (const string & str,const var & var)
 {
 
    string strResult(str);
@@ -671,7 +671,7 @@ inline string CLASS_DECL_AURA operator+ (const string & str, const var & var)
 }
 
 
-inline string CLASS_DECL_AURA operator+ (const var & var, const string & str)
+inline string CLASS_DECL_AURA operator+ (const var & var,const string & str)
 {
 
    string strResult(var.get_string());
@@ -752,14 +752,14 @@ inline uint_ptr var::uintptr(uint_ptr uiDefault) const
 inline var::operator LONG () const
 {
 
-	return operator int32_t();
+   return operator int32_t();
 
 }
 
 inline var & var::operator = (LPDWORD pui)
 {
 
-	return operator = ((uint32_t *) pui);
+   return operator = ((uint32_t *)pui);
 
 }
 
@@ -797,7 +797,7 @@ inline string var::to_string() const
 //}
 
 
-inline string  & operator += (string & str, const var & var)
+inline string  & operator += (string & str,const var & var)
 {
 
    str += var.get_string();
@@ -813,11 +813,11 @@ inline string  & operator += (string & str, const var & var)
 inline var::var(var && v)
 {
 
-   memcpy(this, &v, sizeof(var));
+memcpy(this, &v, sizeof(var));
 
-   v.m_sp.m_p           = NULL;
-   v.m_str.m_pszData    = NULL;
-   v.m_id.m_pstr        = NULL;
+v.m_sp.m_p           = NULL;
+v.m_str.m_pszData    = NULL;
+v.m_id.m_pstr        = NULL;
 
 }
 
@@ -828,22 +828,22 @@ inline var::var(var && v)
 inline var & var::operator = (var && v)
 {
 
-   if(this != &v)
-   {
+if(this != &v)
+{
 
-      m_sp.release();
-      m_str.~string();
-      m_id.~id();
+m_sp.release();
+m_str.~string();
+m_id.~id();
 
-      memcpy(this, &v, sizeof(var));
+memcpy(this, &v, sizeof(var));
 
-      v.m_sp.m_p           = NULL;
-      v.m_str.m_pszData    = NULL;
-      v.m_id.m_pstr        = NULL;
+v.m_sp.m_p           = NULL;
+v.m_str.m_pszData    = NULL;
+v.m_id.m_pstr        = NULL;
 
-   }
+}
 
-   return *this;
+return *this;
 
 }
 
@@ -863,9 +863,9 @@ inline class var & var::operator = (const char * psz)
 
 inline class var & var::operator = (const string & str)
 {
-   
+
    set_string(str);
-   
+
    return *this;
 
 }

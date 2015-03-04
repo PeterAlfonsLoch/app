@@ -1,9 +1,92 @@
 #pragma once
 
+template < typename PAIR >
+class map_dynamic_hash_table
+{
+public:
+
+   typedef map_association < PAIR >  assoc;
+
+   assoc **          m_ppassocHash;
+   UINT              m_nHashTableSize;
+
+   map_dynamic_hash_table()
+   {
+
+      m_ppassocHash = NULL;
+      m_nHashTableSize = 17;
+
+   }
+
+   UINT GetHashTableSize() const { return m_nHashTableSize; }
 
 
+   void InitHashTable(UINT nHashSize,bool bAllocNow = TRUE)
+   { 
 
-template <class KEY, class ARG_KEY, class VALUE, class ARG_VALUE = const VALUE &, class HASH = ::comparison::hash < ARG_KEY > , class EQUALS = ::comparison::equals_type_arg_type < KEY, ARG_KEY >, class PAIR = pair < KEY, VALUE > >
+      if(m_ppassocHash != NULL)
+      {
+         // free hash table
+         delete[] m_ppassocHash;
+         m_ppassocHash = NULL;
+      }
+
+      if(bAllocNow)
+      {
+         m_ppassocHash = new assoc *[nHashSize];
+         ENSURE(m_ppassocHash != NULL);
+         memset(m_ppassocHash,0,sizeof(assoc*) * nHashSize);
+      }
+
+      m_nHashTableSize = nHashSize;
+
+   }
+
+   void remove_all()
+   {
+      if(m_ppassocHash != NULL)
+      {
+
+         // free hash table
+         delete[] m_ppassocHash;
+         m_ppassocHash = NULL;
+
+      }
+
+   }
+
+
+};
+
+template < int m_nHashTableSize,typename PAIR >
+class map_fixed_hash_table
+{
+public:
+
+
+   typedef map_association < PAIR > assoc;
+
+
+   assoc *           m_ppassocHash[m_nHashTableSize];
+
+   map_fixed_hash_table()
+   {
+      zero(m_ppassocHash,sizeof(m_ppassocHash));
+   }
+
+
+   UINT GetHashTableSize() const { return m_nHashTableSize; }
+   void InitHashTable(UINT hashSize,bool bAllocNow = TRUE) {  }
+
+   void remove_all()
+   {
+      zero(m_ppassocHash,sizeof(m_ppassocHash));
+   }
+
+};
+
+
+template <class KEY,class ARG_KEY,class VALUE,class ARG_VALUE = const VALUE &,class HASH = ::comparison::hash < ARG_KEY >,class EQUALS = ::comparison::equals_type_arg_type < KEY,ARG_KEY >,class PAIR = pair < KEY,VALUE >,typename HASH_TABLE = map_dynamic_hash_table < PAIR > >
 class map :
    virtual public ::object
 {
@@ -17,10 +100,10 @@ public:
    typedef HASH                                    AXIS_HASH;
    typedef EQUALS                                  AXIS_EQUALS;
 
-   typedef ::map_association < KEY, VALUE, PAIR >  assoc;
+   typedef ::map_association < PAIR >              assoc;
    typedef typename assoc::pair                    pair;
 
-
+   HASH_TABLE                                      m_hashtable;
 
 
    class iterator
@@ -290,8 +373,8 @@ public:
    assoc *PGetNextAssoc(const pair *passocRet);
 
    // advanced features for derived classes
-   UINT GetHashTableSize() const;
-   void InitHashTable(UINT hashSize, bool bAllocNow = TRUE);
+   UINT GetHashTableSize() const { return m_hashtable.GetHashTableSize();  }
+   void InitHashTable(UINT hashSize,bool bAllocNow = TRUE);
 
 
    VALUE get(ARG_KEY argkey, ARG_VALUE valueDefault);
@@ -337,8 +420,6 @@ public:
    const_iterator find (ARG_KEY key) const;
 
    // Implementation
-   assoc **          m_ppassocHash;
-   UINT              m_nHashTableSize;
    ::count           m_nCount;
    assoc *           m_passocFree;
    assoc *           m_passocHead;
@@ -391,36 +472,36 @@ public:
 };
 
 /////////////////////////////////////////////////////////////////////////////
-// map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR> inline functions
+// map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE> inline functions
 
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR >
-inline ::count map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::get_count() const
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR, class HASH_TABLE >
+inline ::count map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::get_count() const
 { return m_nCount; }
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR >
-inline ::count map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::get_size() const
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR, class HASH_TABLE >
+inline ::count map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::get_size() const
 { return m_nCount; }
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR >
-inline ::count map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::count() const
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR, class HASH_TABLE >
+inline ::count map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::count() const
 { return m_nCount; }
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR >
-inline ::count map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::size() const
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR, class HASH_TABLE >
+inline ::count map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::size() const
 { return m_nCount; }
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR >
-inline bool map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::is_empty() const
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR, class HASH_TABLE >
+inline bool map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::is_empty() const
 { return m_nCount == 0; }
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR >
-inline bool map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::empty() const
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR, class HASH_TABLE >
+inline bool map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::empty() const
 { return m_nCount == 0; }
 
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR >
-inline typename map < KEY,ARG_KEY,VALUE,ARG_VALUE,HASH,EQUALS,PAIR>::assoc * map < KEY,ARG_KEY,VALUE,ARG_VALUE,HASH,EQUALS,PAIR>::set_at(ARG_KEY key,ARG_VALUE newValue)
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR, class HASH_TABLE >
+inline typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::assoc * map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::set_at(ARG_KEY key,ARG_VALUE newValue)
 { 
 
    assoc * passoc = get_assoc(key);
@@ -432,43 +513,43 @@ inline typename map < KEY,ARG_KEY,VALUE,ARG_VALUE,HASH,EQUALS,PAIR>::assoc * map
 }
 
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR >
-inline POSITION map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::get_start_position() const
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR, class HASH_TABLE >
+inline POSITION map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::get_start_position() const
 { return (m_nCount == 0) ? NULL : BEFORE_START_POSITION; }
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR >
-const typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::assoc* map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::PGetFirstAssoc() const
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR, class HASH_TABLE >
+const typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::assoc* map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::PGetFirstAssoc() const
 {
 
    return m_passocHead;
 
 }
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR >
-typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::assoc* map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::PGetFirstAssoc()
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR, class HASH_TABLE >
+typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::assoc* map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::PGetFirstAssoc()
 {
 
    return m_passocHead;
 
 }
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR >
-inline UINT map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::GetHashTableSize() const
-{
-
-   return m_nHashTableSize;
-
-}
+//template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR, class HASH_TABLE >
+//inline UINT map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::GetHashTableSize() const
+//{
+//
+//   return m_nHashTableSize;
+//
+//}
 
 /////////////////////////////////////////////////////////////////////////////
-// map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR> out-of-line functions
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR >
-void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::construct(::count nBlockSize)
+// map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE> out-of-line functions
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR, class HASH_TABLE >
+void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::construct(::count nBlockSize)
 {
    ASSERT(nBlockSize > 0);
 
-   m_ppassocHash     = NULL;
-   m_nHashTableSize  = 17;  // default size
+   //m_ppassocHash     = NULL;
+   //m_nHashTableSize  = 17;  // default size
    m_nCount          = 0;
    m_passocFree      = NULL;
    m_pplex           = NULL;
@@ -476,15 +557,15 @@ void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::construct(::coun
    m_passocHead      = NULL;
 }
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR >
-map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::map(::aura::application * papp, ::count nBlockSize) :
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR, class HASH_TABLE >
+map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::map(::aura::application * papp, ::count nBlockSize) :
    object(papp)
 {
    construct(nBlockSize);
 }
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR >
-map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::map(pair pairs[], int32_t iCount)
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR, class HASH_TABLE >
+map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::map(pair pairs[], int32_t iCount)
 {
    construct();
    for(int32_t i = 0; i < iCount; i++)
@@ -494,8 +575,8 @@ map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::map(pair pairs[], int
 }
 
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR >
-void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::remove_all()
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR, class HASH_TABLE >
+void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::remove_all()
 {
 
    ASSERT_VALID(this);
@@ -515,39 +596,44 @@ void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::remove_all()
 
    }
 
-   // free hash table
-   delete[] m_ppassocHash;
-   m_ppassocHash = NULL;
+   m_hashtable.remove_all();
 
    m_nCount = 0;
    m_passocFree = NULL;
-   m_pplex->FreeDataChain();
-   m_pplex = NULL;
+
+   if(m_pplex != NULL)
+   {
+
+      m_pplex->FreeDataChain();
+      m_pplex = NULL;
+
+   }
+
    m_passocHead = NULL;
 }
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR >
-inline void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::clear()
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR, class HASH_TABLE >
+inline void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::clear()
 {
    remove_all();
 }
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR >
-inline void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::Empty()
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR, class HASH_TABLE >
+inline void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::Empty()
 {
    clear();
 }
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR >
-map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::~map()
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR, class HASH_TABLE >
+map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::~map()
 {
    remove_all();
    ASSERT(m_nCount == 0);
 }
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR >
-typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::assoc *
-   map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::new_assoc(ARG_KEY key)
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR, class HASH_TABLE >
+typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::assoc *
+   map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::new_assoc(ARG_KEY key)
 {
 
    if(m_passocFree == NULL)
@@ -597,8 +683,8 @@ typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::assoc *
 
 }
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR >
-void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::free_assoc(assoc * passoc)
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR, class HASH_TABLE >
+void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::free_assoc(assoc * passoc)
 {
 
    assoc * pnext = passoc->m_pnext;
@@ -647,23 +733,23 @@ void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::free_assoc(assoc
 
 }
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR >
-typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::assoc *
-   map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::get_assoc_at(ARG_KEY key, UINT& nHashBucket, UINT& nHashValue) const
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR, class HASH_TABLE >
+typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::assoc *
+   map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::get_assoc_at(ARG_KEY key, UINT& nHashBucket, UINT& nHashValue) const
    // find association (or return NULL)
 {
 
    nHashValue = HASH::HashKey((ARG_KEY) key);
 
-   nHashBucket = nHashValue % m_nHashTableSize;
+   nHashBucket = nHashValue % m_hashtable.GetHashTableSize();
 
-   if (m_ppassocHash == NULL)
+   if(get_count() <= 0)
       return NULL;
 
    // see if it exists
    assoc * passoc;
 
-   for (passoc = m_ppassocHash[nHashBucket]; passoc != NULL; passoc = passoc->m_pnextHash)
+   for(passoc = m_hashtable.m_ppassocHash[nHashBucket]; passoc != NULL; passoc = passoc->m_pnextHash)
    {
 
       if(EQUALS::CompareElements(&passoc->m_element1, key))
@@ -675,8 +761,8 @@ typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::assoc *
 
 }
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR >
-bool map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::Lookup(ARG_KEY key, VALUE& rValue) const
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR, class HASH_TABLE >
+bool map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::Lookup(ARG_KEY key, VALUE& rValue) const
 {
    //ASSERT_VALID(this);
 
@@ -693,21 +779,21 @@ bool map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::Lookup(ARG_KEY k
 
 }
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR >
-typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::iterator map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::find (ARG_KEY key)
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR, class HASH_TABLE >
+typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::iterator map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::find (ARG_KEY key)
 {
    return iterator(PLookup(key), this);
 }
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR >
-typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::const_iterator map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::find (ARG_KEY key) const
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR, class HASH_TABLE >
+typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::const_iterator map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::find (ARG_KEY key) const
 {
    return const_iterator((pair *) PLookup(key), (map *) this);
 }
 
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR >
-const typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::pair* map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::PLookup(ARG_KEY key) const
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR, class HASH_TABLE >
+const typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::pair* map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::PLookup(ARG_KEY key) const
 {
    //ASSERT_VALID(this);
 
@@ -716,8 +802,8 @@ const typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::pair* 
    return passoc;
 }
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR >
-typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::pair* map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::PLookup(ARG_KEY key)
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR, class HASH_TABLE >
+typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::pair* map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::PLookup(ARG_KEY key)
 {
    //ASSERT_VALID(this);
 
@@ -726,8 +812,8 @@ typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::pair* map < 
    return passoc;
 }
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR >
-VALUE * map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::pget(ARG_KEY key)
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR, class HASH_TABLE >
+VALUE * map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::pget(ARG_KEY key)
 {
    pair * p = PLookup(key);
    if(p)
@@ -736,8 +822,8 @@ VALUE * map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::pget(ARG_KEY 
       return NULL;
 }
 
-template < class KEY,class ARG_KEY,class VALUE,class ARG_VALUE,class HASH,class EQUALS,class PAIR >
-typename map < KEY,ARG_KEY,VALUE,ARG_VALUE,HASH,EQUALS,PAIR>::assoc * map < KEY,ARG_KEY,VALUE,ARG_VALUE,HASH,EQUALS,PAIR>::get_assoc(ARG_KEY key)
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR, class HASH_TABLE >
+typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::assoc * map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::get_assoc(ARG_KEY key)
 {
    
    ASSERT_VALID(this);
@@ -749,23 +835,23 @@ typename map < KEY,ARG_KEY,VALUE,ARG_VALUE,HASH,EQUALS,PAIR>::assoc * map < KEY,
    if((passoc = get_assoc_at(key,nHashBucket,nHashValue)) == NULL)
    {
 
-      if(m_ppassocHash == NULL)
-         InitHashTable(m_nHashTableSize);
+      if(m_hashtable.m_ppassocHash == NULL)
+         InitHashTable(m_hashtable.GetHashTableSize());
 
-      ENSURE(m_ppassocHash);
+      ENSURE(m_hashtable.m_ppassocHash);
 
       passoc = new_assoc(key);
 
-      if(m_ppassocHash[nHashBucket] != NULL)
+      if(m_hashtable.m_ppassocHash[nHashBucket] != NULL)
       {
-         m_ppassocHash[nHashBucket]->m_ppprevHash = &passoc->m_pnextHash;
+         m_hashtable.m_ppassocHash[nHashBucket]->m_ppprevHash = &passoc->m_pnextHash;
       }
 
-      passoc->m_pnextHash        = m_ppassocHash[nHashBucket];
+      passoc->m_pnextHash        = m_hashtable.m_ppassocHash[nHashBucket];
 
-      m_ppassocHash[nHashBucket] = passoc;
+      m_hashtable.m_ppassocHash[nHashBucket] = passoc;
 
-      passoc->m_ppprevHash       = &m_ppassocHash[nHashBucket];
+      passoc->m_ppprevHash       = &m_hashtable.m_ppassocHash[nHashBucket];
 
    }
 
@@ -774,26 +860,26 @@ typename map < KEY,ARG_KEY,VALUE,ARG_VALUE,HASH,EQUALS,PAIR>::assoc * map < KEY,
 }
 
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR >
-VALUE& map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::operator[](ARG_KEY key)
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR, class HASH_TABLE >
+VALUE& map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::operator[](ARG_KEY key)
 {
 
    return get_assoc(key)->m_element2;  // return new reference
 
 }
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR >
-bool map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::remove_key(ARG_KEY key)
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR, class HASH_TABLE >
+bool map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::remove_key(ARG_KEY key)
    // remove key - return TRUE if removed
 {
    ASSERT_VALID(this);
 
-   if (m_ppassocHash == NULL)
+   if (get_count() <= 0)
       return false;  // nothing in the table
 
    UINT nHashValue;
    nHashValue = HASH::HashKey(key);
-   assoc * passoc = m_ppassocHash[nHashValue%m_nHashTableSize];
+   assoc * passoc = m_hashtable.m_ppassocHash[nHashValue%m_hashtable.GetHashTableSize()];
    for(; passoc != NULL; passoc = passoc->m_pnextHash)
    {
       if(EQUALS::CompareElements(&passoc->m_element1, key))
@@ -805,8 +891,8 @@ bool map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::remove_key(ARG_K
    return false;  // not found
 }
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR >
-inline bool map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::remove_assoc(assoc * passoc)
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR, class HASH_TABLE >
+inline bool map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::remove_assoc(assoc * passoc)
    // remove key - return TRUE if removed
 {
    if(passoc->m_pnextHash != NULL)
@@ -819,56 +905,56 @@ inline bool map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::remove_as
 }
 
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR >
-inline ::count map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::count(const KEY & key) const
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR, class HASH_TABLE >
+inline ::count map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::count(const KEY & key) const
 {
 
    return this->PLookup(key) != NULL ? 1 : 0;
 
 }
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR >
-bool map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::has(const KEY & key) const
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR, class HASH_TABLE >
+bool map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::has(const KEY & key) const
 {
 
    return this->PLookup(key) != NULL ? 1 : 0;
 
 }
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR >
-bool map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::contains(const KEY & key) const
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR, class HASH_TABLE >
+bool map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::contains(const KEY & key) const
 {
 
    return this->PLookup(key) != NULL ? 1 : 0;
 
 }
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR >
-::count map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::erase(const KEY & key)
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR, class HASH_TABLE >
+::count map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::erase(const KEY & key)
 {
 
    return remove_key(key) ? 1 : 0;
 
 }
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR >
-void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::erase(iterator it)
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR, class HASH_TABLE >
+void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::erase(iterator it)
 {
 
    remove_key(it->m_element1);
 
 }
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR >
-void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::get_next_assoc(POSITION& rNextPosition,
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR, class HASH_TABLE >
+void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::get_next_assoc(POSITION& rNextPosition,
                                                                          KEY& rKey, VALUE& rValue) const
 {
    ASSERT_VALID(this);
-   if(m_ppassocHash == NULL)
+   if(m_hashtable.m_ppassocHash == NULL)
    {
       printf("map::get_next_assoc m_ppassocHash == NULL");
    }
-   ENSURE(m_ppassocHash != NULL);  // never call on is_empty map
+   ENSURE(m_hashtable.m_ppassocHash != NULL);  // never call on is_empty map
 
    assoc* passocRet = (assoc*)rNextPosition;
    ENSURE(passocRet != NULL);
@@ -877,7 +963,7 @@ void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::get_next_assoc(P
    {
       passocRet = m_passocHead;
       if(passocRet == NULL)
-         throw error_exception(get_app(), "map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::get_next_assoc : must find something");
+         throw error_exception(get_app(), "map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::get_next_assoc : must find something");
    }
 
    rNextPosition = (POSITION) passocRet->m_pnext;
@@ -887,19 +973,16 @@ void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::get_next_assoc(P
    rValue = passocRet->m_element2;
 }
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR >
-const typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::assoc*
-   map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::PGetNextAssoc(const typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::pair* pPairRet) const
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR, class HASH_TABLE >
+const typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::assoc*
+   map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::PGetNextAssoc(const typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::pair* pPairRet) const
 {
    ASSERT_VALID(this);
 
    assoc* passocRet = (assoc*)pPairRet;
 
-   ASSERT(m_ppassocHash != NULL);  // never call on is_empty map
+   ASSERT(m_hashtable.m_ppassocHash != NULL);  // never call on is_empty map
    ASSERT(passocRet != NULL);
-
-   if(m_ppassocHash == NULL || passocRet == NULL)
-      return NULL;
 
    ASSERT(passocRet != (assoc*)BEFORE_START_POSITION);
 
@@ -907,19 +990,16 @@ const typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::assoc*
 
 }
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR >
-typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::assoc*
-   map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::PGetNextAssoc(const typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::pair* pPairRet)
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR, class HASH_TABLE >
+typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::assoc*
+   map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::PGetNextAssoc(const typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::pair* pPairRet)
 {
    ASSERT_VALID(this);
 
    assoc* passocRet = (assoc*)pPairRet;
 
-   ASSERT(m_ppassocHash != NULL);  // never call on is_empty map
+   ASSERT(m_hashtable.m_ppassocHash != NULL);  // never call on is_empty map
    ASSERT(passocRet != NULL);
-
-   if(m_ppassocHash == NULL || passocRet == NULL)
-      return NULL;
 
    ASSERT(passocRet != (assoc*)BEFORE_START_POSITION);
 
@@ -927,8 +1007,8 @@ typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::assoc*
 
 }
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR >
-VALUE map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR> ::
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR, class HASH_TABLE >
+VALUE map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE> ::
    get(ARG_KEY argkey, ARG_VALUE valueDefault)
 {
    pair * ppair = PLookup(argkey);
@@ -939,8 +1019,8 @@ VALUE map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR> ::
 }
 
 /*
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR >
-void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::Serialize(CArchive& ar)
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR, class HASH_TABLE >
+void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::Serialize(CArchive& ar)
 {
 ASSERT_VALID(this);
 
@@ -988,8 +1068,8 @@ set_at(newKey[0], newValue[0]);
 }
 */
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR >
-void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::dump(dump_context & dumpcontext) const
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR, class HASH_TABLE >
+void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::dump(dump_context & dumpcontext) const
 {
    object::dump(dumpcontext);
 
@@ -1012,13 +1092,13 @@ void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::dump(dump_contex
    dumpcontext << "\n";
 }
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR >
-void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::assert_valid() const
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR, class HASH_TABLE >
+void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::assert_valid() const
 {
    object::assert_valid();
 
-   ASSERT(m_nHashTableSize > 0);
-   ASSERT(m_nCount == 0 || m_ppassocHash != NULL);
+   ASSERT(GetHashTableSize() > 0);
+   ASSERT(m_nCount == 0 || m_hashtable.m_ppassocHash != NULL);
    // non-is_empty map should have hash table
 }
 
@@ -1032,15 +1112,15 @@ void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR>::assert_valid() c
 
 
 
-template <class KEY,class ARG_KEY,class VALUE,class ARG_VALUE,class HASH = ::comparison::hash < ARG_KEY >,class EQUALS = ::comparison::equals_type_arg_type < KEY,ARG_KEY >, class PAIR = pair < KEY, VALUE > >
-::file::output_stream & operator << (::file::output_stream & os,const map < KEY,ARG_KEY,VALUE,ARG_VALUE,HASH,EQUALS,PAIR> & a)
+template <class KEY,class ARG_KEY,class VALUE,class ARG_VALUE,class HASH = ::comparison::hash < ARG_KEY >,class EQUALS = ::comparison::equals_type_arg_type < KEY,ARG_KEY >,class PAIR = pair < KEY,VALUE >,class HASH_TABLE = dynamic_hash_table < map_association < KEY,VALUE, PAIR > > >
+::file::output_stream & operator << (::file::output_stream & os,const map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE> & a)
 {
    ::file::map::write(os,a);
    return os;
 }
 
-template <class KEY,class ARG_KEY,class VALUE,class ARG_VALUE,class HASH = ::comparison::hash < ARG_KEY >,class EQUALS = ::comparison::equals_type_arg_type < KEY,ARG_KEY >,class PAIR = pair < KEY,VALUE > >
-::file::input_stream & operator >> (::file::input_stream & is,map < KEY,ARG_KEY,VALUE,ARG_VALUE,HASH,EQUALS,PAIR> & a)
+template <class KEY,class ARG_KEY,class VALUE,class ARG_VALUE,class HASH = ::comparison::hash < ARG_KEY >,class EQUALS = ::comparison::equals_type_arg_type < KEY,ARG_KEY >,class PAIR = pair < KEY,VALUE >,class HASH_TABLE = dynamic_hash_table < map_association < KEY,VALUE, PAIR > > >
+::file::input_stream & operator >> (::file::input_stream & is,map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE> & a)
 {
    ::file::map::read(is,a);
    return is;

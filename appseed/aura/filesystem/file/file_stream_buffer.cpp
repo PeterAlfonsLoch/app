@@ -117,6 +117,18 @@ namespace file
    }
 
 
+   void stream_buffer::write_from_hex(const void * lpBuf,::primitive::memory_size nCount)
+   {
+
+      primitive::memory memory(get_app());
+
+      memory.from_hex((const char *) lpBuf, nCount);
+
+      write(memory.get_data(),memory.get_size());
+
+   }
+
+
    void stream_buffer::write(const void * lpBuf, ::primitive::memory_size nCount)
    {
       ::file::writer::write(lpBuf, nCount);

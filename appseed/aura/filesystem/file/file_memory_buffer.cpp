@@ -106,6 +106,96 @@ namespace file
       m_dwPosition = (::primitive::memory_position) iEndPosition;
    }
 
+   void memory_buffer::write_from_hex(const void * lpBuf,::primitive::memory_size nCount)
+   {
+
+      single_lock sl(get_memory()->m_spmutex,TRUE);
+
+      char ch;
+
+      strsize iLen = nCount;
+
+      if((iLen % 2) != 0)
+      {
+
+         iLen++;
+
+      }
+
+      ::primitive::memory_size iEndPosition = m_dwPosition + iLen / 2;
+
+      if(iEndPosition > (int32_t) this->get_size())
+      {
+
+         allocate(iEndPosition);
+
+      }
+
+      if(iEndPosition <= 0)
+      {
+         
+         m_dwPosition = 0;
+
+         return;
+
+      }
+
+      LPBYTE lpb = get_data();
+
+      ASSERT(__is_valid_address(&(lpb)[m_dwPosition],(uint_ptr)nCount,TRUE));
+
+      char * pch = (char *)&(lpb)[m_dwPosition];
+
+      const char * psz = (const char *)lpBuf;
+
+      bool bEven = true;
+
+      while(nCount > 0)
+      {
+
+         if(bEven)
+         {
+
+            ch = 0;
+
+            if(*psz > '9')
+               ch |= ((*psz - 'A' + 10) & 0x0f) << 4;
+            else
+               ch |= ((*psz - '0') & 0x0f) << 4;
+
+            if(*psz == '\0')
+               break;
+
+         }
+         else
+         {
+            
+            if(*psz > '9')
+               ch |= ((*psz - 'A' + 10) & 0x0f);
+            else
+               ch |= ((*psz - '0') & 0x0f);
+
+            *pch = ch;
+
+            pch++;
+
+         }
+
+         psz++;
+
+         nCount--;
+
+         bEven = !bEven;
+
+      }
+
+      if(bEven)
+      {
+         *(pch-1) = ch;
+      }
+
+      m_dwPosition = (::primitive::memory_position) iEndPosition;
+   }
 
    void memory_buffer::Truncate(file_size size)
    {

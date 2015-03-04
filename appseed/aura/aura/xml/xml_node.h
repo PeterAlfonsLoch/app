@@ -99,7 +99,8 @@ namespace xml
 
 
       // Load/Save XML
-      char *   load(const char * pszXml, parse_info * pi = NULL);
+      char *   load(const char * pszXml,parse_info * pi = NULL) { return _load(pszXml,pszXml + strlen(pszXml),pi); }
+      char *   _load(const char * pszXml, const char * pszEndXml, parse_info * pi = NULL);
 
       string get_xml(disp_option * opt = NULL) const;
       string get_text(disp_option * opt = NULL) const;

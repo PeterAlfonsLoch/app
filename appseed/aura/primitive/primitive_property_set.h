@@ -437,7 +437,7 @@ inline var property_set::lookup(id idName, var varDefault) const
 inline property * property_set::find(id idName) const
 {
    
-   return get_assoc(idName);
+   return (property *) PLookup(idName);
 
 }
 

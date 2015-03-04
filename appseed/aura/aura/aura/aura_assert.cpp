@@ -1,7 +1,7 @@
 //#include "framework.h"
 
 
-bool __assert_failed_line(const char * lpszFileName,int32_t iLineNumber)
+CLASS_DECL_AURA int __assert_failed_line(const char * lpszFileName, int iLineNumber)
 {
 
    thread * pthread = get_thread();

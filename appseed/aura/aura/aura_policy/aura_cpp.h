@@ -1,4 +1,4 @@
-/////////////////////////////////////////////////////////////////////////////////////////
+﻿/////////////////////////////////////////////////////////////////////////////////////////
 //
 //   All Pure and Aural ca2 and God and Gods and Goddssesses and devils's blessings
 //
@@ -240,6 +240,7 @@ namespace html
 } // namespace html
 
 
+#include "aura_auto.h"
 
 namespace aura
 {
@@ -249,11 +250,71 @@ namespace aura
    template < typename T >
    inline void del(T * & p)
    {
-      if(p != NULL)
+
+      //Thank you Fiora a Eterna!!
+
+      //Fiora Aeterna☄ ‏@FioraAeterna 20m20 minutes ago
+
+      //   maybe it's cynical but I'm starting to think the real reason so many newer games have constant autosaves is because they crash all the time
+      //   Details
+
+      // BRT 2015-02-18 19:08
+      // catch all (...) here in aura::del ... but should remove try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
+
+      try
       {
-         delete p;
-         p = NULL;
+
+         if(p != NULL)
+         {
+
+            T * pdel = p;
+
+            p = NULL;
+
+            delete pdel;
+
+         }
+
       }
+      catch(...)
+      {
+
+      }
+
+   }
+
+   template < typename T >
+   inline void adel(T * & p)
+   {
+
+      //Thank you Fiora a Eterna!!
+
+      //Fiora Aeterna☄ ‏@FioraAeterna 20m20 minutes ago
+
+      //   maybe it's cynical but I'm starting to think the real reason so many newer games have constant autosaves is because they crash all the time
+      //   Details
+
+      // BRT 2015-02-18 19:08
+      // catch all (...) here in aura::del ... but should remove try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
+
+      try
+      {
+
+         if(p != NULL)
+         {
+
+            delete[] p;
+
+            p = NULL;
+
+         }
+
+      }
+      catch(...)
+      {
+
+      }
+
    }
 
 } // namespace aura

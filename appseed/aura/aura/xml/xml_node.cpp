@@ -320,7 +320,7 @@ namespace xml
 
       char * xml = (char *)pszAttrs;
 
-      while( xml && *xml )
+      while(*xml )
       {
          if( (xml = _tcsskip( xml )) )
          {
@@ -785,7 +785,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   char * node::load( const char * pszXml, parse_info * pparseinfo)
+   char * node::_load(const char * pszXml,const char * pszEndXml,parse_info * pparseinfo)
    {
       if(pparseinfo == NULL)
          pparseinfo = System.xml().m_pparseinfoDefault;
@@ -814,7 +814,8 @@ namespace xml
 
       // XML Node Tag Name open
       xml++;
-      CHAR* pTagEnd = strpbrk( xml, " />\t\r\n" );
+      //CHAR* pTagEnd = strpbrk( xml, " />\t\r\n" );
+      CHAR* pTagEnd = end_open_tag_name(xml);
       _SetString( xml, pTagEnd, &m_strName );
       xml = pTagEnd;
       // Generate XML Attributte List
@@ -985,7 +986,7 @@ namespace xml
                      CHAR escape = pparseinfo->m_chEscapeValue;
                      //_SetString( xml, pEnd, &m_strValue, trim, chXMLEscape );
                pEnd = xml;
-               while(*pEnd != '<' && *pEnd != '\0')
+               while(*pEnd != '<' && *pEnd != '\0' && pEnd < pszEndXml)
                {
                   if(pEnd[0] == '&' && pEnd[1] != '#')
                   {
@@ -993,9 +994,11 @@ namespace xml
                   }
                   else
                   {
-                     pEnd = (char *) ::str::utf8_inc(pEnd);
+                     pEnd = (char *) ::str::__utf8_inc(pEnd);
                   }
                }
+               if(pEnd > pszEndXml)
+                  pEnd = (char *) pszEndXml;
                _SetString( xml, pEnd, &m_strValue, trim, escape );
                xml = pEnd;
                      //TEXTVALUE

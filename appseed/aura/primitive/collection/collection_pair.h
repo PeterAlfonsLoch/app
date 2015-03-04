@@ -6,6 +6,10 @@ class pair
 {
 public:
    
+
+   typedef typename T1         TYPE1;
+   typedef typename T2         TYPE2;
+
    
    T1       m_element1;
    T2       m_element2;
