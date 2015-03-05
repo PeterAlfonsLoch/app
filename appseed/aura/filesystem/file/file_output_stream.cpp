@@ -195,7 +195,7 @@ namespace file
 
    }
 
-   void output_stream:: write (serializable & serializable)
+   void output_stream:: write (const serializable & serializable)
    {
 
    }

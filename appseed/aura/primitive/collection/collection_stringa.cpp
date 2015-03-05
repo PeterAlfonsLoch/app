@@ -747,7 +747,7 @@ return -1;
 */
 
 
-void stringa::write(::file::output_stream & ostream)
+void stringa::write(::file::output_stream & ostream) const
 {
    ostream.write_arbitrary(m_nSize);
    for(int32_t i = 0; i < this->get_size(); i++)

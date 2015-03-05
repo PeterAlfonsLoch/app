@@ -1070,7 +1070,7 @@ namespace sockets
    }
 
 
-   void net::dns_cache_item::write(::file::output_stream & ostream)
+   void net::dns_cache_item::write(::file::output_stream & ostream) const
    {
 
       ostream.write(&m_ipaddr, sizeof(m_ipaddr));
@@ -1126,7 +1126,7 @@ namespace sockets
 
    }
 
-   void net::reverse_cache_item::write(::file::output_stream & ostream)
+   void net::reverse_cache_item::write(::file::output_stream & ostream) const
    {
 
       ostream.write(&m_ipaddr,sizeof(m_ipaddr));

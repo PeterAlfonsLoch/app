@@ -14,7 +14,7 @@ namespace file
    public:
 
 
-      virtual void write(output_stream & ostream) = 0;
+      virtual void write(output_stream & ostream) const = 0;
       virtual void read(input_stream & istream) = 0;
 
 
@@ -31,7 +31,7 @@ namespace file
          ostream.write_arbitrary(count);
          for(index index = 0; index < count; index++)
          {
-            ostream << (serializable &) a.element_at(index);
+            ostream << a.element_at(index);
          }
       }
 

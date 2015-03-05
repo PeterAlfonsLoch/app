@@ -153,6 +153,9 @@ namespace database
 
             is >> t;
 
+            if(is.fail())
+               return false;
+
          }
          catch(...)
          {

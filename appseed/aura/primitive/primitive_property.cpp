@@ -391,7 +391,7 @@ var property::at(index iIndex) const
    return this->element_at(iIndex);
 }
 
-void property::write(::file::output_stream & ostream)
+void property::write(::file::output_stream & ostream) const
 {
    ostream << m_element1;
    ostream << get_value();

@@ -831,7 +831,7 @@ void property_set::clear()
    remove_all();
 }
 
-void property_set::write(::file::output_stream & ostream)
+void property_set::write(::file::output_stream & ostream) const
 {
 
    ostream << (const ::property_map &) *this;

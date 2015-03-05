@@ -88,7 +88,7 @@ namespace database
       field_properties & operator = (const field_properties & field_properties);
 
 
-      virtual void write(::file::output_stream & ostream);
+      virtual void write(::file::output_stream & ostream) const;
       virtual void read(::file::input_stream & istream);
 
    };
@@ -149,7 +149,7 @@ namespace database
       result_set(const result_set & set);
 
 
-      virtual void write(::file::output_stream & ostream);
+      virtual void write(::file::output_stream & ostream) const;
       virtual void read(::file::input_stream & istream);
 
 

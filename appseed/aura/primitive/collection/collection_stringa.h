@@ -129,7 +129,7 @@ public:
 
    void replace(const char * lpszSearch, const char * lpszReplace);
 
-   void write(::file::output_stream & ostream);
+   void write(::file::output_stream & ostream) const;
    void read(::file::input_stream & istream);
 
 

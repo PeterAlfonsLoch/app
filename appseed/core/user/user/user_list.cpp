@@ -5140,7 +5140,7 @@ namespace user
    {
    }
 
-   void list::list_layout::write(::file::output_stream & ostream)
+   void list::list_layout::write(::file::output_stream & ostream) const
    {
       //ostream << m_iaDisplayToStrict;
       ostream << m_iWidth;
@@ -5160,7 +5160,7 @@ namespace user
    {
    }
 
-   void list::icon_layout::write(::file::output_stream & ostream)
+   void list::icon_layout::write(::file::output_stream & ostream) const
    {
       ostream << m_iaDisplayToStrict;
       ostream << m_iWidth;
