@@ -1575,3 +1575,10 @@ namespace aura
 #include "aura/primitive/primitive.inl"
 
 
+
+
+#include "aura_cmp.h"
+
+
+
+

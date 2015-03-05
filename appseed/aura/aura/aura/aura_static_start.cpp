@@ -7,8 +7,11 @@
 
 //#include "framework.h"
 
+
 void init_draw2d_direct2_mutex();
 void aura_auto_debug_teste();
+void teste_aura_cmp();
+
 
 namespace str
 {
@@ -229,6 +232,8 @@ namespace aura
          init_draw2d_direct2_mutex();
 
          aura_auto_debug_teste();
+
+         teste_aura_cmp();
 
       }
 

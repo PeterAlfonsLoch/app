@@ -40,3 +40,12 @@ void aura_auto_debug_teste() {
    }
    ::output_debug_string(g_strDebugPuts);
 }
+
+
+
+void teste_aura_cmp()
+{
+   //auto a = MAKE(PARAMETER);
+
+   //return std::SPACESHIP(a,a);
+}
