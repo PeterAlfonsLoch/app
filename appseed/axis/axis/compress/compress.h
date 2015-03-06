@@ -2,6 +2,11 @@
 #pragma once
 #endif
 
+extern "C"
+{
+#include "axis/bzip2/bzlib.h"
+}
+
 #include "axis/zlib/zlib.h"
 
 #include "axis/zlib/zutil.h"
@@ -11,8 +16,6 @@
 #include "gzip_stream.h"
 
 #include "bzip_stream.h"
-
-#include "bsdiff/libbsdiff.h"
 
 CLASS_DECL_AXIS int32_t bzuncompress(LPCSTR lpcszUncompressed, LPCSTR lpcszGzFileCompressed);
 

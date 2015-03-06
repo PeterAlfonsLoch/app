@@ -28,10 +28,14 @@
 __FBSDID("$FreeBSD: src/usr.bin/bsdiff/bsdiff/bsdiff.c,v 1.1 2005/08/06 01:59:05 cperciva Exp $");
 #endif
 
+#include "../bzlib_private.h"
+
 #include <sys/types.h>
 
-#include <bzlib.h>
+//#include <bzlib.h>
+#ifndef WIN32
 #include <err.h>
+#endif
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>

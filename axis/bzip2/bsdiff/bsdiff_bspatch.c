@@ -23,6 +23,8 @@
  * IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
 */
+#include "../bzlib_private.h"
+
 //#include"framework.h"
 //#include<stdarg.h>
 //#include"axis/bzip2/bzlib.h"
@@ -194,7 +196,7 @@ int bspatch(const char * oldfile, const char * newfile, const char * patchfile)
    //org:
    //if(((fd=fopen(oldfile,O_RDONLY,0))<0) ||
    //   ((oldsize=fseek(fd,0,SEEK_END))==-1) ||
-   //   ((old=memory_alloc(oldsize+1))==NULL) ||
+   //   ((old=malloc(oldsize+1))==NULL) ||
    //   (fseek(fd,0,SEEK_SET)!=0) ||
    //   (_read(fd,old,oldsize)!=oldsize) ||
    //   (fclose(fd)==-1)) return err(1,"%s",oldfile);
@@ -202,7 +204,7 @@ int bspatch(const char * oldfile, const char * newfile, const char * patchfile)
    //_read in chunks, don't rely on _read always returns full data!
    if(((fd=fopen(oldfile,"rb"))==0) ||
       ((oldsize = (ssize_t) fseek(fd,0,SEEK_END))==-1) ||
-      ((old=(u_char*)memory_alloc(oldsize+1))==NULL) ||
+      ((old=(u_char*)malloc(oldsize+1))==NULL) ||
       (fseek(fd,0,SEEK_SET)!=0))
    {
       fclose(cpf);
@@ -214,7 +216,7 @@ int bspatch(const char * oldfile, const char * newfile, const char * patchfile)
       }
       if(old != NULL)
       {
-         memory_free(old);
+         free(old);
       }
       return err(1,"%s",oldfile);
    }
@@ -229,17 +231,17 @@ int bspatch(const char * oldfile, const char * newfile, const char * patchfile)
       fclose(cpf);
       fclose(dpf);
       fclose(epf);
-      memory_free(old);
+      free(old);
       return err(1,"%s",oldfile);
    }
 
-   if((_new=(u_char*)memory_alloc(newsize+1))==NULL)
+   if((_new=(u_char*)malloc(newsize+1))==NULL)
    {
       fclose(cpf);
       fclose(dpf);
       fclose(epf);
       fclose(fd);
-      memory_free(old);
+      free(old);
       return err(1,NULL);
    }
 
@@ -255,8 +257,8 @@ int bspatch(const char * oldfile, const char * newfile, const char * patchfile)
             fclose(dpf);
             fclose(epf);
             fclose(fd);
-            memory_free(_new);
-            memory_free(old);
+            free(_new);
+            free(old);
             return err(1, "Corrupt patch\n");
          }
          ctrl[i]=offtin(buf);
@@ -269,8 +271,8 @@ int bspatch(const char * oldfile, const char * newfile, const char * patchfile)
          fclose(dpf);
          fclose(epf);
          fclose(fd);
-         memory_free(_new);
-         memory_free(old);
+         free(_new);
+         free(old);
          return err(1,"Corrupt patch\n");
       }
 
@@ -283,8 +285,8 @@ int bspatch(const char * oldfile, const char * newfile, const char * patchfile)
          fclose(dpf);
          fclose(epf);
          fclose(fd);
-         memory_free(_new);
-         memory_free(old);
+         free(_new);
+         free(old);
          return err(1, "Corrupt patch\n");
       }
 
@@ -304,8 +306,8 @@ int bspatch(const char * oldfile, const char * newfile, const char * patchfile)
          fclose(dpf);
          fclose(epf);
          fclose(fd);
-         memory_free(_new);
-         memory_free(old);
+         free(_new);
+         free(old);
          return err(1,"Corrupt patch\n");
       }
 
@@ -318,8 +320,8 @@ int bspatch(const char * oldfile, const char * newfile, const char * patchfile)
          fclose(dpf);
          fclose(epf);
          fclose(fd);
-         memory_free(_new);
-         memory_free(old);
+         free(_new);
+         free(old);
          return err(1, "Corrupt patch\n");
       }
 
@@ -334,8 +336,8 @@ int bspatch(const char * oldfile, const char * newfile, const char * patchfile)
    BZ2_bzReadClose(&ebz2err, epfbz2);
    if (fclose(cpf) || fclose(dpf) || fclose(epf))
    {
-      memory_free(_new);
-      memory_free(old);
+      free(_new);
+      free(old);
       return err(1, "fclose(%s)", patchfile);
    }
 
@@ -346,13 +348,13 @@ int bspatch(const char * oldfile, const char * newfile, const char * patchfile)
    if(((fd=fopen(newfile,"wb")) == 0) ||
       (fwrite(_new,newsize,1, fd)!=newsize) || (fclose(fd)==-1))
    {
-      memory_free(_new);
-      memory_free(old);
+      free(_new);
+      free(old);
       return err(1,"%s",newfile);
    }
 
-   memory_free(_new);
-   memory_free(old);
+   free(_new);
+   free(old);
 
    return 0;
 }

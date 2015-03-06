@@ -204,12 +204,6 @@
     <Filter Include="Source Files\axis\node\ansios">
       <UniqueIdentifier>{a082445c-e80b-4002-8250-1fd29ecad1d1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\axis\compress\bsdiff">
-      <UniqueIdentifier>{88278108-b038-46ac-83f3-76c91098bd7d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\compress\bsdiff">
-      <UniqueIdentifier>{6fabeb5e-e915-44e7-bf8d-83d306caae72}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\axis\fontopus">
       <UniqueIdentifier>{26f038ab-32c4-4427-ac9c-28327cfe4906}</UniqueIdentifier>
     </Filter>
@@ -844,9 +838,6 @@
     </ClInclude>
     <ClInclude Include="axis\compress\gzip_stream.h">
       <Filter>Header Files\axis\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\bsdiff\libbsdiff.h">
-      <Filter>Header Files\axis\compress\bsdiff</Filter>
     </ClInclude>
     <ClInclude Include="axis\fontopus\fontopus.h">
       <Filter>Header Files\axis\fontopus</Filter>
@@ -1743,12 +1734,6 @@
     </ClCompile>
     <ClCompile Include="axis\fontopus\fontopus_user_authentication.cpp">
       <Filter>Source Files\axis\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\bsdiff\bsdiff_bsdiff.cpp">
-      <Filter>Source Files\axis\compress\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\bsdiff\bsdiff_bspatch.cpp">
-      <Filter>Source Files\axis\compress\bsdiff</Filter>
     </ClCompile>
     <ClCompile Include="axis\fontopus\fontopus_contact_list.cpp">
       <Filter>Source Files\axis\fontopus</Filter>

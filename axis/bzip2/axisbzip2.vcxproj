@@ -68,6 +68,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="blocksort.c" />
+    <ClCompile Include="bsdiff\bsdiff_bsdiff.c" />
+    <ClCompile Include="bsdiff\bsdiff_bspatch.c" />
+    <ClCompile Include="bsdiff\libbsdiff.c" />
     <ClCompile Include="bzlib.c" />
     <ClCompile Include="compress.c" />
     <ClCompile Include="crctable.c" />
@@ -76,6 +79,7 @@
     <ClCompile Include="randtable.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="bsdiff\libbsdiff.h" />
     <ClInclude Include="bzlib.h" />
     <ClInclude Include="bzlib_private.h" />
   </ItemGroup>

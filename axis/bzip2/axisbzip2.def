@@ -24,3 +24,10 @@ EXPORTS
 	BZ2_bzflush
 	BZ2_bzclose
 	BZ2_bzerror
+
+
+	libbsdiff_diff
+	libbsdiff_size_of_patched
+;	libbsdiff_patch
+	bsdiff
+	bspatch

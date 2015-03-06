@@ -54,9 +54,11 @@ static off_t offtin(u_char *buf)
 	return y;
 }
 
-int main(int argc,char * argv[])
+int bspatch(unsigned char *old,bs_offset oldsize,unsigned char *patch,bs_offset patch_size,unsigned char *pnew)
 {
-	FILE * f, * cpf, * dpf, * epf;
+
+   ::file::input_stream & f = isPatch;
+
 	BZFILE * cpfbz2, * dpfbz2, * epfbz2;
 	int cbz2err, dbz2err, ebz2err;
 	int fd;
@@ -69,11 +71,6 @@ int main(int argc,char * argv[])
 	off_t lenread;
 	off_t i;
 
-	if(argc!=4) errx(1,"usage: %s oldfile newfile patchfile\n",argv[0]);
-
-	/* Open patch file */
-	if ((f = fopen(argv[3], "r")) == NULL)
-		err(1, "fopen(%s)", argv[3]);
 
 	/*
 	File format:
@@ -90,7 +87,7 @@ int main(int argc,char * argv[])
 	*/
 
 	/* Read header */
-	if (fread(header, 1, 32, f) < 32) {
+	if (isPatch.read(header, 32, f) < 32) {
 		if (feof(f))
 			errx(1, "Corrupt patch\n");
 		err(1, "fread(%s)", argv[3]);

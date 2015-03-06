@@ -22,8 +22,8 @@
 // Pasta de C:\nordroid\app\appseed\axis\axis\compress\bsdiff
 //
 //2014-12-28  03:02            10.511 bsdiff.cpp"
-#include "bsdiff/bsdiff_bsdiff.cpp"
-#include "bsdiff/bsdiff_bspatch.cpp"
+//#include "bsdiff/bsdiff_bsdiff.cpp"
+//#include "bsdiff/bsdiff_bspatch.cpp"
 //2014-12-28  03:02             6.226 bspatch.cpp"
 //               4 arquivo(s)         41.983 bytes
 //

@@ -30,18 +30,19 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "aura/aura/aura.h"
+#include "../bzlib_private.h"
 
 
-#define CLASS_DECL_AXIS CLASS_DECL_EXPORT
 
-#include <string.h>
+//#define CLASS_DECL_AXIS CLASS_DECL_EXPORT
+
+//#include <string.h>
 
 #if defined(_WIN32) || defined(LINUX)
-#include <malloc.h>
+//#include <malloc.h>
 #endif
 
-#include "libbsdiff.h"
+//#include "libbsdiff.h"
 
 
 

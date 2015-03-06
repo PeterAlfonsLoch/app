@@ -27,13 +27,16 @@
 #if 0
 __FBSDID("$FreeBSD: src/usr.bin/bsdiff/bspatch/bspatch.c,v 1.1 2005/08/06 01:59:06 cperciva Exp $");
 #endif
+#include "../bzlib_private.h"
 
-#include <bzlib.h>
+//#include <bzlib.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#ifndef WIN32
 #include <err.h>
 #include <unistd.h>
+#endif
 #include <fcntl.h>
 
 static off_t offtin(u_char *buf)
@@ -54,11 +57,9 @@ static off_t offtin(u_char *buf)
 	return y;
 }
 
-int bspatch(::file::input_stream & isPatch)
+int main(int argc,char * argv[])
 {
-
-   ::file::input_stream & f = isPatch;
-
+	FILE * f, * cpf, * dpf, * epf;
 	BZFILE * cpfbz2, * dpfbz2, * epfbz2;
 	int cbz2err, dbz2err, ebz2err;
 	int fd;
@@ -92,7 +93,7 @@ int bspatch(::file::input_stream & isPatch)
 	*/
 
 	/* Read header */
-	if (isPatch.read(header, 32, f) < 32) {
+	if (fread(header, 1, 32, f) < 32) {
 		if (feof(f))
 			errx(1, "Corrupt patch\n");
 		err(1, "fread(%s)", argv[3]);

@@ -2,7 +2,7 @@
 //#include"libbsdiff.h"
 //#include"axis/bzip2/bzlib.h"
 
-
+#include "../bzlib_private.h"
 
 int err(int i,const char* str,...);
 
@@ -135,7 +135,7 @@ static bs_offset search(bs_offset *I,u_char *old,bs_offset oldsize,
    };
 
    x=st+(en-st)/2;
-   if(memcmp(old+I[x],_new, (size_t) MIN(oldsize-I[x],newsize))<0) {
+   if(memcmp(old+I[x],_new, (size_t) min(oldsize-I[x],newsize))<0) {
       return search(I,old,oldsize,_new,newsize,x,en,pos);
    } else {
       return search(I,old,oldsize,_new,newsize,st,x,pos);
@@ -188,11 +188,11 @@ int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
    int        bz2err;
 
    /* allocate oldsize+1 bytes instead of oldsize bytes to ensure
-      that we never try to memory_alloc(0) and get a NULL pointer */
+      that we never try to malloc(0) and get a NULL pointer */
    //org:
    //if(((fd=_open(oldfile,O_RDONLY,0))<0) ||
    //   ((oldsize=fseek(fd,0,SEEK_END))==-1) ||
-   //   ((old=memory_alloc(oldsize+1))==NULL) ||
+   //   ((old=malloc(oldsize+1))==NULL) ||
    //   (fseek(fd,0,SEEK_SET)!=0) ||
    //   (fread_dup(fd,old,oldsize)!=oldsize) ||
    //   (fclose(fd)==-1)) return err(1,"%s",oldfile);
@@ -200,7 +200,7 @@ int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
    //fread_dup in chunks, don't rely on fread_dup always returns full data!
    if(((fd=fopen(oldfile,"rb")) ==0) ||
       ((oldsize=fseek(fd,0,SEEK_END))==-1) ||
-      ((old=(u_char*)memory_alloc((size_t) (oldsize + 1)))==NULL) ||
+      ((old=(u_char*)malloc((size_t) (oldsize + 1)))==NULL) ||
       (fseek(fd,0,SEEK_SET)!=0))
    {
       if(fd != 0)
@@ -209,7 +209,7 @@ int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
       }
       if(old != NULL)
       {
-         memory_free(old);
+         free(old);
       }
       return err(1,"%s",oldfile);
    }
@@ -220,36 +220,36 @@ int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
       r-=i;
    if (r>0 || fclose(fd)>0)
    {
-      memory_free(old);
+      free(old);
       return err(1,"%s",oldfile);
    }
 
 
-   if(((I=(bs_offset*)memory_alloc((size_t) ((oldsize+1)*sizeof(bs_offset))))==NULL) ||
-      ((V=(bs_offset*)memory_alloc((size_t) ((oldsize+1)*sizeof(bs_offset))))==NULL))
+   if(((I=(bs_offset*)malloc((size_t) ((oldsize+1)*sizeof(bs_offset))))==NULL) ||
+      ((V=(bs_offset*)malloc((size_t) ((oldsize+1)*sizeof(bs_offset))))==NULL))
    {
-      memory_free(old);
+      free(old);
       if(I != NULL)
       {
-         memory_free(I);
+         free(I);
       }
       if(V != NULL)
       {
-         memory_free(V);
+         free(V);
       }
       return err(1,NULL);
    }
 
    qsufsort(I,V,old,oldsize);
 
-   memory_free(V);
+   free(V);
 
    /* allocate newsize+1 bytes instead of newsize bytes to ensure
-      that we never try to memory_alloc(0) and get a NULL pointer */
+      that we never try to malloc(0) and get a NULL pointer */
    //org:
    //if(((fd=_open(newfile,O_RDONLY,0))<0) ||
    //   ((newsize=fseek(fd,0,SEEK_END))==-1) ||
-   //   ((_new=memory_alloc(newsize+1))==NULL) ||
+   //   ((_new=malloc(newsize+1))==NULL) ||
    //   (fseek(fd,0,SEEK_SET)!=0) ||
    //   (fread_dup(fd,_new,newsize)!=newsize) ||
    //   (fclose(fd)==-1)) return err(1,"%s",newfile);
@@ -257,15 +257,15 @@ int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
    //fread_dup in chunks, don't rely on fread_dup always returns full data!
    if(((fd=fopen(newfile,"rb"))== NULL) ||
       ((newsize=fseek(fd,0,SEEK_END))==-1) ||
-      ((_new=(u_char*)memory_alloc((size_t) (newsize + 1)))==NULL) ||
+      ((_new=(u_char*)malloc((size_t) (newsize + 1)))==NULL) ||
       (fseek(fd,0,SEEK_SET)!=0))
    {
       if(fd != 0)
       {
          fclose(fd);
       }
-      memory_free(old);
-      memory_free(I);
+      free(old);
+      free(I);
       return err(1,"%s",newfile);
    }
 
@@ -274,25 +274,25 @@ int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
       r-=i;
    if (r>0 || fclose(fd)> 0)
    {
-      memory_free(old);
-      memory_free(_new);
-      memory_free(I);
+      free(old);
+      free(_new);
+      free(I);
       return err(1,"%s",oldfile);
    }
 
-   if(((db=(u_char*)memory_alloc((size_t) (newsize + 1)))==NULL) ||
-      ((eb=(u_char*)memory_alloc((size_t) (newsize + 1)))==NULL))
+   if(((db=(u_char*)malloc((size_t) (newsize + 1)))==NULL) ||
+      ((eb=(u_char*)malloc((size_t) (newsize + 1)))==NULL))
    {
-      memory_free(old);
-      memory_free(_new);
-      memory_free(I);
+      free(old);
+      free(_new);
+      free(I);
       if(db != NULL)
       {
-         memory_free(db);
+         free(db);
       }
       if(eb != NULL)
       {
-         memory_free(eb);
+         free(eb);
       }
       return err(1,NULL);
    }
@@ -306,11 +306,11 @@ int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
    //if((fd=_open(patchfile,O_CREAT|O_TRUNC|O_WRONLY|O_BINARY|O_NOINHERIT,0666))<0)
    if ((pf = fopen(patchfile, "wb")) == NULL)
    {
-      memory_free(old);
-      memory_free(_new);
-      memory_free(I);
-      memory_free(db);
-      memory_free(eb);
+      free(old);
+      free(_new);
+      free(I);
+      free(db);
+      free(eb);
       return err(1,"%s",patchfile);
    }
 
@@ -324,17 +324,17 @@ int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
       32   ??   Bzip2ed ctrl block
       ??   ??   Bzip2ed diff block
       ??   ??   Bzip2ed extra block */
-   memcpy_dup(header,"BSDIFF40",8);
+   memcpy(header,"BSDIFF40",8);
    offtout(0, header + 8);
    offtout(0, header + 16);
    offtout(newsize, header + 24);
    if (fwrite(header, 32, 1, pf) != 1)
    {
-      memory_free(old);
-      memory_free(_new);
-      memory_free(I);
-      memory_free(db);
-      memory_free(eb);
+      free(old);
+      free(_new);
+      free(I);
+      free(db);
+      free(eb);
       fclose(pf);
       return err(1, "fwrite(%s)", patchfile);
    }
@@ -342,11 +342,11 @@ int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
    /* Compute the differences, writing ctrl as we go */
    if ((pfbz2 = BZ2_bzWriteOpen(&bz2err, pf, 9, 0, 0)) == NULL)
    {
-      memory_free(old);
-      memory_free(_new);
-      memory_free(I);
-      memory_free(db);
-      memory_free(eb);
+      free(old);
+      free(_new);
+      free(I);
+      free(db);
+      free(eb);
       fclose(pf);
       return err(1, "BZ2_bzWriteOpen, bz2err = %d", bz2err);
    }
@@ -416,11 +416,11 @@ int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
          BZ2_bzWrite(&bz2err, pfbz2, buf, 8);
          if (bz2err != BZ_OK)
          {
-            memory_free(old);
-            memory_free(_new);
-            memory_free(I);
-            memory_free(db);
-            memory_free(eb);
+            free(old);
+            free(_new);
+            free(I);
+            free(db);
+            free(eb);
             fclose(pf);
             return err(1, "BZ2_bzWrite, bz2err = %d", bz2err);
          }
@@ -429,11 +429,11 @@ int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
          BZ2_bzWrite(&bz2err, pfbz2, buf, 8);
          if (bz2err != BZ_OK)
          {
-            memory_free(old);
-            memory_free(_new);
-            memory_free(I);
-            memory_free(db);
-            memory_free(eb);
+            free(old);
+            free(_new);
+            free(I);
+            free(db);
+            free(eb);
             fclose(pf);
             return err(1, "BZ2_bzWrite, bz2err = %d", bz2err);
          }
@@ -442,11 +442,11 @@ int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
          BZ2_bzWrite(&bz2err, pfbz2, buf, 8);
          if (bz2err != BZ_OK)
          {
-            memory_free(old);
-            memory_free(_new);
-            memory_free(I);
-            memory_free(db);
-            memory_free(eb);
+            free(old);
+            free(_new);
+            free(I);
+            free(db);
+            free(eb);
             fclose(pf);
             return err(1, "BZ2_bzWrite, bz2err = %d", bz2err);
          }
@@ -459,11 +459,11 @@ int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
    BZ2_bzWriteClose(&bz2err, pfbz2, 0, NULL, NULL);
    if (bz2err != BZ_OK)
    {
-      memory_free(old);
-      memory_free(_new);
-      memory_free(I);
-      memory_free(db);
-      memory_free(eb);
+      free(old);
+      free(_new);
+      free(I);
+      free(db);
+      free(eb);
       fclose(pf);
       return err(1, "BZ2_bzWriteClose, bz2err = %d", bz2err);
    }
@@ -471,11 +471,11 @@ int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
    /* Compute size of compressed ctrl data */
    if ((len = ftell(pf)) == -1)
    {
-      memory_free(old);
-      memory_free(_new);
-      memory_free(I);
-      memory_free(db);
-      memory_free(eb);
+      free(old);
+      free(_new);
+      free(I);
+      free(db);
+      free(eb);
       fclose(pf);
       return err(1, "ftello");
    }
@@ -484,33 +484,33 @@ int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
    /* _write compressed diff data */
    if ((pfbz2 = BZ2_bzWriteOpen(&bz2err, pf, 9, 0, 0)) == NULL)
    {
-      memory_free(old);
-      memory_free(_new);
-      memory_free(I);
-      memory_free(db);
-      memory_free(eb);
+      free(old);
+      free(_new);
+      free(I);
+      free(db);
+      free(eb);
       fclose(pf);
       return err(1, "BZ2_bzWriteOpen, bz2err = %d", bz2err);
    }
    BZ2_bzWrite(&bz2err, pfbz2, db, (int)dblen);
    if (bz2err != BZ_OK)
    {
-      memory_free(old);
-      memory_free(_new);
-      memory_free(I);
-      memory_free(db);
-      memory_free(eb);
+      free(old);
+      free(_new);
+      free(I);
+      free(db);
+      free(eb);
       fclose(pf);
       return err(1, "BZ2_bzWrite, bz2err = %d", bz2err);
    }
    BZ2_bzWriteClose(&bz2err, pfbz2, 0, NULL, NULL);
    if (bz2err != BZ_OK)
    {
-      memory_free(old);
-      memory_free(_new);
-      memory_free(I);
-      memory_free(db);
-      memory_free(eb);
+      free(old);
+      free(_new);
+      free(I);
+      free(db);
+      free(eb);
       fclose(pf);
       return err(1, "BZ2_bzWriteClose, bz2err = %d", bz2err);
    }
@@ -518,11 +518,11 @@ int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
    /* Compute size of compressed diff data */
    if ((newsize = ftell(pf)) == -1)
    {
-      memory_free(old);
-      memory_free(_new);
-      memory_free(I);
-      memory_free(db);
-      memory_free(eb);
+      free(old);
+      free(_new);
+      free(I);
+      free(db);
+      free(eb);
       fclose(pf);
       return err(1, "ftello");
    }
@@ -531,33 +531,33 @@ int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
    /* _write compressed extra data */
    if ((pfbz2 = BZ2_bzWriteOpen(&bz2err, pf, 9, 0, 0)) == NULL)
    {
-      memory_free(old);
-      memory_free(_new);
-      memory_free(I);
-      memory_free(db);
-      memory_free(eb);
+      free(old);
+      free(_new);
+      free(I);
+      free(db);
+      free(eb);
       fclose(pf);
       return err(1, "BZ2_bzWriteOpen, bz2err = %d", bz2err);
    }
    BZ2_bzWrite(&bz2err, pfbz2, eb, (int) eblen);
    if (bz2err != BZ_OK)
    {
-      memory_free(old);
-      memory_free(_new);
-      memory_free(I);
-      memory_free(db);
-      memory_free(eb);
+      free(old);
+      free(_new);
+      free(I);
+      free(db);
+      free(eb);
       fclose(pf);
       return err(1, "BZ2_bzWrite, bz2err = %d", bz2err);
    }
    BZ2_bzWriteClose(&bz2err, pfbz2, 0, NULL, NULL);
    if (bz2err != BZ_OK)
    {
-      memory_free(old);
-      memory_free(_new);
-      memory_free(I);
-      memory_free(db);
-      memory_free(eb);
+      free(old);
+      free(_new);
+      free(I);
+      free(db);
+      free(eb);
       fclose(pf);
       return err(1, "BZ2_bzWriteClose, bz2err = %d", bz2err);
    }
@@ -565,21 +565,21 @@ int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
    /* seek to the beginning, _write the header, and fclose the file */
    if (fseek(pf, 0, SEEK_SET))
    {
-      memory_free(old);
-      memory_free(_new);
-      memory_free(I);
-      memory_free(db);
-      memory_free(eb);
+      free(old);
+      free(_new);
+      free(I);
+      free(db);
+      free(eb);
       fclose(pf);
       return err(1, "fseeko");
    }
    if (fwrite(header, 32, 1, pf) != 1)
    {
-      memory_free(old);
-      memory_free(_new);
-      memory_free(I);
-      memory_free(db);
-      memory_free(eb);
+      free(old);
+      free(_new);
+      free(I);
+      free(db);
+      free(eb);
       fclose(pf);
       return err(1, "fwrite(%s)", patchfile);
    }
@@ -590,11 +590,11 @@ int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
    }
 
    /* Free the primitive::memory we used */
-   memory_free(db);
-   memory_free(eb);
-   memory_free(I);
-   memory_free(old);
-   memory_free(_new);
+   free(db);
+   free(eb);
+   free(I);
+   free(old);
+   free(_new);
 
    return 0;
 }
