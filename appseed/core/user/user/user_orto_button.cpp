@@ -8,8 +8,7 @@ object(papp),
 m_spregion(allocer())
 {
 
-   m_estockicon = stock_icon_none;
-
+   
 }
 
 OrtoButton::~OrtoButton()
@@ -266,20 +265,7 @@ index OrtoButton::hit_test(point point,e_element & eelement)
 }
 
 
-void OrtoButton::set_stock_icon(e_stock_icon eicon)
-{
 
-   m_estockicon = eicon;
-
-}
-
-
-e_stock_icon OrtoButton::get_stock_icon()
-{
-
-   return m_estockicon;
-
-}
 
 
 

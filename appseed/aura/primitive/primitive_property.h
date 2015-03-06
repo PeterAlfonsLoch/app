@@ -105,14 +105,18 @@ class CLASS_DECL_AURA property :
 {
 public:
 
-   property(::aura::application * papp);
-   property();
+
+   int      m_iIndex;
+
+   property(::aura::application * papp,::index iIndex = 0);
+   property(::index iIndex = 0);
    property(const property & prop);
-   property(id strName);
-   property(id strName, var var);
+   property(id strName,::index iIndex = 0);
+   property(id strName,var var,::index iIndex = 0);
 #ifdef MOVE_SEMANTICS
    property(property && prop)
    {
+      m_iIndex = prop.m_iIndex;
       m_element1.m_all = prop.m_element1.m_all;
       //m_element2.m_sp.release();
       //m_element2.m_str.~string();
@@ -386,6 +390,7 @@ public:
    {
       if(this != &prop)
       {
+         m_iIndex = prop.m_iIndex;
          m_element2.m_sp.release();
          m_element2.m_str.~string();
          m_element1.m_all = prop.m_element1.m_all;

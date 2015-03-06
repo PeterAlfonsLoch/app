@@ -4,8 +4,9 @@
 property_set::property_set(::aura::application * papp, bool bAutoAdd, bool bMultiValue) :
    object(papp)
 {
-//   m_bAutoAdd = bAutoAdd;
-  // m_bMultiValue = bMultiValue;
+
+   m_iIndex = 0;
+
 }
 
 
@@ -917,6 +918,8 @@ property * property_set::find_value_ci(const char * psz) const
 
 property_set::property_set(const property_set & set)
 {
+   
+   m_iIndex = 0;
 
    operator = (set);
 
@@ -926,6 +929,8 @@ property_set::property_set(const property_set & set)
 property_set::property_set(const pair_set_interface & set)
 {
 
+   m_iIndex = 0;
+
    operator = (set);
 
 }
@@ -933,6 +938,8 @@ property_set::property_set(const pair_set_interface & set)
 
 property_set::property_set(const str_str_interface & set)
 {
+
+   m_iIndex = 0;
 
    operator = (set);
 
@@ -959,6 +966,8 @@ property_set & property_set::operator = (const property_set & set)
 
    if (&set != this)
    {
+
+      m_iIndex = set.m_iIndex;
 
       ::lemon::map::copy((property_map & )*this, (const property_map & ) set);
 

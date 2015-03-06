@@ -8,7 +8,6 @@ MetaButton::MetaButton(::aura::application * papp) :
    m_spregion(allocer())
 {
 
-   m_estockicon = stock_icon_none;
    
 }
 
@@ -282,20 +281,6 @@ index MetaButton::hit_test(point point, e_element & eelement)
 }
 
 
-void MetaButton::set_stock_icon(e_stock_icon eicon)
-{
- 
-   m_estockicon = eicon;
-   
-}
-
-
-e_stock_icon MetaButton::get_stock_icon()
-{
-
-   return m_estockicon;
-   
-}
 
 
 

@@ -29,8 +29,6 @@ namespace user
             virtual void UpdateWndRgn();
             
             
-            virtual void set_stock_icon(e_stock_icon eicon);
-            virtual e_stock_icon get_stock_icon();
 
 
          };

@@ -101,14 +101,19 @@ namespace aura
 
 
       m_buttonClose.SetWindowText("r");
-      m_buttonClose.m_pschema = m_pschema->m_pschemaSysMenuButton;
+      m_buttonClose.set_stock_icon(stock_icon_close);
+      m_buttonClose.m_pschema = m_pschema->m_pschemaSysMenuCloseButton;
       //m_buttonClose.SetFont(m_buttonClose.m_pschema->m_font);
 
       //System.add_frame(this);
 
       layout_menu(point(x, y));
 
+      SetActiveWindow();
 
+      SetForegroundWindow();
+
+      BringWindowToTop();
       //set_capture();
 
       return true;
@@ -211,31 +216,31 @@ namespace aura
    void menu::_001OnDraw(::draw2d::graphics *pdc)
    {
 //      bool bEnabled = is_window_enabled();
-      rect rectClient;
-      GetClientRect(rectClient);
-      if(_001IsTranslucent())
-      {
-         class imaging & imaging = System.visual().imaging();
-         imaging.color_blend(
-            pdc,
-            rectClient,
-            RGB(200, 255, 255),
-            127);
-      }
-      else
-      {
-
-#ifdef WINDOWSEX
-
-         pdc->FillSolidRect(rectClient, Session.get_default_color(COLOR_WINDOW));
-
-#else
-
-         throw todo(get_app());
-
-#endif
-
-      }
+//      rect rectClient;
+//      GetClientRect(rectClient);
+//      if(_001IsTranslucent())
+//      {
+//         class imaging & imaging = System.visual().imaging();
+//         imaging.color_blend(
+//            pdc,
+//            rectClient,
+//            RGB(200, 255, 255),
+//            127);
+//      }
+//      else
+//      {
+//
+//#ifdef WINDOWSEX
+//
+//         pdc->FillSolidRect(rectClient, Session.get_default_color(COLOR_WINDOW));
+//
+//#else
+//
+//         throw todo(get_app());
+//
+//#endif
+//
+//      }
 
       /*int32_t iMaxHeight = 0;
       int32_t iMaxWidth = 0;
@@ -613,7 +618,7 @@ namespace aura
       if(ecolor == ::user::color_background)
       {
 
-         cr = ARGB(255,185,184,177);
+         cr = ARGB(84+77,185,184,177);
 
          return true;
 
@@ -626,6 +631,16 @@ namespace aura
       }
 
    }
+
+
+   bool menu::get_translucency(::user::ETranslucency & etranslucency)
+   {
+
+      etranslucency = ::user::TranslucencyPresent;
+
+      return true;
+   }
+
 
 
 } // namespace user

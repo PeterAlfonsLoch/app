@@ -404,7 +404,7 @@ tuple < TYPES&&... > make_tuple(TYPES&&... args)
 
 template<class... TYPES> inline
 tuple<TYPES&...>
-tie(TYPES&... args) _NOEXCEPT
+tie(TYPES&... args) throw()
 {	
    
    typedef tuple<TYPES&...> TUPLE_TYPE;
@@ -580,27 +580,27 @@ tie(TYPES&... args) _NOEXCEPT
 //
 
 template < typename TYPE1, typename TYPE2 >
-int cmp(const TYPE1 & t1,const TYPE2 & t2)
+inline int cmp(const TYPE1 & t1,const TYPE2 & t2)
 {
    return (t1 < t2) ? -1 : (t1 < t2) ? 1 : 0;
 }
 
 
 template < typename TYPE1,typename TYPE2 >
-int icmp(const TYPE1 & t1,const TYPE2 & t2)
+inline int icmp(const TYPE1 & t1,const TYPE2 & t2)
 {
    return cmp(t1, t2);
 }
 
 template < >
-int cmp(const string & str1, const string & str2)
+inline int cmp(const string & str1, const string & str2)
 {
    return str1.Compare(str2);
 }
 
 
 template < >
-int icmp(const string & str1,const string & str2)
+inline int icmp(const string & str1,const string & str2)
 {
    return str1.CompareNoCase(str2);
 }
@@ -711,54 +711,54 @@ template<> struct icmp_tuple<0>
 
 
 template < typename TYPE1,typename TYPE2 >
- int cmp(const int & i1,const int & i2)
+inline int cmp(const int & i1,const int & i2)
 {
    return i1 - i2;
 }
 
 
 template < typename TYPE1,typename TYPE2 >
- int cmp(const short & sh1,const short & sh2)
+inline  int cmp(const short & sh1,const short & sh2)
 {
    return sh1 - sh2;
 }
 
 
 template < typename TYPE1,typename TYPE2 >
- int cmp(const char & ch1,const char & ch2)
+inline int cmp(const char & ch1,const char & ch2)
 {
    return ch1 - ch2;
 }
 
 template < typename TYPE1,typename TYPE2 >
- int cmp(const unsigned int & i1,const unsigned int & i2)
+inline int cmp(const unsigned int & i1,const unsigned int & i2)
 {
    return i1 - i2;
 }
 
 template < typename TYPE1,typename TYPE2 >
- int cmp(const unsigned short & sh1,const short & sh2)
+inline  int cmp(const unsigned short & sh1,const short & sh2)
 {
    return sh1 - sh2;
 }
 
 
 template < typename TYPE1,typename TYPE2 >
- int cmp(const unsigned char & ch1,const unsigned char & ch2)
+inline  int cmp(const unsigned char & ch1,const unsigned char & ch2)
 {
    return ch1 - ch2;
 }
 
 
 template < typename TYPE1,typename TYPE2 >
- int cmp(const double & d1,const double & d2)
+inline  int cmp(const double & d1,const double & d2)
 {
    return sgn(d1 - d2);
 }
 
 
 template < typename TYPE1,typename TYPE2 >
- int cmp(const float & f1,const float & f2)
+inline  int cmp(const float & f1,const float & f2)
 {
    return sgn(f1 - f2);
 }

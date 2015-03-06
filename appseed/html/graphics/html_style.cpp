@@ -171,7 +171,7 @@ namespace html
       style * pstyleTop = NULL;
       style * pstyleRight = NULL;
       style * pstyleBottom = NULL;
-      index i = 0;
+      index i = NULL;
       index iLeft = 0;
       index iTop = 0;
       index iRight = 0;
@@ -234,7 +234,7 @@ namespace html
          if(pstyleCur == pstyleLeft && if_then(pstyleLeft == pstyle, iLeft > i))
          {
 
-            box.left =  parse_dimension(pstyleLeft->m_propertyset.m_propertyptra[iLeft]->get_value().get_string());
+            box.left =  parse_dimension(pstyleLeft->m_propertyset[iLeft].get_value().get_string());
 
          }
          else
@@ -254,7 +254,7 @@ namespace html
          if(pstyleCur == pstyleTop && if_then(pstyleTop == pstyle, iTop > i))
          {
 
-            box.top =  parse_dimension(pstyleTop->m_propertyset.m_propertyptra[iTop]->get_value().get_string());
+            box.top =  parse_dimension(pstyleTop->m_propertyset[iTop].get_value().get_string());
 
          }
          else
@@ -274,7 +274,7 @@ namespace html
          if(pstyleCur == pstyleRight && if_then(pstyleRight == pstyle, iRight > i))
          {
 
-            box.right =  parse_dimension(pstyleRight->m_propertyset.m_propertyptra[iRight]->get_value().get_string());
+            box.right =  parse_dimension(pstyleRight->m_propertyset[iRight].get_value().get_string());
 
          }
          else
@@ -294,7 +294,7 @@ namespace html
          if(pstyleCur == pstyleBottom && if_then(pstyleBottom == pstyle, iBottom > i))
          {
 
-            box.bottom =  parse_dimension(pstyleBottom->m_propertyset.m_propertyptra[iBottom]->get_value().get_string());
+            box.bottom =  parse_dimension(pstyleBottom->m_propertyset[iBottom].get_value().get_string());
 
          }
          else
@@ -939,7 +939,7 @@ namespace html
       index i = m_propertyset.find_index(idName);
       if(i < 0)
          return false;
-      if(!parse_border_width(m_propertyset.m_propertyptra[i]->get_value().get_string(),f))
+      if(!parse_border_width(m_propertyset[i].get_value().get_string(),f))
          return false;
       return true;
    }
@@ -960,7 +960,7 @@ namespace html
       index i = m_propertyset.find_index(idName);
       if(i < 0)
          return false;
-      if(!parse_border_color(m_propertyset.m_propertyptra[i]->get_value().get_string(),cr))
+      if(!parse_border_color(m_propertyset[i].get_value().get_string(),cr))
          return false;
       return true;
    }

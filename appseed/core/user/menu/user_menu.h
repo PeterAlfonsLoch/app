@@ -86,6 +86,8 @@ namespace aura
 
       virtual bool get_color(COLORREF & cr,::user::e_color ecolor);
 
+      virtual bool get_translucency(::user::ETranslucency & etranslucency);
+
    };
 
 

@@ -3352,6 +3352,8 @@ namespace windows
          if(nFlags & SWP_SHOWWINDOW)
          {
 
+            ::SetWindowPos(get_handle(),(oswindow)z,x,y,cx,cy,nFlags);
+
             ShowWindow(SW_SHOW);
 
          }

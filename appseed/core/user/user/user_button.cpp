@@ -9,6 +9,8 @@ namespace user
       object(papp),
       ::user::interaction(papp)
    {
+
+      m_estockicon      = stock_icon_none;
       
       m_estyle          = style_none;
 
@@ -129,9 +131,39 @@ namespace user
 
          }
 
-         select_font(pdc);
+         if(m_estockicon == stock_icon_none)
+         {
 
-         pdc->TextOut(m_rectText.left,m_rectText.top,strText);
+            select_font(pdc);
+
+            pdc->TextOut(m_rectText.left,m_rectText.top,strText);
+
+         }
+         else
+         {
+
+            //::draw2d::brush_sp brush(allocer());
+
+            //brush->create_solid(pdc->get_current_pen()->m_cr);
+
+            //pdc->SelectObject(brush);
+
+            ::draw2d::pen_sp pen(allocer());
+
+            pen->m_cr = pdc->get_current_brush()->m_cr;
+
+            pen->m_dWidth = 1.0;
+
+            pdc->SelectObject(pen);
+
+            class rect rectIcon(rectClient);
+
+            rectIcon.deflate(rectIcon.width() / 4,rectIcon.height() / 4);
+
+            pdc->draw_stock_icon(rectIcon,m_estockicon);
+
+
+         }
 
       }
 
@@ -1087,6 +1119,22 @@ namespace user
       return m_iHover >= 0;
 
    }
+
+   void button::set_stock_icon(e_stock_icon eicon)
+   {
+
+      m_estockicon = eicon;
+
+   }
+
+
+   e_stock_icon button::get_stock_icon()
+   {
+
+      return m_estockicon;
+
+   }
+
 
 } // namespace user
 

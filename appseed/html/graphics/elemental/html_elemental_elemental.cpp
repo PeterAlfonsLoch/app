@@ -1354,13 +1354,13 @@ namespace html
 
          str += m_idTagName;
 
-         for (int32_t i = 0; i < this->m_propertyset.m_propertyptra.get_size(); i++)
+         for(auto property : this->m_propertyset)
          {
             str += " ";
-            str += m_propertyset.m_propertyptra[i]->name();
+            str += property.name();
             str += "=";
             str += "\"";
-            str += m_propertyset.m_propertyptra[i]->get_string();
+            str += property.get_string();
             str += "\"";
          }
 

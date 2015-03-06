@@ -10,6 +10,7 @@ class CLASS_DECL_AURA property_set :
 {
 public:
 
+   int                  m_iIndex;
 
    class signal         m_signal;
 
@@ -99,8 +100,8 @@ public:
    property * find(id idName) const;
    property * find(string_interface & str) const;
 
-   //index find_index(id idName) const;
-   //index find_index(string_interface & str) const;
+   index find_index(id idName) const;
+   index find_index(string_interface & str) const;
 
 
    ::count unset(id idName);
@@ -220,7 +221,7 @@ inline property * property_set::add(id idName)
    if(idName.is_null())
       idName = get_new_id();
 
-   return set_at(idName,property(idName));
+   return set_at(idName,property(idName, m_iIndex++));
 
 }
 
@@ -231,7 +232,7 @@ inline property * property_set::add(id idName, var var)
    if(idName.is_null())
       idName = get_new_id();
 
-   return set_at(idName,property(idName, var));
+   return set_at(idName,property(idName, var, m_iIndex++));
 
 }
 
@@ -321,8 +322,11 @@ inline property * property_set::add(id idName, var var)
 
 inline bool property_set::has_property(id idName) const
 {
+   
    const property * pproperty = find(idName);
+
    return pproperty != NULL && pproperty->m_element2.m_etype != var::type_new;
+
 }
 
 inline bool property_set::has_property(string_interface & str) const
@@ -364,7 +368,15 @@ inline property property_set::operator[](id idName) const
 
 inline property & property_set::operator[](index iIndex)
 {
-   return operator[](::id(iIndex));
+   
+   for(auto property : *this)
+   {
+      if(property.m_iIndex == iIndex)
+         return property;
+   }
+
+   return *add(::property(::id(iIndex), iIndex));
+
 }
 
 inline property property_set::operator[](index iIndex) const
@@ -420,18 +432,32 @@ inline var property_set::lookup(id idName, var varDefault) const
 
 
 
-//inline index property_set::find_index(id idName) const
-//{
-//   const property_map::pair * ppair = PLookup(idName);
-//   if(ppair == NULL)
-//      return -1;
-//   return ppair->m_element2;
-//}
-//
-//inline index property_set::find_index(string_interface & str) const
-//{
-//   return find_index((const char *) string(str));
-//}
+inline index property_set::find_index(id idName) const
+{
+
+   for(auto property : *this)
+   {
+
+      if(property.name() == idName)
+      {
+
+         return property.m_iIndex;
+
+      }
+
+   }
+
+   return -1;
+
+}
+
+
+inline index property_set::find_index(string_interface & str) const
+{
+   
+   return find_index((const char *) string(str));
+
+}
 
 
 inline property * property_set::find(id idName) const

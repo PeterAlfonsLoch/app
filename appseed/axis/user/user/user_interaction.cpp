@@ -4550,7 +4550,7 @@ namespace user
 
    }
 
-   bool interaction::track_popup_menu(sp(::aura::menu_base_item) pitem,int32_t iFlags)
+   bool interaction::track_popup_menu(::aura::menu_base_item * pitem,int32_t iFlags)
    {
 
       point pt;
@@ -4562,7 +4562,7 @@ namespace user
    }
 
 
-   bool interaction::track_popup_menu(sp(::xml::node) lpnode,int32_t iFlags)
+   bool interaction::track_popup_menu(::xml::node * lpnode,int32_t iFlags)
    {
 
       point pt;
@@ -4587,7 +4587,7 @@ namespace user
 
 
 
-   bool interaction::track_popup_menu(sp(::aura::menu_base_item) pitem,int32_t iFlags,signal_details * pobj)
+   bool interaction::track_popup_menu(::aura::menu_base_item * pitem,int32_t iFlags,signal_details * pobj)
    {
 
       SCAST_PTR(::message::mouse,pmouse,pobj);
@@ -4601,7 +4601,7 @@ namespace user
    }
 
 
-   bool interaction::track_popup_menu(sp(::xml::node) lpnode,int32_t iFlags,signal_details * pobj)
+   bool interaction::track_popup_menu(::xml::node * lpnode,int32_t iFlags,signal_details * pobj)
    {
 
       SCAST_PTR(::message::mouse,pmouse,pobj);
@@ -4629,7 +4629,7 @@ namespace user
    }
 
 
-   bool interaction::track_popup_menu(sp(::aura::menu_base_item) pitem,int32_t iFlags,int32_t x,int32_t y)
+   bool interaction::track_popup_menu(::aura::menu_base_item * pitem,int32_t iFlags,int32_t x,int32_t y)
    {
 
       m_spmenuPopup = Application.alloc(System.type_info < ::aura::menu_base >());
@@ -4649,7 +4649,7 @@ namespace user
 
    }
 
-   bool interaction::track_popup_menu(sp(::xml::node) lpnode,int32_t iFlags,int32_t x,int32_t y)
+   bool interaction::track_popup_menu(::xml::node * lpnode,int32_t iFlags,int32_t x,int32_t y)
    {
 
       m_spmenuPopup = Application.alloc(System.type_info < ::aura::menu_base >());

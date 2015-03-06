@@ -6,8 +6,7 @@ namespace user
 
 
    class CLASS_DECL_CORE button :
-      virtual public control,
-      virtual public elemental
+      virtual public control
    {
    public:
 
@@ -55,6 +54,7 @@ namespace user
       index                               m_iClick;
       ::user::front_end_schema::button *  m_pschema;
       ::user::front_end_schema::button *  m_pschemaDraw;
+      e_stock_icon                        m_estockicon;
 
 
       // bitmap
@@ -122,6 +122,10 @@ namespace user
 
 
       virtual void layout();
+
+
+      virtual void set_stock_icon(e_stock_icon eicon);
+      virtual e_stock_icon get_stock_icon();
 
    };
 

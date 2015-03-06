@@ -25,6 +25,7 @@ namespace user
          menu(::aura::application * papp);
          ~menu();
          ::draw2d::font_sp     m_font;
+         button *          m_pschemaSysMenuCloseButton;
          button *          m_pschemaSysMenuButton;
          button *          m_pschemaItemButton;
          button *          m_pschemaPopupButton;
@@ -46,6 +47,7 @@ namespace user
       menu           m_menu;
       system_menu    m_sysmenu;
       button         m_button;
+      button         m_buttonBaseWndMenuSysMenuClose;
       button         m_buttonBaseWndMenuSysMenu;
       button         m_buttonBaseWndMenuItem;
       button         m_buttonBaseWndMenuItemPopup;

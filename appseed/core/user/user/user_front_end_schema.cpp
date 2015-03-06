@@ -10,6 +10,7 @@ namespace user
       m_menu(papp),
       m_sysmenu(papp),
       m_button(papp),
+      m_buttonBaseWndMenuSysMenuClose(papp),
       m_buttonBaseWndMenuSysMenu(papp),
       m_buttonBaseWndMenuItem(papp),
       m_buttonBaseWndMenuItemPopup(papp)
@@ -40,31 +41,44 @@ namespace user
       m_button.m_bBorder      = false;
       m_button.m_etranslucency = ::user::TranslucencyNone;
 
+      m_buttonBaseWndMenuSysMenuClose.m_pfont.alloc(allocer());
+      m_buttonBaseWndMenuSysMenuClose.m_pfont->create_point_font("Marlett",11.0);
+      m_buttonBaseWndMenuSysMenuClose.set_color(color_text_normal,ARGB(184,184,84,77));
+      m_buttonBaseWndMenuSysMenuClose.set_color(color_text_press,ARGB(223,255,0,0));
+      m_buttonBaseWndMenuSysMenuClose.set_color(color_text_disabled,ARGB(184,127,127,127));
+      m_buttonBaseWndMenuSysMenuClose.set_color(color_text_hover,ARGB(184,255,49,49));
+      m_buttonBaseWndMenuSysMenuClose.set_color(color_background_normal,ARGB(184,208,192,192));
+      m_buttonBaseWndMenuSysMenuClose.set_color(color_background_press,ARGB(223,255,192,192));
+      m_buttonBaseWndMenuSysMenuClose.set_color(color_background_disabled,ARGB(184,192,192,192));
+      m_buttonBaseWndMenuSysMenuClose.set_color(color_background_hover,ARGB(184,223,192,192));
+      m_buttonBaseWndMenuSysMenuClose.m_bBorder      = false;
+      m_buttonBaseWndMenuSysMenuClose.m_etranslucency = ::user::TranslucencyPresent;
+
 
       m_buttonBaseWndMenuSysMenu.m_pfont.alloc(allocer());
       m_buttonBaseWndMenuSysMenu.m_pfont->create_point_font("Marlett", 11.0);
-      m_buttonBaseWndMenuSysMenu.set_color(color_text_normal,ARGB(255,0,0,0));
-      m_buttonBaseWndMenuSysMenu.set_color(color_text_press,color | (0xff << 24));
-      m_buttonBaseWndMenuSysMenu.set_color(color_text_disabled,ARGB(255,127,127,127));
-      m_buttonBaseWndMenuSysMenu.set_color(color_text_hover,color | (0xff << 24));
-      m_buttonBaseWndMenuSysMenu.set_color(color_background_normal,Session.get_default_color(COLOR_3DFACE) | (0xff << 24));
-      m_buttonBaseWndMenuSysMenu.set_color(color_background_press,Session.get_default_color(COLOR_3DFACE) | (0xff << 24));
-      m_buttonBaseWndMenuSysMenu.set_color(color_background_disabled,Session.get_default_color(COLOR_3DFACE) | (0xff << 24));
-      m_buttonBaseWndMenuSysMenu.set_color(color_background_hover,Session.get_default_color(COLOR_3DFACE) | (0xff << 24));
+      m_buttonBaseWndMenuSysMenu.set_color(color_text_normal,ARGB(184,0,0,0));
+      m_buttonBaseWndMenuSysMenu.set_color(color_text_press,color | (184 << 24));
+      m_buttonBaseWndMenuSysMenu.set_color(color_text_disabled,ARGB(184,127,127,127));
+      m_buttonBaseWndMenuSysMenu.set_color(color_text_hover,color | (184 << 24));
+      m_buttonBaseWndMenuSysMenu.set_color(color_background_normal,Session.get_default_color(COLOR_3DFACE) | (184 << 24));
+      m_buttonBaseWndMenuSysMenu.set_color(color_background_press,Session.get_default_color(COLOR_3DFACE) | (184 << 24));
+      m_buttonBaseWndMenuSysMenu.set_color(color_background_disabled,Session.get_default_color(COLOR_3DFACE) | (184 << 24));
+      m_buttonBaseWndMenuSysMenu.set_color(color_background_hover,Session.get_default_color(COLOR_3DFACE) | (184 << 24));
       m_buttonBaseWndMenuSysMenu.m_bBorder      = false;
-      m_buttonBaseWndMenuSysMenu.m_etranslucency = ::user::TranslucencyNone;
+      m_buttonBaseWndMenuSysMenu.m_etranslucency = ::user::TranslucencyPresent;
 
 
       m_buttonBaseWndMenuItem.m_pfont.alloc(allocer());
       m_buttonBaseWndMenuItem.m_pfont->create_point_font("Lucida Sans Unicode", 9.0);
-      m_buttonBaseWndMenuItem.set_color(color_text_normal,ARGB(255,0,0,0));
-      m_buttonBaseWndMenuItem.set_color(color_text_press,color | (0xff << 24));
-      m_buttonBaseWndMenuItem.set_color(color_text_disabled,ARGB(255,127,127,127));
-      m_buttonBaseWndMenuItem.set_color(color_text_hover,color | (0xff << 24));
-      m_buttonBaseWndMenuItem.set_color(color_background_normal,Session.get_default_color(COLOR_3DFACE) | (0xff << 24));
-      m_buttonBaseWndMenuItem.set_color(color_background_press,Session.get_default_color(COLOR_3DHIGHLIGHT) | (0xff << 24));
-      m_buttonBaseWndMenuItem.set_color(color_background_disabled,Session.get_default_color(COLOR_3DHIGHLIGHT) | (0xff << 24));
-      m_buttonBaseWndMenuItem.set_color(color_background_hover,Session.get_default_color(COLOR_3DFACE) | (0xff << 24));
+      m_buttonBaseWndMenuItem.set_color(color_text_normal,ARGB(184,0,0,0));
+      m_buttonBaseWndMenuItem.set_color(color_text_press,color | (184 << 24));
+      m_buttonBaseWndMenuItem.set_color(color_text_disabled,ARGB(184,127,127,127));
+      m_buttonBaseWndMenuItem.set_color(color_text_hover,color | (184 << 24));
+      m_buttonBaseWndMenuItem.set_color(color_background_normal,ARGB(84, 180, 192, 255));
+      m_buttonBaseWndMenuItem.set_color(color_background_press,ARGB(184,180,192,255));
+      m_buttonBaseWndMenuItem.set_color(color_background_disabled,ARGB(84,180,192,255));
+      m_buttonBaseWndMenuItem.set_color(color_background_hover,ARGB(127,180,192,255));
       m_buttonBaseWndMenuItem.m_bBorder      = false;
       m_buttonBaseWndMenuItem.m_etranslucency = ::user::TranslucencyPresent;
 
@@ -75,20 +89,21 @@ namespace user
 
       m_buttonBaseWndMenuItemPopup.m_pfont.alloc(allocer());
       m_buttonBaseWndMenuItemPopup.m_pfont->create_point_font( "Lucida Sans Unicode", 9.0, FW_BOLD);
-      m_buttonBaseWndMenuItemPopup.set_color(color_text_normal, ARGB(255, 0, 0, 0));
-      m_buttonBaseWndMenuItemPopup.set_color(color_text_press,color | (0xff << 24));
-      m_buttonBaseWndMenuItemPopup.set_color(color_text_disabled,ARGB(255,127,127,127));
-      m_buttonBaseWndMenuItemPopup.set_color(color_text_hover,color | (0xff << 24));
-      m_buttonBaseWndMenuItemPopup.set_color(color_background_normal, Session.get_default_color(COLOR_3DHIGHLIGHT) | (0xff << 24));
-      m_buttonBaseWndMenuItemPopup.set_color(color_background_press,Session.get_default_color(COLOR_3DHIGHLIGHT) | (0xff << 24));
-      m_buttonBaseWndMenuItemPopup.set_color(color_background_disabled, Session.get_default_color(COLOR_3DHIGHLIGHT) | (0xff << 24));
-      m_buttonBaseWndMenuItemPopup.set_color(color_background_hover, Session.get_default_color(COLOR_3DHIGHLIGHT) | (0xff << 24));
+      m_buttonBaseWndMenuItemPopup.set_color(color_text_normal,ARGB(184,0,0,0));
+      m_buttonBaseWndMenuItemPopup.set_color(color_text_press,color | (184 << 24));
+      m_buttonBaseWndMenuItemPopup.set_color(color_text_disabled,ARGB(184,127,127,127));
+      m_buttonBaseWndMenuItemPopup.set_color(color_text_hover,color | (184 << 24));
+      m_buttonBaseWndMenuItemPopup.set_color(color_background_normal, Session.get_default_color(COLOR_3DHIGHLIGHT) | (184 << 24));
+      m_buttonBaseWndMenuItemPopup.set_color(color_background_press,Session.get_default_color(COLOR_3DHIGHLIGHT) | (184 << 24));
+      m_buttonBaseWndMenuItemPopup.set_color(color_background_disabled,Session.get_default_color(COLOR_3DHIGHLIGHT) | (184 << 24));
+      m_buttonBaseWndMenuItemPopup.set_color(color_background_hover,Session.get_default_color(COLOR_3DHIGHLIGHT) | (184 << 24));
       m_buttonBaseWndMenuItemPopup.m_bBorder      = false;
       m_buttonBaseWndMenuItemPopup.m_etranslucency = ::user::TranslucencyPresent;
 
 
       m_menu.m_font->create_point_font("Lucida Sans Unicode",9.0);
 
+      m_menu.m_pschemaSysMenuCloseButton = &m_buttonBaseWndMenuSysMenuClose;
       m_menu.m_pschemaSysMenuButton = &m_buttonBaseWndMenuSysMenu;
       m_menu.m_pschemaItemButton = &m_buttonBaseWndMenuItem;
       m_menu.m_pschemaPopupButton = &m_buttonBaseWndMenuItemPopup;

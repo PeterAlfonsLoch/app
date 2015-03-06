@@ -152,8 +152,11 @@ const string_composite str_str_interface::operator[](const char * pszName) const
    return str::empty_string();
 }
 
-property::property(::aura::application * papp)
+property::property(::aura::application * papp, index iIndex)
 {
+
+   m_iIndex = iIndex;
+
 }
 
 
@@ -189,45 +192,72 @@ string property::operator + (const char * psz) const
 
 string property::operator + (const string & str) const
 {
+
    return get_value() + str;
+
 }
 
 
 
 property & property::operator = (const property & prop)
 {
+
    if(&prop != this)
    {
+
+      m_iIndex = prop.m_iIndex;
+
       if(m_element1.is_empty())
       {
+
          m_element1      = prop.m_element1;
+
       }
+
       m_element2 = prop.m_element2;
+
    }
+
    return *this;
+
 }
 
 
-property::property()
+property::property(::index iIndex)
 {
-   //      m_pset = NULL;
+   
+   m_iIndex = iIndex;
+
 }
+
 
 property::property(const property & prop)
 {
+
    property::operator = ((const property &) prop);
+
 }
 
 
-property::property(id strName)
+property::property(id idName,::index iIndex)
 {
-   m_element1 = strName;
+
+   m_iIndex = iIndex;
+
+   m_element1 = idName;
+
 }
 
-property::property(id strName, var var)
+
+property::property(id idName, var var, ::index iIndex)
 {
-   m_element1 = strName;
+
+   m_iIndex = iIndex;
+
+   m_element1 = idName;
+
    set_value(var);
+
 }
 
 bool property::is_set() const
