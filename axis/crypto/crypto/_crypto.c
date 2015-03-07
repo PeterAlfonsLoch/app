@@ -18,11 +18,19 @@
 //#include "LPdir_win.c"
 //#include "LPdir_win32.c"
 //#include "LPdir_wince.c"
-#include "mem.c"
+
+//#include "mem.c"
+//#include "mem_aura.c"
+
+
+
 #ifndef LINUX
 #include "mem_clr.c"
 #endif
 #include "mem_dbg.c"
+
+
+
 #include "o_dir.c"
 //#include "o_dir_test.c"
 #include "o_fips.c"
