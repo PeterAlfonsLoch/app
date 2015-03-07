@@ -207,6 +207,10 @@ namespace simpledb
       {
          outheader(__id(content_type)) = "application/x-msdownload";
       }
+      else if(str == "spa")
+      {
+         outheader(__id(content_type)) = "application/x-spa";
+      }
       else if(str == "mid")
       {
          outheader(__id(content_type)) = "audio/midi";

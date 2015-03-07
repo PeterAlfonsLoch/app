@@ -69,18 +69,18 @@ namespace http
 
       }
 
-#ifdef _MSC_VER
-      operator string() const
-      {
-
-         string str;
-
-         to_string(str);
-
-         return str;
-
-      }
-#endif
+//#ifdef _MSC_VER
+//      operator string() const
+//      {
+//
+//         string str;
+//
+//         to_string(str);
+//
+//         return str;
+//
+//      }
+//#endif
 
       operator property() const
       {

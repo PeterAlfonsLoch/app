@@ -613,13 +613,17 @@ string get_file_extension_mime_type(const string & strExtension)
    {
       return "application/octetstream";
    }
-   if(strExtension == "mp3")
+   else if(strExtension == "mp3")
    {
       return "audio/mpeg";
    }
    else if(strExtension == "exe")
    {
       return "application/x-msdownload";
+   }
+   else if(strExtension == "spa")
+   {
+      return "application/x-spa";
    }
    else if(strExtension == "mid")
    {
