@@ -234,12 +234,9 @@ YOU SHOULD NOT HAVE BOTH DES_RISC1 AND DES_RISC2 DEFINED!!!!!
 #endif /* DES_DEFAULT_OPTIONS */
 #endif /* HEADER_DES_LOCL_H */
 
-#ifdef _M_X64
-#define OPENSSL_BN_ASM_MONT
-#else
 #ifdef OPENSSL_BN_ASM_MONT
 #error "having to undef something that should be def only here and not before or at command line and only when this file judge necessary/needed (I need you... your help...)"
+#error "Never define mont it is defective"
 #undef OPENSSL_BN_ASM_MONT
-#endif
 #endif
 
