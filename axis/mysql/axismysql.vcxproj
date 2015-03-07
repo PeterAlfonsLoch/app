@@ -369,7 +369,7 @@
     <GenerateManifest>false</GenerateManifest>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">
-    <OutDir>$(SolutionDir)..\..\..\stage\x64\</OutDir>
+    <OutDir>$(SolutionDir)..\..\..\profiler\x64\</OutDir>
     <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
     <LinkIncremental>true</LinkIncremental>
     <GenerateManifest>false</GenerateManifest>
