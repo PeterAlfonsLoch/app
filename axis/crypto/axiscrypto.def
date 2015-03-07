@@ -707,11 +707,11 @@ EXPORTS
     CRYPTO_cts128_decrypt_block             
     CRYPTO_cts128_encrypt                   
     CRYPTO_cts128_encrypt_block             
-    ;CRYPTO_dbg_free                         
-    ;CRYPTO_dbg_get_options                  
-    ;CRYPTO_dbg_malloc                       
-    ;CRYPTO_dbg_realloc                      
-    ;CRYPTO_dbg_set_options                  
+    CRYPTO_dbg_free                         
+    CRYPTO_dbg_get_options                  
+    CRYPTO_dbg_malloc                       
+    CRYPTO_dbg_realloc                      
+    CRYPTO_dbg_set_options                  
     CRYPTO_destroy_dynlockid                
     CRYPTO_dup_ex_data                      
     CRYPTO_ex_data_new_class                
@@ -1862,7 +1862,7 @@ EXPORTS
     OPENSSL_add_all_algorithms_conf         
     OPENSSL_add_all_algorithms_noconf       
     OPENSSL_asc2uni                         
-    ;OPENSSL_cleanse                         
+    OPENSSL_cleanse                         
     OPENSSL_config                          
     ;OPENSSL_cpuid_setup                     
     OPENSSL_gmtime                          
