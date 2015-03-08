@@ -38,6 +38,7 @@ namespace dynamic_source
                                                 
                                                 
       string                                    m_strDynamicSourceConfiguration;
+      string                                    m_strDynamicSourceStage;
                                                 
                                                 
       ::aura::library                           m_libraryLib;

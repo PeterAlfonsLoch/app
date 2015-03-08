@@ -31,14 +31,18 @@ namespace dynamic_source
 #if defined(MEMDLEAK)
 
       m_strDynamicSourceConfiguration = "memdleak";
+      m_strDynamicSourceStage = "stage";
+
 
 #elif defined(DEBUG)
 
       m_strDynamicSourceConfiguration = "basis";
+      m_strDynamicSourceStage = "stage";
 
 #else
 
       m_strDynamicSourceConfiguration = "profiler";
+      m_strDynamicSourceStage = "profiler";
 
 #endif
 
@@ -117,7 +121,7 @@ namespace dynamic_source
       prepare1(m_strDynamicSourceConfiguration  + "_libl" + m_strPlat1 + ".bat",
          m_strDynamicSourceConfiguration  + "_libl" + m_strPlat1 + ".bat");
 #endif
-      System.dir().mk(System.dir().element("stage/front"), get_app());
+      System.dir().mk(System.dir().element(m_strDynamicSourceStage + "/front"),get_app());
 
 #ifdef WINDOWS
       string vars1batSrc;
@@ -126,8 +130,8 @@ namespace dynamic_source
       string vars2batDst;
       vars1batSrc = System.dir().element("nodeapp/stage/dynamic_source/vc_vars.bat");
       vars2batSrc = System.dir().element("nodeapp/stage/dynamic_source/vc_vars_query_registry.bat");
-      vars1batDst = System.dir().element("stage/front", "vc_vars.bat");
-      vars2batDst = System.dir().element("stage/front", "vc_vars_query_registry.bat");
+      vars1batDst = System.dir().element(m_strDynamicSourceStage + "/front","vc_vars.bat");
+      vars2batDst = System.dir().element(m_strDynamicSourceStage + "/front","vc_vars_query_registry.bat");
       try
       {
          Application.file().copy(vars1batDst, vars1batSrc, false);
@@ -160,10 +164,10 @@ namespace dynamic_source
       string str;
       string strItem;
 
-      strItem = System.dir().element("stage\\" + m_strStagePlatform);
+      strItem = System.dir().element(m_strDynamicSourceStage + "\\" + m_strStagePlatform);
       str = str + strItem + ";";
 
-      strItem = System.dir().element("stage\\" + m_strStagePlatform + "\\dynamic_source\\library");
+      strItem = System.dir().element(m_strDynamicSourceStage + "\\" + m_strStagePlatform + "\\dynamic_source\\library");
       str = str + strItem + ";";
 #ifdef WINDOWSEX
       uint32_t dwSize = GetEnvironmentVariable("PATH", NULL, 0);
@@ -260,14 +264,14 @@ namespace dynamic_source
       pscript->m_strCppPath.Format(System.dir().path(m_strTime, "dynamic_source\\%s.cpp", false), strTransformName);
       //#ifdef DEBUG
 #ifdef LINUX
-      pscript->m_strBuildBat.Format(System.dir().stage("front\\dynamic_source\\BuildBat\\%s%s.bat"), System.file().name_(strTransformName), strTransformName);
+      pscript->m_strBuildBat.Format(System.dir().element(m_strDynamicSourceStage + "\\front\\dynamic_source\\BuildBat\\%s%s.bat"),System.file().name_(strTransformName),strTransformName);
       strO.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script\\%s\\%s.o", false), strTransformName, System.file().name_(strTransformName));
 #else
-      pscript->m_strBuildBat.Format(System.dir().stage("front\\dynamic_source\\BuildBat\\%s\\%s.bat"), System.file().name_(strTransformName), strTransformName);
+      pscript->m_strBuildBat.Format(System.dir().element(m_strDynamicSourceStage + "\\front\\dynamic_source\\BuildBat\\%s\\%s.bat"), System.file().name_(strTransformName), strTransformName);
       strO.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_strDynamicSourceConfiguration + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script\\%s\\%s.obj", false), strTransformName, System.file().name_(strTransformName));
-      strP.Format(System.dir().stage(m_strStagePlatform + "\\dynamic_source\\%s.pdb"),System.dir().path(System.dir().name(strTransformName),strScript,false));
-      strL.Format(System.dir().stage(m_strStagePlatform + "\\dynamic_source\\%s.lib"),System.dir().path(System.dir().name(strTransformName),strScript,false));
-      strE.Format(System.dir().stage(m_strStagePlatform + "\\dynamic_source\\%s.exp"),System.dir().path(System.dir().name(strTransformName),strScript,false));
+      strP.Format(System.dir().element(m_strDynamicSourceStage + "\\"+m_strStagePlatform + "\\dynamic_source\\%s.pdb"),System.dir().path(System.dir().name(strTransformName),strScript,false));
+      strL.Format(System.dir().element(m_strDynamicSourceStage + "\\"+m_strStagePlatform + "\\dynamic_source\\%s.lib"),System.dir().path(System.dir().name(strTransformName),strScript,false));
+      strE.Format(System.dir().element(m_strDynamicSourceStage + "\\"+m_strStagePlatform + "\\dynamic_source\\%s.exp"),System.dir().path(System.dir().name(strTransformName),strScript,false));
       strDVI.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_strDynamicSourceConfiguration + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script\\%s\\" + m_strSdk1 + ".idb", false), strTransformName);
       strDVP.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_strDynamicSourceConfiguration + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script\\%s\\" + m_strSdk1 + ".pdb", false), strTransformName);
       strDPCH.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_strDynamicSourceConfiguration + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script\\%s\\" + m_pmanager->m_strNamespace + "_dynamic_source_script.pch", false), strTransformName);
@@ -277,7 +281,7 @@ namespace dynamic_source
 #endif
       pscript->m_strScriptPath = m_pmanager->get_script_path(strName);
       //#else
-      // pscript->m_strLibraryPath.Format(System.dir().stage("Release\\%s.dll"), strName);
+      // pscript->m_strLibraryPath.Format(System.dir().element(m_strDynamicSourceStage + "\\"+"Release\\%s.dll"), strName);
       //#endif
 
       try
@@ -465,7 +469,7 @@ namespace dynamic_source
       //#ifdef DEBUG
       strBuildCmd.Format(System.dir().element("nodeapp\\stage\\dynamic_source\\" + m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bat"));
       //#else
-      // strBuildCmd.Format(System.dir().stage("front\\dynamic_source_cl.bat"));
+      // strBuildCmd.Format(System.dir().element(m_strDynamicSourceStage + "\\"+"front\\dynamic_source_cl.bat"));
       //#endif
 #endif
       str = Application.file().as_string(strBuildCmd);
@@ -829,7 +833,7 @@ namespace dynamic_source
       str.replace("%CA2_ROOT%", strV);
       str.replace("%NETNODE_ROOT%", strN);
       str.replace("%SDK1%", m_strSdk1);
-      string strDest = "stage\\front\\";
+      string strDest = m_strDynamicSourceStage + "\\front\\";
       strDest += lpcszDest;
       string strCmd;
       //#ifdef DEBUG
@@ -965,9 +969,9 @@ namespace dynamic_source
 
       //#ifdef DEBUG
 #ifdef LINUX
-      m_strLibraryPath = "/core/stage/x86/libnetnodelibrary.so";
+      m_strLibraryPath = "/core/"+m_strDynamicSourceStage + "/x86/libnetnodelibrary.so";
 #else
-      m_strLibraryPath.Format(System.dir().stage(m_strStagePlatform + "\\dynamic_source\\library\\%s.dll"),System.dir().path(System.dir().name(strName),strLib,false));
+      m_strLibraryPath.Format(System.dir().element(m_strDynamicSourceStage + "\\"+m_strStagePlatform + "\\dynamic_source\\library\\%s.dll"),System.dir().path(System.dir().name(strName),strLib,false));
 #endif
       //#else
       // plib->m_strLibraryPath.Format(System.dir().path(strFolder, "app\\stage\\core\\fontopus\\app\\main\\front\\Release\\%s.dll", false), strName);
@@ -991,8 +995,8 @@ namespace dynamic_source
       string vars2batDst;
       vars1batSrc = System.dir().element("nodeapp/stage/dynamic_source/vc_vars.bat");
       vars2batSrc = System.dir().element("nodeapp/stage/dynamic_source/vc_vars_query_registry.bat");
-      vars1batDst = System.dir().stage("stage\\front","vc_vars.bat");
-      vars2batDst = System.dir().stage("stage\\front","vc_vars_query_registry.bat");
+      vars1batDst = System.dir().element(m_strDynamicSourceStage + "\\front","vc_vars.bat");
+      vars2batDst = System.dir().element(m_strDynamicSourceStage + "\\front","vc_vars_query_registry.bat");
       try
       {
          Application.file().copy(vars1batDst,vars1batSrc,false);
@@ -1021,9 +1025,9 @@ namespace dynamic_source
          string strCmd;
          //#ifdef DEBUG
 #ifdef LINUX
-         strCmd = System.dir().element("stage\\front\\" + m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bash");
+         strCmd = System.dir().element(m_strDynamicSourceStage + "\\front\\" + m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bash");
 #else
-         strCmd = System.dir().element("stage\\front\\" + m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bat");
+         strCmd = System.dir().element(m_strDynamicSourceStage + "\\front\\" + m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bat");
 #endif
          //#else
          //    strCmd.Format(System.dir().path(strFolder, "app\\stage\\core\\fontopus\\app\\main\\front\\dynamic_source_cl.bat", false));
@@ -1051,14 +1055,14 @@ namespace dynamic_source
 #else
          strFormat += ".bat";
 #endif
-         strCmd = System.dir().element("stage\\front", strFormat);
+         strCmd = System.dir().element(m_strDynamicSourceStage + "\\front",strFormat);
 
          //Application.file().put_contents_utf8(strCmd, str);
          Application.file().put_contents(strCmd, str);
 
          ::process::process_sp process(allocer());
 
-         process->create_child_process(strCmd, false, System.dir().element("stage\\front"), ::multithreading::priority_highest);
+         process->create_child_process(strCmd,false,System.dir().element(m_strDynamicSourceStage + "\\front"),::multithreading::priority_highest);
 
 
          uint32_t dwExitCode;
@@ -1094,7 +1098,7 @@ namespace dynamic_source
       }
       string strCmd;
       //#ifdef DEBUG
-      strCmd.Format(System.dir().stage("front\\" + m_strDynamicSourceConfiguration + "_libl" + m_strPlat1 +
+      strCmd.Format(System.dir().element(m_strDynamicSourceStage + "\\front\\" + m_strDynamicSourceConfiguration + "_libl" + m_strPlat1 +
 #ifdef LINUX
          ".bash"));
 #else
@@ -1117,12 +1121,12 @@ namespace dynamic_source
       string strTargetName = m_strLibraryPath;
       ::str::ends_eat_ci(strTargetName, ".dll");
       str.replace("%TARGET_NAME%", strTargetName);
-      Application.dir().mk(System.dir().element("stage\\" + m_strStagePlatform + "\\library"));
+      Application.dir().mk(System.dir().element(m_strDynamicSourceStage + "\\" + m_strStagePlatform + "\\library"));
 #ifdef LINUX
       //Sleep(1984);
-      strCmd = System.dir().element("stage\\front\\libl1.bash");
+      strCmd = System.dir().element(m_strDynamicSourceStage + "\\front\\libl1.bash");
 #else
-      strCmd = System.dir().element("stage\\front\\libl1.bat");
+      strCmd = System.dir().element(m_strDynamicSourceStage + "\\front\\libl1.bat");
 #endif
       //Application.file().put_contents_utf8(strCmd, str);
       Application.file().put_contents(strCmd, str);
