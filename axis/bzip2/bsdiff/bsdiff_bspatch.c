@@ -57,23 +57,23 @@ int err(int i, const char* str)
 }
 */
 
-static off_t offtin(u_char *buf)
-{
-   off_t y;
-
-   y=buf[7]&0x7F;
-   y=y*256;y+=buf[6];
-   y=y*256;y+=buf[5];
-   y=y*256;y+=buf[4];
-   y=y*256;y+=buf[3];
-   y=y*256;y+=buf[2];
-   y=y*256;y+=buf[1];
-   y=y*256;y+=buf[0];
-
-   if(buf[7]&0x80) y=-y;
-
-   return y;
-}
+//off_t libbsdiff_offtin(u_char *buf)
+//{
+//   off_t y;
+//
+//   y=buf[7]&0x7F;
+//   y=y*256;y+=buf[6];
+//   y=y*256;y+=buf[5];
+//   y=y*256;y+=buf[4];
+//   y=y*256;y+=buf[3];
+//   y=y*256;y+=buf[2];
+//   y=y*256;y+=buf[1];
+//   y=y*256;y+=buf[0];
+//
+//   if(buf[7]&0x80) y=-y;
+//
+//   return y;
+//}
 
 int bspatch(const char * oldfile, const char * newfile, const char * patchfile)
 {
@@ -129,9 +129,9 @@ int bspatch(const char * oldfile, const char * newfile, const char * patchfile)
    }
 
    /* _read lengths from header */
-   bzctrllen=offtin(header+8);
-   bzdatalen=offtin(header+16);
-   newsize=offtin(header+24);
+   bzctrllen=libbsdiff_offtin(header+8);
+   bzdatalen=libbsdiff_offtin(header+16);
+   newsize=libbsdiff_offtin(header+24);
    if((bzctrllen<0) || (bzdatalen<0) || (newsize<0))
    {
       fclose(f);
@@ -261,7 +261,7 @@ int bspatch(const char * oldfile, const char * newfile, const char * patchfile)
             free(old);
             return err(1, "Corrupt patch\n");
          }
-         ctrl[i]=offtin(buf);
+         ctrl[i]=libbsdiff_offtin(buf);
       };
 
       /* Sanity-check */

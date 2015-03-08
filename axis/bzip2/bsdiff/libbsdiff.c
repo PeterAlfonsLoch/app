@@ -50,7 +50,7 @@
 #define MIN(x,y) (((x)<(y)) ? (x) : (y))
 #endif
 
-static void split(bs_offset *I,bs_offset *V,bs_offset start,bs_offset len,bs_offset h)
+void libbsdiff_split(bs_offset *I,bs_offset *V,bs_offset start,bs_offset len,bs_offset h)
 {
 	bs_offset i,j,k,x,tmp,jj,kk;
 
@@ -103,15 +103,15 @@ static void split(bs_offset *I,bs_offset *V,bs_offset start,bs_offset len,bs_off
 		};
 	};
 
-	if(jj>start) split(I,V,start,jj-start,h);
+   if(jj>start) libbsdiff_split(I,V,start,jj - start,h);
 
 	for(i=0;i<kk-jj;i++) V[I[jj+i]]=kk-1;
 	if(jj==kk-1) I[jj]=-1;
 
-	if(start+len>kk) split(I,V,kk,start+len-kk,h);
+   if(start + len>kk) libbsdiff_split(I,V,kk,start + len - kk,h);
 }
 
-static void qsufsort(bs_offset *I,bs_offset *V,unsigned char *old,bs_offset oldsize)
+void libbsdiff_qsufsort(bs_offset *I,bs_offset *V,unsigned char *old,bs_offset oldsize)
 {
 	bs_offset buckets[256];
 	bs_offset i,h,len;
@@ -138,7 +138,7 @@ static void qsufsort(bs_offset *I,bs_offset *V,unsigned char *old,bs_offset olds
 			} else {
 				if(len) I[i-len]=-len;
 				len=V[I[i]]+1-i;
-				split(I,V,i,len,h);
+            libbsdiff_split(I,V,i,len,h);
 				i+=len;
 				len=0;
 			};
@@ -149,7 +149,7 @@ static void qsufsort(bs_offset *I,bs_offset *V,unsigned char *old,bs_offset olds
 	for(i=0;i<oldsize+1;i++) I[V[i]]=i;
 }
 
-static bs_offset matchlen(unsigned char *old,bs_offset oldsize,unsigned char *new,bs_offset newsize)
+bs_offset libbsdiff_matchlen(unsigned char *old,bs_offset oldsize,unsigned char *new,bs_offset newsize)
 {
 	bs_offset i;
 
@@ -159,14 +159,13 @@ static bs_offset matchlen(unsigned char *old,bs_offset oldsize,unsigned char *ne
 	return i;
 }
 
-static bs_offset search(bs_offset *I,unsigned char *old,bs_offset oldsize,
-		unsigned char *new,bs_offset newsize,bs_offset st,bs_offset en,bs_offset *pos)
+bs_offset libbsdiff_search(bs_offset *I,unsigned char *old,bs_offset oldsize, unsigned char *new,bs_offset newsize,bs_offset st,bs_offset en,bs_offset *pos)
 {
 	bs_offset x,y;
 
 	if(en-st<2) {
-		x=matchlen(old+I[st],oldsize-I[st],new,newsize);
-		y=matchlen(old+I[en],oldsize-I[en],new,newsize);
+      x=libbsdiff_matchlen(old + I[st],oldsize - I[st],new,newsize);
+      y=libbsdiff_matchlen(old + I[en],oldsize - I[en],new,newsize);
 
 		if(x>y) {
 			*pos=I[st];
@@ -179,13 +178,13 @@ static bs_offset search(bs_offset *I,unsigned char *old,bs_offset oldsize,
 
 	x=st+(en-st)/2;
 	if(memcmp(old+I[x],new,MIN(oldsize-I[x],newsize))<0) {
-		return search(I,old,oldsize,new,newsize,x,en,pos);
+      return libbsdiff_search(I,old,oldsize,new,newsize,x,en,pos);
 	} else {
-		return search(I,old,oldsize,new,newsize,st,x,pos);
+      return libbsdiff_search(I,old,oldsize,new,newsize,st,x,pos);
 	};
 }
 
-static void offtout(bs_offset x,unsigned char *buf)
+void libbsdiff_offtout(bs_offset x,unsigned char *buf)
 {
 	bs_offset y;
 
@@ -238,7 +237,7 @@ int libbsdiff_diff(bs_offset * bsret,unsigned char *old,bs_offset oldsize,unsign
 	if(((I=malloc((oldsize+1)*sizeof(bs_offset)))==NULL) ||
 	  ((V=malloc((oldsize+1)*sizeof(bs_offset)))==NULL)) return -1;
 
-	qsufsort(I,V,old,oldsize);
+   libbsdiff_qsufsort(I,V,old,oldsize);
 
 	free(V);
 
@@ -259,9 +258,9 @@ int libbsdiff_diff(bs_offset * bsret,unsigned char *old,bs_offset oldsize,unsign
 		??	??	Bzip2ed extra block */
 
 	memcpy(header,"BSDIFF40",8);
-	offtout(0, header + 8);
-	offtout(0, header + 16);
-	offtout(newsize, header + 24);
+   libbsdiff_offtout(0,header + 8);
+   libbsdiff_offtout(0,header + 16);
+   libbsdiff_offtout(newsize,header + 24);
 
 
 	/* Compute the differences, writing ctrl as we go */
@@ -272,7 +271,7 @@ int libbsdiff_diff(bs_offset * bsret,unsigned char *old,bs_offset oldsize,unsign
 		oldscore=0;
 
 		for(scsc=scan+=len;scan<newsize;scan++) {
-			len=search(I,old,oldsize,new+scan,newsize-scan,
+         len=libbsdiff_search(I,old,oldsize,new + scan,newsize - scan,
 					0,oldsize,&pos);
 
 			for(;scsc<scan+len;scsc++)
@@ -328,13 +327,13 @@ int libbsdiff_diff(bs_offset * bsret,unsigned char *old,bs_offset oldsize,unsign
 			dblen+=lenf;
 			eblen+=(scan-lenb)-(lastscan+lenf);
 
-			offtout(lenf,buf);
+         libbsdiff_offtout(lenf,buf);
 			ADD_TO_PATCH(buf, 8);
 
-			offtout((scan-lenb)-(lastscan+lenf),buf);
+         libbsdiff_offtout((scan - lenb) - (lastscan + lenf),buf);
 			ADD_TO_PATCH(buf, 8);
 
-			offtout((pos-lenb)-(lastpos+lenf),buf);
+         libbsdiff_offtout((pos - lenb) - (lastpos + lenf),buf);
 			ADD_TO_PATCH(buf, 8);
 
 			lastscan=scan-lenb;
@@ -344,13 +343,13 @@ int libbsdiff_diff(bs_offset * bsret,unsigned char *old,bs_offset oldsize,unsign
 	};
 
 	/* Store size of ctrl data */
-	offtout(size_counter, header + 8);
+   libbsdiff_offtout(size_counter,header + 8);
 
 	/* Write compressed diff data */
 	ADD_TO_PATCH(db, dblen);
 
 	/* Store size of compressed diff data */
-	offtout(dblen, header + 16);
+   libbsdiff_offtout(dblen,header + 16);
 
 	/* Write compressed extra data */
 	ADD_TO_PATCH(eb, eblen);
@@ -366,7 +365,7 @@ FAIL:	free(db);
 	return 0;
 }
 
-static bs_offset offtin(unsigned char *buf)
+bs_offset libbsdiff_offtin(unsigned char *buf)
 {
 	bs_offset y;
 
@@ -387,7 +386,7 @@ static bs_offset offtin(unsigned char *buf)
 
 bs_offset libbsdiff_size_of_patched(unsigned char *patch)
 {
-  return(offtin(patch+24));
+   return(libbsdiff_offtin(patch + 24));
 }
 
 int libbsdiff_patch(unsigned char *old, bs_offset oldsize, unsigned char *patch, bs_offset patch_size, unsigned char *new)
@@ -433,9 +432,9 @@ int libbsdiff_patch(unsigned char *old, bs_offset oldsize, unsigned char *patch,
 		return(0);
 
 	/* Read lengths from header */
-	cpl=offtin(header+8);
-	dpl=offtin(header+16);
-	newsize=offtin(header+24);
+	cpl=libbsdiff_offtin(header+8);
+	dpl=libbsdiff_offtin(header+16);
+	newsize=libbsdiff_offtin(header+24);
 	if((cpl<0) || (dpl<0) || (newsize<0))
 		return(0);
 
@@ -449,7 +448,7 @@ int libbsdiff_patch(unsigned char *old, bs_offset oldsize, unsigned char *patch,
 		/* Read control data */
 		for(i=0;i<=2;i++) {
 		        READ_FROM_PATCH(cp, buf, 8);
-			ctrl[i]=offtin(buf);
+			ctrl[i]=libbsdiff_offtin(buf);
 		};
 
 		/* Sanity-check */
