@@ -28,7 +28,7 @@ namespace file
       return m_pauraapp->m_paurasystem->m_spfile->trash_that_is_not_trash(psz, m_pauraapp);
    }
 
-   void application::trash_that_is_not_trash(stringa & stra)
+   void application::trash_that_is_not_trash(::file::patha & stra)
    {
       return m_pauraapp->m_paurasystem->m_spfile->trash_that_is_not_trash(stra, m_pauraapp);
    }
@@ -206,7 +206,7 @@ namespace file
 
       ::file::buffer_sp spfile;
 
-      string strPath;
+      ::file::path strPath;
 
       if (varFile.get_type() == var::type_element)
       {
@@ -344,7 +344,7 @@ namespace file
    }
 
 
-   void application::dtf(const char * pszFile,stringa & stra,stringa & straRelative)
+   void application::dtf(const char * pszFile,::file::patha & stra,::file::patha & straRelative)
    {
 
       return m_pauraapp->m_paurasystem->m_spfile->dtf(pszFile,stra,straRelative,m_pauraapp);

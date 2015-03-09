@@ -82,21 +82,21 @@ namespace install
 
    }
 
-   bool install::is_file_ok(const stringa & straPath,const stringa & straTemplate,stringa & straMd5,const string & strFormatBuild, int iMd5Retry)
+   bool install::is_file_ok(const stringa & patha,const stringa & straTemplate,stringa & straMd5,const string & strFormatBuild, int iMd5Retry)
    {
 
       bool bOk = true;
 
-      if(straPath.get_count() != straTemplate.get_count())
+      if(patha.get_count() != straTemplate.get_count())
          return false;
 
       if(bOk)
       {
 
-         for(index i = 0; i < straPath.get_count(); i++)
+         for(index i = 0; i < patha.get_count(); i++)
          {
 
-            if(!file_exists_dup(straPath[i]))
+            if(!file_exists_dup(patha[i]))
             {
 
                bOk = false;
@@ -109,7 +109,7 @@ namespace install
 
       }
 
-      if(iMd5Retry > 0 || straMd5.get_count() != straPath.get_count())
+      if(iMd5Retry > 0 || straMd5.get_count() != patha.get_count())
       {
 
          string strUrl;
@@ -127,7 +127,7 @@ namespace install
 
          straMd5.add_tokens(strMd5List,",",false);
 
-         if(straMd5.get_count() != straPath.get_count())
+         if(straMd5.get_count() != patha.get_count())
             return false;
 
          if(!bOk)
@@ -138,7 +138,7 @@ namespace install
       for(index i = 0; i < straMd5.get_count(); i++)
       {
 
-         if(System.file().md5(straPath[i]).CompareNoCase(straMd5[i]) != 0)
+         if(System.file().md5(patha[i]).CompareNoCase(straMd5[i]) != 0)
             return false;
 
       }

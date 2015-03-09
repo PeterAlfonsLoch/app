@@ -367,12 +367,12 @@ namespace windows
 
          wchar_t lpszModuleFilePath[MAX_PATH + 1];
          GetModuleFileNameW(NULL, lpszModuleFilePath, MAX_PATH + 1);
-         System.m_strModulePath = lpszModuleFilePath;
+         System.m_pathModule = lpszModuleFilePath;
          wchar_t lpszModuleFolder[MAX_PATH + 1];
          LPWSTR lpszModuleFileName;
          GetFullPathNameW(lpszModuleFilePath, MAX_PATH + 1, lpszModuleFolder, &lpszModuleFileName);
          string strModuleFolder(lpszModuleFolder, lpszModuleFileName - lpszModuleFolder);
-         System.m_strModuleFolder = strModuleFolder;
+         System.m_pathModuleFolder = strModuleFolder;
 
       }
 
@@ -380,13 +380,13 @@ namespace windows
 
          wchar_t lpszModuleFilePath[MAX_PATH + 1];
          GetModuleFileNameW(::GetModuleHandleA("core.dll"), lpszModuleFilePath, MAX_PATH + 1);
-         System.m_strCa2ModulePath = lpszModuleFilePath;
+         System.m_pathCa2Module = lpszModuleFilePath;
 
          wchar_t lpszModuleFolder[MAX_PATH + 1];
          LPWSTR lpszModuleFileName;
          GetFullPathNameW(lpszModuleFilePath, MAX_PATH + 1, lpszModuleFolder, &lpszModuleFileName);
          string strModuleFolder(lpszModuleFolder, lpszModuleFileName - lpszModuleFolder);
-         System.m_strCa2ModuleFolder = strModuleFolder;
+         System.m_pathCa2ModuleFolder = strModuleFolder;
 
       }
 

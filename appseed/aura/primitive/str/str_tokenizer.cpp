@@ -57,7 +57,7 @@ namespace str
 
    }
 
-   bool tokenizer::GetNextSmallestToken(string & strToken, string_array & straSeparator, bool bWithSeparator)
+   bool tokenizer::GetNextSmallestToken(string & strToken, stringa & straSeparator, bool bWithSeparator)
    {
       if(m_nCurrentIndex >= get_length())
       {

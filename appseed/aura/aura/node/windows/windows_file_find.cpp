@@ -347,7 +347,7 @@ namespace windows
    }
 
 
-   string file_find::GetFilePath() const
+   ::file::path file_find::GetFilePath() const
    {
    
       ASSERT(m_hContext != NULL);
@@ -384,7 +384,7 @@ namespace windows
 
    }
 
-   string file_find::GetFileName() const
+   ::file::path file_find::GetFileName() const
    {
       
       ASSERT(m_hContext != NULL);

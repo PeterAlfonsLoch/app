@@ -200,11 +200,11 @@ namespace filemanager
       m_fsset->m_spafsdata.add(Session.fs());
 
 
-      stringa straPath;
+      ::file::patha patha;
 
-      stringa straTitle;
+      ::file::patha straTitle;
 
-      m_fsset->root_ones(straPath,straTitle);
+      m_fsset->root_ones(patha,straTitle);
 
 
       return TRUE;

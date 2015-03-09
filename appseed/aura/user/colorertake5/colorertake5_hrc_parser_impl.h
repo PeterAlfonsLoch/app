@@ -53,7 +53,7 @@ namespace colorertake5
      bool structureChanged;
      bool updateStarted;
 
-     string m_strCurrentSourceLocation;
+     ::file::path m_strCurrentSourceLocation;
      string m_strCurrentSource;
 
      //DocumentBuilder docbuilder;

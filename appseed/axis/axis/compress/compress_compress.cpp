@@ -221,14 +221,14 @@ namespace axis
 
       if (System.dir().is(psz, papp))
       {
-         stringa straPath;
+         ::file::patha patha;
          stringa straRelative;
          string strPath;
          ::file::binary_buffer_sp file;
-         System.dir().rls(papp, psz, &straPath, NULL, &straRelative);
-         for (int32_t i = 0; i < straPath.get_size(); i++)
+         System.dir().rls(papp, psz, &patha, NULL, &straRelative);
+         for (int32_t i = 0; i < patha.get_size(); i++)
          {
-            strPath = straPath[i];
+            strPath = patha[i];
             if (!System.dir().is(strPath, papp))
             {
                infile.add_file(psz, straRelative[i]);

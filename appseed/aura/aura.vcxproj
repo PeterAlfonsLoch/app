@@ -1972,6 +1972,7 @@
     <ClInclude Include="filesystem\filesystem\filesystem_application.h" />
     <ClInclude Include="filesystem\filesystem\filesystem_dir_application.h" />
     <ClInclude Include="filesystem\filesystem\filesystem_dir_system.h" />
+    <ClInclude Include="filesystem\filesystem\filesystem_path.h" />
     <ClInclude Include="filesystem\filesystem\filesystem_system.h" />
     <ClInclude Include="filesystem\file\file.h" />
     <ClInclude Include="filesystem\file\file_binary_buffer.h" />
@@ -4210,6 +4211,7 @@
     <ClCompile Include="filesystem\filesystem\filesystem_application.cpp" />
     <ClCompile Include="filesystem\filesystem\filesystem_dir_application.cpp" />
     <ClCompile Include="filesystem\filesystem\filesystem_dir_system.cpp" />
+    <ClCompile Include="filesystem\filesystem\filesystem_path.cpp" />
     <ClCompile Include="filesystem\filesystem\filesystem_system.cpp" />
     <ClCompile Include="filesystem\file\file.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>

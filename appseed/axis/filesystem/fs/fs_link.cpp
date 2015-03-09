@@ -45,7 +45,7 @@ namespace fs
    }
 
 
-   bool link::ls(const char * pszDir,stringa * pstraPath,stringa * pstraTitle,int64_array * piaSize,bool_array * pbaDir)
+   bool link::ls(const char * pszDir,::file::patha * ppatha,::file::patha * ppathaName,int64_array * piaSize,bool_array * pbaDir)
    {
 
       string strDir(pszDir);
@@ -60,17 +60,17 @@ namespace fs
          for(int i = 0; i < m_straPath.get_size(); i++)
          {
 
-            if(pstraPath != NULL)
+            if(ppatha != NULL)
             {
 
-               pstraPath->add(m_straPath[i]);
+               ppatha->add(m_straPath[i]);
 
             }
 
-            if(pstraTitle != NULL)
+            if(ppathaName != NULL)
             {
 
-               pstraTitle->add(System.file().title_(m_straPath[i]));
+               ppathaName->add(System.file().title_(m_straPath[i]));
 
             }
 
@@ -120,10 +120,10 @@ namespace fs
    }
 
 
-   void link::root_ones(stringa & straPath, stringa & straTitle)
+   void link::root_ones(stringa & patha, stringa & straTitle)
    {
 
-      straPath.add(m_strPath);
+      patha.add(m_strPath);
       straTitle.add(m_strTitle);
 
    }

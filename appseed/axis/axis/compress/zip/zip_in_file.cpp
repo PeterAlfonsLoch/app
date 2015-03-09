@@ -654,7 +654,7 @@ namespace zip
 
    }
 
-   void InFile::ls(bool bRecursive,/*stringa * pstraPath,*/stringa * pstraTitle,/*stringa * pstraRelative,*/bool_array * pbaIsDir,int64_array * piaSize,e_extract eextract)
+   void InFile::ls(bool bRecursive,/*::file::patha * ppatha,*/::file::patha * ppathaName,/*::file::patha * ppathaRelative,*/bool_array * pbaIsDir,int64_array * piaSize,e_extract eextract)
    {
 
       InFile infile = *this;
@@ -695,17 +695,17 @@ namespace zip
             string strTitle(szTitle);
             if(bRecursive || strTitle.find("/") < 0 || strTitle.find("/") == (strTitle.get_length() - 1))
             {
-               //if(pstraPath != NULL)
+               //if(ppatha != NULL)
                //{
-               //   pstraPath->add(strLastZip + ":" + strRemain + strTitle);
+               //   ppatha->add(strLastZip + ":" + strRemain + strTitle);
                //}
-               if(pstraTitle != NULL)
+               if(ppathaName != NULL)
                {
-                  pstraTitle->add(strTitle);
+                  ppathaName->add(strTitle);
                }
-               //if(pstraRelative != NULL)
+               //if(ppathaRelative != NULL)
                //{
-               //   pstraRelative->add(strRemain + strTitle);
+               //   ppathaRelative->add(strRemain + strTitle);
                //}
                if(pbaIsDir != NULL)
                {

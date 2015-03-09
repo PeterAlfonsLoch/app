@@ -42,12 +42,12 @@ namespace userfs
       if(m_straRootPath.is_empty())
       {
 
-         stringa straPath;
-         stringa straTitle;
-         get_fs_data()->root_ones(straPath,straTitle);
+         ::file::patha patha;
+         ::file::patha straTitle;
+         get_fs_data()->root_ones(patha,straTitle);
          {
             synch_lock sl(get_fs_data()->data_mutex());
-            m_straRootPath=straPath;
+            m_straRootPath=patha;
             m_straRootTitle=straTitle;
          }
 
@@ -73,15 +73,15 @@ namespace userfs
       }
       else
       {
-         stringa straPath;
-         stringa straTitle;
+         ::file::patha patha;
+         ::file::patha straTitle;
          int64_array iaSize;
          bool_array baDir;
          //get_fs_data()->ls(pszFolder,&m_straPath,&m_straTitle,&m_iaSize, &m_baDir);
-         get_fs_data()->ls(pszFolder,&straPath,&straTitle,&iaSize,&baDir);
+         get_fs_data()->ls(pszFolder,&patha,&straTitle,&iaSize,&baDir);
          {
             synch_lock sl(get_fs_data()->data_mutex());
-            m_straPath = straPath;
+            m_straPath = patha;
             m_straTitle = straTitle;
             m_iaSize = iaSize;
             m_baDir = baDir;

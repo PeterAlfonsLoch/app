@@ -56,13 +56,13 @@ namespace file
             //virtual string userprograms(const char * pszRelativePath = NULL,const char * lpcsz2 = NULL);
 
 
-            //virtual bool  ls_pattern(const char * lpcsz,const char * lpcszPattern,stringa * pstraPath = NULL,stringa * pstraTitle = NULL,bool_array * pbaIsDir = NULL,int64_array * piaSize = NULL);
-            //virtual bool  ls(const char * lpcsz,stringa * pstraPath = NULL,stringa * pstraTitle = NULL,bool_array * pbaIsDir = NULL,int64_array * piaSize = NULL);
-            //virtual bool  rls_pattern(const char * lpcsz,const char * lpcszPattern,stringa * pstraPath = NULL,stringa * pstraTitle = NULL,stringa * pstraRelative = NULL,bool_array * pbaIsDir = NULL,int64_array * piaSize = NULL);
-            //virtual bool  rls(const char * lpcsz,stringa * pstraPath = NULL,stringa * pstraTitle = NULL,stringa * pstraRelative = NULL);
-            //virtual bool  rls_dir(const char * lpcsz,stringa * pstraPath = NULL,stringa * pstraTitle = NULL,stringa * pstraRelative = NULL);
-            //virtual bool  ls_dir(const char * lpcsz,stringa * pstraPath = NULL,stringa * pstraTitle = NULL);
-            //virtual bool  ls_file(const char * lpcsz,stringa * pstraPath = NULL,stringa * pstraTitle = NULL);
+            //virtual bool  ls_pattern(const char * lpcsz,const char * lpcszPattern,::file::patha * ppatha = NULL,::file::patha * ppathaName = NULL,bool_array * pbaIsDir = NULL,int64_array * piaSize = NULL);
+            //virtual bool  ls(const char * lpcsz,::file::patha * ppatha = NULL,::file::patha * ppathaName = NULL,bool_array * pbaIsDir = NULL,int64_array * piaSize = NULL);
+            //virtual bool  rls_pattern(const char * lpcsz,const char * lpcszPattern,::file::patha * ppatha = NULL,::file::patha * ppathaName = NULL,::file::patha * ppathaRelative = NULL,bool_array * pbaIsDir = NULL,int64_array * piaSize = NULL);
+            //virtual bool  rls(const char * lpcsz,::file::patha * ppatha = NULL,::file::patha * ppathaName = NULL,::file::patha * ppathaRelative = NULL);
+            //virtual bool  rls_dir(const char * lpcsz,::file::patha * ppatha = NULL,::file::patha * ppathaName = NULL,::file::patha * ppathaRelative = NULL);
+            //virtual bool  ls_dir(const char * lpcsz,::file::patha * ppatha = NULL,::file::patha * ppathaName = NULL);
+            //virtual bool  ls_file(const char * lpcsz,::file::patha * ppatha = NULL,::file::patha * ppathaName = NULL);
 
 
             //virtual bool  is(const char * lpcsz);
@@ -73,7 +73,7 @@ namespace file
             //virtual bool  has_subdir(const char * lpcsz);
 
 
-            //virtual void  root_ones(stringa & straPath,stringa & straTitle);
+            //virtual void  root_ones(stringa & patha,stringa & straTitle);
             //virtual bool  mk(const char * lpcsz);
             //virtual bool  rm(const char * psz,bool bRecursive = true);
 

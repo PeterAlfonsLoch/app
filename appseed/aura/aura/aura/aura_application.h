@@ -51,7 +51,7 @@ namespace aura
 
 
 
-      stringa                                         m_straMatterLocator;
+      ::file::patha                                   m_straMatterLocator;
       string                                          m_strLibraryName;
       string                                          m_strAppId;
 
@@ -399,8 +399,8 @@ namespace aura
       //virtual string dir_element(const char * psz = NULL);
       //virtual string dir_ca2module(const char * psz = NULL);
       //virtual string dir_name(const char * psz);
-      //virtual void  dir_ls_dir(const char * lpcsz,stringa * pstraPath = NULL,stringa * pstraTitle = NULL);
-      //virtual void  dir_rls(const char * lpcsz,stringa * pstraPath = NULL,stringa * pstraTitle = NULL,stringa * pstraRelative = NULL);
+      //virtual void  dir_ls_dir(const char * lpcsz,::file::patha * ppatha = NULL,::file::patha * ppathaName = NULL);
+      //virtual void  dir_rls(const char * lpcsz,::file::patha * ppatha = NULL,::file::patha * ppathaName = NULL,::file::patha * ppathaRelative = NULL);
       //virtual bool dir_mk(const char * psz);
       //virtual string file_title(const char * psz);
       //virtual string file().name_(const char * psz);
@@ -426,9 +426,9 @@ namespace aura
 
       virtual string get_locale();
       virtual string get_schema();
-      virtual string get_locale_schema_dir(const string & strLocale,const string & strSchema);
-      virtual string get_locale_schema_dir(const string & strLocale);
-      virtual string get_locale_schema_dir();
+      virtual ::file::path get_locale_schema_dir(const string & strLocale,const string & strSchema);
+      virtual ::file::path get_locale_schema_dir(const string & strLocale);
+      virtual ::file::path get_locale_schema_dir();
 
       virtual void set_locale(const string & lpcsz,::action::context actioncontext);
       virtual void set_schema(const string & lpcsz,::action::context actioncontext);

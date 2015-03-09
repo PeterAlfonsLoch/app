@@ -1061,7 +1061,7 @@ namespace aura
 
 #if defined(WINDOWSEX) || defined(LINUX) || defined(APPLEOS)
 
-            simple_shell_launcher launcher(NULL,NULL,dir().path(get_module_folder(),strApp),strParameters,NULL,SW_SHOW);
+            simple_shell_launcher launcher(NULL,NULL,get_module_folder()+strApp,strParameters,NULL,SW_SHOW);
 
             launcher.execute();
 
@@ -1094,7 +1094,7 @@ namespace aura
 
 #else
 
-            simple_shell_launcher launcher(NULL,NULL,dir().path(get_module_folder(),strApp),NULL,NULL,SW_SHOW);
+            simple_shell_launcher launcher(NULL,NULL,get_module_folder()+strApp,NULL,NULL,SW_SHOW);
 
             launcher.execute();
 
@@ -1132,7 +1132,7 @@ namespace aura
 
 #else
 
-            simple_shell_launcher launcher(NULL,NULL,dir().path(get_ca2_module_folder(),strApp),strParameters,NULL,SW_SHOW);
+            simple_shell_launcher launcher(NULL,NULL,get_ca2_module_folder() + strApp,strParameters,NULL,SW_SHOW);
 
             launcher.execute();
 
@@ -1164,7 +1164,7 @@ namespace aura
 
 #else
 
-            simple_shell_launcher launcher(NULL,NULL,dir().path(get_ca2_module_folder(),strApp),strParameters,NULL,SW_SHOW);
+            simple_shell_launcher launcher(NULL,NULL,get_ca2_module_folder() + strApp,strParameters,NULL,SW_SHOW);
 
             launcher.execute();
 
@@ -1261,17 +1261,17 @@ namespace aura
    }
 
 
-   string system::get_ca2_module_folder()
+   ::file::path system::get_ca2_module_folder()
    {
 
       single_lock sl(m_pmutex,true);
 
-      return m_strCa2ModuleFolder;
+      return m_pathCa2ModuleFolder;
 
    }
 
 
-   string system::get_ca2_module_file_path()
+   ::file::path system::get_ca2_module_file_path()
    {
 
       string strModuleFileName;
@@ -1366,15 +1366,15 @@ namespace aura
    }
 
 
-   string system::get_module_folder()
+   ::file::path system::get_module_folder()
    {
 
-      return m_strModuleFolder;
+      return m_pathModuleFolder;
 
    }
 
 
-   string system::get_module_file_path()
+   ::file::path system::get_module_file_path()
    {
 
 #ifdef WINDOWSEX
@@ -1409,18 +1409,18 @@ namespace aura
    }
 
 
-   string system::get_module_title()
+   ::file::path system::get_module_title()
    {
 
-      return file().title_(get_module_file_path());
+      return get_module_file_path().title();
 
    }
 
 
-   string system::get_module_name()
+   ::file::path system::get_module_name()
    {
 
-      return file().name_(get_module_file_path());
+      return get_module_file_path().name();
 
    }
 
@@ -1439,7 +1439,7 @@ namespace aura
    }
 
 
-   string system::dir_appmatter_locator(::aura::application * papp)
+   ::file::path system::dir_appmatter_locator(::aura::application * papp)
    {
 
       ::exception::throw_not_implemented(get_app());
@@ -1638,9 +1638,9 @@ namespace aura
       
       synch_lock sl(m_pmutex);
 
-      string strPath;
+      ::file::path strPath;
 
-      strPath = System.dir().commonappdata("spa_install.xml");
+      strPath = System.dir().commonappdata() + "spa_install.xml";
 
       string strContents;
 
@@ -1794,7 +1794,7 @@ namespace aura
       if(directrix()->m_varTopicQuery.has_property("install"))
          return true;
 
-      ::file::binary_buffer_sp file = Session.m_spfile->get_file(System.dir().appdata("applibcache.bin"),::file::type_binary | ::file::mode_read);
+      ::file::binary_buffer_sp file = Session.m_spfile->get_file(System.dir().appdata() + "applibcache.bin",::file::type_binary | ::file::mode_read);
 
       if(file.is_null())
          return false;
@@ -1824,7 +1824,7 @@ namespace aura
       m_mapAppLibrary.remove_all();
 
       string strLibraryId;
-      stringa straTitle;
+      ::file::patha straTitle;
 
       Application.dir().ls_pattern(System.dir().ca2module(),"*.*",NULL,& straTitle);
 
@@ -1858,7 +1858,7 @@ namespace aura
       try
       {
 
-         file = Session.file().get_file(System.dir().appdata("applibcache.bin"),::file::defer_create_directory | ::file::type_binary | ::file::mode_create | ::file::mode_write);
+         file = Session.file().get_file(System.dir().appdata() + "applibcache.bin",::file::defer_create_directory | ::file::type_binary | ::file::mode_create | ::file::mode_write);
 
       }
       catch(::exception::base &)

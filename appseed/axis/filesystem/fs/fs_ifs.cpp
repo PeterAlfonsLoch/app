@@ -86,17 +86,17 @@ bool ifs::has_subdir(const char * pszPath)
 }
 
 
-void ifs::root_ones(stringa & straPath, stringa & straTitle)
+void ifs::root_ones(stringa & patha, stringa & straTitle)
 {
 
-   straPath.add("uifs://");
+   patha.add("uifs://");
 
    straTitle.add("User Intelligent File System");
 
 }
 
 
-bool ifs::ls(const char * pszDir,stringa * pstraPath,stringa * pstraTitle,int64_array * piaSize,bool_array * pbaDir)
+bool ifs::ls(const char * pszDir,::file::patha * ppatha,::file::patha * ppathaName,int64_array * piaSize,bool_array * pbaDir)
 {
 
    synch_lock sl(data_mutex());
@@ -115,15 +115,15 @@ bool ifs::ls(const char * pszDir,stringa * pstraPath,stringa * pstraTitle,int64_
       if(get_tick_count() < dwTimeout)
       {
 
-         if(pstraPath  != NULL)
+         if(ppatha  != NULL)
          {
-            pstraPath->add(*m_mapdirFolder[strDir]);
-            pstraPath->add(*m_mapdirFile[strDir]);
+            ppatha->add(*m_mapdirFolder[strDir]);
+            ppatha->add(*m_mapdirFile[strDir]);
          }
-         if(pstraTitle  != NULL)
+         if(ppathaName  != NULL)
          {
-            pstraTitle->add(*m_mapdirFolderName[strDir]);
-            pstraTitle->add(*m_mapdirFileName[strDir]);
+            ppathaName->add(*m_mapdirFolderName[strDir]);
+            ppathaName->add(*m_mapdirFileName[strDir]);
          }
          if (piaSize != NULL)
          {
@@ -283,15 +283,15 @@ bool ifs::ls(const char * pszDir,stringa * pstraPath,stringa * pstraTitle,int64_
          baFileDir.add(false);
       }
    }
-   if(pstraPath != NULL)
+   if(ppatha != NULL)
    {
-      pstraPath->add(straDir);
-      pstraPath->add(straFile);
+      ppatha->add(straDir);
+      ppatha->add(straFile);
    }
-   if(pstraTitle != NULL)
+   if(ppathaName != NULL)
    {
-      pstraTitle->add(straDirName);
-      pstraTitle->add(straFileName);
+      ppathaName->add(straDirName);
+      ppathaName->add(straFileName);
    }
    if (piaSize != NULL)
    {
@@ -383,11 +383,11 @@ bool ifs::is_dir(const char * pszPath)
       {
 
          sl.unlock();
-         stringa straPath;
-         stringa straTitle;
+         ::file::patha patha;
+         ::file::patha straTitle;
          int64_array iaSize;
          bool_array baDir;
-         ls(System.dir().name(strPath), &straPath, &straTitle, &iaSize, &baDir);
+         ls(System.dir().name(strPath), &patha, &straTitle, &iaSize, &baDir);
          sl.lock();
       }
       else
@@ -403,11 +403,11 @@ bool ifs::is_dir(const char * pszPath)
 
          sl.unlock();
 
-         stringa straPath;
-         stringa straTitle;
+         ::file::patha patha;
+         ::file::patha straTitle;
          int64_array iaSize;
          bool_array baDir;
-         ls(System.dir().name(strPath),&straPath,&straTitle,&iaSize, &baDir);
+         ls(System.dir().name(strPath),&patha,&straTitle,&iaSize, &baDir);
 
          sl.lock();
 

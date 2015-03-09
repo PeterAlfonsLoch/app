@@ -29,7 +29,7 @@ namespace fs
    }
 
 
-   void set::root_ones(stringa & straPath, stringa & straTitle)
+   void set::root_ones(stringa & patha, stringa & straTitle)
    {
 
       single_lock sl(data_mutex(), true);
@@ -55,7 +55,7 @@ namespace fs
 
          sl.lock();
 
-         straPath.add(straFsPath);
+         patha.add(straFsPath);
 
          straTitle.add(straFsTitle);
 
@@ -117,23 +117,23 @@ namespace fs
 
    }
 
-   bool set::ls(const char * psz,stringa * pstraPath,stringa * pstraTitle,int64_array * piaSize,bool_array * pbaDir)
+   bool set::ls(const char * psz,::file::patha * ppatha,::file::patha * ppathaName,int64_array * piaSize,bool_array * pbaDir)
    {
 
       if(psz == NULL || strlen(psz) == 0)
       {
-         stringa straPath;
-         stringa straTitle;
-         root_ones(straPath, straTitle);
-         for(int32_t i = 0; i < straPath.get_size(); i++)
+         ::file::patha patha;
+         ::file::patha straTitle;
+         root_ones(patha, straTitle);
+         for(int32_t i = 0; i < patha.get_size(); i++)
          {
-            if(pstraPath != NULL)
+            if(ppatha != NULL)
             {
-               pstraPath->add(straPath[i]);
+               ppatha->add(patha[i]);
             }
-            if(pstraTitle != NULL)
+            if(ppathaName != NULL)
             {
-               pstraTitle->add(straTitle[i]);
+               ppathaName->add(straTitle[i]);
             }
             if (piaSize != NULL)
             {
@@ -151,7 +151,7 @@ namespace fs
 
       if(pdata != NULL)
       {
-         return pdata->ls(psz,pstraPath,pstraTitle,piaSize, pbaDir);
+         return pdata->ls(psz,ppatha,ppathaName,piaSize, pbaDir);
       }
 
       return false;

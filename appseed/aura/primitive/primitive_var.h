@@ -1,7 +1,6 @@
 #pragma once
 
 
-class stringa;
 
 namespace primitive
 {

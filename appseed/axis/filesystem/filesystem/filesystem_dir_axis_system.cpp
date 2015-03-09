@@ -372,21 +372,21 @@ namespace file
       //   throw interface_only_exception(get_app(), "this is an interface");
       //}
 
-      //void system::root_ones(stringa & straPath, stringa & straTitle, ::aura::application * papp)
+      //void system::root_ones(stringa & patha, stringa & straTitle, ::aura::application * papp)
       //{
-      //   UNREFERENCED_PARAMETER(straPath);
+      //   UNREFERENCED_PARAMETER(patha);
       //   UNREFERENCED_PARAMETER(straTitle);
       //   throw interface_only_exception(get_app(), "this is an interface");
       //}
 
-      bool system::rls_pattern(::aura::application * papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, bool_array * pbaIsDir, int64_array * piaSize, e_extract eextract)
+      bool system::rls_pattern(::aura::application * papp, const char * lpcsz, const char * pszPattern, ::file::patha * ppatha, ::file::patha * ppathaName, ::file::patha * ppathaRelative, bool_array * pbaIsDir, int64_array * piaSize, e_extract eextract)
       {
-         UNREFERENCED_PARAMETER(pstraRelative);
+         UNREFERENCED_PARAMETER(ppathaRelative);
          UNREFERENCED_PARAMETER(pszPattern);
          if(eextract != extract_none && ::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (::str::ends_ci(lpcsz,".zip") || ::str::find_file_extension("zip:",lpcsz) >= 0))
          {
             throw "should implement recursive zip";
-            m_pziputil->ls(papp, lpcsz, false, pstraPath, pstraTitle, NULL, pbaIsDir, piaSize, eextract == extract_all ? extract_all : extract_none);
+            m_pziputil->ls(papp, lpcsz, false, ppatha, ppathaName, NULL, pbaIsDir, piaSize, eextract == extract_all ? extract_all : extract_none);
             return true;
          }
          return false;
@@ -394,7 +394,7 @@ namespace file
       }
 
 
-      bool system::ls_pattern(::aura::application * papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, int64_array * piaSize)
+      bool system::ls_pattern(::aura::application * papp, const char * lpcsz, const char * pszPattern, ::file::patha * ppatha, ::file::patha * ppathaName, bool_array * pbaIsDir, int64_array * piaSize)
       {
          
          UNREFERENCED_PARAMETER(pszPattern);
@@ -406,10 +406,10 @@ namespace file
 
             string str = Sess(papp).http().get(lpcsz, set);
 
-            if(pstraPath != NULL)
+            if(ppatha != NULL)
             {
 
-               pstraPath->add_tokens(str, "\n", false);
+               ppatha->add_tokens(str, "\n", false);
 
             }
 
@@ -420,7 +420,7 @@ namespace file
          if(::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (::str::ends_ci(lpcsz,".zip") || ::str::find_file_extension("zip:",lpcsz) >= 0))
          {
 
-            return m_pziputil->ls(papp, lpcsz, false, pstraPath, pstraTitle, NULL, pbaIsDir, piaSize);
+            return m_pziputil->ls(papp, lpcsz, false, ppatha, ppathaName, NULL, pbaIsDir, piaSize);
 
          }
          
@@ -429,7 +429,7 @@ namespace file
       }
 
 
-      bool system::ls(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, int64_array * piaSize)
+      bool system::ls(::aura::application * papp, const char * lpcsz, ::file::patha * ppatha, ::file::patha * ppathaName, bool_array * pbaIsDir, int64_array * piaSize)
       {
          
          return false;
@@ -437,13 +437,13 @@ namespace file
       }
 
       
-      bool system::rls(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, e_extract eextract)
+      bool system::rls(::aura::application * papp, const char * lpcsz, ::file::patha * ppatha, ::file::patha * ppathaName, ::file::patha * ppathaRelative, e_extract eextract)
       {
       
          if(eextract != extract_none && ::get_thread() != NULL && get_thread()->m_bZipIsDir && (::str::ends_ci(lpcsz,".zip") || ::str::find_file_extension("zip:",lpcsz) >= 0))
          {
 
-            return m_pziputil->ls(papp, lpcsz, false, pstraPath, pstraTitle, pstraRelative, NULL, NULL, eextract == extract_all ? extract_all : extract_none);
+            return m_pziputil->ls(papp, lpcsz, false, ppatha, ppathaName, ppathaRelative, NULL, NULL, eextract == extract_all ? extract_all : extract_none);
 
          }
 
@@ -452,7 +452,7 @@ namespace file
       }
 
 
-      bool system::rls_dir(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative)
+      bool system::rls_dir(::aura::application * papp, const char * lpcsz, ::file::patha * ppatha, ::file::patha * ppathaName, ::file::patha * ppathaRelative)
       {
          
          return false;
@@ -460,13 +460,13 @@ namespace file
       }
 
 
-      bool system::ls_dir(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
+      bool system::ls_dir(::aura::application * papp, const char * lpcsz, ::file::patha * ppatha, ::file::patha * ppathaName)
       {
 
          if(::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (::str::ends_ci(lpcsz,".zip") || ::str::find_file_extension("zip:",lpcsz) >= 0))
          {
             
-            return m_pziputil->ls_dir(papp, lpcsz, pstraPath, pstraTitle);
+            return m_pziputil->ls_dir(papp, lpcsz, ppatha, ppathaName);
 
          }
 
@@ -476,7 +476,7 @@ namespace file
       }
 
       
-      bool system::ls_file(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
+      bool system::ls_file(::aura::application * papp, const char * lpcsz, ::file::patha * ppatha, ::file::patha * ppathaName)
       {
 
          return false;
@@ -906,7 +906,7 @@ namespace file
             }
             else
             {
-               return path(element(simple_path(strRoot,"appmatter",strDomain)),papp->m_paxissession->get_locale_schema_dir(strLocale,strSchema));
+               return path(element() + strRoot +"appmatter",strDomain)),papp->m_paxissession->get_locale_schema_dir(strLocale,strSchema));
 
             }
 
@@ -1007,7 +1007,7 @@ namespace file
 
                if(!::str::ends(straLs[i],"/"))
                {
-                  string strPath  = System.dir().path(strDir,straLs[i]);
+                  string strPath  = strDir +straLs[i]);
                   stra.add(strPath);
                }
 
@@ -1067,7 +1067,7 @@ namespace file
             {
 
 
-               stringa straPath;
+               ::file::patha patha;
 
                strLocale = pcontext->m_plocaleschema->m_idLocale;
                strSchema = pcontext->m_plocaleschema->m_idSchema;
@@ -1100,7 +1100,7 @@ namespace file
                   for (j = 0; j < ca; j++)
                   {
 
-                     straPath.add(path(strLs, stra[j]));
+                     patha.add(path(strLs, stra[j]));
 
                   }
 
@@ -1119,7 +1119,7 @@ namespace file
                         for (j = 0; j < ca; j++)
                         {
 
-                           straPath.add(path(strLs, stra[j]));
+                           patha.add(path(strLs, stra[j]));
 
                         }
 
@@ -1133,7 +1133,7 @@ namespace file
 
                      string strLd = straLs[k];
 
-                     straPath.add(path(strLs, stra[0]));
+                     patha.add(path(strLs, stra[0]));
 
                   }
 
@@ -1141,11 +1141,11 @@ namespace file
 
                   if (bDir)
                   {
-                     strPath = Sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")), set);
+                     strPath = Sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_dir?candidate=" + System.url().url_encode(patha.implode("|")), set);
                   }
                   else
                   {
-                     strPath = Sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")),set);
+                     strPath = Sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_file?candidate=" + System.url().url_encode(patha.implode("|")),set);
                   }
 
                   if (strPath.has_char())
@@ -1265,7 +1265,7 @@ namespace file
          {
 
 
-            stringa straPath;
+            ::file::patha patha;
 
             strLocale  = pcontext->m_plocaleschema->m_idLocale;
             strSchema  = pcontext->m_plocaleschema->m_idSchema;
@@ -1297,7 +1297,7 @@ namespace file
                for(j = 0; j < ca; j++)
                {
 
-                  straPath.add(path(strLs, stra[j]));
+                  patha.add(path(strLs, stra[j]));
 
                }
 
@@ -1315,7 +1315,7 @@ namespace file
                      for(j = 0; j < ca; j++)
                      {
 
-                        straPath.add(path(strLs, stra[j]));
+                        patha.add(path(strLs, stra[j]));
 
                      }
 
@@ -1328,18 +1328,18 @@ namespace file
                {
 
                   strLs = straLs[k];
-                  straPath.add(path(strLs, stra[0]));
+                  patha.add(path(strLs, stra[0]));
                }
 
                property_set set(papp);
 
                if(bDir)
                {
-                  strPath = Sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")), set);
+                  strPath = Sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_dir?candidate=" + System.url().url_encode(patha.implode("|")), set);
                }
                else
                {
-                  strPath = Sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")),set);
+                  strPath = Sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_file?candidate=" + System.url().url_encode(patha.implode("|")),set);
                }
 
                if(strPath.has_char())
@@ -1543,7 +1543,7 @@ else
             {
 
 
-               stringa straPath;
+               ::file::patha patha;
 
                strLocale = pcontext->m_plocaleschema->m_idLocale;
                strSchema = pcontext->m_plocaleschema->m_idSchema;
@@ -1574,7 +1574,7 @@ else
 
                   strLs = straLs[k];
 
-                  straPath.add(path(strLs, str, str2));
+                  patha.add(path(strLs, str, str2));
                }
 
                for (int32_t i = 0; i < pcontext->localeschema().m_idaLocale.get_count(); i++)
@@ -1587,7 +1587,7 @@ else
 
                      strLs = straLs[k];
 
-                     straPath.add(path(strLs, str, str2, true));
+                     patha.add(path(strLs, str, str2, true));
                   }
                }
 
@@ -1597,7 +1597,7 @@ else
 
                   strLs = straLs[k];
 
-                  straPath.add(path(strLs, str, str2));
+                  patha.add(path(strLs, str, str2));
                }
 
                property_set set(papp);
@@ -1606,11 +1606,11 @@ else
 
                if (bDir)
                {
-                  strPath = Sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")), set);
+                  strPath = Sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_dir?candidate=" + System.url().url_encode(patha.implode("|")), set);
                }
                else
                {
-                  strPath = Sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")), set);
+                  strPath = Sess(papp).http().get("http://" + get_api_cc() + "/api/matter/query_file?candidate=" + System.url().url_encode(patha.implode("|")), set);
                }
 
                strPath.trim();
@@ -1705,7 +1705,7 @@ else
          {
 
 
-            stringa straPath;
+            ::file::patha patha;
 
             strLocale  = pcontext->m_plocaleschema->m_idLocale;
             strSchema  = pcontext->m_plocaleschema->m_idSchema;
@@ -1736,7 +1736,7 @@ else
 
                strLs = straLs[k];
 
-               straPath.add(path(strLs, str, str2));
+               patha.add(path(strLs, str, str2));
 
             }
 
@@ -1750,7 +1750,7 @@ else
 
                   strLs = straLs[k];
 
-                  straPath.add(path(strLs, str, str2, true));
+                  patha.add(path(strLs, str, str2, true));
                }
             }
 
@@ -1760,7 +1760,7 @@ else
 
                strLs = straLs[k];
 
-               straPath.add(path(strLs, str, str2));
+               patha.add(path(strLs, str, str2));
             }
 
             property_set set(papp);
@@ -1769,11 +1769,11 @@ else
 
             if(bDir)
             {
-               strPath = App(papp).http().get("http://" + get_api_cc() + "/api/matter/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")),set);
+               strPath = App(papp).http().get("http://" + get_api_cc() + "/api/matter/query_dir?candidate=" + System.url().url_encode(patha.implode("|")),set);
             }
             else
             {
-               strPath = App(papp).http().get("http://" + get_api_cc() + "/api/matter/query_file?candidate=" + System.url().url_encode(straPath.implode("|")), set);
+               strPath = App(papp).http().get("http://" + get_api_cc() + "/api/matter/query_file?candidate=" + System.url().url_encode(patha.implode("|")), set);
             }
 
             strPath.trim();
@@ -2262,7 +2262,7 @@ ret:
          }
          else
          {
-            return element(simple_path(strRoot,"appmatter",strDomain));
+            return element() + strRoot +"appmatter",strDomain));
 
          }
 
@@ -2276,7 +2276,7 @@ ret:
 
          appmatter_locators(strRoot, strDomain, strLibraryName, strAppName);
 
-         return element(simple_path(strRoot, "appmatter", strDomain));
+         return element() + strRoot + "appmatter", strDomain));
 
       }
 
@@ -2294,13 +2294,13 @@ ret:
 
 #else
 
-         return element(simple_path(strRoot, "appmatter", strDomain));
+         return element() + strRoot + "appmatter", strDomain));
 
 #endif
 
       }
 
-      string system::base_appmatter_locator(const string & strBase, const string & strLibraryName, const string & strAppName)
+      string system::base_appmatter_locator(const ::file::path & strBase,const string & strLibraryName,const string & strAppName)
       {
 
          string strRoot;
@@ -2312,7 +2312,7 @@ ret:
 
       }
 
-      string system::base_appmatter_locator(const string & strBase, const string & strAppName)
+      string system::base_appmatter_locator(const ::file::path & strBase,const string & strAppName)
       {
 
          string strRoot;

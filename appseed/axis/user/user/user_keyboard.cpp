@@ -372,12 +372,12 @@ namespace user
    string keyboard::get_current_system_layout()
    {
       keyboard_layout_ida layoutida;
-      stringa straPath;
-      Application.dir_matter_ls_file("keyboard layout", straPath);
-      for(int32_t i = 0; i < straPath.get_count(); i++)
+      ::file::patha patha;
+      Application.dir_matter_ls_file("keyboard layout", patha);
+      for(int32_t i = 0; i < patha.get_count(); i++)
       {
          keyboard_layout_id layoutid;
-         if(initialize(&layoutid, straPath[i]))
+         if(initialize(&layoutid, patha[i]))
          {
             layoutida.add(layoutid);
          }

@@ -1,7 +1,8 @@
 #pragma once
 
 
-class string_array;
+//template < class TYPE, class RAW_STRING >
+//class string_array;
 
 
 #include "str_ch.h"

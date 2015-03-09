@@ -109,8 +109,10 @@ namespace colorertake5
 
    string ParserFactory::searchPath()
    {
+      
       return Application.dir().matter("colorer.zip:catalog.xml");
-   };
+
+   }
 
    ParserFactory::ParserFactory(::aura::application * papp) :
       object(papp)
@@ -178,7 +180,7 @@ namespace colorertake5
          string path;
          if(file_path_is_relative_dup(relPath))
          {
-            path = System.dir().sibling(catalogPath, relPath);
+            path = catalogPath * relPath;
             string path2del = path;
             ::str::begins_eat(path, "file://");
             ::str::begins_eat(path, "file:/");
@@ -194,17 +196,17 @@ namespace colorertake5
             {
                // debug_break();
             }
-            stringa straPath;
-            Application.dir().rls(path, &straPath);
+            ::file::patha patha;
+            Application.dir().rls(path, &patha);
             ::file::binary_buffer_sp spfile(allocer());
-            for(int32_t i = 0; i < straPath.get_count(); i++)
+            for(int32_t i = 0; i < patha.get_count(); i++)
             {
-               if(!Application.dir().is(straPath[i]))
+               if(!Application.dir().is(patha[i]))
                {
-                  string str = Application.file().as_string(straPath[i]);
+                  string str = Application.file().as_string(patha[i]);
                   try
                   {
-                     hrcParser->loadSource(straPath[i], str);
+                     hrcParser->loadSource(patha[i], str);
                   }
                   catch(::exception::base &e)
                   {
@@ -271,7 +273,7 @@ namespace colorertake5
 
       StyledHRDMapper *mapper = new StyledHRDMapper(get_app());
 
-      string strDir = System.dir().name(this->catalogPath);
+      ::file::path strDir = *this->catalogPath;
 
       for(int32_t idx = 0; idx < hrdLocV->get_size(); idx++)
       {
@@ -283,7 +285,7 @@ namespace colorertake5
 
                string strPath;
 
-               strPath = System.dir().path(strDir, hrdLocV->element_at(idx));
+               strPath = strDir + hrdLocV->element_at(idx);
 
                ::file::byte_input_stream spfile(Application.file_get_file(strPath, ::file::mode_read | ::file::type_binary));
 

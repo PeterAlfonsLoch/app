@@ -17,6 +17,18 @@
 
 #include "nodeapp/operational_system/operational_system.h"
 
+// very short name ([{c}])ontext (switchers, as it as context) enums
+enum e_context_switcher_null
+{
+   cnull
+};
+
+// very short name ([{c}])ontext (switchers, as it as context) enums
+enum e_context_switcher_empty
+{
+   cempty
+};
+
 template<class T>
 struct remove_reference
 {
@@ -155,7 +167,6 @@ class command_target;
 class cmd_ui;
 class critical_section;
 class mutex;
-class stringa;
 class string;
 class id;
 
@@ -884,10 +895,13 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 //#include "aura/primitive/data/data_tree.h"
 //#include "aura/primitive/data/data_simple_item.h"
 
+#include "aura/filesystem/filesystem/filesystem_path.h"
+
 #include "aura/primitive/primitive_edit.h"
 #include "aura/aura/aura/aura_departament.h"
 #include "aura/aura/aura/aura_departament_container.h"
 #include "aura/aura/xml/xml.h"
+
 //#include "aura/user/simple_ui/simple_ui_style.h"
 //#include "aura/user/simple_ui/simple_ui_interaction.h"
 //#include "aura/database/database.h"
@@ -969,6 +983,8 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 #include "aura/aura/aura/aura_savings.h"
 
 #include "aura/net/net.h"
+
+
 
 #include "aura/filesystem/filesystem/filesystem_application.h"
 

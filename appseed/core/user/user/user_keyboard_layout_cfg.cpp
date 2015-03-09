@@ -46,12 +46,12 @@ namespace user
       }
 
 
-      stringa straPath;
-      System.dir().ls(System.dir().element("app/appmatter/main/_std/_std/keyboard layout"), &straPath);
-      for(int32_t i = 0; i < straPath.get_count(); i++)
+      ::file::patha patha;
+      System.dir().ls(System.dir().element("app/appmatter/main/_std/_std/keyboard layout"), &patha);
+      for(int32_t i = 0; i < patha.get_count(); i++)
       {
          ::user::keyboard_layout_cfg_id layoutid;
-         if(Session.user()->keyboard().initialize(&layoutid, straPath[i]))
+         if(Session.user()->keyboard().initialize(&layoutid, patha[i]))
          {
             m_layoutida.add(layoutid);
          }

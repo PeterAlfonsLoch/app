@@ -1134,11 +1134,11 @@ namespace axis
             pset->m_spafsdata.add(m_prfs);
          }
 
-         stringa straPath;
+         ::file::patha patha;
 
-         stringa straTitle;
+         ::file::patha straTitle;
 
-         m_spfsdata->root_ones(straPath,straTitle);
+         m_spfsdata->root_ones(patha,straTitle);
 
       }
 

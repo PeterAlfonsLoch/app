@@ -18,7 +18,7 @@ namespace xml
       string_to_string       entitiesHash;
       string_to_string       extEntitiesHash;
       parse_info *               m_pparseinfo;
-      string                     m_strLocation;
+      ::file::path                     m_pathLocation;
       string                     m_strData;
       sp(::xml::edit)              m_pedit;
 

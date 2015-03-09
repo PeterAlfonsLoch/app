@@ -1903,7 +1903,7 @@ namespace aura
 
       string strSchemaSystem;
 
-      string strPath = System.dir().appdata("langstyle_settings.xml");
+      string strPath = System.dir().appdata() + "langstyle_settings.xml";
 
       if(file().exists(strPath))
       {
@@ -2940,7 +2940,7 @@ namespace aura
    bool application::gudo_get(const string & strKey,::file::serializable & obj)
    {
 
-      string strPath(strKey);
+      ::file::path strPath(strKey);
 
       strPath.replace("::","/");
 
@@ -2948,7 +2948,7 @@ namespace aura
 
       {
 
-         ::file::binary_buffer_sp file = file_get_file(Application.dir().userappdata(strPath),::file::mode_read);
+         ::file::binary_buffer_sp file = file_get_file(Application.dir().userappdata() + strPath,::file::mode_read);
 
          if(file.is_null())
          {
@@ -2989,7 +2989,7 @@ namespace aura
 
       {
 
-         ::file::binary_buffer_sp file = file_get_file(Application.dir().userappdata(strPath),::file::mode_write | ::file::mode_create | ::file::defer_create_directory);
+         ::file::binary_buffer_sp file = file_get_file(Application.dir().userappdata() + strPath,::file::mode_write | ::file::mode_create | ::file::defer_create_directory);
 
          if(file.is_null())
          {
@@ -3207,7 +3207,7 @@ namespace aura
    //}
 
 
-   //void application::dir_ls_dir(const char * lpcsz,stringa * pstraPath,stringa * pstraTitle)
+   //void application::dir_ls_dir(const char * lpcsz,::file::patha * ppatha,::file::patha * ppathaName)
    //{
 
    //   ::exception::throw_not_implemented(get_app());
@@ -3215,7 +3215,7 @@ namespace aura
    //}
 
 
-   //void application::dir_rls(const char * lpcsz,stringa * pstraPath,stringa * pstraTitle,stringa * pstraRelative)
+   //void application::dir_rls(const char * lpcsz,::file::patha * ppatha,::file::patha * ppathaName,::file::patha * ppathaRelative)
    //{
 
    //   ::exception::throw_not_implemented(get_app());
@@ -3558,34 +3558,34 @@ namespace aura
    }
 
 
-   string application::get_locale_schema_dir()
+   ::file::path application::get_locale_schema_dir()
    {
 
-      return System.dir().simple_path(get_locale(),get_schema());
+      return ::file::path(get_locale())+get_schema();
 
    }
 
 
-   string application::get_locale_schema_dir(const string & strLocale)
+   ::file::path application::get_locale_schema_dir(const string & strLocale)
    {
 
       if(strLocale.is_empty())
       {
 
-         return System.dir().simple_path(get_locale(),get_schema());
+         return ::file::path(get_locale())+get_schema();
 
       }
       else
       {
 
-         return System.dir().simple_path(strLocale,get_schema());
+         return ::file::path(strLocale) +get_schema();
 
       }
 
    }
 
 
-   string application::get_locale_schema_dir(const string & strLocale,const string & strSchema)
+   ::file::path application::get_locale_schema_dir(const string & strLocale,const string & strSchema)
    {
 
       if(strLocale.is_empty())
@@ -3594,13 +3594,13 @@ namespace aura
          if(strSchema.is_empty())
          {
 
-            return System.dir().simple_path(get_locale(),get_schema());
+            return ::file::path(get_locale()) + get_schema();
 
          }
          else
          {
 
-            return System.dir().simple_path(get_locale(),strSchema);
+            return ::file::path(get_locale()) +strSchema;
 
          }
 
@@ -3611,13 +3611,13 @@ namespace aura
          if(strSchema.is_empty())
          {
 
-            return System.dir().simple_path(strLocale,get_schema());
+            return ::file::path(strLocale) +get_schema();
 
          }
          else
          {
 
-            return System.dir().simple_path(strLocale,strSchema);
+            return ::file::path(strLocale) + strSchema;
 
          }
 
@@ -4029,7 +4029,7 @@ namespace aura
 
             string strPath = notinstalled.m_strId;
 
-            strPath = System.dir().ca2module("app");
+            strPath = System.dir().ca2module() + "app";
 
             string strBuildNumber = "latest";
 

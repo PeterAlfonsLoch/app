@@ -25,10 +25,10 @@ namespace fs
    }
 
 
-   bool native::ls(const char * pszDir,stringa * pstraPath,stringa * pstraTitle,int64_array * piaSize,bool_array * pbaDir)
+   bool native::ls(const char * pszDir,::file::patha * ppatha,::file::patha * ppathaName,int64_array * piaSize,bool_array * pbaDir)
    {
 
-      System.dir().ls(get_app(), pszDir, pstraPath, pstraTitle, pbaDir, piaSize);
+      System.dir().ls(get_app(), pszDir, ppatha, ppathaName, pbaDir, piaSize);
 
       return true;
 
@@ -43,10 +43,10 @@ namespace fs
    }
 
 
-   void native::root_ones(stringa & straPath,stringa & straTitle)
+   void native::root_ones(stringa & patha,stringa & straTitle)
    {
 
-      System.dir().root_ones(straPath, straTitle, get_app());
+      System.dir().root_ones(patha, straTitle, get_app());
 
       
 #ifdef WINDOWSEX
@@ -59,7 +59,7 @@ namespace fs
          CSIDL_DESKTOP,
          FALSE);
 
-      straPath.insert_at(0,strDesktopFolder);
+      patha.insert_at(0,strDesktopFolder);
       straTitle.insert_at(0,"Área de Trabalho");
       
 #endif

@@ -51,7 +51,7 @@ namespace zip
 
    }
 
-   bool Util::ls(::aura::application * papp, const char * lpszFileName, bool bRecursive, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, bool_array * pbaIsDir, int64_array * piaSize, e_extract eextract)
+   bool Util::ls(::aura::application * papp, const char * lpszFileName, bool bRecursive, ::file::patha * ppatha, ::file::patha * ppathaName, ::file::patha * ppathaRelative, bool_array * pbaIsDir, int64_array * piaSize, e_extract eextract)
    {
       string strZip;
       string strRemain;
@@ -121,17 +121,17 @@ namespace zip
             {
                if(bRecursive || strTitle.find("/") < 0 || strTitle.find("/") == (strTitle.get_length() - 1))
                {
-                  if(pstraPath != NULL)
+                  if(ppatha != NULL)
                   {
-                     pstraPath->add(strLastZip + ":" + strRemain + strTitle);
+                     ppatha->add(strLastZip + ":" + strRemain + strTitle);
                   }
-                  if(pstraTitle != NULL)
+                  if(ppathaName != NULL)
                   {
-                     pstraTitle->add(strTitle);
+                     ppathaName->add(strTitle);
                   }
-                  if(pstraRelative != NULL)
+                  if(ppathaRelative != NULL)
                   {
-                     pstraRelative->add(strRemain + strTitle);
+                     ppathaRelative->add(strRemain + strTitle);
                   }
                   if(pbaIsDir != NULL)
                   {
@@ -156,32 +156,32 @@ namespace zip
 
    }
 
-   bool Util::ls_dir(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
+   bool Util::ls_dir(::aura::application * papp, const char * lpcsz, ::file::patha * ppatha, ::file::patha * ppathaName)
    {
-      stringa straPath;
-      stringa straTitle;
+      ::file::patha patha;
+      ::file::patha straTitle;
       bool_array baIsDir;
-      if(!ls(papp,lpcsz,false,&straPath,&straTitle,NULL,&baIsDir))
+      if(!ls(papp,lpcsz,false,&patha,&straTitle,NULL,&baIsDir))
          return false;
 
       string strPath;
 
-      for(int32_t i = 0; i < straPath.get_size(); i++)
+      for(int32_t i = 0; i < patha.get_size(); i++)
       {
          if(baIsDir[i])
          {
-            strPath = straPath[i];
-            if(strPath.has_char() && pstraPath->add_unique(strPath) >= 0 && pstraTitle != NULL)
+            strPath = patha[i];
+            if(strPath.has_char() && ppatha->add_unique(strPath) >= 0 && ppathaName != NULL)
             {
-               pstraTitle->add(straTitle[i]);
+               ppathaName->add(straTitle[i]);
             }
          }
          else
          {
-            strPath = Sys(papp).dir().name(straPath[i]);
-            if(strPath.has_char() && pstraPath->add_unique(strPath) >= 0 && pstraTitle != NULL)
+            strPath = Sys(papp).dir().name(patha[i]);
+            if(strPath.has_char() && ppatha->add_unique(strPath) >= 0 && ppathaName != NULL)
             {
-               pstraTitle->add(Sys(papp).dir().name(straTitle[i]));
+               ppathaName->add(Sys(papp).dir().name(straTitle[i]));
             }
          }
 

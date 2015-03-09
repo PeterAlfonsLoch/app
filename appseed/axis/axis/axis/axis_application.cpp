@@ -3234,18 +3234,18 @@ namespace axis
    }
 
 
-   void application::dir_ls_dir(const char * lpcsz,stringa * pstraPath,stringa * pstraTitle)
+   void application::dir_ls_dir(const char * lpcsz,::file::patha * ppatha,::file::patha * ppathaName)
    {
 
-      dir().ls_dir(lpcsz,pstraPath,pstraTitle);
+      dir().ls_dir(lpcsz,ppatha,ppathaName);
 
    }
 
 
-   void application::dir_rls(const char * lpcsz,stringa * pstraPath,stringa * pstraTitle,stringa * pstraRelative)
+   void application::dir_rls(const char * lpcsz,::file::patha * ppatha,::file::patha * ppathaName,::file::patha * ppathaRelative)
    {
 
-      dir().rls(lpcsz,pstraPath,pstraTitle,pstraRelative);
+      dir().rls(lpcsz,ppatha,ppathaName,ppathaRelative);
 
    }
 

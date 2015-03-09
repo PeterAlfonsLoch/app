@@ -287,7 +287,7 @@ restart:
       str.Empty();
       str = psz;
       System.dir().mk(str, papp);
-      stringa straTitle;
+      ::file::patha straTitle;
       string strFormat;
       for(int32_t i = 1; i <= iMaxLevel;)
       {
@@ -783,8 +783,8 @@ restart:
       }
       if(System.dir().is(psz, papp) && (eextract == extract_first || eextract == extract_all || !(::str::ends_ci(psz, ".zip"))))
       {
-         stringa straPath;
-         System.dir().rls(papp, psz, &straPath);
+         ::file::patha patha;
+         System.dir().rls(papp, psz, &patha);
          string strDst;
          string strSrc;
          string strDirSrc(psz);
@@ -793,9 +793,9 @@ restart:
          {
             strDirSrc += ":";
          }
-         for(int32_t i = 0; i < straPath.get_size(); i++)
+         for(int32_t i = 0; i < patha.get_size(); i++)
          {
-            strSrc = straPath[i];
+            strSrc = patha[i];
             strDst = strSrc;
             ::str::begins_eat_ci(strDst, strDirSrc);
             strDst = System.dir().path(strDirDst, strDst);
@@ -1099,7 +1099,7 @@ restart:
    {
       string strDir = System.dir().name(path);
       string strDest = System.dir().path(pszLocation, "");
-      string strSrc = System.dir().path(strDir, "");
+      string strSrc = strDir + "");
       if(strDest == strSrc)
       {
          return copy(path, papp);
@@ -1125,9 +1125,9 @@ restart:
       for(int32_t i = 0; i < stra.get_size(); i++)
       {
 #ifdef WINDOWS
-         move(System.dir().path(strDir, name_(stra[i])), stra[i]);
+         move(strDir + name_(stra[i])), stra[i]);
 #else
-         ::rename(stra[i], System.dir().path(strDir, name_(stra[i])));
+         ::rename(stra[i], strDir + name_(stra[i])));
 #endif
       }
 
@@ -1141,17 +1141,17 @@ restart:
       System.dir().mk(strDir, papp);
 
 #ifdef WINDOWS
-      //         ::MoveFile(psz, System.dir().path(strDir, name_(psz)));
-      move(System.dir().path(strDir, name_(psz)), psz);
+      //         ::MoveFile(psz, strDir + name_(psz)));
+      move(strDir + name_(psz)), psz);
 #else
-      ::rename(psz, System.dir().path(strDir, name_(psz)));
+      ::rename(psz, strDir + name_(psz)));
 #endif
 
    }
 
    void system::replace(const char * pszContext, const char * pszFind, const char * pszReplace, ::aura::application * papp)
    {
-      stringa straTitle;
+      ::file::patha straTitle;
       System.dir().ls(papp, pszContext, NULL, &straTitle);
       string strOld;
       string strNew;

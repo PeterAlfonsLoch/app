@@ -1139,7 +1139,7 @@ bool cregexp::getBackTrace(string *str, SMatches **trace)
 
 
 
-index cregexp::match(string_array & stra, const string & lpcsz, strsize iSize)
+index cregexp::match(stringa & stra, const string & lpcsz, strsize iSize)
 {
    stra.remove_all();
 
@@ -1257,7 +1257,7 @@ bool cregexp::find(const string & str, index iSubString, strsize  * piStart, str
 
 
 
-bool cregexp::split(string_array & stra, index_array & iaStart, index_array & iaEnd,  const string & str, int iLimit, bool bAddEmpty, bool bWithSeparator)
+bool cregexp::split(stringa & stra, index_array & iaStart, index_array & iaEnd,  const string & str, int iLimit, bool bAddEmpty, bool bWithSeparator)
 {
 
    strsize iStart = 0;
@@ -1305,7 +1305,7 @@ bool cregexp::split(string_array & stra, index_array & iaStart, index_array & ia
 }
 
 
-bool cregexp::split(string_array & stra, const string & str, int iLimit, bool bAddEmpty, bool bWithSeparator)
+bool cregexp::split(stringa & stra, const string & str, int iLimit, bool bAddEmpty, bool bWithSeparator)
 {
 
 

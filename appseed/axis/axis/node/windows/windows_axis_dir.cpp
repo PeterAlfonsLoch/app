@@ -240,7 +240,7 @@ namespace windows
    //   return TRUE; // otherwise file name is truly the same
    //}
 
-   //void dir::root_ones(stringa & straPath, stringa & straTitle, ::aura::application * papp)
+   //void dir::root_ones(stringa & patha, stringa & straTitle, ::aura::application * papp)
    //{
    //   DWORD dwSize = ::GetLogicalDriveStrings(0, NULL);
    //   LPTSTR lpszAlloc = (LPTSTR) malloc(dwSize + 1);
@@ -256,7 +256,7 @@ namespace windows
    //         str += *lpsz;  
    //         lpsz++;
    //      }
-   //      straPath.add(str);
+   //      patha.add(str);
    //      str.trim(":/\\");
    //      straTitle.add("Drive " + str);
    //      lpsz++;
@@ -266,107 +266,107 @@ namespace windows
    //}
 
    
-   bool dir::ls_pattern(::aura::application * papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, int64_array * piaSize)
+   bool dir::ls_pattern(::aura::application * papp, const char * lpcsz, const char * pszPattern, ::file::patha * ppatha, ::file::patha * ppathaName, bool_array * pbaIsDir, int64_array * piaSize)
    {
       
-      if(::file::dir::axis::system::ls_pattern(papp,lpcsz,pszPattern,pstraPath,pstraTitle,pbaIsDir,piaSize))
+      if(::file::dir::axis::system::ls_pattern(papp,lpcsz,pszPattern,ppatha,ppathaName,pbaIsDir,piaSize))
       {
 
          return true;
          
       }
 
-      return ::windows::dir::ls_pattern(papp,lpcsz,pszPattern,pstraPath,pstraTitle,pbaIsDir,piaSize);
+      return ::windows::dir::ls_pattern(papp,lpcsz,pszPattern,ppatha,ppathaName,pbaIsDir,piaSize);
 
    }
 
 
-   bool dir::rls(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, e_extract eextract)
+   bool dir::rls(::aura::application * papp, const char * lpcsz, ::file::patha * ppatha, ::file::patha * ppathaName, ::file::patha * ppathaRelative, e_extract eextract)
    {
       
-      if(::file::dir::axis::system::rls(papp,lpcsz,pstraPath,pstraTitle,pstraRelative,eextract))
+      if(::file::dir::axis::system::rls(papp,lpcsz,ppatha,ppathaName,ppathaRelative,eextract))
       {
 
          return true;
 
       }
 
-      return ::windows::dir::rls(papp,lpcsz,pstraPath,pstraTitle,pstraRelative,eextract);
+      return ::windows::dir::rls(papp,lpcsz,ppatha,ppathaName,ppathaRelative,eextract);
 
    }
 
 
-   bool dir::rls_pattern(::aura::application * papp, const char * lpcsz, const char * lpszPattern, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, bool_array * pbaIsDir, int64_array * piaSize, e_extract eextract)
+   bool dir::rls_pattern(::aura::application * papp, const char * lpcsz, const char * lpszPattern, ::file::patha * ppatha, ::file::patha * ppathaName, ::file::patha * ppathaRelative, bool_array * pbaIsDir, int64_array * piaSize, e_extract eextract)
    {
 
-      if(::file::dir::axis::system::rls_pattern(papp,lpcsz,lpszPattern,pstraPath,pstraTitle,pstraRelative,pbaIsDir,piaSize,eextract))
+      if(::file::dir::axis::system::rls_pattern(papp,lpcsz,lpszPattern,ppatha,ppathaName,ppathaRelative,pbaIsDir,piaSize,eextract))
       {
 
          return true;
 
       }
 
-      return ::windows::dir::rls_pattern(papp,lpcsz,lpszPattern,pstraPath,pstraTitle,pstraRelative,pbaIsDir,piaSize,eextract);
+      return ::windows::dir::rls_pattern(papp,lpcsz,lpszPattern,ppatha,ppathaName,ppathaRelative,pbaIsDir,piaSize,eextract);
 
    }
 
 
-   bool dir::rls_dir(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative)
+   bool dir::rls_dir(::aura::application * papp, const char * lpcsz, ::file::patha * ppatha, ::file::patha * ppathaName, ::file::patha * ppathaRelative)
    {
 
-      if(::file::dir::axis::system::rls_dir(papp,lpcsz,pstraPath,pstraTitle,pstraRelative))
+      if(::file::dir::axis::system::rls_dir(papp,lpcsz,ppatha,ppathaName,ppathaRelative))
       {
 
          return true;
 
       }
 
-      return ::windows::dir::rls_dir(papp,lpcsz,pstraPath,pstraTitle,pstraRelative);
+      return ::windows::dir::rls_dir(papp,lpcsz,ppatha,ppathaName,ppathaRelative);
 
    }
 
    
-   bool dir::ls_dir(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
+   bool dir::ls_dir(::aura::application * papp, const char * lpcsz, ::file::patha * ppatha, ::file::patha * ppathaName)
    {
       
-      if(::file::dir::axis::system::ls_dir(papp,lpcsz,pstraPath,pstraTitle))
+      if(::file::dir::axis::system::ls_dir(papp,lpcsz,ppatha,ppathaName))
       {
 
          return true;
 
       }
 
-      return ::windows::dir::ls_dir(papp,lpcsz,pstraPath,pstraTitle);
+      return ::windows::dir::ls_dir(papp,lpcsz,ppatha,ppathaName);
       
    }
 
 
-   bool dir::ls_file(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
+   bool dir::ls_file(::aura::application * papp, const char * lpcsz, ::file::patha * ppatha, ::file::patha * ppathaName)
    {
 
-      if(::file::dir::axis::system::ls_file(papp,lpcsz,pstraPath,pstraTitle))
+      if(::file::dir::axis::system::ls_file(papp,lpcsz,ppatha,ppathaName))
       {
 
          return true;
 
       }
 
-      return ::windows::dir::ls_file(papp,lpcsz,pstraPath,pstraTitle);
+      return ::windows::dir::ls_file(papp,lpcsz,ppatha,ppathaName);
 
    }
 
 
-   bool dir::ls(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, int64_array * piaSize)
+   bool dir::ls(::aura::application * papp, const char * lpcsz, ::file::patha * ppatha, ::file::patha * ppathaName, bool_array * pbaIsDir, int64_array * piaSize)
    {
 
-      if(::file::dir::axis::system::ls(papp,lpcsz,pstraPath,pstraTitle,pbaIsDir,piaSize))
+      if(::file::dir::axis::system::ls(papp,lpcsz,ppatha,ppathaName,pbaIsDir,piaSize))
       {
 
          return true;
 
       }
 
-      return ::windows::dir::ls(papp,lpcsz,pstraPath,pstraTitle,pbaIsDir,piaSize);
+      return ::windows::dir::ls(papp,lpcsz,ppatha,ppathaName,pbaIsDir,piaSize);
 
    }
 
@@ -697,18 +697,18 @@ namespace windows
    //{
    //   if(bRecursive)
    //   {
-   //      stringa straPath;
-   //      stringa straTitle;
-   //      ls(papp, psz, &straPath, &straTitle);         
-   //      for(int32_t i = 0; i < straPath.get_count(); i++)
+   //      ::file::patha patha;
+   //      ::file::patha straTitle;
+   //      ls(papp, psz, &patha, &straTitle);         
+   //      for(int32_t i = 0; i < patha.get_count(); i++)
    //      {
-   //         if(is(straPath[i], papp))
+   //         if(is(patha[i], papp))
    //         {
    //            rm(papp, path(psz, straTitle[i]), true);
    //         }
    //         else
    //         {
-   //            ::DeleteFile(straPath[i]);
+   //            ::DeleteFile(patha[i]);
    //         }
    //      }
    //   }

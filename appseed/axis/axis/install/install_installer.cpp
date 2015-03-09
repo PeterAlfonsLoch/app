@@ -582,18 +582,18 @@ install_begin:;
 
          {
 
-            stringa straPath;
+            ::file::patha patha;
 
-            straPath.add_tokens(m_strAppMatterList, "\n");
+            patha.add_tokens(m_strAppMatterList, "\n");
 
             System.install().trace().rich_trace("***appmatter");
 
-            for(int32_t i = 0; i < straPath.get_count(); i++)
+            for(int32_t i = 0; i < patha.get_count(); i++)
             {
-               System.install().trace().rich_trace(straPath[i]);
+               System.install().trace().rich_trace(patha[i]);
             }
 
-            GetFileListEx(straFileList, straPath, mapLen, mapGzLen, mapMd5, mapFlag);
+            GetFileListEx(straFileList, patha, mapLen, mapGzLen, mapMd5, mapFlag);
 
          }
 
@@ -2120,16 +2120,16 @@ install_begin:;
 
 
 
-   int32_t installer::GetFileListEx(stringa & stringa, class stringa  & straPath, string_to_intptr & mapLen, string_to_intptr & mapGzLen, string_to_string & mapMd5, string_to_intptr & mapFlag)
+   int32_t installer::GetFileListEx(stringa & stringa, class stringa  & patha, string_to_intptr & mapLen, string_to_intptr & mapGzLen, string_to_string & mapMd5, string_to_intptr & mapFlag)
    {
 
       int32_t iCurrent;
 
       string strPlatform = System.install().get_platform();
-      for(int32_t i = 0; i < straPath.get_count(); i++)
+      for(int32_t i = 0; i < patha.get_count(); i++)
       {
 
-         string strPathParam = straPath[i];
+         string strPathParam = patha[i];
 
          if(strPathParam.begins_ci("stage\\basis\\"))
          {

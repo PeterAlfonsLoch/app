@@ -162,7 +162,7 @@ namespace aura
 #ifdef METROWIN
       return true;
 #endif
-      string strMain = System.dir().path(System.dir().element(), "app\\appmatter\\main");
+      auto strMain = System.dir().element() + "app\\appmatter\\main";
       if(!load(strMain))
          return false;
       return true;
@@ -171,28 +171,27 @@ namespace aura
    bool str::load(const char * pszBaseDir)
    {
       string strMain = pszBaseDir;
-      stringa straLangPath;
-      stringa straLang;
+      ::file::patha straLangPath;
+      ::file::patha straLang;
       Application.dir().ls_dir(strMain, &straLangPath, &straLang);
       for(int32_t iLang = 0; iLang < straLang.get_count(); iLang++)
       {
          string strLang = straLang[iLang];
          if(strLang.CompareNoCase(".svn") == 0)
             continue;
-         stringa straStylePath;
-         stringa straStyle;
+         ::file::patha straStylePath;
+         ::file::patha straStyle;
          Application.dir().ls_dir(straLangPath[iLang], &straStylePath, &straStyle);
          for(int32_t iStyle = 0; iStyle < straStyle.get_count(); iStyle++)
          {
             string idStyle = straStyle[iStyle];
             if(idStyle.CompareNoCase(".svn") == 0)
                continue;
-            stringa straPath;
-            Application.dir().rls(System.dir().path(straStylePath[iStyle], "uistr"),
-               &straPath);
-            for(int32_t iPath = 0; iPath < straPath.get_count(); iPath++)
+            ::file::patha patha;
+            Application.dir().rls(straStylePath[iStyle] + "uistr", &patha);
+            for(int32_t iPath = 0; iPath < patha.get_count(); iPath++)
             {
-               string strPath = straPath[iPath];
+               string strPath = patha[iPath];
                if(::str::ends_ci(strPath, "\\.svn"))
                   continue;
                if(::str::find_ci("\\.svn\\", strPath) >= 0)
@@ -969,7 +968,7 @@ namespace aura
 
 
 
-   bool str_context::match(const cregexp_util & u,string_array & stra,const char * psz,id pszExp,id pszRoot)
+   bool str_context::match(const cregexp_util & u,stringa & stra,const char * psz,id pszExp,id pszRoot)
    {
 
       stringa straCandidate;

@@ -303,11 +303,11 @@ public:
 
 
    bool    match(const string & lpcsz);
-   index   match(string_array & stra, const string & lpcsz, strsize iSize);
+   index   match(stringa & stra, const string & lpcsz, strsize iSize);
    bool    find(string & strMatch, const string & str, index iSubString, strsize * piStart = NULL, strsize * piEnd = NULL);
    bool    find(const string & str, index iSubString, strsize * piStart = NULL, strsize * piEnd = NULL);
-   bool    split(string_array & stra, index_array & iaStart, index_array & iaEnd, const string & str, int iLimit = -1, bool bAddEmpty = true, bool bWithSeparator = false);
-   bool    split(string_array & stra, const string & str, int iLimit = -1, bool bAddEmpty = true, bool bWithSeparator = false);
+   bool    split(stringa & stra, index_array & iaStart, index_array & iaEnd, const string & str, int iLimit = -1, bool bAddEmpty = true, bool bWithSeparator = false);
+   bool    split(stringa & stra, const string & str, int iLimit = -1, bool bAddEmpty = true, bool bWithSeparator = false);
    bool    replace(string & str, const string & strTopic, index iSubString, const string & strReplace, strsize start = 0, strsize end = -1);
    bool    replace(string & str, index iSubString, const string & strReplace, strsize start = 0, strsize end = -1);
 

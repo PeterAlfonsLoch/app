@@ -34,7 +34,7 @@ namespace str
       void Restart();
       void Restart(string &strNew);
       bool GetNextToken(string &strToken, const char * lpSeparator, bool bWithSeparator = FALSE);
-      bool GetNextSmallestToken(string &strToken, string_array & straSeparator, bool bWithSeparator = FALSE);
+      bool GetNextSmallestToken(string &strToken, stringa & straSeparator, bool bWithSeparator = FALSE);
       // Any of separator character
       bool GetNextTokenEx(string &strToken, const char * lpSeparator, bool bWithSeparator = false, bool bSkipAdjacent = false);
 

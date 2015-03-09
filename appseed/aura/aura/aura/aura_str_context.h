@@ -197,7 +197,7 @@ namespace aura
       }
 
 
-      virtual bool match(const cregexp_util & u,string_array & stra,const char * psz,id pszExp,id pszRoot);
+      virtual bool match(const cregexp_util & u,stringa & stra,const char * psz,id pszExp,id pszRoot);
 
 
    };

@@ -35,18 +35,18 @@ public:
    index add(const char * newElement);
    index add(const string & newElement);
    void push(const string & newElement);
-   ::count add(const string_array& src);
+   ::count add(const stringa& src);
 
-   void copy(const string_array& src);
+   void copy(const stringa& src);
    string & operator[](index nIndex);
    void insert_at(index nIndex, const char * newElement, ::count nCount = 1);
    void insert_at(index nIndex, const string & newElement, ::count nCount = 1);
-   void insert_at(index nStartIndex, const string_array & NewArray);
+   void insert_at(index nStartIndex, const stringa & NewArray);
 
    // stringa overrides
-   void add_tokens(const char * lpcsz, const char * lpcszSeparator, bool bAddEmpty);
-   void add_unique(const char * lpcsz);
-   void add_normal(const char * lpcsz);
+   void add_tokens(const string &  lpcsz,const string &  lpcszSeparator,bool bAddEmpty);
+   void add_unique(const string & lpcsz);
+   void add_normal(const string &  lpcsz);
 
    static int32_t Compare(const char * lpcszA, const char * lpcszB);
    static int32_t CompareNoCase(const char * lpcszA, const char * lpcszB);
@@ -112,13 +112,13 @@ inline void str_sort_array::push(const string & newElement)
    return m_stra.push_back(newElement);
 }
 
-inline ::count str_sort_array::add(const string_array& src)
+inline ::count str_sort_array::add(const stringa& src)
 {
    m_bSorted = false;
    return m_stra.add(src);
 }
 
-inline void str_sort_array::copy(const string_array& src)
+inline void str_sort_array::copy(const stringa& src)
 {
    m_bSorted = false;
    m_stra.copy(src);
@@ -142,7 +142,7 @@ inline void str_sort_array::insert_at(index nIndex, const string & newElement, :
    m_stra.insert_at(nIndex, newElement, nCount);
 }
 
-inline void str_sort_array::insert_at(index nStartIndex, const string_array & NewArray)
+inline void str_sort_array::insert_at(index nStartIndex, const stringa & NewArray)
 {
    m_bSorted = false;
    m_stra.insert_at(nStartIndex, NewArray);
@@ -162,19 +162,19 @@ inline void str_sort_array::swap(index iA, index iB)
 }
 
 // stringa overrides
-inline void str_sort_array::add_tokens(const char * lpcsz, const char * lpcszSeparator, bool bAddEmpty)
+inline void str_sort_array::add_tokens(const string &  lpcsz,const string &  lpcszSeparator,bool bAddEmpty)
 {
    m_bSorted = false;
    m_stra.add_tokens(lpcsz, lpcszSeparator, bAddEmpty);
 }
 
-inline void str_sort_array::add_unique(const char * lpcsz)
+inline void str_sort_array::add_unique(const string &  lpcsz)
 {
    m_bSorted = false;
    m_stra.add_unique(lpcsz);
 }
 
-inline void str_sort_array::add_normal(const char * lpcsz)
+inline void str_sort_array::add_normal(const string &  lpcsz)
 {
    m_bSorted = false;
    m_stra.add_normal(lpcsz);

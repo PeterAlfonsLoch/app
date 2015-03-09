@@ -74,10 +74,10 @@ namespace aura
       bool                                         m_bMatterFromHttpCache;
       bool                                         m_bGudoNetCache;
 
-      string                                       m_strCa2ModulePath;
-      string                                       m_strCa2ModuleFolder;
-      string                                       m_strModulePath;
-      string                                       m_strModuleFolder;
+      ::file::path                                 m_pathCa2Module;
+      ::file::path                                 m_pathCa2ModuleFolder;
+      ::file::path                                 m_pathModule;
+      ::file::path                                 m_pathModuleFolder;
 
       ::process::departament                       m_process;
 
@@ -340,15 +340,15 @@ namespace aura
       virtual ::count get_application_count();
 
 
-      virtual string get_ca2_module_folder();
-      virtual string get_ca2_module_file_path();
-      virtual string get_module_folder();
-      virtual string get_module_file_path();
-      virtual string get_module_title();
-      virtual string get_module_name();
+      virtual ::file::path get_ca2_module_folder();
+      virtual ::file::path get_ca2_module_file_path();
+      virtual ::file::path get_module_folder();
+      virtual ::file::path get_module_file_path();
+      virtual ::file::path get_module_title();
+      virtual ::file::path get_module_name();
 
 
-      virtual string dir_appmatter_locator(::aura::application * papp);
+      virtual ::file::path dir_appmatter_locator(::aura::application * papp);
 
       virtual string crypto_md5_text(const string & str);
 

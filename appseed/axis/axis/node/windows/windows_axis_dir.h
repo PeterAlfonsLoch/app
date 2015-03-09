@@ -22,20 +22,20 @@ namespace windows
 
 
          //virtual string relpath(const char * lpcszSource,const char * lpcszRelative,const char * lpcsz2 = NULL);
-         virtual bool  ls_pattern(::aura::application * papp,const char * lpcsz,const char * lpcszPattern,stringa * pstraPath = NULL,stringa * pstraTitle = NULL,bool_array * pbaIsDir = NULL,int64_array * piaSize = NULL);
-         virtual bool  ls(::aura::application * papp,const char * lpcsz,stringa * pstraPath = NULL,stringa * pstraTitle = NULL,bool_array * pbaIsDir = NULL,int64_array * piaSize = NULL);
-         virtual bool  rls_pattern(::aura::application * papp,const char * lpcsz,const char * lpcszPattern,stringa * pstraPath = NULL,stringa * pstraTitle = NULL,stringa * pstraRelative = NULL,bool_array * pbaIsDir = NULL,int64_array * piaSize = NULL,e_extract eextract = extract_first);
-         virtual bool  rls(::aura::application * papp,const char * lpcsz,stringa * pstraPath = NULL,stringa * pstraTitle = NULL,stringa * pstraRelative = NULL,e_extract eextract = extract_first);
-         virtual bool  rls_dir(::aura::application * papp,const char * lpcsz,stringa * pstraPath = NULL,stringa * pstraTitle = NULL,stringa * pstraRelative = NULL);
-         virtual bool  ls_dir(::aura::application * papp,const char * lpcsz,stringa * pstraPath = NULL,stringa * pstraTitle = NULL);
+         virtual bool  ls_pattern(::aura::application * papp,const char * lpcsz,const char * lpcszPattern,::file::patha * ppatha = NULL,::file::patha * ppathaName = NULL,bool_array * pbaIsDir = NULL,int64_array * piaSize = NULL);
+         virtual bool  ls(::aura::application * papp,const char * lpcsz,::file::patha * ppatha = NULL,::file::patha * ppathaName = NULL,bool_array * pbaIsDir = NULL,int64_array * piaSize = NULL);
+         virtual bool  rls_pattern(::aura::application * papp,const char * lpcsz,const char * lpcszPattern,::file::patha * ppatha = NULL,::file::patha * ppathaName = NULL,::file::patha * ppathaRelative = NULL,bool_array * pbaIsDir = NULL,int64_array * piaSize = NULL,e_extract eextract = extract_first);
+         virtual bool  rls(::aura::application * papp,const char * lpcsz,::file::patha * ppatha = NULL,::file::patha * ppathaName = NULL,::file::patha * ppathaRelative = NULL,e_extract eextract = extract_first);
+         virtual bool  rls_dir(::aura::application * papp,const char * lpcsz,::file::patha * ppatha = NULL,::file::patha * ppathaName = NULL,::file::patha * ppathaRelative = NULL);
+         virtual bool  ls_dir(::aura::application * papp,const char * lpcsz,::file::patha * ppatha = NULL,::file::patha * ppathaName = NULL);
          //virtual bool  has_subdir(::aura::application * papp,const char * lpcsz);
-         virtual bool  ls_file(::aura::application * papp,const char * lpcsz,stringa * pstraPath = NULL,stringa * pstraTitle = NULL);
+         virtual bool  ls_file(::aura::application * papp,const char * lpcsz,::file::patha * ppatha = NULL,::file::patha * ppathaName = NULL);
          virtual bool  is(const char * lpcsz,::aura::application * papp);
          virtual bool  is(const string & str,::aura::application * papp);
          virtual bool  name_is(const string & str,::aura::application * papp);
          //virtual bool  is_inside(const char * lpcszDir,const char * lpcszPath,::aura::application * papp);
          //virtual bool  is_inside_time(const char * lpcsz,::aura::application * papp);
-         //virtual void root_ones(stringa & straPath,stringa & straTitle,::aura::application * papp);
+         //virtual void root_ones(stringa & patha,stringa & straTitle,::aura::application * papp);
          //virtual bool mk(const char * lpcsz,::aura::application * papp);
          //virtual bool rm(::aura::application * papp,const char * psz,bool bRecursive = true);
 

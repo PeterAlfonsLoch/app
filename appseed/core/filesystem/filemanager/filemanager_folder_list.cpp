@@ -153,14 +153,14 @@ namespace filemanager
       Folder folder;
 
 
-      stringa straPath;
-      stringa straTitle;
+      ::file::patha patha;
+      ::file::patha straTitle;
 
-      Application.dir().ls(strParent, &straPath, &straTitle);
+      Application.dir().ls(strParent, &patha, &straTitle);
 
-      for (int32_t i = 0; i < straPath.get_count(); i++)
+      for (int32_t i = 0; i < patha.get_count(); i++)
       {
-         folder.m_strPath = straPath[i];
+         folder.m_strPath = patha[i];
          folder.m_wstrName = straTitle[i];
          m_foldera.AddFolder(folder);
       }

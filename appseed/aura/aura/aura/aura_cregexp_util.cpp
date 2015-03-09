@@ -14,7 +14,7 @@ cregexp_util::~cregexp_util()
 
 
 
-index cregexp_util::match(string_array & stra, const string & lpcsz, const string & lpcszExp, bool bCaseInsensitive, strsize iSize)
+index cregexp_util::match(stringa & stra, const string & lpcsz, const string & lpcszExp, bool bCaseInsensitive, strsize iSize)
 {
 
    sp(cregexp) pre = CompileExpression(lpcszExp, bCaseInsensitive);
@@ -74,7 +74,7 @@ cregexp * cregexp_util::CompileExpression(const string & lpszExp, bool bCaseInse
 }
 
 
-bool cregexp_util::split(string_array & stra, index_array & iaStart, index_array & iaEnd,  const string & str, const string & strExp, int iLimit, bool bAddEmpty, bool bWithSeparator)
+bool cregexp_util::split(stringa & stra, index_array & iaStart, index_array & iaEnd,  const string & str, const string & strExp, int iLimit, bool bAddEmpty, bool bWithSeparator)
 {
 
    sp(cregexp) pre = CompileExpression(strExp, false);
@@ -89,7 +89,7 @@ bool cregexp_util::split(string_array & stra, index_array & iaStart, index_array
 
 }
 
-bool    cregexp_util::split(string_array & stra, const string & str, const string & strExp, int iLimit, bool bAddEmpty, bool bWithSeparator)
+bool    cregexp_util::split(stringa & stra, const string & str, const string & strExp, int iLimit, bool bAddEmpty, bool bWithSeparator)
 {
 
    sp(cregexp) pre = CompileExpression(strExp, false);
@@ -116,7 +116,7 @@ bool    cregexp_util::split(string_array & stra, const string & str, const strin
 // 'true' if successfull.
 //
 ///////////////////////////////////////////////////////////////////////////////
-bool cregexp_util::add_tokens(string_array & stra, const string & lpszSubject, const string & strExp, index iSubString /* =0 */)
+bool cregexp_util::add_tokens(stringa & stra, const string & lpszSubject, const string & strExp, index iSubString /* =0 */)
 {
 
    sp(cregexp) pre = CompileExpression(strExp, false);
@@ -174,7 +174,7 @@ bool cregexp_util::match(const string & lpsz, const string & strExp)
 
 
 
-void cregexp_util::Format(string & str, string_array & wstraArg)
+void cregexp_util::Format(string & str, stringa & wstraArg)
 {
 
    string wstrExp;

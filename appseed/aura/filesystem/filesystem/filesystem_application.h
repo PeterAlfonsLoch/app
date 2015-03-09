@@ -19,7 +19,7 @@ namespace file
 
 
       virtual void trash_that_is_not_trash(const char * psz);
-      virtual void trash_that_is_not_trash(stringa & stra);
+      virtual void trash_that_is_not_trash(::file::patha & stra);
 
 
       virtual void replace(const char * pszContext, const char * pszFind, const char * pszReplace);
@@ -65,7 +65,7 @@ namespace file
 
 
       void dtf(const char * pszFile,const char * pszDir);
-      void dtf(const char * pszFile,stringa & stra,stringa & straRelative);
+      void dtf(const char * pszFile,::file::patha & stra,::file::patha & straRelative);
       void ftd(const char * pszDir,const char * pszFile);
 
 

@@ -310,7 +310,9 @@ CLASS_DECL_AURA bool file_get_memory_dup(::primitive::memory_base & memory, cons
 
 template < typename N > class numeric_array;
 typedef CLASS_DECL_AURA numeric_array < uint32_t > uint_array;
-class stringa;
+template < typename Type, typename RawType = typename Type >
+class string_array;
+typedef string_array < string > stringa;
 
 #ifndef METROWIN
 CLASS_DECL_AURA bool PrintModules(string & strImage, uint32_t processID, const char * pszDll );

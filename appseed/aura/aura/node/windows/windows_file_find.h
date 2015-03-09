@@ -29,8 +29,8 @@ namespace windows
 
       // Attributes
       int64_t get_length() const;
-      virtual string GetFileName() const;
-      virtual string GetFilePath() const;
+      virtual ::file::path GetFileName() const;
+      virtual ::file::path GetFilePath() const;
       virtual string GetFileTitle() const;
       virtual string GetFileURL() const;
       virtual string GetRoot() const;

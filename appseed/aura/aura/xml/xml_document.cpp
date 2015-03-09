@@ -40,7 +40,7 @@ namespace xml
    bool document::load_location(const char * psz)
    {
 
-      m_strLocation = psz;
+      m_pathLocation = psz;
       string str;
       str = Session.file().as_string(psz);
       return load(str);
@@ -162,7 +162,7 @@ namespace xml
       if(extEnt.has_char())
       {
          bExt = true;
-         return Session.file().as_string(System.dir().sibling(m_strLocation,extEnt));
+         return Session.file().as_string(m_pathLocation * extEnt);
       }
       return "";
    }

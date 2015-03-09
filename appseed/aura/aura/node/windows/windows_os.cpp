@@ -340,10 +340,10 @@ namespace windows
          {
 
             keyPlugin.SetValue("Description", "core plugin for NPAPI");
-            keyPlugin.SetValue("Path", System.dir().ca2module("npca2.dll"));
+            keyPlugin.SetValue("Path", System.dir().ca2module() +"npca2.dll");
             keyPlugin.SetValue("ProductName", "core plugin for NPAPI");
             keyPlugin.SetValue("Vendor", "core Desenvolvimento de Software Ltda.");
-            keyPlugin.SetValue("Version", Application.file().as_string(System.dir().element("appdata/x86/ca2_build.txt")));
+            keyPlugin.SetValue("Version", Application.file().as_string(System.dir().element()+"appdata/x86/ca2_build.txt"));
 
             registry::Key keyApplicationCa2;
 
@@ -1030,7 +1030,7 @@ namespace windows
 
       strExe += ".exe";
 
-      string strCalling = System.dir().path(Sys(papp).m_strModuleFolder, strExe) + " : service";
+      string strCalling = Sys(papp).m_pathModuleFolder + strExe << " : service";
 
       if(System.directrix()->m_varTopicQuery.has_property("no_remote_simpledb"))
       {

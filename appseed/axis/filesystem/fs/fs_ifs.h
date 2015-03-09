@@ -31,9 +31,9 @@ public:
    
    virtual bool has_subdir(const char * pszPath);
    virtual bool fast_has_subdir(const char * pszPath);
-   virtual bool ls(const char * pszDir,stringa * pstraPath,stringa * pstraTitle,int64_array * piaSize,bool_array * pbaDir);
+   virtual bool ls(const char * pszDir,::file::patha * ppatha,::file::patha * ppathaName,int64_array * piaSize,bool_array * pbaDir);
    virtual bool is_dir(const char * pszPath);
-   virtual void root_ones(stringa & straPath, stringa & straTitle);
+   virtual void root_ones(stringa & patha, stringa & straTitle);
 
    virtual string file_name(const char * pszPath);
    //virtual string dir_path(const char * psz1, const char * psz2);

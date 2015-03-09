@@ -23,7 +23,7 @@ namespace file
 
          bool is_equal(const char * lpszFilPathA, const char * lpszFilPathB);
          bool eat_end_level(string & str, int32_t iLevelCount, const char * lpSeparator);
-         void split(stringa & stra, const char * lpcszPath);
+         void split(::file::patha & stra, const char * lpcszPath);
          bool is_relative(const char * psz);
 
          bool rename(const char * pszNew, const char * psz, ::aura::application * papp);
@@ -46,7 +46,7 @@ namespace file
       virtual string paste(const char * pszLocation, const char * path, ::aura::application * papp);
 
       virtual void trash_that_is_not_trash(const char * psz, ::aura::application * papp);
-      virtual void trash_that_is_not_trash(stringa & stra, ::aura::application * papp);
+      virtual void trash_that_is_not_trash(::file::patha & stra, ::aura::application * papp);
 
       virtual string title_(const char * path);
       virtual string name_(const char * path);
@@ -68,8 +68,8 @@ namespace file
       virtual var length(const char * path, var * pvarQuery, ::aura::application * papp);
       virtual var length(const string & path, var * pvarQuery, ::aura::application * papp);
 
-      void  get_ascendants_path(const char * lpcsz, stringa & stra);
-      void  get_ascendants_name(const char * lpcsz, stringa & stra);
+      void  get_ascendants_path(const char * lpcsz, ::file::patha & stra);
+      void  get_ascendants_name(const char * lpcsz, ::file::patha & stra);
 
       template < class T >
       bool output(::aura::application * papp,const char * pszOutput,T * p,bool (T::*lpfnOuput)(::file::output_stream &,const char *),const char * lpszSource);
@@ -106,7 +106,7 @@ namespace file
 
 
 
-      virtual int32_t filterex_time_square(const char * pszPrefix,stringa & stra);
+      virtual int32_t filterex_time_square(const char * pszPrefix,::file::patha & stra);
       virtual bool mk_time(const char * lpcszCandidate);
 
       virtual string as_string(var varFile,::aura::application * papp);
@@ -151,7 +151,7 @@ namespace file
 
       virtual void dtf(const char * pszFile,const char * pszDir,::aura::application * papp);
 
-      virtual void dtf(const char * pszFile,stringa & stra,stringa & straRelative,::aura::application * papp);
+      virtual void dtf(const char * pszFile,::file::patha & stra,::file::patha & straRelative,::aura::application * papp);
 
       virtual void ftd(const char * pszDir,const char * pszFile,::aura::application * papp);
 

@@ -171,34 +171,34 @@ namespace file
          //}
 
 
-         //bool application::ls_pattern(const char * lpcsz,const char * lpcszPattern,stringa * pstraPath,stringa * pstraTitle,bool_array * pbaIsDir,int64_array * piaSize)
+         //bool application::ls_pattern(const char * lpcsz,const char * lpcszPattern,::file::patha * ppatha,::file::patha * ppathaName,bool_array * pbaIsDir,int64_array * piaSize)
          //{
-         //   return m_pauraapp->m_paurasystem->m_spdir.m_p->ls_pattern(m_pauraapp,lpcsz,lpcszPattern,pstraPath,pstraTitle,pbaIsDir,piaSize);
+         //   return m_pauraapp->m_paurasystem->m_spdir.m_p->ls_pattern(m_pauraapp,lpcsz,lpcszPattern,ppatha,ppathaName,pbaIsDir,piaSize);
          //}
 
-         //void application::ls(const char * lpcsz,stringa * pstraPath,stringa * pstraTitle,bool_array * pbaIsDir,int64_array * piaSize)
+         //void application::ls(const char * lpcsz,::file::patha * ppatha,::file::patha * ppathaName,bool_array * pbaIsDir,int64_array * piaSize)
          //{
-         //   return m_pauraapp->m_paurasystem->m_spdir.m_p->ls(m_pauraapp,lpcsz,pstraPath,pstraTitle,pbaIsDir,piaSize);
+         //   return m_pauraapp->m_paurasystem->m_spdir.m_p->ls(m_pauraapp,lpcsz,ppatha,ppathaName,pbaIsDir,piaSize);
          //}
 
-         //bool application::rls_pattern(const char * lpcsz,const char * lpcszPattern,stringa * pstraPath,stringa * pstraTitle,stringa * pstraRelative,bool_array * pbaIsDir,int64_array * piaSize)
+         //bool application::rls_pattern(const char * lpcsz,const char * lpcszPattern,::file::patha * ppatha,::file::patha * ppathaName,::file::patha * ppathaRelative,bool_array * pbaIsDir,int64_array * piaSize)
          //{
-         //   return m_pauraapp->m_paurasystem->m_spdir.m_p->rls_pattern(m_pauraapp,lpcsz,lpcszPattern,pstraPath,pstraTitle,pstraRelative,pbaIsDir,piaSize);
+         //   return m_pauraapp->m_paurasystem->m_spdir.m_p->rls_pattern(m_pauraapp,lpcsz,lpcszPattern,ppatha,ppathaName,ppathaRelative,pbaIsDir,piaSize);
          //}
 
-         //bool application::rls(const char * lpcsz,stringa * pstraPath,stringa * pstraTitle,stringa * pstraRelative)
+         //bool application::rls(const char * lpcsz,::file::patha * ppatha,::file::patha * ppathaName,::file::patha * ppathaRelative)
          //{
-         //   return m_pauraapp->m_paurasystem->m_spdir.m_p->rls(m_pauraapp,lpcsz,pstraPath,pstraTitle,pstraRelative);
+         //   return m_pauraapp->m_paurasystem->m_spdir.m_p->rls(m_pauraapp,lpcsz,ppatha,ppathaName,ppathaRelative);
          //}
 
-         //void application::rls_dir(const char * lpcsz,stringa * pstraPath,stringa * pstraTitle,stringa * pstraRelative)
+         //void application::rls_dir(const char * lpcsz,::file::patha * ppatha,::file::patha * ppathaName,::file::patha * ppathaRelative)
          //{
-         //   return m_pauraapp->m_paurasystem->m_spdir.m_p->rls_dir(m_pauraapp,lpcsz,pstraPath,pstraTitle,pstraRelative);
+         //   return m_pauraapp->m_paurasystem->m_spdir.m_p->rls_dir(m_pauraapp,lpcsz,ppatha,ppathaName,ppathaRelative);
          //}
 
-         //void application::ls_dir(const char * lpcsz,stringa * pstraPath,stringa * pstraTitle)
+         //void application::ls_dir(const char * lpcsz,::file::patha * ppatha,::file::patha * ppathaName)
          //{
-         //   return m_pauraapp->m_paurasystem->m_spdir.m_p->ls_dir(m_pauraapp,lpcsz,pstraPath,pstraTitle);
+         //   return m_pauraapp->m_paurasystem->m_spdir.m_p->ls_dir(m_pauraapp,lpcsz,ppatha,ppathaName);
          //}
 
          //bool application::has_subdir(const char * lpcsz)
@@ -206,9 +206,9 @@ namespace file
          //   return m_pauraapp->m_paurasystem->m_spdir.m_p->has_subdir(m_pauraapp,lpcsz);
          //}
 
-         //void application::ls_file(const char * lpcsz,stringa * pstraPath,stringa * pstraTitle)
+         //void application::ls_file(const char * lpcsz,::file::patha * ppatha,::file::patha * ppathaName)
          //{
-         //   return m_pauraapp->m_paurasystem->m_spdir.m_p->ls_file(m_pauraapp,lpcsz,pstraPath,pstraTitle);
+         //   return m_pauraapp->m_paurasystem->m_spdir.m_p->ls_file(m_pauraapp,lpcsz,ppatha,ppathaName);
          //}
 
          //bool application::is(const char * lpcsz)
@@ -237,9 +237,9 @@ namespace file
          //}
 
 
-         //void application::root_ones(stringa & straPath,stringa & straTitle)
+         //void application::root_ones(stringa & patha,stringa & straTitle)
          //{
-         //   return m_pauraapp->m_paurasystem->m_spdir.m_p->root_ones(straPath,straTitle,m_pauraapp);
+         //   return m_pauraapp->m_paurasystem->m_spdir.m_p->root_ones(patha,straTitle,m_pauraapp);
          //}
 
 

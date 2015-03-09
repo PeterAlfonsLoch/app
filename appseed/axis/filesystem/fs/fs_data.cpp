@@ -90,11 +90,11 @@ namespace fs
       return strPath.Left(iFind);
    }
 
-   bool data::ls(const char * pszDir,stringa * pstraPath,stringa * pstraTitle,int64_array * piaSize,bool_array * pbaDir)
+   bool data::ls(const char * pszDir,::file::patha * ppatha,::file::patha * ppathaName,int64_array * piaSize,bool_array * pbaDir)
    {
       UNREFERENCED_PARAMETER(pszDir);
-      UNREFERENCED_PARAMETER(pstraPath);
-      UNREFERENCED_PARAMETER(pstraTitle);
+      UNREFERENCED_PARAMETER(ppatha);
+      UNREFERENCED_PARAMETER(ppathaName);
       return false;
    }
 
@@ -104,9 +104,9 @@ namespace fs
       return false;
    }
 
-   void data::root_ones(stringa & straPath, stringa & straTitle)
+   void data::root_ones(stringa & patha, stringa & straTitle)
    {
-      UNREFERENCED_PARAMETER(straPath);
+      UNREFERENCED_PARAMETER(patha);
       UNREFERENCED_PARAMETER(straTitle);
    }
 
@@ -162,7 +162,7 @@ namespace fs
 
    bool data::file_exists(const char * pszPath)
    {
-      stringa straTitle;
+      ::file::patha straTitle;
       ls(eat_end_level(pszPath, 1), NULL, &straTitle, NULL, NULL);
       return straTitle.contains_ci(file_name(pszPath));
    }
@@ -170,7 +170,7 @@ namespace fs
    var data::file_length(const char * pszPath)
    {
       
-      stringa straTitle;
+      ::file::patha straTitle;
 
       int64_array iaFileSize;
       

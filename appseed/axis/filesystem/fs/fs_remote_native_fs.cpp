@@ -69,15 +69,15 @@ namespace fs
 
    }
 
-   void remote_native::root_ones(stringa & straPath, stringa & straTitle)
+   void remote_native::root_ones(stringa & patha, stringa & straTitle)
    {
-      straPath.add("fs://");
+      patha.add("fs://");
       straTitle.add("File System");
    }
 
 
 
-   bool remote_native::ls(const char * pszDir,stringa * pstraPath,stringa * pstraTitle,int64_array * piaSize,bool_array * pbaDir)
+   bool remote_native::ls(const char * pszDir,::file::patha * ppatha,::file::patha * ppathaName,int64_array * piaSize,bool_array * pbaDir)
    {
 
       try
@@ -127,13 +127,13 @@ namespace fs
             string strPath = dir_path(pszDir, strName);
             m_mapdirTimeout[strPath] = ::get_tick_count() + (15 * 1000);
             m_mapfileTimeout.remove_key(strPath);
-            if(pstraPath != NULL)
+            if(ppatha != NULL)
             {
-               pstraPath->add(strPath);
+               ppatha->add(strPath);
             }
-            if(pstraTitle != NULL)
+            if(ppathaName != NULL)
             {
-               pstraTitle->add(strName);
+               ppathaName->add(strName);
             }
             if(piaSize != NULL)
             {
@@ -160,13 +160,13 @@ namespace fs
             string strSize = pnode->child_at(i)->attr("size");
             m_mapfileTimeout[strPath] = ::get_tick_count() + (15 * 1000);
             m_mapdirTimeout.remove_key(strPath);
-            if(pstraPath != NULL)
+            if(ppatha != NULL)
             {
-               pstraPath->add(strPath);
+               ppatha->add(strPath);
             }
-            if(pstraTitle != NULL)
+            if(ppathaName != NULL)
             {
-               pstraTitle->add(strName);
+               ppathaName->add(strName);
             }
             if (piaSize != NULL)
             {
@@ -215,11 +215,11 @@ namespace fs
       {
          if(::get_tick_count() > dwTimeout)
          {
-            stringa straPath;
-            stringa straTitle;
+            ::file::patha patha;
+            ::file::patha straTitle;
             int64_array iaSize;
             bool_array baDir;
-            ls(System.dir().name(pszPath), &straPath, &straTitle, &iaSize, &baDir);
+            ls(System.dir().name(pszPath), &patha, &straTitle, &iaSize, &baDir);
          }
          else
          {
@@ -231,11 +231,11 @@ namespace fs
       {
          if(::get_tick_count() > dwTimeout)
          {
-            stringa straPath;
-            stringa straTitle;
+            ::file::patha patha;
+            ::file::patha straTitle;
             int64_array iaSize;
             bool_array baDir;
-            ls(System.dir().name(pszPath), &straPath, &straTitle, &iaSize, &baDir);
+            ls(System.dir().name(pszPath), &patha, &straTitle, &iaSize, &baDir);
          }
          else
          {

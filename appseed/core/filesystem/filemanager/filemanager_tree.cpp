@@ -66,8 +66,8 @@ namespace filemanager
       if(bOnlyParent && strPath.has_char() && find_item(strPath))
          return;
 
-      stringa straPath;
-      stringa straTitle;
+      ::file::patha patha;
+      ::file::patha straTitle;
       int64_array iaSize;
       bool_array baDir;
 
@@ -78,7 +78,7 @@ namespace filemanager
 
          strDir = System.dir().name(strPath);
 
-         straPath.add(strPath);
+         patha.add(strPath);
 
          straTitle.add(System.file().name_(strPath));
 
@@ -92,19 +92,19 @@ namespace filemanager
 
          strDir = strPath;
 
-         get_document()->get_fs_data()->ls(strPath,&straPath,&straTitle,&iaSize,&baDir);
+         get_document()->get_fs_data()->ls(strPath,&patha,&straTitle,&iaSize,&baDir);
 
       }
 
       single_lock sl(&m_mutexData,true);
 
-      filemanager_tree_insert(strDir,straPath,straTitle,iaSize,baDir,actioncontext, bOnlyParent);
+      filemanager_tree_insert(strDir,patha,straTitle,iaSize,baDir,actioncontext, bOnlyParent);
 
       ::data::tree_item * pitem = find_item(strDir);
 
       if(pitem != NULL)
       {
-         if(straPath.get_count() > 0)
+         if(patha.get_count() > 0)
          {
 
             pitem->m_dwState |= ::data::tree_item_state_expanded;
@@ -131,7 +131,7 @@ namespace filemanager
    }
 
 
-   void tree::filemanager_tree_insert(const string & strPath, stringa & straPath,stringa & straTitle,int64_array & iaSize,bool_array & baDir,::action::context actioncontext, bool bOnlyParent)
+   void tree::filemanager_tree_insert(const string & strPath, stringa & patha,stringa & straTitle,int64_array & iaSize,bool_array & baDir,::action::context actioncontext, bool bOnlyParent)
    {
 
       single_lock sl(&m_mutexData,true);
@@ -161,7 +161,7 @@ namespace filemanager
 
             stringa straPathTrim;
 
-            straPathTrim = straPath;
+            straPathTrim = patha;
 
             straPathTrim.trim_right("\\/");
 
@@ -208,10 +208,10 @@ namespace filemanager
 
       string strCheck;
 
-      for(i = 0; i < straPath.get_size(); i++)
+      for(i = 0; i < patha.get_size(); i++)
       {
 
-         strItem = straPath[i];
+         strItem = patha[i];
 
          if(strItem.is_empty())
             continue;
@@ -462,7 +462,7 @@ namespace filemanager
 
       string str;
 
-      stringa & straPath = get_document()->m_straPath;
+      stringa & patha = get_document()->m_straPath;
 
       stringa & straTitle = get_document()->m_straTitle;
 
@@ -473,7 +473,7 @@ namespace filemanager
       if(actioncontext.m_spdata.is_null() || !(actioncontext.m_spdata->m_esource &::action::source_system))
       {
 
-         filemanager_tree_insert(strPath,straPath,straTitle,iaSize,baDir,actioncontext);
+         filemanager_tree_insert(strPath,patha,straTitle,iaSize,baDir,actioncontext);
 
          _017EnsureVisible(strPath,actioncontext);
 

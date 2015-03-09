@@ -15,16 +15,16 @@ inline UINT _gen_GetConversionACP()
 class string;
 
 
-template < typename STRINGALBLE >
-inline string & to_string(string & str, STRINGALBLE & stringable)
+template < typename STRINGABLE >
+inline string & to_string(string & str, STRINGABLE & stringable)
 {
 
    return stringable.to_string(str);
 
 }
 
-template < typename STRINGALBLE >
-inline string & to_string(string & str, STRINGALBLE * po)
+template < typename STRINGABLE >
+inline string & to_string(string & str,STRINGABLE * po)
 {
 
    return po->to_string(str);
@@ -208,6 +208,15 @@ public:
       strSrc.m_pszData = NULL;
    }
 
+   string(e_context_switcher_null):
+      stdstring< simple_string>(string_trait::GetDefaultManager())
+   {
+   }
+
+   string(e_context_switcher_empty):
+      stdstring< simple_string>(string_trait::GetDefaultManager())
+   {
+   }
 
    string(const stdstring< simple_string> & strSrc):
       stdstring< simple_string>(strSrc,string_trait::GetDefaultManager())

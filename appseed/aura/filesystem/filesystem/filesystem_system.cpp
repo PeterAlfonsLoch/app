@@ -62,11 +62,11 @@ namespace file
    }
 
 
-   void system::get_ascendants_path(const char * lpcsz, stringa & straParam)
+   void system::get_ascendants_path(const char * lpcsz, ::file::patha & straParam)
    {
-      stringa stra;
+      ::file::patha stra;
       get_ascendants_name(lpcsz, stra);
-      string str;
+      ::file::path str;
 //      bool bUrl = System.url().is_url(lpcsz);
       bool bUrl = false;
 #if defined(LINUX) || defined(APPLEOS)
@@ -95,11 +95,14 @@ namespace file
       }
    }
 
-   void system::get_ascendants_name(const char * lpcsz, stringa & straParam)
+   void system::get_ascendants_name(const char * lpcsz, ::file::patha & straParam)
    {
+
       stringa straSeparator;
+
       straSeparator.add("/");
       straSeparator.add("\\");
+
       straParam.add_smallest_tokens(lpcsz, straSeparator, FALSE);
       if(straParam.get_count() > 0)
       {
@@ -233,12 +236,13 @@ namespace file
    }
 
 
-   string system::time_square(::aura::application * papp, const char * pszPrefix, const char * pszSuffix)
+   string system::time_square(::aura::application * papp,const char * pszPrefix,const char * pszSuffix)
    {
-      string str;
-      System.dir().time_square(str);
-      return time(papp, str, 25, pszPrefix, pszSuffix);
+
+      return time(papp,System.dir().time_square(papp,pszPrefix,pszSuffix),25,pszPrefix,pszSuffix);
+
    }
+
 
    string system::time_log(::aura::application * papp, const char * pszId)
    {
@@ -252,14 +256,14 @@ namespace file
          &System.machine_event_central().m_machineevent.m_mutex
          : ((mutex *) NULL));
       int32_t iIncLevel = -1;
-      string str;
+      ::file::path str;
       string strPrefix(pszPrefix);
       string strSuffix(pszSuffix);
 restart:
       str.Empty();
       str = psz;
       System.dir().mk(str, papp);
-      stringa straTitle;
+      ::file::patha straTitle;
       string strFormat;
       for(int32_t i = 1; i <= iMaxLevel;)
       {
@@ -273,7 +277,7 @@ restart:
             int32_t iMax = filterex_time_square("", straTitle);
             if(iMax == -1)
             {
-               str = System.dir().path(str, "00");
+               str += "00";
                System.dir().mk(str, papp);
             }
             else if(iMax == 99)
@@ -288,7 +292,7 @@ restart:
                   iMax++;
                }
                strFormat.Format("%02d", iMax);
-               str = System.dir().path(str, strFormat);
+               str += strFormat;
                if(i == iIncLevel)
                {
                   System.dir().mk(str, papp);
@@ -302,7 +306,7 @@ restart:
             int32_t iMax = filterex_time_square(pszPrefix, straTitle);
             if(iMax == -1)
             {
-               str = System.dir().path(str, strPrefix+"00"+strSuffix);
+               str = str + strPrefix+"00"+strSuffix;
                if(system::mk_time(str))
                   break;
             }
@@ -315,7 +319,7 @@ restart:
             {
                iMax++;
                strFormat.Format("%02d", iMax);
-               str = System.dir().path(str, strPrefix+strFormat+strSuffix);
+               str = str + strPrefix+strFormat+strSuffix;
                if(system::mk_time(str))
                   break;
             }
@@ -325,7 +329,7 @@ restart:
       return str;
    }
 
-   int32_t system::filterex_time_square(const char * pszPrefix, stringa & stra)
+   int32_t system::filterex_time_square(const char * pszPrefix, ::file::patha & stra)
    {
       int32_t iMax = -1;
       int32_t iIndex;
@@ -621,7 +625,7 @@ restart:
       return true;
    }
 
-   void system::path::split(stringa & stra, const char * lpcszPath)
+   void system::path::split(::file::patha & stra, const char * lpcszPath)
    {
       stringa straSeparator;
       straSeparator.add("\\");
@@ -898,36 +902,36 @@ restart:
    string system::paste(const char * pszLocation, const char * path, ::aura::application * papp)
    {
       string strDir = System.dir().name(path);
-      string strDest = System.dir().path(pszLocation, "");
-      string strSrc = System.dir().path(strDir, "");
+      ::file::path strDest = pszLocation;
+      ::file::path strSrc = strDir;
       if(strDest == strSrc)
       {
          return copy(path, papp);
       }
       else
       {
-         string strNew = System.dir().path(strDest, name_(path));
+         ::file::path strNew = strDest + name_(path);
          copy(strNew, path, false, extract_all, papp);
          return strNew;
       }
    }
 
-   void system::trash_that_is_not_trash(stringa & stra, ::aura::application * papp)
+   void system::trash_that_is_not_trash(::file::patha & stra, ::aura::application * papp)
    {
 
       if(stra.get_size() <= 0)
          return;
 
-      string strDir = System.dir().trash_that_is_not_trash(stra[0]);
+      ::file::path strDir = System.dir().trash_that_is_not_trash(stra[0]);
 
       System.dir().mk(strDir, papp);
 
       for(int32_t i = 0; i < stra.get_size(); i++)
       {
 #ifdef WINDOWS
-         move(System.dir().path(strDir, name_(stra[i])), stra[i]);
+         move(strDir + name_(stra[i]), stra[i]);
 #else
-         ::rename(stra[i], System.dir().path(strDir, name_(stra[i])));
+         ::rename(stra[i], strDir + name_(stra[i])));
 #endif
       }
 
@@ -936,22 +940,22 @@ restart:
    void system::trash_that_is_not_trash(const char * psz, ::aura::application * papp)
    {
 
-      string strDir = System.dir().trash_that_is_not_trash(psz);
+      ::file::path strDir = System.dir().trash_that_is_not_trash(psz);
 
       System.dir().mk(strDir, papp);
 
 #ifdef WINDOWS
-      //         ::MoveFile(psz, System.dir().path(strDir, name_(psz)));
-      move(System.dir().path(strDir, name_(psz)), psz);
+      //         ::MoveFile(psz, strDir + name_(psz)));
+      move(strDir + name_(psz), psz);
 #else
-      ::rename(psz, System.dir().path(strDir, name_(psz)));
+      ::rename(psz, strDir + name_(psz)));
 #endif
 
    }
 
    void system::replace(const char * pszContext, const char * pszFind, const char * pszReplace, ::aura::application * papp)
    {
-      stringa straTitle;
+      ::file::patha straTitle;
       System.dir().ls(papp, pszContext, NULL, &straTitle);
       string strOld;
       string strNew;
@@ -969,11 +973,11 @@ restart:
             //              ::str::international::utf8_to_unicode(System.dir().path(pszContext, strNew)));
             try
             {
-               move(System.dir().path(pszContext, strNew), System.dir().path(pszContext, strOld));
+               move(::file::path(pszContext)+ strNew, ::file::path(pszContext) + strOld);
             }
             catch(...)
             {
-               strFail += "failed to move " + System.dir().path(pszContext, strOld) + " to " + System.dir().path(pszContext, strNew);
+               strFail += "failed to move " + string(::file::path(pszContext)+ strOld) + " to " + string(::file::path(pszContext) + strNew);
             }
 #else
             ::rename(
@@ -1053,7 +1057,7 @@ restart:
    string system::sys_temp_unique(const char * pszName)
    {
 
-      return System.dir().path(get_sys_temp_path(), pszName);
+      return get_sys_temp_path() + pszName;
 
    }
 
@@ -1148,13 +1152,13 @@ restart:
 
    void system::dtf(const char * pszFile, const char * pszDir, ::aura::application * papp)
    {
-      stringa stra;
-      stringa straRelative;
+      ::file::patha stra;
+      ::file::patha straRelative;
       System.dir().rls(papp, pszDir, &stra, NULL, &straRelative);
       dtf(pszFile, stra, straRelative, papp);
    }
 
-   void system::dtf(const char * pszFile, stringa & stra, stringa & straRelative, ::aura::application * papp)
+   void system::dtf(const char * pszFile, ::file::patha & stra, ::file::patha & straRelative, ::aura::application * papp)
    {
 
       throw interface_only_exception(get_app());

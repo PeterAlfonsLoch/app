@@ -7,7 +7,6 @@
 #endif
 
 
-class stringa;
 
 class dir
 {

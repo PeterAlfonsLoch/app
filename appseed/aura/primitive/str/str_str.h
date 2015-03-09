@@ -2,7 +2,6 @@
 
 
 class var;
-class stringa;
 class id;
 class string_format;
 

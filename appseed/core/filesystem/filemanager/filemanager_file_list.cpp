@@ -1066,16 +1066,16 @@ namespace filemanager
       _001OnUpdateItemCount();
 
 
-      stringa & straPath = get_document()->m_straPath;
+      stringa & patha = get_document()->m_straPath;
       stringa & straTitle = get_document()->m_straTitle;
 //      int64_array & iaSize = get_document()->m_iaSize;
       bool_array & baDir = get_document()->m_baDir;
 
 
-      for(int32_t i = 0; i < straPath.get_size(); i++)
+      for(int32_t i = 0; i < patha.get_size(); i++)
       {
          item.m_flags.unsignalize_all();
-         string strPath = straPath[i];
+         string strPath = patha[i];
          if(baDir[i])
          {
             item.m_flags.signalize(::fs::FlagFolder);

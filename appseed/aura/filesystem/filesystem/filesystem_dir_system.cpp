@@ -16,14 +16,6 @@ namespace file
 {
 
 
-   bool file_path::is_equal(const char * lpcsz1, const char * lpcsz2)
-   {
-      UNREFERENCED_PARAMETER(lpcsz1);
-      UNREFERENCED_PARAMETER(lpcsz2);
-      throw interface_only_exception(get_app(), "this is an interface");
-   }
-
-
    namespace dir
    {
 
@@ -47,109 +39,93 @@ namespace file
 
 
 
-      string system::path(const char * pszFolder, strsize iLenFolder, const char * pszRelative, strsize iLenRelative, const char * psz2, strsize iLen2, bool bUrl)
-      {
-         UNREFERENCED_PARAMETER(pszFolder);
-         UNREFERENCED_PARAMETER(iLenFolder);
-         UNREFERENCED_PARAMETER(pszRelative);
-         UNREFERENCED_PARAMETER(iLenRelative);
-         UNREFERENCED_PARAMETER(psz2);
-         UNREFERENCED_PARAMETER(iLen2);
-         UNREFERENCED_PARAMETER(bUrl);
-         throw interface_only_exception(get_app(), "this is an interface");
-      }
+      //::file::path system::path(const char * pszFolder, strsize iLenFolder, const char * pszRelative, strsize iLenRelative, const char * psz2, strsize iLen2, bool bUrl)
+      //{
+      //   UNREFERENCED_PARAMETER(pszFolder);
+      //   UNREFERENCED_PARAMETER(iLenFolder);
+      //   UNREFERENCED_PARAMETER(pszRelative);
+      //   UNREFERENCED_PARAMETER(iLenRelative);
+      //   UNREFERENCED_PARAMETER(psz2);
+      //   UNREFERENCED_PARAMETER(iLen2);
+      //   UNREFERENCED_PARAMETER(bUrl);
+      //   throw interface_only_exception(get_app(), "this is an interface");
+      //}
 
-      string system::path(const char * pszFolder, strsize iLenFolder, const char * pszRelative, strsize iLenRelative, bool bUrl)
-      {
+      //::file::path system::path(const char * pszFolder, strsize iLenFolder, const char * pszRelative, strsize iLenRelative, bool bUrl)
+      //{
 
-         return path(pszFolder, iLenFolder, pszRelative, iLenRelative, NULL, 0, bUrl);
+      //   return path(pszFolder, iLenFolder, pszRelative, iLenRelative, NULL, 0, bUrl);
 
-      }
+      //}
 
-      string system::path(const char * pszFolder, strsize iLenFolder, const char * pszRelative, strsize iLenRelative, const char * psz2, strsize iLen2)
-      {
+      //::file::path system::path(const char * pszFolder, strsize iLenFolder, const char * pszRelative, strsize iLenRelative, const char * psz2, strsize iLen2)
+      //{
 
-         return path(pszFolder, iLenFolder, pszRelative, iLenRelative, psz2, iLen2, ::url::is_url(pszFolder));
+      //   return path(pszFolder, iLenFolder, pszRelative, iLenRelative, psz2, iLen2, ::url::is_url(pszFolder));
 
-      }
+      //}
 
-      string system::path(const string & strFolder, const string & strRelative)
-      {
+      //::file::path system::path(const string & strFolder, const string & strRelative)
+      //{
 
-         return path(strFolder, strFolder.get_length(), strRelative, strRelative.get_length(), NULL, 0, ::url::is_url(strFolder));
+      //   return path(strFolder, strFolder.get_length(), strRelative, strRelative.get_length(), NULL, 0, ::url::is_url(strFolder));
 
-      }
-
-
-      string system::path(const string & strFolder, const string & strRelative, const string & str2)
-      {
-
-         return path(strFolder, strFolder.get_length(), strRelative, strRelative.get_length(), str2, str2.get_length(), ::url::is_url(strFolder));
-
-      }
-
-      string system::path(const string & strFolder, const string & strRelative, const char * psz2)
-      {
-
-         if(psz2 == NULL)
-         {
-
-            return path(strFolder, strFolder.get_length(), strRelative, strRelative.get_length(), ::url::is_url(strFolder));
-
-         }
-         else
-         {
-
-            return path(strFolder, strFolder.get_length(), strRelative, strRelative.get_length(), psz2, strlen(psz2), ::url::is_url(strFolder));
-
-         }
-      }
-
-      string system::sibling(const string & strPath,const string & strRelative,bool bUrl)
-      {
-
-         return path(name(strPath),strRelative,bUrl);
-
-      }
+      //}
 
 
-      string system::sibling(const string & strPath,const string & strRelative,const string & str2,bool bUrl)
-      {
+      //::file::path system::path(const string & strFolder, const string & strRelative, const string & str2)
+      //{
 
-         return path(name(strPath),strRelative,str2,bUrl);
+      //   return path(strFolder, strFolder.get_length(), strRelative, strRelative.get_length(), str2, str2.get_length(), ::url::is_url(strFolder));
 
-      }
-
-
-      string system::sibling(const string & strPath,const string & strRelative)
-      {
-
-         return sibling(strPath,strRelative,::url::is_url(strPath));
-
-      }
+      //}
 
 
-      string system::sibling(const string & strPath,const string & strRelative,const string & str2)
-      {
+      //::file::path system::sibling(const string & strPath,const string & strRelative,bool bUrl)
+      //{
 
-         return sibling(strPath,strRelative, str2,::url::is_url(strPath));
+      //   return path(name(strPath),strRelative,bUrl);
 
-      }
+      //}
 
 
-      string system::path(const string & strFolder, const string & strRelative, bool bUrl)
-      {
+      //::file::path system::sibling(const string & strPath,const string & strRelative,const string & str2,bool bUrl)
+      //{
 
-         return path(strFolder, strFolder.get_length(), strRelative, strRelative.get_length(), NULL, 0, bUrl);
+      //   return path(name(strPath),strRelative,str2,bUrl);
 
-      }
+      //}
 
-      string system::path(const string & strFolder, const string & strRelative, const string & str2, bool bUrl)
-      {
 
-         return path(strFolder, strFolder.get_length(), strRelative, strRelative.get_length(), str2, str2.get_length(), bUrl);
+      //::file::path system::sibling(const string & strPath,const string & strRelative)
+      //{
 
-      }
+      //   return sibling(strPath,strRelative,::url::is_url(strPath));
+
+      //}
+
+
+      //::file::path system::sibling(const string & strPath,const string & strRelative,const string & str2)
+      //{
+
+      //   return sibling(strPath,strRelative, str2,::url::is_url(strPath));
+
+      //}
+
+
+      //::file::path system::path(const string & strFolder, const string & strRelative, bool bUrl)
+      //{
+
+      //   return path(strFolder, strFolder.get_length(), strRelative, strRelative.get_length(), NULL, 0, bUrl);
+
+      //}
+
+      //::file::path system::path(const string & strFolder, const string & strRelative, const string & str2, bool bUrl)
+      //{
+
+      //   return path(strFolder, strFolder.get_length(), strRelative, strRelative.get_length(), str2, str2.get_length(), bUrl);
+
+      //}
 
       inline bool myspace(char ch)
       {
@@ -168,285 +144,285 @@ namespace file
             strPath.ReleaseBuffer(end1 - beg1 + 1 + end2 - beg2 + 1 + 1); \
          }
 
-      string system::simple_path(const string & strFolder, const string & strRelative)
+      //::file::path system::simple_path(const string & strFolder, const string & strRelative)
+      //{
+
+      //   if(strRelative.is_empty())
+      //   {
+      //      if(strFolder.is_empty())
+      //         return "";
+      //      return strFolder;
+      //   }
+
+      //   strsize iFolderBeg = 0;
+
+      //   strsize iFolderEnd = strFolder.get_length() - 1;
+
+      //   if(iFolderEnd >= iFolderBeg)
+      //   {
+      //      //strFolder.trim();
+      //      // passive left trimming
+      //      while(iFolderBeg <= iFolderEnd && myspace(strFolder[iFolderBeg]))
+      //         iFolderBeg++;
+      //      // passive right trimming
+      //      while(iFolderBeg <= iFolderEnd && myspace(strFolder[iFolderEnd]))
+      //         iFolderEnd--;
+      //      //better than following 2 together
+      //      //::str::ends_eat(strFolder, "\\");
+      //      //::str::ends_eat(strFolder, "/");
+      //      while(iFolderBeg <= iFolderEnd && (strFolder[iFolderEnd] == '/' || strFolder[iFolderEnd] == '\\'))
+      //         iFolderEnd--;
+      //   }
+
+      //   strsize iRelativeBeg = 0;
+
+      //   strsize iRelativeEnd = strRelative.get_length() - 1;
+
+      //   if(iRelativeEnd >= iRelativeBeg)
+      //   {
+      //      //strFolder.trim();
+      //      // passive left trimming
+      //      while(iRelativeBeg <= iRelativeEnd && myspace(strRelative[iRelativeBeg]))
+      //         iFolderBeg++;
+      //      // passive right trimming
+      //      while(iRelativeBeg <= iRelativeEnd && myspace(strRelative[iRelativeEnd]))
+      //         iFolderEnd--;
+      //      //better than following 2 together
+      //      //::str::ends_eat(strFolder, "\\");
+      //      //::str::ends_eat(strFolder, "/");
+      //      while(iRelativeBeg <= iRelativeEnd && (strRelative[iRelativeBeg] == '/' || strRelative[iRelativeBeg] == '\\'))
+      //         iRelativeBeg++;
+      //   }
+
+      //   string strPath;
+      //   if(iFolderBeg > iFolderEnd)
+      //   {
+      //      strPath = strRelative;
+      //   }
+      //   else
+      //   {
+      //      char * psz = strPath.GetBufferSetLength(iRelativeEnd - iRelativeBeg + 1 + iFolderEnd - iFolderBeg + 1 + 1);
+      //      strncpy(psz, &((const char *)strFolder)[iFolderBeg], iFolderEnd - iFolderBeg + 1);
+      //      #if defined(LINUX) || defined(APPLEOS)
+      //      psz[iFolderEnd - iFolderBeg + 1] = '/';
+      //      #else
+      //      psz[iFolderEnd - iFolderBeg + 1] = '\\';
+      //      #endif
+      //      strncpy(&psz[iFolderEnd - iFolderBeg + 2], &((const char *)strRelative)[iRelativeBeg], iRelativeEnd - iRelativeBeg + 1);
+      //      strPath.ReleaseBuffer(iRelativeEnd - iRelativeBeg + 1 + iFolderEnd - iFolderBeg + 1 + 1);
+      //   }
+
+
+      //   return strPath;
+      //}
+
+      //::file::path system::simple_path(const string & strFolder, const string & strRelative, const string & str2)
+      //{
+
+      //   if(strRelative.is_empty())
+      //   {
+      //      if(str2.is_empty())
+      //      {
+      //         if(strFolder.is_empty())
+      //            return "";
+      //         return strFolder;
+      //      }
+      //      else
+      //      {
+      //         if(strFolder.is_empty())
+      //            return str2;
+      //         return simple_path(strFolder, str2);
+      //      }
+      //   }
+      //   else if(strFolder.is_empty())
+      //   {
+      //      if(str2.is_empty())
+      //      {
+      //         return strRelative;
+      //      }
+      //      else
+      //      {
+      //         return simple_path(strRelative, str2);
+      //      }
+      //   }
+      //   else if(str2.is_empty())
+      //   {
+      //      return simple_path(strFolder, strRelative);
+      //   }
+
+      //   // none of them - 3 - are empty
+
+      //   strsize iFolderBeg = 0;
+
+      //   strsize iFolderEnd = strFolder.get_length() - 1;
+
+      //   if(iFolderEnd >= iFolderBeg)
+      //   {
+      //      //strFolder.trim();
+      //      // passive left trimming
+      //      while(iFolderBeg <= iFolderEnd && myspace(strFolder[iFolderBeg]))
+      //         iFolderBeg++;
+      //      // passive right trimming
+      //      while(iFolderBeg <= iFolderEnd && myspace(strFolder[iFolderEnd]))
+      //         iFolderEnd--;
+      //      //better than following 2 together
+      //      //::str::ends_eat(strFolder, "\\");
+      //      //::str::ends_eat(strFolder, "/");
+      //      while(iFolderBeg <= iFolderEnd && (strFolder[iFolderEnd] == '/' || strFolder[iFolderEnd] == '\\'))
+      //         iFolderEnd--;
+      //   }
+
+      //   strsize iRelativeBeg = 0;
+
+      //   strsize iRelativeEnd = strRelative.get_length() - 1;
+
+      //   if(iRelativeEnd >= iRelativeBeg)
+      //   {
+      //      //strFolder.trim();
+      //      // passive left trimming
+      //      while(iRelativeBeg <= iRelativeEnd && myspace(strRelative[iRelativeBeg]))
+      //         iFolderBeg++;
+      //      // passive right trimming
+      //      while(iRelativeBeg <= iRelativeEnd && myspace(strRelative[iRelativeEnd]))
+      //         iFolderEnd--;
+      //      //better than following 2 together
+      //      //::str::ends_eat(strFolder, "\\");
+      //      //::str::ends_eat(strFolder, "/");
+      //      while(iRelativeBeg <= iRelativeEnd && (strRelative[iRelativeBeg] == '/' || strRelative[iRelativeBeg] == '\\'))
+      //         iRelativeBeg++;
+      //   }
+
+
+      //   strsize iBeg2 = 0;
+
+      //   strsize iEnd2 = str2.get_length() - 1;
+
+      //   if(iEnd2 >= iBeg2)
+      //   {
+      //      //strFolder.trim();
+      //      // passive left trimming
+      //      while(iBeg2 <= iEnd2 && myspace(str2.m_pszData[iBeg2]))
+      //         iBeg2++;
+      //      // passive right trimming
+      //      while(iBeg2 <= iEnd2 && myspace(str2.m_pszData[iEnd2]))
+      //         iEnd2--;
+      //      //better than following 2 together
+      //      //::str::ends_eat(strFolder, "\\");
+      //      //::str::ends_eat(strFolder, "/");
+      //      while(iBeg2 <= iEnd2 && (str2[iBeg2] == '/' || str2[iBeg2] == '\\'))
+      //         iBeg2++;
+      //   }
+
+      //   if(iRelativeBeg > iRelativeEnd)
+      //   {
+      //      if(iBeg2 > iEnd2)
+      //      {
+      //         if(iFolderBeg > iFolderEnd)
+      //            return "";
+      //         return strFolder.Mid(iFolderBeg, iFolderEnd - iFolderBeg + 1);
+      //      }
+      //      else
+      //      {
+      //         if(iFolderBeg > iFolderEnd)
+      //            return str2.Mid(iBeg2, iEnd2 - iBeg2 + 1);
+      //         string strPath;
+      //         string_STRCAT2_beg_char_end(strPath, '\\', strFolder, str2, iFolderBeg, iFolderEnd, iBeg2, iEnd2);
+      //         return strPath;
+      //      }
+      //   }
+      //   else if(strFolder.is_empty())
+      //   {
+      //      if(str2.is_empty())
+      //      {
+      //         return strRelative;
+      //      }
+      //      else
+      //      {
+      //         string strPath;
+      //         #if defined(LINUX) || defined(APPLEOS)
+      //         string_STRCAT2_beg_char_end(strPath, '/', strRelative, str2, iRelativeBeg, iRelativeEnd, iBeg2, iEnd2);
+      //         #else
+      //         string_STRCAT2_beg_char_end(strPath, '\\', strRelative, str2, iRelativeBeg, iRelativeEnd, iBeg2, iEnd2);
+      //         #endif
+      //         return strPath;
+      //      }
+      //   }
+      //   else if(str2.is_empty())
+      //   {
+      //      string strPath;
+      //      #if defined(LINUX) || defined(APPLEOS)
+      //      string_STRCAT2_beg_char_end(strPath, '\\', strFolder, strRelative, iFolderBeg, iFolderEnd, iRelativeBeg, iRelativeEnd);
+      //      #else
+      //      string_STRCAT2_beg_char_end(strPath, '/', strFolder, strRelative, iFolderBeg, iFolderEnd, iRelativeBeg, iRelativeEnd);
+      //      #endif
+      //      return strPath;
+      //   }
+
+      //   string strPath;
+
+      //   char * psz = strPath.GetBufferSetLength(iEnd2 - iBeg2 + 1 + iRelativeEnd - iRelativeBeg + 1 + iFolderEnd - iFolderBeg + 1 + 1 + 1);
+      //   strncpy(psz, &((const char *)strFolder)[iFolderBeg], iFolderEnd - iFolderBeg + 1);
+      //   #if defined(LINUX) || defined(APPLEOS)
+      //   psz[iFolderEnd - iFolderBeg + 1] = '/';
+      //   #else
+      //   psz[iFolderEnd - iFolderBeg + 1] = '\\';
+      //   #endif
+      //   strncpy(&psz[iFolderEnd - iFolderBeg + 2], &((const char *)strRelative)[iRelativeBeg], iRelativeEnd - iRelativeBeg + 1);
+      //   #if defined(LINUX) || defined(APPLEOS)
+      //   psz[iFolderEnd - iFolderBeg + 1 + 1 + iRelativeEnd - iRelativeBeg + 1] = '/';
+      //   #else
+      //   psz[iFolderEnd - iFolderBeg + 1 + 1 + iRelativeEnd - iRelativeBeg + 1] = '\\';
+      //   #endif
+      //   strncpy(&psz[iFolderEnd - iFolderBeg + 1 + 1 + iRelativeEnd - iRelativeBeg + 1 + 1], &((const char *)str2)[iBeg2], iEnd2 - iBeg2 + 1);
+      //   strPath.ReleaseBuffer(iEnd2 - iBeg2 + 1 + iRelativeEnd - iRelativeBeg + 1 + iFolderEnd - iFolderBeg + 1 + 1 + 1);
+
+      //   return strPath;
+
+      //}
+
+
+      //::file::path system::relpath(const string & lpcszSource,const string & lpcszRelative)
+      //{
+      //   UNREFERENCED_PARAMETER(lpcszSource);
+      //   UNREFERENCED_PARAMETER(lpcszRelative);
+      //   throw interface_only_exception(get_app(),"this is an interface");
+      //}
+
+
+      //::file::path system::relpath(const string & lpcszSource, const string & lpcszRelative, const string & psz2)
+      //{
+      //   UNREFERENCED_PARAMETER(lpcszSource);
+      //   UNREFERENCED_PARAMETER(lpcszRelative);
+      //   UNREFERENCED_PARAMETER(psz2);
+      //   throw interface_only_exception(get_app(), "this is an interface");
+      //}
+
+      void system::root_ones(::file::patha & patha, ::file::patha & straTitle, ::aura::application * papp)
       {
-
-         if(strRelative.is_empty())
-         {
-            if(strFolder.is_empty())
-               return "";
-            return strFolder;
-         }
-
-         strsize iFolderBeg = 0;
-
-         strsize iFolderEnd = strFolder.get_length() - 1;
-
-         if(iFolderEnd >= iFolderBeg)
-         {
-            //strFolder.trim();
-            // passive left trimming
-            while(iFolderBeg <= iFolderEnd && myspace(strFolder[iFolderBeg]))
-               iFolderBeg++;
-            // passive right trimming
-            while(iFolderBeg <= iFolderEnd && myspace(strFolder[iFolderEnd]))
-               iFolderEnd--;
-            //better than following 2 together
-            //::str::ends_eat(strFolder, "\\");
-            //::str::ends_eat(strFolder, "/");
-            while(iFolderBeg <= iFolderEnd && (strFolder[iFolderEnd] == '/' || strFolder[iFolderEnd] == '\\'))
-               iFolderEnd--;
-         }
-
-         strsize iRelativeBeg = 0;
-
-         strsize iRelativeEnd = strRelative.get_length() - 1;
-
-         if(iRelativeEnd >= iRelativeBeg)
-         {
-            //strFolder.trim();
-            // passive left trimming
-            while(iRelativeBeg <= iRelativeEnd && myspace(strRelative[iRelativeBeg]))
-               iFolderBeg++;
-            // passive right trimming
-            while(iRelativeBeg <= iRelativeEnd && myspace(strRelative[iRelativeEnd]))
-               iFolderEnd--;
-            //better than following 2 together
-            //::str::ends_eat(strFolder, "\\");
-            //::str::ends_eat(strFolder, "/");
-            while(iRelativeBeg <= iRelativeEnd && (strRelative[iRelativeBeg] == '/' || strRelative[iRelativeBeg] == '\\'))
-               iRelativeBeg++;
-         }
-
-         string strPath;
-         if(iFolderBeg > iFolderEnd)
-         {
-            strPath = strRelative;
-         }
-         else
-         {
-            char * psz = strPath.GetBufferSetLength(iRelativeEnd - iRelativeBeg + 1 + iFolderEnd - iFolderBeg + 1 + 1);
-            strncpy(psz, &((const char *)strFolder)[iFolderBeg], iFolderEnd - iFolderBeg + 1);
-            #if defined(LINUX) || defined(APPLEOS)
-            psz[iFolderEnd - iFolderBeg + 1] = '/';
-            #else
-            psz[iFolderEnd - iFolderBeg + 1] = '\\';
-            #endif
-            strncpy(&psz[iFolderEnd - iFolderBeg + 2], &((const char *)strRelative)[iRelativeBeg], iRelativeEnd - iRelativeBeg + 1);
-            strPath.ReleaseBuffer(iRelativeEnd - iRelativeBeg + 1 + iFolderEnd - iFolderBeg + 1 + 1);
-         }
-
-
-         return strPath;
-      }
-
-      string system::simple_path(const string & strFolder, const string & strRelative, const string & str2)
-      {
-
-         if(strRelative.is_empty())
-         {
-            if(str2.is_empty())
-            {
-               if(strFolder.is_empty())
-                  return "";
-               return strFolder;
-            }
-            else
-            {
-               if(strFolder.is_empty())
-                  return str2;
-               return simple_path(strFolder, str2);
-            }
-         }
-         else if(strFolder.is_empty())
-         {
-            if(str2.is_empty())
-            {
-               return strRelative;
-            }
-            else
-            {
-               return simple_path(strRelative, str2);
-            }
-         }
-         else if(str2.is_empty())
-         {
-            return simple_path(strFolder, strRelative);
-         }
-
-         // none of them - 3 - are empty
-
-         strsize iFolderBeg = 0;
-
-         strsize iFolderEnd = strFolder.get_length() - 1;
-
-         if(iFolderEnd >= iFolderBeg)
-         {
-            //strFolder.trim();
-            // passive left trimming
-            while(iFolderBeg <= iFolderEnd && myspace(strFolder[iFolderBeg]))
-               iFolderBeg++;
-            // passive right trimming
-            while(iFolderBeg <= iFolderEnd && myspace(strFolder[iFolderEnd]))
-               iFolderEnd--;
-            //better than following 2 together
-            //::str::ends_eat(strFolder, "\\");
-            //::str::ends_eat(strFolder, "/");
-            while(iFolderBeg <= iFolderEnd && (strFolder[iFolderEnd] == '/' || strFolder[iFolderEnd] == '\\'))
-               iFolderEnd--;
-         }
-
-         strsize iRelativeBeg = 0;
-
-         strsize iRelativeEnd = strRelative.get_length() - 1;
-
-         if(iRelativeEnd >= iRelativeBeg)
-         {
-            //strFolder.trim();
-            // passive left trimming
-            while(iRelativeBeg <= iRelativeEnd && myspace(strRelative[iRelativeBeg]))
-               iFolderBeg++;
-            // passive right trimming
-            while(iRelativeBeg <= iRelativeEnd && myspace(strRelative[iRelativeEnd]))
-               iFolderEnd--;
-            //better than following 2 together
-            //::str::ends_eat(strFolder, "\\");
-            //::str::ends_eat(strFolder, "/");
-            while(iRelativeBeg <= iRelativeEnd && (strRelative[iRelativeBeg] == '/' || strRelative[iRelativeBeg] == '\\'))
-               iRelativeBeg++;
-         }
-
-
-         strsize iBeg2 = 0;
-
-         strsize iEnd2 = str2.get_length() - 1;
-
-         if(iEnd2 >= iBeg2)
-         {
-            //strFolder.trim();
-            // passive left trimming
-            while(iBeg2 <= iEnd2 && myspace(str2.m_pszData[iBeg2]))
-               iBeg2++;
-            // passive right trimming
-            while(iBeg2 <= iEnd2 && myspace(str2.m_pszData[iEnd2]))
-               iEnd2--;
-            //better than following 2 together
-            //::str::ends_eat(strFolder, "\\");
-            //::str::ends_eat(strFolder, "/");
-            while(iBeg2 <= iEnd2 && (str2[iBeg2] == '/' || str2[iBeg2] == '\\'))
-               iBeg2++;
-         }
-
-         if(iRelativeBeg > iRelativeEnd)
-         {
-            if(iBeg2 > iEnd2)
-            {
-               if(iFolderBeg > iFolderEnd)
-                  return "";
-               return strFolder.Mid(iFolderBeg, iFolderEnd - iFolderBeg + 1);
-            }
-            else
-            {
-               if(iFolderBeg > iFolderEnd)
-                  return str2.Mid(iBeg2, iEnd2 - iBeg2 + 1);
-               string strPath;
-               string_STRCAT2_beg_char_end(strPath, '\\', strFolder, str2, iFolderBeg, iFolderEnd, iBeg2, iEnd2);
-               return strPath;
-            }
-         }
-         else if(strFolder.is_empty())
-         {
-            if(str2.is_empty())
-            {
-               return strRelative;
-            }
-            else
-            {
-               string strPath;
-               #if defined(LINUX) || defined(APPLEOS)
-               string_STRCAT2_beg_char_end(strPath, '/', strRelative, str2, iRelativeBeg, iRelativeEnd, iBeg2, iEnd2);
-               #else
-               string_STRCAT2_beg_char_end(strPath, '\\', strRelative, str2, iRelativeBeg, iRelativeEnd, iBeg2, iEnd2);
-               #endif
-               return strPath;
-            }
-         }
-         else if(str2.is_empty())
-         {
-            string strPath;
-            #if defined(LINUX) || defined(APPLEOS)
-            string_STRCAT2_beg_char_end(strPath, '\\', strFolder, strRelative, iFolderBeg, iFolderEnd, iRelativeBeg, iRelativeEnd);
-            #else
-            string_STRCAT2_beg_char_end(strPath, '/', strFolder, strRelative, iFolderBeg, iFolderEnd, iRelativeBeg, iRelativeEnd);
-            #endif
-            return strPath;
-         }
-
-         string strPath;
-
-         char * psz = strPath.GetBufferSetLength(iEnd2 - iBeg2 + 1 + iRelativeEnd - iRelativeBeg + 1 + iFolderEnd - iFolderBeg + 1 + 1 + 1);
-         strncpy(psz, &((const char *)strFolder)[iFolderBeg], iFolderEnd - iFolderBeg + 1);
-         #if defined(LINUX) || defined(APPLEOS)
-         psz[iFolderEnd - iFolderBeg + 1] = '/';
-         #else
-         psz[iFolderEnd - iFolderBeg + 1] = '\\';
-         #endif
-         strncpy(&psz[iFolderEnd - iFolderBeg + 2], &((const char *)strRelative)[iRelativeBeg], iRelativeEnd - iRelativeBeg + 1);
-         #if defined(LINUX) || defined(APPLEOS)
-         psz[iFolderEnd - iFolderBeg + 1 + 1 + iRelativeEnd - iRelativeBeg + 1] = '/';
-         #else
-         psz[iFolderEnd - iFolderBeg + 1 + 1 + iRelativeEnd - iRelativeBeg + 1] = '\\';
-         #endif
-         strncpy(&psz[iFolderEnd - iFolderBeg + 1 + 1 + iRelativeEnd - iRelativeBeg + 1 + 1], &((const char *)str2)[iBeg2], iEnd2 - iBeg2 + 1);
-         strPath.ReleaseBuffer(iEnd2 - iBeg2 + 1 + iRelativeEnd - iRelativeBeg + 1 + iFolderEnd - iFolderBeg + 1 + 1 + 1);
-
-         return strPath;
-
-      }
-
-
-      string system::relpath(const char * lpcszSource, const char * lpcszRelative, const char * psz2)
-      {
-         UNREFERENCED_PARAMETER(lpcszSource);
-         UNREFERENCED_PARAMETER(lpcszRelative);
-         UNREFERENCED_PARAMETER(psz2);
-         throw interface_only_exception(get_app(), "this is an interface");
-      }
-
-      void system::root_ones(stringa & straPath, stringa & straTitle, ::aura::application * papp)
-      {
-         UNREFERENCED_PARAMETER(straPath);
+         UNREFERENCED_PARAMETER(patha);
          UNREFERENCED_PARAMETER(straTitle);
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      bool system::rls_pattern(::aura::application * papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, bool_array * pbaIsDir, int64_array * piaSize, e_extract eextract)
+      bool system::rls_pattern(::aura::application * papp, const char * psz, const char * pszPattern, ::file::patha * ppatha, ::file::patha * ppathaName, ::file::patha * ppathaRelative, bool_array * pbaIsDir, int64_array * piaSize, e_extract eextract)
       {
 
          return false;
-         //UNREFERENCED_PARAMETER(pstraRelative);
+         //UNREFERENCED_PARAMETER(ppathaRelative);
          //UNREFERENCED_PARAMETER(pszPattern);
          //throw not_implemented(get_app(), "is really a directory or compressed directory/file??");
 
       }
 
 
-      bool system::ls_pattern(::aura::application * papp,const char * lpcsz,const char * pszPattern,stringa * pstraPath,stringa * pstraTitle,bool_array * pbaIsDir,int64_array * piaSize)
+      bool system::ls_pattern(::aura::application * papp,const char * psz,const char * pszPattern,::file::patha * ppatha,::file::patha * ppathaName,bool_array * pbaIsDir,int64_array * piaSize)
       {
 
          return false;
 
       }
 
-      bool system::ls(::aura::application * papp,const char * lpcsz,stringa * pstraPath,stringa * pstraTitle,bool_array * pbaIsDir,int64_array * piaSize)
-      {
-
-         return false;
-
-      }
-
-
-      bool system::rls(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, e_extract eextract)
+      bool system::ls(::aura::application * papp,const char * psz,::file::patha * ppatha,::file::patha * ppathaName,bool_array * pbaIsDir,int64_array * piaSize)
       {
 
          return false;
@@ -454,14 +430,7 @@ namespace file
       }
 
 
-      bool system::rls_dir(::aura::application * papp,const char * lpcsz,stringa * pstraPath,stringa * pstraTitle,stringa * pstraRelative)
-      {
-
-         return false;
-
-      }
-
-      bool system::ls_dir(::aura::application * papp,const char * lpcsz,stringa * pstraPath,stringa * pstraTitle)
+      bool system::rls(::aura::application * papp, const char * psz, ::file::patha * ppatha, ::file::patha * ppathaName, ::file::patha * ppathaRelative, e_extract eextract)
       {
 
          return false;
@@ -469,14 +438,29 @@ namespace file
       }
 
 
-      bool system::has_subdir(::aura::application * papp, const char * lpcsz)
+      bool system::rls_dir(::aura::application * papp,const char * psz,::file::patha * ppatha,::file::patha * ppathaName,::file::patha * ppathaRelative)
       {
-         UNREFERENCED_PARAMETER(lpcsz);
+
+         return false;
+
+      }
+
+      bool system::ls_dir(::aura::application * papp,const char * psz,::file::patha * ppatha,::file::patha * ppathaName)
+      {
+
+         return false;
+
+      }
+
+
+      bool system::has_subdir(::aura::application * papp, const char * psz)
+      {
+         UNREFERENCED_PARAMETER(psz);
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
 
-      bool system::ls_file(::aura::application * papp,const char * lpcsz,stringa * pstraPath,stringa * pstraTitle)
+      bool system::ls_file(::aura::application * papp,const char * psz,::file::patha * ppatha,::file::patha * ppathaName)
       {
 
          return false;
@@ -687,102 +671,58 @@ namespace file
          }
       }
 
-      string system::time(const char * lpcsz, const char * lpcsz2)
-      {
-         UNREFERENCED_PARAMETER(lpcsz);
-         UNREFERENCED_PARAMETER(lpcsz2);
-         throw interface_only_exception(get_app(), "this is an interface");
-      }
-
-      string system::stage(const char * lpcsz, const char * lpcsz2)
-      {
-         UNREFERENCED_PARAMETER(lpcsz);
-         UNREFERENCED_PARAMETER(lpcsz2);
-         throw interface_only_exception(get_app(), "this is an interface");
-      }
-
-      string system::stageapp(const char * lpcsz, const char * lpcsz2)
-      {
-         UNREFERENCED_PARAMETER(lpcsz);
-         UNREFERENCED_PARAMETER(lpcsz2);
-         throw interface_only_exception(get_app(), "this is an interface");
-      }
-
-      string system::netseed(const char * lpcsz, const char * lpcsz2)
-      {
-         UNREFERENCED_PARAMETER(lpcsz);
-         UNREFERENCED_PARAMETER(lpcsz2);
-         throw interface_only_exception(get_app(), "this is an interface");
-      }
-
-      string system::element(const char * lpcsz, const char * lpcsz2)
-      {
-         UNREFERENCED_PARAMETER(lpcsz);
-         UNREFERENCED_PARAMETER(lpcsz2);
-         throw interface_only_exception(get_app(), "this is an interface");
-      }
-
-      string system::element(const string & str, const char * lpcsz2)
-      {
-         UNREFERENCED_PARAMETER(str);
-         UNREFERENCED_PARAMETER(lpcsz2);
-         throw interface_only_exception(get_app(), "this is an interface");
-      }
-
-      string system::element(const char * lpcsz, const string & str2)
-      {
-         UNREFERENCED_PARAMETER(lpcsz);
-         UNREFERENCED_PARAMETER(str2);
-         throw interface_only_exception(get_app(), "this is an interface");
-      }
-
-      string system::element(const string & str, const string & str2)
-      {
-         UNREFERENCED_PARAMETER(str);
-         UNREFERENCED_PARAMETER(str2);
-         throw interface_only_exception(get_app(), "this is an interface");
-      }
-
-      string system::element(const string & str)
-      {
-         UNREFERENCED_PARAMETER(str);
-         throw interface_only_exception(get_app(), "this is an interface");
-      }
-
-      string system::element()
+      ::file::path system::time()
       {
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      string system::module(const char * lpcsz, const char * lpcsz2)
+      ::file::path system::stage()
       {
-         UNREFERENCED_PARAMETER(lpcsz);
-         UNREFERENCED_PARAMETER(lpcsz2);
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      string system::ca2module(const char * lpcsz, const char * lpcsz2)
+      ::file::path system::stageapp()
       {
-         UNREFERENCED_PARAMETER(lpcsz);
-         UNREFERENCED_PARAMETER(lpcsz2);
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      void system::time_square(string &str)
+      ::file::path system::netseed()
       {
-         UNREFERENCED_PARAMETER(str);
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      string system::time_log(const char * pszId)
+      ::file::path system::element()
+      {
+         throw interface_only_exception(get_app(), "this is an interface");
+      }
+
+      ::file::path system::module()
+      {
+         throw interface_only_exception(get_app(), "this is an interface");
+      }
+
+      ::file::path system::ca2module()
+      {
+         throw interface_only_exception(get_app(), "this is an interface");
+      }
+
+      ::file::path system::time_square(::aura::application * papp,const char * pszPrefix,const char * pszSuffix)
+      {
+         UNREFERENCED_PARAMETER(papp);
+         UNREFERENCED_PARAMETER(pszPrefix);
+         UNREFERENCED_PARAMETER(pszSuffix);
+         throw interface_only_exception(get_app(), "this is an interface");
+      }
+
+      ::file::path system::time_log(const char * pszId)
       {
          UNREFERENCED_PARAMETER(pszId);
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      bool system::mk(const char * lpcsz, ::aura::application * papp)
+      bool system::mk(const char * psz, ::aura::application * papp)
       {
-         UNREFERENCED_PARAMETER(lpcsz);
+         UNREFERENCED_PARAMETER(psz);
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
@@ -793,38 +733,43 @@ namespace file
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      string system::name(const char * path1)
+      ::file::path system::name(const char * path1)
       {
          UNREFERENCED_PARAMETER(path1);
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      string system::locale_schema(::aura::application * papp, const string & strLocale, const string & strSchema)
+      ::file::path system::locale_schema(::aura::application * papp, const string & strLocale, const string & strSchema)
       {
 
          return papp->m_paurasession->get_locale_schema_dir(strLocale, strSchema);
 
       }
 
-      stringa system::locale_schema_matter(::aura::application * papp, const string & strLocale, const string & strSchema, const char * pszRoot, const char * pszApp)
+      
+
+      ::file::patha system::locale_schema_matter(::aura::application * papp, const string & strLocale, const string & strSchema, const char * pszRoot, const char * pszApp)
       {
 
          //single_lock sl(&papp->m_mutexMatterLocator, true);
          if (pszRoot != NULL && pszApp != NULL)
          {
 
-            string strRoot(pszRoot);
+            ::file::path strRoot(pszRoot);
 
-            string strDomain(pszApp);
+            ::file::path strDomain(pszApp);
+
+            ::file::patha patha;
 
             if(Session.m_bMatterFromHttpCache)
             {
 
-               return path(simple_path(strRoot,"appmatter",strDomain),papp->m_paurasession->get_locale_schema_dir(strLocale,strSchema));
+               return{strRoot + "appmatter" + strDomain + papp->m_paurasession->get_locale_schema_dir(strLocale,strSchema)};
             }
             else
             {
-               return path(element(simple_path(strRoot,"appmatter",strDomain)),papp->m_paurasession->get_locale_schema_dir(strLocale,strSchema));
+               return {strRoot + "appmatter" + strDomain + papp->m_paurasession->get_locale_schema_dir(strLocale,strSchema)
+            };
 
             }
 
@@ -832,12 +777,12 @@ namespace file
          else
          {
 
-            stringa stra;
+            ::file::patha stra;
 
             for (index i = 0; i < papp->m_straMatterLocator.get_count(); i++)
             {
 
-               stra.add_unique(path(papp->m_straMatterLocator[i], papp->m_paurasession->get_locale_schema_dir(strLocale, strSchema)));
+               stra.add_unique(papp->m_straMatterLocator[i] + papp->m_paurasession->get_locale_schema_dir(strLocale, strSchema));
 
             }
 
@@ -848,14 +793,14 @@ namespace file
 
       }
 
-      stringa system::locale_schema_matter(const string & strLocator, const string & strLocale, const string & strSchema)
+      ::file::patha system::locale_schema_matter(const string & strLocator, const string & strLocale, const string & strSchema)
       {
 
-         return path(strLocator, simple_path(strLocale, strSchema));
+         return{::file::path(strLocator) + strLocale + strSchema};
 
       }
 
-      void system::matter_ls(::aura::application * papp, const string & str, stringa & stra)
+      void system::matter_ls(::aura::application * papp,const ::file::path & str,::file::patha & stra)
       {
 
          string strDir = matter(papp, str, true);
@@ -864,10 +809,10 @@ namespace file
 
       }
 
-      void system::matter_ls_file(::aura::application * papp, const string & str, stringa & stra)
+      void system::matter_ls_file(::aura::application * papp,const ::file::path & str,::file::patha & stra)
       {
 
-         string strDir = matter(papp, str, true);
+         ::file::path strDir = matter(papp, str, true);
 
          if(Sess(papp).m_bMatterFromHttpCache)
          {
@@ -876,7 +821,7 @@ namespace file
 
             set["raw_http"] = true;
 
-            string strFile = System.dir().commonappdata(path("cache", strDir, "list_dir.list_dir"));
+            string strFile = System.dir().commonappdata() + "cache"+ strDir+ "list_dir.list_dir";
 
             strsize iFind = strFile.find(DIR_SEPARATOR);
 
@@ -900,7 +845,7 @@ namespace file
             }
 
 
-            stringa straLs;
+            ::file::patha straLs;
 
             stringa straSep;
 
@@ -915,7 +860,7 @@ namespace file
 
                if(!::str::ends(straLs[i],"/"))
                {
-                  string strPath  = System.dir().path(strDir,straLs[i]);
+                  ::file::path strPath  = strDir + straLs[i];
                   stra.add(strPath);
                }
 
@@ -932,7 +877,7 @@ namespace file
 
       }
 
-      string system::matter(::aura::application * papp,const stringa & stra,bool bDir,const char * pszRoot,const char * pszApp)
+      ::file::path system::matter(::aura::application * papp,const ::file::patha & stra,bool bDir,const char * pszRoot,const char * pszApp)
       {
          throw interface_only_exception(get_app());
 
@@ -940,70 +885,14 @@ namespace file
 
       }
 
-      string system::matter(::aura::application * papp, const char * psz, const char * psz2, bool bDir, const char * pszRoot, const char * pszApp)
-      {
-         return matter(papp, string(psz), string(psz2), bDir, pszRoot, pszApp);
-      }
-
-      string system::matter(::aura::application * papp, const string & str, const char * psz, bool bDir, const char * pszRoot, const char * pszApp)
-      {
-         return matter(papp, str, string(psz), bDir, pszRoot, pszApp);
-      }
-
-      string system::matter(::aura::application * papp, const char * psz, const string & str, bool bDir, const char * pszRoot, const char * pszApp)
-      {
-         return matter(papp, string(psz), str, bDir, pszRoot, pszApp);
-      }
-
-
-      string system::matter(::aura::application * papp, const string & str, const string & str2, bool bDir, const char * pszRoot, const char * pszApp)
+      ::file::path system::matter(::aura::application * papp, const ::file::path & path, bool bDir, const char * pszRoot, const char * pszApp)
       {
          throw interface_only_exception(get_app());
 
          return "";
-
       }
 
 
-      string system::matter(::aura::application * papp, const char * psz, bool bDir, const char * pszRoot, const char * pszApp)
-      {
-         string str(psz);
-         string str2;
-         return matter(papp, str, str2, bDir, pszRoot, pszApp);
-      }
-
-      string system::matter(::aura::application * papp, const string & str, bool bDir, const char * pszRoot, const char * pszApp)
-      {
-         string str2;
-         return matter(papp, str, str2, bDir, pszRoot, pszApp);
-      }
-
-      string system::matter(::aura::application * papp)
-      {
-         string str;
-         string str2;
-         return matter(papp, str, str2);
-      }
-
-      string system::matter_from_locator(::aura::str_context * pcontext, const string & strLocator)
-      {
-         string str;
-
-
-         string str2;
-
-         return matter_from_locator(pcontext, strLocator, str, str2);
-
-      }
-
-      string system::matter_from_locator(::aura::str_context * pcontext, const string & strLocator, const string & str)
-      {
-
-         string str2;
-
-         return matter_from_locator(pcontext, strLocator, str, str2);
-
-      }
 
       /* static const string strEn("en");
          static const string strStd("_std");
@@ -1011,11 +900,11 @@ namespace file
 
          string strPath;
          string strLs = locale_schema_matter(strLocator, App(papp).get_locale(), App(papp).get_style());
-         strPath = path(strLs, str, str2);
+         strPath = strLs + str + str2;
          if(System.file().exists(strPath, get_app()))
             return strPath;
          strLs = locale_schema_matter(strLocator, strEn, App(papp).get_style());
-         strPath = path(strLs, str, str2);
+         strPath = strLs + str + str2;
          if(System.file().exists(strPath, get_app()))
             return strPath;
          strPath = path(locale_schema_matter(strLocator, strStd, App(papp).get_style()), str, str2);
@@ -1031,7 +920,7 @@ namespace file
          if(System.file().exists(strPath, get_app()))
             return strPath;
          strLs = locale_schema_matter(strLocator, strEn, strEn);
-         strPath = path(strLs, str, str2);
+         strPath = strLs + str + str2;
          if(System.file().exists(strPath, get_app()))
             return strPath;
          strPath = path(locale_schema_matter(strLocator, strStd, strStd), str, str2);
@@ -1039,12 +928,12 @@ namespace file
             return strPath;
       */
 
-      string system::matter_from_locator(::aura::str_context * pcontext, const string & strLocator,  const string & str, const string & str2)
+      ::file::path system::matter_from_locator(::aura::str_context * pcontext, const string & strLocator,  const string & str)
       {
 
-         string strPath;
+         ::file::path strPath;
 
-         stringa straLs;
+         ::file::patha straLs;
 
          string strLs;
 
@@ -1055,7 +944,7 @@ namespace file
          {
             strLs = straLs[l];
 
-            strPath = path(strLs, str, str2);
+            strPath = strLs + str;
             if (System.file().exists(strPath, get_app()))
                return strPath;
 
@@ -1073,7 +962,7 @@ namespace file
             {
                strLs = straLs[l];
 
-               strPath = path(strLs, str, str2);
+               strPath = strLs + str;
                if (System.file().exists(strPath, get_app()))
                   return strPath;
 
@@ -1089,7 +978,7 @@ namespace file
 
             strLs = straLs[l];
 
-            strPath = path(strLs, str, str2);
+            strPath = strLs + str;
 
             if (System.file().exists(strPath, get_app()))
                return strPath;
@@ -1104,14 +993,14 @@ namespace file
 
             strLs = straLs[l];
 
-            strPath = path(strLs, str, str2);
+            strPath = strLs + str;
 
             if (System.file().exists(strPath, get_app()))
                return strPath;
 
          }
 
-         return path(strLs, str, str2);
+         return strLs + str;
 
 
       }
@@ -1178,7 +1067,7 @@ namespace file
          if(strLibraryNameParam.has_char() && strLibraryNameParam != "app_" + strAppNameParam
             && ::str::begins_ci(strLibraryNameParam, "app_") && strLibraryNameParam.find("_", strlen("app_")) > 4)
          {
-            stringa stra2;
+            ::file::patha stra2;
             stra2.add_tokens(strLibraryNameParam, "_", FALSE);
             strLibraryRoot = stra2[1];
             strLibraryName = stra2.implode("_", 2);
@@ -1239,7 +1128,7 @@ namespace file
          */
       }
 
-      string system::appmatter_locator(::aura::application * papp)
+      ::file::path system::appmatter_locator(::aura::application * papp)
       {
 
          string strRoot;
@@ -1249,18 +1138,18 @@ namespace file
 
          if(Session.m_bMatterFromHttpCache)
          {
-            return simple_path(strRoot, "appmatter", strDomain);
+            return strRoot+ "appmatter"+ strDomain;
 
          }
          else
          {
-            return element(simple_path(strRoot,"appmatter",strDomain));
+            return element()+ strRoot+"appmatter"+strDomain;
 
          }
 
       }
 
-      string system::appmatter_locator(const string & strLibraryName, const string & strAppName)
+      ::file::path system::appmatter_locator(const string & strLibraryName, const string & strAppName)
       {
 
          string strRoot;
@@ -1268,11 +1157,11 @@ namespace file
 
          appmatter_locators(strRoot, strDomain, strLibraryName, strAppName);
 
-         return element(simple_path(strRoot, "appmatter", strDomain));
+         return element() + strRoot + "appmatter", strDomain;
 
       }
 
-      string system::appmatter_locator(const string & strAppName)
+      ::file::path system::appmatter_locator(const string & strAppName)
       {
 
          string strRoot;
@@ -1286,13 +1175,13 @@ namespace file
 
 #else
 
-         return element(simple_path(strRoot, "appmatter", strDomain));
+         return element() + strRoot + "appmatter", strDomain;
 
 #endif
 
       }
 
-      string system::base_appmatter_locator(const string & strBase, const string & strLibraryName, const string & strAppName)
+      ::file::path system::base_appmatter_locator(const ::file::path & strBase,const string & strLibraryName,const string & strAppName)
       {
 
          string strRoot;
@@ -1300,11 +1189,11 @@ namespace file
 
          appmatter_locators(strRoot, strDomain, strLibraryName, strAppName);
 
-         return path(strBase, simple_path(strRoot, "appmatter", strDomain));
+         return strBase + strRoot + "appmatter" + strDomain;
 
       }
 
-      string system::base_appmatter_locator(const string & strBase, const string & strAppName)
+      ::file::path system::base_appmatter_locator(const ::file::path & strBase,const string & strAppName)
       {
 
          string strRoot;
@@ -1312,50 +1201,48 @@ namespace file
 
          appmatter_locators(strRoot, strDomain, System.m_mapAppLibrary[strAppName], strAppName);
 
-         return path(strBase, simple_path(strRoot, "appmatter", strDomain));
+         return strBase +strRoot + "appmatter" + strDomain;
 
       }
 
 
-      class ::file::file_path & system::path()
-      {
-         throw interface_only_exception(get_app(), "this is an interface");
-      }
+      //class ::file::file_path & system::path()
+      //{
+      //   throw interface_only_exception(get_app(), "this is an interface");
+      //}
 
       bool system::initialize()
       {
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      string system::trash_that_is_not_trash(const char * lpcsz)
+      ::file::path system::trash_that_is_not_trash(const char * psz)
       {
-         UNREFERENCED_PARAMETER(lpcsz);
+         UNREFERENCED_PARAMETER(psz);
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      string system::appdata(const char * lpcsz, const char * lpcsz2)
+      ::file::path system::appdata()
       {
-         UNREFERENCED_PARAMETER(lpcsz);
-         UNREFERENCED_PARAMETER(lpcsz2);
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
 
-      string system::commonappdata()
+      ::file::path system::commonappdata_root()
       {
 
             return "/var/lib";
 
       }
 
-      string system::commonappdata(const char * lpcsz,const char * lpcsz2)
+      ::file::path system::commonappdata()
       {
 
-         return element_commonappdata(element(),lpcsz,lpcsz2);
+         return element_commonappdata(element());
 
       }
 
-      string system::element_commonappdata(const string & strElement,const char * lpcsz,const char * lpcsz2)
+      ::file::path system::element_commonappdata(const string & strElement)
       {
 
       string strRelative;
@@ -1377,97 +1264,80 @@ namespace file
 
       }
 
-      return path(path(commonappdata(),"ca2",strRelative),lpcsz,lpcsz2);
+      return commonappdata_root()+ "ca2"+strRelative;
 
       }
 
 
-      string system::usersystemappdata(::aura::application * papp, const char * lpcszPrefix, const char * lpcsz, const char * lpcsz2)
+      ::file::path system::usersystemappdata(::aura::application * papp, const char * lpcszPrefix)
       {
          UNREFERENCED_PARAMETER(papp);
          UNREFERENCED_PARAMETER(lpcszPrefix);
-         UNREFERENCED_PARAMETER(lpcsz);
-         UNREFERENCED_PARAMETER(lpcsz2);
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      string system::userappdata(::aura::application * papp, const char * lpcsz, const char * lpcsz2)
-      {
-         UNREFERENCED_PARAMETER(papp);
-         UNREFERENCED_PARAMETER(lpcsz);
-         UNREFERENCED_PARAMETER(lpcsz2);
-         throw interface_only_exception(get_app(), "this is an interface");
-      }
-
-      string system::userdata(::aura::application * papp, const char * lpcsz, const char * lpcsz2)
-      {
-         UNREFERENCED_PARAMETER(papp);
-         UNREFERENCED_PARAMETER(lpcsz);
-         UNREFERENCED_PARAMETER(lpcsz2);
-         throw interface_only_exception(get_app(), "this is an interface");
-      }
-
-      string system::userfolder(::aura::application * papp, const char * lpcsz, const char * lpcsz2)
-      {
-         UNREFERENCED_PARAMETER(papp);
-         UNREFERENCED_PARAMETER(lpcsz);
-         UNREFERENCED_PARAMETER(lpcsz2);
-         throw interface_only_exception(get_app(), "this is an interface");
-      }
-
-      string system::default_os_user_path_prefix(::aura::application * papp)
+      ::file::path system::userappdata(::aura::application * papp)
       {
          UNREFERENCED_PARAMETER(papp);
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      string system::default_userappdata(::aura::application * papp, const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath)
+      ::file::path system::userdata(::aura::application * papp)
+      {
+         UNREFERENCED_PARAMETER(papp);
+         throw interface_only_exception(get_app(), "this is an interface");
+      }
+
+      ::file::path system::userfolder(::aura::application * papp)
+      {
+         UNREFERENCED_PARAMETER(papp);
+         throw interface_only_exception(get_app(), "this is an interface");
+      }
+
+      ::file::path system::default_os_user_path_prefix(::aura::application * papp)
+      {
+         UNREFERENCED_PARAMETER(papp);
+         throw interface_only_exception(get_app(), "this is an interface");
+      }
+
+      ::file::path system::default_userappdata(::aura::application * papp, const char * lpcszPrefix, const char * lpcszLogin)
       {
          UNREFERENCED_PARAMETER(papp);
          UNREFERENCED_PARAMETER(lpcszPrefix);
          UNREFERENCED_PARAMETER(lpcszLogin);
-         UNREFERENCED_PARAMETER(pszRelativePath);
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      string system::default_userdata(::aura::application * papp, const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath)
+      ::file::path system::default_userdata(::aura::application * papp, const char * lpcszPrefix, const char * lpcszLogin)
       {
          UNREFERENCED_PARAMETER(papp);
          UNREFERENCED_PARAMETER(lpcszPrefix);
          UNREFERENCED_PARAMETER(lpcszLogin);
-         UNREFERENCED_PARAMETER(pszRelativePath);
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      string system::default_userfolder(::aura::application * papp, const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath)
+      ::file::path system::default_userfolder(::aura::application * papp, const char * lpcszPrefix, const char * lpcszLogin)
       {
          UNREFERENCED_PARAMETER(papp);
          UNREFERENCED_PARAMETER(lpcszPrefix);
          UNREFERENCED_PARAMETER(lpcszLogin);
-         UNREFERENCED_PARAMETER(pszRelativePath);
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      string system::userquicklaunch(::aura::application * papp, const char * lpcszRelativePath, const char * lpcsz2)
+      ::file::path system::userquicklaunch(::aura::application * papp)
       {
          UNREFERENCED_PARAMETER(papp);
-         UNREFERENCED_PARAMETER(lpcszRelativePath);
-         UNREFERENCED_PARAMETER(lpcsz2);
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      string system::userprograms(::aura::application * papp, const char * lpcsz, const char * lpcsz2)
+      ::file::path system::userprograms(::aura::application * papp)
       {
          UNREFERENCED_PARAMETER(papp);
-         UNREFERENCED_PARAMETER(lpcsz);
-         UNREFERENCED_PARAMETER(lpcsz2);
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      string system::commonprograms(const char * lpcsz, const char * lpcsz2)
+      ::file::path system::commonprograms()
       {
-         UNREFERENCED_PARAMETER(lpcsz);
-         UNREFERENCED_PARAMETER(lpcsz2);
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
@@ -1484,10 +1354,10 @@ namespace file
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      string system::pathfind(const char * pszEnv, const char * pszTopic, const char * pszMode, ::aura::application * papp)
+      ::file::path system::pathfind(const char * pszEnv, const char * pszTopic, const char * pszMode, ::aura::application * papp)
       {
 
-         stringa stra;
+         ::file::patha stra;
 
          stra.add_tokens(pszEnv, ":", false);
 
@@ -1496,7 +1366,7 @@ namespace file
          for(int32_t i = 0; i < stra.get_count(); i++)
          {
 
-            strCandidate = path(stra[i], pszTopic);
+            strCandidate = stra[i] + pszTopic;
 
             if(Sess(papp).file().exists(strCandidate))
             {
@@ -1509,7 +1379,7 @@ namespace file
 
       }
 
-      string system::get_api_cc()
+      ::file::path system::get_api_cc()
       {
 
          if(m_strApiCc.has_char())
