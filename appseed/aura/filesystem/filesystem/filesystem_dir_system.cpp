@@ -415,14 +415,14 @@ namespace file
       }
 
 
-      bool system::ls_pattern(::aura::application * papp,const char * psz,const char * pszPattern,::file::patha * ppatha,::file::patha * ppathaName,bool_array * pbaIsDir,bool bSize)
+      bool system::ls_pattern(::aura::application * papp,const char * psz,const char * pszPattern,::file::patha * ppatha,::file::patha * ppathaName,bool bSize)
       {
 
          return false;
 
       }
 
-      bool system::ls(::aura::application * papp,const char * psz,::file::patha * ppatha,::file::patha * ppathaName,bool_array * pbaIsDir,bool bSize)
+      bool system::ls(::aura::application * papp,const char * psz,::file::patha * ppatha,::file::patha * ppathaName,bool bSize)
       {
 
          return false;

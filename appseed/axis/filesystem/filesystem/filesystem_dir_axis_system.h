@@ -61,9 +61,9 @@ namespace file
 
 
             //virtual string relpath(const char * lpcszSource,const ::file::path &Relative,const ::file::path &2 = NULL);
-            virtual bool  ls_pattern(::aura::application * papp,const ::file::path &,const string & lpcszPattern,::file::patha * ppatha = NULL,::file::patha * ppathaName = NULL,bool_array * pbaIsDir = NULL,bool bSize = false);
-            virtual bool  ls(::aura::application * papp,const ::file::path &,::file::patha * ppatha = NULL,::file::patha * ppathaName = NULL,bool_array * pbaIsDir = NULL,bool bSize = false);
-            virtual bool  rls_pattern(::aura::application * papp,const ::file::path &,const string & lpcszPattern,::file::patha * ppatha = NULL,::file::patha * ppathaName = NULL,::file::patha * ppathaRelative = NULL,bool_array * pbaIsDir = NULL,bool bSize = false,e_extract eextract = extract_first);
+            virtual bool  ls_pattern(::aura::application * papp,const ::file::path &,const string & lpcszPattern,::file::patha * ppatha = NULL,::file::patha * ppathaName = NULL,bool bSize = false);
+            virtual bool  ls(::aura::application * papp,const ::file::path &,::file::patha * ppatha = NULL,::file::patha * ppathaName = NULL,bool bSize = false);
+            virtual bool  rls_pattern(::aura::application * papp,const ::file::path &,const string & lpcszPattern,::file::patha * ppatha = NULL,::file::patha * ppathaName = NULL,::file::patha * ppathaRelative = NULL,bool bSize = false,e_extract eextract = extract_first);
             virtual bool  rls(::aura::application * papp,const ::file::path &,::file::patha * ppatha = NULL,::file::patha * ppathaName = NULL,::file::patha * ppathaRelative = NULL,e_extract eextract = extract_first);
             virtual bool  rls_dir(::aura::application * papp,const ::file::path &,::file::patha * ppatha = NULL,::file::patha * ppathaName = NULL,::file::patha * ppathaRelative = NULL);
             virtual bool  ls_dir(::aura::application * papp,const ::file::path &,::file::patha * ppatha = NULL,::file::patha * ppathaName = NULL);

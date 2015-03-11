@@ -136,19 +136,19 @@ namespace file
       }
 
 
-      bool application::ls_pattern(const char * lpcsz,const char * lpcszPattern,::file::patha * ppatha,::file::patha * ppathaName,bool_array * pbaIsDir,bool bSize)
+      bool application::ls_pattern(const char * lpcsz,const char * lpcszPattern,::file::patha * ppatha,::file::patha * ppathaName,bool bSize)
       {
-         return m_pauraapp->m_paurasystem->m_spdir.m_p->ls_pattern(m_pauraapp, lpcsz, lpcszPattern, ppatha, ppathaName, pbaIsDir, piaSize);
+         return m_pauraapp->m_paurasystem->m_spdir.m_p->ls_pattern(m_pauraapp, lpcsz, lpcszPattern, ppatha, ppathaName, pbaIsDir, bSize);
       }
 
-      bool application::ls(const char * lpcsz,::file::patha * ppatha,::file::patha * ppathaName,bool_array * pbaIsDir,bool bSize)
+      bool application::ls(const char * lpcsz,::file::patha * ppatha,::file::patha * ppathaName,bool bSize)
       {
-         return m_pauraapp->m_paurasystem->m_spdir.m_p->ls(m_pauraapp, lpcsz, ppatha, ppathaName, pbaIsDir, piaSize);
+         return m_pauraapp->m_paurasystem->m_spdir.m_p->ls(m_pauraapp, lpcsz, ppatha, ppathaName, pbaIsDir, bSize);
       }
 
       bool application::rls_pattern(const char * lpcsz, const char * lpcszPattern, ::file::patha * ppatha, ::file::patha * ppathaName, ::file::patha * ppathaRelative, bool_array * pbaIsDir, bool bSize)
       {
-         return m_pauraapp->m_paurasystem->m_spdir.m_p->rls_pattern(m_pauraapp, lpcsz, lpcszPattern, ppatha, ppathaName, ppathaRelative, pbaIsDir, piaSize);
+         return m_pauraapp->m_paurasystem->m_spdir.m_p->rls_pattern(m_pauraapp, lpcsz, lpcszPattern, ppatha, ppathaName, ppathaRelative, pbaIsDir, bSize);
       }
 
       bool application::rls(const char * lpcsz, ::file::patha * ppatha, ::file::patha * ppathaName, ::file::patha * ppathaRelative)

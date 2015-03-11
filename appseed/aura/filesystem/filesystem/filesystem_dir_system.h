@@ -62,8 +62,8 @@ namespace file
 
 
 
-         virtual bool  ls_pattern(::aura::application * papp,const char * lpcsz,const char * lpcszPattern,::file::patha * ppatha = NULL,::file::patha * ppathaName = NULL,bool_array * pbaIsDir = NULL,bool bSize = false);
-         virtual bool  ls(::aura::application * papp,const char * lpcsz,::file::patha * ppatha = NULL,::file::patha * ppathaName = NULL,bool_array * pbaIsDir = NULL,bool bSize = false);
+         virtual bool  ls_pattern(::aura::application * papp,const char * lpcsz,const char * lpcszPattern,::file::patha * ppatha = NULL,::file::patha * ppathaName = NULL,bool bSize = false);
+         virtual bool  ls(::aura::application * papp,const char * lpcsz,::file::patha * ppatha = NULL,::file::patha * ppathaName = NULL,bool bSize = false);
          virtual bool  rls_pattern(::aura::application * papp, const char * lpcsz, const char * lpcszPattern, ::file::patha * ppatha = NULL, ::file::patha * ppathaName = NULL, ::file::patha * ppathaRelative = NULL, bool_array * pbaIsDir = NULL, bool bSize = false, e_extract eextract = extract_first);
          virtual bool  rls(::aura::application * papp, const char * lpcsz, ::file::patha * ppatha = NULL, ::file::patha * ppathaName = NULL, ::file::patha * ppathaRelative = NULL, e_extract eextract = extract_first);
          virtual bool  rls_dir(::aura::application * papp,const char * lpcsz,::file::patha * ppatha = NULL,::file::patha * ppathaName = NULL,::file::patha * ppathaRelative = NULL);

@@ -299,10 +299,10 @@ namespace windows
    }
 
 
-   bool dir::rls_pattern(::aura::application * papp, const ::file::path & path,const string & lpszPattern,::file::patha * ppatha,::file::patha * ppathaName,::file::patha * ppathaRelative,bool_array * pbaIsDir,bool bSize,e_extract eextract)
+   bool dir::rls_pattern(::aura::application * papp, const ::file::path & path,const string & lpszPattern,::file::patha * ppatha,::file::patha * ppathaName,::file::patha * ppathaRelative,bool bSize,e_extract eextract)
    {
 
-      if(::file::dir::system::rls_pattern(papp,path,lpszPattern,ppatha,ppathaName,ppathaRelative, pbaIsDir, piaSize, eextract))
+      if(::file::dir::system::rls_pattern(papp,path,lpszPattern,ppatha,ppathaName,ppathaRelative, pbaIsDir, bSize, eextract))
       {
 
          return true;
@@ -327,7 +327,7 @@ namespace windows
          {
             iStart = ppathaRelative->get_size();
          }
-         rls_pattern(papp, strDir, lpszPattern, ppatha, ppathaName, ppathaRelative, pbaIsDir, piaSize, eextract == extract_all ? extract_all : extract_none);
+         rls_pattern(papp, strDir, lpszPattern, ppatha, ppathaName, ppathaRelative, pbaIsDir, bSize, eextract == extract_all ? extract_all : extract_none);
          if(ppathaRelative != NULL)
          {
             for(index i = iStart; i < ppathaRelative->get_size(); i++)
@@ -349,23 +349,34 @@ namespace windows
                if(ppatha != NULL)
                {
                   ppatha->add(file_find.GetFilePath());
+                  if(bSize)
+                  {
+                     ppatha->last().m_iSize = file_find.get_length();
+                  }
+                  ppatha->last().m_iDir = file_find.IsDirectory() != FALSE;
                }
                if(ppathaName != NULL)
                {
                   ppathaName->add(file_find.GetFileName());
+                  if(bSize)
+                  {
+                     ppatha->last().m_iSize = file_find.get_length();
+                  }
+                  ppatha->last().m_iDir = file_find.IsDirectory() != FALSE;
                }
                if(ppathaRelative != NULL)
                {
                   ppathaRelative->add(file_find.GetFileName());
+                  if(bSize)
+                  {
+                     ppatha->last().m_iSize = file_find.get_length();
+                  }
+                  ppatha->last().m_iDir = file_find.IsDirectory() != FALSE;
                }
-               if(pbaIsDir != NULL)
-               {
-                  pbaIsDir->add(file_find.IsDirectory() != FALSE);
-               }
-               if(piaSize != NULL)
-               {
-                  piaSize->add(file_find.get_length());
-               }
+               //if(piaSize != NULL)
+               //{
+               //   piaSize->add(file_find.get_length());
+               //}
                /*if(file_find.IsDirectory())
                {
                   int32_t iStart = 0;
@@ -544,7 +555,7 @@ namespace windows
    }
 
 
-   bool dir::ls(::aura::application * papp, const ::file::path & path,::file::patha * ppatha,::file::patha * ppathaName,bool_array * pbaIsDir,bool bSize)
+   bool dir::ls(::aura::application * papp, const ::file::path & path,::file::patha * ppatha,::file::patha * ppathaName,bool bSize)
    {
 
       return ls_pattern(papp,path,"*.*",ppatha,ppathaName,pbaIsDir,piaSize);
