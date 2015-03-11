@@ -43,7 +43,7 @@ namespace fs
    }
 
 
-   void native::root_ones(stringa & patha,stringa & straTitle)
+   void native::root_ones(::file::patha & patha,stringa & straTitle)
    {
 
       System.dir().root_ones(patha, straTitle, get_app());
@@ -51,7 +51,7 @@ namespace fs
       
 #ifdef WINDOWSEX
 
-      string strDesktopFolder;
+      ::file::path strDesktopFolder;
 
       ::windows::SHGetSpecialFolderPath(
          NULL,
@@ -165,7 +165,7 @@ namespace fs
    }
 
 
-   bool native::file_exists(const char * pszPath)
+   bool native::file().exists(const char * pszPath)
    {
 
       return ::file_exists_dup(pszPath) != FALSE;

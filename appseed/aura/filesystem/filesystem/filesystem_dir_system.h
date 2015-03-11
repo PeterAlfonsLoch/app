@@ -83,7 +83,7 @@ namespace file
 
          virtual bool  is_inside(const char * lpcszDir, const char * lpcszPath, ::aura::application * papp);
          virtual bool  is_inside_time(const char * lpcsz, ::aura::application * papp);
-         virtual void  root_ones(::file::patha & patha, ::file::patha & straTitle, ::aura::application * papp);
+         virtual void  root_ones(::file::patha & patha, stringa & straTitle, ::aura::application * papp);
          virtual bool  mk(const char * lpcsz, ::aura::application * papp);
          virtual bool  rm(::aura::application * papp, const char * psz, bool bRecursive = true);
 
@@ -110,9 +110,9 @@ namespace file
          virtual void   matter_ls(::aura::application * papp, const ::file::path & str, ::file::patha & stra);
          virtual void   matter_ls_file(::aura::application * papp,const ::file::path & str,::file::patha & stra);
 
-         virtual ::file::path matter(::aura::application * papp);
+         //virtual ::file::path matter(::aura::application * papp);
 
-         virtual ::file::path matter_from_locator(::aura::str_context * pcontext,const string & strLocator,const string & str);
+         virtual ::file::path matter_from_locator(::aura::str_context * pcontext,const string & strLocator,const ::file::path & str);
          virtual void appmatter_locators(string & strRoot, string & strDomain, ::aura::application * papp);
          virtual void appmatter_locators(string & strRoot, string & strDomain, const string & strLibraryName, const string & strAppName);
          virtual void appmatter_locators(string & strRoot, string & strDomain, const string & strAppName);

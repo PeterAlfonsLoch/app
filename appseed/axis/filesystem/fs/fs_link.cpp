@@ -70,7 +70,7 @@ namespace fs
             if(ppathaName != NULL)
             {
 
-               ppathaName->add(System.file().title_(m_straPath[i]));
+               ppathaName->add(m_straPath[i].name());
 
             }
 
@@ -120,7 +120,7 @@ namespace fs
    }
 
 
-   void link::root_ones(stringa & patha, stringa & straTitle)
+   void link::root_ones(::file::patha & patha, stringa & straTitle)
    {
 
       patha.add(m_strPath);
@@ -210,7 +210,7 @@ namespace fs
    }
 
 
-   bool link::file_exists(const char * pszPath)
+   bool link::file().exists(const char * pszPath)
    {
 
       return ::file_exists_dup(pszPath) != FALSE;
@@ -249,7 +249,7 @@ namespace fs
 
       stringa straLink;
 
-      string strSourceFolder;
+      ::file::path strSourceFolder;
 
 #ifdef WINDOWSEX
 
@@ -261,7 +261,7 @@ namespace fs
          CSIDL_PROFILE,
          FALSE);
 
-      m_strPath = System.dir().path(strSourceFolder,"links");
+      m_strPath = strSourceFolder / "links";
 
 #endif
 

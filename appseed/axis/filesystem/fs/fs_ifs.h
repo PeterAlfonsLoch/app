@@ -16,10 +16,10 @@ public:
    string_map < uint32_t >    m_mapdirTimeout;
    string_map < uint32_t >    m_mapfileTimeout;
    string_map < uint32_t >    m_maplsTimeout;
-   strsp(stringa)             m_mapdirFile;
-   strsp(stringa)             m_mapdirFolder;
-   strsp(stringa)             m_mapdirFileName;
-   strsp(stringa)             m_mapdirFolderName;
+   strmap(::file::patha)      m_mapdirFile;
+   strmap(::file::patha)      m_mapdirFolder;
+   strmap(::file::patha)      m_mapdirFileName;
+   strmap(::file::patha)      m_mapdirFolderName;
    strsp(int64_array)         m_mapdirFileSize;
    strsp(int64_array)         m_mapdirFolderSize; // by now, always store item count?
    strsp(bool_array)          m_mapdirFileDir;
@@ -33,7 +33,7 @@ public:
    virtual bool fast_has_subdir(const char * pszPath);
    virtual bool ls(const char * pszDir,::file::patha * ppatha,::file::patha * ppathaName,int64_array * piaSize,bool_array * pbaDir);
    virtual bool is_dir(const char * pszPath);
-   virtual void root_ones(stringa & patha, stringa & straTitle);
+   virtual void root_ones(::file::patha & patha,stringa & straTitle);
 
    virtual string file_name(const char * pszPath);
    //virtual string dir_path(const char * psz1, const char * psz2);

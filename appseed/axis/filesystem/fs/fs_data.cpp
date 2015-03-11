@@ -104,7 +104,7 @@ namespace fs
       return false;
    }
 
-   void data::root_ones(stringa & patha, stringa & straTitle)
+   void data::root_ones(::file::patha & patha,stringa & straTitle)
    {
       UNREFERENCED_PARAMETER(patha);
       UNREFERENCED_PARAMETER(straTitle);

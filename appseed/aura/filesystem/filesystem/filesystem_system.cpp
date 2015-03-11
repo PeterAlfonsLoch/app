@@ -78,7 +78,7 @@ namespace file
 
       for(int32_t i = 0; i < stra.get_size(); i++)
       {
-         str += stra[i];
+         str /= stra[i];
          if(stra[i].find('/') < 0 && stra[i].find('\\') < 0)
          {
             str += "\\";
@@ -292,7 +292,7 @@ restart:
                   iMax++;
                }
                strFormat.Format("%02d", iMax);
-               str += strFormat;
+               str /= strFormat;
                if(i == iIncLevel)
                {
                   System.dir().mk(str, papp);
@@ -306,7 +306,7 @@ restart:
             int32_t iMax = filterex_time_square(pszPrefix, straTitle);
             if(iMax == -1)
             {
-               str = str + strPrefix+"00"+strSuffix;
+               str = str / (strPrefix+"00"+strSuffix);
                if(system::mk_time(str))
                   break;
             }
@@ -319,7 +319,7 @@ restart:
             {
                iMax++;
                strFormat.Format("%02d", iMax);
-               str = str + strPrefix+strFormat+strSuffix;
+               str = str / (strPrefix+strFormat+strSuffix);
                if(system::mk_time(str))
                   break;
             }
@@ -901,7 +901,7 @@ restart:
 
    string system::paste(const char * pszLocation, const char * path, ::aura::application * papp)
    {
-      string strDir = System.dir().name(path);
+      ::file::path strDir = System.dir().name(path);
       ::file::path strDest = pszLocation;
       ::file::path strSrc = strDir;
       if(strDest == strSrc)
@@ -910,7 +910,7 @@ restart:
       }
       else
       {
-         ::file::path strNew = strDest + name_(path);
+         ::file::path strNew = strDest / name_(path);
          copy(strNew, path, false, extract_all, papp);
          return strNew;
       }
@@ -929,9 +929,9 @@ restart:
       for(int32_t i = 0; i < stra.get_size(); i++)
       {
 #ifdef WINDOWS
-         move(strDir + name_(stra[i]), stra[i]);
+         move(strDir / name_(stra[i]), stra[i]);
 #else
-         ::rename(stra[i], strDir + name_(stra[i])));
+         ::rename(stra[i], strDir / name_(stra[i])));
 #endif
       }
 
@@ -945,10 +945,10 @@ restart:
       System.dir().mk(strDir, papp);
 
 #ifdef WINDOWS
-      //         ::MoveFile(psz, strDir + name_(psz)));
-      move(strDir + name_(psz), psz);
+      //         ::MoveFile(psz, strDir / name_(psz)));
+      move(strDir / name_(psz), psz);
 #else
-      ::rename(psz, strDir + name_(psz)));
+      ::rename(psz, strDir / name_(psz)));
 #endif
 
    }
@@ -973,11 +973,11 @@ restart:
             //              ::str::international::utf8_to_unicode(System.dir().path(pszContext, strNew)));
             try
             {
-               move(::file::path(pszContext)+ strNew, ::file::path(pszContext) + strOld);
+               move(::file::path(pszContext)/ strNew, ::file::path(pszContext) / strOld);
             }
             catch(...)
             {
-               strFail += "failed to move " + string(::file::path(pszContext)+ strOld) + " to " + string(::file::path(pszContext) + strNew);
+               strFail += "failed to move " + ::file::path(pszContext)/ strOld + " to " + ::file::path(pszContext) / strNew;
             }
 #else
             ::rename(
@@ -1057,7 +1057,7 @@ restart:
    string system::sys_temp_unique(const char * pszName)
    {
 
-      return get_sys_temp_path() + pszName;
+      return get_sys_temp_path() / pszName;
 
    }
 

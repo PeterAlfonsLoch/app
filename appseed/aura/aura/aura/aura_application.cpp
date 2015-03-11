@@ -1903,7 +1903,7 @@ namespace aura
 
       string strSchemaSystem;
 
-      string strPath = System.dir().appdata() + "langstyle_settings.xml";
+      string strPath = System.dir().appdata() / "langstyle_settings.xml";
 
       if(file().exists(strPath))
       {
@@ -2948,7 +2948,7 @@ namespace aura
 
       {
 
-         ::file::binary_buffer_sp file = file_get_file(Application.dir().userappdata() + strPath,::file::mode_read);
+         ::file::binary_buffer_sp file = file_get_file(Application.dir().userappdata() / strPath,::file::mode_read);
 
          if(file.is_null())
          {
@@ -2989,7 +2989,7 @@ namespace aura
 
       {
 
-         ::file::binary_buffer_sp file = file_get_file(Application.dir().userappdata() + strPath,::file::mode_write | ::file::mode_create | ::file::defer_create_directory);
+         ::file::binary_buffer_sp file = file_get_file(Application.dir().userappdata() / strPath,::file::mode_write | ::file::mode_create | ::file::defer_create_directory);
 
          if(file.is_null())
          {
@@ -3115,7 +3115,7 @@ namespace aura
    //}
 
 
-   //bool application::file_exists(const char * pszPath)
+   //bool application::file().exists(const char * pszPath)
    //{
 
    //   return ::file_exists_dup(pszPath) != FALSE;
@@ -3561,7 +3561,7 @@ namespace aura
    ::file::path application::get_locale_schema_dir()
    {
 
-      return ::file::path(get_locale())+get_schema();
+      return ::file::path(get_locale())/get_schema();
 
    }
 
@@ -3572,13 +3572,13 @@ namespace aura
       if(strLocale.is_empty())
       {
 
-         return ::file::path(get_locale())+get_schema();
+         return ::file::path(get_locale())/get_schema();
 
       }
       else
       {
 
-         return ::file::path(strLocale) +get_schema();
+         return ::file::path(strLocale) /get_schema();
 
       }
 
@@ -3594,13 +3594,13 @@ namespace aura
          if(strSchema.is_empty())
          {
 
-            return ::file::path(get_locale()) + get_schema();
+            return ::file::path(get_locale()) / get_schema();
 
          }
          else
          {
 
-            return ::file::path(get_locale()) +strSchema;
+            return ::file::path(get_locale()) /strSchema;
 
          }
 
@@ -3611,13 +3611,13 @@ namespace aura
          if(strSchema.is_empty())
          {
 
-            return ::file::path(strLocale) +get_schema();
+            return ::file::path(strLocale) /get_schema();
 
          }
          else
          {
 
-            return ::file::path(strLocale) + strSchema;
+            return ::file::path(strLocale) / strSchema;
 
          }
 
@@ -4029,7 +4029,7 @@ namespace aura
 
             string strPath = notinstalled.m_strId;
 
-            strPath = System.dir().ca2module() + "app";
+            strPath = System.dir().ca2module() / "app";
 
             string strBuildNumber = "latest";
 

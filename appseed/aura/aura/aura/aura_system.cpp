@@ -1061,7 +1061,7 @@ namespace aura
 
 #if defined(WINDOWSEX) || defined(LINUX) || defined(APPLEOS)
 
-            simple_shell_launcher launcher(NULL,NULL,get_module_folder()+strApp,strParameters,NULL,SW_SHOW);
+            simple_shell_launcher launcher(NULL,NULL,get_module_folder()/strApp,strParameters,NULL,SW_SHOW);
 
             launcher.execute();
 
@@ -1094,7 +1094,7 @@ namespace aura
 
 #else
 
-            simple_shell_launcher launcher(NULL,NULL,get_module_folder()+strApp,NULL,NULL,SW_SHOW);
+            simple_shell_launcher launcher(NULL,NULL,get_module_folder()/strApp,NULL,NULL,SW_SHOW);
 
             launcher.execute();
 
@@ -1132,7 +1132,7 @@ namespace aura
 
 #else
 
-            simple_shell_launcher launcher(NULL,NULL,get_ca2_module_folder() + strApp,strParameters,NULL,SW_SHOW);
+            simple_shell_launcher launcher(NULL,NULL,get_ca2_module_folder() / strApp,strParameters,NULL,SW_SHOW);
 
             launcher.execute();
 
@@ -1164,7 +1164,7 @@ namespace aura
 
 #else
 
-            simple_shell_launcher launcher(NULL,NULL,get_ca2_module_folder() + strApp,strParameters,NULL,SW_SHOW);
+            simple_shell_launcher launcher(NULL,NULL,get_ca2_module_folder() / strApp,strParameters,NULL,SW_SHOW);
 
             launcher.execute();
 
@@ -1330,7 +1330,7 @@ namespace aura
          
          strModuleFileName = System.dir().path(strCurDir,"libbase.dylib");
 
-         if(Application.file_exists(strModuleFileName))
+         if(Application.file().exists(strModuleFileName))
          {
 //            m_strCa2ModuleFolder = strCurDir;
             goto finishedCa2Module;
@@ -1338,7 +1338,7 @@ namespace aura
 
          strModuleFileName = System.dir().path(m_strModuleFolder,"libbase.dylib");
 
-         if(Application.file_exists(strModuleFileName))
+         if(Application.file().exists(strModuleFileName))
          {
 //            m_strCa2ModuleFolder = m_strModuleFolder;
             goto finishedCa2Module;
@@ -1346,7 +1346,7 @@ namespace aura
 
          strModuleFileName = Application.dir_pathfind(getenv("LD_LIBRARY_PATH"),"libbase.dylib","rfs"); // readable - normal file - non zero sized
 
-         if(Application.file_exists(strModuleFileName))
+         if(Application.file().exists(strModuleFileName))
          {
 //            m_strCa2ModuleFolder = System.dir().name(strModuleFileName);
             goto finishedCa2Module;
@@ -1640,7 +1640,7 @@ namespace aura
 
       ::file::path strPath;
 
-      strPath = System.dir().commonappdata() + "spa_install.xml";
+      strPath = System.dir().commonappdata() / "spa_install.xml";
 
       string strContents;
 
@@ -1794,7 +1794,7 @@ namespace aura
       if(directrix()->m_varTopicQuery.has_property("install"))
          return true;
 
-      ::file::binary_buffer_sp file = Session.m_spfile->get_file(System.dir().appdata() + "applibcache.bin",::file::type_binary | ::file::mode_read);
+      ::file::binary_buffer_sp file = Session.m_spfile->get_file(System.dir().appdata() / "applibcache.bin",::file::type_binary | ::file::mode_read);
 
       if(file.is_null())
          return false;
@@ -1858,7 +1858,7 @@ namespace aura
       try
       {
 
-         file = Session.file().get_file(System.dir().appdata() + "applibcache.bin",::file::defer_create_directory | ::file::type_binary | ::file::mode_create | ::file::mode_write);
+         file = Session.file().get_file(System.dir().appdata() / "applibcache.bin",::file::defer_create_directory | ::file::type_binary | ::file::mode_create | ::file::mode_write);
 
       }
       catch(::exception::base &)

@@ -610,10 +610,10 @@ namespace zip
          return m_filea.last_sp();
    }
 
-   void InFile::add_file(const char * pszDir,const char * pszRelative)
+   void InFile::add_file(const ::file::path & pszDir,const ::file::path & pszRelative)
    {
 
-      string strPath(System.dir().path(pszDir,pszRelative));
+      ::file::path strPath(pszDir / pszRelative);
 
       ::file::binary_buffer_sp file;
 
@@ -701,7 +701,7 @@ namespace zip
                //}
                if(ppathaName != NULL)
                {
-                  ppathaName->add(strTitle);
+                  ppathaName->add(::file::path(strTitle));
                }
                //if(ppathaRelative != NULL)
                //{

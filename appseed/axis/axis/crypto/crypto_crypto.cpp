@@ -1706,7 +1706,7 @@ out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEn
       char * pchData = NULL;
       long count = BIO_get_mem_data(output, &pchData);
 
-      Application.file().put_contents(strDir + "META-INF/zigbert.rsa"), pchData, count);
+      Application.file().put_contents(strDir / "META-INF/zigbert.rsa"), pchData, count);
 
       BIO_free(output);
       PKCS7_free(pkcs7);

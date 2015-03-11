@@ -397,7 +397,7 @@ namespace file
       //   throw interface_only_exception(get_app(), "this is an interface");
       //}
 
-      void system::root_ones(::file::patha & patha, ::file::patha & straTitle, ::aura::application * papp)
+      void system::root_ones(::file::patha & patha, stringa & straTitle, ::aura::application * papp)
       {
          UNREFERENCED_PARAMETER(patha);
          UNREFERENCED_PARAMETER(straTitle);
@@ -764,11 +764,11 @@ namespace file
             if(Session.m_bMatterFromHttpCache)
             {
 
-               return{strRoot + "appmatter" + strDomain + papp->m_paurasession->get_locale_schema_dir(strLocale,strSchema)};
+               return{strRoot / "appmatter" / strDomain / papp->m_paurasession->get_locale_schema_dir(strLocale,strSchema)};
             }
             else
             {
-               return {strRoot + "appmatter" + strDomain + papp->m_paurasession->get_locale_schema_dir(strLocale,strSchema)
+               return {strRoot / "appmatter" / strDomain / papp->m_paurasession->get_locale_schema_dir(strLocale,strSchema)
             };
 
             }
@@ -782,7 +782,7 @@ namespace file
             for (index i = 0; i < papp->m_straMatterLocator.get_count(); i++)
             {
 
-               stra.add_unique(papp->m_straMatterLocator[i] + papp->m_paurasession->get_locale_schema_dir(strLocale, strSchema));
+               stra.add_unique(papp->m_straMatterLocator[i] / papp->m_paurasession->get_locale_schema_dir(strLocale, strSchema));
 
             }
 
@@ -796,7 +796,7 @@ namespace file
       ::file::patha system::locale_schema_matter(const string & strLocator, const string & strLocale, const string & strSchema)
       {
 
-         return{::file::path(strLocator) + strLocale + strSchema};
+         return{::file::path(strLocator) / strLocale / strSchema};
 
       }
 
@@ -821,7 +821,7 @@ namespace file
 
             set["raw_http"] = true;
 
-            string strFile = System.dir().commonappdata() + "cache"+ strDir+ "list_dir.list_dir";
+            string strFile = System.dir().commonappdata() / "cache"/ strDir/ "list_dir.list_dir";
 
             strsize iFind = strFile.find(DIR_SEPARATOR);
 
@@ -860,7 +860,7 @@ namespace file
 
                if(!::str::ends(straLs[i],"/"))
                {
-                  ::file::path strPath  = strDir + straLs[i];
+                  ::file::path strPath  = strDir / straLs[i];
                   stra.add(strPath);
                }
 
@@ -928,7 +928,7 @@ namespace file
             return strPath;
       */
 
-      ::file::path system::matter_from_locator(::aura::str_context * pcontext, const string & strLocator,  const string & str)
+      ::file::path system::matter_from_locator(::aura::str_context * pcontext, const string & strLocator,  const ::file::path & str)
       {
 
          ::file::path strPath;
@@ -944,7 +944,7 @@ namespace file
          {
             strLs = straLs[l];
 
-            strPath = strLs + str;
+            strPath = strLs / str;
             if (System.file().exists(strPath, get_app()))
                return strPath;
 
@@ -962,7 +962,7 @@ namespace file
             {
                strLs = straLs[l];
 
-               strPath = strLs + str;
+               strPath = strLs / str;
                if (System.file().exists(strPath, get_app()))
                   return strPath;
 
@@ -978,7 +978,7 @@ namespace file
 
             strLs = straLs[l];
 
-            strPath = strLs + str;
+            strPath = strLs / str;
 
             if (System.file().exists(strPath, get_app()))
                return strPath;
@@ -993,7 +993,7 @@ namespace file
 
             strLs = straLs[l];
 
-            strPath = strLs + str;
+            strPath = strLs / str;
 
             if (System.file().exists(strPath, get_app()))
                return strPath;
@@ -1131,19 +1131,19 @@ namespace file
       ::file::path system::appmatter_locator(::aura::application * papp)
       {
 
-         string strRoot;
+         ::file::path strRoot;
          string strDomain;
 
          appmatter_locators(strRoot,strDomain,papp);
 
          if(Session.m_bMatterFromHttpCache)
          {
-            return strRoot+ "appmatter"+ strDomain;
+            return strRoot/ "appmatter"/ strDomain;
 
          }
          else
          {
-            return element()+ strRoot+"appmatter"+strDomain;
+            return element()/ strRoot/"appmatter"/strDomain;
 
          }
 
@@ -1157,7 +1157,7 @@ namespace file
 
          appmatter_locators(strRoot, strDomain, strLibraryName, strAppName);
 
-         return element() + strRoot + "appmatter", strDomain;
+         return element() / strRoot / "appmatter"/ strDomain;
 
       }
 
@@ -1175,7 +1175,7 @@ namespace file
 
 #else
 
-         return element() + strRoot + "appmatter", strDomain;
+         return element() / strRoot / "appmatter"/ strDomain;
 
 #endif
 
@@ -1189,7 +1189,7 @@ namespace file
 
          appmatter_locators(strRoot, strDomain, strLibraryName, strAppName);
 
-         return strBase + strRoot + "appmatter" + strDomain;
+         return strBase / strRoot / "appmatter" / strDomain;
 
       }
 
@@ -1201,7 +1201,7 @@ namespace file
 
          appmatter_locators(strRoot, strDomain, System.m_mapAppLibrary[strAppName], strAppName);
 
-         return strBase +strRoot + "appmatter" + strDomain;
+         return strBase /strRoot / "appmatter" / strDomain;
 
       }
 
@@ -1264,7 +1264,7 @@ namespace file
 
       }
 
-      return commonappdata_root()+ "ca2"+strRelative;
+      return commonappdata_root()/ "ca2"/strRelative;
 
       }
 
@@ -1366,7 +1366,7 @@ namespace file
          for(int32_t i = 0; i < stra.get_count(); i++)
          {
 
-            strCandidate = stra[i] + pszTopic;
+            strCandidate = stra[i] / pszTopic;
 
             if(Sess(papp).file().exists(strCandidate))
             {

@@ -26,9 +26,9 @@ namespace file
          virtual ::file::path matter(const ::file::path & path,bool bDir = false,const char * pszRoot = NULL,const char * pszApp = NULL);
          virtual ::file::path matter(const ::file::patha & stra,bool bDir = false,const char * pszRoot = NULL,const char * pszApp = NULL);
 
-         virtual void   matter_ls(const string & str, ::file::patha & stra);
+         virtual void   matter_ls(const ::file::path & str, ::file::patha & stra);
          virtual ::file::path matter_file(const ::file::path & path,bool bDir = false);
-         virtual void   matter_ls_file(const string & str, ::file::patha & stra);
+         virtual void   matter_ls_file(const ::file::path & str,::file::patha & stra);
 
          virtual ::file::path usersystemappdata(const char * lpcszPrefix);
          virtual ::file::path userappdata();
@@ -57,7 +57,7 @@ namespace file
          virtual bool  is(const var & var);
          virtual bool  is_inside(const char * lpcszDir, const char * lpcszPath);
          virtual bool  is_inside_time(const char * lpcsz);
-         virtual void  root_ones(::file::patha & patha, ::file::patha & straTitle);
+         virtual void  root_ones(::file::patha & patha, stringa & straTitle);
          virtual bool  mk(const char * lpcsz);
          virtual bool  rm(const char * psz, bool bRecursive = true);
 

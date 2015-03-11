@@ -118,11 +118,11 @@ namespace user
       string strPath;
 
 #ifdef LINUX
-      strPath = Application.dir_matter("keyboard/linux/default.xml");
+      strPath = Application.dir().matter("keyboard/linux/default.xml");
 #elif defined(APPLEOS)
-      strPath = Application.dir_matter("keyboard/macos/default.xml");
+      strPath = Application.dir().matter("keyboard/macos/default.xml");
 #elif defined(ANDROID)
-      strPath = Application.dir_matter("keyboard/android/default.xml");
+      strPath = Application.dir().matter("keyboard/android/default.xml");
 #else
 #ifndef METROWIN
       WCHAR wsz[KL_NAMELENGTH];
@@ -167,9 +167,9 @@ namespace user
 
       string str = ::str::from(w);
 
-      strPath = Application.dir_matter("keyboard/windows/" + str + ".xml");
+      strPath = Application.dir().matter("keyboard/windows/" + str + ".xml");
 
-      if(Application.file_exists(strPath))
+      if(Application.file().exists(strPath))
       {
 
          if(load_os_layout(strPath))
@@ -179,11 +179,11 @@ namespace user
 
 #endif
 
-      strPath = Application.dir_matter("keyboard/windows/default.xml");
+      strPath = Application.dir().matter("keyboard/windows/default.xml");
 
 #endif
 
-      if(!Application.file_exists(strPath))
+      if(!Application.file().exists(strPath))
          return false;
 
       if(!load_os_layout(strPath))
@@ -195,7 +195,7 @@ namespace user
 
 
 
-   bool keyboard::load_os_layout(const char * pszPath)
+   bool keyboard::load_os_layout(const ::file::path & pszPath)
    {
 
       int32_t iCode;
@@ -206,7 +206,7 @@ namespace user
 
       sp(type) typeinfoKey = System.type_info < ::user::e_key > ();
 
-      string str = Application.file_as_string(pszPath);
+      string str = Application.file().as_string(pszPath);
 
       if(str.is_empty())
       {
@@ -373,7 +373,7 @@ namespace user
    {
       keyboard_layout_ida layoutida;
       ::file::patha patha;
-      Application.dir_matter_ls_file("keyboard layout", patha);
+      Application.dir().matter_ls_file("keyboard layout", patha);
       for(int32_t i = 0; i < patha.get_count(); i++)
       {
          keyboard_layout_id layoutid;
@@ -438,9 +438,9 @@ namespace user
 
 #endif
 
-      string strPath = Application.dir_matter("keyboard layout/en_us_international.xml");
+      string strPath = Application.dir().matter("keyboard layout/en_us_international.xml");
 
-      if(Application.file_exists(strPath))
+      if(Application.file().exists(strPath))
       {
 
          return strPath;
@@ -455,10 +455,10 @@ namespace user
    bool keyboard::initialize(keyboard_layout_id * playoutid, const char * pszPath)
    {
 
-      if(!Application.file_exists(pszPath))
+      if(!Application.file().exists(pszPath))
          return false;
 
-      string str = Application.file_as_string(pszPath);
+      string str = Application.file().as_string(pszPath);
 
       if(str.is_empty())
          return false;

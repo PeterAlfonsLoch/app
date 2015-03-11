@@ -280,7 +280,7 @@ namespace filemanager
       {
       ::CopyFileW(
       L"\\\\?\\" + ::str::international::utf8_to_unicode(stra[i]),
-      L"\\\\?\\" + ::str::international::utf8_to_unicode(strDir + System.file().title(stra[i]))), TRUE);
+      L"\\\\?\\" + ::str::international::utf8_to_unicode(strDir / System.file().title(stra[i]))), TRUE);
       }*/
       //get_document()->update_all_views(NULL, 123);
    }

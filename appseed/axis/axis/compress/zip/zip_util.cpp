@@ -123,15 +123,15 @@ namespace zip
                {
                   if(ppatha != NULL)
                   {
-                     ppatha->add(strLastZip + ":" + strRemain + strTitle);
+                     ppatha->add(::file::path(strLastZip + ":" + strRemain + strTitle));
                   }
                   if(ppathaName != NULL)
                   {
-                     ppathaName->add(strTitle);
+                     ppathaName->add(::file::path(strTitle));
                   }
                   if(ppathaRelative != NULL)
                   {
-                     ppathaRelative->add(strRemain + strTitle);
+                     ppathaRelative->add(::file::path(strRemain + strTitle));
                   }
                   if(pbaIsDir != NULL)
                   {
@@ -392,7 +392,7 @@ namespace zip
             {
 
                ::file::binary_buffer_sp spfile = Sess(pfile->get_app()).file().get_file(
-                  Sys(pfile->get_app()).dir().path(pszDir, strTitle),
+                  ::file::path(pszDir) / strTitle,
                   ::file::mode_create | ::file::mode_write | ::file::defer_create_directory);
 
 

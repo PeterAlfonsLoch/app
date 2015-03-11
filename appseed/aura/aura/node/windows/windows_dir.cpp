@@ -246,7 +246,7 @@ namespace windows
       
       bool bWorking;
       
-      bWorking = file_find.FindFile(path + pszPattern);
+      bWorking = file_find.FindFile(path / pszPattern);
 
       if(!bWorking)
       {
@@ -338,7 +338,7 @@ namespace windows
       }
 
       file_find file_find;
-      bool bWorking = file_find.FindFile(path +  lpszPattern) != FALSE;
+      bool bWorking = file_find.FindFile(path /  lpszPattern) != FALSE;
       if(bWorking)
       {
          while(bWorking)
@@ -410,7 +410,7 @@ namespace windows
 
       bool bWorking;
 
-      bWorking = file_find.FindFile(path+"*.*");
+      bWorking = file_find.FindFile(path /"*.*");
 
       if(!bWorking)
       {
@@ -448,7 +448,7 @@ namespace windows
                {
                   for(index i = iStart; i < ppathaRelative->get_size(); i++)
                   {
-                     ppathaRelative->element_at(i) = file_find.GetFileName() + ppathaRelative->element_at(i);
+                     ppathaRelative->element_at(i) = file_find.GetFileName() / ppathaRelative->element_at(i);
                   }
                }
             }
@@ -471,7 +471,7 @@ namespace windows
       
       file_find file_find;
       bool bWorking;
-      bWorking = file_find.FindFile(path+ "*.*");
+      bWorking = file_find.FindFile(path / "*.*");
       
       if(!bWorking)
       {
@@ -514,7 +514,7 @@ namespace windows
 
       file_find file_find;
       bool bWorking;
-      bWorking = file_find.FindFile(path + "*.*");
+      bWorking = file_find.FindFile(path / "*.*");
 
       if(!bWorking)
       {
@@ -748,12 +748,12 @@ namespace windows
 
    ::file::path dir::stage()
    {
-      return element() + "stage";
+      return element() / "stage";
    }
 
    ::file::path dir::stageapp()
    {
-      return stage() + "basis";
+      return stage() / "basis";
    }
 
    ::file::path dir::netseed()
@@ -791,7 +791,7 @@ namespace windows
    ::file::path dir::time_square()
    {
 
-      return time() + "time";
+      return time() / "time";
 
    }
 
@@ -799,7 +799,7 @@ namespace windows
    ::file::path dir::time_log()
    {
 
-      return appdata() + "log";
+      return appdata() / "log";
 
    }
 
@@ -899,7 +899,7 @@ namespace windows
          {
             if(is(patha[i], papp))
             {
-               rm(papp, psz + straTitle[i], true);
+               rm(papp, psz / straTitle[i], true);
             }
             else
             {
@@ -1049,7 +1049,7 @@ namespace windows
 
       xml::document doc(get_app());
       
-      doc.load(System.file().as_string(appdata() + "configuration\\directory.xml",get_app()));
+      doc.load(System.file().as_string(appdata() / "configuration\\directory.xml",get_app()));
       
       xxdebug_box("win_dir::initialize (configuration)", "win_dir::initialize", 0);
       if(doc.get_root()->get_name() == "directory_configuration")
@@ -1061,10 +1061,10 @@ namespace windows
 
       }
       if(m_strTimeFolder.is_empty())
-         m_strTimeFolder = appdata()+"time";
+         m_strTimeFolder = appdata() /"time";
 
       if(m_strNetSeedFolder.is_empty())
-         m_strNetSeedFolder = element()+"net/netseed";
+         m_strNetSeedFolder = element()/"net/netseed";
 
       mk(m_strTimeFolder, get_app());
       xxdebug_box("win_dir::initialize (m_strTimeFolder)", "win_dir::initialize", 0);
@@ -1072,7 +1072,7 @@ namespace windows
       if(!is(m_strTimeFolder, get_app()))
          return false;
 
-      mk(m_strTimeFolder+ "time", get_app());
+      mk(m_strTimeFolder/ "time", get_app());
       xxdebug_box("win_dir::initialize", "win_dir::initialize", 0);
       return true;
 
@@ -1124,7 +1124,7 @@ namespace windows
          strRelative = strRelative.Left(iFind - 1) + "_" + strRelative.Mid(iStart, iFind - iStart) + strRelative.Mid(iFind + 1);
       }
       
-      return ::file::path(str) + "ca2";
+      return ::file::path(str) / "ca2";
 
    }
 
@@ -1140,17 +1140,17 @@ namespace windows
    ::file::path dir::usersystemappdata(::aura::application * papp,const char * lpcszPrefix)
    {
       UNREFERENCED_PARAMETER(papp);
-      return appdata() + lpcszPrefix;
+      return appdata() / lpcszPrefix;
    }
 
    ::file::path dir::userappdata(::aura::application * papp)
    {
-      return userfolder(papp) + "appdata";
+      return userfolder(papp) / "appdata";
    }
 
    ::file::path dir::userdata(::aura::application * papp)
    {
-      return userfolder(papp) + "data";
+      return userfolder(papp) / "data";
    }
 
    ::file::path dir::userfolder(::aura::application * papp)
@@ -1175,14 +1175,14 @@ namespace windows
 
       if(App(papp).directrix()->m_varTopicQuery.has_property("user_folder_relative_path"))
       {
-         strUserFolderShift = strRelative + App(papp).directrix()->m_varTopicQuery["user_folder_relative_path"].get_string();
+         strUserFolderShift = strRelative / App(papp).directrix()->m_varTopicQuery["user_folder_relative_path"].get_string();
       }
       else
       {
          strUserFolderShift = strRelative;
       }
 
-      return ::file::path(str)+"ca2"+strUserFolderShift;
+      return ::file::path(str)/"ca2"/strUserFolderShift;
 
    }
 
@@ -1203,12 +1203,12 @@ namespace windows
 
    ::file::path dir::default_userappdata(::aura::application * papp,const char * lpcszPrefix,const char * lpcszLogin)
    {
-      return default_userfolder(papp, lpcszPrefix, lpcszLogin) +  "appdata" ;
+      return default_userfolder(papp, lpcszPrefix, lpcszLogin) /  "appdata" ;
    }
 
    ::file::path dir::default_userdata(::aura::application * papp,const char * lpcszPrefix,const char * lpcszLogin)
    {
-      return default_userfolder(papp, lpcszPrefix, lpcszLogin) + "data";
+      return default_userfolder(papp, lpcszPrefix, lpcszLogin) / "data";
    }
 
    ::file::path dir::default_userfolder(::aura::application * papp,const char * lpcszPrefix,const char * lpcszLogin)
@@ -1223,7 +1223,7 @@ namespace windows
       
       UNREFERENCED_PARAMETER(papp);
 
-      return m_strAppData + "Microsoft\\Internet Explorer\\Quick Launch";
+      return m_strAppData / "Microsoft\\Internet Explorer\\Quick Launch";
 
    }
 
@@ -1269,7 +1269,7 @@ namespace windows
 
       bool bWorking;
 
-      bWorking = file_find.FindFile(pszDir + "*.*");
+      bWorking = file_find.FindFile(pszDir / "*.*");
 
       while(bWorking)
       {

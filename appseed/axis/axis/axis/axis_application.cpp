@@ -1022,7 +1022,7 @@ namespace axis
 
       for(int32_t i = 0; i < (1024 * 1024); i++)
       {
-         strRet = System.dir().path(str,strRelative + "-" + hex::lower_from(i + 1),string(pszName) + string(".") + pszExtension);
+         strRet = ::file::path(str) / (strRelative + "-" + hex::lower_from(i + 1)) / (string(pszName) + string(".") + pszExtension);
          if(pszTemplate != NULL)
          {
             if(System.install().is_file_ok(strRet,pszTemplate,""))
@@ -2706,7 +2706,7 @@ namespace axis
 //
 
 
-   bool application::update_appmatter(::sockets::http_session * & psession,const char * pszRoot,const char * pszRelative)
+   bool application::update_appmatter(::sockets::http_session * & psession,const ::file::path & pszRoot,const string & pszRelative)
    {
 
       ::str::international::locale_schema localeschema(this);
@@ -2732,15 +2732,15 @@ namespace axis
 
    }
 
-   bool application::update_appmatter(::sockets::http_session * & psession,const char * pszRoot,const char * pszRelative,const char * pszLocale,const char * pszStyle)
+   bool application::update_appmatter(::sockets::http_session * & psession,const ::file::path & pszRoot,const string & pszRelative,const string & pszLocale,const string & pszStyle)
    {
 
       string strLocale;
       string strSchema;
       TRACE("update_appmatter(root=%s, relative=%s, locale=%s, style=%s)",pszRoot,pszRelative,pszLocale,pszStyle);
-      string strRelative = System.dir().path(System.dir().path(pszRoot,"appmatter",pszRelative),Sess(this).get_locale_schema_dir(pszLocale,pszStyle)) + ".zip";
-      string strFile = System.dir().element(strRelative);
-      string strUrl;
+      ::file::path strRelative = ::file::path(pszRoot) / "appmatter" / pszRelative  / Sess(this).get_locale_schema_dir(pszLocale,pszStyle) + ".zip";
+      ::file::path strFile = System.dir().element() / strRelative;
+      ::file::path strUrl(::file::path_url);
       if(_ca_is_basis())
       {
          strUrl = "http://basis-server.ca2.cc/api/spaignition/download?authnone&version=basis&stage=";
@@ -3035,17 +3035,17 @@ namespace axis
 
    }
 
-   string application::dir_matter(const char * pszMatter,const char * pszMatter2)
-   {
+   //string application::dir().matter(const char * pszMatter,const char * pszMatter2)
+   //{
 
-      return dir().matter(pszMatter,pszMatter2);
+   //   return dir().matter(pszMatter,pszMatter2);
 
-   }
+   //}
 
-   bool application::is_inside_time_dir(const char * pszPath)
-   {
-      return dir().is_inside_time(pszPath);
-   }
+   //bool application::is_inside_time_dir(const char * pszPath)
+   //{
+   //   return dir().is_inside_time(pszPath);
+   //}
 
    bool application::file_is_read_only(const char * pszPath)
    {
@@ -3055,217 +3055,217 @@ namespace axis
       
    }
 
-   string application::file_as_string(var varFile)
-   {
+//   string application::file_as_string(var varFile)
+//   {
+//
+//      //if(::str::begins_ci(varFile.get_string(),"http://")
+//      //   || ::str::begins_ci(varFile.get_string(),"https://"))
+//      //{
+//
+//      //   ::property_set set(get_app());
+//
+//      //   return http().get(varFile.get_string(),set);
+//
+//      //}
+//      //else if(varFile.has_property("url") &&
+//      //   (::str::begins_ci(varFile["url"].get_string(),"http://")
+//      //   || ::str::begins_ci(varFile["url"].get_string(),"https://")))
+//      //{
+//
+//      //   ::property_set set(get_app());
+//
+//      //   return http().get(varFile["url"].get_string(),set);
+//
+//      //}
+//      //else
+//      //{
+//         return file().as_string(varFile.get_string());
+////      }
+//
+//   }
+//
+//   //string application::dir_path(const char * psz1,const char * psz2,const char * psz3)
+//   //{
+//   //   return System.dir().path(psz1,psz2,psz3);
+//   //}
+//
+//   string application::dir_name(const char * psz)
+//   {
+//      return System.dir().name(psz);
+//   }
+//
+//   bool application::dir_mk(const char * psz)
+//   {
+//      return dir().mk(psz);
+//   }
+//
+//   string application::file_title(const char * psz)
+//   {
+//      return System.file().title_(psz);
+//   }
+//   string application::file_name(const char * psz)
+//   {
+//      return System.file().name_(psz);
+//   }
+//
+//
+//   ::file::buffer_sp application::file_get_file(var varFile,uint32_t uiFlags)
+//   {
+//
+//      return file().get_file(varFile,uiFlags);
+//
+//   }
+
+   //void application::dir_matter_ls_file(const string & str,stringa & stra)
+   //{
+
+   //   return dir().matter_ls_file(str,stra);
+
+   //}
+
+//#ifdef APPLEOS
+//
+//   string application::dir_pathfind(const char * pszEnv, const char * pszTopic, const char * pszMode)
+//   {
+//      
+//      return dir().pathfind(pszEnv, pszTopic, pszMode);
+//      
+//   }
+//
+//#endif
+//
+//   string application::file_as_string(var varFile,var & varQuery)
+//   {
+//
+//      return file().as_string(varFile);
+//
+//   }
+//
+//
+//
+//   bool application::file().exists(const char * pszPath)
+//   {
+//
+//      return file().exists(pszPath) != FALSE;
+//
+//   }
+//
+//
+//   bool application::file_is_equal_path(const char * pszPath1,const char * pszPath2)
+//   {
+//
+//      return System.file().path().is_equal(pszPath1,pszPath2) != FALSE;
+//
+//   }
+//
+//
+//   bool application::dir_is(const char * psz)
+//   {
+//
+//      return dir().is(psz);
+//
+//   }
 
-      //if(::str::begins_ci(varFile.get_string(),"http://")
-      //   || ::str::begins_ci(varFile.get_string(),"https://"))
-      //{
 
-      //   ::property_set set(get_app());
+   //bool application::file_del(const char * psz)
+   //{
 
-      //   return http().get(varFile.get_string(),set);
+   //   try
+   //   {
 
-      //}
-      //else if(varFile.has_property("url") &&
-      //   (::str::begins_ci(varFile["url"].get_string(),"http://")
-      //   || ::str::begins_ci(varFile["url"].get_string(),"https://")))
-      //{
+   //      System.file().del(psz);
 
-      //   ::property_set set(get_app());
+   //   }
+   //   catch(...)
+   //   {
 
-      //   return http().get(varFile["url"].get_string(),set);
+   //      return false;
 
-      //}
-      //else
-      //{
-         return file().as_string(varFile.get_string());
-//      }
+   //   }
 
-   }
+   //   return true;
 
-   string application::dir_path(const char * psz1,const char * psz2,const char * psz3)
-   {
-      return System.dir().path(psz1,psz2,psz3);
-   }
+   //}
 
-   string application::dir_name(const char * psz)
-   {
-      return System.dir().name(psz);
-   }
+   //string application::file_extension(const char * pszPath)
+   //{
 
-   bool application::dir_mk(const char * psz)
-   {
-      return dir().mk(psz);
-   }
+   //   return System.file().extension(pszPath);
 
-   string application::file_title(const char * psz)
-   {
-      return System.file().title_(psz);
-   }
-   string application::file_name(const char * psz)
-   {
-      return System.file().name_(psz);
-   }
+   //}
 
 
-   ::file::buffer_sp application::file_get_file(var varFile,uint32_t uiFlags)
-   {
+   //string application::dir_userappdata(const char * lpcsz,const char * lpcsz2)
+   //{
 
-      return file().get_file(varFile,uiFlags);
+   //   return dir().userappdata(lpcsz,lpcsz2);
 
-   }
+   //}
 
-   void application::dir_matter_ls_file(const string & str,stringa & stra)
-   {
+   //string application::dir_appdata(const char * lpcsz,const char * lpcsz2)
+   //{
 
-      return dir().matter_ls_file(str,stra);
+   //   return System.dir().appdata(lpcsz,lpcsz2);
 
-   }
+   //}
 
-#ifdef APPLEOS
 
-   string application::dir_pathfind(const char * pszEnv, const char * pszTopic, const char * pszMode)
-   {
-      
-      return dir().pathfind(pszEnv, pszTopic, pszMode);
-      
-   }
+   //string application::dir_simple_path(const string & str1,const string & str2)
+   //{
 
-#endif
+   //   return System.dir().simple_path(str1,str2);
 
-   string application::file_as_string(var varFile,var & varQuery)
-   {
+   //}
 
-      return file().as_string(varFile);
 
-   }
+   //string application::dir_element(const char * psz)
+   //{
 
+   //   return System.dir().element(psz);
 
+   //}
 
-   bool application::file_exists(const char * pszPath)
-   {
 
-      return file().exists(pszPath) != FALSE;
+   //string application::dir_ca2module(const char * psz)
+   //{
 
-   }
+   //   return System.dir().ca2module(psz);
 
+   //}
 
-   bool application::file_is_equal_path(const char * pszPath1,const char * pszPath2)
-   {
 
-      return System.file().path().is_equal(pszPath1,pszPath2) != FALSE;
+   //void application::dir_ls_dir(const char * lpcsz,::file::patha * ppatha,::file::patha * ppathaName)
+   //{
 
-   }
+   //   dir().ls_dir(lpcsz,ppatha,ppathaName);
 
+   //}
 
-   bool application::dir_is(const char * psz)
-   {
 
-      return dir().is(psz);
+   //void application::dir_rls(const char * lpcsz,::file::patha * ppatha,::file::patha * ppathaName,::file::patha * ppathaRelative)
+   //{
 
-   }
+   //   dir().rls(lpcsz,ppatha,ppathaName,ppathaRelative);
 
+   //}
 
-   bool application::file_del(const char * psz)
-   {
 
-      try
-      {
 
-         System.file().del(psz);
 
-      }
-      catch(...)
-      {
+   //string application::file_time_square()
+   //{
 
-         return false;
+   //   return file().time_square();
 
-      }
+   //}
 
-      return true;
 
-   }
+   //string application::http_get_locale_schema(const char * pszUrl,const char * pszLocale,const char * pszSchema)
+   //{
 
-   string application::file_extension(const char * pszPath)
-   {
+   //   return http().get_locale_schema(pszUrl,pszLocale,pszSchema);
 
-      return System.file().extension(pszPath);
-
-   }
-
-
-   string application::dir_userappdata(const char * lpcsz,const char * lpcsz2)
-   {
-
-      return dir().userappdata(lpcsz,lpcsz2);
-
-   }
-
-   string application::dir_appdata(const char * lpcsz,const char * lpcsz2)
-   {
-
-      return System.dir().appdata(lpcsz,lpcsz2);
-
-   }
-
-
-   string application::dir_simple_path(const string & str1,const string & str2)
-   {
-
-      return System.dir().simple_path(str1,str2);
-
-   }
-
-
-   string application::dir_element(const char * psz)
-   {
-
-      return System.dir().element(psz);
-
-   }
-
-
-   string application::dir_ca2module(const char * psz)
-   {
-
-      return System.dir().ca2module(psz);
-
-   }
-
-
-   void application::dir_ls_dir(const char * lpcsz,::file::patha * ppatha,::file::patha * ppathaName)
-   {
-
-      dir().ls_dir(lpcsz,ppatha,ppathaName);
-
-   }
-
-
-   void application::dir_rls(const char * lpcsz,::file::patha * ppatha,::file::patha * ppathaName,::file::patha * ppathaRelative)
-   {
-
-      dir().rls(lpcsz,ppatha,ppathaName,ppathaRelative);
-
-   }
-
-
-
-
-   string application::file_time_square()
-   {
-
-      return file().time_square();
-
-   }
-
-
-   string application::http_get_locale_schema(const char * pszUrl,const char * pszLocale,const char * pszSchema)
-   {
-
-      return http().get_locale_schema(pszUrl,pszLocale,pszSchema);
-
-   }
+   //}
 
 
    

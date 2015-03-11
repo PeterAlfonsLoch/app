@@ -285,7 +285,7 @@ namespace colorertake5
 
                string strPath;
 
-               strPath = strDir + hrdLocV->element_at(idx);
+               strPath = strDir / hrdLocV->element_at(idx);
 
                ::file::byte_input_stream spfile(Application.file_get_file(strPath, ::file::mode_read | ::file::type_binary));
 

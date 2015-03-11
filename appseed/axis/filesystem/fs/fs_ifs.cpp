@@ -29,7 +29,7 @@ bool ifs::fast_has_subdir(const char * pszPath)
       if(get_tick_count() < dwTimeout)
       {
 
-         return m_mapdirFolder[strDir]->get_count() > 0;
+         return m_mapdirFolder[strDir].get_count() > 0;
 
       }
 
@@ -57,7 +57,7 @@ bool ifs::has_subdir(const char * pszPath)
       if(get_tick_count() < dwTimeout)
       {
 
-         return m_mapdirFolder[strDir]->get_count() > 0;
+         return m_mapdirFolder[strDir].get_count() > 0;
 
       }
 
@@ -75,7 +75,7 @@ bool ifs::has_subdir(const char * pszPath)
       if(get_tick_count() < dwTimeout)
       {
 
-         return m_mapdirFolder[strDir]->get_count() > 0;
+         return m_mapdirFolder[strDir].get_count() > 0;
 
       }
 
@@ -86,7 +86,7 @@ bool ifs::has_subdir(const char * pszPath)
 }
 
 
-void ifs::root_ones(stringa & patha, stringa & straTitle)
+void ifs::root_ones(::file::patha & patha,stringa & straTitle)
 {
 
    patha.add("uifs://");
@@ -117,13 +117,13 @@ bool ifs::ls(const char * pszDir,::file::patha * ppatha,::file::patha * ppathaNa
 
          if(ppatha  != NULL)
          {
-            ppatha->add(*m_mapdirFolder[strDir]);
-            ppatha->add(*m_mapdirFile[strDir]);
+            ppatha->add(m_mapdirFolder[strDir]);
+            ppatha->add(m_mapdirFile[strDir]);
          }
          if(ppathaName  != NULL)
          {
-            ppathaName->add(*m_mapdirFolderName[strDir]);
-            ppathaName->add(*m_mapdirFileName[strDir]);
+            ppathaName->add(m_mapdirFolderName[strDir]);
+            ppathaName->add(m_mapdirFileName[strDir]);
          }
          if (piaSize != NULL)
          {
@@ -142,14 +142,14 @@ bool ifs::ls(const char * pszDir,::file::patha * ppatha,::file::patha * ppathaNa
 
    }
 
-   if(m_mapdirFolder[strDir].is_null())
-      m_mapdirFolder[strDir] = canew(stringa);
-   if(m_mapdirFolderName[strDir].is_null())
-      m_mapdirFolderName[strDir] = canew(stringa);
-   if(m_mapdirFile[strDir].is_null())
-      m_mapdirFile[strDir] = canew(stringa);
-   if(m_mapdirFileName[strDir].is_null())
-      m_mapdirFileName[strDir] = canew(stringa);
+   //if(m_mapdirFolder[strDir].is_null())
+   //   m_mapdirFolder[strDir] = canew(stringa);
+   //if(m_mapdirFolderName[strDir].is_null())
+   //   m_mapdirFolderName[strDir] = canew(stringa);
+   //if(m_mapdirFile[strDir].is_null())
+   //   m_mapdirFile[strDir] = canew(stringa);
+   //if(m_mapdirFileName[strDir].is_null())
+   //   m_mapdirFileName[strDir] = canew(stringa);
    if (m_mapdirFileSize[strDir].is_null())
       m_mapdirFileSize[strDir] = canew(int64_array);
    if (m_mapdirFolderSize[strDir].is_null())
@@ -166,10 +166,10 @@ bool ifs::ls(const char * pszDir,::file::patha * ppatha,::file::patha * ppathaNa
      // return false;
 
 
-   stringa        straDir;
-   stringa        straDirName;
-   stringa        straFile;
-   stringa        straFileName;
+   ::file::patha  straDir;
+   ::file::patha  straDirName;
+   ::file::patha  straFile;
+   ::file::patha  straFileName;
    int64_array    iaFileSize;
    int64_array    iaFolderSize;
    bool_array     baFileDir;
@@ -248,12 +248,12 @@ bool ifs::ls(const char * pszDir,::file::patha * ppatha,::file::patha * ppathaNa
       for(int32_t i = 0; i < pnode->get_children_count(); i++)
       {
 
-         string strName = pnode->child_at(i)->attr("name");
+         ::file::path strName = pnode->child_at(i)->attr("name").get_string();
 
          if(pnode->child_at(i)->get_name() != "folder")
             continue;
 
-         string strPath = dir_path(pszDir, strName);
+         ::file::path strPath = dir_path(pszDir,strName);
          m_mapdirTimeout[strPath] = ::get_tick_count() + (4 * 1000);
          m_mapfileTimeout.remove_key(strPath);
          straDir.add(strPath);
@@ -269,12 +269,12 @@ bool ifs::ls(const char * pszDir,::file::patha * ppatha,::file::patha * ppathaNa
    {
       for(int32_t i = 0; i < pnode->get_children_count(); i++)
       {
-         string strName = pnode->child_at(i)->attr("name");
+         ::file::path strName = pnode->child_at(i)->attr("name").get_string();
          string strExtension = pnode->child_at(i)->attr("extension");
          if(pnode->child_at(i)->get_name() != "file")
             continue;
          string strSize = pnode->child_at(i)->attr("size");
-         string strPath = dir_path(pszDir, strName);
+         ::file::path strPath = dir_path(pszDir,strName);
          m_mapfileTimeout[strPath] = ::get_tick_count() + (4 * 1000);
          m_mapdirTimeout.remove_key(strPath);
          straFile.add(strPath);
@@ -304,14 +304,14 @@ bool ifs::ls(const char * pszDir,::file::patha * ppatha,::file::patha * ppathaNa
       pbaDir->add(baFileDir);
    }
 
-      if(m_mapdirFolder[strDir].is_null())
-      m_mapdirFolder[strDir] = canew(stringa);
-   if(m_mapdirFolderName[strDir].is_null())
-      m_mapdirFolderName[strDir] = canew(stringa);
-   if(m_mapdirFile[strDir].is_null())
-      m_mapdirFile[strDir] = canew(stringa);
-   if(m_mapdirFileName[strDir].is_null())
-      m_mapdirFileName[strDir] = canew(stringa);
+   //   if(m_mapdirFolder[strDir].is_null())
+   //   m_mapdirFolder[strDir] = canew(stringa);
+   //if(m_mapdirFolderName[strDir].is_null())
+   //   m_mapdirFolderName[strDir] = canew(stringa);
+   //if(m_mapdirFile[strDir].is_null())
+   //   m_mapdirFile[strDir] = canew(stringa);
+   //if(m_mapdirFileName[strDir].is_null())
+   //   m_mapdirFileName[strDir] = canew(stringa);
    if (m_mapdirFileSize[strDir].is_null())
       m_mapdirFileSize[strDir] = canew(int64_array);
    if (m_mapdirFolderSize[strDir].is_null())
@@ -322,10 +322,10 @@ bool ifs::ls(const char * pszDir,::file::patha * ppatha,::file::patha * ppathaNa
       m_mapdirFolderDir[strDir] = canew(bool_array);
 
 
-   stringa        & straThisDir         = *m_mapdirFolder[strDir];
-   stringa        & straThisDirName     = *m_mapdirFolderName[strDir];
-   stringa        & straThisFile        = *m_mapdirFile[strDir];
-   stringa        & straThisFileName    = *m_mapdirFileName[strDir];
+   ::file::patha  & straThisDir         = m_mapdirFolder[strDir];
+   ::file::patha  & straThisDirName     = m_mapdirFolderName[strDir];
+   ::file::patha  & straThisFile        = m_mapdirFile[strDir];
+   ::file::patha  & straThisFileName    = m_mapdirFileName[strDir];
    int64_array    & iaThisFileSize      = *m_mapdirFileSize[strDir];
    int64_array    & iaThisFolderSize    = *m_mapdirFolderSize[strDir];
    bool_array     & baThisFileDir       = *m_mapdirFileDir[strDir];

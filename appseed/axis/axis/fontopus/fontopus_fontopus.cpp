@@ -80,8 +80,8 @@ namespace fontopus
             //strSection.Format("license_auth");
             //string strDir;
             //strDir = Application.dir().usersystemappdata(puser->m_strPathPrefix, strSection);
-            //::DeleteFile(strDir + "00001"));
-            //::DeleteFile(strDir + "00002"));
+            //::DeleteFile(strDir / "00001"));
+            //::DeleteFile(strDir / "00002"));
             iRetry--;
          }
          if(puser == NULL)

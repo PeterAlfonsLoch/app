@@ -607,7 +607,7 @@ namespace filemanager
          for(int32_t i = 1; i < 1000; i++)
          {
             strFormat = set_number_value(strName, iValue + i);
-            str = strDir +strFormat + strExtension);
+            str = strDir /strFormat + strExtension);
             if(!Application.file().exists(str))
                return true;
          }
@@ -619,7 +619,7 @@ namespace filemanager
          for(int32_t i = 1; i < 1000; i++)
          {
             strFormat.Format("-Copy-%03d",i);
-            str = strDir +strName + strFormat + strExtension);
+            str = strDir /strName + strFormat + strExtension);
             if(!Application.file().exists(str))
                return true;
          }

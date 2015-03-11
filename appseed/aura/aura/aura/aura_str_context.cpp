@@ -162,7 +162,7 @@ namespace aura
 #ifdef METROWIN
       return true;
 #endif
-      auto strMain = System.dir().element() + "app\\appmatter\\main";
+      auto strMain = System.dir().element() / "app\\appmatter\\main";
       if(!load(strMain))
          return false;
       return true;
@@ -188,7 +188,7 @@ namespace aura
             if(idStyle.CompareNoCase(".svn") == 0)
                continue;
             ::file::patha patha;
-            Application.dir().rls(straStylePath[iStyle] + "uistr", &patha);
+            Application.dir().rls(straStylePath[iStyle] / "uistr", &patha);
             for(int32_t iPath = 0; iPath < patha.get_count(); iPath++)
             {
                string strPath = patha[iPath];

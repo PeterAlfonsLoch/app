@@ -222,7 +222,7 @@ namespace axis
       if (System.dir().is(psz, papp))
       {
          ::file::patha patha;
-         stringa straRelative;
+         ::file::patha straRelative;
          string strPath;
          ::file::binary_buffer_sp file;
          System.dir().rls(papp, psz, &patha, NULL, &straRelative);
