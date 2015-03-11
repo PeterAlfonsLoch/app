@@ -45,7 +45,7 @@ namespace file
       return NULL;
    }
 
-   exception_sp stream_buffer::open(const char * lpszFileName, UINT nOpenFlags)
+   exception_sp stream_buffer::open(const ::file::path & lpszFileName,UINT nOpenFlags)
    {
       UNREFERENCED_PARAMETER(lpszFileName);
       UNREFERENCED_PARAMETER(nOpenFlags);
@@ -360,19 +360,19 @@ namespace file
       return FALSE;
    }
 
-   bool stream_buffer::GetStatus(const char * lpszFileName, file_status & rStatus)
-   {
-      UNREFERENCED_PARAMETER(lpszFileName);
-      UNREFERENCED_PARAMETER(rStatus);
-      return FALSE;
-   }
+   //bool stream_buffer::GetStatus(const char * lpszFileName, file_status & rStatus)
+   //{
+   //   UNREFERENCED_PARAMETER(lpszFileName);
+   //   UNREFERENCED_PARAMETER(rStatus);
+   //   return FALSE;
+   //}
 
 
-   void stream_buffer::SetStatus(const char * lpszFileName, const file_status & status)
-   {
-      UNREFERENCED_PARAMETER(lpszFileName);
-      UNREFERENCED_PARAMETER(status);
-   }
+   //void stream_buffer::SetStatus(const char * lpszFileName, const file_status & status)
+   //{
+   //   UNREFERENCED_PARAMETER(lpszFileName);
+   //   UNREFERENCED_PARAMETER(status);
+   //}
 
 
 

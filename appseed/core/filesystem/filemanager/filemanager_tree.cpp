@@ -369,7 +369,7 @@ namespace filemanager
 
          if(strPath.has_char())
          {
-            stringa stra;
+            ::file::patha stra;
 
             get_filemanager_manager()->get_fs_data()->get_ascendants_path(strPath,stra);
 

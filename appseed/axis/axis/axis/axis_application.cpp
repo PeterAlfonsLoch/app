@@ -231,13 +231,13 @@ namespace axis
          strLocator = System.dir().appmatter_locator(strApp);
       }
 
-      if(strMatter.is_empty())
+      if(pszId.is_empty())
       {
          strMatter = "stringtable.xml";
       }
-      else if(System.file().extension(strMatter) != "xml")
+      else 
       {
-         strMatter += ".xml";
+         strMatter = pszId + ".xml";
       }
 
       string strTableId = strApp;
@@ -1028,12 +1028,14 @@ namespace axis
             if(System.install().is_file_ok(strRet,pszTemplate,""))
                return true;
          }
+
          if(file_exists_dup(strRet))
          {
+
             try
             {
 
-               m_paxissystem->file().del(strRet);
+               Application.file().del(strRet);
 
             }
             catch(...)
@@ -3031,7 +3033,7 @@ namespace axis
 
       varQuery["disable_ca2_sessid"] = true;
 
-      return file().as_string(dir().matter(pszMatter,pszMatter2),varQuery);
+      return file().as_string(dir().matter(::file::path(pszMatter) / pszMatter2),varQuery);
 
    }
 

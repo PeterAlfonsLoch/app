@@ -42,7 +42,7 @@ namespace http
          {
             try
             {
-               System.file().del(System.dir().appdata()/ "proxy.xml");
+               Application.file().del(System.dir().appdata()/ "proxy.xml");
             }
             catch(...)
             {
@@ -1872,8 +1872,8 @@ retry:
       string strPasswordFile;
       string strSection;
       strSection.Format("proxy_auth\\%s.%s", puser->m_strLogin.c_str(), "proxy_auth");
-      strUserNameFile = System.dir().appdata(strSection + "_1");
-      strPasswordFile = System.dir().appdata(strSection + "_2");
+      strUserNameFile = System.dir().appdata() / strSection + "_1";
+      strPasswordFile = System.dir().appdata() / strSection + "_2";
       bool bOk = true;
       if(!System.crypto().file_get(strUserNameFile, strUserName, NULL, get_app())
       || strUserName.is_empty())
@@ -1907,8 +1907,8 @@ retry:
    {
       string strSection;
       strSection.Format("proxy_auth\\%s.%s", puser->m_strLogin.c_str() , "proxy_auth");
-      System.file().del(System.dir().appdata(strSection + "_1"));
-      System.file().del(System.dir().appdata(strSection + "_2"));
+      System.file().del(System.dir().appdata() / strSection + "_1");
+      System.file().del(System.dir().appdata() / strSection + "_2");
    }
 
 

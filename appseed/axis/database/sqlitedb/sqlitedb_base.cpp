@@ -123,18 +123,20 @@ namespace sqlite
       if (active == false) return;
       sqlite3_close((sqlite3 *) conn);
       active = false;
-   };
+   }
 
-   int32_t base::create() {
+   int32_t base::create()
+   {
       return connect();
-   };
+   }
 
-   int32_t base::drop() {
+   int32_t base::drop()
+   {
       if (active == false) return DB_ERROR;
       disconnect();
       try
       {
-         System.file().del(db);
+         Application.file().del(db);
 
       }
       catch(...)
@@ -145,31 +147,65 @@ namespace sqlite
       //if (!_unlink(db))
         // return DB_ERROR;
       return DB_COMMAND_OK;
-   };
+   }
 
 
-   long base::nextid(const char* sname) {
-      if (!active) return DB_UNEXPECTED_RESULT;
-      int32_t id;
-      database::result_set res;
-      char sqlcmd[512];
-      sprintf(sqlcmd,"select nextid from %s where seq_name = '%s'",sequence_table.c_str(), sname);
-      if ((last_err = sqlite3_exec((sqlite3 *) getHandle(),sqlcmd,&callback,&res,NULL) != SQLITE_OK)) {
+   long base::nextid(const char* sname)
+   {
+   
+      if(!active)
+      {
+      
          return DB_UNEXPECTED_RESULT;
+
       }
-      if (res.records.get_size() == 0) {
+
+      int32_t id;
+
+      database::result_set res;
+
+      char sqlcmd[512];
+
+      sprintf(sqlcmd,"select nextid from %s where seq_name = '%s'",sequence_table.c_str(), sname);
+
+      if ((last_err = sqlite3_exec((sqlite3 *) getHandle(),sqlcmd,&callback,&res,NULL) != SQLITE_OK))
+      {
+
+         return DB_UNEXPECTED_RESULT;
+
+      }
+
+      if (res.records.get_size() == 0)
+      {
+         
          id = 1;
+         
          sprintf(sqlcmd,"insert into %s (nextid,seq_name) values (%d,'%s')",sequence_table.c_str(),id,sname);
-         if ((last_err = sqlite3_exec((sqlite3 *) conn,sqlcmd,NULL,NULL,NULL)) != SQLITE_OK) return DB_UNEXPECTED_RESULT;
+
+         if((last_err = sqlite3_exec((sqlite3 *)conn,sqlcmd,NULL,NULL,NULL)) != SQLITE_OK)
+         {
+
+            return DB_UNEXPECTED_RESULT;
+
+         }
+
          return id;
       }
-      else {
+      else
+      {
+
          id = res.records[0][0].int32() + 1;
+
          sprintf(sqlcmd,"update %s set nextid=%d where seq_name = '%s'",sequence_table.c_str(),id,sname);
+
          if ((last_err = sqlite3_exec((sqlite3 *) conn,sqlcmd,NULL,NULL,NULL)) != SQLITE_OK) return DB_UNEXPECTED_RESULT;
+
          return id;
+
       }
+
       return DB_UNEXPECTED_RESULT;
+
    }
 
 

@@ -455,7 +455,7 @@ install_begin:;
 
          set_progress(0.4);
 
-         stringa straFileList;
+         ::file::patha straFileList;
          string_to_intptr mapLen;
          string_to_string mapMd5;
          string_to_intptr mapGzLen;

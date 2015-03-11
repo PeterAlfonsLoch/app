@@ -9,88 +9,88 @@ namespace fs
    {
    }
 
-   bool data::has_subdir(const char * pszPath)
+   bool data::has_subdir(const ::file::path & pszPath)
    {
       UNREFERENCED_PARAMETER(pszPath);
       return false;
    }
 
-   bool data::fast_has_subdir(const char * pszPath)
+   bool data::fast_has_subdir(const ::file::path & pszPath)
    {
       return has_subdir(pszPath);
    }
 
 
-   string data::file_name(const char * pszPath)
-   {
-      UNREFERENCED_PARAMETER(pszPath);
-      return "";
-   }
+   //string data::file_name(const ::file::path & pszPath)
+   //{
+   //   UNREFERENCED_PARAMETER(pszPath);
+   //   return "";
+   //}
 
-   bool data::file_move(const char * pszDst, const char * pszSrc)
+   bool data::file_move(const ::file::path & pszDst, const ::file::path & pszSrc)
    {
       UNREFERENCED_PARAMETER(pszDst);
       UNREFERENCED_PARAMETER(pszSrc);
       return false;
    }
 
-   string data::dir_path(const char * psz1, const char * psz2)
-   {
-      string str(psz1);
-      if(str.Right(1) != '/')
-         str += "/";
-      return str + psz2;
-   }
+   //string data::dir_path(const ::file::path & psz1, const ::file::path & psz2)
+   //{
+   //   string str(psz1);
+   //   if(str.Right(1) != '/')
+   //      str += "/";
+   //   return str + psz2;
+   //}
 
 
-   bool data::tree_show_subdir(const char * pszPath)
+   bool data::tree_show_subdir(const ::file::path & pszPath)
    {
       
       return true;
 
    }
 
-   string data::eat_end_level(const char * pszPath, int32_t iCount)
-   {
-      string strPath(pszPath);
-      strsize iFind = 0;
-      strsize iStart = strPath.get_length() - 1;
-      if(iCount <= 0)
-         return pszPath;
-      while(iCount > 0)
-      {
-         iFind = strPath.reverse_find('/', iStart);
-         strsize iPos = iFind - 1;
-         if(iPos >= 0 && strPath[iPos] == '/')
-         {
-            iPos--;
-            if(iPos >= 0 && strPath[iPos] == ':')
-            {
-               if(iFind == iStart)
-               {
-                  iPos--;
-                  // t12n dedicaverse comments : protocol name
-                  iFind = strPath.reverse_find('/', iPos);
-                  if(iFind < 0)
-                     iFind = 0;
-               }
-               else
-               {
-                  iFind++;
-               }
-            }
-         }
-         iCount--;
-         if(iCount <= 0)
-            break;
-         if(iFind < 0)
-            return "";
-         iStart = iFind - 1;
-      }
-      return strPath.Left(iFind);
-   }
+   //string data::eat_end_level(const ::file::path & pszPath, int32_t iCount)
+   //{
+   //   string strPath(pszPath);
+   //   strsize iFind = 0;
+   //   strsize iStart = strPath.get_length() - 1;
+   //   if(iCount <= 0)
+   //      return pszPath;
+   //   while(iCount > 0)
+   //   {
+   //      iFind = strPath.reverse_find('/', iStart);
+   //      strsize iPos = iFind - 1;
+   //      if(iPos >= 0 && strPath[iPos] == '/')
+   //      {
+   //         iPos--;
+   //         if(iPos >= 0 && strPath[iPos] == ':')
+   //         {
+   //            if(iFind == iStart)
+   //            {
+   //               iPos--;
+   //               // t12n dedicaverse comments : protocol name
+   //               iFind = strPath.reverse_find('/', iPos);
+   //               if(iFind < 0)
+   //                  iFind = 0;
+   //            }
+   //            else
+   //            {
+   //               iFind++;
+   //            }
+   //         }
+   //      }
+   //      iCount--;
+   //      if(iCount <= 0)
+   //         break;
+   //      if(iFind < 0)
+   //         return "";
+   //      iStart = iFind - 1;
+   //   }
+   //   return strPath.Left(iFind);
+   //}
 
-   bool data::ls(const char * pszDir,::file::patha * ppatha,::file::patha * ppathaName,int64_array * piaSize,bool_array * pbaDir)
+   bool data::ls(const ::file::path & pszDir,::file::patha * ppatha,::file::patha * ppathaName,int64_array * piaSize,bool_array * pbaDir)
    {
       UNREFERENCED_PARAMETER(pszDir);
       UNREFERENCED_PARAMETER(ppatha);
@@ -98,7 +98,7 @@ namespace fs
       return false;
    }
 
-   bool data::is_dir(const char * pszPath)
+   bool data::is_dir(const ::file::path & pszPath)
    {
       UNREFERENCED_PARAMETER(pszPath);
       return false;
@@ -110,46 +110,46 @@ namespace fs
       UNREFERENCED_PARAMETER(straTitle);
    }
 
-   void data::get_ascendants_path(const char * lpcsz, stringa & straParam)
-   {
-      stringa stra;
-      get_ascendants_name(lpcsz, stra);
-      string str;
-      for(int32_t i = 0; i < stra.get_size(); i++)
-      {
-         str += stra[i];
-         if(i != 0 || !::str::ends(str, "//"))
-         {
-            str += "/";
-         }
-         straParam.add(str);
-      }
-   }
+   //void data::get_ascendants_path(const ::file::path & lpcsz,::file::patha & straParam)
+   //{
+   //   ::file::patha stra;
+   //   get_ascendants_name(lpcsz, stra);
+   //   string str;
+   //   for(int32_t i = 0; i < stra.get_size(); i++)
+   //   {
+   //      str += stra[i];
+   //      if(i != 0 || !::str::ends(str, "//"))
+   //      {
+   //         str += "/";
+   //      }
+   //      straParam.add(::file::path(str));
+   //   }
+   //}
 
-   void data::get_ascendants_name(const char * lpcsz, stringa & straParam)
-   {
-      stringa straSeparator;
-      straSeparator.add("/");
-      straSeparator.add("\\");
-      straParam.add_smallest_tokens(lpcsz, straSeparator, TRUE);
-      for(int32_t i = 0; i < straParam.get_size(); )
-      {
-         if(straParam[i].is_empty())
-         {
-            straParam.remove_at(i);
-            if(i == 1 && ::str::ends(straParam[0], ":"))
-            {
-               straParam[0] = straParam[0] + "//";
-            }
-         }
-         else
-         {
-            i++;
-         }
-      }
-   }
+   //void data::get_ascendants_name(const ::file::path & lpcsz,::file::patha & straParam)
+   //{
+   //   stringa straSeparator;
+   //   straSeparator.add("/");
+   //   straSeparator.add("\\");
+   //   straParam.add_smallest_tokens(lpcsz, straSeparator, TRUE);
+   //   for(int32_t i = 0; i < straParam.get_size(); )
+   //   {
+   //      if(straParam[i].is_empty())
+   //      {
+   //         straParam.remove_at(i);
+   //         if(i == 1 && ::str::ends(straParam[0], ":"))
+   //         {
+   //            straParam[0] = straParam[0] + "//";
+   //         }
+   //      }
+   //      else
+   //      {
+   //         i++;
+   //      }
+   //   }
+   //}
 
-   ::file::buffer_sp data::get_file(var varFile, UINT nOpenFlags, fesp * pfesp)
+   ::file::buffer_sp data::get_file(const ::file::path & varFile,UINT nOpenFlags,fesp * pfesp)
    {
       if(pfesp != NULL)
       {
@@ -160,14 +160,14 @@ namespace fs
       return NULL;
    }
 
-   bool data::file_exists(const char * pszPath)
+   bool data::file_exists(const ::file::path & pszPath)
    {
       ::file::patha straTitle;
-      ls(eat_end_level(pszPath, 1), NULL, &straTitle, NULL, NULL);
-      return straTitle.contains_ci(file_name(pszPath));
+      ls(*pszPath, NULL, &straTitle, NULL, NULL);
+      return straTitle.contains_ci(pszPath.name());
    }
 
-   var data::file_length(const char * pszPath)
+   var data::file_length(const ::file::path & pszPath)
    {
       
       ::file::patha straTitle;
@@ -185,14 +185,14 @@ namespace fs
 
    }
 
-   sp(data) data::node_path_data(const char * psz)
+   sp(data) data::node_path_data(const ::file::path & psz)
    {
 
       return this;
 
    }
 
-   sp(data) data::path_data(const char * psz)
+   sp(data) data::path_data(const ::file::path & psz)
    {
 
       return this;
@@ -200,7 +200,7 @@ namespace fs
    }
 
 
-   bool data::is_link(const char * psz)
+   bool data::is_link(const ::file::path & psz)
    {
 
       return ::str::ends_ci(psz,".lnk");
@@ -208,7 +208,7 @@ namespace fs
    }
 
 
-   bool data::is_zero_latency(const char * psz)
+   bool data::is_zero_latency(const ::file::path & psz)
    {
 
       return true;

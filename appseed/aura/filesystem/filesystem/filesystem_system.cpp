@@ -27,99 +27,99 @@ namespace file
 {
 
 
-   bool system::path::is_equal(const char * lpszFilPathA, const char * lpszFilPathB)
-   {
-      string stra(lpszFilPathA);
-      string wstrb(lpszFilPathB);
+   //bool system::path::is_equal(const char * lpszFilPathA, const char * lpszFilPathB)
+   //{
+   //   string stra(lpszFilPathA);
+   //   string wstrb(lpszFilPathB);
 
-      //   ::str::international::ACPToUnicode(stra, lpszFilPathA);
-      //   ::str::international::ACPToUnicode(wstrb, lpszFilPathB);
-      if(stra == wstrb)
-         return true;
+   //   //   ::str::international::ACPToUnicode(stra, lpszFilPathA);
+   //   //   ::str::international::ACPToUnicode(wstrb, lpszFilPathB);
+   //   if(stra == wstrb)
+   //      return true;
 
-      /*if(_GetShortPathName(stra, lpszFilPathA) == 0)
-      return false;
-      if(_GetShortPathName(wstrb, lpszFilPathB) == 0)
-      return false;*/
-      return stra == wstrb;
+   //   /*if(_GetShortPathName(stra, lpszFilPathA) == 0)
+   //   return false;
+   //   if(_GetShortPathName(wstrb, lpszFilPathB) == 0)
+   //   return false;*/
+   //   return stra == wstrb;
 
-   }
-
-
-   bool system::path::eat_end_level(string & str, int32_t iLevelCount, const char * lpSeparator)
-   {
-
-      return ::dir::eat_end_level(str, iLevelCount, lpSeparator);
-
-   }
+   //}
 
 
-   bool system::path::is_relative(const char * psz)
-   {
+   //bool system::path::eat_end_level(string & str, int32_t iLevelCount, const char * lpSeparator)
+   //{
 
-      return file_path_is_relative_dup(psz) != FALSE;
+   //   return ::dir::eat_end_level(str, iLevelCount, lpSeparator);
 
-   }
-
-
-   void system::get_ascendants_path(const char * lpcsz, ::file::patha & straParam)
-   {
-      ::file::patha stra;
-      get_ascendants_name(lpcsz, stra);
-      ::file::path str;
-//      bool bUrl = System.url().is_url(lpcsz);
-      bool bUrl = false;
-#if defined(LINUX) || defined(APPLEOS)
-      bool bLinux = true;
-      str += "/";
-#else
-      bool bLinux = false;
-#endif
-
-      for(int32_t i = 0; i < stra.get_size(); i++)
-      {
-         str /= stra[i];
-         if(stra[i].find('/') < 0 && stra[i].find('\\') < 0)
-         {
-            str += "\\";
-         }
-         if(bUrl || bLinux)
-         {
-            str.replace("\\", "/");
-         }
-         else
-         {
-            str.replace("/", "\\");
-         }
-         straParam.add(str);
-      }
-   }
-
-   void system::get_ascendants_name(const char * lpcsz, ::file::patha & straParam)
-   {
-
-      stringa straSeparator;
-
-      straSeparator.add("/");
-      straSeparator.add("\\");
-
-      straParam.add_smallest_tokens(lpcsz, straSeparator, FALSE);
-      if(straParam.get_count() > 0)
-      {
-         strsize iFind = straParam[0].find(':');
-         if(iFind >= 2)
-         {
-            straParam[0] += "//";
-         }
-         else if(iFind == 1)
-         {
-            straParam[0] += "\\";
-         }
-      }
-   }
+   //}
 
 
-   bool system::exists(const char * pszPath, ::aura::application * papp)
+   //bool system::path::is_relative(const char * psz)
+   //{
+
+   //   return file_path_is_relative_dup(psz) != FALSE;
+
+   //}
+
+
+//   void system::get_ascendants_path(const ::file::path & lpcsz,::file::patha & straParam)
+//   {
+//      ::file::patha stra;
+//      get_ascendants_name(lpcsz, stra);
+//      ::file::path str;
+////      bool bUrl = System.url().is_url(lpcsz);
+//      bool bUrl = false;
+//#if defined(LINUX) || defined(APPLEOS)
+//      bool bLinux = true;
+//      str += "/";
+//#else
+//      bool bLinux = false;
+//#endif
+//
+//      for(int32_t i = 0; i < stra.get_size(); i++)
+//      {
+//         str /= stra[i];
+//         if(stra[i].find('/') < 0 && stra[i].find('\\') < 0)
+//         {
+//            str += "\\";
+//         }
+//         if(bUrl || bLinux)
+//         {
+//            str.replace("\\", "/");
+//         }
+//         else
+//         {
+//            str.replace("/", "\\");
+//         }
+//         straParam.add(str);
+//      }
+//   }
+//
+//   void system::get_ascendants_name(const ::file::path & lpcsz,::file::patha & straParam)
+//   {
+//
+//      stringa straSeparator;
+//
+//      straSeparator.add("/");
+//      straSeparator.add("\\");
+//
+//      straParam.add_smallest_tokens(lpcsz, straSeparator, FALSE);
+//      if(straParam.get_count() > 0)
+//      {
+//         strsize iFind = straParam[0].find(':');
+//         if(iFind >= 2)
+//         {
+//            straParam[0] += "//";
+//         }
+//         else if(iFind == 1)
+//         {
+//            straParam[0] += "\\";
+//         }
+//      }
+//   }
+
+
+   bool system::exists(const ::file::path & pszPath, ::aura::application * papp)
    {
 
       return exists(pszPath, NULL, papp);
@@ -127,23 +127,23 @@ namespace file
    }
 
 
-   bool system::exists(const char * pszPath, var * pvarQuery, ::aura::application * papp)
-   {
+   //bool system::exists(const char * pszPath, var * pvarQuery, ::aura::application * papp)
+   //{
 
-      return exists(string(pszPath), pvarQuery, papp);
+   //   return exists(string(pszPath), pvarQuery, papp);
 
-   }
-
-
-   bool system::exists(const string & strPath, ::aura::application * papp)
-   {
-
-      return exists(strPath, NULL, papp);
-
-   }
+   //}
 
 
-   bool system::exists(const string & strPath, var * pvarQuery, ::aura::application * papp)
+   //bool system::exists(const ::file::path & strPath,::aura::application * papp)
+   //{
+
+   //   return exists(strPath, NULL, papp);
+
+   //}
+
+
+   bool system::exists(const ::file::path & strPath,var * pvarQuery,::aura::application * papp)
    {
 
 
@@ -172,7 +172,7 @@ namespace file
 
    }
 
-   var system::length(const char * pszPath, ::aura::application * papp)
+   var system::length(const ::file::path & pszPath,::aura::application * papp)
    {
 
       return length(pszPath, NULL, papp);
@@ -180,23 +180,23 @@ namespace file
    }
 
 
-   var system::length(const char * pszPath, var * pvarQuery, ::aura::application * papp)
-   {
+   //var system::length(const ::file::path & pszPath,var * pvarQuery,::aura::application * papp)
+   //{
 
-      return length(string(pszPath), pvarQuery, papp);
+   //   return length(string(pszPath), pvarQuery, papp);
 
-   }
-
-
-   var system::length(const string & strPath, ::aura::application * papp)
-   {
-
-      return length(strPath, NULL, papp);
-
-   }
+   //}
 
 
-   var system::length(const string & strPath, var * pvarQuery, ::aura::application * papp)
+   //var system::length(const string & strPath, ::aura::application * papp)
+   //{
+
+   //   return length(strPath, NULL, papp);
+
+   //}
+
+
+   var system::length(const ::file::path & strPath,var * pvarQuery,::aura::application * papp)
    {
 
 
@@ -236,7 +236,7 @@ namespace file
    }
 
 
-   string system::time_square(::aura::application * papp,const char * pszPrefix,const char * pszSuffix)
+   ::file::path system::time_square(::aura::application * papp,const char * pszPrefix,const char * pszSuffix)
    {
 
       return time(papp,System.dir().time_square(papp,pszPrefix,pszSuffix),25,pszPrefix,pszSuffix);
@@ -244,12 +244,12 @@ namespace file
    }
 
 
-   string system::time_log(::aura::application * papp, const char * pszId)
+   ::file::path system::time_log(::aura::application * papp,const char * pszId)
    {
       return time(papp, System.dir().time_log(pszId), 9);
    }
 
-   string system::time(::aura::application * papp, const char * psz, int32_t iMaxLevel, const char * pszPrefix, const char * pszSuffix)
+   ::file::path system::time(::aura::application * papp,const ::file::path & psz,int32_t iMaxLevel,const char * pszPrefix,const char * pszSuffix)
    {
       synch_lock lockMachineEvent(
          (&System.machine_event_central() != NULL) ?
@@ -487,22 +487,28 @@ restart:
 
    }
 
+
    void system::lines(stringa & stra, var varFile, ::aura::application * papp)
    {
+      
       UNREFERENCED_PARAMETER(papp);
-      ::file::text_buffer_sp spfile(allocer());
+
+
+      ::file::buffer_sp spfile;
 
       try
       {
-         if(!spfile->open(varFile, ::file::type_text | ::file::mode_read))
-         {
-            return;
-         }
+
+         spfile = App(papp).file().get_file(varFile,::file::type_text | ::file::mode_read);
+
       }
       catch(...)
       {
+
          return;
+
       }
+
       string strLine;
       while(spfile->read_string(strLine))
       {
@@ -625,23 +631,23 @@ restart:
       return true;
    }
 
-   void system::path::split(::file::patha & stra, const char * lpcszPath)
-   {
-      stringa straSeparator;
-      straSeparator.add("\\");
-      straSeparator.add("/");
-      stra.add_smallest_tokens(lpcszPath, straSeparator, FALSE);
-   }
+   //void system::path::split(::file::patha & stra, const char * lpcszPath)
+   //{
+   //   stringa straSeparator;
+   //   straSeparator.add("\\");
+   //   straSeparator.add("/");
+   //   stra.add_smallest_tokens(lpcszPath, straSeparator, FALSE);
+   //}
 
-   class system::path & system::path()
-   {
-      return m_path;
-   }
+   //class system::path & system::path()
+   //{
+   //   return m_path;
+   //}
 
    system::system(::aura::application * papp) :
       object(papp)
    {
-      m_path.m_pfile = this;
+      //m_path.m_pfile = this;
 
    }
 
@@ -650,121 +656,145 @@ restart:
 
    }
 
-   string system::title_(const char * path)
-   {
+   //string system::title_(const char * path)
+   //{
 
-      string str = name_(path);
+   //   string str = name_(path);
 
-      strsize iPos = str.reverse_find('.');
+   //   strsize iPos = str.reverse_find('.');
 
-      if(iPos >= 0)
-      {
-         return str.Mid(0, iPos);
-      }
-      else
-      {
-         return str;
-      }
+   //   if(iPos >= 0)
+   //   {
+   //      return str.Mid(0, iPos);
+   //   }
+   //   else
+   //   {
+   //      return str;
+   //   }
 
-   }
+   //}
 
-   string system::name_(const char * path)
-   {
+   //string system::name_(const char * path)
+   //{
 
-      string str(path);
+   //   string str(path);
 
-      while(::str::ends_eat(str, "\\"));
+   //   while(::str::ends_eat(str, "\\"));
 
-      while(::str::ends_eat(str, "/"));
+   //   while(::str::ends_eat(str, "/"));
 
-      strsize iPos;
+   //   strsize iPos;
 
-      strsize iPos1 = str.reverse_find('\\');
+   //   strsize iPos1 = str.reverse_find('\\');
 
-      strsize iPos2 = str.reverse_find('/');
+   //   strsize iPos2 = str.reverse_find('/');
 
-      if(iPos1 >= 0 && iPos2 >= 0)
-      {
+   //   if(iPos1 >= 0 && iPos2 >= 0)
+   //   {
 
-         if(iPos1 > iPos2)
-         {
+   //      if(iPos1 > iPos2)
+   //      {
 
-            iPos = iPos1 + 1;
+   //         iPos = iPos1 + 1;
 
-         }
-         else
-         {
+   //      }
+   //      else
+   //      {
 
-            iPos = iPos2 + 1;
+   //         iPos = iPos2 + 1;
 
-         }
+   //      }
 
-      }
-      else if(iPos1 >= 0)
-      {
+   //   }
+   //   else if(iPos1 >= 0)
+   //   {
 
-         iPos = iPos1 + 1;
+   //      iPos = iPos1 + 1;
 
-      }
-      else if(iPos2 >= 0)
-      {
+   //   }
+   //   else if(iPos2 >= 0)
+   //   {
 
-         iPos = iPos2 + 1;
+   //      iPos = iPos2 + 1;
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         iPos = 0;
+   //      iPos = 0;
 
-      }
+   //   }
 
-      return str.Mid(iPos);
+   //   return str.Mid(iPos);
 
-   }
+   //}
 
-   string system::extension(const char * path)
-   {
+   //string system::extension(const char * path)
+   //{
 
-      string str = name_(path);
+   //   string str = name_(path);
 
-      strsize iPos = str.reverse_find('.');
+   //   strsize iPos = str.reverse_find('.');
 
-      if(iPos >= 0)
-      {
+   //   if(iPos >= 0)
+   //   {
 
-         return str.Mid(iPos + 1);
+   //      return str.Mid(iPos + 1);
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         return "";
+   //      return "";
 
-      }
+   //   }
 
-   }
+   //}
 
-   void system::copy(const char * pszNew, const char * psz, bool bFailIfExists, e_extract eextract, ::aura::application * papp)
+   bool system::copy(const ::file::path & pszNew,const ::file::path & psz,bool bFailIfExists,e_extract eextract,::aura::application * papp)
    {
       
-      ::file_copy_dup(pszNew,psz,!bFailIfExists);
+      if(!::file_copy_dup(pszNew,psz,!bFailIfExists))
+      {
+         
+         return false;
 
-      return;
+      }
+
+      return true;
 
    }
 
-   void system::move(const char * pszNew, const char * psz)
+
+   bool system::get_status(const ::file::path & path,::file::file_status & status,::aura::application * papp)
+   {
+
+      UNREFERENCED_PARAMETER(path);
+      UNREFERENCED_PARAMETER(status);
+      throw interface_only_exception(papp);
+
+   }
+
+
+   ::file::exception_sp system::set_status(const ::file::path & path,const ::file::file_status & status,::aura::application * papp)
+   {
+
+      UNREFERENCED_PARAMETER(path);
+      UNREFERENCED_PARAMETER(status);
+      throw interface_only_exception(papp);
+
+   }
+
+
+   bool system::move(const ::file::path & pszNew,const ::file::path & psz,::aura::application * papp)
    {
 #ifdef WINDOWSEX
-      if(!::MoveFileW(
-         ::str::international::utf8_to_unicode(psz),
-         ::str::international::utf8_to_unicode(pszNew)))
+      
+      if(!::MoveFileW(::str::international::utf8_to_unicode(psz), ::str::international::utf8_to_unicode(pszNew)))
       {
-         uint32_t dwError = ::GetLastError();
-         string strError;
-         strError.Format("Failed to move file \"%s\" to \"%s\" error=%d", psz, pszNew, dwError);
-         throw strError;
+         
+         return false;
+
       }
 #elif defined(METROWIN)
 
@@ -812,38 +842,33 @@ restart:
          throw strError;
       }
 #endif
+
+      return true;
+
    }
 
-   void system::del(const char * psz)
+
+   bool system::del(const ::file::path & psz,::aura::application * papp)
    {
+
+      if(!exists(psz,papp))
+         return true;
+
 #ifdef WINDOWSEX
 
-      HANDLE h = ::CreateFileW(::str::international::utf8_to_unicode(string("\\\\?\\") + psz),GENERIC_READ | GENERIC_WRITE,0,NULL,OPEN_EXISTING,FILE_FLAG_OPEN_REPARSE_POINT | FILE_FLAG_DELETE_ON_CLOSE,NULL);
-
-      if(h == INVALID_HANDLE_VALUE)
+      if(!::DeleteFileW(::str::international::utf8_to_unicode(string("\\\\?\\") + psz)))
       {
          uint32_t dwError = ::GetLastError();
          if(dwError == 2) // the file does not exist, so delete "failed"
-            return;
-         string strError;
-         strError.Format("Failed to delete file \"%s\" error=%d",psz,dwError);
-         throw io_exception(get_app(),strError);
-      }
-      else
-      {
-         ::FlushFileBuffers(h);
-         ::CloseHandle(h);
-      }
-
-/*      if(!::DeleteFileW(::str::international::utf8_to_unicode(string("\\\\?\\") + psz)))
-      {
-         uint32_t dwError = ::GetLastError();
-         if(dwError == 2) // the file does not exist, so delete "failed"
-            return;
+            return false;
          string strError;
          strError.Format("Failed to delete file \"%s\" error=%d", psz, dwError);
-         throw io_exception(get_app(), strError);
-      }*/
+         TRACE(strError);
+         return false;
+      }
+
+      return true;
+
 #else
       if(remove(psz) != 0)
       {
@@ -854,10 +879,12 @@ restart:
       }
 #endif
 
+      return true;
+
    }
 
 
-   string system::copy(const char * psz, ::aura::application * papp)
+   ::file::path system::copy(const ::file::path & psz,::aura::application * papp)
    {
       string strCopy("copy");
       string strNew;
@@ -877,7 +904,7 @@ restart:
       }
       else
       {
-         string strExt = extension(psz);
+         string strExt = psz.ext();
          if(!strExt.is_empty())
          {
             strExt = "-" + strExt;
@@ -899,7 +926,7 @@ restart:
 
 
 
-   string system::paste(const char * pszLocation, const char * path, ::aura::application * papp)
+   ::file::path system::paste(const ::file::path & pszLocation,const ::file::path & path,::aura::application * papp)
    {
       ::file::path strDir = System.dir().name(path);
       ::file::path strDest = pszLocation;
@@ -910,7 +937,7 @@ restart:
       }
       else
       {
-         ::file::path strNew = strDest / name_(path);
+         ::file::path strNew = strDest / path.name();
          copy(strNew, path, false, extract_all, papp);
          return strNew;
       }
@@ -929,15 +956,15 @@ restart:
       for(int32_t i = 0; i < stra.get_size(); i++)
       {
 #ifdef WINDOWS
-         move(strDir / name_(stra[i]), stra[i]);
+         move(strDir / stra[i].name(), stra[i], papp);
 #else
-         ::rename(stra[i], strDir / name_(stra[i])));
+         ::rename(stra[i], strDir / stra[i].name()));
 #endif
       }
 
    }
 
-   void system::trash_that_is_not_trash(const char * psz, ::aura::application * papp)
+   void system::trash_that_is_not_trash(const ::file::path & psz,::aura::application * papp)
    {
 
       ::file::path strDir = System.dir().trash_that_is_not_trash(psz);
@@ -946,14 +973,14 @@ restart:
 
 #ifdef WINDOWS
       //         ::MoveFile(psz, strDir / name_(psz)));
-      move(strDir / name_(psz), psz);
+      move(strDir / psz.name(), psz, papp);
 #else
-      ::rename(psz, strDir / name_(psz)));
+      ::rename(psz, strDir / psz.name()));
 #endif
 
    }
 
-   void system::replace(const char * pszContext, const char * pszFind, const char * pszReplace, ::aura::application * papp)
+   void system::replace(const ::file::path & pszContext,const string & pszFind,const string & pszReplace,::aura::application * papp)
    {
       ::file::patha straTitle;
       System.dir().ls(papp, pszContext, NULL, &straTitle);
@@ -973,7 +1000,7 @@ restart:
             //              ::str::international::utf8_to_unicode(System.dir().path(pszContext, strNew)));
             try
             {
-               move(::file::path(pszContext)/ strNew, ::file::path(pszContext) / strOld);
+               move(::file::path(pszContext)/ strNew, ::file::path(pszContext) / strOld, papp);
             }
             catch(...)
             {
@@ -1070,7 +1097,7 @@ restart:
    }
 
 
-   ::file::buffer_sp system::get(const char * name, ::aura::application * papp)
+   ::file::buffer_sp system::get(const ::file::path & name,::aura::application * papp)
    {
 
       System.dir().mk(System.dir().name(name), papp);
@@ -1122,23 +1149,33 @@ restart:
 
 
 
-   bool system::path::rename(const char *pszNew, const char *psz, ::aura::application * papp)
+   bool system::rename(const ::file::path & pszNew,const ::file::path & psz,::aura::application * papp)
    {
-      string strDir = System.dir().name(psz);
-      string strDirNew = System.dir().name(pszNew);
-      if(strDir == strDirNew)
+
+      ::file::path strDir = *psz;
+
+      ::file::path strDirNew = *pszNew;
+
+      if(strDir != strDirNew)
       {
-         string strOld = System.file().name_(psz);
-      }
-      ::exception::throw_not_implemented(get_app());
-      //if(!System.file().as_string().move(psz, pszNew))
-      {
-         property_set propertyset;
-         System.message_box("err\\::fontopus::user\\system\\could_not_rename_file.xml", propertyset);
+         
+         // rename should work only on files in the same directory/folder
+
          return false;
+         
       }
+
+      if(!move(pszNew, psz, papp))
+      {
+
+         return false;
+
+      }
+
       return true;
+
    }
+
 
    string system::md5(const char * psz)
    {

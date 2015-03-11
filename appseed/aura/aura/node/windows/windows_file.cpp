@@ -599,6 +599,15 @@ retry:
    // FileException
 
 
+   fesp file_exception::last_os_error(::aura::application * papp,const char * lpszFileName /* = NULL */)
+   {
+      return os_error(papp,::GetLastError(),lpszFileName);
+   }
+
+   fesp file_exception::os_error(::aura::application * papp,LONG lOsError,const char * lpszFileName /* = NULL */)
+   {
+      return fesp(papp,file_exception::OsErrorToException(lOsError),lOsError,lpszFileName);
+   }
 
 
    void file_exception::ThrowOsError(::aura::application * papp, LONG lOsError, const char * lpszFileName /* = NULL */)
@@ -848,45 +857,45 @@ retry:
    }
 
 
-   bool file::GetStatus(const char * lpszFileName, ::file::file_status& rStatus)
-   {
-      // attempt to fully qualify path first
-      wstring wstrFullName;
-      wstring wstrFileName;
-      wstrFileName = ::str::international::utf8_to_unicode(lpszFileName);
-      if (!vfxFullPath(wstrFullName, wstrFileName))
-      {
-         rStatus.m_strFullName.Empty();
-         return FALSE;
-      }
-      ::str::international::unicode_to_utf8(rStatus.m_strFullName, wstrFullName);
+   //bool file::GetStatus(const char * lpszFileName, ::file::file_status& rStatus)
+   //{
+   //   // attempt to fully qualify path first
+   //   wstring wstrFullName;
+   //   wstring wstrFileName;
+   //   wstrFileName = ::str::international::utf8_to_unicode(lpszFileName);
+   //   if (!vfxFullPath(wstrFullName, wstrFileName))
+   //   {
+   //      rStatus.m_strFullName.Empty();
+   //      return FALSE;
+   //   }
+   //   ::str::international::unicode_to_utf8(rStatus.m_strFullName, wstrFullName);
 
-      WIN32_FIND_DATA findFileData;
-      HANDLE hFind = FindFirstFile((LPTSTR)lpszFileName, &findFileData);
-      if (hFind == INVALID_HANDLE_VALUE)
-         return FALSE;
-      VERIFY(FindClose(hFind));
+   //   WIN32_FIND_DATA findFileData;
+   //   HANDLE hFind = FindFirstFile((LPTSTR)lpszFileName, &findFileData);
+   //   if (hFind == INVALID_HANDLE_VALUE)
+   //      return FALSE;
+   //   VERIFY(FindClose(hFind));
 
-      // strip attribute of NORMAL bit, our API doesn't have a "normal" bit.
-      rStatus.m_attribute = (BYTE) (findFileData.dwFileAttributes & ~FILE_ATTRIBUTE_NORMAL);
+   //   // strip attribute of NORMAL bit, our API doesn't have a "normal" bit.
+   //   rStatus.m_attribute = (BYTE) (findFileData.dwFileAttributes & ~FILE_ATTRIBUTE_NORMAL);
 
-      // get just the low DWORD of the file size
-      ASSERT(findFileData.nFileSizeHigh == 0);
-      rStatus.m_size = (LONG)findFileData.nFileSizeLow;
+   //   // get just the low DWORD of the file size
+   //   ASSERT(findFileData.nFileSizeHigh == 0);
+   //   rStatus.m_size = (LONG)findFileData.nFileSizeLow;
 
-      // convert times as appropriate
-      rStatus.m_ctime = ::datetime::time(findFileData.ftCreationTime);
-      rStatus.m_atime = ::datetime::time(findFileData.ftLastAccessTime);
-      rStatus.m_mtime = ::datetime::time(findFileData.ftLastWriteTime);
+   //   // convert times as appropriate
+   //   rStatus.m_ctime = ::datetime::time(findFileData.ftCreationTime);
+   //   rStatus.m_atime = ::datetime::time(findFileData.ftLastAccessTime);
+   //   rStatus.m_mtime = ::datetime::time(findFileData.ftLastWriteTime);
 
-      if (rStatus.m_ctime.get_time() == 0)
-         rStatus.m_ctime = rStatus.m_mtime;
+   //   if (rStatus.m_ctime.get_time() == 0)
+   //      rStatus.m_ctime = rStatus.m_mtime;
 
-      if (rStatus.m_atime.get_time() == 0)
-         rStatus.m_atime = rStatus.m_mtime;
+   //   if (rStatus.m_atime.get_time() == 0)
+   //      rStatus.m_atime = rStatus.m_mtime;
 
-      return TRUE;
-   }
+   //   return TRUE;
+   //}
 
 
    /*

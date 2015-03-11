@@ -107,7 +107,7 @@ namespace sockets
 
       ::file::memory_buffer   m_memfileInput;
       bool                    m_bEnd; // should finish by not sending no more writes
-      string                  m_strCat;
+      ::file::path                  m_strCat;
       string                  m_strCipherList;
       callback *              m_pcallback;
       time_t                  m_timeCreate; ///< time in seconds when this base_socket was created

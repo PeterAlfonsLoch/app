@@ -23,12 +23,12 @@ namespace aura
 
         virtual void terminate_processes_by_title(const char * pszName);
 #ifdef WINDOWS
-        virtual string get_module_path(HMODULE hmodule);
+        virtual ::file::path get_module_path(HMODULE hmodule);
 #endif
         virtual bool get_pid_by_path(const char * pszName, uint32_t & dwPid);
         virtual bool get_pid_by_title(const char * pszName, uint32_t & dwPid);
         virtual void get_all_processes(uint_array & dwa);
-        virtual string get_process_path(uint32_t dwPid);
+        virtual ::file::path get_process_path(uint32_t dwPid);
 
 
         virtual bool connection_settings_get_auto_detect();

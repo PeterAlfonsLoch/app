@@ -114,7 +114,10 @@
 
 #include "datetime/datetime.cpp"
 #include "datetime/datetime_duration.cpp"
+#include "datetime/datetime_file_time_span.cpp"
+#include "datetime/datetime_file_time.cpp"
 #include "datetime/datetime_mktime.cpp"
+#include "datetime/datetime_time_span.cpp"
 #include "datetime/datetime_time.cpp"
 #include "datetime/datetime_value.cpp"
  //              5 arquivo(s)         49.027 bytes

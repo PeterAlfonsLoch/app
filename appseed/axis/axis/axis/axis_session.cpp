@@ -1136,7 +1136,7 @@ namespace axis
 
          ::file::patha patha;
 
-         ::file::patha straTitle;
+         stringa straTitle;
 
          m_spfsdata->root_ones(patha,straTitle);
 

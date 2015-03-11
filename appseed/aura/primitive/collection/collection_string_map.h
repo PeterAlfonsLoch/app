@@ -14,4 +14,3 @@ using string_to_ptr =  string_map < void *,void * > ;
 #define strmap(T) string_map < T >
 
 
-

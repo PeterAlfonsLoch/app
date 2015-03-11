@@ -290,6 +290,8 @@ public:
 
    }
 
+   operator ::file::path() const { return get_file_path(); }
+
    operator ::datetime::file_time() const;
 
    operator ::datetime::time() const;
@@ -618,6 +620,8 @@ public:
    // DECLARE_AXIS_FIXED_ALLOC(var)
 
    void null();
+
+   ::file::path get_file_path() const;
 
 };
 

@@ -61,26 +61,26 @@ namespace file
 
    }
 
-   exception_sp composite::open(const char * lpszFileName, UINT nOpenFlags)
+   exception_sp composite::open(const ::file::path & lpszFileName,UINT nOpenFlags)
    {
 
       return m_spfile->open(lpszFileName, nOpenFlags);
 
    }
 
-   bool composite::GetStatus(const char * lpszFileName, file_status& rStatus)
-   {
+   //bool composite::GetStatus(const ::file::path & lpszFileName,file_status& rStatus)
+   //{
 
-      return m_spfile->GetStatus(lpszFileName, rStatus);
+   //   return m_spfile->GetStatus(lpszFileName, rStatus);
 
-   }
+   //}
 
-   void composite::SetStatus(const char * lpszFileName, const file_status& status)
-   {
+   //void composite::SetStatus(const char * lpszFileName, const file_status& status)
+   //{
 
-      return m_spfile->SetStatus(lpszFileName, status);
+   //   return m_spfile->SetStatus(lpszFileName, status);
 
-   }
+   //}
 
    ::file::buffer_sp  composite::Duplicate() const
    {

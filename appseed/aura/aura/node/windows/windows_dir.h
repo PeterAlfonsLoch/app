@@ -62,6 +62,8 @@ namespace windows
 
       virtual ::file::path trash_that_is_not_trash(const ::file::path & path);
 
+
+
       virtual ::file::path appdata();
       virtual ::file::path commonappdata_root();
 

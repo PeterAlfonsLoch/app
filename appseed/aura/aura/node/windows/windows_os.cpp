@@ -166,7 +166,7 @@ namespace windows
       get_all_processes(dwa);
       for(int32_t i = 0; i < dwa.get_count(); i++)
       {
-         if(System.file().title_(get_process_path(dwa[i])).CompareNoCase(pszName) == 0)
+         if(get_process_path(dwa[i]).title().CompareNoCase(pszName) == 0)
          {
             dwPid = dwa[i];
             return true;
@@ -175,7 +175,7 @@ namespace windows
       return false;
    }
 
-   string os::get_process_path(DWORD dwPid)
+   ::file::path os::get_process_path(DWORD dwPid)
    {
       string strName = ":<unknown>";
       // get a handle to the process.
@@ -219,7 +219,7 @@ namespace windows
       }
    }
 
-   string os::get_module_path(HMODULE hmodule)
+   ::file::path os::get_module_path(HMODULE hmodule)
    {
       wstring wstrPath;
       DWORD dwSize = 1;

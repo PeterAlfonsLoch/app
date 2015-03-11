@@ -74,7 +74,7 @@ namespace windows
 
       virtual ::fesp open(const char * lpszFileName, UINT nOpenFlags);
 
-      virtual bool GetStatus(const char * lpszFileName, ::file::file_status& rStatus);
+      //virtual bool GetStatus(const char * lpszFileName, ::file::file_status& rStatus);
 
       uint64_t ReadHuge(void * lpBuffer, uint64_t dwCount);
       void WriteHuge(const void * lpBuffer, uint64_t dwCount);
@@ -111,6 +111,8 @@ namespace windows
 
       ::file::exception::e_cause OsErrorToException(LONG lOsError);
       ::file::exception::e_cause ErrnoToException(int32_t nErrno);
+      fesp last_os_error(::aura::application * papp,const char * lpszFileName = NULL);
+      fesp os_error(::aura::application * papp,LONG lOsError,const char * lpszFileName = NULL);
       void ThrowOsError(::aura::application * papp, LONG lOsError, const char * lpszFileName = NULL);
       void ThrowErrno(::aura::application * papp, int32_t nErrno, const char * lpszFileName = NULL);
 

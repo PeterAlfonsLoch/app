@@ -9,7 +9,7 @@ namespace install
    class interaction_impl;
    class install;
 
-   CLASS_DECL_AXIS void get_plugin_base_library_list(stringa & straFile, const string & strVersion);
+   CLASS_DECL_AXIS void get_plugin_base_library_list(::file::patha & straFile,const string & strVersion);
 
 
 } // namespace install

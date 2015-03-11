@@ -69,7 +69,7 @@ namespace fs
 
    }
 
-   void remote_native::root_ones(stringa & patha, stringa & straTitle)
+   void remote_native::root_ones(::file::patha & patha,stringa & straTitle)
    {
       patha.add("fs://");
       straTitle.add("File System");
@@ -129,11 +129,11 @@ namespace fs
             m_mapfileTimeout.remove_key(strPath);
             if(ppatha != NULL)
             {
-               ppatha->add(strPath);
+               ppatha->add(::file::path(strPath));
             }
             if(ppathaName != NULL)
             {
-               ppathaName->add(strName);
+               ppathaName->add(::file::path(strName));
             }
             if(piaSize != NULL)
             {
@@ -162,11 +162,11 @@ namespace fs
             m_mapdirTimeout.remove_key(strPath);
             if(ppatha != NULL)
             {
-               ppatha->add(strPath);
+               ppatha->add(::file::path(strPath));
             }
             if(ppathaName != NULL)
             {
-               ppathaName->add(strName);
+               ppathaName->add(::file::path(strName));
             }
             if (piaSize != NULL)
             {
@@ -343,9 +343,9 @@ namespace fs
 
    }
 
-   bool remote_native::file().exists(const char * pszPath)
+   bool remote_native::file_exists(const char * pszPath)
    {
-      return ::fs::data::file().exists(pszPath);
+      return ::fs::data::file_exists(pszPath);
    }
 
 

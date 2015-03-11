@@ -159,6 +159,254 @@ namespace windows
    }
 
 
+
+   bool file_system::get_status(const ::file::path & path,::file::file_status & rStatus)
+   {
+
+      // attempt to fully qualify path first
+      wstring wstrFullName;
+      wstring wstrFileName;
+      wstrFileName = ::str::international::utf8_to_unicode(path);
+      if(!vfxFullPath(wstrFullName,wstrFileName))
+      {
+         rStatus.m_strFullName.Empty();
+         return FALSE;
+      }
+      ::str::international::unicode_to_utf8(rStatus.m_strFullName,wstrFullName);
+
+      WIN32_FIND_DATAW findFileData;
+      HANDLE hFind = FindFirstFileW((LPWSTR)(LPCWSTR)wstrFullName,&findFileData);
+      if(hFind == INVALID_HANDLE_VALUE)
+         return FALSE;
+      VERIFY(FindClose(hFind));
+
+      // strip attribute of NORMAL bit, our API doesn't have a "normal" bit.
+      rStatus.m_attribute = (BYTE)(findFileData.dwFileAttributes & ~FILE_ATTRIBUTE_NORMAL);
+
+      // get just the low DWORD of the file size
+      ASSERT(findFileData.nFileSizeHigh == 0);
+      rStatus.m_size = (LONG)findFileData.nFileSizeLow;
+
+      // convert times as appropriate
+      rStatus.m_ctime = ::datetime::time(findFileData.ftCreationTime);
+      rStatus.m_atime = ::datetime::time(findFileData.ftLastAccessTime);
+      rStatus.m_mtime = ::datetime::time(findFileData.ftLastWriteTime);
+
+      if(rStatus.m_ctime.get_time() == 0)
+         rStatus.m_ctime = rStatus.m_mtime;
+
+      if(rStatus.m_atime.get_time() == 0)
+         rStatus.m_atime = rStatus.m_mtime;
+
+      return true;
+
+   }
+
+   //void system::set_status(const ::file::path & path,const ::file::file_status& status)
+   //{
+
+   //   wstring lpszFileName(path);
+   //   DWORD wAttr;
+   //   FILETIME creationTime;
+   //   FILETIME lastAccessTime;
+   //   FILETIME lastWriteTime;
+   //   LPFILETIME lpCreationTime = NULL;
+   //   LPFILETIME lpLastAccessTime = NULL;
+   //   LPFILETIME lpLastWriteTime = NULL;
+
+   //   if((wAttr = GetFileAttributesW((LPWSTR)(LPCWSTR)lpszFileName)) == (DWORD)-1L)
+   //      file_exception::ThrowOsError(get_app(),(LONG)GetLastError());
+
+   //   if((DWORD)status.m_attribute != wAttr && (wAttr & readOnly))
+   //   {
+   //      // set file attribute, only if currently readonly.
+   //      // This way we will be able to modify the time assuming the
+   //      // caller changed the file from readonly.
+
+   //      if(!SetFileAttributesW((LPWSTR)(LPCWSTR)lpszFileName,(DWORD)status.m_attribute))
+   //         file_exception::ThrowOsError(get_app(),(LONG)GetLastError());
+   //   }
+
+   //   // last modification time
+   //   if(status.m_mtime.get_time() != 0)
+   //   {
+   //      ::core::TimeToFileTime(status.m_mtime,&lastWriteTime);
+   //      lpLastWriteTime = &lastWriteTime;
+
+   //      // last access time
+   //      if(status.m_atime.get_time() != 0)
+   //      {
+   //         ::core::TimeToFileTime(status.m_atime,&lastAccessTime);
+   //         lpLastAccessTime = &lastAccessTime;
+   //      }
+
+   //      // create time
+   //      if(status.m_ctime.get_time() != 0)
+   //      {
+   //         ::core::TimeToFileTime(status.m_ctime,&creationTime);
+   //         lpCreationTime = &creationTime;
+   //      }
+
+   //      HANDLE hFile = ::CreateFileW((LPWSTR)(LPCWSTR)lpszFileName,GENERIC_READ | GENERIC_WRITE,
+   //         FILE_SHARE_READ,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,
+   //         NULL);
+
+   //      if(hFile == INVALID_HANDLE_VALUE)
+   //         file_exception::ThrowOsError(get_app(),(LONG)::GetLastError());
+
+   //      if(!SetFileTime((HANDLE)hFile,lpCreationTime,lpLastAccessTime,lpLastWriteTime))
+   //         file_exception::ThrowOsError(get_app(),(LONG)::GetLastError());
+
+   //      if(!::CloseHandle(hFile))
+   //         file_exception::ThrowOsError(get_app(),(LONG)::GetLastError());
+   //   }
+
+   //   if((DWORD)status.m_attribute != wAttr && !(wAttr & readOnly))
+   //   {
+   //      if(!SetFileAttributes((LPTSTR)lpszFileName,(DWORD)status.m_attribute))
+   //         file_exception::ThrowOsError(get_app(),(LONG)GetLastError());
+   //   }
+   //}
+
+
+   //void file::SetStatus(const char * lpszFileName,const ::file::file_status& status)
+   //{
+   //   DWORD wAttr;
+   //   FILETIME creationTime;
+   //   FILETIME lastAccessTime;
+   //   FILETIME lastWriteTime;
+   //   LPFILETIME lpCreationTime = NULL;
+   //   LPFILETIME lpLastAccessTime = NULL;
+   //   LPFILETIME lpLastWriteTime = NULL;
+
+   //   if((wAttr = GetFileAttributes((LPTSTR)lpszFileName)) == (DWORD)-1L)
+   //      file_exception::ThrowOsError(get_app(),(LONG)GetLastError());
+
+   //   if((DWORD)status.m_attribute != wAttr && (wAttr & readOnly))
+   //   {
+   //      // set file attribute, only if currently readonly.
+   //      // This way we will be able to modify the time assuming the
+   //      // caller changed the file from readonly.
+
+   //      if(!SetFileAttributes((LPTSTR)lpszFileName,(DWORD)status.m_attribute))
+   //         file_exception::ThrowOsError(get_app(),(LONG)GetLastError());
+   //   }
+
+   //   // last modification time
+   //   if(status.m_mtime.get_time() != 0)
+   //   {
+   //      ::core::TimeToFileTime(status.m_mtime,&lastWriteTime);
+   //      lpLastWriteTime = &lastWriteTime;
+
+   //      // last access time
+   //      if(status.m_atime.get_time() != 0)
+   //      {
+   //         ::core::TimeToFileTime(status.m_atime,&lastAccessTime);
+   //         lpLastAccessTime = &lastAccessTime;
+   //      }
+
+   //      // create time
+   //      if(status.m_ctime.get_time() != 0)
+   //      {
+   //         ::core::TimeToFileTime(status.m_ctime,&creationTime);
+   //         lpCreationTime = &creationTime;
+   //      }
+
+   //      HANDLE hFile = ::CreateFile(lpszFileName,GENERIC_READ | GENERIC_WRITE,
+   //         FILE_SHARE_READ,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,
+   //         NULL);
+
+   //      if(hFile == INVALID_HANDLE_VALUE)
+   //         file_exception::ThrowOsError(get_app(),(LONG)::GetLastError());
+
+   //      if(!SetFileTime((HANDLE)hFile,lpCreationTime,lpLastAccessTime,lpLastWriteTime))
+   //         file_exception::ThrowOsError(get_app(),(LONG)::GetLastError());
+
+   //      if(!::CloseHandle(hFile))
+   //         file_exception::ThrowOsError(get_app(),(LONG)::GetLastError());
+   //   }
+
+   //   if((DWORD)status.m_attribute != wAttr && !(wAttr & readOnly))
+   //   {
+   //      if(!SetFileAttributes((LPTSTR)lpszFileName,(DWORD)status.m_attribute))
+   //         file_exception::ThrowOsError(get_app(),(LONG)GetLastError());
+   //   }
+   //}
+
+   ::file::exception_sp file_system::set_status(const ::file::path & path,const ::file::file_status & status)
+   {
+
+      wstring lpszFileName(path);
+
+      DWORD wAttr;
+      FILETIME creationTime;
+      FILETIME lastAccessTime;
+      FILETIME lastWriteTime;
+      LPFILETIME lpCreationTime = NULL;
+      LPFILETIME lpLastAccessTime = NULL;
+      LPFILETIME lpLastWriteTime = NULL;
+
+      if((wAttr = GetFileAttributesW((LPWSTR)(LPCWSTR)lpszFileName)) == (DWORD)-1L)
+         file_exception::ThrowOsError(get_app(),(LONG)GetLastError());
+
+      if((DWORD)status.m_attribute != wAttr && (wAttr & FILE_ATTRIBUTE_READONLY))
+      {
+         // set file attribute, only if currently readonly.
+         // This way we will be able to modify the time assuming the
+         // caller changed the file from readonly.
+
+         if(!SetFileAttributesW((LPWSTR)(LPCWSTR) lpszFileName,(DWORD)status.m_attribute))
+            file_exception::ThrowOsError(get_app(),(LONG)GetLastError());
+      }
+
+      // last modification time
+      if(status.m_mtime.get_time() != 0)
+      {
+         lastWriteTime = status.m_mtime.to_file_time();
+         lpLastWriteTime = &lastWriteTime;
+
+         // last access time
+         if(status.m_atime.get_time() != 0)
+         {
+            lastAccessTime = status.m_atime.to_file_time();
+            lpLastAccessTime = &lastAccessTime;
+         }
+
+         // create time
+         if(status.m_ctime.get_time() != 0)
+         {
+            creationTime = status.m_ctime.to_file_time();
+            lpCreationTime = &creationTime;
+         }
+
+         HANDLE hFile = ::CreateFileW((LPWSTR)(LPCWSTR)lpszFileName,GENERIC_READ | GENERIC_WRITE,
+            FILE_SHARE_READ,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,
+            NULL);
+
+         if(hFile == INVALID_HANDLE_VALUE)
+         {
+            return file_exception::last_os_error(get_app(),path);
+         }
+
+         if(!SetFileTime((HANDLE)hFile,lpCreationTime,lpLastAccessTime,lpLastWriteTime))
+            return file_exception::last_os_error(get_app(),path);
+
+         if(!::CloseHandle(hFile))
+            return file_exception::last_os_error(get_app(),path);
+      }
+
+      if((DWORD)status.m_attribute != wAttr && !(wAttr & FILE_ATTRIBUTE_READONLY))
+      {
+         if(!SetFileAttributesW((LPWSTR)(LPCWSTR)lpszFileName,(DWORD)status.m_attribute))
+            return file_exception::last_os_error(get_app(),path);
+      }
+
+      return ::file::no_exception();
+
+   }
+
+
+
 } // namespace windows
 
 

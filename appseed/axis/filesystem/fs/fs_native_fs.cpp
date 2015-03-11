@@ -68,7 +68,7 @@ namespace fs
    }
 
 
-   void native::get_ascendants_path(const char * pszPath, stringa & stra)
+   void native::get_ascendants_path(const ::file::path & pszPath,::file::patha & stra)
    {
 
       return System.file().get_ascendants_path(pszPath, stra);
@@ -76,7 +76,7 @@ namespace fs
    }
 
 
-   void native::get_ascendants_name(const char * lpcsz, stringa & straParam)
+   void native::get_ascendants_name(const ::file::path & lpcsz,::file::patha & straParam)
    {
 
       return System.file().get_ascendants_name(lpcsz, straParam);
@@ -114,7 +114,7 @@ namespace fs
    string native::dir_path(const char * psz1, const char * psz2)
    {
 
-      return System.dir().path(psz1, psz2);
+      return ::file::path(psz1) / ::file::path(psz2);
 
    }
 
@@ -165,7 +165,7 @@ namespace fs
    }
 
 
-   bool native::file().exists(const char * pszPath)
+   bool native::file_exists(const char * pszPath)
    {
 
       return ::file_exists_dup(pszPath) != FALSE;

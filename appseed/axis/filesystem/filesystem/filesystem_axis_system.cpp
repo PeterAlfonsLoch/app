@@ -12,25 +12,19 @@
 //#include <ctype.h>
 #endif
 
-//CLASS_DECL_AXIS void NESSIEinit(struct NESSIEstruct * const structpointer);
-//CLASS_DECL_AXIS void NESSIEadd(const uchar * const source, uint_ptr sourceBits, struct NESSIEstruct * const structpointer);
-//CLASS_DECL_AXIS void NESSIEfinalize(struct NESSIEstruct * const structpointer, uchar * const result);
-
-
-
-
 
 namespace file
 {
 
+
    namespace axis
    {
+
 
       system::system(::aura::application * papp) :
          ::object(papp),
          ::file::system(papp)
       {
-         m_path.m_pfile = this;
 
       }
 
@@ -40,9 +34,9 @@ namespace file
 
       }
 
-   void system::get_ascendants_path(const char * lpcsz, stringa & straParam)
+      void system::get_ascendants_path(const ::file::path & lpcsz,::file::patha & straParam)
    {
-      stringa stra;
+      ::file::patha stra;
       get_ascendants_name(lpcsz, stra);
       string str;
       bool bUrl = System.url().is_url(lpcsz);
@@ -68,11 +62,11 @@ namespace file
          {
             str.replace("/", "\\");
          }
-         straParam.add(str);
+         straParam.add(::file::path(str));
       }
    }
 
-   void system::get_ascendants_name(const char * lpcsz, stringa & straParam)
+      void system::get_ascendants_name(const ::file::path & lpcsz,::file::patha & straParam)
    {
       stringa straSeparator;
       straSeparator.add("/");

@@ -3825,3 +3825,25 @@ void var::null()
     set_type(var::type_null);
 
 }
+
+
+
+
+::file::path var::get_file_path() const
+{
+   
+   if(m_etype == type_propset)
+   {
+      if(has_property("url"))
+      {
+         return ::file::path(operator[]("url").get_string(),::file::path_url);
+      }
+      else if(has_property("path"))
+      {
+         return ::file::path(operator[]("path").get_string());
+      }
+   }
+
+   return ::file::path(get_string());
+
+}

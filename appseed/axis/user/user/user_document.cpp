@@ -840,15 +840,22 @@ namespace aura
       {
          if (varFile.is_empty())
          {
+
             // be sure to delete the file
+
             try
             {
-               System.file().del(newName);
+
+               Application.file().del(newName);
+
             }
             catch (::exception::base * pe)
             {
+
                TRACE(::aura::trace::category_AppMsg, 0, "Warning: failed to delete file after failed SaveAs.\n");
+
                pe->Delete();
+
             }
 
          }

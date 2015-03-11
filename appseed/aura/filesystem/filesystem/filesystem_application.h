@@ -15,30 +15,29 @@ namespace file
       virtual ~application();
 
 
-      virtual void copy(const char * pszNew, const char * psz, bool bFailIfExists = false, e_extract eextract = extract_first);
+      virtual bool copy(const ::file::path & pszNew, const ::file::path & psz, bool bFailIfExists = false, e_extract eextract = extract_first);
+      virtual bool move(const ::file::path & pszNew,const ::file::path & psz);
+      virtual bool del(const ::file::path & psz);
+      virtual bool rename(const ::file::path & pszNew,const ::file::path & psz);
 
 
-      virtual void trash_that_is_not_trash(const char * psz);
+      virtual void trash_that_is_not_trash(const ::file::path & psz);
       virtual void trash_that_is_not_trash(::file::patha & stra);
 
 
-      virtual void replace(const char * pszContext, const char * pszFind, const char * pszReplace);
+      virtual void replace(const ::file::path & pszContext, const char * pszFind, const char * pszReplace);
 
-      virtual bool exists(const char * pszPath);
-      virtual bool exists(const string & strPath);
-      virtual bool exists(const var & var);
+      virtual bool exists(const ::file::path & pszPath);
 
-      virtual var length(const char * pszPath);
-      virtual var length(const string & strPath);
-      virtual var length(const var & var);
+      virtual var length(const ::file::path & pszPath);
 
-      string time(const char * pszBasePath, int32_t iDepth = 1, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
-      string time_square(const char * pszPrefix = NULL, const char * pszSuffix = NULL);
-      string time_log(const char * pszId);
+      ::file::path time(const ::file::path & pszBasePath,int32_t iDepth = 1,const char * pszPrefix = NULL,const char * pszSuffix = NULL);
+      ::file::path time_square(const char * pszPrefix = NULL,const char * pszSuffix = NULL);
+      ::file::path time_log(const char * pszId);
 
 
       virtual ::file::buffer_sp time_square_file(const char * pszPrefix = NULL, const char * pszSuffix = NULL);
-      virtual ::file::buffer_sp get(const char * name);
+      virtual ::file::buffer_sp get(const ::file::path & name);
 
 
       virtual string as_string(var varFile);
@@ -64,9 +63,9 @@ namespace file
       virtual ::file::buffer_sp friendly_get_file(var varFile, UINT nOpenFlags, fesp * pfesp = NULL);
 
 
-      void dtf(const char * pszFile,const char * pszDir);
-      void dtf(const char * pszFile,::file::patha & stra,::file::patha & straRelative);
-      void ftd(const char * pszDir,const char * pszFile);
+      void dtf(const ::file::path & pszFile,const ::file::path & pszDir);
+      void dtf(const ::file::path & pszFile,::file::patha & stra,::file::patha & straRelative);
+      void ftd(const ::file::path & pszDir,const ::file::path & pszFile);
 
 
       virtual bool crypto_set(var varFile,const char * pszData,const char * pszSalt);

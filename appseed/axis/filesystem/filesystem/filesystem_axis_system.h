@@ -48,8 +48,8 @@ namespace file
          virtual var length(const char * path,var * pvarQuery,::aura::application * papp);
          virtual var length(const string & path,var * pvarQuery,::aura::application * papp);
 
-         void  get_ascendants_path(const char * lpcsz,stringa & stra);
-         void  get_ascendants_name(const char * lpcsz,stringa & stra);
+         void  get_ascendants_path(const ::file::path & lpcsz,::file::patha & stra);
+         void  get_ascendants_name(const ::file::path & lpcsz,::file::patha & stra);
 
          template < class T >
          bool output(::aura::application * papp,const char * pszOutput,T * p,bool (T::*lpfnOuput)(::file::output_stream &,const char *),const char * lpszSource);

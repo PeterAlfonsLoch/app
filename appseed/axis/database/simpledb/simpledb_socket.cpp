@@ -189,9 +189,9 @@ namespace simpledb
    }
 
 
-   bool socket::read_file(const char * lpcsz, smart_pointer_array < int_array > * prangea, const char * pszContentType)
+   bool socket::read_file(const ::file::path & lpcsz,smart_pointer_array < int_array > * prangea,const char * pszContentType)
    {
-      string strExtension = System.file().extension(lpcsz);
+      string strExtension = lpcsz.extension();
       string str = strExtension;
       str.make_lower();
       string strContentType(pszContentType);

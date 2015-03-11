@@ -220,7 +220,7 @@ namespace sockets
 
             int keylength = ia[i];
 
-            string strTitle = System.file_name(m_strCat);
+            string strTitle = m_strCat.name();
 
             if (strTitle.find_ci(".") >= 0)
             {
@@ -230,7 +230,7 @@ namespace sockets
             }
 
 
-            string strFile = System.dir_path(System.dir_name(m_strCat), strTitle + ".dh" + ::str::from(keylength) + ".pem");
+            string strFile = System.dir().name(m_strCat)/ strTitle + ".dh" + ::str::from(keylength) + ".pem";
 
             FILE * paramfile = fopen(strFile, "r");
 
@@ -290,7 +290,7 @@ namespace sockets
 
    bool httpd_socket::read_file(const char * lpcsz,smart_pointer_array < int_array > * prangea,const char * pszContentType)
    {
-      string strExtension = System.file_extension(lpcsz);
+      string strExtension = System.file().extension(lpcsz);
       string str = strExtension;
       str.make_lower();
       string strContentType(pszContentType);

@@ -13,24 +13,8 @@ namespace file
 
 
 
-      class CLASS_DECL_AURA path :
-         virtual public ::object
-      {
-      public:
 
-         ::file::system * m_pfile;
-
-
-         bool is_equal(const char * lpszFilPathA, const char * lpszFilPathB);
-         bool eat_end_level(string & str, int32_t iLevelCount, const char * lpSeparator);
-         void split(::file::patha & stra, const char * lpcszPath);
-         bool is_relative(const char * psz);
-
-         bool rename(const char * pszNew, const char * psz, ::aura::application * papp);
-
-      };
-
-      class system::path m_path;
+//      class system::path m_path;
 
 
 
@@ -39,37 +23,40 @@ namespace file
 
       path & path();
 
-      virtual void copy(const char * pszNew, const char * psz, bool bFailIfExists, e_extract eextract, ::aura::application * papp);
-      virtual void move(const char * pszNew, const char * psz);
-      virtual void del(const char * psz);
-      virtual string copy(const char * psz, ::aura::application * papp);
-      virtual string paste(const char * pszLocation, const char * path, ::aura::application * papp);
+      virtual bool copy(const ::file::path & pszNew,const ::file::path & psz,bool bFailIfExists,e_extract eextract,::aura::application * papp);
+      virtual bool move(const ::file::path & pszNew,const ::file::path & psz,::aura::application * papp);
+      virtual bool del(const ::file::path & psz,::aura::application * papp);
+      virtual ::file::path copy(const ::file::path & psz,::aura::application * papp);
+      virtual ::file::path paste(const ::file::path & pszLocation,const ::file::path & path,::aura::application * papp);
+      virtual bool rename(const ::file::path & pszNew,const ::file::path & psz,::aura::application * papp);
 
-      virtual void trash_that_is_not_trash(const char * psz, ::aura::application * papp);
+      virtual void trash_that_is_not_trash(const ::file::path & psz,::aura::application * papp);
       virtual void trash_that_is_not_trash(::file::patha & stra, ::aura::application * papp);
 
-      virtual string title_(const char * path);
-      virtual string name_(const char * path);
-      virtual string extension(const char * path);
+      //virtual string title_(const char * path);
+      //virtual string name_(const char * path);
+      //virtual string extension(const char * path);
 
-      
 
-      virtual void replace(const char * pszContext, const char * pszFind, const char * pszReplace, ::aura::application * papp);
+      virtual bool get_status(const ::file::path & path,::file::file_status & status,::aura::application * papp);
+      virtual ::file::exception_sp set_status(const ::file::path & path,const ::file::file_status & status,::aura::application * papp);
 
-      virtual bool exists(const char * path, ::aura::application * papp);
-      virtual bool exists(const string & path, ::aura::application * papp);
+      virtual void replace(const ::file::path & pszContext,const string & pszFind,const string & pszReplace,::aura::application * papp);
 
-      virtual bool exists(const char * path, var * pvarQuery, ::aura::application * papp);
-      virtual bool exists(const string & path, var * pvarQuery, ::aura::application * papp);
+      //virtual bool exists(const char * path, ::aura::application * papp);
+      virtual bool exists(const ::file::path & path,::aura::application * papp);
 
-      virtual var length(const char * path, ::aura::application * papp);
-      virtual var length(const string & path, ::aura::application * papp);
+      //virtual bool exists(const char * path, var * pvarQuery, ::aura::application * papp);
+      virtual bool exists(const ::file::path & path,var * pvarQuery,::aura::application * papp);
 
-      virtual var length(const char * path, var * pvarQuery, ::aura::application * papp);
-      virtual var length(const string & path, var * pvarQuery, ::aura::application * papp);
+      //virtual var length(const char * path, ::aura::application * papp);
+      virtual var length(const ::file::path & path,::aura::application * papp);
 
-      void  get_ascendants_path(const char * lpcsz, ::file::patha & stra);
-      void  get_ascendants_name(const char * lpcsz, ::file::patha & stra);
+      //virtual var length(const char * path, var * pvarQuery, ::aura::application * papp);
+      virtual var length(const ::file::path & path,var * pvarQuery,::aura::application * papp);
+
+      //void  get_ascendants_path(const ::file::path & lpcsz,::file::patha & stra);
+      //void  get_ascendants_name(const ::file::path & lpcsz,::file::patha & stra);
 
       template < class T >
       bool output(::aura::application * papp,const char * pszOutput,T * p,bool (T::*lpfnOuput)(::file::output_stream &,const char *),const char * lpszSource);
@@ -87,15 +74,15 @@ namespace file
 
 
 
-      string time(::aura::application * papp, const char * pszBasePath, int32_t iDepth, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
-      string time_square(::aura::application * papp, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
-      string time_log(::aura::application * papp, const char * pszId);
+      ::file::path time(::aura::application * papp,const ::file::path & pszBasePath,int32_t iDepth,const char * pszPrefix = NULL,const char * pszSuffix = NULL);
+      ::file::path time_square(::aura::application * papp,const char* pszPrefix = NULL,const char * pszSuffix = NULL);
+      ::file::path time_log(::aura::application * papp,const char * pszId);
 
       virtual ::file::buffer_sp time_square_file(::aura::application * papp, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
-      virtual ::file::buffer_sp get(const char * name, ::aura::application * papp);
+      virtual ::file::buffer_sp get(const ::file::path & name,::aura::application * papp);
 
       template < class T >
-      string time_square(::aura::application * papp, T * p, bool (T::*lpfnOutput)(::file::output_stream &, const char *), const char * lpszSource)
+      string time_square(::aura::application * papp,T * p,bool (T::*lpfnOutput)(::file::output_stream &,const char *),const ::file::path & lpszSource)
       {
          string strTime = time_square(papp);
          if(strTime.has_char())

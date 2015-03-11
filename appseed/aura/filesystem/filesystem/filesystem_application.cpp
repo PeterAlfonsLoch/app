@@ -18,12 +18,27 @@ namespace file
 
    }
 
-   void application::copy(const char * pszNew, const char * pszOld, bool bFailIfExists, e_extract eextract)
+   bool application::copy(const ::file::path & pszNew,const ::file::path & pszOld,bool bFailIfExists,e_extract eextract)
    {
       return m_pauraapp->m_paurasystem->m_spfile->copy(pszNew, pszOld, bFailIfExists, eextract, m_pauraapp);
    }
 
-   void application::trash_that_is_not_trash(const char * psz)
+   bool application::move(const ::file::path & pszNew,const ::file::path & pszOld)
+   {
+      return m_pauraapp->m_paurasystem->m_spfile->move(pszNew,pszOld,m_pauraapp);
+   }
+
+   bool application::del(const ::file::path & psz)
+   {
+      return m_pauraapp->m_paurasystem->m_spfile->del(psz,m_pauraapp);
+   }
+
+   bool application::rename(const ::file::path & pszNew,const ::file::path & pszOld)
+   {
+      return m_pauraapp->m_paurasystem->m_spfile->rename(pszNew,pszOld,m_pauraapp);
+   }
+
+   void application::trash_that_is_not_trash(const ::file::path & psz)
    {
       return m_pauraapp->m_paurasystem->m_spfile->trash_that_is_not_trash(psz, m_pauraapp);
    }
@@ -33,12 +48,12 @@ namespace file
       return m_pauraapp->m_paurasystem->m_spfile->trash_that_is_not_trash(stra, m_pauraapp);
    }
 
-   void application::replace(const char * pszContext, const char * pszFind, const char * pszReplace)
+   void application::replace(const ::file::path & pszContext,const char * pszFind,const char * pszReplace)
    {
       return m_pauraapp->m_paurasystem->m_spfile->replace(pszContext, pszFind, pszReplace, m_pauraapp);
    }
 
-   bool application::exists(const char * pszPath)
+   bool application::exists(const ::file::path & pszPath)
    {
 
       return m_pauraapp->m_paurasystem->m_spfile->exists(pszPath, m_pauraapp);
@@ -46,7 +61,7 @@ namespace file
    }
 
 
-   bool application::exists(const string & strPath)
+ /*  bool application::exists(const string & strPath)
    {
 
       return m_pauraapp->m_paurasystem->m_spfile->exists(strPath, m_pauraapp);
@@ -61,10 +76,10 @@ namespace file
 
       return m_pauraapp->m_paurasystem->m_spfile->exists(strPath, m_pauraapp);
 
-   }
+   }*/
 
 
-   var application::length(const char * pszPath)
+   var application::length(const ::file::path & pszPath)
    {
 
       return m_pauraapp->m_paurasystem->m_spfile->length(pszPath, m_pauraapp);
@@ -72,24 +87,24 @@ namespace file
    }
 
 
-   var application::length(const string & strPath)
-   {
+   //var application::length(const string & strPath)
+   //{
 
 
-      return m_pauraapp->m_paurasystem->m_spfile->length(strPath, m_pauraapp);
+   //   return m_pauraapp->m_paurasystem->m_spfile->length(strPath, m_pauraapp);
 
-   }
-
-
-   var application::length(const var & var)
-   {
-
-      return m_pauraapp->m_paurasystem->m_spfile->length(var.get_string(), m_pauraapp);
-
-   }
+   //}
 
 
-   string application::time(const char * pszBasePath, int32_t iDepth, const char * pszPrefix, const char * pszSuffix)
+   //var application::length(const var & var)
+   //{
+
+   //   return m_pauraapp->m_paurasystem->m_spfile->length(var.get_string(), m_pauraapp);
+
+   //}
+
+
+   ::file::path application::time(const ::file::path & pszBasePath,int32_t iDepth,const char * pszPrefix,const char * pszSuffix)
    {
 
       return m_pauraapp->m_paurasystem->m_spfile->time(m_pauraapp, pszBasePath, iDepth, pszPrefix, pszSuffix);
@@ -97,7 +112,7 @@ namespace file
    }
 
 
-   string application::time_square(const char * pszPrefix, const char * pszSuffix)
+   ::file::path application::time_square(const char * pszPrefix,const char * pszSuffix)
    {
 
       return m_pauraapp->m_paurasystem->m_spfile->time_square(m_pauraapp, pszPrefix, pszSuffix);
@@ -105,7 +120,7 @@ namespace file
    }
 
 
-   string application::time_log(const char * pszId)
+   ::file::path application::time_log(const char * pszId)
    {
       return m_pauraapp->m_paurasystem->m_spfile->time_log(m_pauraapp, pszId);
    }
@@ -115,7 +130,7 @@ namespace file
       return m_pauraapp->m_paurasystem->m_spfile->time_square_file(m_pauraapp, pszPrefix, pszSuffix);
    }
 
-   ::file::buffer_sp application::get(const char * name)
+   ::file::buffer_sp application::get(const ::file::path & name)
    {
       return m_pauraapp->m_paurasystem->m_spfile->get(name, m_pauraapp);
    }
@@ -336,7 +351,7 @@ namespace file
    }
    */
 
-   void application::dtf(const char * pszFile,const char * pszDir)
+   void application::dtf(const ::file::path & pszFile,const ::file::path & pszDir)
    {
 
       return m_pauraapp->m_paurasystem->m_spfile->dtf(pszFile,pszDir,m_pauraapp);
@@ -344,7 +359,7 @@ namespace file
    }
 
 
-   void application::dtf(const char * pszFile,::file::patha & stra,::file::patha & straRelative)
+   void application::dtf(const ::file::path & pszFile,::file::patha & stra,::file::patha & straRelative)
    {
 
       return m_pauraapp->m_paurasystem->m_spfile->dtf(pszFile,stra,straRelative,m_pauraapp);
@@ -352,7 +367,7 @@ namespace file
    }
 
 
-   void application::ftd(const char * pszDir,const char * pszFile)
+   void application::ftd(const ::file::path & pszDir,const ::file::path & pszFile)
    {
 
       return m_pauraapp->m_paurasystem->m_spfile->ftd(pszDir,pszFile,m_pauraapp);

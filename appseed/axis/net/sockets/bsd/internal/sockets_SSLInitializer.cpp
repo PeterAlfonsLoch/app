@@ -205,7 +205,7 @@ void ssl_sigpipe_handle( int x ) {
    {
       if (m_rand_file.get_length())
       {
-         System.file_del(m_rand_file);
+         System.file().del(m_rand_file);
       }
    }
 

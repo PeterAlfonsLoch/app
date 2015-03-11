@@ -160,7 +160,7 @@ namespace fontopus
          else
          {
          
-            strHost = Application.file().as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
+            strHost = Application.file().as_string(System.dir().appdata() / "database\\text\\last_good_known_fontopus_com.txt");
             
             if(!straRequestingServer.contains_ci(strHost))
             {
@@ -336,7 +336,7 @@ namespace fontopus
       }
       m_strLicense = psz;
       m_loginthread.m_strLicense = m_strLicense;
-      string strHost = Application.file().as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
+      string strHost = Application.file().as_string(System.dir().appdata()/"database\\text\\last_good_known_fontopus_com.txt");
       stringa straRequestingServer;
 
       string strFirstFontopusServer = Session.fontopus()->m_strFirstFontopusServer;
@@ -691,7 +691,7 @@ namespace fontopus
                iAuth = result_auth;
                if(m_bFontopusServer)
                {
-                  Application.file().put_contents(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"),m_strFontopusServer);
+                  Application.file().put_contents(System.dir().appdata()/"database\\text\\last_good_known_fontopus_com.txt",m_strFontopusServer);
                }
                execute();
                if(m_strLicense.has_char())
@@ -1108,7 +1108,7 @@ namespace fontopus
             propertyset["project"] = strName;
             strUrl = "ext://https://" + m_loginthread.m_strFontopusServer + "/license?id=" + m_strLicense + "&lang=" + Session.get_locale() + "&sessid=" + ApplicationUser.get_sessid(m_loginthread.m_strFontopusServer);
             propertyset["contribute_link"] = strUrl;
-            pageMessage("err\\user\\authentication\\not_licensed.xhtml",propertyset);
+            pageMessage({"err\\user\\authentication\\not_licensed.xhtml"},propertyset);
          }
       }
       else if(iAuth == ::fontopus::result_please_finish_registration)
@@ -1126,7 +1126,7 @@ namespace fontopus
          if(m_bInteractive)
          {
             propertyset["register_link"] = "ext://http://" + m_loginthread.m_strFontopusServer + "/register?email=" + System.url().url_encode(m_loginthread.m_strUsername);
-            pageMessage("err\\user\\authentication\\wrong_fontopus_login.html",propertyset);
+            pageMessage({"err\\user\\authentication\\wrong_fontopus_login.html"},propertyset);
             try
             {
                System.file().del(::dir::userappdata("license_auth/00001.data"));
@@ -1151,7 +1151,7 @@ namespace fontopus
          if(m_bInteractive)
          {
             propertyset["server"] = "account.ca2.cc";
-            pageMessage("err\\user\\network\\connection_timed_out.html",propertyset);
+            pageMessage({"err\\user\\network\\connection_timed_out.html"},propertyset);
          }
       }
       else if(iAuth == ::fontopus::result_registration_deferred)
@@ -1160,28 +1160,28 @@ namespace fontopus
          {
             propertyset["server"] = "account.ca2.cc";
             propertyset["email"] = strUsername;
-            pageMessage("err\\user\\authentication\\registration_deferred.html",propertyset);
+            pageMessage({"err\\user\\authentication\\registration_deferred.html"},propertyset);
          }
       }
       else if(iAuth == ::fontopus::result_no_login)
       {
          if(m_bInteractive)
          {
-            pageMessage("err\\user\\authentication\\no_login.html",propertyset);
+            pageMessage({"err\\user\\authentication\\no_login.html"},propertyset);
          }
       }
       else if(iAuth == ::fontopus::result_no_password)
       {
          if(m_bInteractive)
          {
-            pageMessage("err\\user\\authentication\\no_password.html",propertyset);
+            pageMessage({"err\\user\\authentication\\no_password.html"},propertyset);
          }
       }
       else
       {
          if(m_bInteractive)
          {
-            pageMessage("err\\user\\authentication\\failed.html",propertyset);
+            pageMessage({"err\\user\\authentication\\failed.html"},propertyset);
          }
       }
 

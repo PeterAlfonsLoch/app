@@ -187,10 +187,7 @@ class CLASS_DECL_AURA string :
 {
 public:
 
-
-
    static const int npos;
-
 
    operator class string_composite ();
    operator class string_composite const () const;

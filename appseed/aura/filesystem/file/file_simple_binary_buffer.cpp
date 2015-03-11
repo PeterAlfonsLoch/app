@@ -38,7 +38,7 @@ namespace file
    }
 
 
-   exception_sp simple_binary_buffer::open(const char * lpszFileName, UINT nOpenFlags)
+   exception_sp simple_binary_buffer::open(const ::file::path & lpszFileName, UINT nOpenFlags)
    {
 
       ASSERT(lpszFileName != NULL);
@@ -470,60 +470,60 @@ namespace file
    }
 
 
-   bool simple_binary_buffer::GetStatus(const char * lpszFileName, ::file::file_status& rStatus)
-   {
-      // attempt to fully qualify path first
-/*      wstring wstrFullName;
-      wstring wstrFileName;
-      wstrFileName = ::str::international::utf8_to_unicode(lpszFileName);
-      if (!vfxFullPath(wstrFullName, wstrFileName))
-      {
-         rStatus.m_strFullName.Empty();
-         return FALSE;
-      }
-      ::core::international::unicode_to_utf8(rStatus.m_strFullName, wstrFullName);*/
-
-      rStatus.m_strFullName = lpszFileName;
-
-      struct stat st;
-      if(stat(lpszFileName, &st) == -1)
-         return false;
-      //if (hFind == INVALID_HANDLE_VALUE)
-        // return FALSE;
-      //VERIFY(FindClose(hFind));
-
-      // strip attribute of NORMAL bit, our API doesn't have a "normal" bit.
-      //rStatus.m_attribute = (BYTE) (findFileData.dwFileAttributes & ~FILE_ATTRIBUTE_NORMAL);
-
-      rStatus.m_attribute = 0;
-
-      // get just the low DWORD of the file size
-      //ASSERT(findFileData.nFileSizeHigh == 0);
-      //rStatus.m_size = (LONG)findFileData.nFileSizeLow;
-
-      rStatus.m_size = st.st_size;
-
-      // convert times as appropriate
-      /*rStatus.m_ctime = ::datetime::time(findFileData.ftCreationTime);
-      rStatus.m_atime = ::datetime::time(findFileData.ftLastAccessTime);
-      rStatus.m_mtime = ::datetime::time(findFileData.ftLastWriteTime);*/
-      rStatus.m_ctime = ::datetime::time(st.st_mtime);
-      rStatus.m_atime = ::datetime::time(st.st_atime);
-      rStatus.m_mtime = ::datetime::time(st.st_ctime);
-
-      if (rStatus.m_ctime.get_time() == 0)
-         rStatus.m_ctime = rStatus.m_mtime;
-
-      if (rStatus.m_atime.get_time() == 0)
-         rStatus.m_atime = rStatus.m_mtime;
-
-      return TRUE;
-   }
-
-   void simple_binary_buffer::SetStatus(const char * lpszFileName, const ::file::file_status& status)
-   {
-      ::exception::throw_not_implemented(get_app());
-   }
+//   bool simple_binary_buffer::GetStatus(const char * lpszFileName, ::file::file_status& rStatus)
+//   {
+//      // attempt to fully qualify path first
+///*      wstring wstrFullName;
+//      wstring wstrFileName;
+//      wstrFileName = ::str::international::utf8_to_unicode(lpszFileName);
+//      if (!vfxFullPath(wstrFullName, wstrFileName))
+//      {
+//         rStatus.m_strFullName.Empty();
+//         return FALSE;
+//      }
+//      ::core::international::unicode_to_utf8(rStatus.m_strFullName, wstrFullName);*/
+//
+//      rStatus.m_strFullName = lpszFileName;
+//
+//      struct stat st;
+//      if(stat(lpszFileName, &st) == -1)
+//         return false;
+//      //if (hFind == INVALID_HANDLE_VALUE)
+//        // return FALSE;
+//      //VERIFY(FindClose(hFind));
+//
+//      // strip attribute of NORMAL bit, our API doesn't have a "normal" bit.
+//      //rStatus.m_attribute = (BYTE) (findFileData.dwFileAttributes & ~FILE_ATTRIBUTE_NORMAL);
+//
+//      rStatus.m_attribute = 0;
+//
+//      // get just the low DWORD of the file size
+//      //ASSERT(findFileData.nFileSizeHigh == 0);
+//      //rStatus.m_size = (LONG)findFileData.nFileSizeLow;
+//
+//      rStatus.m_size = st.st_size;
+//
+//      // convert times as appropriate
+//      /*rStatus.m_ctime = ::datetime::time(findFileData.ftCreationTime);
+//      rStatus.m_atime = ::datetime::time(findFileData.ftLastAccessTime);
+//      rStatus.m_mtime = ::datetime::time(findFileData.ftLastWriteTime);*/
+//      rStatus.m_ctime = ::datetime::time(st.st_mtime);
+//      rStatus.m_atime = ::datetime::time(st.st_atime);
+//      rStatus.m_mtime = ::datetime::time(st.st_ctime);
+//
+//      if (rStatus.m_ctime.get_time() == 0)
+//         rStatus.m_ctime = rStatus.m_mtime;
+//
+//      if (rStatus.m_atime.get_time() == 0)
+//         rStatus.m_atime = rStatus.m_mtime;
+//
+//      return TRUE;
+//   }
+//
+//   void simple_binary_buffer::SetStatus(const char * lpszFileName, const ::file::file_status& status)
+//   {
+//      ::exception::throw_not_implemented(get_app());
+//   }
 
    bool simple_binary_buffer::IsOpened()
    {

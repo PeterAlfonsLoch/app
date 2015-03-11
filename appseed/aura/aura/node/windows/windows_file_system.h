@@ -22,6 +22,11 @@ namespace windows
       virtual ~file_system();
 
 
+      virtual bool get_status(const ::file::path & path,::file::file_status & status);
+      virtual ::file::exception_sp set_status(const ::file::path & path,const ::file::file_status & status);
+
+
+
       virtual bool FullPath(string & str, const char * lpszFileIn);
       virtual bool FullPath(wstring & wstrFullPath, const wstring & wstrPath);
       virtual UINT GetFileName(const char * lpszPathName, string & str);

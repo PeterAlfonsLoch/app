@@ -46,7 +46,7 @@ namespace aura
       throw interface_only_exception(get_app(), "this is an interface");
    }
 
-   string os::get_process_path(uint32_t dwPid)
+   ::file::path os::get_process_path(uint32_t dwPid)
    {
       UNREFERENCED_PARAMETER(dwPid);
       throw interface_only_exception(get_app(), "this is an interface");
@@ -60,7 +60,7 @@ namespace aura
 
 #ifdef WINDOWS
 
-   string os::get_module_path(HMODULE hmodule)
+   ::file::path os::get_module_path(HMODULE hmodule)
    {
       UNREFERENCED_PARAMETER(hmodule);
       throw interface_only_exception(get_app(), "this is an interface");

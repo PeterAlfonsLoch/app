@@ -23,7 +23,7 @@ bool ifs::fast_has_subdir(const char * pszPath)
    ::str::ends_eat(strDir, "/");
    ::str::ends_eat(strDir, "\\");
 
-   if(m_maplsTimeout.Lookup(strDir, dwTimeout))
+   if(m_map.Lookup(strDir, dwTimeout))
    {
 
       if(get_tick_count() < dwTimeout)

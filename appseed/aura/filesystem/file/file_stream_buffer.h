@@ -44,7 +44,6 @@ namespace file
 {
 
 
-
    class CLASS_DECL_AURA stream_buffer :
       virtual public ::file::reader,
       virtual public ::file::writer,
@@ -67,10 +66,10 @@ namespace file
       virtual void SetFilePath(const char * lpszNewName);
 
       
-      virtual ::file::exception_sp open(const char * lpszFileName, UINT nOpenFlags);
+      virtual ::file::exception_sp open(const ::file::path & lpszFileName,UINT nOpenFlags);
 
-      virtual bool GetStatus(const char * lpszFileName, file_status& rStatus);
-      virtual void SetStatus(const char * lpszFileName, const file_status& status);
+      //virtual bool GetStatus(const char * lpszFileName, file_status& rStatus);
+      //virtual void SetStatus(const char * lpszFileName, const file_status& status);
 
 
       virtual ::file::buffer_sp  Duplicate() const;

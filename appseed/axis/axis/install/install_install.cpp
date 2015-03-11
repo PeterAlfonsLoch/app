@@ -62,7 +62,7 @@ namespace install
 
    }
 
-   bool install::is_file_ok(const char * path1, const char * pszTemplate, const char * pszFormatBuild)
+   bool install::is_file_ok(const ::file::path & path1,const char * pszTemplate,const char * pszFormatBuild)
    {
 
       string strFormatBuild(pszFormatBuild);
@@ -82,7 +82,7 @@ namespace install
 
    }
 
-   bool install::is_file_ok(const stringa & patha,const stringa & straTemplate,stringa & straMd5,const string & strFormatBuild, int iMd5Retry)
+   bool install::is_file_ok(const ::file::patha & patha,const ::file::patha & straTemplate,stringa & straMd5,const string & strFormatBuild,int iMd5Retry)
    {
 
       bool bOk = true;
@@ -825,9 +825,9 @@ namespace install
    void install::add_spa_start(const char * pszType, const char * pszId)
    {
 
-      string strPath;
+      ::file::path strPath;
 
-      strPath = System.dir().appdata("spa_start.xml");
+      strPath = System.dir().appdata()/"spa_start.xml";
 
       string strContents;
 
@@ -868,9 +868,9 @@ namespace install
    void install::remove_spa_start(const char * pszType, const char * pszId)
    {
 
-      string strPath;
+      ::file::path strPath;
 
-      strPath = System.dir().appdata("spa_start.xml");
+      strPath = System.dir().appdata()/"spa_start.xml";
 
       string strContents;
 
@@ -909,13 +909,13 @@ namespace install
 
       synch_lock sl(&m_mutex);
 
-      string strPath;
+      ::file::path strPath;
 
-      strPath = System.dir().commonappdata("spa_install.xml");
+      strPath = System.dir().commonappdata()/"spa_install.xml";
 
-      string strBuildPath;
+      ::file::path strBuildPath;
 
-      strBuildPath = System.dir().commonappdata("spa_build.txt");
+      strBuildPath = System.dir().commonappdata()/ "spa_build.txt";
 
       System.dir().mk(System.dir().name(strPath), get_app());
 
@@ -1231,7 +1231,7 @@ namespace install
 
       bool bPrivileged = false;
 
-      string strPath;
+      ::file::path strPath;
 
 #ifdef WINDOWSEX
 
@@ -1288,7 +1288,7 @@ namespace install
 
          trace().rich_trace("***Verifying installer");
 
-         stringa straFile;
+         ::file::patha straFile;
 
          ::install::get_plugin_base_library_list(straFile, pszVersion);
 
@@ -1299,14 +1299,14 @@ namespace install
 
          }
 
-         stringa straDownload;
+         ::file::patha straDownload;
 
          for(index iFile = 0; iFile < straFile.get_size(); iFile++)
          {
 
-            string strFile = straFile[iFile];
+            ::file::path strFile = straFile[iFile];
 
-            string strDownload = System.dir().sibling(strPath,strFile);
+            ::file::path strDownload = strPath * strFile;
 
             straDownload.add(strDownload);
 
@@ -1350,17 +1350,17 @@ namespace install
             if(hmodule != NULL)
             {
 
-               string str = get_module_path(hmodule);
+               ::file::path str = get_module_path(hmodule);
 
                if(str.has_char())
                {
 
-                  string strAuraDir = ::dir::name(str);
+                  ::file::path strAuraDir = *str;
 
                   for(index iFile = 0; iFile < straFile.get_size(); iFile++)
                   {
 
-                     string strFile = System.dir().path(strAuraDir,straFile[iFile]);
+                     ::file::path strFile = strAuraDir / straFile[iFile];
 
                      if(!file_exists_dup(straDownload[iFile]) && file_exists_dup(strFile) && System.file().md5(strFile) == straMd5[iFile])
                      {
@@ -1399,9 +1399,9 @@ namespace install
             for(index iFile = 0; iFile < straFile.get_size(); iFile++)
             {
 
-               string strFile = straFile[iFile];
+               ::file::path strFile = straFile[iFile];
 
-               string strDownload = System.dir().sibling(strPath,strFile);
+               ::file::path strDownload = strPath * strFile;
 
                if(pinstaller != NULL)
                {
@@ -1536,7 +1536,7 @@ namespace install
 
       strFormatBuild = ::str::replace(" ", "_", strBuild);
 
-      string strPath;
+      ::file::path strPath;
 
 #ifdef WINDOWSEX
 
@@ -1557,7 +1557,7 @@ namespace install
    }
 
 
-   bool install::reference_is_file_ok(const char * path1, const char * pszTemplate, const char * pszVersion, const char * pszFormatBuild)
+   bool install::reference_is_file_ok(const ::file::path & path1,const char * pszTemplate,const char * pszVersion,const char * pszFormatBuild)
    {
 
       string strVersion(pszVersion);

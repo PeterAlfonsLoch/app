@@ -231,6 +231,7 @@ namespace file
 {
 
 
+   class path;
    class stream_buffer;
    class input_stream;
    class output_stream;
@@ -252,6 +253,8 @@ namespace html
 
 
 #include "aura_auto.h"
+
+
 
 namespace aura
 {
@@ -729,8 +732,11 @@ namespace file
 #include "aura/aura/aura/aura_library.h"
 
 
-
+#include "aura/primitive/datetime/datetime_date_span.h"
+#include "aura/primitive/datetime/datetime_time_span.h"
 #include "aura/primitive/datetime/datetime_time.h"
+#include "aura/primitive/datetime/datetime_file_time_span.h"
+#include "aura/primitive/datetime/datetime_file_time.h"
 
 
 
@@ -745,6 +751,9 @@ namespace file
 
 
 #include "aura/primitive/collection/collection.h"
+
+
+#include "aura/aura/aura/aura_cmp.h"
 
 
 #include "aura/filesystem/file/file_string_buffer.h"
@@ -895,7 +904,9 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 //#include "aura/primitive/data/data_tree.h"
 //#include "aura/primitive/data/data_simple_item.h"
 
-#include "aura/filesystem/filesystem/filesystem_path.h"
+
+
+#include "aura/primitive/collection/collection_file_path_map.h"
 
 #include "aura/primitive/primitive_edit.h"
 #include "aura/aura/aura/aura_departament.h"
@@ -1590,10 +1601,12 @@ namespace aura
 
 #include "aura/primitive/primitive.inl"
 
+#include "aura/filesystem/filesystem.inl"
+
+#include "aura/net/net.inl"
 
 
 
-#include "aura_cmp.h"
 
 
 

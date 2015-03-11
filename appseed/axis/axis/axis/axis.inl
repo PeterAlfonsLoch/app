@@ -73,89 +73,92 @@ namespace file
 
    }
 
-/*
-template < class T >
-bool ::file::system::output(::aura::application * papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::output_stream &, const char *), const char * lpszSource)
-{
+   /*
+   template < class T >
+   bool ::file::system::output(::aura::application * papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::output_stream &, const char *), const char * lpszSource)
+   {
 
-App(papp).dir().mk(Application.dir_name(pszOutput));
+   App(papp).dir().mk(Application.dir_name(pszOutput));
 
-::file::binary_buffer_sp fileOut = Sess(papp).file_get_file(pszOutput, ::file::mode_create | ::file::type_binary | ::file::mode_write);
+   ::file::binary_buffer_sp fileOut = Sess(papp).file_get_file(pszOutput, ::file::mode_create | ::file::type_binary | ::file::mode_write);
 
-if(fileOut.is_null())
-return false;
+   if(fileOut.is_null())
+   return false;
 
-::file::output_stream ostream(fileOut);
+   ::file::output_stream ostream(fileOut);
 
-return (p->*lpfnOuput)(ostream, lpszSource);
+   return (p->*lpfnOuput)(ostream, lpszSource);
 
-}
-*/
-
-
-template < class T >
-bool ::file::system::output(::aura::application * papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::output_stream &, ::file::input_stream &), const char * lpszInput)
-{
-
-App(papp).dir().mk(System.dir().name(pszOutput));
-
-string strDownloading = pszOutput;
-
-strDownloading += ".downloading";
-
-::file::binary_buffer_sp fileOut = Sess(papp).file_get_file(strDownloading, ::file::mode_create | ::file::type_binary | ::file::mode_write);
-
-if(fileOut.is_null())
-return false;
-
-::file::binary_buffer_sp fileIn = Sess(papp).file_get_file(lpszInput, ::file::type_binary | ::file::mode_read);
-
-if(fileIn.is_null())
-return false;
-
-{
-
-::file::output_stream ostream(fileOut);
-
-::file::input_stream istream(fileIn);
-
-if(!(p->*lpfnOuput)(ostream, istream))
-return false;
-
-}
-
-try
-{
-
-fileOut->close();
-
-}
-catch(...)
-{
-
-}
+   }
+   */
 
 
-try
-{
+   template < class T >
+   bool ::file::system::output(::aura::application * papp,const char * pszOutput,T * p,bool (T::*lpfnOuput)(::file::output_stream &,::file::input_stream &),const char * lpszInput)
+   {
 
-fileIn->close();
+      App(papp).dir().mk(System.dir().name(pszOutput));
 
-}
-catch(...)
-{
+      string strDownloading = pszOutput;
 
-}
+      strDownloading += ".downloading";
 
-if(::rename(strDownloading, pszOutput) != 0)
-{
-del(strDownloading);
-return false;
-}
+      ::file::binary_buffer_sp fileOut = Sess(papp).file_get_file(strDownloading,::file::mode_create | ::file::type_binary | ::file::mode_write);
 
-return true;
+      if(fileOut.is_null())
+         return false;
 
-}
+      ::file::binary_buffer_sp fileIn = Sess(papp).file_get_file(lpszInput,::file::type_binary | ::file::mode_read);
+
+      if(fileIn.is_null())
+         return false;
+
+      {
+
+         ::file::output_stream ostream(fileOut);
+
+         ::file::input_stream istream(fileIn);
+
+         if(!(p->*lpfnOuput)(ostream,istream))
+            return false;
+
+      }
+
+      try
+      {
+
+         fileOut->close();
+
+      }
+      catch(...)
+      {
+
+      }
+
+
+      try
+      {
+
+         fileIn->close();
+
+      }
+      catch(...)
+      {
+
+      }
+
+      if(::rename(strDownloading,pszOutput) != 0)
+      {
+         
+         del(strDownloading, papp);
+
+         return false;
+
+      }
+
+      return true;
+
+   }
 
 
 
@@ -171,5 +174,7 @@ return true;
 
 
 } // namespace file
+
+
 
 

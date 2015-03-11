@@ -45,7 +45,7 @@ namespace file
       return NULL;
    }
 
-   exception_sp streambuf::open(const char * lpszFileName,UINT nOpenFlags)
+   exception_sp streambuf::open(const ::file::path & lpszFileName,UINT nOpenFlags)
    {
 
       string str;
@@ -235,19 +235,19 @@ namespace file
       return FALSE;
    }
 
-   bool streambuf::GetStatus(const char * lpszFileName,file_status & rStatus)
-   {
-      UNREFERENCED_PARAMETER(lpszFileName);
-      UNREFERENCED_PARAMETER(rStatus);
-      return FALSE;
-   }
+   //bool streambuf::GetStatus(const char * lpszFileName,file_status & rStatus)
+   //{
+   //   UNREFERENCED_PARAMETER(lpszFileName);
+   //   UNREFERENCED_PARAMETER(rStatus);
+   //   return FALSE;
+   //}
 
 
-   void streambuf::SetStatus(const char * lpszFileName,const file_status & status)
-   {
-      UNREFERENCED_PARAMETER(lpszFileName);
-      UNREFERENCED_PARAMETER(status);
-   }
+   //void streambuf::SetStatus(const char * lpszFileName,const file_status & status)
+   //{
+   //   UNREFERENCED_PARAMETER(lpszFileName);
+   //   UNREFERENCED_PARAMETER(status);
+   //}
 
 
 

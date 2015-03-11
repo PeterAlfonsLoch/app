@@ -29,14 +29,14 @@ namespace fs
    }
 
 
-   void set::root_ones(stringa & patha, stringa & straTitle)
+   void set::root_ones(::file::patha & patha,stringa & straTitle)
    {
 
       single_lock sl(data_mutex(), true);
 
       m_fsdatamap.remove_all();
 
-      stringa straFsPath;
+      ::file::patha straFsPath;
 
       stringa straFsTitle;
 
@@ -123,7 +123,7 @@ namespace fs
       if(psz == NULL || strlen(psz) == 0)
       {
          ::file::patha patha;
-         ::file::patha straTitle;
+         stringa straTitle;
          root_ones(patha, straTitle);
          for(int32_t i = 0; i < patha.get_size(); i++)
          {
@@ -133,7 +133,7 @@ namespace fs
             }
             if(ppathaName != NULL)
             {
-               ppathaName->add(straTitle[i]);
+               ppathaName->add(::file::path(straTitle[i]));
             }
             if (piaSize != NULL)
             {
@@ -271,7 +271,7 @@ namespace fs
 
    }
 
-   void set::get_ascendants_path(const char * psz,stringa & stra)
+   void set::get_ascendants_path(const ::file::path & psz,::file::patha & stra)
    {
 
       ::fs::data * pdata = path_data(psz);
@@ -309,7 +309,7 @@ namespace fs
          return pdata->dir_path(pszPath1, pszPath2);
       }
 
-      return System.dir().path(pszPath1, pszPath2);
+      return ::file::path(pszPath1) / pszPath2;
 
    }
 

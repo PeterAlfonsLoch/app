@@ -31,12 +31,12 @@ namespace file
 
       
    // Operations
-      virtual ::file::exception_sp open(const char * lpszFileName, UINT nOpenFlags);
+      virtual ::file::exception_sp open(const ::file::path & lpszFileName,UINT nOpenFlags);
 
       //virtual void Rename(const char * lpszOldName, const char * lpszNewName);
       //virtual void remove(const char * lpszFileName);
-      virtual bool GetStatus(const char * lpszFileName, file_status& rStatus);
-      virtual void SetStatus(const char * lpszFileName, const file_status& status);
+      //virtual bool GetStatus(const ::file::path & lpszFileName,file_status& rStatus);
+      //virtual void SetStatus(const ::file::path & * lpszFileName,const file_status& status);
 
 
    // Overridables

@@ -36,7 +36,7 @@ namespace file
 
       e_cause           m_cause;
       LONG              m_lOsError;
-      string            m_strFileName;
+      ::file::path      m_strFileName;
       string            m_strAdd;
 
 
