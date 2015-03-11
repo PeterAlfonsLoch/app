@@ -45,7 +45,7 @@ namespace fs
    }
 
 
-   bool link::ls(const char * pszDir,::file::patha * ppatha,::file::patha * ppathaName,int64_array * piaSize,bool_array * pbaDir)
+   bool link::ls(const char * pszDir,::file::patha * ppatha,::file::patha * ppathaName,bool bSize,bool_array * pbaDir)
    {
 
       string strDir(pszDir);

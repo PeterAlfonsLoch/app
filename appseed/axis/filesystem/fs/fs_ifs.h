@@ -23,10 +23,6 @@ public:
       ::file::patha     m_pathaFolder;
       ::file::patha     m_pathaFileName;
       ::file::patha     m_pathaFolderName;
-      int64_array       m_iaFileSize;
-      int64_array       m_iaFolderSize;
-      bool_array        m_iaFileDir;
-      bool_array        m_iaFolderDir;
    };
 
    filepathmap(dir)     m_map;
@@ -49,7 +45,7 @@ public:
    
    virtual bool has_subdir(const ::file::path & pszPath);
    virtual bool fast_has_subdir(const ::file::path  & pszPath);
-   virtual bool ls(const ::file::path & pszDir,::file::patha * ppatha,::file::patha * ppathaName,int64_array * piaSize,bool_array * pbaDir);
+   virtual bool ls(const ::file::path & pszDir,::file::patha * ppatha,::file::patha * ppathaName,bool bSize = false);
    virtual bool is_dir(const ::file::path & pszPath);
    virtual void root_ones(::file::patha & patha,stringa & straTitle);
 

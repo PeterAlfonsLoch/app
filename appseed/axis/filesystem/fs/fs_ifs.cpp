@@ -11,7 +11,7 @@ ifs::ifs(::aura::application * papp, const char * pszRoot) :
    m_bInitialized = false;
 }
 
-bool ifs::fast_has_subdir(const char * pszPath)
+bool ifs::fast_has_subdir(const ::file::path & pszPath)
 {
 
    synch_lock sl(data_mutex());
@@ -23,15 +23,12 @@ bool ifs::fast_has_subdir(const char * pszPath)
    ::str::ends_eat(strDir, "/");
    ::str::ends_eat(strDir, "\\");
 
-   if(m_map.Lookup(strDir, dwTimeout))
+   dir & dir = m_map[strDir];
+
+   if(get_tick_count() < dir.m_uiLsTimeout)
    {
 
-      if(get_tick_count() < dwTimeout)
-      {
-
-         return m_mapdirFolder[strDir].get_count() > 0;
-
-      }
+      return dir.m_pathaFolder.get_count() > 0;
 
    }
 
@@ -39,45 +36,32 @@ bool ifs::fast_has_subdir(const char * pszPath)
 
 }
 
-bool ifs::has_subdir(const char * pszPath)
+bool ifs::has_subdir(const ::file::path & path)
 {
 
    synch_lock sl(data_mutex());
 
    uint32_t dwTimeout;
 
-   string strDir(pszPath);
+   dir & dir = m_map[path];
 
-   ::str::ends_eat(strDir, "/");
-   ::str::ends_eat(strDir, "\\");
-
-   if(m_maplsTimeout.Lookup(strDir, dwTimeout))
+   if(get_tick_count() < dir.m_uiLsTimeout)
    {
 
-      if(get_tick_count() < dwTimeout)
-      {
-
-         return m_mapdirFolder[strDir].get_count() > 0;
-
-      }
+      return dir.m_pathaFolder.get_count() > 0;
 
    }
 
    sl.unlock();
 
-   ls(pszPath, NULL, NULL, NULL, NULL);
+   ls(path, NULL, NULL, NULL, NULL);
 
    sl.lock();
 
-   if(m_maplsTimeout.Lookup(strDir, dwTimeout))
+   if(get_tick_count() < dir.m_uiLsTimeout)
    {
 
-      if(get_tick_count() < dwTimeout)
-      {
-
-         return m_mapdirFolder[strDir].get_count() > 0;
-
-      }
+      return dir.m_pathaFolder.get_count() > 0;
 
    }
 
@@ -96,49 +80,30 @@ void ifs::root_ones(::file::patha & patha,stringa & straTitle)
 }
 
 
-bool ifs::ls(const char * pszDir,::file::patha * ppatha,::file::patha * ppathaName,int64_array * piaSize,bool_array * pbaDir)
+bool ifs::ls(const ::file::path & pszDir,::file::patha * ppatha,::file::patha * ppathaName,bool bSize,bool_array * pbaDir)
 {
 
    synch_lock sl(data_mutex());
 
    uint32_t dwTimeout;
 
-   string strDir(pszDir);
+   dir & dir = m_map[pszDir];
 
-   ::str::ends_eat(strDir, "/");
-
-   ::str::ends_eat(strDir, "\\");
-
-   if(m_maplsTimeout.Lookup(strDir, dwTimeout))
+   if(get_tick_count() < dir.m_uiLsTimeout)
    {
 
-      if(get_tick_count() < dwTimeout)
+      if(ppatha  != NULL)
       {
-
-         if(ppatha  != NULL)
-         {
-            ppatha->add(m_mapdirFolder[strDir]);
-            ppatha->add(m_mapdirFile[strDir]);
-         }
-         if(ppathaName  != NULL)
-         {
-            ppathaName->add(m_mapdirFolderName[strDir]);
-            ppathaName->add(m_mapdirFileName[strDir]);
-         }
-         if (piaSize != NULL)
-         {
-            piaSize->add(*m_mapdirFolderSize[strDir]);
-            piaSize->add(*m_mapdirFileSize[strDir]);
-         }
-         if(pbaDir != NULL)
-         {
-            pbaDir->add(*m_mapdirFolderDir[strDir]);
-            pbaDir->add(*m_mapdirFileDir[strDir]);
-         }
-
-         return true;
-
+         ppatha->add(dir.m_pathaFolder);
+         ppatha->add(dir.m_pathaFile);
       }
+      if(ppathaName  != NULL)
+      {
+         ppathaName->add(dir.m_pathaFolderName);
+         ppathaName->add(dir.m_pathaFileName);
+      }
+
+      return true;
 
    }
 

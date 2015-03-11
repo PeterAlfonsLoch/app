@@ -39,6 +39,9 @@ namespace file
 
    public:
 
+      int64_t           m_iSize = -1; // if negative, not set/calculated/retrieved the file size(for directories would be all contained elements total sum size)
+      int               m_iDir = -1; // if negative, not set/calculated/retrieved whether is a directory/folder/(file/folder/(...) container)
+
 
       path(e_path epath = path_file)
       {

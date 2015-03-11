@@ -117,7 +117,7 @@ namespace fs
 
    }
 
-   bool set::ls(const char * psz,::file::patha * ppatha,::file::patha * ppathaName,int64_array * piaSize,bool_array * pbaDir)
+   bool set::ls(const char * psz,::file::patha * ppatha,::file::patha * ppathaName,bool bSize,bool_array * pbaDir)
    {
 
       if(psz == NULL || strlen(psz) == 0)

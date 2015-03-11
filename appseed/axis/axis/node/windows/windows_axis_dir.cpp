@@ -266,7 +266,7 @@ namespace windows
    //}
 
    
-   bool dir::ls_pattern(::aura::application * papp, const char * lpcsz, const char * pszPattern, ::file::patha * ppatha, ::file::patha * ppathaName, bool_array * pbaIsDir, int64_array * piaSize)
+   bool dir::ls_pattern(::aura::application * papp, const char * lpcsz, const char * pszPattern, ::file::patha * ppatha, ::file::patha * ppathaName, bool_array * pbaIsDir, bool bSize)
    {
       
       if(::file::dir::axis::system::ls_pattern(papp,lpcsz,pszPattern,ppatha,ppathaName,pbaIsDir,piaSize))
@@ -296,7 +296,7 @@ namespace windows
    }
 
 
-   bool dir::rls_pattern(::aura::application * papp, const char * lpcsz, const char * lpszPattern, ::file::patha * ppatha, ::file::patha * ppathaName, ::file::patha * ppathaRelative, bool_array * pbaIsDir, int64_array * piaSize, e_extract eextract)
+   bool dir::rls_pattern(::aura::application * papp, const char * lpcsz, const char * lpszPattern, ::file::patha * ppatha, ::file::patha * ppathaName, ::file::patha * ppathaRelative, bool_array * pbaIsDir, bool bSize, e_extract eextract)
    {
 
       if(::file::dir::axis::system::rls_pattern(papp,lpcsz,lpszPattern,ppatha,ppathaName,ppathaRelative,pbaIsDir,piaSize,eextract))
@@ -356,7 +356,7 @@ namespace windows
    }
 
 
-   bool dir::ls(::aura::application * papp, const char * lpcsz, ::file::patha * ppatha, ::file::patha * ppathaName, bool_array * pbaIsDir, int64_array * piaSize)
+   bool dir::ls(::aura::application * papp, const char * lpcsz, ::file::patha * ppatha, ::file::patha * ppathaName, bool_array * pbaIsDir, bool bSize)
    {
 
       if(::file::dir::axis::system::ls(papp,lpcsz,ppatha,ppathaName,pbaIsDir,piaSize))

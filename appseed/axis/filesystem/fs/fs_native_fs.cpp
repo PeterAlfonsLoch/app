@@ -25,7 +25,7 @@ namespace fs
    }
 
 
-   bool native::ls(const char * pszDir,::file::patha * ppatha,::file::patha * ppathaName,int64_array * piaSize,bool_array * pbaDir)
+   bool native::ls(const char * pszDir,::file::patha * ppatha,::file::patha * ppathaName,bool bSize,bool_array * pbaDir)
    {
 
       System.dir().ls(get_app(), pszDir, ppatha, ppathaName, pbaDir, piaSize);

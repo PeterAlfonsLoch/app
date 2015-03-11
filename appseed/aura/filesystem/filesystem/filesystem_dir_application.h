@@ -42,9 +42,9 @@ namespace file
          virtual ::file::path userprograms();
 
 
-         virtual bool  ls_pattern(const char * lpcsz,const char * lpcszPattern,::file::patha * ppatha = NULL,::file::patha * ppathaName = NULL,bool_array * pbaIsDir = NULL,int64_array * piaSize = NULL);
-         virtual bool  ls(const char * lpcsz,::file::patha * ppatha = NULL,::file::patha * ppathaName = NULL,bool_array * pbaIsDir = NULL,int64_array * piaSize = NULL);
-         virtual bool  rls_pattern(const char * lpcsz, const char * lpcszPattern, ::file::patha * ppatha = NULL, ::file::patha * ppathaName = NULL, ::file::patha * ppathaRelative = NULL, bool_array * pbaIsDir = NULL, int64_array * piaSize = NULL);
+         virtual bool  ls_pattern(const char * lpcsz,const char * lpcszPattern,::file::patha * ppatha = NULL,::file::patha * ppathaName = NULL,bool_array * pbaIsDir = NULL,bool bSize = false);
+         virtual bool  ls(const char * lpcsz,::file::patha * ppatha = NULL,::file::patha * ppathaName = NULL,bool_array * pbaIsDir = NULL,bool bSize = false);
+         virtual bool  rls_pattern(const char * lpcsz, const char * lpcszPattern, ::file::patha * ppatha = NULL, ::file::patha * ppathaName = NULL, ::file::patha * ppathaRelative = NULL, bool_array * pbaIsDir = NULL, bool bSize = false);
          virtual bool  rls(const char * lpcsz, ::file::patha * ppatha = NULL, ::file::patha * ppathaName = NULL, ::file::patha * ppathaRelative = NULL);
          virtual bool  rls_dir(const char * lpcsz,::file::patha * ppatha = NULL,::file::patha * ppathaName = NULL,::file::patha * ppathaRelative = NULL);
          virtual bool  ls_dir(const char * lpcsz,::file::patha * ppatha = NULL,::file::patha * ppathaName = NULL);

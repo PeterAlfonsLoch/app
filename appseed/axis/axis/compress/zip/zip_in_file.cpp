@@ -654,7 +654,7 @@ namespace zip
 
    }
 
-   void InFile::ls(bool bRecursive,/*::file::patha * ppatha,*/::file::patha * ppathaName,/*::file::patha * ppathaRelative,*/bool_array * pbaIsDir,int64_array * piaSize,e_extract eextract)
+   void InFile::ls(bool bRecursive,/*::file::patha * ppatha,*/::file::patha * ppathaName,/*::file::patha * ppathaRelative,*/bool_array * pbaIsDir,bool bSize,e_extract eextract)
    {
 
       InFile infile = *this;

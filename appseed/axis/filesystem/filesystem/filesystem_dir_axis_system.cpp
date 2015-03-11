@@ -379,7 +379,7 @@ namespace file
       //   throw interface_only_exception(get_app(), "this is an interface");
       //}
 
-      bool system::rls_pattern(::aura::application * papp,const ::file::path & lpcsz,const string & pszPattern,::file::patha * ppatha,::file::patha * ppathaName,::file::patha * ppathaRelative,bool_array * pbaIsDir,int64_array * piaSize,e_extract eextract)
+      bool system::rls_pattern(::aura::application * papp,const ::file::path & lpcsz,const string & pszPattern,::file::patha * ppatha,::file::patha * ppathaName,::file::patha * ppathaRelative,bool_array * pbaIsDir,bool bSize,e_extract eextract)
       {
          UNREFERENCED_PARAMETER(ppathaRelative);
          UNREFERENCED_PARAMETER(pszPattern);
@@ -394,7 +394,7 @@ namespace file
       }
 
 
-      bool system::ls_pattern(::aura::application * papp,const ::file::path & lpcsz,const string & pszPattern,::file::patha * ppatha,::file::patha * ppathaName,bool_array * pbaIsDir,int64_array * piaSize)
+      bool system::ls_pattern(::aura::application * papp,const ::file::path & lpcsz,const string & pszPattern,::file::patha * ppatha,::file::patha * ppathaName,bool_array * pbaIsDir,bool bSize)
       {
          
          UNREFERENCED_PARAMETER(pszPattern);
@@ -429,7 +429,7 @@ namespace file
       }
 
 
-      bool system::ls(::aura::application * papp, const ::file::path & lpcsz, ::file::patha * ppatha, ::file::patha * ppathaName, bool_array * pbaIsDir, int64_array * piaSize)
+      bool system::ls(::aura::application * papp, const ::file::path & lpcsz, ::file::patha * ppatha, ::file::patha * ppathaName, bool_array * pbaIsDir, bool bSize)
       {
          
          return false;

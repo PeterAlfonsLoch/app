@@ -90,7 +90,7 @@ namespace fs
    //   return strPath.Left(iFind);
    //}
 
-   bool data::ls(const ::file::path & pszDir,::file::patha * ppatha,::file::patha * ppathaName,int64_array * piaSize,bool_array * pbaDir)
+   bool data::ls(const ::file::path & pszDir,::file::patha * ppatha,::file::patha * ppathaName,bool bSize,bool_array * pbaDir)
    {
       UNREFERENCED_PARAMETER(pszDir);
       UNREFERENCED_PARAMETER(ppatha);
@@ -174,7 +174,7 @@ namespace fs
 
       int64_array iaFileSize;
       
-      ls(*pszPath, NULL, &straTitle, &iaFileSize, NULL);
+      ls(pszPath--, NULL, &straTitle, &iaFileSize, NULL);
       
       index iFind = straTitle.find_first_ci(pszPath.name());
 
