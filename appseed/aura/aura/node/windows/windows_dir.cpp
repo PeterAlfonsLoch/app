@@ -1015,7 +1015,7 @@ namespace windows
 
 #ifndef CUBE
 
-         m_strCa2 *= 2;
+         m_strCa2 -= 2;
 
 #endif
 

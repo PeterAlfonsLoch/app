@@ -174,9 +174,9 @@ namespace fs
 
       int64_array iaFileSize;
       
-      ls(eat_end_level(pszPath, 1), NULL, &straTitle, &iaFileSize, NULL);
+      ls(*pszPath, NULL, &straTitle, &iaFileSize, NULL);
       
-      index iFind = straTitle.find_first_ci(file_name(pszPath));
+      index iFind = straTitle.find_first_ci(pszPath.name());
 
       if (iFind < 0)
          return var(var::type_null);

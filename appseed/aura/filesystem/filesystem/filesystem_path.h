@@ -236,7 +236,9 @@ namespace file
       path & operator = (const wchar_t * psz) { return operator = (wstring(psz)); }
       path & operator += (const wchar_t * psz) { return operator += (wstring(psz)); }
 
-      path operator * () const;
+      //path operator * () const;
+
+      path operator -- () const;
 
 
       string & to_string(string & str) const
@@ -253,8 +255,8 @@ namespace file
       path operator *(const char * psz) const { return sibling(psz); }
 
 
-      path operator *(int i) const { ::file::path p(*this); while(i > 1){ p = *p; i--; } return p; }
-      path & operator *=(int i)  { while(i > 1){ *this = *(*this); i--; } return *this; }
+      path operator -(int i) const { ::file::path p(*this); while(i > 1){ p = p--; i--; } return p; }
+      path & operator -=(int i)  { while(i > 1){ *this = (*this)--; i--; } return *this; }
 
       ::file::path title() const
       {
