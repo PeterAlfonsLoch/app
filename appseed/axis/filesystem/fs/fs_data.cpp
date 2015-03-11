@@ -163,7 +163,7 @@ namespace fs
    bool data::file_exists(const ::file::path & pszPath)
    {
       ::file::patha straTitle;
-      ls(*pszPath, NULL, &straTitle, NULL, NULL);
+      ls(pszPath--, NULL, &straTitle, NULL, NULL);
       return straTitle.contains_ci(pszPath.name());
    }
 

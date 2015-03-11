@@ -239,6 +239,7 @@ namespace file
       //path operator * () const;
 
       path operator -- () const;
+      path operator -- (int) const { return operator --(); }
 
 
       string & to_string(string & str) const
