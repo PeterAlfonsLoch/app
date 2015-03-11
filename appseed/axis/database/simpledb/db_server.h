@@ -1,7 +1,6 @@
 #pragma once
 
 
-class stringa;
 class db_server;
 class db_long_set;
 class db_server;
@@ -10,8 +9,6 @@ class db_stra_set;
 class DBFileSystemSizeSet;
 
 class MidiInstrumentSet;
-
-class stringa;
 
 
 namespace sqlite

@@ -2684,7 +2684,7 @@ namespace user
                totalLength += iLine.get_length();
                if(totalLength > 500) break;
             }
-            type = System.parser_factory().getHRCParser()->chooseFileType(pdoc->get_path_name(),textStart,0);
+            type = System.parser_factory().getHRCParser()->chooseFileType(pdoc->get_file_path(),textStart,0);
          }
       }
       if(type != NULL)

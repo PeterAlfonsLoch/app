@@ -29,7 +29,7 @@ bool file_put_contents_dup(const char * path, const ::primitive::memory_base & m
 
 
 
-string file_title_dup(const char * path)
+string file_name_dup(const char * path)
 {
    string str(path);
    size_t iPos;
@@ -62,9 +62,9 @@ string file_title_dup(const char * path)
 }
 
 
-string file_name_dup(const char * path)
+string file_title_dup(const char * path)
 {
-   string str = file_title_dup(path);
+   string str = file_name_dup(path);
    size_t iPos = str.find('.');
    if(iPos != -1)
    {

@@ -343,9 +343,9 @@ namespace fs
 
    }
 
-   bool remote_native::file_exists(const char * pszPath)
+   bool remote_native::file().exists(const char * pszPath)
    {
-      return ::fs::data::file_exists(pszPath);
+      return ::fs::data::file().exists(pszPath);
    }
 
 

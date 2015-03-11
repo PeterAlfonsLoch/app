@@ -6,7 +6,7 @@ string file_extension_dup(const char * path)
 
    string str = file_name_dup(path);
 
-   strsize iPos = str.reverse_find('.');
+   strsize iPos = str.find('.');
 
    if(iPos >= 0)
    {

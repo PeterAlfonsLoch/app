@@ -282,6 +282,16 @@ array_base < TYPE, ALLOCATOR > (a.get_app(),sizeof(TYPE),false)
 }
 
 
+template < class TYPE,class ARG_TYPE,class ALLOCATOR >
+inline array < TYPE,ARG_TYPE,ALLOCATOR > ::array(::std::initializer_list < TYPE >  l) :
+array_base < TYPE,ALLOCATOR >(NULL,sizeof(TYPE),false)
+{
+   forallref(l)
+   {
+      add((ARG_TYPE) item);
+   }
+}
+
 
 
 

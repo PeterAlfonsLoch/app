@@ -92,7 +92,7 @@ bool db_server::initialize()
 
    string str;
 
-   str = Application.dir().userappdata("database.sqlite");
+   str = Application.dir().userappdata()/ "database.sqlite";
 
    Application.dir().mk(System.dir().name(str));
 

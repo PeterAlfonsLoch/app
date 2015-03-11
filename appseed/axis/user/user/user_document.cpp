@@ -59,7 +59,7 @@ namespace aura
       ::object::dump(dumpcontext);
 
       dumpcontext << "m_wstrTitle = " << m_strTitle;
-      dumpcontext << "\nm_wstrPathName = " << m_strPathName;
+      dumpcontext << "\nm_wstrPathName = " << m_filepath;
       dumpcontext << "\nm_bModified = " << m_bModified;
       dumpcontext << "\nm_pDocTemplate = " << (void *)m_pimpactsystem;
 
@@ -107,7 +107,7 @@ namespace aura
 
       str += " : ";
 
-      str+= m_strPathName;
+      str+= m_filepath;
 
       sp(::user::frame_window) pframe = get_view(0)->GetParentFrame();
 
@@ -275,10 +275,14 @@ namespace aura
    {
       ASSERT(this != NULL); return m_strTitle;
    }
-   const string & document::get_path_name() const
+   
+   const ::file::path & document::get_file_path() const
    {
-      ASSERT(this != NULL); return m_strPathName;
+
+      ASSERT(this != NULL); return m_filepath;
+
    }
+
    sp(impact_system) document::get_document_template() const
    {
       ASSERT(this != NULL); return m_pimpactsystem;
@@ -335,17 +339,15 @@ namespace aura
       //   }
 
       // store the path fully qualified
-      string strFullPath;
+      ::file::path strFullPath;
       //      System.file_system().FullPath(strFullPath, strPathName);
       strFullPath = strPathName;
-      m_strPathName = strFullPath;
+      m_filepath = strFullPath;
       //!m_strPathName.is_empty());       // must be set to something
       m_bEmbedded = FALSE;
 
       // set the document_interface title based on path name
-      string strTitle;
-      strTitle = Application.file_name(strFullPath);
-      set_title(strTitle);
+      set_title(strFullPath.title());
 
       //string strPathName;
       //::str::international::Utf8ToAcp(strPathName, m_wstrPathName);
@@ -407,7 +409,7 @@ namespace aura
 #endif
 
       delete_contents();
-      m_strPathName.Empty();      // no path name yet
+      m_filepath.Empty();      // no path name yet
       set_modified_flag(FALSE);     // make clean
       m_bNew = true;
       return true;
@@ -685,7 +687,7 @@ namespace aura
 
          if (prompt.is_empty())
          {
-            string strTitle = System.file_title(lpszPathName);
+            string strTitle = ::file::path(lpszPathName).title();
             //::exception::throw_not_implemented(get_app());
             /*
             ::core::FormatString1(prompt, nIDP, strTitle);*/
@@ -739,7 +741,7 @@ namespace aura
 
       // get name/title of document_interface
       string name;
-      if (m_strPathName.is_empty())
+      if (m_filepath.is_empty())
       {
          name = m_strTitle;
          if (name.is_empty())
@@ -750,7 +752,7 @@ namespace aura
       else
       {
          // get name based on file title of path name
-         name = System.file_name(m_strPathName);
+         name = m_filepath.name();
       }
 
       string prompt;
@@ -803,7 +805,7 @@ namespace aura
          
          ASSERT(ptemplate != NULL);
 
-         newName = m_strPathName;
+         newName = m_filepath;
          
          //if (bReplace && (newName.is_empty() || is_new_document()))
 
@@ -841,7 +843,7 @@ namespace aura
             // be sure to delete the file
             try
             {
-               System.file_del(newName);
+               System.file().del(newName);
             }
             catch (::exception::base * pe)
             {
@@ -864,7 +866,7 @@ namespace aura
    bool document::do_file_save()
    {
 
-      if (is_new_document() || Session.file_is_read_only(m_strPathName))
+      if (is_new_document() || Session.file_is_read_only(m_filepath))
       {
 
          // we do not have read-write access or the file does not (now) exist
@@ -882,7 +884,7 @@ namespace aura
       else
       {
 
-         if (!do_save(m_strPathName))
+         if (!do_save(m_filepath))
          {
 
             TRACE(::aura::trace::category_AppMsg, 0, "Warning: File save failed.\n");

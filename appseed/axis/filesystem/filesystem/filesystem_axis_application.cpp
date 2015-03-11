@@ -32,7 +32,7 @@ namespace file
          return m_pauraapp->m_paurasystem->m_spfile->trash_that_is_not_trash(psz,m_pauraapp);
       }
 
-      void application::trash_that_is_not_trash(stringa & stra)
+      void application::trash_that_is_not_trash(::file::patha & stra)
       {
          return m_pauraapp->m_paurasystem->m_spfile->trash_that_is_not_trash(stra,m_pauraapp);
       }
@@ -219,7 +219,7 @@ namespace file
          return m_pauraapp->m_paurasystem->m_spfile->dtf(pszFile,pszDir,m_pauraapp);
       }
 
-      void application::dtf(const char * pszFile,stringa & stra,stringa & straRelative)
+      void application::dtf(const char * pszFile,::file::patha & stra,::file::patha & straRelative)
       {
          return m_pauraapp->m_paurasystem->m_spfile->dtf(pszFile,stra,straRelative,m_pauraapp);
       }
@@ -355,7 +355,7 @@ namespace file
             if(domain.m_strRadix == "ca2" && ::str::begins(System.url().get_object(strPath),astr.strMatterUri))
             {
 
-               string strFile(strPath);
+               ::file::path strFile(strPath);
 
                if(::str::ends(strPath,"en_us_international.xml"))
                {
@@ -377,9 +377,7 @@ namespace file
 #else
                strFile.replace("://", "_/");
 #endif
-               strFile = System.dir().appdata("cache/" + strFile);
-
-               strFile = strFile + ".local_copy";
+               strFile = System.dir().appdata() / "cache" / strFile + ".local_copy";
 
                single_lock sl(&System.http().m_mutexDownload,true);
 

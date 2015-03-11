@@ -160,7 +160,7 @@ namespace filemanager
 
                   bool bSave = !Application.dir().is(strPath);
 
-                  if (bSave && get_filemanager_manager()->get_fs_data()->file_exists(strPath))
+                  if (bSave && get_filemanager_manager()->get_fs_data()->file().exists(strPath))
                   {
                      if (System.simple_message_box(Platform.get_view(), "Do you want to replace the existing file " + strPath + "?", MB_YESNO) == IDNO)
                      {

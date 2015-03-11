@@ -69,7 +69,7 @@ namespace aura
       pdocument->m_pimpactsystem = NULL;
    }
 
-   impact_system::Confidence impact_system::MatchDocType(const char * lpszPathName, ::aura::document *& rpDocMatch)
+   impact_system::Confidence impact_system::MatchDocType(const ::file::path & lpszPathName,::aura::document *& rpDocMatch)
    {
       ASSERT(lpszPathName != NULL);
       rpDocMatch = NULL;
@@ -79,7 +79,7 @@ namespace aura
       for (index index = 0; index < count; index++)
       {
          sp(::aura::document) pdocument = get_document(index);
-         if (System.file_is_equal_path(pdocument->get_path_name(), lpszPathName))
+         if (pdocument->get_file_path() == lpszPathName)
          {
             // already open
             rpDocMatch = pdocument;
@@ -94,7 +94,7 @@ namespace aura
       {
          // see if extension matches
          ASSERT(strFilterExt[0] == '.');
-         string strExtension = System.file_extension(lpszPathName);
+         string strExtension = lpszPathName.ext();
          if (strExtension.has_char())
          {
             if (strExtension.CompareNoCase(strFilterExt) == 0)

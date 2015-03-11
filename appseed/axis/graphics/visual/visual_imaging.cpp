@@ -6644,7 +6644,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
          strFile.replace(":/","\\_");
          strFile.replace(":\\","\\_\\");
          strFile.replace("/","\\");
-         strFile = System.dir().time("cache",strFile);
+         strFile = System.dir().time()/"cache"/strFile;
          strFile += ".dib";
          if(Sess(papp).file().exists(strFile))
          {

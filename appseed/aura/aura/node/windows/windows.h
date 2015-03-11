@@ -127,7 +127,7 @@ namespace windows
    };
 
    CLASS_DECL_AURA HINSTANCE   LoadLibrary(const char * lpsz);
-   CLASS_DECL_AURA bool        SHGetSpecialFolderPath(oswindow oswindow,string &str,int32_t csidl,bool fCreate);
+   CLASS_DECL_AURA bool        SHGetSpecialFolderPath(oswindow oswindow,::file::path &str,int32_t csidl,bool fCreate);
    CLASS_DECL_AURA DWORD       GetFileAttributes(const char * lpFileName);
    CLASS_DECL_AURA bool        CreateDirectory(const char * lpPathName,LPSECURITY_ATTRIBUTES lpSecurityAttributes);
    CLASS_DECL_AURA DWORD       GetCurrentDirectory(string & str);

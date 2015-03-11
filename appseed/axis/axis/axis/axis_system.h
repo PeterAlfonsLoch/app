@@ -150,7 +150,7 @@ namespace axis
 
 
 
-      virtual string dir_appmatter_locator(::aura::application * papp);
+      virtual ::file::path dir_appmatter_locator(::aura::application * papp);
 
 
 

@@ -809,15 +809,15 @@ namespace install
 
    void install::set_ca2_updated(const char * pszBuild)
    {
-      dir::mk(dir::element() + "\\appdata\\" + get_platform());
-      file_put_contents_dup(dir::element() + "\\appdata\\" + get_platform() + "\\ca2_build.txt", pszBuild);
+      dir::mk(dir::element() / "\\appdata\\" + get_platform());
+      file_put_contents_dup(dir::element() / "\\appdata\\" + get_platform() + "\\ca2_build.txt", pszBuild);
    }
 
 
    void install::set_updated(const char * pszBuild)
    {
-      dir::mk(dir::element() + "\\appdata\\" + get_platform());
-      file_put_contents_dup(dir::element() + "\\appdata\\" + get_platform() + "\\build.txt", pszBuild);
+      dir::mk(dir::element() / "\\appdata\\" + get_platform());
+      file_put_contents_dup(dir::element() / "\\appdata\\" + get_platform() + "\\build.txt", pszBuild);
    }
 
 

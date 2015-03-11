@@ -626,7 +626,7 @@ namespace axis
    //}
 
 
-   string system::dir_appmatter_locator(::aura::application * papp)
+   ::file::path system::dir_appmatter_locator(::aura::application * papp)
    {
 
       return dir().appmatter_locator(papp);

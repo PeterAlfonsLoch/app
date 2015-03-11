@@ -18,7 +18,7 @@ namespace aura
 
       mutex                            m_mutex;
       string                           m_strTitle;
-      string                           m_strPathName;
+      ::file::path                     m_filepath;
       sp(::aura::impact_system)        m_pimpactsystem;
       spa(::aura::impact)              m_viewptra;
       bool                             m_bModified;
@@ -43,7 +43,7 @@ namespace aura
 
       const string & get_title() const;
       virtual void set_title(const char * lpszTitle);
-      const string & get_path_name() const;
+      const ::file::path & get_file_path() const;
       virtual void set_path_name(var varFile, bool bAddToMRU = TRUE);
 
       sp(::aura::impact_system) get_document_template() const;

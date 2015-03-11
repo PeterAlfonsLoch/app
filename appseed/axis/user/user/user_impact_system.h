@@ -110,7 +110,7 @@ namespace aura
 
       void update_all_views(sp(::aura::impact) pviewSender, LPARAM lhint, ::object * puh);
 
-      virtual Confidence MatchDocType(const char * lpszPathName, ::aura::document *& rpDocMatch);
+      virtual Confidence MatchDocType(const ::file::path & lpszPathName,::aura::document *& rpDocMatch);
       virtual ::aura::document * create_new_document(sp(::create) pcreatecontext);
       virtual sp(::user::frame_window) create_new_frame(::aura::document * pDoc, sp(::user::frame_window) pOther, sp(::create) pcreatecontext);
       virtual void InitialUpdateFrame(sp(::user::frame_window) pFrame, ::aura::document * pDoc, bool bMakeVisible = TRUE);

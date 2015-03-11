@@ -33,16 +33,16 @@ namespace http
       else if(i == 1)
       {
          // telmico: no proxy
-         string str = System.file().as_string(System.dir().appdata("machine/proxy.xml"), &System);
+         string str = Application.file().as_string(System.dir().appdata() / "machine/proxy.xml");
          if(str.has_char() && str.find("<") >= 0 && str.find(">") > 0)
          {
-            Application.file().copy(System.dir().appdata("proxy_original.xml"), System.dir().element("proxy.xml"), false);
+            Application.file().copy(System.dir().appdata()/ "proxy_original.xml", System.dir().element()/ "proxy.xml", false);
          }
-         if(Application.file().exists(System.dir().appdata("proxy.xml")))
+         if(Application.file().exists(System.dir().appdata()/ "proxy.xml"))
          {
             try
             {
-               System.file().del(System.dir().appdata("proxy.xml"));
+               System.file().del(System.dir().appdata()/ "proxy.xml");
             }
             catch(...)
             {
@@ -52,20 +52,20 @@ namespace http
       else if(i == 2)
       {
          // telmico: original proxy configuration
-         if(Application.file().exists(System.dir().appdata("proxy_original.xml")))
+         if(Application.file().exists(System.dir().appdata()/ "proxy_original.xml"))
          {
-            Application.file().copy(System.dir().appdata("proxy.xml"), System.dir().appdata("proxy_original.xml"), false);
+            Application.file().copy(System.dir().appdata()/ "proxy.xml", System.dir().appdata()/"proxy_original.xml", false);
          }
       }
       else
       {
          // telmico: simple default proxy configuration : hostname=>proxy - try etc/hosts port=>80  - assume HTTP proxy
-         string str = System.file().as_string(System.dir().appdata("proxy.xml"), &System);
+         string str = Application.file().as_string(System.dir().appdata()/"proxy.xml");
          if(str.has_char() && str.find("<") >= 0 && str.find(">") > 0)
          {
-            Application.file().copy(System.dir().appdata("proxy_original.xml"), System.dir().appdata("proxy.xml"), false);
+            Application.file().copy(System.dir().appdata()/"proxy_original.xml", System.dir().appdata()/"proxy.xml", false);
          }
-         Application.file().put_contents(System.dir().appdata("proxy.xml"), "proxy");
+         Application.file().put_contents(System.dir().appdata()/"proxy.xml", "proxy");
       }
    }
 
@@ -97,7 +97,7 @@ namespace http
       */
 
 
-      string strHost = Application.file().as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
+      string strHost = Application.file().as_string(System.dir().appdata()/"database\\text\\last_good_known_fontopus_com.txt");
       stringa straRequestingServer;
       straRequestingServer.add("account.ca2.cc");
       //straRequestingServer.add("eu-account.ca2.cc");
@@ -349,7 +349,7 @@ namespace http
    {
 
       xml::document doc(get_app());
-      string str = System.file().as_string(System.dir().appdata("proxy.xml"), &System);
+      string str = Application.file().as_string(System.dir().appdata()/"proxy.xml");
       if(str.has_char() && str.find("<") < 0 && str.find(">") < 0)
       {
          stringa stra;

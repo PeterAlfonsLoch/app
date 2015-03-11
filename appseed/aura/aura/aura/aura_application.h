@@ -390,7 +390,7 @@ namespace aura
       //virtual string dir().matter(const char * pszMatter,const char * pszMatter2 = NULL);
       //virtual bool is_inside_time_dir(const char * pszPath);
       //virtual bool file_is_read_only(const char * pszPath);
-      //virtual bool file_exists(const char * pszPath);
+      //virtual bool file().exists(const char * pszPath);
       //virtual bool file_is_equal_path(const char * pszPath1,const char * pszPath2);
       //virtual bool dir().id(const char * psz);
       //virtual bool file_del(const char * psz);

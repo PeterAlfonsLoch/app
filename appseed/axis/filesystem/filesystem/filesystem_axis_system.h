@@ -86,7 +86,7 @@ namespace file
 
 
 
-         int32_t filterex_time_square(const char * pszPrefix,stringa & stra);
+         int32_t filterex_time_square(const char * pszPrefix,::file::patha & stra);
          bool mk_time(const char * lpcszCandidate);
 
          string as_string(var varFile,::aura::application * papp);

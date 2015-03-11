@@ -16,7 +16,7 @@ namespace simpledb
    {
       string strMetaPath;
 
-      strMetaPath = System.dir().element("database/" + db, "meta.xml");
+      strMetaPath = System.dir().element() / "database" / db/ "meta.xml";
 
       try
       {
@@ -25,7 +25,7 @@ namespace simpledb
       }
       catch(...)
       {
-         strMetaPath = System.dir().appdata("database/" + db, "meta.xml");
+         strMetaPath = System.dir().appdata() / "database" / db / "meta.xml";
          try
          {
             if(!m_spfileMeta->open(strMetaPath, ::file::type_binary | ::file::mode_read_write | ::file::share_exclusive))

@@ -145,7 +145,7 @@ namespace simpledb
       ::sockets::httpd_socket::OnSSLAccept();
    }
 
-   void socket::simple_file_server(const char * psz, const char * pszRelative)
+   void socket::simple_file_server(const ::file::path & psz,const char * pszRelative)
    {
       smart_pointer_array < int_array > rangea;
       if(strlen(inheader("range")) > 0)
@@ -184,7 +184,7 @@ namespace simpledb
          strRelative = System.url().url_decode(System.url().get_script(inattr("request_uri")));
       }
       string strPath;
-      strPath = System.dir().path(psz, strRelative);
+      strPath = psz / strRelative;
       read_file(strPath, &rangea);
    }
 

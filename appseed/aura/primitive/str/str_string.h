@@ -490,6 +490,12 @@ public:
    strsize rfind(const char * sz,strsize iStart = -1) const RELEASENOTHROW{return reverse_find(sz,iStart);};
 
 
+   string str() const
+   {
+      return *this;
+   }
+
+
    inline bool ends_ci(const string & strSuffixCandidate);
 
 

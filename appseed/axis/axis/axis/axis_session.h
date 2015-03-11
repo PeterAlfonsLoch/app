@@ -141,7 +141,7 @@ namespace axis
       
 
       //virtual string matter_as_string(const char * pszMatter,const char * pszMatter2);
-      //virtual string dir_matter(const char * pszMatter,const char * pszMatter2);
+      //virtual string dir().matter(const char * pszMatter,const char * pszMatter2);
 
       //virtual bool is_inside_time_dir(const char * pszPath);
       //virtual bool file_is_read_only(const char * pszPath);

@@ -22,7 +22,7 @@ namespace windows
    }
 
 
-   bool CLASS_DECL_AURA SHGetSpecialFolderPath(oswindow oswindow,string &str,int32_t csidl,bool fCreate)
+   bool CLASS_DECL_AURA SHGetSpecialFolderPath(oswindow oswindow,::file::path &str,int32_t csidl,bool fCreate)
    {
 
       return ::SHGetSpecialFolderPathW(oswindow,wtostring(str,MAX_PATH * 8),csidl,fCreate) != FALSE;

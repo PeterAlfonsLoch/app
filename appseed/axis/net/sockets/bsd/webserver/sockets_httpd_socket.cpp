@@ -330,7 +330,7 @@ namespace sockets
       }
 
 
-      if(!Application.file_exists(lpcsz))
+      if(!Application.file().exists(lpcsz))
       {
          outattr(__id(http_status_code)) = 404;
          outattr(__id(http_status)) = "Not Found";

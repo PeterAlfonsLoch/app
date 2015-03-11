@@ -134,7 +134,7 @@ namespace sqlite
       disconnect();
       try
       {
-         Application.file_del(db);
+         System.file().del(db);
 
       }
       catch(...)

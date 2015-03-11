@@ -998,7 +998,7 @@ install_begin:;
 
             bool bDownload = true;
 
-            System.install().trace().rich_trace(str::replace("\\","/",file_title_dup((str2 + str))));
+            System.install().trace().rich_trace(str::replace("\\","/",file_name_dup((str2 + str))));
 
             string strStageInplace = ca2bz_get_dir(strCurrent) + strStageInplaceFile;
 
@@ -1085,7 +1085,7 @@ install_begin:;
 
             string str2 = dir::name(str);
 
-            strFileName = file_title_dup(strCurrent);
+            strFileName = file_name_dup(strCurrent);
 
             if(str2.substr(0,m_strInstall.length()) == m_strInstall)
             {
@@ -1116,7 +1116,7 @@ install_begin:;
 
             string strStageInplace = ca2inplace_get_dir(strCurrent) + ca2inplace_get_file(strCurrent);
 
-            System.install().trace().rich_trace(str::replace(file_title_dup((str2 + str)),"\\","/"));
+            System.install().trace().rich_trace(str::replace(file_name_dup((str2 + str)),"\\","/"));
 
             if(file_exists_dup(strStageInplace)
                && (iLen != -1) && file_length_dup(strStageInplace) == iLen
@@ -1631,7 +1631,7 @@ install_begin:;
          keep_true keepDownloadTrue(m_bMsDownload);
          if(iRetry > 0)
          {
-            //System.install().trace().rich_trace(("Going to download " + file_title_dup(file2) + " entirely"));
+            //System.install().trace().rich_trace(("Going to download " + file_name_dup(file2) + " entirely"));
          }
          System.install().trace().rich_trace(file2);
          iRetry = 0;
@@ -2313,7 +2313,7 @@ install_begin:;
          str = stringa[i];
          str += ".bz";
          System.install().trace().rich_trace(str);
-         strStageGz = dir::path(m_strInstallGz, ca2bz_get_file(str, strmapMd5[stringa[i]]));
+         strStageGz = ::file::path(m_strInstallGz)/ ca2bz_get_file(str, strmapMd5[stringa[i]]));
          strStage = ca2_get_dir(str) + ca2_get_file(str);
          dir::mk(dir::name(strStage));
          bzuncompress(strStage, strStageGz);

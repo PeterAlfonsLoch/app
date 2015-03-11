@@ -669,6 +669,7 @@ public:
 
    array(::aura::application * papp = NULL, ::count nGrowBy = 32);
    array(const array <TYPE, ARG_TYPE> & a);
+   array(::std::initializer_list < TYPE > l);
    array(::count n);
    array(array && a);
    virtual ~array();

@@ -13,7 +13,12 @@ namespace url
 
 
 
+inline bool is_url_dup(const string & strCandidate)
+{
+   
+   return ::url::is_url(strCandidate);
 
+}
 
 
 

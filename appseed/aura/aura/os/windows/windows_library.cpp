@@ -20,7 +20,7 @@ void * __node_library_open(const char * pszPath)
    if(str_ends_ci_dup(strPath,".exp"))
       return false;
 
-   if(strstr_dup(file_title_dup(strPath),".") == NULL)
+   if(strstr_dup(file_name_dup(strPath),".") == NULL)
       strPath += ".dll";
 
    try

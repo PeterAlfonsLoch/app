@@ -20,7 +20,7 @@ namespace simpledb
 
       string strMetaPath;
 
-      strMetaPath = System.dir().element("database/" + m_pdatabase->getDatabase() + "/" + m_strName, "meta.xml");
+      strMetaPath = System.dir().element() / "database" / m_pdatabase->getDatabase() / m_strName/ "meta.xml";
 
       if(!m_spfileMeta->open(strMetaPath, ::file::type_binary | ::file::mode_read_write | ::file::share_exclusive))
          throw 0;
@@ -44,7 +44,7 @@ namespace simpledb
 
       string strFixedPath = m_xmldocumentMeta.get_root()->attr("fixed_path");
       if(strFixedPath.is_empty())
-         strFixedPath = strMetaPath = System.dir().element("database/" + m_pdatabase->getDatabase() + "/" + m_strName, "fixed.txt");
+         strFixedPath = strMetaPath = System.dir().element() / "database" / m_pdatabase->getDatabase() /  m_strName/"fixed.txt";
 
       if(!m_spfileFixed->open(strMetaPath, ::file::mode_create | ::file::mode_no_truncate | ::file::type_binary | ::file::mode_read_write | ::file::share_exclusive |
          ::file::defer_create_directory))

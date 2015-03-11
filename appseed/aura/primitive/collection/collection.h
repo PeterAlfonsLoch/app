@@ -2,7 +2,8 @@
 
 
 
-#define forall(set) for(decltype(set)::BASE_TYPE & item : set)
+#define forall(set) for(auto item : set)
+#define forallref(set) for(auto & item : set)
 
 
 

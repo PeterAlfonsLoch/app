@@ -97,7 +97,7 @@ template < class T >
 bool ::file::system::output(::aura::application * papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::output_stream &, ::file::input_stream &), const char * lpszInput)
 {
 
-App(papp).dir().mk(Application.dir_name(pszOutput));
+App(papp).dir().mk(System.dir().name(pszOutput));
 
 string strDownloading = pszOutput;
 

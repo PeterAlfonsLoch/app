@@ -69,7 +69,7 @@ namespace zip {
 
         virtual bool locate(const char * pszFileName);
 
-        virtual void add_file(const char * pszDir, const char * pszRelative);
+        virtual void add_file(const ::file::path & pszDir,const ::file::path & pszRelative);
 
         bool dump(::file::buffer_sp pfile);
 

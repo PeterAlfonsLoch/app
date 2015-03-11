@@ -75,20 +75,20 @@ namespace file
          //   return m_pauraapp->m_paurasystem->m_spdir->matter(get_app(),lpcsz,lpcsz2,bDir,pszRoot,pszApp);
          //}
 
-         string application::matter_file(const char * lpcsz,const char * lpcsz2,bool bDir)
+         ::file::path application::matter_file(const ::file::path & lpcsz,bool bDir)
          {
 
-            string strPath = m_pauraapp->m_paurasystem->m_spdir->matter(get_app(),lpcsz,lpcsz2,bDir);
+            string strPath = m_pauraapp->m_paurasystem->m_spdir->matter(get_app(),lpcsz,bDir);
 
             if(strPath.begins_ci("http://") || strPath.begins_ci("https://"))
             {
                string strFileExists = strPath;
                strFileExists.replace(":","_");
-               strFileExists = m_pauraapp->m_paurasystem->m_spdir->appdata("cache/" + strFileExists + ".exists_question");
+               strFileExists = m_pauraapp->m_paurasystem->m_spdir->appdata() / "cache"  /  strFileExists + ".exists_question";
                strFileExists.replace("\\\\","\\",2);
                string strFile = strPath;
                strFile.replace(":","_");
-               strFile = m_pauraapp->m_paurasystem->m_spdir->appdata("cache/" + strFile + ".local_copy");
+               strFile = m_pauraapp->m_paurasystem->m_spdir->appdata() / "cache" / strFile + ".local_copy";
                strFile.replace("\\\\","\\",2);
                if(Application.file().exists(strFileExists))
                {

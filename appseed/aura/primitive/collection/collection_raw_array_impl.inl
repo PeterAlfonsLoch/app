@@ -268,6 +268,18 @@ array_base < TYPE, ALLOCATOR > (papp, sizeof(TYPE), true)
 {
 }
 
+template<class TYPE,class ARG_TYPE,class ALLOCATOR >
+inline raw_array < TYPE,ARG_TYPE,ALLOCATOR >::raw_array(::std::initializer_list < TYPE >  l) :
+array_base < TYPE,ALLOCATOR >(NULL,sizeof(TYPE),true)
+{
+   forallref(l)
+   {
+      add((ARG_TYPE) item);
+   }
+}
+
+
+
 template<class TYPE, class ARG_TYPE, class ALLOCATOR >
 raw_array < TYPE, ARG_TYPE, ALLOCATOR >::raw_array(const raw_array <TYPE, ARG_TYPE> & a) :
 object(a.get_app()),

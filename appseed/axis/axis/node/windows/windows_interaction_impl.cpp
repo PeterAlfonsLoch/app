@@ -614,7 +614,7 @@ namespace windows
    string interaction_impl::calc_icon_window_class(uint32_t dwDefaultStyle,const char * pszMatter)
    {
 
-      string strPath = Application.dir_matter(pszMatter,"icon.ico");
+      string strPath = Application.dir().matter(pszMatter,"icon.ico");
 
       HICON hIcon = (HICON) ::LoadImage(NULL,strPath,IMAGE_ICON,256,256,LR_LOADFROMFILE);
 
