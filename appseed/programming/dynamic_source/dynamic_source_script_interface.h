@@ -26,7 +26,7 @@ namespace dynamic_source
 
 
       sp(::file::memory_buffer)           m_spmemoryfileFallback;
-      ::file::output_stream               m_ostreamFallback;
+      ::file::ostream               m_ostreamFallback;
 
       script *                            m_pscript;
 
@@ -61,7 +61,7 @@ namespace dynamic_source
 
 
       virtual ::file::stream_buffer & output_file();
-      virtual ::file::output_stream & ostream();
+      virtual ::file::ostream & ostream();
 
 
       virtual void on_initialize();

@@ -98,11 +98,11 @@ namespace dynamic_source
       }
    }
 
-   ::file::output_stream & script_interface::ostream()
+   ::file::ostream & script_interface::ostream()
    {
       if(m_pinstanceMain == this)
       {
-         return *((::file::output_stream *) NULL);
+         return *((::file::ostream *) NULL);
       }
       else if(m_pinstanceMain != NULL)
       {

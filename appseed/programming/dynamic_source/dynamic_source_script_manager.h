@@ -108,9 +108,9 @@ namespace dynamic_source
 
 
       string                                    m_strNamespace;
-      string                                    m_strNetnodePath;
-      string                                    m_strNetseedPath;
-      string                                    m_strNetseedDsCa2Path;
+      ::file::path                              m_strNetnodePath;
+      ::file::path                              m_strNetseedPath;
+      ::file::path                              m_strNetseedDsCa2Path;
 
       mutex                                     m_mutexSimage;
       mutex                                     m_mutexSpider;
@@ -184,8 +184,8 @@ namespace dynamic_source
       void clear_include_matches();
       static UINT c_cdecl clear_include_matches_FolderWatchThread(LPVOID lpParam); // thread procedure
 
-      virtual string real_path(const string & str);
-      virtual string real_path(const string & strBase, const string & str);
+      virtual ::file::path real_path(const ::file::path & str);
+      virtual ::file::path real_path(const ::file::path & strBase,const ::file::path & str);
 
 
       sp(::crypto::rsa) get_rsa_key();

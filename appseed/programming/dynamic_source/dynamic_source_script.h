@@ -56,11 +56,11 @@ namespace dynamic_source
       
       bool                             m_bLastVersionCheck;
       uint32_t                         m_dwLastVersionCheck;
-      string                           m_strSourcePath;
-      string                           m_strSourceDir;
-      string                           m_strCppPath;
-      string                           m_strScriptPath;
-      string                           m_strBuildBat;
+      ::file::path                     m_strSourcePath;
+      ::file::path                     m_strSourceDir;
+      ::file::path                     m_strCppPath;
+      ::file::path                     m_strScriptPath;
+      ::file::path                     m_strBuildBat;
       manual_reset_event               m_evCreationEnabled;
       uint32_t                         m_dwLastBuildTime;
       bool                             m_bShouldBuild;

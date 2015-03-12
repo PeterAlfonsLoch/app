@@ -63,7 +63,7 @@ namespace dynamic_source
    void script_compiler::prepare_compile_and_link_environment()
    {
       //string strVars = getenv("VS100COMNTOOLS");
-      string strVars;
+      ::file::path strVars;
 
 #ifndef METROWIN
 
@@ -71,12 +71,11 @@ namespace dynamic_source
 
 #endif
 
-      System.file().path().eat_end_level(strVars, 2, "\\");
-      m_strEnv = strVars;
-      m_strEnv = System.dir().path(strVars, "vc\\vcvarsall.bat");
+      m_strEnv = strVars.up(2);
+      m_strEnv = strVars/ "vc\\vcvarsall.bat";
       //m_strEnv = ".\\vc_vars.bat";
 
-      m_strTime = System.dir().element("time");
+      m_strTime = System.dir().element() /"time";
 
       //m_strEnv = "C:\\Program Files\\Microsoft SDKs\\Windows\\v7.1\\Bin\\SetEnv.cmd";
 
@@ -121,17 +120,17 @@ namespace dynamic_source
       prepare1(m_strDynamicSourceConfiguration  + "_libl" + m_strPlat1 + ".bat",
          m_strDynamicSourceConfiguration  + "_libl" + m_strPlat1 + ".bat");
 #endif
-      System.dir().mk(System.dir().element(m_strDynamicSourceStage + "/front"),get_app());
+      System.dir().mk(System.dir().element()/m_strDynamicSourceStage / "front",get_app());
 
 #ifdef WINDOWS
       string vars1batSrc;
       string vars2batSrc;
       string vars1batDst;
       string vars2batDst;
-      vars1batSrc = System.dir().element("nodeapp/stage/dynamic_source/vc_vars.bat");
-      vars2batSrc = System.dir().element("nodeapp/stage/dynamic_source/vc_vars_query_registry.bat");
-      vars1batDst = System.dir().element(m_strDynamicSourceStage + "/front","vc_vars.bat");
-      vars2batDst = System.dir().element(m_strDynamicSourceStage + "/front","vc_vars_query_registry.bat");
+      vars1batSrc = System.dir().element()/"nodeapp/stage/dynamic_source/vc_vars.bat";
+      vars2batSrc = System.dir().element()/"nodeapp/stage/dynamic_source/vc_vars_query_registry.bat";
+      vars1batDst = System.dir().element()/ m_strDynamicSourceStage / "front"/"vc_vars.bat";
+      vars2batDst = System.dir().element()/m_strDynamicSourceStage /"front"/"vc_vars_query_registry.bat";
       try
       {
          Application.file().copy(vars1batDst, vars1batSrc, false);
@@ -164,10 +163,10 @@ namespace dynamic_source
       string str;
       string strItem;
 
-      strItem = System.dir().element(m_strDynamicSourceStage + "\\" + m_strStagePlatform);
+      strItem = System.dir().element() /m_strDynamicSourceStage /m_strStagePlatform;
       str = str + strItem + ";";
 
-      strItem = System.dir().element(m_strDynamicSourceStage + "\\" + m_strStagePlatform + "\\dynamic_source\\library");
+      strItem = System.dir().element()/ m_strDynamicSourceStage /  m_strStagePlatform / "dynamic_source\\library";
       str = str + strItem + ";";
 #ifdef WINDOWSEX
       uint32_t dwSize = GetEnvironmentVariable("PATH", NULL, 0);
@@ -204,7 +203,7 @@ namespace dynamic_source
 
       TRACE("Compiling script \"%s\"\n", pscript->m_strName.c_str());
 
-      string strName(pscript->m_strName);
+      ::file::path strName(pscript->m_strName);
 
       pscript->on_start_build();
 
@@ -235,7 +234,7 @@ namespace dynamic_source
       strScript.replace("/", ",");
       strScript = "ca2" + m_pmanager->m_strNamespace + "_script." + strScript;*/
       string strScript;
-      strScript = System.file().title_(strName);
+      strScript = strName.title();
       string strTransformName = strName;
       if(Application.file().exists(strName))
       {
@@ -244,9 +243,9 @@ namespace dynamic_source
       }
       else
       {
-         pscript->m_strSourcePath.Format(System.dir().path(m_pmanager->m_strNetnodePath, "net\\netseed\\%s", false), strName);
+         pscript->m_strSourcePath.Format(m_pmanager->m_strNetnodePath / "net\\netseed\\%s", false, strName);
       }
-      pscript->m_strSourceDir = System.dir().name(pscript->m_strSourcePath);
+      pscript->m_strSourceDir = pscript->m_strSourcePath.folder();
 
       if(!Application.file().exists(pscript->m_strSourcePath))
       {

@@ -150,18 +150,17 @@ namespace dynamic_source
 
       }
 
-      stringa straPath;
-      stringa straTitle;
+      ::file::listing listing;
 
-      Application.dir().ls_dir(m_strNetnodePath, &straPath, &straTitle);
+      listing.ls_dir(m_strNetnodePath);
 
-      for(int32_t i = 0; i < straPath.get_count(); i++)
+      forallref(listing)
       {
-         if(::str::begins_ci(straTitle[i], "net-"))
+         if(::str::begins_ci(item.title(),"net-"))
          {
             clear_include_matches_folder_watch * pwatch = new clear_include_matches_folder_watch(get_app());
             pwatch->m_pmanager = this;
-            pwatch->add_file_watch(straPath[i], true);
+            pwatch->add_file_watch(item, true);
             //pwatch->begin();
          }
       }
@@ -353,15 +352,15 @@ namespace dynamic_source
       TRACE(buf);
       delete buf;*/
 
-      string str;
+      ::file::path str;
       str = System.get_module_folder();
-      System.file().path().eat_end_level(str, 2, "\\");
-      str =System.dir().path(str, "stage\\basis", false);
+      str.go_up(2);
+      str = str/ "stage\\basis";
       str = ";" + str;
-      string str2;
+      ::file::path str2;
       str2 = System.get_module_folder();
-      System.file().path().eat_end_level(str2, 2, "\\");
-      str2 =System.dir().path(str2, "netnode\\library\\include", false);
+      str2.go_up(2);
+      str2 = str2/ "netnode\\library\\include";
       str2 = ";" + str2;
       str = str + str2;
 
@@ -620,9 +619,9 @@ namespace dynamic_source
 
 
 
-   string script_manager::real_path(const string & strBase, const string & str)
+   ::file::path script_manager::real_path(const ::file::path & strBase,const ::file::path & str)
    {
-      string strRealPath = System.dir().path(strBase, str, false);
+      ::file::path strRealPath = strBase/ str;
       if(include_matches_file_exists(strRealPath))
          return strRealPath;
       else if(include_matches_is_dir(strRealPath))
@@ -638,7 +637,7 @@ namespace dynamic_source
 #define is_absolute_path(psz) (psz[0] == '/')
 #endif
 
-   string script_manager::real_path(const string & str)
+   ::file::path script_manager::real_path(const ::file::path & str)
    {
 #ifdef WINDOWS
       if(is_absolute_path(str))
@@ -1127,7 +1126,7 @@ namespace dynamic_source
       strPath.replace("/",".");
       strPath.replace("\\",".");
 #ifdef WINDOWS
-      return System.dir().path("C:\\netnode\\" + m_pcompiler->m_strDynamicSourceStage +  "\\" + m_pcompiler->m_strStagePlatform + "\\",strPath);
+      return ::file::path("C:\\netnode")/ m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_strStagePlatform / strPath;
 #else
       ::str::begins_eat(strPath,".");
       //return System.dir().path("/ca2/stage/"+m_pcompiler->m_strStagePlatform+"/","lib" + strPath);
