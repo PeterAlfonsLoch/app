@@ -29,6 +29,19 @@ enum e_context_switcher_empty
    cempty
 };
 
+// very short name ([{c}])ontext (switchers, as it as context) enums
+enum e_context_switcher_no_exception
+{
+   no_exception
+};
+
+// very short name ([{c}])ontext (switchers, as it as context) enums
+enum e_context_switcher_failed
+{
+   failure
+};
+
+
 template<class T>
 struct remove_reference
 {
@@ -81,6 +94,11 @@ class property_set;
 class object;
 class type;
 class base_edit;
+
+
+//template < typename Type,typename RawType = typename Type >
+//class string_array;
+//typedef string_array < string > stringa;
 
 
 namespace aura
@@ -230,11 +248,12 @@ namespace draw2d
 namespace file
 {
 
-
+   class listing;
    class path;
+   typedef CLASS_DECL_AURA ::string_array < ::file::path,string > patha;
    class stream_buffer;
-   class input_stream;
-   class output_stream;
+   class istream;
+   class ostream;
    class serializable;
 
 
@@ -878,6 +897,7 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 //#include "user/user/user_interaction_base.h"
 //#include "user/user/user_buffer.h"
 #include "aura/aura/aura/aura_keep.h"
+#include "aura/aura/aura/aura_restore.h"
 #include "aura/filesystem/file/file_stream2.h"
 //#include "user/user/user_interaction.h"
 //#include "user/user/user_interaction_impl_base.h"
@@ -1001,6 +1021,7 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 
 #include "aura/filesystem/filesystem/filesystem_dir_application.h"
 
+#include "aura/filesystem/filesystem/filesystem_listing.h"
 
 #include "aura/primitive/primitive_application_bias.h"
 
@@ -1395,11 +1416,11 @@ namespace std
    template < class TYPE >
    using set = ::set< TYPE >;
 
-   using ostream = ::file::output_stream;
-   using ofstream = ::file::file_output_stream;
+   using ostream = ::file::ostream;
+   using ofstream = ::file::file_ostream;
 
-   using istream = ::file::input_stream;
-   using ifstream = ::file::file_input_stream;
+   using istream = ::file::istream;
+   using ifstream = ::file::file_istream;
 
    using stream = ::file::stream;
    using fstream = ::file::file_stream;
@@ -1408,7 +1429,7 @@ namespace std
    using iofstream = ::file::file_stream;
 
    using stringstream = ::file::plain_text_stream_string_buffer;
-   using ostringstream = ::file::plain_text_output_stream_string_buffer;
+   using ostringstream = ::file::plain_text_ostream_string_buffer;
 
    template < typename T >
    using numeric_limits = ::numeric_info < T >;

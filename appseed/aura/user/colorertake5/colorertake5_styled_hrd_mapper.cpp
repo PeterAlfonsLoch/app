@@ -23,7 +23,7 @@ StyledHRDMapper::~StyledHRDMapper()
 //  delete rd;
 };
 
-void StyledHRDMapper::loadRegionMappings(::file::input_stream & istream)
+void StyledHRDMapper::loadRegionMappings(::file::istream & istream)
 {
 //  DocumentBuilder docbuilder;
 
@@ -71,7 +71,7 @@ void StyledHRDMapper::loadRegionMappings(::file::input_stream & istream)
     XML spfile-> Note, that this method writes all loaded
     defines from all loaded HRD files.
 */
-void StyledHRDMapper::saveRegionMappings(::file::output_stream & writer) const
+void StyledHRDMapper::saveRegionMappings(::file::ostream & writer) const
 {
    UNREFERENCED_PARAMETER(writer);
 

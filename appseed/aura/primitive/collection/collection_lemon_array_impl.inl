@@ -155,6 +155,11 @@ namespace lemon
    {
 
 
+      inline void add(stringa & stra,const stringa & straSource) { stra.add(straSource); }
+      inline void add(::file::patha & patha,const stringa & stra) { forallref(stra) { patha.add(::file::path(item)); } }
+      inline void add(::file::patha & patha,const string & str) { patha.add(::file::path(str)); }
+
+
 
    } // namespace array
 

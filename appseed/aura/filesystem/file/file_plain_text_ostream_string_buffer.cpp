@@ -6,7 +6,7 @@ namespace file
 
 
 
-   plain_text_output_stream_string_buffer::plain_text_output_stream_string_buffer(::aura::application * papp) :
+   plain_text_ostream_string_buffer::plain_text_ostream_string_buffer(::aura::application * papp) :
       object(papp != NULL ? papp : get_thread_app())
    {
 
@@ -29,20 +29,20 @@ namespace file
 
    }
 
-   plain_text_output_stream_string_buffer::~plain_text_output_stream_string_buffer()
+   plain_text_ostream_string_buffer::~plain_text_ostream_string_buffer()
    {
 
    }
 
 
-   string plain_text_output_stream_string_buffer::str() const
+   string plain_text_ostream_string_buffer::str() const
    {
 
       return m_spstringbuffer->str();
 
    }
 
-   plain_text_output_stream_string_buffer::operator const char *() const
+   plain_text_ostream_string_buffer::operator const char *() const
    {
 
       return m_spstringbuffer->operator const char *();

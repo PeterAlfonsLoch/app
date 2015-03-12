@@ -1,11 +1,183 @@
 #pragma once
 
 
+// Range-based for loop support
+// smart_pointer_range indirect/interpreted contribution from 
+/**
+* pugixml parser - version 1.5
+* --------------------------------------------------------
+* Copyright (C) 2006-2014, by Arseny Kapoulkine (arseny.kapoulkine@gmail.com)
+* Report bugs and download new versions at http://pugixml.org/
+*
+* This library is distributed under the MIT License. See notice at the end
+* of this file.
+*
+* This work is based on the pugxml parser, which is:
+* Copyright (C) 2003, by Kristen Wegner (kristen@tima.net)
+*/
+
+template < typename Iterator > class smart_pointer_range
+{
+public:
+
+   Iterator m_beg;
+   Iterator m_end;
+
+   smart_pointer_range(Iterator beg,Iterator end): m_beg(beg),m_end(end)
+   {
+   }
+
+   Iterator begin()  const { return m_beg; }
+   Iterator end()    const { return m_end; }
+
+private:
+
+};
+
+
 template < class T >
 class smart_pointer_array :
    public array < smart_pointer < T > >
 {
 public:
+
+
+   class ref_iterator
+   {
+   public:
+
+      typedef T BASE_TYPE;
+      typedef const T & BASE_ARG_TYPE;
+      typedef smart_pointer_array BASE_ARRAY;
+
+      index            m_i;
+      array *     m_parray;
+
+      ref_iterator()
+      {
+         m_i = 0;
+         m_parray = NULL;
+      }
+
+      ref_iterator(index i,array * parray)
+      {
+         m_i = i;
+         m_parray = parray;
+      }
+
+      ref_iterator(const ref_iterator & it)
+      {
+         operator = (it);
+      }
+
+
+      ref_iterator & operator = (const ref_iterator & it)
+      {
+         if(this != &it)
+         {
+            m_i         = it.m_i;
+            m_parray    = it.m_parray;
+         }
+         return *this;
+      }
+
+      bool operator == (const ref_iterator & it)
+      {
+         if(this == &it)
+            return true;
+         if(m_parray != it.m_parray)
+            return false;
+         if(m_i >= m_parray->get_size() && it.m_i >= m_parray->get_size())
+            return true;
+         if(m_i <= 0 && it.m_i <= 0)
+            return true;
+         return m_i == it.m_i;
+      }
+
+      bool operator != (const ref_iterator & it)
+      {
+         return !operator==(it);
+      }
+
+      ref_iterator operator ++(int)
+      {
+         ref_iterator it = *this;
+         operator ++();
+         return it;
+      }
+
+      ref_iterator operator --(int)
+      {
+         ref_iterator it = *this;
+         operator --();
+         return it;
+      }
+
+      ref_iterator & operator ++()
+      {
+         m_i++;
+         if(m_i >= m_parray->get_size())
+            m_i = m_parray->get_size();
+         return *this;
+      }
+
+      ref_iterator & operator +(index i)
+      {
+         m_i += i;
+         if(m_i >= m_parray->get_size())
+            m_i = m_parray->get_size();
+         return *this;
+      }
+
+      ref_iterator & operator --()
+      {
+         m_i--;
+         if(m_i < 0)
+            m_i = 0;
+         return *this;
+      }
+
+      ref_iterator mid(const ref_iterator & i) const
+      {
+         return ref_iterator((m_i + i.m_i + 1) / 2,m_parray);
+      }
+
+      ref_iterator & operator -(::count c)
+      {
+         m_i-=c;
+         if(m_i < 0)
+            m_i = 0;
+         return *this;
+      }
+
+      bool operator < (const ref_iterator & i) const
+      {
+
+         return m_i < i.m_i;
+
+      }
+
+      ::count get_count() const
+      {
+         return m_parray->get_count();
+      }
+
+
+      T & operator * ()
+      {
+         return m_parray->at(m_i);
+      }
+
+      const T & operator * () const
+      {
+         return m_parray->at(m_i);
+      }
+
+
+   };
+
+   typedef smart_pointer_range < ref_iterator > ref_range;
+
 
    smart_pointer_array()
    {
@@ -610,7 +782,10 @@ public:
 
    }
 
+   ref_iterator ref_it(index iStart) { return ref_iterator(iStart,this);  }
+   ref_iterator ref_it(index iStart, ::count cCount) { return ref_iterator(iStart + (cCount < 0 ? get_count() + cCount + 1 : cCount),this); }
 
+   ref_range refa(index iStart = 0, ::count cCount = -1) { return smart_pointer_range < ref_iterator >(ref_it(iStart),ref_it(iStart, cCount)); }
 
 };
 

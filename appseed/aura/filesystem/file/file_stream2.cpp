@@ -6,18 +6,18 @@ namespace file
 
 
 
-   output_stream2::output_stream2()
+   ostream2::ostream2()
    {
    }
 
-   output_stream2::output_stream2(writer * pwriter)
+   ostream2::ostream2(writer * pwriter)
    {
 
       m_spbuffer = pwriter;
 
    }
 
-   output_stream2::~output_stream2()
+   ostream2::~ostream2()
    {
    }
 
@@ -25,50 +25,50 @@ namespace file
 
 
 
-   output_stream2 & output_stream2::operator << (uchar uch)
+   ostream2 & ostream2::operator << (uchar uch)
    {
-      output_stream::operator << (uch);
+      ostream::operator << (uch);
       return *this;
    }
 
-   output_stream2 & output_stream2::operator << (uint16_t ui)
+   ostream2 & ostream2::operator << (uint16_t ui)
    {
-      output_stream::operator << (ui);
+      ostream::operator << (ui);
       return *this;
    }
 
-   output_stream2 & output_stream2::operator << (int32_t i)
+   ostream2 & ostream2::operator << (int32_t i)
    {
-      output_stream::operator << (i);
+      ostream::operator << (i);
       return *this;
    }
 
-   output_stream2 & output_stream2::operator << (uint32_t ui)
+   ostream2 & ostream2::operator << (uint32_t ui)
    {
-      output_stream::operator << (ui);
+      ostream::operator << (ui);
       return *this;
    }
 
-   output_stream2 & output_stream2::operator << (const RECT & rect)
+   ostream2 & ostream2::operator << (const RECT & rect)
    {
-      output_stream::operator << (rect);
+      ostream::operator << (rect);
       return *this;
    }
 
 
-   output_stream2 & output_stream2::operator << (serializable & serializable)
+   ostream2 & ostream2::operator << (serializable & serializable)
    {
-      output_stream::operator << (serializable);
+      ostream::operator << (serializable);
       return *this;
    }
 
-   output_stream2 & output_stream2::operator << (const char * psz)
+   ostream2 & ostream2::operator << (const char * psz)
    {
       write((void *)psz, strlen(psz));
       return *this;
    }
 
-   output_stream2 & output_stream2::operator << (const string & str)
+   ostream2 & ostream2::operator << (const string & str)
    {
       operator <<((const char *)str);
       return *this;

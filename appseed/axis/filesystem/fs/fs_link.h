@@ -9,22 +9,25 @@ namespace fs
 
 
    class CLASS_DECL_AXIS link:
-      virtual public ::fs::native
+      virtual public ::fs::native,
+      virtual public ::file::listing
    {
    public:
 
 
-      ::file::path      m_strPath;
+      
       ::file::path      m_strTitle;
-      ::file::patha     m_straPath;
 
 
       link(::aura::application * papp);
 
 
+
+      virtual ::file::listing & ls(::file::listing & listing) override;
+
+
       // optional if ls_dir is implemented
       virtual bool has_subdir(const ::file::path & pszPath);
-      virtual bool ls(const ::file::path & pszDir,::file::patha * ppatha,::file::patha * ppathaName,bool bSize,bool_array * pbaDir);
       virtual bool is_dir(const ::file::path & pszPath);
       virtual void root_ones(::file::patha & patha,stringa & straTitle);
       //virtual void get_ascendants_path(const char * pszPath,stringa & stra);
@@ -47,8 +50,16 @@ namespace fs
 
       virtual bool tree_show_subdir(const ::file::path & pszPath);
 
+
    };
 
 
 
 } // namespace fs
+
+
+
+
+
+
+

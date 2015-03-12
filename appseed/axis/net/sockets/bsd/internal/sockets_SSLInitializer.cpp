@@ -203,10 +203,14 @@ void ssl_sigpipe_handle( int x ) {
 
    void SSLInitializer::DeleteRandFile()
    {
+      
       if (m_rand_file.get_length())
       {
-         System.file().del(m_rand_file);
+
+         Application.file().del(m_rand_file);
+
       }
+
    }
 
 

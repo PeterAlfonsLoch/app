@@ -26,7 +26,7 @@
 #include "http/http.cpp"
 #include "http/http_application.cpp"
 #include "http/http_get_socket.cpp"
-#include "http/http_output_stream.cpp"
+#include "http/http_ostream.cpp"
 #include "http/http_signal.cpp"
 #include "http/http_status.cpp"
 #include "http/http_system.cpp"

@@ -23,7 +23,7 @@ namespace windows
 
 
       virtual bool get_status(const ::file::path & path,::file::file_status & status);
-      virtual ::file::exception_sp set_status(const ::file::path & path,const ::file::file_status & status);
+      virtual cres set_status(const ::file::path & path,const ::file::file_status & status);
 
 
 

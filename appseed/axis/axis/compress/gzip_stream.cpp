@@ -21,7 +21,7 @@ typedef  GZIP* LPGZIP;
 
 
 gzip_stream::gzip_stream(::file::stream_buffer * pfileDest) :
-   ::file::output_stream(pfileDest)
+   ::file::ostream(pfileDest)
 {
 
    construct();
@@ -29,8 +29,8 @@ gzip_stream::gzip_stream(::file::stream_buffer * pfileDest) :
 }
 
 
-gzip_stream::gzip_stream(::file::output_stream & ostreamDest) :
-   ::file::output_stream(ostreamDest)
+gzip_stream::gzip_stream(::file::ostream & ostreamDest) :
+   ::file::ostream(ostreamDest)
 {
 
    construct();
@@ -54,7 +54,7 @@ void gzip_stream::write(const void * buf, ::primitive::memory_size iSize)
       if(m_zstream.avail_out == 0)
       {
          m_zstream.next_out = m_memory.get_data();
-         ::file::output_stream::write(m_memory.get_data(), m_memory.get_size());
+         ::file::ostream::write(m_memory.get_data(), m_memory.get_size());
          m_zstream.avail_out = (uint32_t) m_memory.get_size();
       }
       m_z_err = deflate(&(m_zstream), Z_NO_FLUSH);
@@ -85,7 +85,7 @@ void gzip_stream::construct()
       return;
    }
    GZIP header[10]={0x1f,0x8b,Z_DEFLATED, 0 /*flags*/, 0,0,0,0 /*time*/, 0 /*xflags*/, OS_CODE};
-   ::file::output_stream::write(header,10);
+   ::file::ostream::write(header,10);
    m_zstream.next_out      = m_memory.get_data();
    m_zstream.avail_out     = (uint32_t) m_memory.get_size();
 }
@@ -117,7 +117,7 @@ int32_t gzip_stream::_finish()
 
       if (len != 0)
       {
-         ::file::output_stream::write(m_memory.get_data(), len);
+         ::file::ostream::write(m_memory.get_data(), len);
          m_zstream.next_out   = m_memory.get_data();
          m_zstream.avail_out  = (uint32_t) m_memory.get_size();
       }
@@ -155,7 +155,7 @@ void gzip_stream::putLong (uint_ptr x)
    for(int32_t n = 0; n < 4; n++)
    {
       uchar ca=(uchar)(x & 0xff);
-      ::file::output_stream::write(&ca,1);
+      ::file::ostream::write(&ca,1);
       x >>= 8;
    }
 }

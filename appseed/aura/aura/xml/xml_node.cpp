@@ -2115,7 +2115,7 @@ namespace xml
 
    }
 
-   void node::write(::file::output_stream & ostream) const
+   void node::write(::file::ostream & ostream) const
    {
 
       string str = get_xml();
@@ -2123,7 +2123,7 @@ namespace xml
 
    }
 
-   void node::read(::file::input_stream & istream)
+   void node::read(::file::istream & istream)
    {
 
       close();

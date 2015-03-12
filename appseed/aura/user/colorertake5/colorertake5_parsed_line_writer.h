@@ -19,7 +19,7 @@ namespace colorertake5
       @param lineRegions Linked list of LineRegion structures.
       Only region references are used there.
       */
-      static void tokenWrite(::file::output_stream & markupWriter, ::file::output_stream & textWriter, string_to_string * docLinkHash, const char  *line, LineRegion *lineRegions);
+      static void tokenWrite(::file::ostream & markupWriter, ::file::ostream & textWriter, string_to_string * docLinkHash, const char  *line, LineRegion *lineRegions);
 
       /** write specified line of text using list of LineRegion's.
       This method uses text fields of LineRegion class to enwrap each line
@@ -32,7 +32,7 @@ namespace colorertake5
       @param line Line of text
       @param lineRegions Linked list of LineRegion structures
       */
-      static void markupWrite(::file::output_stream & markupWriter, ::file::output_stream & textWriter, string_to_string *docLinkHash, const char *line, LineRegion *lineRegions);
+      static void markupWrite(::file::ostream & markupWriter, ::file::ostream & textWriter, string_to_string *docLinkHash, const char *line, LineRegion *lineRegions);
 
 
       /** write specified line of text using list of LineRegion's.
@@ -44,19 +44,19 @@ namespace colorertake5
       @param line Line of text
       @param lineRegions Linked list of LineRegion structures
       */
-      static void htmlRGBWrite(::file::output_stream & markupWriter, ::file::output_stream & textWriter, string_to_string *docLinkHash, const char *line, LineRegion *lineRegions);
+      static void htmlRGBWrite(::file::ostream & markupWriter, ::file::ostream & textWriter, string_to_string *docLinkHash, const char *line, LineRegion *lineRegions);
 
-      static void writeStyle(::file::output_stream & writer, const StyledRegion *lr);
+      static void writeStyle(::file::ostream & writer, const StyledRegion *lr);
 
       /** Puts into stream starting HTML \<span> tag with requested style specification
       */
-      static void writeStart(::file::output_stream & writer, const StyledRegion *lr);
+      static void writeStart(::file::ostream & writer, const StyledRegion *lr);
 
       /** Puts into stream ending HTML \</span> tag
       */
-      static void writeEnd(::file::output_stream & writer, const StyledRegion *lr);
+      static void writeEnd(::file::ostream & writer, const StyledRegion *lr);
 
-      static void writeHref(::file::output_stream & writer, string_to_string *docLinkHash, const class scheme *scheme, const string &token, bool start);
+      static void writeHref(::file::ostream & writer, string_to_string *docLinkHash, const class scheme *scheme, const string &token, bool start);
 
    };
 

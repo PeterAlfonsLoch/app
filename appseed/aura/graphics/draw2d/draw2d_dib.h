@@ -263,8 +263,8 @@ namespace draw2d
       virtual double pi() const;
       inline class size size() const { return m_size; }
 
-      virtual void write(::file::output_stream & ostream) const;
-      virtual void read(::file::input_stream & istream);
+      virtual void write(::file::ostream & ostream) const;
+      virtual void read(::file::istream & istream);
 
       virtual bool update_window(::aura::draw_interface * pui,signal_details * pobj,bool bTransferBuffer = true);
       virtual bool print_window(::aura::draw_interface * pui,signal_details * pobj);

@@ -5,6 +5,7 @@ namespace xml
 {
 
 
+
    class document;
 
 
@@ -147,6 +148,7 @@ namespace xml
       string                  get_child_text(const char * name, disp_option * opt = NULL);
       node::array        children(const char * name);
       node::array &      children();
+      node::array::ref_range childrenref(index iStart = 0,::count cCount = -1) { return children().refa(iStart,cCount);  }
 
       ::xml::attr *           GetChildAttr(const char * name, const char * attrname);
       string                  GetChildAttrValue(const char * name, const char * attrname);
@@ -198,8 +200,8 @@ namespace xml
       void close();
 
 
-      virtual void write(::file::output_stream & ostream) const;
-      virtual void read(::file::input_stream & istream);
+      virtual void write(::file::ostream & ostream) const;
+      virtual void read(::file::istream & istream);
 
 
    };

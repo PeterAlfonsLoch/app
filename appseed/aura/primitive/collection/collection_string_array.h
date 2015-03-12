@@ -42,7 +42,7 @@ public:
    Type & element_at(index nIndex);
    const Type & element_at(index nIndex) const;
 
-   index add_new(const char * psz = NULL, index i = -1);
+   Type & add_new(const char * psz = NULL, index i = -1);
    Type & new_element(index i = -1);
 
    Type & first(index count = 0);
@@ -55,9 +55,9 @@ public:
    Type* get_data();
 
    // Potentially growing the array
-   void set_at_grow(index nIndex, const char * newElement);
+   Type & set_at_grow(index nIndex, const char * newElement);
 
-   void set_at_grow(index nIndex, const Type & newElement);
+   Type & set_at_grow(index nIndex,const Type & newElement);
 
    index add(const char * psz);
 
@@ -73,7 +73,7 @@ public:
 
    void add(const id & id);
 
-   index add(const Type & newElement);
+   Type & add(const Type & newElement);
 
    void push_back(const Type & newElement);
 
@@ -89,12 +89,9 @@ public:
    Type & operator[](index nIndex);
 
    // Operations that move elements around
-   void insert_at(index nIndex, const char * newElement, ::count nCount = 1);
-
-   void insert_at(index nIndex, const Type & newElement, ::count nCount = 1);
-
-   //void remove_at(index nIndex, ::count nCount = 1);
-
+   Type & insert_at(index nIndex,const Type & newElement);
+   void insert_at(index nIndex,const char * newElement,::count nCount);
+   void insert_at(index nIndex,const Type & newElement,::count nCount);
    void insert_at(index nStartIndex, const string_array & NewArray);
 
    void quick_sort(
@@ -109,7 +106,10 @@ public:
    string_array & operator =(const string_array & stra);
 
 
-   void InsertEmpty(index nIndex, ::count nCount);
+   Type & insert_empty(index nIndex);
+
+   void insert_empty(index nIndex, ::count c);
+
 
    primitive::memory GetFormatV004();
    ::count remove_empty();
@@ -222,8 +222,8 @@ public:
 
    void replace(const char * lpszSearch,const char * lpszReplace);
 
-   void write(::file::output_stream & ostream) const;
-   void read(::file::input_stream & istream);
+   void write(::file::ostream & ostream) const;
+   void read(::file::istream & istream);
 
 
    void get_format_string(Type & str,const char * lpcszSeparator) const;
@@ -498,34 +498,38 @@ m_nMaxSize = m_nSize;
 
 
 template < typename Type, typename RawType >
-void string_array < Type, RawType >::set_at_grow(index nIndex,const char * newElement)
+Type & string_array < Type, RawType >::set_at_grow(index nIndex,const char * newElement)
 {
    ASSERT_VALID(this);
    ASSERT(nIndex >= 0);
 
    if(nIndex >= m_nSize)
       set_size(nIndex + 1);
-   get_data()[nIndex] = newElement;
+
+   return get_data()[nIndex] = newElement;
+
 }
 
 
 
 template < typename Type, typename RawType >
-void string_array < Type, RawType >::set_at_grow(index nIndex,const Type & newElement)
+Type & string_array < Type, RawType >::set_at_grow(index nIndex,const Type & newElement)
 {
    ASSERT_VALID(this);
    ASSERT(nIndex >= 0);
 
    if(nIndex >= m_nSize)
       set_size(nIndex + 1);
-   get_data()[nIndex] = newElement;
+
+   return get_data()[nIndex] = newElement;
+
 }
 
 
 
 
 template < typename Type, typename RawType >
-void string_array < Type, RawType >::InsertEmpty(index nIndex,::count nCount)
+void string_array < Type, RawType >::insert_empty(index nIndex,::count nCount)
 {
    ASSERT_VALID(this);
    ASSERT(nIndex >= 0);    // will expand to meet need
@@ -556,6 +560,48 @@ void string_array < Type, RawType >::InsertEmpty(index nIndex,::count nCount)
    ASSERT(nIndex + nCount <= m_nSize);
 }
 
+template < typename Type,typename RawType >
+Type & string_array < Type,RawType >::insert_empty(index nIndex)
+{
+   ASSERT_VALID(this);
+   ASSERT(nIndex >= 0);    // will expand to meet need
+
+   if(nIndex >= m_nSize)
+   {
+
+      set_size(nIndex + 1);
+
+   }
+   else
+   {
+      // inserting in the middle of the array
+      ::count nOldSize = m_nSize;
+      set_size(m_nSize + 1);  // grow it to new size
+      // shift old data up to fill gap
+      memmove(&get_data()[nIndex + 1],&get_data()[nIndex],(nOldSize - nIndex) * sizeof(Type));
+
+      // re-init slots we copied from
+      for(index i = nIndex; i < nIndex + 1; i++)
+      {
+         get_data()[i].construct();
+      }
+
+   }
+
+   // insert new value in the gap
+   ASSERT(nIndex + 1 <= m_nSize);
+   return get_data()[nIndex];
+}
+
+
+
+template < typename Type,typename RawType >
+Type & string_array < Type,RawType >::insert_at(index nIndex,const Type & newElement)
+{
+   
+   return insert_empty(nIndex) = newElement;
+
+}
 
 
 template < typename Type, typename RawType >
@@ -563,7 +609,7 @@ void string_array < Type, RawType >::insert_at(index nIndex,const char * newElem
 {
 
    // make room for new elements
-   InsertEmpty(nIndex,nCount);
+   insert_empty(nIndex,nCount);
 
 
 
@@ -580,7 +626,7 @@ template < typename Type, typename RawType >
 void string_array < Type, RawType >::insert_at(index nIndex,const Type & newElement,::count nCount)
 {
    // make room for new elements
-   InsertEmpty(nIndex,nCount);
+   insert_empty(nIndex,nCount);
 
    // copy elements into the is_empty space
    while(nCount--)
@@ -896,7 +942,7 @@ string_array < Type, RawType > & string_array < Type, RawType >::operator =(cons
 
 
 template < typename Type, typename RawType >
-index string_array < Type, RawType >::add_new(const char * psz,index i)
+Type & string_array < Type, RawType >::add_new(const char * psz,index i)
 {
    if(i == -1)
    {
@@ -904,8 +950,8 @@ index string_array < Type, RawType >::add_new(const char * psz,index i)
    }
    else
    {
-      insert_at(i,Type(psz));
-      return i;
+      return insert_at(i,Type(psz));
+      
    }
 }
 
@@ -939,7 +985,7 @@ template < typename Type, typename RawType >
 index string_array < Type, RawType >::add(const wchar_t * pwsz)
 {
    index nIndex = m_nSize;
-   set_at_grow(nIndex,::str::international::unicode_to_utf8(pwsz));
+   set_at_grow(nIndex,(Type)::str::international::unicode_to_utf8(pwsz));
    return nIndex;
 }
 
@@ -976,11 +1022,13 @@ index string_array < Type, RawType >::add(wchar_t wch)
 
 
 template < typename Type, typename RawType >
-index string_array < Type, RawType >::add(const Type & newElement)
+Type & string_array < Type, RawType >::add(const Type & newElement)
 {
+   
    index nIndex = m_nSize;
-   set_at_grow(nIndex,newElement);
-   return nIndex;
+   
+   return set_at_grow(nIndex,newElement);
+   
 }
 
 
@@ -1000,36 +1048,36 @@ void string_array < Type, RawType >::add(const var & var)
    }
    else if(var.get_type() == var::type_stra)
    {
-      add(var.stra());
+      ::lemon::array::add(*this, var.stra());
    }
    else if(var.cast < string_array < Type, RawType > >() != NULL)
    {
-      add(*var.cast < string_array < Type, RawType > >());
+      ::lemon::array::add(*this, *var.cast < string_array < Type,RawType > >());
    }
    else if(var.get_type() == var::type_vara)
    {
       for(int32_t i = 0; i < var.vara().get_count(); i++)
       {
-         add(var.vara()[i].get_string());
+         ::lemon::array::add(*this,var.vara()[i].get_string());
       }
    }
    else if(var.get_type() == var::type_inta)
    {
       for(int32_t i = 0; i < var.inta().get_count(); i++)
       {
-         add(::str::from(var.inta()[i]));
+         ::lemon::array::add(*this,::str::from(var.inta()[i]));
       }
    }
    else if(var.get_type() == var::type_propset)
    {
       for(auto property : var.propset())
       {
-         add(property.get_value().get_string());
+         ::lemon::array::add(*this, property.get_value().get_string());
       }
    }
    else
    {
-      add(var.get_string());
+      ::lemon::array::add(*this, var.get_string());
    }
 }
 
@@ -1339,7 +1387,7 @@ inline ::count string_array < Type, RawType > ::get_count_except_ci(const char *
 
 
 // return Type length or -1 if UNICODE Type is found in the archive
-__STATIC UINT __read_string_length(::file::input_stream & ar);
+__STATIC UINT __read_string_length(::file::istream & ar);
 
 template < class Type, class RawType >
 string_array < Type, RawType > ::string_array(::aura::application * papp):
@@ -1466,7 +1514,7 @@ void string_array < Type, RawType > ::add_lines(const Type & str,bool bAddEmpty)
       if(iFind1 > iPos)
       {
 
-         add(Type(&str[iPos],iFind1 - iPos));
+         add((Type)RawType(&str[iPos],iFind1 - iPos));
 
       }
       else if(bAddEmpty)
@@ -1506,7 +1554,7 @@ n_only:
       if(iFindA > iPos)
       {
 
-         add(Type(&str[iPos],iFindA - iPos));
+         add((Type)RawType(&str[iPos],iFindA - iPos));
 
       }
       else if(bAddEmpty)
@@ -1533,7 +1581,7 @@ r_only:
       if(iFindB > iPos)
       {
 
-         add(Type(&str[iPos],iFindA - iPos));
+         add((Type)RawType(&str[iPos],iFindA - iPos));
 
       }
       else if(bAddEmpty)
@@ -1553,7 +1601,7 @@ end:
    if(str.get_length() > iPos)
    {
 
-      add(Type(&str[iPos],str.get_length() - iPos));
+      add((Type)RawType(&str[iPos],str.get_length() - iPos));
 
    }
    else if(bAddEmpty)
@@ -1622,10 +1670,16 @@ Sort(string_array < Type, RawType > ::Compare);
 template < class Type, class RawType >
 index string_array < Type, RawType > ::add_unique(const string & lpcsz)
 {
+   
    index find = find_first(lpcsz);
+   
    if(find >= 0)
       return -1;
-   return string_array::add((const Type &) lpcsz);
+   
+   string_array::add((const Type &) lpcsz);
+   
+   return get_upper_bound();
+
 }
 
 
@@ -1645,10 +1699,16 @@ template < class Type, class RawType >
 template < class Type, class RawType >
 index string_array < Type, RawType > ::add_unique_ci(const string & lpcsz)
 {
+   
    index find = find_first_ci(lpcsz);
+   
    if(find >= 0)
       return -1;
-   return string_array::add(lpcsz);
+
+   string_array::add((Type)lpcsz);
+
+   return get_upper_bound();
+
 }
 
 
@@ -2075,7 +2135,7 @@ return -1;
 
 
 template < class Type, class RawType >
-void string_array < Type, RawType > ::write(::file::output_stream & ostream) const
+void string_array < Type, RawType > ::write(::file::ostream & ostream) const
 {
    ostream.write_arbitrary(m_nSize);
    for(int32_t i = 0; i < this->get_size(); i++)
@@ -2086,7 +2146,7 @@ void string_array < Type, RawType > ::write(::file::output_stream & ostream) con
 
 
 template < class Type, class RawType >
-void string_array < Type, RawType > ::read(::file::input_stream & istream)
+void string_array < Type, RawType > ::read(::file::istream & istream)
 {
 
    if(istream.fail())
@@ -2259,11 +2319,11 @@ string_array < Type, RawType >  & string_array < Type, RawType > ::csstidy_explo
          {
             status = 2;
             to = (istring[i] == '(') ? ')' : istring[i];
-            element_at(num) += istring[i];
+            element_at(num) += (Type)istring[i];
          }
          else
          {
-            element_at(num) += istring[i];
+            element_at(num) += (Type)istring[i];
          }
          break;
 
@@ -2272,7 +2332,7 @@ string_array < Type, RawType >  & string_array < Type, RawType > ::csstidy_explo
          {
             status = 1;
          }
-         element_at(num) += istring[i];
+         element_at(num) += (Type)istring[i];
          break;
       }
 
@@ -2303,7 +2363,7 @@ template < class Type, class RawType >
    while(strParse.has_char())
    {
 
-      add(::str::consume_command_line_argument(strParse));
+      add((Type)::str::consume_command_line_argument(strParse));
 
    }
 
@@ -2446,7 +2506,7 @@ string_array < Type, RawType >  & string_array < Type, RawType > ::operator = (v
       remove_all();
       if(var.get_count() == 1)
       {
-         add(var.get_string());
+         add((Type)var.get_string());
       }
       else if(var.get_count() > 1)
       {

@@ -22,19 +22,26 @@ namespace file
       {
       }
 
-      bool application::copy(const ::file::path & pszNew,const ::file::path & pszOld,bool bFailIfExists,e_extract eextract)
+      
+      cres application::copy(const ::file::path & pszNew,const ::file::path & pszOld,bool bFailIfExists,e_extract eextract)
       {
          return m_pauraapp->m_paurasystem->m_spfile->copy(pszNew,pszOld,bFailIfExists,eextract,m_pauraapp);
       }
-      bool application::move(const ::file::path & pszNew,const ::file::path & pszOld)
+
+
+      cres application::move(const ::file::path & pszNew,const ::file::path & pszOld)
       {
          return m_pauraapp->m_paurasystem->m_spfile->move(pszNew,pszOld,m_pauraapp);
       }
-      bool application::del(const ::file::path & psz)
+
+
+      cres application::del(const ::file::path & psz)
       {
          return m_pauraapp->m_paurasystem->m_spfile->del(psz,m_pauraapp);
       }
-      bool application::rename(const ::file::path & pszNew,const ::file::path & pszOld)
+
+
+      cres application::rename(const ::file::path & pszNew,const ::file::path & pszOld)
       {
          return m_pauraapp->m_paurasystem->m_spfile->rename(pszNew,pszOld,m_pauraapp);
       }
@@ -49,10 +56,12 @@ namespace file
          return m_pauraapp->m_paurasystem->m_spfile->trash_that_is_not_trash(stra,m_pauraapp);
       }
 
-      void application::replace(const ::file::path & pszContext,const string & pszFind,const string & pszReplace)
+      
+      cres application::replace(const ::file::path & pszContext,const string & pszFind,const string & pszReplace)
       {
          return m_pauraapp->m_paurasystem->m_spfile->replace(pszContext,pszFind,pszReplace,m_pauraapp);
       }
+
 
       bool application::exists(const ::file::path & pszPath)
       {
@@ -231,9 +240,9 @@ namespace file
          return m_pauraapp->m_paurasystem->m_spfile->dtf(pszFile,pszDir,m_pauraapp);
       }
 
-      void application::dtf(const ::file::path & pszFile,::file::patha & stra,::file::patha & straRelative)
+      void application::dtf(const ::file::path & pszFile,::file::patha & stra)
       {
-         return m_pauraapp->m_paurasystem->m_spfile->dtf(pszFile,stra,straRelative,m_pauraapp);
+         return m_pauraapp->m_paurasystem->m_spfile->dtf(pszFile,stra,m_pauraapp);
       }
 
       void application::ftd(const ::file::path & pszDir,const ::file::path & pszFile)
@@ -254,7 +263,7 @@ namespace file
          return m_pauraapp->m_paxissystem->m_spcrypto->file_get(varFile,str,pszSalt,m_pauraapp);
       }
 
-      ::file::buffer_sp application::friendly_get_file(var varFile,UINT nOpenFlags,fesp * pfesp)
+      ::file::buffer_sp application::friendly_get_file(var varFile,UINT nOpenFlags,cres * pfesp)
       {
          if(pfesp != NULL)
          {
@@ -271,7 +280,7 @@ namespace file
          }
       }
 
-      ::file::buffer_sp application::get_file(var varFile,UINT nOpenFlags, fesp * pfesp)
+      ::file::buffer_sp application::get_file(var varFile,UINT nOpenFlags, cres * pfesp)
       {
 
          if(pfesp != NULL)
@@ -279,7 +288,7 @@ namespace file
             ::release(pfesp->m_p);
          }
 
-         ::fesp fesp;
+         ::cres cres;
 
          ::file::buffer_sp spfile;
 
@@ -456,7 +465,7 @@ namespace file
 
                   spfile = new ::sockets::http_buffer(get_app());
 
-                  if(!(fesp = spfile->open(strPath,nOpenFlags)))
+                  if(!(cres = spfile->open(strPath,nOpenFlags)))
                   {
                      sl.lock();
 
@@ -471,7 +480,7 @@ namespace file
                      try
                      {
 
-                        ::file::input_stream is(spfile);
+                        ::file::istream is(spfile);
 
                         System.file().output(m_pauraapp,strFile,&System.compress(),&::axis::compress::null,is);
 
@@ -501,7 +510,7 @@ namespace file
 
                spfile->oprop("http_set") = varFile["http_set"];
 
-               fesp = spfile->open(strPath,nOpenFlags);
+               cres = spfile->open(strPath,nOpenFlags);
 
             }
 
@@ -518,7 +527,7 @@ namespace file
             else
             {
 
-               spfile = AppUser(m_pauraapp).m_pifs->get_file(strPath,nOpenFlags, &fesp);
+               spfile = AppUser(m_pauraapp).m_pifs->get_file(strPath,nOpenFlags, &cres);
 
             }
 
@@ -552,19 +561,19 @@ namespace file
 
                spfile = Application.alloc(System.type_info < ::file::binary_buffer >());
 
-               fesp = spfile->open(App(m_pauraapp).dir().matter(strPath),nOpenFlags);
+               cres = spfile->open(App(m_pauraapp).dir().matter(strPath),nOpenFlags);
 
             }
             else if(&Session != NULL && Session.m_mapApplication.Lookup(System.url().get_server("matter://" + strPath),papp) && App(m_pauraapp).m_strAppName.has_char())
             {
 
-               spfile = App(papp).file().get_file("matter://" + strPath,nOpenFlags, &fesp);
+               spfile = App(papp).file().get_file("matter://" + strPath,nOpenFlags, &cres);
 
             }
             else
             {
 
-               spfile = get_file(App(m_pauraapp).dir().matter(strPath),nOpenFlags, &fesp);
+               spfile = get_file(App(m_pauraapp).dir().matter(strPath),nOpenFlags, &cres);
 
             }
 
@@ -587,12 +596,12 @@ namespace file
 
             spfile = Application.alloc(System.type_info < ::file::binary_buffer >());
 
-            fesp = spfile->open(strPath,nOpenFlags);
+            cres = spfile->open(strPath,nOpenFlags);
 
 
          }
 
-         if(!fesp)
+         if(!cres)
          {
 
             spfile.release();
@@ -600,7 +609,7 @@ namespace file
             if(pfesp != NULL)
             {
 
-               *pfesp = fesp;
+               *pfesp = cres;
 
             }
 

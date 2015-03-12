@@ -1614,12 +1614,12 @@ namespace aura
 
    }
 
-   void system::on_end_find_applications_from_cache(::file::byte_input_stream & is)
+   void system::on_end_find_applications_from_cache(::file::byte_istream & is)
    {
 
    }
 
-   void system::on_end_find_applications_to_cache(::file::byte_output_stream & os)
+   void system::on_end_find_applications_to_cache(::file::byte_ostream & os)
    {
 
    }
@@ -1799,7 +1799,7 @@ namespace aura
       if(file.is_null())
          return false;
 
-      ::file::byte_input_stream is(file);
+      ::file::byte_istream is(file);
 
       is >> m_mapAppLibrary;
 
@@ -1824,9 +1824,10 @@ namespace aura
       m_mapAppLibrary.remove_all();
 
       string strLibraryId;
-      ::file::patha straTitle;
+      
+      ::file::listing straTitle(this);
 
-      Application.dir().ls_pattern(System.dir().ca2module(),"*.*",NULL,& straTitle);
+      straTitle.ls_pattern(System.dir().ca2module(),"*.*");
 
       for(int32_t i = 0; i < straTitle.get_count(); i++)
       {
@@ -1868,7 +1869,7 @@ namespace aura
 
       }
 
-      ::file::byte_output_stream os(file);
+      ::file::byte_ostream os(file);
 
       os << m_mapAppLibrary;
 

@@ -583,7 +583,7 @@ namespace file
       m_ptreeitemFlush = m_ptreeitem;
    }
 
-   bool edit_buffer::SaveTo(::file::output_stream & ostream)
+   bool edit_buffer::SaveTo(::file::ostream & ostream)
    {
       char buf[4096];
       primitive::memory_size uiRead;

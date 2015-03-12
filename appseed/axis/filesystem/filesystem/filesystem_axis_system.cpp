@@ -34,76 +34,76 @@ namespace file
 
       }
 
-      void system::get_ascendants_path(const ::file::path & lpcsz,::file::patha & straParam)
-   {
-      ::file::patha stra;
-      get_ascendants_name(lpcsz, stra);
-      string str;
-      bool bUrl = System.url().is_url(lpcsz);
-#if defined(LINUX) || defined(APPLEOS)
-      bool bLinux = true;
-      str += "/";
-#else
-      bool bLinux = false;
-#endif
-
-      for(int32_t i = 0; i < stra.get_size(); i++)
-      {
-         str += stra[i];
-         if(stra[i].find('/') < 0 && stra[i].find('\\') < 0)
-         {
-            str += "\\";
-         }
-         if(bUrl || bLinux)
-         {
-            str.replace("\\", "/");
-         }
-         else
-         {
-            str.replace("/", "\\");
-         }
-         straParam.add(::file::path(str));
-      }
-   }
-
-      void system::get_ascendants_name(const ::file::path & lpcsz,::file::patha & straParam)
-   {
-      stringa straSeparator;
-      straSeparator.add("/");
-      straSeparator.add("\\");
-      straParam.add_smallest_tokens(lpcsz, straSeparator, FALSE);
-      if(straParam.get_count() > 0)
-      {
-         strsize iFind = straParam[0].find(':');
-         if(iFind >= 2)
-         {
-            straParam[0] += "//";
-         }
-         else if(iFind == 1)
-         {
-            straParam[0] += "\\";
-         }
-      }
-   }
-
-
-   bool system::exists(const char * pszPath, ::aura::application * papp)
-   {
-
-      return exists(pszPath, NULL, papp);
-
-   }
+//      void system::get_ascendants_path(const ::file::path & lpcsz,::file::patha & straParam)
+//   {
+//      ::file::patha stra;
+//      get_ascendants_name(lpcsz, stra);
+//      string str;
+//      bool bUrl = System.url().is_url(lpcsz);
+//#if defined(LINUX) || defined(APPLEOS)
+//      bool bLinux = true;
+//      str += "/";
+//#else
+//      bool bLinux = false;
+//#endif
+//
+//      for(int32_t i = 0; i < stra.get_size(); i++)
+//      {
+//         str += stra[i];
+//         if(stra[i].find('/') < 0 && stra[i].find('\\') < 0)
+//         {
+//            str += "\\";
+//         }
+//         if(bUrl || bLinux)
+//         {
+//            str.replace("\\", "/");
+//         }
+//         else
+//         {
+//            str.replace("/", "\\");
+//         }
+//         straParam.add(::file::path(str));
+//      }
+//   }
+//
+//      void system::get_ascendants_name(const ::file::path & lpcsz,::file::patha & straParam)
+//   {
+//      stringa straSeparator;
+//      straSeparator.add("/");
+//      straSeparator.add("\\");
+//      straParam.add_smallest_tokens(lpcsz, straSeparator, FALSE);
+//      if(straParam.get_count() > 0)
+//      {
+//         strsize iFind = straParam[0].find(':');
+//         if(iFind >= 2)
+//         {
+//            straParam[0] += "//";
+//         }
+//         else if(iFind == 1)
+//         {
+//            straParam[0] += "\\";
+//         }
+//      }
+//   }
 
 
-   bool system::exists(const char * pszPath, var * pvarQuery, ::aura::application * papp)
-   {
+   //bool system::exists(const char * pszPath, ::aura::application * papp)
+   //{
 
-      return exists(string(pszPath), pvarQuery, papp);
+   //   return exists(pszPath, NULL, papp);
 
-   }
+   //}
 
 
-   bool system::exists(const string & strPath, ::aura::application * papp)
+   //bool system::exists(const char * pszPath, var * pvarQuery, ::aura::application * papp)
+   //{
+
+   //   return exists(string(pszPath), pvarQuery, papp);
+
+   //}
+
+
+      bool system::exists(const ::file::path & strPath,::aura::application * papp)
    {
 
       return exists(strPath, NULL, papp);
@@ -111,7 +111,7 @@ namespace file
    }
 
 
-   bool system::exists(const string & strPath, var * pvarQuery, ::aura::application * papp)
+      bool system::exists(const ::file::path & strPath,var * pvarQuery,::aura::application * papp)
    {
 
       if (::str::begins(strPath, astr.strUifsProtocol))
@@ -177,23 +177,23 @@ namespace file
 
    }
 
-   var system::length(const char * pszPath, ::aura::application * papp)
-   {
+   //var system::length(const char * pszPath, ::aura::application * papp)
+   //{
 
-      return length(pszPath, NULL, papp);
+   //   return length(pszPath, NULL, papp);
 
-   }
-
-
-   var system::length(const char * pszPath, var * pvarQuery, ::aura::application * papp)
-   {
-
-      return length(string(pszPath), pvarQuery, papp);
-
-   }
+   //}
 
 
-   var system::length(const string & strPath, ::aura::application * papp)
+   //var system::length(const char * pszPath, var * pvarQuery, ::aura::application * papp)
+   //{
+
+   //   return length(string(pszPath), pvarQuery, papp);
+
+   //}
+
+
+      var system::length(const ::file::path & strPath,::aura::application * papp)
    {
 
       return length(strPath, NULL, papp);
@@ -201,7 +201,7 @@ namespace file
    }
 
 
-   var system::length(const string & strPath, var * pvarQuery, ::aura::application * papp)
+      var system::length(const ::file::path & strPath,var * pvarQuery,::aura::application * papp)
    {
 
       if (::str::begins_ci(strPath, "http://") || ::str::begins_ci(strPath, "https://"))
@@ -255,7 +255,7 @@ namespace file
    }
 
 
-   string system::time_square(::aura::application * papp, const char * pszPrefix, const char * pszSuffix)
+   ::file::path system::time_square(::aura::application * papp,const string & pszPrefix,const string & pszSuffix)
    {
       
       return time(papp,System.dir().time_square(papp),25,pszPrefix,pszSuffix);
@@ -263,7 +263,7 @@ namespace file
    }
 
 
-   string system::time_log(::aura::application * papp, const char * pszId)
+   ::file::path system::time_log(::aura::application * papp, const char * pszId)
    {
 
       return time(papp, System.dir().time_log(pszId), 9);
@@ -271,7 +271,7 @@ namespace file
    }
 
 
-   string system::time(::aura::application * papp, const char * psz, int32_t iMaxLevel, const char * pszPrefix, const char * pszSuffix)
+   ::file::path system::time(::aura::application * papp, const ::file::path & psz, int32_t iMaxLevel, const string & pszPrefix, const string & pszSuffix)
    {
       synch_lock lockMachineEvent(
          (&System.machine_event_central() != NULL) ?
@@ -285,15 +285,14 @@ restart:
       str.Empty();
       str = psz;
       System.dir().mk(str, papp);
-      ::file::patha straTitle;
+      ::file::listing straTitle(papp);
       string strFormat;
       for(int32_t i = 1; i <= iMaxLevel;)
       {
          System.dir().mk(str, papp);
          if(!System.dir().is(str, papp))
             throw "time square dir does not exist";
-         straTitle.remove_all();
-         System.dir().ls(papp, str, NULL, &straTitle);
+         straTitle.ls(str);
          if(i < iMaxLevel)
          {
             int32_t iMax = filterex_time_square("", straTitle);
@@ -324,7 +323,7 @@ restart:
          }
          else // if i == iMaxLevel
          {
-            System.dir().ls(papp, str, NULL, &straTitle);
+            straTitle.ls(str);
             int32_t iMax = filterex_time_square(pszPrefix, straTitle);
             if(iMax == -1)
             {
@@ -381,7 +380,7 @@ restart:
    }
 
    // fail if exists, create if not exists
-   bool system::mk_time(const char * lpcszCandidate)
+   bool system::mk_time(const ::file::path & lpcszCandidate)
    {
       ::file::binary_buffer_sp spfile(allocer());
       if(System.file().exists(lpcszCandidate, get_app()))
@@ -409,7 +408,7 @@ restart:
       primitive::memory storage;
       if(varFile.cast < ::file::stream_buffer > () != NULL)
       {
-         ::file::byte_input_stream is(varFile.cast < ::file::stream_buffer >());
+         ::file::byte_istream is(varFile.cast < ::file::stream_buffer >());
          storage.read(is);
       }
       else
@@ -452,7 +451,7 @@ restart:
             {
                try
                {
-                  ::file::byte_input_stream is(App(papp).file().get_file(strFilePath, ::file::type_binary | ::file::mode_read));
+                  ::file::byte_istream is(App(papp).file().get_file(strFilePath, ::file::type_binary | ::file::mode_read));
                   is >> storage;
                }
                catch(...)
@@ -677,112 +676,119 @@ restart:
    //}
 
 
-   string system::title_(const char * path)
+   //string system::title_(const char * path)
+   //{
+
+   //   string str = name_(path);
+
+   //   strsize iPos = str.reverse_find('.');
+
+   //   if(iPos >= 0)
+   //   {
+   //      return str.Mid(0, iPos);
+   //   }
+   //   else
+   //   {
+   //      return str;
+   //   }
+
+   //}
+
+   //string system::name_(const char * path)
+   //{
+
+   //   string str(path);
+
+   //   while(::str::ends_eat(str, "\\"));
+
+   //   while(::str::ends_eat(str, "/"));
+
+   //   strsize iPos;
+
+   //   strsize iPos1 = str.reverse_find('\\');
+
+   //   strsize iPos2 = str.reverse_find('/');
+
+   //   if(iPos1 >= 0 && iPos2 >= 0)
+   //   {
+
+   //      if(iPos1 > iPos2)
+   //      {
+
+   //         iPos = iPos1 + 1;
+
+   //      }
+   //      else
+   //      {
+
+   //         iPos = iPos2 + 1;
+
+   //      }
+
+   //   }
+   //   else if(iPos1 >= 0)
+   //   {
+
+   //      iPos = iPos1 + 1;
+
+   //   }
+   //   else if(iPos2 >= 0)
+   //   {
+
+   //      iPos = iPos2 + 1;
+
+   //   }
+   //   else
+   //   {
+
+   //      iPos = 0;
+
+   //   }
+
+   //   return str.Mid(iPos);
+
+   //}
+
+   //string system::extension(const char * path)
+   //{
+
+   //   string str = name_(path);
+
+   //   strsize iPos = str.reverse_find('.');
+
+   //   if(iPos >= 0)
+   //   {
+
+   //      return str.Mid(iPos + 1);
+
+   //   }
+   //   else
+   //   {
+
+   //      return "";
+
+   //   }
+
+   //}
+
+   ::cres system::copy(const ::file::path & pszNew,const ::file::path & psz,bool bFailIfExists,e_extract eextract,::aura::application * papp)
    {
-
-      string str = name_(path);
-
-      strsize iPos = str.reverse_find('.');
-
-      if(iPos >= 0)
-      {
-         return str.Mid(0, iPos);
-      }
-      else
-      {
-         return str;
-      }
-
-   }
-
-   string system::name_(const char * path)
-   {
-
-      string str(path);
-
-      while(::str::ends_eat(str, "\\"));
-
-      while(::str::ends_eat(str, "/"));
-
-      strsize iPos;
-
-      strsize iPos1 = str.reverse_find('\\');
-
-      strsize iPos2 = str.reverse_find('/');
-
-      if(iPos1 >= 0 && iPos2 >= 0)
-      {
-
-         if(iPos1 > iPos2)
-         {
-
-            iPos = iPos1 + 1;
-
-         }
-         else
-         {
-
-            iPos = iPos2 + 1;
-
-         }
-
-      }
-      else if(iPos1 >= 0)
-      {
-
-         iPos = iPos1 + 1;
-
-      }
-      else if(iPos2 >= 0)
-      {
-
-         iPos = iPos2 + 1;
-
-      }
-      else
-      {
-
-         iPos = 0;
-
-      }
-
-      return str.Mid(iPos);
-
-   }
-
-   string system::extension(const char * path)
-   {
-
-      string str = name_(path);
-
-      strsize iPos = str.reverse_find('.');
-
-      if(iPos >= 0)
-      {
-
-         return str.Mid(iPos + 1);
-
-      }
-      else
-      {
-
-         return "";
-
-      }
-
-   }
-
-   void system::copy(const char * pszNew, const char * psz, bool bFailIfExists, e_extract eextract, ::aura::application * papp)
-   {
+      
       if(bFailIfExists)
       {
-         if(exists(pszNew, papp))
-            throw "Failed to copy file";
+      
+         if(exists(pszNew,papp))
+         {
+            return failure;
+
+         }
+
       }
+
       if(System.dir().is(psz, papp) && (eextract == extract_first || eextract == extract_all || !(::str::ends_ci(psz, ".zip"))))
       {
-         ::file::patha patha;
-         System.dir().rls(papp, psz, &patha);
+         ::file::listing patha(papp);
+         patha.rls(psz);
          ::file::path strDst;
          ::file::path strSrc;
          ::file::path strDirSrc(psz);
@@ -809,9 +815,9 @@ restart:
             }
             else
             {
-               if(!System.dir().is(System.dir().name(strDst), papp))
+               if(!System.dir().is(strDst.folder(), papp))
                {
-                  System.dir().mk(System.dir().name(strDst), papp);
+                  System.dir().mk(strDst.folder(), papp);
                }
                copy(strDst, strSrc, bFailIfExists, eextract == extract_all ? extract_all : extract_none, papp);
             }
@@ -824,7 +830,7 @@ restart:
 
          if(System.dir().is(pszNew, papp))
          {
-            strNew = ::file::path(pszNew) / name_(psz);
+            strNew = ::file::path(pszNew) / psz.name();
          }
          else
          {
@@ -849,9 +855,9 @@ restart:
             throw strError;
          }
 
-         ::file::output_stream ostream(ofile);
+         ::file::ostream ostream(ofile);
 
-         ::file::input_stream istream(ifile);
+         ::file::istream istream(ifile);
 
          System.compress().null(ostream, istream);
 
@@ -943,9 +949,11 @@ restart:
 
       }
 
+      return no_exception;
+
    }
 
-   void system::move(const char * pszNew, const char * psz)
+   ::cres system::move(const ::file::path & pszNew,const ::file::path & psz,::aura::application * papp)
    {
 #ifdef WINDOWSEX
       if(!::MoveFileW(
@@ -1003,9 +1011,12 @@ restart:
          throw strError;
       }
 #endif
+
+      return no_exception;
+
    }
 
-   void system::del(const char * psz)
+   ::cres system::del(const ::file::path & psz,::aura::application * papp)
    {
 #ifdef WINDOWSEX
 
@@ -1015,10 +1026,10 @@ restart:
       {
          uint32_t dwError = ::GetLastError();
          if(dwError == 2) // the file does not exist, so delete "failed"
-            return;
+            return failure;
          string strError;
          strError.Format("Failed to delete file \"%s\" error=%d",psz,dwError);
-         throw io_exception(get_app(),strError);
+         return failure;
       }
       else
       {
@@ -1048,10 +1059,12 @@ restart:
       }
 #endif
 
+
+      return no_exception;
    }
 
 
-   string system::copy(const char * psz, ::aura::application * papp)
+   ::file::path system::copy(const ::file::path & psz,::aura::application * papp)
    {
       string strCopy("copy");
       string strNew;
@@ -1071,7 +1084,7 @@ restart:
       }
       else
       {
-         string strExt = extension(psz);
+         string strExt = psz.extension();
          if(!strExt.is_empty())
          {
             strExt = "-" + strExt;
@@ -1093,9 +1106,9 @@ restart:
 
 
 
-   string system::paste(const char * pszLocation, const char * path, ::aura::application * papp)
+   ::file::path system::paste(const ::file::path & pszLocation,const ::file::path & path,::aura::application * papp)
    {
-      ::file::path strDir = System.dir().name(path);
+      ::file::path strDir = path.folder();
       ::file::path strDest = pszLocation;
       ::file::path strSrc = strDir;
       if(strDest == strSrc)
@@ -1104,13 +1117,13 @@ restart:
       }
       else
       {
-         ::file::path strNew = strDest / name_(path);
+         ::file::path strNew = strDest / path.name();
          copy(strNew, path, false, extract_all, papp);
          return strNew;
       }
    }
 
-   void system::trash_that_is_not_trash(stringa & stra, ::aura::application * papp)
+   void system::trash_that_is_not_trash(const ::file::patha & stra, ::aura::application * papp)
    {
 
       if(stra.get_size() <= 0)
@@ -1122,72 +1135,62 @@ restart:
 
       for(int32_t i = 0; i < stra.get_size(); i++)
       {
-#ifdef WINDOWS
-         move(strDir / name_(stra[i]), stra[i]);
-#else
-         ::rename(stra[i], strDir / name_(stra[i])));
-#endif
+
+         move(strDir / stra[i].name(),stra[i], papp);
+
       }
 
    }
 
-   void system::trash_that_is_not_trash(const char * psz, ::aura::application * papp)
+   void system::trash_that_is_not_trash(const ::file::path & psz,::aura::application * papp)
    {
 
       ::file::path strDir = System.dir().trash_that_is_not_trash(psz);
 
       System.dir().mk(strDir, papp);
 
-#ifdef WINDOWS
-      //         ::MoveFile(psz, strDir / name_(psz)));
-      move(strDir / name_(psz), psz);
-#else
-      ::rename(psz, strDir / name_(psz)));
-#endif
+      move(strDir / psz.name(), psz, papp);
 
    }
 
-   void system::replace(const char * pszContext, const char * pszFind, const char * pszReplace, ::aura::application * papp)
+
+   ::cres system::replace(const ::file::path & pszContext,const string & pszFind,const string & pszReplace,::aura::application * papp)
    {
-      ::file::patha straTitle;
-      System.dir().ls(papp, pszContext, NULL, &straTitle);
+
+      cres e;
+
+      ::file::listing straTitle(papp);
+      straTitle.ls(pszContext);
       string strOld;
       string strNew;
       string strFail;
       ::file::path pathContext = pszContext;
       for(int32_t i = 0; i < straTitle.get_size(); i++)
       {
-         strOld = straTitle[i];
+         strOld = straTitle[i].name();
          strNew = strOld;
          strNew.replace(pszFind, pszReplace);
          if(strNew != strOld)
          {
-#ifdef WINDOWS
-            //               ::MoveFileW(
-            //                ::str::international::utf8_to_unicode(System.dir().path(pszContext, strOld)),
-            //              ::str::international::utf8_to_unicode(System.dir().path(pszContext, strNew)));
-            try
-            {
-               move(pathContext / strNew,pathContext / strOld);
-            }
-            catch(...)
-            {
-               strFail += "failed to move " + (pathContext / strOld).str() + " to " + (pathContext/strNew).str();
-            }
-#else
-            ::rename(
-               System.dir().path(pszContext, strOld),
-               System.dir().path(pszContext, strNew));
-#endif
+            // TODO(camilo) : should there be a way to chain or return multiple exceptions... instead of cres specifile file smart...
+            // why not a super smart chained super hand heroe smarter pointerer that can contain vector of any excepction based on
+            // ::exception like (::file::exception) (I supposed ::file::exception is already based on ::exception OMG CAMILO!!!)
+            // and may be then replace could do replace for example on HTTP servers and return may io_exception and not tighted
+            // to a barely translated io exception into a empty ::file::exception with improper filled members....
+            e = move(pathContext / strNew,pathContext / strOld, papp);
          }
       }
       if(strFail.has_char())
       {
          Application.simple_message_box(NULL, strFail, MB_ICONEXCLAMATION);
       }
+
+      return e;
+
    }
 
-   bool system::is_read_only(const char * psz)
+
+   bool system::is_read_only(const ::file::path & psz)
    {
 
 #ifdef WINDOWSEX
@@ -1214,7 +1217,8 @@ restart:
 
    }
 
-   string system::sys_temp(const char * pszName, const char * pszExtension, ::aura::application * papp)
+
+   ::file::path system::sys_temp(const ::file::path & pszName,const string & pszExtension,::aura::application * papp)
    {
 
       string strTempDir = get_sys_temp_path();
@@ -1249,15 +1253,16 @@ restart:
 
    }
 
-   string system::sys_temp_unique(const char * pszName)
+   
+   ::file::path system::sys_temp_unique(const ::file::path & pszName)
    {
 
-      return get_sys_temp_path() + pszName;
+      return ::file::path(get_sys_temp_path()) / pszName;
 
    }
 
 
-   ::file::buffer_sp system::time_square_file(::aura::application * papp, const char * pszPrefix, const char * pszSuffix)
+   ::file::buffer_sp system::time_square_file(::aura::application * papp, const string & pszPrefix, const string & pszSuffix)
    {
 
       return get(time_square(papp, pszPrefix, pszSuffix), papp);
@@ -1265,10 +1270,10 @@ restart:
    }
 
 
-   ::file::buffer_sp system::get(const char * name, ::aura::application * papp)
+   ::file::buffer_sp system::get(const ::file::path & name,::aura::application * papp)
    {
 
-      System.dir().mk(System.dir().name(name), papp);
+      System.dir().mk(name.folder(), papp);
 
       ::file::binary_buffer_sp fileOut = App(papp).file().get_file(name, ::file::mode_create | ::file::type_binary | ::file::mode_write);
 
@@ -1279,38 +1284,55 @@ restart:
 
    }
 
-   string system::replace_extension(const char * pszFile, const char * pszExtension)
+
+   ::file::path system::replace_extension(const ::file::path & pszFile, const string & pszExtension)
    {
-      string strFile(pszFile);
+      
+      ::file::path strFile(pszFile);
+      
       set_extension(strFile, pszExtension);
+      
       return strFile;
+
    }
 
-   void system::set_extension(string & strFile, const char * pszExtension)
+
+   void system::set_extension(::file::path & strFile, const string & pszExtension)
    {
+
       strsize iEnd = strFile.reverse_find('.');
+
       if(iEnd < 0)
          iEnd = strFile.get_length();
+
       strFile = strFile.Left(iEnd) + ::str::has_char(pszExtension, ".");
+
    }
 
-   void system::normalize(string & str)
+
+   void system::normalize(::file::path & str)
    {
+
       if(str.is_empty())
          return;
+
       while(str.has_char() &&
          (str.Right(1) == "\\" ||
          str.Right(1) == "/"))
       {
+
          str = str.Left(str.get_length() - 1);
+
       }
+
    }
 
-   int32_t system::cmp(const char * psz1, const char * psz2)
+
+   int32_t system::cmp(const ::file::path & psz1, const ::file::path & psz2)
    {
-      string str1(psz1);
+      ::file::path str1(psz1);
       normalize(str1);
-      string str2(psz2);
+      ::file::path str2(psz2);
       normalize(str2);
       return str1.CompareNoCase(str2);
    }
@@ -1335,7 +1357,7 @@ restart:
    //   return true;
    //}
 
-   string system::md5(const char * psz)
+   string system::md5(const ::file::path & psz)
    {
 
       ::file::binary_buffer_sp spfile(allocer());
@@ -1375,7 +1397,7 @@ restart:
    }
 
 
-   void system::dtf(const char * pszFile, stringa & stra, stringa & straRelative, ::aura::application * papp)
+   void system::dtf(const ::file::path & pszFile,::file::patha & stra, ::aura::application * papp)
    {
 
       ::file::binary_buffer_sp spfile = App(papp).file().get_file(pszFile, ::file::mode_create | ::file::mode_write  | ::file::type_binary);
@@ -1416,7 +1438,7 @@ restart:
          iPos = spfile->get_position();
          write_gen_string(spfile, NULL, strMd5);
          MD5_Init(&ctx);
-         write_gen_string(spfile, &ctx, straRelative[i]);
+         write_gen_string(spfile, &ctx, stra[i].relative());
          if(!file2->open(stra[i], ::file::mode_read | ::file::type_binary))
             throw "failed";
          write_n_number(spfile, &ctx, (int32_t) file2->get_length());
@@ -1431,17 +1453,26 @@ restart:
          spfile->seek_to_end();
 
       }
+
       write_n_number(spfile, NULL, 2);
+
    }
 
-   void system::ftd(const char * pszDir, const char * pszFile, ::aura::application * papp)
+
+   void system::ftd(const ::file::path & pszDir,const ::file::path & pszFile,::aura::application * papp)
    {
+
       string strVersion;
+
       ::file::binary_buffer_sp spfile = App(papp).file().get_file(pszFile, ::file::mode_read  | ::file::type_binary);
+
       if(spfile.is_null())
          throw "failed";
+
       read_gen_string(spfile, NULL, strVersion);
+
       int64_t n;
+
       string strRelative;
       string strMd5;
       string strMd5New;
@@ -1463,7 +1494,7 @@ restart:
             MD5_Init(&ctx);
             read_gen_string(spfile, &ctx, strRelative);
             ::file::path strPath = ::file::path(pszDir) / strRelative;
-            App(papp).dir().mk(System.dir().name(strPath));
+            App(papp).dir().mk(strPath.name());
             if(!file2->open(strPath, ::file::mode_create | ::file::type_binary | ::file::mode_write))
                throw "failed";
             read_n_number(spfile, &ctx, iLen);
@@ -1586,7 +1617,7 @@ restart:
 
 
 
-   bool system::resolve_link(string & strTarget,const char * pszSource,sp(::aura::interaction) puiMessageParentOptional)
+   bool system::resolve_link(::file::path & strTarget,const ::file::path & pszSource,sp(::aura::interaction) puiMessageParentOptional)
    {
 
 #ifdef WINDOWSEX
@@ -1602,7 +1633,9 @@ restart:
 #endif
 
    }
-   string system::nessie(const char * psz)
+
+
+   string system::nessie(const ::file::path & psz)
    {
 
       ::file::binary_buffer_sp spfile(allocer());

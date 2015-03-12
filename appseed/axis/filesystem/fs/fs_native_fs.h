@@ -13,14 +13,17 @@ namespace fs
    {
    public:
 
+
       native(::aura::application * papp);
+
+
+      virtual ::file::listing & ls(::file::listing & listing);
 
 
       // optional if ls_dir is implemented
       virtual bool has_subdir(const ::file::path & pszPath);
-      virtual bool ls(const ::file::path & pszDir,::file::patha * ppatha,::file::patha * ppathaName,bool bSize,bool_array * pbaDir);
       virtual bool is_dir(const ::file::path & pszPath);
-      virtual void root_ones(::file::patha & patha,stringa & straTitle);
+      virtual ::file::listing & root_ones(::file::listing & listing);
       //virtual void get_ascendants_path(const ::file::path & pszPath,::file::patha & stra);
       //virtual void get_ascendants_name(const ::file::path & lpcsz,::file::patha & straParam);
       //virtual string eat_end_level(const char * pszPath, int32_t iCount);
@@ -33,7 +36,7 @@ namespace fs
 
       virtual bool file_move(const ::file::path & pszDst,const ::file::path & pszSrc);
 
-      virtual ::file::buffer_sp get_file(const ::file::path & path,UINT nOpenFlags,fesp * pfesp);
+      virtual ::file::buffer_sp get_file(const ::file::path & path,UINT nOpenFlags,cres * pfesp);
 
    };
 

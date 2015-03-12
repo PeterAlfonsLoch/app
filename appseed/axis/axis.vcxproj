@@ -4267,7 +4267,7 @@
     <ClInclude Include="net\http\http_get_socket.h" />
     <ClInclude Include="net\http\http_http.h" />
     <ClInclude Include="net\http\http_listener.h" />
-    <ClInclude Include="net\http\http_output_stream.h" />
+    <ClInclude Include="net\http\http_ostream.h" />
     <ClInclude Include="net\http\http_signal.h" />
     <ClInclude Include="net\http\http_status.h" />
     <ClInclude Include="net\http\http_system.h" />
@@ -5923,7 +5923,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_profiler|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="net\http\http_output_stream.cpp">
+    <ClCompile Include="net\http\http_ostream.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>

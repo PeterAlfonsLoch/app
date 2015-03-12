@@ -266,109 +266,21 @@ namespace windows
    //}
 
    
-   bool dir::ls_pattern(::aura::application * papp, const char * lpcsz, const char * pszPattern, ::file::patha * ppatha, ::file::patha * ppathaName, bool_array * pbaIsDir, bool bSize)
+   bool dir::ls(::aura::application * papp, ::file::listing & listing)
    {
       
-      if(::file::dir::axis::system::ls_pattern(papp,lpcsz,pszPattern,ppatha,ppathaName,pbaIsDir,piaSize))
+      if(::file::dir::axis::system::ls_pattern(papp,listing))
       {
 
          return true;
          
       }
 
-      return ::windows::dir::ls_pattern(papp,lpcsz,pszPattern,ppatha,ppathaName,pbaIsDir,piaSize);
+      return ::windows::dir::ls_pattern(papp,listing);
 
    }
 
 
-   bool dir::rls(::aura::application * papp, const char * lpcsz, ::file::patha * ppatha, ::file::patha * ppathaName, ::file::patha * ppathaRelative, e_extract eextract)
-   {
-      
-      if(::file::dir::axis::system::rls(papp,lpcsz,ppatha,ppathaName,ppathaRelative,eextract))
-      {
-
-         return true;
-
-      }
-
-      return ::windows::dir::rls(papp,lpcsz,ppatha,ppathaName,ppathaRelative,eextract);
-
-   }
-
-
-   bool dir::rls_pattern(::aura::application * papp, const char * lpcsz, const char * lpszPattern, ::file::patha * ppatha, ::file::patha * ppathaName, ::file::patha * ppathaRelative, bool_array * pbaIsDir, bool bSize, e_extract eextract)
-   {
-
-      if(::file::dir::axis::system::rls_pattern(papp,lpcsz,lpszPattern,ppatha,ppathaName,ppathaRelative,pbaIsDir,piaSize,eextract))
-      {
-
-         return true;
-
-      }
-
-      return ::windows::dir::rls_pattern(papp,lpcsz,lpszPattern,ppatha,ppathaName,ppathaRelative,pbaIsDir,piaSize,eextract);
-
-   }
-
-
-   bool dir::rls_dir(::aura::application * papp, const char * lpcsz, ::file::patha * ppatha, ::file::patha * ppathaName, ::file::patha * ppathaRelative)
-   {
-
-      if(::file::dir::axis::system::rls_dir(papp,lpcsz,ppatha,ppathaName,ppathaRelative))
-      {
-
-         return true;
-
-      }
-
-      return ::windows::dir::rls_dir(papp,lpcsz,ppatha,ppathaName,ppathaRelative);
-
-   }
-
-   
-   bool dir::ls_dir(::aura::application * papp, const char * lpcsz, ::file::patha * ppatha, ::file::patha * ppathaName)
-   {
-      
-      if(::file::dir::axis::system::ls_dir(papp,lpcsz,ppatha,ppathaName))
-      {
-
-         return true;
-
-      }
-
-      return ::windows::dir::ls_dir(papp,lpcsz,ppatha,ppathaName);
-      
-   }
-
-
-   bool dir::ls_file(::aura::application * papp, const char * lpcsz, ::file::patha * ppatha, ::file::patha * ppathaName)
-   {
-
-      if(::file::dir::axis::system::ls_file(papp,lpcsz,ppatha,ppathaName))
-      {
-
-         return true;
-
-      }
-
-      return ::windows::dir::ls_file(papp,lpcsz,ppatha,ppathaName);
-
-   }
-
-
-   bool dir::ls(::aura::application * papp, const char * lpcsz, ::file::patha * ppatha, ::file::patha * ppathaName, bool_array * pbaIsDir, bool bSize)
-   {
-
-      if(::file::dir::axis::system::ls(papp,lpcsz,ppatha,ppathaName,pbaIsDir,piaSize))
-      {
-
-         return true;
-
-      }
-
-      return ::windows::dir::ls(papp,lpcsz,ppatha,ppathaName,pbaIsDir,piaSize);
-
-   }
 
 
    bool dir::is(const char * lpcszPath, ::aura::application * papp)

@@ -15,17 +15,17 @@ namespace file
       virtual ~application();
 
 
-      virtual bool copy(const ::file::path & pszNew, const ::file::path & psz, bool bFailIfExists = false, e_extract eextract = extract_first);
-      virtual bool move(const ::file::path & pszNew,const ::file::path & psz);
-      virtual bool del(const ::file::path & psz);
-      virtual bool rename(const ::file::path & pszNew,const ::file::path & psz);
+      virtual cres copy(const ::file::path & pszNew, const ::file::path & psz, bool bFailIfExists = false, e_extract eextract = extract_first);
+      virtual cres move(const ::file::path & pszNew,const ::file::path & psz);
+      virtual cres del(const ::file::path & psz);
+      virtual cres rename(const ::file::path & pszNew,const ::file::path & psz);
 
 
       virtual void trash_that_is_not_trash(const ::file::path & psz);
       virtual void trash_that_is_not_trash(::file::patha & stra);
 
 
-      virtual void replace(const ::file::path & pszContext, const char * pszFind, const char * pszReplace);
+      virtual cres replace(const ::file::path & pszContext, const string & pszFind, const string & pszReplace);
 
       virtual bool exists(const ::file::path & pszPath);
 
@@ -56,11 +56,11 @@ namespace file
       string sys_temp(const char * pszName, const char * pszExtension);
 
 
-      virtual ::file::buffer_sp get_file(var varFile, UINT nOpenFlags, fesp * pfesp = NULL);
+      virtual ::file::buffer_sp get_file(var varFile, UINT nOpenFlags, cres * pfesp = NULL);
       //virtual ::file::byte_stream get_byte_stream(var varFile, UINT nOpenFlags);
 
       // get a file and if there are exceptions, should show end user friendly messages
-      virtual ::file::buffer_sp friendly_get_file(var varFile, UINT nOpenFlags, fesp * pfesp = NULL);
+      virtual ::file::buffer_sp friendly_get_file(var varFile, UINT nOpenFlags, cres * pfesp = NULL);
 
 
       void dtf(const ::file::path & pszFile,const ::file::path & pszDir);

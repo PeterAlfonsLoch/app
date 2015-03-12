@@ -56,8 +56,8 @@ public:
 
    void copy_data(const biunique & ia);
 
-   virtual void write(::file::output_stream & ostream) const;
-   virtual void read(::file::input_stream & ostream);
+   virtual void write(::file::ostream & ostream) const;
+   virtual void read(::file::istream & ostream);
 
    biunique & operator = (const biunique & ia);
 
@@ -345,7 +345,7 @@ biunique < T, T_to_T > & biunique < T, T_to_T > ::operator = (const biunique & i
 
 
 template < class t1, class t2, class t3, class t4 >
-void serialize_write(::file::output_stream & ostream, map < t1, t2, t3, t4 > & m)
+void serialize_write(::file::ostream & ostream, map < t1, t2, t3, t4 > & m)
 {
    ::count count = m.get_count();
    typename map < t1, t2, t3, t4 >::pair * ppair = m.PGetFirstAssoc();
@@ -359,7 +359,7 @@ void serialize_write(::file::output_stream & ostream, map < t1, t2, t3, t4 > & m
 }
 
 template < class t1, class t2, class t3, class t4 >
-void serialize_read(::file::input_stream & istream, map < t1, t2, t3, t4 > & m)
+void serialize_read(::file::istream & istream, map < t1, t2, t3, t4 > & m)
 {
    try
    {
@@ -385,7 +385,7 @@ void serialize_read(::file::input_stream & istream, map < t1, t2, t3, t4 > & m)
 }
 
 template < class T, class T_to_T >
-void biunique < T, T_to_T > ::write(::file::output_stream & ostream) const
+void biunique < T, T_to_T > ::write(::file::ostream & ostream) const
 {
    ostream << m_bBiunivoca;
    ostream << m_iMaxA;
@@ -404,7 +404,7 @@ void biunique < T, T_to_T > ::write(::file::output_stream & ostream) const
 }
 
 template < class T, class T_to_T >
-void biunique < T, T_to_T > ::read(::file::input_stream & istream)
+void biunique < T, T_to_T > ::read(::file::istream & istream)
 {
    try
    {

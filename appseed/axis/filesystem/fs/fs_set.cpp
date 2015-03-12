@@ -71,7 +71,7 @@ namespace fs
    }
 
 
-   sp(data) set::path_data(const char * psz)
+   sp(data) set::path_data(const ::file::path & psz)
    {
 
       single_lock sl(data_mutex(), true);
@@ -105,7 +105,7 @@ namespace fs
 
    }
 
-   sp(data) set::node_path_data(const char * psz)
+   sp(data) set::node_path_data(const  ::file::path & psz)
    {
 
       sp(data) pdata = path_data(psz);
@@ -117,14 +117,12 @@ namespace fs
 
    }
 
-   bool set::ls(const char * psz,::file::patha * ppatha,::file::patha * ppathaName,bool bSize,bool_array * pbaDir)
+   ::file::listing & set::ls(::file::listing & listing)
    {
 
-      if(psz == NULL || strlen(psz) == 0)
+      if(listing.m_path.is_empty())
       {
-         ::file::patha patha;
-         stringa straTitle;
-         root_ones(patha, straTitle);
+         root_ones(listing, straTitle);
          for(int32_t i = 0; i < patha.get_size(); i++)
          {
             if(ppatha != NULL)

@@ -37,7 +37,7 @@ namespace simpledb
          }
       }
 
-      ::file::input_stream is(m_spfileMeta);
+      ::file::istream is(m_spfileMeta);
 
       if(!m_xmldocumentMeta.load(is))
          return DB_ERROR;

@@ -25,7 +25,7 @@ namespace base
 
 
 template < size_t _Bits >
-inline ::file::output_stream & operator << (::file::output_stream & _Ostr,const bitset<_Bits>& _Right)
+inline ::file::ostream & operator << (::file::ostream & _Ostr,const bitset<_Bits>& _Right)
 {
    // insert bitset as a string
    return (_Ostr << _Right.template to_string());
@@ -33,7 +33,7 @@ inline ::file::output_stream & operator << (::file::output_stream & _Ostr,const 
 
 // TEMPLATE operator>>
 template < size_t _Bits >
-inline ::file::input_stream & operator >>(::file::input_stream &  _Istr,bitset<_Bits>& _Right)
+inline ::file::istream & operator >>(::file::istream &  _Istr,bitset<_Bits>& _Right)
 {
    // extract bitset as a string
    string _Str;

@@ -10,7 +10,6 @@ public:
    TYPE *  m_pKept;
    bool    m_bKept;
 
-
    keep(TYPE * pKept,TYPE keepValue,TYPE keepAwayValue,bool bStartKept);
    virtual ~keep();
 
@@ -19,6 +18,8 @@ public:
 
 
 };
+
+
 
 template <class TYPE>
 keep<TYPE>::keep(TYPE * pKept,TYPE keepValue,TYPE keepAwayValue,bool bStartKept):

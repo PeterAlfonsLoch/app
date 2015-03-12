@@ -335,9 +335,6 @@
     <ClInclude Include="net\http\http_http.h">
       <Filter>Header Files\net\http</Filter>
     </ClInclude>
-    <ClInclude Include="net\http\http_output_stream.h">
-      <Filter>Header Files\net\http</Filter>
-    </ClInclude>
     <ClInclude Include="net\http\http_system.h">
       <Filter>Header Files\net\http</Filter>
     </ClInclude>
@@ -1307,6 +1304,9 @@
     <ClInclude Include="user\user\user_copydesk.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
+    <ClInclude Include="net\http\http_ostream.h">
+      <Filter>Header Files\net\http</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="net\net_net.cpp">
@@ -1319,9 +1319,6 @@
       <Filter>Source Files\net\http</Filter>
     </ClCompile>
     <ClCompile Include="net\http\http_get_socket.cpp">
-      <Filter>Source Files\net\http</Filter>
-    </ClCompile>
-    <ClCompile Include="net\http\http_output_stream.cpp">
       <Filter>Source Files\net\http</Filter>
     </ClCompile>
     <ClCompile Include="net\http\http_signal.cpp">
@@ -2248,11 +2245,11 @@
     <ClCompile Include="axis\os\ansios\ansios_crypt.cpp">
       <Filter>Source Files\axis\os</Filter>
     </ClCompile>
+    <ClCompile Include="net\http\http_ostream.cpp">
+      <Filter>Source Files\net\http</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>

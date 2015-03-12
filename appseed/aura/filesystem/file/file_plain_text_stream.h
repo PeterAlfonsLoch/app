@@ -6,8 +6,8 @@ namespace file
 
 
    class CLASS_DECL_AURA plain_text_stream :
-      virtual public plain_text_output_stream,
-      virtual public plain_text_input_stream,
+      virtual public plain_text_ostream,
+      virtual public plain_text_istream,
       virtual public stream
    {
    public:

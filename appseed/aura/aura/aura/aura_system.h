@@ -382,9 +382,9 @@ namespace aura
       virtual int32_t install_progress_app_add_up(int iAddUp);
 
       virtual void on_start_find_applications_from_cache();
-      virtual void on_end_find_applications_from_cache(::file::byte_input_stream & is);
+      virtual void on_end_find_applications_from_cache(::file::byte_istream & is);
 
-      virtual void on_end_find_applications_to_cache(::file::byte_output_stream & os);
+      virtual void on_end_find_applications_to_cache(::file::byte_ostream & os);
 
       virtual void on_map_application_library(::aura::library & library);
 

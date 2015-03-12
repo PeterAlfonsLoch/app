@@ -23,7 +23,7 @@ namespace fs
    }
 
 
-   bool remote_native::fast_has_subdir(const char * pszPath)
+   bool remote_native::fast_has_subdir(const ::file::path & pszPath)
    {
 
       return true;
@@ -31,7 +31,7 @@ namespace fs
    }
 
 
-   bool remote_native::has_subdir(const char * pszPath)
+   bool remote_native::has_subdir(const ::file::path & pszPath)
    {
 
       defer_initialize();
@@ -77,28 +77,35 @@ namespace fs
 
 
 
-   bool remote_native::ls(const char * pszDir,::file::patha * ppatha,::file::patha * ppathaName,bool bSize,bool_array * pbaDir)
+   ::file::listing & remote_native::ls(::file::listing & listing)
    {
 
       try
       {
+
          defer_initialize();
+
       }
       catch(string & str)
       {
+
          if(str == "You have not logged in! Exiting!")
          {
+
             throw string("uifs:// You have not logged in!");
+
          }
-         return false;
+
+         return listing;
+
       }
 
       xml::document doc(get_app());
 
       string strUrl;
 
-      strUrl = "http://fs.veriwell.net/fs/ls?path=" + System.url().url_encode(System.url().get_script(pszDir))
-         + "&server=" + System.url().url_encode(System.url().get_server(pszDir));
+      strUrl = "http://fs.veriwell.net/fs/ls?path=" + System.url().url_encode(System.url().get_script(listing.m_path))
+         + "&server=" + System.url().url_encode(System.url().get_server(listing.m_path));
 
       string strSource;
 
@@ -107,42 +114,34 @@ namespace fs
       strSource = Application.http().get(strUrl, set);
 
       if(strSource.is_empty())
-         return false;
+         return listing = failure;
 
       if(!doc.load(strSource))
-         return false;
+         return listing = failure;
 
       if(doc.get_root()->get_name() != "folder")
-         return false;
+         return listing = failure;
 
       sp(::xml::node) pnode = doc.get_root()->get_child("folder");
 
       if(pnode != NULL)
       {
-         for(int32_t i = 0; i < pnode->get_children_count(); i++)
+         for(auto child : pnode->childrenref())
          {
-            string strName = pnode->child_at(i)->attr("name");
-            if(pnode->child_at(i)->get_name() != "folder")
+
+            if(child.get_name() != "folder")
                continue;
-            string strPath = dir_path(pszDir, strName);
-            m_mapdirTimeout[strPath] = ::get_tick_count() + (15 * 1000);
-            m_mapfileTimeout.remove_key(strPath);
-            if(ppatha != NULL)
-            {
-               ppatha->add(::file::path(strPath));
-            }
-            if(ppathaName != NULL)
-            {
-               ppathaName->add(::file::path(strName));
-            }
-            if(piaSize != NULL)
-            {
-               piaSize->add(-1);
-            }
-            if(pbaDir != NULL)
-            {
-               pbaDir->add(true);
-            }
+            
+            m_mapdirTimeout[listing.m_path] = ::get_tick_count() + (15 * 1000);
+            
+            m_mapfileTimeout.remove_key(listing.m_path);
+            
+            ::file::path & path = listing.add_child(child.attr("name"));
+            
+            path.m_iSize = 0;
+            
+            path.m_iDir = 1;
+
          }
       }
 
@@ -150,57 +149,49 @@ namespace fs
 
       if(pnode != NULL)
       {
-         for(int32_t i = 0; i < pnode->get_children_count(); i++)
-         {
-            string strName = pnode->child_at(i)->attr("name");
-            //string strExtension = pnode->child_at(i)->attr("extension");
-            if(pnode->child_at(i)->get_name() != "file")
+
+         for(auto child : pnode->childrenref())
+         { 
+
+            if(child.get_name() != "file")
                continue;
-            string strPath = dir_path(pszDir, strName);
-            string strSize = pnode->child_at(i)->attr("size");
-            m_mapfileTimeout[strPath] = ::get_tick_count() + (15 * 1000);
-            m_mapdirTimeout.remove_key(strPath);
-            if(ppatha != NULL)
-            {
-               ppatha->add(::file::path(strPath));
-            }
-            if(ppathaName != NULL)
-            {
-               ppathaName->add(::file::path(strName));
-            }
-            if (piaSize != NULL)
-            {
-               piaSize->add(::str::to_int64(strSize));
-            }
-            if(pbaDir != NULL)
-            {
-               pbaDir->add(false);
-            }
+
+            m_mapfileTimeout[listing.m_path] = ::get_tick_count() + (15 * 1000);
+            
+            m_mapdirTimeout.remove_key(listing.m_path);
+
+            ::file::path & path = listing.add_child(child.attr("name"));
+
+            path.m_iSize = child.attr("size");
+
+            path.m_iDir = 0;
 
          }
       }
 
-      return true;
+      return listing;
+
    }
 
-   bool remote_native::is_dir(const char * pszPath)
+
+   bool remote_native::is_dir(const ::file::path & path)
    {
 
 
       //xml::node node(get_app());
 
-      if(pszPath == NULL || strlen(pszPath) == 0)
+      if(path.is_empty())
       {
          return true;
       }
 
-      if(stricmp_dup(pszPath, "fs://") == 0)
+      if(stricmp_dup(path, "fs://") == 0)
       {
          return true;
       }
 
-      if(System.url().get_script(pszPath).is_empty() ||
-         System.url().get_script(pszPath) == "/")
+      if(System.url().get_script(path).is_empty() ||
+         System.url().get_script(path) == "/")
       {
          return true;
       }
@@ -211,15 +202,13 @@ namespace fs
 
       uint32_t dwTimeout;
 
-      if(m_mapfileTimeout.Lookup(pszPath, dwTimeout))
+      if(m_mapfileTimeout.Lookup(path,dwTimeout))
       {
          if(::get_tick_count() > dwTimeout)
          {
-            ::file::patha patha;
-            ::file::patha straTitle;
-            int64_array iaSize;
-            bool_array baDir;
-            ls(System.dir().name(pszPath), &patha, &straTitle, &iaSize, &baDir);
+            ::file::listing l(this);
+
+            l.ls(path);
          }
          else
          {
@@ -227,15 +216,13 @@ namespace fs
          }
       }
 
-      if(m_mapdirTimeout.Lookup(pszPath, dwTimeout))
+      if(m_mapdirTimeout.Lookup(path,dwTimeout))
       {
          if(::get_tick_count() > dwTimeout)
          {
-            ::file::patha patha;
-            ::file::patha straTitle;
-            int64_array iaSize;
-            bool_array baDir;
-            ls(System.dir().name(pszPath), &patha, &straTitle, &iaSize, &baDir);
+            ::file::listing l(this);
+
+            l.ls(path);
          }
          else
          {
@@ -243,7 +230,7 @@ namespace fs
          }
       }
 
-      if(m_mapfileTimeout.Lookup(pszPath, dwTimeout))
+      if(m_mapfileTimeout.Lookup(path, dwTimeout))
       {
          if(::get_tick_count() > dwTimeout)
          {
@@ -282,26 +269,26 @@ namespace fs
 
    }
 
-   string remote_native::file_name(const char * pszPath)
-   {
+   //string remote_native::file_name(const ::file::path & pszPath)
+   //{
 
-      string strPath(pszPath);
+   //   string strPath(pszPath);
 
-      if(!::str::begins_eat_ci(strPath, "fs://"))
-      {
-         return "";
-      }
+   //   if(!::str::begins_eat_ci(strPath, "fs://"))
+   //   {
+   //      return "";
+   //   }
 
-      strsize iFind = strPath.reverse_find("/");
+   //   strsize iFind = strPath.reverse_find("/");
 
-      if(iFind < 0)
-         iFind = -1;
+   //   if(iFind < 0)
+   //      iFind = -1;
 
-      return strPath.Mid(iFind + 1);
+   //   return strPath.Mid(iFind + 1);
 
-   }
+   //}
 
-   bool remote_native::file_move(const char * pszDst, const char * pszSrc)
+   bool remote_native::file_move(const ::file::path & pszDst,const ::file::path & pszSrc)
    {
       UNREFERENCED_PARAMETER(pszDst);
       UNREFERENCED_PARAMETER(pszSrc);
@@ -309,7 +296,7 @@ namespace fs
    }
 
 
-   ::file::buffer_sp remote_native::get_file(var varFile, UINT nOpenFlags, fesp * pfesp)
+   ::file::buffer_sp remote_native::get_file(const ::file::path & path,UINT nOpenFlags,cres * pfesp)
    {
 
       if(pfesp != NULL)
@@ -317,15 +304,15 @@ namespace fs
          ::release(pfesp->m_p);
       }
 
-      ::fesp fesp;
+      ::cres cres;
 
       ::file::buffer_sp spfile;
 
-      spfile = new remote_native_file(get_app(), varFile);
+      spfile = new remote_native_file(get_app(),path);
 
-      fesp = spfile->open(varFile.get_string(),nOpenFlags);
+      cres = spfile->open(path,nOpenFlags);
 
-      if(!fesp)
+      if(!cres)
       {
 
          spfile.release();
@@ -333,7 +320,7 @@ namespace fs
          if(pfesp != NULL)
          {
 
-            *pfesp = fesp;
+            *pfesp = cres;
 
          }
          
@@ -343,7 +330,7 @@ namespace fs
 
    }
 
-   bool remote_native::file_exists(const char * pszPath)
+   bool remote_native::file_exists(const ::file::path & pszPath)
    {
       return ::fs::data::file_exists(pszPath);
    }
@@ -360,7 +347,7 @@ namespace fs
 
    }
 
-   bool remote_native::is_zero_latency(const char * psz)
+   bool remote_native::is_zero_latency(const  ::file::path & psz)
    {
 
       return false;

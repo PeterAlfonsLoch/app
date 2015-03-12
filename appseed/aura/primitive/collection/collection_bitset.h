@@ -489,9 +489,9 @@ template<size_t _Bits> inline
 		return (_Ans ^= _Right);
 		}
 
-   /*inline ::core::output_stream & operator << (::core::output_stream2 & _Ostr, const bitset<_Bits>& _Right);
+   /*inline ::core::ostream & operator << (::core::ostream2 & _Ostr, const bitset<_Bits>& _Right);
 
-	inline ::core::input_stream & operator>>(::core::input_stream  _Istr, bitset<_Bits>& _Right);
+	inline ::core::istream & operator>>(::core::istream  _Istr, bitset<_Bits>& _Right);
 
 #if _HAS_CPP0X
 template<class _Kty>

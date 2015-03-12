@@ -722,7 +722,7 @@ dump_context & operator <<(dump_context & dumpcontext, ::datetime::time time)
 }
 
 
-::file::output_stream & operator <<(::file::output_stream & os, ::datetime::time time)
+::file::ostream & operator <<(::file::ostream & os, ::datetime::time time)
 {
 
    os.write_arbitrary((int64_t) time.m_time);
@@ -731,7 +731,7 @@ dump_context & operator <<(dump_context & dumpcontext, ::datetime::time time)
 
 }
 
-::file::input_stream & operator >>(::file::input_stream & is, ::datetime::time& rtime)
+::file::istream & operator >>(::file::istream & is, ::datetime::time& rtime)
 {
 
    is.read_arbitrary((int64_t &) rtime.m_time);

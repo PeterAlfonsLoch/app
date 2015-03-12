@@ -5,8 +5,8 @@
 namespace file
 {
 
-   class plain_text_output_stream;
-   class plain_text_input_stream;
+   class plain_text_ostream;
+   class plain_text_istream;
 
 
    class CLASS_DECL_AURA plain_text_stream_base :

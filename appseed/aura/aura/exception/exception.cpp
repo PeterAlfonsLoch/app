@@ -64,6 +64,18 @@ namespace exception
    }
 
 
+   result::result(std::initializer_list < exception * > list)
+   { 
+      
+      forallref(list)
+      { 
+         
+         add(item); 
+      
+      } 
+   
+   }
+
 } // namespace exception
 
 

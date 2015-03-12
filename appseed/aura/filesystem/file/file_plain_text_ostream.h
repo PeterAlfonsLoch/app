@@ -5,19 +5,19 @@ namespace file
 {
 
 
-   class CLASS_DECL_AURA plain_text_output_stream :
-      virtual public output_stream,
+   class CLASS_DECL_AURA plain_text_ostream :
+      virtual public ostream,
       virtual public plain_text_stream_base
    {
    public:
 
 
-      plain_text_output_stream();
-      plain_text_output_stream(stream_buffer * pwriter);
-      plain_text_output_stream(const output_stream & ostream);
-      virtual ~plain_text_output_stream();
+      plain_text_ostream();
+      plain_text_ostream(stream_buffer * pwriter);
+      plain_text_ostream(const ostream & ostream);
+      virtual ~plain_text_ostream();
 
-      using output_stream::write;
+      using ostream::write;
       virtual void write (bool b);
       virtual void write (char ch);
       virtual void write (uchar uch);
@@ -41,7 +41,7 @@ namespace file
 
       virtual ::string get_location() const;
 
-      output_stream & operator = (const output_stream & ostream);
+      ostream & operator = (const ostream & ostream);
 
       operator void * ()
       {

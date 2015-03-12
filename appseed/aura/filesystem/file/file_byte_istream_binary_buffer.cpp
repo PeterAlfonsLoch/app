@@ -6,7 +6,7 @@ namespace file
 
 
 
-   byte_input_stream_binary_buffer::byte_input_stream_binary_buffer(::aura::application * papp, const char * pszFilePath, uint32_t uiFlags) :
+   byte_istream_binary_buffer::byte_istream_binary_buffer(::aura::application * papp, const char * pszFilePath, uint32_t uiFlags) :
       object(papp)
    {
 
@@ -33,7 +33,7 @@ namespace file
 
    }
 
-   byte_input_stream_binary_buffer::~byte_input_stream_binary_buffer()
+   byte_istream_binary_buffer::~byte_istream_binary_buffer()
    {
 
    }

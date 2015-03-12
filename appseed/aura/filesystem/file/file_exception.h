@@ -78,11 +78,6 @@ namespace file
    };
 
 
-   struct no_exception
-   {
-
-   };
-
    class CLASS_DECL_AURA exception_sp :
       public sp(exception)
    {
@@ -90,7 +85,15 @@ namespace file
 
 
       exception_sp() {}
-      exception_sp(no_exception) {}
+      exception_sp(e_context_switcher_no_exception) {}
+      exception_sp(e_context_switcher_failed)
+      {
+         m_p = canew(exception(::get_thread_app()));
+         if(m_p != NULL)
+         {
+            m_p->add_ref();
+         }
+      }
       exception_sp(::aura::application * papp,exception::e_cause cause = exception::none,LONG lOsError = -1,const char * lpszArchiveName = NULL)
       {
          m_p = canew(exception(papp,cause,lOsError,lpszArchiveName));

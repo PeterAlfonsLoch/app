@@ -145,8 +145,8 @@ namespace datetime
 CLASS_DECL_AURA dump_context & operator <<(dump_context & dumpcontext, ::datetime::time time);
 CLASS_DECL_AURA dump_context & operator <<(dump_context & dumpcontext, ::datetime::time_span time);
 
-CLASS_DECL_AURA ::file::output_stream & operator <<(::file::output_stream & os, ::datetime::time time);
-CLASS_DECL_AURA ::file::input_stream & operator >>(::file::input_stream & is, ::datetime::time & time);
+CLASS_DECL_AURA ::file::ostream & operator <<(::file::ostream & os, ::datetime::time time);
+CLASS_DECL_AURA ::file::istream & operator >>(::file::istream & is, ::datetime::time & time);
 
 
 inline CLASS_DECL_AURA ::datetime::time_span operator - (const duration & duration, const ::datetime::time & time)

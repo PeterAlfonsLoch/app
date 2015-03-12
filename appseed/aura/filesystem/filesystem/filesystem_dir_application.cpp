@@ -26,12 +26,12 @@ namespace file
       {
       }
 
-      ::file::path application::locale_schema(const char * pszLocale,const char * pszStyle)
+      ::file::path application::locale_schema(const string & pszLocale,const string & pszStyle)
       {
          return m_pauraapp->m_paurasystem->m_spdir->locale_schema(get_app(), pszLocale, pszStyle);
       }
 
-      ::file::patha application::locale_schema_matter(const char * pszLocale, const char * pszStyle, const char * pszRoot, const char * pszApp)
+      ::file::patha application::locale_schema_matter(const string & pszLocale, const string & pszStyle, const char * pszRoot, const char * pszApp)
       {
          return m_pauraapp->m_paurasystem->m_spdir->locale_schema_matter(get_app(), pszLocale, pszStyle, pszRoot, pszApp);
       }
@@ -51,22 +51,22 @@ namespace file
          return m_pauraapp->m_paurasystem->m_spdir->matter(get_app(), path, bDir, pszRoot, pszApp);
       }
 
-      //::file::path application::matter(const string & str, const string & str2, bool bDir, const char * pszRoot, const char * pszApp)
+      //::file::path application::matter(const string & str, const string & str2, bool bDir, const string & pszRoot, const string & pszApp)
       //{
       //   return m_pauraapp->m_paurasystem->m_spdir->matter(get_app(), str, str2, bDir, pszRoot, pszApp);
       //}
 
-      //::file::path application::matter(const string & str, const char * psz, bool bDir, const char * pszRoot, const char * pszApp)
+      //::file::path application::matter(const string & str, const string & psz, bool bDir, const string & pszRoot, const string & pszApp)
       //{
       //   return m_pauraapp->m_paurasystem->m_spdir->matter(get_app(), str, psz, bDir, pszRoot, pszApp);
       //}
 
-      //::file::path application::matter(const char * psz, const string & str, bool bDir, const char * pszRoot, const char * pszApp)
+      //::file::path application::matter(const string & psz, const string & str, bool bDir, const string & pszRoot, const string & pszApp)
       //{
       //   return m_pauraapp->m_paurasystem->m_spdir->matter(get_app(), psz, str, bDir, pszRoot, pszApp);
       //}
 
-      //::file::path application::matter(const char * lpcsz, const char * lpcsz2, bool bDir, const char * pszRoot, const char * pszApp)
+      //::file::path application::matter(const string & lpcsz, const string & lpcsz2, bool bDir, const string & pszRoot, const string & pszApp)
       //{
       //   return m_pauraapp->m_paurasystem->m_spdir->matter(get_app(), bDir, pszRoot, pszApp);
       //}
@@ -85,7 +85,7 @@ namespace file
          return m_pauraapp->m_paurasystem->m_spdir->matter(get_app(), stra, bDir, pszRoot, pszApp);
       }
 
-      ::file::path application::usersystemappdata(const char * lpcszPrefix)
+      ::file::path application::usersystemappdata(const string & lpcszPrefix)
       {
          return m_pauraapp->m_paurasystem->m_spdir->usersystemappdata(get_app(), lpcszPrefix);
       }
@@ -110,17 +110,17 @@ namespace file
          return m_pauraapp->m_paurasystem->m_spdir->default_os_user_path_prefix(get_app());
       }
 
-      ::file::path application::default_userappdata(const char * lpcszPrefix, const char * lpcszLogin)
+      ::file::path application::default_userappdata(const string & lpcszPrefix, const string & lpcszLogin)
       {
          return m_pauraapp->m_paurasystem->m_spdir->default_userappdata(get_app(), lpcszPrefix, lpcszLogin);
       }
 
-      ::file::path application::default_userdata(const char * lpcszPrefix,const char * lpcszLogin)
+      ::file::path application::default_userdata(const string & lpcszPrefix,const string & lpcszLogin)
       {
          return m_pauraapp->m_paurasystem->m_spdir->default_userdata(get_app(), lpcszPrefix, lpcszLogin);
       }
 
-      ::file::path application::default_userfolder(const char * lpcszPrefix,const char * lpcszLogin)
+      ::file::path application::default_userfolder(const string & lpcszPrefix,const string & lpcszLogin)
       {
          return m_pauraapp->m_paurasystem->m_spdir->default_userfolder(get_app(), lpcszPrefix, lpcszLogin);
       }
@@ -130,97 +130,64 @@ namespace file
          return m_pauraapp->m_paurasystem->m_spdir->userquicklaunch(get_app());
       }
 
+
       ::file::path application::userprograms()
       {
+
          return m_pauraapp->m_paurasystem->m_spdir->userprograms(get_app());
+
       }
 
 
-      bool application::ls_pattern(const char * lpcsz,const char * lpcszPattern,::file::patha * ppatha,::file::patha * ppathaName,bool bSize)
+      ::file::listing & application::ls(listing & listing)
       {
-         return m_pauraapp->m_paurasystem->m_spdir.m_p->ls_pattern(m_pauraapp, lpcsz, lpcszPattern, ppatha, ppathaName, pbaIsDir, bSize);
+
+         return m_pauraapp->m_paurasystem->m_spdir.m_p->ls(m_pauraapp, listing);
+
       }
 
-      bool application::ls(const char * lpcsz,::file::patha * ppatha,::file::patha * ppathaName,bool bSize)
-      {
-         return m_pauraapp->m_paurasystem->m_spdir.m_p->ls(m_pauraapp, lpcsz, ppatha, ppathaName, pbaIsDir, bSize);
-      }
 
-      bool application::rls_pattern(const char * lpcsz, const char * lpcszPattern, ::file::patha * ppatha, ::file::patha * ppathaName, ::file::patha * ppathaRelative, bool_array * pbaIsDir, bool bSize)
-      {
-         return m_pauraapp->m_paurasystem->m_spdir.m_p->rls_pattern(m_pauraapp, lpcsz, lpcszPattern, ppatha, ppathaName, ppathaRelative, pbaIsDir, bSize);
-      }
-
-      bool application::rls(const char * lpcsz, ::file::patha * ppatha, ::file::patha * ppathaName, ::file::patha * ppathaRelative)
-      {
-         return m_pauraapp->m_paurasystem->m_spdir.m_p->rls(m_pauraapp, lpcsz, ppatha, ppathaName, ppathaRelative);
-      }
-
-      bool application::rls_dir(const char * lpcsz,::file::patha * ppatha,::file::patha * ppathaName,::file::patha * ppathaRelative)
-      {
-         return m_pauraapp->m_paurasystem->m_spdir.m_p->rls_dir(m_pauraapp, lpcsz, ppatha, ppathaName, ppathaRelative);
-      }
-
-      bool application::ls_dir(const char * lpcsz,::file::patha * ppatha,::file::patha * ppathaName)
-      {
-         return m_pauraapp->m_paurasystem->m_spdir.m_p->ls_dir(m_pauraapp, lpcsz, ppatha, ppathaName);
-      }
-
-      bool application::has_subdir(const char * lpcsz)
+      bool application::has_subdir(const ::file::path & lpcsz)
       {
          return m_pauraapp->m_paurasystem->m_spdir.m_p->has_subdir(m_pauraapp, lpcsz);
       }
 
-      bool application::ls_file(const char * lpcsz,::file::patha * ppatha,::file::patha * ppathaName)
-      {
-         return m_pauraapp->m_paurasystem->m_spdir.m_p->ls_file(m_pauraapp, lpcsz, ppatha, ppathaName);
-      }
 
-      bool application::is(const char * lpcsz)
+      bool application::is(const ::file::path & lpcsz)
       {
          return m_pauraapp->m_paurasystem->m_spdir.m_p->is(lpcsz, m_pauraapp);
       }
 
-      bool application::is(const string & str)
-      {
-         return m_pauraapp->m_paurasystem->m_spdir.m_p->is(str, m_pauraapp);
-      }
-
-      bool application::is(const var & var)
-      {
-         return m_pauraapp->m_paurasystem->m_spdir.m_p->is(var, m_pauraapp);
-      }
-
-      bool application::is_inside(const char * lpcszDir, const char * lpcszPath)
+      bool application::is_inside(const ::file::path & lpcszDir,const ::file::path & lpcszPath)
       {
          return m_pauraapp->m_paurasystem->m_spdir.m_p->is_inside(lpcszDir, lpcszPath, m_pauraapp);
       }
 
-      bool application::is_inside_time(const char * lpcsz)
+      bool application::is_inside_time(const ::file::path & lpcsz)
       {
          return m_pauraapp->m_paurasystem->m_spdir.m_p->is_inside_time(lpcsz, m_pauraapp);
       }
 
 
-      void application::root_ones(::file::patha & patha, stringa & straTitle)
+      ::file::listing & application::root_ones(::file::listing & listing)
       {
-         return m_pauraapp->m_paurasystem->m_spdir.m_p->root_ones(patha, straTitle, m_pauraapp);
+         return m_pauraapp->m_paurasystem->m_spdir.m_p->root_ones(listing, m_pauraapp);
       }
 
 
-      bool application::mk(const char * lpcsz)
+      bool application::mk(const ::file::path & lpcsz)
       {
          return m_pauraapp->m_paurasystem->m_spdir.m_p->mk(lpcsz, m_pauraapp);
       }
 
 
-      bool application::rm(const char * psz, bool bRecursive)
+      bool application::rm(const ::file::path & psz,bool bRecursive)
       {
          return m_pauraapp->m_paurasystem->m_spdir.m_p->rm(m_pauraapp, psz, bRecursive);
       }
 
 
-      ::file::path application::pathfind(const char * pszEnv, const char * pszTopic, const char * pszMode)
+      ::file::path application::pathfind(const string & pszEnv, const string & pszTopic, const string & pszMode)
       {
          return m_pauraapp->m_paurasystem->m_spdir->pathfind(pszEnv, pszTopic, pszMode, m_pauraapp);
       }

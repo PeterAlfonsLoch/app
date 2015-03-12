@@ -11,14 +11,14 @@ namespace file
    class file;
    typedef sp(binary_buffer) binary_buffer_sp;
 
-   class byte_output_stream;
-   class input_stream;
+   class byte_ostream;
+   class istream;
    class serializable;
 
 
 
-   class CLASS_DECL_AURA byte_output_stream :
-      virtual public output_stream
+   class CLASS_DECL_AURA byte_ostream :
+      virtual public ostream
    {
    public:
 
@@ -26,10 +26,10 @@ namespace file
       bool        m_b64bit;
 
 
-      byte_output_stream();
-      byte_output_stream(stream_buffer * pwriter);
-      byte_output_stream(const output_stream & ostream);
-      virtual ~byte_output_stream();
+      byte_ostream();
+      byte_ostream(stream_buffer * pwriter);
+      byte_ostream(const ostream & ostream);
+      virtual ~byte_ostream();
 
 
       void write_arbitrary(int32_t i);
@@ -38,7 +38,7 @@ namespace file
       void write_arbitrary(uint64_t ui);
       void write_arbitrary(uint64_t ui, int signal);
 
-      using output_stream::write;
+      using ostream::write;
       virtual void write (char ch);
       virtual void write (uchar uch);
       virtual void write (int16_t sh);
@@ -64,7 +64,7 @@ namespace file
 
       virtual string get_location() const;
 
-      output_stream & operator = (const output_stream & ostream);
+      ostream & operator = (const ostream & ostream);
 
       virtual void write_from_hex(const char * psz, strsize iLen = -1);
       virtual void write_from_hex(const string & str);

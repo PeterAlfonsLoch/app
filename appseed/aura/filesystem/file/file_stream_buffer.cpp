@@ -45,13 +45,15 @@ namespace file
       return NULL;
    }
 
-   exception_sp stream_buffer::open(const ::file::path & lpszFileName,UINT nOpenFlags)
+   
+   cres stream_buffer::open(const ::file::path & lpszFileName,UINT nOpenFlags)
    {
       UNREFERENCED_PARAMETER(lpszFileName);
       UNREFERENCED_PARAMETER(nOpenFlags);
-      return fesp(get_app());
+      return failure;
    }
 
+   
    file_position stream_buffer::seek(file_offset lOff, ::file::e_seek nFrom)
    {
       UNREFERENCED_PARAMETER(lOff);
@@ -135,7 +137,7 @@ namespace file
    }
 
 
-   void stream_buffer::write(output_stream & ostream)
+   void stream_buffer::write(ostream & ostream)
    {
 
       seek_to_begin();
@@ -145,7 +147,7 @@ namespace file
    }
 
 
-   void stream_buffer::read(input_stream & istream)
+   void stream_buffer::read(istream & istream)
    {
 
       transfer_from(*istream.m_spbuffer);

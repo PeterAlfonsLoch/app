@@ -173,24 +173,36 @@ namespace fontopus
 
    void fontopus::logout()
    {
+      
       if(m_puser != NULL)
       {
+
          try
          {
-            System.file().del(::dir::userappdata("license_auth/00001.data"));
+            
+            Application.file().del(::dir::userappdata()/"license_auth/00001.data");
+
          }
          catch(...)
          {
+
          }
+
          try
          {
-            System.file().del(::dir::userappdata("license_auth/00002.data"));
+
+            Application.file().del(::dir::userappdata()/"license_auth/00002.data");
+
          }
          catch(...)
          {
+
          }
+
          delete m_puser;
+
       }
+
       m_puser = NULL;
    }
 

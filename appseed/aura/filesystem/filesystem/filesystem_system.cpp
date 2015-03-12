@@ -249,35 +249,50 @@ namespace file
       return time(papp, System.dir().time_log(pszId), 9);
    }
 
+   
    ::file::path system::time(::aura::application * papp,const ::file::path & psz,int32_t iMaxLevel,const char * pszPrefix,const char * pszSuffix)
    {
-      synch_lock lockMachineEvent(
-         (&System.machine_event_central() != NULL) ?
-         &System.machine_event_central().m_machineevent.m_mutex
-         : ((mutex *) NULL));
+      
+      synch_lock lockMachineEvent((&System.machine_event_central() != NULL) ? &System.machine_event_central().m_machineevent.m_mutex : ((mutex *) NULL));
+
       int32_t iIncLevel = -1;
+
       ::file::path str;
+
       string strPrefix(pszPrefix);
+
       string strSuffix(pszSuffix);
+
 restart:
+      
       str.Empty();
+      
       str = psz;
+      
       System.dir().mk(str, papp);
-      ::file::patha straTitle;
+      
+      listing ls(papp);
+      
       string strFormat;
+      
       for(int32_t i = 1; i <= iMaxLevel;)
       {
+         
          System.dir().mk(str, papp);
+         
          if(!System.dir().is(str, papp))
             throw "time square dir does not exist";
-         straTitle.remove_all();
-         System.dir().ls(papp, str, NULL, &straTitle);
+         
+         ls.ls(str);
+
          if(i < iMaxLevel)
          {
-            int32_t iMax = filterex_time_square("", straTitle);
+
+            int32_t iMax = filterex_time_square("", ls);
+
             if(iMax == -1)
             {
-               str += "00";
+               str /= "00";
                System.dir().mk(str, papp);
             }
             else if(iMax == 99)
@@ -302,11 +317,14 @@ restart:
          }
          else // if i == iMaxLevel
          {
-            System.dir().ls(papp, str, NULL, &straTitle);
-            int32_t iMax = filterex_time_square(pszPrefix, straTitle);
+            
+            ls.ls(str);
+            
+            int32_t iMax = filterex_time_square(pszPrefix, ls);
+
             if(iMax == -1)
             {
-               str = str / (strPrefix+"00"+strSuffix);
+               str = str / strPrefix+"00"+strSuffix;
                if(system::mk_time(str))
                   break;
             }
@@ -319,7 +337,7 @@ restart:
             {
                iMax++;
                strFormat.Format("%02d", iMax);
-               str = str / (strPrefix+strFormat+strSuffix);
+               str = str / strPrefix+strFormat+strSuffix;
                if(system::mk_time(str))
                   break;
             }
@@ -335,7 +353,7 @@ restart:
       int32_t iIndex;
       for(int32_t i = 0; i < stra.get_size(); i++)
       {
-         string str = stra[i];
+         string str = stra[i].name();
          if(::str::begins_eat_ci(str, pszPrefix))
          {
             if(str.get_length() < 2)
@@ -387,7 +405,7 @@ restart:
       primitive::memory storage;
       if(varFile.cast < ::file::stream_buffer > () != NULL)
       {
-         ::file::byte_input_stream is(varFile.cast < ::file::stream_buffer >());
+         ::file::byte_istream is(varFile.cast < ::file::stream_buffer >());
          storage.read(is);
       }
       else
@@ -474,7 +492,7 @@ restart:
          if(spfile.is_null())
             return;
 
-         ::file::byte_input_stream is(spfile);
+         ::file::byte_istream is(spfile);
 
          is >> mem;
 
@@ -751,17 +769,17 @@ restart:
 
    //}
 
-   bool system::copy(const ::file::path & pszNew,const ::file::path & psz,bool bFailIfExists,e_extract eextract,::aura::application * papp)
+   ::cres system::copy(const ::file::path & pszNew,const ::file::path & psz,bool bFailIfExists,e_extract eextract,::aura::application * papp)
    {
       
       if(!::file_copy_dup(pszNew,psz,!bFailIfExists))
       {
          
-         return false;
+         return ::failure;
 
       }
 
-      return true;
+      return ::no_exception;
 
    }
 
@@ -776,7 +794,7 @@ restart:
    }
 
 
-   ::file::exception_sp system::set_status(const ::file::path & path,const ::file::file_status & status,::aura::application * papp)
+   cres system::set_status(const ::file::path & path,const ::file::file_status & status,::aura::application * papp)
    {
 
       UNREFERENCED_PARAMETER(path);
@@ -786,14 +804,14 @@ restart:
    }
 
 
-   bool system::move(const ::file::path & pszNew,const ::file::path & psz,::aura::application * papp)
+   ::cres system::move(const ::file::path & pszNew,const ::file::path & psz,::aura::application * papp)
    {
 #ifdef WINDOWSEX
       
       if(!::MoveFileW(::str::international::utf8_to_unicode(psz), ::str::international::utf8_to_unicode(pszNew)))
       {
          
-         return false;
+         return ::failure;
 
       }
 #elif defined(METROWIN)
@@ -843,16 +861,16 @@ restart:
       }
 #endif
 
-      return true;
+      return ::no_exception;
 
    }
 
 
-   bool system::del(const ::file::path & psz,::aura::application * papp)
+   ::cres system::del(const ::file::path & psz,::aura::application * papp)
    {
 
       if(!exists(psz,papp))
-         return true;
+         return no_exception;
 
 #ifdef WINDOWSEX
 
@@ -860,14 +878,14 @@ restart:
       {
          uint32_t dwError = ::GetLastError();
          if(dwError == 2) // the file does not exist, so delete "failed"
-            return false;
+            return failure;
          string strError;
          strError.Format("Failed to delete file \"%s\" error=%d", psz, dwError);
          TRACE(strError);
-         return false;
+         return failure;
       }
 
-      return true;
+      return no_exception;
 
 #else
       if(remove(psz) != 0)
@@ -879,7 +897,7 @@ restart:
       }
 #endif
 
-      return true;
+      return no_exception;
 
    }
 
@@ -928,7 +946,8 @@ restart:
 
    ::file::path system::paste(const ::file::path & pszLocation,const ::file::path & path,::aura::application * papp)
    {
-      ::file::path strDir = System.dir().name(path);
+      //::file::path strDir = System.dir().name(path);
+      ::file::path strDir = path.name();
       ::file::path strDest = pszLocation;
       ::file::path strSrc = strDir;
       if(strDest == strSrc)
@@ -980,16 +999,19 @@ restart:
 
    }
 
-   void system::replace(const ::file::path & pszContext,const string & pszFind,const string & pszReplace,::aura::application * papp)
+   ::cres system::replace(const ::file::path & pszContext,const string & pszFind,const string & pszReplace,::aura::application * papp)
    {
-      ::file::patha straTitle;
-      System.dir().ls(papp, pszContext, NULL, &straTitle);
+      
+      listing ls(papp);
+      
+      ls.ls(pszContext);
+      
       string strOld;
       string strNew;
       string strFail;
-      for(int32_t i = 0; i < straTitle.get_size(); i++)
+      for(int32_t i = 0; i < ls.get_size(); i++)
       {
-         strOld = straTitle[i];
+         strOld = ls[i].name();
          strNew = strOld;
          strNew.replace(pszFind, pszReplace);
          if(strNew != strOld)
@@ -1013,13 +1035,20 @@ restart:
 #endif
          }
       }
+      
       if(strFail.has_char())
       {
-         Application.simple_message_box(NULL, strFail, MB_ICONEXCLAMATION);
+      
+         return fesp(papp,::file::exception::none,-1,strFail);
+
       }
+
+      return no_exception;
+
    }
 
-   bool system::is_read_only(const char * psz)
+
+   bool system::is_read_only(const ::file::path & psz)
    {
 
 #ifdef WINDOWSEX
@@ -1046,7 +1075,8 @@ restart:
 
    }
 
-   string system::sys_temp(const char * pszName, const char * pszExtension, ::aura::application * papp)
+
+   ::file::path system::sys_temp(const ::file::path & pszName, const char * pszExtension, ::aura::application * papp)
    {
 
       string strTempDir = get_sys_temp_path();
@@ -1081,10 +1111,11 @@ restart:
 
    }
 
-   string system::sys_temp_unique(const char * pszName)
+
+   ::file::path system::sys_temp_unique(const ::file::path & pszName)
    {
 
-      return get_sys_temp_path() / pszName;
+      return ::file::path(get_sys_temp_path()) / pszName;
 
    }
 
@@ -1100,7 +1131,7 @@ restart:
    ::file::buffer_sp system::get(const ::file::path & name,::aura::application * papp)
    {
 
-      System.dir().mk(System.dir().name(name), papp);
+      System.dir().mk(name.name(), papp);
 
       ::file::binary_buffer_sp fileOut = App(papp).file().get_file(name, ::file::mode_create | ::file::type_binary | ::file::mode_write);
 
@@ -1111,20 +1142,35 @@ restart:
 
    }
 
-   string system::replace_extension(const char * pszFile, const char * pszExtension)
+   
+   ::file::path system::replace_extension(const ::file::path & pszFile, const char * pszExtension)
    {
-      string strFile(pszFile);
+
+      ::file::path strFile(pszFile);
+
       set_extension(strFile, pszExtension);
+
       return strFile;
+
    }
 
-   void system::set_extension(string & strFile, const char * pszExtension)
+
+   void system::set_extension(::file::path & strFile, const char * pszExtension)
    {
+
       strsize iEnd = strFile.reverse_find('.');
+
       if(iEnd < 0)
+      {
+
          iEnd = strFile.get_length();
+
+      }
+
       strFile = strFile.Left(iEnd) + ::str::has_char(pszExtension, ".");
+
    }
+
 
    void system::normalize(string & str)
    {
@@ -1138,7 +1184,7 @@ restart:
       }
    }
 
-   int32_t system::cmp(const char * psz1, const char * psz2)
+   int32_t system::cmp(const ::file::path & psz1, const ::file::path & psz2)
    {
       string str1(psz1);
       normalize(str1);
@@ -1149,7 +1195,7 @@ restart:
 
 
 
-   bool system::rename(const ::file::path & pszNew,const ::file::path & psz,::aura::application * papp)
+   cres system::rename(const ::file::path & pszNew,const ::file::path & psz,::aura::application * papp)
    {
 
       ::file::path strDir = *psz;
@@ -1161,23 +1207,23 @@ restart:
          
          // rename should work only on files in the same directory/folder
 
-         return false;
+         return failure;
          
       }
 
       if(!move(pszNew, psz, papp))
       {
 
-         return false;
+         return failure;
 
       }
 
-      return true;
+      return no_exception;
 
    }
 
 
-   string system::md5(const char * psz)
+   string system::md5(const ::file::path & psz)
    {
       throw interface_only_exception(get_app());
 
@@ -1187,22 +1233,21 @@ restart:
 
 
 
-   void system::dtf(const char * pszFile, const char * pszDir, ::aura::application * papp)
+   void system::dtf(const ::file::path  & pszFile,const ::file::path & pszDir,::aura::application * papp)
    {
-      ::file::patha stra;
-      ::file::patha straRelative;
-      System.dir().rls(papp, pszDir, &stra, NULL, &straRelative);
-      dtf(pszFile, stra, straRelative, papp);
+      listing ls(papp);
+      ls.rls( pszDir);
+      dtf(pszFile, ls, papp);
    }
 
-   void system::dtf(const char * pszFile, ::file::patha & stra, ::file::patha & straRelative, ::aura::application * papp)
+   void system::dtf(const ::file::path & pszFile,::file::patha & stra,::aura::application * papp)
    {
 
       throw interface_only_exception(get_app());
 
    }
 
-   void system::ftd(const char * pszDir,const char * pszFile,::aura::application * papp)
+   void system::ftd(const ::file::path & pszDir,const ::file::path & pszFile,::aura::application * papp)
    {
    
       throw interface_only_exception(get_app());
@@ -1210,7 +1255,7 @@ restart:
    }
 
 
-   bool system::resolve_link(string & strTarget,const char * pszSource,sp(::aura::interaction) puiMessageParentOptional)
+   bool system::resolve_link(string & strTarget,const ::file::path & pszSource,sp(::aura::interaction) puiMessageParentOptional)
    {
 
       throw interface_only_exception(get_app());
@@ -1220,7 +1265,7 @@ restart:
    }
 
 
-   bool system::is_valid_fileset(const char * pszFile,::aura::application * papp)
+   bool system::is_valid_fileset(const ::file::path & pszFile,::aura::application * papp)
    {
 
       throw interface_only_exception(get_app());
@@ -1230,7 +1275,7 @@ restart:
    }
 
 
-   string system::nessie(const char * psz)
+   string system::nessie(const ::file::path & psz)
    {
 
       ::file::binary_buffer_sp spfile(allocer());

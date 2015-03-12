@@ -168,39 +168,39 @@ namespace aura
       return true;
    }
 
+
    bool str::load(const char * pszBaseDir)
    {
+      
       string strMain = pszBaseDir;
-      ::file::patha straLangPath;
-      ::file::patha straLang;
-      Application.dir().ls_dir(strMain, &straLangPath, &straLang);
-      for(int32_t iLang = 0; iLang < straLang.get_count(); iLang++)
+
+      ::file::listing locales(get_app());
+
+      locales.ignore(".svn").ls_dir(strMain);
+
+      for(auto & locale : locales)
       {
-         string strLang = straLang[iLang];
-         if(strLang.CompareNoCase(".svn") == 0)
-            continue;
-         ::file::patha straStylePath;
-         ::file::patha straStyle;
-         Application.dir().ls_dir(straLangPath[iLang], &straStylePath, &straStyle);
-         for(int32_t iStyle = 0; iStyle < straStyle.get_count(); iStyle++)
+         
+         ::file::listing schemas(get_app());
+
+         schemas.ignore(".svn").ls_dir(locale);
+
+         for(auto & schema : schemas)
          {
-            string idStyle = straStyle[iStyle];
-            if(idStyle.CompareNoCase(".svn") == 0)
-               continue;
-            ::file::patha patha;
-            Application.dir().rls(straStylePath[iStyle] / "uistr", &patha);
-            for(int32_t iPath = 0; iPath < patha.get_count(); iPath++)
+            
+            ::file::listing listing(get_app());
+
+            listing.ignore(".svn").rls_file(schema / "uistr");
+
+            for(auto & path : listing)
             {
-               string strPath = patha[iPath];
-               if(::str::ends_ci(strPath, "\\.svn"))
-                  continue;
-               if(::str::find_ci("\\.svn\\", strPath) >= 0)
-                  continue;
-               if(Application.dir().is(strPath))
-                  continue;
-               load_uistr_file(strLang, idStyle, strPath);
+
+               load_uistr_file(locale, schema, path);
+
             }
+
          }
+
       }
 
       return true;

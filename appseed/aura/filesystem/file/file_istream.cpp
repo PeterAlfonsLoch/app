@@ -17,7 +17,7 @@ namespace file
    //#include "../../Common/StreamUtils.h"*/
 
 
-   input_stream::input_stream()
+   istream::istream()
    {
 
       m_gcount = 0;
@@ -27,7 +27,7 @@ namespace file
 
 
 
-   input_stream::input_stream(stream_buffer * preader)
+   istream::istream(stream_buffer * preader)
    {
       
       m_spbuffer = preader;      
@@ -35,7 +35,7 @@ namespace file
 
    }
 
-   input_stream::input_stream(const input_stream & istream)
+   istream::istream(const istream & istream)
    {
       
       m_spbuffer = istream.m_spbuffer;      
@@ -43,7 +43,7 @@ namespace file
 
    }
 
-   input_stream::~input_stream()
+   istream::~istream()
    {
       
       close();
@@ -51,14 +51,14 @@ namespace file
    }
 
 
-   ::primitive::memory_size input_stream::read(void * lpBuf, ::primitive::memory_size nCount)
+   ::primitive::memory_size istream::read(void * lpBuf, ::primitive::memory_size nCount)
    {
       
       return m_gcount = m_spbuffer->read(lpBuf, nCount);
       
    }
 
-   void input_stream::full_read(void * lpBuf, ::primitive::memory_size nCount)
+   void istream::full_read(void * lpBuf, ::primitive::memory_size nCount)
    {
 
       if(fail())
@@ -85,102 +85,102 @@ namespace file
    }
 
 
-   void input_stream::full_fill(::primitive::memory_base & m)
+   void istream::full_fill(::primitive::memory_base & m)
    {
       
       full_read(m.get_data(), m.get_size());
 
    }
 
-   void input_stream::read_arbitrary(int32_t & i)
+   void istream::read_arbitrary(int32_t & i)
    {
 
 
    }
 
-   void input_stream::read_arbitrary(uint32_t & ui)
+   void istream::read_arbitrary(uint32_t & ui)
    {
 
 
    }
 
-   void input_stream::read_arbitrary(int64_t & i)
+   void istream::read_arbitrary(int64_t & i)
    {
 
 
    }
 
-   void input_stream::read_arbitrary(uint64_t & ui)
+   void istream::read_arbitrary(uint64_t & ui)
    {
 
 
    }
 
 
-   void input_stream::read (bool & b)
+   void istream::read (bool & b)
    {
       UNREFERENCED_PARAMETER(b);
       ::exception::throw_interface_only(get_app());
    }
 
 
-   void input_stream::read (char & ch)
+   void istream::read (char & ch)
    {
       UNREFERENCED_PARAMETER(ch);
       ::exception::throw_interface_only(get_app());
    }
 
 
-   void input_stream::read (uchar & uch)
+   void istream::read (uchar & uch)
    {
       UNREFERENCED_PARAMETER(uch);
       ::exception::throw_interface_only(get_app());
    }
 
 
-   void input_stream::read (wchar_t & wch)
+   void istream::read (wchar_t & wch)
    {
       UNREFERENCED_PARAMETER(wch);
       ::exception::throw_interface_only(get_app());
    }
 
 
-   void input_stream::read (int16_t & sh)
+   void istream::read (int16_t & sh)
    {
       UNREFERENCED_PARAMETER(sh);
       ::exception::throw_interface_only(get_app());
    }
 
 
-   void input_stream::read (uint16_t & ui)
+   void istream::read (uint16_t & ui)
    {
       UNREFERENCED_PARAMETER(ui);
       ::exception::throw_interface_only(get_app());
    }
 
 
-   void input_stream::read (int32_t & i)
+   void istream::read (int32_t & i)
    {
       UNREFERENCED_PARAMETER(i);
       ::exception::throw_interface_only(get_app());
    }
 
 
-   void input_stream::read (uint32_t & ui)
+   void istream::read (uint32_t & ui)
    {
       UNREFERENCED_PARAMETER(ui);
       ::exception::throw_interface_only(get_app());
    }
 
 
-   void input_stream::read (int64_t & i)
+   void istream::read (int64_t & i)
    {
       UNREFERENCED_PARAMETER(i);
       ::exception::throw_interface_only(get_app());
    }
 
 
-   void input_stream::read (uint64_t & ui)
+   void istream::read (uint64_t & ui)
    {
       UNREFERENCED_PARAMETER(ui);
       ::exception::throw_interface_only(get_app());
@@ -188,83 +188,83 @@ namespace file
    
 #ifdef APPLEOS
    
-   void input_stream::read(unsigned long & ui)
+   void istream::read(unsigned long & ui)
    {
       
    }
    
 #endif
    
-   void input_stream::read (float & f)
+   void istream::read (float & f)
    {
       UNREFERENCED_PARAMETER(f);
       ::exception::throw_interface_only(get_app());
    }
 
 
-   void input_stream::read (double & d)
+   void istream::read (double & d)
    {
       UNREFERENCED_PARAMETER(d);
       ::exception::throw_interface_only(get_app());
    }
 
 
-   void input_stream::read (LPRECT lprect)
+   void istream::read (LPRECT lprect)
    {
       UNREFERENCED_PARAMETER(lprect);
       ::exception::throw_interface_only(get_app());
    }
 
 
-   void input_stream::read (SIZE & size)
+   void istream::read (SIZE & size)
    {
       UNREFERENCED_PARAMETER(size);
       ::exception::throw_interface_only(get_app());
    }
 
 
-   void input_stream::read (sp(type) info)
+   void istream::read (sp(type) info)
    {
       UNREFERENCED_PARAMETER(info);
       ::exception::throw_interface_only(get_app());
    }
 
 
-   void input_stream::read (serializable & serializable)
+   void istream::read (serializable & serializable)
    {
       UNREFERENCED_PARAMETER(serializable);
       ::exception::throw_interface_only(get_app());
    }
 
 
-   void input_stream::read (id & id)
+   void istream::read (id & id)
    {
       UNREFERENCED_PARAMETER(id);
       ::exception::throw_interface_only(get_app());
    }
 
 
-   void input_stream::read (var & var)
+   void istream::read (var & var)
    {
       UNREFERENCED_PARAMETER(var);
       ::exception::throw_interface_only(get_app());
    }
 
 
-   void input_stream::read(property & property)
+   void istream::read(property & property)
    {
       UNREFERENCED_PARAMETER(property);
       ::exception::throw_interface_only(get_app());
    }
 
 
-   void input_stream::read(string & str)
+   void istream::read(string & str)
    {
       UNREFERENCED_PARAMETER(str);
       ::exception::throw_interface_only(get_app());
    }
 
-   int input_stream::get()
+   int istream::get()
    {
       unsigned char uch;
 
@@ -276,7 +276,7 @@ namespace file
    }
 
 
-   int input_stream::peek()
+   int istream::peek()
    {
       unsigned char uch;
 
@@ -290,7 +290,7 @@ namespace file
 
    }
 
-   input_stream & input_stream::getline(char * sz,strsize n)
+   istream & istream::getline(char * sz,strsize n)
    {
       int c;
       while(n > 0)
@@ -324,7 +324,7 @@ namespace file
    }
 
 
-   input_stream & input_stream::operator = (const input_stream & istream)
+   istream & istream::operator = (const istream & istream)
    {
 
       m_spbuffer = istream.m_spbuffer;
@@ -334,18 +334,18 @@ namespace file
    }
 
 
-   bool input_stream::is_reader_null()
+   bool istream::is_reader_null()
    {
       return m_spbuffer.is_null();
    }
 
-   bool input_stream::is_reader_set()
+   bool istream::is_reader_set()
    {
       return m_spbuffer.is_set();
    }
 
 
-   void input_stream::read_to_hex(string & str, file_position dwStart, file_position dwEnd)
+   void istream::read_to_hex(string & str, file_position dwStart, file_position dwEnd)
    {
       primitive::memory memory(get_app());
       if(dwStart == (file_position) -1)

@@ -71,7 +71,7 @@ string dir::appdata(const char * lpcsz)
 
 
 
-string dir::userappdata(const char * lpcsz)
+::file::path dir::userappdata()
 {
 
    string str;
@@ -113,7 +113,7 @@ string dir::userappdata(const char * lpcsz)
 
    str = path(str, "appdata");
    
-   return path(str, lpcsz);
+   return str;
 
 }
 

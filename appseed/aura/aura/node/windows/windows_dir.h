@@ -26,13 +26,8 @@ namespace windows
       dir(::aura::application * papp);
 
 
-      virtual bool  ls_pattern(::aura::application * papp, const ::file::path & path,const string & lpcszPattern,::file::patha * ppatha = NULL,::file::patha * ppathaName = NULL,bool bSize = false);
-      virtual bool  ls(::aura::application * papp, const ::file::path & path,::file::patha * ppatha = NULL,::file::patha * ppathaName = NULL,bool bSize = false);
-      virtual bool  rls_pattern(::aura::application * papp, const ::file::path & path, const string & lpcszPattern, ::file::patha * ppatha = NULL, ::file::patha * ppathaName = NULL, ::file::patha * ppathaRelative = NULL, bool_array * pbaIsDir = NULL, bool bSize = false, e_extract eextract = extract_first);
-      virtual bool  rls(::aura::application * papp, const ::file::path & path, ::file::patha * ppatha = NULL, ::file::patha * ppathaName = NULL, ::file::patha * ppathaRelative = NULL, e_extract eextract = extract_first);
-      virtual bool  rls_dir(::aura::application * papp, const ::file::path & path,::file::patha * ppatha = NULL,::file::patha * ppathaName = NULL,::file::patha * ppathaRelative = NULL);
-      virtual bool  ls_dir(::aura::application * papp, const ::file::path & path,::file::patha * ppatha = NULL,::file::patha * ppathaName = NULL);
-      virtual bool  ls_file(::aura::application * papp, const ::file::path & path,::file::patha * ppatha = NULL,::file::patha * ppathaName = NULL);
+      // rls fetchs should set a meaningful m_iRelative value at each returned path
+      virtual ::file::listing & ls(::aura::application * papp, ::file::listing & path);
 
 
       virtual bool  is(const ::file::path & path, ::aura::application * papp);
@@ -41,7 +36,7 @@ namespace windows
       virtual bool  name_is(const ::file::path & path,::aura::application * papp);
       virtual bool  has_subdir(::aura::application * papp, const ::file::path & path);
 
-      virtual void root_ones(::file::patha & patha, stringa & straTitle, ::aura::application * papp);
+      virtual ::file::listing & root_ones(::file::listing & listing,::aura::application * papp);
       virtual bool mk(const ::file::path & path,::aura::application * papp);
       virtual bool rm(::aura::application * papp, const ::file::path & path, bool bRecursive = true);
       

@@ -186,7 +186,7 @@ namespace file
 
          wstring wstr;
 
-         wstr = ::str::international::utf8_to_unicode(System.dir().name(m_strFileName));
+         wstr = ::str::international::utf8_to_unicode(m_strFileName.name());
 
 #ifdef WINDOWSEX
          GetOpenedFiles(wstr, ALL_TYPES, &exception::CallBackFunc, (uint_ptr)this);

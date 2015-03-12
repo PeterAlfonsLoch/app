@@ -8,31 +8,48 @@ namespace axis
 {
 
 
-   bool compress::ungz(::file::output_stream & ostreamUncompressed, const char * lpcszGzFileCompressed)
+   bool compress::ungz(::file::ostream & ostreamUncompressed, const ::file::path & lpcszGzFileCompressed)
    {
 
       int32_t fileUn = ansi_open(lpcszGzFileCompressed, ansi_file_flag(::file::type_binary | ::file::mode_read));
 
       if (fileUn == -1)
       {
+         
          TRACE("ungz wopen error %s", lpcszGzFileCompressed);
+
          return false;
+
       }
+
       gzFile file = gzdopen(fileUn, "rb");
+
       if (file == NULL)
       {
+
          TRACE("ungz gzopen error %s", lpcszGzFileCompressed);
+
          return false;
+
       }
+
       class primitive::memory memory;
+
       memory.allocate(1024 * 256);
+
       int_ptr uncomprLen;
+
       while ((uncomprLen = gzread(file, memory, (uint32_t)memory.get_size())) > 0)
       {
+
          ostreamUncompressed.write(memory, uncomprLen);
+
       }
+
       gzclose(file);
+
       return true;
+
    }
 
 
@@ -95,7 +112,7 @@ namespace axis
    }
 
 
-   bool compress::gz(::file::output_stream & ostreamCompressed, const char * lpcszUncompressed)
+   bool compress::gz(::file::ostream & ostreamCompressed, const ::file::path & lpcszUncompressed)
    {
       string str(lpcszUncompressed);
       FILE * fileUn = ansi_fopen(lpcszUncompressed, "rb");
@@ -120,47 +137,76 @@ namespace axis
    }
 
 
-   bool compress::ungz(::aura::application * papp, const char * lpcszUncompressed, const char * lpcszGzFileCompressed)
+   bool compress::ungz(::aura::application * papp, const ::file::path & lpcszUncompressed, const ::file::path & lpcszGzFileCompressed)
    {
-     return System.file().output(papp, lpcszUncompressed, this, &compress::ungz, lpcszGzFileCompressed);
+   
+      return System.file().output(papp, lpcszUncompressed, this, &compress::ungz, lpcszGzFileCompressed);
+
    }
 
-   bool compress::gz(::aura::application * papp, const char * lpcszGzFileCompressed, const char * lpcszUncompressed)
+
+   bool compress::gz(::aura::application * papp, const ::file::path & lpcszGzFileCompressed, const ::file::path & lpcszUncompressed)
    {
+      
       return System.file().output(papp, lpcszGzFileCompressed, this, &compress::gz, lpcszUncompressed);
+
    }
 
-   bool compress::unbz(::file::output_stream & ostreamUncompressed, const char * lpcszBzFileCompressed)
+
+   bool compress::unbz(::file::ostream & ostreamUncompressed, const ::file::path & lpcszBzFileCompressed)
    {
+
       BZFILE * file = BZ2_bzopen(lpcszBzFileCompressed, "rb");
+
       if (file == NULL)
       {
+
          TRACE("unbz bzopen error %s", lpcszBzFileCompressed);
+
          return false;
+
       }
+
       primitive::memory memory;
+
       memory.allocate(1024 * 16 * 1024);
+
       int32_t uncomprLen;
+
       while ((uncomprLen = BZ2_bzread(file, memory, (int32_t)memory.get_size())) > 0)
       {
+
          ostreamUncompressed.write(memory, uncomprLen);
+
       }
+
       BZ2_bzclose(file);
+
       return true;
+
    }
 
-   bool compress::bz(::file::output_stream & ostreamBzFileCompressed, const char * lpcszUncompressed)
+
+   bool compress::bz(::file::ostream & ostreamBzFileCompressed, const ::file::path & lpcszUncompressed)
    {
+
       ::file::binary_buffer_sp file = Application.file().get_file(lpcszUncompressed, ::file::mode_read | ::file::type_binary);
+
       if (file.is_null())
       {
+
          return false;
+
       }
-      ::file::input_stream is(file);
+
+      ::file::istream is(file);
+
       return bz_stream(ostreamBzFileCompressed, is);
+
    }
 
-   bool compress::bz_stream(::file::output_stream & ostreamBzFileCompressed, ::file::input_stream & istreamFileUncompressed)
+
+   bool compress::bz_stream(::file::ostream & ostreamBzFileCompressed, ::file::istream & istreamFileUncompressed)
    {
       bzip_stream bz(ostreamBzFileCompressed);
       class primitive::memory memory;
@@ -174,12 +220,12 @@ namespace axis
       return true;
    }
 
-   bool compress::unbz(::aura::application * papp, const char * lpcszUncompressed, const char * lpcszGzFileCompressed)
+   bool compress::unbz(::aura::application * papp, const ::file::path & lpcszUncompressed, const ::file::path & lpcszGzFileCompressed)
    {
       return System.file().output(papp, lpcszUncompressed, this, &compress::unbz, lpcszGzFileCompressed);
    }
 
-   bool compress::bz(::aura::application * papp, const char * lpcszGzFileCompressed, const char * lpcszUncompressed)
+   bool compress::bz(::aura::application * papp, const ::file::path & lpcszGzFileCompressed, const ::file::path & lpcszUncompressed)
    {
       return System.file().output(papp, lpcszGzFileCompressed, this, &compress::bz, lpcszUncompressed);
    }
@@ -202,50 +248,61 @@ namespace axis
    }
 
 
-   void compress::extract_all(const char * pszFile, ::aura::application * papp)
+   void compress::extract_all(const ::file::path & pszFile, ::aura::application * papp)
    {
+      
       string strDir = pszFile;
+
       ::str::ends_eat_ci(strDir, ".zip");
+
       Sess(papp).file().copy(strDir, pszFile, false);
+
    }
 
-   void compress::zip(const char * pszZip, const char * psz, ::aura::application * papp)
+
+   void compress::zip(const ::file::path & pszZip, const ::file::path & psz, ::aura::application * papp)
    {
+      
       zip::InFile infile(papp);
 
       if (!infile.zip_open(pszZip, 0))
       {
+         
          throw "Could not open zip file";
+         
          return;
+
       }
 
       if (System.dir().is(psz, papp))
       {
-         ::file::patha patha;
-         ::file::patha straRelative;
-         string strPath;
+         
+         ::file::listing patha(papp);
+         
+         ::file::path strPath;
+
          ::file::binary_buffer_sp file;
-         System.dir().rls(papp, psz, &patha, NULL, &straRelative);
+
+         patha.rls_file(psz);
+
          for (int32_t i = 0; i < patha.get_size(); i++)
          {
-            strPath = patha[i];
-            if (!System.dir().is(strPath, papp))
-            {
-               infile.add_file(psz, straRelative[i]);
 
-            }
+            infile.add_file(psz, patha[i].relative());
+
          }
+
       }
 
    }
 
 
-   void compress::zip(const char * psz, ::aura::application * papp)
+   void compress::zip(const ::file::path & psz, ::aura::application * papp)
    {
 
    }
 
-   bool compress::null(::file::output_stream & ostream, ::file::input_stream & istream)
+   bool compress::null(::file::ostream & ostream, ::file::istream & istream)
    {
       class primitive::memory memory;
       memory.allocate(1024 * 256);

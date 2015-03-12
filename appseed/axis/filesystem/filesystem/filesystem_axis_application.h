@@ -19,17 +19,17 @@ namespace file
          virtual ~application();
 
 
-         virtual bool copy(const ::file::path & pszNew,const ::file::path & psz,bool bFailIfExists = false,e_extract eextract = extract_first);
-         virtual bool move(const ::file::path & pszNew,const ::file::path & psz);
-         virtual bool del(const ::file::path & psz);
-         virtual bool rename(const ::file::path & pszNew,const ::file::path & psz);
+         virtual cres copy(const ::file::path & pszNew,const ::file::path & psz,bool bFailIfExists = false,e_extract eextract = extract_first);
+         virtual cres move(const ::file::path & pszNew,const ::file::path & psz);
+         virtual cres del(const ::file::path & psz);
+         virtual cres rename(const ::file::path & pszNew,const ::file::path & psz);
 
 
          virtual void trash_that_is_not_trash(const ::file::path & psz);
          virtual void trash_that_is_not_trash(::file::patha & stra);
 
 
-         virtual void replace(const ::file::path & pszContext,const string & pszFind,const string & pszReplace);
+         virtual cres replace(const ::file::path & pszContext,const string & pszFind,const string & pszReplace);
 
          virtual bool exists(const ::file::path & pszPath);
 
@@ -59,15 +59,15 @@ namespace file
          string sys_temp(const ::file::path & pszName,const string & pszExtension);
 
 
-         virtual ::file::buffer_sp get_file(var varFile,UINT nOpenFlags,fesp * pfesp);
+         virtual ::file::buffer_sp get_file(var varFile,UINT nOpenFlags,cres * pfesp);
          //virtual ::file::byte_stream get_byte_stream(var varFile, UINT nOpenFlags);
 
          // get a file and if there are exceptions, should show end user friendly messages
-         virtual ::file::buffer_sp friendly_get_file(var varFile,UINT nOpenFlags,fesp * pfesp);
+         virtual ::file::buffer_sp friendly_get_file(var varFile,UINT nOpenFlags,cres * pfesp);
 
 
          void dtf(const ::file::path & pszFile,const ::file::path & pszDir);
-         void dtf(const ::file::path & pszFile,::file::patha & stra,::file::patha & straRelative);
+         void dtf(const ::file::path & pszFile,::file::patha & stra);
          void ftd(const ::file::path & pszDir,const ::file::path & pszFile);
 
 

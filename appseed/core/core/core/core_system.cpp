@@ -310,14 +310,14 @@ namespace core
 
    }
    
-   void system::on_end_find_applications_from_cache(::file::byte_input_stream & is)
+   void system::on_end_find_applications_from_cache(::file::byte_istream & is)
    {
 
       is >> *m_spfilehandler.m_p;
 
    }
 
-   void system::on_end_find_applications_to_cache(::file::byte_output_stream & os)
+   void system::on_end_find_applications_to_cache(::file::byte_ostream & os)
    {
 
       os << *m_spfilehandler.m_p;

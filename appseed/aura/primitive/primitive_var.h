@@ -486,8 +486,8 @@ public:
    bool operator > (int32_t i) const;
    bool operator > (bool b) const;
 
-   void write(::file::output_stream & ostream) const;
-   void read(::file::input_stream & ostream);
+   void write(::file::ostream & ostream) const;
+   void read(::file::istream & ostream);
 
    string implode(const char * pszGlue) const;
    var explode(const char * pszGlue,bool bAddEmpty = true) const;

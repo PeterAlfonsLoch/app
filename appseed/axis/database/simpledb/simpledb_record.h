@@ -13,8 +13,8 @@ namespace simpledb
       stringa     m_straFields;
       var         m_var;
 
-      virtual void write(::file::output_stream & ostream) const;
-      virtual void read(::file::input_stream & ostream);
+      virtual void write(::file::ostream & ostream) const;
+      virtual void read(::file::istream & ostream);
 
    };
 

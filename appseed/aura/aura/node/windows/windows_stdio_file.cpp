@@ -30,7 +30,7 @@ namespace windows
    }
 
 
-   fesp stdio_file::open(const char * lpszFileName, UINT nOpenFlags)
+   cres stdio_file::open(const char * lpszFileName, UINT nOpenFlags)
    {
 
       ASSERT(lpszFileName != NULL);
@@ -43,8 +43,12 @@ namespace windows
       }
 
       m_pStream = NULL;
-      if (!::windows::file::open(lpszFileName, (nOpenFlags & ~::file::type_text)))
-         return fesp(get_app());
+      if(!::windows::file::open(lpszFileName,(nOpenFlags & ~::file::type_text)))
+      {
+
+         return failure;
+
+      }
 
       ASSERT(m_hFile != hFileNull);
 
@@ -100,10 +104,12 @@ namespace windows
          //  }
 
          ::windows::file::Abort(); // close m_hFile
-         return fesp(get_app());
+
+         return failure;
+
       }
 
-      return ::file::no_exception();
+      return ::no_exception;
    }
 
    ::primitive::memory_size stdio_file::read(void * lpBuf, ::primitive::memory_size nCount)

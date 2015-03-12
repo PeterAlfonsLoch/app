@@ -12,7 +12,7 @@ namespace http
 
       //Utility::ncmap<string>         m_cookie;
       file::memory_buffer              m_memfileBody;
-      ::http::output_stream            m_ostream;
+      ::http::ostream            m_ostream;
    
 
 
@@ -28,7 +28,7 @@ namespace http
       //string Cookie(const string & name);
       //list<string> CookieNames() const;
 
-      ::http::output_stream & ostream()   { return m_ostream; }
+      ::http::ostream & ostream()   { return m_ostream; }
       ::file::stream_buffer & file()      { return m_memfileBody; }
 
       /** replace memfile with file on disk, opened for read. */

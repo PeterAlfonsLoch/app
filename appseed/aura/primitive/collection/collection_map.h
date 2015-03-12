@@ -1113,14 +1113,14 @@ void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::asse
 
 
 template <class KEY,class ARG_KEY,class VALUE,class ARG_VALUE,class HASH = ::comparison::hash < ARG_KEY >,class EQUALS = ::comparison::equals_type_arg_type < KEY,ARG_KEY >,class PAIR = pair < KEY,VALUE >,class HASH_TABLE = dynamic_hash_table < map_association < KEY,VALUE, PAIR > > >
-::file::output_stream & operator << (::file::output_stream & os,const map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE> & a)
+::file::ostream & operator << (::file::ostream & os,const map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE> & a)
 {
    ::file::map::write(os,a);
    return os;
 }
 
 template <class KEY,class ARG_KEY,class VALUE,class ARG_VALUE,class HASH = ::comparison::hash < ARG_KEY >,class EQUALS = ::comparison::equals_type_arg_type < KEY,ARG_KEY >,class PAIR = pair < KEY,VALUE >,class HASH_TABLE = dynamic_hash_table < map_association < KEY,VALUE, PAIR > > >
-::file::input_stream & operator >> (::file::input_stream & is,map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE> & a)
+::file::istream & operator >> (::file::istream & is,map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE> & a)
 {
    ::file::map::read(is,a);
    return is;

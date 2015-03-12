@@ -654,7 +654,8 @@ namespace zip
 
    }
 
-   void InFile::ls(bool bRecursive,/*::file::patha * ppatha,*/::file::patha * ppathaName,/*::file::patha * ppathaRelative,*/bool_array * pbaIsDir,bool bSize,e_extract eextract)
+
+   void InFile::ls(::file::listing & listing)
    {
 
       InFile infile = *this;
@@ -693,35 +694,30 @@ namespace zip
                NULL, // comment
                0);
             string strTitle(szTitle);
-            if(bRecursive || strTitle.find("/") < 0 || strTitle.find("/") == (strTitle.get_length() - 1))
+            if(listing.m_bRecursive || strTitle.find("/") < 0 || strTitle.find("/") == (strTitle.get_length() - 1))
             {
                //if(ppatha != NULL)
                //{
                //   ppatha->add(strLastZip + ":" + strRemain + strTitle);
                //}
-               if(ppathaName != NULL)
-               {
-                  ppathaName->add(::file::path(strTitle));
-               }
+               listing.add(::file::path(strTitle));
                //if(ppathaRelative != NULL)
                //{
                //   ppathaRelative->add(strRemain + strTitle);
                //}
-               if(pbaIsDir != NULL)
-               {
-                  pbaIsDir->add(::str::ends(szTitle,"/")
-                     || ::str::ends(szTitle,"\\")
-                     || ::str::ends(szTitle,".zip"));
-               }
-               if(piaSize != NULL)
-               {
-                  piaSize->add(fi.uncompressed_size);
-               }
+               listing.last().m_iDir = ::str::ends(szTitle,"/") || ::str::ends(szTitle,"\\") || ::str::ends(szTitle,".zip");
+
+               listing.last().m_iSize = fi.uncompressed_size;
+
             }
+
             if(unzGoToNextFile(pf) != UNZ_OK)
             {
+
                break;
+
             }
+
          }
       }
 

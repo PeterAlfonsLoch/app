@@ -49,7 +49,7 @@
 
 
 class CLASS_DECL_AXIS gzip_stream:
-   virtual public ::file::output_stream
+   virtual public ::file::ostream
 {
 public:
 
@@ -61,10 +61,10 @@ public:
 
 
    gzip_stream(::file::stream_buffer *  pfileDest);
-   gzip_stream(::file::output_stream & ostreamDest);
+   gzip_stream(::file::ostream & ostreamDest);
    virtual ~gzip_stream();
 
-   using ::file::output_stream::write;
+   using ::file::ostream::write;
    virtual void write(const void * buf, ::primitive::memory_size iSize);
    void finish();
 

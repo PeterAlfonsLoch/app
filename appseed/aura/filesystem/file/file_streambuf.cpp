@@ -45,7 +45,8 @@ namespace file
       return NULL;
    }
 
-   exception_sp streambuf::open(const ::file::path & lpszFileName,UINT nOpenFlags)
+   
+   cres streambuf::open(const ::file::path & lpszFileName,UINT nOpenFlags)
    {
 
       string str;
@@ -73,7 +74,7 @@ namespace file
       if(m_pfile == NULL)
          return canew(::file::exception(get_app()));
       
-      return ::file::no_exception();
+      return ::no_exception;
 
    }
 

@@ -120,8 +120,8 @@ namespace file
 
 
    class stream_buffer;
-   class input_stream;
-   class output_stream;
+   class istream;
+   class ostream;
    class serializable;
 
 

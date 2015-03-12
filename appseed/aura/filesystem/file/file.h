@@ -38,21 +38,21 @@ CLASS_DECL_AURA string defer_solve_relative_name(const char * pszRelative,const 
 
 #include "file_stream_buffer.h"
 
-#include "file_input_stream.h"
-#include "file_output_stream_flush.h"
-#include "file_output_stream.h"
+#include "file_istream.h"
+#include "file_ostream_flush.h"
+#include "file_ostream.h"
 #include "file_stream.h"
 
-#include "file_byte_input_stream.h"
-#include "file_byte_output_stream.h"
+#include "file_byte_istream.h"
+#include "file_byte_ostream.h"
 #include "file_byte_stream.h"
 
 
 #include "file_binary_buffer.h"
 
-#include "file_byte_input_stream_binary_buffer.h"
+#include "file_byte_istream_binary_buffer.h"
 
-#include "file_byte_output_stream_binary_buffer.h"
+#include "file_byte_ostream_binary_buffer.h"
 
 
 
@@ -92,8 +92,8 @@ CLASS_DECL_AURA string defer_solve_relative_name(const char * pszRelative,const 
 
 
 #include "file_file_stream_base.h"
-#include "file_file_input_stream.h"
-#include "file_file_output_stream.h"
+#include "file_file_istream.h"
+#include "file_file_ostream.h"
 #include "file_file_stream.h"
 
 

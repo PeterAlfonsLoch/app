@@ -17,25 +17,25 @@ namespace fs
 
 
    // optional if ls_dir is implemented
-   bool native::has_subdir(const char * pszPath)
+   bool native::has_subdir(const ::file::path & path)
    {
 
-      return System.dir().has_subdir(get_app(), pszPath);
+      return System.dir().has_subdir(get_app(), path);
 
    }
 
 
-   bool native::ls(const char * pszDir,::file::patha * ppatha,::file::patha * ppathaName,bool bSize,bool_array * pbaDir)
+   ::file::listing & native::ls(::file::listing & listing)
    {
 
-      System.dir().ls(get_app(), pszDir, ppatha, ppathaName, pbaDir, piaSize);
+      System.dir().ls(get_app(), listing);
 
-      return true;
+      return listing;
 
    }
 
 
-   bool native::is_dir(const char * pszPath)
+   bool native::is_dir(const ::file::path & pszPath)
    {
 
       return System.dir().is(pszPath, get_app());
@@ -68,68 +68,68 @@ namespace fs
    }
 
 
-   void native::get_ascendants_path(const ::file::path & pszPath,::file::patha & stra)
+   //void native::get_ascendants_path(const ::file::path & pszPath,::file::patha & stra)
+   //{
+
+   //   return System.file().get_ascendants_path(pszPath, stra);
+
+   //}
+
+
+   //void native::get_ascendants_name(const ::file::path & lpcsz,::file::patha & straParam)
+   //{
+
+   //   return System.file().get_ascendants_name(lpcsz, straParam);
+
+   //}
+
+
+   //string native::eat_end_level(const char * pszPath, int32_t iCount)
+   //{
+
+   //   string strPath(pszPath);
+
+   //   while(iCount > 0)
+   //   {
+
+   //      strPath = System.dir().name(strPath);
+
+   //      iCount--;
+
+   //   }
+
+   //   return strPath;
+
+   //}
+
+
+   //string native::file_name(const char * pszPath)
+   //{
+
+   //   return System.file().name_(pszPath);
+
+   //}
+
+
+   //string native::dir_path(const char * psz1, const char * psz2)
+   //{
+
+   //   return ::file::path(psz1) / ::file::path(psz2);
+
+   //}
+
+
+   bool native::file_move(const ::file::path & pszDst,const ::file::path & pszSrc)
    {
 
-      return System.file().get_ascendants_path(pszPath, stra);
-
-   }
-
-
-   void native::get_ascendants_name(const ::file::path & lpcsz,::file::patha & straParam)
-   {
-
-      return System.file().get_ascendants_name(lpcsz, straParam);
-
-   }
-
-
-   string native::eat_end_level(const char * pszPath, int32_t iCount)
-   {
-
-      string strPath(pszPath);
-
-      while(iCount > 0)
-      {
-
-         strPath = System.dir().name(strPath);
-
-         iCount--;
-
-      }
-
-      return strPath;
-
-   }
-
-
-   string native::file_name(const char * pszPath)
-   {
-
-      return System.file().name_(pszPath);
-
-   }
-
-
-   string native::dir_path(const char * psz1, const char * psz2)
-   {
-
-      return ::file::path(psz1) / ::file::path(psz2);
-
-   }
-
-
-   bool native::file_move(const char * pszDst, const char * pszSrc)
-   {
-
-      System.file().move(pszDst, pszSrc);
+      Application.file().move(pszDst, pszSrc);
 
       return true;
 
    }
 
 
-   ::file::buffer_sp native::get_file(var varFile, UINT nOpenFlags, fesp * pfesp)
+   ::file::buffer_sp native::get_file(const ::file::path & path,UINT nOpenFlags,cres * pfesp)
    {
 
       if(pfesp != NULL)
@@ -138,14 +138,14 @@ namespace fs
       }
 
 
-      ::fesp fesp;
+      ::cres cres;
 
       ::file::binary_buffer_sp spfile(allocer());
 
       // ::file::mode_read | ::file::share_deny_none | ::file::type_binary
-      fesp  = spfile->open(varFile.get_string(),nOpenFlags);
+      cres  = spfile->open(path,nOpenFlags);
 
-      if(!fesp)
+      if(!cres)
       {
 
          spfile.release();
@@ -154,7 +154,7 @@ namespace fs
          {
 
 
-            *pfesp = fesp;
+            *pfesp = cres;
 
          }
 
@@ -165,10 +165,10 @@ namespace fs
    }
 
 
-   bool native::file_exists(const char * pszPath)
+   bool native::file_exists(const ::file::path & path)
    {
 
-      return ::file_exists_dup(pszPath) != FALSE;
+      return Application.file().exists(path);
 
    }
 

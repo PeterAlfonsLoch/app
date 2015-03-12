@@ -153,6 +153,6 @@ namespace exception
 //      11.01.2002   Konstantin, added skip arg to stack_trace()
 //      11.01.2002   Konstantin, format argument to stack_trace()
 //      14.01.2002   Konstantin, fixed bug in thread's wait logic
-//      16.01.2002, Konstantin, fixed bug in stack_trace(::file::output_stream&, CONTEXT *, const char*) with skip value
+//      16.01.2002, Konstantin, fixed bug in stack_trace(::file::ostream&, CONTEXT *, const char*) with skip value
 //      16.01.2002, Konstantin, made guard as singelton
 

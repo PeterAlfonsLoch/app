@@ -1700,6 +1700,7 @@
     <ClInclude Include="aura\aura\aura_plex_heap.h" />
     <ClInclude Include="aura\aura\aura_plex_heap_impl.h" />
     <ClInclude Include="aura\aura\aura_printf.h" />
+    <ClInclude Include="aura\aura\aura_restore.h" />
     <ClInclude Include="aura\aura\aura_savings.h" />
     <ClInclude Include="aura\aura\aura_session.h" />
     <ClInclude Include="aura\aura\aura_session_interface.h" />
@@ -1972,16 +1973,17 @@
     <ClInclude Include="filesystem\filesystem\filesystem_application.h" />
     <ClInclude Include="filesystem\filesystem\filesystem_dir_application.h" />
     <ClInclude Include="filesystem\filesystem\filesystem_dir_system.h" />
+    <ClInclude Include="filesystem\filesystem\filesystem_listing.h" />
     <ClInclude Include="filesystem\filesystem\filesystem_path.h" />
     <ClInclude Include="filesystem\filesystem\filesystem_system.h" />
     <ClInclude Include="filesystem\file\file.h" />
     <ClInclude Include="filesystem\file\file_binary_buffer.h" />
     <ClInclude Include="filesystem\file\file_buffer.h" />
     <ClInclude Include="filesystem\file\file_buffered_buffer.h" />
-    <ClInclude Include="filesystem\file\file_byte_input_stream.h" />
-    <ClInclude Include="filesystem\file\file_byte_input_stream_binary_buffer.h" />
-    <ClInclude Include="filesystem\file\file_byte_output_stream.h" />
-    <ClInclude Include="filesystem\file\file_byte_output_stream_binary_buffer.h" />
+    <ClInclude Include="filesystem\file\file_byte_istream.h" />
+    <ClInclude Include="filesystem\file\file_byte_istream_binary_buffer.h" />
+    <ClInclude Include="filesystem\file\file_byte_ostream.h" />
+    <ClInclude Include="filesystem\file\file_byte_ostream_binary_buffer.h" />
     <ClInclude Include="filesystem\file\file_byte_stream.h" />
     <ClInclude Include="filesystem\file\file_byte_stream_memory_buffer.h" />
     <ClInclude Include="filesystem\file\file_c.h" />
@@ -1990,20 +1992,20 @@
     <ClInclude Include="filesystem\file\file_dir.h" />
     <ClInclude Include="filesystem\file\file_edit_buffer.h" />
     <ClInclude Include="filesystem\file\file_exception.h" />
-    <ClInclude Include="filesystem\file\file_file_input_stream.h" />
-    <ClInclude Include="filesystem\file\file_file_output_stream.h" />
+    <ClInclude Include="filesystem\file\file_file_istream.h" />
+    <ClInclude Include="filesystem\file\file_file_ostream.h" />
     <ClInclude Include="filesystem\file\file_file_stream.h" />
     <ClInclude Include="filesystem\file\file_file_stream_base.h" />
     <ClInclude Include="filesystem\file\file_folder_watch.h" />
     <ClInclude Include="filesystem\file\file_html_buffer.h" />
-    <ClInclude Include="filesystem\file\file_input_stream.h" />
+    <ClInclude Include="filesystem\file\file_istream.h" />
     <ClInclude Include="filesystem\file\file_memory_buffer.h" />
     <ClInclude Include="filesystem\file\file_opened.h" />
-    <ClInclude Include="filesystem\file\file_output_stream.h" />
-    <ClInclude Include="filesystem\file\file_output_stream_flush.h" />
-    <ClInclude Include="filesystem\file\file_plain_text_input_stream.h" />
-    <ClInclude Include="filesystem\file\file_plain_text_output_stream.h" />
-    <ClInclude Include="filesystem\file\file_plain_text_output_stream_string_buffer.h" />
+    <ClInclude Include="filesystem\file\file_ostream.h" />
+    <ClInclude Include="filesystem\file\file_ostream_flush.h" />
+    <ClInclude Include="filesystem\file\file_plain_text_istream.h" />
+    <ClInclude Include="filesystem\file\file_plain_text_ostream.h" />
+    <ClInclude Include="filesystem\file\file_plain_text_ostream_string_buffer.h" />
     <ClInclude Include="filesystem\file\file_plain_text_stream.h" />
     <ClInclude Include="filesystem\file\file_plain_text_stream_base.h" />
     <ClInclude Include="filesystem\file\file_plain_text_stream_memory_buffer.h" />
@@ -4216,6 +4218,7 @@
     <ClCompile Include="filesystem\filesystem\filesystem_application.cpp" />
     <ClCompile Include="filesystem\filesystem\filesystem_dir_application.cpp" />
     <ClCompile Include="filesystem\filesystem\filesystem_dir_system.cpp" />
+    <ClCompile Include="filesystem\filesystem\filesystem_listing.cpp" />
     <ClCompile Include="filesystem\filesystem\filesystem_path.cpp" />
     <ClCompile Include="filesystem\filesystem\filesystem_system.cpp" />
     <ClCompile Include="filesystem\file\file.cpp">
@@ -4272,7 +4275,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_file_input_stream.cpp">
+    <ClCompile Include="filesystem\file\file_file_istream.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
@@ -4290,7 +4293,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_profiler|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_file_output_stream.cpp">
+    <ClCompile Include="filesystem\file\file_file_ostream.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
@@ -7412,7 +7415,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_profiler|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_byte_input_stream.cpp">
+    <ClCompile Include="filesystem\file\file_byte_istream.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
@@ -7430,7 +7433,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_profiler|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_byte_input_stream_binary_buffer.cpp">
+    <ClCompile Include="filesystem\file\file_byte_istream_binary_buffer.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
@@ -7448,7 +7451,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_profiler|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_byte_output_stream.cpp">
+    <ClCompile Include="filesystem\file\file_byte_ostream.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
@@ -7466,7 +7469,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_profiler|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_byte_output_stream_binary_buffer.cpp">
+    <ClCompile Include="filesystem\file\file_byte_ostream_binary_buffer.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
@@ -7628,7 +7631,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_profiler|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_input_stream.cpp">
+    <ClCompile Include="filesystem\file\file_istream.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
@@ -7664,7 +7667,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_profiler|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_output_stream.cpp">
+    <ClCompile Include="filesystem\file\file_ostream.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
@@ -7682,7 +7685,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_profiler|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_plain_text_input_stream.cpp">
+    <ClCompile Include="filesystem\file\file_plain_text_istream.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
@@ -7700,7 +7703,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_profiler|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_plain_text_output_stream.cpp">
+    <ClCompile Include="filesystem\file\file_plain_text_ostream.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
@@ -7718,7 +7721,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_profiler|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_plain_text_output_stream_string_buffer.cpp">
+    <ClCompile Include="filesystem\file\file_plain_text_ostream_string_buffer.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>

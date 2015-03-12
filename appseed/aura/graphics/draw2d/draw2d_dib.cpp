@@ -3543,7 +3543,7 @@ namespace draw2d
       }
    }
 
-   void dib::write(::file::output_stream & ostream) const
+   void dib::write(::file::ostream & ostream) const
    {
 
       //synch_lock ml(&user_mutex());
@@ -3568,7 +3568,7 @@ namespace draw2d
 
    }
 
-   void dib::read(::file::input_stream & istream)
+   void dib::read(::file::istream & istream)
    {
 
       //synch_lock ml(&user_mutex());

@@ -22,7 +22,7 @@ namespace xml
    }
    
 
-   void data::write(::file::output_stream & ostream) const
+   void data::write(::file::ostream & ostream) const
    {
 
       ostream << (::xml::document &) *this;
@@ -30,7 +30,7 @@ namespace xml
    }
    
 
-   void data::read(::file::input_stream & istream)
+   void data::read(::file::istream & istream)
    {
 
       istream >> (::xml::document &) *this;

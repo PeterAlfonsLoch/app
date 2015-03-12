@@ -90,11 +90,9 @@ bool db_server::initialize()
 
    m_pdb          = new ::sqlite::base(get_app());
 
-   string str;
+   ::file::path str = Application.dir().userappdata() / "database.sqlite";
 
-   str = Application.dir().userappdata()/ "database.sqlite";
-
-   Application.dir().mk(System.dir().name(str));
+   Application.dir().mk(str.folder());
 
    m_pdb->setDatabase(str);
 
@@ -235,7 +233,7 @@ void db_server::close()
 }
 
 
-bool db_server::data_server_load(::database::client * pclient, ::database::id id, ::file::output_stream & writable, ::database::update_hint * phint)
+bool db_server::data_server_load(::database::client * pclient, ::database::id id, ::file::ostream & writable, ::database::update_hint * phint)
 {
 
    UNREFERENCED_PARAMETER(phint);
@@ -248,7 +246,7 @@ bool db_server::data_server_load(::database::client * pclient, ::database::id id
 }
 
 
-bool db_server::data_server_save(::database::client * pclient, ::database::id id, ::file::input_stream & readable, ::database::update_hint * phint)
+bool db_server::data_server_save(::database::client * pclient, ::database::id id, ::file::istream & readable, ::database::update_hint * phint)
 {
 
    UNREFERENCED_PARAMETER(phint);
@@ -273,7 +271,7 @@ bool db_server::load(const char * lpcszKey, string & str)
 
 
 
-bool db_server::load(const char * lpKey, ::file::output_stream & ostream)
+bool db_server::load(const char * lpKey, ::file::ostream & ostream)
 {
 
    string str;
@@ -285,7 +283,7 @@ bool db_server::load(const char * lpKey, ::file::output_stream & ostream)
 
    }
 
-   ::file::byte_output_stream os(ostream);
+   ::file::byte_ostream os(ostream);
 
    os.write_from_hex(str);
 
@@ -305,12 +303,12 @@ bool db_server::save(const char * lpcszKey, const char * lpcsz)
 }
 
 
-bool db_server::save(const char * lpKey, ::file::input_stream & istream)
+bool db_server::save(const char * lpKey, ::file::istream & istream)
 {
 
    string str;
 
-   file::byte_input_stream is(istream);
+   file::byte_istream is(istream);
 
    is.seek_to_begin();
 

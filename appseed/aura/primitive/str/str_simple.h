@@ -740,17 +740,17 @@ public:
 
    bool is_empty() const NOTHROW
    {
-      return( get_length() == 0 );
+      return *m_pszData == '\0';
    }
 
    bool empty() const NOTHROW
    {
-      return( get_length() == 0 );
+      return *m_pszData == '\0';
    }
 
    bool has_char() const NOTHROW
    {
-      return (get_length() > 0);
+      return *m_pszData != '\0';
    }
 
    char * LockBuffer()

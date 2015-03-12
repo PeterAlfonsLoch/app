@@ -4,25 +4,25 @@
 namespace http
 {
 
-   output_stream::output_stream()
+   ostream::ostream()
    {
    
    }
 
-   output_stream::output_stream(::file::stream_buffer * pbuffer) :
-      ::file::plain_text_output_stream(pbuffer)
+   ostream::ostream(::file::stream_buffer * pbuffer) :
+      ::file::plain_text_ostream(pbuffer)
    {
    
    
    }
 
-   output_stream::~output_stream()
+   ostream::~ostream()
    {
       close();
    }
 
 
-   /*void output_stream::write(const char * lpcsz)
+   /*void ostream::write(const char * lpcsz)
    {
 
       write(lpcsz, strlen(lpcsz));
@@ -31,7 +31,7 @@ namespace http
 
    }*/
 
-   void output_stream::write (const string & str)
+   void ostream::write (const string & str)
    {
 
       write((const char *) str, str.get_length());
@@ -39,7 +39,7 @@ namespace http
    }
 
 
-   ::file::output_stream & output_stream::operator << (::file::memory_buffer & memfile)
+   ::file::ostream & ostream::operator << (::file::memory_buffer & memfile)
    {
 
       write(memfile.get_data(), (::primitive::memory_size) memfile.get_length());
@@ -52,7 +52,7 @@ namespace http
 
 
 
-   /*bool output_stream::read_string(string & str)
+   /*bool ostream::read_string(string & str)
    {
       uint_ptr nRead;
       char ch;
@@ -84,7 +84,7 @@ namespace http
       return str.has_char();
    }*/
 
-   ::file::output_stream & output_stream::operator << (::file::buffer_sp spbuf)
+   ::file::ostream & ostream::operator << (::file::buffer_sp spbuf)
    {
       uint_ptr nRead;
       primitive::memory mem;
@@ -100,7 +100,7 @@ namespace http
    }
 
 
-/*    void output_stream::to_string(string & str);
+/*    void ostream::to_string(string & str);
       {
 
          read(str.GetBufferSetLength((int32_t)get_length()), (int32_t)(get_length()));

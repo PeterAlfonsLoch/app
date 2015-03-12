@@ -33,7 +33,7 @@ public:
    void set_at_grow(index nIndex, const char * newElement);
    void set_at_grow(index nIndex, const string & newElement);
    index add(const char * newElement);
-   index add(const string & newElement);
+   string & add(const string & newElement);
    void push(const string & newElement);
    ::count add(const stringa& src);
 
@@ -100,7 +100,7 @@ inline index str_sort_array::add(const char * newElement)
    return m_stra.add(newElement);
 }
 
-inline index str_sort_array::add(const string & newElement)
+inline string & str_sort_array::add(const string & newElement)
 {
    m_bSorted = false;
    return m_stra.add(newElement);

@@ -258,7 +258,7 @@ namespace xml
 //
 //   
 //   template < class T >
-//   bool system::output(::aura::application * papp,const char * pszOutput,T * p,bool (T::*lpfnOuput)(::file::output_stream &,const char *),const char * lpszSource)
+//   bool system::output(::aura::application * papp,const char * pszOutput,T * p,bool (T::*lpfnOuput)(::file::ostream &,const char *),const char * lpszSource)
 //   {
 //
 //      System.dir().mk(System.dir().name(pszOutput),papp);
@@ -268,7 +268,7 @@ namespace xml
 //      if(fileOut.is_null())
 //         return false;
 //
-//      ::file::output_stream ostream(fileOut);
+//      ::file::ostream ostream(fileOut);
 //
 //      return (p->*lpfnOuput)(ostream,lpszSource);
 //
@@ -276,7 +276,7 @@ namespace xml
 //
 //
 //   template < class T >
-//   bool system::output(::aura::application * papp,const char * pszOutput,T * p,bool (T::*lpfnOuput)(::file::output_stream &,::file::input_stream &),const char * lpszInput)
+//   bool system::output(::aura::application * papp,const char * pszOutput,T * p,bool (T::*lpfnOuput)(::file::ostream &,::file::istream &),const char * lpszInput)
 //   {
 //
 //      System.dir().mk(System.dir().name(pszOutput),papp);
@@ -291,9 +291,9 @@ namespace xml
 //      if(fileIn.is_null())
 //         return false;
 //
-//      ::file::output_stream ostream(fileOut);
+//      ::file::ostream ostream(fileOut);
 //
-//      ::file::input_stream istream(fileIn);
+//      ::file::istream istream(fileIn);
 //
 //      return (p->*lpfnOuput)(ostream,istream);
 //
@@ -301,10 +301,10 @@ namespace xml
 //
 //
 //   template < class T >
-//   bool system::output(::aura::application * papp,const char * pszOutput,T * p,bool (T::*lpfnOuput)(::file::output_stream &,::file::input_stream &),::file::input_stream & istream)
+//   bool system::output(::aura::application * papp,const char * pszOutput,T * p,bool (T::*lpfnOuput)(::file::ostream &,::file::istream &),::file::istream & istream)
 //   {
 //
-//      ::file::output_stream ostream(get(pszOutput,papp));
+//      ::file::ostream ostream(get(pszOutput,papp));
 //
 //      return (p->*lpfnOuput)(ostream,istream);
 //

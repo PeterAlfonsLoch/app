@@ -379,109 +379,97 @@ namespace file
       //   throw interface_only_exception(get_app(), "this is an interface");
       //}
 
-      bool system::rls_pattern(::aura::application * papp,const ::file::path & lpcsz,const string & pszPattern,::file::patha * ppatha,::file::patha * ppathaName,::file::patha * ppathaRelative,bool bSize,e_extract eextract)
+
+      ::file::listing & system::ls(::aura::application * papp, ::file::listing & l)
       {
-         UNREFERENCED_PARAMETER(ppathaRelative);
-         UNREFERENCED_PARAMETER(pszPattern);
-         if(eextract != extract_none && ::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (::str::ends_ci(lpcsz,".zip") || ::str::find_file_extension("zip:",lpcsz) >= 0))
-         {
-            throw "should implement recursive zip";
-            m_pziputil->ls(papp, lpcsz, false, ppatha, ppathaName, NULL, pbaIsDir, piaSize, eextract == extract_all ? extract_all : extract_none);
-            return true;
-         }
-         return false;
 
-      }
-
-
-      bool system::ls_pattern(::aura::application * papp,const ::file::path & lpcsz,const string & pszPattern,::file::patha * ppatha,::file::patha * ppathaName,bool bSize)
-      {
-         
-         UNREFERENCED_PARAMETER(pszPattern);
-
-         if(::str::begins_ci(lpcsz, "http://") || ::str::begins_ci(lpcsz, "https://"))
+         if(l.m_bRecursive)
          {
 
-            property_set set(get_app());
-
-            string str = Sess(papp).http().get(lpcsz, set);
-
-            if(ppatha != NULL)
+            if(l.m_eextract != extract_none && ::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (icmp(l.m_path.ext(),".zip") == 0 || l.m_path.find_ci("zip:") >= 0))
             {
 
-               ppatha->add_tokens(str, "\n", false);
+               throw "should implement recursive zip";
+
+               m_pziputil->ls(papp,l);
+
+               l.m_cres = failure;
 
             }
 
-            return true;
-
          }
-
-         if(::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (::str::ends_ci(lpcsz,".zip") || ::str::find_file_extension("zip:",lpcsz) >= 0))
+         else
          {
 
-            return m_pziputil->ls(papp, lpcsz, false, ppatha, ppathaName, NULL, pbaIsDir, piaSize);
+            if(::str::begins_ci(l.m_path,"http://") || ::str::begins_ci(l.m_path,"https://"))
+            {
 
-         }
-         
-         return false;
+               property_set set(get_app());
 
-      }
+               string str = Sess(papp).http().get(l.m_path,set);
 
+               l.add_tokens(str,"\n",false);
 
-      bool system::ls(::aura::application * papp, const ::file::path & lpcsz, ::file::patha * ppatha, ::file::patha * ppathaName, bool_array * pbaIsDir, bool bSize)
-      {
-         
-         return false;
+            }
+            else if(::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (::str::ends_ci(l.m_path,".zip") || ::str::find_file_extension("zip:",l.m_path) >= 0))
+            {
 
-      }
+               m_pziputil->ls(papp,l);
 
-      
-      bool system::rls(::aura::application * papp,const ::file::path & lpcsz,::file::patha * ppatha,::file::patha * ppathaName,::file::patha * ppathaRelative,e_extract eextract)
-      {
-      
-         if(eextract != extract_none && ::get_thread() != NULL && get_thread()->m_bZipIsDir && (::str::ends_ci(lpcsz,".zip") || ::str::find_file_extension("zip:",lpcsz) >= 0))
-         {
-
-            return m_pziputil->ls(papp, lpcsz, false, ppatha, ppathaName, ppathaRelative, NULL, NULL, eextract == extract_all ? extract_all : extract_none);
+            }
 
          }
 
-         return false;
-         
-      }
-
-
-      bool system::rls_dir(::aura::application * papp, const ::file::path & lpcsz, ::file::patha * ppatha, ::file::patha * ppathaName, ::file::patha * ppathaRelative)
-      {
-         
-         return false;
+         return l;
 
       }
 
 
-      bool system::ls_dir(::aura::application * papp,const ::file::path & lpcsz,::file::patha * ppatha,::file::patha * ppathaName)
-      {
+      //bool system::rls(::aura::application * papp,const ::file::path & lpcsz,::file::patha & patha,e_extract eextract)
+      //{
+      //
+      //   if(eextract != extract_none && ::get_thread() != NULL && get_thread()->m_bZipIsDir && (::str::ends_ci(lpcsz,".zip") || ::str::find_file_extension("zip:",lpcsz) >= 0))
+      //   {
 
-         if(::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (::str::ends_ci(lpcsz,".zip") || ::str::find_file_extension("zip:",lpcsz) >= 0))
-         {
-            
-            return m_pziputil->ls_dir(papp, lpcsz, ppatha, ppathaName);
+      //      return m_pziputil->ls(papp, lpcsz, false, patha, NULL, NULL, eextract == extract_all ? extract_all : extract_none);
 
-         }
+      //   }
 
-         return false;
+      //   return false;
+      //   
+      //}
 
 
-      }
+      //bool system::rls_dir(::aura::application * papp, const ::file::path & lpcsz, ::file::patha & patha)
+      //{
+      //   
+      //   return false;
+
+      //}
+
+
+      //bool system::ls_dir(::aura::application * papp,const ::file::path & lpcsz,::file::patha & patha)
+      //{
+
+      //   if(::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (::str::ends_ci(lpcsz,".zip") || ::str::find_file_extension("zip:",lpcsz) >= 0))
+      //   {
+      //      
+      //      return m_pziputil->ls_dir(papp, lpcsz, patha);
+
+      //   }
+
+      //   return false;
+
+
+      //}
 
       
-      bool system::ls_file(::aura::application * papp, const ::file::path & lpcsz, ::file::patha * ppatha, ::file::patha * ppathaName)
-      {
+      //bool system::ls_file(::aura::application * papp, const ::file::path & lpcsz, ::file::patha & patha, ::file::patha * ppathaName)
+      //{
 
-         return false;
-       
-      }
+      //   return false;
+      // 
+      //}
 
 
       bool system::is_or_definitively_not(bool & bIs,const ::file::path & lpcszPath,::aura::application * papp)
@@ -867,27 +855,23 @@ namespace file
 
       }
 
-      ::file::patha system::locale_schema_matter(::aura::application * papp,const string & strLocale,const string & strSchema,const char * pszRoot,const char * pszApp)
+      ::file::patha system::locale_schema_matter(::aura::application * papp,const string & strLocale,const string & strSchema,const ::file::path & root,const ::file::path & domain)
       {
 
-         //single_lock sl(&papp->m_mutexMatterLocator, true);
-         if (pszRoot != NULL && pszApp != NULL)
+         
+         if (root.has_char() && domain.has_char())
          {
-
-            string strRoot(pszRoot);
-
-            string strDomain(pszApp);
 
             if(Session.m_bMatterFromHttpCache)
             {
 
-               return{::file::path(strRoot) / "appmatter" / strDomain / papp->m_paxissession->get_locale_schema_dir(strLocale,strSchema)};
+               return { root / "appmatter" / domain / papp->m_paxissession->get_locale_schema_dir(strLocale,strSchema) };
 
             }
             else
             {
                
-               return{element() / strRoot / "appmatter" / strDomain / papp->m_paxissession->get_locale_schema_dir(strLocale,strSchema)};
+               return { element() / root / "appmatter" / domain / papp->m_paxissession->get_locale_schema_dir(strLocale,strSchema) };
 
             }
 
@@ -924,9 +908,10 @@ namespace file
 
          ::file::path strDir = matter(papp,str,true);
 
-         ls(papp, strDir, &stra);
+         stra = ::file::listing(papp).ls(strDir);
 
       }
+
 
       void system::matter_ls_file(::aura::application * papp,const ::file::path & str,::file::patha & stra)
       {
@@ -999,14 +984,16 @@ namespace file
          else
          {
 
-            ls_file(papp,strDir,&stra);
+            stra = listing(papp).ls_file(strDir);
+            
 
          }
 
 
       }
 
-      ::file::path system::matter(::aura::application * papp,const ::file::patha & stra,bool bDir,const char * pszRoot,const char * pszApp)
+
+      ::file::path system::matter(::aura::application * papp,const ::file::patha & stra,bool bDir,const ::file::path & root,const ::file::path & domain)
       {
 
          ::aura::str_context * pcontext = Sess(papp).str_context();
@@ -1027,12 +1014,8 @@ namespace file
 
          ::file::path strFile;
 
-         if (pszRoot != NULL && pszApp != NULL && *pszRoot != '\0' && *pszApp != '\0')
+         if (root.has_char() && domain.has_char())
          {
-
-            string strRoot(pszRoot);
-
-            string strApp(pszApp);
 
             ::index j;
 
@@ -1052,8 +1035,10 @@ namespace file
                ::file::patha patha;
 
                strLocale = pcontext->m_plocaleschema->m_idLocale;
+
                strSchema = pcontext->m_plocaleschema->m_idSchema;
-               straLs = locale_schema_matter(papp, strLocale, strSchema, strRoot, strApp);
+
+               straLs = locale_schema_matter(papp, strLocale, strSchema, root, domain);
 
                for(index l = 0; l < straLs.get_count(); l++)
                {
@@ -1091,7 +1076,7 @@ namespace file
 
                      strLocale = pcontext->localeschema().m_idaLocale[i];
                      strSchema = pcontext->localeschema().m_idaSchema[i];
-                     straLs = locale_schema_matter(papp, strLocale, strSchema, strRoot, strApp);
+                     straLs = locale_schema_matter(papp, strLocale, strSchema, root, domain);
 
                      for(int k = 0; k < straLs.get_count(); k++)
                      {
@@ -1142,7 +1127,7 @@ namespace file
 
                strLocale = pcontext->m_plocaleschema->m_idLocale;
                strSchema = pcontext->m_plocaleschema->m_idSchema;
-               straLs = locale_schema_matter(papp, strLocale, strSchema, strRoot, strApp);
+               straLs = locale_schema_matter(papp, strLocale, strSchema, root, domain);
 
                for (index l = 0; l < straLs.get_count(); l++)
                {
@@ -1172,7 +1157,7 @@ namespace file
 
                      strLocale = pcontext->localeschema().m_idaLocale[i];
                      strSchema = pcontext->localeschema().m_idaSchema[i];
-                     straLs = locale_schema_matter(papp, strLocale, strSchema, strRoot, strApp);
+                     straLs = locale_schema_matter(papp, strLocale, strSchema, root, domain);
 
                      for (index l = 0; l < straLs.get_count(); l++)
                      {
@@ -1207,7 +1192,7 @@ namespace file
 
 
 
-            straLs = locale_schema_matter(papp, "en", "en", strRoot, strApp);
+            straLs = locale_schema_matter(papp, "en", "en", root, domain);
 
             for (index l = 0; l < straLs.get_count(); l++)
             {
@@ -1493,7 +1478,7 @@ else
       //}
 
 
-      ::file::path system::matter(::aura::application * papp,const ::file::path & str,bool bDir,const char * pszRoot,const char * pszApp)
+      ::file::path system::matter(::aura::application * papp,const ::file::path & str,bool bDir,const ::file::path & root,const ::file::path & domain)
       {
 
          ::aura::str_context * pcontext = Sess(papp).str_context();
@@ -1512,24 +1497,17 @@ else
 
          string strExistsQuestion;
 
-         if (pszRoot != NULL && pszApp != NULL && *pszRoot != '\0' && *pszApp != '\0')
+         if (root.has_char() && domain.has_char())
          {
 
-            string strRoot(pszRoot);
-
-            string strApp(pszApp);
-
-
             if(Session.m_bMatterFromHttpCache)
-
             {
-
 
                ::file::patha patha;
 
                strLocale = pcontext->m_plocaleschema->m_idLocale;
                strSchema = pcontext->m_plocaleschema->m_idSchema;
-               straLs = locale_schema_matter(papp, strLocale, strSchema, pszRoot, pszApp);
+               straLs = locale_schema_matter(papp, strLocale, strSchema, root, domain);
 
                strFile = System.dir().commonappdata() / "cache" / papp->m_paxissession->get_locale_schema_dir(strLocale, strSchema) / str + ".map_question";
 
@@ -1563,7 +1541,7 @@ else
                {
                   strLocale = pcontext->localeschema().m_idaLocale[i];
                   strSchema = pcontext->localeschema().m_idaSchema[i];
-                  straLs = locale_schema_matter(papp, strLocale, strSchema, pszRoot, pszApp);
+                  straLs = locale_schema_matter(papp, strLocale, strSchema, root, domain);
                   for(int k = 0; k < straLs.get_count(); k++)
                   {
 
@@ -1608,7 +1586,7 @@ else
 
                strLocale = pcontext->m_plocaleschema->m_idLocale;
                strSchema = pcontext->m_plocaleschema->m_idSchema;
-               straLs = locale_schema_matter(papp, strLocale, strSchema, strRoot, strApp);
+               straLs = locale_schema_matter(papp, strLocale, strSchema, root, domain);
 
                for (index l = 0; l < straLs.get_count(); l++)
                {
@@ -1634,7 +1612,7 @@ else
 
                   strLocale = pcontext->localeschema().m_idaLocale[i];
                   strSchema = pcontext->localeschema().m_idaSchema[i];
-                  straLs = locale_schema_matter(papp, strLocale, strSchema, strRoot, strApp);
+                  straLs = locale_schema_matter(papp, strLocale, strSchema, root, domain);
 
                   for (index l = 0; l < straLs.get_count(); l++)
                   {
@@ -1656,7 +1634,7 @@ else
                }
 
 
-               straLs = locale_schema_matter(papp, "en", "en", strRoot, strApp);
+               straLs = locale_schema_matter(papp, "en", "en", root, domain);
 
                for (index l = 0; l < straLs.get_count(); l++)
                {

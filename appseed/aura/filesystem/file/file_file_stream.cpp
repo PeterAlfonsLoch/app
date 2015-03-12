@@ -28,8 +28,8 @@ namespace file
 
 
    file_stream::file_stream(const file_stream & stream):
-      file_input_stream(stream),
-      file_output_stream(stream)
+      file_istream(stream),
+      file_ostream(stream)
    {
 
    }

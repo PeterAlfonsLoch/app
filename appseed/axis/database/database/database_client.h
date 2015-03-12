@@ -15,7 +15,7 @@ namespace file
 {
 
 
-   class CLASS_DECL_AXIS data_trigger_output_stream :
+   class CLASS_DECL_AXIS data_trigger_ostream :
       virtual public byte_stream_memory_buffer
    {
    public:
@@ -23,15 +23,15 @@ namespace file
       ::database::client * m_pclient;
       class ::database::id m_id;
 
-      data_trigger_output_stream(data_trigger_output_stream && d);
-      data_trigger_output_stream(::database::client * pclient,class ::database::id);
-      virtual ~data_trigger_output_stream();
+      data_trigger_ostream(data_trigger_ostream && d);
+      data_trigger_ostream(::database::client * pclient,class ::database::id);
+      virtual ~data_trigger_ostream();
 
 
    };
 
 
-   class CLASS_DECL_AXIS data_trigger_input_stream :
+   class CLASS_DECL_AXIS data_trigger_istream :
       virtual public byte_stream_memory_buffer
    {
    public:
@@ -39,9 +39,9 @@ namespace file
       //::database::client * m_pclient;
       //class ::database::id m_id;
 
-      data_trigger_input_stream(data_trigger_input_stream && d);
-      data_trigger_input_stream(::database::client * pclient,class ::database::id);
-      virtual ~data_trigger_input_stream();
+      data_trigger_istream(data_trigger_istream && d);
+      data_trigger_istream(::database::client * pclient,class ::database::id);
+      virtual ~data_trigger_istream();
 
    };
 
@@ -103,9 +103,9 @@ namespace database
       virtual bool data_set(class id, const wchar_t * lpsz, update_hint * puh = NULL);
       virtual bool data_set(class id, ::file::stream_buffer & obj, update_hint * puh = NULL);
       virtual bool data_set(class id, ::file::serializable & obj, update_hint * puh = NULL);
-      virtual bool data_set(class id, ::file::input_stream & obj, update_hint * puh = NULL);
+      virtual bool data_set(class id, ::file::istream & obj, update_hint * puh = NULL);
 //      virtual bool data_set(class id, ::file::serializable & obj, update_hint * puh = NULL);
-      //virtual bool data_set(class id, ::core::plain_text_input_stream & obj, update_hint * puh = NULL);
+      //virtual bool data_set(class id, ::core::plain_text_istream & obj, update_hint * puh = NULL);
       virtual bool data_set(selection & selection, const char * lpsz, update_hint * puh = NULL);
       virtual bool data_set(selection & selection, var & var, update_hint * puh = NULL);
 
@@ -117,7 +117,7 @@ namespace database
          try
          {
 
-            ::file::data_trigger_output_stream os(this,id);
+            ::file::data_trigger_ostream os(this,id);
 
             os << t;
 
@@ -137,9 +137,9 @@ namespace database
       virtual bool data_get(class id, string & str);
       virtual bool data_get(class id, ::file::stream_buffer & obj);
       virtual bool data_get(class id, ::file::serializable & obj);
-      virtual bool data_get(class id, ::file::output_stream & obj);
+      virtual bool data_get(class id, ::file::ostream & obj);
 //      virtual bool data_get(class id, ::file::serializable & obj);
-      //virtual bool data_get(class id, ::core::plain_text_output_stream & obj);
+      //virtual bool data_get(class id, ::core::plain_text_ostream & obj);
 //      virtual bool data_get(class id dataid, class id, string & str);
 
 
@@ -149,7 +149,7 @@ namespace database
          try
          {
 
-            ::file::data_trigger_input_stream is(this,id);
+            ::file::data_trigger_istream is(this,id);
 
             is >> t;
 

@@ -309,10 +309,14 @@ CLASS_DECL_AURA bool file_get_memory_dup(::primitive::memory_base & memory, cons
 
 
 template < typename N > class numeric_array;
+
 typedef CLASS_DECL_AURA numeric_array < uint32_t > uint_array;
-template < typename Type, typename RawType = typename Type >
+
+template < typename Type,typename RawType = typename Type >
+
 class string_array;
 typedef string_array < string > stringa;
+
 
 #ifndef METROWIN
 CLASS_DECL_AURA bool PrintModules(string & strImage, uint32_t processID, const char * pszDll );
@@ -320,7 +324,7 @@ CLASS_DECL_AURA void dll_processes(uint_array & dwa, stringa & straProcesses, co
 #endif
 
 CLASS_DECL_AURA string file_title_dup(const char * path);
-CLASS_DECL_AURA string file_name_dup(const char * path);
+CLASS_DECL_AURA const char * file_name_dup(const char * path);
 CLASS_DECL_AURA string file_module_path_dup();
 
 CLASS_DECL_AURA int_bool file_copy_dup(const char * pszDup, const char * pszSrc, int_bool bOverwrite );

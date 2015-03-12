@@ -52,7 +52,7 @@ extern "C"
 
 
 class CLASS_DECL_AXIS bzip_stream:
-   virtual public ::file::output_stream
+   virtual public ::file::ostream
 {
 public:
 
@@ -66,11 +66,11 @@ public:
 
 
    bzip_stream(::file::stream_buffer * pfileDest);
-   bzip_stream(::file::output_stream & ostreamDest);
+   bzip_stream(::file::ostream & ostreamDest);
    virtual ~bzip_stream();
 
 
-   using ::file::output_stream::write;
+   using ::file::ostream::write;
    void write(const void * buf,::primitive::memory_size iSize);
    void finish();
 

@@ -442,9 +442,9 @@ namespace windows
       else
       {
 
-         string strPath;
+         ::file::path strPath;
 
-         strPath = ::dir::userappdata("audio.txt");
+         strPath = ::dir::userappdata() / "audio.txt";
 
          str = file_as_string_dup(strPath);
 
@@ -471,9 +471,9 @@ namespace windows
       else
       {
 
-         string strPath;
+         ::file::path strPath;
 
-         strPath = ::dir::userappdata("draw2d.txt");
+         strPath = ::dir::userappdata() / "draw2d.txt";
 
          str = file_as_string_dup(strPath);
 

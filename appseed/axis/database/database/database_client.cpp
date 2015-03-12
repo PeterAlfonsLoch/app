@@ -178,7 +178,7 @@ namespace database
       return false;
    }
 
-   bool client::data_set(class id id, ::file::input_stream & istream, update_hint * puh)
+   bool client::data_set(class id id, ::file::istream & istream, update_hint * puh)
    {
       if(m_pdataserver != NULL)
       {
@@ -270,7 +270,7 @@ namespace database
       return false;
    }
 
-   bool client::data_get(class id id, ::file::output_stream & ostream)
+   bool client::data_get(class id id, ::file::ostream & ostream)
    {
       if(m_pdataserver != NULL)
       {
@@ -375,7 +375,7 @@ namespace database
 namespace file
 {
 
-   data_trigger_output_stream::data_trigger_output_stream(data_trigger_output_stream && d):
+   data_trigger_ostream::data_trigger_ostream(data_trigger_ostream && d):
       byte_stream_memory_buffer((byte_stream_memory_buffer &&)d)
    {
       m_pclient = d.m_pclient;
@@ -383,7 +383,7 @@ namespace file
       d.m_pclient = NULL;
    }
 
-   data_trigger_output_stream::data_trigger_output_stream(::database::client * pclient,class ::database::id id) :
+   data_trigger_ostream::data_trigger_ostream(::database::client * pclient,class ::database::id id) :
       ::object(pclient->get_app()),
       byte_stream_memory_buffer(pclient->get_app())
    {
@@ -393,33 +393,33 @@ namespace file
 
    }
    
-   data_trigger_output_stream::~data_trigger_output_stream()
+   data_trigger_ostream::~data_trigger_ostream()
    {
    
       if(m_pclient != NULL)
       {
          seek_to_begin();
-         m_pclient->data_set(m_id,(::file::input_stream &)*this);
+         m_pclient->data_set(m_id,(::file::istream &)*this);
 
       }
    
    }
 
-   data_trigger_input_stream::data_trigger_input_stream(data_trigger_input_stream && d):
+   data_trigger_istream::data_trigger_istream(data_trigger_istream && d):
       byte_stream_memory_buffer((byte_stream_memory_buffer &&) d)
    {
    }
 
-   data_trigger_input_stream::data_trigger_input_stream(::database::client * pclient,class ::database::id id) :
+   data_trigger_istream::data_trigger_istream(::database::client * pclient,class ::database::id id) :
       ::object(pclient->get_app()),
       byte_stream_memory_buffer(pclient->get_app())
    {
       
-      pclient->data_get(id,(::file::output_stream &)*this);
+      pclient->data_get(id,(::file::ostream &)*this);
       seek_to_begin();
    }
 
-   data_trigger_input_stream::~data_trigger_input_stream()
+   data_trigger_istream::~data_trigger_istream()
    {
 
    }

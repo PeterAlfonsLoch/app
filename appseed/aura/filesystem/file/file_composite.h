@@ -27,7 +27,7 @@ namespace file
       virtual void SetFilePath(const char * lpszNewName);
 
 
-      virtual ::file::exception_sp open(const ::file::path & lpszFileName,UINT nOpenFlags);
+      virtual cres open(const ::file::path & lpszFileName,UINT nOpenFlags);
 
       //virtual void Rename(const char * lpszOldName, const char * lpszNewName);
       //virtual void remove(const char * lpszFileName);
@@ -63,11 +63,11 @@ namespace file
 
 
       using ::file::stream_buffer::write;
-      void write(output_stream & ostream);
+      void write(ostream & ostream);
 
 
       using ::file::stream_buffer::read;
-      void read(input_stream & istream);
+      void read(istream & istream);
 
 
 

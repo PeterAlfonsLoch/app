@@ -2,7 +2,7 @@
 
 
 //// return string length or -1 if UNICODE string is found in the archive
-//__STATIC UINT __read_string_length(::file::input_stream & ar);
+//__STATIC UINT __read_string_length(::file::istream & ar);
 //
 //
 //stringa::stringa(::aura::application * papp):
@@ -747,7 +747,7 @@
 //*/
 //
 //
-//void stringa::write(::file::output_stream & ostream) const
+//void stringa::write(::file::ostream & ostream) const
 //{
 //   ostream.write_arbitrary(m_nSize);
 //   for(int32_t i = 0; i < this->get_size(); i++)
@@ -756,7 +756,7 @@
 //   }
 //}
 //
-//void stringa::read(::file::input_stream & istream)
+//void stringa::read(::file::istream & istream)
 //{
 //
 //   if(istream.fail())

@@ -221,7 +221,7 @@ dump_context & operator <<(dump_context & dumpcontext,::datetime::time_span time
       timeSpan.GetSeconds() << " seconds)";
 }
 
-::file::output_stream & operator <<(::file::output_stream & os,::datetime::time_span span)
+::file::ostream & operator <<(::file::ostream & os,::datetime::time_span span)
 {
 
    os.write_arbitrary((int64_t)span.m_timeSpan);
@@ -230,7 +230,7 @@ dump_context & operator <<(dump_context & dumpcontext,::datetime::time_span time
 
 }
 
-::file::input_stream & operator >>(::file::input_stream & is,::datetime::time_span & span)
+::file::istream & operator >>(::file::istream & is,::datetime::time_span & span)
 {
 
    is.read_arbitrary((int64_t &)span.m_timeSpan);

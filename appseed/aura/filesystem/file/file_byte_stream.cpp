@@ -60,9 +60,9 @@ namespace file
    void byte_stream::close()
    {
 
-      input_stream::close();
+      istream::close();
 
-      output_stream::close();
+      ostream::close();
 
    }
 

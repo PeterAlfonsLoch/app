@@ -6,7 +6,7 @@ namespace file
 {
 
 
-   class CLASS_DECL_AURA output_stream_flush
+   class CLASS_DECL_AURA ostream_flush
    {
    public:
       

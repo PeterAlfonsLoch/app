@@ -18,4 +18,4 @@ public:
 
 
 
-CLASS_DECL_AURA ::file::output_stream & operator << (::file::output_stream & dumpcontext,const verisimple_exception & e);
+CLASS_DECL_AURA ::file::ostream & operator << (::file::ostream & dumpcontext,const verisimple_exception & e);

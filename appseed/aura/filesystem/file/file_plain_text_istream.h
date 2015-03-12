@@ -5,20 +5,20 @@ namespace file
 {
 
 
-   class CLASS_DECL_AURA plain_text_input_stream :
-      virtual public input_stream,
+   class CLASS_DECL_AURA plain_text_istream :
+      virtual public istream,
       virtual public plain_text_stream_base
    {
    public:
 
 
-      plain_text_input_stream();
-      plain_text_input_stream(stream_buffer * preader);
-      plain_text_input_stream(const input_stream & istream);
-      virtual ~plain_text_input_stream();
+      plain_text_istream();
+      plain_text_istream(stream_buffer * preader);
+      plain_text_istream(const istream & istream);
+      virtual ~plain_text_istream();
 
 
-      using input_stream::read;
+      using istream::read;
       virtual void read (bool & b);
       virtual void read (char & ch);
       virtual void read (uchar & uch);
@@ -38,7 +38,7 @@ namespace file
 
       virtual ::string get_location() const;
 
-      input_stream & operator = (const input_stream & istream);
+      istream & operator = (const istream & istream);
 
       operator void * ()
       {

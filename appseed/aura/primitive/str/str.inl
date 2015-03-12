@@ -715,7 +715,7 @@ primitive::memory string_array < Type, RawType > ::GetFormatV004()
    for(i = 0; i < m_nSize; i++)
    {
 
-      TYPE * pstr = &this->element_at(i);
+      Type * pstr = &this->element_at(i);
 
       iLength = pstr->get_length();
 

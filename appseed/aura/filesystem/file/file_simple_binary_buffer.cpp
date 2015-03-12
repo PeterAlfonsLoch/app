@@ -38,7 +38,7 @@ namespace file
    }
 
 
-   exception_sp simple_binary_buffer::open(const ::file::path & lpszFileName, UINT nOpenFlags)
+   cres simple_binary_buffer::open(const ::file::path & lpszFileName, UINT nOpenFlags)
    {
 
       ASSERT(lpszFileName != NULL);
@@ -86,10 +86,10 @@ namespace file
       if (m_pfile == NULL)
       {
          Abort();
-         return fesp(get_app());
+         return failure;
       }
 
-      return ::file::no_exception();
+      return ::no_exception;
 
    }
 

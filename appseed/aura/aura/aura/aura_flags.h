@@ -32,12 +32,12 @@ public:
    bool operator != (const flags < ENUM >  & f);
    bool operator == (const ENUM e) { return m_ia.get_size() == 1 && (ENUM) m_ia.element_at(0) == e; }
 
-   void write(::file::output_stream & os) const
+   void write(::file::ostream & os) const
    {
       ::file::array::write(os, m_ia);
    }
 
-   void read(::file::input_stream & is)
+   void read(::file::istream & is)
    {
       ::file::array::read(is,m_ia);
    }

@@ -3236,7 +3236,7 @@ namespace axis
    //}
 
 
-   //void application::dir_ls_dir(const char * lpcsz,::file::patha * ppatha,::file::patha * ppathaName)
+   //void application::dir_ls_dir(const char * lpcsz,::file::patha & patha)
    //{
 
    //   dir().ls_dir(lpcsz,ppatha,ppathaName);
@@ -3244,7 +3244,7 @@ namespace axis
    //}
 
 
-   //void application::dir_rls(const char * lpcsz,::file::patha * ppatha,::file::patha * ppathaName,::file::patha * ppathaRelative)
+   //void application::dir_rls(const char * lpcsz,::file::patha & patha)
    //{
 
    //   dir().rls(lpcsz,ppatha,ppathaName,ppathaRelative);

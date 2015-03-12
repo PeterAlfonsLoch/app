@@ -33,8 +33,8 @@ namespace file
 
    stream & stream::operator = (const stream & stream)
    {
-      input_stream::operator = (stream);
-      output_stream::operator = (stream);
+      istream::operator = (stream);
+      ostream::operator = (stream);
       return *this;
    }
 
@@ -50,8 +50,8 @@ namespace file
 
    void stream::close()
    {
-      input_stream::close();
-      output_stream::close();
+      istream::close();
+      ostream::close();
    }
 
 

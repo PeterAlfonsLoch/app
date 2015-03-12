@@ -2959,7 +2959,7 @@ namespace aura
 
          ::file::buffered_buffer buffer(this,file);
 
-         ::file::byte_input_stream is(&buffer);
+         ::file::byte_istream is(&buffer);
 
          try
          {
@@ -3000,7 +3000,7 @@ namespace aura
 
          ::file::buffered_buffer buffer(this, file);
 
-         ::file::byte_output_stream os(&buffer);
+         ::file::byte_ostream os(&buffer);
 
          try
          {
@@ -3207,7 +3207,7 @@ namespace aura
    //}
 
 
-   //void application::dir_ls_dir(const char * lpcsz,::file::patha * ppatha,::file::patha * ppathaName)
+   //void application::dir_ls_dir(const char * lpcsz,::file::patha & patha)
    //{
 
    //   ::exception::throw_not_implemented(get_app());
@@ -3215,7 +3215,7 @@ namespace aura
    //}
 
 
-   //void application::dir_rls(const char * lpcsz,::file::patha * ppatha,::file::patha * ppathaName,::file::patha * ppathaRelative)
+   //void application::dir_rls(const char * lpcsz,::file::patha & patha)
    //{
 
    //   ::exception::throw_not_implemented(get_app());
@@ -3626,7 +3626,7 @@ namespace aura
    }
 
 
-   void application::fill_locale_schema(::str::international::locale_schema & localeschema,const char * pszLocale,const char * pszSchema)
+   void application::fill_locale_schema(::str::international::locale_schema & localeschema,const string & pszLocale,const string & pszSchema)
    {
 
 
@@ -4222,6 +4222,14 @@ namespace aura
    {
       
       return !is_session() && !is_system();
+
+   }
+
+
+   ::file::listing & application::perform_file_listing(::file::listing & listing)
+   {
+      
+      return dir().ls(listing);
 
    }
 

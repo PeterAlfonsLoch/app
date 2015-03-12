@@ -18,7 +18,7 @@ public:
   void closeStream();
   file_size get_length() const;
 protected:
-  ::file::input_stream & createRelative(string relPath);
+  ::file::istream & createRelative(string relPath);
 
   string *baseLocation;
   byte *stream;

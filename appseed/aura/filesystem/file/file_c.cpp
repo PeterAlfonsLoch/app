@@ -24,12 +24,7 @@ bool file_put_contents_dup(const char * path, const ::primitive::memory_base & m
 
 
 
-
-
-
-
-
-string file_name_dup(const char * path)
+const char * file_name_dup(const char * path)
 {
    string str(path);
    size_t iPos;
@@ -58,7 +53,7 @@ string file_name_dup(const char * path)
    {
       iPos = 0;
    }
-   return str.substr(iPos);
+   return &path[iPos];
 }
 
 

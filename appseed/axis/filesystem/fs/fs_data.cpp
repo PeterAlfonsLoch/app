@@ -1,14 +1,19 @@
 //#include "framework.h"
 
+
 namespace fs
 {
+
 
    data::data(::aura::application * papp) :
       ::object(papp),
       ::data::data(papp)
    {
+
+
    }
 
+   
    bool data::has_subdir(const ::file::path & pszPath)
    {
       UNREFERENCED_PARAMETER(pszPath);
@@ -90,13 +95,16 @@ namespace fs
    //   return strPath.Left(iFind);
    //}
 
-   bool data::ls(const ::file::path & pszDir,::file::patha * ppatha,::file::patha * ppathaName,bool bSize,bool_array * pbaDir)
+
+   ::file::listing & data::ls(::file::listing & listing)
    {
-      UNREFERENCED_PARAMETER(pszDir);
-      UNREFERENCED_PARAMETER(ppatha);
-      UNREFERENCED_PARAMETER(ppathaName);
-      return false;
+
+      UNREFERENCED_PARAMETER(listing);
+
+      return listing;
+
    }
+
 
    bool data::is_dir(const ::file::path & pszPath)
    {
@@ -104,10 +112,11 @@ namespace fs
       return false;
    }
 
-   void data::root_ones(::file::patha & patha,stringa & straTitle)
+   ::file::listing & data::root_ones(::file::listing & listing)
    {
-      UNREFERENCED_PARAMETER(patha);
-      UNREFERENCED_PARAMETER(straTitle);
+      
+      return listing = failure;
+      
    }
 
    //void data::get_ascendants_path(const ::file::path & lpcsz,::file::patha & straParam)
@@ -149,41 +158,54 @@ namespace fs
    //   }
    //}
 
-   ::file::buffer_sp data::get_file(const ::file::path & varFile,UINT nOpenFlags,fesp * pfesp)
+
+   ::file::buffer_sp data::get_file(const ::file::path & varFile,UINT nOpenFlags,cres * pfesp)
    {
+      
       if(pfesp != NULL)
       {
-         *pfesp = fesp(get_app());
+         
+         (*pfesp)->add(fesp(failure));
+
       }
+      
       UNREFERENCED_PARAMETER(varFile);
+
       UNREFERENCED_PARAMETER(nOpenFlags);
+
       return NULL;
+
    }
 
-   bool data::file_exists(const ::file::path & pszPath)
+   
+   bool data::file_exists(const ::file::path & path)
    {
-      ::file::patha straTitle;
-      ls(pszPath--, NULL, &straTitle, NULL, NULL);
-      return straTitle.contains_ci(pszPath.name());
+      
+      ::file::listing listing(this);
+      
+      listing.ls(path.folder());
+      
+      return listing.contains_ci(path.name());
+
    }
 
-   var data::file_length(const ::file::path & pszPath)
+
+   var data::file_length(const ::file::path & path)
    {
       
-      ::file::patha straTitle;
+      ::file::listing listing(this);
 
-      int64_array iaFileSize;
+      listing.ls(path.folder());
       
-      ls(pszPath--, NULL, &straTitle, &iaFileSize, NULL);
-      
-      index iFind = straTitle.find_first_ci(pszPath.name());
+      index iFind = listing.find_first_ci(path.name());
 
       if (iFind < 0)
          return var(var::type_null);
 
-      return iaFileSize[iFind];
+      return listing[iFind].m_iSize;
 
    }
+
 
    sp(data) data::node_path_data(const ::file::path & psz)
    {
@@ -215,4 +237,18 @@ namespace fs
 
    }
 
+
+   ::file::listing & data::perform_file_listing(::file::listing & listing)
+   {
+
+      return ls(listing);
+
+   }
+
+
 } // namespace fs
+
+
+
+
+

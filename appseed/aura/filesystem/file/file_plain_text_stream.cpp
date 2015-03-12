@@ -10,14 +10,14 @@ namespace file
    }
 
    plain_text_stream::plain_text_stream(stream_buffer * pbuffer) :
-      plain_text_input_stream(pbuffer),
-      plain_text_output_stream(pbuffer)
+      plain_text_istream(pbuffer),
+      plain_text_ostream(pbuffer)
    {
    }
 
    plain_text_stream::plain_text_stream(const stream & stream) :
-      plain_text_input_stream(stream),
-      plain_text_output_stream(stream)
+      plain_text_istream(stream),
+      plain_text_ostream(stream)
    {
    }
 
@@ -27,8 +27,8 @@ namespace file
 
    stream & plain_text_stream::operator = (const stream & stream)
    {
-      plain_text_input_stream::operator = (stream);
-      plain_text_output_stream::operator = (stream);
+      plain_text_istream::operator = (stream);
+      plain_text_ostream::operator = (stream);
       return *this;
    }
 
@@ -44,8 +44,8 @@ namespace file
 
    void plain_text_stream::close()
    {
-      plain_text_input_stream::close();
-      plain_text_output_stream::close();
+      plain_text_istream::close();
+      plain_text_ostream::close();
    }
 
 

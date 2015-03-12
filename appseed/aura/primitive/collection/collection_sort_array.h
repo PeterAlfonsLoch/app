@@ -170,10 +170,10 @@ public:
    friend bool lemon::array::binary_search(ARRAY & a,typename ARRAY::BASE_ARG_TYPE t,index & iIndex,index(* fCompare) (typename ARRAY::BASE_ARG_TYPE,typename ARRAY::BASE_ARG_TYPE),index_array & ia);
 
    template < class ARRAY >
-   friend void ::file::array::write(::file::output_stream & ostream,const ARRAY & a);
+   friend void ::file::array::write(::file::ostream & ostream,const ARRAY & a);
 
    template < class ARRAY >
-   friend void ::file::array::read(::file::input_stream & ostream,ARRAY & a);
+   friend void ::file::array::read(::file::istream & ostream,ARRAY & a);
 
 
    sort_array & operator = (const sort_array & a)

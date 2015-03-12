@@ -51,8 +51,8 @@ namespace filehandler
       virtual void get_mime_type_app(stringa & straAppId, const char * pszMimeType);
 
 
-      void write(::file::output_stream & ostream) const;
-      void read(::file::input_stream & istream);
+      void write(::file::ostream & ostream) const;
+      void read(::file::istream & istream);
 
 
    };

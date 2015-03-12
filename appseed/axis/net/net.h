@@ -54,7 +54,7 @@ namespace sockets
 
 
 
-#include "axis/net/http/http_output_stream.h"
+#include "axis/net/http/http_ostream.h"
 
 
 

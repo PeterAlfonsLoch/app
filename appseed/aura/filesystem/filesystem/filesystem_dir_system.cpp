@@ -39,7 +39,7 @@ namespace file
 
 
 
-      //::file::path system::path(const char * pszFolder, strsize iLenFolder, const char * pszRelative, strsize iLenRelative, const char * psz2, strsize iLen2, bool bUrl)
+      //::file::path system::path(const string & pszFolder, strsize iLenFolder, const string & pszRelative, strsize iLenRelative, const string & psz2, strsize iLen2, bool bUrl)
       //{
       //   UNREFERENCED_PARAMETER(pszFolder);
       //   UNREFERENCED_PARAMETER(iLenFolder);
@@ -51,14 +51,14 @@ namespace file
       //   throw interface_only_exception(get_app(), "this is an interface");
       //}
 
-      //::file::path system::path(const char * pszFolder, strsize iLenFolder, const char * pszRelative, strsize iLenRelative, bool bUrl)
+      //::file::path system::path(const string & pszFolder, strsize iLenFolder, const string & pszRelative, strsize iLenRelative, bool bUrl)
       //{
 
       //   return path(pszFolder, iLenFolder, pszRelative, iLenRelative, NULL, 0, bUrl);
 
       //}
 
-      //::file::path system::path(const char * pszFolder, strsize iLenFolder, const char * pszRelative, strsize iLenRelative, const char * psz2, strsize iLen2)
+      //::file::path system::path(const string & pszFolder, strsize iLenFolder, const string & pszRelative, strsize iLenRelative, const string & psz2, strsize iLen2)
       //{
 
       //   return path(pszFolder, iLenFolder, pszRelative, iLenRelative, psz2, iLen2, ::url::is_url(pszFolder));
@@ -137,10 +137,10 @@ namespace file
 
 #define string_STRCAT2_beg_char_end(strCat, ch, str1, str2, beg1, end1, beg2, end2) \
          { \
-            char * psz = strCat.GetBufferSetLength(end1 - beg1 + 1 + end2 - beg2 + 1 + 1); \
-            strncpy(psz, &((const char *)str1)[beg1], end1 - beg1 + 1); \
+            string & psz = strCat.GetBufferSetLength(end1 - beg1 + 1 + end2 - beg2 + 1 + 1); \
+            strncpy(psz, &((const string &)str1)[beg1], end1 - beg1 + 1); \
             psz[end1 - beg1 + 1] = ch; \
-            strncpy(&psz[end1 - beg1 + 2], &((const char *)str2)[beg2], end2 - beg2 + 1); \
+            strncpy(&psz[end1 - beg1 + 2], &((const string &)str2)[beg2], end2 - beg2 + 1); \
             strPath.ReleaseBuffer(end1 - beg1 + 1 + end2 - beg2 + 1 + 1); \
          }
 
@@ -201,14 +201,14 @@ namespace file
       //   }
       //   else
       //   {
-      //      char * psz = strPath.GetBufferSetLength(iRelativeEnd - iRelativeBeg + 1 + iFolderEnd - iFolderBeg + 1 + 1);
-      //      strncpy(psz, &((const char *)strFolder)[iFolderBeg], iFolderEnd - iFolderBeg + 1);
+      //      string & psz = strPath.GetBufferSetLength(iRelativeEnd - iRelativeBeg + 1 + iFolderEnd - iFolderBeg + 1 + 1);
+      //      strncpy(psz, &((const string &)strFolder)[iFolderBeg], iFolderEnd - iFolderBeg + 1);
       //      #if defined(LINUX) || defined(APPLEOS)
       //      psz[iFolderEnd - iFolderBeg + 1] = '/';
       //      #else
       //      psz[iFolderEnd - iFolderBeg + 1] = '\\';
       //      #endif
-      //      strncpy(&psz[iFolderEnd - iFolderBeg + 2], &((const char *)strRelative)[iRelativeBeg], iRelativeEnd - iRelativeBeg + 1);
+      //      strncpy(&psz[iFolderEnd - iFolderBeg + 2], &((const string &)strRelative)[iRelativeBeg], iRelativeEnd - iRelativeBeg + 1);
       //      strPath.ReleaseBuffer(iRelativeEnd - iRelativeBeg + 1 + iFolderEnd - iFolderBeg + 1 + 1);
       //   }
 
@@ -360,20 +360,20 @@ namespace file
 
       //   string strPath;
 
-      //   char * psz = strPath.GetBufferSetLength(iEnd2 - iBeg2 + 1 + iRelativeEnd - iRelativeBeg + 1 + iFolderEnd - iFolderBeg + 1 + 1 + 1);
-      //   strncpy(psz, &((const char *)strFolder)[iFolderBeg], iFolderEnd - iFolderBeg + 1);
+      //   string & psz = strPath.GetBufferSetLength(iEnd2 - iBeg2 + 1 + iRelativeEnd - iRelativeBeg + 1 + iFolderEnd - iFolderBeg + 1 + 1 + 1);
+      //   strncpy(psz, &((const string &)strFolder)[iFolderBeg], iFolderEnd - iFolderBeg + 1);
       //   #if defined(LINUX) || defined(APPLEOS)
       //   psz[iFolderEnd - iFolderBeg + 1] = '/';
       //   #else
       //   psz[iFolderEnd - iFolderBeg + 1] = '\\';
       //   #endif
-      //   strncpy(&psz[iFolderEnd - iFolderBeg + 2], &((const char *)strRelative)[iRelativeBeg], iRelativeEnd - iRelativeBeg + 1);
+      //   strncpy(&psz[iFolderEnd - iFolderBeg + 2], &((const string &)strRelative)[iRelativeBeg], iRelativeEnd - iRelativeBeg + 1);
       //   #if defined(LINUX) || defined(APPLEOS)
       //   psz[iFolderEnd - iFolderBeg + 1 + 1 + iRelativeEnd - iRelativeBeg + 1] = '/';
       //   #else
       //   psz[iFolderEnd - iFolderBeg + 1 + 1 + iRelativeEnd - iRelativeBeg + 1] = '\\';
       //   #endif
-      //   strncpy(&psz[iFolderEnd - iFolderBeg + 1 + 1 + iRelativeEnd - iRelativeBeg + 1 + 1], &((const char *)str2)[iBeg2], iEnd2 - iBeg2 + 1);
+      //   strncpy(&psz[iFolderEnd - iFolderBeg + 1 + 1 + iRelativeEnd - iRelativeBeg + 1 + 1], &((const string &)str2)[iBeg2], iEnd2 - iBeg2 + 1);
       //   strPath.ReleaseBuffer(iEnd2 - iBeg2 + 1 + iRelativeEnd - iRelativeBeg + 1 + iFolderEnd - iFolderBeg + 1 + 1 + 1);
 
       //   return strPath;
@@ -397,78 +397,38 @@ namespace file
       //   throw interface_only_exception(get_app(), "this is an interface");
       //}
 
-      void system::root_ones(::file::patha & patha, stringa & straTitle, ::aura::application * papp)
+      
+      ::file::listing & system::root_ones(::file::listing & listing,::aura::application * papp)
       {
-         UNREFERENCED_PARAMETER(patha);
-         UNREFERENCED_PARAMETER(straTitle);
+         
+         UNREFERENCED_PARAMETER(listing);
+         
          throw interface_only_exception(get_app(), "this is an interface");
-      }
-
-      bool system::rls_pattern(::aura::application * papp, const char * psz, const char * pszPattern, ::file::patha * ppatha, ::file::patha * ppathaName, ::file::patha * ppathaRelative, bool_array * pbaIsDir, bool bSize, e_extract eextract)
-      {
-
-         return false;
-         //UNREFERENCED_PARAMETER(ppathaRelative);
-         //UNREFERENCED_PARAMETER(pszPattern);
-         //throw not_implemented(get_app(), "is really a directory or compressed directory/file??");
 
       }
 
-
-      bool system::ls_pattern(::aura::application * papp,const char * psz,const char * pszPattern,::file::patha * ppatha,::file::patha * ppathaName,bool bSize)
+      
+      ::file::listing & system::ls(::aura::application * papp, listing & listing)
       {
 
-         return false;
+         listing.m_cres = cres(failure);
 
-      }
-
-      bool system::ls(::aura::application * papp,const char * psz,::file::patha * ppatha,::file::patha * ppathaName,bool bSize)
-      {
-
-         return false;
+         return listing;
 
       }
 
 
-      bool system::rls(::aura::application * papp, const char * psz, ::file::patha * ppatha, ::file::patha * ppathaName, ::file::patha * ppathaRelative, e_extract eextract)
+      bool system::has_subdir(::aura::application * papp,const ::file::path & psz)
       {
-
-         return false;
-
-      }
-
-
-      bool system::rls_dir(::aura::application * papp,const char * psz,::file::patha * ppatha,::file::patha * ppathaName,::file::patha * ppathaRelative)
-      {
-
-         return false;
-
-      }
-
-      bool system::ls_dir(::aura::application * papp,const char * psz,::file::patha * ppatha,::file::patha * ppathaName)
-      {
-
-         return false;
-
-      }
-
-
-      bool system::has_subdir(::aura::application * papp, const char * psz)
-      {
+         
          UNREFERENCED_PARAMETER(psz);
-         throw interface_only_exception(get_app(), "this is an interface");
-      }
 
-
-      bool system::ls_file(::aura::application * papp,const char * psz,::file::patha * ppatha,::file::patha * ppathaName)
-      {
-
-         return false;
+         throw interface_only_exception(papp, "this is an interface");
 
       }
 
 
-      bool system::is_or_definitively_not(bool & bIs, const char * lpcszPath, ::aura::application * papp)
+      bool system::is_or_definitively_not(bool & bIs, const ::file::path & lpcszPath, ::aura::application * papp)
       {
 
          bIs = false;
@@ -502,7 +462,7 @@ namespace file
       }
 
 
-      bool system::is(const char * lpcszPath, ::aura::application * papp)
+      bool system::is(const ::file::path & lpcszPath,::aura::application * papp)
       {
 
          bool bIs;
@@ -514,48 +474,23 @@ namespace file
 
       }
 
-      bool system::is(const string & strPath, ::aura::application * papp)
+
+      bool system::name_is(const ::file::path & lpcszPath,::aura::application * papp)
       {
 
-         return false;
-      }
-
-      bool system::is(const var & var, ::aura::application * papp)
-      {
-         return is((const string &) var, papp);
-      }
-
-      bool system::name_is(const char * lpcszPath, ::aura::application * papp)
-      {
          return name_is((const string &) lpcszPath, papp);
-      }
 
-      bool system::name_is(const string & strPath, ::aura::application * papp)
-      {
-         //OutputDebugString(strPath);
-
-         return false;
-      }
-
-      bool system::name_is(const var & var, ::aura::application * papp)
-      {
-         return name_is((const string &) var, papp);
       }
 
 
       system::is_dir_map::is_dir_map(::aura::application * papp) :
-         string_map < is_dir >(papp, 256), // block size
+         file_path_map < is_dir >(papp, 256), // block size
          m_mutex(papp)
       {
          InitHashTable(16384, TRUE);
       }
 
-      bool system::is_dir_map::lookup(const char * pszPath, bool &bIsDir, uint32_t & dwLastError)
-      {
-         return lookup(string(pszPath), bIsDir, dwLastError);
-      }
-
-      bool system::is_dir_map::lookup(const string & strPath, bool &bIsDir, uint32_t & dwLastError)
+      bool system::is_dir_map::lookup(const ::file::path & strPath,bool &bIsDir,uint32_t & dwLastError)
       {
 
          if(strPath.get_length() <= 0)
@@ -564,22 +499,9 @@ namespace file
             return true;
          }
 
-
-
-
-         string strLookup(strPath);
-
-#if defined(LINUX) || defined(APPLEOS)
-         if(strLookup.last_char() != '\\' && strLookup.last_char() != '/' )
-            strLookup += "/";
-#else
-         if(strLookup.last_char() != '\\' && strLookup.last_char() != '/' )
-            strLookup += "\\";
-#endif
-
          single_lock sl(&m_mutex, TRUE);
 
-         string_map < is_dir >::pair * ppair = this->PLookup(strLookup);
+         pair * ppair = this->PLookup(strPath);
 
          if(ppair == NULL)
             return false;
@@ -597,7 +519,7 @@ namespace file
 
       }
 
-      bool system::is_dir_map::lookup(const string & strPath, bool &bIsDir, uint32_t &dwLastError, int32_t iLast)
+      bool system::is_dir_map::lookup(const ::file::path & strPath,bool &bIsDir,uint32_t &dwLastError,int32_t iLast)
       {
 
          if(iLast < 0)
@@ -606,11 +528,9 @@ namespace file
             return true;
          }
 
-         string strLookup(strPath, iLast + 1);
-
          single_lock sl(&m_mutex, TRUE);
 
-         string_map < is_dir >::pair * ppair = this->PLookup(strLookup);
+         pair * ppair = this->PLookup(strPath);
 
          if(ppair == NULL)
             return false;
@@ -628,47 +548,14 @@ namespace file
 
       }
 
-      void system::is_dir_map::set(const char * pszPath, bool bIsDir, uint32_t dwLastError)
+      void system::is_dir_map::set(const ::file::path & strPath,bool bIsDir,uint32_t dwLastError)
       {
-#if defined(LINUX) || defined(APPLEOS)
-         static const char * strSep = "/";
-#else
-         static const char * strSep = "\\";
-#endif
          is_dir isdir;
          isdir.m_bIsDir = bIsDir;
          isdir.m_dwError = dwLastError;
          isdir.m_dwLastCheck = ::get_tick_count();
-         string strPath(pszPath);
-         if(!::str::ends(strPath, strSep))
-            strPath += strSep;
          single_lock sl(&m_mutex, TRUE);
          set_at(strPath, isdir);
-      }
-
-      void system::is_dir_map::set(const string & strPath, bool bIsDir, uint32_t dwLastError)
-      {
-#if defined(LINUX) || defined(APPLEOS)
-         static const char * strSep = "/";
-#else
-         static const char * strSep = "\\";
-#endif
-         is_dir isdir;
-         isdir.m_bIsDir = bIsDir;
-         isdir.m_dwError = dwLastError;
-         isdir.m_dwLastCheck = ::get_tick_count();
-         if(::str::ends(strPath, strSep))
-         {
-            single_lock sl(&m_mutex, TRUE);
-            set_at(strPath, isdir);
-         }
-         else
-         {
-            string strPath2(strPath);
-            strPath2 += strSep;
-            single_lock sl(&m_mutex, TRUE);
-            set_at(strPath2, isdir);
-         }
       }
 
       ::file::path system::time()
@@ -706,38 +593,51 @@ namespace file
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      ::file::path system::time_square(::aura::application * papp,const char * pszPrefix,const char * pszSuffix)
+      
+      ::file::path system::time_square(::aura::application * papp,const string & pszPrefix,const string & pszSuffix)
       {
+         
          UNREFERENCED_PARAMETER(papp);
          UNREFERENCED_PARAMETER(pszPrefix);
          UNREFERENCED_PARAMETER(pszSuffix);
          throw interface_only_exception(get_app(), "this is an interface");
+
       }
 
-      ::file::path system::time_log(const char * pszId)
+
+      ::file::path system::time_log(const string & pszId)
       {
+
          UNREFERENCED_PARAMETER(pszId);
          throw interface_only_exception(get_app(), "this is an interface");
+
       }
 
-      bool system::mk(const char * psz, ::aura::application * papp)
+
+      bool system::mk(const ::file::path & psz,::aura::application * papp)
       {
+
          UNREFERENCED_PARAMETER(psz);
          throw interface_only_exception(get_app(), "this is an interface");
+
       }
 
-      bool system::rm(::aura::application * papp, const char * psz, bool bRecursive)
+
+      bool system::rm(::aura::application * papp,const ::file::path & psz,bool bRecursive)
       {
+
          UNREFERENCED_PARAMETER(psz);
          UNREFERENCED_PARAMETER(bRecursive);
          throw interface_only_exception(get_app(), "this is an interface");
+
       }
 
-      ::file::path system::name(const char * path1)
-      {
-         UNREFERENCED_PARAMETER(path1);
-         throw interface_only_exception(get_app(), "this is an interface");
-      }
+
+      //::file::path system::name(const ::file::path & path1)
+      //{
+      //   UNREFERENCED_PARAMETER(path1);
+      //   throw interface_only_exception(get_app(), "this is an interface");
+      //}
 
       ::file::path system::locale_schema(::aura::application * papp, const string & strLocale, const string & strSchema)
       {
@@ -800,12 +700,12 @@ namespace file
 
       }
 
-      void system::matter_ls(::aura::application * papp,const ::file::path & str,::file::patha & stra)
+      void system::matter_ls(::aura::application * papp,const ::file::path & str,::file::patha & patha)
       {
 
          string strDir = matter(papp, str, true);
 
-         ls(papp, strDir, &stra);
+         patha = ::file::listing(papp).ls(strDir);
 
       }
 
@@ -870,7 +770,7 @@ namespace file
          else
          {
 
-            ls_file(papp,strDir,&stra);
+            stra = listing(papp).ls(strDir);
 
          }
 
@@ -1216,15 +1116,22 @@ namespace file
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      ::file::path system::trash_that_is_not_trash(const char * psz)
+
+      ::file::path system::trash_that_is_not_trash(const ::file::path & psz)
       {
+
          UNREFERENCED_PARAMETER(psz);
+
          throw interface_only_exception(get_app(), "this is an interface");
+
       }
+
 
       ::file::path system::appdata()
       {
+
          throw interface_only_exception(get_app(), "this is an interface");
+
       }
 
 
@@ -1269,7 +1176,7 @@ namespace file
       }
 
 
-      ::file::path system::usersystemappdata(::aura::application * papp, const char * lpcszPrefix)
+      ::file::path system::usersystemappdata(::aura::application * papp, const string & lpcszPrefix)
       {
          UNREFERENCED_PARAMETER(papp);
          UNREFERENCED_PARAMETER(lpcszPrefix);
@@ -1300,7 +1207,7 @@ namespace file
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      ::file::path system::default_userappdata(::aura::application * papp, const char * lpcszPrefix, const char * lpcszLogin)
+      ::file::path system::default_userappdata(::aura::application * papp, const string & lpcszPrefix, const string & lpcszLogin)
       {
          UNREFERENCED_PARAMETER(papp);
          UNREFERENCED_PARAMETER(lpcszPrefix);
@@ -1308,7 +1215,7 @@ namespace file
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      ::file::path system::default_userdata(::aura::application * papp, const char * lpcszPrefix, const char * lpcszLogin)
+      ::file::path system::default_userdata(::aura::application * papp, const string & lpcszPrefix, const string & lpcszLogin)
       {
          UNREFERENCED_PARAMETER(papp);
          UNREFERENCED_PARAMETER(lpcszPrefix);
@@ -1316,7 +1223,7 @@ namespace file
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      ::file::path system::default_userfolder(::aura::application * papp, const char * lpcszPrefix, const char * lpcszLogin)
+      ::file::path system::default_userfolder(::aura::application * papp, const string & lpcszPrefix, const string & lpcszLogin)
       {
          UNREFERENCED_PARAMETER(papp);
          UNREFERENCED_PARAMETER(lpcszPrefix);
@@ -1341,20 +1248,20 @@ namespace file
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      bool system::is_inside_time(const char * pszPath, ::aura::application * papp)
+      bool system::is_inside_time(const ::file::path & pszPath,::aura::application * papp)
       {
          UNREFERENCED_PARAMETER(pszPath);
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      bool system::is_inside(const char * pszDir, const char * pszPath, ::aura::application * papp)
+      bool system::is_inside(const ::file::path & pszDir,const ::file::path & pszPath,::aura::application * papp)
       {
          UNREFERENCED_PARAMETER(pszDir);
          UNREFERENCED_PARAMETER(pszPath);
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      ::file::path system::pathfind(const char * pszEnv, const char * pszTopic, const char * pszMode, ::aura::application * papp)
+      ::file::path system::pathfind(const string & pszEnv, const string & pszTopic, const string & pszMode, ::aura::application * papp)
       {
 
          ::file::patha stra;

@@ -99,6 +99,50 @@ namespace file
    }
 
 
+   path path::folder(int i) const
+   { 
+      
+      ::file::path path(*this);
+      
+      while(i > 1)
+      { 
+         
+         path = path.folder(); 
+         
+         i--;
+
+      } 
+      
+      return path;
+   
+   }
+
+   
+   path & path::go_up()
+   {
+
+      return *this = folder();
+
+   }
+
+
+   path & path::go_up(int i)
+   {
+
+      while(i > 1)
+      {
+
+         go_up();
+
+         i--;
+
+      }
+
+      return *this;
+
+   }
+
+
 } // namespace file
 
 

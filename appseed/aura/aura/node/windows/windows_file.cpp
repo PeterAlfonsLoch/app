@@ -72,13 +72,16 @@ namespace windows
    }
 
 
-   fesp file::open(const char * lpszFileName, UINT nOpenFlags)
+   cres file::open(const ::file::path & lpszFileName, UINT nOpenFlags)
    {
 
-      if(lpszFileName == NULL || *lpszFileName == '\0') 
+      if(*lpszFileName == '\0') 
       {
+         
          TRACE("windows::file::open file with empty name!!");
-         return fesp(get_app());
+
+         return failure;
+
       }
 
       if (m_hFile != (UINT)hFileNull)
@@ -94,7 +97,9 @@ namespace windows
 
       if(nOpenFlags & ::file::defer_create_directory)
       {
-         Application.dir().mk(System.dir().name(lpszFileName));
+         
+         Application.dir().mk(lpszFileName.folder());
+
       }
 
       m_hFile = (UINT)hFileNull;
@@ -185,102 +190,16 @@ retry:
             dwWaitSharingViolation += 84 + 77 + 49;
             goto retry;
          }
-         //else
-         //if(dwLastError != ERROR_FILE_NOT_FOUND && dwLastError != ERROR_PATH_NOT_FOUND)
-//         {
-//            /*         if (pException != NULL)
-//            {
-//            pException->alloc(allocer());
-//            ::file::exception * pfe = dynamic_cast < ::file::exception * > (pException->m_p);
-//            if(pfe != NULL)
-//            {
-//            pfe->m_lOsError = dwLastError;
-//            pfe->m_cause = file_exception::OsErrorToException(pfe->m_lOsError);
-//            pfe->m_strFileName = lpszFileName;
-//            }
-//            return FALSE;
-//            }
-//            else
-//            {*/
-//
-//
-//            return fesp(get_app(), file_exception::OsErrorToException(dwLastError), dwLastError, lpszFileName);
-//
-//            //}
-//
-//         }
-//
-//         try
-//         {
-//
-//            wstring wstrFileIn;
-//            wstrFileIn = m_wstrFileName;
-//            wstring wstrFileOut;
-//            bool b = vfxFullPath(wstrFileOut,wstrFileIn) != FALSE;
-//            if(b)
-//            {
-//               m_wstrFileName = wstrFileOut;
-//            }
-//
-////            ::windows::file_system fs(get_app());
-//  //          fs.FullPath(m_wstrFileName, m_wstrFileName);
-//         }
-//         catch(...)
-//         {
-//            return fesp(get_app());
-//         }
-//
-//         m_strFileName = ::str::international::unicode_to_utf8(m_wstrFileName);
-//
-//         DWORD dwFlags;
-//
-//         if(dwCreateFlag & CREATE_ALWAYS)
-//         {
-//            dwFlags = FILE_ATTRIBUTE_NORMAL;
-//         }
-//         else
-//         {
-//            dwFlags = FILE_FLAG_OPEN_REPARSE_POINT;
-//         }
-//
-//         hFile = ::CreateFileW(m_wstrFileName,dwAccess,dwShareMode,&sa,dwCreateFlag, dwFlags,NULL);
-//
-//         if (hFile == INVALID_HANDLE_VALUE)
-//         {
-            /*if (pException != NULL)
-            {
-            pException->alloc(allocer());
-            ::file::exception * pfe = dynamic_cast < ::file::exception * > (pException->m_p);
-            if(pfe != NULL)
-            {
-            pfe->m_lOsError = ::GetLastError();
-            pfe->m_cause = file_exception::OsErrorToException(pfe->m_lOsError);
-            pfe->m_strFileName = lpszFileName;
-            }
-            return FALSE;
-            }
-            else
-            {*/
 
-
-            //DWORD dwLastError = ::GetLastError();
-            return fesp(get_app(), file_exception::OsErrorToException(dwLastError), dwLastError, lpszFileName);
-
-
-            //}
-
-         //}
+         return fesp(get_app(), file_exception::OsErrorToException(dwLastError), dwLastError, lpszFileName);
 
       }
 
       m_hFile = (HFILE)hFile;
 
-      if(m_hFile == (HFILE)INVALID_HANDLE_VALUE)
-         return fesp(get_app());
-
       m_dwAccessMode = dwAccess;
 
-      return ::file::no_exception();
+      return ::no_exception;
 
    }
 
@@ -599,12 +518,12 @@ retry:
    // FileException
 
 
-   fesp file_exception::last_os_error(::aura::application * papp,const char * lpszFileName /* = NULL */)
+   cres file_exception::last_os_error(::aura::application * papp,const char * lpszFileName /* = NULL */)
    {
       return os_error(papp,::GetLastError(),lpszFileName);
    }
 
-   fesp file_exception::os_error(::aura::application * papp,LONG lOsError,const char * lpszFileName /* = NULL */)
+   cres file_exception::os_error(::aura::application * papp,LONG lOsError,const char * lpszFileName /* = NULL */)
    {
       return fesp(papp,file_exception::OsErrorToException(lOsError),lOsError,lpszFileName);
    }

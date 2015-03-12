@@ -152,7 +152,7 @@ namespace primitive
    }
 
 
-   void memory_container ::read(::file::input_stream & is)
+   void memory_container ::read(::file::istream & is)
    {
       if(m_spmemory.is_null())
       {

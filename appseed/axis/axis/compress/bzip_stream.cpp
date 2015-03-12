@@ -29,14 +29,14 @@ extern "C"
 
 
 bzip_stream::bzip_stream(::file::stream_buffer *  pfileDest):
-output_stream(pfileDest)
+ostream(pfileDest)
 {
    construct();
 }
 
 
-bzip_stream::bzip_stream(::file::output_stream & ostream):
-output_stream(ostream)
+bzip_stream::bzip_stream(::file::ostream & ostream):
+ostream(ostream)
 {
    construct();
 }
@@ -81,7 +81,7 @@ void bzip_stream::write(const void * buf,::primitive::memory_size len)
          bool bWriteOk = true;
          try
          {
-            ::file::output_stream::write(m_memory.get_data(),n);
+            ::file::ostream::write(m_memory.get_data(),n);
             n2 = n;
          }
          catch(...)
@@ -160,7 +160,7 @@ void bzip_stream::finish()
             bool bWriteOk = true;
             try
             {
-               ::file::output_stream::write(m_memory.get_data(),n);
+               ::file::ostream::write(m_memory.get_data(),n);
                n2 = n;
             }
             catch(...)

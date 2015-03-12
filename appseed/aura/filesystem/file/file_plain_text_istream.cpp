@@ -5,64 +5,64 @@ namespace file
 {
 
 
-   plain_text_input_stream::plain_text_input_stream()
+   plain_text_istream::plain_text_istream()
    {
    }
 
-   plain_text_input_stream::plain_text_input_stream(stream_buffer * preader) :
-      input_stream(preader)
-   {
-
-   }
-
-   plain_text_input_stream::plain_text_input_stream(const input_stream & istream) :
-      input_stream(istream)
+   plain_text_istream::plain_text_istream(stream_buffer * preader) :
+      istream(preader)
    {
 
    }
 
-   plain_text_input_stream::~plain_text_input_stream()
+   plain_text_istream::plain_text_istream(const istream & istream) :
+      istream(istream)
    {
 
    }
 
-   void plain_text_input_stream::read (bool & b)
+   plain_text_istream::~plain_text_istream()
+   {
+
+   }
+
+   void plain_text_istream::read (bool & b)
    {
       m_spbuffer->read(&b, sizeof(b));
       
    }
 
-   void plain_text_input_stream::read (char & ch)
+   void plain_text_istream::read (char & ch)
    {
       m_spbuffer->read(&ch, sizeof(ch));
       
    }
 
-   void plain_text_input_stream::read (uchar & uch)
+   void plain_text_istream::read (uchar & uch)
    {
       m_spbuffer->read(&uch, sizeof(uch));
       
    }
 
-   void plain_text_input_stream::read (wchar_t & wch)
+   void plain_text_istream::read (wchar_t & wch)
    {
       m_spbuffer->read(&wch, sizeof(wch));
       
    }
 
-   void plain_text_input_stream::read (int16_t & sh)
+   void plain_text_istream::read (int16_t & sh)
    {
       m_spbuffer->read(&sh, sizeof(sh));
       
    }
 
-   void plain_text_input_stream::read (uint16_t & ui)
+   void plain_text_istream::read (uint16_t & ui)
    {
       m_spbuffer->read(&ui, sizeof(ui));
       
    }
 
-   void plain_text_input_stream::read (int32_t & i)
+   void plain_text_istream::read (int32_t & i)
    {
       uint64_t uiRead = m_spbuffer->read(&i, sizeof(i));
       if(uiRead != sizeof(i))
@@ -70,7 +70,7 @@ namespace file
       
    }
 
-   void plain_text_input_stream::read (uint32_t & ui)
+   void plain_text_istream::read (uint32_t & ui)
    {
       uint64_t uiRead = m_spbuffer->read(&ui, sizeof(ui));
       if(uiRead != sizeof(ui))
@@ -78,31 +78,31 @@ namespace file
       
    }
 
-   void plain_text_input_stream::read (int64_t & i)
+   void plain_text_istream::read (int64_t & i)
    {
       m_spbuffer->read(&i, sizeof(i));
       
    }
 
-   void plain_text_input_stream::read (uint64_t & ui)
+   void plain_text_istream::read (uint64_t & ui)
    {
       m_spbuffer->read(&ui, sizeof(ui));
       
    }
 
-   void plain_text_input_stream::read (float & f)
+   void plain_text_istream::read (float & f)
    {
       m_spbuffer->read(&f, sizeof(f));
       
    }
 
-   void plain_text_input_stream::read (double & d)
+   void plain_text_istream::read (double & d)
    {
       m_spbuffer->read(&d, sizeof(d));
       
    }
 
-   void plain_text_input_stream::read (LPRECT lprect)
+   void plain_text_istream::read (LPRECT lprect)
    {
       m_spbuffer->read(&lprect->left,     sizeof(lprect->left));
       m_spbuffer->read(&lprect->top,      sizeof(lprect->top));
@@ -111,14 +111,14 @@ namespace file
       
    }
 
-   void plain_text_input_stream::read (SIZE & size)
+   void plain_text_istream::read (SIZE & size)
    {
       m_spbuffer->read(&size.cx,     sizeof(size.cx));
       m_spbuffer->read(&size.cy,      sizeof(size.cy));
       
    }
 
-   void plain_text_input_stream::read (sp(type) info)
+   void plain_text_istream::read (sp(type) info)
    {
       {
          int32_t iLen;
@@ -142,22 +142,22 @@ namespace file
    }
 
 
-   void plain_text_input_stream::read (serializable & serializable)
+   void plain_text_istream::read (serializable & serializable)
    {
       serializable.read(*this);
       
    }
 
 
-   string plain_text_input_stream::get_location() const
+   string plain_text_istream::get_location() const
    {
-      return "<unknown plain_text_input_stream location>";
+      return "<unknown plain_text_istream location>";
    }
 
-   input_stream & plain_text_input_stream::operator = (const input_stream & istream)
+   istream & plain_text_istream::operator = (const istream & istream)
    {
       
-      return input_stream::operator = (istream);
+      return istream::operator = (istream);
       
    }
 

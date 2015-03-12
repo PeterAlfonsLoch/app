@@ -421,13 +421,13 @@ var property::at(index iIndex) const
    return this->element_at(iIndex);
 }
 
-void property::write(::file::output_stream & ostream) const
+void property::write(::file::ostream & ostream) const
 {
    ostream << m_element1;
    ostream << get_value();
 }
 
-void property::read(::file::input_stream & istream)
+void property::read(::file::istream & istream)
 {
    istream >> m_element1;
    istream >> get_value();
@@ -1406,7 +1406,7 @@ PropertySignalObject::PropertySignalObject(class signal * psignal)
 
 string property::get_xml(::xml::disp_option * opt /*= &optDefault*/ )
 {
-   //   ::file::plain_text_output_stream ostring;
+   //   ::file::plain_text_ostream ostring;
    //   //ostring << (const char *)m_strName << "='" << (const char *)m_strValue << "' ";
 
    //   ostring << (const char *)m_strName << L"=" << (CHAR)opt->value_quotation_mark

@@ -38,8 +38,8 @@ namespace xml
       void add_attr(const sp(::xml::node) pnode, const attr * pattr);
 
 
-      virtual void write(::file::output_stream & ostream) const;
-      virtual void read(::file::input_stream & istream);
+      virtual void write(::file::ostream & ostream) const;
+      virtual void read(::file::istream & istream);
 
 
    };

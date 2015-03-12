@@ -11,7 +11,8 @@ namespace aura
 
 
    class CLASS_DECL_AURA application :
-      virtual public application_interface
+      virtual public application_interface,
+      virtual public ::file::listing::provider
    {
    public:
 
@@ -399,8 +400,8 @@ namespace aura
       //virtual string dir_element(const char * psz = NULL);
       //virtual string dir_ca2module(const char * psz = NULL);
       //virtual string dir_name(const char * psz);
-      //virtual void  dir_ls_dir(const char * lpcsz,::file::patha * ppatha = NULL,::file::patha * ppathaName = NULL);
-      //virtual void  dir_rls(const char * lpcsz,::file::patha * ppatha = NULL,::file::patha * ppathaName = NULL,::file::patha * ppathaRelative = NULL);
+      //virtual void  dir_ls_dir(const char * lpcsz,::file::patha & patha);
+      //virtual void  dir_rls(const char * lpcsz,::file::patha & patha);
       //virtual bool dir_mk(const char * psz);
       //virtual string file_title(const char * psz);
       //virtual string file().name_(const char * psz);
@@ -437,7 +438,7 @@ namespace aura
 
 
       virtual void fill_locale_schema(::str::international::locale_schema & localeschema);
-      virtual void fill_locale_schema(::str::international::locale_schema & localeschema,const char * pszLocale,const char * pszSchema);
+      virtual void fill_locale_schema(::str::international::locale_schema & localeschema,const string & pszLocale,const string & pszSchema);
 
 
       virtual void defer_add_thread_run_wait(sync_object_ptra & soa);
@@ -461,6 +462,8 @@ namespace aura
       virtual bool start_application(bool bSynch,application_bias * pbias);
 
       virtual bool is_application();
+
+      virtual ::file::listing & perform_file_listing(::file::listing & listing) override;
 
    };
 

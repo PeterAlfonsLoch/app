@@ -20,16 +20,10 @@ namespace fs
 
 
    // optional if ls_dir is implemented
-   bool link::has_subdir(const char * pszPath)
+   bool link::has_subdir(const ::file::path & path)
    {
 
-      string strDir(pszPath);
-
-      strDir.trim();
-
-      strDir.trim("/\\");
-
-      if(strDir == m_strPath)
+      if(path == m_path)
       {
 
          return true;
@@ -38,73 +32,35 @@ namespace fs
       else
       {
 
-         return native::has_subdir(pszPath);
+         return native::has_subdir(path);
 
       }
 
    }
 
 
-   bool link::ls(const char * pszDir,::file::patha * ppatha,::file::patha * ppathaName,bool bSize,bool_array * pbaDir)
+   ::file::listing & link::ls(::file::listing & listing)
    {
 
-      string strDir(pszDir);
+      listing.clear_results();
 
-      strDir.trim();
 
-      strDir.trim("/\\");
-
-      if(strDir == m_strPath)
+      if(listing.m_path == m_path)
       {
 
-         for(int i = 0; i < m_straPath.get_size(); i++)
-         {
-
-            if(ppatha != NULL)
-            {
-
-               ppatha->add(m_straPath[i]);
-
-            }
-
-            if(ppathaName != NULL)
-            {
-
-               ppathaName->add(m_straPath[i].name());
-
-            }
-
-            if(piaSize != NULL)
-            {
-
-               piaSize->add(0);
-
-            }
-
-            if(pbaDir != NULL)
-            {
-               pbaDir->add(is_dir(m_straPath[i]));
-            }
-
-         }
+         listing = *this;
 
       }
 
-      return true;
+      return listing;
 
    }
 
 
-   bool link::is_dir(const char * pszPath)
+   bool link::is_dir(const ::file::path & path)
    {
 
-      string strDir(pszPath);
-
-      strDir.trim();
-
-      strDir.trim("/\\");
-
-      if(strDir == m_strPath)
+      if(path == m_path)
       {
 
          return true;
@@ -113,7 +69,7 @@ namespace fs
       else
       {
 
-         return native::is_dir(pszPath);
+         return native::is_dir(path);
 
       }
 
@@ -123,7 +79,7 @@ namespace fs
    void link::root_ones(::file::patha & patha, stringa & straTitle)
    {
 
-      patha.add(m_strPath);
+      patha.add(m_path);
       straTitle.add(m_strTitle);
 
    }
@@ -220,16 +176,10 @@ namespace fs
 */
 
 
-   bool link::tree_show_subdir(const char * pszPath)
+   bool link::tree_show_subdir(const ::file::path & path)
    {
 
-      string strDir(pszPath);
-
-      strDir.trim();
-
-      strDir.trim("/\\");
-
-      if(strDir == m_strPath)
+      if(path == m_path)
       {
 
          return true;
@@ -247,8 +197,6 @@ namespace fs
    void link::fill_os_user()
    {
 
-      stringa straLink;
-
       ::file::path strSourceFolder;
 
 #ifdef WINDOWSEX
@@ -261,7 +209,7 @@ namespace fs
          CSIDL_PROFILE,
          FALSE);
 
-      m_strPath = strSourceFolder / "links";
+      m_path = strSourceFolder / "links";
 
 #endif
 
@@ -271,7 +219,9 @@ namespace fs
 
 #else
 
-      Application.dir().ls(m_strPath,&m_straPath);
+      m_pprovider = get_app();
+
+      ::file::listing::ls();
 
 #endif
 
@@ -281,23 +231,21 @@ namespace fs
    void link::fill_os_user_desktop()
    {
 
-      stringa straLink;
-
-      string strSourceFolder;
-
 #ifdef WINDOWSEX
 
       m_strTitle = "Área de Trabalho";
 
       ::windows::SHGetSpecialFolderPath(
          NULL,
-         m_strPath,
+         m_path,
          CSIDL_DESKTOP,
          FALSE);
 
 #endif
 
-      Application.dir().ls(strSourceFolder,&m_straPath);
+      m_pprovider = get_app();
+
+      ::file::listing::ls();
 
 
    }

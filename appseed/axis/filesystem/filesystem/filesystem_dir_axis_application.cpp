@@ -171,32 +171,32 @@ namespace file
          //}
 
 
-         //bool application::ls_pattern(const char * lpcsz,const char * lpcszPattern,::file::patha * ppatha,::file::patha * ppathaName,bool bSize)
+         //bool application::ls_pattern(const char * lpcsz,const char * lpcszPattern,::file::patha & patha,bool bSize)
          //{
          //   return m_pauraapp->m_paurasystem->m_spdir.m_p->ls_pattern(m_pauraapp,lpcsz,lpcszPattern,ppatha,ppathaName,pbaIsDir,piaSize);
          //}
 
-         //void application::ls(const char * lpcsz,::file::patha * ppatha,::file::patha * ppathaName,bool bSize)
+         //void application::ls(const char * lpcsz,::file::patha & patha,bool bSize)
          //{
          //   return m_pauraapp->m_paurasystem->m_spdir.m_p->ls(m_pauraapp,lpcsz,ppatha,ppathaName,pbaIsDir,piaSize);
          //}
 
-         //bool application::rls_pattern(const char * lpcsz,const char * lpcszPattern,::file::patha * ppatha,::file::patha * ppathaName,::file::patha * ppathaRelative,bool bSize)
+         //bool application::rls_pattern(const char * lpcsz,const char * lpcszPattern,::file::patha & patha,bool bSize)
          //{
          //   return m_pauraapp->m_paurasystem->m_spdir.m_p->rls_pattern(m_pauraapp,lpcsz,lpcszPattern,ppatha,ppathaName,ppathaRelative,pbaIsDir,piaSize);
          //}
 
-         //bool application::rls(const char * lpcsz,::file::patha * ppatha,::file::patha * ppathaName,::file::patha * ppathaRelative)
+         //bool application::rls(const char * lpcsz,::file::patha & patha)
          //{
          //   return m_pauraapp->m_paurasystem->m_spdir.m_p->rls(m_pauraapp,lpcsz,ppatha,ppathaName,ppathaRelative);
          //}
 
-         //void application::rls_dir(const char * lpcsz,::file::patha * ppatha,::file::patha * ppathaName,::file::patha * ppathaRelative)
+         //void application::rls_dir(const char * lpcsz,::file::patha & patha)
          //{
          //   return m_pauraapp->m_paurasystem->m_spdir.m_p->rls_dir(m_pauraapp,lpcsz,ppatha,ppathaName,ppathaRelative);
          //}
 
-         //void application::ls_dir(const char * lpcsz,::file::patha * ppatha,::file::patha * ppathaName)
+         //void application::ls_dir(const char * lpcsz,::file::patha & patha)
          //{
          //   return m_pauraapp->m_paurasystem->m_spdir.m_p->ls_dir(m_pauraapp,lpcsz,ppatha,ppathaName);
          //}
@@ -206,7 +206,7 @@ namespace file
          //   return m_pauraapp->m_paurasystem->m_spdir.m_p->has_subdir(m_pauraapp,lpcsz);
          //}
 
-         //void application::ls_file(const char * lpcsz,::file::patha * ppatha,::file::patha * ppathaName)
+         //void application::ls_file(const char * lpcsz,::file::patha & patha)
          //{
          //   return m_pauraapp->m_paurasystem->m_spdir.m_p->ls_file(m_pauraapp,lpcsz,ppatha,ppathaName);
          //}

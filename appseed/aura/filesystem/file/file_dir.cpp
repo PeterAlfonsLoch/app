@@ -1120,7 +1120,7 @@ string dir::userfolder(const char * lpcsz, const char * lpcsz2)
 }
 
 
-string dir::pathfind(const char * pszEnv, const char * pszTopic, const char * pszMode)
+string dir::pathfind(const string & pszEnv, const string & pszTopic, const string & pszMode)
 {
 
    stringa stra;

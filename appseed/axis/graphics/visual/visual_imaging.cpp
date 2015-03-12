@@ -6651,7 +6651,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
             try
             {
                ::file::buffer_sp file = Sess(papp).file().get_file(strFile,::file::mode_read | ::file::share_deny_write | ::file::type_binary);
-               ::file::byte_input_stream istream(file);
+               ::file::byte_istream istream(file);
                istream >> *pdib;
                if(!istream.fail())
                {
@@ -6687,7 +6687,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
          {
 
             ::file::buffer_sp file =App(papp).file().get_file(strFile,::file::mode_create | ::file::mode_write | ::file::type_binary | ::file::defer_create_directory);
-            ::file::byte_output_stream ostream(file);
+            ::file::byte_ostream ostream(file);
             ostream << *pdib;
          }
          catch(...)

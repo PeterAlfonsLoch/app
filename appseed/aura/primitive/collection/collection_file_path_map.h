@@ -10,6 +10,6 @@ using file_path_to_int =  string_map < int,int > ;
 
 using file_path_to_ptr =  string_map < void *,void * > ;
 
-#define filepathmap(T) string_map < T >
+#define filepathmap(T) file_path_map < T >
 
 

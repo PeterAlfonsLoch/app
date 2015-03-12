@@ -21,7 +21,7 @@ namespace file
    }
 
 
-   void binary_buffer::write(output_stream & ostream)
+   void binary_buffer::write(ostream & ostream)
    {
       
       seek_to_begin();
@@ -31,7 +31,7 @@ namespace file
    }
 
 
-   void binary_buffer::read(input_stream & istream)
+   void binary_buffer::read(istream & istream)
    {
    
       transfer_from(*istream.m_spbuffer);
@@ -50,7 +50,7 @@ namespace file
       return NULL;
    }
 
-   exception_sp binary_buffer::open(const ::file::path & lpszFileName, UINT nOpenFlags)
+   cres binary_buffer::open(const ::file::path & lpszFileName, UINT nOpenFlags)
    {
       UNREFERENCED_PARAMETER(lpszFileName);
       UNREFERENCED_PARAMETER(nOpenFlags);

@@ -1,5 +1,6 @@
 #pragma once
 
+
 #if defined(WINDOWS)
 #define PATH_SEPARATOR "\\"
 #else
@@ -21,7 +22,7 @@ public:
    static CLASS_DECL_AURA bool eat_end_level(string & strPath, int iLevel, const char * lpSeparator = NULL);
    static CLASS_DECL_AURA string name(const char * path1);
    static CLASS_DECL_AURA string appdata(const char * lpcsz);
-   static CLASS_DECL_AURA string userappdata(const char * lpcsz);
+   static CLASS_DECL_AURA ::file::path userappdata();
    static CLASS_DECL_AURA bool is(const char * path1);
    static CLASS_DECL_AURA bool mk(const char * lpcsz);
    static CLASS_DECL_AURA void ls(stringa & stra, const char *psz);
@@ -36,7 +37,7 @@ public:
    static CLASS_DECL_AURA string default_userdata(const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath);
    static CLASS_DECL_AURA string default_userfolder(const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath);
    static CLASS_DECL_AURA string userfolder(const char * lpcsz, const char * lpcsz2 = NULL);
-   static CLASS_DECL_AURA string pathfind(const char * pszEnv, const char * pszTopic, const char * pszMode);
+   static CLASS_DECL_AURA string pathfind(const string & pszEnv, const string & pszTopic, const string & pszMode);
 
    
 

@@ -47,7 +47,7 @@ namespace xml
 
    }
 
-   bool document::load(::file::input_stream & is)
+   bool document::load(::file::istream & is)
    {
 
       primitive::memory memory;

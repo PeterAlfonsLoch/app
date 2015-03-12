@@ -17,7 +17,7 @@ namespace http
       string                           m_strHttpHost;
       id                               m_idHttpMethod;
       file::memory_buffer              m_memfileBody;
-      ::http::output_stream            m_ostream;
+      ::http::ostream            m_ostream;
       string m_null;
       http::form m_form;
 
@@ -45,7 +45,7 @@ namespace http
 
       http::form & form();
 
-      ::http::output_stream & ostream()   { return m_ostream; }
+      ::http::ostream & ostream()   { return m_ostream; }
       ::file::stream_buffer & file()      { return m_memfileBody; }
 
       virtual void clear();

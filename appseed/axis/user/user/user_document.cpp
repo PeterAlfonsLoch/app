@@ -227,12 +227,12 @@ namespace aura
       return m_bNew;
    }
 
-   void document::write(::file::output_stream & ostream) const
+   void document::write(::file::ostream & ostream) const
    {
       UNREFERENCED_PARAMETER(ostream);
    }
 
-   void document::read(::file::input_stream & istream)
+   void document::read(::file::istream & istream)
    {
       UNREFERENCED_PARAMETER(istream);
    }
@@ -454,7 +454,7 @@ namespace aura
       delete_contents();
 
       set_modified_flag();  // dirty during de-serialize
-      ::file::input_stream is(spfile);
+      ::file::istream is(spfile);
       try
       {
          wait_cursor wait(get_app());
@@ -512,7 +512,7 @@ namespace aura
       }
 
 
-      ::file::output_stream os(spfile);
+      ::file::ostream os(spfile);
 
       try
       {

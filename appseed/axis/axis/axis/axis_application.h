@@ -341,8 +341,8 @@ namespace axis
       //virtual string dir_ca2module(const char * psz = NULL);
       //virtual string dir_element(const char * psz = NULL);
       //virtual string dir_name(const char * psz);
-      //virtual void  dir_ls_dir(const char * lpcsz,::file::patha * ppatha = NULL,::file::patha * ppathaName = NULL);
-      //virtual void  dir_rls(const char * lpcsz,::file::patha * ppatha = NULL,::file::patha * ppathaName = NULL,::file::patha * ppathaRelative = NULL);
+      //virtual void  dir_ls_dir(const char * lpcsz,::file::patha & patha);
+      //virtual void  dir_rls(const char * lpcsz,::file::patha & patha);
       //virtual bool dir_mk(const char * psz);
       //virtual string file_title(const char * psz);
       //virtual string file_name(const char * psz);

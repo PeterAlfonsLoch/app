@@ -61,7 +61,7 @@ namespace file
 
    }
 
-   exception_sp composite::open(const ::file::path & lpszFileName,UINT nOpenFlags)
+   cres composite::open(const ::file::path & lpszFileName,UINT nOpenFlags)
    {
 
       return m_spfile->open(lpszFileName, nOpenFlags);
@@ -201,7 +201,7 @@ namespace file
    }
 
 
-   void composite::write(output_stream & ostream)
+   void composite::write(ostream & ostream)
    {
 
       m_spfile->write(ostream);
@@ -209,7 +209,7 @@ namespace file
    }
 
 
-   void composite::read(input_stream & istream)
+   void composite::read(istream & istream)
    {
 
       m_spfile->read(istream);

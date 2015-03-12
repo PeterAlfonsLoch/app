@@ -368,8 +368,8 @@ namespace user
          index_array   m_iaDisplayToStrict;
          int32_t            m_iWidth;
 
-         virtual void write(::file::output_stream & ostream) const;
-         virtual void read(::file::input_stream & istream);
+         virtual void write(::file::ostream & ostream) const;
+         virtual void read(::file::istream & istream);
       };
 
       class CLASS_DECL_CORE icon_layout :
@@ -382,8 +382,8 @@ namespace user
          index_biunique   m_iaDisplayToStrict;
          int32_t            m_iWidth;
 
-         virtual void write(::file::output_stream & ostream) const;
-         virtual void read(::file::input_stream & istream);
+         virtual void write(::file::ostream & ostream) const;
+         virtual void read(::file::istream & istream);
       };
 
    public:

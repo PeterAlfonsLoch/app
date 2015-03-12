@@ -193,9 +193,9 @@ namespace core
       virtual sp(type) get_simple_child_frame_type_info();
 
       virtual void on_start_find_applications_from_cache() override;
-      virtual void on_end_find_applications_from_cache(::file::byte_input_stream & is) override;
+      virtual void on_end_find_applications_from_cache(::file::byte_istream & is) override;
 
-      virtual void on_end_find_applications_to_cache(::file::byte_output_stream & os) override;
+      virtual void on_end_find_applications_to_cache(::file::byte_ostream & os) override;
 
       virtual void on_map_application_library(::aura::library & library) override;
 

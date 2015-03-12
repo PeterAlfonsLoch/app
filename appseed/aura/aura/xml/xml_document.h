@@ -33,7 +33,7 @@ namespace xml
       node * get_root();
       
       bool load_location(const char * psz);
-      bool load(::file::input_stream & is);
+      bool load(::file::istream & is);
       bool load(const char * psz);
 
       document & operator = (document & document);

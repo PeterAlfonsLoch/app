@@ -7,7 +7,7 @@ namespace database
 
    bool server::data_server_load(client * pclient, class id id, ::file::stream_buffer & writable, update_hint * puh)
    {
-      file::output_stream ostream(&writable);
+      file::ostream ostream(&writable);
       return var_load(pclient, id, ostream, puh);
    }
 
@@ -28,7 +28,7 @@ namespace database
       return true;
    }
 
-   bool server::data_server_load(client * pclient, class id id, ::file::output_stream & ostream, update_hint * puh)
+   bool server::data_server_load(client * pclient, class id id, ::file::ostream & ostream, update_hint * puh)
    {
       return var_load(pclient, id, ostream, puh);
    }
@@ -53,7 +53,7 @@ namespace database
 
    bool server::data_server_save(client * pclient, class id id, ::file::stream_buffer & readable, update_hint * puh)
    {
-      ::file::input_stream istream(&readable);
+      ::file::istream istream(&readable);
       return var_save(pclient, id, istream, puh);
    }
 
@@ -67,7 +67,7 @@ namespace database
       return true;
    }
 
-   bool server::data_server_save(client * pclient, class id id, ::file::input_stream & istream, update_hint * puh)
+   bool server::data_server_save(client * pclient, class id id, ::file::istream & istream, update_hint * puh)
    {
       return var_save(pclient, id,  istream, puh);
    }
@@ -132,7 +132,7 @@ namespace database
       return data_server_save(pclient, id, var, phint);
    }
 
-   bool server::var_load(client * pclient, class id id, ::file::output_stream & ostream, update_hint * puh)
+   bool server::var_load(client * pclient, class id id, ::file::ostream & ostream, update_hint * puh)
    {
       var var;
       if(!data_server_load(pclient, id, var, puh))
@@ -141,7 +141,7 @@ namespace database
       return true;
    }
 
-   bool server::var_save(client * pclient, class id id, ::file::input_stream & istream, update_hint * puh)
+   bool server::var_save(client * pclient, class id id, ::file::istream & istream, update_hint * puh)
    {
       var var;
       var.read(istream);

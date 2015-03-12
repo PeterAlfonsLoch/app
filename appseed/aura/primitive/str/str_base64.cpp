@@ -137,7 +137,7 @@ namespace str
 
    }
 
-   void base64::encode(::file::output_stream & ostream, ::file::input_stream & istream)
+   void base64::encode(::file::ostream & ostream, ::file::istream & istream)
    {
       int32_t i,hiteof= FALSE;
       byte igroup[3],ogroup[4];
@@ -179,7 +179,7 @@ namespace str
    }
 
 
-   void base64::decode(::file::output_stream & ostream, ::file::input_stream & istream)
+   void base64::decode(::file::ostream & ostream, ::file::istream & istream)
    {
       int32_t i;
       byte a[4],b[4],o[3];
@@ -254,9 +254,9 @@ namespace str
 
       ::file::memory_buffer buf(get_app(), &storageBinary);
 
-      ::file::byte_input_stream istream(&buf);
+      ::file::byte_istream istream(&buf);
 
-      ::file::plain_text_output_stream_string_buffer ostream;
+      ::file::plain_text_ostream_string_buffer ostream;
 
       encode(ostream, istream);
 
@@ -291,11 +291,11 @@ namespace str
 
       ::file::string_buffer buf(str);
 
-      ::file::plain_text_input_stream istream(&buf);
+      ::file::plain_text_istream istream(&buf);
 
       ::file::memory_buffer bufOut(get_app(), &storageBinary);
 
-      ::file::byte_output_stream ostream(&bufOut);
+      ::file::byte_ostream ostream(&bufOut);
 
       decode(ostream, istream);
 
@@ -314,7 +314,7 @@ namespace str
 
       buf.seek_to_begin();
 
-      ::file::plain_text_output_stream_string_buffer ostream;
+      ::file::plain_text_ostream_string_buffer ostream;
 
       encode(ostream, stream);
 
@@ -329,7 +329,7 @@ namespace str
 
       ::file::string_buffer bufIn(str);
 
-      ::file::plain_text_input_stream istream(&bufIn);
+      ::file::plain_text_istream istream(&bufIn);
 
       ::primitive::memory storageBinary;
       

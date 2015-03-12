@@ -333,7 +333,7 @@ namespace windows
    //   }
    //}
 
-   ::file::exception_sp file_system::set_status(const ::file::path & path,const ::file::file_status & status)
+   cres file_system::set_status(const ::file::path & path,const ::file::file_status & status)
    {
 
       wstring lpszFileName(path);
@@ -401,7 +401,7 @@ namespace windows
             return file_exception::last_os_error(get_app(),path);
       }
 
-      return ::file::no_exception();
+      return ::no_exception;
 
    }
 

@@ -193,7 +193,7 @@ namespace file
 
 
       void flush();
-      bool SaveTo(::file::output_stream & file);
+      bool SaveTo(::file::ostream & file);
       bool Save(::file::binary_buffer & file);
       bool Save_N_to_CRLF(::file::binary_buffer & file);
 

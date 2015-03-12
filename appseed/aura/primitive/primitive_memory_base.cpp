@@ -178,7 +178,7 @@ namespace primitive
    */
 
 
-   void memory_base::read(::file::input_stream & istream)
+   void memory_base::read(::file::istream & istream)
    {
 
       transfer_from(istream);
@@ -211,7 +211,7 @@ namespace primitive
    }
 
 
-   void memory_base::write(::file::output_stream & ostream) const
+   void memory_base::write(::file::ostream & ostream) const
    {
 
       transfer_to(ostream);

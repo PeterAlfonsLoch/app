@@ -51,26 +51,41 @@ namespace zip
 
    }
 
-   bool Util::ls(::aura::application * papp, const char * lpszFileName, bool bRecursive, ::file::patha * ppatha, ::file::patha * ppathaName, ::file::patha * ppathaRelative, bool_array * pbaIsDir, bool bSize, e_extract eextract)
+
+   bool Util::ls(::aura::application * papp, ::file::listing & listing)
    {
+      
       string strZip;
+
       string strRemain;
+
       string strLastZip;
-      if(::str::ends_ci(lpszFileName, ".zip"))
+
+      if(::str::ends_ci(listing.m_path, ".zip"))
       {
-         strZip = lpszFileName;
+
+         strZip = listing.m_path;
+
          strLastZip = strZip;
+
          strZip += ":";
+
       }
-      else if(::str::find_file_extension("zip:", lpszFileName) >= 0)
+      else if(::str::find_file_extension("zip:", listing.m_path) >= 0)
       {
-         strZip = lpszFileName;
+
+         strZip = listing.m_path;
+
          strRemain = strZip.Mid(strZip.reverse_find(".zip:") + strlen(".zip:"));
+
          strLastZip = strZip.Left(strZip.reverse_find(".zip:") + strlen(".zip"));
+
       }
       else
       {
+
          return false;
+
 
       }
 
@@ -82,28 +97,40 @@ namespace zip
       }
 
       unzFile pf = infile.get_zip_file()->m_pfUnzip;
+
       string str;
+
       string wstrFolder;
+
       stringa wstraFolder;
 
       strRemain.replace("\\", "/");
+
       ::str::begins_eat(strRemain, "/");
+
       if(strRemain.has_char())
       {
-         if(!::str::ends(strRemain, "/"))
+
+         if(!::str::ends(strRemain,"/"))
+         {
+         
             strRemain += "/";
+
+         }
+
       }
 
       unz_file_info fi;
+
       if(pf != NULL)
       {
+
+         int iLastZip = ::file::path(strLastZip + ":").length();
+
          while(true)
          {
-            //string strPathBuffer;
-            //System.file().time_square(strPathBuffer);      // buffer for path
 
-
-             CHAR szTitle[_MAX_PATH];
+            CHAR szTitle[_MAX_PATH];
 
             unzGetCurrentFileInfo(
                pf,
@@ -114,81 +141,76 @@ namespace zip
                0,
                NULL, // comment
                0);
+
             string strTitle(szTitle);
+
             if(strRemain != strTitle && ((strRemain.is_empty() &&
                (strTitle.find("/") < 0  || strTitle.find("/") == (strTitle.get_length() - 1)))
             || (strRemain.has_char() && ::str::begins_eat_ci(strTitle, strRemain))))
             {
-               if(bRecursive || strTitle.find("/") < 0 || strTitle.find("/") == (strTitle.get_length() - 1))
+
+               if(listing.m_bRecursive || strTitle.find("/") < 0 || strTitle.find("/") == (strTitle.get_length() - 1))
                {
-                  if(ppatha != NULL)
-                  {
-                     ppatha->add(::file::path(strLastZip + ":" + strRemain + strTitle));
-                  }
-                  if(ppathaName != NULL)
-                  {
-                     ppathaName->add(::file::path(strTitle));
-                  }
-                  if(ppathaRelative != NULL)
-                  {
-                     ppathaRelative->add(::file::path(strRemain + strTitle));
-                  }
-                  if(pbaIsDir != NULL)
-                  {
-                     pbaIsDir->add(::str::ends(szTitle, "/")
-                                || ::str::ends(szTitle, "\\")
-                                || ::str::ends(szTitle, ".zip"));
-                  }
-                  if(piaSize != NULL)
-                  {
-                     piaSize->add(fi.uncompressed_size);
-                  }
+
+                  listing.add(::file::path(strLastZip + ":" + strRemain + strTitle));
+                  listing.last().m_iRelative = iLastZip;
+                  listing.last().m_iDir = ::str::ends(szTitle, "/") || ::str::ends(szTitle, "\\") || ::str::ends(szTitle, ".zip");
+                  listing.last().m_iSize = fi.uncompressed_size;
+                  
                }
+
             }
+
             if(unzGoToNextFile(pf) != UNZ_OK)
             {
+
                break;
+
             }
+
          }
+
       }
 
       return true;
 
    }
 
-   bool Util::ls_dir(::aura::application * papp, const char * lpcsz, ::file::patha * ppatha, ::file::patha * ppathaName)
-   {
-      ::file::patha patha;
-      ::file::patha straTitle;
-      bool_array baIsDir;
-      if(!ls(papp,lpcsz,false,&patha,&straTitle,NULL,&baIsDir))
-         return false;
 
-      string strPath;
+   //bool Util::ls(::aura::application * papp, const char * lpcsz, ::file::patha & patha, ::file::patha * ppathaName)
+   //{
 
-      for(int32_t i = 0; i < patha.get_size(); i++)
-      {
-         if(baIsDir[i])
-         {
-            strPath = patha[i];
-            if(strPath.has_char() && ppatha->add_unique(strPath) >= 0 && ppathaName != NULL)
-            {
-               ppathaName->add(straTitle[i]);
-            }
-         }
-         else
-         {
-            strPath = Sys(papp).dir().name(patha[i]);
-            if(strPath.has_char() && ppatha->add_unique(strPath) >= 0 && ppathaName != NULL)
-            {
-               ppathaName->add(Sys(papp).dir().name(straTitle[i]));
-            }
-         }
+   //   ::file::patha patha;
+   //   ::file::patha straTitle;
+   //   bool_array baIsDir;
+   //   if(!ls(papp,lpcsz,false,&patha,&straTitle,NULL,&baIsDir))
+   //      return false;
 
-      }
-      return true;
+   //   string strPath;
 
-   }
+   //   for(int32_t i = 0; i < patha.get_size(); i++)
+   //   {
+   //      if(baIsDir[i])
+   //      {
+   //         strPath = patha[i];
+   //         if(strPath.has_char() && ppatha->add_unique(strPath) >= 0 && ppathaName != NULL)
+   //         {
+   //            ppathaName->add(straTitle[i]);
+   //         }
+   //      }
+   //      else
+   //      {
+   //         strPath = Sys(papp).dir().name(patha[i]);
+   //         if(strPath.has_char() && ppatha->add_unique(strPath) >= 0 && ppathaName != NULL)
+   //         {
+   //            ppathaName->add(Sys(papp).dir().name(straTitle[i]));
+   //         }
+   //      }
+
+   //   }
+   //   return true;
+
+   //}
 
 
 

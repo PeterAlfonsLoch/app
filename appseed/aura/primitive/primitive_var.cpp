@@ -836,7 +836,7 @@ bool var::is_new_or_null() const
    return is_new() || is_null();
 }
 
-void var::read(::file::input_stream & is)
+void var::read(::file::istream & is)
 {
    int32_t i;
    is >> i;
@@ -923,7 +923,7 @@ void var::read(::file::input_stream & is)
    }
 }
 
-void var::write(::file::output_stream & ostream) const
+void var::write(::file::ostream & ostream) const
 {
    int32_t i = get_type();
    ostream << i;

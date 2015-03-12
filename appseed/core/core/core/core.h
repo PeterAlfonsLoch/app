@@ -792,8 +792,8 @@ inline bool is_null(const TYPE & ref)
 #define NULL_REF(class) (*((class *) NULL))
 
 
-//CLASS_DECL_CORE ::core::byte_input_stream &  operator >>(::core::byte_input_stream & istream, string & string);
-//CLASS_DECL_CORE ::core::byte_output_stream &  operator <<(::core::byte_output_stream & ostream, const string & string);
+//CLASS_DECL_CORE ::core::byte_istream &  operator >>(::core::byte_istream & istream, string & string);
+//CLASS_DECL_CORE ::core::byte_ostream &  operator <<(::core::byte_ostream & ostream, const string & string);
 
 //#ifdef WIN32
 //#include "core_file_association.h"

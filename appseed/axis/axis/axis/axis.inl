@@ -57,17 +57,17 @@ namespace file
 
 
    template < class T >
-   bool system::output(::aura::application * papp,const char * pszOutput,T * p,bool (T::*lpfnOuput)(::file::output_stream &,const char *),const char * lpszSource)
+   bool system::output(::aura::application * papp,const ::file::path & pszOutput,T * p,bool (T::*lpfnOuput)(::file::ostream &,const ::file::path &),const ::file::path & lpszSource)
    {
 
-      System.dir().mk(Application.dir_name(pszOutput),papp);
+      System.dir().mk(pszOutput--,papp);
 
       ::file::binary_buffer_sp fileOut = papp->m_paxissession->file_get_file(pszOutput,::file::mode_create | ::file::type_binary | ::file::mode_write);
 
       if(fileOut.is_null())
          return false;
 
-      ::file::output_stream ostream(fileOut);
+      ::file::ostream ostream(fileOut);
 
       return (p->*lpfnOuput)(ostream,lpszSource);
 
@@ -75,7 +75,7 @@ namespace file
 
    /*
    template < class T >
-   bool ::file::system::output(::aura::application * papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::output_stream &, const char *), const char * lpszSource)
+   bool ::file::system::output(::aura::application * papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::file::ostream &, const char *), const char * lpszSource)
    {
 
    App(papp).dir().mk(Application.dir_name(pszOutput));
@@ -85,7 +85,7 @@ namespace file
    if(fileOut.is_null())
    return false;
 
-   ::file::output_stream ostream(fileOut);
+   ::file::ostream ostream(fileOut);
 
    return (p->*lpfnOuput)(ostream, lpszSource);
 
@@ -94,10 +94,10 @@ namespace file
 
 
    template < class T >
-   bool ::file::system::output(::aura::application * papp,const char * pszOutput,T * p,bool (T::*lpfnOuput)(::file::output_stream &,::file::input_stream &),const char * lpszInput)
+   bool ::file::system::output(::aura::application * papp,const ::file::path & pszOutput,T * p,bool (T::*lpfnOuput)(::file::ostream &,::file::istream &),const ::file::path & lpszInput)
    {
 
-      App(papp).dir().mk(System.dir().name(pszOutput));
+      App(papp).dir().mk(pszOutput.folder());
 
       string strDownloading = pszOutput;
 
@@ -115,9 +115,9 @@ namespace file
 
       {
 
-         ::file::output_stream ostream(fileOut);
+         ::file::ostream ostream(fileOut);
 
-         ::file::input_stream istream(fileIn);
+         ::file::istream istream(fileIn);
 
          if(!(p->*lpfnOuput)(ostream,istream))
             return false;
@@ -163,10 +163,10 @@ namespace file
 
 
    template < class T >
-   bool system::output(::aura::application * papp,const char * pszOutput,T * p,bool (T::*lpfnOuput)(::file::output_stream &,::file::input_stream &),::file::input_stream & istream)
+   bool system::output(::aura::application * papp,const ::file::path & pszOutput,T * p,bool (T::*lpfnOuput)(::file::ostream &,::file::istream &),::file::istream & istream)
    {
 
-      ::file::output_stream ostream(get(pszOutput,papp));
+      ::file::ostream ostream(get(pszOutput,papp));
 
       return (p->*lpfnOuput)(ostream,istream);
 

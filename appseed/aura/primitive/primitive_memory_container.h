@@ -46,7 +46,7 @@ namespace primitive
       void to_string(string & str);
 
       void read(memory_base *pmemorystorage);
-      void read(::file::input_stream & is);
+      void read(::file::istream & is);
 
       void keep_pointer(void **ppvoid);
       void offset_kept_pointers(memory_offset iOffset);

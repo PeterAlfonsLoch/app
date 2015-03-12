@@ -11,28 +11,28 @@ namespace file
    class binary_buffer;
    typedef sp(binary_buffer) binary_buffer_sp;
 
-   class byte_output_stream;
-   class byte_input_stream;
+   class byte_ostream;
+   class byte_istream;
    class serializable;
 
 
-   class CLASS_DECL_AURA byte_input_stream  :
-      virtual public input_stream
+   class CLASS_DECL_AURA byte_istream  :
+      virtual public istream
    {
    public:
 
 
-      byte_input_stream();
-      byte_input_stream(stream_buffer * preader);
-      byte_input_stream(const input_stream & istream);
-      virtual ~byte_input_stream();
+      byte_istream();
+      byte_istream(stream_buffer * preader);
+      byte_istream(const istream & istream);
+      virtual ~byte_istream();
 
       void read_arbitrary(int32_t & i);
       void read_arbitrary(uint32_t & ui);
       void read_arbitrary(int64_t & i);
       void read_arbitrary(uint64_t & ui);
 
-      using input_stream::read;
+      using istream::read;
       virtual void read (bool & b);
       virtual void read (char & ch);
       virtual void read (uchar & uch);
@@ -59,7 +59,7 @@ namespace file
 
       virtual string get_location() const;
 
-      input_stream & operator = (const input_stream & istream);
+      istream & operator = (const istream & istream);
 
       /*
       file_position seek(file_offset offset, e_seek seekOrigin);

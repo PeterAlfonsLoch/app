@@ -2,8 +2,8 @@
 
 
 #include "file_plain_text_stream_base.h"
-#include "file_plain_text_input_stream.h"
-#include "file_plain_text_output_stream.h"
+#include "file_plain_text_istream.h"
+#include "file_plain_text_ostream.h"
 #include "file_plain_text_stream.h"
 
 
@@ -41,12 +41,12 @@ namespace file
 
       using ::file::reader::read;
       virtual ::primitive::memory_size read(void *lpBuf, ::primitive::memory_size nCount);
-      void read(input_stream & istream);
+      void read(istream & istream);
 
 
       using ::file::writer::write;
       virtual void write(const void *lpBuf, ::primitive::memory_size nCount);
-      void write(output_stream & ostream);
+      void write(ostream & ostream);
 
       ::string str() const;
 
@@ -194,7 +194,7 @@ namespace file
 
 
 
-#include "file_plain_text_output_stream_string_buffer.h"
+#include "file_plain_text_ostream_string_buffer.h"
 #include "file_plain_text_stream_string_buffer.h"
 
 

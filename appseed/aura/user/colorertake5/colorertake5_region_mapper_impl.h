@@ -15,13 +15,13 @@ public:
 
   /** Loads region defines from @ca is input_source
   */
-  virtual void  loadRegionMappings(::file::input_stream & reader) = 0;
+  virtual void  loadRegionMappings(::file::istream & reader) = 0;
   /** Saves all loaded region defines into @ca writer.
       Note, that result document would not be equal
       to input one, because there could be multiple input
       documents.
   */
-  virtual void  saveRegionMappings(::file::output_stream & writer) const = 0;
+  virtual void  saveRegionMappings(::file::ostream & writer) const = 0;
   /** Changes specified region definition to @ca rdnew
       @param region region full qualified name.
       @param rdnew  New region definition to replace old one

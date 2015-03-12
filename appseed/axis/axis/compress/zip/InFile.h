@@ -95,7 +95,7 @@ namespace zip {
         virtual void flush();
         virtual void close();
 
-        virtual void ls(bool bRecursive,/*::file::patha * ppatha,*/::file::patha * ppathaName,/*::file::patha * ppathaRelative,*/bool_array * pbaIsDir,bool bSize,e_extract eextract);
+        virtual void ls(::file::listing & listing);
 
         // Implementation
     public:

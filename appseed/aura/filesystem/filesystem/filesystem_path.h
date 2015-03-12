@@ -41,6 +41,16 @@ namespace file
 
       int64_t           m_iSize = -1; // if negative, not set/calculated/retrieved the file size(for directories would be all contained elements total sum size)
       int               m_iDir = -1; // if negative, not set/calculated/retrieved whether is a directory/folder/(file/folder/(...) container)
+      int               m_iName = -1; // if negative, not set/calculated/retrieved where name starts
+      int               m_iRelative = -1; // if negative, not set/calculated/retrieved where relative starts - this information is very, very relative :-) much more than all own other ::file::path cached information (relative to which folders... not stored this information...)
+
+
+      path(e_context_switcher_null)
+      {
+
+         m_epath = path_file;
+
+      }
 
 
       path(e_path epath = path_file)
@@ -66,6 +76,7 @@ namespace file
          m_epath = epath;
          normalize();
       }
+
 
       inline char sep() const
       {
@@ -226,6 +237,7 @@ namespace file
 
       //string operator << (const string & str) const { return arg(str); }
 
+      path & operator /= (const char * psz) { return operator /= (string(psz)); }
 
       path & operator = (const char * psz) { return operator = (string(psz)); }
       path & operator += (const char * psz) { return operator += (string(psz)); }
@@ -241,8 +253,8 @@ namespace file
 
       //path operator * () const;
 
-      path operator -- () const;
-      path operator -- (int) const { return operator --(); }
+      //path operator -- () const;
+      //path operator -- (int) const { return operator --(); }
 
 
       string & to_string(string & str) const
@@ -254,13 +266,11 @@ namespace file
       path sibling(const string & str) const;
       path sibling(const char * psz) const;
 
-      path operator *(const path & path) const { return sibling(path); }
-      path operator *(const string & str) const { return sibling(str); }
-      path operator *(const char * psz) const { return sibling(psz); }
+      //path operator *(const path & path) const { return sibling(path); }
+      //path operator *(const string & str) const { return sibling(str); }
+      //path operator *(const char * psz) const { return sibling(psz); }
 
 
-      path operator -(int i) const { ::file::path p(*this); while(i > 1){ p = p--; i--; } return p; }
-      path & operator -=(int i)  { while(i > 1){ *this = (*this)--; i--; } return *this; }
 
       ::file::path title() const
       {
@@ -269,7 +279,14 @@ namespace file
 
       ::file::path name() const
       {
-         return ::file_name_dup(operator const char*());
+         if(m_iName < 0)
+            ((path *) this)->m_iName = find_file_name();
+         return Mid(m_iName);
+      }
+
+      index find_file_name() const
+      {
+         return MAX(0, reverse_find(sep()));
       }
 
       bool is_equal(const ::file::path & path2) const;
@@ -309,6 +326,18 @@ namespace file
       patha & ascendants_name(patha & namea) const;
       patha ascendants_path() const;
       patha ascendants_name() const;
+
+      path relative() const { return Mid(MAX(0,m_iRelative)); }
+
+
+      path folder() const;
+      path folder(int i) const;
+      inline path up() const { return folder(); }
+      inline path up(int i) const { return folder(i); }
+      inline path & go_up();
+      inline path & go_up(int i);
+      inline path & operator -= (int i) { return go_up(i); }
+
 
 
    };

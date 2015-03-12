@@ -6,8 +6,8 @@ namespace file
 
 
    class CLASS_DECL_AURA byte_stream :
-      virtual public byte_output_stream,
-      virtual public byte_input_stream,
+      virtual public byte_ostream,
+      virtual public byte_istream,
       virtual public stream
    {
    public:

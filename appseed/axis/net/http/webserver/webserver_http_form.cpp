@@ -22,7 +22,7 @@ namespace http
    void form::parse_body(file::stream_buffer *infil, const char * pszContentType, size_t content_length)
    {
 
-      ::file::plain_text_input_stream is(infil);
+      ::file::plain_text_istream is(infil);
 
       UNREFERENCED_PARAMETER(content_length);
 

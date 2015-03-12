@@ -47,10 +47,10 @@ public:
    sp(::sqlite::base) get_database();
 
    using database::server::data_server_load;
-   virtual bool data_server_load(::database::client * pclient, ::database::id id, ::file::output_stream & writable, ::database::update_hint * phint = NULL);
+   virtual bool data_server_load(::database::client * pclient, ::database::id id, ::file::ostream & writable, ::database::update_hint * phint = NULL);
 
    using database::server::data_server_save;
-   virtual bool data_server_save(::database::client * pclient, ::database::id id, ::file::input_stream & readable, ::database::update_hint * phint = NULL);
+   virtual bool data_server_save(::database::client * pclient, ::database::id id, ::file::istream & readable, ::database::update_hint * phint = NULL);
 
 
    virtual bool data_pulse_change(::database::client * pclient, ::database::id id, ::database::update_hint * puh);
@@ -58,10 +58,10 @@ public:
    void close();
 
    bool load(const char * lpKey, string & str);
-   bool load(const char * lpKey, ::file::output_stream & writer);
+   bool load(const char * lpKey, ::file::ostream & writer);
 
    bool save(const char * lpKey, const char * psz);
-   bool save(const char * lpKey, ::file::input_stream & reader);
+   bool save(const char * lpKey, ::file::istream & reader);
 
 
    virtual string calc_data_key(::database::client * pclient, ::database::id & id);

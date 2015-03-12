@@ -13,19 +13,17 @@ public:
    bool           m_bInitialized;
    string         m_strServer;
 
-   class CLASS_DECL_AXIS dir
+   class CLASS_DECL_AXIS dir_listing :
+      public ::file::listing
    {
    public:
-      uint32_t          m_uiDirTimeout;
-      uint32_t          m_uiFileTimeout;
+
+      uint32_t          m_uiTimeout;
       uint32_t          m_uiLsTimeout;
-      ::file::patha     m_pathaFile;
-      ::file::patha     m_pathaFolder;
-      ::file::patha     m_pathaFileName;
-      ::file::patha     m_pathaFolderName;
+
    };
 
-   filepathmap(dir)     m_map;
+   filepathmap(dir_listing)     m_map;
 
    //file_path_map < uint32_t >    m_mapdirTimeout;
    //file_path_map < uint32_t >    m_mapfileTimeout;
@@ -45,16 +43,16 @@ public:
    
    virtual bool has_subdir(const ::file::path & pszPath);
    virtual bool fast_has_subdir(const ::file::path  & pszPath);
-   virtual bool ls(const ::file::path & pszDir,::file::patha * ppatha,::file::patha * ppathaName,bool bSize = false);
+   virtual ::file::listing & ls(::file::listing & listing);
    virtual bool is_dir(const ::file::path & pszPath);
-   virtual void root_ones(::file::patha & patha,stringa & straTitle);
+   virtual ::file::listing & root_ones(::file::listing & listing);
 
    //virtual string file_name(const char * pszPath);
    //virtual string dir_path(const char * psz1, const char * psz2);
 
    virtual bool file_move(const ::file::path & pszDst,const ::file::path & pszSrc);
 
-   virtual ::file::buffer_sp get_file(const ::file::path & path,UINT nOpenFlags,fesp * pfesp);
+   virtual ::file::buffer_sp get_file(const ::file::path & path,UINT nOpenFlags,cres * pfesp);
 
    virtual bool file_exists(const ::file::path & pszPath);
    virtual var file_length(const ::file::path & pszPath);

@@ -43,7 +43,10 @@ namespace lemon
       template<class ARRAY>
       inline void push_back(ARRAY & a, typename ARRAY::BASE_ARG_TYPE newElement,index n = 0);
 
-
+      template<class TARGET,class SOURCE> inline void add(TARGET & target,const SOURCE & source) { target.add(source); }
+      template<> inline void add(stringa & stra,const stringa & straSource);
+      template<> inline void add(::file::patha & patha,const stringa & stra);
+      template<> inline void add(::file::patha & patha,const string & str);
 
    } // namespace array
 

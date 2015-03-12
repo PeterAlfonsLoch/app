@@ -2,7 +2,7 @@
 
 
 // return string length or -1 if UNICODE string is found in the archive
-__STATIC UINT __read_string_length(::file::byte_input_stream ar)
+__STATIC UINT __read_string_length(::file::byte_istream ar)
 {
    uint32_t nNewLen;
 
@@ -52,39 +52,39 @@ namespace file
    //#include "../../Common/StreamUtils.h"*/
 
 
-   byte_input_stream::byte_input_stream()
+   byte_istream::byte_istream()
    {
    }
 
-   byte_input_stream::byte_input_stream(stream_buffer * preader) :
-      input_stream(preader)
-   {
-      
-   }
-
-   byte_input_stream::byte_input_stream(const input_stream & istream) :
-      input_stream(istream)
+   byte_istream::byte_istream(stream_buffer * preader) :
+      istream(preader)
    {
       
    }
 
-   byte_input_stream::~byte_input_stream()
+   byte_istream::byte_istream(const istream & istream) :
+      istream(istream)
+   {
+      
+   }
+
+   byte_istream::~byte_istream()
    {
 
    }
 
-   void byte_input_stream::read(char & ch)
+   void byte_istream::read(char & ch)
    {
 
       if(m_spbuffer->read(&ch, sizeof(ch)) != sizeof(ch))
-         throw io_exception(get_app(), "byte_input_stream::read");
+         throw io_exception(get_app(), "byte_istream::read");
 
 
 
    }
 
 
-   void byte_input_stream::read(uchar & uch)
+   void byte_istream::read(uchar & uch)
    {
       
       if(fail())
@@ -106,7 +106,7 @@ namespace file
    }
 
 
-   void byte_input_stream::read(int16_t & i)
+   void byte_istream::read(int16_t & i)
    {
 
       read_arbitrary(&i, sizeof(i));
@@ -115,77 +115,77 @@ namespace file
 
    }
 
-   void byte_input_stream::read(uint16_t & ui)
+   void byte_istream::read(uint16_t & ui)
    {
       read_arbitrary(&ui, sizeof(ui));
 
    }
 
-   void byte_input_stream::read(wchar_t & wch)
+   void byte_istream::read(wchar_t & wch)
    {
       read_arbitrary(&wch, sizeof(wch));
 
    }
 
-   void byte_input_stream::read(bool & b)
+   void byte_istream::read(bool & b)
    {
       m_spbuffer->read(&b, sizeof(b));
 
    }
 
-   void byte_input_stream::read(int32_t & i)
+   void byte_istream::read(int32_t & i)
    {
       read_arbitrary(&i, sizeof(i));
 
    }
 
-   void byte_input_stream::read(uint32_t & ui)
+   void byte_istream::read(uint32_t & ui)
    {
       read_arbitrary(&ui, sizeof(ui));
 
    }
 
-   void byte_input_stream::read(int64_t & i)
+   void byte_istream::read(int64_t & i)
    {
       read_arbitrary(&i, sizeof(i));
 
    }
 
-   void byte_input_stream::read(uint64_t & ui)
+   void byte_istream::read(uint64_t & ui)
    {
       read_arbitrary(&ui, sizeof(ui));
 
    }
 
-   void byte_input_stream::read_arbitrary(int32_t & i)
+   void byte_istream::read_arbitrary(int32_t & i)
    {
 
       read_arbitrary(&i, sizeof(i));
 
    }
 
-   void byte_input_stream::read_arbitrary(uint32_t & ui)
+   void byte_istream::read_arbitrary(uint32_t & ui)
    {
 
       read_arbitrary(&ui, sizeof(ui));
 
    }
 
-   void byte_input_stream::read_arbitrary(int64_t & i)
+   void byte_istream::read_arbitrary(int64_t & i)
    {
 
       read_arbitrary(&i, sizeof(i));
 
    }
 
-   void byte_input_stream::read_arbitrary(uint64_t & ui)
+   void byte_istream::read_arbitrary(uint64_t & ui)
    {
 
       read_arbitrary(&ui, sizeof(ui));
 
    }
    
-   void byte_input_stream::read_arbitrary(void * p, ::count nMax)
+   void byte_istream::read_arbitrary(void * p, ::count nMax)
    {
 
       if(fail())
@@ -243,7 +243,7 @@ namespace file
    }
 
 
-   void byte_input_stream::read(float & f)
+   void byte_istream::read(float & f)
    {
       
       full_read(&f, sizeof(f));
@@ -251,14 +251,14 @@ namespace file
    }
 
 
-   void byte_input_stream::read(double & d)
+   void byte_istream::read(double & d)
    {
       
       full_read(&d, sizeof(d));
 
    }
 
-   void byte_input_stream::read(LPRECT lprect)
+   void byte_istream::read(LPRECT lprect)
    {
 
       full_read(&lprect->left,     sizeof(lprect->left));
@@ -268,7 +268,7 @@ namespace file
 
    }
 
-   void byte_input_stream::read(SIZE & size)
+   void byte_istream::read(SIZE & size)
    {
 
       full_read(&size.cx,     sizeof(size.cx));
@@ -277,7 +277,7 @@ namespace file
    }
 
 
-   void byte_input_stream::read(sp(type) info)
+   void byte_istream::read(sp(type) info)
    {
 
       ::primitive::memory m;
@@ -303,13 +303,13 @@ namespace file
    }
 
 
-   void byte_input_stream::read(serializable & serializable)
+   void byte_istream::read(serializable & serializable)
    {
       serializable.read(*this);
 
    }
 
-   void byte_input_stream::read(id & id)
+   void byte_istream::read(id & id)
    {
 
       bool bNull;
@@ -332,14 +332,14 @@ namespace file
    }
 
 
-   void byte_input_stream::read(var & var)
+   void byte_istream::read(var & var)
    {
 
       var.read(*this);
 
    }
 
-   void byte_input_stream::read(property & property)
+   void byte_istream::read(property & property)
    {
 
       property.read(*this);
@@ -347,19 +347,19 @@ namespace file
    }
 
 
-   string byte_input_stream::get_location() const
+   string byte_istream::get_location() const
    {
-      return "<unknown byte_input_stream location>";
+      return "<unknown byte_istream location>";
    }
 
 
-   /*file_position byte_input_stream::seek(file_offset offset, e_seek seekOrigin)
+   /*file_position byte_istream::seek(file_offset offset, e_seek seekOrigin)
    {
    return m_spbuffer->seek(offset, seekOrigin);
    }*/
 
 
-   void byte_input_stream::full_load(string & str)
+   void byte_istream::full_load(string & str)
    {
 
       if(m_spbuffer.is_null())
@@ -436,7 +436,7 @@ namespace file
    }
 
 
-   void byte_input_stream::read (string & string)
+   void byte_istream::read (string & string)
    {
       int32_t nConvert = 0;   // if we get UNICODE, convert
 

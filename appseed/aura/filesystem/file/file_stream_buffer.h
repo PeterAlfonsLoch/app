@@ -66,7 +66,7 @@ namespace file
       virtual void SetFilePath(const char * lpszNewName);
 
       
-      virtual ::file::exception_sp open(const ::file::path & lpszFileName,UINT nOpenFlags);
+      virtual cres open(const ::file::path & lpszFileName,UINT nOpenFlags);
 
       //virtual bool GetStatus(const char * lpszFileName, file_status& rStatus);
       //virtual void SetStatus(const char * lpszFileName, const file_status& status);
@@ -103,11 +103,11 @@ namespace file
 
 
       using ::file::writer::write;
-      void write(output_stream & ostream);
+      void write(ostream & ostream);
 
 
       using ::file::reader::read;
-      void read(input_stream & istream);
+      void read(istream & istream);
 
 
       virtual bool read(char * pch);
