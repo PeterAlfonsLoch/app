@@ -10,7 +10,7 @@ namespace fs
 
    class CLASS_DECL_AXIS data :
       virtual public ::data::data,
-      virtual public ::file::listing::provider
+      virtual public ::file::listing_provider
    {
    public:
 

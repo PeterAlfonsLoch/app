@@ -95,46 +95,49 @@ file_size_table::item::item()
 
 void file_size_table::item::ls(::aura::application * papp, index & iIteration)
 {
+
    if(m_bDir)
    {
-      stringa               patha;
-      stringa               straTitle;
-      int64_array iaSize;
-      bool_array baIsDir;
+
+      ::file::listing               listing(get_app());
+
       if(path().is_empty())
       {
-         Sess(papp).dir().root_ones(patha, straTitle);
-         for(int32_t i = 0; i < patha.get_size(); i++)
+
+         Sess(papp).dir().root_ones(listing);
+
+         for(int32_t i = 0; i < listing.get_size(); i++)
          {
             item item;
             item.m_bPending = true;
             item.m_bDir = true;
-            item.m_strName = patha[i];
+            item.m_strName = listing[i];
             item.m_pitemParent = this;
-            if(item.m_strName.Right(1) == "\\")
-               item.m_strName = item.m_strName.Left(item.m_strName.get_length() - 1);
             item.m_iStep = 0;
             m_itema.add(new file_size_table::item(item));
          }
       }
       else
       {
-         Sess(papp).dir().ls(path(), &patha, &straTitle, &baIsDir, &iaSize);
-         for(int32_t i = 0; i < straTitle.get_size(); i++)
+
+         listing.ls(path());
+
+         for(int32_t i = 0; i < listing.get_size(); i++)
          {
+
             item item;
-            item.m_bPending = baIsDir[i];
-            item.m_bPendingLs = baIsDir[i];
-            item.m_bDir = baIsDir[i];
-            item.m_strName = straTitle[i];
+            item.m_bPending = listing[i].m_iDir == 1;
+            item.m_bPendingLs = listing[i].m_iDir == 1;
+            item.m_bDir = listing[i].m_iDir == 1;
+            item.m_strName = listing[i].name();
             item.m_pitemParent = this;
-            if(baIsDir[i])
+            if(listing[i].m_iDir)
             {
                item.m_iStep = 0;
             }
             else
             {
-               item.m_iSize = iaSize[i];
+               item.m_iSize = listing[i].m_iSize;
                item.m_iStep = -1;
             }
             m_itema.add(new file_size_table::item(item));
@@ -302,7 +305,7 @@ bool DBFileSystemSizeSet::get_fs_size(int64_t & i64Size, const char * pszPath, b
    return true;
 }
 
-bool DBFileSystemSizeSet::get_fs_size(int64_t & i64Size, const char * pszPath, bool & bPending, index & iIteration)
+bool DBFileSystemSizeSet::get_fs_size(int64_t & i64Size,const ::file::path & pszPath,bool & bPending,index & iIteration)
 {
    single_lock sl(m_table.m_pmutex, FALSE);
    if(!sl.lock(duration::zero()))
@@ -312,8 +315,11 @@ bool DBFileSystemSizeSet::get_fs_size(int64_t & i64Size, const char * pszPath, b
       bPending = true;
       return true;
    }
-   string strTitle = System.file().name_(pszPath);
+
+   string strTitle = pszPath.name();
+
    file_size_table::item * pitem = m_table.m_item.FindItem(get_app(), pszPath, iIteration);
+
    if(pitem != NULL)
    {
       bPending = pitem->m_bPending;
@@ -546,7 +552,7 @@ void FileSystemSizeWnd::ClientStartServer()
    {
       m_dwLastStartTime = get_tick_count();
 
-      simple_shell_launcher launcher(NULL, NULL, System.dir().path(System.get_module_folder(), "winservice_filesystemsizeapp"), NULL, NULL, SW_HIDE);
+      simple_shell_launcher launcher(NULL, NULL, System.get_module_folder() / "winservice_filesystemsizeapp", NULL, NULL, SW_HIDE);
 
       launcher.execute();
 

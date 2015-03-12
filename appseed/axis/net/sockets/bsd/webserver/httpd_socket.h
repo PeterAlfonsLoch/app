@@ -48,7 +48,7 @@ namespace sockets
 
 
 
-      virtual bool read_file(const char * lpcsz,smart_pointer_array < int_array > * prangea = NULL,const char * pszContentType = NULL);
+      virtual bool read_file(const ::file::path & lpcsz,smart_pointer_array < int_array > * prangea = NULL,const char * pszContentType = NULL);
 
 
    protected:

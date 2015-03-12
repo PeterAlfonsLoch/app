@@ -31,7 +31,7 @@ namespace file
          return m_pauraapp->m_paurasystem->m_spdir->locale_schema(get_app(), pszLocale, pszStyle);
       }
 
-      ::file::patha application::locale_schema_matter(const string & pszLocale, const string & pszStyle, const char * pszRoot, const char * pszApp)
+      ::file::patha application::locale_schema_matter(const string & pszLocale,const string & pszStyle,const ::file::path & pszRoot,const ::file::path & pszApp)
       {
          return m_pauraapp->m_paurasystem->m_spdir->locale_schema_matter(get_app(), pszLocale, pszStyle, pszRoot, pszApp);
       }
@@ -46,7 +46,7 @@ namespace file
          m_pauraapp->m_paurasystem->m_spdir->matter_ls_file(get_app(), str, stra);
       }
 
-      ::file::path application::matter(const ::file::path & path,bool bDir,const char * pszRoot,const char * pszApp)
+      ::file::path application::matter(const ::file::path & path,bool bDir,const ::file::path & pszRoot,const ::file::path & pszApp)
       {
          return m_pauraapp->m_paurasystem->m_spdir->matter(get_app(), path, bDir, pszRoot, pszApp);
       }
@@ -80,7 +80,7 @@ namespace file
 
       }
 
-      ::file::path application::matter(const ::file::patha & stra,bool bDir,const char * pszRoot,const char * pszApp)
+      ::file::path application::matter(const ::file::patha & stra,bool bDir,const ::file::path & pszRoot,const ::file::path & pszApp)
       {
          return m_pauraapp->m_paurasystem->m_spdir->matter(get_app(), stra, bDir, pszRoot, pszApp);
       }

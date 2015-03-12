@@ -17,7 +17,7 @@ namespace file
    }
 
 
-   void file_stream_base::open(const char * lpszFileName,uint32_t nOpenFlags,::aura::application * papp)
+   void file_stream_base::open(const ::file::path & lpszFileName,uint32_t nOpenFlags,::aura::application * papp)
    {
 
       m_spbuffer.release();
@@ -34,7 +34,7 @@ namespace file
          else
          {
 
-            m_spbuffer = App(papp).file_get_file(lpszFileName,nOpenFlags | ::file::mode_read);
+            m_spbuffer = App(papp).file().get_file(lpszFileName,nOpenFlags | ::file::mode_read);
 
          }
 

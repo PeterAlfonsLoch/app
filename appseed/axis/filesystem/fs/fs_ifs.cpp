@@ -67,7 +67,7 @@ bool ifs::has_subdir(const ::file::path & path)
 }
 
 
-::file::listing ifs::root_ones(::file::listing & listing)
+::file::listing & ifs::root_ones(::file::listing & listing)
 {
 
    listing.add("uifs://");

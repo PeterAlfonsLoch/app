@@ -114,7 +114,7 @@ namespace aura
 #ifdef CUBE
          pfn_get_new_library = (PFN_GET_NEW_LIBRARY)(INT_PTR)__library()[m_strPath + "_get_new_library"];
 #else
-         string strPath = m_strPath;
+         string strPath = m_strPath.title();
          if((pfn_get_new_library = get < PFN_GET_NEW_LIBRARY >(strPath + "_get_new_library")) == NULL)
          {
             if(::str::begins_eat(strPath, "lib"))
@@ -172,7 +172,7 @@ namespace aura
 
       m_pca2library->set_app(get_app());
 
-      m_pca2library->m_strCa2Name = m_strPath;
+      m_pca2library->m_strCa2Name = m_strPath.title();
 
       m_strCa2Name = m_strPath;
 

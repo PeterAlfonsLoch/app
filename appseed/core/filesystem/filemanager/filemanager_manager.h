@@ -37,7 +37,7 @@ namespace filemanager
       sp(::filemanager::data)       m_spfilemanagerdata;
       sp(::fs::item)                m_item;
       ::critical_section            m_csItemIdListAbsolute;
-      string                        m_strTopic;
+      ::file::path                  m_strTopic;
 
 
       manager(::aura::application * papp);

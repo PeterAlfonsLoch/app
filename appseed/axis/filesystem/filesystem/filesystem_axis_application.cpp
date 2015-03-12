@@ -106,19 +106,19 @@ namespace file
       //}
 
 
-      //var application::length(const char * pszPath)
-      //{
+      var application::length(const ::file::path & pszPath)
+      {
 
-      //   if(::str::begins_ci(pszPath,"uifs://"))
-      //   {
+         if(::str::begins_ci(pszPath,"uifs://"))
+         {
 
-      //      return AppUser(m_pauraapp).m_pifs->file_length(pszPath);
+            return AppUser(m_pauraapp).m_pifs->file_length(pszPath);
 
-      //   }
+         }
 
-      //   return m_pauraapp->m_paurasystem->m_spfile->length(pszPath,m_pauraapp);
+         return m_pauraapp->m_paurasystem->m_spfile->length(pszPath,m_pauraapp);
 
-      //}
+      }
 
 
       //var application::length(const string & strPath)

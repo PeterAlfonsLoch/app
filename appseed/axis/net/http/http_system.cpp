@@ -1907,8 +1907,8 @@ retry:
    {
       string strSection;
       strSection.Format("proxy_auth\\%s.%s", puser->m_strLogin.c_str() , "proxy_auth");
-      System.file().del(System.dir().appdata() / strSection + "_1");
-      System.file().del(System.dir().appdata() / strSection + "_2");
+      Application.file().del(System.dir().appdata() / strSection + "_1");
+      Application.file().del(System.dir().appdata() / strSection + "_2");
    }
 
 

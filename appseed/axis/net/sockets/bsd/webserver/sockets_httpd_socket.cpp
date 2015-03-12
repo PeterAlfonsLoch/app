@@ -230,7 +230,7 @@ namespace sockets
             }
 
 
-            string strFile = System.dir().name(m_strCat)/ strTitle + ".dh" + ::str::from(keylength) + ".pem";
+            string strFile = m_strCat.sibling(strTitle) + ".dh" + ::str::from(keylength) + ".pem";
 
             FILE * paramfile = fopen(strFile, "r");
 
@@ -288,9 +288,9 @@ namespace sockets
    }
 
 
-   bool httpd_socket::read_file(const char * lpcsz,smart_pointer_array < int_array > * prangea,const char * pszContentType)
+   bool httpd_socket::read_file(const ::file::path & lpcsz,smart_pointer_array < int_array > * prangea,const char * pszContentType)
    {
-      string strExtension = System.file().extension(lpcsz);
+      string strExtension = lpcsz.extension();
       string str = strExtension;
       str.make_lower();
       string strContentType(pszContentType);

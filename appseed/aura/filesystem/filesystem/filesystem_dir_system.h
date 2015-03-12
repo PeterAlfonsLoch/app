@@ -90,10 +90,10 @@ namespace file
          virtual ::file::path time_log(const string & strId);
 
          virtual ::file::path locale_schema(::aura::application * papp,const string & strLocale = cnull,const string & strStyle = cnull);
-         virtual ::file::patha locale_schema_matter(::aura::application * papp, const string & strLocale = cnull, const string & strStyle = cnull, const char * pszRoot = NULL, const char * pszApp = NULL);
+         virtual ::file::patha locale_schema_matter(::aura::application * papp,const string & strLocale = cnull,const string & strStyle = cnull,const ::file::path & pszRoot = cnull,const ::file::path & pszApp = cnull);
          virtual ::file::patha locale_schema_matter(const string & strLocator, const string & strLocale = cnull, const string & strStyle = cnull);
-         virtual ::file::path matter(::aura::application * papp,const ::file::patha & stra,bool bDir = false,const char * pszRoot = NULL,const char * pszApp = NULL);
-         virtual ::file::path matter(::aura::application * papp,const ::file::path & path,bool bDir = false,const char * pszRoot = NULL,const char * pszApp = NULL);
+         virtual ::file::path matter(::aura::application * papp,const ::file::patha & stra,bool bDir = false,const ::file::path & pszRoot = cnull,const ::file::path & pszApp = cnull);
+         virtual ::file::path matter(::aura::application * papp,const ::file::path & path,bool bDir = false,const ::file::path & pszRoot = cnull,const ::file::path & pszApp = cnull);
 
          virtual void   matter_ls(::aura::application * papp, const ::file::path & str, ::file::patha & stra);
          virtual void   matter_ls_file(::aura::application * papp,const ::file::path & str,::file::patha & stra);

@@ -51,7 +51,7 @@ public:
       typedef smart_pointer_array BASE_ARRAY;
 
       index            m_i;
-      array *     m_parray;
+      BASE_ARRAY *     m_parray;
 
       ref_iterator()
       {
@@ -59,7 +59,7 @@ public:
          m_parray = NULL;
       }
 
-      ref_iterator(index i,array * parray)
+      ref_iterator(index i,BASE_ARRAY * parray)
       {
          m_i = i;
          m_parray = parray;

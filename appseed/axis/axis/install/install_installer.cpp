@@ -908,10 +908,10 @@ install_begin:;
 
 
 
-   ::count installer::download_file_list(stringa & stringa, string_to_intptr & mapLen, string_to_string & mapMd5, string_to_intptr & mapGzLen, string_to_intptr & mapFlag)
+   ::count installer::download_file_list(::file::patha & stringa, string_to_intptr & mapLen, string_to_string & mapMd5, string_to_intptr & mapGzLen, string_to_intptr & mapFlag)
    {
 
-      class stringa straExpandFileSet;
+      ::stringa straExpandFileSet;
 
       m_dwDownloadTick = ::get_tick_count();
 
@@ -2120,7 +2120,7 @@ install_begin:;
 
 
 
-   int32_t installer::GetFileListEx(stringa & stringa, class stringa  & patha, string_to_intptr & mapLen, string_to_intptr & mapGzLen, string_to_string & mapMd5, string_to_intptr & mapFlag)
+   int32_t installer::GetFileListEx(::file::patha & stringa, ::file::patha  & patha, string_to_intptr & mapLen, string_to_intptr & mapGzLen, string_to_string & mapMd5, string_to_intptr & mapFlag)
    {
 
       int32_t iCurrent;
@@ -2168,7 +2168,7 @@ install_begin:;
 
 
 
-   int32_t installer::GetFileList(stringa & stringa, LPCSTR lpcszPath, string_to_intptr & mapLen, string_to_intptr & mapGzLen, string_to_string & mapMd5, string_to_intptr & mapFlag)
+   int32_t installer::GetFileList(::file::patha & stringa, LPCSTR lpcszPath, string_to_intptr & mapLen, string_to_intptr & mapGzLen, string_to_string & mapMd5, string_to_intptr & mapFlag)
    {
       string strPath(lpcszPath);
       strPath.replace("/", "\\");
@@ -2239,7 +2239,7 @@ install_begin:;
       return 1;
    }
 
-   int32_t installer::GetLocalFileList(stringa & stringa, LPCSTR lpcszUrl)
+   int32_t installer::GetLocalFileList(::file::patha & stringa, LPCSTR lpcszUrl)
    {
 
       string strUrl(lpcszUrl);
@@ -2298,7 +2298,7 @@ install_begin:;
    }
 
 
-   ::count installer::UncompressFileList(stringa & stringa, string_to_string & strmapMd5)
+   ::count installer::UncompressFileList(::file::patha & stringa, string_to_string & strmapMd5)
    {
       string strStage;
       string strStageGz;
@@ -2313,7 +2313,7 @@ install_begin:;
          str = stringa[i];
          str += ".bz";
          System.install().trace().rich_trace(str);
-         strStageGz = ::file::path(m_strInstallGz)/ ca2bz_get_file(str, strmapMd5[stringa[i]]));
+         strStageGz = ::file::path(m_strInstallGz)/ ca2bz_get_file(str, strmapMd5[stringa[i]]);
          strStage = ca2_get_dir(str) + ca2_get_file(str);
          dir::mk(dir::name(strStage));
          bzuncompress(strStage, strStageGz);
@@ -2329,7 +2329,7 @@ install_begin:;
       return stringa.get_count();
    }
 
-   ::count installer::CopyFileList(stringa & stringa, string_to_intptr & mapFlag)
+   ::count installer::CopyFileList(::file::patha & stringa, string_to_intptr & mapFlag)
    {
       string strStage;
       string strStageUnbz;
@@ -3121,7 +3121,7 @@ RetryBuildNumber:
 
       string strName;
 
-      stringa straTemplate;
+      ::file::patha straTemplate;
 
       string strBuild;
 
@@ -3144,7 +3144,7 @@ RetryBuildNumber:
 
       string strBuildPath;
 
-      strBuildPath = System.dir().element_commonappdata(::dir::element(), "spa_build.txt");
+      strBuildPath = System.dir().element_commonappdata(::dir::element()) / "spa_build.txt";
 
       // using a guess for build number (the latest installed one)
       {
@@ -3334,7 +3334,7 @@ RetryBuildNumber:
 
             {
 
-               ::file::buffer_sp file2 = Application.file_get_file(strIndexPath,::file::mode_create | ::file::type_binary | ::file::mode_write | ::file::defer_create_directory);
+               ::file::buffer_sp file2 = Application.file().get_file(strIndexPath,::file::mode_create | ::file::type_binary | ::file::mode_write | ::file::defer_create_directory);
 
                mem.allocate(len);
 

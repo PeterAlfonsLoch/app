@@ -36,9 +36,9 @@ namespace userstack
 
       virtual void install_message_handling(::message::dispatch * pinterface);
 
-      void check_3click_dir(const char * psz);
-      void check_menu_dir(const char * psz);
-      void check_desktop_dir(const char * psz);
+      void check_3click_dir(const ::file::path & psz);
+      void check_menu_dir(const ::file::path & psz);
+      void check_desktop_dir(const ::file::path & psz);
 
       void _001InitializeFormPreData(::user::form * pform);
       bool BaseOnControlEvent(::user::form * pview, ::user::control_event * pevent);

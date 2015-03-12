@@ -374,14 +374,14 @@ namespace filemanager
       else
       {
 
-         stringa stra;
+         ::file::listing listing(papp);
 
-         Sess(papp).dir().ls(::str::international::unicode_to_utf8(szPath), &stra);
+         listing.ls(::str::international::unicode_to_utf8(szPath));
 
-         for(int32_t i = 0; i < stra.get_size(); i++)
+         for(int32_t i = 0; i < listing.get_size(); i++)
          {
 
-            efolder = GetFolderType(papp, stra[i]);
+            efolder = GetFolderType(papp, listing[i]);
 
             if(efolder != FolderNone)
                return true;
@@ -692,7 +692,7 @@ namespace filemanager
       }
       if(imagekey.m_iIcon == 0x80000000)
       {
-         string strTarget;
+         ::file::path strTarget;
          //if(System.file().resolve_link(strTarget, strFilePath, System.window_from_os_data))
          if(System.file().resolve_link(strTarget, strFilePath, NULL))
          {
@@ -1035,12 +1035,12 @@ namespace filemanager
 
 #endif
 
-   int32_t ImageSet::GetImageByExtension(oswindow oswindow, const char * pszPath, EIcon eicon, bool bFolder)
+   int32_t ImageSet::GetImageByExtension(oswindow oswindow,const ::file::path & pszPath,EIcon eicon,bool bFolder)
    {
 
 #ifdef WINDOWSEX
 
-      return GetFooImage(oswindow,eicon,bFolder,System.file().extension(pszPath));
+      return GetFooImage(oswindow,eicon,bFolder,pszPath.ext());
 
 #else
 
@@ -1533,9 +1533,10 @@ namespace filemanager
       // try to find "uifs:// http:// ftp:// like addresses"
       // then should show icon by extension or if is folder
       strsize iFind = ::str::find_ci("://", strPath);
-      if(iFind >= 0)
+      strsize iFind2 = ::str::find_ci(":",strPath);
+      if(iFind >= 0 || iFind2 >= 2)
       {
-         string strProtocol = strPath.Left(iFind);
+         string strProtocol = strPath.Left(MAX(iFind, iFind2));
          int32_t i = 0;
          while(i < strProtocol.get_length() && isalnum_dup(strProtocol[i]))
          {

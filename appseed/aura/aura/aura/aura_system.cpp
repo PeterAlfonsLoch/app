@@ -1635,7 +1635,7 @@ namespace aura
 
    bool system::install_is(const char * pszVersion,const char * pszBuild,const char * pszType,const char * pszId,const char * pszLocale,const char * pszSchema)
    {
-      
+
       synch_lock sl(m_pmutex);
 
       ::file::path strPath;
@@ -1706,17 +1706,25 @@ namespace aura
       }
       else if(strBuildNumber == "installed" || strBuildNumber == "static")
       {
-         for(index i = lpnodeVersion->get_children_count() - 1; i >= 0 ; i--)
+         
+         string strBuildPath;
+
+         strBuildPath = System.dir().commonappdata()/ "spa_build.txt";
+
+         strBuildNumber = Application.file().as_string(strBuildPath);
+
+         if(strBuildNumber.is_empty())
          {
-            if(lpnodeVersion->child_at(i)->get_name() == "installed")
-            {
-               lpnodeInstalled = lpnodeVersion->child_at(i);
-               break;
-            }
+            
+            strBuildNumber = "installed";
 
          }
+
+         lpnodeInstalled = lpnodeVersion->GetChildByAttr("installed","build",strBuildNumber);
+
          if(lpnodeInstalled.is_null())
             return false;
+
       }
       else
       {

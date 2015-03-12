@@ -615,7 +615,10 @@ restart:
 
       }
 
+      return false;
+
    }
+
 
    bool system::put_contents(var varFile, ::file::reader & reader, ::aura::application * papp)
    {
@@ -1255,7 +1258,7 @@ restart:
    }
 
 
-   bool system::resolve_link(string & strTarget,const ::file::path & pszSource,sp(::aura::interaction) puiMessageParentOptional)
+   bool system::resolve_link(::file::path & strTarget,const ::file::path & pszSource,sp(::aura::interaction) puiMessageParentOptional)
    {
 
       throw interface_only_exception(get_app());

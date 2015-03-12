@@ -12,15 +12,12 @@ namespace userfs
 
 
       string                                    m_strFolder;
+
       sp(::fs::set)                             m_fsset;
 
-      stringa                                   m_straRootPath;
-      stringa                                   m_straRootTitle;
+      ::file::listing                           m_straRootPath;
 
-      stringa                                   m_straPath;
-      stringa                                   m_straTitle;
-      int64_array                               m_iaSize;
-      bool_array                                m_baDir;
+      ::file::listing                           m_straPath;
 
 
       document(::aura::application * papp);

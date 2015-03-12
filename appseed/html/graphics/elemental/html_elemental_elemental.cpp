@@ -811,8 +811,7 @@ namespace html
             }
             else
             {
-               strUrl = System.dir().path(
-                  System.dir().name(m_pdata->m_strPathName),strUrl);
+               strUrl = m_pdata->m_strPathName.sibling(strUrl);
                strUrl.replace("/","\\");
             }
             pstylesheet->parse(pdata, App(pdata->get_app()).file().as_string(strUrl));

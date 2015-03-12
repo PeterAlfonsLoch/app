@@ -1177,8 +1177,10 @@ restart:
             // ::exception like (::file::exception) (I supposed ::file::exception is already based on ::exception OMG CAMILO!!!)
             // and may be then replace could do replace for example on HTTP servers and return may io_exception and not tighted
             // to a barely translated io exception into a empty ::file::exception with improper filled members....
-            e = move(pathContext / strNew,pathContext / strOld, papp);
+            e.add(move(pathContext / strNew,pathContext / strOld,papp));
+
          }
+
       }
       if(strFail.has_char())
       {

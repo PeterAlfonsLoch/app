@@ -417,6 +417,13 @@ namespace file
                m_pziputil->ls(papp,l);
 
             }
+            else
+            {
+
+               l.m_cres = failure;
+
+
+            }
 
          }
 
@@ -528,7 +535,7 @@ namespace file
          {
 #endif
 
-            string strTarget;
+            ::file::path strTarget;
 
             if(System.file().resolve_link(strTarget,lpcszPath))
             {

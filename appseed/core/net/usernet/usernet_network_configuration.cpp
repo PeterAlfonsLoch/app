@@ -53,7 +53,7 @@ namespace usernet // ca8 + cube
 
       xml::document doc(get_app());
 
-      if(doc.load(Session.file_as_string(System.dir().appdata("proxy.xml"))))
+      if(doc.load(Session.file().as_string(System.dir().appdata()/"proxy.xml")))
       {
          string strProxy = doc.get_root()->attr("server");
          int32_t iProxyPort = doc.get_root()->attr("port");
@@ -81,7 +81,7 @@ namespace usernet // ca8 + cube
             ptext->_001GetText(strServer);
             if(strServer.get_length() == 0)
             {
-               System.file().del(System.dir().appdata("proxy.xml"));
+               Application.file().del(System.dir().appdata()/ "proxy.xml");
             }
             else
             {
@@ -93,7 +93,7 @@ namespace usernet // ca8 + cube
                string strPort;
                ptext->_001GetText(strPort);
                doc.get_root()->add_attr("port", strPort);
-               Application.file().put_contents(System.dir().appdata("proxy.xml"), doc.get_xml());
+               Application.file().put_contents(System.dir().appdata()/"proxy.xml", doc.get_xml());
             }
          }
       }

@@ -12,11 +12,11 @@ namespace filemanager
 
 
       e_operation                m_eoperation;
-      stringa                    m_stra;
+      ::file::listing            m_stra;
       double_array               m_daRead;
       double_array               m_daSize;
-      string                     m_str;
-      string                     m_strBase;
+      ::file::path               m_str;
+      ::file::path               m_strBase;
       double                     m_dSize;
       double                     m_dRead;
       ::file::buffer_sp          m_fileSrc;
@@ -33,9 +33,9 @@ namespace filemanager
       operation(::aura::application * papp);
       virtual ~operation();
       
-      virtual bool set_copy(stringa & stra,const char * pszDestBase,const char * pszSrcBase,bool bExpand);
-      virtual bool set_move(stringa & stra,const char * psz);
-      virtual bool set_delete(stringa & stra);
+      virtual bool set_copy(::file::listing & stra,const ::file::path & pszDestBase,const ::file::path & pszSrcBase,bool bExpand);
+      virtual bool set_move(::file::listing & stra,const ::file::path & psz);
+      virtual bool set_delete(::file::listing & stra);
 
       //   virtual double size();
       //   virtual double progress();
@@ -46,17 +46,17 @@ namespace filemanager
       double get_item_read(int32_t iItem);
       double get_item_size(int32_t iItem);
 
-      void expand(stringa & straExpanded,stringa & straExpand);
+      void expand(::file::listing & straExpanded,::file::patha & straExpand);
 
       virtual bool start();
       virtual bool step();
       //   virtual bool mark();
       virtual bool finish();
-      virtual bool make_duplicate_name(string & str,const char * psz);
+      virtual bool make_duplicate_name(::file::path & str,const ::file::path & psz);
 
 
       virtual bool initialize();
-      virtual bool open_src_dst(const char * pszSrc,string & strDst, const char * pszDir);
+      virtual bool open_src_dst(const ::file::path & pszSrc,::file::path & strDst,const ::file::path & pszDir);
 
       virtual void set_operation(e_operation eoperation);
       virtual e_operation get_operation();

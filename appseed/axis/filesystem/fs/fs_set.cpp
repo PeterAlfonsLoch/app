@@ -29,35 +29,31 @@ namespace fs
    }
 
 
-   void set::root_ones(::file::patha & patha,stringa & straTitle)
+   ::file::listing & set::root_ones(::file::listing & listing)
    {
 
       single_lock sl(data_mutex(), true);
 
       m_fsdatamap.remove_all();
 
-      ::file::patha straFsPath;
-
-      stringa straFsTitle;
+      ::file::listing straFsPath;
 
       for(int32_t i = 0; i < m_spafsdata.get_count(); i++)
       {
 
-         straFsPath.remove_all();
-
-         straFsTitle.remove_all();
+         straFsPath.clear_results();
 
          data * pdata =  m_spafsdata[i];
 
          sl.unlock();
 
-         pdata->root_ones(straFsPath,straFsTitle);
+         pdata->root_ones(straFsPath);
 
          sl.lock();
 
-         patha.add(straFsPath);
+         listing.add(straFsPath);
 
-         straTitle.add(straFsTitle);
+         listing.m_straTitle.add(straFsPath.m_straTitle);
 
          for(int32_t j = 0; j < straFsPath.get_size(); j++)
          {
@@ -67,6 +63,8 @@ namespace fs
          }
 
       }
+
+      return listing;
 
    }
 
@@ -122,48 +120,34 @@ namespace fs
 
       if(listing.m_path.is_empty())
       {
-         root_ones(listing, straTitle);
-         for(int32_t i = 0; i < patha.get_size(); i++)
-         {
-            if(ppatha != NULL)
-            {
-               ppatha->add(patha[i]);
-            }
-            if(ppathaName != NULL)
-            {
-               ppathaName->add(::file::path(straTitle[i]));
-            }
-            if (piaSize != NULL)
-            {
-               piaSize->add(0); // don't tell size of root folders
-            }
-            if(pbaDir != NULL)
-            {
-               pbaDir->add(true); // don't tell size of root folders
-            }
-         }
-         return true;
+         
+         return root_ones(listing);
+         
       }
 
-      ::fs::data * pdata = path_data(psz);
+      ::fs::data * pdata = path_data(listing.m_path);
 
       if(pdata != NULL)
       {
-         return pdata->ls(psz,ppatha,ppathaName,piaSize, pbaDir);
+
+         return pdata->ls(listing);
+
       }
 
-      return false;
+      return listing = failure;
 
    }
 
-   bool set::is_dir(const char * psz)
+   bool set::is_dir(const ::file::path & path)
    {
 
-      ::fs::data * pdata = path_data(psz);
+      ::fs::data * pdata = path_data(path);
 
       if(pdata != NULL)
       {
-         return pdata->is_dir(psz);
+         
+         return pdata->is_dir(path);
+
       }
 
       return false;
@@ -171,22 +155,22 @@ namespace fs
    }
 
 
-   string set::file_name(const char * psz)
-   {
+   //string set::file_name(const ::file::path & psz)
+   //{
 
-      ::fs::data * pdata = path_data(psz);
+   //   ::fs::data * pdata = path_data(psz);
 
-      if(pdata != NULL)
-      {
-         return pdata->file_name(psz);
-      }
+   //   if(pdata != NULL)
+   //   {
+   //      return pdata->file_name(psz);
+   //   }
 
-      return "";
+   //   return "";
 
-   }
+   //}
 
 
-   bool set::file_move(const char * pszDst, const char * pszSrc)
+   bool set::file_move(const ::file::path & pszDst, const ::file::path & pszSrc)
    {
 
       ::fs::data * pdataDst = path_data(pszDst);
@@ -212,14 +196,14 @@ namespace fs
    }
 
 
-   bool set::has_subdir(const char * psz)
+   bool set::has_subdir(const ::file::path & path)
    {
 
-      ::fs::data * pdata = path_data(psz);
+      ::fs::data * pdata = path_data(path);
 
       if(pdata != NULL)
       {
-         return pdata->has_subdir(psz);
+         return pdata->has_subdir(path);
       }
 
       return false;
@@ -227,92 +211,92 @@ namespace fs
    }
 
 
-   bool set::tree_show_subdir(const char * psz)
+   bool set::tree_show_subdir(const ::file::path & path)
    {
 
-      ::fs::data * pdata = path_data(psz);
+      ::fs::data * pdata = path_data(path);
 
       if(pdata != NULL)
       {
-         return pdata->tree_show_subdir(psz);
+         return pdata->tree_show_subdir(path);
       }
 
       return false;
 
    }
 
-   bool set::fast_has_subdir(const char * psz)
+   bool set::fast_has_subdir(const ::file::path & path)
    {
 
-      ::fs::data * pdata = path_data(psz);
+      ::fs::data * pdata = path_data(path);
 
       if(pdata != NULL)
       {
-         return pdata->fast_has_subdir(psz);
+         return pdata->fast_has_subdir(path);
       }
 
       return false;
 
    }
 
-   bool set::is_link(const char * psz)
+   bool set::is_link(const ::file::path & path)
    {
 
-      ::fs::data * pdata = path_data(psz);
+      ::fs::data * pdata = path_data(path);
 
       if(pdata != NULL)
       {
-         return pdata->is_link(psz);
+         return pdata->is_link(path);
       }
 
       return false;
 
    }
 
-   void set::get_ascendants_path(const ::file::path & psz,::file::patha & stra)
-   {
+   //void set::get_ascendants_path(const ::file::path & psz,::file::patha & stra)
+   //{
 
-      ::fs::data * pdata = path_data(psz);
+   //   ::fs::data * pdata = path_data(psz);
 
-      if(pdata != NULL)
-      {
-         pdata->get_ascendants_path(psz, stra);
-      }
+   //   if(pdata != NULL)
+   //   {
+   //      pdata->get_ascendants_path(psz, stra);
+   //   }
 
-   }
-
-
-   string set::eat_end_level(const char * psz, int32_t iLevel)
-   {
-
-      ::fs::data * pdata = path_data(psz);
-
-      if(pdata != NULL)
-      {
-         return pdata->eat_end_level(psz, iLevel);
-      }
-
-      return "";
-
-   }
+   //}
 
 
-   string set::dir_path(const char * pszPath1, const char * pszPath2)
-   {
+   //string set::eat_end_level(const char * psz, int32_t iLevel)
+   //{
 
-      ::fs::data * pdata = path_data(pszPath1);
+   //   ::fs::data * pdata = path_data(psz);
 
-      if(pdata != NULL)
-      {
-         return pdata->dir_path(pszPath1, pszPath2);
-      }
+   //   if(pdata != NULL)
+   //   {
+   //      return pdata->eat_end_level(psz, iLevel);
+   //   }
 
-      return ::file::path(pszPath1) / pszPath2;
+   //   return "";
 
-   }
+   //}
 
 
-   bool set::is_zero_latency(const char * psz)
+   //string set::dir_path(const char * pszPath1, const char * pszPath2)
+   //{
+
+   //   ::fs::data * pdata = path_data(pszPath1);
+
+   //   if(pdata != NULL)
+   //   {
+   //      return pdata->dir_path(pszPath1, pszPath2);
+   //   }
+
+   //   return ::file::path(pszPath1) / pszPath2;
+
+   //}
+
+
+   bool set::is_zero_latency(const ::file::path & psz)
    {
 
       ::fs::data * pdata = path_data(psz);

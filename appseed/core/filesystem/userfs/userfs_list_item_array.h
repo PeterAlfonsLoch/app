@@ -36,7 +36,7 @@ namespace userfs
       list_item & get_item(index i);
       //void SetItemAt(index i, list_item & item);
       //void SetItemCount(::count iCount);
-      index find_item_by_path(const char * pszPath);
+      index find_item_by_path(const ::file::path & pszPath);
 
 
       void arrange(::fs::e_arrange earrange);

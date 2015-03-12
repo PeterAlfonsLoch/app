@@ -441,7 +441,7 @@ namespace file
          {
 #endif
 
-            string strTarget;
+            ::file::path strTarget;
 
             if(System.file().resolve_link(strTarget,lpcszPath))
             {
@@ -648,28 +648,23 @@ namespace file
 
       
 
-      ::file::patha system::locale_schema_matter(::aura::application * papp, const string & strLocale, const string & strSchema, const char * pszRoot, const char * pszApp)
+      ::file::patha system::locale_schema_matter(::aura::application * papp,const string & strLocale,const string & strSchema,const ::file::path & strRoot,const ::file::path & strDomain)
       {
 
          //single_lock sl(&papp->m_mutexMatterLocator, true);
-         if (pszRoot != NULL && pszApp != NULL)
+         if(strRoot.has_char() && strDomain.has_char())
          {
-
-            ::file::path strRoot(pszRoot);
-
-            ::file::path strDomain(pszApp);
 
             ::file::patha patha;
 
             if(Session.m_bMatterFromHttpCache)
             {
 
-               return{strRoot / "appmatter" / strDomain / papp->m_paurasession->get_locale_schema_dir(strLocale,strSchema)};
+               return   {strRoot / "appmatter" / strDomain / papp->m_paurasession->get_locale_schema_dir(strLocale,strSchema)};
             }
             else
             {
-               return {strRoot / "appmatter" / strDomain / papp->m_paurasession->get_locale_schema_dir(strLocale,strSchema)
-            };
+               return {element() / strRoot / "appmatter" / strDomain / papp->m_paurasession->get_locale_schema_dir(strLocale,strSchema) };
 
             }
 
@@ -777,7 +772,7 @@ namespace file
 
       }
 
-      ::file::path system::matter(::aura::application * papp,const ::file::patha & stra,bool bDir,const char * pszRoot,const char * pszApp)
+      ::file::path system::matter(::aura::application * papp,const ::file::patha & stra,bool bDir,const ::file::path & pszRoot,const ::file::path & pszApp)
       {
          throw interface_only_exception(get_app());
 
@@ -785,7 +780,7 @@ namespace file
 
       }
 
-      ::file::path system::matter(::aura::application * papp, const ::file::path & path, bool bDir, const char * pszRoot, const char * pszApp)
+      ::file::path system::matter(::aura::application * papp,const ::file::path & path,bool bDir,const ::file::path & pszRoot,const ::file::path & pszApp)
       {
          throw interface_only_exception(get_app());
 

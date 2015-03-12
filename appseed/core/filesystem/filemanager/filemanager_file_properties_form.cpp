@@ -45,18 +45,28 @@ namespace filemanager
    {
    }
 
+   
    void file_properties_form::page1()
    {
+      
       if(!m_pdocGeneral->on_open_document(Application.dir().matter("filemanager/file_properties.html")))
       {
+
          return;
+
       }
+      
       if(m_itema.get_count() <= 0)
          return;
+      
       sp(::user::interaction) pui = m_pviewGeneral->get_child_by_name("name");
+      
       sp(::user::elemental) ptext =  (pui.m_p);
-      ptext->_001SetText(System.file().name_(m_itema[0]->m_strPath), ::action::source_none);
+      
+      ptext->_001SetText(m_itema[0]->m_strPath.name(), ::action::source_none);
+
    }
+
 
    void file_properties_form::on_create_view(::user::view_creator_data * pcreatordata)
    {

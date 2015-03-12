@@ -69,10 +69,15 @@ namespace fs
 
    }
 
-   void remote_native::root_ones(::file::patha & patha,stringa & straTitle)
+   ::file::listing & remote_native::root_ones(::file::listing & listing)
    {
-      patha.add("fs://");
-      straTitle.add("File System");
+
+      listing.add("fs://");
+
+      listing.m_straTitle.add("File System");
+
+      return listing;
+
    }
 
 

@@ -43,10 +43,10 @@ namespace fs
    }
 
 
-   void native::root_ones(::file::patha & patha,stringa & straTitle)
+   ::file::listing & native::root_ones(::file::listing & listing)
    {
 
-      System.dir().root_ones(patha, straTitle, get_app());
+      System.dir().root_ones(listing, get_app());
 
       
 #ifdef WINDOWSEX
@@ -59,11 +59,12 @@ namespace fs
          CSIDL_DESKTOP,
          FALSE);
 
-      patha.insert_at(0,strDesktopFolder);
-      straTitle.insert_at(0,"Área de Trabalho");
+      listing.insert_at(0,strDesktopFolder);
+      listing.m_straTitle.insert_at(0,unitext("Área de Trabalho"));
       
 #endif
       
+      return listing;
 
    }
 

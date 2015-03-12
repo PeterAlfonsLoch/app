@@ -113,7 +113,7 @@ public:
    bool get_fs_size(int64_t & i64Size, const char * pszPath, bool & bPending);
 
 
-   bool get_fs_size(int64_t & i64Size, const char * pszPath, bool & bPending, index & iIteration);
+   bool get_fs_size(int64_t & i64Size, const ::file::path & pszPath, bool & bPending, index & iIteration);
 
 
 };

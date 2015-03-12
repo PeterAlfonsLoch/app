@@ -104,6 +104,12 @@ namespace windows
 
       string str;
 
+      m_straFile.clear_results();
+
+      m_straFile.m_bAccumul = true;
+
+      m_straFile.m_pprovider = get_app();
+
       for(i = 0; i < m_straSearch.get_size(); i++)
       {
 
@@ -126,13 +132,13 @@ namespace windows
             if(bRecursive)
             {
 
-               Application.dir().rls_pattern(m_straSearch.element_at(i), strFilter, &m_straFile);
+               m_straFile.rls_pattern(m_straSearch.element_at(i),strFilter);
 
             }
             else
             {
 
-               Application.dir().ls_pattern(m_straSearch.element_at(i), strFilter, &m_straFile);
+               m_straFile.ls_pattern(m_straSearch.element_at(i),strFilter);
 
             }
 

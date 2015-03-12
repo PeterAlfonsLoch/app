@@ -917,7 +917,7 @@ namespace install
 
       strBuildPath = System.dir().commonappdata()/ "spa_build.txt";
 
-      System.dir().mk(System.dir().name(strPath), get_app());
+      System.dir().mk(strPath.folder(), get_app());
 
       ::xml::document doc(get_app());
 
@@ -1292,10 +1292,10 @@ namespace install
 
          ::install::get_plugin_base_library_list(straFile, pszVersion);
 
-         if(!::dir::is(System.dir().name(strPath)))
+         if(!::dir::is(strPath.folder()))
          {
 
-            ::dir::mk(System.dir().name(strPath));
+            ::dir::mk(strPath.folder());
 
          }
 
@@ -1306,7 +1306,7 @@ namespace install
 
             ::file::path strFile = straFile[iFile];
 
-            ::file::path strDownload = strPath * strFile;
+            ::file::path strDownload = strPath.sibling(strFile);
 
             straDownload.add(strDownload);
 
@@ -1401,7 +1401,7 @@ namespace install
 
                ::file::path strFile = straFile[iFile];
 
-               ::file::path strDownload = strPath * strFile;
+               ::file::path strDownload = strPath.sibling(strFile);
 
                if(pinstaller != NULL)
                {

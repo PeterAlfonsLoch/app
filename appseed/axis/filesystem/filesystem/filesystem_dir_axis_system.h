@@ -101,12 +101,12 @@ namespace file
             virtual ::file::patha locale_schema_matter(const string & strLocator,const string & strLocale,const string & strStyle);
             virtual ::file::path matter(::aura::application * papp,const ::file::patha & stra,bool bDir = false,const ::file::path & pathRoot = cnull,const ::file::path & pathDomain = cnull);
             virtual ::file::path matter(::aura::application * papp,const ::file::path & str,bool bDir = false,const ::file::path & pathRoot = cnull,const ::file::path & pathDomain = cnull);
-            virtual ::file::path matter(::aura::application * papp,const string & str,bool bDir = false,const ::file::path & pathRoot = cnull,const ::file::path & pathDomain = cnull);
+            //virtual ::file::path matter(::aura::application * papp,const string & str,bool bDir = false,const ::file::path & pathRoot = cnull,const ::file::path & pathDomain = cnull);
 
             virtual void   matter_ls(::aura::application * papp,const ::file::path & str,::file::patha & stra);
             virtual void   matter_ls_file(::aura::application * papp,const ::file::path & str,::file::patha & stra);
 
-            virtual ::file::path matter(::aura::application * papp);
+            //virtual ::file::path matter(::aura::application * papp);
 
             //virtual ::file::path matter_from_locator(::aura::str_context * pcontext,const string & strLocator);
             virtual ::file::path matter_from_locator(::aura::str_context * pcontext,const string & strLocator,const ::file::path & str);
@@ -134,9 +134,9 @@ namespace file
             //virtual string userdata(::aura::application * papp,const char * lpcsz = NULL,const char * lpcsz2 = NULL);
             //virtual string userfolder(::aura::application * papp,const char * lpcsz = NULL,const char * lpcsz2 = NULL);
             //virtual string default_os_user_path_prefix(::aura::application * papp);
-            //virtual string default_userappdata(::aura::application * papp,const char * lpcszPrefix,const char * lpcszLogin,const char * pszRelativePath = NULL);
-            //virtual string default_userdata(::aura::application * papp,const char * lpcszPrefix,const char * lpcszLogin,const char * pszRelativePath = NULL);
-            //virtual string default_userfolder(::aura::application * papp,const char * lpcszPrefix,const char * lpcszLogin,const char * pszRelativePath = NULL);
+            //virtual string default_userappdata(::aura::application * papp,const string & lpcszPrefix,const string & lpcszLogin,const char * pszRelativePath = NULL);
+            //virtual string default_userdata(::aura::application * papp,const string & lpcszPrefix,const string & lpcszLogin,const char * pszRelativePath = NULL);
+            //virtual string default_userfolder(::aura::application * papp,const string & lpcszPrefix,const string & lpcszLogin,const char * pszRelativePath = NULL);
             //virtual string userquicklaunch(::aura::application * papp,const char * pszRelativePath = NULL,const char * lpcsz2 = NULL);
             //virtual string userprograms(::aura::application * papp,const char * pszRelativePath = NULL,const char * lpcsz2 = NULL);
 

@@ -60,31 +60,24 @@ namespace filemanager
    }
 
 
-   void tree::knowledge(const string & strPath,::action::context actioncontext,bool bOnlyParent)
+   void tree::knowledge(const ::file::path & strPath,::action::context actioncontext,bool bOnlyParent)
    {
 
       if(bOnlyParent && strPath.has_char() && find_item(strPath))
          return;
 
-      ::file::patha patha;
-      ::file::patha straTitle;
-      int64_array iaSize;
-      bool_array baDir;
+      ::file::listing listing(get_document()->get_fs_data());
 
-      string strDir;
+      ::file::path strDir;
 
       if(bOnlyParent && strPath.has_char())
       {
 
-         strDir = System.dir().name(strPath);
+         strDir = strPath.folder();
 
-         patha.add(strPath);
+         ::file::path & path = listing.add(strPath);
 
-         straTitle.add(System.file().name_(strPath));
-
-         iaSize.add(-1);
-
-         baDir.add(true);
+         path.m_iDir = 1;
 
       }
       else
@@ -92,19 +85,19 @@ namespace filemanager
 
          strDir = strPath;
 
-         get_document()->get_fs_data()->ls(strPath,&patha,&straTitle,&iaSize,&baDir);
+         listing.ls(strPath);
 
       }
 
       single_lock sl(&m_mutexData,true);
 
-      filemanager_tree_insert(strDir,patha,straTitle,iaSize,baDir,actioncontext, bOnlyParent);
+      filemanager_tree_insert(strDir,listing,actioncontext, bOnlyParent);
 
       ::data::tree_item * pitem = find_item(strDir);
 
       if(pitem != NULL)
       {
-         if(patha.get_count() > 0)
+         if(listing.get_count() > 0)
          {
 
             pitem->m_dwState |= ::data::tree_item_state_expanded;
@@ -131,12 +124,12 @@ namespace filemanager
    }
 
 
-   void tree::filemanager_tree_insert(const string & strPath, stringa & patha,stringa & straTitle,int64_array & iaSize,bool_array & baDir,::action::context actioncontext, bool bOnlyParent)
+   void tree::filemanager_tree_insert(const ::file::path & strPath,::file::listing & listing,::action::context actioncontext,bool bOnlyParent)
    {
 
       single_lock sl(&m_mutexData,true);
 
-      stringa & straRootPath = get_document()->m_straRootPath;
+      ::file::listing & straRootPath = get_document()->m_straRootPath;
 
 //      stringa & straRootTitle = get_document()->m_straRootTitle;
 
@@ -159,9 +152,9 @@ namespace filemanager
          if(pitem.is_set())
          {
 
-            stringa straPathTrim;
+            ::file::patha straPathTrim;
 
-            straPathTrim = patha;
+            straPathTrim = listing;
 
             straPathTrim.trim_right("\\/");
 
@@ -176,7 +169,7 @@ namespace filemanager
 
                iFind = straPathTrim.find_first_ci(strPathOld);
 
-               if(iFind < 0 || !baDir[iFind])
+               if(iFind < 0 || !listing[iFind].m_iDir)
                {
 
                   ptraRemove.add(pitem);
@@ -194,7 +187,7 @@ namespace filemanager
       }
 
 
-      stringa straRootPathTrim;
+      ::file::patha straRootPathTrim;
 
       straRootPathTrim = straRootPath;
 
@@ -204,14 +197,14 @@ namespace filemanager
 
       int32_t i;
 
-      string strItem;
+      ::file::path strItem;
 
       string strCheck;
 
-      for(i = 0; i < patha.get_size(); i++)
+      for(i = 0; i < listing.get_size(); i++)
       {
 
-         strItem = patha[i];
+         strItem = listing[i];
 
          if(strItem.is_empty())
             continue;
@@ -252,11 +245,11 @@ namespace filemanager
 
          iChildCount++;
 
-         pitemChild->m_strPath = get_document()->get_fs_data()->dir_path(strItem,"");
+         pitemChild->m_strPath = strItem;
 
-         pitemChild->m_strName = straTitle[i];
+         pitemChild->m_strName = listing.title(i);
 
-         if(!baDir[i])
+         if(!listing[i].m_iDir)
          {
 
             /*            if(zip::Util().IsUnzipable(get_app(), pitemChild->m_strPath))
@@ -354,11 +347,11 @@ namespace filemanager
 
       single_lock sl(&m_mutexData,true);
 
-      stringa & straRootPath = get_document()->m_straRootPath;
+      ::file::listing & straRootPath = get_document()->m_straRootPath;
 
 //      stringa & straRootTitle = get_document()->m_straRootTitle;
 
-      string strPath = get_filemanager_item().m_strPath;
+      ::file::path strPath = get_filemanager_item().m_strPath;
 
       m_strPath = strPath;
 
@@ -369,9 +362,10 @@ namespace filemanager
 
          if(strPath.has_char())
          {
+            
             ::file::patha stra;
 
-            get_filemanager_manager()->get_fs_data()->get_ascendants_path(strPath,stra);
+            strPath.ascendants_path(stra);
 
             for(index i = 0; i < stra.get_size(); i++)
             {
@@ -390,7 +384,7 @@ namespace filemanager
 
       ::userfs::item * pitemChild;
 
-      string strDirParent = System.dir().name(m_strPath);
+      ::file::path strDirParent = m_strPath.folder();
 
       sp(::data::tree_item) pitemParent = find_item(strDirParent);
 
@@ -418,7 +412,7 @@ namespace filemanager
 
             pitemChild->m_strPath = strPath;
 
-            pitemChild->m_strName = System.file().name_(strPath);
+            pitemChild->m_strName = strPath.name();
 
             pitemChild->m_flags.signalize(::fs::FlagFolder);
 
@@ -462,18 +456,12 @@ namespace filemanager
 
       string str;
 
-      stringa & patha = get_document()->m_straPath;
-
-      stringa & straTitle = get_document()->m_straTitle;
-
-      int64_array & iaSize = get_document()->m_iaSize;
-
-      bool_array & baDir = get_document()->m_baDir;
+      ::file::listing & listing = get_document()->m_straPath;
 
       if(actioncontext.m_spdata.is_null() || !(actioncontext.m_spdata->m_esource &::action::source_system))
       {
 
-         filemanager_tree_insert(strPath,patha,straTitle,iaSize,baDir,actioncontext);
+         filemanager_tree_insert(strPath,listing,actioncontext);
 
          _017EnsureVisible(strPath,actioncontext);
 
@@ -663,7 +651,7 @@ namespace filemanager
          if(get_document()->get_fs_data()->is_link(pitem->m_pitem.cast < ::userfs::item >()->m_strPath))
          {
 
-            string strTarget;
+            ::file::path strTarget;
 
             System.file().resolve_link(strTarget,pitem->m_pitem.cast < ::userfs::item >()->m_strPath);
 
@@ -714,7 +702,7 @@ namespace filemanager
       if(get_document()->get_fs_data()->is_link(item->m_strPath))
       {
 
-         string strTarget;
+         ::file::path strTarget;
 
          System.file().resolve_link(strTarget, item->m_strPath);
 
@@ -748,6 +736,12 @@ namespace filemanager
 
    int32_t tree::polishing::run()
    {
+
+      HRESULT result = ::CoInitializeEx(NULL,COINIT_MULTITHREADED);
+      if(!SUCCEEDED(result))
+      {
+         return result;
+      }
 
       single_lock sl(&m_ptree->m_mutexData,true);
 

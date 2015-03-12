@@ -21,6 +21,7 @@ namespace windows
       ::file::path            m_strAppData;
       ::file::path            m_strPrograms;
       ::file::path            m_strCommonPrograms;
+      ::file::path            m_strCa2AppData;
 
 
       dir(::aura::application * papp);
@@ -67,9 +68,9 @@ namespace windows
       virtual ::file::path userdata(::aura::application * papp);
       virtual ::file::path userfolder(::aura::application * papp);
       virtual ::file::path default_os_user_path_prefix(::aura::application * papp);
-      virtual ::file::path default_userappdata(::aura::application * papp, const char * lpcszPrefix, const char * lpcszLogin );
-      virtual ::file::path default_userdata(::aura::application * papp, const char * lpcszPrefix, const char * lpcszLogin);
-      virtual ::file::path default_userfolder(::aura::application * papp, const char * lpcszPrefix, const char * lpcszLogin);
+      virtual ::file::path default_userappdata(::aura::application * papp,const string & lpcszPrefix,const string & lpcszLogin );
+      virtual ::file::path default_userdata(::aura::application * papp,const string & lpcszPrefix,const string & lpcszLogin);
+      virtual ::file::path default_userfolder(::aura::application * papp,const string & lpcszPrefix,const string & lpcszLogin);
       virtual ::file::path userquicklaunch(::aura::application * papp);
       virtual ::file::path userprograms(::aura::application * papp);
               

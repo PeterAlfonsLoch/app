@@ -617,9 +617,9 @@ namespace userfs
       if (strict >= 0 && pdata->m_itema.get_item(strict).IsFolder())
       {
 
-         string strPath = pdata->m_itema.get_item(strictDrag).m_strPath;
+         ::file::path strPath = pdata->m_itema.get_item(strictDrag).m_strPath;
 
-         string strName = get_document()->get_fs_data()->file_name(strPath);
+         string strName = strPath.name();
 
          get_document()->get_fs_data()->file_move(pdata->m_itema.get_item(strict).m_strPath, strPath);
 

@@ -560,7 +560,7 @@ namespace file
 
       strTimeFile = Application.file().time_square();
 
-      ::file::binary_buffer_sp spfile = Application.file_get_file(strTimeFile,::file::type_binary | ::file::mode_read_write | ::file::mode_create | ::file::defer_create_directory);
+      ::file::binary_buffer_sp spfile = Application.file().get_file(strTimeFile,::file::type_binary | ::file::mode_read_write | ::file::mode_create | ::file::defer_create_directory);
 
       if(spfile.is_null())
       {

@@ -518,7 +518,7 @@ namespace plugin
 
          string strPluginUrl     = System.url().override_if_empty(m_phost->m_pbasecomposer->m_strPluginUrl,get_host_location_url());
 
-         string strExtension     = System.file().extension(System.url().get_script(strPluginUrl));
+         string strExtension     = ::file::path(System.url().get_script(strPluginUrl)).extension();
 
          if(strExtension.is_empty() || strExtension.compare_no_case("ca2") == 0)
          {

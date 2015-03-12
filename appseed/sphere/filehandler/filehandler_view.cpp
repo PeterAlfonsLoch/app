@@ -34,7 +34,7 @@ namespace filehandler
       
       m_plistWorking = canew(list(get_app()));
       
-      m_plistWorking->parse(&System.filehandler(), System.file().extension(m_strName));
+      m_plistWorking->parse(&System.filehandler(), ::file::path(m_strName).extension());
       
       m_plist = m_plistWorking;
 

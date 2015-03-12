@@ -84,7 +84,9 @@ namespace filemanager
       }
       else if(m_iCurFile < get_filemanager_manager()->m_straPath.get_size())
       {
-         pdc->TextOut(10,10,get_filemanager_manager()->m_straTitle[m_iCurFile]);
+
+         pdc->TextOut(10,10,get_filemanager_manager()->m_straPath.title(m_iCurFile));
+
       }
 
    }

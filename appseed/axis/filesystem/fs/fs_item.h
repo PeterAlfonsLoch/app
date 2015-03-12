@@ -11,7 +11,7 @@ namespace fs
    public:
 
 
-      string                     m_strPath;
+      ::file::path               m_strPath;
       flags < e_flag >           m_flags;
 
 

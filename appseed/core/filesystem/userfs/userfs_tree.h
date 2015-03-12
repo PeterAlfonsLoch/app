@@ -13,7 +13,7 @@ namespace userfs
    {
    public:
 
-      string                        m_strPath;
+      ::file::path                  m_strPath;
       bool                          m_bCreateImageList;
       bool                          m_bCreateImageListRedraw;
       int32_t                       m_iAnimate;

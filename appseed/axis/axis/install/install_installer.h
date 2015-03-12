@@ -164,7 +164,7 @@ namespace install
 
 
       void set_progress(double dProgress);
-      ::count download_file_list(stringa & stringa, string_to_intptr & mapLen, string_to_string & mapCrc, string_to_intptr & mapGzLen, string_to_intptr & mapFlag);
+      ::count download_file_list(::file::patha & stringa, string_to_intptr & mapLen, string_to_string & mapCrc, string_to_intptr & mapGzLen, string_to_intptr & mapFlag);
 
       static uint32_t thread_proc_run(void * lpParam);
 
@@ -193,7 +193,7 @@ namespace install
       bool ca2_fy_url(string & str, LPCSTR lpcszPath, bool bExist, int64_t iLength, const char * pszCrc, int64_t iGzLen, bool bIndex = false, bool * pbFileOk = NULL);
 
       int32_t GetFileList(::file::patha & stringa,LPCSTR lpcszPath,string_to_intptr & mapLen,string_to_intptr & mapGzLen,string_to_string & mapCrc,string_to_intptr & mapFlag);
-      int32_t GetFileListEx(::file::patha & stringa,::stringa & patha,string_to_intptr & mapLen,string_to_intptr & mapGzLen,string_to_string & mapCrc,string_to_intptr & mapFlag);
+      int32_t GetFileListEx(::file::patha & stringa,::file::patha & patha,string_to_intptr & mapLen,string_to_intptr & mapGzLen,string_to_string & mapCrc,string_to_intptr & mapFlag);
 
       int32_t GetLocalFileList(::file::patha & stringa,LPCSTR lpcszUrl);
 

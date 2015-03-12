@@ -76,11 +76,13 @@ namespace fs
    }
 
 
-   void link::root_ones(::file::patha & patha, stringa & straTitle)
+   ::file::listing & link::root_ones(::file::listing & listing)
    {
 
-      patha.add(m_path);
-      straTitle.add(m_strTitle);
+      listing.add(m_path);
+      listing.m_straTitle.add(m_strTitle);
+
+      return listing;
 
    }
 

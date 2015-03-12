@@ -36,7 +36,7 @@ namespace windows
    }
 
 
-   void copydesk::get_filea(stringa & stra)
+   void copydesk::get_filea(::file::patha & stra)
    {
       int32_t iCount = get_file_count();
       if(iCount <= 0)
@@ -50,7 +50,7 @@ namespace windows
          UINT uiLen = ::DragQueryFileW(hdrop, i, NULL, 0);
          wchar_t * lpwsz = (wchar_t *) malloc(sizeof(wchar_t) * (uiLen + 1));
          ::DragQueryFileW(hdrop, i, lpwsz, uiLen + 1);
-         stra.add(::str::international::unicode_to_utf8(lpwsz));
+         stra.add(::file::path(::str::international::unicode_to_utf8(lpwsz)));
          free(lpwsz);
       }
       ::CloseClipboard();

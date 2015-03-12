@@ -308,53 +308,74 @@ namespace userstack
       //GetParentFrame()->ShowWindow(SW_HIDE);
    }*/
 
-   void pane_view::check_menu_dir(const char * psz)
+   void pane_view::check_menu_dir(const ::file::path & psz)
    {
-      stringa straPath;
-      stringa straRelative;
-      straPath.remove_all();
-      Application.dir().rls(System.dir().commonprograms(), &straPath, NULL, &straRelative);
+      
+      ::file::listing straPath(get_app());
+
+      straPath.rls(System.dir().commonprograms());
+
       for(int32_t i = 0; i < straPath.get_size(); i++)
       {
-         string str = System.dir().path(psz, straRelative[i]);
-         Application.dir().mk(System.dir().name(str));
+
+         ::file::path str = psz/straPath[i].relative();
+
+         Application.dir().mk(str.folder());
+
          Application.file().copy(str, straPath[i], true);
+
       }
-      straRelative.remove_all();
-      straPath.remove_all();
-      Application.dir().rls(System.dir().userprograms(NULL), &straPath, NULL, &straRelative);
+      
+      straPath.clear_results();
+
+      straPath.rls(System.dir().userprograms(NULL));
+
       for(int32_t i = 0; i < straPath.get_size(); i++)
+      
       {
-         string str = System.dir().path(psz, straRelative[i]);
-         Application.dir().mk(System.dir().name(str));
+         ::file::path str = psz / straPath[i].relative();
+
+         Application.dir().mk(str.folder());
+
          Application.file().copy(str, straPath[i], true);
+
       }
+
    }
 
-   void pane_view::check_3click_dir(const char * psz)
+
+   void pane_view::check_3click_dir(const ::file::path & psz)
    {
 
       if(Application.dir().is(psz))
       {
+
          return;
+
       }
 
       Application.dir().mk(psz);
-      string strDir(psz);
 
+      string strDir(psz);
 
       POSITION pos = System.m_mapAppLibrary.get_start_position();
 
       string strApp;
+
       string strLibrary;
 
       while(pos != NULL)
       {
+
          System.m_mapAppLibrary.get_next_assoc(pos, strApp, strLibrary);
+
          if(::str::begins_eat(strApp, "application:"))
          {
-            Application.file().put_contents(System.dir().path(strDir, strApp + ".ca2"), "ca2prompt\r\n"+ strApp);
+
+            Application.file().put_contents(strDir / strApp + ".ca2", "ca2prompt\r\n"+ strApp);
+
          }
+
       }
 
       //Application.file().put_contents(System.dir().path(strDir, "veriwell Musical Player.ca2"), "ca2prompt\r\nmplite");
@@ -370,11 +391,10 @@ namespace userstack
       }*/
    }
 
-   void pane_view::check_desktop_dir(const char * psz)
+   void pane_view::check_desktop_dir(const ::file::path & psz)
    {
 #ifdef WINDOWSEX
-      stringa straPath;
-      stringa straRelative;
+      ::file::listing listing(get_app());
       char buf[4096];
       memset(buf, 0, sizeof(buf));
       SHGetSpecialFolderPath(
@@ -386,14 +406,16 @@ namespace userstack
       {
          if(strlen(buf) > 0)
          {
-            straPath.remove_all();
-            straRelative.remove_all();
-            Application.dir().rls(buf, &straPath, NULL, &straRelative);
-            for(int32_t i = 0; i < straPath.get_size(); i++)
+            listing.rls(buf);
+            for(int32_t i = 0; i < listing.get_size(); i++)
             {
-               string str = System.dir().path(psz, straRelative[i]);
-               Application.dir().mk(System.dir().name(str));
-               ::CopyFile(straPath[i], str, TRUE);
+
+               ::file::path str = psz / listing[i].relative();
+
+               Application.dir().mk(str.folder());
+
+               ::CopyFile(listing[i], str, TRUE);
+
             }
          }
       }
@@ -407,14 +429,13 @@ namespace userstack
       {
          if(strlen(buf) > 0)
          {
-            straPath.remove_all();
-            straRelative.remove_all();
-            Application.dir().rls(buf, &straPath, NULL, &straRelative);
-            for(int32_t i = 0; i < straPath.get_size(); i++)
+            listing.clear_results();
+            listing.rls(buf);
+            for(int32_t i = 0; i < listing.get_size(); i++)
             {
-               string str = System.dir().path(psz, straRelative[i]);
-               Application.dir().mk(System.dir().name(str));
-               ::CopyFile(straPath[i], str, TRUE);
+               ::file::path str = psz / listing[i].relative();
+               Application.dir().mk(listing[i].folder());
+               ::CopyFile(listing[i], str, TRUE);
             }
          }
       }

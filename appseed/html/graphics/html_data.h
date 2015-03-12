@@ -131,7 +131,7 @@ namespace html
       ::user::interaction_ptra   m_focusptra;
 
       style_sheet_array          m_stylesheeta;
-      string                     m_strPathName;
+      ::file::path               m_strPathName;
       user::interaction_spa           m_uiptra;
       tag *                      m_ptag;
       elemental                  m_elemental;

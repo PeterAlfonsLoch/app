@@ -119,13 +119,17 @@ namespace filemanager
       }
       else
       {
-         string strName = str;
+
+         ::file::path strName = str;
+
          while (true)
          {
-            strName = System.dir().name(strName);
+
+            strName = strName.name();
+
             if (get_filemanager_manager()->get_fs_data()->is_dir(strName))
             {
-               if (!System.file().path().is_equal(get_filemanager_item().m_strPath, strName))
+               if (!get_filemanager_item().m_strPath == strName)
                {
                   keep < bool > keepVoidSync(&m_bVoidSync, true, false, true);
                   get_filemanager_manager()->FileManagerBrowse(strName, ::action::source::sync(actioncontext));

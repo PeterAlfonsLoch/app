@@ -34,7 +34,7 @@ namespace windows
    string crypto::get_crypt_key_file_path()
    {
 
-      return Application.dir().userappdata(".ca2/databin.bin");
+      return Application.dir().userappdata() / ".ca2/databin.bin";
 
    }
 

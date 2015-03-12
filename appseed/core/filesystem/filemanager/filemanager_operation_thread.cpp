@@ -131,7 +131,7 @@ namespace filemanager
       begin();
    }
 
-   void operation_thread::queue_copy(stringa & stra,const char * pszDstBase,const char * pszSrcBase,bool bExpand,bool bReplaceAll,sp(::user::interaction) oswindowCallback,UINT uiCallbackMessage,WPARAM wparamCallback)
+   void operation_thread::queue_copy(::file::listing & stra,const ::file::path & pszDstBase,const ::file::path & pszSrcBase,bool bExpand,bool bReplaceAll,sp(::user::interaction) oswindowCallback,UINT uiCallbackMessage,WPARAM wparamCallback)
    {
       ::filemanager::operation * poperation = new ::filemanager::operation(get_app());
       poperation->m_oswindowCallback = oswindowCallback;

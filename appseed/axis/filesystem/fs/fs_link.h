@@ -29,7 +29,7 @@ namespace fs
       // optional if ls_dir is implemented
       virtual bool has_subdir(const ::file::path & pszPath);
       virtual bool is_dir(const ::file::path & pszPath);
-      virtual void root_ones(::file::patha & patha,stringa & straTitle);
+      virtual ::file::listing & root_ones(::file::listing & listing);
       //virtual void get_ascendants_path(const char * pszPath,stringa & stra);
       //virtual void get_ascendants_name(const char * lpcsz,stringa & straParam);
       //virtual string eat_end_level(const char * pszPath,int32_t iCount);

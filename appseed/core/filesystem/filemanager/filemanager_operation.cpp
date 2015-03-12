@@ -34,35 +34,50 @@ namespace filemanager
       m_eoperation = eoperation;
    }
 
-   bool operation::set_copy(stringa & stra,const char * pszDestBase,const char * pszSrcBase,bool bExpand)
+
+   bool operation::set_copy(::file::listing & stra,const ::file::path & pszDestBase,const ::file::path & pszSrcBase,bool bExpand)
    {
+
       set_operation(operation_copy);
+
       if(bExpand)
       {
+
          expand(m_stra,stra);
+
       }
       else
       {
+
          m_stra = stra;
+
       }
-      m_str = System.dir().path(pszDestBase,"");
+      
+      m_str = pszDestBase;
+
       string strBase;
-      if(pszSrcBase != NULL)
+
+      if(pszSrcBase.has_char())
       {
-         strBase = System.dir().path(pszSrcBase,"");
+
+         strBase = pszSrcBase;
+
       }
       else
       {
-         strBase = System.dir().name(stra[0]);
-         string strCompare;
+
+         strBase = stra[0].folder();
+
+         ::file::path strCompare;
+
          for(int32_t i = 1; i < stra.get_size(); i++)
          {
-            strCompare = System.dir().name(stra[i]);
+            strCompare = stra[i].folder();
             for(int32_t j = 0; j < MIN(strCompare.get_length(),strBase.get_length()); j++)
             {
                if(strCompare[j] != strBase[j])
                {
-                  strBase = System.dir().name(strCompare.Left(j));
+                  strBase = ::file::path(strCompare.Left(j)).folder();
                   break;
                }
             }
@@ -76,7 +91,7 @@ namespace filemanager
       return true;
    }
 
-   bool operation::set_move(stringa & stra,const char * psz)
+   bool operation::set_move(::file::listing & stra,const ::file::path & psz)
    {
       set_operation(operation_move);
       m_stra = stra;
@@ -88,7 +103,7 @@ namespace filemanager
       return true;
    }
 
-   bool operation::set_delete(stringa & stra)
+   bool operation::set_delete(::file::listing & stra)
    {
       set_operation(operation_delete);
       m_stra = stra;
@@ -99,13 +114,16 @@ namespace filemanager
       return true;
    }
 
-   bool operation::open_src_dst(const char * pszSrc,string & strDst,const char * pszDir)
+   bool operation::open_src_dst(const ::file::path & pszSrc,::file::path & strDst,const ::file::path & pszDir)
    {
 
       if(Application.dir().is(pszSrc) && !::str::ends_ci(pszSrc,".zip"))
       {
-         Application.dir().mk(System.dir().name(strDst));
+         
+         Application.dir().mk(strDst.folder());
+
          return false;
+
       }
 
       m_fileSrc = Application.file().get_file(pszSrc,::file::mode_read | ::file::type_binary | ::file::share_deny_write);
@@ -134,7 +152,7 @@ namespace filemanager
          if(Application.file().exists(strDst) || Application.dir().is(strDst))
          {
 
-            int iResult = Application.simple_message_box(m_oswindowCallback,"Do you want to overwrite?\n\nThere is already a existing file with the same name: " + System.file().name_(strDst),MB_ICONQUESTION | MB_YESNOCANCEL);
+            int iResult = Application.simple_message_box(m_oswindowCallback,"Do you want to overwrite?\n\nThere is already a existing file with the same name: " + strDst.name(),MB_ICONQUESTION | MB_YESNOCANCEL);
 
             if(iResult == IDYES)
             {
@@ -155,11 +173,9 @@ namespace filemanager
 
       }
 
-      Application.dir().mk(System.dir().name(strDst));
-
+      Application.dir().mk(strDst.folder());
 
       m_fileDst = Application.file().get_file(strDst,::file::mode_write | ::file::type_binary | ::file::mode_create);
-
 
       if(m_fileDst.is_null())
       {
@@ -189,16 +205,22 @@ namespace filemanager
       {
       case operation_copy:
       {
-                                         m_iFile = 0;
-                                         m_pchBuffer = (char *)malloc(m_iBufferSize);
-                                         string strName = System.dir().path(
-                                            m_str,m_stra[m_iFile].Mid(m_strBase.get_length()));
-                                         if(System.dir().path(m_str,"/") == System.dir().path(m_strBase,"/"))
-                                         {
-                                            make_duplicate_name(strName,m_str);
-                                         }
-                                         if(!open_src_dst(m_stra[m_iFile],strName, m_str))
-                                            return false;
+                                         
+         m_iFile = 0;
+                                         
+         m_pchBuffer = (char *)malloc(m_iBufferSize);
+
+         ::file::path strName = m_str / m_stra[m_iFile].Mid(m_strBase.get_length());
+
+         if(m_str == m_strBase)
+         {
+
+            make_duplicate_name(strName,m_str);
+
+         }
+
+         if(!open_src_dst(m_stra[m_iFile],strName, m_str))
+            return false;
       }
          break;
       case operation_delete:
@@ -207,11 +229,16 @@ namespace filemanager
          break;
       case operation_move:
       {
-                                         m_iFile = 0;
-                                         m_pchBuffer = (char *)malloc(m_iBufferSize);
-                                         string strPath = System.dir().path(m_str,System.file().name_(m_stra[m_iFile]));
-                                         if(!open_src_dst(m_stra[m_iFile],strPath,m_str))
-                                            return false;
+         
+         m_iFile = 0;
+         
+         m_pchBuffer = (char *)malloc(m_iBufferSize);
+
+         ::file::path strPath = m_str / m_stra[m_iFile].name();
+
+         if(!open_src_dst(m_stra[m_iFile],strPath,m_str))
+            return false;
+
       }
          break;
       default:
@@ -301,14 +328,19 @@ namespace filemanager
                                             {
                                                m_iFile++;
                                             }
+
                                             if(m_iFile >= m_stra.get_size())
                                                return false;
-                                            string strName = System.dir().path(
-                                               m_str,m_stra[m_iFile].Mid(m_strBase.get_length()));
+                                            
+                                            ::file::path strName = m_str / m_stra[m_iFile].Mid(m_strBase.get_length());
+
                                             if(m_str == m_strBase)
                                             {
+
                                                make_duplicate_name(strName,m_str);
+
                                             }
+
                                             if(!open_src_dst(m_stra[m_iFile],strName, m_str))
                                             {
 
@@ -321,32 +353,47 @@ namespace filemanager
       {
                                            if(m_iFile >= m_stra.get_size())
                                               return false;
-                                           System.file().del(m_stra[m_iFile]);
+
+                                           Application.file().del(m_stra[m_iFile]);
+
                                            m_iFile++;
+
       }
          break;
       case operation_move:
       {
-                                         if(m_iFile >= m_stra.get_size())
-                                            return false;
-                                         primitive::memory_size uiRead = m_fileSrc->read(m_pchBuffer,m_iBufferSize);
-                                         m_fileDst->write(m_pchBuffer,uiRead);
-                                         m_daRead[m_iFile] += uiRead;
-                                         m_dRead += uiRead;
-                                         if(uiRead == 0)
-                                         {
-                                            m_fileSrc->close();
-                                            m_fileDst->close();
-                                            System.file().del(m_stra[m_iFile]);
-                                            m_iFile++;
-                                            if(m_iFile >= m_stra.get_size())
-                                               return false;
+                                         
+         if(m_iFile >= m_stra.get_size())
+            return false;
+                                         
+         primitive::memory_size uiRead = m_fileSrc->read(m_pchBuffer,m_iBufferSize);
+                                         
+         m_fileDst->write(m_pchBuffer,uiRead);
 
-                                             string strPath = System.dir().path( m_str,System.file().name_(m_stra[m_iFile]));
+         m_daRead[m_iFile] += uiRead;
 
-                                            if(!open_src_dst(m_stra[m_iFile], strPath,m_str))
-                                               return false;
-                                         }
+         m_dRead += uiRead;
+
+         if(uiRead == 0)
+         {
+                                            
+            m_fileSrc->close();
+
+            m_fileDst->close();
+
+            Application.file().del(m_stra[m_iFile]);
+
+            m_iFile++;
+
+            if(m_iFile >= m_stra.get_size())
+               return false;
+
+            ::file::path strPath = m_str / m_stra[m_iFile].name();
+
+            if(!open_src_dst(m_stra[m_iFile], strPath,m_str))
+               return false;
+
+         }
       }
          break;
       default:
@@ -450,7 +497,7 @@ namespace filemanager
 
       string str;
 
-      str.Format("Copying %s (%s) to %s",System.file().name_(m_stra[iItem]),System.dir().name(m_stra[iItem]),m_str);
+      str.Format("Copying %s (%s) to %s", m_stra[iItem].name(),m_stra[iItem].name(),m_str);
 
       return str;
 
@@ -580,9 +627,10 @@ namespace filemanager
 
    }
 
-   bool operation::make_duplicate_name(string & str,const char * psz)
+   bool operation::make_duplicate_name(::file::path & str,const ::file::path & psz)
    {
-      string strDir = System.dir().path(psz,"");
+
+      string strDir = psz;
       string strName = str.Mid(strDir.get_length());
       string strExtension;
       bool bDir;
@@ -595,8 +643,8 @@ namespace filemanager
       }
       else
       {
-         strName = System.file().title_(str);
-         strExtension = "." + System.file().extension(str);
+         strName = str.title();
+         strExtension = "." + str.ext();
       }
 
 
@@ -607,7 +655,7 @@ namespace filemanager
          for(int32_t i = 1; i < 1000; i++)
          {
             strFormat = set_number_value(strName, iValue + i);
-            str = strDir /strFormat + strExtension);
+            str = strDir /strFormat + strExtension;
             if(!Application.file().exists(str))
                return true;
          }
@@ -619,7 +667,7 @@ namespace filemanager
          for(int32_t i = 1; i < 1000; i++)
          {
             strFormat.Format("-Copy-%03d",i);
-            str = strDir /strName + strFormat + strExtension);
+            str = strDir /strName + strFormat + strExtension;
             if(!Application.file().exists(str))
                return true;
          }
@@ -627,19 +675,32 @@ namespace filemanager
       return false;
    }
 
-   void operation::expand(stringa & straExpanded,stringa & straExpand)
+
+   void operation::expand(::file::listing & straExpanded,::file::patha & straExpand)
    {
+
+      straExpanded.m_pprovider = get_app();
+
+      straExpanded.m_bAccumul = true;
+
       for(int32_t i = 0; i < straExpand.get_size(); i++)
       {
+
          if(Application.dir().is(straExpand[i]) && !::str::ends_ci(m_stra[i],".zip"))
          {
-            Application.dir().rls(straExpand[i],&straExpanded);
+
+            straExpanded.rls(straExpand[i]);
+
          }
          else
          {
+
             straExpanded.add(straExpand[i]);
+
          }
+
       }
+
    }
 
 

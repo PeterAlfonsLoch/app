@@ -737,7 +737,7 @@ namespace hotplugin
          //   m_pcolorref = (uint32_t *)get_map_failed();
          //}
 
-         dir::mk(dir::path(dir::userappdata("time"), "core"));
+         dir::mk(dir::userappdata() / "time" / "core");
 
          //int32_t iOpen;
 

@@ -12,7 +12,7 @@ namespace aura
 
    class CLASS_DECL_AURA application :
       virtual public application_interface,
-      virtual public ::file::listing::provider
+      virtual public ::file::listing_provider
    {
    public:
 
@@ -414,7 +414,7 @@ namespace aura
 //      virtual CLASS_DECL_AURA string dir_pathfind(const char * pszEnv, const char * pszTopic, const char * pszMode);
 //#endif
 
-      virtual ::file::buffer_sp file_get_file(var varFile,uint32_t uiFlags);
+      //virtual ::file::buffer_sp file_get_file(var varFile,uint32_t uiFlags);
 
       virtual string http_get_locale_schema(const char * pszUrl,const char * pszLocale,const char * pszSchema);
 

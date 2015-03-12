@@ -253,9 +253,11 @@ namespace filemanager
    void impact::_001OnEditPaste(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      stringa stra;
+
+      ::file::listing stra;
 
       Session.copydesk().get_filea(stra);
+
       string strDir;
       strDir = get_filemanager_item().m_strPath;
 
@@ -269,7 +271,7 @@ namespace filemanager
       if(ptabview != NULL)
       {
 
-         ptabview->filemanager_manager().get_operation_doc(true)->m_thread.queue_copy(stra,strDir,NULL,true,false,this,WM_APP + 1024,4096);
+         ptabview->filemanager_manager().get_operation_doc(true)->m_thread.queue_copy(stra,strDir,cnull,true,false,this,WM_APP + 1024,4096);
 
          ptabview->filemanager_manager().get_operation_doc(true)->m_thread.kick();
 

@@ -40,7 +40,7 @@ namespace userstack
 
 
       ::draw2d::font_sp m_font;
-      stringa m_straImagePath;
+      ::file::listing m_straImagePath;
       string m_strCurrentImagePath;
       bool m_bDestroy;
       //::user::buffer                  m_gdibuffer;

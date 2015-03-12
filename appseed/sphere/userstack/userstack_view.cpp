@@ -139,8 +139,9 @@ namespace userstack
       pframe->m_pdocument = get_document();
 
 
-      string strImageDir = Application.dir().userdata("image");
-      Application.dir().rls(strImageDir, &m_straImagePath);
+      string strImageDir = Application.dir().userdata()/"image";
+      m_straImagePath.m_pprovider = get_app();
+      m_straImagePath.rls(strImageDir);
 
       for(int32_t i = 0; i < m_straImagePath.get_size();)
       {

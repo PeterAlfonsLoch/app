@@ -2948,7 +2948,7 @@ namespace aura
 
       {
 
-         ::file::binary_buffer_sp file = file_get_file(Application.dir().userappdata() / strPath,::file::mode_read);
+         ::file::binary_buffer_sp file = this->file().get_file(Application.dir().userappdata() / strPath,::file::mode_read);
 
          if(file.is_null())
          {
@@ -2989,7 +2989,7 @@ namespace aura
 
       {
 
-         ::file::binary_buffer_sp file = file_get_file(Application.dir().userappdata() / strPath,::file::mode_write | ::file::mode_create | ::file::defer_create_directory);
+         ::file::binary_buffer_sp file = this->file().get_file(Application.dir().userappdata() / strPath,::file::mode_write | ::file::mode_create | ::file::defer_create_directory);
 
          if(file.is_null())
          {
@@ -3279,7 +3279,7 @@ namespace aura
       return "";
 
    }
-
+/*
 
    ::file::buffer_sp application::file_get_file(var varFile,uint32_t uiFlags)
    {
@@ -3293,7 +3293,7 @@ namespace aura
 
    }
 
-
+*/
 
    void application::process_message_filter(int32_t code,signal_details * pobj)
    {

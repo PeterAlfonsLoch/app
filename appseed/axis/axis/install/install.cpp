@@ -178,7 +178,7 @@ namespace install
 {
 
 
-   CLASS_DECL_AXIS void get_plugin_base_library_list(stringa & straFile, const string & strVersion)
+   CLASS_DECL_AXIS void get_plugin_base_library_list(::file::patha & straFile, const string & strVersion)
    {
 
 

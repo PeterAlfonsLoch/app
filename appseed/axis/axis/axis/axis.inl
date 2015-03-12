@@ -60,9 +60,9 @@ namespace file
    bool system::output(::aura::application * papp,const ::file::path & pszOutput,T * p,bool (T::*lpfnOuput)(::file::ostream &,const ::file::path &),const ::file::path & lpszSource)
    {
 
-      System.dir().mk(pszOutput--,papp);
+      System.dir().mk(pszOutput.folder(),papp);
 
-      ::file::binary_buffer_sp fileOut = papp->m_paxissession->file_get_file(pszOutput,::file::mode_create | ::file::type_binary | ::file::mode_write);
+      ::file::binary_buffer_sp fileOut = papp->m_paxissession->file().get_file(pszOutput,::file::mode_create | ::file::type_binary | ::file::mode_write);
 
       if(fileOut.is_null())
          return false;
@@ -103,12 +103,12 @@ namespace file
 
       strDownloading += ".downloading";
 
-      ::file::binary_buffer_sp fileOut = Sess(papp).file_get_file(strDownloading,::file::mode_create | ::file::type_binary | ::file::mode_write);
+      ::file::binary_buffer_sp fileOut = Sess(papp).file().get_file(strDownloading,::file::mode_create | ::file::type_binary | ::file::mode_write);
 
       if(fileOut.is_null())
          return false;
 
-      ::file::binary_buffer_sp fileIn = Sess(papp).file_get_file(lpszInput,::file::type_binary | ::file::mode_read);
+      ::file::binary_buffer_sp fileIn = Sess(papp).file().get_file(lpszInput,::file::type_binary | ::file::mode_read);
 
       if(fileIn.is_null())
          return false;

@@ -4,11 +4,47 @@
 namespace file
 {
 
-   class CLASS_DECL_AURA listing:
-   // recursive fetchings should set a meaningful m_iRelative value at each returned path
-      virtual public ::file::patha
+
+   class listing;
+
+
+   class CLASS_DECL_AURA listing_provider
    {
    public:
+
+
+      virtual listing & perform_file_listing(listing & listing) = 0;
+
+
+   };
+
+
+   struct CLASS_DECL_AURA listing_meta
+   {
+
+      listing_provider *   m_pprovider = NULL;
+      bool                 m_bFile = true;
+      bool                 m_bDir = true;
+      bool                 m_bRecursive = false;
+      e_extract            m_eextract = extract_first;
+      bool                 m_bAccumul = false;
+   };
+
+
+
+   class CLASS_DECL_AURA listing:
+      // recursive fetchings should set a meaningful m_iRelative value at each returned path
+      virtual public ::file::patha,
+      public listing_meta
+   {
+   public:
+
+      ::file::path      m_path;
+      string            m_strPattern;
+      stringa           m_straIgnoreName;
+      cres              m_cres;
+      stringa           m_straTitle;
+
 
       operator bool () const
       {
@@ -17,28 +53,10 @@ namespace file
 
       listing & operator = (e_context_switcher_failed) { m_cres = failure; return *this; }
 
-      class CLASS_DECL_AURA provider
-      {
-      public:
 
-         virtual listing & perform_file_listing(listing & listing) = 0;
 
-      };
-
-      provider *        m_pprovider;
-      ::file::path      m_path;
-      bool              m_bFile = true;
-      bool              m_bDir = true;
-      // recursive fetchings should set a meaningful m_iRelative value at each returned path
-      bool              m_bRecursive = false;
-      string            m_strPattern;
-      e_extract         m_eextract = extract_first;
-      stringa           m_straIgnoreName;
-      bool              m_bAccumul = false;
-      cres              m_cres;
-      stringa           m_straTitle;
-
-      listing(provider * pprovider = NULL);
+      listing(listing_provider * pprovider = NULL);
+      listing(const listing & listing) { operator = (listing); }
       virtual ~listing();
 
 
@@ -153,9 +171,88 @@ namespace file
 
       listing & ls();
 
-      void clear_results() { m_cres.release(); remove_all(); }
+      void clear_results() { m_straTitle.remove_all(); m_cres.release(); remove_all(); }
 
       string os_pattern() const { return m_strPattern.is_empty() ? string("*.*") : m_strPattern;  }
+
+
+      string title(index i)
+      {
+
+         if(i >= 0 && i < m_straTitle.get_count())
+         {
+
+            return m_straTitle[i];
+
+         }
+
+         return operator[](i).title();
+
+      }
+
+      listing & operator = (const listing & listing)
+      {
+
+         if(this == &listing)
+            return *this;
+
+         patha::operator         = (listing);
+         *((listing_meta*)this)  = (const listing_meta &) listing;
+         m_path                  = listing.m_path;
+         m_strPattern            = listing.m_strPattern;
+         m_straIgnoreName        = listing.m_straIgnoreName;
+         m_cres                  = listing.m_cres;
+         m_straTitle             = listing.m_straTitle;
+
+         return *this;
+
+      }
+
+      index name_find_first_ci(const path & lpcsz,index find = 0,index last = -1) const
+      {
+         if(find < 0)
+            find += this->get_count();
+         if(last < 0)
+            last += this->get_count();
+         for(; find <= last; find++)
+         {
+            if(this->element_at(find).CompareNoCase(lpcsz) == 0)
+               return find;
+         }
+         return -1;
+      }
+
+      bool name_move_ci(const path & lpcsz,index iIndex)
+      {
+         index i = name_find_first_ci(lpcsz);
+         if(i < 0)
+            return false;
+         path p = element_at(i);
+         string t = i < m_straTitle.get_count() ? m_straTitle[i] : "";
+         remove_at(i);
+         insert_at(iIndex,lpcsz);
+         return true;
+      }
+
+
+      bool preferred_name(const path & lpcsz)
+      {
+         return name_move_ci(lpcsz,0);
+      }
+
+
+      ::count preferred_name(patha  & stra)
+      {
+         ::count count = 0;
+         for(index i = stra.get_upper_bound(); i >= 0; i--)
+         {
+            if(preferred_name(stra[i]))
+               count++;
+         }
+         return count;
+      }
+
+
 
    };
 

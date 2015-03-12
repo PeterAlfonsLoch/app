@@ -70,9 +70,9 @@ namespace filemanager
          return;
       string strText;
       _001GetText(strText);
-      if(strText != System.file().title_(get_filemanager_data()->m_pmanager->m_strTopic))
+      if(strText != get_filemanager_data()->m_pmanager->m_strTopic.title())
       {
-         _001SetText(System.file().title_(get_filemanager_data()->m_pmanager->m_strTopic),actioncontext);
+         _001SetText(get_filemanager_data()->m_pmanager->m_strTopic.title(),actioncontext);
       }
    }
 
@@ -89,21 +89,37 @@ namespace filemanager
       }
       else if(str.find("/") >= 0 || str.find("\\") >= 0)
       {
-         string strName = str;
+
+         ::file::path strName = str;
+
          while(true)
          {
-            strName = System.dir().name(strName);
+
+            strName = strName.name();
+
             if(Application.dir().is(strName))
             {
-               if(!System.file().path().is_equal(get_filemanager_item().m_strPath,strName))
+
+               if(get_filemanager_item().m_strPath != strName)
                {
+
                   get_filemanager_manager()->FileManagerBrowse(strName,::action::source::sync(actioncontext));
+
                }
+
                break;
+
             }
+
             if(strName.is_empty())
+            {
+
                break;
+
+            }
+
          }
+
       }
 
       if(get_filemanager_manager().is_set())

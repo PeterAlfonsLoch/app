@@ -5,7 +5,7 @@ namespace file
 {
 
 
-   listing::listing(provider * pprovider)
+   listing::listing(listing_provider * pprovider)
    {
 
       m_pprovider = pprovider;

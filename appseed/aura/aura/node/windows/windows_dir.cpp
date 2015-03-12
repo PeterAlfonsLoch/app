@@ -251,6 +251,13 @@ namespace windows
 
          {
 
+            if(!listing.m_bAccumul)
+            {
+               
+               listing.clear_results();
+
+            }
+
             keep < bool > keepAccumul(&listing.m_bAccumul,true,listing.m_bAccumul,true);
 
             RESTORE(listing.m_path);
@@ -847,73 +854,92 @@ namespace windows
 
    bool dir::initialize()
    {
-      
 
-         string strCa2Module = ca2module();
 
-         m_strCa2 = strCa2Module;
+      string strCa2Module = ca2module();
+
+      m_strCa2 = strCa2Module;
 
 #ifndef CUBE
 
-         m_strCa2 -= 2;
+      m_strCa2 -= 2;
 
 #endif
 
-         SHGetSpecialFolderPath(
-            NULL,
-            m_strCommonAppData,
-            CSIDL_COMMON_APPDATA,
-            FALSE);
-         SHGetSpecialFolderPath(
-            NULL,
-            m_strProfile,
-            CSIDL_PROFILE,
-            FALSE);
-         SHGetSpecialFolderPath(
-            NULL,
-            m_strAppData,
-            CSIDL_APPDATA,
-            FALSE);
-         m_strAppData = get_known_folder(FOLDERID_RoamingAppData);
-         
-         SHGetSpecialFolderPath(
-            NULL,
-            m_strPrograms,
-            CSIDL_PROGRAMS,
-            FALSE);
-         SHGetSpecialFolderPath(
-            NULL,
-            m_strCommonPrograms,
-            CSIDL_COMMON_PROGRAMS,
-            FALSE);
+      SHGetSpecialFolderPath(
+         NULL,
+         m_strCommonAppData,
+         CSIDL_COMMON_APPDATA,
+         FALSE);
+      SHGetSpecialFolderPath(
+         NULL,
+         m_strProfile,
+         CSIDL_PROFILE,
+         FALSE);
+      //SHGetSpecialFolderPath(
+      //   NULL,
+      //   m_strAppData,
+      //   CSIDL_APPDATA,
+      //   FALSE);
+      m_strAppData = get_known_folder(FOLDERID_RoamingAppData);
+
+      SHGetSpecialFolderPath(
+         NULL,
+         m_strPrograms,
+         CSIDL_PROGRAMS,
+         FALSE);
+      SHGetSpecialFolderPath(
+         NULL,
+         m_strCommonPrograms,
+         CSIDL_COMMON_PROGRAMS,
+         FALSE);
 
       xml::document doc(get_app());
-      
-      doc.load(System.file().as_string(appdata() / "configuration\\directory.xml",get_app()));
-      
-      xxdebug_box("win_dir::initialize (configuration)", "win_dir::initialize", 0);
+
+      doc.load(System.file().as_string(appdata() / "configuration/directory.xml",get_app()));
+
+      xxdebug_box("win_dir::initialize (configuration)","win_dir::initialize",0);
       if(doc.get_root()->get_name() == "directory_configuration")
       {
 
-         m_strTimeFolder = doc.get_root()->get_child_value("time"); 
+         m_strTimeFolder = doc.get_root()->get_child_value("time");
 
-         m_strNetSeedFolder = doc.get_root()->get_child_value("netseed"); 
+         m_strNetSeedFolder = doc.get_root()->get_child_value("netseed");
 
       }
       if(m_strTimeFolder.is_empty())
-         m_strTimeFolder = appdata() /"time";
+         m_strTimeFolder = appdata() / "time";
 
       if(m_strNetSeedFolder.is_empty())
-         m_strNetSeedFolder = element()/"net/netseed";
+         m_strNetSeedFolder = element() / "net/netseed";
 
-      mk(m_strTimeFolder, get_app());
-      xxdebug_box("win_dir::initialize (m_strTimeFolder)", "win_dir::initialize", 0);
+      mk(m_strTimeFolder,get_app());
+      xxdebug_box("win_dir::initialize (m_strTimeFolder)","win_dir::initialize",0);
 
-      if(!is(m_strTimeFolder, get_app()))
+      if(!is(m_strTimeFolder,get_app()))
          return false;
 
-      mk(m_strTimeFolder/ "time", get_app());
-      xxdebug_box("win_dir::initialize", "win_dir::initialize", 0);
+      mk(m_strTimeFolder / "time",get_app());
+      xxdebug_box("win_dir::initialize","win_dir::initialize",0);
+
+
+      {
+
+         string strRelative;
+         strRelative = element();
+         index iFind = strRelative.find(':');
+         if(iFind >= 0)
+         {
+            strsize iFind1 = strRelative.reverse_find("\\",iFind);
+            strsize iFind2 = strRelative.reverse_find("/",iFind);
+            strsize iStart = MAX(iFind1 + 1,iFind2 + 1);
+            strRelative = strRelative.Left(iFind - 1) + "_" + strRelative.Mid(iStart,iFind - iStart) + strRelative.Mid(iFind + 1);
+         }
+
+         m_strCa2AppData = m_strAppData / "ca2" / strRelative;
+
+      }
+
       return true;
 
    }
@@ -950,21 +976,8 @@ namespace windows
 
    ::file::path dir::appdata()
    {
-      string str;
-      str = m_strAppData;
 
-      string strRelative;
-      strRelative = element();
-      index iFind = strRelative.find(':');
-      if(iFind >= 0)
-      {
-         strsize iFind1 = strRelative.reverse_find("\\", iFind);
-         strsize iFind2 = strRelative.reverse_find("/", iFind);
-         strsize iStart = MAX(iFind1 + 1, iFind2 + 1);
-         strRelative = strRelative.Left(iFind - 1) + "_" + strRelative.Mid(iStart, iFind - iStart) + strRelative.Mid(iFind + 1);
-      }
-      
-      return ::file::path(str) / "ca2";
+      return m_strCa2AppData;
 
    }
 
@@ -1041,17 +1054,17 @@ namespace windows
       return ::str::international::unicode_to_utf8(buf);
    }
 
-   ::file::path dir::default_userappdata(::aura::application * papp,const char * lpcszPrefix,const char * lpcszLogin)
+   ::file::path dir::default_userappdata(::aura::application * papp,const string & lpcszPrefix,const string & lpcszLogin)
    {
       return default_userfolder(papp, lpcszPrefix, lpcszLogin) /  "appdata" ;
    }
 
-   ::file::path dir::default_userdata(::aura::application * papp,const char * lpcszPrefix,const char * lpcszLogin)
+   ::file::path dir::default_userdata(::aura::application * papp,const string & lpcszPrefix,const string & lpcszLogin)
    {
       return default_userfolder(papp, lpcszPrefix, lpcszLogin) / "data";
    }
 
-   ::file::path dir::default_userfolder(::aura::application * papp,const char * lpcszPrefix,const char * lpcszLogin)
+   ::file::path dir::default_userfolder(::aura::application * papp,const string & lpcszPrefix,const string & lpcszLogin)
    {
 
       return userfolder(papp);

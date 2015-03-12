@@ -748,6 +748,9 @@ namespace file
 #include "aura/aura/aura/aura_common.h"
 
 
+#include "aura/filesystem/filesystem/filesystem_path.h"
+
+
 #include "aura/aura/aura/aura_library.h"
 
 

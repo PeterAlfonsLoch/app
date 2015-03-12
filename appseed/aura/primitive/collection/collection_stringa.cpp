@@ -62,7 +62,7 @@
 //   }
 //}
 //
-//int32_t g_add_smallest_tokens = 0;
+int32_t g_add_smallest_tokens = 0;
 //
 //void stringa::add_smallest_tokens(const char * lpcsz,stringa & straSeparator,bool bAddEmpty,bool bWithSeparator)
 //{

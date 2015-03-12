@@ -598,7 +598,7 @@ namespace core
 
          set["cookies"] = pcookies;
 
-         file().del(filename);
+         Application.file().del(filename);
 
          return http().download(str,strLocation,set);
 

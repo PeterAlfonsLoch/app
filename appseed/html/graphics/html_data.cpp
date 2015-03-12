@@ -386,8 +386,7 @@ namespace html
       }
       else
       {
-         strUrl = System.dir().path(
-            System.dir().name(m_strPathName), strUrl);
+         strUrl = m_strPathName.sibling(strUrl);
          strUrl.replace("/", "\\");
       }
       for(int32_t i = 0; i < m_imagea.get_size(); i++)
@@ -492,7 +491,7 @@ namespace html
       }
       else
       {
-         return open_document(System.dir().path(System.dir().name(m_strPathName), strPath));
+         return open_document(m_strPathName.sibling(strPath));
       }
    }
 
@@ -605,7 +604,7 @@ restart:
 
       if(str.is_empty())
       {
-         string strCandidate = System.dir().relpath(m_strPathName, varFile);
+         string strCandidate = m_strPathName / varFile.get_file_path();
          str = Application.file().as_string(strCandidate);
          if(str.is_empty())
          {

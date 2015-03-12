@@ -21,11 +21,11 @@ namespace windows
 
 
          //virtual string relpath(const char * lpcszSource,const char * lpcszRelative,const char * lpcsz2 = NULL);
-         virtual bool  ls(::aura::application * papp, listing & ls);
+         virtual ::file::listing & ls(::aura::application * papp, ::file::listing & ls);
 
-         virtual bool  is(const char * lpcsz,::aura::application * papp);
-         virtual bool  is(const string & str,::aura::application * papp);
-         virtual bool  name_is(const string & str,::aura::application * papp);
+         //virtual bool  is(const char * lpcsz,::aura::application * papp);
+         virtual bool  is(const ::file::path & str,::aura::application * papp);
+         virtual bool  name_is(const ::file::path & str,::aura::application * papp);
          //virtual bool  is_inside(const char * lpcszDir,const char * lpcszPath,::aura::application * papp);
          //virtual bool  is_inside_time(const char * lpcsz,::aura::application * papp);
          //virtual void root_ones(stringa & patha,stringa & straTitle,::aura::application * papp);
@@ -66,9 +66,9 @@ namespace windows
          //virtual string userdata(::aura::application * papp,const char * lpcsz = NULL,const char * lpcsz2 = NULL);
          //virtual string userfolder(::aura::application * papp,const char * lpcsz = NULL,const char * lpcsz2 = NULL);
          //virtual string default_os_user_path_prefix(::aura::application * papp);
-         //virtual string default_userappdata(::aura::application * papp,const char * lpcszPrefix,const char * lpcszLogin,const char * pszRelativePath = NULL);
-         //virtual string default_userdata(::aura::application * papp,const char * lpcszPrefix,const char * lpcszLogin,const char * pszRelativePath = NULL);
-         //virtual string default_userfolder(::aura::application * papp,const char * lpcszPrefix,const char * lpcszLogin,const char * pszRelativePath = NULL);
+         //virtual string default_userappdata(::aura::application * papp,const string & lpcszPrefix,const string & lpcszLogin,const char * pszRelativePath = NULL);
+         //virtual string default_userdata(::aura::application * papp,const string & lpcszPrefix,const string & lpcszLogin,const char * pszRelativePath = NULL);
+         //virtual string default_userfolder(::aura::application * papp,const string & lpcszPrefix,const string & lpcszLogin,const char * pszRelativePath = NULL);
          //virtual string userquicklaunch(::aura::application * papp,const char * pszRelativePath = NULL,const char * lpcsz2 = NULL);
          //virtual string userprograms(::aura::application * papp,const char * pszRelativePath = NULL,const char * lpcsz2 = NULL);
 

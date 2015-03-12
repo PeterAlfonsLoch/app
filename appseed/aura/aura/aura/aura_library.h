@@ -16,7 +16,7 @@ namespace aura
       bool              m_bAutoClose;
       string            m_strCa2Name;
       string            m_strRoot;
-      string            m_strPath;
+      ::file::path      m_strPath;
 
 
 

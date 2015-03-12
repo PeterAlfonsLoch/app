@@ -71,6 +71,8 @@ namespace exception
       }
       result_sp(exception * pexception)
       {
+         if(pexception == NULL)
+            return;
          m_p = canew(result({pexception}));
          if(m_p != NULL)
          {
@@ -82,6 +84,23 @@ namespace exception
 
       operator bool() const { return is_null(); }
 
+      void add(exception * pexception)
+      {
+         if(pexception == NULL)
+            return;
+         if(m_p == NULL)
+         {
+            m_p = canew(result());
+            if(m_p != NULL)
+            {
+               m_p->add_ref();
+            }
+         }
+         if(m_p != NULL)
+         {
+            m_p->add(pexception);
+         }
+      }
 
    };
 

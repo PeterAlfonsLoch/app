@@ -58,7 +58,7 @@ namespace userfs
 
    }
 
-   index list_item_array::find_item_by_path(const char * pszPath)
+   index list_item_array::find_item_by_path(const ::file::path & pszPath)
    {
       for(int32_t i = 0; i < this->get_count(); i++)
       {

@@ -22,7 +22,7 @@ namespace windows
       virtual void set_filea(stringa & stra);
 
       virtual int32_t get_file_count();
-      virtual void get_filea(stringa & stra);
+      virtual void get_filea(::file::patha & stra);
 
       virtual void set_plain_text(const char * psz);
       virtual string get_plain_text();

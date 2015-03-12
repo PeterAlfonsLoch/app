@@ -23,7 +23,7 @@ namespace file
       else
       {
 
-         m_spbuffer = App(papp).file_get_file(lpszFileName,nOpenFlags | ::file::mode_write);
+         m_spbuffer = App(papp).file().get_file(lpszFileName,nOpenFlags | ::file::mode_write);
 
       }
 

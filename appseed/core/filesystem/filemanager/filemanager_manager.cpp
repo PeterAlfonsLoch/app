@@ -104,7 +104,7 @@ namespace filemanager
       if (get_filemanager_item().m_strPath.is_empty())
          return;
 
-      string strParent = get_fs_data()->eat_end_level(get_filemanager_item().m_strPath, 1);
+      string strParent = get_filemanager_item().m_strPath.up();
 
       FileManagerBrowse(strParent, ::action::source::sync(actioncontext));
 
@@ -200,11 +200,9 @@ namespace filemanager
       m_fsset->m_spafsdata.add(Session.fs());
 
 
-      ::file::patha patha;
+      ::file::listing listing(m_fsset);
 
-      ::file::patha straTitle;
-
-      m_fsset->root_ones(patha,straTitle);
+      m_fsset->root_ones(listing);
 
 
       return TRUE;

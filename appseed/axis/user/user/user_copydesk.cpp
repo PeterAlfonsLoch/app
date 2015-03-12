@@ -25,7 +25,7 @@ namespace user
    }
 
 
-   void copydesk::get_filea(stringa & stra)
+   void copydesk::get_filea(::file::patha & stra)
    {
 
       UNREFERENCED_PARAMETER(stra);

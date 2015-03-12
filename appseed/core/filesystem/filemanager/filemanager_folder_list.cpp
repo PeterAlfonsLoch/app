@@ -153,16 +153,19 @@ namespace filemanager
       Folder folder;
 
 
-      ::file::patha patha;
-      ::file::patha straTitle;
+      ::file::listing patha(get_app());
 
-      Application.dir().ls(strParent, &patha, &straTitle);
+      patha.ls(strParent);
 
       for (int32_t i = 0; i < patha.get_count(); i++)
       {
+
          folder.m_strPath = patha[i];
-         folder.m_wstrName = straTitle[i];
+
+         folder.m_wstrName = patha[i].title();
+
          m_foldera.AddFolder(folder);
+
       }
 
       _001OnUpdateItemCount();

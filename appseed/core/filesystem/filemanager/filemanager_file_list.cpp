@@ -108,7 +108,7 @@ namespace filemanager
 
                get_filemanager_manager()->data_set(get_filemanager_template()->m_dataidStatic, stra);
 
-               add_item(get_filemanager_item().m_strPath, System.file().name_(get_filemanager_item().m_strPath));
+               add_item(get_filemanager_item().m_strPath, get_filemanager_item().m_strPath.name());
             
                _001OnUpdateItemCount();
 
@@ -274,11 +274,12 @@ namespace filemanager
 
       string wstrNew = str.Left(iFind + 1) + wstrNameNew;
 
-      System.file().path().rename(wstrNew, str, get_app());
+      System.file().rename(wstrNew, str, get_app());
 
       browse_sync(actioncontext);
 
    }
+
 
    void file_list::_001OnContextMenu(signal_details * pobj)
    {
@@ -657,7 +658,7 @@ namespace filemanager
 
       GetSelected(itema);
 
-      stringa stra;
+      ::file::patha stra;
 
       for(int32_t i = 0; i < itema.get_size(); i++)
       {
@@ -693,9 +694,9 @@ namespace filemanager
             ::fs::item_array itema;
             GetSelected(itema);
 
-            string strPath = itema[0]->m_strPath;
+            ::file::path strPath = itema[0]->m_strPath;
 
-            string strExt = System.file().extension(strPath);
+            string strExt = strPath.extension();
 
             stringa stra;
             System.os().file_extension_get_open_with_list_keys(stra, strExt);
@@ -768,13 +769,16 @@ namespace filemanager
       }
       if(iPos >= 0)
       {
+         
          ::fs::item_array itema;
+         
          GetSelected(itema);
-         string strPath = itema[0]->m_strPath;
+
+         ::file::path strPath = itema[0]->m_strPath;
 
 #ifdef WINDOWSEX
 
-         simple_shell_launcher launcher(NULL, "open", m_straOpenWith[iPos], strPath, System.dir().name(strPath), SW_SHOW);
+         simple_shell_launcher launcher(NULL, "open", m_straOpenWith[iPos], strPath, strPath.name(), SW_SHOW);
 
          launcher.execute();
 
@@ -809,16 +813,17 @@ namespace filemanager
       ::fs::item_array itema;
       GetSelected(itema);
       stringa stra;
-      stringa straSub;
+      ::file::listing straSub;
 
       string strFileList;
       string strFileCheck;
       for(int32_t i = 0; i < itema.get_size(); i++)
       {
-         if(Application.dir().is(itema[i]->m_strPath)
-            && System.file().name_(itema[i]->m_strPath) != ".svn")
+         if(Application.dir().is(itema[i]->m_strPath) && itema[i]->m_strPath.name() != ".svn")
          {
-            Application.dir().rls(itema[i]->m_strPath, &straSub);
+            
+            straSub.rls(itema[i]->m_strPath);
+
             for(int32_t j = 0; j < straSub.get_size(); j++)
             {
                if(!Application.dir().is(straSub[j]) && straSub[j].find(".svn") < 0)
@@ -842,13 +847,16 @@ namespace filemanager
       ::datetime::time time = ::datetime::time::get_current_time();
 
       string strTime;
+      
       strTime.Format("%04d-%02d-%02d %02d-%02d",
          time.GetYear(),
          time.GetMonth(),
          time.GetDay(),
          time.GetHour(),
          time.GetMinute());
-      string strBase = System.dir().path(get_filemanager_item().m_strPath, "spafy_");
+
+      string strBase = get_filemanager_item().m_strPath / "spafy_";
+
       string strList = strBase + "list_" + strTime + ".txt";
       string strCheck = strBase + "check_" + strTime + ".txt";
 
@@ -870,19 +878,19 @@ namespace filemanager
       sp(::userfs::list_data) pdata = get_fs_list_data();
       UNREFERENCED_PARAMETER(pobj);
       stringa stra;
-      stringa straSub;
+      ::file::listing straSub(get_app());
 
       string strFileList;
       string strFileCheck;
       for(int32_t i = 0; i < pdata->m_itema.get_count(); i++)
       {
          if(::userfs::list::get_document()->get_fs_data()->is_dir(pdata->m_itema.get_item(i).m_strPath)
-            && ::userfs::list::get_document()->get_fs_data()->file_name(pdata->m_itema.get_item(i).m_strPath) != ".svn")
+            && pdata->m_itema.get_item(i).m_strPath.name() != ".svn")
          {
-            Application.dir().rls(pdata->m_itema.get_item(i).m_strPath, &straSub);
+            straSub.rls(pdata->m_itema.get_item(i).m_strPath);
             for(int32_t j = 0; j < straSub.get_size(); j++)
             {
-             string strExtension = System.file().extension(straSub[j]);
+             string strExtension = straSub[j].extension();
 
                if(!Application.dir().is(straSub[j])
          && (strExtension == "exe" || strExtension == "dll" || strExtension == "dll.manifest"
@@ -897,7 +905,7 @@ namespace filemanager
          }
          else
          {
-             string strExtension = System.file().extension(pdata->m_itema.get_item(i).m_strPath);
+             string strExtension = pdata->m_itema.get_item(i).m_strPath.extension();
          if(strExtension == "exe" || strExtension == "dll" || strExtension == "dll.manifest"
              || strExtension == "exe.manifest")
          {
@@ -919,7 +927,7 @@ namespace filemanager
          time.GetDay(),
          time.GetHour(),
          time.GetMinute());
-      string strBase = System.dir().path(get_filemanager_item().m_strPath, "spafy_");
+      string strBase = get_filemanager_item().m_strPath /  "spafy_";
       string strList = strBase + "list_" + strTime + ".txt";
       string strCheck = strBase + "check_" + strTime + ".txt";
 
@@ -1016,12 +1024,14 @@ namespace filemanager
             {
             }
 
-            string strPath = stra[i];
-            string strName = System.file().title_(strPath);
+            ::file::path strPath = stra[i];
 
+            string strName = strPath.name();
 
             item.m_iImage = -1;
+
             item.m_strPath = strPath;
+
             item.m_strName = strName;
 
             get_fs_list_data()->m_itema.add_item(item);
@@ -1066,17 +1076,17 @@ namespace filemanager
       _001OnUpdateItemCount();
 
 
-      stringa & patha = get_document()->m_straPath;
-      stringa & straTitle = get_document()->m_straTitle;
+      ::file::listing & patha = get_document()->m_straPath;
+      //stringa & straTitle = get_document()->m_straTitle;
 //      int64_array & iaSize = get_document()->m_iaSize;
-      bool_array & baDir = get_document()->m_baDir;
+      //bool_array & baDir = get_document()->m_baDir;
 
 
       for(int32_t i = 0; i < patha.get_size(); i++)
       {
          item.m_flags.unsignalize_all();
-         string strPath = patha[i];
-         if(baDir[i])
+         ::file::path strPath = patha[i];
+         if(patha[i].m_iDir == 1)
          {
             item.m_flags.signalize(::fs::FlagFolder);
          }
@@ -1085,7 +1095,7 @@ namespace filemanager
          }
          item.m_iImage = -1;
          item.m_strPath = strPath;
-         item.m_strName = straTitle[i];
+         item.m_strName = patha.title(i);
          m_straStrictOrder.add(strPath);
 
          get_fs_list_data()->m_itema.add_item(item);
@@ -1882,32 +1892,49 @@ namespace filemanager
 
    bool file_list::do_drop(index iDisplayDrop, index iDisplayDrag)
    {
+      
       index strict;
+
       index strictDrag;
+
       if (m_eview == ViewIcon)
       {
+         
          strict = m_iconlayout.m_iaDisplayToStrict[iDisplayDrop];
+
          strictDrag = m_iconlayout.m_iaDisplayToStrict[iDisplayDrag];
+
       }
       else
       {
+         
          strict = m_listlayout.m_iaDisplayToStrict[iDisplayDrop];
+
          strictDrag = m_listlayout.m_iaDisplayToStrict[iDisplayDrag];
+
       }
+
       if (strict >= 0 && get_fs_list_data()->m_itema.get_item(strict).IsFolder())
       {
-         string strPath = get_fs_list_data()->m_itema.get_item(strictDrag).m_strPath;
-         string strName = System.file().name_(strPath);
-         System.file().move(
-            System.dir().path(get_fs_list_data()->m_itema.get_item(strict).m_strPath, strName),
-            strPath);
+         
+         ::file::path strPath = get_fs_list_data()->m_itema.get_item(strictDrag).m_strPath;
+
+         string strName = strPath.name();
+
+         Application.file().move(get_fs_list_data()->m_itema.get_item(strict).m_strPath / strName, strPath);
+
       }
       else
       {
+
          ::user::list::do_drop(iDisplayDrop, iDisplayDrag);
+
       }
+
       return true;
+
    }
+
 
    COLORREF file_list::get_background_color()
    {

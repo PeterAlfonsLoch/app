@@ -48,8 +48,10 @@ namespace userex // ca8 + cube
       }
 
 
-      ::file::patha patha;
-      Application.dir().ls(System.dir().element("app/appmatter/main/_std/_std/keyboard layout"), &patha);
+      ::file::listing patha(get_app());
+
+      patha.ls(System.dir().element()/ "app/appmatter/main/_std/_std/keyboard layout");
+
       for(int32_t i = 0; i < patha.get_count(); i++)
       {
          ::user::keyboard_layout_id layoutid;
@@ -152,7 +154,9 @@ namespace userex // ca8 + cube
             ptext->_001GetText(strServer);
             if(strServer.get_length() == 0)
             {
-               System.file().del(System.dir().appdata("proxy.xml"));
+
+               Application.file().del(System.dir().appdata()/"proxy.xml");
+
             }
             else
             {
@@ -164,7 +168,7 @@ namespace userex // ca8 + cube
                string strPort;
                ptext->_001GetText(strPort);
                doc.add_attr("port", strPort);
-               Application.file().put_contents(System.dir().appdata("proxy.xml"), doc.get_xml());
+               Application.file().put_contents(System.dir().appdata()/ "proxy.xml", doc.get_xml());
             }
          }
       }

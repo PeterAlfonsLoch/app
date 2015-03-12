@@ -1453,7 +1453,7 @@ void string_array < Type, RawType > ::add_tokens(const char * lpcsz,const char *
    }
 }
 
-int32_t g_add_smallest_tokens = 0;
+extern int32_t g_add_smallest_tokens;
 
 
 template < class Type, class RawType >

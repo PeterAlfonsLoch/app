@@ -100,12 +100,10 @@ namespace filemanager
                      }
                      ptopview->m_pmanager = get_filemanager_manager();
                      InsertPaneAt(0, ptopview, true);
-                     string strName =
-                        System.file().title_(get_filemanager_data()->m_pdocumentSave->get_path_name())
-                        + " - " + System.datetime().international().get_gmt_date_time()
-                        + "." + System.file().extension(get_filemanager_data()->m_pdocumentSave->get_path_name());
+                     ::file::path path = get_filemanager_data()->m_pdocumentSave->get_file_path();
+                     string strName = path.title() + " - " + System.datetime().international().get_gmt_date_time() + "." + path.ext();
                      strName.replace(":", "-");
-                     strName = System.dir().path(get_filemanager_item().m_strPath, strName);
+                     strName = get_filemanager_item().m_strPath / strName;
                      ptopview->_001SetText(strName, puh->m_actioncontext);
                      get_filemanager_data()->m_pmanager->m_strTopic = strName;
                      set_position(0, 49);
@@ -138,29 +136,41 @@ namespace filemanager
                   string strPath = puh->m_strPath;
                   if (strPath.is_empty())
                   {
-                     string strTitle;
-                     dynamic_cast <::filemanager::save_as_view *>(get_pane_window(0).m_p)->_001GetText(strTitle);
-                     if (System.dir().name(strTitle).has_char() && get_filemanager_manager()->get_fs_data()->is_dir(System.dir().name(strTitle)))
+                     
+                     ::file::path strTitle;
+
+                     strTitle = dynamic_cast <::filemanager::save_as_view *>(get_pane_window(0).m_p)->GetWindowText();
+
+                     if (strTitle.folder().has_char() && get_filemanager_manager()->get_fs_data()->is_dir(strTitle.name()))
                      {
+
                         strPath = strTitle;
+
                      }
                      else if (get_filemanager_manager()->get_fs_data()->is_dir(get_filemanager_item().m_strPath))
                      {
-                        strPath = System.dir().path(get_filemanager_item().m_strPath, strTitle);
+
+                        strPath = get_filemanager_item().m_strPath / strTitle;
+
                      }
                      else if (strTitle.has_char())
                      {
-                        strPath = System.dir().path(get_filemanager_item().m_strPath, strTitle);
+
+                        strPath = get_filemanager_item().m_strPath / strTitle;
+
                      }
                      else
                      {
+
                         strPath = get_filemanager_item().m_strPath;
+
                      }
+
                   }
 
                   bool bSave = !Application.dir().is(strPath);
 
-                  if (bSave && get_filemanager_manager()->get_fs_data()->file().exists(strPath))
+                  if (bSave && get_filemanager_manager()->get_fs_data()->file_exists(strPath))
                   {
                      if (System.simple_message_box(Platform.get_view(), "Do you want to replace the existing file " + strPath + "?", MB_YESNO) == IDNO)
                      {

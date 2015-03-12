@@ -131,14 +131,12 @@ bool html_document::on_open_document(var varFile)
    uh.m_strUrl = varFile;
    update_all_views(NULL, 0, &uh);
 
-
-   data_set(".local://LastOpenedFile", get_path_name());
-
+   data_set(".local://LastOpenedFile", get_file_path());
 
    return TRUE;
 
-
 }
+
 
 void html_document::soft_reload()
 {
@@ -152,8 +150,11 @@ void html_document::soft_reload()
    get_html_data()->load(str);
    html_view_update_hint uh;
    uh.m_etype = html_view_update_hint::type_document_complete;
-   uh.m_strUrl = get_path_name();
+   
+   uh.m_strUrl = get_file_path();
+
    update_all_views(NULL, 0, &uh);
+
 }
 
 
@@ -198,7 +199,7 @@ bool html_document::on_simple_action(id id)
 
 #ifndef METROWIN
 
-      simple_shell_launcher launcher(NULL, "open", get_path_name(), NULL, System.dir().name(get_path_name()), SW_SHOWNORMAL);
+      simple_shell_launcher launcher(NULL, "open", get_file_path(), NULL, get_file_path().folder(), SW_SHOWNORMAL);
 
       launcher.execute();
 

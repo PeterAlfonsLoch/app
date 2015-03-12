@@ -266,37 +266,37 @@ namespace windows
    //}
 
    
-   bool dir::ls(::aura::application * papp, ::file::listing & listing)
+   ::file::listing & dir::ls(::aura::application * papp, ::file::listing & listing)
    {
       
-      if(::file::dir::axis::system::ls_pattern(papp,listing))
+      if(::file::dir::axis::system::ls(papp,listing))
       {
 
-         return true;
+         return listing;
          
       }
 
-      return ::windows::dir::ls_pattern(papp,listing);
+      return ::windows::dir::ls(papp,listing);
 
    }
 
 
 
 
-   bool dir::is(const char * lpcszPath, ::aura::application * papp)
-   {
-      
-      if(::windows::dir::is(lpcszPath,papp))
-         return true;
+   //bool dir::is(const char * lpcszPath, ::aura::application * papp)
+   //{
+   //   
+   //   if(::windows::dir::is(lpcszPath,papp))
+   //      return true;
 
-      if(::file::dir::axis::system::is(lpcszPath, papp))
-         return true;
+   //   if(::file::dir::axis::system::is(lpcszPath, papp))
+   //      return true;
 
-      return false;
-      
-   }
-      
-   bool dir::is(const string & strPath, ::aura::application * papp)
+   //   return false;
+   //   
+   //}
+   //   
+   bool dir::is(const ::file::path & strPath,::aura::application * papp)
    {
       
       if(::windows::dir::is(strPath,papp))
@@ -309,7 +309,7 @@ namespace windows
 
    }
 
-   bool dir::name_is(const string & str, ::aura::application * papp)
+   bool dir::name_is(const ::file::path & str,::aura::application * papp)
    {
       //OutputDebugString(str);
       strsize iLast = str.get_length() - 1;
