@@ -655,7 +655,7 @@ namespace zip
    }
 
 
-   void InFile::ls(::file::listing & listing)
+   ::file::listing & InFile::ls(::file::listing & listing)
    {
 
       InFile infile = *this;
@@ -720,6 +720,16 @@ namespace zip
 
          }
       }
+
+      return listing;
+
+   }
+
+
+   ::file::listing & InFile::perform_file_listing(::file::listing & listing)
+   {
+
+      return ls(listing);
 
    }
 

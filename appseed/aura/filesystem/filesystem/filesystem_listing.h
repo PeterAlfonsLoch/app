@@ -94,13 +94,21 @@ namespace file
          return ls();
       }
 
-      listing & rls(const ::file::path & path)
+      
+      listing & rls(const ::file::path & path = cnull, e_extract eextract = extract_first)
       {
+         
          m_path = path;
+
          m_bRecursive = true;
+
+         m_eextract = eextract;
+
          return ls();
+
       }
 
+      
       listing & rls_file(const ::file::path & path)
       {
          m_path = path;
