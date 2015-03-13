@@ -2215,8 +2215,8 @@ ret:
       ::file::path system::appmatter_locator(::aura::application * papp)
       {
 
-         string strRoot;
-         string strDomain;
+         ::file::path strRoot;
+         ::file::path strDomain;
 
          appmatter_locators(strRoot,strDomain,papp);
 
@@ -2236,8 +2236,8 @@ ret:
       ::file::path system::appmatter_locator(const string & strLibraryName,const string & strAppName)
       {
 
-         string strRoot;
-         string strDomain;
+         ::file::path strRoot;
+         ::file::path strDomain;
 
          appmatter_locators(strRoot, strDomain, strLibraryName, strAppName);
 
@@ -2248,8 +2248,8 @@ ret:
       ::file::path system::appmatter_locator(const string & strAppName)
       {
 
-         string strRoot;
-         string strDomain;
+         ::file::path strRoot;
+         ::file::path strDomain;
 
          appmatter_locators(strRoot, strDomain, System.m_mapAppLibrary[strAppName], strAppName);
 
@@ -2268,8 +2268,8 @@ ret:
       ::file::path system::base_appmatter_locator(const ::file::path & strBase,const string & strLibraryName,const string & strAppName)
       {
 
-         string strRoot;
-         string strDomain;
+         ::file::path strRoot;
+         ::file::path strDomain;
 
          appmatter_locators(strRoot, strDomain, strLibraryName, strAppName);
 
@@ -2280,8 +2280,8 @@ ret:
       ::file::path system::base_appmatter_locator(const ::file::path & strBase,const string & strAppName)
       {
 
-         string strRoot;
-         string strDomain;
+         ::file::path strRoot;
+         ::file::path strDomain;
 
          appmatter_locators(strRoot, strDomain, System.m_mapAppLibrary[strAppName], strAppName);
 

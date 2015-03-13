@@ -1787,6 +1787,7 @@
     <ClCompile Include="filesystem\filesystem\filesystem_application.cpp" />
     <ClCompile Include="filesystem\filesystem\filesystem_dir_application.cpp" />
     <ClCompile Include="filesystem\filesystem\filesystem_dir_system.cpp" />
+    <ClCompile Include="filesystem\filesystem\filesystem_listing.cpp" />
     <ClCompile Include="filesystem\filesystem\filesystem_path.cpp" />
     <ClCompile Include="filesystem\filesystem\filesystem_system.cpp" />
     <ClCompile Include="filesystem\file\_file.cpp" />
@@ -1911,6 +1912,7 @@
     <ClCompile Include="primitive\str\str_ch.cpp" />
     <ClCompile Include="primitive\str\str_ch_class.cpp" />
     <ClCompile Include="primitive\_primitive.cpp" />
+    <ClCompile Include="teste.cpp" />
     <ClCompile Include="user\colorertake5\_colorertake5.cpp" />
     <ClCompile Include="user\simple\simple_message_box.cpp" />
     <ClInclude Include="version.config.h" />
