@@ -49,6 +49,8 @@ namespace file
       path(e_path epath = path_file) { m_epath = epath; }
       path(const string & str) : string(str) { m_epath = get_path_type(str); normalize(); }
       path(const string & str,e_path epath) : string(str) { m_epath = epath; normalize(); }
+      path(const id & id): string(id) { m_epath = get_path_type(*this); normalize(); }
+      path(const id & id,e_path epath): string(id) { m_epath = epath; normalize(); }
       path(const path & path) { operator = (path); }
       path(path && path): string(::move(path)) { *((path_meta *)this) = (const path_meta &) path; }
       path(const char * psz,e_path epath = path_file): path((const string &)psz, epath){};
@@ -119,6 +121,11 @@ namespace file
       {
          return is_equal(path);
       }
+
+      bool operator == (const string & str) const { return operator == (path(str));  }
+      bool operator == (const char * psz) const { return operator == (string(psz)); }
+      bool operator == (const var & var) const;
+
 
       path operator + (const path & path) const
       {

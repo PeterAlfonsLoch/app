@@ -10,11 +10,11 @@ namespace file
    public:
 
       
-      sp(input_stream)     _stream;
+      sp(istream)     _stream;
       critical_section     _criticalSection;
 
 
-      void Init(input_stream *stream)
+      void Init(istream *stream)
       { 
          _stream = stream; 
       }

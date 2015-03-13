@@ -6,7 +6,7 @@
 namespace file
 {
 
-   ::primitive::memory_size limited_input_stream::read(void *data, ::primitive::memory_size size)
+   ::primitive::memory_size limited_istream::read(void *data, ::primitive::memory_size size)
    {
       if (_virtPos >= _size)
       {
@@ -31,7 +31,7 @@ namespace file
       return size;
    }
 
-   file_position limited_input_stream::seek(file_offset offset, e_seek seekOrigin)
+   file_position limited_istream::seek(file_offset offset, e_seek seekOrigin)
    {
       switch(seekOrigin)
       {
@@ -46,9 +46,9 @@ namespace file
 
 
 
-   reader * create_limited_input_stream(input_stream *inStream, uint64_t pos, uint64_t size)
+   reader * create_limited_istream(istream *inStream, uint64_t pos, uint64_t size)
    {
-      limited_input_stream *streamSpec = new limited_input_stream;
+      limited_istream *streamSpec = new limited_istream;
       streamSpec->SetStream(inStream);
       streamSpec->InitAndSeek(pos, size);
       streamSpec->seek_to_begin();

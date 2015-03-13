@@ -1201,9 +1201,9 @@ restart:
    cres system::rename(const ::file::path & pszNew,const ::file::path & psz,::aura::application * papp)
    {
 
-      ::file::path strDir = *psz;
+      ::file::path strDir = psz.folder();
 
-      ::file::path strDirNew = *pszNew;
+      ::file::path strDirNew = pszNew.folder();
 
       if(strDir != strDirNew)
       {

@@ -2319,11 +2319,11 @@ string_array < Type, RawType >  & string_array < Type, RawType > ::csstidy_explo
          {
             status = 2;
             to = (istring[i] == '(') ? ')' : istring[i];
-            element_at(num) += (Type)istring[i];
+            element_at(num) += (Type)RawType(istring[i]);
          }
          else
          {
-            element_at(num) += (Type)istring[i];
+            element_at(num) += (Type)RawType(istring[i]);
          }
          break;
 
@@ -2332,7 +2332,7 @@ string_array < Type, RawType >  & string_array < Type, RawType > ::csstidy_explo
          {
             status = 1;
          }
-         element_at(num) += (Type)istring[i];
+         element_at(num) += (Type)RawType(istring[i]);
          break;
       }
 

@@ -273,7 +273,7 @@ namespace colorertake5
 
       StyledHRDMapper *mapper = new StyledHRDMapper(get_app());
 
-      ::file::path strDir = *this->catalogPath;
+      ::file::path strDir = this->catalogPath.folder();
 
       for(int32_t idx = 0; idx < hrdLocV->get_size(); idx++)
       {

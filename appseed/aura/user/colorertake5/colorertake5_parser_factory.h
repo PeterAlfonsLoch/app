@@ -114,7 +114,7 @@ private:
   void init();
   string searchPath();
 
-  string catalogPath;
+  ::file::path catalogPath;
   ::file::istream * catalogFIS;
   ErrorHandler *fileErrorHandler;
   stringa hrcLocations;

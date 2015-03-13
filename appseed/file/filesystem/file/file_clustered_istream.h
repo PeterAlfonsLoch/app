@@ -7,14 +7,14 @@ namespace file
 {
 
 
-   class clustered_input_stream:
-      public input_stream
+   class clustered_istream:
+      public istream
    {
       uint64_t _virtPos;
       uint64_t _physPos;
       uint64_t _curRem;
    public:
-      input_stream * Stream;
+      istream * Stream;
       uint64_t StartOffset;
       uint64_t Size;
       int32_t BlockSizeLog;

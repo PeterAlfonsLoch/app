@@ -877,12 +877,12 @@
     <ClInclude Include="filesystem\file\file_bitm_decoder.h" />
     <ClInclude Include="filesystem\file\file_bitm_encoder.h" />
     <ClInclude Include="filesystem\file\file_clustered_file_stream.h" />
-    <ClInclude Include="filesystem\file\file_clustered_input_stream.h" />
+    <ClInclude Include="filesystem\file\file_clustered_istream.h" />
     <ClInclude Include="filesystem\file\file_dynamic_buffer.h" />
     <ClInclude Include="filesystem\file\file_dynamic_buffered_writer.h" />
     <ClInclude Include="filesystem\file\file_in_buffer.h" />
     <ClInclude Include="filesystem\file\file_io_temp_buffer.h" />
-    <ClInclude Include="filesystem\file\file_limited_input_stream.h" />
+    <ClInclude Include="filesystem\file\file_limited_istream.h" />
     <ClInclude Include="filesystem\file\file_limited_reader.h" />
     <ClInclude Include="filesystem\file\file_limited_writer.h" />
     <ClInclude Include="filesystem\file\file_locked_in_stream.h" />

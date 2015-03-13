@@ -7,7 +7,7 @@ namespace file
 {
 
 
-   ::primitive::memory_size clustered_input_stream::read(void *data, ::primitive::memory_size size)
+   ::primitive::memory_size clustered_istream::read(void *data, ::primitive::memory_size size)
    {
 
       ::primitive::memory_size processedSize = 0;
@@ -49,7 +49,7 @@ namespace file
       return processedSize;
    }
 
-   file_position clustered_input_stream::seek(file_offset offset, e_seek seekOrigin)
+   file_position clustered_istream::seek(file_offset offset, e_seek seekOrigin)
    {
       uint64_t newVirtPos = offset;
       switch(seekOrigin)

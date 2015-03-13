@@ -11,8 +11,8 @@
 #include "file_bitm_decoder.h"
 #include "file_bitm_encoder.h"
 #include "file_limited_reader.h"
-#include "file_limited_input_stream.h"
-#include "file_clustered_input_stream.h"
+#include "file_limited_istream.h"
+#include "file_clustered_istream.h"
 #include "file_limited_writer.h"
 
 #include "file_stream_binder.h"

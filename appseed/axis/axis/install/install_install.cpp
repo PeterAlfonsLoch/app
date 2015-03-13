@@ -1355,7 +1355,7 @@ namespace install
                if(str.has_char())
                {
 
-                  ::file::path strAuraDir = *str;
+                  ::file::path strAuraDir = str.folder();
 
                   for(index iFile = 0; iFile < straFile.get_size(); iFile++)
                   {
