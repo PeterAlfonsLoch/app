@@ -144,7 +144,7 @@ namespace userstack
    //   {
    //      /*bergedge::menu_view * pview = dynamic_cast < bergedge::menu_view *  > (get_view());
    //      sp(::filemanager::manager) pdoc = (pview->get_document());
-   //      pdoc->FileManagerBrowse(Application.dir().userappdata("bergedge\\menu"), ::action::source::system_default());*/
+   //      pdoc->FileManagerBrowse(Application.dir().userappdata() / "bergedge\\menu"), ::action::source::system_default());*/
    //   }
    //   else if(get_view_id() == ::bergedge::PaneViewConfiguration)
    //   {

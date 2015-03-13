@@ -77,7 +77,7 @@ namespace dynamic_source
       m_strEnv = strVars/ "vc\\vcvarsall.bat";
       //m_strEnv = ".\\vc_vars.bat";
 
-      m_strTime = System.dir().element() /"time";
+      m_strTime = System.dir().element() / "time";
 
       //m_strEnv = "C:\\Program Files\\Microsoft SDKs\\Windows\\v7.1\\Bin\\SetEnv.cmd";
 
@@ -165,7 +165,7 @@ namespace dynamic_source
       string str;
       string strItem;
 
-      strItem = System.dir().element() /m_strDynamicSourceStage /m_strStagePlatform;
+      strItem = System.dir().element() / m_strDynamicSourceStage /m_strStagePlatform;
       str = str + strItem + ";";
 
       strItem = System.dir().element()/ m_strDynamicSourceStage /  m_strStagePlatform / "dynamic_source\\library";
@@ -472,7 +472,7 @@ namespace dynamic_source
 
       string strBuildCmd;
 #ifdef LINUX
-      strBuildCmd.Format(System.dir().element("nodeapp\\stage\\dynamic_source\\" + m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bash"));
+      strBuildCmd.Format(System.dir().element() / "nodeapp\\stage\\dynamic_source\\" + m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bash"));
 #else
       //#ifdef DEBUG
       strBuildCmd.Format(System.dir().element() / "nodeapp\\stage\\dynamic_source" / m_strDynamicSourceConfiguration + ::file::path("_cl") + m_strPlat1 + ".bat");

@@ -47,7 +47,7 @@ namespace user
 
 
       ::file::patha patha;
-      System.dir().ls(System.dir().element("app/appmatter/main/_std/_std/keyboard layout"), &patha);
+      System.dir().ls(System.dir().element() / "app/appmatter/main/_std/_std/keyboard layout"), &patha);
       for(int32_t i = 0; i < patha.get_count(); i++)
       {
          ::user::keyboard_layout_cfg_id layoutid;

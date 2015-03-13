@@ -77,7 +77,7 @@ namespace aura
       //HMENU                 m_hMenuInPlaceServer;
       //HACCEL                m_hAccelInPlaceServer;
 
-      string                  m_strMatter;                 // IDR_ for frame/menu/accel as well
+      ::file::path                  m_strMatter;                 // IDR_ for frame/menu/accel as well
       //string                m_strServerMatter;           // IDR_ for OLE inplace frame/menu/accel
       //UINT                  m_nIDEmbeddingResource;        // IDR_ for OLE open frame/menu/accel
       //UINT                  m_nIDContainerResource;        // IDR_ for container frame/menu/accel
