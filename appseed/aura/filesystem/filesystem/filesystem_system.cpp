@@ -1021,8 +1021,8 @@ restart:
          {
 #ifdef WINDOWS
             //               ::MoveFileW(
-            //                ::str::international::utf8_to_unicode(System.dir().path(pszContext, strOld)),
-            //              ::str::international::utf8_to_unicode(System.dir().path(pszContext, strNew)));
+            //                ::str::international::utf8_to_unicode(pszContext, strOld)),
+            //              ::str::international::utf8_to_unicode(pszContext, strNew)));
             try
             {
                move(::file::path(pszContext)/ strNew, ::file::path(pszContext) / strOld, papp);
@@ -1033,8 +1033,8 @@ restart:
             }
 #else
             ::rename(
-               System.dir().path(pszContext, strOld),
-               System.dir().path(pszContext, strNew));
+               pszContext, strOld),
+               pszContext, strNew));
 #endif
          }
       }

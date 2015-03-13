@@ -251,15 +251,6 @@ namespace windows
 
          {
 
-            if(!listing.m_bAccumul)
-            {
-               
-               listing.clear_results();
-
-            }
-
-            keep < bool > keepAccumul(&listing.m_bAccumul,true,listing.m_bAccumul,true);
-
             RESTORE(listing.m_path);
 
             RESTORE(listing.m_eextract);

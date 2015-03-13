@@ -3088,7 +3088,7 @@ namespace axis
 //
 //   //string application::dir_path(const char * psz1,const char * psz2,const char * psz3)
 //   //{
-//   //   return System.dir().path(psz1,psz2,psz3);
+//   //   return psz1,psz2,psz3);
 //   //}
 //
 //   string application::dir_name(const char * psz)
@@ -3192,7 +3192,7 @@ namespace axis
    //string application::file_extension(const char * pszPath)
    //{
 
-   //   return System.file().extension(pszPath);
+   //   return file_extension_dup(pszPath);
 
    //}
 

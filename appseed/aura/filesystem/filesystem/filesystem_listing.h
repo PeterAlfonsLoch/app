@@ -27,7 +27,6 @@ namespace file
       bool                 m_bDir = true;
       bool                 m_bRecursive = false;
       e_extract            m_eextract = extract_first;
-      bool                 m_bAccumul = false;
    };
 
 

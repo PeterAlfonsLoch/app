@@ -1129,8 +1129,8 @@ namespace dynamic_source
       return ::file::path("C:\\netnode")/ m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_strStagePlatform / strPath;
 #else
       ::str::begins_eat(strPath,".");
-      //return System.dir().path("/ca2/stage/"+m_pcompiler->m_strStagePlatform+"/","lib" + strPath);
-      return System.dir().path("/ca2/~m_pcompiler->m_strDynamicSourceStage +  "/x86/","lib" + strPath);
+      //return "/ca2/stage/"+m_pcompiler->m_strStagePlatform+"/","lib" + strPath);
+      return "/ca2/~m_pcompiler->m_strDynamicSourceStage +  "/x86/","lib" + strPath);
 #endif
 
    }
@@ -1161,7 +1161,7 @@ namespace dynamic_source
 
 #else
 
-      return System.dir().path(System.dir().element(m_pcompiler->m_strDynamicSourceStage + "\\" + m_pcompiler->m_strStagePlatform + "\\dynamic_source"),System.dir().path(System.dir().name(strTransformName),strScript + ".so",false));
+      return System.dir().element(m_pcompiler->m_strDynamicSourceStage + "\\" + m_pcompiler->m_strStagePlatform + "\\dynamic_source"),System.dir().name(strTransformName),strScript + ".so",false));
 
 #endif
 

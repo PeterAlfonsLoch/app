@@ -106,8 +106,6 @@ namespace windows
 
       m_straFile.clear_results();
 
-      m_straFile.m_bAccumul = true;
-
       m_straFile.m_pprovider = get_app();
 
       for(i = 0; i < m_straSearch.get_size(); i++)

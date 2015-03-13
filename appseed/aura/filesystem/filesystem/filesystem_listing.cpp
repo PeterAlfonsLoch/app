@@ -22,13 +22,6 @@ namespace file
    listing & listing::ls()
    {
 
-      if(!m_bAccumul)
-      {
-
-         clear_results();
-
-      }
-
       return m_pprovider->perform_file_listing(*this);
 
    }

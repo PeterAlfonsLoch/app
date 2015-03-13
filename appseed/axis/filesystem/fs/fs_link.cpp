@@ -135,7 +135,7 @@ namespace fs
    string link::dir_path(const char * psz1,const char * psz2)
    {
 
-      return System.dir().path(psz1,psz2);
+      return psz1,psz2);
 
    }
 

@@ -1062,7 +1062,7 @@ namespace filemanager
 
       string strPath(pszPath);
 
-      string strExtension = System.file().extension(strPath);
+      string strExtension = file_extension_dup(strPath);
 
       int32_t iType;
       switch(eicon)

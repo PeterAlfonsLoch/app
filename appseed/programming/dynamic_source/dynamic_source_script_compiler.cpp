@@ -266,7 +266,7 @@ namespace dynamic_source
       //#ifdef DEBUG
 #ifdef LINUX
       pscript->m_strBuildBat.Format(System.dir().element(m_strDynamicSourceStage + "\\front\\dynamic_source\\BuildBat\\%s%s.bat"),System.file().name_(strTransformName),strTransformName);
-      strO.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script\\%s\\%s.o", false), strTransformName, System.file().name_(strTransformName));
+      strO.Format(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script\\%s\\%s.o", false), strTransformName, System.file().name_(strTransformName));
 #else
       strB = m_strDynamicSourceStageFolder / "front\\dynamic_source\\BuildBat" / strTransformName.name() / strTransformName + ".bat";
       strP = m_strDynamicSourceStageFolder / m_strStagePlatform / "dynamic_source" / strTransformName.sibling(strScript.name()) + ".pdb";
@@ -820,7 +820,7 @@ namespace dynamic_source
       //#ifdef DEBUG
       strTemplate = strFolder/ strSource;
       //#else
-      // strTemplate = System.dir().path(strFolder, "app\\stage\\core\\fontopus\\app\\main\\matter\\dynamic_source_cl.bat", false);
+      // strTemplate = strFolder, "app\\stage\\core\\fontopus\\app\\main\\matter\\dynamic_source_cl.bat", false);
       //#endif
       string str;
       str = Application.file().as_string(strTemplate);
@@ -847,7 +847,7 @@ namespace dynamic_source
       //#ifdef DEBUG
       strCmd = strFolder/ strDest;
       //#else
-      // strCmd = System.dir().path(strFolder, "app\\stage\\core\\fontopus\\app\\main\\front\\dynamic_source_cl.bat", false);
+      // strCmd = strFolder, "app\\stage\\core\\fontopus\\app\\main\\front\\dynamic_source_cl.bat", false);
       //#endif
       Application.dir().mk(strCmd.folder());
       //Application.file().put_contents_utf8(strCmd, str);
@@ -983,7 +983,7 @@ namespace dynamic_source
       m_strLibraryPath = System.dir().element() / m_strDynamicSourceStage / m_strStagePlatform / "dynamic_source\\library" / strLib + ".dll";
 #endif
       //#else
-      // plib->m_strLibraryPath.Format(System.dir().path(strFolder, "app\\stage\\core\\fontopus\\app\\main\\front\\Release\\%s.dll", false), strName);
+      // plib->m_strLibraryPath.Format(strFolder, "app\\stage\\core\\fontopus\\app\\main\\front\\Release\\%s.dll", false), strName);
       //#endif
 
       Application.dir().mk(m_strLibraryPath.folder());
@@ -1039,7 +1039,7 @@ namespace dynamic_source
          strCmd = System.dir().element() / m_strDynamicSourceStage / "front" / m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bat";
 #endif
          //#else
-         //    strCmd.Format(System.dir().path(strFolder, "app\\stage\\core\\fontopus\\app\\main\\front\\dynamic_source_cl.bat", false));
+         //    strCmd.Format(strFolder, "app\\stage\\core\\fontopus\\app\\main\\front\\dynamic_source_cl.bat", false));
          //#endif
          string str = Application.file().as_string(strCmd);
          str.replace("%ITEM_NAME%",str1);
@@ -1115,7 +1115,7 @@ namespace dynamic_source
          ".bat";
 #endif
       //#else
-      // strCmd.Format(System.dir().path(strFolder, "app\\stage\\core\\fontopus\\app\\main\\front\\dynamic_source_libl.bat", false));
+      // strCmd.Format(strFolder, "app\\stage\\core\\fontopus\\app\\main\\front\\dynamic_source_libl.bat", false));
       //#endif
       string str = Application.file().as_string(strCmd);
       str.replace("%ITEM_NAME%","library" PATH_SEPARATOR + strName);

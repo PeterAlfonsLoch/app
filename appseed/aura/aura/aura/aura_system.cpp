@@ -1328,7 +1328,7 @@ namespace aura
 
          free(pszCurDir);
          
-         strModuleFileName = System.dir().path(strCurDir,"libbase.dylib");
+         strModuleFileName = strCurDir,"libbase.dylib");
 
          if(Application.file().exists(strModuleFileName))
          {
@@ -1336,7 +1336,7 @@ namespace aura
             goto finishedCa2Module;
          }
 
-         strModuleFileName = System.dir().path(m_strModuleFolder,"libbase.dylib");
+         strModuleFileName = m_strModuleFolder,"libbase.dylib");
 
          if(Application.file().exists(strModuleFileName))
          {

@@ -681,8 +681,6 @@ namespace filemanager
 
       straExpanded.m_pprovider = get_app();
 
-      straExpanded.m_bAccumul = true;
-
       for(int32_t i = 0; i < straExpand.get_size(); i++)
       {
 
