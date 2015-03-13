@@ -3346,9 +3346,6 @@
     <ClCompile Include="primitive\str\_str_pool.cpp">
       <Filter>Source Files\primitive\str</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\teste.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\filesystem\filesystem_path.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
@@ -3399,6 +3396,9 @@
     </ClCompile>
     <ClCompile Include="filesystem\file\file_plain_text_ostream_string_buffer.cpp">
       <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="teste.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

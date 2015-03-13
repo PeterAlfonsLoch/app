@@ -141,6 +141,8 @@ public:
    void parse_http_headers(const char * pszHeaders);
    string & get_http_post(string & str) const;
    string & get_json(string & str) const;
+   string get_http_post() const { string str; return get_http_post(str); }
+   string get_json() const { string str; return get_json(str); }
 
    virtual void write(::file::ostream & ostream) const;
    virtual void read(::file::istream & ostream);

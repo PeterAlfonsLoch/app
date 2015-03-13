@@ -2532,7 +2532,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_profiler|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="aura\aura\teste.cpp" />
     <ClCompile Include="aura\aura\_aura_aura_aura.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">true</ExcludedFromBuild>
@@ -4979,6 +4978,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="primitive\_primitive.cpp" />
+    <ClCompile Include="teste.cpp" />
     <ClCompile Include="user\colorertake5\colorertake5_base_editor.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
