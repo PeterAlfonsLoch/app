@@ -111,9 +111,9 @@ namespace file
             //virtual ::file::path matter_from_locator(::aura::str_context * pcontext,const string & strLocator);
             virtual ::file::path matter_from_locator(::aura::str_context * pcontext,const string & strLocator,const ::file::path & str);
             //virtual ::file::path matter_from_locator(::aura::str_context * pcontext,const string & strLocator,const string & str,const string & str2);
-            virtual void appmatter_locators(string & strRoot,string & strDomain,::aura::application * papp);
-            virtual void appmatter_locators(string & strRoot,string & strDomain,const string & strLibraryName,const string & strAppName);
-            virtual void appmatter_locators(string & strRoot,string & strDomain,const string & strAppName);
+            virtual void appmatter_locators(::file::path & strRoot,::file::path & strDomain,::aura::application * papp);
+            virtual void appmatter_locators(::file::path & strRoot,::file::path & strDomain,const string & strLibraryName,const string & strAppName);
+            virtual void appmatter_locators(::file::path & strRoot,::file::path & strDomain,const string & strAppName);
             virtual ::file::path appmatter_locator(::aura::application * papp);
             virtual ::file::path appmatter_locator(const string & strLibraryName,const string & strAppName);
             virtual ::file::path appmatter_locator(const string & strAppName);

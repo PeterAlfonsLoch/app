@@ -1787,6 +1787,7 @@
     <ClCompile Include="filesystem\filesystem\filesystem_application.cpp" />
     <ClCompile Include="filesystem\filesystem\filesystem_dir_application.cpp" />
     <ClCompile Include="filesystem\filesystem\filesystem_dir_system.cpp" />
+    <ClCompile Include="filesystem\filesystem\filesystem_path.cpp" />
     <ClCompile Include="filesystem\filesystem\filesystem_system.cpp" />
     <ClCompile Include="filesystem\file\_file.cpp" />
     <ClCompile Include="framework.cpp">

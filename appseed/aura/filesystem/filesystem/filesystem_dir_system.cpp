@@ -900,7 +900,7 @@ namespace file
 
       }
 
-      void system::appmatter_locators(string & strRoot, string & strDomain, ::aura::application * papp)
+      void system::appmatter_locators(::file::path & strRoot,::file::path & strDomain,::aura::application * papp)
       {
 
          if(papp->is_system())
@@ -927,14 +927,14 @@ namespace file
 
       }
 
-      void system::appmatter_locators(string & strRoot, string & strDomain, const string & strAppName)
+      void system::appmatter_locators(::file::path & strRoot,::file::path & strDomain,const string & strAppName)
       {
 
          appmatter_locators(strRoot, strDomain, System.m_mapAppLibrary[strAppName], strAppName);
 
       }
 
-      void system::appmatter_locators(string & strRoot, string & strDomain, const string & strLibraryNameParam, const string & strAppNameParam)
+      void system::appmatter_locators(::file::path & strRoot,::file::path & strDomain,const string & strLibraryNameParam,const string & strAppNameParam)
       {
 
          strsize iFind = strAppNameParam.find('/');
@@ -1027,7 +1027,7 @@ namespace file
       {
 
          ::file::path strRoot;
-         string strDomain;
+         ::file::path strDomain;
 
          appmatter_locators(strRoot,strDomain,papp);
 
@@ -1047,8 +1047,8 @@ namespace file
       ::file::path system::appmatter_locator(const string & strLibraryName, const string & strAppName)
       {
 
-         string strRoot;
-         string strDomain;
+         ::file::path strRoot;
+         ::file::path strDomain;
 
          appmatter_locators(strRoot, strDomain, strLibraryName, strAppName);
 
@@ -1059,14 +1059,14 @@ namespace file
       ::file::path system::appmatter_locator(const string & strAppName)
       {
 
-         string strRoot;
-         string strDomain;
+         ::file::path strRoot;
+         ::file::path strDomain;
 
          appmatter_locators(strRoot, strDomain, System.m_mapAppLibrary[strAppName], strAppName);
 
 #ifdef CUBE
 
-         return simple_path(strRoot, "appmatter", strDomain);
+         return strRoot /  "appmatter" /  strDomain;
 
 #else
 
@@ -1079,8 +1079,8 @@ namespace file
       ::file::path system::base_appmatter_locator(const ::file::path & strBase,const string & strLibraryName,const string & strAppName)
       {
 
-         string strRoot;
-         string strDomain;
+         ::file::path strRoot;
+         ::file::path strDomain;
 
          appmatter_locators(strRoot, strDomain, strLibraryName, strAppName);
 
@@ -1091,8 +1091,8 @@ namespace file
       ::file::path system::base_appmatter_locator(const ::file::path & strBase,const string & strAppName)
       {
 
-         string strRoot;
-         string strDomain;
+         ::file::path strRoot;
+         ::file::path strDomain;
 
          appmatter_locators(strRoot, strDomain, System.m_mapAppLibrary[strAppName], strAppName);
 

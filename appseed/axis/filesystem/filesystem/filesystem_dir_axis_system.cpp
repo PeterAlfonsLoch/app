@@ -2089,7 +2089,7 @@ ret:
 
       }
 
-      void system::appmatter_locators(string & strRoot, string & strDomain, ::aura::application * papp)
+      void system::appmatter_locators(::file::path & strRoot,::file::path & strDomain,::aura::application * papp)
       {
 
          if(papp->is_system())
@@ -2116,14 +2116,14 @@ ret:
 
       }
 
-      void system::appmatter_locators(string & strRoot, string & strDomain, const string & strAppName)
+      void system::appmatter_locators(::file::path & strRoot,::file::path & strDomain,const string & strAppName)
       {
 
          appmatter_locators(strRoot, strDomain, System.m_mapAppLibrary[strAppName], strAppName);
 
       }
 
-      void system::appmatter_locators(string & strRoot, string & strDomain, const string & strLibraryNameParam, const string & strAppNameParam)
+      void system::appmatter_locators(::file::path & strRoot,::file::path & strDomain,const string & strLibraryNameParam,const string & strAppNameParam)
       {
 
          strsize iFind = strAppNameParam.find('/');
