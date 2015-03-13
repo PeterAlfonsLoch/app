@@ -7,6 +7,7 @@ namespace file
    
    inline path & path::operator = (const var & var) { return operator = (var.get_string()); }
    inline path & path::operator += (const var & var) { return operator += (var.get_string()); }
+   inline path path::operator + (const var & var) const { return operator + (var.get_string()); }
    inline path path::folder() const { return ::file::path(::dir::name((const string &)*this),m_epath); }
    inline path path::sibling(const path & path) const   { return ::file::path(::dir::name((const string &)*this) + sep() + string(path).trim_left("\\/"),m_epath); }
    inline path path::sibling(const string & str) const   { return ::file::path(::dir::name((const string &)*this) + sep() + string(str).trim_left("\\/"),m_epath); }
@@ -18,3 +19,7 @@ namespace file
 
 
 } // namespace file
+
+
+inline ::file::path operator + (const string & str,const ::file::path & path) { ::file::path p(str);  return p + path; }
+inline ::file::path operator + (const char * psz,const ::file::path & path) {  ::file::path p(psz);  return p + path; }

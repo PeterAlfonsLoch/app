@@ -964,7 +964,7 @@ namespace dynamic_source
 
    }
 
-   size script_manager::get_image_size(const string & strFile)
+   size script_manager::get_image_size(const ::file::path & strFile)
    {
 
       single_lock sl(&m_mutexImageSize, false);
@@ -997,7 +997,7 @@ namespace dynamic_source
 
    }
 
-   bool script_manager::extract_image_size(const string & strFile, ::size * psize)
+   bool script_manager::extract_image_size(const ::file::path & strFile,::size * psize)
    {
 
       ::file::binary_buffer_sp f;
@@ -1116,10 +1116,10 @@ namespace dynamic_source
 
    }
 
-   string script_manager::get_stage_path(const string & strScriptPath)
+   ::file::path script_manager::get_stage_path(const ::file::path & strScriptPath)
    {
 
-      string strPath = strScriptPath;
+      ::file::path strPath = strScriptPath;
 
       strPath.replace(":/",".");
       strPath.replace(":\\",".");
@@ -1136,7 +1136,7 @@ namespace dynamic_source
    }
 
 
-   string script_manager::get_full_stage_path(const string & strScript)
+   ::file::path script_manager::get_full_stage_path(const ::file::path & strScript)
    {
 
       return get_stage_path(strScript);
@@ -1144,20 +1144,20 @@ namespace dynamic_source
    }
 
 
-   string script_manager::get_script_path(const string & strName)
+   ::file::path script_manager::get_script_path(const ::file::path & strName)
    {
 
-      string strTransformName = strName;
+      ::file::path strTransformName = strName;
 
       strTransformName.replace(":","");
 
-      string strScript;
+      ::file::path strScript;
 
-      strScript = System.file().title_(strName);
+      strScript = strName.title();
 
 #ifdef WINDOWS
 
-      return System.dir().path(System.dir().element(m_pcompiler->m_strDynamicSourceStage + "\\" + m_pcompiler->m_strStagePlatform + "\\dynamic_source"),System.dir().path(System.dir().name(strTransformName),strScript + ".dll",false));
+      return System.dir().element()/m_pcompiler->m_strDynamicSourceStage /m_pcompiler->m_strStagePlatform /"dynamic_source" /strTransformName.folder()/strScript + ".dll";
 
 #else
 
@@ -1168,7 +1168,7 @@ namespace dynamic_source
    }
 
 
-   bool script_manager::should_build(const string & strScriptPath)
+   bool script_manager::should_build(const ::file::path & strScriptPath)
    {
 
       UNREFERENCED_PARAMETER(strScriptPath);

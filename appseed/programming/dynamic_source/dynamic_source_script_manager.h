@@ -208,19 +208,19 @@ namespace dynamic_source
       ::sockets::link_in_socket * get_link_in(const char * pszServer, ::sockets::link_out_socket * poutsocket);
       bool is_online(const char * pszServer);
       ::sockets::link_out_socket * create_link_out(const char * pszServer, ::sockets::httpd_socket * phttpdsocket);
-      ::size get_image_size(const string & strFile);
-      bool extract_image_size(const string & strFile, ::size * psize);
+      ::size get_image_size(const ::file::path & strFile);
+      bool extract_image_size(const ::file::path & strFile,::size * psize);
 
 
       virtual void defer_clean_session();
 
-      virtual string get_full_stage_path(const string & strScript);
+      virtual ::file::path get_full_stage_path(const ::file::path & strScript);
 
-      virtual string get_stage_path(const string & strScript);
+      virtual ::file::path get_stage_path(const ::file::path & strScript);
 
-      virtual bool should_build(const string & strScript);
+      virtual bool should_build(const ::file::path & strScript);
 
-      virtual string get_script_path(const string & strName);
+      virtual ::file::path get_script_path(const ::file::path & strName);
 
    };
 

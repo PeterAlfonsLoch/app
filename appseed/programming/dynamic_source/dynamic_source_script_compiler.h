@@ -25,20 +25,21 @@ namespace dynamic_source
 
 
       file::plain_text_stream_memory_buffer     m_memfileLibError;
-      stringa                                   m_straLibSourcePath;
-      stringa                                   m_straLibSourceRelPath;
-      stringa                                   m_straLibCppPath;
-      stringa                                   m_straLibIncludePath;
-      stringa                                   m_straLibIncludeRelPath;
-      stringa                                   m_straLibHppPath;
-      string                                    m_strLibraryPath;
+      ::file::listing                             m_straLibSourcePath;
+      //::file::patha                             m_straLibSourceRelPath;
+      ::file::patha                             m_straLibCppPath;
+      ::file::listing                             m_straLibIncludePath;
+      //::file::patha                             m_straLibIncludeRelPath;
+      ::file::patha                             m_straLibHppPath;
+      ::file::path                              m_strLibraryPath;
                                                 
       uint32_t                                  m_dwLastLibraryVersionCheck;
       bool                                      m_bLastLibraryVersionCheck;
                                                 
                                                 
       string                                    m_strDynamicSourceConfiguration;
-      string                                    m_strDynamicSourceStage;
+      ::file::path                              m_strDynamicSourceStage;
+      ::file::path                              m_strDynamicSourceStageFolder;
                                                 
                                                 
       ::aura::library                           m_libraryLib;
@@ -64,7 +65,7 @@ namespace dynamic_source
       ::file_watcher::id                        m_filewatchidFribox;
                                                
       string                                    m_strPlat1;
-      string                                    m_strTime;
+      ::file::path                              m_strTime;
 
 
       script_compiler(::aura::application * papp);
@@ -83,12 +84,12 @@ namespace dynamic_source
       void compile(ds_script * pscript);
 
       void cppize(ds_script * pscript);
-      void cppize(const char * pszSource, const char * pszDest, ecpptype e_type);
+      void cppize(const ::file::path & pszSource,const ::file::path & pszDest,ecpptype e_type);
 
       void cppize1(ds_script * pscript);
-      void cppize1(const char * pszSource, const char * pszDest, ecpptype e_type);
+      void cppize1(const ::file::path & pszSource,const ::file::path & pszDest,ecpptype e_type);
 
-      string cppize2(const char * pszSource, bool bScript, stringa & straId);
+      string cppize2(const ::file::path & pszSource,bool bScript,stringa & straId);
 
       string get_ds_print(const char *psz)   ;
 

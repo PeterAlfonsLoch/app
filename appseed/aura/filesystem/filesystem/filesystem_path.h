@@ -136,13 +136,8 @@ namespace file
 
       }
 
-      path operator + (const char * psz) const
-      {
-
-         return ::file::path((const string &)*this + string((const string &)psz).trim_left("\\/"),m_epath);
-
-
-      }
+      path operator + (const char * psz) const { return operator + (string(psz));   }
+      path operator + (const var & var) const;
 
       path & operator += (const path & path)
       {
