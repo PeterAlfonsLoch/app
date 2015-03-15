@@ -63,7 +63,40 @@ public:
    string & get_json(string & str) const;
 
 
+   var_array array()
+   {
+      return var_array();
+   }
+
+   template < typename... VARS >
+   var_array array(VARS&... vars)
+   {
+
+      var_array va;
+      va.add(v);
+      return va.array(vars...);
+
+   }
+
+
 };
 
 
 
+
+
+
+namespace lemon
+{
+
+   template < typename... VARS >
+   var_array array_merge(VARS&... vars)
+   {
+
+      return var_array().array(vars...);
+
+
+   }
+
+   
+} // namespace lemon

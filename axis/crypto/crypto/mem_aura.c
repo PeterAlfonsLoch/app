@@ -93,7 +93,13 @@ static void *default_realloc_ex(void *str,size_t num,
 static void *(*realloc_ex_func)(void *,size_t,const char *file,int line)
 = default_realloc_ex;
 
-static void(*free_func)(void *)            = memory_free;
+void crypto_memory_free_func(void * p)
+{
+   if(p == NULL)
+      return;
+   memory_free(p);
+}
+static void(*free_func)(void *)            = crypto_memory_free_func;
 
 static void *(*malloc_locked_func)(size_t)  = memory_alloc;
 static void *default_malloc_locked_ex(size_t num,const char *file,int line)

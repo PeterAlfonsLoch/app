@@ -215,12 +215,15 @@ namespace str
       }
 
 
-      inline bool is_legal_uni_index(int64_t ca)
+      inline bool is_legal_uni_index(int64_t iUnicodeIndex)
       {
+         
+         return iUnicodeIndex < 65536 ? true : false;
+
          //return ca >= ((uint64_t) 0xffffffffu) ? false : true;
-         return ca >= 65536 ? false : true;
-         //return true;
+
       }
+
 
       inline bool is_space_char(wchar_t wch)
       {

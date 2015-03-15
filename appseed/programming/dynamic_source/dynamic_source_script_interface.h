@@ -92,6 +92,9 @@ namespace dynamic_source
       virtual var get_session_value(id id);
       virtual string session_id(const char * pszId = NULL);
 
+
+
+
    };
 
 
