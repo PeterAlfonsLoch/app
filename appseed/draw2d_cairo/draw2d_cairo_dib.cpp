@@ -41,7 +41,7 @@ namespace draw2d_cairo
    }
 
 
-   void dib::read(::file::input_stream & istream)
+   void dib::read(::file::istream & istream)
    {
 synch_lock ml(&cairo_mutex());
       ::draw2d::dib::read(istream);
@@ -2582,7 +2582,7 @@ synch_lock ml(&cairo_mutex());
 
 #if defined(WINDOWS)
 
-   bool dib::update_window(::aura::draw_interface * pwnd, signal_details * pobj)
+   bool dib::update_window(::aura::draw_interface * pwnd,signal_details * pobj,bool bTransferBuffer)
    {
 
 

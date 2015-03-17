@@ -310,7 +310,7 @@ namespace allocator
 // array is an array that call only copy constructor and destructor in elements
 // array is an array that call default constructors, copy constructs and destructors in elements
 template < class TYPE, class ALLOCATOR = allocator::nodef < TYPE > >
-class array_base :
+class array_base:
    virtual public ::object
 {
 public:
@@ -325,7 +325,7 @@ public:
    ::count        m_nGrowBy;  // grow amount
 
    array_base(int iTypeSize,bool bRaw);
-   array_base(::aura::application * papp, int iTypeSize, bool bRaw);
+   array_base(::aura::application * papp,int iTypeSize,bool bRaw);
    virtual ~array_base();
 
    inline ::count get_size() const;
@@ -343,6 +343,7 @@ public:
 
    TYPE * element_at(index i) const { return &m_pData[i]; }
 
+   
    ::count set_size(index nNewSize,::count nGrowBy = -1); // does not call default constructors on new items/elements
    ::count allocate(index nNewSize,::count nGrowBy = -1); // does not call default constructors on new items/elements
    ::count allocate_in_bytes(index nNewSize,::count nGrowBy = -1); // does not call default constructors on new items/elements
@@ -351,13 +352,16 @@ public:
    void free_extra();
    virtual void destroy();
 
+   
    void _001RemoveIndexes(index_array & ia);
    void remove_indexes(const index_array & ia);
    void remove_descending_indexes(const index_array & ia);
 
+   
    inline void remove_last();
    inline ::count remove_all();
    inline void clear();
+
 
    void on_construct_element(TYPE * p) { ALLOCATOR::construct(p); }
    void on_construct_element(TYPE * p,::count c) { ALLOCATOR::construct(p,c); }
@@ -374,6 +378,67 @@ public:
    virtual void copy(const array_base & src);
 
    virtual void on_after_read();
+
+   template < typename PRED >
+   void remove_if(PRED pred) { return remove_pred(pred); }
+
+   template < typename PRED >
+   void remove_pred(PRED pred)
+   { 
+
+      for(int i = 0; i < get_count();)
+      {
+
+         if(!pred(m_pData[i]))
+         {
+            i++;
+         }
+         else
+         {
+
+            int iStart = i;
+
+            int iCount = 1;
+
+            i++;
+
+            for(; i < get_count();)
+            {
+
+               if(!pred(m_pData[i]))
+               {
+                  
+                  i++;
+
+                  break;
+
+               }
+
+               iCount++;
+
+               i++;
+
+            }
+            remove_at(iStart,iCount);
+
+         }
+
+      }
+
+   }
+
+   
+   template < typename F >
+   void each(F f) 
+   {  
+
+      for(index i = 0; i < get_count(); i++)
+      {
+         f(m_pData[i]);
+      }
+   
+   }
+
 
 };
 
@@ -803,6 +868,15 @@ public:
    inline void set_at_grow(index nIndex, ARG_TYPE newElement);
 
    inline TYPE & element_at_grow(index nIndex);
+
+   template < typename... T >
+   void fadd(T... a)
+   {
+
+      add(TYPE(a...));
+
+   }
+
 
 };
 
