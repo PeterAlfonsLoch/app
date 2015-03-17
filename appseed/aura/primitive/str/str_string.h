@@ -631,7 +631,7 @@ public:
    string SpanExcluding(const char * pszCharSet ) const;
 
    // Format data using format string 'pszFormat'
-#ifdef VARIADIC_TEMPLATE
+//#ifdef VARIADIC_TEMPLATE
 
    void FormatPrinter(void * , const char * s)
    {
@@ -661,18 +661,45 @@ public:
    }
 
 
-#else
-
-
-   void __cdecl Format(const char * pszFormat, ... );
-
-
-
-#endif
+//#else
+//
+//
+//   void __cdecl Format(const char * pszFormat, ... );
+//
+//
+//
+//#endif
 
 
    // append formatted data using format string 'pszFormat'
-   void __cdecl AppendFormat(const char * pszFormat, ... );
+   void AppendFormat(const char * s)
+   {
+
+      string str;
+
+      string_format format(&str,&string::FormatPrinter,NULL);
+
+      format.printf(s);
+
+      operator += (str);
+
+   }
+
+   template<typename T,typename... Args>
+   void AppendFormat(const char *s,const T & value,Args... args)
+   {
+
+
+      string str;
+
+      string_format format(&str,&string::FormatPrinter,NULL);
+
+      format.printf(s,value,args...);
+
+      operator += (str);
+
+   }
+
 
    void AppendFormatV(const char * pszFormat, va_list args );
 

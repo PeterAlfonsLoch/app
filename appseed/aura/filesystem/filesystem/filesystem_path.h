@@ -56,6 +56,8 @@ namespace file
       path(const char * psz,e_path epath = path_file): path((const string &)psz, epath){};
       path(const wchar_t * psz,e_path epath = path_file): path((const string &)psz,epath){};
       path(const wstring & wstr,e_path epath = path_file): path((const string &)wstr,epath){};
+      //path(const var & var,e_path epath = path_file);
+      path(const property & property,e_path epath = path_file);
 
 
 
@@ -145,6 +147,8 @@ namespace file
 
       path operator + (const char * psz) const { return operator + (string(psz));   }
       path operator + (const var & var) const;
+      path operator + (const property & property) const;
+      path operator + (const id & id) const;
 
       path & operator += (const path & path)
       {
@@ -177,6 +181,7 @@ namespace file
 
       path operator / (const string & str) const { return operator /(::file::path(str)); }
       path operator / (const const char * psz) const { return operator /(::file::path(psz)); }
+      path operator / (const property & property) const;
 
       path & operator /= (const path & path)
       {
@@ -188,7 +193,7 @@ namespace file
       }
 
       path & operator /= (const string & str) { return operator /=(::file::path(str)); }
-      path & operator /= (const const char * psz) { return operator /=(::file::path(psz)); }
+      path & operator /= (const char * psz) { return operator /=(::file::path(psz)); }
 
       //::file::path & file_cat(const string & str) { return *this + str; }
 
@@ -245,7 +250,7 @@ namespace file
 
       index find_file_name() const
       {
-         return MAX(0, reverse_find(sep()));
+         return MAX(0, reverse_find(sep()) + 1);
       }
 
       bool is_equal(const ::file::path & path2) const;

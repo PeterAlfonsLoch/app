@@ -150,7 +150,7 @@ namespace dynamic_source
 
       }
 
-      ::file::listing listing;
+      ::file::listing listing(get_app());
 
       listing.ls_dir(m_strNetnodePath);
 

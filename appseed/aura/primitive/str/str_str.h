@@ -273,43 +273,45 @@ namespace str
    template < class TYPE >
    inline TYPE from_string(const char * psz);
 
-   void format(string_format * pformat, char const &  i);
+   CLASS_DECL_AURA void format(string_format * pformat,char const &  i);
 
-   void format(string_format * pformat, uchar const &  i);
+   CLASS_DECL_AURA void format(string_format * pformat,uchar const &  i);
 
-   void format(string_format * pformat, int16_t const &  i);
+   CLASS_DECL_AURA void format(string_format * pformat,int16_t const &  i);
 
-   void format(string_format * pformat, uint16_t const &  i);
+   CLASS_DECL_AURA void format(string_format * pformat,uint16_t const &  i);
 
-   void format(string_format * pformat, int32_t const &  i);
+   CLASS_DECL_AURA void format(string_format * pformat,int32_t const &  i);
 
-   void format(string_format * pformat, uint32_t const &  i);
+   CLASS_DECL_AURA void format(string_format * pformat,uint32_t const &  i);
 
-   void format(string_format * pformat, int64_t const & i);
+   CLASS_DECL_AURA void format(string_format * pformat,int64_t const & i);
 
-   void format(string_format * pformat, uint64_t const & i);
+   CLASS_DECL_AURA void format(string_format * pformat,uint64_t const & i);
 
-   void format(string_format * pformat, double const &  i);
+   CLASS_DECL_AURA void format(string_format * pformat,double const &  i);
 
-   void format(string_format * pformat, float const &  i);
+   CLASS_DECL_AURA void format(string_format * pformat,float const &  i);
 
-   void format(string_format * pformat, void * const & p);
+   CLASS_DECL_AURA void format(string_format * pformat,void * const & p);
 
-   void format(string_format * pformat, const void * const & p);
+   CLASS_DECL_AURA void format(string_format * pformat,const void * const & p);
 
-   void format(string_format * pformat, uchar * const & p);
+   CLASS_DECL_AURA void format(string_format * pformat,uchar * const & p);
 
-   void format(string_format * pformat, const char * const & psz);
+   CLASS_DECL_AURA void format(string_format * pformat,const char * const & psz);
 
-   void format(string_format * pformat, const string & str);
+   CLASS_DECL_AURA void format(string_format * pformat,const string & str);
 
-   void format(string_format * pformat, const calculator::value & val);
+   CLASS_DECL_AURA void format(string_format * pformat,const lparam & lparam);
 
-   void format(string_format * pformat, const lparam & lparam);
+   CLASS_DECL_AURA bool simple_escaped(const string & str,strsize pos);
 
+#ifdef WINDOWS
 
+   inline void format(string_format * pformat,const DWORD & dw) { return format(pformat,(const uint32_t &)dw);  }
 
-   bool CLASS_DECL_AURA simple_escaped(const string & str, strsize pos);
+#endif
 
 
    //inline bool begins(const id & id, const string & strPrefix) { return begins(id.m_psz, strPrefix); }

@@ -290,50 +290,50 @@ namespace windows
 
             }
 
-            file_find file_find;
+         }
 
-            bool bWorking = file_find.FindFile(listing.m_path / listing.os_pattern()) != FALSE;
+         file_find file_find;
 
-            if(bWorking)
+         bool bWorking = file_find.FindFile(listing.m_path / listing.os_pattern()) != FALSE;
+
+         if(bWorking)
+         {
+
+            while(bWorking)
             {
 
-               while(bWorking)
+               bWorking = file_find.FindNextFileA() != FALSE;
+
+               if(!file_find.IsDots() && file_find.GetFilePath() != listing.m_path)
                {
 
-                  bWorking = file_find.FindNextFileA() != FALSE;
-
-                  if(!file_find.IsDots() && file_find.GetFilePath() != listing.m_path)
+                  if((listing.m_bDir && file_find.IsDirectory()) || (listing.m_bFile && !file_find.IsDirectory()))
                   {
 
-                     if((listing.m_bDir && file_find.IsDirectory()) || (listing.m_bFile && !file_find.IsDirectory()))
-                     {
+                     listing.add(file_find.GetFilePath());
 
-                        listing.add(file_find.GetFilePath());
+                     listing.last().m_iSize = file_find.get_length();
 
-                        listing.last().m_iSize = file_find.get_length();
-
-                        listing.last().m_iDir = file_find.IsDirectory() != FALSE;
-
-                     }
+                     listing.last().m_iDir = file_find.IsDirectory() != FALSE;
 
                   }
 
                }
 
             }
-            else
-            {
 
-               listing.m_cres = cres(failure);
+         }
+         else
+         {
 
-            }
+            listing.m_cres = cres(failure);
 
-            for(index i = iStart; i < listing.get_size(); i++)
-            {
+         }
 
-               listing[i].m_iRelative = listing.m_path.get_length() + 1;
+         for(index i = iStart; i < listing.get_size(); i++)
+         {
 
-            }
+            listing[i].m_iRelative = listing.m_path.get_length() + 1;
 
          }
 
@@ -885,6 +885,25 @@ namespace windows
          CSIDL_COMMON_PROGRAMS,
          FALSE);
 
+      {
+
+         string strRelative;
+         strRelative = element();
+         index iFind = strRelative.find(':');
+         if(iFind >= 0)
+         {
+            strsize iFind1 = strRelative.reverse_find("\\",iFind);
+            strsize iFind2 = strRelative.reverse_find("/",iFind);
+            strsize iStart = MAX(iFind1 + 1,iFind2 + 1);
+            strRelative = strRelative.Left(iFind - 1) + "_" + strRelative.Mid(iStart,iFind - iStart) + strRelative.Mid(iFind + 1);
+         }
+
+         m_strCa2AppData = m_strAppData / "ca2" / strRelative;
+
+      }
+
+
+
       xml::document doc(get_app());
 
       doc.load(System.file().as_string(appdata() / "configuration/directory.xml",get_app()));
@@ -913,23 +932,6 @@ namespace windows
       mk(m_strTimeFolder / "time",get_app());
       xxdebug_box("win_dir::initialize","win_dir::initialize",0);
 
-
-      {
-
-         string strRelative;
-         strRelative = element();
-         index iFind = strRelative.find(':');
-         if(iFind >= 0)
-         {
-            strsize iFind1 = strRelative.reverse_find("\\",iFind);
-            strsize iFind2 = strRelative.reverse_find("/",iFind);
-            strsize iStart = MAX(iFind1 + 1,iFind2 + 1);
-            strRelative = strRelative.Left(iFind - 1) + "_" + strRelative.Mid(iStart,iFind - iStart) + strRelative.Mid(iFind + 1);
-         }
-
-         m_strCa2AppData = m_strAppData / "ca2" / strRelative;
-
-      }
 
       return true;
 

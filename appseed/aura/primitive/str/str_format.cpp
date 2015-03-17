@@ -2,7 +2,7 @@
 
 
 
-#ifdef VARIADIC_TEMPLATE
+//#ifdef VARIADIC_TEMPLATE
 
 
 #ifdef APPLEOS
@@ -465,4 +465,4 @@ bool string_format::parse(const char * & s)
 
 
 
-#endif
+//#endif

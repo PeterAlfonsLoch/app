@@ -89,7 +89,7 @@ namespace dynamic_source
       void cppize1(ds_script * pscript);
       void cppize1(const ::file::path & pszSource,const ::file::path & pszDest,ecpptype e_type);
 
-      string cppize2(const ::file::path & pszSource,bool bScript,stringa & straId);
+      string cppize2(const string & pszSource,bool bScript,stringa & straId);
 
       string get_ds_print(const char *psz)   ;
 

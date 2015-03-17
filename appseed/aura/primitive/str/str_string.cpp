@@ -2519,7 +2519,7 @@ void string::OemToAnsi()
 // Return the substring starting at strsize 'iFirst'
 string string::Mid(strsize iFirst) const
 {
-   return(Mid(iFirst,get_length() - iFirst));
+   return Mid(iFirst,-1);
 }
 
 string string::substr(strsize iFirst) const
@@ -2540,7 +2540,7 @@ string string::Mid(strsize iFirst,strsize nCount) const
       iFirst = 0;
 
    if(nCount < 0)
-      nCount = nLength;
+      nCount = nLength + nCount + 1;
 
    if(nCount + iFirst > nLength)
       nCount = nLength - iFirst;
@@ -2807,29 +2807,29 @@ return( TRUE );
 
 #ifdef WINDOWS
 
-void __cdecl string::Format(const char * pszFormat,...)
-{
-   ASSERT(__is_valid_string(pszFormat));
-
-   va_list argList;
-   va_start(argList,pszFormat);
-   FormatV(pszFormat,argList);
-   va_end(argList);
-}
-
+//void __cdecl string::Format(const char * pszFormat,...)
+//{
+//   ASSERT(__is_valid_string(pszFormat));
+//
+//   va_list argList;
+//   va_start(argList,pszFormat);
+//   FormatV(pszFormat,argList);
+//   va_end(argList);
+//}
+//
 
 // append formatted data using format string 'pszFormat'
-void __cdecl string::AppendFormat(const char * pszFormat,...)
-{
-   ASSERT(__is_valid_string(pszFormat));
-
-   va_list argList;
-   va_start(argList,pszFormat);
-
-   AppendFormatV(pszFormat,argList);
-
-   va_end(argList);
-}
+//void __cdecl string::AppendFormat(const char * pszFormat,...)
+//{
+//   ASSERT(__is_valid_string(pszFormat));
+//
+//   va_list argList;
+//   va_start(argList,pszFormat);
+//
+//   AppendFormatV(pszFormat,argList);
+//
+//   va_end(argList);
+//}
 
 // Format a message using format string 'pszFormat'
 void __cdecl string::format_message(const char * pszFormat,...)
