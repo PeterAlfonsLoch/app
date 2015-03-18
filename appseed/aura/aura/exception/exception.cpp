@@ -16,29 +16,50 @@ namespace exception
 
    }
 
+   exception::exception(e_context_switcher_failed efail)
+   {
+      //printf("log:exception");
+      //::MessageBox(NULL,"abc123","abc123",MB_OK);
+      m_bLog = efail != failure_no_log;
+
+      if(m_bLog)
+      {
+         printf("log:exception");
+      }
+
+      m_bHandled = false;
+
+      m_bContinue = true;
+
+   }
+
 
    exception::~exception()
    {
+      if(m_bLog)
+      {
 
-      if(m_bContinue)
-      {
-         printf("-continue");
-      }
-      else
-      {
-         printf("-should_not_continue(fatal_exception_instance_candidate)");
-      }
+         if(m_bContinue)
+         {
+            printf("-continue");
+         }
+         else
+         {
+            printf("-should_not_continue(fatal_exception_instance_candidate)");
+         }
 
-      if(m_bHandled)
-      {
-         printf("-explicitly_handled");
-      }
-      else
-      {
-         printf("-not_handled_explicitly");
-      }
+         if(m_bHandled)
+         {
+            printf("-explicitly_handled");
+         }
+         else
+         {
+            printf("-not_handled_explicitly");
+         }
 
-      printf("\n");
+         printf("\n");
+
+         }
 
    }
 
@@ -65,15 +86,15 @@ namespace exception
 
 
    result::result(std::initializer_list < exception * > list)
-   { 
-      
+   {
+
       forallref(list)
-      { 
-         
-         add(item); 
-      
-      } 
-   
+      {
+
+         add(item);
+
+      }
+
    }
 
 } // namespace exception

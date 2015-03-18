@@ -317,7 +317,7 @@ namespace linux
    ::file::listing & dir::ls(::aura::application * papp, ::file::listing & listing)
    {
 
-      if(!::file::dir::system::ls(papp, listing))
+      if(::file::dir::system::ls(papp, listing))
       {
 
          return listing;
@@ -371,6 +371,10 @@ namespace linux
          if(listing.m_bFile)
          {
 
+            RESTORE(listing.m_bRecursive);
+
+            listing.m_bRecursive = false;
+
             listing.ls_file(listing.m_path);
 
          }
@@ -396,7 +400,7 @@ namespace linux
 
             ::file::path strPath = stra[i];
 
-            if(!::str::begins_eat(strPath, listing.m_path))
+            if(!::str::begins(strPath, listing.m_path))
                continue;
 
             bool bIsDir;
@@ -1034,7 +1038,7 @@ namespace linux
    }
 
 
-   ::file::path dir::time_log(const char * pszId)
+   ::file::path dir::time_log(const string & pszId)
    {
 
       ::file::path strLogBaseDir;
@@ -1353,7 +1357,7 @@ namespace linux
    }
 
 
-   ::file::path dir::usersystemappdata(::aura::application *  papp, const char * lpcszPrefix)
+   ::file::path dir::usersystemappdata(::aura::application *  papp, const string & lpcszPrefix)
    {
 
       UNREFERENCED_PARAMETER(papp);
@@ -1444,7 +1448,7 @@ namespace linux
    }
 
 
-   ::file::path dir::default_userappdata(::aura::application *  papp, const char * lpcszPrefix, const char * lpcszLogin)
+   ::file::path dir::default_userappdata(::aura::application *  papp, const string & lpcszPrefix, const string & lpcszLogin)
    {
 
       return default_userfolder(papp, lpcszPrefix, lpcszLogin) / "appdata";
@@ -1452,7 +1456,7 @@ namespace linux
    }
 
 
-   ::file::path dir::default_userdata(::aura::application *  papp, const char * lpcszPrefix, const char * lpcszLogin)
+   ::file::path dir::default_userdata(::aura::application *  papp, const string & lpcszPrefix, const string & lpcszLogin)
    {
 
       return default_userfolder(papp, lpcszPrefix, lpcszLogin) / "data";
@@ -1460,7 +1464,7 @@ namespace linux
    }
 
 
-   ::file::path dir::default_userfolder(::aura::application *  papp, const char * lpcszPrefix, const char * lpcszLogin)
+   ::file::path dir::default_userfolder(::aura::application *  papp, const string & lpcszPrefix, const string & lpcszLogin)
    {
 
       return userfolder(papp);

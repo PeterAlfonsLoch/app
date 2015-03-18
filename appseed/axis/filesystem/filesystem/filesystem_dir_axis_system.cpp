@@ -389,17 +389,17 @@ namespace file
             if(l.m_eextract != extract_none && ::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (icmp(l.m_path.ext(),".zip") == 0 || l.m_path.find_ci("zip:") >= 0))
             {
 
-               throw "should implement recursive zip";
+               //throw "should implement recursive zip";
 
-               m_pziputil->ls(papp,l);
+               //m_pziputil->ls(papp,l);
 
-               l.m_cres = failure;
+               l.m_cres = failure_no_log;
 
             }
             else
             {
 
-               l.m_cres = failure;
+               l.m_cres = failure_no_log;
 
 
             }
@@ -428,7 +428,7 @@ namespace file
             else
             {
 
-               l.m_cres = failure;
+               l.m_cres = failure_no_log;
 
 
             }
@@ -451,13 +451,13 @@ namespace file
       //   }
 
       //   return false;
-      //   
+      //
       //}
 
 
       //bool system::rls_dir(::aura::application * papp, const ::file::path & lpcsz, ::file::patha & patha)
       //{
-      //   
+      //
       //   return false;
 
       //}
@@ -468,7 +468,7 @@ namespace file
 
       //   if(::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (::str::ends_ci(lpcsz,".zip") || ::str::find_file_extension("zip:",lpcsz) >= 0))
       //   {
-      //      
+      //
       //      return m_pziputil->ls_dir(papp, lpcsz, patha);
 
       //   }
@@ -478,12 +478,12 @@ namespace file
 
       //}
 
-      
+
       //bool system::ls_file(::aura::application * papp, const ::file::path & lpcsz, ::file::patha & patha, ::file::patha * ppathaName)
       //{
 
       //   return false;
-      // 
+      //
       //}
 
 
@@ -873,7 +873,7 @@ namespace file
       ::file::patha system::locale_schema_matter(::aura::application * papp,const string & strLocale,const string & strSchema,const ::file::path & root,const ::file::path & domain)
       {
 
-         
+
          if (root.has_char() && domain.has_char())
          {
 
@@ -885,7 +885,7 @@ namespace file
             }
             else
             {
-               
+
                return { element() / root / "appmatter" / domain / papp->m_paxissession->get_locale_schema_dir(strLocale,strSchema) };
 
             }
@@ -1000,7 +1000,7 @@ namespace file
          {
 
             stra = listing(papp).ls_file(strDir);
-            
+
 
          }
 

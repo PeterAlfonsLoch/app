@@ -786,6 +786,9 @@ oswindow SetFocus(oswindow window)
 
    //single_lock sl(&user_mutex(), true);
 
+   if(window == NULL)
+      return NULL;
+
    xdisplay display(window->display());
 
    if(!IsWindow(window))
@@ -813,7 +816,7 @@ oswindow GetFocus()
    pdisplay.open(NULL);
 
    if(pdisplay == NULL)
-   return NULL;
+      return NULL;
 
    Window window = None;
 

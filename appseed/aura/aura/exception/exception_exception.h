@@ -14,9 +14,11 @@ namespace exception
       bool        m_bHandled;
       bool        m_bContinue;
       string      m_strMessage;
+      bool        m_bLog;
 
 
       exception();
+      exception(e_context_switcher_failed efail);
       virtual ~exception();
       virtual void Delete();
 
@@ -41,7 +43,7 @@ namespace exception
       result(e_context_switcher_no_exception) {}
       result(e_context_switcher_failed)
       {
-         add(canew(exception()));
+         add(canew(exception(failure)));
       }
       result(std::initializer_list < exception * > list);
       ~result() { release(); }

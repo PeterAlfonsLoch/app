@@ -38,7 +38,8 @@ enum e_context_switcher_no_exception
 // very short name ([{c}])ontext (switchers, as it as context) enums
 enum e_context_switcher_failed
 {
-   failure
+   failure,
+   failure_no_log
 };
 
 

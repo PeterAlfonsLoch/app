@@ -397,21 +397,21 @@ namespace file
       //   throw interface_only_exception(get_app(), "this is an interface");
       //}
 
-      
+
       ::file::listing & system::root_ones(::file::listing & listing,::aura::application * papp)
       {
-         
+
          UNREFERENCED_PARAMETER(listing);
-         
+
          throw interface_only_exception(get_app(), "this is an interface");
 
       }
 
-      
+
       ::file::listing & system::ls(::aura::application * papp, listing & listing)
       {
 
-         listing.m_cres = cres(failure);
+         listing.m_cres = cres(failure_no_log);
 
          return listing;
 
@@ -420,7 +420,7 @@ namespace file
 
       bool system::has_subdir(::aura::application * papp,const ::file::path & psz)
       {
-         
+
          UNREFERENCED_PARAMETER(psz);
 
          throw interface_only_exception(papp, "this is an interface");
@@ -593,10 +593,10 @@ namespace file
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      
+
       ::file::path system::time_square(::aura::application * papp,const string & pszPrefix,const string & pszSuffix)
       {
-         
+
          UNREFERENCED_PARAMETER(papp);
          UNREFERENCED_PARAMETER(pszPrefix);
          UNREFERENCED_PARAMETER(pszSuffix);
@@ -646,7 +646,7 @@ namespace file
 
       }
 
-      
+
 
       ::file::patha system::locale_schema_matter(::aura::application * papp,const string & strLocale,const string & strSchema,const ::file::path & strRoot,const ::file::path & strDomain)
       {

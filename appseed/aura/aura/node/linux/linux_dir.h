@@ -69,7 +69,7 @@ namespace linux
       virtual ::file::path module();
       virtual ::file::path ca2module();
       virtual ::file::path time_square();
-      virtual ::file::path time_log(const char * pszId);
+      virtual ::file::path time_log(const string & pszId);
 
 
       virtual ::file::path trash_that_is_not_trash(const ::file::path & psz);
@@ -78,14 +78,14 @@ namespace linux
       virtual ::file::path commonappdata();
       virtual ::file::path element_commonappdata(const string & strElement);
 
-      virtual ::file::path usersystemappdata(::aura::application * papp, const char * lpcszPrefix);
+      virtual ::file::path usersystemappdata(::aura::application * papp, const string & lpcszPrefix);
       virtual ::file::path userappdata(::aura::application * papp);
       virtual ::file::path userdata(::aura::application * papp);
       virtual ::file::path userfolder(::aura::application * papp);
       virtual ::file::path default_os_user_path_prefix(::aura::application * papp);
-      virtual ::file::path default_userappdata(::aura::application * papp, const char * lpcszPrefix, const char * lpcszLogin);
-      virtual ::file::path default_userdata(::aura::application * papp, const char * lpcszPrefix, const char * lpcszLogin);
-      virtual ::file::path default_userfolder(::aura::application * papp, const char * lpcszPrefix, const char * lpcszLogin);
+      virtual ::file::path default_userappdata(::aura::application * papp, const string & lpcszPrefix, const string & lpcszLogin);
+      virtual ::file::path default_userdata(::aura::application * papp, const string & lpcszPrefix, const string & lpcszLogin);
+      virtual ::file::path default_userfolder(::aura::application * papp, const string & lpcszPrefix, const string & lpcszLogin);
       virtual ::file::path userquicklaunch(::aura::application * papp);
       virtual ::file::path userprograms(::aura::application * papp);
 
