@@ -1711,12 +1711,18 @@ namespace aura
 
          strBuildPath = System.dir().commonappdata()/ "spa_build.txt";
 
-         strBuildNumber = Application.file().as_string(strBuildPath);
+         string strNewBuildNumber = Application.file().as_string(strBuildPath);
 
-         if(strBuildNumber.is_empty())
+         if(strNewBuildNumber.is_empty())
          {
             
             strBuildNumber = "installed";
+
+         }
+         else
+         {
+
+            strBuildNumber = strNewBuildNumber;
 
          }
 

@@ -765,13 +765,10 @@ string dir::name(const char * path1)
    string str;
 
    str = path1;
-#if defined(LINUX) || defined(APPLEOS)
-   index iPos = str.reverse_find('/');
-#else
-   index iPos = str.reverse_find('\\');
-#endif
+   index iPos1 = str.reverse_find('/');
+   index iPos2 = str.reverse_find('\\');
 
-   return str.substr(0, iPos + 1);
+   return str.substr(0, MAX(iPos1, iPos2) + 1);
 
 }
 

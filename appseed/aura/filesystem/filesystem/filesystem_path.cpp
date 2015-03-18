@@ -5,12 +5,12 @@ namespace file
 {
 
 #ifdef WINDOWS
-   const char * path::s_pszDirSep = "\\/";
-   const char * path::s_pszOtherDirSep = "/\\";
+   const char * path::s_pszDirSep = "\\\\/";
+   const char * path::s_pszOtherDirSep = "//\\";
 
 #else
-   const char * path::s_pszDirSep = "/\\";
-   const char * path::s_pszOtherDirSep = "/\\";
+   const char * path::s_pszDirSep = "//\\";
+   const char * path::s_pszOtherDirSep = "//\\";
 #endif
 
 

@@ -978,7 +978,30 @@ namespace install
          }
 
       }
+      else if(strBuildNumber == "static")
+      {
 
+         if(!m_strVersionLatestBuildNumber.Lookup(m_strVersion,strBuildNumber))
+         {
+
+            string strBuildPath;
+
+            strBuildPath = System.dir().commonappdata() / "spa_build.txt";
+
+            strBuildNumber = Application.file().as_string(strBuildPath);
+
+            if(strBuildNumber.is_empty())
+            {
+
+               strBuildNumber = "installed";
+
+            }
+
+            m_strVersionLatestBuildNumber.set_at(m_strVersion,strBuildNumber);
+
+         }
+
+      }
 
       sp(::xml::node) lpnodeInstalled = lpnodeVersion->GetChildByAttr("installed","build",strBuildNumber);
 

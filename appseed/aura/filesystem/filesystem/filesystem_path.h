@@ -14,11 +14,12 @@ namespace file
 
    enum e_path
    {
+      path_none,
       path_file,
       path_url
    };
 
-   inline e_path get_path_type(const string & str);
+   inline e_path get_path_type(const string & str, e_path epathForce = path_none);
 
    struct CLASS_DECL_AURA path_meta
    {
@@ -47,17 +48,15 @@ namespace file
 
       path(e_context_switcher_null) { m_epath = path_file; }
       path(e_path epath = path_file) { m_epath = epath; }
-      path(const string & str) : string(str) { m_epath = get_path_type(str); normalize(); }
-      path(const string & str,e_path epath) : string(str) { m_epath = epath; normalize(); }
-      path(const id & id): string(id) { m_epath = get_path_type(*this); normalize(); }
-      path(const id & id,e_path epath): string(id) { m_epath = epath; normalize(); }
+      path(const string & str,e_path epath = path_none): string(str) { m_epath = get_path_type(str, epath); normalize(); }
+      path(const id & id,e_path epath = path_none): string(id) { m_epath = get_path_type(*this,epath); normalize(); }
       path(const path & path) { operator = (path); }
       path(path && path): string(::move(path)) { *((path_meta *)this) = (const path_meta &) path; }
-      path(const char * psz,e_path epath = path_file): path((const string &)psz, epath){};
-      path(const wchar_t * psz,e_path epath = path_file): path((const string &)psz,epath){};
-      path(const wstring & wstr,e_path epath = path_file): path((const string &)wstr,epath){};
+      path(const char * psz,e_path epath = path_none): path((const string &)psz, epath){};
+      path(const wchar_t * psz,e_path epath = path_none): path((const string &)psz,epath){};
+      path(const wstring & wstr,e_path epath = path_none): path((const string &)wstr,epath){};
       //path(const var & var,e_path epath = path_file);
-      path(const property & property,e_path epath = path_file);
+      path(const property & property,e_path epath = path_none);
 
 
 
@@ -132,7 +131,7 @@ namespace file
       path operator + (const path & path) const
       {
 
-         return ::file::path((const string &)*this  + string((const string &)path).trim_left("\\/"), m_epath);
+         return ::file::path((const string &)*this  + string((const string &)path), m_epath);
 
       }
 
@@ -140,7 +139,7 @@ namespace file
       path operator + (const string & str) const
       {
 
-         return ::file::path((const string &)*this + string((const string &)str).trim_left("\\/"),m_epath);
+         return ::file::path((const string &)*this + string((const string &)str),m_epath);
 
 
       }
@@ -307,10 +306,27 @@ namespace file
    };
 
 
-   inline e_path get_path_type(const string & str)
+   inline e_path get_path_type(const string & str, e_path epathForce)
    {
 
-      return is_url_dup(str) ? path_url : path_file;
+      if(epathForce != path_none)
+      {
+
+         return epathForce;
+
+      }
+      else if(is_url_dup(str))
+      {
+
+         return path_url;
+
+      }
+      else
+      {
+
+         return path_file;
+
+      }
 
    }
 
