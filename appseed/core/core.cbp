@@ -83,6 +83,7 @@
 			<Add option="-laxisfreeimage" />
 			<Add option="-laxisfreetype" />
 			<Add option="-laxismysql" />
+			<Add option="-laxisbzip2" />
 			<Add option="-laxis" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />

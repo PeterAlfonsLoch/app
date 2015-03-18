@@ -86,6 +86,15 @@
 		<Unit filename="blocksort.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="bsdiff/bsdiff_bsdiff.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="bsdiff/bsdiff_bspatch.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="bsdiff/libbsdiff.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="bz-common.xsl" />
 		<Unit filename="bz-fo.xsl" />
 		<Unit filename="bz-html.xsl" />

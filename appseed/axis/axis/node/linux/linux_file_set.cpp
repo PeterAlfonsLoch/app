@@ -114,6 +114,8 @@ namespace linux
 
          }
 
+         m_straFile.m_pprovider = get_app();
+
          for(j = 0; j < m_straFilter.get_size(); j++)
          {
 
@@ -124,13 +126,13 @@ namespace linux
             if(bRecursive)
             {
 
-               Application.dir().rls_pattern(m_straSearch.element_at(i), strFilter, &m_straFile);
+               m_straFile.rls_pattern(m_straSearch.element_at(i), strFilter);
 
             }
             else
             {
 
-               Application.dir().ls_pattern(m_straSearch.element_at(i), strFilter, &m_straFile);
+               m_straFile.ls_pattern(m_straSearch.element_at(i), strFilter);
 
             }
 

@@ -97,7 +97,7 @@
 		<Unit filename="kissfft/kissfft_fftd.h" />
 		<Unit filename="kissfft/kissfft_ifftd.cpp" />
 		<Unit filename="kissfft/kissfft_ifftd.h" />
-		<Unit filename="math/math.h" />
+		<Unit filename="math/math_math.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

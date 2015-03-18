@@ -70,12 +70,15 @@
 			<Add directory="crypto/asn1" />
 			<Add directory="crypto/evp" />
 			<Add directory="crypto/modes" />
+			<Add directory="../../appseed" />
+			<Add directory="../../appseed/aura" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
 			<Add option="-Wl,-z,origin" />
 			<Add option="-ldl" />
 			<Add option="-lpthread" />
+			<Add option="-laura" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 		</Linker>
@@ -192,6 +195,9 @@
 		<Unit filename="crypto/md5/md5.h" />
 		<Unit filename="crypto/md5/md5_locl.h" />
 		<Unit filename="crypto/mdc2/mdc2.h" />
+		<Unit filename="crypto/mem_aura.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="crypto/modes/modes.h" />
 		<Unit filename="crypto/modes/modes_lcl.h" />
 		<Unit filename="crypto/o_dir.h" />

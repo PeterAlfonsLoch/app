@@ -265,15 +265,15 @@ namespace dynamic_source
       pscript->m_strCppPath.Format(m_strTime/  "dynamic_source\\%s.cpp", strTransformName);
       //#ifdef DEBUG
 #ifdef LINUX
-      pscript->m_strBuildBat.Format(System.dir().element() / m_strDynamicSourceStage / "front\\dynamic_source\\BuildBat\\%s%s.bat"),System.file().name_(strTransformName),strTransformName);
-      strO.Format(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script\\%s\\%s.o", false), strTransformName, System.file().name_(strTransformName));
+      pscript->m_strBuildBat = System.dir().element() / m_strDynamicSourceStage / "front\\dynamic_source\\BuildBat"/strTransformName.name()/strTransformName+".bat";
+      strO = ::file::path(m_strTime) / "intermediate" / m_strPlatform / m_pmanager->m_strNamespace + "_dynamic_source_script" / strTransformName / strTransformName.name() + ".o";
 #else
       strB = m_strDynamicSourceStageFolder / "front\\dynamic_source\\BuildBat" / strTransformName.name() / strTransformName + ".bat";
       strP = m_strDynamicSourceStageFolder / m_strStagePlatform / "dynamic_source" / strTransformName.sibling(strScript.name()) + ".pdb";
       strL = m_strDynamicSourceStageFolder / m_strStagePlatform / "dynamic_source"/ strTransformName.sibling(strScript.name()) + ".lib";
       strE = m_strDynamicSourceStageFolder / m_strStagePlatform / "dynamic_source"/ strTransformName.sibling(strScript.name()) + ".exp";
-      
-      
+
+
       ::file::path strDynamicSourceScriptFolder = m_strTime / "intermediate" / m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strNamespace + "_dynamic_source_script";
       strDVI = strDynamicSourceScriptFolder / strTransformName / m_strSdk1 + ".idb";
       strDVP = strDynamicSourceScriptFolder / strTransformName / m_strSdk1 + ".pdb";
@@ -475,7 +475,7 @@ namespace dynamic_source
 
       string strBuildCmd;
 #ifdef LINUX
-      strBuildCmd.Format(System.dir().element() / "nodeapp\\stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bash"));
+      strBuildCmd.Format(System.dir().element() / "nodeapp\\stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bash");
 #else
       //#ifdef DEBUG
       strBuildCmd.Format(System.dir().element() / "nodeapp\\stage\\dynamic_source" / m_strDynamicSourceConfiguration + ::file::path("_cl") + m_strPlat1 + ".bat");

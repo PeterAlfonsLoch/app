@@ -362,7 +362,7 @@ namespace filemanager
 
          if(strPath.has_char())
          {
-            
+
             ::file::patha stra;
 
             strPath.ascendants_path(stra);
@@ -736,12 +736,13 @@ namespace filemanager
 
    int32_t tree::polishing::run()
    {
-
+#ifdef WINDOWS
       HRESULT result = ::CoInitializeEx(NULL,COINIT_MULTITHREADED);
       if(!SUCCEEDED(result))
       {
          return result;
       }
+#endif
 
       single_lock sl(&m_ptree->m_mutexData,true);
 

@@ -267,112 +267,114 @@ namespace linux
    //}
 
 
-   bool dir::ls_pattern(::aura::application * papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, int64_array * piaSize)
+
+   ::file::listing & dir::ls(::aura::application * papp, ::file::listing & listing)
    {
 
-      if(::file::dir::axis::system::ls_pattern(papp,lpcsz,pszPattern,pstraPath,pstraTitle,pbaIsDir,piaSize))
+
+      if(::file::dir::axis::system::ls(papp, listing))
       {
 
-         return true;
+         return listing;
 
       }
 
-      return ::linux::dir::ls_pattern(papp,lpcsz,pszPattern,pstraPath,pstraTitle,pbaIsDir,piaSize);
+      return ::linux::dir::ls(papp,listing);
 
    }
 
 
-   bool dir::rls(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, e_extract eextract)
-   {
-
-      if(::file::dir::axis::system::rls(papp,lpcsz,pstraPath,pstraTitle,pstraRelative,eextract))
-      {
-
-         return true;
-
-      }
-
-      return ::linux::dir::rls(papp,lpcsz,pstraPath,pstraTitle,pstraRelative,eextract);
-
-   }
-
-
-   bool dir::rls_pattern(::aura::application * papp, const char * lpcsz, const char * lpszPattern, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, bool_array * pbaIsDir, int64_array * piaSize, e_extract eextract)
-   {
-
-      if(::file::dir::axis::system::rls_pattern(papp,lpcsz,lpszPattern,pstraPath,pstraTitle,pstraRelative,pbaIsDir,piaSize,eextract))
-      {
-
-         return true;
-
-      }
-
-      return ::linux::dir::rls_pattern(papp,lpcsz,lpszPattern,pstraPath,pstraTitle,pstraRelative,pbaIsDir,piaSize,eextract);
-
-   }
-
-
-   bool dir::rls_dir(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative)
-   {
-
-      if(::file::dir::axis::system::rls_dir(papp,lpcsz,pstraPath,pstraTitle,pstraRelative))
-      {
-
-         return true;
-
-      }
-
-      return ::linux::dir::rls_dir(papp,lpcsz,pstraPath,pstraTitle,pstraRelative);
-
-   }
+//   bool dir::rls(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, e_extract eextract)
+//   {
+//
+//      if(::file::dir::axis::system::rls(papp,lpcsz,pstraPath,pstraTitle,pstraRelative,eextract))
+//      {
+//
+//         return true;
+//
+//      }
+//
+//      return ::linux::dir::rls(papp,lpcsz,pstraPath,pstraTitle,pstraRelative,eextract);
+//
+//   }
+//
+//
+//   bool dir::rls_pattern(::aura::application * papp, const char * lpcsz, const char * lpszPattern, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, bool_array * pbaIsDir, int64_array * piaSize, e_extract eextract)
+//   {
+//
+//      if(::file::dir::axis::system::rls_pattern(papp,lpcsz,lpszPattern,pstraPath,pstraTitle,pstraRelative,pbaIsDir,piaSize,eextract))
+//      {
+//
+//         return true;
+//
+//      }
+//
+//      return ::linux::dir::rls_pattern(papp,lpcsz,lpszPattern,pstraPath,pstraTitle,pstraRelative,pbaIsDir,piaSize,eextract);
+//
+//   }
 
 
-   bool dir::ls_dir(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
-   {
+//   bool dir::rls_dir(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative)
+//   {
+//
+//      if(::file::dir::axis::system::rls_dir(papp,lpcsz,pstraPath,pstraTitle,pstraRelative))
+//      {
+//
+//         return true;
+//
+//      }
+//
+//      return ::linux::dir::rls_dir(papp,lpcsz,pstraPath,pstraTitle,pstraRelative);
+//
+//   }
+//
+//
+//   bool dir::ls_dir(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
+//   {
+//
+//      if(::file::dir::axis::system::ls_dir(papp,lpcsz,pstraPath,pstraTitle))
+//      {
+//
+//         return true;
+//
+//      }
+//
+//      return ::linux::dir::ls_dir(papp,lpcsz,pstraPath,pstraTitle);
+//
+//   }
+//
+//
+//   bool dir::ls_file(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
+//   {
+//
+//      if(::file::dir::axis::system::ls_file(papp,lpcsz,pstraPath,pstraTitle))
+//      {
+//
+//         return true;
+//
+//      }
+//
+//      return ::linux::dir::ls_file(papp,lpcsz,pstraPath,pstraTitle);
+//
+//   }
+//
+//
+//   bool dir::ls(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, int64_array * piaSize)
+//   {
+//
+//      if(::file::dir::axis::system::ls(papp,lpcsz,pstraPath,pstraTitle,pbaIsDir,piaSize))
+//      {
+//
+//         return true;
+//
+//      }
+//
+//      return ::linux::dir::ls(papp,lpcsz,pstraPath,pstraTitle,pbaIsDir,piaSize);
+//
+//   }
 
-      if(::file::dir::axis::system::ls_dir(papp,lpcsz,pstraPath,pstraTitle))
-      {
 
-         return true;
-
-      }
-
-      return ::linux::dir::ls_dir(papp,lpcsz,pstraPath,pstraTitle);
-
-   }
-
-
-   bool dir::ls_file(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
-   {
-
-      if(::file::dir::axis::system::ls_file(papp,lpcsz,pstraPath,pstraTitle))
-      {
-
-         return true;
-
-      }
-
-      return ::linux::dir::ls_file(papp,lpcsz,pstraPath,pstraTitle);
-
-   }
-
-
-   bool dir::ls(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, int64_array * piaSize)
-   {
-
-      if(::file::dir::axis::system::ls(papp,lpcsz,pstraPath,pstraTitle,pbaIsDir,piaSize))
-      {
-
-         return true;
-
-      }
-
-      return ::linux::dir::ls(papp,lpcsz,pstraPath,pstraTitle,pbaIsDir,piaSize);
-
-   }
-
-
-   bool dir::is(const char * lpcszPath, ::aura::application * papp)
+   bool dir::is(const ::file::path & lpcszPath, ::aura::application * papp)
    {
 
       if(::linux::dir::is(lpcszPath,papp))
@@ -385,20 +387,20 @@ namespace linux
 
    }
 
-   bool dir::is(const string & strPath, ::aura::application * papp)
-   {
+//   bool dir::is(const string & strPath, ::aura::application * papp)
+//   {
+//
+//      if(::linux::dir::is(strPath,papp))
+//         return true;
+//
+//      if(::file::dir::axis::system::is(strPath,papp))
+//         return true;
+//
+//      return false;
+//
+//   }
 
-      if(::linux::dir::is(strPath,papp))
-         return true;
-
-      if(::file::dir::axis::system::is(strPath,papp))
-         return true;
-
-      return false;
-
-   }
-
-   bool dir::name_is(const string & str, ::aura::application * papp)
+   bool dir::name_is(const ::file::path & str, ::aura::application * papp)
    {
       //OutputDebugString(str);
       strsize iLast = str.get_length() - 1;

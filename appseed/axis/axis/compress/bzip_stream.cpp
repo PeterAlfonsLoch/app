@@ -35,8 +35,8 @@ ostream(pfileDest)
 }
 
 
-bzip_stream::bzip_stream(::file::ostream & ostream):
-ostream(ostream)
+bzip_stream::bzip_stream(::file::ostream & os):
+ostream(os)
 {
    construct();
 }

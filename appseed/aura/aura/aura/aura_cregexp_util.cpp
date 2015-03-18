@@ -41,12 +41,10 @@ bool cregexp_util::find(string & strMatch, const string & str, const string & st
 
    bool bOk = pre->find(strMatch, str, iSubString, piStart, piEnd);
 
-   delete pre;
-
-
    return bOk;
 
 }
+
 
 bool cregexp_util::find(const string & str, const string & strExp, index iSubString, strsize  * piStart, strsize  * piEnd)
 {
@@ -156,10 +154,10 @@ bool cregexp_util::add_tokens(stringa & stra, const string & lpszSubject, const 
       find = end + 1;
    }
 
-   delete pre;
-
    return true;
+
 }
+
 
 bool cregexp_util::match(const string & lpsz, const string & strExp)
 {

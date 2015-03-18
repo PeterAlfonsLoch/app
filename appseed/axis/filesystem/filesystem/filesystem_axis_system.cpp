@@ -257,7 +257,7 @@ namespace file
 
    ::file::path system::time_square(::aura::application * papp,const string & pszPrefix,const string & pszSuffix)
    {
-      
+
       return time(papp,System.dir().time_square(papp),25,pszPrefix,pszSuffix);
 
    }
@@ -773,10 +773,10 @@ restart:
 
    ::cres system::copy(const ::file::path & pszNew,const ::file::path & psz,bool bFailIfExists,e_extract eextract,::aura::application * papp)
    {
-      
+
       if(bFailIfExists)
       {
-      
+
          if(exists(pszNew,papp))
          {
             return failure;
@@ -1003,7 +1003,7 @@ restart:
 
 
 #else
-      if(rename(psz, pszNew) != 0)
+      if(::rename(psz, pszNew) != 0)
       {
          int32_t err = errno;
          string strError;
@@ -1255,7 +1255,7 @@ restart:
 
    }
 
-   
+
    ::file::path system::sys_temp_unique(const ::file::path & pszName)
    {
 
@@ -1289,11 +1289,11 @@ restart:
 
    ::file::path system::replace_extension(const ::file::path & pszFile, const string & pszExtension)
    {
-      
+
       ::file::path strFile(pszFile);
-      
+
       set_extension(strFile, pszExtension);
-      
+
       return strFile;
 
    }
@@ -1440,7 +1440,8 @@ restart:
          iPos = spfile->get_position();
          write_gen_string(spfile, NULL, strMd5);
          MD5_Init(&ctx);
-         write_gen_string(spfile, &ctx, stra[i].relative());
+         string strRelative = stra[i].relative();
+         write_gen_string(spfile, &ctx, strRelative);
          if(!file2->open(stra[i], ::file::mode_read | ::file::type_binary))
             throw "failed";
          write_n_number(spfile, &ctx, (int32_t) file2->get_length());

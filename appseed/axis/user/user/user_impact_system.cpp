@@ -11,7 +11,7 @@
 namespace aura
 {
 
-   
+
    impact_system::on_open_document::on_open_document()
    {
 
@@ -71,7 +71,9 @@ namespace aura
 
    impact_system::Confidence impact_system::MatchDocType(const ::file::path & lpszPathName,::aura::document *& rpDocMatch)
    {
-      ASSERT(lpszPathName != NULL);
+
+      ASSERT(lpszPathName.has_char());
+
       rpDocMatch = NULL;
 
       // go through all documents
@@ -261,7 +263,7 @@ namespace aura
             sp(::aura::document) pdocument = get_document(index);
 
             pdocument->close_document();
-            
+
          }
          catch (...)
          {
@@ -271,8 +273,8 @@ namespace aura
       }
 
    }
-   
-   
+
+
 
    void impact_system::on_idle()
    {

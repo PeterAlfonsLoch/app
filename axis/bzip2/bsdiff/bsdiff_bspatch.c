@@ -26,7 +26,9 @@
 #include "../bzlib_private.h"
 
 //#include"framework.h"
-//#include<stdarg.h>
+#ifdef LINUX
+#include<stdarg.h>
+#endif
 //#include"axis/bzip2/bzlib.h"
 //#include"libbsdiff.h"
 

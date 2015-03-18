@@ -15,7 +15,7 @@ namespace axis
 
       if (fileUn == -1)
       {
-         
+
          TRACE("ungz wopen error %s", lpcszGzFileCompressed);
 
          return false;
@@ -120,7 +120,7 @@ namespace axis
       {
          int32_t err;
          ansi_get_errno(&err);
-         fprintf(stderr, "gz fopen error %d %s", err, lpcszUncompressed);
+         fprintf(stderr, "gz fopen error %d %s", err, lpcszUncompressed.c_str());
          return false;
       }
       gzip_stream gz(ostreamCompressed);
@@ -139,7 +139,7 @@ namespace axis
 
    bool compress::ungz(::aura::application * papp, const ::file::path & lpcszUncompressed, const ::file::path & lpcszGzFileCompressed)
    {
-   
+
       return System.file().output(papp, lpcszUncompressed, this, &compress::ungz, lpcszGzFileCompressed);
 
    }
@@ -147,7 +147,7 @@ namespace axis
 
    bool compress::gz(::aura::application * papp, const ::file::path & lpcszGzFileCompressed, const ::file::path & lpcszUncompressed)
    {
-      
+
       return System.file().output(papp, lpcszGzFileCompressed, this, &compress::gz, lpcszUncompressed);
 
    }
@@ -250,7 +250,7 @@ namespace axis
 
    void compress::extract_all(const ::file::path & pszFile, ::aura::application * papp)
    {
-      
+
       string strDir = pszFile;
 
       ::str::ends_eat_ci(strDir, ".zip");
@@ -262,23 +262,23 @@ namespace axis
 
    void compress::zip(const ::file::path & pszZip, const ::file::path & psz, ::aura::application * papp)
    {
-      
+
       zip::InFile infile(papp);
 
       if (!infile.zip_open(pszZip, 0))
       {
-         
+
          throw "Could not open zip file";
-         
+
          return;
 
       }
 
       if (System.dir().is(psz, papp))
       {
-         
+
          ::file::listing patha(papp);
-         
+
          ::file::path strPath;
 
          ::file::binary_buffer_sp file;

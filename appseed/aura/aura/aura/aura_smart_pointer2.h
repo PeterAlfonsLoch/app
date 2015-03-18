@@ -94,7 +94,7 @@
    }
 
    template < class T >
-   inline smart_pointer < T > ::operator T * const ()
+   inline smart_pointer < T > ::operator T * ()
    {
       return m_p;
    }
@@ -225,16 +225,16 @@
    template < class T >
    void smart_pointer < T > ::oattrib(const sp(T) & p)
    {
-      
+
       if(p.m_p == NULL)
       {
-         
+
          release();
-         
+
          return;
 
       }
-      
+
       if(is_null())
       {
 
