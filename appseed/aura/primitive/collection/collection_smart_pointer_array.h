@@ -2,7 +2,7 @@
 
 
 // Range-based for loop support
-// smart_pointer_range indirect/interpreted contribution from 
+// smart_pointer_range indirect/interpreted contribution from
 /**
 * pugixml parser - version 1.5
 * --------------------------------------------------------
@@ -783,7 +783,7 @@ public:
    }
 
    ref_iterator ref_it(index iStart) { return ref_iterator(iStart,this);  }
-   ref_iterator ref_it(index iStart, ::count cCount) { return ref_iterator(iStart + (cCount < 0 ? get_count() + cCount + 1 : cCount),this); }
+   ref_iterator ref_it(index iStart, ::count cCount) { return ref_iterator(iStart + (cCount < 0 ? this->get_count() + cCount + 1 : cCount),this); }
 
    ref_range refa(index iStart = 0, ::count cCount = -1) { return smart_pointer_range < ref_iterator >(ref_it(iStart),ref_it(iStart, cCount)); }
 

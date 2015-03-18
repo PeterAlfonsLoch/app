@@ -33,7 +33,7 @@ namespace lemon
    template < class TDST, class TSRC >
    ::count copy(spa(TDST) & dsta, const spa(TSRC) & srca)
    {
-      
+
       ::count ca = 0;
 
       dsta.remove_all();
@@ -154,9 +154,11 @@ namespace lemon
    namespace array
    {
 
-
+      template <>
       inline void add(stringa & stra,const stringa & straSource) { stra.add(straSource); }
+      template <>
       inline void add(::file::patha & patha,const stringa & stra) { forallref(stra) { patha.add(::file::path(item)); } }
+      template <>
       inline void add(::file::patha & patha,const string & str) { patha.add(::file::path(str)); }
 
 

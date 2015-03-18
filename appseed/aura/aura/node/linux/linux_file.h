@@ -52,7 +52,7 @@ namespace linux
 
       file(::aura::application * papp);
       file(::aura::application * papp, int hFile);
-      file(::aura::application * papp, const char * lpszFileName, UINT nOpenFlags);
+      file(::aura::application * papp, const ::file::path & lpszFileName, UINT nOpenFlags);
       virtual ~file();
 
 
@@ -65,9 +65,9 @@ namespace linux
       virtual string GetFilePath() const;
       virtual void SetFilePath(const char * lpszNewName);
 
-      virtual ::fesp open(const char * lpszFileName, UINT nOpenFlags);
+      virtual cres open(const ::file::path & lpszFileName, UINT nOpenFlags);
 
-      virtual bool PASCAL GetStatus(const char * lpszFileName, ::file::file_status& rStatus);
+      //virtual bool PASCAL GetStatus(const char * lpszFileName, ::file::file_status& rStatus);
 
       uint64_t ReadHuge(void * lpBuffer, uint64_t dwCount);
       void WriteHuge(const void * lpBuffer, uint64_t dwCount);

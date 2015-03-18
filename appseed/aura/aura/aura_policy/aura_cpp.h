@@ -142,15 +142,15 @@ namespace data
 } // namespace data
 
 namespace sockets // only usable from base.dll and dependants
-{ 
-   
+{
+
    class sockets; // only usable from base.dll and dependants
 
 
 } // namespace sockets // only usable from base.dll and dependants
 
 
-namespace url 
+namespace url
 {
 
    class departament; // only usable from base.dll and dependants
@@ -271,7 +271,7 @@ namespace html
 } // namespace html
 
 
-#include "aura_auto.h"
+#include "aura/aura/aura/aura_auto.h"
 
 
 

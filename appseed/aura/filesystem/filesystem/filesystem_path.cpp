@@ -55,7 +55,7 @@ namespace file
          str /= stra[i];
          straParam.add(str);
       }
-      
+
       return straParam;
 
    }
@@ -89,24 +89,24 @@ namespace file
 
 
    path path::folder(int i) const
-   { 
-      
+   {
+
       ::file::path path(*this);
-      
+
       while(i > 0)
-      { 
-         
-         path = path.folder(); 
-         
+      {
+
+         path = path.folder();
+
          i--;
 
-      } 
-      
+      }
+
       return path;
-   
+
    }
 
-   
+
    path & path::go_up()
    {
 
@@ -138,17 +138,17 @@ namespace file
 namespace url
 {
 
-   bool url::is_equal(const url & url) const
-   {
-
-      if(((const string &)*this).operator == ((const string &)url)) // undoubtely eaqual...
-         return true;
-
-      // find extend equalitys..
-
-      return true;
-
-   }
+//   bool url::is_equal(const url & url) const
+//   {
+//
+//      if(((const string &)*this).operator == ((const string &)url)) // undoubtely eaqual...
+//         return true;
+//
+//      // find extend equalitys..
+//
+//      return true;
+//
+//   }
 
 
 } // namespace url

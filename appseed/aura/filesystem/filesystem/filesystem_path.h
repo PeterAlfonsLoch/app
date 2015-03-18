@@ -82,15 +82,15 @@ namespace file
 
       void normalize()
       {
-         
+
          trim_right("\\/");
-         
+
          replace(osep(),sep());
 
       }
 
 
-      path & operator = (const ::file::path & path) 
+      path & operator = (const ::file::path & path)
       {
 
          if(&path != this)
@@ -108,7 +108,7 @@ namespace file
 
       path & operator = (const string & str)
       {
-         
+
          *((path_meta*)this) = path_meta();
          string::operator  = (str);
          m_epath = is_url_dup(str) ? path_url : path_file;
@@ -179,7 +179,7 @@ namespace file
 
 
       path operator / (const string & str) const { return operator /(::file::path(str)); }
-      path operator / (const const char * psz) const { return operator /(::file::path(psz)); }
+      path operator / (const char * psz) const { return operator /(::file::path(psz)); }
       path operator / (const property & property) const;
 
       path & operator /= (const path & path)
@@ -298,7 +298,7 @@ namespace file
       inline path up() const { return folder(); }
       inline path up(int i) const { return folder(i); }
       inline path & go_up();
-      inline path & go_up(int i);
+      path & go_up(int i);
       inline path & operator -= (int i) { return go_up(i); }
 
 

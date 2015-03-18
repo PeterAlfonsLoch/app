@@ -201,7 +201,7 @@ inline simple_string::simple_string(const string_data  * pdata, string_manager *
       pData = pstringmanager->GetNilString();
       attach( pData );
    }
-   
+
    inline void simple_string::Reallocate(strsize nLength )
    {
 
@@ -211,9 +211,9 @@ inline simple_string::simple_string(const string_data  * pdata, string_manager *
 
    inline string_data * string_data::Reallocate(strsize nLength) // current data will be invalid after function call
    {
-      
+
       ASSERT(nAllocLength < nLength);
-      
+
       return pstringmanager->Reallocate(this,nLength);
 
    }
@@ -685,7 +685,7 @@ primitive::memory string_array < Type, RawType > ::GetFormatV004()
 
    strsize i;
 
-   for(i = 0; i < m_nSize; i++)
+   for(i = 0; i < this->m_nSize; i++)
    {
       iTotalLength += this->element_at(i).get_length();
       iTotalLength++;
@@ -712,7 +712,7 @@ primitive::memory string_array < Type, RawType > ::GetFormatV004()
 
    strsize iLength;
 
-   for(i = 0; i < m_nSize; i++)
+   for(i = 0; i < this->m_nSize; i++)
    {
 
       Type * pstr = &this->element_at(i);

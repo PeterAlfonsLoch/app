@@ -22,7 +22,7 @@ public:
 
 
    void InitHashTable(UINT nHashSize,bool bAllocNow = TRUE)
-   { 
+   {
 
       if(m_ppassocHash != NULL)
       {
@@ -502,11 +502,11 @@ inline bool map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE
 
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR, class HASH_TABLE >
 inline typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::assoc * map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::set_at(ARG_KEY key,ARG_VALUE newValue)
-{ 
+{
 
    assoc * passoc = get_assoc(key);
 
-   passoc->m_element2 = newValue; 
+   passoc->m_element2 = newValue;
 
    return passoc;
 
@@ -825,7 +825,7 @@ VALUE * map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::p
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR, class HASH_TABLE >
 typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::assoc * map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::get_assoc(ARG_KEY key)
 {
-   
+
    ASSERT_VALID(this);
 
    UINT nHashBucket,nHashValue;
@@ -1112,14 +1112,14 @@ void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::asse
 
 
 
-template <class KEY,class ARG_KEY,class VALUE,class ARG_VALUE,class HASH = ::comparison::hash < ARG_KEY >,class EQUALS = ::comparison::equals_type_arg_type < KEY,ARG_KEY >,class PAIR = pair < KEY,VALUE >,class HASH_TABLE = dynamic_hash_table < map_association < KEY,VALUE, PAIR > > >
+template <class KEY,class ARG_KEY,class VALUE,class ARG_VALUE,class HASH = ::comparison::hash < ARG_KEY >,class EQUALS = ::comparison::equals_type_arg_type < KEY,ARG_KEY >,class PAIR = pair < KEY,VALUE >,class HASH_TABLE = map_dynamic_hash_table < map_association < PAIR > > >
 ::file::ostream & operator << (::file::ostream & os,const map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE> & a)
 {
    ::file::map::write(os,a);
    return os;
 }
 
-template <class KEY,class ARG_KEY,class VALUE,class ARG_VALUE,class HASH = ::comparison::hash < ARG_KEY >,class EQUALS = ::comparison::equals_type_arg_type < KEY,ARG_KEY >,class PAIR = pair < KEY,VALUE >,class HASH_TABLE = dynamic_hash_table < map_association < KEY,VALUE, PAIR > > >
+template <class KEY,class ARG_KEY,class VALUE,class ARG_VALUE,class HASH = ::comparison::hash < ARG_KEY >,class EQUALS = ::comparison::equals_type_arg_type < KEY,ARG_KEY >,class PAIR = pair < KEY,VALUE >,class HASH_TABLE = map_dynamic_hash_table < map_association < PAIR > > >
 ::file::istream & operator >> (::file::istream & is,map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE> & a)
 {
    ::file::map::read(is,a);

@@ -312,7 +312,7 @@ template < typename N > class numeric_array;
 
 typedef CLASS_DECL_AURA numeric_array < uint32_t > uint_array;
 
-template < typename Type,typename RawType = typename Type >
+template < typename Type,typename RawType = Type >
 
 class string_array;
 typedef string_array < string > stringa;

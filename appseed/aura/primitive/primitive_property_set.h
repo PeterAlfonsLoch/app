@@ -58,11 +58,11 @@ public:
    property * find_var_ci(const var & var) const;
    property * find_value_ci(var var) const;
    property * find_value_ci(const char * psz) const;
-   
+
    property * find_var(const var & var) const;
    property * find_value(var var) const;
    property * find_value(const char * psz) const;
-   
+
    property * str_find(const property & property) const;
 
    bool contains_var_ci(const var & var, ::count countMin = 1, ::count countMax = -1) const;
@@ -324,7 +324,7 @@ inline property * property_set::add(id idName, var var)
 
 inline bool property_set::has_property(id idName) const
 {
-   
+
    const property * pproperty = find(idName);
 
    return pproperty != NULL && pproperty->m_element2.m_etype != var::type_new;
@@ -370,8 +370,8 @@ inline property property_set::operator[](id idName) const
 
 inline property & property_set::operator[](index iIndex)
 {
-   
-   for(auto property : *this)
+
+   for(auto & property : *this)
    {
       if(property.m_iIndex == iIndex)
          return property;
@@ -456,7 +456,7 @@ inline index property_set::find_index(id idName) const
 
 inline index property_set::find_index(string_interface & str) const
 {
-   
+
    return find_index((const char *) string(str));
 
 }
@@ -464,7 +464,7 @@ inline index property_set::find_index(string_interface & str) const
 
 inline property * property_set::find(id idName) const
 {
-   
+
    return (property *) PLookup(idName);
 
 }

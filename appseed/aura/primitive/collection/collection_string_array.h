@@ -12,7 +12,7 @@ public:
    typedef Type                           String;
    typedef RawType                        RawString;
    typedef string_array < RawType >       RawStringArray;
-   
+
 
    string_array() {}
    string_array(::aura::application * papp);
@@ -255,7 +255,7 @@ public:
    void assert_valid() const;
 
    typedef Type BASE_TYPE;
-   
+
    typedef const char * BASE_ARG_TYPE;
 
 };
@@ -299,11 +299,11 @@ inline Type string_array < Type, RawType >::first(index count) const
 
 template < class Type, class RawType >
 inline ::count string_array < Type, RawType >::get_size() const
-   { return m_nSize; }
+   { return this->m_nSize; }
 
 template < class Type, class RawType >
 inline ::count string_array < Type, RawType >::get_count() const
-   { return m_nSize; }
+   { return this->m_nSize; }
 
 template < class Type, class RawType >
 inline index string_array < Type, RawType >::get_lower_bound(index i) const
@@ -311,7 +311,7 @@ inline index string_array < Type, RawType >::get_lower_bound(index i) const
 
 template < class Type, class RawType >
 inline index string_array < Type, RawType >::get_upper_bound(index count) const
-   { return m_nSize + count; }
+   { return this->m_nSize + count; }
 
 
 
@@ -326,8 +326,8 @@ string_array < Type, RawType >::~string_array()
    ASSERT_VALID(this);
 
 
-   //_DestructElements(m_pData, m_nSize);
-   //delete[] (BYTE*)m_pData;
+   //_DestructElements(this->m_pData, this->m_nSize);
+   //delete[] (BYTE*)this->m_pData;
 }
 
 /*void string_array < Type, RawType >::set_size(::count nNewSize, ::count nGrowBy)
@@ -342,12 +342,12 @@ if (nNewSize == 0)
 {
 // shrink to nothing
 
-_DestructElements(m_pData, m_nSize);
-delete[] (BYTE*)m_pData;
-m_pData = NULL;
-m_nSize = m_nMaxSize = 0;
+_DestructElements(this->m_pData, this->m_nSize);
+delete[] (BYTE*)this->m_pData;
+this->m_pData = NULL;
+this->m_nSize = m_nMaxSize = 0;
 }
-else if (m_pData == NULL)
+else if (this->m_pData == NULL)
 {
 // create one with exact size
 #ifdef SIZE_T_MAX
@@ -356,27 +356,27 @@ throw new memory_exception(get_app());
 ASSERT(nNewSize <= SIZE_T_MAX/sizeof(Type));    // no overflow
 #endif
 
-m_pData = (Type*) new BYTE[nNewSize * sizeof(Type)];
+this->m_pData = (Type*) new BYTE[nNewSize * sizeof(Type)];
 
-_ConstructElements(m_pData, nNewSize);
+_ConstructElements(this->m_pData, nNewSize);
 
-m_nSize = m_nMaxSize = nNewSize;
+this->m_nSize = m_nMaxSize = nNewSize;
 }
 else if (nNewSize <= m_nMaxSize)
 {
 // it fits
-if (nNewSize > m_nSize)
+if (nNewSize > this->m_nSize)
 {
 // initialize the new elements
 
-_ConstructElements(&m_pData[m_nSize], nNewSize-m_nSize);
+_ConstructElements(&this->m_pData[this->m_nSize], nNewSize-this->m_nSize);
 
 }
 
-else if (m_nSize > nNewSize)  // destroy the old elements
-_DestructElements(&m_pData[nNewSize], m_nSize-nNewSize);
+else if (this->m_nSize > nNewSize)  // destroy the old elements
+_DestructElements(&this->m_pData[nNewSize], this->m_nSize-nNewSize);
 
-m_nSize = nNewSize;
+this->m_nSize = nNewSize;
 }
 else
 {
@@ -386,7 +386,7 @@ if (nGrowBy == 0)
 {
 // heuristically determine growth when nGrowBy == 0
 //  (this avoids heap fragmentation in many situations)
-nGrowBy = MIN(1024, MAX(4, m_nSize / 8));
+nGrowBy = MIN(1024, MAX(4, this->m_nSize / 8));
 }
 ::count nNewMax;
 if (nNewSize < m_nMaxSize + nGrowBy)
@@ -401,18 +401,18 @@ ASSERT(nNewMax <= SIZE_T_MAX/sizeof(Type)); // no overflow
 Type* pNewData = (Type*) new BYTE[nNewMax * sizeof(Type)];
 
 // copy new data from old
-memcpy(pNewData, m_pData, m_nSize * sizeof(Type));
+memcpy(pNewData, this->m_pData, this->m_nSize * sizeof(Type));
 
 // construct remaining elements
-ASSERT(nNewSize > m_nSize);
+ASSERT(nNewSize > this->m_nSize);
 
-_ConstructElements(&pNewData[m_nSize], nNewSize-m_nSize);
+_ConstructElements(&pNewData[this->m_nSize], nNewSize-this->m_nSize);
 
 
 // get rid of old stuff (note: no destructors called)
-delete[] (BYTE*)m_pData;
-m_pData = pNewData;
-m_nSize = nNewSize;
+delete[] (BYTE*)this->m_pData;
+this->m_pData = pNewData;
+this->m_nSize = nNewSize;
 m_nMaxSize = nNewMax;
 }
 }*/
@@ -429,10 +429,10 @@ template < class Type, class RawType >
    ASSERT_VALID(this);
    ASSERT(this != &src);   // cannot append to itself
 
-   ::count nOldSize = m_nSize;
-   set_size(m_nSize + src.m_nSize);
+   ::count nOldSize = this->m_nSize;
+   this->set_size(this->m_nSize + src.m_nSize);
 
-   CopyElements(&m_pData[nOldSize],src.m_pData,src.m_nSize);
+   CopyElements(&this->m_pData[nOldSize],src.m_pData,src.m_nSize);
 
    return nOldSize;
 }
@@ -447,9 +447,9 @@ void string_array < Type, RawType >::copy(const string_array < Type, RawType >& 
 
    ASSERT_VALID(this);
 
-   set_size(src.m_nSize);
+   this->set_size(src.m_nSize);
 
-   CopyElements(m_pData,src.m_pData,src.m_nSize);
+   CopyElements(this->m_pData,src.m_pData,src.m_nSize);
 
 }
 
@@ -460,9 +460,9 @@ void string_array < Type, RawType >::copy(const int64_array & src)
 
    ASSERT_VALID(this);
 
-   set_size(src.m_nSize);
+   this->set_size(src.m_nSize);
 
-   for(int32_t i = 0; i < m_nSize; i++)
+   for(int32_t i = 0; i < this->m_nSize; i++)
    {
       get_data()[i] = ::str::from(src[i]);
    }
@@ -473,24 +473,24 @@ void string_array < Type, RawType >::copy(const int64_array & src)
 {
 ASSERT_VALID(this);
 
-if (m_nSize != m_nMaxSize)
+if (this->m_nSize != m_nMaxSize)
 {
 // shrink to desired size
 #ifdef SIZE_T_MAX
-ASSERT(m_nSize <= SIZE_T_MAX/sizeof(Type)); // no overflow
+ASSERT(this->m_nSize <= SIZE_T_MAX/sizeof(Type)); // no overflow
 #endif
 Type* pNewData = NULL;
-if (m_nSize != 0)
+if (this->m_nSize != 0)
 {
-pNewData = (Type*) new BYTE[m_nSize * sizeof(Type)];
+pNewData = (Type*) new BYTE[this->m_nSize * sizeof(Type)];
 // copy new data from old
-memcpy(pNewData, m_pData, m_nSize * sizeof(Type));
+memcpy(pNewData, this->m_pData, this->m_nSize * sizeof(Type));
 }
 
 // get rid of old stuff (note: no destructors called)
-delete[] (BYTE*)m_pData;
-m_pData = pNewData;
-m_nMaxSize = m_nSize;
+delete[] (BYTE*)this->m_pData;
+this->m_pData = pNewData;
+m_nMaxSize = this->m_nSize;
 }
 }*/
 
@@ -503,8 +503,8 @@ Type & string_array < Type, RawType >::set_at_grow(index nIndex,const char * new
    ASSERT_VALID(this);
    ASSERT(nIndex >= 0);
 
-   if(nIndex >= m_nSize)
-      set_size(nIndex + 1);
+   if(nIndex >= this->m_nSize)
+      this->set_size(nIndex + 1);
 
    return get_data()[nIndex] = newElement;
 
@@ -518,8 +518,8 @@ Type & string_array < Type, RawType >::set_at_grow(index nIndex,const Type & new
    ASSERT_VALID(this);
    ASSERT(nIndex >= 0);
 
-   if(nIndex >= m_nSize)
-      set_size(nIndex + 1);
+   if(nIndex >= this->m_nSize)
+      this->set_size(nIndex + 1);
 
    return get_data()[nIndex] = newElement;
 
@@ -535,16 +535,16 @@ void string_array < Type, RawType >::insert_empty(index nIndex,::count nCount)
    ASSERT(nIndex >= 0);    // will expand to meet need
    ASSERT(nCount > 0);     // zero or negative size not allowed
 
-   if(nIndex >= m_nSize)
+   if(nIndex >= this->m_nSize)
    {
       // adding after the end of the array
-      set_size(nIndex + nCount);  // grow so nIndex is valid
+      this->set_size(nIndex + nCount);  // grow so nIndex is valid
    }
    else
    {
       // inserting in the middle of the array
-      ::count nOldSize = m_nSize;
-      set_size(m_nSize + nCount);  // grow it to new size
+      ::count nOldSize = this->m_nSize;
+      this->set_size(this->m_nSize + nCount);  // grow it to new size
       // shift old data up to fill gap
       memmove(&get_data()[nIndex + nCount],&get_data()[nIndex],(nOldSize - nIndex) * sizeof(Type));
 
@@ -557,7 +557,7 @@ void string_array < Type, RawType >::insert_empty(index nIndex,::count nCount)
    }
 
    // insert new value in the gap
-   ASSERT(nIndex + nCount <= m_nSize);
+   ASSERT(nIndex + nCount <= this->m_nSize);
 }
 
 template < typename Type,typename RawType >
@@ -566,17 +566,17 @@ Type & string_array < Type,RawType >::insert_empty(index nIndex)
    ASSERT_VALID(this);
    ASSERT(nIndex >= 0);    // will expand to meet need
 
-   if(nIndex >= m_nSize)
+   if(nIndex >= this->m_nSize)
    {
 
-      set_size(nIndex + 1);
+      this->set_size(nIndex + 1);
 
    }
    else
    {
       // inserting in the middle of the array
-      ::count nOldSize = m_nSize;
-      set_size(m_nSize + 1);  // grow it to new size
+      ::count nOldSize = this->m_nSize;
+      this->set_size(this->m_nSize + 1);  // grow it to new size
       // shift old data up to fill gap
       memmove(&get_data()[nIndex + 1],&get_data()[nIndex],(nOldSize - nIndex) * sizeof(Type));
 
@@ -589,7 +589,7 @@ Type & string_array < Type,RawType >::insert_empty(index nIndex)
    }
 
    // insert new value in the gap
-   ASSERT(nIndex + 1 <= m_nSize);
+   ASSERT(nIndex + 1 <= this->m_nSize);
    return get_data()[nIndex];
 }
 
@@ -598,7 +598,7 @@ Type & string_array < Type,RawType >::insert_empty(index nIndex)
 template < typename Type,typename RawType >
 Type & string_array < Type,RawType >::insert_at(index nIndex,const Type & newElement)
 {
-   
+
    return insert_empty(nIndex) = newElement;
 
 }
@@ -639,17 +639,17 @@ void string_array < Type, RawType >::insert_at(index nIndex,const Type & newElem
 //   ASSERT_VALID(this);
 //   ASSERT(nIndex >= 0);
 //   ASSERT(nCount >= 0);
-//   ASSERT(nIndex + nCount <= m_nSize);
+//   ASSERT(nIndex + nCount <= this->m_nSize);
 //
 //   // just remov a range
-//   ::count nMoveCount = m_nSize - (nIndex + nCount);
+//   ::count nMoveCount = this->m_nSize - (nIndex + nCount);
 //
-//   _DestructElements(&m_pData[nIndex], nCount);
+//   _DestructElements(&this->m_pData[nIndex], nCount);
 //
 //   if (nMoveCount)
-//      memmove(&m_pData[nIndex], &m_pData[nIndex + nCount],
+//      memmove(&this->m_pData[nIndex], &this->m_pData[nIndex + nCount],
 //         nMoveCount * sizeof(Type));
-//   m_nSize -= nCount;
+//   this->m_nSize -= nCount;
 //}
 //
 
@@ -682,16 +682,16 @@ object::Serialize(ar);
 
 if (ar.IsStoring())
 {
-ar.WriteCount(m_nSize);
-for (int32_t i = 0; i < m_nSize; i++)
-ar << m_pData[i];
+ar.WriteCount(this->m_nSize);
+for (int32_t i = 0; i < this->m_nSize; i++)
+ar << this->m_pData[i];
 }
 else
 {
 uint32_t nOldSize = ar.ReadCount();
 set_size(nOldSize);
-for (int32_t i = 0; i < m_nSize; i++)
-ar >> m_pData[i];
+for (int32_t i = 0; i < this->m_nSize; i++)
+ar >> this->m_pData[i];
 }
 }
 */
@@ -704,10 +704,10 @@ void string_array < Type, RawType >::dump(dump_context & dumpcontext) const
 {
    object::dump(dumpcontext);
 
-   dumpcontext << "with " << m_nSize << " elements";
+   dumpcontext << "with " << this->m_nSize << " elements";
    if(dumpcontext.GetDepth() > 0)
    {
-      for(int32_t i = 0; i < m_nSize; i++)
+      for(int32_t i = 0; i < this->m_nSize; i++)
          dumpcontext << "\n\t[" << i << "] = " << get_data()[i];
    }
 
@@ -720,17 +720,17 @@ void string_array < Type, RawType >::assert_valid() const
 {
    object::assert_valid();
 
-   if(m_pData == NULL)
+   if(this->m_pData == NULL)
    {
-      ASSERT(m_nSize == 0);
-      ASSERT(m_nMaxSize == 0);
+      ASSERT(this->m_nSize == 0);
+      ASSERT(this->m_nMaxSize == 0);
    }
    else
    {
-      ASSERT(m_nSize >= 0);
-      ASSERT(m_nMaxSize >= 0);
-      ASSERT(m_nSize <= m_nMaxSize);
-      ASSERT(__is_valid_address(m_pData,m_nMaxSize * sizeof(Type)));
+      ASSERT(this->m_nSize >= 0);
+      ASSERT(this->m_nMaxSize >= 0);
+      ASSERT(this->m_nSize <= this->m_nMaxSize);
+      ASSERT(__is_valid_address(this->m_pData,this->m_nMaxSize * sizeof(Type)));
    }
 }
 
@@ -951,7 +951,7 @@ Type & string_array < Type, RawType >::add_new(const char * psz,index i)
    else
    {
       return insert_at(i,Type(psz));
-      
+
    }
 }
 
@@ -975,7 +975,7 @@ Type & string_array < Type, RawType >::new_element(index i)
 template < typename Type, typename RawType >
 index string_array < Type, RawType >::add(const char * psz)
 {
-   index nIndex = m_nSize;
+   index nIndex = this->m_nSize;
    set_at_grow(nIndex,psz);
    return nIndex;
 }
@@ -984,7 +984,7 @@ index string_array < Type, RawType >::add(const char * psz)
 template < typename Type, typename RawType >
 index string_array < Type, RawType >::add(const wchar_t * pwsz)
 {
-   index nIndex = m_nSize;
+   index nIndex = this->m_nSize;
    set_at_grow(nIndex,(Type)::str::international::unicode_to_utf8(pwsz));
    return nIndex;
 }
@@ -1024,69 +1024,22 @@ index string_array < Type, RawType >::add(wchar_t wch)
 template < typename Type, typename RawType >
 Type & string_array < Type, RawType >::add(const Type & newElement)
 {
-   
-   index nIndex = m_nSize;
-   
+
+   index nIndex = this->m_nSize;
+
    return set_at_grow(nIndex,newElement);
-   
+
 }
 
 
 template < typename Type, typename RawType >
 void string_array < Type, RawType >::push_back(const Type & newElement)
 {
-   index nIndex = m_nSize;
+   index nIndex = this->m_nSize;
    set_at_grow(nIndex,newElement);
 }
 
 
-template < typename Type, typename RawType >
-void string_array < Type, RawType >::add(const var & var)
-{
-   if(var.is_empty())
-   {
-   }
-   else if(var.get_type() == var::type_stra)
-   {
-      ::lemon::array::add(*this, var.stra());
-   }
-   else if(var.cast < string_array < Type, RawType > >() != NULL)
-   {
-      ::lemon::array::add(*this, *var.cast < string_array < Type,RawType > >());
-   }
-   else if(var.get_type() == var::type_vara)
-   {
-      for(int32_t i = 0; i < var.vara().get_count(); i++)
-      {
-         ::lemon::array::add(*this,var.vara()[i].get_string());
-      }
-   }
-   else if(var.get_type() == var::type_inta)
-   {
-      for(int32_t i = 0; i < var.inta().get_count(); i++)
-      {
-         ::lemon::array::add(*this,::str::from(var.inta()[i]));
-      }
-   }
-   else if(var.get_type() == var::type_propset)
-   {
-      for(auto property : var.propset())
-      {
-         ::lemon::array::add(*this, property.get_value().get_string());
-      }
-   }
-   else
-   {
-      ::lemon::array::add(*this, var.get_string());
-   }
-}
-
-
-template < typename Type, typename RawType >
-void string_array < Type, RawType >::add(const property & prop)
-{
-   add(prop.get_value());
-}
 
 
 template < typename Type, typename RawType >
@@ -1120,14 +1073,14 @@ void string_array < Type, RawType >::add(const id & id)
 template < typename Type, typename RawType >
 Type string_array < Type, RawType >::get_at(index nIndex) const
 {
-   ASSERT(nIndex >= 0 && nIndex < m_nSize);
+   ASSERT(nIndex >= 0 && nIndex < this->m_nSize);
    return get_data()[nIndex];
 }
 
 template < typename Type, typename RawType >
 void string_array < Type, RawType >::set_at(index nIndex,const char * newElement)
 {
-   ASSERT(nIndex >= 0 && nIndex < m_nSize);
+   ASSERT(nIndex >= 0 && nIndex < this->m_nSize);
    get_data()[nIndex] = newElement;
 }
 
@@ -1135,7 +1088,7 @@ void string_array < Type, RawType >::set_at(index nIndex,const char * newElement
 template < typename Type, typename RawType >
 void string_array < Type, RawType >::set_at(index nIndex,const Type & newElement)
 {
-   ASSERT(nIndex >= 0 && nIndex < m_nSize);
+   ASSERT(nIndex >= 0 && nIndex < this->m_nSize);
    get_data()[nIndex] = newElement;
 }
 
@@ -1143,7 +1096,7 @@ void string_array < Type, RawType >::set_at(index nIndex,const Type & newElement
 template < typename Type, typename RawType >
 Type & string_array < Type, RawType >::element_at(index nIndex)
 {
-   ASSERT(nIndex >= 0 && nIndex < m_nSize);
+   ASSERT(nIndex >= 0 && nIndex < this->m_nSize);
    return get_data()[nIndex];
 }
 
@@ -1151,7 +1104,7 @@ Type & string_array < Type, RawType >::element_at(index nIndex)
 template < typename Type, typename RawType >
 const Type & string_array < Type, RawType >::element_at(index nIndex) const
 {
-   ASSERT(nIndex >= 0 && nIndex < m_nSize);
+   ASSERT(nIndex >= 0 && nIndex < this->m_nSize);
    return get_data()[nIndex];
 }
 
@@ -1159,14 +1112,14 @@ const Type & string_array < Type, RawType >::element_at(index nIndex) const
 template < typename Type, typename RawType >
 const Type* string_array < Type, RawType >::get_data() const
 {
-   return (const Type*)m_pData;
+   return (const Type*)this->m_pData;
 }
 
 
 template < typename Type, typename RawType >
 Type* string_array < Type, RawType >::get_data()
 {
-   return (Type*)m_pData;
+   return (Type*)this->m_pData;
 }
 
 
@@ -1203,7 +1156,7 @@ void SortEx(ARRAYCOMPARE * pacompare,
    index iLowerBound;
    index iUpperBound;
    index iLPos,iUPos,iMPos;
-   Type str;
+   string str;
 
    if(pacompare->get_size() >= 2)
    {
@@ -1281,7 +1234,7 @@ void SortEx(ARRAYCOMPARE * pacompare,
    index iLowerBound;
    index iUpperBound;
    index iLPos,iUPos,iMPos;
-   Type str;
+   string str;
 
    if(pacompare->get_size() >= 2)
    {
@@ -1623,11 +1576,11 @@ template < class Type, class RawType >
 void string_array < Type, RawType > ::get_format_string(Type & str,const char * lpcszSeparator) const
 {
    str.Empty();
-   if(m_nSize > 0)
+   if(this->m_nSize > 0)
    {
       str = get_at(0);
    }
-   for(int32_t i = 1; i < m_nSize; i++)
+   for(int32_t i = 1; i < this->m_nSize; i++)
    {
       str += lpcszSeparator + get_at(i);
    }
@@ -1642,7 +1595,7 @@ void string_array < Type, RawType > ::get_format_string(Type & str,const char * 
 {
 string_array < Type, RawType >  strArray;
 uint_array dwa;
-for(int32_t i = 0; i < m_nSize; i++)
+for(int32_t i = 0; i < this->m_nSize; i++)
 {
 strArray.add_tokens(get_at(i), "/", FALSE);
 if(strArray.get_size() > 1)
@@ -1670,14 +1623,14 @@ Sort(string_array < Type, RawType > ::Compare);
 template < class Type, class RawType >
 index string_array < Type, RawType > ::add_unique(const string & lpcsz)
 {
-   
+
    index find = find_first(lpcsz);
-   
+
    if(find >= 0)
       return -1;
-   
+
    string_array::add((const Type &) lpcsz);
-   
+
    return get_upper_bound();
 
 }
@@ -1699,9 +1652,9 @@ template < class Type, class RawType >
 template < class Type, class RawType >
 index string_array < Type, RawType > ::add_unique_ci(const string & lpcsz)
 {
-   
+
    index find = find_first_ci(lpcsz);
-   
+
    if(find >= 0)
       return -1;
 
@@ -1883,7 +1836,7 @@ template < class Type, class RawType >
 index string_array < Type, RawType > ::remove_first_ci(const string & lpcsz,index find,index last)
 {
    if((find = find_first_ci(lpcsz,find,last)) >= 0)
-      remove_at(find);
+      this->remove_at(find);
    return find;
 }
 
@@ -1892,7 +1845,7 @@ template < class Type, class RawType >
 index string_array < Type, RawType > ::remove_first(const string & lpcsz,index find,index last)
 {
    if((find = find_first(lpcsz,find,last)) >= 0)
-      remove_at(find);
+      this->remove_at(find);
    return find;
 }
 
@@ -1948,7 +1901,7 @@ template < class Type, class RawType >
 template < class Type, class RawType >
 void string_array < Type, RawType > ::trim_left(const char * pszChars)
 {
-   for(int32_t i = 0; i < m_nSize; i++)
+   for(int32_t i = 0; i < this->m_nSize; i++)
    {
       operator[](i).trim_left(pszChars);
    }
@@ -1958,7 +1911,7 @@ void string_array < Type, RawType > ::trim_left(const char * pszChars)
 template < class Type, class RawType >
 void string_array < Type, RawType > ::trim_right(const char * pszChars)
 {
-   for(int32_t i = 0; i < m_nSize; i++)
+   for(int32_t i = 0; i < this->m_nSize; i++)
    {
       operator[](i).trim_right(pszChars);
    }
@@ -1968,7 +1921,7 @@ void string_array < Type, RawType > ::trim_right(const char * pszChars)
 template < class Type, class RawType >
 void string_array < Type, RawType > ::trim(const char * pszChars)
 {
-   for(int32_t i = 0; i < m_nSize; i++)
+   for(int32_t i = 0; i < this->m_nSize; i++)
    {
       operator[](i).trim(pszChars);
    }
@@ -1979,7 +1932,7 @@ void string_array < Type, RawType > ::trim(const char * pszChars)
 template < class Type, class RawType >
 void string_array < Type, RawType > ::trim_left()
 {
-   for(int32_t i = 0; i < m_nSize; i++)
+   for(int32_t i = 0; i < this->m_nSize; i++)
    {
       operator[](i).trim_left();
    }
@@ -1989,7 +1942,7 @@ void string_array < Type, RawType > ::trim_left()
 template < class Type, class RawType >
 void string_array < Type, RawType > ::trim_right()
 {
-   for(int32_t i = 0; i < m_nSize; i++)
+   for(int32_t i = 0; i < this->m_nSize; i++)
    {
       operator[](i).trim_right();
    }
@@ -1999,7 +1952,7 @@ void string_array < Type, RawType > ::trim_right()
 template < class Type, class RawType >
 void string_array < Type, RawType > ::trim()
 {
-   for(int32_t i = 0; i < m_nSize; i++)
+   for(int32_t i = 0; i < this->m_nSize; i++)
    {
       operator[](i).trim();
    }
@@ -2021,7 +1974,7 @@ template < class Type, class RawType >
    {
       if(this->element_at(i).is_empty())
       {
-         remove_at(i);
+         this->remove_at(i);
          count++;
       }
       else
@@ -2137,7 +2090,7 @@ return -1;
 template < class Type, class RawType >
 void string_array < Type, RawType > ::write(::file::ostream & ostream) const
 {
-   ostream.write_arbitrary(m_nSize);
+   ostream.write_arbitrary(this->m_nSize);
    for(int32_t i = 0; i < this->get_size(); i++)
    {
       ostream << this->element_at(i);
@@ -2167,13 +2120,13 @@ void string_array < Type, RawType > ::read(::file::istream & istream)
 
    }
 
-   remove_all();
+   this->remove_all();
 
    for(int32_t i = 0; i < iSize; i++)
    {
 
       if(i >= this->get_size())
-         set_size(MIN(i + 1024,iSize));
+         this->set_size(MIN(i + 1024,iSize));
 
       istream >> this->element_at(i);
 
@@ -2281,7 +2234,7 @@ template < class Type, class RawType >
 string_array < Type, RawType >  & string_array < Type, RawType > ::explode(const Type & strSeparator,const Type & str)
 {
 
-   remove_all();
+   this->remove_all();
 
    add_tokens(str,strSeparator,true);
 
@@ -2494,28 +2447,6 @@ string_array < Type, RawType >  string_array < Type, RawType > ::operator +(cons
 
 
 
-template < class Type, class RawType >
-string_array < Type, RawType >  & string_array < Type, RawType > ::operator = (var var)
-{
-   if(var.get_type() == var::type_stra)
-   {
-      *this = var.stra();
-   }
-   else
-   {
-      remove_all();
-      if(var.get_count() == 1)
-      {
-         add((Type)var.get_string());
-      }
-      else if(var.get_count() > 1)
-      {
-         *this = var.stra();
-      }
-   }
-   return *this;
-}
-
 
 template < class Type, class RawType >
 bool string_array < Type, RawType > ::move_ci(const char * lpcsz,index iIndex)
@@ -2523,7 +2454,7 @@ bool string_array < Type, RawType > ::move_ci(const char * lpcsz,index iIndex)
    index i = find_first_ci(lpcsz);
    if(i < 0)
       return false;
-   remove_at(i);
+   this->remove_at(i);
    insert_at(iIndex,lpcsz);
    return true;
 }
@@ -2555,7 +2486,7 @@ Type string_array < Type, RawType > ::pop(index i)
 {
    i = get_upper_bound(i);
    Type strRet = this->element_at(i);
-   remove_at(i);
+   this->remove_at(i);
    return strRet;
 }
 
@@ -2584,7 +2515,7 @@ void string_array < Type, RawType > ::remove(index iOffset,::count count)
 {
    for(index i = iOffset + count - 1; i >= iOffset; i--)
    {
-      remove_at(i);
+      this->remove_at(i);
    }
 }
 
@@ -2672,10 +2603,10 @@ template < class Type, class RawType >
       iFind = find_first_begins_ci(lpcsz,i,last);
       if(iFind < 0)
       {
-         remove_at(i,last - i + 1);
+         this->remove_at(i,last - i + 1);
          return count;
       }
-      remove_at(i,iFind - i);
+      this->remove_at(i,iFind - i);
       last -= iFind - i;
       i++;
       count++;
@@ -2718,7 +2649,7 @@ Type string_array < Type, RawType > ::pop_random_element()
       throw "invalid call";
    index i = get_random_index();
    Type str = this->element_at(i);
-   remove_at(i);
+   this->remove_at(i);
    return str;
 }
 

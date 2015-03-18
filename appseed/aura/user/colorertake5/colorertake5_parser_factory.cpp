@@ -109,7 +109,7 @@ namespace colorertake5
 
    string ParserFactory::searchPath()
    {
-      
+
       return Application.dir().matter("colorer.zip:catalog.xml");
 
    }
@@ -180,7 +180,7 @@ namespace colorertake5
          string path;
          if(file_path_is_relative_dup(relPath))
          {
-            path = catalogPath * relPath;
+            path = catalogPath.sibling(relPath);
             string path2del = path;
             ::str::begins_eat(path, "file://");
             ::str::begins_eat(path, "file:/");

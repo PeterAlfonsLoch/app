@@ -3,7 +3,7 @@
 
 
 
-class CLASS_DECL_AURA var_array : 
+class CLASS_DECL_AURA var_array :
    public array < var >
 {
 public:
@@ -38,7 +38,7 @@ public:
    ::count remove_ci(const char * lpcsz, index find = 0, index last = -1, ::count countMin = 0, ::count countMax = -1);
    ::count remove(const char * lpcsz, index find = 0, index last = -1, ::count countMin = 0, ::count countMax = -1);
    ::count remove(const var & var, index find = 0, index last = -1, ::count countMin = 0, ::count countMax = -1);
-   
+
    ::count remove(const var_array & vara);
 
    var_array & operator -=(var var);
@@ -59,7 +59,7 @@ public:
    void parse_json(const char * & pszJson);
    void parse_json(const char * & pszJson, const char * pszEnd);
 
-   
+
    string & get_json(string & str) const;
 
 
@@ -73,7 +73,6 @@ public:
    {
 
       var_array va;
-      va.add(v);
       return va.array(vars...);
 
    }
@@ -98,5 +97,5 @@ namespace lemon
 
    }
 
-   
+
 } // namespace lemon

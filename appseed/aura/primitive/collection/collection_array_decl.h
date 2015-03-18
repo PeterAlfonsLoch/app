@@ -6,9 +6,9 @@ typedef CLASS_DECL_AURA numeric_array < index > index_array;
 
 
 
-
-
-
+#ifdef LINUX
+#include <initializer_list>
+#endif
 
 
 namespace constructor
@@ -343,7 +343,7 @@ public:
 
    TYPE * element_at(index i) const { return &m_pData[i]; }
 
-   
+
    ::count set_size(index nNewSize,::count nGrowBy = -1); // does not call default constructors on new items/elements
    ::count allocate(index nNewSize,::count nGrowBy = -1); // does not call default constructors on new items/elements
    ::count allocate_in_bytes(index nNewSize,::count nGrowBy = -1); // does not call default constructors on new items/elements
@@ -352,12 +352,12 @@ public:
    void free_extra();
    virtual void destroy();
 
-   
+
    void _001RemoveIndexes(index_array & ia);
    void remove_indexes(const index_array & ia);
    void remove_descending_indexes(const index_array & ia);
 
-   
+
    inline void remove_last();
    inline ::count remove_all();
    inline void clear();
@@ -384,7 +384,7 @@ public:
 
    template < typename PRED >
    void remove_pred(PRED pred)
-   { 
+   {
 
       for(int i = 0; i < get_count();)
       {
@@ -407,7 +407,7 @@ public:
 
                if(!pred(m_pData[i]))
                {
-                  
+
                   i++;
 
                   break;
@@ -427,16 +427,16 @@ public:
 
    }
 
-   
+
    template < typename F >
-   void each(F f) 
-   {  
+   void each(F f)
+   {
 
       for(index i = 0; i < get_count(); i++)
       {
          f(m_pData[i]);
       }
-   
+
    }
 
 

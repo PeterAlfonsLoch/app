@@ -56,8 +56,8 @@ namespace file
       m_b64bit = false;
    }
 
-   byte_ostream::byte_ostream(const  ostream & ostream) :
-      ostream(ostream)
+   byte_ostream::byte_ostream(const  ostream & os) :
+      ostream(os)
    {
       m_b64bit = false;
    }
@@ -69,21 +69,21 @@ namespace file
 
    void byte_ostream:: write (bool b)
    {
-      
+
       m_spbuffer->write(&b, sizeof(b));
 
    }
 
    void byte_ostream:: write (char ch)
    {
-      
+
       m_spbuffer->write(&ch, sizeof(ch));
 
    }
 
    void byte_ostream:: write (uchar uch)
    {
-      
+
       m_spbuffer->write(&uch, sizeof(uch));
 
    }
@@ -285,7 +285,7 @@ namespace file
 
    void byte_ostream:: write (const char * psz)
    {
-      
+
       m_spbuffer->write(psz, strlen(psz));
 
    }
@@ -331,14 +331,14 @@ namespace file
 
    }
 
-   
+
    ostream & byte_ostream::operator = (const ostream & ostream)
    {
 
       return ::file::ostream::operator = (ostream);
 
    }
-   
+
 
 
    void byte_ostream::write_from_hex(const char * psz, strsize iLen)

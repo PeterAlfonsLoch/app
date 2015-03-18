@@ -442,7 +442,7 @@ namespace linux
             if(lpszModuleFolder == NULL)
                return false;
 
-            System.m_strModuleFolder = lpszModuleFolder;
+            System.m_pathModuleFolder = lpszModuleFolder;
 
             free(lpszModuleFolder);
 
@@ -455,7 +455,7 @@ namespace linux
             if(handle == NULL)
             {
 
-               System.m_strCa2ModuleFolder = System.m_strModuleFolder;
+               System.m_pathCa2ModuleFolder = System.m_pathModuleFolder;
 
             }
             else
@@ -465,12 +465,12 @@ namespace linux
 
                 dlinfo(handle, RTLD_DI_LINKMAP, &plm);
 
-                System.m_strCa2ModuleFolder = ::dir::name(plm->l_name);
+                System.m_pathCa2ModuleFolder = ::dir::name(plm->l_name);
 
-                if(System.m_strCa2ModuleFolder.is_empty() || System.m_strCa2ModuleFolder[0] != '/')
+                if(System.m_pathCa2ModuleFolder.is_empty() || System.m_pathCa2ModuleFolder[0] != '/')
                 {
 
-                    System.m_strCa2ModuleFolder = System.m_strModuleFolder;
+                    System.m_pathCa2ModuleFolder = System.m_pathModuleFolder;
 
                 }
 

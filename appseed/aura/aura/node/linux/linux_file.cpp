@@ -47,7 +47,7 @@ namespace linux
    }
 
 
-   file::file(::aura::application * papp, const char * lpszFileName, UINT nOpenFlags) :
+   file::file(::aura::application * papp, const ::file::path & lpszFileName, UINT nOpenFlags) :
       ::object(papp)
    {
 
@@ -84,7 +84,7 @@ namespace linux
    }
 
 
-   ::fesp file::open(const char * lpszFileName, UINT nOpenFlags)
+   cres file::open(const ::file::path & lpszFileName, UINT nOpenFlags)
    {
 
       if (m_iFile != INVALID_FILE)
@@ -99,7 +99,9 @@ namespace linux
 
       if(nOpenFlags & ::file::defer_create_directory)
       {
-         Application.dir().mk(System.dir().name(lpszFileName));
+
+         Application.dir().mk(lpszFileName.folder());
+
       }
 
       m_iFile = INVALID_FILE;
@@ -181,7 +183,7 @@ namespace linux
 
       m_iFile = iFile;
 
-      return ::file::no_exception();
+      return no_exception;
 
    }
 
@@ -496,7 +498,7 @@ namespace linux
 
       GetStatus(status);
 
-      return System.file().name_(status.m_strFullName);
+      return status.m_strFullName.name();
 
    }
 
@@ -510,7 +512,7 @@ namespace linux
 
       GetStatus(status);
 
-      return System.file().title_(status.m_strFullName);
+      return status.m_strFullName.title();
 
    }
 
@@ -790,53 +792,54 @@ namespace linux
    }
 
 
-   bool PASCAL file::GetStatus(const char * lpszFileName, ::file::file_status& rStatus)
-   {
-      // attempt to fully qualify path first
-      wstring wstrFullName;
-      wstring wstrFileName;
-      wstrFileName = ::str::international::utf8_to_unicode(lpszFileName);
-      if (!vfxFullPath(wstrFullName, wstrFileName))
-      {
-         rStatus.m_strFullName.Empty();
-         return FALSE;
-      }
-      ::str::international::unicode_to_utf8(rStatus.m_strFullName, wstrFullName);
-
-      struct stat st;
-      if(stat(lpszFileName, &st) == -1)
-         return false;
-      //if (hFind == INVALID_HANDLE_VALUE)
-        // return FALSE;
-      //VERIFY(FindClose(hFind));
-
-      // strip attribute of NORMAL bit, our API doesn't have a "normal" bit.
-      //rStatus.m_attribute = (BYTE) (findFileData.dwFileAttributes & ~FILE_ATTRIBUTE_NORMAL);
-
-      rStatus.m_attribute = 0;
-
-      // get just the low DWORD of the file size
-      //ASSERT(findFileData.nFileSizeHigh == 0);
-      //rStatus.m_size = (LONG)findFileData.nFileSizeLow;
-
-      rStatus.m_size = st.st_size;
-
-      // convert times as appropriate
-      /*rStatus.m_ctime = ::datetime::time(findFileData.ftCreationTime);
-      rStatus.m_atime = ::datetime::time(findFileData.ftLastAccessTime);
-      rStatus.m_mtime = ::datetime::time(findFileData.ftLastWriteTime);*/
-      rStatus.m_ctime = ::datetime::time(st.st_mtime);
-      rStatus.m_atime = ::datetime::time(st.st_atime);
-      rStatus.m_mtime = ::datetime::time(st.st_ctime);
-
-      if (rStatus.m_ctime.get_time() == 0)
-         rStatus.m_ctime = rStatus.m_mtime;
-
-      if (rStatus.m_atime.get_time() == 0)
-         rStatus.m_atime = rStatus.m_mtime;
-
-      return TRUE;
-   }
+//   bool PASCAL file::GetStatus(const ::file::path & lpszFileName, ::file::file_status& rStatus)
+//   {
+//
+//      // attempt to fully qualify path first
+//      wstring wstrFullName;
+//      wstring wstrFileName;
+//      wstrFileName = ::str::international::utf8_to_unicode(lpszFileName);
+//      if (!vfxFullPath(wstrFullName, wstrFileName))
+//      {
+//         rStatus.m_strFullName.Empty();
+//         return FALSE;
+//      }
+//      ::str::international::unicode_to_utf8(rStatus.m_strFullName, wstrFullName);
+//
+//      struct stat st;
+//      if(stat(lpszFileName, &st) == -1)
+//         return false;
+//      //if (hFind == INVALID_HANDLE_VALUE)
+//        // return FALSE;
+//      //VERIFY(FindClose(hFind));
+//
+//      // strip attribute of NORMAL bit, our API doesn't have a "normal" bit.
+//      //rStatus.m_attribute = (BYTE) (findFileData.dwFileAttributes & ~FILE_ATTRIBUTE_NORMAL);
+//
+//      rStatus.m_attribute = 0;
+//
+//      // get just the low DWORD of the file size
+//      //ASSERT(findFileData.nFileSizeHigh == 0);
+//      //rStatus.m_size = (LONG)findFileData.nFileSizeLow;
+//
+//      rStatus.m_size = st.st_size;
+//
+//      // convert times as appropriate
+//      /*rStatus.m_ctime = ::datetime::time(findFileData.ftCreationTime);
+//      rStatus.m_atime = ::datetime::time(findFileData.ftLastAccessTime);
+//      rStatus.m_mtime = ::datetime::time(findFileData.ftLastWriteTime);*/
+//      rStatus.m_ctime = ::datetime::time(st.st_mtime);
+//      rStatus.m_atime = ::datetime::time(st.st_atime);
+//      rStatus.m_mtime = ::datetime::time(st.st_ctime);
+//
+//      if (rStatus.m_ctime.get_time() == 0)
+//         rStatus.m_ctime = rStatus.m_mtime;
+//
+//      if (rStatus.m_atime.get_time() == 0)
+//         rStatus.m_atime = rStatus.m_mtime;
+//
+//      return TRUE;
+//   }
 
 
    /*

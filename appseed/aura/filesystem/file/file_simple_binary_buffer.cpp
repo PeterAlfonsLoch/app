@@ -41,7 +41,7 @@ namespace file
    cres simple_binary_buffer::open(const ::file::path & lpszFileName, UINT nOpenFlags)
    {
 
-      ASSERT(lpszFileName != NULL);
+      ASSERT(lpszFileName.has_char());
 
       ASSERT(__is_valid_string(lpszFileName));
 

@@ -108,9 +108,11 @@ namespace file
 
       operator bool() { return is_null(); }
 
+      operator exception * () {return m_p;}
+
    };
 
-   
+
 
 } // namespace file
 

@@ -162,7 +162,7 @@ namespace xml
       if(extEnt.has_char())
       {
          bExt = true;
-         return Session.file().as_string(m_pathLocation * extEnt);
+         return Session.file().as_string(m_pathLocation.sibling(extEnt));
       }
       return "";
    }

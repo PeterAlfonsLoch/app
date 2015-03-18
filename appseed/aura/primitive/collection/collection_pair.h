@@ -5,16 +5,16 @@ template < typename T1, typename T2 >
 class pair
 {
 public:
-   
 
-   typedef typename T1         TYPE1;
-   typedef typename T2         TYPE2;
 
-   
+   typedef T1         TYPE1;
+   typedef T2         TYPE2;
+
+
    T1       m_element1;
    T2       m_element2;
 
-   
+
    pair()
    {
    }
@@ -37,7 +37,7 @@ public:
    inline const T1 & element1() const { return m_element1; }
    inline const T2 & element2() const { return m_element2; }
 
-   
+
 
 };
 

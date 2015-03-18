@@ -971,7 +971,7 @@ void var::write(::file::ostream & ostream) const
       {
          sp(type) info(Sys(ostream.m_spbuffer->get_app()).get_type_info(typeid(*m_sp.m_p)));
          ostream << info;
-         
+
          ::file::serializable * pserializable = m_sp.cast < ::file::serializable > ();
 
          if(pserializable != NULL)
@@ -3805,13 +3805,13 @@ string & var::get_json(string & str) const
    else if (is_numeric())
    {
 
-      return get_string();
+      return str = get_string();
 
    }
    else
    {
 
-      return "\"" + get_string() + "\"";
+      return str = ("\"" + get_string() + "\"");
 
    }
 
@@ -3831,7 +3831,7 @@ void var::null()
 
 ::file::path var::get_file_path() const
 {
-   
+
    if(m_etype == type_propset)
    {
       if(has_property("url"))

@@ -41,7 +41,7 @@
 			</Target>
 		</Build>
 		<Compiler>
-			<Add option="-std=c++0x" />
+			<Add option="-std=c++11" />
 			<Add option="-fexceptions" />
 			<Add option="-fnon-call-exceptions" />
 			<Add option="-fno-pie" />
@@ -81,8 +81,10 @@
 		<Unit filename="aura/aura/aura_application_signal_details.h" />
 		<Unit filename="aura/aura/aura_async.h" />
 		<Unit filename="aura/aura/aura_aura.h" />
+		<Unit filename="aura/aura/aura_auto.h" />
 		<Unit filename="aura/aura/aura_auto_pointer.h" />
 		<Unit filename="aura/aura/aura_class.h" />
+		<Unit filename="aura/aura/aura_cmp.h" />
 		<Unit filename="aura/aura/aura_command.h" />
 		<Unit filename="aura/aura/aura_command_target.h" />
 		<Unit filename="aura/aura/aura_common.h" />
@@ -327,30 +329,32 @@
 		<Unit filename="filesystem/file/file_binary_buffer.h" />
 		<Unit filename="filesystem/file/file_buffer.h" />
 		<Unit filename="filesystem/file/file_buffered_buffer.h" />
-		<Unit filename="filesystem/file/file_byte_input_stream.h" />
-		<Unit filename="filesystem/file/file_byte_input_stream_binary_buffer.h" />
-		<Unit filename="filesystem/file/file_byte_output_stream.h" />
-		<Unit filename="filesystem/file/file_byte_output_stream_binary_buffer.h" />
+		<Unit filename="filesystem/file/file_byte_istream.h" />
+		<Unit filename="filesystem/file/file_byte_istream_binary_buffer.h" />
+		<Unit filename="filesystem/file/file_byte_ostream.h" />
+		<Unit filename="filesystem/file/file_byte_ostream_binary_buffer.h" />
 		<Unit filename="filesystem/file/file_byte_stream.h" />
 		<Unit filename="filesystem/file/file_byte_stream_memory_buffer.h" />
 		<Unit filename="filesystem/file/file_c.h" />
 		<Unit filename="filesystem/file/file_circular_buffer.h" />
 		<Unit filename="filesystem/file/file_composite.h" />
 		<Unit filename="filesystem/file/file_dir.h" />
+		<Unit filename="filesystem/file/file_edit_buffer.h" />
 		<Unit filename="filesystem/file/file_exception.h" />
-		<Unit filename="filesystem/file/file_file_input_stream.h" />
-		<Unit filename="filesystem/file/file_file_output_stream.h" />
+		<Unit filename="filesystem/file/file_file_istream.h" />
+		<Unit filename="filesystem/file/file_file_ostream.h" />
 		<Unit filename="filesystem/file/file_file_stream.h" />
 		<Unit filename="filesystem/file/file_file_stream_base.h" />
 		<Unit filename="filesystem/file/file_folder_watch.h" />
-		<Unit filename="filesystem/file/file_input_stream.h" />
+		<Unit filename="filesystem/file/file_html_buffer.h" />
+		<Unit filename="filesystem/file/file_istream.h" />
 		<Unit filename="filesystem/file/file_memory_buffer.h" />
 		<Unit filename="filesystem/file/file_opened.h" />
-		<Unit filename="filesystem/file/file_output_stream.h" />
-		<Unit filename="filesystem/file/file_output_stream_flush.h" />
-		<Unit filename="filesystem/file/file_plain_text_input_stream.h" />
-		<Unit filename="filesystem/file/file_plain_text_output_stream.h" />
-		<Unit filename="filesystem/file/file_plain_text_output_stream_string_buffer.h" />
+		<Unit filename="filesystem/file/file_ostream.h" />
+		<Unit filename="filesystem/file/file_ostream_flush.h" />
+		<Unit filename="filesystem/file/file_plain_text_istream.h" />
+		<Unit filename="filesystem/file/file_plain_text_ostream.h" />
+		<Unit filename="filesystem/file/file_plain_text_ostream_string_buffer.h" />
 		<Unit filename="filesystem/file/file_plain_text_stream.h" />
 		<Unit filename="filesystem/file/file_plain_text_stream_base.h" />
 		<Unit filename="filesystem/file/file_plain_text_stream_memory_buffer.h" />
@@ -374,12 +378,15 @@
 		<Unit filename="filesystem/file/file_writer.h" />
 		<Unit filename="filesystem/file/file_writer_flush.h" />
 		<Unit filename="filesystem/filesystem.h" />
+		<Unit filename="filesystem/filesystem.inl" />
 		<Unit filename="filesystem/filesystem/filesystem_application.cpp" />
 		<Unit filename="filesystem/filesystem/filesystem_application.h" />
 		<Unit filename="filesystem/filesystem/filesystem_dir_application.cpp" />
 		<Unit filename="filesystem/filesystem/filesystem_dir_application.h" />
 		<Unit filename="filesystem/filesystem/filesystem_dir_system.cpp" />
 		<Unit filename="filesystem/filesystem/filesystem_dir_system.h" />
+		<Unit filename="filesystem/filesystem/filesystem_listing.cpp" />
+		<Unit filename="filesystem/filesystem/filesystem_path.cpp" />
 		<Unit filename="filesystem/filesystem/filesystem_system.cpp" />
 		<Unit filename="filesystem/filesystem/filesystem_system.h" />
 		<Unit filename="framework.cpp" />
@@ -453,6 +460,7 @@
 		<Unit filename="multithreading/service/service_plain_service.h" />
 		<Unit filename="multithreading/service/service_thread_pool.h" />
 		<Unit filename="net/net.h" />
+		<Unit filename="net/net.inl" />
 		<Unit filename="net/net_url.cpp" />
 		<Unit filename="net/net_url.h" />
 		<Unit filename="primitive/_primitive.cpp" />
@@ -640,6 +648,7 @@
 		<Unit filename="primitive/str/x/x_defines.h" />
 		<Unit filename="primitive/str/x/x_encodings.h" />
 		<Unit filename="primitive/str/x/x_tables.h" />
+		<Unit filename="teste.cpp" />
 		<Unit filename="user/colorertake5/_colorertake5.cpp" />
 		<Unit filename="user/colorertake5/colorertake5.h" />
 		<Unit filename="user/colorertake5/colorertake5_Writer.h" />

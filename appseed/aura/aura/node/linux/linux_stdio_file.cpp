@@ -27,17 +27,15 @@ stdio_file::~stdio_file()
 }
 
 
-::fesp stdio_file::open(const char * lpszFileName, UINT nOpenFlags)
+cres stdio_file::open(const ::file::path & lpszFileName, UINT nOpenFlags)
 {
 
-   ASSERT(lpszFileName != NULL);
-
-   //ASSERT(AfxIsValidString(lpszFileName));
+   ASSERT(lpszFileName.has_char());
 
    if(nOpenFlags  & ::file::defer_create_directory)
    {
 
-      Application.dir().mk(System.dir().name(lpszFileName));
+      Application.dir().mk(lpszFileName.folder());
 
    }
 
@@ -107,8 +105,10 @@ stdio_file::~stdio_file()
 
    m_strFileName = lpszFileName;
 
-   return ::file::no_exception();
+   return no_exception;
+
 }
+
 
 DWORD_PTR stdio_file::read(void * lpBuf, DWORD_PTR nCount)
 {

@@ -59,13 +59,13 @@ namespace file
    byte_istream::byte_istream(stream_buffer * preader) :
       istream(preader)
    {
-      
+
    }
 
-   byte_istream::byte_istream(const istream & istream) :
-      istream(istream)
+   byte_istream::byte_istream(const istream & is) :
+      istream(is)
    {
-      
+
    }
 
    byte_istream::~byte_istream()
@@ -86,7 +86,7 @@ namespace file
 
    void byte_istream::read(uchar & uch)
    {
-      
+
       if(fail())
       {
 
@@ -96,7 +96,7 @@ namespace file
 
       if(m_spbuffer->read(&uch,sizeof(uch)) != sizeof(uch))
       {
-         
+
          setstate(failbit);
 
       }
@@ -184,7 +184,7 @@ namespace file
       read_arbitrary(&ui, sizeof(ui));
 
    }
-   
+
    void byte_istream::read_arbitrary(void * p, ::count nMax)
    {
 
@@ -227,7 +227,7 @@ namespace file
 
       if(b & 0x40)
       {
-         
+
          int64_t i = - ((int64_t) uiRead);
 
          memcpy(p, &i, nMax);
@@ -245,7 +245,7 @@ namespace file
 
    void byte_istream::read(float & f)
    {
-      
+
       full_read(&f, sizeof(f));
 
    }
@@ -253,7 +253,7 @@ namespace file
 
    void byte_istream::read(double & d)
    {
-      
+
       full_read(&d, sizeof(d));
 
    }

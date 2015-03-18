@@ -263,7 +263,7 @@ namespace colorertake5
                }
                continue;
             };
-            type->m_strSourceLocation = m_strCurrentSourceLocation * locationLink;
+            type->m_strSourceLocation = m_strCurrentSourceLocation.sibling(locationLink);
             /*type->m_strSource =
             Application.file().as_string(
             type->m_strSourceLocation);*/

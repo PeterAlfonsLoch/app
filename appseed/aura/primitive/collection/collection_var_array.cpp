@@ -44,7 +44,7 @@ index var_array::add(var var)
 {
    if(var.get_type() != var::type_empty_argument)
    {
-      return array < class var >::add(var);
+      return ::array < class var >::add(var);
    }
    return -1;
 }
@@ -63,7 +63,7 @@ index var_array::add(var var)
 {
 
    ::count c = 0;
-   
+
    for(int32_t i = 0; i < vara.get_size(); i++)
    {
 
@@ -311,7 +311,7 @@ var_array & var_array::operator = (const int_array & inta)
 
 var_array & var_array::operator = (const property_set & propset)
 {
-   
+
    remove_all();
 
    for(auto property : propset)

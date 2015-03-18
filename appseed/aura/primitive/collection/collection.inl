@@ -85,3 +85,80 @@ namespace gen
 
 
 
+
+
+
+template < typename Type, typename RawType >
+void string_array < Type, RawType >::add(const var & var)
+{
+   if(var.is_empty())
+   {
+   }
+   else if(var.get_type() == var::type_stra)
+   {
+      ::lemon::array::add(*this, var.stra());
+   }
+   else if(var.cast < string_array < Type, RawType > >() != NULL)
+   {
+      ::lemon::array::add(*this, *var.cast < string_array < Type,RawType > >());
+   }
+   else if(var.get_type() == var::type_vara)
+   {
+      for(int32_t i = 0; i < var.vara().get_count(); i++)
+      {
+         ::lemon::array::add(*this,var.vara()[i].get_string());
+      }
+   }
+   else if(var.get_type() == var::type_inta)
+   {
+      for(int32_t i = 0; i < var.inta().get_count(); i++)
+      {
+         ::lemon::array::add(*this,::str::from(var.inta()[i]));
+      }
+   }
+   else if(var.get_type() == var::type_propset)
+   {
+      for(auto property : var.propset())
+      {
+         ::lemon::array::add(*this, property.get_value().get_string());
+      }
+   }
+   else
+   {
+      ::lemon::array::add(*this, var.get_string());
+   }
+}
+
+
+template < typename Type, typename RawType >
+void string_array < Type, RawType >::add(const property & prop)
+{
+   add(prop.get_value());
+}
+
+
+template < class Type, class RawType >
+string_array < Type, RawType >  & string_array < Type, RawType > ::operator = (var var)
+{
+   if(var.get_type() == var::type_stra)
+   {
+      *this = var.stra();
+   }
+   else
+   {
+      this->remove_all();
+      if(var.get_count() == 1)
+      {
+         add((Type)var.get_string());
+      }
+      else if(var.get_count() > 1)
+      {
+         *this = var.stra();
+      }
+   }
+   return *this;
+}
+
+
+
+
