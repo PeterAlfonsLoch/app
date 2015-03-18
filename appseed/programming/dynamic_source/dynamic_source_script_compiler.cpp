@@ -265,7 +265,7 @@ namespace dynamic_source
       pscript->m_strCppPath.Format(m_strTime/  "dynamic_source\\%s.cpp", strTransformName);
       //#ifdef DEBUG
 #ifdef LINUX
-      pscript->m_strBuildBat = System.dir().element() / m_strDynamicSourceStage / "front\\dynamic_source\\BuildBat"/strTransformName.name()/strTransformName+".bat";
+      strB = System.dir().element() / m_strDynamicSourceStage / "front\\dynamic_source\\BuildBat"/strTransformName.name()/strTransformName+".bat";
       strO = ::file::path(m_strTime) / "intermediate" / m_strPlatform / m_pmanager->m_strNamespace + "_dynamic_source_script" / strTransformName / strTransformName.name() + ".o";
 #else
       strB = m_strDynamicSourceStageFolder / "front\\dynamic_source\\BuildBat" / strTransformName.name() / strTransformName + ".bat";
