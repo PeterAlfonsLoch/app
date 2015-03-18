@@ -46,7 +46,7 @@ namespace linux
       virtual bool  name_is(const ::file::path & path,::aura::application * papp);
       virtual bool  has_subdir(::aura::application * papp,const ::file::path & lpcsz);
 
-      virtual void root_ones(stringa & straPath, stringa & straTitle, ::aura::application * papp);
+      virtual ::file::listing & root_ones(::file::listing & listing, ::aura::application * papp);
       virtual bool mk(const ::file::path & lpcsz, ::aura::application * papp);
       virtual bool rm(::aura::application * papp, const ::file::path & psz, bool bRecursive = true);
 

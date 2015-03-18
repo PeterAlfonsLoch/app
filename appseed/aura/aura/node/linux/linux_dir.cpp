@@ -186,10 +186,10 @@ namespace linux
 //      return strcmp(lpcsz1, lpcsz2) == 0;
 //   }
 
-   void dir::root_ones(stringa & straPath, stringa & straTitle, ::aura::application *  papp)
+   ::file::listing & dir::root_ones(::file::listing & listing, ::aura::application *  papp)
    {
-      straPath.add("/");
-      straTitle.add("");
+      listing.add("/");
+      listing.m_straTitle.add("Filesystem");
 /*      DWORD dwSize = ::GetLogicalDriveStrings(0, NULL);
       LPTSTR lpszAlloc = (LPTSTR) malloc(dwSize + 1);
       LPTSTR lpsz = lpszAlloc;
@@ -1251,7 +1251,7 @@ namespace linux
 #else
 
       if(m_strTimeFolder.is_empty())
-         m_strTimeFolder = appdata("time");
+         m_strTimeFolder = appdata() / "time";
 
 #endif
 
