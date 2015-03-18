@@ -960,7 +960,7 @@ namespace linux
 
       single_lock sl(&m_mutex, true);
 
-      return m_strCa2;
+     return m_strCa2;
 
    }
 
