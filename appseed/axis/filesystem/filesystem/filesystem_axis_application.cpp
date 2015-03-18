@@ -22,7 +22,7 @@ namespace file
       {
       }
 
-      
+
       cres application::copy(const ::file::path & pszNew,const ::file::path & pszOld,bool bFailIfExists,e_extract eextract)
       {
          return m_pauraapp->m_paurasystem->m_spfile->copy(pszNew,pszOld,bFailIfExists,eextract,m_pauraapp);
@@ -56,7 +56,7 @@ namespace file
          return m_pauraapp->m_paurasystem->m_spfile->trash_that_is_not_trash(stra,m_pauraapp);
       }
 
-      
+
       cres application::replace(const ::file::path & pszContext,const string & pszFind,const string & pszReplace)
       {
          return m_pauraapp->m_paurasystem->m_spfile->replace(pszContext,pszFind,pszReplace,m_pauraapp);
@@ -601,7 +601,7 @@ namespace file
 
          }
 
-         if(!cres)
+         if(cres.failed())
          {
 
             spfile.release();

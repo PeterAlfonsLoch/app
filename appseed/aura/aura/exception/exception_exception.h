@@ -98,6 +98,8 @@ namespace exception
 
       operator bool() const { return is_null(); }
 
+      bool failed() {return !is_null();}
+
       void add(exception * pexception)
       {
          if(pexception == NULL)

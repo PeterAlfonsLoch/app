@@ -9,8 +9,8 @@ namespace file
    const char * path::s_pszOtherDirSep = "//\\";
 
 #else
-   const char * path::s_pszDirSep = "//\\";
-   const char * path::s_pszOtherDirSep = "//\\";
+   const char * path::s_pszDirSep = "///";
+   const char * path::s_pszOtherDirSep = "\\\\\\";
 #endif
 
 
@@ -72,6 +72,10 @@ namespace file
       straParam.add_smallest_tokens(*this,straSeparator,FALSE);
       if(straParam.get_count() > 0)
       {
+         if(sep() == '/' && operator[](0) == '/')
+         {
+            straParam[0] = "/" + straParam[0];
+         }
          strsize iFind = straParam[0].find(':');
          //if(iFind >= 2)
          //{

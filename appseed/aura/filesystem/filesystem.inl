@@ -26,9 +26,9 @@ namespace file
 } // namespace file
 
 
-inline ::file::path operator + (const string & str,const ::file::path & path) { ::file::path p(str);  return p + path; }
-inline ::file::path operator + (const char * psz,const ::file::path & path) {  ::file::path p(psz);  return p + path; }
-inline ::file::path operator + (const var & var,const ::file::path & path) { ::file::path p(var.get_file_path());  return p + path; }
+inline ::file::path operator + (const string & str,const ::file::path & path) { ::file::path p(str + string(path)); }
+inline ::file::path operator + (const char * psz,const ::file::path & path) {  ::file::path p(psz + string(path)); }
+inline ::file::path operator + (const var & var,const ::file::path & path) { ::file::path p(var.get_string() + string(path)); }
 inline ::file::path operator / (const string & str,const ::file::path & path) { ::file::path p(str);  return p / path; }
 inline ::file::path operator / (const char * psz,const ::file::path & path) { ::file::path p(psz);  return p / path; }
 inline ::file::path operator / (const var & var,const ::file::path & path) { ::file::path p(var.get_file_path());  return p / path; }
