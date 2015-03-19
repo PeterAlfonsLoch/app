@@ -261,6 +261,7 @@ namespace file
          return extension();
       }
 
+      string final_extension() const;
 
       //class CLASS_DECL_AURA path:
       //   virtual public ::object
