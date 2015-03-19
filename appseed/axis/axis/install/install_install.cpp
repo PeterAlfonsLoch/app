@@ -494,7 +494,7 @@ namespace install
 
    RetryBuildNumber:
 
-      if (iRetry > 10)
+      if (iRetry > 3)
       {
 
          return "";
@@ -971,7 +971,14 @@ namespace install
          if(!m_strVersionLatestBuildNumber.Lookup(m_strVersion,strBuildNumber))
          {
 
-            strBuildNumber = get_latest_build_number(m_strVersion);
+            string strNewBuildNumber = get_latest_build_number(m_strVersion);
+
+            if(strNewBuildNumber.has_char())
+            {
+
+               strBuildNumber = strNewBuildNumber;
+
+            }
 
             m_strVersionLatestBuildNumber.set_at(m_strVersion,strBuildNumber);
 

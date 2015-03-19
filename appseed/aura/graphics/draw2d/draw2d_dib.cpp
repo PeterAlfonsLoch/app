@@ -3576,9 +3576,13 @@ namespace draw2d
       int32_t width;
       int32_t height;
       istream >> width;
+      if(istream.fail())
+         return;
       if(width <= 0)
          return;
       istream >> height;
+      if(istream.fail())
+         return;
       if(height <= 0)
          return;
       if((width * height) <= 0)

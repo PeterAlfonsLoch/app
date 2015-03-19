@@ -127,8 +127,12 @@ namespace crypto
 
       storageEncrypt.allocate(cipherlen);
 
+      storageEncrypt.set(0);
+
       if(!EVP_EncryptUpdate(&ctx,storageEncrypt.get_data(),&cipherlen,storageDecrypt.get_data(),plainlen))
       {
+
+         storageEncrypt.set(0);
 
          storageEncrypt.allocate(0);
 
@@ -140,6 +144,8 @@ namespace crypto
 
       if(!EVP_EncryptFinal(&ctx,storageEncrypt.get_data() + cipherlen,&tmplen))
       {
+
+         storageEncrypt.set(0);
 
          storageEncrypt.allocate(0);
 
@@ -529,6 +535,8 @@ namespace crypto
       if (!EVP_DecryptUpdate(&ctx, storageDecrypt.get_data(), &plainlen, storageEncrypt.get_data(), cipherlen))
       {
 
+         storageDecrypt.set(0);
+
          storageDecrypt.allocate(0);
 
          EVP_CIPHER_CTX_cleanup(&ctx);
@@ -539,6 +547,8 @@ namespace crypto
 
       if (!EVP_DecryptFinal(&ctx, storageDecrypt.get_data() + plainlen, &tmplen))
       {
+
+         storageDecrypt.set(0);
 
          storageDecrypt.allocate(0);
 
@@ -1349,6 +1359,8 @@ out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEn
 
       out.allocate(iRsaSize);
 
+      out.set(0);
+
       ::count i = RSA_private_decrypt((int)in.get_size(), in.get_data(), out.get_data(), m_prsa, RSA_PKCS1_PADDING);
 
       if (i < 0 || i >(1024 * 1024))
@@ -1497,6 +1509,8 @@ out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEn
 
       out.allocate(iRsaSize);
 
+      out.set(0);
+
       ::count i = RSA_public_decrypt((int)in.get_size(),in.get_data(),out.get_data(),m_prsa,RSA_PKCS1_PADDING);
 
       if(i < 0 || i >(1024 * 1024))
@@ -1530,6 +1544,8 @@ out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEn
 
       memory.allocate(2048);
 
+      memory.set(0);
+
       string strError;
 
       int i = prsa->public_encrypt(memory, memIn, strError);
@@ -1559,6 +1575,8 @@ out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEn
 
       memory.allocate(2048);
 
+      memory.set(0);
+
       string strError;
 
       int i = prsa->private_decrypt(memory,memIn,strError);
@@ -1586,6 +1604,8 @@ out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEn
       memIn.from_hex(psz);
 
       memory.allocate(2048);
+      
+      memory.set(0);
 
       string strError;
 
@@ -1613,6 +1633,8 @@ out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEn
       memIn.from_hex(psz);
 
       memory.allocate(2048);
+
+      memory.set(0);
 
       string strError;
 
