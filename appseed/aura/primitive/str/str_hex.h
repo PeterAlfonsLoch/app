@@ -137,5 +137,25 @@ namespace hex
       return &sz[i];
    }
 
+   inline string lower_pad_from(INT iValue,int iWidth)
+   {
+      string str = lower_from(iValue);
+      while(str.get_length() < iWidth)
+      {
+         str = "0" + str;
+      }
+      return str;
+   }
+
+   inline string upper_pad_from(INT iValue,int iWidth)
+   {
+      string str = upper_from(iValue);
+      while(str.get_length() < iWidth)
+      {
+         str = "0" + str;
+      }
+      return str;
+   }
+
 } // namespace hex
 

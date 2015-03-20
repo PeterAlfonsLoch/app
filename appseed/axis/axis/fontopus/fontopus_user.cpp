@@ -17,7 +17,7 @@ namespace fontopus
       for(int32_t i = 0; i < 64; i += 2)
       {
          int64_t iDigit = System.math().RandRange(0,255);
-         strFormat.Format("%02x",iDigit);
+         strFormat = ::hex::lower_pad_from(iDigit, 2);
          m_strSessionSecret += strFormat;
       }
 
