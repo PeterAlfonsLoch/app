@@ -151,8 +151,8 @@ namespace file
 
 
 
-      if (!papp->m_paurasystem->dir().name_is(strPath, papp))
-         return false;
+      //if (!papp->m_paurasystem->dir().name_is(strPath, papp))
+      //   return false;
 
 #ifdef WINDOWS
 

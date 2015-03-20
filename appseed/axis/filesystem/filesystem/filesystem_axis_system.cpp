@@ -156,8 +156,8 @@ namespace file
 
       }
 
-      if (!papp->m_paxissystem->dir().name_is(strPath, papp))
-         return false;
+      //if (!papp->m_paxissystem->dir().name_is(strPath, papp))
+      //   return false;
 
 #ifdef WINDOWS
 

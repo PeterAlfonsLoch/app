@@ -223,6 +223,11 @@ bool string_format::parse(const char * & s)
          m_chLength = *s;
          s++;
       }
+      else if(*s == 'I' && *(s + 1) == '6' && *(s + 2) == '4' && *(s + 3) == 'd')
+      {
+         m_chLength = *s;
+         s+=4;
+      }
       else
       {
          throw simple_exception(get_thread_app(), "unfineshed format specifier");
