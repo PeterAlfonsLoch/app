@@ -1000,15 +1000,26 @@ namespace dynamic_source
    bool script_manager::extract_image_size(const ::file::path & strFile,::size * psize)
    {
 
-      ::file::binary_buffer_sp f;
+      ::file::buffer_sp f;
 
       try
       {
+
          f = Application.file().get_file(strFile, ::file::type_binary | ::file::mode_read | ::file::share_deny_write);
+
       }
       catch(...)
       {
+
          return false;
+
+      }
+
+      if(f.is_null())
+      {
+
+         return false;
+
       }
 
       // http://www.cplusplus.com/forum/beginner/45217/
