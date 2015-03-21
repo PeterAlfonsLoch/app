@@ -16,17 +16,17 @@ namespace url
       if(*psz != ':')
          return false;
       psz++;
-      if(*psz != '/')
+      if(*psz != '/' && *psz != '\\')
          return false;
       psz++;
-      if(*psz != '/')
+      if(*psz != '/' && *psz != '\\')
          return false;
       psz++;
-      while(*psz != '\0' && (*psz == '.' || *psz == '_' || isalnum_dup(*psz)))
+      while(*psz != '\0' && (*psz == '.' || *psz == '_' || *psz == '-' || isalnum_dup(*psz)))
       {
          psz++;
       }
-      if(*psz != '\0' && *psz != '/')
+      if(*psz != '\0' && *psz != '/' && *psz != '\\')
          return false;
       if(ppszRequest != NULL)
       {

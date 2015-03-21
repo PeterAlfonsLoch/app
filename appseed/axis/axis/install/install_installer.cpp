@@ -1646,7 +1646,7 @@ install_begin:;
 
             set["raw_http"] = true;
 
-            bOk = (psession = Application.http().download(psession,(url_in + "." + pszMd5),(dir + file + "." + pszMd5),set)) != NULL;
+            bOk = (psession = Application.http().download(psession,::file::path(url_in + "." + pszMd5),::file::path(dir + file + "." + pszMd5),set)) != NULL;
             //bOk = Application.http().download((url_in + "." + pszMd5), (dir + file + "." + pszMd5), set);
 //            if(iStatus == 404)
   //             break;
