@@ -9,10 +9,10 @@ namespace install
    class interaction_impl;
    class install;
 
-   CLASS_DECL_AXIS void get_plugin_base_library_list(::file::patha & straFile,const string & strVersion);
-
-
 } // namespace install
+
+
+CLASS_DECL_AXIS stringa install_get_plugin_base_library_list(const string & strVersion);
 
 
 #define SPA_FILE_FLAG_VOID_COPY 1

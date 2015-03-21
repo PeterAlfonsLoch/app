@@ -18,7 +18,7 @@ namespace lemon
          for(int i = 0; i < srca.get_size(); i++)
          {
 
-            dsta.add(srca[i]);
+            dsta.add((typename TDST::BASE_TYPE) srca[i]);
 
          }
 

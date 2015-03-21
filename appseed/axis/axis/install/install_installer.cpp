@@ -3125,7 +3125,7 @@ RetryBuildNumber:
 
       string strBuild;
 
-      ::install::get_plugin_base_library_list(straTemplate, m_strVersion);
+      ::lemon::array::copy(straTemplate,::install_get_plugin_base_library_list(m_strVersion));
 
       string strUrl;
 

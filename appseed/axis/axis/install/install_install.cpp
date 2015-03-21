@@ -1320,7 +1320,7 @@ namespace install
 
          ::file::patha straFile;
 
-         ::install::get_plugin_base_library_list(straFile, pszVersion);
+         ::lemon::array::copy(straFile, ::install_get_plugin_base_library_list(pszVersion));
 
          if(!::dir::is(strPath.folder()))
          {

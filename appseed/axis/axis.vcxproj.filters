@@ -2248,11 +2248,11 @@
     <ClCompile Include="net\http\http_ostream.cpp">
       <Filter>Source Files\net\http</Filter>
     </ClCompile>
+    <ClCompile Include="install_plugin_library_list.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>

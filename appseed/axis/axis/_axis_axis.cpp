@@ -10,3 +10,6 @@
 #include "message/_message.cpp"
 #include "node/_node.cpp"
 #include "os/_os.cpp"
+
+
+#include "axis/install_plugin_library_list.cpp"
