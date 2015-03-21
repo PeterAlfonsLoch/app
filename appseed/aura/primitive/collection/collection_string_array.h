@@ -173,7 +173,7 @@ public:
    ::count get_begins_ci(string_array & stra,const char * lpcsz,index first = 0,index last = -1);
 
    ::count filter_begins_ci(const char * lpcsz,index first = 0,index last = -1);
-   
+
    template < typename Pred >
    ::count filter(Pred pred,index first = 0,index last = -1);
 
@@ -2637,7 +2637,7 @@ template < typename Pred >
       }
       else
       {
-         remove_at(i);
+         this->remove_at(i);
          count++;
          last--;
       }
