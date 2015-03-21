@@ -197,6 +197,19 @@ namespace file
 
       }
 
+
+      void to_name()
+      {
+
+         for(index i = 0; i < get_size(); i++)
+         {
+
+            element_at(i) = element_at(i).name();
+
+         }
+
+      }
+
       listing & operator = (const listing & listing)
       {
 
