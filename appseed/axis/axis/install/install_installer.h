@@ -14,7 +14,8 @@ namespace install
 
 
       class CLASS_DECL_AXIS launcher :
-         virtual public ::launcher
+         virtual public ::launcher,
+         virtual public ::object
       {
       public:
 

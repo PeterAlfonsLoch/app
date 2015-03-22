@@ -21,13 +21,13 @@ DWORD_PTR                        g_gdiplusToken             = NULL;
 DWORD_PTR                        g_gdiplusHookToken         = NULL;
 
 
-typedef bool
+typedef int
 (WINAPI * LPFN_ChangeWindowMessageFilter)(
-    _In_ UINT message,
-    _In_ uint32_t dwFlag);
+    UINT message,
+    DWORD dwFlag);
 
 
-CLASS_DECL_AURA LPFN_ChangeWindowMessageFilter g_pfnChangeWindowMessageFilter = NULL;
+LPFN_ChangeWindowMessageFilter g_pfnChangeWindowMessageFilter = NULL;
 
 typedef  
 LSTATUS

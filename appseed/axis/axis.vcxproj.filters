@@ -1307,6 +1307,9 @@
     <ClInclude Include="net\http\http_ostream.h">
       <Filter>Header Files\net\http</Filter>
     </ClInclude>
+    <ClInclude Include="install_launcher.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="net\net_net.cpp">
@@ -2251,11 +2254,11 @@
     <ClCompile Include="install_plugin_library_list.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="install_launcher.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>

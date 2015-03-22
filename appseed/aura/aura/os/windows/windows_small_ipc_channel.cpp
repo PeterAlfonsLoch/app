@@ -1,9 +1,12 @@
 //#include "framework.h"
 
-extern CLASS_DECL_AURA bool (WINAPI * g_pfnChangeWindowMessageFilter)(
-    _In_ UINT message,
-    _In_ uint32_t dwFlag);
+typedef int
+(WINAPI * LPFN_ChangeWindowMessageFilter)(
+ UINT message,
+ DWORD dwFlag);
 
+
+extern LPFN_ChangeWindowMessageFilter g_pfnChangeWindowMessageFilter;
 
 small_ipc_channel_base::small_ipc_channel_base()
 {
@@ -21,8 +24,8 @@ bool small_ipc_tx_channel::open(const char * pszKey, launcher * plauncher)
       close();
 
 
-   int32_t jCount = 23;
-   int32_t iCount;
+   int jCount = 23;
+   int iCount;
 
    if(plauncher != NULL)
       iCount = plauncher->m_iStart;
@@ -31,9 +34,9 @@ bool small_ipc_tx_channel::open(const char * pszKey, launcher * plauncher)
 
    m_oswindow = NULL;
 
-   for(int32_t i = 0; i < iCount; i++)
+   for(int i = 0; i < iCount; i++)
    {
-      for(int32_t j = 0; j < jCount; j++)
+      for(int j = 0; j < jCount; j++)
       {
          m_oswindow = ::FindWindow(NULL, pszKey);
          if(m_oswindow != NULL)
@@ -74,7 +77,7 @@ bool small_ipc_tx_channel::close()
 }
 
 
-bool small_ipc_tx_channel::send(const char * pszMessage, uint32_t dwTimeout)
+bool small_ipc_tx_channel::send(const char * pszMessage, unsigned int dwTimeout)
 {
 
    if(!is_tx_ok())
@@ -83,7 +86,7 @@ bool small_ipc_tx_channel::send(const char * pszMessage, uint32_t dwTimeout)
    COPYDATASTRUCT cds;
 
    cds.dwData = 0x80000000;
-   cds.cbData = (uint32_t) strlen_dup(pszMessage);
+   cds.cbData = (unsigned int) strlen(pszMessage);
    cds.lpData = (void *) pszMessage;
 
    if(dwTimeout == INFINITE)
@@ -100,7 +103,7 @@ bool small_ipc_tx_channel::send(const char * pszMessage, uint32_t dwTimeout)
       if(!::SendMessageTimeout(m_oswindow, WM_COPYDATA, (WPARAM) 0, (LPARAM) &cds, SMTO_BLOCK, dwTimeout, &dwptr))
          return false;
 
-      uint32_t dwError = ::GetLastError();
+      unsigned int dwError = ::GetLastError();
 
       if(dwError == ERROR_TIMEOUT)
          return false;
@@ -110,7 +113,7 @@ bool small_ipc_tx_channel::send(const char * pszMessage, uint32_t dwTimeout)
    return true;
 }
 
-bool small_ipc_tx_channel::send(int32_t message, void * pdata, int32_t len, uint32_t dwTimeout)
+bool small_ipc_tx_channel::send(int message, void * pdata, int len, unsigned int dwTimeout)
 {
 
    if(message == 0x80000000)
@@ -121,8 +124,8 @@ bool small_ipc_tx_channel::send(int32_t message, void * pdata, int32_t len, uint
 
    COPYDATASTRUCT cds;
 
-   cds.dwData = (uint32_t) message;
-   cds.cbData = (uint32_t) MAX(0, len);
+   cds.dwData = (unsigned int) message;
+   cds.cbData = (unsigned int) MAX(0, len);
    cds.lpData = (void *) pdata;
 
    if(dwTimeout == INFINITE)
@@ -150,7 +153,7 @@ bool small_ipc_tx_channel::send(int32_t message, void * pdata, int32_t len, uint
       if(!::SendMessageTimeout(m_oswindow, WM_COPYDATA, (WPARAM) 0, (LPARAM) &cds, SMTO_BLOCK, dwTimeout, &dwptr))
          return false;
 
-      uint32_t dwError = ::GetLastError();
+      unsigned int dwError = ::GetLastError();
 
       if(dwError == ERROR_TIMEOUT)
          return false;
@@ -204,7 +207,7 @@ bool small_ipc_rx_channel::create(const char * pszKey, const char * pszWindowPro
    
    if(m_oswindow == NULL)
    {
-      uint32_t dwLastError = ::GetLastError();
+      unsigned int dwLastError = ::GetLastError();
       return false;
    }
 
@@ -237,11 +240,11 @@ void small_ipc_rx_channel::receiver::on_receive(small_ipc_rx_channel * prxchanne
 {
 }
 
-void small_ipc_rx_channel::receiver::on_receive(small_ipc_rx_channel * prxchannel, int32_t message, void * pdata, int32_t len)
+void small_ipc_rx_channel::receiver::on_receive(small_ipc_rx_channel * prxchannel, int message, void * pdata, int len)
 {
 }
 
-void small_ipc_rx_channel::receiver::on_post(small_ipc_rx_channel * prxchannel, int64_t a, int64_t b)
+void small_ipc_rx_channel::receiver::on_post(small_ipc_rx_channel * prxchannel, long long int a, long long int b)
 {
 }
 
@@ -259,7 +262,7 @@ void * small_ipc_rx_channel::on_receive(small_ipc_rx_channel * prxchannel, const
 
 }
 
-void * small_ipc_rx_channel::on_receive(small_ipc_rx_channel * prxchannel, int32_t message, void * pdata, int32_t len)
+void * small_ipc_rx_channel::on_receive(small_ipc_rx_channel * prxchannel, int message, void * pdata, int len)
 {
 
    if(m_preceiver != NULL)
@@ -274,7 +277,7 @@ void * small_ipc_rx_channel::on_receive(small_ipc_rx_channel * prxchannel, int32
 }
 
 
-void * small_ipc_rx_channel::on_post(small_ipc_rx_channel * prxchannel, int64_t a, int64_t b)
+void * small_ipc_rx_channel::on_post(small_ipc_rx_channel * prxchannel, long long int a, long long int b)
 {
 
    if(m_preceiver != NULL)
@@ -292,7 +295,7 @@ void * small_ipc_rx_channel::on_post(small_ipc_rx_channel * prxchannel, int64_t 
 LRESULT CALLBACK small_ipc_rx_channel::s_message_queue_proc(oswindow oswindow, UINT message, WPARAM wparam, LPARAM lparam)
 {
 
-   int32_t iRet = 0;
+   int iRet = 0;
 
    small_ipc_rx_channel * pchannel = (small_ipc_rx_channel *) GetWindowLongPtr(oswindow, GWLP_USERDATA);
 
@@ -355,13 +358,13 @@ LRESULT small_ipc_rx_channel::message_queue_proc(UINT message, WPARAM wparam, LP
 
          string strMessage((const char *)pcds->lpData, pcds->cbData);
 
-         on_receive(this, strMessage);
+         on_receive(this, strMessage.c_str());
 
       }
       else 
       {
 
-         on_receive(this, (int32_t) pcds->dwData, pcds->lpData, pcds->cbData);
+         on_receive(this, (int) pcds->dwData, pcds->lpData, pcds->cbData);
 
       }
 
@@ -413,7 +416,7 @@ bool small_ipc_channel::open_ab(const char * pszKey, const char * pszModule, lau
    if(!::IsWindow(m_rxchannel.m_oswindow))
    {
 
-      if(!m_rxchannel.create(strChannelRx,pszModule))
+      if(!m_rxchannel.create(strChannelRx.c_str(),pszModule))
       {
 
          return false;
@@ -422,7 +425,7 @@ bool small_ipc_channel::open_ab(const char * pszKey, const char * pszModule, lau
 
    }
 
-   if(!small_ipc_tx_channel::open(strChannelTx, plauncher))
+   if(!small_ipc_tx_channel::open(strChannelTx.c_str(),plauncher))
    {
       return false;
    }
@@ -445,7 +448,7 @@ bool small_ipc_channel::open_ba(const char * pszKey, const char * pszModule, lau
    if(!::IsWindow(m_rxchannel.m_oswindow))
    {
 
-      if(!m_rxchannel.create(strChannelRx,pszModule))
+      if(!m_rxchannel.create(strChannelRx.c_str(),pszModule))
       {
 
          return false;
@@ -454,7 +457,7 @@ bool small_ipc_channel::open_ba(const char * pszKey, const char * pszModule, lau
 
    }
 
-   if(!small_ipc_tx_channel::open(strChannelTx, plauncher))
+   if(!small_ipc_tx_channel::open(strChannelTx.c_str(),plauncher))
    {
       return false;
    }

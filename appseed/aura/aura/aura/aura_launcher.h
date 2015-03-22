@@ -1,8 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA launcher :
-   virtual public object
+class CLASS_DECL_AURA launcher
 {
 public:
 

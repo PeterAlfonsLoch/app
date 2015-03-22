@@ -1,7 +1,7 @@
 #pragma once
 
 #ifdef APPLEOS
-typedef int32_t key_t;
+typedef int key_t;
 #elif defined(LINUX)
 typedef __key_t key_t;
 #elif defined(ANDROID)
@@ -18,13 +18,13 @@ public:
    oswindow        m_oswindow;
 #else
    key_t   m_key;
-   int32_t      m_iQueue;
+   int      m_iQueue;
 
    struct data_struct
    {
       long     mtype;          /* Message type */
-      int32_t      request;        /* Work request number */
-      int32_t      size;
+      int      request;        /* Work request number */
+      int      size;
       char     data[512];
    } msg;
 #endif
@@ -50,8 +50,8 @@ public:
    bool close();
 
 
-   bool send(const char * pszMessage, uint32_t dwTimeout);
-   bool send(int32_t message, void * pdata, int32_t len, uint32_t dwTimeout);
+   bool send(const char * pszMessage, unsigned int dwTimeout);
+   bool send(int message, void * pdata, int len, unsigned int dwTimeout);
 
 
    bool is_tx_ok();
@@ -71,8 +71,8 @@ public:
    public:
 
       virtual void on_receive(small_ipc_rx_channel * prxchannel, const char * pszMessage);
-      virtual void on_receive(small_ipc_rx_channel * prxchannel, int32_t message, void * pdata, int32_t len);
-      virtual void on_post(small_ipc_rx_channel * prxchannel, int64_t a, int64_t b);
+      virtual void on_receive(small_ipc_rx_channel * prxchannel, int message, void * pdata, int len);
+      virtual void on_post(small_ipc_rx_channel * prxchannel, long long int a, long long int b);
 
    };
 
@@ -100,8 +100,8 @@ public:
 
 
    virtual void * on_receive(small_ipc_rx_channel * prxchannel, const char * pszMessage);
-   virtual void * on_receive(small_ipc_rx_channel * prxchannel, int32_t message, void * pdata, int32_t len);
-   virtual void * on_post(small_ipc_rx_channel * prxchannel, int64_t a, int64_t b);
+   virtual void * on_receive(small_ipc_rx_channel * prxchannel, int message, void * pdata, int len);
+   virtual void * on_post(small_ipc_rx_channel * prxchannel, long long int a, long long int b);
 
 
    virtual bool on_idle();
@@ -134,7 +134,7 @@ public:
 
    small_ipc_rx_channel       m_rxchannel;
    string                   m_vssChannel;
-   uint32_t                      m_dwTimeout;
+   unsigned int                      m_dwTimeout;
 
 
    small_ipc_channel();
@@ -150,8 +150,8 @@ public:
 
    virtual void restart_small_ipc_channel();
 
-   bool ensure_tx(const char * pszMessage, uint32_t dwTimeout = INFINITE);
-   bool ensure_tx(int32_t message, void * pdata, int32_t len, uint32_t dwTimeout = INFINITE);
+   bool ensure_tx(const char * pszMessage, unsigned int dwTimeout = INFINITE);
+   bool ensure_tx(int message, void * pdata, int len, unsigned int dwTimeout = INFINITE);
 
 
    bool is_rx_tx_ok();

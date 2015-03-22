@@ -30,7 +30,7 @@ void small_ipc_channel::restart_small_ipc_channel()
 
 
 // calls restart if confirm_tx failed
-bool small_ipc_channel::ensure_tx(const char * pszMessage, uint32_t dwTimeout)
+bool small_ipc_channel::ensure_tx(const char * pszMessage, unsigned int dwTimeout)
 {
 
    //if(dwTimeout == INFINITE)
@@ -50,7 +50,7 @@ bool small_ipc_channel::ensure_tx(const char * pszMessage, uint32_t dwTimeout)
 }
 
 
-bool small_ipc_channel::ensure_tx(int32_t message, void * pdata, int32_t len, uint32_t dwTimeout)
+bool small_ipc_channel::ensure_tx(int message, void * pdata, int len, unsigned int dwTimeout)
 {
 
    //if(dwTimeout == INFINITE)
