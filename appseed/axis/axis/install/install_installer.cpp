@@ -930,42 +930,34 @@ install_begin:;
       System.install().trace().rich_trace("***Downloading resource files.");
 
       single_lock sl(&m_mutexOmp);
+      
       {
 
-         for(int i = 0; i < stringa.get_count(); i++)
-         {
-
-            string strCurrent  = stringa[i];
-
-            bool bExpandFileSet = strCurrent.ends_ci(".expand_fileset");
-
-            if(!bExpandFileSet)
+         stringa.filter_out(
+            [&](const string & strCurrent)
             {
-               continue;
-            }
+               if(::str::ends_ci(strCurrent,".expand_fileset"))
+               {
+                  int iGzLen = mapGzLen[strCurrent];
+                  m_iProgressTotalGzLen2 += iGzLen;
+                  m_iTotalGzLen2 -= iGzLen;
+                  return true;
+               }
+               else
+               {
+                  return false;
+               }
+            }, straExpandFileSet);
 
-            stringa.remove_at(i);
-
-            straExpandFileSet.add(strCurrent);
-
-            int iGzLen = mapGzLen[strCurrent];
-
-            m_iProgressTotalGzLen2 += iGzLen;
-
-            m_iTotalGzLen2 -= iGzLen;
-
-         }
 
          m_iGzLen2 = 0;
 
-         for(int i = 0; i < straExpandFileSet.get_count(); i++)
+         for(auto strCurrent : straExpandFileSet)
          {
 
             string str = m_strInstall;
 
-            str += straExpandFileSet[i];
-
-            string strCurrent  = straExpandFileSet[i];
+            str += strCurrent;
 
             string str2 = dir::name(str);
 
@@ -1025,12 +1017,12 @@ install_begin:;
 
             }
 
-            if(bDownload && download_file(strStageInplace,str3,false,false,iLen,strMd5,iGzLen,mapFlag[stringa[i]]))
+            if(bDownload && download_file(strStageInplace,str3,false,false,iLen,strMd5,iGzLen,mapFlag[strCurrent]))
             {
 
                m_dProgress = m_dProgress2;
 
-               string strRelative = dir::path(dir::name(strCurrent),file_name_dup(strCurrent));
+               string strRelative = dir::path(dir::name(strCurrent),file_title_dup(strCurrent));
 
                string strStageInplace2 = ca2inplace_get_dir(strRelative) + ca2inplace_get_file(strRelative);
 

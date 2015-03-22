@@ -1497,7 +1497,7 @@ restart:
             MD5_Init(&ctx);
             read_gen_string(spfile, &ctx, strRelative);
             ::file::path strPath = ::file::path(pszDir) / strRelative;
-            App(papp).dir().mk(strPath.name());
+            App(papp).dir().mk(strPath.folder());
             if(!file2->open(strPath, ::file::mode_create | ::file::type_binary | ::file::mode_write))
                throw "failed";
             read_n_number(spfile, &ctx, iLen);

@@ -398,14 +398,14 @@ namespace windows
 
       uint32_t uiLastError;
 
-      if(m_isdirmap.lookup(lpcszPath, bIsDir, uiLastError))
+      /*if(m_isdirmap.lookup(lpcszPath, bIsDir, uiLastError))
       {
          if(!bIsDir)
          {
             ::SetLastError(uiLastError);
          }
          return bIsDir;
-      }
+      }*/
 
       if(::file::dir::system::is(lpcszPath, papp))
          return true;

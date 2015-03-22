@@ -490,6 +490,8 @@ namespace file
       bool system::is_or_definitively_not(bool & bIs,const ::file::path & lpcszPath,::aura::application * papp)
       {
 
+         return false;
+
          bIs = false;
 
          if (::str::begins_ci(lpcszPath, "http://") || ::str::begins_ci(lpcszPath, "https://"))

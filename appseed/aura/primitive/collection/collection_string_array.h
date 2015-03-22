@@ -177,6 +177,12 @@ public:
    template < typename Pred >
    ::count filter(Pred pred,index first = 0,index last = -1);
 
+   template < typename Pred >
+   ::count filter_out(Pred pred,index first = 0,index last = -1);
+
+   template < typename Pred, typename ArrayOut >
+   ::count filter_out(Pred pred, ArrayOut & a, index first = 0,index last = -1);
+
    ::count remove_first_ci(const string & lpcsz,index find = 0,index last = -1);
    ::count remove_first(const string & lpcsz,index find = 0,index last = -1);
 
@@ -2637,6 +2643,66 @@ template < typename Pred >
       }
       else
       {
+         this->remove_at(i);
+         count++;
+         last--;
+      }
+
+   }
+   return count;
+}
+
+
+template < class Type,class RawType >
+template < typename Pred >
+::count string_array < Type,RawType > ::filter_out(Pred pred,index first,index last)
+{
+   if(last < 0)
+      last = this->get_size() + last;
+   if(last >= this->get_size())
+      last = get_upper_bound();
+   if(first < 0)
+      first = 0;
+   index i = first;
+   ::count count = 0;
+   for(index i = first; i <= last;)
+   {
+      if(!pred(element_at(i)))
+      {
+         i++;
+      }
+      else
+      {
+         this->remove_at(i);
+         count++;
+         last--;
+      }
+
+   }
+   return count;
+}
+
+template < class Type,class RawType >
+template < typename Pred, typename ArrayOut >
+::count string_array < Type,RawType > ::filter_out(Pred pred, ArrayOut & a, index first,index last)
+{
+   if(last < 0)
+      last = this->get_size() + last;
+   if(last >= this->get_size())
+      last = get_upper_bound();
+   if(first < 0)
+      first = 0;
+   index i = first;
+   ::count count = 0;
+   for(index i = first; i <= last;)
+   {
+      if(!pred(element_at(i)))
+      {
+         i++;
+      }
+      else
+      {
+         a.add(this->element_at(i));
          this->remove_at(i);
          count++;
          last--;
