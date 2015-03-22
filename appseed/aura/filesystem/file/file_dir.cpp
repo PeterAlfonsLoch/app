@@ -470,51 +470,50 @@ string ca2_module_folder_dup()
 
 }
 
+
 string dir::element(const char * path1, const char * path2, const char * path3, const char * path4)
+{ 
+   
+   return path(element(),path1,path2,path3,path4); 
+
+}
+
+
+string dir::element()
 {
 
 #ifdef WINDOWS
 
-   if(path1 == NULL && path2 == NULL && path3 == NULL && path4 == NULL)
+   string str;
+
+
+   str = get_ca2_module_folder();
+   stringa stra;
+
+   str.replace("/", "\\");
+   stra.add_tokens(str, "\\");
+   if(stra.get_count() <= 0)
+      return "";
+   if(stra[stra.get_count() - 1].is_empty())
    {
-
-      string str;
-
-
-      str = get_ca2_module_folder();
-      stringa stra;
-
-      str.replace("/", "\\");
-      stra.add_tokens(str, "\\");
-      if(stra.get_count() <= 0)
-         return "";
-      if(stra[stra.get_count() - 1].is_empty())
-      {
-         stra.remove_at(stra.get_count() - 1);
-      }
-      if(stra.get_count() <= 0)
-         return "";
       stra.remove_at(stra.get_count() - 1);
-      if(stra.get_count() <= 0)
-         return "";
-      stra.remove_at(stra.get_count() - 1);
-      if(stra.get_count() <= 0)
-         return "";
-      str = "";
-      for(int32_t i = 0; i < stra.get_count(); i++)
-      {
-         str += stra[i];
-         str += "\\";
-      }
-
-      return str;
    }
-   else
+   if(stra.get_count() <= 0)
+      return "";
+   stra.remove_at(stra.get_count() - 1);
+   if(stra.get_count() <= 0)
+      return "";
+   stra.remove_at(stra.get_count() - 1);
+   if(stra.get_count() <= 0)
+      return "";
+   str = "";
+   for(int32_t i = 0; i < stra.get_count(); i++)
    {
-
-      return dir::path(element(), path1, path2, path3, path4);
-
+      str += stra[i];
+      str += "\\";
    }
+
+   return str;
 
 #else
 
@@ -524,7 +523,7 @@ string dir::element(const char * path1, const char * path2, const char * path3, 
 
    string str = path(getenv("HOME"), ".core/appdata");
 
-   return path(path(str, "ca2", strRelative), path1, path2, path3, path4);
+   return str;
 
 #endif
 
