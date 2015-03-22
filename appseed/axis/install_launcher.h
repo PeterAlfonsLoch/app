@@ -17,4 +17,6 @@ public:
 
    virtual string get_executable_path();
 
+   virtual void start_in_context();
+
 };

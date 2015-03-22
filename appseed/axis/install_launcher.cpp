@@ -36,3 +36,4 @@ string install_launcher::get_executable_path()
    return m_strPath;
 }
 
+
