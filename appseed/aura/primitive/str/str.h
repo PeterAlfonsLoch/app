@@ -6,7 +6,9 @@
 
 
 #include "str_ch.h"
+#include "str_sz.h"
 #include "str_str.h"
+
 
 #include "aura/exception/exception_throw.h"
 

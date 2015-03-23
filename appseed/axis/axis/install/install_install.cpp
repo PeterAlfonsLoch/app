@@ -82,7 +82,7 @@ namespace install
 
    }
 
-   bool install::is_file_ok(const ::file::patha & patha,const ::file::patha & straTemplate,stringa & straMd5,const string & strFormatBuild,int iMd5Retry)
+   bool install::is_file_ok(const ::file::patha & patha,const ::file::patha & straTemplate,stringa & straMd5,int_array & iaLen, const string & strFormatBuild,int iMd5Retry)
    {
 
       bool bOk = true;
@@ -114,7 +114,7 @@ namespace install
 
          string strUrl;
 
-         strUrl = "http://" + m_strVersion + "-server.ca2.cc/api/spaignition/md5a?authnone&version=" + m_strVersion + "&stage=";
+         strUrl = "http://" + m_strVersion + "-server.ca2.cc/api/spaignition/md5a_and_lena?authnone&version=" + m_strVersion + "&stage=";
          strUrl += straTemplate.implode(",");
          strUrl += "&build=";
          strUrl += strFormatBuild;
@@ -125,10 +125,41 @@ namespace install
 
          string strMd5List = Application.http().get(strUrl,set);
 
+         straMd5.remove_all();
+
          straMd5.add_tokens(strMd5List,",",false);
 
          if(straMd5.get_count() != patha.get_count())
+         {
+            straMd5.remove_all();
             return false;
+         }
+
+         iaLen.set_size(straMd5.get_size());
+
+         for(index i = 0; i < straMd5.get_size(); i++)
+         {
+
+            string strMd5AndLen = straMd5[i];
+            int iFind =strMd5AndLen.find('|');
+            if(iFind < 0)
+            {
+               iaLen.remove_all();
+               straMd5.remove_all();
+               return false;
+            }
+            string strMd5 = strMd5AndLen.Left(iFind);
+            straMd5[i] = strMd5;
+            straMd5[i].trim();
+            if(straMd5[i].get_length() != 32)
+            {
+               iaLen.remove_all();
+               straMd5.remove_all();
+               return false;
+            }
+            iaLen[i] = atoi(strMd5AndLen.Mid(iFind + 1));
+         }
+
 
          if(!bOk)
             return false;
@@ -809,15 +840,15 @@ namespace install
 
    void install::set_ca2_updated(const char * pszBuild)
    {
-      dir::mk(dir::element() / "\\appdata\\" + get_platform());
-      file_put_contents_dup(dir::element() / "\\appdata\\" + get_platform() + "\\ca2_build.txt", pszBuild);
+      Application.dir().mk(System.dir().element() / "appdata" / get_platform());
+      Application.file().put_contents(System.dir().element() / "appdata" / get_platform() / "ca2_build.txt", pszBuild);
    }
 
 
    void install::set_updated(const char * pszBuild)
    {
-      dir::mk(dir::element() / "\\appdata\\" + get_platform());
-      file_put_contents_dup(dir::element() / "\\appdata\\" + get_platform() + "\\build.txt", pszBuild);
+      Application.dir().mk(System.dir().element() / "appdata" / get_platform());
+      Application.file().put_contents(System.dir().element() / "appdata" / get_platform() / "build.txt",pszBuild);
    }
 
 
@@ -827,7 +858,7 @@ namespace install
 
       ::file::path strPath;
 
-      strPath = System.dir().appdata()/"spa_start.xml";
+      strPath = System.dir().appdata() / "spa_start.xml";
 
       string strContents;
 
@@ -1248,7 +1279,7 @@ namespace install
 
 #endif
 
-   string install::app_install_get_extern_executable_path(const char * pszVersion, const char * pszBuild, stringa * pstraMd5, ::install::installer * pinstaller)
+   string install::app_install_get_extern_executable_path(const char * pszVersion,const char * pszBuild,stringa * pstraMd5,int_array * piaLen,::install::installer * pinstaller,string_to_string * pmapMd5,string_to_intptr * pmapLen)
    {
 
       string strVersion(pszVersion);
@@ -1344,6 +1375,8 @@ namespace install
 
          stringa straMd5;
 
+         int_array iaLen;
+
          if(pstraMd5 != NULL)
          {
 
@@ -1351,11 +1384,18 @@ namespace install
 
          }
 
+         if(piaLen != NULL)
+         {
+
+            straMd5 = *piaLen;
+
+         }
+
          int iMd5Retry = 0;
 
          md5retry:
 
-         if(!System.install().is_file_ok(straDownload,straFile,straMd5,strFormatBuild, iMd5Retry))
+         if(!System.install().is_file_ok(straDownload,straFile,straMd5,iaLen, strFormatBuild, iMd5Retry))
          {
 
 
@@ -1548,7 +1588,36 @@ namespace install
 
          //}
 
+         if(pmapMd5 != NULL || pmapLen != NULL)
+         {
+
+            for(index iFile = 0; iFile < straFile.get_count(); iFile++)
+            {
+
+               ::file::path strFile = straFile[iFile];
+
+               string strMap = "stage\\" + System.install().get_platform() + "\\" + strFile;
+
+               if(pmapMd5 != NULL)
+               {
+
+                  pmapMd5->set_at(strMap,straMd5[iFile]);
+
+               }
+
+               if(pmapLen != NULL)
+               {
+
+                  pmapLen->set_at(strMap,iaLen[iFile]);
+
+               }
+
+            }
+
+         }
+
       }
+
 
       return strPath;
 

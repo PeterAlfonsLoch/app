@@ -59,7 +59,7 @@ namespace install
 
 
       virtual bool is_file_ok(const ::file::path & path1,const char * pszTemplate,const char * pszFormatBuild);
-      virtual bool is_file_ok(const ::file::patha & patha,const ::file::patha & straTemplate,stringa & straMd5,const string & strFormatBuild,int iRetry = 1);
+      virtual bool is_file_ok(const ::file::patha & patha,const ::file::patha & straTemplate,stringa & straMd5,int_array & iaLen, const string & strFormatBuild,int iRetry = 1);
       virtual bool reference_is_file_ok(const ::file::path & path1,const char * pszTemplate,const char * pszVersion,const char * pszFormatBuild);
 
       virtual int32_t synch_install(const char * pszCommandLine, const char * pszBuild, bool bBackground = true);
@@ -106,7 +106,7 @@ namespace install
       const char * get_version();
       const char * get_ca2_version();
 
-      virtual string app_install_get_extern_executable_path(const char * pszVersion,const char * pszBuild,stringa * pstraMd5 = NULL,::install::installer * pinstaller = NULL);
+      virtual string app_install_get_extern_executable_path(const char * pszVersion,const char * pszBuild,stringa * pstraMd5 = NULL,int_array * piaLen = NULL, ::install::installer * pinstaller = NULL,string_to_string * pmapMd5 = NULL,string_to_intptr * pmapLen = NULL);
       virtual string app_install_get_intern_executable_path(const char * pszVersion, const char * pszBuild);
       virtual void app_install_call_sync(const char * szParameters, const char * pszBuild);
       virtual bool app_install_send_short_message(const char * psz, bool bLaunch, const char * pszBuild);

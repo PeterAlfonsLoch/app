@@ -771,6 +771,20 @@ string dir::name(const char * path1)
 
 }
 
+string dir::folder(const char * path1)
+{
+
+   string str;
+
+   str = path1;
+   index iPos1 = str.reverse_find('/');
+   index iPos2 = str.reverse_find('\\');
+
+   return str.substr(0,MAX(MAX(iPos1,iPos2),0));
+
+}
+
+
 void dir::rls(stringa & stra, const char *psz)
 {
    ::count start = stra.get_count();

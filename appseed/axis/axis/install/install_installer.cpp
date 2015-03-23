@@ -182,6 +182,10 @@ namespace install
    uint32_t installer::run()
    {
 
+      string_to_string mapMd5;
+      string_to_intptr mapLen;
+
+
       m_dProgressStart = 0.0;
       m_dProgressEnd = 0.0;
 
@@ -280,8 +284,9 @@ namespace install
       int32_t iHostRetry = 0;
 
       stringa straMd5;
+      int_array iaLen;
 
-      int32_t iRet = ca2_build_version_etc(strSpaHost,iHostRetry,straMd5);
+      int32_t iRet = ca2_build_version_etc(strSpaHost,iHostRetry,straMd5, iaLen);
 
       if (iRet < 0)
          return iRet;
@@ -296,7 +301,7 @@ namespace install
 
       new_progress_end(0.02);
 
-      System.install().app_install_get_extern_executable_path(m_strVersion, m_strBuild, &straMd5AppInstall, this); // defer install install extern app.install.exe executable
+      System.install().app_install_get_extern_executable_path(m_strVersion, m_strBuild, &straMd5AppInstall, &iaLen, this, &mapMd5, &mapLen); // defer install install extern app.install.exe executable
 
       m_bProgressModeAppInstall = false;
 
@@ -456,8 +461,6 @@ install_begin:;
          set_progress(0.4);
 
          ::file::patha straFileList;
-         string_to_intptr mapLen;
-         string_to_string mapMd5;
          string_to_intptr mapGzLen;
          string_to_intptr mapFlag;
 
@@ -1069,6 +1072,11 @@ install_begin:;
 
             string strCurrent  = stringa[i];
 
+            strCurrent.trim();
+
+            if(strCurrent.is_empty())
+               continue;
+
             int iGzLen         = mapGzLen[strCurrent];
 
             string str = m_strInstall;
@@ -1127,11 +1135,11 @@ install_begin:;
                string strCandidate = ::dir::element("install\\stage\\" + strPlatform + "\\" + strFileName);
 
                if(file_exists_dup(strCandidate)
-                  && (iLen != -1) && file_length_dup(strCandidate) == iLen
+                  && iLen != -1 && file_length_dup(strCandidate) == iLen
                   && strMd5.has_char() && stricmp_dup(System.file().md5(strCandidate),strMd5) == 0)
                {
 
-                  bDownload  = !::file_copy_dup(strStageInplace,strCandidate, true);
+                  bDownload  = !::file_copy_dup(strStageInplace,strCandidate, false);
 
                }
 
@@ -3104,7 +3112,7 @@ RetryBuildNumber:
    }
 
 
-   int32_t installer::ca2_build_version_etc(string & strSpaHost,int32_t &iHostRetry,stringa & straMd5)
+   int32_t installer::ca2_build_version_etc(string & strSpaHost,int32_t &iHostRetry,stringa & straMd5, int_array & iaLen)
    {
 
       int32_t iRetry = 0;
@@ -3268,11 +3276,22 @@ RetryBuildNumber:
          }
 
          straMd5.set_size(straTemplate.get_count() + 1);
+         iaLen.set_size(straTemplate.get_count() + 1);
 
          for(index i = 0; i < straMd5.get_size(); i++)
          {
             straMd5[i].Empty();
-            file.read_string(straMd5[i]);
+            string strMd5AndLen;
+            file.read_string(strMd5AndLen);
+            int iFind =strMd5AndLen.find('|');
+            if(iFind < 0)
+            {
+               Sleep(184);
+               goto RetryBuildNumber;
+            }
+            string strMd5 = strMd5AndLen.Left(iFind);
+            iaLen[i] = atoi(strMd5AndLen.Mid(iFind + 1));
+            straMd5[i] = strMd5;
             straMd5[i].trim();
             if(straMd5[i].length() != 32)
             {

@@ -176,7 +176,7 @@
      //        100 arquivo(s)        840.760 bytes
      //          0 pasta(s)   36.827.672.576 bytes dispon¡veis
 
-
+#include "str/str_sz.cpp"
 
 #include "str/_str_pool.cpp"
 

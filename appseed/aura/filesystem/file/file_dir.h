@@ -22,6 +22,7 @@ public:
    static CLASS_DECL_AURA string element(const char * path1,const char * path2 = NULL,const char * path3 = NULL,const char * path4 = NULL);
    static CLASS_DECL_AURA bool eat_end_level(string & strPath, int iLevel, const char * lpSeparator = NULL);
    static CLASS_DECL_AURA string name(const char * path1);
+   static CLASS_DECL_AURA string folder(const char * path1);
    static CLASS_DECL_AURA string appdata(const char * lpcsz);
    static CLASS_DECL_AURA ::file::path userappdata();
    static CLASS_DECL_AURA bool is(const char * path1);

@@ -12,10 +12,10 @@ namespace file
    inline path path::operator + (const property & property) const { return operator + (property.get_string()); }
    inline path path::operator + (const id & id) const { return operator + (id.to_string()); }
    inline path path::operator / (const property & property) const { return operator /(::file::path(property)); }
-   inline path path::folder() const { return ::file::path(::dir::name((const string &)*this),m_epath); }
-   inline path path::sibling(const path & path) const   { return ::file::path(::dir::name((const string &)*this) + sep() + string(path).trim_left("\\/"),m_epath); }
-   inline path path::sibling(const string & str) const   { return ::file::path(::dir::name((const string &)*this) + sep() + string(str).trim_left("\\/"),m_epath); }
-   inline path path::sibling(const char * psz) const   { return ::file::path(::dir::name((const string &)*this) + sep() + string((const string &)psz).trim_left("\\/"),m_epath); }
+   inline path path::folder() const { return ::file::path(::dir::folder((const string &)*this),m_epath); }
+   inline path path::sibling(const path & path) const   { return ::file::path(::dir::folder((const string &)*this) + sep() + ::sz::trim_left_path_sep(path)); }
+   inline path path::sibling(const string & str) const   { return ::file::path(::dir::folder((const string &)*this) + sep() + ::sz::trim_left_path_sep(str)); }
+   inline path path::sibling(const char * psz) const   { return ::file::path(::dir::folder((const string &)*this) + sep() + ::sz::trim_left_path_sep(psz)); }
    inline string path::extension() const { return file_extension_dup(operator const char *()); }
    inline string path::final_extension() const { return file_final_extension_dup(operator const char *()); }
    inline patha path::ascendants_path() const { patha patha; return ascendants_path(patha); }
