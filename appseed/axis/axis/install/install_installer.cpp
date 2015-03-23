@@ -1,7 +1,7 @@
 //#include "framework.h" // from "axis/net/net_sockets.h"
 //#include "axis/net/net_sockets.h"
 //#include "axis/compress/compress.h"
-
+#include <Shlobj.h>
 
 #if defined(WINDOWS) || defined(LINUX)
 //#include <omp.h>
@@ -2664,6 +2664,16 @@ install_begin:;
 
       int32_t i = run_ca2_application_installer(strCommandLine);
 
+      bool bStart = true;
+
+      if(bStart)
+      {
+
+         start_ca2_application();
+
+      }
+
+
       /*if(m_strStart != "_set_windesk" && is_installed("application", "_set_windesk"))
       {
       //uint32_t dwStartError2;
@@ -4085,6 +4095,71 @@ RetryBuildNumber:
 
    }
 
+
+   void get_program_files_x86(wstring &wstr)
+   {
+
+      wchar_t * lpszModuleFolder = (wchar_t *)malloc(MAX_PATH * sizeof(wchar_t) * 8);
+
+      wchar_t * lpszModuleFilePath = (wchar_t *)malloc(MAX_PATH * sizeof(wchar_t) * 8);
+
+      SHGetSpecialFolderPathW(
+         NULL,
+         lpszModuleFilePath,
+         CSIDL_PROGRAM_FILES,
+         FALSE);
+      if(lpszModuleFilePath[wcslen(lpszModuleFilePath) - 1] == '\\'
+         || lpszModuleFilePath[wcslen(lpszModuleFilePath) - 1] == '/')
+      {
+         lpszModuleFilePath[wcslen(lpszModuleFilePath) - 1] = '\0';
+      }
+
+      wcscpy(lpszModuleFolder,lpszModuleFilePath);
+
+      wstr = lpszModuleFolder + wstr;
+
+   }
+
+
+
+
+
+   int32_t installer::start_ca2_application()
+   {
+
+      wstring wstrApp;
+
+      wstrApp = L"\\ca2\\";
+#ifdef _M_X64
+      wstrApp += L"stage\\x64\\";
+#else
+      wstrApp += L"stage\\x86\\";
+#endif
+
+      wstrApp += L"app.exe";
+
+      get_program_files_x86(wstrApp);
+
+      STARTUPINFOW si;
+      memset(&si,0,sizeof(si));
+      si.cb = sizeof(si);
+      si.dwFlags = STARTF_USESHOWWINDOW;
+      si.wShowWindow = SW_SHOWNORMAL;
+      PROCESS_INFORMATION pi;
+      memset(&pi,0,sizeof(pi));
+
+      wstring wstrCmdLine = (L"\"" + wstrApp + L"\" : app=" + wstring(m_strApplicationId) + L" build_number=installed").c_str();
+
+      if(::CreateProcessW((wchar_t *)wstrApp.c_str(),(wchar_t *)wstrCmdLine.c_str(),
+         NULL,NULL,FALSE,0,NULL,NULL,
+         &si,&pi))
+         return TRUE;
+
+      return FALSE;
+
+      return 0;
+
+   }
    typedef bool fn_defer_core_init();
 
    typedef bool fn_defer_core_term();

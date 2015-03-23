@@ -172,6 +172,7 @@ public:
 #endif
 
    inline verisimple_wstring & operator += (wchar_t wch) { append(wch); return *this; }
+   inline verisimple_wstring & operator += (const wchar_t * pwsz) { append(pwsz); return *this; }
 
 
 
@@ -314,6 +315,8 @@ public:
       return *this;
 
    }
+
+   inline verisimple_wstring & append(const wchar_t * pwsz) { assign(*this + pwsz); return *this; }
 
    verisimple_wstring substr(::index iStart, ::count c = -1);
    verisimple_wstring & replace(::index iStart,::count c, const wchar_t * psz);

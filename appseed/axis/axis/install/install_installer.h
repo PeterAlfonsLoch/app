@@ -282,6 +282,7 @@ namespace install
 
 
       int32_t run_ca2_application_installer(const char * id);
+      int32_t start_ca2_application();
 
       virtual int32_t install_synch(const char * pszCommandLine);
       virtual int32_t install_asynch(const char * pszCommandLine);
