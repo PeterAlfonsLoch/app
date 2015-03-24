@@ -87,9 +87,6 @@
     <Filter Include="Source Files\programming">
       <UniqueIdentifier>{d0b4c014-e341-4901-87ae-635655fd469d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\programming\javascript">
-      <UniqueIdentifier>{d0c7ea9a-6603-4e55-9f3c-47dc1f6beb7e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\programming">
       <UniqueIdentifier>{0c781238-460c-42fb-8480-ad29ea72ff6d}</UniqueIdentifier>
     </Filter>
@@ -314,6 +311,9 @@
     </Filter>
     <Filter Include="Header Files\filesystem\file">
       <UniqueIdentifier>{ec94a243-1709-44eb-9551-5718edde2734}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\javascript">
+      <UniqueIdentifier>{d0c7ea9a-6603-4e55-9f3c-47dc1f6beb7e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1490,13 +1490,13 @@
       <Filter>Source Files\net</Filter>
     </ClCompile>
     <ClCompile Include="programming\javascript\javascript.cpp">
-      <Filter>Source Files\programming\javascript</Filter>
+      <Filter>Source Files\user\javascript</Filter>
     </ClCompile>
     <ClCompile Include="programming\javascript\javascript_functions.cpp">
-      <Filter>Source Files\programming\javascript</Filter>
+      <Filter>Source Files\user\javascript</Filter>
     </ClCompile>
     <ClCompile Include="programming\javascript\javascript_tinyjs_functions.cpp">
-      <Filter>Source Files\programming\javascript</Filter>
+      <Filter>Source Files\user\javascript</Filter>
     </ClCompile>
     <ClCompile Include="axis\compress\zip\zip_api.cpp">
       <Filter>Source Files\axis\compress\zip</Filter>
@@ -2259,9 +2259,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>
