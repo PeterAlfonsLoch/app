@@ -59,7 +59,8 @@ namespace fs
          CSIDL_DESKTOP,
          FALSE);
 
-      listing.insert_at(0,strDesktopFolder);
+      ::file::path & path = listing.insert_at(0,strDesktopFolder);
+      path.m_iDir = 1;
       listing.m_straTitle.insert_at(0,unitext("Área de Trabalho"));
       
 #endif

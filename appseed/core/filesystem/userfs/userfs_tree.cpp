@@ -481,14 +481,7 @@ namespace userfs
       if (lpcszPath == NULL || strlen(lpcszPath) == 0)
          return pitem;
 
-      string strPath(lpcszPath);
-
-      if(strPath != "/" && strPath != "\\")
-      {
-
-         strPath.trim_right("\\/");
-
-      }
+      ::file::path strPath(lpcszPath);
 
       while (pitem != NULL)
       {
@@ -496,17 +489,14 @@ namespace userfs
          if (pitem->m_pitem != NULL && typeid(*pitem->m_pitem) == System.type_info < ::userfs::item >())
          {
 
-            string strTreeItem(pitem->m_pitem.cast < ::userfs::item >()->m_strPath);
+            ::file::path & strTreeItem = pitem->m_pitem.cast < ::userfs::item >()->m_strPath;
 
-            if(strTreeItem != "/" && strTreeItem != "\\")
+            if(strTreeItem == strPath)
             {
 
-               strTreeItem.trim_right("\\/");
+               return pitem;
 
             }
-
-            if (strTreeItem.CompareNoCase(strPath) == 0)
-               return pitem;
 
          }
 

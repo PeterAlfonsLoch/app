@@ -13,15 +13,21 @@ namespace url
       }
       if(psz == pszCandidate)
          return false;
+      if(psz == pszCandidate + 1)
+         return false;
       if(*psz != ':')
          return false;
       psz++;
       if(*psz != '/' && *psz != '\\')
          return false;
       psz++;
-      if(*psz != '/' && *psz != '\\')
+      if(*psz == '/' || *psz == '\\')
+      {
+         psz++;
+      }
+      /*if(*psz != '/' && *psz != '\\')
          return false;
-      psz++;
+      psz++;*/
       while(*psz != '\0' && (*psz == '.' || *psz == '_' || *psz == '-' || isalnum_dup(*psz)))
       {
          psz++;

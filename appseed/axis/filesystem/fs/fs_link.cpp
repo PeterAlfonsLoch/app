@@ -79,8 +79,10 @@ namespace fs
    ::file::listing & link::root_ones(::file::listing & listing)
    {
 
-      listing.add(m_path);
+      ::file::path & path = listing.add(m_path);
+      path.m_iDir = 1;
       listing.m_straTitle.add(m_strTitle);
+      
 
       return listing;
 

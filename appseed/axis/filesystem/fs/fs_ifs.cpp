@@ -47,13 +47,9 @@ bool ifs::has_subdir(const ::file::path & path)
 
    }
 
-   sl.unlock();
-
    ::file::listing listing(this);
 
    listing.ls(path);
-
-   sl.lock();
 
    if(get_tick_count() < dir.m_uiLsTimeout)
    {
@@ -70,9 +66,13 @@ bool ifs::has_subdir(const ::file::path & path)
 ::file::listing & ifs::root_ones(::file::listing & listing)
 {
 
-   listing.add("uifs://");
+   ::file::path & path = listing[listing.add("uifs://")];
+
+   path.m_iDir = 1;
 
    listing.m_straTitle.add("User Intelligent File System");
+
+
 
    return listing;
 
@@ -97,9 +97,10 @@ bool ifs::has_subdir(const ::file::path & path)
 
    }
 
-   sl.unlock();
+   dir.clear_results();
 
    listing.clear_results();
+
 
    //::file::patha  straDir;
    //::file::patha  straDirName;
@@ -146,8 +147,6 @@ bool ifs::has_subdir(const ::file::path & path)
 
    strSource = Application.http().get(strUrl, set);
 
-   sl.lock();
-
    if(strSource.is_empty())
    {
 
@@ -186,7 +185,7 @@ bool ifs::has_subdir(const ::file::path & path)
          if(pchild->get_name() != "folder")
             continue;
 
-         ::file::path & path = dir.add_child(pchild->attr("name").get_string());
+         ::file::path & path = dir.add(::file::path(listing.m_path / pchild->attr("name").get_string(),::file::path_url));
 
          path.m_iDir = 1;
          
@@ -207,7 +206,7 @@ bool ifs::has_subdir(const ::file::path & path)
 
          string strExtension = pchild->attr("extension");
          
-         ::file::path & path = dir.add_child(pchild->attr("name"));
+         ::file::path & path = dir.add(::file::path(listing.m_path / pchild->attr("name").get_string(),::file::path_url));
 
          path.m_iSize = pchild->attr("size");
 
@@ -282,6 +281,14 @@ bool ifs::is_dir(const ::file::path & path)
    {
       return true;
    }
+   if(stricmp_dup(path,"uifs:/") == 0)
+   {
+      return true;
+   }
+   if(stricmp_dup(path,"uifs:") == 0)
+   {
+      return true;
+   }
 
 
    defer_initialize();
@@ -296,13 +303,11 @@ bool ifs::is_dir(const ::file::path & path)
    if(::get_tick_count() > dir.m_uiTimeout)
    {
 
-      sl.unlock();
       ::file::listing listing(this);
       listing.ls(path.folder());
-      sl.lock();
    }
 
-   int iFind = dir.find_first_ci(path.name());
+   int iFind = dir.name_find_first_ci(path.name());
 
    if(iFind < 0)
    {

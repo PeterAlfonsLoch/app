@@ -22,6 +22,7 @@ namespace file
    inline patha path::ascendants_name() const { patha patha; return ascendants_name(patha); }
 //   inline path path::folder() const { return ::dir::name(*this); }
    inline bool path::operator == (const var & var) const { return operator == (string(var)); }
+   inline bool path::operator != (const var & var) const { return operator != (string(var)); }
 
 
 } // namespace file

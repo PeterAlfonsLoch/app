@@ -108,8 +108,9 @@ namespace filemanager
       if (pfsdata->is_dir(str))
       {
 
-         string strPreviousPath = get_filemanager_manager()->m_item->m_strPath;
-         if (strPreviousPath != str)
+         ::file::path strPreviousPath = get_filemanager_manager()->m_item->m_strPath;
+         ::file::path strPath = str;
+         if (strPreviousPath != strPath)
          {
 
             get_filemanager_manager()->FileManagerBrowse(str, ::action::source::sync(actioncontext));
@@ -125,7 +126,7 @@ namespace filemanager
          while (true)
          {
 
-            strName = strName.name();
+            strName = strName.folder();
 
             if (get_filemanager_manager()->get_fs_data()->is_dir(strName))
             {

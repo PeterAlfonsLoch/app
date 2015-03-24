@@ -127,6 +127,14 @@ namespace file
       bool operator == (const char * psz) const { return operator == (string(psz)); }
       bool operator == (const var & var) const;
 
+      bool operator != (const path & path) const
+      {
+         return !is_equal(path);
+      }
+
+      bool operator != (const string & str) const { return operator != (path(str)); }
+      bool operator != (const char * psz) const { return operator != (string(psz)); }
+      bool operator != (const var & var) const;
 
       path operator + (const path & path) const
       {
@@ -280,7 +288,7 @@ namespace file
 
       //};
 
-      void split(patha & patha);
+      void split(patha & patha) const;
       bool is_relative()
       {
          return file_path_is_relative_dup(*this) != FALSE;

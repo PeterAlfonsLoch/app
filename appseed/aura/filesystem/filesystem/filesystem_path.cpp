@@ -22,12 +22,42 @@ namespace file
 
       // find extend equalitys..
 
+      ::file::patha patha1;
+
+      split(patha1);
+
+      ::file::patha patha2;
+
+      path.split(patha2);
+
+      if(patha1.get_size() == patha2.get_size())
+      {
+
+         for(index i = 0; i < patha1.get_size(); i++)
+         {
+
+            if(patha1[i].::string::operator!=(patha2[i]))
+            {
+
+               goto there_s_difference_in_this_step_1;
+
+            }
+
+         }
+
+         return true;
+
+      }
+
+      there_s_difference_in_this_step_1:
+
+
       return false;
 
    }
 
 
-   void path::split(patha & patha)
+   void path::split(patha & patha) const
    {
       stringa straSeparator;
       straSeparator.add("\\");

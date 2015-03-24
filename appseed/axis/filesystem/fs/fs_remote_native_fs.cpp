@@ -72,7 +72,9 @@ namespace fs
    ::file::listing & remote_native::root_ones(::file::listing & listing)
    {
 
-      listing.add("fs://");
+      ::file::path & path = listing[listing.add("fs://")];
+
+      path.m_iDir = 1;
 
       listing.m_straTitle.add("File System");
 
