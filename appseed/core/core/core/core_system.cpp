@@ -537,7 +537,7 @@ namespace core
 
 
 
-   void system::on_allocation_error(::aura::application * papp,sp(type) info)
+   void system::on_allocation_error(::aura::application * papp,sp(type) & info)
    {
 
       UNREFERENCED_PARAMETER(papp);
