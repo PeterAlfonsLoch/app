@@ -285,7 +285,15 @@ bool string_format::parse(const char * & s)
       void format(string_format * pformat, int16_t const & sh)
       {
 
-         pformat->append(::str::from((int32_t) sh));
+         string str = ::str::from((int32_t)sh);
+         if(pformat->m_bZeroPadding)
+         {
+            while(str.get_length() < pformat->m_iWidth)
+            {
+               str = "0" + str;
+            }
+         }
+         pformat->append(str);
 
       }
 
@@ -293,7 +301,15 @@ bool string_format::parse(const char * & s)
       void format(string_format * pformat, uint16_t const & ush)
       {
 
-         pformat->append(::str::from((uint32_t) ush));
+         string str = ::str::from((uint32_t) ush);
+         if(pformat->m_bZeroPadding)
+         {
+            while(str.get_length() < pformat->m_iWidth)
+            {
+               str = "0" + str;
+            }
+         }
+         pformat->append(str);
 
       }
 
