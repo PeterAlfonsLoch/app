@@ -18,11 +18,11 @@ bool install_launcher::ensure_executable()
 
    string strPlatform = "x86";
 
-   wstring wstrPath = utf8_to_16((string("\\ca2\\install\\stage\\") + strPlatform + "\\app.install.exe").c_str());
+   wstring wstrPath = u16((string("\\ca2\\install\\stage\\") + strPlatform + "\\app.install.exe").c_str());
 
    get_program_files_x86(wstrPath);
 
-   strPath = utf16_to_8(wstrPath.c_str());
+   strPath = u8(wstrPath.c_str());
 
    m_strPath = strPath;
 
