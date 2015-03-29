@@ -348,6 +348,8 @@ namespace user
                cslock sl(pui->m_pimpl->cs_display());
                pui->m_pimpl->m_rectParentClient.move_to(point64(ptMove));
                pui->m_pimpl->_001UpdateScreen(false);
+               pui->m_dwLastSizeMove = ::get_tick_count();
+               pui->m_bSizeMove = true;
 
             }
             else

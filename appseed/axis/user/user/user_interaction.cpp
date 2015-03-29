@@ -508,14 +508,6 @@ namespace user
 
       bool bOk = SetWindowPos(z,x,y,cx,cy,nFlags);
 
-      if(bOk && (!(nFlags & SWP_NOMOVE) || !(nFlags & SWP_NOSIZE)))
-      {
-
-         m_bSizeMove         = true;
-
-         m_dwLastSizeMove    = ::get_tick_count();
-
-      }
 
       return bOk;
 
@@ -5727,6 +5719,16 @@ namespace user
          //}
 
       }
+
+      if(bOk && (!(nFlags & SWP_NOMOVE) || !(nFlags & SWP_NOSIZE)))
+      {
+
+         m_dwLastSizeMove    = ::get_tick_count();
+
+         m_bSizeMove         = true;
+
+      }
+
 
       return bOk;
 

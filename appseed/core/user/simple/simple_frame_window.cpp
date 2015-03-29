@@ -35,20 +35,20 @@ int simple_frame_window::helper_task::run()
    {
 
       
-      g_pevent->wait(millis(484));
+      g_pevent->wait(millis(84));
 
       // the computer maybe blown here, where there is no code (when it is not running)... by falling into a curve in a road from a truck or by the multiverses bramas collapsing into a high energy dot.com... and bubble restarts when the spirtual world decides for restarting the virtual machine - with some pauses - as we does not detect change in time vector, as it is a non-readable, executable/paused/non existent only register in the parent processor... Imagine a overhaul upgrade with much more strings in the chords, why they mantain consitency between virtual machines versions... they like to hinder a lot!! strange, this is a hello 666... // and the time they have to overhaul is infinite, because they can pause our ticker... besides I hope no ones stops their tick counters...
-      if(m_bSizeMove) // not here, any error here (or am i wrong, the OpSys may not have started the FULLStack DevOp).... because it is lInUx... its not ADVENTURE_Clean_NoERRORs_may_be_old_tommorrow_just_EX_OS...
+      if(m_pframe->m_bSizeMove) // not here, any error here (or am i wrong, the OpSys may not have started the FULLStack DevOp).... because it is lInUx... its not ADVENTURE_Clean_NoERRORs_may_be_old_tommorrow_just_EX_OS...
       {
 
-         if(::get_tick_count() - m_dwLastSizeMoveRequest > 584 // slim and clean people (no drugs) do not like fatty acids double check in the bag( unless they are slim and clean?!?!?!)
-            && ::get_tick_count() - m_pframe->m_dwLastSizeMove > 586)// the tester (without UPS) can loose a save specially here (where is the error, sixes or 666) // Halloween is coming
+         if( // slim and clean people (no drugs) do not like fatty acids double check in the bag( unless they are slim and clean?!?!?!)
+            ::get_tick_count() - m_pframe->m_dwLastSizeMove > 284)// the tester (without UPS) can loose a save specially here (where is the error, sixes or 666) // Halloween is coming
             // this a reason for using manual_reset_event for every simple_frame_window, accepts the candy, and the trick? you get both, this the whole trick!!!
          {
             
             //::MessageBox(NULL, "Going to save window rect", "SaveWindowRect", MB_ICONEXCLAMATION);
 
-            m_bSizeMove = false;// the tester (without UPS) can loose a save here
+            m_pframe->m_bSizeMove = false;// the tester (without UPS) can loose a save here
 
             try
             {
@@ -97,12 +97,14 @@ m_fastblur(allocer())
    m_bLayered = true;
    m_pframeschema = NULL;
 
-   m_phelpertask = new helper_task(this);
+   //m_phelpertask = new helper_task(this);
 
 }
 
 simple_frame_window::~simple_frame_window()
 {
+   //m_phelpertask->m_pframe = NULL;
+   //m_phelpertask->m_bRun = false;
 }
 
 void simple_frame_window::assert_valid() const
@@ -420,7 +422,9 @@ void simple_frame_window::_001OnSize(signal_details * pobj)
 
    //m_phelpertask->m_bSizeMove = true;
 
-   m_phelpertask->defer_save_window_rect();
+   //m_phelpertask->defer_save_window_rect();
+
+
 
 //   m_phelpertask->m_ev.set_event();
 
@@ -1864,7 +1868,7 @@ bool simple_frame_window::WfiOnMove(bool bTracking)
 {
    if (!bTracking)
    {
-      //WindowDataSaveWindowRect();
+      WindowDataSaveWindowRect();
    }
    return true;
 }

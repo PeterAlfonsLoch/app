@@ -216,7 +216,7 @@ bool string_format::parse(const char * & s)
       if(*s == 'c' || *s == 'd' || *s == 'i'
       || *s == 'e' || *s == 'E' || *s == 'f'
       || *s == 'g' || *s == 'G' || *s == 'o'
-      || *s == 'g' || *s == 'G' || *s == 's'
+      || *s == 'g' || *s == 'G' || *s == 's' || *s == 'S'
       || *s == 'u' || *s == 'x' || *s == 'X'
       || *s == 'p')
       {

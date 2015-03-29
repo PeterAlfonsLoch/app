@@ -50,9 +50,9 @@ public:
 
       static manual_reset_event * g_pevent;
       simple_frame_window *         m_pframe;
-      bool                          m_bSizeMove;
+      //bool                          m_bSizeMove;
       //manual_reset_event            m_ev;
-      DWORD                         m_dwLastSizeMoveRequest;
+      //DWORD                         m_dwLastSizeMoveRequest;
 
       helper_task(simple_frame_window * pframe);
 
