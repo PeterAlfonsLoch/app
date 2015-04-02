@@ -115,6 +115,15 @@
     <ClCompile Include="calculator\numeric_value.cpp">
       <Filter>Source Files\calculator</Filter>
     </ClCompile>
+    <ClCompile Include="kissfft\_kissfft.cpp">
+      <Filter>Source Files\kissfft</Filter>
+    </ClCompile>
+    <ClCompile Include="calculator\_calculator.cpp">
+      <Filter>Source Files\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="_math_math.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="math.def">

@@ -79,6 +79,15 @@
     <ClCompile Include="html\html_html.cpp">
       <Filter>Source Files\html</Filter>
     </ClCompile>
+    <ClCompile Include="html_lite\_html_lite.cpp">
+      <Filter>Source Files\html_lite</Filter>
+    </ClCompile>
+    <ClCompile Include="html\_html.cpp">
+      <Filter>Source Files\html</Filter>
+    </ClCompile>
+    <ClCompile Include="_html_lite_html_lite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="html_lite.def">

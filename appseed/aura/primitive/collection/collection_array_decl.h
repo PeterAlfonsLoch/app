@@ -230,36 +230,36 @@ namespace allocator
 {
 
 
-   template < class TYPE,class CONSTRUCTOR = constructor ::nodef< TYPE >,class DESTRUCTOR = destructor ::nodef< TYPE >,class COPIER = copier::def< TYPE >,class MEMORY_ALLOCATOR = memory::def < TYPE > >
+   template < class TYPE >
    class allocator
    {
    public:
 
       inline static void construct(TYPE * p)
       {
-         CONSTRUCTOR::construct(p);
+         constructor ::nodef< TYPE >::construct(p);
       }
 
       inline static void construct(TYPE * p,:: count c)
       {
-         CONSTRUCTOR::construct(p,c);
+         constructor ::nodef< TYPE >::construct(p,c);
 
       }
 
       inline static void destruct(TYPE * p)
       {
-         DESTRUCTOR::destruct(p);
+         destructor ::nodef::destruct(p);
       }
       inline static void destruct(TYPE * p,::count c)
       {
-         DESTRUCTOR::destruct(p,c);
+         destructor ::nodef::destruct(p,c);
       }
 
 
       inline static void copy(TYPE *pdst,const TYPE * psrc)
       {
 
-         COPIER::copy(pdst,psrc);
+         copier::def< TYPE >::copy(pdst,psrc);
 
       }
 
@@ -267,14 +267,14 @@ namespace allocator
       inline static void copy(TYPE *pdst,const TYPE * psrc, ::count c)
       {
 
-         COPIER::copy(pdst,psrc, c);
+         copier::def< TYPE >::copy(pdst,psrc,c);
 
       }
 
       inline static TYPE * alloc(::count c)
       {
 
-         return MEMORY_ALLOCATOR::alloc(c);
+         return memory::def < TYPE >::alloc(c);
 
       }
 
@@ -282,24 +282,130 @@ namespace allocator
       inline static void free(TYPE * p)
       {
 
-         MEMORY_ALLOCATOR::alloc(p);
+         memory::def < TYPE >::alloc(p);
 
       }
 
    };
 
 
-   template < class TYPE,class CONSTRUCTOR = constructor ::def< TYPE >,class DESTRUCTOR = destructor ::def< TYPE >,class COPIER = copier ::def < TYPE >,class MEMORY_ALLOCATOR = memory::def < TYPE > >
-   class def :
-      public allocator < TYPE, CONSTRUCTOR, DESTRUCTOR, COPIER >
+   template < class TYPE >
+   class def
    {
+
+   public:
+
+      inline static void construct(TYPE * p)
+      {
+         constructor ::def< TYPE >::construct(p);
+      }
+
+      inline static void construct(TYPE * p,:: count c)
+      {
+         constructor ::def< TYPE >::construct(p,c);
+
+      }
+
+      inline static void destruct(TYPE * p)
+      {
+         destructor ::def< TYPE>::destruct(p);
+      }
+      inline static void destruct(TYPE * p,::count c)
+      {
+         destructor ::def< TYPE>::destruct(p,c);
+      }
+
+
+      inline static void copy(TYPE *pdst,const TYPE * psrc)
+      {
+
+         copier::def< TYPE >::copy(pdst,psrc);
+
+      }
+
+
+      inline static void copy(TYPE *pdst,const TYPE * psrc,::count c)
+      {
+
+         copier::def< TYPE >::copy(pdst,psrc,c);
+
+      }
+
+      inline static TYPE * alloc(::count c)
+      {
+
+         return memory::def < TYPE >::alloc(c);
+
+      }
+
+
+      inline static void free(TYPE * p)
+      {
+
+         memory::def < TYPE >::alloc(p);
+
+      }
+
 
    };
 
-   template < class TYPE,class CONSTRUCTOR = constructor ::nodef< TYPE >,class DESTRUCTOR = destructor ::nodef< TYPE >,class COPIER = copier::def < TYPE >,class MEMORY_ALLOCATOR = memory::def < TYPE > >
-   class nodef:
-      public allocator < TYPE,CONSTRUCTOR,DESTRUCTOR,COPIER >
+   template < class TYPE >
+   class nodef
    {
+
+   public:
+
+      inline static void construct(TYPE * p)
+      {
+         constructor ::nodef< TYPE >::construct(p);
+      }
+
+      inline static void construct(TYPE * p,:: count c)
+      {
+         constructor ::nodef< TYPE >::construct(p,c);
+
+      }
+
+      inline static void destruct(TYPE * p)
+      {
+         destructor ::nodef< TYPE>::destruct(p);
+      }
+      inline static void destruct(TYPE * p,::count c)
+      {
+         destructor ::nodef< TYPE>::destruct(p,c);
+      }
+
+
+      inline static void copy(TYPE *pdst,const TYPE * psrc)
+      {
+
+         copier::def< TYPE >::copy(pdst,psrc);
+
+      }
+
+
+      inline static void copy(TYPE *pdst,const TYPE * psrc,::count c)
+      {
+
+         copier::def< TYPE >::copy(pdst,psrc,c);
+
+      }
+
+      inline static TYPE * alloc(::count c)
+      {
+
+         return memory::def < TYPE >::alloc(c);
+
+      }
+
+
+      inline static void free(TYPE * p)
+      {
+
+         memory::def < TYPE >::alloc(p);
+
+      }
+
 
    };
 
