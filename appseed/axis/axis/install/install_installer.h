@@ -118,6 +118,7 @@ namespace install
       bool              m_bLoginStartup;
       bool              m_bMsDownload;
       string            m_strTitle;
+      string            m_strApplicationName;
       string            m_strSpaIgnitionBaseUrl;
       uint64_t          m_dwCurFileLen;
 

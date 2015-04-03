@@ -2735,6 +2735,19 @@ install_begin:;
 
          }
 
+         System.install().trace().rich_trace(":::::Installed Successfully\r\n");
+         if(m_strApplicationName.has_char())
+         {
+            System.install().trace().rich_trace("***\"" + m_strApplicationName + "\" Installed Successfully\r\n");
+         }
+         else
+         {
+            System.install().trace().rich_trace("***Software Installed Successfully\r\n");
+         }
+         System.install().trace().rich_trace("Thank you\r\n");
+         System.install().trace().trace_progress(1.0);
+
+
          //send_spaboot_install_post(2, 0);
 
          return true;
@@ -3025,6 +3038,8 @@ install_begin:;
       {
          strStatusTemplate = "Installing %APPNAME%";
       }
+
+      m_strApplicationName = strName;
 
       strStatusTemplate.replace("%APPNAME%", strName);
 
