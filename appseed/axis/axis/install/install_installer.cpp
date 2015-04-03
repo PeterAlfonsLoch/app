@@ -2735,16 +2735,9 @@ install_begin:;
 
          }
 
-         System.install().trace().rich_trace(":::::Installed Successfully\r\n");
-         if(m_strApplicationName.has_char())
-         {
-            System.install().trace().rich_trace("***\"" + m_strApplicationName + "\" Installed Successfully\r\n");
-         }
-         else
-         {
-            System.install().trace().rich_trace("***Software Installed Successfully\r\n");
-         }
-         System.install().trace().rich_trace("Thank you\r\n");
+         System.install().trace().rich_trace(":::::Thank you");
+         System.install().trace().rich_trace("***Thank you");
+         System.install().trace().rich_trace("Thank you");
          System.install().trace().trace_progress(1.0);
 
 
