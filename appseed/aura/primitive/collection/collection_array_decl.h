@@ -248,11 +248,11 @@ namespace allocator
 
       inline static void destruct(TYPE * p)
       {
-         destructor ::nodef::destruct(p);
+         destructor ::nodef < TYPE >::destruct(p);
       }
       inline static void destruct(TYPE * p,::count c)
       {
-         destructor ::nodef::destruct(p,c);
+         destructor ::nodef < TYPE >::destruct(p,c);
       }
 
 

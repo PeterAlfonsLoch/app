@@ -1,7 +1,9 @@
 //#include "framework.h" // from "axis/net/net_sockets.h"
 //#include "axis/net/net_sockets.h"
 //#include "axis/compress/compress.h"
+#ifdef WINDOWS
 #include <Shlobj.h>
+#endif
 
 #if defined(WINDOWS) || defined(LINUX)
 //#include <omp.h>
@@ -933,7 +935,7 @@ install_begin:;
       System.install().trace().rich_trace("***Downloading resource files.");
 
       single_lock sl(&m_mutexOmp);
-      
+
       {
 
          stringa.filter_out(
@@ -4103,6 +4105,7 @@ RetryBuildNumber:
 
    }
 
+#ifdef WINDOWS
 
    void get_program_files_x86(wstring &wstr)
    {
@@ -4129,11 +4132,13 @@ RetryBuildNumber:
    }
 
 
-
+#endif
 
 
    int32_t installer::start_ca2_application()
    {
+
+   #ifdef WINDOWS
 
       wstring wstrApp;
 
@@ -4165,7 +4170,11 @@ RetryBuildNumber:
 
       return FALSE;
 
+      #endif
+
+
       return 0;
+
 
    }
    typedef bool fn_defer_core_init();

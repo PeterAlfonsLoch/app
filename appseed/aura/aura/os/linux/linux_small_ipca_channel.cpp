@@ -241,7 +241,7 @@ void small_ipc_rx_channel::receiver::on_receive(small_ipc_rx_channel * prxchanne
 {
 }
 
-void small_ipc_rx_channel::receiver::on_post(small_ipc_rx_channel * prxchannel, int64_t a, int64_t b)
+void small_ipc_rx_channel::receiver::on_post(small_ipc_rx_channel * prxchannel, long long int a, long long int b)
 {
 }
 
@@ -278,7 +278,7 @@ void * small_ipc_rx_channel::on_receive(small_ipc_rx_channel * prxchannel, int32
 
 
 
-void * small_ipc_rx_channel::on_post(small_ipc_rx_channel * prxchannel, int64_t a, int64_t b)
+void * small_ipc_rx_channel::on_post(small_ipc_rx_channel * prxchannel, long long int a, long long int b)
 {
 
    if(m_preceiver != NULL)
