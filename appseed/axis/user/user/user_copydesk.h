@@ -29,7 +29,7 @@ namespace user
 
       virtual bool desk_to_dib(::draw2d::dib * pdib);
       // todo
-      //bool dib_to_desk(::draw2d::dib * pdib);
+      virtual bool dib_to_desk(::draw2d::dib * pdib);
 
    };
 

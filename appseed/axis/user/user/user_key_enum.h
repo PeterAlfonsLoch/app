@@ -107,6 +107,7 @@ namespace user
       key_numpad_7,
       key_numpad_8,
       key_numpad_9,
+      key_print_screen,
       
    };
    

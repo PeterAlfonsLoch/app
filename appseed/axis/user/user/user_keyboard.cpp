@@ -108,6 +108,7 @@ namespace user
       System.set_enum_name(key_numpad_7, "key_numpad_7");
       System.set_enum_name(key_numpad_8, "key_numpad_8");
       System.set_enum_name(key_numpad_9, "key_numpad_9");
+      System.set_enum_name(key_print_screen,"key_print_screen");
 
    }
 

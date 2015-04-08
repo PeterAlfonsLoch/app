@@ -70,8 +70,8 @@ namespace user
 
 
       window_graphics *             m_pgraphics;
-      ::draw2d::dib_sp              m_spdib;
-      ::draw2d::dib_sp              m_spdibBuffer;
+      ::visual::dib_sp              m_spdib;
+      ::visual::dib_sp              m_spdibBuffer;
 
       sp(mutex)                     m_spmutexBuffer;
 

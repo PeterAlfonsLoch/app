@@ -86,6 +86,15 @@ namespace user
 
    }
 
+   bool copydesk::dib_to_desk(::draw2d::dib * pdib)
+   {
+
+      UNREFERENCED_PARAMETER(pdib);
+      ::exception::throw_interface_only(get_app());
+
+      return false;
+
+   }
 
 } // namespace user
 

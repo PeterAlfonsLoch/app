@@ -61,8 +61,8 @@ namespace visual
 // Obrigado Carlos!! Você poderia colaborar, não é!!
 // Meu Deus me ajude!!
 
-HBITMAP CreateAlphaBitmapV5(::draw2d::dib * pdib);
-HICON CreateAlphaIcon(::draw2d::dib * pdib,bool bIcon = true,int xHotSpot = 0,int yHotSpot = 0);
-HCURSOR CreateAlphaCursor(::draw2d::dib * pdib,int xHotSpot,int yHotSpot);
+CLASS_DECL_AURA HBITMAP CreateAlphaBitmapV5(::draw2d::dib * pdib);
+CLASS_DECL_AURA HICON CreateAlphaIcon(::draw2d::dib * pdib,bool bIcon = true,int xHotSpot = 0,int yHotSpot = 0);
+CLASS_DECL_AURA HCURSOR CreateAlphaCursor(::draw2d::dib * pdib,int xHotSpot,int yHotSpot);
 
 #endif

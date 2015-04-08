@@ -93,5 +93,6 @@
 	<item scan="79" value="key_numpad_9" />
 	<item scan="79" value="key_numpad_0" />
 	<item scan="69" value="key_numlock" />
+	<item scan="55" value="key_print_screen" />
 </layout>
 

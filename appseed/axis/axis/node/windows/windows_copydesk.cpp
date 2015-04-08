@@ -261,6 +261,90 @@ namespace windows
       return bOk;
    }
 
+
+   bool copydesk::dib_to_desk(::draw2d::dib * pdib)
+   {
+
+      ASSERT(IsWindow());
+
+      if(!::OpenClipboard(get_handle()))
+      {
+
+         return false;
+
+      }
+
+      EmptyClipboard();
+
+      //   HDC hMemDC;
+      DWORD dwWidth,dwHeight;
+      BITMAPINFOHEADER bi;
+      // HBITMAP hOldBitmap;
+      HBITMAP hBitmap;
+      void *lpBits;
+      HCURSOR hAlphaCursor = NULL;
+
+      dwWidth  = pdib->m_size.cx;  // width of the Bitmap V5 Dib bitmap
+      dwHeight = pdib->m_size.cy;  // height of the Bitmap V5 Dib bitmap
+
+      ZeroMemory(&bi,sizeof(BITMAPINFOHEADER));
+      bi.biSize           = sizeof(BITMAPINFOHEADER);
+      bi.biWidth           = dwWidth;
+      bi.biHeight          = - (LONG)dwHeight;
+      bi.biPlanes = 1;
+      bi.biBitCount = 32;
+      bi.biCompression = BI_RGB;
+      bi.biSizeImage = pdib->m_iScan * pdib->m_size.cy;
+      // The following mask specification specifies a supported 32 BPP
+      // alpha format for Windows XP.
+      //bi.bV5RedMask   =  0x00FF0000;
+      //bi.bV5GreenMask =  0x0000FF00;
+      //bi.bV5BlueMask  =  0x000000FF;
+      //bi.bV5AlphaMask =  0xFF000000;
+
+      //HDC hdc;
+      //hdc = GetDC(NULL);
+
+      // Create the DIB section with an alpha channel.
+///      hBitmap = CreateDIBSection(hdc,(BITMAPINFO *)&bi,DIB_RGB_COLORS,(void **)&lpBits,NULL,(DWORD)0);
+
+      //hMemDC = CreateCompatibleDC(hdc);
+   //   ReleaseDC(NULL,hdc);
+
+      // Draw something on the DIB section.
+      //hOldBitmap = (HBITMAP)SelectObject(hMemDC,hBitmap);
+      //PatBlt(hMemDC,0,0,dwWidth,dwHeight,WHITENESS);
+      //SetTextColor(hMemDC,RGB(0,0,0));
+      //SetBkMode(hMemDC,TRANSPARENT);
+      //TextOut(hMemDC,0,9,"rgba",4);
+      //SelectObject(hMemDC,hOldBitmap);
+      //DeleteDC(hMemDC);
+
+      // Set the alpha values for each pixel in the cursor so that
+      // the complete cursor is semi-transparent.
+
+      //int iStrideDst = dwWidth * sizeof(COLORREF);
+
+      //::draw2d::copy_colorref(pdib->m_size.cx,pdib->m_size.cy,(COLORREF *)lpBits,iStrideDst,pdib->m_pcolorref,pdib->m_iScan);
+
+      HGLOBAL hResult = GlobalAlloc(GMEM_MOVEABLE,sizeof(bi) + pdib->m_iScan * pdib->m_size.cy);
+      if(hResult == NULL) return false;
+
+      LPBYTE lp = (LPBYTE) ::GlobalLock(hResult);
+
+      memcpy(lp,&bi,sizeof(bi));
+      memcpy(lp + sizeof(bi),pdib->m_pcolorref, pdib->m_iScan * pdib->m_size.cy);
+      GlobalUnlock(hResult);
+
+      SetClipboardData(CF_DIB,hResult);
+
+
+      VERIFY(::CloseClipboard());
+
+      return true;
+      
+   }
+
 #define new AURA_NEW
 
 

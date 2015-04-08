@@ -332,10 +332,41 @@ namespace user
       //if (pMsg->message == WM_LBUTTONDOWN || pMsg->message == WM_NCLBUTTONDOWN)
       //   __cancel_modes(pMsg->oswindow);    // filter clicks
 
+      sp(::message::key) pkey = pobj;
+
+      if(pkey.is_set())
+      {
+
+         if(Session.is_key_pressed(::user::key_alt) && Session.is_key_pressed(::user::key_control))
+         {
+            if(pkey->m_ekey == ::user::key_p)
+            {
+               sp(::user::interaction_impl) pimpl = m_pimpl;
+               if(pimpl.is_set())
+               {
+                  synch_lock sl(pimpl->m_spmutexBuffer);
+                  ::visual::dib_sp dib(allocer());
+                  ::rect r;
+                  GetWindowRect(r);
+                  dib->create(r.size());
+                  dib->get_graphics()->BitBlt(0,0,r.width(),r.height(),pimpl->m_spdibBuffer->get_graphics(),0,0,SRCCOPY);
+                  Session.copydesk().dib_to_desk(dib);
+                  dib.save_to_file("C:\\ca2\\control_alt_p.png");
+                  pkey->m_bRet = true;
+                  pkey->set_lresult(1);
+               }
+               return;
+            }
+         }
+
+      }
+
       // allow tooltip messages to be filtered
       ::user::interaction::pre_translate_message(pobj);
       if (pobj->m_bRet)
          return;
+
+
 
 
       /* trans if (pMsg->message >= WM_KEYFIRST && pMsg->message <= WM_KEYLAST)
