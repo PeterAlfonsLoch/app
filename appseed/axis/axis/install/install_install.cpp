@@ -487,7 +487,7 @@ namespace install
          strSpaIgnitionBaseUrl = "https://" + file_as_string_dup("C:\\ca2\\config\\system\\ignition_server.txt") + "/api/spaignition";
 
       }
-      else if(pszVersion != NULL && !strcmp(pszVersion,"basis"))
+/*      else if(pszVersion != NULL && !strcmp(pszVersion,"basis"))
       {
 
          strSpaIgnitionBaseUrl = "http://basis-server.ca2.cc/api/spaignition";
@@ -498,11 +498,13 @@ namespace install
 
          strSpaIgnitionBaseUrl = "http://stage-server.ca2.cc/api/spaignition";
 
-      }
+      } */
       else
       {
 
-         if(m_strVersion == "basis")
+         strSpaIgnitionBaseUrl = "http://api.ca2.cc/spaignition";
+
+         /*if(m_strVersion == "basis")
          {
 
             strVersion = "basis";
@@ -517,7 +519,7 @@ namespace install
 
             strSpaIgnitionBaseUrl = "http://stage-server.ca2.cc/api/spaignition";
 
-         }
+         }*/
 
       }
 
