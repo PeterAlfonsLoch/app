@@ -22,3 +22,4 @@ CLASS_DECL_AURA int ccvt_dup(char * buf,int nchar, double arg, int ndigits,int *
 CLASS_DECL_AURA int ecvt_dup(char * buf,int nchar, double arg, int ndigits,int *decpt,int *sign);
 CLASS_DECL_AURA int fcvt_dup(char * buf,int nchar, double arg, int ndigits,int *decpt,int *sign);
 CLASS_DECL_AURA int gcvt_dup(char * buf,int nchar, double arg, int ndigits);
+CLASS_DECL_AURA int max_cvt_dup(char *buf,int nchar,double arg,int ndigits,int *decpt,int *sign, int * pi);

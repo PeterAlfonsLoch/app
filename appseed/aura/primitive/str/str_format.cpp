@@ -277,7 +277,28 @@ bool string_format::parse(const char * & s)
       void format(string_format * pformat, uchar const & uch)
       {
 
-         pformat->append(string((char) uch, 1));
+
+         string str;
+         if(pformat->m_chLength == 'x')
+         {
+            str = ::hex::lower_from((int) uch);
+         }
+         else if(pformat->m_chLength == 'X')
+         {
+            str = ::hex::upper_from((int)uch);
+         }
+         else
+         {
+            pformat->append(string((char)uch,1));
+         }
+         if(pformat->m_bZeroPadding)
+         {
+            while(str.get_length() < pformat->m_iWidth)
+            {
+               str = "0" + str;
+            }
+         }
+         pformat->append(str);
 
       }
 
@@ -332,7 +353,27 @@ bool string_format::parse(const char * & s)
       void format(string_format * pformat, uint32_t const & ui)
       {
          // TODO: use specs
-         pformat->append(::str::from(ui));
+         string str;
+         if(pformat->m_chLength == 'x')
+         {
+            str = ::hex::lower_from(ui);
+         }
+         else if(pformat->m_chLength == 'X')
+         {
+            str = ::hex::upper_from(ui);
+         }
+         else
+         {
+            str = ::str::from(ui);
+         }
+         if(pformat->m_bZeroPadding)
+         {
+            while(str.get_length() < pformat->m_iWidth)
+            {
+               str = "0" + str;
+            }
+         }
+         pformat->append(str);
 
       }
 
@@ -383,8 +424,15 @@ bool string_format::parse(const char * & s)
                 strResult = "+";
              }
 
-             strResult += str.substr(0, decimal_point);
-             if(pformat->m_iPrecision > 0 && decimal_point > str.get_length())
+             if(decimal_point == 0)
+             {
+                strResult += "0";
+             }
+             else
+             {
+                strResult += str.substr(0,decimal_point);
+             }
+             if(pformat->m_iPrecision > 0)
              {
                 strResult += ".";
                 strResult += str.substr(decimal_point);
@@ -398,13 +446,21 @@ bool string_format::parse(const char * & s)
          else
          {
 
-             if(ecvt_dup(sz, sizeof(sz), d, sizeof(sz), &decimal_point, &negative) != 0)
+            if(d == 0.0)
+            {
+               pformat->append("0.0");
+               return;
+            }
+
+            int i = 0;
+
+             if(max_cvt_dup(sz, sizeof(sz), d, 1024, &decimal_point, &negative, &i) != 0)
              {
                 pformat->append(::str::from(d));
                 return;
              }
 
-             string str(sz);
+             string str(sz, i + 1);
              string strResult;
 
              if(negative)

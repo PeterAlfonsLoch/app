@@ -42,7 +42,9 @@
 
 #define CVTBUFSIZE  2 * DBL_MAX_10_EXP + 10
 
-char *ccvt_internal(double arg,int ndigits,int *decpt,int *sign,char *buf,int eflag)
+#define MAX_PRECISION 2048
+
+char *ccvt_internal(double arg,int ndigits,int *decpt,int *sign,char *buf,int eflag, int * pi  = NULL)
 {
    int r2;
    double fi,fj;
@@ -76,16 +78,22 @@ char *ccvt_internal(double arg,int ndigits,int *decpt,int *sign,char *buf,int ef
       }
    }
    p1 = &buf[ndigits];
-   if(eflag == 0) p1 += r2;
+   if((eflag & 1) == 0) p1 += r2;
    *decpt = r2;
    if(p1 < &buf[0]) {
       buf[0] = '\0';
       return buf;
    }
-   while(p <= p1 && p < &buf[CVTBUFSIZE]) {
+   int i = 0;
+   while(p <= p1 && p < &buf[CVTBUFSIZE] && (!(eflag & MAX_PRECISION) || (arg != 0.0 || i >= ndigits))) {
       arg *= 10;
       arg = modf(arg,&fj);
       *p++ = (int)fj + '0';
+      i++;
+   }
+   if(pi != NULL)
+   {
+      *pi =i;
    }
    if(p1 >= &buf[CVTBUFSIZE]) {
       buf[CVTBUFSIZE - 1] = '\0';
@@ -101,7 +109,7 @@ char *ccvt_internal(double arg,int ndigits,int *decpt,int *sign,char *buf,int ef
       else {
          *p1 = '1';
          (*decpt)++;
-         if(eflag == 0) {
+         if((eflag & 1) == 0) {
             if(p > buf) *p = '0';
             p++;
          }
@@ -143,6 +151,22 @@ int fcvt_dup(char *buf, int nchar,double arg,int ndigits,int *decpt,int *sign)
 
 }
 
+
+int max_cvt_dup(char *buf,int nchar,double arg,int ndigits,int *decpt,int *sign, int *pi)
+{
+
+   char sz[CVTBUFSIZE + 9];
+
+   ccvt_internal(arg,ndigits,decpt,sign,sz,MAX_PRECISION, pi);
+
+   if(strlen(sz) > natural(nchar))
+      return EINVAL;
+
+   strcpy(buf,sz);
+
+   return 0;
+
+}
 
 
 
