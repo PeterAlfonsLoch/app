@@ -30,7 +30,7 @@ namespace sockets
    }
 
       
-   cres http_buffer::open(const char * lpszFileName, UINT nOpenFlags)
+   cres http_buffer::open(const ::file::path & lpszFileName, UINT nOpenFlags)
    {
 
 //         if(!Application.http_buffer().exists(lpszFileName))

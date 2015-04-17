@@ -58,15 +58,106 @@ proc hls2rgb {h l s} {
   */
 
 void color::get_hls(
-   double & dHParam, double & dLParam, double & dSParam) const
+   double & h, double & l, double & s) const
 {
 
-   double dR = m_dR;
-   double dG = m_dG;
-   double dB = m_dB;
+   double r = m_dR;
+   double g = m_dG;
+   double b = m_dB;
+
+   //double r = rgb.R / 255.0;
+
+   //double g = rgb.G / 255.0;
+
+   //double b = rgb.B / 255.0;
+
+   double v;
+
+   double m;
+
+   double vm;
+
+   double r2,g2,b2;
 
 
-   double dCMin = MIN(dR, MIN(dG, dB));;
+
+   h = 0; // default to black
+
+   s = 0;
+
+   l = 0;
+
+   v = MAX(r,g);
+
+   v = MAX(v,b);
+
+   m = MIN(r,g);
+
+   m = MIN(m,b);
+
+   l = (m + v) / 2.0;
+
+   if(l <= 0.0)
+
+   {
+
+      return;
+
+   }
+
+   vm = v - m;
+
+   s = vm;
+
+   if(s > 0.0)
+
+   {
+
+      s /= (l <= 0.5) ? (v + m) : (2.0 - v - m) ;
+
+   }
+
+   else
+
+   {
+
+      return;
+
+   }
+
+   r2 = (v - r) / vm;
+
+   g2 = (v - g) / vm;
+
+   b2 = (v - b) / vm;
+
+   if(r == v)
+
+   {
+
+      h = (g == m ? 5.0 + b2 : 1.0 - g2);
+
+   }
+
+   else if(g == v)
+
+   {
+
+      h = (b == m ? 1.0 + r2 : 3.0 - b2);
+
+   }
+
+   else
+
+   {
+
+      h = (r == m ? 3.0 + g2 : 5.0 - r2);
+
+   }
+
+   h /= 6.0;
+
+   /*double dCMin = MIN(dR, MIN(dG, dB));;
    double dCMax = MAX(dR, MAX(dG, dB));
    double dA;
 
@@ -188,7 +279,7 @@ void color::get_hls(
       {
          // All colors have the same intensity
          dHParam = 0.0;
-         dLParam = dR;
+         dLParam = 0.0;
          dSParam = 0.0;
          return;
       }
@@ -202,8 +293,19 @@ void color::get_hls(
            dCDiff / (2.0 - dCSum);
 
 
-
-
+   if(dHParam > 1.0)
+   {
+      ::OutputDebugString("dHParam > 1.0");
+   }
+   if(dLParam > 1.0)
+   {
+      ::OutputDebugString("dLParam > 1.0");
+   }
+   if(dSParam > 1.0)
+   {
+      ::OutputDebugString("dSParam > 1.0");
+   }
+   */
 }
 
 /* utility routine for HLStoRGB */
