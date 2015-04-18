@@ -486,6 +486,26 @@ public:
    virtual void on_after_read();
 
    template < typename PRED >
+   index find_first(PRED pred)
+   {
+      for(int i = 0; i < get_count(); i++)
+      {
+
+         if(pred(m_pData[i]))
+         {
+            
+            return i;
+
+         }
+
+      }
+
+      return -1;
+
+   }
+
+
+   template < typename PRED >
    void remove_if(PRED pred) { return remove_pred(pred); }
 
    template < typename PRED >
@@ -514,8 +534,6 @@ public:
                if(!pred(m_pData[i]))
                {
 
-                  i++;
-
                   break;
 
                }
@@ -525,7 +543,10 @@ public:
                i++;
 
             }
+            
             remove_at(iStart,iCount);
+
+            i = iStart;
 
          }
 
