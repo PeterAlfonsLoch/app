@@ -23,6 +23,18 @@ public:
 
    string implode(const char * pszGlue) const;
 
+   template < typename T, typename... Args >
+   void add(const T & t,Args... args)
+   {
+      add((var) t);
+      add(args...);
+   }
+
+   // for adding void
+   void add(void)
+   {
+   }
+
    index find_first_ci(const char * psz, index find = 0, index last = -1) const;
    index find_first(const char * psz, index find = 0, index last = -1) const;
    index find_first(const var & var, index find = 0, index last = -1) const;

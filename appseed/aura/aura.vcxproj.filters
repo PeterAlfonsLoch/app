@@ -2036,6 +2036,12 @@
     <ClInclude Include="primitive\str\str_sz.h">
       <Filter>Header Files\primitive\str</Filter>
     </ClInclude>
+    <ClInclude Include="aura\aura\aura_ipi.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_simple_app_launcher.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -3411,6 +3417,12 @@
     </ClCompile>
     <ClCompile Include="filesystem\_filesystem.cpp">
       <Filter>Source Files\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\aura\aura_simple_app_launcher.cpp">
+      <Filter>Source Files\aura\aura</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\aura\aura_ipi.cpp">
+      <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

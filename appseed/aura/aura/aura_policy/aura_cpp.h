@@ -1592,6 +1592,12 @@ CLASS_DECL_AURA void dappy(const char * psz);
 #include "aura/filesystem/file/file_edit_buffer.h"
 
 
+#include "aura/aura/aura/aura_simple_app_launcher.h"
+
+
+#include "aura/aura/aura/aura_ipi.h"
+
+
 
 
 

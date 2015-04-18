@@ -11,7 +11,7 @@ public:
    launcher(int iStart = 11) { m_iStart = iStart;  }
 
 
-   virtual bool ensure_executable() = 0;
+   virtual bool ensure_executable() { return true; }
 
    virtual string get_executable_path() = 0;
 
