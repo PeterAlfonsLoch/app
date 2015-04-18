@@ -28,7 +28,7 @@ bool small_ipc_tx_channel::open(const char * pszKey, launcher * plauncher)
    int iCount;
 
    if(plauncher != NULL)
-      iCount = plauncher->m_iStart;
+      iCount = plauncher->m_iStart + 1;
    else
       iCount = 2;
 

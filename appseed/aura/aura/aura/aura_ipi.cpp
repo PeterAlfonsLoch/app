@@ -29,17 +29,47 @@ namespace aura
 
    }
 
+
+   void ipi::start_app(const string & strApp)
+   {
+      
+      defer_start_app(strApp);
+
+   }
+
+   bool ipi::defer_start_app(const string & strApp,bool bShouldAutoLaunch)
+   {
+
+      if(bShouldAutoLaunch)
+      {
+
+         simple_app_launcher launcher(strApp);
+
+         return m_txmap[strApp].open(key(strApp),&launcher);
+
+      }
+      else
+      {
+
+         simple_app_launcher launcher("");
+
+         launcher.m_iStart = 0;
+
+         return m_txmap[strApp].open(key(strApp), &launcher);
+
+      }
+
+   }
+
+
    small_ipc_tx_channel & ipi::tx(const string & strApp)
    {
 
       if(!m_txmap[strApp].is_tx_ok())
       {
 
+         start_app(strApp);
 
-
-         simple_app_launcher launcher(strApp);
-
-         m_txmap[strApp].open(key(strApp),&launcher);
 
       }
 

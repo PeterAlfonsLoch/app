@@ -43,6 +43,10 @@ namespace aura
 
       virtual void on_receive(small_ipc_rx_channel * prxchannel,const char * pszMessage);
 
+      virtual void start_app(const string & strApp);
+
+      virtual bool defer_start_app(const string & strApp, bool bShouldAutoLaunch = true);
+
    };
 
 

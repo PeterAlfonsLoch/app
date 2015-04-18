@@ -21,6 +21,8 @@ namespace aura
 
       virtual string get_params();
 
+      virtual bool start();
+
    };
 
 
