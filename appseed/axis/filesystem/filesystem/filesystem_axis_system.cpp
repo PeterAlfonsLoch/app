@@ -460,7 +460,13 @@ restart:
             }
             else
             {
-               varQuery["user"] = &AppUser(papp);
+
+               if(!strFilePath.find_ci("sessid=noauth"))
+               {
+
+                  varQuery["user"] = &AppUser(papp);
+
+               }
 
                App(papp).http().get(strFilePath, storage, varQuery.propset());
 
