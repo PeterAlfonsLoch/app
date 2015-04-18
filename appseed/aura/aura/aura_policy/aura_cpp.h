@@ -1020,6 +1020,18 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 #include "aura/net/net.h"
 
 
+#include "aura/aura/aura/aura_launcher.h"
+#ifndef METROWIN
+#include "aura/aura/aura/aura_small_ipc_channel.h"
+#endif
+
+#include "aura/aura/aura/aura_simple_app_launcher.h"
+
+
+#include "aura/aura/aura/aura_ipi.h"
+
+
+
 
 #include "aura/filesystem/filesystem/filesystem_application.h"
 
@@ -1081,11 +1093,6 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 
 #include "aura/aura/aura/aura_id_pool.h"
 
-
-#include "aura/aura/aura/aura_launcher.h"
-#ifndef METROWIN
-#include "aura/aura/aura/aura_small_ipc_channel.h"
-#endif
 
 
 #include "aura/aura/aura/aura_cregexp.h"
@@ -1592,10 +1599,6 @@ CLASS_DECL_AURA void dappy(const char * psz);
 #include "aura/filesystem/file/file_edit_buffer.h"
 
 
-#include "aura/aura/aura/aura_simple_app_launcher.h"
-
-
-#include "aura/aura/aura/aura_ipi.h"
 
 
 

@@ -1862,7 +1862,16 @@ namespace aura
 
       m_bAuraInitializeInstanceResult = true;
 
+      m_pipi = create_ipi();
+
       return true;
+
+   }
+
+   ::aura::ipi * application::create_ipi()
+   {
+
+      return NULL;
 
    }
 

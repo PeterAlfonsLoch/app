@@ -18,6 +18,7 @@ namespace aura
 
 
       smart_pointer < application >                   m_pimpl;
+      sp(ipi)                                         m_pipi;
       sp(service_base)                                m_pservice;
 
       bool                                            m_bAuraProcessInitialize;
@@ -229,6 +230,9 @@ namespace aura
 
 
       virtual void construct(const char * pszAppId);
+
+
+      virtual ::aura::ipi * create_ipi();
 
 
       virtual bool process_initialize();
