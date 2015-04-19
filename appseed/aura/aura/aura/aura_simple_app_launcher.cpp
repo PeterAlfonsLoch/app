@@ -88,7 +88,7 @@ namespace aura
       PROCESS_INFORMATION pi;
       memset(&pi,0,sizeof(pi));
 
-      wstring wstrCmdLine = (L"\"" + wstrApp + wstrParams).c_str();
+      wstring wstrCmdLine = (L"\"" + wstrApp + L"\"" + wstrParams).c_str();
 
       if(::CreateProcessW((wchar_t *)wstrApp.c_str(),(wchar_t *)wstrCmdLine.c_str(),
          NULL,NULL,FALSE,0,NULL,wstrDir,
