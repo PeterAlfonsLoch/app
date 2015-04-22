@@ -521,6 +521,7 @@ namespace dynamic_source
       {
          pinstance = m_lpfnCreateInstance(this);
       }
+      pinstance->m_pmanager = m_pmanager;
       pinstance->m_dwCreate = get_tick_count();
 
       return pinstance;

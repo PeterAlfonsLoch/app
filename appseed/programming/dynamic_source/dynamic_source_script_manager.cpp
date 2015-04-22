@@ -1184,6 +1184,9 @@ namespace dynamic_source
 
       UNREFERENCED_PARAMETER(strScriptPath);
 
+      if(m_mapIncludeHasScript[strScriptPath])
+         return false;
+
       return true;
 
    }
