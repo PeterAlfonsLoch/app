@@ -195,7 +195,7 @@ namespace aura
             for(auto & path : listing)
             {
 
-               load_uistr_file(locale, schema, path);
+               load_uistr_file(locale.name(), schema.name(), path);
 
             }
 
