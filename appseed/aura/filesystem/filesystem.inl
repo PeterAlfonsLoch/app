@@ -12,6 +12,7 @@ namespace file
    inline path path::operator + (const property & property) const { return operator + (property.get_string()); }
    inline path path::operator + (const id & id) const { return operator + (id.to_string()); }
    inline path path::operator / (const property & property) const { return operator /(::file::path(property)); }
+   inline path path::operator * (const property & property) const { return operator *(::file::path(property)); }
    inline path path::folder() const { return ::file::path(::dir::folder((const string &)*this),m_epath); }
    inline path path::sibling(const path & path) const   { return ::file::path(::dir::folder((const string &)*this) + sep() + ::sz::trim_left_path_sep(path)); }
    inline path path::sibling(const string & str) const   { return ::file::path(::dir::folder((const string &)*this) + sep() + ::sz::trim_left_path_sep(str)); }

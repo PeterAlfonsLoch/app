@@ -177,15 +177,12 @@ namespace file
 
       }
 
-
       path operator / (const path & path) const
       {
 
          return ::file::path((const string &)*this + sep() + string((const string &)path).trim_left("\\/"),m_epath);
 
       }
-
-
       path operator / (const string & str) const { return operator /(::file::path(str)); }
       path operator / (const char * psz) const { return operator /(::file::path(psz)); }
       path operator / (const property & property) const;
@@ -237,9 +234,16 @@ namespace file
       path sibling(const string & str) const;
       path sibling(const char * psz) const;
 
-      //path operator *(const path & path) const { return sibling(path); }
-      //path operator *(const string & str) const { return sibling(str); }
-      //path operator *(const char * psz) const { return sibling(psz); }
+      path operator * (const path & path) const
+      {
+
+         return sibling(path);
+
+      }
+
+      path operator * (const string & str) const { return operator /(::file::path(str)); }
+      path operator * (const char * psz) const { return operator /(::file::path(psz)); }
+      path operator * (const property & property) const;
 
 
 
