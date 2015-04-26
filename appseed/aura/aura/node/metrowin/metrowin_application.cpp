@@ -529,8 +529,8 @@ namespace metrowin
    bool application::update_module_paths()
    {
 
-      System.m_strModuleFolder = "";
-      System.m_strCa2ModuleFolder = "";
+      System.m_pathModuleFolder = "";
+      System.m_pathCa2ModuleFolder = "";
 
       return true;
 

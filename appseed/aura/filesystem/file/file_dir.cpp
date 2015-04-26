@@ -80,7 +80,7 @@ string dir::get_ca2_module_folder()
    }
    */
 
-   return true;
+   return "";
 
 #elif defined(WINDOWS)
 

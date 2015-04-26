@@ -1,7 +1,5 @@
 
-
-
-
+#ifndef METROWIN
 
 namespace aura
 {
@@ -179,9 +177,24 @@ namespace aura
 
    }
 
+
    void ipi::on_call(const string & strObject,const string & strMember,var_array & va)
    {
+
    }
 
+
 } // namespace aura
+
+
+#endif
+
+
+
+
+
+
+
+
+
 

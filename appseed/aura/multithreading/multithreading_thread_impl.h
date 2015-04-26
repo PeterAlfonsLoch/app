@@ -7,6 +7,18 @@
 #pragma once
 
 
+#ifdef WINDOWSEX
+
+typedef uint32_t IDTHREAD;
+
+#else
+
+typedef HTHREAD IDTHREAD;
+
+#endif
+
+
+
 class thread_startup :
    virtual public object
 {

@@ -359,7 +359,7 @@ void * thread_impl::get_os_data() const
 int_ptr thread_impl::get_os_int() const
 {
 
-   return m_uiThread;
+   return (int_ptr) m_uiThread;
 
 }
 
@@ -820,7 +820,7 @@ void thread_impl::set_os_int(int_ptr iData)
 #ifdef WINDOWSEX
    m_uiThread = (DWORD)iData;
 #else
-   m_uiThread = (DWORD)iData;
+   m_uiThread = (IDTHREAD) iData;
 #endif
 }
 

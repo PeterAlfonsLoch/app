@@ -1862,11 +1862,17 @@ namespace aura
 
       m_bAuraInitializeInstanceResult = true;
 
+#ifndef METROWIN
+
       m_pipi = create_ipi();
+
+#endif
 
       return true;
 
    }
+
+#ifndef METROWIN
 
    ::aura::ipi * application::create_ipi()
    {
@@ -1875,6 +1881,7 @@ namespace aura
 
    }
 
+#endif
 
    bool application::initialize1()
    {

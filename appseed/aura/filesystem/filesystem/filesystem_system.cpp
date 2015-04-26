@@ -824,16 +824,16 @@ restart:
       if(file == nullptr)
          throw "file::system::move Could not move file, could not open source file";
 
-      string strDirOld     = System.dir().name(psz);
-      string strDirNew     = System.dir().name(pszNew);
-      string strNameOld    = System.file().name_(psz);
-      string strNameNew    = System.file().name_(pszNew);
+      string strDirOld     = psz.folder();
+      string strDirNew     = pszNew.folder();
+      string strNameOld    = psz.name();
+      string strNameNew    = pszNew.name();
 
       if(strDirOld == strDirNew)
       {
          if(strNameOld == strNameNew)
          {
-            return;
+            return no_exception;
          }
          else
          {

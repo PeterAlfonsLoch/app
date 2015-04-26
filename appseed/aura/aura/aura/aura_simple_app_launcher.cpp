@@ -1,6 +1,6 @@
 
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
 #include <Shlobj.h>
 
@@ -17,10 +17,12 @@ void get_program_files_x86(string &str)
       lpszModuleFilePath,
       CSIDL_PROGRAM_FILES,
       FALSE);
-   if(lpszModuleFilePath[wcslen(lpszModuleFilePath) - 1] == '\\'
-      || lpszModuleFilePath[wcslen(lpszModuleFilePath) - 1] == '/')
+
+   if(lpszModuleFilePath[wcslen(lpszModuleFilePath) - 1] == '\\' || lpszModuleFilePath[wcslen(lpszModuleFilePath) - 1] == '/')
    {
+
       lpszModuleFilePath[wcslen(lpszModuleFilePath) - 1] = '\0';
+
    }
 
    wcscpy(lpszModuleFolder,lpszModuleFilePath);
@@ -53,7 +55,11 @@ namespace aura
   //    strAppPath += "app.exe";
       strAppPath += "spa\\spa.exe";
 
+#ifndef METROWIN
+
       get_program_files_x86(strAppPath);
+
+#endif
 
       return strAppPath;
 
@@ -80,6 +86,8 @@ namespace aura
 
       wstring wstrParams = get_params();
 
+#ifndef METROWIN
+
       STARTUPINFOW si;
       memset(&si,0,sizeof(si));
       si.cb = sizeof(si);
@@ -94,6 +102,8 @@ namespace aura
          NULL,NULL,FALSE,0,NULL,wstrDir,
          &si,&pi))
          return true;
+
+#endif
 
       return false;
 

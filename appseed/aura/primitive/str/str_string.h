@@ -1764,10 +1764,10 @@ inline string & to_string(string & str, string_composite & ca)
 
 
 template < >
-inline string & to_string(string & str, String ^ & str)
+inline string & to_string(string & str, String ^ & strSrc)
 {
 
-   str= (const wchar_t *) wstring(begin(str));
+   str= (const wchar_t *) wstring(begin(strSrc));
 
    return str;
 

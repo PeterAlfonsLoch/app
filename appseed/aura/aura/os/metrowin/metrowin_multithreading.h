@@ -38,6 +38,15 @@ POINT       pt;
 } MESSAGE, * LPMESSAGE;
 #endif
 
+#ifdef WINDOWSEX
+
+typedef uint32_t IDTHREAD;
+
+#else
+
+typedef HTHREAD IDTHREAD;
+
+#endif
 
 
 CLASS_DECL_AURA WINBOOL WINAPI GetMessageW(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax);

@@ -7,23 +7,16 @@ namespace metrowin
 
    dir::dir(::aura::application *  papp):
       ::object(papp),
-      ::file::dir::system(papp),
-      m_path(papp)
+      ::file::dir::system(papp)
    {
 
       string strCa2Module = ca2module();
 
       m_strCa2 = strCa2Module;
 
-      System.file().path().eat_end_level(m_strCa2,2,"\\");
+      m_strCa2 -= 2;
 
    }
-
-   path::path(::aura::application *  papp):
-      ::object(papp)
-   {
-   }
-
 
    inline bool myspace(char ch)
    {
@@ -33,472 +26,159 @@ namespace metrowin
          ch == '\n';
    }
 
-   string dir::path(const char * pszFolder,strsize iLenFolder,const char * pszRelative,strsize iLenRelative,const char * psz2,strsize iLen2,bool bUrl)
+
+   ::file::listing & dir::root_ones(::file::listing & listing,::aura::application *  papp)
    {
 
-      bool bEmptyRelative = iLenRelative == 0 || pszRelative == NULL || *pszRelative == '\0';
-      bool bEmpty2 = iLen2 == 0 || psz2 == NULL || *psz2 == '\0';
+      listing.add(::file::path(Windows::Storage::KnownFolders::DocumentsLibrary->Path));
 
-      if(bEmptyRelative && bEmpty2)
-         return pszFolder;
+      listing.m_straTitle.add("Documents");
 
-      string strPath;
-      LPSTR lpsz;
+      return listing;
 
-      if(bEmptyRelative)
-      {
-         pszRelative = psz2;
-         iLenRelative = iLen2;
-      }
-
-      while((pszFolder[iLenFolder - 1] == '\\' || pszFolder[iLenFolder - 1] == '/') && iLenFolder > 0)
-      {
-         if(bUrl)
-         {
-            if((iLenFolder - 2) >= 0 && (pszFolder[iLenFolder - 2] == '\\' || pszFolder[iLenFolder - 2] == '/' || pszFolder[iLenFolder - 2] == ':'))
-            {
-               if(pszFolder[iLenFolder - 2] == ':')
-               {
-                  break;
-               }
-               else
-               {
-                  if((iLenFolder - 3) >= 0 && (pszFolder[iLenFolder - 3] == ':'))
-                  {
-                     iLenFolder--;
-                     break;
-                  }
-               }
-            }
-            else
-            {
-               iLenFolder--;
-            }
-         }
-         else
-         {
-            iLenFolder--;
-         }
-      }
-
-      while(*pszRelative != '\0' && (*pszRelative == '\\' || *pszRelative == '/') && iLenRelative > 0)
-      {
-         pszRelative++;
-         iLenRelative--;
-      }
-
-      if(bEmptyRelative || bEmpty2)
-      {
-         lpsz = strPath.GetBufferSetLength(iLenFolder + 1 + iLenRelative);
-         strncpy(lpsz,pszFolder,iLenFolder);
-         if(strnicmp(&lpsz[iLenFolder - 5],".zip:",5) == 0)
-         {
-            iLenFolder--;
-         }
-         else
-         {
-            lpsz[iLenFolder] = '/';
-         }
-         strncpy(&lpsz[iLenFolder + 1],pszRelative,iLenRelative);
-         lpsz[iLenFolder + 1 + iLenRelative] = '\0';
-         {
-            if(bUrl)
-            {
-               while(*lpsz++ != '\0')
-                  if(*lpsz == '\\') *lpsz = '/';
-            }
-            else
-            {
-               while(*lpsz++ != '\0')
-                  if(*lpsz == '/') *lpsz = '\\';
-            }
-         }
-         strPath.ReleaseBuffer(iLenFolder + 1 + iLenRelative);
-         return strPath;
-      }
-
-      while((pszRelative[iLenRelative - 1] == '\\' || pszRelative[iLenRelative - 1] == '/') && iLenRelative > 0)
-      {
-         iLenRelative--;
-      }
-
-      while(*psz2 != '\0' && (*psz2 == '\\' || *psz2 == '/') && iLen2 > 0)
-      {
-         psz2++;
-         iLen2--;
-      }
-
-      lpsz = strPath.GetBufferSetLength(iLenFolder + 1 + iLenRelative + 1 + iLen2);
-      strncpy(lpsz,pszFolder,iLenFolder);
-      lpsz[iLenFolder] = '/';
-      strncpy(&lpsz[iLenFolder + 1],pszRelative,iLenRelative);
-      lpsz[iLenFolder + 1 + iLenRelative] = '/';
-      strncpy(&lpsz[iLenFolder + 1 + iLenRelative + 1],psz2,iLen2);
-      lpsz[iLenFolder + 1 + iLenRelative + 1 + iLen2] = '\0';
-      {
-         if(bUrl)
-         {
-            while(*lpsz++ != '\0')
-               if(*lpsz == '\\') *lpsz = '/';
-         }
-         else
-         {
-            while(*lpsz++ != '\0')
-               if(*lpsz == '/') *lpsz = '\\';
-         }
-      }
-      strPath.ReleaseBuffer(iLenFolder + 1 + iLenRelative + 1 + iLen2);
-      return strPath;
    }
 
 
+   
 
-   string dir::relpath(const char * lpcszSource,const char * lpcszRelative,const char * psz2)
+
+   ::file::listing & dir::ls(::aura::application *  papp, ::file::listing & listing)
    {
-      const char * pszRequest;
-      if(::url::is_url(lpcszSource,&pszRequest))
+
+      if(listing.m_bRecursive)
       {
-         if(::str::begins(lpcszRelative,"/"))
+
+
+         index iStart = listing.get_size();
+
+
          {
-            return path((const char *)string(lpcszSource,pszRequest - lpcszSource),lpcszRelative);
+
+            RESTORE(listing.m_path);
+
+            RESTORE(listing.m_eextract);
+
+            if(::file::dir::system::ls(papp,listing))
+            {
+
+               listing.m_cres = cres(failure);
+
+               return listing;
+
+            }
+
+
+            ::file::listing dira(papp);
+
+            dira.ls_dir(listing.m_path);
+
+            for(int32_t i = 0; i < dira.get_count(); i++)
+            {
+
+               ::file::path dir = dira[i];
+
+               if(dir == listing.m_path)
+                  continue;
+
+               listing.m_path = dir;
+
+               if(listing.m_eextract != extract_all)
+               {
+
+                  listing.m_eextract = extract_none;
+
+               }
+
+               listing.ls();
+
+            }
+
          }
-         else if(*pszRequest == '\0' || ::str::ends(lpcszSource,"/"))
+
+         stringa stra;
+
+         ::dir::ls(stra,listing.m_path);
+
+         for(int i = 0; i < stra.get_count(); i++)
          {
-            return path(lpcszSource,lpcszRelative,psz2);
+
+            ::file::path strPath = stra[i];
+
+            string strName = strPath.name();
+
+            if(!matches_wildcard_criteria(listing.m_strPattern,strName))
+               continue;
+
+            bool bDir = is(strPath, papp);
+
+            if((listing.m_bFile && !bDir) || (listing.m_bDir && bDir))
+            {
+
+               listing.add(strPath);
+
+               listing.last().m_iDir = bDir ? 1 : 0;
+
+            }
+
          }
-         else
+
+         for(index i = iStart; i < listing.get_size(); i++)
          {
-            return path((const char *)name(lpcszSource),lpcszRelative,psz2);
+
+            listing[i].m_iRelative = listing.m_path.get_length() + 1;
+
          }
+
       }
       else
       {
-         if(::str::ends(lpcszSource,"\\") || ::str::ends(lpcszSource,"/"))
+
+         if(::file::dir::system::ls(papp,listing))
          {
-            return path(lpcszSource,lpcszRelative,psz2);
+
+            return listing;
+
          }
-         else
+
+         stringa stra;
+
+         ::dir::ls(stra,listing.m_path);
+
+         for(int i = 0; i < stra.get_count(); i++)
          {
-            return path((const char *)name(lpcszSource),lpcszRelative,psz2);
-         }
-      }
-   }
+            
+            ::file::path strPath = stra[i];
 
-   bool path::is_equal(const char * lpcsz1,const char * lpcsz2)
-   {
-      return System.file().path().is_equal(lpcsz1,lpcsz2);
-   }
+            string strName = strPath.name();
 
-   void dir::root_ones(stringa & straPath,stringa & straTitle,::aura::application *  papp)
-   {
+            if(!matches_wildcard_criteria(listing.m_strPattern,strName))
+               continue;
 
-#ifdef WINDOWSEX
+            bool bDir = is(strPath, papp);
 
-      uint32_t dwSize = ::GetLogicalDriveStrings(0,NULL);
-      LPTSTR lpszAlloc = (LPTSTR)malloc(dwSize + 1);
-      LPTSTR lpsz = lpszAlloc;
-      dwSize = ::GetLogicalDriveStrings(dwSize + 1,lpsz);
-
-      string str;
-      while(*lpsz)
-      {
-         str.Empty();
-         while(*lpsz)
-         {
-            str += *lpsz;
-            lpsz++;
-         }
-         stra.add(str);
-         lpsz++;
-      }
-
-      free(lpszAlloc);
-
-#else
-
-      straPath.add(Windows::Storage::KnownFolders::DocumentsLibrary->Path);
-      straTitle.add("Documents");
-
-#endif
-
-   }
-
-   bool dir::ls_pattern(::aura::application *  papp,const char * lpcsz,const char * pszPattern,stringa * pstraPath,stringa * pstraTitle,bool_array * pbaIsDir,int64_array * piaSize)
-   {
-
-
-      bool bIs;
-
-      if(::file::dir::system::is_or_definitively_not(bIs,lpcsz,papp)) // if base class "already" "says" it is a dir, let it handle it: may be not a operational system dir, e.g., zip or compressed directory...
-      {
-         if(!bIs)
-            return false;
-         return ::file::dir::system::ls_pattern(papp,lpcsz,pszPattern,pstraPath,pstraTitle,pbaIsDir,piaSize);
-      }
-
-      stringa stra;
-      ::dir::ls(stra,lpcsz);
-      for(int i = 0; i < stra.get_count(); i++)
-      {
-         string strPath = stra[i];
-         string strName = System.file().name_(strPath);
-         if(!matches_wildcard_criteria(pszPattern,strName))
-            continue;
-         if(pstraPath != NULL)
-         {
-            pstraPath->add(strPath);
-         }
-         if(pstraTitle != NULL)
-         {
-            pstraTitle->add(strName);
-         }
-         if(pbaIsDir != NULL)
-         {
-            pbaIsDir->add(is(strPath,papp));
-         }
-         if(piaSize != NULL)
-         {
-            piaSize->add(App(papp).file().length(strPath));
-         }
-      }
-
-      return true;
-
-   }
-
-   bool dir::rls(::aura::application *  papp,const char * lpcsz,stringa * pstraPath,stringa * pstraTitle,stringa * pstraRelative,e_extract eextract)
-   {
-
-      if(::file::dir::system::rls(papp,lpcsz,pstraPath,pstraTitle,pstraRelative,eextract))
-      {
-
-         return true;
-
-      }
-
-      return rls_pattern(papp,lpcsz,"*.*",pstraPath,pstraTitle,pstraRelative,NULL,NULL,eextract);
-
-   }
-
-   bool dir::rls_pattern(::aura::application *  papp,const char * lpcsz,const char * lpszPattern,stringa * pstraPath,stringa * pstraTitle,stringa * pstraRelative,bool_array * pbaIsDir,int64_array * piaSize,e_extract eextract)
-   {
-
-      if(::file::dir::system::rls_pattern(papp,lpcsz,lpszPattern,pstraPath,pstraTitle,pstraRelative,pbaIsDir,piaSize,eextract))
-      {
-
-         return true;
-
-      }
-
-      stringa stra;
-      ls_dir(papp,lpcsz,&stra);
-      for(int i = 0; i < stra.get_count(); i++)
-      {
-         string strDir = stra[i];
-         if(strDir == lpcsz)
-            continue;
-         index iStart = 0;
-         if(pstraRelative != NULL)
-         {
-            iStart = pstraRelative->get_size();
-         }
-         rls_pattern(papp,strDir,lpszPattern,pstraPath,pstraTitle,pstraRelative,pbaIsDir,piaSize,eextract == extract_all ? extract_all : extract_none);
-         if(pstraRelative != NULL)
-         {
-            for(index i = iStart; i < pstraRelative->get_size(); i++)
+            if((listing.m_bFile && !bDir) || (listing.m_bDir && bDir))
             {
-               pstraRelative->element_at(i) = System.dir().path(System.file().name_(strDir),pstraRelative->element_at(i));
+
+               listing.add(strPath);
+
+               listing.last().m_iDir = bDir ? 1 : 0;
+
             }
+
          }
+
       }
 
-      stra.remove_all();
-      ls_file(papp,lpcsz,&stra);
-      for(int i = 0; i < stra.get_count(); i++)
-      {
-         string strPath = stra[i];
-         string strName = System.file().name_(strPath);
-         if(!matches_wildcard_criteria(lpszPattern,strName))
-            continue;
-         if(pstraPath != NULL)
-         {
-            pstraPath->add(strPath);
-         }
-         if(pstraTitle != NULL)
-         {
-            pstraTitle->add(strName);
-         }
-         if(pstraRelative != NULL)
-         {
-            pstraRelative->add(strName);
-         }
-         if(pbaIsDir != NULL)
-         {
-            pbaIsDir->add(false);
-         }
-         if(piaSize != NULL)
-         {
-            piaSize->add(App(papp).file().length(strPath));
-         }
-      }
-
-      return true;
+      return listing;
 
    }
 
 
-   bool dir::rls_dir(::aura::application *  papp,const char * lpcsz,stringa * pstraPath,stringa * pstraTitle,stringa * pstraRelative)
-   {
-
-      if(::file::dir::system::rls_dir(papp,lpcsz,pstraPath,pstraTitle, pstraRelative))
-      {
-
-         return true;
-
-      }
-
-      stringa straPath2;
-      stringa straTitle2;
-      stringa straRelative2;
-
-      stringa * pstraPath2 = pstraPath == NULL ? NULL : &straPath2;
-      stringa * pstraTitle2 = pstraTitle == NULL ? NULL : &straTitle2;
-      stringa * pstraRelative2 = pstraRelative == NULL ? NULL : &straRelative2;
-
-      bool_array baIsDir;
 
 
-      if(!rls_pattern(papp,lpcsz,"*.*",pstraPath2,pstraTitle2,pstraRelative2,&baIsDir))
-      {
-
-         return false;
-
-      }
-
-      for(index i = 0; i < baIsDir.get_size(); )
-      {
-         if(!baIsDir[i])
-         {
-            if(pstraPath2 != NULL)
-            {
-               pstraPath2->remove_at(i);
-            }
-            if(pstraTitle2 != NULL)
-            {
-               pstraTitle2->remove_at(i);
-            }
-            if(pstraRelative2 != NULL)
-            {
-               pstraRelative2->remove_at(i);
-            }
-            baIsDir.remove_at(i);
-         }
-         else
-         {
-            i++;
-         }
-      }
 
 
-      if(pstraPath != NULL)
-      {
-         pstraPath->add(*pstraPath2);
-      }
-      if(pstraTitle != NULL)
-      {
-         pstraTitle->add(*pstraTitle2);
-      }
-      if(pstraRelative != NULL)
-      {
-         pstraRelative->add(*pstraRelative2);
-      }
-
-      return true;
-
-   }
-
-   bool dir::ls_dir(::aura::application *  papp,const char * lpcsz,stringa * pstraPath,stringa * pstraTitle)
-   {
-
-      if(::file::dir::system::ls_dir(papp,lpcsz,pstraPath,pstraTitle))
-      {
-
-         return true;
-
-      }
-
-      stringa stra;
-
-      ::dir::ls(stra,lpcsz);
-
-      for(int i = 0; i < stra.get_count(); i++)
-      {
-
-         string strPath = stra[i];
-
-         string strName = System.file().name_(strPath);
-
-         if(::dir::is(strPath))
-            continue;
-
-         if(pstraPath != NULL)
-         {
-            pstraPath->add(strPath);
-         }
-
-         if(pstraTitle != NULL)
-         {
-            pstraTitle->add(strName);
-         }
-
-      }
-
-      return true;
-
-   }
-
-   bool dir::ls_file(::aura::application *  papp,const char * lpcsz,stringa * pstraPath,stringa * pstraTitle)
-   {
-
-      if(::file::dir::system::ls_pattern(papp,lpcsz,"*.*",pstraPath,pstraTitle))
-      {
-
-         return true;
-
-      }
-
-      stringa stra;
-      ls(papp,lpcsz,&stra);
-      for(int i = 0; i < stra.get_count(); i++)
-      {
-         string strPath = stra[i];
-         string strName = System.file().name_(strPath);
-         if(!::dir::is(strPath))
-            continue;
-         if(pstraPath != NULL)
-         {
-            pstraPath->add(strPath);
-         }
-         if(pstraTitle != NULL)
-         {
-            pstraTitle->add(strName);
-         }
-      }
-
-      return true;
-
-   }
-
-
-   bool dir::ls(::aura::application *  papp,const char * lpcsz,stringa * pstraPath,stringa * pstraTitle,bool_array * pbaIsDir,int64_array * piaSize)
-   {
-
-      return ls_pattern(papp,lpcsz,"*.*",pstraPath,pstraTitle,pbaIsDir,piaSize);
-
-   }
-
-
-   bool dir::is(const char * lpcszPath,::aura::application *  papp)
+   bool dir::is(const ::file::path & lpcszPath,::aura::application *  papp)
    {
 
       bool bIsDir;
@@ -549,56 +229,7 @@ namespace metrowin
       return bIsDir;
    }
 
-   bool dir::is(const string & strPath,::aura::application *  papp)
-   {
-
-      if(::file::dir::system::is(strPath,papp))
-         return true;
-
-      bool bIsDir;
-      uint32_t dwLastError;
-
-      if(m_isdirmap.lookup(strPath,bIsDir,dwLastError))
-      {
-         if(!bIsDir)
-         {
-            ::SetLastError(dwLastError);
-         }
-         return bIsDir;
-      }
-
-      wstring wstrPath;
-
-      //strsize iLen = ::str::international::utf8_to_unicode_count(strPath);
-      //wstrPath.alloc(iLen + 32);
-      wstrPath = ::str::international::utf8_to_unicode(strPath);
-      if(wstrPath.get_length() >= MAX_PATH)
-      {
-         if(::str::begins(wstrPath,L"\\\\"))
-         {
-            ::str::begin(wstrPath,L"\\\\?\\UNC");
-         }
-         else
-         {
-            ::str::begin(wstrPath,L"\\\\?\\");
-         }
-      }
-      //      uint32_t dwAttrib;
-      /*      dwAttrib = GetFileAttributesW(wstrPath);
-      /*if(dwAttrib == INVALID_FILE_ATTRIBUTES)
-      {
-      dwAttrib = GetFileAttributes(strPath);
-      }*/
-
-      //    bIsDir = (dwAttrib != INVALID_FILE_ATTRIBUTES) && (dwAttrib & FILE_ATTRIBUTE_DIRECTORY);
-      bIsDir = ::dir::is(strPath);
-
-      m_isdirmap.set(strPath,bIsDir,::GetLastError());
-
-      return bIsDir;
-   }
-
-   bool dir::name_is(const string & str,::aura::application *  papp)
+   bool dir::name_is(const ::file::path & str,::aura::application *  papp)
    {
       //OutputDebugString(str);
       strsize iLast = str.get_length() - 1;
@@ -697,80 +328,33 @@ namespace metrowin
       return bIsDir;
    }
 
-   string dir::votagus(const char * lpcsz,const char * lpcsz2)
+   ::file::path dir::votagus()
    {
-      string strVotagusFolder = System.get_ca2_module_folder();
-      System.file().path().eat_end_level(strVotagusFolder,2,"\\");
-      return path(strVotagusFolder,lpcsz,lpcsz2);
+      return System.get_ca2_module_folder();
    }
 
-   string dir::time(const char * lpcsz,const char * lpcsz2)
+   ::file::path dir::time()
    {
-      return path(m_strTimeFolder,lpcsz,lpcsz2);
+      return m_strTimeFolder;
    }
 
-   string dir::stage(const char * lpcsz,const char * lpcsz2)
+   ::file::path dir::stage()
    {
-      return path(element("stage"),lpcsz,lpcsz2);
+      return element() / "stage";
    }
 
-   string dir::stageapp(const char * lpcsz,const char * lpcsz2)
+   ::file::path dir::stageapp()
    {
-      return path(stage("basis",lpcsz),lpcsz2);
+      return stage()/ "basis";
    }
 
-   string dir::netseed(const char * lpcsz,const char * lpcsz2)
+   ::file::path dir::netseed()
    {
-      return path(m_strNetSeedFolder,lpcsz,lpcsz2);
+      return m_strNetSeedFolder;
    }
 
    // stage in ccvotagus spalib
-   string dir::element(const char * lpcsz,const char * lpcsz2)
-   {
-
-      single_lock sl(&m_mutex,true);
-
-      return path(m_strCa2,lpcsz,lpcsz2);
-
-   }
-
-   string dir::element(const string & str,const char * lpcsz2)
-   {
-
-      single_lock sl(&m_mutex,true);
-
-      return path(m_strCa2,str,lpcsz2);
-
-   }
-
-   string dir::element(const char * lpcsz,const string & str2)
-   {
-
-      single_lock sl(&m_mutex,true);
-
-      return path(m_strCa2,lpcsz,str2);
-
-   }
-
-   string dir::element(const string & str,const string & str2)
-   {
-
-      single_lock sl(&m_mutex,true);
-
-      return path(m_strCa2,str,str2);
-
-   }
-
-   string dir::element(const string & str)
-   {
-
-      single_lock sl(&m_mutex,true);
-
-      return path(m_strCa2,str);
-
-   }
-
-   string dir::element()
+   ::file::path dir::element()
    {
 
       single_lock sl(&m_mutex,true);
@@ -779,40 +363,39 @@ namespace metrowin
 
    }
 
-
-   string dir::module(const char * lpcsz,const char * lpcsz2)
+   ::file::path dir::module()
    {
-      string str = System.get_module_folder();
-      return path(str,lpcsz,lpcsz2);
+      return System.get_module_folder();
    }
 
-   string dir::ca2module(const char * lpcsz,const char * lpcsz2)
+   ::file::path dir::ca2module()
    {
-      string str = System.get_ca2_module_folder();
-      return path(str,lpcsz,lpcsz2);
+      return System.get_ca2_module_folder();
    }
 
 
-   void dir::time_square(string &str)
+   ::file::path dir::time_square()
    {
-      str = time("time");
+      return time() / "time";
    }
 
-   string dir::time_log(const char * pszId)
+   
+   ::file::path dir::time_log()
    {
-      string strLogBaseDir;
-      strLogBaseDir = appdata("log");
-      return path(strLogBaseDir,pszId);
+      return appdata() / "log";
    }
 
-   bool dir::mk(const char * lpcsz,::aura::application *  papp)
+   
+   bool dir::mk(const ::file::path & lpcsz,::aura::application *  papp)
    {
 
       if(is(lpcsz,papp))
          return true;
 
-      stringa stra;
-      System.file().get_ascendants_path(lpcsz,stra);
+      ::file::patha stra;
+      
+      lpcsz.ascendants_path(stra);
+
       for(int i = 0; i < stra.get_size(); i++)
       {
          if(!is(stra[i],papp) && ::GetLastError() != ERROR_ACCESS_DENIED)
@@ -828,7 +411,7 @@ namespace metrowin
                   str.trim_right("\\/");
                   try
                   {
-                     System.file().del(str);
+                     Application.file().del(str);
                   }
                   catch(...)
                   {
@@ -837,7 +420,7 @@ namespace metrowin
                   str.trim_right("\\/");
                   try
                   {
-                     System.file().del(str);
+                     Application.file().del(str);
                   }
                   catch(...)
                   {
@@ -873,99 +456,42 @@ namespace metrowin
       return true;
    }
 
-   bool dir::rm(::aura::application *  papp,const char * psz,bool bRecursive)
+   
+   bool dir::rm(::aura::application *  papp,const ::file::path & psz,bool bRecursive)
    {
+
       if(bRecursive)
       {
-         stringa straPath;
-         stringa straTitle;
-         ls(papp,psz,&straPath,&straTitle);
+
+         ::file::listing straPath(papp);
+
+         straPath.ls(psz);
+         
          for(int i = 0; i < straPath.get_count(); i++)
          {
-            if(is(straPath[i],papp))
+
+            if(App(papp).dir().is(straPath[i]))
             {
+
                rm(papp,path(psz,straTitle[i]),true);
+
             }
             else
             {
+
                ::DeleteFileW(::str::international::utf8_to_unicode(straPath[i]));
+
             }
+
          }
+
       }
+
       return RemoveDirectoryW(::str::international::utf8_to_unicode(psz)) != FALSE;
+
    }
 
 
-   string dir::name(const char * path1)
-   {
-      const char * psz = path1 + strlen(path1) - 1;
-      while(psz >= path1)
-      {
-         if(*psz != '\\' && *psz != '/' && *psz != ':')
-            break;
-         psz--;
-      }
-      while(psz >= path1)
-      {
-         if(*psz == '\\' || *psz == '/' || *psz == ':')
-            break;
-         psz--;
-      }
-      if(psz >= path1) // strChar == "\\" || strChar == "/"
-      {
-         const char * pszEnd = psz;
-         /*while(psz >= path1)
-         {
-         if(*psz != '\\' && *psz != '/' && *psz != ':')
-         break;
-         psz--;
-         }*/
-         return string(path1,pszEnd - path1 + 1);
-      }
-      else
-      {
-         return "";
-      }
-   }
-
-   string dir::name(const string & str)
-   {
-
-      strsize iLast = str.get_length() - 1;
-
-      while(iLast >= 0)
-      {
-         if(str.m_pszData[iLast] != '\\' && str.m_pszData[iLast] != '/' && str.m_pszData[iLast] != ':')
-            break;
-         iLast--;
-      }
-      while(iLast >= 0)
-      {
-         if(str.m_pszData[iLast] == '\\' || str.m_pszData[iLast] == '/' || str.m_pszData[iLast] == ':')
-            break;
-         iLast--;
-      }
-      if(iLast >= 0)
-      {
-         while(iLast >= 0)
-         {
-            if(str.m_pszData[iLast] != '\\' && str.m_pszData[iLast] != '/' && str.m_pszData[iLast] != ':')
-               break;
-            iLast--;
-         }
-         return str.Left(iLast + 1);
-      }
-      else
-      {
-         return "";
-      }
-   }
-
-
-   class ::file::path & dir::path()
-   {
-      return m_path;
-   }
 
 
    bool dir::initialize()
@@ -1000,7 +526,7 @@ namespace metrowin
 
    }
 
-   string dir::trash_that_is_not_trash(const char * psz)
+   ::file::path dir::trash_that_is_not_trash(const char * psz)
    {
       if(psz == NULL)
          return "";
@@ -1030,30 +556,30 @@ namespace metrowin
       return "";
    }
 
-   string dir::appdata(const char * lpcsz,const char * lpcsz2)
+   ::file::path dir::appdata()
    {
 
       return path(::Windows::Storage::ApplicationData::Current->LocalFolder->Path,lpcsz,lpcsz2);
 
    }
 
-   string dir::usersystemappdata(::aura::application *  papp,const char * lpcszPrefix,const char * lpcsz,const char * lpcsz2)
+   ::file::path dir::usersystemappdata(::aura::application *  papp,const char * lpcszPrefix,const char * lpcsz,const char * lpcsz2)
    {
       UNREFERENCED_PARAMETER(papp);
       return path(appdata(lpcszPrefix),lpcsz,lpcsz2);
    }
 
-   string dir::userappdata(::aura::application *  papp,const char * lpcsz,const char * lpcsz2)
+   ::file::path dir::userappdata(::aura::application *  papp,const char * lpcsz,const char * lpcsz2)
    {
       return path(userfolder(papp,"appdata"),lpcsz,lpcsz2);
    }
 
-   string dir::userdata(::aura::application *  papp,const char * lpcsz,const char * lpcsz2)
+   ::file::path dir::userdata(::aura::application *  papp,const char * lpcsz,const char * lpcsz2)
    {
       return path(userfolder(papp,"data"),lpcsz,lpcsz2);
    }
 
-   string dir::userfolder(::aura::application *  papp,const char * lpcsz,const char * lpcsz2)
+   ::file::path dir::userfolder(::aura::application *  papp,const char * lpcsz,const char * lpcsz2)
    {
 #ifdef WINDOWSEX
       string str;
@@ -1132,7 +658,7 @@ namespace metrowin
 
    }
 
-   string dir::default_os_user_path_prefix(::aura::application *  papp)
+   ::file::path dir::default_os_user_path_prefix(::aura::application *  papp)
    {
       UNREFERENCED_PARAMETER(papp);
       //      wchar_t buf[MAX_PATH];
@@ -1151,17 +677,17 @@ namespace metrowin
       //return ::str::international::unicode_to_utf8(buf);
    }
 
-   string dir::default_userappdata(::aura::application *  papp,const char * lpcszPrefix,const char * lpcszLogin,const char * pszRelativePath)
+   ::file::path dir::default_userappdata(::aura::application *  papp,const char * lpcszPrefix,const char * lpcszLogin,const char * pszRelativePath)
    {
       return path(default_userfolder(papp,lpcszPrefix,lpcszLogin,"appdata"),pszRelativePath);
    }
 
-   string dir::default_userdata(::aura::application *  papp,const char * lpcszPrefix,const char * lpcszLogin,const char * pszRelativePath)
+   ::file::path dir::default_userdata(::aura::application *  papp,const char * lpcszPrefix,const char * lpcszLogin,const char * pszRelativePath)
    {
       return path(default_userfolder(papp,lpcszPrefix,lpcszLogin,"data"),pszRelativePath);
    }
 
-   string dir::default_userfolder(::aura::application *  papp,const char * lpcszPrefix,const char * lpcszLogin,const char * pszRelativePath)
+   ::file::path dir::default_userfolder(::aura::application *  papp,const char * lpcszPrefix,const char * lpcszLogin,const char * pszRelativePath)
    {
 
       return userfolder(papp,pszRelativePath);
@@ -1176,7 +702,7 @@ namespace metrowin
       return path(path(str, "ca2\\user", lpcszPrefix), lpcszLogin, pszRelativePath);*/
    }
 
-   string dir::userquicklaunch(::aura::application *  papp,const char * lpcszRelativePath,const char * lpcsz2)
+   ::file::path dir::userquicklaunch(::aura::application *  papp,const char * lpcszRelativePath,const char * lpcsz2)
    {
       throw todo(get_app());
       //UNREFERENCED_PARAMETER(papp);
@@ -1190,7 +716,7 @@ namespace metrowin
       //return path(str, lpcszRelativePath, lpcsz2);
    }
 
-   string dir::userprograms(::aura::application *  papp,const char * lpcszRelativePath,const char * lpcsz2)
+   ::file::path dir::userprograms(::aura::application *  papp,const char * lpcszRelativePath,const char * lpcsz2)
    {
       throw todo(get_app());
       //UNREFERENCED_PARAMETER(papp);
@@ -1203,7 +729,7 @@ namespace metrowin
       //return path(str, lpcszRelativePath, lpcsz2);
    }
 
-   string dir::commonprograms(const char * lpcszRelativePath,const char * lpcsz2)
+   ::file::path dir::commonprograms(const char * lpcszRelativePath,const char * lpcsz2)
    {
       throw todo(get_app());
       //string str;
@@ -1244,7 +770,7 @@ namespace metrowin
    }
 
 
-   string dir::commonappdata()
+   ::file::path dir::commonappdata()
    {
 
       return path(::Windows::Storage::ApplicationData::Current->LocalFolder->Path,"commonappdata");

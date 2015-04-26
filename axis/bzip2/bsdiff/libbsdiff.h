@@ -8,8 +8,6 @@
 
 
 
-
-
 BZ_EXTERN int libbsdiff_diff(bs_offset * bsret,unsigned char *old,bs_offset oldsize,unsigned char *pnew,bs_offset newsize,unsigned char *patch,bs_offset patch_size);
 BZ_EXTERN bs_offset libbsdiff_size_of_patched(unsigned char *patch);
 //BZ_EXTERN int libbsdiff_patch(unsigned char *old,bs_offset oldsize,unsigned char *patch,bs_offset patch_size,unsigned char *pnew);

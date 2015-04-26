@@ -18,7 +18,9 @@ namespace aura
 
 
       smart_pointer < application >                   m_pimpl;
+#ifndef METROWIN
       sp(ipi)                                         m_pipi;
+#endif
       sp(service_base)                                m_pservice;
 
       bool                                            m_bAuraProcessInitialize;
@@ -231,9 +233,9 @@ namespace aura
 
       virtual void construct(const char * pszAppId);
 
-
+#ifndef METROWIN
       virtual ::aura::ipi * create_ipi();
-
+#endif
 
       virtual bool process_initialize();
 

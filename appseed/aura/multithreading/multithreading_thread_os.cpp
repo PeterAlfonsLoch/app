@@ -467,7 +467,7 @@ CLASS_DECL_AURA HTHREAD create_thread(LPSECURITY_ATTRIBUTES lpsa,uint_ptr cbStac
    {
       if(puiId != NULL)
       {
-         *puiId = dwId;
+         *puiId = (IDTHREAD) dwId;
       }
    }
    catch(...)
