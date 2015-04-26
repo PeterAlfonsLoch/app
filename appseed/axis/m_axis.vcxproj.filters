@@ -79,12 +79,6 @@
     <Filter Include="Header Files\primitive">
       <UniqueIdentifier>{0399c31d-c4b0-40d2-813d-b93cb51cfbc1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\primitive\data">
-      <UniqueIdentifier>{2850d8e5-e802-43dc-965e-7e4a3305a932}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\primitive\datetime">
-      <UniqueIdentifier>{9e738fe8-a189-4e52-82f9-00852a589cf8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\database">
       <UniqueIdentifier>{d9c11b17-1c94-4d8e-a80a-d2adf0f20874}</UniqueIdentifier>
     </Filter>
@@ -178,12 +172,6 @@
     <Filter Include="Source Files\primitive">
       <UniqueIdentifier>{c6a369e3-f5ec-4f4c-8dc8-95a842c1876e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\primitive\data">
-      <UniqueIdentifier>{3248323b-8a43-4e5c-855f-a7ba55fc49c4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\primitive\datetime">
-      <UniqueIdentifier>{22ff0c06-ba74-49ae-a694-15c461327db1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\database">
       <UniqueIdentifier>{ad3d91db-73d8-4bfd-8dd3-72c0b8867a2f}</UniqueIdentifier>
     </Filter>
@@ -259,8 +247,8 @@
     <Filter Include="Source Files\filesystem\filesystem">
       <UniqueIdentifier>{d115147e-3946-4ec3-9280-7e8dfd48bc44}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\axis\os\metrowin\NewFilter1">
-      <UniqueIdentifier>{a1670a96-d9b5-4a2c-8d13-bb3c192ab1d9}</UniqueIdentifier>
+    <Filter Include="Source Files\user">
+      <UniqueIdentifier>{3e8cd80e-08d9-43bf-85f8-b5b53dcff791}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -686,21 +674,6 @@
     </ClInclude>
     <ClInclude Include="graphics\visual\visual_water_routine.h">
       <Filter>Header Files\graphics\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\data\data_simple_item.h">
-      <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\data\data_tree.h">
-      <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\data\data_tree_item.h">
-      <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\datetime\datetime_departament.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\datetime\datetime_value.h">
-      <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
     <ClInclude Include="database\database\database.h">
       <Filter>Header Files\database\database</Filter>
@@ -1234,21 +1207,6 @@
     <ClCompile Include="axis\fontopus\fontopus_validate.cpp">
       <Filter>Source Files\axis\fontopus</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\data\data_simple_item.cpp">
-      <Filter>Source Files\primitive\data</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\data\data_tree.cpp">
-      <Filter>Source Files\primitive\data</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\data\data_tree_item.cpp">
-      <Filter>Source Files\primitive\data</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\datetime\datetime_departament.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\datetime\datetime_value.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
     <ClCompile Include="database\database\database_application.cpp">
       <Filter>Source Files\database\database</Filter>
     </ClCompile>
@@ -1656,6 +1614,33 @@
     </ClCompile>
     <ClCompile Include="axis\os\metrowin\metrowin_windowing.cpp">
       <Filter>Source Files\axis\os\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\_axis_axis.cpp">
+      <Filter>Source Files\axis</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\axis\_axis_axis_axis.cpp">
+      <Filter>Source Files\axis\axis</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\crypto\_crypto.cpp">
+      <Filter>Source Files\axis\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\_node.cpp">
+      <Filter>Source Files\axis\node</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\_os.cpp">
+      <Filter>Source Files\axis\os</Filter>
+    </ClCompile>
+    <ClCompile Include="user\_user.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\graphics_window_graphics.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\metrowin\_metrowin_os.cpp">
+      <Filter>Source Files\axis\os\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\metrowin\_metrowin_node.cpp">
+      <Filter>Source Files\axis\node\metrowin</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

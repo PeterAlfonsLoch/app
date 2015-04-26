@@ -55,20 +55,11 @@
     <Filter Include="Header Files\base\node\ansios">
       <UniqueIdentifier>{fad75534-463b-4712-9fda-24524c72f486}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\base\message">
-      <UniqueIdentifier>{bc9c350c-ffc5-4629-90f5-59b309fdbd6a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\base\base">
       <UniqueIdentifier>{3fef69f8-cbac-49fb-bba4-df4a344084ca}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\base\base_policy">
       <UniqueIdentifier>{61304eec-f2ac-453b-9941-7e9552f923f1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\hotplugin">
-      <UniqueIdentifier>{67e158d5-d5d0-4078-a214-e89115ddcd1c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\install">
-      <UniqueIdentifier>{a2689cd8-199f-446f-9b8a-d92630b80df5}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\database">
       <UniqueIdentifier>{2a802c67-31dd-4fc0-8b8f-bbb0c18c788c}</UniqueIdentifier>
@@ -426,22 +417,13 @@
     <ClInclude Include="base\node\ansios\ansios.h">
       <Filter>Header Files\base\node\ansios</Filter>
     </ClInclude>
-    <ClInclude Include="base\message\message_user.h">
-      <Filter>Header Files\base\message</Filter>
-    </ClInclude>
     <ClInclude Include="base\base\base.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
     <ClInclude Include="base\base\base_application.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
-    <ClInclude Include="base\base\base_core_copydesk.h">
-      <Filter>Header Files\base\base</Filter>
-    </ClInclude>
     <ClInclude Include="base\base\base_platform_interface.h">
-      <Filter>Header Files\base\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base\base_print_job.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
     <ClInclude Include="base\base\base_session.h">
@@ -454,9 +436,6 @@
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
     <ClInclude Include="base\base\base_system.h">
-      <Filter>Header Files\base\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base\base_system_str.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
     <ClInclude Include="base\base\base_template.h">
@@ -480,30 +459,6 @@
     <ClInclude Include="base\base_policy\base_policy_winrt.h">
       <Filter>Header Files\base\base_policy</Filter>
     </ClInclude>
-    <ClInclude Include="base\hotplugin\hotplugin.h">
-      <Filter>Header Files\base\hotplugin</Filter>
-    </ClInclude>
-    <ClInclude Include="base\hotplugin\hotplugin_composer.h">
-      <Filter>Header Files\base\hotplugin</Filter>
-    </ClInclude>
-    <ClInclude Include="base\hotplugin\hotplugin_container_launcher.h">
-      <Filter>Header Files\base\hotplugin</Filter>
-    </ClInclude>
-    <ClInclude Include="base\hotplugin\hotplugin_host.h">
-      <Filter>Header Files\base\hotplugin</Filter>
-    </ClInclude>
-    <ClInclude Include="base\hotplugin\hotplugin_plugin.h">
-      <Filter>Header Files\base\hotplugin</Filter>
-    </ClInclude>
-    <ClInclude Include="base\install\install.h">
-      <Filter>Header Files\base\install</Filter>
-    </ClInclude>
-    <ClInclude Include="base\install\install_plugin.h">
-      <Filter>Header Files\base\install</Filter>
-    </ClInclude>
-    <ClInclude Include="base\install\install_starter_start.h">
-      <Filter>Header Files\base\install</Filter>
-    </ClInclude>
     <ClInclude Include="database\database\database_user_interaction.h">
       <Filter>Header Files\database\database</Filter>
     </ClInclude>
@@ -519,9 +474,6 @@
     <ClInclude Include="base\os\metrowin\metrowin_file_winrt.h">
       <Filter>Header Files\base\os\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="base\os\metrowin\metrowin_gdi_winrt.h">
-      <Filter>Header Files\base\os\metrowin</Filter>
-    </ClInclude>
     <ClInclude Include="base\os\metrowin\metrowin_internal.h">
       <Filter>Header Files\base\os\metrowin</Filter>
     </ClInclude>
@@ -531,13 +483,7 @@
     <ClInclude Include="base\os\metrowin\metrowin_simple_hold_handle.h">
       <Filter>Header Files\base\os\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="base\os\metrowin\metrowin_simple_ui.h">
-      <Filter>Header Files\base\os\metrowin</Filter>
-    </ClInclude>
     <ClInclude Include="base\os\metrowin\metrowin_sockets.h">
-      <Filter>Header Files\base\os\metrowin</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\metrowin\metrowin_window_impl.h">
       <Filter>Header Files\base\os\metrowin</Filter>
     </ClInclude>
     <ClInclude Include="base\node\metrowin\metrowin.h">
@@ -566,9 +512,6 @@
     </ClInclude>
     <ClInclude Include="base\node\windows\windows_message_queue.h">
       <Filter>Header Files\base\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\metrowin\metrowin_user_impl.h">
-      <Filter>Header Files\base\os\metrowin</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -869,12 +812,6 @@
       <Filter>Source Files\base\os\metrowin</Filter>
     </ClCompile>
     <ClCompile Include="base\os\metrowin\metrowin_simple_app.cpp">
-      <Filter>Source Files\base\os\metrowin</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\metrowin\metrowin_user.cpp">
-      <Filter>Source Files\base\os\metrowin</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\metrowin\metrowin_windowing.cpp">
       <Filter>Source Files\base\os\metrowin</Filter>
     </ClCompile>
     <ClCompile Include="base\node\windows\windows_message_queue.cpp">

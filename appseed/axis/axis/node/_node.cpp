@@ -11,4 +11,8 @@
 
 #include "linux/_linux_node.cpp"
 
+#elif defined(METROWIN)
+
+#include "linux/_metrowin_node.cpp"
+
 #endif

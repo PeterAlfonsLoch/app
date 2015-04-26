@@ -6,7 +6,7 @@ namespace sockets
 
 
    sip_base_client_socket::sip_base_client_socket(base_socket_handler& h) :
-      element(h.get_app()),
+      ::object(h.get_app()),
       base_socket(h),
       socket(h),
       m_request(h.get_app()),
@@ -28,7 +28,7 @@ namespace sockets
    }
 
    sip_base_client_socket::sip_base_client_socket(const sip_base_client_socket& s) :
-      element(s.get_app()),
+      object(((resolv_server&)s).get_app()),
       base_socket(s),
       socket(s),
       m_request(s.get_app()),
@@ -302,11 +302,10 @@ namespace sockets
       strTrace = strLine;
       strTrace.replace("%", "%%");
       TRACE(strTrace + "\n");
-      for(int i = 0; i < m_response.m_propertysetHeader.m_propertya.get_size(); i++)
+
+      for(auto & prop : m_response.m_propertysetHeader)
       {
-         strLine = m_response.m_propertysetHeader.m_propertya[i]->name() +
-                   ": " +
-                   m_response.m_propertysetHeader.m_propertya[i]->get_string();
+         string strLine = prop.name() + ": " + prop.get_string();
          msg += strLine + "\r\n";
          strTrace = strLine;
          strTrace.replace("%", "%%");
@@ -326,9 +325,9 @@ namespace sockets
    {
       string msg;
       msg = m_request.attr("http_method").get_string() + " " + m_request.attr("request_uri").get_string() + " " + m_request.attr("http_version").get_string() + "\r\n";
-      for(int i = 0; i < m_response.m_propertysetHeader.m_propertya.get_count(); i++)
+      for(auto & prop: m_response.m_propertysetHeader)
       {
-         msg += m_response.m_propertysetHeader.m_propertya[i]->name() + ": " + m_response.m_propertysetHeader.m_propertya[i]->get_string() + "\r\n";
+         msg += prop.name() + ": " + prop.get_string() + "\r\n";
       }
       msg += "\r\n";
       write( msg );

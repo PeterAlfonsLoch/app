@@ -1546,7 +1546,7 @@ namespace axis
 
 
 
-   CLASS_DECL_AXIS bool get_window_rect(::base::system_window ^ pwindow,RECTD * lprect)
+   CLASS_DECL_AXIS bool get_window_rect(::axis::system_window ^ pwindow,RECTD * lprect)
    {
 
       Windows::Foundation::Rect rect =  pwindow->get_window_rect();
@@ -1560,7 +1560,7 @@ namespace axis
    }
 
 
-   CLASS_DECL_AXIS bool get_window_rect(::base::system_window ^ pwindow,LPRECT lprect)
+   CLASS_DECL_AXIS bool get_window_rect(::axis::system_window ^ pwindow,LPRECT lprect)
    {
 
       rectd r;

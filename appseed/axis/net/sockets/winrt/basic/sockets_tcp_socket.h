@@ -268,8 +268,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          void OnWrite();
 
 
-//         virtual long cert_common_name_check(const char * common_name);
-  //       virtual void enable_cert_common_name_check(bool bEnable = true);
+         virtual long cert_common_name_check(const char * common_name);
+         virtual void enable_cert_common_name_check(bool bEnable = true);
 
          /** SSL; Initialize ssl context for a client socket.
          \param meth_in SSL method */

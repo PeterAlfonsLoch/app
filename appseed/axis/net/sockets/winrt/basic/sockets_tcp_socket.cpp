@@ -25,7 +25,7 @@ namespace sockets
    #pragma warning(disable:4355)
    #endif
    tcp_socket::tcp_socket(base_socket_handler& h) :
-   element(h.get_app()),
+   ::object(h.get_app()),
    base_socket(h),
    socket(h),
    stream_socket(h)
@@ -60,7 +60,7 @@ namespace sockets
    #pragma warning(disable:4355)
    #endif
    tcp_socket::tcp_socket(base_socket_handler& h,size_t isize,size_t osize) :
-   element(h.get_app()),
+   ::object(h.get_app()),
    base_socket(h),
    socket(h),
    stream_socket(h)
@@ -825,7 +825,7 @@ namespace sockets
    #pragma warning(disable:4355)
    #endif
    tcp_socket::tcp_socket(const tcp_socket& s) :
-      element(s.get_app()),
+      object(((resolv_server&)s).get_app()),
       base_socket(s),
       socket(s),
       stream_socket(s),
@@ -1555,50 +1555,50 @@ namespace sockets
       return m_strUrl;
    }
 
-   /*
    long tcp_socket::cert_common_name_check(const char * common_name)
    {
 
       if(!m_bCertCommonNameCheckEnabled)
       {
-         return X509_V_OK;
+         return 0; // no_error
+//         return X509_V_OK;
       }
 
-      X509 *cert = NULL;
-      X509_NAME *subject = NULL;
+      //X509 *cert = NULL;
+      //X509_NAME *subject = NULL;
 
-      cert = SSL_get_peer_certificate(m_ssl);
-      bool ok = false;
-      if (cert != NULL && strlen(common_name) > 0)
-      {
-         char data[256];
-         if ((subject = X509_get_subject_name(cert)) != NULL && X509_NAME_get_text_by_NID(subject, NID_commonName, data, 256) > 0)
-         {
-            data[255] = 0;
-            if (strnicmp_dup(data, common_name, 255) == 0)
-            {
-               ok = true;
-            }
-         }
-      }
+      //cert = SSL_get_peer_certificate(m_ssl);
+      //bool ok = false;
+      //if (cert != NULL && strlen(common_name) > 0)
+      //{
+      //   char data[256];
+      //   if ((subject = X509_get_subject_name(cert)) != NULL && X509_NAME_get_text_by_NID(subject, NID_commonName, data, 256) > 0)
+      //   {
+      //      data[255] = 0;
+      //      if (strnicmp_dup(data, common_name, 255) == 0)
+      //      {
+      //         ok = true;
+      //      }
+      //   }
+      //}
 
-      if(cert)
-      {
-         X509_free(cert);
-      }
+      //if(cert)
+      //{
+      //   X509_free(cert);
+      //}
 
-      if(ok)
-      {
-         return SSL_get_verify_result(m_ssl);
-      }
+      //if(ok)
+      //{
+      //   return SSL_get_verify_result(m_ssl);
+      //}
 
-      return X509_V_ERR_APPLICATION_VERIFICATION;
+      //return X509_V_ERR_APPLICATION_VERIFICATION;
+      return 1; //  error
    }
-
    void tcp_socket::enable_cert_common_name_check(bool bEnable)
    {
       m_bCertCommonNameCheckEnabled = bEnable;
-   }*/
+   }
 
    /*
    void tcp_socket::OnConnected(::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status)

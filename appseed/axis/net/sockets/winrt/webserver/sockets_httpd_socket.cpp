@@ -10,7 +10,7 @@ namespace sockets
 
 
    httpd_socket::httpd_socket(base_socket_handler& h) :
-      element(h.get_app()),
+      ::object(h.get_app()),
       base_socket(h),
       socket(h),
       stream_socket(h),
@@ -25,7 +25,7 @@ namespace sockets
 
 
    httpd_socket::httpd_socket(const httpd_socket& s) :
-      element(s.get_app()),
+      object(((resolv_server&)s).get_app()),
       base_socket(s),
       socket(s),
       stream_socket(s),

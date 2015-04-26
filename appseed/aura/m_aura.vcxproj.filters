@@ -2037,6 +2037,9 @@
     <ClInclude Include="aura\aura\aura_cmp2.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
+    <ClInclude Include="aura\os\os_time.h">
+      <Filter>Header Files\aura\os</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="primitive\primitive_factory_impl.inl">

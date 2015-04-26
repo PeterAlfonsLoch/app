@@ -5,7 +5,7 @@ namespace sockets
 {
 
    stream_socket::stream_socket(base_socket_handler& h) : 
-      element(h.get_app()),
+      ::object(h.get_app()),
       base_socket(h),
       socket(h)
       ,m_bConnecting(false)

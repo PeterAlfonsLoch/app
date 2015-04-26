@@ -21,117 +21,117 @@ namespace metrowin
 
          m_strCa2 = strCa2Module;
 
-         System.file().path().eat_end_level(m_strCa2, 2, "\\");
+         //System.file().path().eat_end_level(m_strCa2, 2, "\\");
 
       }
 
 
-      bool dir::ls_pattern(::aura::application * papp,const char * lpcsz,const char * pszPattern,stringa * pstraPath,stringa * pstraTitle,bool_array * pbaIsDir,int64_array * piaSize)
+      ::file::listing & dir::ls(::aura::application * papp, ::file::listing & listing)
       {
 
-         if(::file::dir::axis::system::ls_pattern(papp,lpcsz,pszPattern,pstraPath,pstraTitle,pbaIsDir,piaSize))
+         if(::file::dir::axis::system::ls(papp,listing))
          {
 
-            return true;
+            return listing;
 
          }
 
-         return ::metrowin::dir::ls_pattern(papp,lpcsz,pszPattern,pstraPath,pstraTitle,pbaIsDir,piaSize);
+         return ::metrowin::dir::ls(papp,listing);
 
       }
 
 
-      bool dir::rls(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, e_extract eextract)
-      {
+      //bool dir::rls(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, e_extract eextract)
+      //{
 
-         if(::file::dir::axis::system::rls(papp,lpcsz,pstraPath,pstraTitle,pstraRelative,eextract))
-         {
+      //   if(::file::dir::axis::system::rls(papp,lpcsz,pstraPath,pstraTitle,pstraRelative,eextract))
+      //   {
 
-            return true;
+      //      return true;
 
-         }
+      //   }
 
-         return ::metrowin::dir::rls(papp,lpcsz,pstraPath,pstraTitle,pstraRelative,eextract);
+      //   return ::metrowin::dir::rls(papp,lpcsz,pstraPath,pstraTitle,pstraRelative,eextract);
 
-      }
-
-
-      bool dir::rls_pattern(::aura::application * papp,const char * lpcsz,const char * lpszPattern,stringa * pstraPath,stringa * pstraTitle,stringa * pstraRelative,bool_array * pbaIsDir,int64_array * piaSize,e_extract eextract)
-      {
-
-         if(::file::dir::axis::system::rls_pattern(papp,lpcsz,lpszPattern,pstraPath,pstraTitle,pstraRelative,pbaIsDir,piaSize,eextract))
-         {
-
-            return true;
-
-         }
-
-         return ::metrowin::dir::rls_pattern(papp,lpcsz,lpszPattern,pstraPath,pstraTitle,pstraRelative,pbaIsDir,piaSize,eextract);
-
-      }
+      //}
 
 
-      bool dir::rls_dir(::aura::application * papp,const char * lpcsz,stringa * pstraPath,stringa * pstraTitle,stringa * pstraRelative)
-      {
+      //bool dir::rls_pattern(::aura::application * papp,const char * lpcsz,const char * lpszPattern,stringa * pstraPath,stringa * pstraTitle,stringa * pstraRelative,bool_array * pbaIsDir,int64_array * piaSize,e_extract eextract)
+      //{
 
-         if(::file::dir::axis::system::rls_dir(papp,lpcsz,pstraPath,pstraTitle,pstraRelative))
-         {
+      //   if(::file::dir::axis::system::rls_pattern(papp,lpcsz,lpszPattern,pstraPath,pstraTitle,pstraRelative,pbaIsDir,piaSize,eextract))
+      //   {
 
-            return true;
+      //      return true;
 
-         }
+      //   }
 
-         return ::metrowin::dir::rls_dir(papp,lpcsz,pstraPath,pstraTitle,pstraRelative);
+      //   return ::metrowin::dir::rls_pattern(papp,lpcsz,lpszPattern,pstraPath,pstraTitle,pstraRelative,pbaIsDir,piaSize,eextract);
 
-      }
-
-
-      bool dir::ls_dir(::aura::application * papp,const char * lpcsz,stringa * pstraPath,stringa * pstraTitle)
-      {
-
-         if(::file::dir::axis::system::ls_dir(papp,lpcsz,pstraPath,pstraTitle))
-         {
-
-            return true;
-
-         }
-
-         return ::metrowin::dir::ls_dir(papp,lpcsz,pstraPath,pstraTitle);
-
-      }
+      //}
 
 
-      bool dir::ls_file(::aura::application * papp,const char * lpcsz,stringa * pstraPath,stringa * pstraTitle)
-      {
+      //bool dir::rls_dir(::aura::application * papp,const char * lpcsz,stringa * pstraPath,stringa * pstraTitle,stringa * pstraRelative)
+      //{
 
-         if(::file::dir::axis::system::ls_file(papp,lpcsz,pstraPath,pstraTitle))
-         {
+      //   if(::file::dir::axis::system::rls_dir(papp,lpcsz,pstraPath,pstraTitle,pstraRelative))
+      //   {
 
-            return true;
+      //      return true;
 
-         }
+      //   }
 
-         return ::metrowin::dir::ls_file(papp,lpcsz,pstraPath,pstraTitle);
+      //   return ::metrowin::dir::rls_dir(papp,lpcsz,pstraPath,pstraTitle,pstraRelative);
 
-      }
-
-
-      bool dir::ls(::aura::application * papp,const char * lpcsz,stringa * pstraPath,stringa * pstraTitle,bool_array * pbaIsDir,int64_array * piaSize)
-      {
-
-         if(::file::dir::axis::system::ls(papp,lpcsz,pstraPath,pstraTitle,pbaIsDir,piaSize))
-         {
-
-            return true;
-
-         }
-
-         return ::metrowin::dir::ls(papp,lpcsz,pstraPath,pstraTitle,pbaIsDir,piaSize);
-
-      }
+      //}
 
 
-      bool dir::is(const char * lpcszPath,::aura::application * papp)
+      //bool dir::ls_dir(::aura::application * papp,const char * lpcsz,stringa * pstraPath,stringa * pstraTitle)
+      //{
+
+      //   if(::file::dir::axis::system::ls_dir(papp,lpcsz,pstraPath,pstraTitle))
+      //   {
+
+      //      return true;
+
+      //   }
+
+      //   return ::metrowin::dir::ls_dir(papp,lpcsz,pstraPath,pstraTitle);
+
+      //}
+
+
+      //bool dir::ls_file(::aura::application * papp,const char * lpcsz,stringa * pstraPath,stringa * pstraTitle)
+      //{
+
+      //   if(::file::dir::axis::system::ls_file(papp,lpcsz,pstraPath,pstraTitle))
+      //   {
+
+      //      return true;
+
+      //   }
+
+      //   return ::metrowin::dir::ls_file(papp,lpcsz,pstraPath,pstraTitle);
+
+      //}
+
+
+      //bool dir::ls(::aura::application * papp,const char * lpcsz,stringa * pstraPath,stringa * pstraTitle,bool_array * pbaIsDir,int64_array * piaSize)
+      //{
+
+      //   if(::file::dir::axis::system::ls(papp,lpcsz,pstraPath,pstraTitle,pbaIsDir,piaSize))
+      //   {
+
+      //      return true;
+
+      //   }
+
+      //   return ::metrowin::dir::ls(papp,lpcsz,pstraPath,pstraTitle,pbaIsDir,piaSize);
+
+      //}
+
+
+      bool dir::is(const ::file::path & lpcszPath,::aura::application * papp)
       {
 
          if(::metrowin::dir::is(lpcszPath,papp))
@@ -144,116 +144,30 @@ namespace metrowin
 
       }
 
-      bool dir::is(const string & strPath,::aura::application * papp)
+      //bool dir::is(const string & strPath,::aura::application * papp)
+      //{
+
+      //   if(::metrowin::dir::is(strPath,papp))
+      //      return true;
+
+      //   if(::file::dir::axis::system::is(strPath,papp))
+      //      return true;
+
+      //   return false;
+
+      //}
+
+      bool dir::name_is(const ::file::path & str, ::aura::application *  papp)
       {
 
-         if(::metrowin::dir::is(strPath,papp))
+         if(::metrowin::dir::name_is(str,papp))
             return true;
 
-         if(::file::dir::axis::system::is(strPath,papp))
+         if(::file::dir::axis::system::name_is(str,papp))
             return true;
 
          return false;
 
-      }
-
-      bool dir::name_is(const string & str, ::aura::application *  papp)
-      {
-         //OutputDebugString(str);
-         strsize iLast = str.get_length() - 1;
-         while(iLast >= 0)
-         {
-            if(str.m_pszData[iLast] != '\\' && str.m_pszData[iLast] != '/' && str.m_pszData[iLast] != ':')
-               break;
-            iLast--;
-         }
-         while(iLast >= 0)
-         {
-            if(str.m_pszData[iLast] == '\\' || str.m_pszData[iLast] == '/' || str.m_pszData[iLast] == ':')
-               break;
-            iLast--;
-         }
-         if(iLast >= 0)
-         {
-            while(iLast >= 0)
-            {
-               if(str.m_pszData[iLast] != '\\' && str.m_pszData[iLast] != '/' && str.m_pszData[iLast] != ':')
-               {
-                  iLast++;
-                  break;
-               }
-               iLast--;
-            }
-         }
-         else
-         {
-            return true; // assume empty string is root_ones directory
-         }
-
-
-         bool bIsDir;
-         uint32_t dwLastError;
-
-
-         if(m_isdirmap.lookup(str, bIsDir, dwLastError, (int) iLast))
-            return bIsDir;
-
-
-         if(papp->m_bZipIsDir && iLast >= 3  && !strnicmp_dup(&((const char *) str)[iLast - 3], ".zip", 4))
-         {
-            m_isdirmap.set(str.Left(iLast + 1), true, 0);
-            return true;
-         }
-
-         strsize iFind = ::str::find_ci(".zip:", str);
-
-         if(papp->m_bZipIsDir && iFind >= 0 && iFind < iLast)
-         {
-            bool bHasSubFolder;
-            uint32_t dwLastError;
-            if(m_isdirmap.lookup(str, bHasSubFolder, dwLastError))
-               return bHasSubFolder;
-            bHasSubFolder = m_pziputil->HasSubFolder(papp, str);
-            m_isdirmap.set(str.Left(iLast + 1), bHasSubFolder, ::GetLastError());
-            return bHasSubFolder;
-         }
-
-
-         wstring wstrPath;
-
-         //strsize iLen = ::str::international::utf8_to_unicode_count(str, iLast + 1);
-
-         //wstrPath.alloc(iLen + 32);
-
-         wstrPath = ::str::international::utf8_to_unicode(str, iLast + 1);
-
-         //OutputDebugStringW(wstrPath);
-
-         if(wstrPath.get_length() >= MAX_PATH)
-         {
-            if(::str::begins(wstrPath, L"\\\\"))
-            {
-               ::str::begin(wstrPath, L"\\\\?\\UNC");
-            }
-            else
-            {
-               ::str::begin(wstrPath, L"\\\\?\\");
-            }
-         }
-   //      uint32_t dwAttrib;
-   ///      dwAttrib = GetFileAttributesW(wstrPath);
-         /*if(dwAttrib == INVALID_FILE_ATTRIBUTES)
-         {
-            dwAttrib = GetFileAttributes(strPath);
-         }*/
-
-      //   bIsDir = (dwAttrib != INVALID_FILE_ATTRIBUTES) && (dwAttrib & FILE_ATTRIBUTE_DIRECTORY);
-
-         bIsDir = ::dir::is(::str::international::unicode_to_utf8(wstrPath));
-
-         m_isdirmap.set(str.Left(iLast + 1), bIsDir, ::GetLastError());
-
-         return bIsDir;
       }
 
       //string dir::votagus(const char * lpcsz, const char * lpcsz2)

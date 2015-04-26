@@ -36,7 +36,9 @@ CLASS_DECL_AURA int_bool is_windows_8_or_greater();
 
 CLASS_DECL_AURA int_bool is_windows_native_unicode();
 
+
+
 END_EXTERN_C
 
-
+#include "os_time.h"
 

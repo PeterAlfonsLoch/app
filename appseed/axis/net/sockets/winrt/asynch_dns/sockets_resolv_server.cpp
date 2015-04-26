@@ -21,7 +21,7 @@ namespace sockets
 
 
    resolv_server::resolv_server(const resolv_server& s) :
-      element(((resolv_server&)s).get_app()),
+      ::object(((resolv_server&)s).get_app()),
       thread(((resolv_server&)s).get_app()),
       simple_thread(((resolv_server&)s).get_app()),
       go_thread(((resolv_server&)s).get_app())

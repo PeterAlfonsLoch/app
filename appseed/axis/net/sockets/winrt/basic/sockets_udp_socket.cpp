@@ -6,7 +6,7 @@ namespace sockets
 {
 
    udp_socket::udp_socket(base_socket_handler& h, int ibufsz, bool ipv6, int retries) : 
-      element(h.get_app()),
+      ::object(h.get_app()),
       base_socket(h),
       socket(h)
       , m_ibuf(new char[ibufsz])

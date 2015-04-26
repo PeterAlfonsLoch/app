@@ -145,7 +145,7 @@ namespace user
 
 
       Agile<Windows::UI::Core::CoreWindow> window;
-      ::aura::system_window ^ pwindow;
+      ::axis::system_window ^ pwindow;
 
 
    };

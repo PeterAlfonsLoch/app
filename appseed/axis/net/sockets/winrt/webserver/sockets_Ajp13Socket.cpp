@@ -235,21 +235,33 @@ namespace sockets
          put_byte(msg, ptr, 0x04); // send headers
          put_integer(msg, ptr, (short)(int)m_response.attr("http_status_code"));
          put_string(msg, ptr, m_response.attr("http_status"));
-         put_integer(msg, ptr, (short)m_response.headers().m_propertya.get_size() );
-         for (int i = 0; i < m_response.headers().m_propertya.get_size(); i++)
+         put_integer(msg, ptr, (short)m_response.headers().get_size() );
+
+
+         for (auto & prop : m_response.headers())
          {
-            string strNameLower(m_response.headers().m_propertya[i]->name());
+            
+            string strNameLower(prop.name());
+
             strNameLower;
+
             int iValue;
+
             if(Sess(get_app()).sockets().m_pajpbasesocketinit->ResponseHeader.Lookup(strNameLower, iValue))
             {
+
                put_integer(msg, ptr, (short) iValue);
+
             }
             else
             {
-               put_string(msg, ptr, m_response.headers().m_propertya[i]->name());
+
+               put_string(msg, ptr, prop.name());
+
             }
-            put_string(msg, ptr, m_response.headers().m_propertya[i]->name());
+
+            put_string(msg, ptr, prop.name());
+
          }
          throw not_implemented(get_app());
    /*      list<string> vec = m_response.CookieNames();

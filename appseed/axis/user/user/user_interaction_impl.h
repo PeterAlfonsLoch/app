@@ -13,7 +13,7 @@ namespace user
    public:
 
 
-      ::aura::system_window ^ m_pwindow;
+      ::axis::system_window ^ m_pwindow;
 
 
    };

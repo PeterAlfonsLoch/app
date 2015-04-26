@@ -49,14 +49,11 @@
   <ItemGroup>
     <ClInclude Include="base\base\base.h" />
     <ClInclude Include="base\base\base_application.h" />
-    <ClInclude Include="base\base\base_core_copydesk.h" />
     <ClInclude Include="base\base\base_platform_interface.h" />
-    <ClInclude Include="base\base\base_print_job.h" />
     <ClInclude Include="base\base\base_session.h" />
     <ClInclude Include="base\base\base_simple_app.h" />
     <ClInclude Include="base\base\base_static_start.h" />
     <ClInclude Include="base\base\base_system.h" />
-    <ClInclude Include="base\base\base_system_str.h" />
     <ClInclude Include="base\base\base_template.h" />
     <ClInclude Include="base\base_policy\base_c.h" />
     <ClInclude Include="base\base_policy\base_cpp.h" />
@@ -64,15 +61,6 @@
     <ClInclude Include="base\base_policy\base_policy_objc.h" />
     <ClInclude Include="base\base_policy\base_policy_objcpp.h" />
     <ClInclude Include="base\base_policy\base_policy_winrt.h" />
-    <ClInclude Include="base\hotplugin\hotplugin.h" />
-    <ClInclude Include="base\hotplugin\hotplugin_composer.h" />
-    <ClInclude Include="base\hotplugin\hotplugin_container_launcher.h" />
-    <ClInclude Include="base\hotplugin\hotplugin_host.h" />
-    <ClInclude Include="base\hotplugin\hotplugin_plugin.h" />
-    <ClInclude Include="base\install\install.h" />
-    <ClInclude Include="base\install\install_plugin.h" />
-    <ClInclude Include="base\install\install_starter_start.h" />
-    <ClInclude Include="base\message\message_user.h" />
     <ClInclude Include="base\node\android\android.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
@@ -193,14 +181,10 @@
     <ClInclude Include="base\os\metrowin\metrowin.h" />
     <ClInclude Include="base\os\metrowin\metrowin_file_watcher.h" />
     <ClInclude Include="base\os\metrowin\metrowin_file_winrt.h" />
-    <ClInclude Include="base\os\metrowin\metrowin_gdi_winrt.h" />
     <ClInclude Include="base\os\metrowin\metrowin_internal.h" />
     <ClInclude Include="base\os\metrowin\metrowin_process.h" />
     <ClInclude Include="base\os\metrowin\metrowin_simple_hold_handle.h" />
-    <ClInclude Include="base\os\metrowin\metrowin_simple_ui.h" />
     <ClInclude Include="base\os\metrowin\metrowin_sockets.h" />
-    <ClInclude Include="base\os\metrowin\metrowin_user_impl.h" />
-    <ClInclude Include="base\os\metrowin\metrowin_window_impl.h" />
     <ClInclude Include="base\os\os.h" />
     <ClInclude Include="database\database\database_user_interaction.h" />
     <ClInclude Include="filesystem\file\file_edit_buffer.h" />
@@ -557,22 +541,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="base\os\metrowin\metrowin_trace_message.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="base\os\metrowin\metrowin_user.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="base\os\metrowin\metrowin_windowing.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>

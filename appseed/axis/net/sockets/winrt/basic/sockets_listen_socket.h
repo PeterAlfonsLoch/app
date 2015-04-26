@@ -60,7 +60,7 @@
          /** Constructor.
          \param h base_socket_handler reference
          \param use_creator Optional use of creator (default true) */
-         listen_socket(base_socket_handler& h,bool use_creator = true) : element(h.get_app()), base_socket(h), socket(h), m_depth(0), m_creator(NULL)
+         listen_socket(base_socket_handler& h,bool use_creator = true) : ::object(h.get_app()), base_socket(h), socket(h), m_depth(0), m_creator(NULL)
             ,m_bHasCreate(false), m_bDetach(false)
          {
             m_posdata = new os_data;

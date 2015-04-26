@@ -2,12 +2,13 @@
 
 typedef struct bio_st BIO;
 
+
 namespace metrowin
 {
 
 
    class CLASS_DECL_AXIS SSLInitializer:
-      public element
+      public ::object
    {
    public:
       /**

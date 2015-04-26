@@ -46,7 +46,7 @@ namespace sockets
    socket_map socket::s_mapSocket;
 
    socket::socket(base_socket_handler & h) :
-      element(h.get_app()),
+      ::object(h.get_app()),
       base_socket(h),
       m_handler(h)
    {

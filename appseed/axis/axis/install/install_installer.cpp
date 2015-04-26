@@ -4105,7 +4105,7 @@ RetryBuildNumber:
 
    }
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    void get_program_files_x86(wstring &wstr)
    {
@@ -4151,6 +4151,8 @@ RetryBuildNumber:
 
       wstrApp += L"app.exe";
 
+#ifndef METROWIN
+
       get_program_files_x86(wstrApp);
 
       STARTUPINFOW si;
@@ -4172,6 +4174,8 @@ RetryBuildNumber:
 
       #endif
 
+
+#endif
 
       return 0;
 
@@ -4225,8 +4229,8 @@ RetryBuildNumber:
 #else
       pfn_ca2_main(strFullCommandLine, SW_HIDE);
 #endif
-#endif
       pfn_core_term();
+#endif
       return 0;
    }
 

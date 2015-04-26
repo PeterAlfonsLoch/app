@@ -100,7 +100,7 @@ typedef sp(::user::interaction_impl) window_sp;
 
 
 
-namespace aura
+namespace axis
 {
 
 #if defined METROWIN && defined(__cplusplus_winrt)
@@ -123,7 +123,7 @@ namespace aura
 
    class session;
 
-} // namespace aura
+} // namespace axis
 
 
 
