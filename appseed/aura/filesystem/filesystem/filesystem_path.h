@@ -241,8 +241,8 @@ namespace file
 
       }
 
-      path operator * (const string & str) const { return operator /(::file::path(str)); }
-      path operator * (const char * psz) const { return operator /(::file::path(psz)); }
+      path operator * (const string & str) const { return operator * (::file::path(str)); }
+      path operator * (const char * psz) const { return operator * (::file::path(psz)); }
       path operator * (const property & property) const;
 
 
