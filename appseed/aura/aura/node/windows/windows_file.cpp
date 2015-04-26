@@ -106,7 +106,6 @@ namespace windows
       m_strFileName.Empty();
 
       m_strFileName     = lpszFileName;
-      m_wstrFileName    = ::str::international::utf8_to_unicode(m_strFileName);
 
       ASSERT(sizeof(HANDLE) == sizeof(uint_ptr));
       ASSERT(::file::share_compat == 0);
@@ -178,7 +177,7 @@ namespace windows
 retry:
       // attempt file creation
       //HANDLE hFile = shell::CreateFile(::str::international::utf8_to_unicode(m_strFileName), dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, NULL);
-      hFile = ::CreateFileW(m_wstrFileName, dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, NULL);
+      hFile = ::CreateFileW(::str::international::utf8_to_unicode(m_strFileName), dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, NULL);
       if (hFile == INVALID_HANDLE_VALUE)
       {
          DWORD dwLastError = ::GetLastError();
@@ -729,7 +728,7 @@ retry:
       //memset(&rStatus, 0, sizeof(::file::file_status));
 
       // copy file name from cached m_strFileName
-      rStatus.m_strFullName = ::str::international::unicode_to_utf8(m_wstrFileName);
+      rStatus.m_strFullName = m_strFileName;
 
       if (m_hFile != hFileNull)
       {

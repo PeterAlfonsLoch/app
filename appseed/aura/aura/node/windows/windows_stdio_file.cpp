@@ -30,7 +30,7 @@ namespace windows
    }
 
 
-   cres stdio_file::open(const char * lpszFileName, UINT nOpenFlags)
+   cres stdio_file::open(const ::file::path & lpszFileName, UINT nOpenFlags)
    {
 
       ASSERT(lpszFileName != NULL);
