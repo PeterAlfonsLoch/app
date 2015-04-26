@@ -7,7 +7,7 @@
 #pragma once
 
 
-#ifdef WINDOWSEX
+#ifdef WINDOWS
 
 typedef uint32_t IDTHREAD;
 

@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "metrowin.h"
 
+
 namespace metrowin
 {
 
@@ -473,7 +474,7 @@ namespace metrowin
             if(App(papp).dir().is(straPath[i]))
             {
 
-               rm(papp,path(psz,straTitle[i]),true);
+               rm(papp, psz / straPath[i].name(),true);
 
             }
             else
@@ -499,7 +500,7 @@ namespace metrowin
 
       xml::document doc(get_app());
 
-      doc.load(Application.file().as_string(appdata("configuration\\directory.xml")));
+      doc.load(Application.file().as_string(appdata() / "configuration\\directory.xml"));
 
       if(doc.get_root()->get_name() == "directory_configuration")
       {
@@ -510,30 +511,34 @@ namespace metrowin
 
       }
       if(m_strTimeFolder.is_empty())
-         m_strTimeFolder = appdata("time");
+         m_strTimeFolder = appdata() / "time";
 
       if(m_strNetSeedFolder.is_empty())
-         m_strNetSeedFolder = element("net/netseed");
+         m_strNetSeedFolder = element() / "net/netseed";
 
       mk(m_strTimeFolder,get_app());
 
       if(!is(m_strTimeFolder,get_app()))
          return false;
 
-      mk(path(m_strTimeFolder,"time"),get_app());
+      mk(m_strTimeFolder / "time",get_app());
 
       return true;
 
    }
 
-   ::file::path dir::trash_that_is_not_trash(const char * psz)
+   
+   ::file::path dir::trash_that_is_not_trash(const ::file::path & psz)
    {
+
       if(psz == NULL)
          return "";
 
       if(psz[1] == ':')
       {
-         string strDir = name(psz);
+
+         string strDir = psz.folder();
+
          string str;
          str = strDir.Left(2);
          str += "\\trash_that_is_not_trash\\";
@@ -556,93 +561,45 @@ namespace metrowin
       return "";
    }
 
+   
    ::file::path dir::appdata()
    {
 
-      return path(::Windows::Storage::ApplicationData::Current->LocalFolder->Path,lpcsz,lpcsz2);
+      return ::file::path(::Windows::Storage::ApplicationData::Current->LocalFolder->Path);
 
    }
 
-   ::file::path dir::usersystemappdata(::aura::application *  papp,const char * lpcszPrefix,const char * lpcsz,const char * lpcsz2)
+
+   ::file::path dir::usersystemappdata(::aura::application *  papp, const string & strPrefix)
    {
+
       UNREFERENCED_PARAMETER(papp);
-      return path(appdata(lpcszPrefix),lpcsz,lpcsz2);
+
+      return appdata() / strPrefix;
+
    }
 
-   ::file::path dir::userappdata(::aura::application *  papp,const char * lpcsz,const char * lpcsz2)
+
+   ::file::path dir::userappdata(::aura::application *  papp)
    {
-      return path(userfolder(papp,"appdata"),lpcsz,lpcsz2);
+
+      return userfolder(papp) / "appdata";
+
    }
 
-   ::file::path dir::userdata(::aura::application *  papp,const char * lpcsz,const char * lpcsz2)
+
+   ::file::path dir::userdata(::aura::application *  papp)
    {
-      return path(userfolder(papp,"data"),lpcsz,lpcsz2);
+
+      return userfolder(papp) / "data";
+
    }
 
-   ::file::path dir::userfolder(::aura::application *  papp,const char * lpcsz,const char * lpcsz2)
+
+   ::file::path dir::userfolder(::aura::application *  papp)
    {
-#ifdef WINDOWSEX
-      string str;
-      SHGetSpecialFolderPath(
-         NULL,
-         str,
-         CSIDL_PROFILE,
-         FALSE);
-
-
-      string strRelative;
-      strRelative = ca2();
-      index iFind = strRelative.find(':');
-      if(iFind >= 0)
-      {
-         strsize iFind1 = strRelative.reverse_find("\\",iFind);
-         strsize iFind2 = strRelative.reverse_find("/",iFind);
-         strsize iStart = MAX(iFind1 + 1,iFind2 + 1);
-         strRelative = strRelative.Left(iFind - 1) + "_" + strRelative.Mid(iStart,iFind - iStart) + strRelative.Mid(iFind + 1);
-      }
-
-      string strUserFolderShift;
-
-      if(App(papp).directrix().m_varTopicQuery.has_property("user_folder_relative_path"))
-      {
-         strUserFolderShift = path(strRelative,App(papp).directrix().m_varTopicQuery["user_folder_relative_path"].get_string());
-      }
-      else
-      {
-         strUserFolderShift = strRelative;
-      }
-
-      return path(path(str,"ca2",strUserFolderShift),lpcsz,lpcsz2);
-
-      //      return path(path(str, "ca2"), lpcsz);
-      /*      if(&AppUser(papp) == NULL)
-      {
-      string str;
-      SHGetSpecialFolderPath(
-      NULL,
-      str,
-      CSIDL_PROFILE,
-      FALSE);
-      return path(path(str, "ca2\\_____default"), lpcsz);
-      }
-      else
-      {
-      return path(AppUser(papp).m_strPath, lpcsz, lpcsz2);
-      }*/
-#else
 
       string str = appdata();
-
-      /*      string strRelative;
-      strRelative = ca2();
-      index iFind = strRelative.find(':');
-      if(iFind >= 0)
-      {
-      strsize iFind1 = strRelative.reverse_find("\\", iFind);
-      strsize iFind2 = strRelative.reverse_find("/", iFind);
-      strsize iStart = MAX(iFind1 + 1, iFind2 + 1);
-      strRelative = strRelative.Left(iFind - 1) + "_" + strRelative.Mid(iStart, iFind - iStart) + strRelative.Mid(iFind + 1);
-      }*/
 
       string strUserFolderShift;
 
@@ -651,131 +608,111 @@ namespace metrowin
          strUserFolderShift = App(papp).directrix()->m_varTopicQuery["user_folder_relative_path"].get_string();
       }
 
-      return path(path(str,"ca2",strUserFolderShift),lpcsz,lpcsz2);
-
-
-#endif
+      return str / "ca2" / strUserFolderShift;
 
    }
+
 
    ::file::path dir::default_os_user_path_prefix(::aura::application *  papp)
    {
+      
       UNREFERENCED_PARAMETER(papp);
-      //      wchar_t buf[MAX_PATH];
-#ifdef WINDOWSEX
-      ULONG ulSize = sizeof(buf) / sizeof(wchar_t);
-      if(!::GetUserNameExW(NameCanonical,buf,&ulSize))
-      {
-         if(!::GetUserNameW(buf,&ulSize))
-         {
-            memset(buf,0,sizeof(buf));
-         }
-      }
-#else
+
       return "CurrentUser";
-#endif
-      //return ::str::international::unicode_to_utf8(buf);
+
    }
 
-   ::file::path dir::default_userappdata(::aura::application *  papp,const char * lpcszPrefix,const char * lpcszLogin,const char * pszRelativePath)
+
+   ::file::path dir::default_userappdata(::aura::application *  papp,const string & lpcszPrefix,const string & lpcszLogin)
    {
-      return path(default_userfolder(papp,lpcszPrefix,lpcszLogin,"appdata"),pszRelativePath);
+
+      return default_userfolder(papp,lpcszPrefix,lpcszLogin) / "appdata";
+
    }
 
-   ::file::path dir::default_userdata(::aura::application *  papp,const char * lpcszPrefix,const char * lpcszLogin,const char * pszRelativePath)
+
+   ::file::path dir::default_userdata(::aura::application *  papp,const string & lpcszPrefix,const string & lpcszLogin)
    {
-      return path(default_userfolder(papp,lpcszPrefix,lpcszLogin,"data"),pszRelativePath);
+
+      return default_userfolder(papp,lpcszPrefix,lpcszLogin) / "data";
+
    }
 
-   ::file::path dir::default_userfolder(::aura::application *  papp,const char * lpcszPrefix,const char * lpcszLogin,const char * pszRelativePath)
+
+   ::file::path dir::default_userfolder(::aura::application *  papp,const string & strPrefix,const string & strLogin)
    {
 
-      return userfolder(papp,pszRelativePath);
+      return userfolder(papp) / strPrefix / strLogin;
 
-      /*      UNREFERENCED_PARAMETER(papp);
-      string str;
-      SHGetSpecialFolderPath(
-      NULL,
-      str,
-      CSIDL_APPDATA,
-      FALSE);
-      return path(path(str, "ca2\\user", lpcszPrefix), lpcszLogin, pszRelativePath);*/
    }
 
-   ::file::path dir::userquicklaunch(::aura::application *  papp,const char * lpcszRelativePath,const char * lpcsz2)
+
+   ::file::path dir::userquicklaunch(::aura::application *  papp)
    {
+
       throw todo(get_app());
-      //UNREFERENCED_PARAMETER(papp);
-      //string str;
-      //SHGetSpecialFolderPath(
-      //   NULL,
-      //   str,
-      //   CSIDL_APPDATA,
-      //   FALSE);
-      //str = path(str, "Microsoft\\Internet Explorer\\Quick Launch");
-      //return path(str, lpcszRelativePath, lpcsz2);
+
    }
 
-   ::file::path dir::userprograms(::aura::application *  papp,const char * lpcszRelativePath,const char * lpcsz2)
+
+   ::file::path dir::userprograms(::aura::application *  papp)
    {
+
       throw todo(get_app());
-      //UNREFERENCED_PARAMETER(papp);
-      //string str;
-      //SHGetSpecialFolderPath(
-      //   NULL,
-      //   str,
-      //   CSIDL_PROGRAMS,
-      //   FALSE);
-      //return path(str, lpcszRelativePath, lpcsz2);
+
    }
 
-   ::file::path dir::commonprograms(const char * lpcszRelativePath,const char * lpcsz2)
+
+   ::file::path dir::commonprograms()
    {
+
       throw todo(get_app());
-      //string str;
-      //SHGetSpecialFolderPath(
-      //   NULL,
-      //   str,
-      //   CSIDL_COMMON_PROGRAMS,
-      //   FALSE);
-      //return path(str, lpcszRelativePath, lpcsz2);
+
    }
 
-   bool dir::is_inside_time(const char * pszPath,::aura::application *  papp)
+
+   bool dir::is_inside_time(const ::file::path & pszPath,::aura::application *  papp)
    {
+
       return is_inside(time(),pszPath,papp);
+
    }
 
-   bool dir::is_inside(const char * pszDir,const char * pszPath,::aura::application *  papp)
+
+   bool dir::is_inside(const ::file::path & pszDir,const ::file::path & strPath,::aura::application *  papp)
    {
-      return ::str::begins_ci(pszDir,pszPath);
+
+      return ::str::begins_ci(pszDir,strPath);
+
    }
 
-   bool dir::has_subdir(::aura::application *  papp,const char * pszDir)
+
+   bool dir::has_subdir(::aura::application *  papp,const ::file::path & pszDir)
    {
+
       throw todo(get_app());
 
-      /*      file_find filefind;
-      bool bWorking;
-      bWorking = filefind.FindFile(path(pszDir, "*.*"));
-      while(bWorking)
-      {
-      bWorking = filefind.FindNextFileA();
-      if(filefind.IsDirectory() && !filefind.IsDots())
-      {
-      return true;
-      }
-      }
-      return false;*/
    }
 
 
    ::file::path dir::commonappdata()
    {
 
-      return path(::Windows::Storage::ApplicationData::Current->LocalFolder->Path,"commonappdata");
+      return ::Windows::Storage::ApplicationData::Current->LocalFolder->Path / "commonappdata";
 
    }
 
 
 } // namespace metrowin
+
+
+
+
+
+
+
+
+
+
+
+

@@ -38,7 +38,7 @@ namespace axis
       public:
 
          sp(::user::interaction)                      m_pui;
-         ::base::system_window ^                      m_pwindow;
+         ::aura::system_window ^                      m_pwindow;
 
 
       };

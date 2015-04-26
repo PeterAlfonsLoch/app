@@ -105,7 +105,7 @@ void thread_data::set(void * p)
 //}
 
 // Thread local storage.
-typedef comparable_array < void *,void *,array < void *,void *,::allocator::allocator < void * , ::constructor::zero < void * > > > > ThreadLocalData;
+typedef comparable_array < void *,void *,array < void *,void *,::allocator::nodef < void *  > > > ThreadLocalData;
 
 
 
@@ -770,7 +770,7 @@ mq * get_mq()
 //   return get_thread_id(h) != 0;
 //}
 
-mq * get_mq(int iThreadId)
+mq * get_mq(IDTHREAD iThreadId)
 {
 
 
@@ -940,7 +940,7 @@ void _on_aura_thread_detach()
 //}
 
 
-BOOL WINAPI PostThreadMessageW(DWORD iThreadId,UINT message,WPARAM wparam,LPARAM lparam)
+BOOL WINAPI PostThreadMessageW(IDTHREAD iThreadId,UINT message,WPARAM wparam,LPARAM lparam)
 {
 
    //HTHREAD h = ::get_thread_handle(idThread);

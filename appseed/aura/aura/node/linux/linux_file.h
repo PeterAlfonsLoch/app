@@ -45,9 +45,8 @@ namespace linux
 
       };
 
-      string         m_strFileName;
-      wstring        m_wstrFileName;
-      int            m_iFile;
+      ::file::path         m_strFileName;
+      int                  m_iFile;
 
 
       file(::aura::application * papp);

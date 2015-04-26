@@ -5,21 +5,6 @@ namespace metrowin
 {
 
 
-   class CLASS_DECL_AURA path:
-      virtual public ::file::path
-   {
-   public:
-
-
-      path(::aura::application *  papp);
-
-
-      virtual bool  is_equal(const char * lpszFilPathA,const char * lpszFilPathB);
-
-
-   };
-
-
    class CLASS_DECL_AURA dir:
       virtual public ::file::dir::system
    {
@@ -75,7 +60,7 @@ namespace metrowin
       virtual ::file::path time_log();
 
 
-      virtual ::file::path trash_that_is_not_trash();
+      virtual ::file::path trash_that_is_not_trash(const ::file::path & path);
 
       virtual ::file::path appdata();
 

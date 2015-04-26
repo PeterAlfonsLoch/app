@@ -27,7 +27,8 @@ namespace metrowin
          close();
    }
 
-   bool stdio_file::open(const char * lpszFileName, UINT nOpenFlags)
+
+   ::cres stdio_file::open(const ::file::path & lpszFileName,UINT nOpenFlags)
    {
 
       ASSERT(lpszFileName != NULL);
@@ -36,7 +37,9 @@ namespace metrowin
 
       if(nOpenFlags  & ::file::defer_create_directory)
       {
-         Application.dir().mk(System.dir().name(lpszFileName));
+         
+         Application.dir().mk(lpszFileName.folder());
+
       }
 
       m_pStream = NULL;
@@ -101,8 +104,10 @@ namespace metrowin
          return FALSE;
       }
 
-      return TRUE;
+      return no_exception;
+
    }
+
 
    ::primitive::memory_size stdio_file::read(void * lpBuf, ::primitive::memory_size nCount)
    {

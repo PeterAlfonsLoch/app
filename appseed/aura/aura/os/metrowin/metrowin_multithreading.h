@@ -38,7 +38,7 @@ POINT       pt;
 } MESSAGE, * LPMESSAGE;
 #endif
 
-#ifdef WINDOWSEX
+#ifdef WINDOWS
 
 typedef uint32_t IDTHREAD;
 

@@ -134,7 +134,10 @@
     <ClInclude Include="axis\node\metrowin\metrowin_port_forward.h" />
     <ClInclude Include="axis\node\node.h" />
     <ClInclude Include="axis\os\metrowin\metrowin.h" />
+    <ClInclude Include="axis\os\metrowin\metrowin_simple_ui.h" />
     <ClInclude Include="axis\os\metrowin\metrowin_sockets.h" />
+    <ClInclude Include="axis\os\metrowin\metrowin_user_impl.h" />
+    <ClInclude Include="axis\os\metrowin\metrowin_window_impl.h" />
     <ClInclude Include="axis\os\os.h" />
     <ClInclude Include="database\database\database.h" />
     <ClInclude Include="database\database\database_base.h" />
@@ -778,6 +781,8 @@
     <ClCompile Include="axis\os\metrowin\metrowin_base_crypto.cpp" />
     <ClCompile Include="axis\os\metrowin\metrowin_simple_app.cpp" />
     <ClCompile Include="axis\os\metrowin\metrowin_sockets.cpp" />
+    <ClCompile Include="axis\os\metrowin\metrowin_user.cpp" />
+    <ClCompile Include="axis\os\metrowin\metrowin_windowing.cpp" />
     <ClCompile Include="database\database\database_application.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|ARM'">true</ExcludedFromBuild>

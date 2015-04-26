@@ -71,7 +71,8 @@ namespace metrowin
       return pFile;
    }
 
-   bool file::open(const char * lpszFileName, UINT nOpenFlags)
+   
+   ::cres file::open(const ::file::path & lpszFileName, UINT nOpenFlags)
    {
 
       if (m_hFile != (UINT)hFileNull)
@@ -87,7 +88,9 @@ namespace metrowin
 
       if(nOpenFlags & ::file::defer_create_directory)
       {
-         Application.dir().mk(System.dir().name(lpszFileName));
+
+         Application.dir().mk(lpszFileName.folder());
+
       }
 
       m_bCloseOnDelete = FALSE;
@@ -236,8 +239,10 @@ namespace metrowin
 
       m_bCloseOnDelete = TRUE;
 
-      return TRUE;
+      return no_exception;
+
    }
+
 
    ::primitive::memory_size file::read(void * lpBuf, ::primitive::memory_size nCount)
    {
@@ -912,25 +917,39 @@ namespace metrowin
 
    string file::GetFileName() const
    {
+      
       ASSERT_VALID(this);
 
       ::file::file_status status;
+      
       GetStatus(status);
+      
       string wstrResult;
-      wstrResult = System.file().name_(status.m_strFullName);
+   
+      wstrResult = status.m_strFullName.name();
+
       return wstrResult;
+
    }
+
 
    string file::GetFileTitle() const
    {
+      
       ASSERT_VALID(this);
 
       ::file::file_status status;
+      
       GetStatus(status);
+      
       string wstrResult;
-      wstrResult = System.file().title_(status.m_strFullName);
+   
+      wstrResult = status.m_strFullName.title();
+
       return wstrResult;
+
    }
+
 
    string file::GetFilePath() const
    {
@@ -1000,10 +1019,13 @@ namespace metrowin
          lpsz = szUnknown;
       //   TRACE3("file exception: %hs, file %s, App error information = %ld.\n", lpsz, (lpszFileName == NULL) ? "Unknown" : lpszFileName, lOsError);
 #endif
-      throw ::file::exception(papp, cause, lOsError, lpszFileName);
+      
+      throw ::file::exception(papp,WinFileException::OsErrorToException(lOsError),lOsError ,lpszFileName);
+
    }
 
-   int WinFileException::ErrnoToException(int nErrno)
+
+   ::file::exception::e_cause WinFileException::ErrnoToException(int nErrno)
    {
       switch(nErrno)
       {
@@ -1029,7 +1051,7 @@ namespace metrowin
       }
    }
 
-   int WinFileException::OsErrorToException(LONG lOsErr)
+   ::file::exception::e_cause WinFileException::OsErrorToException(LONG lOsErr)
    {
       // NT Error codes
       switch ((UINT)lOsErr)
@@ -1264,7 +1286,7 @@ namespace metrowin
    }
 
 
-   bool file::GetStatus(const char * lpszFileName, ::file::file_status& rStatus)
+   bool file::GetStatus(const ::file::path & lpszFileName, ::file::file_status& rStatus)
    {
 
 #ifdef WINDOWSEX

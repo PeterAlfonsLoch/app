@@ -35,9 +35,9 @@ namespace metrowin
 
       enum { hFileNull = -1 };
 
-      bool           m_bCloseOnDelete;
-      string         m_strFileName;
-      UINT           m_hFile;
+      bool              m_bCloseOnDelete;
+      ::file::path      m_strFileName;
+      UINT              m_hFile;
 
 
       file(::aura::application * papp);
@@ -55,9 +55,9 @@ namespace metrowin
       virtual string GetFilePath() const;
       virtual void SetFilePath(const char * lpszNewName);
 
-      virtual bool open(const char * lpszFileName, UINT nOpenFlags);
+      virtual ::cres open(const ::file::path & lpszFileName, UINT nOpenFlags);
 
-      virtual bool GetStatus(const char * lpszFileName, ::file::file_status& rStatus);
+      virtual bool GetStatus(const ::file::path & lpszFileName,::file::file_status& rStatus);
 
       uint64_t ReadHuge(void * lpBuffer, uint64_t dwCount);
       void WriteHuge(const void * lpBuffer, uint64_t dwCount);
@@ -89,8 +89,9 @@ namespace metrowin
 
    namespace WinFileException
    {
-      int OsErrorToException(LONG lOsError);
-      int ErrnoToException(int nErrno);
+
+      ::file::exception::e_cause OsErrorToException(LONG lOsError);
+      ::file::exception::e_cause ErrnoToException(int nErrno);
       void ThrowOsError(::aura::application * papp, LONG lOsError, const char * lpszFileName = NULL);
       void ThrowErrno(::aura::application * papp, int nErrno, const char * lpszFileName = NULL);
 

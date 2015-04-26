@@ -62,9 +62,9 @@ public:
    string    m_strHttpServer;
    int32_t         m_iHttpPort;
    string    m_strProxyServer;
-   int32_t         m_iHttpProxyPort;
-   string    m_strUserAgent;
-   string    m_strFileName;
+   int32_t           m_iHttpProxyPort;
+   string            m_strUserAgent;
+   ::file::path      m_strFileName;
 
    string    m_strContentType;
 

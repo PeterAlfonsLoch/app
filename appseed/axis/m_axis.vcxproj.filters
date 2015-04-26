@@ -259,6 +259,9 @@
     <Filter Include="Source Files\filesystem\filesystem">
       <UniqueIdentifier>{d115147e-3946-4ec3-9280-7e8dfd48bc44}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\axis\os\metrowin\NewFilter1">
+      <UniqueIdentifier>{a1670a96-d9b5-4a2c-8d13-bb3c192ab1d9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -987,6 +990,15 @@
     <ClInclude Include="axis\node\metrowin\metrowin_axis_file_system.h">
       <Filter>Header Files\axis\node\metrowin</Filter>
     </ClInclude>
+    <ClInclude Include="axis\os\metrowin\metrowin_simple_ui.h">
+      <Filter>Header Files\axis\os\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\metrowin\metrowin_user_impl.h">
+      <Filter>Header Files\axis\os\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\metrowin\metrowin_window_impl.h">
+      <Filter>Header Files\axis\os\metrowin</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="axis\axis\axis.inl">
@@ -1637,6 +1649,12 @@
       <Filter>Source Files\axis\node\metrowin</Filter>
     </ClCompile>
     <ClCompile Include="axis\os\metrowin\metrowin.cpp">
+      <Filter>Source Files\axis\os\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\metrowin\metrowin_user.cpp">
+      <Filter>Source Files\axis\os\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\metrowin\metrowin_windowing.cpp">
       <Filter>Source Files\axis\os\metrowin</Filter>
     </ClCompile>
   </ItemGroup>
