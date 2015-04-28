@@ -22,6 +22,15 @@
     <ClCompile Include="randtable.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="bsdiff\bsdiff_bsdiff.c">
+      <Filter>Source Files\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="bsdiff\bsdiff_bspatch.c">
+      <Filter>Source Files\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="bsdiff\libbsdiff.c">
+      <Filter>Source Files\bsdiff</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bzlib.h">
@@ -30,6 +39,9 @@
     <ClInclude Include="bzlib_private.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="bsdiff\libbsdiff.h">
+      <Filter>Header Files\bsdiff</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -37,6 +49,12 @@
     </Filter>
     <Filter Include="Source Files">
       <UniqueIdentifier>{ed3e5f7e-91cf-4d08-8d68-16e944512520}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\bsdiff">
+      <UniqueIdentifier>{16eecf7c-480c-4cc7-b4c2-c03d2ba4748f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\bsdiff">
+      <UniqueIdentifier>{5df7ff4d-16f8-46b0-8c3b-5ce4afcb9f07}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

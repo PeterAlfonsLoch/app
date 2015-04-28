@@ -19,18 +19,18 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{A2E70E72-5407-4131-AD91-881A861114ED}</ProjectGuid>
+    <ProjectGuid>{640771CD-A0ED-4E2E-AFBA-4D1A84AE485B}</ProjectGuid>
     <Keyword>Android</Keyword>
     <ApplicationType>Android</ApplicationType>
     <ApplicationTypeRevision>1.0</ApplicationTypeRevision>
-    <ProjectName>axisopenssl</ProjectName>
+    <ProjectName>axiscrypto</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>Clang_3_4</PlatformToolset>
-    <UseOfStl>c++_static</UseOfStl>
+    <AndroidAPILevel>android-19</AndroidAPILevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -62,7 +62,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
     <ClCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app/base/include/;crypto;crypto/asn1;crypto/evp;crypto/modes;$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>OPENSSL_BUILD_SHLIBCRYPTO;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>USE_SOCKETS;OPENSSL_BUILD_SHLIBCRYPTO;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions>-Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int -Wno-sometimes-uninitialized -Wno-unused-variable -Wno-incompatible-pointer-types  -Wno-pointer-sign -Wno-typedef-redefinition %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
@@ -430,7 +430,6 @@
     <ClCompile Include="engines\e_padlock.c" />
     <ClCompile Include="engines\e_sureware.c" />
     <ClCompile Include="engines\e_ubsec.c" />
-    <ClCompile Include="ssl\_ssl.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\openssl\aes.h" />
@@ -531,16 +530,6 @@
     <ClInclude Include="e_os2.h" />
     <ClInclude Include="e_os2_ca2specific.h" />
     <ClInclude Include="e_os2_original.h" />
-    <ClInclude Include="ssl\dtls1.h" />
-    <ClInclude Include="ssl\kssl.h" />
-    <ClInclude Include="ssl\kssl_lcl.h" />
-    <ClInclude Include="ssl\srtp.h" />
-    <ClInclude Include="ssl\ssl.h" />
-    <ClInclude Include="ssl\ssl2.h" />
-    <ClInclude Include="ssl\ssl23.h" />
-    <ClInclude Include="ssl\ssl3.h" />
-    <ClInclude Include="ssl\ssl_locl.h" />
-    <ClInclude Include="ssl\tls1.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="asm\x64-win32-masm\aes\aes-x86_64.asm" />
