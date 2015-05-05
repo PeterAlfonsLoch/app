@@ -236,7 +236,7 @@ namespace file
    }
 
 
-   ::file::path system::time_square(::aura::application * papp,const char * pszPrefix,const char * pszSuffix)
+   ::file::path system::time_square(::aura::application * papp,const string & pszPrefix,const string & pszSuffix)
    {
 
       return time(papp,System.dir().time_square(papp,pszPrefix,pszSuffix),25,pszPrefix,pszSuffix);
@@ -244,13 +244,13 @@ namespace file
    }
 
 
-   ::file::path system::time_log(::aura::application * papp,const char * pszId)
+   ::file::path system::time_log(::aura::application * papp,const string & pszId)
    {
       return time(papp, System.dir().time_log(pszId), 9);
    }
 
 
-   ::file::path system::time(::aura::application * papp,const ::file::path & psz,int32_t iMaxLevel,const char * pszPrefix,const char * pszSuffix)
+   ::file::path system::time(::aura::application * papp,const ::file::path & psz,int32_t iMaxLevel,const string & pszPrefix,const string & pszSuffix)
    {
 
       synch_lock lockMachineEvent((&System.machine_event_central() != NULL) ? &System.machine_event_central().m_machineevent.m_mutex : ((mutex *) NULL));
@@ -1121,7 +1121,7 @@ restart:
    }
 
 
-   ::file::buffer_sp system::time_square_file(::aura::application * papp, const char * pszPrefix, const char * pszSuffix)
+   ::file::buffer_sp system::time_square_file(::aura::application * papp, const string & pszPrefix, const string & pszSuffix)
    {
 
       return get(time_square(papp, pszPrefix, pszSuffix), papp);

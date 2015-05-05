@@ -227,15 +227,15 @@ namespace aura
       return m_bNew;
    }
 
-   void document::write(::file::ostream & ostream) const
-   {
-      UNREFERENCED_PARAMETER(ostream);
-   }
+   //void document::write(::file::ostream & ostream) const
+   //{
+   //   UNREFERENCED_PARAMETER(ostream);
+   //}
 
-   void document::read(::file::istream & istream)
-   {
-      UNREFERENCED_PARAMETER(istream);
-   }
+   //void document::read(::file::istream & istream)
+   //{
+   //   UNREFERENCED_PARAMETER(istream);
+   //}
 
 
    sp(::aura::impact) document::get_typed_view(sp(type) info, index indexFind)

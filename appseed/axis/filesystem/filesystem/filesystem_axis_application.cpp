@@ -153,7 +153,7 @@ namespace file
       //}
 
 
-      ::file::path application::time(const ::file::path & pszBasePath,int32_t iDepth,const char * pszPrefix,const char * pszSuffix)
+      ::file::path application::time(const ::file::path & pszBasePath,int32_t iDepth,const string & pszPrefix,const string & pszSuffix)
       {
 
          return m_pauraapp->m_paurasystem->m_spfile->time(m_pauraapp,pszBasePath,iDepth,pszPrefix,pszSuffix);
@@ -161,20 +161,20 @@ namespace file
       }
 
 
-      ::file::path application::time_square(const char * pszPrefix,const char * pszSuffix)
+      ::file::path application::time_square(const string & pszPrefix,const string & pszSuffix)
       {
 
-         return m_pauraapp->m_paurasystem->m_spfile->time_square(m_pauraapp,pszPrefix,pszSuffix);
+         return m_pauraapp->m_paurasystem->m_spfile->time_square(m_pauraapp);
 
       }
 
 
-      ::file::path application::time_log(const char * pszId)
+      ::file::path application::time_log(const string & pszId)
       {
          return m_pauraapp->m_paurasystem->m_spfile->time_log(m_pauraapp,pszId);
       }
 
-      ::file::buffer_sp application::time_square_file(const char * pszPrefix,const char * pszSuffix)
+      ::file::buffer_sp application::time_square_file(const string & pszPrefix,const string & pszSuffix)
       {
          return m_pauraapp->m_paurasystem->m_spfile->time_square_file(m_pauraapp,pszPrefix,pszSuffix);
       }

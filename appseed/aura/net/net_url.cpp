@@ -28,7 +28,7 @@ namespace url
       /*if(*psz != '/' && *psz != '\\')
          return false;
       psz++;*/
-      while(*psz != '\0' && (*psz == '.' || *psz == '_' || *psz == '-' || isalnum_dup(*psz)))
+      while(*psz != '\0' && (*psz == '.' || *psz == ':' || *psz == '@' || *psz == '_' || *psz == '-' || isalnum_dup(*psz)))
       {
          psz++;
       }

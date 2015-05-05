@@ -153,9 +153,12 @@ namespace aura
 
       friend class impact_system;
 
+      /*
+      
       virtual void write(::file::ostream & ostream) const;
       virtual void read(::file::istream & istream);
 
+      */
 
       void on_file_close();
       void on_file_save();

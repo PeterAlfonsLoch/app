@@ -263,7 +263,7 @@ namespace file
    }
 
 
-   ::file::path system::time_log(::aura::application * papp, const char * pszId)
+   ::file::path system::time_log(::aura::application * papp, const string & pszId)
    {
 
       return time(papp, System.dir().time_log(pszId), 9);

@@ -31,9 +31,9 @@ namespace file
 
       virtual var length(const ::file::path & pszPath);
 
-      ::file::path time(const ::file::path & pszBasePath,int32_t iDepth = 1,const char * pszPrefix = NULL,const char * pszSuffix = NULL);
-      ::file::path time_square(const char * pszPrefix = NULL,const char * pszSuffix = NULL);
-      ::file::path time_log(const char * pszId);
+      ::file::path time(const ::file::path & pszBasePath,int32_t iDepth = 1,const string & pszPrefix = cnull,const string & pszSuffix = cnull);
+      ::file::path time_square(const string & pszPrefix = cnull,const string & pszSuffix = cnull);
+      ::file::path time_log(const string & pszId);
 
 
       virtual ::file::buffer_sp time_square_file(const char * pszPrefix = NULL, const char * pszSuffix = NULL);

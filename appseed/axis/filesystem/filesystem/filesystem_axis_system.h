@@ -64,8 +64,8 @@ namespace file
 
 
          path time(::aura::application * papp,const path & pszBasePath,int32_t iDepth,const string & strPrefix = cnull,const string & pszSuffix = cnull);
-         path time_square(::aura::application * papp,const string & strPrefix = cnull,const string & pszSuffix = cnull);
-         path time_log(::aura::application * papp,const char * pszId);
+         path time_square(::aura::application * papp, const string & pszPrefix = cnull, const string & pszSuffix = cnull);
+         path time_log(::aura::application * papp,const string & pszId);
 
          
          virtual buffer_sp time_square_file(::aura::application * papp,const string & pszPrefix = cnull,const string & pszSuffix = cnull);

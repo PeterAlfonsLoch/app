@@ -95,7 +95,7 @@ namespace filemanager
          while(true)
          {
 
-            strName = strName.name();
+            strName = strName.folder();
 
             if(Application.dir().is(strName))
             {

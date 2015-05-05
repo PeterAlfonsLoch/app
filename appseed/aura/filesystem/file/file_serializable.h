@@ -14,8 +14,9 @@ namespace file
    public:
 
 
-      virtual void write(ostream & ostream) const = 0;
-      virtual void read(istream & istream) = 0;
+      virtual void write(ostream & ostream);
+      virtual void write(ostream & ostream) const;
+      virtual void read(istream & istream);
 
 
    };
