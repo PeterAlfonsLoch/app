@@ -12,6 +12,7 @@ namespace user
 {
    
    class form_callback;
+   class split_view;
 
 
 } // namespace user
@@ -139,7 +140,7 @@ namespace core
 
 
 
-
+      virtual void on_create_split_view(::user::split_view * pview);
 
       //virtual bool update_module_paths();
 

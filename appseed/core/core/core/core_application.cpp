@@ -3137,7 +3137,9 @@ namespace core
    }
 
 
-
+   void application::on_create_split_view(::user::split_view * psplit)
+   {
+   }
 
 
    void application::EnableShellOpen()

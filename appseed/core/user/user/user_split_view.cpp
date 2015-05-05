@@ -136,6 +136,7 @@ namespace user
    void split_view::on_create_views()
    {
 
+      Application.on_create_split_view(this);
 
    }
 
