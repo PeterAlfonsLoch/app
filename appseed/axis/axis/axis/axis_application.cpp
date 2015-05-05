@@ -5367,6 +5367,13 @@ namespace axis
    }
 
 
+   bool application::keyboard_focus_OnSetFocus(::user::elemental * pue)
+   {
+
+      return true;
+
+   }
+
 
 } // namespace axis
 
