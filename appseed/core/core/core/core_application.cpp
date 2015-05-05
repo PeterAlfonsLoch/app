@@ -3142,6 +3142,7 @@ namespace core
    }
 
 
+
    void application::EnableShellOpen()
    {
       ASSERT(m_atomApp == 0 && m_atomSystemTopic == 0); // do once

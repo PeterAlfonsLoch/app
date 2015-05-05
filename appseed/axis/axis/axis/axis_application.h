@@ -582,6 +582,14 @@ namespace axis
       virtual sp(type) user_default_controltype_to_typeinfo(::user::e_control_type e_type);
       virtual int32_t hotplugin_host_starter_start_sync(const char * pszCommandLine,::aura::application * papp,hotplugin::host * phost,hotplugin::plugin * pplugin = NULL) override;
 
+
+      virtual bool BaseOnControlEvent(::user::control_event * pevent);
+
+      virtual void on_update_view(::aura::impact * pview,::aura::impact * pviewSender,LPARAM lHint,object* pHint);
+
+      virtual bool keyboard_focus_is_focusable(::user::elemental * pue);
+
+
    };
 
 

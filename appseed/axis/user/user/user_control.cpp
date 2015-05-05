@@ -941,6 +941,10 @@ namespace user
       if(pevent->m_bProcessed)
          return true;
 
+      Application.BaseOnControlEvent(pevent);
+
+      if(pevent->m_bProcessed)
+         return true;
 
       return false;
 

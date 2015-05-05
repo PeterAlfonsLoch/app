@@ -322,6 +322,9 @@ namespace aura
 
       // invalidate the entire pane, erase background too
       //Invalidate(TRUE);
+
+      Application.on_update_view(this,pSender,lHint,pHint);
+
    }
 
    void impact::on_simple_view_update_hint(sp(::aura::impact) pviewSender, e_hint ehint, object * phint)

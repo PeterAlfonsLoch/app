@@ -1,23 +1,6 @@
 #pragma once
 
 
-CLASS_DECL_CORE UINT c_cdecl application_thread_procedure(LPVOID pvoid);
-
-typedef sp(::aura::application) (*LPFN_instantiate_application)(sp(::aura::application) pappParent, const char * pszId);
-
-extern CLASS_DECL_CORE LPFN_instantiate_application g_lpfn_instantiate_application;
-
-
-namespace user
-{
-   
-   class form_callback;
-   class split_view;
-
-
-} // namespace user
-
-
 namespace core
 {
 

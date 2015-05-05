@@ -94,6 +94,8 @@ namespace user
 
 
    class view_creator_data;
+   class form_callback;
+   class split_view;
 
 
    namespace wndfrm
@@ -106,6 +108,8 @@ namespace user
    } // namespace wndfrm
 
 } // namespace user
+
+
 
 
 
@@ -862,10 +866,12 @@ namespace geometry
 
 
 
-class file_system;
-typedef smart_pointer < file_system > file_system_sp;
-class Ex1FactoryImpl;
 
+CLASS_DECL_CORE UINT c_cdecl application_thread_procedure(LPVOID pvoid);
+
+typedef sp(::aura::application) (*LPFN_instantiate_application)(sp(::aura::application) pappParent,const char * pszId);
+
+extern CLASS_DECL_CORE LPFN_instantiate_application g_lpfn_instantiate_application;
 
 
 
@@ -1054,6 +1060,7 @@ namespace html
 //#include "plane_system_primitive_string_format_spec.h"
 
 //#include "app/appseed/core/filesystem/file/file_html_buffer.h"
+
 
 
 

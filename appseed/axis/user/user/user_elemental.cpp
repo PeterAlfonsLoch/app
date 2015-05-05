@@ -102,7 +102,8 @@ namespace user
 
    bool elemental::keyboard_focus_is_focusable()
    {
-      return false;
+
+      return Application.keyboard_focus_is_focusable(this);
    }
 
    bool elemental::keyboard_focus_OnSetFocus()

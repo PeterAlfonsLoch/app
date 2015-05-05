@@ -49,6 +49,7 @@ namespace user
 {
 
 
+   class elemental;
    class interaction;
    class interaction_impl;
    class interaction_child;
@@ -58,6 +59,7 @@ namespace user
    class copydesk;
    class create_struct;
    class window_draw;
+   class control_event;
 
 
 } // namespace user

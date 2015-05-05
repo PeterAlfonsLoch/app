@@ -5344,6 +5344,30 @@ namespace axis
    }
 
 
+   bool application::BaseOnControlEvent(::user::control_event * pevent)
+   {
+
+      return false;
+
+   }
+
+   
+   void application::on_update_view(::aura::impact * pview,::aura::impact * pviewSender,LPARAM lHint,object* pHint)
+   {
+
+
+   }
+
+
+   bool application::keyboard_focus_is_focusable(::user::elemental * pue)
+   {
+
+      return false;
+
+   }
+
+
+
 } // namespace axis
 
 
