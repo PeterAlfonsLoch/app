@@ -388,7 +388,7 @@ bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow interact
 //namespace core
 //{
 //
-//   CLASS_DECL_BASE bool set_priority_class(int32_t priority)
+//   CLASS_DECL_AXIS bool set_priority_class(int32_t priority)
 //	{
 //
 //      int32_t iPolicy = SCHED_OTHER;

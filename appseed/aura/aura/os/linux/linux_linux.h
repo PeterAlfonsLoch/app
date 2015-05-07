@@ -17,7 +17,7 @@
 
 
 
-inline DWORD get_tick_count();
+DWORD get_tick_count();
 
 
 

@@ -111,7 +111,6 @@
     <ClCompile Include="base\os\android\android_simple_app.cpp" />
     <ClCompile Include="base\os\android\android_trace_message.cpp" />
     <ClCompile Include="base\os\android\android_vsnord_native_app_glue.cpp" />
-    <ClCompile Include="base\os\android\android_windowing.cpp" />
     <ClCompile Include="base\os\android\android_window_anative.cpp" />
     <ClCompile Include="base\os\android\android_window_android.cpp" />
     <ClCompile Include="base\os\android\android_win_base.cpp" />

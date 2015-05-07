@@ -5,7 +5,7 @@
 
  //Pasta de Z:\nordroid\app\appseed\base\base\os\android
 
-#include "android.cpp"
+#include "android_c.cpp"
 #include "android_message_loop.cpp"
 #include "android_multithreading.cpp"
 #include "android_simple_app.cpp"

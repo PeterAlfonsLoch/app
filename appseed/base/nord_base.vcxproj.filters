@@ -31,9 +31,6 @@
     <ClCompile Include="base\os\android\android_multithreading.cpp">
       <Filter>Source Files\base\os\android</Filter>
     </ClCompile>
-    <ClCompile Include="base\os\android\android_windowing.cpp">
-      <Filter>Source Files\base\os\android</Filter>
-    </ClCompile>
     <ClCompile Include="base\os\android\android_window_android.cpp">
       <Filter>Source Files\base\os\android</Filter>
     </ClCompile>

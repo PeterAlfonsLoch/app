@@ -12,7 +12,7 @@ namespace boot
 } // namespace boot
 
 
-struct oswindow_data;
+class oswindow_data;
 
 
 typedef ptr_array < oswindow_data > oswindow_dataptra;
@@ -63,7 +63,7 @@ typedef ptr_array < oswindow_data > oswindow_dataptra;
 *
 */
 
-struct CLASS_DECL_BASE oswindow_data
+class CLASS_DECL_AXIS oswindow_data
 {
 
 #ifdef VSNORD

@@ -106,6 +106,42 @@
     <ClCompile Include="graphics\visual\_visual.cpp">
       <Filter>Source Files\graphics\visual</Filter>
     </ClCompile>
+    <ClCompile Include="axis\os\android\android_windowing.cpp">
+      <Filter>Source Files\axis\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\android\_android_os.cpp">
+      <Filter>Source Files\axis\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\android\android_win_base.cpp">
+      <Filter>Source Files\axis\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\android\android_window_anative.cpp">
+      <Filter>Source Files\axis\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\android\android_window_android.cpp">
+      <Filter>Source Files\axis\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\android\android_window_cairo_egl.cpp">
+      <Filter>Source Files\axis\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\android\android_c.cpp">
+      <Filter>Source Files\axis\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\android\android_message_loop.cpp">
+      <Filter>Source Files\axis\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\android\android_multithreading.cpp">
+      <Filter>Source Files\axis\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\android\android_simple_app.cpp">
+      <Filter>Source Files\axis\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\android\android_trace_message.cpp">
+      <Filter>Source Files\axis\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\android\android_vsnord_native_app_glue.cpp">
+      <Filter>Source Files\axis\os\android</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -1189,6 +1225,12 @@
     </Filter>
     <Filter Include="Source Files\database\sqlitedb">
       <UniqueIdentifier>{2fa2a384-0538-46ff-97b6-f6fa8f8f2977}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\axis\os\cross">
+      <UniqueIdentifier>{a89eebfa-4500-4ddd-b45e-4f304b2d068f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\axis\os\cross\NewFilter1">
+      <UniqueIdentifier>{ae996bb2-2c96-4351-a940-629e630418ad}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

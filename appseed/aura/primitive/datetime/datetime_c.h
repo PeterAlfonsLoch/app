@@ -8,7 +8,7 @@ BEGIN_EXTERN_C
 
 // struct tm;
 
-inline dword get_tick_count();
+dword get_tick_count();
 
 
 
