@@ -24,6 +24,7 @@
     <ApplicationType>Android</ApplicationType>
     <ApplicationTypeRevision>1.0</ApplicationTypeRevision>
     <ProjectName>base</ProjectName>
+    <RootNamespace>base</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'" Label="Configuration">
@@ -63,15 +64,13 @@
     <ClCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <CppLanguageStandard>c++11</CppLanguageStandard>
+      <CppLanguageStandard>c++1y</CppLanguageStandard>
       <ExceptionHandling>Enabled</ExceptionHandling>
       <AdditionalOptions>-Wno-overloaded-virtual -Wno-unknown-pragmas -Wno-reorder -Wno-comment -Wno-uninitialized -Wno-unused-variable -Wno-return-type  -Wno-unused-function -Wno-self-assign -Wno-unused-value -Wno-char-subscripts -Wno-unused-private-field -Wno-mismatched-tags %(AdditionalOptions)</AdditionalOptions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
     </ClCompile>
-    <Link>
-      <LibraryDependencies>m;log;android</LibraryDependencies>
-    </Link>
+    <Link />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
   </ItemDefinitionGroup>

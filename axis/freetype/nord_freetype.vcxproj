@@ -24,6 +24,7 @@
     <ApplicationType>Android</ApplicationType>
     <ApplicationTypeRevision>1.0</ApplicationTypeRevision>
     <ProjectName>axisfreetype</ProjectName>
+    <RootNamespace>axisfreetype</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'" Label="Configuration">
@@ -63,10 +64,9 @@
     <ClCompile>
       <AdditionalIncludeDirectories>$(ProjectDir)..;$(ProjectDir)../..;$(ProjectDir)../../..;$(ProjectDir)../../include;include;$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;_LIB;FT2_BUILD_LIBRARY;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <CppLanguageStandard>c++1y</CppLanguageStandard>
     </ClCompile>
-    <Link>
-      <LibraryDependencies>m;log;android</LibraryDependencies>
-    </Link>
+    <Link />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <ClCompile>

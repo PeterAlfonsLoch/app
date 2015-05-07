@@ -70,7 +70,7 @@ namespace android
       virtual string GetFilePath() const;
       virtual void SetFilePath(const char * lpszNewName);
 
-      virtual bool open(const char * lpszFileName, UINT nOpenFlags);
+      virtual cres open(const ::file::path & lpszFileName, UINT nOpenFlags);
 
       virtual bool PASCAL GetStatus(const char * lpszFileName, ::file::file_status& rStatus);
 
@@ -107,8 +107,8 @@ namespace android
    {
 
 
-      file::exception::e_cause PASCAL OsErrorToException(LONG lOsError);
-      file::exception::e_cause PASCAL ErrnoToException(int32_t nErrno);
+      ::file::exception::e_cause PASCAL OsErrorToException(LONG lOsError);
+      ::file::exception::e_cause PASCAL ErrnoToException(int32_t nErrno);
       void PASCAL ThrowOsError(::aura::application * papp, LONG lOsError, const char * lpszFileName = NULL);
       void PASCAL ThrowErrno(::aura::application * papp, int32_t nErrno, const char * lpszFileName = NULL);
 

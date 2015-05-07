@@ -4,45 +4,6 @@
     <ClCompile Include="ssl\_ssl.c">
       <Filter>Source Files\ssl</Filter>
     </ClCompile>
-    <ClCompile Include="engines\ccgost\_ccgost.c">
-      <Filter>Source Files\engines\ccgost</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\e_4758cca.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\e_aep.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\e_atalla.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\e_capi.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\e_chil.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\e_cswift.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\e_gmp.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\e_nuron.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\e_padlock.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\e_sureware.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\e_ubsec.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\ccgost\gost_ameth.c">
-      <Filter>Source Files\engines\ccgost</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="crypto\arm_arch.h">
@@ -392,12 +353,6 @@
     <Filter Include="Source Files\ssl">
       <UniqueIdentifier>{4e2122de-c546-455c-a6b3-a887e71ec5b5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\engines">
-      <UniqueIdentifier>{b5bb9bfc-8f8f-40d0-aa56-2a846d7978ba}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\engines\ccgost">
-      <UniqueIdentifier>{821632f1-4c6e-435e-83ac-a5fcf9fbc3c0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Assembler Files">
       <UniqueIdentifier>{b303c75f-cfc9-48bd-a6e1-bc1fb4ff1b8c}</UniqueIdentifier>
     </Filter>
@@ -424,9 +379,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="axisopenssl.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="asm\x64-win32-masm\x86_64cpuid.asm">
       <Filter>Assembler Files</Filter>
     </None>

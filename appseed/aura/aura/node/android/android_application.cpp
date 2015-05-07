@@ -630,7 +630,7 @@ if(__get_module_state()->m_pmapHWND == NULL)
             if(lpszModuleFolder == NULL)
                return false;
 
-            System.m_strModuleFolder = lpszModuleFolder;
+            System.m_pathModuleFolder = lpszModuleFolder;
 
             free(lpszModuleFolder);
 
@@ -643,7 +643,7 @@ if(__get_module_state()->m_pmapHWND == NULL)
             //if(handle == NULL)
             {
 
-               System.m_strCa2ModuleFolder = System.m_strModuleFolder;
+               System.m_pathCa2ModuleFolder = System.m_pathModuleFolder;
 
             }
             /*else

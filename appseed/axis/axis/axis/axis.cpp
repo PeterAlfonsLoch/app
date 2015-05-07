@@ -1,8 +1,11 @@
 #include "framework.h"
 
 
-//#include "freeimage/Source/FreeImage.h"
+#ifndef WINDOWS
 
+#include "freeimage/Source/FreeImage.h"
+
+#endif
 
 namespace user
 {

@@ -66,12 +66,10 @@
       <PreprocessorDefinitions>_AURA_CHARGUESS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Enabled</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <CppLanguageStandard>c++11</CppLanguageStandard>
+      <CppLanguageStandard>c++1y</CppLanguageStandard>
       <AdditionalOptions>-Wno-tautological-compare -Wno-parentheses-equality -Wno-unused-variable -Wno-static-in-inline -Wno-unused-function %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
-    <Link>
-      <LibraryDependencies>m;log;android</LibraryDependencies>
-    </Link>
+    <Link />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <ClCompile>

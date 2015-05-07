@@ -24,6 +24,7 @@
     <ApplicationType>Android</ApplicationType>
     <ApplicationTypeRevision>1.0</ApplicationTypeRevision>
     <ProjectName>aurasqlite</ProjectName>
+    <RootNamespace>aurasqlite</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'" Label="Configuration">
@@ -64,10 +65,9 @@
       <AdditionalIncludeDirectories>$(ProjectDir)../../../include;$(ProjectDir)../../include;$(ProjectDir)../../..;$(ProjectDir)../..;$(ProjectDir)../../appseed;$(ProjectDir)../../appseed/axis;$(ProjectDir)../../appseed/aura;$(ProjectDir)..;$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_AURA_SQLITE;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions>-Wno-typedef-redefinition -Wno-unused-const-variable %(AdditionalOptions)</AdditionalOptions>
+      <CppLanguageStandard>c++1y</CppLanguageStandard>
     </ClCompile>
-    <Link>
-      <LibraryDependencies>m;log;android</LibraryDependencies>
-    </Link>
+    <Link />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
   </ItemDefinitionGroup>

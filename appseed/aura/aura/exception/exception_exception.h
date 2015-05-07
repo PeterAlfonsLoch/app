@@ -81,11 +81,11 @@ namespace exception
             m_p->add_ref();
          }
       }
-      #ifdef __GNUC__ // weak
+      #if defined(__GNUC__) // weak
       template < typename T >
       result_sp(sp(T) t)
       {
-            exception * pexception = t.cast < exception >();
+            exception * pexception = t.template cast < exception >();
          if(pexception == NULL)
             throw "smart pointer is not exception";
          m_p = canew(result({pexception}));

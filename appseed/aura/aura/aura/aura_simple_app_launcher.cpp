@@ -32,6 +32,22 @@ void get_program_files_x86(string &str)
 }
 
 
+#else
+
+void get_program_files_x86(string &str)
+{
+
+
+	::file::path p("/opt/ca2");
+
+	p /= str;
+
+	   return p;
+
+
+	}
+
+
 #endif
 
 
@@ -80,15 +96,15 @@ namespace aura
    bool simple_app_launcher::start()
    {
 
-      wstring wstrApp(get_executable_path());
+#ifdef WINDOWS
 
-      wstring wstrDir(dir::name(string(wstrApp)));
+	   wstring wstrApp(get_executable_path());
 
-      wstring wstrParams = get_params();
+	   wstring wstrDir(dir::name(string(wstrApp)));
 
-#ifndef METROWIN
+	   wstring wstrParams = get_params();
 
-      STARTUPINFOW si;
+	   STARTUPINFOW si;
       memset(&si,0,sizeof(si));
       si.cb = sizeof(si);
       si.dwFlags = STARTF_USESHOWWINDOW;
@@ -102,6 +118,18 @@ namespace aura
          NULL,NULL,FALSE,0,NULL,wstrDir,
          &si,&pi))
          return true;
+
+#else
+
+	   string strPath = get_executable_path();
+
+	   string strDir = dir::name(strPath);
+
+	   string strParams = get_params();
+
+
+	  if (call_async(strPath, strParams, strDir , 0) == 0)
+		  return true;
 
 #endif
 

@@ -26,14 +26,14 @@ stdio_file::~stdio_file()
 }
 
 
-bool stdio_file::open(const char * lpszFileName, UINT nOpenFlags)
+cres stdio_file::open(const ::file::path & lpszFileName, UINT nOpenFlags)
 {
    ASSERT(lpszFileName != NULL);
    //ASSERT(AfxIsValidString(lpszFileName));
 
    if(nOpenFlags  & ::file::defer_create_directory)
    {
-      Application.dir().mk(System.dir().name(lpszFileName));
+      Application.dir().mk(lpszFileName.folder());
    }
 
    m_pStream = NULL;
@@ -99,7 +99,7 @@ bool stdio_file::open(const char * lpszFileName, UINT nOpenFlags)
 
    m_strFileName = lpszFileName;
 
-   return TRUE;
+   return no_exception;
 }
 
 ::primitive::memory_size stdio_file::read(void * lpBuf, ::primitive::memory_size nCount)

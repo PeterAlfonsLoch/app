@@ -11,7 +11,11 @@ namespace aura
    {
       m_strApp =strApp;
       m_rx.m_preceiver= this;
+#ifdef WINDOWS
       if(!m_rx.create(key(strApp),"axis.dll"))
+#else
+	  if (!m_rx.create(key(strApp)))
+#endif
          throw ::resource_exception(papp);
    }
 

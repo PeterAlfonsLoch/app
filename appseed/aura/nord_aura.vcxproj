@@ -24,6 +24,7 @@
     <ApplicationType>Android</ApplicationType>
     <ApplicationTypeRevision>1.0</ApplicationTypeRevision>
     <ProjectName>aura</ProjectName>
+    <RootNamespace>aura</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'" Label="Configuration">
@@ -65,14 +66,16 @@
       <PreprocessorDefinitions>_AURA_LIBRARY;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Enabled</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <CppLanguageStandard>c++11</CppLanguageStandard>
+      <CppLanguageStandard>c++1y</CppLanguageStandard>
       <AdditionalOptions>-Wno-overloaded-virtual -Wno-unknown-pragmas -Wno-reorder -Wno-comment -Wno-uninitialized -Wno-unused-variable -Wno-return-type  -Wno-unused-function -Wno-self-assign -Wno-unused-value -Wno-char-subscripts -Wno-unused-private-field %(AdditionalOptions)</AdditionalOptions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <AdditionalOptions>-fexceptions %(AdditionalOptions)</AdditionalOptions>
-      <LibraryDependencies>m;log;android</LibraryDependencies>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+      <LibraryDependencies>$(StlLibraryName);%(LibraryDependencies);m</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
@@ -83,6 +86,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="aura\_aura_aura.cpp" />
+    <ClCompile Include="filesystem\filesystem\_filesystem.cpp" />
     <ClCompile Include="filesystem\file\_file.cpp" />
     <ClCompile Include="framework.cpp" />
     <ClCompile Include="graphics\draw2d\_draw2d.cpp" />
@@ -90,9 +94,11 @@
     <ClCompile Include="graphics\visual\visual_icon.cpp" />
     <ClCompile Include="multithreading\service\service_plain_service.cpp" />
     <ClCompile Include="multithreading\_multithreading.cpp" />
+    <ClCompile Include="net\net_url.cpp" />
     <ClCompile Include="primitive\str\str_ch.cpp" />
     <ClCompile Include="primitive\str\str_ch_class.cpp" />
     <ClCompile Include="primitive\_primitive.cpp" />
+    <ClCompile Include="teste.cpp" />
     <ClCompile Include="user\colorertake5\_colorertake5.cpp" />
     <ClCompile Include="user\simple\simple_message_box.cpp" />
     <ClCompile Include="version.cpp" />

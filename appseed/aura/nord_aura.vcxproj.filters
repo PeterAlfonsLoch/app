@@ -43,6 +43,15 @@
     <ClCompile Include="graphics\draw2d\_draw2d.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
+    <ClCompile Include="filesystem\filesystem\_filesystem.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="teste.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="net\net_url.cpp">
+      <Filter>Source Files\net</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -2041,6 +2050,12 @@
     </Filter>
     <Filter Include="Source Files\aura\node\NewFilter1">
       <UniqueIdentifier>{43a75fc7-446b-453a-89d2-66b5f5ac3f23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\filesystem\filesystem">
+      <UniqueIdentifier>{4c299533-e47a-4b86-8444-68e456ab3c54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net">
+      <UniqueIdentifier>{ef0ad70c-7c4d-4778-89dd-63fae2a367fb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

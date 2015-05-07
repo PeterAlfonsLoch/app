@@ -76,7 +76,7 @@ namespace android
       return pFile;
    }
 
-   bool file::open(const char * lpszFileName, UINT nOpenFlags)
+   cres file::open(const ::file::path & lpszFileName, UINT nOpenFlags)
    {
 
       if (m_iFile != (UINT)hFileNull)
@@ -92,14 +92,13 @@ namespace android
 
       if(nOpenFlags & ::file::defer_create_directory)
       {
-         Application.dir().mk(System.dir().name(lpszFileName));
+         Application.dir().mk(lpszFileName.folder());
       }
 
       m_iFile = (UINT)hFileNull;
       m_strFileName.Empty();
 
       m_strFileName     = lpszFileName;
-      m_wstrFileName    = ::str::international::utf8_to_unicode(m_strFileName);
 
       ASSERT(sizeof(HANDLE) == sizeof(uint_ptr));
       ASSERT(::file::share_compat == 0);
@@ -231,7 +230,7 @@ namespace android
 
       m_iFile = (int32_t)hFile;
 
-      return TRUE;
+      return no_exception;
 
    }
 
@@ -541,7 +540,7 @@ namespace android
 
       ::file::file_status status;
       GetStatus(status);
-      return System.file().name_(status.m_strFullName);
+      return status.m_strFullName.name();
    }
 
    string file::GetFileTitle() const
@@ -550,7 +549,7 @@ namespace android
 
       ::file::file_status status;
       GetStatus(status);
-      return System.file().title_(status.m_strFullName);
+      return status.m_strFullName.title();
    }
 
    string file::GetFilePath() const
@@ -585,7 +584,7 @@ namespace android
 
 
 
-   int32_t PASCAL file_exception::OsErrorToException(LONG lOsErr)
+   ::file::exception::e_cause PASCAL file_exception::OsErrorToException(LONG lOsErr)
    {
       // NT Error codes
       switch ((UINT)lOsErr)
@@ -1590,7 +1589,7 @@ namespace android
 {
 
 
-    int32_t PASCAL file_exception::ErrnoToException(int32_t nErrno)
+	::file::exception::e_cause PASCAL file_exception::ErrnoToException(int32_t nErrno)
     {
        switch(nErrno)
        {

@@ -24,6 +24,7 @@
     <ApplicationType>Android</ApplicationType>
     <ApplicationTypeRevision>1.0</ApplicationTypeRevision>
     <ProjectName>axispixman</ProjectName>
+    <RootNamespace>axispixman</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'" Label="Configuration">
@@ -66,9 +67,13 @@
       <AdditionalOptions>-Wno-unused-const-variable -Wno-tautological-constant-out-of-range-compare -Wno-unused-function %(AdditionalOptions)</AdditionalOptions>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
+      <CppLanguageStandard>c++1y</CppLanguageStandard>
     </ClCompile>
+    <Link />
     <Link>
-      <LibraryDependencies>log;android;c;m</LibraryDependencies>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+      <LibraryDependencies>$(StlLibraryName);%(LibraryDependencies);m</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">

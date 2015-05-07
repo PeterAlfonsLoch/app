@@ -232,6 +232,12 @@
     <ClCompile Include="Source\FreeImageToolkit\Resize.cpp">
       <Filter>Toolkit Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\FreeImageToolkit\_Toolkit.cpp">
+      <Filter>Toolkit Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FreeImage\_FreeImage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\CacheFile.h">
