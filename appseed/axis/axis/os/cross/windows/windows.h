@@ -5,4 +5,4 @@
 
 
 
-CLASS_DECL_BASE WINBOOL GetCursorPos(LPPOINT lppoint);
+CLASS_DECL_AXIS WINBOOL GetCursorPos(LPPOINT lppoint);

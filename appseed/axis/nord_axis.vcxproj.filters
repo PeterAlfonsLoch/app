@@ -942,6 +942,15 @@
     <ClInclude Include="database\sqlitedb\sqlitedb_set.h">
       <Filter>Header Files\database\sqlitedb</Filter>
     </ClInclude>
+    <ClInclude Include="axis\os\cross\windows\windows.h">
+      <Filter>Header Files\axis\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\cross\windows\windows_user.h">
+      <Filter>Header Files\axis\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\cross\cross.h">
+      <Filter>Header Files\axis\os\cross</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -1231,6 +1240,12 @@
     </Filter>
     <Filter Include="Header Files\axis\os\cross\NewFilter1">
       <UniqueIdentifier>{ae996bb2-2c96-4351-a940-629e630418ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\axis\os\cross">
+      <UniqueIdentifier>{d6890dd3-c60f-4bf4-8ba6-2a8c01cd076a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\axis\os\cross\windows">
+      <UniqueIdentifier>{a4915a73-2a50-46e7-933d-4b164e3d9ad3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

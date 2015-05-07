@@ -59,7 +59,7 @@ namespace file
             //virtual string simple_path(const string & str1,const string & str2);
             //virtual string simple_path(const string & str1,const string & str2,const string & str3);
 
-            virtual ::file::listing & ls(::aura::application * papp,listing & listing) override;
+            virtual ::file::listing & ls(::aura::application * papp,listing & listing);
 
 
 

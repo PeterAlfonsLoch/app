@@ -12,14 +12,13 @@ namespace boot
 } // namespace boot
 
 
-class oswindow_data;
+struct oswindow_data;
 
 
 typedef ptr_array < oswindow_data > oswindow_dataptra;
 
 
 
-#pragma once
 
 
 namespace boot
@@ -63,7 +62,7 @@ typedef ptr_array < oswindow_data > oswindow_dataptra;
 *
 */
 
-class CLASS_DECL_AXIS oswindow_data
+struct CLASS_DECL_AXIS oswindow_data
 {
 
 #ifdef VSNORD
@@ -225,7 +224,7 @@ class mutex;
 //typedef hthread * HTHREAD;
 
 
-class oswindow_data;
+struct oswindow_data;
 
 
 

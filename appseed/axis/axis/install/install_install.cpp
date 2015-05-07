@@ -1389,7 +1389,7 @@ namespace install
          if(piaLen != NULL)
          {
 
-            straMd5 = *piaLen;
+            iaLen = *piaLen;
 
          }
 
