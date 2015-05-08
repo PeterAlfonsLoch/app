@@ -90,6 +90,8 @@
 
 #include "user/user_copydesk.cpp"
 
+#include "user/user_application_as_proxy_document.cpp"
+
 //Pasta de Z:\nordroid\app\appseed\base\user\userpresence
 
 #include "userpresence/userpresence_userpresence.cpp"

@@ -1310,6 +1310,9 @@
     <ClInclude Include="install_launcher.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="user\user\user_application_as_proxy_document.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="net\net_net.cpp">
@@ -2263,11 +2266,11 @@
     <ClCompile Include="filesystem\_filesystem.cpp">
       <Filter>Source Files\filesystem</Filter>
     </ClCompile>
+    <ClCompile Include="user\user\user_application_as_proxy_document.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>

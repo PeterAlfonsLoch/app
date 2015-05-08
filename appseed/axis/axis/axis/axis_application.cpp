@@ -5352,6 +5352,26 @@ namespace axis
    }
 
    
+   bool application::on_open_document(::aura::document * pdocument,var varFile)
+   {
+
+      UNREFERENCED_PARAMETER(pdocument);
+      UNREFERENCED_PARAMETER(varFile);
+      return true;
+
+   }
+
+
+   bool application::on_save_document(::aura::document * pdocument,var varFile)
+   {
+      
+      UNREFERENCED_PARAMETER(pdocument);
+      UNREFERENCED_PARAMETER(varFile);
+      return true;
+
+   }
+
+   
    void application::on_update_view(::aura::impact * pview,::aura::impact * pviewSender,LPARAM lHint,object* pHint)
    {
 

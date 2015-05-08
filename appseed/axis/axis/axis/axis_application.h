@@ -590,6 +590,11 @@ namespace axis
       virtual bool keyboard_focus_is_focusable(::user::elemental * pue);
       virtual bool keyboard_focus_OnSetFocus(::user::elemental * pue);
 
+
+      virtual bool on_open_document(::aura::document * pdocument, var varFile);
+      virtual bool on_save_document(::aura::document * pdocument,var varFile);
+
+
    };
 
 

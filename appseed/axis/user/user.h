@@ -330,6 +330,7 @@ namespace axis
 #include "simple_ui/simple_ui_interaction.h"
 #include "axis/user/user/user_document_data_map.h"
 #include "axis/user/user/user_document.h"
+#include "axis/user/user/user_application_as_proxy_document.h"
 #include "axis/database/database/database_user_interaction.h"
 #include "axis/user/user/user_impact.h"
 
