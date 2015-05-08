@@ -13,143 +13,11 @@
     <ClCompile Include="filesystem\file\file_edit_buffer.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="base\os\cross\metrowin\cross_metrowin_user.cpp">
-      <Filter>Source Files\base\os\cross\metrowin</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\android\android_trace_message.cpp">
-      <Filter>Source Files\base\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\android\android.cpp">
-      <Filter>Source Files\base\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\android\android_message_loop.cpp">
-      <Filter>Source Files\base\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\android\android_multithreading.cpp">
-      <Filter>Source Files\base\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\android\android_window_android.cpp">
-      <Filter>Source Files\base\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\android\android_win_base.cpp">
-      <Filter>Source Files\base\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\ansios\ansios_cross_win.cpp">
-      <Filter>Source Files\base\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\ansios\ansios_cross_windows_user.cpp">
-      <Filter>Source Files\base\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\ansios\ansios_cross_win_file.cpp">
-      <Filter>Source Files\base\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\ansios\ansios_file_std.cpp">
-      <Filter>Source Files\base\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\ansios\ansios_multithreading.cpp">
-      <Filter>Source Files\base\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base\base_application.cpp">
-      <Filter>Source Files\base\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base\base_core_copydesk.cpp">
-      <Filter>Source Files\base\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base\base_print_job.cpp">
-      <Filter>Source Files\base\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base\base_session.cpp">
-      <Filter>Source Files\base\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base\base_static_start.cpp">
-      <Filter>Source Files\base\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base\base_system.cpp">
-      <Filter>Source Files\base\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\base\base.cpp">
-      <Filter>Source Files\base\base</Filter>
-    </ClCompile>
-    <ClCompile Include="base\message\message.cpp">
-      <Filter>Source Files\base\message</Filter>
-    </ClCompile>
-    <ClCompile Include="base\message\message_user.cpp">
-      <Filter>Source Files\base\message</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\node.cpp">
-      <Filter>Source Files\base\node</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_android.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android1.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android2.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_copydesk.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_factory_exchange.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_trace.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_util.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_window_draw.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_interaction_impl.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_message_queue.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\hotplugin\hotplugin.cpp">
-      <Filter>Source Files\base\hotplugin</Filter>
-    </ClCompile>
-    <ClCompile Include="base\hotplugin\hotplugin_composer.cpp">
-      <Filter>Source Files\base\hotplugin</Filter>
-    </ClCompile>
-    <ClCompile Include="base\hotplugin\hotplugin_container_launcher.cpp">
-      <Filter>Source Files\base\hotplugin</Filter>
-    </ClCompile>
-    <ClCompile Include="base\hotplugin\hotplugin_host.cpp">
-      <Filter>Source Files\base\hotplugin</Filter>
-    </ClCompile>
-    <ClCompile Include="base\hotplugin\hotplugin_plugin.cpp">
-      <Filter>Source Files\base\hotplugin</Filter>
-    </ClCompile>
-    <ClCompile Include="base\install\install_plugin.cpp">
-      <Filter>Source Files\base\install</Filter>
-    </ClCompile>
-    <ClCompile Include="base\install\install_plugin_bare_paint_discreet.cpp">
-      <Filter>Source Files\base\install</Filter>
-    </ClCompile>
-    <ClCompile Include="base\install\install_plugin_bare_paint_full_screen.cpp">
-      <Filter>Source Files\base\install</Filter>
-    </ClCompile>
-    <ClCompile Include="base\install\install_plugin_bare_paint_veri_discreet.cpp">
-      <Filter>Source Files\base\install</Filter>
-    </ClCompile>
-    <ClCompile Include="base\install\install_starter_start.cpp">
-      <Filter>Source Files\base\install</Filter>
-    </ClCompile>
     <ClCompile Include="database\database\database_user_interaction.cpp">
       <Filter>Source Files\database\database</Filter>
     </ClCompile>
-    <ClCompile Include="base\os\android\android_vsnord_native_app_glue.cpp">
-      <Filter>Source Files\base\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\android\android_window_anative.cpp">
-      <Filter>Source Files\base\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\android\android_simple_app.cpp">
-      <Filter>Source Files\base\os\android</Filter>
+    <ClCompile Include="base\_base_base.cpp">
+      <Filter>Source Files\base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -683,12 +551,6 @@
     <Filter Include="Source Files\base\base">
       <UniqueIdentifier>{a41f383b-2bc0-45b0-be3e-1ddb7c686808}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\base\message">
-      <UniqueIdentifier>{a4978bc8-a78a-49b1-bc47-b6669eab3aba}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\base\base_policy">
-      <UniqueIdentifier>{562282db-4809-4abc-bec0-b36e97d41ee2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\base\node">
       <UniqueIdentifier>{87faf8a8-9187-4218-af86-d72946de5fe6}</UniqueIdentifier>
     </Filter>
@@ -697,12 +559,6 @@
     </Filter>
     <Filter Include="Source Files\base\node\ansios">
       <UniqueIdentifier>{eceb6546-e654-444b-b854-2c8c6e2a08f9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\base\hotplugin">
-      <UniqueIdentifier>{37061f1f-bdfc-4873-a961-0a11b4094242}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\base\install">
-      <UniqueIdentifier>{8eb74e3a-5ce9-4b53-b4d4-57280f4233d0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\primitive">
       <UniqueIdentifier>{ea8490d1-3a31-4678-870a-765bacec078b}</UniqueIdentifier>
