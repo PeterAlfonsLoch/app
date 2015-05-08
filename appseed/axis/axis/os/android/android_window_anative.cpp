@@ -80,7 +80,7 @@ void window_android_anative::update_window(oswindow interaction_impl, COLORREF *
    */
 
 
-   copy_colorref(width(rect), height(rect), (COLORREF *) buffer.bits, pOsBitmapData, iStride);
+   ::draw2d::copy_colorref(width(rect), height(rect), (COLORREF *)buffer.bits, width(rect) * sizeof(COLORREF),  pOsBitmapData, iStride);
 
    ANativeWindow_unlockAndPost(interaction_impl->m_engine.app->window);
 

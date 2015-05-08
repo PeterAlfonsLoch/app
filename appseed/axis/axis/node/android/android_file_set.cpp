@@ -7,7 +7,8 @@ namespace android
 
 
    file_set::file_set(::aura::application * papp) :
-      ::object(papp)
+      ::object(papp),
+	   m_listing(papp)
    {
 
    }
@@ -44,7 +45,7 @@ namespace android
    ::count file_set::get_file_count()
    {
 
-      return m_straFile.get_size();
+      return m_listing.get_size();
 
    }
 
@@ -52,7 +53,7 @@ namespace android
    void file_set::file_at(::index i, string & str)
    {
 
-      str = m_straFile[i];
+      str = m_listing[i];
 
    }
 
@@ -60,7 +61,7 @@ namespace android
    ::index file_set::find_first_file(const char * lpcsz, ::index iStart)
    {
 
-      return m_straFile.find_first_ci(lpcsz, iStart);
+      return m_listing.find_first_ci(lpcsz, iStart);
 
    }
 
@@ -84,7 +85,7 @@ namespace android
    void file_set::clear_file()
    {
 
-      m_straFile.remove_all();
+      m_listing.remove_all();
 
    }
 
@@ -121,16 +122,18 @@ namespace android
 
             strFilter.trim("\\/");
 
+			m_listing.clear();
+
             if(bRecursive)
             {
 
-               Application.dir().rls_pattern(m_straSearch.element_at(i), strFilter, &m_straFile);
+				m_listing.rls_pattern(m_straSearch.element_at(i), strFilter);
 
             }
             else
             {
 
-               Application.dir().ls_pattern(m_straSearch.element_at(i), strFilter, &m_straFile);
+				m_listing.ls_pattern(m_straSearch.element_at(i), strFilter);
 
             }
 

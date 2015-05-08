@@ -11,10 +11,10 @@ namespace android
    public:
 
 
-      stringa        m_straSearch;
-      bool_array     m_baRecursive;
-      stringa        m_straFilter;
-      stringa        m_straFile;
+      stringa			m_straSearch;
+      bool_array		m_baRecursive;
+      stringa			m_straFilter;
+      ::file::listing	m_listing;
 
 
       file_set(::aura::application * papp);

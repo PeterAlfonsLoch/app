@@ -18,6 +18,11 @@
 #ifdef VSNORD
 
 #include "android_vsnord_native_app_glue.h"
+//#include "android_window_anative.h"
+
+#else
+
+//#include "android_window_android.h"
 
 #endif // VSNORD
 //#include "android_graphics.h"

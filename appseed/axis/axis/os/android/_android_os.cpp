@@ -5,17 +5,19 @@
 
  //Pasta de Z:\nordroid\app\appseed\base\base\os\android
 
-#include "android_c.cpp"
+#include "android.cpp"
 #include "android_message_loop.cpp"
 #include "android_multithreading.cpp"
 #include "android_simple_app.cpp"
 #include "android_trace_message.cpp"
 #ifdef VSNORD
 #include "android_vsnord_native_app_glue.cpp"
+#include "android_window_anative.cpp"
+#else
+#include "android_window_android.cpp"
+
 #endif
 #include "android_windowing.cpp"
-//#include "android_window_anative.cpp"
-#include "android_window_android.cpp"
 //#include "android_window_cairo_egl.cpp"
 #include "android_win_base.cpp"
 //2015-01-11  11:54                 0 _android_node.cpp"

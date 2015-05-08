@@ -13,18 +13,6 @@
     <ClCompile Include="programming\javascript\javascript_tinyjs_functions.cpp">
       <Filter>Source Files\programming\javascript</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_application.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_dir_application.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_dir_system.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_system.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
     <ClCompile Include="axis\crypto\crypto_crypto.cpp">
       <Filter>Source Files\axis\crypto</Filter>
     </ClCompile>
@@ -48,21 +36,6 @@
     </ClCompile>
     <ClCompile Include="axis\axis\axis_system.cpp">
       <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\data\data_simple_item.cpp">
-      <Filter>Source Files\primitive\data</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\data\data_tree.cpp">
-      <Filter>Source Files\primitive\data</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\data\data_tree_item.cpp">
-      <Filter>Source Files\primitive\data</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\datetime\datetime_departament.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\datetime\datetime_value.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
     <ClCompile Include="database\database\_database.cpp">
       <Filter>Source Files\database\database</Filter>
@@ -124,9 +97,6 @@
     <ClCompile Include="axis\os\android\android_window_cairo_egl.cpp">
       <Filter>Source Files\axis\os\android</Filter>
     </ClCompile>
-    <ClCompile Include="axis\os\android\android_c.cpp">
-      <Filter>Source Files\axis\os\android</Filter>
-    </ClCompile>
     <ClCompile Include="axis\os\android\android_message_loop.cpp">
       <Filter>Source Files\axis\os\android</Filter>
     </ClCompile>
@@ -144,6 +114,45 @@
     </ClCompile>
     <ClCompile Include="axis\node\android\android_crypto.cpp">
       <Filter>Source Files\axis\node\android</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\android\android_axis_dir.cpp">
+      <Filter>Source Files\axis\node\android</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\android\android_axis_file_system.cpp">
+      <Filter>Source Files\axis\node\android</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\android\android_factory_exchange.cpp">
+      <Filter>Source Files\axis\node\android</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\android\android_file_set.cpp">
+      <Filter>Source Files\axis\node\android</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\android\android_ip_enum.cpp">
+      <Filter>Source Files\axis\node\android</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\android\android_port_forward.cpp">
+      <Filter>Source Files\axis\node\android</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\android\android_thread_local_storage.cpp">
+      <Filter>Source Files\axis\node\android</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\android\android1.cpp">
+      <Filter>Source Files\axis\node\android</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\_filesystem.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="user\_user.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\graphics_window_graphics.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\message\_message.cpp">
+      <Filter>Source Files\axis\message</Filter>
+    </ClCompile>
+    <ClCompile Include="install_plugin_library_list.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -954,6 +963,15 @@
     <ClInclude Include="axis\node\android\android_axis_file_system.h">
       <Filter>Header Files\axis\node\android</Filter>
     </ClInclude>
+    <ClInclude Include="axis\os\android\android_vsnord_native_app_glue.h">
+      <Filter>Header Files\axis\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\android\android_window_anative.h">
+      <Filter>Header Files\axis\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics_window_graphics.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -1160,9 +1178,6 @@
     <Filter Include="Source Files\filesystem\fs">
       <UniqueIdentifier>{1edf2fb4-976a-4423-af91-bded327dcac4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\filesystem\file">
-      <UniqueIdentifier>{13b0e18d-d563-4d15-8237-c3604853d8db}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\graphics">
       <UniqueIdentifier>{290d187d-2042-4a92-ac8d-21fb783d7767}</UniqueIdentifier>
     </Filter>
@@ -1217,15 +1232,6 @@
     <Filter Include="Source Files\axis\fontopus">
       <UniqueIdentifier>{e4b2702f-cdad-4ec3-9cdc-5e5e8172b562}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\primitive">
-      <UniqueIdentifier>{2d55c078-d457-48e1-84db-89f081092bd0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\primitive\data">
-      <UniqueIdentifier>{85b2331d-4e01-4f83-82bd-4c3c8e5df256}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\primitive\datetime">
-      <UniqueIdentifier>{365d1857-9bb2-4cd2-8567-ae5643d623d3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\database">
       <UniqueIdentifier>{0f205395-f538-45e7-a7a3-865dd1555ef2}</UniqueIdentifier>
     </Filter>
@@ -1250,13 +1256,19 @@
     <Filter Include="Header Files\axis\os\cross\windows">
       <UniqueIdentifier>{a4915a73-2a50-46e7-933d-4b164e3d9ad3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\filesystem\filesystem">
+      <UniqueIdentifier>{13b0e18d-d563-4d15-8237-c3604853d8db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user">
+      <UniqueIdentifier>{b0b5ddce-af0a-4e9e-8918-47765a512a7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\axis\message">
+      <UniqueIdentifier>{d7512f7c-45c0-433e-8b64-361ab37a2c10}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="axis\axis\axis.inl">
       <Filter>Header Files\axis\axis</Filter>
-    </None>
-    <None Include="axis.def">
-      <Filter>Source Files</Filter>
     </None>
   </ItemGroup>
 </Project>

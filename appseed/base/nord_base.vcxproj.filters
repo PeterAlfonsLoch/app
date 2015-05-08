@@ -16,9 +16,6 @@
     <ClCompile Include="base\os\cross\metrowin\cross_metrowin_user.cpp">
       <Filter>Source Files\base\os\cross\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="base\os\android\android_simple_app.cpp">
-      <Filter>Source Files\base\os\android</Filter>
-    </ClCompile>
     <ClCompile Include="base\os\android\android_trace_message.cpp">
       <Filter>Source Files\base\os\android</Filter>
     </ClCompile>
@@ -149,6 +146,9 @@
       <Filter>Source Files\base\os\android</Filter>
     </ClCompile>
     <ClCompile Include="base\os\android\android_window_anative.cpp">
+      <Filter>Source Files\base\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\android\android_simple_app.cpp">
       <Filter>Source Files\base\os\android</Filter>
     </ClCompile>
   </ItemGroup>
