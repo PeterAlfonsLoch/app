@@ -126,7 +126,6 @@ namespace userex
 
 
       // form
-      System.factory().creatable_small < ::aura::document >();
       System.factory().creatable_small < pane_tab_view >();
       System.factory().creatable_small < form_frame >();
       System.factory().creatable_small < form_child_frame >();

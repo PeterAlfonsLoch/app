@@ -59,6 +59,13 @@ string dir::appdata(const char * lpcsz)
       strCa2 = strCa2.substr(0, iFind - 1) + "_" + strCa2.substr(iStart, iFind - iStart) + strCa2.substr(iFind + 1);
 
    }
+
+#ifdef X86
+
+   str = path(str,"x86");
+#else
+   str = path(str,"x64");
+#endif
    
    str = path(str, strCa2);
    

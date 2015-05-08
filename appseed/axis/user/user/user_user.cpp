@@ -34,6 +34,10 @@ namespace user
    bool user::initialize1()
    {
 
+      System.factory().creatable_small < ::aura::document >();
+      System.factory().creatable_small < ::user::application_as_proxy_document >();
+
+
       if(m_pauraapp->is_session())
       {
          m_pwindowmap = new class ::user::window_map(get_app());

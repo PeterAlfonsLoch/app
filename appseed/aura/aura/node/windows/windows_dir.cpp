@@ -904,6 +904,16 @@ namespace windows
 
          m_strCa2AppData = m_strAppData / "ca2" / strRelative;
 
+#ifdef X86
+
+         m_strCa2AppData /= "x86";
+
+#else
+
+         m_strCa2AppData /= "x64";
+
+#endif
+
       }
 
 

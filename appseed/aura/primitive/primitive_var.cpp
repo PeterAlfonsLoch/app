@@ -787,7 +787,7 @@ bool var::is_empty() const
    case type_double:
       return m_d == 0.0;
    case type_element:
-      return m_sp.is_set();
+      return m_sp.is_null();
    case type_pvar:
       return m_pvar->is_empty();
    case type_id:
