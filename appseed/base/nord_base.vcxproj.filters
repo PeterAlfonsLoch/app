@@ -1,23 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="user\_user.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\graphics_window_graphics.cpp">
-      <Filter>Source Files\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_edit_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database\database_user_interaction.cpp">
-      <Filter>Source Files\database\database</Filter>
-    </ClCompile>
     <ClCompile Include="base\_base_base.cpp">
       <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\android\_android_os.cpp">
+      <Filter>Source Files\base\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\android\android_simple_app.cpp">
+      <Filter>Source Files\base\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\android\android.cpp">
+      <Filter>Source Files\base\os\android</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -500,33 +497,6 @@
     <Filter Include="Source Files">
       <UniqueIdentifier>{ee40fdb7-2df5-45d6-bbc4-c3eddbf2ef4f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\user">
-      <UniqueIdentifier>{1219bc98-e0ba-4d7e-bf32-cf579055d9bd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\user\simple_ui">
-      <UniqueIdentifier>{1c941d86-5c66-4111-977d-7241693acb76}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\user\user">
-      <UniqueIdentifier>{dd62721b-a7fa-4a0c-bc48-ace0683d37ef}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\user\simple">
-      <UniqueIdentifier>{3513a9f1-2597-49ef-b5b0-5801ecfb5149}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\user\userpresence">
-      <UniqueIdentifier>{61a4bed2-8534-4deb-bb34-b3dac1cff40a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\user\fontopus">
-      <UniqueIdentifier>{c821954f-6926-4268-b997-b3d85ffc82ed}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\graphics">
-      <UniqueIdentifier>{ec6de480-3823-4202-8f90-15d4c7f81c83}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\filesystem">
-      <UniqueIdentifier>{c60026f2-49d1-45f6-88e4-ff5af3de94c3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\filesystem\file">
-      <UniqueIdentifier>{9d2573f9-824d-4184-9be6-6ff32251871e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\base">
       <UniqueIdentifier>{e6443aae-e4df-4131-bf54-be9cacb360c3}</UniqueIdentifier>
     </Filter>
@@ -560,21 +530,6 @@
     <Filter Include="Source Files\base\node\ansios">
       <UniqueIdentifier>{eceb6546-e654-444b-b854-2c8c6e2a08f9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\primitive">
-      <UniqueIdentifier>{ea8490d1-3a31-4678-870a-765bacec078b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\primitive\datetime">
-      <UniqueIdentifier>{67022af8-27d1-4a54-9351-5bcbe88631c2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\primitive\data">
-      <UniqueIdentifier>{54aa24f3-93f7-448f-8333-aae0b6b32022}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\database">
-      <UniqueIdentifier>{4230e408-fc53-49ee-b476-5b73e2f7da8a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\database\database">
-      <UniqueIdentifier>{eec1fcaf-b93b-485f-8c1f-d94f0c20ade4}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="user\user.inl">
@@ -585,9 +540,6 @@
     </None>
     <None Include="base\base\base_system_xml.inl">
       <Filter>Header Files\base\base</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
   </ItemGroup>
 </Project>

@@ -82,7 +82,6 @@
     <ClCompile Include="database\simpledb\simpledb_file_system_size.cpp" />
     <ClCompile Include="filesystem\filehandler\_filehandler.cpp" />
     <ClCompile Include="filesystem\filemanager\_filemanager.cpp" />
-    <ClCompile Include="filesystem\file\file_html_buffer.cpp" />
     <ClCompile Include="filesystem\userfs\_userfs.cpp" />
     <ClCompile Include="framework.cpp" />
     <ClCompile Include="math\binary_operation.cpp" />
@@ -94,7 +93,12 @@
     <ClCompile Include="math\_integer.cpp" />
     <ClCompile Include="net\hi5\hi5_oauth.cpp" />
     <ClCompile Include="net\hi5\hi5_twit.cpp" />
-    <ClCompile Include="net\usernet\usernet_network_configuration.cpp" />
+    <ClCompile Include="net\usernet\usernet_network_configuration.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="primitive\primitive_int_biunique.cpp" />
     <ClCompile Include="user\_user.cpp" />
   </ItemGroup>

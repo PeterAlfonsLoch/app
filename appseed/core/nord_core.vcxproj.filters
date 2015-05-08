@@ -46,9 +46,6 @@
     <ClCompile Include="filesystem\filehandler\_filehandler.cpp">
       <Filter>Source Files\filesystem\filehandler</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_html_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
     <ClCompile Include="net\hi5\hi5_twit.cpp">
       <Filter>Source Files\net\hi5</Filter>
     </ClCompile>
@@ -925,9 +922,6 @@
     </Filter>
     <Filter Include="Source Files\filesystem\filehandler">
       <UniqueIdentifier>{476730ad-42ff-4f92-8159-1f05842a5ad7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\filesystem\file">
-      <UniqueIdentifier>{09d92fa4-983f-4a67-8843-914339044731}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\net">
       <UniqueIdentifier>{f7a5ac47-e883-462e-97f8-fa42eee7286b}</UniqueIdentifier>

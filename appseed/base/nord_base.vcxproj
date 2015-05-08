@@ -75,12 +75,26 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="base\os\android\android.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\os\android\android_simple_app.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\os\android\_android_os.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="base\_base_base.cpp" />
-    <ClCompile Include="database\database\database_user_interaction.cpp" />
-    <ClCompile Include="filesystem\file\file_edit_buffer.cpp" />
     <ClCompile Include="framework.cpp" />
-    <ClCompile Include="graphics\graphics_window_graphics.cpp" />
-    <ClCompile Include="user\_user.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base\base\base.h" />
@@ -216,7 +230,6 @@
     <ClInclude Include="user\user\user_window_util.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="base.def" />
     <None Include="base\base\base.inl" />
     <None Include="base\base\base_system_xml.inl" />
     <None Include="user\user.inl" />

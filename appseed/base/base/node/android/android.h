@@ -33,11 +33,11 @@ string get_error_message(DWORD dwError);
 #include "android1.h"
 #include "android_implementation.h"
 #include "android_factory_exchange.h"
-#include "android_window_draw.h"
+//#include "android_window_draw.h"
 //#include "android_window.h"
-#include "android_interaction_impl.h"
-#include "android_copydesk.h"
-#include "android_message_queue.h"
+//#include "android_interaction_impl.h"
+//#include "android_copydesk.h"
+//#include "android_message_queue.h"
 
 #define NULL_REF(class) (*((class *) NULL))
 // xxx CLASS_DECL_BASE WNDPROC AfxGetAfxWndProc();
