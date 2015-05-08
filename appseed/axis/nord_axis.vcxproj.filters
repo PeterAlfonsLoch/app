@@ -142,6 +142,9 @@
     <ClCompile Include="axis\os\android\android_vsnord_native_app_glue.cpp">
       <Filter>Source Files\axis\os\android</Filter>
     </ClCompile>
+    <ClCompile Include="axis\node\android\android_crypto.cpp">
+      <Filter>Source Files\axis\node\android</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -633,16 +636,10 @@
     <ClInclude Include="axis\node\android\android_crypto.h">
       <Filter>Header Files\axis\node\android</Filter>
     </ClInclude>
-    <ClInclude Include="axis\node\android\android_dir.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
     <ClInclude Include="axis\node\android\android_factory_exchange.h">
       <Filter>Header Files\axis\node\android</Filter>
     </ClInclude>
     <ClInclude Include="axis\node\android\android_file_set.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_file_system.h">
       <Filter>Header Files\axis\node\android</Filter>
     </ClInclude>
     <ClInclude Include="axis\node\android\android_ip_enum.h">
@@ -950,6 +947,12 @@
     </ClInclude>
     <ClInclude Include="axis\os\cross\cross.h">
       <Filter>Header Files\axis\os\cross</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\android\android_axis_dir.h">
+      <Filter>Header Files\axis\node\android</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\android\android_axis_file_system.h">
+      <Filter>Header Files\axis\node\android</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

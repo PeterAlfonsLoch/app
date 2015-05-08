@@ -860,7 +860,8 @@ namespace crypto
 
    }
 
-   string crypto::get_crypt_key_file_path()
+
+   ::file::path crypto::get_crypt_key_file_path()
    {
 
       ::exception::throw_interface_only(get_app());

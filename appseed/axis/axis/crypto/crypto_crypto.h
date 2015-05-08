@@ -71,7 +71,7 @@ namespace crypto
       virtual bool v5_validate_plain_password(const char * pszPassword);
       virtual string v5_get_password_hash(const char * pszPassword,int32_t iOrder = 0);
 
-      virtual string get_crypt_key_file_path();
+      virtual ::file::path get_crypt_key_file_path();
       virtual string defer_get_cryptkey();
 
 

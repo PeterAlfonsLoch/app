@@ -18,10 +18,10 @@ namespace android
    }
 
 
-   string crypto::get_crypt_key_file_path()
+   ::file::path crypto::get_crypt_key_file_path()
    {
 
-      return System.dir().path(getenv("home"), ".ca2/cryptkey");
+      return ::file::path(getenv("home")) /  ".ca2/cryptkey";
 
    }
 
