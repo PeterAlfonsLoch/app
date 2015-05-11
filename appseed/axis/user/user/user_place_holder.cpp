@@ -258,4 +258,21 @@ namespace user
 
    }
 
+   bool place_holder::_001OnCmdMsg(::aura::cmd_msg * pcmdmsg)
+   {
+
+      // then pump through frame
+      if(::user::interaction::_001OnCmdMsg(pcmdmsg))
+         return TRUE;
+
+      // then pump through parent
+      sp(::user::interaction) puiParent = GetParent();
+      if(puiParent != NULL && puiParent->_001OnCmdMsg(pcmdmsg))
+         return TRUE;
+
+      return false;
+
+   }
+
+
 } // namespace user

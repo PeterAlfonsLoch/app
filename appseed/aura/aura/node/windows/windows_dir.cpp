@@ -395,48 +395,41 @@ namespace windows
    bool dir::is(const ::file::path & lpcszPath, ::aura::application * papp)
    {
       
-      bool bIsDir;
-
-      uint32_t uiLastError;
-
-      /*if(m_isdirmap.lookup(lpcszPath, bIsDir, uiLastError))
-      {
-         if(!bIsDir)
-         {
-            ::SetLastError(uiLastError);
-         }
-         return bIsDir;
-      }*/
-
       if(::file::dir::system::is(lpcszPath, papp))
          return true;
 
-
       string strPath(lpcszPath);
+
       if(strPath.get_length() >= MAX_PATH)
       {
+
          if(::str::begins(strPath,astr.strDoubleBackSlash))
          {
+
             strPath = "\\\\?\\UNC" + strPath.Mid(1);
+
          }
          else
          {
+
             strPath = "\\\\?\\" + strPath;
+
          }
+
       }
+
       DWORD dwAttrib;
+
       dwAttrib = GetFileAttributesW(::str::international::utf8_to_unicode(strPath));
-      /*if(dwAttrib == INVALID_FILE_ATTRIBUTES)
-      {
-         dwAttrib = GetFileAttributes(lpcszPath);
-      }*/
       
-      bIsDir = (dwAttrib != INVALID_FILE_ATTRIBUTES) && (dwAttrib & FILE_ATTRIBUTE_DIRECTORY);
+      bool bIsDir = (dwAttrib != INVALID_FILE_ATTRIBUTES) && (dwAttrib & FILE_ATTRIBUTE_DIRECTORY);
       
       m_isdirmap.set(lpcszPath, bIsDir, bIsDir ? 0 : ::GetLastError());
 
       return bIsDir;
+
    }
+
       
    //bool dir::is(const ::file::path & strPath, ::aura::application * papp)
    //{

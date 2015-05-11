@@ -104,7 +104,7 @@ namespace filemanager
 
       }
 
-      sp(::create) createcontext(allocer());
+      sp(::create) createcontext(pfilemanagerdata->allocer());
       
       createcontext->m_bMakeVisible = false;
       createcontext->m_puiParent = pwndParent;

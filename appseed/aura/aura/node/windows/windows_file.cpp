@@ -190,7 +190,7 @@ retry:
             goto retry;
          }
 
-         return fesp(get_app(), file_exception::OsErrorToException(dwLastError), dwLastError, lpszFileName);
+         return canew(::file::exception(get_app(), file_exception::OsErrorToException(dwLastError), dwLastError, lpszFileName));
 
       }
 

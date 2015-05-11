@@ -117,7 +117,15 @@ namespace file
 
 } // namespace file
 
-typedef ::file::exception_sp fesp;
+
+inline ::file::exception_sp fesp() { return (::file::exception * )NULL; }
+inline ::file::exception_sp fesp(e_context_switcher_no_exception) { return (::file::exception *)NULL; }
+inline ::file::exception_sp fesp(e_context_switcher_failed) { return canew(::file::exception(::get_thread_app())); }
+inline ::file::exception_sp fesp(::aura::application * papp,::file::exception::e_cause cause = ::file::exception::none,LONG lOsError = -1,const char * lpszArchiveName = NULL)
+{
+   return canew(::file::exception(papp,cause,lOsError,lpszArchiveName));
+}
+inline ::file::exception_sp fesp(::file::exception * p) { return p; }
 
 CLASS_DECL_AURA void throw_file_exception(::aura::application * papp,::file::exception::e_cause cause,LONG lOsError,const char * lpszFileName = NULL);
 
