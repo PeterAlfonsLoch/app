@@ -27,11 +27,14 @@ namespace windows
    }
 
 
+   
    crypto::~crypto()
    {
+
    }
+
    
-   string crypto::get_crypt_key_file_path()
+   ::file::path crypto::get_crypt_key_file_path()
    {
 
       return Application.dir().userappdata() / ".ca2/databin.bin";

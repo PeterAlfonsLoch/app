@@ -14,7 +14,7 @@ namespace windows
       crypto(::aura::application * papp);
       virtual ~crypto();
 
-      string get_crypt_key_file_path();
+      ::file::path get_crypt_key_file_path();
       virtual bool encrypt(primitive::memory & storageEncrypt, const primitive::memory & storageDecrypt, const char * pszSalt);
       virtual bool decrypt(primitive::memory & storageDecrypt, const primitive::memory & storageEncrypt, const char * pszSalt);
 
