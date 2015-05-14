@@ -112,6 +112,10 @@ namespace dynamic_source
       void prepare1(const char * pszSource, const char * pszDest);
 
 
+      virtual void parse_pstr_set();
+
+      virtual void pstr_set(id pszTopic,id idLocale,id idSchema,const char * psz);
+
    };
 
 

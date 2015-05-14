@@ -2005,44 +2005,47 @@ ch_else:
 
       if(::str::find_ci("pstr_set", psz) && ::str::ends_ci(psz, ".txt"))
       {
-         string strCat;
-         strCat = m_pmanager->m_strNetseedDsCa2Path/ "core\\netnode_persistent_ui_str.ds";
-         string strInclude = strCat;
-         ::str::begins_eat_ci(strInclude, m_pmanager->m_strNetseedDsCa2Path);
-         ::str::ends_eat_ci(strInclude, ".ds");
-         script_instance * pinstance = m_pmanager->get(strInclude);
-         if(pinstance != NULL)
-         {
-            string strError;
-            pinstance->initialize(pinstance, NULL, NULL, m_pmanager);
-            ::dynamic_source::ds_script * pdsscript = dynamic_cast < ds_script * > (pinstance->m_pscript);
-            if(pdsscript != NULL)
-            {
-               try
-               {
-                  pdsscript->m_memfileError.seek_to_begin();
-                  m_pmanager->m_strPersistentError += pdsscript->m_memfileError.to_string();
-               }
-               catch(...)
-               {
-               }
-            }
-            try
-            {
-               avoid_parsing_exception avoidparsingexception;
-               pinstance->run();
-            }
-            catch(...)
-            {
-            }
-            try
-            {
-               pinstance->destroy();
-            }
-            catch(...)
-            {
-            }
-         }
+         //string strCat;
+         //strCat = m_pmanager->m_strNetseedDsCa2Path/ "core\\netnode_persistent_ui_str.ds";
+         //string strInclude = strCat;
+         //::str::begins_eat_ci(strInclude, m_pmanager->m_strNetseedDsCa2Path);
+         //::str::ends_eat_ci(strInclude, ".ds");
+         //script_instance * pinstance = m_pmanager->get(strInclude);
+         //if(pinstance != NULL)
+         //{
+         //   string strError;
+         //   pinstance->initialize(pinstance, NULL, NULL, m_pmanager);
+         //   ::dynamic_source::ds_script * pdsscript = dynamic_cast < ds_script * > (pinstance->m_pscript);
+         //   if(pdsscript != NULL)
+         //   {
+         //      try
+         //      {
+         //         pdsscript->m_memfileError.seek_to_begin();
+         //         m_pmanager->m_strPersistentError += pdsscript->m_memfileError.to_string();
+         //      }
+         //      catch(...)
+         //      {
+         //      }
+         //   }
+         //   try
+         //   {
+         //      avoid_parsing_exception avoidparsingexception;
+         //      pinstance->run();
+         //   }
+         //   catch(...)
+         //   {
+         //   }
+         //   try
+         //   {
+         //      pinstance->destroy();
+         //   }
+         //   catch(...)
+         //   {
+         //   }
+         //}
+
+         parse_pstr_set();
+
       }
       else if(::str::begins_eat_ci(str,m_pmanager->m_strNetseedDsCa2Path/ "core\\persistent")
          && ::str::ends_eat_ci(str, ".ds")
@@ -2161,6 +2164,74 @@ ch_else:
          strSource = strSource.Mid(iLen);
       }
       return strDest;
+   }
+
+
+   void script_compiler::parse_pstr_set()
+   {
+
+      ::file::listing straFile(get_app());
+
+      straFile.rls(m_pmanager->m_strNetnodePath / "net/netseed/core/pstr_set");
+
+      for(int i = 0; i < straFile.get_count(); i++)
+      {
+         string strFile = straFile[i];
+         if(::str::find_ci(".svn",strFile) >= 0 || !::str::ends_ci(strFile,".txt"))
+            continue;
+         strFile = Application.file().as_string(strFile);
+         stringa straLine;
+         straLine.explode("\r\n",strFile);
+         string strExtra;
+         for(int j = 0; j < straLine.get_count(); j++)
+         {
+            string strLine = straLine[j];
+            const char * psz = strLine;
+            try
+            {
+               ::str::consume_spaces(psz,0);
+               string strId = ::str::consume_c_quoted_value(psz);
+               ::str::consume_spaces(psz,1);
+               string strLocale = ::str::consume_c_quoted_value(psz);
+               ::str::consume_spaces(psz,1);
+               string strSchema = ::str::consume_c_quoted_value(psz);
+               ::str::consume_spaces(psz,1);
+               string strValue = ::str::consume_c_quoted_value(psz);
+               strExtra = "";
+               try
+               {
+                  ::str::consume_spaces(psz,1);
+                  strExtra = ::str::consume_c_quoted_value(psz);
+               }
+               catch(...)
+               {
+               }
+               if(strExtra.has_char())
+               {
+                  pstr_set(strId + "." + strExtra,strLocale,strSchema,strValue);
+               }
+               else
+               {
+                  pstr_set(strId,strLocale,strSchema,strValue);
+               }
+
+            }
+            catch(...)
+            {
+            }
+         }
+      }
+
+   }
+
+
+   void script_compiler::pstr_set(id pszTopic,id idLocale,id idSchema,const char * psz)
+   {
+
+      retry_single_lock sl(&m_pmanager->m_mutexPersistentStr,millis(0),millis(840));
+
+      System.str().set(pszTopic,idLocale,idSchema,psz);
+
    }
 
 
