@@ -68,6 +68,9 @@ namespace dynamic_source
       ::file::path                              m_strTime;
 
 
+      mutex                                     m_mutex;
+
+
       script_compiler(::aura::application * papp);
       virtual ~script_compiler();
 

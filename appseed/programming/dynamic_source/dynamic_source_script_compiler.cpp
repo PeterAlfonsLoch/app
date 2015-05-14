@@ -23,6 +23,7 @@ namespace dynamic_source
       ::object(papp),
       m_memfileLibError(papp),
       m_mutexLibrary(papp),
+      m_mutex(papp),
       m_libraryLib(papp)
    {
 
@@ -865,6 +866,9 @@ namespace dynamic_source
 
    void script_compiler::handle_file_action(::file_watcher::id watchid, const char * pszFolder, const char * psz, ::file_watcher::e_action eaction)
    {
+
+      synch_lock sl(&m_mutex);
+
       UNREFERENCED_PARAMETER(eaction);
       ::file::path str = ::file::path(pszFolder) / psz;
       string strTransfer = str;

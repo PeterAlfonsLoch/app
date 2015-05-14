@@ -140,6 +140,7 @@ namespace file_watcher
          pWatch->m_overlapped.hEvent   = CreateEvent(NULL,TRUE,FALSE,NULL);
          pWatch->m_dwNotify            = m_dwNotify;
          pWatch->m_bRecursive          = bRecursive;
+         pWatch->m_bStop               = false;
 
 
          if(RefreshWatch(pWatch))
