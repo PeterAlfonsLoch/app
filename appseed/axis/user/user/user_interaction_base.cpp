@@ -2125,9 +2125,7 @@ namespace user
    ::user::interaction * interaction_base::GetFocus()
    {
 
-      throw interface_only_exception(get_app());
-
-      return NULL;
+      return Session.get_focus_guie();
 
    }
 

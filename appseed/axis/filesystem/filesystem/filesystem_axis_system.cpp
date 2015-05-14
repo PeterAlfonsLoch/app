@@ -356,7 +356,7 @@ restart:
       int32_t iIndex;
       for(int32_t i = 0; i < stra.get_size(); i++)
       {
-         string str = stra[i];
+         ::file::path str = stra[i].name();
          if(::str::begins_eat_ci(str, pszPrefix))
          {
             if(str.get_length() < 2)

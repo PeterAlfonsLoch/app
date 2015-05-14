@@ -20,6 +20,8 @@ namespace user
 
       m_peditor = new colorertake5::base_editor(papp);
       m_plines = new colorertake5::text_lines;
+
+      m_iLineHeight = 0;
          m_bPassword = false;
          m_ptree              = NULL;
          m_bOwnData           = false;
@@ -42,6 +44,7 @@ namespace user
          m_y                  = -1;
          m_iaLineIndex.allocate(0,100000);
          m_iaLineEndIndex.allocate(0,100000);
+         m_iaAccumulLineIndex.allocate(0,100000);
          m_iaCLineIndex.allocate(0,1000);
          m_iViewOffset        = 0;
          m_iViewSize          = 1000;
@@ -50,7 +53,7 @@ namespace user
          set_cursor(::visual::cursor_text_select);
 
          m_scrollinfo.m_bVScrollBarEnable = false;
-         m_scrollinfo.m_bVScrollBarEnable = false;
+         m_scrollinfo.m_bHScrollBarEnable = false;
 
       }
 
@@ -94,6 +97,10 @@ namespace user
 
       IGUI_WIN_MSG_LINK(WM_SIZE,pinterface,this,&::user::edit_plain_text::_001OnSize);
 
+
+      IGUI_WIN_MSG_LINK(WM_VSCROLL,pinterface,this,&::user::edit_plain_text::_001OnVScroll);
+      IGUI_WIN_MSG_LINK(WM_HSCROLL,pinterface,this,&::user::edit_plain_text::_001OnHScroll);
+
       connect_update_cmd_ui("edit_focus_copy",&edit_plain_text::_001OnUpdateEditFocusCopy);
       connect_command("edit_focus_copy",&edit_plain_text::_001OnEditFocusCopy);
       connect_update_cmd_ui("edit_focus_paste",&edit_plain_text::_001OnUpdateEditFocusPaste);
@@ -117,11 +124,9 @@ namespace user
 
       _001OnUpdate(::action::source_system);
 
-      ::draw2d::memory_graphics pdc(allocer());
+      m_bNeedCalcLayout = true;
 
-      _001OnCalcLayout(pdc);
-
-      ThreadProcScrollSize((LPVOID) this);
+//      ThreadProcScrollSize((LPVOID) this);
 
    }
 
@@ -135,10 +140,10 @@ namespace user
 
    void edit_plain_text::VirtualOnSize()
    {
+      
       _001OnUpdate(::action::source_system);
 
-      ::draw2d::memory_graphics pdc(allocer());
-      _001OnCalcLayout(pdc);
+      m_bNeedCalcLayout = true;
 
 
 
@@ -179,7 +184,12 @@ namespace user
 
       //return;
 
+      if(m_bNeedCalcLayout)
+      {
 
+         _001OnCalcLayout();
+
+      }
 
       pdc->set_text_rendering(::draw2d::text_rendering_anti_alias);
 
@@ -224,57 +234,13 @@ namespace user
 
       }
 
-      /*else if(!Session.savings().is_trying_to_save(::aura::resource_processing)
-      && !Session.savings().is_trying_to_save(::aura::resource_blur_background))
-      {
 
-      pdc->blur(true, 4, rectClient);
-      //class imaging & imaging = System.visual().imaging();
-      //rect rectClient;
-      //         GetWindowRect(rectClient);
-      //       rectClient.offset(rectClient.top_left());
-      if(rectClient.size() != m_dibBk->size())
-      {
-      m_dibBk->create(rectClient.size());
-      m_dibBk->Fill(184, 184, 170);
-      HMODULE hmodule = ::LoadLibrary("ca2performance.dll");
-      ::visual::fastblur *( *pfnNew )(sp(::aura::application)) = (::visual::fastblur *(*)(sp(::aura::application))) ::GetProcAddress(hmodule, "new_fastblur");*/
-      /*            m_fastblur.alloc(allocer());
-                  m_fastblur.initialize(rectClient.size(), 2);
-                  }
-                  if(m_fastblur.is_set() && m_fastblur->get_graphics() != NULL)
-                  {
-                  m_fastblur->get_graphics()->BitBlt(0, 0, rectClient.width(), rectClient.height(), pdc, 0, 0, SRCCOPY);
-                  m_fastblur.blur();
-                  imaging.bitmap_blend(
-                  m_fastblur->get_graphics(),
-                  null_point(),
-                  rectClient.size(),
-                  m_dibBk->get_graphics(),
-                  null_point(),
-                  49);
-                  pdc->from(rectClient.size(),
-                  m_fastblur->get_graphics(),
-                  null_point(),
-                  SRCCOPY);
-                  }*/
-      /*}
-      else
-      {
-      class imaging & imaging = System.visual().imaging();
-      //_001DrawBackground(pdc, rectClipBox);
-      imaging.color_blend(
-      pdc,
-      rectClient,
-      RGB(200, 255, 255),
-      127);
-      }*/
 
-      color ca;
-      ca.set_rgb(RGB(227,227,210));
-      ca.hls_rate(0.0,-0.33,-0.23);
-      //      COLORREF crBorder = ca.get_rgb() | (0xff << 24);
-      //pdc->Draw3dRect(rectClient, crBorder, crBorder);
+      //color ca;
+      //ca.set_rgb(RGB(227,227,210));
+      //ca.hls_rate(0.0,-0.33,-0.23);
+      ////      COLORREF crBorder = ca.get_rgb() | (0xff << 24);
+      ////pdc->Draw3dRect(rectClient, crBorder, crBorder);
 
       bool bCaretOn = ((get_tick_count() - m_dwFocustStart) % (m_dwCaretTime * 2)) < m_dwCaretTime;
 
@@ -346,7 +312,7 @@ namespace user
       string strExtent2;
       string strExtent3;
       index iLineStart = should_load_full_file() ? m_iLineOffset : 0;
-      index iLineEnd = should_load_full_file() ? m_iLineCount - 1 : straLines.get_size() - 1;
+      index iLineEnd = should_load_full_file() ?  iLineStart + m_iLineCount - 1 : straLines.get_size();
       iLineEnd = MIN(iLineEnd,straLines.get_upper_bound());
       for(index i = iLineStart; i <= iLineEnd; i++)
       {
@@ -780,27 +746,6 @@ namespace user
       m_bKeyPressed = false;
    }
 
-   void edit_plain_text::_001OnHScroll(signal_details * pobj)
-   {
-
-      UNREFERENCED_PARAMETER(pobj);
-
-      if(should_load_full_file())
-      {
-
-         m_bNeedScrollUpdate = true;
-
-      }
-      else
-      {
-
-         m_bGetTextNeedUpdate = true;
-
-      }
-
-   }
-
-
    void edit_plain_text::pre_translate_message(signal_details * pobj)
    {
 
@@ -884,26 +829,26 @@ namespace user
    }
 
 
-   UINT edit_plain_text::ThreadProcScrollSize(LPVOID lpvoid)
-   {
+   //UINT edit_plain_text::ThreadProcScrollSize(LPVOID lpvoid)
+   //{
 
-      edit_plain_text * pview = (edit_plain_text *)lpvoid;
+   //   edit_plain_text * pview = (edit_plain_text *)lpvoid;
 
-      ::data::simple_lock lock(pview->m_ptree);
+   //   ::data::simple_lock lock(pview->m_ptree);
 
-      ::draw2d::graphics_sp graphics(pview->allocer());
+   //   ::draw2d::graphics_sp graphics(pview->allocer());
 
-      graphics->CreateCompatibleDC(NULL);
+   //   graphics->CreateCompatibleDC(NULL);
 
-      ::draw2d::graphics * pdc = graphics;
+   //   ::draw2d::graphics * pdc = graphics;
 
-      pview->_001OnCalcLayoutProc(pview,pdc);
+   //   pview->_001OnCalcLayoutProc(pview);
 
-      pview->_001OnUpdate(::action::source_system);
+   //   pview->_001OnUpdate(::action::source_system);
 
-      return 0;
+   //   return 0;
 
-   }
+   //}
 
 
    void edit_plain_text::_001GetText(string & str) const
@@ -1032,7 +977,39 @@ namespace user
 
       m_ptree->m_iSelEnd = iSelEnd;
 
+      _001EnsureVisibleChar(iSelStart);
+
       RedrawWindow();
+
+   }
+
+
+   void edit_plain_text::_001EnsureVisibleChar(strsize iChar)
+   {
+
+      _001EnsureVisibleLine(CharToLine(iChar));
+
+   }
+
+
+   void edit_plain_text::_001EnsureVisibleLine(index iLine)
+   {
+
+      m_scrollinfo.m_ptScroll.y = (MIN(MAX(0, iLine), m_iaLineIndex.get_upper_bound()) - 1) * m_iLineHeight;
+
+      m_bNeedCalcLayout = true;
+
+      RedrawWindow();
+
+   }
+
+   
+   void edit_plain_text::_001OnUpdateScrollPosition()
+   {
+      
+      scroll_control::_001OnUpdateScrollPosition();
+
+      m_bNeedCalcLayout = true;
 
    }
 
@@ -1127,45 +1104,126 @@ namespace user
 
 
 
-   void edit_plain_text::_001OnCalcLayoutProc(::user::elemental * pview,::draw2d::graphics * pdc)
+   //void edit_plain_text::_001OnCalcLayoutProc(::user::elemental * pview)
+   //{
+
+   //   ::draw2d::memory_graphics pdc(allocer());
+
+   //   ::data::simple_lock lockRoot(m_ptree);
+
+   //   UNREFERENCED_PARAMETER(pview);
+
+   //   select_font(pdc);
+
+   //   int32_t y = 0;
+
+   //   pdc->set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
+
+   //   size size3 = pdc->GetTextExtent(unitext("gqYALﾍ"));
+
+   //   rect rectClient;
+
+   //   GetClientRect(rectClient);
+
+   //   m_iLineHeight = size3.cy;
+
+   //   m_ptree->m_editfile.seek(0,::file::seek_begin);
+
+   //   y = (int32_t)(m_iLineHeight * m_iaLineIndex.get_size());
+
+   //   if(y <= 0)
+   //   {
+
+   //      y = 200;
+
+   //   }
+
+   //}
+
+
+   void edit_plain_text::_001OnCalcLayout()
    {
 
-      ::data::simple_lock lockRoot(m_ptree);
+      synch_lock sl(m_spmutex);
 
-      UNREFERENCED_PARAMETER(pview);
+      ::draw2d::memory_graphics pdc(allocer());
 
-      select_font(pdc);
-
-      int32_t y = 0;
-
-      pdc->set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
-
-      size size3 = pdc->GetTextExtent(unitext("gqYALﾍ"));
+      m_iViewOffset = 0;
 
       rect rectClient;
 
       GetClientRect(rectClient);
 
-      m_iLineHeight = size3.cy;
+      select_font(pdc);
 
-      m_ptree->m_editfile.seek(0,::file::seek_begin);
+      const int iLenUniText = 14;
 
-      y = (int32_t)(m_iLineHeight * m_iaLineIndex.get_size());
+      sized sizeUniText;
 
-      if(y <= 0)
+      pdc->set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
+
+      pdc->GetTextExtent(sizeUniText,unitext("gqYALﾍWMÍÎÄÃÄÅ"));
+
+      m_iLineHeight = sizeUniText.cy;
+
+      if(m_iLineHeight <= 0)
       {
 
-         y = 200;
+         m_iLineHeight = 18;
 
       }
 
-   }
+      m_iLineOffset = MAX(0,m_scrollinfo.m_ptScroll.y / m_iLineHeight);
+
+      ::index iLine = 0;
+      ::count iCLine = iLine / 100;
+      ::index i;
+
+      m_iViewOffset = 0;
+
+      for(iLine = 0,i = 0; i < iCLine; i++,iLine += 100)
+      {
+         m_iViewOffset += m_iaCLineIndex[i];
+      }
+      for(; iLine < m_iLineOffset && iLine < m_iaLineIndex.get_size(); iLine++)
+      {
+         m_iViewOffset += m_iaLineIndex[iLine];
+      }
+      m_iViewSize = 0;
+      if(m_iLineHeight == 0)
+      {
+         m_iLineCount = 1;
+      }
+      else
+      {
+         m_iLineCount = (rectClient.height() / m_iLineHeight) + 1;
+      }
+      for(i = 0; i < m_iLineCount && iLine < m_iaLineIndex.get_size(); i++,iLine++)
+      {
+         m_iViewSize += m_iaLineIndex[iLine];
+      }
+      m_plines->lines.set_size(0,100);
+      string str;
+      m_ptree->m_editfile.seek(m_iViewOffset,::file::seek_begin);
+      iLine = m_iLineOffset;
+      i = 0;
+      ::index iLineStart = should_load_full_file() ? 0 : m_iLineOffset;
+      ::index iLineEnd = should_load_full_file() ? m_iaLineIndex.get_size() - 1 : MIN(m_iaLineIndex.get_size(),m_iLineCount + iLineStart) - 1;
+      for(::index iLine = iLineStart; i <= iLineEnd && iLine < m_iaLineIndex.get_size(); i++,iLine++)
+      {
+         strsize iLen = m_iaLineIndex[iLine];
+         char * lpsz = str.GetBufferSetLength(iLen + 1);
+         m_ptree->m_editfile.read(lpsz,iLen);
+         lpsz[iLen] = '\0';
+         str.ReleaseBuffer();
+         m_plines->lines.add(str);
+      }
+
+      m_y = m_scrollinfo.m_ptScroll.y;
+
+      m_peditor->visibleTextEvent(m_iLineOffset,m_iLineCount);
 
 
-   void edit_plain_text::_001OnCalcLayout(::draw2d::graphics * pdc)
-   {
-
-      synch_lock sl(m_spmutex);
 
       select_font(pdc);
 
@@ -1177,21 +1235,11 @@ namespace user
 
       _001GetViewSel(iSelStart,iSelEnd);
 
-      int32_t iLineHeight;
-
       string strLine;
-
-      sized size3;
-
-      pdc->set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
-
-      pdc->GetTextExtent(size3,unitext("gqYALﾍWM"));
-
-      sized size;
 
       m_scrollinfo.m_sizeTotal.cx = 0;
 
-      iLineHeight = (int32_t)size3.cy;
+      sized size;
 
       for(int32_t i = 0; i < straLines.get_size(); i++)
       {
@@ -1200,7 +1248,7 @@ namespace user
 
          strLine.replace("\t","   ");
 
-         size = (uint32_t)(strLine.get_length() * size3.cx / 8);
+         size.cx = (double)strLine.get_length() * (double)sizeUniText.cx / (double)iLenUniText;
 
          if(size.cx > m_scrollinfo.m_sizeTotal.cx)
          {
@@ -1211,11 +1259,7 @@ namespace user
 
       }
 
-      m_scrollinfo.m_sizeTotal.cy = ((int32_t)m_iaLineIndex.get_count() * iLineHeight);
-
-      rect rectClient;
-
-      GetClientRect(rectClient);
+      m_scrollinfo.m_sizeTotal.cy = ((int32_t)m_iaLineIndex.get_count() * m_iLineHeight);
 
       class size sizePage;
 
@@ -1226,6 +1270,10 @@ namespace user
       m_scrollinfo.m_sizeTotal.cy += sizePage.cy;
 
       m_scrollinfo.m_sizePage = sizePage;
+
+      _001LayoutScrollBars();
+
+      m_bNeedCalcLayout = false;
 
    }
 
@@ -1255,6 +1303,27 @@ namespace user
 
             return i;
 
+         }
+
+      }
+
+      return -1;
+
+   }
+
+   index edit_plain_text::CharToLine(strsize iChar)
+   {
+
+      synch_lock sl(m_spmutex);
+
+      for(index iLine = 0; iLine < m_iaAccumulLineIndex.get_size(); iLine++)
+      {
+
+         if(iChar <= m_iaAccumulLineIndex[iLine])
+         {
+          
+            return iLine;
+            
          }
 
       }
@@ -1818,7 +1887,8 @@ namespace user
 
       m_iaLineEndIndex.add(0);
 
-      ::count iAcc;
+      ::count iAcc = 0;
+      ::count iCAcc;
 
       ::count iLineCount;
 
@@ -1827,7 +1897,7 @@ namespace user
       while(i < m_iaLineIndex.get_size())
       {
 
-         iAcc = 0;
+         iCAcc = 0;
 
          iLineCount = 0;
 
@@ -1836,9 +1906,13 @@ namespace user
 
             iAcc += m_iaLineIndex[i];
 
+            iCAcc += m_iaLineIndex[i];
+
+            m_iaAccumulLineIndex.add(iAcc);
+
          }
 
-         m_iaCLineIndex.add(iAcc);
+         m_iaCLineIndex.add(iCAcc);
 
       }
 
@@ -2345,9 +2419,8 @@ namespace user
          m_y = -1;
 
 
-         ::draw2d::graphics_sp dc(allocer());
-         dc->CreateCompatibleDC(NULL);
-         _001OnCalcLayout(dc);
+         _001OnCalcLayout();
+
          m_peditor->lineCountEvent(m_plines->lines.get_count());
 
       }
@@ -2570,76 +2643,42 @@ namespace user
    }
 
 
+   void edit_plain_text::_001OnVScroll(signal_details * pobj)
+   {
+
+      m_bNeedCalcLayout = true;
+
+   }
+
+
+   void edit_plain_text::_001OnHScroll(signal_details * pobj)
+   {
+
+      UNREFERENCED_PARAMETER(pobj);
+
+      if(should_load_full_file())
+      {
+
+         m_bNeedScrollUpdate = true;
+
+      }
+      else
+      {
+
+         m_bGetTextNeedUpdate = true;
+
+      }
+
+   }
+
+
    void edit_plain_text::_001OnSetText(::action::context actioncontext)
    {
 
-
-      synch_lock sl(m_spmutex);
-
-      m_iViewOffset = 0;
-      rect rectClient;
-      GetClientRect(rectClient);
-
-      if(m_iLineHeight == 0)
-      {
-         m_iLineOffset = 0;
-      }
-      else
-      {
-         m_iLineOffset = MAX(0,m_scrollinfo.m_ptScroll.y / m_iLineHeight);
-      }
-
-      ::index iLine = 0;
-      ::count iCLine = iLine / 100;
-      ::index i;
-
-      m_iViewOffset = 0;
-
-      for(iLine = 0,i = 0; i < iCLine; i++,iLine += 100)
-      {
-         m_iViewOffset += m_iaCLineIndex[i];
-      }
-      for(; iLine < m_iLineOffset && iLine < m_iaLineIndex.get_size(); iLine++)
-      {
-         m_iViewOffset += m_iaLineIndex[iLine];
-      }
-      m_iViewSize = 0;
-      if(m_iLineHeight == 0)
-      {
-         m_iLineCount = 1;
-      }
-      else
-      {
-         m_iLineCount = (rectClient.height() / m_iLineHeight) + 1;
-      }
-      for(i = 0; i < m_iLineCount && iLine < m_iaLineIndex.get_size(); i++,iLine++)
-      {
-         m_iViewSize += m_iaLineIndex[iLine];
-      }
-      m_plines->lines.set_size(0,100);
-      string str;
-      m_ptree->m_editfile.seek(m_iViewOffset,::file::seek_begin);
-      iLine = m_iLineOffset;
-      i = 0;
-      ::index iLineStart = should_load_full_file() ? 0 : m_iLineOffset;
-      ::index iLineEnd = should_load_full_file() ? m_iaLineIndex.get_size() - 1 : MIN(m_iaLineIndex.get_size(),m_iLineCount) - 1;
-      for(::index iLine = iLineStart; i <= iLineEnd && iLine < m_iaLineIndex.get_size(); i++,iLine++)
-      {
-         strsize iLen = m_iaLineIndex[iLine];
-         char * lpsz = str.GetBufferSetLength(iLen + 1);
-         m_ptree->m_editfile.read(lpsz,iLen);
-         lpsz[iLen] = '\0';
-         str.ReleaseBuffer();
-         m_plines->lines.add(str);
-      }
-
-      m_y = m_scrollinfo.m_ptScroll.y;
-
-      m_peditor->visibleTextEvent(m_iLineOffset,m_iLineCount);
-
-
+      m_bNeedCalcLayout = true;
 
    }
+
 
    bool edit_plain_text::should_load_full_file()
    {

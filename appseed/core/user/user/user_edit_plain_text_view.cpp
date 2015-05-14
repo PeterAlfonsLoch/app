@@ -13,6 +13,9 @@ namespace user
       ::user::edit_plain_text(papp)
    {
 
+      m_scrollinfo.m_bVScrollBarEnable = true;
+      m_scrollinfo.m_bHScrollBarEnable = true;
+
    }
 
 
@@ -58,7 +61,9 @@ namespace user
       // GetClientRect(rectClient);
       // SetWindowPos(0, rectClient.left, rectClient.top, rectClient.width(), rectClient.height(), SWP_SHOWWINDOW);
       // _001OnUpdate();
-      ThreadProcScrollSize((LPVOID) dynamic_cast < ::user::edit_plain_text * > (this));
+      //ThreadProcScrollSize((LPVOID) dynamic_cast < ::user::edit_plain_text * > (this));
+
+      m_bNeedCalcLayout = true;
 
 
    }

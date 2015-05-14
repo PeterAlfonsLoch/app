@@ -1993,18 +1993,27 @@ namespace str
    }
 
 
-   bool is_simple_natural(const char * pszCandidate)
+   bool is_simple_natural(const char * pszCandidate, strsize iCount)
    {
+
+      if(iCount == 0)
+         return false;
+
       string str(pszCandidate);
+
       str.trim();
+
       LPCSTR psz = str;
+
       if(*psz == '\0')
          return false;
-      while(*psz != '\0')
+
+      while(*psz != '\0' && iCount != 0)
       {
          if(!::str::ch::is_digit(psz))
             return false;
          psz = utf8_inc(psz);
+         iCount--;
       }
       return true;
    }

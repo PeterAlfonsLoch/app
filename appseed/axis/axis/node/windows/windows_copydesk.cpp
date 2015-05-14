@@ -188,6 +188,16 @@ namespace windows
          VERIFY(::CloseClipboard());
          return str;
       }
+      else if(get_file_count() > 0)
+      {
+         
+         ::file::patha patha;
+
+         get_filea(patha);
+
+         return patha.implode("\r\n");
+
+      }
       else
       {
          return "";

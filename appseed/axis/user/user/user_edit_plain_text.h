@@ -27,7 +27,7 @@ namespace user
       //LPARAM                        m_dwLastKeyLparam;
       ::message::key                m_keymessageLast;
 
-
+      bool                          m_bNeedCalcLayout;
 
       bool                          m_bKeyPressed;
       bool                          m_bColorerTake5;
@@ -70,6 +70,7 @@ namespace user
       // keep each line end flag 3 = \r \n     1 = \n  \r = 2
       index_array                   m_iaLineEndIndex;
       count_array                   m_iaCLineIndex;
+      index_array                   m_iaAccumulLineIndex;
 
       bool                          m_bOwnData;
       plain_text_tree *             m_ptree;
@@ -108,8 +109,6 @@ namespace user
 
       DECL_GEN_SIGNAL(_009OnChar);
 
-      DECL_GEN_SIGNAL(_001OnHScroll);
-
 //      DECL_GEN_SIGNAL(_001OnRButtonUp);
 
 //      DECL_GEN_SIGNAL(_001OnChar);
@@ -138,8 +137,6 @@ namespace user
       DECL_GEN_SIGNAL(_001OnInitialUpdate);
 
 
-
-      static UINT ThreadProcScrollSize(LPVOID lpvoid);
 
       void set_plain_root(plain_text_tree * proot, bool bOwnData);
 
@@ -174,10 +171,13 @@ namespace user
       void _001SetSelText(const char * psz, ::action::context actioncontext);
       void _001SetSel(strsize iSelStart, strsize iSelEnd);
 
+      void _001EnsureVisibleChar(strsize iChar);
+      void _001EnsureVisibleLine(index iLine);
+
       bool should_load_full_file();
 
-      void _001OnCalcLayout(::draw2d::graphics * pdc);
-      void _001OnCalcLayoutProc(::user::elemental * pview, ::draw2d::graphics * pdc);
+      void _001OnCalcLayout();
+      //void _001OnCalcLayoutProc(::user::elemental * pview);
 
       void FileSave();
       void OnFileUpdate();
@@ -188,6 +188,7 @@ namespace user
       index SelToLineX(strsize iSel, int32_t & x);
       strsize LineColumnToSel(index iLine, index iColumn);
       strsize LineXToSel(index iLine, int32_t x);
+      index CharToLine(strsize iSel);
 
       void OneLineUp();
 
@@ -211,6 +212,8 @@ namespace user
       DECL_GEN_SIGNAL(_001OnContextMenu);
       DECL_GEN_SIGNAL(_001OnSetCursor);
       DECL_GEN_SIGNAL(_001OnSize);
+      DECL_GEN_SIGNAL(_001OnVScroll);
+      DECL_GEN_SIGNAL(_001OnHScroll);
 
 
       virtual sp(::data::item) on_allocate_item();
@@ -220,6 +223,8 @@ namespace user
       virtual void layout();
 
       virtual bool ShowWindow(int32_t nCmdShow);
+
+      virtual void _001OnUpdateScrollPosition();
 
    };
 

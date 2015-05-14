@@ -346,7 +346,16 @@ namespace user
 
    ::user::interaction * interaction_child::SetFocus()
    {
-      return NULL;
+      
+      if(m_pui->keyboard_focus_is_focusable())
+      {
+
+         m_pui->keyboard_set_focus();
+
+      }
+
+      return m_pui->GetFocus();
+
    }
 
 

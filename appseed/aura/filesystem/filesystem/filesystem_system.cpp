@@ -324,7 +324,7 @@ restart:
 
             if(iMax == -1)
             {
-               str = str / strPrefix+"00"+strSuffix;
+               str = str / (strPrefix+"00"+strSuffix);
                if(system::mk_time(str))
                   break;
             }
@@ -337,7 +337,7 @@ restart:
             {
                iMax++;
                strFormat.Format("%02d", iMax);
-               str = str / strPrefix+strFormat+strSuffix;
+               str = str / (strPrefix+strFormat+strSuffix);
                if(system::mk_time(str))
                   break;
             }
