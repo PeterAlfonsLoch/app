@@ -9,13 +9,8 @@ namespace filehandler
       ::object(papp),
       simple_frame_window(papp)
    {
-      m_iFrameData = 10;
-      m_dataid = "MusicalPlayerscreencaptureFrame";
-
+      
       WfiEnableFullScreen();
-
-      m_dataidWindow = "WindowData";
-        
 
       select_layered_frame();
 

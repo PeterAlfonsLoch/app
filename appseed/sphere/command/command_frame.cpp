@@ -12,14 +12,12 @@ namespace command
    {
 
       m_pimagelist = NULL;
-      m_iFrameData = 10;
-      m_dataid = "::ca2::command::frame";
+      
       m_iAnimateStep = 0;
       m_bTimerHide = false;
 
       WfiEnableFullScreen();
 
-      m_dataidWindow = "WindowData";
       m_bMoveDrag = true;
 
    }

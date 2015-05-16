@@ -38,7 +38,7 @@
 //   simple_frame_window(papp)
 //{
 //   m_pimagelist = NULL;
-//   m_iFrameData = 10;
+//   
 //   //DISetSection("MusicalPlayerscreencaptureFrame");
 //   m_iAnimateStep = 0;
 //

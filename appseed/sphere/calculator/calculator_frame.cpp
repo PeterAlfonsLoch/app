@@ -9,14 +9,13 @@ namespace calculator
       ::object(papp),
       simple_frame_window(papp)
    {
+
       m_pimagelist = NULL;
-      m_iFrameData = 10;
-      m_dataid = "MusicalPlayerscreencaptureFrame";
+      
       m_iAnimateStep = 0;
 
       WfiEnableFullScreen();
 
-      m_dataidWindow = "WindowData";
    }
 
    frame::~frame()

@@ -12,13 +12,10 @@ namespace userstack
    {
 
       m_pdocument = NULL;
-      m_iFrameData = 10;
-      m_dataid = "ca2::frame";
+      
       m_iAnimateStep = 0;
 
       WfiEnableFullScreen();
-
-      m_dataidWindow = "WindowData";
 
       m_bLayered = true;
       select_layered_frame();
