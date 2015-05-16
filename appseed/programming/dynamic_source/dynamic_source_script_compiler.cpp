@@ -61,6 +61,7 @@ namespace dynamic_source
       folder_watch();
       compile_library();
       run_persistent();
+      parse_pstr_set();
    }
 
    void script_compiler::prepare_compile_and_link_environment()
@@ -2005,6 +2006,9 @@ ch_else:
 
       if(::str::find_ci("pstr_set", psz) && ::str::ends_ci(psz, ".txt"))
       {
+
+         parse_pstr_set();
+
          //string strCat;
          //strCat = m_pmanager->m_strNetseedDsCa2Path/ "core\\netnode_persistent_ui_str.ds";
          //string strInclude = strCat;
@@ -2043,9 +2047,6 @@ ch_else:
          //   {
          //   }
          //}
-
-         parse_pstr_set();
-
       }
       else if(::str::begins_eat_ci(str,m_pmanager->m_strNetseedDsCa2Path/ "core\\persistent")
          && ::str::ends_eat_ci(str, ".ds")
