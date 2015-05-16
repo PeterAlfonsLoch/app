@@ -13,16 +13,15 @@
 //// Attributes
 //public:
 //   //BaseMenuMessageHandler        m_menuhook;
-//   string                     m_strAnimatedStatusBarText;
-//   int32_t                        m_iAnimateStep;
+//   
+//   
 //   sp(image_list)                m_pimagelist;
 //   bool m_bTimerOn;
 //
 //   virtual bool pre_create_window(::user::create_struct& cs);
 //   virtual bool _001OnCmdMsg(::aura::cmd_msg * pcmdmsg); 
 //   void ShowControlBars(bool bShow);
-//   void AnimateStatusBar();
-//   void SetAnimatedStatusBarText(const char * lpcsz);
+
 //   virtual ~html_frame();
 //#ifdef DEBUG
 //   virtual void assert_valid() const;

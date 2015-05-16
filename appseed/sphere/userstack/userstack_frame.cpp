@@ -13,7 +13,7 @@ namespace userstack
 
       m_pdocument = NULL;
       
-      m_iAnimateStep = 0;
+      
 
       WfiEnableFullScreen();
 
@@ -98,7 +98,7 @@ namespace userstack
       static float theta;
       if(nIDEvent == 3)
       {
-         //AnimateStatusBar();
+         
       }
       else if(nIDEvent == 1000)
       {
@@ -130,30 +130,6 @@ namespace userstack
             theta += 2.0f;
 
       }
-   }
-
-   void frame::SetAnimatedStatusBarText(const char * lpcsz)
-   {
-      m_strAnimatedStatusBarText = lpcsz;
-      if(m_strAnimatedStatusBarText.is_empty())
-      {
-         KillTimer(3);
-      }
-      else
-      {
-         SetTimer(3, 500, NULL);
-      }
-   }
-
-   void frame::AnimateStatusBar()
-   {
-      if(m_strAnimatedStatusBarText.is_empty())
-         return;
-
-      strsize iLen = m_strAnimatedStatusBarText.get_length();
-      m_iAnimateStep++;
-      if(m_iAnimateStep > iLen)
-         m_iAnimateStep = 0;
    }
 
 

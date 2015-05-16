@@ -11,8 +11,8 @@ namespace calculator
    public: 
 
 
-      string                     m_strAnimatedStatusBarText;
-      int32_t                        m_iAnimateStep;
+      
+      
       sp(image_list)               m_pimagelist;
       bool                       m_bTimerOn;
 
@@ -23,8 +23,7 @@ namespace calculator
       virtual bool pre_create_window(::user::create_struct& cs);
 
       void ShowControlBars(bool bShow);
-      void AnimateStatusBar();
-      void SetAnimatedStatusBarText(const char * lpcsz);
+      
       
    #ifdef DEBUG
       virtual void assert_valid() const;

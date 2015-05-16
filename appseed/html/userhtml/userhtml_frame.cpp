@@ -40,7 +40,7 @@
 //   m_pimagelist = NULL;
 //   
 //   //DISetSection("MusicalPlayerscreencaptureFrame");
-//   m_iAnimateStep = 0;
+//   
 //
 //   WfiEnableFullScreen();
 //
@@ -100,32 +100,7 @@
 //
 //
 //
-//void html_frame::SetAnimatedStatusBarText(const char * lpcsz)
-//{
-//   m_strAnimatedStatusBarText = lpcsz;
-//   if(m_strAnimatedStatusBarText.is_empty())
-//   {
-//      KillTimer(3);
-//   }
-//   else
-//   {
-//      SetTimer(3, 500, NULL);
-//   }
-//}
-//
-//void html_frame::AnimateStatusBar()
-//{
-//   if(m_strAnimatedStatusBarText.is_empty())
-//      return;
-//
-//   strsize iLen = m_strAnimatedStatusBarText.get_length();
-//   m_iAnimateStep++;
-//   if(m_iAnimateStep > iLen)
-//      m_iAnimateStep = 0;
-//
-//
-////   m_statusbar.SetPaneText(0, m_strAnimatedStatusBarText.Mid(m_iAnimateStep));
-//}
+
 //
 //
 //void html_frame::ShowControlBars(bool bShow)

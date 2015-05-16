@@ -11,7 +11,7 @@ namespace console
    {
    public:
 
-      string                     m_strAnimatedStatusBarText;
+      
       bool                       m_bAutoHideOnOutClick;
       int32_t                 m_iAnimateStep;
       sp(image_list)          m_pimagelist;
@@ -27,8 +27,7 @@ namespace console
       virtual void install_message_handling(::message::dispatch * pinterface);
 
 	   void ShowControlBars(bool bShow);
-	   void AnimateStatusBar();
-	   void SetAnimatedStatusBarText(const char * lpcsz);
+
 
       bool show_mini();
 	

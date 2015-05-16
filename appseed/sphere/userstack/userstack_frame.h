@@ -16,8 +16,8 @@ namespace userstack
    public:
       
       ::aura::message_queue_sp   m_spqueue;
-      string                     m_strAnimatedStatusBarText;
-      int32_t                        m_iAnimateStep;
+      
+      
       image_list  *              m_pimagelist;
       sp(::aura::document)                 m_pdocument;
       bool                       m_bHoverMouse;
@@ -42,8 +42,7 @@ namespace userstack
       virtual bool pre_create_window(::user::create_struct& cs);
 
       void ShowControlBars(bool bShow);
-      void AnimateStatusBar();
-      void SetAnimatedStatusBarText(const char * lpcsz);
+      
       virtual ~frame();
    #ifdef DEBUG
       virtual void assert_valid() const;

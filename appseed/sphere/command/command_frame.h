@@ -12,7 +12,7 @@ namespace command
    public:
 
       ::aura::message_queue_sp   m_spqueue;
-      string                     m_strAnimatedStatusBarText;
+      
       bool                       m_bAutoHideOnOutClick;
       int32_t                 m_iAnimateStep;
       sp(image_list)          m_pimagelist;
@@ -28,9 +28,7 @@ namespace command
       virtual void install_message_handling(::message::dispatch * pinterface);
 
 	   void ShowControlBars(bool bShow);
-	   void AnimateStatusBar();
-	   void SetAnimatedStatusBarText(const char * lpcsz);
-	
+	  
    #ifdef DEBUG
 	   virtual void assert_valid() const;
 	   virtual void dump(dump_context & dumpcontext) const;
