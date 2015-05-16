@@ -144,9 +144,6 @@ namespace aura
 
 
 
-      if (pcreate->previous())
-         return;
-
       // if ok, wire in the current ::aura::document
       ASSERT(::aura::impact::get_document() == NULL);
       sp(::create) pContext = (::create *) pcreate->m_lpcreatestruct->lpCreateParams;
@@ -170,6 +167,10 @@ namespace aura
          pframe->m_pviewMain = this;
 
       }
+
+      if(pcreate->previous())
+         return;
+
 
       pcreate->set_lresult(0);
    }
@@ -1187,6 +1188,39 @@ namespace aura
    }
 
 
+   string impact::calc_data_id()
+   {
+
+      string str;
+
+      sp(::user::interaction) puiParent = GetParent();
+
+      if(puiParent.is_set())
+      {
+
+         str = puiParent->calc_data_id();
+
+      }
+
+      if(str.has_char())
+      {
+
+         str += ".";
+
+      }
+
+      if(!get_document()->m_dataid.m_id.is_empty())
+      {
+
+         str += ".";
+
+         str += get_document()->m_dataid.m_id;
+
+      }
+
+      return str + m_id;
+
+   }
 
 } // namespace aura
 

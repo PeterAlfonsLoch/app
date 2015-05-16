@@ -22,7 +22,7 @@ namespace plugin
 
       m_pframe = NULL;
 
-      m_dataidWindow = "plugin::host_interaction";
+      m_id = "plugin::host_interaction";
 
    }
 

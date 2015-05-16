@@ -286,6 +286,9 @@ using user_interaction = ::user::interaction;
 #include "axis/user/user/user_interaction_impl.h"
 #include "axis/user/user/user_control_bar.h"
 #include "axis/user/user/user_wait_cursor.h"
+#include "simple_ui/simple_ui_style.h"
+#include "simple_ui/simple_ui_interaction.h"
+#include "axis/database/database/database_user_interaction.h"
 #include "axis/user/user/user_frame_window.h"
 #include "axis/user/user/user_server.h"
 #include "axis/user/user/user_impact_system.h"
@@ -326,12 +329,9 @@ namespace axis
 #include "axis/user/user/user_form_callback.h"
 
 
-#include "simple_ui/simple_ui_style.h"
-#include "simple_ui/simple_ui_interaction.h"
 #include "axis/user/user/user_document_data_map.h"
 #include "axis/user/user/user_document.h"
 #include "axis/user/user/user_application_as_proxy_document.h"
-#include "axis/database/database/database_user_interaction.h"
 #include "axis/user/user/user_impact.h"
 
 

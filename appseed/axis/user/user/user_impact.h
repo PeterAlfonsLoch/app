@@ -235,6 +235,9 @@ namespace aura
 
          virtual void walk_pre_translate_tree(signal_details * pobj,sp(::user::interaction) puiStop);
 
+
+         virtual string calc_data_id();
+
    };
 
 

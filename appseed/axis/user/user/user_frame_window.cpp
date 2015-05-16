@@ -134,7 +134,7 @@ namespace user
    void frame_window::install_message_handling(::message::dispatch *pinterface)
    {
 
-      ::user::interaction::install_message_handling(pinterface);
+      ::database::user::interaction::install_message_handling(pinterface);
       IGUI_MSG_LINK(::message::message_frame_initial_update, pinterface, this, &frame_window::_guserbaseOnInitialUpdate);
       IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &frame_window::_001OnDestroy);
       IGUI_WIN_MSG_LINK(WM_SYSCOMMAND, pinterface, this, &frame_window::_001OnSysCommand);

@@ -18,9 +18,6 @@ namespace database
 
          string         m_strDisplay;
 
-         id             m_dataidWindow;
-
-
          interaction();
          virtual ~interaction();
 
@@ -47,11 +44,11 @@ namespace database
          
          virtual bool on_simple_command(e_simple_command ecommand, lparam lparam, LRESULT & lresult);
 
-         virtual id calc_data_id();
-
          virtual void on_set_parent(sp(::user::interaction) puiParent);
          virtual bool on_before_set_parent(sp(::user::interaction) pinterface);
 
+
+         virtual string calc_data_id();
 
 
       };

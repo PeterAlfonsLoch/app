@@ -6317,6 +6317,47 @@ namespace user
    }
 
 
+   string interaction::calc_data_id()
+   {
+
+      string str;
+
+      sp(::user::interaction) puiParent = GetParent();
+
+      if(puiParent.is_set())
+      {
+
+         str = puiParent->calc_data_id();
+
+      }
+      else
+      {
+
+         if(Application.m_dataid.m_id.is_empty())
+         {
+
+            str = Application.m_strAppId;
+
+         }
+         else
+         {
+
+            str = Application.m_dataid.m_id;
+
+         }
+
+      }
+
+      if(str.has_char())
+      {
+
+         str += ".";
+
+      }
+
+      return str + m_id;
+
+   }
 
 
 } // namespace user

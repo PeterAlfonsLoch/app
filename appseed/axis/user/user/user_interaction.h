@@ -701,6 +701,11 @@ namespace user
       void user_interaction_on_destroy();
       void user_interaction_on_hide();
 
+
+      virtual string calc_data_id();
+
+
+
    };
 
 

@@ -347,7 +347,7 @@ namespace database
 
    }
 
-   id client::calc_data_id()
+   string client::calc_data_id()
    {
 
       return "";

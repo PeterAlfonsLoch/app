@@ -44,10 +44,10 @@ namespace database
 
          set_data_server(&Application.dataserver());
 
-         if(m_dataidWindow.is_null())
+         if(m_id.is_empty())
          {
 
-            m_dataidWindow = typeid(*this).name();
+            m_id = typeid(*this).name();
 
          }
 
@@ -90,7 +90,7 @@ namespace database
 
             defer_update_display();
 
-            ::id idKey                 = m_dataidWindow.m_id + ".local://WindowRect." + m_strDisplay;
+            ::id idKey                 = m_dataid.m_id + ".WindowRect." + m_strDisplay;
 
             sl.unlock();
 
@@ -113,7 +113,7 @@ namespace database
 
          defer_update_display();
 
-         ::id idKey                    = m_dataidWindow.m_id + ".local://WindowRect." + m_strDisplay;
+         ::id idKey                    = m_dataid.m_id + ".WindowRect." + m_strDisplay;
 
          sl.unlock();
 
@@ -369,7 +369,7 @@ namespace database
          if(m_strDisplay.is_empty())
          {
 
-            if(!data_get(m_dataidWindow.m_id + ".local://lastdisplay",m_strDisplay) || m_strDisplay.is_empty())
+            if(!data_get(m_dataid.m_id + ".lastdisplay",m_strDisplay) || m_strDisplay.is_empty())
             {
 
                m_strDisplay = calc_display();
@@ -382,7 +382,7 @@ namespace database
 
             m_strDisplay = calc_display();
 
-            data_set(m_dataidWindow.m_id +".local://lastdisplay",m_strDisplay);
+            data_set(m_dataid.m_id +".lastdisplay",m_strDisplay);
 
          }
 
@@ -410,30 +410,6 @@ namespace database
 
       }
 
-      id interaction::calc_data_id()
-      {
-
-         string str;
-
-         sp(::database::user::interaction) puiParent = GetParent();
-
-         if (puiParent.is_set())
-         {
-
-            str = puiParent->calc_data_id().m_id;
-
-         }
-
-         if (str.has_char())
-         {
-
-            str += ".";
-
-         }
-
-         return str + m_dataidWindow.m_id;
-
-      }
 
       bool interaction::on_before_set_parent(sp(::user::interaction) puiParent)
       {
@@ -465,6 +441,15 @@ namespace database
          defer_update_data_id();
 
       }
+
+
+      string interaction::calc_data_id()
+      {
+
+         return ::simple_ui::interaction::calc_data_id();
+
+      }
+
 
 
    } // namespace user

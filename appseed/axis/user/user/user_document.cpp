@@ -18,6 +18,7 @@ namespace aura
       m_bEmbedded = FALSE;        // default to file-based document
       ASSERT(m_viewptra.is_empty());
 
+      m_dataid = typeid(*this).name();
          
    }
 

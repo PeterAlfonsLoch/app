@@ -80,13 +80,7 @@
     <ClInclude Include="base\os\os.h">
       <Filter>Header Files\base\os</Filter>
     </ClInclude>
-    <ClInclude Include="base\os\cross\cross.h">
-      <Filter>Header Files\base\os\cross</Filter>
-    </ClInclude>
     <ClInclude Include="base\os\ansios\ansios.h">
-      <Filter>Header Files\base\os\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\ansios\ansios_multithreading.h">
       <Filter>Header Files\base\os\ansios</Filter>
     </ClInclude>
     <ClInclude Include="framework.h">
@@ -109,12 +103,6 @@
     </ClInclude>
     <ClInclude Include="base\node\windows\windows.h">
       <Filter>Header Files\base\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\cross\windows\windows.h">
-      <Filter>Header Files\base\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\cross\windows\windows_user.h">
-      <Filter>Header Files\base\os\cross\windows</Filter>
     </ClInclude>
     <ClInclude Include="base\base\base.h">
       <Filter>Header Files\base\base</Filter>

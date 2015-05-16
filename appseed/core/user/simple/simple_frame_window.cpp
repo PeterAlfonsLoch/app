@@ -142,7 +142,6 @@ void simple_frame_window::dump(dump_context & dumpcontext) const
 void simple_frame_window::install_message_handling(::message::dispatch * pinterface)
 {
    ::user::frame_window::install_message_handling(pinterface);
-   ::database::user::interaction::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &simple_frame_window::_001OnCreate);
    IGUI_WIN_MSG_LINK(WM_NCACTIVATE, pinterface, this, &simple_frame_window::_001OnNcActivate);
 #ifdef WINDOWSEX
