@@ -1487,7 +1487,7 @@ namespace install
 
                   trace().rich_trace("***Downloading installer");
 
-                  string strUrlPrefix = "http://server.ca2.cc/ccvotagus/" + strVersion + "/" + strFormatBuild + "/install/x86/";
+                  string strUrlPrefix = "http://server.ca2.cc/ccvotagus/" + strVersion + "/" + strFormatBuild + "/install/" + System.install().get_platform() + "/";
 
                   string strUrl;
 
