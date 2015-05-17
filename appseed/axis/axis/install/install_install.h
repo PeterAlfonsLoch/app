@@ -45,6 +45,8 @@ namespace install
       string               m_strVersion;
       string_to_string     m_strVersionLatestBuildNumber;
 
+      string               m_strPlatform;
+
 
       ptr_array <::sockets::http_session > m_httpsessionptra;
       //mutex m_mutexOmp;
@@ -72,6 +74,7 @@ namespace install
       virtual string get_id();
       virtual void set_id(const char * psz);
       virtual string get_platform();
+      virtual void set_platform(const string & strPlatform);
 
 
       virtual string get_latest_build_number(const char * pszVersion);

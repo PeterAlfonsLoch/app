@@ -53,6 +53,15 @@ namespace install
 
 #endif
 
+#ifdef X86
+
+         m_strPlatform = "x86";
+
+#else
+
+         m_strPlatform = "x64";
+
+#endif
 
 
       }
@@ -339,11 +348,17 @@ namespace install
 
    string install::get_platform()
    {
-#ifdef X86
-      return "x86";
-#else
-      return "x64";
-#endif
+
+      return m_strPlatform;
+
+   }
+
+
+   void install::set_platform(const string & strPlatform)
+   {
+
+      m_strPlatform = strPlatform;
+
    }
 
 
@@ -1671,6 +1686,9 @@ namespace install
       strUrl += pszTemplate;
       strUrl += "&build=";
       strUrl += strFormatBuild;
+      strUrl += "&platform=";
+      strUrl += get_platform();
+        
 
       property_set set(get_app());
 
