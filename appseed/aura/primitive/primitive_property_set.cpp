@@ -438,7 +438,7 @@ void property_set::_008Add(const char * pszKey, const char * pszValue)
       i++;
    }
 
-   if(pset->has_property(straKey[i]))
+   if(pset->has_property(straKey[i]) && pset->operator[](straKey[i]) != pszValue)
    {
       pset->operator[](straKey[i]).stra().add(pszValue);
    }
@@ -1011,82 +1011,87 @@ property_set & property_set::merge(const property_set & set)
 
          property * ppropertyThis = find(pproperty->name());
 
-         if (ppropertyThis != NULL)
+         if(!pproperty->m_element2.is_new())
          {
 
-            if (ppropertyThis->m_element2.get_type() == ::var::type_element || pproperty->m_element2.get_type() == ::var::type_element)
-            {
-               
-               operator[](pproperty->name()).m_element2 = pproperty->m_element2;
-
-            }
-            else if (ppropertyThis->m_element2.get_type() == ::var::type_propset)
+            if(ppropertyThis != NULL)
             {
 
-               if (pproperty->m_element2.get_type() == ::var::type_propset)
+               if(ppropertyThis->m_element2.get_type() == ::var::type_element || pproperty->m_element2.get_type() == ::var::type_element)
                {
 
-                  ppropertyThis->propset().merge(pproperty->propset());
+                  operator[](pproperty->name()).m_element2 = pproperty->m_element2;
+
+               }
+               else if(ppropertyThis->m_element2.get_type() == ::var::type_propset)
+               {
+
+                  if(pproperty->m_element2.get_type() == ::var::type_propset)
+                  {
+
+                     ppropertyThis->propset().merge(pproperty->propset());
+
+                  }
+                  else
+                  {
+
+                     index i = 0;
+
+                     while(true)
+                     {
+
+                        if(!has_property(str::from(i)))
+                        {
+
+                           operator[](str::from(i)).m_element2 = pproperty->m_element2;
+
+                           break;
+
+                        }
+
+                        i++;
+
+                     }
+
+                  }
+
+               }
+               else if(operator[](pproperty->name()).is_empty())
+               {
+
+                  operator[](pproperty->name()) = pproperty->m_element2;
 
                }
                else
                {
 
-                  index i = 0;
-
-                  while (true)
+                  try
                   {
 
-                     if (!has_property(str::from(i)))
+                     if(operator[](pproperty->name()) == pproperty->m_element2)
                      {
 
-                        operator[](str::from(i)).m_element2 = pproperty->m_element2;
-
-                        break;
+                        continue;
 
                      }
 
-                     i++;
+                  }
+                  catch(...)
+                  {
 
                   }
 
+                  operator[](pproperty->name()).vara().add_unique(operator[](pproperty->name()).vara());
+
                }
-
-            }
-            else if(operator[](pproperty->name()).is_empty())
-            {
-
-               operator[](pproperty->name()) = pproperty->m_element2;
 
             }
             else
             {
-               
-               try 
-               {
 
-                  if(operator[](pproperty->name()) == pproperty->m_element2)
-                  {
-                     
-                     continue;
-
-                  }
-
-               }
-               catch(...)
-               {
-
-               }
-
-               operator[](pproperty->name()).vara().add_unique(operator[](pproperty->name()).vara());
+               operator[](pproperty->name()).m_element2 = pproperty->m_element2;
 
             }
-
-         }
-         else
-         {
-
-            operator[](pproperty->name()).m_element2 = pproperty->m_element2;
 
          }
 

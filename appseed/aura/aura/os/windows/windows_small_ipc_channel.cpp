@@ -10,12 +10,26 @@ extern LPFN_ChangeWindowMessageFilter g_pfnChangeWindowMessageFilter;
 
 small_ipc_channel_base::small_ipc_channel_base()
 {
+
    m_oswindow = NULL;
+
 }
+
 
 small_ipc_channel_base::~small_ipc_channel_base()
 {
+
+   if(m_oswindow != NULL)
+   {
+
+      ::DestroyWindow(m_oswindow);
+
+      m_oswindow = NULL;
+
+   }
+
 }
+
 
 bool small_ipc_tx_channel::open(const char * pszKey, launcher * plauncher)
 {
@@ -353,7 +367,13 @@ LRESULT small_ipc_rx_channel::message_queue_proc(UINT message, WPARAM wparam, LP
 
       COPYDATASTRUCT * pcds = (COPYDATASTRUCT *) lparam;
 
-      if(pcds->dwData == 0x80000000)
+      if(pcds == NULL)
+      {
+
+         return 0;
+
+      }
+      else if(pcds->dwData == 0x80000000)
       {
 
          string strMessage((const char *)pcds->lpData, pcds->cbData);
