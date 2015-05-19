@@ -410,6 +410,67 @@ namespace allocator
    };
 
 
+   template < class TYPE >
+   class zero
+   {
+
+   public:
+
+      inline static void construct(TYPE * p)
+      {
+         constructor ::zero< TYPE >::construct(p);
+      }
+
+      inline static void construct(TYPE * p,:: count c)
+      {
+         constructor ::zero< TYPE >::construct(p,c);
+
+      }
+
+      inline static void destruct(TYPE * p)
+      {
+         destructor ::nodef< TYPE>::destruct(p);
+      }
+      inline static void destruct(TYPE * p,::count c)
+      {
+         destructor ::nodef< TYPE>::destruct(p,c);
+      }
+
+
+      inline static void copy(TYPE *pdst,const TYPE * psrc)
+      {
+
+         copier::def< TYPE >::copy(pdst,psrc);
+
+      }
+
+
+      inline static void copy(TYPE *pdst,const TYPE * psrc,::count c)
+      {
+
+         copier::def< TYPE >::copy(pdst,psrc,c);
+
+      }
+
+      inline static TYPE * alloc(::count c)
+      {
+
+         return memory::def < TYPE >::alloc(c);
+
+      }
+
+
+      inline static void free(TYPE * p)
+      {
+
+         memory::def < TYPE >::alloc(p);
+
+      }
+
+
+   };
+
+
 } // namespace allocator
 
 // raw_array is an array that does not call constructors or destructor in elements

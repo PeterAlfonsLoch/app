@@ -33,8 +33,6 @@ typedef PVOID * PPVOID;
 
 #ifdef WINDOWSEX
 
-typedef int32_t (* CA2MAIN)(HINSTANCE hInstance, HINSTANCE hPrevInstance, const char * lpCmdLine, int32_t nCmdShow);
-
 typedef struct _PROCESS_BASIC_INFORMATION64 {
    uint64_t  Reserved1;
    uint64_t  PebBaseAddress;
@@ -108,9 +106,6 @@ string get_command_line(HANDLE handleProcess)
    memory_free_dbg(commandLineContents, 0);
    return str;
 }
-#else // WINDOWS
-
-typedef int32_t (* CA2MAIN)(const char * lpCmdLine, int32_t nCmdShow);
 
 #endif // !WINDOWS
 
@@ -154,6 +149,7 @@ namespace install
       m_bSynch                   = true;
       m_bStarterStart            = false;
       m_strPlatform              = "";
+      m_bLaunchDesktopApplicationOnIgnitPhase2 = false;
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
@@ -2666,9 +2662,7 @@ install_begin:;
 
       int32_t i = run_ca2_application_installer(strCommandLine);
 
-      bool bStart = true;
-
-      if(bStart)
+      if(m_bLaunchDesktopApplicationOnIgnitPhase2)
       {
 
          start_ca2_application();
@@ -3668,6 +3662,12 @@ RetryBuildNumber:
          m_bShow = false;
       }
 
+      m_bLaunchDesktopApplicationOnIgnitPhase2 =
+         str.find(" enable_desktop_launch ") >= 0
+         || str.ends_ci(" enable_desktop_launch")
+         || strExe.find(" enable_desktop_launch ") >= 0
+         || strExe.ends_ci(" enable_desktop_launch");
+
       if(str.find(" spa ") >= 0
          || str.ends_ci(" spa") || strExe.find(" in spa ") >= 0
          || strExe.ends_ci(" in spa"))
@@ -4189,14 +4189,19 @@ RetryBuildNumber:
 
    int32_t installer::ca2_app_install_run(const char * pszCommandLine, uint32_t & dwStartError, bool bSynch)
    {
+
 #if defined(METROWIN)
+
       throw "todo";
+
 #else
 
       string strPlatform = System.install().get_platform();
 
 #ifdef WINDOWS
+
       //::SetDllDirectory(dir::path(dir::element(), "stage\\" + strPlatform));
+
 #endif
 
       ::aura::library libraryCore(get_app());
@@ -4212,7 +4217,7 @@ RetryBuildNumber:
 
       libraryOs.open(dir::path(dir::element(), "stage\\" + strPlatform + "\\app_core"));
 
-      CA2MAIN pfn_ca2_main = (CA2MAIN) libraryOs.raw_get("app_core_main");
+      PFN_APP_CORE_MAIN pfn_app_core_main = (PFN_APP_CORE_MAIN)libraryOs.raw_get("app_core_main");
 
       string strFullCommandLine;
 
@@ -4224,14 +4229,25 @@ RetryBuildNumber:
 
       if(!pfn_core_init())
          return -1;
+
+      app_core appcore;
+
 #ifdef WINDOWS
-      pfn_ca2_main(::GetModuleHandleA(NULL), NULL, strFullCommandLine, SW_HIDE);
+
+      pfn_app_core_main(::GetModuleHandleA(NULL),NULL,strFullCommandLine,SW_HIDE, appcore);
+
 #else
-      pfn_ca2_main(strFullCommandLine, SW_HIDE);
+
+      pfn_app_core_main(strFullCommandLine, SW_HIDE);
+
 #endif
+
       pfn_core_term();
+
 #endif
+
       return 0;
+
    }
 
 

@@ -1,7 +1,7 @@
 #pragma once
 
 
-template < typename POINTER,class ARRAY_TYPE = comparable_raw_array < POINTER >  >
+template < typename POINTER,class ARRAY_TYPE = comparable_array < POINTER,POINTER,comparable_eq_array < POINTER,POINTER,raw_array < POINTER,POINTER,::allocator::zero < POINTER > > > >  >
 class raw_ptr_array:
    public ARRAY_TYPE
 {

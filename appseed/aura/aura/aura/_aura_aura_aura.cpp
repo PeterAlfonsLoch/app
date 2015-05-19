@@ -138,6 +138,6 @@
 #include "aura_simple_app_launcher.cpp"
 
 
-
+#include "aura_app_core.cpp"
 
 

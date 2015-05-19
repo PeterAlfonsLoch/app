@@ -152,6 +152,9 @@ namespace install
 
       stringa           m_straHttpFailure;
 
+
+      bool              m_bLaunchDesktopApplicationOnIgnitPhase2;
+
       ::sockets::http_session * m_phttpsession;
       ptr_array <::sockets::http_session > m_httpsessionptra;
       mutex m_mutexOmp;

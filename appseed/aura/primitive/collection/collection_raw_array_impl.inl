@@ -281,15 +281,15 @@ array_base < TYPE,ALLOCATOR >(NULL,sizeof(TYPE),true)
 
 
 template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-raw_array < TYPE, ARG_TYPE, ALLOCATOR >::raw_array(const raw_array <TYPE, ARG_TYPE> & a) :
+raw_array < TYPE, ARG_TYPE, ALLOCATOR >::raw_array(const raw_array <TYPE, ARG_TYPE, ALLOCATOR> & a) :
 object(a.get_app()),
 array_base < TYPE, ALLOCATOR > (a.get_app(),sizeof(TYPE),true)
 {
-   operator = (a);
+   ::array_base < TYPE, ALLOCATOR >::operator = (a);
 }
 
 template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-raw_array < TYPE, ARG_TYPE, ALLOCATOR >::raw_array(raw_array <TYPE,ARG_TYPE> && a):
+raw_array < TYPE,ARG_TYPE,ALLOCATOR >::raw_array(raw_array <TYPE,ARG_TYPE,ALLOCATOR> && a):
 object(a.get_app()),
 array_base < TYPE, ALLOCATOR > (a.get_app(),sizeof(TYPE),true)
 {

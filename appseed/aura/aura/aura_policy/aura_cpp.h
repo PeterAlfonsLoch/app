@@ -685,7 +685,7 @@ namespace file
 #include "aura/aura/aura/aura_debug.h"
 
 
-
+#include "aura/aura/aura_app_core.h"
 
 
 
