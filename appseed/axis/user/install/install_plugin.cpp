@@ -802,7 +802,7 @@ namespace install
 
    run_install:
 
-      m_phost->host_starter_start(pszInstall);
+      m_phost->start_app_install(pszInstall);
 
 
    }
@@ -1470,7 +1470,7 @@ namespace install
          if(strVersion.is_empty())
             strVersion = "stage";
 
-         m_phost->host_starter_start(": app=" + strApp + " app_type=application install locale=" + strLocale + " schema=" + strSchema + " version=" + strVersion);
+         m_phost->start_app_install(": app=" + strApp + " app_type=application install locale=" + strLocale + " schema=" + strSchema + " version=" + strVersion);
 
       }
 

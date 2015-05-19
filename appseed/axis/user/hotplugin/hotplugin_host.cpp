@@ -358,15 +358,15 @@ namespace hotplugin
    }
 
 
-   int32_t host::host_starter_start(const char * pszCommandLine)
+   int32_t host::start_app_install(const char * pszCommandLine)
    {
 
-      return host_starter_start(pszCommandLine, get_app(), this);
+      return start_app_install(pszCommandLine, get_app(), this);
 
    }
 
 
-   int32_t host::host_starter_start(const char * pszCommandLine, ::aura::application * papp, host * phost, plugin * pplugin)
+   int32_t host::start_app_install(const char * pszCommandLine, ::aura::application * papp, host * phost, plugin * pplugin)
    {
 
       if(phost->m_bHostStarterStart)

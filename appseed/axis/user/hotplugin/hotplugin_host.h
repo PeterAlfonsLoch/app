@@ -102,9 +102,9 @@ namespace hotplugin
 
       virtual void on_paint(::draw2d::graphics * pgraphics, const RECT & lprect);
 
-      virtual int32_t host_starter_start(const char * pszCommandLine);
+      virtual int32_t start_app_install(const char * pszCommandLine);
 
-      static int32_t host_starter_start(const char * pszCommandLine,::aura::application * papp,host * phost, plugin * pplugin = NULL);
+      static int32_t start_app_install(const char * pszCommandLine,::aura::application * papp,host * phost, plugin * pplugin = NULL);
 
       static int32_t host_starter_start_sync(const char * pszCommandLine,::aura::application * papp,host * phost,plugin * pplugin = NULL);
 
