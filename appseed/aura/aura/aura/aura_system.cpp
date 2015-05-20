@@ -1442,8 +1442,6 @@ namespace aura
    ::file::path system::dir_appmatter_locator(::aura::application * papp)
    {
 
-      ::exception::throw_not_implemented(get_app());
-
       return "";
 
    }
