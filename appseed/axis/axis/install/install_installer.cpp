@@ -3092,6 +3092,9 @@ install_begin:;
 
    int32_t installer::ca2_build_version()
    {
+
+      string strPlatform = System.install().get_platform();
+
       int32_t iRetry = 0;
 RetryBuildNumber:
       if(m_strBuildResource.length() == 19) // heuristically valid
@@ -3111,7 +3114,7 @@ RetryBuildNumber:
          iRetry++;
 //         m_strBuild = Application.http().get(m_strSpaIgnitionBaseUrl + "/query?node=build", false, &::ms_get_callback, (void *) this);
 
-         m_strBuild = http_get(m_strSpaIgnitionBaseUrl + "/query?node=build&sessid=noauth&version=" + m_strVersion, false);
+         m_strBuild = http_get(m_strSpaIgnitionBaseUrl + "/query?node=build&sessid=noauth&version=" + m_strVersion + "&platform=" + strPlatform, false);
 
          m_strBuild.trim();
 
