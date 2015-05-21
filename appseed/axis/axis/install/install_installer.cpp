@@ -3222,6 +3222,8 @@ RetryBuildNumber:
          strUrl += m_strInstallLocale;
          strUrl += "&schema=";
          strUrl += m_strInstallSchema;
+         strUrl += "&platform=";
+         strUrl += System.install().get_platform();
 
          if(strIndexMd5.has_char())
          {
