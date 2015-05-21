@@ -12,6 +12,7 @@ namespace filemanager
       object(papp),
       ::user::scroll_view(papp),
       ::user::list(papp),
+      ::user::list_view(papp),
       m_headerctrl(papp)
    {
 

@@ -6,8 +6,7 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE operation_list_view:
-      virtual public ::aura::impact,
-      virtual public ::user::list
+      virtual public ::user::list_view
    {
    public:
 

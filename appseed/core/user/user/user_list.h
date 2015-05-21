@@ -227,7 +227,7 @@ namespace user
 
 
    class CLASS_DECL_CORE list :
-      virtual public scroll_view,
+      virtual public scroll_control,
       public ::sort::compare_interface
    {
    public:
@@ -683,7 +683,6 @@ namespace user
 
       virtual void _001OnInitialize();
 
-      virtual void _001OnInitialUpdate(signal_details * pobj);
 
       void _001AddColumn(list_column & pcolumn);
 
@@ -826,6 +825,7 @@ namespace user
       virtual void data_update_visible_subitem();
 
    };
+
 
 
 } // namespace user

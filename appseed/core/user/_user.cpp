@@ -76,6 +76,7 @@
 #include "user/user_image_manager.cpp"
 #include "user/user_keyboard_layout_cfg.cpp"
 #include "user/user_list.cpp"
+#include "user/user_list_view.cpp"
 #include "user/user_list_cache.cpp"
 #include "user/user_list_cache_interface.cpp"
 #include "user/user_list_data.cpp"

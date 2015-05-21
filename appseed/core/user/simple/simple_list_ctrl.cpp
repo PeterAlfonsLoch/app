@@ -4,7 +4,7 @@ simple_list_control::simple_list_control(::aura::application * papp) :
    object(papp),
    m_headerctrl(papp),
    
-   ::user::scroll_view(papp),
+//   ::user::scroll_control(papp),
    ::user::list(papp),
    m_listctrldata(papp)
 {

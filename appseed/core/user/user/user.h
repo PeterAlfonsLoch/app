@@ -106,6 +106,7 @@ protected:
 
 
 #include "user_list.h"
+#include "user_list_view.h"
 #include "user_list_cache_interface.h"
 #include "user_list_cache.h"
 #include "user_list_data.h"

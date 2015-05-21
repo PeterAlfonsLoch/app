@@ -13,7 +13,6 @@ namespace user
 
    list::list(::aura::application * papp) :
    object(papp),
-   ::user::scroll_view(papp),
    m_columna(papp),
    m_font(allocer()),
    m_fontHover(allocer()),
@@ -103,7 +102,7 @@ namespace user
    void list::install_message_handling(::message::dispatch * pinterface)
    {
 
-      ::user::scroll_view::install_message_handling(pinterface);
+      ::user::scroll_control::install_message_handling(pinterface);
 
       IGUI_WIN_MSG_LINK(WM_SIZE,            pinterface, this, &list::_001OnSize);
       IGUI_WIN_MSG_LINK(WM_VSCROLL,         pinterface, this, &list::_001OnVScroll);
@@ -976,14 +975,6 @@ namespace user
    }
 
 
-   void list::_001OnInitialUpdate(signal_details * pobj)
-   {
-
-      scroll_view::_001OnInitialUpdate(pobj);
-
-      //_001UpdateColumns();
-
-   }
 
 
    void list::_001AddColumn(list_column & column)
