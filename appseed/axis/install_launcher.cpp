@@ -16,7 +16,15 @@ bool install_launcher::ensure_executable()
 
    string strPath;
 
+#if defined(_M_IX86)
+
    string strPlatform = "x86";
+
+#else
+
+   string strPlatform = "x64";
+
+#endif
 
    wstring wstrPath = u16((string("\\ca2\\install\\stage\\") + strPlatform + "\\app.install.exe").c_str());
 

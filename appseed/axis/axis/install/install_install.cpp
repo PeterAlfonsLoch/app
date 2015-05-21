@@ -264,7 +264,21 @@ namespace install
 
       installer::launcher launcher(get_app(), m_strVersion, pszBuild);
 
-      if (!txchannel.open("core/spaboot_install", bLaunch ? &launcher : NULL))
+      const char * pszChannel;
+
+      // "core/spaboot_install"
+
+#if defined(_M_IX86)
+
+      pszChannel = "::ca2::fontopus::ca2_spaboot_install_x86::7807e510-5579-11dd-ae16-0800200c7784";
+
+#else
+
+      pszChannel = "::ca2::fontopus::ca2_spaboot_install_x64::7807e510-5579-11dd-ae16-0800200c7784";
+
+#endif
+
+      if (!txchannel.open(pszChannel, bLaunch ? &launcher : NULL))
          return false;
 
       txchannel.send(psz, false);
