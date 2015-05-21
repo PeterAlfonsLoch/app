@@ -97,11 +97,19 @@ string dir::get_ca2_module_folder()
    if(hmodule == NULL)
    {
 
-      SHGetSpecialFolderPathW(
-         NULL,
-         lpszModuleFilePath,
-         CSIDL_PROGRAM_FILES,
-         FALSE);
+      wcscpy(lpszModuleFilePath,_wgetenv(L"PROGRAMFILES(X86)"));
+
+      if(wcslen(lpszModuleFilePath) == 0)
+      {
+
+         SHGetSpecialFolderPathW(
+            NULL,
+            lpszModuleFilePath,
+            CSIDL_PROGRAM_FILES,
+            FALSE);
+
+      }
+
       if(lpszModuleFilePath[wcslen(lpszModuleFilePath) - 1] == '\\'
          || lpszModuleFilePath[wcslen(lpszModuleFilePath) - 1] == '/')
       {
@@ -259,11 +267,19 @@ string dir::get_base_module_folder()
    if (hmodule == NULL)
    {
 
-      SHGetSpecialFolderPathW(
-         NULL,
-         lpszModuleFilePath,
-         CSIDL_PROGRAM_FILES,
-         FALSE);
+      wcscpy(lpszModuleFilePath,_wgetenv(L"PROGRAMFILES(X86)"));
+
+      if(wcslen(lpszModuleFilePath) == 0)
+      {
+
+         SHGetSpecialFolderPathW(
+            NULL,
+            lpszModuleFilePath,
+            CSIDL_PROGRAM_FILES,
+            FALSE);
+
+      }
+
       if(lpszModuleFilePath[wcslen(lpszModuleFilePath) - 1] == '\\'
          || lpszModuleFilePath[wcslen(lpszModuleFilePath) - 1] == '/')
       {

@@ -12,11 +12,18 @@ void get_program_files_x86(string &str)
 
    hwstring lpszModuleFilePath(sizeof(wchar_t) * 8);
 
-   SHGetSpecialFolderPathW(
-      NULL,
-      lpszModuleFilePath,
-      CSIDL_PROGRAM_FILES,
-      FALSE);
+   wcscpy(lpszModuleFilePath,_wgetenv(L"PROGRAMFILES(X86)"));
+
+   if(wcslen(lpszModuleFilePath) == 0)
+   {
+
+      SHGetSpecialFolderPathW(
+         NULL,
+         lpszModuleFilePath,
+         CSIDL_PROGRAM_FILES,
+         FALSE);
+
+   }
 
    if(lpszModuleFilePath[wcslen(lpszModuleFilePath) - 1] == '\\' || lpszModuleFilePath[wcslen(lpszModuleFilePath) - 1] == '/')
    {
