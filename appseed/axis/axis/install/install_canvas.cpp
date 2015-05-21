@@ -220,8 +220,15 @@ void canvas::on_paint(::draw2d::graphics * pgraphics, const RECT & rectParam)
       if(rect.bottom - rect.top >= size.cy)
       {
 
-         HANDLE hfile = ::create_file(dir::element("install.log"), GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+#if defined(_M_IX86)
 
+         HANDLE hfile = ::create_file(dir::element("install-x86.log"),GENERIC_READ,FILE_SHARE_READ | FILE_SHARE_WRITE,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
+
+#else 
+
+         HANDLE hfile = ::create_file(dir::element("install-x64.log"),GENERIC_READ,FILE_SHARE_READ | FILE_SHARE_WRITE,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
+
+#endif
 
          if(hfile != INVALID_HANDLE_VALUE)
          {
@@ -308,7 +315,18 @@ void canvas::on_paint(::draw2d::graphics * pgraphics, const RECT & rectParam)
       int32_t iLine = ((rect.bottom - 10) / size.cy) - 1;
       if(rect.bottom - rect.top >= size.cy)
       {
-         HANDLE hfile = ::create_file(dir::element("install.log"), GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+
+#if defined(_M_IX86)
+
+         HANDLE hfile = ::create_file(dir::element("install-x86.log"),GENERIC_READ,FILE_SHARE_READ | FILE_SHARE_WRITE,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
+
+#else
+
+         HANDLE hfile = ::create_file(dir::element("install-x64.log"),GENERIC_READ,FILE_SHARE_READ | FILE_SHARE_WRITE,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
+
+#endif
+
+
          if(hfile != INVALID_HANDLE_VALUE)
          {
             int32_t iTell = ::SetFilePointer(hfile, 0, NULL, SEEK_END);

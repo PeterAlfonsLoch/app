@@ -1159,7 +1159,15 @@ namespace install
 
       DWORD dwRead;
 
-      HANDLE hfile = ::create_file(dir::element("install.log"), GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+#if defined(_M_IX86)
+
+      HANDLE hfile = ::create_file(dir::element("install-x86.log"), GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+
+#else
+
+      HANDLE hfile = ::create_file(dir::element("install-x64.log"),GENERIC_READ,FILE_SHARE_READ | FILE_SHARE_WRITE,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
+
+#endif
 
       double dRate = 0.0;
 
