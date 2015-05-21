@@ -1072,7 +1072,16 @@ namespace install
 
       }
 
-      sp(::xml::node) lpnodeInstalled = lpnodeVersion->GetChildByAttr("installed","build",strBuildNumber);
+      stringa straName1;
+      stringa straValue1;
+
+      straName1.add("build");
+      straValue1.add(strBuildNumber);
+
+      straName1.add("platform");
+      straValue1.add(get_platform());
+
+      sp(::xml::node) lpnodeInstalled = lpnodeVersion->GetChildByAllAttr("installed",straName1, straValue1);
 
       if (lpnodeInstalled == NULL)
       {
@@ -1080,6 +1089,8 @@ namespace install
          lpnodeInstalled = lpnodeVersion->add_child("installed");
 
          lpnodeInstalled->add_attr("build",strBuildNumber);
+
+         lpnodeInstalled->add_attr("platform",get_platform());
 
       }
 

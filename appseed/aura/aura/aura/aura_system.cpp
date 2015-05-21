@@ -1699,7 +1699,20 @@ namespace aura
 
          strBuildNumber = install_get_latest_build_number(pszVersion);
 
-         lpnodeInstalled = lpnodeVersion->GetChildByAttr("installed","build",strBuildNumber);
+         stringa straName1;
+         stringa straValue1;
+
+         straName1.add("build");
+         straValue1.add(strBuildNumber);
+
+         straName1.add("platform");
+#if defined(_M_IX86)
+         straValue1.add("x86");
+#else
+         straValue1.add("x64");
+#endif
+
+         lpnodeInstalled = lpnodeVersion->GetChildByAllAttr("installed",straName1, straValue1);
 
       }
       else if(strBuildNumber == "installed" || strBuildNumber == "static")
@@ -1724,7 +1737,19 @@ namespace aura
 
          }
 
-         lpnodeInstalled = lpnodeVersion->GetChildByAttr("installed","build",strBuildNumber);
+         stringa straName1;
+         stringa straValue1;
+
+         straName1.add("build");
+         straValue1.add(strBuildNumber);
+
+         straName1.add("platform");
+#if defined(_M_IX86)
+         straValue1.add("x86");
+#else
+         straValue1.add("x64");
+#endif
+         lpnodeInstalled = lpnodeVersion->GetChildByAllAttr("installed",straName1, straValue1);
 
          if(lpnodeInstalled.is_null())
             return false;
