@@ -4176,7 +4176,9 @@ RetryBuildNumber:
       PROCESS_INFORMATION pi;
       memset(&pi,0,sizeof(pi));
 
-      wstring wstrCmdLine = (L"\"" + wstrApp + L"\" : app=" + wstring(m_strApplicationId) + L" build_number=installed").c_str();
+      // enable_desktop_launch is signaled here to ease the application to know that it is a desktop application, so when it reissues
+      // a installation it can send app.install.exe a message with enable_desktop_launch set too.
+      wstring wstrCmdLine = (L"\"" + wstrApp + L"\" : app=" + wstring(m_strApplicationId) + L" build_number=installed enable_desktop_launch").c_str(); 
 
       if(::CreateProcessW((wchar_t *)wstrApp.c_str(),(wchar_t *)wstrCmdLine.c_str(),
          NULL,NULL,FALSE,0,NULL,NULL,

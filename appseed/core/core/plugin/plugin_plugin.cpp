@@ -829,7 +829,8 @@ namespace plugin
                            || property.name() == "app"
                            || property.name() == "session_start"
                            || property.name() == "version"
-                             )
+                           || property.name() == "enable_desktop_launch"
+                           )
                            )
                               continue;
 

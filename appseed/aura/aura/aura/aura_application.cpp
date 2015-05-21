@@ -4215,9 +4215,18 @@ namespace aura
       else
       {
 
+         string strAddUp;
+
+         if(directrix()->m_varTopicQuery.has_property("enable_desktop_launch"))
+         {
+            
+            strAddUp += " enable_desktop_launch";
+
+         }
+
          //::MessageBoxA(NULL, "teste", "teste", MB_OK);
 
-         hotplugin_host_starter_start_sync(": app=" + notinstalled.m_strId + " app_type=" + notinstalled.m_strType + " install locale=" + notinstalled.m_strLocale + " schema=" + notinstalled.m_strSchema + " version=" + notinstalled.m_strVersion,get_app(),NULL);
+         hotplugin_host_starter_start_sync(": app=" + notinstalled.m_strId + " app_type=" + notinstalled.m_strType + " install locale=" + notinstalled.m_strLocale + " schema=" + notinstalled.m_strSchema + " version=" + notinstalled.m_strVersion + strAddUp,get_app(),NULL);
 
       }
 
