@@ -920,7 +920,7 @@ namespace install
 
       ::file::path path;
 
-      path = System.install_meta_dir(m_strVersion,strBuildNumber,pszType,pszId,pszLocale,pszSchema) /
+      path = System.install_meta_dir(m_strVersion,strBuildNumber,pszType,pszId,pszLocale,pszSchema) / "installed.txt";
 
       Application.file().put_contents(path,"");
 
