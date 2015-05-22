@@ -134,6 +134,7 @@ namespace axis
 
    }
 
+
    string system::install_get_latest_build_number(const char * pszVersion)
    {
 
@@ -141,9 +142,12 @@ namespace axis
 
    }
 
+
    int32_t system::install_start(const char * pszCommandLine,const char * pszBuild)
    {
+
       return install().start(pszCommandLine,pszBuild);
+
    }
 
 

@@ -1612,12 +1612,14 @@ namespace aura
 
    }
 
+
    void system::install_set_version(const char * pszVersion)
    {
 
       m_strInstallVersion = pszVersion;
 
    }
+
 
    string system::install_get_latest_build_number(const char * pszVersion)
    {
@@ -1626,10 +1628,14 @@ namespace aura
 
    }
 
+
    int32_t system::install_start(const char * pszCommandLine,const char * pszBuild)
    {
+
       return -1;
+
    }
+
 
    int32_t system::install_progress_app_add_up(int32_t iAddUp)
    {
@@ -1707,8 +1713,6 @@ namespace aura
       }
 
       string strBuildNumber(pszBuild);
-
-      sp(::xml::node) lpnodeInstalled;
 
       if(strBuildNumber == "latest")
       {

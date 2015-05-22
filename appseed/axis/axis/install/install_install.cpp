@@ -866,65 +866,20 @@ namespace install
 
    }
 
+
    void install::add_app_install(const char * pszBuild, const char * pszType, const char * pszId, const char * pszLocale, const char * pszSchema)
    {
 
       synch_lock sl(&m_mutex);
 
-      string strBuildNumber(pszBuild);
-
-      if(strBuildNumber == "latest" || strBuildNumber == "installed")
-      {
-
-         if(!m_strVersionLatestBuildNumber.Lookup(m_strVersion,strBuildNumber))
-         {
-
-            string strNewBuildNumber = get_latest_build_number(m_strVersion);
-
-            if(strNewBuildNumber.has_char())
-            {
-
-               strBuildNumber = strNewBuildNumber;
-
-            }
-
-            m_strVersionLatestBuildNumber.set_at(m_strVersion,strBuildNumber);
-
-         }
-
-      }
-      else if(strBuildNumber == "static")
-      {
-
-         if(!m_strVersionLatestBuildNumber.Lookup(m_strVersion,strBuildNumber))
-         {
-
-            string strBuildPath;
-
-            strBuildPath = System.dir().commonappdata() / "spa_build_"+get_platform()+".txt";
-
-            strBuildNumber = Application.file().as_string(strBuildPath);
-
-            if(strBuildNumber.is_empty())
-            {
-
-               strBuildNumber = "installed";
-
-            }
-
-            m_strVersionLatestBuildNumber.set_at(m_strVersion,strBuildNumber);
-
-         }
-
-      }
-
       ::file::path path;
 
-      path = System.install_meta_dir(m_strVersion,strBuildNumber,pszType,pszId,pszLocale,pszSchema) / "installed.txt";
+      path = System.install_meta_dir(m_strVersion,pszBuild,pszType,pszId,pszLocale,pszSchema) / "installed.txt";
 
       Application.file().put_contents(path,"");
 
    }
+
 
    bool install::is(const char * pszVersion, const char * pszBuild, const char * pszType, const char * pszId, const char * pszLocale, const char * pszSchema)
    {
