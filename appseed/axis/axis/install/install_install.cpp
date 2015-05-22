@@ -878,6 +878,21 @@ namespace install
 
       Application.file().put_contents(path,"");
 
+      string strBuildPath;
+
+      strBuildPath = System.dir().commonappdata() / "spa_build_" + get_platform() + ".txt";
+
+      string strNewBuildNumber = Application.file().as_string(strBuildPath);
+
+      if(strNewBuildNumber != m_strmapLatestBuildNumber[m_strVersion] && atoi(m_strmapLatestBuildNumber[m_strVersion]) > 0)
+      {
+
+         Application.file().put_contents(strBuildPath,m_strmapLatestBuildNumber[m_strVersion]);
+
+      }
+
+
+
    }
 
 
