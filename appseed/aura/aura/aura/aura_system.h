@@ -102,6 +102,7 @@ namespace aura
       ::file::dir::system_sp                       m_spdir;
 
       string                                       m_strInstallVersion;
+      string                                       m_strInstallPlatform;
 
       DWORD                                        m_dwMainStartTime;
       DWORD                                        m_dwAfterApplicationFirstRequest;
@@ -376,6 +377,9 @@ namespace aura
 
       virtual string install_get_version();
       virtual void install_set_version(const char * pszVersion);
+      virtual ::file::path install_meta_dir(const char * pszVersion,const char * pszBuild,const char * pszType,const char * pszId,const char * pszLocale,const char * pszSchema);
+      virtual string install_get_platform();
+      virtual void install_set_platform(const char * pszPlatform);
       virtual bool install_is(const char * pszVersion,const char * pszBuild,const char * pszType,const char * pszId,const char * pszLocale,const char * pszSchema);
       virtual string install_get_latest_build_number(const char * pszVersion);
       virtual int32_t install_start(const char * pszCommandLine,const char * pszBuild);

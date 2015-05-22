@@ -1560,6 +1560,37 @@ namespace aura
    }
 
 
+   string system::install_get_platform()
+   {
+
+      if(m_strInstallPlatform.is_empty())
+      {
+
+#ifdef X86
+
+         return "x86";
+
+#else
+
+         return "x64";
+
+#endif
+
+      }
+
+      return m_strInstallPlatform;
+
+   }
+
+
+   void system::install_set_platform(const char * pszPlatform)
+   {
+
+      m_strInstallPlatform = pszPlatform;
+
+   }
+
+
    string system::install_get_version()
    {
 
@@ -1631,41 +1662,31 @@ namespace aura
 
 
 
-   bool system::install_is(const char * pszVersion,const char * pszBuild,const char * pszType,const char * pszId,const char * pszLocale,const char * pszSchema)
+   ::file::path system::install_meta_dir(const char * pszVersion,const char * pszBuild,const char * pszType,const char * pszId,const char * pszLocale,const char * pszSchema)
    {
 
       synch_lock sl(m_pmutex);
 
-      ::file::path strPath;
+      string strType(pszType);
 
-      strPath = System.dir().commonappdata() / "spa_install.xml";
-
-      string strContents;
-
-      strContents = Application.file().as_string(strPath);
-
-      ::xml::document doc(get_app());
-
-      if(strContents.is_empty())
-         return false;
-
-      try
+      if(strType.is_empty())
       {
 
-         if(!doc.load(strContents))
-            return false;
-
-      }
-      catch(...)
-      {
-
-         return false;
+         strType = "application";
 
       }
 
-      if(doc.get_root() == NULL)
-         return false;
+      string strPlatform;
 
+#if defined(_M_IX86)
+
+      strPlatform = "x86";
+
+#else
+
+      strPlatform = "x64";
+
+#endif
 
       if(string(pszVersion).is_empty())
       {
@@ -1685,11 +1706,6 @@ namespace aura
 
       }
 
-      sp(::xml::node) lpnodeVersion = doc.get_root()->get_child(pszVersion);
-
-      if(lpnodeVersion == NULL)
-         return false;
-
       string strBuildNumber(pszBuild);
 
       sp(::xml::node) lpnodeInstalled;
@@ -1699,34 +1715,19 @@ namespace aura
 
          strBuildNumber = install_get_latest_build_number(pszVersion);
 
-         stringa straName1;
-         stringa straValue1;
-
-         straName1.add("build");
-         straValue1.add(strBuildNumber);
-
-         straName1.add("platform");
-#if defined(_M_IX86)
-         straValue1.add("x86");
-#else
-         straValue1.add("x64");
-#endif
-
-         lpnodeInstalled = lpnodeVersion->GetChildByAllAttr("installed",straName1, straValue1);
-
       }
       else if(strBuildNumber == "installed" || strBuildNumber == "static")
       {
-         
+
          string strBuildPath;
 
-         strBuildPath = System.dir().commonappdata()/ "spa_build.txt";
+         strBuildPath = System.dir().commonappdata() / "spa_build_" + strPlatform + ".txt";
 
          string strNewBuildNumber = Application.file().as_string(strBuildPath);
 
          if(strNewBuildNumber.is_empty())
          {
-            
+
             strBuildNumber = "installed";
 
          }
@@ -1737,59 +1738,23 @@ namespace aura
 
          }
 
-         stringa straName1;
-         stringa straValue1;
-
-         straName1.add("build");
-         straValue1.add(strBuildNumber);
-
-         straName1.add("platform");
-#if defined(_M_IX86)
-         straValue1.add("x86");
-#else
-         straValue1.add("x64");
-#endif
-         lpnodeInstalled = lpnodeVersion->GetChildByAllAttr("installed",straName1, straValue1);
-
-         if(lpnodeInstalled.is_null())
-            return false;
-
-      }
-      else
-      {
-
-         lpnodeInstalled = lpnodeVersion->GetChildByAttr("installed","build",strBuildNumber);
-
       }
 
+      return System.dir().commonappdata() / strType / pszVersion / strBuildNumber / strPlatform / pszId / pszLocale / pszSchema;
+
+   }
 
 
-      if(lpnodeInstalled == NULL)
-         return false;
+   bool system::install_is(const char * pszVersion,const char * pszBuild,const char * pszType,const char * pszId,const char * pszLocale,const char * pszSchema)
+   {
 
-      sp(::xml::node) lpnodeType = lpnodeInstalled->get_child(pszType);
+      synch_lock sl(m_pmutex);
 
-      if(lpnodeType == NULL)
-         return false;
+      ::file::path strPath;
 
-      sp(::xml::node) lpnode = lpnodeType->GetChildByAttr(pszType,"id",pszId);
+      strPath = install_meta_dir(pszVersion, pszBuild, pszType, pszId, pszLocale, pszSchema) / "installed.txt";
 
-      if(lpnode == NULL)
-         return false;
-
-      stringa straName;
-      stringa straValue;
-
-      straName.add("locale");
-      straValue.add(pszLocale);
-
-
-      straName.add("schema");
-      straValue.add(pszSchema);
-
-      sp(::xml::node) lpnodeLocalization = lpnode->GetChildByAllAttr("localization",straName,straValue);
-
-      if(lpnodeLocalization == NULL)
+      if(!Application.file().exists(strPath))
          return false;
 
       return true;

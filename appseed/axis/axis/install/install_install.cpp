@@ -381,106 +381,6 @@ namespace install
 
       return is(pszVersion, pszBuild, pszType, pszId, pszLocale, pszSchema);
 
-      /*      if (psz == NULL)
-               return true;
-
-               if (*psz == '\0')
-               return true;
-
-               if (pszType == NULL || *pszType == '\0')
-               pszType = "application";
-
-               if (pszVersion == NULL || *pszVersion == '\0')
-               {
-
-               #if CA2_PLATFORM_VERSION == CA2_BASIS
-
-               pszVersion = "basis";
-
-               #else
-
-               pszVersion = "stage";
-
-               #endif
-
-               }
-
-               string strLatestBuildNumber;
-
-               if (pszBuild == NULL || *pszBuild == '\0')
-               {
-
-               strLatestBuildNumber = get_latest_build_number(pszVersion);
-
-               pszBuild = strLatestBuildNumber;
-
-               }
-
-               if (stricmp_dup(pszVersion, "basis") && stricmp_dup(pszVersion, "stage"))
-               return false;
-
-               ::xml::document nodeInstall;
-
-               nodeInstall.load(file_as_string_dup(dir::appdata("spa_install.xml")));
-
-               ::xml::node * lpnodeVersion = nodeInstall.get_child(pszVersion);
-
-               if (lpnodeVersion == NULL)
-               return false;
-
-               ::xml::node * lpnodeInstalled = lpnodeVersion->GetChildByAttr("installed", "build", pszBuild);
-
-               if (lpnodeInstalled == NULL)
-               return false;
-
-               ::xml::node * lpnodeType = lpnodeInstalled->get_child(pszType);
-
-               if (lpnodeType == NULL)
-               return false;
-
-               ::xml::node * lpnodeId = NULL;
-
-               for (int32_t ui = 0; ui < lpnodeType->get_children_count(); ui++)
-               {
-
-               lpnodeId = lpnodeType->child_at(ui);
-
-               string strId = lpnodeId->attr("id");
-
-               if (!strcmp(lpnodeId->get_name(), pszType) && strId == psz)
-               {
-
-               goto found_id;
-
-               }
-
-               }
-
-               return false;
-
-               found_id:
-
-               ::xml::node * lpnodeLocalization = NULL;
-
-               for (int32_t ui = 0; ui < lpnodeId->get_children_count(); ui++)
-               {
-
-               lpnodeLocalization = lpnodeId->child_at(ui);
-
-               string strLocale = lpnodeLocalization->attr("locale");
-               string strSchema = lpnodeLocalization->attr("schema");
-
-               if (!strcmp(lpnodeLocalization->get_name(), "localization") && strLocale == pszLocale && strSchema == pszSchema)
-               {
-
-               return true;
-
-               }
-
-               }
-
-               return false;*/
-
    }
 
    string install::get_latest_build_number(const char * pszVersion)
@@ -971,60 +871,6 @@ namespace install
 
       synch_lock sl(&m_mutex);
 
-      ::file::path strPath;
-
-      strPath = System.dir().commonappdata()/"spa_install.xml";
-
-      ::file::path strBuildPath;
-
-      strBuildPath = System.dir().commonappdata()/ "spa_build.txt";
-
-      System.dir().mk(strPath.folder(), get_app());
-
-      ::xml::document doc(get_app());
-
-      doc.load(Application.file().as_string(strPath));
-
-      if (doc.get_root()->get_name().is_empty())
-      {
-
-         doc.get_root()->set_name("install");
-
-      }
-
-      sp(::xml::node) lpnodeVersion;
-
-      if(m_strVersion == "basis")
-      {
-
-         lpnodeVersion = doc.get_root()->get_child("basis");
-
-      }
-      else
-      {
-
-         lpnodeVersion = doc.get_root()->get_child("stage");
-
-      }
-
-      if (lpnodeVersion == NULL)
-      {
-
-         if(m_strVersion == "basis")
-         {
-
-            lpnodeVersion = doc.get_root()->add_child("basis");
-
-         }
-         else
-         {
-
-            lpnodeVersion = doc.get_root()->add_child("stage");
-
-         }
-
-      }
-
       string strBuildNumber(pszBuild);
 
       if(strBuildNumber == "latest" || strBuildNumber == "installed")
@@ -1055,7 +901,7 @@ namespace install
 
             string strBuildPath;
 
-            strBuildPath = System.dir().commonappdata() / "spa_build.txt";
+            strBuildPath = System.dir().commonappdata() / "spa_build_"+get_platform()+".txt";
 
             strBuildNumber = Application.file().as_string(strBuildPath);
 
@@ -1072,78 +918,11 @@ namespace install
 
       }
 
-      stringa straName1;
-      stringa straValue1;
+      ::file::path path;
 
-      straName1.add("build");
-      straValue1.add(strBuildNumber);
+      path = System.install_meta_dir(m_strVersion,strBuildNumber,pszType,pszId,pszLocale,pszSchema) /
 
-      straName1.add("platform");
-      straValue1.add(get_platform());
-
-      sp(::xml::node) lpnodeInstalled = lpnodeVersion->GetChildByAllAttr("installed",straName1, straValue1);
-
-      if (lpnodeInstalled == NULL)
-      {
-
-         lpnodeInstalled = lpnodeVersion->add_child("installed");
-
-         lpnodeInstalled->add_attr("build",strBuildNumber);
-
-         lpnodeInstalled->add_attr("platform",get_platform());
-
-      }
-
-      sp(::xml::node) lpnodeType = lpnodeInstalled->get_child(pszType);
-
-      if (lpnodeType == NULL)
-      {
-
-         lpnodeType = lpnodeInstalled->add_child(pszType);
-
-      }
-
-      sp(::xml::node) lpnode = lpnodeType->GetChildByAttr(pszType, "id", pszId);
-
-      if (lpnode == NULL)
-      {
-
-         lpnode = lpnodeType->add_child(pszType);
-
-         lpnode->add_attr("id", pszId);
-
-      }
-
-      stringa straName;
-      stringa straValue;
-
-      straName.add("locale");
-      straValue.add(pszLocale);
-
-
-      straName.add("schema");
-      straValue.add(pszSchema);
-
-      sp(::xml::node) lpnodeLocalization = lpnode->GetChildByAllAttr("localization", straName, straValue);
-
-      if (lpnodeLocalization == NULL)
-      {
-
-         lpnodeLocalization = lpnode->add_child("localization");
-
-         lpnodeLocalization->add_attr("locale", pszLocale);
-
-         lpnodeLocalization->add_attr("schema", pszSchema);
-
-      }
-
-      ::xml::disp_option opt = *System.xml().m_poptionDefault;
-
-      opt.newline = true;
-
-      Application.file().put_contents(strPath, doc.get_xml(&opt));
-
-      Application.file().put_contents(strBuildPath,strBuildNumber);
+      Application.file().put_contents(path,"");
 
    }
 

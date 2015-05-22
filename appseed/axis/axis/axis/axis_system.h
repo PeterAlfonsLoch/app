@@ -133,6 +133,8 @@ namespace axis
       ::net::email_departament               & email();
 
 
+      virtual string install_get_platform() override;
+      virtual void install_set_platform(const char * pszPlatform) override;
       virtual string install_get_version() override;
       virtual void install_set_version(const char * pszVersion) override;
       virtual string install_get_latest_build_number(const char * pszVersion) override;

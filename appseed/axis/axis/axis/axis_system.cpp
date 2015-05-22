@@ -106,6 +106,19 @@ namespace axis
 
    }
 
+   string system::install_get_platform()
+   {
+
+      return install().get_platform();
+
+   }
+
+   void system::install_set_platform(const char * pszPlatform)
+   {
+
+      install().set_platform(pszPlatform);
+
+   }
 
    string system::install_get_version()
    {
