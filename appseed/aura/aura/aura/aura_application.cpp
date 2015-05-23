@@ -34,6 +34,20 @@ namespace aura
       m_mutexStr(this)
    {
 
+      m_paurasystem     = NULL;
+      m_paurasession    = NULL;
+      m_paxisapp        = NULL;
+      m_paxissystem     = NULL;
+      m_paxissession    = NULL;
+      m_pbaseapp        = NULL;
+      m_pbasesystem     = NULL;
+      m_pbasesession    = NULL;
+      m_pcoreapp        = NULL;
+      m_pcoresystem     = NULL;
+      m_pcoreplatform   = NULL;
+      m_pplatform       = NULL;
+
+
       m_peventReady = NULL;
 
 

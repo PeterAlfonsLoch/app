@@ -1043,7 +1043,7 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 #include "aura/primitive/primitive_application_bias.h"
 
 
-#include "aura/aura/aura/aura_application_interface.h"
+//#include "aura/aura/aura/aura_application_interface.h"
 #include "aura/aura/aura/aura_application.h"
 #include "aura/aura/aura/aura_application_ptra.h"
 

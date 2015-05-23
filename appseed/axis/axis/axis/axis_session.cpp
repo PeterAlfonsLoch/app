@@ -3114,10 +3114,7 @@ namespace axis
 
       }
 
-      if(m_pplatformcomposite == NULL)
-         return NULL;
-
-      return m_pplatformcomposite->get_cursor();
+      return NULL;
 
    }
 
@@ -3125,10 +3122,7 @@ namespace axis
    ::visual::cursor * session::get_default_cursor()
    {
 
-      if(m_pplatformcomposite == NULL)
-         return NULL;
-
-      return m_pplatformcomposite->get_default_cursor();
+      return NULL;
 
    }
 

@@ -11,10 +11,26 @@ namespace aura
 
 
    class CLASS_DECL_AURA application :
-      virtual public application_interface,
+      virtual public ::thread,
+      virtual public int_scalar_source,
       virtual public ::file::listing_provider
    {
    public:
+
+      // former ::aura::application_interface // moved on 2015-05-23 Sammstag while listening to RocketBeansTV (a German channel?) at TwitchTV
+      ::aura::system *                                m_paurasystem;
+      ::aura::session *                               m_paurasession;
+      ::aura::platform_interface *                    m_pplatform;
+      :: axis :: application *                        m_paxisapp; // can be used only from axis and upper
+      :: axis ::system *                              m_paxissystem; // can be used only from axis and upper
+      :: axis ::session *                             m_paxissession; // can be used only from axis and upper
+      :: base :: application *                        m_pbaseapp; // can be used only from base and upper
+      ::base::system *                                m_pbasesystem; // can be used only from base and upper
+      ::base::session *                               m_pbasesession; // can be used only from base and upper
+      ::core::application *                           m_pcoreapp; // can be used only from core and upper
+      ::core::system *                                m_pcoresystem; // can be used only from core and upper
+      ::core::session *                               m_pcoreplatform; // can be used only from core and upper
+
 
 
       smart_pointer < application >                   m_pimpl;

@@ -91,7 +91,7 @@
 #if !defined(WINDOWS) && !defined(LINUX) && !defined(ANDROID)
 #include "aura_new.cpp"
 #endif
-#include "aura_platform_interface.cpp"
+//#include "aura_platform_interface.cpp"
 #include "aura_plex.cpp"
 #include "aura_plex_heap.cpp"
 #include "aura_printer.cpp"
@@ -99,7 +99,7 @@
 #include "aura_progress.cpp"
 #include "aura_savings.cpp"
 #include "aura_session.cpp"
-#include "aura_session_interface.cpp"
+//#include "aura_session_interface.cpp"
 #include "aura_simple_shell_launcher.cpp"
 #if !defined(METROWIN) 
 #include "aura_small_ipc_channel.cpp"
