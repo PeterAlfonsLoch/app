@@ -211,7 +211,7 @@ namespace aura
       }
    }
 
-   void document::send_initial_update()
+   void document::call_initial_update()
       // walk through all views and call OnInitialUpdate
    {
       ::count count = get_view_count();
@@ -219,7 +219,7 @@ namespace aura
       {
          sp(::aura::impact) pview = get_view(index);
          ASSERT_VALID(pview);
-         pview->_001OnInitialUpdate(NULL);
+         pview->_001OnInitialUpdate();
       }
    }
 

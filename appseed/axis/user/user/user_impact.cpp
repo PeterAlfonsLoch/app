@@ -1,50 +1,5 @@
-// This is core API library.
-//
-//
-//
-//
-//
-//
-//
-//
 
 
-
-
-// like ON_MESSAGE but no return value
-/*#define ON_MESSAGE_VOID(message, memberFxn) \
-{ message, 0, 0, 0, ::core::Sig_vv, \
-(__PMSG)(__PMSGW)(void (__MSG_CALL ::user::interaction::*)())&memberFxn },*/
-// IMPLEMENT_DYNAMIC(::aura::impact, ::user::interaction)
-
-/////////////////////////////////////////////////////////////////////////////
-// ::aura::impact
-
-// BEGIN_MESSAGE_MAP(::aura::impact, ::user::interaction)
-//{{__MSG_MAP(::aura::impact)
-/*   ON_WM_PAINT()
-ON_WM_MOUSEACTIVATE()
-
-ON_WM_DESTROY()
-
-// Standard commands for split pane
-ON_COMMAND_EX(ID_WINDOW_SPLIT, OnSplitCmd)
-ON_UPDATE_COMMAND_UI(ID_WINDOW_SPLIT, OnUpdateSplitCmd)
-
-// Standard commands for next pane
-ON_UPDATE_COMMAND_UI(ID_NEXT_PANE, OnUpdateNextPaneMenu)
-ON_COMMAND_EX(ID_NEXT_PANE, OnNextPaneCmd)
-ON_UPDATE_COMMAND_UI(ID_PREV_PANE, OnUpdateNextPaneMenu)
-ON_COMMAND_EX(ID_PREV_PANE, OnNextPaneCmd)
-//}}__MSG_MAP
-// special command for Initial Update
-ON_MESSAGE_VOID(WM_INITIALUPDATE, OnInitialUpdate)*/
-// END_MESSAGE_MAP()
-//#include "framework.h" // from "base/user/user.h"
-//#include "base/user/user.h"
-
-
-#define WM_INITIALUPDATE    0x0364  // (params unused) - sent to children
 
 
 namespace aura
@@ -67,18 +22,20 @@ namespace aura
 
    void impact::install_message_handling(::message::dispatch * pinterface)
    {
+
       ::database::user::interaction::install_message_handling(pinterface);
+
+
       IGUI_WIN_MSG_LINK(WM_VIEW, pinterface, this, &impact::_001OnView);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &impact::_001OnLButtonDown);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &impact::_001OnLButtonUp);
       IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pinterface, this, &impact::_001OnMouseMove);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &impact::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &impact::_001OnDestroy);
-      IGUI_WIN_MSG_LINK(WM_INITIALUPDATE, pinterface, this, &impact::_001OnInitialUpdate);
-
       //      IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN    , pinterface, this, &impact::_001OnRButtonDown);
       IGUI_WIN_MSG_LINK(WM_MBUTTONDOWN, pinterface, this, &impact::_001OnMButtonDown);
       IGUI_WIN_MSG_LINK(WM_RBUTTONDOWN, pinterface, this, &impact::_001OnRButtonDown);
+      IGUI_WIN_MSG_LINK(WM_INITIALUPDATE,pinterface,this,&impact::_001OnInitialUpdateMessage);
 
 
       IGUI_WIN_MSG_LINK(WM_MOUSEACTIVATE, pinterface, this, &impact::_001OnMouseActivate);
@@ -300,7 +257,6 @@ namespace aura
 
    void impact::_001OnInitialUpdate()
    {
-      UNREFERENCED_PARAMETER(pobj);
       on_update(NULL, 0, NULL);        // initial update
    }
 
@@ -682,7 +638,7 @@ namespace aura
       sp(::aura::impact) pview = pui;
       if (pview != NULL)
       {
-         pview->_001OnInitialUpdate(NULL);
+         pview->_001OnInitialUpdate();
       }
       /*   if (afxData.bWin4 && (pview->GetExStyle() & WS_EX_CLIENTEDGE))
       {
@@ -1079,7 +1035,7 @@ namespace aura
    }
 
    sp(::aura::impact) pview =  (pview);
-   pview->_001OnInitialUpdate(NULL);
+   pview->_001OnInitialUpdate();
    if (afxData.bWin4 && (pview->GetExStyle() & WS_EX_CLIENTEDGE))
    {
    // remove the 3d style from the frame, since the ::aura::impact is
@@ -1115,7 +1071,7 @@ namespace aura
    return NULL;        // can't continue without a ::aura::impact
    }
 
-   ( (pview))->_001OnInitialUpdate(NULL);
+   ( (pview))->_001OnInitialUpdate();
    if (afxData.bWin4 && (pview->GetExStyle() & WS_EX_CLIENTEDGE))
    {
    // remove the 3d style from the frame, since the ::aura::impact is
@@ -1221,6 +1177,17 @@ namespace aura
       return str + m_id;
 
    }
+
+
+   void impact::_001OnInitialUpdateMessage(signal_details * pobj)
+   {
+
+      UNREFERENCED_PARAMETER(pobj);
+
+      _001OnInitialUpdate();
+
+   }
+
 
 } // namespace aura
 

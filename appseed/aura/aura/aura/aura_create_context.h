@@ -5,11 +5,6 @@ namespace aura
 {
 
 
-   class document;
-   class impact_system;
-   class interaction;
-
-
    class CLASS_DECL_AURA create_context : // Creation information structure
       // All fields are optional and may be NULL
       virtual public object

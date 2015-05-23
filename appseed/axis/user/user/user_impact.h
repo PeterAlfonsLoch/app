@@ -146,7 +146,27 @@ namespace aura
 
 
       DECL_GEN_SIGNAL(_001OnCreate);
-         DECL_GEN_SIGNAL(_001OnDestroy);
+      DECL_GEN_SIGNAL(_001OnDestroy);
+      DECL_GEN_SIGNAL(_001OnInitialUpdateMessage);
+      DECL_GEN_SIGNAL(_001OnView);
+      DECL_GEN_SIGNAL(_001OnLButtonDown);
+      DECL_GEN_SIGNAL(_001OnLButtonUp);
+      DECL_GEN_SIGNAL(_001OnMouseMove);
+
+      DECL_GEN_SIGNAL(_001OnMouseActivate);
+      DECL_GEN_SIGNAL(_001OnUpdateSplitCmd);
+      DECL_GEN_SIGNAL(_001OnSplitCmd);
+      DECL_GEN_SIGNAL(_001OnUpdateNextPaneMenu);
+      DECL_GEN_SIGNAL(_001OnNextPaneCmd);
+
+      DECL_GEN_SIGNAL(_001OnFilePrint);
+      DECL_GEN_SIGNAL(_001OnFilePrintPreview);
+
+
+      DECL_GEN_SIGNAL(_001OnRButtonDown);
+      //         DECL_GEN_SIGNAL(_001OnLButtonDown);
+      DECL_GEN_SIGNAL(_001OnMButtonDown);
+
          void OnPaint();
       //int32_t OnMouseActivate(::window_sp pDesktopWnd, UINT nHitTest, UINT message);
       // commands
@@ -163,10 +183,6 @@ namespace aura
       virtual void collaborate(::job * pjob);
       virtual int32_t  get_total_page_count(::job * pjob);
 
-      DECL_GEN_SIGNAL(_001OnView);
-         DECL_GEN_SIGNAL(_001OnLButtonDown);
-         DECL_GEN_SIGNAL(_001OnLButtonUp);
-         DECL_GEN_SIGNAL(_001OnMouseMove);
 
          virtual ::user::interaction::e_type get_window_type();
 
@@ -214,19 +230,6 @@ namespace aura
 
       //      virtual bool pre_create_window(::user::create_struct& cs);
 
-      DECL_GEN_SIGNAL(_001OnMouseActivate);
-         DECL_GEN_SIGNAL(_001OnUpdateSplitCmd);
-         DECL_GEN_SIGNAL(_001OnSplitCmd);
-         DECL_GEN_SIGNAL(_001OnUpdateNextPaneMenu);
-         DECL_GEN_SIGNAL(_001OnNextPaneCmd);
-
-         DECL_GEN_SIGNAL(_001OnFilePrint);
-         DECL_GEN_SIGNAL(_001OnFilePrintPreview);
-
-
-         DECL_GEN_SIGNAL(_001OnRButtonDown);
-         //         DECL_GEN_SIGNAL(_001OnLButtonDown);
-         DECL_GEN_SIGNAL(_001OnMButtonDown);
 
          //         virtual void install_message_handling(::message::dispatch * pinterface);
 

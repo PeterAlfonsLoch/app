@@ -426,6 +426,16 @@ namespace user
 
    }
 
+   
+   void control_bar::_001OnInitialUpdateMessage(signal_details * pobj)
+   {
+      
+      UNREFERENCED_PARAMETER(pobj);
+      
+      _001OnInitialUpdate();
+
+   }
+
 
    bool control_bar::DestroyWindow()
    {
@@ -615,15 +625,18 @@ namespace user
       pbase->set_lresult(0L);
    }
 
+   
    void control_bar::_001OnInitialUpdate()
    {
-      UNREFERENCED_PARAMETER(pobj);
+
       // update the indicators before becoming visible
       ::message::base base(get_app());
       LRESULT lresult;
       base.set(this, WM_IDLEUPDATECMDUI, TRUE, 0L, lresult);
       _001OnIdleUpdateCmdUI(&base);
+
    }
+
 
    uint32_t control_bar::RecalcDelayShow(__SIZEPARENTPARAMS* lpLayout)
    {

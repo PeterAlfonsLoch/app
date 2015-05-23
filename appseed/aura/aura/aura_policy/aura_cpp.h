@@ -569,6 +569,7 @@ namespace aura
    class interaction;
    class frame_window;
    class menu;
+   class document;
 
 
 } // namespace aura

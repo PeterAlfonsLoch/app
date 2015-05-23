@@ -212,7 +212,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnWindowPosChanging);
       DECL_GEN_SIGNAL(_001OnSizeParent);
       DECL_GEN_SIGNAL(_001OnHelpHitTest);
-      virtual void _001OnInitialUpdate();
+      DECL_GEN_SIGNAL(_001OnInitialUpdateMessage);
       DECL_GEN_SIGNAL(_001OnIdleUpdateCmdUI);
       DECL_GEN_SIGNAL(_001OnLButtonDown);
       DECL_GEN_SIGNAL(_001OnLButtonDblClk);
@@ -229,6 +229,10 @@ namespace user
 
       friend class ::user::frame_window;
       friend class BaseDockBar;
+
+
+      virtual void _001OnInitialUpdate();
+
 
 
    };

@@ -119,8 +119,6 @@ namespace user
    void edit_plain_text::_001OnInitialUpdate()
    {
 
-      UNREFERENCED_PARAMETER(pobj);
-
       _001OnUpdate(::action::source_system);
 
       m_bNeedCalcLayout = true;

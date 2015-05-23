@@ -141,7 +141,7 @@ namespace aura
       virtual bool do_file_save();
       virtual void update_frame_counts(single_lock * psl = NULL);
       virtual void disconnect_views();
-      virtual void send_initial_update();
+      virtual void call_initial_update();
 
       // overridables for implementation
       virtual HMENU GetDefaultMenu(); // get menu depending on state
