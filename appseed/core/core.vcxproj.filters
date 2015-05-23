@@ -875,9 +875,16 @@
     <ClInclude Include="filesystem\filemanager\filemanager_form.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
+    <ClInclude Include="user\user\user_form_list_view.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_form_view.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
     <ClInclude Include="user\user\user_list_view.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
+  
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive_int_biunique.cpp">
@@ -1525,9 +1532,16 @@
     <ClCompile Include="core\core\core_static_start.cpp">
       <Filter>Source Files\core\core</Filter>
     </ClCompile>
+    <ClCompile Include="user\user\user_form_view.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_form_list_view.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
     <ClCompile Include="user\user\user_list_view.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
+    
   </ItemGroup>
   <ItemGroup>
     <None Include="core.def">

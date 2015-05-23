@@ -1121,9 +1121,6 @@
     <ClInclude Include="user\user\user_form_callback.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\user_form_interface.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\user\user_form_update_hint.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
@@ -2023,9 +2020,6 @@
     <ClCompile Include="user\user\user_form_callback.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\user_form_interface.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\user_form_update_hint.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -2271,9 +2265,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>

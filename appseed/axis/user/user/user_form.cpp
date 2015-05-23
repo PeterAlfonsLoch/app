@@ -1337,6 +1337,42 @@ namespace user
 
    }
 
+   bool form::_001IsPointInside(sp(control) pcontrol,point64 point)
+   {
+
+      if(pcontrol == NULL)
+         return false;
+
+      return pcontrol->_001IsPointInside(point);
+
+   }
+
+
+   void form::control_get_window_rect(sp(control) pcontrol,LPRECT lprect)
+   {
+
+      pcontrol->GetWindowRect(lprect);
+
+   }
+
+   void form::control_get_client_rect(sp(control) pcontrol,LPRECT lprect)
+   {
+
+      pcontrol->GetClientRect(lprect);
+
+   }
+
+   bool form::open_document(var varFile)
+   {
+
+      if(!get_document()->open_document_file(varFile))
+         return false;
+
+      return true;
+
+   }
+
+
 
 } // namespace user
 

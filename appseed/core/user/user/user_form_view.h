@@ -5,8 +5,8 @@ namespace user
 {
 
 
-   class CLASS_DECL_AXIS form:
-      virtual public ::user::scroll_control
+   class CLASS_DECL_AXIS form_view:
+      virtual public ::user::form
    {
    public:
 
@@ -29,7 +29,7 @@ namespace user
       virtual string get_path();
       virtual bool open_document(var varFile);
       sp(type) controltype_to_typeinfo(::user::e_control_type e_type);
-   
+
 
 
       using control::create;
@@ -115,22 +115,212 @@ namespace user
       DECL_GEN_SIGNAL(_001OnUser123);
       //      virtual void install_message_handling(::message::dispatch * pinterface);
 
-
-      
-
-      using ::user::control::_001IsPointInside;
-      virtual bool _001IsPointInside(sp(control) pcontrol,point64 pt);
-
-      virtual void control_get_window_rect(sp(control) pcontrol,LPRECT lprect);
-      virtual void control_get_client_rect(sp(control) pcontrol,LPRECT lprect);
-
-
-      virtual bool open_document(var varFile);
-
-
    };
 
 
 } // namespace user
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

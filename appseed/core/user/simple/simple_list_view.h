@@ -1,8 +1,8 @@
 #pragma once
 
+
 class CLASS_DECL_CORE simple_list_view :
-   virtual public ::aura::impact,
-   virtual public ::user::form_list
+   virtual public ::user::form_list_view
 {
 public:
 
@@ -24,3 +24,7 @@ public:
    virtual void dump(dump_context & dumpcontext) const;
 
 };
+
+
+
+

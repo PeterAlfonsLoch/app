@@ -9,34 +9,26 @@ namespace user
       virtual public ::user::form,
       virtual public ::user::list
    {
-   protected:
-      sp(control) m_pcontrolEdit;
-
-      ::count m_iOnClickClickCount;
-      index         m_iOnClickClickItem;
-      index         m_iOnClickClickSubItem;
-
    public:
-      index         m_iControlItem;
-      index         m_iControlSubItem;
+
 
       class CLASS_DECL_CORE control_keep
       {
       public:
-         inline control_keep(form_list * pformlist, index iNewItem, index iNewSubItem)
+         inline control_keep(form_list * pformlist,index iNewItem,index iNewSubItem)
          {
             m_pformlist                      = pformlist;
-            m_iItem                          = pformlist->m_iControlItem; 
+            m_iItem                          = pformlist->m_iControlItem;
             m_iSubItem                       = pformlist->m_iControlSubItem;
             pformlist->m_iControlItem        = iNewItem;
             pformlist->m_iControlSubItem     = iNewSubItem;
          }
-         inline control_keep(form_list * pformlist, point pt)
+         inline control_keep(form_list * pformlist,point pt)
          {
             m_pformlist                      = pformlist;
-            m_iItem                          = pformlist->m_iControlItem; 
+            m_iItem                          = pformlist->m_iControlItem;
             m_iSubItem                       = pformlist->m_iControlSubItem;
-            pformlist->control_001DisplayHitTest(pt); 
+            pformlist->control_001DisplayHitTest(pt);
          }
          inline ~control_keep()
          {
@@ -47,6 +39,16 @@ namespace user
          index            m_iItem;
          index            m_iSubItem;
       };
+
+
+      sp(control) m_pcontrolEdit;
+
+      ::count m_iOnClickClickCount;
+      index         m_iOnClickClickItem;
+      index         m_iOnClickClickSubItem;
+
+      index         m_iControlItem;
+      index         m_iControlSubItem;
 
 
       form_list(::aura::application * papp);
