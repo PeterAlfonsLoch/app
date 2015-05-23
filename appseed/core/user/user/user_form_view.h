@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_AXIS form_view:
+   class CLASS_DECL_CORE form_view:
       virtual public ::user::scroll_view,
       virtual public ::user::form
    {

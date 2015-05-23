@@ -11,7 +11,6 @@ namespace html
 
       text::text(::aura::application * papp) :
          ::object(papp),
-         ::data::listener(papp),
          user::edit_plain_text(papp)
       {
 

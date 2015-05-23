@@ -74,6 +74,7 @@
 #include "user/user_form.cpp"
 #include "user/user_form_view.cpp"
 #include "user/user_form_list.cpp"
+#include "user/user_form_list_view.cpp"
 #include "user/user_front_end.cpp"
 #include "user/user_front_end_schema.cpp"
 #include "user/user_image_manager.cpp"
