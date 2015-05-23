@@ -1121,13 +1121,6 @@ void thread::register_at_required_threads()
 
          Session.register_dependent_thread(this);
 
-         if(Session.m_pplatformcomposite != NULL)
-         {
-
-            Session.m_pplatformcomposite->register_dependent_thread(this);
-
-         }
-
       }
 
       if(&System != NULL)

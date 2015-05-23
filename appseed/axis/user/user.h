@@ -69,6 +69,7 @@ namespace user
 //   class form_interface;
    class form_list;
    class form_callback;
+   class form_view;
 
 
 } // namespace user

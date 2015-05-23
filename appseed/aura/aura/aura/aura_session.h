@@ -11,8 +11,7 @@ namespace aura
 
 
    class CLASS_DECL_AURA session:
-      virtual public ::aura::application,
-      virtual public ::aura::session_interface
+      virtual public ::aura::application
    {
    public:
 
@@ -85,6 +84,13 @@ namespace aura
       virtual bool finalize();
 
       virtual int32_t exit_instance();
+
+      virtual ::visual::cursor * get_cursor();
+
+      virtual ::visual::cursor * get_default_cursor();
+
+      //virtual sp(::aura::application) start_application(const char * pszType,const char * pszAppId,sp(::create) pcreatecontext);
+
 
       virtual void request_create(sp(::create) pcreatecontext);
       virtual bool open_by_file_extension(const char * pszPathName,application_bias * pbiasCreate = NULL);

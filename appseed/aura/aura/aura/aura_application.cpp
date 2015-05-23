@@ -228,7 +228,7 @@ namespace aura
          catch(...)
          {
          }
-         //sp(::core::platform) pbergedge = pcreatecontext->m_spCommandLine->m_varQuery["bergedge_callback"].cast < ::core::platform >();
+         //sp(::core::session) pbergedge = pcreatecontext->m_spCommandLine->m_varQuery["bergedge_callback"].cast < ::core::session >();
          // todobergedge
          /*if(pbergedge != NULL)
          {

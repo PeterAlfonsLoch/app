@@ -64,5 +64,31 @@ namespace user
    }
 
 
+   form_view * form_callback::get_form_view(const string & strId)
+   {
+
+      return m_mapform[strId]->m_pformview;
+
+   }
+
+   ::aura::document * form_callback::get_form_document(const string & strId)
+   {
+
+      auto passoc = m_mapform.PLookup(strId);
+
+      if(passoc == NULL)
+         return NULL;
+
+      sp(::aura::impact) pview = passoc->m_element2;
+
+      if(pview.is_null())
+         return NULL;
+
+      return pview->get_document();
+
+   }
+
+
+
 } // namespace user
 

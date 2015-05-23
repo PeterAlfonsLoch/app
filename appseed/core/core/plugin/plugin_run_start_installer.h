@@ -6,7 +6,7 @@ namespace plugin
 
 
    class run_start_installer :
-      virtual public ::core::platform::run_start_installer
+      virtual public ::core::session::run_start_installer
    {
    public:
 

@@ -367,7 +367,7 @@ namespace core
       if(!::core::application::initialize_instance())
          return false;
 
-      m_pbergedgemap = new ::core::platform::map;
+      m_pbergedgemap = new ::core::session::map;
 
 
 
@@ -471,7 +471,7 @@ namespace core
    sp(::aura::session) system::query_session(index iEdge)
    {
 
-      sp(::core::platform) pbergedge = NULL;
+      sp(::core::session) pbergedge = NULL;
 
       if(m_pbergedgemap == NULL)
          return NULL;
@@ -488,9 +488,9 @@ namespace core
    }
 
 
-   sp(::core::platform) system::get_platform(index iEdge,application_bias * pbiasCreation)
+   sp(::core::session) system::get_platform(index iEdge,application_bias * pbiasCreation)
    {
-      sp(::core::platform) pbergedge = NULL;
+      sp(::core::session) pbergedge = NULL;
       if(m_pbergedgemap == NULL)
          return NULL;
       if(!m_pbergedgemap->Lookup(iEdge,pbergedge))
@@ -570,7 +570,7 @@ namespace core
    void system::on_request(sp(::create) pcreate)
    {
 
-      sp(::core::platform) pplatform = get_platform(pcreate->m_spCommandLine->m_iEdge,pcreate->m_spCommandLine->m_pbiasCreate);
+      sp(::core::session) pplatform = get_platform(pcreate->m_spCommandLine->m_iEdge,pcreate->m_spCommandLine->m_pbiasCreate);
 
       ::base::system::on_request(pcreate);
  
@@ -707,7 +707,7 @@ namespace core
    index system::get_new_bergedge(application_bias * pbiasCreation)
    {
       index iNewEdge = m_iNewEdge;
-      sp(::core::platform) pbergedge;
+      sp(::core::session) pbergedge;
       while(m_pbergedgemap->Lookup(iNewEdge,pbergedge))
       {
          iNewEdge++;
@@ -904,9 +904,9 @@ namespace core
    */
 
 
-   /*   sp(::core::platform) system::get_session(index iEdge, application_bias * pbiasCreation)
+   /*   sp(::core::session) system::get_session(index iEdge, application_bias * pbiasCreation)
    {
-   sp(::core::platform) psession = NULL;
+   sp(::core::session) psession = NULL;
    if(m_pbergedgemap == NULL)
    return NULL;
    if(!m_pbergedgemap->Lookup(iEdge, psession))
@@ -923,19 +923,19 @@ namespace core
 
    sp(platform::document) system::get_platform(index iEdge, application_bias * pbiasCreation)
    {
-   sp(::core::platform) pbergedge = get_session(iEdge, pbiasCreation);
+   sp(::core::session) pbergedge = get_session(iEdge, pbiasCreation);
    return pbergedge->get_platform();
    }
 
    sp(nature::document) system::get_nature(index iEdge, application_bias * pbiasCreation)
    {
-   sp(::core::platform) pbergedge = get_session(iEdge, pbiasCreation);
+   sp(::core::session) pbergedge = get_session(iEdge, pbiasCreation);
    return pbergedge->get_nature();
    }
 
    sp(::aura::application) system::application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
    {
-   sp(::core::platform) pbergedge = get_session(iEdge, pbiasCreate);
+   sp(::core::session) pbergedge = get_session(iEdge, pbiasCreate);
    return pbergedge->application_get(pszType, pszId, bCreate, bSynch, pbiasCreate);
    }
    */
@@ -970,7 +970,7 @@ namespace core
    }
 
 
-   spa(::core::platform) & system::planesessionptra()
+   spa(::core::session) & system::planesessionptra()
    {
 
       return m_planesessionptra;

@@ -1472,9 +1472,6 @@
     <ClInclude Include="aura\aura\aura_static_start.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_session_interface.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
     <ClInclude Include="aura\aura\aura_application_interface.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
@@ -1687,9 +1684,6 @@
     </ClInclude>
     <ClInclude Include="user\colorertake5\colorertake5_xmldom.h">
       <Filter>Header Files\user\colorertake5</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\aura_platform_interface.h">
-      <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
     <ClInclude Include="aura\node\ansios\ansios_process.h">
       <Filter>Header Files\aura\node\ansios</Filter>
@@ -2966,9 +2960,6 @@
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
     <ClCompile Include="aura\aura\aura_session_interface.cpp">
-      <Filter>Source Files\aura\aura</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\aura\aura_application_interface.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
     <ClCompile Include="aura\aura\aura_gudo.cpp">

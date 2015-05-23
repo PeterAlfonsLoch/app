@@ -40,7 +40,6 @@
 
 
 #include "aura_application.cpp"
-#include "aura_application_interface.cpp"
 #include "aura_argcargv.cpp"
 #include "aura_assert.cpp"
 #include "aura_assert_running_task.cpp"

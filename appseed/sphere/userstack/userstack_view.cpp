@@ -87,9 +87,9 @@ namespace userstack
       cs.style &= ~WS_EX_CLIENTEDGE;
       return ::aura::impact::pre_create_window(cs);
    }
-   void view::_001OnInitialUpdate(signal_details * pobj)
+   void view::_001OnInitialUpdate()
    {
-      ::aura::impact::_001OnInitialUpdate(pobj);
+      ::aura::impact::_001OnInitialUpdate();
 
 
 

@@ -23,7 +23,7 @@ namespace aura
       ::base::session *                               m_pbasesession; // can be used only from base and upper
       ::core::application *                           m_pcoreapp; // can be used only from core and upper
       ::core::system *                                m_pcoresystem; // can be used only from core and upper
-      ::core::platform *                              m_pcoreplatform; // can be used only from core and upper
+      ::core::session *                              m_pcoreplatform; // can be used only from core and upper
       
 
 

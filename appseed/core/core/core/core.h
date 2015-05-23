@@ -136,7 +136,7 @@ namespace dynamic_source
 #define CoreApp(pbaseapp) (*pbaseapp->m_pcoreapp)
 #define CoreApplication (CoreApp(m_pauraapp))
 
-inline ::core::platform & plat(::aura::application * papp)
+inline ::core::session & plat(::aura::application * papp)
 {
 
    return *papp->m_pcoreplatform;
@@ -1044,7 +1044,7 @@ namespace html
 #include "core_library.h"
 
 
-#include "core_platform.h"
+#include "core_session.h"
 
 
 #include "core_system.h"

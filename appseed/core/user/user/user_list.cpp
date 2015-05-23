@@ -723,6 +723,14 @@ namespace user
       return m_columna.VisibleGetCount();
    }
 
+
+   list_header * list::create_list_header()
+   {
+
+      return Session.user().default_create_list_header();
+
+   }
+
    /*bool list::pre_create_window(::user::create_struct& cs)
    {
 

@@ -1952,7 +1952,7 @@
     <ClInclude Include="core\core\core_muldiv32.h" />
     <ClInclude Include="core\core\core_os_history.h" />
     <ClInclude Include="core\core\core_patch.h" />
-    <ClInclude Include="core\core\core_platform.h" />
+    <ClInclude Include="core\core\core_session.h" />
     <ClInclude Include="core\core\core_process_data.h" />
     <ClInclude Include="core\core\core_progress_interface.h" />
     <ClInclude Include="core\core\core_simple_app.h" />

@@ -453,8 +453,8 @@ namespace user
       bool                          m_bSortEnable;
       bool                          m_bHeaderCtrl;
       bool                          m_bSingleColumnMode;
-      list_cache_interface *        m_pcache;
-      list_header *                 m_pheaderctrl;
+      sp(list_cache_interface)      m_pcache;
+      sp(list_header)               m_plistheader;
 
       LOGFONTW                       m_logfont;
       visual::graphics_extension    m_dcextension;
@@ -669,7 +669,7 @@ namespace user
       ::count _001GetColumnCount();
 
 
-
+      virtual list_header * create_list_header();
 
       void layout();
 

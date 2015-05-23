@@ -8,6 +8,8 @@ namespace user
    form_view::form_view()
    {
 
+      m_pformview = this;
+
    }
 
 

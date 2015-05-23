@@ -3992,7 +3992,7 @@ namespace core
    ::aura::application * application::create_platform(::aura::session * psession)
    {
 
-      return new ::core::platform(psession);
+      return new ::core::session(psession);
 
    }
 

@@ -15,8 +15,8 @@ namespace core
    public:
 
 
-      //core::platform::run_start_installer *        m_prunstartinstaller;
-      //core::platform::map *                        m_pbergedgemap;
+      //core::session::run_start_installer *        m_prunstartinstaller;
+      //core::session::map *                        m_pbergedgemap;
       index                                        m_iNewEdge;
 
       mutex                                        m_mutex;
@@ -29,9 +29,9 @@ namespace core
 
       class ::core::patch                          m_patch;
 
-      sp(::core::platform::run_start_installer)    m_prunstartinstaller;
-      sp(::core::platform::map)                    m_pbergedgemap;
-      spa(::core::platform)                        m_planesessionptra;
+      sp(::core::session::run_start_installer)    m_prunstartinstaller;
+      sp(::core::session::map)                    m_pbergedgemap;
+      spa(::core::session)                        m_planesessionptra;
 
 
       sp(class ::core::history)                    m_phistory;
@@ -91,7 +91,7 @@ namespace core
 
       virtual index get_new_bergedge(application_bias * pbiasCreation = NULL);
 
-      spa(::core::platform) &    planesessionptra();
+      spa(::core::session) &    planesessionptra();
 
 
       virtual bool base_support();
@@ -103,7 +103,7 @@ namespace core
       bool set_history(::core::history * phistory);
 
 
-      virtual sp(::core::platform)             get_platform(index iEdge,application_bias * pbiasCreation = NULL);
+      virtual sp(::core::session)             get_platform(index iEdge,application_bias * pbiasCreation = NULL);
 
 
       virtual void on_request(sp(::create) pcreatecontext);

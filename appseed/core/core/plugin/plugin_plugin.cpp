@@ -820,21 +820,6 @@ namespace plugin
                         for(auto property : set)
                         {
 
-                           if(!property.get_string().has_char()
-                           &&
-                             (property.name() == "build_number"
-                           || property.name() == "app_type"
-                           || property.name() == "locale"
-                           || property.name() == "schema"
-                           || property.name() == "app"
-                           || property.name() == "session_start"
-                           || property.name() == "version"
-                           || property.name() == "enable_desktop_launch"
-                           )
-                           )
-                              continue;
-
-
                            strCommandLine += " ";
 
                            strCommandLine += property.name();

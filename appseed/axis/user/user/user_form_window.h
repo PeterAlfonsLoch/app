@@ -11,6 +11,10 @@ namespace user
    public:
 
 
+      // if this object is a form_view class instance, this member should be set to the form_view class instance
+      // that superseeds this object (based on this object).
+      // form_view is later defined in core library.
+      form_view *                m_pformview;
       string                     m_strPath;
       bool                       m_bOnEditUpdate;
       bool                       m_bOnLanguageChange;

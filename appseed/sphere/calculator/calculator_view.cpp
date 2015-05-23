@@ -77,9 +77,9 @@ namespace calculator
    }
 
 
-   void view::_001OnInitialUpdate(signal_details * pobj)
+   void view::_001OnInitialUpdate()
    {
-      ::aura::impact::_001OnInitialUpdate(pobj);
+      ::aura::impact::_001OnInitialUpdate();
 
 
    }

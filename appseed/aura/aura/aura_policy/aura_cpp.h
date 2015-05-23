@@ -448,7 +448,7 @@ namespace core
 {
 
    class application;
-   class platform;
+   class session;
    class system;
 
 }
@@ -1053,8 +1053,6 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 
 #include "aura/aura/aura/aura_application_signal_details.h"
 
-#include "aura/aura/aura/aura_session_interface.h"
-#include "aura/aura/aura/aura_platform_interface.h"
 #include "aura/aura/aura/aura_session.h"
 
 

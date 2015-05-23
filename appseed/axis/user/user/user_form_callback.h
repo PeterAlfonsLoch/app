@@ -24,6 +24,9 @@ namespace user
       virtual void OnBeforeNavigate2(::html::data * pdata,var & varFile,uint32_t nFlags,const char * lpszTargetFrameName,byte_array& baPostedData,const char * lpszHeaders,bool* pbCancel);
       virtual void _001InitializeFormPreData(::user::form_window * pform);
 
+      form_view * get_form_view(const string & strId);
+      ::aura::document * get_form_document(const string & strId);
+
    };
 
 

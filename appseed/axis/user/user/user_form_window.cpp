@@ -12,6 +12,7 @@ namespace user
       m_bOnLanguageChange     = false;
       m_pcallback             = NULL;
       m_bInitialized          = false;
+      m_pformview             = NULL;
 
    }
 

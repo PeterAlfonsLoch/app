@@ -1,6 +1,6 @@
 #pragma once
 
-#define platform_parent platform( )
+#define platform_parent session( )
 
 namespace core
 {
@@ -9,8 +9,9 @@ namespace core
    class view;
 
 
-   class CLASS_DECL_CORE platform :
+   class CLASS_DECL_CORE session :
       virtual public ::core::application,
+      virtual public ::base::session,
       virtual public ::filemanager::item_action,
       virtual public ::aura::platform_interface
    {
@@ -24,7 +25,7 @@ namespace core
          index                   m_iEdge;
          string                  m_strApp;
          string                  m_strQuery;
-         sp(::core::platform)      m_pbergedgeParent;
+         sp(::core::session)      m_pbergedgeParent;
          sp(::aura::application)   m_pauraapp;
          bool                    m_bMakeVisible;
          sp(::user::interaction) m_puiParent;
@@ -40,7 +41,7 @@ namespace core
       };
 
       class CLASS_DECL_CORE map :
-         virtual public ::map < index, index, sp(::core::platform), sp(::core::platform) >
+         virtual public ::map < index, index, sp(::core::session), sp(::core::session) >
       {
       };
 
@@ -66,7 +67,7 @@ namespace core
 
 
 
-      platform(::aura::application * papp);
+      session(::aura::application * papp);
       virtual ~platform_parent;
 
 
@@ -166,7 +167,7 @@ namespace core
 
       virtual void set_app_title(const char * pszType, const char * pszAppId, const char * pszTitle);
 
-      virtual sp(::core::platform) get_session();
+      virtual sp(::core::session) get_session();
 
       virtual bool finalize();
 
@@ -198,7 +199,7 @@ namespace core
       //virtual sp(::aura::application) get_new_app(sp(::aura::application) pappNewApplicationParent,const char * pszType,const char * pszId);
 //      virtual void open_by_file_extension(const char * pszPathName);
 
-      virtual sp(::core::platform)             query_bergedge();
+      virtual sp(::core::session)             query_bergedge();
 
 
    };

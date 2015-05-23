@@ -335,7 +335,7 @@ namespace core
 
    //   sp(::aura::application) pbaseapp = application_get("application", strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate);
 
-   //   sp(::core::platform) papp = pbaseapp;
+   //   sp(::core::session) papp = pbaseapp;
 
    //   if(papp == NULL)
    //   {
@@ -1306,7 +1306,7 @@ namespace core
       else
       {
 
-         return ::core::platform::get_monitor_count();
+         return ::core::session::get_monitor_count();
 
       }
 
@@ -1327,7 +1327,7 @@ namespace core
       else
       {
 
-         return ::core::platform::get_monitor_rect(iMonitor, lprect);
+         return ::core::session::get_monitor_rect(iMonitor, lprect);
 
       }
 
@@ -1369,7 +1369,7 @@ namespace core
 
 
 
-   sp(::core::platform) platform::get_session()
+   sp(::core::session) platform::get_session()
    {
 
       return this;
@@ -1504,10 +1504,10 @@ namespace core
 
 
 
-   sp(::core::platform) platform::query_bergedge()
+   sp(::core::session) platform::query_bergedge()
    {
 
-      sp(::core::platform) psession = NULL;
+      sp(::core::session) psession = NULL;
 
       if(System.m_pbergedgemap == NULL)
          return NULL;

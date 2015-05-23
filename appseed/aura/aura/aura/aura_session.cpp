@@ -363,7 +363,7 @@ namespace aura
    void session::on_request(sp(::create) pcreatecontext)
    {
 
-      TRACE("::core::platform::on_request(sp(::create))");
+      TRACE("::core::session::on_request(sp(::create))");
 
 
       if(pcreatecontext->m_spCommandLine->m_varQuery["app"].array_get_count() > 1)

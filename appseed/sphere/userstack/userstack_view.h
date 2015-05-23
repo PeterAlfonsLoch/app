@@ -78,7 +78,7 @@ namespace userstack
 
       index hit_test(point pt, e_element & eelement);
 
-      DECL_GEN_SIGNAL(_001OnInitialUpdate);
+      virtual void _001OnInitialUpdate();
 
       //virtual void layout();
 
