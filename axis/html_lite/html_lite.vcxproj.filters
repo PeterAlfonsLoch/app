@@ -44,9 +44,6 @@
     <ClInclude Include="html_lite\html_lite_html_tag.h">
       <Filter>Header Files\html_lite</Filter>
     </ClInclude>
-    <ClInclude Include="html_lite\html_lite_application_interface.h">
-      <Filter>Header Files\html_lite</Filter>
-    </ClInclude>
     <ClInclude Include="html\html.h">
       <Filter>Header Files\html</Filter>
     </ClInclude>
@@ -55,6 +52,9 @@
     </ClInclude>
     <ClInclude Include="html\html_enum.h">
       <Filter>Header Files\html</Filter>
+    </ClInclude>
+    <ClInclude Include="html_lite\html_lite_application.h">
+      <Filter>Header Files\html_lite</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -73,9 +73,6 @@
     <ClCompile Include="html_lite\html_lite_html_tag.cpp">
       <Filter>Source Files\html_lite</Filter>
     </ClCompile>
-    <ClCompile Include="html_lite\html_lite_application_application.cpp">
-      <Filter>Source Files\html_lite</Filter>
-    </ClCompile>
     <ClCompile Include="html\html_html.cpp">
       <Filter>Source Files\html</Filter>
     </ClCompile>
@@ -87,6 +84,9 @@
     </ClCompile>
     <ClCompile Include="_html_lite_html_lite.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="html_lite\html_lite_application.cpp">
+      <Filter>Source Files\html_lite</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

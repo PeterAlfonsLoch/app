@@ -3420,7 +3420,7 @@ namespace aura
    void application::message_handler(signal_details * pobj)
    {
 
-      ::aura::application_interface::message_handler(pobj);
+      ::thread::message_handler(pobj);
 
    }
 

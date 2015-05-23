@@ -1018,7 +1018,25 @@ namespace aura
             {
                on_request(pcreatecontext);
             }
+
    }
+
+
+   ::visual::cursor * session::get_cursor()
+   {
+
+      return NULL;
+
+   }
+
+
+   ::visual::cursor * session::get_default_cursor()
+   {
+
+      return NULL;
+
+   }
+
 
 } // namespace aura
 

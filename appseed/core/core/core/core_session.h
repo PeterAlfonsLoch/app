@@ -12,8 +12,7 @@ namespace core
    class CLASS_DECL_CORE session :
       virtual public ::core::application,
       virtual public ::base::session,
-      virtual public ::filemanager::item_action,
-      virtual public ::aura::platform_interface
+      virtual public ::filemanager::item_action
    {
    public:
 
@@ -74,6 +73,7 @@ namespace core
       virtual void construct(const char * pszAppId);
 
 
+      virtual bool initialize2();
       bool initialize_instance();
       virtual int32_t exit_instance();
 

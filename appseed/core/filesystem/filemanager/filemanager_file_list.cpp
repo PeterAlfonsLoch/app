@@ -22,9 +22,6 @@ namespace filemanager
       m_bShow = false;
       m_dwLastFileSize = ::get_tick_count();
 
-      m_pheaderctrl     = new simple_list_header_control(get_app());
-      m_pheaderctrl->SetBaseListCtrlInterface(this);
-
       connect_update_cmd_ui("edit_copy", &file_list::_001OnUpdateEditCopy);
       connect_command("edit_copy", &file_list::_001OnEditCopy);
       connect_update_cmd_ui("trash_that_is_not_trash", &file_list::_001OnUpdateTrashThatIsNotTrash);

@@ -7,7 +7,7 @@ namespace core
 {
 
 
-   platform::platform(::aura::application * papp):
+   session::session(::aura::application * papp):
       object(papp),
       ::thread(papp)
    {
@@ -52,7 +52,7 @@ namespace core
 
    }
 
-   platform::~platform_parent
+   session::~platform_parent
    {
 
       if(m_pnaturedocument != NULL)
@@ -73,7 +73,7 @@ namespace core
    }
 
 
-   void platform::construct(const char * pszAppId)
+   void session::construct(const char * pszAppId)
    {
 
       ::core::application::construct("session");
@@ -86,7 +86,7 @@ namespace core
 
    }
 
-   bool platform::process_initialize()
+   bool session::process_initialize()
    {
 
       if(!::core::application::process_initialize())
@@ -104,7 +104,7 @@ namespace core
    }
 
 
-   bool platform::initialize1()
+   bool session::initialize1()
    {
 
       if(!::core::application::initialize1())
@@ -125,7 +125,7 @@ namespace core
    }
 
 
-   bool platform::initialize()
+   bool session::initialize()
    {
 
       if(!::core::application::initialize())
@@ -137,8 +137,23 @@ namespace core
 
    }
 
+   
+   bool session::initialize2()
+   {
+      
+      if(!::core::application::initialize2())
+         return false;
+      
+      if(!::base::session::initialize2())
+         return false;
 
-   bool platform::initialize_instance()
+      return true;
+
+   }
+
+
+
+   bool session::initialize_instance()
    {
 
       if(!::core::application::initialize_instance())
@@ -184,7 +199,7 @@ namespace core
    }
 
 
-   bool platform::finalize()
+   bool session::finalize()
    {
 
       bool bOk = true;
@@ -206,7 +221,7 @@ namespace core
    }
 
 
-   int32_t platform::exit_instance()
+   int32_t session::exit_instance()
    {
 
       try
@@ -225,7 +240,7 @@ namespace core
    }
 
 
-   bool platform::bergedge_start()
+   bool session::bergedge_start()
    {
 
       return true;
@@ -233,7 +248,7 @@ namespace core
    }
 
 
-   void platform::_001OnFileNew()
+   void session::_001OnFileNew()
    {
 
       //m_pdocmanager->_001OnFileNew();
@@ -241,7 +256,7 @@ namespace core
    }
 
 
-   bool platform::_001OnCmdMsg(::aura::cmd_msg * pcmdmsg)
+   bool session::_001OnCmdMsg(::aura::cmd_msg * pcmdmsg)
    {
 
       return application::_001OnCmdMsg(pcmdmsg);
@@ -249,18 +264,18 @@ namespace core
    }
 
 
-   void platform::load_string_table()
+   void session::load_string_table()
    {
 
       application::load_string_table();
       application::load_string_table("plane", "");
       application::load_string_table();
-      application::load_string_table("platform", "");
+      application::load_string_table("session", "");
 
    }
 
 
-   //bool platform::create_bergedge(sp(::create) pcreatecontext)
+   //bool session::create_bergedge(sp(::create) pcreatecontext)
    //{
 
    //   if(m_pbergedgedocument == NULL)
@@ -357,17 +372,17 @@ namespace core
 
    //}
 
-   void platform::launch_app(const char * psz)
+   void session::launch_app(const char * psz)
    {
       UNREFERENCED_PARAMETER(psz);
    }
 
-   void platform::install_app(const char * psz)
+   void session::install_app(const char * psz)
    {
       UNREFERENCED_PARAMETER(psz);
    }
 
-   void platform::on_request(sp(::create) pcreatecontext)
+   void session::on_request(sp(::create) pcreatecontext)
    {
 
 
@@ -375,7 +390,7 @@ namespace core
 
 
 
-   bool platform::open_by_file_extension(const char * pszPathName, application_bias * pbiasCreate)
+   bool session::open_by_file_extension(const char * pszPathName, application_bias * pbiasCreate)
    {
 
       sp(::create) cc(allocer());
@@ -392,7 +407,7 @@ namespace core
    }
 
 
-   bool platform::open_by_file_extension(::create * pcreatecontext)
+   bool session::open_by_file_extension(::create * pcreatecontext)
    {
 
       string strId;
@@ -462,13 +477,13 @@ namespace core
 
 
 
-   platform::run_application::run_application()
+   session::run_application::run_application()
    {
       m_pauraapp = NULL;
       m_puiParent = NULL;
    }
 
-   //   void platform::on_exclusive_instance_conflict(EExclusiveInstance eexclusive)
+   //   void session::on_exclusive_instance_conflict(EExclusiveInstance eexclusive)
    //   {
    //
    //      if(eexclusive == ExclusiveInstanceLocalId)
@@ -480,7 +495,7 @@ namespace core
    //         data.dwData = 1984;
    //         data.cbData = (uint32_t) file.get_length();
    //         data.lpData = file.get_data();
-   //         oswindow oswindow = ::FindWindowA(NULL, "::draw2d::fontopus::message_wnd::platform::");
+   //         oswindow oswindow = ::FindWindowA(NULL, "::draw2d::fontopus::message_wnd::session::");
    //
    //         ::SendMessage(oswindow, WM_COPYDATA, NULL, (LPARAM) &data);*/
    //
@@ -488,7 +503,7 @@ namespace core
    //
    //         small_ipc_tx_channel channel;
    //
-   //         if(channel.open("::draw2d::fontopus::message_wnd::platform::"))
+   //         if(channel.open("::draw2d::fontopus::message_wnd::session::"))
    //         {
    //            channel.send(command()->m_varTopicFile, false);
    //            channel.close();
@@ -506,7 +521,7 @@ namespace core
    //   }
    //
 
-   void platform::request_create(sp(::create) pcreatecontext)
+   void session::request_create(sp(::create) pcreatecontext)
    {
 //
 //      //      if(m_pbergedgeInterface != NULL)
@@ -598,9 +613,9 @@ namespace core
 //      {
 //
 //
-//         /*         if(get_document() != NULL && get_document()->get_typed_view < ::platform::pane_view >() != NULL)
+//         /*         if(get_document() != NULL && get_document()->get_typed_view < ::session::pane_view >() != NULL)
 //         {
-//         get_document()->get_typed_view < ::platform::pane_view >()->set_cur_tab_by_id("app:" + App(m_pappCurrent).m_strAppName);
+//         get_document()->get_typed_view < ::session::pane_view >()->set_cur_tab_by_id("app:" + App(m_pappCurrent).m_strAppName);
 //         }*/
 //         App(m_pappCurrent).request_create(pcreatecontext);
 //      }
@@ -610,17 +625,17 @@ namespace core
 //      }
    }
 
-   void platform::request_topic_file(var & varQuery)
+   void session::request_topic_file(var & varQuery)
    {
       request_file_query(Session.m_varTopicFile, varQuery);
    }
 
-   void platform::request_topic_file()
+   void session::request_topic_file()
    {
       request_file(Session.m_varTopicFile);
    }
 
-   /*void platform::request_application(const char * pszId, var varFile, var varQuery, application_bias * pbiasCreate)
+   /*void session::request_application(const char * pszId, var varFile, var varQuery, application_bias * pbiasCreate)
    {
 
    ::core::application_request request;
@@ -635,7 +650,7 @@ namespace core
 
    }*/
    /*
-   sp(::aura::application) platform::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
+   sp(::aura::application) session::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
    {
    ::aura::application * papp = NULL;
 
@@ -683,18 +698,18 @@ namespace core
    }
    }
    */
-   bool platform::is_session()
+   bool session::is_session()
    {
       return true;
    }
 
-   sp(::aura::application) platform::get_current_application()
+   sp(::aura::application) session::get_current_application()
    {
       return Session.m_pappCurrent;
    }
 
 
-   /*void platform::check_topic_file_change()
+   /*void session::check_topic_file_change()
    {
    if(m_varCurrentViewFile != m_varTopicFile && !m_varTopicFile.is_empty())
    {
@@ -704,7 +719,7 @@ namespace core
    }*/
    //
    //
-   //   sp(::user::interaction) platform::get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::create) pcreatecontext)
+   //   sp(::user::interaction) session::get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::create) pcreatecontext)
    //   {
    //
    //
@@ -768,18 +783,18 @@ namespace core
    //         if(get_document() != NULL)
    //         {
    //
-   //            if(get_document()->get_typed_view < ::platform::pane_view >() != NULL)
+   //            if(get_document()->get_typed_view < ::session::pane_view >() != NULL)
    //            {
    //
-   //               get_document()->get_typed_view < ::platform::pane_view >()->set_cur_tab_by_id("app:" + strAppName);
+   //               get_document()->get_typed_view < ::session::pane_view >()->set_cur_tab_by_id("app:" + strAppName);
    //
-   //               puiParent = get_document()->get_typed_view < ::platform::pane_view >()->get_tab_holder(get_document()->get_typed_view < ::platform::pane_view >()->get_tab_by_id("app:" + strAppName));
+   //               puiParent = get_document()->get_typed_view < ::session::pane_view >()->get_tab_holder(get_document()->get_typed_view < ::session::pane_view >()->get_tab_by_id("app:" + strAppName));
    //
    //            }
    //            else
    //            {
    //
-   //               puiParent = get_document()->get_typed_view < ::platform::aura::impact >();
+   //               puiParent = get_document()->get_typed_view < ::session::aura::impact >();
    //
    //            }
    //
@@ -791,7 +806,7 @@ namespace core
    //
    //   }
    //
-   /*   ::user::place_holder_ptra platform::get_place_holder(sp(::user::main_frame) pmainframe, sp(::create) pcreatecontext)
+   /*   ::user::place_holder_ptra session::get_place_holder(sp(::user::main_frame) pmainframe, sp(::create) pcreatecontext)
    {
 
    UNREFERENCED_PARAMETER(pcreatecontext);
@@ -803,18 +818,18 @@ namespace core
 
    string strAppName = app.m_strAppName;
 
-   if(get_document()->get_typed_view < ::platform::pane_view >() != NULL)
+   if(get_document()->get_typed_view < ::session::pane_view >() != NULL)
    {
 
-   get_document()->get_typed_view < ::platform::pane_view >()->set_cur_tab_by_id("app:" + strAppName);
+   get_document()->get_typed_view < ::session::pane_view >()->set_cur_tab_by_id("app:" + strAppName);
 
-   holderptra.add(get_document()->get_typed_view < ::platform::pane_view >()->get_tab_holder(get_document()->get_typed_view < ::platform::pane_view >()->get_tab_by_id("app:" + strAppName)));
+   holderptra.add(get_document()->get_typed_view < ::session::pane_view >()->get_tab_holder(get_document()->get_typed_view < ::session::pane_view >()->get_tab_by_id("app:" + strAppName)));
 
    }
    else
    {
 
-   holderptra.add(get_document()->get_typed_view < ::platform::aura::impact >());
+   holderptra.add(get_document()->get_typed_view < ::session::aura::impact >());
 
    }
 
@@ -823,7 +838,7 @@ namespace core
    }*/
 
    /*
-   bool platform::place(sp(::user::main_frame) pmainframe, sp(::create) pcreatecontext)
+   bool session::place(sp(::user::main_frame) pmainframe, sp(::create) pcreatecontext)
    {
 
    get_place_holder(pmainframe, pcreatecontext).hold(pmainframe);
@@ -835,7 +850,7 @@ namespace core
 
 
 
-   bool platform::on_install()
+   bool session::on_install()
    {
 
       string strFormat;
@@ -855,7 +870,7 @@ namespace core
 
 
 
-   bool platform::is_remote_session()
+   bool session::is_remote_session()
    {
 
 
@@ -865,7 +880,7 @@ namespace core
    }
 
 
-   bool platform::is_mouse_button_pressed(::user::e_mouse emouse)
+   bool session::is_mouse_button_pressed(::user::e_mouse emouse)
    {
 
       if(emouse == ::user::mouse_left_button)
@@ -890,7 +905,7 @@ namespace core
 
 
 
-   void platform::OnFileManagerOpenFile(::filemanager::data * pdata, ::fs::item_array & itema)
+   void session::OnFileManagerOpenFile(::filemanager::data * pdata, ::fs::item_array & itema)
    {
 
       UNREFERENCED_PARAMETER(pdata);
@@ -900,7 +915,7 @@ namespace core
    }
 
 
-   bool platform::open_file(::filemanager::data * pdata, ::fs::item_array & itema)
+   bool session::open_file(::filemanager::data * pdata, ::fs::item_array & itema)
    {
 
       UNREFERENCED_PARAMETER(pdata);
@@ -917,7 +932,7 @@ namespace core
    }
 
 
-   void platform::initialize_bergedge_application_interface()
+   void session::initialize_bergedge_application_interface()
    {
 //      int32_t iCount = 32; // todo: get from bergedge profile
       m_pnaturedocument = NULL;
@@ -925,7 +940,7 @@ namespace core
 
 
 
-   void platform::on_app_request_bergedge_callback(::aura::application * papp)
+   void session::on_app_request_bergedge_callback(::aura::application * papp)
    {
       if(&App(papp) != NULL)
       {
@@ -981,12 +996,12 @@ namespace core
    }
 
 
-   sp(::aura::document) platform::get_document()
+   sp(::aura::document) session::get_document()
    {
       return m_pbergedgedocument;
    }
 
-   sp(::aura::impact) platform::get_view()
+   sp(::aura::impact) session::get_view()
    {
       if(get_document() == NULL)
          return NULL;
@@ -994,18 +1009,18 @@ namespace core
       return NULL;
    }
 
-   sp(::aura::document) platform::get_platform()
+   sp(::aura::document) session::get_platform()
    {
       return m_pplatformdocument;
    }
 
-   sp(::aura::document) platform::get_nature()
+   sp(::aura::document) session::get_nature()
    {
       return m_pnaturedocument;
    }
 
 
-   bool platform::InitializeLocalDataCentral()
+   bool session::InitializeLocalDataCentral()
    {
 
       //m_pdatabase = new nature::database(this);
@@ -1026,12 +1041,12 @@ namespace core
 
    }
 
-   string platform::filemanager_get_initial_browse_path()
+   string session::filemanager_get_initial_browse_path()
    {
       return filemanager().get_initial_browse_path();
    }
 
-   void platform::on_exclusive_instance_conflict(EExclusiveInstance eexclusive)
+   void session::on_exclusive_instance_conflict(EExclusiveInstance eexclusive)
    {
       if(eexclusive == ExclusiveInstanceLocalId)
       {
@@ -1057,7 +1072,7 @@ namespace core
    }
 
 
-   /*void platform::request_application(const char * pszId, var varFile, var varQuery, application_bias * pbiasCreate)
+   /*void session::request_application(const char * pszId, var varFile, var varQuery, application_bias * pbiasCreate)
    {
 
    ::core::application_request request;
@@ -1072,7 +1087,7 @@ namespace core
 
    }*/
 
-   sp(::aura::application) platform::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
+   sp(::aura::application) session::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
    {
 
       sp(::aura::application) papp = NULL;
@@ -1148,7 +1163,7 @@ namespace core
 
 
 
-   void platform::check_topic_file_change()
+   void session::check_topic_file_change()
    {
       if(Session.m_varCurrentViewFile != Session.m_varTopicFile && !Session.m_varTopicFile.is_empty())
       {
@@ -1157,7 +1172,7 @@ namespace core
       }
    }
 
-   sp(::user::interaction) platform::get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::create) pcreatecontext)
+   sp(::user::interaction) session::get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::create) pcreatecontext)
    {
 
 
@@ -1254,7 +1269,7 @@ namespace core
 
    }
 
-   //::user::place_holder_ptra platform::get_place_holder(sp(::user::frame_window) pmainframe, sp(::create) pcreatecontext)
+   //::user::place_holder_ptra session::get_place_holder(sp(::user::frame_window) pmainframe, sp(::create) pcreatecontext)
    //{
 
    //   UNREFERENCED_PARAMETER(pcreatecontext);
@@ -1285,7 +1300,7 @@ namespace core
 
    //}
 
-   bool platform::place(::user::main_frame * pmainframe, sp(::create) pcreatecontext)
+   bool session::place(::user::main_frame * pmainframe, sp(::create) pcreatecontext)
    {
 
       //get_place_holder(pmainframe, pcreatecontext).hold(pmainframe);
@@ -1294,7 +1309,7 @@ namespace core
 
    }
 
-   ::count platform::get_monitor_count()
+   ::count session::get_monitor_count()
    {
 
       if(get_document() != NULL && get_view() != NULL)
@@ -1313,7 +1328,7 @@ namespace core
    }
 
 
-   bool platform::get_monitor_rect(index iMonitor, LPRECT lprect)
+   bool session::get_monitor_rect(index iMonitor, LPRECT lprect)
    {
       
       if(get_document() != NULL && get_view() != NULL)
@@ -1335,7 +1350,7 @@ namespace core
 
 
 
-   void platform::set_app_title(const char * pszType, const char * pszAppId, const char * pszTitle)
+   void session::set_app_title(const char * pszType, const char * pszAppId, const char * pszTitle)
    {
 
       sp(::aura::application) papp = NULL;
@@ -1369,7 +1384,7 @@ namespace core
 
 
 
-   sp(::core::session) platform::get_session()
+   sp(::core::session) session::get_session()
    {
 
       return this;
@@ -1378,18 +1393,18 @@ namespace core
    
    
 
-   bool platform::is_serviceable()
+   bool session::is_serviceable()
    {
 
 
-//      return ::platform::application::is_serviceable();
+//      return ::session::application::is_serviceable();
       return false;
 
 
    }
 
 
-   bool platform::on_uninstall()
+   bool session::on_uninstall()
    {
 
 
@@ -1414,7 +1429,7 @@ namespace core
    }
 
 
-   bool platform::os_native_bergedge_start()
+   bool session::os_native_bergedge_start()
    {
 
       return ::core::application::os_native_bergedge_start();
@@ -1422,7 +1437,7 @@ namespace core
    }
 
 
-   service_base * platform::allocate_new_service()
+   service_base * session::allocate_new_service()
    {
 
 
@@ -1432,7 +1447,7 @@ namespace core
    }
 
 
-   ::visual::cursor * platform::get_cursor()
+   ::visual::cursor * session::get_cursor()
    {
       
       if(m_pbasesession->m_ecursor == ::visual::cursor_none)
@@ -1445,7 +1460,7 @@ namespace core
    }
 
 
-   ::visual::cursor * platform::get_default_cursor()
+   ::visual::cursor * session::get_default_cursor()
    {
       
       return System.visual().get_cursor(m_pbasesession->m_ecursorDefault);
@@ -1453,7 +1468,7 @@ namespace core
    }
 
 
-   int32_t platform::main()
+   int32_t session::main()
    {
 
 
@@ -1469,7 +1484,7 @@ namespace core
 
 
 
-   void platform::register_bergedge_application(::aura::application * papp)
+   void session::register_bergedge_application(::aura::application * papp)
    {
 
       retry_single_lock rsl(m_pmutex,millis(84),millis(84));
@@ -1492,7 +1507,7 @@ namespace core
 
    }
 
-   void platform::unregister_bergedge_application(::aura::application * papp)
+   void session::unregister_bergedge_application(::aura::application * papp)
    {
 
       retry_single_lock rsl(m_pmutex,millis(84),millis(84));
@@ -1504,7 +1519,7 @@ namespace core
 
 
 
-   sp(::core::session) platform::query_bergedge()
+   sp(::core::session) session::query_bergedge()
    {
 
       sp(::core::session) psession = NULL;
@@ -1520,6 +1535,9 @@ namespace core
       return psession;
 
    }
+
+
+
 
 } // namespace plane
 

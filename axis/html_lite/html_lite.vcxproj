@@ -1278,7 +1278,7 @@
     <ClInclude Include="html\html_enum.h" />
     <ClInclude Include="html\html_html.h" />
     <ClInclude Include="html_lite\html_lite.h" />
-    <ClInclude Include="html_lite\html_lite_application_interface.h" />
+    <ClInclude Include="html_lite\html_lite_application.h" />
     <ClInclude Include="html_lite\html_lite_html_attributes.h" />
     <ClInclude Include="html_lite\html_lite_html_common.h" />
     <ClInclude Include="html_lite\html_lite_html_entity_resolver.h" />
@@ -1334,7 +1334,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="html_lite\html_lite_application_application.cpp">
+    <ClCompile Include="html_lite\html_lite_application.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">true</ExcludedFromBuild>

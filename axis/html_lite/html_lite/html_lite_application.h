@@ -5,14 +5,14 @@ namespace html_lite
 {
 
 
-   class CLASS_DECL_HTML_LITE application_interface :
-      virtual public ::aura::application_interface
+   class CLASS_DECL_HTML_LITE application :
+      virtual public ::aura::application
    {
    public:
 
 
-      application_interface();
-      virtual ~application_interface();
+      application();
+      virtual ~application();
 
 
       inline ::html::html * html() { return m_pauraapp->m_paurasystem->m_phtml; }

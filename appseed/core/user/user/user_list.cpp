@@ -39,7 +39,7 @@ namespace user
       m_bHeaderCtrl              = true;
       m_pdata           = NULL;
       m_pcache                   = NULL;
-      m_pheaderctrl              = NULL;
+      m_plistheader              = NULL;
       m_bTopText                 = false;
 
       m_bEmboss                  = true;
@@ -125,11 +125,11 @@ namespace user
 
    bool list::CreateHeaderCtrl()
    {
-      if(m_pheaderctrl != NULL)
+      if(m_plistheader != NULL)
       {
-         if(!m_pheaderctrl->IsWindow())
+         if(!m_plistheader->IsWindow())
          {
-            return m_pheaderctrl->create_window(
+            return m_plistheader->create_window(
                NULL,
                "",
                WS_CHILD
@@ -1209,9 +1209,9 @@ namespace user
          m_iItemWidth = _001CalcColumnWidth(0);
       }
 
-      if(m_pheaderctrl != NULL && m_pheaderctrl->IsWindow())
+      if(m_plistheader != NULL && m_plistheader->IsWindow())
       {
-         //      while(m_pheaderctrl->DeleteItem(0));
+         //      while(m_plistheader->DeleteItem(0));
 
          ::user::list_header::item hditem;
 
@@ -1230,7 +1230,7 @@ namespace user
             hditem.cxy = pcolumn->m_iWidth;;
             hditem.lParam = iColumn;
             hditem.iOrder = (int32_t) iOrder;
-            //         m_pheaderctrl->InsertItem(iColumn, &hditem);
+            //         m_plistheader->InsertItem(iColumn, &hditem);
          }
       }
 
@@ -1248,7 +1248,7 @@ namespace user
 
       m_columna._001GetVisible(iColumn)->m_iWidth = iWidth;
 
-      m_pheaderctrl->DIDDXColumn(true);
+      m_plistheader->DIDDXColumn(true);
 
       _001OnColumnChange();
 
@@ -2324,7 +2324,7 @@ namespace user
    void list::LayoutHeaderCtrl()
    {
 
-      if (m_pheaderctrl == NULL)
+      if (m_plistheader == NULL)
          return;
 
       if(m_bHeaderCtrl)
@@ -2333,7 +2333,7 @@ namespace user
 
          _001GetViewClientRect(&rectClient);
 
-         m_pheaderctrl->SetWindowPos(
+         m_plistheader->SetWindowPos(
             ZORDER_TOP,
             0, 0,
             MAX(m_iItemWidth + 10, rectClient.width()),
@@ -2342,7 +2342,7 @@ namespace user
       }
       else
       {
-         m_pheaderctrl->ShowWindow(SW_HIDE);
+         m_plistheader->ShowWindow(SW_HIDE);
       }
    }
 
@@ -2844,7 +2844,7 @@ namespace user
 
    void list::HeaderCtrlLayout()
    {
-      m_pheaderctrl->SetWindowPos(
+      m_plistheader->SetWindowPos(
          ZORDER_TOP,
          -m_scrollinfo.m_ptScroll.x,
          0,
@@ -2856,10 +2856,10 @@ namespace user
    index list::HeaderCtrlMapColumnToOrder(index iColumn)
    {
 
-      if (m_pheaderctrl == NULL)
+      if (m_plistheader == NULL)
          return iColumn;
 
-      return m_pheaderctrl->MapItemToOrder(iColumn);
+      return m_plistheader->MapItemToOrder(iColumn);
 
    }
 
@@ -2928,7 +2928,7 @@ namespace user
   //    for(index iColumn = 0; iColumn < m_columna.VisibleGetCount(); iColumn++)
     //  {
 //         list_column & column = m_columna._001GetVisible(iColumn);
-         //column.m_iWidth = m_pheaderctrl->GetItemWidth(iColumn);
+         //column.m_iWidth = m_plistheader->GetItemWidth(iColumn);
       //}
 
       _001OnColumnChange();
@@ -3557,13 +3557,15 @@ namespace user
 
    void list::_001OnCreate(signal_details * pobj)
    {
+      
       SCAST_PTR(::message::create, pcreate, pobj)
 
 
-         pobj->previous();
+      pobj->previous();
 
 
       m_font->operator=(*System.visual().font_central().GetListCtrlFont());
+
       m_fontHover->operator=(*System.visual().font_central().GetListCtrlFont());
 
       m_fontHover->set_underline();
@@ -3575,7 +3577,21 @@ namespace user
             return;
          }
 
-         if(m_pheaderctrl != NULL)
+         if(m_plistheader.is_null())
+         {
+
+            m_plistheader = create_list_header();
+
+            if(m_plistheader.is_set())
+            {
+
+               m_plistheader->SetBaseListCtrlInterface(this);
+
+            }
+
+         }
+
+         if(m_plistheader != NULL)
          {
             if(!CreateHeaderCtrl())
             {
@@ -3865,19 +3881,19 @@ namespace user
       string str;
       str = m_dataid.get_id();
       str += ".headerctrl";
-      if(m_pheaderctrl != NULL)
+      if(m_plistheader != NULL)
       {
-         m_pheaderctrl->m_dataid = str;
+         m_plistheader->m_dataid = str;
       }
    }
 
    bool list::DIDDXHeaderLayout(bool bSave)
    {
 
-      if (m_pheaderctrl == NULL)
+      if (m_plistheader == NULL)
          return false;
 
-      return m_pheaderctrl->DIDDXLayout(bSave);
+      return m_plistheader->DIDDXLayout(bSave);
    }
 
    void list::_001SetTopText(const wchar_t * lpcwsz)

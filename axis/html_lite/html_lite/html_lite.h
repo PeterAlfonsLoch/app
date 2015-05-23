@@ -27,7 +27,7 @@ class lite_html_reader;
 #include "axis/html_lite/html/html.h"
 
 
-#include "html_lite_application_interface.h"
+#include "html_lite_application.h"
 
 
 

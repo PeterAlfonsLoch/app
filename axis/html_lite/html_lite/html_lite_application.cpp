@@ -5,22 +5,22 @@ namespace html_lite
 {
 
 
-   application_interface::application_interface()
+   application::application()
    {
 
-      m_pauraapp->m_psignal->connect(this,&application_interface::on_application_signal);
+      m_pauraapp->m_psignal->connect(this,&application::on_application_signal);
 
    }
 
 
-   application_interface::~application_interface()
+   application::~application()
    {
 
 
    }
 
 
-   void application_interface::on_application_signal(signal_details * pobj)
+   void application::on_application_signal(signal_details * pobj)
    {
 
       SCAST_PTR(::aura::application_signal_details,psignal,pobj);
@@ -69,7 +69,7 @@ namespace html_lite
    }
 
 
-   ::html::html * application_interface::create_html()
+   ::html::html * application::create_html()
    {
 
       return canew(::html::html(m_pauraapp));
