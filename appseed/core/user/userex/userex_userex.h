@@ -1,23 +1,11 @@
 #pragma once
 
 
-//class ::aura::document;
-//class ::user::form;
-
-
 namespace userex
 {
 
 
-   class keyboard;
-   class front_end_schema;
-   class document_manager;
-   class impact_system;
-   class document;
-
-
    class CLASS_DECL_CORE userex :
-      virtual public ::user::core,
       virtual public ::user::server,
       virtual public BaseMenuCentralContainer,
       virtual public ::database::client
@@ -36,9 +24,10 @@ namespace userex
 
       ::user::front_end_schema *                m_pufeschema;
       ::user::front_end *                       m_pufe;
-      stringa                       m_straEscape;
+      stringa                                   m_straEscape;
 
-
+      ::type                                    m_typeDefaultListHeader;
+      ::type                                    m_typeDefaultListData;
 
 
 
@@ -87,10 +76,12 @@ namespace userex
 
 
 
+      ::user::list_header * default_create_list_header(::aura::application * papp);
+      ::user::list_data * default_create_list_data(::aura::application * papp);
 
 
-
-
+      ::type & default_type_list_header();
+      ::type & default_type_list_data();
 
 
 

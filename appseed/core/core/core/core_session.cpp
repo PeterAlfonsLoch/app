@@ -9,6 +9,9 @@ namespace core
 
    session::session(::aura::application * papp):
       object(papp),
+      ::aura::session(papp),
+      ::axis::session(papp),
+      ::base::session(papp),
       ::thread(papp)
    {
 
@@ -16,39 +19,33 @@ namespace core
          
       m_pbasesession                      = papp->m_pbasesession;
 
-      m_pbasesession->m_pcoreplatform     = this;
-
-      m_pbasesession->m_pplatform         = this;
+      m_pbasesession->m_pcoresession      = this;
 
       m_paxissystem                       = papp->m_paxissystem;
 
       m_pbasesystem                       = papp->m_pbasesystem;
 
-      m_paxissystem->m_pcoreplatform     = this;
+      m_paxissystem->m_pcoresession       = this;
 
-      m_paxissystem->m_pplatform         = this;
-
-      m_pbasesession->m_pplatformcomposite = this;
+      m_pbasesession->m_pcoresession      = this;
 
       m_pauraapp                          = this;
 
-      m_pauraapp                         = this;
+      m_pauraapp                          = this;
       
       m_pcoreapp                          = this;
 
-      m_pcoreplatform                     = this;
+      m_pcoresession                      = this;
 
-      m_pplatform                         = this;
+      m_pnaturedocument                   = NULL;
+      m_pplatformdocument                 = NULL;
+      m_pbergedgedocument                 = NULL;
+      m_pnaturedocument                   = NULL;
+      m_pplatformdocument                 = NULL;
+      m_pbergedgedocument                 = NULL;
+      m_bLicense				               = false;
 
-      m_pnaturedocument          = NULL;
-      m_pplatformdocument        = NULL;
-      m_pbergedgedocument        = NULL;
-      m_pnaturedocument          = NULL;
-      m_pplatformdocument        = NULL;
-      m_pbergedgedocument        = NULL;
-      m_bLicense				      = false;
-
-      m_strAppName               = "bergedge";
+      m_strAppName                        = "bergedge";
 
    }
 
@@ -92,12 +89,15 @@ namespace core
       if(!::core::application::process_initialize())
          return false;
 
+      if(!::base::session::process_initialize())
+         return false;
+
       m_puserex = create_userex();
 
       if(m_puserex == NULL)
          return false;
 
-      m_puserex->construct(this);
+      //m_puserex->construct(this);
 
       return true;
 
@@ -108,6 +108,9 @@ namespace core
    {
 
       if(!::core::application::initialize1())
+         return false;
+
+      if(!::base::session::initialize1())
          return false;
 
       if(!m_puserex->initialize())
@@ -131,7 +134,8 @@ namespace core
       if(!::core::application::initialize())
          return false;
 
-
+      if(!::base::session::initialize())
+         return false;
 
       return true;
 
@@ -158,7 +162,10 @@ namespace core
 
       if(!::core::application::initialize_instance())
          return false;
-      
+
+      if(!::base::session::initialize_instance())
+         return false;
+
       m_pfilemanager = canew(::filemanager::filemanager(this));
 
       m_pfilemanager->construct(this);
@@ -207,6 +214,18 @@ namespace core
       try
       {
 
+         bOk = ::base::session::finalize();
+
+      }
+      catch(...)
+      {
+
+         bOk = false;
+      }
+
+      try
+      {
+
          bOk = ::core::application::finalize();
 
       }
@@ -223,6 +242,17 @@ namespace core
 
    int32_t session::exit_instance()
    {
+      try
+      {
+
+         ::base::session::exit_instance();
+
+      }
+      catch(...)
+      {
+
+      }
+
 
       try
       {
@@ -291,7 +321,7 @@ namespace core
 
    //      m_pbergedgedocument = m_ptemplate_bergedge->open_document_file(createcontextBergedge);
 
-   //      //m_pbergedgedocument->m_pauraapp->m_pbasesession->m_pcoreplatform = this;
+   //      //m_pbergedgedocument->m_pauraapp->m_pbasesession->m_pcoresession = this;
 
    //   }
 

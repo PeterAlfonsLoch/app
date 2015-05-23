@@ -12,7 +12,6 @@ namespace filemanager
 
 
       ::user::list_cache               m_listcache;
-      simple_list_header_control       m_headerctrl;
       uint32_t                         m_dwLast123Update;
 
 

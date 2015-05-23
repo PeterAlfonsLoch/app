@@ -692,9 +692,6 @@
     <ClInclude Include="user\menu\user_menu_item.h">
       <Filter>Header Files\user\menu</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\user_core.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
     <ClInclude Include="core\core\core_application.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
@@ -886,6 +883,9 @@
     </ClInclude>
     <ClInclude Include="core\core\core_session.h">
       <Filter>Header Files\core\core</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple\simple_list_data.h">
+      <Filter>Header Files\user\simple</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1383,9 +1383,6 @@
     </ClCompile>
     <ClCompile Include="user\menu\user_menu_list_window.cpp">
       <Filter>Source Files\user\menu</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_core.cpp">
-      <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>

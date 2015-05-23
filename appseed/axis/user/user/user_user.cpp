@@ -210,7 +210,7 @@ namespace user
 
    //if(m_pauraapp->m_pcoreapp->m_psession != NULL)
    //{
-   // return m_pauraapp->m_pcoreapp->m_psession->m_pcoreplatform->m_pcoreplatform->simple_message_box(pwndOwner, pszMessage, fuStyle);
+   // return m_pauraapp->m_pcoreapp->m_psession->m_pcoresession->m_pcoresession->simple_message_box(pwndOwner, pszMessage, fuStyle);
    //}
 
    class ::userex::message_box box(get_app());

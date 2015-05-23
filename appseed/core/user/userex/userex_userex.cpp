@@ -46,6 +46,67 @@ namespace userex
       if(!::user::core::initialize())
          return false;
 
+      if(!m_typeDefaultListData)
+      {
+
+         m_typeDefaultListData = System.type_info < ::simple_list_data >();
+
+      }
+
+      if(!m_typeDefaultListHeader)
+      {
+         
+         m_typeDefaultListHeader = System.type_info < ::simple_list_header_control >();
+
+      }
+
+      System.factory().cloneable_small < int_biunique >();
+      System.factory().creatable_small < ::user::edit_plain_text >();
+      System.factory().cloneable_small < XfplayerViewLine >();
+      System.factory().creatable_small < ::user::place_holder >();
+      System.factory().creatable_small < ::user::place_holder_container >();
+
+
+      System.factory().cloneable_small < ::user::split_layout >();
+      System.factory().cloneable_small < ::user::split_bar >();
+      System.factory().cloneable_small < split_view::Pane >();
+      System.factory().cloneable_small < simple_frame_window >();
+      System.factory().creatable_small < MetaButton >();
+      System.factory().creatable_small < ::user::button >();
+      System.factory().creatable_small < ::user::menu_list_view >();
+      System.factory().cloneable_small < simple_child_frame >();
+      System.factory().cloneable_small < simple_main_frame >();
+      System.factory().cloneable_small < ::aura::document >();
+      System.factory().cloneable_small < split_view >();
+      System.factory().cloneable_small < ::user::edit_plain_text_view >();
+
+      System.factory().cloneable_small < ::simple_list_data >();
+      System.factory().cloneable_small < ::simple_list_header_control >();
+
+      System.factory().creatable_small < ::user::tree >();
+
+
+      System.factory().creatable_small < simple_list_view >();
+      System.factory().creatable_small < ::aura::document >();
+      System.factory().creatable_small < simple_printer_list_view >();
+      System.factory().creatable_small < ::user::combo_list >();
+      System.factory().creatable_small < ::user::edit_plain_text >();
+
+      System.factory().creatable_small < ::user::menu_item >(System.type_info < ::aura::menu_base_item >());
+      System.factory().creatable_small < ::aura::menu >(System.type_info < ::aura::menu_base >());
+
+
+      System.factory().creatable_small < ::user::button >();
+
+      System.factory().creatable_small < MetaControlBox >();
+
+
+      // menu
+      System.factory().creatable_small < menu_document >();
+      System.factory().creatable_small < menu_frame >();
+      System.factory().creatable_small < menu_view >();
+
+
 
       Application.simpledb().get_data_server()->add_client(this);
 
@@ -666,6 +727,22 @@ namespace userex
       UNREFERENCED_PARAMETER(pcmdmsg);
 
       return false;
+
+   }
+
+
+   ::user::list_header * userex::default_create_list_header(::aura::application * papp)
+   {
+
+      return App(papp).alloc(default_type_list_header());
+
+   }
+
+
+   ::user::list_data * userex::default_create_list_data(::aura::application * papp)
+   {
+      
+      return App(papp).alloc(default_type_list_data());
 
    }
 

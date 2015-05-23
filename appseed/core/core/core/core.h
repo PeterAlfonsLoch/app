@@ -139,7 +139,7 @@ namespace dynamic_source
 inline ::core::session & plat(::aura::application * papp)
 {
 
-   return *papp->m_pcoreplatform;
+   return *papp->m_pcoresession;
 
 }
 

@@ -12,6 +12,18 @@ namespace filemanager
 
 }
 
+namespace userex
+{
+
+
+   class keyboard;
+   class front_end_schema;
+   class document_manager;
+   class impact_system;
+   class document;
+
+
+} // namespace userex
 
 
 #include "userex_form_frame.h"

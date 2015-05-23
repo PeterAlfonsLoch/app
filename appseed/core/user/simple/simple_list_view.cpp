@@ -1,16 +1,18 @@
 //#include "framework.h"
 
+
 simple_list_view::simple_list_view(::aura::application * papp) :
-   object(papp),
-   m_headerctrl(papp)
+   object(papp)
 {
-   m_pheaderctrl     = &m_headerctrl;
-   m_pheaderctrl->SetBaseListCtrlInterface(this);
+
 }
+
 
 simple_list_view::~simple_list_view()
 {
+
 }
+
 
 void simple_list_view::install_message_handling(::message::dispatch * pinterface)
 {

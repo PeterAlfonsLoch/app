@@ -10,12 +10,6 @@ namespace userfs
    {
 
 
-      m_dataid = "mail::list";
-      m_pdata = new list_data(papp);
-      //m_pdata->m_plist  = this;
-      SetDataInterface(m_pdata);
-
-
       m_scrollinfo.m_rectMargin.left = -23;
       m_scrollinfo.m_rectMargin.top = -8;
       m_scrollinfo.m_rectMargin.bottom = 0;
@@ -23,10 +17,17 @@ namespace userfs
       
    }
 
+   
    list::~list()
    {
 
-      delete m_pdata;
+   }
+
+
+   ::user::list_data * list::create_list_data()
+   {
+      
+      return canew(list_data(get_app()));
 
    }
 
@@ -642,9 +643,12 @@ namespace userfs
    }
    }
 
+   
    list_data * list::get_fs_list_data()
    {
-      return dynamic_cast < list_data * > (m_pdata);
+
+      return m_plistdata.cast < list_data > ();
+
    }
 
 

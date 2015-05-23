@@ -7,7 +7,6 @@ class CLASS_DECL_CORE simple_printer_list_view :
 public:
 
       
-   ::user::simple_list_data   m_listdata;
    sp(::aura::impact)                   m_pview;
 
 

@@ -44,16 +44,13 @@ namespace aura
       m_pbasesession    = NULL;
       m_pcoreapp        = NULL;
       m_pcoresystem     = NULL;
-      m_pcoreplatform   = NULL;
-      m_pplatform       = NULL;
-
-
-      m_peventReady = NULL;
+      m_pcoresession   = NULL;
+      m_peventReady     = NULL;
 
 
 #ifdef WINDOWS
 
-      m_hinstance                = NULL;
+      m_hinstance       = NULL;
 
 #endif
 
@@ -83,9 +80,7 @@ namespace aura
 
          m_pcoresystem           = m_pauraapp->m_pcoresystem;
 
-         m_pcoreplatform         = m_pauraapp->m_pcoreplatform;
-
-         m_pplatform             = m_pauraapp->m_pplatform;
+         m_pcoresession         = m_pauraapp->m_pcoresession;
 
          m_pcoreapp              = m_pauraapp->m_pcoreapp;
 

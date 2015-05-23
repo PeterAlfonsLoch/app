@@ -7,9 +7,6 @@ class CLASS_DECL_CORE simple_form_list_view :
 public:
 
 
-   simple_list_header_control   m_headerctrl;
-
-
    simple_form_list_view(::aura::application * papp);
    virtual ~simple_form_list_view();
 

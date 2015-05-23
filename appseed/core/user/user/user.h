@@ -29,14 +29,10 @@ namespace user
    class menu_item;
 
 
-
-
-
-
-
-
-
 } // namespace user
+
+
+class simple_list_data;
 
 
 enum e_position
@@ -110,7 +106,7 @@ protected:
 #include "user_list_cache_interface.h"
 #include "user_list_cache.h"
 #include "user_list_data.h"
-#include "user_simple_list_data.h"
+#include "user/simple/simple_list_data.h"
 
 #include "user_tree_data.h"
 
@@ -340,7 +336,7 @@ namespace user
 
 #include "user_image_manager.h"
 
-#include "user_core.h"
+//#include "user_core.h"
 
 
 

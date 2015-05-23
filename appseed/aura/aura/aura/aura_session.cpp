@@ -898,9 +898,7 @@ namespace aura
 
       pgenapp->m_pcoresystem = m_pcoresystem;
 
-      pgenapp->m_pcoreplatform = m_pcoreplatform;
-
-      pgenapp->m_pplatform = m_pplatform;
+      pgenapp->m_pcoresession = m_pcoresession;
 
 #ifdef WINDOWS
 

@@ -6,14 +6,11 @@ namespace filemanager
 
 
    operation_list_view::operation_list_view(::aura::application * papp):
-      object(papp),
-      m_headerctrl(papp)
+      object(papp)
    {
          m_dwLast123Update = ::get_tick_count();
          m_pcache = &m_listcache;
-         m_pheaderctrl     = &m_headerctrl;
-         m_pheaderctrl->SetBaseListCtrlInterface(this);
-      }
+   }
 
    void operation_list_view::install_message_handling(::message::dispatch * pinterface)
    {

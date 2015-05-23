@@ -63,8 +63,6 @@ namespace user
       ::database::id                   m_datakey;
 
 
-
-
       list_column();
       list_column(const list_column & pcolumn);
       virtual ~list_column();
@@ -356,8 +354,6 @@ namespace user
       };
 
 
-
-
       class CLASS_DECL_CORE list_layout :
          virtual public ::file::serializable
       {
@@ -386,18 +382,10 @@ namespace user
          virtual void read(::file::istream & istream);
       };
 
-   public:
-
-      bool        m_bHoverSelect;
-      bool        m_bMultiSelect;
-
 
       static const UINT MESSAGE_ENDCOLUMNHEADERDRAG;
       static const UINT MESSAGE_COLUMNHEADERTRACK;
       static const UINT MESSAGE_ENDCOLUMNHEADERTRACK;
-
-
-
 
       // Simple Filter Implementation
       // Base List Side
@@ -409,21 +397,6 @@ namespace user
          FilterStateFilter,
       };
 
-      EFilterState         m_efilterstate;
-      index_biunique *     m_piaFilterIcon;
-      index_array *        m_piaFilterList;
-
-      index    m_iItemDrag;
-      index    m_iItemDrop;
-      bool     m_bDrag;
-
-
-
-
-      // Sort
-      bool                 m_bSort;
-
-      bool                 m_bEmboss;
 
       class CSortInfoItem
       {
@@ -442,92 +415,116 @@ namespace user
 
       };
 
-      CSortInfo   m_sortinfo;
+
+
+      CSortInfo                        m_sortinfo;
+
+      EFilterState                     m_efilterstate;
+      index_biunique *                 m_piaFilterIcon;
+      index_array *                    m_piaFilterList;
+
+      bool                             m_bHoverSelect;
+      bool                             m_bMultiSelect;
+
+
+      index                            m_iItemDrag;
+      index                            m_iItemDrop;
+      bool                             m_bDrag;
+
+
+      // Sort
+      bool                             m_bSort;
+      bool                             m_bEmboss;
+
+
+      bool                             m_bSortEnable;
+      bool                             m_bHeaderCtrl;
+      bool                             m_bSingleColumnMode;
+      sp(list_cache_interface)         m_pcache;
+      sp(list_header)                  m_plistheader;
+
+      LOGFONTW                         m_logfont;
+      visual::graphics_extension       m_dcextension;
+
+      index                            m_iClick;
+
+      index                            m_iItemFocus;
+
+      bool                             m_bLockViewUpdate;
+      int32_t                          m_iItemHeight;
+      int32_t                          m_iItemWidth;
+
+      index                            m_iItemHover;
+      index                            m_iSubItemHover;
+
+      index                            m_iLastItemSel;
+      index                            m_iLastSubItemSel;
+      index                            m_iItemEnter;
+      index                            m_iSubItemEnter;
+      index                            m_iMouseFlagEnter;
+      index                            m_iItemSel;
+      index                            m_iSubItemSel;
+
+
+      range                            m_rangeSelection;
+      range                            m_rangeHighlight;
 
 
 
+      index                            m_iShiftFirstSelection;
+      uint_ptr                         m_uiLButtonUpFlags;
+      point                            m_ptLButtonUp;
+      UINT                             m_uiRButtonUpFlags;
+      point                            m_ptRButtonUp;
+      cregexp                          m_reFilter1;
+      int32_t                          m_iFilter1Step;
+      bool                             m_bFilter1;
+
+      bool                             m_bTopText;
+      string                           m_strTopText;
+      rect                             m_rectTopText;
+      sp(list_data)                    m_plistdata;
+      ::draw2d::font_sp                m_font;
+      ::draw2d::font_sp                m_fontHover;
+      ::draw2d::pen_sp                 m_penFocused;
+      ::draw2d::pen_sp                 m_penHighlight;
+      EView                            m_eview;
+      flags < e_flag >                 m_flags;
+      icon_layout                      m_iconlayout;
+      list_layout                      m_listlayout;
+      mutex                            m_mutex;
 
 
+      index                            m_iTopIndex;
+      index                            m_iTopGroup;
+      ::count                          m_nDisplayCount;
+      ::count                          m_nItemCount;
+      ::count                          m_nGroupCount;
 
 
-      bool                          m_bSortEnable;
-      bool                          m_bHeaderCtrl;
-      bool                          m_bSingleColumnMode;
-      sp(list_cache_interface)      m_pcache;
-      sp(list_header)               m_plistheader;
+      sp(image_list)                   m_pilGroup;
+      sp(image_list)                   m_pilGroupHover;
+      bool                             m_bGroup;
+      bool                             m_bLateralGroup;
+      int32_t                          m_iLateralGroupWidth;
+      int32_t                          m_iGroupMinHeight;
+      index                            m_iGroupHover;
 
-      LOGFONTW                       m_logfont;
-      visual::graphics_extension    m_dcextension;
+      draw_list_item *                 m_pdrawlistitem;
 
-      index                         m_iClick;
-
-      index                         m_iItemFocus;
-
-      bool                          m_bLockViewUpdate;
-      int32_t                           m_iItemHeight;
-      int32_t                           m_iItemWidth;
-
-      index                         m_iItemHover;
-      index                         m_iSubItemHover;
-
-      index                         m_iLastItemSel;
-      index                         m_iLastSubItemSel;
-      index                         m_iItemEnter;
-      index                         m_iSubItemEnter;
-      index                         m_iMouseFlagEnter;
-      index                         m_iItemSel;
-      index                         m_iSubItemSel;
-
-
-      range                         m_rangeSelection;
-      range                         m_rangeHighlight;
-
-
-
-      index                         m_iShiftFirstSelection;
-      uint_ptr                          m_uiLButtonUpFlags;
-      point                         m_ptLButtonUp;
-      UINT                          m_uiRButtonUpFlags;
-      point                         m_ptRButtonUp;
-      cregexp                       m_reFilter1;
-      int32_t                           m_iFilter1Step;
-      bool                          m_bFilter1;
-
-      bool                          m_bTopText;
-      string                        m_strTopText;
-      rect                          m_rectTopText;
-      list_data *                   m_pdata;
-      ::draw2d::font_sp                 m_font;
-      ::draw2d::font_sp                 m_fontHover;
-      ::draw2d::pen_sp                  m_penFocused;
-      ::draw2d::pen_sp                  m_penHighlight;
-      EView                         m_eview;
-      flags < e_flag >              m_flags;
-      icon_layout                   m_iconlayout;
-      list_layout                   m_listlayout;
-      mutex                         m_mutex;
-
-
-      index                         m_iTopIndex;
-      index                         m_iTopGroup;
-      ::count m_nDisplayCount;
-      ::count m_nItemCount;
-      ::count m_nGroupCount;
-
-
-      sp(image_list)                  m_pilGroup;
-      sp(image_list)                  m_pilGroupHover;
-      bool                          m_bGroup;
-      bool                          m_bLateralGroup;
-      int32_t                           m_iLateralGroupWidth;
-      int32_t                           m_iGroupMinHeight;
-      index                         m_iGroupHover;
-
-      draw_list_item *              m_pdrawlistitem;
-
-      ::user::list_column_array     m_columna;
+      ::user::list_column_array        m_columna;
 
       mutex                            m_mutexData;
+
+      bool                             m_bAutoCreateListHeader;
+      bool                             m_bAutoCreateListData;
+
+      // This member is only valid if m_plistdata is simple_list_data object
+      // (i.e. a simple_list_data class object or a simple_list_data based class object)
+      // It should match the pointer of m_plistdata and yes, may kind
+      // of memory waste and dangling appendix in some (or many cases).
+      sp(simple_list_data)             m_psimplelistdata;
+
 
 
 
@@ -670,6 +667,7 @@ namespace user
 
 
       virtual list_header * create_list_header();
+      virtual list_data * create_list_data();
 
       void layout();
 
@@ -823,6 +821,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnHScroll);
 
       virtual void data_update_visible_subitem();
+
 
    };
 

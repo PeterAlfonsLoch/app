@@ -91,6 +91,9 @@ namespace user
       m_scrollinfo.m_ptScroll.x = -84;
       m_scrollinfo.m_ptScroll.y = -84;
 
+      m_bAutoCreateListHeader = true;
+      m_bAutoCreateListData = true;
+
    }
 
    list::~list()
@@ -727,9 +730,18 @@ namespace user
    list_header * list::create_list_header()
    {
 
-      return Session.user().default_create_list_header();
+      return Session.userex().default_create_list_header();
 
    }
+
+   
+   list_data * list::create_list_data()
+   {
+
+      return Session.userex().default_create_list_data();
+
+   }
+
 
    /*bool list::pre_create_window(::user::create_struct& cs)
    {
@@ -3571,11 +3583,15 @@ namespace user
       m_fontHover->set_underline();
       //m_fontHover->set_bold();
 
-         if(pcreate->get_lresult() == -1)
-         {
-            pobj->m_bRet = false;
-            return;
-         }
+      if(pcreate->get_lresult() == -1)
+      {
+         pobj->m_bRet = false;
+         return;
+      }
+
+
+      if(m_bAutoCreateListHeader)
+      {
 
          if(m_plistheader.is_null())
          {
@@ -3593,6 +3609,7 @@ namespace user
 
          if(m_plistheader != NULL)
          {
+
             if(!CreateHeaderCtrl())
             {
                pcreate->set_lresult(-1);
@@ -3601,23 +3618,34 @@ namespace user
             }
          }
 
-         class rect rect;
+      }
 
-         rect.null();
+      if(m_bAutoCreateListData)
+      {
 
-         layout();
+         list_data * plistdata = create_list_data();
 
-         pcreate->set_lresult(0);
+         SetDataInterface(plistdata);
 
-         if(IsWindowVisible())
-         {
-            RedrawWindow();
-         }
+      }
 
-         pobj->m_bRet = false;
+      class rect rect;
 
+      rect.null();
+
+      layout();
+
+      pcreate->set_lresult(0);
+
+      if(IsWindowVisible())
+      {
+         RedrawWindow();
+      }
+
+      pobj->m_bRet = false;
 
    }
+
 
    void list::_001CreateImageList(list_column * pcolumn)
    {
@@ -5657,6 +5685,18 @@ namespace user
       _001OnDeleteRange(range);
 
    }
+
+   // This function returns a cast to simple_list_data pointer of m_plistdata member.
+   // It does not force, neither attempt to return a valid simple list data.
+   // The simple list data will be only valid if m_plistdata is a
+   // simple_list_data (i.e. a simple_list_data or a simple_list_data based class object)
+   simple_list_data * list::get_simple_list_data()
+   {
+
+      return m_plistdata.cast < simple_list_data >();
+
+   }
+
 
 } // namespace user
 

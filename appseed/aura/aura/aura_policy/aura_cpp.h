@@ -588,7 +588,7 @@ namespace aura
 #define Sess(pauraapp) (*pauraapp->m_paurasession)
 #define Session (Sess(m_pauraapp))
 
-#define Plat(pauraapp) (*pauraapp->m_pcoreplatform)
+#define Plat(pauraapp) (*pauraapp->m_pcoresession)
 #define Platform (Plat(m_pauraapp))
 
 

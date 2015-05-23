@@ -3,11 +3,8 @@
 
 simple_form_list_view::simple_form_list_view(::aura::application * papp) :
    object(papp),
-   ::user::interaction(papp),
-   m_headerctrl(papp)
+   ::user::interaction(papp)
 {
-   m_pheaderctrl     = &m_headerctrl;
-   m_pheaderctrl->SetBaseListCtrlInterface(this);
 
 }
 

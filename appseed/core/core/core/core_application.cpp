@@ -249,7 +249,7 @@ namespace core
 
       m_dwAlive = ::get_tick_count();
 
-      if(!is_system() && m_pcoreplatform != NULL)
+      if(!is_system() && m_pcoresession != NULL)
       {
 
          Platform.register_bergedge_application(this);
@@ -2742,9 +2742,9 @@ namespace core
          puiParent = pcreatecontext->m_spApplicationBias->m_puiParent;
       }
 
-      //if(puiParent == NULL && m_pbasesession != NULL && m_pbasesession->m_pcoreplatform != NULL && !pcreatecontext->m_bClientOnly
-      if(puiParent == NULL && m_pbasesession != NULL && m_pbasesession->m_pcoreplatform != NULL
-         && !pcreatecontext->m_bOuterPopupAlertLike && m_pbasesession->m_pcoreplatform != this)
+      //if(puiParent == NULL && m_pbasesession != NULL && m_pbasesession->m_pcoresession != NULL && !pcreatecontext->m_bClientOnly
+      if(puiParent == NULL && m_pbasesession != NULL && m_pbasesession->m_pcoresession != NULL
+         && !pcreatecontext->m_bOuterPopupAlertLike && m_pbasesession->m_pcoresession != this)
       {
          puiParent = plat(this).get_request_parent_ui(pinteraction,pcreatecontext);
       }
@@ -3096,7 +3096,7 @@ namespace core
       //m_splicense(new class ::fontopus::license(this));
 
 
-      if(!is_system() && m_pcoreplatform != NULL)
+      if(!is_system() && m_pcoresession != NULL)
       {
 
          Platform.register_bergedge_application(this);

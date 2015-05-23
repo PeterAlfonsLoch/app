@@ -42,7 +42,6 @@ namespace filemanager
       map < ::visual::icon *, ::visual::icon *, int32_t, int32_t > m_iconmap;
 
 
-      simple_list_header_control    m_headerctrl;
       sp(manager)        m_pfilemanager;
 
       

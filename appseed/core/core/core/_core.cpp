@@ -19,7 +19,7 @@
 #include "core_match.cpp"
 #include "core_os_history.cpp"
 #include "core_patch.cpp"
-#include "core_platform.cpp"
+#include "core_session.cpp"
 //#include "core_profiler.cpp"
 #include "core_simple_app.cpp"
 #include "core_strn.cpp"

@@ -1,23 +1,26 @@
 //#include "framework.h"
 
+
 simple_list_control::simple_list_control(::aura::application * papp) :
-   object(papp),
-   m_headerctrl(papp),
-   m_listctrldata(papp)
+   object(papp)
 {
-   m_pheaderctrl     = &m_headerctrl;
-   m_pheaderctrl->SetBaseListCtrlInterface(this);
-   SetDataInterface(&m_listctrldata);
+
 }
+
 
 simple_list_control::~simple_list_control()
 {
+
 }
+
 
 sp(::user::interaction) simple_list_control::OnDrawInterfaceGetWnd()
 {
+
    return this;
+
 }
+
 
 bool simple_list_control::pre_create_window(::user::create_struct& cs)
 {
@@ -27,15 +30,22 @@ bool simple_list_control::pre_create_window(::user::create_struct& cs)
    return ::user::interaction::pre_create_window(cs);
 }
 
+
 void simple_list_control::set_data(stringa &stra)
 {
-   m_listctrldata.set_data(this, stra);
+   
+   m_plistdata.cast < ::simple_list_data > ()->set_data(this, stra);
+
 }
+
 
 void simple_list_control::get_data(stringa &stra)
 {
-   m_listctrldata.get_data(stra);
+
+   m_plistdata.cast  < ::simple_list_data >()->get_data(stra);
+
 }
+
 
 void simple_list_control::pre_subclass_window()
 {
@@ -55,23 +65,40 @@ void simple_list_control::pre_subclass_window()
 
 bool simple_list_control::remove_item(int32_t iItem)
 {
-   if(!m_listctrldata.remove_item(iItem))
+   
+   if(!m_psimplelistdata->remove_item(iItem))
       return false;
+
    _001OnUpdateItemCount();
+
    return true;
+
 }
+
 
 bool simple_list_control::remove_item(item_range & range)
 {
+   
    bool bOk = true;
+   
    for(::index iItem = range.get_upper_bound(); iItem >= range.get_lower_bound(); iItem++)
    {
-      if(!m_listctrldata.remove_item(iItem))
+
+      if(!m_psimplelistdata->remove_item(iItem))
+      {
+
          bOk = false;
+
+      }
+
    }
+
    _001OnUpdateItemCount();
+
    return true;
+
 }
+
 
 bool simple_list_control::remove_item(range & range)
 {
@@ -101,3 +128,4 @@ void simple_list_control::install_message_handling(::message::dispatch * pinterf
    UNREFERENCED_PARAMETER(pinterface);
    ::user::list::install_message_handling(pinterface);
 }
+

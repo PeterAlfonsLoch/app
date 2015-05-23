@@ -9,13 +9,9 @@ namespace filemanager
 
 
    folder_list::folder_list(::aura::application * papp) :
-      object(papp),
-      m_headerctrl(papp)
+      object(papp)
    {
 
-      m_pheaderctrl     = &m_headerctrl;
-
-      m_pheaderctrl->SetBaseListCtrlInterface(this);
 
    }
 
