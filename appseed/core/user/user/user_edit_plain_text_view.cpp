@@ -7,9 +7,6 @@ namespace user
 
    edit_plain_text_view::edit_plain_text_view(::aura::application * papp) :
       object(papp),
-      ::user::interaction(papp),
-      ::user::scroll_view(papp),
-      ::data::listener(papp),
       ::user::edit_plain_text(papp)
    {
 

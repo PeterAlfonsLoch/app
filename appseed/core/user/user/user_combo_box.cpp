@@ -7,7 +7,6 @@ namespace user
 
    combo_box::combo_box(::aura::application * papp) :
       object(papp),
-      ::data::listener(papp),
       ::user::edit_plain_text(papp)
    {
 

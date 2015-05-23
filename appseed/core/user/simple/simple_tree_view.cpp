@@ -3,7 +3,6 @@
 
 simple_tree_view::simple_tree_view(::aura::application * papp) :
    object(papp),
-   ::user::scroll_view(papp),
    user::tree(papp)
 {
 

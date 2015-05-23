@@ -7,11 +7,6 @@ namespace userex // ca8 + cube
 
    wait_message_dialog::wait_message_dialog(::aura::application * papp) :
       object(papp),
-      ::user::scroll_view(papp),
-      ::user::form_interface(papp),
-      user::form(papp),
-      //html_form(papp),
-      //html_form_view(papp),
       dialog(papp)
    {
       m_dwStartTime = 0;

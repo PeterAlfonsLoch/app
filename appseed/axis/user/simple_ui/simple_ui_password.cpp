@@ -32,7 +32,6 @@ namespace simple_ui
    password::password(::aura::application * papp) :
       ::object(papp),
       ::user::interaction(papp),
-      ::data::listener(papp),
       ::user::edit_plain_text(papp),
       edit_box(papp)
    {

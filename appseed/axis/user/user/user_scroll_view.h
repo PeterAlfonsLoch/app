@@ -15,7 +15,7 @@ namespace user
    public:
 
 
-      scroll_view(::aura::application * papp);
+      scroll_view();
       virtual ~scroll_view();
 
 

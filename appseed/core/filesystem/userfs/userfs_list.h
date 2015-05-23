@@ -7,12 +7,10 @@ namespace userfs
    class main_view;
 
    class CLASS_DECL_CORE list :
-      virtual public ::user::form_list
+      virtual public ::user::form_list_view
    {
    public:
 
-
-      simple_list_header_control    m_headerctrl;
 
       stringa      m_straFileSize;
       stringa      m_straStrictOrder;

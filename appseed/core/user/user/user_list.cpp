@@ -11,15 +11,14 @@ namespace user
    const UINT list::MESSAGE_COLUMNHEADERTRACK = WM_USER + 26;
    const UINT list::MESSAGE_ENDCOLUMNHEADERTRACK = WM_USER + 27;
 
-   list::list(::aura::application * papp) :
-   object(papp),
-   m_columna(papp),
+   list::list() :
+   m_columna(get_app()),
    m_font(allocer()),
    m_fontHover(allocer()),
    m_penFocused(allocer()),
    m_penHighlight(allocer()),
-   m_dcextension(papp),
-   m_mutex(papp)
+   m_dcextension(get_app()),
+   m_mutex(get_app())
    {
       m_piaFilterIcon = new index_biunique();
       m_piaFilterList = new index_array();

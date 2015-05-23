@@ -531,7 +531,7 @@ namespace user
 
 
 
-      list(::aura::application * papp);
+      list();
       virtual ~list();
 
 

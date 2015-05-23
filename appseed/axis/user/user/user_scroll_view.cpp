@@ -6,8 +6,7 @@ namespace user
 {
 
 
-   scroll_view::scroll_view(::aura::application * papp) :
-      ::object(papp)
+   scroll_view::scroll_view()
    {
 
    }

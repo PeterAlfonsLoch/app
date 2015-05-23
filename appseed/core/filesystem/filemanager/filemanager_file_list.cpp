@@ -9,13 +9,7 @@ namespace filemanager
    file_list::file_list(::aura::application * papp) :
       object(papp),
       ::user::interaction(papp),
-      ::user::form_interface(papp),
-      ::user::form(papp),
-      ::user::form_list(papp),
-      ::user::scroll_view(papp),
-      ::user::list(papp),
       ::userfs::list(papp),
-      //m_gdibuffer(papp),
       m_mutex(papp)
    {
          m_iAnimate = 0;
@@ -28,7 +22,7 @@ namespace filemanager
       m_bShow = false;
       m_dwLastFileSize = ::get_tick_count();
 
-      m_pheaderctrl     = &m_headerctrl;
+      m_pheaderctrl     = new simple_list_header_control(get_app());
       m_pheaderctrl->SetBaseListCtrlInterface(this);
 
       connect_update_cmd_ui("edit_copy", &file_list::_001OnUpdateEditCopy);
@@ -213,7 +207,7 @@ namespace filemanager
                {
                   //html::elemental * pelemental = dynamic_cast < html::elemental * > (puh->m_pformview->get_html_data()->get_element_by_name("encontrar"));
                   //html::impl::input_text * pinput = dynamic_cast < html::impl::input_text * > (pelemental->m_pimpl);
-                  sp(::user::interaction) ptext = puh->m_pformview->get_child_by_id("encontrar");
+                  sp(::user::interaction) ptext = puh->m_pform->get_child_by_id("encontrar");
                   range range;
                   _001GetSelection(range);
                   if(range.get_item_count() > 0)

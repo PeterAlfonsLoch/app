@@ -28,6 +28,9 @@
 #include "simple_frame_window.h"
 
 
+#include "simple_form_view.h"
+
+
 #include "simple_list_header_control.h"
 #include "simple_list_view.h"
 #include "simple_list_control.h"

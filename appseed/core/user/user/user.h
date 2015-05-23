@@ -298,7 +298,9 @@ namespace user
 #include "user_split_bar.h"
 #include "user_split_layout.h"
 
+#include "user_form.h"
 #include "user_form_list.h"
+#include "user_form_view.h"
 #include "user_form_list_view.h"
 #include "user_split_bar.h"
 #include "user_split_window.h"

@@ -5,11 +5,7 @@ namespace user
 {
 
 
-   form::form(::aura::application * papp) :
-      ::object(papp),
-      ::user::interaction(papp),
-      ::user::scroll_view(papp),
-      ::user::form_interface(papp)
+   form::form() 
    {
 
       m_bOnEditUpdate         = false;
@@ -44,7 +40,7 @@ namespace user
 
          switch(pdescriptor->m_etype)
          {
-         case control::type_static:
+         case control_type_static:
             {
    /*xxx            CTransparentStatic * pstatic = (CTransparentStatic *) window::FromHandlePermanent(pform->get_child_by_id(pcontrol->m_id)->GetSafeoswindow_());
                if(pstatic == NULL || !base_class < CTransparentStatic >::bases(pstatic))
@@ -100,7 +96,7 @@ namespace user
          //sp(type) ti = typeid(pdescriptor->m_pcontrol);
 /*         if(ti == System.type_info < ::user::list > ())
          {
-            if(pdescriptor->m_etype == control::type_simple_list)
+            if(pdescriptor->m_etype == control_type_simple_list)
             {
                ::user::list * plist = dynamic_cast <::user::list *>(pdescriptor->m_pcontrol);
                plist->m_dataid = pdescriptor->m_idPrivateDataSection;
@@ -136,16 +132,16 @@ namespace user
 
       switch(pcontrol->descriptor().get_type())
       {
-      case control::type_button:
+      case control_type_button:
          OnCommandButton(pcontrol, uiNotificationCode, lparam);
          break;
-      case control::type_check_box:
+      case control_type_check_box:
          OnCommandCheckBox(pcontrol, uiNotificationCode, lparam);
          break;
-      case control::type_combo_box:
+      case control_type_combo_box:
          OnCommandComboBox(pcontrol, uiNotificationCode, lparam);
          break;
-      case control::type_edit:
+      case control_type_edit:
          OnCommandEdit(pcontrol, uiNotificationCode, lparam);
          break;
       default:
@@ -167,7 +163,7 @@ namespace user
       if(pcontrol == NULL)
          return false;
 
-      ASSERT(pcontrol->descriptor().get_type() == control::type_button);
+      ASSERT(pcontrol->descriptor().get_type() == control_type_button);
 
 #ifdef WINDOWS
 
@@ -202,7 +198,7 @@ namespace user
       if(pcontrol == NULL)
          return false;
 
-      ASSERT(pcontrol->descriptor().get_type() == control::type_check_box);
+      ASSERT(pcontrol->descriptor().get_type() == control_type_check_box);
 
 #ifdef WINDOWS
 
@@ -236,7 +232,7 @@ namespace user
       if(pcontrol == NULL)
          return false;
 
-      ASSERT(pcontrol->descriptor().get_type() == control::type_combo_box);
+      ASSERT(pcontrol->descriptor().get_type() == control_type_combo_box);
 
 #ifdef WINDOWS
 
@@ -278,7 +274,7 @@ namespace user
       if(pcontrol == NULL)
          return false;
 
-      ASSERT(pcontrol->descriptor().get_type() == control::type_edit);
+      ASSERT(pcontrol->descriptor().get_type() == control_type_edit);
 
 #ifdef WINDOWS
 
@@ -313,7 +309,7 @@ namespace user
       if(pcontrol == NULL)
          return false;
 
-      ASSERT(pcontrol->descriptor().get_type() == control::type_edit || pcontrol->descriptor().get_type() == control::type_edit_plain_text);
+      ASSERT(pcontrol->descriptor().get_type() == control_type_edit || pcontrol->descriptor().get_type() == control_type_edit_plain_text);
 
       sp(::user::elemental) pedit = get_child_by_id(pcontrol->m_id);
 
@@ -389,17 +385,17 @@ namespace user
          return;
       switch(pcontrol->descriptor().get_type())
       {
-      case control::type_check_box:
+      case control_type_check_box:
          _001UpdateCheckBox(pcontrol);
          break;
-      case control::type_combo_box:
+      case control_type_combo_box:
          _001UpdateComboBox(pcontrol);
          break;
-      case control::type_edit:
-      case control::type_edit_plain_text:
+      case control_type_edit:
+      case control_type_edit_plain_text:
          _001UpdateEdit(pcontrol);
          break;
-      case control::type_simple_list:
+      case control_type_simple_list:
          _001UpdateSimpleList(pcontrol);
          break;
       default:
@@ -414,17 +410,17 @@ namespace user
          return;
       switch(pcontrol->descriptor().get_type())
       {
-      case control::type_check_box:
+      case control_type_check_box:
          _001UpdateDbFlagsCheckBox(pcontrol);
          break;
-   /*   case control::type_combo_box:
+   /*   case control_type_combo_box:
          _001UpdateComboBox(control);
          break;
-      case control::type_edit:
-      case control::type_edit_plain_text:
+      case control_type_edit:
+      case control_type_edit_plain_text:
          _001UpdateEdit(control);
          break;
-      case control::type_simple_list:
+      case control_type_simple_list:
          _001UpdateSimpleList(control);
          break;*/
       default:
@@ -437,7 +433,7 @@ namespace user
       ASSERT(pcontrol != NULL);
       if(pcontrol == NULL)
          return;
-      ASSERT(pcontrol->descriptor().get_type() == control::type_check_box);
+      ASSERT(pcontrol->descriptor().get_type() == control_type_check_box);
       ASSERT(pcontrol->descriptor().m_eddx == control::ddx_dbflags);
       int_ptr_array ia;
       try
@@ -471,7 +467,7 @@ namespace user
       ASSERT(pcontrol != NULL);
       if(pcontrol == NULL)
          return;
-      ASSERT(pcontrol->descriptor().get_type() == control::type_check_box);
+      ASSERT(pcontrol->descriptor().get_type() == control_type_check_box);
       int32_t i;
       if(data_get(pcontrol->descriptor().m_dataid, i))
       {
@@ -485,7 +481,7 @@ namespace user
       ASSERT(pcontrol != NULL);
       if(pcontrol == NULL)
          return;
-   /* linux   ASSERT(pcontrol->descriptor().get_type() == control::type_combo_box);
+   /* linux   ASSERT(pcontrol->descriptor().get_type() == control_type_combo_box);
       int32_t i;
       if(VmsDataGet(pcontrol->descriptor().m_dataid, 0, 0, i))
       {
@@ -508,8 +504,8 @@ namespace user
          return;
       keep<bool> keepUpdateLock(&m_bOnEditUpdate, true, false, true);
 
-      ASSERT(pcontrol->descriptor().get_type() == control::type_edit
-         || pcontrol->descriptor().get_type() == control::type_edit_plain_text);
+      ASSERT(pcontrol->descriptor().get_type() == control_type_edit
+         || pcontrol->descriptor().get_type() == control_type_edit_plain_text);
 
       if(pcontrol->descriptor().has_function(control::function_vms_data_edit))
       {
@@ -563,7 +559,7 @@ namespace user
       if(pcontrol == NULL)
          return;
 
-      ASSERT(pcontrol->descriptor().get_type() == control::type_simple_list);
+      ASSERT(pcontrol->descriptor().get_type() == control_type_simple_list);
 
 /*      ::user::list * plist = dynamic_cast<::user::list *>(get_child_by_id(pcontrol->m_id));
 
@@ -651,49 +647,12 @@ namespace user
 
    void form::install_message_handling( ::message::dispatch *pinterface)
    {
-      ::user::scroll_view::install_message_handling(pinterface);
-   /*   InstallOnDrawInterface(pinterface);
-      VMSGEN_WINDOW_ON_SIZE_CONDITIONAL(pinterface, this, _001OnSize);
-      VMSGEN_WINDOW_ON_VSCROLL_CONDITIONAL(pinterface, this, _001OnVScroll);
-      VMSGEN_WINDOW_ON_HSCROLL_CONDITIONAL(pinterface, this, _001OnHScroll);
-   //   VMSGEN_WINDOW_ON_PAINT_CONDITIONAL(pinterface, this, _001OnPaint);
-      VMSGEN_WINDOW_ON_LBUTTONDOWN_CONDITIONAL(pinterface, this, _001OnLButtonDown);
-      VMSGEN_WINDOW_ON_LBUTTONUP_CONDITIONAL(pinterface, this, _001OnLButtonUp);
-      VMSGEN_WINDOW_ON_LBUTTONDBLCLK_CONDITIONAL(pinterface, this, _001OnLButtonDblClk);
-      VMSGEN_WINDOW_ON_TIMER_CONDITIONAL(pinterface, this, _001OnTimer);*/
+      ::user::form_window::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &form::_001OnCreate);
       IGUI_MSG_LINK(::message::message_pos_create, pinterface, this, &form::_000OnPosCreate);
-//      IGUI_WIN_MSG_LINK(WM_COMMAND, pinterface, this, &form::_001OnCommand);
-  //    IGUI_WIN_MSG_LINK(WM_NOTIFY, pinterface, this, &form::_001OnNotify);
-      // revamp IGUI_WIN_MSG_LINK(user::MessageNotify, pinterface, this, &form::_001OnMessageNotify);
       IGUI_WIN_MSG_LINK(::base::application::APPM_LANGUAGE, pinterface, this, &form::_001OnAppLanguage);
-
-   //   IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &::user::interaction::_001OnLButtonDown);
-   //   IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &::user::interaction::_001OnLButtonUp);
       IGUI_WIN_MSG_LINK(WM_KEYDOWN, pinterface, this, &::user::interaction::_001OnKeyDown);
       IGUI_WIN_MSG_LINK(WM_KEYUP, pinterface, this, &::user::interaction::_001OnKeyUp);
-
-
-   /*   InstallOnDrawInterface(pinterface);
-      VMSGEN_WINDOW_ON_SIZE_CONDITIONAL(pinterface, this, _001OnSize);
-      VMSGEN_WINDOW_ON_VSCROLL_CONDITIONAL(pinterface, this, _001OnVScroll);
-      VMSGEN_WINDOW_ON_HSCROLL_CONDITIONAL(pinterface, this, _001OnHScroll);
-   //   VMSGEN_WINDOW_ON_PAINT_CONDITIONAL(pinterface, this, _001OnPaint);
-      VMSGEN_WINDOW_ON_LBUTTONDOWN_CONDITIONAL(pinterface, this, _001OnLButtonDown);
-      VMSGEN_WINDOW_ON_LBUTTONUP_CONDITIONAL(pinterface, this, _001OnLButtonUp);
-      VMSGEN_WINDOW_ON_LBUTTONDBLCLK_CONDITIONAL(pinterface, this, _001OnLButtonDblClk);
-      VMSGEN_WINDOW_ON_TIMER_CONDITIONAL(pinterface, this, _001OnTimer);*/
-      //IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &form::_001OnCreate);
-      //IGUI_MSG_LINK(::message::message_pos_create, pinterface, this, &form::_000OnPosCreate);
-//      IGUI_WIN_MSG_LINK(WM_COMMAND, pinterface, this, &form::_001OnCommand);
-  //    IGUI_WIN_MSG_LINK(WM_NOTIFY, pinterface, this, &form::_001OnNotify);
-      // revamp IGUI_WIN_MSG_LINK(user::MessageNotify, pinterface, this, &form::_001OnMessageNotify);
-      //IGUI_WIN_MSG_LINK(application::APPM_LANGUAGE, pinterface, this, &form::_001OnAppLanguage);
-
-   //   IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &::user::interaction::_001OnLButtonDown);
-   //   IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &::user::interaction::_001OnLButtonUp);
-//      IGUI_WIN_MSG_LINK(WM_KEYDOWN, pinterface, this, &::user::interaction::_001OnKeyDown);
-  //    IGUI_WIN_MSG_LINK(WM_KEYUP, pinterface, this, &::user::interaction::_001OnKeyUp);
 
    }
 
@@ -965,7 +924,7 @@ namespace user
 //               sp(type) ti = typeid(descriptor.m_pcontrol);
 /*               if(ti == System.type_info < ::user::list > ())
                {
-                  if(descriptor.m_etype == control::type_simple_list)
+                  if(descriptor.m_etype == control_type_simple_list)
                   {
                      ::user::list * plist = dynamic_cast <::user::list *>(descriptor.m_pcontrol);
                      plist->m_dataid = descriptor.m_idPrivateDataSection;
@@ -993,7 +952,7 @@ namespace user
          TRACE("form::create_control: failed to create control, could not find proper type for allocation");
          return false;
       }
-      sp(element) pca = Application.alloc(pdescriptor->m_typeinfo);
+      sp(::user::interaction) pca = Application.alloc(pdescriptor->m_typeinfo);
       if(pca == NULL)
       {
          TRACE("form::create_control: failed to create control, allocation error");
@@ -1030,7 +989,7 @@ namespace user
    bool form::open_document(var varFile)
    {
 
-      if(!::user::form_interface::open_document(varFile))
+      if(!::user::form_window::open_document(varFile))
          return false;
 
       return true;

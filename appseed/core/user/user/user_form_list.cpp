@@ -5,14 +5,10 @@ namespace user
 {
 
 
-   form_list::form_list(::aura::application * papp) :
-      object(papp),
-      ::user::interaction(papp),
-      ::user::form_interface(papp),
-      ::user::form(papp),
-      ::user::scroll_view(papp),
-      ::user::list(papp)
+   form_list::form_list()
    {
+
+
       m_iControlItem = -1;
       m_iControlSubItem = -1;
       m_pcontrolEdit = NULL;

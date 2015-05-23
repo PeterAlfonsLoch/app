@@ -5,9 +5,7 @@ namespace user
 {
 
 
-   form_window::form_window(::aura::application * papp):
-      ::object(papp),
-      ::user::interaction(papp)
+   form_window::form_window()
    {
 
       m_bOnEditUpdate         = false;
@@ -993,9 +991,6 @@ namespace user
 
    bool form_window::open_document(var varFile)
    {
-
-      if(!::user::form_window::open_document(varFile))
-         return false;
 
       return true;
 

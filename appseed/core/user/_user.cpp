@@ -53,6 +53,7 @@
 #include "simple/simple_tab_view.cpp"
 #include "simple/simple_toolbar.cpp"
 #include "simple/simple_tree_view.cpp"
+#include "simple/simple_form_view.cpp"
  //             15 arquivo(s)        148.378 bytes
 
  //Pasta de Z:\nordroid\app\appseed\core\user\user
@@ -70,6 +71,8 @@
 #include "user/user_elastic_slider.cpp"
 //#include "user/user_form.cpp"
 //#include "user/user_form_callback.cpp"
+#include "user/user_form.cpp"
+#include "user/user_form_view.cpp"
 #include "user/user_form_list.cpp"
 #include "user/user_front_end.cpp"
 #include "user/user_front_end_schema.cpp"

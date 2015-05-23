@@ -2,10 +2,13 @@
 
 
 class CLASS_DECL_CORE menu_view :
-   virtual public ::user::form
+   virtual public ::user::form_view
 {
 public:
+
+
    menu_view(::aura::application * papp);
+
 
    void on_update(::aura::impact * pSender, LPARAM lHint, object* phint);
    virtual bool BaseOnControlEvent(::user::control_event * pevent);
@@ -13,4 +16,22 @@ public:
    DECL_GEN_SIGNAL(_001OnTimer);
    DECL_GEN_SIGNAL(_001OnUser123);
    virtual void install_message_handling(::message::dispatch * pinterface);
+
+
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

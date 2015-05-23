@@ -6,16 +6,8 @@ namespace userfs
 
 
    list::list(::aura::application * papp) :
-      object(papp),
-      ::user::scroll_view(papp),
-      m_headerctrl(papp),
-      user::list(papp),
-      ::user::form_interface(papp),
-      user::form(papp),
-      user::form_list(papp)
+      object(papp)
    {
-
-      m_headerctrl.m_dataid = "veiev::list::header_ctrl";
 
 
       m_dataid = "mail::list";
@@ -40,7 +32,7 @@ namespace userfs
 
    void list::install_message_handling(::message::dispatch * pinterface)
    {
-      ::user::form_list::install_message_handling(pinterface);
+      ::user::form_list_view::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_HSCROLL, pinterface, this, &list::_001OnHScroll);
       IGUI_WIN_MSG_LINK(WM_VSCROLL, pinterface, this, &list::_001OnVScroll);
       IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &list::_001OnShowWindow);
@@ -109,12 +101,12 @@ namespace userfs
 #ifdef DEBUG
    void list::assert_valid() const
    {
-      ::user::form_list::assert_valid();
+      ::user::form_list_view::assert_valid();
    }
 
    void list::dump(dump_context & dumpcontext) const
    {
-      ::user::form_list::dump(dumpcontext);
+      ::user::form_list_view::dump(dumpcontext);
    }
 #endif //DEBUG
 
@@ -152,7 +144,7 @@ namespace userfs
 
       cs.style |= WS_CLIPCHILDREN;
 
-      return ::user::form_list::pre_create_window(cs);
+      return ::user::form_list_view::pre_create_window(cs);
    }
 
    void list::_001InsertColumns()
@@ -215,7 +207,7 @@ namespace userfs
 
    void list::_001OnDraw(::draw2d::graphics *pdc)
    {
-      ::user::form_list::_001OnDraw(pdc);
+      ::user::form_list_view::_001OnDraw(pdc);
 
    }
 
@@ -658,17 +650,17 @@ namespace userfs
 
    sp(::userfs::document) list::get_document()
    {
-      return  (::user::form_list::get_document());
+      return  (::user::form_list_view::get_document());
    }
 
    void list::_001GetItemText(::user::list_item * pitem)
    {
-      return ::user::form_list::_001GetItemText(pitem);
+      return ::user::form_list_view::_001GetItemText(pitem);
    }
 
    void list::_001GetItemImage(::user::list_item * pitem)
    {
-      return ::user::form_list::_001GetItemImage(pitem);
+      return ::user::form_list_view::_001GetItemImage(pitem);
    }
 
 

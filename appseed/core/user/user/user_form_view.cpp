@@ -4,6 +4,26 @@
 namespace user
 {
 
+   
+   form_view::form_view()
+   {
+
+   }
+
+
+   form_view::~form_view()
+   {
+
+   }
+
+
+   void form_view::install_message_handling(::message::dispatch * pdispatch)
+   {
+
+      ::user::scroll_view::install_message_handling(pdispatch);
+      ::user::form::install_message_handling(pdispatch);
+
+   }
 
    void form_view::on_update(::aura::impact * pSender,LPARAM lHint,object* phint)
    {
@@ -28,7 +48,7 @@ namespace user
             }
             else if(puh->m_etype == ::user::form_update_hint::type_get_form_view)
             {
-               puh->m_pformview = this;
+               puh->m_pform = this;
             }
          }
          else

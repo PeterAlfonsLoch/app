@@ -7,10 +7,7 @@ namespace filemanager
 
    operation_list_view::operation_list_view(::aura::application * papp):
       object(papp),
-      m_headerctrl(papp),
-      ::user::scroll_view(papp),
-      ::user::list(papp),
-      ::user::list_view(papp)
+      m_headerctrl(papp)
    {
          m_dwLast123Update = ::get_tick_count();
          m_pcache = &m_listcache;

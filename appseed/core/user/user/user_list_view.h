@@ -12,7 +12,7 @@ namespace user
    public:
 
 
-      list_view(::aura::application * papp);
+      list_view();
       virtual ~list_view();
 
 

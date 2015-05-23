@@ -18,7 +18,7 @@ namespace user
       virtual ~form_callback();
 
 
-      //virtual void on_update(::user::form * pform,sp(::aura::impact) pSender,LPARAM lHint,object* phint);
+      virtual void on_update(::aura::impact * pform,sp(::aura::impact) pSender,LPARAM lHint,object* phint);
       virtual bool BaseOnControlEvent(::user::form_window * pview,::user::control_event * pevent);
       virtual void OnUser123(WPARAM wparam,LPARAM lparam);
       virtual void OnBeforeNavigate2(::html::data * pdata,var & varFile,uint32_t nFlags,const char * lpszTargetFrameName,byte_array& baPostedData,const char * lpszHeaders,bool* pbCancel);

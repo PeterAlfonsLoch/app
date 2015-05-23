@@ -9,11 +9,7 @@ namespace filemanager
 
 
    form::form(::aura::application * papp):
-      object(papp),
-      ::user::interaction(papp),
-      ::user::scroll_view(papp),
-      ::user::form_interface(papp),
-      ::user::form(papp)
+      object(papp)
    {
 
    }
@@ -26,7 +22,7 @@ namespace filemanager
       {
          pdoc->update_all_views(pSender,lHint,phint);
       }
-      ::user::form::on_update(pSender,lHint,phint);
+      ::user::form_view::on_update(pSender,lHint,phint);
    }
 
 

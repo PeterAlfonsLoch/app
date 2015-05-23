@@ -20,7 +20,7 @@ namespace user
       form_callback *            m_pcallback;
 
 
-      form_window(::aura::application * papp);
+      form_window();
       virtual ~form_window();
 
 

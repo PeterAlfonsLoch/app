@@ -10,9 +10,6 @@ namespace filemanager
 
    folder_list::folder_list(::aura::application * papp) :
       object(papp),
-      ::user::scroll_view(papp),
-      ::user::list(papp),
-      ::user::list_view(papp),
       m_headerctrl(papp)
    {
 

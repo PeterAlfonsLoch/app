@@ -3,10 +3,7 @@
 
 menu_view::menu_view(::aura::application * papp) :
    object(papp),
-   ::user::interaction(papp),
-   ::user::scroll_view(papp),
-   ::user::form_interface(papp),
-   ::user::form(papp)
+   ::user::interaction(papp)
 {
    m_pcallback = NULL;
 }
@@ -14,7 +11,7 @@ menu_view::menu_view(::aura::application * papp) :
 
 void menu_view::on_update(::aura::impact * pSender, LPARAM lHint, object* phint) 
 {
-   ::user::form::on_update(pSender, lHint, phint);
+   ::user::form_view::on_update(pSender, lHint, phint);
 }
 
 

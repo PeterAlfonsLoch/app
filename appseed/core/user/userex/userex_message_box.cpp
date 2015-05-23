@@ -7,9 +7,6 @@ namespace userex // ca8 + cube
 
    message_box::message_box(::aura::application * papp) :
       object(papp),
-      ::user::scroll_view(papp),
-      ::user::form_interface(papp),
-      user::form(papp),
       dialog(papp),
       wait_message_dialog(papp)
    {

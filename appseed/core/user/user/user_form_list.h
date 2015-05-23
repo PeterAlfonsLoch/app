@@ -51,7 +51,7 @@ namespace user
       index         m_iControlSubItem;
 
 
-      form_list(::aura::application * papp);
+      form_list();
       virtual ~form_list();
 
 

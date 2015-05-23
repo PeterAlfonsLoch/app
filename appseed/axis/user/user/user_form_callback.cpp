@@ -26,13 +26,13 @@ namespace user
 
    }
 
-   //void form_callback::on_update(::user::form_window * pview,sp(::aura::impact) pSender,LPARAM lHint,object* phint)
-   //{
-   //   UNREFERENCED_PARAMETER(pview);
-   //   UNREFERENCED_PARAMETER(pSender);
-   //   UNREFERENCED_PARAMETER(lHint);
-   //   UNREFERENCED_PARAMETER(phint);
-   //}
+   void form_callback::on_update(::aura::impact * pform,sp(::aura::impact) pSender,LPARAM lHint,object* phint)
+   {
+      UNREFERENCED_PARAMETER(pform);
+      UNREFERENCED_PARAMETER(pSender);
+      UNREFERENCED_PARAMETER(lHint);
+      UNREFERENCED_PARAMETER(phint);
+   }
 
    bool form_callback::BaseOnControlEvent(::user::form_window * pview,::user::control_event * pevent)
    {

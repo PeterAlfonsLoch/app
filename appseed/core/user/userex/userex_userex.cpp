@@ -129,7 +129,6 @@ namespace userex
       System.factory().creatable_small < pane_tab_view >();
       System.factory().creatable_small < form_frame >();
       System.factory().creatable_small < form_child_frame >();
-      System.factory().creatable_small < ::user::form >();
 
 
       // hour (alarm configuration with ease ...
@@ -554,11 +553,8 @@ namespace userex
          createcontext->m_bHold                       = false;
       }
 
-      pdoc = (m_ptemplateForm->open_document_file(createcontext));
-      pview = pdoc->get_typed_view < ::user::form >();
-      pdoc->form_document_set_view(pview);
-      pdoc->form_document_set_callback(pcallback);
-      return pdoc;
+      return m_ptemplateForm->open_document_file(createcontext);
+      
    }
 
    sp(::aura::document) userex::create_form(::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var)
@@ -601,11 +597,8 @@ namespace userex
          createcontext->m_bHold                       = false;
       }
 
-      pdoc = (m_ptemplateForm->open_document_file(createcontext));
-      sp(::user::form) pview = pdoc->get_view(0);
-      pdoc->form_document_set_view(pview);
-      pdoc->form_document_set_callback(pcallback);
-      return pdoc;
+      return m_ptemplateForm->open_document_file(createcontext);
+      
    }
 
 
@@ -624,12 +617,10 @@ namespace userex
          createcontext->m_bHold                       = false;
       }
 
-      pdoc = (m_ptemplateChildForm->open_document_file(createcontext));
-      pview = pdoc->get_typed_view < ::user::form >();
-      pdoc->form_document_set_view(pview);
-      pdoc->form_document_set_callback(pcallback);
-      return pdoc;
+      return m_ptemplateChildForm->open_document_file(createcontext);
+
    }
+
 
    sp(::aura::document) userex::create_child_form(::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var)
    {
@@ -642,12 +633,11 @@ namespace userex
       sp(::aura::document) pdoc;
       sp(::create) createcontext(pwndParent->allocer());
       createcontext->m_bMakeVisible                   = false;
+
       createcontext->m_puiParent                      = pwndParent;
-      pdoc = (m_ptemplateChildForm->open_document_file(createcontext));
-      sp(::user::form) pview = pdoc->get_view(0);
-      pdoc->form_document_set_view(pview);
-      pdoc->form_document_set_callback(pcallback);
-      return pdoc;
+
+      return m_ptemplateChildForm->open_document_file(createcontext);
+
    }
 
 

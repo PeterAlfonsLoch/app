@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_CORE simple_form_list_view :
-   virtual public ::user::form_list
+   virtual public ::user::form_list_view
 {
 public:
 

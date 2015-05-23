@@ -3,10 +3,7 @@ namespace user
 {
 
 
-   list_view::list_view(::aura::application * papp) :
-      object(papp),
-      ::user::scroll_view(papp),
-      ::user::list(papp)
+   list_view::list_view()
    {
 
    }
