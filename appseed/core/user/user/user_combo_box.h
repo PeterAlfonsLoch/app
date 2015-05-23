@@ -108,7 +108,7 @@ namespace user
 
       virtual void _001OnAfterChangeText(::action::context actioncontext);
 
-      virtual void _001OnInitialUpdate(signal_details * pobj);
+      virtual void _001OnInitialUpdate();
 
 
 

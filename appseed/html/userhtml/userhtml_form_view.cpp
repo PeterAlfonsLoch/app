@@ -75,10 +75,10 @@ bool html_form_view::pre_create_window(::user::create_struct& cs)
    cs.style &= ~WS_EX_CLIENTEDGE;
    return html_form::pre_create_window(cs);
 }
-void html_form_view::_001OnInitialUpdate(signal_details * pobj)
+void html_form_view::_001OnInitialUpdate()
 {
 
-   html_form::_001OnInitialUpdate(pobj);
+   html_form::_001OnInitialUpdate();
 
 
 }

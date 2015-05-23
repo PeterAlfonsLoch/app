@@ -212,7 +212,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnWindowPosChanging);
       DECL_GEN_SIGNAL(_001OnSizeParent);
       DECL_GEN_SIGNAL(_001OnHelpHitTest);
-      DECL_GEN_SIGNAL(_001OnInitialUpdate);
+      virtual void _001OnInitialUpdate();
       DECL_GEN_SIGNAL(_001OnIdleUpdateCmdUI);
       DECL_GEN_SIGNAL(_001OnLButtonDown);
       DECL_GEN_SIGNAL(_001OnLButtonDblClk);

@@ -880,19 +880,19 @@ namespace user
    }
 
 
-   void combo_box::_001OnInitialUpdate(signal_details * pobj)
+   void combo_box::_001OnInitialUpdate()
    {
 
       if(m_bEdit)
       {
 
-         ::user::edit_plain_text::_001OnInitialUpdate(pobj);
+         ::user::edit_plain_text::_001OnInitialUpdate();
 
       }
       //else
       //{
 
-      //   ::user::control::_001OnInitialUpdate(pobj);
+      //   ::user::control::_001OnInitialUpdate();
 
       //}
 

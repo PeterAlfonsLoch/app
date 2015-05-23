@@ -55,7 +55,6 @@ namespace user
    //   IGUI_WIN_MSG_LINK(WM_CANCELMODE        , pinterface, this, &control_bar::_001OnCancelMode);
       IGUI_WIN_MSG_LINK(WM_CREATE            , pinterface, this, &control_bar::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_DESTROY           , pinterface, this, &control_bar::_001OnDestroy);
-      IGUI_WIN_MSG_LINK(WM_INITIALUPDATE     , pinterface, this, &control_bar::_001OnInitialUpdate);
       IGUI_WIN_MSG_LINK(WM_HELPHITTEST       , pinterface, this, &control_bar::_001OnHelpHitTest);
    }
 
@@ -616,7 +615,7 @@ namespace user
       pbase->set_lresult(0L);
    }
 
-   void control_bar::_001OnInitialUpdate(signal_details * pobj)
+   void control_bar::_001OnInitialUpdate()
    {
       UNREFERENCED_PARAMETER(pobj);
       // update the indicators before becoming visible

@@ -23,7 +23,7 @@ public:
    virtual void assert_valid() const;
    virtual void dump(dump_context & dumpcontext) const;
 
-   virtual void _001OnInitialUpdate(signal_details * pobj);
+   virtual void _001OnInitialUpdate();
 
 };
 

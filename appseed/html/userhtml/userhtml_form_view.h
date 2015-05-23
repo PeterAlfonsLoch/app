@@ -28,7 +28,7 @@ public:
    virtual void on_update(::aura::impact * pSender, LPARAM lHint, object* pHint);
 
 
-   DECL_GEN_SIGNAL(_001OnInitialUpdate);
+   virtual void _001OnInitialUpdate();
    DECL_GEN_SIGNAL(_001OnSetFocus);
    DECL_GEN_SIGNAL(_001OnKillFocus);
 

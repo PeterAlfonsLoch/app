@@ -24,10 +24,10 @@ namespace user
    }
 
 
-   //void list::_001OnInitialUpdate(signal_details * pobj)
+   //void list::_001OnInitialUpdate()
    //{
 
-   //   scroll_view::_001OnInitialUpdate(pobj);
+   //   scroll_view::_001OnInitialUpdate();
 
    //   //_001UpdateColumns();
 

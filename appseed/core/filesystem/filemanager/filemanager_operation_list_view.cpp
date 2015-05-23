@@ -71,7 +71,7 @@ namespace filemanager
       _001AddColumn(column);
 
    }
-   void operation_list_view::_001OnInitialUpdate(signal_details * pobj)
+   void operation_list_view::_001OnInitialUpdate()
    {
       UNREFERENCED_PARAMETER(pobj);
       m_dataid = "operation_list_view";

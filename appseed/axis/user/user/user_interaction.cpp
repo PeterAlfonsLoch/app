@@ -537,6 +537,7 @@ namespace user
 //      IGUI_WIN_MSG_LINK(message_set_schema,pinterface,this,&interaction::_001OnSetSchema);
       IGUI_WIN_MSG_LINK(WM_SHOWWINDOW,pinterface,this,&interaction::_001OnShowWindow);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN,pinterface,this,&interaction::_001OnLButtonDown);
+      IGUI_WIN_MSG_LINK(WM_INITIALUPDATE,pinterface,this,&interaction::_001OnInitialUpdateMessage);
 
 
    }
@@ -1242,6 +1243,16 @@ namespace user
          KillTimer(1984 + 77 + 3);
          IGUI_WIN_MSG_UNLINK(WM_TIMER,m_pimpl,this,&interaction::_001OnTimer);
       }
+
+   }
+
+
+   void interaction::_001OnInitialUpdateMessage(signal_details * pobj)
+   {
+
+      UNREFERENCED_PARAMETER(pobj);
+
+      _001OnInitialUpdate();
 
    }
 
@@ -6356,6 +6367,13 @@ namespace user
       }
 
       return str + m_id;
+
+   }
+
+
+   void interaction::_001OnInitialUpdate()
+   {
+
 
    }
 

@@ -134,7 +134,7 @@ namespace user
 
       virtual void install_message_handling(::message::dispatch * pinterface);
       virtual void OnDraw(::draw2d::graphics * pgraphics);      // overridden to draw this ::aura::impact
-      DECL_GEN_SIGNAL(_001OnInitialUpdate);
+      virtual void _001OnInitialUpdate();
 
 
 

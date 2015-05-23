@@ -93,8 +93,7 @@ namespace aura
 
       virtual void OnPrepareDC(::draw2d::graphics * pgraphics, CPrintInfo* pInfo = NULL);
 
-      //virtual void OnInitialUpdate(); // called first time after construct
-      DECL_GEN_SIGNAL(_001OnInitialUpdate); // called first time after construct
+      virtual void _001OnInitialUpdate();
 
 
          // Activation

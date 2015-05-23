@@ -377,6 +377,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnDestroy);
       DECL_GEN_SIGNAL(_001OnSize);
       DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(_001OnInitialUpdateMessage);
       DECL_GEN_SIGNAL(_001OnUser184);
       DECL_GEN_SIGNAL(_001OnNcCalcSize);
       DECL_GEN_SIGNAL(_001OnClose);
@@ -705,6 +706,7 @@ namespace user
       virtual string calc_data_id();
 
 
+      virtual void _001OnInitialUpdate();
 
    };
 

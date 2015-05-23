@@ -18,7 +18,7 @@ namespace user
 
       virtual void install_message_handling(::message::dispatch * pdispatch);
 
-      //virtual void _001OnInitialUpdate(signal_details * pobj);
+      //virtual void _001OnInitialUpdate();
 
 
    };

@@ -116,7 +116,7 @@ namespace user
    }
 
 
-   void edit_plain_text::_001OnInitialUpdate(signal_details * pobj)
+   void edit_plain_text::_001OnInitialUpdate()
    {
 
       UNREFERENCED_PARAMETER(pobj);

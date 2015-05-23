@@ -33,7 +33,7 @@ namespace filemanager
       void OnFileOperationStep(int32_t iOperation,bool bFinal);
 
 
-      DECL_GEN_SIGNAL(_001OnInitialUpdate);
+      virtual void _001OnInitialUpdate();
 
       
       void on_update(::aura::impact * pSender,LPARAM lHint,object * pHint);

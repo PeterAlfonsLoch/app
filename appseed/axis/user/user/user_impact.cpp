@@ -298,7 +298,7 @@ namespace aura
       return pview->get_document();
    }
 
-   void impact::_001OnInitialUpdate(signal_details * pobj)
+   void impact::_001OnInitialUpdate()
    {
       UNREFERENCED_PARAMETER(pobj);
       on_update(NULL, 0, NULL);        // initial update
@@ -869,7 +869,7 @@ namespace aura
    // ::aura::impact drawing support
 
 
-   /*void impact::_001OnInitialUpdate(signal_details * pobj)
+   /*void impact::_001OnInitialUpdate()
    {
    on_update(NULL, 0, NULL);        // initial update
    }*/
