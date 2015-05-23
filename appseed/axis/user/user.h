@@ -66,7 +66,7 @@ namespace user
    class user;
    class frame_window;
 
-   class form_interface;
+//   class form_interface;
    class form_list;
    class form_callback;
 
@@ -98,7 +98,7 @@ namespace user
    class user;
    class frame_window;
 
-   class form_interface;
+//   class form_interface;
    class form_list;
    class form_callback;
 
@@ -369,12 +369,12 @@ namespace axis
 #include "axis/user/user/user_scroll_bar.h"
 #include "axis/user/user/user_scroll_control.h"
 #include "axis/user/user/user_scroll_view.h"
-#include "axis/user/user/user_form_interface.h"
+//#include "axis/user/user/user_form_interface.h"
 
 #include "axis/user/user/user_plain_text_data.h"
 #include "axis/user/user/user_edit_plain_text.h"
 
-#include "axis/user/user/user_form.h"
+#include "axis/user/user/user_form_window.h"
 #include "axis/user/user/user_form_update_hint.h"
 
 

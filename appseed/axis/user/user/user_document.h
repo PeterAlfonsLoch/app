@@ -236,8 +236,8 @@ namespace aura
       virtual property_set * form_document_get_property_set();
       virtual property_set & form_document_property_set();
 
-      virtual void form_document_set_view(::user::form * pview);
-      virtual void form_document_set_callback(form_callback * pcallback);
+      //virtual void form_document_set_view(::user::form_window * pview);
+      //virtual void form_document_set_callback(form_callback * pcallback);
 
 
       virtual bool open_document(var varFile);

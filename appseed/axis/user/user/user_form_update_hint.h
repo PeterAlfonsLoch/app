@@ -19,10 +19,10 @@ namespace user
       };
 
 
-      sp(::user::form)           m_pformview;
-      e_type                  m_etype;
-      string                  m_strForm;
-      ::action::context      m_actioncontext;
+      sp(::user::form_window)    m_pform;
+      e_type                     m_etype;
+      string                     m_strForm;
+      ::action::context          m_actioncontext;
 
 
       form_update_hint();

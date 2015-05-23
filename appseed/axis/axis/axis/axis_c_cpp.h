@@ -16,6 +16,7 @@ namespace html
 {
 
    class html;
+   class data;
 
 } // namespace html
 
@@ -60,6 +61,7 @@ namespace user
    class create_struct;
    class window_draw;
    class control_event;
+   class form_window;
 
 
 } // namespace user

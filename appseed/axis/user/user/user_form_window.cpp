@@ -5,11 +5,9 @@ namespace user
 {
 
 
-   form::form(::aura::application * papp):
+   form_window::form_window(::aura::application * papp):
       ::object(papp),
-      ::user::interaction(papp),
-      ::user::scroll_view(papp),
-      ::user::form_interface(papp)
+      ::user::interaction(papp)
    {
 
       m_bOnEditUpdate         = false;
@@ -20,13 +18,13 @@ namespace user
    }
 
 
-   form::~form()
+   form_window::~form_window()
    {
 
    }
 
 
-   index form::_001AddControl(class control::descriptor & descriptorParam)
+   index form_window::_001AddControl(class control::descriptor & descriptorParam)
    {
 
       //index indexNew = m_controldescriptorset.add(new class control::descriptor(descriptorParam));
@@ -122,7 +120,7 @@ namespace user
    }
 
 
-   bool form::OnCommand(WPARAM wparam,LPARAM lparam)
+   bool form_window::OnCommand(WPARAM wparam,LPARAM lparam)
    {
 
       UINT uiNotificationCode = HIWORD(wparam);
@@ -157,7 +155,7 @@ namespace user
    }
 
 
-   bool form::OnCommandButton(sp(control) pcontrol,UINT uiNotificationCode,LPARAM lparam)
+   bool form_window::OnCommandButton(sp(control) pcontrol,UINT uiNotificationCode,LPARAM lparam)
    {
 
       UNREFERENCED_PARAMETER(lparam);
@@ -192,7 +190,7 @@ namespace user
    }
 
 
-   bool form::OnCommandCheckBox(sp(control) pcontrol,UINT uiNotificationCode,LPARAM lparam)
+   bool form_window::OnCommandCheckBox(sp(control) pcontrol,UINT uiNotificationCode,LPARAM lparam)
    {
 
       UNREFERENCED_PARAMETER(lparam);
@@ -226,7 +224,7 @@ namespace user
    }
 
 
-   bool form::OnCommandComboBox(sp(control) pcontrol,UINT uiNotificationCode,LPARAM lparam)
+   bool form_window::OnCommandComboBox(sp(control) pcontrol,UINT uiNotificationCode,LPARAM lparam)
    {
 
       UNREFERENCED_PARAMETER(lparam);
@@ -268,7 +266,7 @@ namespace user
    }
 
 
-   bool form::OnCommandEdit(sp(control) pcontrol,UINT uiNotificationCode,LPARAM lparam)
+   bool form_window::OnCommandEdit(sp(control) pcontrol,UINT uiNotificationCode,LPARAM lparam)
    {
 
       UNREFERENCED_PARAMETER(lparam);
@@ -307,7 +305,7 @@ namespace user
    }
 
 
-   bool form::_001SaveEdit(sp(control) pcontrol)
+   bool form_window::_001SaveEdit(sp(control) pcontrol)
    {
 
       if(pcontrol == NULL)
@@ -368,7 +366,7 @@ namespace user
    }
 
 
-   void form::_001OnUpdate(sp(::aura::impact) pviewSender,LPARAM lhint,object* phint)
+   void form_window::_001OnUpdate(sp(::aura::impact) pviewSender,LPARAM lhint,object* phint)
    {
       UNREFERENCED_PARAMETER(pviewSender);
       UNREFERENCED_PARAMETER(lhint);
@@ -382,7 +380,7 @@ namespace user
       }
    }
 
-   void form::_001Update(sp(control) pcontrol)
+   void form_window::_001Update(sp(control) pcontrol)
    {
       ASSERT(pcontrol != NULL);
       if(pcontrol == NULL)
@@ -407,7 +405,7 @@ namespace user
       }
    }
 
-   void form::_001UpdateDbFlags(sp(control) pcontrol)
+   void form_window::_001UpdateDbFlags(sp(control) pcontrol)
    {
       ASSERT(pcontrol != NULL);
       if(pcontrol == NULL)
@@ -432,7 +430,7 @@ namespace user
       }
    }
 
-   void form::_001UpdateDbFlagsCheckBox(sp(control) pcontrol)
+   void form_window::_001UpdateDbFlagsCheckBox(sp(control) pcontrol)
    {
       ASSERT(pcontrol != NULL);
       if(pcontrol == NULL)
@@ -466,7 +464,7 @@ namespace user
    }
 
 
-   void form::_001UpdateCheckBox(sp(control) pcontrol)
+   void form_window::_001UpdateCheckBox(sp(control) pcontrol)
    {
       ASSERT(pcontrol != NULL);
       if(pcontrol == NULL)
@@ -480,7 +478,7 @@ namespace user
       }
    }
 
-   void form::_001UpdateComboBox(sp(control) pcontrol)
+   void form_window::_001UpdateComboBox(sp(control) pcontrol)
    {
       ASSERT(pcontrol != NULL);
       if(pcontrol == NULL)
@@ -498,7 +496,7 @@ namespace user
       }*/
    }
 
-   void form::_001UpdateEdit(sp(control) pcontrol)
+   void form_window::_001UpdateEdit(sp(control) pcontrol)
    {
       ASSERT(pcontrol != NULL);
       if(pcontrol == NULL)
@@ -557,7 +555,7 @@ namespace user
       }
    }
 
-   void form::_001UpdateSimpleList(sp(control) pcontrol)
+   void form_window::_001UpdateSimpleList(sp(control) pcontrol)
    {
       ASSERT(pcontrol != NULL);
       if(pcontrol == NULL)
@@ -577,13 +575,13 @@ namespace user
       }*/
    }
 
-   void form::_000OnPosCreate(signal_details * pobj)
+   void form_window::_000OnPosCreate(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       //      SCAST_PTR(::message::base, pbase, pobj)
    }
 
-   void form::_001InitializeFormPreData()
+   void form_window::_001InitializeFormPreData()
    {
       if(m_pcallback != NULL)
       {
@@ -603,7 +601,7 @@ namespace user
    }
 
 
-   bool form::_001GetData(id uiId,bool &bData)
+   bool form_window::_001GetData(id uiId,bool &bData)
    {
       sp(control) pcontrol = m_controldescriptorset.get_control_by_id(uiId);
       if(pcontrol == NULL)
@@ -619,7 +617,7 @@ namespace user
 
    }
 
-   bool form::_001SetData(id uiId,bool bData)
+   bool form_window::_001SetData(id uiId,bool bData)
    {
       sp(control) pcontrol = m_controldescriptorset.get_control_by_id(uiId);
       if(pcontrol == NULL)
@@ -631,7 +629,7 @@ namespace user
 
    }
 
-   void form::Update(bool bSave)
+   void form_window::Update(bool bSave)
    {
       if(bSave)
       {
@@ -649,70 +647,32 @@ namespace user
       }
    }
 
-   void form::install_message_handling(::message::dispatch *pinterface)
+   void form_window::install_message_handling(::message::dispatch *pinterface)
    {
-      ::user::scroll_view::install_message_handling(pinterface);
-      /*   InstallOnDrawInterface(pinterface);
-      VMSGEN_WINDOW_ON_SIZE_CONDITIONAL(pinterface, this, _001OnSize);
-      VMSGEN_WINDOW_ON_VSCROLL_CONDITIONAL(pinterface, this, _001OnVScroll);
-      VMSGEN_WINDOW_ON_HSCROLL_CONDITIONAL(pinterface, this, _001OnHScroll);
-      //   VMSGEN_WINDOW_ON_PAINT_CONDITIONAL(pinterface, this, _001OnPaint);
-      VMSGEN_WINDOW_ON_LBUTTONDOWN_CONDITIONAL(pinterface, this, _001OnLButtonDown);
-      VMSGEN_WINDOW_ON_LBUTTONUP_CONDITIONAL(pinterface, this, _001OnLButtonUp);
-      VMSGEN_WINDOW_ON_LBUTTONDBLCLK_CONDITIONAL(pinterface, this, _001OnLButtonDblClk);
-      VMSGEN_WINDOW_ON_TIMER_CONDITIONAL(pinterface, this, _001OnTimer);*/
-      IGUI_WIN_MSG_LINK(WM_CREATE,pinterface,this,&form::_001OnCreate);
-      IGUI_MSG_LINK(::message::message_pos_create,pinterface,this,&form::_000OnPosCreate);
-      //      IGUI_WIN_MSG_LINK(WM_COMMAND, pinterface, this, &form::_001OnCommand);
-      //    IGUI_WIN_MSG_LINK(WM_NOTIFY, pinterface, this, &form::_001OnNotify);
-      // revamp IGUI_WIN_MSG_LINK(user::MessageNotify, pinterface, this, &form::_001OnMessageNotify);
-      IGUI_WIN_MSG_LINK(::axis::application::APPM_LANGUAGE,pinterface,this,&form::_001OnAppLanguage);
 
-      //   IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &::user::interaction::_001OnLButtonDown);
-      //   IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &::user::interaction::_001OnLButtonUp);
+      ::user::scroll_control::install_message_handling(pinterface);
+      IGUI_WIN_MSG_LINK(WM_CREATE,pinterface,this,&form_window::_001OnCreate);
+      IGUI_MSG_LINK(::message::message_pos_create,pinterface,this,&form_window::_000OnPosCreate);
+      IGUI_WIN_MSG_LINK(::axis::application::APPM_LANGUAGE,pinterface,this,&form_window::_001OnAppLanguage);
       IGUI_WIN_MSG_LINK(WM_KEYDOWN,pinterface,this,&::user::interaction::_001OnKeyDown);
       IGUI_WIN_MSG_LINK(WM_KEYUP,pinterface,this,&::user::interaction::_001OnKeyUp);
-
-
-      /*   InstallOnDrawInterface(pinterface);
-      VMSGEN_WINDOW_ON_SIZE_CONDITIONAL(pinterface, this, _001OnSize);
-      VMSGEN_WINDOW_ON_VSCROLL_CONDITIONAL(pinterface, this, _001OnVScroll);
-      VMSGEN_WINDOW_ON_HSCROLL_CONDITIONAL(pinterface, this, _001OnHScroll);
-      //   VMSGEN_WINDOW_ON_PAINT_CONDITIONAL(pinterface, this, _001OnPaint);
-      VMSGEN_WINDOW_ON_LBUTTONDOWN_CONDITIONAL(pinterface, this, _001OnLButtonDown);
-      VMSGEN_WINDOW_ON_LBUTTONUP_CONDITIONAL(pinterface, this, _001OnLButtonUp);
-      VMSGEN_WINDOW_ON_LBUTTONDBLCLK_CONDITIONAL(pinterface, this, _001OnLButtonDblClk);
-      VMSGEN_WINDOW_ON_TIMER_CONDITIONAL(pinterface, this, _001OnTimer);*/
-      //IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &form::_001OnCreate);
-      //IGUI_MSG_LINK(::message::message_pos_create, pinterface, this, &form::_000OnPosCreate);
-      //      IGUI_WIN_MSG_LINK(WM_COMMAND, pinterface, this, &form::_001OnCommand);
-      //    IGUI_WIN_MSG_LINK(WM_NOTIFY, pinterface, this, &form::_001OnNotify);
-      // revamp IGUI_WIN_MSG_LINK(user::MessageNotify, pinterface, this, &form::_001OnMessageNotify);
-      //IGUI_WIN_MSG_LINK(application::APPM_LANGUAGE, pinterface, this, &form::_001OnAppLanguage);
-
-      //   IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &::user::interaction::_001OnLButtonDown);
-      //   IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &::user::interaction::_001OnLButtonUp);
-      //      IGUI_WIN_MSG_LINK(WM_KEYDOWN, pinterface, this, &::user::interaction::_001OnKeyDown);
-      //    IGUI_WIN_MSG_LINK(WM_KEYUP, pinterface, this, &::user::interaction::_001OnKeyUp);
-
-      //      IGUI_WIN_MSG_LINK(WM_CREATE,pinterface,this,&form::_001OnCreate);
-      IGUI_WIN_MSG_LINK(WM_TIMER,pinterface,this,&form::_001OnTimer);
-      IGUI_WIN_MSG_LINK(WM_USER + 123,pinterface,this,&form::_001OnUser123);
+      IGUI_WIN_MSG_LINK(WM_TIMER,pinterface,this,&form_window::_001OnTimer);
+      IGUI_WIN_MSG_LINK(WM_USER + 123,pinterface,this,&form_window::_001OnUser123);
 
    }
 
-   void form::_001GetSelection(::database::id & id,::database::selection &selection)
+   void form_window::_001GetSelection(::database::id & id,::database::selection &selection)
    {
       selection.add_item(id);
    }
 
-   bool form::on_simple_action(id id)
+   bool form_window::on_simple_action(id id)
    {
       return control::on_simple_action(id);
    }
 
 
-   void form::_001OnNotify(signal_details * pobj)
+   void form_window::_001OnNotify(signal_details * pobj)
    {
 
 #ifdef WINDOWSEX
@@ -730,7 +690,7 @@ namespace user
    }
 
 
-   void form::_001OnMessageNotify(signal_details * pobj)
+   void form_window::_001OnMessageNotify(signal_details * pobj)
    {
 
       SCAST_PTR(::message::base,pbase,pobj)
@@ -742,7 +702,7 @@ namespace user
    }
 
 
-   bool form::_001Validate(sp(control) pcontrol,var & var)
+   bool form_window::_001Validate(sp(control) pcontrol,var & var)
    {
 
       UNREFERENCED_PARAMETER(pcontrol);
@@ -753,7 +713,7 @@ namespace user
    }
 
 
-   void form::_001RemoveControls()
+   void form_window::_001RemoveControls()
    {
 
       m_controldescriptorset.remove_all();
@@ -761,7 +721,7 @@ namespace user
    }
 
 
-   bool form::_001OnBeforeSave(sp(control) pcontrol)
+   bool form_window::_001OnBeforeSave(sp(control) pcontrol)
    {
 
       UNREFERENCED_PARAMETER(pcontrol);
@@ -770,7 +730,7 @@ namespace user
 
    }
 
-   void form::data_on_after_change(signal_details * pobj)
+   void form_window::data_on_after_change(signal_details * pobj)
    {
 
       SCAST_PTR(::database::change_event,pchange,pobj);
@@ -813,7 +773,7 @@ namespace user
    }
 
 
-   void form::_001UpdateFunctionStatic()
+   void form_window::_001UpdateFunctionStatic()
    {
 
       for(int32_t i = 0; i < m_controldescriptorset.get_size(); i++)
@@ -847,7 +807,7 @@ namespace user
    }
 
 
-   void form::WfiOnClose()
+   void form_window::WfiOnClose()
    {
 
       post_message(WM_CLOSE);
@@ -855,7 +815,7 @@ namespace user
    }
 
 
-   void form::_001OnInitializeForm(sp(control) pcontrol)
+   void form_window::_001OnInitializeForm(sp(control) pcontrol)
    {
 
       ::user::control_event ev;
@@ -870,7 +830,7 @@ namespace user
    }
 
 
-   void form::_001OnButtonAction(sp(control) pcontrol)
+   void form_window::_001OnButtonAction(sp(control) pcontrol)
    {
 
       UNREFERENCED_PARAMETER(pcontrol);
@@ -878,7 +838,7 @@ namespace user
    }
 
 
-   void form::_001OnAppLanguage(signal_details * pobj)
+   void form_window::_001OnAppLanguage(signal_details * pobj)
    {
 
       SCAST_PTR(::message::base,pbase,pobj)
@@ -892,7 +852,7 @@ namespace user
    }
 
 
-   void form::_001OnCreate(signal_details * pobj)
+   void form_window::_001OnCreate(signal_details * pobj)
    {
 
       //      SCAST_PTR(::message::create, pcreate, pobj)
@@ -904,7 +864,7 @@ namespace user
    }
 
 
-   void form::_001FillCombo(sp(control) pcontrol)
+   void form_window::_001FillCombo(sp(control) pcontrol)
    {
 
       ASSERT(pcontrol != NULL);
@@ -937,7 +897,7 @@ namespace user
    }
 
 
-   void form::_017OnAppLanguage()
+   void form_window::_017OnAppLanguage()
    {
 
       for(int32_t i = 0; i < m_controldescriptorset.get_size() ; i++)
@@ -989,25 +949,25 @@ namespace user
    }
 
 
-   bool form::create_control(class control::descriptor * pdescriptor)
+   bool form_window::create_control(class control::descriptor * pdescriptor)
    {
 
       if(!normalize_control_descriptor_typeinfo(pdescriptor))
       {
-         TRACE("form::create_control: failed to create control, could not find proper type for allocation");
+         TRACE("form_window::create_control: failed to create control, could not find proper type for allocation");
          return false;
       }
       sp(object) pca = Application.alloc(pdescriptor->m_typeinfo);
       if(pca == NULL)
       {
-         TRACE("form::create_control: failed to create control, allocation error");
+         TRACE("form_window::create_control: failed to create control, allocation error");
          return false;
       }
       sp(class control) pcontrol = pca;
       if(pcontrol == NULL)
       {
          pca.release();
-         TRACE("form::create_control: failed to create control, object is not derived from user::control::descriptor");
+         TRACE("form_window::create_control: failed to create control, object is not derived from user::control::descriptor");
          return false;
       }
       if(!pcontrol->create_control(pdescriptor))
@@ -1019,22 +979,22 @@ namespace user
    }
 
 
-   void form::_001SetControlFactory()
+   void form_window::_001SetControlFactory()
    {
 
    }
 
 
-   string form::get_path()
+   string form_window::get_path()
    {
       return "";
    }
 
 
-   bool form::open_document(var varFile)
+   bool form_window::open_document(var varFile)
    {
 
-      if(!::user::form_interface::open_document(varFile))
+      if(!::user::form_window::open_document(varFile))
          return false;
 
       return true;
@@ -1042,7 +1002,7 @@ namespace user
    }
 
 
-   bool form::BaseOnControlEvent(::user::control_event * pevent)
+   bool form_window::BaseOnControlEvent(::user::control_event * pevent)
    {
 
       if(m_pcallback != NULL)
@@ -1060,7 +1020,7 @@ namespace user
       //      pevent))
       //      return true;
       //}
-      //if(form::BaseOnControlEvent(pevent))
+      //if(form_window::BaseOnControlEvent(pevent))
       //   return true;
       //return false;
 
@@ -1124,7 +1084,7 @@ namespace user
    }
 
 
-   bool form::_001Initialize()
+   bool form_window::_001Initialize()
    {
       if(m_bInitialized)
          return true;
@@ -1147,7 +1107,7 @@ namespace user
    }
 
 
-   bool form::_001IsPointInside(sp(control) pcontrol,point64 point)
+   bool form_window::_001IsPointInside(sp(control) pcontrol,point64 point)
    {
 
       if(pcontrol == NULL)
@@ -1159,7 +1119,7 @@ namespace user
 
 
 
-   bool form::normalize_control_descriptor_typeinfo(class ::user::control::descriptor * pdescriptor)
+   bool form_window::normalize_control_descriptor_typeinfo(class ::user::control::descriptor * pdescriptor)
    {
 
       if(pdescriptor->m_typeinfo)
@@ -1183,7 +1143,7 @@ namespace user
    }
 
 
-   void form::OnBeforeNavigate2(var & varFile,uint32_t nFlags,const char * lpszTargetFrameName,byte_array& baPostedData,const char * lpszHeaders,bool* pbCancel)
+   void form_window::OnBeforeNavigate2(var & varFile,uint32_t nFlags,const char * lpszTargetFrameName,byte_array& baPostedData,const char * lpszHeaders,bool* pbCancel)
    {
 
       UNREFERENCED_PARAMETER(varFile);
@@ -1196,14 +1156,14 @@ namespace user
    }
 
 
-   void form::control_get_window_rect(sp(control) pcontrol,LPRECT lprect)
+   void form_window::control_get_window_rect(sp(control) pcontrol,LPRECT lprect)
    {
 
       pcontrol->GetWindowRect(lprect);
 
    }
 
-   void form::control_get_client_rect(sp(control) pcontrol,LPRECT lprect)
+   void form_window::control_get_client_rect(sp(control) pcontrol,LPRECT lprect)
    {
 
       pcontrol->GetClientRect(lprect);
@@ -1213,90 +1173,22 @@ namespace user
 
 
 
-   void form::on_update(::aura::impact * pSender,LPARAM lHint,object* phint)
-   {
-
-      ::aura::impact::on_update(pSender,lHint,phint);
-      if(phint != NULL)
-      {
-         ::user::form_update_hint * puh = dynamic_cast < ::user::form_update_hint * > (phint);
-         if(puh != NULL)
-         {
-            if(puh->m_etype == ::user::form_update_hint::type_browse)
-            {
-               if(!puh->m_strForm.is_empty())
-               {
-                  string str;
-                  str = Application.dir().matter(puh->m_strForm);
-                  if(get_document()->on_open_document(str))
-                  {
-                     m_strPath = puh->m_strForm;
-                  }
-               }
-            }
-            else if(puh->m_etype == ::user::form_update_hint::type_get_form_view)
-            {
-               puh->m_pformview = this;
-            }
-         }
-         else
-         {
-            //html_view_update_hint * puh = dynamic_cast < html_view_update_hint * > (phint);
-            //if(puh != NULL)
-            //{
-            //   if(puh->m_etype == html_view_update_hint::type_document_complete)
-            //   {
-            //      for(int32_t i = 0; i < get_html_data()->m_propertyset.m_propertya.get_count(); i++)
-            //      {
-            //         html::elemental * pelemental = get_html_data()->get_element_by_id(get_html_data()->m_propertyset.m_propertya[i]->name());
-            //         if(pelemental != NULL)
-            //         {
-            //            pelemental->set_string(get_html_data()->m_propertyset.m_propertya[i]->get_string(), ::action::source_data);
-            //         }
-            //      }
-            //   }
-
-            //   {
-
-            //      sp(::draw2d::graphics) dc(allocer());
-
-            //      dc->CreateCompatibleDC(NULL);
-
-            //      get_html_data()->implement(dc);
-
-            //   }
-            //   
-            //}
-
-         }
-
-      }
-
-      if(m_pcallback != NULL)
-      {
-
-         m_pcallback->on_update(this,pSender,lHint,phint);
-
-      }
-
-   }
 
 
-
-   //void form::install_message_handling(::message::dispatch * pinterface)
+   //void form_window::install_message_handling(::message::dispatch * pinterface)
    //{
-   //   form::install_message_handling(pinterface);
+   //   form_window::install_message_handling(pinterface);
 
    //}
 
 
-   //void form::_001OnCreate(signal_details * pobj)
+   //void form_window::_001OnCreate(signal_details * pobj)
    //{
    //   pobj->previous();
    //}
 
 
-   void form::_001OnTimer(signal_details * pobj)
+   void form_window::_001OnTimer(signal_details * pobj)
    {
       SCAST_PTR(::message::timer,ptimer,pobj);
       if(m_pcallback != NULL)
@@ -1313,7 +1205,7 @@ namespace user
       }
    }
 
-   void form::_001OnUser123(signal_details * pobj)
+   void form_window::_001OnUser123(signal_details * pobj)
    {
       SCAST_PTR(::message::base,pbase,pobj);
       if(pbase->m_wparam == 0x80000001)
@@ -1330,47 +1222,14 @@ namespace user
       }
    }
 
-   sp(type) form::controltype_to_typeinfo(::user::e_control_type e_type)
+   sp(type) form_window::controltype_to_typeinfo(::user::e_control_type e_type)
    {
 
       return Application.user_default_controltype_to_typeinfo(e_type);
 
    }
 
-   bool form::_001IsPointInside(sp(control) pcontrol,point64 point)
-   {
 
-      if(pcontrol == NULL)
-         return false;
-
-      return pcontrol->_001IsPointInside(point);
-
-   }
-
-
-   void form::control_get_window_rect(sp(control) pcontrol,LPRECT lprect)
-   {
-
-      pcontrol->GetWindowRect(lprect);
-
-   }
-
-   void form::control_get_client_rect(sp(control) pcontrol,LPRECT lprect)
-   {
-
-      pcontrol->GetClientRect(lprect);
-
-   }
-
-   bool form::open_document(var varFile)
-   {
-
-      if(!get_document()->open_document_file(varFile))
-         return false;
-
-      return true;
-
-   }
 
 
 

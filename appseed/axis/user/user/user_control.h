@@ -74,11 +74,11 @@ namespace user
             Ex1FormInterfaceComboBox   * m_pcombobox;
          } m_data;
 
-         form_interface *        m_pform;
+         form_window *           m_pform;
          sp(control)             m_pcontrol;
          id                      m_id;
          id                      m_uiText;
-         sp(type)     m_typeinfo;
+         sp(type)                m_typeinfo;
          index                   m_iSubItem;
          id                      m_idPrivateDataSection;
          bool                    m_bTransparent;
@@ -138,7 +138,7 @@ namespace user
       sp(::user::interaction)    m_pwndCustomWindowProc;
       bool                       m_bCustomWindowProc;
       index                      m_iEditItem;
-      form_interface *           m_pform;
+      form_window *              m_pform;
       form_callback *            m_pformcallback;
       bool                       m_bControlExCommandEnabled;
 
@@ -169,7 +169,7 @@ namespace user
       virtual void _003OnCustomDraw(::draw2d::graphics * pdc, ::aura::draw_context * pitem);
       virtual void _003CustomWindowProc(signal_details * pobj);
 
-      virtual form_interface * get_form();
+      virtual form_window * get_form();
 
       //virtual form_list * get_form_list();
       virtual bool _001IsPointInside(point64 pt);

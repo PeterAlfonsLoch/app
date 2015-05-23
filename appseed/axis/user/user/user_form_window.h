@@ -5,13 +5,13 @@ namespace user
 {
 
 
-   class CLASS_DECL_AXIS form:
+   class CLASS_DECL_AXIS form_window:
       virtual public ::user::scroll_control
    {
    public:
 
-      string      m_strPath;
 
+      string                     m_strPath;
       bool                       m_bOnEditUpdate;
       bool                       m_bOnLanguageChange;
       UINT                       m_uiId;
@@ -20,8 +20,8 @@ namespace user
       form_callback *            m_pcallback;
 
 
-      form(::aura::application * papp);
-      virtual ~form();
+      form_window(::aura::application * papp);
+      virtual ~form_window();
 
 
       //ptr_array < CTransparentStatic > m_staticpa;
@@ -98,17 +98,17 @@ namespace user
 
 
       virtual void OnBeforeNavigate2(var & varFile,uint32_t nFlags,const char * lpszTargetFrameName,byte_array& baPostedData,const char * lpszHeaders,bool* pbCancel);
-      //        ::user::form(::aura::application * papp);
-      //    virtual ~::user::form();
+      //        ::user::form_window(::aura::application * papp);
+      //    virtual ~::user::form_window();
 
       //virtual void install_message_handling(::message::dispatch * pinterface);
 
       //      DECL_GEN_SIGNAL(_001OnCreate);
 
 
-      //      ::user::form(::aura::application * papp);
+      //      ::user::form_window(::aura::application * papp);
 
-      void on_update(::aura::impact * pSender,LPARAM lHint,object* phint);
+      //void on_update(::aura::impact * pSender,LPARAM lHint,object* phint);
       //      virtual bool BaseOnControlEvent(::user::control_event * pevent);
       //      DECL_GEN_SIGNAL(_001OnCreate);
       DECL_GEN_SIGNAL(_001OnTimer);
@@ -118,14 +118,13 @@ namespace user
 
       
 
-      using ::user::control::_001IsPointInside;
-      virtual bool _001IsPointInside(sp(control) pcontrol,point64 pt);
+//      virtual bool _001IsPointInside(sp(control) pcontrol,point64 pt);
 
-      virtual void control_get_window_rect(sp(control) pcontrol,LPRECT lprect);
-      virtual void control_get_client_rect(sp(control) pcontrol,LPRECT lprect);
+  //    virtual void control_get_window_rect(sp(control) pcontrol,LPRECT lprect);
+    //  virtual void control_get_client_rect(sp(control) pcontrol,LPRECT lprect);
 
 
-      virtual bool open_document(var varFile);
+      //virtual bool open_document(var varFile);
 
 
    };

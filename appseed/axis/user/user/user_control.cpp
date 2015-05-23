@@ -515,13 +515,17 @@ namespace user
       }
    }
 
-   form_interface * control::get_form()
+
+   form_window * control::get_form()
    {
+
       if(m_pdescriptor == NULL)
          return NULL;
       else
          return descriptor().m_pform;
+
    }
+
 
    /*form_list * control::get_form_list()
    {

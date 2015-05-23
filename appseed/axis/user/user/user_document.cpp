@@ -1108,20 +1108,6 @@ namespace aura
    }
 
 
-   void document::form_document_set_view(::user::form * pview)
-   {
-
-      UNREFERENCED_PARAMETER(pview);
-
-   }
-
-
-   void document::form_document_set_callback(form_callback * pcallback)
-   {
-
-      UNREFERENCED_PARAMETER(pcallback);
-
-   }
 
 
 

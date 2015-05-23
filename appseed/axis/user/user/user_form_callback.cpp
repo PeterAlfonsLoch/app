@@ -12,29 +12,29 @@ namespace user
    form_callback::~form_callback()
    {
 
-      strsp(::user::form)::pair * ppair = m_mapview.PGetFirstAssoc();
+      strsp(::user::form_window)::pair * ppair = m_mapform.PGetFirstAssoc();
 
       while(ppair != NULL)
       {
 
          ppair->m_element2->DestroyWindow();
 
-         ppair = m_mapview.PGetNextAssoc(ppair);
+         ppair = m_mapform.PGetNextAssoc(ppair);
 
       }
 
 
    }
 
-   void form_callback::on_update(::user::form * pview,sp(::aura::impact) pSender,LPARAM lHint,object* phint)
-   {
-      UNREFERENCED_PARAMETER(pview);
-      UNREFERENCED_PARAMETER(pSender);
-      UNREFERENCED_PARAMETER(lHint);
-      UNREFERENCED_PARAMETER(phint);
-   }
+   //void form_callback::on_update(::user::form_window * pview,sp(::aura::impact) pSender,LPARAM lHint,object* phint)
+   //{
+   //   UNREFERENCED_PARAMETER(pview);
+   //   UNREFERENCED_PARAMETER(pSender);
+   //   UNREFERENCED_PARAMETER(lHint);
+   //   UNREFERENCED_PARAMETER(phint);
+   //}
 
-   bool form_callback::BaseOnControlEvent(::user::form * pview,::user::control_event * pevent)
+   bool form_callback::BaseOnControlEvent(::user::form_window * pview,::user::control_event * pevent)
    {
       UNREFERENCED_PARAMETER(pview);
       UNREFERENCED_PARAMETER(pevent);
@@ -58,7 +58,7 @@ namespace user
       UNREFERENCED_PARAMETER(pbCancel);
    }
 
-   void form_callback::_001InitializeFormPreData(::user::form * pform)
+   void form_callback::_001InitializeFormPreData(::user::form_window * pform)
    {
       UNREFERENCED_PARAMETER(pform);
    }

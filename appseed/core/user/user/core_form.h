@@ -5,7 +5,7 @@ namespace core
 {
 
 
-   namespace user
+   namespace core
    {
 
 
@@ -104,10 +104,14 @@ namespace core
       };
 
 
-   } // namespace user
+   } // namespace core
 
 
-} // namespace core
+} // namespace user
+
+
+
+
 
 
 
