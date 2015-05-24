@@ -1322,7 +1322,7 @@
     <ClInclude Include="graphics\impl\html_impl_text.h" />
     <ClInclude Include="hi5\hi5_twitter_authorization.h" />
     <ClInclude Include="html\html.h" />
-    <ClInclude Include="html_application_interface.h" />
+    <ClInclude Include="html_application.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="userhtml\userhtml.h" />
     <ClInclude Include="userhtml\userhtml_child_frame.h" />
@@ -1962,7 +1962,7 @@
     <ClCompile Include="graphics\impl\_html_impl.cpp" />
     <ClCompile Include="graphics\_graphics.cpp" />
     <ClCompile Include="hi5\hi5_twitter_authorization.cpp" />
-    <ClCompile Include="html_application_interface.cpp" />
+    <ClCompile Include="html_application.cpp" />
     <ClCompile Include="userhtml\userhtml_child_frame.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>

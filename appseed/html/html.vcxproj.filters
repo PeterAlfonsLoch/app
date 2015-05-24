@@ -224,7 +224,7 @@
     <ClInclude Include="html\html.h">
       <Filter>Header Files\html</Filter>
     </ClInclude>
-    <ClInclude Include="html_application_interface.h">
+    <ClInclude Include="html_application.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -370,9 +370,6 @@
     <ClCompile Include="graphics\elemental\html_elemental_text.cpp">
       <Filter>Source Files\graphics\elemental</Filter>
     </ClCompile>
-    <ClCompile Include="html_application_interface.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\elemental\_html_elemental.cpp">
       <Filter>Source Files\graphics\elemental</Filter>
     </ClCompile>
@@ -384,6 +381,9 @@
     </ClCompile>
     <ClCompile Include="userhtml\_userhtml.cpp">
       <Filter>Source Files\userhtml</Filter>
+    </ClCompile>
+    <ClCompile Include="html_application.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

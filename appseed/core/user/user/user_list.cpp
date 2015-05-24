@@ -731,18 +731,18 @@ namespace user
    }
 
 
-   list_header * list::create_list_header()
+   sp(list_header) list::create_list_header()
    {
 
-      return Session.userex()->default_create_list_header();
+      return Session.userex()->default_create_list_header(get_app());
 
    }
 
    
-   list_data * list::create_list_data()
+   sp(list_data) list::create_list_data()
    {
 
-      return Session.userex()->default_create_list_data();
+      return Session.userex()->default_create_list_data(get_app());
 
    }
 
@@ -1334,23 +1334,23 @@ namespace user
 
    ::count list::_001GetItemCount()
    {
-      if(m_pdata != NULL)
-      {
-         return m_pdata->_001GetItemCount();
-      }
-      else
+      
+      if(m_plistdata.is_null())
          return -1;
+
+      return m_plistdata->_001GetItemCount();
+
    }
 
 
    ::count list::_001GetGroupCount()
    {
-      if(m_pdata != NULL)
-      {
-         return m_pdata->_001GetGroupCount();
-      }
-      else
+      
+      if(m_plistdata.is_null())
          return -1;
+      
+      return m_plistdata->_001GetGroupCount();
+
    }
 
    /////////////////////////////////////////////////////////////////
@@ -3627,9 +3627,7 @@ namespace user
       if(m_bAutoCreateListData)
       {
 
-         list_data * plistdata = create_list_data();
-
-         SetDataInterface(plistdata);
+         defer_create_list_data();
 
       }
 
@@ -4054,7 +4052,7 @@ namespace user
 
    void list::SetDataInterface(::user::list_data *pinterface)
    {
-      m_pdata = pinterface;
+      m_plistdata = pinterface;
    }
 
    bool list::_001InsertColumn(list_column &column)
@@ -4979,7 +4977,7 @@ namespace user
 
    ::user::list_data * list::GetDataInterface()
    {
-      return m_pdata;
+      return m_plistdata;
    }
 
    void list::_001SetView(EView eview)
@@ -5556,9 +5554,9 @@ namespace user
 
    ::count list::_001GetGroupMetaItemCount(index iGroup)
    {
-      if(m_pdata != NULL)
+      if(m_plistdata != NULL)
       {
-         return m_pdata->_001GetGroupMetaItemCount(iGroup);
+         return m_plistdata->_001GetGroupMetaItemCount(iGroup);
       }
       return 0;
    }
@@ -5572,9 +5570,9 @@ namespace user
          if(pitem->m_bOk)
             return;
       }
-      if(m_pdata != NULL)
+      if(m_plistdata != NULL)
       {
-         m_pdata->_001GetGroupText(pitem);
+         m_plistdata->_001GetGroupText(pitem);
       }
    }
 
@@ -5671,10 +5669,10 @@ namespace user
    void list::_001OnDeleteRange(range & range)
    {
 
-      if(m_pdata != NULL)
+      if(m_plistdata != NULL)
       {
 
-         m_pdata->_001OnDeleteRange(range);
+         m_plistdata->_001OnDeleteRange(range);
 
       }
 
@@ -5690,14 +5688,20 @@ namespace user
 
    }
 
-   // This function returns a cast to simple_list_data pointer of m_plistdata member.
-   // It does not force, neither attempt to return a valid simple list data.
-   // The simple list data will be only valid if m_plistdata is a
-   // simple_list_data (i.e. a simple_list_data or a simple_list_data based class object)
-   simple_list_data * list::get_simple_list_data()
+   
+   void list::defer_create_list_data()
    {
 
-      return m_plistdata.cast < simple_list_data >();
+      sp(::user::list_data) plistdata = create_list_data();
+
+      if(plistdata.is_null())
+         return;
+
+      m_plistdata = plistdata;
+
+      m_psimplelistdata = plistdata;
+
+      SetDataInterface(plistdata);
 
    }
 

@@ -666,8 +666,8 @@ namespace user
       ::count _001GetColumnCount();
 
 
-      virtual list_header * create_list_header();
-      virtual list_data * create_list_data();
+      virtual sp(list_header) create_list_header();
+      virtual sp(list_data) create_list_data();
 
       void layout();
 
@@ -821,6 +821,9 @@ namespace user
       DECL_GEN_SIGNAL(_001OnHScroll);
 
       virtual void data_update_visible_subitem();
+
+      virtual void defer_create_list_data();
+
 
 
    };

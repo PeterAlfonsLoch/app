@@ -6,6 +6,7 @@ namespace userex
 
 
    class CLASS_DECL_CORE userex :
+      virtual public ::aura::departament,
       virtual public ::user::server,
       virtual public BaseMenuCentralContainer,
       virtual public ::database::client
@@ -26,8 +27,8 @@ namespace userex
       ::user::front_end *                       m_pufe;
       stringa                                   m_straEscape;
 
-      ::type                                    m_typeDefaultListHeader;
-      ::type                                    m_typeDefaultListData;
+      sp(::type)                                m_typeDefaultListHeader;
+      sp(::type)                                m_typeDefaultListData;
 
 
 
@@ -80,8 +81,8 @@ namespace userex
       ::user::list_data * default_create_list_data(::aura::application * papp);
 
 
-      ::type & default_type_list_header();
-      ::type & default_type_list_data();
+      sp(::type) default_type_list_header();
+      sp(::type) default_type_list_data();
 
 
 

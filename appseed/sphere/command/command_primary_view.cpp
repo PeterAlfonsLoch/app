@@ -8,9 +8,6 @@ namespace command
 
    primary_view::primary_view(::aura::application * papp) :
       ::object(papp),
-      ::user::interaction(papp),
-      ::user::scroll_view(papp),
-      ::data::listener(papp),
       ::user::edit_plain_text(papp),
       ::user::edit_plain_text_view(papp)
    {
@@ -22,8 +19,8 @@ namespace command
       connect_update_cmd_ui("edit_paste", &primary_view::_001OnUpdateEditPaste);
       connect_command("edit_paste", &primary_view::_001OnEditPaste);
 
-
    }
+
 
    void primary_view::on_update(::aura::impact * pSender, LPARAM lHint, ::object* phint)
    {
@@ -33,6 +30,7 @@ namespace command
       UNREFERENCED_PARAMETER(phint);
 
    }
+
 
    void primary_view::install_message_handling(::message::dispatch * pinterface)
    {

@@ -586,7 +586,7 @@ namespace aura
 
       char q;
 
-      ::str::utf8_char c;
+//      ::str::utf8_char c;
 
       bool bFinal;
 

@@ -81,7 +81,7 @@ namespace filemanager
          throw "incorrect usage of this class object";
       if(stra.get_size() == 0)
          return true;
-      sp(folder_list_data) pdata = m_plistdata.cast <folder_list_data *> ();
+      sp(folder_list_data) pdata = m_plistdata.cast <folder_list_data> ();
       if(!pdata->add_unique(stra,baRecursive))
          return false;
       _001OnUpdateItemCount();

@@ -24,7 +24,7 @@ namespace userfs
    }
 
 
-   ::user::list_data * list::create_list_data()
+   sp(::user::list_data) list::create_list_data()
    {
       
       return canew(list_data(get_app()));

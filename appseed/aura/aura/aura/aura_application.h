@@ -120,6 +120,34 @@ namespace aura
 
       template < typename T >
       void alloc(T * & pt);
+      template < typename T >
+      T * alloc(sp(type) info)
+      {
+         object * p = alloc(info);
+         if(p == NULL)
+            return NULL;
+         T * pt = dynamic_cast <T *>(p);
+         if(pt == NULL)
+         {
+            ::release(p);
+            return NULL;
+         }
+         return pt;
+      }
+      template < typename T >
+      T * alloc(const id & idType)
+      {
+         object * p = alloc(idType);
+         if(p == NULL)
+            return NULL;
+         T * pt = dynamic_cast <T *>(p);
+         if(pt == NULL)
+         {
+            ::release(p);
+            return NULL;
+         }
+         return pt;
+      }
 
 
       //virtual void tellme_destroyed(::aura::interaction * pui, bool * pDestroyed, bool bTell = true);

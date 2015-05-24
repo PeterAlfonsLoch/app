@@ -7,8 +7,6 @@ namespace userstack
 
    view::view(::aura::application * papp) :
       ::object(papp),
-      ::user::interaction(papp),
-      ::user::scroll_view(papp),
       m_dibV(papp),
       m_dib_veriwell(papp),
       m_dib_winactionarea(papp),
@@ -16,6 +14,7 @@ namespace userstack
       m_dibBk(papp),
       m_mutexDraw(papp)
    {
+
       m_font->create_point_font("Geneva", 8.4);
       m_bDestroy = false;
       m_iV = 123;
@@ -28,14 +27,19 @@ namespace userstack
       m_i_winactionarea_h = 49;
       m_i_winactionarea_w = 49;
       m_ppaneview = NULL;
+
    }
+
 
    view::~view()
    {
+
    }
+
 
    void view::install_message_handling(::message::dispatch * pinterface)
    {
+
       ::aura::impact::install_message_handling(pinterface);
 
       IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &view::_001OnDestroy);

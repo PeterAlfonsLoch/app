@@ -440,7 +440,7 @@ namespace aura
       }
       else
       {
-         m_bLog = is_debugger_attached();
+         m_bLog = is_debugger_attached() != FALSE;
       }
       sl.unlock();
       print("<log>Log Initialized!!</log>");

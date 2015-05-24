@@ -89,7 +89,7 @@ namespace userfs
       virtual void dump(dump_context & dumpcontext) const;
 #endif
 
-      ::user::list_data * create_list_data();
+      sp(::user::list_data) create_list_data();
 
    };
 

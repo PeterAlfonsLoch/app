@@ -7,8 +7,7 @@ namespace userex
 
    userex::userex(::aura::application * papp):
       object(papp),
-      ::aura::departament(papp),
-      ::user::core(papp)
+      ::aura::departament(papp)
    {
 
       m_pshellimageset  = NULL;
@@ -43,7 +42,7 @@ namespace userex
    {
 
 
-      if(!::user::core::initialize())
+      if(!::aura::departament::initialize())
          return false;
 
       if(!m_typeDefaultListData)
@@ -734,7 +733,7 @@ namespace userex
    ::user::list_header * userex::default_create_list_header(::aura::application * papp)
    {
 
-      return App(papp).alloc(default_type_list_header());
+      return App(papp).alloc<::user::list_header >(default_type_list_header());
 
    }
 
@@ -742,12 +741,35 @@ namespace userex
    ::user::list_data * userex::default_create_list_data(::aura::application * papp)
    {
       
-      return App(papp).alloc(default_type_list_data());
+      return App(papp).alloc<::user::list_data >(default_type_list_data());
+
+   }
+
+
+   sp(::type) userex::default_type_list_header()
+   {
+
+      return m_typeDefaultListHeader;
+
+   }
+
+
+   sp(::type) userex::default_type_list_data()
+   {
+
+      return m_typeDefaultListData;
 
    }
 
 
 } //namespace userex
+
+
+
+
+
+
+
 
 
 

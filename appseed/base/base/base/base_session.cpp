@@ -1578,10 +1578,10 @@ namespace base
 //   ::visual::cursor * session::get_cursor()
 //   {
 //
-//      if(m_pplatformcomposite == NULL)
+//      if(m_pcoresession == NULL)
 //         return NULL;
 //
-//      return m_pplatformcomposite->get_cursor();
+//      return m_pcoresession->get_cursor();
 //
 //   }
 //
@@ -1589,10 +1589,10 @@ namespace base
 //   ::visual::cursor * session::get_default_cursor()
 //   {
 //
-//      if(m_pplatformcomposite == NULL)
+//      if(m_pcoresession == NULL)
 //         return NULL;
 //
-//      return m_pplatformcomposite->get_default_cursor();
+//      return m_pcoresession->get_default_cursor();
 //
 //   }
 //

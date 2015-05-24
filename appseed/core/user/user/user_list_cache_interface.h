@@ -8,7 +8,8 @@ namespace user
    class list;
 
 
-   class CLASS_DECL_CORE list_cache_interface  
+   class CLASS_DECL_CORE list_cache_interface :
+      virtual public ::object
    {
    public:
 

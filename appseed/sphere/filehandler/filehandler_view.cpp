@@ -7,10 +7,6 @@ namespace filehandler
 
    view::view(::aura::application * papp) :
       ::object(papp),
-      ::user::interaction(papp),
-      ::user::scroll_view(papp),
-      ::user::form_interface(papp),
-      ::user::form(papp),
       html_form(papp),
       html_view(papp),
       m_document(papp),
@@ -21,13 +17,17 @@ namespace filehandler
 
    }
 
+
    void view::install_message_handling(::message::dispatch * pinterface)
    {
+
       ::user::form::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &view::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &view::_001OnTimer);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &view::_001OnLButtonUp);
+
    }
+
 
    void view::refresh()
    {

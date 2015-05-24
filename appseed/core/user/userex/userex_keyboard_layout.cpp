@@ -84,7 +84,7 @@ namespace userex // ca8 + cube
          }
       }
 
-      m_plistview->m_pdata = this;
+      m_plistview->m_plistdata = this;
       m_plistview->m_pformcallback = this;
       m_plistview->_001OnUpdateItemCount();
       SetPane(0, m_plistview, false);

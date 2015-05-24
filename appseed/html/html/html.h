@@ -22,7 +22,7 @@
 #include "html/hi5/hi5_twitter_authorization.h"
 
 
-#include "html/html_application_interface.h"
+#include "html/html_application.h"
 
 
 
