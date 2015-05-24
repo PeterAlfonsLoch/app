@@ -15,11 +15,11 @@ namespace core
       ::thread(papp)
    {
 
-      m_paxissession                      = papp->m_paxissession;
+      m_paxissession                      = this;
          
-      m_pbasesession                      = papp->m_pbasesession;
+      m_pbasesession                      = this;
 
-      m_pbasesession->m_pcoresession      = this;
+      m_pcoresession                      = this;
 
       m_paxissystem                       = papp->m_paxissystem;
 
