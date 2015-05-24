@@ -370,6 +370,8 @@ namespace core
       m_pbergedgemap = new ::core::session::map;
 
 
+      if(!Session.on_initial_update())
+         return false;
 
       return true;
 

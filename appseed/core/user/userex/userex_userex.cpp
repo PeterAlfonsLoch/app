@@ -107,7 +107,7 @@ namespace userex
 
 
 
-      Application.simpledb().get_data_server()->add_client(this);
+      //Application.simpledb().get_data_server()->add_client(this);
 
 
       TRACE("::userex::application::initialize");

@@ -1953,6 +1953,9 @@ namespace axis
    bool application::initialize1()
    {
 
+      if(m_bAxisInitialize1)
+         return m_bAxisInitialize1Result;
+
       m_simpledb.construct(this);
 
       if(!m_simpledb.initialize())
@@ -1962,9 +1965,6 @@ namespace axis
          return false;
 
       set_data_server(simpledb().get_data_server());
-
-      if(m_bAxisInitialize1)
-         return m_bAxisInitialize1Result;
 
       m_bAxisInitialize1 = true;
 

@@ -15,23 +15,25 @@ namespace core
       ::thread(papp)
    {
 
+      m_paurasystem                       = papp->m_paurasystem;
+
+      m_paxissystem                       = papp->m_paxissystem;
+
+      m_pbasesystem                       = papp->m_pbasesystem;
+
+      m_paurasystem->m_pcoresession       = this;
+
       m_paxissession                      = this;
          
       m_pbasesession                      = this;
 
       m_pcoresession                      = this;
 
-      m_paxissystem                       = papp->m_paxissystem;
-
-      m_pbasesystem                       = papp->m_pbasesystem;
-
-      m_paxissystem->m_pcoresession       = this;
-
-      m_pbasesession->m_pcoresession      = this;
-
       m_pauraapp                          = this;
 
-      m_pauraapp                          = this;
+      m_paxisapp                          = this;
+
+      m_pbaseapp                          = this;
       
       m_pcoreapp                          = this;
 
@@ -82,6 +84,16 @@ namespace core
       m_eexclusiveinstance = ExclusiveInstanceNone;
 
    }
+
+
+   void session::install_message_handling(::message::dispatch * pdispatch)
+   {
+      
+      core::application::install_message_handling(pdispatch);
+      base::session::install_message_handling(pdispatch);
+
+   }
+
 
    bool session::process_initialize()
    {
@@ -156,6 +168,25 @@ namespace core
    }
 
 
+   bool session::on_initial_update()
+   {
+
+      m_pfilemanager = canew(::filemanager::filemanager(this));
+
+      m_pfilemanager->construct(this);
+
+      if(!m_pfilemanager->initialize())
+      {
+         return false;
+
+      }
+
+      filemanager().std().m_strLevelUp = "levelup";
+
+      return true;
+
+   }
+
 
    bool session::initialize_instance()
    {
@@ -164,13 +195,6 @@ namespace core
          return false;
 
       if(!::base::session::initialize_instance())
-         return false;
-
-      m_pfilemanager = canew(::filemanager::filemanager(this));
-
-      m_pfilemanager->construct(this);
-
-      if (!m_pfilemanager->initialize())
          return false;
 
       initialize_bergedge_application_interface();
@@ -187,8 +211,6 @@ namespace core
       }
 
       initialize_bergedge_application_interface();
-
-      filemanager().std().m_strLevelUp = "levelup";
 
       if(is_remote_session())
       {
@@ -415,6 +437,7 @@ namespace core
    void session::on_request(sp(::create) pcreatecontext)
    {
 
+      ::base::session::on_request(pcreatecontext);
 
    }
 
@@ -553,6 +576,9 @@ namespace core
 
    void session::request_create(sp(::create) pcreatecontext)
    {
+
+      ::base::session::request_create(pcreatecontext);
+
 //
 //      //      if(m_pbergedgeInterface != NULL)
 //      {
@@ -1566,6 +1592,13 @@ namespace core
 
    }
 
+   void session::on_user_login(::fontopus::user * puser)
+   {
+
+      ::base::session::on_user_login(puser);
+
+
+   }
 
 
 

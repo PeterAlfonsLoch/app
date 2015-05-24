@@ -372,7 +372,7 @@ namespace fontopus
    void fontopus::on_user_login(user * puser)
    {
 
-
+      Session.on_user_login(puser);
 
 
 #ifdef METROWIN

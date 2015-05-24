@@ -3337,6 +3337,16 @@ namespace axis
 
    }
 
+
+   void session::on_user_login(::fontopus::user * puser)
+   {
+
+
+
+
+   }
+
+
 } // namespace base
 
 

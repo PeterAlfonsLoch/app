@@ -249,7 +249,7 @@ namespace core
 
       m_dwAlive = ::get_tick_count();
 
-      if(!is_system() && m_pcoresession != NULL)
+      if(!is_system() && !is_session())
       {
 
          Session.register_bergedge_application(this);
@@ -3096,7 +3096,7 @@ namespace core
       //m_splicense(new class ::fontopus::license(this));
 
 
-      if(!is_system() && m_pcoresession != NULL)
+      if(!is_system() && !is_session())
       {
 
          Session.register_bergedge_application(this);

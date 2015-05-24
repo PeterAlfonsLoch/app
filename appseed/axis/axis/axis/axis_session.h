@@ -259,6 +259,10 @@ namespace axis
 
       //virtual void on_request(sp(::create) pcreate);
 
+
+      virtual void on_user_login(::fontopus::user * puser);
+
+
    };
 
 

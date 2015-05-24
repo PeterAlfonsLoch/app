@@ -73,8 +73,12 @@ namespace core
       virtual void construct(const char * pszAppId);
 
 
+      virtual void install_message_handling(::message::dispatch * pdispatch);
+
+
       virtual bool initialize2();
       bool initialize_instance();
+      bool on_initial_update();
       virtual int32_t exit_instance();
 
       bool InitializeLocalDataCentral();
@@ -200,6 +204,10 @@ namespace core
 //      virtual void open_by_file_extension(const char * pszPathName);
 
       virtual sp(::core::session)             query_bergedge();
+
+
+      virtual void on_user_login(::fontopus::user * puser);
+
 
 
    };
