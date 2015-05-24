@@ -227,9 +227,9 @@ namespace user
       }
 
 
-      if(m_psimplelistdata != NULL)
+      if(m_plistdata != NULL)
       {
-         if(m_psimplelistdata->is_locked())
+         if(m_plistdata->is_locked())
          {
             return;
          }
@@ -678,13 +678,13 @@ namespace user
    void list::_001GetItemImage(::user::list_item * pitem)
    {
       
-      if(m_psimplelistdata != NULL)
+      if(m_plistdata != NULL)
       {
 
          pitem->m_plist = this;
          try
          {
-            return m_psimplelistdata->_001GetItemImage(pitem);
+            return m_plistdata->_001GetItemImage(pitem);
          }
          catch(...)
          {
@@ -709,9 +709,9 @@ namespace user
          if(pitem->m_bOk)
             return;
       }
-      if(m_psimplelistdata != NULL)
+      if(m_plistdata != NULL)
       {
-         m_psimplelistdata->_001GetItemText(pitem);
+         m_plistdata->_001GetItemText(pitem);
       }
    }
 
@@ -4052,8 +4052,13 @@ namespace user
 
    void list::SetDataInterface(::user::list_data *pinterface)
    {
+      
       m_plistdata = pinterface;
+
+      m_psimplelistdata = m_plistdata;
+
    }
+
 
    bool list::_001InsertColumn(list_column &column)
    {
@@ -5696,10 +5701,6 @@ namespace user
 
       if(plistdata.is_null())
          return;
-
-      m_plistdata = plistdata;
-
-      m_psimplelistdata = plistdata;
 
       SetDataInterface(plistdata);
 

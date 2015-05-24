@@ -136,7 +136,7 @@ namespace user
 
    }
 
-   UINT c_cdecl scroll_control::thread_proc_defer_create_scroll_bars(LPVOID lpparam)
+   /*UINT c_cdecl scroll_control::thread_proc_defer_create_scroll_bars(LPVOID lpparam)
    {
 
       scroll_control * pview = (scroll_control *)lpparam;
@@ -146,6 +146,7 @@ namespace user
       return 0;
 
    }
+   */
 
    void scroll_control::_001DeferCreateScrollBars()
    {
@@ -179,7 +180,7 @@ namespace user
       if(bCreate)
       {
 
-         __begin_thread(get_app(),thread_proc_defer_create_scroll_bars,this);
+         _001OnDeferCreateScrollBars();
 
       }
 

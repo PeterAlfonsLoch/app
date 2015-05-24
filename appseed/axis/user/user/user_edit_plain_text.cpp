@@ -1264,7 +1264,12 @@ namespace user
 
       sizePage.cy = rectClient.height();
 
-      m_scrollinfo.m_sizeTotal.cy += sizePage.cy;
+      if(m_bMultiLine)
+      {
+
+         m_scrollinfo.m_sizeTotal.cy += sizePage.cy;
+
+      }
 
       m_scrollinfo.m_sizePage = sizePage;
 

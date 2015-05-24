@@ -12,11 +12,12 @@ namespace filemanager
       ::userfs::list(papp),
       m_mutex(papp)
    {
-         m_iAnimate = 0;
-         m_bRestartCreateImageList = false;
-         m_bStatic = false;
-         m_bPendingSize = false;
-         m_pcreateimagelistthread = NULL;
+
+      m_iAnimate = 0;
+      m_bRestartCreateImageList = false;
+      m_bStatic = false;
+      m_bPendingSize = false;
+      m_pcreateimagelistthread = NULL;
 
       m_bFileSize = false;
       m_bShow = false;

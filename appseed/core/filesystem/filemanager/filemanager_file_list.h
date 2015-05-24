@@ -60,6 +60,34 @@ namespace filemanager
       bool                             m_bFileSize;
       bool                             m_bShow;
       uint32_t                         m_dwLastFileSize;
+      index                     m_iNameSubItem;
+      index                     m_iNameSubItemText;
+      index                     m_iSelectionSubItem;
+      index                     m_iSizeSubItem;
+      bool                    m_bPendingSize;
+      uint32_t                   m_dwLastFileSizeGet;
+
+
+      map < icon_key,const icon_key &,icon,icon & > m_iconmap;
+
+      mutex            m_mutex;
+#ifdef WINDOWSEX
+      IShellFolder *   m_pshellfolder;
+#endif
+      bool               m_bCreateImageList;
+      bool               m_bCreateImageListRedraw;
+      index               m_iAnimate;
+      //      ::user::buffer   m_gdibuffer;
+      create_image_list_thread * m_pcreateimagelistthread;
+
+      int64_t          m_iCreateImageListStep;
+
+      string                  m_strPath;
+
+      uint32_t             m_dwLastRedraw;
+      bool              m_bRestartCreateImageList;
+
+      bool              m_bStatic;
 
 
       file_list(::aura::application * papp);
@@ -171,34 +199,6 @@ namespace filemanager
       void Arrange(EArrange earrange);
       };*/
 
-      index                     m_iNameSubItem;
-      index                     m_iNameSubItemText;
-      index                     m_iSelectionSubItem;
-      index                     m_iSizeSubItem;
-      bool                    m_bPendingSize;
-      uint32_t                   m_dwLastFileSizeGet;
-
-
-      map < icon_key, const icon_key &, icon, icon & > m_iconmap;
-
-      mutex            m_mutex;
-#ifdef WINDOWSEX
-      IShellFolder *   m_pshellfolder;
-#endif
-      bool               m_bCreateImageList;
-      bool               m_bCreateImageListRedraw;
-      index               m_iAnimate;
-//      ::user::buffer   m_gdibuffer;
-      create_image_list_thread * m_pcreateimagelistthread;
-
-      int64_t          m_iCreateImageListStep;
-
-      string                  m_strPath;
-
-      uint32_t             m_dwLastRedraw;
-      bool              m_bRestartCreateImageList;
-
-      bool              m_bStatic;
 
       /*   class icon_key
       {
