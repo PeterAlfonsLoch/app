@@ -746,7 +746,7 @@ namespace userex
    }
 
 
-   sp(::type) userex::default_type_list_header()
+   ::type * userex::default_type_list_header()
    {
 
       return m_typeDefaultListHeader;
@@ -754,7 +754,7 @@ namespace userex
    }
 
 
-   sp(::type) userex::default_type_list_data()
+   ::type * userex::default_type_list_data()
    {
 
       return m_typeDefaultListData;

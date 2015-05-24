@@ -24,13 +24,6 @@ namespace userfs
    }
 
 
-   sp(::user::list_data) list::create_list_data()
-   {
-      
-      return canew(list_data(get_app()));
-
-   }
-
    void list::install_message_handling(::message::dispatch * pinterface)
    {
       ::user::form_list_view::install_message_handling(pinterface);
@@ -651,6 +644,12 @@ namespace userfs
 
    }
 
+   ::user::list_data * list::create_list_data()
+   {
+
+      return canew(list_data(get_app()));
+
+   }
 
    sp(::userfs::document) list::get_document()
    {

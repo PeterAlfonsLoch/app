@@ -2944,12 +2944,17 @@ namespace axis
 
       }
 
-      pwnd = ((::user::interaction *)m_puiActive->m_pvoidUserInteraction);
-
-      if(pwnd != NULL)
+      if(m_puiActive != NULL)
       {
 
-         return pwnd;
+         pwnd = ((::user::interaction *)m_puiActive->m_pvoidUserInteraction);
+
+         if(pwnd != NULL)
+         {
+
+            return pwnd;
+
+         }
 
       }
 

@@ -81,8 +81,8 @@ namespace userex
       ::user::list_data * default_create_list_data(::aura::application * papp);
 
 
-      sp(::type) default_type_list_header();
-      sp(::type) default_type_list_data();
+      ::type * default_type_list_header();
+      ::type * default_type_list_data();
 
 
 

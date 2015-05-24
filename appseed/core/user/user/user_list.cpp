@@ -731,7 +731,7 @@ namespace user
    }
 
 
-   sp(list_header) list::create_list_header()
+   ::user::list_header * list::create_list_header()
    {
 
       return Session.userex()->default_create_list_header(get_app());
@@ -739,7 +739,7 @@ namespace user
    }
 
    
-   sp(list_data) list::create_list_data()
+   ::user::list_data * list::create_list_data()
    {
 
       return Session.userex()->default_create_list_data(get_app());
@@ -3624,7 +3624,7 @@ namespace user
 
       }
 
-      if(m_bAutoCreateListData)
+      if(m_plistdata.is_null() && m_bAutoCreateListData)
       {
 
          defer_create_list_data();

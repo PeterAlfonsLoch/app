@@ -666,8 +666,8 @@ namespace user
       ::count _001GetColumnCount();
 
 
-      virtual sp(list_header) create_list_header();
-      virtual sp(list_data) create_list_data();
+      virtual ::user::list_header * create_list_header();
+      virtual ::user::list_data * create_list_data();
 
       void layout();
 
