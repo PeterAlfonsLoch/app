@@ -158,7 +158,7 @@ namespace aura
 
 
 
-      virtual void on_allocation_error(::aura::application * papp,sp(type) & info);
+      virtual void on_allocation_error(::aura::application * papp, ::type * ptype);
       //   sp(object) alloc(::aura::application * papp, sp(type) info);
       object * alloc(::aura::application * papp,const std_type_info & info);
       //   virtual sp(object) on_alloc(::aura::application * papp, sp(type) info);
@@ -166,10 +166,10 @@ namespace aura
 
 
       using ::aura::application::alloc;
-      virtual object * alloc(::aura::application * papp,sp(type)  &info);
+      virtual object * alloc(::aura::application * papp,::type * ptype);
       virtual object * alloc(::aura::application * papp,const class id & idType);
 
-      virtual object * on_alloc(::aura::application * papp,sp(type) & info);
+      virtual object * on_alloc(::aura::application * papp,::type * ptype);
       virtual object * clone();
 
 
@@ -194,7 +194,8 @@ namespace aura
          return get_type_info(typeid(T));
       }
 
-      virtual sp(::type) & get_type_info(const ::std_type_info & info);
+      virtual ::type * get_type_info(const ::std_type_info & info);
+
       ::type * get_type_info(const class id & idType)
       {
 

@@ -326,7 +326,7 @@ public:
 
 
    using ::object::create;
-   virtual object * create(::aura::application *  papp, sp(type) & info);
+   virtual object * create(::aura::application *  papp, ::type * ptype);
    
    virtual object * base_clone(object * pobject);
 

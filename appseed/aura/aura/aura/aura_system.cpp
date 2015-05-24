@@ -858,36 +858,53 @@ namespace aura
 
 
 
-   object * system::on_alloc(::aura::application * papp,sp(type) & info)
+   object * system::on_alloc(::aura::application * papp, ::type * ptype)
    {
 
       if(m_pfactory.is_null())
          return NULL;
-      /*string str;
-      str.Format("Could not alloc %s", info.name());
-      simple_message_box(str);*/
-      object * pobj = m_pfactory->create(papp,info);
+
+      object * pobj = m_pfactory->create(papp,ptype);
+      
       if(pobj != NULL)
          return pobj;
-      on_allocation_error(papp,info);
+
+      on_allocation_error(papp,ptype);
+
       return NULL;
+
    }
 
-   object * system::alloc(::aura::application * papp,sp(type) & info)
+
+   object * system::alloc(::aura::application * papp, ::type * ptype)
    {
-      return on_alloc(papp,info);
+
+      object * p = on_alloc(papp,ptype);
+
+      if(p == NULL)
+         return NULL;
+
+      return p;
+
    }
+
 
    object * system::alloc(::aura::application * papp,const std_type_info & info)
    {
+
       return on_alloc(papp,get_type_info(info));
+
    }
 
-   void system::on_allocation_error(::aura::application * papp,sp(type) & info)
+   
+   void system::on_allocation_error(::aura::application * papp, ::type * ptype)
    {
+      
       UNREFERENCED_PARAMETER(papp);
-      UNREFERENCED_PARAMETER(info);
+      UNREFERENCED_PARAMETER(ptype);
+
    }
+
 
    object * system::alloc(::aura::application * papp,const class id & idType)
    {
@@ -895,7 +912,7 @@ namespace aura
    }
 
 
-   sp(type) & system::get_type_info(const ::std_type_info & info)
+   ::type * system::get_type_info(const ::std_type_info & info)
    {
 
       synch_lock sl(&m_mutexFactory);
@@ -909,7 +926,7 @@ namespace aura
       if(typeinfo.is_null())
          typeinfo = canew(type(info));
 
-      return typeinfo;
+      return typeinfo.m_p;
 
    }
 

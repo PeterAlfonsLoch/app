@@ -77,28 +77,31 @@ void base_factory::enable_simple_factory_request(bool bEnable)
 
 
 
-object * base_factory::create(::aura::application * papp, sp(type) & info)
+object * base_factory::create(::aura::application * papp, ::type * ptype)
 {
 
-   if(info->m_spmutex.is_null())
+   if(ptype->m_spmutex.is_null())
    {
-      info->m_spmutex = new mutex(papp);
+
+      ptype->m_spmutex = new mutex(papp);
+
    }
 
-   single_lock slInfo(info->m_spmutex, TRUE);
+   single_lock slInfo(ptype->m_spmutex,TRUE);
 
-   if(info->m_pfactoryitem != NULL)
+   if(ptype->m_pfactoryitem != NULL)
    {
 
       if(m_bSimpleFactoryRequest)
-         return info->m_pfactoryitem->create(papp);
+         return ptype->m_pfactoryitem->create(papp);
 
-      info->m_pfactoryitem.release();
+      ptype->m_pfactoryitem.release();
+
    }
 
    single_lock sl(m_pmutex, TRUE);
 
-   sp(factory_item_base) & pitem = m_mapItem[info->m_id];
+   sp(factory_item_base) & pitem = m_mapItem[ptype->m_id];
 
    if(pitem.is_null())
    {
@@ -109,8 +112,11 @@ object * base_factory::create(::aura::application * papp, sp(type) & info)
 
    if(m_bSimpleFactoryRequest)
    {
-      m_typeinfoptraSimpleFactoryRequest.add(info);
-      info->m_pfactoryitem = pitem;
+      
+      m_typeinfoptraSimpleFactoryRequest.add(ptype);
+
+      ptype->m_pfactoryitem = pitem;
+
    }
 
    return pitem->create(papp);
