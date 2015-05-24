@@ -80,6 +80,13 @@ void base_factory::enable_simple_factory_request(bool bEnable)
 object * base_factory::create(::aura::application * papp, ::type * ptype)
 {
 
+   if(ptype == NULL)
+   {
+
+      return NULL;
+
+   }
+
    if(ptype->m_spmutex.is_null())
    {
 

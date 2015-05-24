@@ -547,12 +547,12 @@ namespace core
 
 
 
-   void system::on_allocation_error(::aura::application * papp,sp(type) & info)
+   void system::on_allocation_error(::aura::application * papp,::type * ptype)
    {
 
       UNREFERENCED_PARAMETER(papp);
 
-      App(papp).simple_message_box(NULL,MB_ICONINFORMATION,"Implement \"%s\" allocation\n",info->friendly_name());
+      App(papp).simple_message_box(NULL,MB_ICONINFORMATION,"Implement \"%s\" allocation\n",ptype->friendly_name());
 
    }
 

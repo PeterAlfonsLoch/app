@@ -119,7 +119,7 @@ namespace core
 
 
 
-      virtual void on_allocation_error(::aura::application * papp,sp(type) & info);
+      virtual void on_allocation_error(::aura::application * papp, ::type * ptype);
 
 
       

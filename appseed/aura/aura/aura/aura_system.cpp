@@ -908,7 +908,19 @@ namespace aura
 
    object * system::alloc(::aura::application * papp,const class id & idType)
    {
-      return on_alloc(papp,get_type_info(idType));
+
+      sp(::type) ptype = get_type_info(idType);
+
+      if(ptype.is_null())
+         return NULL;
+
+      object * p = on_alloc(papp,ptype);
+
+      if(p == NULL)
+         return NULL;
+
+      return p;
+
    }
 
 

@@ -1377,7 +1377,7 @@ namespace core
       else
       {
 
-         return ::core::session::get_monitor_count();
+         return ::base::session::get_monitor_count();
 
       }
 
@@ -1398,7 +1398,7 @@ namespace core
       else
       {
 
-         return ::core::session::get_monitor_rect(iMonitor, lprect);
+         return ::base::session::get_monitor_rect(iMonitor, lprect);
 
       }
 

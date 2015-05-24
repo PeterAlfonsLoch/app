@@ -231,9 +231,6 @@ namespace aura
 
 
 
-      //virtual void on_allocation_error(const sp(type) & info);
-      //virtual sp(object) on_alloc(const sp(type) & info);
-
       virtual bool verb();
 
 
