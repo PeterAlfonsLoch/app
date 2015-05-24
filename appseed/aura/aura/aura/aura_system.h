@@ -199,6 +199,9 @@ namespace aura
       ::type * get_type_info(const class id & idType)
       {
 
+         if(idType.is_empty())
+            return NULL;
+
          synch_lock sl(&m_mutexFactory);
 
          return m_typemap[idType].m_p;
