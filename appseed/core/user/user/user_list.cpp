@@ -734,7 +734,7 @@ namespace user
    list_header * list::create_list_header()
    {
 
-      return Session.userex().default_create_list_header();
+      return Session.userex()->default_create_list_header();
 
    }
 
@@ -742,7 +742,7 @@ namespace user
    list_data * list::create_list_data()
    {
 
-      return Session.userex().default_create_list_data();
+      return Session.userex()->default_create_list_data();
 
    }
 
