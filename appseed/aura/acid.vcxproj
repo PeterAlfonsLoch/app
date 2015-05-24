@@ -1352,7 +1352,6 @@
     <ClInclude Include="aura\aura\aura_action_source.h" />
     <ClInclude Include="aura\aura\aura_allocate.h" />
     <ClInclude Include="aura\aura\aura_application.h" />
-    <ClInclude Include="aura\aura\aura_application_interface.h" />
     <ClInclude Include="aura\aura\aura_application_ptra.h" />
     <ClInclude Include="aura\aura\aura_application_signal_details.h" />
     <ClInclude Include="aura\aura\aura_assert_running_task.h" />
@@ -1399,7 +1398,6 @@
     <ClInclude Include="aura\aura\aura_keep.h" />
     <ClInclude Include="aura\aura\aura_local_memory_map.h" />
     <ClInclude Include="aura\aura\aura_net.h" />
-    <ClInclude Include="aura\aura\aura_platform_interface.h" />
     <ClInclude Include="aura\aura\aura_printer.h" />
     <ClInclude Include="aura\aura\aura_progress.h" />
     <ClInclude Include="aura\aura\aura_keep_true.h" />
@@ -1429,7 +1427,6 @@
     <ClInclude Include="aura\aura\aura_printf.h" />
     <ClInclude Include="aura\aura\aura_savings.h" />
     <ClInclude Include="aura\aura\aura_session.h" />
-    <ClInclude Include="aura\aura\aura_session_interface.h" />
     <ClInclude Include="aura\aura\aura_simple_app.h" />
     <ClInclude Include="aura\aura\aura_simple_pixel_font.h" />
     <ClInclude Include="aura\aura\aura_simple_shell_launcher.h" />
