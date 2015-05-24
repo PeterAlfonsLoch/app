@@ -8,7 +8,7 @@ void smart_pointer < T >::alloc(const ::aura::allocatorsp & spallocator)
    if(spallocator.is_null())
       return;
    
-   static class id idType = CaSys(spallocator).type_info < T >()->m_id;
+   class id idType = CaSys(spallocator).type_info < T >()->m_id;
 
    if(m_p != NULL)
       ::release(m_p);
