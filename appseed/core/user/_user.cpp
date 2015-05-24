@@ -64,7 +64,7 @@
 #include "user/user_combo_box.cpp"
 #include "user/user_combo_list.cpp"
 #include "user/user_control_property.cpp"
-#include "user/user_core.cpp"
+//#include "user/user_core.cpp"
 #include "user/user_data_exchange.cpp"
 #include "user/user_document_manager.cpp"
 #include "user/user_edit_plain_text_view.cpp"

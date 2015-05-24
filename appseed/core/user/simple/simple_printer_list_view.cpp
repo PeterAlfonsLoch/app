@@ -6,11 +6,8 @@
 
 simple_printer_list_view::simple_printer_list_view(::aura::application * papp) :
    object(papp),
-   simple_list_view(papp),
-   m_listdata(papp)
+   simple_list_view(papp)
 {
-
-   m_pdata = &m_listdata;
 
 }
 
@@ -59,7 +56,7 @@ void simple_printer_list_view::_001OnCreate(signal_details * pobj)
       stra.add(infoa[i].pName);
    }
 
-   m_listdata.set_data(this, stra);
+   m_psimplelistdata->set_data(this, stra);
 
    free(infoa);
 #else
@@ -88,7 +85,7 @@ void simple_printer_list_view::_001OnClick(uint_ptr nFlags, point point)
       item.m_iItem = iItem;
       item.m_iSubItem = 0;
       item.m_iListItem = -1;
-      m_listdata._001GetItemText(&item);
+      m_psimplelistdata->_001GetItemText(&item);
       sp(::user::print_job) pprintjob;
       pprintjob.alloc(allocer());
       pprintjob->add_ref();

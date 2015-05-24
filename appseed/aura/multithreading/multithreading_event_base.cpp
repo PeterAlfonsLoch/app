@@ -1,5 +1,5 @@
 /**
-* \brief	Platform independent waitables (windows version)
+* \brief	Session independent waitables (windows version)
 * \author	Thomas Hoefer
 */
 #include "framework.h"

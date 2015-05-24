@@ -37,7 +37,7 @@ namespace user
 
       m_bSingleColumnMode        = false;
       m_bHeaderCtrl              = true;
-      m_pdata           = NULL;
+      //m_psimplelistdata          = NULL;
       m_pcache                   = NULL;
       m_plistheader              = NULL;
       m_bTopText                 = false;
@@ -227,9 +227,9 @@ namespace user
       }
 
 
-      if(m_pdata != NULL)
+      if(m_psimplelistdata != NULL)
       {
-         if(m_pdata->is_locked())
+         if(m_psimplelistdata->is_locked())
          {
             return;
          }
@@ -677,12 +677,14 @@ namespace user
 
    void list::_001GetItemImage(::user::list_item * pitem)
    {
-      if(m_pdata != NULL)
+      
+      if(m_psimplelistdata != NULL)
       {
+
          pitem->m_plist = this;
          try
          {
-            return m_pdata->_001GetItemImage(pitem);
+            return m_psimplelistdata->_001GetItemImage(pitem);
          }
          catch(...)
          {
@@ -707,9 +709,9 @@ namespace user
          if(pitem->m_bOk)
             return;
       }
-      if(m_pdata != NULL)
+      if(m_psimplelistdata != NULL)
       {
-         m_pdata->_001GetItemText(pitem);
+         m_psimplelistdata->_001GetItemText(pitem);
       }
    }
 
@@ -723,7 +725,9 @@ namespace user
 
    ::count list::_001GetColumnCount()
    {
+      
       return m_columna.VisibleGetCount();
+
    }
 
 

@@ -139,7 +139,7 @@ namespace filemanager
          sp(::create) createcontext(allocer());
          createcontext->m_bMakeVisible = false;
          createcontext->m_puiParent = pcreatordata->m_pholder;
-         sp(::aura::document) pdoc = Platform.filemanager().m_ptemplateForm->open_document_file(createcontext);
+         sp(::aura::document) pdoc = Session.filemanager().m_ptemplateForm->open_document_file(createcontext);
          if (pdoc == NULL)
             return;
          form * pformview = pdoc->get_typed_view < form >();
@@ -175,7 +175,7 @@ namespace filemanager
          createcontext->m_bMakeVisible = false;
          createcontext->m_puiParent = this;
          //::exception::throw_not_implemented(get_app());
-         sp(operation_document) pdoc = (Platform.filemanager().m_ptemplateOperation->open_document_file(createcontext));
+         sp(operation_document) pdoc = (Session.filemanager().m_ptemplateOperation->open_document_file(createcontext));
          if (pdoc == NULL)
             return;
          sp(::aura::impact) pview = pdoc->get_view(0);
@@ -189,8 +189,8 @@ namespace filemanager
       {
 
          ::filemanager::data * pfilemanagerdata = new ::filemanager::data(get_app());
-         pfilemanagerdata->m_pcallback = &Platform.filemanager();
-         pfilemanagerdata->m_pmanagertemplate = &Platform.filemanager().std();
+         pfilemanagerdata->m_pcallback = &Session.filemanager();
+         pfilemanagerdata->m_pmanagertemplate = &Session.filemanager().std();
          pfilemanagerdata->m_bFileSize = true;
          pfilemanagerdata->m_bTransparentBackground = true;
 
@@ -200,15 +200,15 @@ namespace filemanager
          createcontext->m_puiParent = pcreatordata->m_pholder;
          createcontext->oprop("filemanager::data") = pfilemanagerdata;
 
-         sp(manager) pmanager = (Platform.filemanager().std().m_pdoctemplateChild->open_document_file(createcontext));
+         sp(manager) pmanager = (Session.filemanager().std().m_pdoctemplateChild->open_document_file(createcontext));
          sp(simple_frame_window) pwndTopLevel = NULL;
          if(pmanager != NULL)
          {
 
             m_pfilemanager = pmanager;
 
-            pmanager->get_filemanager_data()->m_iTemplate = Platform.filemanager().std().m_iTemplate;
-            pmanager->get_filemanager_data()->m_iDocument = Platform.filemanager().std().m_iNextDocument++;
+            pmanager->get_filemanager_data()->m_iTemplate = Session.filemanager().std().m_iTemplate;
+            pmanager->get_filemanager_data()->m_iDocument = Session.filemanager().std().m_iNextDocument++;
             pmanager->get_filemanager_template()->m_strDISection.Format("filemanager(%d)",pmanager->get_filemanager_data()->m_iDocument);
 
 

@@ -104,14 +104,14 @@ namespace user
 
          }
 
-         sp(::user::wndfrm::interaction) pinteraction = Platform.m_mapUinteraction[pszUinteraction];
+         sp(::user::wndfrm::interaction) pinteraction = Session.m_mapUinteraction[pszUinteraction];
 
-         if(Platform.m_mapUinteraction[pszUinteraction] == NULL)
+         if(Session.m_mapUinteraction[pszUinteraction] == NULL)
          {
 
-            Platform.m_mapUinteraction[pszUinteraction] = Platform.wndfrm().get_new_wndfrm(pszUinteraction);
+            Session.m_mapUinteraction[pszUinteraction] = Session.wndfrm().get_new_wndfrm(pszUinteraction);
 
-            pinteraction = Platform.m_mapUinteraction[pszUinteraction];
+            pinteraction = Session.m_mapUinteraction[pszUinteraction];
 
          }
 

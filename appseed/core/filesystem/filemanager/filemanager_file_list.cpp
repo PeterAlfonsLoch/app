@@ -1257,7 +1257,7 @@ namespace filemanager
          ::userfs::list_item & item = get_fs_list_data()->m_itema.get_item((int32_t)m_iCreateImageListStep);
 
          ///IShellFolder * lpsf = m_pshellfolder;
-         item.m_iImage = Platform.userex()->shellimageset().GetImage(
+         item.m_iImage = Session.userex()->shellimageset().GetImage(
             get_handle(),
             item.m_strPath,
             get_document()->get_fs_data()->is_dir(item.m_strPath) ? _shell::FileAttributeDirectory : _shell::FileAttributeNormal,
@@ -1328,11 +1328,11 @@ namespace filemanager
          column.m_bEditOnSecondClick = false;
          if (get_filemanager_data()->m_iIconSize >= 48)
          {
-            column.m_pil = Platform.userex()->shellimageset().GetImageList48();
+            column.m_pil = Session.userex()->shellimageset().GetImageList48();
          }
          else
          {
-            column.m_pil = Platform.userex()->shellimageset().GetImageList16();
+            column.m_pil = Session.userex()->shellimageset().GetImageList16();
          }
          _001AddColumn(column);
          m_iSelectionSubItem = i;
@@ -1378,12 +1378,12 @@ namespace filemanager
       column.m_bEditOnSecondClick = true;
       if (get_filemanager_data()->m_iIconSize >= 48)
       {
-         column.m_pilHover = Platform.userex()->shellimageset().GetImageList48Hover();
-         column.m_pil = Platform.userex()->shellimageset().GetImageList48();
+         column.m_pilHover = Session.userex()->shellimageset().GetImageList48Hover();
+         column.m_pil = Session.userex()->shellimageset().GetImageList48();
       }
       else
       {
-         column.m_pil = Platform.userex()->shellimageset().GetImageList16();
+         column.m_pil = Session.userex()->shellimageset().GetImageList16();
       }
       _001AddColumn(column);
 
@@ -1822,7 +1822,7 @@ namespace filemanager
    {
       if (i == 0)
       {
-         return Platform.userex()->shellimageset().GetImageList16();
+         return Session.userex()->shellimageset().GetImageList16();
       }
       return NULL;
    }

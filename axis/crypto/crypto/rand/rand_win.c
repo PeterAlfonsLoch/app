@@ -180,7 +180,7 @@ typedef BOOL (WINAPI *MODULE32)(HANDLE, LPMODULEENTRY32);
 #include <lmstats.h>
 #if 1 /* The NET API is Unicode only.  It requires the use of the UNICODE
        * macro.  When UNICODE is defined LPTSTR becomes LPWSTR.  LMSTR was
-       * was added to the Platform SDK to allow the NET API to be used in
+       * was added to the Session SDK to allow the NET API to be used in
        * non-Unicode applications provided that Unicode strings were still
        * used for input.  LMSTR is defined as LPWSTR.
        */

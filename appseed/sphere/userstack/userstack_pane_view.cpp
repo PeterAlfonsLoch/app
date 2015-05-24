@@ -132,7 +132,7 @@ namespace userstack
          if(Session.m_mapApplication.Lookup("application:" + strId, pappTab))
          {
             Session.m_pappCurrent = pappTab;
-            //Platform.m_pappCurrent = pappTab;
+            //Session.m_pappCurrent = pappTab;
          }
 /*            sp(::simple_frame_window) pframeApp = dynamic_cast < sp(::simple_frame_window) > (m_pviewdata->m_pwnd);
          if(pframeApp != NULL)
@@ -233,7 +233,7 @@ namespace userstack
 
             createcontext->m_spCommandLine->m_eventReady.ResetEvent();
 
-            Platform.on_request(createcontext);
+            Session.on_request(createcontext);
 
             createcontext->m_spCommandLine->m_eventReady.wait();
 

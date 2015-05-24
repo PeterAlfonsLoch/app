@@ -106,7 +106,7 @@ typedef struct rdp_license rdpLicense;
 #define ST_RESET_PHASE_TO_START			0x00000003
 #define ST_RESEND_LAST_MESSAGE			0x00000004
 
-/* Platform Challenge Types */
+/* Session Challenge Types */
 
 #define WIN32_PLATFORM_CHALLENGE_TYPE		0x0100
 #define WIN16_PLATFORM_CHALLENGE_TYPE		0x0200

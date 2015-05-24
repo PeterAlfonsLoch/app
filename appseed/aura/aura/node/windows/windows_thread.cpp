@@ -186,7 +186,7 @@ namespace windows
 
    /**
    * \file		src/lib/pal/windows/thread_windows.hpp
-   * \brief	Platform independent threads and synchronization objects (windows version)
+   * \brief	Session independent threads and synchronization objects (windows version)
    */
 
    ///  \brief		starts thread on first call

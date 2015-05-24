@@ -252,7 +252,7 @@ namespace core
       if(!is_system() && m_pcoresession != NULL)
       {
 
-         Platform.register_bergedge_application(this);
+         Session.register_bergedge_application(this);
 
       }
 
@@ -492,7 +492,7 @@ namespace core
       {
          if(!is_system())
          {
-            Platform.unregister_bergedge_application(this);
+            Session.unregister_bergedge_application(this);
          }
       }
       catch(...)
@@ -1699,9 +1699,9 @@ namespace core
    bool application::do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog,::aura::impact_system * ptemplate,::aura::document * pdocument)
       // if ptemplate==NULL => all document templates
    {
-      if(Platform.m_pfilemanager != NULL)
+      if(Session.m_pfilemanager != NULL)
       {
-         return Platform.m_pfilemanager->do_prompt_file_name(varFile,nIDSTitle,lFlags,bOpenFileDialog,ptemplate,pdocument);
+         return Session.m_pfilemanager->do_prompt_file_name(varFile,nIDSTitle,lFlags,bOpenFileDialog,ptemplate,pdocument);
       }
       ENSURE(m_pdocmanager != NULL);
       /*      return document_manager().do_prompt_file_name(fileName, nIDSTitle, lFlags,
@@ -3099,7 +3099,7 @@ namespace core
       if(!is_system() && m_pcoresession != NULL)
       {
 
-         Platform.register_bergedge_application(this);
+         Session.register_bergedge_application(this);
 
       }
 
@@ -3456,7 +3456,7 @@ namespace core
    void application::set_title(const char * pszTitle)
    {
 
-      Platform.set_app_title(m_strInstallType,m_strAppName,pszTitle);
+      Session.set_app_title(m_strInstallType,m_strAppName,pszTitle);
 
    }
 
@@ -3801,10 +3801,10 @@ namespace core
    int32_t application::simple_message_box(::aura::interaction * puiOwner,const char * pszMessage,UINT fuStyle)
    {
 
-      if(&Platform == NULL || Platform.userex() == NULL)
+      if(&Session == NULL || Session.userex() == NULL)
          return ::base::application::simple_message_box(puiOwner,pszMessage,fuStyle);
 
-      return Platform.userex()->simple_message_box(puiOwner,pszMessage,fuStyle);
+      return Session.userex()->simple_message_box(puiOwner,pszMessage,fuStyle);
 
    }
 
@@ -3812,10 +3812,10 @@ namespace core
    int32_t application::simple_message_box_timeout(::aura::interaction * pwndOwner,const char * pszMessage,::duration durationTimeOut,UINT fuStyle)
    {
 
-      if(Platform.userex() == NULL)
+      if(Session.userex() == NULL)
          return ::base::application::simple_message_box_timeout(pwndOwner,pszMessage,durationTimeOut,fuStyle);
 
-      return Platform.userex()->simple_message_box_timeout(pwndOwner,pszMessage,durationTimeOut,fuStyle);
+      return Session.userex()->simple_message_box_timeout(pwndOwner,pszMessage,durationTimeOut,fuStyle);
 
    }
 
@@ -3920,9 +3920,9 @@ namespace core
 
    void application::set_form_impact_system(::aura::impact_system * pdoctemplate,::aura::impact_system * pdoctemplateChild,::aura::impact_system * pdoctemplatePlaceHolder)
    {
-      Platform.userex()->m_ptemplateForm = pdoctemplate;
-      Platform.userex()->m_ptemplateChildForm = pdoctemplateChild;
-      Platform.userex()->m_ptemplatePlaceHolder = pdoctemplatePlaceHolder;
+      Session.userex()->m_ptemplateForm = pdoctemplate;
+      Session.userex()->m_ptemplateChildForm = pdoctemplateChild;
+      Session.userex()->m_ptemplatePlaceHolder = pdoctemplatePlaceHolder;
 
    }
 

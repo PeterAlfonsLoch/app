@@ -131,7 +131,7 @@ encode_basic (punycode_uint bcp, int flag)
   return bcp + ((!flag && (bcp - 65 < 26)) << 5);
 }
 
-/*** Platform-specific constants ***/
+/*** Session-specific constants ***/
 
 /* maxint is the maximum value of a punycode_uint variable: */
 static const punycode_uint maxint = -1;

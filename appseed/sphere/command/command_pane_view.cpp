@@ -137,7 +137,7 @@ namespace command
       {
       case PaneViewContextMenu:
          {
-                                 sp(::filemanager::manager) pdoc = Platform.filemanager().std().open_child_list(false, true);
+                                 sp(::filemanager::manager) pdoc = Session.filemanager().std().open_child_list(false, true);
             if(pdoc != NULL)
             {
                pdoc->get_filemanager_data()->m_iIconSize = 16;
@@ -180,7 +180,7 @@ namespace command
          break;
       case PaneViewFileManager:
          {
-                                 sp(::filemanager::manager) pdoc = Platform.filemanager().std().open_child(false, true);
+                                 sp(::filemanager::manager) pdoc = Session.filemanager().std().open_child(false, true);
             if(pdoc != NULL)
             {
                pdoc->get_filemanager_data()->m_strDISection = "winactionarea_filemanager";
@@ -208,7 +208,7 @@ namespace command
          break;
       case PaneViewThreeActionLaunch:
          {
-                                       sp(::filemanager::manager) pdoc = Platform.filemanager().std().open_child_list(false, true);
+                                       sp(::filemanager::manager) pdoc = Session.filemanager().std().open_child_list(false, true);
             if(pdoc != NULL)
             {
                pdoc->get_filemanager_data()->m_iIconSize = 48;
@@ -243,7 +243,7 @@ namespace command
          break;
       case PaneViewConfiguration:
       {
-         sp(::aura::document) pdoc = Platform.userex()->create_form(this, this);
+         sp(::aura::document) pdoc = Session.userex()->create_form(this, this);
          if(pdoc == NULL)
             return;
          ::user::view_creator_data * pcreatordata = new ::user::view_creator_data;

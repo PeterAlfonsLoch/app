@@ -67,7 +67,7 @@
 #endif
 
 /*************************************************************************
- * Platform support detection
+ * Session support detection
  */
 
 #if defined(VMS) || defined(__VMS)

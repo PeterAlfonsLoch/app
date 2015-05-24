@@ -47,7 +47,7 @@ namespace userstack
       initialize_bergedge_application_interface();
 
 
-      Platform.filemanager().std().m_strLevelUp = "levelup";
+      Session.filemanager().std().m_strLevelUp = "levelup";
 
 
       SetRegistryKey("ca2core");

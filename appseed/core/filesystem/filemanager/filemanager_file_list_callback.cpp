@@ -103,7 +103,7 @@ namespace filemanager
       UNREFERENCED_PARAMETER(i);
       //if(i == 0)
       {
-         //return Platform.userex()->shellimageset().GetImageList16();
+         //return Session.userex()->shellimageset().GetImageList16();
       }
       return NULL;
    }

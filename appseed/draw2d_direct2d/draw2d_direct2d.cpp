@@ -91,9 +91,9 @@ WINBOOL APIENTRY DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
 extern int __abi___threading_model;
 __abi_Module* __abi_module = nullptr;
 
-#undef Platform
+#undef Session
 
-namespace Platform {
+namespace Session {
 	namespace Details {
 
 		class InProcModule :

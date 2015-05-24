@@ -237,7 +237,7 @@ namespace userstack
       }
       else if(ptimer->m_nIDEvent == 888888)
       {
-         Platform.check_topic_file_change();
+         Session.check_topic_file_change();
       }
 
    }

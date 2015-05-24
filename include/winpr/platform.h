@@ -1,6 +1,6 @@
 /**
  * WinPR: Windows Portable Runtime
- * Platform-Specific Definitions
+ * Session-Specific Definitions
  *
  * Copyright 2012 Marc-Andre Moreau <marcandre.moreau@gmail.com>
  *

@@ -41,7 +41,7 @@ static const char* const LICENSE_MESSAGE_STRINGS[] =
 {
 	"",
 	"License Request",
-	"Platform Challenge",
+	"Session Challenge",
 	"New License",
 	"Upgrade License",
 	"", "", "", "", "", "",
@@ -50,7 +50,7 @@ static const char* const LICENSE_MESSAGE_STRINGS[] =
 	"License Info",
 	"New License Request",
 	"",
-	"Platform Challenge Response",
+	"Session Challenge Response",
 	"", "", "", "", "", "", "", "", "",
 	"Error Alert"
 };
@@ -765,7 +765,7 @@ BOOL license_read_platform_challenge_packet(rdpLicense* license, wStream* s)
 {
 	BYTE MacData[16];
 	UINT32 ConnectFlags = 0;
-	DEBUG_LICENSE("Receiving Platform Challenge Packet");
+	DEBUG_LICENSE("Receiving Session Challenge Packet");
 
 	if (Stream_GetRemainingLength(s) < 4)
 		return FALSE;
@@ -959,7 +959,7 @@ void license_send_platform_challenge_response_packet(rdpLicense* license)
 	BYTE* buffer;
 	CryptoRc4 rc4;
 	BYTE mac_data[16];
-	DEBUG_LICENSE("Sending Platform Challenge Response Packet");
+	DEBUG_LICENSE("Sending Session Challenge Response Packet");
 	s = license_send_stream_init(license);
 	license->EncryptedPlatformChallenge->type = BB_DATA_BLOB;
 	length = license->PlatformChallenge->length + HWID_LENGTH;

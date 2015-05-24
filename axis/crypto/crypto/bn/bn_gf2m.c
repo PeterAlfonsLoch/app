@@ -102,7 +102,7 @@
 static const BN_ULONG SQR_tb[16] =
   {     0,     1,     4,     5,    16,    17,    20,    21,
        64,    65,    68,    69,    80,    81,    84,    85 };
-/* Platform-specific macros to accelerate squaring. */
+/* Session-specific macros to accelerate squaring. */
 #if defined(SIXTY_FOUR_BIT) || defined(SIXTY_FOUR_BIT_LONG)
 #define SQR1(w) \
     SQR_tb[(w) >> 60 & 0xF] << 56 | SQR_tb[(w) >> 56 & 0xF] << 48 | \

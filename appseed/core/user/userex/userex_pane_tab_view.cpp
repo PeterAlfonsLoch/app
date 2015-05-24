@@ -191,7 +191,7 @@ namespace userex
 
          pfilemanagerdata->m_strDISection = Application.m_strAppName;
 
-         sp(::filemanager::manager) pmanager = Platform.filemanager().std().open_child(true,pfilemanagerdata->m_bTransparentBackground,pcreatordata->m_pholder,pfilemanagerdata,get_app()->m_pcoreapp);
+         sp(::filemanager::manager) pmanager = Session.filemanager().std().open_child(true,pfilemanagerdata->m_bTransparentBackground,pcreatordata->m_pholder,pfilemanagerdata,get_app()->m_pcoreapp);
 
          if(pmanager != NULL)
          {
@@ -225,7 +225,7 @@ namespace userex
          cc->m_bMakeVisible               = true;
          cc->m_puiParent                  = pcreatordata->m_pholder;
 
-         sp(::filemanager::manager) pmanager = Platform.filemanager().std().open(cc);
+         sp(::filemanager::manager) pmanager = Session.filemanager().std().open(cc);
 
          if(pmanager != NULL)
          {

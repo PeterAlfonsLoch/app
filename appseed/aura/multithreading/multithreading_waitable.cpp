@@ -1,5 +1,5 @@
 /**
-* \brief	Platform independent waitables
+* \brief	Session independent waitables
 * \author	Thomas Hoefer
 */
 

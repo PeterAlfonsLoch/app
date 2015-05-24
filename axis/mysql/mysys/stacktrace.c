@@ -373,7 +373,7 @@ static void get_symbol_path(char *path, size_t size)
 
 #define MAX_SYMBOL_PATH 32768
 
-/* Platform SDK in VS2003 does not have definition for SYMOPT_NO_PROMPTS*/
+/* Session SDK in VS2003 does not have definition for SYMOPT_NO_PROMPTS*/
 #ifndef SYMOPT_NO_PROMPTS
 #define SYMOPT_NO_PROMPTS 0
 #endif

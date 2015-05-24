@@ -1104,7 +1104,7 @@ namespace user
 
       }
 
-      pdescriptor->m_typeinfo = Platform.userex()->controltype_to_typeinfo(pdescriptor->get_type());
+      pdescriptor->m_typeinfo = Session.userex()->controltype_to_typeinfo(pdescriptor->get_type());
 
       if(pdescriptor->m_typeinfo)
       {

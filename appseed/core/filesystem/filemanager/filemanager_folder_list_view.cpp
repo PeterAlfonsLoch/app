@@ -25,14 +25,14 @@ namespace filemanager
       if(bRecursive)
       {
          SetDataInterface(new folder_list_data(get_app()));
-         folder_list_data * pdata = dynamic_cast <folder_list_data *> (m_pdata);
+         sp(folder_list_data) pdata = m_plistdata.cast <folder_list_data > ();
          pdata->m_dataid = datakey;
          pdata->initialize_data_client(Application.simpledb().get_data_server());
       }
       else
       {
          SetDataInterface(new databaseuser::data_key_list_data(get_app()));
-         databaseuser::data_key_list_data* pdata = dynamic_cast <databaseuser::data_key_list_data *> (m_pdata);
+         sp(databaseuser::data_key_list_data) pdata = m_plistdata.cast  < ::databaseuser::data_key_list_data >();
          pdata->m_dataid = datakey;
          pdata->initialize_data_client(Application.simpledb().get_data_server());
       }
@@ -62,11 +62,16 @@ namespace filemanager
          throw "incorrect usage of this class object";
       if(stra.get_size() == 0)
          return true;
-      databaseuser::data_key_list_data* pdata = dynamic_cast <databaseuser::data_key_list_data *> (m_pdata);
+
+      sp(databaseuser::data_key_list_data) pdata = m_plistdata.cast <databaseuser::data_key_list_data >();
+
       if(!pdata->add_unique(stra))
          return false;
+
       _001OnUpdateItemCount();
+
       return true;
+
    }
 
 
@@ -76,46 +81,66 @@ namespace filemanager
          throw "incorrect usage of this class object";
       if(stra.get_size() == 0)
          return true;
-      folder_list_data * pdata = dynamic_cast <folder_list_data *> (m_pdata);
+      sp(folder_list_data) pdata = m_plistdata.cast <folder_list_data *> ();
       if(!pdata->add_unique(stra,baRecursive))
          return false;
       _001OnUpdateItemCount();
+
       return true;
+
    }
+
 
    bool folder_list_view::remove(const stringa & stra)
    {
+      
       if(stra.get_size() == 0)
          return true;
+
       if(m_bRecursive)
       {
-         folder_list_data * pdata = dynamic_cast <folder_list_data *> (m_pdata);
+         
+         sp(folder_list_data) pdata = m_plistdata.cast <folder_list_data >();
+
          if(!pdata->remove(stra))
             return false;
+
       }
       else
       {
-         databaseuser::data_key_list_data* pdata = dynamic_cast <databaseuser::data_key_list_data *> (m_pdata);
+         
+         sp(databaseuser::data_key_list_data) pdata = m_psimplelistdata.cast <databaseuser::data_key_list_data > ();
+
          if(!pdata->remove(stra))
             return false;
+
       }
+
       _001OnUpdateItemCount();
+
       return true;
+
    }
 
 
    void folder_list_view::GetSel(stringa & stra)
    {
+      
       if(m_bRecursive)
       {
-         folder_list_data * pdata = dynamic_cast <folder_list_data *> (m_pdata);
+         
+         sp(folder_list_data) pdata = m_plistdata.cast <folder_list_data >();
          pdata->GetSel(this,stra);
+
       }
       else
       {
-         databaseuser::data_key_list_data* pdata = dynamic_cast <databaseuser::data_key_list_data *> (m_pdata);
+         
+         sp(databaseuser::data_key_list_data) pdata = m_psimplelistdata.cast <databaseuser::data_key_list_data >();
          pdata->GetSel(this,stra);
+
       }
+
    }
 
 } // namespace filemanager

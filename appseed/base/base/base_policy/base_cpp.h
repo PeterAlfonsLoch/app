@@ -248,7 +248,7 @@ typedef smart_pointer < thread_impl > thread_impl_sp;
 #define Sess(pauraapp) (*pauraapp->m_pbasesession)
 //#define Session (Sess(m_pauraapp))
 //#define Plat(pauraapp) (*pauraapp->m_pcoresession)
-//#define Platform (Plat(m_pauraapp))
+//#define Session (Plat(m_pauraapp))
 
 
 #undef App

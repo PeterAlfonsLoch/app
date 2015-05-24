@@ -41,7 +41,7 @@ public:
    bool ResetEvent();
 
 /**
-* \brief	Platform independent waitables (windows version)
+* \brief	Session independent waitables (windows version)
 */
 
 	///  \brief		waits for an event forever

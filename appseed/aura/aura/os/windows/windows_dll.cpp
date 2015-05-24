@@ -7,7 +7,7 @@ BOOL WINAPI openssl_DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReser
 END_EXTERN_C*/
 #ifndef CUBE
 #ifdef METROWIN
-[Platform::MTAThread]
+[Session::MTAThread]
 #endif
 BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
 {

@@ -41,7 +41,7 @@ namespace filemanager
       {
 
          pfilemanagerdata = canew(::filemanager::data(get_app()));
-         pfilemanagerdata->m_pcallback = pcallback != NULL ? pcallback : &Platform.filemanager();
+         pfilemanagerdata->m_pcallback = pcallback != NULL ? pcallback : &Session.filemanager();
          pfilemanagerdata->m_iTemplate = m_iTemplate;
          pfilemanagerdata->m_iDocument = m_iNextDocument++;
          pfilemanagerdata->m_bTransparentBackground = pcreatecontext == NULL ? true : pcreatecontext->m_bTransparentBackground;
@@ -113,9 +113,9 @@ namespace filemanager
       pfilemanagerdata->m_pmanagertemplate = this;
       if(pfilemanagerdata->m_pcallback == NULL || pcallback != NULL)
       {
-         pfilemanagerdata->m_pcallback = pcallback != NULL ? pcallback : &Platform.filemanager();
+         pfilemanagerdata->m_pcallback = pcallback != NULL ? pcallback : &Session.filemanager();
       }
-      pfilemanagerdata->m_pfilemanager = &Platform.filemanager();
+      pfilemanagerdata->m_pfilemanager = &Session.filemanager();
       pfilemanagerdata->m_iTemplate = m_iTemplate;
       pfilemanagerdata->m_iDocument = m_iNextDocument++;
       pfilemanagerdata->m_bTransparentBackground = bTransparentBackground;
@@ -129,7 +129,7 @@ namespace filemanager
       {
 
          string strId;
-         strId.Format("%s::(%d)",Platform.filemanager().m_idFileManager.str(),pdoc->get_filemanager_data()->m_iDocument);
+         strId.Format("%s::(%d)",Session.filemanager().m_idFileManager.str(),pdoc->get_filemanager_data()->m_iDocument);
          pdoc->get_filemanager_data()->m_strDISection = strId;
 
       }
@@ -163,8 +163,8 @@ namespace filemanager
 
 
       pfilemanagerdata->m_pmanagertemplate = this;
-      pfilemanagerdata->m_pcallback = pcallback != NULL ? pcallback : &Platform.filemanager();
-      pfilemanagerdata->m_pfilemanager = &Platform.filemanager();
+      pfilemanagerdata->m_pcallback = pcallback != NULL ? pcallback : &Session.filemanager();
+      pfilemanagerdata->m_pfilemanager = &Session.filemanager();
       pfilemanagerdata->m_iTemplate = m_iTemplate;
       pfilemanagerdata->m_iDocument = m_iNextDocument++;
       pfilemanagerdata->m_bTransparentBackground = bTransparentBackground;
