@@ -127,6 +127,9 @@ namespace dynamic_source
 #undef App
 #define App(pbaseapp) CoreApp(pbaseapp)
 
+#undef Sess
+#define Sess(pauraapp) (*pauraapp->m_pcoresession)
+
 #undef CaSys
 #define CaSys(pca) (*pca->m_pauraapp->m_pcoresystem)
 

@@ -2,7 +2,7 @@
 // Flipping routines
 //
 // Design and implementation by
-// - Floris van den Plat (flvdberg@wxs.nl)
+// - Floris van den Berg (flvdberg@wxs.nl)
 // - Hervé Drolon (drolon@infonie.fr)
 // - Jim Keir (jimkeir@users.sourceforge.net)
 //

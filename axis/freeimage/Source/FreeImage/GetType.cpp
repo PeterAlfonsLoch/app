@@ -2,7 +2,7 @@
 // GetType
 //
 // Design and implementation by
-// - Floris van den Plat (flvdberg@wxs.nl)
+// - Floris van den Berg (flvdberg@wxs.nl)
 //
 // This file is part of FreeImage 3
 //

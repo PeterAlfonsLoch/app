@@ -453,6 +453,14 @@ namespace core
       return iRet;
    }
 
+
+   ::aura::session * system::on_create_session()
+   {
+
+      return new ::core::session(this);
+
+   }
+
    /*
    sp(object) system::on_alloc(::aura::application * papp, sp(type) & info)
    {

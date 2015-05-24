@@ -91,8 +91,8 @@ typedef sp(::user::interaction_impl) window_sp;
 #undef Sess
 #define Sess(paxisapp) (*paxisapp->m_paxissession)
 //#define Session (Sess(m_pauraapp))
-//#define Plat(paxisapp) (*paxisapp->m_pcoresession)
-//#define Session (Plat(m_pauraapp))
+//#define Sess(paxisapp) (*paxisapp->m_pcoresession)
+//#define Session (Sess(m_pauraapp))
 
 #undef App
 #undef Application

@@ -2,7 +2,7 @@
 // Pixel access functions
 //
 // Design and implementation by
-// - Floris van den Plat (flvdberg@wxs.nl)
+// - Floris van den Berg (flvdberg@wxs.nl)
 // - Hervé Drolon (drolon@infonie.fr)
 // - Ryan Rubley (ryan@lostreality.org)
 // - Riley McNiff (rmcniff@marexgroup.com)

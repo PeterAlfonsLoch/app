@@ -2,7 +2,7 @@
 // Bitmap conversion routines
 //
 // Design and implementation by
-// - Floris van den Plat (flvdberg@wxs.nl)
+// - Floris van den Berg (flvdberg@wxs.nl)
 // - Hervé Drolon (drolon@infonie.fr)
 // - Jani Kajala (janik@remedy.fi)
 // - Detlev Vendt (detlev.vendt@brillit.de)

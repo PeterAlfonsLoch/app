@@ -2,7 +2,7 @@
 // TARGA Loader and Writer
 //
 // Design and implementation by
-// - Floris van den Plat (flvdberg@wxs.nl)
+// - Floris van den Berg (flvdberg@wxs.nl)
 // - Jani Kajala (janik@remedy.fi)
 // - Martin Weber (martweb@gmx.net)
 // - Machiel ten Brinke (brinkem@uni-one.nl)

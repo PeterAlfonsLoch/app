@@ -122,6 +122,10 @@ namespace core
       virtual void on_allocation_error(::aura::application * papp,sp(type) & info);
 
 
+      
+      virtual ::aura::session * on_create_session();
+
+
 //      ::core::stra                           & stra();
   //    ::core::service                        & service();
       ::core::history                        & hist();

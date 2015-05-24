@@ -3913,7 +3913,7 @@ namespace core
    sp(type) application::user_default_controltype_to_typeinfo(::user::e_control_type e_type)
    {
 
-      return Plat(this).userex()->controltype_to_typeinfo(e_type);
+      return Sess(this).userex()->controltype_to_typeinfo(e_type);
 
 
    }
@@ -3930,7 +3930,7 @@ namespace core
    sp(::aura::document)   application::create_form(::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var)
    {
 
-      return Plat(this).userex()->create_form(pcallback,pwndParent,var);
+      return Sess(this).userex()->create_form(pcallback,pwndParent,var);
 
    }
 
@@ -3938,7 +3938,7 @@ namespace core
    sp(::aura::document)   application::create_form(sp(::user::form) pview,::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var)
    {
 
-      return Plat(this).userex()->create_form(pview,pcallback,pwndParent,var);
+      return Sess(this).userex()->create_form(pview,pcallback,pwndParent,var);
 
    }
 
@@ -3946,7 +3946,7 @@ namespace core
    sp(::aura::document)   application::create_child_form(::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var)
    {
 
-      return Plat(this).userex()->create_child_form(pcallback, pwndParent, var);
+      return Sess(this).userex()->create_child_form(pcallback, pwndParent, var);
 
 
    }
@@ -3955,7 +3955,7 @@ namespace core
    sp(::aura::document)   application::create_child_form(sp(::user::form) pview,::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var)
    {
 
-      return Plat(this).userex()->create_child_form(pview, pcallback,pwndParent,var);
+      return Sess(this).userex()->create_child_form(pview, pcallback,pwndParent,var);
 
    }
 
@@ -3963,7 +3963,7 @@ namespace core
    ::aura::document * application::hold(sp(::user::interaction) pui)
    {
 
-      return Plat(this).userex()->hold(pui);
+      return Sess(this).userex()->hold(pui);
 
    }
 
@@ -3971,7 +3971,7 @@ namespace core
    //sp(type) application::user_default_controltype_to_typeinfo(enum user::e_control_type econtroltype)
    //{
 
-   //   return Plat(this).userex()->controltype_to_typeinfo(econtroltype);
+   //   return Sess(this).userex()->controltype_to_typeinfo(econtroltype);
 
    //}
 
