@@ -750,3 +750,9 @@ primitive::memory string_array < Type, RawType > ::GetFormatV004()
 
 }
 
+inline string::string(const istring & istr) :
+stdstring< simple_string>(istr.m_str,string_trait::GetDefaultManager())
+{
+
+}
+

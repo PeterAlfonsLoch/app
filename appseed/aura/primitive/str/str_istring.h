@@ -3,15 +3,12 @@
 
 class CLASS_DECL_AURA istring
 {
-protected:
+public:
 
 
    sp(::aura::application)  m_pauraapp;
    string               m_str;
    string               m_strTemplate;
-
-
-public:
 
 
    istring(::aura::application * papp);

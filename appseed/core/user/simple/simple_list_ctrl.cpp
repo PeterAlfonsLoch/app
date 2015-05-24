@@ -115,7 +115,7 @@ bool simple_list_control::remove_item(range & range)
    ::sort::quick_sort(iaRemove, false);
    for(index i = 0; i < iaRemove.get_size(); i++)
    {
-      if(!m_listctrldata.remove_item(iaRemove[i]))
+      if(!m_psimplelistdata->remove_item(iaRemove[i]))
          bOk = false;
    }
    _001OnUpdateItemCount();
