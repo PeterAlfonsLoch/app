@@ -246,7 +246,7 @@ namespace hi5
 
 
 
-      bool authorization::BaseOnControlEvent(::user::form * pview, ::user::control_event * pevent)
+      bool authorization::BaseOnControlEvent(::user::form_window * pview, ::user::control_event * pevent)
       {
          UNREFERENCED_PARAMETER(pview);
          if(pevent->m_eevent == ::user::event_button_clicked

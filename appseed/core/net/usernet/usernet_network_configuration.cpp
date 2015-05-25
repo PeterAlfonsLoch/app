@@ -67,7 +67,7 @@ namespace usernet // ca8 + cube
 
    }
 
-  bool network_configuration::BaseOnControlEvent(::user::form * pview, ::user::control_event * pevent)
+  bool network_configuration::BaseOnControlEvent(::user::form_window * pview, ::user::control_event * pevent)
   {
       UNREFERENCED_PARAMETER(pview);
       if(pevent->m_eevent == ::user::event_button_clicked)

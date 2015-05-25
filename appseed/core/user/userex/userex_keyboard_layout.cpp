@@ -124,7 +124,7 @@ namespace userex // ca8 + cube
       }*/
    }
 
-   bool keyboard_layout::BaseOnControlEvent(::user::form * pview, ::user::control_event * pevent)
+   bool keyboard_layout::BaseOnControlEvent(::user::form_window * pview, ::user::control_event * pevent)
    {
       UNREFERENCED_PARAMETER(pview);
       if(pevent->m_eevent == ::user::event_list_clicked)

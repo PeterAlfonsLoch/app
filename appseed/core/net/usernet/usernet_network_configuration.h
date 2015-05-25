@@ -25,7 +25,7 @@ namespace usernet // ca8 + cube
 
       void on_show();
 
-      bool BaseOnControlEvent(::user::form * pview, ::user::control_event * pevent);
+      bool BaseOnControlEvent(::user::form_window * pview, ::user::control_event * pevent);
 
    };
 

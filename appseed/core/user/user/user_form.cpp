@@ -999,6 +999,13 @@ namespace user
 
    bool form::BaseOnControlEvent(::user::control_event * pevent)
    {
+
+      ::user::form_window::BaseOnControlEvent(pevent);
+
+      if(pevent->m_bRet)
+         return true;
+         
+
       if(pevent->m_eevent == ::user::event_tab_key)
       {
 

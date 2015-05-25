@@ -120,7 +120,7 @@ namespace user
       }*/
    }
 
-/*   bool keyboard_layout_cfg::BaseOnControlEvent(::user::form * pview, ::user::control_event * pevent)
+/*   bool keyboard_layout_cfg::BaseOnControlEvent(::user::form_window * pview, ::user::control_event * pevent)
    {
       UNREFERENCED_PARAMETER(pview);
       if(pevent->m_eevent == ::user::event_list_clicked)

@@ -119,7 +119,7 @@ namespace filemanager
       }
    }
 
-   bool file_properties_form::BaseOnControlEvent(::user::form * pview, ::user::control_event * pevent)
+   bool file_properties_form::BaseOnControlEvent(::user::form_window * pview, ::user::control_event * pevent)
    {
       UNREFERENCED_PARAMETER(pview);
       if(pevent->m_eevent == ::user::event_button_clicked)
