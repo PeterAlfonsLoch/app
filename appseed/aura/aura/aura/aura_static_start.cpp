@@ -27,6 +27,8 @@ namespace str
 
 extern ::map < void *, void *,::aura::application *, ::aura::application * > * g_pmapAura;
 
+extern string_map < sp(::aura::library) > * g_pmapLibCall;
+
 extern string_map < INT_PTR,INT_PTR > * g_pmapLibrary;
 
 extern plex_heap_alloc_array * g_pheap;
@@ -235,6 +237,8 @@ namespace aura
 
          teste_aura_cmp();
 
+         g_pmapLibCall = new string_map < sp(::aura::library) >();
+
       }
 
 
@@ -284,6 +288,10 @@ namespace aura
 
       CLASS_DECL_AURA void term()
       {
+
+         delete g_pmapLibCall;
+
+         g_pmapLibCall = NULL;
 
          delete g_pmutexFactory;
 

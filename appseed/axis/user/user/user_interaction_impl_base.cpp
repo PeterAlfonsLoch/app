@@ -181,6 +181,8 @@ namespace user
    void interaction_impl_base::RepositionBars(UINT nIDFirst,UINT nIDLast,id nIdLeftOver, UINT nFlags,LPRECT lpRectParam,LPCRECT lpRectClient,bool bStretch)
    {
 
+      synch_lock sl(m_pauraapp->m_pmutex);
+
       UNREFERENCED_PARAMETER(nIDFirst);
       UNREFERENCED_PARAMETER(nIDLast);
 

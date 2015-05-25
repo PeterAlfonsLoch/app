@@ -116,6 +116,6 @@ CLASS_DECL_AURA bool __node_library_close(void * plibrary);
 CLASS_DECL_AURA void * __node_library_raw_get(void * plibrary,const char * pszEntryName);
 
 
-CLASS_DECL_AURA ::aura::library & lib(const char * psz);
+CLASS_DECL_AURA ::aura::library * lib(const char * psz);
 
-#define LIBCALL(library, entry)  (lib(#library).get<decltype(&entry)>(#entry))
+#define LIBCALL(library, entry)  (lib(#library)->get<decltype(&entry)>(#entry))

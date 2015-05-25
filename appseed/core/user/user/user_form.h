@@ -11,12 +11,12 @@ namespace user
    public:
 
 
-      bool                          m_bOnEditUpdate;
-      bool                          m_bOnLanguageChange;
-      UINT                          m_uiId;
-      control::descriptor_set       m_controldescriptorset;
-      bool                          m_bInitialized;
-      ::user::form_callback *       m_pcallback;
+      //bool                          m_bOnEditUpdate;
+      //bool                          m_bOnLanguageChange;
+      //UINT                          m_uiId;
+      //control::descriptor_set       m_controldescriptorset;
+      //bool                          m_bInitialized;
+      //::user::form_callback *       m_pcallback;
 
 
       form();
