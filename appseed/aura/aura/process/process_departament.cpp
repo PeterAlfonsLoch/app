@@ -53,7 +53,7 @@ namespace process
    }
 
 
-   bool departament::launch(const char * pszCmdLine,int32_t iShow)
+   bool departament::launch(const char * pszCmdLine,int32_t iShow, const char * pszDir)
    {
 
       const char * pszEnd = NULL;
@@ -62,7 +62,7 @@ namespace process
 
 #ifndef METROWIN
 
-      int32_t iOk = call_async(strBin,pszEnd,NULL,iShow);
+      int32_t iOk = call_async(strBin,pszEnd,pszDir,iShow);
 
       return iOk != 0;
 

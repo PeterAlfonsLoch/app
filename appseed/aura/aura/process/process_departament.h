@@ -71,7 +71,7 @@ namespace process
       virtual var get_output(const char * pszCmdLine,const ::duration & dur= ::duration::infinite(),int32_t iShow = SW_HIDE, bool * pbPotentialTimeout = NULL);
       virtual uint32_t retry(const char * pszCmdLine,const ::duration & dur,int32_t iShow = SW_HIDE, bool * pbPotentialTimeout = NULL);
       virtual uint32_t synch(const char * pszCmdLine,int32_t iShow = SW_HIDE, const ::duration & dur = ::duration::infinite(), bool * pbPotentialTimeout = NULL);
-      virtual bool launch(const char * pszCmdLine,int32_t iShow = SW_HIDE);
+      virtual bool launch(const char * pszCmdLine,int32_t iShow = SW_HIDE, const char * pszDir = NULL);
       virtual uint32_t elevated_synch(const char * pszCmdLine,int32_t iShow = SW_HIDE,const ::duration & dur = ::duration::infinite(),bool * pbPotentialTimeout = NULL);
 
 
