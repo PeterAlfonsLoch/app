@@ -43,12 +43,19 @@ namespace draw2d_cairo
 
    void dib::read(::file::istream & istream)
    {
-synch_lock ml(&cairo_mutex());
+      
+      synch_lock ml(&cairo_mutex());
+
       ::draw2d::dib::read(istream);
 
       cairo_surface_t * surface = dynamic_cast < ::draw2d_cairo::bitmap * > (m_spbitmap.m_p)->m_psurface;
 
-      cairo_surface_mark_dirty (surface);
+      if(surface != NULL)
+      {
+
+         cairo_surface_mark_dirty(surface);
+
+      }
 
    }
 
@@ -472,7 +479,12 @@ synch_lock ml(&cairo_mutex());
 
       cairo_surface_mark_dirty (surface);
 
-      m_spgraphics->SelectObject(m_spbitmap);
+      if(m_spgraphics.is_set())
+      {
+
+         m_spgraphics->SelectObject(m_spbitmap);
+
+      }
 
       ((dib *) this)->m_bMapped = false;
 

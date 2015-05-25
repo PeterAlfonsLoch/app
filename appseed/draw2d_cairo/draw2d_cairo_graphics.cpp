@@ -15,6 +15,8 @@ namespace draw2d_cairo
       ::draw2d::graphics(papp)
    {
 
+      m_psurfaceAttach = NULL;
+      m_hdcAttach = NULL;
 
       m_spmutex = &cairo_mutex();
 
@@ -1283,11 +1285,11 @@ synch_lock ml(m_spmutex);
 
          cairo_matrix_t matrixOld;
 
-         cairo_translate(m_pdc, x, y);
+         cairo_translate(m_pdc,x,y);
 
-         cairo_pattern_get_matrix(ppattern, &matrixOld);
+         cairo_pattern_get_matrix(ppattern,&matrixOld);
 
-         cairo_matrix_init_translate(&matrix, xSrc, ySrc);
+         cairo_matrix_init_translate(&matrix,xSrc,ySrc);
 
          cairo_pattern_set_matrix(ppattern, &matrix);
 
@@ -1648,6 +1650,8 @@ synch_lock ml(m_spmutex);
       ((::draw2d_cairo::graphics *) this)->set(m_spfont);
 
       cairo_font_extents_t e;
+
+
 
       cairo_font_extents(m_pdc, &e);
 
@@ -4467,6 +4471,13 @@ synch_lock ml(m_spmutex);
 
       cairo_font_extents_t e;
 
+      if(::str::begins(lpszString,"バーチャルマシン"))
+      {
+         TRACE("Likely to fail in certain circumstances");
+      }
+
+
+
       cairo_font_extents(m_pdc, &e);
 
       if (!str.has_char())
@@ -4627,6 +4638,15 @@ synch_lock ml(m_spmutex);
 
       cairo_font_extents(m_pdc, &e);
 
+      cairo_status_t status = cairo_status(m_pdc);
+
+      if(status != CAIRO_STATUS_SUCCESS)
+      {
+
+         return false;
+        
+      }
+
       if (m_spbrush.is_null())
       {
          set_os_color(ARGB(255, 0, 0, 0));
@@ -4645,6 +4665,11 @@ synch_lock ml(m_spmutex);
       cairo_matrix_scale(&m, m_spfont->m_dFontWidth, 1.0);
 
       cairo_set_matrix(m_pdc, &m);
+
+      if(::str::begins(lpszString,"バーチャルマシン"))
+      {
+         TRACE("Likely to fail in certain circumstances");
+      }
 
       cairo_show_text(m_pdc, lpszString);
 
@@ -5478,6 +5503,58 @@ synch_lock ml(m_spmutex);
        cairo_surface_flush(psurface);
 
        return true;
+
+    }
+
+    bool graphics::Attach(HDC hdc)
+    {
+
+       if(m_hdcAttach != NULL)
+       {
+
+          Detach();
+
+       }
+
+       m_psurfaceAttach = cairo_win32_surface_create(hdc);
+
+       if(m_psurfaceAttach == NULL)
+       {
+
+          return false;
+
+       }
+
+       m_pdc = cairo_create(m_psurfaceAttach);
+
+       if(m_pdc == NULL)
+       {
+
+          cairo_surface_destroy(m_psurfaceAttach);
+
+          return false;
+
+       }
+
+       m_hdcAttach = hdc;
+
+       return false;
+
+    }
+
+    HDC graphics::Detach()
+    {
+
+       if(m_hdcAttach == NULL)
+          return NULL;
+
+       HDC hdc = m_hdcAttach;
+
+       cairo_surface_destroy(m_psurfaceAttach);
+
+       m_psurfaceAttach = NULL;
+
+       return hdc;
 
     }
 

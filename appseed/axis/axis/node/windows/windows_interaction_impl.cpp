@@ -2764,13 +2764,25 @@ namespace windows
 
       ::draw2d::graphics_sp g(allocer());
 
-      g->Attach(hdc);
+      try
+      {
 
-      m_spdib->get_graphics()->SetViewportOrg(0,0);
+         if(g->Attach(hdc))
+         {
 
-      g->BitBlt(rectPaint.left,rectPaint.top,rectPaint.width(),rectPaint.height(),m_spdib->get_graphics(),rectUpdate.left,rectUpdate.top,SRCCOPY);
+            m_spdib->get_graphics()->SetViewportOrg(0,0);
 
-      g->Detach();
+            g->BitBlt(rectPaint.left,rectPaint.top,rectPaint.width(),rectPaint.height(),m_spdib->get_graphics(),rectUpdate.left,rectUpdate.top,SRCCOPY);
+
+            g->Detach();
+
+         }
+
+      }
+      catch(...)
+      {
+
+      }
 
       ::EndPaint(get_handle(),&paint);
 

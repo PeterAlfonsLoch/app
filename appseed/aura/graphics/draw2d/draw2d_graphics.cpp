@@ -3735,13 +3735,13 @@ namespace draw2d
             strsize i = iLen;
             if (i < 0)
                i = 0;
-            char * lpsz = str.GetBuffer(MAX(0, i) + 1);
+            char * lpsz = str.GetBuffer(MAX(0, i));
             while (i > 0)
             {
                sz = pdc->GetTextExtent(str, (int32_t)i);
                if (sz.cx > rectClip.width())
                {
-                  i--;
+                  i = ::str::utf8_dec(str, &((const char *)str)[i]) - ((const char *)str);
                   if (i <= 0)
                      break;
                }

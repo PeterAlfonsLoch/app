@@ -33,6 +33,8 @@ namespace draw2d_cairo
       bool                          m_bPrinting;
       int                     m_nStretchBltMode;
 
+      cairo_surface_t *       m_psurfaceAttach;
+      HDC                     m_hdcAttach;
 
 
       graphics();
@@ -519,6 +521,11 @@ namespace draw2d_cairo
 
 
       virtual bool flush();
+
+
+      virtual bool Attach(HDC hdc) override;
+
+      virtual HDC Detach() override;
 
    };
 

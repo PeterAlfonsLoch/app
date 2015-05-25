@@ -8,9 +8,12 @@ cairo_t *  cairo_keep::g_cairo = NULL;
 cairo_keep::cairo_keep(cairo_t * pdc, bool bSave)
 {
 
-   m_pdc = pdc;
-
    m_bSave = false;
+
+   if(pdc == NULL)
+      return;
+
+   m_pdc = pdc;
 
    if(bSave)
       save();
@@ -36,6 +39,9 @@ cairo_keep::~cairo_keep()
 void cairo_keep::save()
 {
 
+   if(m_pdc == NULL)
+      return;
+
    if(m_bSave)
       return;
 
@@ -48,6 +54,10 @@ void cairo_keep::save()
 
 void cairo_keep::restore()
 {
+
+   if(m_pdc == NULL)
+      return;
+
 
    if(!m_bSave)
       return;

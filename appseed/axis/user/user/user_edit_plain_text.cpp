@@ -1201,6 +1201,8 @@ namespace user
       }
       m_plines->lines.set_size(0,100);
       string str;
+      if(m_ptree == NULL)
+         return;
       m_ptree->m_editfile.seek(m_iViewOffset,::file::seek_begin);
       iLine = m_iLineOffset;
       i = 0;

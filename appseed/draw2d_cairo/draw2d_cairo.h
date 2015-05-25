@@ -7,6 +7,9 @@
 #include "app/axis/cairo/src/cairo-features.h"
 #include "app/axis/cairo/src/cairo.h"
 #include "app/axis/cairo/src/cairo-ft.h"
+#ifdef WINDOWSEX
+#include "app/axis/cairo/src/cairo-win32.h"
+#endif
 
 
 mutex & cairo_mutex();
