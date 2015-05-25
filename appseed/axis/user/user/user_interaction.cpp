@@ -5452,7 +5452,7 @@ namespace user
       {
 #ifdef WINDOWSEX
 
-         synch_lock slUserMutex(&user_mutex());
+         //synch_lock slUserMutex(&user_mutex());
 
          {
 
