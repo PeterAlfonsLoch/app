@@ -8,11 +8,15 @@ namespace draw2d_cairo
 
 
    FT_Face g_ft = NULL;
+   int g_iFtLevel = -1;
 
    graphics::graphics(::aura::application * papp) :
       ::object(papp),
       ::draw2d::graphics(papp)
    {
+
+
+      m_spmutex = &cairo_mutex();
 
       m_bPrinting       = FALSE;
       m_pdibAlphaBlend  = NULL;
@@ -4982,60 +4986,97 @@ synch_lock ml(m_spmutex);
 
       int iError = 0;
 
-      string strPath = Sys(get_app()).dir().element() / "app/appmatter/main/_std/_std/font/truetype/arialuni.ttf";
+      string strPath;
 
-      if(g_ft == NULL)
+      if(g_iFtLevel < 0)
       {
 
-         iError = FT_New_Face((FT_Library) Sys(get_app()).ftlibrary(), strPath, 0, &g_ft);
+         strPath = Sys(get_app()).dir().element() / "app/appmatter/main/_std/_std/font/truetype/arialuni.ttf";
 
-         iError = FT_Select_Charmap(g_ft, /* target face object */ FT_ENCODING_UNICODE ); /* encoding */
+         if(g_ft == NULL)
+         {
+
+            iError = FT_New_Face((FT_Library)Sys(get_app()).ftlibrary(),strPath,0,&g_ft);
+
+            iError = FT_Select_Charmap(g_ft, /* target face object */ FT_ENCODING_UNICODE); /* encoding */
+
+         }
+
+         g_iFtLevel = 0;
 
       }
 
-      strPath = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf";
-
-      if(g_ft == NULL)
+      if(g_iFtLevel < 1)
       {
 
-         iError = FT_New_Face((FT_Library) Sys(get_app()).ftlibrary(), strPath, 0, &g_ft);
+         strPath = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf";
 
-         iError = FT_Select_Charmap(g_ft, /* target face object */ FT_ENCODING_UNICODE ); /* encoding */
+         if(g_ft == NULL)
+         {
+
+            iError = FT_New_Face((FT_Library)Sys(get_app()).ftlibrary(),strPath,0,&g_ft);
+
+            iError = FT_Select_Charmap(g_ft, /* target face object */ FT_ENCODING_UNICODE); /* encoding */
+
+         }
+
+         g_iFtLevel = 1;
 
       }
 
 
-      strPath = "/usr/share/fonts/dejavu/DejaVuSans.ttf";
-
-      if(g_ft == NULL)
+      if(g_iFtLevel < 2)
       {
 
-         iError = FT_New_Face((FT_Library) Sys(get_app()).ftlibrary(), strPath, 0, &g_ft);
+         strPath = "/usr/share/fonts/dejavu/DejaVuSans.ttf";
 
-         iError = FT_Select_Charmap(g_ft, /* target face object */ FT_ENCODING_UNICODE ); /* encoding */
+         if(g_ft == NULL)
+         {
+
+            iError = FT_New_Face((FT_Library)Sys(get_app()).ftlibrary(),strPath,0,&g_ft);
+
+            iError = FT_Select_Charmap(g_ft, /* target face object */ FT_ENCODING_UNICODE); /* encoding */
+
+         }
+
+         g_iFtLevel = 2;
 
       }
 
 
-      strPath = "/usr/share/fonts/truetype/freefont/FreeSans.ttf";
-
-      if(g_ft == NULL)
+      if(g_iFtLevel < 3)
       {
 
-         iError = FT_New_Face((FT_Library) Sys(get_app()).ftlibrary(), strPath, 0, &g_ft);
+         strPath = "/usr/share/fonts/truetype/freefont/FreeSans.ttf";
 
-         iError = FT_Select_Charmap(g_ft, /* target face object */ FT_ENCODING_UNICODE ); /* encoding */
+         if(g_ft == NULL)
+         {
+
+            iError = FT_New_Face((FT_Library)Sys(get_app()).ftlibrary(),strPath,0,&g_ft);
+
+            iError = FT_Select_Charmap(g_ft, /* target face object */ FT_ENCODING_UNICODE); /* encoding */
+
+         }
+
+         g_iFtLevel = 3;
 
       }
 
-      strPath = "/usr/share/fonts/freefont/FreeSans.ttf";
-
-      if(g_ft == NULL)
+      if(g_iFtLevel < 4)
       {
 
-         iError = FT_New_Face((FT_Library) Sys(get_app()).ftlibrary(), strPath, 0, &g_ft);
+         strPath = "/usr/share/fonts/freefont/FreeSans.ttf";
 
-         iError = FT_Select_Charmap(g_ft, /* target face object */ FT_ENCODING_UNICODE ); /* encoding */
+         if(g_ft == NULL)
+         {
+
+            iError = FT_New_Face((FT_Library)Sys(get_app()).ftlibrary(),strPath,0,&g_ft);
+
+            iError = FT_Select_Charmap(g_ft, /* target face object */ FT_ENCODING_UNICODE); /* encoding */
+
+         }
+
+         g_iFtLevel = 4;
 
       }
 
