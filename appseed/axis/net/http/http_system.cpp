@@ -1036,28 +1036,33 @@ retry:
          goto retry;
       }
 
-      if (set.has_property("get_response"))
+      if(psession != NULL)
       {
 
-         set["get_response"] = string((const char *)psession->GetDataPtr(), psession->GetContentLength());
-
-      }
-
-      if (set.has_property("get_memory"))
-      {
-
-         ::primitive::memory_base * paxis = set.cast < ::primitive::memory_base >("get_memory");
-
-         if (paxis != NULL)
+         if(set.has_property("get_response"))
          {
 
-            paxis->assign(::primitive::memory(psession->GetDataPtr(), psession->GetContentLength()));
+            set["get_response"] = string((const char *)psession->GetDataPtr(),psession->GetContentLength());
 
          }
-         else
+
+         if(set.has_property("get_memory"))
          {
 
-            set["get_memory"] = canew(::primitive::memory(psession->GetDataPtr(), psession->GetContentLength()));
+            ::primitive::memory_base * paxis = set.cast < ::primitive::memory_base >("get_memory");
+
+            if(paxis != NULL)
+            {
+
+               paxis->assign(::primitive::memory(psession->GetDataPtr(),psession->GetContentLength()));
+
+            }
+            else
+            {
+
+               set["get_memory"] = canew(::primitive::memory(psession->GetDataPtr(),psession->GetContentLength()));
+
+            }
 
          }
 
