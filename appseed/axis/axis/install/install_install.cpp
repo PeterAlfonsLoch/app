@@ -884,7 +884,15 @@ namespace install
 
       string strNewBuildNumber = Application.file().as_string(strBuildPath);
 
-      if(strNewBuildNumber != m_strmapLatestBuildNumber[m_strVersion] && atoi(m_strmapLatestBuildNumber[m_strVersion]) > 0)
+      string strBuild(pszBuild);
+
+      if(strBuild.has_char() && isdigit_dup(strBuild[0]))
+      {
+
+         Application.file().put_contents(strBuildPath, strBuild);
+
+      }
+      else if(strBuild.CompareNoCase("latest") == 0 && m_strmapLatestBuildNumber[m_strVersion].has_char() && isdigit_dup(m_strmapLatestBuildNumber[m_strVersion][0]))
       {
 
          Application.file().put_contents(strBuildPath,m_strmapLatestBuildNumber[m_strVersion]);
