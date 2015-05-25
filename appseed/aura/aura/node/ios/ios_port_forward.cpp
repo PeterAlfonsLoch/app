@@ -83,7 +83,7 @@ namespace ios
     m_piNAT = NULL;
     }
 
-    CoUninitialize();  // balancing call for CoInitialize
+//    CoUninitialize();  // balancing call for CoInitialize
     }
 
     HRESULT port_forward::ListenForUpnpChanges(::ca2::port_forward_change_callbacks *pCallbacks  =NULL */ /*)
@@ -107,7 +107,7 @@ namespace ios
 
                                                                                                              // initialize COM for this thread
 
-                                                                                                             HRESULT result = CoInitialize(NULL);  // STA model
+//                                                                                                             HRESULT result = CoInitialize(NULL);  // STA model
                                                                                                              if ( !SUCCEEDED(result) )
                                                                                                              {
                                                                                                              return E_FAIL;
@@ -551,7 +551,7 @@ namespace ios
 
                                                                                                                                // initialize COM
 
-                                                                                                                               if ( !SUCCEEDED( CoInitialize(NULL) ) )  // STA model
+//                                                                                                                               if ( !SUCCEEDED( CoInitialize(NULL) ) )  // STA model
                                                                                                                                bContinue = FALSE;
 
 
@@ -689,7 +689,7 @@ namespace ios
 
                                                                                                                                                  // initialize COM
 
-                                                                                                                                                 if ( !SUCCEEDED( CoInitialize(NULL) ) )  // STA model
+//                                                                                                                                                 if ( !SUCCEEDED( CoInitialize(NULL) ) )  // STA model
                                                                                                                                                  bContinue = FALSE;
 
                                                                                                                                                  // create COM instance of IUPnPDeviceFinder
@@ -824,7 +824,7 @@ namespace ios
 
                                                                                                                                                                    // initialize COM
 
-                                                                                                                                                                   if ( !SUCCEEDED( CoInitialize(NULL) ) )  // STA model
+//                                                                                                                                                                   if ( !SUCCEEDED( CoInitialize(NULL) ) )  // STA model
                                                                                                                                                                    bContinue = FALSE;
 
 
@@ -945,7 +945,7 @@ namespace ios
 
                                                                                                                                                                                      // initialize COM
 
-                                                                                                                                                                                     if ( !SUCCEEDED( CoInitialize(NULL) ) )  // STA model
+//                                                                                                                                                                                     if ( !SUCCEEDED( CoInitialize(NULL) ) )  // STA model
                                                                                                                                                                                      bContinue = FALSE;
 
 
@@ -1028,7 +1028,7 @@ namespace ios
 
                                                                                                                                                                                                        // initialize COM
 
-                                                                                                                                                                                                       if ( !SUCCEEDED( CoInitialize(NULL) ) )  // STA model
+//                                                                                                                                                                                                       if ( !SUCCEEDED( CoInitialize(NULL) ) )  // STA model
                                                                                                                                                                                                        bContinue = FALSE;
 
 

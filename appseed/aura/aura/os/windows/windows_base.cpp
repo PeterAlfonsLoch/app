@@ -45,15 +45,19 @@ LPFN_RegGetValueW g_pfnRegGetValueW = NULL;
 
 CLASS_DECL_AURA thread_int_ptr < int_ptr >                             t_iCoInitialize;
 
+CLASS_DECL_AURA thread_int_ptr < HRESULT > t_hresultCoInitialize;
+
+
+
 bool defer_co_initialize_ex()
 {
 
    if(t_iCoInitialize != FALSE)
       return true;
 
-   HRESULT hresult = ::CoInitializeEx(NULL,COINIT_MULTITHREADED);
+   t_hresultCoInitialize = ::CoInitializeEx(NULL,COINIT_MULTITHREADED);
 
-   if(FAILED(hresult))
+   if(FAILED(t_hresultCoInitialize))
    {
 
       ::output_debug_string("Failed to ::CoInitializeEx(NULL, COINIT_MULTITHREADED) at __node_pre_init");

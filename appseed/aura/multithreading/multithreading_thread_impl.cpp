@@ -570,7 +570,7 @@ uint32_t __thread_entry(void * pparam)
       try
       {
 
-         pthreadimpl->m_pthread->main();
+                               pthreadimpl->m_pthread->main();
 
       }
       catch(::exit_exception &)

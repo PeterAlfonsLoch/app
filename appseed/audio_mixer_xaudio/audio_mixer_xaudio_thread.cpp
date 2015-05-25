@@ -28,9 +28,6 @@ namespace multimedia
 
       bool thread::initialize_instance()
       {
-         //CoInitialize(NULL);
-         // xxx   if(!::ca2::OleInit())
-         //      return FALSE;
          set_auto_delete(false);
          SetMainWnd(NULL);
          ASSERT(GetMainWnd() == NULL);

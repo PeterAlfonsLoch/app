@@ -5736,24 +5736,39 @@ namespace windows
 
    }
 
-   void interaction_impl::register_drop_target()
+   DWORD WINAPI drop_target(LPVOID lp)
    {
-      m_bUseDnDHelper = false;
-      oswindow w = get_handle();
+      interaction_impl* p = (interaction_impl *)lp;
 
       HRESULT hr = OleInitialize(NULL);
 
-      hr = ::RegisterDragDrop(w,this);
-
-      TRACE("result of RegisterDragDrop = %d",hr);
+      hr = ::RegisterDragDrop(p->get_handle(),p);
 
       if(SUCCEEDED(CoCreateInstance(CLSID_DragDropHelper,NULL,
          CLSCTX_INPROC_SERVER,
          IID_IDropTargetHelper,
-         (void**)&m_piDropHelper)))
+         (void**)&p->m_piDropHelper)))
       {
-         m_bUseDnDHelper = true;
+         p->m_bUseDnDHelper = true;
       }
+
+      MSG msg;
+      while(GetMessage(&msg,NULL,0,0xffffffffu))
+      {
+         
+         TranslateMessage(&msg);
+         DispatchMessage(&msg);
+      }
+
+      return 0;
+   }
+
+   void interaction_impl::register_drop_target()
+   {
+      m_bUseDnDHelper = false;
+
+      ::CreateThread(NULL,0,drop_target,this,0,NULL);
+
 
    }
 

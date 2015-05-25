@@ -21,7 +21,8 @@ namespace user
    {
 
       ::user::scroll_view::install_message_handling(pdispatch);
-      ::user::form::install_message_handling(pdispatch);
+      ::user::list_view::install_message_handling(pdispatch);
+      ::user::form_view::install_message_handling(pdispatch);
 
    }
 

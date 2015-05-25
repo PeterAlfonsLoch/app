@@ -31,14 +31,6 @@ void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_POINTERS * ppoin
 int CLASS_DECL_AURA win_main(::aura::system * psystem, ::Array < ::String ^ > ^ args)
 {
 
-   //UNREFERENCED_PARAMETER(lpCmdLine);
-
-
-
-
-//   ::CoInitialize(NULL);
-
-
    if(!main_initialize())
       return -1;
 
