@@ -540,52 +540,7 @@ namespace base
 //
 //
 //
-//   string application::veriwell_multimedia_music_midi_get_default_library_name()
-//   {
-//
-//      if(m_pimpl == NULL)
-//         return "";
-//
-//      return m_pimpl->veriwell_multimedia_music_midi_get_default_library_name();
-//
-//   }
-//
-//
-//
-//   string application::multimedia_audio_mixer_get_default_library_name()
-//   {
-//
-//      if(m_pimpl == NULL)
-//         return "";
-//
-//      return m_pimpl->multimedia_audio_mixer_get_default_library_name();
-//
-//   }
-//
-//
-//
-//   string application::multimedia_audio_get_default_library_name()
-//   {
-//
-//      if(m_pimpl == NULL)
-//         return "";
-//
-//      return m_pimpl->multimedia_audio_get_default_library_name();
-//
-//   }
-//
-//
-//
-//   string application::draw2d_get_default_library_name()
-//   {
-//
-//      if(m_pimpl == NULL)
-//         return "draw2d_cairo";
-//
-//      return m_pimpl->draw2d_get_default_library_name();
-//
-//   }
-//
+
 //
 //   void application::_001CloseApplication()
 //   {
@@ -1649,49 +1604,6 @@ namespace base
 //   }
 //
 //
-//   void application::draw2d_factory_exchange()
-//   {
-//
-//#ifdef CUBE
-//
-//      ::draw2d_factory_exchange(this);
-//
-//#else
-//
-//      string strLibrary = draw2d_get_default_library_name();
-//
-//      if(strLibrary.is_empty())
-//         strLibrary = "draw2d_cairo";
-//
-//      ::aura::library & library = System.m_libraryDraw2d;
-//
-//      if(library.is_opened())
-//         return;
-//
-//      if(!library.open(strLibrary))
-//      {
-//         if(strLibrary != "draw2d_cairo")
-//         {
-//            if(!library.open("draw2d_cairo"))
-//            {
-//               throw "failed to do draw2d factory exchange";
-//            }
-//         }
-//         else
-//         {
-//            throw "failed to do draw2d factory exchange";
-//         }
-//      }
-//
-//
-//      PFN_ca2_factory_exchange pfn_ca2_factory_exchange = library.get < PFN_ca2_factory_exchange >("ca2_factory_exchange");
-//
-//      pfn_ca2_factory_exchange(this);
-//
-//#endif
-//
-//
-//   }
 //
 //
 //

@@ -198,10 +198,6 @@ namespace base
 //
 //      virtual bool update_module_paths();
 //
-//      virtual string draw2d_get_default_library_name();
-//      virtual string multimedia_audio_get_default_library_name();
-//      virtual string multimedia_audio_mixer_get_default_library_name();
-//      virtual string veriwell_multimedia_music_midi_get_default_library_name();
 //
 //      virtual string get_cred(const string & strRequestUrl,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive);
 //

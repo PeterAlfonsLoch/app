@@ -2662,50 +2662,6 @@ namespace axis
    }
 
 
-//   void application::draw2d_factory_exchange()
-//   {
-//
-//#ifdef CUBE
-//
-//      ::draw2d_factory_exchange(this);
-//
-//#else
-//
-//      string strLibrary = draw2d_get_default_library_name();
-//
-//      if(strLibrary.is_empty())
-//         strLibrary = "draw2d_cairo";
-//
-//      ::aura::library & library = System.m_libraryDraw2d;
-//
-//      if(library.is_opened())
-//         return;
-//
-//      if(!library.open(strLibrary))
-//      {
-//         if(strLibrary != "draw2d_cairo")
-//         {
-//            if(!library.open("draw2d_cairo"))
-//            {
-//               throw "failed to do draw2d factory exchange";
-//            }
-//         }
-//         else
-//         {
-//            throw "failed to do draw2d factory exchange";
-//         }
-//      }
-//
-//
-//      PFN_ca2_factory_exchange pfn_ca2_factory_exchange = library.get < PFN_ca2_factory_exchange >("ca2_factory_exchange");
-//
-//      pfn_ca2_factory_exchange(this);
-//
-//#endif
-//
-//
-//   }
-//
 
 
    bool application::update_appmatter(::sockets::http_session * & psession,const ::file::path & pszRoot,const string & pszRelative)
@@ -4697,6 +4653,7 @@ namespace axis
 
       if(!library.open(strLibrary))
       {
+
          if(strLibrary != "draw2d_cairo")
          {
             if(!library.open("draw2d_cairo"))

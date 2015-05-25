@@ -201,30 +201,8 @@ namespace axis
       virtual bool update_appmatter(::sockets::http_session * & psession,const ::file::path & pszRoot,const string & pszRelative,const string & strLocale,const string & strStyle);
 
 
-      //virtual void TermThread(HINSTANCE hInstTerm);
-
-
-
-      //virtual sp(::user::interaction) FindWindow(const char * lpszClassName,const char * lpszWindowName);
-      //virtual sp(::user::interaction) FindWindowEx(oswindow oswindowParent,oswindow oswindowChildAfter,const char * lpszClass,const char * lpszWindow);
-
-      //virtual string get_version();
-
       virtual void SetCurrentHandles();
 
-      //virtual void set_env_var(const string & var,const string & value);
-      //virtual uint32_t get_thread_id();
-
-
-      //virtual bool _001OnDDECommand(const char * lpcsz);
-      //virtual void _001EnableShellOpen();
-      //virtual ::aura::document * _001OpenDocumentFile(var varFile);
-      //virtual void _001OnFileNew(signal_details * pobj);
-
-      //virtual sp(::aura::printer) get_printer(const char * pszDeviceName);
-
-
-      //virtual bool update_module_paths();
 
       virtual string draw2d_get_default_library_name();
       virtual string multimedia_audio_get_default_library_name();
@@ -510,36 +488,15 @@ namespace axis
       virtual uint32_t get_thread_id();
 
 
-      //virtual bool _001OnDDECommand(const char * lpcsz);
-      //virtual void _001EnableShellOpen();
-      //virtual ::aura::document * _001OpenDocumentFile(var varFile);
-      //virtual void _001OnFileNew(signal_details * pobj);
-
       virtual sp(::aura::printer) get_printer(const char * pszDeviceName);
 
 
       virtual bool update_module_paths();
 
-      //virtual string draw2d_get_default_library_name();
-      //virtual string multimedia_audio_get_default_library_name();
-      //virtual string multimedia_audio_mixer_get_default_library_name();
-      //virtual string veriwell_multimedia_music_midi_get_default_library_name();
-
-      //virtual string get_cred(const string & strRequestUrl,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive);
-
-      //virtual bool get_temp_file_name_template(string & str,const char * pszName,const char * pszExtension,const char * pszTemplate);
-
-      //virtual bool get_temp_file_name(string & str,const char * pszName,const char * pszExtension);
-
-      //virtual void assert_valid() const;
-
-      //virtual void dump(dump_context & dumpcontext) const;
 
       virtual ::visual::icon * set_icon(object * pobject,::visual::icon * picon,bool bBigIcon);
 
       virtual ::visual::icon * get_icon(object * pobject,bool bBigIcon) const;
-
-      //virtual bool final_handle_exception(::exception::exception & e);
 
       virtual void on_service_request(sp(::create) pcreatecontext);
 
@@ -551,11 +508,7 @@ namespace axis
 
       virtual void draw2d_factory_exchange();
 
-      //virtual void on_request(sp(::create) pcreatecontext);
-
       virtual bool defer_initialize_twf();
-
-      //virtual bool assert_user_logged_in();
 
       virtual sp(::message::base) get_message_base(LPMESSAGE lpmsg);
 
