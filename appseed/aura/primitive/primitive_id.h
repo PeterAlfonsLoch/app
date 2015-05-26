@@ -169,6 +169,8 @@ public:
    inline bool is_text() const { return m_etype == type_text; }
    inline bool is_integer() const { return m_etype == type_integer; }
 
+   inline id & operator +=(const char * psz);
+
 };
 
 

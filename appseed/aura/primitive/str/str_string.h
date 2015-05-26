@@ -1940,6 +1940,16 @@ inline CLASS_DECL_AURA string operator + (const id & id, const char * psz)
 
 }
 
+inline CLASS_DECL_AURA id & id::operator += (const char * psz)
+{
+
+   *this = *this + psz;
+
+   return *this;
+
+}
+
+
 inline CLASS_DECL_AURA string operator + (const char * psz, const id & id)
 {
 
