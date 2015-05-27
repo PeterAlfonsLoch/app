@@ -443,7 +443,7 @@ namespace core
             if(is_user_service())
             {
 
-               if(Session.fontopus()->get_user() != NULL && Session.fontopus()->get_user()->m_strLogin == "system")
+               if(Session.fontopus()->m_puser != NULL && Session.fontopus()->m_puser->m_strLogin == "system")
                {
 
                   Session.fontopus()->m_puser = NULL;
