@@ -18,4 +18,14 @@ namespace database
       m_id = id;
    }
 
+   id & id::operator += (const char * psz)
+   {
+
+      m_id += psz;
+
+      return *this;
+
+   }
+
+
 } // namespace database

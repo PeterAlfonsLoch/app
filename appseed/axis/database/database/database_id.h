@@ -32,6 +32,9 @@ namespace database
       const id & operator = (const char * psz);
       const id & operator = (int32_t i);
       const id & operator = (const string & str);
+
+      id & operator += (const char * psz);
+
    };
 
    inline id::id(const string & str)

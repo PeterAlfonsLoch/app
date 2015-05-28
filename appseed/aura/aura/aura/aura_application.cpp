@@ -1773,7 +1773,7 @@ namespace aura
 
       xxdebug_box("check_exclusive","check_exclusive",MB_ICONINFORMATION);
 
-      if(!is_system())
+      if(!is_system() && !is_session())
       {
          if(!check_exclusive())
             return false;
