@@ -310,7 +310,7 @@ public:
    bool load_from_matter(::draw2d::dib * pdib, var varFile, ::aura::application * papp = NULL);
    bool read_from_file(::draw2d::dib * pdib, ::file::stream_buffer * buffer, ::aura::application * papp = NULL);
 
-   bool load_from_file(::visual::cursor * pcursor, var varFile, ::aura::application * papp = NULL);
+   bool load_from_file(::visual::cursor * pcursor, var varFile, ::aura::application * papp = NULL, bool bFromCache = true);
    bool load_from_matter(::visual::cursor * pcursor, var varFile, ::aura::application * papp = NULL);
 
    ::visual::cursor_sp load_cursor_from_file(var varFile, ::aura::application * papp = NULL);

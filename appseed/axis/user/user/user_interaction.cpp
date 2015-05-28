@@ -2859,6 +2859,18 @@ namespace user
       try
       {
 
+         signalizable_disconnect_all();
+
+      }
+      catch(...)
+      {
+
+      }
+
+
+      try
+      {
+
          m_signala.remove_all();
 
       }
@@ -3087,7 +3099,7 @@ namespace user
          return;
       else
       {
-         sp(interaction_impl_base) pimpl = m_pimpl;
+         interaction_impl_base * pimpl = m_pimpl;
          return pimpl->message_handler(pobj);
       }
    }

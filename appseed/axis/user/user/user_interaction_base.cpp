@@ -1235,6 +1235,19 @@ namespace user
    {
 
       try
+      {
+
+         signalizable_disconnect_all();
+
+   }
+   catch(...)
+   {
+
+   }
+
+
+
+      try
         {
             m_signala.remove_all();
         }

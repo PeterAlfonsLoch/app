@@ -850,17 +850,31 @@ namespace windows
       ASSERT(get_handle() == NULL);
       m_pfnDispatchWindowProc = &interaction_impl::_start_user_message_handler;
       // call special post-cleanup routine
+      PostNcDestroy();
       m_pui->PostNcDestroy();
-      //      PostNcDestroy();
+      
    }
 
    void interaction_impl::PostNcDestroy()
    {
-      set_handle(NULL);
-      if(is_heap())
+
+      try
       {
-         m_pui = NULL;
+
+         signalizable_disconnect_all();
+
       }
+      catch(...)
+      {
+
+      }
+
+
+      set_handle(NULL);
+      //if(is_heap())
+      //{
+      //   m_pui = NULL;
+      //}
    }
 
    void interaction_impl::on_final_release()

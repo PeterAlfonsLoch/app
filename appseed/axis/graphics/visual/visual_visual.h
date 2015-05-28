@@ -38,10 +38,10 @@ namespace visual
 
 
       class font_central & font_central();
-      cursor * set_cursor_file(e_cursor ecursor,const ::file::path & psz);
+      cursor * set_cursor_file(e_cursor ecursor,const ::file::path & psz, bool bFromCache);
       cursor * set_cursor_matter(e_cursor ecursor,const ::file::path & pszMatter);
       ::count set_cursor_set_from_matter(const ::file::path & pszMatter);
-      ::count set_cursor_set_from_dir(const ::file::path & pszDir);
+      ::count set_cursor_set_from_dir(const ::file::path & pszDir, bool bFromCache);
       cursor * get_cursor(e_cursor ecursor);
 
 

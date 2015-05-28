@@ -177,10 +177,10 @@ namespace visual
       return *m_pfontcentral;
    }
 
-   cursor * visual::set_cursor_file(e_cursor ecursor,const ::file::path & psz)
+   cursor * visual::set_cursor_file(e_cursor ecursor,const ::file::path & psz, bool bFromCache)
    {
       cursor * pcursor = get_cursor(ecursor);
-      if (System.visual().imaging().load_from_file(pcursor, psz))
+      if (System.visual().imaging().load_from_file(pcursor, psz, NULL, bFromCache))
       {
          return pcursor;
       }
@@ -237,15 +237,15 @@ namespace visual
 
       // "arrow.png" is a troll/bait for getting the right path of the cursor file, then the directory where found
 
-      return set_cursor_set_from_dir(Application.dir().matter(pszMatter / "arrow.png").folder());
+      return set_cursor_set_from_dir(Application.dir().matter(pszMatter / "arrow.png").folder(), true);
 
    }
 
 
-   ::count visual::set_cursor_set_from_dir(const ::file::path & pszDir)
+   ::count visual::set_cursor_set_from_dir(const ::file::path & pszDir, bool bFromCache)
    {
       ::count count = 0;
-      if(set_cursor_file(::visual::cursor_arrow, pszDir/ "arrow.png"))
+      if(set_cursor_file(::visual::cursor_arrow, pszDir/ "arrow.png", bFromCache))
       {
          count++;
       }
@@ -253,101 +253,101 @@ namespace visual
       {
          return 0;
       }
-      if(set_cursor_file(::visual::cursor_hand, pszDir/ "hand.png"))
+      if(set_cursor_file(::visual::cursor_hand,pszDir / "hand.png",bFromCache))
       {
          count++;
       }
       else
       {
-         set_cursor_file(::visual::cursor_hand, pszDir / "arrow.png");
+         set_cursor_file(::visual::cursor_hand,pszDir / "arrow.png",bFromCache);
       }
-      if(set_cursor_file(::visual::cursor_text_select,pszDir / "text_select.png"))
+      if(set_cursor_file(::visual::cursor_text_select,pszDir / "text_select.png",bFromCache))
       {
          count++;
       }
       else
       {
-         set_cursor_file(::visual::cursor_text_select, pszDir /  "arrow.png");
+         set_cursor_file(::visual::cursor_text_select,pszDir / "arrow.png",bFromCache);
       }
-      if(set_cursor_file(::visual::cursor_size_top_left, pszDir /  "size_top_left.png"))
+      if(set_cursor_file(::visual::cursor_size_top_left,pszDir / "size_top_left.png",bFromCache))
       {
          count++;
       }
       else
       {
-         set_cursor_file(::visual::cursor_size_top_left, pszDir /  "arrow.png");
+         set_cursor_file(::visual::cursor_size_top_left,pszDir / "arrow.png",bFromCache);
       }
-      if(set_cursor_file(::visual::cursor_size_top, pszDir /  "size_top.png"))
+      if(set_cursor_file(::visual::cursor_size_top,pszDir / "size_top.png",bFromCache))
       {
          count++;
       }
       else
       {
-         set_cursor_file(::visual::cursor_size_top, pszDir /  "arrow.png");
+         set_cursor_file(::visual::cursor_size_top,pszDir / "arrow.png",bFromCache);
       }
-      if(set_cursor_file(::visual::cursor_size_top_right, pszDir /  "size_top_right.png"))
+      if(set_cursor_file(::visual::cursor_size_top_right,pszDir / "size_top_right.png",bFromCache))
       {
          count++;
       }
       else
       {
-         set_cursor_file(::visual::cursor_size_top_right, pszDir /  "arrow.png");
+         set_cursor_file(::visual::cursor_size_top_right,pszDir / "arrow.png",bFromCache);
       }
-      if(set_cursor_file(::visual::cursor_size_right, pszDir /  "size_right.png"))
+      if(set_cursor_file(::visual::cursor_size_right,pszDir / "size_right.png",bFromCache))
       {
          count++;
       }
       else
       {
-         set_cursor_file(::visual::cursor_size_right, pszDir /  "arrow.png");
+         set_cursor_file(::visual::cursor_size_right,pszDir / "arrow.png",bFromCache);
       }
-      if(set_cursor_file(::visual::cursor_size_bottom_right, pszDir /  "size_bottom_right.png"))
+      if(set_cursor_file(::visual::cursor_size_bottom_right,pszDir / "size_bottom_right.png",bFromCache))
       {
          count++;
       }
       else
       {
-         set_cursor_file(::visual::cursor_size_bottom_right, pszDir /  "arrow.png");
+         set_cursor_file(::visual::cursor_size_bottom_right,pszDir / "arrow.png",bFromCache);
       }
-      if(set_cursor_file(::visual::cursor_size_bottom, pszDir /  "size_bottom.png"))
+      if(set_cursor_file(::visual::cursor_size_bottom,pszDir / "size_bottom.png",bFromCache))
       {
          count++;
       }
       else
       {
-         set_cursor_file(::visual::cursor_size_bottom, pszDir /  "arrow.png");
+         set_cursor_file(::visual::cursor_size_bottom,pszDir / "arrow.png",bFromCache);
       }
-      if(set_cursor_file(::visual::cursor_size_bottom_left, pszDir /  "size_bottom_left.png"))
+      if(set_cursor_file(::visual::cursor_size_bottom_left,pszDir / "size_bottom_left.png",bFromCache))
       {
          count++;
       }
       else
       {
-         set_cursor_file(::visual::cursor_size_bottom_left, pszDir /  "arrow.png");
+         set_cursor_file(::visual::cursor_size_bottom_left,pszDir / "arrow.png",bFromCache);
       }
-      if(set_cursor_file(::visual::cursor_size_left, pszDir /  "size_left.png"))
+      if(set_cursor_file(::visual::cursor_size_left,pszDir / "size_left.png",bFromCache))
       {
          count++;
       }
       else
       {
-         set_cursor_file(::visual::cursor_size_left, pszDir /  "arrow.png");
+         set_cursor_file(::visual::cursor_size_left,pszDir / "arrow.png",bFromCache);
       }
-      if(set_cursor_file(::visual::cursor_size_vertical, pszDir /  "size_vertical.png"))
+      if(set_cursor_file(::visual::cursor_size_vertical,pszDir / "size_vertical.png",bFromCache))
       {
          count++;
       }
       else
       {
-         set_cursor_file(::visual::cursor_size_vertical, pszDir /  "arrow.png");
+         set_cursor_file(::visual::cursor_size_vertical,pszDir / "arrow.png",bFromCache);
       }
-      if(set_cursor_file(::visual::cursor_size_horizontal, pszDir /  "size_horizontal.png"))
+      if(set_cursor_file(::visual::cursor_size_horizontal,pszDir / "size_horizontal.png",bFromCache))
       {
          count++;
       }
       else
       {
-         set_cursor_file(::visual::cursor_size_horizontal, pszDir /  "arrow.png");
+         set_cursor_file(::visual::cursor_size_horizontal,pszDir / "arrow.png",bFromCache);
       }
 
       return count;

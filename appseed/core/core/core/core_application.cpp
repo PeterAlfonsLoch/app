@@ -543,6 +543,13 @@ namespace core
          if(papp != NULL && papp != this && !papp->is_system())
          {
 
+            if(papp->m_pimpl == this)
+            {
+
+               papp->m_pimpl.detach();
+
+            }
+
             try
             {
 

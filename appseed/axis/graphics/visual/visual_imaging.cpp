@@ -6750,12 +6750,12 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
    }
 
 
-   bool imaging::load_from_file(::visual::cursor * pcursor,var varFile,::aura::application * papp)
+   bool imaging::load_from_file(::visual::cursor * pcursor,var varFile,::aura::application * papp, bool bFromCache)
    {
       string str(varFile);
       if(!::str::ends_eat_ci(str,".png"))
          return false;
-      if(!load_from_file(pcursor->m_dib,varFile,true,papp))
+      if(!load_from_file(pcursor->m_dib,varFile,bFromCache,papp))
          return false;
 
       if(papp == NULL)

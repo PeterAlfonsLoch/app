@@ -256,7 +256,20 @@ void signal::disconnect(signalizable * psignalizable)
    {
       if(m_delegatea[i]->get_signalizable() == psignalizable)
       {
-         m_delegatea.remove_at(i);
+         try
+         {
+            psignalizable->unregister_signal(this);
+         }
+         catch(...)
+         {
+         }
+         try
+         {
+            m_delegatea.remove_at(i);
+         }
+         catch(...)
+         {
+         }
       }
       else
       {
