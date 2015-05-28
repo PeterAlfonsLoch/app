@@ -858,10 +858,11 @@ namespace plugin
 
                               }
 
-                              strCommandLine += "=";
+                              strCommandLine += "=\"";
 
                               strCommandLine += strBuild;
 
+                              strCommandLine += "\"";
 
                               continue;
 
@@ -870,9 +871,11 @@ namespace plugin
                            if(!property.get_string().has_char())
                               continue;
 
-                           strCommandLine += "=";
+                           strCommandLine += "=\"";
 
                            strCommandLine += property.get_string();
+
+                           strCommandLine += "\"";
 
                         }
 
