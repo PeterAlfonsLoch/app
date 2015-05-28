@@ -169,6 +169,9 @@ namespace str
    CLASS_DECL_AURA  bool           to(const char * psz, uint32_t & i, int32_t iBase);
    CLASS_DECL_AURA  bool           to(const char * psz, uint64_t & i, int32_t iBase);
 
+   CLASS_DECL_AURA  string         trim_any_quotes(const string & str);
+   CLASS_DECL_AURA  bool           paired_trim(string & str, char ch);
+
 
    CLASS_DECL_AURA  int_ptr        to_int_ptr(const char * psz);
    CLASS_DECL_AURA  int32_t            to_int(const char * psz);

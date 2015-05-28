@@ -60,7 +60,7 @@ string get_command_line_param(const char * pszCommandLine, const char * pszParam
 
    }
 
-   return strValue;
+   return ::str::trim_any_quotes(strValue.trimmed());
 
 }
 
@@ -112,7 +112,7 @@ string get_command_line_param(const char * pszCommandLine, const char * pszParam
 
    }
 
-   return strValue;
+   return ::str::trim_any_quotes(strValue.trimmed());
 
 
 }

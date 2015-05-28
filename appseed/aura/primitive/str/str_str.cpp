@@ -3008,6 +3008,44 @@ namespace str
    }
 
 
+   CLASS_DECL_AURA  string         trim_any_quotes(const string & strParam)
+   {
+
+      string str(strParam);
+
+      while(paired_trim(str,'\'') || paired_trim(str,'\"'))
+      {
+      }
+
+      return str;
+
+   }
+
+   CLASS_DECL_AURA  bool paired_trim(string & str,char ch)
+   {
+
+      if(str.get_length() <= 1)
+      {
+
+         return false;
+
+      }
+
+      if(str[0] != ch || str.last_char() != ch)
+      {
+
+         return false;
+
+      }
+
+      str = str.Mid(1,str.get_length() - 2);
+
+      return true;
+
+   }
+
+
+
 } // namespace str
 
 
