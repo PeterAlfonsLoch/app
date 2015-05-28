@@ -824,6 +824,49 @@ namespace plugin
 
                            strCommandLine += property.name();
 
+                           if(property.name() == "build_number")
+                           {
+                              
+                              string strBuild;
+
+                              if(property.get_string().has_char())
+                              {
+                                 
+                                 strBuild = property.get_string();
+
+                              }
+                              else
+                              {
+
+                                 string strVer = strVersion.trimmed().is_empty() ? "stage" : strVersion;
+
+                                 strBuild = System.install().m_strmapLatestBuildNumber[strVer].trimmed();
+
+                                 if(strBuild.is_empty())
+                                 {
+
+                                    strBuild = System.install().get_latest_build_number(strVer);
+
+                                    if(strBuild.is_empty())
+                                    {
+
+                                       strBuild = "latest";
+
+                                    }
+
+                                 }
+
+                              }
+
+                              strCommandLine += "=";
+
+                              strCommandLine += strBuild;
+
+
+                              continue;
+
+                           }
+                                 
                            if(!property.get_string().has_char())
                               continue;
 
