@@ -245,7 +245,23 @@ namespace file
       path operator * (const char * psz) const { return operator * (::file::path(psz)); }
       path operator * (const property & property) const;
 
+      path & operator *= (const path & path)
+      {
+         
+         if(this != &path)
+         {
+            
+            *this = sibling(path);
 
+         }
+
+         return *this;
+
+      }
+
+      path & operator *= (const string & str) { return operator *= (::file::path(str)); }
+      path & operator *= (const char * psz) { return operator *= (::file::path(psz)); }
+      path & operator *= (const property & property);
 
       ::file::path title() const
       {
