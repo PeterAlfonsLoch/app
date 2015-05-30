@@ -1683,8 +1683,8 @@ install_begin:;
          }
          if(bOk)
          {
-            sprintf(sz, unitext("%0.2fkbytes compressed c"), (iGzLen / 1000.0));
-            System.install().trace().rich_trace(sz);
+            //sprintf(sz, unitext("%0.2fkbytes compressed c"), (iGzLen / 1000.0));
+            //System.install().trace().rich_trace(sz);
          }
          else
          {
