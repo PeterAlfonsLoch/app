@@ -2662,12 +2662,12 @@ install_begin:;
 
       int32_t i = run_ca2_application_installer(strCommandLine);
 
-      if(m_bLaunchDesktopApplicationOnIgnitPhase2)
+      /*if(m_bLaunchDesktopApplicationOnIgnitPhase2)
       {
 
          start_ca2_application();
 
-      }
+      }*/
 
 
       /*if(m_strStart != "_set_windesk" && is_installed("application", "_set_windesk"))
