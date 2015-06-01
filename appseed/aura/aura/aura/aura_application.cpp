@@ -4174,7 +4174,7 @@ namespace aura
 
 
 
-                     ::duration durationWait = seconds((1.9841115 + 1.9770402 + 1.9510422) * 3.0); // less than 18 seconds
+                     ::duration durationWait = seconds((1.9841115 + 1.9770402 + 1.9510422) * 8.0); 
 
                      //#ifdef MACOS
 
@@ -4199,17 +4199,23 @@ namespace aura
 
                ::simple_message_box(NULL," - " + notinstalled.m_strId + "\nhas timed out while trying to install.\n\nFor developers it is recommended to\nfix this installation timeout problem.\n\nIt is recommended to kill manually :\n - \"" + strPath + strParam + "\"\nif it has not been terminated yet.","Debug only message, please install.",MB_ICONINFORMATION | MB_OK);
 
+               notinstalled.m_bContinue = false;
+
             }
             else if(dwExitCode == 0)
             {
 
                ::simple_message_box(NULL,"Successfully run : " + strPath + strParam,"Debug only message, please install.",MB_ICONINFORMATION | MB_OK);
 
+               notinstalled.m_bContinue = true;
+
             }
             else
             {
 
                ::simple_message_box(NULL,strPath + strParam + "\n\nFailed return code : " + ::str::from((uint32_t)dwExitCode),"Debug only message, please install.",MB_ICONINFORMATION | MB_OK);
+
+               notinstalled.m_bContinue = false;
 
             }
 
@@ -4226,12 +4232,14 @@ namespace aura
 
          string strAddUp;
 
-         if(directrix()->m_varTopicQuery.has_property("enable_desktop_launch"))
-         {
-            
-            strAddUp += " enable_desktop_launch";
+         strAddUp = "enable_desktop_launch=" + System.directrix()->m_varTopicQuery["app"];
 
-         }
+         //if(directrix()->m_varTopicQuery.has_property("enable_desktop_launch"))
+         //{
+            
+           // strAddUp += " enable_desktop_launch";
+
+         //}
 
          //::MessageBoxA(NULL, "teste", "teste", MB_OK);
 
@@ -4239,7 +4247,7 @@ namespace aura
 
       }
 
-      return !notinstalled.m_bContinue;
+      return false;
 
    }
 
