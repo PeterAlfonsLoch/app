@@ -914,12 +914,6 @@ install_begin:;
 
       ::stringa straExpandFileSet;
 
-      m_dwDownloadTick = ::get_tick_count();
-
-      m_dwDownload = 0;
-
-      m_iDownloadRate = 0;
-
       m_bShowPercentage = true;
 
       m_iGzLen2 = 0;
@@ -929,8 +923,6 @@ install_begin:;
       m_iProgressTotalGzLen2 = 0;
 
       System.install().trace().rich_trace("***Downloading resource files.");
-
-      single_lock sl(&m_mutexOmp);
 
       {
 
@@ -950,6 +942,7 @@ install_begin:;
                }
             }, straExpandFileSet);
 
+         //index iExpandFileSetStart = stringa.get_size();
 
          m_iGzLen2 = 0;
 
@@ -1048,8 +1041,6 @@ install_begin:;
 
             m_iGzLen2 += iGzLen;
 
-            dlr(m_iGzLen2);
-
             set_progress((double)m_iGzLen2 / (double)m_iProgressTotalGzLen2);
 
          }
@@ -1065,8 +1056,10 @@ install_begin:;
 #pragma omp parallel for
          for(int i = 0; i < stringa.get_count(); i++)
          {
-            string strFileName;
 
+            single_lock sl(&m_mutexOmp);
+
+            string strFileName;
 
             string strCurrent  = stringa[i];
 
@@ -1114,8 +1107,6 @@ install_begin:;
 
             string strStageInplace = ca2inplace_get_dir(strCurrent) + ca2inplace_get_file(strCurrent);
 
-            System.install().trace().rich_trace(str::replace(file_name_dup((str2 + str)),"\\","/"));
-
             if(file_exists_dup(strStageInplace)
                && (iLen != -1) && file_length_dup(strStageInplace) == iLen
                && strMd5.has_char() && stricmp_dup(System.file().md5(strStageInplace),strMd5) == 0)
@@ -1143,8 +1134,6 @@ install_begin:;
 
             }
 
-
-
             if(bDownload && file_exists_dup(strStageGz))
             {
 
@@ -1170,20 +1159,19 @@ install_begin:;
                }
 
             }
-            else
-            {
-
-               System.install().trace().trace_add(" ok");
-
-            }
 
             sl.lock();
+
+            if(bDownload)
+            {
+
+               System.install().trace().rich_trace(str::replace(file_name_dup((str2 + str)),"\\","/"));
+
+            }
 
             m_iaProgress.element_at_grow(omp_get_thread_num() + 1) = 0;
 
             m_iGzLen2 += iGzLen;
-
-            dlr(m_iGzLen2);
 
             set_progress((double)m_iGzLen2 / (double)m_iProgressTotalGzLen2);
 
@@ -1300,6 +1288,7 @@ install_begin:;
 
    bool installer::download_file(const string& inplaceParam, const string& url_in, bool bExist, bool bCheck, int64_t iLength, const char * pszMd5, int64_t iGzLen, int_ptr & iFlag)
    {
+
       single_lock sl(&m_mutexOmp);
 
       if(m_bOfflineInstall)
@@ -1600,7 +1589,7 @@ install_begin:;
             if(iRetry > 0)
             {
                // sprintf(sz, unitext("Patch succeeded with %d retries %0.2fkbytes compressed ✓"), (iBsLen / 1000.0), iRetry);
-               System.install().trace().trace_add(unitext(" c"));
+               //System.install().trace().trace_add(unitext(" c"));
             }
             else
             {
@@ -1609,7 +1598,7 @@ install_begin:;
                // normal cases.
                //sprintf(sz, unitext(" patched %0.2fkbytes compressed ✓"), (iBsLen / 1000.0));
                //System.install().trace().trace_add(sz);
-               System.install().trace().trace_add(unitext(" c"));
+               //System.install().trace().trace_add(unitext(" c"));
             }
          }
          else
@@ -3992,44 +3981,6 @@ RetryBuildNumber:
    }
 
 
-   void installer::dlr(uint64_t dwDownload)
-   {
-      if(!m_bShowPercentage)
-         return;
-      uint32_t dw = ::get_tick_count();
-      uint32_t dwDeltaTime = dw - m_dwDownloadTick;
-      if(dwDeltaTime < 184)
-         return;
-      m_dwDownloadTick = dw;
-      uint64_t dwLen = dwDownload - m_dwDownload;
-      m_dwDownload = dwDownload;
-      if(m_daDownloadRate.get_count() < 100)
-      {
-         m_daDownloadRate.add(((double)dwLen / 1024.0) / ((double)(dwDeltaTime) / 1000.0));
-      }
-      else
-      {
-         if(m_iDownloadRate >= 100 || m_iDownloadRate < 0)
-            m_iDownloadRate = 0;
-         m_daDownloadRate[m_iDownloadRate] = ((double)dwLen / 1024.0) / ((double)(dwDeltaTime) / 1000.0);
-         m_iDownloadRate++;
-      }
-      if(::lemon::numeric_array::big_average(m_daDownloadRate) == 0.0)
-      {
-         if(m_dDownloadRate != 0.0)
-         {
-            m_dDownloadRate = 0.0;
-            m_dwDownloadZeroRateTick = ::get_tick_count();
-            m_dwDownloadZeroRateRemain = m_dwDownloadRemain;
-         }
-         m_dwDownloadRemain = m_dwDownloadZeroRateRemain + ::get_tick_count() - m_dwDownloadZeroRateTick;
-      }
-      else
-      {
-         m_dDownloadRate = ::lemon::numeric_array::big_average(m_daDownloadRate);
-         m_dwDownloadRemain = (uint32_t)(((m_iTotalGzLen2 - m_iGzLen2) / 1024.0) / ::lemon::numeric_array::big_average(m_daDownloadRate));
-      }
-   }
 
 
    installer::launcher::launcher(::aura::application * papp, const char * pszVersion, const char * pszBuild) :
@@ -4305,29 +4256,46 @@ RetryBuildNumber:
 
    }
 
+   
    void installer::on_set_scalar(int_scalar_source * psource,e_scalar escalar,int64_t iValue,int iFlags)
    {
+      
       if (escalar == scalar_download_size)
       {
+         
          if(m_bProgressModeAppInstall)
          {
+            
             int64_t iMax = 0;
-            psource->get_scalar_maximum(escalar, iMax);
 
-            if (iMax == 0)
-               iMax = iValue;
+            psource->get_scalar_maximum(escalar, iMax);
 
             if(iMax == 0)
             {
+
+               iMax = iValue;
+
+            }
+
+            if(iMax == 0)
+            {
+               
                iValue = 0;
+
                iMax = 1;
+
             }
 
             synch_lock sl(&m_mutexOmp);
+            
             int iTest = omp_get_thread_num() + 1;
+
             m_daProgress.element_at_grow(iTest) = (double)iValue / (double)iMax;
+
             double dTotal = m_daProgress.get_total();
+
             dTotal += m_dAppInstallProgressBase;
+
             set_progress(dTotal / m_dAppInstallFileCount );
 
          }
@@ -4335,8 +4303,9 @@ RetryBuildNumber:
          {
 
             synch_lock sl(&m_mutexOmp);
+
             m_iaProgress.element_at_grow(omp_get_thread_num() + 1) = iValue;
-            dlr(m_iGzLen2 + m_iaProgress.get_total()) ;
+
             set_progress((double)(m_iGzLen2 + m_iaProgress.get_total()) / (double)m_iProgressTotalGzLen2);
 
          }

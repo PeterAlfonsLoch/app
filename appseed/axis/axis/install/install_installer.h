@@ -87,14 +87,14 @@ namespace install
       double            m_dProgress2;
       ::xml::document   m_xmldocStringTable;
       int32_t           m_iStart;
-      double_array      m_daDownloadRate;
-      uint32_t          m_dwDownloadTick;
-      uint64_t          m_dwDownload;
-      int32_t           m_iDownloadRate;
-      double            m_dDownloadRate;
-      uint32_t          m_dwDownloadZeroRateTick;
-      uint32_t          m_dwDownloadZeroRateRemain;
-      uint32_t          m_dwDownloadRemain;
+      //double_array      m_daDownloadRate;
+      //uint32_t          m_dwDownloadTick;
+      //uint64_t          m_dwDownload;
+      //int32_t           m_iDownloadRate;
+      ;;double            m_dDownloadRate;
+      //uint32_t          m_dwDownloadZeroRateTick;
+      //uint32_t          m_dwDownloadZeroRateRemain;
+      //uint32_t          m_dwDownloadRemain;
       bool              m_bForceUpdatedBuild;
 
       bool              m_bOfflineInstall;
@@ -280,7 +280,7 @@ namespace install
       //void ms_get_callback( int32_t i, uint_ptr dwLen);
 
       // download rate
-      void dlr(uint64_t dwDownload);
+      //void dlr(uint64_t dwDownload);
 
       void new_progress_end(double dMilestone);
 
