@@ -146,8 +146,9 @@ CLASS_DECL_AURA int32_t x86cpuid_GetFirm(const struct Cx86cpuid *p);
 CLASS_DECL_AURA int32_t CPU_Is_InOrder();
 CLASS_DECL_AURA int32_t CPU_Is_Aes_Supported();
 
-
-
+BEGIN_EXTERN_C
+CLASS_DECL_AURA int32_t cpu_has_avx();
+END_EXTERN_C
 
 static_inline uint16_t __swap16gen(uint16_t x)
 {
