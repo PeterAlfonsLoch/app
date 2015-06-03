@@ -143,7 +143,7 @@ namespace install
    {
    }
 
-   void plugin::restart_small_ipc_channel()
+   void plugin::restart_aura_ipc()
    {
 
       if(!is_installing())

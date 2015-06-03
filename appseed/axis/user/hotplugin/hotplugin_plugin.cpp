@@ -692,13 +692,13 @@ namespace hotplugin
    }
 
 
-   void plugin::restart_small_ipc_channel()
+   void plugin::restart_aura_ipc()
    {
 
       if(m_phost != NULL && m_phost != this)
       {
 
-         m_phost->restart_small_ipc_channel();
+         m_phost->restart_aura_ipc();
 
       }
       else

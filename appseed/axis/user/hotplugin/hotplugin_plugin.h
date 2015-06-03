@@ -157,7 +157,7 @@ namespace hotplugin
 
       virtual void set_status(const char * pszStatus);
 
-      virtual void restart_small_ipc_channel();
+      virtual void restart_aura_ipc();
 
       virtual void ensure_bitmap_data(int32_t cx, int32_t cy, bool bCreateFile);
 

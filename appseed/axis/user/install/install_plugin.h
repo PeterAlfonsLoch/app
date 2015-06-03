@@ -119,7 +119,7 @@ namespace install
 
       virtual bool is_installing();
 
-      virtual void restart_small_ipc_channel();
+      virtual void restart_aura_ipc();
 
       using ::hotplugin::plugin::SetWindowPos;
       virtual bool SetWindowPos(int32_t z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags = SWP_SHOWWINDOW);

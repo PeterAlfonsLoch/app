@@ -48,7 +48,7 @@ namespace aura
          if(!send(pszMessage,dwTimeout))
          {
 
-            restart_small_ipc_channel();
+            restart_aura_ipc();
 
             return false;
 
@@ -71,7 +71,7 @@ namespace aura
             if(!is_tx_ok())
             {
 
-               restart_small_ipc_channel();
+               restart_aura_ipc();
 
                return false;
 
@@ -81,7 +81,7 @@ namespace aura
          else if(!send(message,pdata,len,dwTimeout))
          {
 
-            restart_small_ipc_channel();
+            restart_aura_ipc();
 
             return false;
 
