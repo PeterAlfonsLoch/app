@@ -413,7 +413,7 @@ namespace windows
 
          hwstring wstr(MAX_PATH * 8);
          GetModuleFileNameW(NULL,wstr,wstr.count());
-         m_pathModule = wstr.operator const wchar_t *();
+         m_pathModule = defer_solve_relative_compresions(string(wstr));
 
       }
 
@@ -421,7 +421,7 @@ namespace windows
 
          hwstring wstr(MAX_PATH * 8);
          GetModuleFileNameW(::GetModuleHandleA("core.dll"),wstr,wstr.count());
-         m_pathCa2Module = wstr.operator const wchar_t *();
+         m_pathCa2Module = defer_solve_relative_compresions(string(wstr));
 
       }
 
