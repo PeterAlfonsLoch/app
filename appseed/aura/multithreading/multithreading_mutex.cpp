@@ -21,6 +21,8 @@ mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrNa
    sync_object(pstrName)
 {
 
+   m_bAlreadyExists = false;
+
     static exception::translator * p = NULL;
 
     if(p == NULL)
@@ -34,6 +36,10 @@ mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrNa
 #ifdef _WIN32
 
     m_object = ::CreateMutexExW(lpsaAttribute,pstrName == NULL ? NULL : (const wchar_t *) ::str::international::utf8_to_unicode(pstrName),bInitiallyOwn ?  CREATE_MUTEX_INITIAL_OWNER : 0,MUTEX_ALL_ACCESS);
+
+    DWORD dwLastError = ::GetLastError();
+
+    m_bAlreadyExists = dwLastError == ERROR_ALREADY_EXISTS;
 
    if(m_object == NULL)
    {
@@ -277,6 +283,14 @@ mutex::~mutex()
    }
 
 #endif
+
+}
+
+
+bool mutex::already_exists()
+{
+   
+   return m_bAlreadyExists;
 
 }
 

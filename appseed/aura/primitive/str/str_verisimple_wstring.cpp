@@ -1,5 +1,6 @@
 //#include "framework.h"
 
+const int verisimple_wstring::npos = -1;
 
 wchar_t * wstring_data::get_nil()
 {
@@ -342,4 +343,91 @@ verisimple_wstring & verisimple_wstring::replace(::index iStart,::count c,const 
    }
    
 
+}
+
+
+
+// find the first occurrence of character 'ch', starting at strsize 'iStart'
+strsize verisimple_wstring::find(wchar_t ch,strsize iStart,strsize nCount) const RELEASENOTHROW
+{
+   // iStart is in XCHARs
+   ASSERT(iStart >= 0);
+
+   // nLength is in XCHARs
+   strsize nLength = get_length();
+   if(iStart < 0 || iStart >= nLength)
+   {
+      return npos;
+   }
+
+   if(nCount < 0)
+      nCount = nLength;
+
+   if(nCount + iStart > nLength)
+      nCount = nLength - iStart;
+
+   if(nCount < 0)
+      return npos;
+
+   const wchar_t * psz = m_pwsz + iStart;
+   for(int32_t i = 0; i < nCount; i++)
+   {
+      if(psz[i] == ch)
+      {
+         return iStart + i;
+      }
+   }
+   return npos;
+}
+// find the first occurrence of string 'pszSub', starting at strsize 'iStart'
+strsize verisimple_wstring::find(const wchar_t * pszSub,strsize iStart,strsize nCount,const wchar_t ** pszTail) const RELEASENOTHROW
+{
+   // iStart is in XCHARs
+   ASSERT(iStart >= 0);
+   ASSERT(__is_valid_string(pszSub));
+
+   if(pszSub == NULL)
+   {
+      return(npos);
+   }
+   // nLength is in XCHARs
+   strsize nLength = get_length();
+   if(iStart < 0 || iStart > nLength)
+   {
+      return(npos);
+   }
+
+   strsize nLength2 = wcslen(pszSub);
+
+   if(nCount < 0)
+      nCount = nLength;
+
+   if(nCount + iStart + nLength2 > nLength)
+      nCount = nLength - iStart - nLength2;
+
+   if(nCount < 0)
+      return npos;
+
+   const wchar_t * psz = m_pwsz + iStart;
+   for(int32_t i = 0; i <= nCount; i++)
+   {
+      bool bFound = true;
+      int32_t j;
+      for(j = 0; j < nLength2; j++)
+      {
+         if(psz[j] != pszSub[j])
+         {
+            bFound = false;
+            break;
+         }
+      }
+      if(bFound && j == nLength2)
+      {
+         if(pszTail)
+            *pszTail = &psz[j];
+         return i + iStart;
+      }
+      psz++;
+   }
+   return npos;
 }

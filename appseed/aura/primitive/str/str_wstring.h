@@ -89,7 +89,7 @@ class CLASS_DECL_AURA verisimple_wstring
 {
 public:
 
-
+   static const int npos;
    typedef wstring_manager manager;
    typedef wchar_t value_type;
    typedef wstring_data data_type;
@@ -326,6 +326,13 @@ public:
 
    void assign(const wchar_t * pwsz);
    void assign(const char * psz);
+
+
+   strsize find(wchar_t ch,strsize start = 0,strsize count = -1) const RELEASENOTHROW;
+   strsize find(const wchar_t * pszSub,strsize start = 0,strsize count = -1,const wchar_t ** pszTail = NULL) const RELEASENOTHROW;
+
+   bool empty() const { return is_empty();  }
+
 
 };
 

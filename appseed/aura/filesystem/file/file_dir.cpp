@@ -1176,3 +1176,30 @@ string dir::pathfind(const string & pszEnv, const string & pszTopic, const strin
 
 
 
+
+
+
+string dir::beforeca2()
+{
+   return dir::name(dir::element());
+   //   std::wstring wstr;
+   // get_program_files_x86(wstr);
+   //return u8(wstr.c_str());
+   /*char lpszModuleFolder[MAX_PATH * 8];
+   get_ca2_module_folder_dup(lpszModuleFolder);
+   char * psz = strrchr(lpszModuleFolder, '\\');
+   if(psz == NULL)
+   return lpszModuleFolder;
+   *psz = '\0'; // strip x86 or x64...
+   psz = strrchr(lpszModuleFolder, '\\');
+   if(psz == NULL)
+   return lpszModuleFolder;
+   *psz = '\0'; // strip stage
+   psz = strrchr(lpszModuleFolder, '\\');
+   if(psz == NULL)
+   return lpszModuleFolder;
+   *psz = '\0'; // strip ca2
+   // now, lpszModuleFolder should be beforeca2
+   return lpszModuleFolder;*/
+}
+

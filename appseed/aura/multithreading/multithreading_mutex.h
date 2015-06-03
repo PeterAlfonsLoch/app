@@ -37,6 +37,8 @@ public:
 
 #endif
 
+   bool                    m_bAlreadyExists;
+
 
    mutex(::aura::application * papp = NULL, bool bInitiallyOwn = FALSE, const char * lpszName = NULL, LPSECURITY_ATTRIBUTES lpsaAttribute = NULL);
 
@@ -78,6 +80,9 @@ public:
 
    using sync_object::unlock;
    virtual bool unlock();
+
+
+   bool already_exists();
 
 
    static mutex * open_mutex(::aura::application * papp, const char * pstrName);
