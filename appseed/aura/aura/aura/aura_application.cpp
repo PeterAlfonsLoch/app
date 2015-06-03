@@ -589,23 +589,23 @@ namespace aura
    }
 
 
-   bool application::update_module_paths()
-   {
+   //bool application::update_module_paths()
+   //{
 
 
-      if(is_system())
-      {
+   //   if(is_system())
+   //   {
 
-         if(!m_pimpl->update_module_paths())
-            return false;
-
-
-      }
-
-      return true;
+   //      if(!m_pimpl->update_module_paths())
+   //         return false;
 
 
-   }
+   //   }
+
+   //   return true;
+
+
+   //}
 
 
 
@@ -1736,16 +1736,16 @@ namespace aura
          ::set_thread(dynamic_cast <thread *> (this));
       }
 
-      if(is_system())
-      {
-         
-         
-         TRACE("\n\n** %s **\n\n", "This command should work.");
+      //if(is_system())
+      //{
+      //   
+      //   
+      //   TRACE("\n\n** %s **\n\n", "This command should work.");
 
-         if(!update_module_paths())
-            return false;
+      //   if(!update_module_paths())
+      //      return false;
 
-      }
+      //}
 
 
       if(!ca_process_initialize())

@@ -35,6 +35,8 @@ namespace windows
 
       virtual bool get_last_write_time(FILETIME * pfiletime,const string & strFilename);
 
+      virtual bool update_module_path();
+
    };
 
 

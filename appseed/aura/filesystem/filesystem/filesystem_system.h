@@ -11,6 +11,9 @@ namespace file
    public:
 
 
+      ::file::path         m_pathCa2Module;
+      ::file::path         m_pathModule;
+
       system(::aura::application * papp);
       virtual ~system();
 
@@ -51,9 +54,11 @@ namespace file
 
 
 
+      virtual ::file::path module();
+      virtual ::file::path ca2module();
 
 
-
+      virtual bool update_module_path();
 
       path time(::aura::application * papp,const path & pszBasePath,int32_t iDepth,const string & pszPrefix = cnull,const string & pszSuffix = cnull);
       path time_square(::aura::application * papp,const string & pszPrefix = cnull,const string & pszSuffix = cnull);

@@ -583,14 +583,24 @@ namespace file
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
+
       ::file::path system::module()
       {
-         throw interface_only_exception(get_app(), "this is an interface");
+
+         synch_lock sl(m_pmutex);
+
+         return m_pathModule;
+
       }
+
 
       ::file::path system::ca2module()
       {
-         throw interface_only_exception(get_app(), "this is an interface");
+
+         synch_lock sl(m_pmutex);
+
+         return m_pathCa2Module;
+
       }
 
 
@@ -1292,6 +1302,18 @@ namespace file
 
 
          return m_strApiCc;
+
+      }
+
+
+      void system::update_module_path()
+      {
+
+         System.file().update_module_path();
+
+         m_pathModule = System.file().module().folder();
+
+         m_pathCa2Module = System.file().ca2module().folder();
 
       }
 

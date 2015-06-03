@@ -608,7 +608,7 @@ namespace windows
    ::file::path dir::module()
    {
 
-      return System.get_module_folder();
+      return m_pathModule;
 
    }
 
@@ -616,7 +616,7 @@ namespace windows
    ::file::path dir::ca2module()
    {
       
-      return System.get_ca2_module_folder();
+      return m_pathCa2Module;
 
    }
 
@@ -843,6 +843,7 @@ namespace windows
    bool dir::initialize()
    {
 
+      update_module_path();
 
       string strCa2Module = ca2module();
 
@@ -1181,7 +1182,6 @@ namespace windows
 
    //   return TRUE;
    //}
-
 
 
 

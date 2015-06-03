@@ -96,7 +96,7 @@ public:
 
    }
 
-   ~heap_base()
+   virtual ~heap_base()
    {
 
       free();
@@ -110,7 +110,7 @@ public:
 
    }
 
-   uint_ptr size(uint_ptr uiSize)
+   virtual uint_ptr size(uint_ptr uiSize)
    {
 
       if(m_p == NULL)
@@ -165,11 +165,10 @@ public:
 
    heap()   {   }
 
-   heap(uint_ptr uiSize) :   heap_base(uiSize)   {   }
+   heap(int iCount): heap_base(iCount * sizeof(T))   {   }
 
    operator T * () { return (T *) m_p;}
    operator const T * () const  { return (T *) m_p; }
-
 
    uint_ptr count() { return size() / sizeof(T); }
 

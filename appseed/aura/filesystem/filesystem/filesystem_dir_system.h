@@ -53,6 +53,9 @@ namespace file
          mutex                m_mutex;
          string               m_strApiCc;
 
+         ::file::path         m_pathCa2Module;
+         ::file::path         m_pathModule;
+
 
          system(::aura::application * papp);
          virtual ~system();
@@ -137,6 +140,8 @@ namespace file
          virtual bool initialize();
 
          virtual ::file::path get_api_cc();
+
+         virtual void update_module_path();
 
       };
 

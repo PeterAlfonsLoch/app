@@ -340,7 +340,7 @@ namespace aura
       virtual void _001OnFileNew(signal_details * pobj);
 
 
-      virtual bool update_module_paths();
+      //virtual bool update_module_paths();
 
       virtual string draw2d_get_default_library_name();
       virtual string multimedia_audio_get_default_library_name();

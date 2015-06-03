@@ -6,7 +6,7 @@ namespace windows
 {
 
 
-   file_system::file_system(::aura::application * papp) :
+   file_system::file_system(::aura::application * papp):
       object(papp),
       ::file::system(papp)
    {
@@ -20,13 +20,13 @@ namespace windows
    }
 
 
-   bool file_system::FullPath(string &str, const char * lpszFileIn)
+   bool file_system::FullPath(string &str,const char * lpszFileIn)
    {
 
       //if(::core::file_system::FullPath(str, lpszFileIn))
       // return true;
 
-      if(::str::begins_ci(lpszFileIn, "http://"))
+      if(::str::begins_ci(lpszFileIn,"http://"))
       {
 
          str = lpszFileIn;
@@ -34,7 +34,7 @@ namespace windows
          return true;
 
       }
-      else if(::str::begins_ci(lpszFileIn, "https://"))
+      else if(::str::begins_ci(lpszFileIn,"https://"))
       {
 
          str = lpszFileIn;
@@ -45,60 +45,60 @@ namespace windows
       wstring wstrFileIn;
       wstrFileIn = ::str::international::utf8_to_unicode(lpszFileIn);
       wstring wstrFileOut;
-      bool b = vfxFullPath(wstrFileOut.alloc(MAX_PATH * 8), wstrFileIn) != FALSE;
+      bool b = vfxFullPath(wstrFileOut.alloc(MAX_PATH * 8),wstrFileIn) != FALSE;
       if(b)
       {
-         ::str::international::unicode_to_utf8(str, wstrFileOut);
+         ::str::international::unicode_to_utf8(str,wstrFileOut);
       }
       return b;
    }
 
-   bool file_system::FullPath(wstring & wstrFullPath, const wstring & wstrPath)
+   bool file_system::FullPath(wstring & wstrFullPath,const wstring & wstrPath)
    {
 
       /*      if(::core::file_system::FullPath(wstrFullPath, wstrPath))
       return true;*/
 
-      if(::str::begins_ci(wstrPath, L"http://"))
+      if(::str::begins_ci(wstrPath,L"http://"))
       {
          wstrFullPath = wstrPath;
          return true;
       }
-      else if(::str::begins_ci(wstrPath, L"https://"))
+      else if(::str::begins_ci(wstrPath,L"https://"))
       {
          wstrFullPath = wstrPath;
          return true;
       }
 
-      return vfxFullPath(wstrFullPath, wstrPath) != FALSE;
+      return vfxFullPath(wstrFullPath,wstrPath) != FALSE;
 
    }
 
 
-   UINT file_system::GetFileName(const char * lpszPathName, string & str)
+   UINT file_system::GetFileName(const char * lpszPathName,string & str)
    {
       int32_t nMax = MAX_PATH * 8;
       wstring wstrPathName;
       wstrPathName = ::str::international::utf8_to_unicode(lpszPathName);
       wstring wstrTitle;
-      UINT user = vfxGetFileName(wstrPathName, wstrTitle.alloc(nMax), nMax);
+      UINT user = vfxGetFileName(wstrPathName,wstrTitle.alloc(nMax),nMax);
       str = ::str::international::unicode_to_utf8(wstrTitle);
       return user;
    }
 
-   void file_system::GetModuleShortFileName(HINSTANCE hInst, string & strShortName)
+   void file_system::GetModuleShortFileName(HINSTANCE hInst,string & strShortName)
    {
-      vfxGetModuleShortFileName(hInst, strShortName);
+      vfxGetModuleShortFileName(hInst,strShortName);
    }
 
-   var file_system::length(const string & strPath, ::aura::application * papp)
+   var file_system::length(const string & strPath,::aura::application * papp)
    {
-      
+
       var varRet;
 
-      varRet = ::file::system::length(strPath, papp);
+      varRet = ::file::system::length(strPath,papp);
 
-      if (!varRet.is_null())
+      if(!varRet.is_null())
          return varRet;
 
 
@@ -106,13 +106,13 @@ namespace windows
 
       WIN32_FILE_ATTRIBUTE_DATA data;
 
-      if(!GetFileAttributesExW(::str::international::utf8_to_unicode(strPath), GetFileExInfoStandard, &data))
+      if(!GetFileAttributesExW(::str::international::utf8_to_unicode(strPath),GetFileExInfoStandard,&data))
       {
          varRet.set_type(var::type_null);
       }
       else
       {
-         varRet = (uint32_t) data.nFileSizeLow;
+         varRet = (uint32_t)data.nFileSizeLow;
       }
 
 #else
@@ -355,7 +355,7 @@ namespace windows
          // This way we will be able to modify the time assuming the
          // caller changed the file from readonly.
 
-         if(!SetFileAttributesW((LPWSTR)(LPCWSTR) lpszFileName,(DWORD)status.m_attribute))
+         if(!SetFileAttributesW((LPWSTR)(LPCWSTR)lpszFileName,(DWORD)status.m_attribute))
             file_exception::ThrowOsError(get_app(),(LONG)GetLastError());
       }
 
@@ -402,6 +402,31 @@ namespace windows
       }
 
       return ::no_exception;
+
+   }
+
+
+   bool file_system::update_module_path()
+   {
+
+      {
+
+         hwstring wstr(MAX_PATH * 8);
+         GetModuleFileNameW(NULL,wstr,wstr.count());
+         m_pathModule = wstr.operator const wchar_t *();
+
+      }
+
+      {
+
+         hwstring wstr(MAX_PATH * 8);
+         GetModuleFileNameW(::GetModuleHandleA("core.dll"),wstr,wstr.count());
+         m_pathCa2Module = wstr.operator const wchar_t *();
+
+      }
+
+
+      return true;
 
    }
 

@@ -1084,7 +1084,7 @@ namespace aura
 
 #if defined(WINDOWSEX) || defined(LINUX) || defined(APPLEOS)
 
-            simple_shell_launcher launcher(NULL,NULL,get_module_folder()/strApp,strParameters,NULL,SW_SHOW);
+            ::aura::shell_launcher launcher(NULL,NULL,dir().module()/strApp,strParameters,NULL,SW_SHOW);
 
             launcher.execute();
 
@@ -1117,7 +1117,7 @@ namespace aura
 
 #else
 
-            simple_shell_launcher launcher(NULL,NULL,get_module_folder()/strApp,NULL,NULL,SW_SHOW);
+            ::aura::shell_launcher launcher(NULL,NULL,dir().module()/strApp,NULL,NULL,SW_SHOW);
 
             launcher.execute();
 
@@ -1155,7 +1155,7 @@ namespace aura
 
 #else
 
-            simple_shell_launcher launcher(NULL,NULL,get_ca2_module_folder() / strApp,strParameters,NULL,SW_SHOW);
+            ::aura::shell_launcher launcher(NULL,NULL,dir().ca2module() / strApp,strParameters,NULL,SW_SHOW);
 
             launcher.execute();
 
@@ -1187,7 +1187,7 @@ namespace aura
 
 #else
 
-            simple_shell_launcher launcher(NULL,NULL,get_ca2_module_folder() / strApp,strParameters,NULL,SW_SHOW);
+            ::aura::shell_launcher launcher(NULL,NULL,dir().ca2module() / strApp,strParameters,NULL,SW_SHOW);
 
             launcher.execute();
 
@@ -1284,168 +1284,140 @@ namespace aura
    }
 
 
-   ::file::path system::get_ca2_module_folder()
-   {
+//   ::file::path system::get_ca2_module_folder()
+//   {
+//
+//      single_lock sl(m_pmutex,true);
+//
+//      return m_pathCa2ModuleFolder;
+//
+//   }
+//
+//
+//   ::file::path system::get_ca2_module_file_path()
+//   {
+//
+//      string strModuleFileName;
+//
+//#ifdef WINDOWSEX
+//
+//      wchar_t lpszModuleFilePath[MAX_PATH + 1];
+//
+//      if(GetModuleFileNameW(::GetModuleHandleA("core.dll"),lpszModuleFilePath,MAX_PATH + 1))
+//      {
+//
+//         strModuleFileName = lpszModuleFilePath;
+//
+//      }
+//
+//#elif defined(METROWIN)
+//
+//      throw todo(this);
+//
+//#elif defined(ANDROID)
+//
+//      throw todo(this);
+//
+//#else
+//
+//#if defined(LINUX)
+//
+//      {
+//
+//         void * handle = dlopen("core.so",0);
+//
+//         if(handle == NULL)
+//            return "";
+//
+//         link_map * plm;
+//
+//         dlinfo(handle,RTLD_DI_LINKMAP,&plm);
+//
+//         strModuleFileName = plm->l_name;
+//
+//         dlclose(handle);
+//
+//         //         m_strCa2ModuleFolder = dir::name(strModuleFileName);
+//
+//      }
+//
+//#else
+//
+//      {
+//
+//         char * pszCurDir = getcwd(NULL,0);
+//
+//         string strCurDir = pszCurDir;
+//
+//         free(pszCurDir);
+//         
+//         strModuleFileName = strCurDir,"libbase.dylib");
+//
+//         if(Application.file().exists(strModuleFileName))
+//         {
+////            m_strCa2ModuleFolder = strCurDir;
+//            goto finishedCa2Module;
+//         }
+//
+//         strModuleFileName = m_strModuleFolder,"libbase.dylib");
+//
+//         if(Application.file().exists(strModuleFileName))
+//         {
+////            m_strCa2ModuleFolder = m_strModuleFolder;
+//            goto finishedCa2Module;
+//         }
+//
+//         strModuleFileName = Application.dir_pathfind(getenv("LD_LIBRARY_PATH"),"libbase.dylib","rfs"); // readable - normal file - non zero sized
+//
+//         if(Application.file().exists(strModuleFileName))
+//         {
+////            m_strCa2ModuleFolder = System.dir().name(strModuleFileName);
+//            goto finishedCa2Module;
+//         }
+//
+//      }
+//
+//   finishedCa2Module:;
+//
+//#endif
+//
+//#endif
+//
+//      return strModuleFileName;
+//
+//
+//   }
 
-      single_lock sl(m_pmutex,true);
 
-      return m_pathCa2ModuleFolder;
+   //::file::path system::get_module_folder()
+   //{
 
-   }
+   //   return m_pathModuleFolder;
 
+   //}
 
-   ::file::path system::get_ca2_module_file_path()
-   {
 
-      string strModuleFileName;
+   //::file::path system::get_module_file_path()
+   //{
 
-#ifdef WINDOWSEX
 
-      wchar_t lpszModuleFilePath[MAX_PATH + 1];
+   //}
 
-      if(GetModuleFileNameW(::GetModuleHandleA("core.dll"),lpszModuleFilePath,MAX_PATH + 1))
-      {
 
-         strModuleFileName = lpszModuleFilePath;
+   //::file::path system::get_module_title()
+   //{
 
-      }
+   //   return get_module_file_path().title();
 
-#elif defined(METROWIN)
+   //}
 
-      throw todo(this);
 
-#elif defined(ANDROID)
+   //::file::path system::get_module_name()
+   //{
 
-      throw todo(this);
+   //   return get_module_file_path().name();
 
-#else
-
-#if defined(LINUX)
-
-      {
-
-         void * handle = dlopen("core.so",0);
-
-         if(handle == NULL)
-            return "";
-
-         link_map * plm;
-
-         dlinfo(handle,RTLD_DI_LINKMAP,&plm);
-
-         strModuleFileName = plm->l_name;
-
-         dlclose(handle);
-
-         //         m_strCa2ModuleFolder = dir::name(strModuleFileName);
-
-      }
-
-#else
-
-      {
-
-         char * pszCurDir = getcwd(NULL,0);
-
-         string strCurDir = pszCurDir;
-
-         free(pszCurDir);
-         
-         strModuleFileName = strCurDir,"libbase.dylib");
-
-         if(Application.file().exists(strModuleFileName))
-         {
-//            m_strCa2ModuleFolder = strCurDir;
-            goto finishedCa2Module;
-         }
-
-         strModuleFileName = m_strModuleFolder,"libbase.dylib");
-
-         if(Application.file().exists(strModuleFileName))
-         {
-//            m_strCa2ModuleFolder = m_strModuleFolder;
-            goto finishedCa2Module;
-         }
-
-         strModuleFileName = Application.dir_pathfind(getenv("LD_LIBRARY_PATH"),"libbase.dylib","rfs"); // readable - normal file - non zero sized
-
-         if(Application.file().exists(strModuleFileName))
-         {
-//            m_strCa2ModuleFolder = System.dir().name(strModuleFileName);
-            goto finishedCa2Module;
-         }
-
-      }
-
-   finishedCa2Module:;
-
-#endif
-
-#endif
-
-      return strModuleFileName;
-
-
-   }
-
-
-   ::file::path system::get_module_folder()
-   {
-
-      return m_pathModuleFolder;
-
-   }
-
-
-   ::file::path system::get_module_file_path()
-   {
-
-#ifdef WINDOWSEX
-
-      wchar_t lpszModuleFilePath[MAX_PATH + 1];
-
-      GetModuleFileNameW(NULL,lpszModuleFilePath,MAX_PATH + 1);
-
-      string strModuleFileName(lpszModuleFilePath);
-
-      return strModuleFileName;
-
-#elif defined(METROWIN)
-
-      return "m_app.exe";
-
-#else
-
-      char * lpszModuleFilePath = br_find_exe_dir("app");
-
-      if(lpszModuleFilePath == NULL)
-         return "";
-
-      string strModuleFileName(lpszModuleFilePath);
-
-      free(lpszModuleFilePath);
-
-      return strModuleFileName;
-
-#endif
-
-   }
-
-
-   ::file::path system::get_module_title()
-   {
-
-      return get_module_file_path().title();
-
-   }
-
-
-   ::file::path system::get_module_name()
-   {
-
-      return get_module_file_path().name();
-
-   }
+   //}
 
    colorertake5::ParserFactory & system::parser_factory()
    {

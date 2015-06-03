@@ -23,7 +23,7 @@ namespace aura
    var ipi::call(const string & strApp,const string & strObject,const string & strMember,var_array & va)
    {
 
-      small_ipc_tx_channel & txc = tx(strApp);
+      ::aura::ipc::tx & txc = tx(strApp);
 
       txc.send("call " + strObject + "." + strMember + " : " + str_from_va(va),584);
 
@@ -45,7 +45,7 @@ namespace aura
       if(bShouldAutoLaunch)
       {
 
-         simple_app_launcher launcher(strApp);
+         ::aura::app_launcher launcher(strApp);
 
          return m_txmap[strApp].open(key(strApp),&launcher);
 
@@ -53,7 +53,7 @@ namespace aura
       else
       {
 
-         simple_app_launcher launcher("");
+         ::aura::app_launcher launcher("");
 
          launcher.m_iStart = 0;
 
@@ -64,7 +64,7 @@ namespace aura
    }
 
 
-   small_ipc_tx_channel & ipi::tx(const string & strApp)
+   ::aura::ipc::tx & ipi::tx(const string & strApp)
    {
 
       if(!m_txmap[strApp].is_tx_ok())
@@ -117,7 +117,7 @@ namespace aura
 
    }
 
-   void ipi::on_receive(small_ipc_rx_channel * prxchannel,const char * pszMessage)
+   void ipi::on_receive(::aura::ipc::rx * prx,const char * pszMessage)
    {
       string str(pszMessage);
 

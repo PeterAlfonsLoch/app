@@ -360,40 +360,7 @@ namespace windows
 
    }
 
-   bool application::update_module_paths()
-   {
-      ASSERT(m_pimpl->is_system());
-      {
 
-         wchar_t lpszModuleFilePath[MAX_PATH + 1];
-         GetModuleFileNameW(NULL, lpszModuleFilePath, MAX_PATH + 1);
-         System.m_pathModule = lpszModuleFilePath;
-         wchar_t lpszModuleFolder[MAX_PATH + 1];
-         LPWSTR lpszModuleFileName;
-         GetFullPathNameW(lpszModuleFilePath, MAX_PATH + 1, lpszModuleFolder, &lpszModuleFileName);
-         string strModuleFolder(lpszModuleFolder, lpszModuleFileName - lpszModuleFolder);
-         System.m_pathModuleFolder = strModuleFolder;
-
-      }
-
-      {
-
-         wchar_t lpszModuleFilePath[MAX_PATH + 1];
-         GetModuleFileNameW(::GetModuleHandleA("core.dll"), lpszModuleFilePath, MAX_PATH + 1);
-         System.m_pathCa2Module = lpszModuleFilePath;
-
-         wchar_t lpszModuleFolder[MAX_PATH + 1];
-         LPWSTR lpszModuleFileName;
-         GetFullPathNameW(lpszModuleFilePath, MAX_PATH + 1, lpszModuleFolder, &lpszModuleFileName);
-         string strModuleFolder(lpszModuleFolder, lpszModuleFileName - lpszModuleFolder);
-         System.m_pathCa2ModuleFolder = strModuleFolder;
-
-      }
-
-
-      return true;
-
-   }
 
    void application::ShowWaitCursor(bool bShow)
    {

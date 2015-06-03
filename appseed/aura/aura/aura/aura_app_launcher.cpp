@@ -7,14 +7,14 @@ namespace aura
 {
 
 
-   string simple_app_launcher::get_executable_path()
+   string app_launcher::get_executable_path()
    {
 
       return path::a_spa();
 
    }
 
-   string simple_app_launcher::get_params()
+   string app_launcher::get_params()
    {
 
       string strParameters;
@@ -26,7 +26,7 @@ namespace aura
    }
 
 
-   bool simple_app_launcher::start()
+   bool app_launcher::start()
    {
 
 #ifdef WINDOWS

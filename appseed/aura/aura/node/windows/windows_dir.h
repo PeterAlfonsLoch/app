@@ -27,6 +27,9 @@ namespace windows
       dir(::aura::application * papp);
 
 
+      //virtual void update_module_path();
+
+
       // rls fetchs should set a meaningful m_iRelative value at each returned path
       virtual ::file::listing & ls(::aura::application * papp, ::file::listing & path);
 

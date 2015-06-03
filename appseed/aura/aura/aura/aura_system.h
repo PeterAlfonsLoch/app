@@ -73,10 +73,6 @@ namespace aura
       bool                                         m_bMatterFromHttpCache;
       bool                                         m_bGudoNetCache;
 
-      ::file::path                                 m_pathCa2Module;
-      ::file::path                                 m_pathCa2ModuleFolder;
-      ::file::path                                 m_pathModule;
-      ::file::path                                 m_pathModuleFolder;
 
       ::process::departament                       m_process;
 
@@ -344,12 +340,12 @@ namespace aura
       virtual ::count get_application_count();
 
 
-      virtual ::file::path get_ca2_module_folder();
-      virtual ::file::path get_ca2_module_file_path();
-      virtual ::file::path get_module_folder();
-      virtual ::file::path get_module_file_path();
-      virtual ::file::path get_module_title();
-      virtual ::file::path get_module_name();
+      //virtual ::file::path get_ca2_module_folder();
+      //virtual ::file::path get_ca2_module_file_path();
+      //virtual ::file::path get_module_folder();
+      //virtual ::file::path get_module_file_path();
+      //virtual ::file::path get_module_title();
+      //virtual ::file::path get_module_name();
 
 
       virtual ::file::path dir_appmatter_locator(::aura::application * papp);

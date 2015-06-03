@@ -71,7 +71,7 @@ namespace windows
 
 
 
-      virtual bool update_module_paths();
+      //virtual bool update_module_paths();
 
 
 

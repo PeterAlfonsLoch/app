@@ -3558,23 +3558,23 @@ namespace axis
    }
 
 
-   bool application::update_module_paths()
-   {
+   //bool application::update_module_paths()
+   //{
 
 
-      if(is_system())
-      {
+   //   if(is_system())
+   //   {
 
-         if(!m_pimpl->update_module_paths())
-            return false;
-
-
-      }
-
-      return true;
+   //      if(!m_pimpl->update_module_paths())
+   //         return false;
 
 
-   }
+   //   }
+
+   //   return true;
+
+
+   //}
 
 
 

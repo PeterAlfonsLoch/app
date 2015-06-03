@@ -2003,6 +2003,7 @@
     <ClInclude Include="filesystem\file\file_opened.h" />
     <ClInclude Include="filesystem\file\file_ostream.h" />
     <ClInclude Include="filesystem\file\file_ostream_flush.h" />
+    <ClInclude Include="filesystem\file\file_path.h" />
     <ClInclude Include="filesystem\file\file_plain_text_istream.h" />
     <ClInclude Include="filesystem\file\file_plain_text_ostream.h" />
     <ClInclude Include="filesystem\file\file_plain_text_ostream_string_buffer.h" />

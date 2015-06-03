@@ -491,7 +491,7 @@ namespace axis
       virtual sp(::aura::printer) get_printer(const char * pszDeviceName);
 
 
-      virtual bool update_module_paths();
+      //virtual bool update_module_paths();
 
 
       virtual ::visual::icon * set_icon(object * pobject,::visual::icon * picon,bool bBigIcon);

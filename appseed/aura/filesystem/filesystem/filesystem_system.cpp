@@ -236,6 +236,22 @@ namespace file
    }
 
 
+   ::file::path system::module()
+   {
+
+      return m_pathModule;
+
+   }
+
+
+   ::file::path system::ca2module()
+   {
+
+      return m_pathCa2Module;
+
+   }
+
+
    ::file::path system::time_square(::aura::application * papp,const string & pszPrefix,const string & pszSuffix)
    {
 
@@ -1296,6 +1312,14 @@ restart:
 
 
    bool system::get_last_write_time(FILETIME * pfiletime,const string & strFilename)
+   {
+
+      throw interface_only_exception(get_app());
+
+   }
+
+
+   bool system::update_module_path()
    {
 
       throw interface_only_exception(get_app());

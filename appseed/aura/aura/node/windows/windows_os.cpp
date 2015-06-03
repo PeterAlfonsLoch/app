@@ -1030,7 +1030,7 @@ namespace windows
 
       strExe += ".exe";
 
-      string strCalling = Sys(papp).m_pathModuleFolder / strExe + " : service";
+      string strCalling = Sys(papp).dir().module() / strExe + " : service";
 
       if(System.directrix()->m_varTopicQuery.has_property("no_remote_simpledb"))
       {
