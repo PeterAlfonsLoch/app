@@ -3161,7 +3161,7 @@ namespace core
       // Win95 & Win98 sends a WM_DDE_INITIATE with an atom that points to the
       // int16_t file name so we need to use the int16_t file name.
       string strShortName;
-      strShortName = System.get_module_file_path();
+      strShortName = System.file().module();
 
       // strip out path
       //string strFileName = ::PathFindFileName(strShortName);

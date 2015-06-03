@@ -99,7 +99,7 @@ namespace plugin
 
 #else
 
-      string strMutex = m_phost->m_vssChannel;
+      string strMutex = m_phost->m_strChannel;
 
       ::str::begins_eat_ci(strMutex, "\\core\\");
 
@@ -920,7 +920,7 @@ namespace plugin
                      }
                      else if(str1 == "native_desktop_launcher")
                      {
-                        string strPath = dir::element("stage/x86/app.exe");
+                        string strPath = ::path::app();
 
 
                         string strCommandLine;

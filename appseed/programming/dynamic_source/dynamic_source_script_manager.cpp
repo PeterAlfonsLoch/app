@@ -353,12 +353,12 @@ namespace dynamic_source
       delete buf;*/
 
       ::file::path str;
-      str = System.get_module_folder();
+      str = System.dir().module();
       str.go_up(2);
       str = str/ "stage\\basis";
       str = ";" + str;
       ::file::path str2;
-      str2 = System.get_module_folder();
+      str2 = System.dir().module();
       str2.go_up(2);
       str2 = str2/ "netnode\\library\\include";
       str2 = ";" + str2;
