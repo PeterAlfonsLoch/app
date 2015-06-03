@@ -554,7 +554,7 @@ namespace core
    //
    //#if defined(WINDOWSEX) || defined(LINUX) || defined(APPLEOS)
    //
-   //         small_ipc_tx_channel channel;
+   //         ::aura::ipc::tx channel;
    //
    //         if(channel.open("::draw2d::fontopus::message_wnd::session::"))
    //         {

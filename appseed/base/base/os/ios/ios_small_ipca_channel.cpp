@@ -15,7 +15,7 @@ small_ipc_channel_base::~small_ipc_channel_base()
 
 
 
-bool small_ipc_tx_channel::open(const char * pszKey, launcher * plauncher)
+bool ::aura::ipc::tx::open(const char * pszKey, launcher * plauncher)
 {
    
    if(m_iQueue >= 0)
@@ -37,7 +37,7 @@ bool small_ipc_tx_channel::open(const char * pszKey, launcher * plauncher)
    
 }
 
-bool small_ipc_tx_channel::close()
+bool ::aura::ipc::tx::close()
 {
    
    if(m_iQueue < 0)
@@ -52,7 +52,7 @@ bool small_ipc_tx_channel::close()
 }
 
 
-bool small_ipc_tx_channel::send(const char * pszMessage, DWORD dwTimeout)
+bool ::aura::ipc::tx::send(const char * pszMessage, DWORD dwTimeout)
 {
    
    ::count c = strlen_dup(pszMessage);
@@ -99,7 +99,7 @@ bool small_ipc_tx_channel::send(const char * pszMessage, DWORD dwTimeout)
 }
 
 
-bool small_ipc_tx_channel::send(int message, void * pdata, int len, DWORD dwTimeout)
+bool ::aura::ipc::tx::send(int message, void * pdata, int len, DWORD dwTimeout)
 {
    
    if(message == 0x80000000)
@@ -156,7 +156,7 @@ bool small_ipc_tx_channel::send(int message, void * pdata, int len, DWORD dwTime
 
 
 
-bool small_ipc_tx_channel::is_tx_ok()
+bool ::aura::ipc::tx::is_tx_ok()
 {
    
    return m_iQueue != -1;
@@ -416,7 +416,7 @@ bool small_ipc_channel::open_ab(const char * pszKey, launcher * plauncher)
       return false;
    }
    
-   if(!small_ipc_tx_channel::open(strChannelTx, plauncher))
+   if(!::aura::ipc::tx::open(strChannelTx, plauncher))
    {
       return false;
    }
@@ -441,7 +441,7 @@ bool small_ipc_channel::open_ba(const char * pszKey, launcher * plauncher)
       return false;
    }
    
-   if(!small_ipc_tx_channel::open(strChannelTx, plauncher))
+   if(!::aura::ipc::tx::open(strChannelTx, plauncher))
    {
       return false;
    }

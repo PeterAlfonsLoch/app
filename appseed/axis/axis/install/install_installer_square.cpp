@@ -71,7 +71,7 @@ void send_spaboot_install_response(const char * param)
 
 #else
 
-/*   small_ipc_tx_channel txchannel;
+/*   ::aura::ipc::tx txchannel;
    
    install::installer::launcher launcher;
 

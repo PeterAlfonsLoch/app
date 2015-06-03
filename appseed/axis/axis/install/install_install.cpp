@@ -260,7 +260,7 @@ namespace install
 
 #else
 
-      small_ipc_tx_channel txchannel;
+      ::aura::ipc::tx txchannel;
 
       installer::launcher launcher(get_app(), m_strVersion, pszBuild);
 
@@ -285,7 +285,7 @@ namespace install
 
 #else
 
-      small_ipc_tx_channel txchannel;
+      ::aura::ipc::tx txchannel;
 
       installer::launcher launcher(get_app(), m_strVersion, pszBuild);
 

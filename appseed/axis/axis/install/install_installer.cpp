@@ -2581,7 +2581,7 @@ install_begin:;
 
 #else
 
-      small_ipc_tx_channel txchannel;
+      ::aura::ipc::tx txchannel;
 
       if(!txchannel.open("core/spaboot_install_callback"))
          return;

@@ -713,7 +713,7 @@ namespace plugin
 
 
 #ifdef WINDOWSEX
-                  PostMessage(m_phost->::small_ipc_tx_channel::m_oswindow, WM_USER + 100, 1, 1);
+                  PostMessage(m_phost->::::aura::ipc::tx::m_oswindow, WM_USER + 100, 1, 1);
 #else
                   ::exception::throw_not_implemented(get_app());
 #endif
@@ -753,7 +753,7 @@ namespace plugin
 /*                  string strCommandLine(": app=session session_start=app/core/fontopus app_type=application install ruri=\"" + strRuri + "\" locale=" + strLocale + " schema=" + strSchema);
 
 #ifdef WINDOWSEX
-                  PostMessage(m_phost->::small_ipc_tx_channel::m_oswindow, WM_USER + 100, 1, 1);
+                  PostMessage(m_phost->::::aura::ipc::tx::m_oswindow, WM_USER + 100, 1, 1);
 #else
                   ::exception::throw_not_implemented(get_app());
 #endif
@@ -897,7 +897,7 @@ namespace plugin
 
 
 #ifdef WINDOWSEX
-//                        PostMessage(m_phost->::small_ipc_tx_channel::m_oswindow, WM_USER + 100, 1, 1);
+//                        PostMessage(m_phost->::::aura::ipc::tx::m_oswindow, WM_USER + 100, 1, 1);
 #else
                         ::exception::throw_not_implemented(get_app());
 #endif
