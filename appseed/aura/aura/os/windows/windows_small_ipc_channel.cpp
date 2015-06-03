@@ -202,7 +202,7 @@ namespace aura
                plauncher->m_iStart--;
             }
          }
-         m_strChannel = pszKey;
+         m_strBaseChannel = pszKey;
          return true;
 
       }
@@ -215,7 +215,7 @@ namespace aura
 
          m_oswindow = NULL;
 
-         m_strChannel = "";
+         m_strBaseChannel = "";
 
          return true;
 

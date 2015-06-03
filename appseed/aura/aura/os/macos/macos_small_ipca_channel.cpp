@@ -408,7 +408,7 @@ namespace aura
 
 
 
-      bool small_ipc_channel::open_ab(const char * pszChannel,launcher * plauncher)
+      bool ipc::open_ab(const char * pszChannel,launcher * plauncher)
       {
 
          m_vssChannel = pszChannel;
@@ -433,7 +433,7 @@ namespace aura
 
       }
 
-      bool small_ipc_channel::open_ba(const char * pszChannel,launcher * plauncher)
+      bool ipc::open_ba(const char * pszChannel,launcher * plauncher)
       {
 
          m_vssChannel = pszChannel;
@@ -459,7 +459,7 @@ namespace aura
       }
 
 
-      bool small_ipc_channel::is_rx_tx_ok()
+      bool ipc::is_rx_tx_ok()
       {
 
          return m_rx.is_rx_ok() && is_tx_ok();

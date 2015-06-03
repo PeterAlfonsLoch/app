@@ -40,7 +40,7 @@ namespace aura
 #endif
 
          
-         string   m_strChannel;
+         string   m_strBaseChannel;
 
 
          base();

@@ -6,6 +6,7 @@
 namespace aura
 {
 
+
    namespace ipc
    {
 
@@ -22,7 +23,7 @@ namespace aura
 
 
 
-      bool tx::open(const char * pszKey,launcher * plauncher)
+      bool tx::open(const char * pszChannel,launcher * plauncher)
       {
 
          if(m_iQueue >= 0)
@@ -38,7 +39,7 @@ namespace aura
             return false;
          }
 
-         m_strKey = pszKey;
+         m_strBaseChannel = pszChannel;
 
          return true;
 
@@ -52,7 +53,7 @@ namespace aura
 
          m_iQueue = -1;
 
-         m_strKey = "";
+         m_strBaseChannel = "";
 
          return true;
 
@@ -188,7 +189,7 @@ namespace aura
 
 
 
-      bool rx::create(const char * pszKey)
+      bool rx::create(const char * pszChannel)
       {
          m_key = ftok(".",'c');
 
@@ -406,10 +407,10 @@ namespace aura
 
 
 
-      bool small_ipc_channel::open_ab(const char * pszKey,launcher * plauncher)
+      bool ipc::open_ab(const char * pszChannel,launcher * plauncher)
       {
 
-         m_strChannel = pszKey;
+         m_strChannel = pszChannel;
 
          m_rx.m_preceiver = this;
 
@@ -431,10 +432,10 @@ namespace aura
 
       }
 
-      bool small_ipc_channel::open_ba(const char * pszKey,launcher * plauncher)
+      bool ipc::open_ba(const char * pszChannel,launcher * plauncher)
       {
 
-         m_strChannel = pszKey;
+         m_strChannel = pszChannel;
 
          m_rx.m_preceiver = this;
 
@@ -457,7 +458,7 @@ namespace aura
       }
 
 
-      bool small_ipc_channel::is_rx_tx_ok()
+      bool ipc::is_rx_tx_ok()
       {
 
          return m_rx.is_rx_ok() && is_tx_ok();

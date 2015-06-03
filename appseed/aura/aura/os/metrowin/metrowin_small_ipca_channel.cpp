@@ -15,16 +15,16 @@ namespace aura
          _In_ DWORD dwFlag);
 
 
-      small_ipc_channel_base::small_ipc_channel_base()
+      base::base()
       {
          m_hwnd = NULL;
       }
 
-      small_ipc_channel_base::~small_ipc_channel_base()
+      base::~base()
       {
       }
 
-      bool ::aura::ipc::tx::open(const char * pszKey,launcher * plauncher)
+      bool tx::open(const char * pszChannel,launcher * plauncher)
       {
 
          if(m_hwnd != NULL)
@@ -45,7 +45,7 @@ namespace aura
          {
             for(int j = 0; j < jCount; j++)
             {
-               m_hwnd = ::FindWindow(NULL,pszKey);
+               m_hwnd = ::FindWindow(NULL,pszChannel);
                if(m_hwnd != NULL)
                   break;
                if(i <= 0)
@@ -61,12 +61,12 @@ namespace aura
                plauncher->start();
             }
          }
-         m_strKey = pszKey;
+         m_strBaseChannel = pszChannel;
          return true;
 
       }
 
-      bool ::aura::ipc::tx::close()
+      bool tx::close()
       {
 
          if(m_hwnd == NULL)
@@ -74,14 +74,14 @@ namespace aura
 
          m_hwnd = NULL;
 
-         m_strKey = "";
+         m_strBaseChannel = "";
 
          return true;
 
       }
 
 
-      bool ::aura::ipc::tx::send(const char * pszMessage,DWORD dwTimeout)
+      bool tx::send(const char * pszMessage,DWORD dwTimeout)
       {
 
          if(!is_tx_ok())
@@ -118,7 +118,7 @@ namespace aura
       }
 
 
-      bool ::aura::ipc::tx::is_tx_ok()
+      bool tx::is_tx_ok()
       {
 
          return ::IsWindow(m_hwnd) != FALSE;
@@ -126,7 +126,7 @@ namespace aura
       }
 
 
-      bool ::aura::ipc::tx::send(int message,void * pdata,int len,DWORD dwTimeout)
+      bool tx::send(int message,void * pdata,int len,DWORD dwTimeout)
       {
 
          if(message == 0x80000000)
@@ -167,7 +167,7 @@ namespace aura
       }
 
 
-      small_ipc_rx_channel::small_ipc_rx_channel()
+      rx::rx()
       {
 
          m_preceiver    = NULL;
@@ -175,13 +175,13 @@ namespace aura
       }
 
 
-      small_ipc_rx_channel::~small_ipc_rx_channel()
+      rx::~rx()
       {
 
       }
 
 
-      bool small_ipc_rx_channel::create(const char * pszKey,const char * pszWindowProcModule)
+      bool rx::create(const char * pszChannel,const char * pszWindowProcModule)
       {
 
 
@@ -194,7 +194,7 @@ namespace aura
 
          ATOM atom = register_class(hinstance);
 
-         m_hwnd = ::CreateWindowExA(0,"small_ipc_rx_channel_message_queue_class",pszKey,0,0,0,0,0,HWND_MESSAGE,NULL,hinstance,NULL);
+         m_hwnd = ::CreateWindowExA(0,"small_ipc_rx_channel_message_queue_class",pszChannel,0,0,0,0,0,HWND_MESSAGE,NULL,hinstance,NULL);
 
          if(m_hwnd == NULL)
          {
@@ -214,7 +214,7 @@ namespace aura
       }
 
 
-      bool small_ipc_rx_channel::destroy()
+      bool rx::destroy()
       {
 
          if(m_hwnd != NULL)
@@ -227,19 +227,19 @@ namespace aura
 
       }
 
-      void small_ipc_rx_channel::receiver::on_receive(small_ipc_rx_channel * prxchannel,const char * pszMessage)
+      void rx::receiver::on_receive(rx * prxchannel,const char * pszMessage)
       {
       }
 
-      void small_ipc_rx_channel::receiver::on_receive(small_ipc_rx_channel * prxchannel,int message,void * pdata,int len)
+      void rx::receiver::on_receive(rx * prxchannel,int message,void * pdata,int len)
       {
       }
 
-      void small_ipc_rx_channel::receiver::on_post(small_ipc_rx_channel * prxchannel,int a,int b)
+      void rx::receiver::on_post(rx * prxchannel,int a,int b)
       {
       }
 
-      void * small_ipc_rx_channel::on_receive(small_ipc_rx_channel * prxchannel,const char * pszMessage)
+      void * rx::on_receive(rx * prxchannel,const char * pszMessage)
       {
 
          if(m_preceiver != NULL)
@@ -253,7 +253,7 @@ namespace aura
 
       }
 
-      void * small_ipc_rx_channel::on_receive(small_ipc_rx_channel * prxchannel,int message,void * pdata,int len)
+      void * rx::on_receive(rx * prxchannel,int message,void * pdata,int len)
       {
 
          if(m_preceiver != NULL)
@@ -268,7 +268,7 @@ namespace aura
       }
 
 
-      void * small_ipc_rx_channel::on_post(small_ipc_rx_channel * prxchannel,int a,int b)
+      void * rx::on_post(rx * prxchannel,int a,int b)
       {
 
          if(m_preceiver != NULL)
@@ -283,12 +283,12 @@ namespace aura
       }
 
 
-      LRESULT CALLBACK small_ipc_rx_channel::s_message_queue_proc(HWND hwnd,UINT message,WPARAM wparam,LPARAM lparam)
+      LRESULT CALLBACK rx::s_message_queue_proc(HWND hwnd,UINT message,WPARAM wparam,LPARAM lparam)
       {
 
          int iRet = 0;
 
-         small_ipc_rx_channel * pchannel = (small_ipc_rx_channel *)GetWindowLongPtr(hwnd,GWLP_USERDATA);
+         rx * pchannel = (rx *)GetWindowLongPtr(hwnd,GWLP_USERDATA);
 
          if(pchannel == NULL)
          {
@@ -307,14 +307,14 @@ namespace aura
 
 
 
-      ATOM small_ipc_rx_channel::register_class(HINSTANCE hInstance)
+      ATOM rx::register_class(HINSTANCE hInstance)
       {
          WNDCLASSEX wcex;
 
          wcex.cbSize = sizeof(WNDCLASSEX);
 
          wcex.style			   = 0;
-         wcex.lpfnWndProc	   = &small_ipc_rx_channel::s_message_queue_proc;
+         wcex.lpfnWndProc	   = &rx::s_message_queue_proc;
          wcex.cbClsExtra	   = 0;
          wcex.cbWndExtra	   = 0;
          wcex.hInstance		   = hInstance;
@@ -329,7 +329,7 @@ namespace aura
       }
 
 
-      LRESULT small_ipc_rx_channel::message_queue_proc(UINT message,WPARAM wparam,LPARAM lparam)
+      LRESULT rx::message_queue_proc(UINT message,WPARAM wparam,LPARAM lparam)
       {
 
          if(message == WM_USER + 100)
@@ -372,14 +372,14 @@ namespace aura
 
 
 
-      bool small_ipc_rx_channel::on_idle()
+      bool rx::on_idle()
       {
 
          return false;
 
       }
 
-      bool small_ipc_rx_channel::is_rx_ok()
+      bool rx::is_rx_ok()
       {
 
          return ::IsWindow(m_hwnd) != FALSE;
@@ -387,23 +387,23 @@ namespace aura
       }
 
 
-      bool small_ipc_channel::open_ab(const char * pszKey,const char * pszModule,launcher * plauncher)
+      bool ipc::open_ab(const char * pszChannel,const char * pszModule,launcher * plauncher)
       {
 
-         m_vssChannel = pszKey;
+         m_strChannel = pszChannel;
 
-         m_rxchannel.m_preceiver = this;
+         m_rx.m_preceiver = this;
 
-         string strChannelRx = m_vssChannel + "-a";
-         string strChannelTx = m_vssChannel + "-b";
+         string strChannelRx = m_strChannel + "-a";
+         string strChannelTx = m_strChannel + "-b";
 
 
-         if(!m_rxchannel.create(strChannelRx,pszModule))
+         if(!m_rx.create(strChannelRx,pszModule))
          {
             return false;
          }
 
-         if(!::aura::ipc::tx::open(strChannelTx,plauncher))
+         if(!tx::open(strChannelTx,plauncher))
          {
             return false;
          }
@@ -412,23 +412,23 @@ namespace aura
 
       }
 
-      bool small_ipc_channel::open_ba(const char * pszKey,const char * pszModule,launcher * plauncher)
+      bool ipc::open_ba(const char * pszChannel,const char * pszModule,launcher * plauncher)
       {
 
-         m_vssChannel = pszKey;
+         m_strChannel = pszChannel;
 
-         m_rxchannel.m_preceiver = this;
+         m_rx.m_preceiver = this;
 
-         string strChannelRx = m_vssChannel + "-b";
-         string strChannelTx = m_vssChannel + "-a";
+         string strChannelRx = m_strChannel + "-b";
+         string strChannelTx = m_strChannel + "-a";
 
 
-         if(!m_rxchannel.create(strChannelRx,pszModule))
+         if(!m_rx.create(strChannelRx,pszModule))
          {
             return false;
          }
 
-         if(!::aura::ipc::tx::open(strChannelTx,plauncher))
+         if(!tx::open(strChannelTx,plauncher))
          {
             return false;
          }
@@ -438,10 +438,10 @@ namespace aura
       }
 
 
-      bool small_ipc_channel::is_rx_tx_ok()
+      bool ipc::is_rx_tx_ok()
       {
 
-         return m_rxchannel.is_rx_ok() && is_tx_ok();
+         return m_rx.is_rx_ok() && is_tx_ok();
 
       }
 

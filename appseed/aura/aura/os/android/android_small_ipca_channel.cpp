@@ -36,7 +36,7 @@ namespace aura
             return false;
             }
 
-            m_strKey = pszChannel;*/
+            m_strBaseChannel = pszChannel;*/
 
          return true;
 
@@ -50,7 +50,7 @@ namespace aura
 
          m_iQueue = -1;
 
-         m_strKey = "";
+         m_strBaseChannel = "";
 
          return true;
 

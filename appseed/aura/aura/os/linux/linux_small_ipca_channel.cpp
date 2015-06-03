@@ -37,7 +37,7 @@ namespace aura
             return false;
          }
 
-         m_strKey = pszChannel;
+         m_strBaseChannel = pszChannel;
 
          return true;
 
@@ -51,7 +51,7 @@ namespace aura
 
          m_iQueue = -1;
 
-         m_strKey = "";
+         m_strBaseChannel = "";
 
          return true;
 
@@ -387,7 +387,7 @@ namespace aura
 
 
 
-      bool small_ipc_channel::open_ab(const char * pszChannel,launcher * plauncher)
+      bool ipc::open_ab(const char * pszChannel,launcher * plauncher)
       {
 
          m_strChannel = pszChannel;
@@ -412,7 +412,7 @@ namespace aura
 
       }
 
-      bool small_ipc_channel::open_ba(const char * pszChannel,launcher * plauncher)
+      bool ipc::open_ba(const char * pszChannel,launcher * plauncher)
       {
 
          m_strChannel = pszChannel;
@@ -439,7 +439,7 @@ namespace aura
 
 
 
-      bool small_ipc_channel::is_rx_tx_ok()
+      bool ipc::is_rx_tx_ok()
       {
 
          return m_rx.is_rx_ok() && is_tx_ok();
