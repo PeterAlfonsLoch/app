@@ -388,7 +388,7 @@ void * small_ipc_rx_channel::receive()
 
 
 
-bool small_ipc_channel::open_ab(const char * pszKey, launcher * plauncher)
+bool aura::ipc::ipc::open_ab(const char * pszKey, launcher * plauncher)
 {
 
    m_vssChannel = pszKey;
@@ -413,7 +413,7 @@ bool small_ipc_channel::open_ab(const char * pszKey, launcher * plauncher)
 
 }
 
-bool small_ipc_channel::open_ba(const char * pszKey, launcher * plauncher)
+bool aura::ipc::ipc::open_ba(const char * pszKey, launcher * plauncher)
 {
 
    m_vssChannel = pszKey;
@@ -440,7 +440,7 @@ bool small_ipc_channel::open_ba(const char * pszKey, launcher * plauncher)
 
 
 
-bool small_ipc_channel::is_rx_tx_ok()
+bool aura::ipc::ipc::is_rx_tx_ok()
 {
 
    return m_rxchannel.is_rx_ok() && is_tx_ok();

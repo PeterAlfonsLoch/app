@@ -59,18 +59,19 @@ namespace install
 
       string strId = get_command_line_param(m_strCommandLine, "app", "session", "session_start").trimmed();
 
-      string strType = get_command_line_param(m_strCommandLine, "app_type").trimmed();
+      string strType;
 
-      string strLocale = get_command_line_param(m_strCommandLine, "locale").trimmed();
+      string strLocale;
 
-      string strSchema = get_command_line_param(m_strCommandLine, "schema").trimmed();
+      string strSchema;
 
-      if(get_command_line_param(m_strCommandLine,"version").trimmed().has_char())
-      {
+      get_command_line_param(strType, m_strCommandLine, "app_type");
 
-         strVersion = get_command_line_param(m_strCommandLine,"version").trimmed();
+      get_command_line_param(strLocale, m_strCommandLine, "locale");
 
-      }
+      get_command_line_param(strSchema, m_strCommandLine, "schema");
+
+      get_command_line_param(strVersion,m_strCommandLine,"version");
 
       if (strId.is_empty())
          return -1;

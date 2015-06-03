@@ -199,7 +199,7 @@ bool html_document::on_simple_action(id id)
 
 #ifndef METROWIN
 
-      simple_shell_launcher launcher(NULL, "open", get_file_path(), NULL, get_file_path().folder(), SW_SHOWNORMAL);
+      ::aura::shell_launcher launcher(NULL, "open", get_file_path(), NULL, get_file_path().folder(), SW_SHOWNORMAL);
 
       launcher.execute();
 

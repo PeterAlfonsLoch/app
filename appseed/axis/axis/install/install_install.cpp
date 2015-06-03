@@ -264,7 +264,7 @@ namespace install
 
       installer::launcher launcher(get_app(), m_strVersion, pszBuild);
 
-      if (!txchannel.open(::small_ipc_channel::app_install(m_strPlatform), bLaunch ? &launcher : NULL))
+      if (!txchannel.open(::aura::ipc::app_install(m_strPlatform), bLaunch ? &launcher : NULL))
          return false;
 
       txchannel.send(psz, false);
@@ -478,18 +478,8 @@ namespace install
       string strDir;
       string strFile;
 
-#ifdef X86
-
-      strDir = dir::element("\\stage\\x86");
-
-#else
-
-      strDir = dir::element("\\stage\\x64");
-
-#endif
-
-      strFile = strDir;
-      strFile += "\\app.exe";
+      strDir = ::dir::stage();
+      strFile = ::path::app();
 
       string strParam;
 
@@ -590,12 +580,12 @@ namespace install
 
    const char * install::get_version()
    {
-      return file_as_string_dup(dir::element("appdata", get_platform(), "build.txt"));
+      return file_as_string_dup(dir::element() / "appdata" /  get_platform() / "build.txt");
    }
 
    const char * install::get_ca2_version()
    {
-      return file_as_string_dup(dir::element("appdata", get_platform(), "ca2_build.txt"));
+      return file_as_string_dup(dir::element() / "appdata" / get_platform() / "ca2_build.txt");
    }
 
    void install::update_ca2_installed(bool bUnloadIfNotInstalled)
@@ -611,7 +601,7 @@ namespace install
       }
 
 
-      string strStage(dir::element("stage", get_platform()));
+      string strStage(dir::stage());
 
 #ifdef WINDOWSEX
       ::SetDllDirectoryA(strStage);
@@ -632,7 +622,7 @@ namespace install
          //if (m_bCa2Installed)
          //{
          ::aura::library libraryCa2(get_app());
-         m_bCa2Installed = libraryCa2.open(dir::path(strStage, "core"));
+         m_bCa2Installed = libraryCa2.open(dir::stage() / "core");
          if (m_bCa2Installed)
          {
 
@@ -645,7 +635,7 @@ namespace install
             // is m_strCa2 in win_dir initialized correctly now that there is a ca2 module?
             // (reversed enginereed frustation and anger into flowers garden...)
 
-            System.update_module_paths();
+            //System.dir().update_module_path();
 
             System.dir().initialize();
 
@@ -1117,9 +1107,7 @@ namespace install
       else
       {
 
-         string strPlatform = System.install().get_platform();
-
-         strPath = ::dir::element("install\\stage\\" + strPlatform + "\\app.install.exe");
+         strPath = ::path::app_install(System.install().get_platform());
 
       }
 
@@ -1426,9 +1414,7 @@ namespace install
 
       xxdebug_box("installer::launcher::ensure_executable", "installer::launcher::ensure_executable", 0);
 
-      string strPlatform = System.install().get_platform();
-
-      strPath = ::dir::element("stage\\" + strPlatform + "\\app.install.exe");
+      strPath = ::path::app_install(System.install().get_platform());
 
 #else
 

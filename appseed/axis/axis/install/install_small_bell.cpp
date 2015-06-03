@@ -19,12 +19,12 @@ void prepare_small_bell(bool bExistsOk)
    throw "todo";
 
 #else
-   if((bExistsOk && file_exists_dup(dir::element("stage\\small_bell.mp3")))
-   || read_resource_as_file_dup(dir::element("stage\\small_bell.mp3"), ::GetModuleHandleA("app.install.exe"), ID_MP3_SMALL_BELL, "MP3")
-   || read_resource_as_file_dup(dir::element("stage\\small_bell.mp3"), ::GetModuleHandleA("app.sentinel.exe"), ID_MP3_SMALL_BELL, "MP3")
-   || read_resource_as_file_dup(dir::element("stage\\small_bell.mp3"), ::GetModuleHandleA(NULL), ID_MP3_SMALL_BELL, "MP3"))
+   if((bExistsOk && file_exists_dup(dir::element() /"stage\\small_bell.mp3"))
+   || read_resource_as_file_dup(dir::element() /"stage\\small_bell.mp3", ::GetModuleHandleA("app.install.exe"), ID_MP3_SMALL_BELL, "MP3")
+   || read_resource_as_file_dup(dir::element() / "stage\\small_bell.mp3", ::GetModuleHandleA("app.sentinel.exe"), ID_MP3_SMALL_BELL, "MP3")
+   || read_resource_as_file_dup(dir::element() / "stage\\small_bell.mp3", ::GetModuleHandleA(NULL), ID_MP3_SMALL_BELL, "MP3"))
    {
-      if(LIBCALL(winmm,mciSendStringW)(wstring("open \"" + dir::element("stage\\small_bell.mp3") + "\" type mpegvideo alias small_bell_mp3"),NULL,0,NULL) == 0)
+      if(LIBCALL(winmm,mciSendStringW)(wstring("open \"" + string(dir::element() / "stage\\small_bell.mp3") + "\" type mpegvideo alias small_bell_mp3"),NULL,0,NULL) == 0)
       {
          LIBCALL(winmm,mciSendStringA)("close small_bell_mp3",NULL,0,NULL);
       }
@@ -49,12 +49,12 @@ void play_small_bell()
 
 #else
 
-   if(read_resource_as_file_dup(dir::element("stage\\small_bell.mp3"), ::GetModuleHandleA("app.install.exe"), ID_MP3_SMALL_BELL, "MP3")
-   || read_resource_as_file_dup(dir::element("stage\\small_bell.mp3"), ::GetModuleHandleA("app.sentinel.exe"), ID_MP3_SMALL_BELL, "MP3")
-   || read_resource_as_file_dup(dir::element("stage\\small_bell.mp3"), ::GetModuleHandleA(NULL), ID_MP3_SMALL_BELL, "MP3")
-   || file_exists_dup(dir::element("stage\\small_bell.mp3")))
+   if(read_resource_as_file_dup(dir::element() / "stage\\small_bell.mp3", ::GetModuleHandleA("app.install.exe"), ID_MP3_SMALL_BELL, "MP3")
+   || read_resource_as_file_dup(dir::element() / "stage\\small_bell.mp3", ::GetModuleHandleA("app.sentinel.exe"), ID_MP3_SMALL_BELL, "MP3")
+   || read_resource_as_file_dup(dir::element() / "stage\\small_bell.mp3", ::GetModuleHandleA(NULL), ID_MP3_SMALL_BELL, "MP3")
+   || file_exists_dup(dir::element() / "stage\\small_bell.mp3"))
    {
-      if(LIBCALL(winmm,mciSendStringW)(wstring("open \"" + dir::element("stage\\small_bell.mp3") + "\" type mpegvideo alias small_bell_mp3"),NULL,0,NULL) == 0)
+      if(LIBCALL(winmm,mciSendStringW)(wstring("open \"" + string(dir::element() / "stage\\small_bell.mp3") + "\" type mpegvideo alias small_bell_mp3"),NULL,0,NULL) == 0)
       {
          LIBCALL(winmm,mciSendStringA)("play small_bell_mp3",NULL,0,NULL);
          Sleep(4884);

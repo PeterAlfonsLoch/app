@@ -552,7 +552,7 @@ void FileSystemSizeWnd::ClientStartServer()
    {
       m_dwLastStartTime = get_tick_count();
 
-      simple_shell_launcher launcher(NULL, NULL, System.get_module_folder() / "winservice_filesystemsizeapp", NULL, NULL, SW_HIDE);
+      ::aura::shell_launcher launcher(NULL, NULL, System.get_module_folder() / "winservice_filesystemsizeapp", NULL, NULL, SW_HIDE);
 
       launcher.execute();
 

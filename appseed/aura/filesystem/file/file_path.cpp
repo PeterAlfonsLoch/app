@@ -2,13 +2,29 @@
 namespace path
 {
 
-   
-   ::file::path app_install()
+
+   ::file::path app()
    {
 
-      return ::dir::app_install() / "app.install.exe";
+      return ::dir::stage() / "app.exe";
 
    }
+   
+   ::file::path app_install(string strPlatform)
+   {
+
+      return ::dir::app_install(strPlatform) / "app.install.exe";
+
+   }
+
+
+   ::file::path app_plugin_container()
+   {
+
+      return ::dir::stage() / "app.plugin.container.exe";
+
+   }
+
 
    ::file::path a_spa()
    {
@@ -25,17 +41,16 @@ namespace path
 
    }
 
-   ::file::path module()
+   ::file::path module(HMODULE hmodule)
    {
 #ifdef WINDOWSEX
 
-      wchar_t lpszModuleFilePath[MAX_PATH + 1];
+      hwstring wstr(MAX_PATH * 8);
+      
+      GetModuleFileNameW(hmodule,wstr,wstr.count());
 
-      GetModuleFileNameW(NULL,lpszModuleFilePath,MAX_PATH + 1);
+      return defer_solve_relative_compresions(string(wstr));
 
-      string strModuleFileName(lpszModuleFilePath);
-
-      return strModuleFileName;
 
 #elif defined(METROWIN)
 
@@ -58,6 +73,12 @@ namespace path
 
    }
 
+   ::file::path install_log()
+   {
+
+      return dir::element() / ("install-" + process_platform_dir_name() + ".log");
+
+   }
 
 
 } // namespace path

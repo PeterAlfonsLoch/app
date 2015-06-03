@@ -44,17 +44,10 @@ namespace install
          }
       }
 
-#if defined(_M_IX86)
-
-      m_hfile = ::create_file(dir::element("install-x86.log"),GENERIC_WRITE,FILE_SHARE_READ | FILE_SHARE_WRITE,NULL,OPEN_ALWAYS,FILE_ATTRIBUTE_NORMAL,NULL);
-
-#else
-
-      m_hfile = ::create_file(dir::element("install-x64.log"),GENERIC_WRITE,FILE_SHARE_READ | FILE_SHARE_WRITE,NULL,OPEN_ALWAYS,FILE_ATTRIBUTE_NORMAL,NULL);
-
-#endif
+      m_hfile = ::create_file(path::install_log(),GENERIC_WRITE,FILE_SHARE_READ | FILE_SHARE_WRITE,NULL,OPEN_ALWAYS,FILE_ATTRIBUTE_NORMAL,NULL);
 
       ::SetFilePointer(m_hfile, 0, NULL, FILE_END);
+
    }
 
 

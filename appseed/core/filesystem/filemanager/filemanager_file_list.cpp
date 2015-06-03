@@ -770,7 +770,7 @@ namespace filemanager
 
 #ifdef WINDOWSEX
 
-         simple_shell_launcher launcher(NULL, "open", m_straOpenWith[iPos], strPath, strPath.name(), SW_SHOW);
+         ::aura::shell_launcher launcher(NULL, "open", m_straOpenWith[iPos], strPath, strPath.name(), SW_SHOW);
 
          launcher.execute();
 

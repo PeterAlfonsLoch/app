@@ -107,11 +107,11 @@ namespace install
 
 #ifndef METROWIN
 
-      virtual void on_post(small_ipc_rx_channel * prxchannel, int64_t a, int64_t b);
+      virtual void on_post(::aura::ipc::rx * prx, int64_t a, int64_t b);
 
       using ::hotplugin::plugin::on_receive;
 
-      virtual void on_receive(small_ipc_rx_channel * prxchannel, int32_t message, void * pdata, int32_t len);
+      virtual void on_receive(::aura::ipc::rx * prx, int32_t message, void * pdata, int32_t len);
 
 #endif
 

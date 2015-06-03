@@ -409,22 +409,9 @@ namespace windows
    bool file_system::update_module_path()
    {
 
-      {
+      m_pathModule = ::path::module();
 
-         hwstring wstr(MAX_PATH * 8);
-         GetModuleFileNameW(NULL,wstr,wstr.count());
-         m_pathModule = defer_solve_relative_compresions(string(wstr));
-
-      }
-
-      {
-
-         hwstring wstr(MAX_PATH * 8);
-         GetModuleFileNameW(::GetModuleHandleA("core.dll"),wstr,wstr.count());
-         m_pathCa2Module = defer_solve_relative_compresions(string(wstr));
-
-      }
-
+      m_pathCa2Module = ::path::module(::GetModuleHandleA("core.dll"));
 
       return true;
 

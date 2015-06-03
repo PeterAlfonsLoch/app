@@ -176,7 +176,7 @@ namespace aura
 
 
 
-      CLASS_DECL_AURA string app_install();
+      CLASS_DECL_AURA string app_install(string strPlatform = "");
 
 
    } // namespace ipc

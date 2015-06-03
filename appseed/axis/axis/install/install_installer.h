@@ -99,10 +99,10 @@ namespace install
 
       bool              m_bOfflineInstall;
       bool              m_bInternetInstall;
-      string            m_strIndex;
-      string            m_strIndexGz;
-      string            m_strInstall;
-      string            m_strInstallGz;
+      ::file::path      m_strIndex;
+      ::file::path      m_strIndexGz;
+      ::file::path      m_strInstall;
+      ::file::path      m_strInstallGz;
       string            m_strInstallStatusTemplate;
 
       bool              m_bInstallSet;

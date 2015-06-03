@@ -1141,9 +1141,16 @@ retry:
 }
 
 
-::file::path dir::app_install()
+::file::path dir::app_install(string strPlatform)
 {
 
-   return program_files_x86() / "ca2/install/stage" / process_platform_dir_name();
+   if(strPlatform.is_empty())
+   {
+
+      strPlatform = process_platform_dir_name();
+
+   }
+
+   return program_files_x86() / "ca2/install/stage" / strPlatform;
 
 }

@@ -227,24 +227,24 @@ namespace aura
 
       }
 
-      void rx::receiver::on_receive(rx * prxchannel,const char * pszMessage)
+      void rx::receiver::on_receive(rx * prx,const char * pszMessage)
       {
       }
 
-      void rx::receiver::on_receive(rx * prxchannel,int message,void * pdata,int len)
+      void rx::receiver::on_receive(rx * prx,int message,void * pdata,int len)
       {
       }
 
-      void rx::receiver::on_post(rx * prxchannel,int a,int b)
+      void rx::receiver::on_post(rx * prx,int a,int b)
       {
       }
 
-      void * rx::on_receive(rx * prxchannel,const char * pszMessage)
+      void * rx::on_receive(rx * prx,const char * pszMessage)
       {
 
          if(m_preceiver != NULL)
          {
-            m_preceiver->on_receive(prxchannel,pszMessage);
+            m_preceiver->on_receive(prx,pszMessage);
          }
 
          // ODOW - on date of writing : return ignored by this windows implementation
@@ -253,12 +253,12 @@ namespace aura
 
       }
 
-      void * rx::on_receive(rx * prxchannel,int message,void * pdata,int len)
+      void * rx::on_receive(rx * prx,int message,void * pdata,int len)
       {
 
          if(m_preceiver != NULL)
          {
-            m_preceiver->on_receive(prxchannel,message,pdata,len);
+            m_preceiver->on_receive(prx,message,pdata,len);
          }
 
          // ODOW - on date of writing : return ignored by this windows implementation
@@ -268,12 +268,12 @@ namespace aura
       }
 
 
-      void * rx::on_post(rx * prxchannel,int a,int b)
+      void * rx::on_post(rx * prx,int a,int b)
       {
 
          if(m_preceiver != NULL)
          {
-            m_preceiver->on_post(prxchannel,a,b);
+            m_preceiver->on_post(prx,a,b);
          }
 
          // ODOW - on date of writing : return ignored by this windows implementation

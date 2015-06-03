@@ -13,7 +13,7 @@ bool os_history::hist(const char * psz)
 
 #if !defined(METROWIN)
 
-   simple_shell_launcher launcher(NULL, "open", psz, "", "", SW_SHOWNORMAL);
+   ::aura::shell_launcher launcher(NULL, "open", psz, "", "", SW_SHOWNORMAL);
 
    launcher.execute();
 

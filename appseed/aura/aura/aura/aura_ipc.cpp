@@ -92,7 +92,7 @@ namespace aura
       }
 
 
-      string app_install(string strPlatform = "")
+      string app_install(string strPlatform)
       {
 
          if(strPlatform.is_empty())

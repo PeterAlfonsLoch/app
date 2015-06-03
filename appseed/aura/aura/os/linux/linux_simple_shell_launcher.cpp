@@ -1,7 +1,7 @@
 //#include "framework.h"
 
 
-void simple_shell_launcher::execute()
+void ::aura::shell_launcher::execute()
 {
 
     if(m_iMode == 0)
@@ -23,7 +23,7 @@ void simple_shell_launcher::execute()
 
 
 
-bool simple_shell_launcher::succeeded()
+bool ::aura::shell_launcher::succeeded()
 {
 
    return m_dwResult >= 0;

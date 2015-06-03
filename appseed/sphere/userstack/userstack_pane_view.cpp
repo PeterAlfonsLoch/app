@@ -546,7 +546,7 @@ namespace userstack
 //      {
 //
 //#ifndef METROWIN
-//         simple_shell_launcher launcher(NULL, NULL, "control.exe", "desk.cpl", NULL, SW_SHOWNORMAL);
+//         ::aura::shell_launcher launcher(NULL, NULL, "control.exe", "desk.cpl", NULL, SW_SHOWNORMAL);
 //
 //         launcher.execute();
 //#else

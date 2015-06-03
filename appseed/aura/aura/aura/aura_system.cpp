@@ -29,7 +29,7 @@ namespace aura
 {
 
 
-   //class ::id system::idEmpty;
+   class ::id system::idEmpty;
 
 
    system::system(::aura::application * papp) :

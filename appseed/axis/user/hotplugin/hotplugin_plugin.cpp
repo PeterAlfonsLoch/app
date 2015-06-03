@@ -245,7 +245,7 @@ namespace hotplugin
 
 #ifdef WINDOWSEX
 
-         ::PostMessage(m_phost->::small_ipc_channel::m_oswindow, WM_USER + 100, 3, 1);
+         ::PostMessage(m_phost->::aura::ipc::ipc::m_oswindow, WM_USER + 100, 3, 1);
 
 #else
 
@@ -706,7 +706,7 @@ namespace hotplugin
 
 #ifndef METROWIN
 
-         ::small_ipc_channel::close();
+         ::aura::ipc::ipc::close();
 
 #endif
 
@@ -1072,7 +1072,7 @@ namespace hotplugin
 #ifndef METROWIN
 
 #if !defined(LINUX) && !defined(APPLEOS) && !defined(ANDROID)
-      if(bEnsureTx || ::IsWindow(::::aura::ipc::tx::m_oswindow))
+      if(bEnsureTx || ::IsWindow(::aura::ipc::tx::m_oswindow))
 #endif
       {
 

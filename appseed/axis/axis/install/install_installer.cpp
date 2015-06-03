@@ -479,7 +479,7 @@ install_begin:;
 
          ::xml::document nodeInstall(get_app());
 
-         nodeInstall.load(file_as_string_dup(dir::appdata("install.xml")));
+         nodeInstall.load(file_as_string_dup(dir::appdata() / "install.xml"));
 
          ::xml::node * lpnodeVersion = nodeInstall.get_child(m_strVersion);
 
@@ -669,19 +669,11 @@ install_begin:;
 
          uint_array dwa;
 #ifndef METROWIN
-#ifdef X86
-         dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x86\\axis.dll"));
-         dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x86\\core.dll"));
-         dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x86\\os.dll"));
+         dll_processes(dwa, m_straTerminateProcesses, dir::stage() / "axis.dll");
+         dll_processes(dwa,m_straTerminateProcesses,dir::stage() / "core.dll");
+         dll_processes(dwa,m_straTerminateProcesses,dir::stage() / "os.dll");
          //dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x86\\npca2.dll"));
          //dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x86\\iexca2.dll"));
-#else
-         dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x64\\axis.dll"));
-         dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x64\\core.dll"));
-         dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x64\\os.dll"));
-         //dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x64\\npca2.dll"));
-         //dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x64\\iexca2.dll"));
-#endif
          // TODO: simular virtualmente a cópia dos arquivos também, se tiver aquivo travado, também retornar
 #endif
 
@@ -1016,7 +1008,7 @@ install_begin:;
 
                m_dProgress = m_dProgress2;
 
-               string strRelative = dir::path(dir::name(strCurrent),file_title_dup(strCurrent));
+               string strRelative = dir::name(strCurrent) / file_title_dup(strCurrent);
 
                string strStageInplace2 = ca2inplace_get_dir(strRelative) + ca2inplace_get_file(strRelative);
 
@@ -1119,9 +1111,7 @@ install_begin:;
             if(bDownload && (::str::ends_ci(strFileName,".exe") || ::str::ends_ci(strFileName,".dll")))
             {
 
-               string strPlatform = System.install().get_platform();
-
-               string strCandidate = ::dir::element("install\\stage\\" + strPlatform + "\\" + strFileName);
+               string strCandidate = ::dir::app_install(System.install().get_platform()) / strFileName;
 
                if(file_exists_dup(strCandidate)
                   && iLen != -1 && file_length_dup(strCandidate) == iLen
@@ -1737,7 +1727,7 @@ install_begin:;
       string file;
       if(m_bInternetInstall)
       {
-         dir = dir::path(dir::afterca2(), "time\\bz\\");
+         dir = dir::afterca2() / "time/bz";
       }
       else
       {
@@ -1777,7 +1767,7 @@ install_begin:;
       string file;
       if(m_bInternetInstall)
       {
-         dir = dir::path(dir::afterca2(), "time\\unbz\\");
+         dir = dir::afterca2() / "time/unbz";
       }
       else
       {
@@ -1904,7 +1894,7 @@ install_begin:;
       string dir;
       string url;
       string file;
-      dir = dir::path(dir::afterca2(), "time\\bz\\");
+      dir = dir::afterca2() / "time/bz";
       string strFind;
       index pos = url_in.find(m_strInstall);
       if(pos == 0)
@@ -1952,7 +1942,7 @@ install_begin:;
       string dir;
       string url;
       string file;
-      dir = dir::path(dir::afterca2(), "time\\unbz\\");
+      dir = dir::afterca2() /  "time/unbz";
       string strFind;
       index pos = url_in.find(m_strInstall);
       if(pos == 0)
@@ -2378,7 +2368,7 @@ install_begin:;
                   {
                      m_iStart = 4;
                      m_strCommandLine = string(lpnode->child_at(ui)->attr("start"));
-                     m_strApplicationId = get_command_line_param(m_strCommandLine, "app").trimmed();
+                     get_command_line_param(m_strApplicationId, m_strCommandLine,"app");
                   }
                }
                if(lpnode->child_at(ui)->attr("build").is_set())
@@ -2425,8 +2415,8 @@ install_begin:;
                      else if(string(lpnode->child_at(ui)->attr("type")) == "offline")
                      {
                         m_bOfflineInstall = true;
-                        m_strInstallGz = dir::path(lpnode->child_at(ui)->attr("src"), "stage.bz\\");
-                        m_strInstall = dir::path(lpnode->child_at(ui)->attr("src"), "stage\\");
+                        m_strInstallGz = ::file::path(lpnode->child_at(ui)->attr("src")) / "stage.bz";
+                        m_strInstall = ::file::path(lpnode->child_at(ui)->attr("src")) / "stage";
                      }
                      else if(string(lpnode->child_at(ui)->attr("type")) == "online")
                      {
@@ -2528,7 +2518,7 @@ install_begin:;
       if(strExec.substr(0, 15) == "install_service")
       {
          string strStage;
-         strStage = dir::path(dir::element(),strExec.substr(16));
+         strStage = dir::element() / strExec.substr(16);
 
 #ifdef METROWIN
 
@@ -2536,11 +2526,11 @@ install_begin:;
 
 #else
 
-         simple_shell_launcher launcher1(m_pwindow == NULL ? NULL : m_pwindow->get_safe_handle(), "open", strStage, " : remove usehostlogin", dir::name(strStage), SW_SHOWNORMAL);
+         ::aura::shell_launcher launcher1(m_pwindow == NULL ? NULL : m_pwindow->get_safe_handle(), "open", strStage, " : remove usehostlogin", dir::name(strStage), SW_SHOWNORMAL);
 
          launcher1.execute();
 
-         simple_shell_launcher launcher2(m_pwindow == NULL ? NULL : m_pwindow->get_safe_handle(),"open",strStage," : install usehostlogin",dir::name(strStage),SW_SHOWNORMAL);
+         ::aura::shell_launcher launcher2(m_pwindow == NULL ? NULL : m_pwindow->get_safe_handle(),"open",strStage," : install usehostlogin",dir::name(strStage),SW_SHOWNORMAL);
 
          launcher2.execute();
 
@@ -2553,15 +2543,14 @@ install_begin:;
          string str2 = strExec.substr(11);
          index iPos = str2.find(" ");
          string str3 = str2.substr(iPos + 1);
-         strStage = dir::element();
-         strStage = dir::path(strStage, str3);
+         strStage = dir::element() / str3;
 
 #ifdef METROWIN
 
          throw "todo";
 
 #else
-         simple_shell_launcher launcher(m_pwindow == NULL ? NULL : m_pwindow->get_safe_handle(), "open", strStage, (" : " + str2.substr(0, iPos) + " usehostlogin"), dir::name(strStage), SW_SHOWNORMAL);
+         ::aura::shell_launcher launcher(m_pwindow == NULL ? NULL : m_pwindow->get_safe_handle(), "open", strStage, (" : " + str2.substr(0, iPos) + " usehostlogin"), dir::name(strStage), SW_SHOWNORMAL);
 
          launcher.execute();
 
@@ -2642,7 +2631,9 @@ install_begin:;
 
       string strCommandLine = m_strCommandLine;
 
-      if(get_command_line_param(strCommandLine, "build_number").trimmed().is_empty())
+      string strBuildNumberParam;
+
+      if(!get_command_line_param(strBuildNumberParam,strCommandLine,"build_number") || strBuildNumberParam.is_empty())
       {
 
          strCommandLine += " build_number=\"" + m_strBuild + "\"";
@@ -2845,7 +2836,7 @@ install_begin:;
 
       m_strApplicationId         = get_command_line_param(pszCommandLine, "app", "session", "session_start").trimmed();
 
-      m_strApplicationType       = get_command_line_param(pszCommandLine, "app_type").trimmed();
+      get_command_line_param(m_strApplicationType, pszCommandLine,"app_type");
 
       if(m_strApplicationId.is_empty())
          return -1;
@@ -2853,11 +2844,11 @@ install_begin:;
       if(m_strApplicationType.is_empty())
          m_strApplicationType    = "application";
 
-      m_strInstallLocale         = get_command_line_param(pszCommandLine, "locale").trimmed();
+      get_command_line_param(m_strInstallLocale, pszCommandLine,"locale");
 
-      m_strInstallSchema         = get_command_line_param(pszCommandLine, "schema").trimmed();
+      get_command_line_param(m_strInstallSchema,pszCommandLine,"schema");
 
-      m_strVersion               = get_command_line_param(pszCommandLine, "version").trimmed();
+      get_command_line_param(m_strVersion,pszCommandLine,"version");
 
       if(m_strVersion.is_empty())
          m_strVersion = "basis";
@@ -3023,8 +3014,8 @@ install_begin:;
 
       strName = strStatusTemplate;
       strName = strName + " " + m_strBuild;
-      strName = strName + " \"" + get_command_line_param(m_strCommandLine, "locale").trimmed();
-      strName = strName + "\" \"" + get_command_line_param(m_strCommandLine, "schema").trimmed() + "\"";
+      strName = strName + ::str::has_char(get_command_line_param2(m_strCommandLine,"locale")," \"","\"");
+      strName = strName + ::str::has_char(get_command_line_param2(m_strCommandLine,"schema")," \"","\"");
       System.install().trace().rich_trace((":::::" + strName));
 
       m_strTitle = strName;
@@ -3390,8 +3381,8 @@ RetryBuildNumber:
 
       strName = strStatusTemplate;
       strName = strName + " " + m_strBuild;
-      strName = strName + " \"" + get_command_line_param(m_strCommandLine,"locale").trimmed();
-      strName = strName + "\" \"" + get_command_line_param(m_strCommandLine,"schema").trimmed() + "\"";
+      strName = strName + ::str::has_char(get_command_line_param2(m_strCommandLine,"locale")," \"","\"");
+      strName = strName + ::str::has_char(get_command_line_param2(m_strCommandLine,"schema")," \"","\"");
       System.install().trace().rich_trace((":::::" + strName));
 
       m_strTitle = strName;
@@ -3514,7 +3505,9 @@ RetryBuildNumber:
 
       if(strFile.is_empty())
       {
-         strFile = dir::path(dir::module_folder(), "spa.xml");
+
+         strFile = dir::module() / "spa.xml";
+
       }
 
       return run_file(strFile, nCmdShow);
@@ -3560,13 +3553,13 @@ RetryBuildNumber:
    bool installer::init_instance(int32_t nCmdShow)
    {
 
-      m_strInstallGz = dir::module_folder("core\\bz\\stage\\");
-      m_strInstall = dir::module_folder("core\\stage\\");
+      m_strInstallGz = dir::module() / "core/bz/stage";
+      m_strInstall = dir::module() / "core/stage";
 
-      m_strIndexGz = dir::path(m_strInstallGz, ("app\\stage\\metastage\\" + m_strApplicationId + ".spa.bz"));
-      m_strIndex = dir::path(m_strInstallGz, ("app\\stage\\metastage\\" + m_strApplicationId + ".spa"));
+      m_strIndexGz = m_strInstallGz / ("app/stage/metastage/" + m_strApplicationId + ".spa.bz");
+      m_strIndex = m_strInstallGz / ("app/stage/metastage/" + m_strApplicationId + ".spa");
 
-      bool bOfflineInstall1 = dir::is(dir::module_folder("core\\bz"));
+      bool bOfflineInstall1 = dir::is(dir::module() / "core/bz");
       //bool bOfflineInstall2 = file_exists_dup(g_strIndexGz);
       //m_bOfflineInstall = bOfflineInstall1 && bOfflineInstall2;
       m_bOfflineInstall = bOfflineInstall1;
@@ -3575,7 +3568,7 @@ RetryBuildNumber:
       // since the spa.xml is not present and contains turning information.
       if(!m_bOfflineInstall && (m_strApplicationId.length() == 0 || (!m_bForceUpdatedBuild && m_strBuildResource.length() == 0)))
       {
-         string str = file_as_string_dup(dir::module_folder("spa.xml"));
+         string str = file_as_string_dup(dir::module() / "spa.xml");
          ::xml::document node(get_app());
          node.load(str);
          ParseSpaIndex(node);
@@ -3603,8 +3596,8 @@ RetryBuildNumber:
 
 
 
-      m_strIndexGz = dir::path(m_strInstallGz, ("app\\stage\\metastage\\" + m_strApplicationId + ".spa.bz"));
-      m_strIndex = dir::path(m_strInstallGz, ("app\\stage\\metastage\\" + m_strApplicationId + ".spa"));
+      m_strIndexGz = m_strInstallGz / ("app\\stage\\metastage\\" + m_strApplicationId + ".spa.bz");
+      m_strIndex = m_strInstallGz / ("app\\stage\\metastage\\" + m_strApplicationId + ".spa");
 
       m_bInternetInstall = !m_bOfflineInstall;
 
@@ -3926,7 +3919,7 @@ RetryBuildNumber:
 
    void installer::add_spa_start(const char * pszId)
    {
-      string strPath = dir::appdata("spa_start.xml");
+      string strPath = dir::appdata()/"spa_start.xml";
       string strContents = file_as_string_dup(strPath);
       ::xml::document node(get_app());
       node.load(strContents);
@@ -3942,7 +3935,7 @@ RetryBuildNumber:
 
    void installer::remove_spa_start(const char * pszId)
    {
-      string strPath = dir::appdata("spa_start.xml");
+      string strPath = dir::appdata()/ "spa_start.xml";
       string strContents = file_as_string_dup(strPath);
       ::xml::document node(get_app());
       node.load(strContents);
@@ -4173,7 +4166,7 @@ RetryBuildNumber:
       ::aura::library libraryCore(get_app());
 
       // load core library so that a core system is alloced
-      libraryCore.open(dir::path(dir::element(),"stage\\" + strPlatform + "\\core"));
+      libraryCore.open(dir::stage() / "core");
 
       fn_defer_core_init * pfn_core_init = libraryCore.get< fn_defer_core_init *>("defer_core_init");
 
@@ -4181,13 +4174,13 @@ RetryBuildNumber:
 
       ::aura::library libraryOs(get_app());
 
-      libraryOs.open(dir::path(dir::element(), "stage\\" + strPlatform + "\\app_core"));
+      libraryOs.open(dir::stage() / "app_core");
 
       PFN_APP_CORE_MAIN pfn_app_core_main = (PFN_APP_CORE_MAIN)libraryOs.raw_get("app_core_main");
 
       string strFullCommandLine;
 
-      strFullCommandLine = dir::path(dir::element(), ("stage\\" + strPlatform + "\\app.exe"));
+      strFullCommandLine = ::path::app();
 
       strFullCommandLine = "\"" + strFullCommandLine + "\" ";
 

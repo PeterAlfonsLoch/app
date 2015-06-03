@@ -16,15 +16,7 @@ namespace hotplugin
    string container_launcher::get_executable_path()
    {
 
-#ifdef _M_IX86
-
-      return dir::element("stage/x86/app.plugin.container.exe");
-
-#else
-
-      return dir::element("stage/x64/app.plugin.container.exe");
-
-#endif
+      return ::path::app_plugin_container();
 
    }
 

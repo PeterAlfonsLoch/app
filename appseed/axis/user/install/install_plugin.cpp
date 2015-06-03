@@ -88,7 +88,7 @@ namespace install
 
 #ifdef METROWIN
 
-      throw "todo"; // small_ipc_channel
+      throw "todo"; // aura::ipc::ipc
 
 #else
 
@@ -399,7 +399,7 @@ namespace install
 
       set.parse_url_query(m_straLinesNativeLaunch[1]);
 
-      string strPath = dir::element("stage/x86/app.exe");
+      string strPath = ::path::app();
 
       string strCommandLine;
 
@@ -760,7 +760,7 @@ namespace install
 
          // remove install tag : should be turned into a function dependant of spalib at maximum
 
-         if(!node.load(file_as_string_dup(dir::appdata("install.xml"))))
+         if(!node.load(file_as_string_dup(dir::appdata() / "install.xml")))
             goto run_install;
 
 
@@ -796,7 +796,7 @@ namespace install
 
          lpnodeType->remove_child(pnode);
 
-         file_put_contents_dup(dir::appdata("install.xml"), node.get_xml(NULL));
+         file_put_contents_dup(dir::appdata() / "install.xml", node.get_xml(NULL));
 
       }
 
@@ -1159,15 +1159,7 @@ namespace install
 
       DWORD dwRead;
 
-#if defined(_M_IX86)
-
-      HANDLE hfile = ::create_file(dir::element("install-x86.log"), GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
-
-#else
-
-      HANDLE hfile = ::create_file(dir::element("install-x64.log"),GENERIC_READ,FILE_SHARE_READ | FILE_SHARE_WRITE,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
-
-#endif
+      HANDLE hfile = ::create_file(::path::install_log(), GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
       double dRate = 0.0;
 
@@ -1279,10 +1271,10 @@ namespace install
 #ifndef METROWIN
 
 
-   void plugin::on_receive(small_ipc_rx_channel * prxchannel, int32_t message, void * pdata, int32_t len)
+   void plugin::on_receive(::aura::ipc::rx * prx, int32_t message, void * pdata, int32_t len)
    {
 
-      if(prxchannel == &m_rxchannel)
+      if(prx == &m_rx)
       {
 
          if(message == ::hotplugin::message_open_url)
@@ -1299,10 +1291,10 @@ namespace install
    }
 
 
-   void plugin::on_post(small_ipc_rx_channel * prxchannel, int64_t a, int64_t b)
+   void plugin::on_post(::aura::ipc::rx * prx, int64_t a, int64_t b)
    {
 
-      if(prxchannel == &m_rxchannel)
+      if(prx == &m_rx)
       {
 
          if(a == 1)

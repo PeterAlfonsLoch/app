@@ -1071,7 +1071,7 @@ namespace aura
       if(::str::begins_eat(strUrl,"ext://"))
       {
          Application.open_link(strUrl,lpszTargetFrameName);
-         /*         simple_shell_launcher launcher(NULL, "open", strUrl, "", "", SW_SHOWNORMAL);
+         /*         ::aura::shell_launcher launcher(NULL, "open", strUrl, "", "", SW_SHOWNORMAL);
          launcher.execute();*/
 
          *pbCancel = true;

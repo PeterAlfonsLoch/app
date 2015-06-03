@@ -38,7 +38,7 @@ namespace dir
 #endif;
    CLASS_DECL_AURA ::file::path a_spa();
    CLASS_DECL_AURA ::file::path stage();
-   CLASS_DECL_AURA ::file::path app_install();
+   CLASS_DECL_AURA ::file::path app_install(string strPlatform = "");
    CLASS_DECL_AURA ::file::path sys_temp();
 
 } // namespace dir

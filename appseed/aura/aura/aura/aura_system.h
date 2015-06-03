@@ -41,7 +41,7 @@ namespace aura
       ::exception::engine *                        m_peengine;
 
 
-      //static class id                              idEmpty;
+      static class id                              idEmpty;
       class ::str::base64                          m_base64;
 
       ::string_to_string                           m_mapAppLibrary;

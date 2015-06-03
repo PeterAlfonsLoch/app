@@ -122,6 +122,22 @@ string get_command_line_param(const char * pszCommandLine, const char * pszParam
 //}
 
 
+string get_command_line_param2(const char * psz,const char * pszParam)
+{
+
+   string str;
+
+   if(!get_command_line_param(str,psz,pszParam))
+   {
+      
+      return "";
+
+   }
+
+   return str;
+
+}
+
 
 bool get_command_line_param(string & wstrValue,const char * psz,const char * pszParam)
 {
