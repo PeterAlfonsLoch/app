@@ -9,14 +9,14 @@ namespace aura
 
    class CLASS_DECL_AURA ipi:
       virtual public object,
-      virtual public small_ipc_rx_channel::receiver
+      virtual public ::aura::ipc::rx::receiver
    {
    public:
 
 
       string                                 m_strApp;
-      string_map < small_ipc_tx_channel >    m_txmap;
-      small_ipc_rx_channel                   m_rx;
+      string_map < ::aura::ipc::tx >         m_txmap;
+      ::aura::ipc::rx                        m_rx;
 
       ipi(::aura::application * papp,const string & strApp);
 
@@ -35,7 +35,7 @@ namespace aura
 
       virtual var call(const string & strApp,const string & strObject,const string & strMember,var_array & va);
 
-      small_ipc_tx_channel & tx(const string & strApp);
+      ::aura::ipc::tx & tx(const string & strApp);
 
       virtual string key(const string &strApp);
 
@@ -43,7 +43,7 @@ namespace aura
 
       virtual void on_call(const string & strObject,const string & strMember,var_array & va);
 
-      virtual void on_receive(small_ipc_rx_channel * prxchannel,const char * pszMessage);
+      virtual void on_receive(::aura::ipc::rx * prx,const char * pszMessage);
 
       virtual void start_app(const string & strApp);
 

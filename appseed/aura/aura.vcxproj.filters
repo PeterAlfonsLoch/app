@@ -1265,12 +1265,6 @@
     <ClInclude Include="aura\aura\aura_simple_pixel_font.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_simple_shell_launcher.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\aura_small_ipc_channel.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
     <ClInclude Include="aura\aura\aura_smart_pointer1.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
@@ -2030,10 +2024,16 @@
     <ClInclude Include="aura\aura\aura_ipi.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_simple_app_launcher.h">
+    <ClInclude Include="aura\aura\aura_app_core.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_app_core.h">
+    <ClInclude Include="aura\aura\aura_ipc.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_app_launcher.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_shell_launcher.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
   </ItemGroup>
@@ -2743,12 +2743,6 @@
     <ClCompile Include="aura\aura\aura_session.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_simple_shell_launcher.cpp">
-      <Filter>Source Files\aura\aura</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\aura\aura_small_ipc_channel.cpp">
-      <Filter>Source Files\aura\aura</Filter>
-    </ClCompile>
     <ClCompile Include="aura\aura\aura_sprintf.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
@@ -3406,13 +3400,19 @@
     <ClCompile Include="filesystem\_filesystem.cpp">
       <Filter>Source Files\filesystem</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_simple_app_launcher.cpp">
-      <Filter>Source Files\aura\aura</Filter>
-    </ClCompile>
     <ClCompile Include="aura\aura\aura_ipi.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
     <ClCompile Include="aura\aura\aura_app_core.cpp">
+      <Filter>Source Files\aura\aura</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\aura\aura_ipc.cpp">
+      <Filter>Source Files\aura\aura</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\aura\aura_shell_launcher.cpp">
+      <Filter>Source Files\aura\aura</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\aura\aura_app_launcher.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
   </ItemGroup>

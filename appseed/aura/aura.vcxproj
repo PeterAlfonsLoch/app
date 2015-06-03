@@ -1623,6 +1623,7 @@
     <ClInclude Include="aura\aura\aura_application_ptra.h" />
     <ClInclude Include="aura\aura\aura_application_signal_details.h" />
     <ClInclude Include="aura\aura\aura_app_core.h" />
+    <ClInclude Include="aura\aura\aura_app_launcher.h" />
     <ClInclude Include="aura\aura\aura_assert_running_task.h" />
     <ClInclude Include="aura\aura\aura_async.h" />
     <ClInclude Include="aura\aura\aura_aura.h" />
@@ -1667,6 +1668,7 @@
     <ClInclude Include="aura\aura\aura_id_pool.h" />
     <ClInclude Include="aura\aura\aura_interaction.h" />
     <ClInclude Include="aura\aura\aura_international.h" />
+    <ClInclude Include="aura\aura\aura_ipc.h" />
     <ClInclude Include="aura\aura\aura_ipi.h" />
     <ClInclude Include="aura\aura\aura_keep.h" />
     <ClInclude Include="aura\aura\aura_local_memory_map.h" />
@@ -1703,11 +1705,9 @@
     <ClInclude Include="aura\aura\aura_restore.h" />
     <ClInclude Include="aura\aura\aura_savings.h" />
     <ClInclude Include="aura\aura\aura_session.h" />
+    <ClInclude Include="aura\aura\aura_shell_launcher.h" />
     <ClInclude Include="aura\aura\aura_simple_app.h" />
-    <ClInclude Include="aura\aura\aura_simple_app_launcher.h" />
     <ClInclude Include="aura\aura\aura_simple_pixel_font.h" />
-    <ClInclude Include="aura\aura\aura_simple_shell_launcher.h" />
-    <ClInclude Include="aura\aura\aura_small_ipc_channel.h" />
     <ClInclude Include="aura\aura\aura_smart_pointer1.h" />
     <ClInclude Include="aura\aura\aura_smart_pointer2.h" />
     <ClInclude Include="aura\aura\aura_sprintf.h" />
@@ -2460,7 +2460,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_simple_app_launcher.cpp">
+    <ClCompile Include="aura\aura\aura_app_launcher.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">true</ExcludedFromBuild>
@@ -6311,7 +6311,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_profiler|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_simple_shell_launcher.cpp">
+    <ClCompile Include="aura\aura\aura_shell_launcher.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -6329,7 +6329,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_profiler|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_small_ipc_channel.cpp">
+    <ClCompile Include="aura\aura\aura_ipc.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>

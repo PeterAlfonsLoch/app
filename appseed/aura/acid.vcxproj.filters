@@ -1448,12 +1448,6 @@
     <ClInclude Include="aura\aura\aura_simple_pixel_font.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_simple_shell_launcher.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\aura_small_ipc_channel.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
     <ClInclude Include="aura\aura\aura_smart_pointer1.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
@@ -1711,6 +1705,15 @@
     </ClInclude>
     <ClInclude Include="filesystem\file\file_path.h">
       <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_ipc.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_app_launcher.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_shell_launcher.h">
+      <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

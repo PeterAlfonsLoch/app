@@ -1438,9 +1438,10 @@
     <ClInclude Include="aura\aura\aura_savings.h" />
     <ClInclude Include="aura\aura\aura_session.h" />
     <ClInclude Include="aura\aura\aura_simple_app.h" />
+    <ClInclude Include="aura\aura\aura_app_launcher.h" />
     <ClInclude Include="aura\aura\aura_simple_pixel_font.h" />
-    <ClInclude Include="aura\aura\aura_simple_shell_launcher.h" />
-    <ClInclude Include="aura\aura\aura_small_ipc_channel.h" />
+    <ClInclude Include="aura\aura\aura_shell_launcher.h" />
+    <ClInclude Include="aura\aura\aura_ipc.h" />
     <ClInclude Include="aura\aura\aura_smart_pointer1.h" />
     <ClInclude Include="aura\aura\aura_smart_pointer2.h" />
     <ClInclude Include="aura\aura\aura_sprintf.h" />

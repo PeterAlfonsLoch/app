@@ -1,447 +1,463 @@
-//#include "framework.h"
 
 
-/*//#include <sys/ipc.h>
-//#include <sys/msg.h>*/
-//#include <unistd.h>
-//#include <pthread.h>
-
-
-small_ipc_channel_base::small_ipc_channel_base()
-{
-      m_key = 0;
-      m_iQueue = -1;
-}
-
-small_ipc_channel_base::~small_ipc_channel_base()
-{
-}
-
-
-
-bool small_ipc_tx_channel::open(const char * pszKey, launcher * plauncher)
+namespace aura
 {
 
-   if(m_iQueue >= 0)
-      close();
 
-/*   m_key = ftok(".", 'c');
-
-   if(m_key == 0)
-      return false;
-
-   if((m_iQueue = msgget(m_key, 0660)) == -1)
-   {
-      return false;
-   }
-
-   m_strKey = pszKey;*/
-
-   return true;
-
-}
-
-bool small_ipc_tx_channel::close()
-{
-
-   if(m_iQueue < 0)
-      return true;
-
-   m_iQueue = -1;
-
-   m_strKey = "";
-
-   return true;
-
-}
-
-
-bool small_ipc_tx_channel::send(const char * pszMessage, DWORD dwTimeout)
-{
-
-   data_struct data;
-   data.mtype        = 15111984;
-   data.request      = 0;
-   data.size         = strlen_dup(pszMessage);
-   if(data.size > 512)
-      return false;
-
-   /* The length is essentially the size of the structure minus sizeof(mtype) */
-   int32_t length = sizeof(data_struct) - sizeof(long);
-
-   int32_t result;
-/*
-   if((result = msgsnd(m_iQueue, &data, length, 0)) == -1)
-   {
-      return false;
-   }
-   */
-   return true;
-}
-
-
-bool small_ipc_tx_channel::send(int32_t message, void * pdata, int32_t len, DWORD dwTimeout)
-{
-
-   if(message == 0x80000000)
-      return false;
-
-
-   if(!is_tx_ok())
-      return false;
-
-   const char * pszMessage = (const char *) pdata;
-
-   ::count c = len;
-
-   ::count cSend;
-
-   data_struct data;
-   data.mtype        = 15111984;
-   data.request      = 0x80000000;
-   data.size         = (int32_t)strlen_dup(pszMessage);
-
-   ::count cPos = 0;
-
-   while(c > 0)
+   namespace ipc
    {
 
-      cSend = MIN(c, 511);
 
-      memcpy(data.data, &pszMessage[cPos], MIN(c, 511));
-
-      c -= cSend;
-
-      cPos += cSend;
-
-      if(c > 0)
-         data.size = 512;
-      else
-         data.size = (int32_t) cSend;
-
-      /* The length is essentially the size of the structure minus sizeof(mtype) */
-      int32_t length = sizeof(data_struct) - sizeof(long);
-
-      int32_t result;
-      /*
-      if((result = msgsnd(m_iQueue, &data, length, 0)) == -1)
+      base::base()
       {
-         return false;
+         m_key = 0;
+         m_iQueue = -1;
       }
-      */
-   }
 
-   return true;
-
-}
-
-
-
-bool small_ipc_tx_channel::is_tx_ok()
-{
-
-   return m_iQueue != -1;
-
-}
-
-
-small_ipc_rx_channel::small_ipc_rx_channel()
-{
-
-   m_preceiver    = NULL;
-
-}
-
-
-small_ipc_rx_channel::~small_ipc_rx_channel()
-{
-
-}
-
-
-bool small_ipc_rx_channel::create(const char * pszKey)
-{
-   /*
-   m_key = ftok(".", 'c');
-
-   if(m_key == 0)
-      return false;
-
-   if((m_iQueue = msgget(m_key, IPC_CREAT | IPC_EXCL | 0660 )) == -1)
-   {
-          return false;
-   }
-   */
-
-   return true;
-}
-
-
-bool small_ipc_rx_channel::destroy()
-{
-
-   int32_t iRetry = 23;
-   while(m_bRunning && iRetry > 0)
-   {
-      m_bRun = false;
-      sleep(1);
-      iRetry--;
-   }
-
-   if(m_iQueue < 0)
-      return true;
-   /*
-   if(msgctl( m_iQueue, IPC_RMID, 0) == -1)
-   {
-      return false;
-   }
-   */
-   m_iQueue = -1;
-
-   return true;
-
-}
-
-bool small_ipc_rx_channel::start_receiving()
-{
-
-   m_bRunning = true;
-
-   m_bRun = true;
-
-   if(pthread_create((pthread_t *) m_pthread, NULL, &small_ipc_rx_channel::receive_proc, this) != 0)
-   {
-
-      m_bRunning = false;
-
-      m_bRun = false;
-
-      return false;
-
-   }
-
-   return true;
-
-}
-
-void * small_ipc_rx_channel::receive_proc(void * param)
-{
-
-   small_ipc_rx_channel * pchannel = (small_ipc_rx_channel *) param;
-
-   return pchannel->receive();
-
-}
-
-
-
-void small_ipc_rx_channel::receiver::on_receive(small_ipc_rx_channel * prxchannel, const char * pszMessage)
-{
-}
-
-void small_ipc_rx_channel::receiver::on_receive(small_ipc_rx_channel * prxchannel, int32_t message, void * pdata, int32_t len)
-{
-}
-
-void small_ipc_rx_channel::receiver::on_post(small_ipc_rx_channel * prxchannel, int64_t a, int64_t b)
-{
-}
-
-
-
-void * small_ipc_rx_channel::on_receive(small_ipc_rx_channel * prxchannel, const char * pszMessage)
-{
-
-   if(m_preceiver != NULL)
-   {
-      m_preceiver->on_receive(prxchannel, pszMessage);
-   }
-
-   // ODOW - on date of writing : return ignored by this windows implementation
-
-   return NULL;
-
-}
-
-void * small_ipc_rx_channel::on_receive(small_ipc_rx_channel * prxchannel, int32_t message, void * pdata, int32_t len)
-{
-
-   if(m_preceiver != NULL)
-   {
-      m_preceiver->on_receive(prxchannel, message, pdata, len);
-   }
-
-   // ODOW - on date of writing : return ignored by this windows implementation
-
-   return NULL;
-
-}
-
-
-
-
-void * small_ipc_rx_channel::on_post(small_ipc_rx_channel * prxchannel, int64_t a, int64_t b)
-{
-
-   if(m_preceiver != NULL)
-   {
-      m_preceiver->on_post(prxchannel, a, b);
-   }
-
-   // ODOW - on date of writing : return ignored by this windows implementation
-
-   return NULL;
-
-}
-
-
-
-bool small_ipc_rx_channel::on_idle()
-{
-
-   return false;
-
-}
-
-
-bool small_ipc_rx_channel::is_rx_ok()
-{
-
-   return m_iQueue != -1;
-}
-
-
-
-
-
-
-void * small_ipc_rx_channel::receive()
-{
-
-   while(m_bRun)
-   {
-
-      m_bRunning = true;
-
-      ssize_t  result;
-
-      int32_t length;
-
-      data_struct data;
-
-      /* The length is essentially the size of the structure minus sizeof(mtype) */
-      length = sizeof(data_struct) - sizeof(long);
-
-      ::primitive::memory mem;
-
-      do
+      base::~base()
       {
+      }
+
+
+
+      bool tx::open(const char * pszChannel,launcher * plauncher)
+      {
+
+         if(m_iQueue >= 0)
+            close();
+
+         /*   m_key = ftok(".", 'c');
+
+            if(m_key == 0)
+            return false;
+
+            if((m_iQueue = msgget(m_key, 0660)) == -1)
+            {
+            return false;
+            }
+
+            m_strKey = pszChannel;*/
+
+         return true;
+
+      }
+
+      bool tx::close()
+      {
+
+         if(m_iQueue < 0)
+            return true;
+
+         m_iQueue = -1;
+
+         m_strKey = "";
+
+         return true;
+
+      }
+
+
+      bool tx::send(const char * pszMessage,DWORD dwTimeout)
+      {
+
+         data_struct data;
+         data.mtype        = 15111984;
+         data.request      = 0;
+         data.size         = strlen_dup(pszMessage);
+         if(data.size > 512)
+            return false;
+
+         /* The length is essentially the size of the structure minus sizeof(mtype) */
+         int32_t length = sizeof(data_struct) - sizeof(long);
+
+         int32_t result;
          /*
-         if((result = msgrcv(m_iQueue, &data, length, 15111984, IPC_NOWAIT)) == -1)
+            if((result = msgsnd(m_iQueue, &data, length, 0)) == -1)
+            {
+            return false;
+            }
+            */
+         return true;
+      }
+
+
+      bool tx::send(int32_t message,void * pdata,int32_t len,DWORD dwTimeout)
+      {
+
+         if(message == 0x80000000)
+            return false;
+
+
+         if(!is_tx_ok())
+            return false;
+
+         const char * pszMessage = (const char *)pdata;
+
+         ::count c = len;
+
+         ::count cSend;
+
+         data_struct data;
+         data.mtype        = 15111984;
+         data.request      = 0x80000000;
+         data.size         = (int32_t)strlen_dup(pszMessage);
+
+         ::count cPos = 0;
+
+         while(c > 0)
          {
 
-            if(errno == ENOMSG)
+            cSend = MIN(c,511);
+
+            memcpy(data.data,&pszMessage[cPos],MIN(c,511));
+
+            c -= cSend;
+
+            cPos += cSend;
+
+            if(c > 0)
+               data.size = 512;
+            else
+               data.size = (int32_t)cSend;
+
+            /* The length is essentially the size of the structure minus sizeof(mtype) */
+            int32_t length = sizeof(data_struct) - sizeof(long);
+
+            int32_t result;
+            /*
+            if((result = msgsnd(m_iQueue, &data, length, 0)) == -1)
             {
+            return false;
+            }
+            */
+         }
+
+         return true;
+
+      }
+
+
+
+      bool tx::is_tx_ok()
+      {
+
+         return m_iQueue != -1;
+
+      }
+
+
+      rx::rx()
+      {
+
+         m_preceiver    = NULL;
+
+      }
+
+
+      rx::~rx()
+      {
+
+      }
+
+
+      bool rx::create(const char * pszChannel)
+      {
+         /*
+         m_key = ftok(".", 'c');
+
+         if(m_key == 0)
+         return false;
+
+         if((m_iQueue = msgget(m_key, IPC_CREAT | IPC_EXCL | 0660 )) == -1)
+         {
+         return false;
+         }
+         */
+
+         return true;
+      }
+
+
+      bool rx::destroy()
+      {
+
+         int32_t iRetry = 23;
+         while(m_bRunning && iRetry > 0)
+         {
+            m_bRun = false;
+            sleep(1);
+            iRetry--;
+         }
+
+         if(m_iQueue < 0)
+            return true;
+         /*
+         if(msgctl( m_iQueue, IPC_RMID, 0) == -1)
+         {
+         return false;
+         }
+         */
+         m_iQueue = -1;
+
+         return true;
+
+      }
+
+      bool rx::start_receiving()
+      {
+
+         m_bRunning = true;
+
+         m_bRun = true;
+
+         if(pthread_create((pthread_t *)m_pthread,NULL,&rx::receive_proc,this) != 0)
+         {
+
+            m_bRunning = false;
+
+            m_bRun = false;
+
+            return false;
+
+         }
+
+         return true;
+
+      }
+
+      void * rx::receive_proc(void * param)
+      {
+
+         rx * pchannel = (rx *)param;
+
+         return pchannel->receive();
+
+      }
+
+
+
+      void rx::receiver::on_receive(rx * prxchannel,const char * pszMessage)
+      {
+      }
+
+      void rx::receiver::on_receive(rx * prxchannel,int32_t message,void * pdata,int32_t len)
+      {
+      }
+
+      void rx::receiver::on_post(rx * prxchannel,int64_t a,int64_t b)
+      {
+      }
+
+
+
+      void * rx::on_receive(rx * prxchannel,const char * pszMessage)
+      {
+
+         if(m_preceiver != NULL)
+         {
+            m_preceiver->on_receive(prxchannel,pszMessage);
+         }
+
+         // ODOW - on date of writing : return ignored by this windows implementation
+
+         return NULL;
+
+      }
+
+      void * rx::on_receive(rx * prxchannel,int32_t message,void * pdata,int32_t len)
+      {
+
+         if(m_preceiver != NULL)
+         {
+            m_preceiver->on_receive(prxchannel,message,pdata,len);
+         }
+
+         // ODOW - on date of writing : return ignored by this windows implementation
+
+         return NULL;
+
+      }
+
+
+
+
+      void * rx::on_post(rx * prxchannel,int64_t a,int64_t b)
+      {
+
+         if(m_preceiver != NULL)
+         {
+            m_preceiver->on_post(prxchannel,a,b);
+         }
+
+         // ODOW - on date of writing : return ignored by this windows implementation
+
+         return NULL;
+
+      }
+
+
+
+      bool rx::on_idle()
+      {
+
+         return false;
+
+      }
+
+
+      bool rx::is_rx_ok()
+      {
+
+         return m_iQueue != -1;
+      }
+
+
+
+
+
+
+      void * rx::receive()
+      {
+
+         while(m_bRun)
+         {
+
+            m_bRunning = true;
+
+            ssize_t  result;
+
+            int32_t length;
+
+            data_struct data;
+
+            /* The length is essentially the size of the structure minus sizeof(mtype) */
+            length = sizeof(data_struct) - sizeof(long);
+
+            ::primitive::memory mem;
+
+            do
+            {
+               /*
+               if((result = msgrcv(m_iQueue, &data, length, 15111984, IPC_NOWAIT)) == -1)
+               {
+
+               if(errno == ENOMSG)
+               {
                if(!on_idle())
                {
-                  Sleep(100);
+               Sleep(100);
                }
+               }
+               else
+               {
+               return (void *) -1;
+               }
+
+               }
+               */
+               mem.assign(data.data,data.size);
+
+
+               if(data.size < 512)
+                  break;
+
+            } while(true);
+
+
+            if(data.request == 0)
+            {
+
+               on_receive(this,mem.to_string());
+
             }
             else
             {
-               return (void *) -1;
+
+               on_receive(this,data.request,mem.get_data(),mem.get_size());
+
             }
 
          }
-         */
-         mem.assign(data.data, data.size);
 
+         m_bRunning = false;
 
-         if(data.size < 512)
-            break;
+         return NULL;
 
       }
-      while(true);
 
 
-      if(data.request == 0)
+
+      bool ipc::open_ab(const char * pszChannel,launcher * plauncher)
       {
 
-         on_receive(this, mem.to_string());
+         m_strChannel = pszChannel;
+
+         m_rx.m_preceiver = this;
+
+         string strChannelRx = m_strChannel + "-a";
+
+         string strChannelTx = m_strChannel + "-b";
+
+
+         if(!m_rx.create(strChannelRx))
+         {
+            return false;
+         }
+
+         if(!tx::open(strChannelTx,plauncher))
+         {
+            return false;
+         }
+
+         return true;
 
       }
-      else
+
+      bool ipc::open_ba(const char * pszChannel,launcher * plauncher)
       {
 
-         on_receive(this, data.request, mem.get_data(), mem.get_size());
+         m_strChannel = pszChannel;
+
+         m_rx.m_preceiver = this;
+
+         string strChannelRx = m_strChannel + "-b";
+         string strChannelTx = m_strChannel + "-a";
+
+
+         if(!m_rx.create(strChannelRx))
+         {
+            return false;
+         }
+
+         if(!tx::open(strChannelTx,plauncher))
+         {
+            return false;
+         }
+
+         return true;
 
       }
 
-   }
-
-   m_bRunning = false;
-
-   return NULL;
-
-}
 
 
+      bool ipc::is_rx_tx_ok()
+      {
 
-bool small_ipc_channel::open_ab(const char * pszKey, launcher * plauncher)
-{
+         return m_rx.is_rx_ok() && is_tx_ok();
 
-   m_vssChannel = pszKey;
-
-   m_rxchannel.m_preceiver = this;
-
-   string strChannelRx = m_vssChannel + "-a";
-   string strChannelTx = m_vssChannel + "-b";
+      }
 
 
-   if(!m_rxchannel.create(strChannelRx))
-   {
-      return false;
-   }
-
-   if(!small_ipc_tx_channel::open(strChannelTx, plauncher))
-   {
-      return false;
-   }
-
-   return true;
-
-}
-
-bool small_ipc_channel::open_ba(const char * pszKey, launcher * plauncher)
-{
-
-   m_vssChannel = pszKey;
-
-   m_rxchannel.m_preceiver = this;
-
-   string strChannelRx = m_vssChannel + "-b";
-   string strChannelTx = m_vssChannel + "-a";
+   } // namespace ipc
 
 
-   if(!m_rxchannel.create(strChannelRx))
-   {
-      return false;
-   }
-
-   if(!small_ipc_tx_channel::open(strChannelTx, plauncher))
-   {
-      return false;
-   }
-
-   return true;
-
-}
+} // namespace aura
 
 
 
-bool small_ipc_channel::is_rx_tx_ok()
-{
 
-   return m_rxchannel.is_rx_ok() && is_tx_ok();
 
-}
+
+
+
+

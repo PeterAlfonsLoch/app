@@ -1020,10 +1020,10 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 
 #include "aura/aura/aura/aura_launcher.h"
 #ifndef METROWIN
-#include "aura/aura/aura/aura_small_ipc_channel.h"
+#include "aura/aura/aura/aura_ipc.h"
 #endif
 
-#include "aura/aura/aura/aura_simple_app_launcher.h"
+#include "aura/aura/aura/aura_app_launcher.h"
 
 
 #include "aura/aura/aura/aura_ipi.h"
@@ -1344,7 +1344,7 @@ inline void string_format::printf(const char * & s)
 #include "aura/multithreading/multithreading_data.h"
 
 
-#include "aura/aura/aura/aura_simple_shell_launcher.h"
+#include "aura/aura/aura/aura_shell_launcher.h"
 
 
 #include "aura/aura/aura/aura_file_watcher_thread.h"

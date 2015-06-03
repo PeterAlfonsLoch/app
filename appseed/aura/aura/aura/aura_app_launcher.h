@@ -5,7 +5,7 @@ namespace aura
 {
 
 
-   class CLASS_DECL_AURA simple_app_launcher:
+   class CLASS_DECL_AURA app_launcher:
       virtual public ::launcher
    {
    public:
@@ -14,7 +14,7 @@ namespace aura
       string m_strApp;
 
 
-      simple_app_launcher(const string & strApp) { m_strApp = strApp; }
+      app_launcher(const string & strApp) { m_strApp = strApp; }
 
 
       virtual string get_executable_path();
