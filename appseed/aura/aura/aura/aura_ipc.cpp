@@ -26,7 +26,7 @@ namespace aura
 
          tx::close();
 
-         m_rxchannel.destroy();
+         m_rx.destroy();
 
          return true;
 
