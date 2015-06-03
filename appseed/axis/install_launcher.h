@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AXIS install_launcher:
+class CLASS_DECL_AXIS app_install_launcher:
    virtual public ::launcher
 {
 public:
@@ -11,7 +11,7 @@ public:
    string   m_strBuild;
 
 
-   install_launcher(const char * pszVersion,const char * pszBuild);
+   app_install_launcher(const char * pszVersion,const char * pszBuild);
 
    virtual bool ensure_executable();
 

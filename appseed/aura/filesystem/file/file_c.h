@@ -329,7 +329,7 @@ CLASS_DECL_AURA string file_module_path_dup();
 
 CLASS_DECL_AURA int_bool file_copy_dup(const char * pszDup, const char * pszSrc, int_bool bOverwrite );
 
-CLASS_DECL_AURA string get_sys_temp_path();
+
 
 CLASS_DECL_AURA string file_get_mozilla_firefox_plugin_container_path();
 

@@ -81,3 +81,25 @@ bool small_ipc_channel::ensure_tx(int message, void * pdata, int len, unsigned i
    return true;
 
 }
+
+
+namespace small_ipc_channel
+{
+
+   string app_install(string strPlatform = "")
+   {
+
+      if(strPlatform.is_empty())
+      {
+
+         strPlatform = process_platform_dir_name();
+
+      }
+      
+      return "::ca2::fontopus::ca2_spaboot_install_" + strPlatform + "::7807e510-5579-11dd-ae16-0800200c7784"
+
+   }
+
+
+
+}

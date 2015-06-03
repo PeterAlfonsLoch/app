@@ -46,16 +46,20 @@ string consume_param(const char * pszCommandLine, const char ** pszEndPtr)
 string get_command_line_param(const char * pszCommandLine, const char * pszParam, const char * pszIfParamValue, const char * pszReplaceParam)
 {
 
-   string strValue = get_command_line_param(pszCommandLine, pszParam);
+   string strValue;
+
+   get_command_line_param(strValue, pszCommandLine,pszParam);
 
    if(strValue == pszIfParamValue)
    {
-         
-      string strReplace = get_command_line_param(pszCommandLine, pszReplaceParam);
 
-      if(strReplace.has_char())
+      string strReplace;
+         
+      if(get_command_line_param(strReplace,pszCommandLine,pszReplaceParam) && strReplace.has_char())
       {
+
          strValue = strReplace;
+
       }
 
    }
@@ -64,56 +68,147 @@ string get_command_line_param(const char * pszCommandLine, const char * pszParam
 
 }
 
-string get_command_line_param(const char * pszCommandLine, const char * pszParam)
+//string get_command_line_param(const char * pszCommandLine, const char * pszParam)
+//{
+//
+//   string strParam(pszParam);
+//
+//   strParam = strParam + "=";
+//
+//   string strValue;
+//
+//   const char * pszValue = strstr_dup(pszCommandLine, strParam);
+//
+//   if(pszValue == NULL)
+//      return "";
+//
+//   pszValue += strParam.length();
+//
+//
+//   if(*pszValue == '"')
+//   {
+//
+//      const char * pszValueEnd = strchr_dup(pszValue + 1, '"');
+//
+//      if(pszValueEnd == NULL)
+//      {
+//         strValue = string(pszValue);
+//      }
+//      else
+//      {
+//         strValue = string(pszValue, pszValueEnd - pszValue + 1);
+//      }
+//
+//   }
+//   else
+//   {
+//
+//      const char * pszValueEnd = strstr_dup(pszValue, " ");
+//
+//      if(pszValueEnd == NULL)
+//      {
+//         strValue = string(pszValue);
+//      }
+//      else
+//      {
+//         strValue = string(pszValue, pszValueEnd - pszValue);
+//      }
+//
+//   }
+//
+//   return ::str::trim_any_quotes(strValue.trimmed());
+//
+//
+//}
+
+
+
+bool get_command_line_param(string & wstrValue,const char * psz,const char * pszParam)
 {
 
-   string strParam(pszParam);
+   string wstr(psz);
 
-   strParam = strParam + "=";
+   string wstrParam(pszParam);
+   
+   auto iFind = wstr.find(wstrParam + "=");
 
-   string strValue;
-
-   const char * pszValue = strstr_dup(pszCommandLine, strParam);
-
-   if(pszValue == NULL)
-      return "";
-
-   pszValue += strParam.length();
-
-
-   if(*pszValue == '"')
+   if(iFind == wstring::npos)
    {
 
-      const char * pszValueEnd = strchr_dup(pszValue + 1, '"');
+      iFind = wstr.find(wstrParam + " ");
 
-      if(pszValueEnd == NULL)
+      if(iFind == wstring::npos)
       {
-         strValue = string(pszValue);
+
+         iFind = wstr.find(wstrParam);
+
+         if(iFind == wstring::npos)
+         {
+
+            return false;
+
+         }
+         else if(iFind == wstr.length() - wstrParam.length())
+         {
+
+            wstrValue = "";
+
+            return true;
+
+         }
+         else
+         {
+
+            return false;
+
+         }
+
       }
       else
       {
-         strValue = string(pszValue, pszValueEnd - pszValue + 1);
+
+         wstrValue = "";
+
+         return true;
+
       }
+
+   }
+
+   auto iEnd = wstr.find(" ",iFind);
+
+   if(iEnd == wstring::npos)
+   {
+         
+      wstrValue = wstr.substr(iFind + wstrParam.length() + 1);
 
    }
    else
    {
 
-      const char * pszValueEnd = strstr_dup(pszValue, " ");
-
-      if(pszValueEnd == NULL)
-      {
-         strValue = string(pszValue);
-      }
-      else
-      {
-         strValue = string(pszValue, pszValueEnd - pszValue);
-      }
+      wstrValue = wstr.substr(iFind + wstrParam.length() + 1,iEnd - iFind - wstrParam.length());
 
    }
 
-   return ::str::trim_any_quotes(strValue.trimmed());
+   wstrValue = ::str::trim_any_quotes(wstrValue);
 
+   return true;
+
+}
+
+
+CLASS_DECL_AURA string process_platform_dir_name()
+{
+
+#if defined(_M_IX86)
+
+   return "x86";
+
+#else
+
+   return "x64";
+
+#endif
 
 }
 

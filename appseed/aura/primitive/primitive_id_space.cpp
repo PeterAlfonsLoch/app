@@ -1,6 +1,9 @@
 //#include "framework.h"
 
 
+id_space * create_id_space();
+class ::id_space * id_space::s_pidspace = NULL;
+
 
 id_space::id_space()
 {
@@ -484,3 +487,12 @@ bool strid_array::find(const id & id,index & iIndex) const
 
 
 
+
+::id_space & get_id_space()
+{
+   if(::id_space::s_pidspace == NULL)
+   {
+      ::id_space::s_pidspace = create_id_space();
+   }
+   return *::id_space::s_pidspace;
+}

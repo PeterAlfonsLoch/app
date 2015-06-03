@@ -290,7 +290,7 @@ namespace aura
 
          strPath.replace(":","_");
 
-         *plog->m_pstrLogPath = ::dir::path(::get_sys_temp_path(), *m_pid, ::dir::path(strPath, strRelative + "-" + strIndex + ".log"));
+         *plog->m_pstrLogPath = ::dir::sys_temp() /  string(*m_pid) / strPath/  strRelative + "-" + strIndex + ".log";
 
          try
          {
@@ -426,9 +426,9 @@ namespace aura
         // return false;
       *m_pid = id;
       m_bInitialized = true;
-      if(file_exists_dup(::dir::appdata("debug.txt")))
+      if(file_exists_dup(::dir::appdata() / "debug.txt"))
       {
-         string str = file_as_string_dup(::dir::appdata("debug.txt"));
+         string str = file_as_string_dup(::dir::appdata()/"debug.txt");
          if(str.get_length() == 0 || str.Left(2).trim() != "0")
          {
             m_bLog = true;

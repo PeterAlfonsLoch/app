@@ -56,7 +56,7 @@ void * __node_library_open(const char * pszPath)
       try
       {
 
-         plibrary = ::LoadPackagedLibrary(gen_utf8_to_16(::dir::path(::dir::get_ca2_module_folder(),strPath)),0);
+         plibrary = ::LoadPackagedLibrary(gen_utf8_to_16(::dir::path(::dir::ca2_module(),strPath)),0);
 
       }
       catch(...)
@@ -72,7 +72,7 @@ void * __node_library_open(const char * pszPath)
       try
       {
 
-         plibrary = ::LoadPackagedLibrary(gen_utf8_to_16("\\\\?\\" + ::dir::path(::dir::get_ca2_module_folder(),strPath)),0);
+         plibrary = ::LoadPackagedLibrary(gen_utf8_to_16("\\\\?\\" + ::dir::path(::dir::ca2_module(),strPath)),0);
 
       }
       catch(...)

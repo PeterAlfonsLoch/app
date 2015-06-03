@@ -29,8 +29,7 @@ namespace aura
 {
 
 
-   class ::id system::idEmpty;
-   class ::id_space * system::s_pidspace = NULL;
+   //class ::id system::idEmpty;
 
 
    system::system(::aura::application * papp) :

@@ -41,9 +41,9 @@ extern plex_heap_alloc_array * g_pheap;
 
 extern mutex * g_pmutgen;
 
-void create_id_space();
+//id_space * create_id_space();
 
-void destroy_id_space();
+//void destroy_id_space();
 
 extern mutex * g_pmutexFactory;
 
@@ -399,7 +399,7 @@ namespace aura
 
 #endif
 
-         destroy_id_space();
+//         destroy_id_space();
 
          delete s_pstringmanager;
 

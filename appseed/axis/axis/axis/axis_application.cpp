@@ -5295,17 +5295,21 @@ namespace axis
 
    int32_t application::hotplugin_host_starter_start_sync(const char * pszCommandLine,::aura::application * papp,hotplugin::host * phost,hotplugin::plugin * pplugin)
    {
-      return ::call_sync(
-         System.dir().element() / "spa" / System.install().get_platform() / "spa.exe",
-         pszCommandLine,
-         System.dir().element() / "spa" / System.install().get_platform(),
-         SW_SHOWNORMAL,
-         840,
-         84,
-         NULL,
-         0);
 
-      //return hotplugin::host::host_starter_start_sync(pszCommandLine,get_app(),NULL);
+      string strValue;
+
+      if(get_command_line_param(strValue,pszCommandLine,"enable_desktop_launch"))
+      {
+
+         return ::call_sync(::path::a_spa(),pszCommandLine,::dir::a_spa(),SW_SHOWNORMAL,840,84,NULL,0);
+
+      }
+      else
+      {
+
+         return hotplugin::host::host_starter_start_sync(pszCommandLine,get_app(),NULL);
+
+      }
 
    }
 

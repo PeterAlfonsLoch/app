@@ -703,4 +703,39 @@ CLASS_DECL_AURA mutex * get_ui_destroyed_mutex()
 
 
 
+null_dacl_security_attributes::null_dacl_security_attributes()
+{
 
+   ZERO(m_securityattributes);
+
+   m_securityattributes.nLength = sizeof(m_securityattributes);
+
+   m_securityattributes.bInheritHandle = FALSE; // object uninheritable
+
+   // declare and initialize a security descriptor
+   ZERO(m_securitydescriptor);
+
+   bool bInitOk = InitializeSecurityDescriptor(&m_securitydescriptor,SECURITY_DESCRIPTOR_REVISION);
+
+   if(bInitOk)
+   {
+      // give the security descriptor a Null Dacl
+      // done using the  "TRUE, (PACL)NULL" here
+      bool bSetOk = SetSecurityDescriptorDacl(&m_securitydescriptor,TRUE,(PACL)NULL,FALSE);
+
+      if(bSetOk)
+      {
+
+         m_securityattributes.lpSecurityDescriptor = &m_securitydescriptor;
+
+      }
+
+   }
+
+}
+
+
+spaadmin_mutex::spaadmin_mutex() :
+mutex(NULL,false,"Global\\::ca2::fontopus::votagus::cgcl::" + process_platform_dir_name() + "::198411151951042219770204-11dd-ae16-0800200c7784",&m_securityattributes)
+{
+}

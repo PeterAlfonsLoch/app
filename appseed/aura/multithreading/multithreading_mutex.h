@@ -99,3 +99,28 @@ CLASS_DECL_AURA mutex * get_ui_destroyed_mutex();
 
 
 
+
+
+
+class null_dacl_security_attributes
+{
+public:
+
+   SECURITY_ATTRIBUTES m_securityattributes;
+
+   SECURITY_DESCRIPTOR m_securitydescriptor;
+
+   null_dacl_security_attributes();
+
+};
+
+class spaadmin_mutex:
+   public null_dacl_security_attributes,
+   public mutex
+{
+public:
+
+   spaadmin_mutex();
+
+};
+

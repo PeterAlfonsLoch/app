@@ -8,40 +8,42 @@
 #endif
 
 
-
-class dir
+namespace dir
 {
-public:
+
+   CLASS_DECL_AURA string name(string path);
+   CLASS_DECL_AURA ::file::path element();
+   CLASS_DECL_AURA ::file::path afterca2();
+   CLASS_DECL_AURA ::file::path beforeca2();
+   CLASS_DECL_AURA ::file::path module();
+   CLASS_DECL_AURA ::file::path appdata();
+   CLASS_DECL_AURA ::file::path userappdata();
+   CLASS_DECL_AURA bool is(const ::file::path & path);
+   CLASS_DECL_AURA bool mk(const  ::file::path & path);
+   CLASS_DECL_AURA void ls(::file::patha & patha,const ::file::path & path);
+   CLASS_DECL_AURA void ls_dir(::file::patha & patha,const ::file::path & path);
+   CLASS_DECL_AURA void rls(::file::patha & patha,const ::file::path & path);
+   CLASS_DECL_AURA void rls_dir(::file::patha & patha,const ::file::path & path);
+   CLASS_DECL_AURA ::file::path ca2_module();
+   CLASS_DECL_AURA ::file::path base_module();
+   CLASS_DECL_AURA ::file::path default_os_user_path_prefix();
+   CLASS_DECL_AURA ::file::path usersystemappdata(const string & lpcszPrefix);
+   CLASS_DECL_AURA ::file::path default_userappdata(const string & lpcszPrefix,const string & lpcszLogin);
+   CLASS_DECL_AURA ::file::path default_userdata(const string & lpcszPrefix,const string & lpcszLogin);
+   CLASS_DECL_AURA ::file::path default_user(const string & lpcszPrefix,const string & lpcszLogin);
+   CLASS_DECL_AURA ::file::path user();
+   CLASS_DECL_AURA ::file::path pathfind(const string & pszEnv, const string & pszTopic, const string & pszMode);
+#ifdef WINDOWSEX
+   CLASS_DECL_AURA ::file::path program_files_x86();
+#endif;
+   CLASS_DECL_AURA ::file::path a_spa();
+   CLASS_DECL_AURA ::file::path stage();
+   CLASS_DECL_AURA ::file::path app_install();
+   CLASS_DECL_AURA ::file::path sys_temp();
+
+} // namespace dir
 
 
 
-   static CLASS_DECL_AURA string element();
-   static CLASS_DECL_AURA string afterca2();
-   static CLASS_DECL_AURA string beforeca2();
-   static CLASS_DECL_AURA string module_folder(const char * path = NULL);
-   static CLASS_DECL_AURA string path(const char * path1, const char * path2, const char * path3 = NULL, const char * path4 = NULL, const char * path5 = NULL);
-   static CLASS_DECL_AURA string element(const char * path1,const char * path2 = NULL,const char * path3 = NULL,const char * path4 = NULL);
-   static CLASS_DECL_AURA bool eat_end_level(string & strPath, int iLevel, const char * lpSeparator = NULL);
-   static CLASS_DECL_AURA string name(const char * path1);
-   static CLASS_DECL_AURA string folder(const char * path1);
-   static CLASS_DECL_AURA string appdata(const char * lpcsz);
-   static CLASS_DECL_AURA ::file::path userappdata();
-   static CLASS_DECL_AURA bool is(const char * path1);
-   static CLASS_DECL_AURA bool mk(const char * lpcsz);
-   static CLASS_DECL_AURA void ls(stringa & stra, const char *psz);
-   static CLASS_DECL_AURA void ls_dir(stringa & stra, const char *psz);
-   static CLASS_DECL_AURA void rls(stringa & stra, const char *psz);
-   static CLASS_DECL_AURA void rls_dir(stringa & stra, const char *psz);
-   static CLASS_DECL_AURA string get_ca2_module_folder();
-   static CLASS_DECL_AURA string get_base_module_folder();
-   static CLASS_DECL_AURA string default_os_user_path_prefix();
-   static CLASS_DECL_AURA string usersystemappdata(const char * lpcszPrefix, const char * lpcsz, const char * lpcsz2);
-   static CLASS_DECL_AURA string default_userappdata(const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath);
-   static CLASS_DECL_AURA string default_userdata(const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath);
-   static CLASS_DECL_AURA string default_userfolder(const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath);
-   static CLASS_DECL_AURA string userfolder(const char * lpcsz, const char * lpcsz2 = NULL);
-   static CLASS_DECL_AURA string pathfind(const string & pszEnv, const string & pszTopic, const string & pszMode);
 
-   
 
-};

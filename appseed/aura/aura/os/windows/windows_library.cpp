@@ -56,7 +56,7 @@ void * __node_library_open(const char * pszPath)
       try
       {
 
-         plibrary = ::LoadLibraryW(gen_utf8_to_16(::dir::path(::dir::get_ca2_module_folder(),strPath)));
+         plibrary = ::LoadLibraryW(gen_utf8_to_16(::dir::ca2_module() / strPath));
 
       }
       catch(...)
@@ -72,7 +72,7 @@ void * __node_library_open(const char * pszPath)
       try
       {
 
-         plibrary = ::LoadLibraryW(gen_utf8_to_16("\\\\?\\" + ::dir::path(::dir::get_ca2_module_folder(),strPath)));
+         plibrary = ::LoadLibraryW(gen_utf8_to_16("\\\\?\\" + string(::dir::ca2_module() / strPath)));
 
       }
       catch(...)
@@ -88,7 +88,7 @@ void * __node_library_open(const char * pszPath)
       try
       {
 
-         plibrary = ::LoadLibraryW(gen_utf8_to_16(::dir::path(::dir::get_base_module_folder(),strPath)));
+         plibrary = ::LoadLibraryW(gen_utf8_to_16(string(::dir::base_module()/strPath)));
 
       }
       catch(...)
@@ -102,8 +102,8 @@ void * __node_library_open(const char * pszPath)
          ::OutputDebugString("error " + ::str::from((uint32_t) dwError));
          if(dwError == 126)
          {
-            ::SetDllDirectoryW(gen_utf8_to_16(::dir::get_base_module_folder()));
-            plibrary = ::LoadLibraryW(gen_utf8_to_16(::dir::path(::dir::get_base_module_folder(),strPath)));
+            ::SetDllDirectoryW(gen_utf8_to_16(::dir::base_module()));
+            plibrary = ::LoadLibraryW(gen_utf8_to_16(string(::dir::base_module()/strPath)));
          }
       }
 
@@ -115,7 +115,7 @@ void * __node_library_open(const char * pszPath)
       try
       {
 
-         plibrary = ::LoadLibraryW(gen_utf8_to_16("\\\\?\\" + ::dir::path(::dir::get_base_module_folder(),strPath)));
+         plibrary = ::LoadLibraryW(gen_utf8_to_16("\\\\?\\" + string(::dir::base_module() / strPath)));
 
       }
       catch(...)

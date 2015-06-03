@@ -8,7 +8,7 @@ using namespace ::Windows::System;
 
 
 
-string dir::get_ca2_module_folder()
+::file::path dir::ca2_module()
 {
 #if defined(METROWIN)
 
@@ -32,7 +32,7 @@ string dir::get_ca2_module_folder()
       throw metrowin_todo();
       //HRESULT hr = SHGetKnownFolderPath(FOLDERID_ProgramFiles, KF_FLAG_NO_ALIAS, NULL, wtostring(buf, 4096));
       //if(FAILED(hr))
-      // throw "dir::get_ca2_module_folder_dup : SHGetKnownFolderPath failed";
+      // throw "dir::ca2_module_dup : SHGetKnownFolderPath failed";
 
       /*strcpy(lpszModuleFilePath, buf.c_str());
 
@@ -124,7 +124,7 @@ string dir::get_ca2_module_folder()
 
       wcscpy(lpszModuleFolder, lpszModuleFilePath);
 
-      return lpszModuleFolder;
+      return string(lpszModuleFolder);
 
    }
 
@@ -159,7 +159,7 @@ string dir::get_ca2_module_folder()
 
 #endif
 
-   return lpszModuleFolder;
+   return string(lpszModuleFolder);
 
 }
 
@@ -181,7 +181,7 @@ string dir::get_ca2_module_folder()
 
 
 
-string dir::get_base_module_folder()
+::file::path dir::base_module()
 {
 #if defined(METROWIN)
 
@@ -203,7 +203,7 @@ string dir::get_base_module_folder()
       throw metrowin_todo();
       //HRESULT hr = SHGetKnownFolderPath(FOLDERID_ProgramFiles, KF_FLAG_NO_ALIAS, NULL, wtostring(buf, 4096));
       //if(FAILED(hr))
-      // throw "dir::get_ca2_module_folder_dup : SHGetKnownFolderPath failed";
+      // throw "dir::ca2_module_dup : SHGetKnownFolderPath failed";
 
       strcpy(lpszModuleFilePath, buf.c_str());
 
@@ -294,7 +294,7 @@ string dir::get_base_module_folder()
 
       wcscpy(lpszModuleFolder, lpszModuleFilePath);
 
-      return lpszModuleFolder;
+      return string(lpszModuleFolder);
 
    }
 
@@ -321,7 +321,7 @@ string dir::get_base_module_folder()
    }
 
 
-   return lpszModuleFolder;
+   return string(lpszModuleFolder);
 
 
 #else
@@ -487,49 +487,12 @@ string ca2_module_folder_dup()
 }
 
 
-string dir::element(const char * path1, const char * path2, const char * path3, const char * path4)
-{ 
-   
-   return path(element(),path1,path2,path3,path4); 
-
-}
-
-
-string dir::element()
+::file::path dir::element()
 {
 
 #ifdef WINDOWS
 
-   string str;
-
-
-   str = get_ca2_module_folder();
-   stringa stra;
-
-   str.replace("/", "\\");
-   stra.add_tokens(str, "\\");
-   if(stra.get_count() <= 0)
-      return "";
-   if(stra[stra.get_count() - 1].is_empty())
-   {
-      stra.remove_at(stra.get_count() - 1);
-   }
-   if(stra.get_count() <= 0)
-      return "";
-   stra.remove_at(stra.get_count() - 1);
-   if(stra.get_count() <= 0)
-      return "";
-   stra.remove_at(stra.get_count() - 1);
-   if(stra.get_count() <= 0)
-      return "";
-   str = "";
-   for(int32_t i = 0; i < stra.get_count(); i++)
-   {
-      str += stra[i];
-      str += "\\";
-   }
-
-   return str;
+   return ca2_module().folder(2);
 
 #else
 
@@ -545,13 +508,17 @@ string dir::element()
 
 }
 
-bool dir::mk(const char * lpcsz)
+bool dir::mk(const ::file::path & lpcsz)
 {
 
 #ifdef WINDOWS
 
    if(is(lpcsz))
+   {
+
       return true;
+
+   }
 
    string url(lpcsz);
    string tmp;
@@ -616,126 +583,43 @@ bool dir::mk(const char * lpcsz)
 
 }
 
-string dir::module_folder(const char * path1)
+::file::path dir::module()
 {
 
 #ifdef WINDOWSEX
 
    wchar_t path[MAX_PATH * 4];
+
    if(!GetModuleFileNameW(NULL,path,sizeof(path) / sizeof(wchar_t)))
    {
-      return path1;
+
+      return "";
+
    }
    else
    {
-      return dir::path(name(string(path)), path1);
+      
+      return name(string(path));
+
    }
 
 #elif defined(METROWIN)
 
    throw metrowin_todo();
-   return path1;
+
+   return "";
 
 #else
 
-   return dir::path("/core/stage", path1);
+   return "/core/stage";
 
 #endif
 
 }
 
 
-CLASS_DECL_AURA bool dir::eat_end_level(string & str, int iLevelCount, const char * lpSeparator)
-{
 
-strsize iLast = str.length() - 1;
-
-if(iLast < 0)
-   return iLevelCount <= 0;
-
-while(str[iLast] == '/' || str[iLast] == '\\')
-iLast--;
-
-for(int32_t i = 0; i < iLevelCount; i++)
-{
-   
-   strsize iFind1 = str.reverse_find('/', iLast);
-   
-   strsize iFind2 = str.reverse_find('\\', iLast);
-   
-   strsize iFind = MAX(iFind1, iFind2);
-   
-   if(iFind >= iLast)
-      return false;
-   
-   if(iFind < 0)
-      return false;
-   
-   iLast = iFind;
-   
-   while(str[iLast] == '/' || str[iLast] == '\\')
-      iLast--;
-   
-}
-
-str.Truncate(iLast + 1);
-
-return true;
-
-}
-
-string dir::path(const char * path1, const char * path2, const char * path3, const char * path4, const char * path5)
-{
-   string str(path1);
-   if(str.substr(str.length() - 1, 1) == PATH_SEPARATOR)
-   {
-      str = str.substr(0, str.length() - 1);
-   }
-   if(path2 != NULL)
-   {
-      string strAdd(path2);
-      if(strAdd.substr(0, 1) != PATH_SEPARATOR)
-      {
-         strAdd = PATH_SEPARATOR + strAdd;
-      }
-      str += strAdd;
-   }
-   if(path3 != NULL)
-   {
-      string strAdd(path3);
-      if(strAdd.substr(0, 1) != PATH_SEPARATOR)
-      {
-         strAdd = PATH_SEPARATOR + strAdd;
-      }
-      str += strAdd;
-   }
-   if(path4 != NULL)
-   {
-      string strAdd(path4);
-      if(strAdd.substr(0, 1) != PATH_SEPARATOR)
-      {
-         strAdd = PATH_SEPARATOR + strAdd;
-      }
-      str += strAdd;
-   }
-   if(path5 != NULL)
-   {
-      string strAdd(path5);
-      if(strAdd.substr(0, 1) != PATH_SEPARATOR)
-      {
-         strAdd = PATH_SEPARATOR + strAdd;
-      }
-      str += strAdd;
-   }
-#if defined(LINUX) || defined(APPLEOS)
-   str.replace("\\", "/");
-#else
-   str.replace("/", "\\");
-#endif
-   return str;
-}
-
-bool dir::is(const char * path1)
+bool dir::is(const ::file::path & path1)
 {
 
 #ifdef WINDOWS
@@ -774,34 +658,38 @@ bool dir::is(const char * path1)
 
 }
 
-string dir::name(const char * path1)
+
+string dir::name(string path)
 {
 
-   string str;
+   if(path.is_empty())
+   {
 
-   str = path1;
-   index iPos1 = str.reverse_find('/');
-   index iPos2 = str.reverse_find('\\');
+      return path;
 
-   return str.substr(0, MAX(iPos1, iPos2) + 1);
+   }
+
+   strsize iEnd = -1;
+
+   if(path.last_char() == '/' || path.last_char() == '\\')
+   {
+      
+      iEnd = -2;
+
+   }
+   
+   index iPos1 = path.reverse_find('/',iEnd);
+
+   index iPos2 = path.reverse_find('\\',iEnd);
+
+   path.Truncate(MAX(MAX(iPos1,iPos2),0));
+
+   return path;
 
 }
 
-string dir::folder(const char * path1)
-{
 
-   string str;
-
-   str = path1;
-   index iPos1 = str.reverse_find('/');
-   index iPos2 = str.reverse_find('\\');
-
-   return str.substr(0,MAX(MAX(iPos1,iPos2),0));
-
-}
-
-
-void dir::rls(stringa & stra, const char *psz)
+void dir::rls(::file::patha & stra, const file::path & psz)
 {
    ::count start = stra.get_count();
    ls(stra, psz);
@@ -816,7 +704,7 @@ void dir::rls(stringa & stra, const char *psz)
 
 }
 
-void dir::rls_dir(stringa & stra, const char *psz)
+void dir::rls_dir(::file::patha & stra,const ::file::path & psz)
 {
    ::count start = stra.get_count();
    ls_dir(stra, psz);
@@ -829,7 +717,7 @@ void dir::rls_dir(stringa & stra, const char *psz)
 }
 
 
-void dir::ls(stringa & stra, const char *psz)
+void dir::ls(::file::patha & stra,const ::file::path & psz)
 {
 
 #if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
@@ -911,7 +799,7 @@ void dir::ls(stringa & stra, const char *psz)
 
 }
 
-void dir::ls_dir(stringa & stra, const char *psz)
+void dir::ls_dir(::file::patha & stra,const ::file::path & psz)
 {
 
 #if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
@@ -989,7 +877,8 @@ void dir::ls_dir(stringa & stra, const char *psz)
 
 }
 
-string dir::default_os_user_path_prefix()
+
+::file::path dir::default_os_user_path_prefix()
 {
 #if defined(WINDOWSEX)
    wchar_t buf[MAX_PATH];
@@ -1059,40 +948,46 @@ retry:
 
 
 
-string dir::usersystemappdata(const char * lpcszPrefix, const char * lpcsz, const char * lpcsz2)
-{
-   return path(appdata(lpcszPrefix), lpcsz, lpcsz2);
-}
-
-
-
-string dir::default_userappdata(const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath)
-{
-   return path(default_userfolder(lpcszPrefix, lpcszLogin, "appdata"), pszRelativePath);
-}
-
-string dir::default_userdata(const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath)
-{
-   return path(default_userfolder(lpcszPrefix, lpcszLogin, "data"), pszRelativePath);
-}
-
-string dir::default_userfolder(const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath)
+::file::path dir::usersystemappdata(const string & lpcszPrefix)
 {
 
-   return userfolder(pszRelativePath);
+   return appdata() / lpcszPrefix;
 
 }
 
 
-
-string dir::userfolder(const char * lpcsz, const char * lpcsz2)
+::file::path dir::default_userappdata(const string & lpcszPrefix,const string & lpcszLogin)
 {
 
-   string str;
+   return default_user(lpcszPrefix, lpcszLogin) / "appdata";
+
+}
+
+
+::file::path dir::default_userdata(const string & lpcszPrefix,const string & lpcszLogin)
+{
+
+   return default_user(lpcszPrefix, lpcszLogin) /  "data";
+
+}
+
+
+::file::path dir::default_user(const string & lpcszPrefix,const string & lpcszLogin)
+{
+
+   return user();
+
+}
+
+
+::file::path dir::user()
+{
+
+   ::file::path str;
 
 #ifdef WINDOWSEX
 
-   SHGetSpecialFolderPath(NULL, (string &) str, CSIDL_PROFILE, false);
+   SHGetSpecialFolderPath(NULL, str, CSIDL_PROFILE, false);
 
 #elif defined(METROWIN)
 
@@ -1126,27 +1021,12 @@ string dir::userfolder(const char * lpcsz, const char * lpcsz2)
       strUserFolderShift = strRelative;
    }
 
-   return path(path(str, "ca2", strUserFolderShift), lpcsz, lpcsz2);
+   return ::file::path(str) / "ca2" / strUserFolderShift;
 
-   //      return path(path(str, "ca2"), lpcsz);
-   /*      if(&AppUser(papp) == NULL)
-   {
-   string str;
-   SHGetSpecialFolderPath(
-   NULL,
-   str,
-   CSIDL_PROFILE,
-   FALSE);
-   return path(path(str, "core\\_____default"), lpcsz);
-   }
-   else
-   {
-   return path(AppUser(papp).m_strPath, lpcsz, lpcsz2);
-   }*/
 }
 
 
-string dir::pathfind(const string & pszEnv, const string & pszTopic, const string & pszMode)
+::file::path dir::pathfind(const string & pszEnv,const string & pszTopic,const string & pszMode)
 {
 
    stringa stra;
@@ -1161,7 +1041,7 @@ string dir::pathfind(const string & pszEnv, const string & pszTopic, const strin
       if(stra[i].is_empty())
          continue;
 
-      strCandidate = path(stra[i], pszTopic);
+      strCandidate = ::file::path(stra[i]) / pszTopic;
 
       if(file_exists_dup(strCandidate))
       {
@@ -1179,27 +1059,91 @@ string dir::pathfind(const string & pszEnv, const string & pszTopic, const strin
 
 
 
-string dir::beforeca2()
+::file::path dir::beforeca2()
 {
+
    return dir::name(dir::element());
-   //   std::wstring wstr;
-   // get_program_files_x86(wstr);
-   //return u8(wstr.c_str());
-   /*char lpszModuleFolder[MAX_PATH * 8];
-   get_ca2_module_folder_dup(lpszModuleFolder);
-   char * psz = strrchr(lpszModuleFolder, '\\');
-   if(psz == NULL)
-   return lpszModuleFolder;
-   *psz = '\0'; // strip x86 or x64...
-   psz = strrchr(lpszModuleFolder, '\\');
-   if(psz == NULL)
-   return lpszModuleFolder;
-   *psz = '\0'; // strip stage
-   psz = strrchr(lpszModuleFolder, '\\');
-   if(psz == NULL)
-   return lpszModuleFolder;
-   *psz = '\0'; // strip ca2
-   // now, lpszModuleFolder should be beforeca2
-   return lpszModuleFolder;*/
+
 }
 
+
+#ifdef WINDOWSEX
+
+#include <Shlobj.h>
+
+::file::path dir::program_files_x86()
+{
+
+   hwstring lpszModuleFolder(sizeof(wchar_t) * 8);
+
+   hwstring lpszModuleFilePath(sizeof(wchar_t) * 8);
+
+   wcscpy(lpszModuleFilePath,_wgetenv(L"PROGRAMFILES(X86)"));
+
+   if(wcslen(lpszModuleFilePath) == 0)
+   {
+
+      SHGetSpecialFolderPathW(
+         NULL,
+         lpszModuleFilePath,
+         CSIDL_PROGRAM_FILES,
+         FALSE);
+
+   }
+
+   if(lpszModuleFilePath[wcslen(lpszModuleFilePath) - 1] == '\\' || lpszModuleFilePath[wcslen(lpszModuleFilePath) - 1] == '/')
+   {
+
+      lpszModuleFilePath[wcslen(lpszModuleFilePath) - 1] = '\0';
+
+   }
+
+   wcscpy(lpszModuleFolder,lpszModuleFilePath);
+
+   return string(lpszModuleFolder);
+
+}
+
+
+#else
+
+::file::path dir::program_files_x86()
+{
+
+
+   ::file::path p("/opt/ca2");
+
+   p /= str;
+
+   return p;
+
+
+}
+
+
+#endif
+
+
+
+
+::file::path dir::a_spa()
+{
+
+   return program_files_x86() / "ca2/a_spa" / process_platform_dir_name();
+
+}
+
+::file::path dir::stage()
+{
+
+   return program_files_x86() / "ca2/stage" / process_platform_dir_name();
+
+}
+
+
+::file::path dir::app_install()
+{
+
+   return program_files_x86() / "ca2/install/stage" / process_platform_dir_name();
+
+}

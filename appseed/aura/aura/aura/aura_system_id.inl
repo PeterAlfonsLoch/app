@@ -1,6 +1,7 @@
 #pragma once
 
 
+
 namespace aura
 {
 
@@ -18,30 +19,30 @@ namespace aura
    inline id system::id(const std_type_info & info)
    {
 #ifdef WINDOWS
-      return (*s_pidspace)(info.name());
+      return get_id_space()(info.name());
 #else
-      return (*s_pidspace)(info.name());
+      return get_id_space()(info.name());
 #endif
    }
 
    inline id system::id(const char * psz)
    {
-      return (*s_pidspace)(psz);
+      return get_id_space()(psz);
    }
 
    inline id system::id(const string & str)
    {
-      return (*s_pidspace)(str);
+      return get_id_space()(str);
    }
 
    inline id system::id(int64_t i)
    {
-      return (*s_pidspace)(i);
+      return get_id_space()(i);
    }
 
    inline id_space & system::id()
    {
-      return (*s_pidspace);
+      return get_id_space();
    }
 
 

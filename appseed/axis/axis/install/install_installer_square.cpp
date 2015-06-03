@@ -54,28 +54,6 @@ CLASS_DECL_AXIS bool send_short_message_to_installer(const char * psz, bool bLau
 
 #else
    
-/*   small_ipc_tx_channel txchannel;
-   
-   install::installer::launcher launcher;
-
-   const char * pszChannel;
-
-   // "core/spaboot_install"
-
-   #if defined(_M_IX86)
-
-   pszChannel = "::ca2::fontopus::ca2_spaboot_install_x86::7807e510-5579-11dd-ae16-0800200c7784";
-
-   #else
-
-   pszChannel = "::ca2::fontopus::ca2_spaboot_install_x64::7807e510-5579-11dd-ae16-0800200c7784";
-
-   #endif
-
-   if(!txchannel.open(pszChannel, bLaunch ? &launcher : NULL)) 
-      return false;
-
-   txchannel.send(psz, false);*/
 
 #endif
 

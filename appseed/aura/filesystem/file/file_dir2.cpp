@@ -4,15 +4,18 @@
 #endif
 
 
-string dir::afterca2()
+::file::path dir::afterca2()
 {
+
    return element();
+
 }
 
-string dir::appdata(const char * lpcsz)
+
+::file::path dir::appdata()
 {
 
-   string str;
+   ::file::path str;
 
 
 #ifdef METROWIN
@@ -27,19 +30,9 @@ string dir::appdata(const char * lpcsz)
 
 #elif defined(WIN32)
    
-   char * buf = (char *) memory_alloc(4096);
+   SHGetSpecialFolderPath(NULL, str, CSIDL_COMMON_APPDATA, FALSE);
    
-   memset_dup(buf, 0, sizeof(buf));
-   
-   SHGetSpecialFolderPath(
-      NULL,
-      buf,
-      CSIDL_COMMON_APPDATA,
-      FALSE);
-   
-   str = path(buf, "ca2");
-   
-   memory_free_dbg(buf, 0);
+   str /= "ca2";
 
 #endif
    
@@ -60,16 +53,9 @@ string dir::appdata(const char * lpcsz)
 
    }
 
-#ifdef X86
-
-   str = path(str,"x86");
-#else
-   str = path(str,"x64");
-#endif
+   str /= process_platform_dir_name();
    
-   str = path(str, strCa2);
-   
-   return path(str, lpcsz);
+   return str / strCa2;
 
 }
 
@@ -81,14 +67,14 @@ string dir::appdata(const char * lpcsz)
 ::file::path dir::userappdata()
 {
 
-   string str;
+   ::file::path str;
 
 #ifdef WINDOWSEX
 
 
-   ::SHGetSpecialFolderPathW(NULL, wtostring(str, MAX_PATH * 8), CSIDL_PROFILE, TRUE);
+   ::SHGetSpecialFolderPath(NULL, str, CSIDL_PROFILE, TRUE);
 
-   str = path(str, "ca2");
+   str /= "ca2";
 
 
 #elif defined(METROWIN)
@@ -116,11 +102,9 @@ string dir::appdata(const char * lpcsz)
 
    }
    
-   str = path(str, strCa2);
+   str /= strCa2;
 
-   str = path(str, "appdata");
+   return str/ "appdata";
    
-   return str;
-
 }
 

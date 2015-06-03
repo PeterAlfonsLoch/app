@@ -159,3 +159,19 @@ public:
 
 };
 
+
+
+
+namespace small_ipc_channel
+{
+
+   
+   CLASS_DECL_AURA string app_install();
+
+
+} // namespace small_ipc_channel
+
+
+
+
+

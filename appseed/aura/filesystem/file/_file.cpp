@@ -36,10 +36,21 @@
 #ifdef WINDOWSEX
 
 
-bool  SHGetSpecialFolderPath(oswindow oswindow,string &str,int32_t csidl,bool fCreate)
+bool  SHGetSpecialFolderPath(oswindow oswindow,::file::path & path,int32_t csidl,bool fCreate)
 {
 
-   return ::SHGetSpecialFolderPathW(oswindow,wtostring(str,MAX_PATH * 8),csidl,fCreate) != FALSE;
+   string str;
+
+   if(::SHGetSpecialFolderPathW(oswindow,wtostring(str,MAX_PATH * 8),csidl,fCreate) == FALSE)
+   {
+
+      return false;
+
+   }
+
+   path = str;
+
+   return true;
 
 }
 
@@ -138,4 +149,4 @@ bool __win_file_find_is_dots(WIN32_FIND_DATA & data)
 
 #include "file_html_buffer.cpp"
 #include "file_edit_buffer.cpp"
-
+#include "file_path.cpp"

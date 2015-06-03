@@ -37,7 +37,8 @@ CLASS_DECL_AURA int32_t get_current_process_affinity_order();
 
 CLASS_DECL_AURA string consume_param(const char * pszCommandLine, const char ** pszEndPtr);
 CLASS_DECL_AURA string get_command_line_param(const char * pszCommandLine, const char * pszParam, const char * pszIfParamValue, const char * pszReplaceParam);
-CLASS_DECL_AURA string get_command_line_param(const char * pszCommandLine, const char * pszParam);
+CLASS_DECL_AURA bool get_command_line_param(string & strValue, const char * pszCommandLine, const char * pszParam);
 
 
 
+CLASS_DECL_AURA string process_platform_dir_name();

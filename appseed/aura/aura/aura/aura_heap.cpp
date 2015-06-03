@@ -615,14 +615,15 @@ END_EXTERN_C
 
 
 
-void create_id_space()
+id_space * create_id_space()
 {
 
-   ::aura::system::s_pidspace = new id_space();
+   return new id_space();
 
 }
 
-void destroy_id_space()
+/*
+void destroy_id_space() // let it go with the ({"eco}system") processs
 {
 
    delete ::aura::system::s_pidspace;
@@ -630,7 +631,7 @@ void destroy_id_space()
    ::aura::system::s_pidspace = NULL;
 
 }
-
+*/
 
 
 

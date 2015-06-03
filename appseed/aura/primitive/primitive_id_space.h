@@ -42,7 +42,8 @@ public:
    id operator()(const char * psz);
    id operator()(int64_t i);
 
-   
+   static id_space *                            s_pidspace;
+
 };
 
 
@@ -87,3 +88,4 @@ public:
 
 
 
+CLASS_DECL_AURA ::id_space & get_id_space();

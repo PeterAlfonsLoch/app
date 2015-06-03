@@ -13,7 +13,7 @@ namespace metrowin
    };
 
    CLASS_DECL_AXIS HINSTANCE   LoadLibrary(const char * lpsz);
-   CLASS_DECL_AXIS bool        SHGetSpecialFolderPath(oswindow hwnd, string &str, int csidl, bool fCreate);
+   CLASS_DECL_AXIS bool        SHGetSpecialFolderPath(oswindow hwnd, ::file::path &str, int csidl, bool fCreate);
    CLASS_DECL_AXIS DWORD       GetFileAttributes(const char * lpFileName);
    CLASS_DECL_AXIS bool        CreateDirectory(const char * lpPathName, LPSECURITY_ATTRIBUTES lpSecurityAttributes);
    CLASS_DECL_AXIS DWORD       GetCurrentDirectory(string & str);

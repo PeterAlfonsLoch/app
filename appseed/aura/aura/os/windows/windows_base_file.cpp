@@ -274,11 +274,11 @@ string file_get_mozilla_firefox_plugin_container_path()
       }
       wstrDir.release_buffer();
 
-      string strDir;
+      ::file::path strDir;
 
       strDir = ::str::international::unicode_to_utf8(wstrDir);
 
-      strPath = dir::path(strDir, "plugin-container.exe");
+      strPath = strDir / "plugin-container.exe";
    }
 
 ret1:
@@ -292,7 +292,7 @@ ret1:
 
 
 
-string get_sys_temp_path()
+::file::path dir::sys_temp()
 {
 
    wchar_t  wsz[MAX_PATH * 4];

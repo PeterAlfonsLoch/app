@@ -3220,7 +3220,7 @@ namespace aura
    //string application::dir_ca2module(const char * psz)
    //{
 
-   //   return ::dir::path(::dir::get_ca2_module_folder(),psz);
+   //   return ::dir::path(::dir::ca2_module(),psz);
 
    //}
 
@@ -4232,7 +4232,23 @@ namespace aura
 
          string strAddUp;
 
-         strAddUp = " enable_desktop_launch=" + System.directrix()->m_varTopicQuery["app"];
+         if(System.directrix()->m_varTopicQuery.has_property("enable_desktop_launch"))
+         {
+
+            if(System.directrix()->m_varTopicQuery["enable_desktop_launch"].has_char())
+            {
+
+               strAddUp = " enable_desktop_launch=" + System.directrix()->m_varTopicQuery["enable_desktop_launch"];
+
+            }
+            else
+            {
+
+               strAddUp = " enable_desktop_launch=" + System.directrix()->m_varTopicQuery["app"];
+
+            }
+
+         }
 
          hotplugin_host_starter_start_sync(": app=" + notinstalled.m_strId + " app_type=" + notinstalled.m_strType + " install locale=" + notinstalled.m_strLocale + " schema=" + notinstalled.m_strSchema + " version=" + notinstalled.m_strVersion + strAddUp,get_app(),NULL);
 

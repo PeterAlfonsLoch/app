@@ -1080,14 +1080,7 @@ restart:
    ::file::path system::sys_temp(const ::file::path & pszName, const char * pszExtension, ::aura::application * papp)
    {
 
-      string strTempDir = get_sys_temp_path();
-
-      if(!::str::ends(strTempDir, "\\") && !::str::ends(strTempDir, "/"))
-      {
-
-         strTempDir += "\\";
-
-      }
+      ::file::path strTempDir = ::dir::sys_temp();
 
       string str;
 
@@ -1116,7 +1109,7 @@ restart:
    ::file::path system::sys_temp_unique(const ::file::path & pszName)
    {
 
-      return ::file::path(get_sys_temp_path()) / pszName;
+      return ::dir::sys_temp() / pszName;
 
    }
 
