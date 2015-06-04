@@ -37,15 +37,15 @@ namespace user
       public ::user::control_bar
    {
    public:
-      enum EElement
+      enum e_element
       {
-         ElementItem,
+         element_item,
          ElementItemHover,
          ElementItemPress,
-         ElementImage,
+         element_image,
          ElementImageHover,
          ElementImagePress,
-         ElementText,
+         element_text,
          ElementTextHover,
          ElementTextPress,
       };
@@ -115,7 +115,7 @@ namespace user
 
       virtual bool LoadXmlToolBar(const char * lpszFileName);
       bool _001GetItemRect(int32_t iItem,LPRECT lprect);
-      bool _001GetElementRect(int32_t iItem,LPRECT lprect,EElement eelement);
+      bool _001GetElementRect(int32_t iItem,LPRECT lprect,e_element eelement);
       bool _001SetItem(int32_t iItem, toolbar_item * pitem);
       bool _001GetItem(int32_t iItem, toolbar_item * pitem);
       int32_t _001GetItemCount();

@@ -32,7 +32,7 @@ namespace user
 } // namespace user
 
 
-class simple_list_data;
+class simple_mesh_data;
 
 
 enum e_position
@@ -100,12 +100,15 @@ protected:
 //#include "user_document.h"
 
 
-
+#include "user_mesh.h"
 #include "user_list.h"
 #include "user_list_view.h"
-#include "user_list_cache_interface.h"
+#include "user_mesh_cache_interface.h"
+#include "user_mesh_cache.h"
 #include "user_list_cache.h"
+#include "user_mesh_data.h"
 #include "user_list_data.h"
+#include "user/simple/simple_mesh_data.h"
 #include "user/simple/simple_list_data.h"
 
 #include "user_tree_data.h"
@@ -295,6 +298,7 @@ namespace user
 #include "user_split_layout.h"
 
 #include "user_form.h"
+#include "user_form_mesh.h"
 #include "user_form_list.h"
 #include "user_form_view.h"
 #include "user_form_list_view.h"

@@ -799,7 +799,7 @@ namespace user
 
          GetParent()->ClientToScreen(lprect);
 
-         point ptScroll = m_pui->get_parent_scroll_position();
+         point ptScroll = m_pui->get_parent_viewport_offset();
 
          lprect->left   -= (LONG)ptScroll.x;
          lprect->right  -= (LONG)ptScroll.x;
@@ -825,7 +825,7 @@ namespace user
 
          GetParent()->ClientToScreen(lprect);
 
-         point ptScroll = m_pui->get_parent_scroll_position();
+         point ptScroll = m_pui->get_parent_viewport_offset();
 
          lprect->left   -= (LONG)ptScroll.x;
          lprect->right  -= (LONG)ptScroll.x;
@@ -848,7 +848,7 @@ namespace user
 
          GetParent()->ClientToScreen(lppoint);
 
-         point ptScroll = m_pui->get_parent_scroll_position();
+         point ptScroll = m_pui->get_parent_viewport_offset();
 
          lppoint->x  -= (LONG)ptScroll.x;
          lppoint->y  -= (LONG)ptScroll.y;
@@ -871,7 +871,7 @@ namespace user
 
          GetParent()->ClientToScreen(lprect);
 
-         point ptScroll = m_pui->get_parent_scroll_position();
+         point ptScroll = m_pui->get_parent_viewport_offset();
 
          lprect->left   -= (LONG)ptScroll.x;
          lprect->right  -= (LONG)ptScroll.x;
@@ -894,7 +894,7 @@ namespace user
 
          GetParent()->ClientToScreen(lppoint);
 
-         point ptScroll = m_pui->get_parent_scroll_position();
+         point ptScroll = m_pui->get_parent_viewport_offset();
 
          lppoint->x  -= (LONG)ptScroll.x;
          lppoint->y  -= (LONG)ptScroll.y;
@@ -917,7 +917,7 @@ namespace user
 
          GetParent()->ScreenToClient(lprect);
 
-         point ptScroll = m_pui->get_parent_scroll_position();
+         point ptScroll = m_pui->get_parent_viewport_offset();
 
          lprect->left   += (LONG)ptScroll.x;
          lprect->right  += (LONG)ptScroll.x;
@@ -939,7 +939,7 @@ namespace user
       {
          GetParent()->ScreenToClient(lppoint);
 
-         point ptScroll = m_pui->get_parent_scroll_position();
+         point ptScroll = m_pui->get_parent_viewport_offset();
 
          lppoint->x  += (LONG)ptScroll.x;
          lppoint->y  += (LONG)ptScroll.y;
@@ -962,7 +962,7 @@ namespace user
 
          GetParent()->ScreenToClient(lprect);
 
-         point ptScroll = m_pui->get_parent_scroll_position();
+         point ptScroll = m_pui->get_parent_viewport_offset();
 
          lprect->left   += (LONG)ptScroll.x;
          lprect->right  += (LONG)ptScroll.x;
@@ -985,7 +985,7 @@ namespace user
 
          GetParent()->ScreenToClient(lppoint);
 
-         point ptScroll = m_pui->get_parent_scroll_position();
+         point ptScroll = m_pui->get_parent_viewport_offset();
 
          lppoint->x  += (LONG)ptScroll.x;
          lppoint->y  += (LONG)ptScroll.y;

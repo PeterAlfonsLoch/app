@@ -1531,7 +1531,7 @@ throw todo(get_app());
    }
 
 
-   bool toolbar::_001GetElementRect(int32_t iItem,LPRECT lprect,EElement eelement)
+   bool toolbar::_001GetElementRect(int32_t iItem,LPRECT lprect,e_element eelement)
    {
 
       return false;

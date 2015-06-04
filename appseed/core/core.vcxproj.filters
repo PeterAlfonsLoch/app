@@ -380,13 +380,7 @@
     <ClInclude Include="filesystem\filehandler\filehandler_tree_interface.h">
       <Filter>Header Files\filesystem\filehandler</Filter>
     </ClInclude>
-    <ClInclude Include="database\databaseuser\data_key_list_data.h">
-      <Filter>Header Files\database\databaseuser</Filter>
-    </ClInclude>
     <ClInclude Include="database\databaseuser\databaseuser.h">
-      <Filter>Header Files\database\databaseuser</Filter>
-    </ClInclude>
-    <ClInclude Include="database\databaseuser\list_data.h">
       <Filter>Header Files\database\databaseuser</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\userfs\userfs.h">
@@ -564,18 +558,6 @@
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user_list.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_list_cache.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_list_cache_interface.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_list_data.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_list_data_interface.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user_list_header.h">
@@ -884,6 +866,36 @@
     <ClInclude Include="core\core\core_session.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
+    <ClInclude Include="user\user\user_form_mesh.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_mesh.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_mesh_cache_interface.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_mesh_cache.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_mesh_data.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple\simple_mesh_data.h">
+      <Filter>Header Files\user\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="database\databaseuser\mesh_data.h">
+      <Filter>Header Files\database\databaseuser</Filter>
+    </ClInclude>
+    <ClInclude Include="database\databaseuser\data_key_mesh_data.h">
+      <Filter>Header Files\database\databaseuser</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_list_cache.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_list_data.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
     <ClInclude Include="user\simple\simple_list_data.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
@@ -1123,12 +1135,6 @@
     <ClCompile Include="filesystem\userfs\userfs_tree.cpp">
       <Filter>Source Files\filesystem\userfs</Filter>
     </ClCompile>
-    <ClCompile Include="database\databaseuser\database_key_list_data.cpp">
-      <Filter>Source Files\database\databaseuser</Filter>
-    </ClCompile>
-    <ClCompile Include="database\databaseuser\database_list_data.cpp">
-      <Filter>Source Files\database\databaseuser</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\userfs\userfs_userfs.cpp">
       <Filter>Source Files\filesystem\userfs</Filter>
     </ClCompile>
@@ -1246,16 +1252,7 @@
     <ClCompile Include="user\user\user_list.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\user_list_cache.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_list_cache_interface.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\user_list_data.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_list_data_interface.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\user_list_header.cpp">
@@ -1545,6 +1542,36 @@
     </ClCompile>
     <ClCompile Include="core\core\core_session.cpp">
       <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_form_mesh.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_mesh_data.cpp">
+      <Filter>Source Files\user\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="database\databaseuser\database_key_mesh_data.cpp">
+      <Filter>Source Files\database\databaseuser</Filter>
+    </ClCompile>
+    <ClCompile Include="database\databaseuser\database_mesh_data.cpp">
+      <Filter>Source Files\database\databaseuser</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_mesh.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_mesh_cache.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_mesh_cache_interface.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_list_cache.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_mesh_data.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_list_data.cpp">
+      <Filter>Source Files\user\simple</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

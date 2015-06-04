@@ -22,6 +22,8 @@ protected:
    ::draw2d::font_sp           m_fontStandard;
    ::draw2d::font_sp           m_font;
    ::draw2d::font_sp           m_fontListCtrl;
+   ::draw2d::font_sp           m_fontMeshCtrl;
+   ::draw2d::font_sp           m_fontGridCtrl;
    visual::font *               m_lpSongLabelFont;
    visual::font *             m_lpSongListFont;
    visual::font *             m_pfontLyric;
@@ -32,6 +34,8 @@ protected:
    bool                    m_bInitialized;
 public:
    ::draw2d::font * GetListCtrlFont();
+   ::draw2d::font * GetMeshCtrlFont();
+   ::draw2d::font * GetGridCtrlFont();
    ::draw2d::font * GetCaptionFont();
    ::draw2d::font * GetStandartFont();
    void Finalize();

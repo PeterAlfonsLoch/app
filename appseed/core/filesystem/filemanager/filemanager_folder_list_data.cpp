@@ -10,18 +10,20 @@ namespace filemanager
 
    folder_list_data::folder_list_data(::aura::application * papp) :
       object(papp),
+      ::user::mesh_data(papp),
       ::user::list_data(papp)
    {
+
    }
+
 
    folder_list_data::~folder_list_data()
    {
+
    }
 
 
-
-
-   void folder_list_data::_001GetItemText(::user::list_item * pitem)
+   void folder_list_data::_001GetItemText(::user::mesh_item * pitem)
    {
       if(pitem->m_iSubItem == 0)
       {

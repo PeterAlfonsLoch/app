@@ -6,19 +6,19 @@ namespace databaseuser
 {
 
 
-   list_data::list_data(::aura::application * papp) :
+   mesh_data::mesh_data(::aura::application * papp) :
       object(papp),
-      ::user::list_data(papp)
+      ::user::mesh_data(papp)
    {
       m_iItemCount = 0;
    }
 
-   list_data::~list_data()
+   mesh_data::~mesh_data()
    {
 
    }
 
-   void list_data::_001GetItemText(::user::list_item * pitem)
+   void mesh_data::_001GetItemText(::user::list_item * pitem)
    {
 
       ::database::id key1;
@@ -36,7 +36,7 @@ namespace databaseuser
 
    }
 
-   bool list_data::Map(
+   bool mesh_data::Map(
       ::user::list * plist,
       ::database::id & key1,
       ::database::id & key2,
@@ -56,7 +56,7 @@ namespace databaseuser
 
    }
 
-   ::count list_data::_001GetItemCount()
+   ::count mesh_data::_001GetItemCount()
    {
 
       return m_iItemCount;

@@ -58,7 +58,7 @@ namespace userfs
       _001GetSelection(range);
       if(range.get_item_count() > 0)
       {
-         list_data * pdata = get_fs_list_data();
+         list_data * pdata = get_fs_mesh_data();
          item_range & itemrange = range.ItemAt(0);
          index iLItem = itemrange.get_lower_bound();
          index iUItem = itemrange.get_upper_bound();
@@ -76,7 +76,7 @@ namespace userfs
          var varQuery;
          if(iUItem == iLItem)
          {
-            varFile = get_fs_list_data()->m_itema.get_item(iLItem).m_strPath;
+            varFile = get_fs_mesh_data()->m_itema.get_item(iLItem).m_strPath;
          }
          else
          {
@@ -115,7 +115,7 @@ namespace userfs
       UNREFERENCED_PARAMETER(pobj);
 //      SCAST_PTR(::message::mouse, pmouse, pobj)
 /*         index iItem;
-      list_data * pdata = get_fs_list_data();
+      list_data * pdata = get_fs_mesh_data();
       if(_001HitTest_(pmouse->m_pt, iItem))
       {
          ::fs::item item;
@@ -170,7 +170,7 @@ namespace userfs
 
       _001GetSelection(range);
 
-      list_data * pdata = get_fs_list_data();
+      list_data * pdata = get_fs_mesh_data();
       string str;
       //      HRESULT hr;
       for (index i = 0; i < range.get_item_count(); i++)
@@ -179,13 +179,13 @@ namespace userfs
          for (index iItem = itemrange.get_lower_bound(); iItem <= itemrange.get_upper_bound(); iItem++)
          {
             index iStrict;
-            if (m_eview == ViewIcon)
+            if (m_eview == view_icon)
             {
                iStrict = m_iconlayout.m_iaDisplayToStrict.get_b(iItem);
             }
             else
             {
-               iStrict = m_listlayout.m_iaDisplayToStrict[iItem];
+               iStrict = m_meshlayout.m_iaDisplayToStrict[iItem];
             }
             list_item & item = pdata->m_itema.get_item(iStrict);
             if (!item.IsFolder())
@@ -219,7 +219,7 @@ namespace userfs
 
    void list::_017OpenSelected(bool bOpenFile, ::action::context actioncontext)
    {
-      list_data * pdata = get_fs_list_data();
+      list_data * pdata = get_fs_mesh_data();
       ::fs::item_array itema;
       index iItemRange, iItem;
       range range;
@@ -238,13 +238,13 @@ namespace userfs
             if (iItem >= _001GetItemCount())
                continue;
             index iStrict;
-            if (m_eview == ViewIcon)
+            if (m_eview == view_icon)
             {
                iStrict = m_iconlayout.m_iaDisplayToStrict.get_b(iItem);
             }
             else
             {
-               iStrict = m_listlayout.m_iaDisplayToStrict[iItem];
+               iStrict = m_meshlayout.m_iaDisplayToStrict[iItem];
             }
             list_item & item = pdata->m_itema.get_item(iStrict);
             sp(::fs::item) pitem(new ::fs::item(item));
@@ -268,7 +268,7 @@ namespace userfs
 
    void list::_017OpenContextMenuSelected(::action::context actioncontext)
    {
-      list_data * pdata = get_fs_list_data();
+      list_data * pdata = get_fs_mesh_data();
       ::fs::item_array itema;
       index iItemRange, iItem;
       range range;
@@ -287,13 +287,13 @@ namespace userfs
             if (iItem >= pdata->m_itema.get_count())
                continue;
             index iStrict;
-            if (m_eview == ViewIcon)
+            if (m_eview == view_icon)
             {
                iStrict = m_iconlayout.m_iaDisplayToStrict.get_b(iItem);
             }
             else
             {
-               iStrict = m_listlayout.m_iaDisplayToStrict[iItem];
+               iStrict = m_meshlayout.m_iaDisplayToStrict[iItem];
             }
             list_item & item = pdata->m_itema.get_item(iStrict);
             if (pdata->m_itema.get_item(iStrict).IsFolder())
@@ -375,7 +375,7 @@ namespace userfs
    void list::_001OnButtonAction(sp(::user::control) pcontrol)
    {
       UNREFERENCED_PARAMETER(pcontrol);
-      //      list_data * pdata = get_fs_list_data();
+      //      list_data * pdata = get_fs_mesh_data();
       /* filemanager::file_list_callback * pcallback =
       get_filemanager_template()->get_filemanager_template()->m_pfilelistcallback;
 
@@ -384,13 +384,13 @@ namespace userfs
       ::fs::item item;
       int32_t iItem = pcontrol->GetEditItem();
       int32_t iStrict;
-      if(m_eview == ViewIcon)
+      if(m_eview == view_icon)
       {
       iStrict = m_iconlayout.m_iaDisplayToStrict.get_b(iItem);
       }
       else
       {
-      iStrict = m_listlayout.m_iaDisplayToStrict[iItem];
+      iStrict = m_meshlayout.m_iaDisplayToStrict[iItem];
       }
       item.m_strPath         = pdata->m_itema.get_item(iStrict).m_strPath;
       item.m_strExtra        = pdata->m_itema.get_item(iStrict).m_strExtra;
@@ -400,7 +400,7 @@ namespace userfs
 
    void list::GetSelected(::fs::item_array &itema)
    {
-      list_data * pdata = get_fs_list_data();
+      list_data * pdata = get_fs_mesh_data();
       index iItemRange, iItem;
       range range;
       _001GetSelection(range);
@@ -419,15 +419,15 @@ namespace userfs
             {
                iaItem.add(iItem);
                index iStrict;
-               if (m_eview == ViewIcon)
+               if (m_eview == view_icon)
                {
                   iStrict = m_iconlayout.m_iaDisplayToStrict.get_b(iItem);
                }
                else
                {
-                  if (iItem >= m_listlayout.m_iaDisplayToStrict.get_count())
+                  if(iItem >= m_meshlayout.m_iaDisplayToStrict.get_count())
                      continue;
-                  iStrict = m_listlayout.m_iaDisplayToStrict[iItem];
+                  iStrict = m_meshlayout.m_iaDisplayToStrict[iItem];
                }
                itema.add(new ::fs::item(pdata->m_itema.get_item(iStrict)));
             }
@@ -450,7 +450,7 @@ namespace userfs
 
    ::count list::_001GetItemCount()
    {
-      return get_fs_list_data()->m_itema.get_count();
+      return get_fs_mesh_data()->m_itema.get_count();
    }
 
    void list::add_item(const char * pszPath, const char * pszTitle)
@@ -469,7 +469,7 @@ namespace userfs
 
       }
 
-      get_fs_list_data()->m_itema.add_item(item);
+      get_fs_mesh_data()->m_itema.add_item(item);
 
       _001OnUpdateItemCount();
 
@@ -488,7 +488,7 @@ namespace userfs
    void list::_001OnFileRename(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      sp(::user::control) pcontrol = _001GetControlBySubItem(get_fs_list_data()->m_iNameSubItem);
+      sp(::user::control) pcontrol = _001GetControlBySubItem(get_fs_mesh_data()->m_iNameSubItem);
       range range;
       _001GetSelection(range);
       if (range.get_item_count() == 1 && range.ItemAt(0).get_lower_bound() == range.ItemAt(0).get_upper_bound())
@@ -546,7 +546,7 @@ namespace userfs
 
    bool list::query_drop(index iDisplayDrop, index iDisplayDrag)
    {
-      list_data * pdata = get_fs_list_data();
+      list_data * pdata = get_fs_mesh_data();
       if (iDisplayDrag < 0)
          return false;
       if (iDisplayDrop < 0)
@@ -554,10 +554,10 @@ namespace userfs
       if (m_iItemDrag != m_iItemDrop)
       {
          index strict;
-         if (m_eview == ViewIcon)
+         if (m_eview == view_icon)
             strict = m_iconlayout.m_iaDisplayToStrict[iDisplayDrop];
          else
-            strict = m_listlayout.m_iaDisplayToStrict[iDisplayDrop];
+            strict = m_meshlayout.m_iaDisplayToStrict[iDisplayDrop];
          if (strict <= -1)
             return true; // can drop in is_empty place
          else if (strict >= _001GetItemCount())
@@ -577,13 +577,13 @@ namespace userfs
    bool list::do_drop(index iDisplayDrop, index iDisplayDrag)
    {
 
-      list_data * pdata = get_fs_list_data();
+      list_data * pdata = get_fs_mesh_data();
 
       index strict;
 
       index strictDrag;
 
-      if (m_eview == ViewIcon)
+      if (m_eview == view_icon)
       {
 
          strict = m_iconlayout.m_iaDisplayToStrict[iDisplayDrop];
@@ -594,9 +594,9 @@ namespace userfs
       else
       {
 
-         strict = m_listlayout.m_iaDisplayToStrict[iDisplayDrop];
+         strict = m_meshlayout.m_iaDisplayToStrict[iDisplayDrop];
 
-         strictDrag = m_listlayout.m_iaDisplayToStrict[iDisplayDrag];
+         strictDrag = m_meshlayout.m_iaDisplayToStrict[iDisplayDrag];
 
       }
 
@@ -637,14 +637,14 @@ namespace userfs
    }
 
    
-   list_data * list::get_fs_list_data()
+   list_data * list::get_fs_mesh_data()
    {
 
-      return m_plistdata.cast < list_data > ();
+      return m_pmeshdata.cast < list_data > ();
 
    }
 
-   ::user::list_data * list::create_list_data()
+   ::user::list_data * list::create_mesh_data()
    {
 
       return canew(list_data(get_app()));

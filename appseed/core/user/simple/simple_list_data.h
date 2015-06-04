@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_CORE simple_list_data :
+class CLASS_DECL_CORE simple_list_data:
    virtual public ::user::list_data
 {
 public:
@@ -19,15 +19,15 @@ public:
    bool remove_item(index iItem);
    void get_data(stringa & stra);
    void get_column_data(stringa & stra,index iColumn);
-   void set_data(::user::list * plist,stringa & stra);
-   void set_column_data(::user::list * plist,stringa & stra,index iColumn);
+   void set_data(::user::mesh * pmesh,stringa & stra);
+   void set_column_data(::user::mesh * pmesh,stringa & stra,index iColumn);
    void Enable(bool bEnable);
-   void set_item_text(::user::list * plist,index iItem,index iSubItem,const char * lpcsz);
+   void set_item_text(::user::mesh * pmesh,index iItem,index iSubItem,const char * lpcsz);
 
 
-   virtual void _001GetItemText(::user::list_item * pitem);
+   virtual void _001GetItemText(::user::mesh_item * pitem);
 
-   virtual void _001OnDeleteRange(::user::list::range & range);
+   virtual void _001OnDeleteRange(::user::mesh::range & range);
 
 
    virtual int_ptr _001GetItemCount();

@@ -5,8 +5,8 @@ namespace databaseuser
 {
 
 
-   class CLASS_DECL_CORE list_data :
-      public ::user::list_data,
+   class CLASS_DECL_CORE mesh_data :
+      public ::user::mesh_data,
       public ::database::client
    {
    public:
@@ -15,8 +15,8 @@ namespace databaseuser
       ::count m_iItemCount;
 
 
-      list_data(::aura::application * papp);
-      virtual ~list_data();
+      mesh_data(::aura::application * papp);
+      virtual ~mesh_data();
 
       virtual void _001GetItemText(::user::list_item * pitem);
 
@@ -28,8 +28,8 @@ namespace databaseuser
    private:
 
 
-      list_data(const list_data & ) :
-         ::user::list_data(NULL)
+      mesh_data(const mesh_data & ) :
+         ::user::mesh_data(NULL)
       {
       }
 

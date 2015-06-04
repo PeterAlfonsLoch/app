@@ -75,7 +75,7 @@ namespace filemanager
 
             void install_message_handling(::message::dispatch * pinterface);
        
-            ::user::list_cache        m_cache;
+            ::user::list_cache         m_cache;
             bool                 m_bKickActive;
 
             ItemArray         m_itema; 

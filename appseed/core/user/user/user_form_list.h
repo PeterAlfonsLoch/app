@@ -5,50 +5,13 @@ namespace user
 {
 
 
-   class CLASS_DECL_CORE form_list :
-      virtual public ::user::form,
+   class CLASS_DECL_CORE form_list:
+      virtual public ::user::form_mesh,
       virtual public ::user::list
    {
    public:
 
 
-      class CLASS_DECL_CORE control_keep
-      {
-      public:
-         inline control_keep(form_list * pformlist,index iNewItem,index iNewSubItem)
-         {
-            m_pformlist                      = pformlist;
-            m_iItem                          = pformlist->m_iControlItem;
-            m_iSubItem                       = pformlist->m_iControlSubItem;
-            pformlist->m_iControlItem        = iNewItem;
-            pformlist->m_iControlSubItem     = iNewSubItem;
-         }
-         inline control_keep(form_list * pformlist,point pt)
-         {
-            m_pformlist                      = pformlist;
-            m_iItem                          = pformlist->m_iControlItem;
-            m_iSubItem                       = pformlist->m_iControlSubItem;
-            pformlist->control_001DisplayHitTest(pt);
-         }
-         inline ~control_keep()
-         {
-            m_pformlist->m_iControlItem      = m_iItem;
-            m_pformlist->m_iControlSubItem   = m_iSubItem;
-         }
-         form_list *    m_pformlist;
-         index            m_iItem;
-         index            m_iSubItem;
-      };
-
-
-      sp(control) m_pcontrolEdit;
-
-      ::count m_iOnClickClickCount;
-      index         m_iOnClickClickItem;
-      index         m_iOnClickClickSubItem;
-
-      index         m_iControlItem;
-      index         m_iControlSubItem;
 
 
       form_list();
@@ -57,31 +20,34 @@ namespace user
 
       virtual void _001DrawSubItem(draw_list_item * pdrawitem);
 
+      using ::user::list::_001HitTest_;
+      virtual bool _001HitTest_(point point,index &iItem,index &iSubItem);
+
       void _000OnMouse(::message::mouse * pmouse);
 
-      void control_get_client_rect(sp(control) pcontrol, LPRECT lprect);
-      void control_get_window_rect(sp(control) pcontrol, LPRECT lprect);
+      void control_get_client_rect(sp(control) pcontrol,LPRECT lprect);
+      void control_get_window_rect(sp(control) pcontrol,LPRECT lprect);
       bool control_001DisplayHitTest(POINT pt);
 
       bool _001IsEditing();
 
-      virtual bool _001IsPointInside(sp(control) pcontrol, point64 ptt);
+      virtual bool _001IsPointInside(sp(control) pcontrol,point64 ptt);
 
       void _001HideEditingControls();
       void _001HideControl(sp(control) pcontrol);
       virtual void _001OnDraw(::draw2d::graphics * pdc);
-      virtual LRESULT _001BaseWndGetProperty(EProperty eprop, LPARAM lparam);
+      virtual LRESULT _001BaseWndGetProperty(EProperty eprop,LPARAM lparam);
       void _001UpdateColumns();
       sp(control) _001GetEditControl();
       void _001SetEditControl(sp(control) pcontrol);
       virtual void _001PlaceControl(sp(control) pcontrol);
       sp(control) _001GetControlBySubItem(index iSubItem);
-      virtual void _001OnClick(uint_ptr uiFlags, point point);
-      virtual void _001OnClick(uint_ptr uiFlags, point point, index iItem, index iSubItem);
+      virtual void _001OnClick(uint_ptr uiFlags,point point);
+      virtual void _001OnClick(uint_ptr uiFlags,point point,index iItem,index iSubItem);
       DECL_GEN_SIGNAL(_001OnTimer);
 
       using list::_001GetSelection;
-      virtual void _001GetSelection(::database::id & key, ::database::selection & selection);
+      virtual void _001GetSelection(::database::id & key,::database::selection & selection);
 
       DECL_GEN_SIGNAL(_001OnNotify);
       DECL_GEN_SIGNAL(_001OnMessageNotify);
@@ -90,10 +56,10 @@ namespace user
       DECL_GEN_SIGNAL(_001OnHScroll);
       DECL_GEN_SIGNAL(_001OnKeyDown);
 
-      virtual bool _001OnMouseActivate(::window_sp pDesktopWnd, UINT nHitTest, UINT message, LRESULT & iResult);
+      virtual bool _001OnMouseActivate(::window_sp pDesktopWnd,UINT nHitTest,UINT message,LRESULT & iResult);
 
 
-      virtual void install_message_handling( ::message::dispatch *pinterface);
+      virtual void install_message_handling(::message::dispatch *pinterface);
 
       bool BaseOnControlEvent(::user::control_event * pevent);
 
@@ -101,7 +67,6 @@ namespace user
 
 
    };
-
 
 } // namespace user
 

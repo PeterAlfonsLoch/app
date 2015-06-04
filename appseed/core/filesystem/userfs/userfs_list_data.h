@@ -26,11 +26,11 @@ namespace userfs
 
       void update();
 
-      virtual void _001GetItemText(::user::list_item * pitem);
+      virtual void _001GetItemText(::user::mesh_item * pitem);
 
       virtual count _001GetItemCount();
 
-      virtual void _001GetItemImage(::user::list_item * pitem);
+      virtual void _001GetItemImage(::user::mesh_item * pitem);
 
 
    };

@@ -27,6 +27,7 @@ namespace userex
       ::user::front_end *                       m_pufe;
       stringa                                   m_straEscape;
 
+      sp(::type)                                m_typeDefaultMeshData;
       sp(::type)                                m_typeDefaultListHeader;
       sp(::type)                                m_typeDefaultListData;
 
@@ -78,9 +79,11 @@ namespace userex
 
 
       ::user::list_header * default_create_list_header(::aura::application * papp);
+      ::user::mesh_data * default_create_mesh_data(::aura::application * papp);
       ::user::list_data * default_create_list_data(::aura::application * papp);
 
 
+      ::type * default_type_mesh_data();
       ::type * default_type_list_header();
       ::type * default_type_list_data();
 

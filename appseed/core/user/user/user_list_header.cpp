@@ -80,7 +80,7 @@ namespace user
    }
 
 
-   bool list_header::GetItemRect(LPRECT lprect, EElement eelement, index iItem)
+   bool list_header::GetItemRect(LPRECT lprect, e_element eelement, index iItem)
    {
 
       if(iItem < 0)
@@ -118,7 +118,7 @@ namespace user
       rect.left = xLast;
       rect.right = x;
 
-      if(eelement == ElementItem)
+      if(eelement == element_item)
       {
          *lprect = rect;
          return true;
@@ -142,9 +142,9 @@ namespace user
 
    bool list_header::GetItemRect(
       LPRECT lprect,
-      EElement eelementLButtonDown,
+      e_element eelementLButtonDown,
       index iItemLButtonDown,
-      EElement eelement,
+      e_element eelement,
       index iItem)
    {
       if(iItem < 0)
@@ -220,7 +220,7 @@ namespace user
 
    }
 
-   bool list_header::hit_test(POINT point, EElement & eelement, index & iItemParam)
+   bool list_header::hit_test(POINT point, e_element & eelement, index & iItemParam)
    {
       list * plist = m_plistctrlinterface;
       rect rect;
@@ -248,7 +248,7 @@ namespace user
       return false;
    }
 
-   bool list_header::hit_test(POINT point, EElement eelementLButtonDown, index iItemLButtonDown, EElement & eelement, index & iItemParam)
+   bool list_header::hit_test(POINT point, e_element eelementLButtonDown, index iItemLButtonDown, e_element & eelement, index & iItemParam)
    {
       list * plist = m_plistctrlinterface;
       rect rect;
@@ -395,7 +395,7 @@ namespace user
       if(m_bLButtonDown)
       {
          m_bLButtonDown = false;
-         EElement eelement;
+         e_element eelement;
          index iItem;
          if(hit_test(ptCursor, eelement, iItem))
          {
@@ -426,7 +426,7 @@ namespace user
             else if(m_eelementLButtonDown == ElementDivider)
             {
                rect rect;
-               GetItemRect(rect, ElementItem, m_iItemLButtonDown);
+               GetItemRect(rect, element_item, m_iItemLButtonDown);
                rect.right = ptCursor.x;
                int32_t iNewWidth = rect.width();
                plist->_001SetColumnWidth(m_iItemLButtonDown, MAX(0, iNewWidth));
@@ -448,7 +448,7 @@ namespace user
       point ptCursor = pmouse->m_pt;
       ScreenToClient(&ptCursor);
       list * plist = m_plistctrlinterface;
-      EElement eelement;
+      e_element eelement;
       index iItem;
       if(hit_test(ptCursor, eelement, iItem))
       {
@@ -479,7 +479,7 @@ namespace user
            if(m_eelementLButtonDown == ElementDivider)
          {
             rect rect;
-            GetItemRect(rect, ElementItem, m_iItemLButtonDown);
+            GetItemRect(rect, element_item, m_iItemLButtonDown);
             rect.right = ptCursor.x;
             int32_t iNewWidth = rect.width();
             plist->_001SetColumnWidth(m_iItemLButtonDown, MAX(0, iNewWidth));
@@ -508,7 +508,7 @@ namespace user
       point ptCursor = pmouse->m_pt;
       ScreenToClient(&ptCursor);
       list * plist = m_plistctrlinterface;
-      EElement eelement;
+      e_element eelement;
       index iItem;
       if(hit_test(
          ptCursor,

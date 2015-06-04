@@ -647,9 +647,9 @@ namespace user
 
       virtual bool get_rect_normal(LPRECT lprect);
 
-      virtual point get_scroll_position();
-      virtual point get_parent_scroll_position();
-      virtual point get_ascendant_scroll_position();
+      virtual point get_viewport_offset();
+      virtual point get_parent_viewport_offset();
+      virtual point get_ascendant_viewport_offset();
 
 
 

@@ -564,9 +564,9 @@ namespace user
 
       /*      ::user::list * plist = dynamic_cast<::user::list *>(get_child_by_id(pcontrol->m_id));
 
-      if(typeid(plist->GetDataInterface()) == System.type_info < ::user::simple_list_data > ())
+      if(typeid(plist->GetDataInterface()) == System.type_info < ::user::simple_mesh_data > ())
       {
-      ::user::simple_list_data * pdata = dynamic_cast < ::user::simple_list_data * > (plist->GetDataInterface());
+      ::user::simple_mesh_data * pdata = dynamic_cast < ::user::simple_mesh_data * > (plist->GetDataInterface());
       stringa stra;
       data_get(pcontrol->descriptor().m_dataid, stra);
       ASSERT(plist != NULL);

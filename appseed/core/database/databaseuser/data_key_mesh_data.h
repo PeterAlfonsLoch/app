@@ -5,18 +5,18 @@ namespace databaseuser
 {
 
 
-   class CLASS_DECL_CORE data_key_list_data :
-      public ::user::list_data,
+   class CLASS_DECL_CORE data_key_mesh_data :
+      public ::user::mesh_data,
       public ::database::client
    {
    public:
 
 
-      data_key_list_data(::aura::application * papp);
-      virtual ~data_key_list_data();
+      data_key_mesh_data(::aura::application * papp);
+      virtual ~data_key_mesh_data();
 
 
-      virtual void _001GetItemText(::user::list_item * pitem);
+      virtual void _001GetItemText(::user::mesh_item * pitem);
 
       virtual count _001GetItemCount();
 
@@ -29,8 +29,8 @@ namespace databaseuser
    private:
 
 
-      data_key_list_data(const data_key_list_data & ) :
-         ::user::list_data(NULL)
+      data_key_mesh_data(const data_key_mesh_data & ) :
+         ::user::mesh_data(NULL)
       {
       }
 

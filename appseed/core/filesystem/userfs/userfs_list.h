@@ -25,7 +25,7 @@ namespace userfs
       virtual bool _001OnUpdateItemCount(uint32_t dwFlags = 0);
 
       sp(::userfs::document) get_document();
-      virtual list_data * get_fs_list_data();
+      virtual list_data * get_fs_mesh_data();
 
       virtual COLORREF get_background_color();
       void add_item(const char * pszPath, const char * pszTitle);
@@ -89,7 +89,7 @@ namespace userfs
       virtual void dump(dump_context & dumpcontext) const;
 #endif
 
-      ::user::list_data * create_list_data();
+      ::user::list_data * create_mesh_data();
 
    };
 

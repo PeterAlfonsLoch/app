@@ -25,14 +25,14 @@ namespace filemanager
       if(bRecursive)
       {
          SetDataInterface(new folder_list_data(get_app()));
-         sp(folder_list_data) pdata = m_plistdata.cast <folder_list_data > ();
+         sp(folder_list_data) pdata = m_pmeshdata.cast <folder_list_data > ();
          pdata->m_dataid = datakey;
          pdata->initialize_data_client(Application.simpledb().get_data_server());
       }
       else
       {
-         SetDataInterface(new databaseuser::data_key_list_data(get_app()));
-         sp(databaseuser::data_key_list_data) pdata = m_plistdata.cast  < ::databaseuser::data_key_list_data >();
+         SetDataInterface(new databaseuser::data_key_mesh_data(get_app()));
+         sp(databaseuser::data_key_mesh_data) pdata = m_pmeshdata.cast  < ::databaseuser::data_key_mesh_data >();
          pdata->m_dataid = datakey;
          pdata->initialize_data_client(Application.simpledb().get_data_server());
       }
@@ -63,7 +63,7 @@ namespace filemanager
       if(stra.get_size() == 0)
          return true;
 
-      sp(databaseuser::data_key_list_data) pdata = m_plistdata.cast <databaseuser::data_key_list_data >();
+      sp(databaseuser::data_key_mesh_data) pdata = m_pmeshdata.cast <databaseuser::data_key_mesh_data >();
 
       if(!pdata->add_unique(stra))
          return false;
@@ -81,7 +81,7 @@ namespace filemanager
          throw "incorrect usage of this class object";
       if(stra.get_size() == 0)
          return true;
-      sp(folder_list_data) pdata = m_plistdata.cast <folder_list_data> ();
+      sp(folder_list_data) pdata = m_pmeshdata.cast <folder_list_data> ();
       if(!pdata->add_unique(stra,baRecursive))
          return false;
       _001OnUpdateItemCount();
@@ -100,7 +100,7 @@ namespace filemanager
       if(m_bRecursive)
       {
          
-         sp(folder_list_data) pdata = m_plistdata.cast <folder_list_data >();
+         sp(folder_list_data) pdata = m_pmeshdata.cast <folder_list_data >();
 
          if(!pdata->remove(stra))
             return false;
@@ -109,7 +109,7 @@ namespace filemanager
       else
       {
          
-         sp(databaseuser::data_key_list_data) pdata = m_psimplelistdata.cast <databaseuser::data_key_list_data > ();
+         sp(databaseuser::data_key_mesh_data) pdata = m_psimplemeshdata.cast <databaseuser::data_key_mesh_data > ();
 
          if(!pdata->remove(stra))
             return false;
@@ -129,14 +129,14 @@ namespace filemanager
       if(m_bRecursive)
       {
          
-         sp(folder_list_data) pdata = m_plistdata.cast <folder_list_data >();
+         sp(folder_list_data) pdata = m_pmeshdata.cast <folder_list_data >();
          pdata->GetSel(this,stra);
 
       }
       else
       {
          
-         sp(databaseuser::data_key_list_data) pdata = m_psimplelistdata.cast <databaseuser::data_key_list_data >();
+         sp(databaseuser::data_key_mesh_data) pdata = m_psimplemeshdata.cast <databaseuser::data_key_mesh_data >();
          pdata->GetSel(this,stra);
 
       }

@@ -63,7 +63,7 @@ public:
    //void _001DrawItem(::draw2d::graphics * pdc, int32_t iItem);
    //int32_t _001HitTest(const POINT * point);
    //bool _001CheckItem(int32_t iItem, bool bCheck);
-   //bool _001GetItemRect(int32_t iItem, LPRECT lprect, EElement eelement);
+   //bool _001GetItemRect(int32_t iItem, LPRECT lprect, e_element eelement);
    //virtual void _001OnDraw(::draw2d::graphics * pdc);
    bool ReloadMenuBar();
    virtual void OnUpdateCmdUI(sp(::user::frame_window) pTarget, bool bDisableIfNoHndler);

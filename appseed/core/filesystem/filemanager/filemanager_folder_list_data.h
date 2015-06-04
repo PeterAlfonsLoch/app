@@ -16,7 +16,7 @@ namespace filemanager
       virtual ~folder_list_data();
 
 
-      virtual void _001GetItemText(::user::list_item * pitem);
+      virtual void _001GetItemText(::user::mesh_item * pitem);
 
       virtual count _001GetItemCount();
 
@@ -30,6 +30,7 @@ namespace filemanager
 
       
       folder_list_data(const folder_list_data & ) :
+         ::user::mesh_data(NULL),
          ::user::list_data(NULL)
       {
       }

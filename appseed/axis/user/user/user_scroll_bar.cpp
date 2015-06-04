@@ -72,18 +72,18 @@ namespace user
    }
 
 
-   point scroll_bar::get_ascendant_scroll_position()
+   point scroll_bar::get_ascendant_viewport_offset()
    {
 
       if(GetParent() == NULL)
          return point(0,0);
 
-      return GetParent()->get_ascendant_scroll_position();
+      return GetParent()->get_ascendant_viewport_offset();
 
    }
 
 
-   point scroll_bar::get_parent_scroll_position()
+   point scroll_bar::get_parent_viewport_offset()
    {
 
       return point(0,0);

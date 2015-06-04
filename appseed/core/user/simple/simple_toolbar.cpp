@@ -545,9 +545,9 @@ void simple_toolbar::_001DrawItem(::draw2d::graphics * pdc, int32_t iItem)
 
    UINT uiImage = pmenucentral->CommandToImage(item.m_id);
 
-   EElement eelement = ElementItem;
-   EElement eelementImage = ElementImage;
-   EElement eelementText = ElementText;
+   e_element eelement = element_item;
+   e_element eelementImage = element_image;
+   e_element eelementText = element_text;
    if((nStyle & TBBS_SEPARATOR) == 0)
    {
       if((nStyle & TBBS_DISABLED) == 0)
@@ -581,16 +581,16 @@ void simple_toolbar::_001DrawItem(::draw2d::graphics * pdc, int32_t iItem)
       else
       {
          // item is disabled
-         eelement       = ElementItem;
-         eelementImage  = ElementImage;
-         eelementText   = ElementText;
+         eelement       = element_item;
+         eelementImage  = element_image;
+         eelementText   = element_text;
       }
    }
    else
    {
-      eelement       = ElementItem;
-      eelementImage  = ElementImage;
-      eelementText   = ElementText;
+      eelement       = element_item;
+      eelementImage  = element_image;
+      eelementText   = element_text;
    }
 
 
@@ -615,8 +615,8 @@ void simple_toolbar::_001DrawItem(::draw2d::graphics * pdc, int32_t iItem)
       {
          if((nStyle & TBBS_CHECKED) != 0)
          {
-            _001GetElementRect(iItem, rectItem, ElementItem);
-            _001GetElementRect(iItem, rectImage, ElementImage);
+            _001GetElementRect(iItem, rectItem, element_item);
+            _001GetElementRect(iItem, rectImage, element_image);
             if((m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
             {
                System.visual().imaging().color_blend(
@@ -704,7 +704,7 @@ void simple_toolbar::_001DrawItem(::draw2d::graphics * pdc, int32_t iItem)
          }
 
          //      rect rect;
-         //    _001GetElementRect(iItem, rect, ElementImage);
+         //    _001GetElementRect(iItem, rect, element_image);
          //  m_pimagelistHue->draw(pdc, uiImage, rect.top_left(), 0);
          if(item.m_spdib.is_set())
          {
@@ -722,7 +722,7 @@ void simple_toolbar::_001DrawItem(::draw2d::graphics * pdc, int32_t iItem)
       {
          if((nStyle & TBBS_DISABLED) == 0)
          {
-            _001GetElementRect(iItem, rectItem, ElementItem);
+            _001GetElementRect(iItem, rectItem, element_item);
          
             pdc->FillSolidRect(rectItem,  ARGB(184, 255, 255, 255));
          }
@@ -735,7 +735,7 @@ void simple_toolbar::_001DrawItem(::draw2d::graphics * pdc, int32_t iItem)
          if(item.m_spdib.is_set())
          {
             rect rect;
-            _001GetElementRect(iItem, rect, ElementImage);
+            _001GetElementRect(iItem, rect, element_image);
             System.visual().imaging().color_blend(pdc, rect.top_left(), rect.size(), item.m_spdib->get_graphics(), null_point(), 0.23);
          }
          else if(uiImage != 0xffffffff)
@@ -770,7 +770,7 @@ void simple_toolbar::_001DrawItem(::draw2d::graphics * pdc, int32_t iItem)
       }
       pdc->SelectObject(brushText);
 
-      if(_001GetElementRect(iItem, rectText, ElementText) && rectText.right > 0)
+      if(_001GetElementRect(iItem, rectText, element_text) && rectText.right > 0)
       {
          pdc->_DrawText(item.m_str, item.m_str.get_length(), rectText, DT_BOTTOM | DT_LEFT);
       }
@@ -855,7 +855,7 @@ bool simple_toolbar::_001GetElementRect(int32_t iItem, LPRECT lprect)
 }
 */
 
-bool simple_toolbar::_001GetElementRect(int32_t iItem, LPRECT lprect, EElement eelement)
+bool simple_toolbar::_001GetElementRect(int32_t iItem, LPRECT lprect, e_element eelement)
 {
    if(iItem < 0 ||
       iItem >= m_itema.get_size())
@@ -882,7 +882,7 @@ bool simple_toolbar::_001GetElementRect(int32_t iItem, LPRECT lprect, EElement e
    {
       switch(eelement)
       {
-      case ElementItem:
+      case element_item:
       case ElementItemHover:
       case ElementItemPress:
          rect.left   = item.m_rect.left;
@@ -901,7 +901,7 @@ bool simple_toolbar::_001GetElementRect(int32_t iItem, LPRECT lprect, EElement e
             rect.bottom = rect.top + m_sizeImage.cy + ITEMPADTOP + ITEMPADBOTTOM;
          }
          break;
-      case ElementImage:
+      case element_image:
       case ElementImageHover:
       case ElementImagePress:
          if(item.m_spdib.is_set() && item.m_spdib->area() > 0)
@@ -925,7 +925,7 @@ bool simple_toolbar::_001GetElementRect(int32_t iItem, LPRECT lprect, EElement e
          rect.right  = rect.left + m_sizeImage.cx;
          rect.bottom = rect.top + m_sizeImage.cy;
          break;
-      case ElementText:
+      case element_text:
       case ElementTextHover:
       case ElementTextPress:
          {
@@ -946,9 +946,9 @@ bool simple_toolbar::_001GetElementRect(int32_t iItem, LPRECT lprect, EElement e
       }
       switch(eelement)
       {
-      case ElementItem:
-      case ElementImage:
-      case ElementText:
+      case element_item:
+      case element_image:
+      case element_text:
          rect.offset(ITEMCX, ITEMCY);
          break;
       case ElementItemHover:
@@ -966,7 +966,7 @@ bool simple_toolbar::_001GetElementRect(int32_t iItem, LPRECT lprect, EElement e
       }
       //switch(eelement)
       //{
-      //case ElementItem:
+      //case element_item:
       //   rect.deflate(1, 0);
       //   break;
       //default:

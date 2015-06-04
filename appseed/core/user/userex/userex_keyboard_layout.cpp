@@ -7,9 +7,9 @@ namespace userex // ca8 + cube
 
    keyboard_layout::keyboard_layout(::aura::application * papp) :
       object(papp),
+      ::user::mesh_data(papp),
       ::user::list_data(papp),
       ::user::split_layout(papp),
-      
       ::user::split_view(papp),
       place_holder_container(papp)
    {
@@ -84,7 +84,7 @@ namespace userex // ca8 + cube
          }
       }
 
-      m_plistview->m_plistdata = this;
+      m_plistview->m_pmeshdata = this;
       m_plistview->m_pformcallback = this;
       m_plistview->_001OnUpdateItemCount();
       SetPane(0, m_plistview, false);
@@ -176,7 +176,7 @@ namespace userex // ca8 + cube
    }
 
 
-   void keyboard_layout::_001GetItemText(::user::list_item * pitem)
+   void keyboard_layout::_001GetItemText(::user::mesh_item * pitem)
    {
       if(pitem->m_iItem <  0 || pitem->m_iItem >= m_layoutida.get_size())
          return_(pitem->m_bOk, false);

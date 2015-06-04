@@ -84,7 +84,7 @@ void simple_scroll_bar::_001OnMouseMove(signal_details * pobj)
    {
 
       SetTrackingPos(pt);
-      send_scroll_message(SB_THUMBPOSITION);
+      send_scroll_message(SB_THUMBTRACK);
       pmouse->set_lresult(1);
       pmouse->m_bRet = true;
       pmouse->m_ecursor = ::visual::cursor_arrow;

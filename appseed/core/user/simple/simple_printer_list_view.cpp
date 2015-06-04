@@ -85,7 +85,7 @@ void simple_printer_list_view::_001OnClick(uint_ptr nFlags, point point)
       item.m_iItem = iItem;
       item.m_iSubItem = 0;
       item.m_iListItem = -1;
-      m_psimplelistdata->_001GetItemText(&item);
+      m_psimplemeshdata->_001GetItemText(&item);
       sp(::user::print_job) pprintjob;
       pprintjob.alloc(allocer());
       pprintjob->add_ref();

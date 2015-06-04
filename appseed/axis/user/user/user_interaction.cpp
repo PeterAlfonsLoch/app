@@ -5900,14 +5900,14 @@ namespace user
 
 
 
-   point interaction::get_scroll_position()
+   point interaction::get_viewport_offset()
    {
 
       return point(0, 0);
 
    }
 
-   point interaction::get_ascendant_scroll_position()
+   point interaction::get_ascendant_viewport_offset()
    {
 
       sp(::user::interaction) puser = GetParent();
@@ -5917,7 +5917,7 @@ namespace user
       while(puser.is_set())
       {
 
-         pt += puser->get_scroll_position();
+         pt += puser->get_viewport_offset();
 
          puser = puser->GetParent();
 
@@ -5928,7 +5928,7 @@ namespace user
    }
 
 
-   point interaction::get_parent_scroll_position()
+   point interaction::get_parent_viewport_offset()
    {
 
       sp(::user::interaction) puser = GetParent();
@@ -5936,7 +5936,7 @@ namespace user
       if(puser.is_null())
          return point(0,0);
 
-      return puser->get_scroll_position();
+      return puser->get_viewport_offset();
 
    }
 

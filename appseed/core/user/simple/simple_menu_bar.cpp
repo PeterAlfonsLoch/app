@@ -159,7 +159,7 @@ bool simple_menu_bar::_TrackPopupMenu(int32_t iItem)
     m_iButtonPressItem = iItem;
     RedrawWindow();
     rect rect;
-    _001GetElementRect(iItem, rect, ElementItem);
+    _001GetElementRect(iItem, rect, element_item);
     ClientToScreen(rect);
 
 /*#ifdef WINDOWSEX
@@ -454,7 +454,7 @@ bool simple_menu_bar::ReloadMenuBar()
 
 }
 */
-/*bool simple_menu_bar::_001GetItemRect(int32_t iItem, LPRECT lprect, EElement eelement)
+/*bool simple_menu_bar::_001GetItemRect(int32_t iItem, LPRECT lprect, e_element eelement)
 {
    if(iItem < 0 ||
       iItem >= m_buttona.get_size())
@@ -462,7 +462,7 @@ bool simple_menu_bar::ReloadMenuBar()
 
    switch(eelement)
    {
-   case ElementItem:
+   case element_item:
       lprect->left   = m_buttona[iItem].m_rect.left + ITEMCHECKEDCX;
       lprect->right  = m_buttona[iItem].m_rect.right + ITEMCHECKEDPADRIGHT;
       lprect->top    = m_buttona[iItem].m_rect.top + ITEMCHECKEDCY;
@@ -474,7 +474,7 @@ bool simple_menu_bar::ReloadMenuBar()
       lprect->top    = m_buttona[iItem].m_rect.top;
       lprect->bottom = m_buttona[iItem].m_rect.bottom - ITEMCHECKEDCY;
       break;
-   case ElementText:
+   case element_text:
       lprect->left   = m_buttona[iItem].m_rect.left + ITEMCHECKEDCX;
       lprect->right  = m_buttona[iItem].m_rect.right;
       lprect->top    = m_buttona[iItem].m_rect.top + ITEMCHECKEDCY;
@@ -648,8 +648,8 @@ size simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
    SimpleMenuBarButton & button = m_buttona[iItem];
 
 
-   EElement eelement = ElementItem;
-   EElement eelementText = ElementText;
+   e_element eelement = element_item;
+   e_element eelementText = element_text;
    if(m_iTracking >= 0)
    {
       if(iItem == m_iTracking)
@@ -673,7 +673,7 @@ size simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
    if(eelement == ElementItemHover)
    {
       rect rectShadow;
-      _001GetItemRect(iItem, rectShadow, ElementItem);
+      _001GetItemRect(iItem, rectShadow, element_item);
 
       ::draw2d::pen_sp penShadow(get_app(), PS_SOLID, 1, RGB(127, 127, 127));
       ::draw2d::brush_sp brushShadow(get_app(), RGB(127, 127, 127));
@@ -690,7 +690,7 @@ size simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
       pdc->SelectObject(pbrushOld);
 
       rect rect;
-      _001GetItemRect(iItem, rect, ElementText);
+      _001GetItemRect(iItem, rect, element_text);
       pdc->set_text_color(RGB(192, 192, 192));
       visual::graphics_extension::_DrawText(pdc,
          button.m_wstr,

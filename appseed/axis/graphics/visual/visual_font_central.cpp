@@ -6,7 +6,9 @@ font_central::font_central(::aura::application * papp) :
    m_fontMenu(allocer()),
    m_fontStandard(allocer()),
    m_font(allocer()),
-   m_fontListCtrl(allocer())
+   m_fontListCtrl(allocer()),
+   m_fontMeshCtrl(allocer()),
+   m_fontGridCtrl(allocer())
 {
    m_pfontLyric = NULL;
    m_pfontLyricCompact = NULL;
@@ -64,6 +66,10 @@ bool font_central::Initialize()
 
 
    m_fontListCtrl->create_point_font(FONTFACENAME_LUCIDA, 9);
+
+   m_fontMeshCtrl->create_point_font(FONTFACENAME_LUCIDA,9);
+
+   m_fontGridCtrl->create_point_font(FONTFACENAME_LUCIDA,9);
 
    m_bInitialized = true;
 
@@ -280,4 +286,17 @@ void font_central::CreateLyricViewFonts()
 ::draw2d::font * font_central::GetListCtrlFont()
 {
    return m_fontListCtrl;
+}
+
+
+::draw2d::font * font_central::GetMeshCtrlFont()
+{
+   return m_fontMeshCtrl;
+}
+
+
+
+::draw2d::font * font_central::GetGridCtrlFont()
+{
+   return m_fontGridCtrl;
 }

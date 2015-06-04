@@ -11,6 +11,7 @@ namespace database
 
 class window_redraw_interface;
 class image_list;
+class simple_list_data;
 
 namespace visual
 {
@@ -21,10 +22,8 @@ namespace user
 {
 
 
-   class list_cache_interface;
    class list_header;
    class scroll_bar;
-   class list_data;
    class list;
    class list_column_array;
 
@@ -145,28 +144,11 @@ namespace user
 
 
    class CLASS_DECL_CORE list_item :
-      virtual public ::object
+      virtual public mesh_item
    {
    public:
 
       list *         m_plist;
-      index          m_iGroup;
-      index          m_iItem;
-      index          m_iDisplayItem;
-      index          m_iColumn;
-      index          m_iColumnKey;
-      index          m_iOrder;
-      index          m_iSubItem;
-      index          m_iListItem;
-      string         m_strText;
-      COLORREF       m_cr;
-      int32_t            m_iState;
-      index          m_iImage;
-      bool           m_bOk;
-
-      index          m_iGroupTopIndex;
-      index          m_iGroupCount;
-
       list_column *  m_pcolumn;
 
 
@@ -175,41 +157,17 @@ namespace user
    };
 
    class CLASS_DECL_CORE draw_list_item :
-      virtual public list_item,
-      virtual public ::aura::draw_context
+      virtual public draw_mesh_item,
+      virtual public list_item
    {
    public:
 
-      rect                 m_rectGroup;
-      rect                 m_rectItem;
-      rect                 m_rectSubItem;
-      rect                 m_rectListItem;
-      rect                 m_rectImage;
-      rect                 m_rectText;
-      rect *               m_prectClient;
 
 
-      index                m_iGroupRectGroup;
-
-      index                m_iItemRectItem;
-
-      index                m_iWidthColumn;
-      int32_t                  m_iColumnWidth;
       list_column *        m_pcolumnWidth;
 
-      index                m_iSubItemRectItem;
-      index                m_iSubItemRectSubItem;
-      index                m_iSubItemRectOrder;
-      index                m_iSubItemRectColumn;
       list_column *        m_pcolumnSubItemRect;
 
-
-      index                m_iListItemRectItem;
-      index                m_iListItemRectSubItem;
-      index                m_iListItemRectListItem;
-
-      ::draw2d::font *         m_pfont;
-      int32_t                  m_iDrawTextFlags;
 
       draw_list_item(list * plist);
 
@@ -225,304 +183,23 @@ namespace user
 
 
    class CLASS_DECL_CORE list :
-      virtual public scroll_control,
-      public ::sort::compare_interface
+      virtual public mesh
    {
    public:
 
-      enum EView
-      {
-         ViewList,
-         ViewReport,
-         ViewIcon,
-      };
 
-      enum ItemState
-      {
-         ItemStateHover = 1,
-         ItemStateSelected = 2,
-      };
 
-      enum e_flag
-      {
-         flag_auto_arrange,
-         flag_align_to_grid,
-      };
-
-
-      enum EElement
-      {
-         ElementItem,
-         ElementImage,
-         ElementText,
-         ElementSubItem,
-         ElementGroupImage,
-         ElementGroupItemText,
-      };
-
-
-      class range;
-      class list_column_array;
-
-      class list_item_range
-      {
-      public:
-         
-
-         index      m_iLowerBound;
-         index      m_iUpperBound;
-
-
-         void set(index iLowerBoundListItem, index iUpperBoundListItem);
-
-
-
-      };
-
-      class CLASS_DECL_CORE sub_item_range
-      {
-      public:
-
-         index                m_iLowerBound;
-         index                m_iUpperBound;
-         list_item_range      m_listitemrange;
-
-
-         sub_item_range();
-         sub_item_range(const sub_item_range & subitemrange);
-
-         void set(index iLowerBoundSubItem, index iUpperBoundSubItem, index iLowerBoundListItem, index iUpperBoundListItem);
-
-         bool has_sub_item(index iSubItem) const;
-
-         sub_item_range & operator =(const sub_item_range & subitemrange);
-
-      };
-
-      class CLASS_DECL_CORE item_range
-      {
-      public:
-         
-         
-         index      m_iLowerBound;
-         index      m_iUpperBound;
-         sub_item_range  m_subitemrange;
-
-
-         item_range();
-         item_range(const item_range & itemrange);
-
-
-         void offset(index iOffset);
-         void set(index iLowerBoundItem, index iUpperBoundItem, index iLowerBoundSubItem, index iUpperBoundSubItem, index iLowerBoundListItem, index iUpperBoundListItem);
-         void set_lower_bound(index iLowerBoundItem);
-         void set_upper_bound(index iUpperBoundItem);
-         bool has_sub_item(index iSubItem) const;
-         index get_lower_bound() const;
-         index get_upper_bound() const;
-         item_range & operator =(const item_range & itemrange);
-         bool has_item(index iItem) const;
-         void get_item_indexes(index_array & ia) const;
-
-      };
-
-      class CLASS_DECL_CORE range
-      {
-      public:
-
-
-         array < item_range > m_itemrangea;
-
-
-         range(const range & range);
-         range();
-
-
-         range & operator = (const range & range);
-
-
-         bool has_item(index iItem) const;
-         bool has_sub_item(index iItem, index iSubItem) const;
-         bool remove_item(index iItem);
-         bool OnRemoveItem(index iItem);
-         void clear();
-         void add_item(const item_range & itemrange);
-         item_range & ItemAt(index iIndex);
-         ::count get_item_count() const;
-         void get_item_indexes(index_array & ia) const;
-
-      };
-
-
-      class CLASS_DECL_CORE list_layout :
-         virtual public ::file::serializable
-      {
-      public:
-         list_layout();
-         virtual ~list_layout();
-
-         index_array   m_iaDisplayToStrict;
-         int32_t            m_iWidth;
-
-         virtual void write(::file::ostream & ostream) const;
-         virtual void read(::file::istream & istream);
-      };
-
-      class CLASS_DECL_CORE icon_layout :
-         virtual public ::file::serializable
-      {
-      public:
-         icon_layout();
-         virtual ~icon_layout();
-
-         index_biunique   m_iaDisplayToStrict;
-         int32_t            m_iWidth;
-
-         virtual void write(::file::ostream & ostream) const;
-         virtual void read(::file::istream & istream);
-      };
-
-
-      static const UINT MESSAGE_ENDCOLUMNHEADERDRAG;
-      static const UINT MESSAGE_COLUMNHEADERTRACK;
-      static const UINT MESSAGE_ENDCOLUMNHEADERTRACK;
-
-      // Simple Filter Implementation
-      // Base List Side
-
-      enum EFilterState
-      {
-         FilterStateNoFilter,
-         FilterStateSetup,
-         FilterStateFilter,
-      };
-
-
-      class CSortInfoItem
-      {
-      public:
-         index    m_iSubItem;
-         bool     m_bAscendent;
-      };
-
-      class CSortInfo
-      {
-      public:
-         
-         
-         raw_array < CSortInfoItem > m_itema;
-
-
-      };
-
-
-
-      CSortInfo                        m_sortinfo;
-
-      EFilterState                     m_efilterstate;
-      index_biunique *                 m_piaFilterIcon;
-      index_array *                    m_piaFilterList;
-
-      bool                             m_bHoverSelect;
-      bool                             m_bMultiSelect;
-
-
-      index                            m_iItemDrag;
-      index                            m_iItemDrop;
-      bool                             m_bDrag;
-
-
-      // Sort
-      bool                             m_bSort;
-      bool                             m_bEmboss;
-
-
-      bool                             m_bSortEnable;
+      bool                             m_bAutoCreateListHeader;
       bool                             m_bHeaderCtrl;
       bool                             m_bSingleColumnMode;
-      sp(list_cache_interface)         m_pcache;
+
       sp(list_header)                  m_plistheader;
 
-      LOGFONTW                         m_logfont;
-      visual::graphics_extension       m_dcextension;
-
-      index                            m_iClick;
-
-      index                            m_iItemFocus;
-
-      bool                             m_bLockViewUpdate;
-      int32_t                          m_iItemHeight;
-      int32_t                          m_iItemWidth;
-
-      index                            m_iItemHover;
-      index                            m_iSubItemHover;
-
-      index                            m_iLastItemSel;
-      index                            m_iLastSubItemSel;
-      index                            m_iItemEnter;
-      index                            m_iSubItemEnter;
-      index                            m_iMouseFlagEnter;
-      index                            m_iItemSel;
-      index                            m_iSubItemSel;
-
-
-      range                            m_rangeSelection;
-      range                            m_rangeHighlight;
-
-
-
-      index                            m_iShiftFirstSelection;
-      uint_ptr                         m_uiLButtonUpFlags;
-      point                            m_ptLButtonUp;
-      UINT                             m_uiRButtonUpFlags;
-      point                            m_ptRButtonUp;
-      cregexp                          m_reFilter1;
-      int32_t                          m_iFilter1Step;
-      bool                             m_bFilter1;
-
-      bool                             m_bTopText;
-      string                           m_strTopText;
-      rect                             m_rectTopText;
-      sp(list_data)                    m_plistdata;
-      ::draw2d::font_sp                m_font;
-      ::draw2d::font_sp                m_fontHover;
-      ::draw2d::pen_sp                 m_penFocused;
-      ::draw2d::pen_sp                 m_penHighlight;
-      EView                            m_eview;
-      flags < e_flag >                 m_flags;
-      icon_layout                      m_iconlayout;
-      list_layout                      m_listlayout;
-      mutex                            m_mutex;
-
-
-      index                            m_iTopIndex;
-      index                            m_iTopGroup;
-      ::count                          m_nDisplayCount;
-      ::count                          m_nItemCount;
-      ::count                          m_nGroupCount;
-
-
-      sp(image_list)                   m_pilGroup;
-      sp(image_list)                   m_pilGroupHover;
-      bool                             m_bGroup;
-      bool                             m_bLateralGroup;
-      int32_t                          m_iLateralGroupWidth;
-      int32_t                          m_iGroupMinHeight;
-      index                            m_iGroupHover;
 
       draw_list_item *                 m_pdrawlistitem;
 
       ::user::list_column_array        m_columna;
 
-      mutex                            m_mutexData;
-
-      bool                             m_bAutoCreateListHeader;
-      bool                             m_bAutoCreateListData;
-
-      // This member is only valid if m_plistdata is simple_list_data object
-      // (i.e. a simple_list_data class object or a simple_list_data based class object)
-      // It should match the pointer of m_plistdata and yes, may kind
-      // of memory waste and dangling appendix in some (or many cases).
       sp(simple_list_data)             m_psimplelistdata;
 
 
@@ -542,7 +219,7 @@ namespace user
 
       virtual void install_message_handling(::message::dispatch * pinterface);
 
-      list_data * GetDataInterface();
+      //mesh_data * GetDataInterface();
       void UpdateHover();
       ::draw2d::font * _001GetFont();
       ::draw2d::font * _001GetFontHover();
@@ -608,9 +285,9 @@ namespace user
 
       void _001SetSingleColumnMode(bool bHeaderCtrl);
       bool _001InsertColumn(::user::list_column & column);
-      void SetDataInterface(list_data * pinterface);
+      void SetDataInterface(mesh_data * pinterface);
       void CacheHint();
-      void SetCacheInterface(list_cache_interface * pinterface);
+      //void SetCacheInterface(mesh_cache_interface * pinterface);
       //void AddMessageHandling(::message::dispatch * pinterface);
       void _001ShowTopText(bool bShow = true);
       void _001LayoutTopText();
@@ -644,22 +321,22 @@ namespace user
       virtual void _001DrawItem(draw_list_item * pdrawitem);
 
       virtual void _001DrawSubItem(draw_list_item * pdrawitem);
+      
+      //virtual void _001GetItemImage(list_item * pitem);
 
-      virtual void _001GetItemImage(list_item * pitem);
+      //virtual void _001GetItemText(list_item * pitem);
 
-      virtual void _001GetItemText(list_item * pitem);
+      //virtual void _001GetItemColor(list_item * pitem);
 
-      virtual void _001GetItemColor(list_item * pitem);
-
-      virtual void _001SearchGetItemText(list_item * pitem);
+      //virtual void _001SearchGetItemText(list_item * pitem);
 
       virtual ::count _001GetGroupItemCount(index iGroup);
 
       virtual ::count _001GetGroupMetaItemCount(index iGroup);
 
-      virtual void _001GetGroupText(list_item * pitem);
+      //virtual void _001GetGroupText(list_item * pitem);
 
-      virtual void _001GetGroupImage(list_item * pitem);
+      //virtual void _001GetGroupImage(list_item * pitem);
 
       virtual void _001InsertColumns();
 
@@ -667,7 +344,7 @@ namespace user
 
 
       virtual ::user::list_header * create_list_header();
-      virtual ::user::list_data * create_list_data();
+      virtual ::user::mesh_data * create_mesh_data();
 
       void layout();
 
@@ -687,7 +364,7 @@ namespace user
       void _001GetGroupRect(draw_list_item * pitem);
       void _001GetItemRect(draw_list_item * pitem);
       void _001GetSubItemRect(draw_list_item * pitem);
-      void _001GetElementRect(draw_list_item * pitem, ::user::list::EElement eelement);
+      void _001GetElementRect(draw_list_item * pitem, ::user::mesh::e_element eelement);
 
       virtual void _001OnColumnChange();
 
@@ -712,12 +389,12 @@ namespace user
 
       virtual ::count _001GetItemCount();
       virtual ::count _001GetGroupCount();
-      bool _001HitTest_(point point, index &iItem, index &iSubItem, index &iListItem, ::user::list::EElement &eelement);
+      bool _001HitTest_(point point, index &iItem, index &iSubItem, index &iListItem, ::user::mesh::e_element &eelement);
       bool _001HitTest_(point point, index &iItem, index &iSubItem);
       bool _001HitTest_(POINT pt, index &iItemParam);
 
 
-      bool _001DisplayHitTest(point point, index &iItem, index &iSubItem, index &iListItem, ::user::list::EElement &eelement);
+      bool _001DisplayHitTest(point point, index &iItem, index &iSubItem, index &iListItem, ::user::mesh::e_element &eelement);
       bool _001DisplayHitTest(point point, index &iItem, index &iSubItem);
       bool _001DisplayHitTest(POINT pt, index &iItemParam);
 
@@ -729,6 +406,8 @@ namespace user
       void auto_arrange(bool bAutoArrange = true);
 
       bool get_auto_arrange();
+
+      virtual void on_create_draw_item();
 
       DECL_GEN_SIGNAL(_001OnSize);
       DECL_GEN_SIGNAL(_001OnMouseLeave);
@@ -822,7 +501,7 @@ namespace user
 
       virtual void data_update_visible_subitem();
 
-      virtual void defer_create_list_data();
+      virtual void defer_create_mesh_data();
 
 
 

@@ -7,16 +7,21 @@ namespace userfs
 
    list_data::list_data(::aura::application * papp) :
       object(papp),
+      ::user::mesh_data(papp),
       ::user::list_data(papp),
       m_itema(papp)
    {
+
    }
+
 
    list_data::~list_data()
    {
+
    }
 
-   void list_data::_001GetItemText(::user::list_item * pitem)
+
+   void list_data::_001GetItemText(::user::mesh_item * pitem)
    {
       if(is_locked())
          return;
@@ -70,7 +75,7 @@ namespace userfs
 
 
 
-   void list_data::_001GetItemImage(::user::list_item * pitem)
+   void list_data::_001GetItemImage(::user::mesh_item * pitem)
    {
       if(is_locked())
          return;

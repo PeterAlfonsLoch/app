@@ -14,16 +14,16 @@ namespace user
 
    }
 
-   void list_cache::_001CacheHint(
-      ::user::list * plist,
-      index iItemStart,
-      index iItemCount)
+   void list_cache::_001CacheHint(      ::user::mesh * pmesh,      index iItemStart,      index iItemCount)
    {
-      keep < bool > keepCaching(&m_bCaching, true, false, true);
+
+      ::user::list * plist = pmesh->m_plist;
+
+      keep < bool > keepCaching(&m_bCaching,true,false,true);
 
       //static critical_section l_cs;
       //single_lock sl(&l_cs, TRUE);
-      int_ptr iIndex, i;
+      int_ptr iIndex,i;
       stringa * pwstra;
       string str;
 
@@ -35,13 +35,13 @@ namespace user
 
       }
 
-   //   critical_section * pCs = &pSet->m_cs;
+      //   critical_section * pCs = &pSet->m_cs;
       draw_list_item item(plist);
       i = 0;
       int32_t iCacheIndex = m_iCacheNextIndex;
       for(iIndex = iItemStart; iIndex <= iItemEnd; iIndex++)
       {
-         if(m_cacheMap.Lookup(iIndex, pwstra))
+         if(m_cacheMap.Lookup(iIndex,pwstra))
             continue;
 
          if(iCacheIndex >= m_cacheArray.get_size())
@@ -69,45 +69,45 @@ namespace user
             catch(...)
             {
             }
-            pwstra->set_at(i, item.m_strText);
+            pwstra->set_at(i,item.m_strText);
          }
-   //      pCs->unlock();
-   //      pSong->m_iIndex = iIndex;
-         m_cacheMap.set_at(iIndex, pwstra);
+         //      pCs->unlock();
+         //      pSong->m_iIndex = iIndex;
+         m_cacheMap.set_at(iIndex,pwstra);
          i++;
       }
       m_iCacheNextIndex = iCacheIndex;
    }
 
-   void list_cache::_001GetItemText(::user::list_item * pitem)
+   void list_cache::_001GetItemText(::user::mesh_item * pitem)
    {
 
       if(m_bCaching)
-         return_(pitem->m_bOk, false);
+         return_(pitem->m_bOk,false);
 
       if(pitem->m_iItem < 0)
-         return_(pitem->m_bOk, false);
+         return_(pitem->m_bOk,false);
 
       if(pitem->m_iColumnKey < 0)
       {
-         if(pitem->m_pcolumn == NULL)
+         if(pitem->m_plistitem->m_pcolumn == NULL)
          {
-            pitem->m_pcolumn = pitem->m_plist->m_columna._001GetBySubItem(pitem->m_iSubItem);
+            pitem->m_plistitem->m_pcolumn = pitem->m_plistitem->m_plist->m_columna._001GetBySubItem(pitem->m_iSubItem);
          }
-         pitem->m_iColumnKey = pitem->m_pcolumn->m_iKey;
+         pitem->m_iColumnKey = pitem->m_plistitem->m_pcolumn->m_iKey;
          if(pitem->m_iColumnKey < 0)
-            return_(pitem->m_bOk, false);
+            return_(pitem->m_bOk,false);
       }
 
       stringa * pwstra;
-      if(!m_cacheMap.Lookup(pitem->m_iItem, pwstra))
+      if(!m_cacheMap.Lookup(pitem->m_iItem,pwstra))
       {
-         _001CacheHint(pitem->m_plist, pitem->m_iItem, 1);
-         if(!m_cacheMap.Lookup(pitem->m_iItem, pwstra))
-            return_(pitem->m_bOk, false);
+         _001CacheHint(pitem->m_plistitem->m_plist,pitem->m_iItem,1);
+         if(!m_cacheMap.Lookup(pitem->m_iItem,pwstra))
+            return_(pitem->m_bOk,false);
       }
       if(pitem->m_iColumnKey >= pwstra->get_size())
-         return_(pitem->m_bOk, false);
+         return_(pitem->m_bOk,false);
 
       pitem->m_strText = pwstra->element_at(pitem->m_iColumnKey);
 
@@ -120,3 +120,5 @@ namespace user
    }
 
 } // namespace user
+
+

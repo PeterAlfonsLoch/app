@@ -45,6 +45,13 @@ namespace userex
       if(!::aura::departament::initialize())
          return false;
 
+      if(!m_typeDefaultMeshData)
+      {
+
+         m_typeDefaultMeshData = System.type_info < ::simple_mesh_data >();
+
+      }
+
       if(!m_typeDefaultListData)
       {
 
@@ -76,9 +83,11 @@ namespace userex
       System.factory().cloneable_small < simple_child_frame >();
       System.factory().cloneable_small < simple_main_frame >();
       System.factory().cloneable_small < ::aura::document >();
+      System.factory().cloneable_small < ::user::split_view >();
       System.factory().cloneable_small < split_view >();
       System.factory().cloneable_small < ::user::edit_plain_text_view >();
 
+      System.factory().cloneable_small < ::simple_mesh_data >();
       System.factory().cloneable_small < ::simple_list_data >();
       System.factory().cloneable_small < ::simple_list_header_control >();
 
@@ -792,10 +801,24 @@ namespace userex
    }
 
 
-   ::user::list_data * userex::default_create_list_data(::aura::application * papp)
+   ::user::mesh_data * userex::default_create_mesh_data(::aura::application * papp)
    {
       
       return App(papp).alloc<::user::list_data >(default_type_list_data());
+
+   }
+
+   ::user::list_data * userex::default_create_list_data(::aura::application * papp)
+   {
+
+      return App(papp).alloc<::user::list_data >(default_type_list_data());
+
+   }
+
+   ::type * userex::default_type_mesh_data()
+   {
+
+      return m_typeDefaultMeshData;
 
    }
 

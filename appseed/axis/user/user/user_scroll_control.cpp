@@ -32,54 +32,31 @@ namespace user
    {
    }
 
-   void scroll_control::GetClientRect(LPRECT lprect)
+   void scroll_control::GetScrollRect(LPRECT lprect)
    {
-      rect rectClient;
-      control::GetClientRect(rectClient);
-      /*rectClient.left               += m_scrollinfo.m_rectMargin.left;
-      rectClient.top                += m_scrollinfo.m_rectMargin.top;
-      rectClient.right              += m_scrollinfo.m_rectMargin.right;
-      rectClient.bottom             += m_scrollinfo.m_rectMargin.bottom;*/
-      m_scrollinfo.m_iScrollHeight  = GetSystemMetrics(SM_CXHSCROLL);
-      m_scrollinfo.m_iScrollWidth   = GetSystemMetrics(SM_CXVSCROLL);
+      
+      ::rect rectScroll;
 
-      m_scrollinfo.m_sizeClient.cx = rectClient.width();
+      GetClientRect(rectScroll);
+
+      rectScroll.offset(get_viewport_offset());
+
       if(m_scrollinfo.m_bVScroll)
       {
-         m_scrollinfo.m_sizeClient.cx -= m_scrollinfo.m_iScrollWidth;
+
+         rectScroll.right -= m_scrollinfo.m_iScrollBarWidth;
+
       }
-      m_scrollinfo.m_sizeClient.cy = rectClient.height();
+
       if(m_scrollinfo.m_bHScroll)
       {
-         m_scrollinfo.m_sizeClient.cy -= m_scrollinfo.m_iScrollHeight;
-      }
 
-      m_scrollinfo.m_sizePage.cx    = m_scrollinfo.m_sizeClient.cx;
-      m_scrollinfo.m_sizePage.cy    = m_scrollinfo.m_sizeClient.cy;
-
-      if(rectClient.area() <= 0)
-      {
-         m_scrollinfo.m_bHScroll = false;
-         m_scrollinfo.m_bVScroll = false;
-      }
-      else
-      {
-
-         m_scrollinfo.m_bVScroll = m_scrollinfo.m_bVScrollBarEnable && (m_scrollinfo.m_sizeTotal.cy + m_scrollinfo.m_rectMargin.height()) > (rectClient.height());
-
-         m_scrollinfo.m_bHScroll = m_scrollinfo.m_bHScrollBarEnable && (m_scrollinfo.m_sizeTotal.cx + m_scrollinfo.m_rectMargin.width()) > (rectClient.width() - (m_scrollinfo.m_bVScroll ? m_scrollinfo.m_iScrollWidth : 0));
-
-         m_scrollinfo.m_bVScroll = m_scrollinfo.m_bVScrollBarEnable && (m_scrollinfo.m_sizeTotal.cy + m_scrollinfo.m_rectMargin.height()) > (rectClient.height() - (m_scrollinfo.m_bHScroll ? m_scrollinfo.m_iScrollHeight : 0));
-
-         m_scrollinfo.m_bHScroll = m_scrollinfo.m_bHScrollBarEnable && (m_scrollinfo.m_sizeTotal.cx + m_scrollinfo.m_rectMargin.width()) > (rectClient.width() - (m_scrollinfo.m_bVScroll ? m_scrollinfo.m_iScrollWidth : 0));
-
-         m_scrollinfo.m_bVScroll = m_scrollinfo.m_bVScrollBarEnable && (m_scrollinfo.m_sizeTotal.cy + m_scrollinfo.m_rectMargin.height()) > (rectClient.height() - (m_scrollinfo.m_bHScroll ? m_scrollinfo.m_iScrollHeight : 0));
+         rectScroll.bottom -= m_scrollinfo.m_iScrollBarHeight;
 
       }
 
-      _001UpdateScrollBars();
+      *lprect = rectScroll;
 
-      *lprect = rectClient;
    }
 
    void scroll_control::_001LayoutScrollBars()
@@ -96,7 +73,7 @@ namespace user
       {
          if(m_scrollinfo.m_bHScroll)
          {
-            m_pscrollbarHorz->SetWindowPos(ZORDER_TOP,0,rectClient.bottom - m_scrollinfo.m_iScrollHeight,rectClient.width() - (m_scrollinfo.m_bVScroll ? m_scrollinfo.m_iScrollWidth : 0),m_scrollinfo.m_iScrollHeight,ifswp);
+            m_pscrollbarHorz->SetWindowPos(ZORDER_TOP,0,rectClient.bottom - m_scrollinfo.m_iScrollBarHeight,rectClient.width() - (m_scrollinfo.m_bVScroll ? m_scrollinfo.m_iScrollBarWidth : 0),m_scrollinfo.m_iScrollBarHeight,ifswp);
          }
          else
          {
@@ -108,7 +85,7 @@ namespace user
       {
          if(m_scrollinfo.m_bVScroll)
          {
-            m_pscrollbarVert->SetWindowPos(ZORDER_TOP,rectClient.right - m_scrollinfo.m_iScrollWidth,rectClient.top,m_scrollinfo.m_iScrollWidth,rectClient.height() - (m_scrollinfo.m_bHScroll ? m_scrollinfo.m_iScrollHeight : 0) - rectClient.top,ifswp);
+            m_pscrollbarVert->SetWindowPos(ZORDER_TOP,rectClient.right - m_scrollinfo.m_iScrollBarWidth,rectClient.top,m_scrollinfo.m_iScrollBarWidth,rectClient.height() - (m_scrollinfo.m_bHScroll ? m_scrollinfo.m_iScrollBarHeight : 0) - rectClient.top,ifswp);
          }
          else
          {
@@ -278,7 +255,6 @@ namespace user
    void scroll_control::_001OnUpdateScrollPosition()
    {
 
-
       _001UpdateScrollBars();
 
 
@@ -319,8 +295,6 @@ namespace user
 
       m_scrollinfo.m_ptScroll.y -= (LONG) (iDelta * get_wheel_scroll_delta());
 
-      if(m_scrollinfo.m_ptScroll.y > m_scrollinfo.m_sizeTotal.cy + m_scrollinfo.m_rectMargin.bottom)
-         m_scrollinfo.m_ptScroll.y = m_scrollinfo.m_sizeTotal.cy + m_scrollinfo.m_rectMargin.bottom;
 
 
       _001OnUpdateScrollPosition();
@@ -335,39 +309,52 @@ namespace user
 
    }
 
+   void scroll_control::_001ConstrainScrollPosition()
+   {
+
+      rect rectMargin = get_scroll_margin();
+
+      if(m_scrollinfo.m_ptScroll.y < rectMargin.top)
+      {
+         m_scrollinfo.m_ptScroll.y = rectMargin.top;
+      }
+      else
+      {
+         if(m_scrollinfo.m_ptScroll.y > m_scrollinfo.m_sizeTotal.cy + rectMargin.bottom)
+            m_scrollinfo.m_ptScroll.y = m_scrollinfo.m_sizeTotal.cy + rectMargin.bottom;
+      }
+
+      if(m_scrollinfo.m_ptScroll.x < rectMargin.left)
+      {
+         m_scrollinfo.m_ptScroll.x = rectMargin.left;
+      }
+      else
+      {
+         if(m_scrollinfo.m_ptScroll.x > m_scrollinfo.m_sizeTotal.cx + rectMargin.right)
+            m_scrollinfo.m_ptScroll.x = m_scrollinfo.m_sizeTotal.cx + rectMargin.right;
+      }
+
+
+   }
+
+
 
    void scroll_control::_001UpdateScrollBars()
    {
 
       _001DeferCreateScrollBars();
 
-      if(m_scrollinfo.m_ptScroll.y < m_scrollinfo.m_rectMargin.top)
-      {
-         m_scrollinfo.m_ptScroll.y = m_scrollinfo.m_rectMargin.top;
-      }
-      else
-      {
-         if(m_scrollinfo.m_ptScroll.y > m_scrollinfo.m_sizeTotal.cy + m_scrollinfo.m_rectMargin.bottom)
-            m_scrollinfo.m_ptScroll.y = m_scrollinfo.m_sizeTotal.cy + m_scrollinfo.m_rectMargin.bottom;
-      }
-
-      if(m_scrollinfo.m_ptScroll.x < m_scrollinfo.m_rectMargin.left)
-      {
-         m_scrollinfo.m_ptScroll.x = m_scrollinfo.m_rectMargin.left;
-      }
-      else
-      {
-         if(m_scrollinfo.m_ptScroll.x > m_scrollinfo.m_sizeTotal.cx + m_scrollinfo.m_rectMargin.right)
-            m_scrollinfo.m_ptScroll.x = m_scrollinfo.m_sizeTotal.cx + m_scrollinfo.m_rectMargin.right;
-      }
+      _001ConstrainScrollPosition();
 
       ::user::scroll_info si;
+
+      rect rectMargin = get_scroll_margin();
 
       if(m_pscrollbarHorz != NULL)
       {
          si.fMask       = SIF_ALL;
-         si.nMin        = m_scrollinfo.m_rectMargin.left;
-         si.nMax        = m_scrollinfo.m_sizeTotal.cx + m_scrollinfo.m_rectMargin.right;
+         si.nMin        = rectMargin.left;
+         si.nMax        = m_scrollinfo.m_sizeTotal.cx + rectMargin.right;
          si.nPage       = (uint32_t) m_scrollinfo.m_sizePage.cx;
          si.nPos        = m_scrollinfo.m_ptScroll.x;
          si.nTrackPos   = m_scrollinfo.m_ptScroll.x;
@@ -377,8 +364,8 @@ namespace user
       if(m_pscrollbarVert != NULL)
       {
          si.fMask       = SIF_ALL;
-         si.nMin        = m_scrollinfo.m_rectMargin.top;
-         si.nMax        = m_scrollinfo.m_sizeTotal.cy + m_scrollinfo.m_rectMargin.bottom;
+         si.nMin        = rectMargin.top;
+         si.nMax        = m_scrollinfo.m_sizeTotal.cy + rectMargin.bottom;
          si.nPage       = (uint32_t) m_scrollinfo.m_sizePage.cy;
          si.nPos        = m_scrollinfo.m_ptScroll.y;
          si.nTrackPos   = m_scrollinfo.m_ptScroll.y;
@@ -523,24 +510,83 @@ namespace user
 
       m_scrollinfo.m_sizeTotal = sizeTotal;
 
-      rect rectViewClient;
-      _001GetViewClientRect(&rectViewClient);
+      rect rectScroll;
+
+      GetScrollRect(rectScroll);
 
       m_scrollinfo.m_sizeTotal = sizeTotal;
-      m_scrollinfo.m_sizePage = rectViewClient.size();
+      m_scrollinfo.m_sizePage = rectScroll.size();
 
       if(m_scrollinfo.m_ptScroll.y > (m_scrollinfo.m_sizeTotal.cy - m_scrollinfo.m_sizePage.cy))
       {
          m_scrollinfo.m_ptScroll.y = (m_scrollinfo.m_sizeTotal.cy - m_scrollinfo.m_sizePage.cy);
       }
 
+
+      m_scrollinfo.m_iScrollBarHeight  = GetSystemMetrics(SM_CXHSCROLL);
+      m_scrollinfo.m_iScrollBarWidth   = GetSystemMetrics(SM_CXVSCROLL);
+
+      m_scrollinfo.m_sizeClient     = rectScroll.size();
+      m_scrollinfo.m_sizePage       = m_scrollinfo.m_sizeClient;
+
+      rect rectMargin = get_scroll_margin();
+
+      if(rectScroll.area() <= 0)
+      {
+
+         m_scrollinfo.m_bHScroll = false;
+         m_scrollinfo.m_bVScroll = false;
+
+      }
+      else
+      {
+
+         m_scrollinfo.m_bVScroll = m_scrollinfo.m_bVScrollBarEnable && (m_scrollinfo.m_sizeTotal.cy + rectMargin.height()) > (rectScroll.height());
+
+         m_scrollinfo.m_bHScroll = m_scrollinfo.m_bHScrollBarEnable && (m_scrollinfo.m_sizeTotal.cx + rectMargin.width()) > (rectScroll.width() - (m_scrollinfo.m_bVScroll ? get_scroll_bar_width() : 0));
+
+         m_scrollinfo.m_bVScroll = m_scrollinfo.m_bVScrollBarEnable && (m_scrollinfo.m_sizeTotal.cy + rectMargin.height()) > (rectScroll.height() - (m_scrollinfo.m_bHScroll ? get_scroll_bar_height() : 0));
+
+         m_scrollinfo.m_bHScroll = m_scrollinfo.m_bHScrollBarEnable && (m_scrollinfo.m_sizeTotal.cx + rectMargin.width()) > (rectScroll.width() - (m_scrollinfo.m_bVScroll ? get_scroll_bar_width() : 0));
+
+         m_scrollinfo.m_bVScroll = m_scrollinfo.m_bVScrollBarEnable && (m_scrollinfo.m_sizeTotal.cy + rectMargin.height()) > (rectScroll.height() - (m_scrollinfo.m_bHScroll ? get_scroll_bar_height() : 0));
+
+      }
+
+      _001UpdateScrollBars();
+
+
+
    }
 
 
-   point scroll_control::get_scroll_position()
+   point scroll_control::get_viewport_offset()
    {
 
       return m_scrollinfo.m_ptScroll;
+
+   }
+
+   rect scroll_control::get_scroll_margin()
+   {
+
+      return m_scrollinfo.m_rectMargin;
+
+   }
+
+
+   int scroll_control::get_scroll_bar_width()
+   {
+
+      return m_scrollinfo.m_iScrollBarWidth;
+
+   }
+
+
+   int scroll_control::get_scroll_bar_height()
+   {
+
+      return m_scrollinfo.m_iScrollBarHeight;
 
    }
 

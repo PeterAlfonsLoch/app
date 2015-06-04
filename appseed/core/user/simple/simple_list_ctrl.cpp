@@ -34,7 +34,7 @@ bool simple_list_control::pre_create_window(::user::create_struct& cs)
 void simple_list_control::set_data(stringa &stra)
 {
    
-   m_plistdata.cast < ::simple_list_data > ()->set_data(this, stra);
+   m_psimplelistdata->set_data(this, stra);
 
 }
 
@@ -42,7 +42,7 @@ void simple_list_control::set_data(stringa &stra)
 void simple_list_control::get_data(stringa &stra)
 {
 
-   m_plistdata.cast  < ::simple_list_data >()->get_data(stra);
+   m_psimplelistdata->get_data(stra);
 
 }
 

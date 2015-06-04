@@ -76,9 +76,9 @@ namespace user
       };
 
 
-      enum EElement
+      enum e_element
       {
-         ElementItem,
+         element_item,
          ElementItemBox,
          ElementDivider,
       };
@@ -90,10 +90,10 @@ namespace user
 
       bool                          m_bTrack;
       bool                          m_bHover;
-      EElement                      m_eelementHover;
+      e_element                      m_eelementHover;
       index                         m_iItemHover;
       bool                          m_bLButtonDown;
-      EElement                      m_eelementLButtonDown;
+      e_element                      m_eelementLButtonDown;
       index                         m_iItemLButtonDown;
 
       list *                        m_plistctrlinterface;
@@ -119,26 +119,26 @@ namespace user
 
       bool GetItemRect(
          LPRECT lprect,
-         EElement eelement,
+         e_element eelement,
          index iItem);
 
       bool GetItemRect(
          LPRECT lprect,
-         EElement eelementLButtonDown,
+         e_element eelementLButtonDown,
          index iItemLButtonDown,
-         EElement eelement,
+         e_element eelement,
          index iItem);
 
       bool hit_test(
          POINT point,
-         EElement & eelement,
+         e_element & eelement,
          index & iItem);
 
       bool hit_test(
          POINT point,
-         EElement eelementLButtonDown,
+         e_element eelementLButtonDown,
          index iItemLButtonDown,
-         EElement & eelement,
+         e_element & eelement,
          index & iItem);
 
       // Message Handlers

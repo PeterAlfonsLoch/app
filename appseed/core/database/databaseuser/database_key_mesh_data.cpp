@@ -6,18 +6,18 @@ namespace databaseuser
 {
 
 
-   data_key_list_data::data_key_list_data(::aura::application * papp) :
+   data_key_mesh_data::data_key_mesh_data(::aura::application * papp) :
       object(papp),
-      ::user::list_data(papp)
+      ::user::mesh_data(papp)
    {
    }
 
-   data_key_list_data::~data_key_list_data()
+   data_key_mesh_data::~data_key_mesh_data()
    {
    }
 
 
-   void data_key_list_data::_001GetItemText(::user::list_item * pitem)
+   void data_key_mesh_data::_001GetItemText(::user::mesh_item * pitem)
    {
       stringa stra;
       if(!data_get(::aura::system::idEmpty, stra))
@@ -26,7 +26,7 @@ namespace databaseuser
       pitem->m_bOk = true;
    }
 
-   void data_key_list_data::GetSel(::user::list * plist , stringa & stra)
+   void data_key_mesh_data::GetSel(::user::list * plist , stringa & stra)
    {
       stringa wstraTotal;
       if(!data_get(::aura::system::idEmpty, wstraTotal))
@@ -43,7 +43,7 @@ namespace databaseuser
       }
    }
 
-   ::count data_key_list_data::_001GetItemCount()
+   ::count data_key_mesh_data::_001GetItemCount()
    {
       stringa straTotal;
       if(!data_get(::aura::system::idEmpty, straTotal))
@@ -52,7 +52,7 @@ namespace databaseuser
    }
 
 
-   bool data_key_list_data::add_unique(const stringa & stra)
+   bool data_key_mesh_data::add_unique(const stringa & stra)
    {
       stringa straData;
       data_get(::aura::system::idEmpty, straData);
@@ -62,7 +62,7 @@ namespace databaseuser
       return true;
    }
 
-   bool data_key_list_data::remove(const stringa & stra)
+   bool data_key_mesh_data::remove(const stringa & stra)
    {
       stringa straData;
       if(!data_get(::aura::system::idEmpty, straData))

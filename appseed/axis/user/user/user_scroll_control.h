@@ -25,8 +25,8 @@ namespace user
          size        m_sizeClient;
          bool        m_bVScroll;   
          bool        m_bHScroll;
-         int32_t         m_iScrollHeight;
-         int32_t         m_iScrollWidth;
+         int32_t     m_iScrollBarHeight;
+         int32_t     m_iScrollBarWidth;
          bool        m_bVScrollBarEnable;
          bool        m_bHScrollBarEnable;
       };
@@ -52,7 +52,7 @@ namespace user
       virtual void _001OnDeferCreateScrollBars();
       //static  UINT c_cdecl thread_proc_defer_create_scroll_bars(LPVOID lpparam);
 
-      virtual void GetClientRect(LPRECT lprect);
+      virtual void GetScrollRect(LPRECT lprect);
 
       
       virtual void create_scroll_bar(const RECT & rect, e_orientation eorientation);
@@ -65,6 +65,8 @@ namespace user
       void _001GetScrollInfo(scroll_info & info);
 
       void _001UpdateScrollBars();
+
+      void _001ConstrainScrollPosition();
 
 
       virtual void _001GetViewRect(LPRECT lprect);
@@ -86,8 +88,13 @@ namespace user
       DECL_GEN_SIGNAL(_001OnUser9654);
 
       
-      virtual point get_scroll_position();
+      virtual point get_viewport_offset();
 
+      virtual rect get_scroll_margin();
+
+      virtual int get_scroll_bar_width();
+
+      virtual int get_scroll_bar_height();
 
    };
 

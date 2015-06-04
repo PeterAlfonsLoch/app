@@ -111,15 +111,15 @@ namespace filemanager
       }
       else if(lHint == 123458)
       {
-         _001SetView(ViewList);
+         _001SetView(view_list);
       }
       else if(lHint == 1234511)
       {
-         _001SetView(ViewReport);
+         _001SetView(view_report);
       }
       else if(lHint == 1234525)
       {
-         _001SetView(ViewIcon);
+         _001SetView(view_icon);
       }
       if(phint != NULL)
       {
@@ -210,7 +210,7 @@ namespace filemanager
                   _001GetSelection(range);
                   if(range.get_item_count() > 0)
                   {
-                     ptext->_001SetText(get_fs_list_data()->m_itema.get_item(range.ItemAt(0).get_lower_bound()).m_strName, puh->m_actioncontext);
+                     ptext->_001SetText(get_fs_mesh_data()->m_itema.get_item(range.ItemAt(0).get_lower_bound()).m_strName, puh->m_actioncontext);
                   }
                }
             }
@@ -234,7 +234,7 @@ namespace filemanager
       index iSubItem;
       if(_001HitTest_(point, iItem, iSubItem))
       {
-         if(iSubItem == m_iNameSubItem || (m_eview == ViewList && iSubItem == 0))
+         if(iSubItem == m_iNameSubItem || (m_eview == view_list && iSubItem == 0))
          {
            _017OpenSelected(true, ::action::source_user);
          }
@@ -260,7 +260,7 @@ namespace filemanager
    void file_list::RenameFile(int32_t iLine, string &wstrNameNew, ::action::context actioncontext)
    {
 
-      string str = get_fs_list_data()->m_itema.get_item(iLine).m_strPath;
+      string str = get_fs_mesh_data()->m_itema.get_item(iLine).m_strPath;
 
       strsize iFind = str.reverse_find(L'\\');
 
@@ -285,9 +285,9 @@ namespace filemanager
         if(_001HitTest_(ptClient, iItem))
       {
          ::aura::menu menu(get_app());
-         if(get_fs_list_data()->m_itema.get_item(iItem).IsFolder())
+         if(get_fs_mesh_data()->m_itema.get_item(iItem).IsFolder())
          {
-            _017OpenContextMenuFolder(new ::fs::item(get_fs_list_data()->m_itema.get_item(iItem)), ::action::source_user);
+            _017OpenContextMenuFolder(new ::fs::item(get_fs_mesh_data()->m_itema.get_item(iItem)), ::action::source_user);
             /*if (menu.LoadXmlMenu(get_filemanager_template()->m_strFolderPopup))
             {
                ::aura::menu menuPopup(get_app(), menu.GetSubMenu(0));
@@ -365,19 +365,19 @@ namespace filemanager
       while(true)
       {
          i = 0;
-         while(i < get_fs_list_data()->m_itema.get_count() || IsWindowVisible())
+         while(i < get_fs_mesh_data()->m_itema.get_count() || IsWindowVisible())
          {
             int64_t i64Size;
             bool bPendingSize;
             single_lock lock(m_pauraapp);
             if(!lock.lock(millis(1984)))
                return;
-            if(i >= get_fs_list_data()->m_itema.get_count())
+            if(i >= get_fs_mesh_data()->m_itema.get_count())
                i = 0;
             bPendingSize = false;
             try
             {
-               pset->get_fs_size(i64Size, get_fs_list_data()->m_itema.get_item(i).m_strPath, bPendingSize);
+               pset->get_fs_size(i64Size, get_fs_mesh_data()->m_itema.get_item(i).m_strPath, bPendingSize);
             }
             catch(...)
             {
@@ -461,7 +461,7 @@ namespace filemanager
          item_range itemrange = range.ItemAt(iItemRange);
          for(iItem = itemrange.get_lower_bound() ; iItem <= itemrange.get_upper_bound(); iItem ++)
          {
-            itema.add(new  ::fs::item  (get_fs_list_data()->m_itema.get_item(iItem)));
+            itema.add(new  ::fs::item  (get_fs_mesh_data()->m_itema.get_item(iItem)));
          }
       }
       get_filemanager_data()->OnFileManagerItemCommand(
@@ -483,7 +483,7 @@ namespace filemanager
          item_range itemrange = range.ItemAt(iItemRange);
          for(iItem = itemrange.get_lower_bound() ; iItem <= itemrange.get_upper_bound(); iItem ++)
          {
-            itema.add(new  ::fs::item  (get_fs_list_data()->m_itema.get_item(iItem)));
+            itema.add(new  ::fs::item  (get_fs_mesh_data()->m_itema.get_item(iItem)));
          }
       }
       get_filemanager_data()->OnFileManagerItemUpdate(
@@ -867,7 +867,7 @@ namespace filemanager
 
    void file_list::_001OnSpafy2(signal_details * pobj)
    {
-      sp(::userfs::list_data) pdata = get_fs_list_data();
+      sp(::userfs::list_data) pdata = get_fs_mesh_data();
       UNREFERENCED_PARAMETER(pobj);
       stringa stra;
       ::file::listing straSub(get_app());
@@ -991,7 +991,7 @@ namespace filemanager
    void file_list::browse_sync(::action::context actioncontext)
    {
 
-      ::data::lock lock(get_fs_list_data());
+      ::data::lock lock(get_fs_mesh_data());
 
 
       if(m_bStatic)
@@ -1026,7 +1026,7 @@ namespace filemanager
 
             item.m_strName = strName;
 
-            get_fs_list_data()->m_itema.add_item(item);
+            get_fs_mesh_data()->m_itema.add_item(item);
 
          }
 
@@ -1061,7 +1061,7 @@ namespace filemanager
       int32_t iSize;
       iSize = 0;
 
-      get_fs_list_data()->m_itema.m_itema.remove_all();
+      get_fs_mesh_data()->m_itema.m_itema.remove_all();
 
       m_straStrictOrder.remove_all();
 
@@ -1090,7 +1090,7 @@ namespace filemanager
          item.m_strName = patha.title(i);
          m_straStrictOrder.add(strPath);
 
-         get_fs_list_data()->m_itema.add_item(item);
+         get_fs_mesh_data()->m_itema.add_item(item);
 
          iSize++;
          if(iSize >= iMaxSize)
@@ -1102,7 +1102,7 @@ namespace filemanager
 
 
       _001OnUpdateItemCount();
-      if(m_eview == ViewIcon)
+      if(m_eview == view_icon)
       {
          /*   // primeiro, todos System arquivos que foram removidos
          // ou seja, que existem no array antigo,
@@ -1144,7 +1144,7 @@ namespace filemanager
       }
       else
       {
-         get_fs_list_data()->m_itema.arrange(::fs::arrange_by_name);
+         get_fs_mesh_data()->m_itema.arrange(::fs::arrange_by_name);
       }
 
       _001CreateImageList();
@@ -1156,7 +1156,7 @@ namespace filemanager
       {
       pset->m_table.add_request(m_itema.get_item(i).m_strPath);
       }*/
-      if(m_eview == ViewIcon)
+      if(m_eview == view_icon)
       {
          data_set(     data_get_current_sort_id() + "."+data_get_current_list_layout_id() + ".straStrictOrder",          m_straStrictOrder);
          m_iconlayout.m_iaDisplayToStrict = iaDisplayToStrictNew;
@@ -1233,7 +1233,7 @@ namespace filemanager
 
       single_lock sl(&m_mutex, true);
 
-      if (m_iCreateImageListStep < 0 || m_iCreateImageListStep >= get_fs_list_data()->m_itema.get_count())
+      if (m_iCreateImageListStep < 0 || m_iCreateImageListStep >= get_fs_mesh_data()->m_itema.get_count())
       {
          if (m_bRestartCreateImageList)
          {
@@ -1246,7 +1246,7 @@ namespace filemanager
          }
       }
       if (m_iCreateImageListStep < 0
-         || m_iCreateImageListStep >= get_fs_list_data()->m_itema.get_count())
+         || m_iCreateImageListStep >= get_fs_mesh_data()->m_itema.get_count())
       {
          return false;
       }
@@ -1255,7 +1255,7 @@ namespace filemanager
 
       if (pcolumn != NULL && pcolumn->m_iSubItem == m_iNameSubItem)
       {
-         ::userfs::list_item & item = get_fs_list_data()->m_itema.get_item((int32_t)m_iCreateImageListStep);
+         ::userfs::list_item & item = get_fs_mesh_data()->m_itema.get_item((int32_t)m_iCreateImageListStep);
 
          ///IShellFolder * lpsf = m_pshellfolder;
          item.m_iImage = Session.userex()->shellimageset().GetImage(
@@ -1282,7 +1282,7 @@ namespace filemanager
 
       if (get_filemanager_data()->m_bIconView)
       {
-         m_eview = ViewIcon;
+         m_eview = view_icon;
       }
 
       ::user::list_column column;
@@ -1370,7 +1370,7 @@ namespace filemanager
          m_iNameSubItemText = i;
          column.m_iWidth = get_filemanager_data()->m_iIconSize;
       }
-      get_fs_list_data()->m_iNameSubItemText = m_iNameSubItemText;
+      get_fs_mesh_data()->m_iNameSubItemText = m_iNameSubItemText;
       //column.m_bIcon                = true;
       column.m_sizeIcon.cx = get_filemanager_data()->m_iIconSize;
       column.m_sizeIcon.cy = get_filemanager_data()->m_iIconSize;
@@ -1496,15 +1496,15 @@ namespace filemanager
          for (index iItem = itemrange.get_lower_bound(); iItem <= itemrange.get_upper_bound(); iItem++)
          {
             index iStrict;
-            if (m_eview == ViewIcon)
+            if (m_eview == view_icon)
             {
                iStrict = m_iconlayout.m_iaDisplayToStrict.get_b(iItem);
             }
             else
             {
-               iStrict = m_listlayout.m_iaDisplayToStrict[iItem];
+               iStrict = m_meshlayout.m_iaDisplayToStrict[iItem];
             }
-            ::userfs::list_item & item = get_fs_list_data()->m_itema.get_item(iStrict);
+            ::userfs::list_item & item = get_fs_mesh_data()->m_itema.get_item(iStrict);
             if (!item.IsFolder())
             {
                array.add(item.m_strPath);
@@ -1605,15 +1605,15 @@ namespace filemanager
             if (iItem >= _001GetItemCount())
                continue;
             index iStrict;
-            if (m_eview == ViewIcon)
+            if (m_eview == view_icon)
             {
                iStrict = m_iconlayout.m_iaDisplayToStrict.get_b(iItem);
             }
             else
             {
-               iStrict = m_listlayout.m_iaDisplayToStrict[iItem];
+               iStrict = m_meshlayout.m_iaDisplayToStrict[iItem];
             }
-            ::userfs::list_item & item = get_fs_list_data()->m_itema.get_item(iStrict);
+            ::userfs::list_item & item = get_fs_mesh_data()->m_itema.get_item(iStrict);
             if (item.IsFolder())
             {
                _017OpenFolder(new ::fs::item(item), ::action::source::sel(actioncontext));
@@ -1649,25 +1649,25 @@ namespace filemanager
          {
             if (iItem < 0)
                continue;
-            if (iItem >= get_fs_list_data()->m_itema.get_count())
+            if (iItem >= get_fs_mesh_data()->m_itema.get_count())
                continue;
             index iStrict;
-            if (m_eview == ViewIcon)
+            if (m_eview == view_icon)
             {
                iStrict = m_iconlayout.m_iaDisplayToStrict.get_b(iItem);
             }
             else
             {
-               iStrict = m_listlayout.m_iaDisplayToStrict[iItem];
+               iStrict = m_meshlayout.m_iaDisplayToStrict[iItem];
             }
-            if (get_fs_list_data()->m_itema.get_item(iStrict).IsFolder())
+            if (get_fs_mesh_data()->m_itema.get_item(iStrict).IsFolder())
             {
-               _017OpenContextMenuFolder(new  ::fs::item(get_fs_list_data()->m_itema.get_item(iStrict)), actioncontext);
+               _017OpenContextMenuFolder(new  ::fs::item(get_fs_mesh_data()->m_itema.get_item(iStrict)), actioncontext);
                break;
             }
             else
             {
-               itema.add(new ::fs::item(get_fs_list_data()->m_itema.get_item(iStrict)));
+               itema.add(new ::fs::item(get_fs_mesh_data()->m_itema.get_item(iStrict)));
             }
          }
       }
@@ -1711,15 +1711,15 @@ namespace filemanager
          ::fs::item item;
          index iItem = pcontrol->GetEditItem();
          index iStrict;
-         if (m_eview == ViewIcon)
+         if (m_eview == view_icon)
          {
             iStrict = m_iconlayout.m_iaDisplayToStrict.get_b(iItem);
          }
          else
          {
-            iStrict = m_listlayout.m_iaDisplayToStrict[iItem];
+            iStrict = m_meshlayout.m_iaDisplayToStrict[iItem];
          }
-         pcallback->OnButtonAction((int32_t)pcontrol->descriptor().m_id - 1000, new ::fs::item(get_fs_list_data()->m_itema.get_item(iStrict)));
+         pcallback->OnButtonAction((int32_t)pcontrol->descriptor().m_id - 1000, new ::fs::item(get_fs_mesh_data()->m_itema.get_item(iStrict)));
       }
    }
 
@@ -1739,14 +1739,14 @@ namespace filemanager
             iItem++)
          {
 
-            if (iItem < get_fs_list_data()->m_itema.get_count() && !iaItem.contains(iItem))
+            if (iItem < get_fs_mesh_data()->m_itema.get_count() && !iaItem.contains(iItem))
             {
 
                iaItem.add(iItem);
 
                index iStrict;
 
-               if (m_eview == ViewIcon)
+               if (m_eview == view_icon)
                {
 
                   iStrict = m_iconlayout.m_iaDisplayToStrict.get_b(iItem);
@@ -1755,18 +1755,18 @@ namespace filemanager
                else
                {
 
-                  if (iItem >= m_listlayout.m_iaDisplayToStrict.get_count())
+                  if (iItem >= m_meshlayout.m_iaDisplayToStrict.get_count())
                      continue;
 
-                  iStrict = m_listlayout.m_iaDisplayToStrict[iItem];
+                  iStrict = m_meshlayout.m_iaDisplayToStrict[iItem];
 
                }
 
                sp(::fs::item) spitem(new ::fs::item);
 
-               spitem->m_strPath = get_fs_list_data()->m_itema.get_item(iStrict).m_strPath;
+               spitem->m_strPath = get_fs_mesh_data()->m_itema.get_item(iStrict).m_strPath;
 
-               spitem->m_flags = get_fs_list_data()->m_itema.get_item(iStrict).m_flags;
+               spitem->m_flags = get_fs_mesh_data()->m_itema.get_item(iStrict).m_flags;
 
                itema.add(spitem);
 
@@ -1790,7 +1790,7 @@ namespace filemanager
 
    ::count file_list::_001GetItemCount()
    {
-      return get_fs_list_data()->m_itema.get_count();
+      return get_fs_mesh_data()->m_itema.get_count();
    }
 
 
@@ -1810,7 +1810,7 @@ namespace filemanager
 
       }
 
-      get_fs_list_data()->m_itema.add_item(item);
+      get_fs_mesh_data()->m_itema.add_item(item);
 
       _001OnUpdateItemCount();
 
@@ -1841,7 +1841,7 @@ namespace filemanager
 
       //      int64_t iSize;
       //      bool bPending;
-      for (int32_t i = 0; i < get_fs_list_data()->m_itema.get_count(); i++)
+      for (int32_t i = 0; i < get_fs_mesh_data()->m_itema.get_count(); i++)
       {
          //pset->get_cache_fs_size(iSize, m_itema.get_item(i).m_strPath, bPending);
       }
@@ -1864,10 +1864,10 @@ namespace filemanager
       if (m_iItemDrag != m_iItemDrop)
       {
          index strict;
-         if (m_eview == ViewIcon)
+         if (m_eview == view_icon)
             strict = m_iconlayout.m_iaDisplayToStrict[iDisplayDrop];
          else
-            strict = m_listlayout.m_iaDisplayToStrict[iDisplayDrop];
+            strict = m_meshlayout.m_iaDisplayToStrict[iDisplayDrop];
          if (strict <= -1)
             return true; // can drop in is_empty place
          else if (strict >= _001GetItemCount())
@@ -1875,7 +1875,7 @@ namespace filemanager
          else
          {
             // can drop if destination is folder
-            return get_fs_list_data()->m_itema.get_item(strict).IsFolder();
+            return get_fs_mesh_data()->m_itema.get_item(strict).IsFolder();
          }
       }
       return false;
@@ -1889,7 +1889,7 @@ namespace filemanager
 
       index strictDrag;
 
-      if (m_eview == ViewIcon)
+      if (m_eview == view_icon)
       {
          
          strict = m_iconlayout.m_iaDisplayToStrict[iDisplayDrop];
@@ -1900,20 +1900,20 @@ namespace filemanager
       else
       {
          
-         strict = m_listlayout.m_iaDisplayToStrict[iDisplayDrop];
+         strict = m_meshlayout.m_iaDisplayToStrict[iDisplayDrop];
 
-         strictDrag = m_listlayout.m_iaDisplayToStrict[iDisplayDrag];
+         strictDrag = m_meshlayout.m_iaDisplayToStrict[iDisplayDrag];
 
       }
 
-      if (strict >= 0 && get_fs_list_data()->m_itema.get_item(strict).IsFolder())
+      if (strict >= 0 && get_fs_mesh_data()->m_itema.get_item(strict).IsFolder())
       {
          
-         ::file::path strPath = get_fs_list_data()->m_itema.get_item(strictDrag).m_strPath;
+         ::file::path strPath = get_fs_mesh_data()->m_itema.get_item(strictDrag).m_strPath;
 
          string strName = strPath.name();
 
-         Application.file().move(get_fs_list_data()->m_itema.get_item(strict).m_strPath / strName, strPath);
+         Application.file().move(get_fs_mesh_data()->m_itema.get_item(strict).m_strPath / strName, strPath);
 
       }
       else

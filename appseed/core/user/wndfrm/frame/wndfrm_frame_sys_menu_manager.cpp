@@ -111,7 +111,7 @@ namespace user
             if(m_pworkset == NULL
                || m_pworkset->m_pappearance == NULL)
                return false;
-            /*xxx appearance::EElement eelement;
+            /*xxx appearance::e_element eelement;
             if(m_pworkset->m_pappearance->hit_test(point, eelement))
             {
             if(eelement == appearance::ElementTopLeftIcon)

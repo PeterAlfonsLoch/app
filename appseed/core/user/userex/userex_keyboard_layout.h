@@ -28,7 +28,7 @@ namespace userex // ca8 + cube
 
       bool BaseOnControlEvent(::user::form_window * pview, ::user::control_event * pevent);
 
-      virtual void _001GetItemText(::user::list_item * pitem);
+      virtual void _001GetItemText(::user::mesh_item * pitem);
 
       virtual int_ptr _001GetItemCount();
 
@@ -40,6 +40,7 @@ namespace userex // ca8 + cube
          ::user::place_holder_container(NULL),
          ::user::split_layout(NULL),
          ::user::split_view(NULL),
+         ::user::mesh_data(NULL),
          ::user::list_data(NULL)
       {
       }
