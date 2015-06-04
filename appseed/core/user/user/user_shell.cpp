@@ -294,7 +294,7 @@ namespace filemanager
          }
       }
 
-      void _017ItemIDListParsePath(LPITEMIDLIST * lpiidl, const char * lpcsz)
+      void _017ItemIDListParsePath(oswindow window, LPITEMIDLIST * lpiidl, const char * lpcsz)
       {
          HRESULT hr;
          LPMALLOC lpmalloc = NULL;
@@ -304,20 +304,26 @@ namespace filemanager
 
          hr = SHGetDesktopFolder(&lpsfDesktop);
 
-         ULONG ulEaten;
-         ULONG dwAttrib = SFGAO_FOLDER;
+         //ULONG ulEaten;
+         //ULONG dwAttrib = SFGAO_FOLDER;
+
+         hwstring w(MAX_PATH * 8);
 
          wstring wstr = ::str::international::utf8_to_unicode(lpcsz);
+
+         wcscpy(w,wstr);
 
          try
          {
             hr = lpsfDesktop->ParseDisplayName(
+               window,
                NULL,
+               w,
+               //&ulEaten,
                NULL,
-               (wchar_t *) (const wchar_t *) wstr,
-               &ulEaten,
                lpiidl,
-               &dwAttrib);
+               //&dwAttrib);
+               NULL);
          }
          catch(...)
          {
@@ -1578,7 +1584,7 @@ namespace filemanager
 
             LPITEMIDLIST lpiidlAbsolute;
 
-            _017ItemIDListParsePath(&lpiidlAbsolute,psz);
+            _017ItemIDListParsePath(oswindow, &lpiidlAbsolute,psz);
 
             iImage = GetImage(oswindow,lpiidlAbsolute,lpcszExtra,eicon);
 
@@ -1610,7 +1616,7 @@ namespace filemanager
 
 
       LPITEMIDLIST lpiidlAbsolute;
-      _017ItemIDListParsePath(&lpiidlAbsolute, psz);
+      _017ItemIDListParsePath(oswindow, &lpiidlAbsolute, psz);
       bool bGet = GetIcon(oswindow, lpiidlAbsolute, lpcszExtra, eicon, phicon16, phicon48);
       _017ItemIDListFree(lpiidlAbsolute);
       return bGet;

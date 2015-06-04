@@ -20,7 +20,7 @@ namespace user
    void form_list_view::install_message_handling(::message::dispatch * pdispatch)
    {
 
-      ::user::scroll_view::install_message_handling(pdispatch);
+      ::user::form_list::install_message_handling(pdispatch);
       ::user::list_view::install_message_handling(pdispatch);
       ::user::form_view::install_message_handling(pdispatch);
 

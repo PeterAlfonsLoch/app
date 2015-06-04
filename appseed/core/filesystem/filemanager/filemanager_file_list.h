@@ -6,7 +6,6 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE file_list :
-      virtual public ::aura::impact,
       virtual public ::userfs::list,
       virtual public ::filemanager::impact
    {

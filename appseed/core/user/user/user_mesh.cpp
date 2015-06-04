@@ -2009,7 +2009,20 @@ namespace user
 
       if(pdrawitem->m_iSubItemRectOrder < 0 || pdrawitem->m_iOrder == 0 || pdrawitem->m_iSubItemRectOrder > pdrawitem->m_iOrder)
       {
-         pdrawitem->m_iSubItemRectOrder         = 0;
+         
+         if(m_eview == view_grid)
+         {
+
+            pdrawitem->m_iSubItemRectOrder         = pdrawitem->m_iOrder;
+
+         }
+         else
+         {
+
+            pdrawitem->m_iSubItemRectOrder         = 0;
+
+         }
+
          pdrawitem->m_rectSubItem.left          = pdrawitem->m_rectItem.left;
          pdrawitem->m_iSubItemRectColumn        = _001MapOrderToColumn(0);
          pdrawitem->m_iWidthColumn              = pdrawitem->m_iSubItemRectColumn;

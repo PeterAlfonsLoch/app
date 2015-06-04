@@ -17,6 +17,8 @@ namespace user
 
       m_plist = this;
 
+      m_eview = view_report;
+
       m_columna.Initialize(this);
 
       m_bHeaderCtrl              = true;
@@ -44,7 +46,7 @@ namespace user
    void list::install_message_handling(::message::dispatch * pinterface)
    {
 
-      ::user::scroll_control::install_message_handling(pinterface);
+      ::user::mesh::install_message_handling(pinterface);
 
       IGUI_WIN_MSG_LINK(WM_SIZE,            pinterface, this, &list::_001OnSize);
       IGUI_WIN_MSG_LINK(WM_VSCROLL,         pinterface, this, &list::_001OnVScroll);
@@ -4973,22 +4975,28 @@ namespace user
 
    id list::data_get_sort_id(EView eview)
    {
-      UNREFERENCED_PARAMETER(eview);
-      switch(m_eview)
-      {
-      case view_report:
-         return "sort-report";
-         break;
-      case view_list:
-         return "sort-list";
-         break;
-      case view_icon:
-         return "sort-icon";
-         break;
-      default:
-         ASSERT(FALSE);
-         return "sort";
-      }
+      
+      return ::user::mesh::data_get_sort_id(eview);
+
+      //UNREFERENCED_PARAMETER(eview);
+      //switch(m_eview)
+      //{
+      //case view_grid:
+      //   return "sort-grid";
+      //   break;
+      //case view_report:
+      //   return "sort-report";
+      //   break;
+      //case view_list:
+      //   return "sort-list";
+      //   break;
+      //case view_icon:
+      //   return "sort-icon";
+      //   break;
+      //default:
+      //   ASSERT(FALSE);
+      //   return "sort";
+      //}
    }
 
    list::EView list::_001GetView()

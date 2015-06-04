@@ -35,7 +35,7 @@ namespace user
    {
       IGUI_WIN_MSG_LINK(WM_KEYDOWN,pinterface,this,&form_list::_001OnKeyDown);
 
-      form::install_message_handling(pinterface);
+      form_mesh::install_message_handling(pinterface);
       list::install_message_handling(pinterface);
 
    }

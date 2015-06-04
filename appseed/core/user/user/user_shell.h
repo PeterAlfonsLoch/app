@@ -152,7 +152,7 @@ namespace filemanager
       LPITEMIDLIST CLASS_DECL_CORE _017ItemIDListGetFolderParent(LPITEMIDLIST lpiidl);
       LPITEMIDLIST CLASS_DECL_CORE _017ItemIDListGetAbsolute(LPITEMIDLIST lpiidlParent, LPITEMIDLIST lpiidl);
       bool CLASS_DECL_CORE _017ItemIDListIsEqual(LPITEMIDLIST lpiidl1, LPITEMIDLIST lpiidl2);
-      void CLASS_DECL_CORE _017ItemIDListParsePath(LPITEMIDLIST * lpiidl, const char * lpcsz);
+      void CLASS_DECL_CORE _017ItemIDListParsePath(oswindow oswindow, LPITEMIDLIST * lpiidl, const char * lpcsz);
 
       void CLASS_DECL_CORE _017ItemIDListFree(LPITEMIDLIST lpiidl);
 #endif
