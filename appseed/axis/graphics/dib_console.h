@@ -1,8 +1,7 @@
 #pragma once
 
 
-
-class dib_console:
+class CLASS_DECL_AXIS dib_console:
    virtual public ::console::window,
    virtual public ::file::stream_buffer
 {
@@ -29,7 +28,12 @@ public:
 
    virtual bool defer_write(char ch,int x,int y,int cx,int cy);
 
+   static COLORREF console_COLORREF(int iColor);
+
 };
+
+
+
 
 
 

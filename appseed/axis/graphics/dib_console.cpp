@@ -1,22 +1,23 @@
+#include "framework.h"
 
 
-COLORREF ConsoleCOLORREF(int iColor)
+COLORREF dib_console::console_COLORREF(int iColor)
 {
    switch(iColor)
    {
-   case WHITE:
+   case ::console::WHITE:
       return ARGB(255,255,255,255);
-   case BLUE:
+   case ::console::BLUE:
       return ARGB(255,127,127,255);
-   case DARKBLUE:
+   case ::console::DARKBLUE:
       return ARGB(255,0,0,255);
-   case RED:
+   case ::console::RED:
       return ARGB(255,255,0,0);
-   case CYAN:
+   case ::console::CYAN:
       return ARGB(255,0,255,255);
-   case MAGENTA:
+   case ::console::MAGENTA:
       return ARGB(255,255,0,255);
-   case YELLOW:
+   case ::console::YELLOW:
       return ARGB(255,255,255,0);
    }
    return ARGB(255,0,0,0);
@@ -43,7 +44,7 @@ void dib_console::SetWindowSize(int iHeight,int iWidth)
    //m_dib->get_graphics()->m_spfont->create_pixel_font("Lucida Sans Unicode", m_sizeTile.cy * 0.92);
    m_dib->get_graphics()->m_spfont->create_pixel_font("Lucida Console",m_sizeTile.cy * 0.92);
 
-   SetScreenColor(BLACK,3);
+   SetScreenColor(::console::BLACK);
 
 }
 
@@ -71,16 +72,16 @@ void dib_console::SetTextColor(int color)
 void dib_console::SetScreenColor(int color)
 {
 
-   m_dib->Fill(ConsoleCOLORREF(color));
+   m_dib->Fill(console_COLORREF(color));
 
 }
 
 void dib_console::write(const char * psz)
 {
    ::draw2d::pen_sp p2(allocer());
-   p2->create_solid(4.0,ConsoleCOLORREF(m_iColor));
+   p2->create_solid(4.0,console_COLORREF(m_iColor));
    ::draw2d::pen_sp p(allocer());
-   p->create_solid(2.0,ConsoleCOLORREF(m_iColor));
+   p->create_solid(2.0,console_COLORREF(m_iColor));
    string str;
    int i2 = 2;
    while(*psz)
@@ -312,7 +313,7 @@ void dib_console::write(const char * psz)
          }
          else
          {
-            m_dib->get_graphics()->set_text_color(ConsoleCOLORREF(m_iColor));
+            m_dib->get_graphics()->set_text_color(console_COLORREF(m_iColor));
             m_dib->get_graphics()->draw_text(str,rect(m_x * m_sizeTile.cx,m_y * m_sizeTile.cy,
                m_x * m_sizeTile.cx + m_sizeTile.cx,m_y * m_sizeTile.cy + m_sizeTile.cy),DT_CENTER | DT_VCENTER);
          }
