@@ -2995,29 +2995,16 @@ namespace draw2d
 
    }
 
-   void dib::Fill(int32_t level)
+   void dib::Fill(COLORREF cr)
    {
 
-      if(level == 0)
-      {
+      int64_t size = area();
 
-         zero(m_pcolorref, (size_t) area() * sizeof(COLORREF));
+      COLORREF * pcr = m_pcolorref;
 
-      }
-      else
-      {
-
-#ifdef WINDOWS
-
-         FillMemory(m_pcolorref, (size_t) area() * sizeof(COLORREF), level);
-
-#else
-
-         memset(m_pcolorref, level, (size_t) area() * sizeof(COLORREF));
-
-#endif
-
-      }
+#pragma omp parallel for
+      for(int64_t i = 0;i < size;i++)
+         pcr[i] = cr;
 
    }
 
@@ -3038,20 +3025,15 @@ namespace draw2d
       if(a == r && a == g && a == b)
       {
 
-         memset(m_pcolorref,a,(size_t) (area() * sizeof(COLORREF)));
+         FillByte(a);
 
       }
       else
       {
 
          COLORREF color = make_colorref(a,r,g,b);
-         int64_t size = area();
 
-         COLORREF * pcr = m_pcolorref;
-
-#pragma omp parallel for
-         for(int64_t i = 0;i < size;i++)
-            pcr[i] = color;
+         Fill(color);
 
       }
 

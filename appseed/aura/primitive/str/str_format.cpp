@@ -346,6 +346,13 @@ bool string_format::parse(const char * & s)
                 str = "0" + str;
             }
          }
+         else
+         {
+            while(str.get_length() < pformat->m_iWidth)
+            {
+               str = " " + str;
+            }
+         }
          pformat->append(str);
 
       }

@@ -32,6 +32,14 @@ namespace draw2d
    class region;
    // backlink from ca.dll on 2012-10-14 11:04 Alameda Princesa Izabel, 3000 - CWB-PR-Brasil
 
+
+   enum e_smooth_mode
+   {
+      smooth_mode_none,
+      smooth_mode_antialias,
+      smooth_mode_high,
+   };
+
    enum e_alpha_mode
    {
       alpha_mode_set,

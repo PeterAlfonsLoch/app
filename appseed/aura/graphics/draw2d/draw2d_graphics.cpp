@@ -3111,6 +3111,12 @@ namespace draw2d
       m_ealphamode = ealphamode;
    }
 
+   void graphics::set_smooth_mode(e_smooth_mode esmoothmode)
+   {
+      m_esmoothmode = esmoothmode;
+   }
+
+
    void graphics::set_text_rendering(e_text_rendering etextrendering)
    {
 //      ::exception::throw_not_implemented(get_app());

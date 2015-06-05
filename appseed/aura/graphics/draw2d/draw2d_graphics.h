@@ -32,6 +32,7 @@ namespace draw2d
       double                        m_y;
 
       e_alpha_mode                  m_ealphamode;
+      e_smooth_mode                 m_esmoothmode;
       e_text_rendering              m_etextrendering;
       double                        m_dFontFactor;
 
@@ -67,6 +68,8 @@ namespace draw2d
 
 
       virtual void set_alpha_mode(e_alpha_mode ealphamode);
+
+      virtual void set_smooth_mode(e_smooth_mode esmoothmode);
 
       virtual void set_text_rendering(e_text_rendering etextrendering);
 
