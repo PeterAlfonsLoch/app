@@ -172,19 +172,25 @@ namespace user
 
    void button::_001OnLButtonDown(signal_details * pobj)
    {
-      SCAST_PTR(::message::mouse, pmouse, pobj)
+      SCAST_PTR(::message::mouse,pmouse,pobj)
+
+         pobj->previous();
 
          e_element eelement;
 
       if(hit_test(pmouse->m_pt, eelement) >= 0)
       {
 
-         if(simple_process_system_message(pobj,::user::event_button_down))
+         if(!simple_process_system_message(pobj,::user::event_button_down))
          {
             
             Session.m_puiLastLButtonDown = this;
 
+            pmouse->m_bRet = true;
+
          }
+
+         
 
       }
 
@@ -214,6 +220,8 @@ namespace user
          {
             pmouse->set_lresult(1);
          }
+
+
       }
 
    }

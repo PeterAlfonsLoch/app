@@ -69,10 +69,10 @@ void dib_console::SetTextColor(int color)
 }
 
 
-void dib_console::SetScreenColor(int color)
+void dib_console::SetScreenColor(int color, int iLineStart, int iLineCount)
 {
 
-   m_dib->Fill(console_COLORREF(color));
+   m_dib->get_graphics()->FillSolidRect(0,iLineStart * m_sizeTile.cy,m_dib->m_size.cx,m_dib->m_size.cy - iLineStart * m_sizeTile.cy,console_COLORREF(color));
 
 }
 
