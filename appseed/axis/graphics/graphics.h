@@ -8,6 +8,9 @@
 #include "graphics_window_graphics.h"
 
 
+#include "dib_console_window.h"
+
+
 
 
 

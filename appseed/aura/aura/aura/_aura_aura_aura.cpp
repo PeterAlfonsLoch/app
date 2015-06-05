@@ -117,6 +117,8 @@
 //               0 pasta(s)   36.251.623.424 bytes dispon¡veis
 
 
+#include "aura_console_window.cpp"
+
 
 #include "aura_profiler.cpp"
 

@@ -1338,6 +1338,9 @@ inline void string_format::printf(const char * & s)
 #include "aura/aura/aura/aura_file_watcher_impl.h"
 
 
+#include "aura/aura/aura_console_window.h"
+
+
 #include "aura/aura/aura/aura_os.h"
 
 
@@ -1593,6 +1596,9 @@ CLASS_DECL_AURA void dappy(const char * psz);
 
 
 #include "aura/filesystem/file/file_edit_buffer.h"
+
+
+
 
 
 

@@ -4298,6 +4298,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClInclude Include="framework.h" />
+    <ClInclude Include="graphics\dib_console_window.h" />
     <ClInclude Include="graphics\graphics.h" />
     <ClInclude Include="graphics\graphics_window_graphics.h" />
     <ClInclude Include="graphics\visual\visual.h" />

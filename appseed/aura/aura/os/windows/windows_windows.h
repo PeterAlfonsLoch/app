@@ -6,6 +6,7 @@
 #include "windows_simple_hold_handle.h"
 #include "windows_base_file.h"
 #include "windows_file_watcher.h"
+#include "windows_console_window.h"
 
 
 

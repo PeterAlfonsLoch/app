@@ -30,10 +30,6 @@
 #include "visual/visual.h"
 
 
-
-
-
-
 #ifdef WINDOWSEX
 
 
