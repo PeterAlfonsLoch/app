@@ -1833,6 +1833,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\_filesystem.cpp" />
+    <ClCompile Include="graphics\dib_console.cpp" />
     <ClCompile Include="graphics\graphics_window_graphics.cpp" />
     <ClCompile Include="install_launcher.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
@@ -4298,7 +4299,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClInclude Include="framework.h" />
-    <ClInclude Include="graphics\dib_console_window.h" />
+    <ClInclude Include="graphics\dib_console.h" />
     <ClInclude Include="graphics\graphics.h" />
     <ClInclude Include="graphics\graphics_window_graphics.h" />
     <ClInclude Include="graphics\visual\visual.h" />

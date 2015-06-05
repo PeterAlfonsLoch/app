@@ -1,8 +1,14 @@
 
-void console_window_base::redirect_io()
+namespace console
 {
 
-}
 
+   void window::redirect_io()
+   {
+
+   }
+
+
+} // namespace console
 
 

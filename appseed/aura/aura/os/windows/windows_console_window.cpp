@@ -5,14 +5,14 @@
 namespace windows
 {
 
-   console_window::console_window()
+   console::console()
    {
       cout.m_spbuffer = canew(std_out_buffer());
       AllocConsole();
 
    }
 
-   console_window::~console_window()
+   console::~console()
    {
       FreeConsole();
    }
@@ -22,7 +22,7 @@ namespace windows
 
    static const WORD MAX_CONSOLE_LINES = 500;
 
-   void console_window::redirect_io()
+   void console::redirect_io()
    {
 
       int hConHandle;
@@ -92,9 +92,10 @@ namespace windows
    }
 
 
-   void console_window::SetWindowSize(int height,int width)
+   void console::SetWindowSize(int height,int width)
    {
-      
+      m_iH = height;
+      m_iW = width;
       SMALL_RECT window;
       window.Top = 0;
       window.Left = 0;
@@ -105,7 +106,7 @@ namespace windows
       SetConsoleScreenBufferSize(GetStdHandle(STD_OUTPUT_HANDLE),buffer);
    }
 
-   void console_window::SetCursorVisibility(bool show)
+   void console::SetCursorVisibility(bool show)
    {
       CONSOLE_CURSOR_INFO cursor;
       GetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE),&cursor);
@@ -113,25 +114,29 @@ namespace windows
       SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE),&cursor);
    }
 
-   void console_window::SetCursorPosition(int y,int x)
+   void console::SetCursorPosition(int y,int x)
    {
-      COORD cursor ={x,y + 3};
+      COORD cursor ={x,y};
       SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),cursor);
    }
 
-   void console_window::SetTextColor(int color)
+   void console::SetTextColor(int color)
    {
       SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),color);
    }
 
-   void console_window::SetScreenColor(int color)
+   void console::SetScreenColor(int color, int iLineStart, int iLineCount)
    {
-      COORD coord ={0,3};
+      COORD coord ={0,iLineStart};
       DWORD dwWritten;
-      FillConsoleOutputAttribute(GetStdHandle(STD_OUTPUT_HANDLE),color,LEVELHEIGHT * LEVELWIDTH,coord,&dwWritten);
+      if(iLineCount < 0)
+         iLineCount = m_iH + iLineCount + 1;
+      if(iLineCount > m_iH - iLineStart)
+         iLineCount = m_iH - iLineStart;
+      FillConsoleOutputAttribute(GetStdHandle(STD_OUTPUT_HANDLE),color,iLineCount * m_iW,coord,&dwWritten);
    }
 
-   void console_window::write(const char * psz)
+   void console::write(const char * psz)
    {
       
       DWORD dw= 0;

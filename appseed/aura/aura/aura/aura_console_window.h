@@ -31,56 +31,78 @@ public:
 //
 //};
 
-class CLASS_DECL_AURA console_window_base:
-   virtual public ::object
+namespace console
 {
-public:
-
-   ::file::plain_text_ostream   cout;
 
 
-   virtual void redirect_io();
-   virtual void SetWindowSize(int iHeight,int iWidth) = 0;
-   virtual void SetCursorVisibility(bool show) = 0;
-   virtual void SetCursorPosition(int y,int x) = 0;
-   virtual void SetTextColor(int color) = 0;
-   virtual void SetScreenColor(int color) = 0;
-   virtual void write(const char * psz) = 0;
+   const int WHITE    = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_INTENSITY;
+   const int RED      = FOREGROUND_RED | FOREGROUND_INTENSITY;
+   const int BLUE     = FOREGROUND_BLUE | FOREGROUND_INTENSITY;
+   const int DARKBLUE = FOREGROUND_BLUE;
+   const int CYAN     = FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_INTENSITY;
+   const int MAGENTA  = FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_INTENSITY;
+   const int YELLOW   = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY;
+   const int BLACK    = 0;
 
-
-};
-
-
-
-class console_window_composite:
-   virtual public console_window_base
-{
-public:
-
-
-   
-
-
-   console_window_base * m_p;
-
-   console_window_composite()
+   class CLASS_DECL_AURA window:
+      virtual public ::object
    {
-      m_p = NULL;
-   }
+   public:
 
-   console_window_composite(console_window_base * p):
-      object(p->get_app()),
-      m_p(p)
+
+      ::file::plain_text_ostream   cout;
+
+
+      virtual void redirect_io();
+      virtual void SetWindowSize(int iHeight,int iWidth) = 0;
+      virtual void SetCursorVisibility(bool show) = 0;
+      virtual void SetCursorPosition(int y,int x) = 0;
+      virtual void SetTextColor(int color) = 0;
+      virtual void SetScreenColor(int color,int iLineStart = 0,int iLineCount = -1) = 0;
+      virtual void write(const char * psz) = 0;
+
+
+   };
+
+
+
+   class window_composite:
+      virtual public window
    {
-      cout.m_spbuffer = m_p->cout.m_spbuffer;
-   }
+   public:
 
-   virtual void SetWindowSize(int iHeight,int iWidth) {   m_p->SetWindowSize(iHeight,iWidth);   }
-   virtual void SetCursorVisibility(bool show)  { m_p->SetCursorVisibility(show); }
-   virtual void SetCursorPosition(int y,int x)  { m_p->SetCursorPosition(y,x); }
-   virtual void SetTextColor(int color)  { m_p->SetTextColor(color); }
-   virtual void SetScreenColor(int color)  { m_p->SetScreenColor(color); }
-   virtual void write(const char * psz)  { m_p->write(psz); }
-   //virtual void write(const void * lpBuf,::primitive::memory_size nCount);
 
-};
+
+
+
+      window * m_p;
+
+      window_composite()
+      {
+         m_p = NULL;
+      }
+
+      window_composite(window * p):
+         object(p->get_app()),
+         m_p(p)
+      {
+         cout.m_spbuffer = m_p->cout.m_spbuffer;
+      }
+
+      virtual void redirect_io() { m_p->redirect_io(); }
+      virtual void SetWindowSize(int iHeight,int iWidth) { m_p->SetWindowSize(iHeight,iWidth); }
+      virtual void SetCursorVisibility(bool show)  { m_p->SetCursorVisibility(show); }
+      virtual void SetCursorPosition(int y,int x)  { m_p->SetCursorPosition(y,x); }
+      virtual void SetTextColor(int color)  { m_p->SetTextColor(color); }
+      virtual void SetScreenColor(int color,int iLineStart = 0,int iLineCount = -1)  { m_p->SetScreenColor(color,iLineStart,iLineCount); }
+      virtual void write(const char * psz)  { m_p->write(psz); }
+      //virtual void write(const void * lpBuf,::primitive::memory_size nCount);
+
+   };
+
+
+
+} // namespace console
+
+
+

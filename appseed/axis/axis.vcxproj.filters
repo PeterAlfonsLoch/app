@@ -1310,7 +1310,7 @@
     <ClInclude Include="user\user\user_form_window.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\dib_console_window.h">
+    <ClInclude Include="graphics\dib_console.h">
       <Filter>Header Files\graphics</Filter>
     </ClInclude>
   </ItemGroup>
@@ -2265,6 +2265,9 @@
     </ClCompile>
     <ClCompile Include="user\user\user_form_window.cpp">
       <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\dib_console.cpp">
+      <Filter>Source Files\graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

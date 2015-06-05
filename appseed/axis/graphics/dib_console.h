@@ -1,8 +1,9 @@
 #pragma once
 
 
-class dib_console_window:
-   virtual public ::console_window_base,
+
+class dib_console:
+   virtual public ::console::window,
    virtual public ::file::stream_buffer
 {
 public:
@@ -15,7 +16,7 @@ public:
    int m_iColor;
 
 
-   dib_console_window(::aura::application * papp,size sizeTile);
+   dib_console(::aura::application * papp,size sizeTile);
 
 
    virtual void SetWindowSize(int iHeight,int iWidth);
