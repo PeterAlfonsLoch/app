@@ -591,7 +591,20 @@ namespace user
    }
 
 
+   void scroll_control::layout()
+   {
+
+      ::user::control::layout();
+
+      SetScrollSizes();
+
+   }
+
+
 }  // namespace core
+
+
+
 
 
 
