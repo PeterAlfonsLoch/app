@@ -100,7 +100,7 @@ CLASS_DECL_AURA mutex * get_ui_destroyed_mutex();
 
 
 
-
+#ifdef WINDOWSEX
 
 class null_dacl_security_attributes
 {
@@ -114,8 +114,12 @@ public:
 
 };
 
+#endif
+
 class spaadmin_mutex:
+#ifdef WINDOWSEX
    public null_dacl_security_attributes,
+#endif
    public mutex
 {
 public:

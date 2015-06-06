@@ -140,11 +140,11 @@ mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrNa
 
       if(str::begins_ci(pstrName, "Global"))
       {
-         m_strName = ::dir::path("/var/tmp", pstrName);
+         m_strName = ::file::path("/var/tmp") / pstrName;
       }
       else
       {
-         m_strName = ::dir::path(getenv("HOME"), pstrName);
+         m_strName = ::file::path(getenv("HOME")) / pstrName;
       }
 
       ::dir::mk(::dir::name(m_strName));
@@ -289,7 +289,7 @@ mutex::~mutex()
 
 bool mutex::already_exists()
 {
-   
+
    return m_bAlreadyExists;
 
 }
@@ -702,9 +702,10 @@ CLASS_DECL_AURA mutex * get_ui_destroyed_mutex()
 }
 
 
-
+#ifdef WINDOWSEX
 null_dacl_security_attributes::null_dacl_security_attributes()
 {
+
 
    ZERO(m_securityattributes);
 
@@ -733,9 +734,14 @@ null_dacl_security_attributes::null_dacl_security_attributes()
    }
 
 }
+#endif
 
 
 spaadmin_mutex::spaadmin_mutex() :
+#ifdef WINDOWSEX
 mutex(NULL,false,"Global\\::ca2::fontopus::votagus::cgcl::" + process_platform_dir_name() + "::198411151951042219770204-11dd-ae16-0800200c7784",&m_securityattributes)
+#else
+mutex(NULL,false,"Global\\::ca2::fontopus::votagus::cgcl::" + process_platform_dir_name() + "::198411151951042219770204-11dd-ae16-0800200c7784")
+#endif
 {
 }

@@ -45,6 +45,6 @@ int64_t fd_get_file_size(int32_t fd)
 string get_sys_temp_path()
 {
 
-   return ::dir::path(getenv("HOME"), ".ca2", "time");
+   return ::file::path(getenv("HOME")) / ".ca2" / "time";
 
 }

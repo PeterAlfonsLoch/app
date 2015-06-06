@@ -2415,8 +2415,8 @@ install_begin:;
                      else if(string(lpnode->child_at(ui)->attr("type")) == "offline")
                      {
                         m_bOfflineInstall = true;
-                        m_strInstallGz = ::file::path(lpnode->child_at(ui)->attr("src")) / "stage.bz";
-                        m_strInstall = ::file::path(lpnode->child_at(ui)->attr("src")) / "stage";
+                        m_strInstallGz = ::file::path(lpnode->child_at(ui)->attr("src").get_string()) / "stage.bz";
+                        m_strInstall = ::file::path(lpnode->child_at(ui)->attr("src").get_string()) / "stage";
                      }
                      else if(string(lpnode->child_at(ui)->attr("type")) == "online")
                      {
@@ -4122,7 +4122,7 @@ RetryBuildNumber:
 
       // enable_desktop_launch is signaled here to ease the application to know that it is a desktop application, so when it reissues
       // a installation it can send app.install.exe a message with enable_desktop_launch set too.
-      wstring wstrCmdLine = (L"\"" + wstrApp + L"\" : app=" + wstring(m_strApplicationId) + L" build_number=installed enable_desktop_launch").c_str(); 
+      wstring wstrCmdLine = (L"\"" + wstrApp + L"\" : app=" + wstring(m_strApplicationId) + L" build_number=installed enable_desktop_launch").c_str();
 
       if(::CreateProcessW((wchar_t *)wstrApp.c_str(),(wchar_t *)wstrCmdLine.c_str(),
          NULL,NULL,FALSE,0,NULL,NULL,
@@ -4197,7 +4197,7 @@ RetryBuildNumber:
 
 #else
 
-      pfn_app_core_main(strFullCommandLine, SW_HIDE);
+      pfn_app_core_main(strFullCommandLine, SW_HIDE, appcore);
 
 #endif
 
@@ -4249,16 +4249,16 @@ RetryBuildNumber:
 
    }
 
-   
+
    void installer::on_set_scalar(int_scalar_source * psource,e_scalar escalar,int64_t iValue,int iFlags)
    {
-      
+
       if (escalar == scalar_download_size)
       {
-         
+
          if(m_bProgressModeAppInstall)
          {
-            
+
             int64_t iMax = 0;
 
             psource->get_scalar_maximum(escalar, iMax);
@@ -4272,7 +4272,7 @@ RetryBuildNumber:
 
             if(iMax == 0)
             {
-               
+
                iValue = 0;
 
                iMax = 1;
@@ -4280,7 +4280,7 @@ RetryBuildNumber:
             }
 
             synch_lock sl(&m_mutexOmp);
-            
+
             int iTest = omp_get_thread_num() + 1;
 
             m_daProgress.element_at_grow(iTest) = (double)iValue / (double)iMax;

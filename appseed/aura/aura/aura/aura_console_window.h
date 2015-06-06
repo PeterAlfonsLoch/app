@@ -7,16 +7,13 @@ class std_out_buffer:
    virtual public ::file::stream_buffer
 {
 public:
+
+
    std_out_buffer() {}
    virtual ~std_out_buffer(){}
-   void write(const void * lpBuf,::primitive::memory_size nCount)
-   {
-//      string str((const char * ) lpBuf,MIN(strnlen_s((const char *) lpBuf, nCount), nCount));
-  //    printf("%s",str);
-          DWORD dw= 0;
-          ::WriteFile(GetStdHandle(STD_OUTPUT_HANDLE),lpBuf,nCount,&dw,NULL);
 
-   }
+
+   void write(const void * lpBuf,::primitive::memory_size nCount);
 
 
 };
@@ -34,7 +31,6 @@ public:
 namespace console
 {
 
-
    const int WHITE    = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_INTENSITY;
    const int RED      = FOREGROUND_RED | FOREGROUND_INTENSITY;
    const int BLUE     = FOREGROUND_BLUE | FOREGROUND_INTENSITY;
@@ -43,6 +39,7 @@ namespace console
    const int MAGENTA  = FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_INTENSITY;
    const int YELLOW   = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY;
    const int BLACK    = 0;
+
 
    class CLASS_DECL_AURA window:
       virtual public ::object

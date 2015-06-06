@@ -66,8 +66,8 @@ namespace linux
 //      virtual string element(const char * lpcsz, const string & str2);
 //      virtual string element(const string & str, const char * lpcsz2);
 
-      virtual ::file::path module();
-      virtual ::file::path ca2module();
+//      virtual ::file::path module();
+//      virtual ::file::path ca2module();
       virtual ::file::path time_square();
       virtual ::file::path time_log(const string & pszId);
 

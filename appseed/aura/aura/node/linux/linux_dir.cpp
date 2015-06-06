@@ -13,11 +13,6 @@ namespace linux
       ::file::dir::system(papp)
    {
 
-      string strca2Module = ca2module();
-
-      m_strCa2 = strca2Module;
-
-      m_strCa2.go_up(2);
 
    }
 
@@ -391,7 +386,7 @@ namespace linux
       {
 
 
-         stringa stra;
+         ::file::patha stra;
 
          ::dir::ls(stra, listing.m_path);
 
@@ -1010,32 +1005,29 @@ namespace linux
 //   }
 
 
-   ::file::path dir::module()
+//   ::file::path dir::module()
+  // {
+
+    //  ::file::path str = System.get_module_folder();
+
+      //return str;
+
+//   }
+
+
+//   ::file::path dir::ca2module()
+  // {
+
+    //  ::file::path str = System.get_ca2_module_folder();
+
+      //return str;
+
+   //}
+
+
+   ::file::path dir::time_square()
    {
 
-      ::file::path str = System.get_module_folder();
-
-      return str;
-
-   }
-
-
-   ::file::path dir::ca2module()
-   {
-
-      ::file::path str = System.get_ca2_module_folder();
-
-      return str;
-
-   }
-
-
-   ::file::path dir::time_square(::aura::application * papp, const string & strPrefix, const string & strSuffix)
-   {
-
-	   UNREFERENCED_PARAMETER(papp);
-	   UNREFERENCED_PARAMETER(strPrefix);
-	   UNREFERENCED_PARAMETER(strSuffix);
 	   return time() / "time";
 
    }
@@ -1237,6 +1229,19 @@ namespace linux
 
    bool dir::initialize()
    {
+
+      if(!::file::dir::system::initialize())
+      {
+
+         return false;
+
+      }
+
+      string strca2Module = ca2module();
+
+      m_strCa2 = strca2Module;
+
+      m_strCa2.go_up(2);
 
       xml::document doc(get_app());
 

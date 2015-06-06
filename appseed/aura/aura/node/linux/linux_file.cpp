@@ -108,7 +108,6 @@ namespace linux
       m_strFileName.Empty();
 
       m_strFileName     = lpszFileName;
-      m_wstrFileName    = ::str::international::utf8_to_unicode(m_strFileName);
 
       ASSERT(sizeof(HANDLE) == sizeof(uint_ptr));
       ASSERT(::file::share_compat == 0);

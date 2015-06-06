@@ -429,61 +429,6 @@ namespace linux
    }
 
 
-   bool application::update_module_paths()
-   {
-
-         {
-
-            if(!br_init_lib(NULL))
-               return false;
-
-            char * lpszModuleFolder = br_find_exe_dir(NULL);
-
-            if(lpszModuleFolder == NULL)
-               return false;
-
-            System.m_pathModuleFolder = lpszModuleFolder;
-
-            free(lpszModuleFolder);
-
-         }
-
-         {
-
-            void * handle = dlopen("libca.so", RTLD_NOW);
-
-            if(handle == NULL)
-            {
-
-               System.m_pathCa2ModuleFolder = System.m_pathModuleFolder;
-
-            }
-            else
-            {
-
-                link_map * plm;
-
-                dlinfo(handle, RTLD_DI_LINKMAP, &plm);
-
-                System.m_pathCa2ModuleFolder = ::dir::name(plm->l_name);
-
-                if(System.m_pathCa2ModuleFolder.is_empty() || System.m_pathCa2ModuleFolder[0] != '/')
-                {
-
-                    System.m_pathCa2ModuleFolder = System.m_pathModuleFolder;
-
-                }
-
-                dlclose(handle);
-
-            }
-
-         }
-
-		return true;
-
-   }
-
    string application::draw2d_get_default_library_name()
    {
 

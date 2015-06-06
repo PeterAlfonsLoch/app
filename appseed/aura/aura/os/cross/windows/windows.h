@@ -34,6 +34,9 @@
 #include "windows_common_controls.h"
 
 
+#include "windows_wincon.h"
+
+
 #ifndef METROWIN
 #include "windows_base_tsd.h"
 #include "windows_internals.h"

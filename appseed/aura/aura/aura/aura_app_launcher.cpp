@@ -61,7 +61,7 @@ namespace aura
 	   string strParams = get_params();
 
 
-	  if (call_async(strPath, strParams, strDir , 0) == 0)
+	  if (call_async(strPath, strParams, strDir , 0, false) == 0)
 		  return true;
 
 #endif

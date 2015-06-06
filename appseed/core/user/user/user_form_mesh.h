@@ -55,7 +55,7 @@ namespace user
       virtual ~form_mesh();
 
 
-      void form_mesh::_001OnDraw(::draw2d::graphics *pdc);
+      void _001OnDraw(::draw2d::graphics *pdc);
 
       virtual void _001DrawSubItem(draw_mesh_item * pdrawitem);
 

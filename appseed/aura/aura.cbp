@@ -76,6 +76,7 @@
 		<Unit filename="aura/aura/aura_action_context.h" />
 		<Unit filename="aura/aura/aura_action_source.h" />
 		<Unit filename="aura/aura/aura_allocate.h" />
+		<Unit filename="aura/aura/aura_app_core.h" />
 		<Unit filename="aura/aura/aura_application.h" />
 		<Unit filename="aura/aura/aura_application_interface.h" />
 		<Unit filename="aura/aura/aura_application_signal_details.h" />
@@ -279,6 +280,7 @@
 		<Unit filename="aura/os/cross/windows/windows_time.h" />
 		<Unit filename="aura/os/cross/windows/windows_types.h" />
 		<Unit filename="aura/os/cross/windows/windows_user.h" />
+		<Unit filename="aura/os/cross/windows/windows_wincon.h" />
 		<Unit filename="aura/os/cross/windows/windows_winnt.h" />
 		<Unit filename="aura/os/linux/linux.h" />
 		<Unit filename="aura/os/linux/linux.inl" />

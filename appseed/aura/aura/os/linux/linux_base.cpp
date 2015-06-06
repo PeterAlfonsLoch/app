@@ -69,3 +69,12 @@ CLASS_DECL_AURA bool __node_aura_pos_term()
 
 
 
+
+
+::file::path dir::sys_temp()
+{
+
+   return ::file::path("/var/tmp");
+
+}
+

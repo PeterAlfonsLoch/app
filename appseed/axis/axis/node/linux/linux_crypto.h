@@ -19,7 +19,7 @@ namespace linux
       virtual bool decrypt(primitive::memory & storageDecrypt, const primitive::memory & storageEncrypt, const char * pszSalt);
 
 
-      virtual string get_crypt_key_file_path();
+      virtual ::file::path get_crypt_key_file_path();
 
 
 

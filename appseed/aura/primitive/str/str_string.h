@@ -271,7 +271,7 @@ public:
    string(const property & prop);
    string(const id & id);
    string(const string_interface & stri);
-   string(const istring & istr);
+//   string(const istring & istr);
 #endif
 
 

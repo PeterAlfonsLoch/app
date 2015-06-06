@@ -4644,7 +4644,7 @@ synch_lock ml(m_spmutex);
       {
 
          return false;
-        
+
       }
 
       if (m_spbrush.is_null())
@@ -5506,6 +5506,8 @@ synch_lock ml(m_spmutex);
 
     }
 
+#ifdef WINDOWS
+
     bool graphics::Attach(HDC hdc)
     {
 
@@ -5557,6 +5559,8 @@ synch_lock ml(m_spmutex);
        return hdc;
 
     }
+
+#endif // WINDOWS
 
 } // namespace draw2d_cairo
 

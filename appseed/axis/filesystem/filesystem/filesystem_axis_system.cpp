@@ -159,21 +159,21 @@ namespace file
       //if (!papp->m_paxissystem->dir().name_is(strPath, papp))
       //   return false;
 
-#ifdef WINDOWS
+//#ifdef WINDOWS
 
 
       return file_exists_dup(strPath) != FALSE;
 
-#else
+//#else
 
-      struct stat st;
+  //    struct stat st;
 
-      if (stat(strPath, &st) != 0)
-         return false;
+    //  if (stat(strPath, &st) != 0)
+      //   return false;
 
-      return S_ISREG(st.st_mode) || S_ISDIR(st.st_mode);
+//      return S_ISREG(st.st_mode) || S_ISDIR(st.st_mode);
 
-#endif
+//#endif
 
    }
 

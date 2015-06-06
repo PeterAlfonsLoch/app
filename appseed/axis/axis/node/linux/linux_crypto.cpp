@@ -18,7 +18,7 @@ namespace linux
    }
 
 
-   string crypto::get_crypt_key_file_path()
+   ::file::path crypto::get_crypt_key_file_path()
    {
 
       return ::file::path(getenv("home")) / ".ca2/cryptkey";

@@ -464,12 +464,12 @@ string ca2_module_folder_dup()
 */
 
       str = ::dir::name(::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libbase.dylib", "rfs")); // readable - normal file - non zero sized
-      
+
       if(str.has_char())
       {
-         
+
          goto found;
-         
+
       }
 
       str = ::dir::name(::dir::pathfind(getenv("DYLD_FALLBACK_LIBRARY_PATH"), "libbase.dylib", "rfs")); // readable - normal file - non zero sized
@@ -500,7 +500,7 @@ string ca2_module_folder_dup()
 
    eat_end_level_dup(strRelative, 2, "/");
 
-   string str = path(getenv("HOME"), ".core/appdata");
+   string str = ::file::path(getenv("HOME")) / ".core/appdata";
 
    return str;
 
@@ -598,7 +598,7 @@ bool dir::mk(const ::file::path & lpcsz)
    }
    else
    {
-      
+
       return name(string(path));
 
    }
@@ -673,11 +673,11 @@ string dir::name(string path)
 
    if(path.last_char() == '/' || path.last_char() == '\\')
    {
-      
+
       iEnd = -2;
 
    }
-   
+
    index iPos1 = path.reverse_find('/',iEnd);
 
    index iPos2 = path.reverse_find('\\',iEnd);
@@ -736,7 +736,7 @@ void dir::ls(::file::patha & stra,const ::file::path & psz)
          continue;
       else if(strcmp(dp->d_name, ".") == 0)
          continue;
-      stra.add(path(psz, dp->d_name));
+      stra.add(::file::path(psz) / dp->d_name);
 
    }
 
@@ -823,7 +823,7 @@ void dir::ls_dir(::file::patha & stra,const ::file::path & psz)
                continue;
          }
       }
-      string strPath = path(psz, dp->d_name);
+      ::file::path strPath = ::file::path(psz) /  dp->d_name;
       if(is(strPath))
       {
          stra.add(strPath);
@@ -1112,8 +1112,6 @@ retry:
 
 
    ::file::path p("/opt/ca2");
-
-   p /= str;
 
    return p;
 

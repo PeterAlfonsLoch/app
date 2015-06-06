@@ -672,7 +672,7 @@ inline string::string(const var & var):stdstring< simple_string> (string_trait::
 inline string::string(const property & prop):stdstring< simple_string> (string_trait::GetDefaultManager()) { prop.to_string(*this);}
 inline string::string(const id & id):stdstring< simple_string> (string_trait::GetDefaultManager()) { id.to_string(*this);}
 inline string::string(const string_interface & stri) :stdstring< simple_string> (string_trait::GetDefaultManager()){ stri.to_string(*this);}
-inline string::string(const istring & istr):stdstring< simple_string> (string_trait::GetDefaultManager()) { istr.to_string(*this);}
+//inline string::string(const istring & istr):stdstring< simple_string> (string_trait::GetDefaultManager()) { istr.to_string(*this);}
 
 #endif
 

@@ -1118,7 +1118,16 @@ namespace file
 
       bool system::initialize()
       {
-         throw interface_only_exception(get_app(), "this is an interface");
+
+         if(!update_module_path())
+         {
+
+            return false;
+
+         }
+
+         return true;
+
       }
 
 
@@ -1306,14 +1315,21 @@ namespace file
       }
 
 
-      void system::update_module_path()
+      bool system::update_module_path()
       {
 
-         System.file().update_module_path();
+         if(!System.file().update_module_path())
+         {
+
+            return false;
+
+         }
 
          m_pathModule = System.file().module().folder();
 
          m_pathCa2Module = System.file().ca2module().folder();
+
+         return true;
 
       }
 

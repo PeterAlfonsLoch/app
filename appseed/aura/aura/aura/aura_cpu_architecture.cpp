@@ -187,8 +187,9 @@ int32_t CPU_Is_Aes_Supported()
     return 0;
   return (p.c >> 25) & 1;
 }
-
+#ifdef WINDOWS
 #include <intrin.h>
+#endif
 BEGIN_EXTERN_C
 CLASS_DECL_AURA int cpu_has_avx()
 {

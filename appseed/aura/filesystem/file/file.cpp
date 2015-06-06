@@ -165,7 +165,7 @@ string get_temp_file_name_dup(const char * pszName,const char * pszExtension)
    char lpPathBuffer[MAX_PATH * 16];
    // Get the temp path.
    DWORD dwRetVal = GetTempPath(sizeof(lpPathBuffer),     // length of the buffer
-      lpPathBuffer); // buffer for path 
+      lpPathBuffer); // buffer for path
    if(dwRetVal > sizeof(lpPathBuffer) || (dwRetVal == 0))
    {
       printf("GetTempPath failed (%d)\n",GetLastError());
@@ -370,7 +370,7 @@ namespace cpp
    */
 #if defined(__i386__) || defined(__x86_64__) || defined(__vax__)
 #define SET(n) \
-	(*(MD5_u32plus *)&ptr[(n) * 4])
+	(ptr[(n) * 4])
 #define GET(n) \
 	SET(n)
 #else

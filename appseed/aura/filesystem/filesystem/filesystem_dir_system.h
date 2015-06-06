@@ -141,7 +141,7 @@ namespace file
 
          virtual ::file::path get_api_cc();
 
-         virtual void update_module_path();
+         virtual bool update_module_path();
 
       };
 

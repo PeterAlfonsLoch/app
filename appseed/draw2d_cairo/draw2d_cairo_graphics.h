@@ -522,10 +522,13 @@ namespace draw2d_cairo
 
       virtual bool flush();
 
+#ifdef WINDOWS
 
       virtual bool Attach(HDC hdc) override;
-
       virtual HDC Detach() override;
+
+#endif
+
 
    };
 

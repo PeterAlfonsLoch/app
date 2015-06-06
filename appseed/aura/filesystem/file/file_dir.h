@@ -33,9 +33,7 @@ namespace dir
    CLASS_DECL_AURA ::file::path default_user(const string & lpcszPrefix,const string & lpcszLogin);
    CLASS_DECL_AURA ::file::path user();
    CLASS_DECL_AURA ::file::path pathfind(const string & pszEnv, const string & pszTopic, const string & pszMode);
-#ifdef WINDOWSEX
    CLASS_DECL_AURA ::file::path program_files_x86();
-#endif;
    CLASS_DECL_AURA ::file::path a_spa();
    CLASS_DECL_AURA ::file::path stage();
    CLASS_DECL_AURA ::file::path app_install(string strPlatform = "");

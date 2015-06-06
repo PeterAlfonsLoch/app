@@ -53,7 +53,7 @@ namespace filemanager
       IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &file_list::_001OnTimer);
       connect_command_range(FILEMANAGER_SHELL_COMMAND_FIRST, FILEMANAGER_SHELL_COMMAND_LAST, &file_list::_001OnShellCommand);
       IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &file_list::_001OnShowWindow);
-      
+
 
    }
 
@@ -101,7 +101,7 @@ namespace filemanager
                get_filemanager_manager()->data_set(get_filemanager_template()->m_dataidStatic, stra);
 
                add_item(get_filemanager_item().m_strPath, get_filemanager_item().m_strPath.name());
-            
+
                _001OnUpdateItemCount();
 
             }
@@ -158,7 +158,7 @@ namespace filemanager
                   get_filemanager_data()->m_pholderFileList->hold(this);
                   get_filemanager_data()->m_pholderFileList->layout();
                }
-               
+
                data_get_DisplayToStrict();
                _001OnUpdateItemCount();
                /*string str;
@@ -226,7 +226,7 @@ namespace filemanager
 
       }
    }
-    
+
   void file_list::_001OnClick(uint_ptr nFlags, point point)
    {
       UNREFERENCED_PARAMETER(nFlags);
@@ -494,22 +494,22 @@ namespace filemanager
 
    void file_list::_017OpenContextMenuFolder(sp(::fs::item)  item, ::action::context actioncontext)
    {
-      
+
       stringa straCommand;
-      
+
       stringa straCommandTitle;
-      
+
       get_filemanager_data()->OnFileManagerOpenContextMenuFolder(item, straCommand, straCommandTitle, actioncontext);
-      
+
       if(straCommand.get_size() > 0)
       {
-         
+
          m_spmenuPopup = canew(::aura::menu(get_app()));
-         
+
          point ptCursor;
-         
+
          Session.get_cursor_pos(&ptCursor);
-      
+
          if(m_spmenuPopup->create_menu(straCommand, straCommandTitle))
          {
 
@@ -660,7 +660,7 @@ namespace filemanager
       }
 
       Application.file().trash_that_is_not_trash(stra);
-      
+
       _001Refresh();
 
    }
@@ -761,9 +761,9 @@ namespace filemanager
       }
       if(iPos >= 0)
       {
-         
+
          ::fs::item_array itema;
-         
+
          GetSelected(itema);
 
          ::file::path strPath = itema[0]->m_strPath;
@@ -813,7 +813,7 @@ namespace filemanager
       {
          if(Application.dir().is(itema[i]->m_strPath) && itema[i]->m_strPath.name() != ".svn")
          {
-            
+
             straSub.rls(itema[i]->m_strPath);
 
             for(int32_t j = 0; j < straSub.get_size(); j++)
@@ -839,7 +839,7 @@ namespace filemanager
       ::datetime::time time = ::datetime::time::get_current_time();
 
       string strTime;
-      
+
       strTime.Format("%04d-%02d-%02d %02d-%02d",
          time.GetYear(),
          time.GetMonth(),
@@ -1222,7 +1222,7 @@ namespace filemanager
       }
    endloop:
       m_plist->post_message(MessageMainPost, MessageMainPostCreateImageListItemRedraw);
-      synch_lock lock(m_plist->m_pauraapp);
+      synch_lock lock(m_plist->m_pauraapp->m_pmutex);
       m_plist->m_pcreateimagelistthread = NULL;
       return 0;
 
@@ -1884,14 +1884,14 @@ namespace filemanager
 
    bool file_list::do_drop(index iDisplayDrop, index iDisplayDrag)
    {
-      
+
       index strict;
 
       index strictDrag;
 
       if (m_eview == view_icon)
       {
-         
+
          strict = m_iconlayout.m_iaDisplayToStrict[iDisplayDrop];
 
          strictDrag = m_iconlayout.m_iaDisplayToStrict[iDisplayDrag];
@@ -1899,7 +1899,7 @@ namespace filemanager
       }
       else
       {
-         
+
          strict = m_meshlayout.m_iaDisplayToStrict[iDisplayDrop];
 
          strictDrag = m_meshlayout.m_iaDisplayToStrict[iDisplayDrag];
@@ -1908,7 +1908,7 @@ namespace filemanager
 
       if (strict >= 0 && get_fs_mesh_data()->m_itema.get_item(strict).IsFolder())
       {
-         
+
          ::file::path strPath = get_fs_mesh_data()->m_itema.get_item(strictDrag).m_strPath;
 
          string strName = strPath.name();

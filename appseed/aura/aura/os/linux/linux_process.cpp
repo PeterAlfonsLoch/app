@@ -79,7 +79,8 @@ CLASS_DECL_AURA int32_t call_async(
                             const char * pszPath,
                             const char * pszParam,
                             const char * pszDir,
-                            int32_t iShow)
+                            int32_t iShow,
+		            bool bPrivileged)
 {
     string strCmdLine;
 
