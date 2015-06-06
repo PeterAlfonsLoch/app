@@ -492,7 +492,7 @@ namespace install
 
 #else
 
-      call_async(strFile, strParam, strDir, SW_SHOW);
+      call_async(strFile, strParam, strDir, SW_SHOW, false);
 
 #endif
 
