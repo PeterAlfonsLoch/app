@@ -26,7 +26,7 @@ sync_object::~sync_object()
 bool sync_object::lock(const duration & durationTimeout)
 {
 
-   if(wait(durationTimeout).failed())
+   if(!wait(durationTimeout).signaled())
    {
 
       return false;
