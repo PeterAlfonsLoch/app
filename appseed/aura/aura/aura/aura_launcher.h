@@ -8,7 +8,9 @@ public:
 
    int m_iStart;
 
-   launcher(int iStart = 11) { m_iStart = iStart;  }
+   bool m_bPrivileged;
+
+   launcher(int iStart = 11) { m_iStart = iStart; m_bPrivileged = false; }
 
 
    virtual bool ensure_executable() { return true; }

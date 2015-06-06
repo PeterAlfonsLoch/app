@@ -14,7 +14,7 @@ namespace aura
       string m_strApp;
 
 
-      app_launcher(const string & strApp) { m_strApp = strApp; }
+      app_launcher(const string & strApp) { m_strApp = strApp;  }
 
 
       virtual string get_executable_path();

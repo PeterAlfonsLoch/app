@@ -64,7 +64,9 @@ string get_command_line_param(const char * pszCommandLine, const char * pszParam
 
    }
 
-   return ::str::trim_any_quotes(strValue.trimmed());
+   ::str::_008Trim(strValue);
+
+   return strValue;
 
 }
 
@@ -206,7 +208,7 @@ bool get_command_line_param(string & wstrValue,const char * psz,const char * psz
 
    }
 
-   wstrValue = ::str::trim_any_quotes(wstrValue);
+   ::str::trim_any_quotes(wstrValue);
 
    return true;
 

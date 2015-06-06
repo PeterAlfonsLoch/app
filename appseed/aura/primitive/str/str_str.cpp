@@ -3008,16 +3008,67 @@ namespace str
    }
 
 
-   CLASS_DECL_AURA  string         trim_any_quotes(const string & strParam)
+   CLASS_DECL_AURA  bool           trim(string & str)
+   {
+
+      int iLen = str.length();
+
+      str.trim();
+
+      return iLen != str.length();
+
+   }
+
+   CLASS_DECL_AURA  bool         _008Trim(string & str)
+   {
+
+      ::count c = 1;
+
+      bool bTrim = false;
+
+      while(c > 0)
+      {
+         
+         c = 0;
+
+         if(trim_any_quotes(str))
+         {
+
+            c++;
+
+            bTrim = true;
+
+         }
+
+         if(trim(str))
+         {
+
+            c++;
+
+            bTrim = true;
+
+         }
+
+      }
+
+      return bTrim;
+
+   }
+
+
+   CLASS_DECL_AURA  bool         trim_any_quotes(string & strParam)
    {
 
       string str(strParam);
 
+      bool bTrim = false;
+
       while(paired_trim(str,'\'') || paired_trim(str,'\"'))
       {
+         bTrim = true;
       }
 
-      return str;
+      return bTrim;
 
    }
 

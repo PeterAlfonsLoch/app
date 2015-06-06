@@ -8,6 +8,8 @@ app_install_launcher::app_install_launcher(const char * pszVersion,const char * 
 
    m_strBuild     = pszBuild;
 
+   m_bPrivileged = true;
+
 }
 
 

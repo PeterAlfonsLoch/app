@@ -7,20 +7,32 @@ int32_t call_async(
    const char * pszPath, 
    const char * pszParam, 
    const char * pszDir,
-   int32_t iShow)
+   int32_t iShow,
+   bool bPrivileged)
 {
 
-   SHELLEXECUTEINFOA infoa;
+   SHELLEXECUTEINFOW info ={};
 
-   memset_dup(&infoa, 0, sizeof(infoa));
+   wstring wstrFile = u16(pszPath);
+   wstring wstrParam = u16(pszParam);
+   wstring wstrDir = u16(pszDir);
 
-   infoa.cbSize         = sizeof(infoa);
-   infoa.lpFile         = pszPath;
-   infoa.lpParameters   = pszParam;
-   infoa.lpDirectory    = pszDir;
-   infoa.nShow          = iShow;
+   info.cbSize          = sizeof(SHELLEXECUTEINFOW);
+   info.nShow           = iShow;
+   info.lpFile         = wstrFile;
+   info.lpParameters   = wstrParam;
+   info.lpDirectory    = wstrDir;
 
-   int32_t iOk = ::ShellExecuteExA(&infoa);
+   if(bPrivileged)
+   {
+
+      info.lpVerb = L"RunAs";
+
+   }
+
+   int iOk = ::ShellExecuteExW(&info);
+   
+   DWORD dwGetLastError = GetLastError();
 
    return iOk;
 

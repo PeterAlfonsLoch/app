@@ -62,7 +62,7 @@ namespace process
 
 #ifndef METROWIN
 
-      int32_t iOk = call_async(strBin,pszEnd,pszDir,iShow);
+      int32_t iOk = call_async(strBin,pszEnd,pszDir,iShow, false);
 
       return iOk != 0;
 

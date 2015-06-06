@@ -13,7 +13,9 @@ bool launcher::start()
 
    string strParams = get_params();
 
-   call_async(strPath, strParams, strDir, SW_HIDE);
+
+
+   call_async(strPath, strParams, strDir, SW_HIDE, m_bPrivileged);
 
    return true;
 
