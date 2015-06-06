@@ -25,7 +25,7 @@ sync_object::~sync_object()
 
 bool sync_object::lock(const duration & durationTimeout)
 {
-   
+
    if(wait(durationTimeout).failed())
    {
 
@@ -54,7 +54,7 @@ wait_result sync_object::wait(const duration & durationTimeout)
 
    }
 
-   return wait_result(wait_result::Success);
+   return wait_result(wait_result::Event0);
 
 #endif
 }

@@ -1222,7 +1222,7 @@ namespace filemanager
       }
    endloop:
       m_plist->post_message(MessageMainPost, MessageMainPostCreateImageListItemRedraw);
-      synch_lock lock(m_plist->m_pauraapp->m_pmutex);
+      synch_lock lock(m_plist->m_pauraapp);
       m_plist->m_pcreateimagelistthread = NULL;
       return 0;
 
