@@ -10,6 +10,9 @@
 #elif defined(LINUX)
 #include "linux/_linux_node.cpp"
 #include "ansios/_ansios_node.cpp"
+#elif defined(MACOS)
+#include "macos/_macos_node.cpp"
+#include "ansios/_ansios_node.cpp"
 #endif
 
 

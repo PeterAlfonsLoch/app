@@ -6,7 +6,7 @@
 //#include "armcap.c"
 #include "cpt_err.c"
 #include "cryptlib.c"
-#ifndef LINUX
+#if !defined(LINUX) && !defined(__APPLE__)
 #include "cversion.c"
 #endif
 #include "ebcdic.c"

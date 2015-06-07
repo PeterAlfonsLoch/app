@@ -167,7 +167,7 @@
 		9AE24D451904CEFF001AEFFB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D441904CEFF001AEFFB /* XCTest.framework */; };
 		9AE24D461904CEFF001AEFFB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D361904CEFE001AEFFB /* Foundation.framework */; };
 		9AE24D481904CEFF001AEFFB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D471904CEFF001AEFFB /* UIKit.framework */; };
-		9AE24D4B1904CEFF001AEFFB /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D341904CEFE001AEFFB /* libaxis.dylib */; };
+		9AE24D4B1904CEFF001AEFFB /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D341904CEFE001AEFFB /* libbase.dylib */; };
 		9AE4C7F91996D29C00E50F88 /* data_simple_item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE4C7EB1996D29C00E50F88 /* data_simple_item.cpp */; };
 		9AE4C7FA1996D29C00E50F88 /* data_simple_item.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE4C7EC1996D29C00E50F88 /* data_simple_item.h */; };
 		9AE4C7FB1996D29C00E50F88 /* data_tree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE4C7ED1996D29C00E50F88 /* data_tree.cpp */; };
@@ -533,7 +533,7 @@
 		9A24EE80193783BF00ECBAD3 /* simple_ui_message_box.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = simple_ui_message_box.h; sourceTree = "<group>"; };
 		9A5E9DF919B7623B00949252 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../aura/aura.xcodeproj; sourceTree = "<group>"; };
 		9A8897A514C24736006B4023 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = ../../../../System/Library/Frameworks/Foundation.framework; sourceTree = "<group>"; };
-		9A98A6151771D67E000AE16E /* libaxis.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxis.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A98A6151771D67E000AE16E /* libbase.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libbase.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC315FC198E4CDF008FB109 /* user_control.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user_control.cpp; sourceTree = "<group>"; };
 		9AC315FD198E4CDF008FB109 /* user_control.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_control.h; sourceTree = "<group>"; };
 		9AC315FE198E4CDF008FB109 /* user_document_data_map.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_document_data_map.h; sourceTree = "<group>"; };
@@ -553,7 +553,7 @@
 		9AC3160C198E4CDF008FB109 /* user_interaction_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_interaction_impl.h; sourceTree = "<group>"; };
 		9AC3160D198E4CDF008FB109 /* user_plain_text_data.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user_plain_text_data.cpp; sourceTree = "<group>"; };
 		9AC3160E198E4CDF008FB109 /* user_plain_text_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_plain_text_data.h; sourceTree = "<group>"; };
-		9AE24D341904CEFE001AEFFB /* libaxis.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libaxis.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AE24D341904CEFE001AEFFB /* libbase.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libbase.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE24D361904CEFE001AEFFB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9AE24D431904CEFE001AEFFB /* axis_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = axis_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE24D441904CEFF001AEFFB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -775,7 +775,7 @@
 				9AE24D451904CEFF001AEFFB /* XCTest.framework in Frameworks */,
 				9AE24D481904CEFF001AEFFB /* UIKit.framework in Frameworks */,
 				9AE24D461904CEFF001AEFFB /* Foundation.framework in Frameworks */,
-				9AE24D4B1904CEFF001AEFFB /* libaxis.dylib in Frameworks */,
+				9AE24D4B1904CEFF001AEFFB /* libbase.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1390,8 +1390,8 @@
 				9AE7233B17E83B69003E47F9 /* version.config.h */,
 				9AE7233D17E83B69003E47F9 /* version.h */,
 				9AE24D431904CEFE001AEFFB /* axis_iosTests.xctest */,
-				9A98A6151771D67E000AE16E /* libaxis.dylib */,
-				9AE24D341904CEFE001AEFFB /* libaxis.dylib */,
+				9A98A6151771D67E000AE16E /* libbase.dylib */,
+				9AE24D341904CEFE001AEFFB /* libbase.dylib */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1571,7 +1571,7 @@
 			);
 			name = axis;
 			productName = c;
-			productReference = 9A98A6151771D67E000AE16E /* libaxis.dylib */;
+			productReference = 9A98A6151771D67E000AE16E /* libbase.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 		9AE24D331904CEFE001AEFFB /* axis_ios */ = {
@@ -1588,7 +1588,7 @@
 			);
 			name = axis_ios;
 			productName = base_ios;
-			productReference = 9AE24D341904CEFE001AEFFB /* libaxis.dylib */;
+			productReference = 9AE24D341904CEFE001AEFFB /* libbase.dylib */;
 			productType = "com.apple.product-type.library.static";
 		};
 		9AE24D421904CEFE001AEFFB /* axis_iosTests */ = {
@@ -1622,7 +1622,7 @@
 					};
 				};
 			};
-			buildConfigurationList = CEA754BE14411F2B007E04DE /* Build configuration list for PBXProject "axis" */;
+			buildConfigurationList = CEA754BE14411F2B007E04DE /* Build configuration list for PBXProject "base" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -2207,7 +2207,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CEA754BE14411F2B007E04DE /* Build configuration list for PBXProject "axis" */ = {
+		CEA754BE14411F2B007E04DE /* Build configuration list for PBXProject "base" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CEA754D014411F2C007E04DE /* Debug */,

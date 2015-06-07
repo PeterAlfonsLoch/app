@@ -1,8 +1,6 @@
  //O volume na unidade C n∆o tem nome.
  //O N£mero de SÇrie do Volume Ç 72AC-5E14
-
  //Pasta de C:\nordroid\app\axis\openssl\crypto
-
 #include "armcap.c"
 #include "cpt_err.c"
 #include "cryptlib.c"

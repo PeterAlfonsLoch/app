@@ -27,6 +27,9 @@ namespace core
 
 extern CLASS_DECL_AURA const char trailingBytesForUTF8[256];
 
+#ifdef MACOS
+#undef err_none
+#endif
 
 namespace str
 {

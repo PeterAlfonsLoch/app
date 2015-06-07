@@ -2633,7 +2633,7 @@ template < typename Pred >
       last = get_upper_bound();
    if(first < 0)
       first = 0;
-   index i = first;
+//   index i = first;
    ::count count = 0;
    for(index i = first; i <= last;)
    {
@@ -2663,7 +2663,7 @@ template < typename Pred >
       last = get_upper_bound();
    if(first < 0)
       first = 0;
-   index i = first;
+//   index i = first;
    ::count count = 0;
    for(index i = first; i <= last;)
    {
@@ -2692,7 +2692,7 @@ template < typename Pred, typename ArrayOut >
       last = get_upper_bound();
    if(first < 0)
       first = 0;
-   index i = first;
+//   index i = first;
    ::count count = 0;
    for(index i = first; i <= last;)
    {
