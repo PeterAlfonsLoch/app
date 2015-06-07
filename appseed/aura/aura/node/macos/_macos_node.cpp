@@ -1,20 +1,12 @@
-_macos.cpp
-macos.h
-macos_application.cpp
-macos_application.h
-macos_factory_exchange.cpp
-macos_factory_exchange.h
-macos_file.cpp
-macos_file.h
-macos_main.cpp
-macos_mm.h
-macos_os.cpp
-macos_os.h
-macos_shell.cpp
-macos_shell.h
-macos_stdio_file.cpp
-macos_stdio_file.h
-macos_thread.cpp
-macos_thread.h
-macos_trace.cpp
-macos_util.cpp
+
+
+#include "macos_application.cpp"
+#include "macos_factory_exchange.cpp"
+#include "macos_file.cpp"
+#include "macos_main.cpp"
+#include "macos_os.cpp"
+#include "macos_shell.cpp"
+#include "macos_stdio_file.cpp"
+#include "macos_thread.cpp"
+#include "macos_trace.cpp"
+#include "macos_util.cpp"
