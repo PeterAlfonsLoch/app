@@ -676,7 +676,7 @@ LPVOID WINAPI TlsGetValue(DWORD dwTlsIndex)
    }
    else
    {
-      threadData = allthreaddata->operator[](pthread_self());
+      threadData = allthreaddata->operator[]((ulong_ptr)pthread_self());
       if(threadData)
       {
          currentThreadData = threadData;
@@ -702,7 +702,7 @@ LPVOID WINAPI TlsGetValue(HTHREAD hthread,DWORD dwTlsIndex)
       if(allthreaddata->is_empty())
          return NULL;
 
-      ThreadLocalData * threadData = allthreaddata->operator [] (hthread);
+      ThreadLocalData * threadData = allthreaddata->operator [] ((ulong_ptr)hthread);
 
       if(threadData && threadData->get_count() > dwTlsIndex)
       {
@@ -744,7 +744,7 @@ int_bool WINAPI TlsSetValue(DWORD dwTlsIndex,LPVOID lpTlsValue)
 
          synch_lock lock(g_pmutexTlsData);
 
-         allthreaddata->set_at(pthread_self(),threadData);
+         allthreaddata->set_at((ulong_ptr)pthread_self(),threadData);
 
          currentThreadData = threadData;
 
@@ -769,7 +769,7 @@ int_bool WINAPI TlsSetValue(HTHREAD hthread,DWORD dwTlsIndex,LPVOID lpTlsValue)
 
    synch_lock lock(g_pmutexTlsData);
 
-   ThreadLocalData * threadData = allthreaddata->operator [] (hthread);
+   ThreadLocalData * threadData = allthreaddata->operator [] ((ulong_ptr)hthread);
 
    if(!threadData)
    {
@@ -778,7 +778,7 @@ int_bool WINAPI TlsSetValue(HTHREAD hthread,DWORD dwTlsIndex,LPVOID lpTlsValue)
       {
          threadData = new ThreadLocalData;
 
-         allthreaddata->set_at(hthread,threadData);
+         allthreaddata->set_at((ulong_ptr)hthread,threadData);
 
       }
       catch(...)
@@ -843,7 +843,7 @@ void WINAPI TlsShutdown()
 
       synch_lock ml(g_pmutexTlsData);
 
-      allthreaddata->remove_key(pthread_self());
+      allthreaddata->remove_key((ulong_ptr)pthread_self());
 
       currentThreadData = NULL;
 
@@ -1479,7 +1479,7 @@ CLASS_DECL_AURA HTHREAD GetCurrentThread()
 CLASS_DECL_AURA UINT GetCurrentThreadId()
 {
 
-   return pthread_self();
+   return (ulong_ptr)pthread_self();
 
 }
 

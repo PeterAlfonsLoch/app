@@ -6,7 +6,7 @@
 #include <string.h>
 
 
-extern CLASS_DECL_THREAD os_thread * t_posthread;
+//extern CLASS_DECL_THREAD os_thread * t_posthread;
 //extern CLASS_DECL_THREAD HTHREAD currentThread;
 
 

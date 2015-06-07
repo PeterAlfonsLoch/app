@@ -13,7 +13,7 @@
 #pragma once
 
 
-#include "aura/aura/aura_cpu_architecture.h"
+#include "aura/aura/aura/aura_cpu_architecture.h"
 
 
 CLASS_DECL_AURA int __assert_failed_line(const char * lpszFileName,int iLineNumber);

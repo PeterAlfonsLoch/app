@@ -381,18 +381,10 @@
 		9A16427919C4A4CE00966C5E /* ansios_thread_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163E7019C4A4CD00966C5E /* ansios_thread_impl.h */; };
 		9A16433F19C4A4CE00966C5E /* node.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163F3E19C4A4CD00966C5E /* node.h */; };
 		9A16438719C4A4CE00966C5E /* ansios.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163F8A19C4A4CD00966C5E /* ansios.h */; };
-		9A16438819C4A4CE00966C5E /* ansios_base_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A163F8B19C4A4CD00966C5E /* ansios_base_file.cpp */; };
-		9A16438919C4A4CE00966C5E /* ansios_cross_win.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A163F8C19C4A4CD00966C5E /* ansios_cross_win.cpp */; };
-		9A16438A19C4A4CE00966C5E /* ansios_cross_win_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A163F8D19C4A4CD00966C5E /* ansios_cross_win_file.cpp */; };
-		9A16438B19C4A4CE00966C5E /* ansios_cross_windows_user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A163F8E19C4A4CD00966C5E /* ansios_cross_windows_user.cpp */; };
 		9A16438C19C4A4CE00966C5E /* ansios_file.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163F8F19C4A4CD00966C5E /* ansios_file.h */; };
-		9A16438D19C4A4CE00966C5E /* ansios_file_std.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A163F9019C4A4CD00966C5E /* ansios_file_std.cpp */; };
-		9A16438E19C4A4CE00966C5E /* ansios_multithreading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A163F9119C4A4CD00966C5E /* ansios_multithreading.cpp */; };
 		9A16438F19C4A4CE00966C5E /* ansios_multithreading.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163F9219C4A4CD00966C5E /* ansios_multithreading.h */; };
 		9A16439019C4A4CE00966C5E /* ansios_thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163F9319C4A4CD00966C5E /* ansios_thread.h */; };
 		9A16439419C4A4CE00966C5E /* cross.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163F9919C4A4CD00966C5E /* cross.h */; };
-		9A16439519C4A4CE00966C5E /* cross_metrowin_user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A163F9B19C4A4CD00966C5E /* cross_metrowin_user.cpp */; };
-		9A16439619C4A4CE00966C5E /* metrowin_user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A163F9C19C4A4CD00966C5E /* metrowin_user.cpp */; };
 		9A16439719C4A4CE00966C5E /* cross_windows_crt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A163F9E19C4A4CD00966C5E /* cross_windows_crt.cpp */; };
 		9A16439819C4A4CE00966C5E /* cross_windows_datetime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A163F9F19C4A4CD00966C5E /* cross_windows_datetime.cpp */; };
 		9A16439919C4A4CE00966C5E /* cross_windows_error.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A163FA019C4A4CD00966C5E /* cross_windows_error.cpp */; };
@@ -667,7 +659,6 @@
 		9AE725BE17E83B69003E47F9 /* version.config.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE7233B17E83B69003E47F9 /* version.config.h */; };
 		9AE725BF17E83B69003E47F9 /* version.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE7233C17E83B69003E47F9 /* version.cpp */; };
 		9AE725C017E83B69003E47F9 /* version.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE7233D17E83B69003E47F9 /* version.h */; };
-		9AEEADA119C4DCE600866C9E /* ansios_message_loop.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEADA019C4DCE600866C9E /* ansios_message_loop.cpp */; };
 		9AEEADA519C4DD2E00866C9E /* file_streambuf.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEADA319C4DD2E00866C9E /* file_streambuf.h */; };
 		9AEEADB519C4E10900866C9E /* simple_message_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEADB319C4E10900866C9E /* simple_message_box.cpp */; };
 		9AEEADB619C4E10900866C9E /* simple_message_box.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEADB419C4E10900866C9E /* simple_message_box.h */; };
@@ -1114,18 +1105,10 @@
 		9A163E7019C4A4CD00966C5E /* ansios_thread_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ansios_thread_impl.h; sourceTree = "<group>"; };
 		9A163F3E19C4A4CD00966C5E /* node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = node.h; sourceTree = "<group>"; };
 		9A163F8A19C4A4CD00966C5E /* ansios.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ansios.h; sourceTree = "<group>"; };
-		9A163F8B19C4A4CD00966C5E /* ansios_base_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ansios_base_file.cpp; sourceTree = "<group>"; };
-		9A163F8C19C4A4CD00966C5E /* ansios_cross_win.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ansios_cross_win.cpp; sourceTree = "<group>"; };
-		9A163F8D19C4A4CD00966C5E /* ansios_cross_win_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ansios_cross_win_file.cpp; sourceTree = "<group>"; };
-		9A163F8E19C4A4CD00966C5E /* ansios_cross_windows_user.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ansios_cross_windows_user.cpp; sourceTree = "<group>"; };
 		9A163F8F19C4A4CD00966C5E /* ansios_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ansios_file.h; sourceTree = "<group>"; };
-		9A163F9019C4A4CD00966C5E /* ansios_file_std.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ansios_file_std.cpp; sourceTree = "<group>"; };
-		9A163F9119C4A4CD00966C5E /* ansios_multithreading.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ansios_multithreading.cpp; sourceTree = "<group>"; };
 		9A163F9219C4A4CD00966C5E /* ansios_multithreading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ansios_multithreading.h; sourceTree = "<group>"; };
 		9A163F9319C4A4CD00966C5E /* ansios_thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ansios_thread.h; sourceTree = "<group>"; };
 		9A163F9919C4A4CD00966C5E /* cross.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cross.h; sourceTree = "<group>"; };
-		9A163F9B19C4A4CD00966C5E /* cross_metrowin_user.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cross_metrowin_user.cpp; sourceTree = "<group>"; };
-		9A163F9C19C4A4CD00966C5E /* metrowin_user.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = metrowin_user.cpp; sourceTree = "<group>"; };
 		9A163F9E19C4A4CD00966C5E /* cross_windows_crt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cross_windows_crt.cpp; sourceTree = "<group>"; };
 		9A163F9F19C4A4CD00966C5E /* cross_windows_datetime.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cross_windows_datetime.cpp; sourceTree = "<group>"; };
 		9A163FA019C4A4CD00966C5E /* cross_windows_error.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cross_windows_error.cpp; sourceTree = "<group>"; };
@@ -1380,7 +1363,6 @@
 		9AE7233B17E83B69003E47F9 /* version.config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.config.h; sourceTree = "<group>"; };
 		9AE7233C17E83B69003E47F9 /* version.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = version.cpp; sourceTree = "<group>"; };
 		9AE7233D17E83B69003E47F9 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
-		9AEEADA019C4DCE600866C9E /* ansios_message_loop.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ansios_message_loop.cpp; sourceTree = "<group>"; };
 		9AEEADA319C4DD2E00866C9E /* file_streambuf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file_streambuf.h; sourceTree = "<group>"; };
 		9AEEADAE19C4DDD500866C9E /* libiconv.2.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.2.4.0.dylib; path = usr/lib/libiconv.2.4.0.dylib; sourceTree = SDKROOT; };
 		9AEEADB319C4E10900866C9E /* simple_message_box.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = simple_message_box.cpp; sourceTree = "<group>"; };
@@ -2008,14 +1990,7 @@
 			isa = PBXGroup;
 			children = (
 				9A163F8A19C4A4CD00966C5E /* ansios.h */,
-				9A163F8B19C4A4CD00966C5E /* ansios_base_file.cpp */,
-				9A163F8C19C4A4CD00966C5E /* ansios_cross_win.cpp */,
-				9A163F8D19C4A4CD00966C5E /* ansios_cross_win_file.cpp */,
-				9A163F8E19C4A4CD00966C5E /* ansios_cross_windows_user.cpp */,
 				9A163F8F19C4A4CD00966C5E /* ansios_file.h */,
-				9A163F9019C4A4CD00966C5E /* ansios_file_std.cpp */,
-				9AEEADA019C4DCE600866C9E /* ansios_message_loop.cpp */,
-				9A163F9119C4A4CD00966C5E /* ansios_multithreading.cpp */,
 				9A163F9219C4A4CD00966C5E /* ansios_multithreading.h */,
 				9A163F9319C4A4CD00966C5E /* ansios_thread.h */,
 			);
@@ -2035,8 +2010,6 @@
 		9A163F9A19C4A4CD00966C5E /* metrowin */ = {
 			isa = PBXGroup;
 			children = (
-				9A163F9B19C4A4CD00966C5E /* cross_metrowin_user.cpp */,
-				9A163F9C19C4A4CD00966C5E /* metrowin_user.cpp */,
 			);
 			path = metrowin;
 			sourceTree = "<group>";
@@ -3126,7 +3099,6 @@
 				07B0954518495C2B007A0560 /* str_international_locale_schema.cpp in Sources */,
 				07B0953418495C2B007A0560 /* str_ch.cpp in Sources */,
 				9A16439819C4A4CE00966C5E /* cross_windows_datetime.cpp in Sources */,
-				9A16438E19C4A4CE00966C5E /* ansios_multithreading.cpp in Sources */,
 				9A16446719C4A4CF00966C5E /* macos_ns_exception.cpp in Sources */,
 				07B0955C18495C2B007A0560 /* str_verisimple_wstring.cpp in Sources */,
 				9A16446219C4A4CF00966C5E /* macos_lock.cpp in Sources */,
@@ -3147,19 +3119,13 @@
 				9A16439919C4A4CE00966C5E /* cross_windows_error.cpp in Sources */,
 				9A16439D19C4A4CE00966C5E /* cross_windows_user.cpp in Sources */,
 				07B0954718495C2B007A0560 /* str_istring.cpp in Sources */,
-				9A16438919C4A4CE00966C5E /* ansios_cross_win.cpp in Sources */,
 				9AEEADB819C4E5E800866C9E /* macos_MessageBoxA.cpp in Sources */,
-				9A16438B19C4A4CE00966C5E /* ansios_cross_windows_user.cpp in Sources */,
 				9A16446F19C4A4CF00966C5E /* macos_simple_shell_launcher.cpp in Sources */,
 				9A16439A19C4A4CE00966C5E /* cross_windows_locale.cpp in Sources */,
-				9A16438819C4A4CE00966C5E /* ansios_base_file.cpp in Sources */,
 				9A16449F19C4A4CF00966C5E /* os_binreloc.cpp in Sources */,
 				07B0953018495C2B007A0560 /* str_base64.cpp in Sources */,
-				9A16438A19C4A4CE00966C5E /* ansios_cross_win_file.cpp in Sources */,
 				9A16445419C4A4CF00966C5E /* macos_cross_win.cpp in Sources */,
 				9A16446E19C4A4CF00966C5E /* macos_simple_app.cpp in Sources */,
-				9AEEADA119C4DCE600866C9E /* ansios_message_loop.cpp in Sources */,
-				9A16438D19C4A4CE00966C5E /* ansios_file_std.cpp in Sources */,
 				07B0953618495C2B007A0560 /* str_ch_class.cpp in Sources */,
 				9A16447019C4A4CF00966C5E /* macos_small_ipca_channel.cpp in Sources */,
 				9A16447119C4A4CF00966C5E /* macos_time.cpp in Sources */,
@@ -3169,11 +3135,9 @@
 				9A16446119C4A4CF00966C5E /* macos_library.cpp in Sources */,
 				077CEF261B23D151009A57EF /* _primitive.cpp in Sources */,
 				077C2A1B190F144000A1F6B0 /* framework_c.c in Sources */,
-				9A16439619C4A4CE00966C5E /* metrowin_user.cpp in Sources */,
 				07B0953918495C2B007A0560 /* str_core.cpp in Sources */,
 				9A16446919C4A4CF00966C5E /* macos_os.cpp in Sources */,
 				07B0954218495C2B007A0560 /* str_international.cpp in Sources */,
-				9A16439519C4A4CE00966C5E /* cross_metrowin_user.cpp in Sources */,
 				9A16439719C4A4CE00966C5E /* cross_windows_crt.cpp in Sources */,
 				077CEF1B1B23CE2E009A57EF /* _colorertake5.cpp in Sources */,
 				9A16447A19C4A4CF00966C5E /* UncaughtExceptionHandler.mm in Sources */,

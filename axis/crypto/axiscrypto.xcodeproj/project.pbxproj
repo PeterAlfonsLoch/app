@@ -7,8 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		077CEF061B23BC15009A57EF /* _digest.c in Sources */ = {isa = PBXBuildFile; fileRef = 077CEF051B23BC15009A57EF /* _digest.c */; };
+		07558DA91B23DD56008C63AF /* bss_dgram.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DA71B23DD56008C63AF /* bss_dgram.c */; };
+		07558DAA1B23DD56008C63AF /* bss_sock.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DA81B23DD56008C63AF /* bss_sock.c */; };
+		07558DAC1B23DD8B008C63AF /* _bn.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DAB1B23DD8B008C63AF /* _bn.c */; };
+		07558DB01B23DF4A008C63AF /* cm_ameth.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DAD1B23DF4A008C63AF /* cm_ameth.c */; };
+		07558DB11B23DF4A008C63AF /* cm_pmeth.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DAE1B23DF4A008C63AF /* cm_pmeth.c */; };
+		07558DB21B23DF4A008C63AF /* cmac.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DAF1B23DF4A008C63AF /* cmac.c */; };
+		07558DB51B23DF79008C63AF /* des_old.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DB31B23DF79008C63AF /* des_old.c */; };
+		07558DB61B23DF79008C63AF /* des_old2.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DB41B23DF79008C63AF /* des_old2.c */; };
+		07558DBA1B23E099008C63AF /* hm_ameth.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DB71B23E099008C63AF /* hm_ameth.c */; };
+		07558DBB1B23E099008C63AF /* hm_pmeth.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DB81B23E099008C63AF /* hm_pmeth.c */; };
+		07558DBC1B23E099008C63AF /* hmac.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DB91B23E099008C63AF /* hmac.c */; };
+		07558DBE1B23E0B1008C63AF /* krb5_asn.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DBD1B23E0B1008C63AF /* krb5_asn.c */; };
+		07558DC11B23E0CD008C63AF /* lh_stats.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DBF1B23E0CD008C63AF /* lh_stats.c */; };
+		07558DC21B23E0CD008C63AF /* lhash.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DC01B23E0CD008C63AF /* lhash.c */; };
+		07558DC41B23E102008C63AF /* pqueue.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DC31B23E102008C63AF /* pqueue.c */; };
+		07558DC61B23E123008C63AF /* rc4_utl.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DC51B23E123008C63AF /* rc4_utl.c */; };
+		07558DC91B23E146008C63AF /* srp_lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DC71B23E146008C63AF /* srp_lib.c */; };
+		07558DCA1B23E146008C63AF /* srp_vfy.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DC81B23E146008C63AF /* srp_vfy.c */; };
+		07558DCC1B23E15E008C63AF /* stack.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DCB1B23E15E008C63AF /* stack.c */; };
+		07558DCE1B23E175008C63AF /* th-lock.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DCD1B23E175008C63AF /* th-lock.c */; };
+		07558DD01B23E188008C63AF /* _ts.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DCF1B23E188008C63AF /* _ts.c */; };
+		07558DD21B23E19B008C63AF /* txt_db.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DD11B23E19B008C63AF /* txt_db.c */; };
+		07558DD41B23E1C8008C63AF /* v3_lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DD31B23E1C8008C63AF /* v3_lib.c */; };
+		07558DD61B23E34B008C63AF /* mem_aura.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DD51B23E34B008C63AF /* mem_aura.c */; };
 		077CEF191B23C505009A57EF /* _crypto.c in Sources */ = {isa = PBXBuildFile; fileRef = 077CEF181B23C505009A57EF /* _crypto.c */; };
+		077CEF2A1B23DC97009A57EF /* _x509.c in Sources */ = {isa = PBXBuildFile; fileRef = 077CEF291B23DC97009A57EF /* _x509.c */; };
+		077CEF2C1B23DCB7009A57EF /* _x509v3.c in Sources */ = {isa = PBXBuildFile; fileRef = 077CEF2B1B23DCB7009A57EF /* _x509v3.c */; };
 		07B2751A19A02D1200E822E1 /* e_4758cca.c in Sources */ = {isa = PBXBuildFile; fileRef = 07783291199FE94100206CA1 /* e_4758cca.c */; };
 		07B2751B19A02D1200E822E1 /* e_4758cca_err.c in Sources */ = {isa = PBXBuildFile; fileRef = 07783293199FE94100206CA1 /* e_4758cca_err.c */; };
 		07B2751C19A02D1200E822E1 /* e_aep.c in Sources */ = {isa = PBXBuildFile; fileRef = 07783295199FE94100206CA1 /* e_aep.c */; };
@@ -92,6 +117,30 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		07558DA71B23DD56008C63AF /* bss_dgram.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bss_dgram.c; sourceTree = "<group>"; };
+		07558DA81B23DD56008C63AF /* bss_sock.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bss_sock.c; sourceTree = "<group>"; };
+		07558DAB1B23DD8B008C63AF /* _bn.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = _bn.c; sourceTree = "<group>"; };
+		07558DAD1B23DF4A008C63AF /* cm_ameth.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cm_ameth.c; sourceTree = "<group>"; };
+		07558DAE1B23DF4A008C63AF /* cm_pmeth.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cm_pmeth.c; sourceTree = "<group>"; };
+		07558DAF1B23DF4A008C63AF /* cmac.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cmac.c; sourceTree = "<group>"; };
+		07558DB31B23DF79008C63AF /* des_old.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = des_old.c; sourceTree = "<group>"; };
+		07558DB41B23DF79008C63AF /* des_old2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = des_old2.c; sourceTree = "<group>"; };
+		07558DB71B23E099008C63AF /* hm_ameth.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = hm_ameth.c; sourceTree = "<group>"; };
+		07558DB81B23E099008C63AF /* hm_pmeth.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = hm_pmeth.c; sourceTree = "<group>"; };
+		07558DB91B23E099008C63AF /* hmac.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = hmac.c; sourceTree = "<group>"; };
+		07558DBD1B23E0B1008C63AF /* krb5_asn.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = krb5_asn.c; sourceTree = "<group>"; };
+		07558DBF1B23E0CD008C63AF /* lh_stats.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lh_stats.c; sourceTree = "<group>"; };
+		07558DC01B23E0CD008C63AF /* lhash.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lhash.c; sourceTree = "<group>"; };
+		07558DC31B23E102008C63AF /* pqueue.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pqueue.c; sourceTree = "<group>"; };
+		07558DC51B23E123008C63AF /* rc4_utl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rc4_utl.c; sourceTree = "<group>"; };
+		07558DC71B23E146008C63AF /* srp_lib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = srp_lib.c; sourceTree = "<group>"; };
+		07558DC81B23E146008C63AF /* srp_vfy.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = srp_vfy.c; sourceTree = "<group>"; };
+		07558DCB1B23E15E008C63AF /* stack.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = stack.c; sourceTree = "<group>"; };
+		07558DCD1B23E175008C63AF /* th-lock.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "th-lock.c"; sourceTree = "<group>"; };
+		07558DCF1B23E188008C63AF /* _ts.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = _ts.c; sourceTree = "<group>"; };
+		07558DD11B23E19B008C63AF /* txt_db.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = txt_db.c; sourceTree = "<group>"; };
+		07558DD31B23E1C8008C63AF /* v3_lib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = v3_lib.c; sourceTree = "<group>"; };
+		07558DD51B23E34B008C63AF /* mem_aura.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mem_aura.c; sourceTree = "<group>"; };
 		07783275199FE94100206CA1 /* e_gost_err.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = e_gost_err.c; sourceTree = "<group>"; };
 		07783276199FE94100206CA1 /* e_gost_err.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = e_gost_err.h; sourceTree = "<group>"; };
 		07783279199FE94100206CA1 /* gost2001.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = gost2001.c; sourceTree = "<group>"; };
@@ -158,8 +207,9 @@
 		0778A2EF199FFC5800206CA1 /* e_os2_ca2specific.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = e_os2_ca2specific.h; sourceTree = "<group>"; };
 		0778A2F0199FFC5800206CA1 /* e_os2_original.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = e_os2_original.h; sourceTree = "<group>"; };
 		0778A2F1199FFC5800206CA1 /* e_os2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = e_os2.h; sourceTree = "<group>"; };
-		077CEF051B23BC15009A57EF /* _digest.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = _digest.c; sourceTree = "<group>"; };
 		077CEF181B23C505009A57EF /* _crypto.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = _crypto.c; sourceTree = "<group>"; };
+		077CEF291B23DC97009A57EF /* _x509.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = _x509.c; sourceTree = "<group>"; };
+		077CEF2B1B23DCB7009A57EF /* _x509v3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = _x509v3.c; sourceTree = "<group>"; };
 		07B2729219A019AB00E822E1 /* libaxiscrypto.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libaxiscrypto.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		07B2729A19A01A4600E822E1 /* libaxiscrypto.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libaxiscrypto.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A9D330519D4C44D00DC2067 /* aes-x86_64.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = "aes-x86_64.s"; sourceTree = "<group>"; };
@@ -223,8 +273,8 @@
 		07782A6D199FE92F00206CA1 /* crypto */ = {
 			isa = PBXGroup;
 			children = (
+				07558DD51B23E34B008C63AF /* mem_aura.c */,
 				077CEF181B23C505009A57EF /* _crypto.c */,
-				077CEF051B23BC15009A57EF /* _digest.c */,
 				07782A6E199FE92F00206CA1 /* aes */,
 				07782A91199FE92F00206CA1 /* asn1 */,
 				07782AE6199FE92F00206CA1 /* bf */,
@@ -309,6 +359,8 @@
 		07782AFD199FE92F00206CA1 /* bio */ = {
 			isa = PBXGroup;
 			children = (
+				07558DA71B23DD56008C63AF /* bss_dgram.c */,
+				07558DA81B23DD56008C63AF /* bss_sock.c */,
 			);
 			path = bio;
 			sourceTree = "<group>";
@@ -316,6 +368,7 @@
 		07782B16199FE92F00206CA1 /* bn */ = {
 			isa = PBXGroup;
 			children = (
+				07558DAB1B23DD8B008C63AF /* _bn.c */,
 			);
 			path = bn;
 			sourceTree = "<group>";
@@ -344,6 +397,9 @@
 		07782B94199FE92F00206CA1 /* cmac */ = {
 			isa = PBXGroup;
 			children = (
+				07558DAD1B23DF4A008C63AF /* cm_ameth.c */,
+				07558DAE1B23DF4A008C63AF /* cm_pmeth.c */,
+				07558DAF1B23DF4A008C63AF /* cmac.c */,
 			);
 			path = cmac;
 			sourceTree = "<group>";
@@ -372,6 +428,8 @@
 		07782BC9199FE93000206CA1 /* des */ = {
 			isa = PBXGroup;
 			children = (
+				07558DB31B23DF79008C63AF /* des_old.c */,
+				07558DB41B23DF79008C63AF /* des_old2.c */,
 			);
 			path = des;
 			sourceTree = "<group>";
@@ -442,6 +500,9 @@
 		07782CEE199FE93000206CA1 /* hmac */ = {
 			isa = PBXGroup;
 			children = (
+				07558DB71B23E099008C63AF /* hm_ameth.c */,
+				07558DB81B23E099008C63AF /* hm_pmeth.c */,
+				07558DB91B23E099008C63AF /* hmac.c */,
 			);
 			path = hmac;
 			sourceTree = "<group>";
@@ -463,6 +524,7 @@
 		07782D09199FE93000206CA1 /* krb5 */ = {
 			isa = PBXGroup;
 			children = (
+				07558DBD1B23E0B1008C63AF /* krb5_asn.c */,
 			);
 			path = krb5;
 			sourceTree = "<group>";
@@ -470,6 +532,8 @@
 		07782D0D199FE93000206CA1 /* lhash */ = {
 			isa = PBXGroup;
 			children = (
+				07558DBF1B23E0CD008C63AF /* lh_stats.c */,
+				07558DC01B23E0CD008C63AF /* lhash.c */,
 			);
 			path = lhash;
 			sourceTree = "<group>";
@@ -547,6 +611,7 @@
 		07782DBF199FE93100206CA1 /* pqueue */ = {
 			isa = PBXGroup;
 			children = (
+				07558DC31B23E102008C63AF /* pqueue.c */,
 			);
 			path = pqueue;
 			sourceTree = "<group>";
@@ -568,6 +633,7 @@
 		07782DE1199FE93100206CA1 /* rc4 */ = {
 			isa = PBXGroup;
 			children = (
+				07558DC51B23E123008C63AF /* rc4_utl.c */,
 			);
 			path = rc4;
 			sourceTree = "<group>";
@@ -610,6 +676,8 @@
 		07782E5E199FE93100206CA1 /* srp */ = {
 			isa = PBXGroup;
 			children = (
+				07558DC71B23E146008C63AF /* srp_lib.c */,
+				07558DC81B23E146008C63AF /* srp_vfy.c */,
 			);
 			path = srp;
 			sourceTree = "<group>";
@@ -617,6 +685,7 @@
 		07782E66199FE93100206CA1 /* stack */ = {
 			isa = PBXGroup;
 			children = (
+				07558DCB1B23E15E008C63AF /* stack.c */,
 			);
 			path = stack;
 			sourceTree = "<group>";
@@ -631,6 +700,7 @@
 		07782E75199FE93100206CA1 /* threads */ = {
 			isa = PBXGroup;
 			children = (
+				07558DCD1B23E175008C63AF /* th-lock.c */,
 			);
 			path = threads;
 			sourceTree = "<group>";
@@ -638,6 +708,7 @@
 		07782E82199FE93100206CA1 /* ts */ = {
 			isa = PBXGroup;
 			children = (
+				07558DCF1B23E188008C63AF /* _ts.c */,
 			);
 			path = ts;
 			sourceTree = "<group>";
@@ -645,6 +716,7 @@
 		07782E90199FE93100206CA1 /* txt_db */ = {
 			isa = PBXGroup;
 			children = (
+				07558DD11B23E19B008C63AF /* txt_db.c */,
 			);
 			path = txt_db;
 			sourceTree = "<group>";
@@ -666,6 +738,7 @@
 		07782EAA199FE93100206CA1 /* x509 */ = {
 			isa = PBXGroup;
 			children = (
+				077CEF291B23DC97009A57EF /* _x509.c */,
 			);
 			path = x509;
 			sourceTree = "<group>";
@@ -673,6 +746,8 @@
 		07782EC6199FE93100206CA1 /* x509v3 */ = {
 			isa = PBXGroup;
 			children = (
+				07558DD31B23E1C8008C63AF /* v3_lib.c */,
+				077CEF2B1B23DCB7009A57EF /* _x509v3.c */,
 			);
 			path = x509v3;
 			sourceTree = "<group>";
@@ -1098,10 +1173,17 @@
 			files = (
 				9A9D339D19D4C44E00DC2067 /* x86_64-mont.s in Sources */,
 				9A9D33A419D4C44E00DC2067 /* wp-x86_64.s in Sources */,
+				07558DBA1B23E099008C63AF /* hm_ameth.c in Sources */,
+				07558DA91B23DD56008C63AF /* bss_dgram.c in Sources */,
+				07558DD21B23E19B008C63AF /* txt_db.c in Sources */,
 				9A9D33A519D4C44E00DC2067 /* x86_64cpuid.s in Sources */,
+				07558DC91B23E146008C63AF /* srp_lib.c in Sources */,
 				9A9D339C19D4C44E00DC2067 /* modexp512-x86_64.s in Sources */,
 				07B2766919A02D7000E822E1 /* e_gost_err.c in Sources */,
+				07558DC11B23E0CD008C63AF /* lh_stats.c in Sources */,
+				07558DBB1B23E099008C63AF /* hm_pmeth.c in Sources */,
 				07B2766A19A02D7000E822E1 /* gost2001.c in Sources */,
+				07558DCA1B23E146008C63AF /* srp_vfy.c in Sources */,
 				07B2766B19A02D7000E822E1 /* gost2001_keyx.c in Sources */,
 				07B2766C19A02D7000E822E1 /* gost89.c in Sources */,
 				07B2766D19A02D7000E822E1 /* gost94_keyx.c in Sources */,
@@ -1109,44 +1191,62 @@
 				07B2766F19A02D7000E822E1 /* gost_asn1.c in Sources */,
 				07B2767019A02D7000E822E1 /* gost_crypt.c in Sources */,
 				07B2767119A02D7000E822E1 /* gost_ctl.c in Sources */,
+				07558DB21B23DF4A008C63AF /* cmac.c in Sources */,
 				07B2767219A02D7000E822E1 /* gost_eng.c in Sources */,
+				07558DB01B23DF4A008C63AF /* cm_ameth.c in Sources */,
 				077CEF191B23C505009A57EF /* _crypto.c in Sources */,
 				07B2767319A02D7000E822E1 /* gost_keywrap.c in Sources */,
-				077CEF061B23BC15009A57EF /* _digest.c in Sources */,
 				07B2767419A02D7000E822E1 /* gost_md.c in Sources */,
 				07B2767519A02D7000E822E1 /* gost_params.c in Sources */,
+				07558DD41B23E1C8008C63AF /* v3_lib.c in Sources */,
 				07B2767619A02D7000E822E1 /* gost_pmeth.c in Sources */,
 				07B2767719A02D7000E822E1 /* gost_sign.c in Sources */,
 				07B2767819A02D7000E822E1 /* gosthash.c in Sources */,
+				07558DCC1B23E15E008C63AF /* stack.c in Sources */,
 				9A9D33A119D4C44E00DC2067 /* rc4-x86_64.s in Sources */,
 				9A9D339E19D4C44E00DC2067 /* cmll-x86_64.s in Sources */,
+				07558DC41B23E102008C63AF /* pqueue.c in Sources */,
 				9A9D339F19D4C44E00DC2067 /* md5-x86_64.s in Sources */,
+				07558DB51B23DF79008C63AF /* des_old.c in Sources */,
 				9A9D33A319D4C44E00DC2067 /* sha512-x86_64.s in Sources */,
+				07558DC61B23E123008C63AF /* rc4_utl.c in Sources */,
+				07558DC21B23E0CD008C63AF /* lhash.c in Sources */,
+				077CEF2C1B23DCB7009A57EF /* _x509v3.c in Sources */,
 				9A9D339A19D4C44E00DC2067 /* aesni-sha1-x86_64.s in Sources */,
 				9A9D339B19D4C44E00DC2067 /* aesni-x86_64.s in Sources */,
 				9A9D339919D4C44E00DC2067 /* aes-x86_64.s in Sources */,
+				07558DB61B23DF79008C63AF /* des_old2.c in Sources */,
 				07B2751A19A02D1200E822E1 /* e_4758cca.c in Sources */,
 				07B2751B19A02D1200E822E1 /* e_4758cca_err.c in Sources */,
+				07558DD01B23E188008C63AF /* _ts.c in Sources */,
 				07B2751C19A02D1200E822E1 /* e_aep.c in Sources */,
 				07B2751D19A02D1200E822E1 /* e_aep_err.c in Sources */,
+				077CEF2A1B23DC97009A57EF /* _x509.c in Sources */,
 				07B2751E19A02D1200E822E1 /* e_atalla.c in Sources */,
+				07558DAC1B23DD8B008C63AF /* _bn.c in Sources */,
 				07B2751F19A02D1200E822E1 /* e_atalla_err.c in Sources */,
 				07B2752019A02D1200E822E1 /* e_capi.c in Sources */,
 				07B2752119A02D1200E822E1 /* e_capi_err.c in Sources */,
 				07B2752219A02D1200E822E1 /* e_chil.c in Sources */,
+				07558DBC1B23E099008C63AF /* hmac.c in Sources */,
 				07B2752319A02D1200E822E1 /* e_chil_err.c in Sources */,
 				07B2752419A02D1200E822E1 /* e_cswift.c in Sources */,
 				07B2752519A02D1200E822E1 /* e_cswift_err.c in Sources */,
+				07558DAA1B23DD56008C63AF /* bss_sock.c in Sources */,
+				07558DCE1B23E175008C63AF /* th-lock.c in Sources */,
 				07B2752619A02D1200E822E1 /* e_gmp.c in Sources */,
 				07B2752719A02D1200E822E1 /* e_gmp_err.c in Sources */,
 				9A9D33A219D4C44E00DC2067 /* sha1-x86_64.s in Sources */,
 				07B2752819A02D1200E822E1 /* e_nuron.c in Sources */,
 				07B2752919A02D1200E822E1 /* e_nuron_err.c in Sources */,
+				07558DB11B23DF4A008C63AF /* cm_pmeth.c in Sources */,
 				07B2752A19A02D1200E822E1 /* e_sureware.c in Sources */,
+				07558DD61B23E34B008C63AF /* mem_aura.c in Sources */,
 				07B2752B19A02D1200E822E1 /* e_sureware_err.c in Sources */,
 				07B2752C19A02D1200E822E1 /* e_ubsec.c in Sources */,
 				07B2752D19A02D1200E822E1 /* e_ubsec_err.c in Sources */,
 				9A9D33A019D4C44E00DC2067 /* rc4-md5-x86_64.s in Sources */,
+				07558DBE1B23E0B1008C63AF /* krb5_asn.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1238,6 +1338,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
+					DIRTY_APPLEOS,
 					USE_SOCKETS,
 					OPENSSL_NO_HW_PADLOCK,
 					OPENSSL_NO_INLINE_ASM,
@@ -1264,7 +1365,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app/base $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../base/include $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/base/appseed $(WorkspaceDir)/../../../app/appseed/base crypto/asn1 crypto/evp crypto/modes";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../base/include $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/base/appseed $(WorkspaceDir)/../../../app/appseed/base crypto/asn1 crypto/evp crypto/modes";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Debug;
@@ -1294,6 +1395,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
+					DIRTY_APPLEOS,
 					USE_SOCKETS,
 					OPENSSL_NO_HW_PADLOCK,
 					OPENSSL_NO_INLINE_ASM,
@@ -1316,7 +1418,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app/base $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../base/include $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/base/appseed $(WorkspaceDir)/../../../app/appseed/base crypto/asn1 crypto/evp crypto/modes";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../base/include $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/base/appseed $(WorkspaceDir)/../../../app/appseed/base crypto/asn1 crypto/evp crypto/modes";
 				VALIDATE_PRODUCT = YES;
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
