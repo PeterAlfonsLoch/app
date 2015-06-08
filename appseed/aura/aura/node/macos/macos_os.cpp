@@ -161,8 +161,7 @@ namespace macos
       get_all_processes(dwa);
       for(int32_t i = 0; i < dwa.get_count(); i++)
       {
-         if(System.file_title(get_process_path(dwa[i]))
-            .CompareNoCase(pszName) == 0)
+         if(get_process_path(dwa[i]).title().CompareNoCase(pszName) == 0)
          {
             dwPid = dwa[i];
             return true;
@@ -171,7 +170,7 @@ namespace macos
       return false;
    }
 
-   string os::get_process_path(DWORD dwPid)
+   ::file::path os::get_process_path(DWORD dwPid)
    {
       /*
        string strName = ":<unknown>";
@@ -753,7 +752,7 @@ namespace macos
        */
    }
 
-   bool os::resolve_link(string & strTarget, const char * pszSource, ::user::interaction * puiMessageParentOptional)
+   bool os::resolve_link(string & strTarget, const char * pszSource, ::aura::interaction * puiMessageParentOptional)
    {
 
 //      throw not_implemented(get_app());

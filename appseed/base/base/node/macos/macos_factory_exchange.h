@@ -5,7 +5,7 @@ namespace macos
 {
 
    
-   namespace axis
+   namespace base
    {
    
       
@@ -22,7 +22,7 @@ namespace macos
       };
       
       
-   } // namespace axis
+   } // namespace base
    
 
 } // namespace macos

@@ -127,6 +127,8 @@ namespace file
       virtual void dtf(const path & pszFile,patha & stra,::aura::application * papp);
 
       virtual void ftd(const path & pszDir,const path & pszFile,::aura::application * papp);
+      
+      virtual bool initialize();
 
 
    };

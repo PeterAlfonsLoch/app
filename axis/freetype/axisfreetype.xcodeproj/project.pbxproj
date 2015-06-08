@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07A3717A1B25E2CF00E4F888 /* libmath.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A371721B25DE6200E4F888 /* libmath.dylib */; };
 		9A19A09819C677300018DF7D /* libaxisbzip2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A19A09519C677110018DF7D /* libaxisbzip2.dylib */; };
 		9AEEB67119C5089700866C9E /* afangles.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB49519C5089500866C9E /* afangles.h */; };
 		9AEEB67319C5089700866C9E /* afblue.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB49919C5089500866C9E /* afblue.h */; };
@@ -203,7 +204,6 @@
 		9AEEB81319C5097200866C9E /* cidriver.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB80319C5097200866C9E /* cidriver.h */; };
 		9AEEB81419C5097200866C9E /* cidtoken.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB80419C5097200866C9E /* cidtoken.h */; };
 		9AEEB81619C5097200866C9E /* type1cid.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEB80819C5097200866C9E /* type1cid.c */; };
-		9AEEB81F19C50B7F00866C9E /* libaxisfreeimage.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEEB81C19C50B1000866C9E /* libaxisfreeimage.dylib */; };
 		9AEEB83D19C50EC200866C9E /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEEB83319C50E7D00866C9E /* libaura.dylib */; };
 		9AEEBC3319C5803200866C9E /* freetype.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB99719C5803100866C9E /* freetype.h */; };
 		9AEEBC3419C5803200866C9E /* ft2build.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB99819C5803100866C9E /* ft2build.h */; };
@@ -255,6 +255,34 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		07A371711B25DE6200E4F888 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07A371691B25DE6100E4F888 /* axispng.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A574B9816AAB906000CC4EF;
+			remoteInfo = math;
+		};
+		07A371731B25DE6200E4F888 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07A371691B25DE6100E4F888 /* axispng.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07B65764190F3CA2002DAADE;
+			remoteInfo = math_ios;
+		};
+		07A371751B25DE6200E4F888 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07A371691B25DE6100E4F888 /* axispng.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07B65773190F3CA2002DAADE;
+			remoteInfo = math_iosTests;
+		};
+		07A3717B1B25E30200E4F888 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07A371691B25DE6100E4F888 /* axispng.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A574B9716AAB906000CC4EF;
+			remoteInfo = axispng;
+		};
 		9A19A09419C677110018DF7D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A19A08E19C677110018DF7D /* axisbzip2.xcodeproj */;
@@ -274,13 +302,6 @@
 			containerPortal = 9AEEB81719C50B1000866C9E /* axisfreeimage.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9AEEB48E19C5084900866C9E;
-			remoteInfo = axisfreeimage;
-		};
-		9AEEB81D19C50B4E00866C9E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9AEEB81719C50B1000866C9E /* axisfreeimage.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9AA5E4C216F7C61B005C45CE;
 			remoteInfo = axisfreeimage;
 		};
 		9AEEB83219C50E7D00866C9E /* PBXContainerItemProxy */ = {
@@ -328,6 +349,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		07A371691B25DE6100E4F888 /* axispng.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axispng.xcodeproj; path = ../png/axispng.xcodeproj; sourceTree = "<group>"; };
 		9A19A08E19C677110018DF7D /* axisbzip2.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisbzip2.xcodeproj; path = ../bzip2/axisbzip2.xcodeproj; sourceTree = "<group>"; };
 		9AEEB49119C5088600866C9E /* libaxisfreetype.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxisfreetype.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AEEB49519C5089500866C9E /* afangles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = afangles.h; sourceTree = "<group>"; };
@@ -584,13 +606,23 @@
 				9AEEB83D19C50EC200866C9E /* libaura.dylib in Frameworks */,
 				9A19A09819C677300018DF7D /* libaxisbzip2.dylib in Frameworks */,
 				9AEEBDB519C5963200866C9E /* libaxiszlib.dylib in Frameworks */,
-				9AEEB81F19C50B7F00866C9E /* libaxisfreeimage.dylib in Frameworks */,
+				07A3717A1B25E2CF00E4F888 /* libmath.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		07A3716A1B25DE6100E4F888 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				07A371721B25DE6200E4F888 /* libmath.dylib */,
+				07A371741B25DE6200E4F888 /* libmath_ios.dylib */,
+				07A371761B25DE6200E4F888 /* math_iosTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		9A19A08F19C677110018DF7D /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -605,6 +637,7 @@
 				9AEEB82C19C50E7D00866C9E /* aura.xcodeproj */,
 				9A19A08E19C677110018DF7D /* axisbzip2.xcodeproj */,
 				9AEEB81719C50B1000866C9E /* axisfreeimage.xcodeproj */,
+				07A371691B25DE6100E4F888 /* axispng.xcodeproj */,
 				9AEEBDA419C595DD00866C9E /* axiszlib.xcodeproj */,
 				9AEEB84719C5802F00866C9E /* include */,
 				9AEEB49219C5089500866C9E /* src */,
@@ -1319,7 +1352,7 @@
 				9AEEB83C19C50EB900866C9E /* PBXTargetDependency */,
 				9A19A09719C6771D0018DF7D /* PBXTargetDependency */,
 				9AEEBDB419C5962B00866C9E /* PBXTargetDependency */,
-				9AEEB81E19C50B4E00866C9E /* PBXTargetDependency */,
+				07A3717C1B25E30200E4F888 /* PBXTargetDependency */,
 			);
 			name = axisfreetype;
 			productName = FreeImage;
@@ -1359,6 +1392,10 @@
 					ProjectRef = 9AEEB81719C50B1000866C9E /* axisfreeimage.xcodeproj */;
 				},
 				{
+					ProductGroup = 07A3716A1B25DE6100E4F888 /* Products */;
+					ProjectRef = 07A371691B25DE6100E4F888 /* axispng.xcodeproj */;
+				},
+				{
 					ProductGroup = 9AEEBDA519C595DD00866C9E /* Products */;
 					ProjectRef = 9AEEBDA419C595DD00866C9E /* axiszlib.xcodeproj */;
 				},
@@ -1371,6 +1408,27 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		07A371721B25DE6200E4F888 /* libmath.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libmath.dylib;
+			remoteRef = 07A371711B25DE6200E4F888 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		07A371741B25DE6200E4F888 /* libmath_ios.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libmath_ios.dylib;
+			remoteRef = 07A371731B25DE6200E4F888 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		07A371761B25DE6200E4F888 /* math_iosTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = math_iosTests.xctest;
+			remoteRef = 07A371751B25DE6200E4F888 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		9A19A09519C677110018DF7D /* libaxisbzip2.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
@@ -1461,15 +1519,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		07A3717C1B25E30200E4F888 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = axispng;
+			targetProxy = 07A3717B1B25E30200E4F888 /* PBXContainerItemProxy */;
+		};
 		9A19A09719C6771D0018DF7D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = axisbzip2;
 			targetProxy = 9A19A09619C6771D0018DF7D /* PBXContainerItemProxy */;
-		};
-		9AEEB81E19C50B4E00866C9E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = axisfreeimage;
-			targetProxy = 9AEEB81D19C50B4E00866C9E /* PBXContainerItemProxy */;
 		};
 		9AEEB83C19C50EB900866C9E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

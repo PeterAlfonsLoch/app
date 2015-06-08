@@ -10,3 +10,5 @@
 #include "macos_thread.cpp"
 #include "macos_trace.cpp"
 #include "macos_util.cpp"
+#include "macos_dir.cpp"
+#include "macos_file_system.cpp"

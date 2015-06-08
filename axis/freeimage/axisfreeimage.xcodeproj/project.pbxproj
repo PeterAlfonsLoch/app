@@ -46,23 +46,18 @@
 		9AEEB1FA19C5080D00866C9E /* PluginICO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEA019C5080A00866C9E /* PluginICO.cpp */; };
 		9AEEB1FB19C5080D00866C9E /* PluginIFF.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEA119C5080A00866C9E /* PluginIFF.cpp */; };
 		9AEEB1FD19C5080D00866C9E /* PluginJNG.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEA319C5080A00866C9E /* PluginJNG.cpp */; };
-		9AEEB1FF19C5080D00866C9E /* PluginJPEG.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEA519C5080A00866C9E /* PluginJPEG.cpp */; };
 		9AEEB20119C5080D00866C9E /* PluginKOALA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEA719C5080A00866C9E /* PluginKOALA.cpp */; };
-		9AEEB20219C5080D00866C9E /* PluginMNG.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEA819C5080A00866C9E /* PluginMNG.cpp */; };
 		9AEEB20319C5080D00866C9E /* PluginPCD.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEA919C5080A00866C9E /* PluginPCD.cpp */; };
 		9AEEB20419C5080D00866C9E /* PluginPCX.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEAA19C5080A00866C9E /* PluginPCX.cpp */; };
 		9AEEB20519C5080D00866C9E /* PluginPFM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEAB19C5080A00866C9E /* PluginPFM.cpp */; };
 		9AEEB20619C5080D00866C9E /* PluginPICT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEAC19C5080A00866C9E /* PluginPICT.cpp */; };
-		9AEEB20719C5080D00866C9E /* PluginPNG.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEAD19C5080A00866C9E /* PluginPNG.cpp */; };
 		9AEEB20819C5080D00866C9E /* PluginPNM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEAE19C5080A00866C9E /* PluginPNM.cpp */; };
-		9AEEB20919C5080D00866C9E /* PluginPSD.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEAF19C5080A00866C9E /* PluginPSD.cpp */; };
 		9AEEB20A19C5080D00866C9E /* PluginRAS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEB019C5080A00866C9E /* PluginRAS.cpp */; };
 		9AEEB20C19C5080D00866C9E /* PluginSGI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEB219C5080A00866C9E /* PluginSGI.cpp */; };
 		9AEEB20D19C5080D00866C9E /* PluginTARGA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEB319C5080A00866C9E /* PluginTARGA.cpp */; };
 		9AEEB20F19C5080D00866C9E /* PluginWBMP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEB519C5080A00866C9E /* PluginWBMP.cpp */; };
 		9AEEB21119C5080D00866C9E /* PluginXBM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEB719C5080A00866C9E /* PluginXBM.cpp */; };
 		9AEEB21219C5080D00866C9E /* PluginXPM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEB819C5080A00866C9E /* PluginXPM.cpp */; };
-		9AEEB21319C5080D00866C9E /* PSDParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEB919C5080A00866C9E /* PSDParser.cpp */; };
 		9AEEB21419C5080D00866C9E /* PSDParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAEBA19C5080A00866C9E /* PSDParser.h */; };
 		9AEEB21519C5080D00866C9E /* TIFFLogLuv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEBB19C5080A00866C9E /* TIFFLogLuv.cpp */; };
 		9AEEB21619C5080D00866C9E /* tmoColorConvert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEBC19C5080A00866C9E /* tmoColorConvert.cpp */; };
@@ -83,105 +78,10 @@
 		9AEEB22519C5080D00866C9E /* Display.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAED519C5080A00866C9E /* Display.cpp */; };
 		9AEEB22619C5080D00866C9E /* Filters.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAED619C5080A00866C9E /* Filters.h */; };
 		9AEEB22719C5080D00866C9E /* Flip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAED719C5080A00866C9E /* Flip.cpp */; };
-		9AEEB22819C5080D00866C9E /* JPEGTransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAED819C5080A00866C9E /* JPEGTransform.cpp */; };
 		9AEEB22919C5080D00866C9E /* MultigridPoissonSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAED919C5080A00866C9E /* MultigridPoissonSolver.cpp */; };
 		9AEEB22A19C5080D00866C9E /* Rescale.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEDA19C5080A00866C9E /* Rescale.cpp */; };
 		9AEEB22B19C5080D00866C9E /* Resize.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEDB19C5080A00866C9E /* Resize.cpp */; };
 		9AEEB22C19C5080D00866C9E /* Resize.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAEDC19C5080A00866C9E /* Resize.h */; };
-		9AEEB22E19C5080D00866C9E /* cderror.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAEDF19C5080A00866C9E /* cderror.h */; };
-		9AEEB22F19C5080D00866C9E /* cdjpeg.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEE019C5080A00866C9E /* cdjpeg.c */; };
-		9AEEB23019C5080D00866C9E /* cdjpeg.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAEE119C5080A00866C9E /* cdjpeg.h */; };
-		9AEEB23419C5080D00866C9E /* jaricom.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEE919C5080A00866C9E /* jaricom.c */; };
-		9AEEB23519C5080D00866C9E /* jcapimin.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEEA19C5080A00866C9E /* jcapimin.c */; };
-		9AEEB23619C5080D00866C9E /* jcapistd.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEEB19C5080A00866C9E /* jcapistd.c */; };
-		9AEEB23719C5080D00866C9E /* jcarith.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEEC19C5080A00866C9E /* jcarith.c */; };
-		9AEEB23819C5080D00866C9E /* jccoefct.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEED19C5080A00866C9E /* jccoefct.c */; };
-		9AEEB23919C5080D00866C9E /* jccolor.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEEE19C5080A00866C9E /* jccolor.c */; };
-		9AEEB23A19C5080D00866C9E /* jcdctmgr.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEEF19C5080A00866C9E /* jcdctmgr.c */; };
-		9AEEB23B19C5080D00866C9E /* jchuff.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEF019C5080A00866C9E /* jchuff.c */; };
-		9AEEB23C19C5080D00866C9E /* jcinit.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEF119C5080A00866C9E /* jcinit.c */; };
-		9AEEB23D19C5080D00866C9E /* jcmainct.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEF219C5080A00866C9E /* jcmainct.c */; };
-		9AEEB23E19C5080D00866C9E /* jcmarker.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEF319C5080A00866C9E /* jcmarker.c */; };
-		9AEEB23F19C5080D00866C9E /* jcmaster.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEF419C5080A00866C9E /* jcmaster.c */; };
-		9AEEB24019C5080D00866C9E /* jcomapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEF519C5080A00866C9E /* jcomapi.c */; };
-		9AEEB24119C5080D00866C9E /* jconfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAEF619C5080A00866C9E /* jconfig.h */; };
-		9AEEB24219C5080D00866C9E /* jcparam.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEF819C5080A00866C9E /* jcparam.c */; };
-		9AEEB24319C5080D00866C9E /* jcprepct.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEF919C5080A00866C9E /* jcprepct.c */; };
-		9AEEB24419C5080D00866C9E /* jcsample.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEFA19C5080A00866C9E /* jcsample.c */; };
-		9AEEB24519C5080D00866C9E /* jctrans.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEFB19C5080A00866C9E /* jctrans.c */; };
-		9AEEB24619C5080D00866C9E /* jdapimin.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEFC19C5080A00866C9E /* jdapimin.c */; };
-		9AEEB24719C5080D00866C9E /* jdapistd.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEFD19C5080A00866C9E /* jdapistd.c */; };
-		9AEEB24819C5080D00866C9E /* jdarith.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEFE19C5080A00866C9E /* jdarith.c */; };
-		9AEEB24919C5080D00866C9E /* jdatadst.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEFF19C5080A00866C9E /* jdatadst.c */; };
-		9AEEB24A19C5080D00866C9E /* jdatasrc.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAF0019C5080A00866C9E /* jdatasrc.c */; };
-		9AEEB24B19C5080D00866C9E /* jdcoefct.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAF0119C5080A00866C9E /* jdcoefct.c */; };
-		9AEEB24C19C5080D00866C9E /* jdcolor.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAF0219C5080A00866C9E /* jdcolor.c */; };
-		9AEEB24D19C5080D00866C9E /* jdct.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAF0319C5080A00866C9E /* jdct.h */; };
-		9AEEB24E19C5080D00866C9E /* jddctmgr.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAF0419C5080A00866C9E /* jddctmgr.c */; };
-		9AEEB24F19C5080D00866C9E /* jdhuff.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAF0519C5080A00866C9E /* jdhuff.c */; };
-		9AEEB25019C5080D00866C9E /* jdinput.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAF0619C5080A00866C9E /* jdinput.c */; };
-		9AEEB25119C5080D00866C9E /* jdmainct.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAF0719C5080A00866C9E /* jdmainct.c */; };
-		9AEEB25219C5080D00866C9E /* jdmarker.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAF0819C5080A00866C9E /* jdmarker.c */; };
-		9AEEB25319C5080D00866C9E /* jdmaster.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAF0919C5080A00866C9E /* jdmaster.c */; };
-		9AEEB25419C5080D00866C9E /* jdmerge.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAF0A19C5080A00866C9E /* jdmerge.c */; };
-		9AEEB25519C5080D00866C9E /* jdpostct.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAF0B19C5080A00866C9E /* jdpostct.c */; };
-		9AEEB25619C5080D00866C9E /* jdsample.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAF0C19C5080A00866C9E /* jdsample.c */; };
-		9AEEB25719C5080D00866C9E /* jdtrans.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAF0D19C5080A00866C9E /* jdtrans.c */; };
-		9AEEB25819C5080D00866C9E /* jerror.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAF0E19C5080A00866C9E /* jerror.c */; };
-		9AEEB25919C5080D00866C9E /* jerror.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAF0F19C5080A00866C9E /* jerror.h */; };
-		9AEEB25A19C5080D00866C9E /* jfdctflt.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAF1019C5080A00866C9E /* jfdctflt.c */; };
-		9AEEB25B19C5080D00866C9E /* jfdctfst.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAF1119C5080A00866C9E /* jfdctfst.c */; };
-		9AEEB25C19C5080D00866C9E /* jfdctint.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAF1219C5080A00866C9E /* jfdctint.c */; };
-		9AEEB25D19C5080D00866C9E /* jidctflt.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAF1319C5080A00866C9E /* jidctflt.c */; };
-		9AEEB25E19C5080D00866C9E /* jidctfst.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAF1419C5080A00866C9E /* jidctfst.c */; };
-		9AEEB25F19C5080D00866C9E /* jidctint.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAF1519C5080A00866C9E /* jidctint.c */; };
-		9AEEB26019C5080D00866C9E /* jinclude.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAF1619C5080A00866C9E /* jinclude.h */; };
-		9AEEB26119C5080D00866C9E /* jmemansi.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAF1719C5080A00866C9E /* jmemansi.c */; };
-		9AEEB26519C5080D00866C9E /* jmemmgr.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAF1B19C5080A00866C9E /* jmemmgr.c */; };
-		9AEEB26819C5080D00866C9E /* jmemsys.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAF1E19C5080A00866C9E /* jmemsys.h */; };
-		9AEEB26919C5080D00866C9E /* jmorecfg.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAF1F19C5080A00866C9E /* jmorecfg.h */; };
-		9AEEB26A19C5080D00866C9E /* jpegint.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAF2019C5080A00866C9E /* jpegint.h */; };
-		9AEEB26B19C5080D00866C9E /* jpeglib.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAF2119C5080A00866C9E /* jpeglib.h */; };
-		9AEEB26D19C5080D00866C9E /* jquant1.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAF2319C5080A00866C9E /* jquant1.c */; };
-		9AEEB26E19C5080D00866C9E /* jquant2.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAF2419C5080A00866C9E /* jquant2.c */; };
-		9AEEB26F19C5080D00866C9E /* jutils.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAF2519C5080A00866C9E /* jutils.c */; };
-		9AEEB27019C5080D00866C9E /* jversion.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAF2619C5080A00866C9E /* jversion.h */; };
-		9AEEB27219C5080D00866C9E /* rdbmp.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAF2E19C5080A00866C9E /* rdbmp.c */; };
-		9AEEB27319C5080D00866C9E /* rdcolmap.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAF2F19C5080A00866C9E /* rdcolmap.c */; };
-		9AEEB27419C5080D00866C9E /* rdgif.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAF3019C5080A00866C9E /* rdgif.c */; };
-		9AEEB27619C5080D00866C9E /* rdppm.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAF3219C5080A00866C9E /* rdppm.c */; };
-		9AEEB27719C5080D00866C9E /* rdrle.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAF3319C5080A00866C9E /* rdrle.c */; };
-		9AEEB27819C5080D00866C9E /* rdswitch.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAF3419C5080A00866C9E /* rdswitch.c */; };
-		9AEEB27919C5080D00866C9E /* rdtarga.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAF3519C5080A00866C9E /* rdtarga.c */; };
-		9AEEB27A19C5080D00866C9E /* transupp.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAF3819C5080A00866C9E /* transupp.c */; };
-		9AEEB27B19C5080D00866C9E /* transupp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAF3919C5080A00866C9E /* transupp.h */; };
-		9AEEB27C19C5080D00866C9E /* wrbmp.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAF3C19C5080A00866C9E /* wrbmp.c */; };
-		9AEEB27D19C5080D00866C9E /* wrgif.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAF3D19C5080A00866C9E /* wrgif.c */; };
-		9AEEB27F19C5080D00866C9E /* wrppm.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAF3F19C5080A00866C9E /* wrppm.c */; };
-		9AEEB28019C5080D00866C9E /* wrrle.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAF4019C5080A00866C9E /* wrrle.c */; };
-		9AEEB28119C5080D00866C9E /* wrtarga.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAF4119C5080A00866C9E /* wrtarga.c */; };
-		9AEEB2E619C5080D00866C9E /* png.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAFD019C5080B00866C9E /* png.c */; };
-		9AEEB2E719C5080D00866C9E /* png.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAFD119C5080B00866C9E /* png.h */; };
-		9AEEB2E819C5080D00866C9E /* pngconf.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAFD219C5080B00866C9E /* pngconf.h */; };
-		9AEEB2E919C5080D00866C9E /* pngdebug.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAFD319C5080B00866C9E /* pngdebug.h */; };
-		9AEEB2EA19C5080D00866C9E /* pngerror.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAFD419C5080B00866C9E /* pngerror.c */; };
-		9AEEB2EB19C5080D00866C9E /* pngget.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAFD519C5080B00866C9E /* pngget.c */; };
-		9AEEB2EC19C5080D00866C9E /* pnginfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAFD619C5080B00866C9E /* pnginfo.h */; };
-		9AEEB2ED19C5080D00866C9E /* pnglibconf.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAFD719C5080B00866C9E /* pnglibconf.h */; };
-		9AEEB2EE19C5080D00866C9E /* pngmem.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAFD819C5080B00866C9E /* pngmem.c */; };
-		9AEEB2EF19C5080D00866C9E /* pngpread.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAFD919C5080B00866C9E /* pngpread.c */; };
-		9AEEB2F019C5080D00866C9E /* pngpriv.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAFDA19C5080B00866C9E /* pngpriv.h */; };
-		9AEEB2F119C5080D00866C9E /* pngread.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAFDB19C5080B00866C9E /* pngread.c */; };
-		9AEEB2F219C5080D00866C9E /* pngrio.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAFDC19C5080B00866C9E /* pngrio.c */; };
-		9AEEB2F319C5080D00866C9E /* pngrtran.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAFDD19C5080B00866C9E /* pngrtran.c */; };
-		9AEEB2F419C5080D00866C9E /* pngrutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAFDE19C5080B00866C9E /* pngrutil.c */; };
-		9AEEB2F519C5080D00866C9E /* pngset.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAFDF19C5080B00866C9E /* pngset.c */; };
-		9AEEB2F619C5080D00866C9E /* pngstruct.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAFE019C5080B00866C9E /* pngstruct.h */; };
-		9AEEB2F819C5080D00866C9E /* pngtrans.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAFE219C5080B00866C9E /* pngtrans.c */; };
-		9AEEB2F919C5080D00866C9E /* pngwio.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAFE319C5080B00866C9E /* pngwio.c */; };
-		9AEEB2FA19C5080D00866C9E /* pngwrite.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAFE419C5080B00866C9E /* pngwrite.c */; };
-		9AEEB2FB19C5080D00866C9E /* pngwtran.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAFE519C5080B00866C9E /* pngwtran.c */; };
-		9AEEB2FC19C5080D00866C9E /* pngwutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAFE619C5080B00866C9E /* pngwutil.c */; };
 		9AEEB3B319C5080D00866C9E /* Exif.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEB0D419C5080C00866C9E /* Exif.cpp */; };
 		9AEEB3B419C5080D00866C9E /* FIRational.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEB0D519C5080C00866C9E /* FIRational.cpp */; };
 		9AEEB3B519C5080D00866C9E /* FIRational.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB0D619C5080C00866C9E /* FIRational.h */; };
@@ -287,23 +187,18 @@
 		9AEEAEA019C5080A00866C9E /* PluginICO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PluginICO.cpp; sourceTree = "<group>"; };
 		9AEEAEA119C5080A00866C9E /* PluginIFF.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PluginIFF.cpp; sourceTree = "<group>"; };
 		9AEEAEA319C5080A00866C9E /* PluginJNG.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PluginJNG.cpp; sourceTree = "<group>"; };
-		9AEEAEA519C5080A00866C9E /* PluginJPEG.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PluginJPEG.cpp; sourceTree = "<group>"; };
 		9AEEAEA719C5080A00866C9E /* PluginKOALA.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PluginKOALA.cpp; sourceTree = "<group>"; };
-		9AEEAEA819C5080A00866C9E /* PluginMNG.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PluginMNG.cpp; sourceTree = "<group>"; };
 		9AEEAEA919C5080A00866C9E /* PluginPCD.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PluginPCD.cpp; sourceTree = "<group>"; };
 		9AEEAEAA19C5080A00866C9E /* PluginPCX.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PluginPCX.cpp; sourceTree = "<group>"; };
 		9AEEAEAB19C5080A00866C9E /* PluginPFM.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PluginPFM.cpp; sourceTree = "<group>"; };
 		9AEEAEAC19C5080A00866C9E /* PluginPICT.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PluginPICT.cpp; sourceTree = "<group>"; };
-		9AEEAEAD19C5080A00866C9E /* PluginPNG.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PluginPNG.cpp; sourceTree = "<group>"; };
 		9AEEAEAE19C5080A00866C9E /* PluginPNM.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PluginPNM.cpp; sourceTree = "<group>"; };
-		9AEEAEAF19C5080A00866C9E /* PluginPSD.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PluginPSD.cpp; sourceTree = "<group>"; };
 		9AEEAEB019C5080A00866C9E /* PluginRAS.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PluginRAS.cpp; sourceTree = "<group>"; };
 		9AEEAEB219C5080A00866C9E /* PluginSGI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PluginSGI.cpp; sourceTree = "<group>"; };
 		9AEEAEB319C5080A00866C9E /* PluginTARGA.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PluginTARGA.cpp; sourceTree = "<group>"; };
 		9AEEAEB519C5080A00866C9E /* PluginWBMP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PluginWBMP.cpp; sourceTree = "<group>"; };
 		9AEEAEB719C5080A00866C9E /* PluginXBM.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PluginXBM.cpp; sourceTree = "<group>"; };
 		9AEEAEB819C5080A00866C9E /* PluginXPM.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PluginXPM.cpp; sourceTree = "<group>"; };
-		9AEEAEB919C5080A00866C9E /* PSDParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PSDParser.cpp; sourceTree = "<group>"; };
 		9AEEAEBA19C5080A00866C9E /* PSDParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSDParser.h; sourceTree = "<group>"; };
 		9AEEAEBB19C5080A00866C9E /* TIFFLogLuv.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TIFFLogLuv.cpp; sourceTree = "<group>"; };
 		9AEEAEBC19C5080A00866C9E /* tmoColorConvert.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tmoColorConvert.cpp; sourceTree = "<group>"; };
@@ -324,105 +219,10 @@
 		9AEEAED519C5080A00866C9E /* Display.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Display.cpp; sourceTree = "<group>"; };
 		9AEEAED619C5080A00866C9E /* Filters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Filters.h; sourceTree = "<group>"; };
 		9AEEAED719C5080A00866C9E /* Flip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Flip.cpp; sourceTree = "<group>"; };
-		9AEEAED819C5080A00866C9E /* JPEGTransform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JPEGTransform.cpp; sourceTree = "<group>"; };
 		9AEEAED919C5080A00866C9E /* MultigridPoissonSolver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MultigridPoissonSolver.cpp; sourceTree = "<group>"; };
 		9AEEAEDA19C5080A00866C9E /* Rescale.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Rescale.cpp; sourceTree = "<group>"; };
 		9AEEAEDB19C5080A00866C9E /* Resize.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Resize.cpp; sourceTree = "<group>"; };
 		9AEEAEDC19C5080A00866C9E /* Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Resize.h; sourceTree = "<group>"; };
-		9AEEAEDF19C5080A00866C9E /* cderror.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cderror.h; sourceTree = "<group>"; };
-		9AEEAEE019C5080A00866C9E /* cdjpeg.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cdjpeg.c; sourceTree = "<group>"; };
-		9AEEAEE119C5080A00866C9E /* cdjpeg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cdjpeg.h; sourceTree = "<group>"; };
-		9AEEAEE919C5080A00866C9E /* jaricom.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jaricom.c; sourceTree = "<group>"; };
-		9AEEAEEA19C5080A00866C9E /* jcapimin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jcapimin.c; sourceTree = "<group>"; };
-		9AEEAEEB19C5080A00866C9E /* jcapistd.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jcapistd.c; sourceTree = "<group>"; };
-		9AEEAEEC19C5080A00866C9E /* jcarith.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jcarith.c; sourceTree = "<group>"; };
-		9AEEAEED19C5080A00866C9E /* jccoefct.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jccoefct.c; sourceTree = "<group>"; };
-		9AEEAEEE19C5080A00866C9E /* jccolor.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jccolor.c; sourceTree = "<group>"; };
-		9AEEAEEF19C5080A00866C9E /* jcdctmgr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jcdctmgr.c; sourceTree = "<group>"; };
-		9AEEAEF019C5080A00866C9E /* jchuff.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jchuff.c; sourceTree = "<group>"; };
-		9AEEAEF119C5080A00866C9E /* jcinit.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jcinit.c; sourceTree = "<group>"; };
-		9AEEAEF219C5080A00866C9E /* jcmainct.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jcmainct.c; sourceTree = "<group>"; };
-		9AEEAEF319C5080A00866C9E /* jcmarker.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jcmarker.c; sourceTree = "<group>"; };
-		9AEEAEF419C5080A00866C9E /* jcmaster.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jcmaster.c; sourceTree = "<group>"; };
-		9AEEAEF519C5080A00866C9E /* jcomapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jcomapi.c; sourceTree = "<group>"; };
-		9AEEAEF619C5080A00866C9E /* jconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jconfig.h; sourceTree = "<group>"; };
-		9AEEAEF819C5080A00866C9E /* jcparam.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jcparam.c; sourceTree = "<group>"; };
-		9AEEAEF919C5080A00866C9E /* jcprepct.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jcprepct.c; sourceTree = "<group>"; };
-		9AEEAEFA19C5080A00866C9E /* jcsample.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jcsample.c; sourceTree = "<group>"; };
-		9AEEAEFB19C5080A00866C9E /* jctrans.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jctrans.c; sourceTree = "<group>"; };
-		9AEEAEFC19C5080A00866C9E /* jdapimin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jdapimin.c; sourceTree = "<group>"; };
-		9AEEAEFD19C5080A00866C9E /* jdapistd.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jdapistd.c; sourceTree = "<group>"; };
-		9AEEAEFE19C5080A00866C9E /* jdarith.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jdarith.c; sourceTree = "<group>"; };
-		9AEEAEFF19C5080A00866C9E /* jdatadst.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jdatadst.c; sourceTree = "<group>"; };
-		9AEEAF0019C5080A00866C9E /* jdatasrc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jdatasrc.c; sourceTree = "<group>"; };
-		9AEEAF0119C5080A00866C9E /* jdcoefct.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jdcoefct.c; sourceTree = "<group>"; };
-		9AEEAF0219C5080A00866C9E /* jdcolor.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jdcolor.c; sourceTree = "<group>"; };
-		9AEEAF0319C5080A00866C9E /* jdct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jdct.h; sourceTree = "<group>"; };
-		9AEEAF0419C5080A00866C9E /* jddctmgr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jddctmgr.c; sourceTree = "<group>"; };
-		9AEEAF0519C5080A00866C9E /* jdhuff.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jdhuff.c; sourceTree = "<group>"; };
-		9AEEAF0619C5080A00866C9E /* jdinput.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jdinput.c; sourceTree = "<group>"; };
-		9AEEAF0719C5080A00866C9E /* jdmainct.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jdmainct.c; sourceTree = "<group>"; };
-		9AEEAF0819C5080A00866C9E /* jdmarker.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jdmarker.c; sourceTree = "<group>"; };
-		9AEEAF0919C5080A00866C9E /* jdmaster.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jdmaster.c; sourceTree = "<group>"; };
-		9AEEAF0A19C5080A00866C9E /* jdmerge.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jdmerge.c; sourceTree = "<group>"; };
-		9AEEAF0B19C5080A00866C9E /* jdpostct.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jdpostct.c; sourceTree = "<group>"; };
-		9AEEAF0C19C5080A00866C9E /* jdsample.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jdsample.c; sourceTree = "<group>"; };
-		9AEEAF0D19C5080A00866C9E /* jdtrans.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jdtrans.c; sourceTree = "<group>"; };
-		9AEEAF0E19C5080A00866C9E /* jerror.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jerror.c; sourceTree = "<group>"; };
-		9AEEAF0F19C5080A00866C9E /* jerror.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jerror.h; sourceTree = "<group>"; };
-		9AEEAF1019C5080A00866C9E /* jfdctflt.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jfdctflt.c; sourceTree = "<group>"; };
-		9AEEAF1119C5080A00866C9E /* jfdctfst.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jfdctfst.c; sourceTree = "<group>"; };
-		9AEEAF1219C5080A00866C9E /* jfdctint.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jfdctint.c; sourceTree = "<group>"; };
-		9AEEAF1319C5080A00866C9E /* jidctflt.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jidctflt.c; sourceTree = "<group>"; };
-		9AEEAF1419C5080A00866C9E /* jidctfst.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jidctfst.c; sourceTree = "<group>"; };
-		9AEEAF1519C5080A00866C9E /* jidctint.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jidctint.c; sourceTree = "<group>"; };
-		9AEEAF1619C5080A00866C9E /* jinclude.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jinclude.h; sourceTree = "<group>"; };
-		9AEEAF1719C5080A00866C9E /* jmemansi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jmemansi.c; sourceTree = "<group>"; };
-		9AEEAF1B19C5080A00866C9E /* jmemmgr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jmemmgr.c; sourceTree = "<group>"; };
-		9AEEAF1E19C5080A00866C9E /* jmemsys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jmemsys.h; sourceTree = "<group>"; };
-		9AEEAF1F19C5080A00866C9E /* jmorecfg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jmorecfg.h; sourceTree = "<group>"; };
-		9AEEAF2019C5080A00866C9E /* jpegint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jpegint.h; sourceTree = "<group>"; };
-		9AEEAF2119C5080A00866C9E /* jpeglib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jpeglib.h; sourceTree = "<group>"; };
-		9AEEAF2319C5080A00866C9E /* jquant1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jquant1.c; sourceTree = "<group>"; };
-		9AEEAF2419C5080A00866C9E /* jquant2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jquant2.c; sourceTree = "<group>"; };
-		9AEEAF2519C5080A00866C9E /* jutils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jutils.c; sourceTree = "<group>"; };
-		9AEEAF2619C5080A00866C9E /* jversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jversion.h; sourceTree = "<group>"; };
-		9AEEAF2E19C5080A00866C9E /* rdbmp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rdbmp.c; sourceTree = "<group>"; };
-		9AEEAF2F19C5080A00866C9E /* rdcolmap.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rdcolmap.c; sourceTree = "<group>"; };
-		9AEEAF3019C5080A00866C9E /* rdgif.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rdgif.c; sourceTree = "<group>"; };
-		9AEEAF3219C5080A00866C9E /* rdppm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rdppm.c; sourceTree = "<group>"; };
-		9AEEAF3319C5080A00866C9E /* rdrle.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rdrle.c; sourceTree = "<group>"; };
-		9AEEAF3419C5080A00866C9E /* rdswitch.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rdswitch.c; sourceTree = "<group>"; };
-		9AEEAF3519C5080A00866C9E /* rdtarga.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rdtarga.c; sourceTree = "<group>"; };
-		9AEEAF3819C5080A00866C9E /* transupp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = transupp.c; sourceTree = "<group>"; };
-		9AEEAF3919C5080A00866C9E /* transupp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = transupp.h; sourceTree = "<group>"; };
-		9AEEAF3C19C5080A00866C9E /* wrbmp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = wrbmp.c; sourceTree = "<group>"; };
-		9AEEAF3D19C5080A00866C9E /* wrgif.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = wrgif.c; sourceTree = "<group>"; };
-		9AEEAF3F19C5080A00866C9E /* wrppm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = wrppm.c; sourceTree = "<group>"; };
-		9AEEAF4019C5080A00866C9E /* wrrle.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = wrrle.c; sourceTree = "<group>"; };
-		9AEEAF4119C5080A00866C9E /* wrtarga.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = wrtarga.c; sourceTree = "<group>"; };
-		9AEEAFD019C5080B00866C9E /* png.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = png.c; sourceTree = "<group>"; };
-		9AEEAFD119C5080B00866C9E /* png.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = png.h; sourceTree = "<group>"; };
-		9AEEAFD219C5080B00866C9E /* pngconf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pngconf.h; sourceTree = "<group>"; };
-		9AEEAFD319C5080B00866C9E /* pngdebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pngdebug.h; sourceTree = "<group>"; };
-		9AEEAFD419C5080B00866C9E /* pngerror.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngerror.c; sourceTree = "<group>"; };
-		9AEEAFD519C5080B00866C9E /* pngget.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngget.c; sourceTree = "<group>"; };
-		9AEEAFD619C5080B00866C9E /* pnginfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pnginfo.h; sourceTree = "<group>"; };
-		9AEEAFD719C5080B00866C9E /* pnglibconf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pnglibconf.h; sourceTree = "<group>"; };
-		9AEEAFD819C5080B00866C9E /* pngmem.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngmem.c; sourceTree = "<group>"; };
-		9AEEAFD919C5080B00866C9E /* pngpread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngpread.c; sourceTree = "<group>"; };
-		9AEEAFDA19C5080B00866C9E /* pngpriv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pngpriv.h; sourceTree = "<group>"; };
-		9AEEAFDB19C5080B00866C9E /* pngread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngread.c; sourceTree = "<group>"; };
-		9AEEAFDC19C5080B00866C9E /* pngrio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngrio.c; sourceTree = "<group>"; };
-		9AEEAFDD19C5080B00866C9E /* pngrtran.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngrtran.c; sourceTree = "<group>"; };
-		9AEEAFDE19C5080B00866C9E /* pngrutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngrutil.c; sourceTree = "<group>"; };
-		9AEEAFDF19C5080B00866C9E /* pngset.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngset.c; sourceTree = "<group>"; };
-		9AEEAFE019C5080B00866C9E /* pngstruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pngstruct.h; sourceTree = "<group>"; };
-		9AEEAFE219C5080B00866C9E /* pngtrans.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngtrans.c; sourceTree = "<group>"; };
-		9AEEAFE319C5080B00866C9E /* pngwio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngwio.c; sourceTree = "<group>"; };
-		9AEEAFE419C5080B00866C9E /* pngwrite.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngwrite.c; sourceTree = "<group>"; };
-		9AEEAFE519C5080B00866C9E /* pngwtran.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngwtran.c; sourceTree = "<group>"; };
-		9AEEAFE619C5080B00866C9E /* pngwutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngwutil.c; sourceTree = "<group>"; };
 		9AEEB0D419C5080C00866C9E /* Exif.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Exif.cpp; sourceTree = "<group>"; };
 		9AEEB0D519C5080C00866C9E /* FIRational.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FIRational.cpp; sourceTree = "<group>"; };
 		9AEEB0D619C5080C00866C9E /* FIRational.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIRational.h; sourceTree = "<group>"; };
@@ -473,8 +273,6 @@
 				9AEEAE7619C5080A00866C9E /* DeprecationManager */,
 				9AEEAE7A19C5080A00866C9E /* FreeImage */,
 				9AEEAECE19C5080A00866C9E /* FreeImageToolkit */,
-				9AEEAEDD19C5080A00866C9E /* LibJPEG */,
-				9AEEAFC219C5080B00866C9E /* LibPNG */,
 				9AEEB0D319C5080C00866C9E /* Metadata */,
 				9AEEB0DD19C5080C00866C9E /* OpenEXR */,
 				9AEEAE7519C5080A00866C9E /* CacheFile.h */,
@@ -536,23 +334,18 @@
 				9AEEAEA019C5080A00866C9E /* PluginICO.cpp */,
 				9AEEAEA119C5080A00866C9E /* PluginIFF.cpp */,
 				9AEEAEA319C5080A00866C9E /* PluginJNG.cpp */,
-				9AEEAEA519C5080A00866C9E /* PluginJPEG.cpp */,
 				9AEEAEA719C5080A00866C9E /* PluginKOALA.cpp */,
-				9AEEAEA819C5080A00866C9E /* PluginMNG.cpp */,
 				9AEEAEA919C5080A00866C9E /* PluginPCD.cpp */,
 				9AEEAEAA19C5080A00866C9E /* PluginPCX.cpp */,
 				9AEEAEAB19C5080A00866C9E /* PluginPFM.cpp */,
 				9AEEAEAC19C5080A00866C9E /* PluginPICT.cpp */,
-				9AEEAEAD19C5080A00866C9E /* PluginPNG.cpp */,
 				9AEEAEAE19C5080A00866C9E /* PluginPNM.cpp */,
-				9AEEAEAF19C5080A00866C9E /* PluginPSD.cpp */,
 				9AEEAEB019C5080A00866C9E /* PluginRAS.cpp */,
 				9AEEAEB219C5080A00866C9E /* PluginSGI.cpp */,
 				9AEEAEB319C5080A00866C9E /* PluginTARGA.cpp */,
 				9AEEAEB519C5080A00866C9E /* PluginWBMP.cpp */,
 				9AEEAEB719C5080A00866C9E /* PluginXBM.cpp */,
 				9AEEAEB819C5080A00866C9E /* PluginXPM.cpp */,
-				9AEEAEB919C5080A00866C9E /* PSDParser.cpp */,
 				9AEEAEBA19C5080A00866C9E /* PSDParser.h */,
 				9AEEAEBB19C5080A00866C9E /* TIFFLogLuv.cpp */,
 				9AEEAEBC19C5080A00866C9E /* tmoColorConvert.cpp */,
@@ -578,121 +371,12 @@
 				9AEEAED519C5080A00866C9E /* Display.cpp */,
 				9AEEAED619C5080A00866C9E /* Filters.h */,
 				9AEEAED719C5080A00866C9E /* Flip.cpp */,
-				9AEEAED819C5080A00866C9E /* JPEGTransform.cpp */,
 				9AEEAED919C5080A00866C9E /* MultigridPoissonSolver.cpp */,
 				9AEEAEDA19C5080A00866C9E /* Rescale.cpp */,
 				9AEEAEDB19C5080A00866C9E /* Resize.cpp */,
 				9AEEAEDC19C5080A00866C9E /* Resize.h */,
 			);
 			path = FreeImageToolkit;
-			sourceTree = "<group>";
-		};
-		9AEEAEDD19C5080A00866C9E /* LibJPEG */ = {
-			isa = PBXGroup;
-			children = (
-				9AEEAEDF19C5080A00866C9E /* cderror.h */,
-				9AEEAEE019C5080A00866C9E /* cdjpeg.c */,
-				9AEEAEE119C5080A00866C9E /* cdjpeg.h */,
-				9AEEAEE919C5080A00866C9E /* jaricom.c */,
-				9AEEAEEA19C5080A00866C9E /* jcapimin.c */,
-				9AEEAEEB19C5080A00866C9E /* jcapistd.c */,
-				9AEEAEEC19C5080A00866C9E /* jcarith.c */,
-				9AEEAEED19C5080A00866C9E /* jccoefct.c */,
-				9AEEAEEE19C5080A00866C9E /* jccolor.c */,
-				9AEEAEEF19C5080A00866C9E /* jcdctmgr.c */,
-				9AEEAEF019C5080A00866C9E /* jchuff.c */,
-				9AEEAEF119C5080A00866C9E /* jcinit.c */,
-				9AEEAEF219C5080A00866C9E /* jcmainct.c */,
-				9AEEAEF319C5080A00866C9E /* jcmarker.c */,
-				9AEEAEF419C5080A00866C9E /* jcmaster.c */,
-				9AEEAEF519C5080A00866C9E /* jcomapi.c */,
-				9AEEAEF619C5080A00866C9E /* jconfig.h */,
-				9AEEAEF819C5080A00866C9E /* jcparam.c */,
-				9AEEAEF919C5080A00866C9E /* jcprepct.c */,
-				9AEEAEFA19C5080A00866C9E /* jcsample.c */,
-				9AEEAEFB19C5080A00866C9E /* jctrans.c */,
-				9AEEAEFC19C5080A00866C9E /* jdapimin.c */,
-				9AEEAEFD19C5080A00866C9E /* jdapistd.c */,
-				9AEEAEFE19C5080A00866C9E /* jdarith.c */,
-				9AEEAEFF19C5080A00866C9E /* jdatadst.c */,
-				9AEEAF0019C5080A00866C9E /* jdatasrc.c */,
-				9AEEAF0119C5080A00866C9E /* jdcoefct.c */,
-				9AEEAF0219C5080A00866C9E /* jdcolor.c */,
-				9AEEAF0319C5080A00866C9E /* jdct.h */,
-				9AEEAF0419C5080A00866C9E /* jddctmgr.c */,
-				9AEEAF0519C5080A00866C9E /* jdhuff.c */,
-				9AEEAF0619C5080A00866C9E /* jdinput.c */,
-				9AEEAF0719C5080A00866C9E /* jdmainct.c */,
-				9AEEAF0819C5080A00866C9E /* jdmarker.c */,
-				9AEEAF0919C5080A00866C9E /* jdmaster.c */,
-				9AEEAF0A19C5080A00866C9E /* jdmerge.c */,
-				9AEEAF0B19C5080A00866C9E /* jdpostct.c */,
-				9AEEAF0C19C5080A00866C9E /* jdsample.c */,
-				9AEEAF0D19C5080A00866C9E /* jdtrans.c */,
-				9AEEAF0E19C5080A00866C9E /* jerror.c */,
-				9AEEAF0F19C5080A00866C9E /* jerror.h */,
-				9AEEAF1019C5080A00866C9E /* jfdctflt.c */,
-				9AEEAF1119C5080A00866C9E /* jfdctfst.c */,
-				9AEEAF1219C5080A00866C9E /* jfdctint.c */,
-				9AEEAF1319C5080A00866C9E /* jidctflt.c */,
-				9AEEAF1419C5080A00866C9E /* jidctfst.c */,
-				9AEEAF1519C5080A00866C9E /* jidctint.c */,
-				9AEEAF1619C5080A00866C9E /* jinclude.h */,
-				9AEEAF1719C5080A00866C9E /* jmemansi.c */,
-				9AEEAF1B19C5080A00866C9E /* jmemmgr.c */,
-				9AEEAF1E19C5080A00866C9E /* jmemsys.h */,
-				9AEEAF1F19C5080A00866C9E /* jmorecfg.h */,
-				9AEEAF2019C5080A00866C9E /* jpegint.h */,
-				9AEEAF2119C5080A00866C9E /* jpeglib.h */,
-				9AEEAF2319C5080A00866C9E /* jquant1.c */,
-				9AEEAF2419C5080A00866C9E /* jquant2.c */,
-				9AEEAF2519C5080A00866C9E /* jutils.c */,
-				9AEEAF2619C5080A00866C9E /* jversion.h */,
-				9AEEAF2E19C5080A00866C9E /* rdbmp.c */,
-				9AEEAF2F19C5080A00866C9E /* rdcolmap.c */,
-				9AEEAF3019C5080A00866C9E /* rdgif.c */,
-				9AEEAF3219C5080A00866C9E /* rdppm.c */,
-				9AEEAF3319C5080A00866C9E /* rdrle.c */,
-				9AEEAF3419C5080A00866C9E /* rdswitch.c */,
-				9AEEAF3519C5080A00866C9E /* rdtarga.c */,
-				9AEEAF3819C5080A00866C9E /* transupp.c */,
-				9AEEAF3919C5080A00866C9E /* transupp.h */,
-				9AEEAF3C19C5080A00866C9E /* wrbmp.c */,
-				9AEEAF3D19C5080A00866C9E /* wrgif.c */,
-				9AEEAF3F19C5080A00866C9E /* wrppm.c */,
-				9AEEAF4019C5080A00866C9E /* wrrle.c */,
-				9AEEAF4119C5080A00866C9E /* wrtarga.c */,
-			);
-			path = LibJPEG;
-			sourceTree = "<group>";
-		};
-		9AEEAFC219C5080B00866C9E /* LibPNG */ = {
-			isa = PBXGroup;
-			children = (
-				9AEEAFD019C5080B00866C9E /* png.c */,
-				9AEEAFD119C5080B00866C9E /* png.h */,
-				9AEEAFD219C5080B00866C9E /* pngconf.h */,
-				9AEEAFD319C5080B00866C9E /* pngdebug.h */,
-				9AEEAFD419C5080B00866C9E /* pngerror.c */,
-				9AEEAFD519C5080B00866C9E /* pngget.c */,
-				9AEEAFD619C5080B00866C9E /* pnginfo.h */,
-				9AEEAFD719C5080B00866C9E /* pnglibconf.h */,
-				9AEEAFD819C5080B00866C9E /* pngmem.c */,
-				9AEEAFD919C5080B00866C9E /* pngpread.c */,
-				9AEEAFDA19C5080B00866C9E /* pngpriv.h */,
-				9AEEAFDB19C5080B00866C9E /* pngread.c */,
-				9AEEAFDC19C5080B00866C9E /* pngrio.c */,
-				9AEEAFDD19C5080B00866C9E /* pngrtran.c */,
-				9AEEAFDE19C5080B00866C9E /* pngrutil.c */,
-				9AEEAFDF19C5080B00866C9E /* pngset.c */,
-				9AEEAFE019C5080B00866C9E /* pngstruct.h */,
-				9AEEAFE219C5080B00866C9E /* pngtrans.c */,
-				9AEEAFE319C5080B00866C9E /* pngwio.c */,
-				9AEEAFE419C5080B00866C9E /* pngwrite.c */,
-				9AEEAFE519C5080B00866C9E /* pngwtran.c */,
-				9AEEAFE619C5080B00866C9E /* pngwutil.c */,
-			);
-			path = LibPNG;
 			sourceTree = "<group>";
 		};
 		9AEEB0D319C5080C00866C9E /* Metadata */ = {
@@ -754,41 +438,22 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AEEB24D19C5080D00866C9E /* jdct.h in Headers */,
 				9AEEB48A19C5080D00866C9E /* Plugin.h in Headers */,
-				9AEEB26919C5080D00866C9E /* jmorecfg.h in Headers */,
 				9AEEB3BD19C5080D00866C9E /* eLut.h in Headers */,
-				9AEEB2ED19C5080D00866C9E /* pnglibconf.h in Headers */,
 				9AEEB3C319C5080D00866C9E /* toFloat.h in Headers */,
-				9AEEB22E19C5080D00866C9E /* cderror.h in Headers */,
-				9AEEB2F619C5080D00866C9E /* pngstruct.h in Headers */,
 				9AEEB48D19C5080D00866C9E /* Utilities.h in Headers */,
 				9AEEB3B519C5080D00866C9E /* FIRational.h in Headers */,
-				9AEEB2F019C5080D00866C9E /* pngpriv.h in Headers */,
 				9AEEB3BF19C5080D00866C9E /* half.h in Headers */,
-				9AEEB2E719C5080D00866C9E /* png.h in Headers */,
 				9AEEB22619C5080D00866C9E /* Filters.h in Headers */,
-				9AEEB27019C5080D00866C9E /* jversion.h in Headers */,
 				9AEEB48C19C5080D00866C9E /* ToneMapping.h in Headers */,
 				9AEEB21D19C5080D00866C9E /* FreeImage.h in Headers */,
-				9AEEB2E919C5080D00866C9E /* pngdebug.h in Headers */,
-				9AEEB24119C5080D00866C9E /* jconfig.h in Headers */,
-				9AEEB26A19C5080D00866C9E /* jpegint.h in Headers */,
 				9AEEB3B719C5080D00866C9E /* FreeImageTag.h in Headers */,
 				9AEEB21E19C5080D00866C9E /* FreeImageIO.h in Headers */,
-				9AEEB26819C5080D00866C9E /* jmemsys.h in Headers */,
-				9AEEB26B19C5080D00866C9E /* jpeglib.h in Headers */,
-				9AEEB27B19C5080D00866C9E /* transupp.h in Headers */,
 				9AEEB1E719C5080D00866C9E /* FreeImageFramework.h in Headers */,
-				9AEEB2E819C5080D00866C9E /* pngconf.h in Headers */,
 				9AEEB48B19C5080D00866C9E /* Quantizers.h in Headers */,
 				9AEEB1D419C5080D00866C9E /* DeprecationMgr.h in Headers */,
 				9AEEB21419C5080D00866C9E /* PSDParser.h in Headers */,
-				9AEEB2EC19C5080D00866C9E /* pnginfo.h in Headers */,
-				9AEEB25919C5080D00866C9E /* jerror.h in Headers */,
-				9AEEB26019C5080D00866C9E /* jinclude.h in Headers */,
 				9AEEB22C19C5080D00866C9E /* Resize.h in Headers */,
-				9AEEB23019C5080D00866C9E /* cdjpeg.h in Headers */,
 				9AEEB1D119C5080D00866C9E /* CacheFile.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -887,161 +552,80 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AEEB24219C5080D00866C9E /* jcparam.c in Sources */,
 				9AEEB3BE19C5080D00866C9E /* half.cpp in Sources */,
-				9AEEB2FB19C5080D00866C9E /* pngwtran.c in Sources */,
 				9AEEB21219C5080D00866C9E /* PluginXPM.cpp in Sources */,
 				9AEEB21519C5080D00866C9E /* TIFFLogLuv.cpp in Sources */,
-				9AEEB24A19C5080D00866C9E /* jdatasrc.c in Sources */,
 				9AEEB22519C5080D00866C9E /* Display.cpp in Sources */,
-				9AEEB25319C5080D00866C9E /* jdmaster.c in Sources */,
 				9AEEB1EE19C5080D00866C9E /* MNGHelper.cpp in Sources */,
-				9AEEB20219C5080D00866C9E /* PluginMNG.cpp in Sources */,
 				9AEEB22019C5080D00866C9E /* BSplineRotate.cpp in Sources */,
 				9AEEB3B619C5080D00866C9E /* FreeImageTag.cpp in Sources */,
-				9AEEB27F19C5080D00866C9E /* wrppm.c in Sources */,
 				9AEEB22B19C5080D00866C9E /* Resize.cpp in Sources */,
-				9AEEB2F419C5080D00866C9E /* pngrutil.c in Sources */,
 				9AEEB21819C5080D00866C9E /* tmoFattal02.cpp in Sources */,
-				9AEEB26119C5080D00866C9E /* jmemansi.c in Sources */,
 				9AEEB20519C5080D00866C9E /* PluginPFM.cpp in Sources */,
 				9AEEB1F119C5080D00866C9E /* PixelAccess.cpp in Sources */,
-				9AEEB23C19C5080D00866C9E /* jcinit.c in Sources */,
-				9AEEB23919C5080D00866C9E /* jccolor.c in Sources */,
-				9AEEB25F19C5080D00866C9E /* jidctint.c in Sources */,
-				9AEEB20719C5080D00866C9E /* PluginPNG.cpp in Sources */,
 				9AEEB1D919C5080D00866C9E /* Conversion16_555.cpp in Sources */,
 				9AEEB21619C5080D00866C9E /* tmoColorConvert.cpp in Sources */,
 				9AEEB1E319C5080D00866C9E /* ConversionUINT16.cpp in Sources */,
-				9AEEB2EE19C5080D00866C9E /* pngmem.c in Sources */,
-				9AEEB21319C5080D00866C9E /* PSDParser.cpp in Sources */,
-				9AEEB24F19C5080D00866C9E /* jdhuff.c in Sources */,
 				9AEEB1E819C5080D00866C9E /* FreeImageIO.cpp in Sources */,
-				9AEEB26F19C5080D00866C9E /* jutils.c in Sources */,
 				9AEEB21F19C5080D00866C9E /* Background.cpp in Sources */,
-				9AEEB2E619C5080D00866C9E /* png.c in Sources */,
-				9AEEB20919C5080D00866C9E /* PluginPSD.cpp in Sources */,
-				9AEEB27219C5080D00866C9E /* rdbmp.c in Sources */,
 				9AEEB3B319C5080D00866C9E /* Exif.cpp in Sources */,
-				9AEEB2F219C5080D00866C9E /* pngrio.c in Sources */,
 				9AEEB1E119C5080D00866C9E /* ConversionRGBF.cpp in Sources */,
-				9AEEB27319C5080D00866C9E /* rdcolmap.c in Sources */,
 				9AEEB1DD19C5080D00866C9E /* Conversion4.cpp in Sources */,
-				9AEEB27619C5080D00866C9E /* rdppm.c in Sources */,
-				9AEEB25219C5080D00866C9E /* jdmarker.c in Sources */,
 				9AEEB1FA19C5080D00866C9E /* PluginICO.cpp in Sources */,
 				9AEEB22319C5080D00866C9E /* Colors.cpp in Sources */,
 				9AEEB21A19C5080D00866C9E /* ToneMapping.cpp in Sources */,
-				9AEEB24319C5080D00866C9E /* jcprepct.c in Sources */,
 				9AEEB1F519C5080D00866C9E /* PluginDDS.cpp in Sources */,
 				9AEEB22119C5080D00866C9E /* Channels.cpp in Sources */,
 				9AEEB1DF19C5080D00866C9E /* ConversionFloat.cpp in Sources */,
-				9AEEB2EF19C5080D00866C9E /* pngpread.c in Sources */,
 				9AEEB1F019C5080D00866C9E /* NNQuantizer.cpp in Sources */,
-				9AEEB23E19C5080D00866C9E /* jcmarker.c in Sources */,
-				9AEEB25819C5080D00866C9E /* jerror.c in Sources */,
 				9AEEB20C19C5080D00866C9E /* PluginSGI.cpp in Sources */,
-				9AEEB2F119C5080D00866C9E /* pngread.c in Sources */,
 				9AEEB21719C5080D00866C9E /* tmoDrago03.cpp in Sources */,
 				9AEEB20619C5080D00866C9E /* PluginPICT.cpp in Sources */,
 				9AEEB1E419C5080D00866C9E /* FreeImage.cpp in Sources */,
 				9AEEB1F319C5080D00866C9E /* PluginBMP.cpp in Sources */,
-				9AEEB25C19C5080D00866C9E /* jfdctint.c in Sources */,
 				9AEEB21C19C5080D00866C9E /* ZLibInterface.cpp in Sources */,
-				9AEEB23A19C5080D00866C9E /* jcdctmgr.c in Sources */,
 				9AEEB20119C5080D00866C9E /* PluginKOALA.cpp in Sources */,
-				9AEEB23F19C5080D00866C9E /* jcmaster.c in Sources */,
-				9AEEB25A19C5080D00866C9E /* jfdctflt.c in Sources */,
 				9AEEB1DE19C5080D00866C9E /* Conversion8.cpp in Sources */,
-				9AEEB26D19C5080D00866C9E /* jquant1.c in Sources */,
-				9AEEB2FA19C5080D00866C9E /* pngwrite.c in Sources */,
-				9AEEB23D19C5080D00866C9E /* jcmainct.c in Sources */,
 				9AEEB3BA19C5080D00866C9E /* TagLib.cpp in Sources */,
 				9AEEB1DA19C5080D00866C9E /* Conversion16_565.cpp in Sources */,
 				9AEEB1EF19C5080D00866C9E /* MultiPage.cpp in Sources */,
-				9AEEB23419C5080D00866C9E /* jaricom.c in Sources */,
-				9AEEB23B19C5080D00866C9E /* jchuff.c in Sources */,
-				9AEEB25419C5080D00866C9E /* jdmerge.c in Sources */,
-				9AEEB23619C5080D00866C9E /* jcapistd.c in Sources */,
 				9AEEB20D19C5080D00866C9E /* PluginTARGA.cpp in Sources */,
-				9AEEB27819C5080D00866C9E /* rdswitch.c in Sources */,
 				9AEEB1DC19C5080D00866C9E /* Conversion32.cpp in Sources */,
-				9AEEB25519C5080D00866C9E /* jdpostct.c in Sources */,
 				9AEEB1D219C5080D00866C9E /* Deprecated.cpp in Sources */,
-				9AEEB25019C5080D00866C9E /* jdinput.c in Sources */,
 				9AEEB22A19C5080D00866C9E /* Rescale.cpp in Sources */,
 				9AEEB1FD19C5080D00866C9E /* PluginJNG.cpp in Sources */,
-				9AEEB24819C5080D00866C9E /* jdarith.c in Sources */,
 				9AEEB3B919C5080D00866C9E /* TagConversion.cpp in Sources */,
-				9AEEB2F319C5080D00866C9E /* pngrtran.c in Sources */,
-				9AEEB25619C5080D00866C9E /* jdsample.c in Sources */,
-				9AEEB2F519C5080D00866C9E /* pngset.c in Sources */,
-				9AEEB27C19C5080D00866C9E /* wrbmp.c in Sources */,
-				9AEEB2EA19C5080D00866C9E /* pngerror.c in Sources */,
-				9AEEB27719C5080D00866C9E /* rdrle.c in Sources */,
 				9AEEB1F819C5080D00866C9E /* PluginGIF.cpp in Sources */,
-				9AEEB24B19C5080D00866C9E /* jdcoefct.c in Sources */,
-				9AEEB2EB19C5080D00866C9E /* pngget.c in Sources */,
 				9AEEB20F19C5080D00866C9E /* PluginWBMP.cpp in Sources */,
-				9AEEB22F19C5080D00866C9E /* cdjpeg.c in Sources */,
-				9AEEB26519C5080D00866C9E /* jmemmgr.c in Sources */,
 				9AEEB20A19C5080D00866C9E /* PluginRAS.cpp in Sources */,
-				9AEEB2FC19C5080D00866C9E /* pngwutil.c in Sources */,
-				9AEEB27A19C5080D00866C9E /* transupp.c in Sources */,
-				9AEEB27D19C5080D00866C9E /* wrgif.c in Sources */,
-				9AEEB23719C5080D00866C9E /* jcarith.c in Sources */,
 				9AEEB22419C5080D00866C9E /* CopyPaste.cpp in Sources */,
-				9AEEB23819C5080D00866C9E /* jccoefct.c in Sources */,
 				9AEEB1E919C5080D00866C9E /* GetType.cpp in Sources */,
 				9AEEB1D819C5080D00866C9E /* Conversion.cpp in Sources */,
-				9AEEB25D19C5080D00866C9E /* jidctflt.c in Sources */,
-				9AEEB28119C5080D00866C9E /* wrtarga.c in Sources */,
-				9AEEB2F819C5080D00866C9E /* pngtrans.c in Sources */,
 				9AEEB1F219C5080D00866C9E /* Plugin.cpp in Sources */,
 				9AEEB20319C5080D00866C9E /* PluginPCD.cpp in Sources */,
-				9AEEB25B19C5080D00866C9E /* jfdctfst.c in Sources */,
 				9AEEB1D719C5080D00866C9E /* ColorLookup.cpp in Sources */,
-				9AEEB25719C5080D00866C9E /* jdtrans.c in Sources */,
 				9AEEB1D519C5080D00866C9E /* BitmapAccess.cpp in Sources */,
 				9AEEB1E219C5080D00866C9E /* ConversionType.cpp in Sources */,
-				9AEEB26E19C5080D00866C9E /* jquant2.c in Sources */,
-				9AEEB27919C5080D00866C9E /* rdtarga.c in Sources */,
 				9AEEB1E019C5080D00866C9E /* ConversionRGB16.cpp in Sources */,
 				9AEEB1D619C5080D00866C9E /* CacheFile.cpp in Sources */,
-				9AEEB24719C5080D00866C9E /* jdapistd.c in Sources */,
-				9AEEB2F919C5080D00866C9E /* pngwio.c in Sources */,
 				9AEEB1F419C5080D00866C9E /* PluginCUT.cpp in Sources */,
 				9AEEB1ED19C5080D00866C9E /* MemoryIO.cpp in Sources */,
 				9AEEB22219C5080D00866C9E /* ClassicRotate.cpp in Sources */,
-				9AEEB24419C5080D00866C9E /* jcsample.c in Sources */,
-				9AEEB28019C5080D00866C9E /* wrrle.c in Sources */,
-				9AEEB24019C5080D00866C9E /* jcomapi.c in Sources */,
-				9AEEB1FF19C5080D00866C9E /* PluginJPEG.cpp in Sources */,
-				9AEEB24919C5080D00866C9E /* jdatadst.c in Sources */,
 				9AEEB20419C5080D00866C9E /* PluginPCX.cpp in Sources */,
 				9AEEB1DB19C5080D00866C9E /* Conversion24.cpp in Sources */,
-				9AEEB22819C5080D00866C9E /* JPEGTransform.cpp in Sources */,
 				9AEEB21119C5080D00866C9E /* PluginXBM.cpp in Sources */,
-				9AEEB24519C5080D00866C9E /* jctrans.c in Sources */,
 				9AEEB1EA19C5080D00866C9E /* Halftoning.cpp in Sources */,
 				9AEEB1E619C5080D00866C9E /* FreeImageFramework.cpp in Sources */,
-				9AEEB24E19C5080D00866C9E /* jddctmgr.c in Sources */,
 				9AEEB3B419C5080D00866C9E /* FIRational.cpp in Sources */,
 				9AEEB20819C5080D00866C9E /* PluginPNM.cpp in Sources */,
-				9AEEB23519C5080D00866C9E /* jcapimin.c in Sources */,
 				9AEEB21B19C5080D00866C9E /* WuQuantizer.cpp in Sources */,
-				9AEEB25119C5080D00866C9E /* jdmainct.c in Sources */,
-				9AEEB27419C5080D00866C9E /* rdgif.c in Sources */,
 				9AEEB21919C5080D00866C9E /* tmoReinhard05.cpp in Sources */,
-				9AEEB25E19C5080D00866C9E /* jidctfst.c in Sources */,
-				9AEEB24C19C5080D00866C9E /* jdcolor.c in Sources */,
 				9AEEB1D319C5080D00866C9E /* DeprecationMgr.cpp in Sources */,
 				9AEEB1FB19C5080D00866C9E /* PluginIFF.cpp in Sources */,
 				9AEEB3B819C5080D00866C9E /* IPTC.cpp in Sources */,
 				9AEEB22719C5080D00866C9E /* Flip.cpp in Sources */,
 				9AEEB1F919C5080D00866C9E /* PluginHDR.cpp in Sources */,
 				9AEEB22919C5080D00866C9E /* MultigridPoissonSolver.cpp in Sources */,
-				9AEEB24619C5080D00866C9E /* jdapimin.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

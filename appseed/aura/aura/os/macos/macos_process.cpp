@@ -69,9 +69,11 @@ CLASS_DECL_AURA int call_async(
                             const char * pszPath, 
                             const char * pszParam, 
                             const char * pszDir,
-                            int iShow)
+                            int iShow,
+                            bool bPrivileged)
 {
-    string strCmdLine;
+   
+   string strCmdLine;
     
     strCmdLine = pszPath;
     if(strlen_dup(pszParam) > 0)

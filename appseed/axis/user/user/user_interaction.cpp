@@ -3463,7 +3463,7 @@ namespace user
 
             //#ifdef WINDOWSEX
 
-            ::PostThreadMessage((uint32_t)m_iaModalThread[i],WM_NULL,0,0);
+            ::PostThreadMessage((IDTHREAD)m_iaModalThread[i],WM_NULL,0,0);
 
             //#else
 

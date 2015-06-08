@@ -416,6 +416,9 @@ namespace aura
       }
 
       m_spfile.alloc(allocer());
+      
+      if(!m_spfile->initialize())
+         throw simple_exception(this,"failed to construct system m_spfile->initialize");
 
       m_spdir.alloc(allocer());
 

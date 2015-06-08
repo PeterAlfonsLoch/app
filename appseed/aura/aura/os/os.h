@@ -3,6 +3,13 @@
 
 #include "cross.h"
 
+/*
+#if _POSIX_C_SOURCE == 200809L
+#error "Only for test!! Good error!! _POSIX_C_SOURCE still 200809L"
+#endf
+*/
+
+
 #ifdef cplusplus
 
 inline bool IsDirSep(WCHAR ch);
@@ -42,3 +49,8 @@ END_EXTERN_C
 
 #include "os_time.h"
 
+/*
+#if _POSIX_C_SOURCE == 200809L
+#error "Only for test!! Good error!! _POSIX_C_SOURCE still 200809L"
+#endf
+*/

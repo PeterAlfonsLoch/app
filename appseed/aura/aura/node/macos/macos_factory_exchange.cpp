@@ -20,6 +20,8 @@ namespace aura
       System.factory().creatable < os                         >   (System.type_info < ::aura::os              > (), 1);
       System.factory().creatable < ansios::process            >   (System.type_info < ::process::process      > (), 1);
       System.factory().creatable < ansios::pipe               >   (System.type_info < ::process::pipe         > (), 1);
+      System.factory().creatable < macos::dir                 >   (System.type_info < ::file::dir::system     > (), 1);
+      System.factory().creatable < macos::file_system         >   (System.type_info < ::file::system          > (), 1);
 
    }
 

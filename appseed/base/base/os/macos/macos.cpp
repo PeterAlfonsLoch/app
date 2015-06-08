@@ -1,9 +1,6 @@
 #include "framework.h"
 
 
-extern thread_pointer < os_thread > t_posthread;
-
-
 string & get_command_line_string()
 {
    static string g_strCommandLine;
@@ -61,7 +58,7 @@ void output_debug_string(const char * psz)
 
 
 
-CLASS_DECL_AURA bool __node_axis_pre_init()
+CLASS_DECL_AURA bool __node_base_pre_init()
 {
 
    
@@ -71,7 +68,7 @@ CLASS_DECL_AURA bool __node_axis_pre_init()
 
 
 
-CLASS_DECL_AURA bool __node_axis_pos_init()
+CLASS_DECL_AURA bool __node_base_pos_init()
 {
    
    
@@ -80,37 +77,16 @@ CLASS_DECL_AURA bool __node_axis_pos_init()
 }
 
 
-
-
-
-CLASS_DECL_AURA bool __node_axis_pre_term()
+CLASS_DECL_AURA bool __node_base_pre_term()
 {
   
-   if(t_posthread != NULL)
-   {
-      
-      try
-      {
-         
-         delete t_posthread;
-         
-      }
-      catch(...)
-      {
-         
-      }
-      
-      t_posthread = NULL;
-      
-   }
-   
    return true;
    
 }
 
 
 
-CLASS_DECL_AURA bool __node_axis_pos_term()
+CLASS_DECL_AURA bool __node_base_pos_term()
 {
    
 

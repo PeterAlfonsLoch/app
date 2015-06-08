@@ -20,4 +20,8 @@
 
 //#include "android/_linux_node.cpp"
 
+#elif defined(MACOS)
+
+#include "macos/_macos_node.cpp"
+
 #endif

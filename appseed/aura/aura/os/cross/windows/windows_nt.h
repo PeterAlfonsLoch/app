@@ -359,9 +359,7 @@ extern "C++" { \
 # define EXTERN_C    extern
 #endif
 
-#ifndef    DIRTY_APPLEOS
 #define STDMETHODCALLTYPE       __stdcall
-#endif
 #define STDMETHODVCALLTYPE      __cdecl
 #define STDAPICALLTYPE          __stdcall
 #define STDAPIVCALLTYPE         __cdecl

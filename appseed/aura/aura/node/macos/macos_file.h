@@ -46,7 +46,6 @@ namespace macos
       };
       
       string         m_strFileName;
-      wstring        m_wstrFileName;
       int32_t        m_iFile;
       
       
@@ -102,10 +101,10 @@ namespace macos
    {
       
       
-      int32_t PASCAL OsErrorToException(LONG lOsError);
-      int32_t PASCAL ErrnoToException(int32_t nErrno);
-      void PASCAL ThrowOsError(::aura::application * papp, LONG lOsError, const char * lpszFileName = NULL);
-      void PASCAL ThrowErrno(::aura::application * papp, int32_t nErrno, const char * lpszFileName = NULL);
+      ::file::exception::e_cause OsErrorToException(LONG lOsError);
+      ::file::exception::e_cause ErrnoToException(int32_t nErrno);
+      void ThrowOsError(::aura::application * papp, LONG lOsError, const char * lpszFileName = NULL);
+      void ThrowErrno(::aura::application * papp, int32_t nErrno, const char * lpszFileName = NULL);
       
       
    }  // namespace file_exception

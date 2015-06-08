@@ -35,9 +35,7 @@ extern "C" {
 
 #ifndef AXISTYPES
 #define AXISTYPES
-#ifndef DIRTY_APPLEOS
 typedef unsigned long ULONG;
-#endif // DIRTY_APPLEOS
 typedef ULONG *PULONG;
 typedef unsigned short USHORT;
 typedef USHORT *PUSHORT;

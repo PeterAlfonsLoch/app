@@ -86,7 +86,7 @@ namespace macos
 
       if(nOpenFlags & ::file::defer_create_directory)
       {
-         Application.dir_mk(Application.dir_name(lpszFileName));
+         Application.dir().mk(::file::path(lpszFileName).folder());
       }
 
 //      m_bCloseOnDelete = FALSE;
@@ -94,7 +94,6 @@ namespace macos
       m_strFileName.Empty();
 
       m_strFileName     = lpszFileName;
-      m_wstrFileName    = ::str::international::utf8_to_unicode(m_strFileName);
 
       ASSERT(sizeof(HANDLE) == sizeof(uint_ptr));
       ASSERT(::file::share_compat == 0);
@@ -535,7 +534,8 @@ namespace macos
 
       ::file::file_status status;
       GetStatus(status);
-      return System.file_name(status.m_strFullName);
+      return status.m_strFullName.name();
+      
    }
 
    string file::GetFileTitle() const
@@ -544,7 +544,7 @@ namespace macos
 
       ::file::file_status status;
       GetStatus(status);
-      return System.file_title(status.m_strFullName);
+      return status.m_strFullName.title();
    }
 
    string file::GetFilePath() const
@@ -580,7 +580,7 @@ namespace macos
 
 
 
-   int32_t OsErrorToException(LONG lOsErr)
+      ::file::exception::e_cause OsErrorToException(LONG lOsErr)
    {
       // NT Error codes
       switch ((UINT)lOsErr)
@@ -1343,7 +1343,7 @@ CLASS_DECL_AURA string vfxStringFromCLSID(REFCLSID rclsid)
  //#endif  //!___NO_OLE_SUPPORT
  */
 
-CLASS_DECL_AURA bool vfxResolveShortcut(string & strTarget, const char * pszSource, ::user::interaction * puiMessageParentOptional)
+CLASS_DECL_AURA bool vfxResolveShortcut(string & strTarget, const char * pszSource, ::aura::interaction * puiMessageParentOptional)
 {
 
 
@@ -1671,7 +1671,7 @@ CLASS_DECL_AURA bool vfxResolveShortcut(string & strTarget, const char * pszSour
 /////////////////////////////////////////////////////////////////////////////
 // WinFileException helpers
 
-void CLASS_DECL_AURA vfxThrowFileException(::aura::application * papp, int32_t cause, LONG lOsError, const char * lpszFileName /* == NULL */)
+void CLASS_DECL_AURA vfxThrowFileException(::aura::application * papp, ::file::exception::e_cause cause, LONG lOsError, const char * lpszFileName /* == NULL */)
 {
 #ifdef DEBUG
    const char * lpsz;
@@ -1684,12 +1684,15 @@ void CLASS_DECL_AURA vfxThrowFileException(::aura::application * papp, int32_t c
    throw ::file::exception(papp, cause, lOsError, lpszFileName);
 }
 
+
 namespace macos
 {
 
-namespace file_exception {
+   
+   namespace file_exception
+   {
 
-int32_t PASCAL ErrnoToException(int32_t nErrno)
+   ::file::exception::e_cause ErrnoToException(int32_t nErrno)
 {
    switch(nErrno)
    {

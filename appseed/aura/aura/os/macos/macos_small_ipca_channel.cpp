@@ -40,7 +40,7 @@ namespace aura
             return false;
          }
 
-         m_strChannel = pszChannel;
+         m_strBaseChannel = pszChannel;
 
          return true;
 
@@ -54,7 +54,7 @@ namespace aura
 
          m_iQueue = -1;
 
-         m_strChannel = "";
+         m_strBaseChannel = "";
 
          return true;
 
@@ -175,7 +175,7 @@ namespace aura
 
 
 
-      small_ipc_rx_channel::small_ipc_rx_channel()
+      rx::rx()
       {
 
          m_preceiver    = NULL;
@@ -183,14 +183,14 @@ namespace aura
       }
 
 
-      small_ipc_rx_channel::~small_ipc_rx_channel()
+      rx::~rx()
       {
 
       }
 
 
 
-      bool small_ipc_rx_channel::create(const char * pszChannel)
+      bool rx::create(const char * pszChannel)
       {
          m_key = ftok(".",'c');
 
@@ -206,7 +206,7 @@ namespace aura
       }
 
 
-      bool small_ipc_rx_channel::destroy()
+      bool rx::destroy()
       {
 
          int iRetry = 23;
@@ -231,14 +231,14 @@ namespace aura
 
       }
 
-      bool small_ipc_rx_channel::start_receiving()
+      bool rx::start_receiving()
       {
 
          m_bRunning = true;
 
          m_bRun = true;
 
-         if(pthread_create(&m_thread,NULL,&small_ipc_rx_channel::receive_proc,this) != 0)
+         if(pthread_create((pthread_t *) m_pthread,NULL,&rx::receive_proc,this) != 0)
          {
 
             m_bRunning = false;
@@ -253,35 +253,35 @@ namespace aura
 
       }
 
-      void * small_ipc_rx_channel::receive_proc(void * param)
+      void * rx::receive_proc(void * param)
       {
 
-         small_ipc_rx_channel * pchannel = (small_ipc_rx_channel *)param;
+         rx * pchannel = (rx *)param;
 
          return pchannel->receive();
 
       }
 
-      void small_ipc_rx_channel::receiver::on_receive(small_ipc_rx_channel * prxchannel,const char * pszMessage)
+      void rx::receiver::on_receive(rx * prx,const char * pszMessage)
       {
       }
 
-      void small_ipc_rx_channel::receiver::on_receive(small_ipc_rx_channel * prxchannel,int message,void * pdata,int len)
+      void rx::receiver::on_receive(rx * prx,int message,void * pdata,int len)
       {
       }
 
-      void small_ipc_rx_channel::receiver::on_post(small_ipc_rx_channel * prxchannel,int64_t a,int64_t b)
+      void rx::receiver::on_post(rx * prx,int64_t a,int64_t b)
       {
       }
 
 
 
-      void * small_ipc_rx_channel::on_receive(small_ipc_rx_channel * prxchannel,const char * pszMessage)
+      void * rx::on_receive(rx * prx,const char * pszMessage)
       {
 
          if(m_preceiver != NULL)
          {
-            m_preceiver->on_receive(prxchannel,pszMessage);
+            m_preceiver->on_receive(prx,pszMessage);
          }
 
          // ODOW - on date of writing : return ignored by this windows implementation
@@ -290,27 +290,12 @@ namespace aura
 
       }
 
-      void * small_ipc_rx_channel::on_receive(small_ipc_rx_channel * prxchannel,int message,void * pdata,int len)
+      void * rx::on_receive(rx * prx,int message,void * pdata,int len)
       {
 
          if(m_preceiver != NULL)
          {
-            m_preceiver->on_receive(prxchannel,message,pdata,len);
-         }
-
-         // ODOW - on date of writing : return ignored by this windows implementation
-
-         return NULL;
-
-      }
-
-
-      void * small_ipc_rx_channel::on_post(small_ipc_rx_channel * prxchannel,int64_t a,int64_t b)
-      {
-
-         if(m_preceiver != NULL)
-         {
-            m_preceiver->on_post(prxchannel,a,b);
+            m_preceiver->on_receive(prx,message,pdata,len);
          }
 
          // ODOW - on date of writing : return ignored by this windows implementation
@@ -320,8 +305,23 @@ namespace aura
       }
 
 
+      void * rx::on_post(rx * prx,int64_t a,int64_t b)
+      {
 
-      bool small_ipc_rx_channel::on_idle()
+         if(m_preceiver != NULL)
+         {
+            m_preceiver->on_post(prx,a,b);
+         }
+
+         // ODOW - on date of writing : return ignored by this windows implementation
+
+         return NULL;
+
+      }
+
+
+
+      bool rx::on_idle()
       {
 
          return false;
@@ -329,7 +329,7 @@ namespace aura
       }
 
 
-      bool small_ipc_rx_channel::is_rx_ok()
+      bool rx::is_rx_ok()
       {
 
          return m_iQueue != -1;
@@ -337,7 +337,7 @@ namespace aura
 
 
 
-      void * small_ipc_rx_channel::receive()
+      void * rx::receive()
       {
 
          while(m_bRun)
@@ -411,12 +411,12 @@ namespace aura
       bool ipc::open_ab(const char * pszChannel,launcher * plauncher)
       {
 
-         m_vssChannel = pszChannel;
+         m_strChannel = pszChannel;
 
          m_rx.m_preceiver = this;
 
-         string strChannelRx = m_vssChannel + "-a";
-         string strChannelTx = m_vssChannel + "-b";
+         string strChannelRx = m_strChannel + "-a";
+         string strChannelTx = m_strChannel + "-b";
 
 
          if(!m_rx.create(strChannelRx))
@@ -436,12 +436,12 @@ namespace aura
       bool ipc::open_ba(const char * pszChannel,launcher * plauncher)
       {
 
-         m_vssChannel = pszChannel;
+         m_strChannel = pszChannel;
 
          m_rx.m_preceiver = this;
 
-         string strChannelRx = m_vssChannel + "-b";
-         string strChannelTx = m_vssChannel + "-a";
+         string strChannelRx = m_strChannel + "-b";
+         string strChannelTx = m_strChannel + "-a";
 
 
          if(!m_rx.create(strChannelRx))

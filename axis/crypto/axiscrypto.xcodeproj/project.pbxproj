@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07502C8F1B24744C008D207C /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07502C881B247427008D207C /* libaura.dylib */; };
 		07558DA91B23DD56008C63AF /* bss_dgram.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DA71B23DD56008C63AF /* bss_dgram.c */; };
 		07558DAA1B23DD56008C63AF /* bss_sock.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DA81B23DD56008C63AF /* bss_sock.c */; };
 		07558DAC1B23DD8B008C63AF /* _bn.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DAB1B23DD8B008C63AF /* _bn.c */; };
@@ -86,6 +87,34 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		07502C871B247427008D207C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07502C811B247427008D207C /* aura.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A98A6151771D67E000AE16E;
+			remoteInfo = aura;
+		};
+		07502C891B247427008D207C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07502C811B247427008D207C /* aura.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AE24D341904CEFE001AEFFB;
+			remoteInfo = aura_ios;
+		};
+		07502C8B1B247427008D207C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07502C811B247427008D207C /* aura.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AE24D431904CEFE001AEFFB;
+			remoteInfo = aura_iosTests;
+		};
+		07502C8D1B24743E008D207C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07502C811B247427008D207C /* aura.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A98A6031771D67E000AE16E;
+			remoteInfo = aura;
+		};
 		9AE24D9D1904CF46001AEFFB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A1B2F7F16A2AF5C00875A94 /* Project object */;
@@ -117,6 +146,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		07502C811B247427008D207C /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../../appseed/aura/aura.xcodeproj; sourceTree = "<group>"; };
 		07558DA71B23DD56008C63AF /* bss_dgram.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bss_dgram.c; sourceTree = "<group>"; };
 		07558DA81B23DD56008C63AF /* bss_sock.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bss_sock.c; sourceTree = "<group>"; };
 		07558DAB1B23DD8B008C63AF /* _bn.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = _bn.c; sourceTree = "<group>"; };
@@ -250,6 +280,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07502C8F1B24744C008D207C /* libaura.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +301,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		07502C821B247427008D207C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				07502C881B247427008D207C /* libaura.dylib */,
+				07502C8A1B247427008D207C /* libaura.dylib */,
+				07502C8C1B247427008D207C /* aura_iosTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		07782A6D199FE92F00206CA1 /* crypto */ = {
 			isa = PBXGroup;
 			children = (
@@ -847,6 +888,7 @@
 		9A1B2F7D16A2AF5C00875A94 = {
 			isa = PBXGroup;
 			children = (
+				07502C811B247427008D207C /* aura.xcodeproj */,
 				9A9D32EC19D4C44D00DC2067 /* asm */,
 				0778A257199FFC1600206CA1 /* openssl */,
 				07782A6D199FE92F00206CA1 /* crypto */,
@@ -1081,6 +1123,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				07502C8E1B24743E008D207C /* PBXTargetDependency */,
 			);
 			name = axiscrypto;
 			productName = basefreeimage_ios;
@@ -1147,6 +1190,12 @@
 			mainGroup = 9A1B2F7D16A2AF5C00875A94;
 			productRefGroup = 9A1B2F7D16A2AF5C00875A94;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 07502C821B247427008D207C /* Products */;
+					ProjectRef = 07502C811B247427008D207C /* aura.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				07B2729319A01A4600E822E1 /* axiscrypto */,
@@ -1155,6 +1204,30 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		07502C881B247427008D207C /* libaura.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libaura.dylib;
+			remoteRef = 07502C871B247427008D207C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		07502C8A1B247427008D207C /* libaura.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libaura.dylib;
+			remoteRef = 07502C891B247427008D207C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		07502C8C1B247427008D207C /* aura_iosTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = aura_iosTests.xctest;
+			remoteRef = 07502C8B1B247427008D207C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		9AE24D951904CF46001AEFFB /* Resources */ = {
@@ -1267,6 +1340,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		07502C8E1B24743E008D207C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = aura;
+			targetProxy = 07502C8D1B24743E008D207C /* PBXContainerItemProxy */;
+		};
 		9AE24D9E1904CF46001AEFFB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9AE24D871904CF46001AEFFB /* axiscrypto_ios */;
@@ -1283,7 +1361,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				LD_DYLIB_INSTALL_NAME = "$(DYLIB_INSTALL_NAME_BASE:standardizepath)/$(EXECUTABLE_PATH)";
 				MACH_O_TYPE = mh_dylib;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = macosx;
@@ -1301,7 +1378,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				LD_DYLIB_INSTALL_NAME = "$(DYLIB_INSTALL_NAME_BASE:standardizepath)/$(EXECUTABLE_PATH)";
 				MACH_O_TYPE = mh_dylib;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = macosx;
@@ -1318,7 +1394,7 @@
 				CLANG_ANALYZER_DEADCODE_DEADSTORES = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_MODULES = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_STATIC_ANALYZER_MODE_ON_ANALYZE_ACTION = shallow;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -1331,6 +1407,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_INSTALL_NAME_BASE = "$(INSTALL_PATH)";
 				EXECUTABLE_EXTENSION = dylib;
 				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -1338,7 +1415,6 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					DIRTY_APPLEOS,
 					USE_SOCKETS,
 					OPENSSL_NO_HW_PADLOCK,
 					OPENSSL_NO_INLINE_ASM,
@@ -1357,6 +1433,7 @@
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
 				);
 				INSTALL_PATH = "$(LOCAL_APPS_DIR)/ca2";
+				LD_DYLIB_INSTALL_NAME = "$(DYLIB_INSTALL_NAME_BASE:standardizepath)/$(EXECUTABLE_PATH)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(TARGET_BUILD_DIR)\"",
@@ -1377,7 +1454,7 @@
 				CLANG_ANALYZER_DEADCODE_DEADSTORES = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_MODULES = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_STATIC_ANALYZER_MODE_ON_ANALYZE_ACTION = shallow;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -1390,12 +1467,12 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_INSTALL_NAME_BASE = "$(INSTALL_PATH)";
 				EXECUTABLE_EXTENSION = dylib;
 				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					DIRTY_APPLEOS,
 					USE_SOCKETS,
 					OPENSSL_NO_HW_PADLOCK,
 					OPENSSL_NO_INLINE_ASM,
@@ -1411,6 +1488,7 @@
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
 				);
 				INSTALL_PATH = "$(LOCAL_APPS_DIR)/ca2";
+				LD_DYLIB_INSTALL_NAME = "$(DYLIB_INSTALL_NAME_BASE:standardizepath)/$(EXECUTABLE_PATH)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(TARGET_BUILD_DIR)\"",

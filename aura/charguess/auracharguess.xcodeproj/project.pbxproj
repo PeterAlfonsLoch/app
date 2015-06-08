@@ -7,48 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9A1EDB1C19C83CD000F5CCE8 /* big5Prober.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EDAEA19C83CD000F5CCE8 /* big5Prober.cpp */; };
+		07502CB01B2529AF008D207C /* _cpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07502CAF1B2529AF008D207C /* _cpp.cpp */; };
+		07502CB21B2529BA008D207C /* charDistribution.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07502CB11B2529BA008D207C /* charDistribution.cpp */; };
 		9A1EDB1D19C83CD000F5CCE8 /* big5Prober.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDAEB19C83CD000F5CCE8 /* big5Prober.h */; };
-		9A1EDB1E19C83CD000F5CCE8 /* charDistribution.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EDAEC19C83CD000F5CCE8 /* charDistribution.cpp */; };
 		9A1EDB1F19C83CD000F5CCE8 /* charDistribution.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDAED19C83CD000F5CCE8 /* charDistribution.h */; };
-		9A1EDB2019C83CD000F5CCE8 /* charguess.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EDAEE19C83CD000F5CCE8 /* charguess.cpp */; };
 		9A1EDB2119C83CD000F5CCE8 /* charsetProber.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDAEF19C83CD000F5CCE8 /* charsetProber.h */; };
 		9A1EDB2219C83CD000F5CCE8 /* codingStateMachine.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDAF019C83CD000F5CCE8 /* codingStateMachine.h */; };
 		9A1EDB2319C83CD000F5CCE8 /* config.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDAF119C83CD000F5CCE8 /* config.h */; };
-		9A1EDB2419C83CD000F5CCE8 /* EscCharsetProber.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EDAF419C83CD000F5CCE8 /* EscCharsetProber.cpp */; };
 		9A1EDB2519C83CD000F5CCE8 /* EscCharsetProber.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDAF519C83CD000F5CCE8 /* EscCharsetProber.h */; };
-		9A1EDB2619C83CD000F5CCE8 /* EscSM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EDAF619C83CD000F5CCE8 /* EscSM.cpp */; };
-		9A1EDB2719C83CD000F5CCE8 /* EUCJPProber.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EDAF719C83CD000F5CCE8 /* EUCJPProber.cpp */; };
 		9A1EDB2819C83CD000F5CCE8 /* EUCJPProber.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDAF819C83CD000F5CCE8 /* EUCJPProber.h */; };
-		9A1EDB2919C83CD000F5CCE8 /* EUCKRProber.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EDAFA19C83CD000F5CCE8 /* EUCKRProber.cpp */; };
 		9A1EDB2A19C83CD000F5CCE8 /* EUCKRProber.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDAFB19C83CD000F5CCE8 /* EUCKRProber.h */; };
-		9A1EDB2B19C83CD000F5CCE8 /* EUCTWProber.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EDAFD19C83CD000F5CCE8 /* EUCTWProber.cpp */; };
 		9A1EDB2C19C83CD000F5CCE8 /* EUCTWProber.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDAFE19C83CD000F5CCE8 /* EUCTWProber.h */; };
-		9A1EDB2D19C83CD000F5CCE8 /* GB2312Prober.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EDB0019C83CD000F5CCE8 /* GB2312Prober.cpp */; };
 		9A1EDB2E19C83CD000F5CCE8 /* GB2312Prober.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB0119C83CD000F5CCE8 /* GB2312Prober.h */; };
-		9A1EDB2F19C83CD000F5CCE8 /* jpCntx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EDB0319C83CD000F5CCE8 /* jpCntx.cpp */; };
 		9A1EDB3019C83CD000F5CCE8 /* jpCntx.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB0419C83CD000F5CCE8 /* jpCntx.h */; };
-		9A1EDB3119C83CD000F5CCE8 /* LangBulgarianModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EDB0519C83CD000F5CCE8 /* LangBulgarianModel.cpp */; };
-		9A1EDB3219C83CD000F5CCE8 /* LangCyrillicModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EDB0619C83CD000F5CCE8 /* LangCyrillicModel.cpp */; };
-		9A1EDB3319C83CD000F5CCE8 /* LangGreekModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EDB0719C83CD000F5CCE8 /* LangGreekModel.cpp */; };
-		9A1EDB3419C83CD000F5CCE8 /* LangHungarianModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EDB0819C83CD000F5CCE8 /* LangHungarianModel.cpp */; };
-		9A1EDB3519C83CD000F5CCE8 /* LangThaiModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EDB0919C83CD000F5CCE8 /* LangThaiModel.cpp */; };
-		9A1EDB3619C83CD000F5CCE8 /* Latin1Prober.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EDB0A19C83CD000F5CCE8 /* Latin1Prober.cpp */; };
 		9A1EDB3719C83CD000F5CCE8 /* Latin1Prober.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB0B19C83CD000F5CCE8 /* Latin1Prober.h */; };
-		9A1EDB3819C83CD000F5CCE8 /* MBCSGroupProber.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EDB0D19C83CD000F5CCE8 /* MBCSGroupProber.cpp */; };
 		9A1EDB3919C83CD000F5CCE8 /* MBCSGroupProber.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB0E19C83CD000F5CCE8 /* MBCSGroupProber.h */; };
-		9A1EDB3A19C83CD000F5CCE8 /* MBCSSM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EDB0F19C83CD000F5CCE8 /* MBCSSM.cpp */; };
 		9A1EDB3B19C83CD000F5CCE8 /* pkgInt.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB1019C83CD000F5CCE8 /* pkgInt.h */; };
-		9A1EDB3C19C83CD000F5CCE8 /* SBCharsetProber.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EDB1119C83CD000F5CCE8 /* SBCharsetProber.cpp */; };
 		9A1EDB3D19C83CD000F5CCE8 /* SBCharsetProber.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB1219C83CD000F5CCE8 /* SBCharsetProber.h */; };
-		9A1EDB3E19C83CD000F5CCE8 /* SBCSGroupProber.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EDB1319C83CD000F5CCE8 /* SBCSGroupProber.cpp */; };
 		9A1EDB3F19C83CD000F5CCE8 /* SBCSGroupProber.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB1419C83CD000F5CCE8 /* SBCSGroupProber.h */; };
-		9A1EDB4019C83CD000F5CCE8 /* SJISProber.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EDB1519C83CD000F5CCE8 /* SJISProber.cpp */; };
 		9A1EDB4119C83CD000F5CCE8 /* SJISProber.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB1619C83CD000F5CCE8 /* SJISProber.h */; };
 		9A1EDB4219C83CD000F5CCE8 /* types.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB1719C83CD000F5CCE8 /* types.h */; };
-		9A1EDB4319C83CD000F5CCE8 /* universal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EDB1819C83CD000F5CCE8 /* universal.cpp */; };
 		9A1EDB4419C83CD000F5CCE8 /* universal.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB1919C83CD000F5CCE8 /* universal.h */; };
-		9A1EDB4519C83CD000F5CCE8 /* UTF8Prober.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EDB1A19C83CD000F5CCE8 /* UTF8Prober.cpp */; };
 		9A1EDB4619C83CD000F5CCE8 /* UTF8Prober.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB1B19C83CD000F5CCE8 /* UTF8Prober.h */; };
 		9A1EDB5519C83FFB00F5CCE8 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A1EDB4E19C83FE800F5CCE8 /* libaura.dylib */; };
 /* End PBXBuildFile section */
@@ -85,48 +64,27 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9A1EDAEA19C83CD000F5CCE8 /* big5Prober.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = big5Prober.cpp; sourceTree = "<group>"; };
+		07502CAF1B2529AF008D207C /* _cpp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _cpp.cpp; sourceTree = "<group>"; };
+		07502CB11B2529BA008D207C /* charDistribution.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = charDistribution.cpp; sourceTree = "<group>"; };
 		9A1EDAEB19C83CD000F5CCE8 /* big5Prober.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = big5Prober.h; sourceTree = "<group>"; };
-		9A1EDAEC19C83CD000F5CCE8 /* charDistribution.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = charDistribution.cpp; sourceTree = "<group>"; };
 		9A1EDAED19C83CD000F5CCE8 /* charDistribution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = charDistribution.h; sourceTree = "<group>"; };
-		9A1EDAEE19C83CD000F5CCE8 /* charguess.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = charguess.cpp; sourceTree = "<group>"; };
 		9A1EDAEF19C83CD000F5CCE8 /* charsetProber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = charsetProber.h; sourceTree = "<group>"; };
 		9A1EDAF019C83CD000F5CCE8 /* codingStateMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = codingStateMachine.h; sourceTree = "<group>"; };
 		9A1EDAF119C83CD000F5CCE8 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
-		9A1EDAF419C83CD000F5CCE8 /* EscCharsetProber.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EscCharsetProber.cpp; sourceTree = "<group>"; };
 		9A1EDAF519C83CD000F5CCE8 /* EscCharsetProber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EscCharsetProber.h; sourceTree = "<group>"; };
-		9A1EDAF619C83CD000F5CCE8 /* EscSM.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EscSM.cpp; sourceTree = "<group>"; };
-		9A1EDAF719C83CD000F5CCE8 /* EUCJPProber.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EUCJPProber.cpp; sourceTree = "<group>"; };
 		9A1EDAF819C83CD000F5CCE8 /* EUCJPProber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EUCJPProber.h; sourceTree = "<group>"; };
-		9A1EDAFA19C83CD000F5CCE8 /* EUCKRProber.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EUCKRProber.cpp; sourceTree = "<group>"; };
 		9A1EDAFB19C83CD000F5CCE8 /* EUCKRProber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EUCKRProber.h; sourceTree = "<group>"; };
-		9A1EDAFD19C83CD000F5CCE8 /* EUCTWProber.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EUCTWProber.cpp; sourceTree = "<group>"; };
 		9A1EDAFE19C83CD000F5CCE8 /* EUCTWProber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EUCTWProber.h; sourceTree = "<group>"; };
-		9A1EDB0019C83CD000F5CCE8 /* GB2312Prober.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GB2312Prober.cpp; sourceTree = "<group>"; };
 		9A1EDB0119C83CD000F5CCE8 /* GB2312Prober.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GB2312Prober.h; sourceTree = "<group>"; };
-		9A1EDB0319C83CD000F5CCE8 /* jpCntx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = jpCntx.cpp; sourceTree = "<group>"; };
 		9A1EDB0419C83CD000F5CCE8 /* jpCntx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jpCntx.h; sourceTree = "<group>"; };
-		9A1EDB0519C83CD000F5CCE8 /* LangBulgarianModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LangBulgarianModel.cpp; sourceTree = "<group>"; };
-		9A1EDB0619C83CD000F5CCE8 /* LangCyrillicModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LangCyrillicModel.cpp; sourceTree = "<group>"; };
-		9A1EDB0719C83CD000F5CCE8 /* LangGreekModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LangGreekModel.cpp; sourceTree = "<group>"; };
-		9A1EDB0819C83CD000F5CCE8 /* LangHungarianModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LangHungarianModel.cpp; sourceTree = "<group>"; };
-		9A1EDB0919C83CD000F5CCE8 /* LangThaiModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LangThaiModel.cpp; sourceTree = "<group>"; };
-		9A1EDB0A19C83CD000F5CCE8 /* Latin1Prober.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Latin1Prober.cpp; sourceTree = "<group>"; };
 		9A1EDB0B19C83CD000F5CCE8 /* Latin1Prober.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Latin1Prober.h; sourceTree = "<group>"; };
-		9A1EDB0D19C83CD000F5CCE8 /* MBCSGroupProber.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MBCSGroupProber.cpp; sourceTree = "<group>"; };
 		9A1EDB0E19C83CD000F5CCE8 /* MBCSGroupProber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBCSGroupProber.h; sourceTree = "<group>"; };
-		9A1EDB0F19C83CD000F5CCE8 /* MBCSSM.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MBCSSM.cpp; sourceTree = "<group>"; };
 		9A1EDB1019C83CD000F5CCE8 /* pkgInt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pkgInt.h; sourceTree = "<group>"; };
-		9A1EDB1119C83CD000F5CCE8 /* SBCharsetProber.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SBCharsetProber.cpp; sourceTree = "<group>"; };
 		9A1EDB1219C83CD000F5CCE8 /* SBCharsetProber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBCharsetProber.h; sourceTree = "<group>"; };
-		9A1EDB1319C83CD000F5CCE8 /* SBCSGroupProber.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SBCSGroupProber.cpp; sourceTree = "<group>"; };
 		9A1EDB1419C83CD000F5CCE8 /* SBCSGroupProber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBCSGroupProber.h; sourceTree = "<group>"; };
-		9A1EDB1519C83CD000F5CCE8 /* SJISProber.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SJISProber.cpp; sourceTree = "<group>"; };
 		9A1EDB1619C83CD000F5CCE8 /* SJISProber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJISProber.h; sourceTree = "<group>"; };
 		9A1EDB1719C83CD000F5CCE8 /* types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
-		9A1EDB1819C83CD000F5CCE8 /* universal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = universal.cpp; sourceTree = "<group>"; };
 		9A1EDB1919C83CD000F5CCE8 /* universal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = universal.h; sourceTree = "<group>"; };
-		9A1EDB1A19C83CD000F5CCE8 /* UTF8Prober.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UTF8Prober.cpp; sourceTree = "<group>"; };
 		9A1EDB1B19C83CD000F5CCE8 /* UTF8Prober.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTF8Prober.h; sourceTree = "<group>"; };
 		9A1EDB4719C83FE800F5CCE8 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../../appseed/aura/aura.xcodeproj; sourceTree = "<group>"; };
 		9AA539B119B763C400B9F861 /* libauracharguess.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libauracharguess.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -156,48 +114,27 @@
 		9A1EDAE819C83CD000F5CCE8 /* cpp */ = {
 			isa = PBXGroup;
 			children = (
-				9A1EDAEA19C83CD000F5CCE8 /* big5Prober.cpp */,
+				07502CB11B2529BA008D207C /* charDistribution.cpp */,
+				07502CAF1B2529AF008D207C /* _cpp.cpp */,
 				9A1EDAEB19C83CD000F5CCE8 /* big5Prober.h */,
-				9A1EDAEC19C83CD000F5CCE8 /* charDistribution.cpp */,
 				9A1EDAED19C83CD000F5CCE8 /* charDistribution.h */,
-				9A1EDAEE19C83CD000F5CCE8 /* charguess.cpp */,
 				9A1EDAEF19C83CD000F5CCE8 /* charsetProber.h */,
 				9A1EDAF019C83CD000F5CCE8 /* codingStateMachine.h */,
 				9A1EDAF119C83CD000F5CCE8 /* config.h */,
-				9A1EDAF419C83CD000F5CCE8 /* EscCharsetProber.cpp */,
 				9A1EDAF519C83CD000F5CCE8 /* EscCharsetProber.h */,
-				9A1EDAF619C83CD000F5CCE8 /* EscSM.cpp */,
-				9A1EDAF719C83CD000F5CCE8 /* EUCJPProber.cpp */,
 				9A1EDAF819C83CD000F5CCE8 /* EUCJPProber.h */,
-				9A1EDAFA19C83CD000F5CCE8 /* EUCKRProber.cpp */,
 				9A1EDAFB19C83CD000F5CCE8 /* EUCKRProber.h */,
-				9A1EDAFD19C83CD000F5CCE8 /* EUCTWProber.cpp */,
 				9A1EDAFE19C83CD000F5CCE8 /* EUCTWProber.h */,
-				9A1EDB0019C83CD000F5CCE8 /* GB2312Prober.cpp */,
 				9A1EDB0119C83CD000F5CCE8 /* GB2312Prober.h */,
-				9A1EDB0319C83CD000F5CCE8 /* jpCntx.cpp */,
 				9A1EDB0419C83CD000F5CCE8 /* jpCntx.h */,
-				9A1EDB0519C83CD000F5CCE8 /* LangBulgarianModel.cpp */,
-				9A1EDB0619C83CD000F5CCE8 /* LangCyrillicModel.cpp */,
-				9A1EDB0719C83CD000F5CCE8 /* LangGreekModel.cpp */,
-				9A1EDB0819C83CD000F5CCE8 /* LangHungarianModel.cpp */,
-				9A1EDB0919C83CD000F5CCE8 /* LangThaiModel.cpp */,
-				9A1EDB0A19C83CD000F5CCE8 /* Latin1Prober.cpp */,
 				9A1EDB0B19C83CD000F5CCE8 /* Latin1Prober.h */,
-				9A1EDB0D19C83CD000F5CCE8 /* MBCSGroupProber.cpp */,
 				9A1EDB0E19C83CD000F5CCE8 /* MBCSGroupProber.h */,
-				9A1EDB0F19C83CD000F5CCE8 /* MBCSSM.cpp */,
 				9A1EDB1019C83CD000F5CCE8 /* pkgInt.h */,
-				9A1EDB1119C83CD000F5CCE8 /* SBCharsetProber.cpp */,
 				9A1EDB1219C83CD000F5CCE8 /* SBCharsetProber.h */,
-				9A1EDB1319C83CD000F5CCE8 /* SBCSGroupProber.cpp */,
 				9A1EDB1419C83CD000F5CCE8 /* SBCSGroupProber.h */,
-				9A1EDB1519C83CD000F5CCE8 /* SJISProber.cpp */,
 				9A1EDB1619C83CD000F5CCE8 /* SJISProber.h */,
 				9A1EDB1719C83CD000F5CCE8 /* types.h */,
-				9A1EDB1819C83CD000F5CCE8 /* universal.cpp */,
 				9A1EDB1919C83CD000F5CCE8 /* universal.h */,
-				9A1EDB1A19C83CD000F5CCE8 /* UTF8Prober.cpp */,
 				9A1EDB1B19C83CD000F5CCE8 /* UTF8Prober.h */,
 			);
 			path = cpp;
@@ -325,29 +262,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A1EDB3A19C83CD000F5CCE8 /* MBCSSM.cpp in Sources */,
-				9A1EDB3119C83CD000F5CCE8 /* LangBulgarianModel.cpp in Sources */,
-				9A1EDB2619C83CD000F5CCE8 /* EscSM.cpp in Sources */,
-				9A1EDB4319C83CD000F5CCE8 /* universal.cpp in Sources */,
-				9A1EDB2D19C83CD000F5CCE8 /* GB2312Prober.cpp in Sources */,
-				9A1EDB3519C83CD000F5CCE8 /* LangThaiModel.cpp in Sources */,
-				9A1EDB3619C83CD000F5CCE8 /* Latin1Prober.cpp in Sources */,
-				9A1EDB3E19C83CD000F5CCE8 /* SBCSGroupProber.cpp in Sources */,
-				9A1EDB2919C83CD000F5CCE8 /* EUCKRProber.cpp in Sources */,
-				9A1EDB2B19C83CD000F5CCE8 /* EUCTWProber.cpp in Sources */,
-				9A1EDB4019C83CD000F5CCE8 /* SJISProber.cpp in Sources */,
-				9A1EDB2F19C83CD000F5CCE8 /* jpCntx.cpp in Sources */,
-				9A1EDB2419C83CD000F5CCE8 /* EscCharsetProber.cpp in Sources */,
-				9A1EDB3319C83CD000F5CCE8 /* LangGreekModel.cpp in Sources */,
-				9A1EDB2019C83CD000F5CCE8 /* charguess.cpp in Sources */,
-				9A1EDB3219C83CD000F5CCE8 /* LangCyrillicModel.cpp in Sources */,
-				9A1EDB3C19C83CD000F5CCE8 /* SBCharsetProber.cpp in Sources */,
-				9A1EDB3819C83CD000F5CCE8 /* MBCSGroupProber.cpp in Sources */,
-				9A1EDB2719C83CD000F5CCE8 /* EUCJPProber.cpp in Sources */,
-				9A1EDB3419C83CD000F5CCE8 /* LangHungarianModel.cpp in Sources */,
-				9A1EDB1C19C83CD000F5CCE8 /* big5Prober.cpp in Sources */,
-				9A1EDB4519C83CD000F5CCE8 /* UTF8Prober.cpp in Sources */,
-				9A1EDB1E19C83CD000F5CCE8 /* charDistribution.cpp in Sources */,
+				07502CB01B2529AF008D207C /* _cpp.cpp in Sources */,
+				07502CB21B2529BA008D207C /* charDistribution.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

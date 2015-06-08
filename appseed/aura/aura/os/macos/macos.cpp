@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-extern thread_pointer < os_thread > t_posthread;
+//extern thread_pointer < os_thread > t_posthread;
 
 
 string & get_command_line_string()
@@ -74,9 +74,9 @@ CLASS_DECL_AURA bool __node_aura_pre_init()
 CLASS_DECL_AURA bool __node_aura_pos_init()
 {
    
-   t_posthread = new os_thread(NULL, NULL);
-   
-   t_posthread->m_bRun = true;
+//   t_posthread = new os_thread(NULL, NULL);
+//   
+//   t_posthread->m_bRun = true;
    
    return true;
    
@@ -89,23 +89,23 @@ CLASS_DECL_AURA bool __node_aura_pos_init()
 CLASS_DECL_AURA bool __node_aura_pre_term()
 {
   
-   if(t_posthread != NULL)
-   {
-      
-      try
-      {
-         
-         delete t_posthread;
-         
-      }
-      catch(...)
-      {
-         
-      }
-      
-      t_posthread = NULL;
-      
-   }
+//   if(t_posthread != NULL)
+//   {
+//      
+//      try
+//      {
+//         
+//         delete t_posthread;
+//         
+//      }
+//      catch(...)
+//      {
+//         
+//      }
+//      
+//      t_posthread = NULL;
+//      
+//   }
    
    return true;
    

@@ -18,10 +18,10 @@ namespace macos
    }
 
 
-   string crypto::get_crypt_key_file_path()
+   ::file::path crypto::get_crypt_key_file_path()
    {
 
-      return System.dir().path(getenv("home"), ".ca2/cryptkey");
+      return ::file::path(getenv("home")) / ".ca2/cryptkey";
 
    }
 
@@ -38,12 +38,12 @@ namespace macos
       if(!::crypto_decrypt(memOut, memIn, pszSalt))
          return false;
 
-
       storageDecrypt = memOut;
 
       return true;
 
    }
+   
 
    bool crypto::encrypt(primitive::memory & storageEncrypt, const primitive::memory & storageDecrypt, const char * pszSalt)
    {
@@ -57,7 +57,6 @@ namespace macos
       if(!::crypto_encrypt(memOut, memIn, pszSalt))
          return false;
 
-
       storageEncrypt = memOut;
 
       return true;
@@ -66,5 +65,11 @@ namespace macos
 
 
 } // namespace macos
+
+
+
+
+
+
 
 

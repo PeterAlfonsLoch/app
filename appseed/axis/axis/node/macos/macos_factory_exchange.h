@@ -5,21 +5,21 @@ namespace macos
 {
 
    
-   namespace base
+   namespace axis
    {
    
    
-   class CLASS_DECL_BASE factory_exchange :
+      class CLASS_DECL_AXIS factory_exchange :
       virtual public ::object
-   {
-   public:
-      
-      
-      factory_exchange(sp(::aura::application) papp);
-      virtual ~factory_exchange();
-      
-      
-   };
+      {
+      public:
+         
+         
+         factory_exchange(sp(::aura::application) papp);
+         virtual ~factory_exchange();
+         
+         
+      };
       
       
    } // namespace base

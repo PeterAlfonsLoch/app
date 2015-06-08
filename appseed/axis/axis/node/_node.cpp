@@ -13,6 +13,10 @@
 
 #elif defined(METROWIN)
 
-#include "linux/_metrowin_node.cpp"
+#include "metrowin/_metrowin_node.cpp"
+
+#elif defined(MACOS)
+
+#include "macos/_macos_node.cpp"
 
 #endif

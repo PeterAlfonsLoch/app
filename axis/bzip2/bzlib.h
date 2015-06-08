@@ -23,7 +23,7 @@
 #define _BZLIB_H
 
 
-#ifdef WINAPI_PARTITION_APP
+#if defined(WINAPI_PARTITION_APP) || defined(__APPLE__)
 
 typedef unsigned char   u_char;
 typedef unsigned short  u_short;

@@ -1327,6 +1327,13 @@ restart:
    }
 
 
+   bool system::initialize()
+   {
+      
+      return true;
+      
+   }
+
 
 } // namespace file
 

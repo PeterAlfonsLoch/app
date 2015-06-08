@@ -8,7 +8,8 @@ namespace macos
 
 
    file_set::file_set(sp(::aura::application) papp) :
-   ::object(papp)
+      ::object(papp),
+      m_straFile(papp)
    {
 
    }
@@ -125,13 +126,13 @@ namespace macos
             if(bRecursive)
             {
 
-               Application.dir().rls_pattern(m_straSearch.element_at(i), strFilter, &m_straFile);
+               m_straFile.rls_pattern(m_straSearch.element_at(i), strFilter);
 
             }
             else
             {
 
-               Application.dir().ls_pattern(m_straSearch.element_at(i), strFilter, &m_straFile);
+               m_straFile.ls_pattern(m_straSearch.element_at(i), strFilter);
 
             }
 

@@ -67,6 +67,12 @@ CLASS_DECL_AURA void vfxThrowFileException(::aura::application * papp, ::file::e
 #include "macos_shell.h"
 #include "macos_stdio_file.h"
 
+#include "macos_dir.h"
+#include "macos_file_system.h"
+
+
+
+
 
 
 

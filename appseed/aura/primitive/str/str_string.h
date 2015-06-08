@@ -19,15 +19,15 @@ template < typename STRINGABLE >
 inline string & to_string(string & str, STRINGABLE & stringable)
 {
 
-   return stringable.to_string(str);
+   return (&stringable)->to_string(str);
 
 }
 
 template < typename STRINGABLE >
-inline string & to_string(string & str,STRINGABLE * po)
+inline string & to_string(string & str,STRINGABLE * pstringable)
 {
 
-   return po->to_string(str);
+   return pstringable->to_string(str);
 
 }
 

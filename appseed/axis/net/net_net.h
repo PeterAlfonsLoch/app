@@ -1,8 +1,14 @@
 #pragma once
 
-#if defined(LINUX)
+#if defined(LINUX) || defined(APPLEOS)
 
 #include <netinet/in.h>
+
+#if defined(APPLEOS)
+
+typedef in6_addr in_addr6;
+
+#endif
 
 #endif
 

@@ -1,13 +1,15 @@
 #include "framework.h"
+#include "macos.h"
 
-void dappy(const char * psz);
 
-namespace aura
+namespace base
 {
 
 
    simple_app::simple_app():
-      ::aura::system(this)
+      ::aura::system(this),
+      ::axis::system(this),
+      ::base::system(this)
    {
 
    }
@@ -216,7 +218,7 @@ namespace aura
    }
 
 
-} // namespace aura
+} // namespace base
 
 
 

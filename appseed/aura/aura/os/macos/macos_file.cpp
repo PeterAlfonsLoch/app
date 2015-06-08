@@ -17,9 +17,9 @@ CLASS_DECL_AURA void dll_processes(uint_array & dwa, stringa & straProcesses, co
    
 }
 
-string get_sys_temp_path()
+::file::path dir::sys_temp()
 {
    
-   return ::dir::path(getenv("HOME"), ".ca2", "time");
+   return ::file::path(getenv("HOME")) / ".ca2" / "time";
    
 }

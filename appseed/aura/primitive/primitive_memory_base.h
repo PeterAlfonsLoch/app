@@ -380,11 +380,7 @@ namespace primitive
 
    inline memory_base & memory_base::operator = (const memory_base & s)
    {
-      if(&s == NULL)
-      {
-         allocate(0);
-      }
-      else if(this != &s)
+      if(this != &s)
       {
          copy_from(&s);
       }
@@ -393,10 +389,7 @@ namespace primitive
 
    inline memory_base & memory_base::operator += (const memory_base & s)
    {
-      if(&s != NULL)
-      {
-         append(s);
-      }
+      append(s);
       return *this;
    }
 

@@ -26,4 +26,11 @@
 #include "metrowin/_metrowin_os.cpp"
 
 
+#elif defined(MACOS)
+
+
+#include "ansios/_ansios_os.cpp"
+#include "macos/_macos_os.cpp"
+
+
 #endif

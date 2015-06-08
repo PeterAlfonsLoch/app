@@ -23,7 +23,7 @@ namespace macos
       virtual bool get_pid_by_path(const char * pszName, DWORD & dwPid);
       virtual bool get_pid_by_title(const char * pszName, DWORD & dwPid);
       virtual void get_all_processes(uint_array & dwa);
-      virtual string get_process_path(DWORD dwPid);
+       virtual ::file::path get_process_path(DWORD dwPid);
       
       virtual bool connection_settings_get_auto_detect();
       virtual string connection_settings_get_auto_config_url();
@@ -51,7 +51,7 @@ namespace macos
       virtual bool start_service(sp(::aura::application) papp);
       virtual bool stop_service(sp(::aura::application) papp);
       
-      virtual bool resolve_link(string & strTarget, const char * pszSource, ::user::interaction * puiMessageParentOptional = NULL);
+      virtual bool resolve_link(string & strTarget, const char * pszSource, ::aura::interaction * puiMessageParentOptional = NULL);
       
       void raise_exception( DWORD dwExceptionCode, DWORD dwExceptionFlags);
       

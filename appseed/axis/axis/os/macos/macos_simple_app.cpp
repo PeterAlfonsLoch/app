@@ -2,14 +2,13 @@
 #include "macos.h"
 
 
-namespace base
+namespace axis
 {
 
 
    simple_app::simple_app():
       ::aura::system(this),
-      ::axis::system(this),
-      ::base::system(this)
+      ::axis::system(this)
    {
 
    }
@@ -218,7 +217,7 @@ namespace base
    }
 
 
-} // namespace base
+} // namespace axis
 
 
 

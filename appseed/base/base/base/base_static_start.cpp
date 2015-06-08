@@ -9,13 +9,13 @@
 
 //#include "axis/os/macos/macos_window_impl.h"
 
-extern oswindow_dataptra * g_poswindowdataptra;
+//extern oswindow_dataptra * g_poswindowdataptra;
 
 #elif defined(APPLE_IOS)
 
 //#include "axis/os/ios/ios_window_impl.h"
 
-extern oswindow_dataptra * g_poswindowdataptra;
+//extern oswindow_dataptra * g_poswindowdataptra;
 
 #endif
 

@@ -18,8 +18,13 @@
 
 
 
-int MessageBoxA(oswindow window, const char * pszMessage, const char * pszHeader, UINT uType )
+int MessageBoxW(oswindow window, const wchar_t * pszMessageParam, const wchar_t * pszHeaderParam, UINT uType )
 {
+   
+   string pszMessage(pszMessageParam);
+   
+   string pszHeader(pszHeaderParam);
+   
    //convert the strings from char* to CFStringRef
    CFStringRef header_ref      = CFStringCreateWithCString( NULL, pszHeader,     strlen(pszHeader)    );
    CFStringRef message_ref  = CFStringCreateWithCString( NULL, pszMessage,  strlen(pszMessage) );

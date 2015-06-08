@@ -245,23 +245,7 @@ namespace aura
       template < class APP >
       APP & cast_app()
       {
-         if(this == NULL)
-            return (*(APP *)NULL);
-         void * papp;
-#ifdef WINDOWS
-         if(!app_map_lookup(typeid(APP).name(),papp))
-#else
-         if(!app_map_lookup(typeid(APP).name(), papp))
-#endif
-         {
-            papp = dynamic_cast <APP *> (this);
-#ifdef WINDOWS
-            app_map_set(typeid(APP).name(),papp);
-#else
-            app_map_set(typeid(APP).name(), papp);
-#endif
-         }
-         return (*(APP *)papp);
+         return dynamic_cast < APP * > (this);
       }
 
       virtual void _001CloseApplication();

@@ -2,6 +2,11 @@
 #include "axis/net/net_sockets.h"
 
 
+#ifdef APPLEOS
+
+extern oswindow_dataptra * g_poswindowdataptra;
+
+#endif
 
 
 namespace axis

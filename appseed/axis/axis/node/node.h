@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "aura/node/macos/macos.h"
+
+
 void __node_axis_factory_exchange(::aura::application * papp);
 
 

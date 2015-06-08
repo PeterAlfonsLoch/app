@@ -24,7 +24,7 @@
 
 
 
-#ifndef LINUX
+#if !defined(LINUX) && !defined(__APPLE__)
 #include "mem_clr.c"
 #endif
 #include "mem_dbg.c"

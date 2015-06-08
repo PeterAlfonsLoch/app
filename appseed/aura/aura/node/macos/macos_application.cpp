@@ -31,7 +31,7 @@ namespace macos
       //      ::ca2::smart_pointer < ::application_base > ::m_p->_001OnFileNew(NULL);
    }
 
-   ::user::document * application::_001OpenDocumentFile(var varFile)
+   ::aura::document * application::_001OpenDocumentFile(var varFile)
    {
       //    return ::ca2::smart_pointer < ::application_base > ::m_p->_001OpenDocumentFile(varFile);
       return NULL;
@@ -265,81 +265,6 @@ namespace macos
 
    }
 
-   bool application::update_module_paths()
-   {
-      string str;
-
-      char * lpsz = str.GetBufferSetLength(1024);
-
-      uint32_t size = 1024;
-
-      if(_NSGetExecutablePath(lpsz, &size) == 0)
-      {
-
-         str.ReleaseBuffer();
-
-      }
-      else
-      {
-
-         lpsz = str.GetBufferSetLength(size);
-
-         if(_NSGetExecutablePath(lpsz, &size) == 0)
-         {
-
-            str.ReleaseBuffer();
-
-         }
-         else
-         {
-
-            return false;
-
-         }
-
-      }
-
-      System.m_strModuleFolder = ::dir::name(str);
-
-
-      {
-
-         System.m_strCa2ModuleFolder = ca2_module_folder_dup();
-
-/*
-
-         char * pszCurDir = getcwd(NULL, 0);
-
-         string strCurDir = pszCurDir;
-
-         free(pszCurDir);
-
-         if(file_exists_dup(::dir::path(strCurDir, "libcore.dylib")))
-         {
-
-            System.m_strCa2ModuleFolder = strCurDir;
-
-         }
-         else if(file_exists_dup(::dir::path(System.m_strModuleFolder, "libcore.dylib")))
-         {
-
-            System.m_strCa2ModuleFolder = System.m_strModuleFolder;
-
-         }
-         else
-         {
-
-            System.m_strCa2ModuleFolder = ::dir::name(::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libcore.dylib", "rfs")); // readable - normal file - non zero sized
-
-         }
- */
-
-      }
-
-
-      return true;
-
-   }
 
 
 

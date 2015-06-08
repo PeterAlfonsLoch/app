@@ -32,6 +32,10 @@
 #include "linux/_linux_os.cpp"
 #include "ansios/_ansios_os.cpp"
 #include "x11/x11_windowing.cpp"
+#elif defined(MACOS)
+#include "cross/windows/_cross_windows.cpp"
+#include "macos/_macos_os.cpp"
+#include "ansios/_ansios_os.cpp"
 #endif
 
 #ifdef ENABLE_BINRELOC

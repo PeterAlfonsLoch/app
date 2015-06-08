@@ -2,6 +2,26 @@
 #include "macos.h"
 
 
+#include <unistd.h>
+
+/*
+ Example code to obtain IP and MAC for all available interfaces on Linux.
+ by Adam Pierce <adam@doctort.org>
+ 
+ http://www.doctort.org/adam/
+ Ķ
+ */
+
+#ifndef __USE_MISC
+#define __USE_MISC
+#endif
+#include <sys/ioctl.h>
+#include <net/if.h>
+#include <netinet/in.h>
+#include <stdio.h>
+#include <arpa/inet.h>
+#include <netdb.h>
+
 namespace macos
 {
 
@@ -58,7 +78,7 @@ namespace macos
 
          memcpy(&addr.s_addr, phostent->h_addr_list[nAdapter], phostent->h_length);
 
-         str = to_vsstring(&addr);
+         str = to_string(addr);
 
          if(str.has_char())
          {
@@ -72,10 +92,20 @@ namespace macos
       }
 
       return TRUE;
+      
    }
 
 
-
 } // namespace macos
+
+
+
+
+
+
+
+
+
+
 
 

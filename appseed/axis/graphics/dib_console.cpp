@@ -87,7 +87,7 @@ void dib_console::write(const char * psz)
    while(*psz)
    {
       ::str::international::multibyte_to_utf8(437,str,string(*psz));
-      wstring wstr = str;
+      wstring wstr = u16(str);
       wchar_t w = ((const wchar_t *)wstr)[0];
       //    m_dib->get_graphics()->
       m_dib->get_graphics()->set_smooth_mode(::draw2d::smooth_mode_none);
@@ -336,7 +336,11 @@ void dib_console::write(const char * psz)
 
 void dib_console::write(const void * lpBuf,::primitive::memory_size nCount)
 {
+#ifdef WINDOWS
    string str((const char *)lpBuf,MIN(strnlen_s((const char *)lpBuf,nCount),nCount));
+#else
+   string str((const char *)lpBuf,MIN(strnlen((const char *)lpBuf,nCount),nCount));
+#endif
    write(str);
 }
 

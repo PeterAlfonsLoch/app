@@ -26,7 +26,7 @@
 #include "../bzlib_private.h"
 
 //#include"framework.h"
-#ifdef LINUX
+#if defined(LINUX) || defined(__APPLE__)
 #include<stdarg.h>
 #endif
 //#include"axis/bzip2/bzlib.h"
