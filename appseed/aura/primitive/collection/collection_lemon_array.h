@@ -7,7 +7,8 @@ namespace lemon
 
    template < class TDST, class TSRC >
    ::count copy(spa(TDST) & dsta, const spa(TSRC) & srca);
-
+   
+   
    template < class A, class T >
    A make_array(T t1)
    {
@@ -27,6 +28,11 @@ namespace lemon
 
    namespace array
    {
+      
+
+      template < class TDST,class TSRC >
+      ::count copy(TDST & dsta,const TSRC & srca);
+      
 
       template < class A >
       void randomize(A & a)

@@ -359,6 +359,23 @@ public:
    //inline var & operator = (var && v);
    //#endif
 
+   
+   template < class T >
+   ::count get_array(T & dsta)
+   {
+      
+      dsta.remove_all();
+      
+      for(int i = 0; i < array_get_count(); i++)
+      {
+         
+         dsta.add((typename T::BASE_TYPE) at(i));
+         
+      }
+      
+      return dsta.get_count();
+      
+   }
 
    template < class T >
    var & operator = (const sp(T) & sp)
