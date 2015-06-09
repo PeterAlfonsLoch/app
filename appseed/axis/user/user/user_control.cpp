@@ -983,7 +983,7 @@ namespace user
 
       }
 
-      return pobj->m_bRet;
+      return ev.m_bProcessed;
 
    }
 
