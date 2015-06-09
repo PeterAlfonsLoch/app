@@ -1251,7 +1251,7 @@ namespace macos
       
       string str = getenv("HOME");
       
-      ::file::path strRelative = System.dir().element();
+      ::file::path strRelative = ::dir::element();
       
       string strUserFolderShift;
       

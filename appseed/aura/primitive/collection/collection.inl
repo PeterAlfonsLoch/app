@@ -140,20 +140,20 @@ void string_array < Type, RawType >::add(const property & prop)
 template < class Type, class RawType >
 string_array < Type, RawType >  & string_array < Type, RawType > ::operator = (var varSrc)
 {
+   this->remove_all();
    if(varSrc.get_type() == var::type_stra)
    {
-      ::lemon::copy(*this, varSrc.stra());
+      varSrc.get_array(*this);
    }
    else
    {
-      this->remove_all();
       if(varSrc.get_count() == 1)
       {
          add((Type)varSrc.get_string());
       }
       else if(varSrc.get_count() > 1)
       {
-         ::lemon::copy(*this, varSrc.stra());
+         varSrc.get_array(*this);
       }
    }
    return *this;

@@ -361,10 +361,8 @@ public:
 
    
    template < class T >
-   ::count get_array(T & dsta)
+   void get_array(T & dsta) const
    {
-      
-      dsta.remove_all();
       
       for(int i = 0; i < array_get_count(); i++)
       {
@@ -372,8 +370,6 @@ public:
          dsta.add((typename T::BASE_TYPE) at(i));
          
       }
-      
-      return dsta.get_count();
       
    }
 

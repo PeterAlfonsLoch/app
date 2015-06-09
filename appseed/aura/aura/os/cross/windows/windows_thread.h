@@ -55,7 +55,7 @@ CLASS_DECL_AURA void WINAPI tls_shutdown();
 
 #else
 
-CLASS_DECL_AURA HTHREAD WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedThreadAttributes, uint_ptr unusedStackSize, uint32_t (* lpStartAddress)(void *) , void * lpParameter, uint32_t uiCreationFlags, uint32_t * puiId);
+//CLASS_DECL_AURA HTHREAD WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedThreadAttributes, uint_ptr unusedStackSize, uint32_t (* lpStartAddress)(void *) , void * lpParameter, uint32_t uiCreationFlags, uint32_t * puiId);
 
 CLASS_DECL_AURA DWORD WINAPI ResumeThread(HTHREAD hThread);
 CLASS_DECL_AURA int_bool WINAPI SetThreadPriority(HTHREAD hThread, int32_t nPriority);

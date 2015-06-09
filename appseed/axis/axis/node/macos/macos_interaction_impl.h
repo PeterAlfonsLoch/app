@@ -23,7 +23,6 @@ namespace macos
         spa(::user::interaction)        m_guieptraMouseHover;
         string                          m_strWindowText;
         ::user::interaction_base *      m_pbasewnd;
-        ::user::interaction *          m_pguieCapture;
         bool                            m_bNeedsUpdate;
 
 

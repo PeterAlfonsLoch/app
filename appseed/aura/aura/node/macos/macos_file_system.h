@@ -6,7 +6,7 @@ namespace macos
    
    
    class CLASS_DECL_AURA file_system :
-      public ::file::system
+      virtual public ::file::system
    {
    public:
       

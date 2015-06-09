@@ -245,7 +245,7 @@ namespace aura
       template < class APP >
       APP & cast_app()
       {
-         return dynamic_cast < APP * > (this);
+         return *dynamic_cast < APP * > (this);
       }
 
       virtual void _001CloseApplication();

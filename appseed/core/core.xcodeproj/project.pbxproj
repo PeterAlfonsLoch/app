@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		07011FE7190CABA200C08335 /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07011FC7190CA31000C08335 /* libbase.dylib */; };
+		0774CFC01B26D187007ECE77 /* _databaseuser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0774CFBF1B26D187007ECE77 /* _databaseuser.cpp */; };
+		0774CFD81B26D1FB007ECE77 /* libaxisbzip2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0774CFD51B26D1D9007ECE77 /* libaxisbzip2.dylib */; };
 		078450F11B264BA200C91416 /* _userfs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 078450F01B264BA200C91416 /* _userfs.cpp */; };
 		078450F31B264C1300C91416 /* _filemanager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 078450F21B264C1300C91416 /* _filemanager.cpp */; };
 		078450F51B264C3200C91416 /* _filehandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 078450F41B264C3200C91416 /* _filehandler.cpp */; };
@@ -150,6 +152,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 9AE24D331904CEFE001AEFFB;
 			remoteInfo = base_ios;
+		};
+		0774CFD41B26D1D9007ECE77 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0774CFD01B26D1D8007ECE77 /* axisbzip2.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AEEADFD19C4FBC700866C9E;
+			remoteInfo = axisbzip2;
+		};
+		0774CFD61B26D1EE007ECE77 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0774CFD01B26D1D8007ECE77 /* axisbzip2.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AA5E4C216F7C61B005C45CE;
+			remoteInfo = axisbzip2;
 		};
 		9A19A1AC19C6F50B0018DF7D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -336,6 +352,8 @@
 /* Begin PBXFileReference section */
 		07011FE5190CAB3900C08335 /* libca2os.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libca2os.dylib; path = "../../../nodeapp/os/build/Debug-iphoneos/libca2os.dylib"; sourceTree = "<group>"; };
 		0713FB06183177EF00F4AEDC /* filemanager_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_data.h; sourceTree = "<group>"; };
+		0774CFBF1B26D187007ECE77 /* _databaseuser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _databaseuser.cpp; sourceTree = "<group>"; };
+		0774CFD01B26D1D8007ECE77 /* axisbzip2.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisbzip2.xcodeproj; path = ../../axis/bzip2/axisbzip2.xcodeproj; sourceTree = "<group>"; };
 		077C2A27190F198800A1F6B0 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
 		078450F01B264BA200C91416 /* _userfs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _userfs.cpp; sourceTree = "<group>"; };
 		078450F21B264C1300C91416 /* _filemanager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _filemanager.cpp; sourceTree = "<group>"; };
@@ -794,6 +812,7 @@
 				9A1EDAE719C83CA500F5CCE8 /* libauracharguess.dylib in Frameworks */,
 				9A19A3E819C6F92C0018DF7D /* libaura.dylib in Frameworks */,
 				9A1EDB5819C8401B00F5CCE8 /* libaxis.dylib in Frameworks */,
+				0774CFD81B26D1FB007ECE77 /* libaxisbzip2.dylib in Frameworks */,
 				9A1EDB7C19C8432900F5CCE8 /* libaxismysql.dylib in Frameworks */,
 				9A1EDB5B19C8413700F5CCE8 /* libbase.dylib in Frameworks */,
 			);
@@ -828,6 +847,14 @@
 				07011FC5190CA31000C08335 /* libbase.dylib */,
 				07011FC7190CA31000C08335 /* libbase.dylib */,
 				07011FC9190CA31000C08335 /* base_iosTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0774CFD11B26D1D8007ECE77 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0774CFD51B26D1D9007ECE77 /* libaxisbzip2.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1086,6 +1113,7 @@
 		07A6D2E4173C27E7009E6FB8 /* databaseuser */ = {
 			isa = PBXGroup;
 			children = (
+				0774CFBF1B26D187007ECE77 /* _databaseuser.cpp */,
 				07A6D2E8173C27E7009E6FB8 /* databaseuser.h */,
 			);
 			path = databaseuser;
@@ -1523,6 +1551,7 @@
 				9A19A3DA19C6F91C0018DF7D /* aura.xcodeproj */,
 				9A1EDAD019C83C8600F5CCE8 /* auracharguess.xcodeproj */,
 				9A2EA35419A62C8D004DAFFC /* axis.xcodeproj */,
+				0774CFD01B26D1D8007ECE77 /* axisbzip2.xcodeproj */,
 				9A2EA25D19A62B06004DAFFC /* axisfreeimage.xcodeproj */,
 				9A2EA25719A62AFA004DAFFC /* axisfreetype.xcodeproj */,
 				9A2EA24B19A62AD7004DAFFC /* axismysql.xcodeproj */,
@@ -1653,6 +1682,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				0774CFD71B26D1EE007ECE77 /* PBXTargetDependency */,
 				9A1EDAE619C83C9800F5CCE8 /* PBXTargetDependency */,
 				9A19A3E719C6F9210018DF7D /* PBXTargetDependency */,
 				9A1EDB5719C8401200F5CCE8 /* PBXTargetDependency */,
@@ -1739,6 +1769,10 @@
 					ProjectRef = 9A2EA35419A62C8D004DAFFC /* axis.xcodeproj */;
 				},
 				{
+					ProductGroup = 0774CFD11B26D1D8007ECE77 /* Products */;
+					ProjectRef = 0774CFD01B26D1D8007ECE77 /* axisbzip2.xcodeproj */;
+				},
+				{
 					ProductGroup = 9A2EA25E19A62B06004DAFFC /* Products */;
 					ProjectRef = 9A2EA25D19A62B06004DAFFC /* axisfreeimage.xcodeproj */;
 				},
@@ -1792,6 +1826,13 @@
 			fileType = wrapper.cfbundle;
 			path = base_iosTests.xctest;
 			remoteRef = 07011FC8190CA31000C08335 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0774CFD51B26D1D9007ECE77 /* libaxisbzip2.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libaxisbzip2.dylib;
+			remoteRef = 0774CFD41B26D1D9007ECE77 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		9A19A1AD19C6F50B0018DF7D /* libaxisfreeimage.dylib */ = {
@@ -1954,6 +1995,7 @@
 				078451651B264E0F00C91416 /* _plugin.cpp in Sources */,
 				9A19A2DE19C6F5510018DF7D /* primitive_int_biunique.cpp in Sources */,
 				078450F31B264C1300C91416 /* _filemanager.cpp in Sources */,
+				0774CFC01B26D187007ECE77 /* _databaseuser.cpp in Sources */,
 				078450F81B264C6200C91416 /* _user.cpp in Sources */,
 				078450F11B264BA200C91416 /* _userfs.cpp in Sources */,
 			);
@@ -2044,6 +2086,11 @@
 			isa = PBXTargetDependency;
 			name = base_ios;
 			targetProxy = 07011FDC190CAB1B00C08335 /* PBXContainerItemProxy */;
+		};
+		0774CFD71B26D1EE007ECE77 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = axisbzip2;
+			targetProxy = 0774CFD61B26D1EE007ECE77 /* PBXContainerItemProxy */;
 		};
 		9A19A3E719C6F9210018DF7D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

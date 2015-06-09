@@ -68,7 +68,7 @@ namespace macos
 //      m_pui->m_nFlags    = 0;
       //m_pfnSuper         = NULL;
       m_bMouseHover        = false;
-      m_pguieCapture       = NULL;
+      m_puiCapture       = NULL;
       m_oswindow           = NULL;
 
    }
@@ -82,7 +82,7 @@ namespace macos
 //      m_pui->m_nFlags    = 0;
       //m_pfnSuper         = NULL;
       m_bMouseHover        = false;
-      m_pguieCapture       = NULL;
+      m_puiCapture       = NULL;
       m_oswindow           = NULL;
 
    }
@@ -97,7 +97,7 @@ namespace macos
         //m_pfnSuper         = NULL;
         m_bMouseHover        = false;
 //        m_pfont              = NULL;
-        m_pguieCapture       = NULL;
+        m_puiCapture       = NULL;
         m_oswindow           = NULL;
 
     }
@@ -292,7 +292,7 @@ namespace macos
 
       if(!native_create_window_ex(dwExStyle, lpszClassName, lpszWindowName, dwStyle,
                       rect,
-                      pParentWnd->get_safe_handle(), id, lpParam))
+                                  pParentWnd == NULL ? NULL : pParentWnd->get_safe_handle(), id, lpParam))
       {
          return false;
       }
@@ -645,7 +645,7 @@ namespace macos
    void interaction_impl::_001OnCaptureChanged(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      m_pguieCapture = NULL;
+      m_puiCapture = NULL;
    }
 
    // WM_NCDESTROY is the absolute LAST message sent.
@@ -1316,14 +1316,14 @@ namespace macos
          {
             m_pui->_001OnTriggerMouseInside();
          }
-         if(m_pguieCapture != NULL)
+         if(m_puiCapture != NULL)
          {
-            if(m_pguieCapture->m_pimpl != NULL)
+            if(m_puiCapture->m_pimpl != NULL)
             {
-               //m_pguieCapture->m_pimpl->SendMessage(pbase);
+               //m_puiCapture->m_pimpl->SendMessage(pbase);
                try
                {
-                  (m_pguieCapture->m_pimpl->*m_pguieCapture->m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast < signal_details * > (pmouse));
+                  (m_puiCapture->m_pimpl->*m_puiCapture->m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast < signal_details * > (pmouse));
                   if(pmouse->get_lresult() != 0)
                      return;
                }
@@ -1334,10 +1334,10 @@ namespace macos
             }
             else
             {
-               //m_pguieCapture->SendMessage(pbase);
+               //m_puiCapture->SendMessage(pbase);
                try
                {
-                  (m_pguieCapture->*m_pguieCapture->m_pfnDispatchWindowProc)(dynamic_cast < signal_details * > (pmouse));
+                  (m_puiCapture->*m_puiCapture->m_pfnDispatchWindowProc)(dynamic_cast < signal_details * > (pmouse));
                   if(pmouse->get_lresult() != 0)
                      return;
                }
@@ -4155,7 +4155,7 @@ namespace macos
                ::user::interaction * puieCapture = GetCapture();
                if(::ReleaseCapture())
                {
-                  m_pguieCapture = NULL;
+                  m_puiCapture = NULL;
                   return puieCapture;
                }
                else
@@ -4176,17 +4176,17 @@ namespace macos
                return NULL;
             if(hwndCapture == get_handle())
             {
-               if(m_pguieCapture != NULL)
+               if(m_puiCapture != NULL)
                {
-                  return m_pguieCapture;
+                  return m_puiCapture;
                }
                else
                {
                   if(m_pui != NULL)
                   {
-                     if(get_wnd() != NULL && MAC_WINDOW(get_wnd())->m_pguieCapture != NULL)
+                     if(get_wnd() != NULL && MAC_WINDOW(get_wnd())->m_puiCapture != NULL)
                      {
-                        return MAC_WINDOW(get_wnd())->m_pguieCapture;
+                        return MAC_WINDOW(get_wnd())->m_puiCapture;
                      }
                      else
                      {
@@ -4805,7 +4805,7 @@ namespace macos
       ASSERT(::IsWindow(get_handle()));
 
       if(pinterface != NULL)
-         m_pguieCapture = pinterface;
+         m_puiCapture = pinterface;
 
       return ::macos::interaction_impl::from_handle(::SetCapture(get_handle()));
 

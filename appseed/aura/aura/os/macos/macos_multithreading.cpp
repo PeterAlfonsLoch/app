@@ -3,6 +3,8 @@
 #include <pthread.h>
 
 
+
+
 void thread_get_os_priority(int32_t * piPolicy, sched_param * pparam, int32_t nCa2Priority)
 {
 
