@@ -1,7 +1,7 @@
 
 
 #include "macos_copydesk.cpp"
-//#include "macos_crypto.cpp"
+#include "macos_crypto.cpp"
 #include "macos_axis_dir.cpp"
 #include "macos_factory_exchange.cpp"
 #include "macos_file_set.cpp"

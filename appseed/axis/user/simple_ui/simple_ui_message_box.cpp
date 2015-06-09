@@ -126,6 +126,9 @@ namespace simple_ui
 
       if(!create_window_ex(0,NULL,NULL,0,rectFontopus,puiParent,"fontopus"))
          throw simple_exception(get_app(),"not excepted! Failing Message box!!");
+      
+      TRACE("Just after create_window_ex for simple_message_box (m_pimpl.m_p) : %d",m_pimpl.m_p);
+      TRACE("Just after create_window_ex for simple_message_box (m_pimpl->m_pui) : %d",m_pimpl->m_pui);
 
       uint32_t uiType = m_uiFlags & MB_TYPEMASK;
 
@@ -162,6 +165,10 @@ namespace simple_ui
          create_a_button("ok","OK");
          break;
       }
+      
+      TRACE("Just after create_window_ex for simple_message_box (m_pimpl.m_p) : %d",m_pimpl.m_p);
+      TRACE("Just after create_window_ex for simple_message_box (m_pimpl->m_pui) : %d",m_pimpl->m_pui);
+      
 
       SetWindowPos(ZORDER_TOP,rectFontopus,SWP_SHOWWINDOW);
 

@@ -1139,7 +1139,9 @@ namespace axis
          m_spfsdata->root_ones(patha);
 
       }
-
+      
+      ::set_simple_message_box(&::simple_ui_message_box);
+      
       return true;
 
    }

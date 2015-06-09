@@ -2260,6 +2260,7 @@ namespace user
 
          m_pimpl = Application.alloc(System.type_info < interaction_impl >());
          m_pimpl->m_pui = this;
+         //oswindow window = m_pimpl->m_pui->get_handle();
          dwStyle &= ~WS_CHILD;
          if(!m_pimpl->create_window_ex(dwExStyle,lpszClassName,lpszWindowName,dwStyle,rect,pParentWnd,id,lpParam))
          {

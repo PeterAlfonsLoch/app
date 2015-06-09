@@ -17,7 +17,6 @@ namespace macos
        
        ::file::path            m_strCa2;
        ::file::path            m_strCommonAppData;
-       ::file::path            m_strProfile;
        ::file::path            m_strAppData;
        ::file::path            m_strPrograms;
        ::file::path            m_strCommonPrograms;
