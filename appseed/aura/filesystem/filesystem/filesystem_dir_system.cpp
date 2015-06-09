@@ -593,8 +593,10 @@ namespace file
       }
 
 
-      ::file::path system::userfolder()
+      ::file::path system::userfolder(::aura::application * papp)
       {
+
+         UNREFERENCED_PARAMETER(papp);
 
          synch_lock sl(m_pmutex);
 
@@ -1216,29 +1218,36 @@ namespace file
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
+      
       ::file::path system::userappdata(::aura::application * papp)
       {
+         
          UNREFERENCED_PARAMETER(papp);
+
          throw interface_only_exception(get_app(), "this is an interface");
+
       }
 
+      
       ::file::path system::userdata(::aura::application * papp)
       {
+
          UNREFERENCED_PARAMETER(papp);
+
          throw interface_only_exception(get_app(), "this is an interface");
+
       }
 
-      ::file::path system::userfolder(::aura::application * papp)
-      {
-         UNREFERENCED_PARAMETER(papp);
-         throw interface_only_exception(get_app(), "this is an interface");
-      }
 
       ::file::path system::default_os_user_path_prefix(::aura::application * papp)
       {
+
          UNREFERENCED_PARAMETER(papp);
+
          throw interface_only_exception(get_app(), "this is an interface");
+
       }
+
 
       ::file::path system::default_userappdata(::aura::application * papp, const string & lpcszPrefix, const string & lpcszLogin)
       {

@@ -89,7 +89,6 @@ namespace file
 
          virtual ::file::path element();
          virtual ::file::path profile();
-         virtual ::file::path userfolder();
 
          virtual ::file::path module();
          virtual ::file::path ca2module();

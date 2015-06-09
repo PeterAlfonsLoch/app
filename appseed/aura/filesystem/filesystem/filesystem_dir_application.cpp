@@ -102,7 +102,7 @@ namespace file
 
       ::file::path application::userfolder()
       {
-         return m_pathUser;
+         return m_pauraapp->m_paurasystem->m_spdir->userfolder(get_app());
       }
 
       ::file::path application::default_os_user_path_prefix()

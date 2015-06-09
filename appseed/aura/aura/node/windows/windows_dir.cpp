@@ -605,16 +605,6 @@ namespace windows
    }
 
 
-   ::file::path dir::profile()
-   {
-
-      single_lock sl(&m_mutex,true);
-
-      return m_strProfile;
-
-   }
-
-
    ::file::path dir::module()
    {
 
@@ -872,7 +862,7 @@ namespace windows
          FALSE);
       SHGetSpecialFolderPath(
          NULL,
-         m_strProfile,
+         m_pathProfile,
          CSIDL_PROFILE,
          FALSE);
       //SHGetSpecialFolderPath(
@@ -966,18 +956,18 @@ namespace windows
          strRelative = strRelative.Left(iFind - 1) + "_" + strRelative.Mid(iStart,iFind - iStart) + strRelative.Mid(iFind + 1);
       }
 
-      ::file::path strUserFolderShift;
+//      ::file::path strUserFolderShift;
 
-      if(App(papp).directrix()->m_varTopicQuery.has_property("user_folder_relative_path"))
-      {
-         strUserFolderShift = strRelative / App(papp).directrix()->m_varTopicQuery["user_folder_relative_path"].get_string();
-      }
-      else
-      {
-         strUserFolderShift = strRelative;
-      }
+//      if(App(papp).directrix()->m_varTopicQuery.has_property("user_folder_relative_path"))
+//      {
+//         strUserFolderShift = strRelative / App(papp).directrix()->m_varTopicQuery["user_folder_relative_path"].get_string();
+//      }
+//      else
+//      {
+  //       strUserFolderShift = strRelative;
+//      }
 
-      m_pathUser = ::file::path(str) / "ca2" / strUserFolderShift;
+      m_pathUser = ::file::path(str) / "ca2" / strRelative;
 
 
 
