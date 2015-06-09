@@ -583,6 +583,25 @@ namespace file
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
+      ::file::path system::profile()
+      {
+
+         synch_lock sl(m_pmutex);
+
+         return m_pathProfile;
+
+      }
+
+
+      ::file::path system::userfolder()
+      {
+
+         synch_lock sl(m_pmutex);
+
+         return m_pathUser;
+
+      }
+
 
       ::file::path system::module()
       {

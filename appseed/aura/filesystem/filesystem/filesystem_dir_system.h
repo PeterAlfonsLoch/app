@@ -55,6 +55,8 @@ namespace file
 
          ::file::path         m_pathCa2Module;
          ::file::path         m_pathModule;
+         ::file::path         m_pathProfile;
+         ::file::path         m_pathUser;
 
 
          system(::aura::application * papp);
@@ -86,6 +88,8 @@ namespace file
          virtual ::file::path netseed();
 
          virtual ::file::path element();
+         virtual ::file::path profile();
+         virtual ::file::path userfolder();
 
          virtual ::file::path module();
          virtual ::file::path ca2module();

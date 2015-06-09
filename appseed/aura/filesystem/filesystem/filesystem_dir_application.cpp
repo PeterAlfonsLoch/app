@@ -102,7 +102,7 @@ namespace file
 
       ::file::path application::userfolder()
       {
-         return m_pauraapp->m_paurasystem->m_spdir->userfolder(get_app());
+         return m_pathUser;
       }
 
       ::file::path application::default_os_user_path_prefix()
@@ -191,6 +191,7 @@ namespace file
       {
          return m_pauraapp->m_paurasystem->m_spdir->pathfind(pszEnv, pszTopic, pszMode, m_pauraapp);
       }
+
 
 
    } // namespace dir

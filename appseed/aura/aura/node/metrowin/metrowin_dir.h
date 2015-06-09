@@ -67,7 +67,7 @@ namespace metrowin
       virtual ::file::path usersystemappdata(::aura::application *  papp,const string & strPrefix);
       virtual ::file::path userappdata(::aura::application *  papp);
       virtual ::file::path userdata(::aura::application *  papp);
-      virtual ::file::path userfolder(::aura::application *  papp);
+      //virtual ::file::path userfolder(::aura::application *  papp);
       virtual ::file::path default_os_user_path_prefix(::aura::application *  papp);
       virtual ::file::path default_userappdata(::aura::application *  papp,const string & strPrefix,const string & strLogin);
       virtual ::file::path default_userdata(::aura::application *  papp,const string & strPrefix,const string & strLogin);

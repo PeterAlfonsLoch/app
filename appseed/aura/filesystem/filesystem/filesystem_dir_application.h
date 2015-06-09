@@ -65,6 +65,7 @@ namespace file
 
          virtual ::file::path pathfind(const string & pszEnv,const string & pszTopic,const string & pszMode);
 
+
       };
 
 

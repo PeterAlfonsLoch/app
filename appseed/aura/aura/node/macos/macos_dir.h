@@ -51,6 +51,7 @@ namespace macos
        virtual ::file::path stageapp();
        virtual ::file::path netseed();
        virtual ::file::path element();
+       virtual ::file::path profile();
        
        virtual ::file::path module();
        virtual ::file::path ca2module();
@@ -68,7 +69,7 @@ namespace macos
        virtual ::file::path usersystemappdata(::aura::application * papp, const char * lpcszPrefix);
        virtual ::file::path userappdata(::aura::application * papp);
        virtual ::file::path userdata(::aura::application * papp);
-       virtual ::file::path userfolder(::aura::application * papp);
+       //virtual ::file::path userfolder(::aura::application * papp);
        virtual ::file::path default_os_user_path_prefix(::aura::application * papp);
        virtual ::file::path default_userappdata(::aura::application * papp,const string & lpcszPrefix,const string & lpcszLogin );
        virtual ::file::path default_userdata(::aura::application * papp,const string & lpcszPrefix,const string & lpcszLogin);

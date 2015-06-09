@@ -605,6 +605,16 @@ namespace windows
    }
 
 
+   ::file::path dir::profile()
+   {
+
+      single_lock sl(&m_mutex,true);
+
+      return m_strProfile;
+
+   }
+
+
    ::file::path dir::module()
    {
 
@@ -941,6 +951,36 @@ namespace windows
       xxdebug_box("win_dir::initialize","win_dir::initialize",0);
 
 
+      string str;
+      str = System.dir().profile();
+
+
+      ::file::path strRelative;
+      strRelative = System.dir().element();
+      index iFind = strRelative.find(':');
+      if(iFind >= 0)
+      {
+         strsize iFind1 = strRelative.reverse_find("\\",iFind);
+         strsize iFind2 = strRelative.reverse_find("/",iFind);
+         strsize iStart = MAX(iFind1 + 1,iFind2 + 1);
+         strRelative = strRelative.Left(iFind - 1) + "_" + strRelative.Mid(iStart,iFind - iStart) + strRelative.Mid(iFind + 1);
+      }
+
+      ::file::path strUserFolderShift;
+
+      if(App(papp).directrix()->m_varTopicQuery.has_property("user_folder_relative_path"))
+      {
+         strUserFolderShift = strRelative / App(papp).directrix()->m_varTopicQuery["user_folder_relative_path"].get_string();
+      }
+      else
+      {
+         strUserFolderShift = strRelative;
+      }
+
+      m_pathUser = ::file::path(str) / "ca2" / strUserFolderShift;
+
+
+
       return true;
 
    }
@@ -1007,38 +1047,6 @@ namespace windows
       return userfolder(papp) / "data";
    }
 
-   ::file::path dir::userfolder(::aura::application * papp)
-   {
-
-      string str;
-      str = m_strProfile;
-
-
-      ::file::path strRelative;
-      strRelative = element();
-      index iFind = strRelative.find(':');
-      if(iFind >= 0)
-      {
-         strsize iFind1 = strRelative.reverse_find("\\", iFind);
-         strsize iFind2 = strRelative.reverse_find("/", iFind);
-         strsize iStart = MAX(iFind1 + 1, iFind2 + 1);
-         strRelative = strRelative.Left(iFind - 1) + "_" + strRelative.Mid(iStart, iFind - iStart) + strRelative.Mid(iFind + 1);
-      }
-
-      ::file::path strUserFolderShift;
-
-      if(App(papp).directrix()->m_varTopicQuery.has_property("user_folder_relative_path"))
-      {
-         strUserFolderShift = strRelative / App(papp).directrix()->m_varTopicQuery["user_folder_relative_path"].get_string();
-      }
-      else
-      {
-         strUserFolderShift = strRelative;
-      }
-
-      return ::file::path(str)/"ca2"/strUserFolderShift;
-
-   }
 
    ::file::path dir::default_os_user_path_prefix(::aura::application * papp)
    {

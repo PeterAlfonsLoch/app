@@ -65,7 +65,7 @@ namespace android
       virtual ::file::path usersystemappdata(::aura::application * papp, const string & lpcszPrefix);
       virtual ::file::path userappdata(::aura::application * papp);
       virtual ::file::path userdata(::aura::application * papp);
-      virtual ::file::path userfolder(::aura::application * papp);
+      //virtual ::file::path userfolder(::aura::application * papp);
       virtual ::file::path default_os_user_path_prefix(::aura::application * papp);
       virtual ::file::path default_userappdata(::aura::application * papp, const string & lpcszPrefix, const string & lpcszLogin);
       virtual ::file::path default_userdata(::aura::application * papp, const string & lpcszPrefix, const string & lpcszLogin);
