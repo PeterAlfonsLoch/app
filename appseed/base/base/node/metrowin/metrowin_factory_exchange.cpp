@@ -12,12 +12,12 @@ namespace metrowin
          ::object(papp)
       {
 
-         System.factory().creatable       < window_draw              >(System.template type_info < ::user::window_draw         >(),1);
-         System.factory().creatable_large < interaction_impl         >(System.template type_info < ::user::interaction_impl    >());
-         System.factory().creatable_small < copydesk                 >(System.template type_info < ::base::copydesk            >(),1);
-         //      System.factory().creatable       < printer               >  (System.template type_info < ::user::printer             > ()  , 1);
+         //System.factory().creatable       < window_draw              >(System.template type_info < ::user::window_draw         >(),1);
+         //System.factory().creatable_large < interaction_impl         >(System.template type_info < ::user::interaction_impl    >());
+         //System.factory().creatable_small < copydesk                 >(System.template type_info < ::base::copydesk            >(),1);
+         ////      System.factory().creatable       < printer               >  (System.template type_info < ::user::printer             > ()  , 1);
 
-         System.factory().creatable          < ::windows::message_queue      >(System.type_info < ::aura::message_queue       >(),32);
+         //System.factory().creatable          < ::windows::message_queue      >(System.type_info < ::aura::message_queue       >(),32);
 
 
       }
