@@ -10,6 +10,7 @@ CLASS_DECL_AURA string url_dir_name_for_relative(const char * pszPath);
 CLASS_DECL_AURA string defer_solve_relative_compresions(const char * pszAbsolute);
 CLASS_DECL_AURA string defer_solve_relative_name(const char * pszRelative,const char * pszAbsolute);
 CLASS_DECL_AURA string file_md5_dup(const char * psz);
+CLASS_DECL_AURA string ca2_module_dup();
 
 #include "file_exception.h"
 

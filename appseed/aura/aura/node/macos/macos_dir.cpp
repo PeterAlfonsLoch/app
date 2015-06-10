@@ -1028,12 +1028,12 @@ namespace macos
 //      return path(userfolder(papp, "data"), lpcsz, lpcsz2);
 //   }
 
-   ::file::path dir::userfolder(::aura::application * papp)
-   {
-      
-      return App(papp).dir().userfolder();
-
-   }
+//   ::file::path dir::userfolder(::aura::application * papp)
+//   {
+//      
+//      return App(papp).dir().userfolder();
+//
+//   }
 
 
    ::file::path dir::default_os_user_path_prefix(::aura::application *   papp)

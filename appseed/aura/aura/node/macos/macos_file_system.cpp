@@ -1311,52 +1311,20 @@ namespace macos
          
       }
       
-      m_pathModule = ::dir::name(str);
+      m_pathModule = str;
       
-      {
-         
-         m_pathCa2Module = ca2_module_folder_dup();
-         
-         /*
-          
-          char * pszCurDir = getcwd(NULL, 0);
-          
-          string strCurDir = pszCurDir;
-          
-          free(pszCurDir);
-          
-          if(file_exists_dup(::dir::path(strCurDir, "libcore.dylib")))
-          {
-          
-          System.m_strCa2ModuleFolder = strCurDir;
-          
-          }
-          else if(file_exists_dup(::dir::path(System.m_strModuleFolder, "libcore.dylib")))
-          {
-          
-          System.m_strCa2ModuleFolder = System.m_strModuleFolder;
-          
-          }
-          else
-          {
-          
-          System.m_strCa2ModuleFolder = ::dir::name(::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libcore.dylib", "rfs")); // readable - normal file - non zero sized
-          
-          }
-          */
-         
-      }
-      
+      m_pathCa2Module = ca2_module_dup();
       
       return true;
       
    }
-   
-   
-   
 
 
 } // namespace macos
+
+
+
+
 
 
 

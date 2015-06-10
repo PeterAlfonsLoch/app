@@ -44,14 +44,15 @@ namespace macos
 
    }
 
+
    file::~file()
    {
 
-//      if (m_iFile != (UINT)hFileNull && m_bCloseOnDelete)
-             if (m_iFile != (UINT)hFileNull)
+      if (m_iFile != hFileNull)
          close();
 
    }
+   
 
    sp(::file::stream_buffer) file::Duplicate() const
    {
@@ -70,10 +71,10 @@ namespace macos
       return pFile;
    }
 
-   bool file::open(const char * lpszFileName, UINT nOpenFlags)
+   cres file::open(const ::file::path & lpszFileName, UINT nOpenFlags)
    {
 
-      if (m_iFile != (UINT)hFileNull)
+      if(m_iFile != hFileNull)
          close();
 
       ASSERT_VALID(this);
@@ -157,8 +158,9 @@ namespace macos
       // attempt file creation
       //HANDLE hFile = shell::CreateFile(::str::international::utf8_to_unicode(m_strFileName), dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, NULL);
       int32_t hFile = ::open(m_strFileName, dwFlags, dwPermission); //::open(m_strFileName, dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, NULL);
-      if(hFile == -1)
+      if(hFile == hFileNull)
       {
+       
          DWORD dwLastError = ::GetLastError();
 
          if(dwLastError != ERROR_FILE_NOT_FOUND && dwLastError != ERROR_PATH_NOT_FOUND)
@@ -179,7 +181,8 @@ namespace macos
              {*/
 
 
-            vfxThrowFileException(get_app(), ::macos::file_exception::OsErrorToException(dwLastError), dwLastError, m_strFileName);
+//            vfxThrowFileException(get_app(), ::macos::file_exception::OsErrorToException(dwLastError), dwLastError, m_strFileName);
+            return canew(::file::exception(get_app(), file_exception::OsErrorToException(dwLastError), dwLastError, lpszFileName));
 
             //}
 
@@ -217,8 +220,9 @@ namespace macos
 
 
             DWORD dwLastError = ::GetLastError();
-            vfxThrowFileException(get_app(), ::macos::file_exception::OsErrorToException(dwLastError), dwLastError, m_strFileName);
+//            vfxThrowFileException(get_app(), ::macos::file_exception::OsErrorToException(dwLastError), dwLastError, m_strFileName);
 
+            return canew(::file::exception(get_app(), file_exception::OsErrorToException(dwLastError), dwLastError, lpszFileName));
 
             //}
 
@@ -230,8 +234,10 @@ namespace macos
 
 //      m_bCloseOnDelete = TRUE;
 
-      return TRUE;
+      return ::no_exception;
+      
    }
+   
 
    ::primitive::memory_size file::read(void * lpBuf, ::primitive::memory_size nCount)
    {
@@ -365,7 +371,7 @@ namespace macos
 
       bool bError = FALSE;
       if (m_iFile != (UINT)hFileNull)
-         bError = !::close(m_iFile);
+         bError = ::close(m_iFile) != 0;
 
       m_iFile = (UINT) hFileNull;
 //      m_bCloseOnDelete = FALSE;
