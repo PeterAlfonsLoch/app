@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "base/user/user.h"
+#include "axis/user/user.h"
 #include "metrowin.h"
 #include <shlobj.h>
 
@@ -9,7 +9,7 @@ namespace metrowin
 
    copydesk::copydesk(::aura::application * papp) :
       ::object(papp),
-      ::base::copydesk(papp)
+      ::user::copydesk(papp)
    {
    }
 
@@ -166,7 +166,7 @@ namespace metrowin
    bool copydesk::initialize()
    {
 
-      if(!::base::copydesk::initialize())
+      if(!::user::copydesk::initialize())
          return false;
 
       /*if(!m_p->CreateEx(0, System.RegisterWndClass(0), NULL, 0, rect(0, 0, 0, 0), NULL, id()))
@@ -182,7 +182,7 @@ namespace metrowin
 
       bool bOk;
 
-      bOk = ::base::copydesk::finalize();
+      bOk = ::user::copydesk::finalize();
 
 /*      if(::user::window_sp::is_set() && ::user::window_sp::m_p->IsWindow())
       {

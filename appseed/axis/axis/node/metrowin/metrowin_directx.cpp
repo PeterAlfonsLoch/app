@@ -1,6 +1,6 @@
 #include "framework.h"
-#include "base/user/user.h"
-#include "metrowin.h"
+//#include "base/user/user.h"
+//#include "metrowin.h"
 #include "app/appseed/draw2d_direct2d/draw2d_direct2d.h"
 
 using namespace Windows::UI::Core;

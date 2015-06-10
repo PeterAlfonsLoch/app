@@ -5,8 +5,8 @@ namespace metrowin
 {
 
 
-   class CLASS_DECL_BASE copydesk : 
-      virtual public ::base::copydesk
+   class CLASS_DECL_AXIS copydesk : 
+      virtual public ::user::copydesk
    {
    public:
 

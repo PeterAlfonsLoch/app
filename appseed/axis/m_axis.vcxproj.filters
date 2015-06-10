@@ -250,6 +250,9 @@
     <Filter Include="Source Files\user">
       <UniqueIdentifier>{3e8cd80e-08d9-43bf-85f8-b5b53dcff791}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\axis\node\windows">
+      <UniqueIdentifier>{9571386a-3259-4821-a9cf-e2416316b1e8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -972,6 +975,24 @@
     <ClInclude Include="axis\os\metrowin\metrowin_window_impl.h">
       <Filter>Header Files\axis\os\metrowin</Filter>
     </ClInclude>
+    <ClInclude Include="axis\node\metrowin\metrowin_copydesk.h">
+      <Filter>Header Files\axis\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\metrowin\metrowin_directx.h">
+      <Filter>Header Files\axis\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\metrowin\metrowin_directx_application.h">
+      <Filter>Header Files\axis\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\metrowin\metrowin_interaction_impl.h">
+      <Filter>Header Files\axis\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\metrowin\metrowin_internal.h">
+      <Filter>Header Files\axis\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\metrowin\metrowin_window_draw.h">
+      <Filter>Header Files\axis\node\metrowin</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="axis\axis\axis.inl">
@@ -1662,6 +1683,9 @@
     </ClCompile>
     <ClCompile Include="axis\node\metrowin\metrowin_window_draw.cpp">
       <Filter>Source Files\axis\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\windows\windows_message_queue.cpp">
+      <Filter>Source Files\axis\node\windows</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -425,9 +425,6 @@
     <ProjectReference Include="..\aura\m_aura.vcxproj">
       <Project>{55f3f6b8-8baf-4f22-9e77-bcf9d5a23960}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\axis\m_axis.vcxproj">
-      <Project>{3bae8362-f135-4513-9163-58532baba44a}</Project>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
