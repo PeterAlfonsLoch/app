@@ -298,12 +298,11 @@
 - (void)drawRect:(NSRect)rect
 {
    
-   /*
    
-   	[[NSColor clearColor] set];
-	NSRectFill(rect);
+  /* 	[[NSColor clearColor] set];
+	NSRectFill(rect);*/
 
-
+/*
 	NSBezierPath * rectPath = [NSBezierPath bezierPathWithRect : [self bounds]];
 	
 	NSGradient * gradient = [[NSGradient alloc] initWithColorsAndLocations : [NSColor whiteColor], (CGFloat) 0.0, [NSColor lightGrayColor], (CGFloat)1.0, nil];

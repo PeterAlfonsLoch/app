@@ -1739,19 +1739,23 @@ else
 
                patha.add(strLs / str);
             }
+            
+            string strUrl;
 
+            if(bDir)
+            {
+               strUrl = "http://" + get_api_cc() + "/api/matter/query_dir?candidate=" + System.url().url_encode(patha.implode("|"));
+            }
+            else
+            {
+               strUrl = "http://" + get_api_cc() + "/api/matter/query_file?candidate=" + System.url().url_encode(patha.implode("|"));
+            }
+            
             property_set set(papp);
 
             set["raw_http"] = true;
 
-            if(bDir)
-            {
-               strPath = App(papp).http().get("http://" + get_api_cc() + "/api/matter/query_dir?candidate=" + System.url().url_encode(patha.implode("|")),set);
-            }
-            else
-            {
-               strPath = App(papp).http().get("http://" + get_api_cc() + "/api/matter/query_file?candidate=" + System.url().url_encode(patha.implode("|")), set);
-            }
+            strPath = App(papp).http().get(strUrl,set);
 
             strPath.trim();
 

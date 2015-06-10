@@ -528,6 +528,8 @@ namespace macos
 
    void interaction_impl::install_message_handling(::message::dispatch * pinterface)
    {
+      
+      ::user::interaction_impl::install_message_handling(pinterface);
       //m_pbuffer->InstallMessageHandling(pinterface);
       IGUI_WIN_MSG_LINK(WM_DESTROY           , pinterface, this, &interaction_impl::_001OnDestroy);
       IGUI_WIN_MSG_LINK(WM_NCDESTROY         , pinterface, this, &interaction_impl::_001OnNcDestroy);
@@ -5711,6 +5713,8 @@ namespace macos
       }
 
 //      single_lock sl(mutex_display(), true);
+      
+      cslock slDisplay(cs_display());
 
       if(m_spdib.is_null())
          return;
@@ -5722,9 +5726,9 @@ namespace macos
 
       g->attach(cgc);
 
-      //       ::rect rectClient;
+            ::rect rectClient;
 
-      //       GetClientRect(rectClient);
+            GetClientRect(rectClient);
 
       //       g->BitBlt(0, 0, rectClient.width(), rectClient.height(), m_spdib->get_graphics(), 0, 0, SRCCOPY);
 
@@ -5732,7 +5736,7 @@ namespace macos
 
       //       g->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      //       g->FillSolidRect(rectClient, ARGB(128, 0, 255, 0));
+//      g->FillSolidRect(rectClient, ARGB(128, 0, 255, 0));
 
    }
 
