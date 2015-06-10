@@ -1,9 +1,7 @@
 //#include "framework.h"
-//#include "windows.h"
-
+//#include "metrowin.h"
 
 /////////////////////////////////////////////////////////////////////////////
-
 void __trace_message(const char * lpszPrefix,signal_details * pobj)
 {
    ENSURE_ARG(__is_valid_string(lpszPrefix));
@@ -34,8 +32,9 @@ void __trace_message(const char * lpszPrefix,signal_details * pobj)
    {
       // Window message registered with 'RegisterWindowMessage'
       //  (actually a USER atom)
-      //if(::GetClipboardFormatNameA(pbase->m_uiMessage,szBuf,_countof(szBuf)))
-      //   lpszMsgName = szBuf;
+      /*
+      if (::GetClipboardFormatNameA(pbase->m_uiMessage, szBuf, _countof(szBuf)))
+      lpszMsgName = szBuf;*/
    }
    else if(pbase->m_uiMessage >= WM_USER)
    {
@@ -47,7 +46,7 @@ void __trace_message(const char * lpszPrefix,signal_details * pobj)
    {
       // a system windows message
       const __MAP_MESSAGE* pMapMsg = allMessages;
-      for(/*null*/; pMapMsg->lpszMsg != NULL; pMapMsg++)
+      for(/*NULL*/; pMapMsg->lpszMsg != NULL; pMapMsg++)
       {
          if(pMapMsg->nMsg == pbase->m_uiMessage)
          {
@@ -60,24 +59,24 @@ void __trace_message(const char * lpszPrefix,signal_details * pobj)
    if(lpszMsgName != NULL)
    {
 #ifdef _WIN64
-      //TRACE(::aura::trace::category_WinMsg, 4, "%s: oswindow=%p, msg = %s (%p, %p)\n",
-      // lpszPrefix, pbase->m_oswindow, lpszMsgName,
+      //TRACE(::core::trace::category_WinMsg, 4, "%s: hwnd=%p, msg = %s (%p, %p)\n",
+      // lpszPrefix, pbase->m_hwnd, lpszMsgName,
       //pbase->m_wparam, pbase->m_lparam);
 #else
-      //  ::OutputDebugString(::aura::trace::category_WinMsg, 4, "%s: oswindow=0x%08X, msg = %s (0x%08X, 0x%08X)\n",
-      //         lpszPrefix, pbase->m_oswindow, lpszMsgName,
+      //  ::OutputDebugString(::core::trace::category_WinMsg, 4, "%s: hwnd=0x%08X, msg = %s (0x%08X, 0x%08X)\n",
+      //         lpszPrefix, pbase->m_hwnd, lpszMsgName,
       //       pbase->m_wparam, pbase->m_lparam);
 #endif
    }
    else
    {
 #ifdef _WIN64
-      //      ::OutputDebugString(::aura::trace::category_WinMsg, 4, "%s: oswindow=%p, msg = 0x%04X (%p, %p)\n",
-      //       lpszPrefix, pbase->m_oswindow, lpszMsgName,
+      //      ::OutputDebugString(::core::trace::category_WinMsg, 4, "%s: hwnd=%p, msg = 0x%04X (%p, %p)\n",
+      //       lpszPrefix, pbase->m_hwnd, lpszMsgName,
       //     pbase->m_wparam, pbase->m_lparam);
 #else
-      //      ::OutputDebugString(::aura::trace::category_WinMsg, 4, "%s: oswindow=0x%08X, msg = 0x%04X (0x%08X, 0x%08X)\n",
-      //       lpszPrefix, pbase->m_oswindow, lpszMsgName,
+      //      ::OutputDebugString(::core::trace::category_WinMsg, 4, "%s: hwnd=0x%08X, msg = 0x%04X (0x%08X, 0x%08X)\n",
+      //       lpszPrefix, pbase->m_hwnd, lpszMsgName,
       //     pbase->m_wparam, pbase->m_lparam);
 #endif
    }
@@ -87,7 +86,7 @@ void __trace_message(const char * lpszPrefix,signal_details * pobj)
 }
 
 
-void __trace_message(const char * lpszPrefix,LPMSG lpmsg)
+void __trace_message(const char * lpszPrefix,LPMESSAGE lpmsg)
 {
    ENSURE_ARG(__is_valid_string(lpszPrefix));
    ENSURE_ARG(lpmsg != NULL);
@@ -116,8 +115,8 @@ void __trace_message(const char * lpszPrefix,LPMSG lpmsg)
    {
       // Window message registered with 'RegisterWindowMessage'
       //  (actually a USER atom)
-      //if(::GetClipboardFormatNameA(lpmsg->message,szBuf,_countof(szBuf)))
-      //   lpszMsgName = szBuf;
+      //      if (::GetClipboardFormatNameA(lpmsg->message, szBuf, _countof(szBuf)))
+      //       lpszMsgName = szBuf;
    }
    else if(lpmsg->message >= WM_USER)
    {
@@ -129,7 +128,7 @@ void __trace_message(const char * lpszPrefix,LPMSG lpmsg)
    {
       // a system windows message
       const __MAP_MESSAGE* pMapMsg = allMessages;
-      for(/*null*/; pMapMsg->lpszMsg != NULL; pMapMsg++)
+      for(/*NULL*/; pMapMsg->lpszMsg != NULL; pMapMsg++)
       {
          if(pMapMsg->nMsg == lpmsg->message)
          {
@@ -142,24 +141,24 @@ void __trace_message(const char * lpszPrefix,LPMSG lpmsg)
    if(lpszMsgName != NULL)
    {
 #ifdef WIN64
-      //      TRACE(::aura::trace::category_WinMsg, 4, "%s: oswindow=%p, msg = %hs (%p, %p)\n",
-      //       lpszPrefix, pMsg->oswindow, lpszMsgName,
+      //      TRACE(::core::trace::category_WinMsg, 4, "%s: hwnd=%p, msg = %hs (%p, %p)\n",
+      //       lpszPrefix, pMsg->hwnd, lpszMsgName,
       //     pMsg->wParam, pMsg->lParam);
 #else
-      //      ::OutputDebugString(::aura::trace::category_WinMsg, 4, "%s: oswindow=0x%08X, msg = %hs (0x%08X, 0x%08X)\n",
-      //       lpszPrefix, lpmsg->oswindow, lpszMsgName,
+      //      ::OutputDebugString(::core::trace::category_WinMsg, 4, "%s: hwnd=0x%08X, msg = %hs (0x%08X, 0x%08X)\n",
+      //       lpszPrefix, lpmsg->hwnd, lpszMsgName,
       //     lpmsg->wParam, lpmsg->lParam);
 #endif
    }
    else
    {
 #ifdef WIN64
-      //::OutputDebugString(::aura::trace::category_WinMsg, 4, "%s: oswindow=%p, msg = 0x%04X (%p, %p)\n",
-      // lpszPrefix, pMsg->oswindow, lpszMsgName,
+      //::OutputDebugString(::core::trace::category_WinMsg, 4, "%s: hwnd=%p, msg = 0x%04X (%p, %p)\n",
+      // lpszPrefix, pMsg->hwnd, lpszMsgName,
       //pMsg->wParam, pMsg->lParam);
 #else
-      //::OutputDebugString(::aura::trace::category_WinMsg, 4, "%s: oswindow=0x%08X, msg = 0x%04X (0x%08X, 0x%08X)\n",
-      // lpszPrefix, lpmsg->oswindow, lpszMsgName,
+      //::OutputDebugString(::core::trace::category_WinMsg, 4, "%s: hwnd=0x%08X, msg = 0x%04X (0x%08X, 0x%08X)\n",
+      // lpszPrefix, lpmsg->hwnd, lpszMsgName,
       //lpmsg->wParam, lpmsg->lParam);
 #endif
    }
