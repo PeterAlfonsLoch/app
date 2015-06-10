@@ -443,9 +443,13 @@ namespace metrowin
       bool dir::initialize()
       {
 
+
+         if(!::metrowin::dir::initialize())
+            return false;
+
          xml::document doc(get_app());
 
-         doc.load(Application.file().as_string(appdata("configuration\\directory.xml")));
+         doc.load(Application.file().as_string(appdata() / "configuration\\directory.xml"));
 
          if(doc.get_root()->get_name() == "directory_configuration")
          {
@@ -456,10 +460,10 @@ namespace metrowin
 
          }
          if(m_strTimeFolder.is_empty())
-            m_strTimeFolder = appdata("time");
+            m_strTimeFolder = appdata() / "time";
 
          if(m_strNetSeedFolder.is_empty())
-            m_strNetSeedFolder = element("net/netseed");
+            m_strNetSeedFolder = element() / "net/netseed";
 
          mk(m_strTimeFolder, get_app());
 
@@ -472,7 +476,7 @@ namespace metrowin
 
          }
 
-         mk(path(m_strTimeFolder, "time"), get_app());
+         mk(m_strTimeFolder/  "time",get_app());
 
          return true;
 

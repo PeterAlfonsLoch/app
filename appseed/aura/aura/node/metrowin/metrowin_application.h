@@ -95,8 +95,6 @@ namespace metrowin
 
 
 
-      //virtual bool update_module_paths();
-
 
 
 

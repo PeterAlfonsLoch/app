@@ -11,12 +11,6 @@ namespace metrowin
       ::file::dir::system(papp)
    {
 
-      string strCa2Module = ca2module();
-
-      m_strCa2 = strCa2Module;
-
-      m_strCa2 -= 2;
-
    }
 
    inline bool myspace(char ch)
@@ -96,7 +90,7 @@ namespace metrowin
 
          }
 
-         stringa stra;
+         ::file::patha stra;
 
          ::dir::ls(stra,listing.m_path);
 
@@ -141,7 +135,7 @@ namespace metrowin
 
          }
 
-         stringa stra;
+         ::file::patha stra;
 
          ::dir::ls(stra,listing.m_path);
 
@@ -331,7 +325,7 @@ namespace metrowin
 
    ::file::path dir::votagus()
    {
-      return System.get_ca2_module_folder();
+      return System.dir().ca2module();
    }
 
    ::file::path dir::time()
@@ -362,16 +356,6 @@ namespace metrowin
 
       return m_strCa2;
 
-   }
-
-   ::file::path dir::module()
-   {
-      return System.get_module_folder();
-   }
-
-   ::file::path dir::ca2module()
-   {
-      return System.get_ca2_module_folder();
    }
 
 
@@ -497,6 +481,19 @@ namespace metrowin
 
    bool dir::initialize()
    {
+
+      update_module_path();
+
+      string strCa2Module = ca2module();
+
+      m_strCa2 = strCa2Module;
+
+#ifndef CUBE
+
+      m_strCa2 -= 2;
+
+#endif
+
 
       xml::document doc(get_app());
 

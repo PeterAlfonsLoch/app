@@ -2135,7 +2135,7 @@ bool get_file_time(::Windows::Storage::StorageFile ^ file,LPFILETIME lpCreationT
 
 
 
-string get_sys_temp_path()
+::file::path dir::sys_temp()
 {
 
    return ::Windows::Storage::ApplicationData::Current->TemporaryFolder->Path;

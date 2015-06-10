@@ -5301,7 +5301,15 @@ namespace axis
       if(get_command_line_param(strValue,pszCommandLine,"enable_desktop_launch"))
       {
 
+#ifdef METROWIN
+
+         return -1;
+
+#else
+
          return ::call_sync(::path::a_spa(),pszCommandLine,::dir::a_spa(),SW_SHOWNORMAL,840,84,NULL,0);
+
+#endif
 
       }
       else

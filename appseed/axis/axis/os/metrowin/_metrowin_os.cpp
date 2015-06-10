@@ -6,3 +6,10 @@
 #include "metrowin_sockets.cpp"
 #include "metrowin_user.cpp"
 #include "metrowin_windowing.cpp"
+
+
+
+#include "metrowin_trace_message.cpp"
+
+
+

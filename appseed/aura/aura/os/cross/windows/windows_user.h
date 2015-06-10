@@ -846,7 +846,7 @@ LPCSTR lpcaption,
 UINT uType);
 
 
-int32_t
+CLASS_DECL_AURA int32_t
 WINAPI
 MessageBoxW(
 oswindow hWnd,

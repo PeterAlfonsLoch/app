@@ -29,7 +29,11 @@ namespace aura
    bool app_launcher::start()
    {
 
-#ifdef WINDOWS
+#ifdef METROWIN
+
+      return false;
+
+#elif defined(WINDOWS)
 
 	   wstring wstrApp(get_executable_path());
 

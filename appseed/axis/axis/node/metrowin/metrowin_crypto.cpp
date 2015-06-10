@@ -259,10 +259,14 @@ namespace metrowin
 
          void SSLInitializer::DeleteRandFile()
          {
+            
             if(m_rand_file.get_length())
             {
-               System.file_del(m_rand_file);
+
+               Application.file().del(m_rand_file);
+
             }
+
          }
 
 

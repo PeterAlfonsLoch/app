@@ -37,4 +37,4 @@ extern CLASS_DECL_BASE int g_iMouse;
 
 
 
-#include "metrowin_gdi_winrt.h"
+//#include "metrowin_gdi_winrt.h"

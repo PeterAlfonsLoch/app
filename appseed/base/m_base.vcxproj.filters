@@ -532,9 +532,6 @@
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="user\_user.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\simple_ui\simple_ui_edit_box.cpp">
       <Filter>Source Files\user\simple_ui</Filter>
     </ClCompile>
@@ -712,12 +709,6 @@
     <ClCompile Include="user\fontopus\fontopus_simple_ui.cpp">
       <Filter>Source Files\user\fontopus</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\graphics_window_graphics.cpp">
-      <Filter>Source Files\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_edit_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
     <ClCompile Include="base\base\base_application.cpp">
       <Filter>Source Files\base\base</Filter>
     </ClCompile>
@@ -777,9 +768,6 @@
     </ClCompile>
     <ClCompile Include="base\install\install_starter_start.cpp">
       <Filter>Source Files\base\install</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database\database_user_interaction.cpp">
-      <Filter>Source Files\database\database</Filter>
     </ClCompile>
     <ClCompile Include="base\node\metrowin\metrowin_copydesk.cpp">
       <Filter>Source Files\base\node\metrowin</Filter>

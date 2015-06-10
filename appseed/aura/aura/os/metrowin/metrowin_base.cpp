@@ -195,6 +195,9 @@ ulong_ptr                        g_gdiplusToken             = NULL;
 ulong_ptr                        g_gdiplusHookToken         = NULL;
 */
 
+
+
+
 int_bool main_initialize()
 {
 
@@ -397,16 +400,6 @@ string get_system_error_message(uint32_t dwError)
    return str;
 }
 
-
-WINBOOL IsWindow(oswindow oswindow)
-{
-
-   if(((void *) oswindow) == NULL)
-      return FALSE;
-
-   return TRUE;
-
-}
 
 
 
@@ -793,6 +786,34 @@ void CLASS_DECL_AURA __throw_last_cleanup()
 
 
 
+CLASS_DECL_AURA thread_int_ptr < int_ptr >                             t_iCoInitialize;
+
+CLASS_DECL_AURA thread_int_ptr < HRESULT > t_hresultCoInitialize;
+
+
+
+bool defer_co_initialize_ex()
+{
+
+   if(t_iCoInitialize != FALSE)
+      return true;
+
+   t_hresultCoInitialize = ::CoInitializeEx(NULL,COINIT_MULTITHREADED);
+
+   if(FAILED(t_hresultCoInitialize))
+   {
+
+      ::output_debug_string("Failed to ::CoInitializeEx(NULL, COINIT_MULTITHREADED) at __node_pre_init");
+
+      return false;
+
+   }
+
+   t_iCoInitialize = TRUE;
+
+   return true;
+
+}
 
 
 

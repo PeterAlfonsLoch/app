@@ -1,4 +1,3 @@
-<<<<<<< .mine
 #include <D2D1_1.h>
 #include <DWRITE.h>
 #include <d3d11_1.h>
@@ -12,7 +11,6 @@
 //CLASS_DECL_BASE float x_dpi(float x);
 
 
-CLASS_DECL_BASE WINBOOL GetCursorPos(LPPOINT lppoint);=======
 #include <D2D1_1.h>
 #include <DWRITE.h>
 #include <d3d11_1.h>
@@ -26,4 +24,4 @@ CLASS_DECL_BASE WINBOOL GetCursorPos(LPPOINT lppoint);=======
 //CLASS_DECL_BASE float x_dpi(float x);
 
 
-CLASS_DECL_AXIS WINBOOL GetCursorPos(LPPOINT lppoint);>>>>>>> .r14870
+CLASS_DECL_AXIS WINBOOL GetCursorPos(LPPOINT lppoint);

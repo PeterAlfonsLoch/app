@@ -20,7 +20,7 @@ namespace aura
 #if defined(WINDOWSEX)
       m_bTrace          = ::file_exists_dup("C:\\core\\trace.txt") || ::is_debugger_attached();
 #elif defined(METROWIN)
-      m_bTrace          = ::file_exists_dup(::dir::appdata("trace.txt")) || ::is_debugger_attached();
+      m_bTrace          = ::file_exists_dup(::dir::appdata() / "trace.txt") || ::is_debugger_attached();
 #elif defined(LINUX)
       m_bTrace          = ::file_exists_dup("/etc/core/trace.txt") || ::is_debugger_attached();
 #elif defined(ANDROID)

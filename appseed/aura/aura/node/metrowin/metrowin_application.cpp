@@ -526,15 +526,6 @@ namespace metrowin
    }
 
 
-   bool application::update_module_paths()
-   {
-
-      System.m_pathModuleFolder = "";
-      System.m_pathCa2ModuleFolder = "";
-
-      return true;
-
-   }
 
 
    void application::ShowWaitCursor(bool bShow)

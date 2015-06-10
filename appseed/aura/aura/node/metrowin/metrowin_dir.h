@@ -45,6 +45,8 @@ namespace metrowin
       //virtual string name(const char * lpcsz);
       //virtual string name(const string & str);
 
+      ::file::path dir::userfolder(::aura::application *  papp);
+
       virtual ::file::path votagus();
       virtual ::file::path time();
       virtual ::file::path stage();
@@ -54,8 +56,8 @@ namespace metrowin
       // stage in ccvotagus spalib
       virtual ::file::path element();
 
-      virtual ::file::path module();
-      virtual ::file::path ca2module();
+      //virtual ::file::path module();
+      //virtual ::file::path ca2module();
       virtual ::file::path time_square();
       virtual ::file::path time_log();
 

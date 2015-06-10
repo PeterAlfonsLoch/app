@@ -24,7 +24,7 @@
 
    buf = "C:\\ProgramData";
    
-   str = path(buf, "ca2");
+   str = ::file::path(buf) /  "ca2";
    
    //memory_free_dbg(buf, 0);
 

@@ -1642,5 +1642,11 @@
     <ClCompile Include="axis\node\metrowin\_metrowin_node.cpp">
       <Filter>Source Files\axis\node\metrowin</Filter>
     </ClCompile>
+    <ClCompile Include="graphics\dib_console.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\metrowin\metrowin_trace_message.cpp">
+      <Filter>Source Files\axis\os\metrowin</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

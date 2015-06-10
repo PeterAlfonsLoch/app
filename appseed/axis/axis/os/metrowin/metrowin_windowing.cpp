@@ -211,3 +211,16 @@ oswindow_data * WINAPI GetParent(oswindow_data * pdata)
 
 
 }
+
+
+
+WINBOOL IsWindow(oswindow oswindow)
+{
+
+   if(((void *)oswindow) == NULL)
+   return FALSE;
+
+   return TRUE;
+
+}
+

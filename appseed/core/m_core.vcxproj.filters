@@ -1246,12 +1246,6 @@
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set_listener_array.cpp">
       <Filter>Source Files\user\wndfrm\frame</Filter>
     </ClCompile>
-    <ClCompile Include="database\databaseuser\database_key_list_data.cpp">
-      <Filter>Source Files\database\databaseuser</Filter>
-    </ClCompile>
-    <ClCompile Include="database\databaseuser\database_list_data.cpp">
-      <Filter>Source Files\database\databaseuser</Filter>
-    </ClCompile>
     <ClCompile Include="math\binary_operation.cpp">
       <Filter>Source Files\math</Filter>
     </ClCompile>
@@ -1531,9 +1525,6 @@
     <ClCompile Include="core\core\core_os_history.cpp">
       <Filter>Source Files\core\core</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_html_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
     <ClCompile Include="core\os\metrowin\metrowin_main.cpp">
       <Filter>Source Files\core\os\metrowin</Filter>
     </ClCompile>
@@ -1557,6 +1548,9 @@
     </ClCompile>
     <ClCompile Include="filesystem\userfs\_userfs.cpp">
       <Filter>Source Files\filesystem\userfs</Filter>
+    </ClCompile>
+    <ClCompile Include="database\databaseuser\_databaseuser.cpp">
+      <Filter>Source Files\database\databaseuser</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
