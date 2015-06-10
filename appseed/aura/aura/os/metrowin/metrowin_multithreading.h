@@ -73,7 +73,7 @@ CLASS_DECL_AURA void WINAPI TlsShutdown();
 class mq;
 
 CLASS_DECL_AURA mq * get_mq();
-CLASS_DECL_AURA mq * get_mq(int iThreadId);
+CLASS_DECL_AURA mq * get_mq(IDTHREAD iThreadId);
 
 
 #endif

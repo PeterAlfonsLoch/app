@@ -1687,5 +1687,11 @@
     <ClCompile Include="axis\node\windows\windows_message_queue.cpp">
       <Filter>Source Files\axis\node\windows</Filter>
     </ClCompile>
+    <ClCompile Include="axis\os\metrowin\metrowin_multithreading.cpp">
+      <Filter>Source Files\axis\os\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\metrowin\metrowin_message_loop.cpp">
+      <Filter>Source Files\axis\os\metrowin</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
