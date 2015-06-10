@@ -1322,7 +1322,11 @@ restart:
    bool system::update_module_path()
    {
 
-      throw interface_only_exception(get_app());
+      m_pathModule = "";
+      m_pathCa2Module = "";
+
+
+      return true;
 
    }
 
