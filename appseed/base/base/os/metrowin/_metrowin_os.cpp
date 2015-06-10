@@ -5,8 +5,8 @@
 
 //#include "aaa_want_to_remove_metrowin_http.cpp"
 //#include "aaa_want_to_remove_metrowin_simple_ui.cpp"
-/*#include "metrowin.cpp"
-#include "metrowin_message_loop.cpp"
+#include "metrowin.cpp"
+/*#include "metrowin_message_loop.cpp"
 #include "metrowin_multithreading.cpp"
 #include "metrowin_process.cpp"*/
 #include "metrowin_simple_app.cpp"

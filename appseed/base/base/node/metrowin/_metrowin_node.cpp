@@ -5,9 +5,9 @@
 //
 // Pasta de Y:\winmetro_hellomultiverse\app\appseed\base\base\node\metrowin
 //
-/*#include "metrowin_copydesk.cpp"
+/*#include "metrowin_copydesk.cpp"*/
 #include "metrowin_factory_exchange.cpp"
-#include "metrowin_interaction_impl.cpp"
+/*#include "metrowin_interaction_impl.cpp"
 #include "metrowin_window_draw.cpp"
 #include "metrowin_directx.cpp"
 #include "metrowin_directx_application.cpp"*/

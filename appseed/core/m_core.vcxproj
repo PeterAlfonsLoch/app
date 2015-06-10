@@ -380,6 +380,9 @@
     <ProjectReference Include="..\..\aura\charguess\m_auracharguess.vcxproj">
       <Project>{67c95418-596b-4860-afae-b53262ae5e43}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\axis\bzip2\m_axisbzip2.vcxproj">
+      <Project>{802c98ed-0844-4be7-ae30-f417a92207bd}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\aura\m_aura.vcxproj">
       <Project>{55f3f6b8-8baf-4f22-9e77-bcf9d5a23960}</Project>
     </ProjectReference>
@@ -1592,7 +1595,17 @@
     <ClCompile Include="math\_integer.cpp" />
     <ClCompile Include="net\hi5\hi5_oauth.cpp" />
     <ClCompile Include="net\hi5\hi5_twit.cpp" />
-    <ClCompile Include="net\usernet\usernet_network_configuration.cpp" />
+    <ClCompile Include="net\usernet\usernet_network_configuration.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="primitive\primitive_int_biunique.cpp" />
     <ClCompile Include="user\menu\user_menu.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
