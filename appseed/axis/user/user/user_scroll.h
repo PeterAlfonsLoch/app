@@ -761,6 +761,82 @@ namespace user
       {
       }
 
+      void on_change_view_size()
+      {
+
+         m_scrolldataHorz.m_bScroll = false;
+
+         m_scrolldataVert.m_bScroll = false;
+
+         m_scrolldataHorz.m_iWidth  = GetSystemMetrics(SM_CXHSCROLL);
+
+         m_scrolldataVert.m_iWidth  = GetSystemMetrics(SM_CYVSCROLL);
+
+         BASE::on_change_view_size();
+
+         size sizeTotal = get_total_size();
+
+         rect rectClient;
+
+         BASE::GetClientRect(rectClient);
+
+         LONG iTotalHeight    = sizeTotal.cy;
+
+         LONG iTotalWidth     = sizeTotal.cx;
+
+         LONG iClientHeight   = rectClient.height();
+
+         LONG iClientWidth    = rectClient.width();
+
+         LONG iScrollHeight  = iClientHeight - GetSystemMetrics(SM_CYHSCROLL);
+
+         LONG iScrollWidth   = iClientWidth - GetSystemMetrics(SM_CXVSCROLL);
+
+         if(iTotalWidth > iClientWidth)
+         {
+
+            m_scrolldataHorz.m_bScroll = true;
+
+            if(iTotalHeight > iScrollHeight)
+            {
+
+               m_scrolldataVert.m_bScroll = true;
+
+            }
+
+         }
+         else if(iTotalHeight > iClientHeight)
+         {
+
+            m_scrolldataVert.m_bScroll = true;
+
+            if(iTotalWidth > iScrollWidth)
+            {
+
+               m_scrolldataHorz.m_bScroll = true;
+
+            }
+
+         }
+
+         m_scrolldataHorz.m_bScroll = m_scrolldataHorz.m_bScrollEnable && m_scrolldataHorz.m_bScroll;
+
+         m_scrolldataVert.m_bScroll = m_scrolldataVert.m_bScrollEnable && m_scrolldataVert.m_bScroll;
+
+         rect rectScroll;
+
+         GetScrollRect(rectScroll);
+
+         m_scrolldataHorz.m_iPage          = rectScroll.width();
+
+         m_scrolldataVert.m_iPage          = rectScroll.height();
+
+         layout_scroll_bar();
+
+         on_change_viewport_offset();
+
+      }
+
 
    };
 

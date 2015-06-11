@@ -223,7 +223,7 @@ void simple_scroll_bar::_001OnLButtonUp(signal_details * pobj)
 
 bool simple_scroll_bar::GetTrackRect(LPRECT lpRect)
 {
-#ifdef WINDOWSEX
+
    rect rectClient;
    GetClientRect(rectClient);
    size sizeTrack;
@@ -255,9 +255,11 @@ bool simple_scroll_bar::GetTrackRect(LPRECT lpRect)
       lpRect->left = rectClient.left;
       lpRect->right = lpRect->left + sizeTrack.cx;
    }
-#endif
-   return TRUE;
+
+   return true;
+
 }
+
 
 bool simple_scroll_bar::_001GetScrollInfo(::user::scroll_info * lpsi)
 {
@@ -321,9 +323,11 @@ bool simple_scroll_bar::_001SetScrollInfo(::user::scroll_info * lpsi, bool bRedr
 
 bool simple_scroll_bar::GetTrackClientRect(LPRECT lpRect)
 {
-#ifdef WINDOWSEX
+
    rect rectClient;
+
    GetClientRect(rectClient);
+
    if(m_eorientation == orientation_horizontal)
    {
 //      int32_t iWidth = rectClient.width() - GetSystemMetrics(SM_CXHSCROLL) * 2;
@@ -340,28 +344,30 @@ bool simple_scroll_bar::GetTrackClientRect(LPRECT lpRect)
       lpRect->left = rectClient.left + 1;
       lpRect->right = rectClient.right - 1;
    }
-#else
-   throw todo(get_app());
-#endif
-   return TRUE;
+
+   return true;
+
 }
+
 
 int32_t simple_scroll_bar::GetTrackSize(size &size)
 {
-#ifdef WINDOWSEX
+   
    rect rectClient;
+
    GetClientRect(rectClient);
+
    if(m_eorientation == orientation_horizontal)
    {
       int32_t iWidth = rectClient.width() - GetSystemMetrics(SM_CXHSCROLL) * 2;
       int32_t cx = 5;
       if(iWidth > 0)
       {
-         int32_t idiff = (m_scrollinfo.nMax - m_scrollinfo.nMin);
-         if(idiff == 0)
+         int32_t iRange = (m_scrollinfo.nMax - m_scrollinfo.nMin);
+         if(iRange == 0)
             cx = 0;
          else
-            cx = m_scrollinfo.nPage * iWidth / idiff;
+            cx = m_scrollinfo.nPage * iWidth / iRange;
       }
       if(cx < 5)
          cx = 5;
@@ -371,34 +377,39 @@ int32_t simple_scroll_bar::GetTrackSize(size &size)
    else if(m_eorientation == orientation_vertical)
    {
       int32_t iHeight = rectClient.height() - GetSystemMetrics(SM_CYVSCROLL) * 2;
-      size.cx = rectClient.width();
       int32_t cy = 5;
       if(iHeight > 0)
       {
-         int32_t idiff = (m_scrollinfo.nMax - m_scrollinfo.nMin);
-         if(idiff == 0)
+         int32_t iRange = (m_scrollinfo.nMax - m_scrollinfo.nMin);
+         if(iRange == 0)
             cy = 0;
          else
-            cy = m_scrollinfo.nPage * iHeight / idiff;
+            cy = m_scrollinfo.nPage * iHeight / iRange;
       }
       if(cy < 5)
          cy = 5;
       size.cy = cy;
+      size.cx = rectClient.width();
    }
-#else
-   throw todo(get_app());
-#endif
-   return TRUE;
+
+   return true;
+
 }
+
 
 int32_t simple_scroll_bar::SetTrackingPos(point point)
 {
-#ifdef WINDOWSEX
+
    int32_t nPos;
+   
    size sizeTrack;
+   
    GetTrackSize(sizeTrack);
+
    rect rectClient;
+
    GetClientRect(rectClient);
+
    if(m_eorientation == orientation_horizontal)
    {
       int32_t iWidth = rectClient.width() - GetSystemMetrics(SM_CXHSCROLL) * 2 - sizeTrack.cx;
@@ -438,11 +449,11 @@ int32_t simple_scroll_bar::SetTrackingPos(point point)
    }
    m_scrollinfo.fMask = SIF_ALL;
    // trans   ::user::interaction::SetScrollInfo(SB_CTL, &m_scrollinfo);
-#else
-   throw todo(get_app());
-#endif
-   return TRUE;
+
+   return true;
+
 }
+
 
 void simple_scroll_bar::_001OnHScroll(signal_details * pobj)
 {
@@ -833,7 +844,7 @@ void simple_scroll_bar::UpdateBitmaps()
 
 bool simple_scroll_bar::GetPageARect(LPRECT lpRectClient,LPRECT lpRectTrack, LPRECT lpRect)
 {
-//#ifdef WINDOWSEX
+
    if(m_eorientation == orientation_horizontal)
    {
       lpRect->left = lpRectClient->left + GetSystemMetrics(SM_CXHSCROLL);
@@ -848,15 +859,14 @@ bool simple_scroll_bar::GetPageARect(LPRECT lpRectClient,LPRECT lpRectTrack, LPR
       lpRect->right = lpRectTrack->right;
       lpRect->bottom = lpRectTrack->top;
    }
-//#else
-  // throw todo(get_app());
-//#endif
+
    return true;
+
 }
+
 
 bool simple_scroll_bar::GetPageBRect(LPRECT lpRectClient,LPRECT lpRectTrack, LPRECT lpRect)
 {
-//#ifdef WINDOWSEX
    if(m_eorientation == orientation_horizontal)
    {
       lpRect->left = lpRectTrack->right;
@@ -871,11 +881,11 @@ bool simple_scroll_bar::GetPageBRect(LPRECT lpRectClient,LPRECT lpRectTrack, LPR
       lpRect->right = lpRectTrack->right;
       lpRect->bottom = lpRectClient->bottom - GetSystemMetrics(SM_CYVSCROLL);
    }
-//#else
-  // throw todo(get_app());
-//#endif
+
    return true;
+
 }
+
 
 
 int32_t simple_scroll_bar::_001SetScrollPos(int32_t iPos)

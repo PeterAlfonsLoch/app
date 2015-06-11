@@ -10,8 +10,8 @@ namespace userfs
    {
 
 
-      m_rectMargin.left = -23;
-      m_rectMargin.top = -8;
+      m_rectMargin.left = 23;
+      m_rectMargin.top = 8;
       m_rectMargin.bottom = 0;
       m_rectMargin.right = 0;
       
