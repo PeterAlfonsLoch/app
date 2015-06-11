@@ -41,6 +41,7 @@ namespace aura
       menu *                     m_psubmenu;
       id                         m_idTimerMenu;
       point                      m_ptTrack;
+      ::user::interaction *      m_puiNotify;
 
 
       menu(::aura::application * papp);
@@ -82,6 +83,8 @@ namespace aura
 
 
       sp(::user::menu_item) get_item();
+
+      sp(::user::menu_item) get_item(::user::interaction * pui);
 
 
       virtual bool get_color(COLORREF & cr,::user::e_color ecolor);

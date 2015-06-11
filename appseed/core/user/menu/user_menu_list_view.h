@@ -12,7 +12,6 @@ namespace user
    public:
 
 
-      ::user::interaction   * m_puiNotify;
 
 
       menu_list_view(::aura::application * papp);

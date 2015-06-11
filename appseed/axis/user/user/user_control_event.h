@@ -21,7 +21,9 @@ namespace user
       event_key_down,
       event_after_change_text,
       event_after_change_cur_sel,
-      event_timebar_change
+      event_timebar_change,
+      event_menu_hover,
+      event_context_menu_close,
               
    };
 
@@ -33,6 +35,7 @@ namespace user
 
       e_event                       m_eevent;
       ::user::interaction *         m_puie;
+      id                            m_id;
       uint32_t                      m_uiEvent;
       ::action::context             m_actioncontext;
       uint32_t                      m_uiVKey;

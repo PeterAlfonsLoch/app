@@ -26,21 +26,37 @@ namespace user
 
 
    class CLASS_DECL_CORE menu_button :
-      public button
+      virtual public button
    {
    public:
+      
+      
+      
+      menu_item *             m_pitem;
+      rect                    m_rectCheckBox;
+
       menu_button(::aura::application * papp);
-   public:
       virtual ~menu_button();
 
-      menu_item *    m_pitem;
-      rect                m_rectCheckBox;
+      virtual void install_message_handling(::message::dispatch * pinterface);
 
-      virtual void _001Layout();
+      virtual void layout();
 
       virtual void _001DrawCheck(::draw2d::graphics * pdc);
 
       virtual void _001OnDraw(::draw2d::graphics * pdc);
+
+      DECL_GEN_SIGNAL(_001OnMouseMove);
+
+
    };
 
+
 } // namespace user
+
+
+
+
+
+
+

@@ -3,7 +3,7 @@
 namespace user
 {
 
-   menu_button::menu_button(::aura::application * papp) :
+   menu_button::menu_button(::aura::application * papp):
       ::user::interaction(papp),
 
       ::user::button(papp),
@@ -15,6 +15,18 @@ namespace user
    menu_button::~menu_button()
    {
    }
+
+
+
+   void menu_button::install_message_handling(::message::dispatch * pinterface)
+   {
+
+      ::user::button::install_message_handling(pinterface);
+
+
+
+   }
+
 
 
    void menu_button::_001OnDraw(::draw2d::graphics * pdc)
@@ -45,7 +57,7 @@ namespace user
    }
 
 
-   void menu_button::_001Layout()
+   void menu_button::layout()
    {
       rect rect;
       class rect rectClient;
@@ -111,6 +123,17 @@ namespace user
       }
    }
 
+
+   void menu_button::_001OnMouseMove(::signal_details * pobj)
+   {
+
+      SCAST_PTR(::message::mouse,pmouse,pobj)
+
+         pmouse->previous();
+
+
+   }
+
    menu_button_cmd_ui::menu_button_cmd_ui(::aura::application * papp) :
       object(papp),
       cmd_ui(papp)
@@ -172,5 +195,7 @@ namespace user
    {
       // ignore it
    }
+
+
 
 } // namespace user

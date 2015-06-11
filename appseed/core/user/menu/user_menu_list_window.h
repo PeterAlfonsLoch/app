@@ -16,7 +16,6 @@ namespace user
 
       UINT                                m_uiMessage;
       bool                                m_bAutoClose;
-      sp(::user::interaction)             m_pwndNotify;
       bool                                m_bAutoDelete;
       ::user::front_end_schema::menu *    m_pschema;
       bool                                m_bOwnItem;

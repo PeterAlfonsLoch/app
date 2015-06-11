@@ -326,10 +326,36 @@ namespace aura
 
    bool menu::BaseOnControlEvent(::user::control_event * pevent)
    {
-      if(pevent->m_eevent == ::user::event_button_clicked)
+
+      if(pevent->m_eevent == ::user::event_mouse_enter)
+      {
+
+         sp(::user::menu_item) pitem = get_item(pevent->m_puie);
+
+         if(pitem.is_set())
+         {
+
+            ::user::control_event ev;
+
+            ev.m_eevent = ::user::event_menu_hover;
+
+            ev.m_id = pitem->m_id;
+
+            m_oswindowParent->BaseOnControlEvent(&ev);
+
+         }
+
+      }
+      else if(pevent->m_eevent == ::user::event_button_clicked)
       {
          if(pevent->m_puie == &m_buttonClose)
          {
+            ::user::control_event ev;
+
+            ev.m_eevent = ::user::event_context_menu_close;
+
+            m_oswindowParent->BaseOnControlEvent(&ev);
+
             post_message(WM_CLOSE);
          }
          else
@@ -611,6 +637,34 @@ namespace aura
 
    }
 
+
+   sp(::user::menu_item) menu::get_item(::user::interaction * pui)
+   {
+
+      sp(::user::menu_item) pitemThis = get_item();
+
+      sp(::user::menu_item_ptra) spitema = pitemThis->m_spitema;
+
+      sp(::user::menu_button) pbutton = pui;
+
+      if(pbutton.is_null())
+         return NULL;
+
+      for(auto & pitem : *spitema.m_p)
+      {
+         
+         if(&pitem->m_button == pbutton.m_p)
+         {
+
+            return pitem;
+
+         }
+
+      }
+
+      return NULL;
+
+   }
 
    bool menu::get_color(COLORREF & cr,::user::e_color ecolor)
    {

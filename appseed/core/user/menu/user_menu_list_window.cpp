@@ -17,7 +17,7 @@ namespace user
 
       m_bAutoDelete        = true;
       m_bOwnItem           = false;
-      m_pwndNotify         = NULL;
+      m_puiNotify         = NULL;
       m_pitem              = new menu_item(papp);
       m_pschema            = NULL;
       m_bAutoClose         = true;
@@ -32,7 +32,7 @@ namespace user
       m_buttonClose(papp)
    {
 
-      m_pwndNotify         = NULL;
+      m_puiNotify         = NULL;
       m_bAutoClose         = true;
       m_bAutoDelete        = true;
       m_pschema            = NULL;
@@ -87,7 +87,7 @@ namespace user
    bool menu_list_window::_TrackPopupMenu(sp(::user::interaction) pwndParent, sp(::user::interaction) pwndNotify)
    {
 
-      m_pwndNotify = pwndNotify;
+      m_puiNotify = pwndNotify;
 
 //      LPVOID lpvoid = NULL;
       if(!IsWindow())
@@ -128,7 +128,7 @@ namespace user
    bool menu_list_window::MenuFill(sp(::user::interaction) pwndFill, sp(::user::interaction) pwndNotify)
    {
 
-      m_pwndNotify = pwndNotify;
+      m_puiNotify = pwndNotify;
 
 //      LPVOID lpvoid = NULL;
       if(!IsWindow())
@@ -195,7 +195,7 @@ namespace user
          cmdui.m_id           = pitem->m_id;
          cmdui.m_pOther       = (sp(::user::interaction)) &pitem->m_button;
 
-         if(m_pwndNotify->on_simple_update(&cmdui))
+         if(m_puiNotify->on_simple_update(&cmdui))
             continue;
 
          _UpdateCmdUi(pitem);
@@ -422,7 +422,7 @@ namespace user
 
                if(pitem != NULL && !pitem->m_bPopup)
                {
-                  m_pwndNotify->_001SendCommand(pitem->m_id);
+                  m_puiNotify->_001SendCommand(pitem->m_id);
                   if(m_bAutoClose)
                   {
                      send_message(WM_CLOSE);
@@ -450,5 +450,7 @@ namespace user
       }*/
       ::aura::menu_base::clear();
    }
+
+
 
 } // namespace user
