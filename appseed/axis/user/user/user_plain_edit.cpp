@@ -53,8 +53,8 @@ namespace user
 
       ASSERT(get_app() != NULL);
 
-      //m_peditor = new colorertake5::base_editor(get_app());
-      //m_plines = new colorertake5::text_lines;
+      m_peditor = new colorertake5::base_editor(get_app());
+      m_plines = new colorertake5::text_lines;
 
       m_peditor = NULL;
       m_plines = NULL;
