@@ -50,8 +50,8 @@ namespace user
       virtual void _001LayoutXScrollBar();
       virtual void _001DeferCreateXScrollBar();
       virtual void _001OnDeferCreateXScrollBar();
-      virtual void _001GetXScrollInfo(scroll_info & info);
-      virtual void _001UpdateXScrollBar();
+      ///virtual void _001GetXScrollInfo(scroll_info & info);
+      //virtual void _001UpdateXScrollBar();
       virtual void _001ConstrainXScrollPosition();
 
 
@@ -386,8 +386,8 @@ namespace user
       virtual void _001LayoutYScrollBar();
       virtual void _001DeferCreateYScrollBar();
       virtual void _001OnDeferCreateYScrollBar();
-      virtual void _001GetScrollInfo(scroll_info & info);
-      virtual void _001UpdateYScrollBar();
+      //virtual void _001GetScrollInfo(scroll_info & info);
+      //virtual void _001UpdateYScrollBar();
       virtual void _001ConstrainYScrollPosition();
 
 

@@ -52,6 +52,7 @@ namespace user
 
       }
 
+      
       virtual point get_viewport_offset() override
       {
          
@@ -60,7 +61,10 @@ namespace user
          ptOffset.x += m_rectMargin.left;
          ptOffset.y += m_rectMargin.top;
 
+         return ptOffset;
+
       }
+
 
       virtual size get_total_size() override
       {
