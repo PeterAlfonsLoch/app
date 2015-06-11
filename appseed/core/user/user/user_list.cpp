@@ -2845,15 +2845,13 @@ namespace user
    void list::HeaderCtrlLayout()
    {
 
+      if(m_plistheader == NULL)
+         return;
+
       point ptOffset = get_viewport_offset();
 
-      m_plistheader->SetWindowPos(
-         ZORDER_TOP,
-         -ptOffset.x,
-         0,
-         0, 0,
-         SWP_NOSIZE
-         | SWP_SHOWWINDOW);
+      m_plistheader->SetWindowPos(ZORDER_TOP,      -ptOffset.x,         0,         0, 0,         SWP_NOSIZE         | SWP_SHOWWINDOW);
+
    }
 
    index list::HeaderCtrlMapColumnToOrder(index iColumn)
