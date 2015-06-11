@@ -56,9 +56,6 @@ namespace user
       m_peditor = new colorertake5::base_editor(get_app());
       m_plines = new colorertake5::text_lines;
 
-      m_peditor = NULL;
-      m_plines = NULL;
-
       m_iLineHeight = 0;
       m_bPassword = false;
       m_ptree              = NULL;
