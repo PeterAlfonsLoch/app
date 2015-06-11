@@ -19,6 +19,8 @@ namespace user
 
    }
 
+   class scroll_info;
+
 
    class interaction_impl_base;
 
@@ -719,6 +721,9 @@ namespace user
 
       virtual string calc_data_id();
 
+
+      virtual void _001GetXScrollInfo(scroll_info & info);
+      virtual void _001GetYScrollInfo(scroll_info & info);
 
    };
 

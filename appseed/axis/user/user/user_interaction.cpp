@@ -406,7 +406,7 @@ namespace user
    }
 
 
-   bool interaction::SetPlacement(const RECT & lpcrect, UINT nFlags)
+   bool interaction::SetPlacement(const RECT & lpcrect,UINT nFlags)
    {
 
       return RepositionWindow(lpcrect.left,lpcrect.top,width(lpcrect),height(lpcrect),nFlags);
@@ -533,7 +533,7 @@ namespace user
       else
       {
          IGUI_WIN_MSG_LINK(WM_CLOSE,pinterface,this,&interaction::_001OnClose);
-         IGUI_WIN_MSG_LINK(WM_TIMER                , pinterface, this, &interaction::_001OnTimer);
+         IGUI_WIN_MSG_LINK(WM_TIMER,pinterface,this,&interaction::_001OnTimer);
          IGUI_WIN_MSG_LINK(WM_DESTROY,pinterface,this,&interaction::_001OnDestroy);
          IGUI_WIN_MSG_LINK(WM_SIZE,pinterface,this,&interaction::_001OnSize);
          IGUI_WIN_MSG_LINK(WM_USER + 184,pinterface,this,&interaction::_001OnUser184);
@@ -541,7 +541,7 @@ namespace user
       }
       IGUI_WIN_MSG_LINK(WM_COMMAND,pinterface,this,&interaction::_001OnCommand);
       IGUI_WIN_MSG_LINK(message_simple_command,pinterface,this,&interaction::_001OnSimpleCommand);
-//      IGUI_WIN_MSG_LINK(message_set_schema,pinterface,this,&interaction::_001OnSetSchema);
+      //      IGUI_WIN_MSG_LINK(message_set_schema,pinterface,this,&interaction::_001OnSetSchema);
       IGUI_WIN_MSG_LINK(WM_SHOWWINDOW,pinterface,this,&interaction::_001OnShowWindow);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN,pinterface,this,&interaction::_001OnLButtonDown);
 
@@ -649,17 +649,45 @@ namespace user
       if(System.get_active_guie() == this)
       {
 
-//#ifdef WINDOWS
+         //#ifdef WINDOWS
          ::SetActiveWindow(NULL);
-//#else
+         //#else
          //System.set_active_ui(NULL);
-//#endif
+         //#endif
 
       }
 
 
 
    }
+
+   void interaction::_001GetXScrollInfo(scroll_info & info)
+   {
+
+      size sizeTotal = get_total_size();
+      size sizePage = get_page_size();
+      point ptOffset = get_viewport_offset();
+
+      info.nMin = 0;
+      info.nMax = sizeTotal.cx;
+      info.nPage = sizePage.cx;
+      info.nPos = ptOffset.x;
+      info.nTrackPos = ptOffset.x;
+   }
+
+   void interaction::_001GetYScrollInfo(scroll_info & info)
+   {
+      size sizeTotal = get_total_size();
+      size sizePage = get_page_size();
+      point ptOffset = get_viewport_offset();
+
+      info.nMin = 0;
+      info.nMax = sizeTotal.cy;
+      info.nPage = sizePage.cy;
+      info.nPos = ptOffset.y;
+      info.nTrackPos = ptOffset.y;
+   }
+
 
 
    void interaction::user_interaction_on_destroy()

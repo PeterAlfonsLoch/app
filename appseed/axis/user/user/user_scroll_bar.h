@@ -22,7 +22,7 @@ namespace user
    public:
 
       e_orientation  m_eorientation;
-      scroll_info    m_scrolldata;
+      scroll_info    m_scrollinfo;
       bool           m_bTracking;
 
 

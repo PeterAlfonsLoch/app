@@ -43,15 +43,12 @@ namespace user
       
       
       virtual void GetScrollRect(LPRECT lprect);
-      //virtual void send_scroll_message(::message::scroll * pscroll);
       virtual void on_change_view_size();
       virtual void on_change_viewport_offset();
       virtual void create_x_scroll_bar(const RECT & rect);
       virtual void _001LayoutXScrollBar();
       virtual void _001DeferCreateXScrollBar();
       virtual void _001OnDeferCreateXScrollBar();
-      ///virtual void _001GetXScrollInfo(scroll_info & info);
-      //virtual void _001UpdateXScrollBar();
       virtual void _001ConstrainXScrollPosition();
 
 
@@ -105,7 +102,13 @@ namespace user
       {
          if(m_scrolldataHorz.m_bScroll)
          {
+
+            _001GetXScrollInfo(m_pscrollbarHorz->m_scrollinfo);
+
             m_pscrollbarHorz->SetWindowPos(ZORDER_TOP,0,rectClient.bottom,rectClient.width() - get_final_y_scroll_bar_width(),m_scrolldataHorz.m_iWidth,ifswp);
+
+            m_pscrollbarHorz->layout();
+
          }
          else
          {
@@ -380,7 +383,6 @@ namespace user
 
       
       virtual void GetScrollRect(LPRECT lprect);
-      //virtual void send_scroll_message(::message::scroll * pscroll);
       virtual void on_change_view_size();
       virtual void on_change_viewport_offset();
       virtual int32_t get_wheel_scroll_delta();
@@ -388,8 +390,6 @@ namespace user
       virtual void _001LayoutYScrollBar();
       virtual void _001DeferCreateYScrollBar();
       virtual void _001OnDeferCreateYScrollBar();
-      //virtual void _001GetScrollInfo(scroll_info & info);
-      //virtual void _001UpdateYScrollBar();
       virtual void _001ConstrainYScrollPosition();
 
 
@@ -444,13 +444,22 @@ namespace user
       {
          if(m_scrolldataVert.m_bScroll)
          {
+            
+            _001GetYScrollInfo(m_pscrollbarVert->m_scrollinfo);
+
             m_pscrollbarVert->SetWindowPos(ZORDER_TOP,rectClient.right,rectClient.top,m_scrolldataVert.m_iWidth,rectClient.height() - get_final_x_scroll_bar_width() - rectClient.top,ifswp);
+
+            m_pscrollbarVert->layout();
+            
          }
          else
          {
             m_pscrollbarVert->ShowWindow(SW_HIDE);
          }
+         
       }
+
+      
 
    }
 
