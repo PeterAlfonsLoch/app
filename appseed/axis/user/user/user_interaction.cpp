@@ -376,8 +376,8 @@ namespace user
       lprect->right = (LONG)rect.right;
       lprect->bottom = (LONG)rect.bottom;
 
-      lprect->right -= get_final_x_scroll_bar_width();
-      lprect->bottom -= get_final_y_scroll_bar_width();
+      lprect->right -= get_final_y_scroll_bar_width();
+      lprect->bottom -= get_final_x_scroll_bar_width();
 
    }
 
