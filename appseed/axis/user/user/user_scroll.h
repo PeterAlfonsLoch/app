@@ -43,7 +43,7 @@ namespace user
       
       
       virtual void GetScrollRect(LPRECT lprect);
-      virtual void send_scroll_message(::message::scroll * pscroll);
+      //virtual void send_scroll_message(::message::scroll * pscroll);
       virtual void on_change_view_size();
       virtual void on_change_viewport_offset();
       virtual void create_x_scroll_bar(const RECT & rect);
@@ -378,7 +378,7 @@ namespace user
 
       
       virtual void GetScrollRect(LPRECT lprect);
-      virtual void send_scroll_message(::message::scroll * pscroll);
+      //virtual void send_scroll_message(::message::scroll * pscroll);
       virtual void on_change_view_size();
       virtual void on_change_viewport_offset();
       virtual int32_t get_wheel_scroll_delta();
