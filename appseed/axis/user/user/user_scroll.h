@@ -248,7 +248,7 @@ namespace user
 
       scroll_bar * pbar = new simple_scroll_bar(get_app());
 
-      if(!pbar->create_window(eorientation,WS_CHILD | WS_VISIBLE,null_rect(),this,7000 + eorientation))
+      if(!pbar->create_window(::orientation_horizontal,WS_CHILD | WS_VISIBLE,null_rect(),this,7000 + 1))
       {
          delete pbar;
          return;
@@ -631,7 +631,7 @@ namespace user
 
       scroll_bar * pbar = new simple_scroll_bar(get_app());
 
-      if(!pbar->create_window(eorientation,WS_CHILD | WS_VISIBLE,null_rect(),this,7000 + eorientation))
+      if(!pbar->create_window(::orientation_vertical,WS_CHILD | WS_VISIBLE,null_rect(),this,7002))
       {
          delete pbar;
          return;
