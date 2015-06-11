@@ -25,7 +25,7 @@ namespace user
 
 
    template < class BASE >
-   class CLASS_DECL_AXIS margin:
+   class margin:
       virtual public margin_base,
       virtual public BASE
    {
