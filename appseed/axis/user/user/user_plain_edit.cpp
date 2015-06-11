@@ -1301,7 +1301,7 @@ namespace user
 
       //_001LayoutScrollBars();
 
-//      on_change_view_size();
+      on_change_view_size();
 
       m_bNeedCalcLayout = false;
 
@@ -2890,32 +2890,14 @@ namespace user
 
    }
 
+   
    void plain_edit::layout()
    {
-      {
-
-//         DWORD dwTime2 = ::get_tick_count();
-
-         //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-         //TRACE("SizeManager::Mv call timeE= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-
-      }
-
-
-      ::user::control::layout();
-
-      {
-
-//         DWORD dwTime2 = ::get_tick_count();
-
-         //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-         //TRACE("SizeManager::Mv call timeg= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-
-      }
-
-
+   
+      m_bNeedCalcLayout = true;
 
    }
+
 
    bool plain_edit::ShowWindow(int32_t nCmdShow)
    {

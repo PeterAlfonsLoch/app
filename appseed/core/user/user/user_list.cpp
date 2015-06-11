@@ -1525,26 +1525,6 @@ namespace user
    bool list::_001DisplayHitTest(POINT pt, int_ptr &iItemParam)
    {
 
-      {
-
-         class rect rectClient;
-
-         GetClientRect(&rectClient);
-
-         rect rectMargin;
-
-         get_margin_rect(rectMargin);
-
-         if(pt.x < -rectMargin.left
-            || pt.x > rectClient.right - rectMargin.right
-            || pt.y < rectMargin.top
-            || pt.x > rectClient.bottom - rectMargin.bottom)
-         {
-            return false;
-         }
-
-
-      }
       if(m_eview == view_report)
       {
 

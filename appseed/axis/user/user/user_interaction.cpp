@@ -970,7 +970,7 @@ namespace user
 
             bool bFirst = true;
 
-            //while(pui != NULL)
+            while(pui != NULL)
             {
 
                ::aura::draw_context * pdrawcontext = pgraphics->::core::simple_chain < ::aura::draw_context >::get_last();
@@ -1000,7 +1000,7 @@ namespace user
 
                   bFirst = false;
 
-//                  pgraphics->SelectClipRgn(rgnClip);
+                  pgraphics->SelectClipRgn(rgnClip);
 
                   //;//                  break;
 
@@ -1008,11 +1008,11 @@ namespace user
                else
                {
 
-                  //pgraphics->SelectClipRgn(rgnClip,RGN_AND);
+                  pgraphics->SelectClipRgn(rgnClip,RGN_AND);
 
                }
 
-               //pui = pui->GetParent();
+               pui = pui->GetParent();
 
             }
 

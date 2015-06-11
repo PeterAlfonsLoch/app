@@ -105,7 +105,7 @@ namespace user
 
             _001GetXScrollInfo(m_pscrollbarHorz->m_scrollinfo);
 
-            m_pscrollbarHorz->SetWindowPos(ZORDER_TOP,0,rectClient.bottom,rectClient.width() - get_final_y_scroll_bar_width(),m_scrolldataHorz.m_iWidth,ifswp);
+            m_pscrollbarHorz->SetWindowPos(ZORDER_TOP,0,rectClient.bottom,rectClient.width(),m_scrolldataHorz.m_iWidth,ifswp);
 
             m_pscrollbarHorz->layout();
 
@@ -447,7 +447,7 @@ namespace user
             
             _001GetYScrollInfo(m_pscrollbarVert->m_scrollinfo);
 
-            m_pscrollbarVert->SetWindowPos(ZORDER_TOP,rectClient.right,rectClient.top,m_scrolldataVert.m_iWidth,rectClient.height() - get_final_x_scroll_bar_width() - rectClient.top,ifswp);
+            m_pscrollbarVert->SetWindowPos(ZORDER_TOP,rectClient.right,rectClient.top,m_scrolldataVert.m_iWidth,rectClient.height() - rectClient.top,ifswp);
 
             m_pscrollbarVert->layout();
             
