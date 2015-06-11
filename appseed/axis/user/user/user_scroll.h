@@ -123,7 +123,7 @@ namespace user
       if(m_scrolldataHorz.m_bScroll)
       {
          if(m_pscrollbarHorz == NULL)
-            create_scroll_bar(null_rect(),orientation_horizontal);
+            create_x_scroll_bar(null_rect(),orientation_horizontal);
 
       }
 
@@ -435,7 +435,7 @@ namespace user
 
       int32_t ifswp = SWP_SHOWWINDOW | SWP_NOCOPYBITS;
 
-      _001DeferCreateTScrollBar();
+      _001DeferCreateYScrollBar();
 
       if(m_pscrollbarVert != NULL)
       {
