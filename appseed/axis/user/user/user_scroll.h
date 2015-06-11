@@ -442,7 +442,7 @@ namespace user
       {
          if(m_scrolldataVert.m_bScroll)
          {
-            m_pscrollbarVert->SetWindowPos(ZORDER_TOP,rectClient.right - m_scrolldataVert.m_iWidth,rectClient.top,m_scrolldataVert.m_iWidth,rectClient.height() - get_final_x_scroll_bar_widht() - rectClient.top,ifswp);
+            m_pscrollbarVert->SetWindowPos(ZORDER_TOP,rectClient.right - m_scrolldataVert.m_iWidth,rectClient.top,m_scrolldataVert.m_iWidth,rectClient.height() - get_final_x_scroll_bar_width() - rectClient.top,ifswp);
          }
          else
          {
