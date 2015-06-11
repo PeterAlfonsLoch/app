@@ -1056,7 +1056,7 @@ namespace user
     
       point ptViewportOffset = get_viewport_offset();
 
-      pgraphics->OffsetViewportOrg(ptViewportOffset.x,ptViewportOffset.y);
+      pgraphics->OffsetViewportOrg(-ptViewportOffset.x,-ptViewportOffset.y);
 
    }
 

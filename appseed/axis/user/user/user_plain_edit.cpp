@@ -192,7 +192,9 @@ namespace user
       UNREFERENCED_PARAMETER(pobj);
    }
 
-
+   void plain_edit::on_viewport_offset(::draw2d::graphics * pgraphics)
+   {
+   }
 
    void plain_edit::_001OnDraw(::draw2d::graphics * pdc)
    {
