@@ -122,8 +122,9 @@ namespace user
 
       if(m_scrolldataHorz.m_bScroll)
       {
+
          if(m_pscrollbarHorz == NULL)
-            create_x_scroll_bar(null_rect(),orientation_horizontal);
+            create_x_scroll_bar(null_rect());
 
       }
 
@@ -460,7 +461,7 @@ namespace user
       if(m_scrolldataVert.m_bScroll)
       {
          if(m_pscrollbarVert == NULL)
-            create_y_scroll_bar(null_rect(),orientation_vertical);
+            create_y_scroll_bar(null_rect());
       }
 
    }
