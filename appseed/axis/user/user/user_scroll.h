@@ -99,7 +99,7 @@ namespace user
 
       int32_t ifswp = SWP_SHOWWINDOW | SWP_NOCOPYBITS;
 
-      _001DeferCreateScrollBars();
+      _001DeferCreateXScrollBar();
 
       if(m_pscrollbarHorz != NULL)
       {
@@ -435,7 +435,7 @@ namespace user
 
       int32_t ifswp = SWP_SHOWWINDOW | SWP_NOCOPYBITS;
 
-      _001DeferCreateScrollBars();
+      _001DeferCreateTScrollBar();
 
       if(m_pscrollbarVert != NULL)
       {
