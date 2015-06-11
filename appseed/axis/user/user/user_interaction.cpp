@@ -689,6 +689,11 @@ namespace user
    }
 
 
+   void interaction::layout_scroll_bar()
+   {
+
+   }
+
 
    void interaction::user_interaction_on_destroy()
    {

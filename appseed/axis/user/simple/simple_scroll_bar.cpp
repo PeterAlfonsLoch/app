@@ -373,9 +373,14 @@ int32_t simple_scroll_bar::GetTrackSize(size &size)
       int32_t iHeight = rectClient.height() - GetSystemMetrics(SM_CYVSCROLL) * 2;
       size.cx = rectClient.width();
       int32_t cy = 5;
-      int32_t iRange = (m_scrollinfo.nMax - m_scrollinfo.nMin);
-      if( iHeight > 0)
-         cy = iRange ? m_scrollinfo.nPage * iHeight / (m_scrollinfo.nMax - m_scrollinfo.nMin) : iHeight;
+      if(iHeight > 0)
+      {
+         int32_t idiff = (m_scrollinfo.nMax - m_scrollinfo.nMin);
+         if(idiff == 0)
+            cy = 0;
+         else
+            cy = m_scrollinfo.nPage * iHeight / idiff;
+      }
       if(cy < 5)
          cy = 5;
       size.cy = cy;

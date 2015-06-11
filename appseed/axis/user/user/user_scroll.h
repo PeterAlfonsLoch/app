@@ -46,7 +46,7 @@ namespace user
       virtual void on_change_view_size();
       virtual void on_change_viewport_offset();
       virtual void create_x_scroll_bar(const RECT & rect);
-      virtual void _001LayoutXScrollBar();
+      virtual void layout_scroll_bar();
       virtual void _001DeferCreateXScrollBar();
       virtual void _001OnDeferCreateXScrollBar();
       virtual void _001ConstrainXScrollPosition();
@@ -87,9 +87,14 @@ namespace user
       *lprect = rectScroll;
 
    }
+
+
    template < class BASE >
-   void scroll_x < BASE >::_001LayoutXScrollBar()
+   void scroll_x < BASE >::layout_scroll_bar()
    {
+
+      BASE::layout_scroll_bar();
+
       rect rectClient;
 
       GetClientRect(rectClient);
@@ -316,7 +321,7 @@ namespace user
 
       m_scrolldataHorz.m_iPage          = rectScroll.width();
 
-      _001LayoutXScrollBar();
+      layout_scroll_bar();
 
       on_change_viewport_offset();
 
@@ -387,7 +392,7 @@ namespace user
       virtual void on_change_viewport_offset();
       virtual int32_t get_wheel_scroll_delta();
       virtual void create_y_scroll_bar(const RECT & rect);
-      virtual void _001LayoutYScrollBar();
+      virtual void layout_scroll_bar();
       virtual void _001DeferCreateYScrollBar();
       virtual void _001OnDeferCreateYScrollBar();
       virtual void _001ConstrainYScrollPosition();
@@ -429,9 +434,14 @@ namespace user
       *lprect = rectScroll;
 
    }
+
+
    template < class BASE >
-   void scroll_y < BASE >::_001LayoutYScrollBar()
+   void scroll_y < BASE >::layout_scroll_bar()
    {
+
+      BASE::layout_scroll_bar();
+
       rect rectClient;
 
       GetClientRect(rectClient);
@@ -459,10 +469,7 @@ namespace user
          
       }
 
-      
-
    }
-
 
 
    template < class BASE >
@@ -709,7 +716,7 @@ namespace user
 
       m_scrolldataVert.m_iPage          = rectScroll.height();
 
-      _001LayoutYScrollBar();
+      layout_scroll_bar();
 
       on_change_viewport_offset();
 
