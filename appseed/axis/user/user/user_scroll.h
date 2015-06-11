@@ -165,7 +165,7 @@ namespace user
 
       SCAST_PTR(::message::scroll,pscroll,pobj);
 
-      keep < bool > keepHScroll(&m_scrolldataHorz.m_bHScroll,true,false,true);
+      keep < bool > keepHScroll(&m_scrolldataHorz.m_bScroll,true,false,true);
 
       {
 
