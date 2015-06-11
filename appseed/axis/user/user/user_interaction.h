@@ -39,7 +39,7 @@ namespace user
          type_down,
       };
 
-
+      point                               m_ptScrollPassword1;
       e_updown                            m_eupdown;
       bool                                m_bMoving;
       bool                                m_bMoveWindow;
@@ -647,9 +647,24 @@ namespace user
 
       virtual bool get_rect_normal(LPRECT lprect);
 
+
+      virtual void set_viewport_offset_x(int x);
+      virtual void set_viewport_offset_y(int y);
+      virtual void set_viewport_offset(int x,int y);
+      virtual void offset_viewport_offset_x(int x);
+      virtual void offset_viewport_offset_y(int y);
+      virtual void offset_viewport_offset(int x, int y);
+      virtual void on_change_viewport_offset();
+      virtual void on_viewport_offset(::draw2d::graphics * pgraphics);
       virtual point get_viewport_offset();
+      virtual size get_total_size();
+      virtual void on_change_view_size();
+      virtual size get_page_size();
       virtual point get_parent_viewport_offset();
       virtual point get_ascendant_viewport_offset();
+      virtual void get_margin_rect(LPRECT lprectMargin);
+      virtual int get_final_x_scroll_bar_width();
+      virtual int get_final_y_scroll_bar_width();
 
 
 

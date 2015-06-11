@@ -38,7 +38,7 @@ namespace filemanager
       m_plistview = create_view < operation_list_view >();
       if(m_plistview == NULL)
       {
-         System.simple_message_box(NULL,"Could not create transfer list ::aura::impact");
+         System.simple_message_box(NULL,"Could not create transfer list ::user::impact");
       }
       SetPane(0,m_plistview,false);
 
@@ -46,7 +46,7 @@ namespace filemanager
       m_pinfoview = create_view < operation_info_view >();
       if(m_pinfoview == NULL)
       {
-         System.simple_message_box(NULL,"Could not create transfer information ::aura::impact");
+         System.simple_message_box(NULL,"Could not create transfer information ::user::impact");
       }
       SetPane(1,m_pinfoview,false);
 
@@ -62,7 +62,7 @@ namespace filemanager
 
    sp(operation_document) operation_view::get_document()
    {
-      return  (::aura::impact::get_document());
+      return  (::user::impact::get_document());
    }
 
    void operation_view::_001OnMainPostMessage(signal_details * pobj)

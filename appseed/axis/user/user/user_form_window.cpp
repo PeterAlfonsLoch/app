@@ -365,7 +365,7 @@ namespace user
    }
 
 
-   void form_window::_001OnUpdate(sp(::aura::impact) pviewSender,LPARAM lhint,object* phint)
+   void form_window::_001OnUpdate(sp(::user::impact) pviewSender,LPARAM lhint,object* phint)
    {
       UNREFERENCED_PARAMETER(pviewSender);
       UNREFERENCED_PARAMETER(lhint);
@@ -649,7 +649,7 @@ namespace user
    void form_window::install_message_handling(::message::dispatch *pinterface)
    {
 
-      ::user::scroll_control::install_message_handling(pinterface);
+      ::user::control::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE,pinterface,this,&form_window::_001OnCreate);
       IGUI_MSG_LINK(::message::message_pos_create,pinterface,this,&form_window::_000OnPosCreate);
       IGUI_WIN_MSG_LINK(::axis::application::APPM_LANGUAGE,pinterface,this,&form_window::_001OnAppLanguage);

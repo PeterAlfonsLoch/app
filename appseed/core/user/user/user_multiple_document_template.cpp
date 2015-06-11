@@ -66,7 +66,7 @@ namespace user
       pcreatecontext->m_spCommandLine->m_varQuery["document"] = (sp(object)) NULL;
       bool bMakeVisible = pcreatecontext->m_bMakeVisible;
       //   sp(::user::interaction) pwndParent = pcreatecontext->m_spCommandLine->m_varQuery["parent_user_interaction"].cast < ::user::interaction > ();
-      //   sp(::aura::impact) pviewAlloc = pcreatecontext->m_spCommandLine->m_varQuery["allocation_view"].cast < ::aura::impact > ();
+      //   sp(::user::impact) pviewAlloc = pcreatecontext->m_spCommandLine->m_varQuery["allocation_view"].cast < ::user::impact > ();
       sp(::aura::document) pdocument = create_new_document(pcreatecontext);
       if (pdocument == NULL)
       {

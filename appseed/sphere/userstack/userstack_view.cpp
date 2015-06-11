@@ -40,7 +40,7 @@ namespace userstack
    void view::install_message_handling(::message::dispatch * pinterface)
    {
 
-      ::aura::impact::install_message_handling(pinterface);
+      ::user::impact::install_message_handling(pinterface);
 
       IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &view::_001OnDestroy);
       IGUI_WIN_MSG_LINK(WM_PAINT, pinterface, this, &view::_001OnPaint);
@@ -66,12 +66,12 @@ namespace userstack
    #ifdef DEBUG
    void view::assert_valid() const
    {
-      ::aura::impact::assert_valid();
+      ::user::impact::assert_valid();
    }
 
    void view::dump(dump_context & dumpcontext) const
    {
-      ::aura::impact::dump(dumpcontext);
+      ::user::impact::dump(dumpcontext);
    }
    #endif //DEBUG
 
@@ -89,17 +89,17 @@ namespace userstack
    bool view::pre_create_window(::user::create_struct& cs)
    {
       cs.style &= ~WS_EX_CLIENTEDGE;
-      return ::aura::impact::pre_create_window(cs);
+      return ::user::impact::pre_create_window(cs);
    }
    void view::_001OnInitialUpdate()
    {
-      ::aura::impact::_001OnInitialUpdate();
+      ::user::impact::_001OnInitialUpdate();
 
 
 
    }
 
-   void view::on_update(::aura::impact * pSender, LPARAM lHint, ::object* phint)
+   void view::on_update(::user::impact * pSender, LPARAM lHint, ::object* phint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);
@@ -109,7 +109,7 @@ namespace userstack
 
    void view::_001OnDestroy(signal_details * pobj)
    {
-      ::aura::impact::_001OnDestroy(pobj);
+      ::user::impact::_001OnDestroy(pobj);
 
    }
 
@@ -211,7 +211,7 @@ namespace userstack
 
    void view::pre_translate_message(signal_details * pobj)
    {
-      ::aura::impact::pre_translate_message(pobj);
+      ::user::impact::pre_translate_message(pobj);
    }
 
    

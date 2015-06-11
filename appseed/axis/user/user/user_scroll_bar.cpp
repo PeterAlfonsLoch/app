@@ -9,10 +9,10 @@ namespace user
    scroll_bar::scroll_bar()
    {
 
-      m_scrollinfo.nMin    = 0;
-      m_scrollinfo.nMax    = 100;
-      m_scrollinfo.nPage   = 10;
-      m_scrollinfo.nPos    = 0;
+      m_scrolldata.nMin    = 0;
+      m_scrolldata.nMax    = 100;
+      m_scrolldata.nPage   = 10;
+      m_scrolldata.nPos    = 0;
 
    }
 
@@ -32,13 +32,13 @@ namespace user
       if(m_bTracking)
       {
 
-         pscroll->m_nPos = m_scrollinfo.nTrackPos;
+         pscroll->m_nPos = m_scrolldata.nTrackPos;
 
       }
       else
       {
 
-         pscroll->m_nPos = m_scrollinfo.nPos;
+         pscroll->m_nPos = m_scrolldata.nPos;
 
       }
 

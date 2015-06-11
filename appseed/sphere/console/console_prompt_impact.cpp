@@ -35,7 +35,7 @@ namespace console
    void prompt_impact::install_message_handling(::message::dispatch * pdispatch)
    {
 
-      ::aura::impact::install_message_handling(pdispatch);
+      ::user::impact::install_message_handling(pdispatch);
 
       IGUI_WIN_MSG_LINK(WM_CREATE,pdispatch,this,&prompt_impact::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_KEYDOWN,pdispatch,this,&prompt_impact::_001OnKeyDown);
@@ -255,7 +255,7 @@ namespace console
    {
       //if(GetTypedParent <prompt_frame>()->get_appearance() != ::user::AppearanceMinimal)
       {
-         ::aura::impact::simple_ui_draw_focus_rect(pgraphics);
+         ::user::impact::simple_ui_draw_focus_rect(pgraphics);
       }
    }
 

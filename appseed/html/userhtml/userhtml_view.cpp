@@ -1,6 +1,6 @@
 ﻿#include "framework.h"
 
-//   // BEGIN_MESSAGE_MAP(html_view, ::aura::impact)
+//   // BEGIN_MESSAGE_MAP(html_view, ::user::impact)
 //{{__MSG_MAP(html_view)
 /*
 ON_WM_DESTROY()
@@ -14,9 +14,9 @@ ON_WM_ERASEBKGND()
 // Standard printing commands
 ON_MESSAGE(WM_USER + 177, OnTabClick)
 ON_MESSAGE(WM_APP + 119, OnWavePlayerEvent)
-ON_COMMAND(ID_FILE_PRINT, ::aura::impact::OnFilePrint)
-ON_COMMAND(ID_FILE_PRINT_DIRECT, ::aura::impact::OnFilePrint)
-ON_COMMAND(ID_FILE_PRINT_PREVIEW, ::aura::impact::OnFilePrintPreview)
+ON_COMMAND(ID_FILE_PRINT, ::user::impact::OnFilePrint)
+ON_COMMAND(ID_FILE_PRINT_DIRECT, ::user::impact::OnFilePrint)
+ON_COMMAND(ID_FILE_PRINT_PREVIEW, ::user::impact::OnFilePrintPreview)
 */
 // // END_MESSAGE_MAP()
 
@@ -34,7 +34,7 @@ html_view::~html_view()
 
 void html_view::install_message_handling(::message::dispatch * pinterface)
 {
-   ::aura::impact::install_message_handling(pinterface);
+   ::user::impact::install_message_handling(pinterface);
 
    IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &html_view::_001OnDestroy);
    IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &html_view::_001OnSize);
@@ -43,9 +43,9 @@ void html_view::install_message_handling(::message::dispatch * pinterface)
    IGUI_WIN_MSG_LINK(WM_SETCURSOR, pinterface, this, &html_view::_001OnSetCursor);
 
    //   IGUI_WIN_MSG_LINK(WM_USER + 177     , this, this, &html_view::_001OnTabClick);
-   //connect_command(ID_FILE_PRINT, ::aura::impact::OnFilePrint)
-   //connect_command(ID_FILE_PRINT_DIRECT, ::aura::impact::OnFilePrint)
-   //connect_command(ID_FILE_PRINT_PREVIEW, ::aura::impact::OnFilePrintPreview)
+   //connect_command(ID_FILE_PRINT, ::user::impact::OnFilePrint)
+   //connect_command(ID_FILE_PRINT_DIRECT, ::user::impact::OnFilePrint)
+   //connect_command(ID_FILE_PRINT_PREVIEW, ::user::impact::OnFilePrintPreview)
    //   IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &::user::interaction::_001OnLButtonDown);
    //   IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &::user::interaction::_001OnLButtonUp);
    IGUI_WIN_MSG_LINK(WM_KEYDOWN, pinterface, this, &::user::interaction::_001OnKeyDown);
@@ -64,12 +64,12 @@ void html_view::install_message_handling(::message::dispatch * pinterface)
 #ifdef DEBUG
 void html_view::assert_valid() const
 {
-   ::aura::impact::assert_valid();
+   ::user::impact::assert_valid();
 }
 
 void html_view::dump(dump_context & dumpcontext) const
 {
-   ::aura::impact::dump(dumpcontext);
+   ::user::impact::dump(dumpcontext);
 }
 #endif //DEBUG
 
@@ -77,16 +77,16 @@ void html_view::dump(dump_context & dumpcontext) const
 bool html_view::pre_create_window(::user::create_struct& cs)
 {
    cs.style &= ~WS_EX_CLIENTEDGE;
-   return ::aura::impact::pre_create_window(cs);
+   return ::user::impact::pre_create_window(cs);
 }
 void html_view::_001OnInitialUpdate() 
 {
 
-   ::aura::impact::_001OnInitialUpdate();
+   ::user::impact::_001OnInitialUpdate();
 
 }
 
-void html_view::on_update(::aura::impact * pSender, LPARAM lHint, object* phint) 
+void html_view::on_update(::user::impact * pSender, LPARAM lHint, object* phint) 
 {
    UNREFERENCED_PARAMETER(pSender);
    UNREFERENCED_PARAMETER(lHint);
@@ -114,7 +114,7 @@ void html_view::on_update(::aura::impact * pSender, LPARAM lHint, object* phint)
 
 void html_view::_001OnDestroy(signal_details * pobj) 
 {
-   ::aura::impact::_001OnDestroy(pobj);
+   ::user::impact::_001OnDestroy(pobj);
 
 }
 
@@ -156,7 +156,7 @@ void html_view::_001OnSetCursor(signal_details * pobj)
 
 sp(html_document) html_view::get_document()
 {
-   return  (::aura::impact::get_document());
+   return  (::user::impact::get_document());
 }
 
 string html_view::GetLocationURL()

@@ -13,7 +13,7 @@ namespace userstack
    {
    }
 
-   void form_callback::on_update(::user::form * pview, sp(::aura::impact) pSender, LPARAM lHint, ::object* phint) 
+   void form_callback::on_update(::user::form * pview, sp(::user::impact) pSender, LPARAM lHint, ::object* phint) 
    {
       UNREFERENCED_PARAMETER(pview);
       UNREFERENCED_PARAMETER(pSender);

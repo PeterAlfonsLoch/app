@@ -6,8 +6,8 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE path_view :
-      virtual public ::user::edit_plain_text_view,
-      virtual public  impact
+      virtual public ::user::view < ::user::scroll < ::user::plain_edit > >,
+      virtual public ::filemanager::impact
    {
    public:
 
@@ -21,7 +21,7 @@ namespace filemanager
       virtual void _001OnAfterChangeText(::action::context actioncontext);
 
 
-      void on_update(::aura::impact * pSender, LPARAM lHint, object* phint);
+      void on_update(::user::impact * pSender, LPARAM lHint, object* phint);
 
       virtual void _001OnDraw(::draw2d::graphics * pdc);
 

@@ -10,10 +10,10 @@ namespace userfs
    {
 
 
-      m_scrollinfo.m_rectMargin.left = -23;
-      m_scrollinfo.m_rectMargin.top = -8;
-      m_scrollinfo.m_rectMargin.bottom = 0;
-      m_scrollinfo.m_rectMargin.right = 0;
+      m_rectMargin.left = -23;
+      m_rectMargin.top = -8;
+      m_rectMargin.bottom = 0;
+      m_rectMargin.right = 0;
       
    }
 
@@ -26,7 +26,7 @@ namespace userfs
 
    void list::install_message_handling(::message::dispatch * pinterface)
    {
-      ::user::form_list_view::install_message_handling(pinterface);
+      BASE::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_HSCROLL, pinterface, this, &list::_001OnHScroll);
       IGUI_WIN_MSG_LINK(WM_VSCROLL, pinterface, this, &list::_001OnVScroll);
       IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &list::_001OnShowWindow);
@@ -95,16 +95,16 @@ namespace userfs
 #ifdef DEBUG
    void list::assert_valid() const
    {
-      ::user::form_list_view::assert_valid();
+      BASE::assert_valid();
    }
 
    void list::dump(dump_context & dumpcontext) const
    {
-      ::user::form_list_view::dump(dumpcontext);
+      BASE::dump(dumpcontext);
    }
 #endif //DEBUG
 
-   void list::on_update(::aura::impact * pSender, LPARAM lHint, object * phint)
+   void list::on_update(::user::impact * pSender, LPARAM lHint, object * phint)
    {
 
 
@@ -127,7 +127,7 @@ namespace userfs
    void list::_001OnCancelMode(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-   // trans   ::aura::impact::OnCancelMode();
+   // trans   ::user::impact::OnCancelMode();
 
       // TODO: add your message handler code here
 
@@ -138,7 +138,7 @@ namespace userfs
 
       cs.style |= WS_CLIPCHILDREN;
 
-      return ::user::form_list_view::pre_create_window(cs);
+      return BASE::pre_create_window(cs);
    }
 
    void list::_001InsertColumns()
@@ -201,7 +201,7 @@ namespace userfs
 
    void list::_001OnDraw(::draw2d::graphics *pdc)
    {
-      ::user::form_list_view::_001OnDraw(pdc);
+      BASE::_001OnDraw(pdc);
 
    }
 
@@ -653,17 +653,17 @@ namespace userfs
 
    sp(::userfs::document) list::get_document()
    {
-      return  (::user::form_list_view::get_document());
+      return  (BASE::get_document());
    }
 
    void list::_001GetItemText(::user::list_item * pitem)
    {
-      return ::user::form_list_view::_001GetItemText(pitem);
+      return BASE::_001GetItemText(pitem);
    }
 
    void list::_001GetItemImage(::user::list_item * pitem)
    {
-      return ::user::form_list_view::_001GetItemImage(pitem);
+      return BASE::_001GetItemImage(pitem);
    }
 
 

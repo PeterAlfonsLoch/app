@@ -33,7 +33,7 @@ public:
    virtual void install_message_handling(::message::dispatch * pinterface);
    virtual bool pre_create_window(::user::create_struct& cs);
    virtual void _001OnInitialUpdate();
-   virtual void on_update(::aura::impact * pSender, LPARAM lHint, object* pHint);
+   virtual void on_update(::user::impact * pSender, LPARAM lHint, object* pHint);
 
    sp(html_document) get_document();
 

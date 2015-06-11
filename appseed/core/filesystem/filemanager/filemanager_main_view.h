@@ -34,7 +34,7 @@ namespace filemanager
 
       virtual void OpenSelectionProperties();
 
-      virtual void on_update(::aura::impact * pSender,LPARAM lHint,object* pHint);
+      virtual void on_update(::user::impact * pSender,LPARAM lHint,object* pHint);
 
 
    };

@@ -7,8 +7,7 @@ namespace filemanager
 
    save_as_view::save_as_view(::aura::application * papp):
       object(papp),
-      ::user::edit_plain_text(papp),
-      ::user::edit_plain_text_view(papp),
+      ::user::plain_edit(papp),
       ::user::interaction(papp)
    {
 
@@ -16,9 +15,9 @@ namespace filemanager
 
       }
 
-   void save_as_view::on_update(::aura::impact * pSender,LPARAM lHint,object* phint)
+   void save_as_view::on_update(::user::impact * pSender,LPARAM lHint,object* phint)
    {
-      ::aura::impact::on_update(pSender,lHint,phint);
+      ::user::impact::on_update(pSender,lHint,phint);
       if(phint != NULL)
       {
          if(base_class < ::filemanager::update_hint >::bases(phint))

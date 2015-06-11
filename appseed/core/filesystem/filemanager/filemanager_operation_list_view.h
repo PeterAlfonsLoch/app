@@ -6,7 +6,7 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE operation_list_view:
-      virtual public ::user::list_view
+      virtual public ::user::view < ::user::list >
    {
    public:
 
@@ -35,7 +35,7 @@ namespace filemanager
       virtual void _001OnInitialUpdate();
 
       
-      void on_update(::aura::impact * pSender,LPARAM lHint,object * pHint);
+      void on_update(::user::impact * pSender,LPARAM lHint,object * pHint);
       sp(operation_document) get_document();
 
 

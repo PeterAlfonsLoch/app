@@ -16,7 +16,7 @@ namespace filehandler
       void on_create_view(::user::view_creator_data * pcreatordata);
       virtual void install_message_handling(::message::dispatch * pinterface);
 
-      virtual void on_update(::aura::impact * pSender, LPARAM lHint, ::object* pHint);
+      virtual void on_update(::user::impact * pSender, LPARAM lHint, ::object* pHint);
       virtual bool pre_create_window(::user::create_struct& cs);
 
       DECL_GEN_SIGNAL(_001OnMenuMessage);

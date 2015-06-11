@@ -5,31 +5,31 @@ namespace user
 {
 
 
-   form_list_view::form_list_view()
-   {
-
-   }
-
-
-   form_list_view::~form_list_view()
-   {
-
-   }
-
-
-   void form_list_view::install_message_handling(::message::dispatch * pdispatch)
-   {
-
-      ::user::form_list::install_message_handling(pdispatch);
-      ::user::list_view::install_message_handling(pdispatch);
-      ::user::form_view::install_message_handling(pdispatch);
-
-   }
-
-   //void form_list_view::on_update(::aura::impact * pSender,LPARAM lHint,object* phint)
+   //form_list_view::form_list_view()
    //{
 
-   //   ::aura::impact::on_update(pSender,lHint,phint);
+   //}
+
+
+   //form_list_view::~form_list_view()
+   //{
+
+   //}
+
+
+   //void form_list_view::install_message_handling(::message::dispatch * pdispatch)
+   //{
+
+   //   ::user::form_list::install_message_handling(pdispatch);
+   //   ::user::view < ::user::list >::install_message_handling(pdispatch);
+   //   ::user::form_view::install_message_handling(pdispatch);
+
+   //}
+
+   //void form_list_view::on_update(::user::impact * pSender,LPARAM lHint,object* phint)
+   //{
+
+   //   ::user::impact::on_update(pSender,lHint,phint);
    //   if(phint != NULL)
    //   {
    //      ::user::form_update_hint * puh = dynamic_cast <::user::form_update_hint *> (phint);

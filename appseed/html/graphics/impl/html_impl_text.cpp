@@ -11,7 +11,7 @@ namespace html
 
       text::text(::aura::application * papp) :
          ::object(papp),
-         user::edit_plain_text(papp)
+         user::plain_edit(papp)
       {
 
          m_bLink                                         = false;

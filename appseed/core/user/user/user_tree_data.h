@@ -28,7 +28,7 @@ namespace user
 
 
       virtual ::count           get_data_bound_view_count() const;
-      virtual ::aura::impact *  get_data_bound_view(index iView);
+      virtual ::user::impact *  get_data_bound_view(index iView);
 
 
 
@@ -77,7 +77,7 @@ namespace user
       virtual bool      selection_set(::data::item * pitem,bool bIfNotInSelection = false,bool bIfParentInSelection = false);
       virtual bool      selection_set(index iIndex,::data::item * pitem,bool bIfNotInSelection = false,bool bIfParentInSelection = false);
 
-      virtual void on_update(::aura::impact * pSender,LPARAM lHint,::object* pHint);
+      virtual void on_update(::user::impact * pSender,LPARAM lHint,::object* pHint);
 
 
       virtual void on_fill_children();

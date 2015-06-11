@@ -958,7 +958,7 @@ namespace filemanager
       }
 
 
-      void tree::on_update(::aura::impact * pSender, LPARAM lHint, object* phint)
+      void tree::on_update(::user::impact * pSender, LPARAM lHint, object* phint)
       {
          ::filemanager::impact::on_update(pSender, lHint, phint);
          if (phint != NULL)

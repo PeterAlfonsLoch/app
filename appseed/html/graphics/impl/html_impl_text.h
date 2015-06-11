@@ -11,7 +11,7 @@ namespace html
 
       class text :
          virtual public elemental,
-         virtual public ::user::edit_plain_text
+         virtual public ::user::plain_edit
       {
       public:
 
@@ -45,7 +45,7 @@ namespace html
          virtual bool has_link();
          virtual string link();
 
-         using user::edit_plain_text::hit_test;
+         using user::plain_edit::hit_test;
          virtual int32_t hit_test(data * pdoc, ::point pt);
 
          virtual strsize char_hit_test(::draw2d::graphics * pdc, int32_t x, int32_t y);

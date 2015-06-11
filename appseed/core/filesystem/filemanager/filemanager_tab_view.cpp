@@ -41,7 +41,7 @@ namespace filemanager
    }
 
 
-   void tab_view::on_update(::aura::impact * pSender, LPARAM lHint, object* phint)
+   void tab_view::on_update(::user::impact * pSender, LPARAM lHint, object* phint)
    {
 
       impact::on_update(pSender, lHint, phint);
@@ -178,7 +178,7 @@ namespace filemanager
          sp(operation_document) pdoc = (Session.filemanager().m_ptemplateOperation->open_document_file(createcontext));
          if (pdoc == NULL)
             return;
-         sp(::aura::impact) pview = pdoc->get_view(0);
+         sp(::user::impact) pview = pdoc->get_view(0);
          //::user::form * poperationview = dynamic_cast < ::user::form * > (pview);
          pcreatordata->m_pwnd = (pview->GetParentFrame());
          //      operation_child_frame * pframe = dynamic_cast < operation_child_frame * >(pcreatordata->m_pwnd);
@@ -213,7 +213,7 @@ namespace filemanager
 
 
 
-            sp(::aura::impact) pview = pmanager->get_view(0);
+            sp(::user::impact) pview = pmanager->get_view(0);
 
             sp(simple_frame_window) pwnd = (pview->GetParentFrame());
 
@@ -225,7 +225,7 @@ namespace filemanager
          }
          if (pmanager == NULL)
             return;
-         //      sp(::aura::impact) pview = pdoc->get_view(0);
+         //      sp(::user::impact) pview = pdoc->get_view(0);
          //pcreatordata->m_pwnd = (pview->GetParentFrame());
          //      sp(child_frame) pframe = (pcreatordata->m_pwnd);
          //pframe->m_iTabId = iId;

@@ -160,7 +160,9 @@ namespace user
       //
       //      rect rectClientOffset = rectClient;
 
-      pdc->OffsetViewportOrg((int32_t) -m_scrollinfo.m_ptScroll.x, (int32_t) -(m_scrollinfo.m_ptScroll.y % _001GetItemHeight()));
+      point ptOffset = get_viewport_offset();
+
+      pdc->OffsetViewportOrg((int32_t)-ptOffset.x,(int32_t)-(ptOffset.y % _001GetItemHeight()));
 
 
       //   BaseTreeItemData itemdata;
@@ -654,9 +656,11 @@ namespace user
 
       index iItemHeight = _001GetItemHeight();
 
+      point ptOffset = get_viewport_offset();
+
       if(iItemHeight != 0)
       {
-         iItem = (int32_t) ((iy + m_scrollinfo.m_ptScroll.y) / iItemHeight);
+         iItem = (int32_t) ((iy + ptOffset.y) / iItemHeight);
       }
 
       if(iItem < 0)
@@ -671,7 +675,7 @@ namespace user
       if(pitem == NULL)
          return NULL;
 
-      index x = (int32_t) (pt. x - _001GetIndentation() * iLevel + m_scrollinfo.m_ptScroll.x);
+      index x = (int32_t) (pt. x - _001GetIndentation() * iLevel + ptOffset.x);
       if(x >= 0 && x < 16)
          eelement = tree_element_expand_box;
       if(x >= 18 && x < 34)
@@ -694,7 +698,7 @@ namespace user
       
       ::user::interaction_base::install_message_handling(pdispatch);
       
-      ::user::scroll_view::install_message_handling(pdispatch);
+      ::user::control::install_message_handling(pdispatch);
 
       IGUI_WIN_MSG_LINK(WM_CREATE        , pdispatch, this, &tree::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDBLCLK , pdispatch, this, &tree::_001OnLButtonDblClk);
@@ -710,15 +714,12 @@ namespace user
 
    }
 
-   void tree::_001GetViewRect(LPRECT lprect)
+   void tree::on_change_view_size()
    {
 
-      rect rectClient;
-      GetClientRect(rectClient);
-      lprect->left = 0;
-      lprect->top = 0;
-      lprect->right = m_iCurrentViewWidth;
-      lprect->bottom = (LONG) (get_proper_item_count() * _001GetItemHeight());
+
+      m_sizeTotal.cx = m_iCurrentViewWidth;
+      m_sizeTotal.cy = (LONG)(get_proper_item_count() * _001GetItemHeight());
 
 
    }
@@ -775,6 +776,8 @@ namespace user
 
       UNREFERENCED_PARAMETER(bLayout);
 
+      point ptOffset = get_viewport_offset();
+
       if(bExpand)
       {
 
@@ -794,19 +797,19 @@ namespace user
 
             index iLastChildIndex = iParentIndex + pitem->get_proper_descendant_count();
 
-            index iLastVisibleIndex = (index) (m_scrollinfo.m_ptScroll.y / _001GetItemHeight() + _001GetVisibleItemCount());
+            index iLastVisibleIndex = (index) (ptOffset.y / _001GetItemHeight() + _001GetVisibleItemCount());
 
             index iObscured; // obscured proper descendants
             iObscured = iLastChildIndex  - iLastVisibleIndex;
 
             if(iObscured > 0)
             {
-               index iNewScroll = (int32_t) (m_scrollinfo.m_ptScroll.y + iObscured * _001GetItemHeight());
+               index iNewScroll = (int32_t) (ptOffset.y + iObscured * _001GetItemHeight());
                if(iNewScroll > (iParentIndex * _001GetItemHeight()))
                   iNewScroll = (iParentIndex * _001GetItemHeight());
-               m_scrollinfo.m_ptScroll.y = (LONG) MAX(iNewScroll, 0);
+               set_viewport_offset_y(MAX(iNewScroll, 0));
                //            _001SetYScroll(MAX(iNewScroll, 0), false);
-               //m_pscrollbarVert->_001SetScrollPos(m_scrollinfo.m_ptScroll.y);
+               //m_pscrollbarVert->_001SetScrollPos(ptOffset.y);
             }
          }
       }
@@ -930,14 +933,8 @@ namespace user
 
    }
 
-   void tree::_001OnUpdateScrollPosition()
+   void tree::on_change_viewport_offset()
    {
-
-      scroll_control::_001OnUpdateScrollPosition();
-
-      //      HeaderCtrlLayout();
-
-      //      CacheHint();
 
       m_pitemFirstVisible = CalcFirstVisibleItem(
          m_iFirstVisibleItemLevel,
@@ -949,7 +946,7 @@ namespace user
    }
 
 
-   /*   void tree::SetScrollSizes()
+   /*   void tree::on_change_view_size()
    {
    rect64 rectTotal;
 
@@ -957,18 +954,18 @@ namespace user
 
    size sizeTotal = rectTotal.size();
 
-   m_scrollinfo.m_sizeTotal = sizeTotal;
+   m_sizeTotal = sizeTotal;
 
    rect rectViewClient;
    _001GetViewClientRect(&rectViewClient);
 
-   m_scrollinfo.m_sizeTotal = sizeTotal;
-   m_scrollinfo.m_sizePage = rectViewClient.size();
+   m_sizeTotal = sizeTotal;
+   m_scrolldata.m_sizePage = rectViewClient.size();
 
 
-   if(m_scrollinfo.m_ptScroll.y > (m_scrollinfo.m_sizeTotal.cy - m_scrollinfo.m_sizePage.cy))
+   if(ptOffset.y > (m_sizeTotal.cy - m_scrolldata.m_sizePage.cy))
    {
-   m_scrollinfo.m_ptScroll.y = (m_scrollinfo.m_sizeTotal.cy - m_scrollinfo.m_sizePage.cy);
+   ptOffset.y = (m_sizeTotal.cy - m_scrolldata.m_sizePage.cy);
    }
 
 
@@ -977,6 +974,8 @@ namespace user
    void tree::layout()
    {
 
+      ::user::control::layout();
+
       ::rect rectClient;
 
       GetClientRect(rectClient);
@@ -984,13 +983,9 @@ namespace user
       if(rectClient.area() <= 0)
          return;
 
-      SetScrollSizes();
-
       m_pitemFirstVisible = CalcFirstVisibleItem(m_iFirstVisibleItemLevel, m_iFirstVisibleItemProperIndex);
 
       m_iCurrentViewWidth = _001CalcCurrentViewWidth();
-
-      _001LayoutScrollBars();
 
    }
 
@@ -1130,7 +1125,9 @@ namespace user
       if(_001GetItemHeight() == 0)
          return NULL;
 
-      nOffset = m_scrollinfo.m_ptScroll.y / _001GetItemHeight();
+      point ptOffset = get_viewport_offset();
+
+      nOffset = ptOffset.y / _001GetItemHeight();
 
       sp(::data::tree_item) pitem;
 
@@ -1392,7 +1389,14 @@ namespace user
 
       }
 
-      ptree->m_pcontainerbase = (::data::data_container_base *) get_document();
+      sp(::user::impact) pview = this;
+
+      if(pview.is_set())
+      {
+
+         ptree->m_pcontainerbase = (::data::data_container_base *) pview->get_document();
+
+      }
 
       ptree->install_message_handling(m_pimpl);
 
@@ -1493,14 +1497,16 @@ namespace user
 
       index iIndex = get_proper_item_index(pitem, &iLevel);
 
-      index iMinVisibleIndex = (index)(m_scrollinfo.m_ptScroll.y / m_iItemHeight + 2);
+      point ptOffset = get_viewport_offset();
+
+      index iMinVisibleIndex = (index)(ptOffset.y / m_iItemHeight + 2);
       index iMaxVisibleIndex = (index)(iMinVisibleIndex + _001GetVisibleItemCount() - 2);
 
 
       if (iIndex < iMinVisibleIndex || iIndex > iMaxVisibleIndex)
       {
          index iNewScrollIndex = iIndex;
-         m_scrollinfo.m_ptScroll.y = (int) (MAX(iNewScrollIndex,0) * m_iItemHeight);
+         set_viewport_offset_y(MAX(iNewScrollIndex,0) * m_iItemHeight);
       }
 
       layout();
@@ -1508,11 +1514,11 @@ namespace user
 
    }
 
-   void tree::on_update(::aura::impact * pSender, LPARAM lHint, ::object* pHint)
+   void tree::on_update(::user::impact * pSender, LPARAM lHint, ::object* pHint)
    {
 
       if (pSender != NULL)
-         pSender = this;
+         pSender = dynamic_cast < ::user::impact * > (this);
 
       for (index iTree = 0; iTree < m_treeptra.get_count(); iTree++)
       {
@@ -1531,7 +1537,12 @@ namespace user
 
    }
 
+   size tree::get_total_size()
+   {
 
+      return m_sizeTotal;
+
+   }
 
 } // namespace core
 

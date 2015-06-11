@@ -850,7 +850,7 @@ namespace core
    //            else
    //            {
    //
-   //               puiParent = get_document()->get_typed_view < ::session::aura::impact >();
+   //               puiParent = get_document()->get_typed_view < ::session::user::impact >();
    //
    //            }
    //
@@ -885,7 +885,7 @@ namespace core
    else
    {
 
-   holderptra.add(get_document()->get_typed_view < ::session::aura::impact >());
+   holderptra.add(get_document()->get_typed_view < ::session::user::impact >());
 
    }
 
@@ -1057,7 +1057,7 @@ namespace core
       return m_pbergedgedocument;
    }
 
-   sp(::aura::impact) session::get_view()
+   sp(::user::impact) session::get_view()
    {
       if(get_document() == NULL)
          return NULL;

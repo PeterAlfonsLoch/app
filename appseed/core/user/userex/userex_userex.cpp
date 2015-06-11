@@ -67,7 +67,7 @@ namespace userex
       }
 
       System.factory().cloneable_small < int_biunique >();
-      System.factory().creatable_small < ::user::edit_plain_text >();
+      System.factory().creatable_small < ::user::plain_edit >();
       System.factory().cloneable_small < XfplayerViewLine >();
       System.factory().creatable_small < ::user::place_holder >();
       System.factory().creatable_small < ::user::place_holder_container >();
@@ -85,7 +85,6 @@ namespace userex
       System.factory().cloneable_small < ::aura::document >();
       System.factory().cloneable_small < ::user::split_view >();
       System.factory().cloneable_small < split_view >();
-      System.factory().cloneable_small < ::user::edit_plain_text_view >();
 
       System.factory().cloneable_small < ::simple_mesh_data >();
       System.factory().cloneable_small < ::simple_list_data >();
@@ -98,7 +97,7 @@ namespace userex
       System.factory().creatable_small < ::aura::document >();
       System.factory().creatable_small < simple_printer_list_view >();
       System.factory().creatable_small < ::user::combo_list >();
-      System.factory().creatable_small < ::user::edit_plain_text >();
+      System.factory().creatable_small < ::user::plain_edit >();
 
       System.factory().creatable_small < ::user::menu_item >(System.type_info < ::aura::menu_base_item >());
       System.factory().creatable_small < ::aura::menu >(System.type_info < ::aura::menu_base >());

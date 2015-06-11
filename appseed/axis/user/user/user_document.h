@@ -20,7 +20,7 @@ namespace aura
       string                           m_strTitle;
       ::file::path                     m_filepath;
       sp(::aura::impact_system)        m_pimpactsystem;
-      spa(::aura::impact)              m_viewptra;
+      spa(::user::impact)              m_viewptra;
       bool                             m_bModified;
       bool                             m_bNew;
       bool                             m_bAutoDelete;     // TRUE => delete document when no more views
@@ -54,10 +54,10 @@ namespace aura
       virtual bool is_new_document();
 
       // Operations
-      void add_view(sp(::aura::impact) pview);
-      void remove_view(sp(::aura::impact) pview);
+      void add_view(sp(::user::impact) pview);
+      void remove_view(sp(::user::impact) pview);
       virtual ::count get_view_count() const;
-      virtual sp(::aura::impact) get_view(index index = 0) const;
+      virtual sp(::user::impact) get_view(index index = 0) const;
 
 
       template < class T >
@@ -93,7 +93,7 @@ namespace aura
          return NULL;
       }
 
-      virtual sp(::aura::impact) get_typed_view(sp(type) info, index indexFind = 0);
+      virtual sp(::user::impact) get_typed_view(sp(type) info, index indexFind = 0);
 
       virtual void show_all_frames(UINT nCmdShow);
 
@@ -101,21 +101,21 @@ namespace aura
       class update
       {
       public:
-         sp(::aura::impact)         m_pSender;
+         sp(::user::impact)         m_pSender;
          LPARAM         m_lHint;
          ::object *  m_pHint;
       };
 
       // Update Views (simple update - DAG only)
-      void update_all_views(sp(::aura::impact) pSender, LPARAM lHint = 0L,
+      void update_all_views(sp(::user::impact) pSender, LPARAM lHint = 0L,
          ::object* pHint = NULL);
 
-      void send_update(sp(::aura::impact) pSender, LPARAM lHint = 0L,
+      void send_update(sp(::user::impact) pSender, LPARAM lHint = 0L,
          ::object* pHint = NULL);
 
       // Overridables
       // Special notifications
-      virtual void on_changed_view_list(single_lock * psl = NULL); // after add or remove ::aura::impact
+      virtual void on_changed_view_list(single_lock * psl = NULL); // after add or remove ::user::impact
       virtual void delete_contents(); // delete doc items etc
       
 

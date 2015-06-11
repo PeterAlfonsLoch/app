@@ -11,7 +11,7 @@ namespace html
 
       cell::cell(::aura::application * papp) :
          ::object(papp),
-         user::edit_plain_text(papp),
+         user::plain_edit(papp),
          ::html::impl::text(papp)
       {
          

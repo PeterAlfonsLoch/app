@@ -107,7 +107,7 @@ public:
    void SetCustomFrame(bool bCustom);
    void SetBorderRect(const RECT & rect);
    virtual void GetBorderRect(LPRECT lprect);
-   void ViewOnActivateFrame(sp(::aura::impact) pview, UINT user, sp(::user::interaction) pframe);
+   void ViewOnActivateFrame(sp(::user::impact) pview, UINT user, sp(::user::interaction) pframe);
 
    virtual void ToggleFullScreen();
    virtual bool IsFullScreen();

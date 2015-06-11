@@ -705,7 +705,7 @@ namespace user
 
       if (pOpenDocument != NULL)
       {
-         sp(::aura::impact) pview = pOpenDocument->get_view(0); // get first one
+         sp(::user::impact) pview = pOpenDocument->get_view(0); // get first one
          if(pview != NULL)
          {
             ASSERT_VALID(pview);
@@ -726,7 +726,7 @@ namespace user
             }
          }
          else
-            TRACE(::aura::trace::category_AppMsg, 0, "Error: Can not find a ::aura::impact for document to activate.\n");
+            TRACE(::aura::trace::category_AppMsg, 0, "Error: Can not find a ::user::impact for document to activate.\n");
 
          pcreatecontext->m_spCommandLine->m_varQuery["document"] = pOpenDocument;
       }

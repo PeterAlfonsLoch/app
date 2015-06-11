@@ -77,14 +77,14 @@ namespace filemanager
 
       if(m_pusertree == NULL)
       {
-         System.simple_message_box(NULL,"Could not create folder tree ::aura::impact");
+         System.simple_message_box(NULL,"Could not create folder tree ::user::impact");
       }
 
       m_ptree = canew(tree(get_app()));
 
       if(m_ptree == NULL)
       {
-         System.simple_message_box(NULL,"Could not create folder tree ::aura::impact");
+         System.simple_message_box(NULL,"Could not create folder tree ::user::impact");
       }
 
       m_ptree->m_pmanager = get_filemanager_manager();
@@ -97,7 +97,7 @@ namespace filemanager
 
       if(m_plistview == NULL)
       {
-         System.simple_message_box(NULL,"Could not create file list ::aura::impact");
+         System.simple_message_box(NULL,"Could not create file list ::user::impact");
       }
 
       m_plistview->m_pmanager = get_filemanager_manager();

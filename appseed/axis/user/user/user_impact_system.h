@@ -86,7 +86,7 @@ namespace aura
       sp(type)         m_typeinfoFrame;       // class for creating new frames
       sp(type)         m_typeinfoView;        // class for creating new views
       //sp(type)       m_pOleFrameClass;    // class for creating in-place frame
-      //sp(type)       m_pOleViewClass;     // class for creating in-place ::aura::impact
+      //sp(type)       m_pOleViewClass;     // class for creating in-place ::user::impact
 
       string                  m_strDocStrings;    // '\n' separated names
       // The ::aura::document names sub-strings are represented as _one_ string:
@@ -108,7 +108,7 @@ namespace aura
       //sp(::user::frame_window) CreateOleFrame(::window_sp pParentWnd, ::aura::document * pDoc,
       //   bool bCreateView);
 
-      void update_all_views(sp(::aura::impact) pviewSender, LPARAM lhint, ::object * puh);
+      void update_all_views(sp(::user::impact) pviewSender, LPARAM lhint, ::object * puh);
 
       virtual Confidence MatchDocType(const ::file::path & lpszPathName,::aura::document *& rpDocMatch);
       virtual ::aura::document * create_new_document(sp(::create) pcreatecontext);

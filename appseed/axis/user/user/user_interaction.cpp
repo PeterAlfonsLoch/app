@@ -127,6 +127,9 @@ namespace user
 
       m_bSizeMove                = false;
 
+      m_ptScrollPassword1.x               = 0;
+      m_ptScrollPassword1.y               = 0;
+
    }
 
 
@@ -992,6 +995,8 @@ namespace user
 
          {
 
+            on_viewport_offset(pgraphics);
+
             synch_lock sl(m_spmutex);
 
             _001OnDraw(pgraphics);
@@ -1013,6 +1018,15 @@ namespace user
 
    }
 
+
+   void interaction::on_viewport_offset(::draw2d::graphics * pgraphics)
+   {
+    
+      point ptViewportOffset = get_viewport_offset();
+
+      pgraphics->OffsetViewportOrg(ptViewportOffset.x,ptViewportOffset.y);
+
+   }
 
    void interaction::_001DrawChildren(::draw2d::graphics *pdc)
    {
@@ -3249,6 +3263,9 @@ namespace user
 
    void interaction::layout()
    {
+
+      on_change_view_size();
+
    }
 
    void interaction::ShowOwnedPopups(bool bShow)
@@ -5898,13 +5915,100 @@ namespace user
 
    }
 
+   void interaction::offset_viewport_offset(int x,int y)
+   {
 
+      point ptOffset = get_viewport_offset();
+
+      set_viewport_offset(ptOffset.x + x,ptOffset.y + y);
+
+   }
+
+
+   void interaction::offset_viewport_offset_x(int x)
+   {
+
+      offset_viewport_offset(x,0);
+
+   }
+
+
+   void interaction::offset_viewport_offset_y(int y)
+   {
+
+      offset_viewport_offset(0,y);
+
+   }
+
+   void interaction::set_viewport_offset(int x,int y)
+   {
+
+      m_ptScrollPassword1.x = x;
+
+      m_ptScrollPassword1.y = y;
+
+      on_change_viewport_offset();
+
+   }
+
+
+   void interaction::set_viewport_offset_x(int x)
+   {
+
+      set_viewport_offset(x,get_viewport_offset().y);
+
+   }
+
+
+   void interaction::set_viewport_offset_y(int y)
+   {
+
+      set_viewport_offset(get_viewport_offset().x, y);
+
+   }
+
+
+   void interaction::on_change_viewport_offset()
+   {
+
+
+   }
 
 
    point interaction::get_viewport_offset()
    {
 
-      return point(0, 0);
+      return m_ptScrollPassword1;
+
+   }
+
+
+   size interaction::get_total_size()
+   {
+
+      ::rect rectClient;
+
+      GetClientRect(rectClient);
+
+      return rectClient.size();
+
+   }
+
+
+   void interaction::on_change_view_size()
+   {
+
+   }
+
+
+   size interaction::get_page_size()
+   {
+
+      ::rect rectClient;
+
+      GetClientRect(rectClient);
+
+      return rectClient.size();
 
    }
 
@@ -5925,6 +6029,31 @@ namespace user
       }
 
       return pt;
+
+   }
+
+
+   void interaction::get_margin_rect(LPRECT lprectMargin)
+   {
+
+      lprectMargin->left = 0;
+      lprectMargin->top = 0;
+      lprectMargin->right = 0;
+      lprectMargin->bottom = 0;
+
+   }
+
+   int interaction::get_final_x_scroll_bar_width()
+   {
+
+      return 0;
+
+   }
+
+   int interaction::get_final_y_scroll_bar_width()
+   {
+
+      return 0;
 
    }
 

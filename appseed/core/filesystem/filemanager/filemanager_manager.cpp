@@ -422,7 +422,7 @@ namespace filemanager
    void manager::_001OnAddLocation(signal_details * pobj)
    {
 
-      update_all_views(NULL,::aura::impact::hint_add_location,NULL);
+      update_all_views(NULL,::user::impact::hint_add_location,NULL);
 
       pobj->m_bRet = true;
 

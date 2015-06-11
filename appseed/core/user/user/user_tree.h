@@ -33,7 +33,7 @@ namespace user
 
 
    class CLASS_DECL_CORE tree :
-      virtual public scroll_view
+      virtual public ::user::control
    {
    public:
 
@@ -46,7 +46,7 @@ namespace user
 
       };
 
-
+      size                          m_sizeTotal;
       spa(::data::tree)             m_treeptra;
       spa(::data::tree)             m_treeptraBound;
       ::data::tree_item_ptr_array   m_itemptraSelected;
@@ -96,7 +96,7 @@ namespace user
       virtual bool contains(::data::tree_item * pitem);
 
 
-      void _001GetViewRect(LPRECT lprect);
+      void on_change_view_size();
 
       void _001OnTreeDataChange();
       sp(::data::tree_item) CalcFirstVisibleItem(index & iLevel, index & iProperIndex);
@@ -128,7 +128,7 @@ namespace user
 
       virtual int32_t get_wheel_scroll_delta();
 
-      virtual void _001OnUpdateScrollPosition();
+      virtual void on_change_viewport_offset();
 
       sp(image_list) get_image_list();
 
@@ -184,9 +184,11 @@ namespace user
 
       virtual void      _001EnsureVisible(::data::tree_item * pitem);
 
-      virtual void on_update(::aura::impact * pSender, LPARAM lHint, ::object* pHint);
+      virtual void on_update(::user::impact * pSender, LPARAM lHint, ::object* pHint);
 
       virtual bool keyboard_focus_is_focusable();
+
+      virtual size get_total_size();
 
    };
 

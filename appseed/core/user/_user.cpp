@@ -182,3 +182,7 @@
 
 
 #include "app/appseed/core/net/usernet/usernet_network_configuration.cpp"
+
+
+
+#include "user/user_margin.cpp"

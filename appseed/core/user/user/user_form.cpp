@@ -364,7 +364,7 @@ namespace user
    }
 
 
-   void form::_001OnUpdate(sp(::aura::impact) pviewSender, LPARAM lhint, object* phint)
+   void form::_001OnUpdate(sp(::user::impact) pviewSender, LPARAM lhint, object* phint)
    {
       UNREFERENCED_PARAMETER(pviewSender);
       UNREFERENCED_PARAMETER(lhint);

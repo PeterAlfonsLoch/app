@@ -7,9 +7,12 @@ namespace userfs
    class main_view;
 
    class CLASS_DECL_CORE list :
-      virtual public ::user::form_list_view
+      virtual public ::user::view < ::user::scroll < ::user::margin < ::user::form_list > > >
    {
    public:
+
+
+      typedef ::user::view < ::user::scroll < ::user::margin < ::user::form_list > > > BASE;
 
 
       stringa      m_straFileSize;
@@ -76,7 +79,7 @@ namespace userfs
       virtual void _001OnClick(uint_ptr uiFlags, point point);
 
       
-      virtual void on_update(::aura::impact * pSender, LPARAM lHint, object* pHint);
+      virtual void on_update(::user::impact * pSender, LPARAM lHint, object* pHint);
       virtual bool pre_create_window(::user::create_struct& cs);
 
       DECL_GEN_SIGNAL(_001OnCreate);

@@ -34,7 +34,7 @@ namespace filemanager
       string                        m_wstrFilter;
       sp(::filemanager::manager)    m_pmanager;
       sp(::filemanager::manager)    m_pmanagerMain;
-      sp(::aura::impact)            m_pview;
+      sp(::user::impact)            m_pview;
       UINT                          m_uiId;
       string                        m_strPath;
 

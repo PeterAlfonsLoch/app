@@ -10,7 +10,7 @@ namespace simple_ui
    edit_box::edit_box(::aura::application * papp) :
       ::object(papp),
       ::user::interaction(papp),
-      ::user::edit_plain_text(papp)
+      ::user::plain_edit(papp)
    {
 
       m_iPos = 0;
@@ -25,7 +25,7 @@ namespace simple_ui
    void edit_box::install_message_handling(::message::dispatch * pdispatch)
    {
 
-      ::user::edit_plain_text::install_message_handling(pdispatch);
+      ::user::plain_edit::install_message_handling(pdispatch);
 
       IGUI_WIN_MSG_LINK(WM_KEYDOWN, pdispatch, this, &edit_box::_001OnKeyDown);
       IGUI_LBUTTONDOWN(edit_box);
@@ -104,7 +104,7 @@ namespace simple_ui
    {
 
 
-      ::user::edit_plain_text::_001OnDraw(pgraphics);
+      ::user::plain_edit::_001OnDraw(pgraphics);
 
 
    }

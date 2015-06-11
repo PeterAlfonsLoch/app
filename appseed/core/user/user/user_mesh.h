@@ -101,7 +101,7 @@ namespace user
 
 
    class CLASS_DECL_CORE mesh:
-      virtual public scroll_control,
+      virtual public ::user::control,
       public ::sort::compare_interface
    {
    public:
@@ -292,7 +292,8 @@ namespace user
 
       };
 
-
+      size                             m_sizeTotal;
+      size                             m_sizePage;
       ::user::list *                   m_plist; // should be set to this ::user::list if this is a list
 
       int                              m_iDefaultColumnWidth;
@@ -552,13 +553,10 @@ namespace user
 
       void layout();
 
-      //void SetScrollSizes();
-
       virtual bool _001OnUpdateColumnCount(uint32_t dwFlags = 0);
       virtual bool _001OnUpdateItemCount(uint32_t dwFlags = 0);
 
-      void _001GetViewRect(LPRECT lprect);
-      void _001GetViewClientRect(LPRECT lprect);
+      void on_change_view_size();
 
 
       virtual void _001OnInitialize();
@@ -655,24 +653,12 @@ namespace user
       bool _001OnHeaderCtrlTrack(WPARAM wparam,LPARAM lparam);
 
       void _001ShowSubItem(index iSubItem,bool bShow = true);
+
       void DISaveOrder();
 
       void DILoadOrder();
 
-
       virtual void _001OnSelectionChange();
-
-      //virtual void _001UpdateColumns();
-
-
-      //void _001RemoveAllColumns();
-
-
-      bool TwiHasTranslucency();
-
-      //void _001SetBackBuffer(visual::CBuffer *ptwb);
-
-      //void _001CreateImageMesh(mesh_column * pcolumn);
 
       bool _001IsItemVisible(index iItem);
 
@@ -683,9 +669,11 @@ namespace user
       void _001AddSelection(const item_range & itemrange);
 
       index set_cur_sel(index iSel);
+
       index get_cur_sel();
 
       void set_cur_sel(const index_array & iaSel);
+
       void get_cur_sel(index_array & iaSel);
 
       void _001SetHighlightRange(range & range);
@@ -697,7 +685,7 @@ namespace user
 
       virtual int32_t get_wheel_scroll_delta();
 
-      virtual void _001OnUpdateScrollPosition();
+      virtual void on_change_viewport_offset();
 
       bool keyboard_focus_is_focusable();
 
@@ -710,13 +698,11 @@ namespace user
 
       virtual point get_viewport_offset();
 
-      virtual rect get_scroll_margin();
+      //virtual rect get_scroll_margin();
 
-      virtual void GetScrollRect(LPRECT lprect);
-
-      virtual int get_scroll_bar_width();
-
-      virtual int get_scroll_bar_height();
+      virtual void GetClientRect(LPRECT lprect);
+      virtual size get_page_size();
+      virtual size get_total_size();
 
    };
 

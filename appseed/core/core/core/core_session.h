@@ -135,7 +135,7 @@ namespace core
       
       
       sp(::aura::document)                  get_document();
-      sp(::aura::impact)                      get_view();
+      sp(::user::impact)                      get_view();
       sp(::aura::document)                  get_platform();
       sp(::aura::document)                    get_nature();
       

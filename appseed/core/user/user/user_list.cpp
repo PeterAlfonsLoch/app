@@ -27,12 +27,6 @@ namespace user
 
       m_pdrawlistitem            = NULL;
 
-      m_scrollinfo.m_rectMargin.left = -84;
-      m_scrollinfo.m_rectMargin.top = -84;
-      m_scrollinfo.m_rectMargin.bottom = -84;
-      m_scrollinfo.m_rectMargin.right = -84;
-      m_scrollinfo.m_ptScroll.x = -84;
-      m_scrollinfo.m_ptScroll.y = -84;
 
       m_bAutoCreateListHeader = true;
 
@@ -114,6 +108,8 @@ namespace user
 
       GetClientRect(rectClient);
 
+      point ptOffset = get_viewport_offset();
+
 
 //      pdc->SetBkMode(TRANSPARENT);
 
@@ -141,7 +137,7 @@ namespace user
                || i == sizea.get_upper_bound())
             {
                rect rect;
-               rect.top = LONG(y - m_scrollinfo.m_ptScroll.y);
+               rect.top = LONG(y - ptOffset.y);
                if(i == 0)
                {
                   w = sizea[0].cx - x      ;
@@ -157,9 +153,9 @@ namespace user
                   y += sizea[i - 1].cy;
                   iNewStart = i - 1;
                }
-               rect.left = LONG(- m_scrollinfo.m_ptScroll.x);
+               rect.left = LONG(- ptOffset.x);
                rect.right = rectClient.right;
-               rect.bottom = LONG(y - m_scrollinfo.m_ptScroll.y);
+               rect.bottom = LONG(y - ptOffset.y);
 
                pdc->_DrawText(m_strTopText.Mid(iStart, i - iStart), rect, DT_LEFT);
                iStart = iNewStart;
@@ -755,11 +751,9 @@ namespace user
 
       m_nDisplayCount   = _001CalcDisplayItemCount();
 
-      SetScrollSizes();
+      on_change_view_size();
 
       LayoutHeaderCtrl();
-
-      _001LayoutScrollBars();
 
    }
 
@@ -820,7 +814,7 @@ namespace user
       return true;
    }
 
-   void list::_001GetViewRect(LPRECT lprect)
+   void list::on_change_view_size()
    {
       rect rect;
       if(m_eview == view_list)
@@ -833,10 +827,7 @@ namespace user
          {
             ::rect rectClient;
 
-            _001GetViewClientRect(&rectClient);
-
-
-            rectClient.inflate(m_scrollinfo.m_rectMargin);
+            GetClientRect(&rectClient);
 
             draw_list_item itemFirst(this);
 
@@ -899,8 +890,12 @@ namespace user
             }
             _001GetItemRect(&itemLast);
 
-            itemLast.m_rectItem.right     -= (m_scrollinfo.m_rectMargin.left + m_scrollinfo.m_rectMargin.right);
-            itemLast.m_rectItem.bottom    -= (m_scrollinfo.m_rectMargin.top  + m_scrollinfo.m_rectMargin.bottom);
+            ::rect rectMargin;
+
+            get_margin_rect(rectMargin);
+
+            itemLast.m_rectItem.right     -= (rectMargin.left + rectMargin.right);
+            itemLast.m_rectItem.bottom    -= (rectMargin.top  + rectMargin.bottom);
 
             rect.unite(itemFirst.m_rectItem, itemLast.m_rectItem);
          }
@@ -926,7 +921,7 @@ namespace user
          {
             class rect rectClient;
 
-            _001GetViewClientRect(&rectClient);
+            GetClientRect(&rectClient);
 
             itemTopRight.m_iItem = (index)MAX(1, rectClient.width() / get_item_size().cx) - 1;
          }
@@ -941,8 +936,13 @@ namespace user
          rect.unite(rect, itemTopRight.m_rectItem);
 
       }
-      *lprect = rect;
+      
+      m_sizeTotal = rect.size();
+
+      ::user::control::on_change_view_size();
+
    }
+
 
    void list::_001OnInitialize()
    {
@@ -1320,16 +1320,20 @@ namespace user
    /////////////////////////////////////////////////////////////////
    index list::_001CalcDisplayTopIndex()
    {
+
+      point ptOffset = get_viewport_offset();
+
       index iItem;
+
       if(_001DisplayHitTest(
-         point(m_scrollinfo.m_ptScroll.x < 0 ? -m_scrollinfo.m_ptScroll.x : 0,
-         (m_bHeaderCtrl ? m_iItemHeight : 0) + ( m_scrollinfo.m_ptScroll.y < -0 ? -m_scrollinfo.m_ptScroll.y : 0 )), iItem))
+         point(ptOffset.x < 0 ? -ptOffset.x : 0,
+         (m_bHeaderCtrl ? m_iItemHeight : 0) + (ptOffset.y < -0 ? -ptOffset.y : 0)),iItem))
          return iItem;
       else
       {
          if(m_eview == view_report)
          {
-            if(m_scrollinfo.m_ptScroll.y < 0)
+            if(ptOffset.y < 0)
                return 0;
          }
          return -1;
@@ -1341,7 +1345,7 @@ namespace user
       if(m_eview == view_icon)
       {
          rect rectView;
-         _001GetViewClientRect(&rectView);
+         GetClientRect(&rectView);
          class size sizeItem = get_item_size();
          return MAX((rectView.width() / sizeItem.cx) * (rectView.height() / sizeItem.cy),
             m_iconlayout.m_iaDisplayToStrict.get_max_a() + 1);
@@ -1349,7 +1353,7 @@ namespace user
       else if(m_eview == view_report)
       {
          rect rectView;
-         _001GetViewClientRect(&rectView);
+         GetClientRect(&rectView);
          if(m_iItemHeight == 0)
          {
             return 0;
@@ -1381,7 +1385,7 @@ namespace user
       rect rectItem;
       rect rectIntersect;
       rect rectUpdate;
-      _001GetViewClientRect(&rectUpdate);
+      GetClientRect(&rectUpdate);
       draw_list_item item(this);
       if(iItemFirst >= 0)
       {
@@ -1485,7 +1489,16 @@ namespace user
          return true;
       }
       int_ptr iColumnCount = _001GetColumnCount();
-      int_ptr iLeft =(index) m_scrollinfo.m_ptScroll.x - (m_scrollinfo.m_rectMargin.left * 2);
+
+      //point ptOffset = get_viewport_offset();
+
+      ::point ptOffset = get_viewport_offset();
+
+      ::rect rectMargin;
+
+      get_margin_rect(rectMargin);
+
+      int_ptr iLeft =(index)ptOffset.x - (rectMargin.left * 2);
       if(m_bGroup && m_bLateralGroup)
          iLeft += m_iLateralGroupWidth;
       int_ptr iRight;
@@ -1518,10 +1531,14 @@ namespace user
 
          GetClientRect(&rectClient);
 
-         if(pt.x < -m_scrollinfo.m_rectMargin.left
-            || pt.x > rectClient.right - m_scrollinfo.m_rectMargin.right
-            || pt.y < m_scrollinfo.m_rectMargin.top
-            || pt.x > rectClient.bottom - m_scrollinfo.m_rectMargin.bottom)
+         rect rectMargin;
+
+         get_margin_rect(rectMargin);
+
+         if(pt.x < -rectMargin.left
+            || pt.x > rectClient.right - rectMargin.right
+            || pt.y < rectMargin.top
+            || pt.x > rectClient.bottom - rectMargin.bottom)
          {
             return false;
          }
@@ -1530,7 +1547,10 @@ namespace user
       }
       if(m_eview == view_report)
       {
-         index iy = pt.y + m_scrollinfo.m_ptScroll.y;
+
+         point ptOffset = get_viewport_offset();
+
+         index iy = pt.y + ptOffset.y;
 
          index iItem = -1;
 
@@ -1567,7 +1587,7 @@ namespace user
             return false;
 
          class rect rectClient;
-         _001GetViewClientRect(&rectClient);
+         GetClientRect(&rectClient);
          if(m_bTopText)
          {
             rectClient.top += m_rectTopText.height();
@@ -1576,10 +1596,15 @@ namespace user
          {
             rectClient.top += m_iItemHeight;
          }
-         rectClient.inflate(m_scrollinfo.m_rectMargin);
+
+         //         rectClient.inflate(m_scrolldata.m_rectMargin);
+
+
          index iRoundHeight = (index)((rectClient.height() / m_iItemHeight) * m_iItemHeight);
 
-         index iy = (index)((pt.y + m_scrollinfo.m_ptScroll.y) + (((pt.x + m_scrollinfo.m_ptScroll.x) / m_iItemWidth)) * iRoundHeight);
+         point ptOffset = get_viewport_offset();
+
+         index iy = (index)((pt.y + ptOffset.y) + (((pt.x + ptOffset.x) / m_iItemWidth)) * iRoundHeight);
 
          index iItem = -1;
 
@@ -1616,7 +1641,7 @@ namespace user
          if(m_columna.get_count() == 0)
             return false;
          class rect rectClient;
-         _001GetViewClientRect(&rectClient);
+         GetClientRect(&rectClient);
          if(m_bTopText)
          {
             rectClient.top += m_rectTopText.height();
@@ -1624,14 +1649,17 @@ namespace user
          index iIconSize = MAX(32, m_columna[0]->m_sizeIcon.cy);
          index iItemSize = iIconSize * 2;
 
-         index ix = (index)( pt.x + m_scrollinfo.m_ptScroll.x);
-         ix = (index)MAX(m_scrollinfo.m_ptScroll.x, ix);
+
+         point ptOffset = get_viewport_offset();
+
+         index ix = (index)( pt.x + ptOffset.x);
+         ix = (index)MAX(ptOffset.x,ix);
          ix = (index)MIN(rectClient.right, ix);
          ix = (index)MAX(rectClient.left, ix);
          ix /= iItemSize;
 
-         index iy = pt.y + m_scrollinfo.m_ptScroll.y;
-         iy = MAX(m_scrollinfo.m_ptScroll.y, iy);
+         index iy = pt.y + ptOffset.y;
+         iy = MAX(ptOffset.y,iy);
          iy = MAX(rectClient.top, iy);
          iy /= iItemSize;
 
@@ -1722,8 +1750,11 @@ namespace user
          return_(pdrawitem->m_bOk, false);
       }
 
+      point ptOffset = get_viewport_offset();
+
       if(m_eview == view_report)
       {
+
          if(m_bGroup)
          {
             if(m_bLateralGroup)
@@ -1744,7 +1775,7 @@ namespace user
                      pdrawitem->m_rectItem.top += m_rectTopText.height();
                   }
                   pdrawitem->m_rectItem.bottom = pdrawitem->m_rectItem.top + m_iItemHeight;
-                  pdrawitem->m_rectItem.offset(-m_scrollinfo.m_ptScroll.x, -m_scrollinfo.m_ptScroll.y);
+                  pdrawitem->m_rectItem.offset(-ptOffset.x,-ptOffset.y);
                }
 
                if(pdrawitem->m_iDisplayItem > pdrawitem->m_iItemRectItem)
@@ -1815,14 +1846,15 @@ namespace user
                pdrawitem->m_rectItem.top += m_rectTopText.height();
             }
             pdrawitem->m_rectItem.bottom = pdrawitem->m_rectItem.top + m_iItemHeight;
-            pdrawitem->m_rectItem.offset(-m_scrollinfo.m_ptScroll.x, -m_scrollinfo.m_ptScroll.y);
+            pdrawitem->m_rectItem.offset(-ptOffset.x,-ptOffset.y);
             pdrawitem->m_iItemRectItem   = pdrawitem->m_iDisplayItem;
          }
       }
       else if(m_eview == view_list)
       {
+         
          class rect rectClient;
-         _001GetViewClientRect(&rectClient);
+         GetClientRect(&rectClient);
          if(m_bTopText)
          {
             rectClient.top += m_rectTopText.height();
@@ -1831,7 +1863,7 @@ namespace user
          {
             rectClient.top += m_iItemHeight;
          }
-         rectClient.inflate(m_scrollinfo.m_rectMargin);
+//         rectClient.inflate(m_scrolldata.m_rectMargin);
          if(m_iItemHeight <= 0)
             return_(pdrawitem->m_bOk, false);
          index iRoundHeight = (rectClient.height() / m_iItemHeight) * m_iItemHeight;
@@ -1850,14 +1882,14 @@ namespace user
          }
          pdrawitem->m_rectItem.bottom = pdrawitem->m_rectItem.top + m_iItemHeight;
          pdrawitem->m_rectItem.right = pdrawitem->m_rectItem.left + m_iItemWidth;
-         pdrawitem->m_rectItem.offset(-m_scrollinfo.m_ptScroll.x, -m_scrollinfo.m_ptScroll.y);
+         pdrawitem->m_rectItem.offset(-ptOffset.x,-ptOffset.y);
       }
       else if(m_eview == view_icon)
       {
          if(m_flags.is_signalized(flag_auto_arrange) || m_iconlayout.m_iWidth <= 0)
          {
             class rect rectClient;
-            _001GetViewClientRect(&rectClient);
+            GetClientRect(&rectClient);
             if(m_bTopText)
             {
                rectClient.top += m_rectTopText.height();
@@ -1872,7 +1904,7 @@ namespace user
          else
          {
             class rect rectClient;
-            _001GetViewClientRect(&rectClient);
+            GetClientRect(&rectClient);
             if(m_bTopText)
             {
                rectClient.top += m_rectTopText.height();
@@ -1883,7 +1915,7 @@ namespace user
             pdrawitem->m_rectItem.bottom = (LONG) (pdrawitem->m_rectItem.top + iItemSize);
             pdrawitem->m_rectItem.right = (LONG) (pdrawitem->m_rectItem.left + iItemSize);
          }
-         pdrawitem->m_rectItem.offset(-m_scrollinfo.m_ptScroll.x, -m_scrollinfo.m_ptScroll.y);
+         pdrawitem->m_rectItem.offset(-ptOffset.x,-ptOffset.y);
       }
 
       pdrawitem->m_bOk = true;
@@ -2299,7 +2331,7 @@ namespace user
       {
          rect rectClient;
 
-         _001GetViewClientRect(&rectClient);
+         GetClientRect(&rectClient);
 
          m_plistheader->SetWindowPos(
             ZORDER_TOP,
@@ -2812,9 +2844,12 @@ namespace user
 
    void list::HeaderCtrlLayout()
    {
+
+      point ptOffset = get_viewport_offset();
+
       m_plistheader->SetWindowPos(
          ZORDER_TOP,
-         -m_scrollinfo.m_ptScroll.x,
+         -ptOffset.x,
          0,
          0, 0,
          SWP_NOSIZE
@@ -3502,10 +3537,10 @@ namespace user
 
 
 
-   bool list::TwiHasTranslucency()
-   {
-      return !m_scrollinfo.m_bVScroll;
-   }
+   //bool list::TwiHasTranslucency()
+   //{
+   //   return !m_scrolldata.m_bVScroll;
+   //}
 
    void list::_001SetBackBuffer(visual::CBuffer *ptwb)
    {
@@ -3822,7 +3857,7 @@ namespace user
          return false;
       }
       rect rectClient;
-      _001GetViewClientRect(&rectClient);
+      GetClientRect(&rectClient);
       return rectClient.intersect(rectClient, item.m_rectItem) != 0;
    }
 
@@ -4177,12 +4212,14 @@ namespace user
 
    void list::_001EnsureVisible(index iItem, bool bRedraw)
    {
-      if(iItem < m_scrollinfo.m_ptScroll.y ||
+      point ptOffset = get_viewport_offset();
+
+      if(iItem < ptOffset.y ||
          (m_iItemHeight > 0
-         && iItem >= m_scrollinfo.m_ptScroll.y / m_iItemHeight + m_nDisplayCount))
+         && iItem >= ptOffset.y / m_iItemHeight + m_nDisplayCount))
       {
-         m_scrollinfo.m_ptScroll.y = (LONG) (iItem * m_iItemHeight);
-         _001UpdateScrollBars();
+         ptOffset.y = (LONG) (iItem * m_iItemHeight);
+         on_change_viewport_offset();
          if(bRedraw)
          {
             RedrawWindow();
@@ -4194,8 +4231,12 @@ namespace user
    {
       if(iItem < m_nItemCount)
       {
-         m_scrollinfo.m_ptScroll.y = (LONG) (iItem * m_iItemHeight);
-         _001UpdateScrollBars();
+
+         point ptOffset = get_viewport_offset();
+
+
+         ptOffset.y = (LONG) (iItem * m_iItemHeight);
+         on_change_viewport_offset();
          if(bRedraw)
          {
             RedrawWindow();
@@ -4206,7 +4247,10 @@ namespace user
    void list::_001EnsureVisible(index iItem, range & range)
    {
 
-      index iyScroll = m_scrollinfo.m_ptScroll.y / MAX(1, m_iItemHeight);
+      point ptOffset = get_viewport_offset();
+
+
+      index iyScroll = ptOffset.y / MAX(1, m_iItemHeight);
       if(iItem < iyScroll)
       {
          iyScroll = iItem - m_nDisplayCount + 1;
@@ -4215,11 +4259,11 @@ namespace user
       {
          iyScroll = iItem;
       }
-      if(m_scrollinfo.m_ptScroll.y  / MAX(1, m_iItemHeight) != iyScroll)
+      if(ptOffset.y  / MAX(1, m_iItemHeight) != iyScroll)
       {
          item_range item;
-         m_scrollinfo.m_ptScroll.y = (LONG) (iyScroll * m_iItemHeight);
-         _001UpdateScrollBars();
+         ptOffset.y = (LONG) (iyScroll * m_iItemHeight);
+         on_change_viewport_offset();
          item.set_lower_bound(iyScroll);
          item.set_upper_bound(MIN(iyScroll + m_nDisplayCount - 1, m_nItemCount - 1));
          range.add_item(item);
@@ -4415,12 +4459,11 @@ namespace user
 
       SetTimer(0xfffffffe, 50, NULL);
 
-      m_scrollinfo.m_ptScroll.x = 0;
-      m_scrollinfo.m_ptScroll.y = 0;
+      set_viewport_offset(0,0);
 
       m_efilterstate = FilterStateFilter;
 
-      SetScrollSizes();
+      on_change_view_size();
 
       layout();
 
@@ -4458,7 +4501,7 @@ namespace user
          }
       }
 
-      SetScrollSizes();
+      on_change_view_size();
 
       layout();
 
@@ -4562,12 +4605,11 @@ namespace user
          m_meshlayout.m_iaDisplayToStrict = (*m_piaFilterMesh);
       }
 
-      m_scrollinfo.m_ptScroll.x = 0;
-      m_scrollinfo.m_ptScroll.y = 0;
+      set_viewport_offset(0,0);
 
       m_efilterstate = FilterStateFilter;
 
-      SetScrollSizes();
+      on_change_view_size();
 
       layout();
 
@@ -4777,10 +4819,8 @@ namespace user
    }
 
 
-   void list::_001OnUpdateScrollPosition()
+   void list::on_change_viewport_offset()
    {
-
-      scroll_control::_001OnUpdateScrollPosition();
 
       m_iTopIndex = _001CalcDisplayTopIndex();
       index iLow = 0;
@@ -5113,7 +5153,7 @@ namespace user
             if(m_iconlayout.m_iWidth <= 0)
             {
                rect rectClient;
-               _001GetViewClientRect(rectClient);
+               GetClientRect(rectClient);
                index iIconSize;
                if(m_columna.get_count() > 0)
                   iIconSize = MAX(32, m_columna[0]->m_sizeIcon.cy);
@@ -5546,83 +5586,6 @@ namespace user
 
 
 
-   void list::_001GetViewClientRect(LPRECT lprect)
-   {
-
-      GetClientRect(lprect);
-
-      rect rectClient;
-      GetClientRect(rectClient);
-      *lprect = rect(rectClient);
-      if(m_bHeaderCtrl)
-      {
-         lprect->top += m_iItemHeight;
-      }
-
-
-      return;
-
-
-
-      rect rectView;
-
-      _001GetViewRect(&rectView);
-
-
-      index iViewHeight = (index)rectView.height();
-
-      index iViewWidth = (index)rectView.width();
-
-      index iClientHeight = (index)rectClient.height();
-
-      if(m_bHeaderCtrl)
-      {
-         iClientHeight -= m_iItemHeight;
-      }
-
-      index iClientWidth = (index)rectClient.width();
-
-      index iScrollHeight =  iClientHeight - GetSystemMetrics(SM_CYHSCROLL);
-
-      index iScrollWidth = iClientWidth - GetSystemMetrics(SM_CXVSCROLL);
-
-      bool bHScroll = false;
-
-      bool bVScroll = false;
-
-      if(iViewWidth > iClientWidth)
-      {
-         bHScroll = true;
-         if(iViewHeight > iScrollHeight)
-         {
-            bVScroll = true;
-         }
-      }
-      else if(iViewHeight > iClientHeight)
-      {
-         bVScroll = true;
-         if(iViewWidth > iScrollWidth)
-         {
-            bHScroll = true;
-         }
-      }
-
-      lprect->left = 0;
-      lprect->top = 0;
-      if(m_bHeaderCtrl)
-      {
-         lprect->top += m_iItemHeight;
-      }
-      if(bVScroll)
-         lprect->right = (LONG) (lprect->left + iScrollWidth);
-      else
-         lprect->right = (LONG) (lprect->left + iClientWidth);
-      if(bHScroll)
-         lprect->bottom = (LONG) (lprect->top + iScrollHeight);
-      else
-         lprect->bottom = (LONG) (lprect->top + iClientHeight);
-
-   }
 
    void list::_001OnBeforeDeleteRange(range & range)
    {

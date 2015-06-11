@@ -96,7 +96,7 @@ namespace filemanager
                try
                {
 
-                  ::aura::impact * pview = pdata->get_data_bound_view(i);
+                  ::user::impact * pview = pdata->get_data_bound_view(i);
 
                   if(pview != NULL)
                   {
@@ -124,10 +124,10 @@ namespace filemanager
    }
 
 
-   ::aura::impact * impact::get_this_view()
+   ::user::impact * impact::get_this_view()
    {
 
-      return dynamic_cast <::aura::impact *> (this);
+      return dynamic_cast <::user::impact *> (this);
 
    }
 
@@ -164,7 +164,7 @@ namespace filemanager
    }
 
 
-   void impact::on_update(::aura::impact * psender, LPARAM lhint, object * phint)
+   void impact::on_update(::user::impact * psender, LPARAM lhint, object * phint)
    {
 
       UNREFERENCED_PARAMETER(psender);
@@ -261,7 +261,7 @@ namespace filemanager
       string strDir;
       strDir = get_filemanager_item().m_strPath;
 
-      ::aura::impact * pview  = get_this_view();
+      ::user::impact * pview  = get_this_view();
 
       if(pview == NULL)
          return;

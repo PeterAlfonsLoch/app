@@ -53,7 +53,7 @@ namespace userstack
 
       virtual void set_display(int32_t iDisplay);
 
-      virtual void on_update(::aura::impact * pSender, LPARAM lHint, ::object* pHint);
+      virtual void on_update(::user::impact * pSender, LPARAM lHint, ::object* pHint);
       virtual bool pre_create_window(::user::create_struct& cs);
 
    #ifdef DEBUG

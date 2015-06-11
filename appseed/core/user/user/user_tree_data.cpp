@@ -42,10 +42,10 @@ namespace user
    }
 
 
-   ::aura::impact * tree_data::get_data_bound_view(index iView)
+   ::user::impact * tree_data::get_data_bound_view(index iView)
    {
 
-      return m_treeptraBound[iView];
+      return dynamic_cast <::user::impact * > (m_treeptraBound[iView]);
 
    }
 
@@ -591,7 +591,7 @@ namespace user
 
    }
 
-   void tree_data::on_update(::aura::impact * pSender,LPARAM lHint,::object* pHint)
+   void tree_data::on_update(::user::impact * pSender,LPARAM lHint,::object* pHint)
    {
 
    }

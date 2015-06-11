@@ -29,10 +29,6 @@ namespace user
    typedef uint32_t DROPEFFECT;
    class COleDataObject;   // forward reference (see afxole.h)
 
-} // namespace user
-
-namespace aura
-{
 
    class CLASS_DECL_AXIS impact :
       virtual public ::database::user::interaction
@@ -101,7 +97,7 @@ namespace aura
       virtual void OnActivateFrame(UINT nState, sp(::user::frame_window) pFrameWnd);
 
       // General drawing/updating
-      virtual void on_update(::aura::impact * pSender, LPARAM lHint, ::object* pHint);
+      virtual void on_update(::user::impact * pSender, LPARAM lHint, ::object* pHint);
       //virtual void _001OnDraw(::draw2d::graphics * pgraphics);
       virtual void OnViewUpdateHint(sp(impact) pSender, LPARAM lHint, ::user::view_update_hint * pHint);
 
@@ -186,7 +182,7 @@ namespace aura
 
          virtual ::user::interaction::e_type get_window_type();
 
-      virtual void on_simple_view_update_hint(sp(::aura::impact) pviewSender, e_hint ehint, object * phint);
+      virtual void on_simple_view_update_hint(sp(::user::impact) pviewSender, e_hint ehint, object * phint);
 
 
 
@@ -216,10 +212,10 @@ namespace aura
 #endif
 
 
-      //virtual void OnActivateView(bool bActivate, sp(::aura::impact) pActivateView, sp(::aura::impact) pDeactiveView);
+      //virtual void OnActivateView(bool bActivate, sp(::user::impact) pActivateView, sp(::user::impact) pDeactiveView);
       //virtual void OnActivateFrame(UINT nState, sp(::user::frame_window) pFrameWnd);
 
-      //virtual void on_update(::aura::impact * pSender, LPARAM lHint, object* pHint);
+      //virtual void on_update(::user::impact * pSender, LPARAM lHint, object* pHint);
 
       //      virtual void dump(dump_context &) const;
       //    virtual void assert_valid() const;
@@ -242,6 +238,36 @@ namespace aura
 
    };
 
+
+   template < class VIEW >
+   class view :
+      virtual public impact,
+      virtual public VIEW
+   {
+   public:
+
+      view()
+      {
+      }
+
+      view(::aura::application * papp) :
+         object(papp)
+      {
+      }
+
+      virtual ~view()
+      {
+      }
+
+      virtual void install_message_handling(::message::dispatch * pinterface)
+      {
+         
+         ::user::impact::install_message_handling(pinterface);
+         VIEW::install_message_handling(pinterface);
+
+      }
+
+   };
 
 } // namespace user
 

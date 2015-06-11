@@ -43,7 +43,7 @@ namespace filemanager
 
    void file_list::install_message_handling(::message::dispatch * pinterface)
    {
-      ::aura::impact::install_message_handling(pinterface);
+      ::user::impact::install_message_handling(pinterface);
       ::user::form_list::install_message_handling(pinterface);
       ::userfs::list::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(MessageMainPost, pinterface, this, &file_list::_001OnMainPostMessage);
@@ -64,17 +64,17 @@ namespace filemanager
    #ifdef DEBUG
    void file_list::assert_valid() const
    {
-      ::aura::impact::assert_valid();
+      ::user::impact::assert_valid();
    }
 
    void file_list::dump(dump_context & dumpcontext) const
    {
-      ::aura::impact::dump(dumpcontext);
+      ::user::impact::dump(dumpcontext);
    }
    #endif //DEBUG
 
 
-   void file_list::on_update(::aura::impact * pSender, LPARAM lHint, object* phint)
+   void file_list::on_update(::user::impact * pSender, LPARAM lHint, object* phint)
    {
 
       ::filemanager::impact::on_update(pSender, lHint, phint);
@@ -324,7 +324,7 @@ namespace filemanager
 
       cs.style |= WS_CLIPCHILDREN;
 
-      return ::aura::impact::pre_create_window(cs);
+      return ::user::impact::pre_create_window(cs);
    }
 
    UINT c_cdecl file_list::ThreadProcFileSize(LPVOID lpparam)
@@ -438,7 +438,7 @@ namespace filemanager
       GetSelected(itema);
       if(get_filemanager_manager()->HandleDefaultFileManagerItemCmdMsg(pcmdmsg, itema))
          return TRUE;
-      return ::aura::impact::_001OnCmdMsg(pcmdmsg);
+      return ::user::impact::_001OnCmdMsg(pcmdmsg);
    }
 
    void file_list::_001OnShellCommand(signal_details * pobj)
@@ -738,7 +738,7 @@ namespace filemanager
       }
       else
       {
-         return ::aura::impact::on_simple_update(pcmdui);
+         return ::user::impact::on_simple_update(pcmdui);
       }
    }
 
@@ -785,7 +785,7 @@ namespace filemanager
       }
       else
       {
-         return ::aura::impact::on_simple_action(id);
+         return ::user::impact::on_simple_action(id);
       }
 
    }
@@ -1165,15 +1165,10 @@ namespace filemanager
 
       _001ClearSelection();
 
-      m_scrollinfo.m_ptScroll = m_scrollinfo.m_rectMargin.top_left();
-
-
-
-
-
-
+      set_viewport_offset(0,0);
 
    }
+
 
    void file_list::_001CreateImageList()
    {
@@ -1350,7 +1345,7 @@ namespace filemanager
       //pcontrol->descriptor().m_id = _vms::FILE_MANAGER_ID_FILE_NAME;
       control.set_data_type(user::control::DataTypeString);
       control.add_function(user::control::function_vms_data_edit);
-      control.m_typeinfo = System.type_info < ::user::edit_plain_text > ();
+      control.m_typeinfo = System.type_info < ::user::plain_edit > ();
       //control.m_typeinfo = sp(type)();
       control.m_iSubItem = i;
       control.m_id = 1000 + i;
@@ -1476,10 +1471,10 @@ namespace filemanager
    }
 
 
-   bool file_list::TwiHasTranslucency()
-   {
-      return ::user::list::TwiHasTranslucency() && !m_bCreateImageListRedraw;
-   }
+   //bool file_list::TwiHasTranslucency()
+   //{
+   //   return ::user::list::TwiHasTranslucency() && !m_bCreateImageListRedraw;
+   //}
 
 
    void file_list::GetSelectedFilePath(stringa & array)

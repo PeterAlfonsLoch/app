@@ -1,6 +1,7 @@
 #pragma once
 
 #include "axis/user/user.h"
+#include "core/user/user/user_margin.h"
 
 #include "core/core/core_timer.h"
 #include "core/core/core_timer_callback.h"

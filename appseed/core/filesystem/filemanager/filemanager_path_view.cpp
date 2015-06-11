@@ -9,8 +9,7 @@ namespace filemanager
    path_view::path_view(::aura::application * papp) :
       object(papp),
       ::user::interaction(papp),
-      ::user::edit_plain_text(papp),
-      ::user::edit_plain_text_view(papp)
+      ::user::plain_edit(papp)
    {
 
          m_bVoidSync = false;
@@ -18,7 +17,7 @@ namespace filemanager
    }
 
 
-   void path_view::on_update(::aura::impact * pSender, LPARAM lHint, object* phint)
+   void path_view::on_update(::user::impact * pSender, LPARAM lHint, object* phint)
    {
 
       ::filemanager::impact::on_update(pSender, lHint, phint);
@@ -150,7 +149,7 @@ namespace filemanager
    void path_view::_001OnDraw(::draw2d::graphics * pdc)
    {
 
-      ::user::edit_plain_text_view::_001OnDraw(pdc);
+      ::user::plain_edit::_001OnDraw(pdc);
 
    }
 

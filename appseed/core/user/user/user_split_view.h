@@ -6,7 +6,7 @@ namespace user
 
 
    class CLASS_DECL_CORE split_view :
-      virtual public ::aura::impact,
+      virtual public ::user::impact,
       virtual public split_layout
    {
    public:
@@ -26,7 +26,7 @@ namespace user
       virtual void _001OnNcDraw(::draw2d::graphics * pgraphics);
       virtual void _001OnDraw(::draw2d::graphics * pgraphics);
 
-      virtual void on_update(::aura::impact * pSender, LPARAM lHint, object* pHint);
+      virtual void on_update(::user::impact * pSender, LPARAM lHint, object* pHint);
       virtual bool create_views();
       virtual void on_create_views();
 

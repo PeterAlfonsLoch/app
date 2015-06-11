@@ -338,6 +338,7 @@ namespace axis
 
 
 
+
 //#if defined(METROWIN)
 //
 //#include "app/appseed/base/base/os/metrowin/metrowin_sockets.h"
@@ -368,12 +369,10 @@ namespace axis
 
 #include "axis/user/user/user_control.h"
 #include "axis/user/user/user_scroll_bar.h"
-#include "axis/user/user/user_scroll_control.h"
-#include "axis/user/user/user_scroll_view.h"
-//#include "axis/user/user/user_form_interface.h"
+#include "axis/user/user/user_scroll.h"
 
 #include "axis/user/user/user_plain_text_data.h"
-#include "axis/user/user/user_edit_plain_text.h"
+#include "axis/user/user/user_plain_edit.h"
 
 #include "axis/user/user/user_form_window.h"
 #include "axis/user/user/user_form_update_hint.h"

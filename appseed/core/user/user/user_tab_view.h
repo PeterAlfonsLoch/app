@@ -7,7 +7,7 @@ namespace user
    class single_document_template;
 
    class CLASS_DECL_CORE tab_view : 
-      virtual public ::aura::impact,
+      virtual public ::user::impact,
       virtual public ::user::tab,
       virtual public ::user::tab_callback,
       virtual public ::user::view_container,
@@ -64,7 +64,7 @@ namespace user
       void _001OnTabClick(int32_t iTab);
 
 
-      virtual void on_update(::aura::impact * pSender, LPARAM lHint, object* pHint);
+      virtual void on_update(::user::impact * pSender, LPARAM lHint, object* pHint);
       virtual bool pre_create_window(::user::create_struct& cs);
 
       DECL_GEN_SIGNAL(_001OnMenuMessage);

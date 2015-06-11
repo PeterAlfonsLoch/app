@@ -20,13 +20,13 @@ simple_tab_view::~simple_tab_view()
 #ifdef DEBUG
 void simple_tab_view::assert_valid() const
 {
-   ::aura::impact::assert_valid();
+   ::user::impact::assert_valid();
 }
 
 #ifndef _WIN32_WCE
 void simple_tab_view::dump(dump_context & dumpcontext) const
 {
-   ::aura::impact::dump(dumpcontext);
+   ::user::impact::dump(dumpcontext);
 }
 #endif
 #endif //DEBUG
@@ -45,7 +45,7 @@ void simple_tab_view::layout()
 
 void simple_tab_view::GetClientRect(LPRECT lprect)
 {
-   ::aura::impact::GetClientRect(lprect);
+   ::user::impact::GetClientRect(lprect);
 }
 
 
@@ -76,7 +76,7 @@ void simple_tab_view::_001OnDraw(::draw2d::graphics * pdc)
 
 void simple_tab_view::install_message_handling(::message::dispatch * pinterface)
 {
-   ::aura::impact::install_message_handling(pinterface);
+   ::user::impact::install_message_handling(pinterface);
    ::user::tab::install_message_handling(pinterface);
 }
 

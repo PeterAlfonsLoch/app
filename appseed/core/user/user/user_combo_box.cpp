@@ -7,7 +7,7 @@ namespace user
 
    combo_box::combo_box(::aura::application * papp) :
       object(papp),
-      ::user::edit_plain_text(papp)
+      ::user::plain_edit(papp)
    {
 
       m_iSel                  = -1;
@@ -43,7 +43,7 @@ namespace user
       if(m_bEdit)
       {
 
-         ::user::edit_plain_text::install_message_handling(pdispatch);
+         ::user::plain_edit::install_message_handling(pdispatch);
 
       }
       else
@@ -100,7 +100,7 @@ namespace user
       if(m_bEdit)
       {
 
-         ::user::edit_plain_text::_001OnDraw(pdc);
+         ::user::plain_edit::_001OnDraw(pdc);
 
       }
       else
@@ -172,7 +172,7 @@ namespace user
       if(m_bEdit)
       {
 
-         ::user::edit_plain_text::_001OnDraw(pdc);
+         ::user::plain_edit::_001OnDraw(pdc);
 
       }
       else
@@ -357,7 +357,7 @@ namespace user
          if(m_iSel < 0)
          {
 
-            ::user::edit_plain_text::_001GetText(str);
+            ::user::plain_edit::_001GetText(str);
 
          }
          else
@@ -394,7 +394,7 @@ namespace user
       if(m_bEdit)
       {
 
-         ::user::edit_plain_text::_001SetText(str, actioncontext);
+         ::user::plain_edit::_001SetText(str, actioncontext);
 
       }
       else
@@ -836,7 +836,7 @@ namespace user
       if(m_bEdit)
       {
 
-         ::user::edit_plain_text::layout();
+         ::user::plain_edit::layout();
 
       }
 
@@ -865,7 +865,7 @@ namespace user
       if(m_bEdit)
       {
 
-         ::user::edit_plain_text::_001GetText(str);
+         ::user::plain_edit::_001GetText(str);
 
       }
       else
@@ -886,7 +886,7 @@ namespace user
       if(m_bEdit)
       {
 
-         ::user::edit_plain_text::_001OnInitialUpdate();
+         ::user::plain_edit::_001OnInitialUpdate();
 
       }
       //else
@@ -905,7 +905,7 @@ namespace user
    bool combo_box::create_window(const RECT & rect, sp(::user::interaction) pParentWnd, id id)
    {
 
-      if (!::user::edit_plain_text::create_window(rect, pParentWnd, id))
+      if (!::user::plain_edit::create_window(rect, pParentWnd, id))
          return false;
 
       return true;
@@ -1457,14 +1457,14 @@ namespace user
    bool combo_box::has_action_hover()
    {
 
-      return ::user::edit_plain_text::has_action_hover() || is_drop_down();
+      return ::user::plain_edit::has_action_hover() || is_drop_down();
 
    }
 
    bool combo_box::has_text_input()
    {
 
-      return m_bEdit && ::user::edit_plain_text::has_text_input();
+      return m_bEdit && ::user::plain_edit::has_text_input();
 
    }
 
@@ -1474,7 +1474,7 @@ namespace user
 
       //return ARGB(184,120,255,190);
 
-      return ::user::edit_plain_text::get_action_hover_border_color();
+      return ::user::plain_edit::get_action_hover_border_color();
 
    }
 

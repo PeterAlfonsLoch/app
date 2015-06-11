@@ -104,7 +104,7 @@ namespace data
    }
 
 
-   ::aura::impact *  data::get_data_bound_view(index iView)
+   ::user::impact *  data::get_data_bound_view(index iView)
    {
 
       return NULL;

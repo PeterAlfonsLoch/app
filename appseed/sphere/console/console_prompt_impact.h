@@ -7,7 +7,7 @@ namespace console
 
 
    class CLASS_DECL_sphere prompt_impact :
-      virtual public ::aura::impact
+      virtual public ::user::impact
    {
    public:
 

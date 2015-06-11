@@ -32,7 +32,7 @@ namespace simple_ui
    password::password(::aura::application * papp) :
       ::object(papp),
       ::user::interaction(papp),
-      ::user::edit_plain_text(papp),
+      ::user::plain_edit(papp),
       edit_box(papp)
    {
          m_bPassword = true;
@@ -149,14 +149,15 @@ namespace simple_ui
       if(m_ptree == NULL)
          return;
 
-      if(m_iLineHeight == 0)
+      /*if(m_iLineHeight == 0)
       {
-         pdc->OffsetViewportOrg(-m_scrollinfo.m_ptScroll.x,m_scrollinfo.m_ptScroll.y);
+         pdc->OffsetViewportOrg(-m_scrolldata.m_ptScroll.x,m_scrolldata.m_ptScroll.y);
       }
       else
       {
-         pdc->OffsetViewportOrg(-m_scrollinfo.m_ptScroll.x,-(m_scrollinfo.m_ptScroll.y % m_iLineHeight));
-      }
+         pdc->OffsetViewportOrg(-m_scrolldata.m_ptScroll.x,-(m_scrolldata.m_ptScroll.y % m_iLineHeight));
+      }*/
+
 
       ::draw2d::region_sp rgn(allocer());
 

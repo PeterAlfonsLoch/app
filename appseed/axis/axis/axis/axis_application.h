@@ -524,7 +524,7 @@ namespace axis
 
       virtual bool BaseOnControlEvent(::user::control_event * pevent);
 
-      virtual void on_update_view(::aura::impact * pview,::aura::impact * pviewSender,LPARAM lHint,object* pHint);
+      virtual void on_update_view(::user::impact * pview,::user::impact * pviewSender,LPARAM lHint,object* pHint);
 
       virtual bool keyboard_focus_is_focusable(::user::elemental * pue);
       virtual bool keyboard_focus_OnSetFocus(::user::elemental * pue);

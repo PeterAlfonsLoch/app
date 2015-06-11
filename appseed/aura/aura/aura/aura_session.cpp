@@ -566,9 +566,9 @@ namespace aura
             strType = "application";
             //            create_bergedge(pcreatecontext);
             //          ::exception::throw_not_implemented(get_app());
-            /*if(get_document() != NULL && get_document()->get_typed_view < ::platform::aura::impact >() != NULL)
+            /*if(get_document() != NULL && get_document()->get_typed_view < ::platform::user::impact >() != NULL)
             {
-            sp(::simple_frame_window) pframe =  (get_document()->get_typed_view < ::platform::aura::impact >()->GetParentFrame());
+            sp(::simple_frame_window) pframe =  (get_document()->get_typed_view < ::platform::user::impact >()->GetParentFrame());
             if(pframe != NULL)
             {
             pframe->ShowWindow(SW_SHOW);

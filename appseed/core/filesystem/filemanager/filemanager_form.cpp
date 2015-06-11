@@ -14,7 +14,7 @@ namespace filemanager
 
    }
 
-   void form::on_update(::aura::impact * pSender,LPARAM lHint,object* phint)
+   void form::on_update(::user::impact * pSender,LPARAM lHint,object* phint)
    {
       ::filemanager::impact::on_update(pSender,lHint,phint);
       sp(::filemanager::manager) pdoc =  (get_filemanager_template());

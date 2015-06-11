@@ -26,7 +26,7 @@ namespace user
 
    }
 
-   void form_callback::on_update(::aura::impact * pform,sp(::aura::impact) pSender,LPARAM lHint,object* phint)
+   void form_callback::on_update(::user::impact * pform,sp(::user::impact) pSender,LPARAM lHint,object* phint)
    {
       UNREFERENCED_PARAMETER(pform);
       UNREFERENCED_PARAMETER(pSender);
@@ -79,7 +79,7 @@ namespace user
       if(passoc == NULL)
          return NULL;
 
-      sp(::aura::impact) pview = passoc->m_element2;
+      sp(::user::impact) pview = passoc->m_element2;
 
       if(pview.is_null())
          return NULL;

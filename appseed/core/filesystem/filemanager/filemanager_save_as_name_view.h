@@ -6,7 +6,7 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE save_as_view:
-      virtual public ::user::edit_plain_text_view,
+      virtual public ::user::view < ::user::plain_edit >,
       virtual public ::filemanager::impact
    {
    public:
@@ -21,7 +21,7 @@ namespace filemanager
       virtual void _001OnAfterChangeText(::action::context actioncontext);
 
 
-      void on_update(::aura::impact * pSender,LPARAM lHint,object* phint);
+      void on_update(::user::impact * pSender,LPARAM lHint,object* phint);
 
 
       virtual void browse_sync(::action::context actioncontext);

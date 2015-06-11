@@ -16,8 +16,8 @@ namespace user
 {
 
 
-   class CLASS_DECL_AXIS edit_plain_text :
-      virtual public scroll_control,
+   class CLASS_DECL_AXIS plain_edit :
+      virtual public control,
       virtual public ::data::listener
    {
    public:
@@ -26,6 +26,7 @@ namespace user
       //WPARAM                        m_dwLastKeyWparam;
       //LPARAM                        m_dwLastKeyLparam;
       ::message::key                m_keymessageLast;
+      size                          m_sizeTotal;
 
       bool                          m_bNeedCalcLayout;
 
@@ -80,15 +81,18 @@ namespace user
       bool                          m_bActionHover;
 
 
+      plain_edit();
+      plain_edit(::aura::application * papp);
+      virtual ~plain_edit();
 
-      edit_plain_text(::aura::application * papp);
 
-      virtual ~edit_plain_text();
+      void plain_edit_common_construct();
 
 
       virtual void _001OnDraw(::draw2d::graphics * pdc);
 
 
+      //void on_change_view_size();
 
 
       DECL_GEN_SIGNAL(_001OnLButtonDown);
@@ -133,7 +137,7 @@ namespace user
       void key_to_char(::message::key * pkey);
 
       virtual void install_message_handling(::message::dispatch * pinterface);
-      virtual void OnDraw(::draw2d::graphics * pgraphics);      // overridden to draw this ::aura::impact
+      virtual void OnDraw(::draw2d::graphics * pgraphics);      // overridden to draw this ::user::impact
       virtual void _001OnInitialUpdate();
 
 
@@ -224,7 +228,10 @@ namespace user
 
       virtual bool ShowWindow(int32_t nCmdShow);
 
-      virtual void _001OnUpdateScrollPosition();
+      //virtual void on_change_viewport_offset();
+
+
+      virtual size get_total_size();
 
    };
 

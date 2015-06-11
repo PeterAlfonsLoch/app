@@ -6,7 +6,7 @@ namespace user
 
 
    class CLASS_DECL_AXIS form_window:
-      virtual public ::user::scroll_control
+      virtual public ::user::control
    {
    public:
 
@@ -70,7 +70,7 @@ namespace user
 
       virtual void install_message_handling(::message::dispatch *pinterface);
       virtual void _001InitializeFormPreData();
-      virtual void _001OnUpdate(sp(::aura::impact) pviewSender,LPARAM lhint,object* phint);
+      virtual void _001OnUpdate(sp(::user::impact) pviewSender,LPARAM lhint,object* phint);
       virtual void _001Update(sp(control) pcontrol);
       virtual void _001UpdateCheckBox(sp(control) pcontrol);
       virtual void _001UpdateComboBox(sp(control) pcontrol);
@@ -112,7 +112,7 @@ namespace user
 
       //      ::user::form_window(::aura::application * papp);
 
-      //void on_update(::aura::impact * pSender,LPARAM lHint,object* phint);
+      //void on_update(::user::impact * pSender,LPARAM lHint,object* phint);
       //      virtual bool BaseOnControlEvent(::user::control_event * pevent);
       //      DECL_GEN_SIGNAL(_001OnCreate);
       DECL_GEN_SIGNAL(_001OnTimer);

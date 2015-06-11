@@ -13,7 +13,7 @@ namespace html
       {
 
          m_iFont = -1;
-         m_pedit = canew(::user::edit_plain_text(pdata->get_app()));
+         m_pedit = canew(::user::plain_edit(pdata->get_app()));
          m_pedit->m_ulFlags &= ~::object::flag_auto_delete;
          m_pedit->m_bMultiLine      = false;
 

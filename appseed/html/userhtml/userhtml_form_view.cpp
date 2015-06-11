@@ -84,9 +84,9 @@ void html_form_view::_001OnInitialUpdate()
 }
 
 
-void html_form_view::on_update(::aura::impact * pSender, LPARAM lHint, object* phint)
+void html_form_view::on_update(::user::impact * pSender, LPARAM lHint, object* phint)
 {
-   ::aura::impact::on_update(pSender,lHint,phint);
+   ::user::impact::on_update(pSender,lHint,phint);
    if(phint != NULL)
    {
       html_view_update_hint * puh = dynamic_cast < html_view_update_hint * >

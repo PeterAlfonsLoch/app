@@ -8,7 +8,7 @@ namespace command
 
    primary_view::primary_view(::aura::application * papp) :
       ::object(papp),
-      ::user::edit_plain_text(papp),
+      ::user::plain_edit(papp),
       ::user::edit_plain_text_view(papp)
    {
 
@@ -22,7 +22,7 @@ namespace command
    }
 
 
-   void primary_view::on_update(::aura::impact * pSender, LPARAM lHint, ::object* phint)
+   void primary_view::on_update(::user::impact * pSender, LPARAM lHint, ::object* phint)
    {
 
       UNREFERENCED_PARAMETER(pSender);

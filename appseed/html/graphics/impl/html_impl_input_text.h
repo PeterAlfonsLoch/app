@@ -15,7 +15,7 @@ namespace html
          
          
          int32_t m_iFont;
-         sp(::user::edit_plain_text) m_pedit;
+         sp(::user::plain_edit) m_pedit;
 
 
          input_text(data * pdoc);

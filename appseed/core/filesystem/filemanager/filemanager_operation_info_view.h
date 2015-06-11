@@ -6,7 +6,7 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE operation_info_view:
-      virtual public ::aura::impact
+      virtual public ::user::impact
 
    {
    public:

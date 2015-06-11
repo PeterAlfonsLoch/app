@@ -485,7 +485,7 @@ void simple_frame_window::layout()
 
 }
 
-void simple_frame_window::ViewOnActivateFrame(sp(::aura::impact) pview, UINT user, sp(::user::interaction) pframe)
+void simple_frame_window::ViewOnActivateFrame(sp(::user::impact) pview, UINT user, sp(::user::interaction) pframe)
 {
    UNREFERENCED_PARAMETER(pview);
    UNREFERENCED_PARAMETER(user);
@@ -1408,8 +1408,8 @@ bool simple_frame_window::_001OnCmdMsg(::aura::cmd_msg * pcmdmsg)
    if (m_workset._001OnCmdMsg(pcmdmsg))
       return true;
 
-   // pump through current ::aura::impact FIRST
-   sp(::aura::impact) pview = GetActiveView();
+   // pump through current ::user::impact FIRST
+   sp(::user::impact) pview = GetActiveView();
    if (pview != NULL && pview->_001OnCmdMsg(pcmdmsg))
       return TRUE;
 
@@ -1719,12 +1719,12 @@ void simple_frame_window::guserbaseOnInitialUpdate(signal_details * pobj)
    if (pfiu != NULL)
    {
       sp(::user::frame_window) pframe = (this);
-      // if the frame does not have an active ::aura::impact, set to first pane
-      sp(::aura::impact) pview = NULL;
+      // if the frame does not have an active ::user::impact, set to first pane
+      sp(::user::impact) pview = NULL;
       if (pframe->GetActiveView() == NULL)
       {
          sp(::user::interaction) pwindow = pframe->GetDescendantWindow("pane_first");
-         if (pwindow != NULL && base_class < ::aura::impact >::bases(pwindow))
+         if (pwindow != NULL && base_class < ::user::impact >::bases(pwindow))
          {
             pview = (pwindow.m_p);
             pframe->SetActiveView(pview, FALSE);
@@ -1736,7 +1736,7 @@ void simple_frame_window::guserbaseOnInitialUpdate(signal_details * pobj)
          // send initial update to all views (and other controls) in the frame
          pframe->SendMessageToDescendants(WM_INITIALUPDATE, 0, (LPARAM)0, TRUE, TRUE);
 
-         // give ::aura::impact a chance to save the focus (CFormView needs this)
+         // give ::user::impact a chance to save the focus (CFormView needs this)
          if (pview != NULL)
             pview->OnActivateFrame(WA_INACTIVE, pframe);
 

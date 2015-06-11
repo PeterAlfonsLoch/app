@@ -3,7 +3,7 @@
 
 
 class CLASS_DECL_CORE simple_tab_view :
-   virtual public ::aura::impact,
+   virtual public ::user::impact,
    virtual public ::user::tab
 {
 public:

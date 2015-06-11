@@ -33,7 +33,6 @@ namespace user
       m_iSubItemHover = -2;
       m_bSortEnable              = true;
       m_bFilter1                 = false;
-      m_iWheelDelta              = 0;
       m_nColumnCount             = 1;
 
       m_pcache                   = NULL;
@@ -81,12 +80,6 @@ namespace user
       m_pilGroupHover   = NULL;
 
 
-      m_scrollinfo.m_rectMargin.left      = 0;
-      m_scrollinfo.m_rectMargin.top       = 0;
-      m_scrollinfo.m_rectMargin.bottom    = 0;
-      m_scrollinfo.m_rectMargin.right     = 0;
-      m_scrollinfo.m_ptScroll.x           = 0;
-      m_scrollinfo.m_ptScroll.y           = 0;
       m_iLeftMargin                       = 0;
       m_iTopMargin                        = 0;
 
@@ -106,7 +99,7 @@ namespace user
    void mesh::install_message_handling(::message::dispatch * pinterface)
    {
 
-      ::user::scroll_control::install_message_handling(pinterface);
+      ::user::control::install_message_handling(pinterface);
 
       IGUI_WIN_MSG_LINK(WM_SIZE,pinterface,this,&mesh::_001OnSize);
       IGUI_WIN_MSG_LINK(WM_VSCROLL,pinterface,this,&mesh::_001OnVScroll);
@@ -143,7 +136,7 @@ namespace user
       if(m_bLockViewUpdate)
          return;
 
-      ::user::scroll_control::_001OnDraw(pdc);
+      ::user::control::_001OnDraw(pdc);
 
       draw_framing(pdc);
 
@@ -420,8 +413,6 @@ namespace user
 
       rect rectVisible(rectClient);
 
-      rectVisible.inflate(m_scrollinfo.m_rectMargin);
-
       //rectVisible.deflate(2,2);
 
       rect rectIntersect;
@@ -580,7 +571,7 @@ namespace user
       if(m_eview == view_grid)
       {
 
-         pdrawitem->m_iOrder = MAX(m_scrollinfo.m_ptScroll.x, 0);
+         pdrawitem->m_iOrder = MAX(get_viewport_offset().x, 0);
 
       }
       else
@@ -783,11 +774,8 @@ namespace user
 
       m_nDisplayCount   = _001CalcDisplayItemCount();
 
-      SetScrollSizes();
+      on_change_view_size();
 
-      //LayoutHeaderCtrl();
-
-      _001LayoutScrollBars();
 
    }
 
@@ -801,9 +789,15 @@ namespace user
       if(m_eview == view_grid)
       {
 
+         ::rect rectClient;
+
+         GetClientRect(rectClient);
+
+         size sizePage = rectClient.size();
+
          m_nGridColumnCount = _001GetColumnCount();
 
-         m_nColumnCount = MAX(m_nColumnCount,m_scrollinfo.m_sizePage.cx * 2);
+         m_nColumnCount = MAX(m_nColumnCount,sizePage.cx * 2);
 
          m_nColumnCount = MIN(m_nColumnCount,m_nGridColumnCount);
 
@@ -836,9 +830,15 @@ namespace user
       if(m_eview == view_grid)
       {
 
+         ::rect rectClient;
+
+         GetClientRect(rectClient);
+
+         size sizePage = rectClient.size();
+
          m_nGridItemCount = _001GetItemCount();
 
-         m_nItemCount = MAX(m_nItemCount,m_scrollinfo.m_sizePage.cy * 2);
+         m_nItemCount = MAX(m_nItemCount, sizePage.cy * 2);
 
          m_nItemCount = MIN(m_nItemCount,m_nGridItemCount);
 
@@ -909,34 +909,33 @@ namespace user
       return true;
    }
 
-   void mesh::_001GetViewRect(LPRECT lprect)
+   void mesh::on_change_view_size()
    {
       
-      rect rect;
+      size & sizeTotal = m_sizeTotal;
 
       if(m_eview == view_grid)
       {
        
-         rect.left = 0;
-         rect.top = 0;
-         rect.right = m_nColumnCount;
-         rect.bottom = m_nItemCount;
+         sizeTotal.cy = m_nColumnCount;
+         sizeTotal.cx = m_nItemCount;
 
       }
       else if(m_eview == view_list)
       {
          if(m_nItemCount == 0)
          {
-            rect = ::rect(0,0,0,0);
+            sizeTotal.cy = 0;
+            sizeTotal.cx = 0;
          }
          else
          {
+
             ::rect rectClient;
 
-            _001GetViewClientRect(&rectClient);
+            GetClientRect(&rectClient);
 
-
-            rectClient.inflate(m_scrollinfo.m_rectMargin);
+            sizeTotal.cy = rectClient.height();
 
             draw_mesh_item itemFirst(this);
 
@@ -946,14 +945,10 @@ namespace user
             _001GetItemRect(&itemFirst);
 
 
-            rect.top    = rectClient.top;
-            rect.bottom = rectClient.bottom;
-            rect.left   = rectClient.left;
             if(m_iItemHeight <= 0)
-               rect.right = rectClient.right;
+               sizeTotal.cx = rectClient.right;
             else
-               rect.right  = (LONG)MIN(
-               rectClient.left +
+               sizeTotal.cx  = (LONG)MIN(
                m_nItemCount * itemFirst.m_rectItem.width() * m_iItemHeight /
                rectClient.height()
                + itemFirst.m_rectItem.width(),MAXLONG);
@@ -963,10 +958,14 @@ namespace user
       {
          if(m_nItemCount == 0)
          {
-            rect = ::rect(0,0,0,0);
+            sizeTotal.cy = 0;
+            sizeTotal.cx = 0;
          }
          else
          {
+
+            ::rect rect;
+
             draw_mesh_item itemFirst(this);
 
             itemFirst.m_iItem             = 0;
@@ -999,14 +998,21 @@ namespace user
             }
             _001GetItemRect(&itemLast);
 
-            itemLast.m_rectItem.right     -= (m_scrollinfo.m_rectMargin.left + m_scrollinfo.m_rectMargin.right);
-            itemLast.m_rectItem.bottom    -= (m_scrollinfo.m_rectMargin.top + m_scrollinfo.m_rectMargin.bottom);
+//            itemLast.m_rectItem.right     -= (m_scrolldata.m_rectMargin.left + m_scrolldata.m_rectMargin.right);
+  //          itemLast.m_rectItem.bottom    -= (m_scrolldata.m_rectMargin.top + m_scrolldata.m_rectMargin.bottom);
 
             rect.unite(itemFirst.m_rectItem,itemLast.m_rectItem);
+
+            sizeTotal = rect.size();
+
          }
+
       }
       else if(m_eview == view_icon)
       {
+
+         ::rect rect;
+
          draw_mesh_item itemFirst(this);
 
          itemFirst.m_iItem             = 0;
@@ -1026,7 +1032,7 @@ namespace user
          {
             class rect rectClient;
 
-            _001GetViewClientRect(&rectClient);
+            GetClientRect(&rectClient);
 
             itemTopRight.m_iItem = (index)MAX(1,rectClient.width() / get_item_size().cx) - 1;
          }
@@ -1038,11 +1044,17 @@ namespace user
          _001GetItemRect(&itemTopRight);
 
          rect.unite(itemFirst.m_rectItem,itemLast.m_rectItem);
+         
          rect.unite(rect,itemTopRight.m_rectItem);
 
+         sizeTotal = rect.size();
+
       }
-      *lprect = rect;
+
+//      ::user::control::on_change_view_size();
+      
    }
+
 
    void mesh::_001OnInitialize()
    {
@@ -1225,7 +1237,7 @@ namespace user
       if(m_eview == view_grid)
       {
 
-         return MIN(MAX(0,m_scrollinfo.m_ptScroll.y),m_nGridItemCount);
+         return MIN(MAX(0,get_viewport_offset().y),m_nGridItemCount);
 
       }
       else
@@ -1272,7 +1284,7 @@ namespace user
 
          rect rectScroll;
 
-         GetScrollRect(&rectScroll);
+         GetClientRect(&rectScroll);
 
          if(m_iItemHeight == 0)
          {
@@ -1298,7 +1310,7 @@ namespace user
       if(m_eview == view_icon)
       {
          rect rectView;
-         _001GetViewClientRect(&rectView);
+         GetClientRect(&rectView);
          class size sizeItem = get_item_size();
          return MAX((rectView.width() / sizeItem.cx) * (rectView.height() / sizeItem.cy),
             m_iconlayout.m_iaDisplayToStrict.get_max_a() + 1);
@@ -1306,7 +1318,7 @@ namespace user
       else if(m_eview == view_report || m_eview == view_grid)
       {
          rect rectView;
-         _001GetViewClientRect(&rectView);
+         GetClientRect(&rectView);
          if(m_iItemHeight == 0)
          {
             return 0;
@@ -1338,7 +1350,7 @@ namespace user
       rect rectItem;
       rect rectIntersect;
       rect rectUpdate;
-      _001GetViewClientRect(&rectUpdate);
+      GetClientRect(&rectUpdate);
       draw_mesh_item item(this);
       if(iItemFirst >= 0)
       {
@@ -1450,7 +1462,7 @@ namespace user
          return true;
       }
       int_ptr iColumnCount = m_nColumnCount;
-      int_ptr iLeft =(index)ptScroll.x - (m_scrollinfo.m_rectMargin.left * 2);
+      int_ptr iLeft =(index)ptScroll.x;
       if(m_bGroup && m_bLateralGroup)
          iLeft += m_iLateralGroupWidth;
       int_ptr iRight;
@@ -1483,10 +1495,10 @@ namespace user
 
          GetClientRect(&rectClient);
 
-         if(pt.x < -m_scrollinfo.m_rectMargin.left
-            || pt.x > rectClient.right - m_scrollinfo.m_rectMargin.right
-            || pt.y < m_scrollinfo.m_rectMargin.top
-            || pt.x > rectClient.bottom - m_scrollinfo.m_rectMargin.bottom)
+         if(pt.x < 0
+            || pt.x > rectClient.right
+            || pt.y < 0
+            || pt.x > rectClient.bottom)
          {
             return false;
          }
@@ -1535,7 +1547,7 @@ namespace user
             return false;
 
          class rect rectClient;
-         _001GetViewClientRect(&rectClient);
+         GetClientRect(&rectClient);
          if(m_bTopText)
          {
             rectClient.top += m_rectTopText.height();
@@ -1544,7 +1556,6 @@ namespace user
          //{
          //   rectClient.top += m_iItemHeight;
          //}
-         rectClient.inflate(m_scrollinfo.m_rectMargin);
          index iRoundHeight = (index)((rectClient.height() / m_iItemHeight) * m_iItemHeight);
 
          index iy = (index)((pt.y + ptScroll.y) + (((pt.x + ptScroll.x) / m_iItemWidth)) * iRoundHeight);
@@ -1584,7 +1595,7 @@ namespace user
          /*if(_001GetColumnCount() == 0)
             return false;
          */class rect rectClient;
-         _001GetViewClientRect(&rectClient);
+         GetClientRect(&rectClient);
          if(m_bTopText)
          {
             rectClient.top += m_rectTopText.height();
@@ -1898,7 +1909,7 @@ namespace user
       else if(m_eview == view_list)
       {
          class rect rectClient;
-         _001GetViewClientRect(&rectClient);
+         GetClientRect(&rectClient);
          if(m_bTopText)
          {
             rectClient.top += m_rectTopText.height();
@@ -1907,7 +1918,6 @@ namespace user
          //{
          //   rectClient.top += m_iItemHeight;
          //}
-         rectClient.inflate(m_scrollinfo.m_rectMargin);
          if(m_iItemHeight <= 0)
             return_(pdrawitem->m_bOk,false);
          index iRoundHeight = (rectClient.height() / m_iItemHeight) * m_iItemHeight;
@@ -1933,7 +1943,7 @@ namespace user
          if(m_flags.is_signalized(flag_auto_arrange) || m_iconlayout.m_iWidth <= 0)
          {
             class rect rectClient;
-            _001GetViewClientRect(&rectClient);
+            GetClientRect(&rectClient);
             if(m_bTopText)
             {
                rectClient.top += m_rectTopText.height();
@@ -1949,7 +1959,7 @@ namespace user
          else
          {
             class rect rectClient;
-            _001GetViewClientRect(&rectClient);
+            GetClientRect(&rectClient);
             if(m_bTopText)
             {
                rectClient.top += m_rectTopText.height();
@@ -2387,7 +2397,7 @@ namespace user
    //   {
    //      rect rectClient;
 
-   //      _001GetViewClientRect(&rectClient);
+   //      GetClientRect(&rectClient);
 
    //      m_pmeshheader->SetWindowPos(
    //         ZORDER_TOP,
@@ -3591,10 +3601,10 @@ namespace user
 
 
 
-   bool mesh::TwiHasTranslucency()
-   {
-      return !m_scrollinfo.m_bVScroll;
-   }
+//   bool mesh::TwiHasTranslucency()
+//   {
+////      return !m_scrolldata.m_bVScroll;
+//   }
 
    //void mesh::_001SetBackBuffer(visual::CBuffer *ptwb)
    //{
@@ -3921,7 +3931,7 @@ namespace user
          return false;
       }
       rect rectClient;
-      _001GetViewClientRect(&rectClient);
+      GetClientRect(&rectClient);
       return rectClient.intersect(rectClient,item.m_rectItem) != 0;
    }
 
@@ -4288,9 +4298,7 @@ namespace user
       if(iItem < ptScroll.y || (m_iItemHeight > 0 && iItem >= ptScroll.y / m_iItemHeight + m_nDisplayCount))
       {
 
-         m_scrollinfo.m_ptScroll.y = (LONG)(iItem * m_iItemHeight);
-
-         _001UpdateScrollBars();
+         set_viewport_offset_y(iItem * m_iItemHeight);
 
          if(bRedraw)
          {
@@ -4312,9 +4320,7 @@ namespace user
       if(iItem < m_nItemCount)
       {
 
-         m_scrollinfo.m_ptScroll.y = (LONG)(iItem * m_iItemHeight);
-
-         _001UpdateScrollBars();
+         set_viewport_offset_y(iItem * m_iItemHeight);
 
          if(bRedraw)
          {
@@ -4345,8 +4351,8 @@ namespace user
       if(ptScroll.y / MAX(1,m_iItemHeight) != iyScroll)
       {
          item_range item;
-         m_scrollinfo.m_ptScroll.y = (LONG)(iyScroll * m_iItemHeight);
-         _001UpdateScrollBars();
+         set_viewport_offset_y(iyScroll * m_iItemHeight);
+         on_change_viewport_offset();
          item.set_lower_bound(iyScroll);
          item.set_upper_bound(MIN(iyScroll + m_nDisplayCount - 1,m_nItemCount - 1));
          range.add_item(item);
@@ -4542,12 +4548,13 @@ namespace user
 
       SetTimer(0xfffffffe,50,NULL);
 
-      m_scrollinfo.m_ptScroll.x = 0;
-      m_scrollinfo.m_ptScroll.y = 0;
+      set_viewport_offset_x(0);
+
+      set_viewport_offset_y(0);
 
       m_efilterstate = FilterStateFilter;
 
-      SetScrollSizes();
+      on_change_view_size();
 
       layout();
 
@@ -4585,7 +4592,7 @@ namespace user
          }
       }
 
-      SetScrollSizes();
+      on_change_view_size();
 
       layout();
 
@@ -4689,12 +4696,13 @@ namespace user
          m_meshlayout.m_iaDisplayToStrict = (*m_piaFilterMesh);
       }
 
-      m_scrollinfo.m_ptScroll.x = 0;
-      m_scrollinfo.m_ptScroll.y = 0;
+      set_viewport_offset_x(0);
+
+      set_viewport_offset_y(0);
 
       m_efilterstate = FilterStateFilter;
 
-      SetScrollSizes();
+      on_change_view_size();
 
       layout();
 
@@ -4927,29 +4935,29 @@ namespace user
    }
 
 
-   rect mesh::get_scroll_margin()
+   //rect mesh::get_scroll_margin()
+   //{
+
+   //   if(m_eview == view_grid && m_iItemHeight > 0)
+   //   {
+
+   //      return rect(m_scrolldata.m_rectMargin.left,m_scrolldata.m_rectMargin.top/m_iItemHeight, m_scrolldata.m_rectMargin.right,m_scrolldata.m_rectMargin.bottom / m_iItemHeight);
+
+   //   }
+   //   else
+   //   {
+
+   //      return scroll_control::get_scroll_margin();
+
+   //   }
+
+   //}
+
+
+   void mesh::on_change_viewport_offset()
    {
 
-      if(m_eview == view_grid && m_iItemHeight > 0)
-      {
-
-         return rect(m_scrollinfo.m_rectMargin.left,m_scrollinfo.m_rectMargin.top/m_iItemHeight, m_scrollinfo.m_rectMargin.right,m_scrollinfo.m_rectMargin.bottom / m_iItemHeight);
-
-      }
-      else
-      {
-
-         return scroll_control::get_scroll_margin();
-
-      }
-
-   }
-
-
-   void mesh::_001OnUpdateScrollPosition()
-   {
-
-      ::user::scroll_control::_001OnUpdateScrollPosition();
+//      ::user::control::on_change_viewport_offset();
 
       m_iTopIndex = _001CalcDisplayTopIndex();
       index iLow = 0;
@@ -5211,14 +5219,16 @@ namespace user
          if(pscroll->m_nSBCode != SB_THUMBTRACK)
          {
 
-            if((m_scrollinfo.m_sizeTotal.cy - m_scrollinfo.m_ptScroll.y - m_scrollinfo.m_sizePage.cy) <= 1)
+            point ptScroll = get_viewport_offset();
+
+            size sizePage = get_page_size();
+
+            if((m_sizeTotal.cy - ptScroll.y - sizePage.cy) <= 1)
             {
 
-               m_nItemCount = MIN(m_nGridItemCount,m_nItemCount + m_scrollinfo.m_sizePage.cy);
+               m_nItemCount = MIN(m_nGridItemCount,m_nItemCount + sizePage.cy);
 
-               SetScrollSizes();
-
-               _001LayoutScrollBars();
+               on_change_view_size();
 
             }
 
@@ -5241,14 +5251,16 @@ namespace user
          if(pscroll->m_nSBCode != SB_THUMBTRACK)
          {
 
-            if((m_scrollinfo.m_sizeTotal.cx - m_scrollinfo.m_ptScroll.x - m_scrollinfo.m_sizePage.cx) <= 1)
+            point ptScroll = get_viewport_offset();
+
+            size sizePage = get_page_size();
+
+            if((m_sizeTotal.cx - ptScroll.x - sizePage.cx) <= 1)
             {
 
-               m_nColumnCount = MIN(m_nGridColumnCount,m_nColumnCount + m_scrollinfo.m_sizePage.cx);
+               m_nColumnCount = MIN(m_nGridColumnCount,m_nColumnCount + sizePage.cx);
 
-               SetScrollSizes();
-
-               _001LayoutScrollBars();
+               on_change_view_size();
 
             }
 
@@ -5334,7 +5346,7 @@ namespace user
             if(m_iconlayout.m_iWidth <= 0)
             {
                rect rectClient;
-               _001GetViewClientRect(rectClient);
+               GetClientRect(rectClient);
                index iIconSize;
                if(m_nColumnCount > 0)
 //                  iIconSize = MAX(32,m_columna[0]->m_sizeIcon.cy);
@@ -5769,83 +5781,6 @@ namespace user
 
 
 
-   void mesh::_001GetViewClientRect(LPRECT lprect)
-   {
-
-      GetClientRect(lprect);
-
-      rect rectClient;
-      GetClientRect(rectClient);
-      *lprect = rect(rectClient);
-      //if(m_bHeaderCtrl)
-      //{
-      //   lprect->top += m_iItemHeight;
-      //}
-
-
-      return;
-
-
-
-      rect rectView;
-
-      _001GetViewRect(&rectView);
-
-
-      index iViewHeight = (index)rectView.height();
-
-      index iViewWidth = (index)rectView.width();
-
-      index iClientHeight = (index)rectClient.height();
-
-      //if(m_bHeaderCtrl)
-      //{
-      //   iClientHeight -= m_iItemHeight;
-      //}
-
-      index iClientWidth = (index)rectClient.width();
-
-      index iScrollHeight =  iClientHeight - GetSystemMetrics(SM_CYHSCROLL);
-
-      index iScrollWidth = iClientWidth - GetSystemMetrics(SM_CXVSCROLL);
-
-      bool bHScroll = false;
-
-      bool bVScroll = false;
-
-      if(iViewWidth > iClientWidth)
-      {
-         bHScroll = true;
-         if(iViewHeight > iScrollHeight)
-         {
-            bVScroll = true;
-         }
-      }
-      else if(iViewHeight > iClientHeight)
-      {
-         bVScroll = true;
-         if(iViewWidth > iScrollWidth)
-         {
-            bHScroll = true;
-         }
-      }
-
-      lprect->left = 0;
-      lprect->top = 0;
-      //if(m_bHeaderCtrl)
-      //{
-      //   lprect->top += m_iItemHeight;
-      //}
-      if(bVScroll)
-         lprect->right = (LONG)(lprect->left + iScrollWidth);
-      else
-         lprect->right = (LONG)(lprect->left + iClientWidth);
-      if(bHScroll)
-         lprect->bottom = (LONG)(lprect->top + iScrollHeight);
-      else
-         lprect->bottom = (LONG)(lprect->top + iClientHeight);
-
-   }
 
    void mesh::_001OnBeforeDeleteRange(range & range)
    {
@@ -5901,12 +5836,12 @@ namespace user
    point mesh::get_viewport_offset()
    {
       
-      return ::user::scroll_control::get_viewport_offset();
+      return ::user::control::get_viewport_offset();
       
    }
    
    
-   //void mesh::SetScrollSizes()
+   //void mesh::on_change_view_size()
    //{
 
    //   if(m_eview == view_grid && m_iItemHeight > 0)
@@ -5918,22 +5853,22 @@ namespace user
 
    //      size sizeTotal = rectTotal.size();
 
-   //      m_scrollinfo.m_sizeTotal.cx = sizeTotal.cx;
+   //      m_sizeTotal.cx = sizeTotal.cx;
 
-   //      m_scrollinfo.m_sizeTotal.cy = sizeTotal.cy / m_iItemHeight;
+   //      m_sizeTotal.cy = sizeTotal.cy / m_iItemHeight;
 
    //      rect rectViewClient;
 
-   //      _001GetViewClientRect(&rectViewClient);
+   //      GetClientRect(&rectViewClient);
 
-   //      m_scrollinfo.m_sizePage.cx = rectViewClient.size().cx;
+   //      m_scrolldata.m_sizePage.cx = rectViewClient.size().cx;
 
-   //      m_scrollinfo.m_sizePage.cy = rectViewClient.size().cy / m_iItemHeight;
+   //      m_scrolldata.m_sizePage.cy = rectViewClient.size().cy / m_iItemHeight;
 
-   //      if(m_scrollinfo.m_ptScroll.y > (m_scrollinfo.m_sizeTotal.cy - m_scrollinfo.m_sizePage.cy))
+   //      if(m_scrolldata.m_ptScroll.y > (m_sizeTotal.cy - m_scrolldata.m_sizePage.cy))
    //      {
 
-   //         m_scrollinfo.m_ptScroll.y = (m_scrollinfo.m_sizeTotal.cy - m_scrollinfo.m_sizePage.cy);
+   //         m_scrolldata.m_ptScroll.y = (m_sizeTotal.cy - m_scrolldata.m_sizePage.cy);
 
    //      }
 
@@ -5941,7 +5876,7 @@ namespace user
    //   else
    //   {
    //      
-   //      ::user::scroll_control::SetScrollSizes();
+   //      ::user::control::on_change_view_size();
 
    //   }
 
@@ -5949,7 +5884,15 @@ namespace user
    //}
 
 
-   void mesh::GetScrollRect(LPRECT lprect)
+   size mesh::get_total_size()
+   {
+
+      return m_sizeTotal;
+
+   }
+
+
+   size mesh::get_page_size()
    {
 
       if(m_eview == view_grid && m_iItemHeight > 0)
@@ -5959,23 +5902,48 @@ namespace user
 
          GetClientRect(rectClient);
 
-         lprect->left = MAX(m_scrollinfo.m_ptScroll.x,0);
-         lprect->top = MAX(m_scrollinfo.m_ptScroll.y, 0);
-         lprect->right = lprect->left + rectClient.width() / m_iDefaultColumnWidth;
-         lprect->bottom = lprect->top + rectClient.height() / m_iItemHeight;
+         point ptScroll = get_viewport_offset();
+
+         size sizePage;
+
+         sizePage.cx = rectClient.width() / m_iDefaultColumnWidth;
+         
+         sizePage.cy = rectClient.width() / m_iItemHeight;
+
+         return sizePage;
 
       }
       else
       {
 
-         return ::user::scroll_control::GetScrollRect(lprect);
+         return ::user::control::get_page_size();
+
+      }
+
+   }
+
+   
+   void mesh::GetClientRect(LPRECT lprect)
+   {
+
+      if(m_eview == view_grid && m_iItemHeight > 0)
+      {
+
+         ::user::control::GetClientRect(lprect);
+
+      }
+      else
+      {
+
+         ::user::control::GetClientRect(lprect);
 
       }
 
    }
 
 
-   int mesh::get_scroll_bar_width()
+
+   /*int mesh::get_scroll_bar_width()
    {
 
       if(m_eview == view_grid)
@@ -5987,7 +5955,7 @@ namespace user
       else
       {
 
-         return ::user::scroll_control::get_scroll_bar_width();
+         return ::user::control::get_scroll_bar_width();
 
       }
 
@@ -6006,11 +5974,11 @@ namespace user
       else
       {
          
-         return ::user::scroll_control::get_scroll_bar_height();
+         return ::user::control::get_scroll_bar_height();
 
       }
 
-   }
+   }*/
 
    void mesh::on_create_draw_item()
    {
@@ -6018,6 +5986,7 @@ namespace user
       m_pdrawmeshitem            = new draw_mesh_item(this);
 
    }
+
 
 
 } // namespace user

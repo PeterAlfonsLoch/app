@@ -5350,7 +5350,7 @@ namespace axis
    }
 
    
-   void application::on_update_view(::aura::impact * pview,::aura::impact * pviewSender,LPARAM lHint,object* pHint)
+   void application::on_update_view(::user::impact * pview,::user::impact * pviewSender,LPARAM lHint,object* pHint)
    {
 
 

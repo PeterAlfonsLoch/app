@@ -899,6 +899,9 @@
     <ClInclude Include="user\simple\simple_list_data.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
+    <ClInclude Include="user\user\user_margin.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive_int_biunique.cpp">
@@ -1572,6 +1575,9 @@
     </ClCompile>
     <ClCompile Include="user\simple\simple_list_data.cpp">
       <Filter>Source Files\user\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_margin.cpp">
+      <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

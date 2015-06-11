@@ -348,12 +348,9 @@ namespace user
 
       void layout();
 
-      //void SetScrollSizes();
-
       virtual bool _001OnUpdateItemCount(uint32_t dwFlags = 0);
 
-      void _001GetViewRect(LPRECT lprect);
-      void _001GetViewClientRect(LPRECT lprect);
+      void on_change_view_size();
 
 
       virtual void _001OnInitialize();
@@ -463,7 +460,7 @@ namespace user
       void _001RemoveAllColumns();
 
 
-      bool TwiHasTranslucency();
+      //bool TwiHasTranslucency();
 
       void _001SetBackBuffer(visual::CBuffer *ptwb);
 
@@ -492,7 +489,7 @@ namespace user
 
       virtual int32_t get_wheel_scroll_delta();
 
-      virtual void _001OnUpdateScrollPosition();
+      virtual void on_change_viewport_offset();
 
       bool keyboard_focus_is_focusable();
 

@@ -3,35 +3,34 @@ namespace user
 {
 
 
-   list_view::list_view()
-   {
-
-   }
-
-
-   list_view::~list_view()
-   {
-
-   }
-
-
-   void list_view::install_message_handling(::message::dispatch * pdispatch)
-   {
-
-      ::user::scroll_view::install_message_handling(pdispatch);
-      ::user::list::install_message_handling(pdispatch);
-
-   }
-
-
-   //void list::_001OnInitialUpdate()
+   //list_view::list_view()
    //{
 
-   //   scroll_view::_001OnInitialUpdate();
+   //}
 
-   //   //_001UpdateColumns();
+
+   //list_view::~list_view()
+   //{
 
    //}
+
+
+   //void list_view::install_message_handling(::message::dispatch * pdispatch)
+   //{
+
+   //   ::user::view < ::user::list >::install_message_handling(pdispatch);
+
+   //}
+
+
+   ////void list::_001OnInitialUpdate()
+   ////{
+
+   ////   scroll_view::_001OnInitialUpdate();
+
+   ////   //_001UpdateColumns();
+
+   ////}
 
 
 } // namespace user

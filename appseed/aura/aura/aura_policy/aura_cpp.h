@@ -113,7 +113,6 @@ namespace aura
    class command;
    class impact_system;
    class printer;
-   class impact;
 
    class str;
    class str_context;
@@ -129,6 +128,13 @@ namespace install
 
 } // namespace install
 
+
+namespace user
+{
+
+   class impact;
+
+}
 
 namespace data
 {

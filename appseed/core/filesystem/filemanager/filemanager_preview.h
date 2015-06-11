@@ -6,7 +6,7 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE preview :
-      virtual public ::aura::impact,
+      virtual public ::user::impact,
       virtual public impact
    {
    public:
@@ -21,7 +21,7 @@ namespace filemanager
       virtual ~preview();
 
       virtual void install_message_handling(::message::dispatch * pdispatch);
-      virtual void on_update(::aura::impact * pSender, LPARAM lHint, object* pHint);
+      virtual void on_update(::user::impact * pSender, LPARAM lHint, object* pHint);
 
       virtual void _001OnDraw(::draw2d::graphics * pdc);
 

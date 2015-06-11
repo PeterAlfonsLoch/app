@@ -7,7 +7,7 @@ class CLASS_DECL_CORE simple_printer_list_view :
 public:
 
       
-   sp(::aura::impact)                   m_pview;
+   sp(::user::impact)                   m_pview;
 
 
    simple_printer_list_view(::aura::application * papp);

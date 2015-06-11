@@ -14,7 +14,7 @@ namespace filemanager
 
    void operation_list_view::install_message_handling(::message::dispatch * pinterface)
    {
-      ::aura::impact::install_message_handling(pinterface);
+      ::user::impact::install_message_handling(pinterface);
       ::user::list::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_TIMER,pinterface,this,&operation_list_view::_001OnTimer);
       IGUI_WIN_MSG_LINK(WM_CREATE,pinterface,this,&operation_list_view::_001OnCreate);
@@ -34,7 +34,7 @@ namespace filemanager
 
    sp(operation_document) operation_list_view::get_document()
    {
-      return  (::aura::impact::get_document());
+      return  (::user::impact::get_document());
    }
 
    void operation_list_view::_001GetItemText(::user::list_item * pitem)
@@ -80,7 +80,7 @@ namespace filemanager
    }
 
 
-   void operation_list_view::on_update(::aura::impact * pSender,LPARAM lHint,object * pHint)
+   void operation_list_view::on_update(::user::impact * pSender,LPARAM lHint,object * pHint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(pHint);

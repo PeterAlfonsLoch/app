@@ -157,7 +157,7 @@ namespace user
       string                     m_strMatterHelp;             // Help ID (0 for none, see HID_BASE_RESOURCE)
       UINT                       m_nIDTracking;         // tracking command ID or string IDS
       UINT                       m_nIDLastMessage;      // last displayed message string IDS
-      ::aura::impact *           m_pviewActive;       // current active ::aura::impact
+      ::user::impact *           m_pviewActive;       // current active ::user::impact
       UINT                       m_cModalStack;         // BeginModalState depth
       ::user::interaction_ptra   m_uiptraDisable;       // windows disabled because of BeginModalState
       HMENU                      m_hMenuAlt;           // menu to update to (NULL means default)
@@ -168,7 +168,7 @@ namespace user
 
       UINT                       m_nIdleFlags;          // set of bit flags for idle processing
 
-      ::aura::impact *           m_pviewMain;
+      ::user::impact *           m_pviewMain;
 
       
 
@@ -231,10 +231,10 @@ namespace user
       // Attributes
       virtual ::aura::document * GetActiveDocument();
 
-      // Active child ::aura::impact maintenance
-      sp(::aura::impact) GetActiveView() const;           // active ::aura::impact or NULL
-      void SetActiveView(sp(::aura::impact) pViewNew, bool bNotify = TRUE);
-      // active ::aura::impact or NULL, bNotify == FALSE if focus should not be set
+      // Active child ::user::impact maintenance
+      sp(::user::impact) GetActiveView() const;           // active ::user::impact or NULL
+      void SetActiveView(sp(::user::impact) pViewNew, bool bNotify = TRUE);
+      // active ::user::impact or NULL, bNotify == FALSE if focus should not be set
 
       // Active frame (for frames within frames -- MDI)
       virtual sp(::user::frame_window) GetActiveFrame();

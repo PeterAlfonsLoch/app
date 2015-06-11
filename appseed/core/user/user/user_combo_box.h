@@ -9,7 +9,7 @@ namespace user
 
 
    class CLASS_DECL_CORE combo_box : 
-      virtual public ::user::edit_plain_text
+      virtual public ::user::plain_edit
    {
    public:
 

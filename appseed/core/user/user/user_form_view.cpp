@@ -19,18 +19,10 @@ namespace user
    }
 
 
-   void form_view::install_message_handling(::message::dispatch * pdispatch)
+   void form_view::on_update(::user::impact * pSender,LPARAM lHint,object* phint)
    {
 
-      ::user::scroll_view::install_message_handling(pdispatch);
-      ::user::form::install_message_handling(pdispatch);
-
-   }
-
-   void form_view::on_update(::aura::impact * pSender,LPARAM lHint,object* phint)
-   {
-
-      ::aura::impact::on_update(pSender,lHint,phint);
+      ::user::impact::on_update(pSender,lHint,phint);
       if(phint != NULL)
       {
          ::user::form_update_hint * puh = dynamic_cast <::user::form_update_hint *> (phint);

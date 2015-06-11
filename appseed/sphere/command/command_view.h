@@ -6,7 +6,7 @@ namespace command
    class document;
 
    class CLASS_DECL_sphere view :
-      virtual public ::aura::impact,
+      virtual public ::user::impact,
       virtual public ::user::interaction
    {
    public:
@@ -44,7 +44,7 @@ namespace command
       DECL_GEN_SIGNAL(_001OnLButtonUp);
       DECL_GEN_SIGNAL(_001OnTimer);
       DECL_GEN_SIGNAL(_001OnRButtonUp);
-	   virtual void on_update(::aura::impact * pSender, LPARAM lHint, ::object* pHint);
+	   virtual void on_update(::user::impact * pSender, LPARAM lHint, ::object* pHint);
 
       ::aura::document * get_document();
 

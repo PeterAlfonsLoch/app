@@ -107,7 +107,7 @@ namespace filemanager
 
    sp(operation_document) operation_info_view::get_document()
    {
-      return  (::aura::impact::get_document());
+      return  (::user::impact::get_document());
    }
 
    void operation_info_view::_001OnTimer(signal_details * pobj)
@@ -126,18 +126,18 @@ namespace filemanager
 
    void operation_info_view::install_message_handling(::message::dispatch * pinterface)
    {
-      ::aura::impact::install_message_handling(pinterface);
+      ::user::impact::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE,pinterface,this,&operation_info_view::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_TIMER,pinterface,this,&operation_info_view::_001OnTimer);
    }
 
    void operation_info_view::assert_valid() const
    {
-      ::aura::impact::assert_valid();
+      ::user::impact::assert_valid();
    }
    void operation_info_view::dump(dump_context & context) const
    {
-      ::aura::impact::dump(context);
+      ::user::impact::dump(context);
    }
 
 

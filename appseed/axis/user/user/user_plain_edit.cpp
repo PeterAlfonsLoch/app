@@ -10,53 +10,26 @@ extern CLASS_DECL_AXIS thread_int_ptr < DWORD_PTR > t_time1;
 namespace user
 {
 
+   plain_edit::plain_edit() :
+      m_keymessageLast(get_app())
+   {
+      
+      plain_edit_common_construct();
 
-   edit_plain_text::edit_plain_text(::aura::application * papp):
+   }
+
+
+   plain_edit::plain_edit(::aura::application * papp):
       ::object(papp),
       ::user::interaction(papp),
       m_keymessageLast(papp)
    {
 
-      m_peditor = new colorertake5::base_editor(papp);
-      m_plines = new colorertake5::text_lines;
+      plain_edit_common_construct();
 
-      m_iLineHeight = 0;
-         m_bPassword = false;
-         m_ptree              = NULL;
-         m_bOwnData           = false;
+   }
 
-         m_bMultiLine         = false;
-         m_bColorerTake5      = false;
-         m_bReadOnly          = false;
-         m_bSendEnterKey      = false;
-
-         m_bActionHover       = false;
-
-
-
-         m_straSep.add("\n");
-         m_straSep.add("\r");
-         m_straSep.add("\r\n");
-
-
-
-         m_y                  = -1;
-         m_iaLineIndex.allocate(0,100000);
-         m_iaLineEndIndex.allocate(0,100000);
-         m_iaAccumulLineIndex.allocate(0,100000);
-         m_iaCLineIndex.allocate(0,1000);
-         m_iViewOffset        = 0;
-         m_iViewSize          = 1000;
-         m_bMouseDown         = false;
-         m_dwCaretTime        = 500;
-         set_cursor(::visual::cursor_text_select);
-
-         m_scrollinfo.m_bVScrollBarEnable = false;
-         m_scrollinfo.m_bHScrollBarEnable = false;
-
-      }
-
-   edit_plain_text::~edit_plain_text()
+   plain_edit::~plain_edit()
    {
       if(m_bOwnData)
       {
@@ -75,40 +48,88 @@ namespace user
       }
    }
 
-
-   void edit_plain_text::install_message_handling(::message::dispatch * pinterface)
+   void plain_edit::plain_edit_common_construct()
    {
 
-      scroll_control::install_message_handling(pinterface);
+      ASSERT(get_app() != NULL);
+
+      //m_peditor = new colorertake5::base_editor(get_app());
+      //m_plines = new colorertake5::text_lines;
+
+      m_peditor = NULL;
+      m_plines = NULL;
+
+      m_iLineHeight = 0;
+      m_bPassword = false;
+      m_ptree              = NULL;
+      m_bOwnData           = false;
+
+      m_bMultiLine         = false;
+      m_bColorerTake5      = false;
+      m_bReadOnly          = false;
+      m_bSendEnterKey      = false;
+
+      m_bActionHover       = false;
 
 
-      IGUI_WIN_MSG_LINK(WM_CREATE,pinterface,this,&edit_plain_text::_001OnCreate);
-      IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN,pinterface,this,&edit_plain_text::_001OnLButtonDown);
-      IGUI_WIN_MSG_LINK(WM_LBUTTONUP,pinterface,this,&edit_plain_text::_001OnLButtonUp);
-      IGUI_WIN_MSG_LINK(WM_RBUTTONDOWN,pinterface,this,&edit_plain_text::_001OnRButtonDown);
-      IGUI_WIN_MSG_LINK(WM_RBUTTONUP,pinterface,this,&edit_plain_text::_001OnRButtonUp);
-      IGUI_WIN_MSG_LINK(WM_MOUSEMOVE,pinterface,this,&edit_plain_text::_001OnMouseMove);
-      IGUI_WIN_MSG_LINK(WM_KEYDOWN,pinterface,this,&edit_plain_text::_001OnKeyDown);
-      IGUI_WIN_MSG_LINK(WM_KEYUP,pinterface,this,&edit_plain_text::_001OnKeyUp);
-      //IGUI_WIN_MSG_LINK(WM_CHAR,pinterface,this,&edit_plain_text::_001OnChar);
 
-      IGUI_WIN_MSG_LINK(WM_TIMER,pinterface,this,&::user::edit_plain_text::_001OnTimer);
-
-      IGUI_WIN_MSG_LINK(WM_SIZE,pinterface,this,&::user::edit_plain_text::_001OnSize);
+      m_straSep.add("\n");
+      m_straSep.add("\r");
+      m_straSep.add("\r\n");
 
 
-      IGUI_WIN_MSG_LINK(WM_VSCROLL,pinterface,this,&::user::edit_plain_text::_001OnVScroll);
-      IGUI_WIN_MSG_LINK(WM_HSCROLL,pinterface,this,&::user::edit_plain_text::_001OnHScroll);
 
-      connect_update_cmd_ui("edit_focus_copy",&edit_plain_text::_001OnUpdateEditFocusCopy);
-      connect_command("edit_focus_copy",&edit_plain_text::_001OnEditFocusCopy);
-      connect_update_cmd_ui("edit_focus_paste",&edit_plain_text::_001OnUpdateEditFocusPaste);
-      connect_command("edit_focus_paste",&edit_plain_text::_001OnEditFocusPaste);
+      m_y                  = -1;
+      m_iaLineIndex.allocate(0,100000);
+      m_iaLineEndIndex.allocate(0,100000);
+      m_iaAccumulLineIndex.allocate(0,100000);
+      m_iaCLineIndex.allocate(0,1000);
+      m_iViewOffset        = 0;
+      m_iViewSize          = 1000;
+      m_bMouseDown         = false;
+      m_dwCaretTime        = 500;
+      set_cursor(::visual::cursor_text_select);
+
+      //         m_scrolldata.m_bVScrollBarEnable = false;
+      //       m_scrolldata.m_bHScrollBarEnable = false;
+
 
    }
 
 
-   void edit_plain_text::OnDraw(::draw2d::graphics * pdcScreen)
+   void plain_edit::install_message_handling(::message::dispatch * pinterface)
+   {
+
+      control::install_message_handling(pinterface);
+
+
+      IGUI_WIN_MSG_LINK(WM_CREATE,pinterface,this,&plain_edit::_001OnCreate);
+      IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN,pinterface,this,&plain_edit::_001OnLButtonDown);
+      IGUI_WIN_MSG_LINK(WM_LBUTTONUP,pinterface,this,&plain_edit::_001OnLButtonUp);
+      IGUI_WIN_MSG_LINK(WM_RBUTTONDOWN,pinterface,this,&plain_edit::_001OnRButtonDown);
+      IGUI_WIN_MSG_LINK(WM_RBUTTONUP,pinterface,this,&plain_edit::_001OnRButtonUp);
+      IGUI_WIN_MSG_LINK(WM_MOUSEMOVE,pinterface,this,&plain_edit::_001OnMouseMove);
+      IGUI_WIN_MSG_LINK(WM_KEYDOWN,pinterface,this,&plain_edit::_001OnKeyDown);
+      IGUI_WIN_MSG_LINK(WM_KEYUP,pinterface,this,&plain_edit::_001OnKeyUp);
+      //IGUI_WIN_MSG_LINK(WM_CHAR,pinterface,this,&plain_edit::_001OnChar);
+
+      IGUI_WIN_MSG_LINK(WM_TIMER,pinterface,this,&::user::plain_edit::_001OnTimer);
+
+      IGUI_WIN_MSG_LINK(WM_SIZE,pinterface,this,&::user::plain_edit::_001OnSize);
+
+
+      IGUI_WIN_MSG_LINK(WM_VSCROLL,pinterface,this,&::user::plain_edit::_001OnVScroll);
+      IGUI_WIN_MSG_LINK(WM_HSCROLL,pinterface,this,&::user::plain_edit::_001OnHScroll);
+
+      connect_update_cmd_ui("edit_focus_copy",&plain_edit::_001OnUpdateEditFocusCopy);
+      connect_command("edit_focus_copy",&plain_edit::_001OnEditFocusCopy);
+      connect_update_cmd_ui("edit_focus_paste",&plain_edit::_001OnUpdateEditFocusPaste);
+      connect_command("edit_focus_paste",&plain_edit::_001OnEditFocusPaste);
+
+   }
+
+
+   void plain_edit::OnDraw(::draw2d::graphics * pdcScreen)
    {
 
       UNREFERENCED_PARAMETER(pdcScreen);
@@ -116,7 +137,7 @@ namespace user
    }
 
 
-   void edit_plain_text::_001OnInitialUpdate()
+   void plain_edit::_001OnInitialUpdate()
    {
 
       _001OnUpdate(::action::source_system);
@@ -128,14 +149,14 @@ namespace user
    }
 
 
-   void edit_plain_text::_001OnDestroy(signal_details * pobj)
+   void plain_edit::_001OnDestroy(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
 
 
-   void edit_plain_text::VirtualOnSize()
+   void plain_edit::VirtualOnSize()
    {
       
       _001OnUpdate(::action::source_system);
@@ -169,14 +190,14 @@ namespace user
          LayoutKaraokeBouncingBall();*/
    }
 
-   void edit_plain_text::_001OnPaint(signal_details * pobj)
+   void plain_edit::_001OnPaint(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
 
 
-   void edit_plain_text::_001OnDraw(::draw2d::graphics * pdc)
+   void plain_edit::_001OnDraw(::draw2d::graphics * pdc)
    {
 
       //return;
@@ -244,14 +265,14 @@ namespace user
       if(m_ptree == NULL)
          return;
 
-      if(m_iLineHeight == 0)
-      {
-         pdc->OffsetViewportOrg(-m_scrollinfo.m_ptScroll.x,m_scrollinfo.m_ptScroll.y);
-      }
-      else
-      {
-         pdc->OffsetViewportOrg(-m_scrollinfo.m_ptScroll.x,-(m_scrollinfo.m_ptScroll.y % m_iLineHeight));
-      }
+      //if(m_iLineHeight == 0)
+      //{
+      //   pdc->OffsetViewportOrg(-m_scrolldata.m_ptScroll.x,m_scrolldata.m_ptScroll.y);
+      //}
+      //else
+      //{
+      //   pdc->OffsetViewportOrg(-m_scrolldata.m_ptScroll.x,-(m_scrolldata.m_ptScroll.y % m_iLineHeight));
+      //}
 
       ::draw2d::region_sp rgn(allocer());
 
@@ -442,7 +463,7 @@ namespace user
 
    }
 
-   void edit_plain_text::_001OnCreate(signal_details * pobj)
+   void plain_edit::_001OnCreate(signal_details * pobj)
    {
 
       SCAST_PTR(::message::create,pcreate,pobj);
@@ -497,14 +518,14 @@ namespace user
 
    }
 
-   void edit_plain_text::_001OnContextMenu(signal_details * pobj)
+   void plain_edit::_001OnContextMenu(signal_details * pobj)
    {
       //      SCAST_PTR(::message::context_menu, pcontextmenu, pobj)
       //      point point = pcontextmenu->GetPoint();
 
    }
 
-   void edit_plain_text::_001OnRButtonUp(signal_details * pobj)
+   void plain_edit::_001OnRButtonUp(signal_details * pobj)
    {
       SCAST_PTR(::message::mouse,pmouse,pobj)
 
@@ -536,14 +557,14 @@ namespace user
 
 
 
-   void edit_plain_text::_001OnSetCursor(signal_details * pobj)
+   void plain_edit::_001OnSetCursor(signal_details * pobj)
    {
       //pmouse->m_ecursor = ::visual::cursor_arrow;
 
       pobj->previous();
    }
 
-   void edit_plain_text::_001OnTimer(signal_details * pobj)
+   void plain_edit::_001OnTimer(signal_details * pobj)
    {
       SCAST_PTR(::message::timer,ptimer,pobj)
       if(ptimer->m_nIDEvent >= 100
@@ -567,7 +588,7 @@ namespace user
    }
 
 
-   void edit_plain_text::_001OnKeyDown(signal_details * pobj)
+   void plain_edit::_001OnKeyDown(signal_details * pobj)
    {
 
       SCAST_PTR(::message::key,pkey,pobj)
@@ -724,7 +745,7 @@ namespace user
    }
 
 
-   void edit_plain_text::_001OnKeyUp(signal_details * pobj)
+   void plain_edit::_001OnKeyUp(signal_details * pobj)
    {
       SCAST_PTR(::message::key,pkey,pobj)
       if(pkey->m_ekey == ::user::key_return)
@@ -743,7 +764,7 @@ namespace user
       m_bKeyPressed = false;
    }
 
-   void edit_plain_text::pre_translate_message(signal_details * pobj)
+   void plain_edit::pre_translate_message(signal_details * pobj)
    {
 
       SCAST_PTR(::message::base,pbase,pobj);
@@ -776,7 +797,7 @@ namespace user
    }
 
 
-   void edit_plain_text::key_to_char(::message::key * pkey)
+   void plain_edit::key_to_char(::message::key * pkey)
    {
 
       ::message::key & key = *pkey;
@@ -826,10 +847,10 @@ namespace user
    }
 
 
-   //UINT edit_plain_text::ThreadProcScrollSize(LPVOID lpvoid)
+   //UINT plain_edit::ThreadProcScrollSize(LPVOID lpvoid)
    //{
 
-   //   edit_plain_text * pview = (edit_plain_text *)lpvoid;
+   //   plain_edit * pview = (plain_edit *)lpvoid;
 
    //   ::data::simple_lock lock(pview->m_ptree);
 
@@ -848,7 +869,7 @@ namespace user
    //}
 
 
-   void edit_plain_text::_001GetText(string & str) const
+   void plain_edit::_001GetText(string & str) const
    {
 
       ::data::simple_lock lock(m_ptree);
@@ -871,7 +892,7 @@ namespace user
    }
 
 
-   void edit_plain_text::_001GetSelText(string & str) const
+   void plain_edit::_001GetSelText(string & str) const
    {
 
       file_position iEnd;
@@ -949,7 +970,7 @@ namespace user
    }
 
 
-   void edit_plain_text::_001SetSelText(const char * psz,::action::context actioncontext)
+   void plain_edit::_001SetSelText(const char * psz,::action::context actioncontext)
    {
 
       m_ptree->m_editfile.seek(m_ptree->m_iSelStart,::file::seek_begin);
@@ -967,7 +988,7 @@ namespace user
    }
 
 
-   void edit_plain_text::_001SetSel(strsize iSelStart,strsize iSelEnd)
+   void plain_edit::_001SetSel(strsize iSelStart,strsize iSelEnd)
    {
 
       m_ptree->m_iSelStart = iSelStart;
@@ -981,7 +1002,7 @@ namespace user
    }
 
 
-   void edit_plain_text::_001EnsureVisibleChar(strsize iChar)
+   void plain_edit::_001EnsureVisibleChar(strsize iChar)
    {
 
       _001EnsureVisibleLine(CharToLine(iChar));
@@ -989,10 +1010,12 @@ namespace user
    }
 
 
-   void edit_plain_text::_001EnsureVisibleLine(index iLine)
+   void plain_edit::_001EnsureVisibleLine(index iLine)
    {
 
-      m_scrollinfo.m_ptScroll.y = (MIN(MAX(0, iLine), m_iaLineIndex.get_upper_bound()) - 1) * m_iLineHeight;
+      //m_scrolldata.m_ptScroll.y = (MIN(MAX(0, iLine), m_iaLineIndex.get_upper_bound()) - 1) * m_iLineHeight;
+
+      set_viewport_offset_y((MIN(MAX(0,iLine),m_iaLineIndex.get_upper_bound()) - 1) * m_iLineHeight);
 
       m_bNeedCalcLayout = true;
 
@@ -1001,17 +1024,17 @@ namespace user
    }
 
    
-   void edit_plain_text::_001OnUpdateScrollPosition()
-   {
-      
-      scroll_control::_001OnUpdateScrollPosition();
+   //void plain_edit::on_change_viewport_offset()
+   //{
+   //   
+   //   scroll_control::on_change_viewport_offset();
 
-      m_bNeedCalcLayout = true;
+   //   m_bNeedCalcLayout = true;
 
-   }
+   //}
 
 
-   void edit_plain_text::_001OnLButtonDown(signal_details * pobj)
+   void plain_edit::_001OnLButtonDown(signal_details * pobj)
    {
 
       SCAST_PTR(::message::mouse,pmouse,pobj)
@@ -1044,7 +1067,7 @@ namespace user
    }
 
 
-   void edit_plain_text::_001OnLButtonUp(signal_details * pobj)
+   void plain_edit::_001OnLButtonUp(signal_details * pobj)
    {
 
       SCAST_PTR(::message::mouse,pmouse,pobj)
@@ -1070,7 +1093,7 @@ namespace user
    }
 
 
-   void edit_plain_text::_001OnRButtonDown(signal_details * pobj)
+   void plain_edit::_001OnRButtonDown(signal_details * pobj)
    {
 
       SCAST_PTR(::message::mouse,pmouse,pobj)
@@ -1101,7 +1124,7 @@ namespace user
 
 
 
-   //void edit_plain_text::_001OnCalcLayoutProc(::user::elemental * pview)
+   //void plain_edit::_001OnCalcLayoutProc(::user::elemental * pview)
    //{
 
    //   ::draw2d::memory_graphics pdc(allocer());
@@ -1138,7 +1161,7 @@ namespace user
    //}
 
 
-   void edit_plain_text::_001OnCalcLayout()
+   void plain_edit::_001OnCalcLayout()
    {
 
       synch_lock sl(m_spmutex);
@@ -1170,7 +1193,9 @@ namespace user
 
       }
 
-      m_iLineOffset = MAX(0,m_scrollinfo.m_ptScroll.y / m_iLineHeight);
+      point ptOffset = get_viewport_offset();
+
+      m_iLineOffset = MAX(0,ptOffset.y / m_iLineHeight);
 
       ::index iLine = 0;
       ::count iCLine = iLine / 100;
@@ -1218,7 +1243,7 @@ namespace user
          m_plines->lines.add(str);
       }
 
-      m_y = m_scrollinfo.m_ptScroll.y;
+      m_y = ptOffset.y;
 
       m_peditor->visibleTextEvent(m_iLineOffset,m_iLineCount);
 
@@ -1236,7 +1261,7 @@ namespace user
 
       string strLine;
 
-      m_scrollinfo.m_sizeTotal.cx = 0;
+      m_sizeTotal.cx = 0;
 
       sized size;
 
@@ -1249,16 +1274,16 @@ namespace user
 
          size.cx = (double)strLine.get_length() * (double)sizeUniText.cx / (double)iLenUniText;
 
-         if(size.cx > m_scrollinfo.m_sizeTotal.cx)
+         if(size.cx > m_sizeTotal.cx)
          {
 
-            m_scrollinfo.m_sizeTotal.cx = (int32_t)size.cx;
+            m_sizeTotal.cx = (int32_t)size.cx;
 
          }
 
       }
 
-      m_scrollinfo.m_sizeTotal.cy = ((int32_t)m_iaLineIndex.get_count() * m_iLineHeight);
+      m_sizeTotal.cy = ((int32_t)m_iaLineIndex.get_count() * m_iLineHeight);
 
       class size sizePage;
 
@@ -1269,20 +1294,30 @@ namespace user
       if(m_bMultiLine)
       {
 
-         m_scrollinfo.m_sizeTotal.cy += sizePage.cy;
+         m_sizeTotal.cy += sizePage.cy;
 
       }
 
-      m_scrollinfo.m_sizePage = sizePage;
+      //m_scrolldata.m_sizePage = sizePage;
 
-      _001LayoutScrollBars();
+      //_001LayoutScrollBars();
+
+//      on_change_view_size();
 
       m_bNeedCalcLayout = false;
 
    }
 
 
-   index edit_plain_text::SelToLine(strsize iSel)
+   //void plain_edit::on_change_view_size()
+   //{
+   //   
+   //   ::user::control::on_change_view_size();
+
+   //}
+
+
+   index plain_edit::SelToLine(strsize iSel)
    {
 
       synch_lock sl(m_spmutex);
@@ -1315,7 +1350,7 @@ namespace user
 
    }
 
-   index edit_plain_text::CharToLine(strsize iChar)
+   index plain_edit::CharToLine(strsize iChar)
    {
 
       synch_lock sl(m_spmutex);
@@ -1337,7 +1372,7 @@ namespace user
    }
 
 
-   index edit_plain_text::SelToLineX(strsize iSel,int32_t & x)
+   index plain_edit::SelToLineX(strsize iSel,int32_t & x)
    {
 
       synch_lock sl(m_spmutex);
@@ -1383,7 +1418,7 @@ namespace user
    }
 
 
-   strsize edit_plain_text::LineColumnToSel(index iLine,index iColumn)
+   strsize plain_edit::LineColumnToSel(index iLine,index iColumn)
    {
 
       synch_lock sl(m_spmutex);
@@ -1464,7 +1499,7 @@ namespace user
    }
 
 
-   strsize edit_plain_text::LineXToSel(index iLine,int32_t x)
+   strsize plain_edit::LineXToSel(index iLine,int32_t x)
    {
 
       synch_lock sl(m_spmutex);
@@ -1479,7 +1514,9 @@ namespace user
 
       int32_t iLineHeight = size3.cy;
 
-      int32_t y = (int32_t)(iLineHeight * iLine + iLineHeight / 2 - m_scrollinfo.m_ptScroll.y);
+      point ptOffset = get_viewport_offset();
+
+      int32_t y = (int32_t)(iLineHeight * iLine + iLineHeight / 2 - ptOffset.y);
 
       strsize iChar = char_hit_test(pgraphics,x,y);
 
@@ -1488,7 +1525,7 @@ namespace user
    }
 
 
-   index edit_plain_text::SelToColumn(strsize iSel)
+   index plain_edit::SelToColumn(strsize iSel)
    {
 
       synch_lock sl(m_spmutex);
@@ -1522,7 +1559,7 @@ namespace user
    }
 
 
-   strsize edit_plain_text::char_hit_test(::draw2d::graphics * pdc,int32_t px,int32_t py)
+   strsize plain_edit::char_hit_test(::draw2d::graphics * pdc,int32_t px,int32_t py)
    {
 
       synch_lock sl(m_spmutex);
@@ -1537,16 +1574,18 @@ namespace user
 
       py -= rectClient.top;
 
+      point ptOffset = get_viewport_offset();
+
       if(m_iLineHeight == 0)
       {
 
-         py += m_scrollinfo.m_ptScroll.y;
+         py += ptOffset.y;
 
       }
       else
       {
 
-         py += m_scrollinfo.m_ptScroll.y % m_iLineHeight;
+         py += ptOffset.y % m_iLineHeight;
 
       }
 
@@ -1679,7 +1718,7 @@ namespace user
    }
 
 
-   void edit_plain_text::_001OnMouseMove(signal_details * pobj)
+   void plain_edit::_001OnMouseMove(signal_details * pobj)
    {
 
       SCAST_PTR(::message::mouse,pmouse,pobj)
@@ -1718,14 +1757,14 @@ namespace user
 
    }
 
-   void edit_plain_text::_001OnMouseLeave(signal_details * pobj)
+   void plain_edit::_001OnMouseLeave(signal_details * pobj)
    {
 
       m_bActionHover = false;
 
    }
 
-   void edit_plain_text::_001GetViewSel(strsize &iSelStart,strsize &iSelEnd)
+   void plain_edit::_001GetViewSel(strsize &iSelStart,strsize &iSelEnd)
    {
 
       if(m_ptree == NULL)
@@ -1748,7 +1787,7 @@ namespace user
    }
 
 
-   void edit_plain_text::on_updata_data(::data::simple_data * pdata,int32_t iHint)
+   void plain_edit::on_updata_data(::data::simple_data * pdata,int32_t iHint)
    {
 
       if(pdata == m_ptree)
@@ -1766,7 +1805,7 @@ namespace user
    }
 
 
-   void edit_plain_text::FileSave()
+   void plain_edit::FileSave()
    {
 
       m_ptree->m_editfile.flush();
@@ -1774,7 +1813,7 @@ namespace user
    }
 
 
-   void edit_plain_text::OnFileUpdate()
+   void plain_edit::OnFileUpdate()
    {
 
       m_bGetTextNeedUpdate = true;
@@ -1786,7 +1825,7 @@ namespace user
    }
 
 
-   void edit_plain_text::CreateLineIndex()
+   void plain_edit::CreateLineIndex()
    {
 
       int32_t i = 1;
@@ -1803,10 +1842,10 @@ namespace user
 
       m_ptree->m_editfile.seek(0,::file::seek_begin);
 
-      if(m_scrollinfo.m_sizeTotal.cx <= 0)
+      if(m_sizeTotal.cx <= 0)
       {
 
-         m_scrollinfo.m_sizeTotal.cx = 200;
+         m_sizeTotal.cx = 200;
 
       }
 
@@ -1923,7 +1962,7 @@ namespace user
    }
 
 
-   void edit_plain_text::_001OnChar(signal_details * pobj)
+   void plain_edit::_001OnChar(signal_details * pobj)
    {
 
       {
@@ -2190,7 +2229,7 @@ namespace user
                if(pkey->m_ekey == ::user::key_return)
                {
                   // Kill Focus => Kill Key Repeat timer
-                  //System.simple_message_box("VK_RETURN reached edit_plain_text");
+                  //System.simple_message_box("VK_RETURN reached plain_edit");
                }
                plain_text_set_sel_command * psetsel = new plain_text_set_sel_command;
                psetsel->m_iPreviousSelStart = m_ptree->m_iSelStart;
@@ -2252,7 +2291,7 @@ namespace user
 
 
 
-   void edit_plain_text::_001OnSysChar(signal_details * pobj)
+   void plain_edit::_001OnSysChar(signal_details * pobj)
    {
       ::data::simple_lock lockRoot(m_ptree);
       SCAST_PTR(::message::key,pkey,pobj)
@@ -2290,7 +2329,7 @@ namespace user
    }
 
 
-   void edit_plain_text::_001OnKeyboardFocusTimer(int32_t iTimer)
+   void plain_edit::_001OnKeyboardFocusTimer(int32_t iTimer)
    {
       //if(iTimer == 0)
       //{
@@ -2304,17 +2343,22 @@ namespace user
       //}
    }
 
-   void edit_plain_text::OneLineUp()
+   void plain_edit::OneLineUp()
    {
-      m_scrollinfo.m_ptScroll.y -= m_iLineHeight;
-      if(m_scrollinfo.m_ptScroll.y < m_scrollinfo.m_rectMargin.top)
-         m_scrollinfo.m_ptScroll.y = m_scrollinfo.m_rectMargin.top;
+
+      point ptOffset = get_viewport_offset();
+
+      set_viewport_offset_y(ptOffset.y - m_iLineHeight);
+
+//      if(m_scrolldata.m_ptScroll.y < 0)
+  //       m_scrolldata.m_ptScroll.y = 0;
       int32_t iHeight = 0;
       //char flag;
       m_iViewOffset = 0;
       ::count iLineSize;
       ::index i = 0;
-      while(m_scrollinfo.m_ptScroll.y > iHeight && i < m_iaLineIndex.get_size())
+      ptOffset = get_viewport_offset();
+      while(ptOffset.y > iHeight && i < m_iaLineIndex.get_size())
       {
          iLineSize = m_iaLineIndex[i];
          iHeight += m_iLineHeight;
@@ -2324,7 +2368,7 @@ namespace user
 
    }
 
-   void edit_plain_text::IndexRegisterDelete(strsize iSel,strsize iCount)
+   void plain_edit::IndexRegisterDelete(strsize iSel,strsize iCount)
    {
       UNREFERENCED_PARAMETER(iSel);
       UNREFERENCED_PARAMETER(iCount);
@@ -2389,7 +2433,7 @@ namespace user
 
    }
 
-   void edit_plain_text::IndexRegisterInsert(strsize iSel,const char * lpcszWhat)
+   void plain_edit::IndexRegisterInsert(strsize iSel,const char * lpcszWhat)
    {
       UNREFERENCED_PARAMETER(iSel);
       UNREFERENCED_PARAMETER(lpcszWhat);
@@ -2398,7 +2442,7 @@ namespace user
    }
 
 
-   void edit_plain_text::_001OnUpdate(::action::context actioncontext)
+   void plain_edit::_001OnUpdate(::action::context actioncontext)
    {
 
       {
@@ -2456,14 +2500,14 @@ namespace user
 
 
 
-   void edit_plain_text::MacroBegin()
+   void plain_edit::MacroBegin()
    {
       sp(::user::plain_text_group_command) pgroupcommand = new plain_text_group_command;
       pgroupcommand->m_pparent = m_ptree->m_pgroupcommand;
       m_ptree->m_pgroupcommand = pgroupcommand;
    }
 
-   void edit_plain_text::MacroEnd()
+   void plain_edit::MacroEnd()
    {
       if(m_ptree->m_pgroupcommand == NULL)
       {
@@ -2478,7 +2522,7 @@ namespace user
    }
 
 
-   void edit_plain_text::MacroRecord(sp(plain_text_command) pcommand)
+   void plain_edit::MacroRecord(sp(plain_text_command) pcommand)
    {
       if(m_ptree->m_pgroupcommand != NULL && m_ptree->m_pgroupcommand != pcommand)
       {
@@ -2489,7 +2533,7 @@ namespace user
    }
 
 
-   bool edit_plain_text::Undo()
+   bool plain_edit::Undo()
    {
 
       if(!CanUndo())
@@ -2514,7 +2558,7 @@ namespace user
    }
 
 
-   bool edit_plain_text::Redo()
+   bool plain_edit::Redo()
    {
       if(m_pitem == NULL)
       {
@@ -2547,18 +2591,18 @@ namespace user
       return true;
    }
 
-   bool edit_plain_text::CanUndo()
+   bool plain_edit::CanUndo()
    {
       return m_pitem != m_ptree->get_base_item();
    }
 
-   bool edit_plain_text::CanRedo()
+   bool plain_edit::CanRedo()
    {
       return m_ptree->m_iBranch < m_pitem->get_expandable_children_count()
          || m_pitem->get_next(false,false) != NULL;
    }
 
-   ::count edit_plain_text::GetRedoBranchCount()
+   ::count plain_edit::GetRedoBranchCount()
    {
       return m_pitem->get_expandable_children_count()
          + (m_pitem->next() != NULL ? 1 : 0)
@@ -2567,7 +2611,7 @@ namespace user
 
 
 
-   void edit_plain_text::_001SetText(const string & str,::action::context actioncontext)
+   void plain_edit::_001SetText(const string & str,::action::context actioncontext)
    {
       ::data::simple_lock lockRoot(m_ptree);
       m_ptree->m_editfile.seek(0,::file::seek_begin);
@@ -2580,7 +2624,7 @@ namespace user
    }
 
 
-   void edit_plain_text::keyboard_focus_OnKeyDown(signal_details * pobj)
+   void plain_edit::keyboard_focus_OnKeyDown(signal_details * pobj)
    {
 
       _001OnKeyDown(pobj);
@@ -2588,7 +2632,7 @@ namespace user
    }
 
 
-   void edit_plain_text::keyboard_focus_OnKeyUp(signal_details * pobj)
+   void plain_edit::keyboard_focus_OnKeyUp(signal_details * pobj)
    {
 
       _001OnKeyUp(pobj);
@@ -2596,7 +2640,7 @@ namespace user
    }
 
 
-   void edit_plain_text::keyboard_focus_OnChar(signal_details * pobj)
+   void plain_edit::keyboard_focus_OnChar(signal_details * pobj)
    {
 
       _001OnChar(pobj);
@@ -2604,7 +2648,7 @@ namespace user
    }
 
 
-   void edit_plain_text::_001OnAfterChangeText(::action::context actioncontext)
+   void plain_edit::_001OnAfterChangeText(::action::context actioncontext)
    {
 
       ::user::control_event ev;
@@ -2620,7 +2664,7 @@ namespace user
    }
 
 
-   void edit_plain_text::clipboard_copy()
+   void plain_edit::clipboard_copy()
    {
 
       if(m_bPassword)
@@ -2630,7 +2674,7 @@ namespace user
       Session.copydesk().set_plain_text(str);
    }
 
-   void edit_plain_text::clipboard_paste()
+   void plain_edit::clipboard_paste()
    {
 
       string str;
@@ -2647,7 +2691,7 @@ namespace user
    }
 
 
-   void edit_plain_text::_001OnVScroll(signal_details * pobj)
+   void plain_edit::_001OnVScroll(signal_details * pobj)
    {
 
       m_bNeedCalcLayout = true;
@@ -2655,7 +2699,7 @@ namespace user
    }
 
 
-   void edit_plain_text::_001OnHScroll(signal_details * pobj)
+   void plain_edit::_001OnHScroll(signal_details * pobj)
    {
 
       UNREFERENCED_PARAMETER(pobj);
@@ -2676,7 +2720,7 @@ namespace user
    }
 
 
-   void edit_plain_text::_001OnSetText(::action::context actioncontext)
+   void plain_edit::_001OnSetText(::action::context actioncontext)
    {
 
       m_bNeedCalcLayout = true;
@@ -2684,12 +2728,12 @@ namespace user
    }
 
 
-   bool edit_plain_text::should_load_full_file()
+   bool plain_edit::should_load_full_file()
    {
       return m_bColorerTake5;
    }
 
-   colorertake5::file_type *edit_plain_text::colorer_select_type()
+   colorertake5::file_type *plain_edit::colorer_select_type()
    {
 
       synch_lock sl(m_spmutex);
@@ -2712,7 +2756,7 @@ namespace user
         }
         }*/
       //  if (typeDescription == NULL || type == NULL){
-      sp(::aura::impact) pview =  (this);
+      sp(::user::impact) pview =  (this);
       if(pview != NULL)
       {
          sp(::aura::document) pdoc = pview->get_document();
@@ -2738,13 +2782,13 @@ namespace user
       return type;
    }
 
-   void edit_plain_text::_009OnChar(signal_details * pobj)
+   void plain_edit::_009OnChar(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
 
-   bool edit_plain_text::create_control(class control::descriptor * pdescriptor)
+   bool plain_edit::create_control(class control::descriptor * pdescriptor)
    {
       ASSERT(pdescriptor->get_type() == control_type_edit_plain_text);
       if(!create_window(pdescriptor->m_rect,pdescriptor->m_pform,pdescriptor->m_id))
@@ -2758,7 +2802,7 @@ namespace user
    }
 
 
-   bool edit_plain_text::keyboard_focus_is_focusable()
+   bool plain_edit::keyboard_focus_is_focusable()
    {
 
       return is_window_enabled() && IsWindowVisible();
@@ -2766,10 +2810,10 @@ namespace user
    }
 
 
-   bool edit_plain_text::keyboard_focus_OnSetFocus()
+   bool plain_edit::keyboard_focus_OnSetFocus()
    {
 
-      ::user::scroll_control::keyboard_focus_OnSetFocus();
+      ::user::control::keyboard_focus_OnSetFocus();
 
       //m_bCaretOn = true;
       //m_dwLastCaret = get_tick_count();
@@ -2780,13 +2824,13 @@ namespace user
 
 
 
-   sp(::data::item) edit_plain_text::on_allocate_item()
+   sp(::data::item) plain_edit::on_allocate_item()
    {
       return new plain_text_command;
    }
 
 
-   void edit_plain_text::set_root(plain_text_tree * pdata,bool bOwnData)
+   void plain_edit::set_root(plain_text_tree * pdata,bool bOwnData)
    {
       ::data::simple_lock lockRoot(m_ptree);
       if(m_ptree != NULL && m_bOwnData)
@@ -2803,7 +2847,7 @@ namespace user
       }
    }
 
-   void edit_plain_text::_001OnUpdateEditFocusCopy(signal_details * pobj)
+   void plain_edit::_001OnUpdateEditFocusCopy(signal_details * pobj)
    {
       SCAST_PTR(::aura::cmd_ui,pupdatecmdui,pobj)
          string str;
@@ -2811,7 +2855,7 @@ namespace user
       pupdatecmdui->m_pcmdui->Enable(str.has_char());
    }
 
-   void edit_plain_text::_001OnEditFocusCopy(signal_details * pobj)
+   void plain_edit::_001OnEditFocusCopy(signal_details * pobj)
    {
 
       UNREFERENCED_PARAMETER(pobj);
@@ -2822,13 +2866,13 @@ namespace user
 
    }
 
-   void edit_plain_text::_001OnUpdateEditFocusPaste(signal_details * pobj)
+   void plain_edit::_001OnUpdateEditFocusPaste(signal_details * pobj)
    {
       SCAST_PTR(::aura::cmd_ui,pupdatecmdui,pobj)
          pupdatecmdui->m_pcmdui->Enable(Session.copydesk().get_plain_text().has_char());
    }
 
-   void edit_plain_text::_001OnEditFocusPaste(signal_details * pobj)
+   void plain_edit::_001OnEditFocusPaste(signal_details * pobj)
    {
 
       UNREFERENCED_PARAMETER(pobj);
@@ -2840,14 +2884,14 @@ namespace user
    }
 
 
-   void edit_plain_text::_001OnSize(signal_details * pobj)
+   void plain_edit::_001OnSize(signal_details * pobj)
    {
 
       UNREFERENCED_PARAMETER(pobj);
 
    }
 
-   void edit_plain_text::layout()
+   void plain_edit::layout()
    {
       {
 
@@ -2859,7 +2903,7 @@ namespace user
       }
 
 
-      scroll_control::layout();
+      ::user::control::layout();
 
       {
 
@@ -2874,35 +2918,42 @@ namespace user
 
    }
 
-   bool edit_plain_text::ShowWindow(int32_t nCmdShow)
+   bool plain_edit::ShowWindow(int32_t nCmdShow)
    {
 
       if(nCmdShow != SW_HIDE)
       {
 
-         TRACE0("Going to Show edit_plain_text");
+         TRACE0("Going to Show plain_edit");
 
       }
 
-      return ::user::scroll_control::ShowWindow(nCmdShow);
+      return ::user::control::ShowWindow(nCmdShow);
 
    }
 
 
-   bool edit_plain_text::has_action_hover()
+   bool plain_edit::has_action_hover()
    {
 
       return is_window_enabled() && m_bActionHover;
 
    }
 
-   bool edit_plain_text::has_text_input()
+   bool plain_edit::has_text_input()
    {
 
       return is_window_enabled();
 
    }
 
+   
+   size plain_edit::get_total_size()
+   {
+
+      return m_sizeTotal;
+
+   }
 
 
 } // namespace core

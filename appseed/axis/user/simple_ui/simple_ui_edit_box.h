@@ -6,7 +6,7 @@ namespace simple_ui
 
 
    class CLASS_DECL_AXIS edit_box :
-      virtual public ::user::edit_plain_text
+      virtual public ::user::plain_edit
    {
    public:
 
