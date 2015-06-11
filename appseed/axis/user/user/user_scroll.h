@@ -310,7 +310,7 @@ namespace user
 
       m_scrolldataHorz.m_iPage          = rectScroll.width();
 
-      _001LayoutScrollBars();
+      _001LayoutXScrollBar();
 
       on_change_viewport_offset();
 
@@ -695,7 +695,7 @@ namespace user
 
       m_scrolldataVert.m_iPage          = rectScroll.height();
 
-      _001LayoutScrollBars();
+      _001LayoutYScrollBar();
 
       on_change_viewport_offset();
 
