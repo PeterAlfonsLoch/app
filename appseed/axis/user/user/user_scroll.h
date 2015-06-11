@@ -263,6 +263,8 @@ namespace user
    void scroll_x < BASE >::on_change_view_size()
    {
 
+      BASE::on_change_view_size();
+
       size sizeTotal = get_total_size();
 
       m_scrolldataHorz.m_iWidth  = GetSystemMetrics(SM_CXHSCROLL);
@@ -645,6 +647,8 @@ namespace user
    template < class BASE >
    void scroll_y < BASE >::on_change_view_size()
    {
+
+      BASE::on_change_view_size();
 
       size sizeTotal = get_total_size();
 
