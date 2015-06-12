@@ -16,7 +16,7 @@ public:
 
    DECL_GEN_SIGNAL(_001OnCreate);
 
-   
+   virtual void on_update(::user::impact * pSender,LPARAM lHint,::object* pHint) override;
    
 #ifdef DEBUG
    virtual void assert_valid() const;

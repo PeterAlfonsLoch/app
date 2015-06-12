@@ -125,7 +125,7 @@ namespace filemanager
 
       SetPane(0,pleftview,false);
 
-      pleftview->create_views();
+      //pleftview->create_views();
 
       m_pfilelist = create_view < file_list >();
 

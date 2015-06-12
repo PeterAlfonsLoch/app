@@ -726,6 +726,9 @@ namespace user
       virtual void _001GetYScrollInfo(scroll_info & info);
       virtual void layout_scroll_bar();
 
+      // view support
+      virtual void on_update(::user::impact * pSender,LPARAM lHint,::object* pHint);
+
    };
 
 

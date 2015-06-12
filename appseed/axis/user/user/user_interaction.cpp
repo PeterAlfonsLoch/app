@@ -6539,6 +6539,15 @@ namespace user
    }
 
 
+   void interaction::on_update(::user::impact * pSender,LPARAM lHint,::object* pHint)
+   {
+
+      UNREFERENCED_PARAMETER(pSender);
+      UNREFERENCED_PARAMETER(lHint);
+      UNREFERENCED_PARAMETER(pHint);
+
+   }
+
 } // namespace user
 
 

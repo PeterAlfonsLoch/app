@@ -81,9 +81,11 @@ namespace user
 
 
 
-
+      tree();
       tree(::aura::application * papp);
       virtual ~tree();
+
+      void user_tree_common_construct();
 
       virtual void _001OnDraw(::draw2d::graphics * pdc);
       virtual void _001DrawItem(tree_draw_item & data);

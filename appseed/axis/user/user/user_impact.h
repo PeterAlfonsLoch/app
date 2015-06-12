@@ -97,7 +97,7 @@ namespace user
       virtual void OnActivateFrame(UINT nState, sp(::user::frame_window) pFrameWnd);
 
       // General drawing/updating
-      virtual void on_update(::user::impact * pSender, LPARAM lHint, ::object* pHint);
+      virtual void on_update(::user::impact * pSender, LPARAM lHint, ::object* pHint) override;
       //virtual void _001OnDraw(::draw2d::graphics * pgraphics);
       virtual void OnViewUpdateHint(sp(impact) pSender, LPARAM lHint, ::user::view_update_hint * pHint);
 
@@ -259,13 +259,22 @@ namespace user
       {
       }
 
-      virtual void install_message_handling(::message::dispatch * pinterface)
+      virtual void install_message_handling(::message::dispatch * pinterface) override
       {
          
          ::user::impact::install_message_handling(pinterface);
          VIEW::install_message_handling(pinterface);
 
       }
+
+      void on_update(::user::impact * pSender,LPARAM lHint,::object* pHint) override
+      {
+
+         ::user::impact::on_update(pSender,lHint,pHint);
+         VIEW::on_update(pSender,lHint,pHint);
+
+      }
+
 
    };
 

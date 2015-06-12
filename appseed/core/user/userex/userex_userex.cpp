@@ -106,8 +106,11 @@ namespace userex
       System.factory().creatable_small < ::user::button >();
 
       System.factory().creatable_small < ::user::view < ::user::plain_edit > >();
-
       System.factory().creatable_small < ::user::view < ::user::scroll < ::user::plain_edit > > >();
+      System.factory().creatable_small < ::user::view < ::user::tree > >();
+      System.factory().creatable_small < ::user::view < ::user::scroll < ::user::tree > > >();
+      System.factory().creatable_small < ::user::view < ::user::list > >();
+      System.factory().creatable_small < ::user::view < ::user::scroll < ::user::list > > >();
 
       System.factory().creatable_small < MetaControlBox >();
 

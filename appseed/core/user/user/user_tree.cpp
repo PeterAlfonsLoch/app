@@ -5,13 +5,36 @@
 namespace user
 {
 
+   tree::tree() :
+      m_dcextension(get_app())
+   {
 
+      user_tree_common_construct();
+
+   }
 
 
    tree::tree(::aura::application * papp) :
       object(papp),
       m_dcextension(papp)
    {
+
+      user_tree_common_construct();
+
+   }
+
+
+   tree::~tree()
+   {
+
+   }
+
+
+   void tree::user_tree_common_construct()
+   {
+
+      ASSERT(get_app() != NULL);
+
       m_bHoverStart = false;
 
       m_pitemFirstVisible        = NULL;
@@ -19,9 +42,9 @@ namespace user
       m_pitemHover               = NULL;
       m_iClick                   = 0;
       m_iItemCount               = 0;
-//      m_crText                   = ARGB(255, 0, 0, 0);
-  //    m_crTextSelected           = ARGB(255, 255, 255, 255);
-    //  m_crTextHighlight          = ARGB(255, 102, 153, 255);
+      //      m_crText                   = ARGB(255, 0, 0, 0);
+      //    m_crTextSelected           = ARGB(255, 255, 255, 255);
+      //  m_crTextHighlight          = ARGB(255, 102, 153, 255);
       //m_crTextSelectedHighlight  = ARGB(255, 172, 213, 255);
       m_iItemHeight              = 18;
       m_iImageExpand             = -1;
@@ -29,11 +52,6 @@ namespace user
       m_pimagelist               = NULL;
       m_uchHoverAlphaInit        = 0;
    }
-
-   tree::~tree()
-   {
-   }
-
 
    void tree::_001OnCreate(signal_details * pobj)
    {
@@ -695,8 +713,6 @@ namespace user
 
    void tree::install_message_handling(::message::dispatch * pdispatch)
    {
-      
-      ::user::interaction_base::install_message_handling(pdispatch);
       
       ::user::control::install_message_handling(pdispatch);
 
