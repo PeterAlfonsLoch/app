@@ -13,14 +13,14 @@ namespace aura
       // for creating new views
       sp(type)                               m_typeinfoNewView; // runtime class of ::user::impact to create or NULL
       ::user::document *              m_pCurrentDoc;
-      ::user::elemental *           m_puiNew;
+      ::user::primitive *           m_puiNew;
 
       // for creating MDI children (CMDIChildWnd::LoadFrame)
       ::user::impact_system *     m_pNewDocTemplate;
 
       // for sharing ::user::impact/frame state from the original ::user::impact/frame
-      ::user::elemental *           m_pLastView;
-      ::user::elemental *           m_pCurrentFrame;
+      ::user::primitive *           m_pLastView;
+      ::user::primitive *           m_pCurrentFrame;
 
       // Implementation
       create_context();

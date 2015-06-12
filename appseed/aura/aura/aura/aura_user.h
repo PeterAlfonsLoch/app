@@ -90,7 +90,7 @@
 
 
 #include "aura_draw_interface.h"
-#include "aura/user/user/user_elemental.h"
+#include "aura/user/user/user_primitive.h"
 #include "aura/user/user/user_frame.h"
 
 

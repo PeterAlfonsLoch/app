@@ -20,7 +20,7 @@ namespace aura
    }
 
 
-   bool timer_array::unset(::user::elemental * pui,uint_ptr uiId)
+   bool timer_array::unset(::user::primitive * pui,uint_ptr uiId)
    {
 
 
@@ -40,7 +40,7 @@ namespace aura
       return false;
    }
 
-   void timer_array::detach(smart_pointer_array < timer_item > & timera,::user::elemental * pui)
+   void timer_array::detach(smart_pointer_array < timer_item > & timera,::user::primitive * pui)
    {
 
 
@@ -65,7 +65,7 @@ namespace aura
    }
 
 
-   void timer_array::unset(::user::elemental * pui)
+   void timer_array::unset(::user::primitive * pui)
    {
 
       retry_single_lock sl(&m_mutex,millis(177),millis(184));
@@ -84,7 +84,7 @@ namespace aura
 
    }
 
-   index timer_array::find(::user::elemental * pui,uint_ptr uiId)
+   index timer_array::find(::user::primitive * pui,uint_ptr uiId)
    {
 
 
@@ -103,7 +103,7 @@ namespace aura
 
    }
 
-   index timer_array::find_from(::user::elemental * pui,index iStart)
+   index timer_array::find_from(::user::primitive * pui,index iStart)
    {
 
 
@@ -215,7 +215,7 @@ namespace aura
    }
 
 
-   uint_ptr timer_array::set(::user::elemental * pui,uint_ptr uiId,UINT uiElapse)
+   uint_ptr timer_array::set(::user::primitive * pui,uint_ptr uiId,UINT uiElapse)
    {
 
 

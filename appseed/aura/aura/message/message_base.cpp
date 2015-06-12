@@ -20,7 +20,7 @@ namespace message
    }
 
 
-   base::base(::aura::application * papp,::user::elemental * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult):
+   base::base(::aura::application * papp,::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult):
       signal_details(papp)
    {
 
@@ -76,7 +76,7 @@ namespace message
    }
 
 
-   void base::set(::user::elemental * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
+   void base::set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
    {
 
       m_pwnd            = pwnd;
@@ -88,7 +88,7 @@ namespace message
    }
 
 
-   void base::set(::user::elemental * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam)
+   void base::set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam)
    {
 
       set(pwnd,uiMessage,wparam,lparam,m_lresult);

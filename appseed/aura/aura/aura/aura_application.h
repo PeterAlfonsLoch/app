@@ -150,11 +150,11 @@ namespace aura
       }
 
 
-      //virtual void tellme_destroyed(::user::elemental * pui, bool * pDestroyed, bool bTell = true);
+      //virtual void tellme_destroyed(::user::primitive * pui, bool * pDestroyed, bool bTell = true);
 
 
-      virtual int32_t simple_message_box(::user::elemental * puiOwner,const char * pszMessage,UINT fuStyle = MB_OK);
-      virtual int32_t simple_message_box_timeout(::user::elemental * pwndOwner,const char * pszMessage,::duration durationTimeOut,UINT fuStyle);
+      virtual int32_t simple_message_box(::user::primitive * puiOwner,const char * pszMessage,UINT fuStyle = MB_OK);
+      virtual int32_t simple_message_box_timeout(::user::primitive * pwndOwner,const char * pszMessage,::duration durationTimeOut,UINT fuStyle);
       int32_t simple_message_box(const char * pszMessage,UINT fuStyle);
       virtual string message_box(const string & pszMatter,property_set & propertyset);
 
@@ -199,23 +199,23 @@ namespace aura
       virtual void process_message_filter(int32_t code,signal_details * pobj);
 
       virtual bool on_thread_on_idle(::thread_impl * pimpl,LONG lCount);
-      virtual bool post_user_message(::thread_impl * pimpl,::user::elemental * pui,UINT message,WPARAM wparam = 0,lparam lparam = 0);
+      virtual bool post_user_message(::thread_impl * pimpl,::user::primitive * pui,UINT message,WPARAM wparam = 0,lparam lparam = 0);
 
-      virtual bool is_window(::user::elemental * pui);
-      virtual LRESULT send_message(::user::elemental * pui, UINT message, WPARAM wparam = 0, lparam lparam = 0);
-      virtual oswindow get_safe_handle(::user::elemental * pui);
+      virtual bool is_window(::user::primitive * pui);
+      virtual LRESULT send_message(::user::primitive * pui, UINT message, WPARAM wparam = 0, lparam lparam = 0);
+      virtual oswindow get_safe_handle(::user::primitive * pui);
       virtual void dispatch_user_message(::signal_details * pobj);
-      virtual ::user::elemental * get_parent(::user::elemental * pui);
-      virtual bool enable_window(::user::elemental * pui, bool bEnable = true);
-      virtual bool set_window_text(::user::elemental * pui, const string & strText);
-      virtual ptr_array < thread > get_thread(::user::elemental * pui);
-      virtual void add_thread(::user::elemental * pui,::thread * pthread);
-      virtual void remove_thread(::user::elemental * pui,::thread * pthread);
+      virtual ::user::primitive * get_parent(::user::primitive * pui);
+      virtual bool enable_window(::user::primitive * pui, bool bEnable = true);
+      virtual bool set_window_text(::user::primitive * pui, const string & strText);
+      virtual ptr_array < thread > get_thread(::user::primitive * pui);
+      virtual void add_thread(::user::primitive * pui,::thread * pthread);
+      virtual void remove_thread(::user::primitive * pui,::thread * pthread);
       virtual void window_graphics_update_window(window_graphics * & pdata,oswindow interaction_impl,COLORREF * pOsBitmapData,const RECT & rect,int cxParam,int cyParam,int iStride = -1,bool bTransferBuffer = true);
 
 
-      //virtual ::user::elemental * get_active_guie();
-      //virtual ::user::elemental * get_focus_guie();
+      //virtual ::user::primitive * get_active_guie();
+      //virtual ::user::primitive * get_focus_guie();
 
 
       // Wall-eeeeee aliases

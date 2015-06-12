@@ -118,7 +118,7 @@ namespace file
 
       virtual bool is_valid_fileset(const path & pszFile,::aura::application * papp);
 
-      virtual bool resolve_link(path & strTarget,const path & pszSource,sp(::user::elemental) puiMessageParentOptional = NULL);
+      virtual bool resolve_link(path & strTarget,const path & pszSource,sp(::user::primitive) puiMessageParentOptional = NULL);
 
       virtual bool get_last_write_time(FILETIME * pfiletime,const string & strFilename);
 

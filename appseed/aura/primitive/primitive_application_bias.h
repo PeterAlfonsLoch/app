@@ -26,7 +26,7 @@ public:
    };
 
 
-   ::user::elemental *      m_puiParent;
+   ::user::primitive *      m_puiParent;
    callback *                 m_pcallback;
    property_set               m_set;
 

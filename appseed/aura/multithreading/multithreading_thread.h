@@ -42,8 +42,8 @@ public:
    uint_ptr                               m_dwAlive;
    bool                                   m_bReady;
    int32_t                                m_iReturnCode;
-   ::user::elemental *                  m_puiMain;           // main interaction_impl (usually same System.m_puiMain)
-   ::user::elemental *                  m_puiActive;         // active main interaction_impl (may not be m_puiMain)
+   ::user::primitive *                  m_puiMain;           // main interaction_impl (usually same System.m_puiMain)
+   ::user::primitive *                  m_puiActive;         // active main interaction_impl (may not be m_puiMain)
    bool *                                 m_pbReady;
    //property_set                           m_set;
    string                                 m_strWorkUrl;
@@ -131,7 +131,7 @@ public:
    virtual uint32_t ResumeThread();
    virtual bool post_thread_message(UINT message, WPARAM wParam = 0, lparam lParam = 0);
    virtual bool send_thread_message(UINT message,WPARAM wParam = 0,lparam lParam = 0, ::duration durWaitStep = millis(1));
-   virtual bool post_message(::user::elemental * pui, UINT message, WPARAM wParam = 0, lparam lParam = 0);
+   virtual bool post_message(::user::primitive * pui, UINT message, WPARAM wParam = 0, lparam lParam = 0);
 
    virtual bool pre_init_instance();
 
@@ -157,18 +157,18 @@ public:
 
    virtual void process_message_filter(int32_t code, signal_details * pobj);
 
-   virtual void add(::user::elemental * pui);
-   virtual void remove(::user::elemental * pui);
+   virtual void add(::user::primitive * pui);
+   virtual void remove(::user::primitive * pui);
    virtual ::count get_ui_count();
-   virtual ::user::elemental * get_ui(index iIndex);
-   virtual void set_timer(::user::elemental * pui, uint_ptr nIDEvent, UINT nEllapse);
-   virtual void unset_timer(::user::elemental * pui, uint_ptr nIDEvent);
+   virtual ::user::primitive * get_ui(index iIndex);
+   virtual void set_timer(::user::primitive * pui, uint_ptr nIDEvent, UINT nEllapse);
+   virtual void unset_timer(::user::primitive * pui, uint_ptr nIDEvent);
    virtual void set_auto_delete(bool bAutoDelete = true);
    virtual void set_run(bool bRun = true);
    virtual event & get_finish_event();
    virtual bool get_run();
-   virtual ::user::elemental * get_active_ui();
-   virtual ::user::elemental * set_active_ui(::user::elemental * pui);
+   virtual ::user::primitive * get_active_ui();
+   virtual ::user::primitive * set_active_ui(::user::primitive * pui);
    virtual void step_timer();
    virtual bool on_run_step();
 

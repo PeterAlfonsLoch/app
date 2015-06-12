@@ -240,7 +240,7 @@ namespace windows
    }
 
 
-   ::user::elemental * application::FindWindow(const char * lpszClassName,const char * lpszWindowName)
+   ::user::primitive * application::FindWindow(const char * lpszClassName,const char * lpszWindowName)
    {
 
       return NULL;
@@ -248,7 +248,7 @@ namespace windows
    }
 
 
-   ::user::elemental * application::FindWindowEx(oswindow oswindowParent,oswindow oswindowChildAfter,const char * lpszClass,const char * lpszWindow)
+   ::user::primitive * application::FindWindowEx(oswindow oswindowParent,oswindow oswindowChildAfter,const char * lpszClass,const char * lpszWindow)
    {
 
       return NULL;

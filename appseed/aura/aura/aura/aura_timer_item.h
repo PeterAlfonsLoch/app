@@ -11,7 +11,7 @@ namespace aura
    public:
 
 
-      ::user::elemental *     m_pui;
+      ::user::primitive *     m_pui;
       uint_ptr                m_uiId;
       UINT                    m_uiElapse;
       UINT                    m_uiLastSent;

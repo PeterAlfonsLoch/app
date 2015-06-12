@@ -122,7 +122,7 @@ namespace aura
 namespace user
 {
 
-   class elemental;
+   class primitive;
    class frame;
    class menu;
    class document;

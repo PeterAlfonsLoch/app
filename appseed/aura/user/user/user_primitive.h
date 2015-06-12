@@ -5,14 +5,14 @@ namespace user
 {
 
 
-   class CLASS_DECL_AURA elemental:
+   class CLASS_DECL_AURA primitive:
       virtual public command_target,
       virtual public ::aura::draw_interface
    {
    public:
 
 
-      void *         m_pvoidUserInteraction; // ::user::elemental * 
+      void *         m_pvoidUserInteraction; // ::user::primitive * 
 
 
       elemental();

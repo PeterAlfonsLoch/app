@@ -249,7 +249,7 @@ namespace aura
    }
 
 
-   //void application::tellme_destroyed(::user::elemental * pui, bool * pDestroyed, bool bTell)
+   //void application::tellme_destroyed(::user::primitive * pui, bool * pDestroyed, bool bTell)
    //{
 
    //   UNREFERENCED_PARAMETER(pui);
@@ -259,7 +259,7 @@ namespace aura
    //}
 
 
-   int32_t application::simple_message_box(::user::elemental * puiOwner,const char * pszMessage,UINT fuStyle)
+   int32_t application::simple_message_box(::user::primitive * puiOwner,const char * pszMessage,UINT fuStyle)
    {
 
       return ::simple_message_box(get_safe_handle(puiOwner), pszMessage, m_strAppName, fuStyle);
@@ -2853,7 +2853,7 @@ namespace aura
    }
 
 
-   int32_t application::simple_message_box_timeout(::user::elemental * pwndOwner,const char * pszMessage,::duration durationTimeOut,UINT fuStyle)
+   int32_t application::simple_message_box_timeout(::user::primitive * pwndOwner,const char * pszMessage,::duration durationTimeOut,UINT fuStyle)
    {
       UNREFERENCED_PARAMETER(durationTimeOut);
       return simple_message_box(pwndOwner,pszMessage,fuStyle);
@@ -3069,7 +3069,7 @@ namespace aura
    }
 
 
-   //::user::elemental * application::get_active_guie()
+   //::user::primitive * application::get_active_guie()
    //{
 
    //   return Session.get_active_guie();
@@ -3077,7 +3077,7 @@ namespace aura
    //}
 
 
-   //::user::elemental * application::get_focus_guie()
+   //::user::primitive * application::get_focus_guie()
    //{
 
    //   return Session.get_focus_guie();
@@ -3329,8 +3329,8 @@ namespace aura
       //SCAST_PTR(::message::base,pbase,pobj);
 
       //sp(::user::frame_window) pTopFrameWnd;
-      //::user::elemental * pMainWnd;
-      //::user::elemental * pMsgWnd;
+      //::user::primitive * pMainWnd;
+      //::user::primitive * pMsgWnd;
       //switch(code)
       //{
       ////case MSGF_DDEMGR:
@@ -3398,7 +3398,7 @@ namespace aura
    }
 
 
-   bool application::post_user_message(::thread_impl * pimpl,::user::elemental * pui,UINT message,WPARAM wparam,lparam lparam)
+   bool application::post_user_message(::thread_impl * pimpl,::user::primitive * pui,UINT message,WPARAM wparam,lparam lparam)
    {
 
       UNREFERENCED_PARAMETER(pimpl);
@@ -3420,7 +3420,7 @@ namespace aura
    }
 
 
-   bool application::is_window(::user::elemental * pui)
+   bool application::is_window(::user::primitive * pui)
    {
 
       UNREFERENCED_PARAMETER(pui);
@@ -3429,7 +3429,7 @@ namespace aura
 
    }
 
-   LRESULT application::send_message(::user::elemental * pui,UINT message,WPARAM wparam,lparam lparam)
+   LRESULT application::send_message(::user::primitive * pui,UINT message,WPARAM wparam,lparam lparam)
    {
 
       UNREFERENCED_PARAMETER(pui);
@@ -3441,7 +3441,7 @@ namespace aura
 
    }
 
-   oswindow application::get_safe_handle(::user::elemental * pui)
+   oswindow application::get_safe_handle(::user::primitive * pui)
    {
 
       UNREFERENCED_PARAMETER(pui);
@@ -3459,7 +3459,7 @@ namespace aura
    }
 
 
-   ::user::elemental * application::get_parent(::user::elemental * pui)
+   ::user::primitive * application::get_parent(::user::primitive * pui)
    {
 
       UNREFERENCED_PARAMETER(pui);
@@ -3468,7 +3468,7 @@ namespace aura
 
    }
 
-   bool application::enable_window(::user::elemental * pui,bool bEnable)
+   bool application::enable_window(::user::primitive * pui,bool bEnable)
    {
 
       UNREFERENCED_PARAMETER(pui);
@@ -3479,7 +3479,7 @@ namespace aura
    }
 
 
-   bool application::set_window_text(::user::elemental * pui,const string & strText)
+   bool application::set_window_text(::user::primitive * pui,const string & strText)
    {
 
       UNREFERENCED_PARAMETER(pui);
@@ -3490,7 +3490,7 @@ namespace aura
    }
 
 
-   ptr_array < ::thread > application::get_thread(::user::elemental * pui)
+   ptr_array < ::thread > application::get_thread(::user::primitive * pui)
    {
 
       UNREFERENCED_PARAMETER(pui);
@@ -3502,7 +3502,7 @@ namespace aura
    }
 
 
-   void application::add_thread(::user::elemental * pui,::thread * pthread)
+   void application::add_thread(::user::primitive * pui,::thread * pthread)
    {
 
       UNREFERENCED_PARAMETER(pui);
@@ -3510,7 +3510,7 @@ namespace aura
 
    }
 
-   void application::remove_thread(::user::elemental * pui,::thread * pthread)
+   void application::remove_thread(::user::primitive * pui,::thread * pthread)
    {
 
       UNREFERENCED_PARAMETER(pui);

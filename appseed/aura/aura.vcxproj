@@ -5552,7 +5552,7 @@
     </ClCompile>
     <ClCompile Include="user\colorertake5\_colorertake5.cpp" />
     <ClCompile Include="user\simple\simple_message_box.cpp" />
-    <ClInclude Include="user\user\user_elemental.h" />
+    <ClInclude Include="user\user\user_primitive.h" />
     <ClInclude Include="user\user\user_frame.h" />
     <ClInclude Include="version.config.h" />
     <ClInclude Include="version.h" />
@@ -10384,7 +10384,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_profiler|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="user\user\user_elemental.cpp" />
+    <ClCompile Include="user\user\user_primitive.cpp" />
     <ClCompile Include="user\user\user_frame.cpp" />
     <ClCompile Include="version.cpp" />
   </ItemGroup>
