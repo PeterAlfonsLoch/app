@@ -11,10 +11,10 @@ namespace aura
    public:
 
 
-      interaction *        m_pui;
-      uint_ptr             m_uiId;
-      UINT                 m_uiElapse;
-      UINT                 m_uiLastSent;
+      ::user::elemental *     m_pui;
+      uint_ptr                m_uiId;
+      UINT                    m_uiElapse;
+      UINT                    m_uiLastSent;
 
 
       timer_item(::aura::application * papp);

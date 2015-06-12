@@ -1,19 +1,19 @@
-//#include "framework.h"
+#include "framework.h"
 
 
-namespace aura
+namespace user
 {
 
 
-   interaction::interaction()
+   elemental::elemental()
    {
-      
+
       m_pvoidUserInteraction = NULL;
 
    }
 
 
-   interaction::~interaction()
+   elemental::~elemental()
    {
 
 
@@ -23,7 +23,7 @@ namespace aura
 #ifdef WINDOWSEX
 
 
-   bool interaction::GetWindowPlacement(WINDOWPLACEMENT * lpwndpl)
+   bool elemental::GetWindowPlacement(WINDOWPLACEMENT * lpwndpl)
    {
 
       UNREFERENCED_PARAMETER(lpwndpl);
@@ -32,7 +32,7 @@ namespace aura
 
    }
 
-   bool interaction::SetWindowPlacement(const WINDOWPLACEMENT * lpcwndpl)
+   bool elemental::SetWindowPlacement(const WINDOWPLACEMENT * lpcwndpl)
    {
 
       UNREFERENCED_PARAMETER(lpcwndpl);
@@ -45,7 +45,7 @@ namespace aura
 #endif // WINDOWSEX
 
 
-   bool interaction::SetPlacement(const RECT & rect,UINT nFlags)
+   bool elemental::SetPlacement(const RECT & rect,UINT nFlags)
    {
 
       UNREFERENCED_PARAMETER(rect);

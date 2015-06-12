@@ -90,8 +90,8 @@
 
 
 #include "aura_draw_interface.h"
-#include "aura_interaction.h"
-#include "aura_frame_window.h"
+#include "aura/user/user/user_elemental.h"
+#include "aura/user/user/user_frame.h"
 
 
 

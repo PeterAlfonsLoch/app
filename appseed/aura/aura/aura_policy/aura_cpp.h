@@ -1619,11 +1619,11 @@ CLASS_DECL_AURA ::aura::application * get_aura(void * p);
 
 
 
-namespace aura
+namespace user
 {
 
 
-   inline oswindow interaction::get_safe_handle() const
+   inline oswindow elemental::get_safe_handle() const
    {
       if(((byte *)this) < (byte *)(((byte *)NULL) + (16 * 1024))) // consider invalid
       {
@@ -1633,7 +1633,7 @@ namespace aura
    }
 
 
-} // namespace aura
+} // namespace user
 
 
 

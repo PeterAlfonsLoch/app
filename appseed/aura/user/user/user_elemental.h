@@ -1,22 +1,22 @@
 #pragma once
 
 
-namespace aura
+namespace user
 {
 
 
-   class CLASS_DECL_AURA interaction :
+   class CLASS_DECL_AURA elemental:
       virtual public command_target,
       virtual public ::aura::draw_interface
    {
    public:
 
-      
-      void *         m_pvoidUserInteraction; // ::user::interaction * 
+
+      void *         m_pvoidUserInteraction; // ::user::elemental * 
 
 
-      interaction();
-      virtual ~interaction();
+      elemental();
+      virtual ~elemental();
 
       inline oswindow get_safe_handle() const;
 
