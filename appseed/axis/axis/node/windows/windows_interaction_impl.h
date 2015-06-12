@@ -466,7 +466,7 @@ namespace windows
       bool OnHelpInfo(HELPINFO* lpHelpInfo);
       void OnIconEraseBkgnd(::draw2d::graphics * pgraphics);
       void OnKillFocus(::window_sp pNewWnd);
-      LRESULT OnMenuChar(UINT nChar,UINT nFlags,::aura::menu* pMenu);
+      LRESULT OnMenuChar(UINT nChar,UINT nFlags,::user::menu* pMenu);
       void OnMenuSelect(UINT nItemID,UINT nFlags,HMENU hSysMenu);
       void OnMove(int32_t x,int32_t y);
       DECL_GEN_SIGNAL(_001OnPaint);
@@ -547,8 +547,8 @@ namespace windows
       void OnTimer(uint_ptr nIDEvent);
 
       // Initialization message handler member functions
-      void OnInitMenu(::aura::menu* pMenu);
-      void OnInitMenuPopup(::aura::menu* pPopupMenu,UINT nIndex,bool bSysMenu);
+      void OnInitMenu(::user::menu* pMenu);
+      void OnInitMenuPopup(::user::menu* pPopupMenu,UINT nIndex,bool bSysMenu);
 
       // Clipboard message handler member functions
       void OnAskCbFormatName(__in UINT nMaxCount,__out_ecount_z(nMaxCount) LPTSTR lpszString);

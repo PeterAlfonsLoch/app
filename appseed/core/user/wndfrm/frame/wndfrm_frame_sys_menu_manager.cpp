@@ -41,7 +41,7 @@ namespace user
                {
                   //               sp(::user::interaction) pwnd = m_pworkset->GetEventWindow();
 
-                  /*            ::aura::menu * pmenu = pwnd->GetSystemMenu(FALSE);
+                  /*            ::user::menu * pmenu = pwnd->GetSystemMenu(FALSE);
                            if(pmenu != NULL)
                            {
                            pmenu->TrackPopupMenu(
@@ -88,7 +88,7 @@ namespace user
                {
                   //               sp(::user::interaction) pwnd = m_pworkset->GetEventWindow();
 
-                  /*            ::aura::menu * pmenu = pwnd->GetSystemMenu(FALSE);
+                  /*            ::user::menu * pmenu = pwnd->GetSystemMenu(FALSE);
                            if(pmenu != NULL)
                            {
                            point pt(LOWORD(lparam), HIWORD(lparam));

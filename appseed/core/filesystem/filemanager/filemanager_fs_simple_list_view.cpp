@@ -606,10 +606,10 @@ namespace filemanager
             }
             else
             {
-            ::aura::menu menu;
+            ::user::menu menu;
             if (menu.LoadMenu(IDR_POPUP_ALBUM))
             {
-            ::aura::menu* pPopup = menu.GetSubMenu(0);
+            ::user::menu* pPopup = menu.GetSubMenu(0);
             ASSERT(pPopup != NULL);
             sp(::user::frame_window) pframe = GetParentFrame()->GetParentFrame();
             pPopup->TrackPopupMenu(

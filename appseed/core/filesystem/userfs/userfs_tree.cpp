@@ -221,10 +221,10 @@ namespace userfs
          }
          else
          {
-         ::aura::menu menu;
+         ::user::menu menu;
          if (menu.LoadMenu(get_filemanager_template()->get_filemanager_template()->m_uiPopup))
          {
-         ::aura::menu* pPopup = menu.GetSubMenu(0);
+         ::user::menu* pPopup = menu.GetSubMenu(0);
          ASSERT(pPopup != NULL);
          sp(::user::frame_window) pframe = GetTopLevelFrame();
          pPopup->TrackPopupMenu(

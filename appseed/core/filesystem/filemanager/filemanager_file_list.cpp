@@ -284,13 +284,13 @@ namespace filemanager
       ::user::list::ScreenToClient(&ptClient);
         if(_001HitTest_(ptClient, iItem))
       {
-         ::aura::menu menu(get_app());
+         ::user::menu menu(get_app());
          if(get_fs_mesh_data()->m_itema.get_item(iItem).IsFolder())
          {
             _017OpenContextMenuFolder(new ::fs::item(get_fs_mesh_data()->m_itema.get_item(iItem)), ::action::source_user);
             /*if (menu.LoadXmlMenu(get_filemanager_template()->m_strFolderPopup))
             {
-               ::aura::menu menuPopup(get_app(), menu.GetSubMenu(0));
+               ::user::menu menuPopup(get_app(), menu.GetSubMenu(0));
                //SimpleMenu* pPopup = (SimpleMenu *) menu.GetSubMenu(0);
                //ASSERT(pPopup != NULL);
                sp(::user::frame_window) pframe = ( (GetParentFrame()));
@@ -504,7 +504,7 @@ namespace filemanager
       if(straCommand.get_size() > 0)
       {
 
-         m_spmenuPopup = canew(::aura::menu(get_app()));
+         m_spmenuPopup = canew(::user::menu(get_app()));
 
          point ptCursor;
 

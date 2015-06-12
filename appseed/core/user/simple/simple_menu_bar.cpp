@@ -14,7 +14,7 @@ simple_menu_bar::simple_menu_bar(::aura::application * papp) :
    simple_toolbar(papp)
 {
 
-   m_pmenu = new ::aura::menu(papp);
+   m_pmenu = new ::user::menu(papp);
 
    m_bTracking = false;
    m_iTopMenuCount = 0;

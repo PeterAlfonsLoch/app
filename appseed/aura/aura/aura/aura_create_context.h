@@ -16,7 +16,7 @@ namespace aura
       ::user::elemental *           m_puiNew;
 
       // for creating MDI children (CMDIChildWnd::LoadFrame)
-      ::aura::impact_system *     m_pNewDocTemplate;
+      ::user::impact_system *     m_pNewDocTemplate;
 
       // for sharing ::user::impact/frame state from the original ::user::impact/frame
       ::user::elemental *           m_pLastView;

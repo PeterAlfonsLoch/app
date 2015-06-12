@@ -102,7 +102,7 @@ namespace user
 
    class CLASS_DECL_AXIS frame_window :
       virtual public ::database::user::interaction,
-      virtual public ::aura::frame_window
+      virtual public ::user::frame
    {
    public:
 
@@ -135,7 +135,7 @@ namespace user
       int32_t                    m_iFrameData;
 
       ::id                       m_idHelp;         // xxx mrs
-      ::aura::impact_system *    m_pdocumenttemplate;
+      ::user::impact_system *    m_pdocumenttemplate;
 
       int32_t                    m_nWindow;  // general purpose interaction_impl number - display as ":n"
       // -1 => unknown, 0 => only interaction_impl viewing ::user::document

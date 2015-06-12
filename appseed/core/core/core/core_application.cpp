@@ -718,7 +718,7 @@ namespace core
 
       ASSERT(m_pRecentFileList->m_arrNames != NULL);
 
-      ::aura::menu* pMenu = pcmdui->m_pMenu;
+      ::user::menu* pMenu = pcmdui->m_pMenu;
       if (m_pRecentFileList->m_strOriginal.is_empty() && pMenu != NULL)
       pMenu->GetMenuString(pcmdui->m_nID, m_pRecentFileList->m_strOriginal, MF_BYCOMMAND);
 
@@ -734,7 +734,7 @@ namespace core
       if (pcmdui->m_pMenu == NULL)
       return;
 
-      ::aura::menu * pmenu = CMenuUtil::FindPopupMenuFromID(pcmdui->m_pMenu, pcmdui->m_nID);
+      ::user::menu * pmenu = CMenuUtil::FindPopupMenuFromID(pcmdui->m_pMenu, pcmdui->m_nID);
 
       //if(pmenu == NULL)
       //{
@@ -1703,7 +1703,7 @@ namespace core
    }
 
    // prompt for file name - used for open and save as
-   bool application::do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog,::aura::impact_system * ptemplate,::user::document * pdocument)
+   bool application::do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog,::user::impact_system * ptemplate,::user::document * pdocument)
       // if ptemplate==NULL => all document templates
    {
       if(Session.m_pfilemanager != NULL)
@@ -3827,7 +3827,7 @@ namespace core
    }
 
 
-   void application::add_document_template(::aura::impact_system * ptemplate)
+   void application::add_document_template(::user::impact_system * ptemplate)
    {
 
       if(ptemplate == NULL)
@@ -3925,7 +3925,7 @@ namespace core
 
    }
 
-   void application::set_form_impact_system(::aura::impact_system * pdoctemplate,::aura::impact_system * pdoctemplateChild,::aura::impact_system * pdoctemplatePlaceHolder)
+   void application::set_form_impact_system(::user::impact_system * pdoctemplate,::user::impact_system * pdoctemplateChild,::user::impact_system * pdoctemplatePlaceHolder)
    {
       Session.userex()->m_ptemplateForm = pdoctemplate;
       Session.userex()->m_ptemplateChildForm = pdoctemplateChild;

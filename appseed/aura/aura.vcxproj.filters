@@ -249,6 +249,12 @@
     <Filter Include="Source Files\net">
       <UniqueIdentifier>{8b262521-2560-453a-a362-71363e835ffa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\user\user">
+      <UniqueIdentifier>{56c22d9d-a50c-4f18-9f8c-b278792cf0d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\user">
+      <UniqueIdentifier>{974dd2df-2d21-488e-b03a-6f7b62219aae}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive_id.h">
@@ -1865,9 +1871,6 @@
     <ClInclude Include="aura\aura\axis.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_frame_window.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
     <ClInclude Include="aura\aura\aura_user.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
@@ -2044,6 +2047,9 @@
     </ClInclude>
     <ClInclude Include="aura\os\windows\windows_console_window.h">
       <Filter>Header Files\aura\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_frame.h">
+      <Filter>Header Files\user\user</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -3429,6 +3435,9 @@
     </ClCompile>
     <ClCompile Include="aura\aura\aura_console_window.cpp">
       <Filter>Source Files\aura\aura</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_frame.cpp">
+      <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

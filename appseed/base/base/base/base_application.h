@@ -60,7 +60,7 @@ namespace base
 //
 //
 //
-//      virtual bool do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog, ::aura::impact_system * ptemplate, ::user::document * pdocument);
+//      virtual bool do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
 //
 //
 //      virtual sp(::user::interaction) release_capture_uie();

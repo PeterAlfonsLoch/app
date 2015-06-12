@@ -18,7 +18,7 @@ namespace user
    public:
 
 
-      static ::aura::menu *    s_pmenu;
+      static ::user::menu *    s_pmenu;
       static HHOOK            s_hhookMouse;
       static int32_t              s_iMouseHookCount;
 

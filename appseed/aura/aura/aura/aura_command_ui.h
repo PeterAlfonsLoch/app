@@ -14,8 +14,8 @@ public:
    ::count m_iCount;        // last + 1 for iterating m_iIndex
 
    // if a menu item
-   ::aura::menu *      m_pMenu;         // NULL if not a menu
-   ::aura::menu *      m_pSubMenu;      // sub containing menu item
+   ::user::menu *      m_pMenu;         // NULL if not a menu
+   ::user::menu *      m_pSubMenu;      // sub containing menu item
    // if a popup sub menu - ID is for first in popup
 
    // if from some other interaction_impl
@@ -25,7 +25,7 @@ public:
    bool                    m_bContinueRouting;
    bool                    m_bEnableIfHasCommandHandler;
 
-   ::aura::menu* m_pParentMenu;   // NULL if parent menu not easily determined
+   ::user::menu* m_pParentMenu;   // NULL if parent menu not easily determined
    //  (probably a secondary popup menu)
 
 

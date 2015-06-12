@@ -100,7 +100,7 @@ namespace userex
       System.factory().creatable_small < ::user::plain_edit >();
 
       System.factory().creatable_small < ::user::menu_item >(System.type_info < ::aura::menu_base_item >());
-      System.factory().creatable_small < ::aura::menu >(System.type_info < ::aura::menu_base >());
+      System.factory().creatable_small < ::user::menu >(System.type_info < ::aura::menu_base >());
 
 
       System.factory().creatable_small < ::user::button >();

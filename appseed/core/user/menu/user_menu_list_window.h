@@ -5,7 +5,7 @@ namespace user
 {
 
    class CLASS_DECL_CORE menu_list_window :
-      virtual public ::aura::menu
+      virtual public ::user::menu
    {
    public:
 

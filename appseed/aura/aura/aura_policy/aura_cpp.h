@@ -105,17 +105,32 @@ class base_edit;
 namespace aura
 {
 
+
    class application;
    class system;
    class application_signal_details;
-   class platform_interface;
 
    class command;
-   class impact_system;
-   class printer;
 
    class str;
    class str_context;
+
+
+} // namespace aura
+
+
+namespace user
+{
+
+   class elemental;
+   class frame;
+   class menu;
+   class document;
+
+   class impact_system;
+   class printer;
+   class impact;
+
 
 } // namespace aura
 
@@ -128,13 +143,6 @@ namespace install
 
 } // namespace install
 
-
-namespace user
-{
-
-   class impact;
-
-}
 
 namespace data
 {
@@ -567,18 +575,6 @@ namespace html
 
 }
 
-
-namespace aura
-{
-
-
-   class interaction;
-   class frame_window;
-   class menu;
-   class document;
-
-
-} // namespace aura
 
 
 #define SCAST_PTR(TYPE, ptarget, psource) TYPE * ptarget = dynamic_cast < TYPE * > (psource);

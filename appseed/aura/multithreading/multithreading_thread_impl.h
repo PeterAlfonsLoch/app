@@ -61,7 +61,7 @@ public:
    HTHREAD                                   m_hthread;
    IDTHREAD                                  m_uiThread;
 
-   list < ::aura::frame_window * >           m_frameList;
+   list < ::user::frame * >           m_frameList;
 
    LPVOID                                    m_pThreadParams;
    __THREADPROC                              m_pfnThreadProc;

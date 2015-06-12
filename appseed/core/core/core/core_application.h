@@ -338,7 +338,7 @@ namespace core
       // registered with the doc manager.
       int32_t get_open_document_count();
 
-      bool do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog, ::aura::impact_system * ptemplate,::user::document * pdocument);
+      bool do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog, ::user::impact_system * ptemplate,::user::document * pdocument);
 
       void EnableModeless(bool bEnable); // to disable OLE in-place dialogs
 
@@ -544,7 +544,7 @@ namespace core
       //   virtual int32_t simple_message_box(sp(::user::interaction) puiOwner, const char * pszMessage, UINT fuStyle = MB_OK);
       //   virtual int32_t simple_message_box_timeout(sp(::user::interaction) pwndOwner, const char * pszMessage, ::duration durationTimeOut, UINT fuStyle = MB_OK);
 
-      virtual void add_document_template(::aura::impact_system * ptemplate);
+      virtual void add_document_template(::user::impact_system * ptemplate);
       //virtual void close_all_documents(bool bEndSession,::user::interaction * pwndExcept = NULL);
 
       virtual ::user::document * open_document_file(const char * lpszFileName);
@@ -557,7 +557,7 @@ namespace core
 
       virtual sp(type) user_default_controltype_to_typeinfo(::user::e_control_type e_type);
 
-      virtual void set_form_impact_system(::aura::impact_system * pdoctemplate,::aura::impact_system * pdoctemplateChild,::aura::impact_system * pdoctemplatePlaceHolder);
+      virtual void set_form_impact_system(::user::impact_system * pdoctemplate,::user::impact_system * pdoctemplateChild,::user::impact_system * pdoctemplatePlaceHolder);
 
       sp(::user::document)   create_form(::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var = ::var(::var::type_empty_argument));
       sp(::user::document)   create_form(sp(::user::form) pview,::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var = ::var(::var::type_empty_argument));
