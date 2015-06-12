@@ -14,7 +14,7 @@ namespace userex // ca8 + cube
 
 
 
-      sp(::aura::document)               m_pdoc;
+      sp(::user::document)               m_pdoc;
       sp(::user::form)                   m_pview;
       sp(simple_list_view)            m_plistview;
       ::user::keyboard_layout_ida   m_layoutida;

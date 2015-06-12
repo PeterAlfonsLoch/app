@@ -39,7 +39,7 @@ namespace sphere
 
       virtual void on_request(sp(::create) pcreatecontext);
 
-      ::aura::document * _001OpenDocumentFile(var varFile);
+      ::user::document * _001OpenDocumentFile(var varFile);
 
       sp(::aura::application) get_system();
 

@@ -6,7 +6,7 @@ namespace command
 
 
    class CLASS_DECL_sphere document :
-      public ::aura::document
+      public ::user::document
    {
    public:
 

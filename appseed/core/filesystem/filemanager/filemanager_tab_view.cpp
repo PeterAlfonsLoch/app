@@ -139,7 +139,7 @@ namespace filemanager
          sp(::create) createcontext(allocer());
          createcontext->m_bMakeVisible = false;
          createcontext->m_puiParent = pcreatordata->m_pholder;
-         sp(::aura::document) pdoc = Session.filemanager().m_ptemplateForm->open_document_file(createcontext);
+         sp(::user::document) pdoc = Session.filemanager().m_ptemplateForm->open_document_file(createcontext);
          if (pdoc == NULL)
             return;
          form * pformview = pdoc->get_typed_view < form >();

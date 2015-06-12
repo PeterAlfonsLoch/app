@@ -56,17 +56,17 @@ namespace core
 
       if(m_pnaturedocument != NULL)
       {
-         m_pnaturedocument.cast < ::aura::document> ()->on_close_document();
+         m_pnaturedocument.cast < ::user::document> ()->on_close_document();
       }
 
       if(m_pplatformdocument != NULL)
       {
-         m_pplatformdocument.cast < ::aura::document>()->on_close_document();
+         m_pplatformdocument.cast < ::user::document>()->on_close_document();
       }
 
       if(m_pbergedgedocument != NULL)
       {
-         m_pbergedgedocument.cast < ::aura::document>()->on_close_document();
+         m_pbergedgedocument.cast < ::user::document>()->on_close_document();
       }
 
    }
@@ -592,7 +592,7 @@ namespace core
 //            //   get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + App(m_pappCurrent).m_strAppName);
 //            //}
 //            App(m_pappCurrent).request_create(pcreatecontext);
-//            if(pcreatecontext->m_spCommandLine->m_varQuery["document"].cast < ::aura::document > () == NULL)
+//            if(pcreatecontext->m_spCommandLine->m_varQuery["document"].cast < ::user::document > () == NULL)
 //            {
 //  //             goto alt1;
 //            }
@@ -1052,7 +1052,7 @@ namespace core
    }
 
 
-   sp(::aura::document) session::get_document()
+   sp(::user::document) session::get_document()
    {
       return m_pbergedgedocument;
    }
@@ -1065,12 +1065,12 @@ namespace core
       return NULL;
    }
 
-   sp(::aura::document) session::get_platform()
+   sp(::user::document) session::get_platform()
    {
       return m_pplatformdocument;
    }
 
-   sp(::aura::document) session::get_nature()
+   sp(::user::document) session::get_nature()
    {
       return m_pnaturedocument;
    }

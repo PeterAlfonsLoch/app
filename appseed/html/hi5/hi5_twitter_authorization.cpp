@@ -22,7 +22,7 @@ namespace hi5
          m_ptemplatePane   = new ::user::single_document_template(
             papp,
             "system/auth",
-            System.type_info < ::aura::document > (),
+            System.type_info < ::user::document > (),
             System.type_info < simple_frame_window > (),
             System.get_pane_tab_view_type_info());
          m_pviewAuth       = NULL;

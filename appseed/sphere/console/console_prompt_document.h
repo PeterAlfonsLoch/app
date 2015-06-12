@@ -6,7 +6,7 @@ namespace console
 
 
    class CLASS_DECL_sphere prompt_document :
-      public ::aura::document
+      public ::user::document
    {
    public:
 

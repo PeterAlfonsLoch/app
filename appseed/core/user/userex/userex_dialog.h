@@ -15,7 +15,7 @@ class CLASS_DECL_CORE dialog :
 public:
 
 
-   sp(::aura::document)          m_pdocument;
+   sp(::user::document)          m_pdocument;
    sp(simple_frame_window)       m_pframe;
    string                        m_strMatter;
 

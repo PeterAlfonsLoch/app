@@ -95,7 +95,7 @@ namespace aura
    void document::on_create(sp(::create) pcreatecontext)
    {
 
-      //::aura::document::on_alloc(papp);
+      //::user::document::on_alloc(papp);
       ::database::client::initialize_data_client(&Application.dataserver());
 
    }
@@ -1059,7 +1059,7 @@ namespace aura
    /*document::document(::aura::application * papp):
       ::object(papp),
       ::data::data_container_base(papp),
-      ::aura::document(papp)
+      ::user::document(papp)
    {
    }
 */

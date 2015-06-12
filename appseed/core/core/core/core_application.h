@@ -338,7 +338,7 @@ namespace core
       // registered with the doc manager.
       int32_t get_open_document_count();
 
-      bool do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog, ::aura::impact_system * ptemplate,::aura::document * pdocument);
+      bool do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog, ::aura::impact_system * ptemplate,::user::document * pdocument);
 
       void EnableModeless(bool bEnable); // to disable OLE in-place dialogs
 
@@ -397,7 +397,7 @@ namespace core
       //      virtual ::core::file_system & file_system();
       virtual bool _001OnDDECommand(const char * lpcsz);
       virtual void _001EnableShellOpen();
-      virtual ::aura::document * _001OpenDocumentFile(var varFile);
+      virtual ::user::document * _001OpenDocumentFile(var varFile);
       DECL_GEN_SIGNAL(_001OnFileNew);
 
 
@@ -473,7 +473,7 @@ namespace core
       //////////////////////////////////////////////////////////////////////////////////////////////////
       // System/System
       //
-      ::aura::document * place_hold(::user::interaction * pui);
+      ::user::document * place_hold(::user::interaction * pui);
 
       /*
       virtual ::count get_monitor_count();
@@ -547,7 +547,7 @@ namespace core
       virtual void add_document_template(::aura::impact_system * ptemplate);
       //virtual void close_all_documents(bool bEndSession,::user::interaction * pwndExcept = NULL);
 
-      virtual ::aura::document * open_document_file(const char * lpszFileName);
+      virtual ::user::document * open_document_file(const char * lpszFileName);
 
 
       virtual int32_t GetVisibleTopLevelFrameCountExcept(sp(::user::interaction) pwndExcept);
@@ -559,11 +559,11 @@ namespace core
 
       virtual void set_form_impact_system(::aura::impact_system * pdoctemplate,::aura::impact_system * pdoctemplateChild,::aura::impact_system * pdoctemplatePlaceHolder);
 
-      sp(::aura::document)   create_form(::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var = ::var(::var::type_empty_argument));
-      sp(::aura::document)   create_form(sp(::user::form) pview,::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var = ::var(::var::type_empty_argument));
-      sp(::aura::document)   create_child_form(::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var = ::var(::var::type_empty_argument));
-      sp(::aura::document)   create_child_form(sp(::user::form) pview,::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var = ::var(::var::type_empty_argument));
-      ::aura::document * hold(sp(::user::interaction) pui);
+      sp(::user::document)   create_form(::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var = ::var(::var::type_empty_argument));
+      sp(::user::document)   create_form(sp(::user::form) pview,::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var = ::var(::var::type_empty_argument));
+      sp(::user::document)   create_child_form(::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var = ::var(::var::type_empty_argument));
+      sp(::user::document)   create_child_form(sp(::user::form) pview,::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var = ::var(::var::type_empty_argument));
+      ::user::document * hold(sp(::user::interaction) pui);
 
       virtual bool platform_open_by_file_extension(int iEdge,const char * pszPathName,application_bias * pbiasCreate = NULL);
       virtual bool platform_open_by_file_extension(int iEdge,::create * pcc);

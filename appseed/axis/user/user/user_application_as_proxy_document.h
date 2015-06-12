@@ -6,7 +6,7 @@ namespace user
 
 
    class CLASS_DECL_AXIS application_as_proxy_document:
-      virtual public ::aura::document
+      virtual public ::user::document
    {
    public:
 

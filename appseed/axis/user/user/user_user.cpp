@@ -34,7 +34,7 @@ namespace user
    bool user::initialize1()
    {
 
-      System.factory().creatable_small < ::aura::document >();
+      System.factory().creatable_small < ::user::document >();
       System.factory().creatable_small < ::user::application_as_proxy_document >();
 
 

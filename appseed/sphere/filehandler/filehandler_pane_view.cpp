@@ -95,7 +95,7 @@ namespace filehandler
       POSITION pos = papp->m_ptemplate_html->get_document_count();
       while(pos != NULL)
       {
-      sp(::aura::document) pdoc = papp->m_ptemplate_html->get_document(index);
+      sp(::user::document) pdoc = papp->m_ptemplate_html->get_document(index);
       pdoc->update_all_views(pSender, lHint, pHint);
       }*/
 

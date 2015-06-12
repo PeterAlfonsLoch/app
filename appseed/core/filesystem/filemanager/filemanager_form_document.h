@@ -5,13 +5,13 @@
 //{
 //
 //
-//   class CLASS_DECL_CORE ::aura::document:
-//      virtual public ::aura::document
+//   class CLASS_DECL_CORE ::user::document:
+//      virtual public ::user::document
 //   {
 //   public:
 //      
 //      
-//      ::aura::document(::aura::application * papp);
+//      ::user::document(::aura::application * papp);
 //
 //      
 //   };

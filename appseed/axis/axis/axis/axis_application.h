@@ -88,7 +88,7 @@ namespace axis
       inline class ::simpledb::simpledb         & simpledb()   { return m_simpledb; }
 
 
-      //virtual bool do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog,sp(::aura::impact_system) ptemplate,::aura::document * pdocument);
+      //virtual bool do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog,sp(::aura::impact_system) ptemplate,::user::document * pdocument);
 
 
 
@@ -368,7 +368,7 @@ namespace axis
 
 
 
-      virtual bool do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog,::aura::impact_system * ptemplate,::aura::document * pdocument);
+      virtual bool do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog,::aura::impact_system * ptemplate,::user::document * pdocument);
 
 
       virtual sp(::user::interaction) release_capture_uie();
@@ -530,8 +530,8 @@ namespace axis
       virtual bool keyboard_focus_OnSetFocus(::user::elemental * pue);
 
 
-      virtual bool on_open_document(::aura::document * pdocument, var varFile);
-      virtual bool on_save_document(::aura::document * pdocument,var varFile);
+      virtual bool on_open_document(::user::document * pdocument, var varFile);
+      virtual bool on_save_document(::user::document * pdocument,var varFile);
 
 
    };

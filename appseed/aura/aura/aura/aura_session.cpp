@@ -929,7 +929,7 @@ namespace aura
                   //   get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + App(m_pappCurrent).m_strAppName);
                   //}
                   App(m_pappCurrent).request_create(pcreatecontext);
-                  //if(pcreatecontext->m_spCommandLine->m_varQuery["document"].cast < ::aura::document > () == NULL)
+                  //if(pcreatecontext->m_spCommandLine->m_varQuery["document"].cast < ::user::document > () == NULL)
                   {
         //             goto alt1;
                   }

@@ -12,7 +12,7 @@ namespace user
    public:
 
 
-      spa(::aura::document) m_docptra;          // open documents of this type
+      spa(::user::document) m_docptra;          // open documents of this type
       UINT m_nUntitledCount;   // start at 0, for "Document1" title
 
 
@@ -21,12 +21,12 @@ namespace user
 
 
       virtual void load_template();
-      virtual void add_document(::aura::document * pDoc);
-      virtual void remove_document(::aura::document * pDoc);
+      virtual void add_document(::user::document * pDoc);
+      virtual void remove_document(::user::document * pDoc);
       virtual ::count get_document_count() const;
-      virtual ::aura::document * get_document(index index) const;
+      virtual ::user::document * get_document(index index) const;
       virtual void request_create(sp(::create) pcreatecontext);
-      virtual void set_default_title(::aura::document * pdocument);
+      virtual void set_default_title(::user::document * pdocument);
 
       virtual void dump(dump_context &) const;
       virtual void assert_valid() const;

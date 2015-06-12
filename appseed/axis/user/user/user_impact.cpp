@@ -75,7 +75,7 @@ namespace user
 
 
    /////////////////////////////////////////////////////////////////////////////
-   // ::user::impact second phase construction - bind to ::aura::document
+   // ::user::impact second phase construction - bind to ::user::document
 
    bool impact::pre_create_window(::user::create_struct & cs)
    {
@@ -101,7 +101,7 @@ namespace user
 
 
 
-      // if ok, wire in the current ::aura::document
+      // if ok, wire in the current ::user::document
       ASSERT(::user::impact::get_document() == NULL);
       sp(::create) pContext = (::create *) pcreate->m_lpcreatestruct->lpCreateParams;
 
@@ -113,7 +113,7 @@ namespace user
       }
       else
       {
-         TRACE(::aura::trace::category_AppMsg, 0, "Warning: Creating a pane with no ::aura::document.\n");
+         TRACE(::aura::trace::category_AppMsg, 0, "Warning: Creating a pane with no ::user::document.\n");
       }
 
       ::user::frame_window * pframe = GetTypedParent < ::user::frame_window >();
@@ -247,7 +247,7 @@ namespace user
       //   trans OnDraw(&spgraphics);
    }
 
-   ::aura::document * impact::get_document(::user::interaction * pui)
+   ::user::document * impact::get_document(::user::interaction * pui)
    {
       sp(::user::impact) pview = pui;
       if (pview != NULL)
@@ -506,9 +506,9 @@ namespace user
       ::user::interaction::dump(dumpcontext);
 
       if (((impact *) this)->::user::impact::get_document() != NULL)
-         dumpcontext << "with ::aura::document: ";
+         dumpcontext << "with ::user::document: ";
       else
-         dumpcontext << "with no ::aura::document\n";
+         dumpcontext << "with no ::user::document\n";
    }
 
    void impact::assert_valid() const
@@ -524,13 +524,13 @@ namespace user
       SCAST_PTR(::message::base, pbase, pobj)
       if (pbase->m_wparam == 0)
       {
-         ::aura::document::update * pupdate = (::aura::document::update *) pbase->m_lparam.m_lparam;
+         ::user::document::update * pupdate = (::user::document::update *) pbase->m_lparam.m_lparam;
          on_update(pupdate->m_pSender, pupdate->m_lHint, pupdate->m_pHint);
       }
    }
 
 
-   ::user::interaction * impact::create_view(type * pinfo, ::aura::document * pdoc,const RECT & rect, ::user::interaction * pwndParent, id id, ::user::interaction * pviewLast)
+   ::user::interaction * impact::create_view(type * pinfo, ::user::document * pdoc,const RECT & rect, ::user::interaction * pwndParent, id id, ::user::interaction * pviewLast)
    {
 
       sp(type) info(pinfo);
@@ -569,7 +569,7 @@ namespace user
    }
 
 
-   ::user::interaction * impact::s_create_view(type * pinfo, ::aura::document * pdoc,const RECT & rect, ::user::interaction * pwndParent,id id, ::user::interaction * pviewLast)
+   ::user::interaction * impact::s_create_view(type * pinfo, ::user::document * pdoc,const RECT & rect, ::user::interaction * pwndParent,id id, ::user::interaction * pviewLast)
    {
 
       sp(type) info(pinfo);
@@ -702,7 +702,7 @@ namespace user
    }
 
 
-   ::aura::document * impact::get_document() const
+   ::user::document * impact::get_document() const
    {
 
       ASSERT(this != NULL);

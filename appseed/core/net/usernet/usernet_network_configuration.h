@@ -12,7 +12,7 @@ namespace usernet // ca8 + cube
    public:
 
 
-      sp(::aura::document)               m_pdoc;
+      sp(::user::document)               m_pdoc;
       sp(::user::form)                   m_pview;
 
 

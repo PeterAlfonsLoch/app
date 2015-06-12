@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_HTML html_document :
-   virtual public ::aura::document
+   virtual public ::user::document
 {
 public:
 

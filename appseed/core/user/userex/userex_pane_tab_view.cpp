@@ -272,7 +272,7 @@ namespace userex
    }
 
 
-   void pane_tab_view::FileManagerSaveAs(::aura::document * pdocument)
+   void pane_tab_view::FileManagerSaveAs(::user::document * pdocument)
    {
 
       set_cur_tab_by_id("file_manager");
@@ -281,7 +281,7 @@ namespace userex
    }
 
 
-   void pane_tab_view::TabbedFileManagerSaveAs(::aura::document * pdocument)
+   void pane_tab_view::TabbedFileManagerSaveAs(::user::document * pdocument)
    {
 
       set_cur_tab_by_id("tabbed_file_manager");

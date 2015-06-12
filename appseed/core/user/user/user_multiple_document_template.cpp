@@ -34,14 +34,14 @@ namespace user
       return m_docptra.get_count();
    }
 
-   ::aura::document * multiple_document_template::get_document(index index) const
+   ::user::document * multiple_document_template::get_document(index index) const
    {
       if(index < 0 || index >= m_docptra.get_count())
          return NULL;
       return m_docptra.element_at(index);
    }
 
-   void multiple_document_template::add_document(::aura::document * pdocument)
+   void multiple_document_template::add_document(::user::document * pdocument)
    {
       if(m_docptra.add_unique(pdocument))
       {
@@ -50,7 +50,7 @@ namespace user
    }
 
 
-   void multiple_document_template::remove_document(::aura::document * pdocument)
+   void multiple_document_template::remove_document(::user::document * pdocument)
    {
       
       m_docptra.remove(pdocument);
@@ -67,12 +67,12 @@ namespace user
       bool bMakeVisible = pcreatecontext->m_bMakeVisible;
       //   sp(::user::interaction) pwndParent = pcreatecontext->m_spCommandLine->m_varQuery["parent_user_interaction"].cast < ::user::interaction > ();
       //   sp(::user::impact) pviewAlloc = pcreatecontext->m_spCommandLine->m_varQuery["allocation_view"].cast < ::user::impact > ();
-      sp(::aura::document) pdocument = create_new_document(pcreatecontext);
+      sp(::user::document) pdocument = create_new_document(pcreatecontext);
       if (pdocument == NULL)
       {
          TRACE(::aura::trace::category_AppMsg, 0, "impact_system::create_new_document returned NULL.\n");
          // linux System.simple_message_box(__IDP_FAILED_TO_CREATE_DOC);
-         System.simple_message_box(NULL, "failed to create ::aura::document");
+         System.simple_message_box(NULL, "failed to create ::user::document");
          return;
       }
 
@@ -83,7 +83,7 @@ namespace user
       if (pFrame == NULL)
       {
          // linux System.simple_message_box(__IDP_FAILED_TO_CREATE_DOC);
-         System.simple_message_box(NULL, "Failed to create ::aura::document");
+         System.simple_message_box(NULL, "Failed to create ::user::document");
          pdocument.release();       // explicit delete on error
          return;
       }
@@ -91,7 +91,7 @@ namespace user
 
       if(pcreatecontext->m_spCommandLine->m_varFile.is_empty())
       {
-         // create a new ::aura::document - with default ::aura::document name
+         // create a new ::user::document - with default ::user::document name
          set_default_title(pdocument);
 
          // avoid creating temporary compound file when starting up invisible
@@ -101,7 +101,7 @@ namespace user
          if (!pdocument->on_new_document())
          {
             // ::fontopus::user has be alerted to what failed in on_new_document
-            TRACE(::aura::trace::category_AppMsg, 0, "::aura::document::on_new_document returned FALSE.\n");
+            TRACE(::aura::trace::category_AppMsg, 0, "::user::document::on_new_document returned FALSE.\n");
             pFrame->DestroyWindow();
             return;
          }
@@ -111,14 +111,14 @@ namespace user
       }
       else
       {
-         // open an existing ::aura::document
+         // open an existing ::user::document
          if(!on_open_document(pdocument, pcreatecontext->m_spCommandLine->m_varFile))
          {
             // failed to open or just failed to queue to open
             // if m_bQueueDocumentOpening flag is set, document opening is queued, and failure would be reported in a unknown way
             // prepare core for async operations and also async failures
             // ::fontopus::user has be alerted to what failed in on_open_document
-            TRACE(::aura::trace::category_AppMsg, 0, "::aura::document::on_open_document returned FALSE.\n");
+            TRACE(::aura::trace::category_AppMsg, 0, "::user::document::on_open_document returned FALSE.\n");
             pFrame->DestroyWindow();
             return;
          }
@@ -140,7 +140,7 @@ namespace user
 
    }
 
-   void multiple_document_template::set_default_title(::aura::document * pdocument)
+   void multiple_document_template::set_default_title(::user::document * pdocument)
    {
       string strDocName;
       if (GetDocString(strDocName, impact_system::docName) &&
@@ -174,8 +174,8 @@ namespace user
       ::count count = get_document_count();
       for(index index = 0; index < count; index++)
       {
-         sp(::aura::document) pdocument = get_document(index);
-         dumpcontext << "\nwith ::aura::document " << (void *)pdocument;
+         sp(::user::document) pdocument = get_document(index);
+         dumpcontext << "\nwith ::user::document " << (void *)pdocument;
       }
 
       dumpcontext << "\n";
@@ -188,7 +188,7 @@ namespace user
       ::count count = get_document_count();
       for(index index = 0; index < count; index++)
       {
-         sp(::aura::document) pdocument = get_document(index);
+         sp(::user::document) pdocument = get_document(index);
          pdocument->assert_valid();
       }
 

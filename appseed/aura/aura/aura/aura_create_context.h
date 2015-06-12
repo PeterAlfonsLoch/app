@@ -12,7 +12,7 @@ namespace aura
    public:
       // for creating new views
       sp(type)                               m_typeinfoNewView; // runtime class of ::user::impact to create or NULL
-      ::aura::document *              m_pCurrentDoc;
+      ::user::document *              m_pCurrentDoc;
       ::aura::interaction *           m_puiNew;
 
       // for creating MDI children (CMDIChildWnd::LoadFrame)

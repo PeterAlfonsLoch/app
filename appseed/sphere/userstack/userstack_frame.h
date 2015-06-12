@@ -19,7 +19,7 @@ namespace userstack
       
       
       image_list  *              m_pimagelist;
-      sp(::aura::document)                 m_pdocument;
+      sp(::user::document)                 m_pdocument;
       bool                       m_bHoverMouse;
       uint32_t                      m_dwLastHover;
       bool                       m_bTimerOn;

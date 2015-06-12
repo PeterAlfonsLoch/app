@@ -49,14 +49,14 @@ namespace user
 
 
 
-      ::aura::document *      m_pdocument;
+      ::user::document *      m_pdocument;
 
 
 
       impact();
       virtual ~impact();
 
-      ::aura::document * get_document() const;
+      ::user::document * get_document() const;
 
       template < class DATA >
       DATA * get_typed_data();
@@ -103,12 +103,12 @@ namespace user
 
 
 
-      ::user::interaction * create_view(type * info, ::aura::document * pdoc = NULL, const RECT & rect = ::null_rect(), ::user::interaction * pwndParent = NULL, ::id id = ::id(), ::user::interaction * pviewLast = NULL);
-      static ::user::interaction * s_create_view(type * info, ::aura::document * pdoc,const RECT & rect, ::user::interaction * pwndParent,id id,::user::interaction * pviewLast = NULL);
+      ::user::interaction * create_view(type * info, ::user::document * pdoc = NULL, const RECT & rect = ::null_rect(), ::user::interaction * pwndParent = NULL, ::id id = ::id(), ::user::interaction * pviewLast = NULL);
+      static ::user::interaction * s_create_view(type * info, ::user::document * pdoc,const RECT & rect, ::user::interaction * pwndParent,id id,::user::interaction * pviewLast = NULL);
       static ::user::interaction * s_create_view(::create * pContext,const RECT & rect,::user::interaction * pwndParent,id id);
 
       template < class VIEW >
-      VIEW * create_view(::aura::document * pdoc = NULL,const RECT & rect = ::null_rect(),::user::interaction * pwndParent = NULL,::id id = ::id(),::user::interaction * pviewLast = NULL);
+      VIEW * create_view(::user::document * pdoc = NULL,const RECT & rect = ::null_rect(),::user::interaction * pwndParent = NULL,::id id = ::id(),::user::interaction * pviewLast = NULL);
 
       template < class VIEW >
       VIEW * create_view(const RECT & rect, ::user::interaction * pwndParent,::id id = ::id(),::user::interaction * pviewLast = NULL);
@@ -117,7 +117,7 @@ namespace user
       VIEW * create_view(::user::view_creator_data * pcreatordata, ::user::interaction * pviewLast = NULL);
 
 
-      static ::aura::document * get_document(::user::interaction * pui);
+      static ::user::document * get_document(::user::interaction * pui);
 
       virtual void dump(dump_context &) const;
       virtual void assert_valid() const;
@@ -189,7 +189,7 @@ namespace user
       virtual void on_select();
 
       // each view can display one or more documents but has only one document interface
-      //::aura::document * get_document() const;
+      //::user::document * get_document() const;
 
       //      virtual bool IsSelected(const object* pDocItem) const; // support for OLE
 

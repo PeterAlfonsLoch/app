@@ -16,7 +16,7 @@ class html_view;
 
 
 #include "userhtml_form.h"
-#include "userhtml_form_view.h" // html_form_view does not require a ::aura::document
+#include "userhtml_form_view.h" // html_form_view does not require a ::user::document
 
 #include "userhtml_frame.h"
 #include "userhtml_child_frame.h"

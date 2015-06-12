@@ -19,7 +19,7 @@ namespace userfs
       DECL_GEN_SIGNAL(_001OnTimer);
 
 
-      ::aura::document * get_document();
+      ::user::document * get_document();
 
    };
 

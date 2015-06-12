@@ -14,7 +14,7 @@ namespace filemanager
       m_ptemplatePane = new ::user::single_document_template(
          papp,
          "system/auth",
-         System.type_info < ::aura::document >(),
+         System.type_info < ::user::document >(),
          System.type_info < simple_frame_window > (),
          System.type_info < ::userex::pane_tab_view > ());
    }
@@ -31,7 +31,7 @@ namespace filemanager
       sp(::create) createcontext(allocer());
       createcontext->m_bMakeVisible = false;
       createcontext->m_puiParent = puieParent;
-      sp(::aura::document) pdoc = (m_ptemplatePane->open_document_file(createcontext));
+      sp(::user::document) pdoc = (m_ptemplatePane->open_document_file(createcontext));
       sp(::userex::pane_tab_view) pview = pdoc->get_typed_view < ::userex::pane_tab_view > ();
       pview->set_view_creator(this);
       m_ptabview = pview;

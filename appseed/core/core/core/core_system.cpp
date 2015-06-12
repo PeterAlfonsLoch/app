@@ -739,7 +739,7 @@ namespace core
 
 
 
-   ::aura::document * system::place_hold(::user::interaction * pui)
+   ::user::document * system::place_hold(::user::interaction * pui)
    {
 
 

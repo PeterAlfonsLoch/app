@@ -55,7 +55,7 @@ namespace aura
       return false;
    }
 
-   void impact_system::add_document(::aura::document * pdocument)
+   void impact_system::add_document(::user::document * pdocument)
    {
       ASSERT(pdocument->m_pimpactsystem == NULL);   // no template attached yet
 //      Application.defer_add_document_template(this);
@@ -63,13 +63,13 @@ namespace aura
       pdocument->install_message_handling(pdocument);
    }
 
-   void impact_system::remove_document(::aura::document * pdocument)
+   void impact_system::remove_document(::user::document * pdocument)
    {
       ASSERT(pdocument->m_pimpactsystem == this);   // must be attached to us
       pdocument->m_pimpactsystem = NULL;
    }
 
-   impact_system::Confidence impact_system::MatchDocType(const ::file::path & lpszPathName,::aura::document *& rpDocMatch)
+   impact_system::Confidence impact_system::MatchDocType(const ::file::path & lpszPathName,::user::document *& rpDocMatch)
    {
 
       ASSERT(lpszPathName.has_char());
@@ -80,7 +80,7 @@ namespace aura
       ::count count = get_document_count();
       for (index index = 0; index < count; index++)
       {
-         sp(::aura::document) pdocument = get_document(index);
+         sp(::user::document) pdocument = get_document(index);
          if (pdocument->get_file_path() == lpszPathName)
          {
             // already open
@@ -110,7 +110,7 @@ namespace aura
       return yesAttemptForeign;
    }
 
-   ::aura::document * impact_system::create_new_document(sp(::create) pcreatecontext)
+   ::user::document * impact_system::create_new_document(sp(::create) pcreatecontext)
    {
       // default implementation constructs one from sp(type)
       if (!m_typeinfoDocument)
@@ -119,15 +119,15 @@ namespace aura
          ASSERT(FALSE);
          return NULL;
       }
-      sp(::aura::document) pdocument = Application.alloc(m_typeinfoDocument);
+      sp(::user::document) pdocument = Application.alloc(m_typeinfoDocument);
       if (pdocument == NULL)
       {
-         TRACE(::aura::trace::category_AppMsg, 0, "Warning: Dynamic create of ::aura::document type %hs failed.\n",
+         TRACE(::aura::trace::category_AppMsg, 0, "Warning: Dynamic create of ::user::document type %hs failed.\n",
             m_typeinfoDocument->name());
          return NULL;
       }
       pdocument->on_create(pcreatecontext);
-      ASSERT_KINDOF(::aura::document, pdocument);
+      ASSERT_KINDOF(::user::document, pdocument);
       add_document(pdocument);
       return pdocument;
    }
@@ -135,10 +135,10 @@ namespace aura
    /////////////////////////////////////////////////////////////////////////////
    // Default frame creation
 
-   sp(::user::frame_window) impact_system::create_new_frame(::aura::document * pdocument, sp(::user::frame_window) pOther, sp(::create) pcreatecontext)
+   sp(::user::frame_window) impact_system::create_new_frame(::user::document * pdocument, sp(::user::frame_window) pOther, sp(::create) pcreatecontext)
    {
 
-      // create a frame wired to the specified ::aura::document
+      // create a frame wired to the specified ::user::document
 
       ASSERT(m_strMatter.get_length() > 0); // must have a resource ID to load from
       stacker < ::aura::create_context > context(pcreatecontext->m_user);
@@ -191,7 +191,7 @@ namespace aura
    }
 
    /*
-   sp(::user::frame_window) impact_system::CreateOleFrame(::window_sp pParentWnd, ::aura::document * pdocument,
+   sp(::user::frame_window) impact_system::CreateOleFrame(::window_sp pParentWnd, ::user::document * pdocument,
    bool bCreateView)
    {
    create_context context;
@@ -229,7 +229,7 @@ namespace aura
    }
    */
 
-   void impact_system::InitialUpdateFrame(sp(::user::frame_window) pFrame, ::aura::document * pdocument,
+   void impact_system::InitialUpdateFrame(sp(::user::frame_window) pFrame, ::user::document * pdocument,
       bool bMakeVisible)
    {
       // just delagate to implementation in frame_window
@@ -244,7 +244,7 @@ namespace aura
       ::count count = get_document_count();
       for (index index = 0; index < count; index++)
       {
-         sp(::aura::document) pdocument = get_document(index);
+         sp(::user::document) pdocument = get_document(index);
          if (!pdocument->save_modified())
             return FALSE;
       }
@@ -260,7 +260,7 @@ namespace aura
 
          try
          {
-            sp(::aura::document) pdocument = get_document(index);
+            sp(::user::document) pdocument = get_document(index);
 
             pdocument->close_document();
 
@@ -281,8 +281,8 @@ namespace aura
       ::count count = get_document_count();
       for (index index = 0; index < count; index++)
       {
-         sp(::aura::document) pdocument = get_document(index);
-         ASSERT_KINDOF(::aura::document, pdocument);
+         sp(::user::document) pdocument = get_document(index);
+         ASSERT_KINDOF(::user::document, pdocument);
          pdocument->on_idle();
       }
    }
@@ -311,7 +311,7 @@ namespace aura
          ::count count = get_document_count();
          for (index index = 0; index < count; index++)
          {
-            sp(::aura::document) pdocument = get_document(index);
+            sp(::user::document) pdocument = get_document(index);
             dumpcontext << (int_ptr)pdocument.m_p;
          }
          dumpcontext << "\n}";
@@ -327,7 +327,7 @@ namespace aura
       ::count count = get_document_count();
       for (index index = 0; index < count; index++)
       {
-         sp(::aura::document) pdocument = get_document(index);
+         sp(::user::document) pdocument = get_document(index);
          pdocument->assert_valid();
       }
    }
@@ -339,12 +339,12 @@ namespace aura
       ::count count = get_document_count();
       for (index index = 0; index < count; index++)
       {
-         sp(::aura::document) pdoc = get_document(index);
+         sp(::user::document) pdoc = get_document(index);
          pdoc->update_all_views(pviewSender, lhint, puh);
       }
    }
 
-   bool impact_system::on_open_document(::aura::document * pdocument, var varFile)
+   bool impact_system::on_open_document(::user::document * pdocument, var varFile)
    {
 
       if (m_bQueueDocumentOpening)
@@ -372,7 +372,7 @@ namespace aura
 
    }
 
-   bool impact_system::do_open_document(::aura::document * pdocument, var varFile)
+   bool impact_system::do_open_document(::user::document * pdocument, var varFile)
    {
 
       if (!pdocument->on_open_document(varFile))

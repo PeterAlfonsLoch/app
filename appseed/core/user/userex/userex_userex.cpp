@@ -82,7 +82,7 @@ namespace userex
       System.factory().creatable_small < ::user::menu_list_view >();
       System.factory().cloneable_small < simple_child_frame >();
       System.factory().cloneable_small < simple_main_frame >();
-      System.factory().cloneable_small < ::aura::document >();
+      System.factory().cloneable_small < ::user::document >();
       System.factory().cloneable_small < ::user::split_view >();
       System.factory().cloneable_small < split_view >();
 
@@ -94,7 +94,7 @@ namespace userex
 
 
       System.factory().creatable_small < simple_list_view >();
-      System.factory().creatable_small < ::aura::document >();
+      System.factory().creatable_small < ::user::document >();
       System.factory().creatable_small < simple_printer_list_view >();
       System.factory().creatable_small < ::user::combo_list >();
       System.factory().creatable_small < ::user::plain_edit >();
@@ -243,21 +243,21 @@ namespace userex
       m_ptemplateForm = new ::user::multiple_document_template(
          get_app(),
          "system/form",
-         System.type_info < ::aura::document >(),
+         System.type_info < ::user::document >(),
          System.type_info < form_frame >(),
          System.type_info < ::user::form >());
 
       m_ptemplateChildForm = new ::user::multiple_document_template(
          get_app(),
          "system/form",
-         System.type_info < ::aura::document >(),
+         System.type_info < ::user::document >(),
          System.type_info < form_child_frame >(),
          System.type_info < ::user::form >());
 
       m_ptemplatePlaceHolder = new ::user::multiple_document_template(
          get_app(),
          "system/form",
-         System.type_info < ::aura::document >(),
+         System.type_info < ::user::document >(),
          System.type_info < simple_frame_window >(),
          System.type_info < ::user::place_holder >());
 
@@ -613,7 +613,7 @@ namespace userex
    }
 
 
-   sp(::aura::document) userex::create_form(sp(::user::form) pview,::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var)
+   sp(::user::document) userex::create_form(sp(::user::form) pview,::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var)
    {
 
       if(m_ptemplateForm == NULL)
@@ -629,7 +629,7 @@ namespace userex
          createcontext->m_bHold                       = false;
       }
 
-      sp(::aura::document) pdoc = m_ptemplateForm->open_document_file(createcontext);
+      sp(::user::document) pdoc = m_ptemplateForm->open_document_file(createcontext);
 
       if(pdoc.is_null())
          return NULL;
@@ -648,7 +648,7 @@ namespace userex
       
    }
 
-   sp(::aura::document) userex::create_form(::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var)
+   sp(::user::document) userex::create_form(::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var)
    {
 
       if(m_ptemplateForm == NULL)
@@ -684,7 +684,7 @@ namespace userex
          createcontext->m_bHold                       = false;
       }
 
-      sp(::aura::document) pdoc = m_ptemplateForm->open_document_file(createcontext);
+      sp(::user::document) pdoc = m_ptemplateForm->open_document_file(createcontext);
 
       if(pdoc.is_null())
          return NULL;
@@ -703,7 +703,7 @@ namespace userex
    }
 
 
-   sp(::aura::document) userex::create_child_form(sp(::user::form) pview,::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var)
+   sp(::user::document) userex::create_child_form(sp(::user::form) pview,::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var)
    {
 
       if(m_ptemplateChildForm == NULL)
@@ -719,7 +719,7 @@ namespace userex
          createcontext->m_bHold                       = false;
       }
 
-      sp(::aura::document) pdoc = m_ptemplateChildForm->open_document_file(createcontext);
+      sp(::user::document) pdoc = m_ptemplateChildForm->open_document_file(createcontext);
 
       if(pdoc.is_null())
          return NULL;
@@ -739,7 +739,7 @@ namespace userex
    }
 
 
-   sp(::aura::document) userex::create_child_form(::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var)
+   sp(::user::document) userex::create_child_form(::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var)
    {
 
       if(m_ptemplateChildForm == NULL)
@@ -751,7 +751,7 @@ namespace userex
 
       createcontext->m_puiParent                      = pwndParent;
 
-      sp(::aura::document) pdoc = m_ptemplateChildForm->open_document_file(createcontext);
+      sp(::user::document) pdoc = m_ptemplateChildForm->open_document_file(createcontext);
 
       if(pdoc.is_null())
          return NULL;
@@ -770,7 +770,7 @@ namespace userex
    }
 
 
-   ::aura::document * userex::hold(sp(::user::interaction) pui)
+   ::user::document * userex::hold(sp(::user::interaction) pui)
    {
 
       sp(::create) createcontext(pui->allocer());
@@ -778,7 +778,7 @@ namespace userex
       createcontext->m_bMakeVisible    = false;
       createcontext->m_bHold           = false;
 
-      sp(::aura::document) pdoc = m_ptemplatePlaceHolder->open_document_file(createcontext);
+      sp(::user::document) pdoc = m_ptemplatePlaceHolder->open_document_file(createcontext);
 
       sp(::user::place_holder) pholder = pdoc->get_typed_view < ::user::place_holder  >();
 

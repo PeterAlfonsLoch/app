@@ -6,7 +6,7 @@ namespace userfs
 
 
    class CLASS_DECL_CORE document :
-      virtual public ::aura::document
+      virtual public ::user::document
    {
    public:
 
@@ -23,7 +23,7 @@ namespace userfs
       document(::aura::application * papp);
       virtual ~document();
 
-      ::aura::document *                                get_document();
+      ::user::document *                                get_document();
 
 
       virtual void assert_valid() const;

@@ -215,7 +215,7 @@ namespace userstack
    }
 
    
-   ::aura::document * view::get_document()
+   ::user::document * view::get_document()
    {
 
       return ::user::scroll_view::get_document();

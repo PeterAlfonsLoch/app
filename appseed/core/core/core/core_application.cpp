@@ -1703,7 +1703,7 @@ namespace core
    }
 
    // prompt for file name - used for open and save as
-   bool application::do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog,::aura::impact_system * ptemplate,::aura::document * pdocument)
+   bool application::do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog,::aura::impact_system * ptemplate,::user::document * pdocument)
       // if ptemplate==NULL => all document templates
    {
       if(Session.m_pfilemanager != NULL)
@@ -2782,7 +2782,7 @@ namespace core
    }
 
 
-   ::aura::document * application::_001OpenDocumentFile(var varFile)
+   ::user::document * application::_001OpenDocumentFile(var varFile)
    {
       string strId = m_strId;
       char chFirst = '\0';
@@ -3774,7 +3774,7 @@ namespace core
    //}
 
 
-   ::aura::document * application::place_hold(::user::interaction * pui)
+   ::user::document * application::place_hold(::user::interaction * pui)
    {
 
       return NULL;
@@ -3849,7 +3849,7 @@ namespace core
    }
 
 
-   ::aura::document * application::open_document_file(const char * lpszFileName)
+   ::user::document * application::open_document_file(const char * lpszFileName)
    {
       ASSERT(Application.m_pdocmanager != NULL);
       sp(::create) cc(allocer());
@@ -3934,7 +3934,7 @@ namespace core
    }
 
 
-   sp(::aura::document)   application::create_form(::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var)
+   sp(::user::document)   application::create_form(::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var)
    {
 
       return Sess(this).userex()->create_form(pcallback,pwndParent,var);
@@ -3942,7 +3942,7 @@ namespace core
    }
 
 
-   sp(::aura::document)   application::create_form(sp(::user::form) pview,::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var)
+   sp(::user::document)   application::create_form(sp(::user::form) pview,::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var)
    {
 
       return Sess(this).userex()->create_form(pview,pcallback,pwndParent,var);
@@ -3950,7 +3950,7 @@ namespace core
    }
 
 
-   sp(::aura::document)   application::create_child_form(::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var)
+   sp(::user::document)   application::create_child_form(::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var)
    {
 
       return Sess(this).userex()->create_child_form(pcallback, pwndParent, var);
@@ -3959,7 +3959,7 @@ namespace core
    }
 
 
-   sp(::aura::document)   application::create_child_form(sp(::user::form) pview,::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var)
+   sp(::user::document)   application::create_child_form(sp(::user::form) pview,::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var)
    {
 
       return Sess(this).userex()->create_child_form(pview, pcallback,pwndParent,var);
@@ -3967,7 +3967,7 @@ namespace core
    }
 
 
-   ::aura::document * application::hold(sp(::user::interaction) pui)
+   ::user::document * application::hold(sp(::user::interaction) pui)
    {
 
       return Sess(this).userex()->hold(pui);

@@ -88,7 +88,7 @@ namespace filemanager
       System.factory().creatable_small < preview > ();
       System.factory().creatable_small < main_frame > ();
       System.factory().creatable_small < tab_view > ();
-//      System.factory().creatable_small < ::aura::document > ();
+//      System.factory().creatable_small < ::user::document > ();
       System.factory().creatable_small < form_child_frame > ();
       System.factory().creatable_small < ::simple_form_view > ();
       System.factory().creatable_small < ::filemanager::folder_selection_list_view > ();
@@ -114,7 +114,7 @@ namespace filemanager
       m_ptemplateForm = new ::user::multiple_document_template(
          get_app(),
          pszMatter,
-         System.type_info < ::aura::document > (),
+         System.type_info < ::user::document > (),
          System.type_info < form_child_frame > (),
          System.type_info < ::user::form > ());
 
@@ -147,7 +147,7 @@ namespace filemanager
 
 
 
-   bool filemanager::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, ::aura::impact_system * ptemplate, ::aura::document * pdocument)
+   bool filemanager::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, ::aura::impact_system * ptemplate, ::user::document * pdocument)
    {
 
       sp(::userex::pane_tab_view) ppanetabview = NULL;

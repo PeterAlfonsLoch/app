@@ -208,7 +208,7 @@ namespace axis
 
 
 
-      virtual ::aura::document * place_hold(::user::interaction * pui);
+      virtual ::user::document * place_hold(::user::interaction * pui);
 
       virtual sp(::aura::session) query_session(index iEdge);
 

@@ -6,7 +6,7 @@ namespace user
 {
 
 
-   ::aura::document * server::open_new_document()
+   ::user::document * server::open_new_document()
    {
 
       return open_document_file(sp(::create)());
@@ -14,7 +14,7 @@ namespace user
    }
 
 
-   ::aura::document * server::open_document_file(sp(::create) pcreatecontext)
+   ::user::document * server::open_document_file(sp(::create) pcreatecontext)
    {
 
       sp(::create) cc(canew(::create(Application.creation(), var(var::type_empty), true, NULL)));
@@ -26,12 +26,12 @@ namespace user
 
       request_create(pcreatecontext);
 
-      return pcreatecontext->m_spCommandLine->m_varQuery["document"].cast < ::aura::document >();
+      return pcreatecontext->m_spCommandLine->m_varQuery["document"].cast < ::user::document >();
 
    }
 
 
-   ::aura::document * server::open_document_file(var varFile, bool bMakeVisible, ::user::interaction * puiParent)
+   ::user::document * server::open_document_file(var varFile, bool bMakeVisible, ::user::interaction * puiParent)
    {
 
       sp(::create) cc(canew(::create(Application.creation(), varFile, bMakeVisible, puiParent)));

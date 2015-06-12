@@ -12,7 +12,7 @@ namespace user
    public:
 
 
-      /*sp(::aura::document)               m_pdoc;
+      /*sp(::user::document)               m_pdoc;
       sp(::user::form)                   m_pview;*/
 
 

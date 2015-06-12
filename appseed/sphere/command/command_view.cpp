@@ -184,7 +184,7 @@ namespace command
    }
 
    
-   ::aura::document * view::get_document()
+   ::user::document * view::get_document()
    {
 
       return ::user::impact::get_document();

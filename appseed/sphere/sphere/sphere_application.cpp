@@ -280,7 +280,7 @@ namespace sphere
    }
 
 
-   ::aura::document *  application::_001OpenDocumentFile(var varFile)
+   ::user::document *  application::_001OpenDocumentFile(var varFile)
    {
       string strId = m_strId;
       char chFirst = '\0';

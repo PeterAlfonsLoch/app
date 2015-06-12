@@ -505,7 +505,7 @@ namespace user
       return NULL;
    }
 
-   ::aura::document * tab_view::get_view_document()
+   ::user::document * tab_view::get_view_document()
    {
       if(m_pviewdata == NULL)
          return NULL;

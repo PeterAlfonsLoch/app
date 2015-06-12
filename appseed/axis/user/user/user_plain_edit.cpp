@@ -2758,7 +2758,7 @@ namespace user
       sp(::user::impact) pview =  (this);
       if(pview != NULL)
       {
-         sp(::aura::document) pdoc = pview->get_document();
+         sp(::user::document) pdoc = pview->get_document();
          if(type == NULL)
          {
             string textStart;

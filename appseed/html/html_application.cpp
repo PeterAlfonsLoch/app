@@ -55,7 +55,7 @@ namespace html
             new ::user::multiple_document_template(
                get_app(),
                "system/form",
-               System.type_info < ::aura::document >(),
+               System.type_info < ::user::document >(),
                System.get_simple_frame_window_type_info(),
                System.type_info < ::user::place_holder >())
                

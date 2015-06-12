@@ -71,7 +71,7 @@ namespace user
 
    }
 
-   ::aura::document * form_callback::get_form_document(const string & strId)
+   ::user::document * form_callback::get_form_document(const string & strId)
    {
 
       auto passoc = m_mapform.PLookup(strId);

@@ -8,10 +8,10 @@
 //{
 //
 //
-//   ::aura::document::aura::document(::aura::application * papp):
+//   ::user::document::user::document(::aura::application * papp):
 //      object(papp),
 //      ::data::data_container_base(papp),
-//      ::aura::document(papp)
+//      ::user::document(papp)
 //   {
 //
 //   }

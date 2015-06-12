@@ -21,7 +21,7 @@ namespace hi5
          string                                    m_strAuthorizationUrl;
          int32_t                                   m_iView;
          sp(::user::single_document_template)      m_ptemplatePane;
-         sp(::aura::document)                      m_pdoc;
+         sp(::user::document)                      m_pdoc;
          sp(::user::tab_view)                      m_ptabview;
          sp(::html_document)                       m_pdocAuth;
          sp(::html_document)                       m_pdocMessage;
