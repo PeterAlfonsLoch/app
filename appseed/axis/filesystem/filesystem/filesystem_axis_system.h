@@ -128,7 +128,7 @@ namespace file
 
 
 
-         virtual bool resolve_link(path & strTarget,const path & pszSource,sp(::aura::interaction) puiMessageParentOptional = NULL);
+         virtual bool resolve_link(path & strTarget,const path & pszSource,sp(::user::elemental) puiMessageParentOptional = NULL);
 
          //virtual bool get_last_write_time(FILETIME * pfiletime,const string & strFilename);
          using ::file::system::dtf;

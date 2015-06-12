@@ -54,7 +54,7 @@ public:
 
    thread *                                  m_pthread;
 
-   sp(ptr_array < ::aura::interaction >)     m_spuiptra;
+   sp(ptr_array < ::user::elemental >)     m_spuiptra;
    sp(::aura::timer_array)                   m_sptimera;
 
    bool                                      m_bDupHandle;
@@ -113,20 +113,20 @@ public:
 
    virtual int_ptr item() const;
 
-   virtual void add(::aura::interaction * pui);
-   virtual void remove(::aura::interaction * pui);
+   virtual void add(::user::elemental * pui);
+   virtual void remove(::user::elemental * pui);
 
    virtual bool is_idle_message(signal_details * pobj);
    virtual bool is_idle_message(LPMESSAGE lpmsg);
 
    virtual void post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam);
    virtual bool post_thread_message(UINT message,WPARAM wParam = 0,lparam lParam = 0);
-   virtual bool post_message(::aura::interaction * pui,UINT message,WPARAM wParam = 0,lparam lParam = 0);
+   virtual bool post_message(::user::elemental * pui,UINT message,WPARAM wParam = 0,lparam lParam = 0);
 
    virtual ::count get_ui_count();
-   virtual ::aura::interaction * get_ui(::index iIndex);
-   virtual void set_timer(::aura::interaction * pui,uint_ptr nIDEvent,UINT nEllapse);
-   virtual void unset_timer(::aura::interaction * pui,uint_ptr nIDEvent);
+   virtual ::user::elemental * get_ui(::index iIndex);
+   virtual void set_timer(::user::elemental * pui,uint_ptr nIDEvent,UINT nEllapse);
+   virtual void unset_timer(::user::elemental * pui,uint_ptr nIDEvent);
    virtual event & get_finish_event();
    virtual void step_timer();
 

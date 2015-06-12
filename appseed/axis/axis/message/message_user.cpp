@@ -24,7 +24,7 @@ namespace message
 {
 
 
-   void create::set(::aura::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
+   void create::set(::user::elemental * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
    {
       base::set(pwnd,uiMessage,wparam,lparam,lresult);
       m_lpcreatestruct = reinterpret_cast<::user::create_struct *>(lparam);
@@ -51,7 +51,7 @@ namespace message
       System.log().print(lpcszErrorMessage);
    }
 
-   void timer::set(::aura::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
+   void timer::set(::user::elemental * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
    {
       base::set(pwnd,uiMessage,wparam,lparam,lresult);
       m_nIDEvent = static_cast<UINT>(wparam);
@@ -63,7 +63,7 @@ namespace message
    {
       }
 
-   void activate::set(::aura::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
+   void activate::set(::user::elemental * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
    {
       
       base::set(pwnd,uiMessage,wparam,lparam,lresult);
@@ -118,7 +118,7 @@ namespace message
    }
 
 
-   void key::set(::aura::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
+   void key::set(::user::elemental * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
    {
 
       base::set(pwnd,uiMessage,wparam,lparam,lresult);
@@ -165,13 +165,13 @@ namespace message
    {
       }
 
-   void nc_activate::set(::aura::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
+   void nc_activate::set(::user::elemental * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
    {
       base::set(pwnd,uiMessage,wparam,lparam,lresult);
       m_bActive = wparam != FALSE;
    }
 
-   void size::set(::aura::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
+   void size::set(::user::elemental * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
    {
       base::set(pwnd,uiMessage,wparam,lparam,lresult);
       m_nType     = static_cast < UINT > (wparam);
@@ -211,7 +211,7 @@ namespace message
       }
    }
 
-   void mouse::set(::aura::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
+   void mouse::set(::user::elemental * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
    {
       base::set(pwnd,uiMessage,wparam,lparam,lresult);
       m_nFlags    = wparam;
@@ -225,7 +225,7 @@ namespace message
 #endif
    }
 
-   void mouse_wheel::set(::aura::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
+   void mouse_wheel::set(::user::elemental * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
    {
       base::set(pwnd,uiMessage,wparam,lparam,lresult);
       m_nFlags    = wparam;
@@ -263,35 +263,35 @@ namespace message
    }
 
 
-   void scroll::set(::aura::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
+   void scroll::set(::user::elemental * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
    {
       base::set(pwnd,uiMessage,wparam,lparam,lresult);
       m_nSBCode = (int16_t)LOWORD(wparam);
       m_nPos = (int16_t)HIWORD(wparam);
-      m_pScrollBar = (::aura::interaction *) lparam;
+      m_pScrollBar = (::user::elemental *) lparam;
    }
 
-   void show_window::set(::aura::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
+   void show_window::set(::user::elemental * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
    {
       base::set(pwnd,uiMessage,wparam,lparam,lresult);
       m_bShow = wparam != FALSE;
       m_nStatus = static_cast<UINT>(lparam);
    }
 
-   void set_focus::set(::aura::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
+   void set_focus::set(::user::elemental * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
    {
       base::set(pwnd,uiMessage,wparam,lparam,lresult);
       //m_pwnd = System.window_from_os_data(reinterpret_cast<oswindow>(wparam));
       m_pwnd = NULL;
    }
 
-   void window_pos::set(::aura::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
+   void window_pos::set(::user::elemental * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
    {
       base::set(pwnd,uiMessage,wparam,lparam,lresult);
       m_pwindowpos = reinterpret_cast<WINDOWPOS*>(lparam);
    }
 
-   void nc_calc_size::set(::aura::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
+   void nc_calc_size::set(::user::elemental * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
    {
       base::set(pwnd,uiMessage,wparam,lparam,lresult);
       m_pparams = reinterpret_cast<NCCALCSIZE_PARAMS*>(lparam);

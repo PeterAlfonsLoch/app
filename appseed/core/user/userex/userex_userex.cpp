@@ -349,7 +349,7 @@ namespace userex
    }
 
 
-   int32_t userex::simple_message_box(::aura::interaction * pwndOwner,const char * pszMessage,UINT fuStyle)
+   int32_t userex::simple_message_box(::user::elemental * pwndOwner,const char * pszMessage,UINT fuStyle)
    {
 
       int iRet = ::simple_message_box(pwndOwner->get_safe_handle(), pszMessage, "ca2", fuStyle);
@@ -412,7 +412,7 @@ namespace userex
       }
    }
 
-   int32_t userex::simple_message_box_timeout(::aura::interaction * puiOwner,const char * pszMessage,::duration durationTimeout,UINT fuStyle)
+   int32_t userex::simple_message_box_timeout(::user::elemental * puiOwner,const char * pszMessage,::duration durationTimeout,UINT fuStyle)
    {
 
       UNREFERENCED_PARAMETER(puiOwner);

@@ -141,7 +141,7 @@ void thread_impl::pre_translate_message(signal_details * pobj)
             return;
       }
 
-//      ::aura::interaction * puiTopic = pbase->m_pwnd;
+//      ::user::elemental * puiTopic = pbase->m_pwnd;
 
       try
       {
@@ -712,14 +712,14 @@ int32_t thread_impl::exit_instance()
       if(m_spuiptra.is_set())
       {
 
-         sp(ptr_array < ::aura::interaction >) puiptra = m_spuiptra;
+         sp(ptr_array < ::user::elemental >) puiptra = m_spuiptra;
 
          m_spuiptra.release();
 
   //       for(int32_t i = 0; i < puiptra->get_size(); i++)
     //     {
 
-//            ::aura::interaction * pui = puiptra->element_at(i);
+//            ::user::elemental * pui = puiptra->element_at(i);
 
       //   }
 
@@ -762,7 +762,7 @@ bool thread_impl::on_idle(LONG lCount)
 
 
 
-bool thread_impl::post_message(::aura::interaction * pui,UINT uiMessage,WPARAM wparam,lparam lparam)
+bool thread_impl::post_message(::user::elemental * pui,UINT uiMessage,WPARAM wparam,lparam lparam)
 {
 
    return Application.post_user_message(this, pui,uiMessage,wparam,lparam);
@@ -991,7 +991,7 @@ int32_t thread_impl::thread_term()
 }
 
 
-void thread_impl::add(::aura::interaction * pui)
+void thread_impl::add(::user::elemental * pui)
 {
 
    single_lock sl(&m_mutexUiPtra,TRUE);
@@ -1006,7 +1006,7 @@ void thread_impl::add(::aura::interaction * pui)
 }
 
 
-void thread_impl::remove(::aura::interaction * pui)
+void thread_impl::remove(::user::elemental * pui)
 {
 
    if(pui == NULL)
@@ -1050,7 +1050,7 @@ void thread_impl::remove(::aura::interaction * pui)
 }
 
 
-::aura::interaction * thread_impl::get_ui(index iIndex)
+::user::elemental * thread_impl::get_ui(index iIndex)
 {
 
    single_lock sl(&m_mutexUiPtra,TRUE);
@@ -1060,7 +1060,7 @@ void thread_impl::remove(::aura::interaction * pui)
 }
 
 
-void thread_impl::set_timer(::aura::interaction * pui,uint_ptr nIDEvent,UINT nEllapse)
+void thread_impl::set_timer(::user::elemental * pui,uint_ptr nIDEvent,UINT nEllapse)
 {
 
    if(m_sptimera.is_null())
@@ -1078,7 +1078,7 @@ void thread_impl::set_timer(::aura::interaction * pui,uint_ptr nIDEvent,UINT nEl
 }
 
 
-void thread_impl::unset_timer(::aura::interaction * pui,uint_ptr nIDEvent)
+void thread_impl::unset_timer(::user::elemental * pui,uint_ptr nIDEvent)
 {
 
    if(m_sptimera.is_null())
@@ -1129,7 +1129,7 @@ bool thread_impl::initialize_message_queue()
    if(m_spuiptra.is_null())
    {
 
-      m_spuiptra = canew(ptr_array < ::aura::interaction >);
+      m_spuiptra = canew(ptr_array < ::user::elemental >);
 
    }
 

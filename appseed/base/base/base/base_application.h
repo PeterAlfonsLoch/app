@@ -53,8 +53,8 @@ namespace base
 //      virtual void on_create_keyboard();
 //
 //
-//      virtual int32_t simple_message_box(::aura::interaction * puiOwner,const char * pszMessage,UINT fuStyle = MB_OK);
-//      virtual int32_t simple_message_box_timeout(::aura::interaction * pwndOwner,const char * pszMessage,::duration durationTimeOut,UINT fuStyle);
+//      virtual int32_t simple_message_box(::user::elemental * puiOwner,const char * pszMessage,UINT fuStyle = MB_OK);
+//      virtual int32_t simple_message_box_timeout(::user::elemental * pwndOwner,const char * pszMessage,::duration durationTimeOut,UINT fuStyle);
 //      int32_t simple_message_box(const char * pszMessage,UINT fuStyle);
 //      virtual string message_box(const string & pszMatter,property_set & propertyset);
 //
@@ -87,19 +87,19 @@ namespace base
 //#endif
 //
 //      virtual bool on_thread_on_idle(::thread_impl * pimpl,LONG lCount);
-//      virtual bool post_user_message(::thread_impl * pimpl,::aura::interaction * pui,UINT message,WPARAM wparam = 0,lparam lparam = 0);
+//      virtual bool post_user_message(::thread_impl * pimpl,::user::elemental * pui,UINT message,WPARAM wparam = 0,lparam lparam = 0);
 //
 //
-//      virtual bool is_window(::aura::interaction * pui);
-//      virtual LRESULT send_message(::aura::interaction * pui,UINT message,WPARAM wparam = 0,lparam lparam = 0);
-//      virtual oswindow get_safe_handle(::aura::interaction * pui);
+//      virtual bool is_window(::user::elemental * pui);
+//      virtual LRESULT send_message(::user::elemental * pui,UINT message,WPARAM wparam = 0,lparam lparam = 0);
+//      virtual oswindow get_safe_handle(::user::elemental * pui);
 //      virtual void dispatch_user_message(::signal_details * pbase);
 //      virtual ::user::interaction * get_parent(::user::interaction * pui);
-//      virtual bool enable_window(::aura::interaction * pui,bool bEnable = true);
+//      virtual bool enable_window(::user::elemental * pui,bool bEnable = true);
 //      virtual bool set_window_text(::user::interaction * pui,const string & strText);
-//      virtual ptr_array < ::thread > get_thread(::aura::interaction * pui);
-//      virtual void add_thread(::aura::interaction * pui,::thread * pthread);
-//      virtual void remove_thread(::aura::interaction * pui,::thread * pthread);
+//      virtual ptr_array < ::thread > get_thread(::user::elemental * pui);
+//      virtual void add_thread(::user::elemental * pui,::thread * pthread);
+//      virtual void remove_thread(::user::elemental * pui,::thread * pthread);
 //      virtual void window_graphics_update_window(window_graphics * & pdata,oswindow interaction_impl,COLORREF * pOsBitmapData,const RECT & rect,int cxParam, int cyParam, int iStride = -1);
 //
 //

@@ -542,7 +542,7 @@ bool db_long_set::save(const char * lpKey, LPCRECT lpRect)
 }
 
 
-bool db_long_set::MoveWindow_(const char * lpKey, ::aura::interaction * pwindow)
+bool db_long_set::MoveWindow_(const char * lpKey, ::user::elemental * pwindow)
 {
    
    rect rect;
@@ -557,7 +557,7 @@ bool db_long_set::MoveWindow_(const char * lpKey, ::aura::interaction * pwindow)
 }
 
 
-bool db_long_set::SaveWindowRect_(const char * lpKey,::aura::interaction * pwindow)
+bool db_long_set::SaveWindowRect_(const char * lpKey,::user::elemental * pwindow)
 {
 
 #ifdef WINDOWSEX
@@ -710,7 +710,7 @@ return hr;
 
 //}
 
-bool db_long_set::SetWindowPlacement(const char * lpKey, ::aura::interaction * pwindow)
+bool db_long_set::SetWindowPlacement(const char * lpKey, ::user::elemental * pwindow)
 {
 
 #ifdef WINDOWSEX
@@ -747,7 +747,7 @@ bool db_long_set::SetWindowPlacement(const char * lpKey, ::aura::interaction * p
 
 }
 
-bool db_long_set::SaveWindowPlacement(const char * lpKey, ::aura::interaction * pwindow)
+bool db_long_set::SaveWindowPlacement(const char * lpKey, ::user::elemental * pwindow)
 {
 
 #ifdef WINDOWSEX

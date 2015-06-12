@@ -331,7 +331,7 @@ namespace aura
    }
 
 
-   //::aura::interaction * session::get_active_guie()
+   //::user::elemental * session::get_active_guie()
    //{
 
    //   return NULL;
@@ -339,7 +339,7 @@ namespace aura
    //}
 
 
-   //::aura::interaction * session::get_focus_guie()
+   //::user::elemental * session::get_focus_guie()
    //{
 
 

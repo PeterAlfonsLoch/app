@@ -117,8 +117,8 @@ namespace aura
       virtual void frame_pre_translate_message(signal_details * pobj);
 
 
-      //virtual ::aura::interaction * get_active_guie();
-      //virtual ::aura::interaction * get_focus_guie();
+      //virtual ::user::elemental * get_active_guie();
+      //virtual ::user::elemental * get_focus_guie();
 
 
       virtual bool is_licensed(const char * pszId,bool bInteractive = true);

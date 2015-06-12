@@ -59,10 +59,10 @@ public:
    bool find(const char * lpKey);
 
 
-   bool MoveWindow_(const char * lpKey, ::aura::interaction * pwindow);
-   bool SaveWindowRect_(const char * lpKey,::aura::interaction * pwindow);
-   bool SetWindowPlacement(const char * lpKey,::aura::interaction * pwindow);
-   bool SaveWindowPlacement(const char * lpKey,::aura::interaction * pwindow);
+   bool MoveWindow_(const char * lpKey, ::user::elemental * pwindow);
+   bool SaveWindowRect_(const char * lpKey,::user::elemental * pwindow);
+   bool SetWindowPlacement(const char * lpKey,::user::elemental * pwindow);
+   bool SaveWindowPlacement(const char * lpKey,::user::elemental * pwindow);
 
 };
 

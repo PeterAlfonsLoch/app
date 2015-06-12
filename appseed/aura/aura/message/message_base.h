@@ -15,14 +15,14 @@ namespace message
    public:
 
 
-      ::aura::interaction *      m_pwnd;
+      ::user::elemental *      m_pwnd;
       bool                       m_bConditional;
       bool                       m_bReflect;
       bool                       m_bDestroyed;
       bool                       m_bDoSystemDefault;
 
       base(::aura::application * papp,class ::signal * psignal = NULL);
-      base(::aura::application * papp,::aura::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
+      base(::aura::application * papp,::user::elemental * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
       base(const base & base);
       virtual ~base();
 
@@ -30,8 +30,8 @@ namespace message
 
       virtual void set_lresult(LRESULT lresult);
       virtual LRESULT & get_lresult();
-      virtual void set(::aura::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
-      virtual void set(::aura::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam);
+      virtual void set(::user::elemental * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
+      virtual void set(::user::elemental * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam);
    protected:
       LRESULT * m_plresult;
       LRESULT  m_lresult;

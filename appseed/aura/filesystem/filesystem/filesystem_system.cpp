@@ -1265,7 +1265,7 @@ restart:
    }
 
 
-   bool system::resolve_link(::file::path & strTarget,const ::file::path & pszSource,sp(::aura::interaction) puiMessageParentOptional)
+   bool system::resolve_link(::file::path & strTarget,const ::file::path & pszSource,sp(::user::elemental) puiMessageParentOptional)
    {
 
       throw interface_only_exception(get_app());

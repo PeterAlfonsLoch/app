@@ -512,7 +512,7 @@ void thread::process_message_filter(int32_t code, signal_details * pobj)
 }
 
 
-bool thread::post_message(::aura::interaction * pui, UINT message, WPARAM wParam, lparam lParam)
+bool thread::post_message(::user::elemental * pui, UINT message, WPARAM wParam, lparam lParam)
 {
 
    if(m_pthreadimpl.is_null())
@@ -703,7 +703,7 @@ void thread::process_window_procedure_exception(::exception::base* e, signal_det
 
 
 
-void thread::add(::aura::interaction * pui)
+void thread::add(::user::elemental * pui)
 {
 
    if (m_pthreadimpl.is_null())
@@ -714,7 +714,7 @@ void thread::add(::aura::interaction * pui)
 }
 
 
-void thread::remove(::aura::interaction * pui)
+void thread::remove(::user::elemental * pui)
 {
 
    if (m_pthreadimpl.is_null())
@@ -736,7 +736,7 @@ void thread::remove(::aura::interaction * pui)
 }
 
 
-::aura::interaction * thread::get_ui(index iIndex)
+::user::elemental * thread::get_ui(index iIndex)
 {
 
    if (m_pthreadimpl.is_null())
@@ -747,7 +747,7 @@ void thread::remove(::aura::interaction * pui)
 }
 
 
-void thread::set_timer(::aura::interaction * pui, uint_ptr nIDEvent, UINT nEllapse)
+void thread::set_timer(::user::elemental * pui, uint_ptr nIDEvent, UINT nEllapse)
 {
 
    if (m_pthreadimpl.is_null())
@@ -758,7 +758,7 @@ void thread::set_timer(::aura::interaction * pui, uint_ptr nIDEvent, UINT nEllap
 }
 
 
-void thread::unset_timer(::aura::interaction * pui, uint_ptr nIDEvent)
+void thread::unset_timer(::user::elemental * pui, uint_ptr nIDEvent)
 {
 
    if (m_pthreadimpl.is_null())
@@ -806,7 +806,7 @@ bool thread::get_run()
 
 
 
-::aura::interaction * thread::get_active_ui()
+::user::elemental * thread::get_active_ui()
 {
 
    return m_puiActive;
@@ -814,7 +814,7 @@ bool thread::get_run()
 }
 
 
-::aura::interaction * thread::set_active_ui(::aura::interaction * pui)
+::user::elemental * thread::set_active_ui(::user::elemental * pui)
 {
 
    return m_puiActive = pui;

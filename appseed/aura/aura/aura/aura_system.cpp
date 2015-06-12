@@ -1455,7 +1455,7 @@ namespace aura
    }
 
 
-   //::aura::interaction * system::get_focus_guie()
+   //::user::elemental * system::get_focus_guie()
    //{
 
    //   return NULL;

@@ -72,7 +72,7 @@ namespace install
 
 
 
-      ::aura::interaction * m_pwindow;
+      ::user::elemental * m_pwindow;
 
       string            m_strBuild;
       string            m_strBuildResource;
