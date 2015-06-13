@@ -2,13 +2,18 @@
 //#include "core/user/user/user.h"
 
 
-namespace aura
+namespace user
 {
 
 
    const int32_t BaseWndMenuTimer = 500;
    const int32_t BaseWndMenuCmdUi = 117;
 
+
+   menu::menu():
+      menu(get_app())
+   {
+   }
 
    menu::menu(::aura::application * papp) :
       object(papp),
@@ -60,7 +65,7 @@ namespace aura
    }
 
 
-   bool menu::TrackPopupMenu(int32_t iFlags, int32_t x, int32_t y, sp(::user::interaction) oswindowParent, sp(menu_base) * pthis)
+   bool menu::TrackPopupMenu(int32_t iFlags, int32_t x, int32_t y, ::user::interaction * oswindowParent, sp(menu_base) * pthis)
    {
 
       ASSERT(oswindowParent != NULL);
@@ -207,7 +212,7 @@ namespace aura
 
       SetWindowPos(ZORDER_TOPMOST,pt.x,pt.y,m_size.cx,m_size.cy,SWP_FRAMECHANGED | SWP_SHOWWINDOW);
 
-      SetTimer(::aura::BaseWndMenuCmdUi,100,NULL);
+      SetTimer(::user::BaseWndMenuCmdUi,100,NULL);
 
 
    }
@@ -300,11 +305,11 @@ namespace aura
    }
 
 
-   void menu::PostNcDestroy()
-   {
-    //  if(m_bAutoDelete)      // Automatic cleanup?
-      //   delete_this();
-   }
+   //void menu::PostNcDestroy()
+   //{
+   // //  if(m_bAutoDelete)      // Automatic cleanup?
+   //   //   delete_this();
+   //}
 
    void menu::_001OnLButtonDown(signal_details * pobj)
    {
@@ -477,7 +482,7 @@ namespace aura
          }
          m_idTimerMenu.is_empty();
       }
-      else if(ptimer->m_nIDEvent == ::aura::BaseWndMenuCmdUi)
+      else if(ptimer->m_nIDEvent == ::user::BaseWndMenuCmdUi)
       {
          if(spitema != NULL)
          {
@@ -510,7 +515,7 @@ namespace aura
    void menu::install_message_handling(::message::dispatch * pinterface)
    {
       
-      ::aura::menu_base::install_message_handling(pinterface);
+      ::user::menu_base::install_message_handling(pinterface);
 
       IGUI_WIN_MSG_LINK(MessageDestroyWindow, pinterface, this, &menu::OnMessageDestroyWindow);
       IGUI_WIN_MSG_LINK(WM_IDLEUPDATECMDUI  , pinterface, this, &menu::_001OnIdleUpdateCmdUI);

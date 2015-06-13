@@ -34,6 +34,7 @@ namespace database
       const id & operator = (const string & str);
 
       id & operator += (const char * psz);
+      id operator + (const id & id) const;
 
    };
 

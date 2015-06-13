@@ -6,7 +6,7 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE path_view :
-      virtual public ::user::view < ::user::scroll < ::user::plain_edit > >,
+      virtual public ::user::show < ::user::scroll < ::user::plain_edit > >,
       virtual public ::filemanager::impact
    {
    public:

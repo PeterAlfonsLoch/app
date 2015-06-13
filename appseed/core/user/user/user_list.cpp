@@ -392,11 +392,11 @@ namespace user
 
       if(m_eview == view_icon)
       {
-         m_pdrawlistitem->m_iDrawTextFlags = DT_TOP | DT_CENTER | DT_END_ELLIPSIS | DT_WORDBREAK;
+         m_pdrawlistitem->m_iDrawTextFlags = DT_TOP | DT_CENTER | DT_END_ELLIPSIS | DT_WORDBREAK | DT_NOPREFIX;
       }
       else
       {
-         m_pdrawlistitem->m_iDrawTextFlags = DT_TOP | DT_LEFT | DT_END_ELLIPSIS | DT_SINGLELINE;
+         m_pdrawlistitem->m_iDrawTextFlags = DT_TOP | DT_LEFT | DT_END_ELLIPSIS | DT_SINGLELINE | DT_NOPREFIX;
       }
 
       bool bHoverFont = false;
@@ -648,7 +648,7 @@ namespace user
    //   pitem->m_bOk = false;
    //}
 
-   //void list::_001GetItemText(::user::list_item * pitem)
+   //void list::_001GetItemText(::user::mesh_item * pitem)
    //{
    //   pitem->m_bOk = false;
    //   if(m_pcache != NULL)
@@ -665,7 +665,7 @@ namespace user
 
    //// Purpose:
    //// Provide Item Text for Search Purposes.
-   //void list::_001SearchGetItemText(::user::list_item * pitem)
+   //void list::_001SearchGetItemText(::user::mesh_item * pitem)
    //{
    //   _001GetItemText(pitem);
    //}
@@ -840,7 +840,7 @@ namespace user
             rect.top    = rectClient.top;
             rect.bottom = rectClient.bottom;
             rect.left   = rectClient.left;
-            if(m_iItemHeight <= 0)
+            if(m_iItemHeight <= 0 || rectClient.height() <= 0)
                rect.right = rectClient.right;
             else
                rect.right  = (LONG) MIN(
@@ -1584,7 +1584,20 @@ namespace user
 
          point ptOffset = get_viewport_offset();
 
-         index iy = (index)((pt.y + ptOffset.y) + (((pt.x + ptOffset.x) / m_iItemWidth)) * iRoundHeight);
+         index iy;
+         
+         if(m_iItemWidth <= 0)
+         {
+
+            iy = 0;
+
+         }
+         else
+         {
+          
+            iy = (index)((pt.y + ptOffset.y) + (((pt.x + ptOffset.x) / m_iItemWidth)) * iRoundHeight);
+
+         }
 
          index iItem = -1;
 
@@ -5614,6 +5627,13 @@ namespace user
 
 
    }
+
+
+   void list::on_viewport_offset(::draw2d::graphics * pgraphics)
+   {
+
+   }
+
 
 
 } // namespace user

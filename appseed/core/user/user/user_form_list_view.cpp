@@ -21,7 +21,7 @@ namespace user
    //{
 
    //   ::user::form_list::install_message_handling(pdispatch);
-   //   ::user::view < ::user::list >::install_message_handling(pdispatch);
+   //   ::user::show < ::user::list >::install_message_handling(pdispatch);
    //   ::user::form_view::install_message_handling(pdispatch);
 
    //}

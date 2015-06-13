@@ -1623,7 +1623,7 @@ namespace user
 {
 
 
-   inline oswindow elemental::get_safe_handle() const
+   inline oswindow primitive::get_safe_handle() const
    {
       if(((byte *)this) < (byte *)(((byte *)NULL) + (16 * 1024))) // consider invalid
       {

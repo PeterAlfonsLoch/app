@@ -3,8 +3,14 @@
 
 
 
-namespace aura
+namespace user
 {
+
+   menu_base::menu_base():
+      menu_base(get_app())
+   {
+
+   }
 
 
    menu_base::menu_base(::aura::application * papp):
@@ -71,7 +77,7 @@ namespace aura
    }
 
 
-   bool menu_base::TrackPopupMenu(int32_t iFlags, int32_t x, int32_t y, sp(::user::interaction) oswindowParent, sp(menu_base) * pthis)
+   bool menu_base::TrackPopupMenu(int32_t iFlags, int32_t x, int32_t y, ::user::interaction * oswindowParent, sp(menu_base) * pthis)
    {
 
       m_pmenubaseThis = pthis;

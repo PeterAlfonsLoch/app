@@ -37,7 +37,7 @@ namespace filemanager
       return  (::user::impact::get_document());
    }
 
-   void operation_list_view::_001GetItemText(::user::list_item * pitem)
+   void operation_list_view::_001GetItemText(::user::mesh_item * pitem)
    {
       if(pitem->m_iSubItem == 0)
       {

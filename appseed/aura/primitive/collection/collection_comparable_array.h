@@ -8,18 +8,38 @@ class comparable_array :
 {
 public:
 
+
+   typedef ARRAY_TYPE BASE_ARRAY;
    //DECLARE_AND_IMPLEMENT_DEFAULT_CONSTRUCTION_AND_ASSIGNMENT(comparable_array, ARRAY_TYPE)
 
-   //comparable_array();
-//   comparable_array(const comparable_array & array);
-//   comparable_array(comparable_array && array);
+   comparable_array() {}
+   comparable_array(const comparable_array & array)
+   {
+      operator = (array);
+   }
+   comparable_array(comparable_array && array)
+   {
+      move(::move(array));
+   }
 
    //void quick_sort(bool bAsc = true);
 
 
-//   comparable_array & operator = (const comparable_array & array);
-//   comparable_array & operator = (comparable_array && array);
-   //comparable_array & move(comparable_array && array);
+   comparable_array & operator = (const comparable_array & array)
+   {
+      BASE_ARRAY::operator = (array);
+      return *this;
+   }
+   comparable_array & operator = (comparable_array && array)
+   {
+      move(::move(array));
+      return *this;
+   }
+   comparable_array & move(comparable_array && array)
+   {
+      BASE_ARRAY::move(::move(array));
+      return *this;
+   }
 
 
 };

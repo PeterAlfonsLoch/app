@@ -332,6 +332,8 @@ namespace user
             ClientToScreen(pdrawitem->m_rectWindow);
             control_keep controlkeep(this,pdrawitem->m_iItem,pdrawitem->m_iSubItem);
             pcontrol->_003CallCustomDraw(pdrawitem->m_pgraphics,pdrawitem);
+            pdrawitem->m_pgraphics->SelectClipRgn(NULL);
+            _001OnClip(pdrawitem->m_pgraphics);
          }
       }
    }

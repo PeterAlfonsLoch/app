@@ -1117,22 +1117,6 @@ namespace user
       return iMaxWidth;
    }
 
-   /*
-   void tree::_001SetYScroll(int32_t y, bool bRedraw)
-   {
-   m_ptScroll.y = y;
-
-   m_pitemFirstVisible = CalcFirstVisibleItem(
-   m_iFirstVisibleItemLevel,
-   m_iFirstVisibleItemProperIndex);
-
-   if(bRedraw)
-   {
-   RedrawWindow();
-   }
-   }
-   */
-
    sp(::data::tree_item) tree::CalcFirstVisibleItem(index & iLevel, index & iProperIndex)
    {
       
@@ -1559,6 +1543,13 @@ namespace user
       return m_sizeTotal;
 
    }
+
+
+   void tree::on_viewport_offset(::draw2d::graphics * pgraphics)
+   {
+
+   }
+
 
 } // namespace core
 

@@ -6,7 +6,7 @@ namespace user
 
 
    class CLASS_DECL_AURA frame:
-      virtual public elemental
+      virtual public primitive
    {
    public:
 

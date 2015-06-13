@@ -500,9 +500,9 @@ namespace userstack
 //      SCAST_PTR(::message::mouse, pmouse, pobj);
       /*if(get_view_id() == ::bergedge::PaneViewWinActionArea)
       {
-         ::aura::menu menu(get_app());
+         ::user::menu menu(get_app());
          menu.LoadXmlMenu("bergedge\\popup_winactionarea.xml");
-         ::aura::menu menuPopup(get_app(), menu.GetSubMenu(0));
+         ::user::menu menuPopup(get_app(), menu.GetSubMenu(0));
          GetParentFrame()->SetActiveView(this);
          menuPopup.TrackPopupMenu(0, pmouse->m_pt.x, pmouse->m_pt.y, GetParentFrame());
       }*/

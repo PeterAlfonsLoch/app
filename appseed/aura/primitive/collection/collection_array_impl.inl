@@ -564,25 +564,35 @@ array_base < TYPE, ALLOCATOR >(a.get_app(), sizeof(TYPE), false)
 }
 
 
+template < class TYPE,class ARG_TYPE,class ALLOCATOR >
+inline array < TYPE,ARG_TYPE,ALLOCATOR > & array < TYPE,ARG_TYPE,ALLOCATOR >::move(array && a)
+{
+
+   if(&a != this)
+   {
+
+      this->destroy();
+
+      this->m_nGrowBy = a.m_nGrowBy;
+      this->m_pData = a.m_pData;
+      this->m_nSize = a.m_nSize;
+      this->m_nMaxSize = a.m_nMaxSize;
+
+      a.m_pData = NULL;
+      a.m_nSize = 0;
+      a.m_nMaxSize = 0;
+
+   }
+
+   return *this;
+
+}
+
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline array < TYPE, ARG_TYPE, ALLOCATOR > & array < TYPE, ARG_TYPE, ALLOCATOR >::operator = (array && a)
 {
 
-	if (&a != this)
-	{
-
-		this->destroy();
-
-		this->m_nGrowBy = a.m_nGrowBy;
-		this->m_pData = a.m_pData;
-		this->m_nSize = a.m_nSize;
-		this->m_nMaxSize = a.m_nMaxSize;
-
-		a.m_pData = NULL;
-		a.m_nSize = 0;
-		a.m_nMaxSize = 0;
-
-	}
+   move(::move(a));
 
 	return *this;
 

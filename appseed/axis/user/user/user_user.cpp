@@ -385,7 +385,7 @@ namespace user
    }
    */
 
-   ::user::elemental * user::get_keyboard_focus()
+::user::elemental * user::get_keyboard_focus()
    {
       if(Application.is_session())
       {
@@ -419,8 +419,10 @@ namespace user
       }
    }
 
-   void user::set_keyboard_focus(sp(::user::elemental) pkeyboardfocus)
+
+   void user::set_keyboard_focus(::user::elemental * pkeyboardfocus)
    {
+
       if(pkeyboardfocus == NULL || pkeyboardfocus->keyboard_focus_OnSetFocus())
       {
 
@@ -468,24 +470,34 @@ namespace user
 
    }
 
+
    ::user::elemental * user::get_mouse_focus_LButtonDown()
    {
+
       return m_pmousefocusLButtonDown;
+
    }
+
 
    void user::set_mouse_focus_LButtonDown(::user::elemental * pmousefocus)
    {
+
       m_pmousefocusLButtonDown = pmousefocus;
+
    }
+
 
    ::user::elemental * user::get_mouse_focus_RButtonDown()
    {
       return m_pmousefocusRButtonDown;
    }
 
+
    void user::set_mouse_focus_RButtonDown(::user::elemental * pmousefocus)
    {
+
       m_pmousefocusRButtonDown = pmousefocus;
+
    }
 
 

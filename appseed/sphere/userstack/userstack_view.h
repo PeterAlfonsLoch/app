@@ -10,7 +10,7 @@ namespace userstack
 
 
    class CLASS_DECL_sphere view :
-      virtual public ::user::scroll_view
+      virtual public ::user::view < ::user::scroll < ::user::control > >
    {
    public:
 

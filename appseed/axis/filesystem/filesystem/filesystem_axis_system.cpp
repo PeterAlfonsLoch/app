@@ -1626,7 +1626,7 @@ restart:
 
 
 
-   bool system::resolve_link(::file::path & strTarget,const ::file::path & pszSource,sp(::user::elemental) puiMessageParentOptional)
+   bool system::resolve_link(::file::path & strTarget,const ::file::path & pszSource,sp(::user::primitive) puiMessageParentOptional)
    {
 
 #ifdef WINDOWSEX

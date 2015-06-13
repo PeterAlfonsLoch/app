@@ -121,11 +121,11 @@ namespace filemanager
             virtual void _001OnSort();
             bool GetSongPath(string & str, index iItem);
 
-            virtual void _001GetItemImage(::user::list_item * pitem);
+            virtual void _001GetItemImage(::user::mesh_item * pitem);
             virtual void _001InsertColumns();
-            virtual void _001GetItemText(::user::list_item * pitem);
+            virtual void _001GetItemText(::user::mesh_item * pitem);
             virtual count _001GetItemCount();
-            virtual void _001SearchGetItemText(::user::list_item * pitem);
+            virtual void _001SearchGetItemText(::user::mesh_item * pitem);
 
             virtual void on_update(::user::impact * pSender, LPARAM lHint, object* pHint);
 

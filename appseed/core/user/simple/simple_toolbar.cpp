@@ -772,7 +772,7 @@ void simple_toolbar::_001DrawItem(::draw2d::graphics * pdc, int32_t iItem)
 
       if(_001GetElementRect(iItem, rectText, element_text) && rectText.right > 0)
       {
-         pdc->_DrawText(item.m_str, item.m_str.get_length(), rectText, DT_BOTTOM | DT_LEFT);
+         pdc->_DrawText(item.m_str,item.m_str.get_length(),rectText,DT_BOTTOM | DT_LEFT | DT_NOPREFIX);
       }
    }
 

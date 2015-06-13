@@ -4,10 +4,10 @@
 namespace user
 {
 
-   //typedef ::user::view < ::user::list > list_view;
+   //typedef ::user::show < ::user::list > list_view;
 
    //class CLASS_DECL_CORE list_view:
-   //   virtual public ::user::view < ::user::list >
+   //   virtual public ::user::show < ::user::list >
    //{
    //public:
 

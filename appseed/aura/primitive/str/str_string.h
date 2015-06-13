@@ -1949,6 +1949,59 @@ inline CLASS_DECL_AURA id & id::operator += (const char * psz)
 
 }
 
+inline CLASS_DECL_AURA id id::operator + (const id & id) const
+{
+
+   if(is_integer())
+   {
+      if(id.is_integer())
+      {
+         return (int_ptr)(m_i + id.m_i);
+      }
+      else if(id.is_text())
+      {
+         return ::str::from(m_i) + "." +string(id.m_psz);
+      }
+      else
+      {
+         return *this;
+      }
+   }
+   else if(id.is_integer())
+   {
+      if(is_text())
+      {
+         return string(m_psz) + "." + ::str::from(id.m_i);
+      }
+      else
+      {
+         return id;
+      }
+   }
+   else if(is_text())
+   {
+      if(id.is_text())
+      {
+         return string(m_psz) + string(id.m_psz);
+      }
+      else
+      {
+         return *this;
+      }
+   }
+   else if(id.is_text())
+   {
+      return id;
+   }
+   else
+   {
+      return ::id();
+   }
+
+   
+
+}
+
 
 inline CLASS_DECL_AURA string operator + (const char * psz, const id & id)
 {

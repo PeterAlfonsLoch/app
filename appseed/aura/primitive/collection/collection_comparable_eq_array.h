@@ -1,17 +1,25 @@
 #pragma once
 
 template < class TYPE, class ARG_TYPE = const TYPE &, class ARRAY_TYPE = array < TYPE, ARG_TYPE > >
-class comparable_eq_array :
+class comparable_eq_array:
    public ARRAY_TYPE
 {
 public:
 
 
+   typedef ARRAY_TYPE BASE_ARRAY;
+
    //DECLARE_AND_IMPLEMENT_DEFAULT_CONSTRUCTION_AND_ASSIGNMENT(comparable_eq_array, ARRAY_TYPE)
 
-   //comparable_eq_array();
-   //comparable_eq_array(const comparable_eq_array & array);
-   //comparable_eq_array(comparable_eq_array && array);
+   comparable_eq_array() {}
+   comparable_eq_array(const comparable_eq_array & array)
+   {
+      operator = (array);
+   }
+   comparable_eq_array(comparable_eq_array && array)
+   {
+      move(::move(array));
+   }
 
    index find_first(ARG_TYPE t, index find = 0, index last = -1) const;
    ::count get_count() const;
@@ -61,9 +69,21 @@ public:
    bool operator != (const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > & a);
 
 
-   //comparable_eq_array< TYPE, ARG_TYPE, ARRAY_TYPE > & operator = (const comparable_eq_array & array);
-   //comparable_eq_array< TYPE, ARG_TYPE, ARRAY_TYPE > & operator = (comparable_eq_array && array);
-   //comparable_eq_array< TYPE, ARG_TYPE, ARRAY_TYPE > & move(comparable_eq_array && array);
+   comparable_eq_array & operator = (const comparable_eq_array & array)
+   {
+      BASE_ARRAY::operator =(array);
+      return *this;
+   }
+   comparable_eq_array & operator = (comparable_eq_array && array)
+   {
+      move(::move(array));
+      return *this;
+   }
+   comparable_eq_array & move(comparable_eq_array && array)
+   {
+      BASE_ARRAY::move(::move(array));
+      return *this;
+   }
 
 
 

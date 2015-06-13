@@ -836,7 +836,7 @@ namespace user
 
             pdc->SelectObject(brushText);
 
-            pdc->_DrawText(pane.get_title(), rectText, DT_LEFT | DT_BOTTOM);
+            pdc->_DrawText(pane.get_title(), rectText, DT_LEFT | DT_BOTTOM | DT_NOPREFIX);
 
          }
 

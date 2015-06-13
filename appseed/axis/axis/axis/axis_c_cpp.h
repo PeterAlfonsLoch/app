@@ -21,13 +21,6 @@ namespace html
 } // namespace html
 
 
-namespace aura
-{
-
-   class impact;
-
-}
-
 namespace install
 {
 

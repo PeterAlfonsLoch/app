@@ -288,7 +288,7 @@ namespace user
    }
 
 
-   void ::user::elemental::get_string(char * psz,::primitive::memory_size len) const
+   void elemental::get_string(char * psz,::primitive::memory_size len) const
    {
 
       string str;
@@ -299,7 +299,7 @@ namespace user
 
    }
 
-   void ::user::elemental::set_string(const string & str,::action::context actioncontext)
+   void elemental::set_string(const string & str,::action::context actioncontext)
    {
 
       _001SetText(str,actioncontext);

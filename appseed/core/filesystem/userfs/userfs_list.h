@@ -7,12 +7,12 @@ namespace userfs
    class main_view;
 
    class CLASS_DECL_CORE list :
-      virtual public ::user::view < ::user::scroll < ::user::margin < ::user::form_list > > >
+      virtual public ::user::show < ::user::scroll < ::user::margin < ::user::form_list > > >
    {
    public:
 
 
-      typedef ::user::view < ::user::scroll < ::user::margin < ::user::form_list > > > BASE;
+      typedef ::user::show < ::user::scroll < ::user::margin < ::user::form_list > > > BASE;
 
 
       stringa      m_straFileSize;
@@ -56,8 +56,8 @@ namespace userfs
       virtual void StartAnimation();
       virtual void _001OnDraw(::draw2d::graphics * pdc);
       void GetSelectedFilePath(stringa & array);
-      virtual void _001GetItemImage(::user::list_item * pitem);
-      virtual void _001GetItemText(::user::list_item * pitem);
+      virtual void _001GetItemImage(::user::mesh_item * pitem);
+      virtual void _001GetItemText(::user::mesh_item * pitem);
       virtual count _001GetItemCount();
 
       DECL_GEN_SIGNAL(_001OnHScroll);

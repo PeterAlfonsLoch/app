@@ -99,18 +99,18 @@ namespace userex
       System.factory().creatable_small < ::user::combo_list >();
       System.factory().creatable_small < ::user::plain_edit >();
 
-      System.factory().creatable_small < ::user::menu_item >(System.type_info < ::aura::menu_base_item >());
-      System.factory().creatable_small < ::user::menu >(System.type_info < ::aura::menu_base >());
+      System.factory().creatable_small < ::user::menu_item >(System.type_info < ::user::menu_base_item >());
+      System.factory().creatable_small < ::user::menu >(System.type_info < ::user::menu_base >());
 
 
       System.factory().creatable_small < ::user::button >();
 
-      System.factory().creatable_small < ::user::view < ::user::plain_edit > >();
-      System.factory().creatable_small < ::user::view < ::user::scroll < ::user::plain_edit > > >();
-      System.factory().creatable_small < ::user::view < ::user::tree > >();
-      System.factory().creatable_small < ::user::view < ::user::scroll < ::user::tree > > >();
-      System.factory().creatable_small < ::user::view < ::user::list > >();
-      System.factory().creatable_small < ::user::view < ::user::scroll < ::user::list > > >();
+      System.factory().creatable_small < ::user::show < ::user::plain_edit > >();
+      System.factory().creatable_small < ::user::show < ::user::scroll < ::user::plain_edit > > >();
+      System.factory().creatable_small < ::user::show < ::user::tree > >();
+      System.factory().creatable_small < ::user::show < ::user::scroll < ::user::tree > > >();
+      System.factory().creatable_small < ::user::show < ::user::list > >();
+      System.factory().creatable_small < ::user::show < ::user::scroll < ::user::list > > >();
 
       System.factory().creatable_small < MetaControlBox >();
 
@@ -349,7 +349,7 @@ namespace userex
    }
 
 
-   int32_t userex::simple_message_box(::user::elemental * pwndOwner,const char * pszMessage,UINT fuStyle)
+   int32_t userex::simple_message_box(::user::primitive * pwndOwner,const char * pszMessage,UINT fuStyle)
    {
 
       int iRet = ::simple_message_box(pwndOwner->get_safe_handle(), pszMessage, "ca2", fuStyle);
@@ -412,7 +412,7 @@ namespace userex
       }
    }
 
-   int32_t userex::simple_message_box_timeout(::user::elemental * puiOwner,const char * pszMessage,::duration durationTimeout,UINT fuStyle)
+   int32_t userex::simple_message_box_timeout(::user::primitive * puiOwner,const char * pszMessage,::duration durationTimeout,UINT fuStyle)
    {
 
       UNREFERENCED_PARAMETER(puiOwner);

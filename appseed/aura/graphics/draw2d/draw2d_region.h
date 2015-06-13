@@ -37,18 +37,18 @@ namespace draw2d
 
 
       e_type                  m_etype;
-      double                 m_x1;
-      double                 m_y1;
-      double                 m_x2;
-      double                 m_y2;
-      double                 m_x3;
-      double                 m_y3;
+      double                  m_x1;
+      double                  m_y1;
+      double                  m_x2;
+      double                  m_y2;
+      double                  m_x3;
+      double                  m_y3;
       LPPOINTD                m_lppoints;
       LPINT                   m_lppolycounts;
       int32_t                 m_nCount;
-      ::draw2d::e_fill_mode      m_efillmode;
-      ::draw2d::region *      m_pregion1;
-      ::draw2d::region *      m_pregion2;
+      ::draw2d::e_fill_mode   m_efillmode;
+      sp(::draw2d::region)    m_pregion1;
+      sp(::draw2d::region)    m_pregion2;
       e_combine               m_ecombine;
 
 

@@ -4688,7 +4688,7 @@ namespace axis
 
 
 
-   int32_t application::simple_message_box_timeout(::user::elemental * pwndOwner,const char * pszMessage,::duration durationTimeOut,UINT fuStyle)
+   int32_t application::simple_message_box_timeout(::user::primitive * pwndOwner,const char * pszMessage,::duration durationTimeOut,UINT fuStyle)
    {
       UNREFERENCED_PARAMETER(durationTimeOut);
       return simple_message_box(pwndOwner,pszMessage,fuStyle);
@@ -4905,7 +4905,7 @@ namespace axis
    }
 
 
-   bool application::post_user_message(::thread_impl * pimpl,::user::elemental * pui,UINT message,WPARAM wparam,lparam lparam)
+   bool application::post_user_message(::thread_impl * pimpl,::user::primitive * pui,UINT message,WPARAM wparam,lparam lparam)
    {
 
       if(pimpl->m_hthread == NULL)
@@ -4923,21 +4923,21 @@ namespace axis
 
 
 
-   bool application::is_window(::user::elemental * pui)
+   bool application::is_window(::user::primitive * pui)
    {
 
       return ((::user::interaction *)pui->m_pvoidUserInteraction)->IsWindow();
 
    }
 
-   LRESULT application::send_message(::user::elemental * pui,UINT message,WPARAM wparam,lparam lparam)
+   LRESULT application::send_message(::user::primitive * pui,UINT message,WPARAM wparam,lparam lparam)
    {
 
       return ((::user::interaction *)pui->m_pvoidUserInteraction)->send_message(message,wparam,lparam);
 
    }
 
-   oswindow application::get_safe_handle(::user::elemental * pui)
+   oswindow application::get_safe_handle(::user::primitive * pui)
    {
 
       return ((::user::interaction *)pui->m_pvoidUserInteraction)->get_safe_handle();
@@ -4965,7 +4965,7 @@ namespace axis
    }
 
 
-   bool application::enable_window(::user::elemental * pui,bool bEnable)
+   bool application::enable_window(::user::primitive * pui,bool bEnable)
    {
 
       // if control has the focus, move the focus before disabling
@@ -4996,7 +4996,7 @@ namespace axis
    }
 
 
-   ptr_array < ::thread > application::get_thread(::user::elemental * pui)
+   ptr_array < ::thread > application::get_thread(::user::primitive * pui)
    {
 
       return ((::user::interaction *)pui->m_pvoidUserInteraction)->m_threadptra;
@@ -5004,14 +5004,14 @@ namespace axis
    }
 
 
-   void application::add_thread(::user::elemental * pui,::thread * pthread)
+   void application::add_thread(::user::primitive * pui,::thread * pthread)
    {
 
       ((::user::interaction *)pui->m_pvoidUserInteraction)->m_threadptra.add_unique(pthread);
 
    }
 
-   void application::remove_thread(::user::elemental * pui,::thread * pthread)
+   void application::remove_thread(::user::primitive * pui,::thread * pthread)
    {
 
       ((::user::interaction *)pui->m_pvoidUserInteraction)->m_threadptra.remove(pthread);
@@ -5174,7 +5174,7 @@ namespace axis
 
    }
 
-   int32_t application::simple_message_box(::user::elemental * puiOwner,const char * pszMessage,UINT fuStyle)
+   int32_t application::simple_message_box(::user::primitive * puiOwner,const char * pszMessage,UINT fuStyle)
    {
 
 #if defined(WINDOWSEX)

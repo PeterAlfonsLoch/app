@@ -2306,7 +2306,7 @@ namespace user
    }
 
 
-   bool interaction_base::track_popup_menu(sp(::aura::menu_base_item) pitem,int32_t iFlags)
+   bool interaction_base::track_popup_menu(::user::menu_base_item * pitem,int32_t iFlags)
    {
 
       ::exception::throw_interface_only(get_app());
@@ -2316,7 +2316,7 @@ namespace user
    }
 
 
-   bool interaction_base::track_popup_menu(sp(::xml::node) lpnode,int32_t iFlags)
+   bool interaction_base::track_popup_menu(::xml::node * lpnode,int32_t iFlags)
    {
 
       ::exception::throw_interface_only(get_app());
@@ -2337,7 +2337,7 @@ namespace user
 
 
 
-   bool interaction_base::track_popup_menu(sp(::aura::menu_base_item) pitem,int32_t iFlags,signal_details * pobj)
+   bool interaction_base::track_popup_menu(::user::menu_base_item * pitem,int32_t iFlags,signal_details * pobj)
    {
 
       ::exception::throw_interface_only(get_app());
@@ -2347,7 +2347,7 @@ namespace user
    }
 
 
-   bool interaction_base::track_popup_menu(sp(::xml::node) lpnode,int32_t iFlags,signal_details * pobj)
+   bool interaction_base::track_popup_menu(::xml::node * lpnode,int32_t iFlags,signal_details * pobj)
    {
 
       ::exception::throw_interface_only(get_app());
@@ -2367,7 +2367,7 @@ namespace user
    }
 
 
-   bool interaction_base::track_popup_menu(sp(::aura::menu_base_item) pitem,int32_t iFlags,int32_t x,int32_t y)
+   bool interaction_base::track_popup_menu(::user::menu_base_item * pitem,int32_t iFlags,int32_t x,int32_t y)
    {
 
       ::exception::throw_interface_only(get_app());
@@ -2376,7 +2376,7 @@ namespace user
 
    }
 
-   bool interaction_base::track_popup_menu(sp(::xml::node) lpnode,int32_t iFlags,int32_t x,int32_t y)
+   bool interaction_base::track_popup_menu(::xml::node * lpnode,int32_t iFlags,int32_t x,int32_t y)
    {
 
       ::exception::throw_interface_only(get_app());

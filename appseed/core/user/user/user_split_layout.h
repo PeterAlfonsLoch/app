@@ -59,7 +59,7 @@ namespace user
 
       int                                          m_iPaneCount;
 
-
+      split_layout();
       split_layout(::aura::application * papp);
       virtual ~split_layout();
 

@@ -128,7 +128,7 @@ namespace filemanager
 
    }
 
-   void folder_list::_001GetItemText(::user::list_item * pitem)
+   void folder_list::_001GetItemText(::user::mesh_item * pitem)
    {
       pitem->m_strText = m_foldera.GetFolder(pitem->m_iItem).m_wstrName;
       pitem->m_bOk = true;
@@ -325,7 +325,7 @@ namespace filemanager
       add(folder);
    }
 
-   void folder_list::_001GetItemImage(::user::list_item * pitem)
+   void folder_list::_001GetItemImage(::user::mesh_item * pitem)
    {
       if (pitem->m_iSubItem == 1)
       {

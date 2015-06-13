@@ -686,6 +686,13 @@ namespace filemanager
 
       m_spfilemanagerdata = pcreatecontext->oprop("filemanager::data").cast < ::filemanager::data >();
 
+      if(m_spfilemanagerdata.is_null())
+      {
+
+         m_spfilemanagerdata = canew(data(get_app()));
+
+      }
+
       m_spfilemanagerdata->m_pmanager = this;
 
       m_spfilemanagerdata->m_pmanagerMain = this;

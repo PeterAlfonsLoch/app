@@ -192,6 +192,9 @@ namespace user
 
       virtual size get_total_size();
 
+      virtual void on_viewport_offset(::draw2d::graphics * pgraphics);
+
+
    };
 
 

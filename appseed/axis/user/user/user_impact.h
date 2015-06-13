@@ -240,22 +240,22 @@ namespace user
 
 
    template < class VIEW >
-   class view :
+   class show :
       virtual public impact,
       virtual public VIEW
    {
    public:
 
-      view()
+      show()
       {
       }
 
-      view(::aura::application * papp) :
+      show(::aura::application * papp):
          object(papp)
       {
       }
 
-      virtual ~view()
+      virtual ~show()
       {
       }
 
@@ -272,6 +272,20 @@ namespace user
 
          ::user::impact::on_update(pSender,lHint,pHint);
          VIEW::on_update(pSender,lHint,pHint);
+
+      }
+
+
+      virtual bool pre_create_window(::user::create_struct& cs)
+      {
+
+         if(!::user::impact::pre_create_window(cs))
+            return false;
+
+         if(!VIEW::pre_create_window(cs))
+            return false;
+
+         return true;
 
       }
 

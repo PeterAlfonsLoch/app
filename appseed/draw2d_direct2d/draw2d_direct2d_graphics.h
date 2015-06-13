@@ -208,7 +208,7 @@ namespace draw2d_direct2d
             int SelectClipRgn(::draw2d::region* pRgn);
             int ExcludeClipRect(int x1, int y1, int x2, int y2);
             int ExcludeClipRect(const RECT & lpRect);
-            int ExcludeUpdateRgn(::user::elemental * pwindow);
+            int ExcludeUpdateRgn(::user::primitive * pwindow);
             int IntersectClipRect(int x1, int y1, int x2, int y2);
             int IntersectClipRect(const RECT & lpRect);
             int OffsetClipRgn(int x, int y);

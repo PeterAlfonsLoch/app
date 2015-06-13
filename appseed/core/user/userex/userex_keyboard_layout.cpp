@@ -116,7 +116,7 @@ namespace userex // ca8 + cube
          string strProxy = node.get_attr("server");
          int32_t iProxyPort = node.get_attr("port");
          sp(::user::interaction) pui = m_pview->get_child_by_name("server");
-         sp(::user::elemental) ptext =  (pui);
+         sp(::user::primitive) ptext =  (pui);
          ptext->_001SetText(strProxy, false);
          pui = m_pview->get_child_by_name("port");
          ptext =  (pui);

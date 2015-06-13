@@ -885,7 +885,7 @@ namespace user
 
       pobj->previous();
 
-//      keep<bool> lockWindowUpdate(&get_wnd()->m_bLockWindowUpdate, true, get_wnd()->m_bLockWindowUpdate, true);
+      //      keep<bool> lockWindowUpdate(&get_wnd()->m_bLockWindowUpdate, true, get_wnd()->m_bLockWindowUpdate, true);
 
       if(psize->m_nType == SIZE_MINIMIZED)
       {
@@ -923,6 +923,87 @@ namespace user
       */
    }
 
+   void interaction::_001OnClip(::draw2d::graphics * pgraphics)
+   {
+
+      try
+      {
+
+         rect rectClip;
+
+         ::aura::draw_context * pdrawcontext = pgraphics->::core::simple_chain < ::aura::draw_context >::get_last();
+
+         rect rectClient;
+
+         bool bFirst = true;
+
+         if(pdrawcontext != NULL)
+         {
+
+            rectClient     = pdrawcontext->m_rectWindow;
+
+            ScreenToClient(rectClient);
+
+            rectClient.bottom++;
+            rectClient.right++;
+
+            rectClip       = rectClient;
+
+            bFirst         = false;
+
+         }
+
+         ::user::interaction * pui = this;
+
+         while(pui != NULL)
+         {
+
+            pui->GetWindowRect(rectClient);
+
+            ScreenToClient(rectClient);
+
+            rectClient.bottom++;
+            rectClient.right++;
+
+            if(bFirst)
+            {
+
+               rectClip = rectClient;
+
+               bFirst = false;
+
+            }
+            else
+            {
+
+               rectClip.intersect(rectClip,rectClient);
+
+            }
+
+            pui = pui->GetParent();
+
+         }
+
+         if(!bFirst)
+         {
+
+            ::draw2d::region_sp rgnClip(allocer());
+
+            rgnClip->create_rect(rectClip);
+
+            pgraphics->SelectClipRgn(rgnClip,RGN_COPY);
+
+         }
+
+      }
+      catch(...)
+      {
+
+         throw simple_exception(::get_thread_app(),"no more a window");
+
+      }
+
+   }
 
 
    void interaction::_001DrawThis(::draw2d::graphics * pgraphics)
@@ -963,72 +1044,7 @@ namespace user
 
          }
 
-
-         try
-         {
-
-            ::draw2d::region_sp rgnClip(allocer());
-
-            rect rectClient;
-
-            ::user::interaction * pui = this;
-
-            bool bFirst = true;
-
-            while(pui != NULL)
-            {
-
-               ::aura::draw_context * pdrawcontext = pgraphics->::core::simple_chain < ::aura::draw_context >::get_last();
-
-               rect rectClient;
-
-               if(pdrawcontext != NULL)
-               {
-
-                  rectClient     = pdrawcontext->m_rectWindow;
-
-               }
-               else
-               {
-                  pui->GetWindowRect(rectClient);
-               }
-
-               ScreenToClient(rectClient);
-
-               rectClient.bottom++;
-               rectClient.right++;
-
-               rgnClip->create_rect(rectClient);
-
-               if(bFirst)
-               {
-
-                  bFirst = false;
-
-                  pgraphics->SelectClipRgn(rgnClip);
-
-                  //;//                  break;
-
-               }
-               else
-               {
-
-                  pgraphics->SelectClipRgn(rgnClip,RGN_AND);
-
-               }
-
-               pui = pui->GetParent();
-
-            }
-
-
-         }
-         catch(...)
-         {
-
-            throw simple_exception(::get_thread_app(), "no more a window");
-
-         }
+         _001OnClip(pgraphics);
 
          {
 
@@ -1068,7 +1084,7 @@ namespace user
    void interaction::_001DrawChildren(::draw2d::graphics *pdc)
    {
 
-      single_lock sl(m_pauraapp->m_pmutex, true);
+      single_lock sl(m_pmutex, true);
 
       interaction_ptra ptraChild;
 
@@ -1315,7 +1331,7 @@ namespace user
          if(GetParent() == NULL && !is_message_only_window())
          {
 
-//            synch_lock slUser(m_pauraapp->m_pmutex);
+//            synch_lock slUser(m_pmutex);
 
             synch_lock sl(m_spmutex);
 
@@ -1357,8 +1373,8 @@ namespace user
             {
 
                // A Copy Paste error (the commented out code below)?
-               //single_lock sl(puiParent->m_pauraapp->m_pmutex,TRUE);
-               //single_lock sl2(m_pauraapp->m_pmutex,TRUE);
+               //single_lock sl(puiParent->m_pmutex,TRUE);
+               //single_lock sl2(m_pmutex,TRUE);
 
                if(!pholder->is_holding(this))
                {
@@ -2239,7 +2255,7 @@ namespace user
 
             }
 
-            single_lock sl(m_pauraapp->m_pmutex,TRUE);
+            single_lock sl(m_pmutex,TRUE);
 
             sl.unlock();
 
@@ -2859,7 +2875,7 @@ namespace user
    bool interaction::DestroyWindow()
    {
 
-      single_lock sl(m_pauraapp->m_pmutex,true);
+      single_lock sl(m_pmutex,true);
 
       if(!IsWindow())
       {
@@ -3860,9 +3876,9 @@ namespace user
          if(m_pparent != NULL)
          {
 
-            single_lock sl(m_pparent->m_pauraapp->m_pmutex,TRUE);
+            single_lock sl(m_pparent->m_pmutex,TRUE);
 
-            single_lock sl2(m_pauraapp->m_pmutex,TRUE);
+            single_lock sl2(m_pmutex,TRUE);
 
             m_pparent->m_uiptraChild.remove(this);
 
@@ -3879,9 +3895,9 @@ namespace user
          if(puiParent != NULL)
          {
 
-            single_lock sl(puiParent->m_pauraapp->m_pmutex,TRUE);
+            single_lock sl(puiParent->m_pmutex,TRUE);
 
-            single_lock sl2(m_pauraapp->m_pmutex,TRUE);
+            single_lock sl2(m_pmutex,TRUE);
 
             puiParent->m_uiptraChild.add_unique(this);
 
@@ -4042,7 +4058,7 @@ namespace user
    ::user::interaction * interaction::first_child()
    {
 
-      single_lock sl(m_pauraapp->m_pmutex,TRUE);
+      single_lock sl(m_pmutex,TRUE);
       if(m_uiptraChild.get_count() <= 0)
          return NULL;
       else
@@ -4052,7 +4068,7 @@ namespace user
 
    ::user::interaction * interaction::last_child()
    {
-      single_lock sl(m_pauraapp->m_pmutex,TRUE);
+      single_lock sl(m_pmutex,TRUE);
       if(m_uiptraChild.get_count() <= 0)
          return NULL;
       else
@@ -4064,7 +4080,7 @@ namespace user
    ::user::interaction * interaction::first_sibling()
    {
 
-      single_lock sl(m_pauraapp->m_pmutex,TRUE);
+      single_lock sl(m_pmutex,TRUE);
 
       if(GetParent() == NULL)
          return NULL;
@@ -4076,7 +4092,7 @@ namespace user
 
    ::user::interaction * interaction::next_sibling()
    {
-      single_lock sl(m_pauraapp->m_pmutex,TRUE);
+      single_lock sl(m_pmutex,TRUE);
       ::user::interaction * pui = NULL;
       try
       {
@@ -4100,7 +4116,7 @@ namespace user
 
    ::user::interaction * interaction::next_sibling(::user::interaction * pui)
    {
-      single_lock sl(m_pauraapp->m_pmutex,TRUE);
+      single_lock sl(m_pmutex,TRUE);
       index i = m_uiptraChild.find_first(pui);
       if(i < 0)
          return NULL;
@@ -4124,7 +4140,7 @@ namespace user
 
    ::user::interaction * interaction::previous_sibling()
    {
-      single_lock sl(m_pauraapp->m_pmutex,TRUE);
+      single_lock sl(m_pmutex,TRUE);
       ::user::interaction * pui = NULL;
       try
       {
@@ -4149,7 +4165,7 @@ namespace user
    ::user::interaction * interaction::last_sibling()
    {
 
-      single_lock sl(m_pauraapp->m_pmutex,TRUE);
+      single_lock sl(m_pmutex,TRUE);
 
       if(GetParent() == NULL)
          return NULL;
@@ -4182,7 +4198,7 @@ namespace user
 
    ::user::interaction * interaction::previous_sibling(::user::interaction * pui)
    {
-      single_lock sl(m_pauraapp->m_pmutex,TRUE);
+      single_lock sl(m_pmutex,TRUE);
       index i = m_uiptraChild.find_first(pui);
       if(i < 0)
          return NULL;
@@ -4609,7 +4625,7 @@ namespace user
 
    }
 
-   bool interaction::track_popup_menu(::aura::menu_base_item * pitem,int32_t iFlags)
+   bool interaction::track_popup_menu(::user::menu_base_item * pitem,int32_t iFlags)
    {
 
       point pt;
@@ -4646,7 +4662,7 @@ namespace user
 
 
 
-   bool interaction::track_popup_menu(::aura::menu_base_item * pitem,int32_t iFlags,signal_details * pobj)
+   bool interaction::track_popup_menu(::user::menu_base_item * pitem,int32_t iFlags,signal_details * pobj)
    {
 
       SCAST_PTR(::message::mouse,pmouse,pobj);
@@ -4688,10 +4704,10 @@ namespace user
    }
 
 
-   bool interaction::track_popup_menu(::aura::menu_base_item * pitem,int32_t iFlags,int32_t x,int32_t y)
+   bool interaction::track_popup_menu(::user::menu_base_item * pitem,int32_t iFlags,int32_t x,int32_t y)
    {
 
-      m_spmenuPopup = Application.alloc(System.type_info < ::aura::menu_base >());
+      m_spmenuPopup = Application.alloc(System.type_info < ::user::menu_base >());
 
       m_spmenuPopup->m_pitem = pitem;
 
@@ -4711,7 +4727,7 @@ namespace user
    bool interaction::track_popup_menu(::xml::node * lpnode,int32_t iFlags,int32_t x,int32_t y)
    {
 
-      m_spmenuPopup = Application.alloc(System.type_info < ::aura::menu_base >());
+      m_spmenuPopup = Application.alloc(System.type_info < ::user::menu_base >());
 
       if(!m_spmenuPopup->LoadMenu(lpnode))
       {
@@ -4738,7 +4754,7 @@ namespace user
    bool interaction::track_popup_xml_matter_menu(const char * pszMatter,int32_t iFlags,int32_t x,int32_t y)
    {
 
-      m_spmenuPopup = Application.alloc(System.type_info < ::aura::menu_base >());
+      m_spmenuPopup = Application.alloc(System.type_info < ::user::menu_base >());
 
       if(!m_spmenuPopup->LoadXmlMenu(pszMatter))
       {
@@ -5729,7 +5745,7 @@ namespace user
             if(z == ZORDER_TOP || z == ZORDER_TOPMOST)
             {
 
-               single_lock sl(m_pauraapp->m_pmutex);
+               single_lock sl(m_pmutex);
 
                synch_lock slWindow(m_spmutex);
 

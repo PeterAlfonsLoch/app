@@ -500,6 +500,7 @@ namespace user
 
       virtual void defer_create_mesh_data();
 
+      virtual void on_viewport_offset(::draw2d::graphics * pgraphics);
 
 
    };

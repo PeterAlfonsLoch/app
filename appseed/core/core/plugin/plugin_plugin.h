@@ -36,7 +36,7 @@ namespace plugin
 
 
       host_interaction *            m_puiHost;
-      primitive::memory             m_memory;
+      ::primitive::memory           m_memory;
       //::plugin::system *            m_psystem;
       index                           m_iEdge;
       bool                          m_bMainReady;

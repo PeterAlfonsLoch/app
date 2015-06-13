@@ -8,6 +8,13 @@ namespace user
    const int32_t g_base_menu_indent = 11;
 
 
+   menu_list_window::menu_list_window():
+      menu_list_window(get_app())
+   {
+
+   }
+
+
    menu_list_window::menu_list_window(::aura::application * papp) :
       object(papp),
       menu_base(papp),
@@ -119,7 +126,7 @@ namespace user
 
       SetWindowPos(0, 0, 0, rectClient.width(), rectClient.height(), SWP_SHOWWINDOW | SWP_NOZORDER);
 
-      SetTimer(::aura::BaseWndMenuCmdUi,300,NULL);
+      SetTimer(::user::BaseWndMenuCmdUi,300,NULL);
 
       return true;
    }
@@ -171,7 +178,7 @@ namespace user
 
       SetWindowPos(0, 0, 0, rectClient.width(), rectClient.height(), SWP_SHOWWINDOW | SWP_NOZORDER);
 
-      SetTimer(::aura::BaseWndMenuCmdUi, 300, NULL);
+      SetTimer(::user::BaseWndMenuCmdUi, 300, NULL);
 
       return true;
    }
@@ -206,13 +213,17 @@ namespace user
 
    void menu_list_window::_001OnTimer(signal_details * pobj)
    {
+      
       SCAST_PTR(::message::timer, ptimer, pobj)
-         if(ptimer->m_nIDEvent == ::aura::BaseWndMenuCmdUi)
+      
+      if(ptimer->m_nIDEvent == ::user::BaseWndMenuCmdUi)
       {
          _UpdateCmdUi(m_pitem);
          RedrawWindow();
       }
+
       pobj->m_bRet = false;
+
    }
 
    void menu_list_window::_CalcSize(sp(menu_item) pitemParent, ::draw2d::graphics * pdc, int32_t & iMaxWidth, int32_t & iMaxHeight)
@@ -412,6 +423,7 @@ namespace user
             {
                GetParent()->send_message(m_uiMessage);
             }
+            return true;
          }
          else
          {
@@ -435,11 +447,13 @@ namespace user
                   {
                      GetParent()->send_message(m_uiMessage);
                   }
+                  return true;
+
                }
             }
          }
       }
-      return true;
+      return false;
    }
 
    void menu_list_window::clear()
@@ -448,7 +462,7 @@ namespace user
       {
          DestroyWindow();
       }*/
-      ::aura::menu_base::clear();
+      ::user::menu_base::clear();
    }
 
 

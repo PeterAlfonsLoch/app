@@ -12,7 +12,7 @@ namespace user
 
       spa(place_holder) m_holdera;
 
-
+      place_holder_container();
       place_holder_container(::aura::application * papp);
       virtual ~place_holder_container();
 

@@ -7,6 +7,11 @@
 namespace user
 {
 
+   place_holder_container::place_holder_container() :
+      place_holder_container(get_app())
+   {
+   }
+
    place_holder_container::place_holder_container(::aura::application * papp) :
       ::object(papp),
       m_holdera(papp)

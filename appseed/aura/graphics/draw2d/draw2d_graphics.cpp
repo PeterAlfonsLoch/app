@@ -3661,7 +3661,13 @@ namespace draw2d
 
       sz.cy = 0;
 
-      strsize iUnderline = _EncodeV033(str);
+      
+      strsize iUnderline = -1;
+
+      if(!(uiFormat & DT_NOPREFIX))
+      {
+         iUnderline = _EncodeV033(str);
+      }
 
       strsize iLen = str.get_length();
 

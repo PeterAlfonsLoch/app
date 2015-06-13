@@ -112,7 +112,7 @@ namespace filemanager
          }
 
 
-         void list_view::_001GetItemImage(::user::list_item * pitem)
+         void list_view::_001GetItemImage(::user::mesh_item * pitem)
          {
             if(pitem->m_iItem < 0 || pitem->m_iItem >= m_itema.get_size())
             {
@@ -147,7 +147,7 @@ namespace filemanager
 
          }
 
-         void list_view::_001GetItemText(::user::list_item * pitem)
+         void list_view::_001GetItemText(::user::mesh_item * pitem)
          {
             if(pitem->m_iItem < 0 || pitem->m_iItem >= m_itema.get_size())
             {
@@ -179,7 +179,7 @@ namespace filemanager
             pitem->m_bOk = true;
          }
 
-         void list_view::_001SearchGetItemText(::user::list_item * pitem)
+         void list_view::_001SearchGetItemText(::user::mesh_item * pitem)
          {
             return_(pitem->m_bOk, false);
          }

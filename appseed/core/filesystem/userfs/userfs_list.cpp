@@ -656,12 +656,12 @@ namespace userfs
       return  (BASE::get_document());
    }
 
-   void list::_001GetItemText(::user::list_item * pitem)
+   void list::_001GetItemText(::user::mesh_item * pitem)
    {
       return BASE::_001GetItemText(pitem);
    }
 
-   void list::_001GetItemImage(::user::list_item * pitem)
+   void list::_001GetItemImage(::user::mesh_item * pitem)
    {
       return BASE::_001GetItemImage(pitem);
    }

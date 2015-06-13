@@ -72,7 +72,7 @@ namespace install
 
 
 
-      ::user::elemental * m_pwindow;
+      ::user::primitive * m_pwindow;
 
       string            m_strBuild;
       string            m_strBuildResource;

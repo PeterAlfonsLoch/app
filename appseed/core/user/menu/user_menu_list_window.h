@@ -4,6 +4,7 @@
 namespace user
 {
 
+
    class CLASS_DECL_CORE menu_list_window :
       virtual public ::user::menu
    {
@@ -24,6 +25,7 @@ namespace user
       int32_t                             m_iItemHeight;
       size                                m_size;
 
+      menu_list_window();
       menu_list_window(::aura::application * papp);
       menu_list_window(::aura::application * papp, sp(menu_item) pitem);
       virtual ~menu_list_window();
@@ -59,3 +61,10 @@ namespace user
 
 
 } // namespace user
+
+
+
+
+
+
+

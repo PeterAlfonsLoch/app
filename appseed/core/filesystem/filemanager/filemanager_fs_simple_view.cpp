@@ -88,7 +88,7 @@ namespace filemanager
 
             property_set set(get_app());
 
-            Application.http().get("http://file.veriwell.net/", set);
+//            Application.http().get("http://file.veriwell.net/", set);
 
             open_folder(1000); // user ::music folder
 
@@ -100,7 +100,7 @@ namespace filemanager
 
             property_set set(get_app());
 
-            Application.http().get("http://file.veriwell.net/", set);
+  //          Application.http().get("http://file.veriwell.net/", set);
 
             open_folder(1); // user root folder
 

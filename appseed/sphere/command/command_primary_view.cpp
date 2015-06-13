@@ -8,8 +8,7 @@ namespace command
 
    primary_view::primary_view(::aura::application * papp) :
       ::object(papp),
-      ::user::plain_edit(papp),
-      ::user::edit_plain_text_view(papp)
+      ::user::plain_edit(papp)
    {
 
       m_iCompromised = 0;
@@ -35,7 +34,7 @@ namespace command
    void primary_view::install_message_handling(::message::dispatch * pinterface)
    {
 
-      ::user::edit_plain_text_view::install_message_handling(pinterface);
+      BASE::install_message_handling(pinterface);
 	   IGUI_WIN_MSG_LINK(WM_CONTEXTMENU, pinterface, this, &primary_view::_001OnContextMenu);
 
    }

@@ -34,21 +34,19 @@ namespace filemanager
    void folder_selection_list_view::Initialize(manager_template * ptemplate,const char * lpcszSection,::database::id datakey,bool bRecursive)
    {
 
-      get_filemanager_template() = ptemplate;
+      m_pdata = dynamic_cast <manager *>(get_document())->get_filemanager_data();
+      m_pmanager = m_pdata->m_pmanager;
+      get_filemanager_data()->m_pmanagertemplate = ptemplate;
       get_filemanager_data()->m_iTemplate = ptemplate->m_iTemplate;
       get_filemanager_data()->m_iDocument = 0;
 
       string str;
       str.Format("folder_selection_list_view(%s,%s)",get_filemanager_template()->m_strDISection,lpcszSection);
-      m_dataid = str;
+      m_dataid += str;
 
       CreateViews();
 
-      m_plistview->Initialize(datakey,bRecursive);
-      str.Format("folder_selection_list_view.ListView(%s,%s)",get_filemanager_template()->m_strDISection,lpcszSection);
-      m_plistview->m_dataid = str;
-
-      m_plistview->_001UpdateColumns();
+      m_plistview->Initialize(m_dataid + datakey,bRecursive);
 
       if(data_get(".local://InitialBrowsePath",str))
       {

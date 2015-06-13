@@ -6,8 +6,7 @@ namespace user
 
 
    class CLASS_DECL_CORE split_view :
-      virtual public ::user::impact,
-      virtual public split_layout
+      virtual public ::user::show < split_layout >
    {
    public:
 

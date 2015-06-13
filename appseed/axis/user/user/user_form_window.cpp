@@ -1043,6 +1043,7 @@ namespace user
             if(pdescriptor->m_pcontrol != NULL)
             {
                _001OnButtonAction(pdescriptor->m_pcontrol);
+               pevent->m_bRet = true;
                return true;
             }
             else

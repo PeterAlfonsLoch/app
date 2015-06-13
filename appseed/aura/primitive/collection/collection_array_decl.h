@@ -997,6 +997,7 @@ public:
 
    inline array & operator = (const array & src);
    inline array & operator = (array && a);
+   inline array & move (array && a);
 
 
    //inline index find_first(ARG_TYPE t, index (* lpfnCompare)(ARG_TYPE, ARG_TYPE), index start = 0, index last = -1) const;

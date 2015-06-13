@@ -101,7 +101,7 @@ namespace user
 
       id                                  m_idModalResult; // for return values from interaction_impl::RunModalLoop
 
-      sp(::aura::menu_base)               m_spmenuPopup;
+      sp(::user::menu_base)               m_spmenuPopup;
 
       int32_t                             m_nModalResult; // for return values from ::interaction_impl::RunModalLoop
       ptr_array < thread >                m_threadptra;
@@ -331,6 +331,7 @@ namespace user
       virtual void _001DrawChildren(::draw2d::graphics *pdc);
       virtual void _001OnNcDraw(::draw2d::graphics *pdc);
       virtual void _001OnDraw(::draw2d::graphics *pdc);
+      virtual void _001OnClip(::draw2d::graphics *pdc);
       virtual void draw_control_background(::draw2d::graphics *pdc);
 
       virtual bool is_custom_draw();
@@ -590,15 +591,15 @@ namespace user
 
 
 
-      virtual bool track_popup_menu(::aura::menu_base_item * pitem,int32_t iFlags,int32_t x,int32_t y);
+      virtual bool track_popup_menu(::user::menu_base_item * pitem,int32_t iFlags,int32_t x,int32_t y);
       virtual bool track_popup_menu(::xml::node * lpnode,int32_t iFlags,int32_t x,int32_t y);
       virtual bool track_popup_xml_matter_menu(const char * pszMatter,int32_t iFlags,int32_t x,int32_t y);
 
-      virtual bool track_popup_menu(::aura::menu_base_item * pitem,int32_t iFlags,signal_details * pobj);
+      virtual bool track_popup_menu(::user::menu_base_item * pitem,int32_t iFlags,signal_details * pobj);
       virtual bool track_popup_menu(::xml::node * lpnode,int32_t iFlags,signal_details * pobj);
       virtual bool track_popup_xml_matter_menu(const char * pszMatter,int32_t iFlags,signal_details * pobj);
 
-      virtual bool track_popup_menu(::aura::menu_base_item * pitem,int32_t iFlags);
+      virtual bool track_popup_menu(::user::menu_base_item * pitem,int32_t iFlags);
       virtual bool track_popup_menu(::xml::node * lpnode,int32_t iFlags);
       virtual bool track_popup_xml_matter_menu(const char * pszMatter,int32_t iFlags);
 

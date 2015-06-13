@@ -22,6 +22,7 @@ namespace filemanager
    void folder_list_view::Initialize(::database::id  datakey,bool bRecursive)
    {
       m_bRecursive = bRecursive;
+      m_dataid = datakey + ".ListView";
       if(bRecursive)
       {
          SetDataInterface(new folder_list_data(get_app()));
@@ -36,6 +37,7 @@ namespace filemanager
          pdata->m_dataid = datakey;
          pdata->initialize_data_client(Application.simpledb().get_data_server());
       }
+      _001UpdateColumns();
    }
 
    void folder_list_view::_001InsertColumns()

@@ -2,12 +2,12 @@
 
 
 class CLASS_DECL_CORE simple_form_list_view :
-   virtual public ::user::view < ::user::scroll < ::user::margin < ::user::form_list > > >
+   virtual public ::user::show < ::user::scroll < ::user::margin < ::user::form_list > > >
 {
 public:
 
 
-   typedef ::user::view < ::user::scroll < ::user::margin < ::user::form_list > > > BASE;
+   typedef ::user::show < ::user::scroll < ::user::margin < ::user::form_list > > > BASE;
 
    simple_form_list_view(::aura::application * papp);
    virtual ~simple_form_list_view();

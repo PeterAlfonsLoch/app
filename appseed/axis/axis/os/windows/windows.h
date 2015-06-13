@@ -4,7 +4,7 @@
 #ifdef cplusplus
 
 
-CLASS_DECL_AXIS bool vfxResolveShortcut(string & strTarget,const char * pszSource,sp(::user::elemental) puiMessageParentOptional);
+CLASS_DECL_AXIS bool vfxResolveShortcut(string & strTarget,const char * pszSource,sp(::user::primitive) puiMessageParentOptional);
 
 
 

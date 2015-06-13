@@ -56,8 +56,8 @@ namespace draw2d
       case type_round_rect:
          return true;
       case type_combine:
-         delete m_pregion1;
-         delete m_pregion2;
+         m_pregion1.release();
+         m_pregion2.release();
          return true;
       default:
          ::exception::throw_not_implemented(get_app());
@@ -532,6 +532,10 @@ namespace draw2d
    bool region::combine(const ::draw2d::region * prgn1, const ::draw2d::region * prgn2, e_combine ecombine)
    {
 
+      sp(::draw2d::region) pregion1 = ((::draw2d::region *)prgn1)->clone();
+      
+      sp(::draw2d::region) pregion2 = ((::draw2d::region *)prgn2)->clone();
+      
       if(m_etype != type_none)
       {
 
@@ -541,9 +545,9 @@ namespace draw2d
 
       m_etype = type_combine;
 
-      m_pregion1 = dynamic_cast < ::draw2d::region * > (((::draw2d::region *)prgn1)->clone());
+      m_pregion1 = pregion1;
 
-      m_pregion2 = dynamic_cast < ::draw2d::region * > (((::draw2d::region *)prgn2)->clone());
+      m_pregion2 = pregion2;
 
       m_ecombine  = ecombine;
 

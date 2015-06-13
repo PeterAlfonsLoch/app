@@ -18,11 +18,11 @@ namespace databaseuser
       mesh_data(::aura::application * papp);
       virtual ~mesh_data();
 
-      virtual void _001GetItemText(::user::list_item * pitem);
+      virtual void _001GetItemText(::user::mesh_item * pitem);
 
       virtual count _001GetItemCount();
 
-      virtual bool Map(::user::list * plist, ::database::id & key1, ::database::id & key2, index iItem, index iSubItem, index iListItem);
+      virtual bool Map(::user::mesh * pmesh, ::database::id & key1, ::database::id & key2, index iItem, index iSubItem, index iListItem);
 
 
    private:

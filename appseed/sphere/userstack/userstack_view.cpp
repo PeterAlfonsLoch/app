@@ -218,7 +218,7 @@ namespace userstack
    ::user::document * view::get_document()
    {
 
-      return ::user::scroll_view::get_document();
+      return ::user::impact::get_document();
 
    }
 
@@ -364,7 +364,7 @@ namespace userstack
             pui->SetWindowPos(ZORDER_TOP, rectClient.top, rectClient.left, rectClient.width(), rectClient.height(), SWP_SHOWWINDOW);
          }
       }
-      ::user::scroll_view::layout();
+      ::user::view < ::user::scroll < ::user::control > >::layout();
       gcom::backview::user::interaction::layout();
    }*/
 

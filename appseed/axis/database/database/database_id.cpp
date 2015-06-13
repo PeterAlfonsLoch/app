@@ -27,5 +27,11 @@ namespace database
 
    }
 
+   id id::operator + (const id & id) const
+   {
+
+      return m_id + id.m_id;
+
+   }
 
 } // namespace database

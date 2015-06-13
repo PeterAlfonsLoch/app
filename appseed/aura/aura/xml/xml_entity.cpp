@@ -88,11 +88,12 @@ namespace xml
             {
                // copy m_chEntity meanning char
                *ps = ent->m_chEntity;
-               pes += ent->m_iRefLen;
+               pes += ent->m_iRefLen + 1;
             }
             else
             {
                *ps = '&';   // default character copy
+               pes++;
             }
          }
          else
@@ -119,6 +120,7 @@ namespace xml
          {
             // copy m_chEntity string
             const char * pszRef = ent->m_strRef;
+            *pes++ = '&';
             while(*pszRef )
                *pes++ = *pszRef++;
          }

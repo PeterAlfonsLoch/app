@@ -22,7 +22,7 @@ namespace filemanager
             ::data::tree(papp),
             ::user::tree_data(papp)
          {
-
+            m_pimagelist = new image_list(papp);
             m_iIconFolderNormal     = m_pimagelist->add_matter_icon("mplite/vmskarlib_folder_normal.ico");
             m_iIconFolderSelected   = m_pimagelist->add_matter_icon("mplite/vmskarlib_folder_selected.ico");
             m_iIconArtistNormal     = m_pimagelist->add_matter_icon("mplite/vmskarlib_artist_normal.ico");

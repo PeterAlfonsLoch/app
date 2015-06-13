@@ -184,7 +184,7 @@ namespace user
       bool should_load_full_file();
 
       void _001OnCalcLayout();
-      //void _001OnCalcLayoutProc(::user::elemental * pview);
+      //void _001OnCalcLayoutProc(::user::primitive * pview);
 
       void FileSave();
       void OnFileUpdate();

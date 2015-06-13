@@ -15,15 +15,6 @@
 
 #include "nodeapp/operational_system/operational_system.h"
 
-namespace aura
-{
-
-   class menu_base_item;
-   class menu_base;
-   class menu;
-
-
-}
 
 
 
@@ -32,10 +23,9 @@ namespace base
 
    class application;
    class system;
-   class copydesk;
-   class system_interaction_impl;
+//   class system_interaction_impl;
 
-   typedef smart_pointer < copydesk > copydesk_sp;
+   //typedef smart_pointer < copydesk > copydesk_sp;
 
 
 

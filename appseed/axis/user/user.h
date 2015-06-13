@@ -18,30 +18,15 @@ namespace user
    class create_struct;
    class control_event;
 
-
-} // namespace user
-
-
-
-namespace aura
-{
-
-
    class menu_base_item;
    class menu;
    class menu_base;
-
-
-}
-
-namespace user
-{
 
    class schema;
    class tree;
 
 
-}
+} // namespace user
 
 
 namespace simple_ui

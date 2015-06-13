@@ -45,7 +45,7 @@ namespace user
 
 //      pdc->SetBkMode(TRANSPARENT);
 
-      pdc->_DrawText(str, str.get_length(), rectColumn, DT_TOP | DT_LEFT | DT_END_ELLIPSIS);
+      pdc->_DrawText(str,str.get_length(),rectColumn,DT_TOP | DT_LEFT | DT_END_ELLIPSIS | DT_NOPREFIX);
 
    }
 

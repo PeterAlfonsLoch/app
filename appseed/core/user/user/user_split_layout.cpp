@@ -8,6 +8,11 @@ namespace user
 
    const int32_t split_layout::m_iMarging = 5;
 
+   split_layout::split_layout():
+      split_layout(get_app())
+   {
+   }
+
 
    split_layout::split_layout(::aura::application * papp) :
       object(papp),

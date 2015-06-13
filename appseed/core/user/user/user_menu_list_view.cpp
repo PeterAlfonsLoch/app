@@ -21,7 +21,7 @@ namespace user
    void menu_list_view::install_message_handling(::message::dispatch * pinterface)
    {
 
-      menu_list_window::install_message_handling(pinterface);
+      BASE::install_message_handling(pinterface);
 
    }
 

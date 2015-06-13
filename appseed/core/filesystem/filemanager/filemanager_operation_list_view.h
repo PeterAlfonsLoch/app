@@ -6,7 +6,7 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE operation_list_view:
-      virtual public ::user::view < ::user::list >
+      virtual public ::user::show < ::user::list >
    {
    public:
 
@@ -27,7 +27,7 @@ namespace filemanager
       DECL_GEN_SIGNAL(_001OnTimer);
 
       virtual count _001GetItemCount();
-      virtual void _001GetItemText(::user::list_item * pitem);
+      virtual void _001GetItemText(::user::mesh_item * pitem);
 
       void OnFileOperationStep(int32_t iOperation,bool bFinal);
 

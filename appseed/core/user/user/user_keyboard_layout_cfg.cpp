@@ -112,7 +112,7 @@ namespace user
          string strProxy = node.get_attr("server");
          int32_t iProxyPort = node.get_attr("port");
          sp(::user::interaction) pui = m_pview->get_child_by_name("server");
-         sp(::user::elemental) ptext =  (pui);
+         sp(::user::primitive) ptext =  (pui);
          ptext->_001SetText(strProxy, false);
          pui = m_pview->get_child_by_name("port");
          ptext =  (pui);
@@ -144,7 +144,7 @@ namespace user
          if(pevent->m_puie->m_id == "submit")
          {
             sp(::user::interaction) pui = m_pview->get_child_by_name("server");
-            sp(::user::elemental) ptext =  (pui);
+            sp(::user::primitive) ptext =  (pui);
             //m_loginthread.m_puser = dynamic_cast < ::fontopus::user * > (System.allocate_user());
             string strServer;
             ptext->_001GetText(strServer);
@@ -171,7 +171,7 @@ namespace user
 
    */
 
-/*   void keyboard_layout_cfg::_001GetItemText(::user::list_item * pitem)
+/*   void keyboard_layout_cfg::_001GetItemText(::user::mesh_item * pitem)
    {
       if(pitem->m_iItem <  0 || pitem->m_iItem >= m_layoutida.get_size())
          return_(pitem->m_bOk, false);

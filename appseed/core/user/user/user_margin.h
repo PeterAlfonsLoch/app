@@ -52,17 +52,17 @@ namespace user
 
       }
 
-      void ScreenToClient(LPRECT lprect)
-      {
+//      void ScreenToClient(LPRECT lprect)
+  //    {
 
-         BASE::ScreenToClient(lprect);
+    //     BASE::ScreenToClient(lprect);
 
          /*lprect->left   -= m_rectMargin.left;
          lprect->right  -= m_rectMargin.left;
          lprect->top    -= m_rectMargin.top;
          lprect->bottom -= m_rectMargin.top;*/
 
-      }
+     // }
 
       virtual point get_viewport_offset() override
       {

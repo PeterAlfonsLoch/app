@@ -2,7 +2,7 @@
 //#include "base/user/user.h"
 
 
-namespace aura
+namespace user
 {
 
 
@@ -97,6 +97,8 @@ namespace aura
 
       //::user::document::on_alloc(papp);
       ::database::client::initialize_data_client(&Application.dataserver());
+
+      m_dataid = Application.m_dataid +"." +m_dataid;
 
    }
 

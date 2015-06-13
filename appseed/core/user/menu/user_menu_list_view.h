@@ -6,18 +6,18 @@ namespace user
 
 
    class CLASS_DECL_CORE menu_list_view : 
-      virtual public ::user::impact,
-      virtual public menu_list_window
+      virtual public ::user::show < ::user::scroll < ::user::menu_list_window > >
    {
    public:
 
 
+      typedef ::user::show < ::user::scroll < ::user::menu_list_window > > BASE;
 
 
       menu_list_view(::aura::application * papp);
       virtual ~menu_list_view();
 
-      void install_message_handling(::message::dispatch * pinterface);
+      virtual void install_message_handling(::message::dispatch * pinterface);
 
       virtual bool pre_create_window(::user::create_struct & cs);
 

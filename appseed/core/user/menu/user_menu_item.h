@@ -6,7 +6,7 @@ namespace user
 
    
    class CLASS_DECL_CORE menu_item :
-      virtual public ::aura::menu_base_item
+      virtual public ::user::menu_base_item
    {
    public:
 
@@ -18,7 +18,7 @@ namespace user
       menu_button                m_button;
       bool                       m_bPopup;
       int32_t                    m_iLevel;
-      ::aura::menu_base *        m_pbase;
+      ::user::menu_base *        m_pbase;
 
 
       menu_item(::aura::application * papp);

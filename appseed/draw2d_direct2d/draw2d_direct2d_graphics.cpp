@@ -253,7 +253,7 @@ namespace draw2d_direct2d
    }
 
 
-   int graphics::ExcludeUpdateRgn(::user::elemental * pwindow)
+   int graphics::ExcludeUpdateRgn(::user::primitive * pwindow)
    { 
       
       throw todo(get_app());

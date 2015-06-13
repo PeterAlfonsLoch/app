@@ -31,11 +31,28 @@ class numeric_array :
 {
 public:
 
+   numeric_array() {}
+
+   numeric_array(const numeric_array & array)
+   {
+
+      operator = (array);
+
+   }
+
+   numeric_array(numeric_array && array)
+   {
+
+      move(::move(array));
+
+   }
+
+
    //DECLARE_AND_IMPLEMENT_DEFAULT_CONSTRUCTION_AND_ASSIGNMENT(numeric_array, comparable_raw_array < TYPE >)
 
    typedef TYPE BASE_TYPE;
    typedef const TYPE & BASE_ARG_TYPE;
-   typedef comparable_primitive_array < TYPE > BASE_ARRAY;
+   typedef comparable_raw_array < TYPE > BASE_ARRAY;
 
 
    index find_first_maximum_value();
@@ -207,6 +224,25 @@ public:
 
       return 0;
 
+   }
+
+   numeric_array & operator = (const numeric_array & a)
+   {
+      BASE_ARRAY::operator = (a);
+      return *this;
+   }
+
+   numeric_array & operator = (numeric_array && a)
+   {
+      move(::move(a));
+      return *this;
+   }
+
+
+   numeric_array & move (numeric_array & a)
+   {
+      BASE_ARRAY::move(::move(a));
+      return *this;
    }
 
 };

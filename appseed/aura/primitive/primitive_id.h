@@ -170,6 +170,7 @@ public:
    inline bool is_integer() const { return m_etype == type_integer; }
 
    inline id & operator +=(const char * psz);
+   inline id operator +(const id & id) const;
 
 };
 

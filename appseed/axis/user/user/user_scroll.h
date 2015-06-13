@@ -321,6 +321,8 @@ namespace user
 
       m_scrolldataHorz.m_iPage          = rectScroll.width();
 
+      _001ConstrainXScrollPosition();
+
       layout_scroll_bar();
 
       on_change_viewport_offset();
@@ -596,6 +598,8 @@ namespace user
 
       size sizeTotal = get_total_size();
 
+      size sizePage = get_page_size();
+
       point ptOffset = get_viewport_offset();
 
       if(ptOffset.y < 0)
@@ -604,8 +608,8 @@ namespace user
       }
       else
       {
-         if(ptOffset.y > sizeTotal.cy)
-            ptOffset.y = sizeTotal.cy;
+         if(ptOffset.y > sizeTotal.cy - sizePage.cy)
+            ptOffset.y = sizeTotal.cy - sizePage.cy;
       }
 
       if(ptOffset.x < 0)
@@ -614,8 +618,8 @@ namespace user
       }
       else
       {
-         if(ptOffset.x > sizeTotal.cx)
-            ptOffset.x = sizeTotal.cx;
+         if(ptOffset.x > sizeTotal.cx - sizePage.cx)
+            ptOffset.x = sizeTotal.cx - sizePage.cx;
       }
 
       if(ptOffset != get_viewport_offset())
@@ -706,8 +710,6 @@ namespace user
 
       }
 
-
-
       m_scrolldataVert.m_bScroll = m_scrolldataVert.m_bScrollEnable && m_scrolldataVert.m_bScroll;
 
       rect rectScroll;
@@ -715,6 +717,8 @@ namespace user
       GetScrollRect(rectScroll);
 
       m_scrolldataVert.m_iPage          = rectScroll.height();
+
+      _001ConstrainYScrollPosition();
 
       layout_scroll_bar();
 
@@ -830,6 +834,10 @@ namespace user
          m_scrolldataHorz.m_iPage          = rectScroll.width();
 
          m_scrolldataVert.m_iPage          = rectScroll.height();
+
+         _001ConstrainXScrollPosition();
+
+         _001ConstrainYScrollPosition();
 
          layout_scroll_bar();
 

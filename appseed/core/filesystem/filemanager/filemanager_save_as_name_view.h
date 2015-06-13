@@ -6,7 +6,7 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE save_as_view:
-      virtual public ::user::view < ::user::plain_edit >,
+      virtual public ::user::show < ::user::plain_edit >,
       virtual public ::filemanager::impact
    {
    public:

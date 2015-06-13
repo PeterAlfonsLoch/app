@@ -675,7 +675,7 @@ namespace filemanager
          {
             ::user::menu_item_ptra * pitema = pcmdui1->m_pitema;
 
-            ::aura::menu_base * pbase = pitema->element_at(pcmdui->m_pcmdui->m_iIndex)->m_pbase;
+            ::user::menu_base * pbase = pitema->element_at(pcmdui->m_pcmdui->m_iIndex)->m_pbase;
             pitema->remove_at(pcmdui->m_pcmdui->m_iIndex);
 
 
@@ -1401,7 +1401,7 @@ namespace filemanager
    }
 
 
-   void file_list::_001GetItemText(::user::list_item * pitem)
+   void file_list::_001GetItemText(::user::mesh_item * pitem)
    {
 
       if (m_bStatic)
@@ -1447,7 +1447,7 @@ namespace filemanager
       return false;*/
    }
 
-   void file_list::_001GetItemImage(::user::list_item * pitem)
+   void file_list::_001GetItemImage(::user::mesh_item * pitem)
    {
       return ::userfs::list::_001GetItemImage(pitem);
       /*      if(iSubItem == m_iSelectionSubItem)

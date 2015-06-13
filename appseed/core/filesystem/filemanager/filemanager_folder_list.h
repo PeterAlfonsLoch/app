@@ -6,7 +6,7 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE folder_list :
-      virtual public ::user::view < ::user::list >,
+      virtual public ::user::show < ::user::list >,
       virtual public ::filemanager::impact
    {
    public:
@@ -66,10 +66,10 @@ namespace filemanager
 
       ::fs::item & get_filemanager_item();
 
-      virtual void _001GetItemImage(::user::list_item * pitem);
+      virtual void _001GetItemImage(::user::mesh_item * pitem);
       virtual void _001CreateImageList(::user::list_column * column);
       virtual void browse_sync(::action::context actioncontext);
-      virtual void _001GetItemText(::user::list_item * pitem);
+      virtual void _001GetItemText(::user::mesh_item * pitem);
       virtual count _001GetItemCount();
       virtual void _001InsertColumns();
 

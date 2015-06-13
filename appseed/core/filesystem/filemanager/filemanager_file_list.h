@@ -254,8 +254,8 @@ namespace filemanager
       //virtual bool TwiHasTranslucency();
       void _001CreateImageList();
       bool _001CreateImageListStep();
-      virtual void _001GetItemImage(::user::list_item * pitem);
-      virtual void _001GetItemText(::user::list_item * pitem);
+      virtual void _001GetItemImage(::user::mesh_item * pitem);
+      virtual void _001GetItemText(::user::mesh_item * pitem);
       virtual count _001GetItemCount();
       void _017Browse(const char * lpcsz, ::action::context actioncontext);
       void _017UpdateList(const char * lpcsz, ::action::context actioncontext);

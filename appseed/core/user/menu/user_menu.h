@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace aura
+namespace user
 {
 
 
@@ -44,6 +44,7 @@ namespace aura
       ::user::interaction *      m_puiNotify;
 
 
+      menu();
       menu(::aura::application * papp);
       menu(::aura::application * papp, sp(::user::menu_item) pitem);
       virtual ~menu();
@@ -53,7 +54,7 @@ namespace aura
 
       void layout_menu(point pt);
 
-      virtual bool TrackPopupMenu(int32_t iFlags, int32_t x, int32_t y, sp(::user::interaction) oswindowParent, sp(::aura::menu_base) * pthis);
+      virtual bool TrackPopupMenu(int32_t iFlags, int32_t x, int32_t y, ::user::interaction * oswindowParent, sp(::user::menu_base) * pthis) override;
 
       DECL_GEN_SIGNAL(_001OnLButtonDown);
 
@@ -75,7 +76,7 @@ namespace aura
       bool _TrackPopupMenu(int32_t iFlags, int32_t x, int32_t y, sp(::user::interaction) oswindowParent, menu * pmenuParent);
       /*DECL_GEN_SIGNAL(OnMouseProc);*/
       bool pre_create_window(::user::create_struct& cs);
-      virtual void PostNcDestroy();
+      //virtual void PostNcDestroy();
       ::user::front_end_schema::menu  * m_pschema;
       virtual void install_message_handling(::message::dispatch * pinterface);
 
