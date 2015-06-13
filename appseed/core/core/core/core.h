@@ -472,14 +472,6 @@ inline int16_t APIENTRY GetFileTitle(const char * lpszFile, LPTSTR lpszTitle, WO
 
    class command_target;            // a target for ::fontopus::user commands
 
-   namespace aura
-   {
-
-      class impact;
-
-
-   } // namespace aura
-
    namespace user
    {
       class plain_edit;            // Edit control

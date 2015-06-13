@@ -66,7 +66,7 @@ namespace user
 
 
 
-
+      button();
       button(::aura::application * papp);
       virtual ~button();
 

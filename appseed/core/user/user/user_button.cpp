@@ -5,6 +5,13 @@ namespace user
 {
 
 
+   button::button():
+      button(get_app())
+   {
+
+   }
+
+
    button::button(::aura::application * papp) :
       object(papp),
       ::user::interaction(papp)
