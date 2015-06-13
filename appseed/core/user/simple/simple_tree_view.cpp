@@ -23,13 +23,14 @@ void simple_tree_view::install_message_handling(::message::dispatch * pinterface
 }
 
 
-void simple_tree_view::on_update(::user::impact * pSender,LPARAM lHint,::object* pHint) override
+void simple_tree_view::on_update(::user::impact * pSender,LPARAM lHint,::object* pHint)
 {
 
    ::user::impact::on_update(pSender,lHint,pHint);
    ::user::tree::on_update(pSender,lHint,pHint);
 
 }
+
 
 #ifdef DEBUG
 void simple_tree_view::assert_valid() const
