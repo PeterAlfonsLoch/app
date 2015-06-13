@@ -364,7 +364,7 @@ namespace userstack
             pui->SetWindowPos(ZORDER_TOP, rectClient.top, rectClient.left, rectClient.width(), rectClient.height(), SWP_SHOWWINDOW);
          }
       }
-      ::user::view < ::user::scroll < ::user::control > >::layout();
+      ::user::show < ::user::scroll < ::user::control > >::layout();
       gcom::backview::user::interaction::layout();
    }*/
 

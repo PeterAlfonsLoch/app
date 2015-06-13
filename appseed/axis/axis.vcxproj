@@ -5305,6 +5305,7 @@
     <ClInclude Include="user\simple_ui\simple_ui_style.h" />
     <ClInclude Include="user\simple_ui\simple_ui_tap.h" />
     <ClInclude Include="user\user.h" />
+    <ClInclude Include="user\userex\userex_scroll.h" />
     <ClInclude Include="user\userpresence\userpresence.h" />
     <ClInclude Include="user\userpresence\userpresence_userpresence.h" />
     <ClInclude Include="user\userpresence\userpresence_user_presence.h" />

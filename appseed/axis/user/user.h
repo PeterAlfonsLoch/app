@@ -355,6 +355,7 @@ namespace axis
 #include "axis/user/user/user_control.h"
 #include "axis/user/user/user_scroll_bar.h"
 #include "axis/user/user/user_scroll.h"
+#include "axis/user/userex/userex_scroll.h"
 
 #include "axis/user/user/user_plain_text_data.h"
 #include "axis/user/user/user_plain_edit.h"
@@ -411,6 +412,7 @@ namespace axis
 namespace user
 {
 
+   typedef show < ::userex::scroll < control > > scroll_ex_view;
 
    typedef show < scroll < control > > scroll_view;
 

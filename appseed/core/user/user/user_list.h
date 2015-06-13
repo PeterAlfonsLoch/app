@@ -506,6 +506,7 @@ namespace user
    };
 
 
+   typedef show < scroll < list > > list_view;
 
 } // namespace user
 

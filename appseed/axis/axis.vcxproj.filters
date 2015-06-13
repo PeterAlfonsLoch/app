@@ -315,6 +315,9 @@
     <Filter Include="Source Files\user\javascript">
       <UniqueIdentifier>{d0c7ea9a-6603-4e55-9f3c-47dc1f6beb7e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\user\userex">
+      <UniqueIdentifier>{51f22ea1-a551-4545-9011-4c7673e11d44}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="net\net.h">
@@ -1310,6 +1313,9 @@
     <ClInclude Include="user\user\user_plain_edit.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
+    <ClInclude Include="user\userex\userex_scroll.h">
+      <Filter>Header Files\user\userex</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="net\net_net.cpp">
@@ -2265,9 +2271,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>
