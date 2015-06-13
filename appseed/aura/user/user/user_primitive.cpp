@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   elemental::elemental()
+   primitive::primitive()
    {
 
       m_pvoidUserInteraction = NULL;
@@ -13,7 +13,7 @@ namespace user
    }
 
 
-   elemental::~elemental()
+   primitive::~primitive()
    {
 
 
@@ -23,7 +23,7 @@ namespace user
 #ifdef WINDOWSEX
 
 
-   bool elemental::GetWindowPlacement(WINDOWPLACEMENT * lpwndpl)
+   bool primitive::GetWindowPlacement(WINDOWPLACEMENT * lpwndpl)
    {
 
       UNREFERENCED_PARAMETER(lpwndpl);
@@ -32,7 +32,7 @@ namespace user
 
    }
 
-   bool elemental::SetWindowPlacement(const WINDOWPLACEMENT * lpcwndpl)
+   bool primitive::SetWindowPlacement(const WINDOWPLACEMENT * lpcwndpl)
    {
 
       UNREFERENCED_PARAMETER(lpcwndpl);
@@ -45,7 +45,7 @@ namespace user
 #endif // WINDOWSEX
 
 
-   bool elemental::SetPlacement(const RECT & rect,UINT nFlags)
+   bool primitive::SetPlacement(const RECT & rect,UINT nFlags)
    {
 
       UNREFERENCED_PARAMETER(rect);
@@ -56,7 +56,7 @@ namespace user
    }
 
 
-} // namespace aura
+} // namespace user
 
 
 

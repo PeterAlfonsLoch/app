@@ -15,8 +15,8 @@ namespace user
       void *         m_pvoidUserInteraction; // ::user::primitive * 
 
 
-      elemental();
-      virtual ~elemental();
+      primitive();
+      virtual ~primitive();
 
       inline oswindow get_safe_handle() const;
 
@@ -30,7 +30,7 @@ namespace user
    };
 
 
-} // namespace aura
+} // namespace user
 
 
 

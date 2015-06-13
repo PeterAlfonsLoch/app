@@ -408,6 +408,19 @@ namespace axis
 #include "axis/user/user/user.h"
 
 
+namespace user
+{
+
+
+   typedef show < scroll < control > > scroll_view;
+
+   typedef show < scroll < plain_edit > > plain_edit_view;
+
+
+} // namespace user
+
 
 #endif // __cplusplus
+
+
 
