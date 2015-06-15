@@ -220,10 +220,12 @@ synch_lock ml(&cairo_mutex());
 
    bool region::mask_combine(cairo_t * pdc)
    {
-synch_lock ml(&cairo_mutex());
+
+      synch_lock ml(&cairo_mutex());
+
       cairo_push_group(pdc);
 
-      dynamic_cast < ::draw2d_cairo::region * >(m_pregion1)->mask(pdc);
+      m_pregion1.cast < ::draw2d_cairo::region >()->mask(pdc);
 
       cairo_pop_group_to_source(pdc);
 
@@ -231,7 +233,7 @@ synch_lock ml(&cairo_mutex());
 
       cairo_push_group(pdc);
 
-      dynamic_cast < ::draw2d_cairo::region * >(m_pregion2)->mask(pdc);
+      m_pregion2.cast < ::draw2d_cairo::region >()->mask(pdc);
 
       cairo_pop_group_to_source(pdc);
 

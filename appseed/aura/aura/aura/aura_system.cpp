@@ -348,30 +348,30 @@ namespace aura
       if(!set_main_init_data(m_pinitmaindata))
          return false;
 
-      
+
       if(is_installing() || is_uninstalling())
       {
-         
+
 #ifdef MACOS
-         
+
 /*         if(0 != setuid(0))
             return false;
-         
+
          uid_t uid = getuid();
-         
+
          string str("installing or uninstalling as root : getuid() %d", uid);
-         
+
          ::dir::mk("/ca2core");
-         
+
          file_put_contents_dup("/ca2core/teste.txt", str, str.length());
          */
 #endif
-         
+
 #if 0
          // Create authorization reference
          OSStatus status;
          AuthorizationRef authorizationRef;
-         
+
          // AuthorizationCreate and pass NULL as the initial
          // AuthorizationRights set so that the AuthorizationRef gets created
          // successfully, and then later call AuthorizationCopyRights to
@@ -384,7 +384,7 @@ namespace aura
             TRACE("Error Creating Initial Authorization: %d", status);
             return false;
          }
-         
+
          // kAuthorizationRightExecute == "system.privilege.admin"
          AuthorizationItem right = {kAuthorizationRightExecute, 0, NULL, 0};
          AuthorizationRights rights = {1, &right};
@@ -392,7 +392,7 @@ namespace aura
          kAuthorizationFlagInteractionAllowed |
          kAuthorizationFlagPreAuthorize |
          kAuthorizationFlagExtendRights;
-         
+
          // Call AuthorizationCopyRights to determine or extend the allowable rights.
          status = AuthorizationCopyRights(authorizationRef, &rights, NULL, flags, NULL);
          if (status != errAuthorizationSuccess)
@@ -400,7 +400,7 @@ namespace aura
             TRACE("Copy Rights Unsuccessful: %d", status);
             return false;
          }
-#endif  
+#endif
       }
 
 
@@ -416,7 +416,7 @@ namespace aura
       }
 
       m_spfile.alloc(allocer());
-      
+
       if(!m_spfile->initialize())
          throw simple_exception(this,"failed to construct system m_spfile->initialize");
 
@@ -736,8 +736,10 @@ namespace aura
 
 
 
-   void system::wait_twf()
+   mutex * system::wait_twf()
    {
+
+      return NULL;
 
    }
 
@@ -867,7 +869,7 @@ namespace aura
          return NULL;
 
       object * pobj = m_pfactory->create(papp,ptype);
-      
+
       if(pobj != NULL)
          return pobj;
 
@@ -898,10 +900,10 @@ namespace aura
 
    }
 
-   
+
    void system::on_allocation_error(::aura::application * papp, ::type * ptype)
    {
-      
+
       UNREFERENCED_PARAMETER(papp);
       UNREFERENCED_PARAMETER(ptype);
 
@@ -1353,7 +1355,7 @@ namespace aura
 //         string strCurDir = pszCurDir;
 //
 //         free(pszCurDir);
-//         
+//
 //         strModuleFileName = strCurDir,"libbase.dylib");
 //
 //         if(Application.file().exists(strModuleFileName))
@@ -1529,21 +1531,21 @@ namespace aura
 
    sp(::aura::session) system::get_session(index iEdge,application_bias * pbiasCreation)
    {
-      
+
       sp(::aura::session) paurasession = NULL;
-      
+
       if(m_paurabergedgemap == NULL)
          return NULL;
 
       if(!m_paurabergedgemap->Lookup(iEdge,paurasession))
       {
-      
+
          // todo (camilo) real multiple session native support
 
          //paurasession = create_application("application","session",true,pbiasCreation);
 
          paurasession = m_paurasession; // note (camilo) by the time, assigns always the session "0"
-         
+
          if(paurasession == NULL)
             return NULL;
 
@@ -1605,7 +1607,7 @@ namespace aura
 #endif
 
       }
-      
+
       return m_strInstallVersion;
 
    }
@@ -1660,7 +1662,7 @@ namespace aura
    void system::on_map_application_library(::aura::library & library)
    {
 
-      
+
 
    }
 
@@ -1828,7 +1830,7 @@ namespace aura
       m_mapAppLibrary.remove_all();
 
       string strLibraryId;
-      
+
       ::file::listing straTitle(this);
 
       straTitle.ls_pattern(System.dir().ca2module(),"*.*");

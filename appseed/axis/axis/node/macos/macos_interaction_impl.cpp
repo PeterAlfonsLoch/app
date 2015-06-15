@@ -528,7 +528,7 @@ namespace macos
 
    void interaction_impl::install_message_handling(::message::dispatch * pinterface)
    {
-      
+
       ::user::interaction_impl::install_message_handling(pinterface);
       //m_pbuffer->InstallMessageHandling(pinterface);
       IGUI_WIN_MSG_LINK(WM_DESTROY           , pinterface, this, &interaction_impl::_001OnDestroy);
@@ -5321,7 +5321,7 @@ namespace macos
    { Default(); }
    void interaction_impl::OnKillFocus(::user::interaction *)
    { Default(); }
-   LRESULT interaction_impl::OnMenuChar(UINT, UINT, ::aura::menu*)
+   LRESULT interaction_impl::OnMenuChar(UINT, UINT, ::user::menu*)
    { return Default(); }
    void interaction_impl::OnMenuSelect(UINT, UINT, HMENU)
    { Default(); }
@@ -5483,9 +5483,9 @@ namespace macos
    { Default(); }
    void interaction_impl::OnTimer(uint_ptr)
    { Default(); }
-   void interaction_impl::OnInitMenu(::aura::menu*)
+   void interaction_impl::OnInitMenu(::user::menu*)
    { Default(); }
-   void interaction_impl::OnInitMenuPopup(::aura::menu*, UINT, bool)
+   void interaction_impl::OnInitMenuPopup(::user::menu*, UINT, bool)
    { Default(); }
    void interaction_impl::OnAskCbFormatName(UINT nMaxCount, LPTSTR pszName)
    {
@@ -5713,7 +5713,7 @@ namespace macos
       }
 
 //      single_lock sl(mutex_display(), true);
-      
+
       cslock slDisplay(cs_display());
 
       if(m_spdib.is_null())

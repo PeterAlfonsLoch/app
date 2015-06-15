@@ -17,7 +17,7 @@ namespace axis
 
 
       ::http::system                               m_httpsystem;
-      
+
 
       ::crypto::crypto_sp                          m_spcrypto;
       sp(::install::install)                       m_spinstall;
@@ -27,7 +27,7 @@ namespace axis
       ::visual::visual                             m_visual;
 
       class ::fontopus::user_set                   m_userset;
-      
+
 
       ::net::email_departament                     m_emaildepartament;
 
@@ -122,11 +122,11 @@ namespace axis
       //::url::departament                           & url()     { return m_urldepartament; }
 
       inline class ::http::system                  & http()    { return m_httpsystem; }
-      
+
       class ::crypto::crypto                       & crypto();
       ::install::install                           & install() { return *m_spinstall; }
 
-      inline class ::visual::visual                & visual()     { return m_visual       ; } 
+      inline class ::visual::visual                & visual()     { return m_visual       ; }
 
       ::fontopus::user_set                         & userset();
 
@@ -161,7 +161,7 @@ namespace axis
 
       virtual string crypto_md5_text(const string & str);
 
-      
+
 
 
       virtual ::aura::session * on_create_session();
@@ -199,7 +199,7 @@ namespace axis
 
       //virtual bool initialize2();
 
-      virtual void wait_twf();
+      virtual mutex * wait_twf();
 
       virtual bool defer_create_system_frame_window();
 
@@ -251,7 +251,7 @@ namespace axis
 
       //virtual string dir_appmatter_locator(::aura::application * papp);
 
-      
+
 
       virtual void hist_hist(const char * psz);
 

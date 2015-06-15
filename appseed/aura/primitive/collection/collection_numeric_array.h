@@ -43,7 +43,7 @@ public:
    numeric_array(numeric_array && array)
    {
 
-      move(::move(array));
+      this->move(::move(array));
 
    }
 
@@ -239,7 +239,7 @@ public:
    }
 
 
-   numeric_array & move (numeric_array & a)
+   numeric_array & move (numeric_array && a)
    {
       BASE_ARRAY::move(::move(a));
       return *this;

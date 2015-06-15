@@ -120,6 +120,8 @@ namespace linux
 
       //synch_lock sl(&user_mutex());
 
+      synch_lock sl(&m_mutex);
+
       static DWORD s_dwLastAnalysisFrame = 0;
       static DWORD s_dwLastFrameFrame = 0;
       static DWORD s_iAnalysisFrameFailureCount = 0;
@@ -701,7 +703,7 @@ namespace linux
    // that are lower z order siblings of a higher z order
    // top level ::user::interaction_impl that contains all
    // the update region in a opaque area.
-   // It doesn´t eliminates from the update parent lnxdows
+   // It doesn\B4t eliminates from the update parent lnxdows
    // obscured by opaque children.
 
    window_draw::EOptimize window_draw::TwfOptimizeRender(
@@ -1368,7 +1370,7 @@ throw not_implemented(get_app());
    // that are lower z order siblings of a higher z order
    // top level ::user::interaction_impl that contains all
    // the update region in a opaque area.
-   // It doesn´t eliminates from the update parent lnxdows
+   // It doesn\B4t eliminates from the update parent lnxdows
    // obscured by opaque children.
 
 

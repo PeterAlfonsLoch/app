@@ -709,6 +709,10 @@
 		<Unit filename="user/user/user_create_context.h" />
 		<Unit filename="user/user/user_draw_context.h" />
 		<Unit filename="user/user/user_draw_interface.h" />
+		<Unit filename="user/user/user_frame.cpp" />
+		<Unit filename="user/user/user_frame.h" />
+		<Unit filename="user/user/user_primitive.cpp" />
+		<Unit filename="user/user/user_primitive.h" />
 		<Unit filename="user/user/user_printer.h" />
 		<Unit filename="user/user/user_timer_array.h" />
 		<Unit filename="user/user/user_timer_item.h" />

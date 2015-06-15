@@ -1030,8 +1030,10 @@ namespace axis
 //   }
 
 
-   void system::wait_twf()
+   mutex * system::wait_twf()
    {
+
+      return &get_twf()->m_mutex;
 
    }
 

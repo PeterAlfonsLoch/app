@@ -558,6 +558,8 @@ namespace user
 
       UNREFERENCED_PARAMETER(pobj);
 
+      single_lock sl(System.wait_twf(), true);
+
       user_interaction_on_destroy();
 
 
@@ -1074,7 +1076,7 @@ namespace user
 
    void interaction::on_viewport_offset(::draw2d::graphics * pgraphics)
    {
-    
+
       point ptViewportOffset = get_viewport_offset();
 
       pgraphics->OffsetViewportOrg(-ptViewportOffset.x,-ptViewportOffset.y);

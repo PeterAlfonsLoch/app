@@ -39,9 +39,9 @@ namespace user
 
 
       virtual void install_message_handling(::message::dispatch * pinterface);
-      
-      
-      
+
+
+
       virtual void GetScrollRect(LPRECT lprect);
       virtual void on_change_view_size();
       virtual void on_change_viewport_offset();
@@ -80,9 +80,9 @@ namespace user
 
       ::rect rectScroll;
 
-      GetClientRect(rectScroll);
+      this->GetClientRect(rectScroll);
 
-      rectScroll.offset(get_viewport_offset());
+      rectScroll.offset(this->get_viewport_offset());
 
       *lprect = rectScroll;
 
@@ -97,7 +97,7 @@ namespace user
 
       rect rectClient;
 
-      GetClientRect(rectClient);
+      this->GetClientRect(rectClient);
 
       int32_t ifswp = SWP_SHOWWINDOW | SWP_NOCOPYBITS;
 
@@ -108,7 +108,7 @@ namespace user
          if(m_scrolldataHorz.m_bScroll)
          {
 
-            _001GetXScrollInfo(m_pscrollbarHorz->m_scrollinfo);
+            this->_001GetXScrollInfo(m_pscrollbarHorz->m_scrollinfo);
 
             m_pscrollbarHorz->SetWindowPos(ZORDER_TOP,0,rectClient.bottom,rectClient.width(),m_scrolldataHorz.m_iWidth,ifswp);
 
@@ -177,9 +177,9 @@ namespace user
 
       {
 
-         synch_lock slUser(m_spmutex);
+         synch_lock slUser(this->m_spmutex);
 
-         set_viewport_offset_x(pscroll->m_nPos);
+         this->set_viewport_offset_x(pscroll->m_nPos);
 
       }
 
@@ -200,9 +200,9 @@ namespace user
    void scroll_x < BASE >::_001ConstrainXScrollPosition()
    {
 
-      size sizeTotal = get_total_size();
+      size sizeTotal = this->get_total_size();
 
-      point ptOffset = get_viewport_offset();
+      point ptOffset = this->get_viewport_offset();
 
       if(ptOffset.y < 0)
       {
@@ -224,10 +224,10 @@ namespace user
             ptOffset.x = sizeTotal.cx;
       }
 
-      if(ptOffset != get_viewport_offset())
+      if(ptOffset != this->get_viewport_offset())
       {
 
-         set_viewport_offset(ptOffset.x,ptOffset.y);
+         this->set_viewport_offset(ptOffset.x,ptOffset.y);
 
       }
 
@@ -248,24 +248,8 @@ namespace user
 
    }
 
-   template < class BASE >
-   void scroll_x < BASE >::create_x_scroll_bar(const RECT & rect)
-   {
-
-      if(m_pscrollbarHorz != NULL)
-         return;
-
-      scroll_bar * pbar = new simple_scroll_bar(get_app());
-
-      if(!pbar->create_window(::orientation_horizontal,WS_CHILD | WS_VISIBLE,null_rect(),this,7000 + 1))
-      {
-         delete pbar;
-         return;
-      }
-
-      m_pscrollbarHorz = pbar;
-
-   }
+//   template < class BASE >
+  // void scroll_x < BASE >::create_x_scroll_bar(const RECT & rect);
 
    template < class BASE >
    void scroll_x < BASE >::on_change_view_size()
@@ -273,7 +257,7 @@ namespace user
 
       BASE::on_change_view_size();
 
-      size sizeTotal = get_total_size();
+      size sizeTotal = this->get_total_size();
 
       m_scrolldataHorz.m_iWidth  = GetSystemMetrics(SM_CXHSCROLL);
 
@@ -337,7 +321,7 @@ namespace user
 
    }
 
-   
+
 
 
 
@@ -385,10 +369,10 @@ namespace user
       scroll_y();
       virtual ~scroll_y();
 
-      
+
       virtual void install_message_handling(::message::dispatch * pinterface);
 
-      
+
       virtual void GetScrollRect(LPRECT lprect);
       virtual void on_change_view_size();
       virtual void on_change_viewport_offset();
@@ -429,9 +413,9 @@ namespace user
 
       ::rect rectScroll;
 
-      GetClientRect(rectScroll);
+      this->GetClientRect(rectScroll);
 
-      rectScroll.offset(get_viewport_offset());
+      rectScroll.offset(this->get_viewport_offset());
 
       *lprect = rectScroll;
 
@@ -446,7 +430,7 @@ namespace user
 
       rect rectClient;
 
-      GetClientRect(rectClient);
+      this->GetClientRect(rectClient);
 
       int32_t ifswp = SWP_SHOWWINDOW | SWP_NOCOPYBITS;
 
@@ -454,21 +438,22 @@ namespace user
 
       if(m_pscrollbarVert != NULL)
       {
+
          if(m_scrolldataVert.m_bScroll)
          {
-            
-            _001GetYScrollInfo(m_pscrollbarVert->m_scrollinfo);
+
+            this->_001GetYScrollInfo(m_pscrollbarVert->m_scrollinfo);
 
             m_pscrollbarVert->SetWindowPos(ZORDER_TOP,rectClient.right,rectClient.top,m_scrolldataVert.m_iWidth,rectClient.height() - rectClient.top,ifswp);
 
             m_pscrollbarVert->layout();
-            
+
          }
          else
          {
             m_pscrollbarVert->ShowWindow(SW_HIDE);
          }
-         
+
       }
 
    }
@@ -526,13 +511,14 @@ namespace user
 
       {
 
-         synch_lock slUser(m_spmutex);
+         synch_lock slUser(this->m_spmutex);
 
-         set_viewport_offset_y(pscroll->m_nPos);
+         this->set_viewport_offset_y(pscroll->m_nPos);
 
       }
 
    }
+
 
    template < class BASE >
    int32_t scroll_y < BASE >::get_wheel_scroll_delta()
@@ -584,7 +570,7 @@ namespace user
 
       m_iWheelDelta -= (int16_t)(WHEEL_DELTA * iDelta);
 
-      offset_viewport_offset_y(- iDelta * get_wheel_scroll_delta());
+      this->offset_viewport_offset_y(- iDelta * this->get_wheel_scroll_delta());
 
       pmousewheel->set_lresult(0);
 
@@ -592,15 +578,17 @@ namespace user
 
 
    }
+
+
    template < class BASE >
    void scroll_y < BASE >::_001ConstrainYScrollPosition()
    {
 
-      size sizeTotal = get_total_size();
+      size sizeTotal = this->get_total_size();
 
-      size sizePage = get_page_size();
+      size sizePage = this->get_page_size();
 
-      point ptOffset = get_viewport_offset();
+      point ptOffset = this->get_viewport_offset();
 
       if(ptOffset.y < 0)
       {
@@ -622,10 +610,10 @@ namespace user
             ptOffset.x = sizeTotal.cx - sizePage.cx;
       }
 
-      if(ptOffset != get_viewport_offset())
+      if(ptOffset != this->get_viewport_offset())
       {
 
-         set_viewport_offset(ptOffset.x,ptOffset.y);
+         this->set_viewport_offset(ptOffset.x,ptOffset.y);
 
       }
 
@@ -646,31 +634,12 @@ namespace user
    }
 
    template < class BASE >
-   void scroll_y < BASE >::create_y_scroll_bar(const RECT & rect)
-   {
-
-      if(m_pscrollbarVert != NULL)
-         return;
-
-      scroll_bar * pbar = new simple_scroll_bar(get_app());
-
-      if(!pbar->create_window(::orientation_vertical,WS_CHILD | WS_VISIBLE,null_rect(),this,7002))
-      {
-         delete pbar;
-         return;
-      }
-
-      m_pscrollbarVert = pbar;
-
-   }
-
-   template < class BASE >
    void scroll_y < BASE >::on_change_view_size()
    {
 
       BASE::on_change_view_size();
 
-      size sizeTotal = get_total_size();
+      size sizeTotal = this->get_total_size();
 
       m_scrolldataVert.m_iWidth   = GetSystemMetrics(SM_CXVSCROLL);
 
@@ -768,17 +737,17 @@ namespace user
       void on_change_view_size()
       {
 
-         m_scrolldataHorz.m_bScroll = false;
+         this->m_scrolldataHorz.m_bScroll = false;
 
-         m_scrolldataVert.m_bScroll = false;
+         this->m_scrolldataVert.m_bScroll = false;
 
-         m_scrolldataHorz.m_iWidth  = GetSystemMetrics(SM_CXHSCROLL);
+         this->m_scrolldataHorz.m_iWidth  = GetSystemMetrics(SM_CXHSCROLL);
 
-         m_scrolldataVert.m_iWidth  = GetSystemMetrics(SM_CYVSCROLL);
+         this->m_scrolldataVert.m_iWidth  = GetSystemMetrics(SM_CYVSCROLL);
 
          BASE::on_change_view_size();
 
-         size sizeTotal = get_total_size();
+         size sizeTotal = this->get_total_size();
 
          rect rectClient;
 
@@ -799,12 +768,12 @@ namespace user
          if(iTotalWidth > iClientWidth)
          {
 
-            m_scrolldataHorz.m_bScroll = true;
+            this->m_scrolldataHorz.m_bScroll = true;
 
             if(iTotalHeight > iScrollHeight)
             {
 
-               m_scrolldataVert.m_bScroll = true;
+               this->m_scrolldataVert.m_bScroll = true;
 
             }
 
@@ -812,36 +781,36 @@ namespace user
          else if(iTotalHeight > iClientHeight)
          {
 
-            m_scrolldataVert.m_bScroll = true;
+            this->m_scrolldataVert.m_bScroll = true;
 
             if(iTotalWidth > iScrollWidth)
             {
 
-               m_scrolldataHorz.m_bScroll = true;
+               this->m_scrolldataHorz.m_bScroll = true;
 
             }
 
          }
 
-         m_scrolldataHorz.m_bScroll = m_scrolldataHorz.m_bScrollEnable && m_scrolldataHorz.m_bScroll;
+         this->m_scrolldataHorz.m_bScroll = this->m_scrolldataHorz.m_bScrollEnable && this->m_scrolldataHorz.m_bScroll;
 
-         m_scrolldataVert.m_bScroll = m_scrolldataVert.m_bScrollEnable && m_scrolldataVert.m_bScroll;
+         this->m_scrolldataVert.m_bScroll = this->m_scrolldataVert.m_bScrollEnable && this->m_scrolldataVert.m_bScroll;
 
          rect rectScroll;
 
-         GetScrollRect(rectScroll);
+         this->GetScrollRect(rectScroll);
 
-         m_scrolldataHorz.m_iPage          = rectScroll.width();
+         this->m_scrolldataHorz.m_iPage          = rectScroll.width();
 
-         m_scrolldataVert.m_iPage          = rectScroll.height();
+         this->m_scrolldataVert.m_iPage          = rectScroll.height();
 
-         _001ConstrainXScrollPosition();
+         this->_001ConstrainXScrollPosition();
 
-         _001ConstrainYScrollPosition();
+         this->_001ConstrainYScrollPosition();
 
-         layout_scroll_bar();
+         this->layout_scroll_bar();
 
-         on_change_viewport_offset();
+         this->on_change_viewport_offset();
 
       }
 

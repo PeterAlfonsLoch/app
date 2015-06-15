@@ -1276,6 +1276,47 @@ namespace linux
 
       mk(m_strTimeFolder / "time", get_app());
 
+      ::file::path str;
+      //SHGetSpecialFolderPath(
+        // NULL,
+        // str,
+        // CSIDL_PROFILE,
+        // FALSE);
+
+      str = getenv("HOME");
+
+      string strRelative;
+
+      strRelative = element();
+
+      index iFind = strRelative.find(':');
+
+      if(iFind >= 0)
+      {
+         strsize iFind1 = strRelative.reverse_find("\\", iFind);
+         strsize iFind2 = strRelative.reverse_find("/", iFind);
+         strsize iStart = MAX(iFind1 + 1, iFind2 + 1);
+         strRelative = strRelative.Left(iFind - 1) + "_" + strRelative.Mid(iStart, iFind - iStart) + strRelative.Mid(iFind + 1);
+      }
+
+      string strUserFolderShift;
+
+//      if(App(get_app()).directrix()->m_varTopicQuery.has_property("user_folder_relative_path"))
+  //    {
+
+    //     strUserFolderShift = ::file::path(strRelative) / App(papp).directrix()->m_varTopicQuery["user_folder_relative_path"].get_string();
+
+  //    }
+  //    else
+  //    {
+
+      strUserFolderShift = strRelative;
+
+  //    }
+
+      m_pathUser = str / "ca2" / strUserFolderShift;
+
+
       return true;
 
    }
@@ -1389,16 +1430,16 @@ namespace linux
 
    }
 
-
+/*
    ::file::path dir::userfolder(::aura::application *  papp)
    {
 
       ::file::path str;
-      /*SHGetSpecialFolderPath(
-         NULL,
-         str,
-         CSIDL_PROFILE,
-         FALSE);*/
+      //SHGetSpecialFolderPath(
+        // NULL,
+        // str,
+        // CSIDL_PROFILE,
+        // FALSE);
 
       str = getenv("HOME");
 
@@ -1434,6 +1475,8 @@ namespace linux
       return str / "ca2" / strUserFolderShift;
 
    }
+
+*/
 
 
    ::file::path dir::default_os_user_path_prefix(::aura::application *  papp)

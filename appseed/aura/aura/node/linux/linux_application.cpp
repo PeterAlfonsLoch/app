@@ -187,9 +187,10 @@ namespace linux
 
       // avoid calling CloseHandle() on our own thread handle
       // during the thread destructor
-      m_pthreadimpl->set_os_data(NULL);
+      set_os_data(NULL);
 
-      m_pimpl->m_bRun = false;
+      set_run(false);
+      //m_pimpl->m_bRun = false;
       //LNX_THREAD(m_pimpl->::thread_sp::m_p)->m_bRun = false;
 
       int32_t iRet = ::aura::application::exit_instance();

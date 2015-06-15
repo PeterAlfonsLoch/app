@@ -5333,7 +5333,7 @@ if(psurface == g_cairosurface)
    { Default(); }
    void interaction_impl::OnKillFocus(::user::interaction *)
    { Default(); }
-   LRESULT interaction_impl::OnMenuChar(UINT, UINT, ::aura::menu*)
+   LRESULT interaction_impl::OnMenuChar(UINT, UINT, ::user::menu*)
    { return Default(); }
    void interaction_impl::OnMenuSelect(UINT, UINT, HMENU)
    { Default(); }
@@ -5493,9 +5493,9 @@ if(psurface == g_cairosurface)
    { Default(); }
    void interaction_impl::OnTimer(uint_ptr)
    { Default(); }
-   void interaction_impl::OnInitMenu(::aura::menu*)
+   void interaction_impl::OnInitMenu(::user::menu*)
    { Default(); }
-   void interaction_impl::OnInitMenuPopup(::aura::menu*, UINT, bool)
+   void interaction_impl::OnInitMenuPopup(::user::menu*, UINT, bool)
    { Default(); }
    void interaction_impl::OnAskCbFormatName(UINT nMaxCount, LPTSTR pszName)
    {

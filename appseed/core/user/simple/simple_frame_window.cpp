@@ -15,10 +15,10 @@ simple_frame_window::helper_task::helper_task(simple_frame_window * pframe) :
 m_pframe(pframe) //,
 //m_ev(pframe->get_app())
 {
-   
+
    if(g_pevent == NULL)
    {
-      
+
       g_pevent = new manual_reset_event(pframe->get_app());
 
    }
@@ -30,11 +30,11 @@ m_pframe(pframe) //,
 
 int simple_frame_window::helper_task::run()
 {
-   
+
    while(m_bRun)
    {
 
-      
+
       g_pevent->wait(millis(84));
 
       // the computer maybe blown here, where there is no code (when it is not running)... by falling into a curve in a road from a truck or by the multiverses bramas collapsing into a high energy dot.com... and bubble restarts when the spirtual world decides for restarting the virtual machine - with some pauses - as we does not detect change in time vector, as it is a non-readable, executable/paused/non existent only register in the parent processor... Imagine a overhaul upgrade with much more strings in the chords, why they mantain consitency between virtual machines versions... they like to hinder a lot!! strange, this is a hello 666... // and the time they have to overhaul is infinite, because they can pause our ticker... besides I hope no ones stops their tick counters...
@@ -45,7 +45,7 @@ int simple_frame_window::helper_task::run()
             ::get_tick_count() - m_pframe->m_dwLastSizeMove > 284)// the tester (without UPS) can loose a save specially here (where is the error, sixes or 666) // Halloween is coming
             // this a reason for using manual_reset_event for every simple_frame_window, accepts the candy, and the trick? you get both, this the whole trick!!!
          {
-            
+
             //::MessageBox(NULL, "Going to save window rect", "SaveWindowRect", MB_ICONEXCLAMATION);
 
             m_pframe->m_bSizeMove = false;// the tester (without UPS) can loose a save here
@@ -54,7 +54,7 @@ int simple_frame_window::helper_task::run()
             {
 
                TRACE("m_pframe->does_display_match() the tester is about to get close to get sad... (yes, he is mad...)");
-               if(m_pframe->does_display_match()) // the tester (without UPS) can loose a save even here 
+               if(m_pframe->does_display_match()) // the tester (without UPS) can loose a save even here
                {
 
                   TRACE("m_pframe->WindowDataSaveWindowRect() the tester is close to get sad... (yes, he is mad...)");
@@ -385,7 +385,7 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
 
    pcreate->m_bRet = false;
 
-   
+
 
 }
 
@@ -888,7 +888,7 @@ void simple_frame_window::_001OnDdeInitiate(signal_details * pobj)
 
 void simple_frame_window::pre_translate_message(signal_details * pobj)
 {
-   
+
    SCAST_PTR(::message::base, pbase, pobj);
 
    if(pbase->m_uiMessage == WM_APP + 1984 + 21)
@@ -1083,6 +1083,7 @@ void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::draw2d::grap
 
 void simple_frame_window::_000OnDraw(::draw2d::graphics * pdc)
 {
+
    if (!m_bVisible)
       return;
    if (m_bblur_Background)
@@ -1280,7 +1281,7 @@ bool simple_frame_window::is_application_main_window()
 
 bool simple_frame_window::LoadToolBar(sp(::type) sptype, id idToolBar, const char * pszToolBar, uint32_t dwCtrlStyle, uint32_t dwStyle)
 {
-   
+
    sp(::user::toolbar) ptoolbar = m_toolbarmap[idToolBar];
 
    if(ptoolbar.is_null())
@@ -1310,7 +1311,7 @@ bool simple_frame_window::LoadToolBar(sp(::type) sptype, id idToolBar, const cha
       }
       return false;
    }
-      
+
    m_toolbarmap.set_at(idToolBar,ptoolbar);
 
    layout();
@@ -2007,7 +2008,7 @@ bool simple_frame_window::calc_layered()
 
       return false;
 
-   } 
+   }
 
 }
 

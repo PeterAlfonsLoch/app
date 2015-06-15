@@ -578,6 +578,7 @@
 		<Unit filename="user/simple_ui/simple_ui_style.h" />
 		<Unit filename="user/simple_ui/simple_ui_tap.h" />
 		<Unit filename="user/user.h" />
+		<Unit filename="user/user.inl" />
 		<Unit filename="user/user/aaa_want_to_remove_user_buffer.h" />
 		<Unit filename="user/user/aaa_want_to_remove_user_keyboard_focus.h" />
 		<Unit filename="user/user/aaa_want_to_remove_user_mouse_focus.h" />
