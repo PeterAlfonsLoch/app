@@ -52,7 +52,7 @@ namespace macos
          close();
 
    }
-   
+
 
    sp(::file::stream_buffer) file::Duplicate() const
    {
@@ -160,7 +160,7 @@ namespace macos
       int32_t hFile = ::open(m_strFileName, dwFlags, dwPermission); //::open(m_strFileName, dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, NULL);
       if(hFile == hFileNull)
       {
-       
+
          DWORD dwLastError = ::GetLastError();
 
          if(dwLastError != ERROR_FILE_NOT_FOUND && dwLastError != ERROR_PATH_NOT_FOUND)
@@ -235,9 +235,9 @@ namespace macos
 //      m_bCloseOnDelete = TRUE;
 
       return ::no_exception;
-      
+
    }
-   
+
 
    ::primitive::memory_size file::read(void * lpBuf, ::primitive::memory_size nCount)
    {
@@ -541,7 +541,7 @@ namespace macos
       ::file::file_status status;
       GetStatus(status);
       return status.m_strFullName.name();
-      
+
    }
 
    string file::GetFileTitle() const
@@ -1349,7 +1349,7 @@ CLASS_DECL_AURA string vfxStringFromCLSID(REFCLSID rclsid)
  //#endif  //!___NO_OLE_SUPPORT
  */
 
-CLASS_DECL_AURA bool vfxResolveShortcut(string & strTarget, const char * pszSource, ::aura::interaction * puiMessageParentOptional)
+CLASS_DECL_AURA bool vfxResolveShortcut(string & strTarget, const char * pszSource, ::user::primitive * puiMessageParentOptional)
 {
 
 
@@ -1694,7 +1694,7 @@ void CLASS_DECL_AURA vfxThrowFileException(::aura::application * papp, ::file::e
 namespace macos
 {
 
-   
+
    namespace file_exception
    {
 

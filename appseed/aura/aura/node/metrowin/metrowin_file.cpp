@@ -71,7 +71,7 @@ namespace metrowin
       return pFile;
    }
 
-   
+
    ::cres file::open(const ::file::path & lpszFileName, UINT nOpenFlags)
    {
 
@@ -917,15 +917,15 @@ namespace metrowin
 
    string file::GetFileName() const
    {
-      
+
       ASSERT_VALID(this);
 
       ::file::file_status status;
-      
+
       GetStatus(status);
-      
+
       string wstrResult;
-   
+
       wstrResult = status.m_strFullName.name();
 
       return wstrResult;
@@ -935,15 +935,15 @@ namespace metrowin
 
    string file::GetFileTitle() const
    {
-      
+
       ASSERT_VALID(this);
 
       ::file::file_status status;
-      
+
       GetStatus(status);
-      
+
       string wstrResult;
-   
+
       wstrResult = status.m_strFullName.title();
 
       return wstrResult;
@@ -1019,7 +1019,7 @@ namespace metrowin
          lpsz = szUnknown;
       //   TRACE3("file exception: %hs, file %s, App error information = %ld.\n", lpsz, (lpszFileName == NULL) ? "Unknown" : lpszFileName, lOsError);
 #endif
-      
+
       throw ::file::exception(papp,WinFileException::OsErrorToException(lOsError),lOsError ,lpszFileName);
 
    }
@@ -1604,7 +1604,7 @@ namespace metrowin
 
 
 
-   bool CLASS_DECL_AURA vfxResolveShortcut(string & strTarget, const char * pszSource, ::aura::interaction * puiMessageParentOptional)
+   bool CLASS_DECL_AURA vfxResolveShortcut(string & strTarget, const char * pszSource, ::user::primitive * puiMessageParentOptional)
    {
 
 #ifdef WINDOWSEX

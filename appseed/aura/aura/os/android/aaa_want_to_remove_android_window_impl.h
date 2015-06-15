@@ -30,7 +30,7 @@ struct CLASS_DECL_AURA oswindow_data
 {
 
    bool                          m_bMessageOnlyWindow;
-   ::aura::interaction *         m_pui;
+   ::user::primitive *         m_pui;
    HTHREAD                       m_hthread;
    COLORREF *                    m_pcolorref;
    RECT                          m_rect;
@@ -43,7 +43,7 @@ struct CLASS_DECL_AURA oswindow_data
 
 
    oswindow_data();
-   oswindow_data(::aura::interaction * puibaseMessageOnlyWindow);
+   oswindow_data(::user::primitive * puibaseMessageOnlyWindow);
    oswindow_data(const void * p);
    oswindow_data(const LPARAM & lparam);
    oswindow_data(const WPARAM & wparam);
@@ -81,9 +81,9 @@ struct CLASS_DECL_AURA oswindow_data
    int32_t select_all_input();
    int32_t map_window();
 
-   void set_user_interaction(::aura::interaction * pui);
-   ::aura::interaction * get_user_interaction();
-   ::aura::interaction * get_user_interaction() const;
+   void set_user_interaction(::user::primitive * pui);
+   ::user::primitive * get_user_interaction();
+   ::user::primitive * get_user_interaction() const;
 
 
    void post_nc_destroy();

@@ -752,7 +752,7 @@ namespace macos
        */
    }
 
-   bool os::resolve_link(string & strTarget, const char * pszSource, ::aura::interaction * puiMessageParentOptional)
+   bool os::resolve_link(string & strTarget, const char * pszSource, ::user::primitive * puiMessageParentOptional)
    {
 
 //      throw not_implemented(get_app());

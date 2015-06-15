@@ -113,7 +113,7 @@ namespace linux
       DWORD SuspendThread();
       DWORD ResumeThread();
       bool post_thread_message(UINT message, WPARAM wParam, LPARAM lParam);
-      bool post_message(sp(::aura::interaction) pguie, UINT message, WPARAM wParam, LPARAM lParam);
+      bool post_message(sp(::user::primitive) pguie, UINT message, WPARAM wParam, LPARAM lParam);
 
       virtual bool PreInitInstance();
 
@@ -144,7 +144,7 @@ namespace linux
       virtual bool ProcessMessageFilter(int32_t code, LPMESSAGE lpMsg);
 
       // Advanced: virtual access to GetMainWnd()
-      virtual sp(::aura::interaction) GetMainWnd();
+      virtual sp(::user::primitive) GetMainWnd();
 
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
@@ -160,14 +160,14 @@ namespace linux
 
       virtual void ShowWaitCursor(bool bShow = true);
 
-      ::aura::interaction * window_from_os_data(void * pdata);
-      ::aura::interaction * window_from_os_data_permanent(void * pdata);
+      ::user::primitive * window_from_os_data(void * pdata);
+      ::user::primitive * window_from_os_data_permanent(void * pdata);
 
       virtual ::thread * GetThread();
       virtual void set_thread(::thread * pthread);
 
-      virtual ::aura::interaction * FindWindow(const char * lpszClassName, const char * lpszWindowName);
-      virtual ::aura::interaction * FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow);
+      virtual ::user::primitive * FindWindow(const char * lpszClassName, const char * lpszWindowName);
+      virtual ::user::primitive * FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow);
 
       virtual void get_time(struct timeval *p);
       virtual void set_env_var(const string & var,const string & value);

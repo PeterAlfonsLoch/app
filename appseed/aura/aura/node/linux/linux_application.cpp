@@ -216,7 +216,7 @@ namespace linux
 
 
    // Advanced: access to GetMainWnd()
-   sp(::aura::interaction) application::GetMainWnd()
+   sp(::user::primitive) application::GetMainWnd()
    {
       return ::win::thread::GetMainWnd();
    }
@@ -259,12 +259,12 @@ namespace linux
 
    }
 
-   ::aura::interaction * application::window_from_os_data(void * pdata)
+   ::user::primitive * application::window_from_os_data(void * pdata)
    {
       return NULL;
    }
 
-   ::aura::interaction * application::window_from_os_data_permanent(void * pdata)
+   ::user::primitive * application::window_from_os_data_permanent(void * pdata)
    {
       return NULL;
    }
@@ -328,7 +328,7 @@ namespace linux
    }
 
 
-   ::aura::interaction * application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
+   ::user::primitive * application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
    {
 
       return NULL;
@@ -336,7 +336,7 @@ namespace linux
    }
 
 
-   ::aura::interaction *  application::FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow)
+   ::user::primitive *  application::FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow)
    {
 
       return NULL;
