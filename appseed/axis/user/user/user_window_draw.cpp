@@ -45,6 +45,8 @@ namespace user
 
       keep<bool> keepRender(&m_bRender, true, false, true);
 
+
+
       //::user::interaction_spa wndpa(get_app());
 
       //wndpa = get_wnda();
@@ -62,6 +64,8 @@ namespace user
 
          try
          {
+
+            synch_lock sl(&m_mutex);
 
             if(pui->oprop("session").is_new())
             {
@@ -111,7 +115,7 @@ namespace user
 
    bool window_draw::ScreenOutput()
    {
-      
+
       ::exception::throw_interface_only(get_app());
 
       return false;

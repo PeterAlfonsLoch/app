@@ -2877,6 +2877,8 @@ namespace user
    bool interaction::DestroyWindow()
    {
 
+      single_lock slTwf(System.wait_twf(), true);
+
       single_lock sl(m_pmutex,true);
 
       if(!IsWindow())

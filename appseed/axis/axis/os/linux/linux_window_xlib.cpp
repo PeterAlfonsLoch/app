@@ -11,6 +11,12 @@ window_xlib::window_xlib()
 
    m_pimage = NULL;
 
+   m_picture = NULL;
+
+   m_pictureWindow = NULL;
+
+   m_pixmap = NULL;
+
 }
 
 
@@ -67,6 +73,33 @@ void window_xlib::create_window_graphics(oswindow window, int64_t cxParam, int64
 
    window_graphics::create_window_graphics(window, cxParam, cyParam, m_iScan);
 
+   if(m_picture != NULL)
+   {
+
+      XRenderFreePicture(window->display(), m_picture);
+
+   }
+
+   if(m_pictureWindow != NULL)
+   {
+
+      XRenderFreePicture(window->display(), m_picture);
+
+   }
+
+   if(m_pixmap != NULL)
+   {
+
+      XFreePixmap(window->display(), m_pixmap);
+
+   }
+
+   m_pixmap = XCreatePixmap(window->display(), window->window(),cxParam, cyParam,32);
+
+   m_pictureWindow = XRenderCreatePicture(window->display(), window->window(), XRenderFindStandardFormat(window->display(), PictStandardARGB32), 0, 0);
+
+   m_picture = XRenderCreatePicture(window->display(), m_pixmap, XRenderFindStandardFormat(window->display(), PictStandardARGB32), 0, 0);
+
 }
 
 
@@ -106,18 +139,18 @@ void window_xlib::update_window(COLORREF * pOsBitmapData, const RECT & lpcrect, 
     if(bTransferBuffer)
     {
 
-   //memset(pOsBitmapData, 0x44, min(iStride * 16, iStride * m_size.cy));
+      ::draw2d::copy_colorref(cxParam, cyParam, (COLORREF *) m_mem.get_data(), m_iScan, pOsBitmapData, iStride);
 
-   ::draw2d::copy_colorref(cxParam, cyParam, (COLORREF *) m_mem.get_data(), m_iScan, pOsBitmapData, iStride);
-
-   }
-
-
+    }
 
    try
    {
 
-      XPutImage(m_window->display(), m_window->window(), m_pdc->m_gc, m_pimage, 0, 0, 0, 0, m_size.cx, m_size.cy);
+      XPutImage(m_window->display(), m_pixmap, m_pdc->m_gc, m_pimage, 0, 0, 0, 0, m_size.cx, m_size.cy);
+
+      XRenderComposite(m_window->display(), PictOpOver, m_picture, None,
+                         m_pictureWindow, 0, 0, 0, 0, 0, 0,
+                         m_size.cx, m_size.cy);
 
    }
    catch(...)

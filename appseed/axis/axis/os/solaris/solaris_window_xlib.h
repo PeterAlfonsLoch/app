@@ -18,7 +18,6 @@ public:
    int                           m_iScan;
    XImage *                      m_pimage;
 
-
    window_xlib();
    virtual ~window_xlib();
 

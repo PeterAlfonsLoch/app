@@ -43,7 +43,7 @@ namespace draw2d_cairo
 
    void dib::read(::file::istream & istream)
    {
-      
+
       synch_lock ml(&cairo_mutex());
 
       ::draw2d::dib::read(istream);
