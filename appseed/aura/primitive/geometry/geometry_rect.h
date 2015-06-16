@@ -159,6 +159,7 @@ public:
    void CenterOf(const RECT & rect,SIZE size);
    void DeflateBottomRightSizeByRate(double dRate);
    void SetBottomRightSize(int32_t iWidth, int32_t iHeight);
+   void SetBottomRightSize(SIZE sz);
    inline point top_right();
    inline point bottom_left();
 

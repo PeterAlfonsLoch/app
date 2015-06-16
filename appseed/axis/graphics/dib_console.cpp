@@ -26,20 +26,23 @@ COLORREF dib_console::console_COLORREF(int iColor)
 dib_console::dib_console(::aura::application * papp,size sizeTile):
 object(papp),
 m_dib(allocer()),
-m_sizeTile(sizeTile)
+m_sizeTile(sizeTile),
+m_mutex(papp)
 {
    cout.m_spbuffer = this;
    m_x = 0;
    m_y = 0;
+   m_iBorder = 23;
 }
 
 void dib_console::SetWindowSize(int iHeight,int iWidth)
 {
+   synch_lock sl(&m_mutex);
 
    m_sizeWindow.cx = iWidth;
    m_sizeWindow.cy = iHeight;
 
-   m_dib->create(m_sizeTile.cx * m_sizeWindow.cx,m_sizeTile.cy * m_sizeWindow.cy);
+   m_dib->create(m_sizeTile.cx * m_sizeWindow.cx + m_iBorder * 2,m_sizeTile.cy * m_sizeWindow.cy + m_iBorder * 2);
    m_dib->get_graphics()->m_spfont.alloc(allocer());
    //m_dib->get_graphics()->m_spfont->create_pixel_font("Lucida Sans Unicode", m_sizeTile.cy * 0.92);
    m_dib->get_graphics()->m_spfont->create_pixel_font("Lucida Console",m_sizeTile.cy * 0.92);
@@ -72,253 +75,29 @@ void dib_console::SetTextColor(int color)
 void dib_console::SetScreenColor(int color, int iLineStart, int iLineCount)
 {
 
-   m_dib->get_graphics()->FillSolidRect(0,iLineStart * m_sizeTile.cy,m_dib->m_size.cx,m_dib->m_size.cy - iLineStart * m_sizeTile.cy,console_COLORREF(color));
+   m_iScreenColor = color;
+   //synch_lock sl(&m_mutex);
+
+   //m_dib->get_graphics()->FillSolidRect(0,iLineStart * m_sizeTile.cy,m_dib->m_size.cx,m_dib->m_size.cy - iLineStart * m_sizeTile.cy,console_COLORREF(color));
+
+   //update_dib();
 
 }
 
 void dib_console::write(const char * psz)
 {
-   ::draw2d::pen_sp p2(allocer());
-   p2->create_solid(4.0,console_COLORREF(m_iColor));
-   ::draw2d::pen_sp p(allocer());
-   p->create_solid(2.0,console_COLORREF(m_iColor));
+   synch_lock sl(&m_mutex);
    string str;
    int i2 = 2;
    while(*psz)
    {
-      ::str::international::multibyte_to_utf8(437,str,string(*psz));
-      wstring wstr = u16(str);
-      wchar_t w = ((const wchar_t *)wstr)[0];
-      //    m_dib->get_graphics()->
-      m_dib->get_graphics()->set_smooth_mode(::draw2d::smooth_mode_none);
-      m_dib->get_graphics()->FillSolidRect(m_x * m_sizeTile.cx,m_y * m_sizeTile.cy,m_sizeTile.cx,m_sizeTile.cy,ARGB(255,0,0,0));
-      if(!defer_write(*psz,m_x * m_sizeTile.cx,m_y * m_sizeTile.cy,m_sizeTile.cx,m_sizeTile.cy))
+      char ch = *psz;
+      while(m_stra.element_at_grow(m_y).get_length() < m_x + 1)
       {
-         //         m_dib->get_graphics()->FillSolidRect(m_x * m_sizeTile.cx + 1,m_y * m_sizeTile.cy + 1,m_sizeTile.cx - 1,m_sizeTile.cy - 1,ARGB(255,0,0,0));
-
-         if(*psz == (char)209)// horizontal double / down simple
-         {
-
-
-            m_dib->get_graphics()->SelectObject(p2);
-
-            m_dib->get_graphics()->DrawLine(
-               m_x * m_sizeTile.cx,
-               m_y * m_sizeTile.cy + m_sizeTile.cy / 2,
-               m_x * m_sizeTile.cx + m_sizeTile.cx + 1,m_y * m_sizeTile.cy + m_sizeTile.cy / 2
-               );
-
-            m_dib->get_graphics()->SelectObject(p);
-
-            m_dib->get_graphics()->DrawLine(
-               m_x * m_sizeTile.cx + m_sizeTile.cx / 2,
-               m_y * m_sizeTile.cy + m_sizeTile.cy / 2,
-               m_x * m_sizeTile.cx + m_sizeTile.cx / 2,m_y * m_sizeTile.cy + m_sizeTile.cy + 1
-               );
-
-         }
-         else if(*psz == (char)205)// horizontal double
-         {
-            m_dib->get_graphics()->SelectObject(p2);
-
-            m_dib->get_graphics()->DrawLine(
-               m_x * m_sizeTile.cx,
-               m_y * m_sizeTile.cy + m_sizeTile.cy / 2,
-               m_x * m_sizeTile.cx + m_sizeTile.cx + 1,m_y * m_sizeTile.cy + m_sizeTile.cy / 2
-               );
-         }
-         else if(*psz == (char)196) // horizontal simple
-         {
-            m_dib->get_graphics()->SelectObject(p);
-
-            m_dib->get_graphics()->DrawLine(
-               m_x * m_sizeTile.cx,
-               m_y * m_sizeTile.cy + m_sizeTile.cy / 2,
-               m_x * m_sizeTile.cx + m_sizeTile.cx + 1,m_y * m_sizeTile.cy + m_sizeTile.cy / 2
-               );
-         }
-         else if(*psz == (char)186) // vertical double
-         {
-            m_dib->get_graphics()->SelectObject(p2);
-
-            m_dib->get_graphics()->DrawLine(
-               m_x * m_sizeTile.cx + m_sizeTile.cx / 2,
-               m_y * m_sizeTile.cy,
-               m_x * m_sizeTile.cx + m_sizeTile.cx / 2,m_y * m_sizeTile.cy + m_sizeTile.cy + 1
-               );
-         }
-         else if(*psz == (char)199) // vertical double / right simple
-         {
-            m_dib->get_graphics()->SelectObject(p2);
-
-            m_dib->get_graphics()->DrawLine(
-               m_x * m_sizeTile.cx + m_sizeTile.cx / 2,
-               m_y * m_sizeTile.cy,
-               m_x * m_sizeTile.cx + m_sizeTile.cx / 2,m_y * m_sizeTile.cy + m_sizeTile.cy + 1
-               );
-            m_dib->get_graphics()->SelectObject(p);
-
-            m_dib->get_graphics()->DrawLine(
-               m_x * m_sizeTile.cx + m_sizeTile.cx / 2,
-               m_y * m_sizeTile.cy + m_sizeTile.cy / 2,
-               m_x * m_sizeTile.cx + m_sizeTile.cx + 1,m_y * m_sizeTile.cy + m_sizeTile.cy / 2
-               );
-         }
-         else if(*psz == (char)182) // vertical double / left simple
-         {
-            m_dib->get_graphics()->SelectObject(p2);
-
-            m_dib->get_graphics()->DrawLine(
-               m_x * m_sizeTile.cx + m_sizeTile.cx / 2,
-               m_y * m_sizeTile.cy,
-               m_x * m_sizeTile.cx + m_sizeTile.cx / 2,m_y * m_sizeTile.cy + m_sizeTile.cy + 1
-               );
-            m_dib->get_graphics()->SelectObject(p);
-
-            m_dib->get_graphics()->DrawLine(
-               m_x * m_sizeTile.cx,
-               m_y * m_sizeTile.cy + m_sizeTile.cy / 2,
-               m_x * m_sizeTile.cx + m_sizeTile.cx / 2,m_y * m_sizeTile.cy + m_sizeTile.cy / 2
-               );
-         }
-         else if(*psz == (char)179) // vertical simple
-         {
-            m_dib->get_graphics()->SelectObject(p);
-
-            m_dib->get_graphics()->DrawLine(
-               m_x * m_sizeTile.cx + m_sizeTile.cx / 2,
-               m_y * m_sizeTile.cy,
-               m_x * m_sizeTile.cx + m_sizeTile.cx / 2,m_y * m_sizeTile.cy + m_sizeTile.cy + 1
-               );
-         }
-         else if(*psz == (char)218) // top-left simple
-         {
-            m_dib->get_graphics()->SelectObject(p);
-
-            m_dib->get_graphics()->DrawLine(
-               m_x * m_sizeTile.cx + m_sizeTile.cx / 2,
-               m_y * m_sizeTile.cy + m_sizeTile.cy / 2,
-               m_x * m_sizeTile.cx + m_sizeTile.cx + 1,m_y * m_sizeTile.cy + m_sizeTile.cy / 2
-               );
-            m_dib->get_graphics()->DrawLine(
-               m_x * m_sizeTile.cx + m_sizeTile.cx / 2,
-               m_y * m_sizeTile.cy + m_sizeTile.cy / 2,
-               m_x * m_sizeTile.cx + m_sizeTile.cx / 2,m_y * m_sizeTile.cy + m_sizeTile.cy
-               );
-         }
-         else if(*psz == (char)201) // top-left double
-         {
-            m_dib->get_graphics()->SelectObject(p2);
-
-            m_dib->get_graphics()->DrawLine(
-               m_x * m_sizeTile.cx + m_sizeTile.cx / 2 - i2,
-               m_y * m_sizeTile.cy + m_sizeTile.cy / 2,
-               m_x * m_sizeTile.cx + m_sizeTile.cx + 1,m_y * m_sizeTile.cy + m_sizeTile.cy / 2
-               );
-            m_dib->get_graphics()->DrawLine(
-               m_x * m_sizeTile.cx + m_sizeTile.cx / 2,
-               m_y * m_sizeTile.cy + m_sizeTile.cy / 2,
-               m_x * m_sizeTile.cx + m_sizeTile.cx / 2,m_y * m_sizeTile.cy + m_sizeTile.cy + 1
-               );
-         }
-         else if(*psz == (char)200) // bottom-left double
-         {
-            m_dib->get_graphics()->SelectObject(p2);
-
-            m_dib->get_graphics()->DrawLine(
-               m_x * m_sizeTile.cx + m_sizeTile.cx / 2 - i2,
-               m_y * m_sizeTile.cy + m_sizeTile.cy / 2,
-               m_x * m_sizeTile.cx + m_sizeTile.cx + 1,m_y * m_sizeTile.cy + m_sizeTile.cy / 2
-               );
-            m_dib->get_graphics()->DrawLine(
-               m_x * m_sizeTile.cx + m_sizeTile.cx / 2,
-               m_y * m_sizeTile.cy + m_sizeTile.cy / 2,
-               m_x * m_sizeTile.cx + m_sizeTile.cx / 2,m_y * m_sizeTile.cy
-               );
-         }
-         else if(*psz == (char)192) // bottom-left simple
-         {
-            m_dib->get_graphics()->SelectObject(p);
-
-            m_dib->get_graphics()->DrawLine(
-               m_x * m_sizeTile.cx + m_sizeTile.cx / 2,
-               m_y * m_sizeTile.cy + m_sizeTile.cy / 2,
-               m_x * m_sizeTile.cx + m_sizeTile.cx + 1,m_y * m_sizeTile.cy + m_sizeTile.cy / 2
-               );
-            m_dib->get_graphics()->DrawLine(
-               m_x * m_sizeTile.cx + m_sizeTile.cx / 2,
-               m_y * m_sizeTile.cy + m_sizeTile.cy / 2,
-               m_x * m_sizeTile.cx + m_sizeTile.cx / 2,m_y * m_sizeTile.cy
-               );
-         }
-         else if(*psz == (char)188) // bottom-right double
-         {
-            m_dib->get_graphics()->SelectObject(p2);
-
-            m_dib->get_graphics()->DrawLine(
-               m_x * m_sizeTile.cx,
-               m_y * m_sizeTile.cy + m_sizeTile.cy / 2,
-               m_x * m_sizeTile.cx + m_sizeTile.cx / 2 + i2,m_y * m_sizeTile.cy + m_sizeTile.cy / 2
-               );
-            m_dib->get_graphics()->DrawLine(
-               m_x * m_sizeTile.cx + m_sizeTile.cx / 2,
-               m_y * m_sizeTile.cy + m_sizeTile.cy / 2,
-               m_x * m_sizeTile.cx + m_sizeTile.cx / 2,m_y * m_sizeTile.cy
-               );
-         }
-         else if(*psz == (char)217) // bottom-right simple
-         {
-            m_dib->get_graphics()->SelectObject(p);
-
-            m_dib->get_graphics()->DrawLine(
-               m_x * m_sizeTile.cx,
-               m_y * m_sizeTile.cy + m_sizeTile.cy / 2,
-               m_x * m_sizeTile.cx + m_sizeTile.cx / 2,m_y * m_sizeTile.cy + m_sizeTile.cy / 2
-               );
-            m_dib->get_graphics()->DrawLine(
-               m_x * m_sizeTile.cx + m_sizeTile.cx / 2,
-               m_y * m_sizeTile.cy + m_sizeTile.cy / 2,
-               m_x * m_sizeTile.cx + m_sizeTile.cx / 2,m_y * m_sizeTile.cy
-               );
-         }
-         else if(*psz == (char)187) // top-right double
-         {
-            m_dib->get_graphics()->SelectObject(p2);
-
-            m_dib->get_graphics()->DrawLine(
-               m_x * m_sizeTile.cx,
-               m_y * m_sizeTile.cy + m_sizeTile.cy / 2,
-               m_x * m_sizeTile.cx + m_sizeTile.cx / 2 + i2,m_y * m_sizeTile.cy + m_sizeTile.cy / 2
-               );
-            m_dib->get_graphics()->DrawLine(
-               m_x * m_sizeTile.cx + m_sizeTile.cx / 2,
-               m_y * m_sizeTile.cy + m_sizeTile.cy / 2,
-               m_x * m_sizeTile.cx + m_sizeTile.cx / 2,m_y * m_sizeTile.cy + m_sizeTile.cy + 1
-               );
-         }
-         else if(*psz == (char)191) // top-right simple
-         {
-            m_dib->get_graphics()->SelectObject(p);
-
-            m_dib->get_graphics()->DrawLine(
-               m_x * m_sizeTile.cx,
-               m_y * m_sizeTile.cy + m_sizeTile.cy / 2,
-               m_x * m_sizeTile.cx + m_sizeTile.cx / 2,m_y * m_sizeTile.cy + m_sizeTile.cy / 2
-               );
-            m_dib->get_graphics()->DrawLine(
-               m_x * m_sizeTile.cx + m_sizeTile.cx / 2,
-               m_y * m_sizeTile.cy + m_sizeTile.cy / 2,
-               m_x * m_sizeTile.cx + m_sizeTile.cx / 2,m_y * m_sizeTile.cy + m_sizeTile.cy + 1
-               );
-         }
-         else
-         {
-            m_dib->get_graphics()->set_text_color(console_COLORREF(m_iColor));
-            m_dib->get_graphics()->draw_text(str,rect(m_x * m_sizeTile.cx,m_y * m_sizeTile.cy,
-               m_x * m_sizeTile.cx + m_sizeTile.cx,m_y * m_sizeTile.cy + m_sizeTile.cy),DT_CENTER | DT_VCENTER);
-         }
-
+         m_stra.element_at_grow(m_y) += ' ';
       }
+      m_stra.element_at_grow(m_y).set_at(m_x, ch);
+      m_i2aColor.element_at_grow(m_y).element_at_grow(m_x) = m_iColor;
 
       m_x++;
 
@@ -345,10 +124,308 @@ void dib_console::write(const void * lpBuf,::primitive::memory_size nCount)
 }
 
 
-bool dib_console::defer_write(char ch,int x,int y,int cx,int cy)
+void dib_console::update_dib()
 {
-   return false;
+
+   synch_lock sl(&m_mutex);
+
+   COLORREF crScreen = console_COLORREF(m_iScreenColor);
+   m_dib->Fill(crScreen);
+
+   for(index y = 0; y < m_stra.get_count(); y++)
+   {
+      string & str = m_stra[y];
+
+      for(index x = 0; x < str.get_length(); x++)
+      {
+         draw_write(str[x],x,y,m_i2aColor[y][x]);
+      }
+   }
+
 }
 
 
+bool dib_console::defer_write(char ch,int x,int y,int cx,int cy,int iColor)
+{
 
+   return false;
+
+}
+
+
+void dib_console::draw_write(char ch, int x, int y, int iColor)
+{
+   if(ch == ' ')
+   {
+      return;
+   }
+   string str;
+   int i2 = 2;
+
+   m_dib->get_graphics()->set_smooth_mode(::draw2d::smooth_mode_none);
+
+   if(!defer_write(ch,m_iBorder + x * m_sizeTile.cx,m_iBorder + y * m_sizeTile.cy,m_sizeTile.cx,m_sizeTile.cy, iColor))
+   {
+
+      if(ch == (char)209)// horizontal double / down simple
+      {
+
+         ::draw2d::pen_sp p2(allocer());
+         p2->create_solid(4.0,console_COLORREF(iColor));
+         ::draw2d::pen_sp p(allocer());
+         p->create_solid(2.0,console_COLORREF(iColor));
+
+         m_dib->get_graphics()->SelectObject(p2);
+
+         m_dib->get_graphics()->DrawLine(
+            m_iBorder + x * m_sizeTile.cx,
+            m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
+            m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1,m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2
+            );
+
+         m_dib->get_graphics()->SelectObject(p);
+
+         m_dib->get_graphics()->DrawLine(
+            m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
+            m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
+            m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy + 1
+            );
+
+      }
+      else if(ch == (char)205)// horizontal double
+      {
+         ::draw2d::pen_sp p2(allocer());
+         p2->create_solid(4.0,console_COLORREF(iColor));
+         m_dib->get_graphics()->SelectObject(p2);
+
+         m_dib->get_graphics()->DrawLine(
+            m_iBorder + x * m_sizeTile.cx,
+            m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
+            m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1,m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2
+            );
+      }
+      else if(ch == (char)196) // horizontal simple
+      {
+         ::draw2d::pen_sp p(allocer());
+         p->create_solid(2.0,console_COLORREF(iColor));
+         m_dib->get_graphics()->SelectObject(p);
+
+         m_dib->get_graphics()->DrawLine(
+            m_iBorder + x * m_sizeTile.cx,
+            m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
+            m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1,m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2
+            );
+      }
+      else if(ch == (char)186) // vertical double
+      {
+         ::draw2d::pen_sp p2(allocer());
+         p2->create_solid(4.0,console_COLORREF(iColor));
+         m_dib->get_graphics()->SelectObject(p2);
+
+         m_dib->get_graphics()->DrawLine(
+            m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
+            m_iBorder + y * m_sizeTile.cy,
+            m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy + 1
+            );
+      }
+      else if(ch == (char)199) // vertical double / right simple
+      {
+         ::draw2d::pen_sp p2(allocer());
+         p2->create_solid(4.0,console_COLORREF(iColor));
+         ::draw2d::pen_sp p(allocer());
+         p->create_solid(2.0,console_COLORREF(iColor));
+         m_dib->get_graphics()->SelectObject(p2);
+
+         m_dib->get_graphics()->DrawLine(
+            m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
+            m_iBorder + y * m_sizeTile.cy,
+            m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy + 1
+            );
+         m_dib->get_graphics()->SelectObject(p);
+
+         m_dib->get_graphics()->DrawLine(
+            m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
+            m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
+            m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1,m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2
+            );
+      }
+      else if(ch == (char)182) // vertical double / left simple
+      {
+         ::draw2d::pen_sp p2(allocer());
+         p2->create_solid(4.0,console_COLORREF(iColor));
+         ::draw2d::pen_sp p(allocer());
+         p->create_solid(2.0,console_COLORREF(iColor));
+         m_dib->get_graphics()->SelectObject(p2);
+
+         m_dib->get_graphics()->DrawLine(
+            m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
+            m_iBorder + y * m_sizeTile.cy,
+            m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy + 1
+            );
+         m_dib->get_graphics()->SelectObject(p);
+
+         m_dib->get_graphics()->DrawLine(
+            m_iBorder + x * m_sizeTile.cx,
+            m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
+            m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2
+            );
+      }
+      else if(ch == (char)179) // vertical simple
+      {
+         ::draw2d::pen_sp p(allocer());
+         p->create_solid(2.0,console_COLORREF(iColor));
+         m_dib->get_graphics()->SelectObject(p);
+
+         m_dib->get_graphics()->DrawLine(
+            m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
+            m_iBorder + y * m_sizeTile.cy,
+            m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy + 1
+            );
+      }
+      else if(ch == (char)218) // top-left simple
+      {
+         ::draw2d::pen_sp p(allocer());
+         p->create_solid(2.0,console_COLORREF(iColor));
+         m_dib->get_graphics()->SelectObject(p);
+
+         m_dib->get_graphics()->DrawLine(
+            m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
+            m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
+            m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1,m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2
+            );
+         m_dib->get_graphics()->DrawLine(
+            m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
+            m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
+            m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy
+            );
+      }
+      else if(ch == (char)201) // top-left double
+      {
+         ::draw2d::pen_sp p2(allocer());
+         p2->create_solid(4.0,console_COLORREF(iColor));
+         m_dib->get_graphics()->SelectObject(p2);
+
+         m_dib->get_graphics()->DrawLine(
+            m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2 - i2,
+            m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
+            m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1,m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2
+            );
+         m_dib->get_graphics()->DrawLine(
+            m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
+            m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
+            m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy + 1
+            );
+      }
+      else if(ch == (char)200) // bottom-left double
+      {
+         ::draw2d::pen_sp p2(allocer());
+         p2->create_solid(4.0,console_COLORREF(iColor));
+         m_dib->get_graphics()->SelectObject(p2);
+
+         m_dib->get_graphics()->DrawLine(
+            m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2 - i2,
+            m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
+            m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1,m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2
+            );
+         m_dib->get_graphics()->DrawLine(
+            m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
+            m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
+            m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,m_iBorder + y * m_sizeTile.cy
+            );
+      }
+      else if(ch == (char)192) // bottom-left simple
+      {
+         ::draw2d::pen_sp p(allocer());
+         p->create_solid(2.0,console_COLORREF(iColor));
+         m_dib->get_graphics()->SelectObject(p);
+
+         m_dib->get_graphics()->DrawLine(
+            m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
+            m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
+            m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1,m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2
+            );
+         m_dib->get_graphics()->DrawLine(
+            m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
+            m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
+            m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,m_iBorder + y * m_sizeTile.cy
+            );
+      }
+      else if(ch == (char)188) // bottom-right double
+      {
+         ::draw2d::pen_sp p2(allocer());
+         p2->create_solid(4.0,console_COLORREF(iColor));
+         m_dib->get_graphics()->SelectObject(p2);
+
+         m_dib->get_graphics()->DrawLine(
+            m_iBorder + x * m_sizeTile.cx,
+            m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
+            m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2 + i2,m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2
+            );
+         m_dib->get_graphics()->DrawLine(
+            m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
+            m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
+            m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,m_iBorder + y * m_sizeTile.cy
+            );
+      }
+      else if(ch == (char)217) // bottom-right simple
+      {
+         ::draw2d::pen_sp p(allocer());
+         p->create_solid(2.0,console_COLORREF(iColor));
+         m_dib->get_graphics()->SelectObject(p);
+
+         m_dib->get_graphics()->DrawLine(
+            m_iBorder + x * m_sizeTile.cx,
+            m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
+            m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2
+            );
+         m_dib->get_graphics()->DrawLine(
+            m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
+            m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
+            m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,m_iBorder + y * m_sizeTile.cy
+            );
+      }
+      else if(ch == (char)187) // top-right double
+      {
+         ::draw2d::pen_sp p2(allocer());
+         p2->create_solid(4.0,console_COLORREF(iColor));
+         m_dib->get_graphics()->SelectObject(p2);
+
+         m_dib->get_graphics()->DrawLine(
+            m_iBorder + x * m_sizeTile.cx,
+            m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
+            m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2 + i2,m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2
+            );
+         m_dib->get_graphics()->DrawLine(
+            m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
+            m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
+            m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy + 1
+            );
+      }
+      else if(ch == (char)191) // top-right simple
+      {
+         ::draw2d::pen_sp p(allocer());
+         p->create_solid(2.0,console_COLORREF(iColor));
+         m_dib->get_graphics()->SelectObject(p);
+
+         m_dib->get_graphics()->DrawLine(
+            m_iBorder + x * m_sizeTile.cx,
+            m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
+            m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2
+            );
+         m_dib->get_graphics()->DrawLine(
+            m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
+            m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
+            m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy + 1
+            );
+      }
+      else
+      {
+
+         m_dib->get_graphics()->set_text_color(console_COLORREF(iColor));
+         m_dib->get_graphics()->draw_text(string(ch),rect(m_iBorder + x * m_sizeTile.cx,m_iBorder + y * m_sizeTile.cy,
+            m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx,m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy),DT_CENTER | DT_VCENTER);
+      }
+
+   }
+
+}

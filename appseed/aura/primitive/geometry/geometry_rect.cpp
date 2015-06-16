@@ -20,6 +20,12 @@ void rect::SetBottomRightSize(int32_t iWidth, int32_t iHeight)
     bottom = top + iHeight;
 }
 
+
+void rect::SetBottomRightSize(SIZE size)
+{
+   SetBottomRightSize(size.cx,size.cy);
+}
+
 void rect::ExtendOnCenter(const RECT & rect)
 {
 
