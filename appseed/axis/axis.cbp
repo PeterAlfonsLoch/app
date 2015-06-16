@@ -71,6 +71,7 @@
 			<Add option="-lpthread" />
 			<Add option="-lX11" />
 			<Add option="-lXmu" />
+			<Add option="-lXrender" />
 			<Add option="-laura" />
 			<Add option="-laurasqlite" />
 			<Add option="-laxiszlib" />

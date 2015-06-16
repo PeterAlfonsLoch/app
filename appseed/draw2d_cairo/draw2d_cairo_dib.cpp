@@ -385,6 +385,8 @@ namespace draw2d_cairo
    void dib::map(bool bApplyAlphaTransform) const
    {
 
+      //return;
+
       synch_lock ml(&cairo_mutex());
 
       if(m_bMapped)
@@ -414,7 +416,7 @@ namespace draw2d_cairo
 
       pdata = (byte *) m_pcolorref;
 
-      if(!bApplyAlphaTransform)
+      if(bApplyAlphaTransform)
       {
          int size = m_iScan * m_size.cy / sizeof(COLORREF);
          while(size > 0)
@@ -428,10 +430,11 @@ namespace draw2d_cairo
             pdata += 4;
             size--;
          }
+         ((dib *) this)->m_bTrans = true;
       }
       else
       {
-         ((dib *) this)->m_bTrans = true;
+         ((dib *) this)->m_bTrans = false;
       }
 
       ((dib *) this)->m_bMapped = true;
@@ -440,7 +443,9 @@ namespace draw2d_cairo
 
    void dib::unmap() const
    {
-synch_lock ml(&cairo_mutex());
+      //return;
+      synch_lock ml(&cairo_mutex());
+
       if(!m_bMapped)
          return;
 
@@ -457,7 +462,7 @@ synch_lock ml(&cairo_mutex());
 
       byte * pdata =  (byte *) m_pcolorref;
       int size = m_iScan * m_size.cy / sizeof(COLORREF);
-      if(m_bTrans)
+      //if(m_bTrans)
       {
          ((dib *) this)->m_bTrans = false;
          while(size > 0)
@@ -2725,7 +2730,7 @@ synch_lock ml(&cairo_mutex());
 
       m_spgraphics->SetViewportOrg(0, 0);
 
-      map(true);
+      map(false);
 
       rect rect(rectWindow);
 

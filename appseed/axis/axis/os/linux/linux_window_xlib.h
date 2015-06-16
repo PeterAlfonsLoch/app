@@ -1,5 +1,5 @@
 #pragma once
-#include <X11/extensions/Xrender.h>
+//#include <X11/extensions/Xrender.h>
 
 
 class CLASS_DECL_AURA window_xlib :
@@ -14,9 +14,9 @@ public:
    size                          m_size;
    int                           m_iScan;
    XImage *                      m_pimage;
-   Pixmap                        m_pixmap;
-   Picture                       m_pictureWindow;
-   Picture                       m_picture;
+   //Pixmap                        m_pixmap;
+   //Picture                       m_pictureWindow;
+   //Picture                       m_picture;
 
 
    window_xlib();

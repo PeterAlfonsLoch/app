@@ -37,8 +37,8 @@ namespace draw2d_cairo
       virtual ~dib();
 
 
-      void map(bool bApplyAlphaTransform = true) const;
-      void unmap() const;
+      virtual void map(bool bApplyAlphaTransform = true) const;
+      virtual void unmap() const;
 
 
       virtual ::draw2d::graphics * get_graphics() const;
