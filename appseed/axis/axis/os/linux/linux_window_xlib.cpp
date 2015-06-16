@@ -144,26 +144,24 @@ void window_xlib::update_window(COLORREF * pOsBitmapData, const RECT & lpcrect, 
    {
 
       ::draw2d::copy_colorref(cxParam, cyParam, (COLORREF *) m_mem.get_data(), m_iScan, pOsBitmapData, iStride);
-=======
-    }
-
-      byte * pdata = (byte *) m_mem.get_data();
-
-      int size = m_iScan * m_size.cy / sizeof(COLORREF);
-      /*while(size > 0)
-      {
-         //if(pdata[3] != 0)
-         {
-            pdata[0] = pdata[0] * pdata[3] / 255;
-            pdata[1] = pdata[1] * pdata[3] / 255;
-            pdata[2] = pdata[2] * pdata[3] / 255;
-         }
-         pdata += 4;
-         size--;
-      }*/
-
 
    }
+
+   byte * pdata = (byte *) m_mem.get_data();
+
+   int size = m_iScan * m_size.cy / sizeof(COLORREF);
+   /*while(size > 0)
+   {
+      //if(pdata[3] != 0)
+      {
+         pdata[0] = pdata[0] * pdata[3] / 255;
+         pdata[1] = pdata[1] * pdata[3] / 255;
+         pdata[2] = pdata[2] * pdata[3] / 255;
+      }
+      pdata += 4;
+      size--;
+   }*/
+
 
    try
    {

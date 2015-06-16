@@ -90,6 +90,11 @@
 
 #define ID3_C_VAR extern
 
+
+#ifdef LINUX
+#define HAVE_UNISTD_H
+#endif
+
 #ifndef __cplusplus
 
 typedef int bool;

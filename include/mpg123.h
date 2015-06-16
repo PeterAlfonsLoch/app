@@ -7,6 +7,13 @@
 #ifndef MPG123_MSVC_H
 #define MPG123_MSVC_H
 
+#ifdef LINUX
+
+#define MPG123_NO_CONFIGURE
+#include "mpg123.h.in.h" /* Yes, .h.in; we include the configure template! */
+
+#else
+
 //#ifndef __MANGLE_H
 //
 #include <inttypes.h>
@@ -51,6 +58,8 @@ extern "C" {
 
 #ifdef __cplusplus
 }
+#endif
+
 #endif
 
 #endif
