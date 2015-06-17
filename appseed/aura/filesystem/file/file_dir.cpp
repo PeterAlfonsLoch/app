@@ -153,9 +153,33 @@ using namespace ::Windows::System;
 
 #else
 
-   wchar_t lpszModuleFolder[MAX_PATH * 8];
+   char lpszModuleFolder[MAX_PATH * 8];
 
-   wcscpy_dup(lpszModuleFolder, L"/ca2/");
+         void * handle = dlopen("libaura.so", RTLD_NOW);
+
+         if(handle == NULL)
+         {
+
+            strcpy(lpszModuleFolder, "/ca2/");
+
+         }
+         else
+         {
+
+            link_map * plm;
+
+            dlinfo(handle, RTLD_DI_LINKMAP, &plm);
+
+            strcpy(lpszModuleFolder, plm->l_name);
+
+
+            dlclose(handle);
+
+            strcpy(lpszModuleFolder, ::dir::name(lpszModuleFolder));
+
+         }
+
+
 
 #endif
 
@@ -489,78 +513,78 @@ string ca2_module_folder_dup()
 
 string ca2_module_dup()
 {
-   
+
    static string * s_pstrCalc = NULL;
-   
+
    if(s_pstrCalc != NULL)
    {
-      
+
       return *s_pstrCalc;
-      
+
    }
-   
+
    string str;
-   
+
 #ifdef WINDOWSEX
-   
+
    wchar_t lpszModuleFilePath[MAX_PATH + 1];
-   
+
    GetModuleFileNameW(::GetModuleHandleA("aura.dll"), lpszModuleFilePath, MAX_PATH + 1);
-   
+
    str = lpszModuleFilePath;
-   
+
 #elif defined(LINUX)
-   
+
    void * handle = dlopen("libaura.so", RTLD_NOW);
-   
+
    if(handle == NULL)
       return "";
-   
+
    link_map * plm;
-   
+
    dlinfo(handle, RTLD_DI_LINKMAP, &plm);
-   
+
    string strCa2ModuleFolder = plm->l_name;
-   
+
    dlclose(handle);
-   
+
    str = strCa2ModuleFolder;
-   
+
 #elif defined(METROWIN)
-   
+
    str = "";
-   
+
 #elif defined(APPLEOS)
-   
+
    {
-      
+
       char * pszCurDir = getcwd(NULL, 0);
-      
+
       string strCurDir = pszCurDir;
-      
+
       free(pszCurDir);
-      
+
       str = ::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libaura.dylib", "rfs"); // readable - normal file - non zero sized
-      
+
       if(str.has_char())
       {
-         
+
          goto found;
-         
+
       }
-      
+
       str = ::dir::pathfind(getenv("DYLD_FALLBACK_LIBRARY_PATH"), "libaura.dylib", "rfs"); // readable - normal file - non zero sized
-      
+
    found:;
    }
-   
+
 #endif
-   
+
    s_pstrCalc = new string(str);
-   
+
    return *s_pstrCalc;
-   
-   
+
+
 }
 
 

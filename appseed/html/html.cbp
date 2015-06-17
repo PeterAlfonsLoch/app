@@ -2,14 +2,14 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="math" />
+		<Option title="html" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="../../../stage/x86/libmath.so" prefix_auto="0" extension_auto="0" />
+				<Option output="../../../stage/x86/libhtml.so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="../../../stage/x86/" />
-				<Option object_output="../../../time/intermediate/app/math" />
+				<Option object_output="../../../time/intermediate/app/html" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -20,9 +20,9 @@
 				</Compiler>
 			</Target>
 			<Target title="memdleak">
-				<Option output="../../../stage/x86/libmath.so" prefix_auto="0" extension_auto="0" />
+				<Option output="../../../stage/x86/libhtml.so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="../../../stage/x86/" />
-				<Option object_output="../../../time/intermediate/app/math" />
+				<Option object_output="../../../time/intermediate/app/html" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -59,12 +59,18 @@
 			<Add directory="../../../app/thirdparty/appseed" />
 			<Add directory="../core" />
 			<Add directory="../base" />
+			<Add directory="../aura" />
+			<Add directory="../axis" />
+			<Add directory="../../axis" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
 			<Add option="-Wl,-z,origin" />
+			<Add option="-laura" />
+			<Add option="-laxis" />
 			<Add option="-lbase" />
 			<Add option="-lcore" />
+			<Add option="-lhtml_lite" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 			<Add directory="/usr/lib64/mysql/" />
@@ -74,18 +80,19 @@
 			<Option compile="1" />
 			<Option weight="0" />
 		</Unit>
-		<Unit filename="kissfft/kiss_fft.cpp" />
+		<Unit filename="graphics/_graphics.cpp" />
+		<Unit filename="graphics/elemental/_html_elemental.cpp" />
+		<Unit filename="graphics/impl/_html_impl.cpp" />
+		<Unit filename="html_application.cpp" />
+		<Unit filename="html_application.h" />
 		<Unit filename="kissfft/kiss_fft.h" />
 		<Unit filename="kissfft/kiss_fft_guts.h" />
-		<Unit filename="kissfft/kiss_fft_shared.cpp" />
-		<Unit filename="kissfft/kiss_ifft.cpp" />
 		<Unit filename="kissfft/kiss_ifft.h" />
 		<Unit filename="kissfft/kissfft.h" />
-		<Unit filename="kissfft/kissfft_fftd.cpp" />
 		<Unit filename="kissfft/kissfft_fftd.h" />
-		<Unit filename="kissfft/kissfft_ifftd.cpp" />
 		<Unit filename="kissfft/kissfft_ifftd.h" />
 		<Unit filename="math/math.h" />
+		<Unit filename="userhtml/_userhtml.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />

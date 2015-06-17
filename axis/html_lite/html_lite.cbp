@@ -20,9 +20,9 @@
 				</Compiler>
 			</Target>
 			<Target title="memdleak">
-				<Option output="../../../stage/x86/libmath.so" prefix_auto="0" extension_auto="0" />
+				<Option output="../../../stage/x86/libhtml_lite.so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="../../../stage/x86/" />
-				<Option object_output="../../../time/intermediate/app/math" />
+				<Option object_output="../../../time/intermediate/app/html_lite" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -76,21 +76,17 @@
 			<Option compile="1" />
 			<Option weight="0" />
 		</Unit>
+		<Unit filename="html/_html.cpp" />
 		<Unit filename="html/html.h" />
 		<Unit filename="html/html_enum.h" />
-		<Unit filename="html/html_html.cpp" />
 		<Unit filename="html/html_html.h" />
+		<Unit filename="html_lite/_html_lite.cpp" />
 		<Unit filename="html_lite/html_lite.h" />
-		<Unit filename="html_lite/html_lite_application_application.cpp" />
-		<Unit filename="html_lite/html_lite_application_interface.h" />
-		<Unit filename="html_lite/html_lite_html_attributes.cpp" />
+		<Unit filename="html_lite/html_lite_application.h" />
 		<Unit filename="html_lite/html_lite_html_attributes.h" />
 		<Unit filename="html_lite/html_lite_html_common.h" />
-		<Unit filename="html_lite/html_lite_html_entity_resolver.cpp" />
 		<Unit filename="html_lite/html_lite_html_entity_resolver.h" />
-		<Unit filename="html_lite/html_lite_html_reader.cpp" />
 		<Unit filename="html_lite/html_lite_html_reader.h" />
-		<Unit filename="html_lite/html_lite_html_tag.cpp" />
 		<Unit filename="html_lite/html_lite_html_tag.h" />
 		<Extensions>
 			<code_completion />

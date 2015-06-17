@@ -1374,7 +1374,7 @@ synch_lock ml(m_spmutex);
 
       cairo_translate(m_pdc, xDst, yDst);
 
-      cairo_matrix_init_translate(&matrix, -xSrc, -ySrc);
+      cairo_matrix_init_translate(&matrix, xSrc, ySrc);
 
       cairo_matrix_scale(&matrix, (double) nSrcWidth / (double) nDstWidth, (double) nSrcHeight / (double) nDstHeight);
 

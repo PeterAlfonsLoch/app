@@ -43,8 +43,9 @@
 #ifdef _WIN32
 #include <io.h>
 #endif
-
-
+#ifdef LINUX
+#include <dlfcn.h>
+#endif
 // =====================================================================
 
 //using namespace std;
@@ -129,15 +130,15 @@ PluginList::AddNode(Plugin * plugin,PluginNode * node,void *instance,const char 
 }
 
 FREE_IMAGE_FORMAT
-PluginList::AddNode(FI_InitProc init_proc, void *instance, const char *format, const char *description, const char *extension, const char *regexpr) 
+PluginList::AddNode(FI_InitProc init_proc, void *instance, const char *format, const char *description, const char *extension, const char *regexpr)
 {
-   
-   if(init_proc == NULL) 
+
+   if(init_proc == NULL)
       return FIF_UNKNOWN;
-   
+
    PluginNode *node = new PluginNode;
    Plugin *plugin = new Plugin;
-   if(!node || !plugin) 
+   if(!node || !plugin)
    {
       if(node) delete node;
       if(plugin) delete plugin;
@@ -165,7 +166,7 @@ PluginList::AddNode(FI_InitProc init_proc, void *instance, const char *format, c
 //
 //   PluginNode *node = new PluginNode;
 //   Plugin *plugin = new Plugin;
-//   if(!node || !plugin) 
+//   if(!node || !plugin)
 //   {
 //      if(node) delete node;
 //      if(plugin) delete plugin;
@@ -385,6 +386,27 @@ TagLib::instance();
 				if (bOk) {
 					SetCurrentDirectory(current_dir);
 				}
+			}
+			#else
+			::file::patha patha;
+			::dir::ls(patha, ::dir::ca2_module());
+			for(auto & path : patha)
+			{
+			if(::str::ends_ci(path, ".fip"))
+			{
+			void * pl = dlopen(path, RTLD_LOCAL | RTLD_NOW | RTLD_NODELETE);
+			if(pl)
+			{
+			void * pf = dlsym(pl, "FreeImage_InitPlugin");
+			if(pf)
+			{
+			s_plugins->AddNode((FI_InitProc)pf, (void *)pl);
+			}
+			else{dlclose(pl);}
+			}
+
+
+			}
 			}
 #endif // _WIN32
 		}
