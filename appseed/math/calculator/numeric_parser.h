@@ -1,7 +1,9 @@
 #pragma once
 
+
 namespace calculator
 {
+
 
    class CLASS_DECL_CA2_MATH parser :
       virtual public ::object
@@ -35,9 +37,13 @@ namespace calculator
       double apply_traverse_operator(::calculator::element *current_node, double total);
       double apply_operator(::calculator::element *current_node, double total, double m_etype);
 
-      
+
    };
 
 
-
 } // namespace calculator
+
+
+
+
+

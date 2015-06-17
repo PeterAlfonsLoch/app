@@ -1,7 +1,9 @@
 #pragma once
 
+
 namespace calculator
 {
+
 
    class CLASS_DECL_CA2_MATH token
    {
@@ -34,6 +36,14 @@ namespace calculator
       string      m_str;
       int32_t         m_iType;
       bool        m_bKeyword;
+
+
    };
 
+
 } // namespace calculator
+
+
+
+
+

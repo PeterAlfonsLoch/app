@@ -387,28 +387,45 @@ TagLib::instance();
 					SetCurrentDirectory(current_dir);
 				}
 			}
-			#else
+			#else // _WIN32
+
 			::file::patha patha;
+
 			::dir::ls(patha, ::dir::ca2_module());
+
 			for(auto & path : patha)
 			{
-			if(::str::ends_ci(path, ".fip"))
-			{
-			void * pl = dlopen(path, RTLD_LOCAL | RTLD_NOW | RTLD_NODELETE);
-			if(pl)
-			{
-			void * pf = dlsym(pl, "FreeImage_InitPlugin");
-			if(pf)
-			{
-			s_plugins->AddNode((FI_InitProc)pf, (void *)pl);
-			}
-			else{dlclose(pl);}
+
+            if(::str::ends_ci(path, ".fip"))
+            {
+
+               void * pl = dlopen(path, RTLD_LOCAL | RTLD_NOW | RTLD_NODELETE);
+
+               if(pl)
+               {
+
+                  void * pf = dlsym(pl, "FreeImage_InitPlugin");
+
+                  if(pf)
+                  {
+
+                     s_plugins->AddNode((FI_InitProc)pf, (void *)pl);
+
+                  }
+                  else
+                  {
+
+                     dlclose(pl);
+
+                  }
+
+               }
+
+            }
+
 			}
 
-
-			}
-			}
-#endif // _WIN32
+#endif // else _WIN32
 		}
 	}
 }
