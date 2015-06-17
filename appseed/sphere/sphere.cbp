@@ -51,6 +51,7 @@
 			<Add option="-Winvalid-pch" />
 			<Add option="-Wno-conversion-null" />
 			<Add option="-fPIC" />
+			<Add directory="../sphere" />
 			<Add directory="../../../include" />
 			<Add directory="../../include" />
 			<Add directory="." />
@@ -62,6 +63,7 @@
 			<Add directory="../../../nodeapp" />
 			<Add directory="../axis" />
 			<Add directory="../aura" />
+			<Add directory="../../axis" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-rpath,\\$$ORIGIN" />
@@ -104,6 +106,17 @@
 		<Unit filename="command/command_primary_view.h" />
 		<Unit filename="command/command_view.cpp" />
 		<Unit filename="command/command_view.h" />
+		<Unit filename="console/console.h" />
+		<Unit filename="console/console_application.cpp" />
+		<Unit filename="console/console_application.h" />
+		<Unit filename="console/console_prompt.cpp" />
+		<Unit filename="console/console_prompt.h" />
+		<Unit filename="console/console_prompt_document.cpp" />
+		<Unit filename="console/console_prompt_document.h" />
+		<Unit filename="console/console_prompt_frame.cpp" />
+		<Unit filename="console/console_prompt_frame.h" />
+		<Unit filename="console/console_prompt_impact.cpp" />
+		<Unit filename="console/console_prompt_impact.h" />
 		<Unit filename="filehandler/filehandler.h" />
 		<Unit filename="filehandler/filehandler_application.cpp" />
 		<Unit filename="filehandler/filehandler_application.h" />
@@ -124,7 +137,6 @@
 			<Option weight="0" />
 		</Unit>
 		<Unit filename="res/aud.h" />
-		<Unit filename="sphere.h" />
 		<Unit filename="sphere/sphere.h" />
 		<Unit filename="sphere/sphere_application.cpp" />
 		<Unit filename="sphere/sphere_application.h" />

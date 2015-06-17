@@ -10,14 +10,10 @@
 
 
 
-#ifdef WINDOWS
 #ifdef __SPHERE__DLL
-   #define CLASS_DECL_sphere  _declspec(dllexport)
+   #define CLASS_DECL_sphere  CLASS_DECL_EXPORT
 #else
-   #define CLASS_DECL_sphere  _declspec(dllimport)
-#endif
-#else
-   #define CLASS_DECL_sphere
+   #define CLASS_DECL_sphere  CLASS_DECL_IMPORT
 #endif
 
 
