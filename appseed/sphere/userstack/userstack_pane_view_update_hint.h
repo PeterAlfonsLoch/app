@@ -4,20 +4,8 @@
 namespace userstack
 {
 
-   enum EPaneView
-   {
-      PaneViewNone,
-      PaneViewContextMenu,
-      PaneViewWinActionArea,
-      PaneViewFileManager,
-      PaneViewThreeActionLaunch,
-      PaneViewConfiguration,
-      PaneViewFileProperties,
-   };
-
-
    class CLASS_DECL_sphere pane_view_update_hint :
-      public ::object  
+      public ::object
    {
    public:
       enum e_type

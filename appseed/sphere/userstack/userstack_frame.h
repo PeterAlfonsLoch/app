@@ -5,19 +5,15 @@ namespace userstack
 {
 
 
-   class view;
-   class pane_view;
-
-
-   class CLASS_DECL_sphere frame : 
+   class CLASS_DECL_sphere frame :
       virtual public simple_frame_window,
       virtual public ::aura::message_queue_listener
    {
    public:
-      
+
       ::aura::message_queue_sp   m_spqueue;
-      
-      
+
+
       image_list  *              m_pimagelist;
       sp(::user::document)                 m_pdocument;
       bool                       m_bHoverMouse;
@@ -42,7 +38,7 @@ namespace userstack
       virtual bool pre_create_window(::user::create_struct& cs);
 
       void ShowControlBars(bool bShow);
-      
+
       virtual ~frame();
    #ifdef DEBUG
       virtual void assert_valid() const;

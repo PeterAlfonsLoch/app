@@ -5,10 +5,6 @@ namespace userstack
 {
 
 
-   class document;
-   class pane_view;
-
-
    class CLASS_DECL_sphere view :
       virtual public ::user::show < ::user::scroll < ::user::control > >
    {
@@ -16,15 +12,15 @@ namespace userstack
 
       sp(pane_view)    m_ppaneview;
 
-      int32_t m_iV; 
+      int32_t m_iV;
       int32_t m_iVH;
       int32_t m_iVW;
       visual::dib_sp m_dibV;
-      int32_t m_i_veriwell; 
+      int32_t m_i_veriwell;
       int32_t m_i_veriwell_h;
       int32_t m_i_veriwell_w;
       visual::dib_sp m_dib_veriwell;
-      int32_t m_i_winactionarea; 
+      int32_t m_i_winactionarea;
       int32_t m_i_winactionarea_h;
       int32_t m_i_winactionarea_w;
       visual::dib_sp m_dib_winactionarea;
@@ -97,7 +93,7 @@ namespace userstack
       void mt_show_window(oswindow oswindow, int32_t iShow);
 
       static UINT c_cdecl ThreadProcShowWindow(LPVOID lpparam);
-      
+
       void _000OnMouse(::message::mouse * pmouse);
 
    };

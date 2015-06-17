@@ -1,9 +1,8 @@
 #pragma once
 
+
 namespace command
 {
-
-   class document;
 
    class CLASS_DECL_sphere view :
       virtual public ::user::impact,

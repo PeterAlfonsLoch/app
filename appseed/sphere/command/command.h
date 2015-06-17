@@ -4,6 +4,15 @@
 #include "app/appseed/sphere/filehandler/filehandler.h"
 
 
+namespace command
+{
+
+
+   class document;
+
+
+} // namespace command
+
 #include "command_document.h"
 #include "command_frame.h"
 #include "command_view.h"

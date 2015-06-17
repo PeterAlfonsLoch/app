@@ -51,6 +51,7 @@
 			<Add option="-Winvalid-pch" />
 			<Add option="-Wno-conversion-null" />
 			<Add option="-fPIC" />
+			<Add option="-DLINUX" />
 			<Add directory="../sphere" />
 			<Add directory="../../../include" />
 			<Add directory="../../include" />
