@@ -22,6 +22,7 @@ namespace console
 
       IGUI_WIN_MSG_LINK(WM_APP + 3243,m_pthreadimpl,this,&application::_001OnImpact);
 
+
       System.factory().creatable_small < console::prompt_document >();
       System.factory().creatable_small < console::prompt_frame >();
       System.factory().creatable_small < console::prompt_impact >();
