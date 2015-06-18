@@ -4023,10 +4023,10 @@ namespace user
 
    void list::SetDataInterface(::user::mesh_data *pinterface)
    {
-      
-      m_pmeshdata = pinterface;
 
-      m_psimplemeshdata = m_pmeshdata;
+      mesh::SetDataInterface(pinterface);
+      
+      m_psimplelistdata = m_pmeshdata;
 
    }
 

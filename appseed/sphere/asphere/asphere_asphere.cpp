@@ -1,5 +1,6 @@
-#include "framework.h"
+//#include "framework.h"
 
+#ifdef WINDOWS
 
 extern "C" int32_t WINAPI DllMain(HINSTANCE hInstance, uint32_t dwReason, LPVOID)
 {
@@ -24,4 +25,7 @@ extern "C" int32_t WINAPI DllMain(HINSTANCE hInstance, uint32_t dwReason, LPVOID
    return TRUE;
 
 }
+
+#endif
+
 

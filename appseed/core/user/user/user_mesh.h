@@ -492,7 +492,7 @@ namespace user
 
       //void _001SetSingleColumnMode(bool bHeaderCtrl);
 //      bool _001InsertColumn(::user::mesh_column & column);
-      void SetDataInterface(mesh_data * pinterface);
+      virtual void SetDataInterface(mesh_data * pinterface);
       void CacheHint();
       void SetCacheInterface(mesh_cache_interface * pinterface);
       //void AddMessageHandling(::message::dispatch * pinterface);
