@@ -248,6 +248,7 @@ bool string_format::parse(const char * & s)
    {
 
 
+
       void format(string_format * pformat, char const & ch)
       {
 
@@ -272,6 +273,7 @@ bool string_format::parse(const char * & s)
          }
 
       }
+
 
 
       void format(string_format * pformat, uchar const & uch)
@@ -303,6 +305,7 @@ bool string_format::parse(const char * & s)
       }
 
 
+
       void format(string_format * pformat, int16_t const & sh)
       {
 
@@ -319,6 +322,7 @@ bool string_format::parse(const char * & s)
       }
 
 
+
       void format(string_format * pformat, uint16_t const & ush)
       {
 
@@ -333,6 +337,7 @@ bool string_format::parse(const char * & s)
          pformat->append(str);
 
       }
+
 
 
       void format(string_format * pformat, int32_t const & i)
@@ -356,6 +361,7 @@ bool string_format::parse(const char * & s)
          pformat->append(str);
 
       }
+
 
       void format(string_format * pformat, uint32_t const & ui)
       {
@@ -384,12 +390,15 @@ bool string_format::parse(const char * & s)
 
       }
 
+
       void format(string_format * pformat, int64_t const & i)
       {
          // TODO: use specs
          pformat->append(::str::from(i));
 
       }
+
+
 
       void format(string_format * pformat, uint64_t const & i)
       {
@@ -398,12 +407,16 @@ bool string_format::parse(const char * & s)
 
       }
 
+
+
       void format(string_format * pformat, float const & f)
       {
          // TODO: use specs
          pformat->append(::str::from(f));
 
       }
+
+
 
       void format(string_format * pformat, double const & d)
       {
@@ -498,12 +511,15 @@ bool string_format::parse(const char * & s)
 
 
 
+
       void format(string_format * pformat, const void * const & p)
       {
          // TODO: use specs
          pformat->append(::str::from((uint_ptr)p));
 
       }
+
+
 
       void format(string_format * pformat, void * const & p)
       {
@@ -512,12 +528,16 @@ bool string_format::parse(const char * & s)
 
       }
 
+
+
       void format(string_format * pformat, const char * const & psz)
       {
 
          pformat->append(psz);
 
       }
+
+
 
       void format(string_format * pformat, unsigned char * const & psz)
       {
@@ -528,12 +548,14 @@ bool string_format::parse(const char * & s)
 
 
 
+
       void format(string_format * pformat, string const & str)
       {
 
          pformat->append(str);
 
       }
+
 
 
 

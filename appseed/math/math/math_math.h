@@ -11,5 +11,5 @@
 #endif
 
 
-#include "app/appseed/math/kissfft/kissfft.h"
-#include "app/appseed/math/calculator/calculator.h"
+#include "math/kissfft/kissfft.h"
+#include "math/calculator/calculator.h"

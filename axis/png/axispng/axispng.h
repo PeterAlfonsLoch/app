@@ -1,15 +1,13 @@
 #pragma once
 
 
-#include "core/core/core.h"
+#include "aura/aura/aura.h"
 
 
-#if defined(_CA2_MATH_DLL)
-   #define CLASS_DECL_CA2_MATH  CLASS_DECL_EXPORT
+#if defined(_CA2_AXIS_PNG_DLL)
+   #define CLASS_DECL_CA2_AXIS_PNG  CLASS_DECL_EXPORT
 #else
-   #define CLASS_DECL_CA2_MATH  CLASS_DECL_IMPORT
+   #define CLASS_DECL_CA2_AXIS_PNG  CLASS_DECL_IMPORT
 #endif
 
 
-#include "math/kissfft/kissfft.h"
-#include "math/calculator/calculator.h"

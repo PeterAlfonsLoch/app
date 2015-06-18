@@ -58,15 +58,17 @@ namespace calculator
 } // namespace calculator
 
 
+
+
 namespace str
 {
 
 
-   CLASS_DECL_CA2_MATH void format(::string_format * pformat,const ::calculator::value & val);
+   template < >
+   CLASS_DECL_CA2_MATH void format_type(::string_format * pformat,const ::calculator::value & val);
 
 
 } // namespace str
-
 
 
 

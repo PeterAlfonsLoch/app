@@ -196,7 +196,7 @@ public:
          if(!parse(s))
          {
 
-            ::str::format(this, value);
+            ::str::format_type(this, value);
 
             m_estate = state_initial;
 

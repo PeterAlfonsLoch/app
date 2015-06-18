@@ -871,19 +871,6 @@ extern CLASS_DECL_CORE LPFN_instantiate_application g_lpfn_instantiate_applicati
 
 
 
-//#include "core/math/calculator/calculator.h"
-
-
-//#include "core/primitive/datetime/datetime_calendar_interface.h"
-//#include "core/primitive/datetime/datetime_clock_interface.h"
-//#include "core/primitive/datetime/datetime_calendar.h"
-//#include "core/primitive/datetime/datetime_clock.h"
-
-
-
-
-
-//#include "core/graphics/html/html.h"
 
 
 #include "core_debug.h"
@@ -892,30 +879,12 @@ extern CLASS_DECL_CORE LPFN_instantiate_application g_lpfn_instantiate_applicati
 
 
 
-//#include "core_stra.h"
-
-
-//#include "core_service.h"
-
-
 #include "core/filesystem/filehandler/filehandler.h"
 
 
 
 
 
-
-
-
-//#include "core/compress/compress.h"
-//#include "core/programming/javascript/javascript.h"
-
-// former core - changed to core on 2013-02-21
-////////////////////////////////////////////////////////////////
-// ca2api
-// Layer level 5
-// Project named ca2api002_00002
-// Namespace ca8
 
 
 
@@ -933,25 +902,6 @@ extern CLASS_DECL_CORE LPFN_instantiate_application g_lpfn_instantiate_applicati
 #include "core/database/simpledb/DBFileSystemSize.h"
 
 
-
-//#include "core/programming/dynamic_source/dynamic_source.h"
-
-
-//#include "core/user/user/user.h"
-
-
-
-//#include "core/user/userex/userex.h"
-
-
-
-//#include "core/filesystem/filemanager/filemanager.h"
-
-
-
-//#include "core/net/usernet/usernet.h"
-//#include "core/database/simpledb/simpledb.h"
-//#include "core/net/usermail/usermail.h"
 #include "core/net/hi5/hi5.h"
 
 
@@ -1032,9 +982,6 @@ namespace html
 } // namespace html
 
 
-//class ::user::form;
-
-
 
 #include "core_library.h"
 
@@ -1043,20 +990,4 @@ namespace html
 
 
 #include "core_system.h"
-
-
-//#include "plane_system_ca2_str.h"
-//#include "plane_system_primitive_var.h"
-
-
-//#include "plane_system_ca2_template.h"
-//#include "plane_system_allocate.h"
-//#include "plane_system_ca2_factory.h"
-//#include "plane_system_primitive_string_format_spec.h"
-
-//#include "app/appseed/core/filesystem/file/file_html_buffer.h"
-
-
-
-
 

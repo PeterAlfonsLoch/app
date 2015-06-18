@@ -262,21 +262,21 @@ namespace calculator
 
 
 
-  namespace str
-
+namespace str
 {
 
-   void format(string_format * pformat,const calculator::value  & cval)
-      {
+   template < >
+   void format_type(string_format * pformat,const calculator::value  & cval)
+   {
 
-         pformat->append(cval.to_string());
+      pformat->append(cval.to_string());
 
-      }
-
-
+   }
 
 
-   } // namespace str
+
+
+} // namespace str
 
 
 

@@ -69,30 +69,19 @@
 		</Linker>
 		<Unit filename="_math_math.cpp" />
 		<Unit filename="calculator/calculator.h" />
-		<Unit filename="calculator/calculator_calculator.cpp" />
 		<Unit filename="calculator/calculator_calculator.h" />
-		<Unit filename="calculator/numeric_element.cpp" />
 		<Unit filename="calculator/numeric_element.h" />
-		<Unit filename="calculator/numeric_parser.cpp" />
 		<Unit filename="calculator/numeric_parser.h" />
-		<Unit filename="calculator/numeric_parser_exception.cpp" />
 		<Unit filename="calculator/numeric_parser_exception.h" />
-		<Unit filename="calculator/numeric_scanner.cpp" />
 		<Unit filename="calculator/numeric_scanner.h" />
 		<Unit filename="calculator/numeric_token.h" />
-		<Unit filename="calculator/numeric_value.cpp" />
 		<Unit filename="calculator/numeric_value.h" />
 		<Unit filename="framework.h" />
-		<Unit filename="kissfft/kiss_fft.cpp" />
 		<Unit filename="kissfft/kiss_fft.h" />
 		<Unit filename="kissfft/kiss_fft_guts.h" />
-		<Unit filename="kissfft/kiss_fft_shared.cpp" />
-		<Unit filename="kissfft/kiss_ifft.cpp" />
 		<Unit filename="kissfft/kiss_ifft.h" />
 		<Unit filename="kissfft/kissfft.h" />
-		<Unit filename="kissfft/kissfft_fftd.cpp" />
 		<Unit filename="kissfft/kissfft_fftd.h" />
-		<Unit filename="kissfft/kissfft_ifftd.cpp" />
 		<Unit filename="kissfft/kissfft_ifftd.h" />
 		<Unit filename="math/math_math.h" />
 		<Extensions>
