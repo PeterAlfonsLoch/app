@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 namespace userstack
@@ -20,12 +20,12 @@ namespace userstack
 
    }
 
+
    application::~application()
    {
 
-
-
    }
+
 
    void application::construct()
    {

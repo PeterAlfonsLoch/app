@@ -5,7 +5,7 @@ namespace filehandler
 {
 
 
-   class CLASS_DECL_sphere frame : public simple_frame_window
+   class CLASS_DECL_SPHERE frame : public simple_frame_window
    {
    
    public:

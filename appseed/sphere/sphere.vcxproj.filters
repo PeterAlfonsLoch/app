@@ -128,9 +128,6 @@
     <ClInclude Include=".\userstack\userstack_application.h">
       <Filter>Header Files\userstack</Filter>
     </ClInclude>
-    <ClInclude Include="sphere.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="sphere\sphere.h">
       <Filter>Header Files\sphere</Filter>
     </ClInclude>

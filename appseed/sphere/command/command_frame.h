@@ -5,7 +5,7 @@ namespace command
 {
 
 
-   class CLASS_DECL_sphere frame : 
+   class CLASS_DECL_SPHERE frame : 
       virtual public simple_frame_window,
       virtual public ::aura::message_queue_listener
    {

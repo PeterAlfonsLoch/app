@@ -5,7 +5,7 @@ namespace filehandler
 {
 
 
-   class CLASS_DECL_sphere pane_view : 
+   class CLASS_DECL_SPHERE pane_view : 
       virtual public ::userex::pane_tab_view
    {
    public:

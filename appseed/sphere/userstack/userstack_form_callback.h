@@ -5,7 +5,7 @@ namespace userstack
 {
 
 
-   class CLASS_DECL_sphere form_callback :
+   class CLASS_DECL_SPHERE form_callback :
       virtual public ::user::form_callback
    {
    public:

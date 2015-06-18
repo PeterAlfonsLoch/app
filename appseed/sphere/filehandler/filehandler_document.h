@@ -5,7 +5,7 @@ namespace filehandler
 {
 
 
-   class CLASS_DECL_sphere document:
+   class CLASS_DECL_SPHERE document:
       virtual public ::html_document
    {
    public:

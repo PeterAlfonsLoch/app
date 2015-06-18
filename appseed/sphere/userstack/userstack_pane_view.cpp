@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 namespace userstack
@@ -12,11 +12,10 @@ namespace userstack
       m_dibBk(allocer()),
       place_holder_container(papp)
    {
+
       m_iNewArea        = 0;
       m_iArea           = -1;
       m_pviewdataOld    = NULL;
-
-      
 
       m_pviewdata       = NULL;
       m_pviewdataOld    = NULL;

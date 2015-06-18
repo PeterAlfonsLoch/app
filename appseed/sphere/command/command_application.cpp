@@ -1,22 +1,31 @@
-#include "framework.h"
+//#include "framework.h"
+
 
 namespace command
 {
 
+
    application::application()
    {
+
    }
+
 
    application::~application()
    {
+
    }
+
 
    void application::construct()
    {
+
       m_strAppName            = _strdup("command");
       m_strBaseSupportId      = "ca2_command";
       m_eexclusiveinstance    = ::ExclusiveInstanceLocal;
+
    }
+
 
    bool application::initialize_instance()
    {

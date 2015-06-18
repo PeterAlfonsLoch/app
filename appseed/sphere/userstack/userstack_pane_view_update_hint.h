@@ -4,7 +4,7 @@
 namespace userstack
 {
 
-   class CLASS_DECL_sphere pane_view_update_hint :
+   class CLASS_DECL_SPHERE pane_view_update_hint :
       public ::object
    {
    public:

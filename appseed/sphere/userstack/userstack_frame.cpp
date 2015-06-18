@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 namespace userstack
@@ -12,8 +12,6 @@ namespace userstack
    {
 
       m_pdocument = NULL;
-      
-      
 
       WfiEnableFullScreen();
 

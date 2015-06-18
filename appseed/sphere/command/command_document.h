@@ -5,7 +5,7 @@ namespace command
 {
 
 
-   class CLASS_DECL_sphere document :
+   class CLASS_DECL_SPHERE document :
       public ::user::document
    {
    public:

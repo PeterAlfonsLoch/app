@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 namespace sphere
@@ -12,8 +12,8 @@ namespace sphere
       ::filehandler::library(papp),
       ::filehandler::menu_library(papp)
    {
-   }
 
+   }
 
 
    void library::get_app_list(stringa & stra)
@@ -25,6 +25,7 @@ namespace sphere
       stra.add("userstack");
 
    }
+
 
    void library::get_extension_list(stringa & stra)
    {

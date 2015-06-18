@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 namespace filehandler
@@ -7,8 +7,10 @@ namespace filehandler
 
    application::application()
    {
+      
       m_ptemplateMenu   = NULL;
       m_ppaneview       = NULL;
+
    }
 
 

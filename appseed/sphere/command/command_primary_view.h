@@ -5,7 +5,7 @@ namespace command
 {
 
 
-   class CLASS_DECL_sphere primary_view :
+   class CLASS_DECL_SPHERE primary_view :
       public ::user::show < ::user::scroll < ::user::plain_edit > >
    {
    public:

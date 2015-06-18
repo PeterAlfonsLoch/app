@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 namespace command
@@ -9,14 +9,19 @@ namespace command
       ::object(papp),
       ::user::interaction(papp)
    {
+
    }
+
 
    view::~view()
    {
+
    }
+
 
    void view::install_message_handling(::message::dispatch * pinterface)
    {
+
       ::user::impact::install_message_handling(pinterface);
 
 	   IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &view::_001OnDestroy);

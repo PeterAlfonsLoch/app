@@ -5,7 +5,7 @@ namespace filehandler
 {
 
 
-   class CLASS_DECL_sphere view :
+   class CLASS_DECL_SPHERE view :
       public html_view
    {
    public:
@@ -14,7 +14,7 @@ namespace filehandler
       class list;
 
 
-      class CLASS_DECL_sphere item :
+      class CLASS_DECL_SPHERE item :
          virtual public ::object
       {
       public:
@@ -35,7 +35,7 @@ namespace filehandler
 
       };
 
-      class CLASS_DECL_sphere list :
+      class CLASS_DECL_SPHERE list :
          virtual public spa(item)
       {
       public:

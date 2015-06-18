@@ -5,7 +5,7 @@ namespace command
 {
 
 
-   class CLASS_DECL_sphere application :
+   class CLASS_DECL_SPHERE application :
       virtual public ::filehandler::application
    {
    public:

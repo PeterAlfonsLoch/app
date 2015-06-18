@@ -5,7 +5,7 @@ namespace calculator
 {
 
 
-   class CLASS_DECL_sphere frame : 
+   class CLASS_DECL_SPHERE frame : 
       public simple_frame_window
    {
    public: 

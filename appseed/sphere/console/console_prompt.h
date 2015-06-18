@@ -5,7 +5,7 @@ namespace console
 {
 
 
-   class CLASS_DECL_sphere prompt :
+   class CLASS_DECL_SPHERE prompt :
       virtual public object
    {
    public:

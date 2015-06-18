@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 namespace console
@@ -7,10 +7,13 @@ namespace console
 
    application::application()
    {
+
    }
+
 
    application::~application()
    {
+
    }
 
 

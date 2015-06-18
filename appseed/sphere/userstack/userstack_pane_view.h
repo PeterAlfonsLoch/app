@@ -5,7 +5,7 @@ namespace userstack
 {
 
 
-   class CLASS_DECL_sphere pane_view : 
+   class CLASS_DECL_SPHERE pane_view : 
       public ::userex::pane_tab_view,
       public ::filemanager::callback,
       public ::userstack::form_callback

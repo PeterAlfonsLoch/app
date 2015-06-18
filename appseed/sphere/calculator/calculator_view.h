@@ -7,7 +7,7 @@ namespace calculator
    class document;
 
 
-   class CLASS_DECL_sphere view :
+   class CLASS_DECL_SPHERE view :
       virtual public ::user::impact
    {
    public:

@@ -5,7 +5,7 @@ namespace sphere
 {
 
 
-   class CLASS_DECL_sphere library :
+   class CLASS_DECL_SPHERE library :
       virtual public ::aura::single_application_library < application >,
       virtual public ::filehandler::menu_library
    {

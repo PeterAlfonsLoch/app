@@ -11,9 +11,9 @@
 
 
 #ifdef __SPHERE__DLL
-   #define CLASS_DECL_sphere  CLASS_DECL_EXPORT
+   #define CLASS_DECL_SPHERE  CLASS_DECL_EXPORT
 #else
-   #define CLASS_DECL_sphere  CLASS_DECL_IMPORT
+   #define CLASS_DECL_SPHERE  CLASS_DECL_IMPORT
 #endif
 
 

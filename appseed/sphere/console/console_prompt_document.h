@@ -5,7 +5,7 @@ namespace console
 {
 
 
-   class CLASS_DECL_sphere prompt_document :
+   class CLASS_DECL_SPHERE prompt_document :
       public ::user::document
    {
    public:

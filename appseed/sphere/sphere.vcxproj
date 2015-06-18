@@ -1777,7 +1777,6 @@
     <ClInclude Include="filehandler\filehandler_pane_view_update_hint.h" />
     <ClInclude Include="filehandler\filehandler_view.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="sphere.h" />
     <ClInclude Include="sphere\sphere.h" />
     <ClInclude Include="sphere\sphere_application.h" />
     <ClInclude Include="sphere\sphere_library.h" />

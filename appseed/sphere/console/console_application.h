@@ -5,7 +5,7 @@ namespace console
 {
 
 
-   class CLASS_DECL_sphere application:
+   class CLASS_DECL_SPHERE application:
       virtual public ::userstack::application
    {
    public:

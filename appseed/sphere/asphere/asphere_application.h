@@ -14,7 +14,7 @@ namespace asphere
 {
 
 
-   class CLASS_DECL_sphere application : 
+   class CLASS_DECL_SPHERE application : 
       virtual public ::core::application
    {
    public:

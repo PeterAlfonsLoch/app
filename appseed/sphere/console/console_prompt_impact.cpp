@@ -1,10 +1,8 @@
-#include "framework.h"
-
+//#include "framework.h"
 
 
 namespace console
 {
-
 
 
    prompt_impact::prompt_impact(::aura::application * papp) :

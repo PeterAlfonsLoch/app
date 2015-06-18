@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 namespace command
@@ -17,8 +17,10 @@ namespace command
 
    }
 
+
    pane_view::~pane_view()
    {
+
    }
 
 

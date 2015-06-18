@@ -6,7 +6,7 @@ namespace console
 {
 
 
-   class CLASS_DECL_sphere prompt_impact :
+   class CLASS_DECL_SPHERE prompt_impact :
       virtual public ::user::impact
    {
    public:
