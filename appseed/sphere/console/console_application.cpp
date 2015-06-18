@@ -60,14 +60,14 @@ namespace console
 
             }
          }
-          
+
       }
 
       return ::userstack::application::pre_translate_message(pobj);
 
    }
 
-   
+
    void application::_001OnImpact(::signal_details * pobj)
    {
 

@@ -569,7 +569,6 @@
 		<Unit filename="primitive/geometry/geometry_rect.h" />
 		<Unit filename="primitive/geometry/geometry_size.h" />
 		<Unit filename="primitive/geometry/geometry_types.h" />
-		<Unit filename="primitive/math/_math.h" />
 		<Unit filename="primitive/math/math_complex.h" />
 		<Unit filename="primitive/math/math_count.h" />
 		<Unit filename="primitive/math/math_departament.h" />

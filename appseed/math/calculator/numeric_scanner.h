@@ -5,8 +5,6 @@ namespace calculator
 {
 
 
-
-
 #define INITIALIZE_TABLE(table, function) if(table[0] == 0) function(table)
 
 /*
@@ -27,8 +25,8 @@ numbers:
       virtual public ::object
    {
    public:
-      
-      
+
+
       const char * input;
       const char * next_input;
       class token * m_ptoken;
@@ -37,15 +35,21 @@ numbers:
       scanner(::aura::application * papp);
       virtual ~scanner();
 
-      
+
 
       void initialize(const char * psz);
       void peek();
       void next();
       token * look_ahead();
 
+
    };
 
 
-
 } // namespace calculator
+
+
+
+
+
+

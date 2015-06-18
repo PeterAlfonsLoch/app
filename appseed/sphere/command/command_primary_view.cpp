@@ -2,6 +2,10 @@
 //#include <math.h>
 
 
+
+
+
+
 namespace command
 {
 
@@ -61,8 +65,8 @@ namespace command
                string strNewLine;
                try
                {
-                  calculator::parser parser(get_app());
-                  calculator::element * pelement = parser.parse(strLine);
+                  ::calculator::parser parser(get_app());
+                  ::calculator::element * pelement = parser.parse(strLine);
                   string strValue;
                   strValue.Format("%f", pelement->get_value());
                   string strNewText = str + pelement->get_expression() + " = " + strValue  + "\n";

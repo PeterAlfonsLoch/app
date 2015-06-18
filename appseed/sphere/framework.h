@@ -3,7 +3,7 @@
 #endif
 
 
-#include "sphere/sphere.h"
+#include "app/appseed/sphere/sphere/sphere.h"
 
 
 

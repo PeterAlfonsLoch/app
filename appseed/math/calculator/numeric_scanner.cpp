@@ -14,7 +14,9 @@ namespace calculator
 
    token::token()
    {
-      value = token::none;
+
+      m_etype = token::type_none;
+
    }
 
    token::~token()
@@ -67,7 +69,7 @@ namespace calculator
          input = ::str::utf8_inc(input);
       if(*input == '\0')
       {
-         token->value = token::end;
+         token->m_etype = token::type_end;
          return token;
       }
       const char * nextinput = ::str::utf8_inc(input);
@@ -75,7 +77,7 @@ namespace calculator
       if((*input == 'j' || *input == 'i') &&
          ::str::ch::is_digit(nextinput))
       {
-         token->value = token::imaginary;
+         token->m_etype = token::type_imaginary;
          char * endptr;
          strtod(nextinput, &endptr);
          token->m_str = string(nextinput, endptr - nextinput);
@@ -84,14 +86,14 @@ namespace calculator
       }
       else if(::str::ch::is_digit(input))
       {
-         token->value = token::number;
+         token->m_etype = token::type_number;
          char * endptr;
          strtod(input, &endptr);
          token->m_str = string(input, endptr - input);
          if((*endptr == 'i' || *endptr == 'j')
             && !(isdigit_dup(*(endptr + 1)) || isalpha_dup(*(endptr + 1))))
          {
-            token->value = token::imaginary;
+            token->m_etype = token::type_imaginary;
             endptr++;
          }
          input = endptr;
@@ -99,43 +101,43 @@ namespace calculator
       }
       else if(*input == '+')
       {
-         token->value = token::addition;
+         token->m_etype = token::type_addition;
          input++;
          return token;
       }
       else if(*input == '-')
       {
-         token->value = token::subtraction;
+         token->m_etype = token::type_subtraction;
          input++;
          return token;
       }
       else if(*input == '*')
       {
-         token->value = token::multiplication;
+         token->m_etype = token::type_multiplication;
          input++;
          return token;
       }
       else if(*input == '/')
       {
-         token->value = token::division;
+         token->m_etype = token::type_division;
          input++;
          return token;
       }
       else if(*input == '(')
       {
-         token->value = token::open_paren;
+         token->m_etype = token::type_open_paren;
          input++;
          return token;
       }
       else if(*input == ',')
       {
-         token->value = token::virgula;
+         token->m_etype = token::type_virgula;
          input++;
          return token;
       }
       else if(*input == ')')
       {
-         token->value = token::close_paren;
+         token->m_etype = token::type_close_paren;
          input++;
          return token;
       }
@@ -146,11 +148,11 @@ namespace calculator
             input = ::str::utf8_inc(input);
          if(*input == '(')
          {
-            token->value = token::function;
+            token->m_etype = token::type_function;
          }
          else
          {
-            token->value = token::identifier;
+            token->m_etype = token::type_identifier;
          }
          return token;
       }

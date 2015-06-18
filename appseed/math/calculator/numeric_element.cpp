@@ -20,7 +20,7 @@ namespace calculator
 
    value element::get_value()
    {
-      if(m_ptoken->value == token::identifier)
+      if(m_ptoken->m_etype == token::type_identifier)
       {
          value val;
          if(m_ptoken->m_str.CompareNoCase("pi") == 0)
@@ -33,41 +33,41 @@ namespace calculator
          }
          return val;
       }
-      else if(m_ptoken->value == token::number)
+      else if(m_ptoken->m_etype == token::type_number)
       {
          value val;
          val.m_dR = atof(m_ptoken->m_str);
          return val;
       }
-      else if(m_ptoken->value == token::imaginary)
+      else if(m_ptoken->m_etype == token::type_imaginary)
       {
          value val;
          val.m_dI = atof(m_ptoken->m_str);
          return val;
       }
-      else if(m_ptoken->value == token::addition)
+      else if(m_ptoken->m_etype == token::type_addition)
       {
          if(m_pelement2 == NULL)
             return m_pelement1->get_value();
          else
             return m_pelement1->get_value() + m_pelement2->get_value();
       }
-      else if(m_ptoken->value == token::subtraction)
+      else if(m_ptoken->m_etype == token::type_subtraction)
       {
          if(m_pelement2 == NULL)
             return value() - m_pelement1->get_value();
          else
             return m_pelement1->get_value() - m_pelement2->get_value();
       }
-      else if(m_ptoken->value == token::multiplication)
+      else if(m_ptoken->m_etype == token::type_multiplication)
       {
          return m_pelement1->get_value() * m_pelement2->get_value();
       }
-      else if(m_ptoken->value == token::division)
+      else if(m_ptoken->m_etype == token::type_division)
       {
          return m_pelement1->get_value() / m_pelement2->get_value();
       }
-      else if(m_ptoken->value == token::function)
+      else if(m_ptoken->m_etype == token::type_function)
       {
          if(m_ptoken->m_str == "sqr")
          {
@@ -129,37 +129,37 @@ namespace calculator
 
    string element::get_expression()
    {
-      if(m_ptoken->value == token::number || m_ptoken->value == token::identifier)
+      if(m_ptoken->m_etype == token::type_number || m_ptoken->m_etype == token::type_identifier)
       {
          return m_ptoken->m_str;
       }
-      else if(m_ptoken->value == token::imaginary)
+      else if(m_ptoken->m_etype == token::type_imaginary)
       {
          return "i" + m_ptoken->m_str;
       }
-      else if(m_ptoken->value == token::addition)
+      else if(m_ptoken->m_etype == token::type_addition)
       {
          if(m_pelement2 == NULL)
             return "(" + m_pelement1->get_expression() + ")";
          else
             return "(" + m_pelement1->get_expression() + " + " + m_pelement2->get_expression() + ")";
       }
-      else if(m_ptoken->value == token::subtraction)
+      else if(m_ptoken->m_etype == token::type_subtraction)
       {
          if(m_pelement2 == NULL)
             return "( - " + m_pelement1->get_expression() + ")";
          else
             return "(" + m_pelement1->get_expression() + " - " + m_pelement2->get_expression() + ")";
       }
-      else if(m_ptoken->value == token::multiplication)
+      else if(m_ptoken->m_etype == token::type_multiplication)
       {
          return "(" + m_pelement1->get_expression() + " * " + m_pelement2->get_expression() + ")";
       }
-      else if(m_ptoken->value == token::division)
+      else if(m_ptoken->m_etype == token::type_division)
       {
          return "(" + m_pelement1->get_expression() + " / " + m_pelement2->get_expression() + ")";
       }
-      else if(m_ptoken->value == token::function)
+      else if(m_ptoken->m_etype == token::type_function)
       {
          if(m_ptoken->m_str == "sqr")
          {

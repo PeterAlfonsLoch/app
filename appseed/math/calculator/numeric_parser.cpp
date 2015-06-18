@@ -39,7 +39,7 @@ namespace calculator
    ::calculator::element *node;
    m_scanner.initialize(psz);
    node = expr(term(factor()));
-   if(m_scanner.m_ptoken->value != token::end)
+   if(m_scanner.m_ptoken->m_etype != token::type_end)
       syntax_error("Possible errors: illegal character, missing beginning parenthesis or missing operation");
    return node;
 }
@@ -48,7 +48,7 @@ namespace calculator
 {
    ::calculator::element * top_node;
    m_scanner.peek();
-   if(m_scanner.m_ptoken->value == token::addition || m_scanner.m_ptoken->value == token::subtraction)
+   if(m_scanner.m_ptoken->m_etype == token::type_addition || m_scanner.m_ptoken->m_etype == token::type_subtraction)
    {
       m_scanner.next();
       top_node = new_node();
@@ -64,7 +64,7 @@ namespace calculator
    {
       ::calculator::element *top_node;
       m_scanner.peek();
-      if(m_scanner.m_ptoken->value == token::multiplication || m_scanner.m_ptoken->value == token::division)
+      if(m_scanner.m_ptoken->m_etype == token::type_multiplication || m_scanner.m_ptoken->m_etype == token::type_division)
       {
          m_scanner.next();
          top_node                = new_node();
@@ -81,7 +81,7 @@ namespace calculator
    {
       ::calculator::element *node;
       m_scanner.peek();
-      if(m_scanner.m_ptoken->value == token::addition)
+      if(m_scanner.m_ptoken->m_etype == token::type_addition)
       {
          m_scanner.next();
          node                = new_node();
@@ -89,7 +89,7 @@ namespace calculator
          node->m_pelement1   = factor();
          return node;
       }
-      else if(m_scanner.m_ptoken->value == token::subtraction)
+      else if(m_scanner.m_ptoken->m_etype == token::type_subtraction)
       {
          m_scanner.next();
          node                = new_node();
@@ -97,29 +97,28 @@ namespace calculator
          node->m_pelement1   = factor();
          return node;
       }
-      else if(m_scanner.m_ptoken->value == token::open_paren)
+      else if(m_scanner.m_ptoken->m_etype == token::type_open_paren)
       {
          m_scanner.next();
          node = expr(term(factor()));
-         expect(token::close_paren);
+         expect(token::type_close_paren);
          return node;
       }
-      else if(m_scanner.m_ptoken->value == token::number
-         || m_scanner.m_ptoken->value == token::imaginary)
+      else if(m_scanner.m_ptoken->m_etype == token::type_number || m_scanner.m_ptoken->m_etype == token::type_imaginary)
       {
          m_scanner.next();
          node = new_node();
          node->m_ptoken = m_scanner.m_ptoken;
          return node;
       }
-      else if(m_scanner.m_ptoken->value == token::identifier)
+      else if(m_scanner.m_ptoken->m_etype == token::type_identifier)
       {
          m_scanner.next();
          node = new_node();
          node->m_ptoken = m_scanner.m_ptoken;
          return node;
       }
-      else if(m_scanner.m_ptoken->value == token::function)
+      else if(m_scanner.m_ptoken->m_etype == token::type_function)
       {
          m_scanner.next();
          node                = new_node();
@@ -177,7 +176,7 @@ namespace calculator
          {
             throw "unknown function";
          }
-         expect(token::open_paren);
+         expect(token::type_open_paren);
          int32_t iElem = 1;
          if(iCount > 0)
          {
@@ -199,10 +198,10 @@ namespace calculator
                if(iCount <= 0)
                   break;
                iElem++;
-               expect(token::virgula);
+               expect(token::type_virgula);
             }
          }
-         expect(token::close_paren);
+         expect(token::type_close_paren);
          return node;
       }
 
@@ -216,7 +215,7 @@ namespace calculator
       error_msg[9] = value;
       error_msg[10] = '\0';
       m_scanner.peek();
-      if(m_scanner.m_ptoken->value == (::calculator::token::e_type) value)
+      if(m_scanner.m_ptoken->m_etype == (::calculator::token::e_type) value)
          m_scanner.next();
       else
          syntax_error(error_msg);
