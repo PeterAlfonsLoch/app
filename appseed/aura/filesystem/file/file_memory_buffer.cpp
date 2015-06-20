@@ -80,7 +80,12 @@ namespace file
    void memory_buffer::write(const void * lpBuf, ::primitive::memory_size nCount)
    {
 
+      if(nCount <= 0)
+         return;
+
       single_lock sl(get_memory()->m_spmutex, TRUE);
+
+
       
       ::primitive::memory_size iEndPosition = m_dwPosition + nCount;
 

@@ -232,9 +232,6 @@
     <ClCompile Include="filehandler\filehandler_view.cpp">
       <Filter>Source Files\filehandler</Filter>
     </ClCompile>
-    <ClCompile Include="framework.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="userstack\userstack_document.cpp">
       <Filter>Source Files\userstack</Filter>
     </ClCompile>

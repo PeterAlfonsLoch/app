@@ -314,7 +314,7 @@ namespace str
    CLASS_DECL_AURA void format(string_format * pformat,const lparam & lparam);
 
    template < class TYPE >
-   CLASS_DECL_AURA void format_type(string_format * pformat,const TYPE & t)
+   void format_type(string_format * pformat,const TYPE & t)
    {
       ::str::format(pformat, t);
    }
