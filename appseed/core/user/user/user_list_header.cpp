@@ -569,4 +569,22 @@ namespace user
       return 4;
    }
 
+
+   point list_header::get_parent_viewport_offset()
+   {
+
+      sp(::user::interaction) puser = GetParent();
+
+      if(puser.is_null())
+         return point(0,0);
+
+      puser = puser->GetParent();
+
+      if(puser.is_null())
+         return point(0,0);
+
+      return puser->get_viewport_offset();
+
+   }
+
 } // namespace user

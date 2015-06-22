@@ -502,6 +502,7 @@ namespace user
 
       virtual void on_viewport_offset(::draw2d::graphics * pgraphics);
 
+      virtual void _001OnClip(::draw2d::graphics * pgraphics);
 
    };
 

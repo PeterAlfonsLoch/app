@@ -141,6 +141,9 @@ namespace user
          e_element & eelement,
          index & iItem);
 
+
+      virtual point get_parent_viewport_offset() override;
+
       // Message Handlers
    protected:
       DECL_GEN_SIGNAL(_001OnLButtonDown);

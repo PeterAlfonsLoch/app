@@ -1325,9 +1325,7 @@ namespace user
 
       index iItem;
 
-      if(_001DisplayHitTest(
-         point(ptOffset.x < 0 ? -ptOffset.x : 0,
-         (m_bHeaderCtrl ? m_iItemHeight : 0) + (ptOffset.y < -0 ? -ptOffset.y : 0)),iItem))
+      if(_001DisplayHitTest(point(0, m_bHeaderCtrl ? m_iItemHeight : 0),iItem))
          return iItem;
       else
       {
@@ -1530,7 +1528,10 @@ namespace user
 
          point ptOffset = get_viewport_offset();
 
-         index iy = pt.y + ptOffset.y;
+         index iy = pt.y + ptOffset.y + (m_bHeaderCtrl ? -m_iItemHeight : 0);
+
+         if(iy < 0)
+            iy = 0;
 
          index iItem = -1;
 
@@ -1540,13 +1541,13 @@ namespace user
          if(iItem < 0)
             return false;
 
-         if(m_bHeaderCtrl)
-         {
-            iItem--;
+         //if(m_bHeaderCtrl)
+         //{
+           // iItem--;
 
-            if(iItem < 0)
-               return false;
-         }
+            //if(iItem < 0)
+              // return false;
+         //}
 
          if(m_bFilter1)
          {
@@ -5635,6 +5636,42 @@ namespace user
    }
 
 
+   void list::_001OnClip(::draw2d::graphics * pgraphics)
+   {
+
+      mesh::_001OnClip(pgraphics);
+
+      if(m_bHeaderCtrl)
+      {
+
+         try
+         {
+
+            rect rectClient;
+
+            m_plistheader->GetClientRect(rectClient);
+
+            m_plistheader->ClientToScreen(rectClient);
+
+            ScreenToClient(rectClient);
+
+            ::draw2d::region_sp rgnClip(allocer());
+
+            rgnClip->create_rect(rectClient);
+
+            pgraphics->SelectClipRgn(rgnClip,RGN_DIFF);
+
+         }
+         catch(...)
+         {
+
+            throw simple_exception(::get_thread_app(),"no more a window");
+
+         }
+
+      }
+
+   }
 
 } // namespace user
 

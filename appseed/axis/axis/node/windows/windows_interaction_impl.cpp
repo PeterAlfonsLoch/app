@@ -672,7 +672,7 @@ namespace windows
    void interaction_impl::win_update_graphics()
    {
 
-      single_lock sl(m_pui->m_spmutex,false);
+      single_lock sl(m_pui->m_pmutex,false);
 
       if(!sl.lock())
       {

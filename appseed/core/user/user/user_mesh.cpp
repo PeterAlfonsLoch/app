@@ -89,6 +89,9 @@ namespace user
       m_nGridItemCount = 0;
       m_nGridColumnCount = 0;
 
+      m_sizeTotal.cx = 0;
+      m_sizeTotal.cy = 0;
+
    }
 
    mesh::~mesh()

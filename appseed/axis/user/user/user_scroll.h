@@ -596,7 +596,7 @@ namespace user
       }
       else
       {
-         if(ptOffset.y > sizeTotal.cy - sizePage.cy)
+         if(ptOffset.y > MAX(0, sizeTotal.cy - sizePage.cy))
             ptOffset.y = sizeTotal.cy - sizePage.cy;
       }
 
@@ -606,7 +606,7 @@ namespace user
       }
       else
       {
-         if(ptOffset.x > sizeTotal.cx - sizePage.cx)
+         if(ptOffset.x > MAX(0, sizeTotal.cx - sizePage.cx))
             ptOffset.x = sizeTotal.cx - sizePage.cx;
       }
 
