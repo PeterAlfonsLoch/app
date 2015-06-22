@@ -65,10 +65,15 @@ namespace user
          try
          {
 
-            synch_lock sl(&m_mutex);
+            synch_lock sl(pui->m_pmutex);
 
             if(pui->oprop("session").is_new())
             {
+
+               if(file_exists_dup("/ca2/debug_window_draw.txt"))
+               {
+                TRACE("debug window draw");
+               }
 
                if(pui->m_bMayProDevian)
                {
