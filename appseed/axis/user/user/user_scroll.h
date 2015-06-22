@@ -177,7 +177,7 @@ namespace user
 
       {
 
-         synch_lock slUser(this->m_spmutex);
+         synch_lock slUser(this->m_pmutex);
 
          this->set_viewport_offset_x(pscroll->m_nPos);
 
@@ -511,7 +511,7 @@ namespace user
 
       {
 
-         synch_lock slUser(this->m_spmutex);
+         synch_lock slUser(this->m_pmutex);
 
          this->set_viewport_offset_y(pscroll->m_nPos);
 

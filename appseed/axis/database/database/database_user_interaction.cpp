@@ -36,7 +36,7 @@ namespace database
 
       void interaction::_001OnCreate(signal_details * pobj)
       {
-         
+
          UNREFERENCED_PARAMETER(pobj);
 
          if(pobj->previous())
@@ -81,7 +81,7 @@ namespace database
       bool interaction::WindowDataSaveWindowRect()
       {
 
-         single_lock sl(m_spmutex, true);
+         single_lock sl(m_pmutex, true);
 
          bool bSave = false;
 
@@ -105,7 +105,7 @@ namespace database
       bool interaction::WindowDataLoadWindowRect(bool bForceRestore, bool bInitialFramePosition)
       {
 
-         single_lock sl(m_spmutex, true);
+         single_lock sl(m_pmutex, true);
 
          bool bLoad = false;
 
@@ -153,7 +153,7 @@ namespace database
 
          try
          {
-            
+
             sync_io_error error;
 
             ::file::byte_stream_memory_buffer memstream(get_app());
@@ -327,7 +327,7 @@ namespace database
 
          WindowDataLoadWindowRect(true);
 
-         
+
 
       }
 
@@ -354,7 +354,7 @@ namespace database
       bool interaction::does_display_match()
       {
 
-         single_lock sl(m_spmutex, true);
+         single_lock sl(m_pmutex, true);
 
          if(m_strDisplay.is_empty())
             return false;
@@ -416,7 +416,7 @@ namespace database
 
          if (!::user::interaction::on_before_set_parent(puiParent))
             return false;
-         
+
          WindowDataEnableSaveWindowRect(false);
 
          return true;

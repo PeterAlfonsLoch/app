@@ -698,7 +698,7 @@ namespace user
    void interaction::user_interaction_on_destroy()
    {
 
-      single_lock sl(m_spmutex,true);
+      single_lock sl(m_pmutex,true);
 
       user_interaction_on_hide();
 
@@ -809,7 +809,7 @@ namespace user
             try
             {
 
-               single_lock sl(GetParent()->m_spmutex,true);
+               single_lock sl(GetParent()->m_pmutex,true);
 
                GetParent()->m_uiptraChild.remove(this);
 
@@ -831,7 +831,7 @@ namespace user
             try
             {
 
-               single_lock sl(GetParent()->m_spmutex,true);
+               single_lock sl(GetParent()->m_pmutex,true);
 
                c = pholder->m_uiptraHold.remove(this);
 
@@ -849,7 +849,7 @@ namespace user
 
       {
 
-         synch_lock sl(m_spmutex);
+         synch_lock sl(m_pmutex);
 
          m_uiptraChild.slice(uiptra);
 
@@ -1039,7 +1039,7 @@ namespace user
 
          {
 
-            synch_lock sl(m_spmutex);
+            synch_lock sl(m_pmutex);
 
             _001OnNcDraw(pgraphics);
 
@@ -1051,7 +1051,7 @@ namespace user
 
             on_viewport_offset(pgraphics);
 
-            synch_lock sl(m_spmutex);
+            synch_lock sl(m_pmutex);
 
             _001OnDraw(pgraphics);
 
@@ -1334,7 +1334,7 @@ namespace user
 
 //            synch_lock slUser(m_pmutex);
 
-            synch_lock sl(m_spmutex);
+            synch_lock sl(m_pmutex);
 
             if(m_pauraapp->m_pbasesystem != NULL)
             {
@@ -1361,7 +1361,7 @@ namespace user
 
       }
 
-      m_spmutex = canew(::mutex(get_app()));
+      m_pmutex = canew(::mutex(get_app()));
 
       try
       {
@@ -2986,7 +2986,7 @@ namespace user
 
       {
 
-         synch_lock sl(m_spmutex);
+         synch_lock sl(m_pmutex);
 
          m_pimpl.release();
 
@@ -3816,6 +3816,8 @@ namespace user
 
    void interaction::_001UpdateBuffer()
    {
+
+      single_lock sl(m_pmutex, true);
 
       if(m_bLockWindowUpdate)
       {
@@ -5771,7 +5773,7 @@ namespace user
    bool interaction::SetWindowPos(int32_t z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags)
    {
 
-      synch_lock sl(m_spmutex);
+      synch_lock sl(m_pmutex);
 
       bool bOk = false;
 
@@ -5784,7 +5786,7 @@ namespace user
 
                single_lock sl(m_pmutex);
 
-               synch_lock slWindow(m_spmutex);
+               synch_lock slWindow(m_pmutex);
 
                if(sl.lock(millis(84)))
                {

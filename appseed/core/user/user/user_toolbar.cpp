@@ -120,7 +120,7 @@ namespace user
       m_dwCtrlStyle = dwCtrlStyle & (0xffff0000 | TBSTYLE_FLAT);
 
 
-      
+
 //         if(!::user::control_bar::create_window(TOOLBARCLASSNAMEA,NULL,dwStyle,null_rect(),pParentWnd,nID))
   //          return FALSE;
       if(!::user::control_bar::create_window("ToolbarWindow32",NULL,dwStyle,null_rect(),pParentWnd,nID))
@@ -1571,7 +1571,7 @@ throw todo(get_app());
    bool toolbar::LoadXmlToolBar(const char * lpszXml)
    {
 
-      synch_lock sl(m_spmutex);
+      synch_lock sl(m_pmutex);
 
       m_itema.remove_all();
 

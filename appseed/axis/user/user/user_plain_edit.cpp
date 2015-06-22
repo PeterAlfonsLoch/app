@@ -13,7 +13,7 @@ namespace user
    plain_edit::plain_edit() :
       m_keymessageLast(get_app())
    {
-      
+
       plain_edit_common_construct();
 
    }
@@ -155,7 +155,7 @@ namespace user
 
    void plain_edit::VirtualOnSize()
    {
-      
+
       _001OnUpdate(::action::source_system);
 
       m_bNeedCalcLayout = true;
@@ -1022,10 +1022,10 @@ namespace user
 
    }
 
-   
+
    //void plain_edit::on_change_viewport_offset()
    //{
-   //   
+   //
    //   scroll_control::on_change_viewport_offset();
 
    //   m_bNeedCalcLayout = true;
@@ -1163,7 +1163,7 @@ namespace user
    void plain_edit::_001OnCalcLayout()
    {
 
-      synch_lock sl(m_spmutex);
+      synch_lock sl(m_pmutex);
 
       ::draw2d::memory_graphics pdc(allocer());
 
@@ -1310,7 +1310,7 @@ namespace user
 
    //void plain_edit::on_change_view_size()
    //{
-   //   
+   //
    //   ::user::control::on_change_view_size();
 
    //}
@@ -1319,7 +1319,7 @@ namespace user
    index plain_edit::SelToLine(strsize iSel)
    {
 
-      synch_lock sl(m_spmutex);
+      synch_lock sl(m_pmutex);
 
       iSel -= m_iViewOffset;
 
@@ -1352,16 +1352,16 @@ namespace user
    index plain_edit::CharToLine(strsize iChar)
    {
 
-      synch_lock sl(m_spmutex);
+      synch_lock sl(m_pmutex);
 
       for(index iLine = 0; iLine < m_iaAccumulLineIndex.get_size(); iLine++)
       {
 
          if(iChar <= m_iaAccumulLineIndex[iLine])
          {
-          
+
             return iLine;
-            
+
          }
 
       }
@@ -1374,7 +1374,7 @@ namespace user
    index plain_edit::SelToLineX(strsize iSel,int32_t & x)
    {
 
-      synch_lock sl(m_spmutex);
+      synch_lock sl(m_pmutex);
 
       iSel -= m_iViewOffset;
 
@@ -1420,7 +1420,7 @@ namespace user
    strsize plain_edit::LineColumnToSel(index iLine,index iColumn)
    {
 
-      synch_lock sl(m_spmutex);
+      synch_lock sl(m_pmutex);
 
       while(iLine < 0)
       {
@@ -1501,7 +1501,7 @@ namespace user
    strsize plain_edit::LineXToSel(index iLine,int32_t x)
    {
 
-      synch_lock sl(m_spmutex);
+      synch_lock sl(m_pmutex);
 
       ::draw2d::memory_graphics pgraphics(allocer());
 
@@ -1527,7 +1527,7 @@ namespace user
    index plain_edit::SelToColumn(strsize iSel)
    {
 
-      synch_lock sl(m_spmutex);
+      synch_lock sl(m_pmutex);
 
       iSel -= m_iViewOffset;
 
@@ -1561,7 +1561,7 @@ namespace user
    strsize plain_edit::char_hit_test(::draw2d::graphics * pdc,int32_t px,int32_t py)
    {
 
-      synch_lock sl(m_spmutex);
+      synch_lock sl(m_pmutex);
 
       select_font(pdc);
 
@@ -2446,7 +2446,7 @@ namespace user
 
       {
 
-         synch_lock sl(m_spmutex);
+         synch_lock sl(m_pmutex);
 
          string str;
          _001GetText(str);
@@ -2735,7 +2735,7 @@ namespace user
    colorertake5::file_type *plain_edit::colorer_select_type()
    {
 
-      synch_lock sl(m_spmutex);
+      synch_lock sl(m_pmutex);
       colorertake5::file_type *type = NULL;
       /*if (typeDescription != NULL){
         type = hrcParser->getFileType(typeDescription);
@@ -2890,10 +2890,10 @@ namespace user
 
    }
 
-   
+
    void plain_edit::layout()
    {
-   
+
       m_bNeedCalcLayout = true;
 
    }
@@ -2928,7 +2928,7 @@ namespace user
 
    }
 
-   
+
    size plain_edit::get_total_size()
    {
 

@@ -216,7 +216,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics *pgraphics)
 
       if(iItem != iHover)
       {
-       
+
          _001DrawItem(pgraphics,iItem);
 
       }
@@ -723,7 +723,7 @@ void simple_toolbar::_001DrawItem(::draw2d::graphics * pdc, int32_t iItem)
          if((nStyle & TBBS_DISABLED) == 0)
          {
             _001GetElementRect(iItem, rectItem, element_item);
-         
+
             pdc->FillSolidRect(rectItem,  ARGB(184, 255, 255, 255));
          }
 
@@ -1126,7 +1126,7 @@ void simple_toolbar::layout()
 {
    //ASSERT(m_bDelayedButtonLayout);
 
-   synch_lock ml(m_spmutex);
+   synch_lock ml(m_pmutex);
 
    m_bDelayedButtonLayout = false;
 

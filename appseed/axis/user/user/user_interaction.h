@@ -67,7 +67,7 @@ namespace user
 
       sp(::user::interaction)             m_pparent;
 
-      sp(mutex)                           m_spmutex;
+//      sp(mutex)                           m_spmutex;
       EAppearance                         m_eappearance;
       EAppearance                         m_eappearanceBefore;
       sp(interaction_impl_base)           m_pimpl;
