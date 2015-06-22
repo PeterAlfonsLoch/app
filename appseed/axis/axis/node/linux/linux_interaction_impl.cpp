@@ -5775,6 +5775,8 @@ namespace linux
    void interaction_impl::_001Expose()
    {
 
+      single_lock sl(m_pui->m_pmutex, true);
+
       if(m_bExposing)
          return;
 
