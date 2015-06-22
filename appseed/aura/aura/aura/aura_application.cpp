@@ -4184,7 +4184,15 @@ namespace aura
 
                      //#else
 
+                     #ifdef LINUX
+
+                     dwExitCode = System.process().synch(strPath + strParam,SW_HIDE,durationWait,&bTimedOut);
+
+                     #else
+
                      dwExitCode = System.process().elevated_synch(strPath + strParam,SW_HIDE,durationWait,&bTimedOut);
+
+                     #endif
 
                      //#endif
 
