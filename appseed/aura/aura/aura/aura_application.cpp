@@ -206,7 +206,7 @@ namespace aura
             on_request(pcreatecontext);
 
             // Verry Sory for the per request overhead here for the needed information of only first request
-            if(System.m_dwAfterApplicationFirstRequest == 0) 
+            if(System.m_dwAfterApplicationFirstRequest == 0)
             {
 
                System.m_dwAfterApplicationFirstRequest = ::get_tick_count(); // cross your fingers that the first recorded is not 0, it will be cleaned up by other requests.
@@ -575,7 +575,7 @@ namespace aura
    {
 
       ::exception::throw_interface_only(this);
-      
+
       return NULL;
 
    }*/
@@ -1738,8 +1738,8 @@ namespace aura
 
       //if(is_system())
       //{
-      //   
-      //   
+      //
+      //
       //   TRACE("\n\n** %s **\n\n", "This command should work.");
 
       //   if(!update_module_paths())
@@ -3754,15 +3754,15 @@ namespace aura
 
    }
 
-   
+
    void application::defer_add_thread_run_wait(sync_object_ptra & soa)
    {
 
       soa.add(&axiom()->m_ev);
 
    }
-   
-   
+
+
    bool application::platform_open_by_file_extension(int iEdge,const char * pszPathName,application_bias * pbiasCreate)
    {
       return false;
@@ -3928,7 +3928,7 @@ namespace aura
 
    ::aura::application * application::create_platform(::aura::session * psession)
    {
-      
+
       return NULL;
 
    }
@@ -4008,7 +4008,7 @@ namespace aura
 
       if(e.m_bHandled)
       {
-         
+
          return !e.m_bContinue;
 
       }
@@ -4086,17 +4086,17 @@ namespace aura
             //               if(App(notinstalled.get_app()).is_serviceable() && !App(notinstalled.get_app()).is_user_service())
             //               {
             //
-            //                  
+            //
             //                  HANDLE hToken = NULL;
             //
             //                  //if(LogonUserW(L"LocalServer",L"NT AUTHORITY",NULL,LOGON32_LOGON_SERVICE,LOGON32_PROVIDER_DEFAULT,&hToken))
             //                  //{
-            //                  //   
+            //                  //
             //                  //   ::simple_message_box(NULL,"Failed to Login at Local System Account","Debug only message, please install.",MB_ICONINFORMATION | MB_OK);
             //                  //}
             //
             //                  // os << "Impersonation OK!!<br>";
-            //                  
+            //
             ////                  strPath = "\"" + System.file().name_(strModuleFilePath) + "\" : install";
             //                  string strCmdLine = strPath + strParam;
             //                  wstring wstrCmdLine = strCmdLine;
@@ -4161,20 +4161,20 @@ namespace aura
             //
             //               }
             //else
-            {
+            int iRet = IDNO;
 
+            {
 
                if(!(bool)System.oprop("not_installed_message_already_shown"))
                {
-
                   if((App(notinstalled.get_app()).is_serviceable() && !App(notinstalled.get_app()).is_user_service())
-                     || (IDYES == ::simple_message_box(NULL,"Debug only message, please install:\n\n\n\t" + notinstalled.m_strId + "\n\ttype = " + notinstalled.m_strType + "\n\tlocale = " + notinstalled.m_strLocale + "\n\tschema = " + notinstalled.m_strSchema + "\n\tbuild number = " + notinstalled.m_strBuild + "\n\n\nThere are helper scripts under <solution directory>/nodeapp/stage/install/","Debug only message, please install.",MB_ICONINFORMATION | MB_YESNO)))
+                     || (IDYES == (iRet = ::simple_message_box(NULL,"Debug only message, please install:\n\n\n\t" + notinstalled.m_strId + "\n\ttype = " + notinstalled.m_strType + "\n\tlocale = " + notinstalled.m_strLocale + "\n\tschema = " + notinstalled.m_strSchema + "\n\tbuild number = " + notinstalled.m_strBuild + "\n\n\nThere are helper scripts under <solution directory>/nodeapp/stage/install/","Debug only message, please install.",MB_ICONINFORMATION | MB_YESNO))))
                   {
 
 
 
 
-                     ::duration durationWait = seconds((1.9841115 + 1.9770402 + 1.9510422) * 8.0); 
+                     ::duration durationWait = seconds((1.9841115 + 1.9770402 + 1.9510422) * 8.0);
 
                      //#ifdef MACOS
 
@@ -4194,7 +4194,13 @@ namespace aura
                }
 
             }
-            if(bTimedOut)
+            if(iRet == IDNO)
+            {
+
+               notinstalled.m_bContinue = false;
+
+            }
+            else if(bTimedOut)
             {
 
                ::simple_message_box(NULL," - " + notinstalled.m_strId + "\nhas timed out while trying to install.\n\nFor developers it is recommended to\nfix this installation timeout problem.\n\nIt is recommended to kill manually :\n - \"" + strPath + strParam + "\"\nif it has not been terminated yet.","Debug only message, please install.",MB_ICONINFORMATION | MB_OK);
@@ -4269,7 +4275,7 @@ namespace aura
 
    bool application::is_application()
    {
-      
+
       return !is_session() && !is_system();
 
    }
@@ -4277,7 +4283,7 @@ namespace aura
 
    ::file::listing & application::perform_file_listing(::file::listing & listing)
    {
-      
+
       return dir().ls(listing);
 
    }

@@ -9,7 +9,15 @@
 CLASS_DECL_AXIS int_bool WINAPI PostMessageW(oswindow oswindow,UINT Msg,WPARAM wParam,LPARAM lParam)
 {
 
-   HTHREAD  h = window_from_handle(oswindow)->m_pauraapp->get_os_handle();
+   ::user::interaction * pui = window_from_handle(oswindow);
+
+   if(pui == NULL)
+      return FALSE;
+
+   if(pui->m_bDestroying)
+      return FALSE;
+
+   HTHREAD  h = pui->m_pauraapp->get_os_handle();
 
    if(h == NULL)
       return FALSE;
@@ -43,6 +51,29 @@ CLASS_DECL_AXIS int_bool WINAPI PostMessageW(oswindow oswindow,UINT Msg,WPARAM w
 }
 
 
+CLASS_DECL_AXIS int_bool mq_remove_window_from_all_queues(oswindow oswindow)
+{
+   ::user::interaction * pui = window_from_handle(oswindow);
+
+   if(pui == NULL)
+      return FALSE;
+
+   HTHREAD  h = pui->m_pauraapp->get_os_handle();
+
+   if(h == NULL)
+      return FALSE;
+
+
+   mq * pmq = get_mq(h);
+
+   if(pmq == NULL)
+      return FALSE;
+
+   synch_lock ml(&pmq->m_mutex);
+
+   pmq->ma.remove_pred([=](MESSAGE & item){return item.hwnd == oswindow;});
+
+}
 
 
 #endif

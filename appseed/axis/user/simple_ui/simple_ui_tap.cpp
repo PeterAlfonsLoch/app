@@ -51,20 +51,20 @@ namespace simple_ui
    {
 
       SCAST_PTR(::message::mouse,pmouse,pobj);
-      
+
       pmouse->m_bRet = true;
-      
+
       if(keyboard_focus_is_focusable())
       {
 
          keyboard_set_focus();
-         
+
       }
       else
       {
-         
+
          get_wnd()->show_keyboard(false);
-         
+
       }
 
       m_bDown = true;
@@ -119,19 +119,19 @@ namespace simple_ui
 
    bool tap::keyboard_focus_is_focusable()
    {
-      
+
 #ifdef APPLE_IOS
-      
+
       return false;
-      
+
 #else
-      
+
       return true;
-      
+
 #endif
-      
+
    }
-   
+
 
    bool tap::is_hover()
    {
@@ -265,7 +265,7 @@ namespace simple_ui
          {
 
             //pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
-            
+
             ::draw2d::brush_sp br(allocer());
 
             br->create_solid(crBorderIn);
@@ -352,7 +352,7 @@ namespace simple_ui
 
       pgraphics->SelectObject(f);
 
-      pgraphics->draw_text(GetWindowText(), rectClient, DT_LEFT | DT_BOTTOM);
+      pgraphics->draw_text(GetWindowText(), rectClient, DT_LEFT | DT_VCENTER);
 
    }
 

@@ -4302,8 +4302,10 @@ synch_lock ml(m_spmutex);
 
    }
 
-   int32_t graphics::draw_text(const string & str,const RECT & lpRect,UINT nFormat)
+   int32_t graphics::draw_text(const string & strParam,const RECT & lpRect,UINT nFormat)
    {
+
+      string str(strParam);
 
       synch_lock ml(m_spmutex);
 
@@ -4347,13 +4349,50 @@ synch_lock ml(m_spmutex);
          dy = 0.;
       }
 
-      cairo_translate(m_pdc, lpRect.left + dx, lpRect.top + e.ascent + dy);
+      //cairo_translate(m_pdc, lpRect.left + dx, lpRect.top + e.ascent + dy);
 
       cairo_scale(m_pdc, m_spfont->m_dFontWidth, 1.0);
 
       set_os_color(m_spbrush->m_cr);
 
-      cairo_show_text(m_pdc, str);
+      if(nFormat & DT_EXPANDTABS)
+      {
+
+         str.replace("\t", "        ");
+
+      }
+      else
+      {
+
+         str.replace("\t", "");
+
+      }
+
+      if(nFormat & DT_SINGLELINE)
+      {
+
+         str.replace("\n", "");
+         str.replace("\r", "");
+
+      }
+
+
+      stringa stra;
+
+      stra.add_lines(str);
+
+      int i = 0;
+
+      for(auto & strLine : stra)
+      {
+
+         cairo_move_to(m_pdc, lpRect.left + dx, lpRect.top + dy + e.ascent + sz.cy * (i));
+
+         cairo_show_text(m_pdc, strLine);
+
+         i++;
+
+      }
 
       return 1;
 

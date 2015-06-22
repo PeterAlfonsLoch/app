@@ -676,6 +676,7 @@ d.unlock();
          pdraw->m_wndpaOut.remove(m_pui);
       }
       m_pauraapp->remove(m_pui);
+      mq_remove_window_from_all_queues(get_handle());
       oswindow_remove(m_oswindow->display(), m_oswindow->window());
    }
 
@@ -1239,6 +1240,9 @@ d.unlock();
        pbase->m_uiMessage == WM_MOUSEMOVE)
 //         pbase->m_uiMessage == WM_MOUSEWHEEL)
       {
+
+         if(m_pui->m_bDestroying)
+            return;
 
          if(pbase->m_uiMessage == WM_LBUTTONDOWN)
          {

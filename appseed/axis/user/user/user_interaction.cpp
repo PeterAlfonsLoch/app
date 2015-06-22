@@ -2450,6 +2450,21 @@ namespace user
 
    bool interaction::RedrawWindow(LPCRECT lpRectUpdate, ::draw2d::region* prgnUpdate, UINT flags)
    {
+
+      ::user::interaction * pui = this;
+
+      while(pui != NULL)
+      {
+
+         if(pui->m_bDestroying)
+            return FALSE;
+
+         pui = pui->GetParent();
+
+      }
+
+
+
       if(m_pimpl == NULL)
          return FALSE;
       else

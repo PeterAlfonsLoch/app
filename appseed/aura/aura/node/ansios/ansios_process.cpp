@@ -101,64 +101,64 @@ namespace ansios
          posix_spawn_file_actions_adddup2(&actions, ppipeIn->m_fd[0],STDIN_FILENO);
 
       }
-      
+
       ptr_array < char > env;
-      
+
       char * const * e = environ;
-      
+
       string strFallback;
-      
+
 #ifdef MACOS
-      
+
       strFallback = ::ca2_module_folder_dup();
-      
+
 #endif
-      
+
       if(::str::begins_ci(strFallback, "/Users/"))
       {
-      
+
          index i = 0;
-      
+
          int iPrevious = -1;
-      
+
          const char * psz;
-      
+
          while((psz = environ[i]) != NULL)
          {
             if(i <= iPrevious)
                break;
-         
+
             env.add((char *) psz);
-         
+
             iPrevious = i;
-         
+
             i++;
-         
+
          }
-      
+
 #ifdef MACOS
-      
+
          string strCurrent = getenv("DYLD_FALLBACK_LIBRARY_PATH");
-      
+
          if(strCurrent.has_char())
          {
-         
+
             strFallback += ":" + strCurrent;
-         
+
          }
-      
+
          strFallback = string("DYLD_FALLBACK_LIBRARY_PATH=") + strFallback;
-      
+
          env.add((char *) (const char *) strFallback);
-              
+
 #endif
-      
+
          env.add(NULL);
-         
+
          e = (char * const *)env.get_data();
-         
+
       }
-      
+
       int status = posix_spawn(&m_iPid,argv[0],&actions,&attr,(char * const *)argv.get_data(),e);
 
 #ifdef APPLEOS
@@ -303,54 +303,54 @@ namespace ansios
 
    int32_t process::synch_elevated(const char * pszCmdLineParam,int iShow,const ::duration & durationTimeOut,bool * pbTimeOut)
    {
-      
+
 #if defined(MACOS)
-      
-      
+
+
       string strFallback = ::ca2_module_folder_dup();
-      
+
       string strFolder = strFallback;
-      
+
 //      ::dir::eat_end_level(strFolder, 2, NULL);
-      
+
       string strCurrent = getenv("DYLD_FALLBACK_LIBRARY_PATH");
-      
+
       if(strCurrent == strFallback || ::str::ends(strCurrent, ":" + strFallback) || str::begins(strCurrent, strFallback + ":") || strCurrent.contains(":"+strFallback +":"))
       {
-         
+
          strFallback = strCurrent;
-         
+
       }
       else if(strCurrent.has_char())
       {
-         
+
          strFallback += ":" + strCurrent;
-         
+
       }
-      
+
       setenv("DYLD_FALLBACK_LIBRARY_PATH", strFallback, TRUE);
-      
+
       // Create authorization reference
       OSStatus status;
-      
+
       AuthorizationRef authorizationRef;
-      
+
       // AuthorizationCreate and pass NULL as the initial
       // AuthorizationRights set so that the AuthorizationRef gets created
       // successfully, and then later call AuthorizationCopyRights to
       // determine or extend the allowable rights.
       // http://developer.apple.com/qa/qa2001/qa1172.html
       status = AuthorizationCreate(NULL, kAuthorizationEmptyEnvironment, kAuthorizationFlagDefaults, &authorizationRef);
-      
+
       if (status != errAuthorizationSuccess)
       {
-         
+
          TRACE("Error Creating Initial Authorization: %d", status);
-         
+
          return -1;
-         
+
       }
-      
+
       // kAuthorizationRightExecute == "system.privilege.admin"
       AuthorizationItem right = {kAuthorizationRightExecute, 0, NULL, 0};
       AuthorizationRights rights = {1, &right};
@@ -358,8 +358,8 @@ namespace ansios
       kAuthorizationFlagInteractionAllowed |
       kAuthorizationFlagPreAuthorize |
       kAuthorizationFlagExtendRights;
-      
-      
+
+
 
       // Call AuthorizationCopyRights to determine or extend the allowable rights.
       status = AuthorizationCopyRights(authorizationRef, &rights, NULL, flags, NULL);
@@ -368,78 +368,78 @@ namespace ansios
          TRACE("Copy Rights Unsuccessful: %d", status);
          return -1;
       }
-      
+
       TRACE("\n\n** %s **\n\n", "This command should work.");
 
 
       stringa straParam;
-      
+
       ptr_array < char > argv;
-      
+
       straParam.add("/bin/bash");
 
       straParam.add("-c");
-      
+
       string strC = "ignit_phase2 () { export DYLD_FALLBACK_LIBRARY_PATH="+strFallback+" ; cd "+strFolder+" ; "+string(pszCmdLineParam)+" ; } ; ignit_phase2 ;";
 //            string strC = "export DYLD_FALLBACK_LIBRARY_PATH="+strFallback;
-      
+
       straParam.add(strC);
-      
+
       for(index i = 0; i < straParam.get_count(); i++)
       {
-         
-         argv.add((char *)(const char *)straParam[i]);
-         
-      }
-      
-      argv.add(NULL);
-      
 
-      
+         argv.add((char *)(const char *)straParam[i]);
+
+      }
+
+      argv.add(NULL);
+
+
+
       char *tool = (char * )argv[0];
       char **args = (char **) &argv.get_data()[1];
       FILE *pipe = NULL;
-      
+
 //      int uid = getuid();
-      
-      
-      
+
+
+
 //      int i = setuid(0);
-      
+
   //    if(i != 0)
     //  {
       //   TRACE("Failed to setuid: %d", i);
         // return -1;
       //}
-      
-      
+
+
       /*
       stringa straParam;
-      
+
       ptr_array < char > argv;
-      
-      
+
+
       straParam.explode_command_line(pszCmdLineParam, &argv);
-      
+
       posix_spawnattr_t attr;
-      
+
       posix_spawnattr_init(&attr);
-      
-      
+
+
       posix_spawn_file_actions_t actions;
-      
+
       posix_spawn_file_actions_init(&actions);
-      
-      
+
+
       status = posix_spawn(&m_iPid,argv[0],&actions,&attr,(char * const *)argv.get_data(),environ);
-      
+
       //int status = posix_spawn(&m_iPid,argv[0],NULL,NULL,(char * const *)argv.get_data(),environ);
-      
+
       printf("synch_elevated : posix_spawn return status %d", status);
-      
-      
+
+
       DWORD dwStart = get_tick_count();
-      
+
       while(!has_exited() && get_tick_count() - dwStart < durationTimeOut.get_total_milliseconds())
       {
          Sleep(84);
@@ -453,9 +453,9 @@ namespace ansios
          }
       }
       */
-      
+
 //      setuid(uid);
-      
+
       status = AuthorizationExecuteWithPrivileges(authorizationRef, tool, kAuthorizationFlagDefaults, args, &pipe);
       if (status != errAuthorizationSuccess)
       {
@@ -468,7 +468,7 @@ namespace ansios
       straParam.remove_all();
       argv.remove_all();
       straParam.explode_command_line(pszCmdLineParam, &argv);
-      
+
       tool = (char * )argv[0];
       args = (char **) &argv.get_data()[1];
       pipe = NULL;
@@ -480,27 +480,27 @@ namespace ansios
          TRACE("AuthorizationExecuteWithPrivileges Error: %d", status);
          return -1;
       }
-       
+
        */
-      
+
       DWORD dwExitCode = 0;
 
-      
+
       if(pipe != NULL)
       {
-         
+
          int pptp_pid = 0;
 
          fscanf(pipe, "%d", &pptp_pid);
-         
+
 //         pid_t pptp_pid = 0;
-         
+
   //       fread(&pptp_pid,sizeof(pptp_pid),1,pipe); // get pid
-         
+
          m_iPid = pptp_pid;
-         
+
          DWORD dwStart = get_tick_count();
-         
+
          while(!has_exited() && get_tick_count() - dwStart < durationTimeOut.get_total_milliseconds())
          {
             Sleep(84);
@@ -512,13 +512,13 @@ namespace ansios
                *pbTimeOut = true;
             }
          }
-      
+
 /*         char c;
-      
+
          int iRead;
-      
+
          string strRead;
-      
+
          while(true)
          {
             iRead = fread(&c,1,1, pipe);
@@ -535,14 +535,14 @@ namespace ansios
             {
             }
          }
-         
+
          fclose(pipe);
-      
+
          TRACE0(strRead);*/
-         
-         
+
+
       }
-      
+
       // The only way to guarantee that a credential acquired when you
       // request a right is not shared with other authorization instances is
       // to destroy the credential.  To do so, call the AuthorizationFree
@@ -557,28 +557,33 @@ namespace ansios
 
       return dwExitCode;
 #else
-      
+
        stringa straParam;
-       
+
        ptr_array < char > argv;
-       
+
 #ifdef MACOS
-    
+
        straParam.add("/usr/bin/osascript");
        straParam.add("-e");
        straParam.add("'do shell script \"" + string(pszCmdLineParam) + "\" with administrator privileges'");
-       
+
        argv.add((char *) (const char *) straParam[0]);
        argv.add((char *) (const char *) straParam[1]);
        argv.add((char *) (const char *) straParam[2]);
        argv.add(NULL);
-       
+
 #else
+
+      if (access("/usr/bin/gksu", X_OK) != 0) {
+         ::simple_message_box(NULL,"gksu is not installed, please install gksu.","Please, install gksu.",MB_ICONINFORMATION);
+         return -1;
+      }
 
       string pszCmdLine = "/usr/bin/gksu " + string(pszCmdLineParam);
 
       straParam.explode_command_line(pszCmdLine, &argv);
-       
+
 #endif
 
 
@@ -598,7 +603,7 @@ namespace ansios
       int status = posix_spawn(&m_iPid,argv[0],&actions,&attr,(char * const *)argv.get_data(),environ);
 
       //int status = posix_spawn(&m_iPid,argv[0],NULL,NULL,(char * const *)argv.get_data(),environ);
-       
+
        printf("synch_elevated : posix_spawn return status %d", status);
 
 
@@ -682,7 +687,7 @@ namespace ansios
       // in parent, success
       return 1;
 #endif
-      
+
 #endif
 
    }
