@@ -558,24 +558,24 @@ namespace core
 
 
 
-   bool system::wait_twf(uint32_t dwTimeOut)
-   {
-      if(dwTimeOut > 1984)
-         dwTimeOut = 1984;
-      if(m_ptwf != NULL && m_ptwf->m_bProDevianMode)
-      {
-         return m_ptwf->m_eventFree.wait(millis(dwTimeOut)).signaled();
-      }
-      /*else if(m_puiInitialPlaceHolderContainer != NULL)
-      {
-      #define InitialPlaceHolderContainer_TWF_FREE_EVENT 2010
-      return App(this).event_lock(m_puiInitialPlaceHolderContainer, InitialPlaceHolderContainer_TWF_FREE_EVENT, dwTimeOut);
-      }*/
-      else
-      {
-         return true;
-      }
-   }
+   //bool system::wait_twf(uint32_t dwTimeOut)
+   //{
+   //   if(dwTimeOut > 1984)
+   //      dwTimeOut = 1984;
+   //   if(m_ptwf != NULL && m_ptwf->m_bProDevianMode)
+   //   {
+   //      return m_ptwf->m_eventFree.wait(millis(dwTimeOut)).signaled();
+   //   }
+   //   /*else if(m_puiInitialPlaceHolderContainer != NULL)
+   //   {
+   //   #define InitialPlaceHolderContainer_TWF_FREE_EVENT 2010
+   //   return App(this).event_lock(m_puiInitialPlaceHolderContainer, InitialPlaceHolderContainer_TWF_FREE_EVENT, dwTimeOut);
+   //   }*/
+   //   else
+   //   {
+   //      return true;
+   //   }
+   //}
 
    void system::on_request(sp(::create) pcreate)
    {

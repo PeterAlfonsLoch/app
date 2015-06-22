@@ -558,8 +558,6 @@ namespace user
 
       UNREFERENCED_PARAMETER(pobj);
 
-      single_lock sl(System.wait_twf(), true);
-
       user_interaction_on_destroy();
 
 
@@ -700,8 +698,9 @@ namespace user
    void interaction::user_interaction_on_destroy()
    {
 
-      user_interaction_on_hide();
+      single_lock sl(m_spmutex,true);
 
+      user_interaction_on_hide();
 
       try
       {
@@ -2877,7 +2876,7 @@ namespace user
    bool interaction::DestroyWindow()
    {
 
-      single_lock slTwf(System.wait_twf(), true);
+///      single_lock slTwf(System.wait_twf(), true);
 
       single_lock sl(m_pmutex,true);
 

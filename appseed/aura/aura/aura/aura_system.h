@@ -218,7 +218,7 @@ namespace aura
 
       virtual bool initialize2();
 
-      virtual mutex * wait_twf();
+//      virtual mutex * wait_twf();
 
 
 

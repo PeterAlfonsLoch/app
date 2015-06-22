@@ -1030,12 +1030,12 @@ namespace axis
 //   }
 
 
-   mutex * system::wait_twf()
-   {
+   //mutex * system::wait_twf()
+   //{
 
-      return &get_twf()->m_mutex;
+   //   return &get_twf()->m_mutex;
 
-   }
+   //}
 
 
    //bool system::verb()

@@ -160,7 +160,7 @@ namespace core
 
       sp(::aura::session) query_session(index iEdge);
 
-      virtual bool wait_twf(uint32_t dwTimeOut = INFINITE);
+//      virtual bool wait_twf(uint32_t dwTimeOut = INFINITE);
 
 
 

@@ -736,12 +736,12 @@ namespace aura
 
 
 
-   mutex * system::wait_twf()
-   {
+   //mutex * system::wait_twf()
+   //{
 
-      return NULL;
+   //   return NULL;
 
-   }
+   //}
 
    bool system::is_system()
    {

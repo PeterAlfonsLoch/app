@@ -199,7 +199,7 @@ namespace axis
 
       //virtual bool initialize2();
 
-      virtual mutex * wait_twf();
+      //virtual mutex * wait_twf();
 
       virtual bool defer_create_system_frame_window();
 
