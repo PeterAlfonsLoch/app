@@ -76,6 +76,11 @@ namespace user
       if(pui.is_set())
       {
 
+         single_lock sl(pui->m_pmutex, true);
+
+         if(pui->m_bDestroying)
+            return;
+
          //TRACE("!! Yes !!");
 
          get_wnd()->_001UpdateBuffer();
