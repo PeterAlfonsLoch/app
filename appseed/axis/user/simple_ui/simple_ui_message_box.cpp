@@ -126,7 +126,7 @@ namespace simple_ui
 
       if(!create_window_ex(0,NULL,NULL,0,rectFontopus,puiParent,"fontopus"))
          throw simple_exception(get_app(),"not excepted! Failing Message box!!");
-      
+
       TRACE("Just after create_window_ex for simple_message_box (m_pimpl.m_p) : %d",m_pimpl.m_p);
       TRACE("Just after create_window_ex for simple_message_box (m_pimpl->m_pui) : %d",m_pimpl->m_pui);
 
@@ -165,10 +165,10 @@ namespace simple_ui
          create_a_button("ok","OK");
          break;
       }
-      
+
       TRACE("Just after create_window_ex for simple_message_box (m_pimpl.m_p) : %d",m_pimpl.m_p);
       TRACE("Just after create_window_ex for simple_message_box (m_pimpl->m_pui) : %d",m_pimpl->m_pui);
-      
+
 
       SetWindowPos(ZORDER_TOP,rectFontopus,SWP_SHOWWINDOW);
 
@@ -218,7 +218,7 @@ namespace simple_ui
 
       r.deflate(10, 10);
 
-      pdc->draw_text(strMessage,r,DT_LEFT | DT_TOP);
+      pdc->draw_text(strMessage,r,DT_LEFT | DT_TOP | DT_EXPANDTABS);
 
       //for(int i = 0; i < m_stra.get_size(); i++)
       //{

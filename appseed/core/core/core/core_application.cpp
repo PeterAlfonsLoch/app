@@ -1623,7 +1623,7 @@ namespace core
       if(e.m_bHandled)
       {
 
-         return !e.m_bContinue;
+         return e.m_bContinue;
 
       }
 
