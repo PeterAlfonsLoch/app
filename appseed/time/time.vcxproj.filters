@@ -24,6 +24,18 @@
     <Filter Include="Source Files\datetime">
       <UniqueIdentifier>{6001a4cb-f3c7-42ba-9be8-86ae960dfd8c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\graphics">
+      <UniqueIdentifier>{a9c577a6-56db-45c9-8029-da20346a9620}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics\visual">
+      <UniqueIdentifier>{79ee89df-0e11-476e-ac9f-2bac8fb3f5f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics">
+      <UniqueIdentifier>{6e5bd918-358c-4d2c-ac7d-af2653205645}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\visual">
+      <UniqueIdentifier>{567a638a-71f5-41a2-aecc-8430b49dfb3c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -71,6 +83,18 @@
     <ClInclude Include="calculator\datetime_token.h">
       <Filter>Header Files\calculator</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\visual\visual_calendar.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\visual.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\visual_clock.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -108,6 +132,12 @@
     </ClCompile>
     <ClCompile Include="datetime\datetime_windows_file_time.cpp">
       <Filter>Source Files\datetime</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\visual_calendar.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\visual_clock.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

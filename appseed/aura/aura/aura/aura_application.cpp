@@ -4221,7 +4221,7 @@ namespace aura
 
                ::simple_message_box(NULL,"Successfully run : " + strPath + strParam,"Debug only message, please install.",MB_ICONINFORMATION | MB_OK);
 
-               notinstalled.m_bContinue = true;
+               notinstalled.m_bContinue = false;
 
             }
             else

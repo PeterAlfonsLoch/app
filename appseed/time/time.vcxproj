@@ -1282,6 +1282,10 @@
     <ClInclude Include="datetime\datetime_float_time.h" />
     <ClInclude Include="datetime\datetime_windows_file_time.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="graphics\graphics.h" />
+    <ClInclude Include="graphics\visual\visual.h" />
+    <ClInclude Include="graphics\visual\visual_calendar.h" />
+    <ClInclude Include="graphics\visual\visual_clock.h" />
     <ClInclude Include="time\time.h" />
   </ItemGroup>
   <ItemGroup>
@@ -1312,6 +1316,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="graphics\visual\visual_calendar.cpp" />
+    <ClCompile Include="graphics\visual\visual_clock.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\aura\aura.vcxproj">
