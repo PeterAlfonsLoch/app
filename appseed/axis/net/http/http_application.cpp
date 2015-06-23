@@ -309,7 +309,8 @@ namespace http
 
       string strFontopusServer;
 
-      if(atoi(System.url().get_param(System.url().get_query(pszUrl), "authnone")) == 1)
+      if(atoi(System.url().get_param(pszUrl, "authnone")) == 1
+         || System.url().get_param(pszUrl,"sessid").CompareNoCase("noauth") == 0)
       {
 
          strFontopusServer = pszUrl;

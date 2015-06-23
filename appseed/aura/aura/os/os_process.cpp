@@ -204,7 +204,7 @@ bool get_command_line_param(string & wstrValue,const char * psz,const char * psz
    else
    {
 
-      wstrValue = wstr.substr(iFind + wstrParam.length() + 1,iEnd - iFind - wstrParam.length());
+      wstrValue = wstr.substr(iFind + wstrParam.length() + 1,iEnd - iFind - wstrParam.length() - 1);
 
    }
 

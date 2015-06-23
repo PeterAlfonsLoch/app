@@ -2954,7 +2954,8 @@ install_begin:;
       else
       {
 
-         m_strInstallStatusTemplate = Application.http().get_locale_schema("http://account.ca2.cc/defer_ls_get?sessid=noauth&id=spa::InstallStatusTemplate",m_strInstallLocale,m_strInstallSchema);
+         m_strInstallStatusTemplate = "Installing %APPNAME%";
+         //m_strInstallStatusTemplate = Application.http().get_locale_schema("http://account.ca2.cc/defer_ls_get?sessid=noauth&id=spa::InstallStatusTemplate",m_strInstallLocale,m_strInstallSchema);
 
       }
 
