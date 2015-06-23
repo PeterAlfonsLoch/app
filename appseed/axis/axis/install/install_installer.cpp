@@ -2082,11 +2082,11 @@ install_begin:;
          if(m_bOfflineInstall)
          {
             strStageGz = strUrl;
-            strStageGz = ca2bz_get_dir(strUrl) + ca2bz_get_file(strUrl, pszMd5);
+            strStageGz = ::file::path(ca2bz_get_dir(strUrl)) / ca2bz_get_file(strUrl, pszMd5);
          }
          else
          {
-            strStageGz = ca2bz_get_dir(strUrl) + ca2bz_get_file(strUrl, pszMd5);
+            strStageGz = ::file::path(ca2bz_get_dir(strUrl)) / ca2bz_get_file(strUrl, pszMd5);
          }
       }
       dir::mk(dir::name(strStage));
