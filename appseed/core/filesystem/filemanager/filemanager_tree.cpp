@@ -144,7 +144,8 @@ namespace filemanager
 
       sp(::data::tree_item) pitemParent = pitem;
 
-      if(strPath.has_char() && !bOnlyParent)
+      //if(strPath.has_char() && !bOnlyParent)
+      if(!bOnlyParent)
       {
 
          pitem = pitemParent->first_child();

@@ -83,7 +83,25 @@ namespace file
       void normalize()
       {
 
-         trim_right("\\/");
+         if(has_char())
+         {
+
+            trim_right("\\/");
+
+            if(is_empty())
+            {
+
+               operator = (sep());
+
+            }
+
+         }
+         else
+         {
+
+            trim_right("\\/");
+
+         }
 
          replace(osep(),sep());
 
@@ -247,10 +265,10 @@ namespace file
 
       path & operator *= (const path & path)
       {
-         
+
          if(this != &path)
          {
-            
+
             *this = sibling(path);
 
          }

@@ -204,6 +204,8 @@ namespace linux
       }
 
       free(lpszAlloc);*/
+      return listing;
+
    }
 
 //   bool dir::ls_pattern(::aura::application *  papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, int64_array * piaSize)
