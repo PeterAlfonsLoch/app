@@ -941,9 +941,9 @@ install_begin:;
          for(auto strCurrent : straExpandFileSet)
          {
 
-            string str = m_strInstall;
+            ::file::path str = m_strInstall;
 
-            str += strCurrent;
+            str /= strCurrent;
 
             string str2 = dir::name(str);
 
@@ -970,7 +970,7 @@ install_begin:;
 
             str += strMd5;
 
-            string strStageGz = ca2bz_get_dir(strCurrent) + ca2bz_get_file(strCurrent,strMd5);
+            string strStageGz = ::file::path(ca2bz_get_dir(strCurrent))/ + ca2bz_get_file(strCurrent,strMd5);
 
             string strStageInplaceFile = ca2inplace_get_file(strCurrent);
 
@@ -978,7 +978,7 @@ install_begin:;
 
             System.install().trace().rich_trace(str::replace("\\","/",file_name_dup((str2 + str))));
 
-            string strStageInplace = ca2bz_get_dir(strCurrent) + strStageInplaceFile;
+            string strStageInplace = ::file::path(ca2bz_get_dir(strCurrent)) / strStageInplaceFile;
 
             if(file_exists_dup(strStageInplace)
                && (iLen != -1) && file_length_dup(strStageInplace) == iLen
@@ -1010,7 +1010,7 @@ install_begin:;
 
                string strRelative = dir::name(strCurrent) / file_title_dup(strCurrent);
 
-               string strStageInplace2 = ca2inplace_get_dir(strRelative) + ca2inplace_get_file(strRelative);
+               string strStageInplace2 = ::file::path(ca2inplace_get_dir(strRelative)) / ca2inplace_get_file(strRelative);
 
                Application.file().ftd(strStageInplace2,strStageInplace);
 
@@ -1062,9 +1062,9 @@ install_begin:;
 
             int iGzLen         = mapGzLen[strCurrent];
 
-            string str = m_strInstall;
+            ::file::path str = m_strInstall;
 
-            str += strCurrent;
+            str /= strCurrent;
 
             string str2 = dir::name(str);
 
@@ -2057,7 +2057,7 @@ install_begin:;
 
       if(bIndex)
       {
-         if (!get(m_strInstall + lpcszPath, bExist, iLength, pszMd5, iGzLen))
+         if (!get(m_strInstall / lpcszPath, bExist, iLength, pszMd5, iGzLen))
          {
             printf_dup("Failed: %s\n", (const char *) strUrl);
             return false;
@@ -2074,7 +2074,7 @@ install_begin:;
       }
       else
       {
-         if (!get(m_strInstall + lpcszPath + "." + pszMd5, bExist, iLength, pszMd5, iGzLen))
+         if (!get(m_strInstall / lpcszPath + "." + pszMd5, bExist, iLength, pszMd5, iGzLen))
          {
             printf_dup("Failed: %s\n", (const char *) strUrl);
             return false;
