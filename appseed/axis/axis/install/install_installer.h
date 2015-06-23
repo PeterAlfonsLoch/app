@@ -179,21 +179,21 @@ namespace install
 
       bool download_file(const string& inplace, const string& url_in, bool bExist, bool bCheck, int64_t iLength, const char * pszCrc, int64_t iGzLen, int_ptr & iFlag);
 
-      string ca2_get_dir(LPCSTR lpcszUrl);
+      ::file::path ca2_get_dir(LPCSTR lpcszUrl);
 
-      string ca2bz_get_dir(LPCSTR lpcszUrl);
+      ::file::path ca2bz_get_dir(LPCSTR lpcszUrl);
 
-      string ca2unbz_get_dir(LPCSTR lpcszUrl);
+      ::file::path ca2unbz_get_dir(LPCSTR lpcszUrl);
 
-      string ca2inplace_get_dir(LPCSTR lpcszUrl);
+      ::file::path ca2inplace_get_dir(LPCSTR lpcszUrl);
 
-      string ca2_get_file(LPCSTR lpcszUrl);
+      ::file::path ca2_get_file(LPCSTR lpcszUrl);
 
-      string ca2bz_get_file(LPCSTR lpcszUrl, const char * pszCrc);
+      ::file::path ca2bz_get_file(LPCSTR lpcszUrl,const char * pszCrc);
 
-      string ca2unbz_get_file(LPCSTR lpcszUrl);
+      ::file::path ca2unbz_get_file(LPCSTR lpcszUrl);
 
-      string ca2inplace_get_file(LPCSTR lpcszUrl);
+      ::file::path ca2inplace_get_file(LPCSTR lpcszUrl);
 
       bool ca2_fy_url(string & str, LPCSTR lpcszPath, bool bExist, int64_t iLength, const char * pszCrc, int64_t iGzLen, bool bIndex = false, bool * pbFileOk = NULL);
 

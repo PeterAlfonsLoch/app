@@ -970,15 +970,15 @@ install_begin:;
 
             str += strMd5;
 
-            string strStageGz = ::file::path(ca2bz_get_dir(strCurrent))/ + ca2bz_get_file(strCurrent,strMd5);
+            ::file::path strStageGz = ca2bz_get_dir(strCurrent) / ca2bz_get_file(strCurrent,strMd5);
 
-            string strStageInplaceFile = ca2inplace_get_file(strCurrent);
+            ::file::path strStageInplaceFile = ca2inplace_get_file(strCurrent);
 
             bool bDownload = true;
 
             System.install().trace().rich_trace(str::replace("\\","/",file_name_dup((str2 + str))));
 
-            string strStageInplace = ::file::path(ca2bz_get_dir(strCurrent)) / strStageInplaceFile;
+            ::file::path strStageInplace = ca2bz_get_dir(strCurrent) / strStageInplaceFile;
 
             if(file_exists_dup(strStageInplace)
                && (iLen != -1) && file_length_dup(strStageInplace) == iLen
@@ -1010,7 +1010,7 @@ install_begin:;
 
                string strRelative = dir::name(strCurrent) / file_title_dup(strCurrent);
 
-               string strStageInplace2 = ::file::path(ca2inplace_get_dir(strRelative)) / ca2inplace_get_file(strRelative);
+               string strStageInplace2 = ca2inplace_get_dir(strRelative) / ca2inplace_get_file(strRelative);
 
                Application.file().ftd(strStageInplace2,strStageInplace);
 
@@ -1091,13 +1091,13 @@ install_begin:;
 
             str += strMd5;
 
-            string strStageGz = ca2bz_get_dir(strCurrent) + ca2bz_get_file(strCurrent,strMd5);
+            ::file::path strStageGz = ca2bz_get_dir(strCurrent) / ca2bz_get_file(strCurrent,strMd5);
 
-            string strStageInplaceFile = ca2inplace_get_file(strCurrent);
+            ::file::path strStageInplaceFile = ca2inplace_get_file(strCurrent);
 
             bool bDownload = true;
 
-            string strStageInplace = ca2inplace_get_dir(strCurrent) + ca2inplace_get_file(strCurrent);
+            ::file::path strStageInplace = ca2inplace_get_dir(strCurrent) / ca2inplace_get_file(strCurrent);
 
             if(file_exists_dup(strStageInplace)
                && (iLen != -1) && file_length_dup(strStageInplace) == iLen
@@ -1679,7 +1679,7 @@ install_begin:;
    }
 
 
-   string installer::ca2_get_dir(LPCSTR lpcszUrl)
+   ::file::path installer::ca2_get_dir(LPCSTR lpcszUrl)
    {
       string url_in(lpcszUrl);
       string dir;
@@ -1716,10 +1716,13 @@ install_begin:;
       file = url.substr(oldpos + 1);
       if(lastfile.size() > 0)
          dir +=  lastfile + "\\";
+
       return dir;
+
    }
 
-   string installer::ca2bz_get_dir(LPCSTR lpcszUrl)
+
+   ::file::path installer::ca2bz_get_dir(LPCSTR lpcszUrl)
    {
       string url_in(lpcszUrl);
       string dir;
@@ -1759,7 +1762,9 @@ install_begin:;
          dir +=  lastfile + "\\";
       return dir;
    }
-   string installer::ca2unbz_get_dir(LPCSTR lpcszUrl)
+
+
+   ::file::path installer::ca2unbz_get_dir(LPCSTR lpcszUrl)
    {
       string url_in(lpcszUrl);
       string dir;
@@ -1801,7 +1806,7 @@ install_begin:;
    }
 
 
-   string installer::ca2inplace_get_dir(LPCSTR lpcszUrl)
+   ::file::path installer::ca2inplace_get_dir(LPCSTR lpcszUrl)
    {
       string url_in(lpcszUrl);
       string dir;
@@ -1847,7 +1852,7 @@ install_begin:;
    }
 
 
-   string installer::ca2_get_file(LPCSTR lpcszUrl)
+   ::file::path installer::ca2_get_file(LPCSTR lpcszUrl)
    {
       string url_in(lpcszUrl);
       string dir;
@@ -1888,7 +1893,9 @@ install_begin:;
       else
          return file;
    }
-   string installer::ca2bz_get_file(LPCSTR lpcszUrl, const char * pszMd5)
+
+
+   ::file::path installer::ca2bz_get_file(LPCSTR lpcszUrl, const char * pszMd5)
    {
       string url_in(lpcszUrl);
       string dir;
@@ -1936,7 +1943,8 @@ install_begin:;
       }
    }
 
-   string installer::ca2unbz_get_file(LPCSTR lpcszUrl)
+
+   ::file::path installer::ca2unbz_get_file(LPCSTR lpcszUrl)
    {
       string url_in(lpcszUrl);
       string dir;
@@ -1974,7 +1982,8 @@ install_begin:;
          return file;
    }
 
-   string installer::ca2inplace_get_file(LPCSTR lpcszUrl)
+
+   ::file::path installer::ca2inplace_get_file(LPCSTR lpcszUrl)
    {
       string url_in(lpcszUrl);
       string url;
@@ -2009,12 +2018,12 @@ install_begin:;
 
    bool installer::ca2_fy_url(string & str,LPCSTR lpcszPath,bool bExist,int64_t iLength,const char * pszMd5,int64_t iGzLen,bool bIndex, bool * pbFileOk)
    {
-      string strStage;
-      string strStageGz;
+      ::file::path strStage;
+      ::file::path strStageGz;
       string strUrl;
       strUrl = lpcszPath;
 
-      strStage = ca2_get_dir(strUrl) + ca2_get_file(strUrl);
+      strStage = ca2_get_dir(strUrl) / ca2_get_file(strUrl);
 
       if(bExist)
       {
@@ -2065,11 +2074,11 @@ install_begin:;
          if(m_bOfflineInstall)
          {
             strStageGz = strUrl;
-            strStageGz = ca2bz_get_dir(strUrl) + ca2bz_get_file(strUrl, NULL);
+            strStageGz = ca2bz_get_dir(strUrl) / ca2bz_get_file(strUrl, NULL);
          }
          else
          {
-            strStageGz = ca2bz_get_dir(strUrl) + ca2bz_get_file(strUrl, NULL);
+            strStageGz = ca2bz_get_dir(strUrl) / ca2bz_get_file(strUrl, NULL);
          }
       }
       else
@@ -2082,11 +2091,11 @@ install_begin:;
          if(m_bOfflineInstall)
          {
             strStageGz = strUrl;
-            strStageGz = ::file::path(ca2bz_get_dir(strUrl)) / ca2bz_get_file(strUrl, pszMd5);
+            strStageGz = ca2bz_get_dir(strUrl) / ca2bz_get_file(strUrl, pszMd5);
          }
          else
          {
-            strStageGz = ::file::path(ca2bz_get_dir(strUrl)) / ca2bz_get_file(strUrl, pszMd5);
+            strStageGz = ca2bz_get_dir(strUrl) / ca2bz_get_file(strUrl, pszMd5);
          }
       }
       dir::mk(dir::name(strStage));
@@ -2290,8 +2299,8 @@ install_begin:;
          str = stringa[i];
          str += ".bz";
          System.install().trace().rich_trace(str);
-         strStageGz = ::file::path(m_strInstallGz)/ ca2bz_get_file(str, strmapMd5[stringa[i]]);
-         strStage = ca2_get_dir(str) + ca2_get_file(str);
+         strStageGz = m_strInstallGz / ca2bz_get_file(str, strmapMd5[stringa[i]]);
+         strStage = ca2_get_dir(str) / ca2_get_file(str);
          dir::mk(dir::name(strStage));
          bzuncompress(strStage, strStageGz);
          d += 1.0;
@@ -2326,8 +2335,8 @@ install_begin:;
          //m_dProgress2 = d / ((double) stringa.size());
          str += ".bz";
          System.install().trace().rich_trace(str);
-         strStageUnbz = ca2unbz_get_dir(str) + ca2unbz_get_file(str);
-         strStage = ca2_get_dir(str) + ca2_get_file(str);
+         strStageUnbz = ca2unbz_get_dir(str) / ca2unbz_get_file(str);
+         strStage = ca2_get_dir(str) / ca2_get_file(str);
          if(strStage.length() > strlen_dup(".expand_fileset") && stricmp_dup(strStage.substr(strStage.length() - strlen_dup(".expand_fileset"), strlen_dup(".expand_fileset")), ".expand_fileset") == 0)
          {
             //         file_ftd_dup(strStage.substr(0, strStage.length() - strlen_dup(".expand_fileset")), strStageUnbz);
@@ -3136,7 +3145,7 @@ RetryBuildNumber:
       ::file_size len;
 
       string strIndexBuild;
-      string strIndexPath;
+      ::file::path strIndexPath;
       string strIndexMd5;
       ::primitive::memory mem(get_app());
 
@@ -3157,7 +3166,7 @@ RetryBuildNumber:
 
          strIndexPath = "app/stage/metastage/index-" + strIndexBuild + ".spa.bz";
 
-         strIndexPath = ca2_get_dir(strIndexPath) + ca2_get_file(strIndexPath);
+         strIndexPath = ca2_get_dir(strIndexPath) / ca2_get_file(strIndexPath);
 
          if(file_exists_dup(strIndexPath))
          {
@@ -3341,7 +3350,7 @@ RetryBuildNumber:
 
             strIndexPath = "app/stage/metastage/index-" + strIndexBuild + ".spa.bz";
 
-            strIndexPath = ca2_get_dir(strIndexPath) + ca2_get_file(strIndexPath);
+            strIndexPath = ca2_get_dir(strIndexPath) / ca2_get_file(strIndexPath);
 
             {
 
