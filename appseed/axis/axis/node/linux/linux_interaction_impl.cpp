@@ -1152,11 +1152,15 @@ d.unlock();
 
       SCAST_PTR(::message::base, pbase, pobj);
 
+
       if(m_pui != NULL)
       {
+
          m_pui->pre_translate_message(pobj);
+
          if(pobj->m_bRet)
             return;
+
       }
 
 

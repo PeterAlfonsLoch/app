@@ -61,6 +61,8 @@ public:
    HTHREAD                       m_hthread;
    int_to_int *                  m_plongmap;
    Colormap                      m_colormap;
+   DWORD                         m_dwLastMouseMove;
+
    //ptr_array < bool >            m_bptraTellMeDestroyed; // Telmo why!! :-)
 
 
