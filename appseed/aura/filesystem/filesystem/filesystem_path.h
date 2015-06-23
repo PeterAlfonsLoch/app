@@ -91,7 +91,7 @@ namespace file
             if(is_empty())
             {
 
-               operator = (sep());
+               string::operator = (sep());
 
             }
 
