@@ -1003,8 +1003,7 @@ namespace user
       ::user::form_window::BaseOnControlEvent(pevent);
 
       if(pevent->m_bRet)
-         return true;
-         
+         return pevent->m_bProcessed;
 
       if(pevent->m_eevent == ::user::event_tab_key)
       {
