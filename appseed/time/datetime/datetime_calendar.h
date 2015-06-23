@@ -12,7 +12,7 @@ namespace html
 
 
 class CLASS_DECL_CA2_TIME calendar :
-   public calendar_interface
+   virtual public calendar_interface
 {
 public:
 
@@ -29,7 +29,7 @@ public:
    calendar(::aura::application * papp);
 
 
-   void _001OnDraw(::draw2d::graphics * pdc);
+   virtual void _001GetHtml(sp(::html::file) pfile);
 
 
 

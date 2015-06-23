@@ -6,7 +6,7 @@ namespace visual
 
 
    class CLASS_DECL_CA2_TIME calendar:
-      public ::calendar
+      virtual public ::calendar
    {
    public:
 

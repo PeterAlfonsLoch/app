@@ -6,7 +6,7 @@ namespace visual
 
 
    class CLASS_DECL_CA2_TIME clock:
-      public ::clock
+      virtual public ::datetime::clock
    {
    public:
 
