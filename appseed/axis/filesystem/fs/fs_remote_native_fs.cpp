@@ -76,7 +76,7 @@ namespace fs
 
       path.m_iDir = 1;
 
-      listing.m_straTitle.add("File System");
+      listing.m_straTitle.add("Remote File System");
 
       return listing;
 
@@ -138,15 +138,15 @@ namespace fs
 
             if(child.get_name() != "folder")
                continue;
-            
+
             m_mapdirTimeout[listing.m_path] = ::get_tick_count() + (15 * 1000);
-            
+
             m_mapfileTimeout.remove_key(listing.m_path);
-            
+
             ::file::path & path = listing.add_child(child.attr("name"));
-            
+
             path.m_iSize = 0;
-            
+
             path.m_iDir = 1;
 
          }
@@ -158,13 +158,13 @@ namespace fs
       {
 
          for(auto child : pnode->childrenref())
-         { 
+         {
 
             if(child.get_name() != "file")
                continue;
 
             m_mapfileTimeout[listing.m_path] = ::get_tick_count() + (15 * 1000);
-            
+
             m_mapdirTimeout.remove_key(listing.m_path);
 
             ::file::path & path = listing.add_child(child.attr("name"));
@@ -323,14 +323,14 @@ namespace fs
       {
 
          spfile.release();
-      
+
          if(pfesp != NULL)
          {
 
             *pfesp = cres;
 
          }
-         
+
       }
 
       return spfile;
