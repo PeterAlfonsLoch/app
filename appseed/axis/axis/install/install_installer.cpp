@@ -1724,43 +1724,26 @@ install_begin:;
 
    ::file::path installer::ca2bz_get_dir(LPCSTR lpcszUrl)
    {
-      string url_in(lpcszUrl);
-      string dir;
-      string url;
-      string file;
+
+      ::file::path dir;
+
       if(m_bInternetInstall)
       {
+
          dir = dir::afterca2() / "time/bz";
+
       }
       else
       {
+
          dir = m_strInstallGz;
+
       }
-      index pos = url_in.find(m_strInstall);
-      if(pos == 0)
-      {
-         url = url_in.substr(m_strInstall.length());
-      }
-      else
-      {
-         url = url_in;
-      }
-      index oldpos = -1;
-      pos = url.find("/");
-      string lastfile;
-      while (pos >=0)
-      {
-         file = url.substr(oldpos + 1, pos - oldpos -1);
-         if(lastfile.size() > 0)
-            dir +=  lastfile + "\\";
-         lastfile = file;
-         oldpos = pos;
-         pos = url.find("/", oldpos + 1);
-      }
-      file = url.substr(oldpos + 1);
-      if(lastfile.size() > 0)
-         dir +=  lastfile + "\\";
-      return dir;
+
+      dir /= lpcszUrl;
+
+      return dir.folder();
+
    }
 
 
@@ -1897,50 +1880,43 @@ install_begin:;
 
    ::file::path installer::ca2bz_get_file(LPCSTR lpcszUrl, const char * pszMd5)
    {
-      string url_in(lpcszUrl);
-      string dir;
-      string url;
-      string file;
-      dir = dir::afterca2() / "time/bz";
-      string strFind;
-      index pos = url_in.find(m_strInstall);
-      if(pos == 0)
-      {
-         url = url_in.substr(m_strInstall.length());
-      }
-      else
-      {
-         url = url_in;
-      }
-      index oldpos = -1;
-      pos = url.find("/");
-      string lastfile;
-      while (pos >=0)
-      {
-         file = url.substr(oldpos + 1, pos - oldpos -1);
-         if(lastfile.size() > 0)
-            dir +=  lastfile + "\\";
-         lastfile = file;
-         oldpos = pos;
-         pos = url.find("/", oldpos + 1);
-      }
-      file = url.substr(oldpos + 1);
-      if(lastfile.size() > 0)
-         dir +=  lastfile + "\\";
+
+      ::file::path file = ::file::path(lpcszUrl).name();
+     
       if(pszMd5 != NULL)
       {
-         if(file.substr(file.size() - 3, 3) == ".bz")
+
+         if(file.substr(file.size() - 3,3) == ".bz")
+         {
+
             return file + "." + pszMd5;
+
+         }
          else
+         {
+
             return file + ".bz." + pszMd5;
+
+         }
+
       }
       else
       {
-         if(file.substr(file.size() - 3, 3) == ".bz")
+         if(file.substr(file.size() - 3,3) == ".bz")
+         {
+
             return file;
+
+         }
          else
+         {
+
             return file + ".bz";
+
+         }
+
       }
+
    }
 
 
