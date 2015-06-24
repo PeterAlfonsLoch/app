@@ -99,7 +99,13 @@ void * __node_library_open(const char * pszPath)
       if(plibrary == NULL)
       {
          DWORD dwError = ::GetLastError();
-         ::OutputDebugString("error " + ::str::from((uint32_t) dwError));
+         char * pszError;
+         FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM,NULL,dwError,0,(LPTSTR)&pszError,8,NULL);
+         string strError(pszError);
+         //TRACE("dir::mk CreateDirectoryW last error(%d)=%s", dwError, pszError);
+         ::LocalFree(pszError);
+
+         ::OutputDebugString(strPath + " : LoadLibrary Error (" + ::str::from((uint32_t) dwError) + ") : " + strError);
          if(dwError == 126)
          {
             ::SetDllDirectoryW(gen_utf8_to_16(::dir::base_module()));
