@@ -114,6 +114,9 @@ namespace windows
       //--------------------------------------------------------------------
       bool speaker::initialize()
       {
+
+         finalize();
+
          //
          // Create text to speech engine
          //
