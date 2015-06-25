@@ -2051,6 +2051,15 @@
     <ClInclude Include="user\user\user_primitive.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
+    <ClInclude Include="aura\os\windows\windows_comptr.h">
+      <Filter>Header Files\aura\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_speaker.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\node\windows\windows_tts_speaker.h">
+      <Filter>Header Files\aura\node\windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -3435,6 +3444,12 @@
     </ClCompile>
     <ClCompile Include="user\user\user_primitive.cpp">
       <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\aura\aura_speaker.cpp">
+      <Filter>Source Files\aura\aura</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\node\windows\windows_tts_speaker.cpp">
+      <Filter>Source Files\aura\node\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

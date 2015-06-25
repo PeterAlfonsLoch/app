@@ -37,3 +37,6 @@
 //2015-01-05  08:22                 0 _windows_node.cpp"
 //              18 arquivo(s)        194.773 bytes
 //               0 pasta(s)   35.780.247.552 bytes dispon¡veis
+
+
+#include "windows_tts_speaker.cpp"

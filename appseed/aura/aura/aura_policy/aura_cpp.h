@@ -1616,6 +1616,10 @@ CLASS_DECL_AURA ::aura::application * get_aura(void * p);
 #include "aura/user/user.h"
 
 
+#include "aura/aura/aura_speaker.h"
+
+
+
 
 
 

@@ -28,6 +28,10 @@ namespace aura
          System.factory().creatable          < ::windows::pipe               >(System.type_info < ::process::pipe             >(),32);
          System.factory().creatable          < ::windows::process            >(System.type_info < ::process::process          >(),32);
 
+         System.factory().creatable_small    < ::windows::tts::speaker       >(System.type_info < ::tts::speaker              >());
+
+
+
          ::windows::shell::theWindowsShell.Initialize();
 
       }
