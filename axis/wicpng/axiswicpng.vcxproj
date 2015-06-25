@@ -223,7 +223,6 @@
     <LibraryPath>$(VCInstallDir)lib;$(WindowsSDK_LibraryPath_x86);</LibraryPath>
     <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
     <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
-    <TargetExt>.fip</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -247,7 +246,6 @@
     <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
     <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
     <LinkIncremental>false</LinkIncremental>
-    <TargetExt>.fip</TargetExt>
     <OutDir>$(SolutionDir)..\..\..\stage\x64\</OutDir>
     <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
@@ -301,7 +299,6 @@
     <LibraryPath>$(VCInstallDir)lib;$(WindowsSDK_LibraryPath_x86);</LibraryPath>
     <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
     <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
-    <TargetExt>.fip</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
     <GenerateManifest>false</GenerateManifest>
@@ -312,7 +309,6 @@
     <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
     <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
     <LinkIncremental>false</LinkIncremental>
-    <TargetExt>.fip</TargetExt>
     <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
     <OutDir>$(SolutionDir)..\..\..\stage\x64\</OutDir>
   </PropertyGroup>

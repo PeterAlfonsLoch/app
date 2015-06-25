@@ -326,106 +326,74 @@ TagLib::instance();
 
 			// external plugin initialization
 
-#ifdef WINDOWSEX
-			if (!load_local_plugins_only) {
-				int count = 0;
-				char buffer[MAX_PATH + 200];
-				char current_dir[2 * _MAX_PATH], module[2 * _MAX_PATH];
-				WINBOOL bOk = FALSE;
+			if (!load_local_plugins_only)
+         {
 
-				// store the current directory. then set the directory to the application location
+            ::file::patha patha;
 
-				if (GetCurrentDirectory(2 * _MAX_PATH, current_dir) != 0) {
-					if (GetModuleFileName(NULL, module, 2 * _MAX_PATH) != 0) {
-						char *last_point = strrchr(module, '\\');
+            ::dir::ls(patha,::dir::ca2_module());
 
-						if (last_point) {
-							*last_point = '\0';
-
-							bOk = SetCurrentDirectory(module);
-						}
-					}
-				}
-
-				// search for plugins
-
-				while (count < s_search_list_size) {
-					_finddata_t find_data;
-               intptr_t find_handle;
-
-					strcpy(buffer, s_search_list[count]);
-					strcat(buffer, "*.fip");
-
-               if((find_handle = (intptr_t)_findfirst(buffer,&find_data)) != -1L) {
-						do {
-							strcpy(buffer, s_search_list[count]);
-							strncat(buffer, find_data.name, MAX_PATH + 200);
-
-							HINSTANCE instance = LoadLibrary(buffer);
-
-							if (instance != NULL) {
-								//FARPROC proc_address = GetProcAddress(instance, "_Init@8");
-                        FARPROC proc_address = GetProcAddress(instance,"FreeImage_InitPlugin");
-
-								if (proc_address != NULL) {
-									s_plugins->AddNode((FI_InitProc)proc_address, (void *)instance);
-								} else {
-									FreeLibrary(instance);
-								}
-							}
-						} while (_findnext(find_handle, &find_data) != -1L);
-
-						_findclose(find_handle);
-					}
-
-					count++;
-				}
-
-				// restore the current directory
-
-				if (bOk) {
-					SetCurrentDirectory(current_dir);
-				}
-			}
-			#else // _WIN32
-
-			::file::patha patha;
-
-			::dir::ls(patha, ::dir::ca2_module());
-
-			for(auto & path : patha)
-			{
-
-            if(::str::ends_ci(path, ".fip"))
+            for(auto & path : patha)
             {
 
-               void * pl = dlopen(path, RTLD_LOCAL | RTLD_NOW | RTLD_NODELETE);
-
-               if(pl)
+#ifdef WINDOWSEX
+               if(::str::ends_ci(path,".dll"))
                {
 
-                  void * pf = dlsym(pl, "FreeImage_InitPlugin");
+                  HINSTANCE instance = LoadLibrary(path);
 
-                  if(pf)
+                  if(instance != NULL)
                   {
 
-                     s_plugins->AddNode((FI_InitProc)pf, (void *)pl);
+                     FARPROC proc_address = GetProcAddress(instance,"FreeImage_InitPlugin");
+
+                     if(proc_address != NULL)
+                     {
+                        s_plugins->AddNode((FI_InitProc)proc_address,(void *)instance);
+                     }
+                     else
+                     {
+                        FreeLibrary(instance);
+                     }
 
                   }
-                  else
+
+               }
+#else // _WIN3
+
+               if(::str::ends_ci(path,".so"))
+               {
+
+                  void * pl = dlopen(path,RTLD_LOCAL | RTLD_NOW | RTLD_NODELETE);
+
+                  if(pl)
                   {
 
-                     dlclose(pl);
+                     void * pf = dlsym(pl,"FreeImage_InitPlugin");
+
+                     if(pf)
+                     {
+
+                        s_plugins->AddNode((FI_InitProc)pf,(void *)pl);
+
+                     }
+                     else
+                     {
+
+                        dlclose(pl);
+
+                     }
 
                   }
 
                }
 
+#endif // WINDOWSEX else
+
             }
 
-			}
 
-#endif // else _WIN32
+			}
 		}
 	}
 }
