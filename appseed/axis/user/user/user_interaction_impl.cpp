@@ -2546,6 +2546,8 @@ namespace user
    void interaction_impl::_001UpdateBuffer()
    {
 
+      synch_lock sl1(m_pui->m_pmutex);
+
       if(!m_pui->m_bMayProDevian)
       {
 
