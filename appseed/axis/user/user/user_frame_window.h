@@ -148,7 +148,7 @@ namespace user
       ::user::frame_window *     m_pNextFrameWnd; // next frame_window in cast global list
       rect                       m_rectBorder;         // for OLE border space negotiation
 
-      pointer_list               m_listControlBars; // array of all control bars that have this interaction_impl as their dock site
+      spa(control_bar)           m_barptra; // array of all control bars that have this interaction_impl as their dock site
       int32_t                    m_nShowDelay;           // SW_ command for delay show/hide
 
       bool                       m_bFrameMoveEnable;
@@ -322,7 +322,7 @@ namespace user
       LRESULT OnPopMessageString(WPARAM wParam, LPARAM lParam);
       LRESULT OnSetMessageString(WPARAM wParam, LPARAM lParam);
       LRESULT OnHelpPromptAddr(WPARAM wParam, LPARAM lParam);
-      void OnIdleUpdateCmdUI();
+      //void OnIdleUpdateCmdUI(::signal_details * pobj);
       void OnEnterIdle(UINT nWhy, sp(::user::interaction) pWho);
       void OnSetFocus(sp(::user::interaction) pOldWnd);
       void OnSize(UINT nType, int32_t cx, int32_t cy);

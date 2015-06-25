@@ -1314,6 +1314,8 @@ bool simple_frame_window::LoadToolBar(sp(::type) sptype, id idToolBar, const cha
 
    m_toolbarmap.set_at(idToolBar,ptoolbar);
 
+   AddControlBar(ptoolbar);
+
    layout();
 
    return true;

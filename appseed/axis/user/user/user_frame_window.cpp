@@ -1521,34 +1521,6 @@ namespace user
       m_nIdleFlags |= idleMenu;
    }
 
-   void frame_window::OnIdleUpdateCmdUI()
-   {
-      // update menu if necessary
-      if (m_nIdleFlags & idleMenu)
-      {
-         m_nIdleFlags &= ~idleMenu;
-         OnUpdateFrameMenu(m_hMenuAlt);
-      }
-
-      // update title if necessary
-      if (m_nIdleFlags & idleTitle)
-         on_update_frame_title(TRUE);
-
-      // recalc layout if necessary
-      if (m_nIdleFlags & idleLayout)
-      {
-         layout();
-         UpdateWindow();
-      }
-
-      // set the current message string if necessary
-      if (m_nIDTracking != m_nIDLastMessage)
-      {
-         SetMessageText(m_nIDTracking);
-         ASSERT(m_nIDTracking == m_nIDLastMessage);
-      }
-      m_nIdleFlags = 0;
-   }
 
    sp(::user::frame_window) frame_window::GetActiveFrame()
    {
@@ -1920,9 +1892,7 @@ namespace user
 
    void frame_window::RemoveControlBar(::user::control_bar *pBar)
    {
-      POSITION pos = m_listControlBars.find(pBar);
-      if (pos != NULL)
-         m_listControlBars.remove_at(pos);
+      m_barptra.remove(pBar);
    }
 
 
@@ -1991,6 +1961,41 @@ namespace user
    //   m_nIdleFlags |= idleMenu;
    //}
 
+   //void frame_window::OnIdleUpdateCmdUI(signal_details * pobj)
+   //{
+   //   // update menu if necessary
+   //   if(m_nIdleFlags & idleMenu)
+   //   {
+   //      m_nIdleFlags &= ~idleMenu;
+   //      OnUpdateFrameMenu(m_hMenuAlt);
+   //   }
+
+   //   // update title if necessary
+   //   if(m_nIdleFlags & idleTitle)
+   //      on_update_frame_title(TRUE);
+
+   //   // recalc layout if necessary
+   //   if(m_nIdleFlags & idleLayout)
+   //   {
+   //      layout();
+   //      UpdateWindow();
+   //   }
+
+   //   // set the current message string if necessary
+   //   if(m_nIDTracking != m_nIDLastMessage)
+   //   {
+   //      SetMessageText(m_nIDTracking);
+   //      ASSERT(m_nIDTracking == m_nIDLastMessage);
+   //   }
+   //   m_nIdleFlags = 0;
+
+   //   for(auto & bar : m_barptra.refa())
+   //   {
+   //      bar._001OnIdleUpdateCmdUI(pobj);
+   //   }
+   //}
+
+
    void frame_window::_001OnIdleUpdateCmdUI(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
@@ -2015,6 +2020,12 @@ namespace user
          SetMessageText(m_nIDTracking);
          ASSERT(m_nIDTracking == m_nIDLastMessage);
       }
+
+      for(auto & bar : m_barptra.refa())
+      {
+         bar._001OnIdleUpdateCmdUI(pobj);
+      }
+
       m_nIdleFlags = 0;
    }
 
@@ -2083,7 +2094,7 @@ namespace user
    void frame_window::AddControlBar(::user::control_bar *pBar)
    {
 
-      m_listControlBars.add_tail(pBar);
+      m_barptra.add_unique(pBar);
 
    }
 

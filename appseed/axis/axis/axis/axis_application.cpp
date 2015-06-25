@@ -4847,8 +4847,8 @@ namespace axis
             catch(...)
             {
             }
-            //if(!bOk)
-            //{
+            if(!bOk)
+            {
             //   try
             //   {
             //      Application.remove_frame(pui);
@@ -4870,20 +4870,20 @@ namespace axis
             //   catch(...)
             //   {
             //   }
-            //}
-            //else
-            //{
-            //   sl.unlock();
-            //   try
-            //   {
-            //      //pui->send_message(WM_IDLEUPDATECMDUI,(WPARAM)TRUE);
-            //   }
-            //   catch(...)
-            //   {
+            }
+            else
+            {
+               sl.unlock();
+               try
+               {
+                  pui->send_message(WM_IDLEUPDATECMDUI,(WPARAM)TRUE);
+               }
+               catch(...)
+               {
 
-            //   }
-            //   sl.lock();
-            //}
+               }
+               sl.lock();
+            }
          }
 
 
