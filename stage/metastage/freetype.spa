@@ -1,5 +1,4 @@
 app\stage\metastage\appseedcore-all.spa
-stage\basis\axisfreeimage.dll
+app\stage\metastage\png.spa
 stage\basis\axisfreetype.dll
-stage\basis\axispng.dll
 
