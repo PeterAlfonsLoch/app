@@ -10,8 +10,17 @@
 #define M_OBJECTA m_objecta
 
 #endif
-
-
+#undef new
+multi_lock::multi_lock(std::initializer_list < sync_object * > list,bool bInitialLock)
+{
+   sync_object_ptra syncobjectptra;
+   forallref(list)
+   {
+      syncobjectptra.add(item);
+   }
+   ::new((void *) this) multi_lock(syncobjectptra,bInitialLock);
+}
+#define new AURA_NEW
 multi_lock::multi_lock(const sync_object_ptra & syncobjectptra,bool bInitialLock)
 {
 
@@ -95,21 +104,21 @@ wait_result multi_lock::lock(const duration & duration, bool bWaitForAll, uint32
    }
 
    index iUpperBound = WAIT_OBJECT_0 + M_OBJECTA.get_count();
-   if (iResult >= WAIT_OBJECT_0 && iResult < iUpperBound)
+   if(iResult == WAIT_FAILED)
    {
-      if (iUpperBound >= M_OBJECTA.get_count() && iUpperBound >= WAIT_OBJECT_0)
+      DWORD dw = ::GetLastError();
+      TRACELASTERROR();
+   }
+   else if (iResult >= WAIT_OBJECT_0 && iResult < iUpperBound)
+   {
+      if (bWaitForAll)
       {
-         if (bWaitForAll)
-         {
-            for (index i = 0; i < M_OBJECTA.get_count(); i++)
-               m_baLocked[i] = TRUE;
-         }
-         else
-         {
-            ASSERT((iResult >= WAIT_OBJECT_0) && (iResult - WAIT_OBJECT_0) <= natural(iResult));
-            if ((iResult >= WAIT_OBJECT_0) && (iResult - WAIT_OBJECT_0 <= natural(iResult)))
-               m_baLocked[(index)(iResult - WAIT_OBJECT_0)] = TRUE;
-         }
+         for (index i = 0; i < M_OBJECTA.get_count(); i++)
+            m_baLocked[i] = TRUE;
+      }
+      else
+      {
+         m_baLocked[(index)(iResult - WAIT_OBJECT_0)] = TRUE;
       }
    }
    return wait_result(iResult);

@@ -100,18 +100,18 @@ namespace user
       m_bCursorInside            = false;
       m_nFlags                   = 0;
       m_puiOwner                 = NULL;
-      m_pimpl                    = NULL;
+      //m_pimpl                    = NULL;
       m_ecursor                  = ::visual::cursor_default;
       m_iModal                   = 0;
       m_iModalCount              = 0;
       m_bRectOk                  = false;
       m_bVisible                 = true;
 
-      m_psession                 = NULL;
+      //m_psession                 = NULL;
       m_bMessageWindow           = false;
 
       m_bVoidPaint               = false;
-      m_pparent                  = NULL;
+      //m_pparent                  = NULL;
       m_bBackgroundBypass        = false;
       m_bEnableSaveWindowRect    = false;
 
@@ -2912,7 +2912,9 @@ namespace user
 
 ///      single_lock slTwf(System.wait_twf(), true);
 
-      single_lock sl(m_pmutex,true);
+      single_lock sl1(get_wnd() != NULL && get_wnd() != this ? get_wnd()->m_pmutex : NULL,true);
+
+      //single_lock sl(m_pmutex,true);
 
       if(!IsWindow())
       {

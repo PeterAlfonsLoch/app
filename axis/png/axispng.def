@@ -1,4 +1,4 @@
-LIBRARY      "axispng.fip"
+LIBRARY      "axispng"
 
 EXPORTS
 FreeImage_InitPlugin

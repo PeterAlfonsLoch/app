@@ -71,7 +71,6 @@ object::object(::aura::application * papp)
    // root like (Rute like, Thank you Rute and Inha and Lizir!!)
    m_countReference  = 1;
    m_bHeap           = false;
-   m_pauraapp        = papp;
 
 }
 
