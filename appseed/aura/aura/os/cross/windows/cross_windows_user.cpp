@@ -265,13 +265,15 @@ MultiByteToWideChar(
 
          lpWideCharStr = lpsz;
 
-         iconv_t iconvPlease = iconv_open("UTF-16", iconv_charset_from_windows_code_page(CodePage));
+         iconv_t iconvPlease = iconv_open("UTF-16LE", iconv_charset_from_windows_code_page(CodePage));
+
+         size_t sOutIn = sOut;
 
          iconv(iconvPlease, (char **) &lpMultiByteStr, &sIn, (char **) &lpsz, &sOut);
 
          iconv_close(iconvPlease);
 
-         return (int) ((lpsz - lpWideCharStr) + (cbMultiByte < 0 ? 1 : 0));
+         return ((sOutIn - sOut) / sizeof(wchar_t)) + (cbMultiByte < 0 ? 1 : 0);
 
       }
       else
@@ -281,13 +283,15 @@ MultiByteToWideChar(
 
          size_t sOut = cchWideChar * sizeof(wchar_t);
 
-         iconv_t iconvPlease = iconv_open("UTF-16", iconv_charset_from_windows_code_page(CodePage));
+         iconv_t iconvPlease = iconv_open("UTF-16LE", iconv_charset_from_windows_code_page(CodePage));
+
+         size_t sOutIn = sOut;
 
          iconv(iconvPlease, (char **) &lpMultiByteStr, &sIn, (char **) &lpsz, &sOut);
 
          iconv_close(iconvPlease);
 
-         return (int) ((lpsz - lpWideCharStr) + (cbMultiByte < 0 ? 1 : 0));
+         return ((sOutIn - sOut) / sizeof(wchar_t))  + (cbMultiByte < 0 ? 1 : 0);
 
       }
 
@@ -340,7 +344,7 @@ WideCharToMultiByte(
 
       string strCodePage = iconv_charset_from_windows_code_page(CodePage);
 
-      iconv_t iconvPlease = iconv_open(strCodePage, "UTF-16");
+      iconv_t iconvPlease = iconv_open(strCodePage, "UTF-16LE");
 
       iconv(iconvPlease, (char **) &lpWideCharStr, &sIn, &lpsz, &sOut);
 

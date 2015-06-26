@@ -109,14 +109,7 @@ namespace str
 
       strsize MultiByteToUnicodeCount(UINT uiCodePage, const char * lpcsz, strsize iCount)
       {
-         if(iCount == -1)
-         {
-            return MultiByteToWideChar(uiCodePage, 0, lpcsz, (int32_t) iCount, NULL, 0) - 1;
-         }
-         else
-         {
-            return MultiByteToWideChar(uiCodePage, 0, lpcsz, (int32_t) iCount, NULL, 0);
-         }
+         return MultiByteToWideChar(uiCodePage, 0, lpcsz, (int32_t) iCount, NULL, 0);
       }
 
       strsize MultiByteToUnicodeCount(UINT uiCodePage, const char * lpcsz)
