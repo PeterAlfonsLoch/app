@@ -162,7 +162,7 @@ bool dib_console::defer_write(char ch,int x,int y,int cx,int cy,int iColor)
 
       pen2.alloc(allocer());
 
-      pen2->create_solid(4.0,console_COLORREF(iColor));
+      pen2->create_solid(2.0,console_COLORREF(iColor));
 
    }
    
@@ -173,14 +173,14 @@ bool dib_console::defer_write(char ch,int x,int y,int cx,int cy,int iColor)
 ::draw2d::pen_sp & dib_console::get_pen1(int iColor)
 {
 
-   ::draw2d::pen_sp & pen1 = m_mappen2[iColor];
+   ::draw2d::pen_sp & pen1 = m_mappen1[iColor];
 
    if(pen1.is_null())
    {
 
       pen1.alloc(allocer());
 
-      pen1->create_solid(2.0,console_COLORREF(iColor));
+      pen1->create_solid(1.0,console_COLORREF(iColor));
 
    }
 
@@ -197,10 +197,10 @@ void dib_console::draw_write(char ch, int x, int y, int iColor)
    string str;
    int i2 = 2;
 
-   m_dib->get_graphics()->set_smooth_mode(::draw2d::smooth_mode_none);
-
    if(!defer_write(ch,m_iBorder + x * m_sizeTile.cx,m_iBorder + y * m_sizeTile.cy,m_sizeTile.cx,m_sizeTile.cy, iColor))
    {
+
+      m_dib->get_graphics()->set_smooth_mode(::draw2d::smooth_mode_none);
 
       if(ch == (char)209)// horizontal double / down simple
       {
@@ -224,39 +224,75 @@ void dib_console::draw_write(char ch, int x, int y, int iColor)
             m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy + 1
             );
 
+         m_iLastPenColor = iColor;
+         m_iLastPen = 1;
+
       }
       else if(ch == (char)205)// horizontal double
       {
-         ::draw2d::pen_sp & p2 = get_pen2(iColor);
-         m_dib->get_graphics()->SelectObject(p2);
+         
+         if(m_iLastPen != 2 || m_iLastPenColor != iColor)
+         {
+
+            ::draw2d::pen_sp & p2 = get_pen2(iColor);
+
+            m_dib->get_graphics()->SelectObject(p2);
+
+         }
 
          m_dib->get_graphics()->DrawLine(
             m_iBorder + x * m_sizeTile.cx,
             m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
             m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1,m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2
             );
+
+         m_iLastPenColor = iColor;
+         m_iLastPen = 2;
+
       }
       else if(ch == (char)196) // horizontal simple
       {
-         ::draw2d::pen_sp & p = get_pen1(iColor);
-         m_dib->get_graphics()->SelectObject(p);
+
+         if(m_iLastPen != 1 || m_iLastPenColor != iColor)
+         {
+
+            ::draw2d::pen_sp & p = get_pen1(iColor);
+
+            m_dib->get_graphics()->SelectObject(p);
+
+         }
 
          m_dib->get_graphics()->DrawLine(
             m_iBorder + x * m_sizeTile.cx,
             m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
             m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1,m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2
             );
+
+         m_iLastPenColor = iColor;
+         m_iLastPen = 1;
+
       }
       else if(ch == (char)186) // vertical double
       {
-         ::draw2d::pen_sp & p2 = get_pen2(iColor);
-         m_dib->get_graphics()->SelectObject(p2);
+
+         if(m_iLastPen != 2 || m_iLastPenColor != iColor)
+         {
+
+            ::draw2d::pen_sp & p2 = get_pen2(iColor);
+
+            m_dib->get_graphics()->SelectObject(p2);
+
+         }
 
          m_dib->get_graphics()->DrawLine(
             m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
             m_iBorder + y * m_sizeTile.cy,
             m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy + 1
             );
+
+         m_iLastPenColor = iColor;
+         m_iLastPen = 2;
+
       }
       else if(ch == (char)199) // vertical double / right simple
       {
@@ -276,6 +312,10 @@ void dib_console::draw_write(char ch, int x, int y, int iColor)
             m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
             m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1,m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2
             );
+
+         m_iLastPenColor = iColor;
+         m_iLastPen = 1;
+
       }
       else if(ch == (char)182) // vertical double / left simple
       {
@@ -295,22 +335,44 @@ void dib_console::draw_write(char ch, int x, int y, int iColor)
             m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
             m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2
             );
+
+         m_iLastPenColor = iColor;
+         m_iLastPen = 1;
+
       }
       else if(ch == (char)179) // vertical simple
       {
-         ::draw2d::pen_sp & p = get_pen1(iColor);
-         m_dib->get_graphics()->SelectObject(p);
+
+         if(m_iLastPen != 1 || m_iLastPenColor != iColor)
+         {
+
+            ::draw2d::pen_sp & p = get_pen1(iColor);
+
+            m_dib->get_graphics()->SelectObject(p);
+
+         }
 
          m_dib->get_graphics()->DrawLine(
             m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
             m_iBorder + y * m_sizeTile.cy,
             m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy + 1
             );
+
+         m_iLastPenColor = iColor;
+         m_iLastPen = 1;
+
       }
       else if(ch == (char)218) // top-left simple
       {
-         ::draw2d::pen_sp & p = get_pen1(iColor);
-         m_dib->get_graphics()->SelectObject(p);
+
+         if(m_iLastPen != 1 || m_iLastPenColor != iColor)
+         {
+
+            ::draw2d::pen_sp & p = get_pen1(iColor);
+
+            m_dib->get_graphics()->SelectObject(p);
+
+         }
 
          m_dib->get_graphics()->DrawLine(
             m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
@@ -322,11 +384,22 @@ void dib_console::draw_write(char ch, int x, int y, int iColor)
             m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
             m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy
             );
+
+         m_iLastPenColor = iColor;
+         m_iLastPen = 1;
+
       }
       else if(ch == (char)201) // top-left double
       {
-         ::draw2d::pen_sp & p2 = get_pen2(iColor);
-         m_dib->get_graphics()->SelectObject(p2);
+
+         if(m_iLastPen != 2 || m_iLastPenColor != iColor)
+         {
+
+            ::draw2d::pen_sp & p2 = get_pen2(iColor);
+
+            m_dib->get_graphics()->SelectObject(p2);
+
+         }
 
          m_dib->get_graphics()->DrawLine(
             m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2 - i2,
@@ -338,11 +411,22 @@ void dib_console::draw_write(char ch, int x, int y, int iColor)
             m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
             m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy + 1
             );
+
+         m_iLastPenColor = iColor;
+         m_iLastPen = 2;
+
       }
       else if(ch == (char)200) // bottom-left double
       {
-         ::draw2d::pen_sp & p2 = get_pen2(iColor);
-         m_dib->get_graphics()->SelectObject(p2);
+
+         if(m_iLastPen != 2 || m_iLastPenColor != iColor)
+         {
+
+            ::draw2d::pen_sp & p2 = get_pen2(iColor);
+
+            m_dib->get_graphics()->SelectObject(p2);
+
+         }
 
          m_dib->get_graphics()->DrawLine(
             m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2 - i2,
@@ -354,11 +438,22 @@ void dib_console::draw_write(char ch, int x, int y, int iColor)
             m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
             m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,m_iBorder + y * m_sizeTile.cy
             );
+
+         m_iLastPenColor = iColor;
+         m_iLastPen = 2;
+
       }
       else if(ch == (char)192) // bottom-left simple
       {
-         ::draw2d::pen_sp & p = get_pen1(iColor);
-         m_dib->get_graphics()->SelectObject(p);
+
+         if(m_iLastPen != 1 || m_iLastPenColor != iColor)
+         {
+
+            ::draw2d::pen_sp & p = get_pen1(iColor);
+
+            m_dib->get_graphics()->SelectObject(p);
+
+         }
 
          m_dib->get_graphics()->DrawLine(
             m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
@@ -370,11 +465,22 @@ void dib_console::draw_write(char ch, int x, int y, int iColor)
             m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
             m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,m_iBorder + y * m_sizeTile.cy
             );
+
+         m_iLastPenColor = iColor;
+         m_iLastPen = 1;
+
       }
       else if(ch == (char)188) // bottom-right double
       {
-         ::draw2d::pen_sp & p2 = get_pen2(iColor);
-         m_dib->get_graphics()->SelectObject(p2);
+
+         if(m_iLastPen != 2 || m_iLastPenColor != iColor)
+         {
+
+            ::draw2d::pen_sp & p2 = get_pen2(iColor);
+
+            m_dib->get_graphics()->SelectObject(p2);
+
+         }
 
          m_dib->get_graphics()->DrawLine(
             m_iBorder + x * m_sizeTile.cx,
@@ -386,11 +492,22 @@ void dib_console::draw_write(char ch, int x, int y, int iColor)
             m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
             m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,m_iBorder + y * m_sizeTile.cy
             );
+
+         m_iLastPenColor = iColor;
+         m_iLastPen = 2;
+
       }
       else if(ch == (char)217) // bottom-right simple
       {
-         ::draw2d::pen_sp & p = get_pen1(iColor);
-         m_dib->get_graphics()->SelectObject(p);
+
+         if(m_iLastPen != 1 || m_iLastPenColor != iColor)
+         {
+
+            ::draw2d::pen_sp & p = get_pen1(iColor);
+
+            m_dib->get_graphics()->SelectObject(p);
+
+         }
 
          m_dib->get_graphics()->DrawLine(
             m_iBorder + x * m_sizeTile.cx,
@@ -402,11 +519,22 @@ void dib_console::draw_write(char ch, int x, int y, int iColor)
             m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
             m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,m_iBorder + y * m_sizeTile.cy
             );
+
+         m_iLastPenColor = iColor;
+         m_iLastPen = 1;
+
       }
       else if(ch == (char)187) // top-right double
       {
-         ::draw2d::pen_sp & p2 = get_pen2(iColor);
-         m_dib->get_graphics()->SelectObject(p2);
+
+         if(m_iLastPen != 2 || m_iLastPenColor != iColor)
+         {
+
+            ::draw2d::pen_sp & p2 = get_pen2(iColor);
+
+            m_dib->get_graphics()->SelectObject(p2);
+
+         }
 
          m_dib->get_graphics()->DrawLine(
             m_iBorder + x * m_sizeTile.cx,
@@ -418,11 +546,22 @@ void dib_console::draw_write(char ch, int x, int y, int iColor)
             m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
             m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy + 1
             );
+
+         m_iLastPenColor = iColor;
+         m_iLastPen = 2;
+
       }
       else if(ch == (char)191) // top-right simple
       {
-         ::draw2d::pen_sp & p = get_pen1(iColor);
-         m_dib->get_graphics()->SelectObject(p);
+
+         if(m_iLastPen != 1 || m_iLastPenColor != iColor)
+         {
+
+            ::draw2d::pen_sp & p = get_pen1(iColor);
+
+            m_dib->get_graphics()->SelectObject(p);
+
+         }
 
          m_dib->get_graphics()->DrawLine(
             m_iBorder + x * m_sizeTile.cx,
@@ -434,6 +573,10 @@ void dib_console::draw_write(char ch, int x, int y, int iColor)
             m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2,
             m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy + 1
             );
+
+         m_iLastPenColor = iColor;
+         m_iLastPen = 1;
+
       }
       else
       {

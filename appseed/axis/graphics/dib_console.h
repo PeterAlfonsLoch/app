@@ -21,6 +21,9 @@ public:
    int_map < ::draw2d::pen_sp > m_mappen2;
    int_map < ::draw2d::pen_sp > m_mappen1;
 
+   int m_iLastPenColor;
+   int m_iLastPen;
+
    dib_console(::aura::application * papp,size sizeTile);
 
    virtual ::draw2d::pen_sp & get_pen2(int iColor);
