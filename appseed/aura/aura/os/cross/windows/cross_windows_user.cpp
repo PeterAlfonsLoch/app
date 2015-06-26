@@ -174,6 +174,8 @@ string iconv_charset_from_windows_code_page(UINT CodePage)
    {
    case 1252:
       return "CP1252";
+   case 437:
+      return "CP437";
    default:
       return "UTF-8";
 

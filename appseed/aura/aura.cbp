@@ -67,6 +67,7 @@
 			<Add option="-ldl" />
 			<Add option="-lX11" />
 			<Add option="-lpthread" />
+			<Add option="-lncurses" />
 			<Add option="-latomiconv" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
@@ -89,6 +90,7 @@
 		<Unit filename="aura/aura/aura_command.h" />
 		<Unit filename="aura/aura/aura_command_target.h" />
 		<Unit filename="aura/aura/aura_common.h" />
+		<Unit filename="aura/aura/aura_console_window.h" />
 		<Unit filename="aura/aura/aura_conv.h" />
 		<Unit filename="aura/aura/aura_core.h" />
 		<Unit filename="aura/aura/aura_core_os.h" />
@@ -231,6 +233,7 @@
 		<Unit filename="aura/node/ansios/ansios_thread_impl.h" />
 		<Unit filename="aura/node/linux/linux.h" />
 		<Unit filename="aura/node/linux/linux_application.h" />
+		<Unit filename="aura/node/linux/linux_console_window.h" />
 		<Unit filename="aura/node/linux/linux_dir.h" />
 		<Unit filename="aura/node/linux/linux_factory_exchange.h" />
 		<Unit filename="aura/node/linux/linux_file.h" />

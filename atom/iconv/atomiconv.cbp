@@ -53,6 +53,7 @@
 			<Add option="-fPIC" />
 			<Add option="-DLINUX" />
 			<Add option="-DNO_XMALLOC" />
+			<Add option="-DENABLE_EXTRA" />
 			<Add directory="../../atom" />
 			<Add directory="srclib" />
 			<Add directory="../iconv" />
