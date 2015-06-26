@@ -1,20 +1,24 @@
-#include "framework.h"
-//#include <io.h>
 
 
 namespace windows
 {
 
-   console::console()
+
+   console::console(::aura::application * papp) :
+      object(papp)
    {
+
       cout.m_spbuffer = canew(std_out_buffer());
       AllocConsole();
 
    }
 
+
    console::~console()
    {
+
       FreeConsole();
+
    }
 
 
@@ -148,23 +152,4 @@ namespace windows
 } // namespace windows
 
 
-
-
-#include <windows.h>
-
-#include <stdio.h>
-
-#include <fcntl.h>
-
-#include <io.h>
-
-//#include <iostream>
-
-//#include <fstream>
-
-//#ifndef _USE_OLD_IOSTREAMS
-//
-//using namespace std;
-//
-//#endif
 

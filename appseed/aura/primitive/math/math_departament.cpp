@@ -37,19 +37,19 @@ namespace math
             PROV_RSA_FULL,
             CRYPT_NEWKEYSET))
          {
-            //printf("CryptAcquireContext succeeded. \n");
+            //debug_print("CryptAcquireContext succeeded. \n");
          }
          else
          {
             //           TRACELASTERROR();
-            //printf("Error during CryptAcquireContext!\n");
+            //debug_print("Error during CryptAcquireContext!\n");
 
          }
 
       }
       else
       {
-         //printf("CryptAcquireContext succeeded. \n");
+         //debug_print("CryptAcquireContext succeeded. \n");
       }
       //-------------------------------------------------------------------
       // Generate a key.
@@ -59,11 +59,11 @@ namespace math
          0,
          &hOriginalKey))
       {
-         //printf("Original session key is created. \n");
+         //debug_print("Original session key is created. \n");
       }
       else
       {
-         //printf("ERROR - CryptGenKey.");
+         //debug_print("ERROR - CryptGenKey.");
       }
       //-------------------------------------------------------------------
       // Duplicate the key.
@@ -74,11 +74,11 @@ namespace math
          0,
          &hDuplicateKey))
       {
-         //printf("The session key has been duplicated. \n");
+         //debug_print("The session key has been duplicated. \n");
       }
       else
       {
-         //printf("ERROR - CryptDuplicateKey");
+         //debug_print("ERROR - CryptDuplicateKey");
       }
       //-------------------------------------------------------------------
       // set additional parameters on the original key.
@@ -91,11 +91,11 @@ namespace math
          (BYTE*)&dwMode,
          0))
       {
-         //printf("Key Parameters set. \n");
+         //debug_print("Key Parameters set. \n");
       }
       else
       {
-         //printf("Error during CryptSetKeyParam.");
+         //debug_print("Error during CryptSetKeyParam.");
       }
 
       // Generate a random initialization vector.
@@ -104,11 +104,11 @@ namespace math
          8,
          pbData))
       {
-         //printf("Random sequence generated. \n");
+         //debug_print("Random sequence generated. \n");
       }
       else
       {
-         //printf("Error during CryptGenRandom.");
+         //debug_print("Error during CryptGenRandom.");
       }
       //-------------------------------------------------------------------
       // set the initialization vector.
@@ -118,11 +118,11 @@ namespace math
          pbData,
          0))
       {
-         //printf("Parameter set with random sequence as initialization vector. \n");
+         //debug_print("Parameter set with random sequence as initialization vector. \n");
       }
       else
       {
-         //printf("Error during CryptSetKeyParam.");
+         //debug_print("Error during CryptSetKeyParam.");
       }
 
 #endif

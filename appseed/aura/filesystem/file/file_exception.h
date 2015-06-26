@@ -49,8 +49,10 @@ namespace file
          ::call_stack(e.get_app())
       {
 
-            printf(":file");
+         debug_print(":file");
+
       }
+
 
       exception(::aura::application * papp,e_cause cause = exception::none,LONG lOsError = -1,const char * lpszArchiveName = NULL);
 

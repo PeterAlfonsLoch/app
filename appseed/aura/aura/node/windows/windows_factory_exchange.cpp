@@ -29,6 +29,7 @@ namespace aura
          System.factory().creatable          < ::windows::process            >(System.type_info < ::process::process          >(),32);
 
          System.factory().creatable_small    < ::windows::tts::speaker       >(System.type_info < ::tts::speaker              >());
+         System.factory().creatable_small    < ::windows::console            >(System.type_info < ::console::window           >());
 
 
 

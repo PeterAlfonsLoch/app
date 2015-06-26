@@ -7,15 +7,22 @@ interface_only_exception::interface_only_exception(::aura::application * papp, c
    ::exception::base(papp),
    not_implemented(papp, pszTip)
 {
-      if(pszTip == NULL)
-      {
-         printf(":interface_only_exception(NULL)");
-      }
-      else
-      {
-         printf(":interface_only_exception(\"%s\")",pszTip);
-      }
+
+   if(pszTip == NULL)
+   {
+
+      debug_print(":interface_only_exception(NULL)");
+
    }
+   else
+   {
+
+      debug_print(":interface_only_exception(\"%s\")",pszTip);
+
+   }
+
+}
+
 
 interface_only_exception::interface_only_exception(const interface_only_exception & e) : 
    object(e),
@@ -23,8 +30,11 @@ interface_only_exception::interface_only_exception(const interface_only_exceptio
    ::exception::base(e),
    not_implemented(e)
 {
+
 }
+
 
 interface_only_exception::~interface_only_exception()
 {
+
 }

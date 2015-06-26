@@ -45,7 +45,7 @@ namespace html
 
          string_format format(this,&::html::file::trace,NULL);
 
-         format.printf(pszFmt);
+         format.format(pszFmt);
 
       }
 
@@ -55,7 +55,7 @@ namespace html
 
          string_format format(this,&::html::file::trace,NULL);
 
-         format.printf(pszFmt,value,args...);
+         format.format(pszFmt,value,args...);
 
       }
 

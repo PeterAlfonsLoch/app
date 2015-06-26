@@ -1006,9 +1006,9 @@ namespace sockets
    size_t socket_handler::get_count()
    {
    /*
-   printf(" m_sockets : %d\n", m_sockets.size());
-   printf(" m_add     : %d\n", m_add.size());
-   printf(" m_delete  : %d\n", m_delete.size());
+   debug_print(" m_sockets : %d\n", m_sockets.size());
+   debug_print(" m_add     : %d\n", m_add.size());
+   debug_print(" m_delete  : %d\n", m_delete.size());
    */
       return m_sockets.get_size() + m_add.get_size() + m_delete.get_size();
    }

@@ -322,7 +322,7 @@ extern "C"
       print_tm(tp)
    struct tm *tp;
    {
-      printf("%04d-%02d-%02d %02d:%02d:%02d yday %03d wday %d isdst %d",
+      debug_print("%04d-%02d-%02d %02d:%02d:%02d yday %03d wday %d isdst %d",
          tp->tm_year + TM_YEAR_BASE,tp->tm_mon + 1,tp->tm_mday,
          tp->tm_hour,tp->tm_min,tp->tm_sec,
          tp->tm_yday,tp->tm_wday,tp->tm_isdst);
@@ -337,11 +337,11 @@ extern "C"
    {
       if(tk != tl || not_equal_tm(&tmk,&tml))
       {
-         printf("mktime (");
+         debug_print("mktime (");
          print_tm(&tmk);
-         printf(")\nyields (");
+         debug_print(")\nyields (");
          print_tm(&tml);
-         printf(") == %ld, should be %ld\n",(long)tl,(long)tk);
+         debug_print(") == %ld, should be %ld\n",(long)tl,(long)tk);
          return 1;
       }
 
@@ -372,9 +372,9 @@ extern "C"
          tmk = tm;
          tl = mktime(&tmk);
          tml = *localtime(&tl);
-         printf("mktime returns %ld == ",(long)tl);
+         debug_print("mktime returns %ld == ",(long)tl);
          print_tm(&tmk);
-         printf("\n");
+         debug_print("\n");
          status = check_result(tl,tmk,tl,tml);
       }
       else if(argc == 4 || (argc == 5 && strcmp(argv[4],"-") == 0))
@@ -402,7 +402,7 @@ extern "C"
             }
       }
       else
-         printf("Usage:\
+         debug_print("Usage:\
                              \t%s YYYY-MM-DD HH:MM:SS [ISDST] # Test given time.\n\
                                           \t%s FROM BY TO # Test values FROM, FROM+BY, ..., TO.\n\
                                                        \t%s FROM BY TO - # Do not test those values (for benchmark).\n",

@@ -48,6 +48,7 @@ bool CLASS_DECL_AURA __windows_init();
 int32_t CLASS_DECL_AURA __windows_main(sp(::aura::system) psystem, ::windows::main_init_data * pmaininitdata);
 
 
+#include "windows_console_window.h"
 
 
 

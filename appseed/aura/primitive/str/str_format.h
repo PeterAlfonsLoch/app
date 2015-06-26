@@ -200,7 +200,7 @@ public:
 
             m_estate = state_initial;
 
-            printf(s, args...);
+            format(s, args...);
 
             return;
 
@@ -237,7 +237,7 @@ public:
 
             ::str::format(this, value);
 
-            printf(s, args...);
+            format(s, args...);
 
             return;
 
@@ -266,10 +266,10 @@ public:
 
    }
 
-   inline void printf(const char * & s);
+   inline void format(const char * & s);
 
    template<typename T, typename... Args>
-   inline void printf(const char * & s, const T & value, Args... args);
+   inline void format(const char * & s, const T & value, Args... args);
 
 };
 

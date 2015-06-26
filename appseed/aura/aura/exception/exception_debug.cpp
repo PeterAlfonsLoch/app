@@ -25,14 +25,18 @@ CLASS_DECL_AURA int throw_assert_exception(const char * lpszFileName,int iLineNu
 
 }
 
+
 assert_exception::assert_exception(const assert_exception & e) :
    object(e),
    ::call_stack(e),
    ::exception::base(e),
    simple_exception(e)
 {
-      printf(":assert(copy)"); 
+   
+   debug_print(":assert(copy)");
+
 }
+
 
 assert_exception::assert_exception(::aura::application * papp, const char * pszFile, long lLine) :
    object(papp),
@@ -46,13 +50,13 @@ assert_exception::assert_exception(::aura::application * papp, const char * pszF
    if(pszFile == NULL)
    {
    
-      printf(":assert(NULL, %ld)",lLine);
+      debug_print(":assert(NULL, %ld)",lLine);
    
    }
    else
    {
    
-      printf(":assert(\"%s\":%ld)",pszFile,lLine);
+      debug_print(":assert(\"%s\":%ld)",pszFile,lLine);
       
    }
    
@@ -61,13 +65,13 @@ assert_exception::assert_exception(::aura::application * papp, const char * pszF
    if(pszFile == NULL)
    {
       
-      printf(":assert(NULL, %d)",lLine);
+      debug_print(":assert(NULL, %d)",lLine);
       
    }
    else
    {
       
-      printf(":assert(\"%s\":%d)",pszFile,lLine);
+      debug_print(":assert(\"%s\":%d)",pszFile,lLine);
       
    }
 
@@ -91,8 +95,11 @@ misc_exception::misc_exception(const misc_exception & e) :
    simple_exception(e),
    m_strMessage(e.m_strMessage)
 {
-      printf(":misc(copy)");
+   
+   debug_print(":misc(copy)");
+
 }
+
 
 misc_exception::misc_exception(::aura::application * papp, const char * pszMessage) :
    object(papp),
@@ -100,14 +107,19 @@ misc_exception::misc_exception(::aura::application * papp, const char * pszMessa
    ::exception::base(papp),
    simple_exception(papp)
 {
-      if(pszMessage == NULL)
-      {
-         printf(":misc(NULL)");
-      }
-      else
-      {
-         printf(":misc(\"%s\")",pszMessage);
-      }
+
+   if(pszMessage == NULL)
+   {
+   
+      debug_print(":misc(NULL)");
+
+   }
+   else
+   {
+   
+      debug_print(":misc(\"%s\")",pszMessage);
+   
+   }
       
    m_strMessage = pszMessage;
 }

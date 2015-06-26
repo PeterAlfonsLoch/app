@@ -15,7 +15,7 @@ namespace windows
       int m_iW;
       int m_iH;
 
-      console();
+      console(::aura::application * papp);
       virtual ~console();
 
       void redirect_io();

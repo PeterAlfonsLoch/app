@@ -26,6 +26,7 @@
 #include <eh.h>
 
 
+
 #define DECLARE_SE_EXCEPTION_CLASS(name) class CLASS_DECL_AURA name : virtual public standard_exception \
    { \
     friend class translator; \
@@ -35,7 +36,7 @@
       ::call_stack(papp), \
       ::exception::base(papp), \
       ::standard_exception(papp, ppointers) \
-      {printf(":" #name);} \
+      {debug_print(":" #name);} \
    };
 
 #else
@@ -96,11 +97,12 @@ public:
       m_ppointers(ppointers)
    {
 
-      printf(":standard");
+      debug_print(":standard");
 
       _ASSERTE(ppointers != 0);
 
    }
+
 
    standard_exception(const standard_exception & se) :
       object(se.get_app()),
@@ -108,8 +110,11 @@ public:
       ::exception::base(se),
       m_ppointers(se.m_ppointers)
    {
-     printf(":standard(copy)");
+
+      debug_print(":standard(copy)");
+
    }
+
 
 #else
 
@@ -167,12 +172,20 @@ namespace exception
    {
    public:
 #if defined(ANDROID)
+      
+      
       standard_access_violation (::aura::application * papp, int32_t signal, void * psiginfo, void * pc) :
          object(papp),
          ::call_stack(papp),
          ::exception::base(papp),
          ::standard_exception(papp, signal, psiginfo, pc)
-      {printf(":standard");}
+      {
+         
+         debug_print(":standard");
+      
+      }
+
+
 #elif defined(LINUX) || defined(APPLEOS) || defined(SOLARIS)
       standard_access_violation (::aura::application * papp, int32_t signal, void * psiginfo, void * pc) :
          object(papp),
@@ -197,7 +210,11 @@ namespace exception
 #endif
          ::exception::base(papp),
          ::standard_exception(papp, signal, psiginfo, pc)
-      {printf(":standard");}
+      {
+         
+         debug_print(":standard");
+   
+      }
 
 /*       sig_ucontext_t * uc = (sig_ucontext_t *)ucontext;
 
@@ -208,14 +225,20 @@ namespace exception
                  itohex_dup(info->si_addr) + " from " + itohex_dup(caller_address) + "\n\n";*/
 
    #else
+      
+      
       standard_access_violation (::aura::application * papp, EXCEPTION_POINTERS * ppointers) :
          object(papp),
          ::call_stack(papp),
          ::exception::base(papp),
          ::standard_exception(papp, ppointers)
       {
-            printf(":standard");
-         }
+
+         debug_print(":standard");
+
+      }
+
+
    public:
       bool is_read_op() const { return !info()->ExceptionRecord->ExceptionInformation [0]; }
       uint_ptr inaccessible_address() const { return info()->ExceptionRecord->ExceptionInformation [1]; }
@@ -226,11 +249,21 @@ namespace exception
    class standard_sigfpe : public standard_exception
    {
    public:
+      
+      
       standard_sigfpe(::aura::application * papp,int32_t iSignal,void * psiginfo,void * pc):
          object(papp),
       ::call_stack(papp),
          ::exception::base(papp),
-         standard_exception(papp, iSignal, psiginfo, pc) {printf(":sigfpe");}
+         standard_exception(papp, iSignal, psiginfo, pc)
+      {
+         
+         debug_print(":sigfpe");
+      
+      }
+
+
+
    //   bool is_read_op() const { return !info()->ExceptionRecord->ExceptionInformation [0]; }
      // uint_ptr inaccessible_address() const { return info()->ExceptionRecord->ExceptionInformation [1]; }
    };
@@ -260,7 +293,14 @@ namespace exception
 #endif
 #endif
          ::exception::base(papp),
-         standard_exception(papp, iSignal, psiginfo, pc) {printf(":sigfpe");}
+         standard_exception(papp, iSignal, psiginfo, pc)
+      {
+         
+         debug_print(":sigfpe");
+      
+      }
+
+
    public:
    //   bool is_read_op() const { return !info()->ExceptionRecord->ExceptionInformation [0]; }
      // uint_ptr inaccessible_address() const { return info()->ExceptionRecord->ExceptionInformation [1]; }
@@ -274,14 +314,19 @@ namespace exception
    class standard_no_memory : public standard_exception
    {
    public:
+      
+      
       standard_no_memory (::aura::application * papp, EXCEPTION_POINTERS * ppointers) :
          object(papp),
          ::call_stack(papp),
          ::exception::base(papp),
          ::standard_exception(papp, ppointers)
       {
-            printf(":nomem");
-         }
+
+         debug_print(":nomem");
+
+      }
+
    public:
       size_t mem_size() const { return info()->ExceptionRecord->ExceptionInformation [0]; }
    };

@@ -8,7 +8,7 @@ object(::get_thread_app()),
    
    m_strMessage = strMessage;
    
-   printf(":verisimple(\"%s\")",strMessage.c_str());
+   debug_print(":verisimple(\"%s\")",strMessage.c_str());
 
 }
 

@@ -552,7 +552,7 @@ namespace windows
          &tokenHandle))                  // Access token handle
       {
          DWORD win32Status = GetLastError();
-         printf("Cannot open token handle: %d\n",win32Status);
+         debug_print("Cannot open token handle: %d\n",win32Status);
          bOk = false;
       }
 
@@ -569,7 +569,7 @@ namespace windows
          &bytesReturned))                // Size needed
       {
          DWORD win32Status = GetLastError();
-         printf("Cannot query token information: %d\n",win32Status);
+         debug_print("Cannot query token information: %d\n",win32Status);
          bOk = false;
       }
 
@@ -761,7 +761,7 @@ namespace windows
       //   &SidUse))         // Account type
       //{
       //   dwResult = GetLastError();
-      //   printf("\n getCredentialsForService LookupAccountSidLocalW failed: win32 error = 0x%x\n",dwResult);
+      //   debug_print("\n getCredentialsForService LookupAccountSidLocalW failed: win32 error = 0x%x\n",dwResult);
       //   return false;
       //}
 
@@ -790,7 +790,7 @@ namespace windows
          && GetLastError() != ERROR_INSUFFICIENT_BUFFER)
       {
          dwResult = GetLastError();
-         printf("\n getCredentialsForService CredPackAuthenticationBufferW (1) failed: win32 error = 0x%x\n",dwResult);
+         debug_print("\n getCredentialsForService CredPackAuthenticationBufferW (1) failed: win32 error = 0x%x\n",dwResult);
          return false;
       }
 
@@ -799,7 +799,7 @@ namespace windows
       if(!pvInAuthBlob)
       {
          cbInAuthBlob = 0;
-         printf("\n getCredentialsForService CoTaskMemAlloc() Out of memory.\n");
+         debug_print("\n getCredentialsForService CoTaskMemAlloc() Out of memory.\n");
          return false;
       }
 
@@ -813,7 +813,7 @@ namespace windows
          &cbInAuthBlob))
       {
          dwResult = GetLastError();
-         printf("\n CredPackAuthenticationBufferW (2) failed: win32 error = 0x%x\n",dwResult);
+         debug_print("\n CredPackAuthenticationBufferW (2) failed: win32 error = 0x%x\n",dwResult);
       }
 
 

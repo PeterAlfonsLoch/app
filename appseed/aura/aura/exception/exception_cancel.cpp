@@ -6,21 +6,29 @@ object(papp),
 ::call_stack(papp),
 ::exception::base(papp)
 {
-   printf(":cancel");
+   
+   debug_print(":cancel");
+
 }
+
 
 cancel_exception::cancel_exception(::aura::application * papp,const char * pszMessage):
 object(papp),
 ::call_stack(papp),
 ::exception::base(papp)
 {
+   
    if(pszMessage == NULL)
    {
-      printf(":cancel(NULL)");
+      
+      debug_print(":cancel(NULL)");
+
    }
    else
    {
-      printf(":cancel(\"%s\")",pszMessage);
+      
+      debug_print(":cancel(\"%s\")",pszMessage);
+
    }
 
    m_strMessage = pszMessage;

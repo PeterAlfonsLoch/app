@@ -4108,12 +4108,12 @@ BOOL LaunchAppIntoDifferentSession(const char * pszProcess,const char * pszComma
       | TOKEN_READ | TOKEN_WRITE,&hPToken))
    {
       int abcd = GetLastError();
-      printf("Process token open Error: %u\n",GetLastError());
+      debug_print("Process token open Error: %u\n",GetLastError());
    }
 
    if(!LookupPrivilegeValue(NULL,SE_DEBUG_NAME,&luid))
    {
-      printf("Lookup Privilege value Error: %u\n",GetLastError());
+      debug_print("Lookup Privilege value Error: %u\n",GetLastError());
    }
    tp.PrivilegeCount =1;
    tp.Privileges[0].Luid =luid;
@@ -4131,12 +4131,12 @@ BOOL LaunchAppIntoDifferentSession(const char * pszProcess,const char * pszComma
       (PTOKEN_PRIVILEGES)NULL,NULL))
    {
       int abc =GetLastError();
-      printf("Adjust Privilege value Error: %u\n",GetLastError());
+      debug_print("Adjust Privilege value Error: %u\n",GetLastError());
    }
 
    if(GetLastError() == ERROR_NOT_ALL_ASSIGNED)
    {
-      printf("Token does not have the provilege\n");
+      debug_print("Token does not have the provilege\n");
    }
 
    LPVOID pEnv =NULL;
@@ -4189,7 +4189,7 @@ bool enable_windows_token_privilege(HANDLE h,LPCSTR lpcszName)
 
       int iError = GetLastError();
 
-      printf("Lookup Privilege value Error: %u\n",iError);
+      debug_print("Lookup Privilege value Error: %u\n",iError);
 
       return false;
 
@@ -4204,7 +4204,7 @@ bool enable_windows_token_privilege(HANDLE h,LPCSTR lpcszName)
 
       int iError = GetLastError();
 
-      printf("Adjust Privilege value Error: %u\n",iError);
+      debug_print("Adjust Privilege value Error: %u\n",iError);
 
       return false;
 
@@ -4242,7 +4242,7 @@ BOOL LaunchAppIntoSystemAcc(const char * pszProcess,const char * pszCommand,cons
    if(!::OpenProcessToken(hProcess, TOKEN_ALL_ACCESS,&hPToken))
    {
       int abcd = GetLastError();
-      printf("Process token open Error: %u\n",GetLastError());
+      debug_print("Process token open Error: %u\n",GetLastError());
    }
 
    if(!enable_windows_token_privilege(hPToken,SE_DEBUG_NAME))
@@ -4280,7 +4280,7 @@ BOOL LaunchAppIntoSystemAcc(const char * pszProcess,const char * pszCommand,cons
 
    //if(GetLastError() == ERROR_NOT_ALL_ASSIGNED)
    //{
-   //   printf("Token does not have the provilege\n");
+   //   debug_print("Token does not have the provilege\n");
    //}
    // "LOCAL SERVICE" or "LocalService" ?
    // "NETWORK SERVICE" or "NetworkService" ?
@@ -4295,7 +4295,7 @@ BOOL LaunchAppIntoSystemAcc(const char * pszProcess,const char * pszCommand,cons
    if(!DuplicateTokenEx(hUserToken,TOKEN_ALL_ACCESS,NULL,SecurityDelegation,TokenPrimary,&hUserTokenDup))
    {
       int dup = GetLastError();
-      printf("DuplicateTokenEx Error: %u\n",GetLastError());
+      debug_print("DuplicateTokenEx Error: %u\n",GetLastError());
    }
 
    //Adjust Token privilege

@@ -542,7 +542,7 @@ wait_result mutex::wait(const duration & duration)
    if(dwTimeout == 30000 + 1977 && g_iMutex == 0)
    {
       g_iMutex++;
-      printf("HAHAHA");
+      debug_print("HAHAHA");
    }
 
    return wait_result(wait_result::Timeout);

@@ -7,16 +7,22 @@ void_implementation_exception::void_implementation_exception(::aura::application
    ::exception::base(papp),
    not_implemented(papp, pszTip)
 {
-      if(pszTip == NULL)
-      {
-         printf(":void_implementation(NULL)");
-      }
-      else
-      {
-         printf(":void_implementation(\"%s\")",pszTip);
-      }
+      
+   if(pszTip == NULL)
+   {
+   
+      debug_print(":void_implementation(NULL)");
+
+   }
+   else
+   {
+   
+      debug_print(":void_implementation(\"%s\")",pszTip);
+
+   }
 
 }
+
 
 void_implementation_exception::void_implementation_exception(const void_implementation_exception & e) : 
    object(e),
@@ -24,10 +30,17 @@ void_implementation_exception::void_implementation_exception(const void_implemen
    ::exception::base(e),
    not_implemented(e)
 {
-         printf(":void_implementation(copy)");
+
+   debug_print(":void_implementation(copy)");
 
 }
+
 
 void_implementation_exception::~void_implementation_exception()
 {
+
 }
+
+
+
+

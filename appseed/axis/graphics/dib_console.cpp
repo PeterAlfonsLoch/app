@@ -152,6 +152,41 @@ bool dib_console::defer_write(char ch,int x,int y,int cx,int cy,int iColor)
 
 }
 
+::draw2d::pen_sp & dib_console::get_pen2(int iColor)
+{
+
+   ::draw2d::pen_sp & pen2 = m_mappen2[iColor];
+
+   if(pen2.is_null())
+   {
+
+      pen2.alloc(allocer());
+
+      pen2->create_solid(4.0,console_COLORREF(iColor));
+
+   }
+   
+   return pen2;
+
+}
+
+::draw2d::pen_sp & dib_console::get_pen1(int iColor)
+{
+
+   ::draw2d::pen_sp & pen1 = m_mappen2[iColor];
+
+   if(pen1.is_null())
+   {
+
+      pen1.alloc(allocer());
+
+      pen1->create_solid(2.0,console_COLORREF(iColor));
+
+   }
+
+   return pen1;
+
+}
 
 void dib_console::draw_write(char ch, int x, int y, int iColor)
 {
@@ -170,10 +205,8 @@ void dib_console::draw_write(char ch, int x, int y, int iColor)
       if(ch == (char)209)// horizontal double / down simple
       {
 
-         ::draw2d::pen_sp p2(allocer());
-         p2->create_solid(4.0,console_COLORREF(iColor));
-         ::draw2d::pen_sp p(allocer());
-         p->create_solid(2.0,console_COLORREF(iColor));
+         ::draw2d::pen_sp & p2 = get_pen2(iColor);
+         ::draw2d::pen_sp & p = get_pen1(iColor);
 
          m_dib->get_graphics()->SelectObject(p2);
 
@@ -194,8 +227,7 @@ void dib_console::draw_write(char ch, int x, int y, int iColor)
       }
       else if(ch == (char)205)// horizontal double
       {
-         ::draw2d::pen_sp p2(allocer());
-         p2->create_solid(4.0,console_COLORREF(iColor));
+         ::draw2d::pen_sp & p2 = get_pen2(iColor);
          m_dib->get_graphics()->SelectObject(p2);
 
          m_dib->get_graphics()->DrawLine(
@@ -206,8 +238,7 @@ void dib_console::draw_write(char ch, int x, int y, int iColor)
       }
       else if(ch == (char)196) // horizontal simple
       {
-         ::draw2d::pen_sp p(allocer());
-         p->create_solid(2.0,console_COLORREF(iColor));
+         ::draw2d::pen_sp & p = get_pen1(iColor);
          m_dib->get_graphics()->SelectObject(p);
 
          m_dib->get_graphics()->DrawLine(
@@ -218,8 +249,7 @@ void dib_console::draw_write(char ch, int x, int y, int iColor)
       }
       else if(ch == (char)186) // vertical double
       {
-         ::draw2d::pen_sp p2(allocer());
-         p2->create_solid(4.0,console_COLORREF(iColor));
+         ::draw2d::pen_sp & p2 = get_pen2(iColor);
          m_dib->get_graphics()->SelectObject(p2);
 
          m_dib->get_graphics()->DrawLine(
@@ -230,10 +260,8 @@ void dib_console::draw_write(char ch, int x, int y, int iColor)
       }
       else if(ch == (char)199) // vertical double / right simple
       {
-         ::draw2d::pen_sp p2(allocer());
-         p2->create_solid(4.0,console_COLORREF(iColor));
-         ::draw2d::pen_sp p(allocer());
-         p->create_solid(2.0,console_COLORREF(iColor));
+         ::draw2d::pen_sp & p2 = get_pen2(iColor);
+         ::draw2d::pen_sp & p = get_pen1(iColor);
          m_dib->get_graphics()->SelectObject(p2);
 
          m_dib->get_graphics()->DrawLine(
@@ -251,10 +279,8 @@ void dib_console::draw_write(char ch, int x, int y, int iColor)
       }
       else if(ch == (char)182) // vertical double / left simple
       {
-         ::draw2d::pen_sp p2(allocer());
-         p2->create_solid(4.0,console_COLORREF(iColor));
-         ::draw2d::pen_sp p(allocer());
-         p->create_solid(2.0,console_COLORREF(iColor));
+         ::draw2d::pen_sp & p2 = get_pen2(iColor);
+         ::draw2d::pen_sp & p = get_pen1(iColor);
          m_dib->get_graphics()->SelectObject(p2);
 
          m_dib->get_graphics()->DrawLine(
@@ -272,8 +298,7 @@ void dib_console::draw_write(char ch, int x, int y, int iColor)
       }
       else if(ch == (char)179) // vertical simple
       {
-         ::draw2d::pen_sp p(allocer());
-         p->create_solid(2.0,console_COLORREF(iColor));
+         ::draw2d::pen_sp & p = get_pen1(iColor);
          m_dib->get_graphics()->SelectObject(p);
 
          m_dib->get_graphics()->DrawLine(
@@ -284,8 +309,7 @@ void dib_console::draw_write(char ch, int x, int y, int iColor)
       }
       else if(ch == (char)218) // top-left simple
       {
-         ::draw2d::pen_sp p(allocer());
-         p->create_solid(2.0,console_COLORREF(iColor));
+         ::draw2d::pen_sp & p = get_pen1(iColor);
          m_dib->get_graphics()->SelectObject(p);
 
          m_dib->get_graphics()->DrawLine(
@@ -301,8 +325,7 @@ void dib_console::draw_write(char ch, int x, int y, int iColor)
       }
       else if(ch == (char)201) // top-left double
       {
-         ::draw2d::pen_sp p2(allocer());
-         p2->create_solid(4.0,console_COLORREF(iColor));
+         ::draw2d::pen_sp & p2 = get_pen2(iColor);
          m_dib->get_graphics()->SelectObject(p2);
 
          m_dib->get_graphics()->DrawLine(
@@ -318,8 +341,7 @@ void dib_console::draw_write(char ch, int x, int y, int iColor)
       }
       else if(ch == (char)200) // bottom-left double
       {
-         ::draw2d::pen_sp p2(allocer());
-         p2->create_solid(4.0,console_COLORREF(iColor));
+         ::draw2d::pen_sp & p2 = get_pen2(iColor);
          m_dib->get_graphics()->SelectObject(p2);
 
          m_dib->get_graphics()->DrawLine(
@@ -335,8 +357,7 @@ void dib_console::draw_write(char ch, int x, int y, int iColor)
       }
       else if(ch == (char)192) // bottom-left simple
       {
-         ::draw2d::pen_sp p(allocer());
-         p->create_solid(2.0,console_COLORREF(iColor));
+         ::draw2d::pen_sp & p = get_pen1(iColor);
          m_dib->get_graphics()->SelectObject(p);
 
          m_dib->get_graphics()->DrawLine(
@@ -352,8 +373,7 @@ void dib_console::draw_write(char ch, int x, int y, int iColor)
       }
       else if(ch == (char)188) // bottom-right double
       {
-         ::draw2d::pen_sp p2(allocer());
-         p2->create_solid(4.0,console_COLORREF(iColor));
+         ::draw2d::pen_sp & p2 = get_pen2(iColor);
          m_dib->get_graphics()->SelectObject(p2);
 
          m_dib->get_graphics()->DrawLine(
@@ -369,8 +389,7 @@ void dib_console::draw_write(char ch, int x, int y, int iColor)
       }
       else if(ch == (char)217) // bottom-right simple
       {
-         ::draw2d::pen_sp p(allocer());
-         p->create_solid(2.0,console_COLORREF(iColor));
+         ::draw2d::pen_sp & p = get_pen1(iColor);
          m_dib->get_graphics()->SelectObject(p);
 
          m_dib->get_graphics()->DrawLine(
@@ -386,8 +405,7 @@ void dib_console::draw_write(char ch, int x, int y, int iColor)
       }
       else if(ch == (char)187) // top-right double
       {
-         ::draw2d::pen_sp p2(allocer());
-         p2->create_solid(4.0,console_COLORREF(iColor));
+         ::draw2d::pen_sp & p2 = get_pen2(iColor);
          m_dib->get_graphics()->SelectObject(p2);
 
          m_dib->get_graphics()->DrawLine(
@@ -403,8 +421,7 @@ void dib_console::draw_write(char ch, int x, int y, int iColor)
       }
       else if(ch == (char)191) // top-right simple
       {
-         ::draw2d::pen_sp p(allocer());
-         p->create_solid(2.0,console_COLORREF(iColor));
+         ::draw2d::pen_sp & p = get_pen1(iColor);
          m_dib->get_graphics()->SelectObject(p);
 
          m_dib->get_graphics()->DrawLine(

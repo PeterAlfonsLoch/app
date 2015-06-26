@@ -7,10 +7,20 @@ exit_exception::exit_exception(::aura::application * papp, const char * pszMessa
    ::exception::base(papp),
    ::simple_exception(papp, pszMessage)
 {
-      if(pszMessage == NULL)
-         printf(":exit(NULL)");
-      else
-         printf(":exit(\"%s\")", pszMessage);
+
+   if(pszMessage == NULL)
+   {
+
+      debug_print(":exit(NULL)");
+
+   }
+   else
+   {
+
+      debug_print(":exit(\"%s\")",pszMessage);
+
+   }
+
 }
 
 
@@ -20,7 +30,9 @@ exit_exception::exit_exception(const exit_exception & e) :
    ::exception::base(e),
    ::simple_exception(e)
 {
-      printf(":exit(copy)");
+   
+   debug_print(":exit(copy)");
+
 }
 
 

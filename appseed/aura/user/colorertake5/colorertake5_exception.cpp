@@ -16,26 +16,34 @@ namespace colorertake5
 
    }
 
+
    exception::exception(::aura::application * papp) :
       object(papp),
       ::call_stack(papp),
       ::exception::base(papp)
    {
-         printf(":colorertake5");
+
+      debug_print(":colorertake5");
 
       m_strMessage = "colorertake5::exception";
 
    }
 
+   
    exception::exception(::aura::application * papp, const string &msg) :
       object(papp),
       ::call_stack(papp),
       ::exception::base(papp)
    {
-         printf(":colorertake5(%s)", msg.c_str());
+
+      debug_print(":colorertake5(%s)",msg.c_str());
+
       m_strMessage = "colorertake5::exception: ";
+
       m_strMessage += msg;
+
    }
+
 
    exception::~exception()
    {

@@ -8,8 +8,11 @@ not_supported_exception::not_supported_exception(const not_supported_exception &
    not_implemented(e),
    interface_only_exception(e)
 {
-      printf(":not_supported");
+
+   debug_print(":not_supported");
+
 }
+
 
 not_supported_exception::not_supported_exception(::aura::application * papp, const char * pszTip) :
    object(papp),
@@ -18,14 +21,19 @@ not_supported_exception::not_supported_exception(::aura::application * papp, con
    not_implemented(papp, pszTip),
    interface_only_exception(papp, pszTip)
 {
-      if(pszTip == NULL)
-      {
-         printf(":not_supported_exception(NULL)");
-      }
-      else
-      {
-         printf(":not_supported_exception(\"%s\")",pszTip);
-      }
+
+   if(pszTip == NULL)
+   {
+
+      debug_print(":not_supported_exception(NULL)");
+
+   }
+   else
+   {
+
+      debug_print(":not_supported_exception(\"%s\")",pszTip);
+
+   }
 
 }
 
@@ -33,5 +41,8 @@ not_supported_exception::~not_supported_exception()
 {
 
 }
+
+
+
 
 

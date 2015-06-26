@@ -31,7 +31,7 @@ OutputDebugStringA(
 
     fprintf(stderr, "%s", lpOutputString);
     fflush(stderr);
-    //printf("%s", lpOutputString);
+    //debug_print("%s", lpOutputString);
 
 
 }

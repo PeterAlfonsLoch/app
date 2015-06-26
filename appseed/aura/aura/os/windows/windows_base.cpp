@@ -327,7 +327,7 @@ int GetVersion_ex1()
    int lowbyte = LOBYTE(loword);
    int hibyte = HIBYTE(loword);
 
-   printf("Window major version = %d and minor version = %d\n", lowbyte, hibyte);
+   debug_print("Window major version = %d and minor version = %d\n", lowbyte, hibyte);
 
    if (!(dwVersion & 0x80000000))                // Windows NT, 2000, XP
       return 1;

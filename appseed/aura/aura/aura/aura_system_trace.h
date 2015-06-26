@@ -94,7 +94,7 @@ namespace aura
 
          string_format format(this, &trace_add_file_and_line::trace_category_level, &categorylevel);
 
-         format.printf(pszFmt);
+         format.format(pszFmt);
 
 
       }
@@ -110,7 +110,7 @@ namespace aura
 
          string_format format(this, &trace_add_file_and_line::trace_category_level, &categorylevel);
 
-         format.printf(pszFmt, value, args...);
+         format.format(pszFmt, value, args...);
 
       }
 
@@ -119,7 +119,7 @@ namespace aura
 
          string_format format(this, &trace_add_file_and_line::trace, NULL);
 
-         format.printf(pszFmt);
+         format.format(pszFmt);
 
       }
 
@@ -129,7 +129,7 @@ namespace aura
 
          string_format format(this, &trace_add_file_and_line::trace, NULL);
 
-         format.printf(pszFmt, value, args...);
+         format.format(pszFmt, value, args...);
 
       }
 

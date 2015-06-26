@@ -2042,9 +2042,6 @@
     <ClInclude Include="aura\aura\aura_console_window.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
-    <ClInclude Include="aura\os\windows\windows_console_window.h">
-      <Filter>Header Files\aura\os\windows</Filter>
-    </ClInclude>
     <ClInclude Include="user\user\user_frame.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
@@ -2058,6 +2055,9 @@
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
     <ClInclude Include="aura\node\windows\windows_tts_speaker.h">
+      <Filter>Header Files\aura\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\node\windows\windows_console_window.h">
       <Filter>Header Files\aura\node\windows</Filter>
     </ClInclude>
   </ItemGroup>
@@ -3433,9 +3433,6 @@
     <ClCompile Include="aura\aura\aura_app_launcher.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\windows\windows_console_window.cpp">
-      <Filter>Source Files\aura\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="aura\aura\aura_console_window.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
@@ -3449,6 +3446,9 @@
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
     <ClCompile Include="aura\node\windows\windows_tts_speaker.cpp">
+      <Filter>Source Files\aura\node\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\node\windows\windows_console_window.cpp">
       <Filter>Source Files\aura\node\windows</Filter>
     </ClCompile>
   </ItemGroup>

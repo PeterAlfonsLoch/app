@@ -18,10 +18,13 @@ public:
    int m_iBorder;
    stringa m_stra;
    array < int_array > m_i2aColor;
-
+   int_map < ::draw2d::pen_sp > m_mappen2;
+   int_map < ::draw2d::pen_sp > m_mappen1;
 
    dib_console(::aura::application * papp,size sizeTile);
 
+   virtual ::draw2d::pen_sp & get_pen2(int iColor);
+   virtual ::draw2d::pen_sp & get_pen1(int iColor);
 
    virtual void SetWindowSize(int iHeight,int iWidth);
    virtual void SetCursorVisibility(bool show);

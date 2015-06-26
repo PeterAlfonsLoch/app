@@ -8,7 +8,9 @@ invalid_handle_exception::invalid_handle_exception(::aura::application * papp) :
    ::simple_exception(papp),
    os_exception(papp)
 {
-         printf(":invalid_handle_exception");
+
+   debug_print(":invalid_handle_exception");
+
 }
 
 
@@ -19,14 +21,19 @@ invalid_handle_exception::invalid_handle_exception(::aura::application * papp, c
    ::simple_exception(papp),
    os_exception(papp, pszMessage)
 {
-      if(pszMessage == NULL)
-      {
-         printf(":invalid_handle_exception(NULL)");
-      }
-      else
-      {
-         printf(":invalid_handle_exception(\"%s\")",pszMessage);
-      }
+
+   if(pszMessage == NULL)
+   {
+
+      debug_print(":invalid_handle_exception(NULL)");
+
+   }
+   else
+   {
+
+      debug_print(":invalid_handle_exception(\"%s\")",pszMessage);
+
+   }
 
 }
 

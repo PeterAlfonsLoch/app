@@ -9,6 +9,16 @@ CLASS_DECL_AURA uint32_t g_dwStartTime = 0;
 
 END_EXTERN_C
 
+extern "C"
+CLASS_DECL_AURA void debug_print(const char * pszFormat,...)
+{
+   va_list argList;
+   va_start(argList,pszFormat);
+   char sz[4096];
+   vsnprintf(sz,sizeof(sz),pszFormat,argList);
+   va_end(argList);
+   ::OutputDebugStringW(wstring(sz));
+}
 
 
 //namespace std
@@ -163,8 +173,8 @@ bool aura_term()
 void dappy(const char * psz)
 {
 
-   //printf("app._ : %s : %s\n",_argv[2],psz);
-   //printf("hello!!    : %s\n",psz);
+   //debug_print("app._ : %s : %s\n",_argv[2],psz);
+   //debug_print("hello!!    : %s\n",psz);
    //::OutputDebugString("hello!!    : " + string(psz) + "\n");
 
 }
@@ -195,3 +205,5 @@ void set_aura(void * p,::aura::application * papp)
 CLASS_DECL_AURA LPFN_CREATE_SYSTEM g_pfn_create_system;
 
 CLASS_DECL_AURA const char * g_pszCooperativeLevel;
+
+

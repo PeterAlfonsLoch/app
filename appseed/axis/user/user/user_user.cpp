@@ -109,9 +109,9 @@ namespace user
 
       bool bHasUninstall = varTopicQuey.has_property("uninstall");
 
-      printf("user::initialize bHasInstall %c", bHasInstall);
+      debug_print("user::initialize bHasInstall %c", bHasInstall);
 
-      printf("user::initialize bHasUninstall %c", bHasUninstall);
+      debug_print("user::initialize bHasUninstall %c", bHasUninstall);
 
       if(!::aura::departament::initialize())
          return false;

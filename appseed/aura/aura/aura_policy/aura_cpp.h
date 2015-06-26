@@ -1202,7 +1202,7 @@ return ::str::from(value);
 //#ifdef VARIADIC_TEMPLATE
 
 template<typename T,typename... Args>
-inline void string_format::printf(const char * & s,const T & value,Args... args)
+inline void string_format::format(const char * & s,const T & value,Args... args)
 {
 
    while(*s)
@@ -1221,14 +1221,14 @@ inline void string_format::printf(const char * & s,const T & value,Args... args)
 
    }
 
-   throw simple_exception(get_thread_app(),"extra arguments provided to printf");
+   throw simple_exception(get_thread_app(),"extra arguments provided to format");
 
 
 }
 
 
 
-inline void string_format::printf(const char * & s)
+inline void string_format::format(const char * & s)
 {
 
    while(*s)

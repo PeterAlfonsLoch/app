@@ -299,7 +299,7 @@ namespace sockets
 
       if(str::ends_ci(strName,"03 Coisa De Acender - Se..... - Djavan.mp3"))
       {
-         printf("%s", strName.c_str());
+         debug_print("%s", strName.c_str());
       }
 
       if(outheader(__id(content_type)).get_string().has_char())

@@ -670,7 +670,7 @@ namespace core
       }
       else
       {
-      printf("Unknown protocol: '%s'\n", protocol);
+      debug_print("Unknown protocol: '%s'\n", protocol);
       }
       if(bRead)
       {

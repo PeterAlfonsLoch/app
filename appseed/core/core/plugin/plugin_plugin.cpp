@@ -794,7 +794,7 @@ namespace plugin
                      }
                      if(!m_bApp)
                      {
-                        printf("Session application is not initialized. Cannot start mplite.");
+                        debug_print("Session application is not initialized. Cannot start mplite.");
                         return;
                      }
                   }

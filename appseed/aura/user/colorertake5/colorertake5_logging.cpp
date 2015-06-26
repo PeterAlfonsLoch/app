@@ -6,107 +6,109 @@
 namespace colorertake5
 {
 
-static const char *levelNames[] = {"QUIET", "ERROR", "WARN", "TRACE", "INFO"};
+   static const char *levelNames[] ={"QUIET","ERROR","WARN","TRACE","INFO"};
 
-// base_editor, text_parser_impl, TPCache
-// ParserFactory, BaseEditorNative, NSC:JHRCParser:getRegion
+   // base_editor, text_parser_impl, TPCache
+   // ParserFactory, BaseEditorNative, NSC:JHRCParser:getRegion
 
-static const char *toTrace[] = {"BaseEditorNative", "JavaLineSource" };
+   static const char *toTrace[] ={"BaseEditorNative","JavaLineSource"};
 
-static FILE * log = 0;
+   static FILE * log = 0;
 
-static void file_logger(int32_t level, const char *cname, const char *msg, va_list v){
+   static void file_logger(int32_t level,const char *cname,const char *msg,va_list v){
 
-  int32_t idx = 0;
+      int32_t idx = 0;
 
-  while (log == 0 && idx < 10){
-    char log_name[30];
+      while(log == 0 && idx < 10){
+         char log_name[30];
 #ifdef __unix__
-    sprintf(log_name, "/tmp/clr-trace%d.log", idx);
+         sprintf(log_name, "/tmp/clr-trace%d.log", idx);
 #else
-    sprintf(log_name, "ca:\\clr-trace%d.log", idx);
+         sprintf(log_name,"ca:\\clr-trace%d.log",idx);
 #endif
-    log = fopen(log_name, "ab+");
-    idx++;
-  }
-
-  fprintf(log, "[%s][%s] ", levelNames[level], cname);
-
-  vfprintf(log, msg, v);
-
-  fprintf(log, "\n");
-
-  fflush(log);
-}
-   void console_logger(int32_t level, const char *cname, const char *msg, va_list v);
-
- void console_logger(int32_t level, const char *cname, const char *msg, va_list v){
-
-  printf("[%s][%s] ", levelNames[level], cname);
-
-  vprintf(msg, v);
-
-  printf("\n");
-}
-
-
-void colorer_logger_set_target(const char *logfile){
-  if (logfile == 0) return;
-  if (log != 0){
-    fclose(log);
-  }
-  log = fopen(logfile, "ab+");
-}
-
-
-
-void colorer_logger_error(const char *cname, const char *msg, ...){
-  va_list v;
-  va_start(v, msg);
-  colorer_logger(COLORER_FEATURE_LOGLEVEL_ERROR, cname, msg, v);
-  va_end (v);
-}
-
-void colorer_logger_warn(const char *cname, const char *msg, ...){
-  va_list v;
-  va_start(v, msg);
-  colorer_logger(COLORER_FEATURE_LOGLEVEL_WARN, cname, msg, v);
-  va_end (v);
-}
-void colorer_logger_trace(const char *cname, const char *msg, ...){
-  va_list v;
-  va_start(v, msg);
-  colorer_logger(COLORER_FEATURE_LOGLEVEL_TRACE, cname, msg, v);
-  va_end (v);
-}
-void colorer_logger_info(const char *cname, const char *msg, ...){
-  va_list v;
-  va_start(v, msg);
-  colorer_logger(COLORER_FEATURE_LOGLEVEL_INFO, cname, msg, v);
-  va_end (v);
-}
-
-
-
-void colorer_logger(int32_t level, const char *cname, const char *msg, va_list v){
-
-  bool found = false;
-
-  for (int32_t idx = 0; idx < sizeof(toTrace)/sizeof(toTrace[0]); idx++)
-  {
-      if (stricmp_dup(toTrace[idx], cname) == 0)
-      {
-         found = true;
+         log = fopen(log_name,"ab+");
+         idx++;
       }
-  }
-  if (!found){
-  //  return;
-  }
-  //*/
 
-//  console_logger(level, cname, msg, v);
-  file_logger(level, cname, msg, v);
-}
+      fprintf(log,"[%s][%s] ",levelNames[level],cname);
+
+      vfprintf(log,msg,v);
+
+      fprintf(log,"\n");
+
+      fflush(log);
+   }
+   void console_logger(int32_t level,const char *cname,const char *msg,va_list v);
+
+   void console_logger(int32_t level,const char *cname,const char *msg,va_list v)
+   {
+
+      debug_print("[%s][%s] ",levelNames[level],cname);
+
+      vprintf(msg,v);
+
+      debug_print("\n");
+
+   }
+
+
+   void colorer_logger_set_target(const char *logfile){
+      if(logfile == 0) return;
+      if(log != 0){
+         fclose(log);
+      }
+      log = fopen(logfile,"ab+");
+   }
+
+
+
+   void colorer_logger_error(const char *cname,const char *msg,...){
+      va_list v;
+      va_start(v,msg);
+      colorer_logger(COLORER_FEATURE_LOGLEVEL_ERROR,cname,msg,v);
+      va_end(v);
+   }
+
+   void colorer_logger_warn(const char *cname,const char *msg,...){
+      va_list v;
+      va_start(v,msg);
+      colorer_logger(COLORER_FEATURE_LOGLEVEL_WARN,cname,msg,v);
+      va_end(v);
+   }
+   void colorer_logger_trace(const char *cname,const char *msg,...){
+      va_list v;
+      va_start(v,msg);
+      colorer_logger(COLORER_FEATURE_LOGLEVEL_TRACE,cname,msg,v);
+      va_end(v);
+   }
+   void colorer_logger_info(const char *cname,const char *msg,...){
+      va_list v;
+      va_start(v,msg);
+      colorer_logger(COLORER_FEATURE_LOGLEVEL_INFO,cname,msg,v);
+      va_end(v);
+   }
+
+
+
+   void colorer_logger(int32_t level,const char *cname,const char *msg,va_list v){
+
+      bool found = false;
+
+      for(int32_t idx = 0; idx < sizeof(toTrace) / sizeof(toTrace[0]); idx++)
+      {
+         if(stricmp_dup(toTrace[idx],cname) == 0)
+         {
+            found = true;
+         }
+      }
+      if(!found){
+         //  return;
+      }
+      //*/
+
+      //  console_logger(level, cname, msg, v);
+      file_logger(level,cname,msg,v);
+   }
 
 
 }

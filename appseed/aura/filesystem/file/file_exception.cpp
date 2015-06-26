@@ -45,9 +45,9 @@ namespace file
       else
          lpsz = szUnknown;
 #ifdef WINDOWSEX
-      printf(":file(%hs(%d),%d,%s)",lpsz, cause,lOsError,string(lpszArchiveName).c_str());
+      debug_print(":file(%hs(%d),%d,%s)",lpsz,cause,lOsError,string(lpszArchiveName).c_str());
 #else
-      printf(":file(%s(%d),%d,%s)",lpsz, cause,lOsError,string(lpszArchiveName).c_str());
+      debug_print(":file(%s(%d),%d,%s)",lpsz, cause,lOsError,string(lpszArchiveName).c_str());
 #endif
       Construct(cause, lOsError, lpszArchiveName);
    }

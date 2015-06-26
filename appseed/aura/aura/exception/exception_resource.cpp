@@ -7,7 +7,9 @@ resource_exception::resource_exception(::aura::application * papp) :
    ::exception::base(papp),
    simple_exception(papp)
 {
-   printf(":resource_exception");
+
+   debug_print(":resource_exception");
+
 }
 
 

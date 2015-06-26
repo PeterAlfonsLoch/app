@@ -435,7 +435,7 @@ namespace ansios
 
       //int status = posix_spawn(&m_iPid,argv[0],NULL,NULL,(char * const *)argv.get_data(),environ);
 
-      printf("synch_elevated : posix_spawn return status %d", status);
+      debug_print("synch_elevated : posix_spawn return status %d", status);
 
 
       DWORD dwStart = get_tick_count();
@@ -604,7 +604,7 @@ namespace ansios
 
       //int status = posix_spawn(&m_iPid,argv[0],NULL,NULL,(char * const *)argv.get_data(),environ);
 
-       printf("synch_elevated : posix_spawn return status %d", status);
+      debug_print("synch_elevated : posix_spawn return status %d", status);
 
 
     DWORD dwStart = get_tick_count();

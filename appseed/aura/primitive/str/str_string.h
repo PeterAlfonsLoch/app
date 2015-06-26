@@ -648,7 +648,7 @@ public:
 
       string_format format(this, &string::FormatPrinter, NULL);
 
-      format.printf(s);
+      format.format(s);
 
    }
 
@@ -658,7 +658,7 @@ public:
 
       string_format format(this, &string::FormatPrinter, NULL);
 
-      format.printf(s, value, args...);
+      format.format(s, value, args...);
 
    }
 
@@ -681,7 +681,7 @@ public:
 
       string_format format(&str,&string::FormatPrinter,NULL);
 
-      format.printf(s);
+      format.format(s);
 
       operator += (str);
 
@@ -696,7 +696,7 @@ public:
 
       string_format format(&str,&string::FormatPrinter,NULL);
 
-      format.printf(s,value,args...);
+      format.format(s,value,args...);
 
       operator += (str);
 

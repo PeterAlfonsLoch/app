@@ -949,11 +949,16 @@ template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, c
 void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::get_next_assoc(POSITION& rNextPosition,
                                                                          KEY& rKey, VALUE& rValue) const
 {
+   
    ASSERT_VALID(this);
+   
    if(m_hashtable.m_ppassocHash == NULL)
    {
-      printf("map::get_next_assoc m_ppassocHash == NULL");
+
+      debug_print("map::get_next_assoc m_ppassocHash == NULL");
+
    }
+
    ENSURE(m_hashtable.m_ppassocHash != NULL);  // never call on is_empty map
 
    assoc* passocRet = (assoc*)rNextPosition;

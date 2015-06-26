@@ -6,7 +6,11 @@ class CLASS_DECL_AURA system_exception :
    virtual public simple_exception
 {
 public:
+   
+   
    HRESULT ErrorCode;
+
+
    system_exception(::aura::application * papp, HRESULT errorCode) :
       object(papp),
       ::call_stack(papp),
@@ -14,6 +18,12 @@ public:
       ::simple_exception(papp),
       ErrorCode(errorCode)
    {
-         printf(":system");
+
+      
+      debug_print(":system");
+
+
    }
+
+
 };

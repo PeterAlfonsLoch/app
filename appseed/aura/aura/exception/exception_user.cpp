@@ -7,7 +7,8 @@ user_exception::user_exception(::aura::application * papp) :
    ::exception::base(papp),
    ::simple_exception(papp)
 {
-         printf(":user");
+
+   debug_print(":user");
 
 }
 

@@ -19,7 +19,8 @@ not_installed::not_installed(::aura::application * papp, const char * pszVersion
    str += "locale=" + m_strLocale + ";";
    m_strSchema          = pszSchema;
    str += "schema=" + m_strSchema + ";";
-   printf(":not_installed(\"%s\")", str.c_str());
+
+   debug_print(":not_installed(\"%s\")",str.c_str());
 
 }
 
@@ -28,7 +29,9 @@ not_installed::not_installed(const not_installed & e) :
    ::call_stack(e),
    ::exception::base(e)
 {
-      printf(":not_installed(copy)");
+
+   debug_print(":not_installed(copy)");
+
    m_strVersion         = e.m_strVersion;
    m_strBuild           = e.m_strBuild;
    m_strType            = e.m_strType;
@@ -44,4 +47,6 @@ not_installed::~not_installed()
 
 
 }
+
+
 

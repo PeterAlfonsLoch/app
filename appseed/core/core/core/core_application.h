@@ -206,7 +206,7 @@ namespace core
 
          string_format format(&str, &::string::FormatPrinter, NULL);
 
-         format.printf(pszFormat, value, args...);
+         format.format(pszFormat, value, args...);
 
          return simple_message_box(puiOwner, str, fuStyle);
 

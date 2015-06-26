@@ -194,11 +194,11 @@ void mark_deallocated(CScriptVarLink *v) {
 
 void show_allocated() {
     for (size_t i=0;i<allocatedVars.size();i++) {
-      printf("ALLOCATED, %d refs\n", allocatedVars[i]->getRefs());
+      debug_print("ALLOCATED, %d refs\n", allocatedVars[i]->getRefs());
       allocatedVars[i]->trace("  ");
     }
     for (size_t i=0;i<allocatedLinks.size();i++) {
-      printf("ALLOCATED LINK %s, allocated[%d] to \n", allocatedLinks[i]->name.c_str(), allocatedLinks[i]->var->getRefs());
+      debug_print("ALLOCATED LINK %s, allocated[%d] to \n", allocatedLinks[i]->name.c_str(), allocatedLinks[i]->var->getRefs());
       allocatedLinks[i]->var->trace("  ");
     }
     allocatedVars.clear();
@@ -1267,7 +1267,7 @@ CScriptVar *CScriptVar::ref() {
 }
 
 void CScriptVar::unref() {
-    if (refs<=0) printf("OMFG, we have unreffed too far!\n");
+    if (refs<=0) debug_print("OMFG, we have unreffed too far!\n");
     if ((--refs)==0) {
       delete this;
     }
@@ -1569,7 +1569,7 @@ CScriptVarLink *tinyjs::factor(bool &execute) {
     }
     if (l->tk==LEX_ID) {
         CScriptVarLink *a = execute ? findInScopes(l->tkStr) : new CScriptVarLink(new CScriptVar());
-        //printf("0x%08X for %s at %s\n", (uint32_t)a, l->tkStr.c_str(), l->getPosition().c_str());
+        //debug_print("0x%08X for %s at %s\n", (uint32_t)a, l->tkStr.c_str(), l->getPosition().c_str());
         /* The parent if we're executing a method call */
         CScriptVar *parent = 0;
 

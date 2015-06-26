@@ -6,12 +6,16 @@ not_licensed::not_licensed(::aura::application * papp, const char * pszRealm, co
    ::call_stack(papp),
    ::exception::base(papp)
 {
-      string str;
+   
+   string str;
+
    m_strRealm     = pszRealm;
    str += "realm=" + m_strRealm + ";";
    m_strUrl       = pszUrl;
    str += "url=" + m_strUrl + ";";
-   printf(":not_licensed(\"%s\"", str.c_str());
+
+   debug_print(":not_licensed(\"%s\"",str.c_str());
+
 }
 
 
@@ -21,7 +25,8 @@ not_licensed::not_licensed(const not_licensed & e) :
    ::exception::base(e)
 {
 
-      printf(":not_licensed(copy)");
+   debug_print(":not_licensed(copy)");
+
    m_strRealm     = e.m_strRealm;
    m_strUrl       = e.m_strUrl;
 
@@ -30,5 +35,9 @@ not_licensed::not_licensed(const not_licensed & e) :
 
 not_licensed::~not_licensed()
 {
+
 }
+
+
+
 

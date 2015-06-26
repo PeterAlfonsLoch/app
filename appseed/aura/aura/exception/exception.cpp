@@ -7,7 +7,8 @@ namespace exception
 
    exception::exception()
    {
-      printf("log:exception");
+
+      debug_print("log:exception");
       //::MessageBox(NULL,"abc123","abc123",MB_OK);
 
       m_bHandled = false;
@@ -18,13 +19,13 @@ namespace exception
 
    exception::exception(e_context_switcher_failed efail)
    {
-      //printf("log:exception");
+      //debug_print("log:exception");
       //::MessageBox(NULL,"abc123","abc123",MB_OK);
       m_bLog = efail != failure_no_log;
 
       if(m_bLog)
       {
-         printf("log:exception");
+         debug_print("log:exception");
       }
 
       m_bHandled = false;
@@ -41,23 +42,23 @@ namespace exception
 
          if(m_bContinue)
          {
-            printf("-continue");
+            debug_print("-continue");
          }
          else
          {
-            printf("-should_not_continue(fatal_exception_instance_candidate)");
+            debug_print("-should_not_continue(fatal_exception_instance_candidate)");
          }
 
          if(m_bHandled)
          {
-            printf("-explicitly_handled");
+            debug_print("-explicitly_handled");
          }
          else
          {
-            printf("-not_handled_explicitly");
+            debug_print("-not_handled_explicitly");
          }
 
-         printf("\n");
+         debug_print("\n");
 
          }
 

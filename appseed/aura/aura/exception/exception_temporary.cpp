@@ -1,31 +1,45 @@
 //#include "framework.h"
 
-temporary_exception::temporary_exception(const temporary_exception & e) : 
-   object(e),
-   ::call_stack(e),
-   ::exception::base(e),
-   m_strTip(e.m_strTip)
+
+temporary_exception::temporary_exception(const temporary_exception & e):
+object(e),
+::call_stack(e),
+::exception::base(e),
+m_strTip(e.m_strTip)
 {
-      printf(":temporary");
+
+   debug_print(":temporary");
+
 }
 
-temporary_exception::temporary_exception(::aura::application * papp, const char * pszTip) : 
-   object(papp),
-   ::call_stack(papp),
-   ::exception::base(papp),
-   m_strTip(pszTip)
+
+temporary_exception::temporary_exception(::aura::application * papp,const char * pszTip):
+object(papp),
+::call_stack(papp),
+::exception::base(papp),
+m_strTip(pszTip)
 {
-      if(pszTip == NULL)
-      {
-         printf(":temporary(NULL)");
-      }
-      else
-      {
-         printf(":temporary(\"%s\")",pszTip);
-      }
+
+   if(pszTip == NULL)
+   {
+
+      debug_print(":temporary(NULL)");
+
+   }
+   else
+   {
+
+      debug_print(":temporary(\"%s\")",pszTip);
+
+   }
+
 }
+
 
 temporary_exception::~temporary_exception()
 {
+
 }
+
+
 

@@ -7,8 +7,11 @@ hresult_exception::hresult_exception(::aura::application * papp, HRESULT hr) :
    ::call_stack(papp),
    ::exception::base(papp)
 {
-      printf(":hresult(%d)", hr);
+   
+   debug_print(":hresult(%d)",hr);
+
    m_hresult = hr;
+
 }
    
 

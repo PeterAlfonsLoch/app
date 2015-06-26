@@ -2,38 +2,48 @@
 
 
 
-runtime_error::runtime_error(const string & strError, ::aura::application * papp):
+runtime_error::runtime_error(const string & strError,::aura::application * papp):
 object(papp),
 ::call_stack(papp),
 ::exception::base(papp),
 error_exception(papp,strError)
 {
+
    if(strError.is_empty())
    {
-      printf(":runtime_error(\"empty\")");
+
+      debug_print(":runtime_error(\"empty\")");
+
    }
    else
    {
-      printf(":runtime_error(str=\"%s\")",strError.c_str());
+
+      debug_print(":runtime_error(str=\"%s\")",strError.c_str());
+
    }
 
 
 }
 
-runtime_error::runtime_error(::aura::application * papp, const char * pszError) :
-   object(papp),
-   ::call_stack(papp),
-   ::exception::base(papp),
-   error_exception(papp, pszError)
+runtime_error::runtime_error(::aura::application * papp,const char * pszError):
+object(papp),
+::call_stack(papp),
+::exception::base(papp),
+error_exception(papp,pszError)
 {
-      if(pszError == NULL)
-      {
-         printf(":runtime_error(NULL)");
-      }
-      else
-      {
-         printf(":runtime_error(\"%s\")",pszError);
-      }
+
+   if(pszError == NULL)
+   {
+
+      debug_print(":runtime_error(NULL)");
+
+   }
+   else
+   {
+
+      debug_print(":runtime_error(\"%s\")",pszError);
+
+   }
 
 
 }
@@ -41,3 +51,5 @@ runtime_error::runtime_error(::aura::application * papp, const char * pszError) 
 runtime_error::~runtime_error()
 {
 }
+
+

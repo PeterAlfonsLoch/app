@@ -16,9 +16,15 @@
 #include "aura/aura/aura/aura_cpu_architecture.h"
 
 
+BEGIN_EXTERN_C
+
 CLASS_DECL_AURA int __assert_failed_line(const char * lpszFileName,int iLineNumber);
 CLASS_DECL_AURA int is_debugger_attached();
 CLASS_DECL_AURA int throw_assert_exception(const char * lpszFileName,int iLineNumber);
+CLASS_DECL_AURA void debug_print(const char * psz,...);
+
+END_EXTERN_C
+
 
 
 #ifndef __cplusplus

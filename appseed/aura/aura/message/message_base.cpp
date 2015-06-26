@@ -61,7 +61,7 @@ namespace message
       //   if(m_bDestroyed)
       //   {
 
-      //      printf("Window Already Destroyed");
+      //      debug_print("Window Already Destroyed");
 
       //   }
       //   else
