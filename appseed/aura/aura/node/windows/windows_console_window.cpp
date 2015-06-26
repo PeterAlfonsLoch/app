@@ -10,6 +10,22 @@ namespace windows
 
       cout.m_spbuffer = canew(std_out_buffer());
       AllocConsole();
+      CONSOLE_FONT_INFOEX info ={};
+      info.cbSize = sizeof(info);
+      GetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE),FALSE,&info);
+
+
+      info.dwFontSize.X = 14;
+      info.dwFontSize.Y = 24;
+      wcscpy(info.FaceName,L"Lucida Console");
+      info.FontFamily = 54;
+      info.FontWeight = 800;
+      info.nFont = 0;
+
+      if(!SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE),FALSE,&info))
+      {
+         TRACELASTERROR();
+      }
 
    }
 
@@ -108,6 +124,7 @@ namespace windows
       SetConsoleWindowInfo(GetStdHandle(STD_OUTPUT_HANDLE),TRUE,&window);
       COORD buffer ={width,height};
       SetConsoleScreenBufferSize(GetStdHandle(STD_OUTPUT_HANDLE),buffer);
+
    }
 
    void console::SetCursorVisibility(bool show)

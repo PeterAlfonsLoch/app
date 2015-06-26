@@ -581,9 +581,15 @@ void dib_console::draw_write(char ch, int x, int y, int iColor)
       else
       {
 
+         string str;
+
+         ::str::international::multibyte_to_utf8(437,str,string(ch));
+
          m_dib->get_graphics()->set_text_color(console_COLORREF(iColor));
-         m_dib->get_graphics()->draw_text(string(ch),rect(m_iBorder + x * m_sizeTile.cx,m_iBorder + y * m_sizeTile.cy,
+
+         m_dib->get_graphics()->draw_text(str,rect(m_iBorder + x * m_sizeTile.cx,m_iBorder + y * m_sizeTile.cy,
             m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx,m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy),DT_CENTER | DT_VCENTER);
+
       }
 
    }
