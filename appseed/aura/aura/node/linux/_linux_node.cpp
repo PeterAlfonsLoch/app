@@ -18,3 +18,6 @@
 #include "linux_thread.cpp"
 #include "linux_trace.cpp"
 #include "linux_util.cpp"
+
+
+#include "linux_console_window.cpp"

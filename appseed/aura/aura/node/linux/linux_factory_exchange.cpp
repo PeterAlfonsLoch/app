@@ -22,6 +22,7 @@ namespace linux
          System.factory().creatable < os                          >  (System. type_info < ::aura::os                 > (), 1);
          System.factory().creatable < ::ansios::process           >  (System. type_info < ::process::process         > (), 1);
          System.factory().creatable < ::ansios::pipe              >  (System. type_info < ::process::pipe            > (), 1);
+         System.factory().creatable < console                     >  (System. type_info < ::console::window          > (), 1);
 
       }
 

@@ -1,7 +1,20 @@
 //#include "framework.h"
 
+CLASS_DECL_AURA int __cpp_assert_failed_line(const char * lpszFileName, int iLineNumber);
+
+BEGIN_EXTERN_C
 
 CLASS_DECL_AURA int __assert_failed_line(const char * lpszFileName, int iLineNumber)
+{
+
+   return __cpp_assert_failed_line(lpszFileName, iLineNumber);
+
+}
+
+END_EXTERN_C
+
+
+CLASS_DECL_AURA int __cpp_assert_failed_line(const char * lpszFileName, int iLineNumber)
 {
 
    thread * pthread = get_thread();

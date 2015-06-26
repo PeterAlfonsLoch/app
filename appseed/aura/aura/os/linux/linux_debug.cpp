@@ -8,14 +8,13 @@
 //#include <sys/ptrace.h>
 //#include <sys/wait.h>
 
-
-
 int32_t __node_is_debugger_attached()
 {
 
    return gdb_check();
 
 }
+
 
 
 /*

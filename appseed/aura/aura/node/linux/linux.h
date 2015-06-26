@@ -183,3 +183,8 @@ CLASS_DECL_AURA sp(::user::primitive) __get_main_window();
 CLASS_DECL_AURA const char * __get_app_name();
 
 
+
+
+#include "linux_console_window.h"
+
+
