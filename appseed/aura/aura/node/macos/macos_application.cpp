@@ -31,7 +31,7 @@ namespace macos
       //      ::ca2::smart_pointer < ::application_base > ::m_p->_001OnFileNew(NULL);
    }
 
-   ::aura::document * application::_001OpenDocumentFile(var varFile)
+   ::user::document * application::_001OpenDocumentFile(var varFile)
    {
       //    return ::ca2::smart_pointer < ::application_base > ::m_p->_001OpenDocumentFile(varFile);
       return NULL;

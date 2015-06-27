@@ -28,36 +28,36 @@ namespace message
       };
 
 
-      template < class T >
-      class HandlerItem: public HandlerItemBase
-      {
-      public:
-
-
-         T *                     m_psignalizable;
-
-
-         // Pointer to signal object directly associate with the
-         // prototype.
-         // This is a cached value and not the
-         // storage holder of the object.
-         virtual signalizable* get_signalizable() { return m_psignalizable; }
-
-
-      };
-
-
-      class CLASS_DECL_AURA HandlerItemArray:
-         public ptr_array < HandlerItemBase >
-      {
-      public:
-
-
-         virtual ~HandlerItemArray();
-         bool HasSignalizable(signalizable* psignalizable);
-
-
-      };
+//      template < class T >
+//      class HandlerItem: public HandlerItemBase
+//      {
+//      public:
+//
+//
+//         T *                     m_psignalizable;
+//
+//
+//         // Pointer to signal object directly associate with the
+//         // prototype.
+//         // This is a cached value and not the
+//         // storage holder of the object.
+//         virtual signalizable* get_signalizable() { return m_psignalizable; }
+//
+//
+//      };
+//
+//
+//      class CLASS_DECL_AURA HandlerItemArray:
+//         public ptr_array < HandlerItemBase >
+//      {
+//      public:
+//
+//
+//         virtual ~HandlerItemArray();
+//         bool HasSignalizable(signalizable* psignalizable);
+//
+//
+//      };
 
 
       class CLASS_DECL_AURA Signal:

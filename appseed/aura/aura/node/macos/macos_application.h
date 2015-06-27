@@ -46,7 +46,7 @@ namespace macos
       virtual HINSTANCE GetHinstance();
       bool _001OnDDECommand(const char * lpcsz);
       virtual void _001EnableShellOpen();
-      virtual ::aura::document * _001OpenDocumentFile(var varFile);
+      virtual ::user::document * _001OpenDocumentFile(var varFile);
       virtual void _001OnFileNew();
       
 

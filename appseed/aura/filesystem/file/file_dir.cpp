@@ -149,8 +149,38 @@ using namespace ::Windows::System;
       }
 
    }
+   return string(lpszModuleFolder);
 
 
+#elif defined(APPLEOS)
+   
+   
+   string str;
+   
+   {
+      
+      char * pszCurDir = getcwd(NULL, 0);
+      
+      string strCurDir = pszCurDir;
+      
+      free(pszCurDir);
+      
+      str = ::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libaura.dylib", "rfs"); // readable - normal file - non zero sized
+      
+      if(str.has_char())
+      {
+         
+         goto found;
+         
+      }
+      
+      str = ::dir::pathfind(getenv("DYLD_FALLBACK_LIBRARY_PATH"), "libaura.dylib", "rfs"); // readable - normal file - non zero sized
+      
+   found:;
+   }
+   
+   return str;
+   
 #else
 
    char lpszModuleFolder[MAX_PATH * 8];
@@ -179,11 +209,11 @@ using namespace ::Windows::System;
 
          }
 
+   return string(lpszModuleFolder);
 
 
 #endif
 
-   return string(lpszModuleFolder);
 
 }
 

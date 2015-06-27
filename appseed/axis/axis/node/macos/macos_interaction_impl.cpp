@@ -5702,7 +5702,7 @@ namespace macos
 
    void interaction_impl::round_window_draw(CGContextRef cgc)
    {
-        single_lock sl(m_pui->m_spmutex, true);
+        single_lock sl(m_pui->m_pmutex, true);
       if(m_bUpdateGraphics)
       {
 

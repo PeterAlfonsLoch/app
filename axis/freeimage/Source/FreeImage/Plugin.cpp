@@ -338,57 +338,39 @@ TagLib::instance();
 
 #ifdef WINDOWSEX
                if(::str::ends_ci(path,".dll"))
-               {
-
-                  HINSTANCE instance = LoadLibrary(path);
-
-                  if(instance != NULL)
-                  {
-
-                     FARPROC proc_address = GetProcAddress(instance,"FreeImage_InitPlugin");
-
-                     if(proc_address != NULL)
-                     {
-                        s_plugins->AddNode((FI_InitProc)proc_address,(void *)instance);
-                     }
-                     else
-                     {
-                        FreeLibrary(instance);
-                     }
-
-                  }
-
-               }
-#else // _WIN3
-
+#elif defined(APPLEOS)
+               if(::str::ends_ci(path,".dylib"))
+#else
                if(::str::ends_ci(path,".so"))
+#endif
                {
-
-                  void * pl = dlopen(path,RTLD_LOCAL | RTLD_NOW | RTLD_NODELETE);
-
-                  if(pl)
+                  
+                  ::aura::library l(get_thread_app());
+                  
+                  l.open(path, false);
+                  
+                  if(l.is_opened())
                   {
-
-                     void * pf = dlsym(pl,"FreeImage_InitPlugin");
-
-                     if(pf)
+                     
+                     FI_InitProc pproc =l.get < FI_InitProc >("FreeImage_InitPlugin");
+                     
+                     if(pproc != NULL)
                      {
-
-                        s_plugins->AddNode((FI_InitProc)pf,(void *)pl);
-
+                        
+                        s_plugins->AddNode(pproc,(void *)l.get_os_data());
+                        
                      }
                      else
                      {
-
-                        dlclose(pl);
-
+                        
+                        l.close();
+                        
                      }
-
+                     
                   }
-
+               
                }
 
-#endif // WINDOWSEX else
 
             }
 
