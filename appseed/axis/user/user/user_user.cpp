@@ -524,10 +524,12 @@ namespace user
             return true;
          }
 
-         if(keyboard().get_current_system_layout().is_empty())
+         string strCurrentSystemLayout = keyboard().get_current_system_layout();
+
+         if(strCurrentSystemLayout.is_empty())
             return false;
 
-         if(!set_keyboard_layout(keyboard().get_current_system_layout(),::action::source_database))
+         if(!set_keyboard_layout(strCurrentSystemLayout,::action::source_database))
             return false;
 
          //         if(Session.fontopus()->m_puser != NULL
