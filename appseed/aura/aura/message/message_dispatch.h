@@ -15,18 +15,18 @@ namespace message
    public:
 
 
-      class CLASS_DECL_AURA HandlerItemBase:
-         virtual public object
-      {
-      public:
-
-
-         virtual ~HandlerItemBase();
-         virtual signalizable* get_signalizable() = 0;
-
-
-      };
-
+//      class CLASS_DECL_AURA HandlerItemBase:
+//         virtual public object
+//      {
+//      public:
+//
+//
+//         virtual ~HandlerItemBase();
+//         virtual signalizable* get_signalizable() = 0;
+//
+//
+//      };
+//
 
 //      template < class T >
 //      class HandlerItem: public HandlerItemBase
