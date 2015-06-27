@@ -71,6 +71,7 @@ namespace draw2d
       bool              m_bMapped; // optionally used by implementation
       descriptor        m_descriptor;
       bool              m_bReduced; // optionally used by implementation
+      int               m_iHeight;
 
 
       static float Cosines[360];

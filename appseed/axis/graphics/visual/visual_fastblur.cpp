@@ -34,13 +34,15 @@ namespace visual
       if (m_p->m_size == size(cx, cy) && radius == m_iRadius)
          return true;
 
-//      if(cx + 100 > m_p->m_size.cx || cy + 100 > m_p->m_size.cy)
-  //    {
+      if(cx + 100 > m_p->m_size.cx || cy + 100 > m_p->m_size.cy)
+      {
 
-         if(!m_p->create(cx,cy))
+         if(!m_p->create(cx + 100,cy + 100))
             return false;
 
-    //  }
+      }
+      
+      m_p->m_iHeight = cy;
 
 //      int32_t h         = cy;
   //    int32_t scan      = m_p->scan;
@@ -66,23 +68,23 @@ namespace visual
 
       m_ucha.allocate(area);
 
-      area /= sizeof(COLORREF);
+//      area /= sizeof(COLORREF);
 
-      m_uchaR.allocate(area);
+//      m_uchaR.allocate(area);
 
-      m_uchaG.allocate(area);
+//      m_uchaG.allocate(area);
 
-      m_uchaB.allocate(area);
+//      m_uchaB.allocate(area);
 
-      m_uchaA.allocate(area);
+//      m_uchaA.allocate(area);
 
-      int s = m_p->m_iScan / sizeof(COLORREF);
+//      int s = m_p->m_iScan / sizeof(COLORREF);
 
-      int maxsh = MAX(s, m_size.cy);
+  //    int maxsh = MAX(s, m_size.cy);
 
-      m_iaVmin.allocate(maxsh);
+    //  m_iaVmin.allocate(maxsh);
 
-      m_iaVmax.allocate(maxsh);
+      //m_iaVmax.allocate(maxsh);
 
       return true;
       
@@ -121,9 +123,17 @@ namespace visual
 
       bool b = false;
       
+      int bottomup;
+      
+#ifdef APPLEOS
+      bottomup = 1;
+#else
+      bottomup = 0;
+#endif
+      
       try
       {
-
+         
          b = s_fastblur(
                (uint32_t *) m_p->get_data(),
                m_size.cx, 
@@ -132,7 +142,7 @@ namespace visual
                (uint32_t *) m_ucha.get_data(),
                m_uchaDiv.get_data(),
                m_p->m_iScan,
-               cx, cy);
+               cx, cy, bottomup);
 
       }
       catch(...)
@@ -144,15 +154,15 @@ namespace visual
 
    }
 
-   bool fastblur::s_fastblur(uint32_t * pdata, int32_t w, int32_t h, int32_t radius, uint32_t * prgba, byte * dv, int32_t stride, int cx, int cy)
+   bool fastblur::s_fastblur(uint32_t * pdata, int32_t w, int32_t h, int32_t radius, uint32_t * prgba, byte * dv, int32_t stride, int cx, int cy, int bottomup)
    {
 
-      if (radius <= 0)
+      if(radius <= 0)
       {
+         
          return false;
+         
       }
-
-
 
       int32_t rsum, gsum, bsum, asum;
       int32_t x;
@@ -167,20 +177,43 @@ namespace visual
       int32_t wr = MIN(w,cx) - 1 - radius;
       int32_t hr = MIN(h,cy) - 1 - radius;
       //   int32_t div        = radius + radius + 1;
-      int32_t * pix = (int32_t *)pdata;
-      byte * pb = (byte *)pdata;
-      byte * pwork = (byte *)prgba;
-      byte * pwk = (byte *)prgba;
       byte * p;
 
       yw = 0;
 
-
-
       h = MIN(h,cy);
+      
       w = MIN(w,cx);
 
+      if(bottomup)
+      {
 
+         pdata = (uint32_t *) (((byte *) pdata) + (stride * (cy - h)));
+         
+         prgba = (uint32_t *) (((byte *) prgba) + (stride * (cy - h)));
+         
+      }
+      
+      int dir;
+      
+      if(bottomup)
+      {
+         
+         dir = -1;
+         
+      }
+      else
+      {
+         
+         dir = 1;
+         
+      }
+      
+      int32_t * pix = (int32_t *)pdata;
+      byte * pb = (byte *)pdata;
+      byte * pwork = (byte *)prgba;
+      byte * pwk = (byte *)prgba;
+      
       for(y = 0; y < h; y++)
       {
 
@@ -358,7 +391,7 @@ namespace visual
    }
 
 
-   bool fastblur::s_fastblur(uint32_t * pix,int32_t w,int32_t h,int32_t radius,byte * r,byte * g,byte * b,byte * a,byte * dv,int32_t stride,int32_t * vmin,int32_t * vmax,int cx,int cy)
+   bool fastblur::s_fastblur(uint32_t * pix,int32_t w,int32_t h,int32_t radius,byte * r,byte * g,byte * b,byte * a,byte * dv,int32_t stride,int32_t * vmin,int32_t * vmax,int cx,int cy, int bottomup)
    {
 
       return false;

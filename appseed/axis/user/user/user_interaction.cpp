@@ -137,10 +137,15 @@ namespace user
    {
 
       add_ref();
+      
+      if(IsWindow())
+      {
 
-      DestroyWindow();
+         DestroyWindow();
 
-      user_interaction_on_destroy();
+         user_interaction_on_destroy();
+         
+      }
 
    }
 

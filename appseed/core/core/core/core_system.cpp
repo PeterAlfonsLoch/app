@@ -500,6 +500,10 @@ namespace core
 
    sp(::core::session) system::get_platform(index iEdge,application_bias * pbiasCreation)
    {
+      
+      if(iEdge == 0)
+         return System.m_pcoresession;
+      
       sp(::core::session) pbergedge = NULL;
       if(m_pbergedgemap == NULL)
          return NULL;

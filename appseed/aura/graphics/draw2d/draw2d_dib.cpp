@@ -43,6 +43,7 @@ namespace draw2d
    {
 
       m_iScan    = 0;
+      m_iHeight = -1;
 
    }
 
