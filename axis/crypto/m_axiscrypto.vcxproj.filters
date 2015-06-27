@@ -2668,5 +2668,14 @@
     <ClCompile Include="openssl_exception.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="crypto\_crypto.c">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\mem_aura.c">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\ts\_ts.c">
+      <Filter>Source Files\crypto\ts</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

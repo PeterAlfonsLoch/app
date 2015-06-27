@@ -97,5 +97,8 @@
     <ClCompile Include="lib\toutf8.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="winmetro_dummy.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
