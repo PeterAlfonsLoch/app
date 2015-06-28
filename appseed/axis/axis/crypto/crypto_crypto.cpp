@@ -7,13 +7,18 @@
 #ifdef OPENSSL_CRYPTO
 
 #include <openssl/rsa.h>
-#include <openssl/ssl.h>
 #include <openssl/md5.h>
 #include <openssl/rsa.h>
 #include <openssl/engine.h>
 #include <openssl/err.h>
 #include <openssl/crypto.h>
 #include <openssl/hmac.h>
+
+#endif
+
+#ifdef HAVE_OPENSSL
+
+#include <openssl/ssl.h>
 
 #endif
 
@@ -1655,7 +1660,7 @@ out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEn
    void crypto::np_make_zigbert_rsa(const string & strDir, const string & strSignerPath, const string & strKeyPath, const string & strOthersPath, const string & strSignature)
    {
 
-#if !defined(METROWIN) || defined(OPENSSL_CRYPTO)
+#if !defined(METROWIN) && defined(OPENSSL_CRYPTO)
 
       X509 * signer = NULL;
       {

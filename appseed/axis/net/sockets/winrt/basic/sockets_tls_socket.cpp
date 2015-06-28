@@ -1,7 +1,4 @@
-//#include "framework.h"
-#ifdef HAVE_OPENSSL
-//#include <openssl/ssl.h>
-#endif
+
 
 namespace sockets
 {

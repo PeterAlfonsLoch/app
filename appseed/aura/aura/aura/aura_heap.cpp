@@ -278,7 +278,7 @@ void * unaligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * s
 }
 
 
-
+BEGIN_EXTERN_C
 
 void * memory_alloc(size_t size)
 {
@@ -319,6 +319,7 @@ void * memory_realloc(void * pmemory, size_t nSize)
 
 }
 
+END_EXTERN_C
 
 void * memory_realloc_dbg(void * pmemory, size_t size, int32_t nBlockUse, const char * szFileName, int32_t nLine)
 {

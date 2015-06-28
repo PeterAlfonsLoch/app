@@ -41,7 +41,7 @@ oswindow_dataptra * g_oswindow_dataptra()
 }
 
 
-int oswindow_find(::user::interaction * pui)
+index oswindow_find(::user::interaction * pui)
 {
 
    for(int i = 0; i < g_oswindow_dataptra()->get_count(); i++)

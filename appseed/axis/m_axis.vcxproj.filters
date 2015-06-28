@@ -34,9 +34,6 @@
     <Filter Include="Header Files\axis\compress\zip">
       <UniqueIdentifier>{3bb00495-5961-4cfb-8ec6-0d7aafa58ec9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\axis\compress\bsdiff">
-      <UniqueIdentifier>{279f57e1-6418-43ae-9ed4-b75b382227dd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\axis\crypto">
       <UniqueIdentifier>{303022c6-ddbc-4183-8496-d5063f2be5a7}</UniqueIdentifier>
     </Filter>
@@ -309,9 +306,6 @@
     <ClInclude Include="net\http\http_listener.h">
       <Filter>Header Files\net\http</Filter>
     </ClInclude>
-    <ClInclude Include="net\http\http_output_stream.h">
-      <Filter>Header Files\net\http</Filter>
-    </ClInclude>
     <ClInclude Include="net\http\http_signal.h">
       <Filter>Header Files\net\http</Filter>
     </ClInclude>
@@ -449,9 +443,6 @@
     </ClInclude>
     <ClInclude Include="axis\compress\zip\zipImpl.h">
       <Filter>Header Files\axis\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\bsdiff\libbsdiff.h">
-      <Filter>Header Files\axis\compress\bsdiff</Filter>
     </ClInclude>
     <ClInclude Include="axis\crypto\crypto.h">
       <Filter>Header Files\axis\crypto</Filter>

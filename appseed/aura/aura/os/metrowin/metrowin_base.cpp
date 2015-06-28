@@ -459,7 +459,7 @@ CreateMutexW(
 
 
 
-
+BEGIN_EXTERN_C
 
 int_bool is_windows_nt()
 {
@@ -479,7 +479,7 @@ int_bool is_windows_nt()
 }
 
 
-
+END_EXTERN_C
 
 
 

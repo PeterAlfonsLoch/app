@@ -33,7 +33,6 @@
     <ClInclude Include="aura\aura\aura_allocate.h" />
     <ClInclude Include="aura\aura\aura_allocate_heap.h" />
     <ClInclude Include="aura\aura\aura_application.h" />
-    <ClInclude Include="aura\aura\aura_application_interface.h" />
     <ClInclude Include="aura\aura\aura_application_ptra.h" />
     <ClInclude Include="aura\aura\aura_application_signal_details.h" />
     <ClInclude Include="aura\aura\aura_assert_running_task.h" />
@@ -72,12 +71,10 @@
     <ClInclude Include="aura\aura\aura_fixed_alloc.h" />
     <ClInclude Include="aura\aura\aura_fixed_alloc_impl.h" />
     <ClInclude Include="aura\aura\aura_flags.h" />
-    <ClInclude Include="aura\aura\aura_frame_window.h" />
     <ClInclude Include="aura\aura\aura_gudo.h" />
     <ClInclude Include="aura\aura\aura_heap_item.h" />
     <ClInclude Include="aura\aura\aura_heap_item_array.h" />
     <ClInclude Include="aura\aura\aura_id_pool.h" />
-    <ClInclude Include="aura\aura\aura_interaction.h" />
     <ClInclude Include="aura\aura\aura_international.h" />
     <ClInclude Include="aura\aura\aura_keep.h" />
     <ClInclude Include="aura\aura\aura_keep_true.h" />
@@ -103,21 +100,16 @@
     <ClInclude Include="aura\aura\aura_new.h" />
     <ClInclude Include="aura\aura\aura_number.h" />
     <ClInclude Include="aura\aura\aura_os.h" />
-    <ClInclude Include="aura\aura\aura_platform_interface.h" />
     <ClInclude Include="aura\aura\aura_plex.h" />
     <ClInclude Include="aura\aura\aura_plex_heap.h" />
     <ClInclude Include="aura\aura\aura_plex_heap_impl.h" />
     <ClInclude Include="aura\aura\aura_printer.h" />
     <ClInclude Include="aura\aura\aura_printf.h" />
     <ClInclude Include="aura\aura\aura_progress.h" />
-    <ClInclude Include="aura\aura\aura_root.h" />
     <ClInclude Include="aura\aura\aura_savings.h" />
     <ClInclude Include="aura\aura\aura_session.h" />
-    <ClInclude Include="aura\aura\aura_session_interface.h" />
     <ClInclude Include="aura\aura\aura_simple_app.h" />
     <ClInclude Include="aura\aura\aura_simple_pixel_font.h" />
-    <ClInclude Include="aura\aura\aura_simple_shell_launcher.h" />
-    <ClInclude Include="aura\aura\aura_small_ipc_channel.h" />
     <ClInclude Include="aura\aura\aura_smart_pointer1.h" />
     <ClInclude Include="aura\aura\aura_smart_pointer2.h" />
     <ClInclude Include="aura\aura\aura_sprintf.h" />
@@ -518,30 +510,33 @@
     <ClInclude Include="filesystem\file\file_binary_buffer.h" />
     <ClInclude Include="filesystem\file\file_buffer.h" />
     <ClInclude Include="filesystem\file\file_buffered_buffer.h" />
-    <ClInclude Include="filesystem\file\file_byte_input_stream.h" />
-    <ClInclude Include="filesystem\file\file_byte_input_stream_binary_buffer.h" />
-    <ClInclude Include="filesystem\file\file_byte_output_stream.h" />
-    <ClInclude Include="filesystem\file\file_byte_output_stream_binary_buffer.h" />
+    <ClInclude Include="filesystem\file\file_byte_istream.h" />
+    <ClInclude Include="filesystem\file\file_byte_istream_binary_buffer.h" />
+    <ClInclude Include="filesystem\file\file_byte_ostream.h" />
+    <ClInclude Include="filesystem\file\file_byte_ostream_binary_buffer.h" />
     <ClInclude Include="filesystem\file\file_byte_stream.h" />
     <ClInclude Include="filesystem\file\file_byte_stream_memory_buffer.h" />
     <ClInclude Include="filesystem\file\file_c.h" />
     <ClInclude Include="filesystem\file\file_circular_buffer.h" />
     <ClInclude Include="filesystem\file\file_composite.h" />
     <ClInclude Include="filesystem\file\file_dir.h" />
+    <ClInclude Include="filesystem\file\file_edit_buffer.h" />
     <ClInclude Include="filesystem\file\file_exception.h" />
-    <ClInclude Include="filesystem\file\file_file_input_stream.h" />
-    <ClInclude Include="filesystem\file\file_file_output_stream.h" />
+    <ClInclude Include="filesystem\file\file_file_istream.h" />
+    <ClInclude Include="filesystem\file\file_file_ostream.h" />
     <ClInclude Include="filesystem\file\file_file_stream.h" />
     <ClInclude Include="filesystem\file\file_file_stream_base.h" />
     <ClInclude Include="filesystem\file\file_folder_watch.h" />
-    <ClInclude Include="filesystem\file\file_input_stream.h" />
+    <ClInclude Include="filesystem\file\file_html_buffer.h" />
+    <ClInclude Include="filesystem\file\file_istream.h" />
     <ClInclude Include="filesystem\file\file_memory_buffer.h" />
     <ClInclude Include="filesystem\file\file_opened.h" />
-    <ClInclude Include="filesystem\file\file_output_stream.h" />
-    <ClInclude Include="filesystem\file\file_output_stream_flush.h" />
-    <ClInclude Include="filesystem\file\file_plain_text_input_stream.h" />
-    <ClInclude Include="filesystem\file\file_plain_text_output_stream.h" />
-    <ClInclude Include="filesystem\file\file_plain_text_output_stream_string_buffer.h" />
+    <ClInclude Include="filesystem\file\file_ostream.h" />
+    <ClInclude Include="filesystem\file\file_ostream_flush.h" />
+    <ClInclude Include="filesystem\file\file_path.h" />
+    <ClInclude Include="filesystem\file\file_plain_text_istream.h" />
+    <ClInclude Include="filesystem\file\file_plain_text_ostream.h" />
+    <ClInclude Include="filesystem\file\file_plain_text_ostream_string_buffer.h" />
     <ClInclude Include="filesystem\file\file_plain_text_stream.h" />
     <ClInclude Include="filesystem\file\file_plain_text_stream_base.h" />
     <ClInclude Include="filesystem\file\file_plain_text_stream_memory_buffer.h" />
@@ -843,6 +838,8 @@
     <ClInclude Include="user\colorertake5\colorertake5_xmldom.h" />
     <ClInclude Include="user\simple\simple_message_box.h" />
     <ClInclude Include="user\user.h" />
+    <ClInclude Include="user\user\user_frame.h" />
+    <ClInclude Include="user\user\user_primitive.h" />
     <ClInclude Include="version.config.h" />
     <ClInclude Include="version.h" />
   </ItemGroup>
@@ -2949,6 +2946,10 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">$(IntDir)framework_c.pch</PrecompiledHeaderOutputFile>
       <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</CompileAsWinRT>
       <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">false</CompileAsWinRT>
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">false</CompileAsWinRT>
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='memdleak|ARM'">false</CompileAsWinRT>
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</CompileAsWinRT>
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">false</CompileAsWinRT>
     </ClCompile>
     <ClCompile Include="graphics\draw2d\draw2d_bitmap.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -4442,6 +4443,8 @@
     </ClCompile>
     <ClCompile Include="user\colorertake5\_colorertake5.cpp" />
     <ClCompile Include="user\simple\simple_message_box.cpp" />
+    <ClCompile Include="user\user\user_frame.cpp" />
+    <ClCompile Include="user\user\user_primitive.cpp" />
     <ClCompile Include="version.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -4470,7 +4473,7 @@
     <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
@@ -4554,7 +4557,7 @@
       <CompileAsWinRT>true</CompileAsWinRT>
       <SDLCheck>true</SDLCheck>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <PreprocessorDefinitions>CUBE;_AQUA_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_AURA_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed/base/base;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../nodeapp/thirdparty/include;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(SolutionDir)../../../app/base3/openssl;$(SolutionDir)../../../app/base/openssl/crypto2;$(SolutionDir)../../../app/base/openssl/ssl2;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto/asn1;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto/evp;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto/krb5;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto/modes;$(SolutionDir)../../../app/appseed/base/base/openssl/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <StringPooling>false</StringPooling>
       <ExceptionHandling>Async</ExceptionHandling>
@@ -4564,7 +4567,7 @@
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <OpenMPSupport>false</OpenMPSupport>
+      <OpenMPSupport>true</OpenMPSupport>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAsManaged>false</CompileAsManaged>
       <AdditionalOptions>-Zm384 /bigobj %(AdditionalOptions)</AdditionalOptions>
@@ -4578,7 +4581,7 @@
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <AdditionalDependencies>Shcore.lib;Oleaut32.lib;DWrite.lib;D3D11.lib;D2D1.lib;Wtsapi32.lib;version.lib;Shlwapi.lib;Secur32.lib;Crypt32.lib;Ole32.lib;Gdiplus.lib;psapi.lib;msimg32.lib;gdi32.lib;user32.lib;Winmm.lib;WinINet.lib;shell32.lib;advapi32.lib;kernel32.lib;Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
+      <ImportLibrary>$(SolutionDir)../../../time/library/$(PlatformName)/$(Configuration)/$(TargetName).lib</ImportLibrary>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -4601,7 +4604,7 @@
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <OpenMPSupport>false</OpenMPSupport>
+      <OpenMPSupport>true</OpenMPSupport>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAsManaged>false</CompileAsManaged>
       <AdditionalOptions>-Zm384 /bigobj %(AdditionalOptions)</AdditionalOptions>
@@ -4637,22 +4640,36 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|arm'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <CompileAsWinRT>false</CompileAsWinRT>
+      <CompileAsWinRT>true</CompileAsWinRT>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>CUBE;_AQUA_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_AURA_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed/base/base;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../nodeapp/thirdparty/include;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(SolutionDir)../../../app/base3/openssl;$(SolutionDir)../../../app/base/openssl/crypto2;$(SolutionDir)../../../app/base/openssl/ssl2;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto/asn1;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto/evp;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto/krb5;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto/modes;$(SolutionDir)../../../app/appseed/base/base/openssl/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
+      <AdditionalOptions>-Zm384 /bigobj %(AdditionalOptions)</AdditionalOptions>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>true</OpenMPSupport>
+      <CompileAsManaged>false</CompileAsManaged>
+      <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <ImportLibrary>$(SolutionDir)../../../time/library/$(PlatformName)/$(Configuration)/$(TargetName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|arm'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <CompileAsWinRT>false</CompileAsWinRT>
+      <CompileAsWinRT>true</CompileAsWinRT>
       <SDLCheck>true</SDLCheck>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
+      <PreprocessorDefinitions>_AURA_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>true</OpenMPSupport>
+      <CompileAsManaged>false</CompileAsManaged>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -4675,24 +4692,39 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <CompileAsWinRT>false</CompileAsWinRT>
+      <CompileAsWinRT>true</CompileAsWinRT>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>CUBE;_AQUA_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_AURA_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed/base/base;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../nodeapp/thirdparty/include;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(SolutionDir)../../../app/base3/openssl;$(SolutionDir)../../../app/base/openssl/crypto2;$(SolutionDir)../../../app/base/openssl/ssl2;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto/asn1;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto/evp;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto/krb5;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto/modes;$(SolutionDir)../../../app/appseed/base/base/openssl/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
+      <AdditionalOptions>-Zm384 /bigobj %(AdditionalOptions)</AdditionalOptions>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>true</OpenMPSupport>
+      <CompileAsManaged>false</CompileAsManaged>
+      <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(IntDir);$(SolutionDir)../../../time/library/$(PlatformName)/$(Configuration)/;$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>$(TargetName).def</ModuleDefinitionFile>
+      <AdditionalDependencies>ShCore.lib;OleAut32.lib;kernel32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImportLibrary>$(SolutionDir)../../../time/library/$(PlatformName)/$(Configuration)/$(TargetName).lib</ImportLibrary>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <CompileAsWinRT>false</CompileAsWinRT>
+      <CompileAsWinRT>true</CompileAsWinRT>
       <SDLCheck>true</SDLCheck>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
+      <PreprocessorDefinitions>_AURA_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>true</OpenMPSupport>
+      <CompileAsManaged>false</CompileAsManaged>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
