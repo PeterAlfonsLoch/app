@@ -30,18 +30,20 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>Clang_3_4</PlatformToolset>
+    <PlatformToolset>Gcc_4_8</PlatformToolset>
     <AndroidAPILevel>android-19</AndroidAPILevel>
+    <UseOfStl>gnustl_shared</UseOfStl>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>Clang_3_4</PlatformToolset>
+    <PlatformToolset>Gcc_4_8</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>Clang_3_4</PlatformToolset>
+    <AndroidAPILevel>android-9</AndroidAPILevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -60,15 +62,30 @@
     <OutDir>$(SolutionDir)..\..\..\stage\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <OutDir>$(SolutionDir)..\..\..\stage\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <OutDir>$(SolutionDir)..\..\..\stage\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
     <ClCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(ProjectDir)framework;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/base/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis;$(ProjectDir)../../appseed;$(ProjectDir)../..;$(ProjectDir)..;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <CppLanguageStandard>c++1y</CppLanguageStandard>
+      <CppLanguageStandard>gnu++11</CppLanguageStandard>
       <ExceptionHandling>Enabled</ExceptionHandling>
-      <AdditionalOptions>-Wno-overloaded-virtual -Wno-unknown-pragmas -Wno-reorder -Wno-comment -Wno-uninitialized -Wno-unused-variable -Wno-return-type  -Wno-unused-function -Wno-self-assign -Wno-unused-value -Wno-char-subscripts -Wno-unused-private-field -Wno-mismatched-tags -Wno-delete-non-virtual-dtor %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>-Wno-overloaded-virtual -Wno-unknown-pragmas -Wno-reorder -Wno-comment -Wno-uninitialized -Wno-unused-variable -Wno-return-type  -Wno-unused-function -Wno-unused-value -Wno-char-subscripts -Wno-delete-non-virtual-dtor -Wno-unused-but-set-variable %(AdditionalOptions)</AdditionalOptions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link />
+    <Link>
+      <LibraryDependencies>base;axis;axisbzip2;auracharguess;aura;$(StlLibraryName);m</LibraryDependencies>
+      <SharedLibrarySearchPath>$(OutDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;%(SharedLibrarySearchPath)</SharedLibrarySearchPath>
+      <AdditionalLibraryDirectories>$(OutDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\4.8;$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <ClCompile>
@@ -120,9 +137,7 @@
     <ClInclude Include="core\core\core_muldiv32.h" />
     <ClInclude Include="core\core\core_os_history.h" />
     <ClInclude Include="core\core\core_patch.h" />
-    <ClInclude Include="core\core\core_platform.h" />
     <ClInclude Include="core\core\core_process_data.h" />
-    <ClInclude Include="core\core\core_profiler.h" />
     <ClInclude Include="core\core\core_progress_interface.h" />
     <ClInclude Include="core\core\core_simple_app.h" />
     <ClInclude Include="core\core\core_smart_pointer_query.h" />
@@ -142,8 +157,6 @@
     <ClInclude Include="core\plugin\plugin_run_start_installer.h" />
     <ClInclude Include="core\plugin\plugin_system.h" />
     <ClInclude Include="database\databaseuser\databaseuser.h" />
-    <ClInclude Include="database\databaseuser\data_key_list_data.h" />
-    <ClInclude Include="database\databaseuser\list_data.h" />
     <ClInclude Include="database\simpledb\DBFileSystemSize.h" />
     <ClInclude Include="filesystem\filehandler\filehandler.h" />
     <ClInclude Include="filesystem\filehandler\filehandler_handler.h" />
@@ -196,7 +209,6 @@
     <ClInclude Include="filesystem\filemanager\filemanager_tree.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_update_hint.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_view.h" />
-    <ClInclude Include="filesystem\file\file_html_buffer.h" />
     <ClInclude Include="filesystem\userfs\userfs.h" />
     <ClInclude Include="filesystem\userfs\userfs_document.h" />
     <ClInclude Include="filesystem\userfs\userfs_item.h" />
@@ -207,7 +219,7 @@
     <ClInclude Include="filesystem\userfs\userfs_main_view.h" />
     <ClInclude Include="filesystem\userfs\userfs_tree.h" />
     <ClInclude Include="filesystem\userfs\userfs_userfs.h" />
-    <ClInclude Include="framework\framework.h" />
+    <ClInclude Include="framework.h" />
     <ClInclude Include="math\binary_operation.h" />
     <ClInclude Include="math\math_math.h" />
     <ClInclude Include="math\number.h" />
@@ -272,7 +284,6 @@
     <ClInclude Include="user\user\user_combo_box.h" />
     <ClInclude Include="user\user\user_combo_list.h" />
     <ClInclude Include="user\user\user_control_property.h" />
-    <ClInclude Include="user\user\user_core.h" />
     <ClInclude Include="user\user\user_data_exchange.h" />
     <ClInclude Include="user\user\user_dock_context.h" />
     <ClInclude Include="user\user\user_dock_state.h" />
@@ -280,8 +291,6 @@
     <ClInclude Include="user\user\user_edit_plain_text_view.h" />
     <ClInclude Include="user\user\user_elastic_slider.h" />
     <ClInclude Include="user\user\user_form.h" />
-    <ClInclude Include="user\user\user_form1.h" />
-    <ClInclude Include="user\user\user_form_callback.h" />
     <ClInclude Include="user\user\user_form_list.h" />
     <ClInclude Include="user\user\user_front_end.h" />
     <ClInclude Include="user\user\user_front_end_schema.h" />
@@ -290,9 +299,7 @@
     <ClInclude Include="user\user\user_keyboard_layout_cfg.h" />
     <ClInclude Include="user\user\user_list.h" />
     <ClInclude Include="user\user\user_list_cache.h" />
-    <ClInclude Include="user\user\user_list_cache_interface.h" />
     <ClInclude Include="user\user\user_list_data.h" />
-    <ClInclude Include="user\user\user_list_data_interface.h" />
     <ClInclude Include="user\user\user_list_header.h" />
     <ClInclude Include="user\user\user_main_frame.h" />
     <ClInclude Include="user\user\user_meta_button.h" />
@@ -353,20 +360,6 @@
     <None Include="core\core\core.inl" />
     <None Include="user\user\interaction.inl" />
     <None Include="user\user\user_interaction.inl" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\aura\charguess\nord_auracharguess.vcxproj">
-      <Project>{05207bc4-c08b-4a2d-b754-f3bd46ad3098}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\aura\nord_aura.vcxproj">
-      <Project>{02207bc4-c08b-4a2d-b754-f3bd46ad3098}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\axis\nord_axis.vcxproj">
-      <Project>{03207bc4-c08b-4a2d-b754-f3bd46ad3098}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\base\nord_base.vcxproj">
-      <Project>{04207bc4-c08b-4a2d-b754-f3bd46ad3098}</Project>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

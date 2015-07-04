@@ -76,13 +76,13 @@ mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrNa
        if(str::begins_ci(pstrName, "Global"))
        {
 
-          m_strName = ::dir::path("/var/tmp", pstrName);
+          m_strName = ::file::path("/var/tmp") / pstrName;
 
        }
        else
        {
 
-          m_strName = ::dir::path(getenv("HOME"), pstrName);
+          m_strName = ::file::path(getenv("HOME")) / pstrName;
 
        }
 

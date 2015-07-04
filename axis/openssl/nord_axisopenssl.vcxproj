@@ -30,18 +30,20 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>Clang_3_4</PlatformToolset>
+    <PlatformToolset>Gcc_4_8</PlatformToolset>
     <AndroidAPILevel>android-19</AndroidAPILevel>
+    <UseOfStl>gnustl_shared</UseOfStl>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>Clang_3_4</PlatformToolset>
+    <PlatformToolset>Gcc_4_8</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>Clang_3_4</PlatformToolset>
+    <AndroidAPILevel>android-9</AndroidAPILevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -60,14 +62,28 @@
     <OutDir>$(SolutionDir)..\..\..\stage\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <OutDir>$(SolutionDir)..\..\..\stage\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <OutDir>$(SolutionDir)..\..\..\stage\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
     <ClCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(SolutionDir)../../..;$(SolutionDir)../../../app/base/include;crypto;crypto/asn1;crypto/evp;crypto/modes;$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>OPENSSL_BUILD_SHLIBCRYPTO;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions>-Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int -Wno-sometimes-uninitialized -Wno-unused-variable -Wno-incompatible-pointer-types  -Wno-pointer-sign -Wno-typedef-redefinition %(AdditionalOptions)</AdditionalOptions>
-      <CppLanguageStandard>c++1y</CppLanguageStandard>
+      <CppLanguageStandard>gnu++11</CppLanguageStandard>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
     </ClCompile>
     <Link />
+    <Link>
+      <SharedLibrarySearchPath>$(OutDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;%(SharedLibrarySearchPath)</SharedLibrarySearchPath>
+      <AdditionalLibraryDirectories>$(OutDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\4.8;$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <LibraryDependencies>axiscrypto;log;android</LibraryDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <ClCompile>
@@ -153,25 +169,6 @@
     <ClInclude Include="..\..\include\openssl\x509.h" />
     <ClInclude Include="..\..\include\openssl\x509v3.h" />
     <ClInclude Include="..\..\include\openssl\x509_vfy.h" />
-    <ClInclude Include="crypto\arm_arch.h" />
-    <ClInclude Include="crypto\asn1\asn1.h" />
-    <ClInclude Include="crypto\asn1\asn1t.h" />
-    <ClInclude Include="crypto\asn1\asn1_locl.h" />
-    <ClInclude Include="crypto\asn1\asn1_mac.h" />
-    <ClInclude Include="crypto\asn1\charmap.h" />
-    <ClInclude Include="crypto\cryptlib.h" />
-    <ClInclude Include="crypto\crypto.h" />
-    <ClInclude Include="crypto\ebcdic.h" />
-    <ClInclude Include="crypto\fips_err.h" />
-    <ClInclude Include="crypto\md32_common.h" />
-    <ClInclude Include="crypto\opensslconf.h" />
-    <ClInclude Include="crypto\opensslv.h" />
-    <ClInclude Include="crypto\ossl_typ.h" />
-    <ClInclude Include="crypto\o_dir.h" />
-    <ClInclude Include="crypto\o_str.h" />
-    <ClInclude Include="crypto\o_time.h" />
-    <ClInclude Include="crypto\symhacks.h" />
-    <ClInclude Include="crypto\vms_rms.h" />
     <ClInclude Include="e_os.h" />
     <ClInclude Include="e_os2.h" />
     <ClInclude Include="e_os2_ca2specific.h" />
@@ -227,11 +224,6 @@
     <None Include="asm\x64-win32-masm\x86_64cpuid.asm">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\crypto\nord_axiscrypto.vcxproj">
-      <Project>{640771cd-a0ed-4e2e-afba-4d1a84ae485b}</Project>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

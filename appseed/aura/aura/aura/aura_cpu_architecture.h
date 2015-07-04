@@ -150,6 +150,8 @@ BEGIN_EXTERN_C
 CLASS_DECL_AURA int32_t cpu_has_avx();
 END_EXTERN_C
 
+#ifndef ANDROID
+
 static_inline uint16_t __swap16gen(uint16_t x)
 {
     return (((x) & 0xff) << 8) |(((x) & 0xff00) >> 8);
@@ -161,6 +163,9 @@ static_inline uint32_t __swap32gen(uint32_t x)
     ((x) & 0xff00) << 8 | ((x) & 0xff0000) >> 8 |
     ((x) & 0xff000000) >> 24);
 }
+
+#endif
+
 
 /*
  * Define MD_SWAP if you provide swap{16,32}md functions/macros that are

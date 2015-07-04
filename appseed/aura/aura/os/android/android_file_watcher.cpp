@@ -105,7 +105,7 @@ namespace file_watcher
 
          pWatch->m_bRecursive = true;
 
-		   stringa stra;
+		   ::file::patha stra;
 
 		   dir::rls_dir(stra, directory);
 

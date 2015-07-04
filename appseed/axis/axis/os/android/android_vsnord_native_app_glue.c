@@ -14,10 +14,22 @@
 * limitations under the License.
 *
 */
-#include "framework.h"
-#include "android.h"
 
-BEGIN_EXTERN_C
+#include <jni.h>
+
+#include <errno.h>
+
+#include <string.h>
+#include <unistd.h>
+#include <sys/resource.h>
+
+#include <EGL/egl.h>
+#include <GLES/gl.h>
+
+#include <android/sensor.h>
+
+#include <android/log.h>
+#include "android_vsnord_native_app_glue.h"
 
 #define LOGI(...) ((void)__android_log_print(ANDROID_LOG_INFO, "threaded_app", __VA_ARGS__))
 #define LOGE(...) ((void)__android_log_print(ANDROID_LOG_ERROR, "threaded_app", __VA_ARGS__))
@@ -195,7 +207,7 @@ static void process_cmd(struct android_app* app, struct android_poll_source* sou
    android_app_post_exec_cmd(app, cmd);
 }
 
-static void* android_app_entry(void* param) {
+static void* _android_app_entry(void* param) {
    struct android_app* android_app = (struct android_app*)param;
 
    android_app->config = AConfiguration_new();
@@ -220,7 +232,7 @@ static void* android_app_entry(void* param) {
    pthread_cond_broadcast(&android_app->cond);
    pthread_mutex_unlock(&android_app->mutex);
 
-   android_main(android_app);
+   g_android_main(android_app);
 
    android_app_destroy(android_app);
    return NULL;
@@ -257,7 +269,7 @@ android_app_create(ANativeActivity* activity,
    pthread_attr_t attr;
    pthread_attr_init(&attr);
    pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
-   pthread_create(&android_app->thread, &attr, android_app_entry, android_app);
+   pthread_create(&android_app->thread, &attr, _android_app_entry, android_app);
 
    // Wait for thread to start.
    pthread_mutex_lock(&android_app->mutex);
@@ -411,7 +423,7 @@ static void onInputQueueDestroyed(ANativeActivity* activity, AInputQueue* queue)
    android_app_set_input((struct android_app*)activity->instance, NULL);
 }
 
-void ANativeActivity_onCreate(ANativeActivity* activity,
+void lib_ANativeActivity_onCreate(ANativeActivity* activity,
    void* savedState, size_t savedStateSize) {
    LOGV("Creating: %p\n", activity);
    activity->callbacks->onDestroy = onDestroy;
@@ -431,8 +443,7 @@ void ANativeActivity_onCreate(ANativeActivity* activity,
    activity->instance = android_app_create(activity, savedState, savedStateSize);
 }
 
-PFN_ANDROID_MAIN android_main = NULL;
+PFN_ANDROID_MAIN g_android_main = NULL;
 
-END_EXTERN_C
 
 

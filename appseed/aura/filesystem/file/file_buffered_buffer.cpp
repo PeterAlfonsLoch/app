@@ -76,7 +76,7 @@ namespace file
       }
       else if(nFrom == ::file::seek_end)
       {
-         if(lOff > m_pfile->get_length())
+         if(compare::gt(lOff, m_pfile->get_length()))
             lOff = m_pfile->get_length();
          uiNewPos = m_pfile->get_length() + lOff;
       }

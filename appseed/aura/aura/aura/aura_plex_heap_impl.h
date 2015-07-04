@@ -194,11 +194,11 @@ public:
 
 
    int            m_aa[PLEX_HEAP_ALLOC_ARRAY_AINDEX_COUNT];
-   int            m_aaSize[PLEX_HEAP_ALLOC_ARRAY_AINDEX_COUNT];
+   unsigned int   m_aaSize[PLEX_HEAP_ALLOC_ARRAY_AINDEX_COUNT];
 
 
    int            m_bb[PLEX_HEAP_ALLOC_ARRAY_BINDEX_COUNT];
-   int            m_bbSize[PLEX_HEAP_ALLOC_ARRAY_BINDEX_COUNT];
+   unsigned int   m_bbSize[PLEX_HEAP_ALLOC_ARRAY_BINDEX_COUNT];
 
    ::count m_iWorkingSize;
 
@@ -292,7 +292,7 @@ inline plex_heap_alloc * plex_heap_alloc_array::find(size_t nAllocSize)
    for(; iA < PLEX_HEAP_ALLOC_ARRAY_AINDEX_COUNT; iA++)
    {
 
-      if(m_aaSize[iA] >= nAllocSize)
+      if(compare::ge(m_aaSize[iA], nAllocSize))
       {
 
          break;
@@ -310,7 +310,7 @@ inline plex_heap_alloc * plex_heap_alloc_array::find(size_t nAllocSize)
    for(; iB < PLEX_HEAP_ALLOC_ARRAY_BINDEX_COUNT; iB++)
    {
 
-      if(m_bbSize[iB] >= nAllocSize)
+      if(compare::ge(m_bbSize[iB], nAllocSize))
       {
 
          break;

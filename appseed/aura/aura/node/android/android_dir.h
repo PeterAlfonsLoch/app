@@ -49,8 +49,8 @@ namespace android
       // stage in ccvotagus spalib
       virtual ::file::path element();
 
-      virtual ::file::path module();
-      virtual ::file::path ca2module();
+      //virtual ::file::path module();
+      //virtual ::file::path ca2module();
 	  virtual ::file::path time_square(::aura::application * papp, const string & strPrefix = cnull, const string & strSuffix = cnull);
 	  virtual ::file::path time_log();
 

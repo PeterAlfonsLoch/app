@@ -21,222 +21,6 @@
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="user\user.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\simple_ui\simple_ui.h">
-      <Filter>Header Files\user\simple_ui</Filter>
-    </ClInclude>
-    <ClInclude Include="user\simple_ui\simple_ui_edit_box.h">
-      <Filter>Header Files\user\simple_ui</Filter>
-    </ClInclude>
-    <ClInclude Include="user\simple_ui\simple_ui_interaction.h">
-      <Filter>Header Files\user\simple_ui</Filter>
-    </ClInclude>
-    <ClInclude Include="user\simple_ui\simple_ui_label.h">
-      <Filter>Header Files\user\simple_ui</Filter>
-    </ClInclude>
-    <ClInclude Include="user\simple_ui\simple_ui_message_box.h">
-      <Filter>Header Files\user\simple_ui</Filter>
-    </ClInclude>
-    <ClInclude Include="user\simple_ui\simple_ui_password.h">
-      <Filter>Header Files\user\simple_ui</Filter>
-    </ClInclude>
-    <ClInclude Include="user\simple_ui\simple_ui_style.h">
-      <Filter>Header Files\user\simple_ui</Filter>
-    </ClInclude>
-    <ClInclude Include="user\simple_ui\simple_ui_tap.h">
-      <Filter>Header Files\user\simple_ui</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\aaa_want_to_remove_user_buffer.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_control.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_control_bar.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_control_event.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_document_data_map.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_edit_plain_text.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_elemental.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_enum.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_form_interface.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_frame_window.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_impact.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_impact_system.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_impact_update_hint.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_inline.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_interaction.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_interaction_impl_base.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_job.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_keyboard.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\aaa_want_to_remove_user_keyboard_focus.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_keyboard_layout.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_key_enum.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_menu_base.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_menu_base_item.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_message.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\aaa_want_to_remove_user_mouse_focus.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_document.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_place_holder.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_place_holder_container.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_plain_text_data.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_print_job.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_schema.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_schema_layered_frame.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_schema_simple_impl.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_scroll_bar.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_scroll_control.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_scroll_view.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_server.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\aaa_want_to_remove_user_text_interface.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_user.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_view_container.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_view_creator.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_view_creator_data.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_interaction_child.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_wait_cursor.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_interaction_impl.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_windowing.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_window_draw.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_interaction_base.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_window_map.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_window_util.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\simple\simple.h">
-      <Filter>Header Files\user\simple</Filter>
-    </ClInclude>
-    <ClInclude Include="user\simple\simple_scroll_bar.h">
-      <Filter>Header Files\user\simple</Filter>
-    </ClInclude>
-    <ClInclude Include="user\userpresence\userpresence.h">
-      <Filter>Header Files\user\userpresence</Filter>
-    </ClInclude>
-    <ClInclude Include="user\userpresence\userpresence_userpresence.h">
-      <Filter>Header Files\user\userpresence</Filter>
-    </ClInclude>
-    <ClInclude Include="user\userpresence\userpresence_user_presence.h">
-      <Filter>Header Files\user\userpresence</Filter>
-    </ClInclude>
-    <ClInclude Include="user\fontopus\fontopus.h">
-      <Filter>Header Files\user\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="user\fontopus\fontopus_login.h">
-      <Filter>Header Files\user\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="user\fontopus\fontopus_simple_ui.h">
-      <Filter>Header Files\user\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="user\fontopus\simple_ui_style.h">
-      <Filter>Header Files\user\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\graphics_window_graphics.h">
-      <Filter>Header Files\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\graphics.h">
-      <Filter>Header Files\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_edit_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
     <ClInclude Include="base\os\cross.h">
       <Filter>Header Files\base\os</Filter>
     </ClInclude>
@@ -246,61 +30,16 @@
     <ClInclude Include="base\os\android\android_window_android.h">
       <Filter>Header Files\base\os\android</Filter>
     </ClInclude>
-    <ClInclude Include="base\os\android\android_windowing.h">
-      <Filter>Header Files\base\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\android\android.h">
-      <Filter>Header Files\base\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\cross\cross.h">
-      <Filter>Header Files\base\os\cross</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\cross\windows\windows.h">
-      <Filter>Header Files\base\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\cross\windows\windows_user.h">
-      <Filter>Header Files\base\os\cross\windows</Filter>
-    </ClInclude>
     <ClInclude Include="base\os\ansios\ansios.h">
-      <Filter>Header Files\base\os\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\ansios\ansios_multithreading.h">
       <Filter>Header Files\base\os\ansios</Filter>
     </ClInclude>
     <ClInclude Include="base\node\node.h">
       <Filter>Header Files\base\node</Filter>
     </ClInclude>
-    <ClInclude Include="base\node\windows\windows.h">
-      <Filter>Header Files\base\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\windows\windows_copydesk.h">
-      <Filter>Header Files\base\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="base\node\windows\windows_factory_exchange.h">
       <Filter>Header Files\base\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="base\node\windows\windows_implementation.h">
-      <Filter>Header Files\base\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\windows\windows_interaction_impl.h">
-      <Filter>Header Files\base\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\windows\windows_message_queue.h">
-      <Filter>Header Files\base\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\windows\windows_print_job.h">
-      <Filter>Header Files\base\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\windows\windows_window_draw.h">
-      <Filter>Header Files\base\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="base\node\android\android.h">
-      <Filter>Header Files\base\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\android\android1.h">
-      <Filter>Header Files\base\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\android\android_copydesk.h">
       <Filter>Header Files\base\node\android</Filter>
     </ClInclude>
     <ClInclude Include="base\node\android\android_factory_exchange.h">
@@ -309,34 +48,13 @@
     <ClInclude Include="base\node\android\android_implementation.h">
       <Filter>Header Files\base\node\android</Filter>
     </ClInclude>
-    <ClInclude Include="base\node\android\android_window_draw.h">
-      <Filter>Header Files\base\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\android\android_interaction_impl.h">
-      <Filter>Header Files\base\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\android\android_message_queue.h">
-      <Filter>Header Files\base\node\android</Filter>
-    </ClInclude>
     <ClInclude Include="base\node\ansios\ansios.h">
       <Filter>Header Files\base\node\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="base\message\message_user.h">
-      <Filter>Header Files\base\message</Filter>
     </ClInclude>
     <ClInclude Include="base\base\base.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
     <ClInclude Include="base\base\base_application.h">
-      <Filter>Header Files\base\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base\base_core_copydesk.h">
-      <Filter>Header Files\base\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base\base_platform_interface.h">
-      <Filter>Header Files\base\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base\base_print_job.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
     <ClInclude Include="base\base\base_session.h">
@@ -349,9 +67,6 @@
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
     <ClInclude Include="base\base\base_system.h">
-      <Filter>Header Files\base\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\base\base_system_str.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
     <ClInclude Include="base\base\base_template.h">
@@ -374,42 +89,6 @@
     </ClInclude>
     <ClInclude Include="base\base_policy\base_policy_winrt.h">
       <Filter>Header Files\base\base_policy</Filter>
-    </ClInclude>
-    <ClInclude Include="base\hotplugin\hotplugin.h">
-      <Filter>Header Files\base\hotplugin</Filter>
-    </ClInclude>
-    <ClInclude Include="base\hotplugin\hotplugin_composer.h">
-      <Filter>Header Files\base\hotplugin</Filter>
-    </ClInclude>
-    <ClInclude Include="base\hotplugin\hotplugin_container_launcher.h">
-      <Filter>Header Files\base\hotplugin</Filter>
-    </ClInclude>
-    <ClInclude Include="base\hotplugin\hotplugin_host.h">
-      <Filter>Header Files\base\hotplugin</Filter>
-    </ClInclude>
-    <ClInclude Include="base\hotplugin\hotplugin_plugin.h">
-      <Filter>Header Files\base\hotplugin</Filter>
-    </ClInclude>
-    <ClInclude Include="base\install\install.h">
-      <Filter>Header Files\base\install</Filter>
-    </ClInclude>
-    <ClInclude Include="base\install\install_plugin.h">
-      <Filter>Header Files\base\install</Filter>
-    </ClInclude>
-    <ClInclude Include="base\install\install_starter_start.h">
-      <Filter>Header Files\base\install</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database\database_user_interaction.h">
-      <Filter>Header Files\database\database</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\android\android_vsnord_native_app_glue.h">
-      <Filter>Header Files\base\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\linux\linux_window_cairo.h">
-      <Filter>Header Files\base\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\android\android_window_anative.h">
-      <Filter>Header Files\base\os\android</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -473,20 +152,11 @@
     <Filter Include="Header Files\base\node\ansios">
       <UniqueIdentifier>{58660c45-f511-4052-806a-43875730ff4d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\base\message">
-      <UniqueIdentifier>{0fce4562-39e9-4fa8-99f2-2dfee87981a7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\base\base">
       <UniqueIdentifier>{7c7c4f51-aa61-436b-b826-c5e8a004b477}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\base\base_policy">
       <UniqueIdentifier>{3e8e0bfe-bf4f-492d-81fb-47507cd1cb45}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\hotplugin">
-      <UniqueIdentifier>{0303b85c-d39e-4dd2-9761-2b6dbd9d1e83}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\install">
-      <UniqueIdentifier>{8aa37dba-baca-42d2-ac8b-2ba1c7a56eab}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\database">
       <UniqueIdentifier>{c0f81585-50d5-4321-a2b6-82e5302316e8}</UniqueIdentifier>
@@ -532,9 +202,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="user\user.inl">
-      <Filter>Header Files\user</Filter>
-    </None>
     <None Include="base\base\base.inl">
       <Filter>Header Files\base\base</Filter>
     </None>

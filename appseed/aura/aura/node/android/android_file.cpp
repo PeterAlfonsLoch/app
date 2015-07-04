@@ -55,7 +55,7 @@ namespace android
    file::~file()
    {
 
-      if (m_iFile != (UINT)hFileNull)
+      if (m_iFile != hFileNull)
          close();
 
    }
@@ -63,7 +63,7 @@ namespace android
    ::file::buffer_sp file::Duplicate() const
    {
       ASSERT_VALID(this);
-      ASSERT(m_iFile != (UINT)hFileNull);
+      ASSERT(m_iFile != hFileNull);
 
       int32_t iNew = dup(m_iFile);
 
@@ -72,14 +72,14 @@ namespace android
 
       file* pFile = new file(get_app(), iNew);
       pFile->m_iFile = (UINT)iNew;
-      ASSERT(pFile->m_iFile != (UINT)hFileNull);
+      ASSERT(pFile->m_iFile != hFileNull);
       return pFile;
    }
 
    cres file::open(const ::file::path & lpszFileName, UINT nOpenFlags)
    {
 
-      if (m_iFile != (UINT)hFileNull)
+      if (m_iFile != hFileNull)
          close();
 
       ASSERT_VALID(this);
@@ -238,7 +238,7 @@ namespace android
    ::primitive::memory_size file::read(void * lpBuf, ::primitive::memory_size nCount)
    {
       ASSERT_VALID(this);
-      ASSERT(m_iFile != (UINT)hFileNull);
+      ASSERT(m_iFile != hFileNull);
 
       if (nCount == 0)
          return 0;   // avoid Win32 "null-read"
@@ -278,7 +278,7 @@ namespace android
    void file::write(const void * lpBuf, ::primitive::memory_size nCount)
    {
       ASSERT_VALID(this);
-      ASSERT(m_iFile != (UINT)hFileNull);
+      ASSERT(m_iFile != hFileNull);
 
       if (nCount == 0)
          return;     // avoid Win32 "null-write" option
@@ -304,11 +304,11 @@ namespace android
    file_position file::seek(file_offset lOff, ::file::e_seek nFrom)
    {
 
-      if(m_iFile == (UINT)hFileNull)
+      if(m_iFile == hFileNull)
          file_exception::ThrowOsError(get_app(), (LONG)0);
 
       ASSERT_VALID(this);
-      ASSERT(m_iFile != (UINT)hFileNull);
+      ASSERT(m_iFile != hFileNull);
       ASSERT(nFrom == ::file::seek_begin || nFrom == ::file::seek_end || nFrom == ::file::seek_current);
       ASSERT(::file::seek_begin == SEEK_SET && ::file::seek_end == SEEK_END && ::file::seek_current == SEEK_CUR);
 
@@ -326,7 +326,7 @@ namespace android
    file_position file::get_position() const
    {
       ASSERT_VALID(this);
-      ASSERT(m_iFile != (UINT)hFileNull);
+      ASSERT(m_iFile != hFileNull);
 
       LONG lLoOffset = 0;
 //      LONG lHiOffset = 0;
@@ -352,7 +352,7 @@ namespace android
 
       /*ASSERT_VALID(this);
 
-    /*  if (m_iFile == (UINT)hFileNull)
+    /*  if (m_iFile == hFileNull)
          return;
 
       if (!::FlushFileBuffers((HANDLE)m_iFile))
@@ -362,10 +362,10 @@ namespace android
    void file::close()
    {
       ASSERT_VALID(this);
-      ASSERT(m_iFile != (UINT)hFileNull);
+      ASSERT(m_iFile != hFileNull);
 
       bool bError = FALSE;
-      if (m_iFile != (UINT)hFileNull)
+      if (m_iFile != hFileNull)
          bError = ::close(m_iFile) == -1;
 
       m_iFile = (UINT) hFileNull;
@@ -379,7 +379,7 @@ namespace android
    void file::Abort()
    {
       ASSERT_VALID(this);
-      if (m_iFile != (UINT)hFileNull)
+      if (m_iFile != hFileNull)
       {
          // close but ignore errors
          ::close(m_iFile);
@@ -391,7 +391,7 @@ namespace android
    void file::LockRange(file_position dwPos, file_size dwCount)
    {
       ASSERT_VALID(this);
-      ASSERT(m_iFile != (UINT)hFileNull);
+      ASSERT(m_iFile != hFileNull);
 
       /*if (!::LockFile((HANDLE)m_iFile, LODWORD(dwPos), HIDWORD(dwPos), LODWORD(dwCount), HIDWORD(dwCount)))
          file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());*/
@@ -400,7 +400,7 @@ namespace android
    void file::UnlockRange(file_position dwPos, file_size dwCount)
    {
       ASSERT_VALID(this);
-      ASSERT(m_iFile != (UINT)hFileNull);
+      ASSERT(m_iFile != hFileNull);
 
 /*      if (!::UnlockFile((HANDLE)m_iFile,  LODWORD(dwPos), HIDWORD(dwPos), LODWORD(dwCount), HIDWORD(dwCount)))
          file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());*/
@@ -409,7 +409,7 @@ namespace android
    void file::set_length(file_size dwNewLen)
    {
       ASSERT_VALID(this);
-      ASSERT(m_iFile != (UINT)hFileNull);
+      ASSERT(m_iFile != hFileNull);
 
       seek((LONG)dwNewLen, (::file::e_seek)::file::seek_begin);
 
@@ -1580,7 +1580,7 @@ void CLASS_DECL_AURA vfxThrowFileException(::aura::application * papp, ::file::e
       lpsz = ::android::rgszFileExceptioncause[ecause];
    else
       lpsz = ::android::szUnknown;
-   //   TRACE3("file exception: %hs, file %s, App error information = %ld.\n", lpsz, (lpszFileName == NULL) ? "Unknown" : lpszFileName, lOsError);
+   APPTRACE("file exception: %hs, file %s, App error information = %ld.\n", lpsz, (lpszFileName == NULL) ? "Unknown" : lpszFileName, lOsError);
 #endif
    throw ::file::exception(papp, ecause, lOsError, lpszFileName);
 }

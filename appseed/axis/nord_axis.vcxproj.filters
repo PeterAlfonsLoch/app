@@ -109,9 +109,6 @@
     <ClCompile Include="axis\os\android\android_trace_message.cpp">
       <Filter>Source Files\axis\os\android</Filter>
     </ClCompile>
-    <ClCompile Include="axis\os\android\android_vsnord_native_app_glue.cpp">
-      <Filter>Source Files\axis\os\android</Filter>
-    </ClCompile>
     <ClCompile Include="axis\node\android\android_crypto.cpp">
       <Filter>Source Files\axis\node\android</Filter>
     </ClCompile>
@@ -151,8 +148,11 @@
     <ClCompile Include="axis\message\_message.cpp">
       <Filter>Source Files\axis\message</Filter>
     </ClCompile>
-    <ClCompile Include="install_plugin_library_list.cpp">
+    <ClCompile Include="app_install_plugin_library_list.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\android\android_vsnord_native_app_glue.c">
+      <Filter>Source Files\axis\os\android</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -208,9 +208,6 @@
       <Filter>Header Files\net\http</Filter>
     </ClInclude>
     <ClInclude Include="net\http\http_listener.h">
-      <Filter>Header Files\net\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\http\http_output_stream.h">
       <Filter>Header Files\net\http</Filter>
     </ClInclude>
     <ClInclude Include="net\http\http_signal.h">
@@ -486,9 +483,6 @@
     <ClInclude Include="axis\compress\zip\zipImpl.h">
       <Filter>Header Files\axis\compress\zip</Filter>
     </ClInclude>
-    <ClInclude Include="axis\compress\bsdiff\libbsdiff.h">
-      <Filter>Header Files\axis\compress\bsdiff</Filter>
-    </ClInclude>
     <ClInclude Include="axis\crypto\crypto.h">
       <Filter>Header Files\axis\crypto</Filter>
     </ClInclude>
@@ -621,16 +615,10 @@
     <ClInclude Include="axis\node\windows\windows_crypto.h">
       <Filter>Header Files\axis\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_dir.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="axis\node\windows\windows_factory_exchange.h">
       <Filter>Header Files\axis\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="axis\node\windows\windows_file_set.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_file_system.h">
       <Filter>Header Files\axis\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="axis\node\windows\windows_ip_enum.h">
@@ -741,18 +729,6 @@
     <ClInclude Include="filesystem\fs\fs_set.h">
       <Filter>Header Files\filesystem\fs</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\file\file_application.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_dir_application.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_dir_system.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_system.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
     <ClInclude Include="graphics\graphics.h">
       <Filter>Header Files\graphics</Filter>
     </ClInclude>
@@ -809,21 +785,6 @@
     </ClInclude>
     <ClInclude Include="graphics\visual\visual_water_routine.h">
       <Filter>Header Files\graphics\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\data\data_simple_item.h">
-      <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\data\data_tree.h">
-      <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\data\data_tree_item.h">
-      <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\datetime\datetime_departament.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\datetime\datetime_value.h">
-      <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
     <ClInclude Include="database\database\database.h">
       <Filter>Header Files\database\database</Filter>

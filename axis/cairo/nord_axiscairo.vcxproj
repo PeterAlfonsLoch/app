@@ -30,18 +30,20 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>Clang_3_4</PlatformToolset>
+    <PlatformToolset>Gcc_4_8</PlatformToolset>
     <AndroidAPILevel>android-19</AndroidAPILevel>
+    <UseOfStl>gnustl_shared</UseOfStl>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>Clang_3_4</PlatformToolset>
+    <PlatformToolset>Gcc_4_8</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>Clang_3_4</PlatformToolset>
+    <AndroidAPILevel>android-9</AndroidAPILevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -60,16 +62,27 @@
     <OutDir>$(SolutionDir)..\..\..\stage\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <OutDir>$(SolutionDir)..\..\..\stage\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <OutDir>$(SolutionDir)..\..\..\stage\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
     <ClCompile>
       <AdditionalIncludeDirectories>$(ProjectDir)../../..;$(ProjectDir)../../appseed/aura;$(ProjectDir)../../appseed;$(ProjectDir)../..;$(ProjectDir)..;$(ProjectDir);src;$(ProjectDir)../../include;$(ProjectDir)../pixman/pixman;$(ProjectDir)../freetype/include;$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>CAIRO_HAS_GLESV2_SURFACE;CAIRO_HAS_EGL_FUNCTIONS;__STDC__;HAVE_CONFIG_H;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalOptions>-Wno-typedef-redefinition -Wno-enum-conversion -Wno-unused-function -Wno-unused-variable -Wno-tautological-constant-out-of-range-compare -Wno-parentheses-equality %(AdditionalOptions)</AdditionalOptions>
-      <CppLanguageStandard>c++1y</CppLanguageStandard>
+      <PreprocessorDefinitions>CAIRO_HAS_GLESV2_SURFACE;CAIRO_HAS_EGL_FUNCTIONS;HAVE_CONFIG_H;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>-Wno-typedef-redefinition -Wno-unused-function -Wno-unused-variable  -Wno-comment %(AdditionalOptions)</AdditionalOptions>
+      <CppLanguageStandard>gnu++11</CppLanguageStandard>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
     </ClCompile>
     <Link />
     <Link>
-      <LibraryDependencies>$(StlLibraryName);%(LibraryDependencies);m;GLESv2;GLESv1_CM;EGL;</LibraryDependencies>
+      <LibraryDependencies>axisfreetype;axispng;axiszlib;axispixman;aura;$(StlLibraryName);m;GLESv2;GLESv1_CM;EGL;</LibraryDependencies>
+      <SharedLibrarySearchPath>$(OutDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;%(SharedLibrarySearchPath)</SharedLibrarySearchPath>
+      <AdditionalLibraryDirectories>$(OutDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\4.8;$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
@@ -357,23 +370,6 @@
     <ClInclude Include="src\test-null-compositor-surface.h" />
     <ClInclude Include="src\test-paginated-surface.h" />
     <ClInclude Include="src\win32\cairo-win32-private.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\appseed\aura\nord_aura.vcxproj">
-      <Project>{02207bc4-c08b-4a2d-b754-f3bd46ad3098}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\freetype\nord_freetype.vcxproj">
-      <Project>{ad0a44d0-7716-439b-aed5-48c654569171}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\pixman\nord_axispixman.vcxproj">
-      <Project>{005c309d-5880-4431-a65b-f04f6a6895b3}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\png\nord_axispng.vcxproj">
-      <Project>{cd2a80bb-5b55-45fd-932d-404d2d76729b}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\zlib\nord_axiszlib.vcxproj">
-      <Project>{032bd6dd-0da1-4a1f-9d36-6512b4127f7a}</Project>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

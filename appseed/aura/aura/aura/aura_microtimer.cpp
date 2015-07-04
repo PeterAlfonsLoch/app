@@ -152,7 +152,7 @@ namespace aura
 
 #endif
 
-      return endTimeInMicroSec;
+      return dTimeInMicroSec;
 
    }
 

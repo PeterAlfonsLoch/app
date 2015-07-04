@@ -61,7 +61,7 @@ DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, object * * pobjectptra, DWORD dw
       int32_t i;
       int32_t j;
       i = 0;
-      for(; i < dwSize;)
+      for(; compare::lt(i, dwSize);)
       {
          if(dwTimeout != (DWORD) INFINITE && ::get_tick_count() - start >= dwTimeout)
          {
@@ -98,7 +98,7 @@ DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, object * * pobjectptra, DWORD dw
       while(true)
       {
 
-         for(i = 0; i < dwSize;i++)
+         for(i = 0; compare::lt(i, dwSize);i++)
          {
             if(dwTimeout != (DWORD) INFINITE && ::get_tick_count() - start >= dwTimeout)
             {
@@ -655,7 +655,7 @@ int_bool WINAPI TlsFree(DWORD dwTlsIndex)
 
       allthreaddata->get_next_assoc(pos,iThreadId,pdata);
 
-      if(pdata->get_count() > dwTlsIndex)
+      if(compare::gt(pdata->get_count(), dwTlsIndex))
       {
          pdata->element_at(dwTlsIndex) = NULL;
       }
@@ -669,7 +669,7 @@ LPVOID WINAPI TlsGetValue(DWORD dwTlsIndex)
 {
    ThreadLocalData* threadData = currentThreadData;
 
-   if(threadData && threadData->get_count() > dwTlsIndex)
+   if(threadData && compare::gt(threadData->get_count(), dwTlsIndex))
    {
       // Return the value of an allocated TLS slot.
       return threadData->element_at(dwTlsIndex);
@@ -680,7 +680,7 @@ LPVOID WINAPI TlsGetValue(DWORD dwTlsIndex)
       if(threadData)
       {
          currentThreadData = threadData;
-         if(threadData->get_count() > dwTlsIndex)
+         if(compare::gt(threadData->get_count(), dwTlsIndex))
          {
             return threadData->element_at(dwTlsIndex);
          }
@@ -704,7 +704,7 @@ LPVOID WINAPI TlsGetValue(HTHREAD hthread,DWORD dwTlsIndex)
 
       ThreadLocalData * threadData = allthreaddata->operator [] ((ulong_ptr)hthread);
 
-      if(threadData && threadData->get_count() > dwTlsIndex)
+	  if (threadData && compare::gt(threadData->get_count(), dwTlsIndex))
       {
 
          // Return the value of an allocated TLS slot.

@@ -1016,7 +1016,7 @@ NTSTATUS WINAPI RtlSetTimeZoneInformation( const RTL_TIME_ZONE_INFORMATION *tzin
 NTSTATUS WINAPI NtSetSystemTime(const LARGE_INTEGER *NewTime, LARGE_INTEGER *OldTime)
 {
     struct timeval tv;
-    time_t tm_t;
+    //time_t tm_t;
     DWORD sec, oldsec;
     LARGE_INTEGER tm;
 
@@ -1035,7 +1035,7 @@ NTSTATUS WINAPI NtSetSystemTime(const LARGE_INTEGER *NewTime, LARGE_INTEGER *Old
 #ifdef HAVE_SETTIMEOFDAY
     if (!settimeofday(&tv, NULL)) /* 0 is OK, -1 is error */
         return STATUS_SUCCESS;
-    tm_t = sec;
+    //tm_t = sec;
     // xxx ERR("Cannot set time to %s, time adjustment %ld: %s\n",
         // xxx ctime(&tm_t), (long)(sec-oldsec), strerror(errno));
     if (errno == EPERM)

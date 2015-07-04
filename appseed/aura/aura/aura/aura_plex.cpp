@@ -21,14 +21,14 @@ void plex::FreeDataChain()     // free this one and links
 {
    try
    {
-      plex* pPrevious = NULL;
+      //plex* pPrevious = NULL;
       plex* p = this;
       while (p != NULL)
       {
          BYTE* bytes = (BYTE*) p;
          plex* pNextLocal = p->pNext;
          memory_free(bytes);
-         pPrevious = p;
+         //pPrevious = p;
          p = pNextLocal;
       }
    }

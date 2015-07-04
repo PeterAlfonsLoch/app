@@ -21,7 +21,7 @@
 
 #endif
 
-#define low_byte(w)              ((BYTE)(w & 0xff))
+#define low_byte(w)              ((BYTE)((w) & 0xff))
 #define argb_get_r_value(rgb)    (low_byte(rgb))
 #define argb_get_g_value(rgb)    (low_byte((rgb)>>8))
 #define argb_get_b_value(rgb)    (low_byte((rgb)>>16))

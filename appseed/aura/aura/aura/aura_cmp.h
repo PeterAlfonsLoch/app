@@ -332,7 +332,7 @@ struct tuple_element<0,tuple<TYPE1,REST1...> >
    typedef TYPE1 type;
    typedef typename add_lvalue_reference<const TYPE1>::type _Ctype;
    typedef typename add_lvalue_reference<TYPE1>::type _Rtype;
-   typedef typename add_rvalue_reference<TYPE1>::type _RRtype;
+   //typedef typename add_rvalue_reference<TYPE1>::type _RRtype;
    typedef tuple<TYPE1,REST1...> TUPLE_TYPE;
 };
 
@@ -389,7 +389,7 @@ inline  typename tuple_element<m_iIndex,tuple<TYPES...> >::_RRtype  get(tuple<TY
 {
 
    typedef typename tuple_element<m_iIndex,tuple<TYPES...> >::TUPLE_TYPE TUPLE_TYPE;
-   typedef typename tuple_element<m_iIndex,tuple<TYPES...> >::_RRtype  _RRtype;
+   //typedef typename tuple_element<m_iIndex,tuple<TYPES...> >::_RRtype  _RRtype;
    return (::move(((TUPLE_TYPE&)TUPLE).m_val));
 
 }

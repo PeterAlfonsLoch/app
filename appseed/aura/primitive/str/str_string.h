@@ -2122,7 +2122,7 @@ namespace comparison
          uint64_t * puiKey = (uint64_t *) (const char *) key;
          strsize counter = key.get_length();
          uint64_t nHash = 0;
-         while(counter >= sizeof(*puiKey))
+         while(::compare::ge(counter, sizeof(*puiKey)))
          {
             nHash = (nHash<<5) + nHash + *puiKey++;
             counter -= sizeof(*puiKey);

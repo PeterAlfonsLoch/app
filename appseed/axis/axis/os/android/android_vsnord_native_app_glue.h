@@ -355,7 +355,7 @@ extern "C" {
    */
    void android_app_post_exec_cmd(struct android_app* android_app, int8_t cmd);
 
-   extern PFN_ANDROID_MAIN android_main;
+   extern PFN_ANDROID_MAIN g_android_main;
 
 #ifdef __cplusplus
 }

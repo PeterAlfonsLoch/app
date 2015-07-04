@@ -120,9 +120,9 @@ int32_t WINAPI GetLocaleInfoW( LCID lcid, LCTYPE lctype, LPWSTR buffer, int32_t 
     else if (is_genitive_name_supported( lctype ) && *p)
     {
         /* genitive form's stored after a NULL separator from a nominative */
-        for (i = 1; i <= *p; i++) if (!p[i]) break;
+        for (i = 1; compare::le(i, *p); i++) if (!p[i]) break;
 
-        if (i <= *p && (lcflags & LOCALE_RETURN_GENITIVE_NAMES))
+        if (compare::le(i, *p) && (lcflags & LOCALE_RETURN_GENITIVE_NAMES))
         {
             ret = *p - i + 1;
             p += i;

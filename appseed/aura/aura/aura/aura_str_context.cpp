@@ -500,7 +500,7 @@ namespace aura
             if(newlen >= m_iMaxSize) // extra 1 byte
             {
                m_iMaxSize = newlen + 1024; // extra 1 byte plus 1023
-               if(m_iMaxSize > sizeof(m_szAlloca))
+			   if (compare::ge(m_iMaxSize, sizeof(m_szAlloca)))
                {
                   if(m_szMerge == m_szAlloca || !m_bOwn)
                   {

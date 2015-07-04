@@ -502,7 +502,7 @@ if(__get_module_state()->m_pmapHWND == NULL)
       string strExeName;
       //string strTitle = System.load_string("System.title");
       // get the exe title from the full path name [no extension]
-      strExeName = System.get_module_title();
+      strExeName = System.file().module().title();
 
 
 //      dynamic_cast < ::android::thread * > ((smart_pointer < ::aura::application >::m_p->::ca2::thread_sp::m_p))->m_hThread = __get_thread()->m_hThread;
@@ -617,60 +617,6 @@ if(__get_module_state()->m_pmapHWND == NULL)
    }
 
 
-   bool application::update_module_paths()
-   {
-
-         {
-
-            if(!br_init_lib(NULL))
-               return false;
-
-            char * lpszModuleFolder = br_find_exe_dir(NULL);
-
-            if(lpszModuleFolder == NULL)
-               return false;
-
-            System.m_pathModuleFolder = lpszModuleFolder;
-
-            free(lpszModuleFolder);
-
-         }
-
-         {
-
-            //void * handle = dlopen("libca.so", RTLD_NOW);
-
-            //if(handle == NULL)
-            {
-
-               System.m_pathCa2ModuleFolder = System.m_pathModuleFolder;
-
-            }
-            /*else
-            {
-
-                link_map * plm;
-
-                dlinfo(handle, RTLD_DI_LINKMAP, &plm);
-
-                m_strCa2ModuleFolder = ::dir::name(plm->l_name);
-
-                if(m_strCa2ModuleFolder.is_empty() || m_strCa2ModuleFolder[0] != '/')
-                {
-
-                    m_strCa2ModuleFolder = m_strModuleFolder;
-
-                }
-
-                dlclose(handle);
-
-            }*/
-
-         }
-
-		return true;
-
-   }
 
    string application::draw2d_get_default_library_name()
    {

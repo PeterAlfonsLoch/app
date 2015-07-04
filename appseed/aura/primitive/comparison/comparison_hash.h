@@ -38,7 +38,7 @@ namespace comparison
          uint64_t * puiKey = (uint64_t *) (const wchar_t *) key;
          strsize counter = key.get_length() * sizeof(wchar_t);
          uint64_t nHash = 0;
-         while(counter >= sizeof(*puiKey))
+         while(compare::ge(counter, sizeof(*puiKey)))
          {
             nHash = (nHash<<5) + nHash + *puiKey++;
             counter -= sizeof(*puiKey);
@@ -72,7 +72,7 @@ template<> inline UINT HashKey<const char *> (const char * key)
    uint64_t * puiKey = (uint64_t *) key;
    strsize counter = strlen(key);
    uint64_t nHash = 0;
-   while(counter >= sizeof(*puiKey))
+   while(compare::ge(counter, sizeof(*puiKey)))
    {
       nHash = (nHash<<5) + nHash + *puiKey++;
       counter -= sizeof(*puiKey);

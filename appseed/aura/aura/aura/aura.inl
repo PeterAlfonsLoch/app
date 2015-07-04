@@ -4,8 +4,8 @@
 template<class TYPE>
 void dump_elements(dump_context & dumpcontext, const TYPE* pElements, ::count nCount)
 {
-   ENSURE(nCount == 0 || pElements != NULL);
-   ASSERT(nCount == 0 ||
+   ENSURE((nCount == 0) || (pElements != NULL));
+   ASSERT((nCount == 0) ||
       __is_valid_address(pElements, (size_t)nCount * sizeof(TYPE), FALSE));
 #ifdef WINDOWS
    &dumpcontext; // not used
@@ -19,11 +19,9 @@ void dump_elements(dump_context & dumpcontext, const TYPE* pElements, ::count nC
 template<class TYPE>
 inline void CopyElements(TYPE* pDest, const TYPE* pSrc, ::count nCount)
 {
-   ENSURE(nCount == 0 || pDest != 0 && pSrc != 0);
-   ASSERT(nCount == 0 ||
-      __is_valid_address(pDest, (size_t)nCount * sizeof(TYPE)));
-   ASSERT(nCount == 0 ||
-      __is_valid_address(pSrc, (size_t)nCount * sizeof(TYPE)));
+   ENSURE((nCount == 0) || ((pDest != 0) && (pSrc != 0)));
+   ASSERT((nCount == 0) || __is_valid_address(pDest, (size_t)nCount * sizeof(TYPE)));
+   ASSERT((nCount == 0) || __is_valid_address(pSrc, (size_t)nCount * sizeof(TYPE)));
 
    // default is element-copy using assignment
    while (nCount--)

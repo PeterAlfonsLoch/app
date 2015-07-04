@@ -71,7 +71,7 @@ namespace android
 
       //string replace_extension(const char * pszFile, const char * pszExtension);
       //void set_extension(string & str, const char * pszExtension);
-
+	  bool update_module_path();
 
    };
 

@@ -84,7 +84,7 @@ namespace aura
       bool tx::send(int32_t message,void * pdata,int32_t len,DWORD dwTimeout)
       {
 
-         if(message == 0x80000000)
+         if(message == (int32_t) 0x80000000)
             return false;
 
 
@@ -326,12 +326,12 @@ namespace aura
 
             ssize_t  result;
 
-            int32_t length;
+            //int32_t length;
 
             data_struct data;
 
             /* The length is essentially the size of the structure minus sizeof(mtype) */
-            length = sizeof(data_struct) - sizeof(long);
+            //length = sizeof(data_struct) - sizeof(long);
 
             ::primitive::memory mem;
 

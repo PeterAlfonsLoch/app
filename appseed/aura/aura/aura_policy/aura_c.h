@@ -93,13 +93,17 @@ CLASS_DECL_AURA int throw_assert_exception(const char * lpszFileName,int iLineNu
 #define INTABS(i) (((i) >= 0) ? (i) : (-i))
 #define FLOATABS(f) (((f) >= 0.f) ? (f) : (-f))
 #define DOUBLEABS(d) (((d) >= 0.0) ? (d) : (-d))
+#ifdef __cplusplus
+#define MAX(a, b) ((compare::gt((a), (b))) ? (a) : (b))
+#define MIN(a, b) ((compare::lt((a), (b))) ? (a) : (b))
+#include "aura/primitive/comparison/compare.h"
+#else
 #define MAX(a, b) (((a) > (b)) ? (a) : (b))
 #define MIN(a, b) (((a) < (b)) ? (a) : (b))
+#endif
 #define LIM(a, min, max) MIN(max, MAX(min, a))
 #define SORT_LIM(x,minmax,maxmin) ((minmax) < (maxmin) ? LIM(x,minmax,maxmin) : LIM(x,maxmin,minmax))
 #define CLIP_USHRT(x) LIM(x,0,USHRT_MAX)
-
-
 
 CLASS_DECL_AURA int get_aura_init();
 CLASS_DECL_AURA int_bool defer_aura_init();

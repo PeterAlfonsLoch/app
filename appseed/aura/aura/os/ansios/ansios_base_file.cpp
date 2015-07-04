@@ -97,7 +97,7 @@ int_bool file_put_contents_dup(const char * path, const char * contents, ::count
    uint32_t dwWritten = 0;
    bool bOk = ::WriteFile(hfile, contents, (uint32_t) dwWrite, &dwWritten, NULL) != FALSE;
    ::CloseHandle(hfile);
-   return dwWrite == dwWritten && bOk != FALSE;
+   return compare::eq(dwWrite, dwWritten) && bOk != FALSE;
 
 
 }

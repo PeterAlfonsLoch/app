@@ -13,6 +13,8 @@ END_EXTERN_C
 #define INT_TO_NATURAL(i) (i >= 0 ? (uint32_t) i : 0)
 
 
+
+
 inline uint32_t natural(int32_t i)
 {
    return i >= 0 ? (uint32_t) i : 0;

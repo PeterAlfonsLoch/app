@@ -434,17 +434,17 @@ SRegInfo *next, *temp;
     };
     // ( ... )
     if (expr[i] == '('){
-      bool namedBracket = false;
+      //bool namedBracket = false;
       // perl-like "uncaptured" brackets
       if (::str::ilen(expr) >= i+2 && expr[i+1] == '?' && expr[i+2] == ':'){
         next->op = ReNamedBrackets;
         next->param0 = -1;
-        namedBracket = true;
+        //namedBracket = true;
         i += 3;
       } else if (::str::ilen(expr) > i+2 && expr[i+1] == '?' && expr[i+2] == '{'){
         // named bracket
         next->op = ReNamedBrackets;
-        namedBracket = true;
+        //namedBracket = true;
         string br_name;
         if(!::str::get_curly_content(&((const char *)expr)[i+2], br_name)) return EBRACKETS;
 

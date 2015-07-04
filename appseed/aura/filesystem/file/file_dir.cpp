@@ -10,7 +10,24 @@ using namespace ::Windows::System;
 
 ::file::path dir::ca2_module()
 {
-#if defined(METROWIN)
+
+#if defined(ANDROID)
+
+	if (!br_init_lib(NULL))
+		return "";
+
+	char * lpszModule = br_find_exe(NULL);
+
+	if (lpszModule == NULL)
+		return "";
+
+	::file::path path = lpszModule;
+
+	free(lpszModule);
+
+	return path;
+
+#elif defined(METROWIN)
 
    wchar_t lpszModuleFolder[MAX_PATH * 8];
 
