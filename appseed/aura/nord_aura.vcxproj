@@ -77,7 +77,7 @@
       <ExceptionHandling>Enabled</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CppLanguageStandard>gnu++11</CppLanguageStandard>
-      <AdditionalOptions>-Wno-overloaded-virtual -Wno-unknown-pragmas -Wno-reorder -Wno-comment -Wno-uninitialized -Wno-unused-variable -Wno-return-type  -Wno-unused-function -Wno-self-assign -Wno-unused-value -Wno-char-subscripts %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>-Wno-comment -Wno-reorder -Wno-overloaded-virtual -Wno-unknown-pragmas -Wno-uninitialized -Wno-unused-variable -Wno-return-type  -Wno-unused-function -Wno-self-assign -Wno-unused-value -Wno-char-subscripts %(AdditionalOptions)</AdditionalOptions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
     </ClCompile>

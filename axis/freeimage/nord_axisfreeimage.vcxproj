@@ -77,7 +77,7 @@
       <ExceptionHandling>Enabled</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CppLanguageStandard>gnu++11</CppLanguageStandard>
-      <AdditionalOptions>-Wno-overloaded-virtual -Wno-unknown-pragmas -Wno-reorder -Wno-switch -Wno-unused-variable -Wno-unused-private-field -Wno-char-subscripts -Wno-format %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>-Wno-comment -Wno-reorder -Wno-overloaded-virtual -Wno-unknown-pragmas -Wno-switch -Wno-unused-variable -Wno-unused-private-field -Wno-char-subscripts -Wno-format %(AdditionalOptions)</AdditionalOptions>
       <PrecompiledHeaderFile>Source/FreeImage/FreeImageFramework.h</PrecompiledHeaderFile>
       <PrecompiledHeader>Use</PrecompiledHeader>
     </ClCompile>

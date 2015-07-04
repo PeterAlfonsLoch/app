@@ -76,7 +76,7 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CppLanguageStandard>gnu++11</CppLanguageStandard>
       <ExceptionHandling>Enabled</ExceptionHandling>
-      <AdditionalOptions>-Wno-overloaded-virtual -Wno-deprecated-register -Wno-reorder -Wno-unknown-pragmas -Wno-comment -Wno-unused-variable %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>-Wno-comment -Wno-reorder -Wno-overloaded-virtual -Wno-deprecated-register -Wno-unknown-pragmas -Wno-unused-variable %(AdditionalOptions)</AdditionalOptions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
     </ClCompile>

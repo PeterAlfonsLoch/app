@@ -77,6 +77,7 @@
       <CppLanguageStandard>gnu++11</CppLanguageStandard>
       <RuntimeTypeInfo>
       </RuntimeTypeInfo>
+      <AdditionalOptions>-Wno-comment -Wno-unused-variable %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link />
     <Link>
