@@ -78,7 +78,8 @@
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <CppLanguageStandard>gnu++11</CppLanguageStandard>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <RuntimeTypeInfo>
+      </RuntimeTypeInfo>
     </ClCompile>
     <Link />
     <Link>

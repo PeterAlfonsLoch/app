@@ -76,7 +76,8 @@
       <PreprocessorDefinitions>NO_WINDOWS_BRAINDEATH;OPENSSL_NO_ASM;OPENSSL_NO_INLINE_ASM;USE_SOCKETS;OPENSSL_BUILD_SHLIBCRYPTO;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions>-Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int -Wno-sometimes-uninitialized -Wno-unused-variable -Wno-incompatible-pointer-types  -Wno-pointer-sign -Wno-typedef-redefinition %(AdditionalOptions)</AdditionalOptions>
       <CppLanguageStandard>gnu++11</CppLanguageStandard>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <RuntimeTypeInfo>
+      </RuntimeTypeInfo>
     </ClCompile>
     <Link />
     <Link>

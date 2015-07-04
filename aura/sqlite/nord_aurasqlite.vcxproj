@@ -76,7 +76,8 @@
       <PreprocessorDefinitions>_AURA_SQLITE;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions>-Wno-typedef-redefinition -Wno-unused-const-variable  -Wno-comment %(AdditionalOptions)</AdditionalOptions>
       <CppLanguageStandard>gnu++11</CppLanguageStandard>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <RuntimeTypeInfo>
+      </RuntimeTypeInfo>
     </ClCompile>
     <Link />
     <Link>

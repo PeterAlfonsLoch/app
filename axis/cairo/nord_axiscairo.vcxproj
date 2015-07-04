@@ -76,7 +76,8 @@
       <PreprocessorDefinitions>CAIRO_HAS_GLESV2_SURFACE;CAIRO_HAS_EGL_FUNCTIONS;HAVE_CONFIG_H;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions>-Wno-typedef-redefinition -Wno-unused-function -Wno-unused-variable  -Wno-comment %(AdditionalOptions)</AdditionalOptions>
       <CppLanguageStandard>gnu++11</CppLanguageStandard>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <RuntimeTypeInfo>
+      </RuntimeTypeInfo>
     </ClCompile>
     <Link />
     <Link>
