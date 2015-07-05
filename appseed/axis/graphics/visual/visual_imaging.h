@@ -136,7 +136,7 @@ public:
 */
 
 
-   static bool CreateBitmap(
+   static_function bool CreateBitmap(
       ::draw2d::graphics * pdc,
       ::draw2d::bitmap * pbitmapOld,
       ::draw2d::bitmap * pbitmap,
@@ -144,7 +144,7 @@ public:
       int32_t cx,
       int32_t cy);
 
-   static bool CreateBitmap(
+   static_function bool CreateBitmap(
       ::draw2d::graphics * pdc,
       ::draw2d::graphics * pdcScreen,
       ::draw2d::bitmap * pbitmap,

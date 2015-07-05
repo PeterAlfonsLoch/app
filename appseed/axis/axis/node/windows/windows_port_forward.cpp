@@ -528,7 +528,7 @@ namespace windows
 
 
 
-   /*   static   */
+   /*   static_function   */
    UINT port_forward::ThreadForPortRetrieval(LPVOID pVoid)
    {	
 	   SetThreadName(::GetCurrentThreadId(), "PortRtrv" );  // helps in debugging to see a thread's name
@@ -590,7 +590,7 @@ namespace windows
 	   ::PostMessage( oswindow_ForPosting, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, wp, lp );
 	
 	
-	   // get ::count of static mappings
+	   // get ::count of __static mappings
 	
 	   long cMappings = 0;
 	
@@ -665,7 +665,7 @@ namespace windows
    }
 
 
-   /*   static   */
+   /*   static_function   */
    UINT port_forward::ThreadForDeviceInformationRetrieval( LPVOID pVoid )
    {
 	   SetThreadName(::GetCurrentThreadId(), "DevInfo" );  // helps in debugging to see a thread's name
@@ -799,7 +799,7 @@ namespace windows
    }
 
 
-   /*   static   */
+   /*   static_function   */
    UINT port_forward::ThreadToEditMapping( LPVOID pVoid )
    {	
 	   SetThreadName(::GetCurrentThreadId(), "EditMap" );  // helps in debugging to see a thread's name
@@ -921,7 +921,7 @@ namespace windows
 	   return 0;
    }
 
-   /*   static   */
+   /*   static_function   */
    UINT port_forward::ThreadToDeleteMapping( LPVOID pVoid )
    {	
 	   SetThreadName(::GetCurrentThreadId(), "DelMap" );  // helps in debugging to see a thread's name
@@ -1007,7 +1007,7 @@ namespace windows
    }
 
 
-   /*   static   */
+   /*   static_function   */
    UINT port_forward::ThreadToAddMapping( LPVOID pVoid )
    {
 	   SetThreadName(::GetCurrentThreadId(), "AddMap" );  // helps in debugging to see a thread's name

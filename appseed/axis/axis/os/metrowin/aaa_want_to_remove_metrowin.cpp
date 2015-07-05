@@ -2,8 +2,8 @@
 #include <winternl.h>
 
 
-extern CLASS_DECL_THREAD os_thread * t_posthread;
-extern CLASS_DECL_THREAD HTHREAD currentThread;
+extern thread_pointer < os_thread > t_posthread;
+extern thread_int_ptr < HTHREAD > currentThread;
 
 /*
 String ^ rtstr(const char * psz)

@@ -110,7 +110,7 @@ struct timeval
 
 //WINE_DEFAULT_DEBUG_CHANNEL(ntdll);
 
-static int32_t init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi);
+static_function int32_t init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi);
 
 /*extern RTL_CRITICAL_SECTION TIME_tz_section;
 static RTL_CRITICAL_SECTION_DEBUG critsect_debug =
@@ -612,7 +612,7 @@ ULONG WINAPI NtGetTickCount(void)
  *
  * Note: year, day and month must be in unix format.
  */
-static int32_t weekday_to_mday(int32_t year, int32_t day, int32_t mon, int32_t day_of_week)
+static_function int32_t weekday_to_mday(int32_t year, int32_t day, int32_t mon, int32_t day_of_week)
 {
     struct tm date;
     time_t tmp;
@@ -683,7 +683,7 @@ WINBOOL match_tz_info(const RTL_TIME_ZONE_INFORMATION *tzi, const RTL_TIME_ZONE_
 
 /*
 
-static WINBOOL reg_query_value(HKEY hkey, LPCWSTR name, DWORD type, void *data, DWORD count)
+static_function WINBOOL reg_query_value(HKEY hkey, LPCWSTR name, DWORD type, void *data, DWORD count)
 {
     UNICODE_STRING nameW;
     char buf[256];
@@ -707,7 +707,7 @@ static WINBOOL reg_query_value(HKEY hkey, LPCWSTR name, DWORD type, void *data, 
 */
 
 /*
-static void find_reg_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
+static_function void find_reg_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
 {
     static const WCHAR Time_ZonesW[] = { 'M','a','c','h','i','n','e','\\',
         'S','o','f','t','w','a','r','e','\\',
@@ -824,7 +824,7 @@ static void find_reg_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
           tzi->DaylightDate.wDay, tzi->DaylightDate.wMonth, tzi->DaylightDate.wYear);
 }*/
 
-static time_t find_dst_change(time_t MIN, time_t MAX, int32_t *is_dst)
+static_function time_t find_dst_change(time_t MIN, time_t MAX, int32_t *is_dst)
 {
     time_t start;
     struct tm *tm;
@@ -847,7 +847,7 @@ static time_t find_dst_change(time_t MIN, time_t MAX, int32_t *is_dst)
     return MIN;
 }
 
-static int32_t init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
+static_function int32_t init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
 {
     static RTL_TIME_ZONE_INFORMATION cached_tzi;
     static int32_t current_year = -1;

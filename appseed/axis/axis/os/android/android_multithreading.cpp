@@ -411,15 +411,12 @@ bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow interact
 //} // namespace core
 //
 //
-//__thread struct _TEB * t_pteb = NULL;
+//thread_object < _TEB > t_teb;
 //
 //struct _TEB * WINAPI NtCurrentTeb(void)
 //{
 //
-//   if (t_pteb == NULL)
-//      t_pteb = new _TEB;
-//
-//   return t_pteb;
+//   return t_teb;
 //
 //}
 //

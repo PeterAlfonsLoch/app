@@ -9,7 +9,7 @@
 //#include "base/user/user.h"
 
 
-extern CLASS_DECL_THREAD HTHREAD currentThread;
+extern thread_int_ptr < HTHREAD > currentThread;
 //#undef System
 //
 ////#include <assert.h>

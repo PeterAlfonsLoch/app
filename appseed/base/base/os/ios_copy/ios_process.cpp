@@ -7,7 +7,6 @@
 
 
 extern thread_pointer < os_thread > t_posthread;
-//extern CLASS_DECL_THREAD HTHREAD currentThread;
 
 
 int create_process(const char * _cmd_line, int * pprocessId)

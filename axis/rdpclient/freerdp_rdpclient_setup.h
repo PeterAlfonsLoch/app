@@ -2,14 +2,11 @@
 
 
 #ifdef _WIN32
-
 #define CLASS_DECL_EXPORT __declspec(dllexport)
 #define CLASS_DECL_IMPORT __declspec(dllimport)
-#define CLASS_DECL_THREAD __declspec(thread)
 #else
 #define CLASS_DECL_EXPORT
 #define CLASS_DECL_IMPORT
-#define CLASS_DECL_THREAD __thread
 #endif
 
 

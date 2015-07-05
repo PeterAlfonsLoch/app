@@ -110,11 +110,11 @@ namespace macos
        HRESULT GetNextMapping( IEnumVARIANT* piEnumerator, port_map & mappingContainer );
        HRESULT SetChangeEventCallbackPointer(::ca2::port_forward_change_callbacks *pCallbacks);
        
-       static UINT ThreadForPortRetrieval( LPVOID pVoid );
-       static UINT ThreadForDeviceInformationRetrieval( LPVOID pVoid );
-       static UINT ThreadToEditMapping( LPVOID pVoid );
-       static UINT ThreadToAddMapping( LPVOID pVoid );
-       static UINT ThreadToDeleteMapping( LPVOID pVoid );
+       static_function UINT ThreadForPortRetrieval( LPVOID pVoid );
+       static_function UINT ThreadForDeviceInformationRetrieval( LPVOID pVoid );
+       static_function UINT ThreadToEditMapping( LPVOID pVoid );
+       static_function UINT ThreadToAddMapping( LPVOID pVoid );
+       static_function UINT ThreadToDeleteMapping( LPVOID pVoid );
        
        
        

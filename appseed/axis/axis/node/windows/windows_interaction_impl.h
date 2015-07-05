@@ -79,7 +79,7 @@ namespace windows
 
       bool create_message_queue(const char * pszName);
 
-      //static const MSG* GetCurrentMessage();
+      //static_function const MSG* GetCurrentMessage();
 
       virtual void install_message_handling(::message::dispatch * pinterface);
 
@@ -119,7 +119,7 @@ namespace windows
       virtual ::user::interaction * from_os_data(void * pdata);
       virtual void * get_os_data() const;
 
-      static ::user::interaction * from_handle(oswindow oswindow);
+      static_function ::user::interaction * from_handle(oswindow oswindow);
 
       // subclassing/unsubclassing functions
       virtual void pre_subclass_window();
@@ -158,7 +158,7 @@ namespace windows
       ::user::interaction * GetDescendantWindow(id id) const;
       // like get_child_by_id but recursive
       void SendMessageToDescendants(UINT message,WPARAM wParam = 0,lparam lParam = 0,bool bDeep = TRUE,bool bOnlyPerm = FALSE);
-      static ::window_sp get_safe_owner(::window_sp pParent = NULL,oswindow* pWndTop = NULL);
+      static_function ::window_sp get_safe_owner(::window_sp pParent = NULL,oswindow* pWndTop = NULL);
 
       virtual bool IsWindow() const;
 
@@ -296,7 +296,7 @@ namespace windows
 
 
       // capture and focus apply to all windows
-      static ::user::interaction * s_GetCapture();
+      static_function ::user::interaction * s_GetCapture();
       virtual ::user::interaction * SetCapture(::user::interaction * pinterface = NULL);
       virtual ::user::interaction * ReleaseCapture();
       virtual ::user::interaction * GetCapture();
@@ -361,8 +361,8 @@ namespace windows
       // Window Access Functions
       virtual ::user::interaction * ChildWindowFromPoint(POINT point);
       virtual ::user::interaction * ChildWindowFromPoint(POINT point,UINT nFlags);
-      static ::window_sp FindWindow(const char * lpszClassName,const char * lpszWindowName);
-      static ::window_sp FindWindowEx(oswindow oswindowParent,oswindow oswindowChildAfter,const char * lpszClass,const char * lpszWindow);
+      static_function ::window_sp FindWindow(const char * lpszClassName,const char * lpszWindowName);
+      static_function ::window_sp FindWindowEx(oswindow oswindowParent,oswindow oswindowChildAfter,const char * lpszClass,const char * lpszWindow);
 
       virtual ::user::interaction * GetNextWindow(UINT nFlag = GW_HWNDNEXT);
       virtual ::user::interaction * GetTopWindow() const;
@@ -372,7 +372,7 @@ namespace windows
 
       virtual ::user::interaction * GetParent() const;
       virtual ::user::interaction * SetParent(::user::interaction * pWndNewParent);
-      static ::user::interaction * WindowFromPoint(POINT point);
+      static_function ::user::interaction * WindowFromPoint(POINT point);
 
 
       virtual ::user::interaction * SetOwner(::user::interaction * pWndNewParent);
@@ -393,16 +393,16 @@ namespace windows
       virtual bool ChangeClipboardChain(oswindow oswindow_Next);
       virtual ::oswindow  SetClipboardViewer();
       virtual bool OpenClipboard();
-      static ::window_sp GetClipboardOwner();
-      static ::window_sp GetClipboardViewer();
-      static ::window_sp GetOpenClipboardWindow();
+      static_function ::window_sp GetClipboardOwner();
+      static_function ::window_sp GetClipboardViewer();
+      static_function ::window_sp GetOpenClipboardWindow();
 
       // Caret Functions
       virtual void CreateCaret(::draw2d::bitmap* pBitmap);
       virtual void CreateSolidCaret(int32_t nWidth,int32_t nHeight);
       virtual void CreateGrayCaret(int32_t nWidth,int32_t nHeight);
-      static point GetCaretPos();
-      static void SetCaretPos(POINT point);
+      static_function point GetCaretPos();
+      static_function void SetCaretPos(POINT point);
       virtual void HideCaret();
       virtual void ShowCaret();
 
@@ -615,7 +615,7 @@ namespace windows
       virtual bool OnChildNotify(::message::base * pbase);
       // return TRUE if parent should not process this message
       virtual bool ReflectChildNotify(::message::base * pbase);
-      static bool ReflectMessage(oswindow oswindow_Child,::message::base * pbase);
+      static_function bool ReflectMessage(oswindow oswindow_Child,::message::base * pbase);
 
       // Implementation
       virtual bool CheckAutoCenter();
@@ -627,14 +627,14 @@ namespace windows
       bool HandleFloatingSysCommand(UINT nID,LPARAM lParam);
       bool IsTopParentActive();
       void ActivateTopParent();
-      static ::user::interaction * GetDescendantWindow(::user::interaction * pui, id id);
-      static void SendMessageToDescendants(oswindow  oswindow,UINT message,WPARAM wParam,lparam lParam,bool bDeep,bool bOnlyPerm);
+      static_function ::user::interaction * GetDescendantWindow(::user::interaction * pui, id id);
+      static_function void SendMessageToDescendants(oswindow  oswindow,UINT message,WPARAM wParam,lparam lParam,bool bDeep,bool bOnlyPerm);
       virtual void on_final_release();
-      static bool ModifyStyle(oswindow oswindow,uint32_t dwRemove,uint32_t dwAdd,UINT nFlags);
-      static bool ModifyStyleEx(oswindow oswindow,uint32_t dwRemove,uint32_t dwAdd,UINT nFlags);
-      static void _FilterToolTipMessage(MSG* pMsg,::window_sp pwindow);
+      static_function bool ModifyStyle(oswindow oswindow,uint32_t dwRemove,uint32_t dwAdd,UINT nFlags);
+      static_function bool ModifyStyleEx(oswindow oswindow,uint32_t dwRemove,uint32_t dwAdd,UINT nFlags);
+      static_function void _FilterToolTipMessage(MSG* pMsg,::window_sp pwindow);
       bool _EnableToolTips(bool bEnable,UINT nFlag);
-      static oswindow get_safe_owner(::oswindow oswindow,::oswindow * pWndTop);
+      static_function oswindow get_safe_owner(::oswindow oswindow,::oswindow * pWndTop);
       void PrepareForHelp();
 
 
@@ -651,10 +651,10 @@ namespace windows
       LRESULT OnDisplayChange(WPARAM,LPARAM);
       LRESULT OnDragList(WPARAM,LPARAM);
 
-      static BOOL CALLBACK GetAppsEnumWindowsProc(oswindow oswindow,LPARAM lParam);
+      static_function BOOL CALLBACK GetAppsEnumWindowsProc(oswindow oswindow,LPARAM lParam);
 
 
-      static void get_app_wnda(user::oswindow_array & wnda);
+      static_function void get_app_wnda(user::oswindow_array & wnda);
 
       virtual void _001DeferPaintLayeredWindowBackground(HDC hdc);
 

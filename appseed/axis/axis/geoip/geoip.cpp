@@ -171,15 +171,15 @@ const char GeoIP_country_continent[253][3] = {"--","AS","EU","EU","AS","AS","SA"
 geoipv6_t _GeoIP_lookupaddress_v6 (const char *host);
 
 #if defined(METROWIN)
-static int32_t _GeoIP_inet_pton(int32_t af, const char *src, void *dst) {
+static_function int32_t _GeoIP_inet_pton(int32_t af, const char *src, void *dst) {
    return c_inet_pton(af, src, dst);
 }
-static const char * _GeoIP_inet_ntop(int32_t af, const void *src, char *dst, socklen_t cnt) {
+static_function const char * _GeoIP_inet_ntop(int32_t af, const void *src, char *dst, socklen_t cnt) {
    return c_inet_ntop(af, src, dst, cnt);
 }
 #elif defined(_WIN32)
 /* http://www.mail-archive.com/users@ipv6.org/msg02107.html */
-static const char * _GeoIP_inet_ntop(int32_t af, const void *src, char *dst, socklen_t cnt)
+static_function const char * _GeoIP_inet_ntop(int32_t af, const void *src, char *dst, socklen_t cnt)
 {
    if (af == AF_INET)
    {
@@ -204,7 +204,7 @@ static const char * _GeoIP_inet_ntop(int32_t af, const void *src, char *dst, soc
    return NULL;
 }
 
-static int32_t _GeoIP_inet_pton(int32_t af, const char *src, void *dst)
+static_function int32_t _GeoIP_inet_pton(int32_t af, const char *src, void *dst)
 {
    struct addrinfo hints, *res, *ressave;
 
@@ -229,10 +229,10 @@ static int32_t _GeoIP_inet_pton(int32_t af, const char *src, void *dst)
    return 0;
 }
 #else
-static int32_t _GeoIP_inet_pton(int32_t af, const char *src, void *dst) {
+static_function int32_t _GeoIP_inet_pton(int32_t af, const char *src, void *dst) {
    return inet_pton(af, src, dst);
 }
-static const char * _GeoIP_inet_ntop(int32_t af, const void *src, char *dst, socklen_t cnt) {
+static_function const char * _GeoIP_inet_ntop(int32_t af, const void *src, char *dst, socklen_t cnt) {
    return inet_ntop(af, src, dst, cnt);
 }
 
@@ -328,7 +328,7 @@ int32_t GeoIP_db_avail(int32_t type) {
    return file_exists_dup(filePath);
 }
 
-static
+static_function
 void _setup_segments(GeoIP * gi) {
    int32_t i, j;
    uchar delim[3];
@@ -388,7 +388,7 @@ void _setup_segments(GeoIP * gi) {
    }
 }
 
-static
+static_function
 int32_t _check_mtime(GeoIP *gi) {
    struct stat buf;
 #if !defined(_WIN32)
@@ -1241,7 +1241,7 @@ void GeoIP_assign_region_by_inetaddr_v6(GeoIP* gi, geoipv6_t inetaddr, GeoIPRegi
    }
 }
 
-static
+static_function
 GeoIPRegion * _get_region(GeoIP* gi, uint32_t ipnum) {
    GeoIPRegion * region;
 
@@ -1252,7 +1252,7 @@ GeoIPRegion * _get_region(GeoIP* gi, uint32_t ipnum) {
    return region;
 }
 
-static
+static_function
 GeoIPRegion * _get_region_v6(GeoIP* gi, geoipv6_t ipnum) {
    GeoIPRegion * region;
 
@@ -1346,7 +1346,7 @@ void GeoIPRegion_delete (GeoIPRegion *gir) {
 }
 
 /* GeoIP Organization, ISP and AS Number Edition private method */
-static
+static_function
 char *_get_name (GeoIP* gi, uint32_t ipnum) {
    int32_t seek_org;
    char buf[MAX_ORG_RECORD_LENGTH];

@@ -4,19 +4,6 @@
 //#include <VersionHelpers.h>
 
 
-//extern CLASS_DECL_THREAD os_thread * t_posthread;
-//extern CLASS_DECL_THREAD HTHREAD currentThread;
-//extern thread_pointer < HTHREAD > t_phthread;
-
-/*
-String ^ rtstr(const char * psz)
-{
-   if(psz == NULL)
-      return ref new String(L"");
-   return ref new String(wstring(psz));
-
-}
-*/
 
 
 

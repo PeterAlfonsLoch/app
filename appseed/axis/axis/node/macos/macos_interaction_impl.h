@@ -39,7 +39,7 @@ namespace macos
 
         virtual bool create_message_queue(const char * pszName);
 
-        static const MESSAGE* PASCAL GetCurrentMessage();
+		static_function const MESSAGE* PASCAL GetCurrentMessage();
 
         virtual void install_message_handling(::message::dispatch * pinterface);
 
@@ -79,9 +79,9 @@ namespace macos
         virtual ::user::interaction * from_os_data(void * pdata);
         virtual void * get_os_data() const;
 
-        static ::user::interaction * from_handle(oswindow hWnd);
-        static ::user::interaction * FromHandlePermanent(oswindow hWnd);
-        //static void DeleteTempMap();
+        static_function ::user::interaction * from_handle(oswindow hWnd);
+        static_function ::user::interaction * FromHandlePermanent(oswindow hWnd);
+        //static_function void DeleteTempMap();
         bool Attach(oswindow hWndNew);
         oswindow Detach();
 
@@ -135,7 +135,7 @@ namespace macos
       // like get_child_by_id but recursive
       void SendMessageToDescendants(UINT message, WPARAM wParam = 0,
                                     lparam lParam = NULL, bool bDeep = TRUE, bool bOnlyPerm = FALSE);
-        static ::user::interaction * PASCAL GetSafeOwner(::user::interaction * pParent = NULL, oswindow* pWndTop = NULL);
+        static_function ::user::interaction * PASCAL GetSafeOwner(::user::interaction * pParent = NULL, oswindow* pWndTop = NULL);
 
       virtual bool IsWindow() const;
 
@@ -286,7 +286,7 @@ namespace macos
        virtual ::user::interaction *  SetActiveWindow();
 
        virtual bool SetForegroundWindow();
-       static ::user::interaction * PASCAL GetForegroundWindow();
+       static_function ::user::interaction * PASCAL GetForegroundWindow();
 
        virtual id SetDlgCtrlId(id id);
        virtual id GetDlgCtrlId();
@@ -355,8 +355,8 @@ namespace macos
       // oswindow Access Functions
       virtual ::user::interaction *  ChildWindowFromPoint(POINT point);
       virtual ::user::interaction *  ChildWindowFromPoint(POINT point, UINT nFlags);
-        static ::user::interaction * PASCAL FindWindow(const char * lpszClassName, const char * lpszWindowName);
-        static ::user::interaction * FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow);
+        static_function ::user::interaction * PASCAL FindWindow(const char * lpszClassName, const char * lpszWindowName);
+        static_function ::user::interaction * FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow);
 
       virtual ::user::interaction *  GetNextWindow(UINT nFlag = GW_HWNDNEXT);
       virtual ::user::interaction *  GetTopWindow();
@@ -368,7 +368,7 @@ namespace macos
       virtual ::user::interaction * get_parent() const;
        using ::user::interaction_impl::SetParent;
       ::user::interaction * SetParent(::user::interaction * pWndNewParent);
-      static ::user::interaction * PASCAL oswindowFromPoint(POINT point);
+      static_function ::user::interaction * PASCAL oswindowFromPoint(POINT point);
 
       // Alert Functions
 
@@ -387,16 +387,16 @@ namespace macos
       virtual bool ChangeClipboardChain(oswindow hWndNext);
       virtual oswindow  SetClipboardViewer();
       virtual bool OpenClipboard();
-      static ::user::interaction * PASCAL GetClipboardOwner();
-      static ::user::interaction * PASCAL GetClipboardViewer();
-      static ::user::interaction * PASCAL GetOpenClipboardWindow();
+      static_function ::user::interaction * PASCAL GetClipboardOwner();
+      static_function ::user::interaction * PASCAL GetClipboardViewer();
+      static_function ::user::interaction * PASCAL GetOpenClipboardWindow();
 
       // Caret Functions
       virtual void CreateCaret(::draw2d::bitmap* pBitmap);
       virtual void CreateSolidCaret(int32_t nWidth, int32_t nHeight);
       virtual void CreateGrayCaret(int32_t nWidth, int32_t nHeight);
-      static point PASCAL GetCaretPos();
-      static void PASCAL SetCaretPos(POINT point);
+      static_function point PASCAL GetCaretPos();
+      static_function void PASCAL SetCaretPos(POINT point);
       virtual void HideCaret();
       virtual void ShowCaret();
 
@@ -615,12 +615,12 @@ namespace macos
       virtual bool OnChildNotify(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
       // return TRUE if parent should not process this message
       bool ReflectChildNotify(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
-      static bool PASCAL ReflectLastMsg(oswindow hWndChild, LRESULT* pResult = NULL);
+      static_function bool PASCAL ReflectLastMsg(oswindow hWndChild, LRESULT* pResult = NULL);
 
       virtual bool CheckAutoCenter();
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
-      static bool PASCAL GrayCtlColor(HDC hDC, oswindow hWnd, UINT nCtlColor,
+      static_function bool PASCAL GrayCtlColor(HDC hDC, oswindow hWnd, UINT nCtlColor,
                                       HBRUSH hbrGray, COLORREF clrText);
 
 
@@ -629,15 +629,15 @@ namespace macos
       bool IsTopParentActive();
       void ActivateTopParent();
       virtual void WalkPreTranslateTree(::user::interaction *   puiStop, signal_details * pobj);
-      static ::user::interaction *   PASCAL GetDescendantWindow(::user::interaction *   hWnd, id id);
-      static void PASCAL SendMessageToDescendants(void*  hWnd, UINT message, WPARAM wParam, lparam lParam, bool bDeep, bool bOnlyPerm);
+      static_function ::user::interaction *   PASCAL GetDescendantWindow(::user::interaction *   hWnd, id id);
+      static_function void PASCAL SendMessageToDescendants(void*  hWnd, UINT message, WPARAM wParam, lparam lParam, bool bDeep, bool bOnlyPerm);
       virtual bool IsFrameWnd(); // is_kind_of(System.type_info < frame_window > ()))
       virtual void on_final_release();
-      static bool PASCAL ModifyStyle(oswindow hWnd, DWORD dwRemove, DWORD dwAdd, UINT nFlags);
-      static bool PASCAL ModifyStyleEx(oswindow hWnd, DWORD dwRemove, DWORD dwAdd, UINT nFlags);
-      static void PASCAL _FilterToolTipMessage(MESSAGE* pMsg, ::user::interaction * pWnd);
+      static_function bool PASCAL ModifyStyle(oswindow hWnd, DWORD dwRemove, DWORD dwAdd, UINT nFlags);
+      static_function bool PASCAL ModifyStyleEx(oswindow hWnd, DWORD dwRemove, DWORD dwAdd, UINT nFlags);
+      static_function void PASCAL _FilterToolTipMessage(MESSAGE* pMsg, ::user::interaction * pWnd);
       bool _EnableToolTips(bool bEnable, UINT nFlag);
-      static oswindow PASCAL GetSafeOwner_(oswindow hWnd, oswindow* pWndTop);
+      static_function oswindow PASCAL GetSafeOwner_(oswindow hWnd, oswindow* pWndTop);
       void PrepareForHelp();
 
       //UINT m_nFlags;      // see WF_ flags above
@@ -666,10 +666,10 @@ namespace macos
       LRESULT OnDisplayChange(WPARAM, LPARAM);
       LRESULT OnDragList(WPARAM, LPARAM);
 
-      static bool CALLBACK GetAppsEnumWindowsProc(oswindow hwnd, LPARAM lParam);
+      static_function bool CALLBACK GetAppsEnumWindowsProc(oswindow hwnd, LPARAM lParam);
 
 
-      static void get_app_wnda(user::oswindow_array & wnda);
+      static_function void get_app_wnda(user::oswindow_array & wnda);
 
       virtual void _001DeferPaintLayeredWindowBackground(HDC hdc);
 

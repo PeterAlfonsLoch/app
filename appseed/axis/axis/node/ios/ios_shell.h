@@ -15,14 +15,14 @@ namespace ios
       
       static shell theLinuxShell;
       
-      static bool Initialize();
-      // xxx   static WINBOOL WINAPI _SHGetPathFromIDList(LPCITEMIDLIST pidl, wchar_t * pszPath);
-      // xxx   static HANDLE WINAPI _FindFirstFile(const wchar_t * lpcsz, WIN32_FIND_DATAW * lpdata);
-      // xxx   static WINBOOL WINAPI _FindNextFile(HANDLE handle, WIN32_FIND_DATAW * lpdata);
-      /*   static WINBOOL WINAPI _MoveFile(const wchar_t * lpExistingFileName, const wchar_t * lpNewFileName);
-       static DWORD WINAPI _GetFullPathName(const wchar_t * lpFileName, DWORD nBufferLength, wchar_t * lpBuffer, wchar_t ** lpFilePart);
-       static WCHAR * __cdecl __fullpath(WCHAR *UserBuf, const WCHAR *path, size_t maxlen);
-       static WINBOOL WINAPI _GetVolumeInformation(
+	  static_function bool Initialize();
+      // xxx   static_function WINBOOL WINAPI _SHGetPathFromIDList(LPCITEMIDLIST pidl, wchar_t * pszPath);
+      // xxx   static_function HANDLE WINAPI _FindFirstFile(const wchar_t * lpcsz, WIN32_FIND_DATAW * lpdata);
+      // xxx   static_function WINBOOL WINAPI _FindNextFile(HANDLE handle, WIN32_FIND_DATAW * lpdata);
+      /*   static_function WINBOOL WINAPI _MoveFile(const wchar_t * lpExistingFileName, const wchar_t * lpNewFileName);
+       static_function DWORD WINAPI _GetFullPathName(const wchar_t * lpFileName, DWORD nBufferLength, wchar_t * lpBuffer, wchar_t ** lpFilePart);
+       static_function WCHAR * __cdecl __fullpath(WCHAR *UserBuf, const WCHAR *path, size_t maxlen);
+       static_function WINBOOL WINAPI _GetVolumeInformation(
        const wchar_t * lpRootPathName,           // root directory
        wchar_t * lpVolumeNameBuffer,        // volume name buffer
        DWORD nVolumeNameSize,            // length of name buffer
@@ -31,27 +31,27 @@ namespace ios
        LPDWORD lpFileSystemFlags,        // file system options
        wchar_t * lpFileSystemNameBuffer,    // file system name buffer
        DWORD nFileSystemNameSize);         // length of file system name buffer
-       // xxx   static DWORD_PTR __stdcall _SHGetFileInfo(
+       // xxx   static_function DWORD_PTR __stdcall _SHGetFileInfo(
        // xxx const wchar_t * pszPath,
        // xxx DWORD dwFileAttributes,
        // xxx SHFILEINFOW *psfi,
        // xxx UINT cbFileInfo,
        // xxx UINT uFlags);
-       static WINBOOL __stdcall _GetStringTypeEx(
+       static_function WINBOOL __stdcall _GetStringTypeEx(
        LCID Locale,
        DWORD dwInfoType,
        const wchar_t * lpSrcStr,
        int32_t cchSrc,
        LPWORD lpCharType);
-       static DWORD WINAPI  _GetTempPath(
+       static_function DWORD WINAPI  _GetTempPath(
        DWORD nBufferLength,
        wchar_t * lpBuffer);
-       static UINT WINAPI _GetTempFileName(
+       static_function UINT WINAPI _GetTempFileName(
        const wchar_t * lpPathName,
        const wchar_t * lpPrefixString,
        UINT uUnique,
        wchar_t * lpTempFileName);
-       static HANDLE WINAPI _CreateFile(
+       static_function HANDLE WINAPI _CreateFile(
        const wchar_t * lpFileName,
        DWORD dwDesiredAccess,
        DWORD dwShareMode,
@@ -60,19 +60,19 @@ namespace ios
        DWORD dwFlagsAndAttributes,
        HANDLE hTemplateFile
        );
-       static DWORD WINAPI _GetModuleFileName(
+       static_function DWORD WINAPI _GetModuleFileName(
        HMODULE hModule,
        wchar_t * lpFilename,
        DWORD nSize
        );
-       // xxx    static WINBOOL WINAPI _GetClassInfo(
+       // xxx    static_function WINBOOL WINAPI _GetClassInfo(
        // xxx        HINSTANCE hInstance ,
        // xxx        const wchar_t * lpClassName,
        // xxx        LPWNDCLASSW lpWndClass);
        // xxx    static ATOM WINAPI _RegisterClass(
        // xxx CONST WNDCLASSW *lpWndClass);
        
-       static oswindow WINAPI _CreateWindowEx(
+       static_function oswindow WINAPI _CreateWindowEx(
        DWORD dwExStyle,
        const wchar_t * lpClassName,
        const wchar_t * lpWindowName,
@@ -171,14 +171,14 @@ namespace ios
        
        
        
-       // xxx    static WINBOOL SHGetPathFromIDList(LPCITEMIDLIST pidl, string & str);
-       // xxx    static WINBOOL SHGetPathFromIDList(LPCITEMIDLIST pidl, wchar_t * pszPath);
-       // xxx    static HANDLE FindFirstFile(const wchar_t * lpcsz, WIN32_FIND_DATAW * lpdata);
-       // xxx    static WINBOOL WINAPI FindNextFile(HANDLE handle, WIN32_FIND_DATAW * lpdata);
-       static WINBOOL MoveFile(const wchar_t * lpExistingFileName, const wchar_t * lpNewFileName);
-       static WCHAR * __cdecl _fullpath(WCHAR *UserBuf, const WCHAR *path, size_t maxlen);
-       static DWORD GetFullPathName(const wchar_t * lpFileName, DWORD nBufferLength, wchar_t * lpBuffer, wchar_t ** lpFilePart);
-       static WINBOOL GetVolumeInformation(
+       // xxx    static_function WINBOOL SHGetPathFromIDList(LPCITEMIDLIST pidl, string & str);
+       // xxx    static_function WINBOOL SHGetPathFromIDList(LPCITEMIDLIST pidl, wchar_t * pszPath);
+       // xxx    static_function HANDLE FindFirstFile(const wchar_t * lpcsz, WIN32_FIND_DATAW * lpdata);
+       // xxx    static_function WINBOOL WINAPI FindNextFile(HANDLE handle, WIN32_FIND_DATAW * lpdata);
+       static_function WINBOOL MoveFile(const wchar_t * lpExistingFileName, const wchar_t * lpNewFileName);
+       static_function WCHAR * __cdecl _fullpath(WCHAR *UserBuf, const WCHAR *path, size_t maxlen);
+       static_function DWORD GetFullPathName(const wchar_t * lpFileName, DWORD nBufferLength, wchar_t * lpBuffer, wchar_t ** lpFilePart);
+       static_function WINBOOL GetVolumeInformation(
        const wchar_t * lpRootPathName,           // root directory
        wchar_t * lpVolumeNameBuffer,        // volume name buffer
        DWORD nVolumeNameSize,            // length of name buffer
@@ -188,31 +188,31 @@ namespace ios
        wchar_t * lpFileSystemNameBuffer,    // file system name buffer
        DWORD nFileSystemNameSize);         // length of file system name buffer
        
-       // xxx    static WH_SHSTDAPI(DWORD) SHGetFileInfo(
+       // xxx    static_function WH_SHSTDAPI(DWORD) SHGetFileInfo(
        // xxx       const wchar_t * pszPath,
        // xxx       DWORD dwFileAttributes,
        // xxx       SHFILEINFOW *psfi,
        // xxx       UINT cbFileInfo,
        // xxx       UINT uFlags);
        
-       static WINBOOL  GetStringTypeEx(
+       static_function WINBOOL  GetStringTypeEx(
        LCID Locale,
        DWORD dwInfoType,
        const char * lpSrcStr,
        int32_t cchSrc,
        LPWORD lpCharType);
        
-       static DWORD GetTempPathW(
+       static_function DWORD GetTempPathW(
        DWORD nBufferLength,
        wchar_t * lpBuffer);
        
-       static UINT GetTempFileNameW(
+       static_function UINT GetTempFileNameW(
        const wchar_t * lpPathName,
        const wchar_t * lpPrefixString,
        UINT uUnique,
        wchar_t * lpTempFileName);
        
-       static HANDLE CreateFile(
+       static_function HANDLE CreateFile(
        const wchar_t * lpFileName,
        DWORD dwDesiredAccess,
        DWORD dwShareMode,
@@ -221,21 +221,21 @@ namespace ios
        DWORD dwFlagsAndAttributes,
        HANDLE hTemplateFile);
        
-       static DWORD WINAPI GetModuleFileName(
+       static_function DWORD WINAPI GetModuleFileName(
        HMODULE hModule,
        wchar_t * lpFilename,
        DWORD nSize
        );
        
-       // xxx    static WINBOOL WINAPI GetClassInfo(
+       // xxx    static_function WINBOOL WINAPI GetClassInfo(
        // xxx        HINSTANCE hInstance ,
        // xxx        const wchar_t * lpClassName,
        // xxx        LPWNDCLASSW lpWndClass);
        
-       // xxx    static ATOM WINAPI RegisterClass(
+       // xxx    static_function ATOM WINAPI RegisterClass(
        // xxx          CONST WNDCLASSW *lpWndClass);
        
-       static oswindow WINAPI CreateWindowEx(
+       static_function oswindow WINAPI CreateWindowEx(
        DWORD dwExStyle,
        const wchar_t * lpClassName,
        const wchar_t * lpWindowName,
@@ -257,15 +257,15 @@ namespace ios
        // xxx       UINT cbFileInfo,
        // xxx       UINT uFlags);
        
-       static DWORD GetTempPath(string & str);
+       static_function DWORD GetTempPath(string & str);
        
-       static UINT GetTempFileName(
+       static_function UINT GetTempFileName(
        const char * lpPathName,
        const char * lpPrefixString,
        UINT uUnique,
        string & str);
        
-       static WINBOOL MoveFile(const char * lpExistingFileName, const char * lpNewFileName);
+       static_function WINBOOL MoveFile(const char * lpExistingFileName, const char * lpNewFileName);
        */
    };
    

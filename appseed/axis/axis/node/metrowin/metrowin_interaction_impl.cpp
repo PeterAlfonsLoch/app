@@ -3,8 +3,8 @@
 #include "metrowin.h"
 
 
-static void __pre_init_dialog(::user::interaction * pWnd,LPRECT lpRectOld,uint32_t* pdwStyleOld);
-static void __post_init_dialog(::user::interaction * pWnd,const RECT& rectOld,uint32_t dwStyleOld);
+static_function void __pre_init_dialog(::user::interaction * pWnd,LPRECT lpRectOld,uint32_t* pdwStyleOld);
+static_function void __post_init_dialog(::user::interaction * pWnd,const RECT& rectOld,uint32_t dwStyleOld);
 LRESULT CALLBACK __activation_window_procedure(oswindow hWnd,UINT nMsg,WPARAM wParam,LPARAM lParam);
 
 
@@ -66,7 +66,7 @@ namespace metrowin
 
    // Change a interaction_impl's style
 
-   static bool __modify_style(oswindow hWnd,int nStyleOffset,uint32_t dwRemove,uint32_t dwAdd,UINT nFlags)
+   static_function bool __modify_style(oswindow hWnd,int nStyleOffset,uint32_t dwRemove,uint32_t dwAdd,UINT nFlags)
    {
 
 #ifdef WINDOWSEX
@@ -2996,7 +2996,7 @@ namespace metrowin
       }
 
 
-      static UINT c_cdecl s_print_window(LPVOID pvoid)
+	  static_function UINT c_cdecl s_print_window(LPVOID pvoid)
       {
          throw todo(::get_thread_app());
 

@@ -3010,7 +3010,7 @@ namespace macos
       }
 
 
-      static UINT c_cdecl s_print_window(LPVOID pvoid)
+	  static_function UINT c_cdecl s_print_window(LPVOID pvoid)
       {
 //         print_window * pprintwindow = (print_window *) pvoid;
 //         try

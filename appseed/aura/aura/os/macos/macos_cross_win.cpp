@@ -1,6 +1,6 @@
 #include "framework.h"
 
-__thread DWORD m_dwLastError = 0;
+thread_int_ptr < DWORD > m_dwLastError;
 
 DWORD GetLastError()
 {

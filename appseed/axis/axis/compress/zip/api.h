@@ -18,10 +18,10 @@ namespace zip
       virtual ~api();
 
 
-      static unzFile unzipOpen(memory_buffer * pfile);
-      static unzFile unzipOpen(File * pfile);
+	  static_function unzFile unzipOpen(memory_buffer * pfile);
+	  static_function unzFile unzipOpen(File * pfile);
 
-      static zipFile zipOpen(File * pfile);
+	  static_function zipFile zipOpen(File * pfile);
 
       
 

@@ -130,9 +130,6 @@
     <ClCompile Include="axis\node\android\android_port_forward.cpp">
       <Filter>Source Files\axis\node\android</Filter>
     </ClCompile>
-    <ClCompile Include="axis\node\android\android_thread_local_storage.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
     <ClCompile Include="axis\node\android\android1.cpp">
       <Filter>Source Files\axis\node\android</Filter>
     </ClCompile>
@@ -150,9 +147,6 @@
     </ClCompile>
     <ClCompile Include="app_install_plugin_library_list.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\android\android_vsnord_native_app_glue.c">
-      <Filter>Source Files\axis\os\android</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

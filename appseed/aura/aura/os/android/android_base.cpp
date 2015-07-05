@@ -10,7 +10,7 @@ dword get_tick_count()
 
 }
 
-__thread DWORD g_dwLastError = 0;
+thread_int_ptr < DWORD > g_dwLastError;
 
 CLASS_DECL_AURA DWORD GetLastError()
 {

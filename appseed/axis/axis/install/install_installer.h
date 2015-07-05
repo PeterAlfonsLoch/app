@@ -171,7 +171,7 @@ namespace install
       void set_progress(double dProgress);
       ::count download_file_list(::file::patha & stringa, string_to_intptr & mapLen, string_to_string & mapCrc, string_to_intptr & mapGzLen, string_to_intptr & mapFlag);
 
-      static uint32_t thread_proc_run(void * lpParam);
+	  static_function uint32_t thread_proc_run(void * lpParam);
 
       void PaintOpaqueBk(HDC hdc);
 
@@ -255,7 +255,7 @@ namespace install
 
 
       // it will install/update if there is a "breach"
-      static void do_spa();
+	  static_function void do_spa();
 
       // it will install forcing to install as it is possible
       void synch_starter_start();

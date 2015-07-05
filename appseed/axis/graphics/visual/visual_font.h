@@ -15,25 +15,17 @@ namespace visual
          EffectEmbossed = 1
       };
 
-//#ifdef WINDOWS
-      ::draw2d::text_metric      m_tm;
-//#endif
+      ::draw2d::text_metric			m_tm;
 
-      int32_t            m_iFontHiHeight;
-      //static const uint32_t m_dwAllocationAddUp;
-      //LPVOID         m_lpData;
-      //uint32_t         m_dwSize;
-      //uint32_t         m_dwAllocation;
-      //int32_t            m_iUsedGlyphs;
-      ::draw2d::graphics *         m_pDC;
-      //static mutex m_mutex;
+      int32_t						m_iFontHiHeight;
+      ::draw2d::graphics *			m_pDC;
 
-      glyph_set      m_glyphset;
+      glyph_set						m_glyphset;
 
-      ::draw2d::font_sp        m_spfont;
-      ::draw2d::font *         m_pfontOld;
+      ::draw2d::font_sp				m_spfont;
+      ::draw2d::font *				m_pfontOld;
 
-      LPBYTE         m_lpBitmap;
+      LPBYTE						m_lpBitmap;
 
 
       font(::aura::application * papp);

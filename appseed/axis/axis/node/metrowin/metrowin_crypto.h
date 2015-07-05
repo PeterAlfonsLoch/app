@@ -26,10 +26,10 @@ namespace metrowin
       void DeleteRandFile();
 
       /** SSL; mutex locking function callback. */
-      //static void SSL_locking_function(int32_t mode, int32_t n, const char *file, int32_t line);
+      //static_function void SSL_locking_function(int32_t mode, int32_t n, const char *file, int32_t line);
 
       /** Return thread id. */
-      //static unsigned long SSL_id_function();
+      //static_function unsigned long SSL_id_function();
 
       BIO *bio_err;
 
@@ -55,7 +55,7 @@ namespace metrowin
 
       virtual bool encrypt(primitive::memory & storageEncrypt, const primitive::memory & storageDecrypt, const char * pszSalt);
       virtual bool decrypt(primitive::memory & storageDecrypt, const primitive::memory & storageEncrypt, const char * pszSalt);
-      static uint32_t crc32(uint32_t dwPrevious,const char * psz);
+	  static_function uint32_t crc32(uint32_t dwPrevious,const char * psz);
       
       void md5(primitive::memory & memMd5,const primitive::memory & mem);
       void sha1(primitive::memory & memSha1,const primitive::memory & mem);

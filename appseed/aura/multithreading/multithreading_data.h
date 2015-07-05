@@ -30,6 +30,16 @@ public:
 
 };
 
+template < class T >
+class thread_object :
+	public thread_data
+{
+public:
+
+	inline operator T *() { if (get() == NULL) { set(new T()); } return (T *)get(); }
+	inline T * operator ->() { return operator T *(); }
+
+};
 
 
 

@@ -36,7 +36,7 @@ namespace crypto
       virtual int32_t encrypt(string & str,const char * psz,const char * pszKey);
       virtual int32_t decrypt(string & str,const char * psz,const char * pszKey);
 
-      static uint32_t crc32(uint32_t dwPrevious, const char * psz);
+	  static_function uint32_t crc32(uint32_t dwPrevious, const char * psz);
       virtual string md5(const char * psz);
       virtual string sha1(const char * psz);
       virtual string nessie(const char * psz);

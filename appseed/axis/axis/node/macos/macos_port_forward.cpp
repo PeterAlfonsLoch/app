@@ -533,7 +533,7 @@ namespace macos
 
 
 
-                                                                                                               static   */ /*
+                                                                                                               static_function   */ /*
                                                                                                                                UINT port_forward::ThreadForPortRetrieval(LPVOID pVoid)
                                                                                                                                {
                                                                                                                                SetThreadName( -1, "PortRtrv" );  // helps in debugging to see a thread's name
@@ -595,7 +595,7 @@ namespace macos
                                                                                                                                ::PostMessage( hWndForPosting, UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, wp, lp );
 
 
-                                                                                                                               // get count of static mappings
+                                                                                                                               // get count of __static mappings
 
                                                                                                                                long cMappings = 0;
 
@@ -670,7 +670,7 @@ namespace macos
                                                                                                                                }
 
 
-                                                                                                                                  static   */ /*
+                                                                                                                                  static_function   */ /*
                                                                                                                                                  UINT port_forward::ThreadForDeviceInformationRetrieval( LPVOID pVoid )
                                                                                                                                                  {
                                                                                                                                                  SetThreadName( -1, "DevInfo" );  // helps in debugging to see a thread's name
@@ -804,7 +804,7 @@ namespace macos
                                                                                                                                                  }
 
 
-                                                                                                                                                    static   */ /*
+                                                                                                                                                    static_function   */ /*
                                                                                                                                                                    UINT port_forward::ThreadToEditMapping( LPVOID pVoid )
                                                                                                                                                                    {
                                                                                                                                                                    SetThreadName( -1, "EditMap" );  // helps in debugging to see a thread's name
@@ -926,7 +926,7 @@ namespace macos
                                                                                                                                                                    return 0;
                                                                                                                                                                    }
 
-                                                                                                                                                                      static   */ /*
+                                                                                                                                                                      static_function   */ /*
                                                                                                                                                                                      UINT port_forward::ThreadToDeleteMapping( LPVOID pVoid )
                                                                                                                                                                                      {
                                                                                                                                                                                      SetThreadName( -1, "DelMap" );  // helps in debugging to see a thread's name
@@ -1012,7 +1012,7 @@ namespace macos
                                                                                                                                                                                      }
 
 
-                                                                                                                                                                                        static   */ /*
+                                                                                                                                                                                        static_function   */ /*
                                                                                                                                                                                                        UINT port_forward::ThreadToAddMapping( LPVOID pVoid )
                                                                                                                                                                                                        {
                                                                                                                                                                                                        SetThreadName( -1, "AddMap" );  // helps in debugging to see a thread's name

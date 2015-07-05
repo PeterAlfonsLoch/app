@@ -5,7 +5,7 @@
 static
 const int32_t FULL_RECORD_LENGTH = 50;
 
-static
+static_function
 GeoIPRecord * _extract_record(GeoIP* gi, uint32_t seek_record, int32_t *next_record_ptr) {
    int32_t record_pointer;
    uchar *record_buf = NULL;
@@ -112,7 +112,7 @@ for (j = 0; j < 3; ++j)
    return record;
 }
 
-static
+static_function
 GeoIPRecord * _get_record(GeoIP* gi, uint32_t ipnum) {
    uint32_t seek_record;
 
@@ -126,7 +126,7 @@ GeoIPRecord * _get_record(GeoIP* gi, uint32_t ipnum) {
    return _extract_record(gi, seek_record, NULL);
 }
 
-static
+static_function
 GeoIPRecord * _get_record_v6(GeoIP* gi, geoipv6_t ipnum) {
        uint32_t seek_record;
 

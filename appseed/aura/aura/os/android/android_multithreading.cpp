@@ -415,13 +415,10 @@ namespace core
 
 
 #ifndef VSNORD
-__thread struct _TEB * t_pteb = NULL;
+thread_object < _TEB > t_teb;
 
 struct _TEB * WINAPI NtCurrentTeb(void)
 {
-
-   if (t_pteb == NULL)
-      t_pteb = new _TEB;
 
    return t_pteb;
 

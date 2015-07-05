@@ -46,7 +46,7 @@ namespace metrowin
       virtual bool initialize(::user::native_window_initialize * pinitialize) override;
 
 
-      static const MSG* GetCurrentMessage();
+      static_function const MSG* GetCurrentMessage();
 
       virtual void install_message_handling(::message::dispatch * pinterface);
 
@@ -88,9 +88,9 @@ namespace metrowin
       //      virtual ::user::interaction_impl * from_os_data(void * pdata);
       //    virtual void * get_os_data() const;
 
-      //      static interaction_impl * from_handle(oswindow hWnd);
-      //    static interaction_impl * FromHandlePermanent(oswindow hWnd);
-      //static void DeleteTempMap();
+      //      static_function interaction_impl * from_handle(oswindow hWnd);
+      //    static_function interaction_impl * FromHandlePermanent(oswindow hWnd);
+      //static_function void DeleteTempMap();
       //      bool Attach(oswindow hWndNew);
       //    oswindow Detach();
 
@@ -148,7 +148,7 @@ namespace metrowin
       //::user::interaction *  GetTopLevelOwner();
       //::user::interaction *  GetParentOwner();
       //sp(::user::frame_window) GetTopLevelFrame();
-      //static ::user::interaction_impl * GetSafeOwner(::user::interaction_impl * pParent = NULL, oswindow* pWndTop = NULL);
+      //static_function ::user::interaction_impl * GetSafeOwner(::user::interaction_impl * pParent = NULL, oswindow* pWndTop = NULL);
 
       virtual bool IsWindow() const;
 
@@ -290,7 +290,7 @@ namespace metrowin
 
       // the foreground ::user::interaction_impl applies only to top-level windows (frame windows)
       virtual bool SetForegroundWindow();
-      static sp(::user::interaction_impl) GetForegroundWindow();
+      static_function sp(::user::interaction_impl) GetForegroundWindow();
 
       virtual id SetDlgCtrlId(id id);
       virtual id GetDlgCtrlId();
@@ -305,7 +305,7 @@ namespace metrowin
       virtual ::user::interaction *  GetFocus();
       virtual ::user::interaction *  SetFocus() override;
 
-      static ::user::interaction *  GetDesktopWindow();
+      static_function ::user::interaction *  GetDesktopWindow();
 
       // Obsolete and non-portable APIs - not recommended for new code
       virtual void CloseWindow();
@@ -365,8 +365,8 @@ namespace metrowin
       // Window Access Functions
       virtual ::user::interaction *  ChildWindowFromPoint(POINT point);
       virtual ::user::interaction *  ChildWindowFromPoint(POINT point, UINT nFlags);
-      static sp(::user::interaction_impl) FindWindow(const char * lpszClassName, const char * lpszWindowName);
-      static sp(::user::interaction_impl) FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow);
+      static_function sp(::user::interaction_impl) FindWindow(const char * lpszClassName, const char * lpszWindowName);
+      static_function sp(::user::interaction_impl) FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow);
 
       //      virtual ::user::interaction * GetNextWindow(UINT nFlag = GW_HWNDNEXT);
       virtual ::user::interaction *  GetTopWindow();
@@ -378,7 +378,7 @@ namespace metrowin
       virtual ::user::interaction *  GetParent();
       using ::user::interaction_impl::SetParent;
 //      ::user::interaction *  SetParent(::user::interaction *  pWndNewParent);
-      static sp(::user::interaction_impl) WindowFromPoint(POINT point);
+      static_function sp(::user::interaction_impl) WindowFromPoint(POINT point);
 
       // Alert Functions
 
@@ -397,16 +397,16 @@ namespace metrowin
       virtual bool ChangeClipboardChain(oswindow hWndNext);
       virtual oswindow SetClipboardViewer();
       virtual bool OpenClipboard();
-      static ::user::interaction_impl * GetClipboardOwner();
-      static ::user::interaction_impl * GetClipboardViewer();
-      static ::user::interaction_impl * GetOpenClipboardWindow();
+      static_function ::user::interaction_impl * GetClipboardOwner();
+      static_function ::user::interaction_impl * GetClipboardViewer();
+      static_function ::user::interaction_impl * GetOpenClipboardWindow();
 
       // Caret Functions
       virtual void CreateCaret(::draw2d::bitmap* pBitmap);
       virtual void CreateSolidCaret(int nWidth, int nHeight);
       virtual void CreateGrayCaret(int nWidth, int nHeight);
-      static point GetCaretPos();
-      static void SetCaretPos(POINT point);
+      static_function point GetCaretPos();
+      static_function void SetCaretPos(POINT point);
       virtual void HideCaret();
       virtual void ShowCaret();
 
@@ -629,14 +629,14 @@ namespace metrowin
       virtual bool OnChildNotify(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
       // return TRUE if parent should not process this message
       bool ReflectChildNotify(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
-      static bool ReflectLastMsg(oswindow hWndChild, LRESULT* pResult = NULL);
+      static_function bool ReflectLastMsg(oswindow hWndChild, LRESULT* pResult = NULL);
 
       // Implementation
       virtual ~interaction_impl();
       virtual bool CheckAutoCenter();
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
-      static bool GrayCtlColor(HDC hDC, oswindow hWnd, UINT nCtlColor,
+      static_function bool GrayCtlColor(HDC hDC, oswindow hWnd, UINT nCtlColor,
          HBRUSH hbrGray, COLORREF clrText);
 
 
@@ -645,18 +645,18 @@ namespace metrowin
       //bool IsTopParentActive();
       void ActivateTopParent();
       virtual void WalkPreTranslateTree(::user::interaction * puiStop, signal_details * pobj);
-      static ::user::interaction * GetDescendantWindow(::user::interaction * hWnd, id id);
-      static void SendMessageToDescendants(oswindow hWnd, UINT message,
+      static_function ::user::interaction * GetDescendantWindow(::user::interaction * hWnd, id id);
+      static_function void SendMessageToDescendants(oswindow hWnd, UINT message,
          WPARAM wParam, LPARAM lParam, bool bDeep, bool bOnlyPerm);
       virtual bool is_frame_window(); // is_kind_of(System.template type_info < frame_window > ()))
       virtual void on_final_release();
-      static bool ModifyStyle(oswindow hWnd, uint32_t dwRemove, uint32_t dwAdd,
+      static_function bool ModifyStyle(oswindow hWnd, uint32_t dwRemove, uint32_t dwAdd,
          UINT nFlags);
-      static bool ModifyStyleEx(oswindow hWnd, uint32_t dwRemove, uint32_t dwAdd,
+      static_function bool ModifyStyleEx(oswindow hWnd, uint32_t dwRemove, uint32_t dwAdd,
          UINT nFlags);
-      static void _FilterToolTipMessage(MSG* pMsg, ::user::interaction_impl * pWnd);
+      static_function void _FilterToolTipMessage(MSG* pMsg, ::user::interaction_impl * pWnd);
       bool _EnableToolTips(bool bEnable, UINT nFlag);
-      static oswindow GetSafeOwner_(oswindow hWnd, oswindow* pWndTop);
+      static_function oswindow GetSafeOwner_(oswindow hWnd, oswindow* pWndTop);
       void PrepareForHelp();
 
       //UINT m_nFlags;      // see WF_ flags above
@@ -686,10 +686,10 @@ namespace metrowin
       LRESULT OnDisplayChange(WPARAM, LPARAM);
       LRESULT OnDragList(WPARAM, LPARAM);
 
-      static BOOL CALLBACK GetAppsEnumWindowsProc(oswindow hwnd, LPARAM lParam);
+      static_function BOOL CALLBACK GetAppsEnumWindowsProc(oswindow hwnd, LPARAM lParam);
 
 
-      static void get_app_wnda(user::oswindow_array & wnda);
+      static_function void get_app_wnda(user::oswindow_array & wnda);
 
       virtual void _001DeferPaintLayeredWindowBackground(HDC hdc);
 

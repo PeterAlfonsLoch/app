@@ -205,7 +205,7 @@ static const __MAP_MESSAGE allMessages[] =
 // DDE special case
 
 /*
- static void TraceDDE(const char * lpszPrefix, const MESSAGE* pMsg)
+ static_function void TraceDDE(const char * lpszPrefix, const MESSAGE* pMsg)
  {
  ENSURE_ARG(pMsg != NULL);
  if (pMsg->message == WM_DDE_EXECUTE)

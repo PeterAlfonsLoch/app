@@ -207,14 +207,6 @@ void CLASS_DECL_AURA __tls_release()
    }
 }
 
-/////////////////////////////////////////////////////////////////////////////
-
-
-/////////////////////////////////////////////////////////////////////////////
-// thread_slot_data
-
-// global __thread_data used to allocate thread local indexes
-__thread BYTE _gen_ThreadData[sizeof(thread_local_storage)];
-__thread thread_local_storage * __thread_data;
+thread_object < thread_local_storage > g_threaddata;
 
 

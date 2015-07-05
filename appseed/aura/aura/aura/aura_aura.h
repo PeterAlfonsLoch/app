@@ -105,5 +105,5 @@
 
 
 
-
+#define static_function static
 

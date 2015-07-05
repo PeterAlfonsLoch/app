@@ -104,7 +104,7 @@ namespace message
       using ::message::base::set;
 
       virtual void set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
-      static mouse * cast(signal_details * pobj) { return (mouse *)pobj; }
+	  static_function mouse * cast(signal_details * pobj) { return (mouse *)pobj; }
    };
 
    class CLASS_DECL_AXIS mouse_wheel: public mouse
