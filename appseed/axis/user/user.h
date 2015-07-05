@@ -16,6 +16,7 @@
 #include "userpresence/userpresence.h"
 
 
+#include "user/user_windowing.h"
 
 
 

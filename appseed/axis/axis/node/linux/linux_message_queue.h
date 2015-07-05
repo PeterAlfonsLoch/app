@@ -6,13 +6,12 @@ namespace linux
 
 
    class CLASS_DECL_AXIS message_queue:
-      virtual public ::aura::message_queue,
-      virtual public ::user::interaction
+      virtual public ::aura::message_queue
    {
    public:
 
 
-      sp(::user::interaction)          m_spuiMessage;
+      oswindow                         m_oswindow;
       message_queue_listener *         m_plistener;
 
 

@@ -9,7 +9,7 @@
 CLASS_DECL_AXIS int_bool WINAPI PostMessageW(oswindow oswindow,UINT Msg,WPARAM wParam,LPARAM lParam)
 {
 
-   ::user::interaction * pui = window_from_handle(oswindow);
+   ::user::elemental * pui = window_from_handle(oswindow);
 
    if(pui == NULL)
       return FALSE;
