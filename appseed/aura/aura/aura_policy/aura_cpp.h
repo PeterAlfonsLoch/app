@@ -367,12 +367,6 @@ namespace aura
 
 } // namespace aura
 
-namespace aura
-{
-
-   class message_queue_listener;
-
-}
 
 
 class image_list;

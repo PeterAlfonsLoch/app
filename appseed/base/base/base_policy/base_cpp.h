@@ -17,6 +17,12 @@
 
 
 
+namespace user
+{
+
+   class message_queue_listener;
+
+}
 
 namespace base
 {
