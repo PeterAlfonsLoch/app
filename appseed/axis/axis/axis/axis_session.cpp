@@ -1896,28 +1896,6 @@ namespace axis
    }
 
 
-   index session::get_ui_wkspace(::user::interaction * pui)
-   {
-
-      if(m_bSystemSynchronizedScreen)
-      {
-
-         return System.get_ui_wkspace(pui);
-
-      }
-      else
-      {
-
-         ::rect rect;
-
-         pui->GetWindowRect(rect);
-
-         return get_best_wkspace(NULL,rect);
-
-      }
-
-
-   }
 
    index session::get_main_wkspace(LPRECT lprect)
    {
@@ -2280,110 +2258,6 @@ namespace axis
    }
 
 
-   index session::initial_frame_position(LPRECT lprect,const RECT & rectParam,bool bMove,::user::interaction * pui)
-   {
-
-      rect rectRestore(rectParam);
-
-      rect rectMonitor;
-
-      index iMatchingMonitor = get_best_monitor(rectMonitor,rectParam);
-
-      ::size sizeMin;
-
-      if(pui != NULL)
-      {
-
-         pui->get_window_minimum_size(sizeMin);
-
-      }
-      else
-      {
-
-         get_window_minimum_size(&sizeMin);
-
-      }
-
-      rect rectIntersect;
-
-      if(bMove)
-      {
-
-         rect_array rectaMonitor;
-
-         rect_array rectaIntersect;
-
-         get_monitor(rectaMonitor,rectaIntersect,rectParam);
-
-         rectaIntersect.get_box(rectIntersect);
-
-      }
-      else
-      {
-
-         rectIntersect.intersect(rectMonitor,&rectParam);
-
-      }
-
-      if(rectIntersect.width() < sizeMin.cx
-         || rectIntersect.height() < sizeMin.cy)
-      {
-
-         if(rectMonitor.width() / 7 + MAX(sizeMin.cx,rectMonitor.width() * 2 / 5) > rectMonitor.width()
-            || rectMonitor.height() / 7 + MAX(sizeMin.cy,rectMonitor.height() * 2 / 5) > rectMonitor.width())
-         {
-
-            rectRestore = rectMonitor;
-
-         }
-         else
-         {
-
-            rectRestore.left = rectMonitor.left + rectMonitor.width() / 7;
-
-            rectRestore.top = rectMonitor.top + rectMonitor.height() / 7;
-
-            rectRestore.right = rectRestore.left + MAX(sizeMin.cx,rectMonitor.width() * 2 / 5);
-
-            rectRestore.bottom = rectRestore.top + MAX(sizeMin.cy,rectMonitor.height() * 2 / 5);
-
-            if(rectRestore.right > rectMonitor.right - rectMonitor.width() / 7)
-            {
-
-               rectRestore.offset(rectMonitor.right - rectMonitor.width() / 7 - rectRestore.right,0);
-
-            }
-
-            if(rectRestore.bottom > rectMonitor.bottom - rectMonitor.height() / 7)
-            {
-
-               rectRestore.offset(0,rectMonitor.bottom - rectMonitor.height() / 7 - rectRestore.bottom);
-
-            }
-
-         }
-
-         *lprect = rectRestore;
-
-         return iMatchingMonitor;
-
-      }
-      else
-      {
-
-         if(!bMove)
-         {
-
-            *lprect = rectIntersect;
-
-         }
-
-         return -1;
-
-      }
-
-   }
-
    void session::get_monitor(rect_array & rectaMonitor,rect_array & rectaIntersect,const RECT & rectParam)
    {
 
@@ -2676,14 +2550,6 @@ namespace axis
    }
 
 
-   index session::get_good_restore(LPRECT lprect,const RECT & rectParam,::user::interaction * pui)
-   {
-
-      return initial_frame_position(lprect,rectParam,false,pui);
-
-   }
-
-
    index session::get_good_iconify(LPRECT lprect,const RECT & rectParam)
    {
 
@@ -2700,27 +2566,6 @@ namespace axis
 
    }
 
-
-   index session::get_good_move(LPRECT lprect,const RECT & rectParam,::user::interaction * pui)
-   {
-
-      index iMatchingMonitor = initial_frame_position(lprect,rectParam,true,pui);
-
-      if(memcmp(lprect,&rectParam,sizeof(RECT)))
-      {
-
-         return iMatchingMonitor;
-
-      }
-      else
-      {
-
-         return -1;
-
-      }
-
-
-   }
 
 
    //bool  session::get_window_minimum_size(LPSIZE lpsize)
@@ -2902,112 +2747,8 @@ namespace axis
    }
 
 
-   ::user::interaction * session::get_active_guie()
-   {
-
-#if defined (METROWIN)
-
-      return GetFocus()->m_pui;
-
-#elif defined(WINDOWSEX) || defined(LINUX)
-
-      ::user::interaction * pwnd = System.get_active_guie();
-
-      if(pwnd != NULL)
-      {
-
-         return pwnd;
-
-      }
-
-      if(m_puiActive != NULL)
-      {
-
-         pwnd = ((::user::interaction *)m_puiActive->m_pvoidUserInteraction);
-
-         if(pwnd != NULL)
-         {
-
-            return pwnd;
-
-         }
-
-      }
-
-      return NULL;
-
-#else
-
-      return System.get_active_guie();
-
-#endif
 
 
-   }
-
-
-   ::user::interaction * session::get_focus_guie()
-   {
-
-#if defined (METROWIN)
-
-      oswindow window = GetFocus();
-
-      if(window == NULL)
-         return NULL;
-
-      return GetFocus()->m_pui;
-
-#elif defined(WINDOWSEX) || defined(LINUX)
-
-      ::user::interaction * pwnd = ::window_from_handle(::GetFocus());
-      if(pwnd != NULL)
-      {
-         if(get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
-            || ::user::window_util::IsAscendant(get_active_guie()->get_safe_handle(),pwnd->get_safe_handle()))
-         {
-            return pwnd;
-         }
-         else
-         {
-            return NULL;
-         }
-      }
-      pwnd = System.window_from_os_data(::GetFocus());
-      if(pwnd != NULL)
-      {
-         if(get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
-            || ::user::window_util::IsAscendant(get_active_guie()->get_safe_handle(),pwnd->get_safe_handle()))
-         {
-            return pwnd;
-         }
-         else
-         {
-            return NULL;
-         }
-      }
-      pwnd = m_puiFocus;
-      if(pwnd != NULL)
-      {
-         if(get_active_guie() != NULL
-            && (get_active_guie() == pwnd
-            || get_active_guie()->is_descendant(pwnd)))
-         {
-            return pwnd;
-         }
-         else
-         {
-            return NULL;
-         }
-      }
-      return NULL;
-#else
-
-      return System.get_active_guie();
-
-#endif
-
-   }
 
 
    bool session::is_key_pressed(::user::e_key ekey)
@@ -3121,62 +2862,6 @@ namespace axis
 
 
 
-   void session::frame_pre_translate_message(signal_details * pobj)
-   {
-
-      try
-      {
-
-         ::user::interaction * pui = NULL;
-
-         while(get_frame(pui))
-         {
-
-            try
-            {
-
-               if(pui != NULL)
-               {
-
-                  pui->pre_translate_message(pobj);
-
-                  if(pobj->m_bRet)
-                     return;
-
-               }
-
-            }
-            catch(exit_exception & e)
-            {
-
-               throw e;
-
-            }
-            catch(...)
-            {
-            }
-
-         }
-
-      }
-      catch(exit_exception & e)
-      {
-
-         throw e;
-
-      }
-      catch(...)
-      {
-
-         pobj->m_bRet = true;
-
-      }
-
-   }
-
-
-
-
 
    //COLORREF session::get_default_color(uint64_t ui)
    //{
@@ -3277,44 +2962,7 @@ namespace axis
       if(str == "ok")
          return "ok";
 
-      if(!bInteractive)
-         return "failed";
-
-      sp(::fontopus::simple_ui) pui;
-
-      string strRequestUrl(strRequestUrlParam);
-
-      if(strRequestUrl.is_empty())
-      {
-
-         string strIgnitionServer = file_as_string_dup("C:\\ca2\\config\\system\\ignition_server.txt");
-
-         if(::str::ends_ci(strIgnitionServer,".ca2.cc"))
-         {
-
-            strRequestUrl = "https://" + strIgnitionServer + "/";
-
-         }
-         else
-         {
-
-            strRequestUrl = "https://account.ca2.cc/";
-
-         }
-
-      }
-
-      pui = canew(::fontopus::simple_ui(papp,strRequestUrl));
-
-      pui->m_login.m_peditUser->SetWindowText(strUsername);
-
-      pui->m_login.m_ppassword->SetWindowText("");
-
-      string strResult = pui->get_cred(rect,strUsername,strPassword,strToken,strTitle);
-
-      pui->DestroyWindow();
-
-      return strResult;
+      return "failed";
 
    }
 

@@ -11,12 +11,34 @@ namespace base
    {
    public:
 
+      ::user::schema *                             m_pschemaLayeredFrame;
+
+
+      ::user::window_draw *                        m_ptwf;
+
+
+
       system(::aura::application * papp);
       virtual ~system();
+
+      virtual bool defer_create_system_frame_window();
 
 
 
       virtual ::aura::session * on_create_session();
+
+      ::user::window_draw *                         get_twf();
+      virtual index get_ui_wkspace(::user::interaction * pui);
+      virtual ::user::interaction * get_active_guie();
+      virtual ::user::interaction * get_focus_guie();
+
+
+      virtual bool initialize_twf();
+
+
+
+
+
    };
 
 

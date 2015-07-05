@@ -10,7 +10,7 @@
 
 //#include "windows_copydesk.cpp"
 #include "windows_factory_exchange.cpp"
-//#include "windows_interaction_impl.cpp"
+#include "windows_interaction_impl.cpp"
 //#include "windows_message_queue.cpp"
 //#include "windows_printer.cpp"
 //#include "windows_print_job.cpp"

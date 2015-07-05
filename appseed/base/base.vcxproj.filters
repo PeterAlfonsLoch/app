@@ -428,6 +428,9 @@
     <ClInclude Include="user\user.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
+    <ClInclude Include="base\node\windows\windows_interaction_impl.h">
+      <Filter>Header Files\base\node\windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="base\base\base.cpp">
@@ -744,6 +747,12 @@
     </ClCompile>
     <ClCompile Include="user\_user.cpp">
       <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_system_interaction_impl.cpp">
+      <Filter>Source Files\base\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\windows\windows_interaction_impl.cpp">
+      <Filter>Source Files\base\node\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

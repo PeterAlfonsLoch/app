@@ -40,8 +40,6 @@ namespace axis
       factory().creatable_small < ::file::axis::application >(System.type_info < ::file::application >());
       factory().creatable_small < ::file::dir::axis::application >(System.type_info < ::file::dir::application >());
 
-      m_ptwf            = NULL;
-
       //m_psimpleui       = NULL;
 
 #if defined(METROWIN) || defined(APPLE_IOS) || defined(VSNORD)
@@ -79,7 +77,6 @@ namespace axis
       //      draw2d_factory_exchange();
 
 
-      m_pschemaLayeredFrame = new ::user::schema_layered_frame;
 
 #ifdef WINDOWSEX
 
@@ -848,39 +845,6 @@ namespace axis
    //}
 
 
-   bool system::defer_create_system_frame_window()
-   {
-
-
-#ifdef WINDOWSEX
-
-      if(m_psystemwindow != NULL)
-         return true;
-
-      m_psystemwindow = new system_interaction_impl(this);
-
-#endif
-
-
-
-#ifdef WINDOWSEX
-
-      dappy(string(typeid(*this).name()) + " : Going to ::axis::system::m_spwindow->create_window_ex : " + ::str::from(m_iReturnCode));
-
-      if(!m_psystemwindow->create_window_ex(0,NULL,NULL,0,null_rect(),NULL,"::axis::system::interaction_impl::no_twf"))
-      {
-
-         dappy(string(typeid(*this).name()) + " : ::axis::system::m_spwindow->create_window_ex failure : " + ::str::from(m_iReturnCode));
-
-         return false;
-
-      }
-
-#endif
-
-      return true;
-
-   }
 
    //bool system::initialize1()
    //{
@@ -1060,13 +1024,6 @@ namespace axis
 
 
 
-   sp(::user::window_draw) system::get_twf()
-   {
-
-      return m_ptwf;
-
-   }
-
 
 
 
@@ -1092,24 +1049,6 @@ namespace axis
    }
 
 
-   bool system::initialize_twf()
-   {
-
-      if(m_ptwf != NULL)
-         return true;
-
-      sp(::user::window_draw) pwindowdraw = alloc(System.type_info < ::user::window_draw >());
-
-      m_ptwf = pwindowdraw;
-
-      m_ptwf->add_ref();
-
-      if(m_ptwf->twf_start())
-         return false;
-
-      return true;
-
-   }
 
 
    index system::get_main_monitor(LPRECT lprect)
@@ -1234,35 +1173,6 @@ namespace axis
    }
 
 
-   index system::get_ui_wkspace(::user::interaction * pui)
-   {
-
-      int iMainWkspace = 0;
-
-#ifdef WINDOWSEX
-
-      HMONITOR hwkspacePrimary = GetUiMonitorHandle(pui->get_handle());
-
-      for(index iWkspace = 0; iWkspace < get_wkspace_count(); iWkspace++)
-      {
-
-         if(m_hmonitora[iWkspace] == hwkspacePrimary)
-         {
-
-            iMainWkspace = iWkspace;
-
-            break;
-
-         }
-
-      }
-
-
-#endif
-
-      return iMainWkspace;
-
-   }
 
 
    index system::get_main_wkspace(LPRECT lprect)
@@ -1385,82 +1295,6 @@ namespace axis
 
 
 
-   ::user::interaction * system::get_active_guie()
-   {
-
-#if defined(WINDOWSEX) || defined(LINUX) || defined(APPLEOS)
-
-      return window_from_os_data(::GetActiveWindow());
-
-#else
-
-      ::user::interaction * pui = NULL;
-
-      get_frame(pui);
-
-      return pui;
-
-#endif
-
-   }
-
-
-   ::user::interaction * system::get_focus_guie()
-   {
-
-#if defined (METROWIN)
-
-      oswindow window = GetFocus();
-
-      if(window == NULL)
-         return NULL;
-
-      return window->m_pui;
-
-#elif defined(WINDOWSEX) || defined(LINUX)
-
-      ::user::interaction * pwnd = ::window_from_handle(::GetFocus());
-      if(pwnd != NULL)
-      {
-         ::user::interaction * puiActive = System.get_active_guie();
-         if(puiActive != NULL)
-         {
-            if(puiActive->get_safe_handle() == pwnd->get_safe_handle()
-               || ::user::window_util::IsAscendant(puiActive->get_safe_handle(),pwnd->get_safe_handle()))
-            {
-               return pwnd;
-            }
-            else
-            {
-               return NULL;
-            }
-         }
-         else
-         {
-            return NULL;
-         }
-      }
-      pwnd = System.window_from_os_data(::GetFocus());
-      if(pwnd != NULL)
-      {
-         if(System.get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
-            || ::user::window_util::IsAscendant(System.get_active_guie()->get_safe_handle(),pwnd->get_safe_handle()))
-         {
-            return pwnd;
-         }
-         else
-         {
-            return NULL;
-         }
-      }
-      return NULL;
-#else
-
-      return System.get_active_guie();
-
-#endif
-
-   }
 
    /*
 
@@ -1631,71 +1465,3 @@ namespace axis
 
 
 
-#ifdef WINDOWSEX
-
-
-namespace axis
-{
-
-   system_interaction_impl::system_interaction_impl(::aura::application * papp):
-      ::object(papp),
-      ::user::interaction(papp)
-   {
-
-   }
-
-   void system_interaction_impl::install_message_handling(::message::dispatch * pdispatch)
-   {
-
-      ::user::interaction::install_message_handling(pdispatch);
-
-      IGUI_WIN_MSG_LINK(WM_SETTINGCHANGE,pdispatch,this,&system_interaction_impl::_001MessageHub);
-      IGUI_WIN_MSG_LINK(WM_DISPLAYCHANGE,pdispatch,this,&system_interaction_impl::_001MessageHub);
-
-   }
-
-   void system_interaction_impl::_001MessageHub(signal_details * pobj)
-   {
-
-      SCAST_PTR(::message::base,pbase,pobj);
-
-      if(pbase != NULL)
-      {
-
-         if(pbase->m_uiMessage == WM_DISPLAYCHANGE ||
-            (pbase->m_uiMessage == WM_SETTINGCHANGE &&
-            (pbase->m_wparam == SPI_SETWORKAREA)))
-         {
-
-            System.enum_display_monitors();
-
-            ::user::interaction * pui = NULL;
-
-            while(System.get_frame(pui))
-            {
-
-               try
-               {
-
-                  pui->post_message(WM_APP + 1984 + 21);
-
-               }
-               catch(...)
-               {
-               }
-
-            }
-
-
-         }
-
-      }
-
-   }
-
-
-
-} // namespace axis
-
-
-#endif

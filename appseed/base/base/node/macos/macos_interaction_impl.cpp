@@ -1,4 +1,4 @@
-#include "framework.h"
+	#include "framework.h"
 #include "macos.h"
 //#include <cairo/cairo-xlib.h>
 
@@ -68,7 +68,7 @@ namespace macos
 //      m_pui->m_nFlags    = 0;
       //m_pfnSuper         = NULL;
       m_bMouseHover        = false;
-      m_pguieCapture       = NULL;
+      m_puiCapture       = NULL;
       m_oswindow           = NULL;
 
    }
@@ -82,7 +82,7 @@ namespace macos
 //      m_pui->m_nFlags    = 0;
       //m_pfnSuper         = NULL;
       m_bMouseHover        = false;
-      m_pguieCapture       = NULL;
+      m_puiCapture       = NULL;
       m_oswindow           = NULL;
 
    }
@@ -97,7 +97,7 @@ namespace macos
         //m_pfnSuper         = NULL;
         m_bMouseHover        = false;
 //        m_pfont              = NULL;
-        m_pguieCapture       = NULL;
+        m_puiCapture       = NULL;
         m_oswindow           = NULL;
 
     }
@@ -292,7 +292,7 @@ namespace macos
 
       if(!native_create_window_ex(dwExStyle, lpszClassName, lpszWindowName, dwStyle,
                       rect,
-                      pParentWnd->get_safe_handle(), id, lpParam))
+                                  pParentWnd == NULL ? NULL : pParentWnd->get_safe_handle(), id, lpParam))
       {
          return false;
       }
@@ -497,7 +497,7 @@ namespace macos
                        const char * lpszWindowName, DWORD dwStyle,
                        const RECT& rect,
                        ::user::interaction *  pParentWnd, id id,
-                       ::create_context * pContext)
+                       sp(::create) pContext)
    {
       // can't use for desktop or pop-up windows (use CreateEx instead)
       ASSERT(pParentWnd != NULL);
@@ -528,6 +528,8 @@ namespace macos
 
    void interaction_impl::install_message_handling(::message::dispatch * pinterface)
    {
+
+      ::user::interaction_impl::install_message_handling(pinterface);
       //m_pbuffer->InstallMessageHandling(pinterface);
       IGUI_WIN_MSG_LINK(WM_DESTROY           , pinterface, this, &interaction_impl::_001OnDestroy);
       IGUI_WIN_MSG_LINK(WM_NCDESTROY         , pinterface, this, &interaction_impl::_001OnNcDestroy);
@@ -645,7 +647,7 @@ namespace macos
    void interaction_impl::_001OnCaptureChanged(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      m_pguieCapture = NULL;
+      m_puiCapture = NULL;
    }
 
    // WM_NCDESTROY is the absolute LAST message sent.
@@ -804,7 +806,7 @@ namespace macos
       rect rect;
       ((::user::interaction_impl *) this)->GetWindowRect(&rect);
       dumpcontext << "\nrect = " << rect;
-      dumpcontext << "\nparent ::user::interaction * = " << (void *)((::user::interaction_impl *) this)->get_parent();
+      dumpcontext << "\nparent ::user::interaction * = " << (void *)((::user::interaction_impl *) this)->GetParent();
 
       //      dumpcontext << "\nstyle = " << (void *)(dword_ptr)::GetWindowLong(get_handle(), GWL_STYLE);
       //    if (::GetWindowLong(get_handle(), GWL_STYLE) & WS_CHILD)
@@ -1316,14 +1318,14 @@ namespace macos
          {
             m_pui->_001OnTriggerMouseInside();
          }
-         if(m_pguieCapture != NULL)
+         if(m_puiCapture != NULL)
          {
-            if(m_pguieCapture->m_pimpl != NULL)
+            if(m_puiCapture->m_pimpl != NULL)
             {
-               //m_pguieCapture->m_pimpl->SendMessage(pbase);
+               //m_puiCapture->m_pimpl->SendMessage(pbase);
                try
                {
-                  (m_pguieCapture->m_pimpl->*m_pguieCapture->m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast < signal_details * > (pmouse));
+                  (m_puiCapture->m_pimpl->*m_puiCapture->m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast < signal_details * > (pmouse));
                   if(pmouse->get_lresult() != 0)
                      return;
                }
@@ -1334,10 +1336,10 @@ namespace macos
             }
             else
             {
-               //m_pguieCapture->SendMessage(pbase);
+               //m_puiCapture->SendMessage(pbase);
                try
                {
-                  (m_pguieCapture->*m_pguieCapture->m_pfnDispatchWindowProc)(dynamic_cast < signal_details * > (pmouse));
+                  (m_puiCapture->*m_puiCapture->m_pfnDispatchWindowProc)(dynamic_cast < signal_details * > (pmouse));
                   if(pmouse->get_lresult() != 0)
                      return;
                }
@@ -2660,7 +2662,7 @@ namespace macos
       // walk from the target user::interaction up to the hWndStop user::interaction checking
       //  if any user::interaction wants to translate this message
 
-      for (::user::interaction * pui = pbase->m_pwnd; pui != NULL; pui->GetParent())
+      for (sp(::user::interaction) pui = pbase->m_pwnd; pui != NULL; pui->GetParent())
       {
 
          pui->pre_translate_message(pobj);
@@ -3008,7 +3010,7 @@ namespace macos
       }
 
 
-      static UINT c_cdecl s_print_window(LPVOID pvoid)
+	  static_function UINT c_cdecl s_print_window(LPVOID pvoid)
       {
 //         print_window * pprintwindow = (print_window *) pvoid;
 //         try
@@ -4155,7 +4157,7 @@ namespace macos
                ::user::interaction * puieCapture = GetCapture();
                if(::ReleaseCapture())
                {
-                  m_pguieCapture = NULL;
+                  m_puiCapture = NULL;
                   return puieCapture;
                }
                else
@@ -4176,17 +4178,17 @@ namespace macos
                return NULL;
             if(hwndCapture == get_handle())
             {
-               if(m_pguieCapture != NULL)
+               if(m_puiCapture != NULL)
                {
-                  return m_pguieCapture;
+                  return m_puiCapture;
                }
                else
                {
                   if(m_pui != NULL)
                   {
-                     if(get_wnd() != NULL && MAC_WINDOW(get_wnd())->m_pguieCapture != NULL)
+                     if(get_wnd() != NULL && MAC_WINDOW(get_wnd())->m_puiCapture != NULL)
                      {
-                        return MAC_WINDOW(get_wnd())->m_pguieCapture;
+                        return MAC_WINDOW(get_wnd())->m_puiCapture;
                      }
                      else
                      {
@@ -4805,7 +4807,7 @@ namespace macos
       ASSERT(::IsWindow(get_handle()));
 
       if(pinterface != NULL)
-         m_pguieCapture = pinterface;
+         m_puiCapture = pinterface;
 
       return ::macos::interaction_impl::from_handle(::SetCapture(get_handle()));
 
@@ -5077,7 +5079,7 @@ namespace macos
 
    }
 
-   ::user::interaction * interaction_impl::set_parent(::user::interaction * pWndNewParent)
+   ::user::interaction * interaction_impl::SetParent(::user::interaction * pWndNewParent)
    {
 
       ASSERT(::IsWindow(get_handle()));
@@ -5700,7 +5702,7 @@ namespace macos
 
    void interaction_impl::round_window_draw(CGContextRef cgc)
    {
-        single_lock sl(m_pui->m_spmutex, true);
+        single_lock sl(m_pui->m_pmutex, true);
       if(m_bUpdateGraphics)
       {
 
@@ -5712,6 +5714,8 @@ namespace macos
 
 //      single_lock sl(mutex_display(), true);
 
+      cslock slDisplay(cs_display());
+
       if(m_spdib.is_null())
          return;
 
@@ -5722,9 +5726,9 @@ namespace macos
 
       g->attach(cgc);
 
-      //       ::rect rectClient;
+            ::rect rectClient;
 
-      //       GetClientRect(rectClient);
+            GetClientRect(rectClient);
 
       //       g->BitBlt(0, 0, rectClient.width(), rectClient.height(), m_spdib->get_graphics(), 0, 0, SRCCOPY);
 
@@ -5732,7 +5736,7 @@ namespace macos
 
       //       g->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      //       g->FillSolidRect(rectClient, ARGB(128, 0, 255, 0));
+//      g->FillSolidRect(rectClient, ARGB(128, 0, 255, 0));
 
    }
 

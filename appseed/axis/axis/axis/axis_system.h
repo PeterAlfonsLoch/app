@@ -78,7 +78,6 @@ namespace axis
 
       string_map < int_to_string >                 m_mapEnumToName;
       string_map < string_to_int >                 m_mapNameToEnum;
-      ::user::window_draw *                        m_ptwf;
 
 
 
@@ -99,10 +98,6 @@ namespace axis
       raw_array < MONITORINFO >                    m_monitorinfoaDesk;
 
 #endif
-
-      ::user::schema *                             m_pschemaLayeredFrame;
-
-
 
       system(::aura::application * papp);
       virtual ~system();
@@ -181,11 +176,6 @@ namespace axis
 
 
 
-      sp(::user::window_draw)                         get_twf();
-
-
-
-
 
       //virtual bool verb();
 
@@ -201,8 +191,6 @@ namespace axis
 
       //virtual mutex * wait_twf();
 
-      virtual bool defer_create_system_frame_window();
-
       //virtual bool is_system();
 
 
@@ -212,9 +200,6 @@ namespace axis
 
       virtual sp(::aura::session) query_session(index iEdge);
 
-
-
-      virtual bool initialize_twf();
 
 
       void enum_display_monitors();
@@ -230,15 +215,12 @@ namespace axis
       virtual ::count get_desk_monitor_count();
       virtual bool  get_desk_monitor_rect(index iMonitor,LPRECT lprect);
 
-      virtual index get_ui_wkspace(::user::interaction * pui);
       virtual index get_main_wkspace(LPRECT lprect = NULL);
       virtual ::count get_wkspace_count();
       virtual bool  get_wkspace_rect(index iWkspace,LPRECT lprect);
       virtual ::count get_desk_wkspace_count();
       virtual bool  get_desk_wkspace_rect(index iWkspace,LPRECT lprect);
 
-      virtual ::user::interaction * get_active_guie();
-      virtual ::user::interaction * get_focus_guie();
 
       /*
       virtual string get_ca2_module_folder();

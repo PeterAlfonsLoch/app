@@ -289,6 +289,8 @@ virtual ::user::interaction * main_window();
       int32_t hotplugin_host_host_starter_start_sync(const char * pszCommandLine,::aura::application * papp,host * phost,plugin * pplugin);
 
 
+      virtual bool defer_initialize_twf();
+
 
    };
 

@@ -3,6 +3,7 @@
 
 #include "axis/node/windows/windows.h"
 
+#include "windows_interaction_impl.h"
 
 #include "windows_factory_exchange.h"
 

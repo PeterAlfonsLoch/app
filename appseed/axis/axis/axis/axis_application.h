@@ -478,10 +478,8 @@ namespace axis
 
       virtual void draw2d_factory_exchange();
 
-      virtual bool defer_initialize_twf();
-
       virtual sp(::message::base) get_message_base(LPMESSAGE lpmsg);
-
+      virtual ::user::primitive * window_from_os_data(void * pdata);
 
       //virtual ::user::interaction * get_active_guie();
       //virtual ::user::interaction * get_focus_guie();

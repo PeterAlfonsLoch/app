@@ -79,7 +79,6 @@ CLASS_DECL_AXIS oswindow __child_window_from_point(oswindow,POINT);
 #include "windows_message_queue.h"
 #include "windows_factory_exchange.h"
 #include "windows_window_draw.h"
-#include "windows_interaction_impl.h"
 CLASS_DECL_AXIS WNDPROC __get_window_procedure();
 
 #define NODE_WINDOW(pwnd) ((sp(::windows::interaction_impl))(pwnd))

@@ -4469,20 +4469,6 @@ namespace axis
    }
 
 
-   bool application::defer_initialize_twf()
-   {
-
-      if(System.m_ptwf == NULL && (System.m_bShouldInitializeGTwf && m_bShouldInitializeGTwf && m_bInitializeProDevianMode))
-      {
-
-         if(!System.initialize_twf())
-            return false;
-
-      }
-
-      return true;
-
-   }
 
 
    //bool application::assert_user_logged_in()
@@ -4499,6 +4485,12 @@ namespace axis
 
 
 
+   ::user::primitive * application::window_from_os_data(void * pdata)
+   {
+   
+      return NULL;
+
+   }
 
    sp(::message::base) application::get_message_base(LPMESSAGE lpmsg)
    {

@@ -200,7 +200,6 @@ namespace axis
       virtual ::count get_monitor_count();
       virtual bool  get_monitor_rect(index iMonitor,LPRECT lprect);
 
-      virtual index get_ui_wkspace(::user::interaction * pui);
       virtual index get_main_wkspace(LPRECT lprect = NULL);
       virtual bool set_main_wkspace(index iWkspace);
       virtual ::count get_wkspace_count();
@@ -215,18 +214,14 @@ namespace axis
       virtual ::count get_desk_monitor_count();
       virtual bool  get_desk_monitor_rect(index iMonitor,LPRECT lprect);
 
-      virtual index initial_frame_position(LPRECT lprect,const RECT & rect,bool bMove,::user::interaction * pui);
-
       virtual void  get_monitor(rect_array & rectaMonitor,rect_array & rectaIntersect,const RECT & rect);
 
       virtual index get_zoneing(LPRECT lprect,const RECT & rect,::user::EAppearance eappearance);
       virtual index get_best_zoneing(::user::EAppearance * peappearance,LPRECT lprect,const RECT & rect);
       virtual index get_best_monitor(LPRECT lprect,const RECT & rect);
       virtual index get_best_wkspace(LPRECT lprect,const RECT & rect);
-      virtual index get_good_restore(LPRECT lprect,const RECT & rect,::user::interaction * pui);
       virtual index get_good_iconify(LPRECT lprect,const RECT & rect);
 
-      virtual index get_good_move(LPRECT lprect,const RECT & rect,::user::interaction * pui);
 
 //      virtual bool  get_window_minimum_size(LPSIZE lpsize);
 
@@ -240,11 +235,8 @@ namespace axis
 
 
       virtual bool on_ui_mouse_message(::message::mouse * pmouse);
-      virtual void frame_pre_translate_message(signal_details * pobj);
 
 
-      virtual ::user::interaction * get_active_guie();
-      virtual ::user::interaction * get_focus_guie();
 
 
 

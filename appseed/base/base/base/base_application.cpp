@@ -2964,6 +2964,20 @@ namespace base
       return hotplugin::host::host_starter_start_sync(pszCommandLine,get_app(),NULL);
 
    }
+   bool application::defer_initialize_twf()
+   {
+
+      if(System.m_ptwf == NULL && (System.m_bShouldInitializeGTwf && m_bShouldInitializeGTwf && m_bInitializeProDevianMode))
+      {
+
+         if(!System.initialize_twf())
+            return false;
+
+      }
+
+      return true;
+
+   }
 
 
 } // namespace base

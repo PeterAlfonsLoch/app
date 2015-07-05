@@ -1019,9 +1019,6 @@
     <ClInclude Include="axis\node\windows\windows_copydesk.h">
       <Filter>Header Files\axis\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_interaction_impl.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="axis\node\windows\windows_message_queue.h">
       <Filter>Header Files\axis\node\windows</Filter>
     </ClInclude>
@@ -1754,9 +1751,6 @@
       <Filter>Source Files\axis\message</Filter>
     </ClCompile>
     <ClCompile Include="axis\node\windows\windows_copydesk.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_interaction_impl.cpp">
       <Filter>Source Files\axis\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="axis\node\windows\windows_message_queue.cpp">
