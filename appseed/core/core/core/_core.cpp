@@ -25,9 +25,9 @@
 #include "core_strn.cpp"
 #include "core_str_format.cpp"
 #include "core_system.cpp"
-#include "core_Timer.cpp"
-#include "core_timer_callback.cpp"
-#include "core_timer_listener.cpp"
+//#include "core_Timer.cpp"
+//#include "core_timer_callback.cpp"
+//#include "core_timer_listener.cpp"
 //19 arquivo(s)        191.595 bytes
 //0 pasta(s)   65.238.601.728 bytes dispon¡veis
 
