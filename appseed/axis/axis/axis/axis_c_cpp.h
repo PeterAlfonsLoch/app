@@ -204,9 +204,9 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 #include "axis/graphics/graphics.h"
 
 
-#include "base/user/user/user_enum.h"
+#include "axis/user/user/user_enum.h"
 
-#include "base/user/user/user_key_enum.h"
+#include "axis/user/user/user_key_enum.h"
 
 
 //#include "axis/axis/message/message_user.h"
@@ -294,8 +294,6 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 //
 //#include "axis/database/simpledb/simpledb.h"
 
-
-#include "axis/user/user.h"
 
 #include "axis.inl"
 
