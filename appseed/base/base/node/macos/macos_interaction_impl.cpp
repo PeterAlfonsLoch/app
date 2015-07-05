@@ -1150,7 +1150,7 @@ namespace macos
 
          SCAST_PTR(::message::key, pkey, pobj);
 
-         Session.user()->keyboard().translate_os_key_message(pkey);
+         Session.keyboard().translate_os_key_message(pkey);
 
          if(pbase->m_uiMessage == WM_KEYDOWN)
          {
@@ -1374,7 +1374,7 @@ namespace macos
 
          ::message::key * pkey = (::message::key *) pbase;
 
-//         Application.user()->keyboard().translate_os_key_message(pkey);
+//         Application.keyboard().translate_os_key_message(pkey);
          /*
          if(pbase->m_uiMessage == WM_KEYDOWN)
          {

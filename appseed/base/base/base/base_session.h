@@ -46,6 +46,9 @@ namespace base
       bool initialize();
 
       virtual string get_cred(::aura::application * papp,const string & strRequestUrlParam,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive);
+
+
+      
    };
 
 

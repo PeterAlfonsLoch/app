@@ -87,15 +87,15 @@ namespace windows
    {
       if(!m_bProDevianMode)
       {
-         m_spuiMessage->post_message(WM_USER + 5000);
+         ::PostMessage(m_hwnd, WM_USER + 5000, 0, 0);
       }
    }
 
    void window_draw::synch_redraw()
    {
-      if(!m_bProDevianMode && ::IsWindow(m_spuiMessage->get_handle()))
+      if(!m_bProDevianMode && ::IsWindow(m_hwnd))
       {
-         m_spuiMessage->send_message(WM_USER + 5000);
+         ::SendMessage(m_hwnd,WM_USER + 5000, 0, 0);
       }
    }
 

@@ -1093,13 +1093,13 @@ namespace axis
       //if(!is_installing() && !is_uninstalling())
       //{
 
-      //   if(!user()->keyboard().initialize())
+      //   if(!keyboard().initialize())
       //      return false;
 
       //}
 
       
-      //user()->set_keyboard_layout(NULL,::action::source::database());
+      //set_keyboard_layout(NULL,::action::source::database());
 
 
       if(m_bIfs)

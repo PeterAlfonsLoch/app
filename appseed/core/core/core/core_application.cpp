@@ -463,7 +463,7 @@ namespace core
          else
          {
 
-            //Session.user()->keyboard();
+            //Session.keyboard();
 
          }
 
@@ -3375,7 +3375,7 @@ namespace core
    bool application::set_keyboard_layout(const char * pszPath,::action::context actioncontext)
    {
 
-      return Session.user()->keyboard().load_layout(pszPath,actioncontext);
+      return Session.keyboard().load_layout(pszPath,actioncontext);
 
    }
 
@@ -3908,11 +3908,11 @@ namespace core
       // keyboard layout
       //if(data_get("keyboard_layout",str) && str.has_char())
       {
-        // Session.user()->set_keyboard_layout(str,::action::source::database());
+        // Session.set_keyboard_layout(str,::action::source::database());
       }
       //else
       {
-         Session.user()->set_keyboard_layout(NULL,::action::source::database());
+         Session.set_keyboard_layout(NULL,::action::source::database());
       }
 
    }

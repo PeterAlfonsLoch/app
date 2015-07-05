@@ -1297,7 +1297,7 @@ namespace ios
 
          SCAST_PTR(::message::key, pkey, pobj);
 
-//         Application.user()->keyboard().translate_os_key_message(pkey);
+//         Application.keyboard().translate_os_key_message(pkey);
 
          if(pbase->m_uiMessage == WM_KEYDOWN)
          {
@@ -1540,7 +1540,7 @@ namespace ios
 
          ::message::key * pkey = (::message::key *) pbase;
 
-//         Application.user()->keyboard().translate_os_key_message(pkey);
+//         Application.keyboard().translate_os_key_message(pkey);
          /*
          if(pbase->m_uiMessage == WM_KEYDOWN)
          {

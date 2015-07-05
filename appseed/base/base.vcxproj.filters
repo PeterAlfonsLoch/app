@@ -129,6 +129,12 @@
     <Filter Include="Source Files\database\database">
       <UniqueIdentifier>{a6c93f4e-ce94-46d3-aaac-b017697a075b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\database">
+      <UniqueIdentifier>{a417b9df-9b56-491f-aac4-78fda1b56162}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\database\database">
+      <UniqueIdentifier>{4c91bf10-f540-4f53-bdb6-f6785fea6c7c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base\os\cross.h">
@@ -442,6 +448,9 @@
     </ClInclude>
     <ClInclude Include="base\os\windows\windows_system_interaction_impl.h">
       <Filter>Header Files\base\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\database_user_interaction.h">
+      <Filter>Header Files\database\database</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

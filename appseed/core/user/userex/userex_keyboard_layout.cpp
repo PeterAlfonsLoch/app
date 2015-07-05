@@ -55,19 +55,19 @@ namespace userex // ca8 + cube
       for(int32_t i = 0; i < patha.get_count(); i++)
       {
          ::user::keyboard_layout_id layoutid;
-         if(Session.user()->keyboard().initialize(&layoutid, patha[i]))
+         if(Session.keyboard().initialize(&layoutid, patha[i]))
          {
             m_layoutida.add(layoutid);
          }
       }
 
       ::sort::quick_sort(m_layoutida,true);
-      if(&Session.user()->keyboard().layout() != NULL)
+      if(&Session.keyboard().layout() != NULL)
       {
          int32_t iFind = -1;
          for(int32_t i = 0; i < m_layoutida.get_count(); i++)
          {
-            if(m_layoutida[i].m_strPath.CompareNoCase(Session.user()->keyboard().layout().m_strPath) == 0)
+            if(m_layoutida[i].m_strPath.CompareNoCase(Session.keyboard().layout().m_strPath) == 0)
             {
                iFind = i;
                break;
@@ -138,7 +138,7 @@ namespace userex // ca8 + cube
                index iItem = range.ItemAt(0).get_lower_bound();
                if(iItem >= 0 && iItem < m_layoutida.get_count())
                {
-                  Session.user()->set_keyboard_layout(m_layoutida[iItem].m_strPath, ::action::source::user());
+                  Session.set_keyboard_layout(m_layoutida[iItem].m_strPath, ::action::source::user());
                }
             }
          }

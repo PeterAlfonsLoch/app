@@ -26,7 +26,7 @@ namespace user
       user(::aura::application * papp);
       virtual ~user();
 
-      virtual bool set_keyboard_layout(const char * pszPath, ::action::context actioncontext);
+      
 
       virtual bool initialize1();
       virtual bool initialize2();

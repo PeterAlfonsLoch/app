@@ -3552,6 +3552,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClInclude Include="base\os\windows\windows_system_interaction_impl.h" />
+    <ClInclude Include="database\database\database_user_interaction.h" />
     <ClInclude Include="framework.h" />
     <ClCompile Include="base\os\windows\windows.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>

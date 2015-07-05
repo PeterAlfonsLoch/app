@@ -212,7 +212,7 @@ namespace console
          else
          {
 
-            str = Session.user()->keyboard().process_key(pkey->m_ekey);
+            str = Session.keyboard().process_key(pkey->m_ekey);
 
          }
 

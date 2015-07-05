@@ -1795,7 +1795,7 @@ namespace base
    //   void application::on_create_keyboard()
    //   {
    //      
-   //      Session.user()->set_keyboard_layout(NULL,::action::source::database());
+   //      Session.set_keyboard_layout(NULL,::action::source::database());
    //
    //   }
    //
@@ -2294,7 +2294,7 @@ namespace base
    //   bool application::set_keyboard_layout(const char * pszPath,::action::context actioncontext)
    //   {
    //
-   //      return Session.user()->set_keyboard_layout(pszPath,actioncontext);
+   //      return Session.set_keyboard_layout(pszPath,actioncontext);
    //
    //   }
    //
