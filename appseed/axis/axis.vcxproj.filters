@@ -276,6 +276,12 @@
     <Filter Include="Source Files\user\user">
       <UniqueIdentifier>{d2b3cc7c-abb3-4188-9ca9-17ae8997bf18}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\user\userpresence">
+      <UniqueIdentifier>{1680811e-7d8d-4332-a9e1-ed85234208f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\user">
+      <UniqueIdentifier>{fbec3f5e-dc7e-4837-815e-fe4d02112173}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="net\net.h">
@@ -1042,6 +1048,27 @@
     </ClInclude>
     <ClInclude Include="user\user\user_enum.h">
       <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\userpresence\userpresence.h">
+      <Filter>Header Files\user\userpresence</Filter>
+    </ClInclude>
+    <ClInclude Include="user\userpresence\userpresence_user_presence.h">
+      <Filter>Header Files\user\userpresence</Filter>
+    </ClInclude>
+    <ClInclude Include="user\userpresence\userpresence_userpresence.h">
+      <Filter>Header Files\user\userpresence</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_keyboard_layout.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_keyboard.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_key_enum.h">
+      <Filter>Header Files\user\user</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

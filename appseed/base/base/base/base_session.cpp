@@ -91,6 +91,8 @@ namespace base
 
       m_pschemasimple->m_pfont->create_pixel_font("Helvetica",16);
 
+      m_puiFocus = NULL;
+
 
 
    }
@@ -1122,14 +1124,32 @@ bool session::initialize1()
    if(!m_puser->initialize2())
       return false;
 
-   str_context()->localeschema().m_idaLocale.add(get_locale());
-
-   str_context()->localeschema().m_idaSchema.add(get_schema());
-
 
    return true;
 
 }
+
+
+bool session::initialize()
+{
+
+   if(!::axis::session::initialize())
+      return false;
+
+   if(!::base::application::initialize())
+      return false;
+
+   if(!m_puser->initialize())
+      return false;
+
+
+   ::set_simple_message_box(&::simple_ui_message_box);
+
+   return true;
+
+}
+
+
 
 //
 //

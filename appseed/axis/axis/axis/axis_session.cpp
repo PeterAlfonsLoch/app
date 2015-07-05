@@ -104,8 +104,6 @@ namespace axis
 
       m_pcopydesk = NULL;
 
-      m_puiFocus = NULL;
-
 
    }
 
@@ -1024,12 +1022,6 @@ namespace axis
       }
 
 
-      if(!m_puser->initialize1())
-         return false;
-
-      if(!m_puser->initialize2())
-         return false;
-
       str_context()->localeschema().m_idaLocale.add(get_locale());
 
       str_context()->localeschema().m_idaSchema.add(get_schema());
@@ -1101,9 +1093,7 @@ namespace axis
 
       //}
 
-      if(!m_puser->initialize())
-         return false;
-
+      
       //user()->set_keyboard_layout(NULL,::action::source::database());
 
 
@@ -1125,8 +1115,6 @@ namespace axis
          m_spfsdata->root_ones(patha);
 
       }
-      
-      ::set_simple_message_box(&::simple_ui_message_box);
       
       return true;
 

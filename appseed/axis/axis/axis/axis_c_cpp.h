@@ -223,6 +223,8 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 
 #include "axis/user/user/user_keyboard.h"
 
+#include "axis/user/user.h"
+
 
 
 //#include "axis/axis/message/message_user.h"

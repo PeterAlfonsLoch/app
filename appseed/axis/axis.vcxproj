@@ -4078,7 +4078,14 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClInclude Include="user\user.h" />
+    <ClInclude Include="user\userpresence\userpresence.h" />
+    <ClInclude Include="user\userpresence\userpresence_userpresence.h" />
+    <ClInclude Include="user\userpresence\userpresence_user_presence.h" />
     <ClInclude Include="user\user\user_enum.h" />
+    <ClInclude Include="user\user\user_keyboard.h" />
+    <ClInclude Include="user\user\user_keyboard_layout.h" />
+    <ClInclude Include="user\user\user_key_enum.h" />
     <ClInclude Include="version.config.h" />
     <ClInclude Include="version.h" />
   </ItemGroup>

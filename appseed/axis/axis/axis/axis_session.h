@@ -75,13 +75,6 @@ namespace axis
       ::user::copydesk *                                       m_pcopydesk;
 
 
-      ::user::interaction *                                   m_puiFocus;
-      ::user::user *                                          m_puser;
-
-
-
-
-      ::user::schema_simple_impl *                            m_pschemasimple;
 
 
 
@@ -180,7 +173,6 @@ namespace axis
 
 
       ::user::copydesk &                           copydesk();
-      inline ::user::user *                        user()         { return m_puser; }
 
 
 
