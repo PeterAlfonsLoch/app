@@ -5,8 +5,7 @@ namespace user
 
 
    message_queue::message_queue(::aura::application * papp):
-      ::object(papp),
-      ::aura::message_queue(papp)
+      ::object(papp)
    {
 
       m_plistener          = NULL;
@@ -20,11 +19,10 @@ namespace user
    }
 
 
-   bool message_queue::create_message_queue(const char * pszName,::aura::message_queue_listener * plistener)
+   bool message_queue::create_message_queue(const char * pszName,::user::message_queue_listener * plistener)
    {
 
-      if(!::aura::message_queue::create_message_queue(pszName,plistener))
-         return true;
+      m_plistener = plistener;
 
       return ::user::interaction::create_message_queue(pszName);
 

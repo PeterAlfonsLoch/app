@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_AURA message_queue:
+   class CLASS_DECL_BASE message_queue:
       virtual public message_queue_listener,
       virtual public ::user::interaction
    {

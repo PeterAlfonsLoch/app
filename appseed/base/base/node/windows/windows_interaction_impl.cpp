@@ -1453,7 +1453,7 @@ namespace windows
 
       if(pbase->m_uiMessage == WM_TIMER)
       {
-         m_pui->m_pauraapp->step_timer();
+//         m_pui->m_pauraapp->step_timer();
       }
       else if(pbase->m_uiMessage == WM_LBUTTONDOWN)
       {

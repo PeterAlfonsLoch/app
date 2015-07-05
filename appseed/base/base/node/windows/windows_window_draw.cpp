@@ -37,8 +37,7 @@ namespace windows
       ::object(papp),
       thread(papp),
       ::user::window_draw(papp),
-      ::aura::message_queue(papp),
-      ::windows::message_queue(papp)//,
+      ::user::message_queue(papp)
       //m_mutexRendering(papp),
       //m_mutexRgnUpdate(papp),
       //m_semaphoreBuffer(papp),
@@ -87,15 +86,15 @@ namespace windows
    {
       if(!m_bProDevianMode)
       {
-         ::PostMessage(m_hwnd, WM_USER + 5000, 0, 0);
+         message_queue_post_message(WM_USER + 5000);
       }
    }
 
    void window_draw::synch_redraw()
    {
-      if(!m_bProDevianMode && ::IsWindow(m_hwnd))
+      if(!m_bProDevianMode && message_queue_is_initialized())
       {
-         ::SendMessage(m_hwnd,WM_USER + 5000, 0, 0);
+         message_queue_send_message(WM_USER + 5000);
       }
    }
 

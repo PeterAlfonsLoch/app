@@ -15,7 +15,7 @@ namespace windows
 
    class CLASS_DECL_BASE window_draw:
       virtual public ::user::window_draw,
-      virtual public ::windows::message_queue
+      virtual public ::user::message_queue
    {
    public:
 
