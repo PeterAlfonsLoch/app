@@ -270,9 +270,6 @@
     <Filter Include="Source Files\user">
       <UniqueIdentifier>{5f1935a4-21a5-4ccc-b50a-76197ea0745b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\user\fontopus">
-      <UniqueIdentifier>{cbd51a79-ba14-4945-a025-c35bf8cb521e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\user\userpresence">
       <UniqueIdentifier>{af0d06f2-f7e7-4faa-945e-58f17110bc81}</UniqueIdentifier>
     </Filter>
@@ -1785,15 +1782,6 @@
     </ClCompile>
     <ClCompile Include="user\_user.cpp">
       <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\fontopus\fontopus.cpp">
-      <Filter>Source Files\user\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="user\fontopus\fontopus_login.cpp">
-      <Filter>Source Files\user\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="user\fontopus\fontopus_simple_ui.cpp">
-      <Filter>Source Files\user\fontopus</Filter>
     </ClCompile>
     <ClCompile Include="user\user\user_keyboard_layout.cpp">
       <Filter>Source Files\user\user</Filter>
