@@ -27,14 +27,59 @@ namespace windows
    }
 
 
+   LRESULT CALLBACK message_queue::WindowProc(HWND hWnd,UINT Msg,WPARAM wParam,LPARAM lParam)
+   {
+
+      message_queue * pqueue = (message_queue * ) ::GetWindowLongPtr(hWnd,GWLP_USERDATA);
+
+      return pqueue->window_proc(Msg,wParam,lParam);
+   }
+
+   LRESULT message_queue::window_proc(UINT message,WPARAM wparam,LPARAM lparam)
+   {
+      return 0;
+   }
+
+
    bool message_queue::create_message_queue(const char * pszName,::aura::message_queue_listener * plistener)
    {
 
       if(!::aura::message_queue::create_message_queue(pszName,plistener))
          return true;
 
-      //return ::user::interaction::create_message_queue(pszName);
-      return false;
+      WNDCLASS wndcls ={};
+
+      string strClass = "ca2_fontopus_cc_votagus_windows_message_queue";
+
+      if(!GetClassInfo(System.m_hinstance,strClass,&wndcls))
+      {
+
+         wndcls.style = 0;
+         wndcls.lpfnWndProc = DefWindowProc;
+         wndcls.cbClsExtra = 0;
+         wndcls.cbWndExtra = 0;
+         wndcls.hInstance = System.m_hinstance;
+         wndcls.hIcon = NULL;
+         wndcls.hCursor = NULL;
+         wndcls.hbrBackground = NULL;
+         wndcls.lpszMenuName = NULL;
+         wndcls.lpszClassName = strClass;
+         if(!::RegisterClass(&wndcls))
+         {
+            return false;
+         }
+
+      }
+
+
+      m_hwnd = ::CreateWindowEx(0,strClass,0,0,0,0,0,0,HWND_MESSAGE,0,0,NULL);
+
+      if(m_hwnd == NULL)
+         return false;
+
+      ::SetWindowLongPtr(m_hwnd,GWLP_USERDATA, (LONG_PTR) this);
+
+      return true;
 
    }
 

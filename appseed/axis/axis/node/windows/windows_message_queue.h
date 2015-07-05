@@ -41,6 +41,8 @@ namespace windows
 
       virtual void * message_queue::message_queue_get_os_handle();
 
+      static LRESULT CALLBACK WindowProc(HWND hWnd,UINT Msg,WPARAM wParam,LPARAM lParam);
+      LRESULT window_proc(UINT message,WPARAM wparam,LPARAM lparam);
 
    };
 
