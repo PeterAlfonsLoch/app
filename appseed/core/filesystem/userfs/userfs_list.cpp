@@ -26,15 +26,17 @@ namespace userfs
 
    void list::install_message_handling(::message::dispatch * pinterface)
    {
+   
       BASE::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_HSCROLL, pinterface, this, &list::_001OnHScroll);
       IGUI_WIN_MSG_LINK(WM_VSCROLL, pinterface, this, &list::_001OnVScroll);
       IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &list::_001OnShowWindow);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &list::_001OnCreate);
-      IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &list::_001OnTimer);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDBLCLK, pinterface, this, &list::_001OnLButtonDblClk);
       IGUI_WIN_MSG_LINK(WM_CANCELMODE, pinterface, this, &list::_001OnCancelMode);
+
    }
+
 
    void list::_001OnCreate(signal_details * pobj)
    {
@@ -46,7 +48,10 @@ namespace userfs
 
    void list::_001OnTimer(timer * ptimer)
    {
-      UNREFERENCED_PARAMETER(pobj);
+//      UNREFERENCED_PARAMETER(pobj);
+
+      BASE::_001OnTimer(ptimer);
+
    }
 
 

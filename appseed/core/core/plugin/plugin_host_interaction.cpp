@@ -40,7 +40,6 @@ namespace plugin
       IGUI_WIN_MSG_LINK(WM_MOUSEMOVE         , pinterface, this, &host_interaction::_001OnMouseMove);
       IGUI_WIN_MSG_LINK(message_check        , pinterface, this, &host_interaction::_001OnCheck);
       IGUI_WIN_MSG_LINK(WM_CREATE            , pinterface, this, &host_interaction::_001OnCreate);
-      IGUI_WIN_MSG_LINK(WM_TIMER             , pinterface, this, &host_interaction::_001OnTimer);
 
       /*
       IGUI_WIN_MSG_LINK(WM_WINDOWPOSCHANGED  , pinterface, this, &host_interaction::on_ignore_message);
@@ -105,7 +104,7 @@ namespace plugin
 
    void host_interaction::_001OnTimer(timer * ptimer)
    {
-      super::_001OnTimer(ptimer);;
+      ::database::user::interaction::_001OnTimer(ptimer);;
       if(ptimer->m_nIDEvent == 88881115)
       {
          KillTimer(19841115);

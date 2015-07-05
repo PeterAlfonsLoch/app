@@ -38,9 +38,7 @@ namespace userfs
    void tree::install_message_handling(::message::dispatch * pinterface)
    {
 
-      IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &tree::_001OnTimer);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &tree::_001OnCreate);
-      IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &tree::_001OnTimer);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDBLCLK, pinterface, this, &tree::_001OnLButtonDblClk);
       IGUI_WIN_MSG_LINK(WM_CONTEXTMENU, pinterface, this, &tree::_001OnContextMenu);
 
@@ -238,23 +236,23 @@ namespace userfs
 
    void tree::_001OnTimer(timer * ptimer)
    {
-      super::_001OnTimer(ptimer);
+
       if (ptimer->m_nIDEvent == 1234567)
       {
          m_iAnimate += 2;
          if (m_iAnimate >= 11)
          {
             m_iAnimate = 0;
-            ((::user::interaction *) ptimer->m_pwnd->m_pvoidUserInteraction)->KillTimer(ptimer->m_nIDEvent);
+            dynamic_cast < ::user::interaction * > (ptimer->m_pcallback)->KillTimer(ptimer->m_nIDEvent);
 
          }
-         ((::user::interaction *) ptimer->m_pwnd->m_pvoidUserInteraction)->RedrawWindow();
+         dynamic_cast < ::user::interaction * > (ptimer->m_pcallback)->RedrawWindow();
       }
       else if (ptimer->m_nIDEvent == 123)
       {
-         ((::user::interaction *) ptimer->m_pwnd->m_pvoidUserInteraction)->_001RedrawWindow();
+         dynamic_cast < ::user::interaction * > (ptimer->m_pcallback)->_001RedrawWindow();
          m_bTimer123 = false;
-         ((::user::interaction *) ptimer->m_pwnd->m_pvoidUserInteraction)->KillTimer(123);
+         dynamic_cast < ::user::interaction * > (ptimer->m_pcallback)->KillTimer(123);
       }
    }
 

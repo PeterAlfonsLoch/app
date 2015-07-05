@@ -345,12 +345,16 @@ FileSystemSizeWnd::FileSystemSizeWnd(::aura::application * papp) :
    m_pui = new ::user::interaction(papp);
 }
 
+
 void FileSystemSizeWnd::install_message_handling(::message::dispatch * pinterface)
 {
+   
    m_pui->install_message_handling(pinterface);
+
    IGUI_WIN_MSG_LINK(WM_COPYDATA, pinterface, this, &FileSystemSizeWnd::_001OnCopyData);
-   IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &FileSystemSizeWnd::_001OnTimer);
+
 }
+
 
 bool FileSystemSizeWnd::CreateClient()
 {
@@ -493,7 +497,7 @@ void FileSystemSizeWnd::_001OnTimer(timer * ptimer)
 
 #ifdef WINDOWSEX
 
-    super::_001OnTimer(ptimer);;
+//    super::_001OnTimer(ptimer);;
    if(ptimer->m_nIDEvent == 100)
    {
       //::PostMessage(pbase->m_wparam, WM_COPYDATA, (WPARAM) get_handle(), (LPARAM) &data);

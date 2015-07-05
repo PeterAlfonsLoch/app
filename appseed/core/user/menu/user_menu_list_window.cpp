@@ -62,7 +62,6 @@ namespace user
 
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &menu_list_window::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &menu_list_window::_001OnDestroy);
-      IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &menu_list_window::_001OnTimer);
 
    }
 
@@ -211,10 +210,11 @@ namespace user
 
    }
 
+
    void menu_list_window::_001OnTimer(timer * ptimer)
    {
       
-      super::_001OnTimer(ptimer);
+      ::user::menu::_001OnTimer(ptimer);
       
       if(ptimer->m_nIDEvent == ::user::BaseWndMenuCmdUi)
       {
@@ -222,9 +222,8 @@ namespace user
          RedrawWindow();
       }
 
-      pobj->m_bRet = false;
-
    }
+
 
    void menu_list_window::_CalcSize(sp(menu_item) pitemParent, ::draw2d::graphics * pdc, int32_t & iMaxWidth, int32_t & iMaxHeight)
    {

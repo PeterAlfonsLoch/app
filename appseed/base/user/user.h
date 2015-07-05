@@ -250,6 +250,8 @@ namespace user
 using user_interaction = ::user::interaction;
 
 
+#include "base/user/user/user_message_queue_listener.h"
+
 //#include "user/user/user_keyboard_focus.h"
 //#include "user/user/user_mouse_focus.h"
 //#include "base/user/user/user_elemental.h"
@@ -337,7 +339,7 @@ using user_interaction = ::user::interaction;
 #include "base/user/user/user_form_window.h"
 #include "base/user/user/user_form_update_hint.h"
 
-//#include "base/user/user/user_message_queue_listener.h"
+
 #include "base/user/user/user_message_queue.h"
 
 

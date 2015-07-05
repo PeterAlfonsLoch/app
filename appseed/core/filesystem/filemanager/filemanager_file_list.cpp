@@ -37,12 +37,16 @@ namespace filemanager
 
    }
 
+
    file_list::~file_list()
    {
+
    }
+
 
    void file_list::install_message_handling(::message::dispatch * pinterface)
    {
+
       ::user::impact::install_message_handling(pinterface);
       ::user::form_list::install_message_handling(pinterface);
       ::userfs::list::install_message_handling(pinterface);
@@ -50,15 +54,10 @@ namespace filemanager
       IGUI_WIN_MSG_LINK(WM_HSCROLL, pinterface, this, &file_list::_001OnHScroll);
       IGUI_WIN_MSG_LINK(WM_VSCROLL, pinterface, this, &file_list::_001OnVScroll);
       IGUI_WIN_MSG_LINK(WM_RBUTTONUP, pinterface, this, &file_list::_001OnContextMenu);
-      IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &file_list::_001OnTimer);
       connect_command_range(FILEMANAGER_SHELL_COMMAND_FIRST, FILEMANAGER_SHELL_COMMAND_LAST, &file_list::_001OnShellCommand);
       IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &file_list::_001OnShowWindow);
 
-
    }
-
-
-
 
 
    #ifdef DEBUG
@@ -395,7 +394,7 @@ namespace filemanager
    void file_list::_001OnTimer(timer * ptimer)
    {
 
-      super::_001OnTimer(ptimer);
+      ::userfs::list::_001OnTimer(ptimer);
 
       if(ptimer->m_nIDEvent == 888888)
       {

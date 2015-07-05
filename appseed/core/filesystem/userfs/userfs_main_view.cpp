@@ -56,12 +56,14 @@ namespace userfs
 
    }
 
+   
    void main_view::_001OnTimer(timer * ptimer)
    {
-      UNREFERENCED_PARAMETER(pobj);
-//      super::_001OnTimer(ptimer);;
+
+      ::user::split_view::_001OnTimer(ptimer);
 
    }
+
 
    ::user::document * main_view::get_document()
    {

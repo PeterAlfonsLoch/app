@@ -453,9 +453,11 @@ namespace user
       return true;
    }
 
+
    void menu::_001OnTimer(timer * ptimer)
    {
-      super::_001OnTimer(ptimer);;
+
+      ::user::control::_001OnTimer(ptimer);;
 
       sp(::user::menu_item) pitemThis = get_item();
 
@@ -509,8 +511,10 @@ namespace user
             }
          }
       }
-      pobj->m_bRet = false;
+      
+
    }
+
 
    void menu::install_message_handling(::message::dispatch * pinterface)
    {
@@ -521,7 +525,6 @@ namespace user
       IGUI_WIN_MSG_LINK(WM_IDLEUPDATECMDUI  , pinterface, this, &menu::_001OnIdleUpdateCmdUI);
       IGUI_WIN_MSG_LINK(WM_CREATE           , pinterface, this, &menu::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_DESTROY          , pinterface, this, &menu::_001OnDestroy);
-      IGUI_WIN_MSG_LINK(WM_TIMER            , pinterface, this, &menu::_001OnTimer);
       IGUI_WIN_MSG_LINK(WM_NCACTIVATE       , pinterface, this, &menu::_001OnNcActivate);
       IGUI_WIN_MSG_LINK(WM_NCCALCSIZE       , pinterface, this, &menu::_001OnNcCalcSize);
       IGUI_WIN_MSG_LINK(WM_ENABLE           , pinterface, this, &menu::_001OnEnable);

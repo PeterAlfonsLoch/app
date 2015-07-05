@@ -740,16 +740,7 @@
     <ClInclude Include="core\core\core_system.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
-    <ClInclude Include="core\core\core_timer_callback.h">
-      <Filter>Header Files\core\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\core\core_timer_listener.h">
-      <Filter>Header Files\core\core</Filter>
-    </ClInclude>
     <ClInclude Include="core\core\core_types.h">
-      <Filter>Header Files\core\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\core\core_timer.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\filemanager_manager_template.h">
@@ -1496,15 +1487,6 @@
       <Filter>Source Files\core\core</Filter>
     </ClCompile>
     <ClCompile Include="core\core\core_system.cpp">
-      <Filter>Source Files\core\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core\core_Timer.cpp">
-      <Filter>Source Files\core\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core\core_timer_callback.cpp">
-      <Filter>Source Files\core\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core\core_timer_listener.cpp">
       <Filter>Source Files\core\core</Filter>
     </ClCompile>
     <ClCompile Include="database\databaseuser\_databaseuser.cpp">
