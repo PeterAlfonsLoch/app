@@ -28,6 +28,7 @@ namespace base
       application();
       virtual ~application();
 
+      virtual sp(type) user_default_controltype_to_typeinfo(::user::e_control_type e_type);
 
 
 //      inline ::database::server &               dataserver()   { return *(m_spdataserver.m_p); }

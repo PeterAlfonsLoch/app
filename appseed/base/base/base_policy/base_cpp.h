@@ -311,6 +311,10 @@ CLASS_DECL_BASE bool __node_base_pos_term();
 
 #include "axis/graphics/graphics.h"
 
+
+#include "base/user/user/user_schema.h"
+
+
 //#include "base/base/base_platform_interface.h"
 
 //#include "filesystem/file/file_edit_buffer.h"
@@ -318,6 +322,9 @@ CLASS_DECL_BASE bool __node_base_pos_term();
 //#include "base/base/base_command_target.h"
 
 #include "base/base/base_application.h"
+
+
+
 
 
 #include "base/base/base_session.h"

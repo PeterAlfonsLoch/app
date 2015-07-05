@@ -17,8 +17,7 @@ namespace axis
 
    class CLASS_DECL_AXIS session:
       virtual public ::aura::session,
-      virtual public ::axis::application,
-      virtual public ::user::schema
+      virtual public ::axis::application
    {
    public:
 
@@ -67,7 +66,6 @@ namespace axis
 
 
       ::user::interaction *                                   m_puiFocus;
-      ::map < ::user::e_key,::user::e_key,bool,bool > *         m_pmapKeyPressed;
       ::user::user *                                          m_puser;
 
 
@@ -188,9 +186,6 @@ namespace axis
 
       virtual COLORREF get_default_color(uint64_t ui);
 
-      virtual bool is_key_pressed(::user::e_key ekey);
-
-      virtual void set_key_pressed(::user::e_key ekey,bool bPressed);
 
 
       virtual ::visual::cursor * get_cursor();
