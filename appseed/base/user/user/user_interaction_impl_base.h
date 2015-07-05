@@ -6,7 +6,8 @@ namespace user
 
 
    class CLASS_DECL_BASE interaction_impl_base:
-      virtual public ::user::interaction_base
+      virtual public ::user::interaction_base,
+      virtual public ::aura::timer_array
    {
    public:
 
@@ -175,8 +176,8 @@ namespace user
 
       virtual bool get_rect_normal(LPRECT lprect);
 
-      virtual uint_ptr SetTimer(uint_ptr nIDEvent,UINT nElapse, void (CALLBACK* lpfnTimer)(oswindow,UINT,uint_ptr,uint32_t));
-      virtual bool KillTimer(uint_ptr nIDEvent);
+      //virtual uint_ptr SetTimer(uint_ptr nIDEvent,UINT nElapse, void (CALLBACK* lpfnTimer)(oswindow,UINT,uint_ptr,uint32_t));
+      //virtual bool KillTimer(uint_ptr nIDEvent);
 
       virtual bool DestroyWindow();
 

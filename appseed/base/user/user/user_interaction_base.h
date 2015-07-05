@@ -86,6 +86,9 @@ namespace user
       virtual ~interaction_base();
 
 
+      virtual void _001OnTimer(timer * ptimer);
+
+
       virtual bool create_message_queue(const char * pszName);
 
 
@@ -350,7 +353,7 @@ namespace user
       virtual bool ShowWindow(int32_t nCmdShow);
 
       // timer Functions
-      virtual uint_ptr SetTimer(uint_ptr nIDEvent,UINT nElapse,void (CALLBACK* lpfnTimer)(oswindow,UINT,uint_ptr,uint32_t));
+      virtual bool SetTimer(uint_ptr nIDEvent,UINT nElapse);
       virtual bool KillTimer(uint_ptr nIDEvent);
 
       virtual bool is_window_enabled();

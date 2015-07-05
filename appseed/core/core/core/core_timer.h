@@ -36,7 +36,7 @@ namespace core
       bool EnableTimer(bool bEnable = true);
       bool create(timer_callback * pCallback);
 
-      _001OnTimer(timer * ptimer);;
+      void _001OnTimer(timer * ptimer);
       DECL_GEN_SIGNAL(_001OnDestroy);
       DECL_GEN_SIGNAL(_001OnClose);
       DECL_GEN_SIGNAL(_001OnUser);

@@ -24,7 +24,7 @@ namespace filemanager
       virtual void OnDraw(::draw2d::graphics * pdc);
 
       DECL_GEN_SIGNAL(_001OnCreate);
-      _001OnTimer(timer * ptimer);;
+      void _001OnTimer(timer * ptimer);
 
       virtual count _001GetItemCount();
       virtual void _001GetItemText(::user::mesh_item * pitem);

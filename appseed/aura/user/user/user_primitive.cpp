@@ -60,6 +60,17 @@ namespace user
       UNREFERENCED_PARAMETER(pjob);
       return 1;
    }
+
+
+
+   void primitive::_001OnTimer(timer * ptimer)
+   {
+
+      UNREFERENCED_PARAMETER(ptimer);
+
+   }
+
+
 } // namespace user
 
 

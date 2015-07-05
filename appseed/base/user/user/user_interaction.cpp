@@ -262,11 +262,6 @@ namespace user
             {
                iStyle &= ~WS_VISIBLE;
             }
-            smart_pointer_array < ::aura::timer_item > timera;
-            if(m_pauraapp != NULL && m_pauraapp->m_pthreadimpl != NULL && m_pauraapp->m_pthreadimpl->m_sptimera.is_set())
-            {
-               m_pauraapp->m_pthreadimpl->m_sptimera->detach(timera,this);
-            }
 
             rect rectWindow;
 
@@ -280,7 +275,6 @@ namespace user
             }
             else
             {
-               set_timer(timera);
                if(pimplOld != NULL)
                {
                   try
@@ -543,7 +537,6 @@ namespace user
       else
       {
          IGUI_WIN_MSG_LINK(WM_CLOSE,pinterface,this,&interaction::_001OnClose);
-         IGUI_WIN_MSG_LINK(WM_TIMER,pinterface,this,&interaction::_001OnTimer);
          IGUI_WIN_MSG_LINK(WM_DESTROY,pinterface,this,&interaction::_001OnDestroy);
          IGUI_WIN_MSG_LINK(WM_SIZE,pinterface,this,&interaction::_001OnSize);
          IGUI_WIN_MSG_LINK(WM_USER + 184,pinterface,this,&interaction::_001OnUser184);
@@ -1311,14 +1304,12 @@ namespace user
       {
 
          SetTimer(1984 + 77 + 3,250,NULL);
-         IGUI_WIN_MSG_LINK(WM_TIMER,m_pimpl,this,&interaction::_001OnTimer);
 
       }
       else
       {
 
          KillTimer(1984 + 77 + 3);
-         IGUI_WIN_MSG_UNLINK(WM_TIMER,m_pimpl,this,&interaction::_001OnTimer);
       }
 
    }
@@ -1683,8 +1674,6 @@ namespace user
 
    void interaction::_001OnTimer(timer * ptimer)
    {
-
-      SCAST_PTR(::message::timer, ptimer, pobj)
 
       if(ptimer->m_nIDEvent == 1984 + 77 + 3)
       {
@@ -3469,7 +3458,7 @@ namespace user
                bShowIdle = FALSE;
             }
 
-            pthread->step_timer();
+//            pthread->step_timer();
 
             // call on_idle while in bIdle state
             if(!(dwFlags & MLF_NOIDLEMSG) && puieParent != NULL && lIdleCount == 0)
@@ -3534,7 +3523,7 @@ namespace user
          } while(::PeekMessage(&msg,NULL,0,0,PM_NOREMOVE) != FALSE);
 
 
-         pthread->step_timer();
+//         pthread->step_timer();
 
          if(!ContinueModal(iLevel))
             goto ExitModal;
@@ -3704,26 +3693,26 @@ namespace user
 
 
    // timer Functions
-   uint_ptr interaction::SetTimer(uint_ptr nIDEvent,UINT nElapse,void (CALLBACK* lpfnTimer)(oswindow,UINT,uint_ptr,uint32_t))
-   {
+   //uint_ptr interaction::SetTimer(uint_ptr nIDEvent,UINT nElapse,void (CALLBACK* lpfnTimer)(oswindow,UINT,uint_ptr,uint32_t))
+   //{
 
-      if(m_pimpl == NULL)
-         return 0;
-      else
-         return m_pimpl->SetTimer(nIDEvent,nElapse,lpfnTimer);
+   //   if(m_pimpl == NULL)
+   //      return 0;
+   //   else
+   //      return m_pimpl->SetTimer(nIDEvent,nElapse,lpfnTimer);
 
-   }
+   //}
 
 
-   bool interaction::KillTimer(uint_ptr nIDEvent)
-   {
+   //bool interaction::KillTimer(uint_ptr nIDEvent)
+   //{
 
-      if(m_pimpl == NULL)
-         return FALSE;
-      else
-         return m_pimpl->KillTimer(nIDEvent);
+   //   if(m_pimpl == NULL)
+   //      return FALSE;
+   //   else
+   //      return m_pimpl->KillTimer(nIDEvent);
 
-   }
+   //}
 
 
    bool interaction::has_focus()
@@ -6304,19 +6293,19 @@ namespace user
 
 
 
-   void interaction::transfer_from(::aura::timer_array & ta, interaction * pui)
-   {
-
-
-      single_lock sl(&ta.m_mutex,TRUE);
-
-      smart_pointer_array < ::aura::timer_item > timera;
-
-      ta.detach(timera,this);
-
-      set_timer(timera);
-
-   }
+//   void interaction::transfer_from(::aura::timer_array & ta, interaction * pui)
+//   {
+//
+//
+//      single_lock sl(&ta.m_mutex,TRUE);
+//
+//      smart_pointer_array < ::aura::timer_item > timera;
+//
+////      ta.detach(timera,this);
+//
+//      set_timer(timera);
+//
+//   }
 
 /*
 

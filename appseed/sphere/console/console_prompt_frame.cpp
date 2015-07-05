@@ -46,7 +46,7 @@ namespace console
    void prompt_frame::_001OnTimer(timer * ptimer)
    {
       
-      SCAST_PTR(::message::timer, ptimer, pobj);
+      super::_001OnTimer(ptimer);;
       
 //      UINT nIDEvent = ptimer->m_nIDEvent;
 //      static float theta;

@@ -358,7 +358,7 @@ namespace filemanager
 
          void list_view::_001OnTimer(timer * ptimer)
          {
-            SCAST_PTR(::message::timer, ptimer, pobj)
+            super::_001OnTimer(ptimer);
                if(ptimer->m_nIDEvent == 123654)
                {
                   KillTimer(123654);

@@ -1424,7 +1424,7 @@ void simple_toolbar::_001Hover(bool bRedraw)
 
 void simple_toolbar::_001OnTimer(timer * ptimer)
 {
-   SCAST_PTR(::message::timer, ptimer, pobj)
+   super::_001OnTimer(ptimer);
       if(ptimer->m_nIDEvent == TIMER_HOVER)
       {
          _001Hover();

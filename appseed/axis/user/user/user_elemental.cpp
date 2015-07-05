@@ -415,6 +415,14 @@ namespace user
 
    }
 
+   void elemental::_001OnTimer(timer * ptimer)
+   {
+
+      UNREFERENCED_PARAMETER(ptimer);
+
+   }
+
+
 } // namespace user
 
 

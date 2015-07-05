@@ -6,230 +6,224 @@
 #include <time.h>
 #endif
 
-namespace aura
+class timer;
+
+class CLASS_DECL_AURA timer_callback
 {
 
-   class timer;
+public:
 
-   class CLASS_DECL_AURA timer_callback
-   {
+   virtual void on_timer(timer * ptimer) {}
 
-   public:
-
-      virtual void on_timer(timer * ptimer) {}
-
-   };
+};
 
 
 
-   class CLASS_DECL_AURA timer :
-      virtual public object
-   {
+class CLASS_DECL_AURA timer :
+   virtual public object
+{
 
-   public:
+public:
 
-      uint_ptr m_uiTimer;
+   uint_ptr m_nIDEvent;
 
-      timer_callback * m_pcallback ;
+   timer_callback * m_pcallback ;
 
 #ifdef WINDOWS
 
-      HANDLE hTimerQueue;
-      HANDLE hTimer;
+   HANDLE hTimerQueue;
+   HANDLE hTimer;
 #else
 
-      timer_t timerid;
-      struct sigevent sev;
-      struct itimerspec its;
+   timer_t timerid;
+   struct sigevent sev;
+   struct itimerspec its;
 #endif
 
-      timer(::aura::application * papp,uint_ptr uiTimer = 0):
-         object(papp),
-         m_uiTimer(uiTimer)
-      {
-         m_pcallback = NULL;
-         // Create the timer queue.
+   timer(::aura::application * papp,uint_ptr uiTimer = 0):
+      object(papp),
+      m_nIDEvent(uiTimer)
+   {
+      m_pcallback = NULL;
+      // Create the timer queue.
 
 #ifdef LINUX
 
-         /*           sigset_t mask;
-         struct sigaction sa;
+      /*           sigset_t mask;
+      struct sigaction sa;
 
 
-         /* Establish handler for timer signal */
+      /* Establish handler for timer signal */
 
 
-         ZERO(sev);
+      ZERO(sev);
 
-         sev.sigev_notify = SIGEV_THREAD;
-         sev.sigev_signo = 0;
-         sev.sigev_value.sival_ptr = this;
-         sev.sigev_notify_function = handler;
-         if(timer_create(CLOCK_REALTIME,&sev,&timerid) == -1)
-            throw - 1;
+      sev.sigev_notify = SIGEV_THREAD;
+      sev.sigev_signo = 0;
+      sev.sigev_value.sival_ptr = this;
+      sev.sigev_notify_function = handler;
+      if(timer_create(CLOCK_REALTIME,&sev,&timerid) == -1)
+         throw - 1;
 
 #else
-         hTimerQueue = CreateTimerQueue();
-         if(NULL == hTimerQueue)
-         {
-            throw - 1;
-         }
-#endif
-      }
-
-      ~timer()
+      hTimerQueue = CreateTimerQueue();
+      if(NULL == hTimerQueue)
       {
+         throw - 1;
+      }
+#endif
+   }
 
-         stop();
+   ~timer()
+   {
+
+      stop();
 
 #ifdef WINDOWS
 
-         DeleteTimerQueue(hTimerQueue);
+      DeleteTimerQueue(hTimerQueue);
 
 #else
 
-         timer_delete(timerid);
+      timer_delete(timerid);
 
 #endif
 
-      }
+   }
 
 #ifdef WINDOWS
       
-      static VOID CALLBACK TimerRoutine(PVOID lpParam,BOOLEAN TimerOrWaitFired)
-      {
+   static VOID CALLBACK TimerRoutine(PVOID lpParam,BOOLEAN TimerOrWaitFired)
+   {
          
-         timer * ptimer = (timer *)lpParam;
+      timer * ptimer = (timer *)lpParam;
 
-         ptimer->on_timer();
+      ptimer->on_timer();
 
-      }
+   }
 
 #else
 
-      static void handler(sigval sigval)
-      {
+   static void handler(sigval sigval)
+   {
 
-         millis_timer * ptimer = (millis_timer *)sigval.sival_ptr;
+      millis_timer * ptimer = (millis_timer *)sigval.sival_ptr;
 
-         ptimer->on_timer();
+      ptimer->on_timer();
 
-      }
+   }
 
 #endif
 
-      bool start(int millis, bool bPeriodic)
-      {
+   bool start(int millis, bool bPeriodic)
+   {
 
-         stop();
+      stop();
 #ifdef LINUX
-         /* Start the timer */
+      /* Start the timer */
 
-         its.it_value.tv_sec = millis / 1000; // expiration
-         its.it_value.tv_nsec = (millis * 1000 * 1000) % (1000 * 1000 * 1000); // expiration
-         if(bPeriodic)
-         {
-            its.it_interval.tv_sec = 0; // no freq
-            its.it_interval.tv_nsec = 0; // no freq
-         }
-         else
-         {
-            its.it_value.tv_sec = millis / 1000; // freq period
-            its.it_value.tv_nsec = (millis * 1000 * 1000) % (1000 * 1000 * 1000); // freq period
-         }
+      its.it_value.tv_sec = millis / 1000; // expiration
+      its.it_value.tv_nsec = (millis * 1000 * 1000) % (1000 * 1000 * 1000); // expiration
+      if(bPeriodic)
+      {
+         its.it_interval.tv_sec = 0; // no freq
+         its.it_interval.tv_nsec = 0; // no freq
+      }
+      else
+      {
+         its.it_value.tv_sec = millis / 1000; // freq period
+         its.it_value.tv_nsec = (millis * 1000 * 1000) % (1000 * 1000 * 1000); // freq period
+      }
 
-         if(timer_settime(timerid,0,&its,NULL) == -1)
-            return false;
+      if(timer_settime(timerid,0,&its,NULL) == -1)
+         return false;
 
 #else
          
-         if(!CreateTimerQueueTimer(&hTimer,hTimerQueue,(WAITORTIMERCALLBACK)TimerRoutine,this,millis,bPeriodic ? millis : 0,0))
-         {
+      if(!CreateTimerQueueTimer(&hTimer,hTimerQueue,(WAITORTIMERCALLBACK)TimerRoutine,this,millis,bPeriodic ? millis : 0,0))
+      {
             
-            return false;
-
-         }
-
-#endif
-
-         return true;
+         return false;
 
       }
 
-      virtual void stop()
-      {
+#endif
+
+      return true;
+
+   }
+
+   virtual void stop()
+   {
 #ifdef WINDOWS
          
-         if(hTimer != NULL)
-         {
+      if(hTimer != NULL)
+      {
             
-            DeleteTimerQueueTimer(hTimerQueue,hTimer,INVALID_HANDLE_VALUE);
+         DeleteTimerQueueTimer(hTimerQueue,hTimer,INVALID_HANDLE_VALUE);
 
-            hTimer = NULL;
+         hTimer = NULL;
 
-         }
+      }
 
 #else
 
-         timer_settime(timerid,0,NULL,NULL);
+      timer_settime(timerid,0,NULL,NULL);
             
 
 #endif
-      }
-
-
-      virtual void on_timer()
-      {
-
-         if(m_pcallback != NULL)
-         {
-
-            m_pcallback->on_timer(this);
-
-         }
-
-      }
-
-
-   };
-
-
-   class timer_event :
-      virtual public timer,
-      virtual public manual_reset_event
-   {
-   public:
-
-
-      timer_event(::aura::application * papp,int iTimer):
-         object(papp),
-         timer(papp, iTimer),
-         manual_reset_event(papp)
-      {
-
-      }
-
-      virtual ~timer_event()
-      {
-
-
-      }
-
-      bool wait(int millis)
-      {
-
-         start(millis, false);
-
-         manual_reset_event::wait();
-
-         return true;
    }
 
 
+   virtual void on_timer()
+   {
+
+      if(m_pcallback != NULL)
+      {
+
+         m_pcallback->on_timer(this);
+
+      }
+
+   }
 
 
-   };
+};
 
 
-} // namespace aura
+class timer_event :
+   virtual public timer,
+   virtual public manual_reset_event
+{
+public:
+
+
+   timer_event(::aura::application * papp,int iTimer):
+      object(papp),
+      timer(papp, iTimer),
+      manual_reset_event(papp)
+   {
+
+   }
+
+   virtual ~timer_event()
+   {
+
+
+   }
+
+   bool wait(int millis)
+   {
+
+      start(millis, false);
+
+      manual_reset_event::wait();
+
+      return true;
+}
+
+
+
+
+};
 

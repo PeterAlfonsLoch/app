@@ -72,17 +72,23 @@ namespace aura
       if(ptimer->m_pcallback == this)
       {
 
-        _001OnTimer(ptimer->m_uiTimer);
+        _001OnTimer(ptimer);
 
       }
 
    }
+
+
    void timer_array::_001OnTimer(timer * ptimer)
    {
+
    }
 
 
 } // namespace user
+
+
+
 
 
 

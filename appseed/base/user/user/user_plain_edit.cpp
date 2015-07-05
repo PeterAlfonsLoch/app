@@ -110,8 +110,6 @@ namespace user
       IGUI_WIN_MSG_LINK(WM_KEYUP,pinterface,this,&plain_edit::_001OnKeyUp);
       //IGUI_WIN_MSG_LINK(WM_CHAR,pinterface,this,&plain_edit::_001OnChar);
 
-      IGUI_WIN_MSG_LINK(WM_TIMER,pinterface,this,&::user::plain_edit::_001OnTimer);
-
       IGUI_WIN_MSG_LINK(WM_SIZE,pinterface,this,&::user::plain_edit::_001OnSize);
 
 
@@ -565,7 +563,7 @@ namespace user
 
    void plain_edit::_001OnTimer(timer * ptimer)
    {
-      SCAST_PTR(::message::timer,ptimer,pobj)
+      control::_001OnTimer(ptimer);
       if(ptimer->m_nIDEvent >= 100
          && ptimer->m_nIDEvent <= 200)
       {

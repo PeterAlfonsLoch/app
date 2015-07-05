@@ -383,7 +383,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnMouseLeave);
       DECL_GEN_SIGNAL(_001OnKeyDown);
       DECL_GEN_SIGNAL(_001OnKeyUp);
-      _001OnTimer(timer * ptimer);;
+      virtual void _001OnTimer(timer * ptimer);
       DECL_GEN_SIGNAL(_001OnChar);
       DECL_GEN_SIGNAL(_001OnDestroy);
       DECL_GEN_SIGNAL(_001OnSize);
@@ -701,7 +701,7 @@ namespace user
       sp(::message::base) get_base(UINT uiMessage,WPARAM wparam,LPARAM lparam);
 
 
-      void transfer_from(::aura::timer_array & ta, interaction * pui);
+      //void transfer_from(::aura::timer_array & ta, interaction * pui);
 
       virtual window_graphics * & get_window_graphics();
 

@@ -115,7 +115,7 @@ namespace user
       //void on_update(::user::impact * pSender,LPARAM lHint,object* phint);
       //      virtual bool BaseOnControlEvent(::user::control_event * pevent);
       //      DECL_GEN_SIGNAL(_001OnCreate);
-      _001OnTimer(timer * ptimer);;
+      void _001OnTimer(timer * ptimer);
       DECL_GEN_SIGNAL(_001OnUser123);
       //      virtual void install_message_handling(::message::dispatch * pinterface);
 

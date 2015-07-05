@@ -115,7 +115,7 @@ public:
    DECL_GEN_SIGNAL(_001OnCreate);
    DECL_GEN_SIGNAL(_001OnMouseMove);
    DECL_GEN_SIGNAL(_001OnLButtonDown);
-   _001OnTimer(timer * ptimer);;
+   void _001OnTimer(timer * ptimer);
    DECL_GEN_SIGNAL(_001OnLButtonUp);
    DECL_GEN_SIGNAL(_001OnNcCalcSize);
    DECL_GEN_SIGNAL(_001OnNcHitTest);

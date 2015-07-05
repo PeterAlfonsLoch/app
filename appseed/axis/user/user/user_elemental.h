@@ -84,6 +84,8 @@ namespace user
       virtual void _001ToggleCheck(::action::context actioncontext);
 
 
+      virtual void _001OnTimer(timer * ptimer);
+
    };
 
 

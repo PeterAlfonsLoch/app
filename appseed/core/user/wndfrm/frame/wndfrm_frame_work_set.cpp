@@ -1251,7 +1251,7 @@ namespace user
          void WorkSet::_001OnTimer(timer * ptimer)
          {
             //return; //xxxtimer
-            SCAST_PTR(::message::timer,ptimer,pobj)
+            super::_001OnTimer(ptimer);
             if(!m_bEnable)
             {
                ptimer->m_bRet = false;

@@ -44,7 +44,7 @@ namespace user
 
       DECL_GEN_SIGNAL(_001OnCreate);
       DECL_GEN_SIGNAL(_001OnDestroy);
-      _001OnTimer(timer * ptimer);;
+      void _001OnTimer(timer * ptimer);
 
       void _001OnDraw(::draw2d::graphics *pdc);
 

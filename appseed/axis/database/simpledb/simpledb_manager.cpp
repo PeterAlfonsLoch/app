@@ -12,8 +12,7 @@ namespace simpledb
       thread(papp),
       m_mutexSession(papp),
       m_mutexTagId(papp),
-      m_mutexTagName(papp),
-      m_spqueue(allocer())
+      m_mutexTagName(papp)
    {
       m_dwBuildTimeWindow = 84;
       m_dwBuildTimeRandomWindow = 77 * 5;
@@ -33,7 +32,7 @@ namespace simpledb
    bool manager::initialize_instance()
    {
 
-      m_spqueue->create_message_queue("::core::netnode::ca2");
+//      m_spqueue->create_message_queue("::core::netnode::ca2");
 
       return true;
 

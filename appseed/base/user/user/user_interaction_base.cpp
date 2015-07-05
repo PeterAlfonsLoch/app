@@ -1735,7 +1735,7 @@ namespace user
    }
 
 
-   uint_ptr interaction_base::SetTimer(uint_ptr nIDEvent,UINT nElapse,void (CALLBACK* lpfnTimer)(oswindow,UINT,uint_ptr,uint32_t))
+   bool interaction_base::SetTimer(uint_ptr nIDEvent,UINT nElapse)
    {
 
       ::exception::throw_interface_only(get_app());

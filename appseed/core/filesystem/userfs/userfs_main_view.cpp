@@ -59,7 +59,7 @@ namespace userfs
    void main_view::_001OnTimer(timer * ptimer)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::message::timer, ptimer, pobj);
+//      super::_001OnTimer(ptimer);;
 
    }
 

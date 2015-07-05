@@ -44,7 +44,7 @@ namespace core
    void timer::_001OnTimer(timer * ptimer)
    {
 
-      SCAST_PTR(::message::timer,ptimer,pobj);
+      super::_001OnTimer(ptimer);
 
 
       if(m_bEnable && m_pcallback != NULL)

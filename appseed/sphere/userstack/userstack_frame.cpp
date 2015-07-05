@@ -91,7 +91,7 @@ namespace userstack
 
    void frame::_001OnTimer(timer * ptimer)
    {
-      SCAST_PTR(::message::timer, ptimer, pobj);
+      super::_001OnTimer(ptimer);;
       UINT nIDEvent = ptimer->m_nIDEvent;
       static float theta;
       if(nIDEvent == 3)

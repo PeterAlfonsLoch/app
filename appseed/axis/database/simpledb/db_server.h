@@ -75,7 +75,7 @@ public:
 
 
    inline db_str_set * get_db_str_set();
-   _001OnTimer(timer * ptimer);;
+   void _001OnTimer(timer * ptimer);
 
    void assert_valid() const;
    void dump(dump_context &) const;

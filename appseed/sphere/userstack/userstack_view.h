@@ -83,7 +83,7 @@ namespace userstack
       DECL_GEN_SIGNAL(_001OnCreate);
       DECL_GEN_SIGNAL(_001OnContextMenu);
       DECL_GEN_SIGNAL(_001OnSetCursor);
-      _001OnTimer(timer * ptimer);;
+      void _001OnTimer(timer * ptimer);
       DECL_GEN_SIGNAL(_001OnLButtonUp);
 
       virtual void _001OnTabClick(int32_t iTab);

@@ -60,7 +60,7 @@ CLASS_DECL_AXIS bool __get_prop_sheet_font(string & strFace,WORD& wSize,bool bWi
 
 
 
-#include "windows_message_queue.h"
+//#include "windows_message_queue.h"
 #include "windows_factory_exchange.h"
 
 #define NODE_WINDOW(pwnd) ((sp(::windows::interaction_impl))(pwnd))

@@ -229,7 +229,7 @@ namespace command
 
    void view::_001OnTimer(timer * ptimer)
    {
-      //SCAST_PTR(::message::timer, ptimer, pobj)
+      //super::_001OnTimer(ptimer);
       UNREFERENCED_PARAMETER(pobj);
    }
 

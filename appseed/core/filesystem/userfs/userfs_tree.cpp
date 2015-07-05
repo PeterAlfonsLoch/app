@@ -238,7 +238,7 @@ namespace userfs
 
    void tree::_001OnTimer(timer * ptimer)
    {
-      SCAST_PTR(::message::timer, ptimer, pobj)
+      super::_001OnTimer(ptimer);
       if (ptimer->m_nIDEvent == 1234567)
       {
          m_iAnimate += 2;

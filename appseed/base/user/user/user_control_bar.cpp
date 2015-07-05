@@ -39,7 +39,6 @@ namespace user
    void control_bar::install_message_handling(::message::dispatch * pinterface)
    {
       ::user::interaction::install_message_handling(pinterface);
-      IGUI_WIN_MSG_LINK(WM_TIMER             , pinterface, this, &control_bar::_001OnTimer);
 #ifdef WINDOWS
       IGUI_WIN_MSG_LINK(WM_CTLCOLOR          , pinterface, this, &control_bar::_001OnCtlColor);
 #endif
@@ -225,7 +224,7 @@ namespace user
 
    void control_bar::_001OnTimer(timer * ptimer)
    {
-      UNREFERENCED_PARAMETER(pobj);
+      UNREFERENCED_PARAMETER(ptimer);
 //      UINT nIDEvent = ptimer->m_nIDEvent;
 #ifdef WINDOWSEX
       if (Session.is_key_pressed(::user::key_lbutton))

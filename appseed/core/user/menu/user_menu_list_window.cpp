@@ -214,7 +214,7 @@ namespace user
    void menu_list_window::_001OnTimer(timer * ptimer)
    {
       
-      SCAST_PTR(::message::timer, ptimer, pobj)
+      super::_001OnTimer(ptimer);
       
       if(ptimer->m_nIDEvent == ::user::BaseWndMenuCmdUi)
       {

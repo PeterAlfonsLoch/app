@@ -41,7 +41,6 @@ void simple_scroll_bar::install_message_handling(::message::dispatch * pinterfac
    IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &simple_scroll_bar::_001OnLButtonDown);
    IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &simple_scroll_bar::_001OnLButtonUp);
    IGUI_WIN_MSG_LINK(WM_HSCROLL, pinterface, this, &simple_scroll_bar::_001OnHScroll);
-   IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &simple_scroll_bar::_001OnTimer);
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &simple_scroll_bar::_001OnCreate);
    IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &simple_scroll_bar::_001OnShowWindow);
    IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &simple_scroll_bar::_001OnDestroy);
@@ -594,7 +593,7 @@ void simple_scroll_bar::layout()
 void simple_scroll_bar::_001OnTimer(timer * ptimer)
 {
 
-   SCAST_PTR(::message::timer, ptimer, pobj)
+   ::user::scroll_bar::_001OnTimer(ptimer);
 
    point pt;
 
@@ -609,20 +608,16 @@ void simple_scroll_bar::_001OnTimer(timer * ptimer)
 
       SetTimer(((uint_ptr) this) + 1,10,NULL);
 
-      ptimer->m_bRet = true;
-
    }
    else if(ptimer->m_nIDEvent == ((uint_ptr) this) + 1)
    {
 
-      if(!scrollbar_action(m_eelement, pt))
+      if(!scrollbar_action(m_eelement,pt))
       {
 
          KillTimer(ptimer->m_nIDEvent);
 
       }
-
-      ptimer->m_bRet = true;
 
    }
 

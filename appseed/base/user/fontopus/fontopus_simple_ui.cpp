@@ -50,7 +50,7 @@ namespace fontopus
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP,pdispatch,this,&simple_ui::_001OnLButtonUp);
       IGUI_WIN_MSG_LINK(WM_MOUSEMOVE,pdispatch,this,&simple_ui::_001OnMouseMove);
       IGUI_WIN_MSG_LINK(WM_SIZE,pdispatch,this,&simple_ui::_001OnSize);
-      IGUI_WIN_MSG_LINK(WM_TIMER,pdispatch,this,&simple_ui::_001OnTimer);
+//      IGUI_WIN_MSG_LINK(WM_TIMER,pdispatch,this,&simple_ui::_001OnTimer);
 
    }
 
@@ -122,10 +122,10 @@ namespace fontopus
    //}
 
 
-   void simple_ui::_001OnTimer(::signal_details * pobj)
+   void simple_ui::_001OnTimer(timer * ptimer)
    {
 
-      SCAST_PTR(::message::timer,ptimer,pobj);
+      ::simple_ui::interaction::_001OnTimer(ptimer);
 
       if(ptimer->m_nIDEvent == 1984 && !m_login.m_bCred)
       {

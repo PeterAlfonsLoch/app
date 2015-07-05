@@ -181,7 +181,7 @@ string get_error_message(DWORD dwError);
 #include "metrowin_window_draw.h"
 #include "metrowin_interaction_impl.h"
 
-#include "axis/node/windows/windows_message_queue.h"
+//#include "axis/node/windows/windows_message_queue.h"
 
 #define NULL_REF(class) (*((class *) NULL))
 //CLASS_DECL_AXIS WNDPROC __get_window_procedure();

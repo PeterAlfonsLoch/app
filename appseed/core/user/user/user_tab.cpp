@@ -2027,7 +2027,7 @@ namespace user
 
    void tab::_001OnTimer(timer * ptimer)
    {
-      SCAST_PTR(::message::timer, ptimer, pobj);
+      super::_001OnTimer(ptimer);;
       if(ptimer->m_nIDEvent == 5432187)
       {
          get_data()->m_bDrag = true;

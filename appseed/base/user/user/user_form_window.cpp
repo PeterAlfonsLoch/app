@@ -655,7 +655,6 @@ namespace user
       IGUI_WIN_MSG_LINK(::axis::application::APPM_LANGUAGE,pinterface,this,&form_window::_001OnAppLanguage);
       IGUI_WIN_MSG_LINK(WM_KEYDOWN,pinterface,this,&::user::interaction::_001OnKeyDown);
       IGUI_WIN_MSG_LINK(WM_KEYUP,pinterface,this,&::user::interaction::_001OnKeyUp);
-      IGUI_WIN_MSG_LINK(WM_TIMER,pinterface,this,&form_window::_001OnTimer);
       IGUI_WIN_MSG_LINK(WM_USER + 123,pinterface,this,&form_window::_001OnUser123);
 
    }
@@ -1187,7 +1186,7 @@ namespace user
 
    void form_window::_001OnTimer(timer * ptimer)
    {
-      SCAST_PTR(::message::timer,ptimer,pobj);
+      control::_001OnTimer(ptimer);
       if(m_pcallback != NULL)
       {
          ::user::control_event ev;

@@ -16,7 +16,7 @@ namespace userfs
       main_view(::aura::application * papp);
       void install_message_handling(::message::dispatch * pinterface);
       DECL_GEN_SIGNAL(_001OnCreate);
-      _001OnTimer(timer * ptimer);;
+      void _001OnTimer(timer * ptimer);
 
 
       ::user::document * get_document();

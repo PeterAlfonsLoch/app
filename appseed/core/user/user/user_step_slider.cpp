@@ -47,7 +47,7 @@ namespace user
 
    void step_slider::_001OnTimer(timer * ptimer)
    {
-      SCAST_PTR(::message::timer, ptimer, pobj);
+      super::_001OnTimer(ptimer);;
       if(ptimer->m_nIDEvent == 1)
       {
          if(m_bHover)

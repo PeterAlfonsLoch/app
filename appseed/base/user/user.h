@@ -337,6 +337,8 @@ using user_interaction = ::user::interaction;
 #include "base/user/user/user_form_window.h"
 #include "base/user/user/user_form_update_hint.h"
 
+#include "base/user/user/user_message_queue.h"
+
 
 
 #include "base/user/user/user_place_holder.h"

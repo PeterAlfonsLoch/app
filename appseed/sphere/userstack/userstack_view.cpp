@@ -225,7 +225,7 @@ namespace userstack
 
    void view::_001OnTimer(timer * ptimer)
    {
-      SCAST_PTR(::message::timer, ptimer, pobj)
+      super::_001OnTimer(ptimer);
       switch(ptimer->m_nIDEvent)
       {
       case TimerBackView:

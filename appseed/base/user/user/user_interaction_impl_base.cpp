@@ -1028,65 +1028,65 @@ namespace user
    }
 
 
-   uint_ptr interaction_impl_base::SetTimer(uint_ptr nIDEvent,UINT nElapse,void (CALLBACK* lpfnTimer)(oswindow,UINT,uint_ptr,uint32_t))
-   {
+   //bool interaction_impl_base::SetTimer(uint_ptr nIDEvent,UINT nElapse)
+   //{
 
-      UNREFERENCED_PARAMETER(lpfnTimer);
+   //   UNREFERENCED_PARAMETER(lpfnTimer);
 
-      if(m_pui->m_threadptra.get_count() <= 0)
-      {
+   //   if(m_pui->m_threadptra.get_count() <= 0)
+   //   {
 
-         ::thread * pthread = ::get_thread();
+   //      ::thread * pthread = ::get_thread();
 
-         if(pthread != NULL)
-         {
+   //      if(pthread != NULL)
+   //      {
 
-            m_pui->m_threadptra.add(pthread);
+   //         m_pui->m_threadptra.add(pthread);
 
-         }
+   //      }
 
-      }
+   //   }
 
-      if(m_pui->m_threadptra.get_count() > 0)
-      {
+   //   //if(m_pui->m_threadptra.get_count() > 0)
+   //   //{
 
-         m_pui->m_threadptra[0]->set_timer(m_pui,nIDEvent,nElapse);
+   //   //   m_pui->m_threadptra[0]->set_timer(m_pui,nIDEvent,nElapse);
 
-      }
+   //   //}
 
-      return nIDEvent;
+   //   return nIDEvent;
 
-   }
-
-
-   bool interaction_impl_base::KillTimer(uint_ptr nIDEvent)
-   {
-
-      if(m_pui->m_threadptra.get_count() <= 0)
-      {
-
-         ::thread * pthread = ::get_thread();
-
-         if(pthread != NULL)
-         {
-
-            m_pui->m_threadptra.add(pthread);
-
-         }
-
-      }
-
-      if(m_pui->m_threadptra.get_count() > 0)
-      {
-
-         m_pui->m_threadptra[0]->unset_timer(m_pui,nIDEvent);
-
-      }
+   //}
 
 
-      return true;
+   //bool interaction_impl_base::KillTimer(uint_ptr nIDEvent)
+   //{
 
-   }
+   //   if(m_pui->m_threadptra.get_count() <= 0)
+   //   {
+
+   //      ::thread * pthread = ::get_thread();
+
+   //      if(pthread != NULL)
+   //      {
+
+   //         m_pui->m_threadptra.add(pthread);
+
+   //      }
+
+   //   }
+
+   //   if(m_pui->m_threadptra.get_count() > 0)
+   //   {
+
+   //      m_pui->m_threadptra[0]->unset_timer(m_pui,nIDEvent);
+
+   //   }
+
+
+   //   return true;
+
+   //}
 
 
    bool interaction_impl_base::DestroyWindow()

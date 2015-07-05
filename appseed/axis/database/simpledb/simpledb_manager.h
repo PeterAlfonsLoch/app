@@ -9,13 +9,11 @@ namespace simpledb
 
 
    class CLASS_DECL_AXIS manager :
-      virtual public thread,
-      virtual public ::aura::message_queue_listener
+      virtual public thread
    {
    public:
 
 
-      ::aura::message_queue_sp           m_spqueue;
       uint32_t                         m_dwBuildTimeWindow;
       uint32_t                         m_dwBuildTimeRandomWindow;
 

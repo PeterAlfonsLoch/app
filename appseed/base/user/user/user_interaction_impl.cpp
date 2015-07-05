@@ -1401,21 +1401,22 @@ namespace user
       return false;
    }
 
-   uint_ptr interaction_impl::SetTimer(uint_ptr nIDEvent,UINT nElapse,void (CALLBACK* lpfnTimer)(oswindow,UINT,uint_ptr,uint32_t))
+
+   bool interaction_impl::SetTimer(uint_ptr nIDEvent,UINT nElapse)
    {
-      return ::user::interaction_impl_base::SetTimer(nIDEvent, nElapse, lpfnTimer);
-/*      UNREFERENCED_PARAMETER(nIDEvent);
-      UNREFERENCED_PARAMETER(nElapse);
-      UNREFERENCED_PARAMETER(lpfnTimer);
-      ::exception::throw_interface_only(get_app());*/
+
+      return ::aura::timer_array::SetTimer(nIDEvent, nElapse);
+
    }
+
 
    bool interaction_impl::KillTimer(uint_ptr nIDEvent)
    {
-      return ::user::interaction_impl_base::KillTimer(nIDEvent);
-    /*  UNREFERENCED_PARAMETER(nIDEvent);
-      ::exception::throw_interface_only(get_app());*/
+
+      return ::aura::timer_array::KillTimer(nIDEvent);
+
    }
+
 
    bool interaction_impl::is_window_enabled()
    {

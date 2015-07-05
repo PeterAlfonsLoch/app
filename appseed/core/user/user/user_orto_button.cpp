@@ -169,7 +169,7 @@ void OrtoButton::layout()
 
 void OrtoButton::_001OnTimer(timer * ptimer)
 {
-   SCAST_PTR(::message::timer,ptimer,pobj)
+   super::_001OnTimer(ptimer);
       // TODO: add your message handler code here and/or call default
    if(ptimer->m_nIDEvent == TimerCheckFocus)
    {

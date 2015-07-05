@@ -1019,9 +1019,6 @@
     <ClInclude Include="axis\node\windows\windows_copydesk.h">
       <Filter>Header Files\axis\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_message_queue.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="axis\node\windows\windows_print_job.h">
       <Filter>Header Files\axis\node\windows</Filter>
     </ClInclude>
@@ -1075,6 +1072,9 @@
     </ClInclude>
     <ClInclude Include="user\user\user_elemental.h">
       <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\windows\aaa_windows_message_queue.h">
+      <Filter>Header Files\axis\node\windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1762,9 +1762,6 @@
     <ClCompile Include="axis\node\windows\windows_copydesk.cpp">
       <Filter>Source Files\axis\node\windows</Filter>
     </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_message_queue.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
-    </ClCompile>
     <ClCompile Include="axis\node\windows\windows_print_job.cpp">
       <Filter>Source Files\axis\node\windows</Filter>
     </ClCompile>
@@ -1834,11 +1831,11 @@
     <ClCompile Include="user\user\user_elemental.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
+    <ClCompile Include="axis\node\windows\aaaa_windows_message_queue.cpp">
+      <Filter>Source Files\axis\node\windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>

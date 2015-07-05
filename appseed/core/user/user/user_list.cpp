@@ -3652,7 +3652,7 @@ namespace user
    void list::_001OnTimer(timer * ptimer)
    {
 //      return; //xxxtimer
-      SCAST_PTR(::message::timer, ptimer, pobj);
+      super::_001OnTimer(ptimer);;
       if(ptimer->m_nIDEvent == 12345679) // left click
       {
          KillTimer(12345679);
