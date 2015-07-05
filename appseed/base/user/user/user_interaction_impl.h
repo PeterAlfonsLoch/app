@@ -300,8 +300,8 @@ namespace user
 
 
       // timer Functions
-      virtual bool SetTimer(uint_ptr nIDEvent,UINT nElapse);
-      virtual bool KillTimer(uint_ptr nIDEvent);
+      //virtual bool SetTimer(uint_ptr nIDEvent,UINT nElapse);
+      //virtual bool KillTimer(uint_ptr nIDEvent);
 
       // Window State Functions
       virtual bool is_window_enabled();

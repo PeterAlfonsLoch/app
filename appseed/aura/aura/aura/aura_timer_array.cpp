@@ -23,7 +23,7 @@ namespace aura
 
    }
 
-   bool timer_array::SetTimer(uint_ptr nIDEvent,UINT nEllapse)
+   bool timer_array::SetTimer(uint_ptr nIDEvent,UINT nEllapse, PFN_TIMER pfnTimer)
    {
 
       synch_lock sl(&m_mutex);

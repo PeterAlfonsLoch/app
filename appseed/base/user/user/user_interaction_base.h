@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_BASE interaction_base:
+   class CLASS_DECL_BASE interaction_base :
       virtual public ::user::primitive,
       virtual public ::user::elemental,
       virtual public ::aura::draw_interface,
@@ -353,7 +353,7 @@ namespace user
       virtual bool ShowWindow(int32_t nCmdShow);
 
       // timer Functions
-      virtual bool SetTimer(uint_ptr nIDEvent,UINT nElapse);
+      virtual bool SetTimer(uint_ptr nIDEvent,UINT nElapse,PFN_TIMER pfnTimer);
       virtual bool KillTimer(uint_ptr nIDEvent);
 
       virtual bool is_window_enabled();

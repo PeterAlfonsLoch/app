@@ -1735,7 +1735,7 @@ namespace user
    }
 
 
-   bool interaction_base::SetTimer(uint_ptr nIDEvent,UINT nElapse)
+   bool interaction_base::SetTimer(uint_ptr nIDEvent,UINT nElapse, PFN_TIMER pfnTimer)
    {
 
       ::exception::throw_interface_only(get_app());
@@ -2639,6 +2639,13 @@ namespace user
    //{
    //   return &::user::interaction_base::_user_message_handler;
    //}
+
+   void interaction_base::_001OnTimer(timer * ptimer)
+   {
+
+      
+
+   }
 
 
 } // namespace user

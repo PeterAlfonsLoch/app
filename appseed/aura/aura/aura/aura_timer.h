@@ -8,6 +8,9 @@
 
 class timer;
 
+typedef void FN_TIMER(timer * ptimer);
+typedef FN_TIMER * PFN_TIMER;
+
 class CLASS_DECL_AURA timer_callback
 {
 
@@ -25,9 +28,9 @@ class CLASS_DECL_AURA timer :
 
 public:
 
-   uint_ptr m_nIDEvent;
-
-   timer_callback * m_pcallback ;
+   uint_ptr             m_nIDEvent;
+   PFN_TIMER            m_pfnTimer;
+   timer_callback *     m_pcallback;
 
 #ifdef WINDOWS
 
@@ -40,9 +43,10 @@ public:
    struct itimerspec its;
 #endif
 
-   timer(::aura::application * papp,uint_ptr uiTimer = 0):
+   timer(::aura::application * papp,uint_ptr uiTimer = 0, PFN_TIMER pfnTimer = NULL) :
       object(papp),
-      m_nIDEvent(uiTimer)
+      m_nIDEvent(uiTimer),
+      m_pfnTimer(pfnTimer)
    {
       m_pcallback = NULL;
       // Create the timer queue.
@@ -182,6 +186,13 @@ public:
       {
 
          m_pcallback->on_timer(this);
+
+      }
+
+      if(m_pfnTimer != NULL)
+      {
+
+         m_pfnTimer(this);
 
       }
 

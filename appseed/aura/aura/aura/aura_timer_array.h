@@ -25,7 +25,7 @@ namespace aura
 
 
 
-      virtual bool SetTimer(uint_ptr nIDEvent,UINT nEllapse);
+      virtual bool SetTimer(uint_ptr nIDEvent,UINT nEllapse,PFN_TIMER pfnTimer);
       virtual bool KillTimer(uint_ptr nIDEvent);
 
       virtual void on_timer(timer * ptimer);

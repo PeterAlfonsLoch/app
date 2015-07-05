@@ -1402,20 +1402,20 @@ namespace user
    }
 
 
-   bool interaction_impl::SetTimer(uint_ptr nIDEvent,UINT nElapse)
-   {
+   //bool interaction_impl::SetTimer(uint_ptr nIDEvent,UINT nElapse)
+   //{
 
-      return ::aura::timer_array::SetTimer(nIDEvent, nElapse);
+   //   return ::aura::timer_array::SetTimer(nIDEvent, nElapse);
 
-   }
+   //}
 
 
-   bool interaction_impl::KillTimer(uint_ptr nIDEvent)
-   {
+   //bool interaction_impl::KillTimer(uint_ptr nIDEvent)
+   //{
 
-      return ::aura::timer_array::KillTimer(nIDEvent);
+   //   return ::aura::timer_array::KillTimer(nIDEvent);
 
-   }
+   //}
 
 
    bool interaction_impl::is_window_enabled()

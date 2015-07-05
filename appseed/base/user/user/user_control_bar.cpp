@@ -219,7 +219,7 @@ namespace user
    {
       KillTimer(ID_TIMER_WAIT);
       KillTimer(ID_TIMER_CHECK);
-      VERIFY(SetTimer(nEvent, nTime, NULL));
+      VERIFY(SetTimer(nEvent,nTime,NULL));
    }
 
    void control_bar::_001OnTimer(timer * ptimer)

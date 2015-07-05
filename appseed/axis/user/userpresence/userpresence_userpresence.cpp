@@ -115,7 +115,7 @@ namespace userpresence
       }
 
 
-      SetTimer(8888,1000);
+      SetTimer(8888,1000, NULL);
 
       if(ApplicationUser.m_ppresence == NULL)
       {

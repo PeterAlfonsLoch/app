@@ -3693,26 +3693,26 @@ namespace user
 
 
    // timer Functions
-   //uint_ptr interaction::SetTimer(uint_ptr nIDEvent,UINT nElapse,void (CALLBACK* lpfnTimer)(oswindow,UINT,uint_ptr,uint32_t))
-   //{
+   bool interaction::SetTimer(uint_ptr nIDEvent,UINT nElapse, PFN_TIMER pfnTimer)
+   {
 
-   //   if(m_pimpl == NULL)
-   //      return 0;
-   //   else
-   //      return m_pimpl->SetTimer(nIDEvent,nElapse,lpfnTimer);
+      if(m_pimpl == NULL)
+         return false;
+   
+      return m_pimpl->SetTimer(nIDEvent,nElapse,pfnTimer);
 
-   //}
+   }
 
 
-   //bool interaction::KillTimer(uint_ptr nIDEvent)
-   //{
+   bool interaction::KillTimer(uint_ptr nIDEvent)
+   {
 
-   //   if(m_pimpl == NULL)
-   //      return FALSE;
-   //   else
-   //      return m_pimpl->KillTimer(nIDEvent);
+      if(m_pimpl == NULL)
+         return false;
 
-   //}
+      return m_pimpl->KillTimer(nIDEvent);
+
+   }
 
 
    bool interaction::has_focus()
@@ -3948,6 +3948,23 @@ namespace user
       }
 
    }
+
+
+   //bool interaction::SetTimer(uint_ptr nIDEvent,UINT nEllapse, PFN_TIMER pfnTimer)
+   //{
+   //   
+   //   return ::aura::timer_array::SetTimer(nIDEvent,nEllapse, pfnTimer);
+
+   //}
+
+
+   //bool interaction::KillTimer(uint_ptr nIDEvent)
+   //{
+
+   //   return ::aura::timer_array::KillTimer(nIDEvent);
+
+   //}
+
 
 
    bool interaction::create_message_queue(const char * pszName)

@@ -1028,65 +1028,20 @@ namespace user
    }
 
 
-   //bool interaction_impl_base::SetTimer(uint_ptr nIDEvent,UINT nElapse)
-   //{
+   bool interaction_impl_base::SetTimer(uint_ptr nIDEvent,UINT nEllapse, PFN_TIMER pfnTimer)
+   {
 
-   //   UNREFERENCED_PARAMETER(lpfnTimer);
+      return ::aura::timer_array::SetTimer(nIDEvent,nEllapse,pfnTimer);
 
-   //   if(m_pui->m_threadptra.get_count() <= 0)
-   //   {
-
-   //      ::thread * pthread = ::get_thread();
-
-   //      if(pthread != NULL)
-   //      {
-
-   //         m_pui->m_threadptra.add(pthread);
-
-   //      }
-
-   //   }
-
-   //   //if(m_pui->m_threadptra.get_count() > 0)
-   //   //{
-
-   //   //   m_pui->m_threadptra[0]->set_timer(m_pui,nIDEvent,nElapse);
-
-   //   //}
-
-   //   return nIDEvent;
-
-   //}
+   }
 
 
-   //bool interaction_impl_base::KillTimer(uint_ptr nIDEvent)
-   //{
+   bool interaction_impl_base::KillTimer(uint_ptr nIDEvent)
+   {
 
-   //   if(m_pui->m_threadptra.get_count() <= 0)
-   //   {
+      return ::aura::timer_array::KillTimer(nIDEvent);
 
-   //      ::thread * pthread = ::get_thread();
-
-   //      if(pthread != NULL)
-   //      {
-
-   //         m_pui->m_threadptra.add(pthread);
-
-   //      }
-
-   //   }
-
-   //   if(m_pui->m_threadptra.get_count() > 0)
-   //   {
-
-   //      m_pui->m_threadptra[0]->unset_timer(m_pui,nIDEvent);
-
-   //   }
-
-
-   //   return true;
-
-   //}
+   }
 
 
    bool interaction_impl_base::DestroyWindow()
