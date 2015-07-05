@@ -305,7 +305,7 @@ namespace windows
    interaction_impl::~interaction_impl()
    {
 
-      if(m_pauraapp != NULL &&  m_pauraapp->m_paxissession != NULL &&  m_pauraapp->m_paxissession->m_puser != NULL)
+      if(m_pauraapp != NULL &&  m_pauraapp->m_pbasesession != NULL &&  m_pauraapp->m_pbasesession->m_puser != NULL)
       {
 
          if(Session.user()->m_pwindowmap != NULL)
@@ -1676,7 +1676,7 @@ namespace windows
 
          message::key * pkey = (::message::key *) pbase;
 
-         sp(::user::interaction) puiFocus = Session.user()->get_keyboard_focus();
+         sp(::user::interaction) puiFocus = Session.get_keyboard_focus();
 
          if(puiFocus != NULL && puiFocus->IsWindow() && puiFocus != m_pui)
          {

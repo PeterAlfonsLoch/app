@@ -1564,7 +1564,7 @@ namespace ios
          }
          */
 
-         ::user::interaction * puiFocus = dynamic_cast < ::user::interaction * > (Application.user()->get_keyboard_focus().m_p);
+         ::user::interaction * puiFocus = dynamic_cast < ::user::interaction * > (Application.get_keyboard_focus().m_p);
          if(puiFocus != NULL
             && puiFocus->IsWindow()
             && puiFocus->GetTopLevelParent() != NULL)

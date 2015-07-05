@@ -1028,7 +1028,7 @@ namespace user
          if(pfocus != NULL)
          {
 
-            Session.user()->set_keyboard_focus(pfocus);
+            Session.set_keyboard_focus(pfocus);
 
          }
 

@@ -664,7 +664,7 @@ namespace user
       else
       {
 
-         Session.user()->set_keyboard_focus(this);
+         Session.set_keyboard_focus(this);
 
 
       }

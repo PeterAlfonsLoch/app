@@ -170,7 +170,7 @@ namespace simple_ui
 
       //   pdc->SelectClipRgn(&rgn);
 
-      if(Session.user()->get_keyboard_focus() == this)
+      if(Session.get_keyboard_focus() == this)
       {
          m_bFocus = keyboard_focus_is_focusable();
       }

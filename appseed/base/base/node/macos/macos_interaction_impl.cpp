@@ -1398,7 +1398,7 @@ namespace macos
          }
          */
 
-         ::user::interaction * puiFocus = dynamic_cast < ::user::interaction * > (Session.user()->get_keyboard_focus());
+         ::user::interaction * puiFocus = dynamic_cast < ::user::interaction * > (Session.get_keyboard_focus());
          if(puiFocus != NULL
             && puiFocus->IsWindow()
             && puiFocus->GetTopLevel() != NULL)

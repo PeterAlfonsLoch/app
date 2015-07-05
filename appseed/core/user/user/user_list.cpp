@@ -2499,7 +2499,7 @@ namespace user
       {
          SetFocus();
       }
-      Session.user()->set_keyboard_focus(this);
+      Session.set_keyboard_focus(this);
       Session.user()->set_mouse_focus_LButtonDown(this);
       pobj->m_bRet = true;
       pmouse->set_lresult(1);

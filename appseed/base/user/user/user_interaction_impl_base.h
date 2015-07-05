@@ -119,7 +119,6 @@ namespace user
       virtual id GetDlgCtrlId() const;
       virtual id SetDlgCtrlId(class id id);
 
-
       virtual ::user::interaction * first_child();
       virtual ::user::interaction * top_child();
       virtual ::user::interaction * under_sibling();

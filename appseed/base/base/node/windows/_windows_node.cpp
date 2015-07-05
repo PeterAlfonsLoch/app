@@ -14,7 +14,7 @@
 //#include "windows_message_queue.cpp"
 //#include "windows_printer.cpp"
 //#include "windows_print_job.cpp"
-//#include "windows_window_draw.cpp"
+#include "windows_window_draw.cpp"
 //2015-01-06  04:24                 0 _windows_node.cpp"
 //               8 arquivo(s)        181.028 bytes
 //               0 pasta(s)   33.004.007.424 bytes dispon¡veis

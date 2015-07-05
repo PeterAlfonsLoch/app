@@ -157,6 +157,14 @@ namespace user
       virtual bool on_before_set_parent(::user::interaction * pinterface);
       virtual void on_set_parent(::user::interaction * pinterface);
 
+      virtual ::user::elemental * first_child_elemental();
+      virtual ::user::elemental * top_elemental();
+      virtual ::user::elemental * under_elemental();
+      virtual ::user::elemental * above_elemental();
+      virtual ::user::elemental * next_elemental();
+      virtual ::user::elemental * previous_elemental();
+
+
 
       virtual ::user::interaction * first_child();
       virtual ::user::interaction * last_child();
@@ -423,7 +431,7 @@ namespace user
       virtual bool IsChild(const interaction * puiIsChild) const;
       virtual bool IsDescendant(const interaction * puiIsDescendant) const;
 
-
+      virtual ::user::elemental * get_wnd_elemental() const;
       virtual ::user::interaction * get_wnd() const;
       virtual ::user::interaction * get_wnd(UINT nCmd) const;
 
@@ -431,6 +439,7 @@ namespace user
       virtual ::user::interaction * SetParent(::user::interaction * pui);
       virtual ::user::interaction * SetOwner(::user::interaction * pui);
 
+      virtual ::user::elemental * get_parent() const;
 
       virtual ::user::interaction * GetTopWindow() const;
       virtual ::user::interaction * GetParent() const;
@@ -729,6 +738,8 @@ namespace user
 
       // view support
       virtual void on_update(::user::impact * pSender,LPARAM lHint,::object* pHint);
+
+      virtual void keyboard_focus_OnKeyDown(signal_details * pobj);
 
    };
 

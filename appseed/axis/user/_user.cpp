@@ -12,6 +12,7 @@
 
 
 #include "user/user_copydesk.cpp"
+#include "user/user_elemental.cpp"
 #include "user/user_keyboard.cpp"
 #include "user/user_keyboard_layout.cpp"
 #include "user/user_print_job.cpp"

@@ -284,7 +284,7 @@ namespace user
 
       //   pdc->SelectClipRgn(&rgn);
 
-      if(Session.user()->get_keyboard_focus() == this)
+      if(Session.get_keyboard_focus() == this)
       {
          m_bFocus = keyboard_focus_is_focusable();
       }
@@ -569,7 +569,7 @@ namespace user
       if(ptimer->m_nIDEvent >= 100
          && ptimer->m_nIDEvent <= 200)
       {
-         if(this == Session.user()->get_keyboard_focus())
+         if(this == Session.get_keyboard_focus())
          {
             _001OnKeyboardFocusTimer(ptimer->m_nIDEvent - 100);
          }
@@ -1055,7 +1055,7 @@ namespace user
 
       RedrawWindow();
 
-      Session.user()->set_keyboard_focus(this);
+      Session.set_keyboard_focus(this);
 
       Session.user()->set_mouse_focus_LButtonDown(this);
 
@@ -1111,7 +1111,7 @@ namespace user
 
       RedrawWindow();
 
-      Session.user()->set_keyboard_focus(this);
+      Session.set_keyboard_focus(this);
 
       Session.user()->set_mouse_focus_RButtonDown(this);
 

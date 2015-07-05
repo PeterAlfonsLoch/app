@@ -123,6 +123,12 @@
     <Filter Include="Header Files\user\userex">
       <UniqueIdentifier>{c974c6a4-c8c7-4f1f-90af-d036e1d0b7d3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\database">
+      <UniqueIdentifier>{ba08ab2c-d4ff-4526-b3fe-af42610cb903}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\database\database">
+      <UniqueIdentifier>{a6c93f4e-ce94-46d3-aaac-b017697a075b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base\os\cross.h">
@@ -762,6 +768,9 @@
     </ClCompile>
     <ClCompile Include="base\node\windows\windows_window_draw.cpp">
       <Filter>Source Files\base\node\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\database_user_interaction.cpp">
+      <Filter>Source Files\database\database</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

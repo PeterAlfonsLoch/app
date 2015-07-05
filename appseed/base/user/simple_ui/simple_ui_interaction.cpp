@@ -343,7 +343,7 @@ namespace simple_ui
       rectClient.left--;
       rectClient.top--;
 
-      if(Session.user()->get_keyboard_focus() == this || has_action_hover())
+      if(Session.get_keyboard_focus() == this || has_action_hover())
       {
 
          ::draw2d::brush_sp brush(allocer());
@@ -381,7 +381,7 @@ namespace simple_ui
             }
 
 
-            if(Session.user()->get_keyboard_focus() == this)
+            if(Session.get_keyboard_focus() == this)
             {
 
                rectClient.left--;

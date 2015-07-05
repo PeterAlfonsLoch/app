@@ -167,6 +167,13 @@ namespace user
 
    }
 
+   elemental * interaction::get_parent() const
+   {
+
+      return GetParent();
+
+   }
+
 
    interaction * interaction::GetParent() const
    {
@@ -1649,28 +1656,28 @@ namespace user
 
    void interaction::_001OnKeyDown(signal_details * pobj)
    {
-      //if(Session.user()->get_keyboard_focus() != this
-      //   && Session.user()->get_keyboard_focus() != NULL)
+      //if(Session.get_keyboard_focus() != this
+      //   && Session.get_keyboard_focus() != NULL)
       //{
-        // Session.user()->get_keyboard_focus()->keyboard_focus_OnKeyDown(pobj);
+        // Session.get_keyboard_focus()->keyboard_focus_OnKeyDown(pobj);
       //}
    }
 
    void interaction::_001OnKeyUp(signal_details * pobj)
    {
-      //if(Session.user()->get_keyboard_focus() != this
-         ///&& Session.user()->get_keyboard_focus() != NULL)
+      //if(Session.get_keyboard_focus() != this
+         ///&& Session.get_keyboard_focus() != NULL)
       //{
-        // Session.user()->get_keyboard_focus()->keyboard_focus_OnKeyUp(pobj);
+        // Session.get_keyboard_focus()->keyboard_focus_OnKeyUp(pobj);
       //}
    }
 
    void interaction::_001OnChar(signal_details * pobj)
    {
-      //if(Session.user()->get_keyboard_focus() != this
-        // && Session.user()->get_keyboard_focus() != NULL)
+      //if(Session.get_keyboard_focus() != this
+        // && Session.get_keyboard_focus() != NULL)
       //{
-        // Session.user()->get_keyboard_focus()->keyboard_focus_OnChar(pobj);
+        // Session.get_keyboard_focus()->keyboard_focus_OnChar(pobj);
       //}
    }
 
@@ -1959,7 +1966,7 @@ namespace user
             if(!BaseOnControlEvent(&ev))
             {
 
-               sp(::user::interaction) pui = Session.user()->get_keyboard_focus();
+               sp(::user::interaction) pui = Session.get_keyboard_focus();
 
                pui =  pui.is_set() ? pui->keyboard_get_next_focusable() : keyboard_get_next_focusable();
 
@@ -4099,6 +4106,55 @@ namespace user
       return false;
    }
 
+   ::user::elemental * interaction::first_child_elemental()
+   {
+
+      return first_child();
+
+   }
+
+
+   ::user::elemental * interaction::top_elemental()
+   {
+
+      return top_elemental();
+
+   }
+
+
+   ::user::elemental * interaction::under_elemental()
+   {
+
+      return under_sibling();
+
+   }
+
+
+   ::user::elemental * interaction::above_elemental()
+   {
+
+      return above_sibling();
+
+   }
+
+
+   ::user::elemental * interaction::next_elemental()
+   {
+
+      return next_sibling();
+
+   }
+
+
+   ::user::elemental * interaction::previous_elemental()
+   {
+
+      return previous_sibling();
+
+   }
+
+
+
    ::user::interaction * interaction::first_child()
    {
 
@@ -4328,6 +4384,14 @@ namespace user
    {
 
       return m_pimpl->IsDescendant(puiIsDescendant);
+
+   }
+
+   
+   ::user::elemental * interaction::get_wnd_elemental() const
+   {
+      
+      return get_wnd();
 
    }
 
@@ -6224,7 +6288,7 @@ namespace user
          if(keyboard_focus_is_focusable())
          {
 
-            Session.user()->set_keyboard_focus(this);
+            Session.set_keyboard_focus(this);
 
             Session.user()->set_mouse_focus_LButtonDown(this);
 
@@ -6608,6 +6672,28 @@ namespace user
 
    }
 
+
+   void interaction::keyboard_focus_OnKeyDown(signal_details * pobj)
+   {
+
+      SCAST_PTR(::message::key,pkey,pobj)
+
+         if(pkey->m_ekey == ::user::key_tab)
+         {
+
+            control_event ev;
+
+            ev.m_puie                  = dynamic_cast <::user::interaction * > (this);
+            ev.m_eevent                = ::user::event_tab_key;
+            ev.m_actioncontext         = ::action::source_user;
+
+            GetParent()->BaseOnControlEvent(&ev);
+
+            BaseOnControlEvent(&ev);
+
+         }
+
+   }
 } // namespace user
 
 

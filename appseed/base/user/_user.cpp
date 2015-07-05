@@ -50,7 +50,7 @@
 #include "user/user_control_event.cpp"
 #include "user/user_document.cpp"
 #include "user/user_plain_edit.cpp"
-#include "user/user_elemental.cpp"
+//#include "user/user_elemental.cpp"
 #include "user/user_form_window.cpp"
 #include "user/user_form_callback.cpp"
 //#include "user/user_form_interface.cpp"
@@ -86,14 +86,14 @@
 #include "user/user_window_util.cpp"
 //47 arquivo(s)        656.222 bytes
 
-#include "user/user_copydesk.cpp"
+//#include "user/user_copydesk.cpp"
 
 #include "user/user_application_as_proxy_document.cpp"
 
 //Pasta de Z:\nordroid\app\appseed\base\user\userpresence
 
-#include "userpresence/userpresence_userpresence.cpp"
-#include "userpresence/userpresence_user_presence.cpp"
+//#include "userpresence/userpresence_userpresence.cpp"
+//#include "userpresence/userpresence_user_presence.cpp"
 //2 arquivo(s)          6.639 bytes
 
 //Total de Arquivos na Lista:

@@ -1395,7 +1395,7 @@ restart_mouse_hover_check:
       {
 
          ::message::key * pkey = (::message::key *) pbase;
-         sp(::user::interaction) puiFocus =  (Session.user()->get_keyboard_focus());
+         sp(::user::interaction) puiFocus =  (Session.get_keyboard_focus());
          if(puiFocus != NULL
             && puiFocus->IsWindow()
             && puiFocus->GetTopLevel() != NULL)

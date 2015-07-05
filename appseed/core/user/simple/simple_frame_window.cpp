@@ -1434,7 +1434,7 @@ bool simple_frame_window::_001OnCmdMsg(::aura::cmd_msg * pcmdmsg)
    if (pApp != NULL && pApp->_001OnCmdMsg(pcmdmsg))
       return TRUE;
 
-   sp(command_target_interface) pcommandtargetinterface = Session.user()->get_keyboard_focus();
+   sp(command_target_interface) pcommandtargetinterface = Session.get_keyboard_focus();
 
    if (pcommandtargetinterface != NULL)
    {

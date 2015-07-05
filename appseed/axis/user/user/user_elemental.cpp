@@ -35,7 +35,10 @@ namespace user
 
 
    // keyboard focus
-
+   void elemental::on_keyboard_focus(::user::elemental * pfocus)
+   {
+      UNREFERENCED_PARAMETER(pfocus);
+   }
 
    void elemental::keyboard_focus_OnTimer(int32_t iTimer)
    {
@@ -54,23 +57,6 @@ namespace user
 
    void elemental::keyboard_focus_OnKeyDown(signal_details * pobj)
    {
-
-      SCAST_PTR(::message::key,pkey,pobj)
-
-         if(pkey->m_ekey == ::user::key_tab)
-         {
-
-            control_event ev;
-
-            ev.m_puie                  = dynamic_cast <::user::interaction * > (this);
-            ev.m_eevent                = ::user::event_tab_key;
-            ev.m_actioncontext         = ::action::source_user;
-
-            GetParent()->BaseOnControlEvent(&ev);
-
-            BaseOnControlEvent(&ev);
-
-         }
 
    }
 
@@ -133,9 +119,9 @@ namespace user
    elemental * elemental::keyboard_get_next_focusable(elemental * pfocus,bool bSkipChild,bool bSkipSiblings,bool bSkipParent)
    {
 
-      sp(interaction) puiThis = this;
+      sp(elemental) puiThis = this;
 
-      sp(interaction) puiFocus = pfocus != NULL ? pfocus : this;
+      sp(elemental) puiFocus = pfocus != NULL ? pfocus : this;
 
 
 
@@ -149,12 +135,12 @@ namespace user
 
       single_lock(puiThis->m_pauraapp->m_pmutex,TRUE);
 
-      sp(interaction) pui;
+      sp(elemental) pui;
 
       if(!bSkipChild)
       {
 
-         pui = puiThis->first_child();
+         pui = puiThis->first_child_elemental();
 
          if(pui != NULL)
          {
@@ -174,7 +160,7 @@ namespace user
       if(!bSkipSiblings)
       {
 
-         pui = puiThis->next_sibling();
+         pui = puiThis->next_elemental();
 
          while(pui != NULL)
          {
@@ -187,7 +173,7 @@ namespace user
             if(pfocusTry != NULL)
                return pfocusTry;
 
-            pui = pui->next_sibling();
+            pui = pui->next_elemental();
 
          }
 
@@ -200,7 +186,7 @@ namespace user
          if(puiThis->GetParent() != NULL)
          {
 
-            pui = puiThis->GetParent()->keyboard_get_next_focusable(puiFocus,true);
+            pui = puiThis->get_parent()->keyboard_get_next_focusable(puiFocus,true);
 
             if(pui.is_set())
                return pui;
@@ -212,7 +198,7 @@ namespace user
       if(!bSkipSiblings)
       {
 
-         pui = puiThis->first_sibling();
+         pui = puiThis->first_child_elemental();
 
          if(pui != puiThis)
          {
@@ -228,7 +214,7 @@ namespace user
                if(pfocusTry != NULL)
                   return pfocusTry;
 
-               pui = pui->next_sibling();
+               pui = pui->next_elemental();
 
             }
 
@@ -245,7 +231,7 @@ namespace user
 
    bool elemental::keyboard_set_focus()
    {
-      Session.user()->set_keyboard_focus((this));
+      Session.set_keyboard_focus((this));
       return true;
    }
 
@@ -368,6 +354,66 @@ namespace user
 
    }
 
+   ::user::elemental * elemental::first_child_elemental()
+   {
+
+      return NULL;
+
+   }
+
+
+   ::user::elemental * elemental::top_elemental()
+   {
+
+      return NULL;
+
+   }
+
+
+   ::user::elemental * elemental::under_elemental()
+   {
+
+      return NULL;
+
+   }
+
+
+   ::user::elemental * elemental::above_elemental()
+   {
+
+      return NULL;
+
+   }
+
+
+   ::user::elemental * elemental::next_elemental()
+   {
+
+      return NULL;
+
+   }
+
+
+   ::user::elemental * elemental::previous_elemental()
+   {
+
+      return NULL;
+
+   }
+
+   ::user::elemental * elemental::get_parent() const
+   {
+
+      return NULL;
+
+   }
+
+   ::user::elemental * elemental::get_wnd_elemental() const
+   {
+
+      return NULL;
+
+   }
 
 } // namespace user
 

@@ -3078,7 +3078,7 @@ namespace axis
             if(m_pkeyboardfocus->get_wnd() != NULL)
             {
 
-               m_pkeyboardfocus->get_wnd()->on_keyboard_focus(m_pkeyboardfocus);
+               m_pkeyboardfocus->get_wnd_elemental()->on_keyboard_focus(m_pkeyboardfocus);
 
             }
 

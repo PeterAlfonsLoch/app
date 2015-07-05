@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_BASE elemental :
+   class CLASS_DECL_AXIS elemental :
       virtual public command_target,
       virtual public string_interface
    {
@@ -31,15 +31,25 @@ namespace user
       virtual void pre_translate_message(signal_details * pobj);
 
 
-      // keyboard focus
+      virtual ::user::elemental * first_child_elemental();
+      virtual ::user::elemental * top_elemental();
+      virtual ::user::elemental * under_elemental();
+      virtual ::user::elemental * above_elemental();
+      virtual ::user::elemental * next_elemental();
+      virtual ::user::elemental * previous_elemental();
 
+
+      // keyboard focus
+      virtual void on_keyboard_focus(::user::elemental * pfocus);
       virtual void keyboard_focus_OnTimer(int32_t iTimer);
       virtual void keyboard_focus_OnChar(signal_details * pobj);
       virtual void keyboard_focus_OnSysChar(signal_details * pobj);
       virtual void keyboard_focus_OnKeyDown(signal_details * pobj);
       virtual void keyboard_focus_OnKeyUp(signal_details * pobj);
       virtual ::user::interaction * GetParent() const;
+      virtual ::user::elemental * get_parent() const;
       virtual ::user::interaction * get_wnd() const;
+      virtual ::user::elemental * get_wnd_elemental() const;
       virtual bool BaseOnControlEvent(control_event * pevent);
       virtual elemental * keyboard_get_next_focusable(elemental * pfocus = NULL,bool bSkipChild = false,bool bSkipSiblings = false,bool bSkipParent = false);
       virtual bool keyboard_set_focus();

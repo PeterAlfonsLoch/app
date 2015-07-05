@@ -323,6 +323,8 @@ namespace base
 #endif
 
 
+      return m_iReturnCode;
+
    }
 //
 //      __wait_threading_count(::millis((5000) * 8));
