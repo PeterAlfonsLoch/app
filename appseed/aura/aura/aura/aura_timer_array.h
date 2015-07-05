@@ -29,7 +29,7 @@ namespace aura
       virtual bool KillTimer(uint_ptr nIDEvent);
 
       virtual void on_timer(timer * ptimer);
-      virtual void _001OnTimer(uint_ptr nIDEvent);
+      virtual void _001OnTimer(timer * ptimer);
 
    };
 

@@ -82,8 +82,6 @@ namespace aura
    }
 
 
-
-
 } // namespace user
 
 
