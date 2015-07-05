@@ -431,6 +431,9 @@
     <ClInclude Include="base\node\windows\windows_interaction_impl.h">
       <Filter>Header Files\base\node\windows</Filter>
     </ClInclude>
+    <ClInclude Include="base\node\windows\windows_window_draw.h">
+      <Filter>Header Files\base\node\windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="base\base\base.cpp">
@@ -752,6 +755,9 @@
       <Filter>Source Files\base\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="base\node\windows\windows_interaction_impl.cpp">
+      <Filter>Source Files\base\node\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\windows\windows_window_draw.cpp">
       <Filter>Source Files\base\node\windows</Filter>
     </ClCompile>
   </ItemGroup>

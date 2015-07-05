@@ -1067,6 +1067,9 @@
     <ClInclude Include="user\user\user_key_enum.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
+    <ClInclude Include="user\user\user_print_job.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="net\net_net.cpp">
@@ -1815,6 +1818,12 @@
     </ClCompile>
     <ClCompile Include="user\userpresence\userpresence_userpresence.cpp">
       <Filter>Source Files\user\userpresence</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_print_job.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_copydesk.cpp">
+      <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
