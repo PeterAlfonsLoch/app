@@ -12,11 +12,6 @@ namespace user
    {
 
 
-      m_pkeyboardfocus  = NULL;
-      //      m_pshellimageset  = NULL;
-      m_pkeyboard       = NULL;
-      //    m_pufeschema      = NULL;
-      //  m_pufe            = NULL;
 
 
       //::core::user * papp = dynamic_cast <::core::user *>(::get_thread()->m_pAppThread);
@@ -386,91 +381,6 @@ namespace user
    }
    }
    */
-
-::user::elemental * user::get_keyboard_focus()
-   {
-      if(Application.is_session())
-      {
-         ::user::interaction * puieFocus = Application.get_focus_guie();
-         if(m_pkeyboardfocus != NULL && puieFocus != NULL)
-         {
-            if((bool)oprop("NativeWindowFocus") && puieFocus != m_pkeyboardfocus->get_wnd())
-               return NULL;
-            return m_pkeyboardfocus;
-         }
-         else
-         {
-            return NULL;
-         }
-      }
-      else if(Application.is_system())
-      {
-         return m_pkeyboardfocus;
-      }
-      else if(Application.m_pbasesession != NULL)
-      {
-         return Sess(get_app()).user()->get_keyboard_focus();
-      }
-      else if(Application.m_pbasesystem != NULL)
-      {
-         return Sess(get_app()).user()->get_keyboard_focus();
-      }
-      else
-      {
-         return NULL;
-      }
-   }
-
-
-   void user::set_keyboard_focus(::user::elemental * pkeyboardfocus)
-   {
-
-      if(pkeyboardfocus == NULL || pkeyboardfocus->keyboard_focus_OnSetFocus())
-      {
-
-         if(m_pkeyboardfocus != NULL && m_pkeyboardfocus != pkeyboardfocus)
-         {
-
-            ::user::elemental * pkeyboardfocusOld = m_pkeyboardfocus;
-
-            try
-            {
-
-               m_pkeyboardfocus = NULL;
-
-               if(pkeyboardfocusOld != NULL)
-               {
-
-                  pkeyboardfocusOld->keyboard_focus_OnKillFocus();
-
-               }
-
-            }
-            catch(...)
-            {
-
-            }
-
-         }
-
-
-         m_pkeyboardfocus = pkeyboardfocus;
-
-         if(m_pkeyboardfocus != NULL)
-         {
-
-            if(m_pkeyboardfocus->get_wnd() != NULL)
-            {
-
-               m_pkeyboardfocus->get_wnd()->on_keyboard_focus(m_pkeyboardfocus);
-
-            }
-
-         }
-
-      }
-
-   }
 
 
    ::user::elemental * user::get_mouse_focus_LButtonDown()

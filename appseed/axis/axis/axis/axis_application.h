@@ -353,6 +353,9 @@ namespace axis
       virtual void on_create_keyboard();
 
 
+      virtual ::user::elemental * get_focus_guie();
+
+
       virtual int32_t simple_message_box(::user::primitive * puiOwner,const char * pszMessage,UINT fuStyle = MB_OK);
       virtual int32_t simple_message_box_timeout(::user::primitive * pwndOwner,const char * pszMessage,::duration durationTimeOut,UINT fuStyle);
       int32_t simple_message_box(const char * pszMessage,UINT fuStyle);
@@ -498,6 +501,8 @@ namespace axis
 
 
       virtual int32_t hotplugin_host_host_starter_start_sync(const char * pszCommandLine,::aura::application * papp,hotplugin::host * phost,hotplugin::plugin * pplugin = NULL);
+
+
 
    };
 

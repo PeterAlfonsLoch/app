@@ -96,15 +96,6 @@ CLASS_DECL_AXIS WNDPROC __get_window_procedure();
 #define __get_dialog_control_id_(oswindow)         ((UINT)(WORD)oswindow->GetDlgCtrlId())
 
 
-CLASS_DECL_AXIS const char * __register_window_class(::aura::application * papp,UINT nClassStyle,HCURSOR hCursor = 0,HBRUSH hbrBackground = 0,HICON hIcon = 0);
-
-CLASS_DECL_AXIS bool __register_class(WNDCLASS* lpWndClass);
-
-CLASS_DECL_AXIS LRESULT CALLBACK __window_procedure(oswindow oswindow,UINT nMsg,WPARAM wParam,LPARAM lParam);
-CLASS_DECL_AXIS WNDPROC __get_window_procedure();
-#define __window_procedure (*__get_window_procedure())
-typedef void (__MSG_CALL ::user::interaction_impl::*__PMSGW)();
-typedef void (__MSG_CALL thread::*__PMSGT)();
 
 string get_error_message(DWORD dwError);
 

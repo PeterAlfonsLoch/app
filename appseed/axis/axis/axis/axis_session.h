@@ -257,6 +257,9 @@ namespace axis
 
       virtual void set_key_pressed(::user::e_key ekey,bool bPressed);
 
+      virtual ::user::elemental * get_keyboard_focus();
+      virtual void set_keyboard_focus(::user::elemental * pkeyboardfocus);
+
    };
 
 

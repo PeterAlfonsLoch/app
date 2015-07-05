@@ -533,8 +533,10 @@ namespace user
 
    void control_bar::_001OnCtlColor(signal_details * pobj)
    {
-      SCAST_PTR(::message::ctl_color, pctlcolor, pobj)
-      if (pctlcolor->m_pwnd->OnChildNotify(pctlcolor))
+      SCAST_PTR(::message::ctl_color,pctlcolor,pobj)
+
+         sp(::user::interaction) pui =pctlcolor->m_pwnd;
+      if (pui.is_set() && pui->OnChildNotify(pctlcolor))
       {
          pctlcolor->m_bRet = true;
          return;

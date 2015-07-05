@@ -2958,7 +2958,7 @@ namespace base
    }
 
    
-   int32_t application::hotplugin_host_host_starter_start_sync(const char * pszCommandLine,::aura::application * papp,host * phost,plugin * pplugin)
+   int32_t application::hotplugin_host_host_starter_start_sync(const char * pszCommandLine,::aura::application * papp,::hotplugin::host * phost,::hotplugin::plugin * pplugin)
    {
 
       return hotplugin::host::host_starter_start_sync(pszCommandLine,get_app(),NULL);

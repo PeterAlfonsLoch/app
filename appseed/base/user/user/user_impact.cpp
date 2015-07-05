@@ -719,7 +719,7 @@ namespace user
          ::user::job * puserjob = (dynamic_cast < ::user::job * > (pjob));
          if (puserjob != NULL)
          {
-            puserjob->m_pview = this;
+            puserjob->m_pui = this;
          }
       }
    }

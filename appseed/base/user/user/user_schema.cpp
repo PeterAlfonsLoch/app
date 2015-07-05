@@ -38,10 +38,10 @@ namespace user
 
       }
 
-      if(m_pauraapp != NULL && m_pauraapp->m_paxissession != NULL && m_pauraapp->m_paxissession != m_puserschema && m_pauraapp->m_paxissession->m_puserschema != m_puserschema)
+      if(m_pauraapp != NULL && m_pauraapp->m_pbasesession != NULL && m_pauraapp->m_pbasesession != m_puserschema)
       {
 
-         if(m_pauraapp->m_paxissession->get_color(cr,ecolor))
+         if(m_pauraapp->m_pbasesession->get_color(cr,ecolor))
             return true;
 
       }
@@ -69,10 +69,10 @@ namespace user
 
       }
 
-      if(m_pauraapp != NULL && m_pauraapp->m_paxissession != NULL && m_pauraapp->m_paxissession != m_puserschema && m_pauraapp->m_paxissession->m_puserschema != m_puserschema)
+      if(m_pauraapp != NULL && m_pauraapp->m_pbasesession != NULL && m_pauraapp->m_pbasesession != m_puserschema)
       {
 
-         if(m_pauraapp->m_paxissession->get_font(spfont))
+         if(m_pauraapp->m_pbasesession->get_font(spfont))
             return true;
 
       }
@@ -100,10 +100,10 @@ namespace user
 
       }
 
-      if(m_pauraapp != NULL && m_pauraapp->m_paxissession != NULL && m_pauraapp->m_paxissession != m_puserschema && m_pauraapp->m_paxissession->m_puserschema != m_puserschema)
+      if(m_pauraapp != NULL && m_pauraapp->m_pbasesession != NULL && m_pauraapp->m_pbasesession != m_puserschema)
       {
 
-         if(m_pauraapp->m_paxissession->get_translucency(etranslucency))
+         if(m_pauraapp->m_pbasesession->get_translucency(etranslucency))
             return true;
 
       }

@@ -583,13 +583,13 @@ namespace user
       try
       {
 
-         if(GetParent() != NULL && Session.user()->m_pkeyboardfocus == this)
+         if(GetParent() != NULL && Session.m_pkeyboardfocus == this)
          {
 
             if(GetParent()->m_bDestroying || !GetParent()->IsWindowVisible())
             {
 
-               Session.user()->m_pkeyboardfocus = NULL;
+               Session.m_pkeyboardfocus = NULL;
 
             }
             else
@@ -624,10 +624,10 @@ namespace user
 
                }
 
-               if(Session.user()->m_pkeyboardfocus == this)
+               if(Session.m_pkeyboardfocus == this)
                {
 
-                  Session.user()->m_pkeyboardfocus = NULL;
+                  Session.m_pkeyboardfocus = NULL;
 
                }
 

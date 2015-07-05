@@ -105,6 +105,11 @@ namespace axis
       m_pcopydesk = NULL;
 
 
+      m_pkeyboardfocus  = NULL;
+      //      m_pshellimageset  = NULL;
+      m_pkeyboard       = NULL;
+      //    m_pufeschema      = NULL;
+      //  m_pufe            = NULL;
    }
 
 
@@ -2998,9 +3003,94 @@ namespace axis
 
    }
 
+   ::user::elemental * session::get_keyboard_focus()
+   {
+      if(Application.is_session())
+      {
+         ::user::elemental * puieFocus = Application.get_focus_guie();
+         if(m_pkeyboardfocus != NULL && puieFocus != NULL)
+         {
+            if((bool)oprop("NativeWindowFocus") && puieFocus != m_pkeyboardfocus)
+               return NULL;
+            return m_pkeyboardfocus;
+         }
+         else
+         {
+            return NULL;
+         }
+      }
+      else if(Application.is_system())
+      {
+         return m_pkeyboardfocus;
+      }
+      else if(Application.m_pbasesession != NULL)
+      {
+         return Sess(get_app()).get_keyboard_focus();
+      }
+      else if(Application.m_pbasesystem != NULL)
+      {
+         return Sess(get_app()).get_keyboard_focus();
+      }
+      else
+      {
+         return NULL;
+      }
+   }
 
 
-} // namespace base
+   void session::set_keyboard_focus(::user::elemental * pkeyboardfocus)
+   {
+
+      if(pkeyboardfocus == NULL || pkeyboardfocus->keyboard_focus_OnSetFocus())
+      {
+
+         if(m_pkeyboardfocus != NULL && m_pkeyboardfocus != pkeyboardfocus)
+         {
+
+            ::user::elemental * pkeyboardfocusOld = m_pkeyboardfocus;
+
+            try
+            {
+
+               m_pkeyboardfocus = NULL;
+
+               if(pkeyboardfocusOld != NULL)
+               {
+
+                  pkeyboardfocusOld->keyboard_focus_OnKillFocus();
+
+               }
+
+            }
+            catch(...)
+            {
+
+            }
+
+         }
+
+
+         m_pkeyboardfocus = pkeyboardfocus;
+
+         if(m_pkeyboardfocus != NULL)
+         {
+
+            if(m_pkeyboardfocus->get_wnd() != NULL)
+            {
+
+               m_pkeyboardfocus->get_wnd()->on_keyboard_focus(m_pkeyboardfocus);
+
+            }
+
+         }
+
+      }
+
+   }
+
+
+
+} // namespace axis
 
 
 

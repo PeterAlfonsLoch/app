@@ -3,10 +3,11 @@
 
 #include "base/node/node.h"
 
+
 //void dappy(const char * psz);
 
 #ifdef WINDOWSEX
-
+#include "base/os/windows/windows_system_interaction_impl.h"
 
 //CLASS_DECL_BASE HMONITOR GetUiMonitorHandle(HWND hwnd)
 //{
@@ -1005,7 +1006,7 @@ namespace base
 
 
 
-   sp(::user::window_draw) system::get_twf()
+   ::user::window_draw * system::get_twf()
    {
 
       return m_ptwf;

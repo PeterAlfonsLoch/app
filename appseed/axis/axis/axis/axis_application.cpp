@@ -4439,7 +4439,12 @@ namespace axis
    }
 
 
+   ::user::elemental * application::get_focus_guie()
+   {
 
+      return Session.get_focus_guie();
+
+   }
 
 
    void application::on_create_keyboard()

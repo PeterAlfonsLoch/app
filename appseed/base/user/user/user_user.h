@@ -36,8 +36,6 @@ namespace user
       class window_map & window_map();
 
 
-      virtual ::user::elemental * get_keyboard_focus();
-      virtual void set_keyboard_focus(::user::elemental * pkeyboardfocus);
       virtual ::user::elemental * get_mouse_focus_LButtonDown();
       virtual void set_mouse_focus_LButtonDown(::user::elemental * pmousefocus);
       virtual ::user::elemental * get_mouse_focus_RButtonDown();
