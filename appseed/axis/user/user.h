@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "user/user_job.h"
+
+
 #include "user/user_print_job.h"
 
 

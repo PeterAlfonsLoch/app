@@ -8,6 +8,9 @@
 #include "user.h"
 
 
+#include "user/user_job.cpp"
+
+
 #include "user/user_copydesk.cpp"
 #include "user/user_keyboard.cpp"
 #include "user/user_keyboard_layout.cpp"

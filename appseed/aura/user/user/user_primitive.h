@@ -27,6 +27,9 @@ namespace user
 
       virtual bool SetPlacement(const RECT & rect,UINT nFlags = SWP_SHOWWINDOW);
 
+      virtual int32_t get_total_page_count(::job * pjob);
+
+
    };
 
 

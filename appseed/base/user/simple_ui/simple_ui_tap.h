@@ -5,7 +5,7 @@ namespace simple_ui
 {
 
 
-   class CLASS_DECL_AXIS tap :
+   class CLASS_DECL_BASE tap :
       virtual public interaction
    {
    public:

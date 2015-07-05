@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_AXIS form_window:
+   class CLASS_DECL_BASE form_window:
       virtual public ::user::control
    {
    public:

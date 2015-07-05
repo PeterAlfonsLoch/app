@@ -9,7 +9,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_AXIS user :
+   class CLASS_DECL_BASE user :
       virtual public ::aura::departament
    {
    public:

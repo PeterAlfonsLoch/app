@@ -10,18 +10,18 @@ Display * x11_get_display();
 
 //#include <X11/extensions/Xcomposite.h>
 
-CLASS_DECL_AXIS thread_int_ptr < DWORD_PTR > t_time1;
+CLASS_DECL_BASE thread_int_ptr < DWORD_PTR > t_time1;
 
 //#define COMPILE_MULTIMON_STUBS
 //#include <multimon.h>
 
 //#include "sal.h"
 
-CLASS_DECL_AXIS void hook_window_create(::user::interaction * pWnd);
-CLASS_DECL_AXIS bool unhook_window_create();
-void CLASS_DECL_AXIS __pre_init_dialog(
+CLASS_DECL_BASE void hook_window_create(::user::interaction * pWnd);
+CLASS_DECL_BASE bool unhook_window_create();
+void CLASS_DECL_BASE __pre_init_dialog(
    ::user::interaction * pWnd, LPRECT lpRectOld, DWORD* pdwStyleOld);
-void CLASS_DECL_AXIS __post_init_dialog(
+void CLASS_DECL_BASE __post_init_dialog(
    ::user::interaction * pWnd, const RECT& rectOld, DWORD dwStyleOld);
 LRESULT CALLBACK
    __activation_window_procedure(oswindow hWnd, UINT nMsg, WPARAM wparam, LPARAM lparam);
@@ -159,7 +159,7 @@ namespace linux
 
    // Change a interaction_impl's style
 
-   /*__STATIC bool CLASS_DECL_AXIS __modify_style(oswindow hWnd, int32_t nStyleOffset,
+   /*__STATIC bool CLASS_DECL_BASE __modify_style(oswindow hWnd, int32_t nStyleOffset,
       DWORD dwRemove, DWORD dwAdd, UINT nFlags)
    {
       ASSERT(hWnd != NULL);
@@ -1992,7 +1992,7 @@ restart_mouse_hover_check:
 
    }
 */
-   /* trans oswindow CLASS_DECL_AXIS __get_parent_owner(sp(::user::interaction) hWnd)
+   /* trans oswindow CLASS_DECL_BASE __get_parent_owner(sp(::user::interaction) hWnd)
    {
    // check for permanent-owned interaction_impl first
    sp(::interaction_impl) pWnd = ::linux::interaction_impl::FromHandlePermanent(hWnd);
@@ -5720,7 +5720,7 @@ if(psurface == g_cairosurface)
 // The WndProc for all interaction_impl's and derived classes
 
 
-__STATIC void CLASS_DECL_AXIS __pre_init_dialog(
+__STATIC void CLASS_DECL_BASE __pre_init_dialog(
    ::user::interaction * pWnd, LPRECT lpRectOld, DWORD* pdwStyleOld)
 {
    ASSERT(lpRectOld != NULL);
@@ -5730,7 +5730,7 @@ __STATIC void CLASS_DECL_AXIS __pre_init_dialog(
    *pdwStyleOld = LNX_WINDOW(pWnd)->GetStyle();
 }
 
-__STATIC void CLASS_DECL_AXIS __post_init_dialog(
+__STATIC void CLASS_DECL_BASE __post_init_dialog(
    ::user::interaction * pWnd, const RECT& rectOld, DWORD dwStyleOld)
 {
    // must be hidden to start with

@@ -18,7 +18,7 @@
 //               0 pasta(s)   32.759.697.408 bytes dispon¡veis
 
 #include "windows_copydesk.cpp"
-#include "windows_interaction_impl.cpp"
+//#include "windows_interaction_impl.cpp"
 #include "windows_message_queue.cpp"
 #include "windows_print_job.cpp"
-#include "windows_window_draw.cpp"
+//#include "windows_window_draw.cpp"

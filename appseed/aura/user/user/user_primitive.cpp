@@ -55,7 +55,11 @@ namespace user
 
    }
 
-
+   int32_t primitive::get_total_page_count(::job * pjob)
+   {
+      UNREFERENCED_PARAMETER(pjob);
+      return 1;
+   }
 } // namespace user
 
 

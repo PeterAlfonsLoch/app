@@ -12,18 +12,24 @@ namespace windows
 
    copydesk::copydesk(::aura::application * papp) :
       ::object(papp),
-      ::user::copydesk(papp),
-      ::user::interaction(papp)
+      ::user::copydesk(papp)
    {
+      
+      m_hwnd = NULL;
+
+
+
    }
 
    copydesk::~copydesk()
    {
+
+      ::DestroyWindow(m_hwnd);
    }
 
    int32_t copydesk::get_file_count()
    {
-      if(!::OpenClipboard(get_handle()))
+      if(!::OpenClipboard(m_hwnd))
          return 0;
       HDROP hdrop = (HDROP) ::GetClipboardData(CF_HDROP);
       int32_t iCount = 0;
@@ -41,7 +47,7 @@ namespace windows
       int32_t iCount = get_file_count();
       if(iCount <= 0)
          return;
-      if(!::OpenClipboard(get_handle()))
+      if(!::OpenClipboard(m_hwnd))
          return;
       HDROP hdrop = (HDROP) ::GetClipboardData(CF_HDROP);
       string str;
@@ -59,7 +65,7 @@ namespace windows
    void copydesk::set_filea(stringa & stra)
    {
 
-      ASSERT(IsWindow());
+      ASSERT(::IsWindow(m_hwnd));
 
       strsize iLen = 0;
 
@@ -76,23 +82,23 @@ namespace windows
       pDropFiles->fNC = TRUE;
       pDropFiles->fWide = TRUE; // ANSI charset
 
-      ASSERT(IsWindow());
+      ASSERT(::IsWindow(m_hwnd));
       LPTSTR lptstrCopy = (char *) pDropFiles;
       lptstrCopy += pDropFiles->pFiles;
       wchar_t * lpwstrCopy = (wchar_t *) lptstrCopy;
       for(int32_t i = 0; i < stra.get_size(); i++)
       {
-         ASSERT(IsWindow());
+         ASSERT(::IsWindow(m_hwnd));
          ::str::international::utf8_to_unicode(lpwstrCopy, ::str::international::utf8_to_unicode_count(stra[i]) + 1, stra[i]);
-         ASSERT(IsWindow());
+         ASSERT(::IsWindow(m_hwnd));
          lpwstrCopy += (stra[i].get_length() + 1);
       }
-      ASSERT(IsWindow());
+      ASSERT(::IsWindow(m_hwnd));
       *lpwstrCopy = '\0';    // null character
-      ASSERT(IsWindow());
+      ASSERT(::IsWindow(m_hwnd));
       ::GlobalUnlock(hglbCopy);
-      ASSERT(IsWindow());
-      if(!::OpenClipboard(get_handle()))
+      ASSERT(::IsWindow(m_hwnd));
+      if(!::OpenClipboard(m_hwnd))
       {
          ::GlobalFree(hglbCopy);
          return;
@@ -111,7 +117,9 @@ namespace windows
       if(!::user::copydesk::initialize())
          return false;
 
-      if(!create_window_ex())
+      m_hwnd = ::CreateWindowEx(0,0,0,0,0,0,0,0,0,0,0,NULL);
+
+      if(m_hwnd == NULL)
          return false;
 
       return true;
@@ -132,15 +140,15 @@ namespace windows
 
    void copydesk::set_plain_text(const char * psz)
    {
-      ASSERT(IsWindow());
+      ASSERT(::IsWindow(m_hwnd));
    //   int32_t iLen = 0;
 
       string str(psz);
 
 
 
-      ASSERT(IsWindow());
-      if(!::OpenClipboard(get_handle()))
+      ASSERT(::IsWindow(m_hwnd));
+      if(!::OpenClipboard(m_hwnd))
       {
          return;
       }
@@ -170,7 +178,7 @@ namespace windows
    {
       if (IsClipboardFormatAvailable(CF_UNICODETEXT))
       {
-         if(!::OpenClipboard(get_handle()))
+         if(!::OpenClipboard(m_hwnd))
             return "";
          HGLOBAL hglb = GetClipboardData(CF_UNICODETEXT);
          string str(::str::international::unicode_to_utf8((const wchar_t *) GlobalLock(hglb)));
@@ -180,7 +188,7 @@ namespace windows
       }
       else if (IsClipboardFormatAvailable(CF_TEXT))
       {
-         if(!::OpenClipboard(get_handle()))
+         if(!::OpenClipboard(m_hwnd))
             return "";
          HGLOBAL hglb = GetClipboardData(CF_TEXT);
          string str((char *) GlobalLock(hglb));
@@ -208,7 +216,7 @@ namespace windows
 
    bool copydesk::desk_to_dib(::draw2d::dib * pdib)
    {
-      if(!::OpenClipboard(get_handle()))
+      if(!::OpenClipboard(m_hwnd))
          return false;
       bool bOk = false;
       HBITMAP hbitmap = (HBITMAP) ::GetClipboardData(CF_BITMAP);
@@ -275,9 +283,9 @@ namespace windows
    bool copydesk::dib_to_desk(::draw2d::dib * pdib)
    {
 
-      ASSERT(IsWindow());
+      ASSERT(::IsWindow(m_hwnd));
 
-      if(!::OpenClipboard(get_handle()))
+      if(!::OpenClipboard(m_hwnd))
       {
 
          return false;

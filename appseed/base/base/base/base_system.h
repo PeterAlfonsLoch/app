@@ -11,6 +11,13 @@ namespace base
    {
    public:
 
+#ifdef WINDOWSEX
+
+
+      ::base::system_interaction_impl *            m_psystemwindow;
+
+#endif
+
       ::user::schema *                             m_pschemaLayeredFrame;
 
 
@@ -23,7 +30,7 @@ namespace base
 
       virtual bool defer_create_system_frame_window();
 
-
+      virtual int32_t exit_instance();
 
       virtual ::aura::session * on_create_session();
 

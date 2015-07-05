@@ -381,7 +381,6 @@ namespace axis
       virtual void get_time(timeval *p);
 #endif
 
-      virtual bool post_user_message(::thread_impl * pimpl,::user::primitive * pui,UINT message,WPARAM wparam = 0,lparam lparam = 0);
 
 
 
@@ -447,8 +446,6 @@ namespace axis
 
 
 
-      virtual sp(::user::interaction) FindWindow(const char * lpszClassName,const char * lpszWindowName);
-      virtual sp(::user::interaction) FindWindowEx(oswindow oswindowParent,oswindow oswindowChildAfter,const char * lpszClass,const char * lpszWindow);
 
       virtual string get_version();
 

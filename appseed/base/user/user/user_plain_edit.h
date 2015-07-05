@@ -16,7 +16,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_AXIS plain_edit :
+   class CLASS_DECL_BASE plain_edit :
       virtual public control,
       virtual public ::data::listener
    {

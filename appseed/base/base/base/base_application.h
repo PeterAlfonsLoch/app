@@ -286,11 +286,14 @@ virtual ::user::interaction * main_window();
       virtual void process_message(signal_details * pobj);
 
 
-      int32_t hotplugin_host_host_starter_start_sync(const char * pszCommandLine,::aura::application * papp,host * phost,plugin * pplugin);
+      int32_t hotplugin_host_host_starter_start_sync(const char * pszCommandLine,::aura::application * papp,::hotplugin::host * phost,::hotplugin::plugin * pplugin);
 
 
       virtual bool defer_initialize_twf();
 
+      virtual ::user::interaction * FindWindow(const char * lpszClassName,const char * lpszWindowName);
+      virtual ::user::interaction * FindWindowEx(oswindow oswindowParent,oswindow oswindowChildAfter,const char * lpszClass,const char * lpszWindow);
+      virtual bool post_user_message(::thread_impl * pimpl,::user::primitive * pui,UINT message,WPARAM wparam = 0,lparam lparam = 0);
 
    };
 

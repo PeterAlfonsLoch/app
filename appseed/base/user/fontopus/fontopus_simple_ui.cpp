@@ -2,10 +2,10 @@
 //#include "base/user/user.h"
 
 
-CLASS_DECL_AXIS void draw_ca2(::draw2d::graphics * pdc, int x, int y, int z, COLORREF crBk, COLORREF cr);
-CLASS_DECL_AXIS void draw_ca2_with_border(::draw2d::graphics * pdc, int x, int y, int z, int b, COLORREF crBk, COLORREF cr, COLORREF crOut);
-CLASS_DECL_AXIS void draw_ca2_border2(::draw2d::graphics * pdc, int x, int y, int z, int bOut, int bIn, COLORREF crBk, COLORREF cr, COLORREF crBorderOut, COLORREF crIn);
-CLASS_DECL_AXIS void draw_ca2_with_border2(::draw2d::graphics * pdc, int x, int y, int z, int bOut, int bIn, COLORREF crBk, COLORREF cr, COLORREF crBorderOut, COLORREF crIn);
+CLASS_DECL_BASE void draw_ca2(::draw2d::graphics * pdc, int x, int y, int z, COLORREF crBk, COLORREF cr);
+CLASS_DECL_BASE void draw_ca2_with_border(::draw2d::graphics * pdc, int x, int y, int z, int b, COLORREF crBk, COLORREF cr, COLORREF crOut);
+CLASS_DECL_BASE void draw_ca2_border2(::draw2d::graphics * pdc, int x, int y, int z, int bOut, int bIn, COLORREF crBk, COLORREF cr, COLORREF crBorderOut, COLORREF crIn);
+CLASS_DECL_BASE void draw_ca2_with_border2(::draw2d::graphics * pdc, int x, int y, int z, int bOut, int bIn, COLORREF crBk, COLORREF cr, COLORREF crBorderOut, COLORREF crIn);
 
 
 namespace fontopus
@@ -582,7 +582,7 @@ namespace fontopus
 } // namespace fontopus
 
 
-CLASS_DECL_AXIS void draw_ca2_border2(::draw2d::graphics * pdc, int x, int y, int z, int bOut, int bIn, COLORREF crBk, COLORREF cr, COLORREF crOut, COLORREF crIn)
+CLASS_DECL_BASE void draw_ca2_border2(::draw2d::graphics * pdc, int x, int y, int z, int bOut, int bIn, COLORREF crBk, COLORREF cr, COLORREF crOut, COLORREF crIn)
 {
    int w = z / 19;
 
@@ -621,7 +621,7 @@ CLASS_DECL_AXIS void draw_ca2_border2(::draw2d::graphics * pdc, int x, int y, in
 
 }
 
-CLASS_DECL_AXIS void draw_ca2_with_border2(::draw2d::graphics * pdc, int x, int y, int z, int bOut, int bIn, COLORREF crBk, COLORREF cr, COLORREF crOut, COLORREF crIn)
+CLASS_DECL_BASE void draw_ca2_with_border2(::draw2d::graphics * pdc, int x, int y, int z, int bOut, int bIn, COLORREF crBk, COLORREF cr, COLORREF crOut, COLORREF crIn)
 {
 
    draw_ca2(pdc, x + bIn + bOut, y + bIn + bOut, z, crBk, cr);
@@ -631,7 +631,7 @@ CLASS_DECL_AXIS void draw_ca2_with_border2(::draw2d::graphics * pdc, int x, int 
 }
 
 
-CLASS_DECL_AXIS void draw_ca2_with_border(::draw2d::graphics * pdc, int x, int y, int z, int b, COLORREF crBk, COLORREF cr, COLORREF crBorder)
+CLASS_DECL_BASE void draw_ca2_with_border(::draw2d::graphics * pdc, int x, int y, int z, int b, COLORREF crBk, COLORREF cr, COLORREF crBorder)
 {
 
    draw_ca2(pdc, x + b, y + b, z, crBk, cr);
@@ -663,7 +663,7 @@ CLASS_DECL_AXIS void draw_ca2_with_border(::draw2d::graphics * pdc, int x, int y
 }
 
 
-CLASS_DECL_AXIS void draw_ca2(::draw2d::graphics * pdc, int x, int y, int z, COLORREF crBk, COLORREF cr)
+CLASS_DECL_BASE void draw_ca2(::draw2d::graphics * pdc, int x, int y, int z, COLORREF crBk, COLORREF cr)
 {
 
    ::draw2d::brush_sp b(pdc->allocer());

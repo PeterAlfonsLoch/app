@@ -73,6 +73,11 @@ namespace base
 
       g_pszCooperativeLevel = "base";
 
+#ifdef WINDOWSEX
+
+      m_psystemwindow = NULL;
+
+#endif
 
 
       m_ptwf            = NULL;
@@ -292,8 +297,32 @@ namespace base
 //   }
 //
 //
-//   int32_t system::exit_instance()
-//   {
+   int32_t system::exit_instance()
+   {
+
+      axis::system::exit_instance();
+
+
+#ifdef WINDOWSEX
+
+      try
+      {
+
+         ::release(m_psystemwindow);
+
+      }
+      catch(...)
+      {
+
+         m_iReturnCode = -2;
+
+      }
+
+
+#endif
+
+
+   }
 //
 //      __wait_threading_count(::millis((5000) * 8));
 //
@@ -1112,6 +1141,7 @@ namespace base
 
    }
 
+   
 
 
 } // namespace base

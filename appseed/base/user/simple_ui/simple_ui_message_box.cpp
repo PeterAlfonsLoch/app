@@ -397,7 +397,7 @@ namespace simple_ui
 
 
 extern "C"
-CLASS_DECL_AXIS int32_t system_message_box(oswindow interaction_impl,const char * lpText,const char * lpCaption,uint32_t uiFlags)
+CLASS_DECL_BASE int32_t system_message_box(oswindow interaction_impl,const char * lpText,const char * lpCaption,uint32_t uiFlags)
 {
 
    return MessageBoxW(interaction_impl,wstring(lpText),wstring(lpCaption),uiFlags);

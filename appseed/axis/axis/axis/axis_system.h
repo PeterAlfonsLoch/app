@@ -91,8 +91,6 @@ namespace axis
 #ifdef WINDOWSEX
 
 
-      ::axis::system_interaction_impl *            m_psystemwindow;
-
       raw_array < MONITORINFO >                    m_monitorinfoa;
       raw_array < HMONITOR >                       m_hmonitora;
       raw_array < MONITORINFO >                    m_monitorinfoaDesk;

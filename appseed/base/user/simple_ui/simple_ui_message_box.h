@@ -5,7 +5,7 @@ namespace simple_ui
 {
 
 
-   class CLASS_DECL_AXIS message_box :
+   class CLASS_DECL_BASE message_box :
       virtual public ::simple_ui::interaction
    {
    public:
@@ -50,7 +50,7 @@ namespace simple_ui
 
 
 
-CLASS_DECL_AXIS int32_t simple_ui_message_box(oswindow interaction_impl, const char * lpText,const char * lpCaption, uint32_t uiFlags);
+CLASS_DECL_BASE int32_t simple_ui_message_box(oswindow interaction_impl, const char * lpText,const char * lpCaption, uint32_t uiFlags);
 
 
 

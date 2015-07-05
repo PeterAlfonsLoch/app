@@ -3334,25 +3334,6 @@ namespace axis
 
 
 
-   sp(::user::interaction) application::FindWindow(const char * lpszClassName,const char * lpszWindowName)
-   {
-
-      ::exception::throw_interface_only(this);
-
-      return NULL;
-
-   }
-
-
-   sp(::user::interaction) application::FindWindowEx(oswindow oswindowParent,oswindow oswindowChildAfter,const char * lpszClass,const char * lpszWindow)
-   {
-
-      ::exception::throw_interface_only(this);
-
-      return NULL;
-
-   }
-
 
    string application::get_version()
    {

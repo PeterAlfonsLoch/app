@@ -4,13 +4,13 @@
 namespace user
 {
 
-   extern CLASS_DECL_AXIS critical_section * g_pcsUi;
+   extern CLASS_DECL_BASE critical_section * g_pcsUi;
 
-   extern CLASS_DECL_AXIS map < oswindow,oswindow,::user::interaction *,::user::interaction * > * g_pmapUi;
+   extern CLASS_DECL_BASE map < oswindow,oswindow,::user::interaction *,::user::interaction * > * g_pmapUi;
 
-   CLASS_DECL_AXIS void init_windowing();
+   CLASS_DECL_BASE void init_windowing();
 
-   CLASS_DECL_AXIS void term_windowing();
+   CLASS_DECL_BASE void term_windowing();
 
 
 } // namespace user
@@ -19,8 +19,8 @@ namespace user
 
 
 
-CLASS_DECL_AXIS bool oswindow_assign(oswindow oswindow, ::user::interaction * pui);
-CLASS_DECL_AXIS int_bool oswindow_remove(::user::interaction * pui);
+CLASS_DECL_BASE bool oswindow_assign(oswindow oswindow, ::user::interaction * pui);
+CLASS_DECL_BASE int_bool oswindow_remove(::user::interaction * pui);
 
 
 
@@ -46,6 +46,6 @@ inline ::user::interaction * window_from_handle(oswindow oswindow)
 
 #else
 
-CLASS_DECL_AXIS ::user::interaction * window_from_handle(oswindow oswindow);
+CLASS_DECL_BASE ::user::interaction * window_from_handle(oswindow oswindow);
 
 #endif

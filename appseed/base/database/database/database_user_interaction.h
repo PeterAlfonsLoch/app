@@ -9,7 +9,7 @@ namespace database
    {
 
 
-      class CLASS_DECL_AXIS interaction :
+      class CLASS_DECL_BASE interaction :
          virtual public ::simple_ui::interaction,
          virtual public client
       {

@@ -5,13 +5,13 @@ namespace macos
 {
 
 
-   class CLASS_DECL_AXIS printer :
+   class CLASS_DECL_BASE printer :
       virtual public ::user::printer
    {
    public:
 
 
-      class CLASS_DECL_AXIS document_properties :
+      class CLASS_DECL_BASE document_properties :
          virtual public ::object
       {
       public:

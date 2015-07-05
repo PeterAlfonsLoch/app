@@ -34,7 +34,7 @@ namespace windows
          throw "printer not opened";
       }
 
-      if(m_pview == NULL)
+      if(m_pui == NULL)
       {
          throw "a view should collaborate";
       }
@@ -47,7 +47,7 @@ namespace windows
       docinfo.cbSize = sizeof(docinfo);
       pgraphics->StartDocA(&docinfo);
 
-      int32_t iPageCount = m_pview->get_total_page_count(this);
+      int32_t iPageCount = m_pui->get_total_page_count(this);
       int32_t iPageEnd = -1;
       if(m_iPageStart < 0)
          m_iPageStart = 0;
@@ -69,7 +69,7 @@ namespace windows
             pgraphics->AbortDoc();
             return -1;
          }
-         m_pview->_001OnDraw(pgraphics);
+         m_pui->_001OnDraw(pgraphics);
          if(m_bCancel)
          {
             pgraphics->AbortDoc();

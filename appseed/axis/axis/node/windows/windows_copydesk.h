@@ -10,6 +10,8 @@ namespace windows
    {
    public:
 
+
+      HWND m_hwnd;
       
       copydesk(::aura::application * papp);
       virtual ~copydesk();

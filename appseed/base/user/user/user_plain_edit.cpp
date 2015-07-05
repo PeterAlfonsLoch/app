@@ -5,7 +5,7 @@
 
 void str_fill(string & str,char ch);
 
-extern CLASS_DECL_AXIS thread_int_ptr < DWORD_PTR > t_time1;
+extern CLASS_DECL_BASE thread_int_ptr < DWORD_PTR > t_time1;
 
 namespace user
 {

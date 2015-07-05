@@ -4100,6 +4100,7 @@
     <ClInclude Include="user\userpresence\userpresence_userpresence.h" />
     <ClInclude Include="user\userpresence\userpresence_user_presence.h" />
     <ClInclude Include="user\user\user_enum.h" />
+    <ClInclude Include="user\user\user_job.h" />
     <ClInclude Include="user\user\user_keyboard.h" />
     <ClInclude Include="user\user\user_keyboard_layout.h" />
     <ClInclude Include="user\user\user_key_enum.h" />

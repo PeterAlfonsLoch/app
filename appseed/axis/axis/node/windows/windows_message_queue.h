@@ -11,7 +11,9 @@ namespace windows
    public:
 
 
-      sp(::user::interaction)          m_spuiMessage;
+      HWND                             m_hwnd;
+
+      //sp(::user::interaction)          m_spuiMessage;
       message_queue_listener *         m_plistener;
 
 

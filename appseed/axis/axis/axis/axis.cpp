@@ -8,15 +8,6 @@
 
 #endif
 
-namespace user
-{
-
-
-   void init_windowing();
-   void term_windowing();
-
-
-} // namespace user
 
 int g_iAxisRefCount = 0;
 
@@ -109,7 +100,6 @@ bool axis_init()
    */
 
 
-   ::user::init_windowing();
    /*
    ::os_thread::s_pmutex = new mutex();
 
@@ -167,7 +157,7 @@ bool axis_term()
 
    __node_axis_pre_term();
    */
-   ::user::term_windowing();
+//   ::user::term_windowing();
    /*
    ::multithreading::term_multithreading();
 

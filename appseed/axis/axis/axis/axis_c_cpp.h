@@ -70,14 +70,6 @@ namespace user
 } // namespace user
 
 
-namespace axis
-{
-
-
-   class system_interaction_impl;
-
-
-} // namespace axis
 
 
 typedef sp(::user::interaction_impl) window_sp;

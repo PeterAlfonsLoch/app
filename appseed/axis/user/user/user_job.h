@@ -15,7 +15,7 @@ namespace user
       // cascading ph - pointer holder - references would avoid this view
       // and other ph's referenced directly or indirectly by m_pview
       // to be deleted while the job is not finished or canceled.
-      sp(::user::impact)        m_pview;
+      sp(::user::primitive)        m_pui;
 
 
       job(::aura::application * papp);

@@ -139,7 +139,7 @@ namespace message
 
 
       context_menu(::aura::application * papp):  ::message::base(papp) {}
-      ::window_sp GetWindow();
+      //::window_sp GetWindow();
       point GetPoint();
    };
 

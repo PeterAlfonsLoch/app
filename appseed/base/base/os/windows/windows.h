@@ -14,6 +14,14 @@
 #ifdef cplusplus
 
 
+namespace base
+{
+
+
+   class system_interaction_impl;
+
+
+} // namespace axis
 
 
 

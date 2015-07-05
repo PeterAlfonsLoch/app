@@ -14,7 +14,7 @@
 class Ex1FormInterfaceComboBox;
 
 /*
-class CLASS_DECL_AXIS Ex1FormInterfaceComboBox:
+class CLASS_DECL_BASE Ex1FormInterfaceComboBox:
    virtual public ::object
 {
 public:
@@ -99,7 +99,7 @@ namespace user
 {
 
 
-   CLASS_DECL_AXIS void __reposition_window(__SIZEPARENTPARAMS* lpLayout,::user::interaction * pui,LPCRECT lpRect);
+   CLASS_DECL_BASE void __reposition_window(__SIZEPARENTPARAMS* lpLayout,::user::interaction * pui,LPCRECT lpRect);
 
 
 } // namespace user
@@ -230,7 +230,7 @@ public:
 /////////////////////////////////////////////////////////////////////////////
 // CArchiveStream
 /*
-class CLASS_DECL_AXIS CArchiveStream : public IStream
+class CLASS_DECL_BASE CArchiveStream : public IStream
 {
 public:
 CArchiveStream(CArchive* pArchive);
@@ -259,12 +259,12 @@ HRes Clone)(LPSTREAM*);
 /////////////////////////////////////////////////////////////////////////////
 // Global UNICODE<>ANSI translation helpers
 
-CLASS_DECL_AXIS void ::core::BSTR2String(string* pStr, BSTR bstr);
+CLASS_DECL_BASE void ::core::BSTR2String(string* pStr, BSTR bstr);
 
 #if !defined(_UNICODE)
-CLASS_DECL_AXIS BSTR::core::BSTR2ABSTR(BSTR bstrW);
-CLASS_DECL_AXIS wchar_t * ::core::TaskStringA2W(const char * lpa);
-CLASS_DECL_AXIS char * ::core::TaskStringW2A(const wchar_t * lpw);
+CLASS_DECL_BASE BSTR::core::BSTR2ABSTR(BSTR bstrW);
+CLASS_DECL_BASE wchar_t * ::core::TaskStringA2W(const char * lpa);
+CLASS_DECL_BASE char * ::core::TaskStringW2A(const wchar_t * lpw);
 #endif
 
 #endif // __AFXPRIV2_H__DISP__
@@ -272,36 +272,36 @@ CLASS_DECL_AXIS char * ::core::TaskStringW2A(const wchar_t * lpw);
 
 /////////////////////////////////////////////////////////////////////////////
 
-#include "axis/database/database/database_user_interaction.h"
+//#include "axis/database/database/database_user_interaction.h"
 
 
 #include "user_impact_update_hint.h"
-#include "user_job.h"
+//#include "user_job.h"
 
 
 #include "user_message.h"
 
 //#include "axis/axis/axis_print_job.h"
-#include "user_print_job.h"
+//#include "user_print_job.h"
 
 
 #include "user_menu_base_item.h"
 #include "user_menu_base.h"
 
 
-#include "user_copydesk.h"
+//#include "user_copydesk.h"
 
 
 #include "user_inline.h"
 
 
-#include "axis/user/hotplugin/hotplugin.h"
+#include "base/user/hotplugin/hotplugin.h"
 
 
-#include "axis/user/install/install.h"
+#include "base/user/install/install.h"
 
 
-#include "axis/user/fontopus/fontopus.h"
+#include "base/user/fontopus/fontopus.h"
 
 
 

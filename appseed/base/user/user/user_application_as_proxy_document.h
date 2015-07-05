@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_AXIS application_as_proxy_document:
+   class CLASS_DECL_BASE application_as_proxy_document:
       virtual public ::user::document
    {
    public:

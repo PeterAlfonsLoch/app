@@ -3,13 +3,13 @@
 //#include "aura/node/windows/windows.h"
 //#include "windows.h"
 
-CLASS_DECL_AXIS int g_iMouseDown = 0;
+CLASS_DECL_BASE int g_iMouseDown = 0;
 
-CLASS_DECL_AXIS thread_int_ptr < DWORD_PTR > t_time1;
-CLASS_DECL_AXIS thread_int_ptr < DWORD_PTR > t_time2;
+CLASS_DECL_BASE thread_int_ptr < DWORD_PTR > t_time1;
+CLASS_DECL_BASE thread_int_ptr < DWORD_PTR > t_time2;
 
 
-extern CLASS_DECL_AXIS thread_int_ptr < DWORD_PTR > t_time1;
+extern CLASS_DECL_BASE thread_int_ptr < DWORD_PTR > t_time1;
 
 thread_int_ptr < HHOOK > t_hHookOldCbtFilter;
 thread_pointer < ::windows::interaction_impl  > t_pwndInit;
@@ -339,7 +339,7 @@ namespace windows
 
    // Change a interaction_impl's style
 
-   __STATIC bool CLASS_DECL_AXIS __modify_style(oswindow oswindow,int32_t nStyleOffset,
+   __STATIC bool CLASS_DECL_BASE __modify_style(oswindow oswindow,int32_t nStyleOffset,
       uint32_t dwRemove,uint32_t dwAdd,UINT nFlags)
    {
       ASSERT(oswindow != NULL);
@@ -5875,7 +5875,7 @@ LRESULT CALLBACK __window_procedure(oswindow oswindow,UINT message,WPARAM wparam
 
 
 // always indirectly accessed via __get_window_procedure
-WNDPROC CLASS_DECL_AXIS __get_window_procedure()
+WNDPROC CLASS_DECL_BASE __get_window_procedure()
 {
    //return __get_module_state()->m_pfn_window_procedure;
    return &::__window_procedure;
@@ -5884,7 +5884,7 @@ WNDPROC CLASS_DECL_AXIS __get_window_procedure()
 
 
 
-CLASS_DECL_AXIS bool hook_window_create(::windows::interaction_impl * pwindow)
+CLASS_DECL_BASE bool hook_window_create(::windows::interaction_impl * pwindow)
 {
 
    if(pwindow == NULL)
@@ -5923,7 +5923,7 @@ CLASS_DECL_AXIS bool hook_window_create(::windows::interaction_impl * pwindow)
 
 }
 
-CLASS_DECL_AXIS bool unhook_window_create()
+CLASS_DECL_BASE bool unhook_window_create()
 {
 
    if(t_pwndInit != NULL)
@@ -5938,7 +5938,7 @@ CLASS_DECL_AXIS bool unhook_window_create()
 
 __declspec(thread) char t_szTempClassName[___TEMP_CLASS_NAME_SIZE] ={0};
 
-CLASS_DECL_AXIS const char * __register_window_class(::aura::application * papp,UINT nClassStyle,HCURSOR hCursor,HBRUSH hbrBackground,HICON hIcon)
+CLASS_DECL_BASE const char * __register_window_class(::aura::application * papp,UINT nClassStyle,HCURSOR hCursor,HBRUSH hbrBackground,HICON hIcon)
 {
    // Returns a temporary string name for the class
    //  Save in a string if you want to use it for a long time
@@ -5989,7 +5989,7 @@ CLASS_DECL_AXIS const char * __register_window_class(::aura::application * papp,
 }
 
 
-__STATIC void CLASS_DECL_AXIS
+__STATIC void CLASS_DECL_BASE
 __handle_activate(::window_sp pwindow,WPARAM nState,::window_sp pWndOther)
 {
    ASSERT(pwindow != NULL);
@@ -6018,7 +6018,7 @@ __handle_activate(::window_sp pwindow,WPARAM nState,::window_sp pWndOther)
    }
 }
 
-//__STATIC bool CLASS_DECL_AXIS
+//__STATIC bool CLASS_DECL_BASE
 //__handle_set_cursor(::window_sp pwindow,UINT nHitTest,UINT nMsg)
 //{
 //   if(nHitTest == HTERROR &&
@@ -6045,7 +6045,7 @@ __handle_activate(::window_sp pwindow,WPARAM nState,::window_sp pWndOther)
 /////////////////////////////////////////////////////////////////////////////
 // Standard init called by WinMain
 
-__STATIC bool CLASS_DECL_AXIS __register_with_icon(WNDCLASS* pWndCls,
+__STATIC bool CLASS_DECL_BASE __register_with_icon(WNDCLASS* pWndCls,
    const char * lpszClassName,UINT nIDIcon)
 {
    pWndCls->lpszClassName = lpszClassName;
@@ -6054,7 +6054,7 @@ __STATIC bool CLASS_DECL_AXIS __register_with_icon(WNDCLASS* pWndCls,
 }
 
 
-string CLASS_DECL_AXIS get_user_interaction_window_class(::user::interaction * pui)
+string CLASS_DECL_BASE get_user_interaction_window_class(::user::interaction * pui)
 {
 
    ::user::interaction::e_type etype = pui->get_window_type();
@@ -6155,7 +6155,7 @@ string CLASS_DECL_AXIS get_user_interaction_window_class(::user::interaction * p
 // Additional helpers for WNDCLASS init
 
 // like RegisterClass, except will automatically call UnregisterClass
-bool CLASS_DECL_AXIS __register_class(WNDCLASS* lpWndClass)
+bool CLASS_DECL_BASE __register_class(WNDCLASS* lpWndClass)
 {
 
    WNDCLASS wndcls;

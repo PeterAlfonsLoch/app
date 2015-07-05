@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_AXIS message :
+   class CLASS_DECL_BASE message :
       virtual public ::object
    {
    public:

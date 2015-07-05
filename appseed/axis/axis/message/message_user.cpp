@@ -250,12 +250,12 @@ namespace message
       return HIWORD(m_lparam);
    }
 
-   ::window_sp context_menu::GetWindow()
-   {
-      ::exception::throw_not_implemented(get_app());
-      return NULL;
-      //            return interaction_impl::from_handle_dup(reinterpret_cast<oswindow>(m_wparam));
-   }
+   //::window_sp context_menu::GetWindow()
+   //{
+   //   ::exception::throw_not_implemented(get_app());
+   //   return NULL;
+   //   //            return interaction_impl::from_handle_dup(reinterpret_cast<oswindow>(m_wparam));
+   //}
 
    point context_menu::GetPoint()
    {

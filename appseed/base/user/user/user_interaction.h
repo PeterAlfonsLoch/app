@@ -24,10 +24,10 @@ namespace user
 
    class interaction_impl_base;
 
-   CLASS_DECL_AXIS bool is_docking_appearance(::user::EAppearance eappearance);
+   CLASS_DECL_BASE bool is_docking_appearance(::user::EAppearance eappearance);
 
 
-   class CLASS_DECL_AXIS interaction:
+   class CLASS_DECL_BASE interaction:
       virtual public interaction_base,
       virtual public ::user::schema
    {
