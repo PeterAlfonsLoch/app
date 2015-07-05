@@ -28,6 +28,19 @@ namespace base
       application();
       virtual ~application();
 
+
+      virtual ::user::interaction * get_active_guie();
+      virtual ::user::interaction * get_focus_guie();
+
+
+      virtual ::user::interaction * window_from_os_data(void * pdata);
+
+      virtual sp(::user::interaction) release_capture_uie();
+      virtual sp(::user::interaction) get_capture_uie();
+
+
+
+
       virtual sp(type) user_default_controltype_to_typeinfo(::user::e_control_type e_type);
 
 
@@ -242,7 +255,41 @@ namespace base
 //      virtual bool set_keyboard_layout(const char * pszPath,::action::context actioncontext);
 //      virtual sp(type) user_default_controltype_to_typeinfo(::user::e_control_type e_type);
 //      virtual int32_t hotplugin_host_starter_start_sync(const char * pszCommandLine,::aura::application * papp,hotplugin::host * phost,hotplugin::plugin * pplugin = NULL) override;
-void process_message_filter(int32_t code,signal_details * pobj);
+
+virtual ::user::interaction * main_window();
+
+
+      void process_message_filter(int32_t code,signal_details * pobj);
+
+      virtual bool get_frame(::user::interaction * & pui);
+      virtual void add_frame(sp(::user::interaction) pwnd);
+      virtual void remove_frame(sp(::user::interaction) pwnd);
+
+      virtual string get_cred(const string & strRequestUrl,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive);
+
+      virtual ::user::user * create_user();
+
+      virtual bool on_thread_on_idle(::thread_impl * pimpl,LONG lCount);
+
+      virtual bool is_window(::user::primitive * pui);
+      virtual LRESULT send_message(::user::primitive * pui,UINT message,WPARAM wparam = 0,lparam lparam = 0);
+      virtual oswindow get_safe_handle(::user::primitive * pui);
+      virtual void dispatch_user_message(::signal_details * pbase);
+      virtual ::user::interaction * get_parent(::user::interaction * pui);
+      virtual bool enable_window(::user::primitive * pui,bool bEnable = true);
+      virtual bool set_window_text(::user::interaction * pui,const string & strText);
+      virtual ptr_array < ::thread > get_thread(::user::primitive * pui);
+      virtual void add_thread(::user::primitive * pui,::thread * pthread);
+      virtual void remove_thread(::user::primitive * pui,::thread * pthread);
+      virtual void window_graphics_update_window(window_graphics * & pdata,oswindow interaction_impl,COLORREF * pOsBitmapData,const RECT & rect,int cxParam,int cyParam,int iStride = -1,bool bTransferBuffer = true);
+
+      virtual void process_message(signal_details * pobj);
+
+
+      int32_t hotplugin_host_host_starter_start_sync(const char * pszCommandLine,::aura::application * papp,host * phost,plugin * pplugin);
+
+
+
    };
 
 

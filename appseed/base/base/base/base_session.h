@@ -17,17 +17,12 @@ namespace base
 
 
 
-      ::map < ::user::e_key,::user::e_key,bool,bool > *         m_pmapKeyPressed;
-
-
       session(::aura::application * papp);
       virtual ~session_parent;
 
-      virtual bool is_key_pressed(::user::e_key ekey);
+      bool process_initialize();
 
-      virtual void set_key_pressed(::user::e_key ekey,bool bPressed);
-
-
+      bool initialize1();
    };
 
 

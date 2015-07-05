@@ -39,6 +39,16 @@ namespace message
 } // namespace message
 
 
+namespace hotplugin
+{
+
+   class host;
+   class plugin;
+
+}
+
+
+
 namespace user
 {
 
@@ -203,10 +213,16 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 
 #include "axis/graphics/graphics.h"
 
-
 #include "axis/user/user/user_enum.h"
 
 #include "axis/user/user/user_key_enum.h"
+
+#include "axis/axis/message/message_user.h"
+
+#include "axis/user/user/user_keyboard_layout.h"
+
+#include "axis/user/user/user_keyboard.h"
+
 
 
 //#include "axis/axis/message/message_user.h"

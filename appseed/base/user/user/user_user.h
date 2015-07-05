@@ -16,11 +16,9 @@ namespace user
 
 
 
-      ::user::elemental *                    m_pkeyboardfocus;
       ::user::elemental *                    m_pmousefocusLButtonDown;
       ::user::elemental *                    m_pmousefocusRButtonDown;
       sp(::user::window_map)                 m_pwindowmap;
-      ::user::keyboard *                     m_pkeyboard;
       stringa                                m_straEscape;
 
 
@@ -45,9 +43,6 @@ namespace user
       virtual ::user::elemental * get_mouse_focus_RButtonDown();
       virtual void set_mouse_focus_RButtonDown(::user::elemental * pmousefocus);
 
-
-
-      class keyboard & keyboard();
 
 
       virtual void SendMessageToWindows(UINT message, WPARAM wParam, LPARAM lParam);

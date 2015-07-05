@@ -1001,9 +1001,6 @@
     <ClInclude Include="axis\message\message_user.h">
       <Filter>Header Files\axis\message</Filter>
     </ClInclude>
-    <ClInclude Include="database\database\database_user_interaction.h">
-      <Filter>Header Files\database\database</Filter>
-    </ClInclude>
     <ClInclude Include="axis\node\windows\windows_copydesk.h">
       <Filter>Header Files\axis\node\windows</Filter>
     </ClInclude>
@@ -1719,9 +1716,6 @@
     </ClCompile>
     <ClCompile Include="axis\message\message_user.cpp">
       <Filter>Source Files\axis\message</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database\database_user_interaction.cpp">
-      <Filter>Source Files\database\database</Filter>
     </ClCompile>
     <ClCompile Include="axis\node\windows\windows_copydesk.cpp">
       <Filter>Source Files\axis\node\windows</Filter>

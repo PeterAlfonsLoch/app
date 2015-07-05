@@ -242,9 +242,6 @@ namespace user
 #define TBSTYLE_TRANSPARENT     0x8000
 #endif
 
-#include "user/user_enum.h"
-
-#include "user/user_key_enum.h"
 
 #include "user/user_schema.h"
 
@@ -258,7 +255,6 @@ using user_interaction = ::user::interaction;
 #include "axis/user/user/user_elemental.h"
 //#include "user/user/user_check_interface.h"
 #include "axis/graphics/visual/visual_const.h"
-#include "axis/axis/message/message_user.h"
 #include "axis/user/user/user_schema_simple_impl.h"
 #include "axis/user/user/user_schema_layered_frame.h"
 //#include "user/user/user_text_interface.h"

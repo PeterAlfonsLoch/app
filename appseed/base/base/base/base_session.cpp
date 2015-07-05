@@ -83,6 +83,15 @@ namespace base
 
       m_puiFocus = NULL;
 
+      m_pschemasimple               = canew(::user::schema_simple_impl);
+
+      m_puserschema                 = m_pschemasimple;
+
+      m_pschemasimple->m_pfont.alloc(allocer());
+
+      m_pschemasimple->m_pfont->create_pixel_font("Helvetica",16);
+
+
 
    }
 
@@ -1068,27 +1077,60 @@ namespace base
 //
 //
 //
-//   bool session::process_initialize()
-//   {
-//
-//      if(!::axis::session::process_initialize())
-//         return false;
-//
-//      if(!::base::application::process_initialize())
-//         return false;
-//
-//      m_puser = create_user();
-//
-//      m_puser->add_ref();
-//
-//      if(m_puser == NULL)
-//         return false;
-//
-//      m_puser->construct(this);
-//
-//      return true;
-//
-//   }
+bool session::process_initialize()
+{
+
+
+
+   if(!::axis::session::process_initialize())
+      return false;
+
+
+
+
+
+   if(!::base::application::process_initialize())
+      return false;
+
+   m_puser = create_user();
+
+   if(m_puser == NULL)
+      return false;
+
+   m_puser->construct(this);
+
+
+   return true;
+
+}
+
+
+bool session::initialize1()
+{
+
+
+   if(!::axis::session::initialize1())
+      return false;
+
+   if(!::base::application::initialize1())
+      return false;
+
+
+   if(!m_puser->initialize1())
+      return false;
+
+   if(!m_puser->initialize2())
+      return false;
+
+   str_context()->localeschema().m_idaLocale.add(get_locale());
+
+   str_context()->localeschema().m_idaSchema.add(get_schema());
+
+
+   return true;
+
+}
+
 //
 //
 //   bool session::on_create_frame_window()

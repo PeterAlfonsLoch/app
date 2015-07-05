@@ -21,7 +21,17 @@ namespace axis
    {
    public:
 
-      
+
+      ::map < ::user::e_key,::user::e_key,bool,bool > *         m_pmapKeyPressed;
+
+
+
+
+
+      ::user::elemental *                             m_pkeyboardfocus;
+      ::user::keyboard *                              m_pkeyboard;
+
+
 
       ::userpresence::userpresence *                           m_puserpresence;
       sp(::ifs)                                                m_pifs;
@@ -257,6 +267,11 @@ namespace axis
 
       virtual void on_user_login(::fontopus::user * puser);
 
+      ::user::keyboard & keyboard();
+
+      virtual bool is_key_pressed(::user::e_key ekey);
+
+      virtual void set_key_pressed(::user::e_key ekey,bool bPressed);
 
    };
 

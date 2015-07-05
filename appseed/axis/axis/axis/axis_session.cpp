@@ -102,15 +102,6 @@ namespace axis
 
       m_paxissystem->m_basesessionptra.add_unique(this);
 
-      m_pschemasimple               = canew(::user::schema_simple_impl);
-
-      m_puserschema                 = m_pschemasimple;
-
-      m_pschemasimple->m_pfont.alloc(allocer());
-
-      m_pschemasimple->m_pfont->create_pixel_font("Helvetica",16);
-
-
       m_pcopydesk = NULL;
 
       m_puiFocus = NULL;
@@ -950,12 +941,7 @@ namespace axis
       if(!::axis::application::process_initialize())
          return false;
 
-      m_puser = create_user();
 
-      if(m_puser == NULL)
-         return false;
-
-      m_puser->construct(this);
 
       m_psockets = canew(::sockets::sockets(this));
 
@@ -3352,6 +3338,30 @@ namespace axis
 
 
    }
+
+
+   ::user::keyboard & session::keyboard()
+   {
+
+      if(m_pkeyboard == NULL)
+      {
+
+         m_pkeyboard = new ::user::keyboard(m_pauraapp);
+
+         if(m_pkeyboard == NULL)
+            throw simple_exception(get_app(),"Could not create keyboard");
+
+         if(!m_pkeyboard->initialize())
+            throw simple_exception(get_app(),"Could not initialize keyboard");
+
+         Application.on_create_keyboard();
+
+      }
+
+      return *m_pkeyboard;
+
+   }
+
 
 
 } // namespace base

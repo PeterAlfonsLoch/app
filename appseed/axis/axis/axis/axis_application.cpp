@@ -3255,188 +3255,15 @@ namespace axis
    void application::process_message_filter(int32_t code,signal_details * pobj)
    {
 
-      if(pobj == NULL)
-         return;   // not handled
-
       SCAST_PTR(::message::base,pbase,pobj);
 
-      sp(::user::frame_window) pTopFrameWnd;
-      //::user::interaction * pMainWnd;
-      ::user::interaction * pMsgWnd;
-      switch(code)
-      {
-         //case MSGF_DDEMGR:
-         // Unlike other WH_MSGFILTER codes, MSGF_DDEMGR should
-         //  never call the next hook.
-         // By returning FALSE, the message will be dispatched
-         //  instead (the default behavior).
-         //return;
-
-      case MSGF_MENU:
-         pMsgWnd = dynamic_cast < ::user::interaction * > (pbase->m_pwnd);
-         if(pMsgWnd != NULL)
-         {
-            pTopFrameWnd = pMsgWnd->GetTopLevelFrame();
-            if(pTopFrameWnd != NULL && pTopFrameWnd->IsTracking() &&
-               pTopFrameWnd->m_bHelpMode)
-            {
-               //pMainWnd = __get_main_window();
-               //if((m_puiMain != NULL) && (IsEnterKey(pbase) || IsButtonUp(pbase)))
-               //{
-               //   //                  pMainWnd->SendMessage(WM_COMMAND, ID_HELP);
-               //   pbase->m_bRet = true;
-               //   return;
-               //}
-            }
-         }
-         // fall through...
-
-      case MSGF_DIALOGBOX:    // handles message boxes as well.
-         //pMainWnd = __get_main_window();
-         if(code == MSGF_DIALOGBOX && m_puiActive != NULL &&
-            pbase->m_uiMessage >= WM_KEYFIRST && pbase->m_uiMessage <= WM_KEYLAST)
-         {
-            //// need to translate messages for the in-place container
-            //___THREAD_STATE* pThreadState = __get_thread_state();
-            //ENSURE(pThreadState);
-
-            //if (pThreadState->m_bInMsgFilter)
-            //   return;
-            //pThreadState->m_bInMsgFilter = TRUE;    // avoid reentering this code
-            //if (m_puiActive->is_window_enabled())
-            //{
-            //   pre_translate_message(pobj);
-            //   if(pobj->m_bRet)
-            //   {
-            //      pThreadState->m_bInMsgFilter = FALSE;
-            //      return;
-            //   }
-            //}
-            //pThreadState->m_bInMsgFilter = FALSE;    // ok again
-         }
-         break;
-      }
-      // default to not handled
 
    }
 
 
 
 
-   bool application::get_frame(::user::interaction * & pui)
-   {
 
-      synch_lock sl(&m_mutexFrame);
-
-      if(m_uiptraFrame.get_count() <= 0)
-      {
-
-         return false;
-
-      }
-
-      if(pui == NULL)
-      {
-
-         pui = m_uiptraFrame[0];
-
-         return true;
-
-      }
-      else
-      {
-
-         for(index i = m_uiptraFrame.get_upper_bound(); i >= 0; i--)
-         {
-
-            if(m_uiptraFrame[i] == pui)
-            {
-
-               i++;
-
-               if(i < m_uiptraFrame.get_count())
-               {
-
-                  pui = m_uiptraFrame[i];
-
-                  return true;
-
-               }
-               else
-               {
-
-                  return false;
-
-               }
-
-            }
-
-         }
-
-      }
-
-      return false;
-
-   }
-
-
-   void application::add_frame(sp(::user::interaction) pwnd)
-   {
-
-      synch_lock sl(&m_mutexFrame); // recursive lock (on m_framea.add(pwnd)) but m_puiMain is "cared" by m_frame.m_mutex
-
-      if(m_uiptraFrame.add_unique(pwnd))
-      {
-
-         System.defer_create_system_frame_window();
-
-         Session.on_create_frame_window();
-
-         if(m_puiMain == NULL)
-         {
-
-            m_puiMain = pwnd;
-
-         }
-
-      }
-
-   }
-
-
-   void application::remove_frame(sp(::user::interaction) pwnd)
-   {
-
-      synch_lock sl(&m_mutexFrame); // recursive lock (on m_framea.remove(pwnd)) but m_puiMain is "cared" by m_frame.m_mutex
-
-      if(m_puiMain == pwnd)
-      {
-
-         m_puiMain = NULL;
-
-      }
-
-      m_uiptraFrame.remove(pwnd);
-
-
-   }
-
-
-
-
-   ::user::interaction * application::window_from_os_data(void * pdata)
-   {
-
-      if(pdata == NULL)
-      {
-
-         return NULL;
-
-      }
-
-      return window_from_handle((oswindow)pdata);
-
-   }
 
 
    void application::DoWaitCursor(int32_t nCode)
@@ -3578,84 +3405,6 @@ namespace axis
 
 
 
-   sp(::user::interaction) application::release_capture_uie()
-   {
-
-#if defined(LINUX)
-
-      oswindow oswindowCapture = ::GetCapture();
-      if(oswindowCapture == NULL)
-         return NULL;
-      return oswindowCapture->get_user_interaction()->ReleaseCapture();
-
-#elif defined(WINDOWS)
-
-      oswindow oswindowCapture = ::GetCapture();
-      if(oswindowCapture == NULL)
-         return NULL;
-      return System.window_from_os_data(oswindowCapture)->ReleaseCapture();
-
-#elif defined(APPLEOS)
-
-      oswindow oswindowCapture = ::GetCapture();
-      if(oswindowCapture == NULL)
-         return NULL;
-      return oswindowCapture->get_user_interaction()->ReleaseCapture();
-
-#else
-
-      ::exception::throw_not_implemented(get_app());
-
-#endif
-
-   }
-
-
-   sp(::user::interaction) application::get_capture_uie()
-   {
-
-#if defined(METROWIN)
-
-      oswindow oswindowCapture = ::GetCapture();
-
-      if(oswindowCapture == NULL)
-         return NULL;
-
-      ::user::interaction * pui = oswindowCapture->window();
-
-      if(pui == NULL)
-         return NULL;
-
-      return pui->GetCapture();
-
-#elif defined(WINDOWS) || defined(APPLE_IOS)
-
-      oswindow oswindowCapture = ::GetCapture();
-
-      if(oswindowCapture == NULL)
-         return NULL;
-
-      sp(::user::interaction) pui = System.window_from_os_data(oswindowCapture);
-
-      if(pui == NULL)
-         return NULL;
-
-      return pui->GetCapture();
-
-#else
-
-      //      ::exception::throw_not_implemented(get_app());
-
-      oswindow oswindowCapture = ::GetCapture();
-
-      if(oswindowCapture == NULL)
-         return NULL;
-
-      return window_from_handle(::GetCapture());
-
-#endif
-
-   }
 
 
 
@@ -3693,54 +3442,6 @@ namespace axis
    }
 
 
-   string application::get_cred(const string & strRequestUrlParam,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
-   {
-
-      string str = ::fontopus::get_cred(this,strUsername,strPassword,strToken);
-
-      if(str == "ok")
-         return "ok";
-
-      if(!bInteractive)
-         return "failed";
-
-      sp(::fontopus::simple_ui) pui;
-
-      string strRequestUrl(strRequestUrlParam);
-
-      if(strRequestUrl.is_empty())
-      {
-
-         string strIgnitionServer = file_as_string_dup("C:\\ca2\\config\\system\\ignition_server.txt");
-
-         if(::str::ends_ci(strIgnitionServer,".ca2.cc"))
-         {
-
-            strRequestUrl = "https://" + strIgnitionServer + "/";
-
-         }
-         else
-         {
-
-            strRequestUrl = "https://account.ca2.cc/";
-
-         }
-
-      }
-
-      pui = canew(::fontopus::simple_ui(this,strRequestUrl));
-
-      pui->m_login.m_peditUser->SetWindowText(strUsername);
-
-      pui->m_login.m_ppassword->SetWindowText("");
-
-      string strResult = pui->get_cred(rect,strUsername,strPassword,strToken,strTitle);
-
-      pui->DestroyWindow();
-
-      return strResult;
-
-   }
 
 
 
@@ -4759,18 +4460,11 @@ namespace axis
 
 
 
-   ::user::user * application::create_user()
-   {
-
-      return canew(::user::user(this));
-
-   }
-
 
    void application::on_create_keyboard()
    {
 
-      Session.user()->set_keyboard_layout(NULL,::action::source::database());
+      Session.set_keyboard_layout(NULL,::action::source::database());
 
    }
 
@@ -4799,271 +4493,17 @@ namespace axis
    //}
 
 
-   ::user::interaction * application::get_active_guie()
-   {
 
-      return Session.get_active_guie();
 
-   }
 
 
-   ::user::interaction * application::get_focus_guie()
-   {
-
-      return Session.get_focus_guie();
-
-   }
-
-
-
-
-   bool application::on_thread_on_idle(::thread_impl * pimpl,LONG lCount)
-   {
-
-      //      ASSERT_VALID(this);
-      //
-      //#if defined(WINDOWS) && defined(DEBUG) && !defined(___NO_DEBUG_CRT)
-      //      // check core API's allocator (before idle)
-      //      if(_CrtSetDbgFlag(_CRTDBG_REPORT_FLAG) & _CRTDBG_CHECK_ALWAYS_DF)
-      //         ASSERT(__check_memory());
-      //#endif
-
-      single_lock sl(&pimpl->m_mutexUiPtra,TRUE);
-
-      ::user::interaction * pui = NULL;
-
-
-      if(lCount <= 0)
-      {
-         while(get_frame(pui))
-         {
-            //::user::interaction * pui = (::user::interaction *) pimpl->m_spuiptra->element_at(i)->m_pvoidUserInteraction;
-            bool bOk = false;
-            try
-            {
-
-               bOk = pui != NULL && pui->IsWindowVisible();
-            }
-            catch(...)
-            {
-            }
-            if(!bOk)
-            {
-            //   try
-            //   {
-            //      Application.remove_frame(pui);
-            //   }
-            //   catch(...)
-            //   {
-            //   }
-            //   try
-            //   {
-            //      Session.remove_frame(pui);
-            //   }
-            //   catch(...)
-            //   {
-            //   }
-            //   try
-            //   {
-            //      System.remove_frame(pui);
-            //   }
-            //   catch(...)
-            //   {
-            //   }
-            }
-            else
-            {
-               sl.unlock();
-               try
-               {
-                  pui->send_message(WM_IDLEUPDATECMDUI,(WPARAM)TRUE);
-               }
-               catch(...)
-               {
-
-               }
-               sl.lock();
-            }
-         }
-
-
-      }
-      else if(lCount >= 0)
-      {
-      }
-
-      //#if defined(WINDOWS) && defined(DEBUG) && !defined(___NO_DEBUG_CRT)
-      //      // check core API's allocator (after idle)
-      //      if(_CrtSetDbgFlag(_CRTDBG_REPORT_FLAG) & _CRTDBG_CHECK_ALWAYS_DF)
-      //         ASSERT(__check_memory());
-      //#endif
-      //
-
-
-      return lCount < 0;  // nothing more to do if lCount >= 0
-
-   }
-
-
-   bool application::post_user_message(::thread_impl * pimpl,::user::primitive * pui,UINT message,WPARAM wparam,lparam lparam)
-   {
-
-      if(pimpl->m_hthread == NULL)
-         return false;
-
-      ::user::message * pmessage    = new ::user::message;
-      pmessage->m_pui               = (::user::interaction *) pui->m_pvoidUserInteraction;
-      pmessage->m_uiMessage         = message;
-      pmessage->m_wparam            = wparam;
-      pmessage->m_lparam            = lparam;
-
-      return pimpl->post_thread_message(WM_APP + 1984,77,(LPARAM)pmessage) != FALSE;
-
-   }
-
-
-
-   bool application::is_window(::user::primitive * pui)
-   {
-
-      return ((::user::interaction *)pui->m_pvoidUserInteraction)->IsWindow();
-
-   }
-
-   LRESULT application::send_message(::user::primitive * pui,UINT message,WPARAM wparam,lparam lparam)
-   {
-
-      return ((::user::interaction *)pui->m_pvoidUserInteraction)->send_message(message,wparam,lparam);
-
-   }
-
-   oswindow application::get_safe_handle(::user::primitive * pui)
-   {
-
-      return ((::user::interaction *)pui->m_pvoidUserInteraction)->get_safe_handle();
-
-   }
-
-   void application::dispatch_user_message(::signal_details * pobj)
-   {
-
-      smart_pointer < ::user::message > spmessage(pobj->m_lparam);
-      spmessage->send();
-      pobj->m_uiMessage   = 0;    // ssshhhh.... - self-healing - sh...
-      pobj->m_wparam      = 0;    // ssshhhh.... - self-healing - sh...
-      pobj->m_bRet        = true;
-      return;
-
-   }
-
-
-   ::user::interaction * application::get_parent(::user::interaction * pui)
-   {
-
-      return pui->GetParent();
-
-   }
-
-
-   bool application::enable_window(::user::primitive * pui,bool bEnable)
-   {
-
-      // if control has the focus, move the focus before disabling
-      if(!bEnable)
-      {
-
-         if(System.get_focus_guie() == ((::user::interaction *)pui->m_pvoidUserInteraction))
-         {
-
-            Application.send_message(Application.get_parent(((::user::interaction *)pui->m_pvoidUserInteraction)),WM_NEXTDLGCTL,0,(LPARAM)FALSE);
-
-         }
-
-      }
-
-      return ((::user::interaction *)pui->m_pvoidUserInteraction)->enable_window(bEnable);
-
-   }
-
-
-   bool application::set_window_text(::user::interaction * pui,const string & strText)
-   {
-
-      pui->SetWindowText(strText);
-
-      return true;
-
-   }
-
-
-   ptr_array < ::thread > application::get_thread(::user::primitive * pui)
-   {
-
-      return ((::user::interaction *)pui->m_pvoidUserInteraction)->m_threadptra;
-
-   }
-
-
-   void application::add_thread(::user::primitive * pui,::thread * pthread)
-   {
-
-      ((::user::interaction *)pui->m_pvoidUserInteraction)->m_threadptra.add_unique(pthread);
-
-   }
-
-   void application::remove_thread(::user::primitive * pui,::thread * pthread)
-   {
-
-      ((::user::interaction *)pui->m_pvoidUserInteraction)->m_threadptra.remove(pthread);
-
-   }
-
-   void application::window_graphics_update_window(window_graphics * & pdata,oswindow interaction_impl,COLORREF * pOsBitmapData,const RECT & rect,int cxParam,int cyParam,int iStride,bool bTransferBuffer)
-   {
-
-      window_graphics::update_window(pdata,interaction_impl,pOsBitmapData,rect,cxParam,cyParam,iStride, bTransferBuffer);
-
-   }
 
 
 
    sp(::message::base) application::get_message_base(LPMESSAGE lpmsg)
    {
 
-      ::user::interaction * pwnd = NULL;
 
-      if(pwnd == NULL && lpmsg->hwnd != NULL)
-      {
-
-         if(lpmsg->message == 126)
-         {
-
-            TRACE0("WM_DISPLAYCHANGE");
-
-         }
-
-         ::user::interaction * pwindow = System.window_from_os_data(lpmsg->hwnd);
-
-         if(pwindow != NULL)
-         {
-            try
-            {
-               pwnd = pwindow;
-            }
-            catch(...)
-            {
-               pwnd = NULL;
-            }
-         }
-
-         if(pwnd == NULL)
-            return NULL;
-
-      }
-
-
-      if(pwnd != NULL)
-         return pwnd->get_base(lpmsg->message,lpmsg->wParam,lpmsg->lParam);
 
       ::thread * pthread = ::get_thread();
 
@@ -5075,104 +4515,6 @@ namespace axis
    }
 
 
-   void application::process_message(signal_details * pobj)
-   {
-
-      sp(::message::base) pbase = pobj;
-
-      if(pbase.is_null() || pbase->m_pwnd == NULL)
-      {
-
-         try
-         {
-
-            message_handler(pobj);
-
-         }
-         catch(const ::exception::exception & e)
-         {
-
-            TRACE("application::process_message : error processing application thread message (const ::exception::exception & )");
-
-            if(App(this).on_run_exception((::exception::exception &) e))
-               goto run;
-
-            if(App(this).final_handle_exception((::exception::exception &) e))
-               goto run;
-
-            __post_quit_message(-1);
-
-            pbase->set_lresult(-1);
-
-            return;
-
-         }
-         catch(::exception::base * pe)
-         {
-
-            process_window_procedure_exception(pe,pbase);
-
-            TRACE(::aura::trace::category_AppMsg,0,"Warning: Uncaught exception in message_handler (returning %ld) (application::process_message : error processing application thread message).\n",(int_ptr)pbase->get_lresult());
-
-            pe->Delete();
-
-         }
-         catch(...)
-         {
-
-            TRACE("application::process_message : error processing application thread message (...)");
-
-         }
-
-         return;
-
-      }
-
-      try
-      {
-
-         ((::user::interaction *)pbase->m_pwnd->m_pvoidUserInteraction)->message_handler(pobj);
-
-
-      }
-      catch(const ::exception::exception & e)
-      {
-
-         TRACE("application::process_message : error processing window message (const ::exception::exception & )");
-
-         if(App(this).on_run_exception((::exception::exception &) e))
-            goto run;
-
-         if(App(this).final_handle_exception((::exception::exception &) e))
-            goto run;
-
-         __post_quit_message(-1);
-
-         pbase->set_lresult(-1);
-
-         return;
-
-      }
-      catch(::exception::base * pe)
-      {
-
-         process_window_procedure_exception(pe,pbase);
-
-         TRACE(::aura::trace::category_AppMsg,0,"Warning: Uncaught exception in message_handler (returning %ld) (application::process_message : error processing window message).\n",(int_ptr)pbase->get_lresult());
-
-         pe->Delete();
-
-      }
-      catch(...)
-      {
-
-         TRACE("application::process_message : error processing window message (...)");
-
-      }
-
-   run:;
-
-   }
 
    int32_t application::simple_message_box(::user::primitive * puiOwner,const char * pszMessage,UINT fuStyle)
    {
@@ -5269,28 +4611,59 @@ namespace axis
    bool application::set_keyboard_layout(const char * pszPath,::action::context actioncontext)
    {
 
-      return Session.user()->set_keyboard_layout(pszPath,actioncontext);
 
-   }
+         if(get_app()->m_pbasesession == NULL)
+            return false;
+
+         if(pszPath == NULL)
+         {
+
+            if(&Session.keyboard().layout() != NULL)
+            {
+
+               //            if(Session.fontopus()->m_puser != NULL
+               //             && Session.fontopus()->m_puser->m_strFontopusServerSessId.has_char())
+               //        {
+
+               // xxx data_set("keyboard_layout", keyboard().layout().m_strPath);
+
+               //      }
+
+               return true;
+            }
+
+            string strCurrentSystemLayout = Session.keyboard().get_current_system_layout();
+
+            if(strCurrentSystemLayout.is_empty())
+               return false;
+
+            if(!set_keyboard_layout(strCurrentSystemLayout,::action::source_database))
+               return false;
+
+            //         if(Session.fontopus()->m_puser != NULL
+            //          && Session.fontopus()->m_puser->m_strFontopusServerSessId.has_char())
+            //     {
+
+            // xxx            data_set("keyboard_layout", keyboard().layout().m_strPath);
+
+            //   }
+
+            return true;
+         }
+
+         if(!Session.keyboard().load_layout(pszPath,actioncontext))
+            return false;
+
+         // xxx Application.simpledb().on_set_keyboard_layout(pszPath, actioncontext);
+
+         return true;
+      }
 
 
-   ::user::interaction * application::main_window()
-   {
-
-      if(m_puiMain == NULL)
-         return NULL;
-
-      return (::user::interaction *) m_puiMain->m_pvoidUserInteraction;
-
-   }
 
 
-   sp(type) application::user_default_controltype_to_typeinfo(::user::e_control_type e_type)
-   {
 
-      return sp(type)();
 
-   }
 
 
    int32_t application::hotplugin_host_starter_start_sync(const char * pszCommandLine,::aura::application * papp,hotplugin::host * phost,hotplugin::plugin * pplugin)
@@ -5315,9 +4688,17 @@ namespace axis
       else
       {
 
-         return hotplugin::host::host_starter_start_sync(pszCommandLine,get_app(),NULL);
+         return hotplugin_host_host_starter_start_sync(pszCommandLine,get_app(),NULL);
 
       }
+
+   }
+
+
+   int32_t application::hotplugin_host_host_starter_start_sync(const char * pszCommandLine,::aura::application * papp,hotplugin::host * phost,hotplugin::plugin * pplugin)
+   {
+   
+      return -1;
 
    }
 

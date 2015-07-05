@@ -290,7 +290,7 @@ namespace message
       ctl_color(::aura::application * papp):  ::message::base(papp) {}
       HBRUSH      m_hbrush;
       ::draw2d::graphics *       m_pdc;
-      ::window_sp      m_pwnd;
+      //::window_sp      m_pwnd;
       UINT        m_nCtlType;
    };
 

@@ -11,7 +11,6 @@ namespace axis
    {
    public:
 
-
       bool                                            m_bAxisProcessInitialize;
       bool                                            m_bAxisProcessInitializeResult;
 
@@ -209,8 +208,6 @@ namespace axis
       virtual string multimedia_audio_mixer_get_default_library_name();
       virtual string veriwell_multimedia_music_midi_get_default_library_name();
 
-      virtual string get_cred(const string & strRequestUrl, const RECT & rect, string & strUsername,string & strPassword, string strToken, string strTitle, bool bInteractive);
-
       virtual bool get_temp_file_name_template(string & str,const char * pszName,const char * pszExtension,const char * pszTemplate);
 
       virtual bool get_temp_file_name(string & str,const char * pszName,const char * pszExtension);
@@ -352,11 +349,6 @@ namespace axis
       //virtual bool is_serviceable();
 
 
-      virtual ::user::user * create_user();
-
-
-      virtual ::user::interaction * main_window();
-
 
       virtual void on_create_keyboard();
 
@@ -371,8 +363,6 @@ namespace axis
       virtual bool do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog,::user::impact_system * ptemplate,::user::document * pdocument);
 
 
-      virtual sp(::user::interaction) release_capture_uie();
-      virtual sp(::user::interaction) get_capture_uie();
 
 
       //void process_machine_event_data(machine_event_data * pdata);
@@ -381,9 +371,6 @@ namespace axis
 
       virtual void process_message_filter(int32_t code,signal_details * pobj);
 
-      virtual bool get_frame(::user::interaction * & pui);
-      virtual void add_frame(sp(::user::interaction) pwnd);
-      virtual void remove_frame(sp(::user::interaction) pwnd);
 
 
       virtual void DoWaitCursor(int32_t nCode); // 0 => restore, 1=> begin, -1=> end
@@ -394,21 +381,9 @@ namespace axis
       virtual void get_time(timeval *p);
 #endif
 
-      virtual bool on_thread_on_idle(::thread_impl * pimpl,LONG lCount);
       virtual bool post_user_message(::thread_impl * pimpl,::user::primitive * pui,UINT message,WPARAM wparam = 0,lparam lparam = 0);
 
 
-      virtual bool is_window(::user::primitive * pui);
-      virtual LRESULT send_message(::user::primitive * pui,UINT message,WPARAM wparam = 0,lparam lparam = 0);
-      virtual oswindow get_safe_handle(::user::primitive * pui);
-      virtual void dispatch_user_message(::signal_details * pbase);
-      virtual ::user::interaction * get_parent(::user::interaction * pui);
-      virtual bool enable_window(::user::primitive * pui,bool bEnable = true);
-      virtual bool set_window_text(::user::interaction * pui,const string & strText);
-      virtual ptr_array < ::thread > get_thread(::user::primitive * pui);
-      virtual void add_thread(::user::primitive * pui,::thread * pthread);
-      virtual void remove_thread(::user::primitive * pui,::thread * pthread);
-      virtual void window_graphics_update_window(window_graphics * & pdata,oswindow interaction_impl,COLORREF * pOsBitmapData,const RECT & rect,int cxParam,int cyParam,int iStride = -1,bool bTransferBuffer = true);
 
 
 
@@ -427,11 +402,6 @@ namespace axis
       virtual string get_license_id();
 
 
-      virtual ::user::interaction * get_active_guie();
-      virtual ::user::interaction * get_focus_guie();
-
-
-      virtual ::user::interaction * window_from_os_data(void * pdata);
 
 
       virtual void construct(const char * pszAppId);
@@ -512,7 +482,6 @@ namespace axis
 
       virtual sp(::message::base) get_message_base(LPMESSAGE lpmsg);
 
-      virtual void process_message(signal_details * pobj);
 
       //virtual ::user::interaction * get_active_guie();
       //virtual ::user::interaction * get_focus_guie();
@@ -532,6 +501,8 @@ namespace axis
       virtual bool on_open_document(::user::document * pdocument, var varFile);
       virtual bool on_save_document(::user::document * pdocument,var varFile);
 
+
+      virtual int32_t hotplugin_host_host_starter_start_sync(const char * pszCommandLine,::aura::application * papp,hotplugin::host * phost,hotplugin::plugin * pplugin = NULL);
 
    };
 
