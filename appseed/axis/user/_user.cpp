@@ -3,7 +3,6 @@
 
 
 #include "aura/user/colorertake5/colorertake5.h"
-#include "user.h"
 
 //O volume na unidade Z ‚ eco
 //O N£mero de S‚rie do Volume ‚ 4A91 - 94E4
