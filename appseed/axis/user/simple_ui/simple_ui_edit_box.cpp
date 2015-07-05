@@ -20,7 +20,9 @@ namespace simple_ui
 
    edit_box::~edit_box()
    {
+
    }
+
 
    void edit_box::install_message_handling(::message::dispatch * pdispatch)
    {
@@ -31,12 +33,12 @@ namespace simple_ui
       IGUI_LBUTTONDOWN(edit_box);
       IGUI_LBUTTONUP(edit_box);
 
-
    }
 
 
    void edit_box::_001OnLButtonDown(signal_details * pobj)
    {
+
       UNREFERENCED_PARAMETER(pobj);
 
 //      SCAST_PTR(::message::mouse,pmouse,pobj);

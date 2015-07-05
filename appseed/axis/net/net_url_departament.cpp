@@ -1,7 +1,6 @@
 #include "framework.h"
-
-
 #include "idna.h"
+
 
 namespace url
 {
@@ -28,6 +27,7 @@ namespace url
          return "";
       return str.Mid(0, iPos);
    }
+
 
    string departament::get_root(const char * psz)
    {

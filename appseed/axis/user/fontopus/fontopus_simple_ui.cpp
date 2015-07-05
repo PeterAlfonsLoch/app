@@ -38,6 +38,7 @@ namespace fontopus
 
    }
 
+
    void simple_ui::install_message_handling(::message::dispatch * pdispatch)
    {
 

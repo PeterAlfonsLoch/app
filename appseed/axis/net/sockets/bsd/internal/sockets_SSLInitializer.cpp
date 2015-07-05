@@ -50,27 +50,29 @@ extern "C" void SSLInitializer_rand_add(const void * buf, int32_t num, double en
 extern "C" int32_t SSLInitializer_rand_pseudorand(uchar * buf, int32_t num);
 extern "C" int32_t SSLInitializer_rand_status();
 
+
 namespace sockets
 {
 
 
-   map < int32_t,int32_t,mutex *,mutex *>  * g_pmapMutex = NULL;
+   map < int32_t, int32_t, mutex *, mutex *>  * g_pmapMutex = NULL;
 
    mutex * g_pmutexMap = NULL;
 
 
-   #ifdef LINUX
-// ssl_sigpipe_handle ---------------------------------------------------------
-void ssl_sigpipe_handle( int x ) {
-    /* Ignore broken pipes */
-}
-   #endif
+#ifdef LINUX
+   // ssl_sigpipe_handle ---------------------------------------------------------
+   void ssl_sigpipe_handle(int x)
+   {
+      /* Ignore broken pipes */
+   }
+#endif
 
 
    RAND_METHOD rand_meth;
 
-   ::aura::system * g_psystem = NULL;
 
+   ::aura::system * g_psystem = NULL;
 
 
    SSLInitializer::SSLInitializer(::aura::application * papp) :
@@ -78,10 +80,10 @@ void ssl_sigpipe_handle( int x ) {
    {
 
 
-
       TRACE("SSLInitializer()\n");
 
       bio_err = NULL;
+
       m_rand_size = 1024;
 
       g_psystem = papp->m_paurasystem;
@@ -89,7 +91,7 @@ void ssl_sigpipe_handle( int x ) {
       /* An error write context */
       bio_err = BIO_new_fp(stderr, BIO_NOCLOSE);
 
-      g_pmapMutex = new map < int32_t,int32_t,mutex *,mutex *>;
+      g_pmapMutex = new map < int32_t, int32_t, mutex *, mutex *>;
 
       g_pmutexMap = new mutex(get_app());
 
@@ -101,8 +103,8 @@ void ssl_sigpipe_handle( int x ) {
       CRYPTO_set_id_callback(SSLInitializer_SSL_id_function);
 
 
- /* Ignore broken pipes which would cause our program to terminate
-    prematurely */
+      /* Ignore broken pipes which would cause our program to terminate
+         prematurely */
 
       rand_meth.add = &SSLInitializer_rand_add;
       rand_meth.bytes = &SSLInitializer_rand_bytes;
@@ -115,83 +117,85 @@ void ssl_sigpipe_handle( int x ) {
 
 
 
-   /*   char *randfile =
-      char *home = getenv("HOME");
-      if (!randfile && !home)
-      {
-         char *homepath = getenv("HOMEPATH");
-         if (homepath)
+      /*   char *randfile =
+         char *home = getenv("HOME");
+         if (!randfile && !home)
          {
-            Utility::SetEnv("HOME", homepath);
-         }
-      }*/
+            char *homepath = getenv("HOMEPATH");
+            if (homepath)
+            {
+               Utility::SetEnv("HOME", homepath);
+            }
+         }*/
 
-      //primitive::memory memstorage;
-      //memstorage.allocate(5000);
-      //memstorage.allocate(5000);
-      //System.math().gen_rand(memstorage.get_data(), memstorage.get_size());
+         //primitive::memory memstorage;
+         //memstorage.allocate(5000);
+         //memstorage.allocate(5000);
+         //System.math().gen_rand(memstorage.get_data(), memstorage.get_size());
 
-      /*for(int32_t i = 0; i < memstorage.get_size(); i += 3)
-      {
-         int32_t iValue = System.math().RandRange(0, 0x00ffffff);
-         memstorage.get_data()[i] = iValue & 0xff;
-         memstorage.get_data()[i+1] = (iValue >> 8) & 0xff;
-         memstorage.get_data()[i+2] = (iValue >> 16) & 0xff;
-      }*/
+         /*for(int32_t i = 0; i < memstorage.get_size(); i += 3)
+         {
+            int32_t iValue = System.math().RandRange(0, 0x00ffffff);
+            memstorage.get_data()[i] = iValue & 0xff;
+            memstorage.get_data()[i+1] = (iValue >> 8) & 0xff;
+            memstorage.get_data()[i+2] = (iValue >> 16) & 0xff;
+         }*/
 
-      /*m_rand_file = System.file().time_square();
-      //*path = 0;
-      //RAND_file_name(path, 512);
-      //if (*path)
-      //{
-
-
-
-      int32_t iWritten = RAND_write_file(m_rand_file);
-      m_rand_size = iWritten;
-      //}
-      //else
-      //{
-   //TRACE("SSLInitializer: no random file generated\n");
-   //   }
-
-      ::file::binary_buffer_sp spfile(allocer());
-
-      spfile->open(m_rand_file, ::file::type_binary | ::file::mode_read);
+         /*m_rand_file = System.file().time_square();
+         //*path = 0;
+         //RAND_file_name(path, 512);
+         //if (*path)
+         //{
 
 
-      //memstorage.FullLoad(spfile);
 
-      /* Load randomness */
-      /*if (!m_rand_file.get_length())
-      {
-   TRACE("SSLInitializer: PRNG not initialized\n");
-      }*/
-      /*RAND_add(
-            memstorage.get_data(),
-            memstorage.get_size(),
-            memstorage.get_size());*/
+         int32_t iWritten = RAND_write_file(m_rand_file);
+         m_rand_size = iWritten;
+         //}
+         //else
+         //{
+      //TRACE("SSLInitializer: no random file generated\n");
+      //   }
 
-      //RAND_seed(memstorage.get_data(), memstorage.get_size());
+         ::file::binary_buffer_sp spfile(allocer());
+
+         spfile->open(m_rand_file, ::file::type_binary | ::file::mode_read);
+
+
+         //memstorage.FullLoad(spfile);
+
+         /* Load randomness */
+         /*if (!m_rand_file.get_length())
+         {
+      TRACE("SSLInitializer: PRNG not initialized\n");
+         }*/
+         /*RAND_add(
+               memstorage.get_data(),
+               memstorage.get_size(),
+               memstorage.get_size());*/
+
+               //RAND_seed(memstorage.get_data(), memstorage.get_size());
 
    }
 
 
    SSLInitializer::~SSLInitializer()
    {
-//      TRACE("~SSLInitializer()\n");
-      //DeleteRandFile();
-      // %! delete mutexes
 
 
-      if(g_pmapMutex != NULL)
+      //      TRACE("~SSLInitializer()\n");
+            //DeleteRandFile();
+            // %! delete mutexes
+
+
+      if (g_pmapMutex != NULL)
       {
          delete g_pmapMutex;
 
          g_pmapMutex = NULL;
       }
 
-      if(g_pmutexMap != NULL)
+      if (g_pmutexMap != NULL)
       {
          delete g_pmutexMap;
 
@@ -203,7 +207,7 @@ void ssl_sigpipe_handle( int x ) {
 
    void SSLInitializer::DeleteRandFile()
    {
-      
+
       if (m_rand_file.get_length())
       {
 
@@ -214,70 +218,66 @@ void ssl_sigpipe_handle( int x ) {
    }
 
 
-
-
 } // namespace sockets
 
 
+extern "C" void SSLInitializer_SSL_locking_function(int32_t mode, int32_t n, const char * file, int32_t line)
+{
+   UNREFERENCED_PARAMETER(file);
+   UNREFERENCED_PARAMETER(line);
 
 
-   extern "C" void SSLInitializer_SSL_locking_function(int32_t mode, int32_t n, const char * file, int32_t line)
+   synch_lock sl(::sockets::g_pmutexMap);
+
+   mutex * pmutex = NULL;
+   if (!::sockets::g_pmapMutex->Lookup(n, pmutex))
    {
-      UNREFERENCED_PARAMETER(file);
-      UNREFERENCED_PARAMETER(line);
-
-
-      synch_lock sl(::sockets::g_pmutexMap);
-
-      mutex * pmutex = NULL;
-      if(!::sockets::g_pmapMutex->Lookup(n,pmutex))
-      {
-         ::sockets::g_pmapMutex->operator [](n) = new mutex(get_thread_app());
-         if(!::sockets::g_pmapMutex->Lookup(n,pmutex))
-         {
-            return;
-         }
-      }
-
-      if(pmutex == NULL)
+      ::sockets::g_pmapMutex->operator [](n) = new mutex(get_thread_app());
+      if (!::sockets::g_pmapMutex->Lookup(n, pmutex))
       {
          return;
       }
-
-      sl.unlock();
-
-      if (mode & CRYPTO_LOCK)
-      {
-         pmutex->lock();
-      }
-      else
-      {
-         pmutex->unlock();
-      }
-
    }
 
-
-
-   extern "C" unsigned long SSLInitializer_SSL_id_function()
+   if (pmutex == NULL)
    {
-#ifdef WIN32
-      return ::GetCurrentThreadId();
-#else
-      return (unsigned long) (int_ptr) ::pthread_self();
-#endif
+      return;
    }
+
+   sl.unlock();
+
+   if (mode & CRYPTO_LOCK)
+   {
+      pmutex->lock();
+   }
+   else
+   {
+      pmutex->unlock();
+   }
+
+}
+
+
+
+extern "C" unsigned long SSLInitializer_SSL_id_function()
+{
+#ifdef WIN32
+   return ::GetCurrentThreadId();
+#else
+   return (unsigned long)(int_ptr) ::pthread_self();
+#endif
+}
 
 extern "C" void SSLInitializer_rand_seed(const void * buf, int32_t num)
 {
-  UNREFERENCED_PARAMETER(buf);
-  UNREFERENCED_PARAMETER(num);
+   UNREFERENCED_PARAMETER(buf);
+   UNREFERENCED_PARAMETER(num);
 }
 
 extern "C" int32_t SSLInitializer_rand_bytes(uchar * buf, int32_t num)
 {
-  ::sockets::g_psystem->math().gen_rand(buf, num);
-  return num;
+   ::sockets::g_psystem->math().gen_rand(buf, num);
+   return num;
 }
 
 extern "C" void SSLInitializer_rand_cleanup()
@@ -286,21 +286,24 @@ extern "C" void SSLInitializer_rand_cleanup()
 
 extern "C" void SSLInitializer_rand_add(const void * buf, int32_t num, double entropy)
 {
-  UNREFERENCED_PARAMETER(buf);
-  UNREFERENCED_PARAMETER(num);
-  UNREFERENCED_PARAMETER(entropy);
+   UNREFERENCED_PARAMETER(buf);
+   UNREFERENCED_PARAMETER(num);
+   UNREFERENCED_PARAMETER(entropy);
 }
 
 extern "C" int32_t SSLInitializer_rand_pseudorand(uchar * buf, int32_t num)
 {
-  ::sockets::g_psystem->math().gen_rand(buf, num);
-  return num;
+   ::sockets::g_psystem->math().gen_rand(buf, num);
+   return num;
 }
 
 extern "C" int32_t SSLInitializer_rand_status()
 {
-  return 1024;
+   return 1024;
 }
 
 
 #endif // HAVE_OPENSSL
+
+
+

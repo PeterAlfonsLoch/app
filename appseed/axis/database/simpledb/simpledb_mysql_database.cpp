@@ -2,26 +2,35 @@
 #ifndef METROWIN
 //#include "mysql/mysql.h"
 
+
 namespace mysql
 {
+
 
    database::database(::aura::application * papp) :
       ::object(papp)
    {
+
       m_pmysql = NULL;
 #ifdef WINDOWS
       m_protocol = MYSQL_PROTOCOL_MEMORY;
 #else
       m_protocol = MYSQL_PROTOCOL_DEFAULT;
 #endif
+
    }
+
 
    database::~database()
    {
+
       if(m_pmysql != NULL)
       {
+
          close();
+
       }
+
    }
 
 
@@ -31,6 +40,7 @@ namespace mysql
       return true;
 
    }
+
 
    bool database::connect(
       const char * pszHost,

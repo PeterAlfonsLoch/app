@@ -1,5 +1,6 @@
 //#include "framework.h"
 
+
 font_central::font_central(::aura::application * papp) :
    ::object(papp),
    m_fontCaption(allocer()),
@@ -10,20 +11,25 @@ font_central::font_central(::aura::application * papp) :
    m_fontMeshCtrl(allocer()),
    m_fontGridCtrl(allocer())
 {
+
    m_pfontLyric = NULL;
    m_pfontLyricCompact = NULL;
    m_bInitialized = false;
+
 }
+
 
 font_central::~font_central()
 {
-    if(m_lpSongLabelFont != NULL)
-        delete m_lpSongLabelFont;
 
-    if(m_lpSongListFont  != NULL)
-        delete m_lpSongListFont;
+   if(m_lpSongLabelFont != NULL)
+      delete m_lpSongLabelFont;
+
+   if(m_lpSongListFont  != NULL)
+      delete m_lpSongListFont;
 
 }
+
 
 //#define FONTFACENAME_MENU "Lucida Sans Unicode"
 #define FONTFACENAME_MENU "Arial Unicode"

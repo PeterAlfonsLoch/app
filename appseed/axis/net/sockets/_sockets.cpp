@@ -1,4 +1,7 @@
 #include "framework.h"
+#include "fiasco_finder.h"
+
+
 
 // Thank you (casey) Thank you Mummi Thank you Carlos. user sockets _amalgamation... Visual Studio 2015 Preview seems to need it (too long filename or extension).
 // Thank you God!! Feliz 2015 para todos nós!! Thank you Bilbo!! Thank you Rafael Cecyn Lundgren!! Thank you Carol, Lucinho e Lúcio!!

@@ -17,7 +17,7 @@ namespace fontopus
    {
    public:
 
-      static fontopus s_fontopus;
+      //static fontopus s_fontopus;
 
       spa_login::e_result  m_eresult;
 

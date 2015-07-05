@@ -1,17 +1,21 @@
 //#include "framework.h"
 
+
 namespace visual
 {
+
 
    buffered_graphics::buffered_graphics()
    {
 
    }
 
+
    buffered_graphics::~buffered_graphics()
    {
 
    }
+
 
    void buffered_graphics::Prepare(const RECT & rectParam)
    {

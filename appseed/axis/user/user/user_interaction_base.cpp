@@ -2,10 +2,6 @@
 //#include "base/user/user.h"
 
 
-
-
-
-
 namespace user
 {
 

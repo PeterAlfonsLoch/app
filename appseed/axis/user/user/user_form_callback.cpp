@@ -7,7 +7,9 @@ namespace user
 
    form_callback::form_callback()
    {
+
    }
+
 
    form_callback::~form_callback()
    {

@@ -13,20 +13,29 @@ namespace fs
       m_memfile(papp),
       m_varFile(varFile)
    {
+
    }
+
 
    remote_native_file::~remote_native_file()
    {
+
    }
+
 
    ::primitive::memory_size remote_native_file::read(void *lpBuf, ::primitive::memory_size nCount)
    {
+
       return m_httpfile->read(lpBuf, nCount);
+
    }
+
 
    void remote_native_file::write(const void * lpBuf, ::primitive::memory_size nCount)
    {
+
       m_memfile.write(lpBuf, nCount);
+
    }
 
 

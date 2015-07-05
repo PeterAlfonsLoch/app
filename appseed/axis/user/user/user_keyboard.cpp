@@ -17,7 +17,6 @@ namespace user
       ::object(papp)
    {
 
-
       System.set_enum_name(key_0, "key_0");
       System.set_enum_name(key_1, "key_1");
       System.set_enum_name(key_2, "key_2");

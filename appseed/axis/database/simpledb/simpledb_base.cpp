@@ -10,7 +10,9 @@ namespace simpledb
       m_spfileMeta(papp),
       m_xmldocumentMeta(papp)
    {
+
    }
+
 
    int32_t base::connect()
    {

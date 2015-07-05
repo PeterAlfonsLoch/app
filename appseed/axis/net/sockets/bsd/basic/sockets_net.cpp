@@ -2,7 +2,6 @@
 #include "axis/net/net_sockets.h"
 
 
-
 #if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 #include <unistd.h>
 #if defined(APPLEOS)
@@ -33,10 +32,12 @@ namespace sockets
 
    }
 
+
    net::~net()
    {
 
    }
+
 
    bool net::initialize()
    {
@@ -59,6 +60,7 @@ namespace sockets
       return true;
 
    }
+
 
    bool net::gudo_set()
    {

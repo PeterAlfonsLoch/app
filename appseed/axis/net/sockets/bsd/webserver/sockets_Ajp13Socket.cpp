@@ -27,6 +27,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 namespace sockets
 {
 
+
    #ifdef DEBUG
    #define DEB(x) x
    #else
@@ -34,7 +35,6 @@ namespace sockets
    #endif
 
 
-   // --------------------------------------------------------------------------------------
    Ajp13Socket::Ajp13Socket(base_socket_handler& h) :
       object(h.get_app()),
       socket(h),
@@ -45,25 +45,31 @@ namespace sockets
       m_response(h.get_app()),
       m_body_size_left(0)
    {
+
    }
 
 
-   // --------------------------------------------------------------------------------------
    void Ajp13Socket::OnHeader( int16_t id, int16_t len )
    {
+
       if (id != 0x1234)
       {
+
          TRACE("ABORT: bad packet id: %x\n", id);
+
          SetCloseAndDelete();
+
       }
       else
       {
+
          TRACE("Packet size: %d bytes\n", len);
+
       }
+
    }
 
 
-   // --------------------------------------------------------------------------------------
    void Ajp13Socket::ReceiveBody(const char *buf, primitive::memory_size sz)
    {
       if (sz - 2 > m_body_size_left)

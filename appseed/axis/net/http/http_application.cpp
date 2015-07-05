@@ -8,11 +8,15 @@ namespace http
 
    application::application()
    {
+
    }
+
 
    application::~application()
    {
+
    }
+
 
    property_set & application::process_set(property_set & set, const char * pszUrl)
    {
@@ -54,6 +58,7 @@ namespace http
 
    }
 
+
    sp(::sockets::http_client_socket) application::get(::sockets::socket_handler & handler,const char * pszUrl,property_set & set)
    {
 
@@ -61,8 +66,10 @@ namespace http
 
    }
 
+
    void application::get(signal_details * pobj)
    {
+
       SCAST_PTR(signal, psignal, pobj);
 
       ::url_domain domain;

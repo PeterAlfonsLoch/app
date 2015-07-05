@@ -8,6 +8,7 @@
 
 #endif
 
+
 namespace sockets
 {
 
@@ -29,10 +30,13 @@ namespace sockets
       ,m_chunk_size(0)
       ,m_chunk_state(0)
    {
+
       m_request.attr("http_version") = "SIP/2.0";
       m_eerrorLast = error_none;
       SetLineProtocol();
+
    }
+
 
    sip_base_client_socket::sip_base_client_socket(const sip_base_client_socket& s) :
       object(s.get_app()),

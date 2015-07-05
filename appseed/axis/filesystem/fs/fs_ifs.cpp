@@ -7,9 +7,12 @@ ifs::ifs(::aura::application * papp, const char * pszRoot) :
    ::data::data(papp),
    ::fs::data(papp)
 {
+
    m_strRoot = pszRoot;
    m_bInitialized = false;
+
 }
+
 
 bool ifs::fast_has_subdir(const ::file::path & path)
 {

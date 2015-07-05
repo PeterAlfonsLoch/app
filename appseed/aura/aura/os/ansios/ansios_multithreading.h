@@ -80,6 +80,7 @@ class thread_data
 public:
 
 
+	bool					m_bInit;
     pthread_key_t           m_key;
 
 

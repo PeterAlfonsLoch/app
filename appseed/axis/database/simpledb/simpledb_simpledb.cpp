@@ -14,10 +14,12 @@ namespace simpledb
 
    }
 
+
    simpledb::~simpledb()
    {
 
    }
+
 
    bool simpledb::InitializeDataCentral()
    {

@@ -2,8 +2,6 @@
 //#include "base/user/user.h"
 
 
-
-
 namespace hotplugin
 {
 

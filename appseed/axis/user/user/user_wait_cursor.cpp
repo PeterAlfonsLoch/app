@@ -4,18 +4,26 @@
 
 wait_cursor::wait_cursor(::aura::application * papp) :
    ::object(papp)
-   { Application.BeginWaitCursor(); }
+{
+	
+	Application.BeginWaitCursor();
+
+}
+
+
  wait_cursor::~wait_cursor()
 {
-   //__BEGIN_DESTRUCTOR
 
     Application.EndWaitCursor();
 
-   //__END_DESTRUCTOR
 }
- void wait_cursor::Restore()
- {
-    Application.RestoreWaitCursor();
- }
+
+
+void wait_cursor::Restore()
+{
+	
+	Application.RestoreWaitCursor();
+
+}
 
 

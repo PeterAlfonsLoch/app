@@ -16,24 +16,35 @@ namespace sockets
       ::object(papp),
       m_mutex(papp)
    {
+      
       m_psession = NULL;
       if(pmethod == NULL)
          pmethod = SSLv23_method();
       InitializeContext(pmethod);
       m_iRetry = 0;
+
    }
+
 
    ssl_client_context::~ssl_client_context()
    {
+
       if(m_psession != NULL)
       {
+
          SSL_SESSION_free(m_psession);
+
       }
+
       if(m_pcontext != NULL)
       {
+
          SSL_CTX_free(m_pcontext);
+
       }
+
    }
+
 
    void ssl_client_context::set_context(const char * pszContext)
    {

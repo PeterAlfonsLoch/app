@@ -5,17 +5,18 @@
 namespace sip
 {
 
-   // --------------------------------------------------------------------------------------
+
    response::response(::aura::application * papp, const string & version) :
    ::object(papp),
    transaction(papp),
    m_memfileBody(papp )
    {
+
       UNREFERENCED_PARAMETER(version);
+
    }
 
 
-   // --------------------------------------------------------------------------------------
    response::response(const response& src) :
    ::object(((response &)src).get_app()),
    transaction(src)

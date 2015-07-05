@@ -110,16 +110,10 @@ namespace fontopus
    }
 
 
-
-
    void login::initialize()
    {
 
    }
-
-
-
-
 
 
    void login::layout()
@@ -188,7 +182,6 @@ namespace fontopus
 
       }*/
 
-
       w = (int)(rectClient.width());
 
       h = (int)(rectClient.height());
@@ -220,9 +213,7 @@ namespace fontopus
 
       m_ptapClose->RepositionWindow(w - 36,12,24,24);
 
-
    }
-
 
 
    void login::_001OnDraw(::draw2d::graphics * pgraphics)

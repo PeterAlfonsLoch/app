@@ -14,6 +14,7 @@ using namespace Gdiplus;
 
 #endif
 
+
 namespace hotplugin
 {
 
@@ -68,26 +69,20 @@ namespace hotplugin
 
       ::rect rectBar(left,top,right,bottom);
 
-
       int w = 284;
 
-
-
       int v = ::GetTickCount() * 484 / 1000;
-
 
       int x = v % rectBar.width();
 
       ::rect rectBrick(left + x,rectBar.top,left + x + w,rectBar.bottom);
       ::rect rectDraw;
 
-
       static uint32_t s_dwSync = 0;
       static int32_t s_iDelta = 5000;
       int32_t cx = width(rect);
       int32_t cy = height(rect);
       pgraphics->SetCompositingMode(CompositingModeSourceOver);
-
 
       string str(strEntryHallText);
 
@@ -153,11 +148,9 @@ namespace hotplugin
 
       //f->create_pixel_font("Calibri",18);
 
-
       rectBar.left +=4;
 
       rectBar.top += 5;
-
 
       pgraphics->SetTextRenderingHint(TextRenderingHintClearTypeGridFit);
 
@@ -174,97 +167,6 @@ namespace hotplugin
 #endif
 
    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

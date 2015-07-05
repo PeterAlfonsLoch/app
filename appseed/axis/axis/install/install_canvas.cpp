@@ -75,10 +75,10 @@ void canvas::on_paint(::draw2d::graphics * pgraphics, const RECT & rectParam)
 {
    int32_t iMode = m_iMode;
 #ifdef SUPORTA_TELA_AVANCADA
-   static canvas_zero czero;
+   //static canvas_zero czero;
    #endif
 
-   static string s_strLastStatus;
+   //static string s_strLastStatus;
    RECT rect = rectParam;
 //   int32_t cx = lpcrect->right - lpcrect->left;
 //   int32_t cy = lpcrect->bottom - lpcrect->top;
@@ -301,7 +301,7 @@ void canvas::on_paint(::draw2d::graphics * pgraphics, const RECT & rectParam)
       const char * psz = "development message so international english last lines of file \"C:\\core\\install.log\" ::::::::";
       pgraphics->TextOut(10, 10 + size.cy * 2, psz, (int32_t) (strlen_dup(psz) - iEat + 1 + ((::get_tick_count() / (iRefresh - 277) % iEat))));
       pgraphics->SelectObject(fontBold);
-      pgraphics->TextOut( 10, 10 + size.cy * 3, s_strLastStatus);
+      //pgraphics->TextOut( 10, 10 + size.cy * 3, s_strLastStatus);
       DWORD dwRead;
       int32_t iLineMin = 5;
       int32_t iLine = ((rect.bottom - 10) / size.cy) - 1;
@@ -348,11 +348,11 @@ void canvas::on_paint(::draw2d::graphics * pgraphics, const RECT & rectParam)
                   if(strLine.begins_ci("***"))
                   {
                      strLine = strLine.substr(3);
-                     if(strLine == s_strLastStatus)
-                     {
-                        goto skip_text_out1;
-                     }
-                     s_strLastStatus = strLine;
+                     //if(strLine == s_strLastStatus)
+                     //{
+                     //   goto skip_text_out1;
+                     //}
+                     //s_strLastStatus = strLine;
                      pgraphics->SelectObject(fontBold);
                   }
                   else

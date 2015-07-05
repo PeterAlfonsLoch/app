@@ -5,17 +5,17 @@
 namespace sip
 {
 
-   // --------------------------------------------------------------------------------------
+
    request::request(::aura::application * papp) :
       ::object(papp),
       transaction(papp),
       m_file(papp),
       m_form(papp)
    {
+
    }
 
 
-   // --------------------------------------------------------------------------------------
    request::request(const request& src) :
       ::object(((request&)src).get_app()),
    transaction(src),
@@ -23,57 +23,58 @@ namespace sip
    m_file(((request&) src).get_app()),
    m_form(((request&) src).get_app())
    {
+
       m_file = src.m_file;
+
    }
 
 
-
-   // --------------------------------------------------------------------------------------
    request::~request()
    {
+
    }
 
 
-
-
-
-
-   // --------------------------------------------------------------------------------------
    void request::add_cookie(const char * pszSetCookie)
    {
+
       m_cookies.add(pszSetCookie);
+
    }
 
 
-   // --------------------------------------------------------------------------------------
    void request::InitBody( size_t sz )
    {
+
       UNREFERENCED_PARAMETER(sz);
       m_file.Truncate(0);
       /*if (!m_file.get())
          m_file = smart_pointer<IFile>(new MemFile);
    DEB(   else
          TRACE("Body data file already opened\n");*/
+
    }
 
 
-   // --------------------------------------------------------------------------------------
    void request::write( const char *buf, size_t sz )
    {
-         m_file.write(buf, sz);
+
+      m_file.write(buf, sz);
+
    }
 
 
-   // --------------------------------------------------------------------------------------
    void request::CloseBody()
    {
+
       //m_file.close();
+
    }
 
 
-   // --------------------------------------------------------------------------------------
    void request::ParseBody()
    {
+
       //Utility::ncmap<string>::const_iterator it;
       m_form.clear();
       if(attrs().has_property("request_uri"))

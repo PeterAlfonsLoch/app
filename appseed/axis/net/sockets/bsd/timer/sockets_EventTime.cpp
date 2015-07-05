@@ -46,22 +46,27 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #endif
 
+
 namespace sockets
 {
 
    EventTime::EventTime() : m_time(Tick())
    {
+
    }
 
 
    EventTime::EventTime(mytime_t sec,long usec) : m_time(Tick())
    {
+
       m_time += sec * 1000000 + usec;
+
    }
 
 
    EventTime::~EventTime()
    {
+
    }
 
 
@@ -97,16 +102,30 @@ namespace sockets
 
    EventTime EventTime::operator - (const EventTime& x) const
    {
+
       EventTime t;
+
       t.m_time = m_time - x.m_time;
+
       return t;
+
    }
 
 
    bool EventTime::operator < (const EventTime& x) const
    {
+
       return m_time < x.m_time;
+
    }
 
+
 } // namespace sockets
+
+
+
+
+
+
+
 

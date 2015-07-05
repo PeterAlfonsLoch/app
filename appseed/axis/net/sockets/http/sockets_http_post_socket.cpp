@@ -42,14 +42,25 @@ namespace sockets
       single_lock lock(&Session.sockets().m_mutexHttpPostBoundary, true);
 
       m_boundary = "----";
+
       for (int i = 0; i < 12; i++)
       {
+
          char c = Session.sockets().m_countHttpPostBoundary++ % 128;
-         while (!isalnum((unsigned char) c))
+
+         while (!isalnum((unsigned char)c))
+         {
+
             c = Session.sockets().m_countHttpPostBoundary++ % 128;
+
+         }
+
          m_boundary += c;
+
       }
+
       m_boundary += "__" + ::str::from(Session.sockets().m_countHttpPostBoundary++);
+
    }
 
 

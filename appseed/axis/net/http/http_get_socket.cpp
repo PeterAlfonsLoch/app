@@ -1,6 +1,7 @@
 #include "framework.h" // from "axis/net/net_sockets.h"
 #include "axis/net/net_sockets.h"
 
+
 namespace http
 {
 
@@ -15,9 +16,10 @@ namespace http
       ::sockets::http_tunnel(handler),
       ::sockets::http_client_socket(handler, url),
       ::sockets::http_get_socket(handler, url)
-      
    {
+
       m_pcookies = NULL;
+
    }
 
       
@@ -32,8 +34,11 @@ namespace http
       ::sockets::http_client_socket(handler, url),
       ::sockets::http_get_socket(handler, host, port, url)
    {
+
       m_pcookies = NULL;
+
    }
+
 
    void get_socket::OnDataArrived(const char *, size_t len)
    {

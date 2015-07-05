@@ -10,13 +10,21 @@ namespace sockets
       ::object(papp),
       m_mutex(papp)
    {
+
    }
+
 
    ssl_client_context_map::~ssl_client_context_map()
    {
+
    }
 
 
-
 } // namespace sockets
+
+
+
+
+
+
 

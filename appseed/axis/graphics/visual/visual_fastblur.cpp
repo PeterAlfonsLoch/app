@@ -7,9 +7,6 @@
 //#include "framework.h"
 
 
-
-
-
 namespace visual
 {
 
@@ -53,7 +50,6 @@ namespace visual
 
       m_size.cx         = cx;
       m_size.cy         = cy;
-
 
       for(int32_t i = 0; i < m_uchaDiv.get_count(); i++)
       {

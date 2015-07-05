@@ -3,8 +3,10 @@
 //#include "simpledb_socket.h"
 //#include "simpledb_socket_thread.h"
 
+
 namespace simpledb
 {
+
 
    socket::socket(::sockets::base_socket_handler & h) :
       object(h.get_app()),
@@ -368,3 +370,9 @@ namespace simpledb
 
 
 } // namespace simpledb
+
+
+
+
+
+

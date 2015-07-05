@@ -1,4 +1,7 @@
 #include "framework.h"
+#include "fiasco_finder.h"
+
+
 #include <openssl/ssl.h>
 #include <openssl/md5.h>
 #include <openssl/err.h>

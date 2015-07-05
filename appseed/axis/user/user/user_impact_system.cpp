@@ -40,6 +40,7 @@ namespace user
 
    }
 
+
    void impact_system::load_template()
    {
    }

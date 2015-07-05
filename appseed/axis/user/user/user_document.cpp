@@ -22,8 +22,10 @@ namespace user
          
    }
 
+
    document::~document()
    {
+
       // do not call delete_contents here !
 #ifdef DEBUG
       if (is_modified())
@@ -37,6 +39,7 @@ namespace user
       if (m_pimpactsystem != NULL)
          m_pimpactsystem->remove_document(this);
 //      ASSERT(m_pimpactsystem == NULL);     // must be detached
+
    }
 
 

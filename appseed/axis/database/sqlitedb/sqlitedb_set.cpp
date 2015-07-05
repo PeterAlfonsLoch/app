@@ -1,4 +1,7 @@
 #include "framework.h"
+#include "fiasco_finder.h"
+
+
 //#include "database/sqlite/sqlite_base.h"
 //#include "database/sqlite/sqlite_set.h"
 #include "aura/sqlite/sqlite3.h"
@@ -6,15 +9,20 @@
 
 namespace sqlite
 {
+
+
    extern int32_t callback(void * res_ptr,int32_t ncol, char** reslt,char** cols);
+
 
    set::set(::aura::application * papp) :
       ::object(papp),
       ::database::set()
    {
+
       errmsg      = NULL;
       haveError   = false;
       db          = NULL;
+
    }
 
 
@@ -22,32 +30,45 @@ namespace sqlite
       object(newDb->get_app()),
       ::database::set(newDb)
    {
+
       errmsg      = NULL;
       haveError = false;
       db = newDb;
+
    }
+
 
    set::~set()
    {
+
       //  if(errmsg != NULL)
       //  {
       //      sqlite_free_table(&errmsg);
       // }
+
    }
 
-
-
-   //--------- protected functions implementation -----------------//
 
    void * set::handle()
    {
+
       if (db != NULL)
       {
+
          base* psqdb = dynamic_cast<base*>(db);
+
          return psqdb->getHandle();
+
       }
-      else return NULL;
+      else
+      {
+
+         return NULL;
+
+      }
+
    }
+
 
    void set::make_query(stringa &_sql)
    {

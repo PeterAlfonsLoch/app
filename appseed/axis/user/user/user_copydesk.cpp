@@ -9,11 +9,15 @@ namespace user
    copydesk::copydesk(::aura::application * papp) :
       object(papp)
    {
+
    }
+
 
    copydesk::~copydesk()
    {
+
    }
+
 
    int32_t copydesk::get_file_count()
    {

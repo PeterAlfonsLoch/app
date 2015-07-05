@@ -4,6 +4,7 @@
 
 CLASS_DECL_AXIS bool g_bSuppressTwf = false;
 
+
 namespace user
 {
 
@@ -21,6 +22,7 @@ namespace user
       m_bRunning                          = false;
       m_bRun                              = true;
       m_bRender                           = false;
+
    }
 
 

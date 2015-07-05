@@ -14,6 +14,7 @@ namespace sockets
       tcp_socket(h),
       m_email(h.get_app())
    {
+
       SetLineProtocol();
 
    }
@@ -21,6 +22,7 @@ namespace sockets
 
    void smtp_socket::OnLine(const string & line)
    {
+
       SetNonblocking(false);
       ::str::parse pa(line);
       string code = pa.getword();

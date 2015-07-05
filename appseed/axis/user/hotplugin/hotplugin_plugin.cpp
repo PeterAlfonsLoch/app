@@ -52,8 +52,6 @@ namespace hotplugin
       //m_rect.bottom     = 0;
       //m_rect.right      = 0;
 
-
-
       m_strStatus       = "Thank you";
 
       m_bReload         = false;
@@ -73,15 +71,20 @@ namespace hotplugin
 
    plugin::~plugin()
    {
+
       free_memory();
+
 #if !defined(APPLEOS) && !defined(LINUX) && !defined(METROWIN) && !defined(ANDROID) && !defined(SOLARIS)
       if(m_pbitmap != NULL)
          delete (Gdiplus::Bitmap *) m_pbitmap;
       //if(m_pcolorref != NULL)
       //   memory_free_dbg(m_pcolorref, 0);
 #endif
+
       //delete m_pinfo;
+
    }
+
 
    bool plugin::open_link(const string & strLink,const string & strTarget)
    {

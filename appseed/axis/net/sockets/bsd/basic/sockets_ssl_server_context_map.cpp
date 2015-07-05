@@ -10,11 +10,15 @@ namespace sockets
       ::object(papp),
       m_mutex(papp)
    {
+
    }
+
 
    ssl_server_context_map::~ssl_server_context_map()
    {
+
    }
+
 
    SSL_CTX * ssl_server_context_map::InitializeContext(mutex ** ppmutex,const string & context,const string & keyfile,const string & password,const SSL_METHOD *meth_in)
    {

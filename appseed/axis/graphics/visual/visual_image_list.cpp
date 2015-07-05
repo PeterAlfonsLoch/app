@@ -4,6 +4,7 @@
 //#include "freeimage/Source/FreeImage.h"
 #endif
 
+
 image_list::image_list(::aura::application * papp) :
    ::object(papp),
    m_spdib(allocer()),

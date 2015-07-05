@@ -2,8 +2,6 @@
 //#include "base/user/user.h"
 
 
-
-
 namespace user
 {
 
@@ -18,6 +16,7 @@ namespace user
       m_iPageStart = -1;
       m_iPageCount = -1;
       m_iPrintingPage = 0;
+
    }
 
 

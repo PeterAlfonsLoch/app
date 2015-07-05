@@ -1,26 +1,43 @@
 //#include "framework.h"
 
+
 namespace visual
 {
+
 
    glyph_set::glyph_set()
    {
 
    }
 
+
    glyph_set::~glyph_set()
    {
+
    }
+
 
    glyph * glyph_set::GetGlyph(UINT user)
    {
+
       index i = find_first(user);
-      if(i >= 0)
+
+      if (i >= 0)
+      {
+
          return &this->element_at(i);
+
+      }
       else
+      {
+
          return NULL;
+
+      }
+
    }
 
+   
    index glyph_set::find_first(UINT user)
    {
       

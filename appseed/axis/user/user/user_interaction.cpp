@@ -9,9 +9,7 @@ namespace user
 #ifdef METROWIN
 
 
-
-   Agile<Windows::UI::Core::CoreWindow>(*interaction::s_get_os_window)(interaction * pui) = &interaction::get_os_window_default;
-
+	Agile<Windows::UI::Core::CoreWindow>(*interaction::s_get_os_window)(interaction * pui) = &interaction::get_os_window_default;
 
 
 #endif

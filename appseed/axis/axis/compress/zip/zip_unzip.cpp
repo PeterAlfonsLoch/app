@@ -39,9 +39,6 @@ woven in by Terry Thorsen 1/2003.
 //#include"unzip.h"
 
 
-#ifndef local
-#  define local static
-#endif
 /* compile with -Dlocal if your debugger can't find static symbols */
 
 

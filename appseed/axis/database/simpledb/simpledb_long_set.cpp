@@ -11,6 +11,7 @@ public:
 
 };
 
+
 class CLASS_DECL_AXIS db_long_set_queue_item:
    virtual public object
 {

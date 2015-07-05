@@ -1,6 +1,9 @@
 #include "framework.h"
 #include "axis/net/net_sockets.h"
 #include "axis/compress/compress.h"
+#include "fiasco_finder.h"
+
+
 #if defined(WINDOWS)
 
 #include <mmsystem.h>

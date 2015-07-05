@@ -2,8 +2,6 @@
 //#include "base/user/user.h"
 
 
-
-
 namespace user
 {
 
@@ -14,13 +12,17 @@ namespace user
       ::data::tree(papp),
       m_editfile(papp)
    {
+
       m_pgroupcommand      = NULL;
       m_pfile              = NULL;
       m_iBranch            = 0;
+
    }
+
 
    plain_text_tree::~plain_text_tree()
    {
+
    }
 
 

@@ -1,6 +1,7 @@
 //#include "framework.h"
 //#include "base/user/user.h"
 
+
 namespace hotplugin
 {
 
@@ -20,6 +21,7 @@ namespace hotplugin
 
    }
 
+
    string container_launcher::get_params()
    {
 
@@ -28,8 +30,11 @@ namespace hotplugin
    }
 
 
-
 } // namespace hotplugin
+
+
+
+
 
 
 

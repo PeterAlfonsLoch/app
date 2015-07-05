@@ -171,15 +171,23 @@ DWORD WaitForSingleObject(object * pobject, DWORD dwTimeout)
 thread_data::thread_data()
 {
 
-   pthread_key_create(&m_key, NULL);
+	m_bInit = false;
+
+	if (!m_bInit)
+	{
+		
+		m_bInit = true;
+
+		pthread_key_create(&m_key, NULL);
+
+	}
 
 }
 
 
 void * thread_data::get()
 {
-
-   return pthread_getspecific(m_key);
+    return pthread_getspecific(m_key);
 
 }
 
@@ -187,7 +195,7 @@ void * thread_data::get()
 void thread_data::set(void * p)
 {
 
-   pthread_setspecific(m_key,p);
+	pthread_setspecific(m_key,p);
 
 }
 

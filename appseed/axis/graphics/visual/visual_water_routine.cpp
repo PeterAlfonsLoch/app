@@ -7,6 +7,7 @@ namespace visual
 
    water_routine::water_routine()
    {
+      
       m_iHeightField1 = NULL;
       m_iHeightField2 = NULL;
 
@@ -17,10 +18,13 @@ namespace visual
       m_iLightModifier = 1;
       m_iHpage = 0;
       m_density = 5;
+
    }
+
 
    water_routine::~water_routine()
    {
+      
       // Cleanup
       if(m_iHeightField1 != NULL)
          delete [] m_iHeightField1;

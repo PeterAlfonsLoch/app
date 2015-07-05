@@ -11,7 +11,7 @@ namespace zip
    public:
 
 
-      static map < unzFile, unzFile, memory_buffer *, memory_buffer * & > m_mapUnzip;
+      //static map < unzFile, unzFile, memory_buffer *, memory_buffer * & > m_mapUnzip;
       
       
       api();

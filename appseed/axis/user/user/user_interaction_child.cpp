@@ -2,8 +2,6 @@
 //#include "base/user/user.h"
 
 
-
-
 void __reposition_window(__SIZEPARENTPARAMS* lpLayout,::user::interaction * pui,LPCRECT lpRect);
 
 

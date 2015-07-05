@@ -8,17 +8,25 @@ namespace userpresence
    presence::presence(::aura::application * papp) :
       ::object(papp)
    {
+
       m_iShortStatusWayTag = status_online;
+
    }
+
 
    presence::~presence()
    {
+
    }
+
 
    void presence::report_activity()
    {
+
       m_dwLastActivity = ::get_tick_count();
+
    }
+
 
    void presence::defer_pulse_user_presence()
    {

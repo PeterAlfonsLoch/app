@@ -4,21 +4,25 @@
 namespace http
 {
 
+
    ostream::ostream()
    {
    
    }
 
+
    ostream::ostream(::file::stream_buffer * pbuffer) :
       ::file::plain_text_ostream(pbuffer)
    {
    
-   
    }
+
 
    ostream::~ostream()
    {
+
       close();
+
    }
 
 

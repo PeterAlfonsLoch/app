@@ -2,7 +2,6 @@
 #include "axis/net/net_sockets.h"
 
 
-
 namespace sockets
 {
 
@@ -16,25 +15,30 @@ namespace sockets
       http_socket(h),
       m_fileBody(h.get_app(), &m_memoryBody)
    {
+
       SetLineProtocol();
       m_bOk = false;
       m_bDirect = false;
       m_estate = state_initial;
       m_memoryBuf.allocate(1024 * 16);
+
    }
-
-
 
 
    void http_tunnel::OnConnect()
    {
+
       if(m_bDirect)
       {
+
          step();
+
       }
       else if(m_bOk)
       {
+
          step();
+
       }
       else if(GetUrlPort() == 80 || GetUrlPort() == 8080)
       {
@@ -46,9 +50,10 @@ namespace sockets
          // session though is not currently implemented in ca2...
          //m_request.m_propertysetHeader["Proxy-Connection"] = "Keep-Alive";
 
-
          m_bOk = true;
+
          step();
+
       }
       else
       {

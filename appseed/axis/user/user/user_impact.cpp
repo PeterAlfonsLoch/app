@@ -1,7 +1,6 @@
 
 
 
-
 namespace user
 {
 
@@ -18,7 +17,9 @@ namespace user
 
    impact::~impact()
    {
+
    }
+
 
    void impact::install_message_handling(::message::dispatch * pinterface)
    {

@@ -22,7 +22,6 @@ namespace sip
    }
 
 
-   // --------------------------------------------------------------------------------------
    transaction::~transaction()
    {
 
@@ -37,17 +36,19 @@ namespace sip
    }
 
 
-
-   // --------------------------------------------------------------------------------------
    void transaction::SetAccept(const string & value)
    {
+
       header(__id(accept)) = value;
+
    }
 
 
    string transaction::Accept()
    {
+
       return header(__id(accept));
+
    }
 
 

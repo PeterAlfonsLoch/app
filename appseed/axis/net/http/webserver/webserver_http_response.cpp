@@ -5,31 +5,34 @@
 namespace http
 {
 
-   // --------------------------------------------------------------------------------------
+
    response::response(::aura::application * papp, const string & version) :
    ::object(papp),
    transaction(papp),
    m_memfileBody(papp ),
    m_ostream(&m_memfileBody)
    {
+
       UNREFERENCED_PARAMETER(version);
+
    }
 
 
-   // --------------------------------------------------------------------------------------
    response::response(const response& src) :
    ::object(((response &)src).get_app()),
    transaction(src)
    , m_memfileBody(((response &)src).get_app() ),
    m_ostream(&m_memfileBody)
    {
+
       m_memfileBody = src.m_memfileBody;
+
    }
 
 
-   // --------------------------------------------------------------------------------------
    response::~response()
    {
+
    }
 
 

@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "framework.h" // from "axis/net/net_sockets.h"
+#include "fiasco_finder.h"
 
 #ifndef WINDOWS
 #include "ft2build.h"

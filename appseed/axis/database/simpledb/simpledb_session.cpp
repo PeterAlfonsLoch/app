@@ -4,15 +4,21 @@
 namespace simpledb
 {
 
+
    session::session(::aura::application * papp) :
       ::object(papp)
    {
+
       m_pserver = NULL;
+
    }
+
 
    session::~session_parent
    {
+
    }
+
 
    bool session::open(const char * pszDatabase)
    {

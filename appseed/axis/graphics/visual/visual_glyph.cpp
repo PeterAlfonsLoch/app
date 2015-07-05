@@ -10,10 +10,12 @@ namespace visual
 
    }
 
+
    glyph::~glyph()
    {
 
    }
+
 
    glyph & glyph::operator = (const glyph & glyph)
    {
@@ -32,12 +34,14 @@ namespace visual
 
    }
 
+
    bool glyph::operator <= (const glyph & glyph) const
    {
 
       return m_ui < glyph.m_ui;
 
    }
+
 
 #ifdef WINDOWSEX
 

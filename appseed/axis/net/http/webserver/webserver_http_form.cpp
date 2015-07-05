@@ -5,19 +5,23 @@
 #endif
 
 
-
 namespace http
 {
 
+
 #define TMPSIZE 32000
+
 
    form::form(::aura::application * papp) :
       ::object(papp),
       m_setGet(papp),
       m_setPost(papp)
    {
+
       m_bRaw = false;
+
    }
+
 
    void form::parse_body(file::stream_buffer *infil, const char * pszContentType, size_t content_length)
    {
@@ -162,9 +166,9 @@ namespace http
                      string strTempFile;
                      int i = 0;
 
-                     static mutex s_mutex(NULL);
+                     //static mutex s_mutex(NULL);
 
-                     single_lock sl(&s_mutex, true);
+                     //single_lock sl(&s_mutex, true);
 
                      while (true)
                      {
@@ -177,7 +181,7 @@ namespace http
                      }
                      
                      ::file::binary_buffer_sp spfile(Application.file().get_file(strTempFile, ::file::defer_create_directory | ::file::type_binary | ::file::mode_create | ::file::mode_write));
-                     sl.unlock();
+                     //sl.unlock();
                      if(spfile.is_set())
                      {
                         while (infil -> read(&ca,1))

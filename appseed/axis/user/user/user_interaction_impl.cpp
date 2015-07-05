@@ -2,8 +2,6 @@
 //#include "base/user/user.h"
 
 
-
-
 namespace user
 {
 
@@ -19,9 +17,6 @@ namespace user
       m_oswindow                       = NULL;
       m_bNeedLayout                    = false;
       m_pcsDisplay                     = NULL;
-
-
-
 
    }
 

@@ -1,3 +1,7 @@
+#include "framework.h"
+#include "fiasco_finder.h"
+
+
 
 
 stringa install_get_plugin_base_library_list(const string & strVersion)

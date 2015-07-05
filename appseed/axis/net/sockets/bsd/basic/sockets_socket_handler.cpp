@@ -44,6 +44,7 @@ namespace sockets
    ,m_next_trigger_id(0)
    ,m_slave(false)
    {
+      
       ZERO(m_socks4_host);
       m_prfds = new fd_set;
       m_pwfds = new fd_set;
@@ -51,6 +52,7 @@ namespace sockets
       FD_ZERO(((fd_set *) m_prfds));
       FD_ZERO(((fd_set *) m_pwfds));
       FD_ZERO(((fd_set *) m_pefds));
+
    }
 
 
@@ -71,6 +73,7 @@ namespace sockets
    ,m_next_trigger_id(0)
    ,m_slave(false)
    {
+
       ZERO(m_socks4_host);
       m_pmutex->lock();
 
@@ -81,15 +84,20 @@ namespace sockets
       FD_ZERO(((fd_set *) m_prfds));
       FD_ZERO(((fd_set *) m_pwfds));
       FD_ZERO(((fd_set *) m_pefds));
+
    }
 
 
    socket_handler::~socket_handler()
    {
+
       if (m_resolver)
       {
+         
          m_resolver -> Quit();
+
       }
+
       {
          POSITION pos = m_sockets.get_start_position();
          SOCKET s;

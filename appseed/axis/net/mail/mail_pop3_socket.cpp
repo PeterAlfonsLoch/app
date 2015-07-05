@@ -23,17 +23,18 @@ namespace mail
       tcp_socket(h),
       m_estate(state_disconnected)
    {
+
       m_bSsl = false;
       m_bTls = false;
       SetLineProtocol();
+
    }
 
 
    pop3_socket::~pop3_socket()
    {
+
    }
-
-
 
 
    void pop3_socket::OnLine(const string & line)

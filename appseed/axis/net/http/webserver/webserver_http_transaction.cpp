@@ -12,6 +12,7 @@ namespace http
 
    }
 
+
    transaction::transaction(const transaction & src) :
       ::object(((class request&) src).get_app()),
       m_propertysetAttribute(src.m_propertysetAttribute),
@@ -23,12 +24,17 @@ namespace http
 
    transaction::~transaction()
    {
+
    }
+
 
    void transaction::SetAccept(const string & value)
    {
+
       header(__id(accept)) = value;
+
    }
+
 
    string transaction::Accept()
    {

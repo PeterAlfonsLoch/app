@@ -35,23 +35,30 @@ namespace sockets
       m_request.attr(__id(http_version)) = "HTTP/1.1";
       SetLineProtocol();
       DisableInputBuffer();
+
    }
 
 
    http_socket::~http_socket()
    {
+
    }
 
 
    void http_socket::OnRawData(char *buf,size_t len)
    {
+
       if (!m_bHeader)
       {
+
          if (m_b_chunked)
          {
+
             size_t ptr = 0;
+
             while (ptr < len)
             {
+
                switch (m_chunk_state)
                {
                case 4:

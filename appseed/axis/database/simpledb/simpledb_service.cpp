@@ -14,11 +14,15 @@ namespace simpledb
       ::object(papp),
       plain_service(papp)
    {
+
    }
+
 
    service::~service()
    {
+
    }
+
 
    void service::serve()
    {
@@ -27,9 +31,7 @@ namespace simpledb
 
       ::set_thread(&Sys(pbaseapp));
 
-
       m_pmanager = new ::simpledb::manager(pbaseapp);
-
 
       /*App(pbaseapp).m_strFontopusServer		= System.m_simpledb.db().data_load("fontopus_server");
       App(pbaseapp).m_strDatabaseServerHost	= System.m_simpledb.db().data_load("database_server");
@@ -43,30 +45,46 @@ namespace simpledb
 	      App(pbaseapp).m_iDatabaseServerPort = 0;
       }*/
 
-
       stringa stra;
+
       stra = System.m_simpledb.db().data_load(NULL, "simpledb").stra();
+
       for(int32_t i = 0; i < stra.get_size(); i++)
       {
+
          m_threadptra.add(__begin_thread < socket_thread > (get_app()));
+
          socket_thread * pthread = m_threadptra.last();
          {
+
             pthread->m_evInitialized.wait();
             pthread->m_strIp = stra[i];
             pthread->m_iPort = 443;
             pthread->m_pservice = this;
             pthread->post_thread_message(WM_APP);
+
          }
+
       }
 
       while (get_run())
       {
+
          Sleep(1000);
+
       }
+
       Sleep(10000);
 
    }
 
 
 } // namespace simpledb
+
+
+
+
+
+
+
 

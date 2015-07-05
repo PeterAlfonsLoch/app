@@ -9,20 +9,29 @@ ifs_file::ifs_file(::aura::application * papp, var varFile) :
    m_memfile(papp),
    m_varFile(varFile)
 {
+
 }
+
 
 ifs_file::~ifs_file()
 {
+
 }
+
 
 ::primitive::memory_size ifs_file::read(void *lpBuf, ::primitive::memory_size nCount)
 {
+
    return m_httpfile->read(lpBuf, nCount);
+
 }
+
 
 void ifs_file::write(const void * lpBuf, ::primitive::memory_size nCount)
 {
+
    m_memfile.write(lpBuf, nCount);
+
 }
 
 

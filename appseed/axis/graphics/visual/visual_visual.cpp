@@ -38,21 +38,29 @@ namespace visual
       ::object(papp),
       ::aura::departament(papp)
    {
+
       m_pimaging        = NULL;
       m_pfontcentral    = NULL;
       m_pvisualapi      = NULL;
+
    }
+
 
    visual::~visual()
    {
+
       if(m_pimaging != NULL)
       {
+
          delete m_pimaging;
+
       }
 
       if(m_pvisualapi != NULL)
       {
+
          delete m_pvisualapi;
+
       }
 
    }

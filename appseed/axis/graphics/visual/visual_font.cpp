@@ -9,25 +9,34 @@ namespace visual
       ::object(papp),
       m_spfont(allocer())
    {
+
       m_pDC       = NULL;
       m_pfontOld  = NULL;
+
    }
+
 
    font::~font()
    {
-   }
 
+   }
 
 
    void font::clear()
    {
+
       m_glyphset.remove_all();
+
    }
+
 
    ::draw2d::font * font::GetFont()
    {
+
       return m_spfont;
+
    }
+
 
    void font::EmbossedTextOut(::draw2d::graphics * pdc, const RECT & rect, double dRateX, double dHeight, string & str)
    {

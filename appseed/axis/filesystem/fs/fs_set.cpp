@@ -13,14 +13,18 @@ namespace fs
 
    }
 
+
    set::~set()
    {
+
    }
 
 
    strsp(::fs::data) & set::fsmap()
    {
+
       return m_fsdatamap;
+
    }
 
    spa(::fs::data) & set::fsa()

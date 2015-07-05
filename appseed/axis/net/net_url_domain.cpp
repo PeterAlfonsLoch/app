@@ -1,5 +1,6 @@
 #include "framework.h"
 
+
 url_domain_axis::url_domain_axis()
 {
 
@@ -21,8 +22,10 @@ url_domain_axis::url_domain_axis()
 
 }
 
+
 void url_domain_axis::create(const char * pszServerName)
 {
+
    m_strOriginalName = pszServerName;
    if(m_strOriginalName.is_empty())
       return;

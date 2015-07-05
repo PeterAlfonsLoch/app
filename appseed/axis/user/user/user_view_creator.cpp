@@ -8,27 +8,38 @@ namespace user
 
    view_creator_data::view_creator_data()
    {
+
       m_pwnd               = NULL;
       m_iExtendOnParent    = 0;
       m_pdoc               = NULL;
       m_pviewdata          = NULL;
       m_pholder            = NULL;
+
    }
+
 
    ::user::interaction * view_creator_data::get_wnd()
    {
+
       if(m_pwnd != NULL)
          return m_pwnd;
+
       try
       {
+
          if(m_pholder != NULL && m_pholder->m_uiptraHold.get_count() == 1)
             return m_pholder->m_uiptraHold[0];
+
       }
       catch(...)
       {
+
       }
+
       return NULL;
+
    }
+
 
    view_creator_data * view_creator::get(id id)
    {

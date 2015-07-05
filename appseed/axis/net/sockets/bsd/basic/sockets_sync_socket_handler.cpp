@@ -1,21 +1,29 @@
 #include "framework.h" // #include "axis/net/sockets/bsd/sockets.h"
 #include "axis/net/net_sockets.h"
 
+
 namespace sockets
 {
+
 
    sync_socket_handler::sync_socket_handler(::aura::application * papp, logger * plog) :
       ::object(papp),
       m_handler(papp, plog),
       m_file(papp)
    {
+
       m_psocket            = NULL;
+
       m_iDefaultTimeout    = 60;
+
    }
+
 
    sync_socket_handler::~sync_socket_handler()
    {
+
    }
+
 
    void sync_socket_handler::handle(socket * psocket)
    {

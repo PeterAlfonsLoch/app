@@ -5,10 +5,14 @@
 namespace user
 {
 
+
    void oswindow_array::SortByZOrder()
    {
+
       window_util::SortByZOrder(*this);
+
    }
+
 
    // This function sort the interaction_impl array
    // by ascending z order.
@@ -17,21 +21,31 @@ namespace user
    // that all windows are siblings
    void oswindow_array::SortSiblingsByZOrder()
    {
+      
       oswindow oswindowSwap;
+
       for(int32_t i = 0; i < this->get_size(); i++)
       {
+
          for(int32_t j = i + 1; j < this->get_size(); j++)
          {
+
             if(window_util::GetZOrder(this->element_at(i)) > window_util::GetZOrder(this->element_at(j)))
             {
+
                oswindowSwap = this->element_at(i);
                this->element_at(i) = this->element_at(j);
                this->element_at(j) = oswindowSwap;
+
             }
+
          }
+
       }
 
    }
+
+
    void oswindow_array::top_windows_by_z_order()
    {
 

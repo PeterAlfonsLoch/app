@@ -16,22 +16,29 @@ namespace sockets
       m_data(false),
       m_header(false)
    {
+
       SetLineProtocol();
+
    }
 
 
    void smtpd_socket::OnAccept()
    {
+
       write("220 ESMTP; \r\n");
+
    }
 
 
    void smtpd_socket::OnLine(const string & line)
    {
+
       if (m_data)
       {
+
          if (m_header)
          {
+
             if (!line.get_length())
             {
                if (m_header_line.get_length())

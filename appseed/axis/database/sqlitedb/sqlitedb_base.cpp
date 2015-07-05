@@ -1,4 +1,7 @@
 #include "framework.h"
+#include "fiasco_finder.h"
+
+
 //#include "database/sqlite/sqlite_base.h"
 //#include "database/sqlite/sqlite_set.h"
 #include "aura/sqlite/sqlite3.h"

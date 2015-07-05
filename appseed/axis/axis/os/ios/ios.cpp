@@ -7,13 +7,13 @@ extern thread_pointer < os_thread > t_posthread;
 
 string & get_command_line_string()
 {
-   static string g_strCommandLine;
+   //static string g_strCommandLine;
    return g_strCommandLine;
 }
 
 wstring & get_command_line_wstring()
 {
-   static wstring g_wstrCommandLine;
+   //static wstring g_wstrCommandLine;
    return g_wstrCommandLine;
 }
 

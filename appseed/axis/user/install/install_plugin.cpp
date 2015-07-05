@@ -41,8 +41,10 @@ void simple_se_translator(uint32_t uiCode, EXCEPTION_POINTERS * ppointers)
 namespace install
 {
 
+
    string get_version()
    {
+
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
       string strVersion = "basis";
@@ -59,6 +61,7 @@ namespace install
       return strVersion;
 
    }
+
 
    plugin::plugin(::aura::application * papp) :
       ::object(papp),
@@ -117,13 +120,13 @@ namespace install
 
    plugin::~plugin()
    {
+
    }
 
 
    IMPL_IMH(plugin,::simple_ui::interaction)
       MSG_LBUTTONUP
    END_IMH
-
 
 
    bool plugin::set_host(::hotplugin::host * phost)
@@ -141,7 +144,9 @@ namespace install
 
    void plugin::on_prepare_memory()
    {
+
    }
+
 
    void plugin::restart_aura_ipc()
    {
@@ -159,7 +164,6 @@ namespace install
          }
 
       }
-
 
    }
 
@@ -183,6 +187,7 @@ namespace install
             }
             catch(...)
             {
+
             }
 
          }
@@ -201,6 +206,7 @@ namespace install
          }
          catch(...)
          {
+
          }
 
       }
@@ -220,7 +226,6 @@ namespace install
       return m_phost->m_bInstalling;
 
    }
-
 
 
    bool plugin::thread_start_ca2_on_idle()

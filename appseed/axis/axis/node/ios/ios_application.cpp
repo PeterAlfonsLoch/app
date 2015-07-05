@@ -323,7 +323,7 @@ namespace ios
    {
 #if (defined(SOLARIS8) || defined(SOLARIS))
       {
-         static std::collection::map<string, char *> vmap;
+         //static std::collection::map<string, char *> vmap;
          if (vmap.find(var) != vmap.end())
          {
             delete[] vmap[var];

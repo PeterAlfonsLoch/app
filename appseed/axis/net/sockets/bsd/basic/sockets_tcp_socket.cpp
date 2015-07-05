@@ -19,9 +19,11 @@
 #include <unistd.h>
 #endif
 
+
 namespace sockets
 {
-   #ifdef LINUX
+
+#ifdef LINUX
 // ssl_sigpipe_handle ---------------------------------------------------------
 void ssl_sigpipe_handle( int x );
 #endif

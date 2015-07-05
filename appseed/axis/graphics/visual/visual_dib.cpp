@@ -13,23 +13,28 @@
 bool windows_write_dib_to_file(::file::buffer_sp,::draw2d::dib * pdib,::visual::save_image * psaveimage,::aura::application * papp);
 bool windows_load_dib_from_file(::draw2d::dib * pdib,::file::buffer_sp,::aura::application * papp);
 
+
 namespace visual
 {
 
 
    dib_sp::dib_sp()
    {
+
    }
+
 
    dib_sp::dib_sp(const ::aura::allocatorsp & allocer):
       ::draw2d::dib_sp(allocer)
    {
+
    }
+
 
    dib_sp::~dib_sp()
    {
-   }
 
+   }
 
 
    bool dib_sp::load_from_file(var varFile,bool bCache)

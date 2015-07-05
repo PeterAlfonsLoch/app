@@ -39,6 +39,7 @@ namespace sockets
       ::object(papp),
       socket_handler(papp, p), m_quit(false), m_socket(NULL)
    {
+
    }
 
 
@@ -47,26 +48,37 @@ namespace sockets
       socket_handler(papp, m, p),
       m_quit(false), m_socket(NULL)
    {
+
    }
 
 
    EventHandler::~EventHandler()
    {
+
       POSITION pos = m_events.get_head_position();
+
       while(pos != NULL)
       {
+
          Event * pe = m_events.get_next(pos);
+
          pe -> GetFrom() -> SetHandlerInvalid();
+
          delete pe;
+
       }
+
       m_events.remove_all();
+
    }
 
 
    bool EventHandler::GetTimeUntilNextEvent(struct timeval *tv)
    {
+
       if (!m_events.get_size())
          return false;
+
       POSITION pos = m_events.get_head_position();
       if(pos != NULL)
       {

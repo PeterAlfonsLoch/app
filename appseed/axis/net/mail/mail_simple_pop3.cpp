@@ -15,10 +15,14 @@ namespace mail
 
    }
 
+
    string simple_pop3::get_user()
    {
+
       return m_strUser;
+
    }
+
 
    string simple_pop3::get_pass()
    {

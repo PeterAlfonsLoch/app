@@ -1,5 +1,6 @@
 //#include "framework.h"
 
+
 namespace simpledb
 {
 
@@ -8,27 +9,35 @@ namespace simpledb
    set::set() :
       ::database::set()
    {
+
       //errmsg      = NULL;
       haveError   = false;
       db          = NULL;
+
    }
 
 
    set::set(base *newDb) :
       ::database::set(newDb)
    {
+      
       //errmsg      = NULL;
       haveError = false;
       db = newDb;
+
    }
+
 
    set::~set()
    {
+
       //  if(errmsg != NULL)
       //  {
       //      sqlite_free_table(&errmsg);
       // }
+
    }
+
 
    bool set::exec(const char * pszSql)
    {

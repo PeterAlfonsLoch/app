@@ -117,6 +117,9 @@
  */
 
 #include "framework.h"
+#include "fiasco_finder.h"
+
+
 
 //#define ASSERT(X) assert(X)
 /* Frees the given link IF it isn't owned by anything else */

@@ -5,24 +5,26 @@ namespace visual
 {
 
 
-
    graphics_extension::graphics_extension(::aura::application * papp) :
       ::object(papp)
    {
 
    }
 
+
    graphics_extension::~graphics_extension()
    {
 
    }
 
+
    bool graphics_extension::TextOut(::draw2d::graphics * pdc, int32_t x, int32_t y, const char * lpcsz, strsize iCount)
    {
+
       return pdc->TextOut(x, y, string(lpcsz, iCount));
       //return ::TextOutU((HDC)pdc->get_os_data(), x, y, lpcsz, iCount);
-   }
 
+   }
 
 
    void graphics_extension::GetTextExtent(::draw2d::graphics *pdc, const char * lpcsz, array < size > & sizea)

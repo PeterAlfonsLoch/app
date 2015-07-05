@@ -32,9 +32,7 @@ namespace sockets
 
       inattr(__id(http_protocol))   = protocol;
 
-
       m_request.m_propertysetHeader[__id(host)] = host;
-
 
       m_strUrl                      = protocol + "://" + host;
 
@@ -49,6 +47,7 @@ namespace sockets
       m_bRequestComplete            = false;
 
    }
+
 
    http_session::~http_session()
    {

@@ -1,3 +1,7 @@
+#include "framework.h"
+#include "fiasco_finder.h"
+
+
 //#include "framework.h"
 
 //O volume na unidade Z ‚ eco

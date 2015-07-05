@@ -9,8 +9,6 @@
 
 
 
-
-
 #ifdef _AXIS_STATIC
    #define CLASS_DECL_AXIS
 #elif defined(_AXIS_LIBRARY)

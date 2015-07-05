@@ -34,13 +34,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 namespace sockets
 {
 
+
    #ifdef DEBUG
    #define DEB(x) x
    #else
    #define DEB(x)
    #endif
-
-
 
 
    resolv_socket::resolv_socket(base_socket_handler& h) :
@@ -54,7 +53,9 @@ namespace sockets
       ,m_resolve_ipv6(false)
       ,m_cached(false)
    {
+
       SetLineProtocol();
+
    }
 
 
@@ -71,7 +72,9 @@ namespace sockets
    ,m_resolve_ipv6(ipv6)
    ,m_cached(false)
    {
+
       SetLineProtocol();
+
    }
 
 

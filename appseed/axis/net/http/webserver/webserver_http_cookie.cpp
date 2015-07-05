@@ -6,27 +6,39 @@
 
 #endif
 
+
 namespace http
 {
 
+
    cookie::cookie()
    {
+
       m_bSecure = false;
+
    }
+
 
    cookie::cookie(const cookie & cookie)
    {
+
       operator = (cookie);
+
    }
+
 
    cookie::~cookie()
    {
+
    }
+
 
    cookie & cookie::operator = (const cookie & cookie)
    {
+
       if(&cookie != this)
       {
+
          m_strName      = cookie.m_strName;
          m_strNameLow   = cookie.m_strNameLow;
          m_varValue     = cookie.m_varValue;
@@ -34,9 +46,13 @@ namespace http
          m_strPath      = cookie.m_strPath;
          m_strDomain    = cookie.m_strDomain;
          m_bSecure      = cookie.m_bSecure;
+
       }
+
       return *this;
+
    }
+
 
    string cookie::get_cookie_string()
    {

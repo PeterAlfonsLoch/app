@@ -16,6 +16,7 @@ namespace sockets
 
    }
 
+
    listen_socket_axis::listen_socket_axis(const listen_socket_axis& s) : 
       object(s.get_app()), 
       base_socket(s),
@@ -24,9 +25,12 @@ namespace sockets
 
    }
 
+
    listen_socket_axis::~listen_socket_axis() 
    {
+
    }
+
 
    /** close file descriptor. */
    void listen_socket_axis::close()

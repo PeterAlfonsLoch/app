@@ -5,8 +5,8 @@
 namespace user
 {
 
-   //mutex * g_pmutexUi = NULL;
-   critical_section * g_pcsUi = NULL;
+
+	critical_section * g_pcsUi = NULL;
    map < oswindow,oswindow,::user::interaction *,::user::interaction * > * g_pmapUi = NULL;
    map < ::user::interaction *,::user::interaction *, oswindow,oswindow > * g_pmapHandle = NULL;
 
@@ -20,8 +20,8 @@ namespace user
 
       g_pmapHandle = new  map < ::user::interaction *,::user::interaction *,oswindow,oswindow >;
 
-
    }
+
 
    CLASS_DECL_AXIS void term_windowing()
    {
@@ -39,6 +39,7 @@ namespace user
 
 
 } // namespace user
+
 
 //#if defined(WINDOWS) || defined(LINUX)
 //::user::interaction * window_from_handle(oswindow oswindow)

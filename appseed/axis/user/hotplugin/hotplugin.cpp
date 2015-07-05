@@ -6,9 +6,12 @@
 namespace hotplugin
 {
 
+
    ::axis::system * g_paxissystem = NULL;
 
+
    int g_iSystemCount = 0;
+
 
    uint32_t c_cdecl base_system_main(LPVOID lpVoid);
 
@@ -19,6 +22,7 @@ namespace hotplugin
       return g_paxissystem;
 
    }
+
 
    CLASS_DECL_AXIS bool defer_start_base_system()
    {
@@ -88,10 +92,10 @@ namespace hotplugin
          //      return NULL;
       }
 
-
       return true;
 
    }
+
 
    uint32_t c_cdecl base_system_main(LPVOID lpVoid)
    {
@@ -138,9 +142,12 @@ namespace hotplugin
 
    }
 
+
 #ifdef WINDOWS
 
+
    HINSTANCE g_hinstance = NULL; // hotplugin plugin dll HINSTANCE
+
 
    CLASS_DECL_AXIS HINSTANCE get_hinstance()
    {
@@ -149,12 +156,14 @@ namespace hotplugin
 
    }
 
+
    CLASS_DECL_AXIS void set_hinstance(HINSTANCE hinstance)
    {
 
       g_hinstance = hinstance;
 
    }
+
 
 #endif
 

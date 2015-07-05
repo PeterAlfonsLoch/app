@@ -34,9 +34,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 namespace sockets
 {
 
+
    #define TMPSIZE 10000
-
-
 
 
    httpd_socket::httpd_socket(base_socket_handler& h) :
@@ -49,8 +48,11 @@ namespace sockets
       http_socket(h),
       m_received(0)
    {
+
       m_http_date = datetime2httpdate(GetDate());
+
    }
+
 
    httpd_socket::httpd_socket(const httpd_socket& s) :
       object(s.get_app()),
@@ -61,16 +63,14 @@ namespace sockets
       http_base_socket(s),
       http_socket(s)
    {
+
    }
+
 
    httpd_socket::~httpd_socket()
    {
+
    }
-
-
-
-
-
 
 
    void httpd_socket::Send64(const string & str64, const string & type)

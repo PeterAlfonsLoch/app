@@ -1,8 +1,10 @@
 //#include "framework.h"
 
+
 veiev_post::veiev_post(db_server * pserver) :
    db_set(pserver, "veiev_post")
 {
+
    sp(::sqlite::base) pdb = db()->get_database();
    sp(::sqlite::set)  pds = (sp(::sqlite::set)) pdb->CreateDataset();
 
@@ -23,9 +25,12 @@ veiev_post::veiev_post(db_server * pserver) :
 
 }
 
+
 veiev_post::~veiev_post()
 {
+
 }
+
 
 bool veiev_post::write(var rec)
 {

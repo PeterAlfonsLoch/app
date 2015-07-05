@@ -1,8 +1,10 @@
 #include "framework.h" // #include "axis/net/sockets/bsd/sockets.h"
 #include "axis/net/net_sockets.h"
 
+
 namespace sockets
 {
+
 
    stream_socket::stream_socket(base_socket_handler& h) : 
       object(h.get_app())
@@ -17,34 +19,47 @@ namespace sockets
       ,m_b_retry_connect(false)
       ,m_shutdown(0)
    {
+
    }
 
 
    stream_socket::~stream_socket()
    {
+
    }
 
 
    void stream_socket::SetConnecting(bool x)
    {
+
       if (x != m_bConnecting)
       {
+
          m_bConnecting = x;
+
          if (x)
          {
+
             SetTimeout( GetConnectTimeout() );
+
          }
          else
          {
+
             SetTimeout( 0 );
+
          }
+
       }
+
    }
 
 
    bool stream_socket::Connecting()
    {
+
       return m_bConnecting;
+
    }
 
 

@@ -15,6 +15,7 @@ void my_munmap(void * pcolorref,HANDLE hfile);
 void * my_open_map(const char * psz,HANDLE * pfile,bool bRead,bool bWrite,int64_t size);
 #endif
 
+
 namespace hotplugin
 {
 
@@ -34,17 +35,18 @@ namespace hotplugin
       m_bCa2InstallationReady    = false;
       m_bStream                  = false;
 
-
-
       m_pbitmap                  = NULL;
       m_pmutexBitmap             = NULL;
       m_bHostStarterStart        = false;
 
    }
 
+
    host::~host()
    {
+
       free_memory();
+
    }
 
 

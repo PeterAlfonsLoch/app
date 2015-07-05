@@ -3,14 +3,19 @@
 
 rgb_quad_array::rgb_quad_array()
 {
+
 }
+
 
 rgb_quad_array::~rgb_quad_array()
 {
+
 }
+
 
 void rgb_quad_array::create_web_palette()
 {
+
    // Do nothing
    const uint32_t STANDARD_PALETTE[] = {00,51,102,153,204,255};
    const INT STANDARD_COLOR_SIZE = 6;

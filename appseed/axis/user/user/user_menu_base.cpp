@@ -2,9 +2,9 @@
 //#include "base/user/user.h"
 
 
-
 namespace user
 {
+
 
    menu_base::menu_base():
       menu_base(get_app())

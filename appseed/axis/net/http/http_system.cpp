@@ -1,6 +1,7 @@
 #include "framework.h" // from "axis/net/net_sockets.h"
 #include "axis/net/net_sockets.h"
 
+
 namespace http
 {
 
@@ -11,17 +12,24 @@ namespace http
       m_mutexProxy(papp),
       m_mutexDownload(papp)
    {
+
       oprop("dw") = ::get_tick_count();
+
    }
+
 
    system::~system()
    {
+
    }
 
    int32_t system::auto_config_proxy_count()
    {
+
       return 4;
+
    }
+
 
    void system::auto_config_proxy(int32_t i)
    {

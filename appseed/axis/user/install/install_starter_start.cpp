@@ -2,8 +2,6 @@
 //#include "base/user/user.h"
 
 
-
-
 namespace install
 {
 
@@ -148,7 +146,9 @@ namespace install
       call_sync(strSentinelPath, "");*/
 
       return 0;
+
    }
+
 
    uint32_t _ca2_starter_start(void * pvoid)
    {
@@ -173,9 +173,11 @@ namespace install
    }
 
 
-
-
 } // namespace install
+
+
+
+
 
 
 

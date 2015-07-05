@@ -20,14 +20,18 @@ namespace file
       namespace axis
       {
 
+
          application::application(::aura::application * papp) :
             ::object(papp),
             ::file::dir::application(papp)
          {
+
          }
+
 
          application::~application()
          {
+
          }
 
          //string application::locale_schema(const char * pszLocale,const char * pszStyle)
@@ -75,36 +79,36 @@ namespace file
          //   return m_pauraapp->m_paurasystem->m_spdir->matter(get_app(),lpcsz,lpcsz2,bDir,pszRoot,pszApp);
          //}
 
-         ::file::path application::matter_file(const ::file::path & lpcsz,bool bDir)
+         ::file::path application::matter_file(const ::file::path & lpcsz, bool bDir)
          {
 
-            string strPath = m_pauraapp->m_paurasystem->m_spdir->matter(get_app(),lpcsz,bDir);
+            string strPath = m_pauraapp->m_paurasystem->m_spdir->matter(get_app(), lpcsz, bDir);
 
-            if(strPath.begins_ci("http://") || strPath.begins_ci("https://"))
+            if (strPath.begins_ci("http://") || strPath.begins_ci("https://"))
             {
                string strFileExists = strPath;
-               strFileExists.replace(":","_");
-               strFileExists = m_pauraapp->m_paurasystem->m_spdir->appdata() / "cache"  /  strFileExists + ".exists_question";
-               strFileExists.replace("\\\\","\\",2);
+               strFileExists.replace(":", "_");
+               strFileExists = m_pauraapp->m_paurasystem->m_spdir->appdata() / "cache" / strFileExists + ".exists_question";
+               strFileExists.replace("\\\\", "\\", 2);
                string strFile = strPath;
-               strFile.replace(":","_");
+               strFile.replace(":", "_");
                strFile = m_pauraapp->m_paurasystem->m_spdir->appdata() / "cache" / strFile + ".local_copy";
-               strFile.replace("\\\\","\\",2);
-               if(Application.file().exists(strFileExists))
+               strFile.replace("\\\\", "\\", 2);
+               if (Application.file().exists(strFileExists))
                {
-                  if(Application.file().as_string(strFileExists) == "yes")
+                  if (Application.file().as_string(strFileExists) == "yes")
                      return strFile;
                   else
                      return "";
                }
-               if(System.file().output(get_app(),strFile,&System.compress(),&::axis::compress::null,strPath))
+               if (System.file().output(get_app(), strFile, &System.compress(), &::axis::compress::null, strPath))
                {
-                  Application.file().put_contents(strFileExists,"yes");
+                  Application.file().put_contents(strFileExists, "yes");
                   return strFile;
                }
                else
                {
-                  Application.file().put_contents(strFileExists,"no");
+                  Application.file().put_contents(strFileExists, "no");
                   return "";
                }
             }

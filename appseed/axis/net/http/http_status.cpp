@@ -4,6 +4,7 @@
 namespace http
 {
 
+
    bool succeeded(e_status estatus)
    {
 
@@ -19,6 +20,7 @@ namespace http
       return false;
 
    }
+
 
    bool status_succeeded(int64_t i)
    {

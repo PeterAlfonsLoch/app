@@ -33,11 +33,6 @@ namespace sockets
    #define DEB(x) 
    #endif
 
-
-   // ---------------------------------------------------------------------------
-
-
-   // ---------------------------------------------------------------------------
    AjpBaseSocket::Initializer::Initializer()
    {
 
@@ -108,10 +103,10 @@ namespace sockets
       ResponseHeader["servlet-engine"] = 0xa009;
       ResponseHeader["status"] = 0xa00a;
       ResponseHeader["www-authenticate"] = 0xa00b;
+
    }
 
 
-   // ---------------------------------------------------------------------------
    AjpBaseSocket::AjpBaseSocket(base_socket_handler& h) : 
       object(h.get_app()),
       base_socket(h),
@@ -122,12 +117,13 @@ namespace sockets
       m_length(4),
       m_ptr(0)
    {
+
    }
 
 
-   // ---------------------------------------------------------------------------
    void AjpBaseSocket::OnRawData(char *buf, primitive::memory_size sz)
    {
+
    TRACE("OnRawData: %d bytes\n", sz);
       primitive::memory_size ptr = 0;
       while (true)

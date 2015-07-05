@@ -2,8 +2,6 @@
 //#include "base/user/user.h"
 
 
-
-
 namespace user
 {
 
@@ -14,7 +12,8 @@ namespace user
       m_pui                = NULL;
       m_bIgnoreSizeEvent   = false;
       m_bIgnoreMoveEvent   = false;
-      m_pcsDisplay         = NULL;    
+      m_pcsDisplay         = NULL;   
+
    }
 
 

@@ -40,36 +40,53 @@ namespace sockets
 
    Event::Event(IEventOwner *from,long sec,long usec) : m_from(from), m_time(sec, usec), m_id(++m_unique_id)
    {
+
    }
 
 
    Event::~Event()
    {
+
    }
 
 
    bool Event::operator<(Event& e)
    {
+
       return m_time < e.m_time;
+
    }
 
 
    int32_t Event::GetID()
    {
+
       return m_id;
+
    }
 
 
    const EventTime& Event::get_time() const
    {
+
       return m_time;
+
    }
 
 
    IEventOwner *Event::GetFrom()
    {
+
       return m_from;
+
    }
 
+
 } // namespace sockets
+
+
+
+
+
+
 

@@ -5,12 +5,16 @@
 namespace user
 {
 
+
    view_container::view_container()
    {
+
    }
+
 
    view_container::~view_container()
    {
+
    }
 
    
@@ -24,7 +28,8 @@ namespace user
 
    id view_container::get_view_id()
    {
-   return id(var::type_empty);
+
+		return id(var::type_empty);
 //      return ::aura::system::idEmpty;
    }
 

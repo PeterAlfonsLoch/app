@@ -16,9 +16,12 @@ namespace userpresence
 
    }
 
+
    userpresence::~userpresence()
    {
+
    }
+
 
    bool userpresence::initialize()
    {

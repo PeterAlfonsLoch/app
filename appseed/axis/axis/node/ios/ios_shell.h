@@ -13,7 +13,7 @@ namespace ios
       virtual ~shell();
       
       
-      static shell theLinuxShell;
+      //static shell theLinuxShell;
       
 	  static_function bool Initialize();
       // xxx   static_function WINBOOL WINAPI _SHGetPathFromIDList(LPCITEMIDLIST pidl, wchar_t * pszPath);

@@ -16,24 +16,34 @@ namespace sockets
       m_content_length(-1),
       m_read_ptr(0)
    {
+
    }
 
 
    http_debug_socket::~http_debug_socket()
    {
+
    }
 
 
    void http_debug_socket::Init()
    {
+
       if (get_parent() -> GetPort() == 443)
       {
+
    #ifdef HAVE_OPENSSL
+
          EnableSSL();
+
    #else
+
          log("url_this", -1, "SSL not available", ::aura::log::level_warning);
+
    #endif
+
       }
+
    }
 
 

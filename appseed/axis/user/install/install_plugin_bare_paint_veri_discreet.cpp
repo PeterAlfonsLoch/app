@@ -8,6 +8,7 @@
 namespace hotplugin
 {
 
+
    void plugin::on_bare_paint_veri_discreet(::draw2d::graphics * pgraphics,const RECT & lprect)
    {
 

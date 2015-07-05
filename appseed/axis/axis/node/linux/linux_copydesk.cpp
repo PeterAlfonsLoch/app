@@ -242,8 +242,8 @@ xcout(Display * dpy,
      unsigned int *context)
 {
    /* a property for other windows to put their selection into */
-   static Atom pty;
-   static Atom inc;
+   //static Atom pty;
+   //static Atom inc;
    Atom pty_type;
    Atom atomUTF8String;
    int pty_format;
@@ -468,9 +468,9 @@ xcin(Display * dpy,
 * transfers only)
 */
    XEvent res; /* response to event */
-   static Atom inc;
-   static Atom targets;
-   static long chunk_size;
+   //static Atom inc;
+   //static Atom targets;
+   //static long chunk_size;
 
    if (!targets) {
 targets = XInternAtom(dpy, "TARGETS", False);

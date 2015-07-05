@@ -1,6 +1,7 @@
 //#include "framework.h"
 //#include "base/user/user.h"
 
+
 namespace hotplugin
 {
 
@@ -45,7 +46,6 @@ namespace hotplugin
    {
 
    }
-
 
 
    ::hotplugin::host * composer::create_host(sp(::axis::system) psystem)

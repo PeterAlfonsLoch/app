@@ -2,11 +2,9 @@
 #include "axis/net/net_sockets.h"
 
 
-
 #include <openssl/ssl.h>
 #include <openssl/rand.h>
 #include <openssl/err.h>
-
 
 
 namespace sockets
@@ -17,16 +15,24 @@ namespace sockets
       ::object(papp),
       m_mutex(papp)
    {
+
       m_pcontext = NULL;
+
    }
+
 
    ssl_server_context::~ssl_server_context()
    {
+
       if(m_pcontext != NULL)
       {
+
          SSL_CTX_free(m_pcontext);
+
       }
+
    }
+
 
    void ssl_server_context::InitializeContext(const string & context,const string & keyfile,const string & password,const SSL_METHOD *meth_in)
    {

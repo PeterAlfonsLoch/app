@@ -1,17 +1,24 @@
 //#include "framework.h"
 
+
 namespace simpledb
 {
+
 
    database::database(::aura::application * papp):
       ::object(papp)
    {
+
       m_protocol = 0;
+
    }
+
 
    database::~database()
    {
-         close();
+
+      close();
+
    }
 
 

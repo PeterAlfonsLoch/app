@@ -5,14 +5,18 @@
 namespace user
 {
 
+
    elemental::elemental()
    {
+
    }
+
 
    elemental::~elemental()
    {
 
    }
+
 
    // elemental
 

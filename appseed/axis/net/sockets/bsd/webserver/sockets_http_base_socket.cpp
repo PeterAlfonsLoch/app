@@ -21,7 +21,9 @@ namespace sockets
       tcp_socket(h),
       http_socket(h)
    {
+
    }
+
 
    http_base_socket::http_base_socket(const http_base_socket& s) :
       ::object(((http_socket&)s).get_app()),
@@ -31,6 +33,7 @@ namespace sockets
       tcp_socket(s),
       http_socket(s)
    {
+
    }
 
 

@@ -29,6 +29,9 @@
  */
 
 #include "framework.h"
+#include "fiasco_finder.h"
+
+
 
 
 void scTrace(CScriptVar *ca, void *userdata);
