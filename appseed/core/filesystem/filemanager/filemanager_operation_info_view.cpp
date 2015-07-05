@@ -110,7 +110,7 @@ namespace filemanager
       return  (::user::impact::get_document());
    }
 
-   void operation_info_view::_001OnTimer(signal_details * pobj)
+   void operation_info_view::_001OnTimer(timer * ptimer)
    {
       SCAST_PTR(::message::timer,ptimer,pobj);
       if(ptimer->m_nIDEvent == 123)

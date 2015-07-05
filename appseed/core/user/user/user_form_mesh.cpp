@@ -197,7 +197,7 @@ namespace user
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void form_mesh::_001OnTimer(signal_details * pobj)
+   void form_mesh::_001OnTimer(timer * ptimer)
    {
       mesh::_001OnTimer(pobj);
    }

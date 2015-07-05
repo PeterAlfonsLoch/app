@@ -200,7 +200,7 @@ bool db_server::destroy_message_queue()
    return true;
 }
 
-void db_server::_001OnTimer(signal_details * pobj)
+void db_server::_001OnTimer(timer * ptimer)
 {
    
    //SCAST_PTR(::message::timer, ptimer, pobj);

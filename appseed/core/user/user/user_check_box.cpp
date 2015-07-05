@@ -84,7 +84,7 @@ namespace user
    }
 
 
-   void check_box::_001OnTimer(signal_details * pobj)
+   void check_box::_001OnTimer(timer * ptimer)
    {
       UNREFERENCED_PARAMETER(pobj);
       //SCAST_PTR(::message::timer, ptimer, pobj)

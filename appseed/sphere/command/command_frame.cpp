@@ -44,7 +44,7 @@ namespace command
    #endif //DEBUG
 
 
-   void frame::_001OnTimer(signal_details * pobj)
+   void frame::_001OnTimer(timer * ptimer)
    {
       SCAST_PTR(::message::timer, ptimer, pobj);
       UINT nIDEvent = ptimer->m_nIDEvent;

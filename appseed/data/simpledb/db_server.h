@@ -78,7 +78,7 @@ public:
 
 
    inline db_str_set * get_db_str_set();
-   DECL_GEN_SIGNAL(_001OnTimer);
+   _001OnTimer(timer * ptimer);;
 
    void assert_valid() const;
    void dump(dump_context &) const;

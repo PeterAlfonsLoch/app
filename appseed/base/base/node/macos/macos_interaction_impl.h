@@ -684,7 +684,7 @@ namespace macos
 
       void _001OnTriggerMouseInside();
 
-      DECL_GEN_SIGNAL(_001OnTimer);
+      _001OnTimer(timer * ptimer);;
 
       void _001RedrawWindow();
 

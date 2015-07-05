@@ -204,7 +204,7 @@ namespace user
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void form_list::_001OnTimer(signal_details * pobj)
+   void form_list::_001OnTimer(timer * ptimer)
    {
       list::_001OnTimer(pobj);
    }

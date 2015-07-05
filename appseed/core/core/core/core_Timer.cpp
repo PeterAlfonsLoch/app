@@ -41,7 +41,7 @@ namespace core
    }
 
 
-   void timer::_001OnTimer(signal_details * pobj)
+   void timer::_001OnTimer(timer * ptimer)
    {
 
       SCAST_PTR(::message::timer,ptimer,pobj);

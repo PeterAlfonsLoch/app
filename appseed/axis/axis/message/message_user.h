@@ -24,16 +24,6 @@ namespace message
       virtual void failed(const char * lpcszErrorMessage);
    };
 
-   class CLASS_DECL_AXIS timer: public base
-   {
-   public:
-
-
-      timer(::aura::application * papp):  ::message::base(papp) {}
-      using ::message::base::set;
-      virtual void set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
-      UINT m_nIDEvent;
-   };
 
    class CLASS_DECL_AXIS activate: public base
    {

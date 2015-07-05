@@ -93,7 +93,7 @@ namespace user
             DECL_GEN_SIGNAL(_001OnNcMouseMove);
             DECL_GEN_SIGNAL(_001OnNcLButtonUp);
             DECL_GEN_SIGNAL(_001OnNcHitTest);
-            DECL_GEN_SIGNAL(_001OnTimer);
+            _001OnTimer(timer * ptimer);;
             DECL_GEN_SIGNAL(_001OnSize);
             DECL_GEN_SIGNAL(_001OnMove);
 

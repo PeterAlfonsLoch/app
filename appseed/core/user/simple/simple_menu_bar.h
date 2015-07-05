@@ -94,7 +94,7 @@ public:
    DECL_GEN_SIGNAL(_001OnDestroy);
    DECL_GEN_SIGNAL(_001OnMenuChar);
    DECL_GEN_SIGNAL(_001OnLButtonDown);
-   DECL_GEN_SIGNAL(_001OnTimer);
+   _001OnTimer(timer * ptimer);;
 
    virtual int32_t OnMessage(MPARAM mparam, NPARAM nparam, OPARAM oparam);
 

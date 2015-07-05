@@ -101,7 +101,7 @@ namespace filemanager
       pobj->previous();
       SetTimer(123,500,NULL);
    }
-   void operation_list_view::_001OnTimer(signal_details * pobj)
+   void operation_list_view::_001OnTimer(timer * ptimer)
    {
       SCAST_PTR(::message::timer,ptimer,pobj);
       if(ptimer->m_nIDEvent == 123)

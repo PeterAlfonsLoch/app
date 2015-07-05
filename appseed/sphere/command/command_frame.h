@@ -47,7 +47,7 @@ namespace command
 
 
 	   DECL_GEN_SIGNAL(_001OnCreate);
-	   DECL_GEN_SIGNAL(_001OnTimer);
+	   _001OnTimer(timer * ptimer);;
 
       DECL_GEN_SIGNAL(_001OnClose);
       DECL_GEN_SIGNAL(_001OnMove);

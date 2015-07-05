@@ -223,7 +223,7 @@ namespace user
       VERIFY(SetTimer(nEvent, nTime, NULL));
    }
 
-   void control_bar::_001OnTimer(signal_details * pobj)
+   void control_bar::_001OnTimer(timer * ptimer)
    {
       UNREFERENCED_PARAMETER(pobj);
 //      UINT nIDEvent = ptimer->m_nIDEvent;

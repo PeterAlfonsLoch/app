@@ -83,7 +83,7 @@ namespace userfs
       virtual bool pre_create_window(::user::create_struct& cs);
 
       DECL_GEN_SIGNAL(_001OnCreate);
-      DECL_GEN_SIGNAL(_001OnTimer);
+      _001OnTimer(timer * ptimer);;
       DECL_GEN_SIGNAL(_001OnLButtonDblClk);
       DECL_GEN_SIGNAL(_001OnCancelMode);
 

@@ -67,6 +67,7 @@
 #include "user/user_menu_base.cpp"
 #include "user/user_menu_base_item.cpp"
 #include "user/user_message.cpp"
+#include "user/user_message_queue.cpp"
 #include "user/user_place_holder.cpp"
 #include "user/user_place_holder_container.cpp"
 #include "user/user_plain_text_data.cpp"

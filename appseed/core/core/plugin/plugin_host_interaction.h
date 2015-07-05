@@ -63,7 +63,7 @@ namespace plugin
       virtual void _000OnMouse(::message::mouse * pmouse);
 
       DECL_GEN_SIGNAL(on_ignore_message);
-      DECL_GEN_SIGNAL(_001OnTimer);
+      _001OnTimer(timer * ptimer);;
 
 
       virtual LRESULT DefWindowProc(UINT uiMessage, WPARAM wparam, lparam lparam);

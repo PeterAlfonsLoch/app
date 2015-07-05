@@ -1718,6 +1718,7 @@
     <ClInclude Include="aura\aura\aura_system_trace.h" />
     <ClInclude Include="aura\aura\aura_class.h" />
     <ClInclude Include="aura\aura\aura_template.h" />
+    <ClInclude Include="aura\aura\aura_timer.h" />
     <ClInclude Include="aura\aura\aura_timer_array.h" />
     <ClInclude Include="aura\aura\aura_timer_item.h" />
     <ClInclude Include="aura\aura\aura_trace.h" />

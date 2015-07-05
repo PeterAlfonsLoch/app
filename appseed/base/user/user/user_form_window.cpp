@@ -1185,7 +1185,7 @@ namespace user
    //}
 
 
-   void form_window::_001OnTimer(signal_details * pobj)
+   void form_window::_001OnTimer(timer * ptimer)
    {
       SCAST_PTR(::message::timer,ptimer,pobj);
       if(m_pcallback != NULL)

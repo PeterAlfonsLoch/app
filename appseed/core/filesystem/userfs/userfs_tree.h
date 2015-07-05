@@ -62,7 +62,7 @@ namespace userfs
       void clear(const char * lpcszPreserve1, const char * lpcszPreserve2);
       void arrange(::fs::e_arrange earrange);
 
-      DECL_GEN_SIGNAL(_001OnTimer);
+      _001OnTimer(timer * ptimer);;
 
 
       void RenameFile(int32_t iLine, string & str, ::action::context actioncontext);

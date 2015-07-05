@@ -3734,7 +3734,7 @@ namespace user
    //}
 
 
-   void mesh::_001OnTimer(signal_details * pobj)
+   void mesh::_001OnTimer(timer * ptimer)
    {
       //      return; //xxxtimer
       SCAST_PTR(::message::timer,ptimer,pobj);

@@ -43,8 +43,7 @@ public:
 
 
 class CLASS_DECL_AURA thread_impl :
-   virtual public command_target,
-   virtual public ::aura::message_queue_listener
+   virtual public command_target
 {
 public:
 
@@ -55,7 +54,7 @@ public:
    thread *                                  m_pthread;
 
    sp(ptr_array < ::user::primitive >)     m_spuiptra;
-   sp(::aura::timer_array)                   m_sptimera;
+   //sp(::aura::timer_array)                   m_sptimera;
 
    bool                                      m_bDupHandle;
    HTHREAD                                   m_hthread;
@@ -71,7 +70,7 @@ public:
    mutex                                     m_mutexUiPtra;
 
    UINT                                      m_dwFinishTimeout;
-   ::aura::message_queue_sp                 m_spqueue;
+//   ::aura::message_queue_sp                 m_spqueue;
 
 
    thread_impl(::aura::application * papp);
@@ -125,10 +124,8 @@ public:
 
    virtual ::count get_ui_count();
    virtual ::user::primitive * get_ui(::index iIndex);
-   virtual void set_timer(::user::primitive * pui,uint_ptr nIDEvent,UINT nEllapse);
-   virtual void unset_timer(::user::primitive * pui,uint_ptr nIDEvent);
    virtual event & get_finish_event();
-   virtual void step_timer();
+   //virtual void step_timer();
 
 
    virtual void set_os_data(void * pvoidOsData);

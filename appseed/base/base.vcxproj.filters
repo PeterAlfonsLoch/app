@@ -452,6 +452,9 @@
     <ClInclude Include="database\database\database_user_interaction.h">
       <Filter>Header Files\database\database</Filter>
     </ClInclude>
+    <ClInclude Include="user\user\user_message_queue.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="base\base\base.cpp">
@@ -780,6 +783,9 @@
     </ClCompile>
     <ClCompile Include="database\database\database_user_interaction.cpp">
       <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_message_queue.cpp">
+      <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

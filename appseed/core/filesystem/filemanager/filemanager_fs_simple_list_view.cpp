@@ -356,7 +356,7 @@ namespace filemanager
             return 0;
          }
 
-         void list_view::_001OnTimer(signal_details * pobj)
+         void list_view::_001OnTimer(timer * ptimer)
          {
             SCAST_PTR(::message::timer, ptimer, pobj)
                if(ptimer->m_nIDEvent == 123654)

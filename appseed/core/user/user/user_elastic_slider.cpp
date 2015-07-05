@@ -39,7 +39,7 @@ namespace user
       SetTimer(1, 50, NULL);
    }
 
-   void elastic_slider::_001OnTimer(signal_details * pobj)
+   void elastic_slider::_001OnTimer(timer * ptimer)
    {
 
       SCAST_PTR(::message::timer, ptimer, pobj);

@@ -2025,7 +2025,7 @@ namespace user
       return get_cur_tab_id();
    }
 
-   void tab::_001OnTimer(signal_details * pobj)
+   void tab::_001OnTimer(timer * ptimer)
    {
       SCAST_PTR(::message::timer, ptimer, pobj);
       if(ptimer->m_nIDEvent == 5432187)

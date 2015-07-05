@@ -154,7 +154,7 @@ namespace user
          }
 
 
-         void control_box::_001OnTimer(signal_details * pobj)
+         void control_box::_001OnTimer(timer * ptimer)
          {
 
             if(GetTopLevel()->WfiIsMoving())

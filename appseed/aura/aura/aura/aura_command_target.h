@@ -3,7 +3,8 @@
 
 class CLASS_DECL_AURA command_target_interface:
    virtual public signalizable,
-   virtual public ::message::dispatch
+   virtual public ::message::dispatch,
+   virtual public ::aura::timer_array
 {
 public:
 

@@ -51,11 +51,6 @@ namespace message
       System.log().print(lpcszErrorMessage);
    }
 
-   void timer::set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
-   {
-      base::set(pwnd,uiMessage,wparam,lparam,lresult);
-      m_nIDEvent = static_cast<UINT>(wparam);
-   }
 
    activate::activate(::aura::application * papp):
       

@@ -71,7 +71,7 @@ namespace filehandler
       virtual void refresh();
 
       DECL_GEN_SIGNAL(_001OnCreate);
-      DECL_GEN_SIGNAL(_001OnTimer);
+      _001OnTimer(timer * ptimer);;
       DECL_GEN_SIGNAL(_001OnLButtonUp);
 
       virtual void layout();

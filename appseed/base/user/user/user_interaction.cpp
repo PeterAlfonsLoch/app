@@ -1681,7 +1681,7 @@ namespace user
       //}
    }
 
-   void interaction::_001OnTimer(signal_details * pobj)
+   void interaction::_001OnTimer(timer * ptimer)
    {
 
       SCAST_PTR(::message::timer, ptimer, pobj)

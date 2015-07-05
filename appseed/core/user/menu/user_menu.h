@@ -66,7 +66,7 @@ namespace user
 
       DECL_GEN_SIGNAL(_001OnCreate);
       DECL_GEN_SIGNAL(_001OnDestroy);
-      DECL_GEN_SIGNAL(_001OnTimer);
+      _001OnTimer(timer * ptimer);;
       DECL_GEN_SIGNAL(_001OnIdleUpdateCmdUI);
       DECL_GEN_SIGNAL(_001OnNcActivate);
       DECL_GEN_SIGNAL(_001OnNcCalcSize);

@@ -112,6 +112,14 @@ namespace message
    }
 
 
+   void timer::set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
+   {
+      base::set(pwnd,uiMessage,wparam,lparam,lresult);
+      m_nIDEvent = static_cast<UINT>(wparam);
+   }
+
+
+
 } // namespace message
 
 

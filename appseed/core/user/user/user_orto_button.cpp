@@ -167,7 +167,7 @@ void OrtoButton::layout()
 }
 
 
-void OrtoButton::_001OnTimer(signal_details * pobj)
+void OrtoButton::_001OnTimer(timer * ptimer)
 {
    SCAST_PTR(::message::timer,ptimer,pobj)
       // TODO: add your message handler code here and/or call default

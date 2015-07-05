@@ -749,7 +749,7 @@ void simple_menu_bar::_001Hover()
    _001Hover(pt);
 }*/
 
-void simple_menu_bar::_001OnTimer(signal_details * pobj)
+void simple_menu_bar::_001OnTimer(timer * ptimer)
 {
    SCAST_PTR(::message::timer, ptimer, pobj)
    if(ptimer->m_nIDEvent == TIMER_HOVER)

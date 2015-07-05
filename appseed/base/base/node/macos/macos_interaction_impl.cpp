@@ -2928,7 +2928,7 @@ namespace macos
    }
 
 
-   void interaction_impl::_001OnTimer(signal_details * pobj)
+   void interaction_impl::_001OnTimer(timer * ptimer)
    {
 
       SCAST_PTR(::message::timer, ptimer, pobj);

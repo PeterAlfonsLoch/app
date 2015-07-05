@@ -4,6 +4,10 @@
 namespace aura
 {
 
+   timer_array::timer_array() :
+      timer_array(get_app())
+   {
+   }
 
 
    timer_array::timer_array(::aura::application * papp):
@@ -19,315 +23,68 @@ namespace aura
 
    }
 
-
-   bool timer_array::unset(::user::primitive * pui,uint_ptr uiId)
+   bool timer_array::SetTimer(uint_ptr nIDEvent,UINT nEllapse)
    {
 
+      synch_lock sl(&m_mutex);
 
-      single_lock sl(&m_mutex,TRUE);
+      MAP::pair * ppair = m_map.PLookup(nIDEvent);
 
-
-      index i = find(pui,uiId);
-      if(i >= 0)
+      if(ppair == NULL)
       {
-         m_timera.remove_at(i);
-         if(find_from(pui,0) < 0)
-         {
-            m_uiptra.remove(pui);
-         }
+
+         m_map.set_at(nIDEvent,new timer(get_app(),nIDEvent));
+
+         ppair = m_map.PLookup(nIDEvent);
+
+      }
+
+      ppair->m_element2->m_pcallback = this;
+
+      ppair->m_element2->start(nEllapse,true);
+
+      return true;
+
+   }
+
+   bool timer_array::KillTimer(uint_ptr nIDEvent)
+   {
+
+      synch_lock sl(&m_mutex);
+
+      MAP::pair * ppair = m_map.PLookup(nIDEvent);
+
+      if(ppair == NULL)
          return true;
-      }
-      return false;
+
+      delete ppair->m_element2;
+
+      m_map.remove_key(nIDEvent);
+
+      return true;
+
    }
 
-   void timer_array::detach(smart_pointer_array < timer_item > & timera,::user::primitive * pui)
+
+   void timer_array::on_timer(timer * ptimer)
    {
 
-
-      single_lock sl(&m_mutex,TRUE);
-
-      timera = m_timera;
-      m_timera.remove_all();
-
-      for(int32_t i = 0; i < timera.get_count();)
+      if(ptimer->m_pcallback == this)
       {
-         if(timera[i]->m_pui == pui)
-         {
-            i++;
-         }
-         else
-         {
-            m_timera.add(new timer_item(timera(i)));
-            timera.remove_at(i);
-         }
+
+        _001OnTimer(ptimer->m_uiTimer);
+
       }
 
    }
-
-
-   void timer_array::unset(::user::primitive * pui)
+   void timer_array::_001OnTimer(timer * ptimer)
    {
-
-      retry_single_lock sl(&m_mutex,millis(177),millis(184));
-
-      index i = 0;
-
-      while((i = find_from(pui,i)) >= 0)
-      {
-         m_timera.remove_at(i);
-      }
-
-      if(find_from(pui,0) < 0)
-      {
-         m_uiptra.remove(pui);
-      }
-
    }
-
-   index timer_array::find(::user::primitive * pui,uint_ptr uiId)
-   {
-
-
-      retry_single_lock sl(&m_mutex,millis(177),millis(184));
-
-
-      for(index i = 0; i < m_timera.get_count(); i++)
-      {
-         if(m_timera[i]->m_pui == pui && m_timera[i]->m_uiId == uiId)
-         {
-            return i;
-         }
-      }
-
-      return -1;
-
-   }
-
-   index timer_array::find_from(::user::primitive * pui,index iStart)
-   {
-
-
-      retry_single_lock sl(&m_mutex,millis(177),millis(184));
-
-
-      for(index i = iStart; i < m_timera.get_count(); i++)
-      {
-         if(m_timera[i]->m_pui == pui)
-         {
-            return i;
-         }
-      }
-
-      return -1;
-
-   }
-
-   void timer_array::dump(dump_context & dc) const
-   {
-      UNREFERENCED_PARAMETER(dc);
-   }
-
-   void timer_array::assert_valid() const
-   {
-
-   }
-
-
-
-   void timer_array::check()
-   {
-
-
-      single_lock sl(&m_mutex,TRUE);
-
-      if(m_iItem >= m_timera.get_count())
-         m_iItem = m_timera.get_upper_bound();
-
-      if(m_iItem < 0)
-         m_iItem = 0;
-
-
-      index iPreviousItem = m_iItem;
-
-      for(; m_iItem < m_timera.get_count();)
-      {
-         try
-         {
-            if(!m_timera[m_iItem]->check(sl))
-            {
-               if(m_iItem < m_timera.get_count())
-               {
-                  m_timera.remove_at(m_iItem);
-               }
-               continue;
-            }
-         }
-         catch(...)
-         {
-            try
-            {
-               if(m_iItem < m_timera.get_count())
-               {
-                  m_timera.remove_at(m_iItem);
-               }
-               continue;
-            }
-            catch(...)
-            {
-            }
-         }
-         m_iItem++;
-      }
-
-      m_iItem = 0;
-
-      for(; m_iItem < MIN(iPreviousItem,m_timera.get_count());)
-      {
-         try
-         {
-            if(!m_timera[m_iItem]->check(sl))
-            {
-               if(m_iItem < m_timera.get_count())
-               {
-                  m_timera.remove_at(m_iItem);
-               }
-               continue;
-            }
-         }
-         catch(...)
-         {
-            try
-            {
-               if(m_iItem < m_timera.get_count())
-               {
-                  m_timera.remove_at(m_iItem);
-               }
-               continue;
-            }
-            catch(...)
-            {
-            }
-         }
-
-         m_iItem++;
-      }
-
-   }
-
-
-   uint_ptr timer_array::set(::user::primitive * pui,uint_ptr uiId,UINT uiElapse)
-   {
-
-
-      single_lock sl(&m_mutex,TRUE);
-
-
-      if(pui == NULL)
-         return 0xffffffff;
-
-      m_uiptra.add(pui);
-
-      index i = find(pui,uiId);
-
-      if(i >= 0)
-      {
-
-         m_timera[i]->m_uiElapse = uiElapse;
-         m_timera[i]->m_uiLastSent = ::get_tick_count();
-
-         return (UINT)i;
-
-      }
-      else
-      {
-
-         sp(timer_item) item(canew(timer_item(get_app())));
-
-         item->m_pui = pui;
-         item->m_uiId = uiId;
-         item->m_uiElapse = uiElapse;
-         item->m_uiLastSent = ::get_tick_count();
-
-         m_timera.add(item);
-
-         return m_timera.get_upper_bound();
-
-      }
-
-   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
 
 } // namespace user
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

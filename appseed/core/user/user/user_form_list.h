@@ -44,7 +44,7 @@ namespace user
       sp(control) _001GetControlBySubItem(index iSubItem);
       virtual void _001OnClick(uint_ptr uiFlags,point point);
       virtual void _001OnClick(uint_ptr uiFlags,point point,index iItem,index iSubItem);
-      DECL_GEN_SIGNAL(_001OnTimer);
+      _001OnTimer(timer * ptimer);;
 
       using list::_001GetSelection;
       virtual void _001GetSelection(::database::id & key,::database::selection & selection);

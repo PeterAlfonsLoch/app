@@ -183,7 +183,7 @@ void MetaButton::layout()
 }
 
 
-void MetaButton::_001OnTimer(signal_details * pobj)
+void MetaButton::_001OnTimer(timer * ptimer)
 {
    SCAST_PTR(::message::timer, ptimer, pobj)
       // TODO: add your message handler code here and/or call default

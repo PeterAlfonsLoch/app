@@ -56,7 +56,7 @@ void menu_view::_001OnCreate(signal_details * pobj)
 }
 
 
-void menu_view::_001OnTimer(signal_details * pobj)
+void menu_view::_001OnTimer(timer * ptimer)
 {
    SCAST_PTR(::message::timer, ptimer, pobj);
    if(m_pcallback != NULL)

@@ -453,7 +453,7 @@ namespace user
       return true;
    }
 
-   void menu::_001OnTimer(signal_details * pobj)
+   void menu::_001OnTimer(timer * ptimer)
    {
       SCAST_PTR(::message::timer, ptimer, pobj);
 

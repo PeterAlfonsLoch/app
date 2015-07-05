@@ -733,15 +733,15 @@ int32_t thread_impl::exit_instance()
    {
    }
 
-   try
-   {
+   //try
+   //{
 
-      m_sptimera.release();
+   //   m_sptimera.release();
 
-   }
-   catch(...)
-   {
-   }
+   //}
+   //catch(...)
+   //{
+   //}
 
 
    return m_pthread->m_iReturnCode;
@@ -1030,12 +1030,12 @@ void thread_impl::remove(::user::primitive * pui)
 
    sl.unlock();
 
-   if(m_sptimera.is_set())
-   {
+   //if(m_sptimera.is_set())
+   //{
 
-      m_sptimera->unset(pui);
+   //   m_sptimera->unset(pui);
 
-   }
+   //}
 
 }
 
@@ -1060,33 +1060,33 @@ void thread_impl::remove(::user::primitive * pui)
 }
 
 
-void thread_impl::set_timer(::user::primitive * pui,uint_ptr nIDEvent,UINT nEllapse)
-{
+//void thread_impl::set_timer(::user::primitive * pui,uint_ptr nIDEvent,UINT nEllapse)
+//{
+//
+//   if(m_sptimera.is_null())
+//   {
+//
+//      if(!initialize_message_queue())
+//         return;
+//
+//   }
+//
+//   m_sptimera->set(pui,nIDEvent,nEllapse);
+//
+//   Application.add_thread(pui, m_pthread);
+//
+//}
+//
 
-   if(m_sptimera.is_null())
-   {
-
-      if(!initialize_message_queue())
-         return;
-
-   }
-
-   m_sptimera->set(pui,nIDEvent,nEllapse);
-
-   Application.add_thread(pui, m_pthread);
-
-}
-
-
-void thread_impl::unset_timer(::user::primitive * pui,uint_ptr nIDEvent)
-{
-
-   if(m_sptimera.is_null())
-      return;
-
-   m_sptimera->unset(pui,nIDEvent);
-
-}
+//void thread_impl::unset_timer(::user::primitive * pui,uint_ptr nIDEvent)
+//{
+//
+//   if(m_sptimera.is_null())
+//      return;
+//
+//   m_sptimera->unset(pui,nIDEvent);
+//
+//}
 
 
 event & thread_impl::get_finish_event()
@@ -1097,15 +1097,15 @@ event & thread_impl::get_finish_event()
 }
 
 
-void thread_impl::step_timer()
-{
-
-   if(m_sptimera.is_null())
-      return;
-
-   m_sptimera->check();
-
-}
+//void thread_impl::step_timer()
+//{
+//
+//   if(m_sptimera.is_null())
+//      return;
+//
+//   m_sptimera->check();
+//
+//}
 
 
 thread_impl::operator HTHREAD() const
@@ -1119,12 +1119,12 @@ thread_impl::operator HTHREAD() const
 bool thread_impl::initialize_message_queue()
 {
 
-   if(m_sptimera.is_null())
-   {
+   //if(m_sptimera.is_null())
+   //{
 
-      m_sptimera = canew(::aura::timer_array(get_app()));
+   //   m_sptimera = canew(::aura::timer_array(get_app()));
 
-   }
+   //}
 
    if(m_spuiptra.is_null())
    {
@@ -1133,63 +1133,63 @@ bool thread_impl::initialize_message_queue()
 
    }
 
-   if(m_spqueue.is_null())
-   {
+   //if(m_spqueue.is_null())
+   //{
 
-      m_spqueue.alloc(allocer());
+   //   m_spqueue.alloc(allocer());
 
-   }
+   //}
 
-   if(m_spqueue.is_null())
-   {
+   //if(m_spqueue.is_null())
+   //{
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
-   if(!m_spqueue->message_queue_is_initialized())
-   {
+   //if(!m_spqueue->message_queue_is_initialized())
+   //{
 
-      try
-      {
+   //   try
+   //   {
 
-         if(!m_spqueue->create_message_queue("",this))
-         {
+   //      if(!m_spqueue->create_message_queue("",this))
+   //      {
 
-            return false;
+   //         return false;
 
-         }
+   //      }
 
-      }
-      catch(...)
-      {
+   //   }
+   //   catch(...)
+   //   {
 
-         return false;
+   //      return false;
 
-      }
+   //   }
 
-   }
+   //}
 
 
-   single_lock sl(&m_sptimera->m_mutex,TRUE);
+   //single_lock sl(&m_sptimera->m_mutex,TRUE);
 
-   int32_t iMin = 100;
+   //int32_t iMin = 100;
 
-   for(int32_t i = 0; i < m_sptimera->m_timera.get_count(); i++)
-   {
+   //for(int32_t i = 0; i < m_sptimera->m_timera.get_count(); i++)
+   //{
 
-      if(m_sptimera->m_timera.element_at(i)->m_uiElapse < natural(iMin))
-      {
+   //   if(m_sptimera->m_timera.element_at(i)->m_uiElapse < natural(iMin))
+   //   {
 
-         iMin = m_sptimera->m_timera.element_at(i)->m_uiElapse;
+   //      iMin = m_sptimera->m_timera.element_at(i)->m_uiElapse;
 
-      }
+   //   }
 
-   }
+   //}
 
-   sl.unlock();
+   //sl.unlock();
 
-   m_spqueue->message_queue_set_timer((uint_ptr)-2,iMin);
+   //m_spqueue->message_queue_set_timer((uint_ptr)-2,iMin);
 
    return true;
 
@@ -1670,19 +1670,19 @@ void thread_impl::thread_impl_delete()
 bool thread_impl::finalize()
 {
 
-   if(m_spqueue.is_set())
-   {
+   //if(m_spqueue.is_set())
+   //{
 
-      //if(m_spqueue->message_queue_is_initialized())
-      {
+   //   //if(m_spqueue->message_queue_is_initialized())
+   //   {
 
-         m_spqueue->message_queue_destroy();
+   //      m_spqueue->message_queue_destroy();
 
-      }
+   //   }
 
-      m_spqueue.release();
+   //   m_spqueue.release();
 
-   }
+   //}
 
    return true;
 

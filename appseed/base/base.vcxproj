@@ -2807,6 +2807,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_profiler|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="user\user\user_message_queue.cpp" />
     <ClCompile Include="user\user\user_place_holder.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
@@ -3691,6 +3692,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="user\user\user_menu_base.h" />
     <ClInclude Include="user\user\user_menu_base_item.h" />
     <ClInclude Include="user\user\user_message.h" />
+    <ClInclude Include="user\user\user_message_queue.h" />
     <ClInclude Include="user\user\user_place_holder.h" />
     <ClInclude Include="user\user\user_place_holder_container.h" />
     <ClInclude Include="user\user\user_plain_edit.h" />

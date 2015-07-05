@@ -1248,7 +1248,7 @@ namespace user
             pnchittest->m_bRet = m_pframeschema->_000OnNcHitTest(pnchittest->m_pt,pnchittest->get_lresult());
          }
 
-         void WorkSet::_001OnTimer(signal_details * pobj)
+         void WorkSet::_001OnTimer(timer * ptimer)
          {
             //return; //xxxtimer
             SCAST_PTR(::message::timer,ptimer,pobj)

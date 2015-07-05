@@ -38,6 +38,19 @@ namespace message
    };
 
 
+   class CLASS_DECL_AURA timer: public base
+   {
+   public:
+
+
+      timer(::aura::application * papp): ::message::base(papp) {}
+      using ::message::base::set;
+      virtual void set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
+      UINT m_nIDEvent;
+   };
+
+
+
 } // namespace message
 
 

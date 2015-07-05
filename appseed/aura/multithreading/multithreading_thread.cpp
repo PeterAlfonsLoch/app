@@ -747,26 +747,26 @@ void thread::remove(::user::primitive * pui)
 }
 
 
-void thread::set_timer(::user::primitive * pui, uint_ptr nIDEvent, UINT nEllapse)
-{
-
-   if (m_pthreadimpl.is_null())
-      return;
-
-   m_pthreadimpl->set_timer(pui, nIDEvent, nEllapse);
-
-}
-
-
-void thread::unset_timer(::user::primitive * pui, uint_ptr nIDEvent)
-{
-
-   if (m_pthreadimpl.is_null())
-      return;
-
-   m_pthreadimpl->unset_timer(pui, nIDEvent);
-
-}
+//void thread::set_timer(::user::primitive * pui, uint_ptr nIDEvent, UINT nEllapse)
+//{
+//
+//   if (m_pthreadimpl.is_null())
+//      return;
+//
+//   m_pthreadimpl->set_timer(pui, nIDEvent, nEllapse);
+//
+//}
+//
+//
+//void thread::unset_timer(::user::primitive * pui, uint_ptr nIDEvent)
+//{
+//
+//   if (m_pthreadimpl.is_null())
+//      return;
+//
+//   m_pthreadimpl->unset_timer(pui, nIDEvent);
+//
+//}
 
 
 void thread::set_auto_delete(bool bAutoDelete)
@@ -822,15 +822,15 @@ bool thread::get_run()
 }
 
 
-void thread::step_timer()
-{
-
-   if (m_pthreadimpl.is_null())
-      return;
-
-   return m_pthreadimpl->step_timer();
-
-}
+//void thread::step_timer()
+//{
+//
+//   if (m_pthreadimpl.is_null())
+//      return;
+//
+//   return m_pthreadimpl->step_timer();
+//
+//}
 
 
 bool thread::on_run_step()
@@ -840,7 +840,7 @@ bool thread::on_run_step()
       return false;
 
 
-   step_timer();
+   //step_timer();
 
    sp(::aura::application) papp = (this);
 

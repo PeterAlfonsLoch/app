@@ -3649,7 +3649,7 @@ namespace user
    }
 
 
-   void list::_001OnTimer(signal_details * pobj)
+   void list::_001OnTimer(timer * ptimer)
    {
 //      return; //xxxtimer
       SCAST_PTR(::message::timer, ptimer, pobj);

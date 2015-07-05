@@ -43,7 +43,7 @@ namespace console
    #endif //DEBUG
 
 
-   void prompt_frame::_001OnTimer(signal_details * pobj)
+   void prompt_frame::_001OnTimer(timer * ptimer)
    {
       
       SCAST_PTR(::message::timer, ptimer, pobj);

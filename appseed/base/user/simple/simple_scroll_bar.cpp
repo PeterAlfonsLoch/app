@@ -591,7 +591,7 @@ void simple_scroll_bar::layout()
 //   psize->m_bRet = false;
 }
 
-void simple_scroll_bar::_001OnTimer(signal_details * pobj)
+void simple_scroll_bar::_001OnTimer(timer * ptimer)
 {
 
    SCAST_PTR(::message::timer, ptimer, pobj)

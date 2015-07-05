@@ -563,7 +563,7 @@ namespace user
       pobj->previous();
    }
 
-   void plain_edit::_001OnTimer(signal_details * pobj)
+   void plain_edit::_001OnTimer(timer * ptimer)
    {
       SCAST_PTR(::message::timer,ptimer,pobj)
       if(ptimer->m_nIDEvent >= 100

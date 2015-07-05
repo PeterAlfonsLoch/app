@@ -103,7 +103,7 @@ namespace plugin
       }
    }
 
-   void host_interaction::_001OnTimer(signal_details * pobj)
+   void host_interaction::_001OnTimer(timer * ptimer)
    {
       SCAST_PTR(::message::timer, ptimer, pobj);
       if(ptimer->m_nIDEvent == 88881115)

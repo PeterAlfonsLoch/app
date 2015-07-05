@@ -5,35 +5,33 @@ namespace aura
 {
 
 
-   class CLASS_DECL_AURA timer_array :
-      virtual public ::object
+   class CLASS_DECL_AURA timer_array:
+      virtual public ::object,
+      virtual public timer_callback
    {
    public:
 
+      
 
-      mutex                               m_mutex;
-      spa(timer_item)                     m_timera;
-      index                               m_iItem;
-      ptr_array < ::user::primitive >     m_uiptra;
+      typedef map < uint_ptr,uint_ptr,timer *, timer  * > MAP;
 
+      MAP        m_map;
 
+      mutex       m_mutex;
+
+      timer_array();
       timer_array(::aura::application * papp);
       virtual ~timer_array();
 
 
-      uint_ptr set(::user::primitive * pui,uint_ptr uiId,UINT uiElapse);
-      void check();
-      bool unset(::user::primitive * pui,uint_ptr uiId);
-      void unset(::user::primitive * pui);
-      void detach(spa(timer_item) & timera,::user::primitive * pui);
-      ::user::primitive * find(object * pobject);
-      index find(::user::primitive * pui,uint_ptr uiId);
-      index find_from(::user::primitive * pui,index iStart);
 
-      virtual void assert_valid() const;
-      virtual void dump(dump_context & dc) const;
+      virtual bool SetTimer(uint_ptr nIDEvent,UINT nEllapse);
+      virtual bool KillTimer(uint_ptr nIDEvent);
 
-      };
+      virtual void on_timer(timer * ptimer);
+      virtual void _001OnTimer(uint_ptr nIDEvent);
+
+   };
 
 
 

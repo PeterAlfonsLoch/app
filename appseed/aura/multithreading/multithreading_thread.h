@@ -161,15 +161,15 @@ public:
    virtual void remove(::user::primitive * pui);
    virtual ::count get_ui_count();
    virtual ::user::primitive * get_ui(index iIndex);
-   virtual void set_timer(::user::primitive * pui, uint_ptr nIDEvent, UINT nEllapse);
-   virtual void unset_timer(::user::primitive * pui, uint_ptr nIDEvent);
+   //virtual void set_timer(::user::primitive * pui, uint_ptr nIDEvent, UINT nEllapse);
+   //virtual void unset_timer(::user::primitive * pui, uint_ptr nIDEvent);
    virtual void set_auto_delete(bool bAutoDelete = true);
    virtual void set_run(bool bRun = true);
    virtual event & get_finish_event();
    virtual bool get_run();
    virtual ::user::primitive * get_active_ui();
    virtual ::user::primitive * set_active_ui(::user::primitive * pui);
-   virtual void step_timer();
+   //virtual void step_timer();
    virtual bool on_run_step();
 
 
