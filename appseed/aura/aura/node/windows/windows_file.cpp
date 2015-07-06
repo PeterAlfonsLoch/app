@@ -182,7 +182,8 @@ retry:
       {
          DWORD dwLastError = ::GetLastError();
 
-         if(::get_thread()->m_bRun && dwLastError == ERROR_SHARING_VIOLATION && (::get_tick_count() - dwStart) < ::get_thread()->get_file_sharing_violation_timeout_total_milliseconds())
+         if(::get_thread() != NULL &&
+            ::get_thread()->m_bRun && dwLastError == ERROR_SHARING_VIOLATION && (::get_tick_count() - dwStart) < ::get_thread()->get_file_sharing_violation_timeout_total_milliseconds())
          {
             iRetrySharingViolation++;
             Sleep(dwWaitSharingViolation);

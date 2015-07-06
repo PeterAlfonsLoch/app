@@ -213,8 +213,14 @@ VOID CALLBACK aura_timer_TimerRoutine(PVOID lpParam,BOOLEAN TimerOrWaitFired)
       ptimer->call_on_timer();
 
    }
+   catch(::exception::base & e)
+   {
+
+   }
    catch(...)
    {
+      
+      delete ptimer;
 
    }
 

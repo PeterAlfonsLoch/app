@@ -15,6 +15,9 @@
 
 #include "nodeapp/operational_system/operational_system.h"
 
+#define DRAWDD() virtual void _001OnDraw(::draw2d::graphics * pgraphics)
+
+
 
 
 namespace user
@@ -22,7 +25,26 @@ namespace user
 
    class message_queue_listener;
 
-}
+   namespace wndfrm
+   {
+
+      namespace frame
+      {
+         class WorkSetClientInterface;
+
+      }
+
+   }
+
+   class scroll_info;
+
+
+   class interaction_impl_base;
+
+   CLASS_DECL_BASE bool is_docking_appearance(::user::EAppearance eappearance);
+
+
+} // namespace user
 
 namespace base
 {

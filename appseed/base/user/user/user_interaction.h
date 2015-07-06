@@ -2,29 +2,9 @@
 #define CA2_APP_BASE_USER_INTERACTION_H
 
 
-#define DRAWDD() virtual void _001OnDraw(::draw2d::graphics * pgraphics)
-
-
 namespace user
 {
 
-   namespace wndfrm
-   {
-
-      namespace frame
-      {
-         class WorkSetClientInterface;
-
-      }
-
-   }
-
-   class scroll_info;
-
-
-   class interaction_impl_base;
-
-   CLASS_DECL_BASE bool is_docking_appearance(::user::EAppearance eappearance);
 
 
    class CLASS_DECL_BASE interaction:

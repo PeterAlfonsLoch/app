@@ -16,6 +16,17 @@ namespace aura
    timer_array::~timer_array()
    {
 
+      MAP::pair * ppair = m_map.PGetFirstAssoc();
+
+      while(ppair != NULL)
+      {
+
+         delete ppair->m_element2;
+
+         ppair = m_map.PGetNextAssoc(ppair);
+
+      }
+
    }
 
    bool timer_array::create_timer(uint_ptr nIDEvent,UINT nEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void * pvoidData)
