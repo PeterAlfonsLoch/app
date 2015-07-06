@@ -30,8 +30,9 @@ public:
 
    enum e
    {
-      hover = 0,
-      end
+      e_start = 1000000,
+      hover = e_start,
+      e_end
 
    };
 
