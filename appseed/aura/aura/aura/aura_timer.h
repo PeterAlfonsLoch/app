@@ -1,8 +1,11 @@
 #pragma once
 
 
+class timer_callback;
+
+
 class CLASS_DECL_AURA timer :
-   virtual public object
+   virtual public thread
 {
 public:
 
@@ -26,6 +29,7 @@ public:
    bool                 m_bDeal;
    bool                 m_bKill;
    mutex *              m_pmutex;
+   DWORD                m_dwMillis;
 
 #ifdef WINDOWS
 

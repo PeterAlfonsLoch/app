@@ -2,10 +2,12 @@
 
 
 class CLASS_DECL_AURA timer_event:
-   virtual public timer,
-   virtual public manual_reset_event
+   virtual public timer
 {
 public:
+
+   
+   manual_reset_event   m_ev;
 
 
    timer_event(::aura::application * papp,int iTimer);

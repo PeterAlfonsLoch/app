@@ -84,8 +84,10 @@ bool timer::start(int millis,bool bPeriodic)
 
    m_bPeriodic = bPeriodic;
 
+   m_dwMillis = millis;
+
 #ifdef WINDOWS
-   if (!CreateTimerQueueTimer(&hTimer, hTimerQueue, (WAITORTIMERCALLBACK)aura_timer_TimerRoutine, this, millis, bPeriodic ? millis : 0, 0))
+   if(!CreateTimerQueueTimer(&hTimer,hTimerQueue,(WAITORTIMERCALLBACK)aura_timer_TimerRoutine,this,m_dwMillis,0,WT_EXECUTEONLYONCE))
    {
 
       return false;
@@ -142,6 +144,13 @@ void timer::stop()
 
 bool timer::call_on_timer()
 {
+
+   if(::get_thread() == NULL)
+   {
+    
+      ::set_thread(this);
+
+   }
    
    synch_lock sl(m_pmutex);
 
@@ -170,6 +179,18 @@ bool timer::call_on_timer()
    }
 
    m_bDeal = false;
+
+   if(m_bPeriodic)
+   {
+
+      if(!CreateTimerQueueTimer(&hTimer,hTimerQueue,(WAITORTIMERCALLBACK)aura_timer_TimerRoutine,this,m_dwMillis,0,WT_EXECUTEONLYONCE))
+      {
+
+         return false;
+
+      }
+
+   }
 
    return !m_bRet;
 

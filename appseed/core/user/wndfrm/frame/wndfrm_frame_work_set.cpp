@@ -1248,16 +1248,28 @@ namespace user
             pnchittest->m_bRet = m_pframeschema->_000OnNcHitTest(pnchittest->m_pt,pnchittest->get_lresult());
          }
 
+         
          void WorkSet::_001OnTimer(timer * ptimer)
          {
+            
             //return; //xxxtimer
+            
             if(!m_bEnable)
             {
+               
                ptimer->m_bRet = false;
+
                return;
+
             }
-            ASSERT(m_pframeschema != NULL);
-            ptimer->m_bRet = m_pframeschema->_000OnTimer(ptimer->m_nIDEvent);
+            
+            if(m_pframeschema != NULL)
+            {
+             
+               ptimer->m_bRet = m_pframeschema->_000OnTimer(ptimer->m_nIDEvent);
+
+            }
+
          }
 
 

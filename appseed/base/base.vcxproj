@@ -3274,7 +3274,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="base\base\base_simple_app.h" />
     <ClInclude Include="base\base\base_static_start.h" />
     <ClInclude Include="base\base\base_system.h" />
-    <ClInclude Include="base\base\base_template.h" />
     <ClInclude Include="base\base_policy\base_c.h" />
     <ClInclude Include="base\base_policy\base_cpp.h" />
     <ClInclude Include="base\base_policy\base_policy.h" />
