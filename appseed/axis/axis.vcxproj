@@ -1834,7 +1834,6 @@
     </ClCompile>
     <ClCompile Include="filesystem\_filesystem.cpp" />
     <ClCompile Include="graphics\dib_console.cpp" />
-    <ClCompile Include="graphics\graphics_window_graphics.cpp" />
     <ClCompile Include="programming\javascript\javascript.cpp" />
     <ClCompile Include="programming\javascript\javascript_functions.cpp" />
     <ClCompile Include="programming\javascript\javascript_tinyjs_functions.cpp" />
@@ -3114,7 +3113,6 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="graphics\dib_console.h" />
     <ClInclude Include="graphics\graphics.h" />
-    <ClInclude Include="graphics\graphics_window_graphics.h" />
     <ClInclude Include="graphics\visual\visual.h" />
     <ClInclude Include="graphics\visual\visual_api.h" />
     <ClInclude Include="graphics\visual\visual_buffered_graphics.h" />

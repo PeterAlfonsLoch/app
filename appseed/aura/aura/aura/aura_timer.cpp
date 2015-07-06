@@ -84,7 +84,7 @@ bool timer::start(int millis,bool bPeriodic)
 
    m_bPeriodic = bPeriodic;
 
-#ifdef LINUX
+#ifdef WINDOWS
    if (!CreateTimerQueueTimer(&hTimer, hTimerQueue, (WAITORTIMERCALLBACK)aura_timer_TimerRoutine, this, millis, bPeriodic ? millis : 0, 0))
    {
 

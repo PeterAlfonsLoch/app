@@ -132,6 +132,12 @@
     <Filter Include="Header Files\database\database">
       <UniqueIdentifier>{4c91bf10-f540-4f53-bdb6-f6785fea6c7c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\graphics">
+      <UniqueIdentifier>{7aefbb5d-16e2-442f-a2ba-9f463c405209}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics">
+      <UniqueIdentifier>{1ae520e2-f29c-4184-84ab-8b007029926e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base\os\cross.h">
@@ -421,6 +427,9 @@
     </ClInclude>
     <ClInclude Include="user\user\user_message_queue_listener.h">
       <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics_window_graphics.h">
+      <Filter>Header Files\graphics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -753,6 +762,9 @@
     </ClCompile>
     <ClCompile Include="user\user\user_message_queue.cpp">
       <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\graphics_window_graphics.cpp">
+      <Filter>Source Files\graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

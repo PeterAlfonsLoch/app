@@ -1019,9 +1019,6 @@
     <ClInclude Include="axis\node\windows\windows_printer.h">
       <Filter>Header Files\axis\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\graphics_window_graphics.h">
-      <Filter>Header Files\graphics</Filter>
-    </ClInclude>
     <ClInclude Include="net\http\http_ostream.h">
       <Filter>Header Files\net\http</Filter>
     </ClInclude>
@@ -1759,9 +1756,6 @@
     <ClCompile Include="axis\node\windows\windows_window_draw.cpp">
       <Filter>Source Files\axis\node\windows</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\graphics_window_graphics.cpp">
-      <Filter>Source Files\graphics</Filter>
-    </ClCompile>
     <ClCompile Include="axis\os\windows\windows_trace_message.cpp">
       <Filter>Source Files\axis\os\windows</Filter>
     </ClCompile>
@@ -1827,9 +1821,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>

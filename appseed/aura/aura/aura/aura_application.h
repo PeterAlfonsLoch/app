@@ -211,7 +211,7 @@ namespace aura
       virtual ptr_array < thread > get_thread(::user::primitive * pui);
       virtual void add_thread(::user::primitive * pui,::thread * pthread);
       virtual void remove_thread(::user::primitive * pui,::thread * pthread);
-      virtual void window_graphics_update_window(window_graphics * & pdata,oswindow interaction_impl,COLORREF * pOsBitmapData,const RECT & rect,int cxParam,int cyParam,int iStride = -1,bool bTransferBuffer = true);
+      virtual void window_graphics_update_window(window_graphics *  pdata,oswindow interaction_impl,COLORREF * pOsBitmapData,const RECT & rect,int cxParam,int cyParam,int iStride = -1,bool bTransferBuffer = true);
 
 
       //virtual ::user::primitive * get_active_guie();
