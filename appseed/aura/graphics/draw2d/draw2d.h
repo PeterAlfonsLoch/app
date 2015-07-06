@@ -16,6 +16,7 @@ namespace draw2d
 #if defined(CUBE) || defined(VSNORD)
 
 
+extern "C"
 void draw2d_factory_exchange(::aura::application * papp);
 
 

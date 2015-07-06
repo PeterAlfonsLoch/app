@@ -2269,7 +2269,7 @@ namespace file
 
 #if defined(CUBE) || defined(VSNORD)
 
-            return simple_path(strRoot, "appmatter", strDomain);
+            return ::file::path(strRoot) / "appmatter" / strDomain;
 
 #else
 

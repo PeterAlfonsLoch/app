@@ -39,4 +39,11 @@ void ca2_factory_exchange(::aura::application * papp)
    draw2d_cairo::factory_exchange factoryexchange(papp);
 }
 
+extern "C"
+void draw2d_factory_exchange(::aura::application * papp)
+{
+
+   draw2d_cairo::factory_exchange factoryexchange(papp);
+
+}
 

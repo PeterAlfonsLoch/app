@@ -83,7 +83,7 @@
     </ClCompile>
     <Link />
     <Link>
-      <LibraryDependencies>axisfreetype;axisfreeimage;axisidn;axisbzip2;axiszlib;axisopenssl;axiscrypto;aurasqlite;aura;$(StlLibraryName);m;log;android</LibraryDependencies>
+      <LibraryDependencies>draw2d_cairo;axisfreetype;axisfreeimage;axisidn;axisbzip2;axiszlib;axisopenssl;axiscrypto;aurasqlite;aura;$(StlLibraryName);m;log;android</LibraryDependencies>
       <SharedLibrarySearchPath>$(OutDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;%(SharedLibrarySearchPath)</SharedLibrarySearchPath>
       <AdditionalLibraryDirectories>$(OutDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\4.8;$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
