@@ -42,7 +42,7 @@ namespace user
    void elastic_slider::_001OnTimer(timer * ptimer)
    {
 
-      super::_001OnTimer(ptimer);;
+      ::user::interaction::_001OnTimer(ptimer);;
 
       if(ptimer->m_nIDEvent == 1)
       {

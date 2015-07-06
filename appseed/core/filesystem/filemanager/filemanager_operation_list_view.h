@@ -10,6 +10,8 @@ namespace filemanager
    {
    public:
 
+      typedef ::user::show < ::user::list > BASE;
+
 
       ::user::list_cache               m_listcache;
       uint32_t                         m_dwLast123Update;

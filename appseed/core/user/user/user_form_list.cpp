@@ -206,7 +206,7 @@ namespace user
 
    void form_list::_001OnTimer(timer * ptimer)
    {
-      list::_001OnTimer(pobj);
+      list::_001OnTimer(ptimer);
    }
 
    void form_list::_001OnMessageNotify(signal_details * pobj)

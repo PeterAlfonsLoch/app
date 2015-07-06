@@ -49,7 +49,6 @@ void simple_menu_bar::install_message_handling(::message::dispatch * pdispatch)
    IGUI_WIN_MSG_LINK(WM_DESTROY        , pdispatch, this, &simple_menu_bar::_001OnDestroy);
    IGUI_WIN_MSG_LINK(WM_MENUCHAR       , pdispatch, this, &simple_menu_bar::_001OnMenuChar);
    IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN    , pdispatch, this, &simple_menu_bar::_001OnLButtonDown);
-   IGUI_WIN_MSG_LINK(WM_TIMER          , pdispatch, this, &simple_menu_bar::_001OnTimer);
    //IGUI_WIN_MSG_LINK(WM_ERASEBKGND     , pdispatch, this, *simple_menu_bar::_001On);
 }
 
@@ -751,13 +750,13 @@ void simple_menu_bar::_001Hover()
 
 void simple_menu_bar::_001OnTimer(timer * ptimer)
 {
-   super::_001OnTimer(ptimer);
+   simple_toolbar::_001OnTimer(ptimer);
    if(ptimer->m_nIDEvent == TIMER_HOVER)
    {
       _001Hover();
    }
 
-   pobj->previous();
+//   pobj->previous();
 }
 
 /*

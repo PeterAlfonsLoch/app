@@ -119,7 +119,7 @@ namespace user
       IGUI_WIN_MSG_LINK(WM_KEYDOWN,pinterface,this,&mesh::_001OnKeyDown);
 
       IGUI_WIN_MSG_LINK(WM_CREATE,pinterface,this,&mesh::_001OnCreate);
-      IGUI_WIN_MSG_LINK(WM_TIMER,pinterface,this,&mesh::_001OnTimer);
+      //IGUI_WIN_MSG_LINK(WM_TIMER,pinterface,this,&mesh::_001OnTimer);
       connect_command("mesh_view_auto_arrange",&mesh::_001OnMeshViewAutoArrange);
       connect_update_cmd_ui("mesh_view_auto_arrange",&mesh::_001OnUpdateMeshViewAutoArrange);
    }
@@ -3920,7 +3920,7 @@ namespace user
 
       }
 
-      ptimer->m_bRet = false;
+//      ptimer->m_bRet = false;
    }
 
    bool mesh::_001IsItemVisible(index iItem)

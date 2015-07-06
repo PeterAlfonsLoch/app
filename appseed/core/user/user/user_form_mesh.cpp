@@ -199,7 +199,7 @@ namespace user
 
    void form_mesh::_001OnTimer(timer * ptimer)
    {
-      mesh::_001OnTimer(pobj);
+      mesh::_001OnTimer(ptimer);
    }
 
    void form_mesh::_001OnMessageNotify(signal_details * pobj)
