@@ -13,13 +13,13 @@
 #include "android_multithreading.cpp"
 #include "android_simple_app.cpp"
 #include "android_trace_message.cpp"
-#ifdef VSNORD
-//#include "android_vsnord_native_app_glue.cpp"
-#include "android_window_anative.cpp"
-#else
-#include "android_window_android.cpp"
-
-#endif
+//#ifdef VSNORD
+////#include "android_vsnord_native_app_glue.cpp"
+//#include "android_window_anative.cpp"
+//#else
+//#include "android_window_android.cpp"
+//
+//#endif
 //#include "android_windowing.cpp"
 //#include "android_window_cairo_egl.cpp"
 #include "android_win_base.cpp"

@@ -268,30 +268,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\os\android\android_windowing.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="axis\os\android\android_window_anative.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="axis\os\android\android_window_android.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="axis\os\android\android_window_cairo_egl.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="axis\os\android\android_win_base.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
@@ -1536,8 +1512,6 @@
     <ClInclude Include="axis\os\android\android_internal.h" />
     <ClInclude Include="axis\os\android\android_process.h" />
     <ClInclude Include="axis\os\android\android_vsnord_native_app_glue.h" />
-    <ClInclude Include="axis\os\android\android_window_anative.h" />
-    <ClInclude Include="axis\os\android\android_window_android.h" />
     <ClInclude Include="axis\os\ansios\ansios.h" />
     <ClInclude Include="axis\os\cross\cross.h" />
     <ClInclude Include="axis\os\cross\windows\windows.h" />

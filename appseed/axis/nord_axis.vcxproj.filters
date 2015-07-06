@@ -76,22 +76,10 @@
     <ClCompile Include="graphics\visual\_visual.cpp">
       <Filter>Source Files\graphics\visual</Filter>
     </ClCompile>
-    <ClCompile Include="axis\os\android\android_windowing.cpp">
-      <Filter>Source Files\axis\os\android</Filter>
-    </ClCompile>
     <ClCompile Include="axis\os\android\_android_os.cpp">
       <Filter>Source Files\axis\os\android</Filter>
     </ClCompile>
     <ClCompile Include="axis\os\android\android_win_base.cpp">
-      <Filter>Source Files\axis\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\android\android_window_anative.cpp">
-      <Filter>Source Files\axis\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\android\android_window_android.cpp">
-      <Filter>Source Files\axis\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\android\android_window_cairo_egl.cpp">
       <Filter>Source Files\axis\os\android</Filter>
     </ClCompile>
     <ClCompile Include="axis\os\android\android_message_loop.cpp">
@@ -1173,9 +1161,6 @@
     <ClInclude Include="axis\os\android\android_process.h">
       <Filter>Header Files\axis\os\android</Filter>
     </ClInclude>
-    <ClInclude Include="axis\os\android\android_window_android.h">
-      <Filter>Header Files\axis\os\android</Filter>
-    </ClInclude>
     <ClInclude Include="axis\os\android\android_android.h">
       <Filter>Header Files\axis\os\android</Filter>
     </ClInclude>
@@ -1519,9 +1504,6 @@
       <Filter>Header Files\axis\node\android</Filter>
     </ClInclude>
     <ClInclude Include="axis\os\android\android_vsnord_native_app_glue.h">
-      <Filter>Header Files\axis\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\android\android_window_anative.h">
       <Filter>Header Files\axis\os\android</Filter>
     </ClInclude>
     <ClInclude Include="graphics\graphics_window_graphics.h">
