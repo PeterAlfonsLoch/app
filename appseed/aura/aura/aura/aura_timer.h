@@ -25,8 +25,17 @@ public:
 class CLASS_DECL_AURA timer :
    virtual public object
 {
-
 public:
+
+
+   enum e
+   {
+      hover = 0,
+      end
+
+   };
+
+
 
    uint_ptr             m_nIDEvent;
    PFN_TIMER            m_pfnTimer;
