@@ -104,8 +104,8 @@ namespace user
 
 
       ::user::interaction * create_view(type * info, ::user::document * pdoc = NULL, const RECT & rect = ::null_rect(), ::user::interaction * pwndParent = NULL, ::id id = ::id(), ::user::interaction * pviewLast = NULL);
-      static ::user::interaction * s_create_view(type * info, ::user::document * pdoc,const RECT & rect, ::user::interaction * pwndParent,id id,::user::interaction * pviewLast = NULL);
-      static ::user::interaction * s_create_view(::create * pContext,const RECT & rect,::user::interaction * pwndParent,id id);
+      static_function::user::interaction * s_create_view(type * info, ::user::document * pdoc,const RECT & rect, ::user::interaction * pwndParent,id id,::user::interaction * pviewLast = NULL);
+      static_function::user::interaction * s_create_view(::create * pContext,const RECT & rect,::user::interaction * pwndParent,id id);
 
       template < class VIEW >
       VIEW * create_view(::user::document * pdoc = NULL,const RECT & rect = ::null_rect(),::user::interaction * pwndParent = NULL,::id id = ::id(),::user::interaction * pviewLast = NULL);
@@ -117,7 +117,7 @@ namespace user
       VIEW * create_view(::user::view_creator_data * pcreatordata, ::user::interaction * pviewLast = NULL);
 
 
-      static ::user::document * get_document(::user::interaction * pui);
+      static_function::user::document * get_document(::user::interaction * pui);
 
       virtual void dump(dump_context &) const;
       virtual void assert_valid() const;

@@ -42,6 +42,10 @@ namespace hotplugin
       ::aura::session(papp),
       ::axis::session(papp)
    {
+      
+      m_dwSync = 0;
+
+      m_iDelta = 5000;
 
       m_pstyle          = this;
       m_phost           = NULL;

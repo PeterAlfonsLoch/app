@@ -128,7 +128,6 @@ namespace user
 
       bool                                m_bblur_Background;
 
-      static bool                g_bFullScreenAlt;
       bool                       m_bAutoWindowFrame;
       bool                       m_bWindowFrame;
       bool                       m_bLayered;
@@ -164,7 +163,6 @@ namespace user
       string                     m_strTitle;         // default title (original)
       bool                       m_bInRecalcLayout;     // avoid recursion in layout
       sp(type)                   m_pFloatingFrameClass;
-      static const uint32_t      dwDockBarMap[4][2];
 
       UINT                       m_nIdleFlags;          // set of bit flags for idle processing
 

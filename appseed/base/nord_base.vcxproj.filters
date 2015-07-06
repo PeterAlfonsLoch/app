@@ -306,9 +306,6 @@
     <ClInclude Include="base\base\base_system.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
-    <ClInclude Include="base\base\base_template.h">
-      <Filter>Header Files\base\base</Filter>
-    </ClInclude>
     <ClInclude Include="base\base_policy\base_c.h">
       <Filter>Header Files\base\base_policy</Filter>
     </ClInclude>
@@ -551,9 +548,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="base\base\base.inl">
-      <Filter>Header Files\base\base</Filter>
-    </None>
-    <None Include="base\base\base_system_xml.inl">
       <Filter>Header Files\base\base</Filter>
     </None>
   </ItemGroup>

@@ -1,9 +1,9 @@
 #include "framework.h"
 
 
-static struct lconv g_lconv = { "." };
+extern struct lconv * g_plconv;
 
 struct lconv * localeconv(void)
 {
-   return &g_lconv;
+   return g_plconv;
 }

@@ -21,8 +21,6 @@ namespace hotplugin
 
       }
 
-      static uint32_t s_dwSync = 0;
-      static int32_t s_iDelta = 5000;
       RECT rectWindow;
       GetWindowRect(&rectWindow);
       int32_t cx = rectWindow.right - rectWindow.left;
@@ -53,15 +51,16 @@ namespace hotplugin
 
 
 
-      int32_t iDelta = s_iDelta;
+      int32_t iDelta = m_iDelta;
       int32_t iRadius = 8;
-      int32_t iPhase = ((((get_tick_count() - s_dwSync) % iDelta)) * iRadius * 2) / iDelta;
+      int32_t iPhase = ((((get_tick_count() - m_dwSync) % iDelta)) * iRadius * 2) / iDelta;
 
-      if (iPhase == 0 && (get_tick_count() - s_dwSync) > 1977)
+      if (iPhase == 0 && (get_tick_count() - m_dwSync) > 1977)
       {
 
-         s_iDelta = 1984 + (get_tick_count() % ((5000) * 2));
-         s_dwSync = get_tick_count();
+         m_iDelta = 1984 + (get_tick_count() % ((5000) * 2));
+         m_dwSync = get_tick_count();
+
       }
 
       int32_t iStep = iPhase;

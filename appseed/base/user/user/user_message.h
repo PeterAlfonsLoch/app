@@ -18,8 +18,8 @@ namespace user
 
 
       LRESULT send();
-      static UINT ThreadProcSendMessage(LPVOID lp);
-      static void post(sp(::user::interaction) puie, UINT uiMessage, WPARAM wparam, LPARAM lparam, int32_t epriority = ::multithreading::priority_normal);
+      static_function UINT ThreadProcSendMessage(LPVOID lp);
+      static_function void post(sp(::user::interaction) puie, UINT uiMessage, WPARAM wparam, LPARAM lparam, int32_t epriority = ::multithreading::priority_normal);
 
    };
 

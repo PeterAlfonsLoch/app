@@ -185,10 +185,6 @@ namespace metrowin
       int SetWindowRgn(HRGN hRgn, bool bRedraw);
       int GetWindowRgn(HRGN hRgn);
 
-      //static const ::user::interaction_impl wndTop; // SetWindowPos's pWndInsertAfter
-      //static const ::user::interaction_impl wndBottom; // SetWindowPos's pWndInsertAfter
-      //static const ::user::interaction_impl wndTopMost; // SetWindowPos pWndInsertAfter
-      //static const ::user::interaction_impl wndNoTopMost; // SetWindowPos pWndInsertAfter
 
       virtual bool SetWindowPos(int z, int x, int y, int cx, int cy, UINT nFlags);
       virtual UINT ArrangeIconicWindows();

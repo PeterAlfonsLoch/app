@@ -52,6 +52,9 @@ namespace hotplugin
       string                        m_strBitmapChannel;
       POINT                         m_ptCursorPhase;
 
+      uint32_t                      m_dwSync;
+      int32_t                       m_iDelta;
+
 
       plugin(::aura::application * papp);
       virtual ~plugin();
@@ -103,7 +106,7 @@ namespace hotplugin
       virtual ::count get_memory_length();
       virtual ::count read_memory(void * puchMemory, ::count c);
       virtual void   free_memory();
-      //static  void   free_memory(byte ** ppuchMemory);
+      //static_function  void   free_memory(byte ** ppuchMemory);
 
 
       virtual bool is_ok();

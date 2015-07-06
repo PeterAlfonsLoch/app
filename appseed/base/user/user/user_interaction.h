@@ -584,16 +584,16 @@ namespace user
       virtual sp(place_holder) place(::user::interaction * pui);
 
 #if defined(METROWIN) && defined(__cplusplus_winrt)
-      static Agile<Windows::UI::Core::CoreWindow>(*s_get_os_window)(interaction * pui);
+      static_function Agile<Windows::UI::Core::CoreWindow>(*s_get_os_window)(interaction * pui);
       Agile<Windows::UI::Core::CoreWindow> get_os_window()
       {
          return get_os_window(this);
       }
-      static Agile<Windows::UI::Core::CoreWindow> get_os_window(interaction * pui)
+      static_function Agile<Windows::UI::Core::CoreWindow> get_os_window(interaction * pui)
       {
          return (*s_get_os_window)(pui);
       }
-      static Agile<Windows::UI::Core::CoreWindow> get_os_window_default(interaction * pui)
+      static_function Agile<Windows::UI::Core::CoreWindow> get_os_window_default(interaction * pui)
       {
          UNREFERENCED_PARAMETER(pui);
          return nullptr;
@@ -688,10 +688,10 @@ namespace user
 
       /*
 
-      static sp(::message::base) peek_message(LPMESSAGE lpmsg,::user::interaction * pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg);
-      static sp(::message::base) get_message(LPMESSAGE lpmsg,::user::interaction * pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax);
-      static sp(::message::base) peek_message(::user::interaction * pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg);
-      static sp(::message::base) get_message(::user::interaction * pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax);
+      static_function sp(::message::base) peek_message(LPMESSAGE lpmsg,::user::interaction * pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg);
+      static_function sp(::message::base) get_message(LPMESSAGE lpmsg,::user::interaction * pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax);
+      static_function sp(::message::base) peek_message(::user::interaction * pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg);
+      static_function sp(::message::base) get_message(::user::interaction * pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax);
 
       virtual sp(::message::base) peek_message(LPMESSAGE lpmsg,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg);
       virtual sp(::message::base) get_message(LPMESSAGE lpmsg,UINT wMsgFilterMin,UINT wMsgFilterMax);
@@ -706,7 +706,7 @@ namespace user
 
       //void transfer_from(::aura::timer_array & ta, interaction * pui);
 
-      virtual window_graphics * & get_window_graphics();
+      virtual window_graphics * get_window_graphics();
 
       virtual bool is_composite();
 

@@ -85,7 +85,7 @@ namespace hotplugin
       virtual ::count get_memory_length();
       virtual ::count read_memory(void * puchMemory, ::count c);
       virtual void   free_memory();
-      //static  void   free_memory(byte ** ppuchMemory);
+      //static_function  void   free_memory(byte ** ppuchMemory);
 
 
       virtual void set_ready();
@@ -104,9 +104,9 @@ namespace hotplugin
 
       virtual int32_t start_app_install(const char * pszCommandLine);
 
-      static int32_t start_app_install(const char * pszCommandLine,::aura::application * papp,host * phost, plugin * pplugin = NULL);
+      static_function int32_t start_app_install(const char * pszCommandLine,::aura::application * papp,host * phost, plugin * pplugin = NULL);
 
-      static int32_t host_starter_start_sync(const char * pszCommandLine,::aura::application * papp,host * phost,plugin * pplugin = NULL);
+      static_function int32_t host_starter_start_sync(const char * pszCommandLine,::aura::application * papp,host * phost,plugin * pplugin = NULL);
 
       virtual void deferred_prodevian_redraw();
 

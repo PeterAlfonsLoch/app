@@ -35,9 +35,8 @@ namespace install
 
       keep < bool > keepStarterStart(pbHostStarterStartFoo,true,false,true);
 
-      static bool s_bStarting = false;
-
-      if (s_bStarting)
+      
+      if (m_bStarting)
          return -1;
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
@@ -77,7 +76,7 @@ namespace install
       if (strType.is_empty())
          strType = "application";
 
-      keep_true keepStarting(s_bStarting);
+      keep_true keepStarting(m_bStarting);
 
       int32_t i = 0;
 

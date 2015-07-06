@@ -97,7 +97,7 @@ namespace hotplugin
    
       virtual ::axis::system * get_composer_system();
       virtual bool defer_start_composer_system();
-      static uint32_t c_cdecl composer_system_main(LPVOID lpVoid);
+      static_function uint32_t c_cdecl composer_system_main(LPVOID lpVoid);
       virtual void defer_stop_composer_system();
       
    };

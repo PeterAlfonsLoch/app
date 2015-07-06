@@ -577,7 +577,6 @@
     <ClInclude Include="base\base\base_simple_app.h" />
     <ClInclude Include="base\base\base_static_start.h" />
     <ClInclude Include="base\base\base_system.h" />
-    <ClInclude Include="base\base\base_template.h" />
     <ClInclude Include="base\base_policy\base_c.h" />
     <ClInclude Include="base\base_policy\base_cpp.h" />
     <ClInclude Include="base\base_policy\base_policy.h" />
@@ -624,7 +623,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="base\base\base.inl" />
-    <None Include="base\base\base_system_xml.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

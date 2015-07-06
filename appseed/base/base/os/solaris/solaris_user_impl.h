@@ -69,7 +69,7 @@ public:
     static Atom s_atomLongStyle;
     static Atom s_atomLongStyleEx;
 
-    static Atom get_window_long_atom(int32_t nIndex);
+    static_function Atom get_window_long_atom(int32_t nIndex);
 
 
 

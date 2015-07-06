@@ -173,10 +173,6 @@ namespace macos
       int32_t SetWindowRgn(HRGN hRgn, bool bRedraw);
       int32_t GetWindowRgn(HRGN hRgn);
 
-      //static const ::interaction_impl wndTop; // SetWindowPos's pWndInsertAfter
-      //static const ::interaction_impl wndBottom; // SetWindowPos's pWndInsertAfter
-      //static const ::interaction_impl wndTopMost; // SetWindowPos pWndInsertAfter
-      //static const ::interaction_impl wndNoTopMost; // SetWindowPos pWndInsertAfter
 
         virtual bool SetWindowPos(int32_t z, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags);
         virtual UINT ArrangeIconicWindows();

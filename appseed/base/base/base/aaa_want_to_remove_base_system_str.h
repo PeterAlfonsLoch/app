@@ -69,7 +69,7 @@
 //} // namespace str
 //
 //
-//inline static string log_level_name(::aura::log::e_level elevel)
+//inline static_function string log_level_name(::aura::log::e_level elevel)
 //{
 //   switch (elevel)
 //   {

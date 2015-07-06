@@ -31,7 +31,7 @@ namespace base
 
 
    template < class APP >
-   static int32_t simple_app_main(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPTSTR lpCmdLine,int32_t nCmdShow)
+   static_function int32_t simple_app_main(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPTSTR lpCmdLine,int32_t nCmdShow)
    {
 
       if(!defer_base_init())

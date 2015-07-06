@@ -23,6 +23,9 @@
 #undef new
 
 
+struct lconv * g_plconv = NULL;
+
+
 namespace base
 {
 
@@ -38,7 +41,15 @@ namespace base
          xxdebug_box("axis.dll base_static_start (0)", "box", MB_OK);
 
 
+#ifdef ANDROID
 
+
+         g_plconv = new lconv;
+
+         g_plconv->decimal_point = strdup(".");
+
+
+#endif
 
 
 

@@ -2877,7 +2877,7 @@ namespace user
    //}
 
 
-   window_graphics * & interaction_impl::get_window_graphics()
+   window_graphics * interaction_impl::get_window_graphics()
    {
 
       return m_pgraphics;

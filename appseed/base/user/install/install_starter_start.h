@@ -14,6 +14,7 @@ namespace install
       ::hotplugin::host *              m_phost;
       ::hotplugin::plugin  *           m_pplugin;
       string                           m_strCommandLine;
+      bool                             m_bStarting;
 
       starter_start(::aura::application * papp);
 

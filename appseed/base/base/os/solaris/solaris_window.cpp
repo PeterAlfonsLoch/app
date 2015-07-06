@@ -905,7 +905,7 @@ int32_t WINAPI MessageBoxA_x11(oswindow hWnd, const char * lpText, const char * 
 
 
 __attribute__((constructor))
-static void initialize_x11_message_box()
+static_function void initialize_x11_message_box()
 {
 
    g_messageboxa = &::MessageBoxA_x11;
@@ -924,7 +924,7 @@ int32_t WINAPI MessageBoxA(oswindow hWnd, const char * lpText, const char * lpCa
 }
 
 
-static oswindow g_oswindowCapture;
+oswindow g_oswindowCapture;
 
 
 oswindow GetCapture()

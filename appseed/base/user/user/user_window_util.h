@@ -111,7 +111,7 @@ namespace user
 
       oswindow_tree & operator = (const oswindow_tree & tree);
 
-      static index compare_oswindow(const oswindow_tree * ptree1, const oswindow_tree * ptree2);
+      static_function index compare_oswindow(const oswindow_tree * ptree1, const oswindow_tree * ptree2);
 
 
    };
@@ -120,31 +120,31 @@ namespace user
    class CLASS_DECL_BASE window_util
    {
    public:
-      static void ContraintPosToParent(oswindow oswindow);
-      //static void EnumChildren(::window_sp pwnd, interaction_spa & wndpa);
-      static void EnumChildren(oswindow oswindow, oswindow_array & oswindowa);
-      /*static void ExcludeChild(interaction_spa & wndpa);*/
-      /*static void SortByZOrder(interaction_spa & wndpa);*/
-      static void SortByZOrder(oswindow_array & oswindowa);
-      static HRGN GetAClipRgn(oswindow oswindow, POINT ptOffset, bool bExludeChilren);
-      static void ExcludeChildren(oswindow oswindow, HRGN hrgn, POINT ptOffset);
+      static_function void ContraintPosToParent(oswindow oswindow);
+      //static_function void EnumChildren(::window_sp pwnd, interaction_spa & wndpa);
+      static_function void EnumChildren(oswindow oswindow, oswindow_array & oswindowa);
+      /*static_function void ExcludeChild(interaction_spa & wndpa);*/
+      /*static_function void SortByZOrder(interaction_spa & wndpa);*/
+      static_function void SortByZOrder(oswindow_array & oswindowa);
+      static_function HRGN GetAClipRgn(oswindow oswindow, POINT ptOffset, bool bExludeChilren);
+      static_function void ExcludeChildren(oswindow oswindow, HRGN hrgn, POINT ptOffset);
       window_util();
       virtual ~window_util();
-      /*static void SendMessageToDescendants(oswindow oswindow, UINT message,
+      /*static_function void SendMessageToDescendants(oswindow oswindow, UINT message,
       WPARAM wParam, LPARAM lParam, bool bDeep, bool bOnlyPerm);*/
-      static void SendMessageToDescendants(oswindow oswindow, UINT message,
+      static_function void SendMessageToDescendants(oswindow oswindow, UINT message,
          WPARAM wParam, LPARAM lParam, bool bDeep);
-      static bool IsAscendant(oswindow oswindowAscendant, oswindow oswindowDescendant);
+      static_function bool IsAscendant(oswindow oswindowAscendant, oswindow oswindowDescendant);
 
-      static int32_t GetZOrder(oswindow oswindow);
-      static void GetZOrder(oswindow oswindow, int_array & ia);
+      static_function int32_t GetZOrder(oswindow oswindow);
+      static_function void GetZOrder(oswindow oswindow, int_array & ia);
 
-      //      static HRGN GetAClipRgn(oswindow oswindow, POINT ptOffset, bool bExludeChilren);
-      //      static void ExcludeChildren(oswindow oswindow, HRGN hrgn, POINT ptOffset);
+      //      static_function HRGN GetAClipRgn(oswindow oswindow, POINT ptOffset, bool bExludeChilren);
+      //      static_function void ExcludeChildren(oswindow oswindow, HRGN hrgn, POINT ptOffset);
 
-      //static void SortByZOrder(comparable_array < ::window_sp, ::window_sp > & wndpa);
-      //static void SortByZOrder(comparable_array < oswindow, oswindow > & oswindowa);
-      //static void EnumChildren(oswindow oswindow, comparable_array < oswindow, oswindow > & oswindowa);
+      //static_function void SortByZOrder(comparable_array < ::window_sp, ::window_sp > & wndpa);
+      //static_function void SortByZOrder(comparable_array < oswindow, oswindow > & oswindowa);
+      //static_function void EnumChildren(oswindow oswindow, comparable_array < oswindow, oswindow > & oswindowa);
 
    };
 

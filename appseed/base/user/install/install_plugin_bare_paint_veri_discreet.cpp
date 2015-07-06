@@ -21,8 +21,6 @@ namespace hotplugin
 
       }
 
-//      static uint32_t s_dwSync = 0;
-  //    static int32_t s_iDelta = 5000;
       RECT rectWindow;
       GetWindowRect(&rectWindow);
     //  int32_t cx = rectWindow.right - rectWindow.left;

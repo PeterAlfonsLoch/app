@@ -2611,14 +2611,10 @@ namespace user
 
    }
 
-   window_graphics * & interaction_base::get_window_graphics()
+   window_graphics * interaction_base::get_window_graphics()
    {
 
-      static window_graphics * p = NULL;
-
-      //::exception::throw_interface_only(get_app());
-
-      return p;
+      return NULL;
 
    }
 

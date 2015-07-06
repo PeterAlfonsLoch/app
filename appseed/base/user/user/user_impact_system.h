@@ -135,7 +135,7 @@ namespace user
 
       bool do_open_document(::user::document * pdoc, var varFile);
 
-      static UINT s_on_open_document(LPVOID lpvoid);
+      static_function UINT s_on_open_document(LPVOID lpvoid);
 
       virtual void reload_template();
 

@@ -17,6 +17,9 @@ using namespace Gdiplus;
 
 namespace hotplugin
 {
+   
+   uint32_t g_entry_hall_windows_on_paint_dwSync = 0;
+   int32_t g_entry_hall_windows_on_paint_iDelta = 5000;
 
 
    void entry_hall_windows_on_paint(HDC hdc,const RECT & rect,const string & strEntryHallText)
@@ -78,8 +81,6 @@ namespace hotplugin
       ::rect rectBrick(left + x,rectBar.top,left + x + w,rectBar.bottom);
       ::rect rectDraw;
 
-      static uint32_t s_dwSync = 0;
-      static int32_t s_iDelta = 5000;
       int32_t cx = width(rect);
       int32_t cy = height(rect);
       pgraphics->SetCompositingMode(CompositingModeSourceOver);
