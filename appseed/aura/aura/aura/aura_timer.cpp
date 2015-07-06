@@ -19,11 +19,12 @@ void aura_timer_handler(sigval sigval);
 
 
 
-timer::timer(::aura::application * papp,uint_ptr uiTimer ,PFN_TIMER pfnTimer ,void * pvoidData):
+timer::timer(::aura::application * papp,uint_ptr uiTimer ,PFN_TIMER pfnTimer ,void * pvoidData, mutex * pmutex):
 object(papp),
 m_nIDEvent(uiTimer),
 m_pfnTimer(pfnTimer),
-m_pvoidData(pvoidData)
+m_pvoidData(pvoidData),
+m_pmutex(pmutex)
 {
    m_pcallback = NULL;
    // Create the timer queue.
@@ -55,6 +56,7 @@ m_pvoidData(pvoidData)
 #endif
 
    m_bRet = false;
+   m_bKill = false;
 }
 
 timer::~timer()
@@ -138,11 +140,44 @@ void timer::stop()
 }
 
 
-bool timer::on_timer()
+bool timer::call_on_timer()
 {
+   
+   synch_lock sl(m_pmutex);
+
+   if(m_bKill)
+      return true;
+
+   m_bDeal = true;
 
    m_bRet = false;
 
+   sl.unlock();
+
+   on_timer();
+
+   sl.lock();
+
+   if(m_bKill)
+   {
+
+      sl.unlock();
+
+      delete this;
+
+      return false;
+
+   }
+
+   m_bDeal = false;
+
+   return !m_bRet;
+
+}
+
+bool timer::on_timer()
+{
+   
    if(m_pfnTimer != NULL)
    {
 
@@ -172,7 +207,7 @@ static VOID CALLBACK aura_timer_TimerRoutine(PVOID lpParam,BOOLEAN TimerOrWaitFi
 
    timer * ptimer = (timer *)lpParam;
 
-   ptimer->on_timer();
+   ptimer->call_on_timer();
 
 }
 
@@ -183,7 +218,7 @@ static void aura_timer_handler(sigval sigval)
 
    millis_timer * ptimer = (millis_timer *)sigval.sival_ptr;
 
-   ptimer->on_timer();
+   ptimer->call_on_timer();
 
 }
 

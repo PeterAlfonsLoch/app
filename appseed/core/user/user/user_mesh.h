@@ -592,14 +592,14 @@ namespace user
 
       virtual ::count _001GetItemCount();
       virtual ::count _001GetGroupCount();
-      bool _001HitTest_(point point,index &iItem,index &iSubItem,index &iListItem,::user::mesh::e_element &eelement);
-      bool _001HitTest_(point point,index &iItem,index &iSubItem);
-      bool _001HitTest_(POINT pt,index &iItemParam);
+      virtual bool _001HitTest_(point point,index &iItem,index &iSubItem,index &iListItem,::user::mesh::e_element &eelement);
+      virtual bool _001HitTest_(point point,index &iItem,index &iSubItem);
+      virtual bool _001HitTest_(POINT pt,index &iItemParam);
 
 
-      bool _001DisplayHitTest(point point,index &iItem,index &iSubItem,index &iListItem,::user::mesh::e_element &eelement);
-      bool _001DisplayHitTest(point point,index &iItem,index &iSubItem);
-      bool _001DisplayHitTest(POINT pt,index &iItemParam);
+      virtual bool _001DisplayHitTest(point point,index &iItem,index &iSubItem,index &iListItem,::user::mesh::e_element &eelement);
+      virtual bool _001DisplayHitTest(point point,index &iItem,index &iSubItem);
+      virtual bool _001DisplayHitTest(POINT pt,index &iItemParam);
 
       virtual void _001OnAfterSort();
 

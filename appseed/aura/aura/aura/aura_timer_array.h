@@ -18,7 +18,6 @@ namespace aura
       mutex       m_mutex;
 
       
-      timer_array();
       timer_array(::aura::application * papp);
       virtual ~timer_array();
 

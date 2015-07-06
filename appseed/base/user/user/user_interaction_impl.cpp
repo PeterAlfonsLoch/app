@@ -6,7 +6,8 @@ namespace user
 {
 
 
-   interaction_impl::interaction_impl()
+   interaction_impl::interaction_impl() :
+      ::aura::timer_array(get_app())
    {
 
       m_bOSNativeMouseMessagePosition  = true;
@@ -2721,10 +2722,14 @@ namespace user
 
 
    guie_message_wnd::guie_message_wnd(::aura::application * papp):
-      ::object(papp)
+      ::object(papp),
+      ::aura::timer_array(papp)
    {
+
       m_puiForward = NULL;
+
    }
+
 
    void guie_message_wnd::message_handler(signal_details * pobj)
    {

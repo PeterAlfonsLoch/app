@@ -23,6 +23,9 @@ public:
    bool                 m_bPeriodic;
    void *               m_pvoidData;
    bool                 m_bRet;
+   bool                 m_bDeal;
+   bool                 m_bKill;
+   mutex *              m_pmutex;
 
 #ifdef WINDOWS
 
@@ -36,12 +39,14 @@ public:
 #endif
 
    
-   timer(::aura::application * papp,uint_ptr uiTimer = 0,PFN_TIMER pfnTimer = NULL,void * pvoidData = NULL);
+   timer(::aura::application * papp,uint_ptr uiTimer = 0,PFN_TIMER pfnTimer = NULL,void * pvoidData = NULL, mutex * pmutex = NULL);
    virtual ~timer();
 
    virtual bool start(int millis, bool bPeriodic);
 
    virtual void stop();
+
+   virtual bool call_on_timer();
 
    virtual bool on_timer();
 

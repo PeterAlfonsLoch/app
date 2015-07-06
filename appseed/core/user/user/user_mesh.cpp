@@ -1481,7 +1481,7 @@ namespace user
          if(iLeft <= point.x && point.x < iRight)
          {
             iItemParam = iItem;
-            iSubItemParam = item.m_iSubItem;
+            iSubItemParam = _001MapColumnToSubItem(item.m_iWidthColumn);
             return true;
          }
          iLeft = iRight;

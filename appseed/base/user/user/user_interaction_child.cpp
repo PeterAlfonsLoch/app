@@ -9,7 +9,8 @@ namespace user
 {
 
 
-   interaction_child::interaction_child()
+   interaction_child::interaction_child() :
+      ::aura::timer_array(get_app())
    {
 
       m_rectParentClient.null();
@@ -22,7 +23,8 @@ namespace user
 
 
    interaction_child::interaction_child(::aura::application * papp):
-      ::object(papp)
+      ::object(papp),
+      ::aura::timer_array(papp)
    {
 
       m_rectParentClient.null();

@@ -4,11 +4,6 @@
 namespace aura
 {
 
-   timer_array::timer_array() :
-      timer_array(get_app())
-   {
-   }
-
 
    timer_array::timer_array(::aura::application * papp):
       object(papp),
@@ -26,24 +21,30 @@ namespace aura
    bool timer_array::create_timer(uint_ptr nIDEvent,UINT nEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void * pvoidData)
    {
 
+      delete_timer(nIDEvent);
+
       synch_lock sl(&m_mutex);
 
-      MAP::pair * ppair = m_map.PLookup(nIDEvent);
+      timer * ptimer = new timer(get_app(),nIDEvent,pfnTimer,pvoidData, &m_mutex);
 
-      if(ppair == NULL)
+      ptimer->m_pcallback = this;
+
+      m_map.set_at(nIDEvent, ptimer);
+
+      sl.unlock();
+
+      if(!ptimer->start(nEllapse,bPeriodic))
       {
 
-         m_map.set_at(nIDEvent,new timer(get_app(),nIDEvent,pfnTimer, pvoidData));
+         sl.lock();
 
-         ppair = m_map.PLookup(nIDEvent);
+         m_map.remove_key(nIDEvent);
+
+         return false;
 
       }
 
-      ppair->m_element2->m_pcallback = this;
-
-      ppair->m_element2->start(nEllapse,bPeriodic);
-
-      return ppair->m_element2;
+      return true;
 
    }
 
@@ -57,9 +58,26 @@ namespace aura
       if(ppair == NULL)
          return true;
 
-      delete ppair->m_element2;
+      timer * ptimer = ppair->m_element2;
 
       m_map.remove_key(nIDEvent);
+
+      sl.unlock();
+
+      if(ptimer->m_bDeal)
+      {
+
+         ptimer->m_bKill = true;
+
+      }
+      else
+      {
+
+         ptimer->m_bKill = true;
+
+         delete ptimer;
+
+      }
 
       return true;
 

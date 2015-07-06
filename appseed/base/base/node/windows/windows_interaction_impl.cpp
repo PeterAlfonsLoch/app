@@ -47,7 +47,8 @@ namespace windows
 {
 
 
-   interaction_impl::interaction_impl()
+   interaction_impl::interaction_impl() :
+      ::aura::timer_array(get_app())
    {
 
       m_guieptraMouseHover = canew(ptr_array < ::user::interaction >);
@@ -281,7 +282,8 @@ namespace windows
 
 
    interaction_impl::interaction_impl(::aura::application * papp):
-      ::object(papp)
+      ::object(papp),
+      ::aura::timer_array(papp)
    {
 
       m_guieptraMouseHover = canew(ptr_array < ::user::interaction >);
