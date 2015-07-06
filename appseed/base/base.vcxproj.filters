@@ -111,9 +111,6 @@
     <Filter Include="Header Files\user\user">
       <UniqueIdentifier>{b33a68a8-5b06-4a9b-bf57-5a0cd9311cdb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\user\userpresence">
-      <UniqueIdentifier>{62a8fbfb-487b-42a7-b6c0-c6e95b4ebc35}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\user\hotplugin">
       <UniqueIdentifier>{2ee16b63-cf4c-410c-8543-1a142e9f5573}</UniqueIdentifier>
     </Filter>
@@ -290,19 +287,10 @@
     <ClInclude Include="user\user\user_control_event.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\user_copydesk.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\user\user_document.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user_document_data_map.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_elemental.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_enum.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user_form_callback.h">
@@ -344,18 +332,6 @@
     <ClInclude Include="user\user\user_interaction_impl_base.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\user_job.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_key_enum.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_keyboard.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_keyboard_layout.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\user\user_menu_base.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
@@ -375,9 +351,6 @@
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user_plain_text_data.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_print_job.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user_schema.h">
@@ -427,15 +400,6 @@
     </ClInclude>
     <ClInclude Include="user\userex\userex_scroll.h">
       <Filter>Header Files\user\userex</Filter>
-    </ClInclude>
-    <ClInclude Include="user\userpresence\userpresence.h">
-      <Filter>Header Files\user\userpresence</Filter>
-    </ClInclude>
-    <ClInclude Include="user\userpresence\userpresence_user_presence.h">
-      <Filter>Header Files\user\userpresence</Filter>
-    </ClInclude>
-    <ClInclude Include="user\userpresence\userpresence_userpresence.h">
-      <Filter>Header Files\user\userpresence</Filter>
     </ClInclude>
     <ClInclude Include="user\user.h">
       <Filter>Header Files\user</Filter>

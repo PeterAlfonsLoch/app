@@ -2446,7 +2446,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
-    <ClInclude Include="framework\framework.h" />
+    <ClInclude Include="framework.h" />
     <ClInclude Include="math\binary_operation.h" />
     <ClInclude Include="math\math_math.h" />
     <ClInclude Include="math\number.h" />

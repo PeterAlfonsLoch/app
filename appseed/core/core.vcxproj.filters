@@ -141,15 +141,6 @@
     <Filter Include="Header Files\user\wndfrm\frame">
       <UniqueIdentifier>{fe769cb1-523c-4018-a3ee-cf60483555c6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\framework">
-      <UniqueIdentifier>{cd6b8308-5d61-435e-a104-178ece7cf89a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\filesystem\file">
-      <UniqueIdentifier>{554c3bbb-1f9f-4fcb-9fb4-721911cdab29}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\filesystem\file">
-      <UniqueIdentifier>{2e674c0f-aa3c-44c7-acb1-ccb57c1efd07}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\core\NewFilter1">
       <UniqueIdentifier>{c49111cc-ec66-43b9-84a4-40d43534207e}</UniqueIdentifier>
     </Filter>
@@ -818,9 +809,6 @@
     <ClInclude Include="user\wndfrm\frame\wndfrm_frame_work_set_listener_array.h">
       <Filter>Header Files\user\wndfrm\frame</Filter>
     </ClInclude>
-    <ClInclude Include="framework\framework.h">
-      <Filter>Header Files\framework</Filter>
-    </ClInclude>
     <ClInclude Include="user\simple\simple_toolbar.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
@@ -892,6 +880,9 @@
     </ClInclude>
     <ClInclude Include="user\user\user_margin.h">
       <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

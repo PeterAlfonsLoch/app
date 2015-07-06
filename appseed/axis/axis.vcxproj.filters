@@ -207,12 +207,6 @@
     <Filter Include="Header Files\axis\fontopus">
       <UniqueIdentifier>{dc227b1d-ec5c-47a2-ad78-290446c62dbd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\primitive">
-      <UniqueIdentifier>{3720e2ae-fc8c-4049-be3d-6960616d2669}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\primitive">
-      <UniqueIdentifier>{944b09dd-6b10-45c3-af11-f1f1949d45ce}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\database">
       <UniqueIdentifier>{a7546116-5d20-4a4e-b2ff-307fd83109dc}</UniqueIdentifier>
     </Filter>
@@ -1025,9 +1019,6 @@
     <ClInclude Include="axis\node\windows\windows_printer.h">
       <Filter>Header Files\axis\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_window_draw.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="graphics\graphics_window_graphics.h">
       <Filter>Header Files\graphics</Filter>
     </ClInclude>
@@ -1836,9 +1827,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>

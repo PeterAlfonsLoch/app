@@ -2077,7 +2077,6 @@
     <ClInclude Include="axis\node\windows\windows_port_forward.h" />
     <ClInclude Include="axis\node\windows\windows_printer.h" />
     <ClInclude Include="axis\node\windows\windows_print_job.h" />
-    <ClInclude Include="axis\node\windows\windows_window_draw.h" />
     <ClInclude Include="axis\os\ansios\ansios.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_profiler|Win32'">true</ExcludedFromBuild>
