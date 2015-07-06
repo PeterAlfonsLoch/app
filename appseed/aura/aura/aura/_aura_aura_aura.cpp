@@ -107,6 +107,9 @@
 #include "aura_str_context.cpp"
 #include "aura_system.cpp"
 #include "aura_template.cpp"
+#include "aura_timer_callback.cpp"
+#include "aura_timer.cpp"
+#include "aura_timer_event.cpp"
 #include "aura_timer_array.cpp"
 #include "aura_timer_item.cpp"
 #include "aura_trace.cpp"
@@ -124,7 +127,9 @@
 
 
 
-
+#include "aura_timer_callback.cpp"
+#include "aura_timer.cpp"
+#include "aura_timer_event.cpp"
 
 
 

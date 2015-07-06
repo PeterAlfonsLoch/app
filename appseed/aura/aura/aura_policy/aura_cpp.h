@@ -97,6 +97,12 @@ class type;
 class base_edit;
 
 
+class timer;
+
+typedef bool FN_TIMER(timer * ptimer);
+typedef FN_TIMER * PFN_TIMER;
+
+
 //template < typename Type,typename RawType = typename Type >
 //class string_array;
 //typedef string_array < string > stringa;
@@ -885,7 +891,9 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 //#include "user/user/user_key_enum.h"
 #include "aura/aura/message/message.h"
 //#include "aura/user/user/user_check_interface.h"
+#include "aura/aura/aura_timer_callback.h"
 #include "aura/aura/aura_timer.h"
+#include "aura/aura/aura_timer_event.h"
 #include "aura/aura/aura/aura_timer_item.h"
 #include "aura/aura/aura/aura_timer_array.h"
 #include "aura/aura/aura/aura_command_target.h"

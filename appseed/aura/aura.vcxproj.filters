@@ -2063,6 +2063,12 @@
     <ClInclude Include="aura\aura\aura_timer.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
+    <ClInclude Include="aura\aura\aura_timer_callback.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_timer_event.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -3454,6 +3460,12 @@
     <ClCompile Include="aura\node\windows\windows_console_window.cpp">
       <Filter>Source Files\aura\node\windows</Filter>
     </ClCompile>
+    <ClCompile Include="aura\aura\aura_timer.cpp">
+      <Filter>Source Files\aura\aura</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\aura\aura_timer_callback.cpp">
+      <Filter>Source Files\aura\aura</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -3521,6 +3533,9 @@
     </None>
     <None Include="net\net.inl">
       <Filter>Header Files\net</Filter>
+    </None>
+    <None Include="aura\aura\aura_timer_event.cpp">
+      <Filter>Source Files\aura\aura</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
