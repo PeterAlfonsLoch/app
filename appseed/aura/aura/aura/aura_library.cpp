@@ -58,7 +58,7 @@ namespace aura
 
       m_bAutoClose = bAutoClose;
 
-#if defined(CUBE) || defined(VSNORD)
+#if defined(CUBE)
       m_strPath = pszPath;
 #else
 
@@ -111,7 +111,7 @@ namespace aura
       try
 
       {
-#if defined(CUBE) || defined(VSNORD)
+#if defined(CUBE)
          pfn_get_new_library = (PFN_GET_NEW_LIBRARY)(INT_PTR)__library()[m_strPath + "_get_new_library"];
 #else
          string strPath = m_strPath.title();
