@@ -32,7 +32,8 @@ inline void CopyElements(TYPE* pDest, const TYPE* pSrc, ::count nCount)
 
 #undef new
 
-#if defined(APPLEOS) || defined(VSNORD)
+//#if defined(APPLEOS) || defined(VSNORD)
+#if defined(APPLEOS)
 
 void * __cdecl operator new(size_t nSize) new_throw_spec;
 
@@ -73,7 +74,8 @@ inline void __cdecl operator delete(void * p, void * palloc)
 #endif
 
 
-#if defined(APPLEOS) || defined(VSNORD)
+//#if defined(APPLEOS) || defined(VSNORD)
+#if defined(APPLEOS)
 
 void __cdecl operator delete(void * p) del_throw_spec;
 void * __cdecl operator new[](size_t nSize) new_throw_spec;

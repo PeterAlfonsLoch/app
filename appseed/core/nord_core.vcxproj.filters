@@ -61,6 +61,186 @@
     <ClCompile Include="core\core\_core.cpp">
       <Filter>Source Files\core\core</Filter>
     </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_callback.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_child_frame.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_context_menu.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_data.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_file_list.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_file_list_callback.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_file_properties_form.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_filemanager.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_folder_list.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_folder_list_data.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_folder_list_view.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_folder_selection_list_view.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_form.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_form_child_frame.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_form_document.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_form_update_hint.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_form_view.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_frame.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_list_view.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_tree.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_view.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_icon.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_iconoverlayer.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_impact.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_item_action.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_left_view.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_main_frame.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_main_view.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_manager.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_manager_template.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_operation.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_operation_child_frame.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_operation_document.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_operation_info_view.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_operation_list_view.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_operation_thread.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_operation_view.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_path_view.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_preview.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_save_as_name_view.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_tab_view.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_tree.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_update_hint.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_view.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_application.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_constraint.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_Debug.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_history.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_library.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_logic.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_match.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_os_history.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_patch.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_session.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_simple_app.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_static_start.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_str_format.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_strn.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_system.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive_int_biunique.h">

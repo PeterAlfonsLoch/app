@@ -17,6 +17,15 @@
 
 //extern oswindow_dataptra * g_poswindowdataptra;
 
+#elif defined(ANDROID)
+
+#include "base/os/android/android_windowing.h"
+
+oswindow_dataptra * oswindow_data::s_pdataptra = NULL;
+
+mutex * oswindow_data::s_pmutex = NULL;
+
+
 #endif
 
 
@@ -48,6 +57,9 @@ namespace base
 
          g_plconv->decimal_point = strdup(".");
 
+         oswindow_data::s_pdataptra = new oswindow_dataptra;
+
+         oswindow_data::s_pmutex = new mutex;
 
 #endif
 

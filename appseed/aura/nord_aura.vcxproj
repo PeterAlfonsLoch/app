@@ -1154,6 +1154,87 @@
     <ClCompile Include="graphics\draw2d\_draw2d.cpp" />
     <ClCompile Include="graphics\visual\visual_cursor.cpp" />
     <ClCompile Include="graphics\visual\visual_icon.cpp" />
+    <ClCompile Include="multithreading\multithreading.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_condition.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_core.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_critical_section.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_event.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_event_base.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_event_collection.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_file_change_event.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_go_thread.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_manual_reset_event.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_multi_lock.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_mutex.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_retry_multi_lock.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_retry_single_lock.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_semaphore.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_service_base.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_signal_thread.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_simple_thread.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_single_lock.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_socket_event.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_synch_lock.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_sync_object.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_thread.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_thread_impl.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_thread_os.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_waitable.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_wait_result.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="multithreading\service\service_plain_service.cpp" />
     <ClCompile Include="multithreading\_multithreading.cpp" />
     <ClCompile Include="net\net_url.cpp" />
@@ -1172,20 +1253,28 @@
     <ClInclude Include="aura\aura\aura_action_context.h" />
     <ClInclude Include="aura\aura\aura_action_source.h" />
     <ClInclude Include="aura\aura\aura_allocate.h" />
+    <ClInclude Include="aura\aura\aura_allocate_heap.h" />
+    <ClInclude Include="aura\aura\aura_allocate_processor_cache_oriented.h" />
     <ClInclude Include="aura\aura\aura_application.h" />
     <ClInclude Include="aura\aura\aura_application_ptra.h" />
     <ClInclude Include="aura\aura\aura_application_signal_details.h" />
+    <ClInclude Include="aura\aura\aura_app_core.h" />
+    <ClInclude Include="aura\aura\aura_app_launcher.h" />
     <ClInclude Include="aura\aura\aura_assert_running_task.h" />
     <ClInclude Include="aura\aura\aura_async.h" />
     <ClInclude Include="aura\aura\aura_aura.h" />
+    <ClInclude Include="aura\aura\aura_auto.h" />
     <ClInclude Include="aura\aura\aura_auto_pointer.h" />
     <ClInclude Include="aura\aura\aura_class.h" />
+    <ClInclude Include="aura\aura\aura_cmp.h" />
+    <ClInclude Include="aura\aura\aura_cmp2.h" />
     <ClInclude Include="aura\aura\aura_command.h" />
     <ClInclude Include="aura\aura\aura_command_msg.h" />
     <ClInclude Include="aura\aura\aura_command_target.h" />
     <ClInclude Include="aura\aura\aura_command_ui.h" />
     <ClInclude Include="aura\aura\aura_command_ui_test.h" />
     <ClInclude Include="aura\aura\aura_common.h" />
+    <ClInclude Include="aura\aura\aura_console_window.h" />
     <ClInclude Include="aura\aura\aura_conv.h" />
     <ClInclude Include="aura\aura\aura_core.h" />
     <ClInclude Include="aura\aura\aura_core_os.h" />
@@ -1214,6 +1303,8 @@
     <ClInclude Include="aura\aura\aura_heap_item_array.h" />
     <ClInclude Include="aura\aura\aura_id_pool.h" />
     <ClInclude Include="aura\aura\aura_international.h" />
+    <ClInclude Include="aura\aura\aura_ipc.h" />
+    <ClInclude Include="aura\aura\aura_ipi.h" />
     <ClInclude Include="aura\aura\aura_keep.h" />
     <ClInclude Include="aura\aura\aura_keep_true.h" />
     <ClInclude Include="aura\aura\aura_launcher.h" />
@@ -1241,13 +1332,17 @@
     <ClInclude Include="aura\aura\aura_plex_heap_impl.h" />
     <ClInclude Include="aura\aura\aura_printer.h" />
     <ClInclude Include="aura\aura\aura_printf.h" />
+    <ClInclude Include="aura\aura\aura_profiler.h" />
     <ClInclude Include="aura\aura\aura_progress.h" />
+    <ClInclude Include="aura\aura\aura_restore.h" />
     <ClInclude Include="aura\aura\aura_savings.h" />
     <ClInclude Include="aura\aura\aura_session.h" />
+    <ClInclude Include="aura\aura\aura_shell_launcher.h" />
     <ClInclude Include="aura\aura\aura_simple_app.h" />
     <ClInclude Include="aura\aura\aura_simple_pixel_font.h" />
     <ClInclude Include="aura\aura\aura_smart_pointer1.h" />
     <ClInclude Include="aura\aura\aura_smart_pointer2.h" />
+    <ClInclude Include="aura\aura\aura_speaker.h" />
     <ClInclude Include="aura\aura\aura_sprintf.h" />
     <ClInclude Include="aura\aura\aura_static_start.h" />
     <ClInclude Include="aura\aura\aura_str_context.h" />

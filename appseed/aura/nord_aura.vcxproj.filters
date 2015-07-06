@@ -583,6 +583,87 @@
     <ClCompile Include="aura\aura\aura_timer_event.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
+    <ClCompile Include="multithreading\multithreading.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_condition.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_core.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_critical_section.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_event.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_event_base.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_event_collection.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_file_change_event.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_go_thread.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_manual_reset_event.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_multi_lock.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_mutex.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_retry_multi_lock.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_retry_single_lock.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_semaphore.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_service_base.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_signal_thread.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_simple_thread.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_single_lock.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_socket_event.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_sync_object.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_synch_lock.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_thread.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_thread_impl.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_thread_os.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_wait_result.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_waitable.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -2292,12 +2373,6 @@
     <ClInclude Include="aura\process\process_process.h">
       <Filter>Header Files\aura\process</Filter>
     </ClInclude>
-    <ClInclude Include="aura\node\android\android_dir.h">
-      <Filter>Header Files\aura\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\node\android\android_file_system.h">
-      <Filter>Header Files\aura\os\android</Filter>
-    </ClInclude>
     <ClInclude Include="user\user\user_frame.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
@@ -2314,6 +2389,54 @@
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
     <ClInclude Include="aura\aura\aura_timer_event.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\node\android\android_file_system.h">
+      <Filter>Header Files\aura\node\android</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\node\android\android_dir.h">
+      <Filter>Header Files\aura\node\android</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_speaker.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_shell_launcher.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_restore.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_profiler.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_ipi.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_ipc.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_console_window.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_cmp2.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_cmp.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_auto.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_app_launcher.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_app_core.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_allocate_processor_cache_oriented.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_allocate_heap.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
   </ItemGroup>
@@ -2548,6 +2671,9 @@
     </Filter>
     <Filter Include="Header Files\user\user">
       <UniqueIdentifier>{08e2a220-5913-4f59-b0bc-95076e0fe8d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\aura\aura\NewFilter1">
+      <UniqueIdentifier>{d420889a-cd4c-4e67-9fde-745c43579e8b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -53,8 +53,8 @@ oswindow_data::~oswindow_data()
 #define CA2_CCVOTAGUS_WINDOW_LONG_STYLE "ca2_ccvotagus_fontopu_window_long_style"
 #define CA2_CCVOTAGUS_WINDOW_LONG_STYLE_EX "ca2_ccvotagus_fontopu_window_long_style_ex"
 
-oswindow_dataptra * oswindow_data::s_pdataptra = new oswindow_dataptra;
-mutex * oswindow_data::s_pmutex = new mutex;
+//oswindow_dataptra * oswindow_data::s_pdataptra = new oswindow_dataptra;
+//mutex * oswindow_data::s_pmutex = new mutex;
 
 
 int32_t oswindow_find_message_only_window(::user::interaction * pui)
