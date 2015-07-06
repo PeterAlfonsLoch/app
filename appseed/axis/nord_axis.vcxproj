@@ -1510,7 +1510,6 @@
     <ClInclude Include="axis\os\android\android_graphics.h" />
     <ClInclude Include="axis\os\android\android_internal.h" />
     <ClInclude Include="axis\os\android\android_process.h" />
-    <ClInclude Include="axis\os\android\android_vsnord_native_app_glue.h" />
     <ClInclude Include="axis\os\ansios\ansios.h" />
     <ClInclude Include="axis\os\cross\cross.h" />
     <ClInclude Include="axis\os\cross\windows\windows.h" />

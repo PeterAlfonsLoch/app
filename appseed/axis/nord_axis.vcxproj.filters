@@ -1500,9 +1500,6 @@
     <ClInclude Include="axis\node\android\android_axis_file_system.h">
       <Filter>Header Files\axis\node\android</Filter>
     </ClInclude>
-    <ClInclude Include="axis\os\android\android_vsnord_native_app_glue.h">
-      <Filter>Header Files\axis\os\android</Filter>
-    </ClInclude>
     <ClInclude Include="fiasco_finder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1619,26 +1616,11 @@
     <Filter Include="Header Files\filesystem\fs">
       <UniqueIdentifier>{017ef437-c816-4a35-93e1-a7ee2993a267}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\filesystem\file">
-      <UniqueIdentifier>{9f3a8739-4b80-4731-865b-ad04c9343dea}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\filesystem\file\NewFilter1">
-      <UniqueIdentifier>{5453710f-ec7e-40bc-ad1a-f43af0a1146d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\graphics">
       <UniqueIdentifier>{40e06b08-e12f-4cad-8977-e01383dcc77f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\graphics\visual">
       <UniqueIdentifier>{0d1cf5a2-c1c6-48b1-8149-88a073c5ac3b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\primitive">
-      <UniqueIdentifier>{feeecbf1-769f-4efe-8df9-bd3d611495f3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\primitive\data">
-      <UniqueIdentifier>{eb70de7c-cc11-4f54-9cdf-fd2a41b8be93}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\primitive\datetime">
-      <UniqueIdentifier>{778c5c4d-c03d-4a03-801d-abd403a05455}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\database">
       <UniqueIdentifier>{1dbf0581-760b-42b8-8ed5-5036e5b102ac}</UniqueIdentifier>
