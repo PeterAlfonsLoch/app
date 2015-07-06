@@ -270,7 +270,7 @@ namespace core
       //if(Session.fontopus()->create_system_user("system") == NULL)
       // return false;
 
-
+#if !defined(CUBE) && !defined(VSNORD)
 
 #if !defined(DEBUG) || defined(WINDOWS)
       try
@@ -282,6 +282,8 @@ namespace core
       catch(...)
       {
       }
+#endif
+
 #endif
 
       //if(!m_phtml->initialize())
