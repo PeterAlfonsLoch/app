@@ -86,7 +86,7 @@ namespace http
 
          set = psignal->m_set;
 
-         single_lock sl(&System.http().m_mutexDownload, true);
+         single_lock sl(System.http().m_pmutexDownload, true);
 
          if (!(System.http().m_straDownloading.contains(strUrl)) && !exists(psignal->m_strUrl, set))
          {

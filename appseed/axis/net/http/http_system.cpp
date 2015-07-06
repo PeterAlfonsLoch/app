@@ -166,7 +166,7 @@ namespace http
    system::pac * system::get_pac(const char * pszUrl)
    {
 
-      single_lock sl(&m_mutexPac, true);
+      single_lock sl(m_pmutexPac, true);
 
       string_map < pac * >::pair * ppair = m_mapPac.PLookup(pszUrl);
 

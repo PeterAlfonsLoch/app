@@ -419,7 +419,7 @@ namespace file
 #endif
                strFile = System.dir().appdata() / "cache" / strFile + ".local_copy";
 
-               single_lock sl(&System.http().m_mutexDownload, true);
+               single_lock sl(System.http().m_pmutexDownload, true);
 
                if (Application.file().exists(strFile) && !(System.http().m_straDownloading.contains(strPath) || System.http().m_straExists.contains(strPath)))
                {
