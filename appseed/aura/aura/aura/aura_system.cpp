@@ -1936,7 +1936,7 @@ namespace aura
 
       }
 
-      string strLibrary(pszLibrary);
+      string strLibrary = ::file::path(pszLibrary).title();
 
 #if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 
