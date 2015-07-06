@@ -180,6 +180,8 @@ bool timer::call_on_timer()
 
    m_bDeal = false;
 
+#ifdef WINDOWS
+
    if(m_bPeriodic)
    {
 
@@ -191,6 +193,9 @@ bool timer::call_on_timer()
       }
 
    }
+
+
+#endif
 
    return !m_bRet;
 

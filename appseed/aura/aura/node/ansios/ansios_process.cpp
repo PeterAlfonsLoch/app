@@ -189,7 +189,7 @@ namespace ansios
 
       char *   exec_path_name = cmd_line;
 
-      if((m_iPid = fork()) == 0)
+      if((m_iPid = ::fork()) == 0)
       {
 
       if(bPiped)
@@ -637,7 +637,7 @@ namespace ansios
 
       char *   exec_path_name = cmd_line;
 
-      if((m_iPid = fork()) == 0)
+      if((m_iPid = ::fork()) == 0)
       {
 
       //if(bPiped)
