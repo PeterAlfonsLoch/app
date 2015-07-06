@@ -19,7 +19,7 @@ void aura_timer_handler(sigval sigval);
 
 
 
-timer::timer(::aura::application * papp,uint_ptr uiTimer = 0,PFN_TIMER pfnTimer = NULL,void * pvoidData = NULL):
+timer::timer(::aura::application * papp,uint_ptr uiTimer ,PFN_TIMER pfnTimer ,void * pvoidData):
 object(papp),
 m_nIDEvent(uiTimer),
 m_pfnTimer(pfnTimer),
@@ -42,7 +42,7 @@ m_pvoidData(pvoidData)
    sev.sigev_notify = SIGEV_THREAD;
    sev.sigev_signo = 0;
    sev.sigev_value.sival_ptr = this;
-   sev.sigev_notify_function = handler;
+   sev.sigev_notify_function = aura_timer_handler;
    if(timer_create(CLOCK_REALTIME,&sev,&timerid) == -1)
       throw - 1;
 
@@ -53,6 +53,8 @@ m_pvoidData(pvoidData)
       throw - 1;
    }
 #endif
+
+   m_bRet = false;
 }
 
 timer::~timer()
@@ -101,7 +103,7 @@ bool timer::start(int millis,bool bPeriodic)
 
 #else
 
-   if(!CreateTimerQueueTimer(&hTimer,hTimerQueue,(WAITORTIMERCALLBACK)TimerRoutine,this,millis,bPeriodic ? millis : 0,0))
+   if(!CreateTimerQueueTimer(&hTimer,hTimerQueue,(WAITORTIMERCALLBACK)aura_timer_TimerRoutine,this,millis,bPeriodic ? millis : 0,0))
    {
 
       return false;
@@ -136,13 +138,16 @@ void timer::stop()
 }
 
 
-void timer::on_timer()
+bool timer::on_timer()
 {
+
+   m_bRet = false;
 
    if(m_pfnTimer != NULL)
    {
 
-      m_pfnTimer(this);
+      if(!m_pfnTimer(this) && m_bPeriodic)
+         return false;
 
    }
 
@@ -153,6 +158,8 @@ void timer::on_timer()
 
    }
 
+   return !m_bRet;
+
 }
 
 
@@ -160,7 +167,7 @@ void timer::on_timer()
 
 #ifdef WINDOWS
 
-static VOID CALLBACK TimerRoutine(PVOID lpParam,BOOLEAN TimerOrWaitFired)
+static VOID CALLBACK aura_timer_TimerRoutine(PVOID lpParam,BOOLEAN TimerOrWaitFired)
 {
 
    timer * ptimer = (timer *)lpParam;
@@ -171,7 +178,7 @@ static VOID CALLBACK TimerRoutine(PVOID lpParam,BOOLEAN TimerOrWaitFired)
 
 #else
 
-static void handler(sigval sigval)
+static void aura_timer_handler(sigval sigval)
 {
 
    millis_timer * ptimer = (millis_timer *)sigval.sival_ptr;

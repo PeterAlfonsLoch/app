@@ -749,19 +749,17 @@ namespace user
 
 } // namespace user
 
+// timer_ui works correctly when timer is originated from SetTimer call
+inline ::user::interaction * timer_ui(::timer * ptimer)
+{
+
+   return (::user::interaction *) ptimer->m_pvoidData;
+
+}
+
 
 #endif // CA2_APP_BASE_USER_INTERACTION_H
 
 
 
-inline ::user::interaction * timer_ui(::timer * ptimer)
-{
-   
-   return (::user::interaction *) ptimer->m_pcallback->m_pvoidUserInteraction;
-
-}
-
-
-
-}
 

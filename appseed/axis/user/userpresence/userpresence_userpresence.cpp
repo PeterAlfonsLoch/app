@@ -115,7 +115,7 @@ namespace userpresence
       }
 
 
-      SetTimer(8888,1000, NULL);
+      create_timer(8888,1000, NULL);
 
       if(ApplicationUser.m_ppresence == NULL)
       {
@@ -151,9 +151,9 @@ namespace userpresence
       }
 
 
-      KillTimer(1984);
+      delete_timer(1984);
 
-      KillTimer(8888);
+      delete_timer(8888);
 
       if(ApplicationUser.m_ppresence != NULL)
       {

@@ -1031,7 +1031,7 @@ namespace user
    bool interaction_impl_base::SetTimer(uint_ptr nIDEvent,UINT nEllapse, PFN_TIMER pfnTimer)
    {
 
-      return ::aura::timer_array::SetTimer(nIDEvent,nEllapse,pfnTimer);
+      return create_timer(nIDEvent,nEllapse,pfnTimer, true, m_pui);
 
    }
 
@@ -1039,7 +1039,7 @@ namespace user
    bool interaction_impl_base::KillTimer(uint_ptr nIDEvent)
    {
 
-      return ::aura::timer_array::KillTimer(nIDEvent);
+      return delete_timer(nIDEvent);
 
    }
 

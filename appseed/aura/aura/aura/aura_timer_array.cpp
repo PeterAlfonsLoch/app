@@ -33,7 +33,7 @@ namespace aura
       if(ppair == NULL)
       {
 
-         m_map.set_at(nIDEvent,new timer(get_app(),nIDEvent,pvoidData));
+         m_map.set_at(nIDEvent,new timer(get_app(),nIDEvent,pfnTimer, pvoidData));
 
          ppair = m_map.PLookup(nIDEvent);
 
@@ -66,7 +66,7 @@ namespace aura
    }
 
 
-   void timer_array::on_timer(timer * ptimer)
+   bool timer_array::on_timer(timer * ptimer)
    {
 
       if(ptimer->m_pcallback == this)
@@ -79,9 +79,12 @@ namespace aura
       if(!ptimer->m_bPeriodic)
       {
 
-         stop();
+         delete_timer(ptimer->m_nIDEvent);
 
       }
+
+
+      return true;
 
    }
 

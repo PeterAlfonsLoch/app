@@ -12,7 +12,10 @@ public:
    virtual ~timer_event();
 
 
-   bool wait(int millis);
+   virtual bool wait(int millis);
+
+
+   virtual bool on_timer();
 
 
 };

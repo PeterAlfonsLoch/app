@@ -22,6 +22,7 @@ public:
    timer_callback *     m_pcallback;
    bool                 m_bPeriodic;
    void *               m_pvoidData;
+   bool                 m_bRet;
 
 #ifdef WINDOWS
 
