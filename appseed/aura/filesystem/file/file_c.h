@@ -2,7 +2,7 @@
 
 
 
-#if defined(METROWIN) || defined(APPLEOS) || defined(CUBE)
+#if defined(METROWIN) || defined(APPLEOS) || defined(CUBE) || defined(VSNORD)
 
 #define MATTER_CACHE_FROM_HTTP_SERVER
 

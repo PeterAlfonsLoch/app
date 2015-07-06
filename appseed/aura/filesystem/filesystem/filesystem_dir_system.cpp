@@ -1095,7 +1095,7 @@ namespace file
 
          appmatter_locators(strRoot, strDomain, System.m_mapAppLibrary[strAppName], strAppName);
 
-#ifdef CUBE
+#if defined(CUBE) || defined(VSNORD)
 
          return strRoot /  "appmatter" /  strDomain;
 

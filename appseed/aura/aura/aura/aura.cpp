@@ -12,12 +12,28 @@ END_EXTERN_C
 extern "C"
 CLASS_DECL_AURA void debug_print(const char * pszFormat,...)
 {
+   
+   //if (strstr(pszFormat, "%") == NULL)
+   //{
+   //   
+   //   ::OutputDebugStringW(wstring(pszFormat));
+   //   
+   //   return;
+
+   //}
+
    va_list argList;
+
    va_start(argList,pszFormat);
+
    char sz[4096];
+
    vsnprintf(sz,sizeof(sz),pszFormat,argList);
-   va_end(argList);
+
    ::OutputDebugStringW(wstring(sz));
+
+   va_end(argList);
+
 }
 
 

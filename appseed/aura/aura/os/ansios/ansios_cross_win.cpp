@@ -21,36 +21,5 @@ FormatMessage(
 }
 
 
-VOID
-WINAPI
-OutputDebugStringA(
-                   LPCSTR lpOutputString
-                   )
-{
-
-
-    fprintf(stderr, "%s", lpOutputString);
-    fflush(stderr);
-    //debug_print("%s", lpOutputString);
-
-
-}
-
-
-
-
-VOID
-WINAPI
-OutputDebugStringW(
-                   LPCWSTR lpOutputString
-                   )
-{
-
-
-    OutputDebugStringA(string(lpOutputString));
-
-
-}
-
 
 

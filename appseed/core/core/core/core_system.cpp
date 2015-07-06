@@ -777,7 +777,7 @@ namespace core
 
       }
 
-#ifndef CUBE
+#if !defined(CUBE) && !defined(VSNORD)
 
       try
       {

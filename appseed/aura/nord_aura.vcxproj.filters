@@ -664,6 +664,207 @@
     <ClCompile Include="multithreading\multithreading_waitable.cpp">
       <Filter>Source Files\multithreading</Filter>
     </ClCompile>
+    <ClCompile Include="aura\node\android\android1.cpp">
+      <Filter>Source Files\aura\node\android</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\node\android\android_util.cpp">
+      <Filter>Source Files\aura\node\android</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\node\android\android_trace.cpp">
+      <Filter>Source Files\aura\node\android</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\node\android\android_thread_local_storage.cpp">
+      <Filter>Source Files\aura\node\android</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\node\android\android_thread.cpp">
+      <Filter>Source Files\aura\node\android</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\node\android\android_stdio_file.cpp">
+      <Filter>Source Files\aura\node\android</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\node\android\android_shell.cpp">
+      <Filter>Source Files\aura\node\android</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\node\android\android_os.cpp">
+      <Filter>Source Files\aura\node\android</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\node\android\android_main.cpp">
+      <Filter>Source Files\aura\node\android</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\node\android\android_file.cpp">
+      <Filter>Source Files\aura\node\android</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\node\android\android_factory_exchange.cpp">
+      <Filter>Source Files\aura\node\android</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\node\android\android_exception.cpp">
+      <Filter>Source Files\aura\node\android</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\node\android\android_error.cpp">
+      <Filter>Source Files\aura\node\android</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\node\android\android_dumpinit.cpp">
+      <Filter>Source Files\aura\node\android</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\node\android\android_dir.cpp">
+      <Filter>Source Files\aura\node\android</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\node\android\android_application.cpp">
+      <Filter>Source Files\aura\node\android</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\node\android\android_android.cpp">
+      <Filter>Source Files\aura\node\android</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\node\android\_android_node.cpp">
+      <Filter>Source Files\aura\node\android</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\node\ansios\_ansios_node.cpp">
+      <Filter>Source Files\aura\node\ansios</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\node\ansios\ansios_pipe.cpp">
+      <Filter>Source Files\aura\node\ansios</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\node\ansios\ansios_process.cpp">
+      <Filter>Source Files\aura\node\ansios</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\node\ansios\ansios_thread_impl.cpp">
+      <Filter>Source Files\aura\node\ansios</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\android\android_debug.cpp">
+      <Filter>Source Files\aura\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\exception\_exception.cpp">
+      <Filter>Source Files\aura\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\exception\exception.cpp">
+      <Filter>Source Files\aura\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\exception\exception_archive.cpp">
+      <Filter>Source Files\aura\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\exception\exception_archive_exception.cpp">
+      <Filter>Source Files\aura\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\exception\exception_base.cpp">
+      <Filter>Source Files\aura\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\exception\exception_call_stack.cpp">
+      <Filter>Source Files\aura\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\exception\exception_cancel.cpp">
+      <Filter>Source Files\aura\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\exception\exception_debug.cpp">
+      <Filter>Source Files\aura\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\exception\exception_dump.cpp">
+      <Filter>Source Files\aura\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\exception\exception_dump_context.cpp">
+      <Filter>Source Files\aura\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\exception\exception_dump_floating_point.cpp">
+      <Filter>Source Files\aura\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\exception\exception_dump_output.cpp">
+      <Filter>Source Files\aura\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\exception\exception_engine.cpp">
+      <Filter>Source Files\aura\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\exception\exception_error.cpp">
+      <Filter>Source Files\aura\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\exception\exception_exit.cpp">
+      <Filter>Source Files\aura\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\exception\exception_hresult.cpp">
+      <Filter>Source Files\aura\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\exception\exception_installing.cpp">
+      <Filter>Source Files\aura\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\exception\exception_interface_only.cpp">
+      <Filter>Source Files\aura\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\exception\exception_invalid_argument.cpp">
+      <Filter>Source Files\aura\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\exception\exception_invalid_character.cpp">
+      <Filter>Source Files\aura\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\exception\exception_invalid_handle.cpp">
+      <Filter>Source Files\aura\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\exception\exception_invalid_index.cpp">
+      <Filter>Source Files\aura\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\exception\exception_io.cpp">
+      <Filter>Source Files\aura\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\exception\exception_last_error.cpp">
+      <Filter>Source Files\aura\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\exception\exception_memory.cpp">
+      <Filter>Source Files\aura\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\exception\exception_not_implemented.cpp">
+      <Filter>Source Files\aura\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\exception\exception_not_installed.cpp">
+      <Filter>Source Files\aura\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\exception\exception_not_licensed.cpp">
+      <Filter>Source Files\aura\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\exception\exception_not_supported.cpp">
+      <Filter>Source Files\aura\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\exception\exception_operation_canceled.cpp">
+      <Filter>Source Files\aura\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\exception\exception_os.cpp">
+      <Filter>Source Files\aura\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\exception\exception_overflow_error.cpp">
+      <Filter>Source Files\aura\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\exception\exception_parsing.cpp">
+      <Filter>Source Files\aura\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\exception\exception_range_error.cpp">
+      <Filter>Source Files\aura\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\exception\exception_resource.cpp">
+      <Filter>Source Files\aura\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\exception\exception_runtime_error.cpp">
+      <Filter>Source Files\aura\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\exception\exception_simple.cpp">
+      <Filter>Source Files\aura\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\exception\exception_standard_translator.cpp">
+      <Filter>Source Files\aura\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\exception\exception_temporary.cpp">
+      <Filter>Source Files\aura\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\exception\exception_throw.cpp">
+      <Filter>Source Files\aura\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\exception\exception_todo.cpp">
+      <Filter>Source Files\aura\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\exception\exception_user.cpp">
+      <Filter>Source Files\aura\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\exception\exception_verisimple.cpp">
+      <Filter>Source Files\aura\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\exception\exception_void_implementation.cpp">
+      <Filter>Source Files\aura\exception</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -2439,6 +2640,9 @@
     <ClInclude Include="aura\aura\aura_allocate_heap.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
+    <ClInclude Include="aura\os\android\android_init_data.h">
+      <Filter>Header Files\aura\os\android</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -2674,6 +2878,9 @@
     </Filter>
     <Filter Include="Header Files\aura\aura\NewFilter1">
       <UniqueIdentifier>{d420889a-cd4c-4e67-9fde-745c43579e8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\aura\node\android\NewFilter1">
+      <UniqueIdentifier>{7a261b4a-4079-4e5c-b186-9159a1e3b695}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

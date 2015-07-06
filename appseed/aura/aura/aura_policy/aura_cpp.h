@@ -1099,6 +1099,12 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 #include "aura/aura/aura/aura_cregexp.h"
 #include "aura/aura/aura/aura_cregexp_util.h"
 
+#ifdef VSNORD
+
+#include "aura/aura/os/android/android_init_data.h"
+
+#endif
+
 
 #include "aura/aura/process/process.h"
 

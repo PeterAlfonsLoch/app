@@ -849,7 +849,7 @@ namespace windows
 
       m_strCa2 = strCa2Module;
 
-#ifndef CUBE
+#if !defined(CUBE) && !defined(VSNORD)
 
       m_strCa2 -= 2;
 

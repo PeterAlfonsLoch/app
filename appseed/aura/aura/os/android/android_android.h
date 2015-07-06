@@ -3,7 +3,6 @@
 
 #include <wchar.h>
 
-
 #include "android_graphics.h"
 
 

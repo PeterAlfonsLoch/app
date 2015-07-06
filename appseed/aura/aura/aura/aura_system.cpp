@@ -1821,7 +1821,7 @@ namespace aura
    {
 
 
-#ifdef CUBE
+#if defined(CUBE) || defined(VSNORD)
       return true;
 #endif
 

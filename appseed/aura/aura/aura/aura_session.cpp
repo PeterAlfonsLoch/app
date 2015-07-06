@@ -795,7 +795,7 @@ namespace aura
       strLibrary.replace("-","_");
 
 #else
-#ifdef CUBE
+#if defined(CUBE) || defined(VSNORD)
 
       string strLibrary = pszAppId;
 

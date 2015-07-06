@@ -1065,9 +1065,10 @@ namespace axis
 
 #else
 
-      throw todo(get_app());
-
-      ::GetWindowRect(::GetDesktopWindow(),lprect);
+      lprect->left = 0;
+      lprect->top = 0;
+      lprect->right = m_pandroidinitdata->m_iScreenWidth;
+      lprect->bottom = m_pandroidinitdata->m_iScreenHeight;
 
 #endif
 

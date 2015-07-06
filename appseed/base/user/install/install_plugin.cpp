@@ -1646,7 +1646,7 @@ restart:
 
 } // namespace install
 
-#ifndef CUBE
+#if !defined(CUBE) && !defined(VSNORD)
 
 ::hotplugin::plugin * new_hotplugin(::aura::application * papp)
 {

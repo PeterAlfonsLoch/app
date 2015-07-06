@@ -13,7 +13,7 @@ namespace draw2d
 
 } // namespace draw2d
 
-#if defined(CUBE)
+#if defined(CUBE) || defined(VSNORD)
 
 
 void draw2d_factory_exchange(::aura::application * papp);

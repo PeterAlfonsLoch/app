@@ -4317,7 +4317,7 @@ namespace axis
    void application::draw2d_factory_exchange()
    {
 
-#ifdef CUBE
+#if defined(CUBE) || defined(VSNORD)
 
       ::draw2d_factory_exchange(this);
 
