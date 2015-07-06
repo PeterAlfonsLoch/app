@@ -12,9 +12,10 @@ namespace http
 
       oprop("dw") = ::get_tick_count();
 
-      m_pmutexPac = &System.dir().m_mutex;
-      m_pmutexProxy = &System.dir().m_mutex;
-      m_pmutexDownload = &System.dir().m_mutex;
+      m_pmutexPac = NULL;
+      m_pmutexProxy = NULL;
+      m_pmutexDownload = NULL;
+
 
    }
 

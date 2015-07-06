@@ -30,6 +30,12 @@ namespace file
          {
             ////         m_pziputil = new zip::Util;
             //         m_isdirmap.m_dwTimeOut = 15000;
+
+
+            System.http().m_pmutexPac = &m_mutex;
+            System.http().m_pmutexProxy = &m_mutex;
+            System.http().m_pmutexDownload = &m_mutex;
+
          }
 
          system::~system()
