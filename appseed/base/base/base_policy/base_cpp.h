@@ -351,7 +351,14 @@ CLASS_DECL_BASE bool __node_base_pos_term();
 
 //#include "base/user/fontopus/fontopus.h"
 
+
+#include "base/user/user.inl"
+
+
 #include "base/base/base.inl"
+
+
+
 
 
 

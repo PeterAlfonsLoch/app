@@ -1230,8 +1230,6 @@
     <ClInclude Include="aura\aura\aura_main_init_data.h" />
     <ClInclude Include="aura\aura\aura_math.h" />
     <ClInclude Include="aura\aura\aura_message_loop.h" />
-    <ClInclude Include="aura\aura\aura_message_queue.h" />
-    <ClInclude Include="aura\aura\aura_message_queue_listener.h" />
     <ClInclude Include="aura\aura\aura_microtimer.h" />
     <ClInclude Include="aura\aura\aura_muldiv64.h" />
     <ClInclude Include="aura\aura\aura_net.h" />

@@ -3,6 +3,7 @@
 
 #include "axis/os/android/android.h"
 
+#include "base/graphics/graphics_window_graphics.h"
 
 #ifdef VSNORD
 BEGIN_EXTERN_C
@@ -18,7 +19,7 @@ END_EXTERN_C
 
 
 #include "android_window_android.h"
-#include "android_window_impl.h"
+//#include "android_window_impl.h"
 
 
 

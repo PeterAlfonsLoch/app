@@ -12,6 +12,12 @@
 #include "android_simple_app.cpp"
 //#include "windows_trace_message.cpp"
 #include "android_message_loop.cpp"
+#include "android_windowing.cpp"
+#ifdef VSNORD
+#include "android_window_anative.cpp"
+#else
+#include "android_window_android.cpp"
+#endif
 //2015-01-06  04:25                 0 _windows_os.cpp"
 //               7 arquivo(s)         14.693 bytes
 //               0 pasta(s)   33.004.007.424 bytes dispon¡veis

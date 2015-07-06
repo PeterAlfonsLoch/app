@@ -245,7 +245,7 @@ namespace base
 //
 //      virtual bool assert_user_logged_in();
 //
-//      virtual sp(::message::base) get_message_base(LPMESSAGE lpmsg);
+      virtual sp(::message::base) get_message_base(LPMESSAGE lpmsg);
 //
 //      virtual void process_message(signal_details * pobj);
 //

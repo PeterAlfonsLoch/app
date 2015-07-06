@@ -380,11 +380,6 @@ using user_interaction = ::user::interaction;
 
 
 
-#include "base/user/user.inl"
-
-
-
-
 #include "base/user/user/user.h"
 
 
