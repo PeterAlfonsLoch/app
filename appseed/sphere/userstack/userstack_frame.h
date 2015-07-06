@@ -7,11 +7,11 @@ namespace userstack
 
    class CLASS_DECL_SPHERE frame :
       virtual public simple_frame_window,
-      virtual public ::aura::message_queue_listener
+      virtual public ::user::message_queue_listener
    {
    public:
 
-      ::aura::message_queue_sp   m_spqueue;
+      ::user::message_queue_sp   m_spqueue;
 
 
       image_list  *              m_pimagelist;

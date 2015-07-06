@@ -25,7 +25,7 @@ namespace macos
          System.factory().creatable_large < interaction_impl      >   (System.type_info < ::user::interaction_impl   > ());
          System.factory().creatable < copydesk                    >   (System.type_info < ::user::copydesk           > (), 1);
 //         System.factory().creatable < printer                     >   (System.type_info < ::user::printer            > (), 1);
-         System.factory().creatable < message_queue               >   (System.type_info < ::aura::message_queue      > (), 1);
+         System.factory().creatable < message_queue               >   (System.type_info < ::user::message_queue      > (), 1);
          
       }
       

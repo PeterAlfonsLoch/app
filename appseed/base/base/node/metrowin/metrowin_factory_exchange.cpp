@@ -17,7 +17,7 @@ namespace metrowin
          //System.factory().creatable_small < copydesk                 >(System.template type_info < ::base::copydesk            >(),1);
          ////      System.factory().creatable       < printer               >  (System.template type_info < ::user::printer             > ()  , 1);
 
-         //System.factory().creatable          < ::windows::message_queue      >(System.type_info < ::aura::message_queue       >(),32);
+         //System.factory().creatable          < ::windows::message_queue      >(System.type_info < ::user::message_queue       >(),32);
 
 
       }

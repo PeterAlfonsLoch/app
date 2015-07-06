@@ -7,11 +7,11 @@ namespace command
 
    class CLASS_DECL_SPHERE frame : 
       virtual public simple_frame_window,
-      virtual public ::aura::message_queue_listener
+      virtual public ::user::message_queue_listener
    {
    public:
 
-      ::aura::message_queue_sp   m_spqueue;
+      ::user::message_queue_sp   m_spqueue;
       
       bool                       m_bAutoHideOnOutClick;
       int32_t                 m_iAnimateStep;

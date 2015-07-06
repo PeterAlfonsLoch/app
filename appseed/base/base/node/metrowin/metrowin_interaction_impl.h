@@ -18,7 +18,7 @@ namespace metrowin
 
 
       spa(::user::interaction)      m_guieptraMouseHover;
-      ::aura::message_queue_listener *   m_plistener;
+      ::user::message_queue_listener *   m_plistener;
       string                        m_strWindowText;
       //visual::dib_sp              m_spdib;
       //visual::dib_sp              m_spdibMultAlphaWork;
@@ -39,7 +39,7 @@ namespace metrowin
       virtual void mouse_hover_add(::user::interaction *  pinterface);
       virtual void mouse_hover_remove(::user::interaction *  pinterface);
 
-      //bool create_message_queue(const char * pszName, ::aura::message_queue_listener* pcallback = NULL);
+      //bool create_message_queue(const char * pszName, ::user::message_queue_listener* pcallback = NULL);
 
       bool create_message_queue(const char * pszName);
 

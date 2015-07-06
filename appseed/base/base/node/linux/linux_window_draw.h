@@ -7,7 +7,7 @@ namespace linux
 
    class CLASS_DECL_BASE window_draw :
       virtual public ::user::window_draw,
-      virtual public ::aura::message_queue_listener
+      virtual public ::user::message_queue_listener
    {
    public:
 
@@ -20,7 +20,7 @@ namespace linux
       };
 
 
-      //::aura::message_queue_sp               m_spqueue;
+      //::user::message_queue_sp               m_spqueue;
 
       user::interaction_ptra                 m_wndpaOut;
       mutex                                  m_mutexRendering;

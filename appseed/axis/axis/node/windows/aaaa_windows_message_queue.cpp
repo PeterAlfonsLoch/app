@@ -13,7 +13,7 @@ namespace windows
 
    message_queue::message_queue(::aura::application * papp):
       ::object(papp),
-      ::aura::message_queue(papp)
+      ::user::message_queue(papp)
    {
 
       m_plistener          = NULL;
@@ -41,10 +41,10 @@ namespace windows
    }
 
 
-   bool message_queue::create_message_queue(const char * pszName,::aura::message_queue_listener * plistener)
+   bool message_queue::create_message_queue(const char * pszName,::user::message_queue_listener * plistener)
    {
 
-      if(!::aura::message_queue::create_message_queue(pszName,plistener))
+      if(!::user::message_queue::create_message_queue(pszName,plistener))
          return true;
 
       WNDCLASS wndcls ={};

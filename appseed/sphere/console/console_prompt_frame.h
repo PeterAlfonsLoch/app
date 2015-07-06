@@ -7,7 +7,7 @@ namespace console
 
    class CLASS_DECL_SPHERE prompt_frame : 
       virtual public simple_frame_window,
-      virtual public ::aura::message_queue_listener
+      virtual public ::user::message_queue_listener
    {
    public:
 

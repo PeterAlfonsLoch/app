@@ -29,7 +29,7 @@ namespace dynamic_source
 
    class CLASS_DECL_PROGRAMMING script_manager :
       virtual public thread,
-      virtual public ::aura::message_queue_listener
+      virtual public ::user::message_queue_listener
    {
    public:
 
@@ -91,7 +91,7 @@ namespace dynamic_source
       string_map < bool >         m_mapIncludeHasScript;
       mutex                                     m_mutexIncludeExpandMd5;
       string_to_string                      m_mapIncludeExpandMd5;
-      ::aura::message_queue_sp                 m_spqueue;
+      ::user::message_queue_sp                 m_spqueue;
 
       int32_t                                   m_iTunnelPluginCount;
       mutex                                     m_mutexOutLink;

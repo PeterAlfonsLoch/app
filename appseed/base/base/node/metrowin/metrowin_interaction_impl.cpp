@@ -363,7 +363,7 @@ namespace metrowin
 
    }
 
-//   bool interaction_impl::create_message_queue(const char * pszName,::aura::message_queue_listener* pcallback)
+//   bool interaction_impl::create_message_queue(const char * pszName,::user::message_queue_listener* pcallback)
    bool interaction_impl::create_message_queue(const char * pszName)
    {
 

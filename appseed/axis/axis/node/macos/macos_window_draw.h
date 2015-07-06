@@ -7,12 +7,12 @@ namespace macos
    
    class CLASS_DECL_AXIS window_draw :
       virtual public ::user::window_draw//,
-//      virtual public ::aura::message_queue_listener
+//      virtual public ::user::message_queue_listener
    {
    public:
       
       
-//      ::aura::message_queue_sp               m_spqueue;
+//      ::user::message_queue_sp               m_spqueue;
       user::interaction_ptra                 m_wndpaOut;
       mutex                                  m_mutexRendering;
       mutex                                  m_mutexRgnUpdate;

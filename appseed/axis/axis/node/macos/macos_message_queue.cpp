@@ -8,7 +8,7 @@ namespace macos
 
    message_queue::message_queue(sp(::aura::application) papp):
       ::object(papp),
-      ::aura::message_queue(papp)
+      ::user::message_queue(papp)
    {
 
       m_plistener          = NULL;
@@ -22,10 +22,10 @@ namespace macos
    }
 
 
-   bool message_queue::create_message_queue(const char * pszName,::aura::message_queue_listener * plistener)
+   bool message_queue::create_message_queue(const char * pszName,::user::message_queue_listener * plistener)
    {
 
-      if(!::aura::message_queue::create_message_queue(pszName,plistener))
+      if(!::user::message_queue::create_message_queue(pszName,plistener))
          return true;
 
       return ::user::interaction::create_message_queue(pszName);

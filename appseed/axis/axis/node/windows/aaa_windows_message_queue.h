@@ -6,7 +6,7 @@ namespace windows
 
 
    class CLASS_DECL_AXIS message_queue:
-      virtual public ::aura::message_queue
+      virtual public ::user::message_queue
    {
    public:
 
@@ -21,7 +21,7 @@ namespace windows
       virtual ~message_queue();
 
 
-      virtual bool create_message_queue(const char * pszName,::aura::message_queue_listener * plistener = NULL);
+      virtual bool create_message_queue(const char * pszName,::user::message_queue_listener * plistener = NULL);
 
       virtual void message_handler(signal_details * pobj);
 

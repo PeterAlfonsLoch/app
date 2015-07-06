@@ -70,7 +70,7 @@ public:
    mutex                                     m_mutexUiPtra;
 
    UINT                                      m_dwFinishTimeout;
-//   ::aura::message_queue_sp                 m_spqueue;
+//   ::user::message_queue_sp                 m_spqueue;
 
 
    thread_impl(::aura::application * papp);
