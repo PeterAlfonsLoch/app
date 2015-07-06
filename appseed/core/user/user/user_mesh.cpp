@@ -3737,7 +3737,7 @@ namespace user
    void mesh::_001OnTimer(timer * ptimer)
    {
       //      return; //xxxtimer
-      super::_001OnTimer(ptimer);
+      ::user::control::_001OnTimer(ptimer);
       if(ptimer->m_nIDEvent == 12345679) // left click
       {
          KillTimer(12345679);

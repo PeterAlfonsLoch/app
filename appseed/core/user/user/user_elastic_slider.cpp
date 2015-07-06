@@ -27,7 +27,7 @@ namespace user
    {
       ::user::interaction::install_message_handling(pdispatch);
       IGUI_WIN_MSG_LINK(WM_CREATE, pdispatch, this, &elastic_slider::_001OnCreate);
-      IGUI_WIN_MSG_LINK(WM_TIMER, pdispatch, this, &elastic_slider::_001OnTimer);
+      //IGUI_WIN_MSG_LINK(WM_TIMER, pdispatch, this, &elastic_slider::_001OnTimer);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pdispatch, this, &elastic_slider::_001OnLButtonDown);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pdispatch, this, &elastic_slider::_001OnLButtonUp);
       IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pdispatch, this, &elastic_slider::_001OnMouseMove);

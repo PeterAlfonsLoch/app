@@ -923,7 +923,7 @@ namespace filemanager
 
 
 
-      ptimer->m_bRet = false;
+//      ptimer->m_bRet = false;
       if (ptimer->m_nIDEvent == 1234567)
       {
          m_iAnimate += 2;

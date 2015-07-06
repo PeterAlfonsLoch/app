@@ -754,7 +754,14 @@ namespace user
 
 
 
+inline ::user::interaction * timer_ui(::timer * ptimer)
+{
+   
+   return (::user::interaction *) ptimer->m_pcallback->m_pvoidUserInteraction;
+
+}
 
 
 
+}
 

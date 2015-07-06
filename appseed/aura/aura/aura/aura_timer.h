@@ -41,6 +41,8 @@ public:
    uint_ptr             m_nIDEvent;
    PFN_TIMER            m_pfnTimer;
    timer_callback *     m_pcallback;
+   bool                 m_bPeriodic;
+   void *               m_pvoidData;
 
 #ifdef WINDOWS
 
@@ -53,10 +55,11 @@ public:
    struct itimerspec its;
 #endif
 
-   timer(::aura::application * papp,uint_ptr uiTimer = 0, PFN_TIMER pfnTimer = NULL) :
+   timer(::aura::application * papp,uint_ptr uiTimer = 0, PFN_TIMER pfnTimer = NULL, void * pvoidData = NULL) :
       object(papp),
       m_nIDEvent(uiTimer),
-      m_pfnTimer(pfnTimer)
+      m_pfnTimer(pfnTimer),
+      m_pvoidData(pvoidData)
    {
       m_pcallback = NULL;
       // Create the timer queue.
@@ -133,6 +136,9 @@ public:
    {
 
       stop();
+
+      m_bPeriodic = bPeriodic;
+
 #ifdef LINUX
       /* Start the timer */
 

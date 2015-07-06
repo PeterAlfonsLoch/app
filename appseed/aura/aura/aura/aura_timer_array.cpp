@@ -23,7 +23,7 @@ namespace aura
 
    }
 
-   bool timer_array::SetTimer(uint_ptr nIDEvent,UINT nEllapse, PFN_TIMER pfnTimer)
+   timer * timer_array::create_timer(uint_ptr nIDEvent,UINT nEllapse, PFN_TIMER pfnTimer, bool bPeriodic)
    {
 
       synch_lock sl(&m_mutex);
@@ -33,7 +33,7 @@ namespace aura
       if(ppair == NULL)
       {
 
-         m_map.set_at(nIDEvent,new timer(get_app(),nIDEvent));
+         m_map.set_at(nIDEvent,new timer(get_app(),nIDEvent, bPeriodic));
 
          ppair = m_map.PLookup(nIDEvent);
 
@@ -43,7 +43,7 @@ namespace aura
 
       ppair->m_element2->start(nEllapse,true);
 
-      return true;
+      return ppair->m_element2;
 
    }
 
