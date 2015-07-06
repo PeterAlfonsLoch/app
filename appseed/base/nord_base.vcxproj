@@ -173,6 +173,9 @@
     <ClInclude Include="base\node\ansios\ansios.h" />
     <ClInclude Include="base\node\node.h" />
     <ClInclude Include="base\node\windows\windows_factory_exchange.h" />
+    <ClInclude Include="base\os\android\android.h" />
+    <ClInclude Include="base\os\android\android_cairo_keep.h" />
+    <ClInclude Include="base\os\android\android_windowing.h" />
     <ClInclude Include="base\os\android\android_window_android.h" />
     <ClInclude Include="base\os\ansios\ansios.h" />
     <ClInclude Include="base\os\cross.h" />

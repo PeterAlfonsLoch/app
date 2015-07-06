@@ -111,6 +111,15 @@
     <ClInclude Include="base\base_policy\base_policy_winrt.h">
       <Filter>Header Files\base\base_policy</Filter>
     </ClInclude>
+    <ClInclude Include="base\os\android\android.h">
+      <Filter>Header Files\base\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\android\android_cairo_keep.h">
+      <Filter>Header Files\base\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\android\android_windowing.h">
+      <Filter>Header Files\base\os\android</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">

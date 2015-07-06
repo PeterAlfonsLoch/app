@@ -20,7 +20,7 @@
 #include "android_window_android.cpp"
 
 #endif
-#include "android_windowing.cpp"
+//#include "android_windowing.cpp"
 //#include "android_window_cairo_egl.cpp"
 #include "android_win_base.cpp"
 //2015-01-11  11:54                 0 _android_node.cpp"

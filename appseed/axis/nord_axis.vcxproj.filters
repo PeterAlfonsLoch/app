@@ -64,9 +64,6 @@
     <ClCompile Include="axis\fontopus\_fontopus.cpp">
       <Filter>Source Files\axis\fontopus</Filter>
     </ClCompile>
-    <ClCompile Include="axis\geoip\_geoip.cpp">
-      <Filter>Source Files\axis\geoip</Filter>
-    </ClCompile>
     <ClCompile Include="axis\install\_install.cpp">
       <Filter>Source Files\axis\install</Filter>
     </ClCompile>
@@ -744,6 +741,12 @@
     </ClCompile>
     <ClCompile Include="net\net_sockets.cpp">
       <Filter>Source Files\net</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\axis\_axis_axis_axis.cpp">
+      <Filter>Source Files\axis\axis</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\geoip\_geoip.cpp">
+      <Filter>Source Files\axis\install</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
