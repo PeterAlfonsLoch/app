@@ -114,10 +114,6 @@ mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrNa
     else
     {
 
-       m_pmutex = new pthread_mutex_t;
-
-
-
       m_psem = SEM_FAILED;
 
       pthread_mutexattr_t attr;
@@ -126,7 +122,7 @@ mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrNa
 
       pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
 
-      pthread_mutex_init((pthread_mutex_t *) m_pmutex, &attr);
+      pthread_mutex_init(&m_mutex, &attr);
 
    }
 
@@ -187,7 +183,7 @@ mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrNa
 
       pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
 
-      pthread_mutex_init((pthread_mutex_t *) m_pmutex, &attr);
+      pthread_mutex_init(&m_mutex, &attr);
 
    }
 
@@ -250,7 +246,7 @@ mutex::~mutex()
    else
    {
 
-      pthread_mutex_destroy((pthread_mutex_t *) m_pmutex);
+      pthread_mutex_destroy(&m_mutex);
 
       if(m_pmutex != NULL)
       {
@@ -273,7 +269,7 @@ mutex::~mutex()
    else
    {
 
-      pthread_mutex_destroy((pthread_mutex_t *) m_pmutex);
+      pthread_mutex_destroy(&m_mutex);
 
       if(m_pmutex != NULL)
       {
@@ -350,7 +346,7 @@ wait_result mutex::wait(const duration & duration)
       if(duration.is_pos_infinity())
       {
 
-         irc = pthread_mutex_lock((pthread_mutex_t *) m_pmutex);
+         irc = pthread_mutex_lock(&m_mutex);
          if (!irc)
          {
             return wait_result(wait_result::Event0);
@@ -376,7 +372,7 @@ wait_result mutex::wait(const duration & duration)
             // if it does not acquire the mutex within 2 secs delay,
             // then it is considered to be failed
 
-            irc = pthread_mutex_trylock((pthread_mutex_t *) m_pmutex);
+            irc = pthread_mutex_trylock(&m_mutex);
             if (!irc)
             {
                return wait_result(wait_result::Event0);
@@ -487,7 +483,7 @@ wait_result mutex::wait(const duration & duration)
        if(duration.is_pos_infinity())
        {
 
-          irc = pthread_mutex_lock((pthread_mutex_t *) m_pmutex);
+          irc = pthread_mutex_lock(&m_mutex);
           if (!irc)
           {
                return wait_result(wait_result::Event0);
@@ -513,7 +509,7 @@ wait_result mutex::wait(const duration & duration)
          // if it does not acquire the mutex within 2 secs delay,
          // then it is considered to be failed
 
-          irc = pthread_mutex_trylock((pthread_mutex_t *) m_pmutex);
+          irc = pthread_mutex_trylock(&m_mutex);
           if (!irc)
           {
                return wait_result(wait_result::Event0);
@@ -593,7 +589,7 @@ bool mutex::unlock()
    else
    {
 
-      return pthread_mutex_unlock((pthread_mutex_t *) m_pmutex) != 0;
+      return pthread_mutex_unlock(&m_mutex) != 0;
 
    }
 
@@ -620,7 +616,7 @@ bool mutex::unlock()
    else
    {
 
-      return pthread_mutex_unlock((pthread_mutex_t *) m_pmutex) != 0;
+      return pthread_mutex_unlock(&m_mutex) != 0;
 
    }
 

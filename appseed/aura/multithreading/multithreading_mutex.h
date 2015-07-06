@@ -13,8 +13,7 @@ public:
 #ifndef WINDOWS
 
 
-   // thread mutex
-   void *            m_pmutex; // pthread_mutex_t;
+   pthread_mutex_t         m_mutex;
 
 
 
