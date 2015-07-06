@@ -2123,6 +2123,6 @@ void simple_frame_window::_001OnTimer(timer * ptimer)
 {
 
    ::user::frame_window::_001OnTimer(ptimer);
-   ::user::wndfrm::frame::_001Ontimer(ptimer);
+   ::user::wndfrm::frame::WorkSetClientInterface::_001OnTimer(ptimer);
 
 }
