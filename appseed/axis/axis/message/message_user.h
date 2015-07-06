@@ -196,7 +196,7 @@ namespace message
    {
    public:
 
-
+      int               m_iCode;
       uint_ptr          m_nChar;
       uint_ptr          m_nScanCode;
       UINT              m_nRepCnt;

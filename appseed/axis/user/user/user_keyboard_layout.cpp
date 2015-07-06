@@ -174,20 +174,58 @@ namespace user
          }
          else if(pnode->get_name().CompareNoCase("escape") == 0)
          {
+
             process_escape(pnode, m_setEscape[pnode->attr("value")].propset());
+
          }
+
       }
 
       return true;
+
    }
+
+
+   string keyboard_layout::process_key(::message::key * pkey)
+   {
+      
+      string str;
+
+      if(!m_mapCode.Lookup((int) pkey->m_iCode,str))
+      {
+
+         str = (char)(pkey->m_nChar & 0xff);
+
+      }
+
+      if(::str::begins_eat(str,"escape="))
+      {
+
+         return process_escape(str);
+
+      }
+      else
+      {
+
+         return process_char(str);
+
+      }
+         
+   }
+
 
    string keyboard_layout::process_key(int32_t iCode)
    {
+
       string str;
+
       if(!m_mapCode.Lookup(iCode, str))
       {
+
          str = (char) (iCode & 0xff);
+
       }
+
       if(::str::begins_eat(str, "escape="))
       {
          return process_escape(str);

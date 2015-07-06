@@ -325,6 +325,31 @@ namespace user
       return false;
    }
 
+   string keyboard::process_key(::message::key * pkey)
+   {
+
+      if(m_playout == NULL)
+      {
+
+         return string((char)(pkey->m_nChar & 0xff),1);
+
+      }
+
+      pkey->m_iCode = (int)(pkey->m_ekey);
+
+      if(Session.is_key_pressed(::user::key_shift))
+      {
+         pkey->m_iCode |= 0x80000000;
+      }
+      if(Session.is_key_pressed(::user::key_ralt))
+      {
+         pkey->m_iCode |= 0x40000000;
+      }
+
+      return m_playout->process_key(pkey);
+
+   }
+
    string keyboard::process_key(::user::e_key ekey)
    {
 

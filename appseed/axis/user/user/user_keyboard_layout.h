@@ -65,6 +65,8 @@ namespace user
 
       bool load(const char * pszPath);
 
+      string process_key(::message::key * pkey);
+
       string process_key(int32_t iCode);
 
       string process_char(const char * pszChar);

@@ -24,6 +24,8 @@ namespace user
 
       bool load_layout(const char * pszPath, ::action::context actioncontext);
 
+      string process_key(::message::key * pkey);
+
       string process_key(::user::e_key ekey);
 
       string process_char(const char * pszChar);

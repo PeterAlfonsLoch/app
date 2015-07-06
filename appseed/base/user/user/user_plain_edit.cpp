@@ -2257,7 +2257,7 @@ namespace user
                   iCode |= 0x80000000;
                }
                string strMap;
-               str = Session.keyboard().process_key(pkey->m_ekey);
+               str = Session.keyboard().process_key(pkey);
                m_ptree->m_iSelEnd += str.get_length();
                m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
                m_ptree-> m_editfile.Insert(str,str.get_length());
