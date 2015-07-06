@@ -7,13 +7,14 @@ namespace http
 
 
    system::system(::aura::application * papp) :
-      ::object(papp),
-      m_mutexPac(papp),
-      m_mutexProxy(papp),
-      m_mutexDownload(papp)
+      ::object(papp)
    {
 
       oprop("dw") = ::get_tick_count();
+
+      m_pmutexPac = &System.dir().m_mutex;
+      m_pmutexProxy = &System.dir().m_mutex;
+      m_pmutexDownload = &System.dir().m_mutex;
 
    }
 
@@ -226,7 +227,7 @@ namespace http
    ::http::system::proxy * system::get_proxy(const char * pszUrl)
    {
 
-      single_lock sl(&m_mutexProxy, true);
+      single_lock sl(m_pmutexProxy, true);
 
       string_map < ::http::system::proxy * >::pair * ppair = m_mapProxy.PLookup(pszUrl);
 
@@ -260,7 +261,7 @@ namespace http
    bool system::try_pac_script(const char * pszScriptUrl, const char * pszUrl, proxy * pproxy)
    {
 
-      single_lock sl(&m_mutexPac, true);
+      single_lock sl(m_pmutexPac, true);
 
       string strProxyServer;
 
@@ -1758,7 +1759,7 @@ retry:
    bool system::exists(const char * pszUrl, ::property_set & set)
    {
 
-      single_lock sl(&m_mutexDownload, true);
+      single_lock sl(m_pmutexDownload, true);
 
       while (m_straExists.contains(pszUrl))
       {

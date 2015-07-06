@@ -2499,10 +2499,10 @@ namespace file
          ::file::path system::get_api_cc()
          {
 
+            synch_lock sl(&m_mutex);
+
             if (m_strApiCc.has_char())
                return m_strApiCc;
-
-            synch_lock sl(&m_mutex);
 
             if (&Session == NULL || Session.fontopus().is_null() || Session.fontopus().m_p->m_pthreadCreatingUser != NULL)
                return "api.ca2.cc";

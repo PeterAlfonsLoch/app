@@ -51,12 +51,12 @@ namespace http
 
       };
 
-      mutex                                  m_mutexPac;
+      mutex *                                m_pmutexPac;
       string_map < pac *  >                  m_mapPac;
-      mutex                                  m_mutexProxy;
+      mutex *                                m_pmutexProxy;
       string_map < proxy *  >                m_mapProxy;
 
-      mutex                                  m_mutexDownload;
+      mutex *                                m_pmutexDownload;
       stringa                                m_straDownloading;
       stringa                                m_straExists;
 
