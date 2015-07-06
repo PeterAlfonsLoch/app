@@ -124,9 +124,6 @@
     <ClCompile Include="user\_user.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\graphics_window_graphics.cpp">
-      <Filter>Source Files\graphics</Filter>
-    </ClCompile>
     <ClCompile Include="axis\message\_message.cpp">
       <Filter>Source Files\axis\message</Filter>
     </ClCompile>
@@ -1505,9 +1502,6 @@
     </ClInclude>
     <ClInclude Include="axis\os\android\android_vsnord_native_app_glue.h">
       <Filter>Header Files\axis\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\graphics_window_graphics.h">
-      <Filter>Header Files\graphics</Filter>
     </ClInclude>
     <ClInclude Include="fiasco_finder.h">
       <Filter>Header Files</Filter>

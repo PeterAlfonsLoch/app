@@ -120,6 +120,9 @@
     <ClInclude Include="base\os\android\android_windowing.h">
       <Filter>Header Files\base\os\android</Filter>
     </ClInclude>
+    <ClInclude Include="base\os\android\android_window_anative.h">
+      <Filter>Header Files\base\os\android</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">

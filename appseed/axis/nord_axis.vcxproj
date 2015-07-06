@@ -612,7 +612,6 @@
     </ClCompile>
     <ClCompile Include="filesystem\_filesystem.cpp" />
     <ClCompile Include="framework.cpp" />
-    <ClCompile Include="graphics\graphics_window_graphics.cpp" />
     <ClCompile Include="graphics\visual\visual_api.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
@@ -1575,7 +1574,6 @@
     <ClInclude Include="filesystem\fs\fs_set.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="graphics\graphics.h" />
-    <ClInclude Include="graphics\graphics_window_graphics.h" />
     <ClInclude Include="graphics\visual\visual.h" />
     <ClInclude Include="graphics\visual\visual_api.h" />
     <ClInclude Include="graphics\visual\visual_buffered_graphics.h" />

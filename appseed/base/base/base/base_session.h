@@ -47,7 +47,7 @@ namespace base
 
       virtual string get_cred(::aura::application * papp,const string & strRequestUrlParam,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive);
 
-
+      virtual void get_cursor_pos(LPPOINT lppoint);
       
    };
 
