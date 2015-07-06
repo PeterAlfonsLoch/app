@@ -46,7 +46,7 @@ namespace console
    void prompt_frame::_001OnTimer(timer * ptimer)
    {
       
-      super::_001OnTimer(ptimer);;
+      simple_frame_window::_001OnTimer(ptimer);;
       
 //      UINT nIDEvent = ptimer->m_nIDEvent;
 //      static float theta;
@@ -212,7 +212,7 @@ namespace console
       simple_frame_window::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &prompt_frame::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_CLOSE, pinterface, this, &prompt_frame::_001OnClose);
-      IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &prompt_frame::_001OnTimer);
+//      IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &prompt_frame::_001OnTimer);
       IGUI_WIN_MSG_LINK(WM_MOVE, pinterface, this, &prompt_frame::_001OnMove);
       IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &prompt_frame::_001OnShowWindow);
       IGUI_WIN_MSG_LINK(WM_APP + 2000  , pinterface, this, &prompt_frame::_001OnApp2000);

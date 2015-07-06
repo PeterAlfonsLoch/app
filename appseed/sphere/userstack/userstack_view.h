@@ -10,6 +10,8 @@ namespace userstack
    {
    public:
 
+      typedef ::user::show < ::user::scroll < ::user::control > > BASE;
+
       sp(pane_view)    m_ppaneview;
 
       int32_t m_iV;

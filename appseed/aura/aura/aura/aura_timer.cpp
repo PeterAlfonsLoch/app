@@ -207,7 +207,16 @@ VOID CALLBACK aura_timer_TimerRoutine(PVOID lpParam,BOOLEAN TimerOrWaitFired)
 
    timer * ptimer = (timer *)lpParam;
 
-   ptimer->call_on_timer();
+   try
+   {
+
+      ptimer->call_on_timer();
+
+   }
+   catch(...)
+   {
+
+   }
 
 }
 

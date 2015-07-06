@@ -23,7 +23,7 @@ namespace filehandler
 
       ::user::form::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &view::_001OnCreate);
-      IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &view::_001OnTimer);
+//      IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &view::_001OnTimer);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &view::_001OnLButtonUp);
 
    }
@@ -44,14 +44,21 @@ namespace filehandler
 
    }
 
+   
    void view::_001OnTimer(timer * ptimer)
    {
-      super::_001OnTimer(ptimer);;
+
+      html_view::_001OnTimer(ptimer);;
+
       if(ptimer->m_nIDEvent == 8888)
       {
+
          refresh();
+
       }
+
    }
+
 
    void view::_001OnCreate(signal_details * pobj)
    {
