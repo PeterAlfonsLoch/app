@@ -1,7 +1,9 @@
 #pragma once
 
+
 namespace user
 {
+
 
    class CLASS_DECL_CORE check_box :
       virtual public control,

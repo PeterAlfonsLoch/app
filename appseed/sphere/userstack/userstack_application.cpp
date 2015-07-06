@@ -44,6 +44,9 @@ namespace userstack
       if(!::asphere::application::initialize_instance())
          return false;
 
+
+      m_dataid += ".local://";
+
       initialize_bergedge_application_interface();
 
 

@@ -9,10 +9,28 @@ namespace html
    {
 
 
+      namespace user
+      {
+
+
+         class CLASS_DECL_HTML check_box:
+            virtual public ::user::check_box
+         {
+         public:
+
+            check_box(::aura::application * papp): object(papp),::user::check_box(papp) {}
+            virtual ~check_box() {}
+
+            virtual void _001OnClip(::draw2d::graphics * pgraphics) {}
+         };
+
+      } // namespace user
+
+
       input_checkbox::input_checkbox(data * pdata)
       {
 
-         m_pcheckbox = canew( ::user::check_box(pdata->get_app()));
+         m_pcheckbox = canew( user::check_box(pdata->get_app()));
 
       }
 

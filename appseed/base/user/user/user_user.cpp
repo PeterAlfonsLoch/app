@@ -33,7 +33,7 @@ namespace user
 
       System.factory().creatable_small < ::user::document >();
       System.factory().creatable_small < ::user::application_as_proxy_document >();
-      System.factory().creatable_small < ::user::message >();
+      System.factory().creatable_small < ::user::message_queue >();
 
 
       if(m_pauraapp->is_session())

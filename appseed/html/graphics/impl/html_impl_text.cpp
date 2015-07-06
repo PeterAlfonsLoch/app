@@ -11,7 +11,7 @@ namespace html
 
       text::text(::aura::application * papp) :
          ::object(papp),
-         user::plain_edit(papp)
+         ::user::plain_edit(papp)
       {
 
          m_bLink                                         = false;
@@ -787,6 +787,7 @@ namespace html
                else
                {
                   pdc->TextOut(left,top,strLine);
+                  //pdc->FillSolidRect(left,top,50,50,ARGB(255,0,255,0));
                }
 
                cy += m_sizea[i].cy;

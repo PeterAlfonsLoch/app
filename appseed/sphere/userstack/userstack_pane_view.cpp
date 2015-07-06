@@ -22,7 +22,7 @@ namespace userstack
 
       m_iDisplay        = -1;
       m_ppropform       = NULL;
-      m_dataid          = "ca2::bergedge::pane_view";
+      //m_dataid          = "ca2::bergedge::pane_view";
 
       get_data()->m_matchanyRestore.add(new ::core::match::prefix("app:"));
 
