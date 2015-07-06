@@ -56,6 +56,10 @@ public:
    object(::aura::application * papp);
 
 
+   template < typename PRED >
+   inline void fork(PRED pred);
+
+
    virtual void delete_this();
 
 

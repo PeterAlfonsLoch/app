@@ -3531,6 +3531,7 @@
     <ClInclude Include="graphics\visual\visual_cursor.h" />
     <ClInclude Include="graphics\visual\visual_icon.h" />
     <ClInclude Include="multithreading\multithreading_data.h" />
+    <ClInclude Include="multithreading\multithreading_forking_thread.h" />
     <ClInclude Include="multithreading\multithreading_go_thread.h" />
     <ClInclude Include="multithreading\multithreading_set_event_on_exit.h" />
     <ClInclude Include="multithreading\multithreading_signal_thread.h" />

@@ -946,6 +946,7 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 #include "aura/aura/aura/aura_live_object.h"
 #include "aura/aura/aura/aura_live_signal.h"
 #include "aura/multithreading/multithreading_thread.h"
+#include "aura/multithreading/multithreading_forking_thread.h"
 #include "aura/aura/aura_timer_callback.h"
 #include "aura/aura/aura/aura_timer_item.h"
 #include "aura/aura/aura/aura_timer_array.h"

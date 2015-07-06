@@ -2063,6 +2063,9 @@
     <ClInclude Include="aura\aura\aura_timer_event.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
+    <ClInclude Include="multithreading\multithreading_forking_thread.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
