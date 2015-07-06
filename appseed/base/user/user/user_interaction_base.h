@@ -576,7 +576,7 @@ namespace user
       virtual void keep_alive(::object * pliveobject = NULL);
 
 
-      virtual window_graphics * get_window_graphics();
+      virtual window_graphics ** get_window_graphics();
 
 
       virtual bool is_composite();

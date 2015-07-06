@@ -49,10 +49,20 @@ void window_graphics::destroy_window_graphics()
 }
 
 
-void window_graphics::update_window(window_graphics * & pdata,oswindow interaction_impl,COLORREF * pOsBitmapData,const RECT & rect,int cxParam,int cyParam,int iStride,bool bTransferBuffer)
+void window_graphics::update_window(window_graphics * * ppdata,oswindow interaction_impl,COLORREF * pOsBitmapData,const RECT & rect,int cxParam,int cyParam,int iStride,bool bTransferBuffer)
 {
 
-   if (pdata == NULL || (pdata->cx != cxParam || pdata->cy != cyParam))
+   if(ppdata == NULL)
+   {
+      
+      return;
+
+   }
+
+   window_graphics * & pdata = *ppdata;
+
+
+   if(pdata == NULL || ((pdata->cx != cxParam || pdata->cy != cyParam)))
    {
 
       if (pdata == NULL)

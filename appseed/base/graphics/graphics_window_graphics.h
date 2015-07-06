@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AXIS window_graphics
+class CLASS_DECL_BASE window_graphics
 {
 public:
 
@@ -22,7 +22,7 @@ public:
    virtual void update_window(COLORREF * pOsBitmapData,const RECT & rect,int cxParam,int cyParam,int iStride = -1,bool bTransferBuffer = true);
 
 
-   static_function void update_window(window_graphics * & pdata,oswindow interaction_impl,COLORREF * pOsBitmapData,const RECT & rect,int cxParam,int cyParam,int iStride = -1,bool bTransferBuffer = true);
+   static_function void update_window(window_graphics ** ppdata,oswindow interaction_impl,COLORREF * pOsBitmapData,const RECT & rect,int cxParam,int cyParam,int iStride = -1,bool bTransferBuffer = true);
 
    
 

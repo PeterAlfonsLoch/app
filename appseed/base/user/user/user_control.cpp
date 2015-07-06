@@ -8,7 +8,7 @@ namespace user
 
 #ifdef WINDOWSEX
 
-   const uint32_t control::g_uiMessage = ::RegisterWindowMessage("user::control::g_uiMessage");
+//   const uint32_t control::g_uiMessage = ::RegisterWindowMessage("user::control::g_uiMessage");
 
 #endif
 
@@ -738,11 +738,11 @@ namespace user
          pcontrolex = NULL;
          if(pwnd != NULL)
          {
-#ifdef WINDOWSEX
-            pwnd->send_message(control::g_uiMessage, control::MessageParamGetBaseControlExPtr, (LPARAM) &pcontrolex);
-#else
+//#ifdef WINDOWSEX
+//            pwnd->send_message(control::g_uiMessage, control::MessageParamGetBaseControlExPtr, (LPARAM) &pcontrolex);
+//#else
             throw todo(pwnd->get_app());
-#endif
+//#endif
          }
          if(pcontrolex != NULL)
          {
