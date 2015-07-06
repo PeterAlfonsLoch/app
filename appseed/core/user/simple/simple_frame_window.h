@@ -67,7 +67,7 @@ public:
 
    };
 
-
+   
    //
    helper_task *                       m_phelpertask;
 //   HDC                           m_hdcOpenGL;
@@ -241,6 +241,8 @@ public:
    virtual bool set_appearance(::user::EAppearance eappearance);
 
    virtual void InitialUpdateFrame(::user::document * pDoc,bool bMakeVisible);
+
+   virtual void _001OnTimer(timer * ptimer);
 
 };
 

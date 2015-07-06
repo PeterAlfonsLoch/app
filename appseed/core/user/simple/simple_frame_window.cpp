@@ -2119,3 +2119,10 @@ void simple_frame_window::InitialUpdateFrame(::user::document * pDoc,bool bMakeV
 
 
 
+void simple_frame_window::_001OnTimer(timer * ptimer)
+{
+
+   ::user::frame_window::_001OnTimer(ptimer);
+   ::user::wndfrm::frame::_001Ontimer(ptimer);
+
+}

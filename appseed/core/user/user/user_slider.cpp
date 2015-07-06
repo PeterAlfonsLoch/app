@@ -24,7 +24,7 @@ namespace user
    {
       ::user::interaction::install_message_handling(pdispatch);
       IGUI_WIN_MSG_LINK(WM_CREATE,pdispatch,this,&slider::_001OnCreate);
-      IGUI_WIN_MSG_LINK(WM_TIMER,pdispatch,this,&slider::_001OnTimer);
+//      IGUI_WIN_MSG_LINK(WM_TIMER,pdispatch,this,&slider::_001OnTimer);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN,pdispatch,this,&slider::_001OnLButtonDown);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP,pdispatch,this,&slider::_001OnLButtonUp);
       IGUI_WIN_MSG_LINK(WM_MOUSEMOVE,pdispatch,this,&slider::_001OnMouseMove);
@@ -40,7 +40,7 @@ namespace user
    void slider::_001OnTimer(timer * ptimer)
    {
 
-      super::_001OnTimer(ptimer);
+      ::user::interaction::_001OnTimer(ptimer);
 
 
    }

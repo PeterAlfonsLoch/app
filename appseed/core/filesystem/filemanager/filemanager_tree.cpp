@@ -930,16 +930,16 @@ namespace filemanager
          if (m_iAnimate >= 11)
          {
             m_iAnimate = 0;
-            ((::user::interaction *) ptimer->m_pwnd->m_pvoidUserInteraction)->KillTimer(ptimer->m_nIDEvent);
+            timer_ui(ptimer)->KillTimer(ptimer->m_nIDEvent);
 
          }
-         ((::user::interaction *) ptimer->m_pwnd->m_pvoidUserInteraction)->RedrawWindow();
+         timer_ui(ptimer)->RedrawWindow();
       }
       else if (ptimer->m_nIDEvent == 123)
       {
-         ((::user::interaction *) ptimer->m_pwnd->m_pvoidUserInteraction)->RedrawWindow();
+         timer_ui(ptimer)->RedrawWindow();
          m_bTimer123 = false;
-         ((::user::interaction *) ptimer->m_pwnd->m_pvoidUserInteraction)->KillTimer(123);
+         timer_ui(ptimer)->KillTimer(123);
       }
 
    }

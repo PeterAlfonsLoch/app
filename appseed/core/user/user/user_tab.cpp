@@ -1520,7 +1520,7 @@ namespace user
       IGUI_WIN_MSG_LINK(WM_MOUSELEAVE  , pinterface, this, &tab::_001OnMouseLeave);
       IGUI_WIN_MSG_LINK(WM_CREATE      , pinterface, this, &tab::_001OnCreate);
       IGUI_WIN_MSG_LINK(::base::application::APPM_LANGUAGE, pinterface, this, &tab::_001OnAppLanguage);
-      IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &tab::_001OnTimer);
+      //IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &tab::_001OnTimer);
    }
 
    void tab::_001SetSel(::index iSel)
@@ -2025,9 +2025,12 @@ namespace user
       return get_cur_tab_id();
    }
 
+
    void tab::_001OnTimer(timer * ptimer)
    {
-      super::_001OnTimer(ptimer);;
+
+      control::_001OnTimer(ptimer);;
+
       if(ptimer->m_nIDEvent == 5432187)
       {
          get_data()->m_bDrag = true;
@@ -2037,7 +2040,9 @@ namespace user
          }
          KillTimer(5432187);
       }
+
    }
+
 
    void tab::_000OnMouse(::message::mouse * pmouse)
    {

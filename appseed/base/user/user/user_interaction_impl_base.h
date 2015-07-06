@@ -93,6 +93,9 @@ namespace user
       virtual void draw_control_background(::draw2d::graphics *pdc);
 
 
+      
+
+
       virtual ::user::interaction * get_wnd() const;
 
 
@@ -178,6 +181,8 @@ namespace user
 
       virtual bool SetTimer(uint_ptr nIDEvent,UINT nElapse, PFN_TIMER pfnTimer);
       virtual bool KillTimer(uint_ptr nIDEvent);
+
+      virtual void _001OnTimer(::timer * ptimer);
 
       virtual bool DestroyWindow();
 

@@ -101,6 +101,9 @@ namespace user
             virtual void frame_Detach();
 
 
+            virtual void _001OnTimer(::timer * ptimer);
+
+
          };
 
 

@@ -1044,6 +1044,16 @@ namespace user
    }
 
 
+   void interaction_impl_base::_001OnTimer(::timer * ptimer)
+   {
+
+      if(m_pui == NULL)
+         return;
+
+      m_pui->_001OnTimer(ptimer);
+
+   }
+
    bool interaction_impl_base::DestroyWindow()
    {
 

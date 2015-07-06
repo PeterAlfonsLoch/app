@@ -608,6 +608,14 @@ namespace user
             }
          }
 
+         
+         void WorkSetClientInterface::_001OnTimer(::timer * ptimer)
+         {
+            
+            m_workset::_001OnTimer(ptimer);
+
+         }
+
 
       } // namespace frame
 
