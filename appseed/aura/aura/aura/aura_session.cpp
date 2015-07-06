@@ -853,7 +853,7 @@ namespace aura
 #endif // WINDOWSEX
 
 
-#ifndef METROWIN
+#if !defined(METROWIN) && !defined(VSNORD)
 
 
       if(((!System.directrix()->m_varTopicQuery.has_property("install")
@@ -869,6 +869,8 @@ namespace aura
 
 #endif
 
+#if !defined(VSNORD)
+
       if(!papp->is_serviceable() || papp->is_user_service())
       {
 
@@ -877,6 +879,7 @@ namespace aura
 
       }
 
+#endif
 
       if(papp == NULL)
          return NULL;
