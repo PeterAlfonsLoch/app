@@ -1,9 +1,6 @@
 #pragma once
 
 
-#pragma once
-
-
 class var;
 class application_bias;
 class create;

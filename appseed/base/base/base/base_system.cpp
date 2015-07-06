@@ -81,6 +81,13 @@ namespace base
 #endif
 
 
+#if defined(METROWIN) || defined(APPLE_IOS) || defined(VSNORD)
+
+      m_posdata = new os_data();
+
+#endif
+
+
       m_ptwf            = NULL;
 
       //m_psimpleui       = NULL;

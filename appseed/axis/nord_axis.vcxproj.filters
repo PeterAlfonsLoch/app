@@ -292,75 +292,6 @@
     <ClCompile Include="axis\install\install_trace.cpp">
       <Filter>Source Files\axis\install</Filter>
     </ClCompile>
-    <ClCompile Include="user\fontopus\fontopus_login.cpp">
-      <Filter>Source Files\user\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="user\fontopus\fontopus_simple_ui.cpp">
-      <Filter>Source Files\user\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="user\hotplugin\_hotplugin.cpp">
-      <Filter>Source Files\user\hotplugin</Filter>
-    </ClCompile>
-    <ClCompile Include="user\hotplugin\hotplugin.cpp">
-      <Filter>Source Files\user\hotplugin</Filter>
-    </ClCompile>
-    <ClCompile Include="user\hotplugin\hotplugin_composer.cpp">
-      <Filter>Source Files\user\hotplugin</Filter>
-    </ClCompile>
-    <ClCompile Include="user\hotplugin\hotplugin_container_launcher.cpp">
-      <Filter>Source Files\user\hotplugin</Filter>
-    </ClCompile>
-    <ClCompile Include="user\hotplugin\hotplugin_host.cpp">
-      <Filter>Source Files\user\hotplugin</Filter>
-    </ClCompile>
-    <ClCompile Include="user\hotplugin\hotplugin_plugin.cpp">
-      <Filter>Source Files\user\hotplugin</Filter>
-    </ClCompile>
-    <ClCompile Include="user\hotplugin\hotplugin_windows.cpp">
-      <Filter>Source Files\user\hotplugin</Filter>
-    </ClCompile>
-    <ClCompile Include="user\install\_install.cpp">
-      <Filter>Source Files\user\install</Filter>
-    </ClCompile>
-    <ClCompile Include="user\install\install_plugin.cpp">
-      <Filter>Source Files\user\install</Filter>
-    </ClCompile>
-    <ClCompile Include="user\install\install_plugin_bare_paint_discreet.cpp">
-      <Filter>Source Files\user\install</Filter>
-    </ClCompile>
-    <ClCompile Include="user\install\install_plugin_bare_paint_full_screen.cpp">
-      <Filter>Source Files\user\install</Filter>
-    </ClCompile>
-    <ClCompile Include="user\install\install_plugin_bare_paint_veri_discreet.cpp">
-      <Filter>Source Files\user\install</Filter>
-    </ClCompile>
-    <ClCompile Include="user\install\install_starter_start.cpp">
-      <Filter>Source Files\user\install</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple\simple_scroll_bar.cpp">
-      <Filter>Source Files\user\simple</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple_ui\simple_ui_edit_box.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple_ui\simple_ui_interaction.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple_ui\simple_ui_label.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple_ui\simple_ui_message_box.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple_ui\simple_ui_password.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple_ui\simple_ui_style.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple_ui\simple_ui_tap.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\user.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -813,9 +744,6 @@
     </ClCompile>
     <ClCompile Include="net\net_sockets.cpp">
       <Filter>Source Files\net</Filter>
-    </ClCompile>
-    <ClCompile Include="user\fontopus\fontopus.cpp">
-      <Filter>Source Files\user\fontopus</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1891,21 +1819,6 @@
     </Filter>
     <Filter Include="Source Files\axis\message">
       <UniqueIdentifier>{d7512f7c-45c0-433e-8b64-361ab37a2c10}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\user\fontopus">
-      <UniqueIdentifier>{5a07188d-1692-4030-979b-780fd6814821}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\user\hotplugin">
-      <UniqueIdentifier>{10401840-a068-466f-9304-ddf0356ede3b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\user\install">
-      <UniqueIdentifier>{11ba2317-8caf-4da4-9d84-ad43753a19c0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\user\simple">
-      <UniqueIdentifier>{c104e98e-edd6-4bca-9d02-88141a66b096}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\user\simple_ui">
-      <UniqueIdentifier>{23779d93-4514-4491-9665-b123daf622f1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\user\user">
       <UniqueIdentifier>{cd1ee619-17ec-4fc5-8dd7-ab0b09653573}</UniqueIdentifier>

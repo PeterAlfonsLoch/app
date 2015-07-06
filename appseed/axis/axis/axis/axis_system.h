@@ -31,48 +31,8 @@ namespace axis
 
       ::net::email_departament                     m_emaildepartament;
 
-#if defined METROWIN && defined(__cplusplus_winrt)
-
-      class os_data
-      {
-      public:
-
-         sp(::user::interaction)                      m_pui;
-         ::axis::system_window ^                      m_pwindow;
 
 
-      };
-
-#elif defined(APPLE_IOS)
-      class os_data
-      {
-      public:
-
-         sp(::user::interaction)                      m_pui;
-
-
-      };
-
-#elif defined(VSNORD)
-
-      class os_data
-      {
-      public:
-
-         sp(::user::interaction)                      m_pui;
-         oswindow                                     m_oswindow;
-
-
-      };
-
-#else
-
-      class os_data;
-
-#endif
-
-      //      ::user::interaction *                        m_psimpleui;
-      os_data *                                    m_posdata;
 
 
 

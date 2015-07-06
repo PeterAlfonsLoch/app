@@ -29,8 +29,15 @@ m_pmutex(pmutex)
    m_pcallback = NULL;
    // Create the timer queue.
 
-#ifdef LINUX
+#ifdef WINDOWS
+   hTimerQueue = CreateTimerQueue();
+   if (NULL == hTimerQueue)
+   {
+      throw - 1;
+   }
 
+
+#else
    /*           sigset_t mask;
    struct sigaction sa;
 
@@ -44,15 +51,8 @@ m_pmutex(pmutex)
    sev.sigev_signo = 0;
    sev.sigev_value.sival_ptr = this;
    sev.sigev_notify_function = aura_timer_handler;
-   if(timer_create(CLOCK_REALTIME,&sev,&timerid) == -1)
+   if (timer_create(CLOCK_REALTIME, &sev, &timerid) == -1)
       throw - 1;
-
-#else
-   hTimerQueue = CreateTimerQueue();
-   if(NULL == hTimerQueue)
-   {
-      throw - 1;
-   }
 #endif
 
    m_bRet = false;
@@ -85,11 +85,19 @@ bool timer::start(int millis,bool bPeriodic)
    m_bPeriodic = bPeriodic;
 
 #ifdef LINUX
+   if (!CreateTimerQueueTimer(&hTimer, hTimerQueue, (WAITORTIMERCALLBACK)aura_timer_TimerRoutine, this, millis, bPeriodic ? millis : 0, 0))
+   {
+
+      return false;
+
+   }
+
+#else
    /* Start the timer */
 
    its.it_value.tv_sec = millis / 1000; // expiration
    its.it_value.tv_nsec = (millis * 1000 * 1000) % (1000 * 1000 * 1000); // expiration
-   if(bPeriodic)
+   if (bPeriodic)
    {
       its.it_interval.tv_sec = 0; // no freq
       its.it_interval.tv_nsec = 0; // no freq
@@ -100,17 +108,9 @@ bool timer::start(int millis,bool bPeriodic)
       its.it_value.tv_nsec = (millis * 1000 * 1000) % (1000 * 1000 * 1000); // freq period
    }
 
-   if(timer_settime(timerid,0,&its,NULL) == -1)
+   if (timer_settime(timerid, 0, &its, NULL) == -1)
       return false;
 
-#else
-
-   if(!CreateTimerQueueTimer(&hTimer,hTimerQueue,(WAITORTIMERCALLBACK)aura_timer_TimerRoutine,this,millis,bPeriodic ? millis : 0,0))
-   {
-
-      return false;
-
-   }
 
 #endif
 
@@ -202,7 +202,7 @@ bool timer::on_timer()
 
 #ifdef WINDOWS
 
-static VOID CALLBACK aura_timer_TimerRoutine(PVOID lpParam,BOOLEAN TimerOrWaitFired)
+VOID CALLBACK aura_timer_TimerRoutine(PVOID lpParam,BOOLEAN TimerOrWaitFired)
 {
 
    timer * ptimer = (timer *)lpParam;
@@ -213,10 +213,10 @@ static VOID CALLBACK aura_timer_TimerRoutine(PVOID lpParam,BOOLEAN TimerOrWaitFi
 
 #else
 
-static void aura_timer_handler(sigval sigval)
+void aura_timer_handler(sigval sigval)
 {
 
-   millis_timer * ptimer = (millis_timer *)sigval.sival_ptr;
+   timer * ptimer = (timer *)sigval.sival_ptr;
 
    ptimer->call_on_timer();
 
