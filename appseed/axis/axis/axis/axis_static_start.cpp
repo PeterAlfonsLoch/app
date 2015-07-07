@@ -47,11 +47,6 @@ namespace axis
 
 #endif // defined(LINUX)
 
-#if defined(APPLEOS)
-
-         g_poswindowdataptra = new oswindow_dataptra;
-
-#endif // defined(APPLEOS)
 
 
       }
@@ -124,13 +119,7 @@ namespace axis
 
 #endif // defined(LINUX)
 
-#if defined(APPLEOS)
 
-         delete g_poswindowdataptra;
-
-         g_poswindowdataptra = NULL;
-
-#endif // defined(APPLEOS)
 
 
 #ifdef BSD_STYLE_SOCKETS

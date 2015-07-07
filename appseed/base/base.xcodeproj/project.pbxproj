@@ -23,7 +23,6 @@
 		07A36ED51B25D18F00E4F888 /* base_simple_app.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A36D301B25D18E00E4F888 /* base_simple_app.h */; };
 		07A36ED81B25D18F00E4F888 /* base_static_start.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A36D321B25D18E00E4F888 /* base_static_start.h */; };
 		07A36EDB1B25D18F00E4F888 /* base_system.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A36D341B25D18E00E4F888 /* base_system.h */; };
-		07A36EDC1B25D18F00E4F888 /* base_template.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A36D361B25D18E00E4F888 /* base_template.h */; };
 		07A36EDF1B25D18F00E4F888 /* base_c.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A36D391B25D18E00E4F888 /* base_c.h */; };
 		07A36EE01B25D18F00E4F888 /* base_cpp.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A36D3A1B25D18E00E4F888 /* base_cpp.h */; };
 		07A36EE11B25D18F00E4F888 /* base_policy.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A36D3B1B25D18E00E4F888 /* base_policy.h */; };
@@ -209,8 +208,6 @@
 		07A36D301B25D18E00E4F888 /* base_simple_app.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base_simple_app.h; sourceTree = "<group>"; };
 		07A36D321B25D18E00E4F888 /* base_static_start.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base_static_start.h; sourceTree = "<group>"; };
 		07A36D341B25D18E00E4F888 /* base_system.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base_system.h; sourceTree = "<group>"; };
-		07A36D351B25D18E00E4F888 /* base_system_xml.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = base_system_xml.inl; sourceTree = "<group>"; };
-		07A36D361B25D18E00E4F888 /* base_template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base_template.h; sourceTree = "<group>"; };
 		07A36D391B25D18E00E4F888 /* base_c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base_c.h; sourceTree = "<group>"; };
 		07A36D3A1B25D18E00E4F888 /* base_cpp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base_cpp.h; sourceTree = "<group>"; };
 		07A36D3B1B25D18E00E4F888 /* base_policy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base_policy.h; sourceTree = "<group>"; };
@@ -330,8 +327,6 @@
 				07A36D301B25D18E00E4F888 /* base_simple_app.h */,
 				07A36D321B25D18E00E4F888 /* base_static_start.h */,
 				07A36D341B25D18E00E4F888 /* base_system.h */,
-				07A36D351B25D18E00E4F888 /* base_system_xml.inl */,
-				07A36D361B25D18E00E4F888 /* base_template.h */,
 			);
 			path = base;
 			sourceTree = "<group>";
@@ -535,7 +530,6 @@
 				07A36FC41B25D18F00E4F888 /* cross.h in Headers */,
 				07A36EDF1B25D18F00E4F888 /* base_c.h in Headers */,
 				07A36F771B25D18F00E4F888 /* macos_message_queue.h in Headers */,
-				07A36EDC1B25D18F00E4F888 /* base_template.h in Headers */,
 				07A36ED81B25D18F00E4F888 /* base_static_start.h in Headers */,
 				07A36EE31B25D18F00E4F888 /* base_policy_objcpp.h in Headers */,
 				077C2A1E190F144000A1F6B0 /* framework.h in Headers */,

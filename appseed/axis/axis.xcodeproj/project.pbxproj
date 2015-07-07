@@ -176,8 +176,6 @@
 		07A376071B26054200E4F888 /* windows.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A373931B26054100E4F888 /* windows.h */; };
 		07A376081B26054200E4F888 /* windows_user.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A373941B26054100E4F888 /* windows_user.h */; };
 		07A3768C1B26054200E4F888 /* macos.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A3741C1B26054100E4F888 /* macos.h */; };
-		07A3768E1B26054200E4F888 /* macos_base_user_mm.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07A3741E1B26054100E4F888 /* macos_base_user_mm.mm */; };
-		07A3768F1B26054200E4F888 /* macos_cross_gdi.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07A3741F1B26054100E4F888 /* macos_cross_gdi.mm */; };
 		07A376901B26054200E4F888 /* macos_cross_user.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07A374201B26054100E4F888 /* macos_cross_user.mm */; };
 		07A376931B26054200E4F888 /* macos_cross_win_gdi.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A374231B26054100E4F888 /* macos_cross_win_gdi.h */; };
 		07A376971B26054200E4F888 /* macos_file.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A374271B26054100E4F888 /* macos_file.h */; };
@@ -187,7 +185,6 @@
 		07A376A01B26054200E4F888 /* macos_oswindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A374301B26054100E4F888 /* macos_oswindow.h */; };
 		07A376A21B26054200E4F888 /* macos_process.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A374321B26054100E4F888 /* macos_process.h */; };
 		07A376A81B26054200E4F888 /* macos_window_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A374381B26054100E4F888 /* macos_window_impl.h */; };
-		07A376AA1B26054200E4F888 /* macos_windowing.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A3743A1B26054100E4F888 /* macos_windowing.h */; };
 		07A376AB1B26054200E4F888 /* os.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A3743B1B26054100E4F888 /* os.h */; };
 		07A376BA1B26054200E4F888 /* os.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A3744B1B26054100E4F888 /* os.h */; };
 		07A376F41B260DB800E4F888 /* macos_axis_dir.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A376F21B260DB800E4F888 /* macos_axis_dir.h */; };
@@ -732,8 +729,6 @@
 		07A373931B26054100E4F888 /* windows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windows.h; sourceTree = "<group>"; };
 		07A373941B26054100E4F888 /* windows_user.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windows_user.h; sourceTree = "<group>"; };
 		07A3741C1B26054100E4F888 /* macos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos.h; sourceTree = "<group>"; };
-		07A3741E1B26054100E4F888 /* macos_base_user_mm.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = macos_base_user_mm.mm; sourceTree = "<group>"; };
-		07A3741F1B26054100E4F888 /* macos_cross_gdi.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = macos_cross_gdi.mm; sourceTree = "<group>"; };
 		07A374201B26054100E4F888 /* macos_cross_user.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = macos_cross_user.mm; sourceTree = "<group>"; };
 		07A374231B26054100E4F888 /* macos_cross_win_gdi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_cross_win_gdi.h; sourceTree = "<group>"; };
 		07A374271B26054100E4F888 /* macos_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_file.h; sourceTree = "<group>"; };
@@ -743,7 +738,6 @@
 		07A374301B26054100E4F888 /* macos_oswindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_oswindow.h; sourceTree = "<group>"; };
 		07A374321B26054100E4F888 /* macos_process.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_process.h; sourceTree = "<group>"; };
 		07A374381B26054100E4F888 /* macos_window_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_window_impl.h; sourceTree = "<group>"; };
-		07A3743A1B26054100E4F888 /* macos_windowing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_windowing.h; sourceTree = "<group>"; };
 		07A3743B1B26054100E4F888 /* os.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = os.h; sourceTree = "<group>"; };
 		07A3744B1B26054100E4F888 /* os.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = os.h; sourceTree = "<group>"; };
 		07A376F21B260DB800E4F888 /* macos_axis_dir.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_axis_dir.h; sourceTree = "<group>"; };
@@ -1290,8 +1284,6 @@
 			isa = PBXGroup;
 			children = (
 				07A3741C1B26054100E4F888 /* macos.h */,
-				07A3741E1B26054100E4F888 /* macos_base_user_mm.mm */,
-				07A3741F1B26054100E4F888 /* macos_cross_gdi.mm */,
 				07A374201B26054100E4F888 /* macos_cross_user.mm */,
 				07A374231B26054100E4F888 /* macos_cross_win_gdi.h */,
 				07A374271B26054100E4F888 /* macos_file.h */,
@@ -1301,7 +1293,6 @@
 				07A374301B26054100E4F888 /* macos_oswindow.h */,
 				07A374321B26054100E4F888 /* macos_process.h */,
 				07A374381B26054100E4F888 /* macos_window_impl.h */,
-				07A3743A1B26054100E4F888 /* macos_windowing.h */,
 				07A3743B1B26054100E4F888 /* os.h */,
 			);
 			path = macos;
@@ -1752,7 +1743,6 @@
 				0747A6D21B2637BB00E85AC7 /* db_str_set.h in Headers */,
 				07B097A718495CBE007A0560 /* sip_request.h in Headers */,
 				0747A5F61B26226300E85AC7 /* user_keyboard.h in Headers */,
-				07A376AA1B26054200E4F888 /* macos_windowing.h in Headers */,
 				07B097A918495CBE007A0560 /* sip_server.h in Headers */,
 				0747A6061B26226300E85AC7 /* user_print_job.h in Headers */,
 				07B097B818495CBE007A0560 /* smtp_socket.h in Headers */,
@@ -2316,7 +2306,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07A3768E1B26054200E4F888 /* macos_base_user_mm.mm in Sources */,
 				07502CF31B25CC61008D207C /* _filesystem.cpp in Sources */,
 				07A376901B26054200E4F888 /* macos_cross_user.mm in Sources */,
 				077C2A1D190F144000A1F6B0 /* framework.cpp in Sources */,
@@ -2329,7 +2318,6 @@
 				07A374F51B26054100E4F888 /* install_windows_service.cpp in Sources */,
 				07502CF01B25CB6D008D207C /* _sockets.cpp in Sources */,
 				0747A58B1B26226300E85AC7 /* _user.cpp in Sources */,
-				07A3768F1B26054200E4F888 /* macos_cross_gdi.mm in Sources */,
 				0747A6FD1B2637BC00E85AC7 /* sqlitedb_base.cpp in Sources */,
 				07F5B2CE184A3FA30092C3E1 /* javascript.cpp in Sources */,
 				07502CE51B25CADC008D207C /* dib_console.cpp in Sources */,

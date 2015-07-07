@@ -63,6 +63,11 @@ namespace base
 
 #endif
 
+#if defined(APPLEOS)
+         
+         g_poswindowdataptra = new oswindow_dataptra;
+         
+#endif // defined(APPLEOS)
 
 
       }
@@ -116,11 +121,18 @@ namespace base
       {
 
 
-
+#if defined(APPLEOS)
+         
+         delete g_poswindowdataptra;
+         
+         g_poswindowdataptra = NULL;
+         
+#endif // defined(APPLEOS)
 
 
       }
 
+      
    } // namespace static_start
 
 
