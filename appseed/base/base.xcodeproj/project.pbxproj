@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		073910651B4C3030005C308E /* user in Resources */ = {isa = PBXBuildFile; fileRef = 073910641B4C3030005C308E /* user */; };
+		073910671B4C304A005C308E /* graphics in Resources */ = {isa = PBXBuildFile; fileRef = 073910661B4C304A005C308E /* graphics */; };
 		077C2A1D190F144000A1F6B0 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 077C2A19190F143F00A1F6B0 /* framework.cpp */; };
 		077C2A1E190F144000A1F6B0 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 077C2A1A190F144000A1F6B0 /* framework.h */; };
 		07857A091917B82000FFFE51 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07857A081917B82000FFFE51 /* UIKit.framework */; };
@@ -185,6 +187,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		073910641B4C3030005C308E /* user */ = {isa = PBXFileReference; lastKnownFileType = folder; path = user; sourceTree = "<group>"; };
+		073910661B4C304A005C308E /* graphics */ = {isa = PBXFileReference; lastKnownFileType = folder; path = graphics; sourceTree = "<group>"; };
 		073EDDE1164E968100818801 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		073EDDE4164E96DA00818801 /* SecurityFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityFoundation.framework; path = System/Library/Frameworks/SecurityFoundation.framework; sourceTree = SDKROOT; };
 		077C2A19190F143F00A1F6B0 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
@@ -491,6 +495,8 @@
 				07A36D231B25D18E00E4F888 /* base */,
 				9AEEAAEB19C4BD0900866C9E /* axis_iosTests */,
 				9AE24D351904CEFE001AEFFB /* Frameworks */,
+				073910661B4C304A005C308E /* graphics */,
+				073910641B4C3030005C308E /* user */,
 				077C2A19190F143F00A1F6B0 /* framework.cpp */,
 				077C2A1A190F144000A1F6B0 /* framework.h */,
 				9AE24D431904CEFE001AEFFB /* base_iosTests.xctest */,
@@ -730,6 +736,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				073910651B4C3030005C308E /* user in Resources */,
+				073910671B4C304A005C308E /* graphics in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

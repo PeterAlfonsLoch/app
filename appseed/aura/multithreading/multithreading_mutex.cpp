@@ -171,8 +171,6 @@ mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrNa
    else
    {
 
-      m_pmutex = new pthread_mutex_t;
-
       m_key = 0;
 
       m_semid = -1;

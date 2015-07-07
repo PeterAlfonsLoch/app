@@ -1,6 +1,9 @@
 //#include "framework.h"
 
 
+#if !defined(__APPLE__)
+
+
 DWORD
 WINAPI
 FormatMessage(
@@ -21,5 +24,6 @@ FormatMessage(
 }
 
 
+#endif
 
 

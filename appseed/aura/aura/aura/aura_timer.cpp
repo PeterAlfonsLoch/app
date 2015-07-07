@@ -9,6 +9,12 @@
 
 VOID CALLBACK aura_timer_TimerRoutine(PVOID lpParam,BOOLEAN TimerOrWaitFired);
 
+#elif defined(__APPLE__)
+
+void * CreateDispatchTimer(uint64_t interval, uint64_t leeway, void * queue, void (*timer)(void * p), void * p);
+
+void aura_timer(void * p);
+
 #else
 
 void aura_timer_handler(sigval sigval);
@@ -36,7 +42,11 @@ m_pmutex(pmutex)
       throw - 1;
    }
 
-
+#elif defined(__APPLE__)
+    
+    m_queue =  NULL;
+    m_timer = NULL;
+    
 #else
    /*           sigset_t mask;
    struct sigaction sa;
@@ -67,7 +77,11 @@ timer::~timer()
 #ifdef WINDOWS
 
    DeleteTimerQueue(hTimerQueue);
+    
+#elif defined(__APPLE__)
 
+    dispatch_release(m_queue);
+    
 #else
 
    timer_delete(timerid);
@@ -93,6 +107,18 @@ bool timer::start(int millis,bool bPeriodic)
       return false;
 
    }
+    
+#elif defined(__APPLE__)
+    
+    m_queue =  dispatch_queue_create (NULL, NULL);
+    
+    if(m_queue == NULL)
+        return false;
+    
+    m_timer = CreateDispatchTimer(bPeriodic ? millis : 0, millis, m_queue, aura_timer, this);
+    
+    if(m_timer == NULL)
+        return false;
 
 #else
    /* Start the timer */
@@ -132,6 +158,25 @@ void timer::stop()
       hTimer = NULL;
 
    }
+    
+#elif defined(__APPLE__)
+    
+    if(m_timer != NULL)
+    {
+        
+        dispatch_source_cancel((dispatch_source_t) m_timer);
+        
+        dispatch_release((dispatch_source_t) m_timer);
+        
+    }
+    
+    if(m_queue != NULL)
+    {
+        
+        dispatch_release(m_queue);
+        
+    }
+    
 
 #else
 
@@ -250,6 +295,16 @@ VOID CALLBACK aura_timer_TimerRoutine(PVOID lpParam,BOOLEAN TimerOrWaitFired)
 
    }
 
+}
+#elif defined(__APPLE__)
+
+void aura_timer(void * p)
+{
+    
+    timer * ptimer = (timer *)p;
+    
+    ptimer->call_on_timer();
+    
 }
 
 #else
