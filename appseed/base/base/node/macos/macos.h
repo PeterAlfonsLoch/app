@@ -21,8 +21,8 @@
 //
 //
 //
-//#include "macos_window_draw.h"
-//#include "macos_interaction_impl.h"
+#include "macos_window_draw.h"
+#include "macos_interaction_impl.h"
 //#include "macos_copydesk.h"
 //
 //
@@ -45,7 +45,7 @@
 //
 //
 //
-//#include "round_window.h"
+#include "round_window.h"
 //
 //
 //

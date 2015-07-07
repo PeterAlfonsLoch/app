@@ -136,6 +136,7 @@ namespace user
    class impact_system;
    class printer;
    class impact;
+   class elemental;
 
 
 } // namespace aura

@@ -59,7 +59,7 @@ namespace macos
    void copydesk::set_filea(stringa & stra)
    {
 
-      ASSERT(IsWindow());
+//      ASSERT(IsWindow());
 
       strsize iLen = 0;
 
@@ -149,7 +149,7 @@ namespace macos
 
    void copydesk::set_plain_text(const char * psz)
    {
-      ASSERT(IsWindow());
+//      ASSERT(IsWindow());
    //   int32_t iLen = 0;
 
       string str;
@@ -157,7 +157,7 @@ namespace macos
 
 
 
-      ASSERT(IsWindow());
+//      ASSERT(IsWindow());
 //      if(!m_p->OpenClipboard())
   //    {
     ///     return;

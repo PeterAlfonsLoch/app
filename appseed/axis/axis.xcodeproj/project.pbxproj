@@ -165,21 +165,10 @@
 		07A375711B26054200E4F888 /* macos_factory_exchange.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A372F31B26054100E4F888 /* macos_factory_exchange.h */; };
 		07A375731B26054200E4F888 /* macos_file_set.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A372F51B26054100E4F888 /* macos_file_set.h */; };
 		07A375761B26054200E4F888 /* macos_implementation.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A372F81B26054100E4F888 /* macos_implementation.h */; };
-		07A375781B26054200E4F888 /* macos_interaction_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A372FA1B26054100E4F888 /* macos_interaction_impl.h */; };
 		07A3757A1B26054200E4F888 /* macos_ip_enum.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A372FC1B26054100E4F888 /* macos_ip_enum.h */; };
-		07A3757D1B26054200E4F888 /* macos_message_queue.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A372FF1B26054100E4F888 /* macos_message_queue.h */; };
 		07A3757E1B26054200E4F888 /* macos_mm.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A373001B26054100E4F888 /* macos_mm.h */; };
 		07A375801B26054200E4F888 /* macos_port_forward.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A373021B26054100E4F888 /* macos_port_forward.h */; };
 		07A375821B26054200E4F888 /* macos_printer.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A373041B26054100E4F888 /* macos_printer.h */; };
-		07A375841B26054200E4F888 /* macos_window_draw.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A373061B26054100E4F888 /* macos_window_draw.h */; };
-		07A375851B26054200E4F888 /* round_window.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A373071B26054100E4F888 /* round_window.h */; };
-		07A375861B26054200E4F888 /* round_window.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07A373081B26054100E4F888 /* round_window.mm */; };
-		07A375871B26054200E4F888 /* RoundWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A373091B26054100E4F888 /* RoundWindow.h */; };
-		07A375881B26054200E4F888 /* RoundWindow.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07A3730A1B26054100E4F888 /* RoundWindow.mm */; };
-		07A375891B26054200E4F888 /* RoundWindowApp.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A3730B1B26054100E4F888 /* RoundWindowApp.h */; };
-		07A3758A1B26054200E4F888 /* RoundWindowApp.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07A3730C1B26054100E4F888 /* RoundWindowApp.mm */; };
-		07A3758B1B26054200E4F888 /* RoundWindowFrameView.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A3730D1B26054100E4F888 /* RoundWindowFrameView.h */; };
-		07A3758C1B26054200E4F888 /* RoundWindowFrameView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07A3730E1B26054100E4F888 /* RoundWindowFrameView.mm */; };
 		07A3759F1B26054200E4F888 /* node.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A373231B26054100E4F888 /* node.h */; };
 		07A375DA1B26054200E4F888 /* ansios.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A373621B26054100E4F888 /* ansios.h */; };
 		07A375DD1B26054200E4F888 /* ansios_multithreading.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A373651B26054100E4F888 /* ansios_multithreading.h */; };
@@ -732,21 +721,10 @@
 		07A372F31B26054100E4F888 /* macos_factory_exchange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_factory_exchange.h; sourceTree = "<group>"; };
 		07A372F51B26054100E4F888 /* macos_file_set.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_file_set.h; sourceTree = "<group>"; };
 		07A372F81B26054100E4F888 /* macos_implementation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_implementation.h; sourceTree = "<group>"; };
-		07A372FA1B26054100E4F888 /* macos_interaction_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_interaction_impl.h; sourceTree = "<group>"; };
 		07A372FC1B26054100E4F888 /* macos_ip_enum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_ip_enum.h; sourceTree = "<group>"; };
-		07A372FF1B26054100E4F888 /* macos_message_queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_message_queue.h; sourceTree = "<group>"; };
 		07A373001B26054100E4F888 /* macos_mm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_mm.h; sourceTree = "<group>"; };
 		07A373021B26054100E4F888 /* macos_port_forward.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_port_forward.h; sourceTree = "<group>"; };
 		07A373041B26054100E4F888 /* macos_printer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_printer.h; sourceTree = "<group>"; };
-		07A373061B26054100E4F888 /* macos_window_draw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_window_draw.h; sourceTree = "<group>"; };
-		07A373071B26054100E4F888 /* round_window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = round_window.h; sourceTree = "<group>"; };
-		07A373081B26054100E4F888 /* round_window.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = round_window.mm; sourceTree = "<group>"; };
-		07A373091B26054100E4F888 /* RoundWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundWindow.h; sourceTree = "<group>"; };
-		07A3730A1B26054100E4F888 /* RoundWindow.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RoundWindow.mm; sourceTree = "<group>"; };
-		07A3730B1B26054100E4F888 /* RoundWindowApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundWindowApp.h; sourceTree = "<group>"; };
-		07A3730C1B26054100E4F888 /* RoundWindowApp.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RoundWindowApp.mm; sourceTree = "<group>"; };
-		07A3730D1B26054100E4F888 /* RoundWindowFrameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundWindowFrameView.h; sourceTree = "<group>"; };
-		07A3730E1B26054100E4F888 /* RoundWindowFrameView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RoundWindowFrameView.mm; sourceTree = "<group>"; };
 		07A373231B26054100E4F888 /* node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = node.h; sourceTree = "<group>"; };
 		07A373621B26054100E4F888 /* ansios.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ansios.h; sourceTree = "<group>"; };
 		07A373651B26054100E4F888 /* ansios_multithreading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ansios_multithreading.h; sourceTree = "<group>"; };
@@ -1254,21 +1232,10 @@
 				07A372F31B26054100E4F888 /* macos_factory_exchange.h */,
 				07A372F51B26054100E4F888 /* macos_file_set.h */,
 				07A372F81B26054100E4F888 /* macos_implementation.h */,
-				07A372FA1B26054100E4F888 /* macos_interaction_impl.h */,
 				07A372FC1B26054100E4F888 /* macos_ip_enum.h */,
-				07A372FF1B26054100E4F888 /* macos_message_queue.h */,
 				07A373001B26054100E4F888 /* macos_mm.h */,
 				07A373021B26054100E4F888 /* macos_port_forward.h */,
 				07A373041B26054100E4F888 /* macos_printer.h */,
-				07A373061B26054100E4F888 /* macos_window_draw.h */,
-				07A373071B26054100E4F888 /* round_window.h */,
-				07A373081B26054100E4F888 /* round_window.mm */,
-				07A373091B26054100E4F888 /* RoundWindow.h */,
-				07A3730A1B26054100E4F888 /* RoundWindow.mm */,
-				07A3730B1B26054100E4F888 /* RoundWindowApp.h */,
-				07A3730C1B26054100E4F888 /* RoundWindowApp.mm */,
-				07A3730D1B26054100E4F888 /* RoundWindowFrameView.h */,
-				07A3730E1B26054100E4F888 /* RoundWindowFrameView.mm */,
 			);
 			path = macos;
 			sourceTree = "<group>";
@@ -1845,7 +1812,6 @@
 				0747A6D01B2637BB00E85AC7 /* db_server.h in Headers */,
 				9A19A0C219C67B6A0018DF7D /* webserver_http_request.h in Headers */,
 				07A3757A1B26054200E4F888 /* macos_ip_enum.h in Headers */,
-				07A375851B26054200E4F888 /* round_window.h in Headers */,
 				07B0976218495CBE007A0560 /* http_application.h in Headers */,
 				07B0977718495CBE007A0560 /* simple_pop3.h in Headers */,
 				07B097A518495CBE007A0560 /* sip_client.h in Headers */,
@@ -1855,13 +1821,11 @@
 				9A19A10C19C692650018DF7D /* visual_dib_pal.h in Headers */,
 				07F5B283184A3B6A0092C3E1 /* visual_const.h in Headers */,
 				07B0976B18495CBE007A0560 /* mail.h in Headers */,
-				07A375841B26054200E4F888 /* macos_window_draw.h in Headers */,
 				0747A6E71B2637BB00E85AC7 /* simpledb_result.h in Headers */,
 				9A19A11C19C692650018DF7D /* visual_graphics_extension.h in Headers */,
 				07A375DD1B26054200E4F888 /* ansios_multithreading.h in Headers */,
 				07B097C318495CBE007A0560 /* EventTime.h in Headers */,
 				0747A6FC1B2637BC00E85AC7 /* sqlitedb.h in Headers */,
-				07A375781B26054200E4F888 /* macos_interaction_impl.h in Headers */,
 				9A19A11219C692650018DF7D /* visual_font_central.h in Headers */,
 				0747A6321B262C6000E85AC7 /* filesystem_dir_axis_application.h in Headers */,
 				07A374B91B26054100E4F888 /* zipImpl.h in Headers */,
@@ -1874,7 +1838,6 @@
 				07A374AC1B26054100E4F888 /* memory_buffer.h in Headers */,
 				07A374F31B26054100E4F888 /* install_trace.h in Headers */,
 				0747A6C91B2637BB00E85AC7 /* database_template.h in Headers */,
-				07A3757D1B26054200E4F888 /* macos_message_queue.h in Headers */,
 				07A374901B26054100E4F888 /* axis_c_objc.h in Headers */,
 				0747A6CD1B2637BB00E85AC7 /* database_user_interaction.h in Headers */,
 				9A19A0BC19C67B6A0018DF7D /* http_listener.h in Headers */,
@@ -1941,13 +1904,11 @@
 				9AE7252717E83B69003E47F9 /* net.h in Headers */,
 				07A374A11B26054100E4F888 /* compress.h in Headers */,
 				0747A6CF1B2637BB00E85AC7 /* db_long_set.h in Headers */,
-				07A375871B26054200E4F888 /* RoundWindow.h in Headers */,
 				07A374A31B26054100E4F888 /* compress_compress.h in Headers */,
 				07A374DD1B26054100E4F888 /* geoip_update.h in Headers */,
 				07B0978318495CBE007A0560 /* sockets_base_socket_handler.h in Headers */,
 				0747A6DA1B2637BB00E85AC7 /* simpledb_database.h in Headers */,
 				07A3749B1B26054100E4F888 /* boot.h in Headers */,
-				07A375891B26054200E4F888 /* RoundWindowApp.h in Headers */,
 				9AE7252A17E83B69003E47F9 /* net_net.h in Headers */,
 				9AE7252C17E83B69003E47F9 /* net_url_departament.h in Headers */,
 				07B0980518495CBE007A0560 /* sockets_logger.h in Headers */,
@@ -2034,7 +1995,6 @@
 				9A19A0C419C67B6A0018DF7D /* webserver_http_response.h in Headers */,
 				07A375DA1B26054200E4F888 /* ansios.h in Headers */,
 				07A3769E1B26054200E4F888 /* macos_multithreading.h in Headers */,
-				07A3758B1B26054200E4F888 /* RoundWindowFrameView.h in Headers */,
 				0747A6291B26226300E85AC7 /* userpresence_user_presence.h in Headers */,
 				0747A6271B26226300E85AC7 /* userpresence.h in Headers */,
 				07B0979518495CBE007A0560 /* sockets_ssl_client_context_map.h in Headers */,
@@ -2358,15 +2318,12 @@
 			files = (
 				07A3768E1B26054200E4F888 /* macos_base_user_mm.mm in Sources */,
 				07502CF31B25CC61008D207C /* _filesystem.cpp in Sources */,
-				07A3758C1B26054200E4F888 /* RoundWindowFrameView.mm in Sources */,
 				07A376901B26054200E4F888 /* macos_cross_user.mm in Sources */,
 				077C2A1D190F144000A1F6B0 /* framework.cpp in Sources */,
 				07502CED1B25CB52008D207C /* _net.cpp in Sources */,
 				07A374871B26054100E4F888 /* _axis_axis.cpp in Sources */,
 				0747A6CE1B2637BB00E85AC7 /* _simpledb.cpp in Sources */,
 				0747A6FF1B2637BC00E85AC7 /* sqlitedb_set.cpp in Sources */,
-				07A375881B26054200E4F888 /* RoundWindow.mm in Sources */,
-				07A3758A1B26054200E4F888 /* RoundWindowApp.mm in Sources */,
 				0747A6AD1B2637BB00E85AC7 /* _database.cpp in Sources */,
 				07502CEA1B25CAE9008D207C /* _visual.cpp in Sources */,
 				07A374F51B26054100E4F888 /* install_windows_service.cpp in Sources */,
@@ -2376,7 +2333,6 @@
 				0747A6FD1B2637BC00E85AC7 /* sqlitedb_base.cpp in Sources */,
 				07F5B2CE184A3FA30092C3E1 /* javascript.cpp in Sources */,
 				07502CE51B25CADC008D207C /* dib_console.cpp in Sources */,
-				07A375861B26054200E4F888 /* round_window.mm in Sources */,
 				07A374F61B26054100E4F888 /* install_windows_win.cpp in Sources */,
 				07A374F41B26054100E4F888 /* install_windows_boot.cpp in Sources */,
 				07F5B2D4184A3FA30092C3E1 /* javascript_tinyjs_functions.cpp in Sources */,

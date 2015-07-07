@@ -6,8 +6,7 @@ namespace macos
 
 
    class CLASS_DECL_AXIS copydesk :
-      virtual public ::user::copydesk,
-      virtual public ::user::interaction
+      virtual public ::user::copydesk
    {
    public:
 
