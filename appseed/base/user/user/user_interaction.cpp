@@ -115,7 +115,6 @@ namespace user
 
       m_puserschema              = NULL;
       m_bLockWindowUpdate        = false;
-      m_bDestroying              = false;
 
 
       m_bDefaultWalkPreTranslateParentTree = false;

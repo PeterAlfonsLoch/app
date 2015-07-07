@@ -62,8 +62,8 @@ namespace user
       //   sp(::user::interaction) pwndParent = pcreatecontext->m_spCommandLine->m_varQuery["parent_user_interaction"].cast < ::user::interaction > ();
       //   sp(::user::impact) pviewAlloc = pcreatecontext->m_spCommandLine->m_varQuery["allocation_view"].cast < ::user::impact > ();
 
-      sp(::user::document) pdocument = NULL;
-      sp(::user::frame_window) pFrame = NULL;
+      sp(::user::document) pdocument;
+      sp(::user::frame_window) pFrame;
       bool bCreated = FALSE;      // => doc and frame created
       bool bWasModified = FALSE;
 

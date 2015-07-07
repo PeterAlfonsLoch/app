@@ -197,7 +197,7 @@ namespace linux
       virtual bool GetWindowPlacement(WINDOWPLACEMENT* lpwndpl);
       virtual bool SetWindowPlacement(const WINDOWPLACEMENT* lpwndpl);
 
-   // Coordinate Mapping Functions
+   // Coordinate Mapping Fufnctions
       virtual void MapWindowPoints(::user::interaction * pwndTo, LPPOINT lpPoint, UINT nCount);
       virtual void MapWindowPoints(::user::interaction * pwndTo, LPRECT lpRect);
 
@@ -396,13 +396,13 @@ namespace linux
       static_function ::user::interaction * PASCAL GetOpenClipboardWindow();
 
    // caret Functions
-      virtual void Createcaret(::draw2d::bitmap* pBitmap);
-      virtual void CreateSolidcaret(int32_t nWidth, int32_t nHeight);
-      virtual void CreateGraycaret(int32_t nWidth, int32_t nHeight);
-      static_function point PASCAL GetcaretPos();
-      static_function void PASCAL SetcaretPos(POINT point);
-      virtual void Hidecaret();
-      virtual void Showcaret();
+      virtual void CreateCaret(::draw2d::bitmap* pBitmap);
+      virtual void CreateSolidCaret(int32_t nWidth, int32_t nHeight);
+      virtual void CreateGrayCaret(int32_t nWidth, int32_t nHeight);
+      static_function point PASCAL GetCaretPos();
+      static_function void PASCAL SetCaretPos(POINT point);
+      virtual void HideCaret();
+      virtual void ShowCaret();
 
    // Shell Interaction Functions
       virtual void DragAcceptFiles(bool bAccept = TRUE);

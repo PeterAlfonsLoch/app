@@ -64,16 +64,6 @@ const char gen_Wnd[] = __WND;
 namespace linux
 {
 
-   void interaction_impl::mouse_hover_add(::user::interaction * pinterface)
-   {
-      m_guieptraMouseHover.add_unique(pinterface);
-   }
-
-   void interaction_impl::mouse_hover_remove(::user::interaction * pinterface)
-   {
-      m_guieptraMouseHover.remove(pinterface);
-   }
-
    interaction_impl::interaction_impl()
    {
 
@@ -5932,6 +5922,16 @@ namespace linux
 
       return  m_pui->get_next(bIgnoreChildren, piLevel);
 
+   }
+
+   void interaction_impl::mouse_hover_add(::user::interaction * pinterface)
+   {
+      m_guieptraMouseHover.add_unique(pinterface);
+   }
+
+   void interaction_impl::mouse_hover_remove(::user::interaction * pinterface)
+   {
+      m_guieptraMouseHover.remove(pinterface);
    }
 
 

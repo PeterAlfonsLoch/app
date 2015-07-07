@@ -733,6 +733,15 @@
     <ClCompile Include="axis\geoip\_geoip.cpp">
       <Filter>Source Files\axis\install</Filter>
     </ClCompile>
+    <ClCompile Include="axis\os\_os.cpp">
+      <Filter>Source Files\axis\os</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\ansios\ansios_multithreading.cpp">
+      <Filter>Source Files\axis\os\ansios</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\ansios\_ansios_os.cpp">
+      <Filter>Source Files\axis\os\ansios</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">

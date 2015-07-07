@@ -364,6 +364,93 @@
     <ClCompile Include="base\os\android\android_view_bitmap.cpp">
       <Filter>Source Files\base\os\android</Filter>
     </ClCompile>
+    <ClCompile Include="base\node\android\android_interaction_impl.cpp">
+      <Filter>Source Files\base\node\android</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\linux\_linux_node.cpp">
+      <Filter>Source Files\base\node\linux</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\linux\linux_dumpinit.cpp">
+      <Filter>Source Files\base\node\linux</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\linux\linux_error.cpp">
+      <Filter>Source Files\base\node\linux</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\linux\linux_exception.cpp">
+      <Filter>Source Files\base\node\linux</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\linux\linux_factory_exchange.cpp">
+      <Filter>Source Files\base\node\linux</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\linux\linux_interaction_impl.cpp">
+      <Filter>Source Files\base\node\linux</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\linux\linux_main.cpp">
+      <Filter>Source Files\base\node\linux</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\linux\linux_root_tools.cpp">
+      <Filter>Source Files\base\node\linux</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\linux\linux_trace.cpp">
+      <Filter>Source Files\base\node\linux</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\linux\linux_util.cpp">
+      <Filter>Source Files\base\node\linux</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\linux\linux_window_draw.cpp">
+      <Filter>Source Files\base\node\linux</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\linux\linux1.cpp">
+      <Filter>Source Files\base\node\linux</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\linux\linux2.cpp">
+      <Filter>Source Files\base\node\linux</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\macos\_macos_node.cpp">
+      <Filter>Source Files\base\node\macos</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\macos\macos_copydesk.cpp">
+      <Filter>Source Files\base\node\macos</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\macos\macos_factory_exchange copy.cpp">
+      <Filter>Source Files\base\node\macos</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\macos\macos_factory_exchange.cpp">
+      <Filter>Source Files\base\node\macos</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\macos\macos_interaction_impl.cpp">
+      <Filter>Source Files\base\node\macos</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\macos\macos_main.cpp">
+      <Filter>Source Files\base\node\macos</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\macos\macos_message_queue.cpp">
+      <Filter>Source Files\base\node\macos</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\macos\macos_printer.cpp">
+      <Filter>Source Files\base\node\macos</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\macos\macos_window_draw.cpp">
+      <Filter>Source Files\base\node\macos</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\ansios\ansios_multithreading.cpp">
+      <Filter>Source Files\base\os\ansios</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\ansios\_ansios_os.cpp">
+      <Filter>Source Files\base\os\ansios</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\ansios\ansios_cross_win.cpp">
+      <Filter>Source Files\base\os\ansios</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\ansios\ansios_cross_win_file.cpp">
+      <Filter>Source Files\base\os\ansios</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\ansios\ansios_cross_windows_user.cpp">
+      <Filter>Source Files\base\os\ansios</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\ansios\ansios_file_std.cpp">
+      <Filter>Source Files\base\os\ansios</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -543,6 +630,27 @@
     <ClInclude Include="base\os\android\android_view_bitmap.h">
       <Filter>Header Files\base\os\android</Filter>
     </ClInclude>
+    <ClInclude Include="base\node\android\android_interaction_impl.h">
+      <Filter>Header Files\base\node\android</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\linux\linux.h">
+      <Filter>Header Files\base\node\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\linux\linux_factory_exchange.h">
+      <Filter>Header Files\base\node\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\linux\linux_interaction_impl.h">
+      <Filter>Header Files\base\node\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\linux\linux_internal.h">
+      <Filter>Header Files\base\node\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\linux\linux_root_tools.h">
+      <Filter>Header Files\base\node\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\linux\linux_window_draw.h">
+      <Filter>Header Files\base\node\linux</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -695,14 +803,20 @@
     <Filter Include="Source Files\base\node\windows">
       <UniqueIdentifier>{7b17699e-b9ba-42a4-aaf7-ebe59f4fcb54}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\base\node\NewFilter1">
-      <UniqueIdentifier>{5b0a040f-93a1-418b-bfbb-d55c674541cc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\base\os\windows">
       <UniqueIdentifier>{e688a422-8cc1-43ab-9ea3-83bdf3effaee}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\base\os\windows">
       <UniqueIdentifier>{6ff77fea-31c0-4859-b43a-7b6355af363b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\node\linux">
+      <UniqueIdentifier>{5d36e175-b94b-4f37-aaf2-61c9f43c9dbf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\node\macos">
+      <UniqueIdentifier>{4a9dde9b-d3f0-42e6-81ce-ba88442a145e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\node\linux">
+      <UniqueIdentifier>{5b0a040f-93a1-418b-bfbb-d55c674541cc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

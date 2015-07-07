@@ -12,11 +12,8 @@ namespace user
    public:
 
 
-      DWORD       m_dwFocustStart;
-
-
-
-
+      DWORD                               m_dwFocustStart;
+      bool                                m_bDestroying;
 
 
       elemental();

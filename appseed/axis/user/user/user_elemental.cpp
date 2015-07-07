@@ -9,6 +9,8 @@ namespace user
    elemental::elemental()
    {
 
+      m_bDestroying = false;
+
    }
 
 

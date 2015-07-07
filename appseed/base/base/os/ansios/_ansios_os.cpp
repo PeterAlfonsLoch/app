@@ -11,7 +11,7 @@
 #include "ansios_cross_windows_user.cpp"
 #include "ansios_cross_win_file.cpp"
 #include "ansios_file_std.cpp"
-//#include "ansios_multithreading.cpp"
+#include "ansios_multithreading.cpp"
 //2015-01-11  13:25                 0 _ansios_os.cpp"
 //               7 arquivo(s)         27.918 bytes
 //               0 pasta(s)   67.076.313.088 bytes dispon¡veis

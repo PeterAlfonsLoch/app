@@ -16,7 +16,7 @@ namespace android
       {
 
          System.factory().creatable < window_draw                 >(System. type_info < ::user::window_draw          >(),1);
-         //System.factory().creatable_large < interaction_impl      >(System. type_info < ::user::interaction_impl     >());
+         System.factory().creatable_large < interaction_impl      >(System. type_info < ::user::interaction_impl     >());
          //System.factory().creatable < message_queue               >(System. type_info < ::user::message_queue        >(),1);
          //System.factory().creatable_small < copydesk              >(System. type_info < ::base::copydesk             >(),1);
 

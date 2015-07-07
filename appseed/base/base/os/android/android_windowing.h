@@ -251,5 +251,10 @@ bool is_message_only_window(::oswindow oswindow);
 
 CLASS_DECL_AURA bool IsWindow(oswindow oswindow);
 
+CLASS_DECL_BASE oswindow_data * oswindow_get(::user::interaction * pui);
+
 
 #endif
+
+
+

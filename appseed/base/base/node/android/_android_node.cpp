@@ -11,7 +11,7 @@
 #include "android_android.cpp"
 //#include "android_copydesk.cpp"
 #include "android_factory_exchange.cpp"
-//#include "android_interaction_impl.cpp"
+#include "android_interaction_impl.cpp"
 //#include "android_message_queue.cpp"
 //#include "android_thread_local_storage.cpp"
 //#include "android_trace.cpp"
