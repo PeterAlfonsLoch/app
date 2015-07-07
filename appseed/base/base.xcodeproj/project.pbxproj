@@ -134,6 +134,12 @@
 		07D968B61B4C63E5004A3D2A /* user.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D9678D1B4C63E3004A3D2A /* user.h */; };
 		07D968B71B4C63E5004A3D2A /* user.inl in Resources */ = {isa = PBXBuildFile; fileRef = 07D9678E1B4C63E3004A3D2A /* user.inl */; };
 		07D968B81B4C63E5004A3D2A /* userex_scroll.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D967901B4C63E3004A3D2A /* userex_scroll.h */; };
+		07D968BB1B4C65FD004A3D2A /* macos_base_user_mm.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07D968B91B4C65FD004A3D2A /* macos_base_user_mm.mm */; };
+		07D968BC1B4C65FD004A3D2A /* macos_base_user_mm.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07D968B91B4C65FD004A3D2A /* macos_base_user_mm.mm */; };
+		07D968BD1B4C65FD004A3D2A /* macos_base_user_mm.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07D968B91B4C65FD004A3D2A /* macos_base_user_mm.mm */; };
+		07D968BE1B4C65FD004A3D2A /* macos_cross_gdi.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07D968BA1B4C65FD004A3D2A /* macos_cross_gdi.mm */; };
+		07D968BF1B4C65FD004A3D2A /* macos_cross_gdi.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07D968BA1B4C65FD004A3D2A /* macos_cross_gdi.mm */; };
+		07D968C01B4C65FD004A3D2A /* macos_cross_gdi.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07D968BA1B4C65FD004A3D2A /* macos_cross_gdi.mm */; };
 		9A98A6081771D67E000AE16E /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BD556C16210BD4008E31F0 /* AppKit.framework */; };
 		9A98A6091771D67E000AE16E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8897A514C24736006B4023 /* Foundation.framework */; };
 		9A98A60A1771D67E000AE16E /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE931714155F1599005F90F6 /* Carbon.framework */; };
@@ -396,6 +402,8 @@
 		07D9678D1B4C63E3004A3D2A /* user.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user.h; sourceTree = "<group>"; };
 		07D9678E1B4C63E3004A3D2A /* user.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = user.inl; sourceTree = "<group>"; };
 		07D967901B4C63E3004A3D2A /* userex_scroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userex_scroll.h; sourceTree = "<group>"; };
+		07D968B91B4C65FD004A3D2A /* macos_base_user_mm.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = macos_base_user_mm.mm; sourceTree = "<group>"; };
+		07D968BA1B4C65FD004A3D2A /* macos_cross_gdi.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = macos_cross_gdi.mm; sourceTree = "<group>"; };
 		9A5E9DF919B7623B00949252 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../aura/aura.xcodeproj; sourceTree = "<group>"; };
 		9A8897A514C24736006B4023 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = ../../../../System/Library/Frameworks/Foundation.framework; sourceTree = "<group>"; };
 		9A98A6151771D67E000AE16E /* libbase.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libbase.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -565,6 +573,8 @@
 		07A36E601B25D18E00E4F888 /* macos */ = {
 			isa = PBXGroup;
 			children = (
+				07D968B91B4C65FD004A3D2A /* macos_base_user_mm.mm */,
+				07D968BA1B4C65FD004A3D2A /* macos_cross_gdi.mm */,
 				07D966EE1B4C621C004A3D2A /* macos_windowing.h */,
 				07A36E621B25D18E00E4F888 /* macos.h */,
 			);
@@ -1145,9 +1155,11 @@
 				07D967911B4C63E3004A3D2A /* database_user_interaction.cpp in Sources */,
 				07D966E41B4C55BD004A3D2A /* round_window.mm in Sources */,
 				07D966E61B4C55BD004A3D2A /* RoundWindowApp.mm in Sources */,
+				07D968BE1B4C65FD004A3D2A /* macos_cross_gdi.mm in Sources */,
 				07D966E71B4C55BD004A3D2A /* RoundWindowFrameView.mm in Sources */,
 				07D967951B4C63E3004A3D2A /* graphics_window_graphics.cpp in Sources */,
 				07D967991B4C63E3004A3D2A /* _user.cpp in Sources */,
+				07D968BB1B4C65FD004A3D2A /* macos_base_user_mm.mm in Sources */,
 				07D966E51B4C55BD004A3D2A /* RoundWindow.mm in Sources */,
 				07A36EC61B25D18F00E4F888 /* _base_base.cpp in Sources */,
 			);
@@ -1158,7 +1170,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				07D9679A1B4C63E3004A3D2A /* _user.cpp in Sources */,
+				07D968BF1B4C65FD004A3D2A /* macos_cross_gdi.mm in Sources */,
 				07D967961B4C63E3004A3D2A /* graphics_window_graphics.cpp in Sources */,
+				07D968BC1B4C65FD004A3D2A /* macos_base_user_mm.mm in Sources */,
 				07D967921B4C63E3004A3D2A /* database_user_interaction.cpp in Sources */,
 				07A36EC71B25D18F00E4F888 /* _base_base.cpp in Sources */,
 			);
@@ -1169,6 +1183,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				07D9679B1B4C63E3004A3D2A /* _user.cpp in Sources */,
+				07D968BD1B4C65FD004A3D2A /* macos_base_user_mm.mm in Sources */,
+				07D968C01B4C65FD004A3D2A /* macos_cross_gdi.mm in Sources */,
 				07D967931B4C63E3004A3D2A /* database_user_interaction.cpp in Sources */,
 				07D967971B4C63E3004A3D2A /* graphics_window_graphics.cpp in Sources */,
 			);

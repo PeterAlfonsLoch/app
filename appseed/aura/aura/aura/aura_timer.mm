@@ -18,7 +18,7 @@ void * CreateDispatchTimer(uint64_t interval, uint64_t leeway, void * queue, voi
     if (timer)
     {
         
-        dispatch_source_set_timer(timer, dispatch_walltime(NULL, 0), interval, leeway);
+        dispatch_source_set_timer(timer, dispatch_walltime(NULL, 0), interval * 1000 * 1000, leeway * 1000 * 1000);
         
         dispatch_source_set_event_handler(timer, ^{ pfnTimer(p); });
         

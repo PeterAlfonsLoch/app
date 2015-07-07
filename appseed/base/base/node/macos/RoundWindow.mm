@@ -151,16 +151,16 @@
 }
 
 
-/*
 
+/*
 - (BOOL)acceptsFirstResponder
 {
    
    return TRUE;
    
 }
-
 */
+
 /*
  
  let the view become first responder

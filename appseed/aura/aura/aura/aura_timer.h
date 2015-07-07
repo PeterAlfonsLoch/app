@@ -30,6 +30,7 @@ public:
    bool                 m_bKill;
    mutex *              m_pmutex;
    DWORD                m_dwMillis;
+   bool                 m_bDestroying;
 
 #ifdef WINDOWS
 

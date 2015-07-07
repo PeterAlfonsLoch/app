@@ -73,8 +73,6 @@ namespace aura
 
       m_map.remove_key(nIDEvent);
 
-      sl.unlock();
-
       if(ptimer->m_bDeal)
       {
 
@@ -84,9 +82,23 @@ namespace aura
       else
       {
 
-         ptimer->m_bKill = true;
+         if(ptimer->m_bDestroying)
+         {
+            
+          
+            sl.unlock();
+            
+         }
+         else
+         {
+            
+            ptimer->m_bDestroying = true;
 
-         delete ptimer;
+            sl.unlock();
+         
+            delete ptimer;
+            
+         }
 
       }
 

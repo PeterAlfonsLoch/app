@@ -362,12 +362,12 @@
 }
 
 
-//- (BOOL)acceptsFirstResponder
-//{
-//
-//   return TRUE;
-//
-//}
+- (BOOL)acceptsFirstResponder
+{
+
+   return TRUE;
+
+}
 
 
 - (BOOL) acceptsFirstMouse:(NSEvent *)theEvent

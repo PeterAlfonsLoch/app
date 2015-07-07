@@ -32,6 +32,7 @@ m_pfnTimer(pfnTimer),
 m_pvoidData(pvoidData),
 m_pmutex(pmutex)
 {
+   m_bDestroying = false;
    m_pcallback = NULL;
    // Create the timer queue.
 
@@ -80,7 +81,7 @@ timer::~timer()
     
 #elif defined(__APPLE__)
 
-    dispatch_release(m_queue);
+//    dispatch_release(m_queue);
     
 #else
 
@@ -161,21 +162,25 @@ void timer::stop()
     
 #elif defined(__APPLE__)
     
-    if(m_timer != NULL)
-    {
+   if(m_timer != NULL)
+   {
         
-        dispatch_source_cancel((dispatch_source_t) m_timer);
+      dispatch_source_cancel((dispatch_source_t) m_timer);
         
-        dispatch_release((dispatch_source_t) m_timer);
+      dispatch_release((dispatch_source_t) m_timer);
+       
+      m_timer = NULL;
         
-    }
+   }
     
-    if(m_queue != NULL)
-    {
+   if(m_queue != NULL)
+   {
         
-        dispatch_release(m_queue);
+      dispatch_release(m_queue);
+      
+      m_queue = NULL;
         
-    }
+   }
     
 
 #else
@@ -199,7 +204,7 @@ bool timer::call_on_timer()
    
    synch_lock sl(m_pmutex);
 
-   if(m_bKill)
+   if(m_bKill || m_bDestroying || m_bDeal)
       return true;
 
    m_bDeal = true;
@@ -207,23 +212,36 @@ bool timer::call_on_timer()
    m_bRet = false;
 
    sl.unlock();
-
+   
    on_timer();
 
    sl.lock();
 
+   m_bDeal = false;
+   
    if(m_bKill)
    {
+      
+      if(m_bDestroying)
+      {
 
-      sl.unlock();
-
-      delete this;
+         sl.unlock();
+         
+      }
+      else
+      {
+         
+         m_bDestroying = true;
+         
+         sl.unlock();
+         
+         delete this;
+         
+      }
 
       return false;
 
    }
-
-   m_bDeal = false;
 
 #ifdef WINDOWS
 
