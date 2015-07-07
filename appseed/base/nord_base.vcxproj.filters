@@ -253,6 +253,117 @@
     <ClCompile Include="base\os\android\android_windowing.cpp">
       <Filter>Source Files\base\os\android</Filter>
     </ClCompile>
+    <ClCompile Include="base\node\ios\ios.cpp">
+      <Filter>Source Files\base\node\ios</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\ios\ios_application.cpp">
+      <Filter>Source Files\base\node\ios</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\ios\ios_copydesk.cpp">
+      <Filter>Source Files\base\node\ios</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\ios\ios_crypto.cpp">
+      <Filter>Source Files\base\node\ios</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\ios\ios_dir.cpp">
+      <Filter>Source Files\base\node\ios</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\ios\ios_dumpinit.cpp">
+      <Filter>Source Files\base\node\ios</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\ios\ios_exception.cpp">
+      <Filter>Source Files\base\node\ios</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\ios\ios_factory_exchange.cpp">
+      <Filter>Source Files\base\node\ios</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\ios\ios_file.cpp">
+      <Filter>Source Files\base\node\ios</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\ios\ios_file_set.cpp">
+      <Filter>Source Files\base\node\ios</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\ios\ios_file_system.cpp">
+      <Filter>Source Files\base\node\ios</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\ios\ios_ios.cpp">
+      <Filter>Source Files\base\node\ios</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\ios\ios_ip_enum.cpp">
+      <Filter>Source Files\base\node\ios</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\ios\ios_main.cpp">
+      <Filter>Source Files\base\node\ios</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\ios\ios_os.cpp">
+      <Filter>Source Files\base\node\ios</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\ios\ios_port_forward.cpp">
+      <Filter>Source Files\base\node\ios</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\ios\ios_printer.cpp">
+      <Filter>Source Files\base\node\ios</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\ios\ios_shell.cpp">
+      <Filter>Source Files\base\node\ios</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\ios\ios_stdio_file.cpp">
+      <Filter>Source Files\base\node\ios</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\ios\ios_thread.cpp">
+      <Filter>Source Files\base\node\ios</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\ios\ios_trace.cpp">
+      <Filter>Source Files\base\node\ios</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\ios\ios_util.cpp">
+      <Filter>Source Files\base\node\ios</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\ios\ios_window.cpp">
+      <Filter>Source Files\base\node\ios</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\ios\ios_window_draw.cpp">
+      <Filter>Source Files\base\node\ios</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\android\android_window_draw.cpp">
+      <Filter>Source Files\base\node\android</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\windows\_windows_node.cpp">
+      <Filter>Source Files\base\node\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\windows\windows_factory_exchange.cpp">
+      <Filter>Source Files\base\node\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\windows\windows_interaction_impl.cpp">
+      <Filter>Source Files\base\node\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\windows\windows_window_draw.cpp">
+      <Filter>Source Files\base\node\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\_windows_os.cpp">
+      <Filter>Source Files\base\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows.cpp">
+      <Filter>Source Files\base\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_dll.cpp">
+      <Filter>Source Files\base\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_gdi.cpp">
+      <Filter>Source Files\base\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_simple_app.cpp">
+      <Filter>Source Files\base\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_system_interaction_impl.cpp">
+      <Filter>Source Files\base\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_window_gdi.cpp">
+      <Filter>Source Files\base\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\android\android_view_bitmap.cpp">
+      <Filter>Source Files\base\os\android</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -402,6 +513,36 @@
     <ClInclude Include="database\database\database_user_interaction.h">
       <Filter>Header Files\database\database</Filter>
     </ClInclude>
+    <ClInclude Include="base\node\android\android_window_draw.h">
+      <Filter>Header Files\base\node\android</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\windows\windows.h">
+      <Filter>Header Files\base\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\windows\windows_implementation.h">
+      <Filter>Header Files\base\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\windows\windows_interaction_impl.h">
+      <Filter>Header Files\base\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\windows\windows_window_draw.h">
+      <Filter>Header Files\base\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\windows\windows.h">
+      <Filter>Header Files\base\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\windows\windows_internal.h">
+      <Filter>Header Files\base\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\windows\windows_system_interaction_impl.h">
+      <Filter>Header Files\base\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\windows\windows_window_gdi.h">
+      <Filter>Header Files\base\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\android\android_view_bitmap.h">
+      <Filter>Header Files\base\os\android</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -544,6 +685,24 @@
     </Filter>
     <Filter Include="Source Files\database\database">
       <UniqueIdentifier>{44d5c5dc-4ac7-4cae-b82e-8149dbdec75e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\os\ios">
+      <UniqueIdentifier>{202418d6-df37-4784-a4f9-89d6874530df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\node\ios">
+      <UniqueIdentifier>{85c0d851-42ad-4aff-915c-a443a807e312}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\node\windows">
+      <UniqueIdentifier>{7b17699e-b9ba-42a4-aaf7-ebe59f4fcb54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\node\NewFilter1">
+      <UniqueIdentifier>{5b0a040f-93a1-418b-bfbb-d55c674541cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\os\windows">
+      <UniqueIdentifier>{e688a422-8cc1-43ab-9ea3-83bdf3effaee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\os\windows">
+      <UniqueIdentifier>{6ff77fea-31c0-4859-b43a-7b6355af363b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

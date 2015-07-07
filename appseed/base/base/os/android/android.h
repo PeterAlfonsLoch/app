@@ -20,6 +20,7 @@ END_EXTERN_C
 
 #include "android_window_android.h"
 //#include "android_window_impl.h"
+#include "android_view_bitmap.h"
 
 
 

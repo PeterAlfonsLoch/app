@@ -16,7 +16,7 @@
 //#include "android_thread_local_storage.cpp"
 //#include "android_trace.cpp"
 //#include "android_util.cpp"
-//#include "android_window_draw.cpp"
+#include "android_window_draw.cpp"
 //2015-01-11  11:51                 0 _android_node.cpp"
 //              12 arquivo(s)        314.748 bytes
 //               0 pasta(s)   67.128.463.360 bytes dispon¡veis

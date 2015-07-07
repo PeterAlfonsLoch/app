@@ -78,7 +78,8 @@ void window_graphics::update_window(window_graphics * * ppdata,oswindow interact
 
 #elif defined(VSNORD)
 
-         pdata = new window_android_anative();
+         //pdata = new window_android_anative();
+         pdata = new ::android::view_bitmap(interaction_impl->m_pui->get_app());
 
 #elif defined(ANDROID)
 

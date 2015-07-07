@@ -13,8 +13,10 @@
 //#include "windows_trace_message.cpp"
 #include "android_message_loop.cpp"
 #include "android_windowing.cpp"
+#include "android_view_bitmap.cpp"
 #ifdef VSNORD
 #include "android_window_anative.cpp"
+
 #else
 #include "android_window_android.cpp"
 #endif
