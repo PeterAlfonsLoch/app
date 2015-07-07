@@ -23,7 +23,7 @@ namespace message
       default:
          return uiMessage;
       };
-#elif defined(LINUX) ||  defined(APPLEOS)
+#elif defined(LINUX) ||  defined(APPLEOS) || defined(VSNORD)
       switch(uiMessage)
       {
       case message_create:

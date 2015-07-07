@@ -27,6 +27,7 @@
 #include "android_ip_enum.cpp"
 #include "android_port_forward.cpp"
 //#include "android_thread_local_storage.cpp"
+#include "android_copydesk.cpp"
 //2015-01-04  19:37                 0 _android_node.cpp"
 //              10 arquivo(s)        127.297 bytes
 //               0 pasta(s)   19.269.447.680 bytes dispon¡veis

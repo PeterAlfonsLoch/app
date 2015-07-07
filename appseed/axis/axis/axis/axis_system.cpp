@@ -1187,9 +1187,11 @@ namespace axis
 
 #else
 
-      throw todo(get_app());
+      //throw todo(get_app());
 
-      ::GetWindowRect(::GetDesktopWindow(),lprect);
+      //::GetWindowRect(::GetDesktopWindow(),lprect);
+
+      get_monitor_rect(iWkspace, lprect);
 
 #endif
 

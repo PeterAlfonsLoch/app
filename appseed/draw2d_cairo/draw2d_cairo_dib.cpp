@@ -2742,6 +2742,51 @@ namespace draw2d_cairo
       }
 
 
+#elif defined(VSNORD)
+
+
+
+
+
+
+bool dib::print_window(::aura::draw_interface * pwnd, signal_details * pobj)
+{
+
+   return true;
+
+}
+
+
+
+
+
+
+
+
+
+
+bool dib::update_window(::aura::draw_interface * pwnd, signal_details * pobj, bool bTransferBuffer)
+{
+
+
+   rect64 rectWindow;
+
+   pwnd->GetWindowRect(rectWindow);
+
+   m_spgraphics->SetViewportOrg(0, 0);
+
+   map(false);
+
+   rect rect(rectWindow);
+
+   Application.window_graphics_update_window(pwnd->get_window_graphics(), pwnd->get_handle(), m_pcolorref, rect, m_size.cx, m_size.cy, m_iScan, bTransferBuffer);
+
+   return true;
+
+
+}
+
+
 #endif
 
 

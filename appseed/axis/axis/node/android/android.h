@@ -38,7 +38,7 @@ string get_error_message(DWORD dwError);
 //#include "android_window.h"
 //#include "android_os.h"
 #include "android_port_forward.h"
-//#include "android_copydesk.h"
+#include "android_copydesk.h"
 #include "android_crypto.h"
 #include "android_ip_enum.h"
 

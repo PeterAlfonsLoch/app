@@ -489,24 +489,21 @@ bool oswindow_data::ShowWindow(int32_t nCmdShow)
 
 	synch_lock slOsWindow(s_pmutex);
 
-	/*
-
-	xdisplay d(display());
 
 	if(nCmdShow == SW_HIDE)
 	{
 
-	XUnmapWindow(display(), interaction_impl());
+      m_pui->m_bVisible = false;
+      m_bVisible = false;
 
 	}
 	else
 	{
 
-	XMapWindow(display(), interaction_impl());
+      m_pui->m_bVisible = true;
+      m_bVisible = true;
 
 	}
-
-	*/
 
 	return false;
 
@@ -1182,7 +1179,7 @@ int_bool SetWindowPos(oswindow_data * pdata, oswindow_data * pdataAfter, int x, 
 			pdata->m_rect.left = x;
 			pdata->m_rect.top = y;
 			pdata->m_rect.right = x + cx;
-			pdata->m_rect.right = y + cy;
+			pdata->m_rect.bottom = y + cy;
 
 		}
 

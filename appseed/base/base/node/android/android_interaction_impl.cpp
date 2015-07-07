@@ -3166,7 +3166,7 @@ bool interaction_impl::SetWindowPos(int32_t z, int32_t x, int32_t y, int32_t cx,
 
    //XSizeHints hints;
 
-
+   ::SetWindowPos((oswindow) get_handle(), 0, x, y, cx, cy, nFlags);
    if (nFlags & SWP_NOMOVE)
    {
       if (nFlags & SWP_NOSIZE)
@@ -3218,6 +3218,8 @@ bool interaction_impl::SetWindowPos(int32_t z, int32_t x, int32_t y, int32_t cx,
       {
 
          /*XMapWindow(m_oswindow->display(), m_oswindow->window());*/
+
+         ::ShowWindow(get_handle(), SW_SHOW);
 
       }
 

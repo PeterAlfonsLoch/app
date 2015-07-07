@@ -742,6 +742,9 @@
     <ClCompile Include="axis\os\ansios\_ansios_os.cpp">
       <Filter>Source Files\axis\os\ansios</Filter>
     </ClCompile>
+    <ClCompile Include="axis\node\android\android_copydesk.cpp">
+      <Filter>Source Files\axis\node\android</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -1512,6 +1515,9 @@
     <ClInclude Include="fiasco_finder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="axis\node\android\android_copydesk.h">
+      <Filter>Header Files\axis\node\android</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -1798,6 +1804,9 @@
     </Filter>
     <Filter Include="Source Files\graphics\visual\NewFilter1">
       <UniqueIdentifier>{56da8599-593c-4c13-8872-008bd6eb8cf7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\axis\node\linux">
+      <UniqueIdentifier>{d3ee9dac-40aa-4583-b485-d93a4d067e64}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

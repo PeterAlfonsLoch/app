@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace linux
+namespace android
 {
 
 
@@ -11,9 +11,7 @@ namespace linux
    public:
 
 
-
-
-      copydesk(sp(::aura::application) papp);
+      copydesk(::aura::application * papp);
       virtual ~copydesk();
 
 
@@ -36,7 +34,7 @@ namespace linux
    };
 
 
-} // namespace linux
+} // namespace android
 
 
 

@@ -19,6 +19,7 @@ namespace android
          System.factory().creatable < ::android::axis::dir           >(System. type_info < ::file::dir::system    >(),1);
          System.factory().creatable_small < crypto                   >(System. type_info < ::crypto::crypto       >(),1);
          System.factory().creatable_small < ip_enum                  >(System. type_info < ::net::ip_enum         >());
+         System.factory().creatable_small < copydesk                 >(System. type_info < ::user::copydesk       >());
 
       }
 
