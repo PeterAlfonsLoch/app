@@ -8,7 +8,7 @@
 #include "macos_crypt.cpp"
 #include "macos_debug.cpp"
 #include "macos_file.cpp"
-#include "macos_graphics.cpp"
+//#include "macos_graphics.cpp"
 #include "macos_lock.cpp"
 #include "macos_message_loop.cpp"
 #include "macos_multithreading.cpp"

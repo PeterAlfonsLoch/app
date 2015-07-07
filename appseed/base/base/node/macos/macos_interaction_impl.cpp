@@ -61,7 +61,8 @@ namespace macos
    }
 
 
-   interaction_impl::interaction_impl()
+   interaction_impl::interaction_impl() :
+   ::aura::timer_array(get_app())
    {
 
       //set_handle(NULL);
@@ -89,7 +90,8 @@ namespace macos
 
 
     interaction_impl::interaction_impl(::aura::application * papp) :
-        ::object(papp)
+        ::object(papp),
+   ::aura::timer_array(papp)
     {
 
         //set_handle(NULL);
@@ -547,7 +549,7 @@ namespace macos
       IGUI_WIN_MSG_LINK(WM_SIZE              , pinterface, this, &interaction_impl::_001OnSize);
       IGUI_WIN_MSG_LINK(WM_SHOWWINDOW        , pinterface, this, &interaction_impl::_001OnShowWindow);
       IGUI_WIN_MSG_LINK(ca2m_PRODEVIAN_SYNCH , pinterface, this, &interaction_impl::_001OnProdevianSynch);
-      IGUI_WIN_MSG_LINK(WM_TIMER             , pinterface, this, &interaction_impl::_001OnTimer);
+//      IGUI_WIN_MSG_LINK(WM_TIMER             , pinterface, this, &interaction_impl::_001OnTimer);
    }
 
    void interaction_impl::_001OnMove(signal_details * pobj)
@@ -630,7 +632,7 @@ namespace macos
 
       Default();
 
-      ::macos::window_draw * pdraw = dynamic_cast < ::macos::window_draw * > (System.get_twf().m_p);
+      ::macos::window_draw * pdraw = dynamic_cast < ::macos::window_draw * > (System.get_twf());
 
       if(pdraw != NULL)
       {
@@ -2931,7 +2933,7 @@ namespace macos
    void interaction_impl::_001OnTimer(timer * ptimer)
    {
 
-      super::_001OnTimer(ptimer);;
+      ::user::interaction_impl::_001OnTimer(ptimer);;
 
       if(ptimer->m_nIDEvent == 2049)
       {
@@ -4724,9 +4726,9 @@ namespace macos
 
    }
 
-   uint_ptr interaction_impl::SetTimer(uint_ptr nIDEvent, UINT nElapse, void (CALLBACK* lpfnTimer)(oswindow, UINT, uint_ptr, DWORD))
+   bool interaction_impl::SetTimer(uint_ptr nIDEvent, UINT nElapse, PFN_TIMER pfnTimer)
    {
-      return ::user::interaction_impl::SetTimer(nIDEvent, nElapse, lpfnTimer);
+      return ::user::interaction_impl::SetTimer(nIDEvent, nElapse, pfnTimer);
 /*
       UNREFERENCED_PARAMETER(lpfnTimer);
 

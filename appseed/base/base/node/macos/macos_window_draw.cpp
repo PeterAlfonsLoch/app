@@ -91,13 +91,19 @@ namespace macos
       _asynch_redraw();
    }
 
+   
    void window_draw::_asynch_redraw()
    {
+      
       if(!m_bProDevianMode)
       {
-         m_pthreadimpl->m_spqueue->message_queue_post_message(WM_USER + 1984 + 1977);
+         
+// TODO XXX xxx         m_pthreadimpl->m_spqueue->message_queue_post_message(WM_USER + 1984 + 1977);
+         
       }
+      
    }
+   
 
    void window_draw::synch_redraw()
    {

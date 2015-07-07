@@ -2,11 +2,7 @@
 #include "axis/net/net_sockets.h"
 #include "fiasco_finder.h"
 
-#ifdef APPLEOS
 
-extern oswindow_dataptra * g_poswindowdataptra;
-
-#endif
 
 
 namespace axis

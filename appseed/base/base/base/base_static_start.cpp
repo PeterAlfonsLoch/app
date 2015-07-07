@@ -29,6 +29,12 @@ mutex * oswindow_data::s_pmutex = NULL;
 #endif
 
 
+#ifdef APPLEOS
+
+extern oswindow_dataptra * g_poswindowdataptra;
+
+#endif
+
 #undef new
 
 

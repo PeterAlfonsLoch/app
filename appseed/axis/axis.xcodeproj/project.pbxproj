@@ -260,6 +260,7 @@
 		07B0980418495CBE007A0560 /* sockets_link_out_socket.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B096FC18495CBE007A0560 /* sockets_link_out_socket.h */; };
 		07B0980518495CBE007A0560 /* sockets_logger.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B096FD18495CBE007A0560 /* sockets_logger.h */; };
 		07B0980718495CBE007A0560 /* sockets_trace_logger.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B096FF18495CBE007A0560 /* sockets_trace_logger.h */; };
+		07D966ED1B4C5F54004A3D2A /* macos_base_user_mm.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07D966EC1B4C5F54004A3D2A /* macos_base_user_mm.mm */; };
 		07F5B1F8184A3B430092C3E1 /* filesystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B188184A3B430092C3E1 /* filesystem.h */; };
 		07F5B27F184A3B6A0092C3E1 /* graphics.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B243184A3B6A0092C3E1 /* graphics.h */; };
 		07F5B282184A3B6A0092C3E1 /* visual.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B247184A3B6A0092C3E1 /* visual.h */; };
@@ -815,6 +816,7 @@
 		07B096FF18495CBE007A0560 /* sockets_trace_logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sockets_trace_logger.h; sourceTree = "<group>"; };
 		07BD556C16210BD4008E31F0 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		07CABC3E1B3E99770009F5B9 /* axispng.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axispng.xcodeproj; path = ../../axis/png/axispng.xcodeproj; sourceTree = "<group>"; };
+		07D966EC1B4C5F54004A3D2A /* macos_base_user_mm.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = macos_base_user_mm.mm; sourceTree = "<group>"; };
 		07F5B188184A3B430092C3E1 /* filesystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filesystem.h; sourceTree = "<group>"; };
 		07F5B243184A3B6A0092C3E1 /* graphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = graphics.h; sourceTree = "<group>"; };
 		07F5B247184A3B6A0092C3E1 /* visual.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = visual.h; sourceTree = "<group>"; };
@@ -1283,6 +1285,7 @@
 		07A374181B26054100E4F888 /* macos */ = {
 			isa = PBXGroup;
 			children = (
+				07D966EC1B4C5F54004A3D2A /* macos_base_user_mm.mm */,
 				07A3741C1B26054100E4F888 /* macos.h */,
 				07A374201B26054100E4F888 /* macos_cross_user.mm */,
 				07A374231B26054100E4F888 /* macos_cross_win_gdi.h */,
@@ -2325,6 +2328,7 @@
 				07A374F41B26054100E4F888 /* install_windows_boot.cpp in Sources */,
 				07F5B2D4184A3FA30092C3E1 /* javascript_tinyjs_functions.cpp in Sources */,
 				0747A6441B2635D400E85AC7 /* _bsd.cpp in Sources */,
+				07D966ED1B4C5F54004A3D2A /* macos_base_user_mm.mm in Sources */,
 				07F5B2D0184A3FA30092C3E1 /* javascript_functions.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
