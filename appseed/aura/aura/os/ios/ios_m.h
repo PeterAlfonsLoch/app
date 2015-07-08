@@ -7,6 +7,8 @@
 //
 #pragma once
 
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import <QuartzCore/QuartzCore.h>
+#import <CoreGraphics/CoreGraphics.h>
 
-
-#import "ios_base_mm.h"

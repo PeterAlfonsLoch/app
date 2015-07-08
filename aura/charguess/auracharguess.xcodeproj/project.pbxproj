@@ -56,12 +56,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		07D6A8291B4CBB45004FEBC2 /* PBXContainerItemProxy */ = {
+		07557C321B4D905B0065594B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A1EDB4719C83FE800F5CCE8 /* aura.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 9A98A6031771D67E000AE16E;
-			remoteInfo = aura;
+			remoteGlobalIDString = 077A05B41B4D7403001C85FF;
+			remoteInfo = aura_ios;
 		};
 		9A1EDB4D19C83FE800F5CCE8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -261,7 +261,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				07D6A8281B4CBB45004FEBC2 /* PBXTargetDependency */,
+				07557C331B4D905B0065594B /* PBXTargetDependency */,
 			);
 			name = auracharguess_ios;
 			productName = FreeImage;
@@ -329,7 +329,7 @@
 		};
 		9A1EDB5019C83FE800F5CCE8 /* libaura.dylib */ = {
 			isa = PBXReferenceProxy;
-			fileType = archive.ar;
+			fileType = "compiled.mach-o.dylib";
 			path = libaura.dylib;
 			remoteRef = 9A1EDB4F19C83FE800F5CCE8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -365,10 +365,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		07D6A8281B4CBB45004FEBC2 /* PBXTargetDependency */ = {
+		07557C331B4D905B0065594B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = aura;
-			targetProxy = 07D6A8291B4CBB45004FEBC2 /* PBXContainerItemProxy */;
+			name = aura_ios;
+			targetProxy = 07557C321B4D905B0065594B /* PBXContainerItemProxy */;
 		};
 		9A1EDB5419C83FF200F5CCE8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

@@ -8,7 +8,6 @@
 
 
 
-
 #include "aura_aura.h"
 
 #define system_user_1 "system_user_1"
@@ -26,7 +25,6 @@
 #endif
 
 #include "app/appseed/aura/version.h"
-
 
 
 

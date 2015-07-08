@@ -37,7 +37,7 @@ public:
    HANDLE hTimerQueue;
    HANDLE hTimer;
 #elif defined(__APPLE__)
-    dispatch_queue_t    m_queue;
+    void *              m_queue;
     void *              m_timer;
 #else
 

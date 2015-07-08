@@ -1504,7 +1504,7 @@ namespace std
 
    using setw = ::file::set_width;
 
-#if !defined(WINDOWSEX) && !defined(MACOS) && !defined(METROWIN)
+#if !defined(WINDOWSEX) && !defined(APPLEOS) && !defined(METROWIN)
 
    using bad_alloc = ::memory_exception;
 

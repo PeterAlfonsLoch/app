@@ -207,7 +207,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 9AEEB82019C50E7500866C9E /* aura.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 9AE24D331904CEFE001AEFFB;
+			remoteGlobalIDString = 077A05B41B4D7403001C85FF;
 			remoteInfo = aura_ios;
 		};
 		07D6A7441B4CB10B004FEBC2 /* PBXContainerItemProxy */ = {
@@ -703,7 +703,7 @@
 		};
 		9AEEB82919C50E7500866C9E /* libaura.dylib */ = {
 			isa = PBXReferenceProxy;
-			fileType = archive.ar;
+			fileType = "compiled.mach-o.dylib";
 			path = libaura.dylib;
 			remoteRef = 9AEEB82819C50E7500866C9E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;

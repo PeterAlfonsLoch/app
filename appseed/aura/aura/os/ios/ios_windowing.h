@@ -86,7 +86,7 @@ public:
    
    nswindow window()
    {
-      return this == NULL ? NULL : m_nswindow;
+      return ::void_ptr_is_null(this) ? NULL : m_nswindow;
    }
    
    
@@ -116,7 +116,7 @@ public:
    
    bool is_null() const
    {
-      return this == NULL;
+      return ::void_ptr_is_null(this);
    }
    
 };

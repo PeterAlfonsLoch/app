@@ -4,10 +4,16 @@
 #include "aura/os/os_binreloc.h"
 
 
-#if defined(APPLEOS)
+#if defined(MACOS)
 
 
 #include "aura/os/macos/os.h"
+
+
+#elif defined(APPLE_IOS)
+
+
+#include "aura/os/ios/ios.h"
 
 
 #elif defined(LINUX)

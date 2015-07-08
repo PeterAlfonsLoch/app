@@ -160,7 +160,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A19A3DA19C6F91C0018DF7D /* aura.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 9AE24D331904CEFE001AEFFB;
+			remoteGlobalIDString = 077A05B41B4D7403001C85FF;
 			remoteInfo = aura_ios;
 		};
 		07108A8D1B4C956500A28F80 /* PBXContainerItemProxy */ = {
@@ -1760,13 +1760,13 @@
 			buildRules = (
 			);
 			dependencies = (
-				077A01251B4D52D5001C85FF /* PBXTargetDependency */,
-				077A01271B4D52D5001C85FF /* PBXTargetDependency */,
-				077A01291B4D52D5001C85FF /* PBXTargetDependency */,
-				077A012B1B4D52D5001C85FF /* PBXTargetDependency */,
+				07108A8C1B4C956500A28F80 /* PBXTargetDependency */,
 				07108E001B4C9AA500A28F80 /* PBXTargetDependency */,
 				07108DF21B4C9A8D00A28F80 /* PBXTargetDependency */,
-				07108A8C1B4C956500A28F80 /* PBXTargetDependency */,
+				077A01271B4D52D5001C85FF /* PBXTargetDependency */,
+				077A01291B4D52D5001C85FF /* PBXTargetDependency */,
+				077A01251B4D52D5001C85FF /* PBXTargetDependency */,
+				077A012B1B4D52D5001C85FF /* PBXTargetDependency */,
 				07108A8E1B4C956500A28F80 /* PBXTargetDependency */,
 				07011FDD190CAB1B00C08335 /* PBXTargetDependency */,
 			);
@@ -1966,7 +1966,7 @@
 		};
 		9A19A3E319C6F91C0018DF7D /* libaura.dylib */ = {
 			isa = PBXReferenceProxy;
-			fileType = archive.ar;
+			fileType = "compiled.mach-o.dylib";
 			path = libaura.dylib;
 			remoteRef = 9A19A3E219C6F91C0018DF7D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;

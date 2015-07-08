@@ -108,12 +108,19 @@
 			remoteGlobalIDString = 9AE24D431904CEFE001AEFFB;
 			remoteInfo = aura_iosTests;
 		};
-		077A02431B4D5C21001C85FF /* PBXContainerItemProxy */ = {
+		07557C421B4D964A0065594B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 07502C811B247427008D207C /* aura.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 9AE24D331904CEFE001AEFFB;
+			remoteGlobalIDString = 077A05B41B4D7403001C85FF;
 			remoteInfo = aura_ios;
+		};
+		07557C461B4D96560065594B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07502C811B247427008D207C /* aura.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A98A6031771D67E000AE16E;
+			remoteInfo = aura;
 		};
 		9AE24D9D1904CF46001AEFFB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1123,7 +1130,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				077A02441B4D5C21001C85FF /* PBXTargetDependency */,
+				07557C471B4D96560065594B /* PBXTargetDependency */,
 			);
 			name = axiscrypto;
 			productName = basefreeimage_ios;
@@ -1141,6 +1148,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				07557C431B4D964A0065594B /* PBXTargetDependency */,
 			);
 			name = axiscrypto_ios;
 			productName = basefreeimage_ios;
@@ -1215,7 +1223,7 @@
 		};
 		07502C8A1B247427008D207C /* libaura.dylib */ = {
 			isa = PBXReferenceProxy;
-			fileType = archive.ar;
+			fileType = "compiled.mach-o.dylib";
 			path = libaura.dylib;
 			remoteRef = 07502C891B247427008D207C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -1340,10 +1348,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		077A02441B4D5C21001C85FF /* PBXTargetDependency */ = {
+		07557C431B4D964A0065594B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = aura_ios;
-			targetProxy = 077A02431B4D5C21001C85FF /* PBXContainerItemProxy */;
+			targetProxy = 07557C421B4D964A0065594B /* PBXContainerItemProxy */;
+		};
+		07557C471B4D96560065594B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = aura;
+			targetProxy = 07557C461B4D96560065594B /* PBXContainerItemProxy */;
 		};
 		9AE24D9E1904CF46001AEFFB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
