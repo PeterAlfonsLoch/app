@@ -77,7 +77,7 @@ CLASS_DECL_AURA int throw_assert_exception(const char * lpszFileName,int iLineNu
 #define _(c_string_to_be_translated_from_english) c_string_to_be_translated_from_english
 
 // risky
-int void_ptr_is_null(const void * p)
+inline int void_ptr_is_null(const void * p)
 {
    return ((INT_PTR) p) < 4096;
 }

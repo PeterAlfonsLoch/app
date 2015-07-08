@@ -383,6 +383,7 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				INSTALL_PATH = "$(LOCAL_APPS_DIR)/ca2.app";
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -391,6 +392,7 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				INSTALL_PATH = "$(LOCAL_APPS_DIR)/ca2.app";
+				SDKROOT = iphoneos;
 			};
 			name = Release;
 		};

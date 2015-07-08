@@ -11,7 +11,11 @@ VOID CALLBACK aura_timer_TimerRoutine(PVOID lpParam,BOOLEAN TimerOrWaitFired);
 
 #elif defined(__APPLE__)
 
+void * CreateDispatchQueue();
+
 void * CreateDispatchTimer(uint64_t interval, uint64_t leeway, void * queue, void (*timer)(void * p), void * p);
+
+void ReleaseDispatch(void * p);
 
 void aura_timer(void * p);
 
@@ -111,12 +115,12 @@ bool timer::start(int millis,bool bPeriodic)
     
 #elif defined(__APPLE__)
     
-    m_queue =  dispatch_queue_create (NULL, NULL);
+   m_queue = CreateDispatchQueue();
     
-    if(m_queue == NULL)
-        return false;
+   if(m_queue == NULL)
+      return false;
     
-    m_timer = CreateDispatchTimer(bPeriodic ? millis : 0, millis, m_queue, aura_timer, this);
+   m_timer = CreateDispatchTimer(bPeriodic ? millis : 0, millis, m_queue, aura_timer, this);
     
     if(m_timer == NULL)
         return false;
@@ -176,7 +180,7 @@ void timer::stop()
    if(m_queue != NULL)
    {
         
-      dispatch_release(m_queue);
+      ReleaseDispatch(m_queue);
       
       m_queue = NULL;
         

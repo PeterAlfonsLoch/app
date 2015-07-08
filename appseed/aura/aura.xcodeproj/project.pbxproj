@@ -21,7 +21,6 @@
 		07502CA51B251B0A008D207C /* net_url.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07502CA41B251B0A008D207C /* net_url.cpp */; };
 		07502CA71B251B0A008D207C /* net_url.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07502CA41B251B0A008D207C /* net_url.cpp */; };
 		0751A49E192AB15000CFD2B0 /* multithreading_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 0751A49C192AB15000CFD2B0 /* multithreading_data.h */; };
-		076D0A151A3FCCCB007432B6 /* libatomiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 076D0A141A3FCCCB007432B6 /* libatomiconv.dylib */; };
 		077A02731B4D63B9001C85FF /* aura_vanity_c#_cnet_d.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 077A02721B4D63B9001C85FF /* aura_vanity_c#_cnet_d.rtf */; };
 		077A02751B4D64F4001C85FF /* aura_vanity_e_f_g_etc.doc in Resources */ = {isa = PBXBuildFile; fileRef = 077A02741B4D64F4001C85FF /* aura_vanity_e_f_g_etc.doc */; };
 		077A05681B4D70B7001C85FF /* DDInvocationGrabber.mm in Sources */ = {isa = PBXBuildFile; fileRef = 077A05341B4D70B7001C85FF /* DDInvocationGrabber.mm */; };
@@ -652,6 +651,7 @@
 		079AE0671886481200635C39 /* math_scalar.h in Headers */ = {isa = PBXBuildFile; fileRef = 079AE0641886481200635C39 /* math_scalar.h */; };
 		079AE0811886486300635C39 /* primitive_relation_set.h in Headers */ = {isa = PBXBuildFile; fileRef = 079AE07F1886486300635C39 /* primitive_relation_set.h */; };
 		079DBF3C1886788000EFFEFB /* file_set.h in Headers */ = {isa = PBXBuildFile; fileRef = 079DBF3A1886788000EFFEFB /* file_set.h */; };
+		07A34AB01B4DA85600CC3FD9 /* libatomiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 076D0A1B1A3FCCD4007432B6 /* libatomiconv.dylib */; };
 		07AAB14B1926B2C20050A443 /* multithreading_thread_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AAB14A1926B2C20050A443 /* multithreading_thread_impl.h */; };
 		07B094AA18495C2A007A0560 /* collection.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B093DC18495C2A007A0560 /* collection.h */; };
 		07B094AD18495C2A007A0560 /* collection_array_decl.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B093E018495C2A007A0560 /* collection_array_decl.h */; };
@@ -1955,7 +1955,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				076D0A151A3FCCCB007432B6 /* libatomiconv.dylib in Frameworks */,
+				07A34AB01B4DA85600CC3FD9 /* libatomiconv.dylib in Frameworks */,
 				9A98A6081771D67E000AE16E /* AppKit.framework in Frameworks */,
 				9A98A6091771D67E000AE16E /* Foundation.framework in Frameworks */,
 				9A98A60A1771D67E000AE16E /* Carbon.framework in Frameworks */,

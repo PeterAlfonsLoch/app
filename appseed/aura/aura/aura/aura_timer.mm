@@ -9,6 +9,13 @@
 #import "framework.h"
 
 
+void * CreateDispatchQueue()
+{
+   
+   return dispatch_queue_create (NULL, NULL);
+   
+}
+
 
 void * CreateDispatchTimer(uint64_t interval, uint64_t leeway, void * queue, void (*pfnTimer)(void * p), void * p)
 {
@@ -28,6 +35,14 @@ void * CreateDispatchTimer(uint64_t interval, uint64_t leeway, void * queue, voi
     
     return timer;
     
+}
+
+
+void ReleaseDispatch(void * p)
+{
+ 
+   dispatch_release((dispatch_object_t) p);
+   
 }
 
 

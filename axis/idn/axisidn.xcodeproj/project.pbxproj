@@ -83,12 +83,12 @@
 			remoteGlobalIDString = 077A014D1B4D5479001C85FF;
 			remoteInfo = atomiconv_ios;
 		};
-		077A01591B4D54EA001C85FF /* PBXContainerItemProxy */ = {
+		07A34AAD1B4DA76D00CC3FD9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 076D0A201A3FDB07007432B6 /* atomiconv.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 077A014D1B4D5479001C85FF;
-			remoteInfo = atomiconv_ios;
+			remoteGlobalIDString = 9A1647A119C4A73900966C5E;
+			remoteInfo = atomiconv;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -271,7 +271,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				077A015A1B4D54EA001C85FF /* PBXTargetDependency */,
+				07A34AAE1B4DA76D00CC3FD9 /* PBXTargetDependency */,
 			);
 			name = axisidn;
 			productName = FreeImage;
@@ -383,10 +383,10 @@
 			name = atomiconv_ios;
 			targetProxy = 077A00AF1B4D4FDC001C85FF /* PBXContainerItemProxy */;
 		};
-		077A015A1B4D54EA001C85FF /* PBXTargetDependency */ = {
+		07A34AAE1B4DA76D00CC3FD9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = atomiconv_ios;
-			targetProxy = 077A01591B4D54EA001C85FF /* PBXContainerItemProxy */;
+			name = atomiconv;
+			targetProxy = 07A34AAD1B4DA76D00CC3FD9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

@@ -23,5 +23,14 @@
 
 #define __MM
 
+#ifdef MACOS
+
+#include "aura/os/macos/macos_mm.h"
+
+#else
 
 #include "aura/os/ios/ios_mm.h"
+
+#endif
+
+
