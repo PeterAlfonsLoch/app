@@ -22,7 +22,7 @@ namespace aura
 
 
 
-      bool tx:open(const char * pszChannel,launcher * plauncher)
+      bool tx::open(const char * pszChannel,launcher * plauncher)
       {
 
          if(m_iQueue >= 0)
@@ -44,7 +44,7 @@ namespace aura
 
       }
 
-      bool tx:close()
+      bool tx::close()
       {
 
          if(m_iQueue < 0)
@@ -59,7 +59,7 @@ namespace aura
       }
 
 
-      bool tx:send(const char * pszMessage,DWORD dwTimeout)
+      bool tx::send(const char * pszMessage,DWORD dwTimeout)
       {
 
          ::count c = strlen_dup(pszMessage);
@@ -76,9 +76,9 @@ namespace aura
          while(c > 0)
          {
 
-            cSend = min(c,511);
+            cSend = MIN(c,511);
 
-            memcpy(data.data,&pszMessage[cPos],min(c,511));
+            memcpy(data.data,&pszMessage[cPos],MIN(c,511));
 
             c -= cSend;
 
@@ -106,7 +106,7 @@ namespace aura
       }
 
 
-      bool tx:send(int message,void * pdata,int len,DWORD dwTimeout)
+      bool tx::send(int message,void * pdata,int len,DWORD dwTimeout)
       {
 
          if(message == 0x80000000)
@@ -132,9 +132,9 @@ namespace aura
          while(c > 0)
          {
 
-            cSend = min(c,511);
+            cSend = MIN(c,511);
 
-            memcpy(data.data,&pszMessage[cPos],min(c,511));
+            memcpy(data.data,&pszMessage[cPos],MIN(c,511));
 
             c -= cSend;
 
@@ -163,7 +163,7 @@ namespace aura
 
 
 
-      bool tx:is_tx_ok()
+      bool tx::is_tx_ok()
       {
 
          return m_iQueue != -1;
@@ -422,7 +422,7 @@ namespace aura
             return false;
          }
 
-         if(!tx:open(strChannelTx,plauncher))
+         if(!tx::open(strChannelTx,plauncher))
          {
             return false;
          }
@@ -447,7 +447,7 @@ namespace aura
             return false;
          }
 
-         if(!tx:open(strChannelTx,plauncher))
+         if(!tx::open(strChannelTx,plauncher))
          {
             return false;
          }

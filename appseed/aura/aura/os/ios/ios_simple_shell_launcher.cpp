@@ -1,7 +1,10 @@
 #include "framework.h"
 
-
-void simple_shell_launcher::execute()
+namespace aura
+{
+   
+   
+void shell_launcher::execute()
 {
    
    if(m_iMode == 0)
@@ -23,7 +26,7 @@ void simple_shell_launcher::execute()
               
               
               
-bool simple_shell_launcher::succeeded()
+bool shell_launcher::succeeded()
 {
          
    return m_dwResult >= 0;
@@ -39,3 +42,8 @@ bool simple_shell_launcher::succeeded()
               
               
               
+} // namespace aura
+
+
+
+

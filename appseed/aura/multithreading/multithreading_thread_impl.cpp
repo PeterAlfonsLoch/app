@@ -576,7 +576,7 @@ uint32_t __thread_entry(void * pparam)
       catch(::exit_exception &)
       {
 
-         Sys(pthreadimpl->m_pauraapp).post_thread_message(WM_QUIT,0,0);
+         Sys(pthreadimpl->m_pauraapp).post_thread_message(WM_QUIT);
 
          return ::multithreading::__on_thread_finally(pthread);
 

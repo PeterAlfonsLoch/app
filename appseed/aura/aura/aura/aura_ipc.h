@@ -95,7 +95,7 @@ namespace aura
 #else
          bool              m_bRunning;
          bool              m_bRun;
-         void *            m_pthread;
+         pthread_t            m_thread;
 #endif
 
 

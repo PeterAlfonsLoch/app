@@ -6,21 +6,21 @@
 //  Copyright (c) 2011 ca2 Desenvolvimento de Sofware Ltda. All rights reserved.
 //
 
-#include "ca_mm.h"
+#include "ios_mm.h"
 
 
-oswindow SetActiveWindow(oswindow window);
+//oswindow SetActiveWindow(oswindow window);
 
 
 
-CGContextRef get_nswindow_cgcontext(oswindow oswindow)
-{
-
-//    return (CGContextRef) [[oswindow->window() graphicsContext] graphicsPort];
-    
-    return 0;
-
-}
+//CGContextRef get_nswindow_cgcontext(oswindow oswindow)
+//{
+//
+////    return (CGContextRef) [[oswindow->window() graphicsContext] graphicsPort];
+//    
+//    return 0;
+//
+//}
 
 
 void GetMainScreenRect(LPRECT lprect)
@@ -37,54 +37,54 @@ void GetMainScreenRect(LPRECT lprect)
 
 
 
-WINBOOL SetForegroundWindow(oswindow window)
-{
-   
-   if(!::IsWindow(window))
-      return FALSE;
-   
-    /*
-     
-   [NSApp activateIgnoringOtherApps:YES];
-   
-//   [NSApp setWindow : window->window()];
-
-   [window->window() makeKeyAndOrderFront: NSApp];
-   
-   [window->window() orderFrontRegardless];
-     
-     */
-   
-   SetActiveWindow(window);
-   
-   return TRUE;
-   
-}
-
-
-WINBOOL BringWindowToTop(oswindow window)
-{
-   
-   if(!::IsWindow(window))
-      return FALSE;
-    
-    /*
-   
-   [NSApp activateIgnoringOtherApps:YES];
-   
-//   [NSApp setWindow : window->window()];
-   
-   [window->window() makeKeyAndOrderFront: NSApp];
-   
-   [window->window() orderFrontRegardless];
-     
-     */
-   
-   SetActiveWindow(window);
-   
-   return TRUE;
-   
-}
+//WINBOOL SetForegroundWindow(oswindow window)
+//{
+//   
+//   if(!::IsWindow(window))
+//      return FALSE;
+//   
+//    /*
+//     
+//   [NSApp activateIgnoringOtherApps:YES];
+//   
+////   [NSApp setWindow : window->window()];
+//
+//   [window->window() makeKeyAndOrderFront: NSApp];
+//   
+//   [window->window() orderFrontRegardless];
+//     
+//     */
+//   
+//   SetActiveWindow(window);
+//   
+//   return TRUE;
+//   
+//}
+//
+//
+//WINBOOL BringWindowToTop(oswindow window)
+//{
+//   
+//   if(!::IsWindow(window))
+//      return FALSE;
+//    
+//    /*
+//   
+//   [NSApp activateIgnoringOtherApps:YES];
+//   
+////   [NSApp setWindow : window->window()];
+//   
+//   [window->window() makeKeyAndOrderFront: NSApp];
+//   
+//   [window->window() orderFrontRegardless];
+//     
+//     */
+//   
+//   SetActiveWindow(window);
+//   
+//   return TRUE;
+//   
+//}
 
 
 

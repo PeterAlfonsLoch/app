@@ -6,7 +6,7 @@
 #include <string.h>
 
 
-extern thread_pointer < os_thread > t_posthread;
+//extern thread_pointer < os_thread > t_posthread;
 
 
 int create_process(const char * _cmd_line, int * pprocessId)

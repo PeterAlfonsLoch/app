@@ -348,6 +348,6 @@ void service_base::call_server()
 
    m_stopped.SetEvent();
 
-   System.os_post_to_all_threads(WM_QUIT, 0, 0);
+   System.os_post_to_all_threads(WM_QUIT);
 
 }
