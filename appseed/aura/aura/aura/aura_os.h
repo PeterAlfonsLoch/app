@@ -13,7 +13,7 @@
 #elif defined(APPLE_IOS)
 
 
-#include "aura/os/ios/ios.h"
+#include "aura/os/ios/os.h"
 
 
 #elif defined(LINUX)
