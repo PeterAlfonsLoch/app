@@ -13,6 +13,8 @@ VOID CALLBACK aura_timer_TimerRoutine(PVOID lpParam,BOOLEAN TimerOrWaitFired);
 
 void * CreateDispatchQueue();
 
+void CancelDispatchSource(void * p);
+
 void * CreateDispatchTimer(uint64_t interval, uint64_t leeway, void * queue, void (*timer)(void * p), void * p);
 
 void ReleaseDispatch(void * p);
@@ -169,9 +171,9 @@ void timer::stop()
    if(m_timer != NULL)
    {
         
-      dispatch_source_cancel((dispatch_source_t) m_timer);
+      CancelDispatchSource(m_timer);
         
-      dispatch_release((dispatch_source_t) m_timer);
+      ReleaseDispatch(m_timer);
        
       m_timer = NULL;
         

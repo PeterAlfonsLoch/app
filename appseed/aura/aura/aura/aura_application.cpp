@@ -814,7 +814,7 @@ namespace aura
 
          dappy(string(typeid(*this).name()) + " : on_run exit_exception");
 
-         System.post_thread_message(WM_QUIT,0,0);
+         System.post_thread_message(WM_QUIT);
 
          goto exit_application;
 

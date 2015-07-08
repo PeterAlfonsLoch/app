@@ -1,5 +1,11 @@
 #pragma once
 
+class cnull
+{
+public: 
+};
+
+
 
 class CLASS_DECL_AURA lparam
 {
@@ -8,6 +14,10 @@ public:
 
    LPARAM m_lparam;
 
+   lparam(class cnull)
+   {
+      m_lparam = 0;
+   }
 
    lparam(LPARAM lparam = 0)
    {

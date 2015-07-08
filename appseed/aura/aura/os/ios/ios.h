@@ -9,7 +9,7 @@
 
 #include "ios_base_internal.h"
 
-
+unsigned int m_sleep(unsigned int seconds);
 
 /*#ifdef cplusplus
 

@@ -5,6 +5,7 @@
 #include <sys/time.h>
 #include <sys/stat.h>
 #include <ctype.h>
+#include <unistd.h>
 #endif
 
 #include "aura/_aura_aura_aura.cpp"

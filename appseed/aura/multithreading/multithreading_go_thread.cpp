@@ -30,11 +30,7 @@ int32_t go_thread::run()
 {
    while(get_run() && !m_bRelease)
    {
-#ifdef _WIN32
-      Sleep(1000);
-#else
-      sleep(1);
-#endif
+      sleep(seconds(1));
    }
    if(get_run())
    {

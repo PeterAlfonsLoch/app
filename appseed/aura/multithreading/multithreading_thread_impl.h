@@ -119,8 +119,8 @@ public:
    virtual bool is_idle_message(LPMESSAGE lpmsg);
 
    virtual void post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam);
-   virtual bool post_thread_message(UINT message,WPARAM wParam = 0,lparam lParam = 0);
-   virtual bool post_message(::user::primitive * pui,UINT message,WPARAM wParam = 0,lparam lParam = 0);
+   virtual bool post_thread_message(UINT message,WPARAM wParam = 0,lparam lParam = cnull);
+   virtual bool post_message(::user::primitive * pui,UINT message,WPARAM wParam = 0,lparam lParam = cnull);
 
    virtual ::count get_ui_count();
    virtual ::user::primitive * get_ui(::index iIndex);

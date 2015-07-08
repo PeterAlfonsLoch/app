@@ -36,6 +36,10 @@
 #include "cross/windows/_cross_windows.cpp"
 #include "macos/_macos_os.cpp"
 #include "ansios/_ansios_os.cpp"
+#elif defined(APPLE_IOS)
+#include "cross/windows/_cross_windows.cpp"
+#include "ios/_ios_os.cpp"
+#include "ansios/_ansios_os.cpp"
 #endif
 
 #ifdef ENABLE_BINRELOC

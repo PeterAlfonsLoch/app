@@ -315,15 +315,16 @@ void openURL(const string &url_str);
 
 
 void openURL(const string &url_str) {
-   CFURLRef url = CFURLCreateWithBytes(
-      NULL,                        // allocator
-      (UInt8*)url_str.c_str(),     // URLBytes
-      url_str.length(),            // length
-      kCFStringEncodingASCII,      // encoding
-      NULL                         // baseURL
-      );
+   throw todo(get_thread_app());
+  // CFURLRef url = CFURLCreateWithBytes(
+    //  NULL,                        // allocator
+      //(UInt8*)url_str.c_str(),     // URLBytes
+      //url_str.length(),            // length
+      //kCFStringEncodingASCII,      // encoding
+      //NULL                         // baseURL
+      //);
    //    LSOpenCFURLRef(url,0);
-   CFRelease(url);
+  // CFRelease(url);
 }
 
 

@@ -725,7 +725,7 @@ CLASS_DECL_AURA bool copy(LPPOINT lpptDst,const POINT64 * lpptSrc)
 
 
 
-#ifdef APPLEOS
+#ifdef MACOS
 
 
 
