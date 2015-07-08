@@ -6,7 +6,7 @@
 //
 //   C => in ca2 scope
 //
-//   Thank you God for C pureness!!
+//   Thank you God for C pureness!! Cheap.
 //
 
 

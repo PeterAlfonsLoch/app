@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07108A701B4C90A300A28F80 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07108A6F1B4C90A300A28F80 /* UIKit.framework */; };
 		0747A6471B26375F00E85AC7 /* visual_cursor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0747A6451B26375F00E85AC7 /* visual_cursor.cpp */; };
 		0747A6481B26375F00E85AC7 /* visual_icon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0747A6461B26375F00E85AC7 /* visual_icon.cpp */; };
 		07502C981B24911C008D207C /* filesystem_application.h in Headers */ = {isa = PBXBuildFile; fileRef = 07502C921B24911C008D207C /* filesystem_application.h */; };
@@ -23,6 +24,11 @@
 		07502CA71B251B0A008D207C /* net_url.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07502CA41B251B0A008D207C /* net_url.cpp */; };
 		0751A49E192AB15000CFD2B0 /* multithreading_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 0751A49C192AB15000CFD2B0 /* multithreading_data.h */; };
 		076D0A151A3FCCCB007432B6 /* libatomiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 076D0A141A3FCCCB007432B6 /* libatomiconv.dylib */; };
+		077A020A1B4D5881001C85FF /* libatomiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 076D0A1B1A3FCCD4007432B6 /* libatomiconv.dylib */; };
+		077A026E1B4D6049001C85FF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07108A731B4C90D000A28F80 /* UIKit.framework */; };
+		077A02711B4D60B7001C85FF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 077A02701B4D60B7001C85FF /* Foundation.framework */; };
+		077A02731B4D63B9001C85FF /* aura_vanity_c#_cnet_d.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 077A02721B4D63B9001C85FF /* aura_vanity_c#_cnet_d.rtf */; };
+		077A02751B4D64F4001C85FF /* aura_vanity_e_f_g_etc.doc in Resources */ = {isa = PBXBuildFile; fileRef = 077A02741B4D64F4001C85FF /* aura_vanity_e_f_g_etc.doc */; };
 		077C2A1B190F144000A1F6B0 /* framework_c.c in Sources */ = {isa = PBXBuildFile; fileRef = 077C2A17190F143F00A1F6B0 /* framework_c.c */; };
 		077C2A1C190F144000A1F6B0 /* framework_c.h in Headers */ = {isa = PBXBuildFile; fileRef = 077C2A18190F143F00A1F6B0 /* framework_c.h */; };
 		077C2A1D190F144000A1F6B0 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 077C2A19190F143F00A1F6B0 /* framework.cpp */; };
@@ -34,9 +40,6 @@
 		077CEF241B23D0FF009A57EF /* _multithreading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 077CEF231B23D0FF009A57EF /* _multithreading.cpp */; };
 		077CEF261B23D151009A57EF /* _primitive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 077CEF251B23D151009A57EF /* _primitive.cpp */; };
 		078579421917B6BE00FFFE51 /* framework_c.c in Sources */ = {isa = PBXBuildFile; fileRef = 077C2A17190F143F00A1F6B0 /* framework_c.c */; };
-		07857A091917B82000FFFE51 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07857A081917B82000FFFE51 /* UIKit.framework */; };
-		07857A0B1917B8CE00FFFE51 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07857A0A1917B8CE00FFFE51 /* CoreGraphics.framework */; };
-		07857A0D1917B90400FFFE51 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07857A0C1917B90400FFFE51 /* CoreText.framework */; };
 		079AE0651886481200635C39 /* math_scalar_enum.h in Headers */ = {isa = PBXBuildFile; fileRef = 079AE0621886481200635C39 /* math_scalar_enum.h */; };
 		079AE0671886481200635C39 /* math_scalar.h in Headers */ = {isa = PBXBuildFile; fileRef = 079AE0641886481200635C39 /* math_scalar.h */; };
 		079AE0811886486300635C39 /* primitive_relation_set.h in Headers */ = {isa = PBXBuildFile; fileRef = 079AE07F1886486300635C39 /* primitive_relation_set.h */; };
@@ -544,7 +547,6 @@
 		9AC315F1198E4CB8008FB109 /* colorertake5_text_region.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC315AA198E4CB8008FB109 /* colorertake5_text_region.h */; };
 		9AC315F2198E4CB8008FB109 /* colorertake5_Writer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC315AB198E4CB8008FB109 /* colorertake5_Writer.h */; };
 		9AC315F3198E4CB8008FB109 /* colorertake5_xmldom.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC315AC198E4CB8008FB109 /* colorertake5_xmldom.h */; };
-		9AE24D371904CEFE001AEFFB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D361904CEFE001AEFFB /* Foundation.framework */; };
 		9AE24D451904CEFF001AEFFB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D441904CEFF001AEFFB /* XCTest.framework */; };
 		9AE24D461904CEFF001AEFFB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D361904CEFE001AEFFB /* Foundation.framework */; };
 		9AE24D481904CEFF001AEFFB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D471904CEFF001AEFFB /* UIKit.framework */; };
@@ -615,6 +617,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		07108AAC1B4C95C400A28F80 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 076D0A161A3FCCD4007432B6 /* atomiconv.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07108AAA1B4C958C00A28F80;
+			remoteInfo = atomiconv_ios;
+		};
 		076D0A1A1A3FCCD4007432B6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 076D0A161A3FCCD4007432B6 /* atomiconv.xcodeproj */;
@@ -629,6 +638,13 @@
 			remoteGlobalIDString = 9A1647A119C4A73900966C5E;
 			remoteInfo = atomiconv;
 		};
+		077A023F1B4D5C11001C85FF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 076D0A161A3FCCD4007432B6 /* atomiconv.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 077A014D1B4D5479001C85FF;
+			remoteInfo = atomiconv_ios;
+		};
 		9AE24D491904CEFF001AEFFB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CEA754BB14411F2B007E04DE /* Project object */;
@@ -638,19 +654,10 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		9AE24D321904CEFE001AEFFB /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "include/$(PRODUCT_NAME)";
-			dstSubfolderSpec = 16;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
+		07108A6D1B4C909500A28F80 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+		07108A6F1B4C90A300A28F80 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		07108A731B4C90D000A28F80 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		073EDDE1164E968100818801 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		073EDDE4164E96DA00818801 /* SecurityFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityFoundation.framework; path = System/Library/Frameworks/SecurityFoundation.framework; sourceTree = SDKROOT; };
 		0747A6451B26375F00E85AC7 /* visual_cursor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = visual_cursor.cpp; sourceTree = "<group>"; };
@@ -668,6 +675,10 @@
 		0751A49C192AB15000CFD2B0 /* multithreading_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = multithreading_data.h; sourceTree = "<group>"; };
 		076D0A141A3FCCCB007432B6 /* libatomiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libatomiconv.dylib; path = ../../atom/iconv/build/Debug/libatomiconv.dylib; sourceTree = "<group>"; };
 		076D0A161A3FCCD4007432B6 /* atomiconv.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = atomiconv.xcodeproj; path = ../../atom/iconv/atomiconv.xcodeproj; sourceTree = "<group>"; };
+		077A026C1B4D6032001C85FF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		077A02701B4D60B7001C85FF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = ../../../../System/Library/Frameworks/Foundation.framework; sourceTree = "<group>"; };
+		077A02721B4D63B9001C85FF /* aura_vanity_c#_cnet_d.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = "aura_vanity_c#_cnet_d.rtf"; sourceTree = "<group>"; };
+		077A02741B4D64F4001C85FF /* aura_vanity_e_f_g_etc.doc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = aura_vanity_e_f_g_etc.doc; sourceTree = "<group>"; };
 		077C2A17190F143F00A1F6B0 /* framework_c.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = framework_c.c; sourceTree = "<group>"; };
 		077C2A18190F143F00A1F6B0 /* framework_c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework_c.h; sourceTree = "<group>"; };
 		077C2A19190F143F00A1F6B0 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
@@ -1291,6 +1302,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				076D0A151A3FCCCB007432B6 /* libatomiconv.dylib in Frameworks */,
+				077A026E1B4D6049001C85FF /* UIKit.framework in Frameworks */,
 				9A98A6081771D67E000AE16E /* AppKit.framework in Frameworks */,
 				9A98A6091771D67E000AE16E /* Foundation.framework in Frameworks */,
 				9A98A60A1771D67E000AE16E /* Carbon.framework in Frameworks */,
@@ -1302,10 +1314,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07857A091917B82000FFFE51 /* UIKit.framework in Frameworks */,
-				9AE24D371904CEFE001AEFFB /* Foundation.framework in Frameworks */,
-				07857A0B1917B8CE00FFFE51 /* CoreGraphics.framework in Frameworks */,
-				07857A0D1917B90400FFFE51 /* CoreText.framework in Frameworks */,
+				077A02711B4D60B7001C85FF /* Foundation.framework in Frameworks */,
+				07108A701B4C90A300A28F80 /* UIKit.framework in Frameworks */,
+				077A020A1B4D5881001C85FF /* libatomiconv.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1348,6 +1359,7 @@
 			isa = PBXGroup;
 			children = (
 				076D0A1B1A3FCCD4007432B6 /* libatomiconv.dylib */,
+				07108AAD1B4C95C400A28F80 /* libatomiconv.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1785,6 +1797,8 @@
 				9A163DD619C4A4CD00966C5E /* aura_policy_winrt.h */,
 				9A163DD719C4A4CD00966C5E /* aura_vanity_ada.txt */,
 				9A163DD819C4A4CD00966C5E /* aura_vanity_basic.txt */,
+				077A02721B4D63B9001C85FF /* aura_vanity_c#_cnet_d.rtf */,
+				077A02741B4D64F4001C85FF /* aura_vanity_e_f_g_etc.doc */,
 			);
 			path = aura_policy;
 			sourceTree = "<group>";
@@ -2144,6 +2158,9 @@
 		9AE24D351904CEFE001AEFFB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				077A026C1B4D6032001C85FF /* Foundation.framework */,
+				07108A6F1B4C90A300A28F80 /* UIKit.framework */,
+				07108A6D1B4C909500A28F80 /* CoreGraphics.framework */,
 				076D0A141A3FCCCB007432B6 /* libatomiconv.dylib */,
 				9AEEADAE19C4DDD500866C9E /* libiconv.2.4.0.dylib */,
 				07857A0C1917B90400FFFE51 /* CoreText.framework */,
@@ -2277,11 +2294,13 @@
 			isa = PBXGroup;
 			children = (
 				076D0A161A3FCCD4007432B6 /* atomiconv.xcodeproj */,
+				07108A731B4C90D000A28F80 /* UIKit.framework */,
 				07BD556C16210BD4008E31F0 /* AppKit.framework */,
 				CE931714155F1599005F90F6 /* Carbon.framework */,
 				9A8897A514C24736006B4023 /* Foundation.framework */,
 				073EDDE1164E968100818801 /* Security.framework */,
 				073EDDE4164E96DA00818801 /* SecurityFoundation.framework */,
+				077A02701B4D60B7001C85FF /* Foundation.framework */,
 				9A163D3019C4A4CC00966C5E /* aura */,
 				9A16414919C4A4CE00966C5E /* aura_iosTests */,
 				07F5B12D184A3B420092C3E1 /* filesystem */,
@@ -2900,11 +2919,11 @@
 			buildPhases = (
 				9AE24D301904CEFE001AEFFB /* Sources */,
 				9AE24D311904CEFE001AEFFB /* Frameworks */,
-				9AE24D321904CEFE001AEFFB /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				077A02401B4D5C11001C85FF /* PBXTargetDependency */,
 			);
 			name = aura_ios;
 			productName = base_ios;
@@ -2969,6 +2988,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		07108AAD1B4C95C400A28F80 /* libatomiconv.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libatomiconv.dylib;
+			remoteRef = 07108AAC1B4C95C400A28F80 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		076D0A1B1A3FCCD4007432B6 /* libatomiconv.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
@@ -2983,6 +3009,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				077A02751B4D64F4001C85FF /* aura_vanity_e_f_g_etc.doc in Resources */,
+				077A02731B4D63B9001C85FF /* aura_vanity_c#_cnet_d.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3052,6 +3080,11 @@
 			name = atomiconv;
 			targetProxy = 076D0A1C1A3FCCE0007432B6 /* PBXContainerItemProxy */;
 		};
+		077A02401B4D5C11001C85FF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = atomiconv_ios;
+			targetProxy = 077A023F1B4D5C11001C85FF /* PBXContainerItemProxy */;
+		};
 		9AE24D4A1904CEFF001AEFFB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9AE24D331904CEFE001AEFFB /* aura_ios */;
@@ -3075,6 +3108,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks",
+				);
 			};
 			name = Debug;
 		};
@@ -3082,6 +3119,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks",
+				);
 			};
 			name = Release;
 		};

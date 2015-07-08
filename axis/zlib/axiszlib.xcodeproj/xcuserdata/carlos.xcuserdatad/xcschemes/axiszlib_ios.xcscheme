@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0610"
+   LastUpgradeVersion = "0640"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9A574B9716AAB906000CC4EF"
-               BuildableName = "libmath.dylib"
-               BlueprintName = "math"
-               ReferencedContainer = "container:math.xcodeproj">
+               BlueprintIdentifier = "07108CE31B4C97EF00A28F80"
+               BuildableName = "libaxiszlib.dylib"
+               BlueprintName = "axiszlib_ios"
+               ReferencedContainer = "container:axiszlib.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -42,10 +42,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9A574B9716AAB906000CC4EF"
-            BuildableName = "libmath.dylib"
-            BlueprintName = "math"
-            ReferencedContainer = "container:math.xcodeproj">
+            BlueprintIdentifier = "07108CE31B4C97EF00A28F80"
+            BuildableName = "libaxiszlib.dylib"
+            BlueprintName = "axiszlib_ios"
+            ReferencedContainer = "container:axiszlib.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -60,10 +60,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9A574B9716AAB906000CC4EF"
-            BuildableName = "libmath.dylib"
-            BlueprintName = "math"
-            ReferencedContainer = "container:math.xcodeproj">
+            BlueprintIdentifier = "07108CE31B4C97EF00A28F80"
+            BuildableName = "libaxiszlib.dylib"
+            BlueprintName = "axiszlib_ios"
+            ReferencedContainer = "container:axiszlib.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

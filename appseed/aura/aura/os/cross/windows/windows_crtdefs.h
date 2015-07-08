@@ -104,6 +104,7 @@ typedef int32_t __msvcrt_long;
 typedef uint32_t __msvcrt_ulong;
 #endif
 
+/*
 #ifndef _INTPTR_T_DEFINED
 #ifdef  OS64BIT
 typedef __int64 intptr_t;
@@ -121,6 +122,7 @@ typedef uint32_t uintptr_t;
 #endif
 #define _UINTPTR_T_DEFINED
 #endif
+ */
 
 #ifndef _PTRDIFF_T_DEFINED
 #ifdef OS64BIT
@@ -131,6 +133,7 @@ typedef int32_t ptrdiff_t;
 #define _PTRDIFF_T_DEFINED
 #endif
 
+/*
 #ifndef _SIZE_T_DEFINED
 #ifdef OS64BIT
 typedef unsigned __int64 size_t;
@@ -139,6 +142,7 @@ typedef uint32_t size_t;
 #endif
 #define _SIZE_T_DEFINED
 #endif
+ */
 
 #ifndef _TIME32_T_DEFINED
 typedef __msvcrt_long __time32_t;

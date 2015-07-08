@@ -7,12 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		077A014F1B4D5479001C85FF /* iconv.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A1645E319C4A60000966C5E /* iconv.c */; };
+		077A01501B4D5479001C85FF /* relocatable.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A16462B19C4A60100966C5E /* relocatable.c */; };
+		077A01511B4D5479001C85FF /* localcharset.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A16466C19C4A60100966C5E /* localcharset.c */; };
 		9AEEAD9D19C4D8E000866C9E /* iconv.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A1645E319C4A60000966C5E /* iconv.c */; };
 		9AEEAD9E19C4D8E100866C9E /* relocatable.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A16462B19C4A60100966C5E /* relocatable.c */; };
 		9AEEAD9F19C4D8E100866C9E /* localcharset.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A16466C19C4A60100966C5E /* localcharset.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		077A01571B4D5479001C85FF /* libatomiconv.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libatomiconv.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A16454F19C4A60000966C5E /* aliases.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aliases.h; sourceTree = "<group>"; };
 		9A16455019C4A60000966C5E /* aliases2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aliases2.h; sourceTree = "<group>"; };
 		9A16455119C4A60000966C5E /* aliases_aix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aliases_aix.h; sourceTree = "<group>"; };
@@ -246,6 +250,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		077A01521B4D5479001C85FF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9A16479F19C4A73900966C5E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -521,12 +532,20 @@
 				9A16454D19C4A60000966C5E /* lib */,
 				9A16465D19C4A60100966C5E /* libcharset */,
 				9A1647A219C4A73900966C5E /* libatomiconv.dylib */,
+				077A01571B4D5479001C85FF /* libatomiconv.dylib */,
 			);
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		077A01531B4D5479001C85FF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9A1647A019C4A73900966C5E /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -537,6 +556,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		077A014D1B4D5479001C85FF /* atomiconv_ios */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 077A01541B4D5479001C85FF /* Build configuration list for PBXNativeTarget "atomiconv_ios" */;
+			buildPhases = (
+				077A014E1B4D5479001C85FF /* Sources */,
+				077A01521B4D5479001C85FF /* Frameworks */,
+				077A01531B4D5479001C85FF /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = atomiconv_ios;
+			productName = atomiconv;
+			productReference = 077A01571B4D5479001C85FF /* libatomiconv.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
 		9A1647A119C4A73900966C5E /* atomiconv */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9A1647A319C4A73900966C5E /* Build configuration list for PBXNativeTarget "atomiconv" */;
@@ -576,11 +612,22 @@
 			projectRoot = "";
 			targets = (
 				9A1647A119C4A73900966C5E /* atomiconv */,
+				077A014D1B4D5479001C85FF /* atomiconv_ios */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		077A014E1B4D5479001C85FF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				077A014F1B4D5479001C85FF /* iconv.c in Sources */,
+				077A01501B4D5479001C85FF /* relocatable.c in Sources */,
+				077A01511B4D5479001C85FF /* localcharset.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9A16479E19C4A73900966C5E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -594,6 +641,61 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		077A01551B4D5479001C85FF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = NO;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = lib;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+			};
+			name = Debug;
+		};
+		077A01561B4D5479001C85FF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = NO;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				EXECUTABLE_PREFIX = lib;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+			};
+			name = Release;
+		};
 		9A1647A419C4A73900966C5E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -607,6 +709,10 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				COMBINE_HIDPI_IMAGES = YES;
 				EXECUTABLE_PREFIX = lib;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks",
+				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -634,6 +740,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				EXECUTABLE_PREFIX = lib;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks",
+				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
@@ -725,6 +835,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		077A01541B4D5479001C85FF /* Build configuration list for PBXNativeTarget "atomiconv_ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				077A01551B4D5479001C85FF /* Debug */,
+				077A01561B4D5479001C85FF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		9A1647A319C4A73900966C5E /* Build configuration list for PBXNativeTarget "atomiconv" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

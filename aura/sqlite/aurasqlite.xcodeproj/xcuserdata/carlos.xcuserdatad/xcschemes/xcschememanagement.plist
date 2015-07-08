@@ -4,14 +4,19 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>aurasqlite.xcscheme</key>
+		<key>aurasqlite_ios.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>6</integer>
+			<integer>9</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>07108AD51B4C95F600A28F80</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>9A1B2F8716A2AF5C00875A94</key>
 		<dict>
 			<key>primary</key>

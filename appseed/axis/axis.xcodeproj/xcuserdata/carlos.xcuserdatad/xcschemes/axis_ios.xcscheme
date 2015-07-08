@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0630"
+   LastUpgradeVersion = "0640"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,24 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9A574B9716AAB906000CC4EF"
-               BuildableName = "libmath.dylib"
-               BlueprintName = "math"
-               ReferencedContainer = "container:math.xcodeproj">
+               BlueprintIdentifier = "9AE24D331904CEFE001AEFFB"
+               BuildableName = "libaxis.dylib"
+               BlueprintName = "axis_ios"
+               ReferencedContainer = "container:axis.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "9AE24D421904CEFE001AEFFB"
+               BuildableName = "axis_iosTests.xctest"
+               BlueprintName = "axis_iosTests"
+               ReferencedContainer = "container:axis.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,7 +42,26 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "9AE24D421904CEFE001AEFFB"
+               BuildableName = "axis_iosTests.xctest"
+               BlueprintName = "axis_iosTests"
+               ReferencedContainer = "container:axis.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "9AE24D331904CEFE001AEFFB"
+            BuildableName = "libaxis.dylib"
+            BlueprintName = "axis_ios"
+            ReferencedContainer = "container:axis.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -42,10 +75,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9A574B9716AAB906000CC4EF"
-            BuildableName = "libmath.dylib"
-            BlueprintName = "math"
-            ReferencedContainer = "container:math.xcodeproj">
+            BlueprintIdentifier = "9AE24D331904CEFE001AEFFB"
+            BuildableName = "libaxis.dylib"
+            BlueprintName = "axis_ios"
+            ReferencedContainer = "container:axis.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -60,10 +93,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9A574B9716AAB906000CC4EF"
-            BuildableName = "libmath.dylib"
-            BlueprintName = "math"
-            ReferencedContainer = "container:math.xcodeproj">
+            BlueprintIdentifier = "9AE24D331904CEFE001AEFFB"
+            BuildableName = "libaxis.dylib"
+            BlueprintName = "axis_ios"
+            ReferencedContainer = "container:axis.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

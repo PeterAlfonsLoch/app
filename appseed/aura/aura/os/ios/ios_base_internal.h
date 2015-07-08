@@ -44,7 +44,7 @@ typedef const RECT FAR* LPCRECT;
 #pragma once
 */
 
-CGContextRef get_nswindow_cgcontext(oswindow pnswindow);
+//CGContextRef get_nswindow_cgcontext(oswindow pnswindow);
 
 
 WINBOOL get_nswindow_rect(oswindow hwnd, LPRECT lprect);

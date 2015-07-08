@@ -7,11 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		077A01381B4D539E001C85FF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 077A01371B4D539E001C85FF /* UIKit.framework */; };
+		077A013A1B4D53AC001C85FF /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 077A01391B4D53AC001C85FF /* CoreText.framework */; };
+		077A013C1B4D53B4001C85FF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 077A013B1B4D53B4001C85FF /* CoreGraphics.framework */; };
+		077A013D1B4D53CB001C85FF /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A5E9E0219B7623B00949252 /* libaura.dylib */; };
+		077A013E1B4D53D8001C85FF /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A371251B25D4A000E4F888 /* libaxis.dylib */; };
+		077A013F1B4D53E4001C85FF /* libaxiszlib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEEBDA319C581CB00866C9E /* libaxiszlib.dylib */; };
+		077A01401B4D53F1001C85FF /* libaxisbzip2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEEADDC19C4FB3400866C9E /* libaxisbzip2.dylib */; };
+		077A01411B4D53FC001C85FF /* libaurasqlite.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEEBD9D19C5816E00866C9E /* libaurasqlite.dylib */; };
 		077C2A1D190F144000A1F6B0 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 077C2A19190F143F00A1F6B0 /* framework.cpp */; };
 		077C2A1E190F144000A1F6B0 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 077C2A1A190F144000A1F6B0 /* framework.h */; };
-		07857A091917B82000FFFE51 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07857A081917B82000FFFE51 /* UIKit.framework */; };
-		07857A0B1917B8CE00FFFE51 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07857A0A1917B8CE00FFFE51 /* CoreGraphics.framework */; };
-		07857A0D1917B90400FFFE51 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07857A0C1917B90400FFFE51 /* CoreText.framework */; };
 		07A36EC61B25D18F00E4F888 /* _base_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A36D241B25D18E00E4F888 /* _base_base.cpp */; };
 		07A36EC71B25D18F00E4F888 /* _base_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A36D241B25D18E00E4F888 /* _base_base.cpp */; };
 		07A36ECD1B25D18F00E4F888 /* base.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A36D291B25D18E00E4F888 /* base.h */; };
@@ -144,7 +149,6 @@
 		9A98A6091771D67E000AE16E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8897A514C24736006B4023 /* Foundation.framework */; };
 		9A98A60A1771D67E000AE16E /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE931714155F1599005F90F6 /* Carbon.framework */; };
 		9A98A60B1771D67E000AE16E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 073EDDE1164E968100818801 /* Security.framework */; };
-		9AE24D371904CEFE001AEFFB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D361904CEFE001AEFFB /* Foundation.framework */; };
 		9AE24D451904CEFF001AEFFB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D441904CEFF001AEFFB /* XCTest.framework */; };
 		9AE24D461904CEFF001AEFFB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D361904CEFE001AEFFB /* Foundation.framework */; };
 		9AE24D481904CEFF001AEFFB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D471904CEFF001AEFFB /* UIKit.framework */; };
@@ -156,6 +160,62 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		07108A2B1B4C84B900A28F80 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A5E9DF919B7623B00949252 /* aura.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AE24D331904CEFE001AEFFB;
+			remoteInfo = aura_ios;
+		};
+		07108A2D1B4C84B900A28F80 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07A3711C1B25D49F00E4F888 /* axis.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AE24D331904CEFE001AEFFB;
+			remoteInfo = axis_ios;
+		};
+		07108DDB1B4C9A4600A28F80 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AEEADD719C4FB3400866C9E /* axisbzip2.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 07108B5C1B4C97C600A28F80;
+			remoteInfo = axisbzip2_ios;
+		};
+		07108DDE1B4C9A4600A28F80 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AEEBD9819C5816D00866C9E /* aurasqlite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07108ADF1B4C95F600A28F80;
+			remoteInfo = aurasqlite_ios;
+		};
+		07108DE11B4C9A4600A28F80 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AEEADD719C4FB3400866C9E /* axisbzip2.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07108B6E1B4C97C600A28F80;
+			remoteInfo = axisbzip2_ios;
+		};
+		07108DE41B4C9A4600A28F80 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AEEBD9E19C581CA00866C9E /* axiszlib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07108D041B4C97EF00A28F80;
+			remoteInfo = axiszlib_ios;
+		};
+		07108DE61B4C9A4D00A28F80 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AEEBD9E19C581CA00866C9E /* axiszlib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 07108CE31B4C97EF00A28F80;
+			remoteInfo = axiszlib_ios;
+		};
+		07108DE81B4C9A5C00A28F80 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AEEBD9819C5816D00866C9E /* aurasqlite.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 07108AD51B4C95F600A28F80;
+			remoteInfo = aurasqlite_ios;
+		};
 		07A371221B25D4A000E4F888 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 07A3711C1B25D49F00E4F888 /* axis.xcodeproj */;
@@ -278,6 +338,9 @@
 /* Begin PBXFileReference section */
 		073EDDE1164E968100818801 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		073EDDE4164E96DA00818801 /* SecurityFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityFoundation.framework; path = System/Library/Frameworks/SecurityFoundation.framework; sourceTree = SDKROOT; };
+		077A01371B4D539E001C85FF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		077A01391B4D53AC001C85FF /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/CoreText.framework; sourceTree = DEVELOPER_DIR; };
+		077A013B1B4D53B4001C85FF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		077C2A19190F143F00A1F6B0 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
 		077C2A1A190F144000A1F6B0 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
 		07857A081917B82000FFFE51 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -445,10 +508,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07857A091917B82000FFFE51 /* UIKit.framework in Frameworks */,
-				9AE24D371904CEFE001AEFFB /* Foundation.framework in Frameworks */,
-				07857A0B1917B8CE00FFFE51 /* CoreGraphics.framework in Frameworks */,
-				07857A0D1917B90400FFFE51 /* CoreText.framework in Frameworks */,
+				077A01411B4D53FC001C85FF /* libaurasqlite.dylib in Frameworks */,
+				077A01401B4D53F1001C85FF /* libaxisbzip2.dylib in Frameworks */,
+				077A013F1B4D53E4001C85FF /* libaxiszlib.dylib in Frameworks */,
+				077A013E1B4D53D8001C85FF /* libaxis.dylib in Frameworks */,
+				077A013D1B4D53CB001C85FF /* libaura.dylib in Frameworks */,
+				077A013C1B4D53B4001C85FF /* CoreGraphics.framework in Frameworks */,
+				077A013A1B4D53AC001C85FF /* CoreText.framework in Frameworks */,
+				077A01381B4D539E001C85FF /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -764,6 +831,9 @@
 		9AE24D351904CEFE001AEFFB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				077A013B1B4D53B4001C85FF /* CoreGraphics.framework */,
+				077A01391B4D53AC001C85FF /* CoreText.framework */,
+				077A01371B4D539E001C85FF /* UIKit.framework */,
 				9AEEAE7019C507C300866C9E /* libsqlite3.0.dylib */,
 				9AEEAE6119C5034F00866C9E /* libz.1.2.5.dylib */,
 				9AEEAE5F19C5034400866C9E /* libz.1.1.3.dylib */,
@@ -791,6 +861,7 @@
 			isa = PBXGroup;
 			children = (
 				9AEEADDC19C4FB3400866C9E /* libaxisbzip2.dylib */,
+				07108DE21B4C9A4600A28F80 /* libaxisbzip2.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -799,6 +870,7 @@
 			isa = PBXGroup;
 			children = (
 				9AEEBD9D19C5816E00866C9E /* libaurasqlite.dylib */,
+				07108DDF1B4C9A4600A28F80 /* libaurasqlite.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -807,6 +879,7 @@
 			isa = PBXGroup;
 			children = (
 				9AEEBDA319C581CB00866C9E /* libaxiszlib.dylib */,
+				07108DE51B4C9A4600A28F80 /* libaxiszlib.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -989,6 +1062,11 @@
 			buildRules = (
 			);
 			dependencies = (
+				07108DE91B4C9A5C00A28F80 /* PBXTargetDependency */,
+				07108DE71B4C9A4D00A28F80 /* PBXTargetDependency */,
+				07108DDC1B4C9A4600A28F80 /* PBXTargetDependency */,
+				07108A2C1B4C84B900A28F80 /* PBXTargetDependency */,
+				07108A2E1B4C84B900A28F80 /* PBXTargetDependency */,
 			);
 			name = base_ios;
 			productName = base_ios;
@@ -1069,6 +1147,27 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		07108DDF1B4C9A4600A28F80 /* libaurasqlite.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libaurasqlite.dylib;
+			remoteRef = 07108DDE1B4C9A4600A28F80 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		07108DE21B4C9A4600A28F80 /* libaxisbzip2.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libaxisbzip2.dylib;
+			remoteRef = 07108DE11B4C9A4600A28F80 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		07108DE51B4C9A4600A28F80 /* libaxiszlib.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libaxiszlib.dylib;
+			remoteRef = 07108DE41B4C9A4600A28F80 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		07A371231B25D4A000E4F888 /* libaxis.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
@@ -1193,6 +1292,31 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		07108A2C1B4C84B900A28F80 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = aura_ios;
+			targetProxy = 07108A2B1B4C84B900A28F80 /* PBXContainerItemProxy */;
+		};
+		07108A2E1B4C84B900A28F80 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = axis_ios;
+			targetProxy = 07108A2D1B4C84B900A28F80 /* PBXContainerItemProxy */;
+		};
+		07108DDC1B4C9A4600A28F80 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = axisbzip2_ios;
+			targetProxy = 07108DDB1B4C9A4600A28F80 /* PBXContainerItemProxy */;
+		};
+		07108DE71B4C9A4D00A28F80 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = axiszlib_ios;
+			targetProxy = 07108DE61B4C9A4D00A28F80 /* PBXContainerItemProxy */;
+		};
+		07108DE91B4C9A5C00A28F80 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = aurasqlite_ios;
+			targetProxy = 07108DE81B4C9A5C00A28F80 /* PBXContainerItemProxy */;
+		};
 		07A3712C1B25D96A00E4F888 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = axis;

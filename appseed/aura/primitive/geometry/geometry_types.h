@@ -272,7 +272,7 @@ CLASS_DECL_AURA bool deflate(LPRECT prect,LPCRECT lpcrect);
 
 
 
-#if defined(APPLEOS)
+#if defined(MACOS)
 
 
 

@@ -4,14 +4,19 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>axiszlib.xcscheme</key>
+		<key>axiszlib_ios.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>8</integer>
+			<integer>17</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>07108CE31B4C97EF00A28F80</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>9A1B2F8716A2AF5C00875A94</key>
 		<dict>
 			<key>primary</key>

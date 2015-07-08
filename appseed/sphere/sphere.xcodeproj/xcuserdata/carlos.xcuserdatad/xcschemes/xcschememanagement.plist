@@ -4,15 +4,10 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>sphere.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>30</integer>
-		</dict>
 		<key>sphere_ios.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>31</integer>
+			<integer>47</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>

@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07108B5E1B4C97C600A28F80 /* blocksort.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEADE119C4FBA000866C9E /* blocksort.c */; };
+		07108B5F1B4C97C600A28F80 /* bsdiff_bsdiff.c in Sources */ = {isa = PBXBuildFile; fileRef = 0747A71B1B263C7000E85AC7 /* bsdiff_bsdiff.c */; };
+		07108B601B4C97C600A28F80 /* huffman.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEADEA19C4FBA000866C9E /* huffman.c */; };
+		07108B611B4C97C600A28F80 /* libbsdiff.c in Sources */ = {isa = PBXBuildFile; fileRef = 0747A71F1B263C7000E85AC7 /* libbsdiff.c */; };
+		07108B621B4C97C600A28F80 /* crctable.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEADE719C4FBA000866C9E /* crctable.c */; };
+		07108B631B4C97C600A28F80 /* decompress.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEADE819C4FBA000866C9E /* decompress.c */; };
+		07108B641B4C97C600A28F80 /* randtable.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEADEC19C4FBA000866C9E /* randtable.c */; };
+		07108B651B4C97C600A28F80 /* bsdiff_bspatch.c in Sources */ = {isa = PBXBuildFile; fileRef = 0747A71C1B263C7000E85AC7 /* bsdiff_bspatch.c */; };
+		07108B661B4C97C600A28F80 /* bzlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEADE519C4FBA000866C9E /* bzlib.c */; };
+		07108B671B4C97C600A28F80 /* compress.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEADE619C4FBA000866C9E /* compress.c */; };
+		07108B6A1B4C97C600A28F80 /* bzlib_private.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEADE419C4FBA000866C9E /* bzlib_private.h */; };
 		0747A7241B263C7000E85AC7 /* bsdiff_bsdiff.c in Sources */ = {isa = PBXBuildFile; fileRef = 0747A71B1B263C7000E85AC7 /* bsdiff_bsdiff.c */; };
 		0747A7251B263C7000E85AC7 /* bsdiff_bspatch.c in Sources */ = {isa = PBXBuildFile; fileRef = 0747A71C1B263C7000E85AC7 /* bsdiff_bspatch.c */; };
 		0747A7281B263C7000E85AC7 /* libbsdiff.c in Sources */ = {isa = PBXBuildFile; fileRef = 0747A71F1B263C7000E85AC7 /* libbsdiff.c */; };
@@ -21,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		07108B6E1B4C97C600A28F80 /* libaxisbzip2.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxisbzip2.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		0747A71B1B263C7000E85AC7 /* bsdiff_bsdiff.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bsdiff_bsdiff.c; sourceTree = "<group>"; };
 		0747A71C1B263C7000E85AC7 /* bsdiff_bspatch.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bsdiff_bspatch.c; sourceTree = "<group>"; };
 		0747A71F1B263C7000E85AC7 /* libbsdiff.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = libbsdiff.c; sourceTree = "<group>"; };
@@ -36,6 +48,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		07108B681B4C97C600A28F80 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9AA5E5FC16F7C61B005C45CE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -60,7 +79,6 @@
 			isa = PBXGroup;
 			children = (
 				0747A7101B263C6E00E85AC7 /* bsdiff */,
-				9AEB768616F7BAA50085103B /* Products */,
 				9AEEADE119C4FBA000866C9E /* blocksort.c */,
 				9AEEADE419C4FBA000866C9E /* bzlib_private.h */,
 				9AEEADE519C4FBA000866C9E /* bzlib.c */,
@@ -70,19 +88,21 @@
 				9AEEADEA19C4FBA000866C9E /* huffman.c */,
 				9AEEADEC19C4FBA000866C9E /* randtable.c */,
 				9AEEADFD19C4FBC700866C9E /* libaxisbzip2.dylib */,
+				07108B6E1B4C97C600A28F80 /* libaxisbzip2.dylib */,
 			);
-			sourceTree = "<group>";
-		};
-		9AEB768616F7BAA50085103B /* Products */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		07108B691B4C97C600A28F80 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07108B6A1B4C97C600A28F80 /* bzlib_private.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9AA5E5FE16F7C61B005C45CE /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -94,6 +114,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		07108B5C1B4C97C600A28F80 /* axisbzip2_ios */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 07108B6B1B4C97C600A28F80 /* Build configuration list for PBXNativeTarget "axisbzip2_ios" */;
+			buildPhases = (
+				07108B5D1B4C97C600A28F80 /* Sources */,
+				07108B681B4C97C600A28F80 /* Frameworks */,
+				07108B691B4C97C600A28F80 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = axisbzip2_ios;
+			productName = FreeImage;
+			productReference = 07108B6E1B4C97C600A28F80 /* libaxisbzip2.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
 		9AA5E4C216F7C61B005C45CE /* axisbzip2 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9AA5E6D316F7C61B005C45CE /* Build configuration list for PBXNativeTarget "axisbzip2" */;
@@ -133,11 +170,29 @@
 			projectRoot = "";
 			targets = (
 				9AA5E4C216F7C61B005C45CE /* axisbzip2 */,
+				07108B5C1B4C97C600A28F80 /* axisbzip2_ios */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		07108B5D1B4C97C600A28F80 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07108B5E1B4C97C600A28F80 /* blocksort.c in Sources */,
+				07108B5F1B4C97C600A28F80 /* bsdiff_bsdiff.c in Sources */,
+				07108B601B4C97C600A28F80 /* huffman.c in Sources */,
+				07108B611B4C97C600A28F80 /* libbsdiff.c in Sources */,
+				07108B621B4C97C600A28F80 /* crctable.c in Sources */,
+				07108B631B4C97C600A28F80 /* decompress.c in Sources */,
+				07108B641B4C97C600A28F80 /* randtable.c in Sources */,
+				07108B651B4C97C600A28F80 /* bsdiff_bspatch.c in Sources */,
+				07108B661B4C97C600A28F80 /* bzlib.c in Sources */,
+				07108B671B4C97C600A28F80 /* compress.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9AA5E4C316F7C61B005C45CE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -158,6 +213,24 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		07108B6C1B4C97C600A28F80 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		07108B6D1B4C97C600A28F80 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
 		9A1B2F8A16A2AF5C00875A94 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -240,6 +313,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		07108B6B1B4C97C600A28F80 /* Build configuration list for PBXNativeTarget "axisbzip2_ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				07108B6C1B4C97C600A28F80 /* Debug */,
+				07108B6D1B4C97C600A28F80 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		9A1B2F8216A2AF5C00875A94 /* Build configuration list for PBXProject "axisbzip2" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

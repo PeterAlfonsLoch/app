@@ -6,7 +6,7 @@
 //
 //   C => in ca2 scope
 //
-//   Thank you God for C++!!
+//   Thank you God for C++!! Cheap and valuable!!
 //
 
 #pragma once

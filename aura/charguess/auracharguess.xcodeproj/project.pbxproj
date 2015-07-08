@@ -9,6 +9,29 @@
 /* Begin PBXBuildFile section */
 		07502CB01B2529AF008D207C /* _cpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07502CAF1B2529AF008D207C /* _cpp.cpp */; };
 		07502CB21B2529BA008D207C /* charDistribution.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07502CB11B2529BA008D207C /* charDistribution.cpp */; };
+		07D6A82B1B4CBB45004FEBC2 /* _cpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07502CAF1B2529AF008D207C /* _cpp.cpp */; };
+		07D6A82C1B4CBB45004FEBC2 /* charDistribution.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07502CB11B2529BA008D207C /* charDistribution.cpp */; };
+		07D6A82E1B4CBB45004FEBC2 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A1EDB4E19C83FE800F5CCE8 /* libaura.dylib */; };
+		07D6A8301B4CBB45004FEBC2 /* codingStateMachine.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDAF019C83CD000F5CCE8 /* codingStateMachine.h */; };
+		07D6A8311B4CBB45004FEBC2 /* universal.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB1919C83CD000F5CCE8 /* universal.h */; };
+		07D6A8321B4CBB45004FEBC2 /* MBCSGroupProber.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB0E19C83CD000F5CCE8 /* MBCSGroupProber.h */; };
+		07D6A8331B4CBB45004FEBC2 /* SBCharsetProber.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB1219C83CD000F5CCE8 /* SBCharsetProber.h */; };
+		07D6A8341B4CBB45004FEBC2 /* charDistribution.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDAED19C83CD000F5CCE8 /* charDistribution.h */; };
+		07D6A8351B4CBB45004FEBC2 /* big5Prober.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDAEB19C83CD000F5CCE8 /* big5Prober.h */; };
+		07D6A8361B4CBB45004FEBC2 /* EscCharsetProber.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDAF519C83CD000F5CCE8 /* EscCharsetProber.h */; };
+		07D6A8371B4CBB45004FEBC2 /* UTF8Prober.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB1B19C83CD000F5CCE8 /* UTF8Prober.h */; };
+		07D6A8381B4CBB45004FEBC2 /* types.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB1719C83CD000F5CCE8 /* types.h */; };
+		07D6A8391B4CBB45004FEBC2 /* charsetProber.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDAEF19C83CD000F5CCE8 /* charsetProber.h */; };
+		07D6A83A1B4CBB45004FEBC2 /* EUCJPProber.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDAF819C83CD000F5CCE8 /* EUCJPProber.h */; };
+		07D6A83B1B4CBB45004FEBC2 /* jpCntx.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB0419C83CD000F5CCE8 /* jpCntx.h */; };
+		07D6A83C1B4CBB45004FEBC2 /* SBCSGroupProber.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB1419C83CD000F5CCE8 /* SBCSGroupProber.h */; };
+		07D6A83D1B4CBB45004FEBC2 /* config.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDAF119C83CD000F5CCE8 /* config.h */; };
+		07D6A83E1B4CBB45004FEBC2 /* pkgInt.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB1019C83CD000F5CCE8 /* pkgInt.h */; };
+		07D6A83F1B4CBB45004FEBC2 /* EUCTWProber.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDAFE19C83CD000F5CCE8 /* EUCTWProber.h */; };
+		07D6A8401B4CBB45004FEBC2 /* EUCKRProber.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDAFB19C83CD000F5CCE8 /* EUCKRProber.h */; };
+		07D6A8411B4CBB45004FEBC2 /* GB2312Prober.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB0119C83CD000F5CCE8 /* GB2312Prober.h */; };
+		07D6A8421B4CBB45004FEBC2 /* Latin1Prober.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB0B19C83CD000F5CCE8 /* Latin1Prober.h */; };
+		07D6A8431B4CBB45004FEBC2 /* SJISProber.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB1619C83CD000F5CCE8 /* SJISProber.h */; };
 		9A1EDB1D19C83CD000F5CCE8 /* big5Prober.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDAEB19C83CD000F5CCE8 /* big5Prober.h */; };
 		9A1EDB1F19C83CD000F5CCE8 /* charDistribution.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDAED19C83CD000F5CCE8 /* charDistribution.h */; };
 		9A1EDB2119C83CD000F5CCE8 /* charsetProber.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDAEF19C83CD000F5CCE8 /* charsetProber.h */; };
@@ -33,6 +56,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		07D6A8291B4CBB45004FEBC2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A1EDB4719C83FE800F5CCE8 /* aura.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A98A6031771D67E000AE16E;
+			remoteInfo = aura;
+		};
 		9A1EDB4D19C83FE800F5CCE8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A1EDB4719C83FE800F5CCE8 /* aura.xcodeproj */;
@@ -66,6 +96,7 @@
 /* Begin PBXFileReference section */
 		07502CAF1B2529AF008D207C /* _cpp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _cpp.cpp; sourceTree = "<group>"; };
 		07502CB11B2529BA008D207C /* charDistribution.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = charDistribution.cpp; sourceTree = "<group>"; };
+		07D6A8471B4CBB45004FEBC2 /* libauracharguess.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libauracharguess.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A1EDAEB19C83CD000F5CCE8 /* big5Prober.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = big5Prober.h; sourceTree = "<group>"; };
 		9A1EDAED19C83CD000F5CCE8 /* charDistribution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = charDistribution.h; sourceTree = "<group>"; };
 		9A1EDAEF19C83CD000F5CCE8 /* charsetProber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = charsetProber.h; sourceTree = "<group>"; };
@@ -91,6 +122,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		07D6A82D1B4CBB45004FEBC2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07D6A82E1B4CBB45004FEBC2 /* libaura.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9AA5E5FC16F7C61B005C45CE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -108,6 +147,7 @@
 				9A1EDB4719C83FE800F5CCE8 /* aura.xcodeproj */,
 				9A1EDAE819C83CD000F5CCE8 /* cpp */,
 				9AA539B119B763C400B9F861 /* libauracharguess.dylib */,
+				07D6A8471B4CBB45004FEBC2 /* libauracharguess.dylib */,
 			);
 			sourceTree = "<group>";
 		};
@@ -153,6 +193,33 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		07D6A82F1B4CBB45004FEBC2 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07D6A8301B4CBB45004FEBC2 /* codingStateMachine.h in Headers */,
+				07D6A8311B4CBB45004FEBC2 /* universal.h in Headers */,
+				07D6A8321B4CBB45004FEBC2 /* MBCSGroupProber.h in Headers */,
+				07D6A8331B4CBB45004FEBC2 /* SBCharsetProber.h in Headers */,
+				07D6A8341B4CBB45004FEBC2 /* charDistribution.h in Headers */,
+				07D6A8351B4CBB45004FEBC2 /* big5Prober.h in Headers */,
+				07D6A8361B4CBB45004FEBC2 /* EscCharsetProber.h in Headers */,
+				07D6A8371B4CBB45004FEBC2 /* UTF8Prober.h in Headers */,
+				07D6A8381B4CBB45004FEBC2 /* types.h in Headers */,
+				07D6A8391B4CBB45004FEBC2 /* charsetProber.h in Headers */,
+				07D6A83A1B4CBB45004FEBC2 /* EUCJPProber.h in Headers */,
+				07D6A83B1B4CBB45004FEBC2 /* jpCntx.h in Headers */,
+				07D6A83C1B4CBB45004FEBC2 /* SBCSGroupProber.h in Headers */,
+				07D6A83D1B4CBB45004FEBC2 /* config.h in Headers */,
+				07D6A83E1B4CBB45004FEBC2 /* pkgInt.h in Headers */,
+				07D6A83F1B4CBB45004FEBC2 /* EUCTWProber.h in Headers */,
+				07D6A8401B4CBB45004FEBC2 /* EUCKRProber.h in Headers */,
+				07D6A8411B4CBB45004FEBC2 /* GB2312Prober.h in Headers */,
+				07D6A8421B4CBB45004FEBC2 /* Latin1Prober.h in Headers */,
+				07D6A8431B4CBB45004FEBC2 /* SJISProber.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9AA5E5FE16F7C61B005C45CE /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -183,6 +250,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		07D6A8271B4CBB45004FEBC2 /* auracharguess_ios */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 07D6A8441B4CBB45004FEBC2 /* Build configuration list for PBXNativeTarget "auracharguess_ios" */;
+			buildPhases = (
+				07D6A82A1B4CBB45004FEBC2 /* Sources */,
+				07D6A82D1B4CBB45004FEBC2 /* Frameworks */,
+				07D6A82F1B4CBB45004FEBC2 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				07D6A8281B4CBB45004FEBC2 /* PBXTargetDependency */,
+			);
+			name = auracharguess_ios;
+			productName = FreeImage;
+			productReference = 07D6A8471B4CBB45004FEBC2 /* libauracharguess.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
 		9AA5E4C216F7C61B005C45CE /* auracharguess */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9AA5E6D316F7C61B005C45CE /* Build configuration list for PBXNativeTarget "auracharguess" */;
@@ -229,6 +314,7 @@
 			projectRoot = "";
 			targets = (
 				9AA5E4C216F7C61B005C45CE /* auracharguess */,
+				07D6A8271B4CBB45004FEBC2 /* auracharguess_ios */,
 			);
 		};
 /* End PBXProject section */
@@ -258,6 +344,15 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
+		07D6A82A1B4CBB45004FEBC2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07D6A82B1B4CBB45004FEBC2 /* _cpp.cpp in Sources */,
+				07D6A82C1B4CBB45004FEBC2 /* charDistribution.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9AA5E4C316F7C61B005C45CE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -270,6 +365,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		07D6A8281B4CBB45004FEBC2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = aura;
+			targetProxy = 07D6A8291B4CBB45004FEBC2 /* PBXContainerItemProxy */;
+		};
 		9A1EDB5419C83FF200F5CCE8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = aura;
@@ -278,6 +378,22 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		07D6A8451B4CBB45004FEBC2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INSTALL_PATH = "$(LOCAL_APPS_DIR)/ca2.app";
+			};
+			name = Debug;
+		};
+		07D6A8461B4CBB45004FEBC2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INSTALL_PATH = "$(LOCAL_APPS_DIR)/ca2.app";
+			};
+			name = Release;
+		};
 		9A1B2F8A16A2AF5C00875A94 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -370,6 +486,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		07D6A8441B4CBB45004FEBC2 /* Build configuration list for PBXNativeTarget "auracharguess_ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				07D6A8451B4CBB45004FEBC2 /* Debug */,
+				07D6A8461B4CBB45004FEBC2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		9A1B2F8216A2AF5C00875A94 /* Build configuration list for PBXProject "auracharguess" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

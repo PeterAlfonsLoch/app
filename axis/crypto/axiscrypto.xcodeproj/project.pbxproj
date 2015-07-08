@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		07502C8F1B24744C008D207C /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07502C881B247427008D207C /* libaura.dylib */; };
 		07558DA91B23DD56008C63AF /* bss_dgram.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DA71B23DD56008C63AF /* bss_dgram.c */; };
 		07558DAA1B23DD56008C63AF /* bss_sock.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DA81B23DD56008C63AF /* bss_sock.c */; };
 		07558DAC1B23DD8B008C63AF /* _bn.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DAB1B23DD8B008C63AF /* _bn.c */; };
@@ -32,6 +31,7 @@
 		07558DD21B23E19B008C63AF /* txt_db.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DD11B23E19B008C63AF /* txt_db.c */; };
 		07558DD41B23E1C8008C63AF /* v3_lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DD31B23E1C8008C63AF /* v3_lib.c */; };
 		07558DD61B23E34B008C63AF /* mem_aura.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DD51B23E34B008C63AF /* mem_aura.c */; };
+		077A02451B4D5C2B001C85FF /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07502C8A1B247427008D207C /* libaura.dylib */; };
 		077CEF191B23C505009A57EF /* _crypto.c in Sources */ = {isa = PBXBuildFile; fileRef = 077CEF181B23C505009A57EF /* _crypto.c */; };
 		077CEF2A1B23DC97009A57EF /* _x509.c in Sources */ = {isa = PBXBuildFile; fileRef = 077CEF291B23DC97009A57EF /* _x509.c */; };
 		077CEF2C1B23DCB7009A57EF /* _x509v3.c in Sources */ = {isa = PBXBuildFile; fileRef = 077CEF2B1B23DCB7009A57EF /* _x509v3.c */; };
@@ -108,12 +108,12 @@
 			remoteGlobalIDString = 9AE24D431904CEFE001AEFFB;
 			remoteInfo = aura_iosTests;
 		};
-		07502C8D1B24743E008D207C /* PBXContainerItemProxy */ = {
+		077A02431B4D5C21001C85FF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 07502C811B247427008D207C /* aura.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 9A98A6031771D67E000AE16E;
-			remoteInfo = aura;
+			remoteGlobalIDString = 9AE24D331904CEFE001AEFFB;
+			remoteInfo = aura_ios;
 		};
 		9AE24D9D1904CF46001AEFFB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -280,7 +280,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07502C8F1B24744C008D207C /* libaura.dylib in Frameworks */,
+				077A02451B4D5C2B001C85FF /* libaura.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1123,7 +1123,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				07502C8E1B24743E008D207C /* PBXTargetDependency */,
+				077A02441B4D5C21001C85FF /* PBXTargetDependency */,
 			);
 			name = axiscrypto;
 			productName = basefreeimage_ios;
@@ -1340,10 +1340,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		07502C8E1B24743E008D207C /* PBXTargetDependency */ = {
+		077A02441B4D5C21001C85FF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = aura;
-			targetProxy = 07502C8D1B24743E008D207C /* PBXContainerItemProxy */;
+			name = aura_ios;
+			targetProxy = 077A02431B4D5C21001C85FF /* PBXContainerItemProxy */;
 		};
 		9AE24D9E1904CF46001AEFFB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
