@@ -165,3 +165,32 @@ WINBOOL get_nswindow_rect(oswindow oswindow, LPRECT lprect)
 }
 
 
+
+int ui_open_url(const char * pszUrl)
+{
+   
+   NSString * strUrl = [NSString stringWithUTF8String:pszUrl];
+   
+   if(strUrl == NULL)
+      return 0;
+   
+   NSURL * url = [NSURL URLWithString:strUrl];
+   
+   if(url == NULL)
+   {
+      
+      [strUrl release];
+      
+      return 0;
+      
+   }
+   
+   [strUrl release];
+   
+   BOOL b = [[UIApplication sharedApplication] openURL:url];   
+   
+   [url release];
+
+   return b ? 1 : 0;
+
+}

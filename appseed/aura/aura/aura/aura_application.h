@@ -202,7 +202,7 @@ namespace aura
       virtual bool post_user_message(::thread_impl * pimpl,::user::primitive * pui,UINT message,WPARAM wparam = 0,lparam lparam = cnull);
 
       virtual bool is_window(::user::primitive * pui);
-      virtual LRESULT send_message(::user::primitive * pui, UINT message, WPARAM wparam = 0, lparam lparam = cnull);
+      virtual LRESULT send_message(::user::primitive * pui, UINT message, WPARAM wparam = 0, lparam lparam = NULL);
       virtual oswindow get_safe_handle(::user::primitive * pui);
       virtual void dispatch_user_message(::signal_details * pobj);
       virtual ::user::primitive * get_parent(::user::primitive * pui);

@@ -1,9 +1,9 @@
 #pragma once
 
-class cnull
-{
-public: 
-};
+//class cnull
+//{
+//public: 
+//};
 
 
 
@@ -13,11 +13,6 @@ public:
 
 
    LPARAM m_lparam;
-
-   lparam(class cnull)
-   {
-      m_lparam = 0;
-   }
 
    lparam(LPARAM lparam = 0)
    {

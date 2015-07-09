@@ -313,18 +313,22 @@ void openURL(const string &url_str) {
 
 void openURL(const string &url_str);
 
+int ui_open_url(const char * psz);
 
 void openURL(const string &url_str) {
-   throw todo(get_thread_app());
-  // CFURLRef url = CFURLCreateWithBytes(
-    //  NULL,                        // allocator
-      //(UInt8*)url_str.c_str(),     // URLBytes
-      //url_str.length(),            // length
-      //kCFStringEncodingASCII,      // encoding
-      //NULL                         // baseURL
-      //);
-   //    LSOpenCFURLRef(url,0);
-  // CFRelease(url);
+//   throw todo(get_thread_app());
+//   CFURLRef url = CFURLCreateWithBytes(
+//      NULL,                        // allocator
+//      (UInt8*)url_str.c_str(),     // URLBytes
+//      url_str.length(),            // length
+//      kCFStringEncodingASCII,      // encoding
+//      NULL                         // baseURL
+//      );
+//       LSOpenCFURLRef(url,0);
+   
+   ui_open_url(url_str);
+   
+//   CFRelease(url);
 }
 
 

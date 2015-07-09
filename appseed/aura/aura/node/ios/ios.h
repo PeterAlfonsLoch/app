@@ -68,15 +68,19 @@ CLASS_DECL_AURA void AfxResetMsgCache();
 
 #include "ios_implementation.h"
 #include "ios_dir.h"
+#include "ios_file_system.h"
+#include "ios_file_set.h"
+#include "ios_file.h"
+#include "ios_stdio_file.h"
 #include "ios_factory_exchange.h"
-#include "ios_window_draw.h"
+//#include "ios_window_draw.h"
 #include "ios_thread.h"
-#include "ios_window.h"
+//#include "ios_window.h"
 #include "ios_os.h"
-#include "ios_port_forward.h"
-#include "ios_copydesk.h"
-#include "ios_crypto.h"
-#include "ios_ip_enum.h"
+//#include "ios_port_forward.h"
+//#include "ios_copydesk.h"
+//#include "ios_crypto.h"
+//#include "ios_ip_enum.h"
 
 #define NULL_REF(class) (*((class *) NULL))
 // xxx CLASS_DECL_AURA WNDPROC AfxGetAfxWndProc();
@@ -90,10 +94,10 @@ CLASS_DECL_AURA void AfxResetMsgCache();
 CLASS_DECL_AURA void __trace_message(const char * lpszPrefix, signal_details * pobj);
 CLASS_DECL_AURA void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
 
-CLASS_DECL_AURA void AfxProcessWndProcException(::exception::aura*, signal_details * pobj);
+//CLASS_DECL_AURA void AfxProcessWndProcException(::exception::aura*, signal_details * pobj);
 CLASS_DECL_AURA void __cdecl __pre_translate_message(signal_details * pobj);
 
-#include "ios_printer.h"
+//#include "ios_printer.h"
 
 #include "ios_application.h"
 
@@ -119,6 +123,7 @@ int32_t CLASS_DECL_AURA __ios_main(int32_t argc, char * argv[]);
 
 CLASS_DECL_AURA void vfxThrowFileException(::aura::application * papp, ::file::exception::e_cause ecause, LONG lOsError, const char * lpszFileName = NULL);
 
+CLASS_DECL_AURA ::file::exception * get_FileException(::aura::application * papp, ::file::exception::e_cause ecause, LONG lOsError, const char * lpszFileName = NULL);
 
 
 
@@ -143,7 +148,7 @@ namespace ios
 struct CLASS_DECL_AURA __exception_link
 {
    __exception_link* m_pLinkPrev;    // previous top, next in handler chain
-   ::exception::aura * m_pException;   // current exception (NULL in try block)
+   ::exception::base * m_pException;   // current exception (NULL in try block)
 
    __exception_link();       // for initialization and linking
    ~__exception_link()       // for cleanup and unlinking

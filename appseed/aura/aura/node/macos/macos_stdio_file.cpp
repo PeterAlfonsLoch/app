@@ -26,11 +26,11 @@ namespace macos
          close();
    }
 
-   bool stdio_file::open(const char * lpszFileName, UINT nOpenFlags)
+   cres stdio_file::open(const ::file::path & lpszFileName, UINT nOpenFlags)
    {
-      ASSERT(lpszFileName != NULL);
+//      ASSERT(lpszFileName != NULL);
       //ASSERT(AfxIsValidString(lpszFileName));
-
+      
       if(nOpenFlags  & ::file::defer_create_directory)
       {
          Application.dir().mk(::file::path(lpszFileName).folder());

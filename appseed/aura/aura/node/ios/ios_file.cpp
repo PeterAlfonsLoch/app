@@ -12,12 +12,12 @@
 #include <sys/stat.h>
 #endif
 
-__STATIC inline bool IsDirSep(WCHAR ch)
-{
-
-   return (ch == '\\' || ch == '/');
-
-}
+//__STATIC inline bool IsDirSep(WCHAR ch)
+//{
+//
+//   return (ch == '\\' || ch == '/');
+//
+//}
 
 
 namespace ios
@@ -30,7 +30,7 @@ namespace ios
 
       m_iFile = (UINT) hFileNull;
 
-      m_bCloseOnDelete = TRUE;
+//      m_bCloseOnDelete = TRUE;
 
    }
 
@@ -40,7 +40,7 @@ namespace ios
 
       m_iFile = hFile;
 
-      m_bCloseOnDelete = TRUE;
+//      m_bCloseOnDelete = TRUE;
 
    }
 
@@ -58,7 +58,9 @@ namespace ios
    file::~file()
    {
 
-      if (m_iFile != (UINT)hFileNull && m_bCloseOnDelete)
+//      if (m_iFile != (UINT)hFileNull && m_bCloseOnDelete)
+  //       close();
+      if (m_iFile != (UINT)hFileNull)
          close();
 
    }
@@ -76,11 +78,11 @@ namespace ios
       file* pFile = new file(get_app(), iNew);
       pFile->m_iFile = (UINT)iNew;
       ASSERT(pFile->m_iFile != (UINT)hFileNull);
-      pFile->m_bCloseOnDelete = m_bCloseOnDelete;
+//      pFile->m_bCloseOnDelete = m_bCloseOnDelete;
       return pFile;
    }
 
-   bool file::open(const char * lpszFileName, UINT nOpenFlags)
+   cres file::open(const ::file::path & lpszFileName, UINT nOpenFlags)
    {
 
       if (m_iFile != (UINT)hFileNull)
@@ -96,10 +98,10 @@ namespace ios
 
       if(nOpenFlags & ::file::defer_create_directory)
       {
-         System.dir_mk(System.dir_name(lpszFileName));
+         Application.dir().mk(::file::path(lpszFileName).folder());
       }
 
-      m_bCloseOnDelete = FALSE;
+//      m_bCloseOnDelete = FALSE;
       m_iFile = (UINT)hFileNull;
       m_strFileName.Empty();
 
@@ -167,10 +169,11 @@ namespace ios
       // attempt file creation
       //HANDLE hFile = shell::CreateFile(::str::international::utf8_to_unicode(m_strFileName), dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, NULL);
       int32_t hFile = ::open(m_strFileName, dwFlags, dwPermission); //::open(m_strFileName, dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, NULL);
-      if(hFile == -1)
+      if(hFile == hFileNull)
       {
+         
          DWORD dwLastError = ::GetLastError();
-
+         
          if(dwLastError != ERROR_FILE_NOT_FOUND && dwLastError != ERROR_PATH_NOT_FOUND)
          {
             /*         if (pException != NULL)
@@ -187,14 +190,15 @@ namespace ios
              }
              else
              {*/
-
-
-            vfxThrowFileException(get_app(), ::ios::file_exception::OsErrorToException(dwLastError), dwLastError, m_strFileName);
-
+            
+            
+            //            vfxThrowFileException(get_app(), ::macos::file_exception::OsErrorToException(dwLastError), dwLastError, m_strFileName);
+            return canew(::file::exception(get_app(), file_exception::OsErrorToException(dwLastError), dwLastError, lpszFileName));
+            
             //}
-
+            
          }
-
+         
          /*try
           {
           m_papp->m_psystem->m_spfilesystem.m_p->FullPath(m_wstrFileName, m_wstrFileName);
@@ -203,11 +207,11 @@ namespace ios
           {
           return FALSE;
           }
-
+          
           m_strFileName = ::str::international::unicode_to_utf8(m_wstrFileName);
-
+          
           hFile = ::open(m_strFileName, nOpenFlags);*/
-
+         
          if (hFile == -1)
          {
             /*if (pException != NULL)
@@ -224,49 +228,51 @@ namespace ios
              }
              else
              {*/
-
-
+            
+            
             DWORD dwLastError = ::GetLastError();
-            vfxThrowFileException(get_app(), ::ios::file_exception::OsErrorToException(dwLastError), dwLastError, m_strFileName);
-
-
+            //            vfxThrowFileException(get_app(), ::macos::file_exception::OsErrorToException(dwLastError), dwLastError, m_strFileName);
+            
+            return canew(::file::exception(get_app(), file_exception::OsErrorToException(dwLastError), dwLastError, lpszFileName));
+            
             //}
-
+            
          }
-
+         
       }
-
+      
       m_iFile = (int32_t)hFile;
-
-      m_bCloseOnDelete = TRUE;
-
-      return TRUE;
+      
+      //      m_bCloseOnDelete = TRUE;
+      
+      return ::no_exception;
+      
    }
 
    ::primitive::memory_size file::read(void * lpBuf, ::primitive::memory_size nCount)
    {
       ASSERT_VALID(this);
       ASSERT(m_iFile != (UINT)hFileNull);
-
+      
       if (nCount == 0)
          return 0;   // avoid Win32 "null-read"
-
+      
       ASSERT(lpBuf != NULL);
       ASSERT(__is_valid_address(lpBuf, nCount));
-
+      
       ::primitive::memory_position pos = 0;
       ::primitive::memory_size sizeRead = 0;
       ::primitive::memory_size readNow;
       while(nCount > 0)
       {
-         readNow = (size_t) min(0x7fffffff, nCount);
+         readNow = (size_t) MIN(0x7fffffff, nCount);
          size_t iRead = ::read(m_iFile, &((byte *)lpBuf)[pos], readNow);
-         if(iRead == ::numeric_info::get_allset_value < size_t >())
+         if(iRead == ::numeric_info<size_t>::get_allset_value ())
          {
             int32_t iError = errno;
             if(iError == EAGAIN)
             {
-
+               
             }
             ::ios::file_exception::ThrowOsError(get_app(), errno);
          }
@@ -274,117 +280,153 @@ namespace ios
          {
             break;
          }
-
+         
          nCount -= iRead;
          pos += iRead;
          sizeRead += iRead;
       }
-
+      
       return sizeRead;
    }
-
+   
    void file::write(const void * lpBuf, ::primitive::memory_size nCount)
    {
       ASSERT_VALID(this);
       ASSERT(m_iFile != (UINT)hFileNull);
-
+      
       if (nCount == 0)
          return;     // avoid Win32 "null-write" option
-
+      
       ASSERT(lpBuf != NULL);
       ASSERT(__is_valid_address(lpBuf, nCount, FALSE));
-
+      
       ::primitive::memory_position pos = 0;
       while(nCount > 0)
       {
-         size_t iWrite = ::write(m_iFile, &((const byte *)lpBuf)[pos], (size_t) min(0x7fffffff, nCount));
-         if(iWrite == ::numeric_info::get_allset_value < size_t >())
+         size_t iWrite = ::write(m_iFile, &((const byte *)lpBuf)[pos], (size_t) MIN(0x7fffffff, nCount));
+         if(iWrite == ::numeric_info<size_t>::get_allset_value ())
             ::ios::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError(), m_strFileName);
          nCount -= iWrite;
          pos += iWrite;
       }
-
+      
       // Win32s will not return an error all the time (usually DISK_FULL)
       //if (iWrite != nCount)
       //vfxThrowFileException(get_app(), ::file::exception::diskFull, -1, m_strFileName);
    }
-
-
+   
+   
    file_position file::seek(file_offset lOff, ::file::e_seek nFrom)
    {
-
+      
       if(m_iFile == (UINT)hFileNull)
          ::ios::file_exception::ThrowOsError(get_app(), (LONG)0);
-
+      
       ASSERT_VALID(this);
       ASSERT(m_iFile != (UINT)hFileNull);
       ASSERT(nFrom == ::file::seek_begin || nFrom == ::file::seek_end || nFrom == ::file::seek_current);
       ASSERT(::file::seek_begin == SEEK_SET && ::file::seek_end == SEEK_END && ::file::seek_current == SEEK_CUR);
-
+      
       LONG lLoOffset = lOff & 0xffffffff;
       //LONG lHiOffset = (lOff >> 32) & 0xffffffff;
-
+      
       file_position posNew = ::lseek(m_iFile, lLoOffset, (DWORD)nFrom);
       //      posNew |= ((file_position) lHiOffset) << 32;
       if(posNew  == (file_position)-1)
          ::ios::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());
-
+      
       return posNew;
    }
-
+   
    file_position file::get_position() const
    {
       ASSERT_VALID(this);
       ASSERT(m_iFile != (UINT)hFileNull);
-
+      
       LONG lLoOffset = 0;
       //      LONG lHiOffset = 0;
-
+      
       file_position pos = ::lseek(m_iFile, lLoOffset, SEEK_CUR);
       //    pos |= ((file_position)lHiOffset) << 32;
       if(pos  == (file_position)-1)
          ::ios::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());
-
+      
       return pos;
    }
-
+   
    void file::Flush()
    {
-
+      
       /*      ::open
        ::read
        ::write
-
+       
        access the system directly no buffering : direct I/O - efficient for large writes - innefficient for lots of single byte writes
-
+       
        */
-
+      
       /*ASSERT_VALID(this);
-
-         if (m_iFile == (UINT)hFileNull)
+       
+       if (m_iFile == (UINT)hFileNull)
        return;
-
+       
        if (!::FlushFileBuffers((HANDLE)m_iFile))
-       ::ios::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());*/
+       ::macos::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());*/
    }
+
+//   file_position file::get_position() const
+//   {
+//      ASSERT_VALID(this);
+//      ASSERT(m_iFile != (UINT)hFileNull);
+//
+//      LONG lLoOffset = 0;
+//      //      LONG lHiOffset = 0;
+//
+//      file_position pos = ::lseek(m_iFile, lLoOffset, SEEK_CUR);
+//      //    pos |= ((file_position)lHiOffset) << 32;
+//      if(pos  == (file_position)-1)
+//         ::ios::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());
+//
+//      return pos;
+//   }
+//
+//   void file::Flush()
+//   {
+//
+//      /*      ::open
+//       ::read
+//       ::write
+//
+//       access the system directly no buffering : direct I/O - efficient for large writes - innefficient for lots of single byte writes
+//
+//       */
+//
+//      /*ASSERT_VALID(this);
+//
+//         if (m_iFile == (UINT)hFileNull)
+//       return;
+//
+//       if (!::FlushFileBuffers((HANDLE)m_iFile))
+//       ::ios::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());*/
+//   }
 
    void file::close()
    {
       ASSERT_VALID(this);
       ASSERT(m_iFile != (UINT)hFileNull);
-
+      
       bool bError = FALSE;
       if (m_iFile != (UINT)hFileNull)
-         bError = !::close(m_iFile);
-
+         bError = ::close(m_iFile) != 0;
+      
       m_iFile = (UINT) hFileNull;
-      m_bCloseOnDelete = FALSE;
+      //      m_bCloseOnDelete = FALSE;
       m_strFileName.Empty();
-
+      
       if (bError)
          ::ios::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());
    }
-
+   
    void file::Abort()
    {
       ASSERT_VALID(this);
@@ -396,104 +438,104 @@ namespace ios
       }
       m_strFileName.Empty();
    }
-
+   
    void file::LockRange(file_position dwPos, file_size dwCount)
    {
       ASSERT_VALID(this);
       ASSERT(m_iFile != (UINT)hFileNull);
-
+      
       /*if (!::LockFile((HANDLE)m_iFile, LODWORD(dwPos), HIDWORD(dwPos), LODWORD(dwCount), HIDWORD(dwCount)))
-       ::ios::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());*/
+       ::macos::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());*/
    }
-
+   
    void file::UnlockRange(file_position dwPos, file_size dwCount)
    {
       ASSERT_VALID(this);
       ASSERT(m_iFile != (UINT)hFileNull);
-
+      
       /*      if (!::UnlockFile((HANDLE)m_iFile,  LODWORD(dwPos), HIDWORD(dwPos), LODWORD(dwCount), HIDWORD(dwCount)))
-       ::ios::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());*/
+       ::macos::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());*/
    }
-
+   
    void file::set_length(file_size dwNewLen)
    {
       ASSERT_VALID(this);
       ASSERT(m_iFile != (UINT)hFileNull);
-
+      
       seek((LONG)dwNewLen, (::file::e_seek)::file::seek_begin);
-
+      
       if (!::ftruncate(m_iFile, dwNewLen))
          ::ios::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());
    }
-
+   
    file_size file::get_length() const
    {
       ASSERT_VALID(this);
-
+      
       file_position dwLen, dwCur;
-
+      
       // seek is a non const operation
       file* pFile = (file*)this;
       dwCur = pFile->seek(0L, ::file::seek_current);
       dwLen = pFile->seek_to_end();
       VERIFY(dwCur == (uint64_t)pFile->seek((file_offset) dwCur, ::file::seek_begin));
-
+      
       return (file_size) dwLen;
    }
-
+   
    // file does not support direct buffering (CMemFile does)
    uint64_t file::GetBufferPtr(UINT nCommand, uint64_t /*nCount*/,
                                void ** /*ppBufStart*/, void ** /*ppBufMax*/)
    {
       ASSERT(nCommand == bufferCheck);
-//      UNUSED(nCommand);    // not used in retail build
-
+      //      UNUSED(nCommand);    // not used in retail build
+      
       return 0;   // no support
    }
-
+   
    /*
     void PASCAL file::Rename(const char * lpszOldName, const char * lpszNewName)
     {
     if (!::MoveFile((LPTSTR)lpszOldName, (LPTSTR)lpszNewName))
     ::win::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());
     }
-
+    
     void PASCAL file::remove(const char * lpszFileName)
     {
     if (!::DeleteFile((LPTSTR)lpszFileName))
     ::win::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());
     }
     */
-
-
-
-
-
+   
+   
+   
+   
+   
    /////////////////////////////////////////////////////////////////////////////
    // file diagnostics
-
-
+   
+   
    void file::assert_valid() const
    {
       ::object::assert_valid();
       // we permit the descriptor m_iFile to be any value for derived classes
    }
-
+   
    void file::dump(dump_context & dumpcontext) const
    {
       ::object::dump(dumpcontext);
-
+      
       dumpcontext << "with handle " << (UINT)m_iFile;
       dumpcontext << " and name \"" << m_strFileName << "\"";
       dumpcontext << "\n";
    }
-
-
-
-
+   
+   
+   
+   
    /////////////////////////////////////////////////////////////////////////////
    // FileException helpers
-
+   
 #ifdef DEBUG
    static const char * rgszFileExceptionCause[] =
    {
@@ -515,8 +557,8 @@ namespace ios
    };
    static const char szUnknown[] = "unknown";
 #endif
-
-
+   
+   
    /*void CLASS_DECL_AURA vfxThrowFileException(int32_t cause, LONG lOsError,
     //   const char * lpszFileName  == NULL */
    /*{
@@ -531,254 +573,255 @@ namespace ios
     #endif
     THROW(new FileException(cause, lOsError, lpszFileName));
     }*/
-
+   
    /* Error Codes */
-
-
+   
+   
    /////////////////////////////////////////////////////////////////////////////
    // file name handlers
-
+   
    string file::GetFileName() const
    {
       ASSERT_VALID(this);
-
+      
       ::file::file_status status;
       GetStatus(status);
-      return System.file_name(status.m_strFullName);
+      return status.m_strFullName.name();
+      
    }
-
+   
    string file::GetFileTitle() const
    {
       ASSERT_VALID(this);
-
+      
       ::file::file_status status;
       GetStatus(status);
-      return System.file().title_(status.m_strFullName);
+      return status.m_strFullName.title();
    }
-
+   
    string file::GetFilePath() const
    {
       ASSERT_VALID(this);
-
+      
       ::file::file_status status;
       GetStatus(status);
       return status.m_strFullName;
    }
-
-
-
-
+   
+   
+   
+   
    /////////////////////////////////////////////////////////////////////////////
    // FileException
-
-
+   
+   
    namespace file_exception
    {
-
-   void ThrowOsError(::aura::application * papp, LONG lOsError, const char * lpszFileName /* = NULL */)
-   {
-      if (lOsError != 0)
-         vfxThrowFileException(papp, ::ios::file_exception::OsErrorToException(lOsError), lOsError, lpszFileName);
-   }
-
-   void ThrowErrno(::aura::application * papp, int32_t nErrno, const char * lpszFileName /* = NULL */)
-   {
-      if (nErrno != 0)
-         vfxThrowFileException(papp, ::ios::file_exception::ErrnoToException(nErrno), errno, lpszFileName);
-   }
-
-
-
-   int32_t OsErrorToException(LONG lOsErr)
-   {
-      // NT Error codes
-      switch ((UINT)lOsErr)
+      
+      void ThrowOsError(::aura::application * papp, LONG lOsError, const char * lpszFileName /* = NULL */)
       {
-         case NO_ERROR:
-            return ::file::exception::none;
-         case ERROR_FILE_NOT_FOUND:
-            return ::file::exception::fileNotFound;
-         case ERROR_PATH_NOT_FOUND:
-            return ::file::exception::badPath;
-         case ERROR_TOO_MANY_OPEN_FILES:
-            return ::file::exception::tooManyOpenFiles;
-         case ERROR_ACCESS_DENIED:
-            return ::file::exception::accessDenied;
-         case ERROR_INVALID_HANDLE:
-            return ::file::exception::fileNotFound;
-         case ERROR_BAD_FORMAT:
-            return ::file::exception::invalidFile;
-         case ERROR_INVALID_ACCESS:
-            return ::file::exception::accessDenied;
-         case ERROR_INVALID_DRIVE:
-            return ::file::exception::badPath;
-         case ERROR_CURRENT_DIRECTORY:
-            return ::file::exception::removeCurrentDir;
-         case ERROR_NOT_SAME_DEVICE:
-            return ::file::exception::badPath;
-         case ERROR_NO_MORE_FILES:
-            return ::file::exception::fileNotFound;
-         case ERROR_WRITE_PROTECT:
-            return ::file::exception::accessDenied;
-         case ERROR_BAD_UNIT:
-            return ::file::exception::hardIO;
-         case ERROR_NOT_READY:
-            return ::file::exception::hardIO;
-         case ERROR_BAD_COMMAND:
-            return ::file::exception::hardIO;
-         case ERROR_CRC:
-            return ::file::exception::hardIO;
-         case ERROR_BAD_LENGTH:
-            return ::file::exception::badSeek;
-         case ERROR_SEEK:
-            return ::file::exception::badSeek;
-         case ERROR_NOT_DOS_DISK:
-            return ::file::exception::invalidFile;
-         case ERROR_SECTOR_NOT_FOUND:
-            return ::file::exception::badSeek;
-         case ERROR_WRITE_FAULT:
-            return ::file::exception::accessDenied;
-         case ERROR_READ_FAULT:
-            return ::file::exception::badSeek;
-         case ERROR_SHARING_VIOLATION:
-            return ::file::exception::sharingViolation;
-         case ERROR_LOCK_VIOLATION:
-            return ::file::exception::lockViolation;
-         case ERROR_WRONG_DISK:
-            return ::file::exception::badPath;
-         case ERROR_SHARING_BUFFER_EXCEEDED:
-            return ::file::exception::tooManyOpenFiles;
-         case ERROR_HANDLE_EOF:
-            return ::file::exception::endOfFile;
-         case ERROR_HANDLE_DISK_FULL:
-            return ::file::exception::diskFull;
-         case ERROR_DUP_NAME:
-            return ::file::exception::badPath;
-         case ERROR_BAD_NETPATH:
-            return ::file::exception::badPath;
-         case ERROR_NETWORK_BUSY:
-            return ::file::exception::accessDenied;
-         case ERROR_DEV_NOT_EXIST:
-            return ::file::exception::badPath;
-         case ERROR_ADAP_HDW_ERR:
-            return ::file::exception::hardIO;
-         case ERROR_BAD_NET_RESP:
-            return ::file::exception::accessDenied;
-         case ERROR_UNEXP_NET_ERR:
-            return ::file::exception::hardIO;
-         case ERROR_BAD_REM_ADAP:
-            return ::file::exception::invalidFile;
-         case ERROR_NO_SPOOL_SPACE:
-            return ::file::exception::directoryFull;
-         case ERROR_NETNAME_DELETED:
-            return ::file::exception::accessDenied;
-         case ERROR_NETWORK_ACCESS_DENIED:
-            return ::file::exception::accessDenied;
-         case ERROR_BAD_DEV_TYPE:
-            return ::file::exception::invalidFile;
-         case ERROR_BAD_NET_NAME:
-            return ::file::exception::badPath;
-         case ERROR_TOO_MANY_NAMES:
-            return ::file::exception::tooManyOpenFiles;
-         case ERROR_SHARING_PAUSED:
-            return ::file::exception::badPath;
-         case ERROR_REQ_NOT_ACCEP:
-            return ::file::exception::accessDenied;
-         case ERROR_FILE_EXISTS:
-            return ::file::exception::accessDenied;
-         case ERROR_CANNOT_MAKE:
-            return ::file::exception::accessDenied;
-         case ERROR_ALREADY_ASSIGNED:
-            return ::file::exception::badPath;
-         case ERROR_INVALID_PASSWORD:
-            return ::file::exception::accessDenied;
-         case ERROR_NET_WRITE_FAULT:
-            return ::file::exception::hardIO;
-         case ERROR_DISK_CHANGE:
-            return ::file::exception::fileNotFound;
-         case ERROR_DRIVE_LOCKED:
-            return ::file::exception::lockViolation;
-         case ERROR_BUFFER_OVERFLOW:
-            return ::file::exception::badPath;
-         case ERROR_DISK_FULL:
-            return ::file::exception::diskFull;
-         case ERROR_NO_MORE_SEARCH_HANDLES:
-            return ::file::exception::tooManyOpenFiles;
-         case ERROR_INVALID_TARGET_HANDLE:
-            return ::file::exception::invalidFile;
-         case ERROR_INVALID_CATEGORY:
-            return ::file::exception::hardIO;
-         case ERROR_INVALID_NAME:
-            return ::file::exception::badPath;
-         case ERROR_INVALID_LEVEL:
-            return ::file::exception::badPath;
-         case ERROR_NO_VOLUME_LABEL:
-            return ::file::exception::badPath;
-         case ERROR_NEGATIVE_SEEK:
-            return ::file::exception::badSeek;
-         case ERROR_SEEK_ON_DEVICE:
-            return ::file::exception::badSeek;
-         case ERROR_DIR_NOT_ROOT:
-            return ::file::exception::badPath;
-         case ERROR_DIR_NOT_EMPTY:
-            return ::file::exception::removeCurrentDir;
-         case ERROR_LABEL_TOO_LONG:
-            return ::file::exception::badPath;
-         case ERROR_BAD_PATHNAME:
-            return ::file::exception::badPath;
-         case ERROR_LOCK_FAILED:
-            return ::file::exception::lockViolation;
-         case ERROR_BUSY:
-            return ::file::exception::accessDenied;
-         case ERROR_INVALID_ORDINAL:
-            return ::file::exception::invalidFile;
-         case ERROR_ALREADY_EXISTS:
-            return ::file::exception::accessDenied;
-         case ERROR_INVALID_EXE_SIGNATURE:
-            return ::file::exception::invalidFile;
-         case ERROR_BAD_EXE_FORMAT:
-            return ::file::exception::invalidFile;
-         case ERROR_FILENAME_EXCED_RANGE:
-            return ::file::exception::badPath;
-         case ERROR_META_EXPANSION_TOO_LONG:
-            return ::file::exception::badPath;
-         case ERROR_DIRECTORY:
-            return ::file::exception::badPath;
-         case ERROR_OPERATION_ABORTED:
-            return ::file::exception::hardIO;
-         case ERROR_IO_INCOMPLETE:
-            return ::file::exception::hardIO;
-         case ERROR_IO_PENDING:
-            return ::file::exception::hardIO;
-         case ERROR_SWAPERROR:
-            return ::file::exception::accessDenied;
-         default:
-            return ::file::exception::type_generic;
+         if (lOsError != 0)
+            vfxThrowFileException(papp, ::ios::file_exception::OsErrorToException(lOsError), lOsError, lpszFileName);
       }
-   }
-
-         } //      namespace file_exception
-
-
+      
+      void ThrowErrno(::aura::application * papp, int32_t nErrno, const char * lpszFileName /* = NULL */)
+      {
+         if (nErrno != 0)
+            vfxThrowFileException(papp, ::ios::file_exception::ErrnoToException(nErrno), errno, lpszFileName);
+      }
+      
+      
+      
+      ::file::exception::e_cause OsErrorToException(LONG lOsErr)
+      {
+         // NT Error codes
+         switch ((UINT)lOsErr)
+         {
+            case NO_ERROR:
+               return ::file::exception::none;
+            case ERROR_FILE_NOT_FOUND:
+               return ::file::exception::fileNotFound;
+            case ERROR_PATH_NOT_FOUND:
+               return ::file::exception::badPath;
+            case ERROR_TOO_MANY_OPEN_FILES:
+               return ::file::exception::tooManyOpenFiles;
+            case ERROR_ACCESS_DENIED:
+               return ::file::exception::accessDenied;
+            case ERROR_INVALID_HANDLE:
+               return ::file::exception::fileNotFound;
+            case ERROR_BAD_FORMAT:
+               return ::file::exception::invalidFile;
+            case ERROR_INVALID_ACCESS:
+               return ::file::exception::accessDenied;
+            case ERROR_INVALID_DRIVE:
+               return ::file::exception::badPath;
+            case ERROR_CURRENT_DIRECTORY:
+               return ::file::exception::removeCurrentDir;
+            case ERROR_NOT_SAME_DEVICE:
+               return ::file::exception::badPath;
+            case ERROR_NO_MORE_FILES:
+               return ::file::exception::fileNotFound;
+            case ERROR_WRITE_PROTECT:
+               return ::file::exception::accessDenied;
+            case ERROR_BAD_UNIT:
+               return ::file::exception::hardIO;
+            case ERROR_NOT_READY:
+               return ::file::exception::hardIO;
+            case ERROR_BAD_COMMAND:
+               return ::file::exception::hardIO;
+            case ERROR_CRC:
+               return ::file::exception::hardIO;
+            case ERROR_BAD_LENGTH:
+               return ::file::exception::badSeek;
+            case ERROR_SEEK:
+               return ::file::exception::badSeek;
+            case ERROR_NOT_DOS_DISK:
+               return ::file::exception::invalidFile;
+            case ERROR_SECTOR_NOT_FOUND:
+               return ::file::exception::badSeek;
+            case ERROR_WRITE_FAULT:
+               return ::file::exception::accessDenied;
+            case ERROR_READ_FAULT:
+               return ::file::exception::badSeek;
+            case ERROR_SHARING_VIOLATION:
+               return ::file::exception::sharingViolation;
+            case ERROR_LOCK_VIOLATION:
+               return ::file::exception::lockViolation;
+            case ERROR_WRONG_DISK:
+               return ::file::exception::badPath;
+            case ERROR_SHARING_BUFFER_EXCEEDED:
+               return ::file::exception::tooManyOpenFiles;
+            case ERROR_HANDLE_EOF:
+               return ::file::exception::endOfFile;
+            case ERROR_HANDLE_DISK_FULL:
+               return ::file::exception::diskFull;
+            case ERROR_DUP_NAME:
+               return ::file::exception::badPath;
+            case ERROR_BAD_NETPATH:
+               return ::file::exception::badPath;
+            case ERROR_NETWORK_BUSY:
+               return ::file::exception::accessDenied;
+            case ERROR_DEV_NOT_EXIST:
+               return ::file::exception::badPath;
+            case ERROR_ADAP_HDW_ERR:
+               return ::file::exception::hardIO;
+            case ERROR_BAD_NET_RESP:
+               return ::file::exception::accessDenied;
+            case ERROR_UNEXP_NET_ERR:
+               return ::file::exception::hardIO;
+            case ERROR_BAD_REM_ADAP:
+               return ::file::exception::invalidFile;
+            case ERROR_NO_SPOOL_SPACE:
+               return ::file::exception::directoryFull;
+            case ERROR_NETNAME_DELETED:
+               return ::file::exception::accessDenied;
+            case ERROR_NETWORK_ACCESS_DENIED:
+               return ::file::exception::accessDenied;
+            case ERROR_BAD_DEV_TYPE:
+               return ::file::exception::invalidFile;
+            case ERROR_BAD_NET_NAME:
+               return ::file::exception::badPath;
+            case ERROR_TOO_MANY_NAMES:
+               return ::file::exception::tooManyOpenFiles;
+            case ERROR_SHARING_PAUSED:
+               return ::file::exception::badPath;
+            case ERROR_REQ_NOT_ACCEP:
+               return ::file::exception::accessDenied;
+            case ERROR_FILE_EXISTS:
+               return ::file::exception::accessDenied;
+            case ERROR_CANNOT_MAKE:
+               return ::file::exception::accessDenied;
+            case ERROR_ALREADY_ASSIGNED:
+               return ::file::exception::badPath;
+            case ERROR_INVALID_PASSWORD:
+               return ::file::exception::accessDenied;
+            case ERROR_NET_WRITE_FAULT:
+               return ::file::exception::hardIO;
+            case ERROR_DISK_CHANGE:
+               return ::file::exception::fileNotFound;
+            case ERROR_DRIVE_LOCKED:
+               return ::file::exception::lockViolation;
+            case ERROR_BUFFER_OVERFLOW:
+               return ::file::exception::badPath;
+            case ERROR_DISK_FULL:
+               return ::file::exception::diskFull;
+            case ERROR_NO_MORE_SEARCH_HANDLES:
+               return ::file::exception::tooManyOpenFiles;
+            case ERROR_INVALID_TARGET_HANDLE:
+               return ::file::exception::invalidFile;
+            case ERROR_INVALID_CATEGORY:
+               return ::file::exception::hardIO;
+            case ERROR_INVALID_NAME:
+               return ::file::exception::badPath;
+            case ERROR_INVALID_LEVEL:
+               return ::file::exception::badPath;
+            case ERROR_NO_VOLUME_LABEL:
+               return ::file::exception::badPath;
+            case ERROR_NEGATIVE_SEEK:
+               return ::file::exception::badSeek;
+            case ERROR_SEEK_ON_DEVICE:
+               return ::file::exception::badSeek;
+            case ERROR_DIR_NOT_ROOT:
+               return ::file::exception::badPath;
+            case ERROR_DIR_NOT_EMPTY:
+               return ::file::exception::removeCurrentDir;
+            case ERROR_LABEL_TOO_LONG:
+               return ::file::exception::badPath;
+            case ERROR_BAD_PATHNAME:
+               return ::file::exception::badPath;
+            case ERROR_LOCK_FAILED:
+               return ::file::exception::lockViolation;
+            case ERROR_BUSY:
+               return ::file::exception::accessDenied;
+            case ERROR_INVALID_ORDINAL:
+               return ::file::exception::invalidFile;
+            case ERROR_ALREADY_EXISTS:
+               return ::file::exception::accessDenied;
+            case ERROR_INVALID_EXE_SIGNATURE:
+               return ::file::exception::invalidFile;
+            case ERROR_BAD_EXE_FORMAT:
+               return ::file::exception::invalidFile;
+            case ERROR_FILENAME_EXCED_RANGE:
+               return ::file::exception::badPath;
+            case ERROR_META_EXPANSION_TOO_LONG:
+               return ::file::exception::badPath;
+            case ERROR_DIRECTORY:
+               return ::file::exception::badPath;
+            case ERROR_OPERATION_ABORTED:
+               return ::file::exception::hardIO;
+            case ERROR_IO_INCOMPLETE:
+               return ::file::exception::hardIO;
+            case ERROR_IO_PENDING:
+               return ::file::exception::hardIO;
+            case ERROR_SWAPERROR:
+               return ::file::exception::accessDenied;
+            default:
+               return ::file::exception::type_generic;
+         }
+      }
+      
+   } //      namespace file_exception
+   
+   
    // IMPLEMENT_DYNAMIC(WinFileException, ::exception::aura)
-
+   
    /////////////////////////////////////////////////////////////////////////////
-
-
-
-
+   
+   
+   
+   
    /////////////////////////////////////////////////////////////////////////////
    // file Status implementation
-
+   
    bool file::GetStatus(::file::file_status& rStatus) const
    {
       ASSERT_VALID(this);
-
+      
       //memset(&rStatus, 0, sizeof(::ca2::file_status));
-
+      
       // copy file name from cached m_strFileName
       rStatus.m_strFullName = m_strFileName;
-
+      
       if (m_iFile != hFileNull)
       {
          struct ::stat st;
@@ -788,20 +831,20 @@ namespace ios
          /*FILETIME ftCreate, ftAccess, ftModify;
           if (!::GetFileTime((HANDLE)m_iFile, &ftCreate, &ftAccess, &ftModify))
           return FALSE;*/
-
+         
          rStatus.m_size = st.st_size;
-
+         
          //if ((rStatus.m_size = ::GetFileSize((HANDLE)m_iFile, NULL)) == (DWORD)-1L)
          // return FALSE;
-
-
+         
+         
          //if (m_strFileName.is_empty())
          // throw todo(get_app());
          rStatus.m_attribute = 0;
          /*         else
           {
           DWORD dwAttribute = ::GetFileAttributesW(::str::international::utf8_to_unicode(m_strFileName));
-
+          
           // don't return an error for this because previous versions of ca2 API didn't
           if (dwAttribute == 0xFFFFFFFF)
           rStatus.m_attribute = 0;
@@ -815,7 +858,7 @@ namespace ios
           #endif
           }
           }*/
-
+         
          // convert times as appropriate
          //rStatus.m_ctime = ::datetime::time(ftCreate);
          //rStatus.m_atime = ::datetime::time(ftAccess);
@@ -823,51 +866,51 @@ namespace ios
          rStatus.m_ctime = ::datetime::time(st.st_mtime);
          rStatus.m_atime = ::datetime::time(st.st_atime);
          rStatus.m_mtime = ::datetime::time(st.st_ctime);
-
+         
          if (rStatus.m_ctime.get_time() == 0)
             rStatus.m_ctime = rStatus.m_mtime;
-
+         
          if (rStatus.m_atime.get_time() == 0)
             rStatus.m_atime = rStatus.m_mtime;
       }
       return TRUE;
    }
-
-
+   
+   
    bool PASCAL file::GetStatus(const char * lpszFileName, ::file::file_status& rStatus)
    {
       // attempt to fully qualify path first
       wstring wstrFullName;
       wstring wstrFileName;
       wstrFileName = ::str::international::utf8_to_unicode(lpszFileName);
-//      if (!vfxFullPath(wstrFullName, wstrFileName))
-  //    {
-    //     rStatus.m_strFullName.Empty();
+      //      if (!vfxFullPath(wstrFullName, wstrFileName))
+      //    {
+      //     rStatus.m_strFullName.Empty();
       //   return FALSE;
       //}
-
+      
       wstrFullName = wstrFileName;
-
+      
       ::str::international::unicode_to_utf8(rStatus.m_strFullName, wstrFullName);
-
+      
       struct ::stat st;
       if(stat(lpszFileName, &st) == -1)
          return false;
       //if (hFind == INVALID_HANDLE_VALUE)
       // return FALSE;
       //VERIFY(FindClose(hFind));
-
+      
       // strip attribute of NORMAL bit, our API doesn't have a "normal" bit.
       //rStatus.m_attribute = (BYTE) (findFileData.dwFileAttributes & ~FILE_ATTRIBUTE_NORMAL);
-
+      
       rStatus.m_attribute = 0;
-
+      
       // get just the low DWORD of the file size
       //ASSERT(findFileData.nFileSizeHigh == 0);
       //rStatus.m_size = (LONG)findFileData.nFileSizeLow;
-
+      
       rStatus.m_size = st.st_size;
-
+      
       // convert times as appropriate
       /*rStatus.m_ctime = ::datetime::time(findFileData.ftCreationTime);
        rStatus.m_atime = ::datetime::time(findFileData.ftLastAccessTime);
@@ -875,25 +918,25 @@ namespace ios
       rStatus.m_ctime = ::datetime::time(st.st_mtime);
       rStatus.m_atime = ::datetime::time(st.st_atime);
       rStatus.m_mtime = ::datetime::time(st.st_ctime);
-
+      
       if (rStatus.m_ctime.get_time() == 0)
          rStatus.m_ctime = rStatus.m_mtime;
-
+      
       if (rStatus.m_atime.get_time() == 0)
          rStatus.m_atime = rStatus.m_mtime;
-
+      
       return TRUE;
    }
-
-
-
+   
+   
+   
    /*
     UINT CLASS_DECL_AURA vfxGetFileTitle(const wchar_t * lpszPathName, wchar_t * lpszTitle, UINT nMax)
     {
     ASSERT(lpszTitle == NULL ||
     __is_valid_address(lpszTitle, _MAX_FNAME));
     ASSERT(__is_valid_string(lpszPathName));
-
+    
     // use a temporary to avoid bugs in ::GetFileTitle when lpszTitle is NULL
     WCHAR szTemp[_MAX_PATH];
     wchar_t * lpszTemp = lpszTitle;
@@ -909,18 +952,18 @@ namespace ios
     }
     return lpszTitle == NULL ? lstrlenW(lpszTemp)+1 : 0;
     }
-
-
+    
+    
     bool vfxComparePath(const wchar_t * lpszPath1, const wchar_t * lpszPath2)
     {
     // use case insensitive compare as a starter
     if (lstrcmpiW(lpszPath1, lpszPath2) != 0)
     return FALSE;
-
+    
     // on non-DBCS systems, we are done
     if (!GetSystemMetrics(SM_DBCSENABLED))
     return TRUE;
-
+    
     // on DBCS systems, the file name may not actually be the same
     // in particular, the file system is case sensitive with respect to
     // "full width" roman characters.
@@ -929,7 +972,7 @@ namespace ios
     if (nLen != lstrlenW(lpszPath2))
     return FALSE;
     ASSERT(nLen < _MAX_PATH);
-
+    
     // need to get both CT_CTYPE1 and CT_CTYPE3 for each filename
     LCID lcid = GetThreadLocale();
     WORD aCharType11[_MAX_PATH];
@@ -942,7 +985,7 @@ namespace ios
     WORD aCharType23[_MAX_PATH];
     VERIFY(GetStringTypeExW(lcid, CT_CTYPE3, lpszPath2, -1, aCharType23));
     #endif
-
+    
     // for every C3_FULLWIDTH character, make sure it has same C1 value
     int32_t i = 0;
     for (const wchar_t * lpsz = lpszPath1; *lpsz != 0; lpsz = _wcsinc(lpsz))
@@ -953,7 +996,7 @@ namespace ios
     #ifdef DEBUG
     ASSERT(aCharType23[i] & C3_FULLWIDTH); // should always match!
     #endif
-
+    
     // if CT_CTYPE1 is different then file system considers these
     // file names different.
     if (aCharType11[i] != aCharType21[i])
@@ -964,7 +1007,7 @@ namespace ios
     return TRUE; // otherwise file name is truly the same
     }
     */
-
+   
    /*
     void PASCAL file::SetStatus(const char * lpszFileName, const ::ca2::file_status& status)
     {
@@ -975,54 +1018,54 @@ namespace ios
     LPFILETIME lpCreationTime = NULL;
     LPFILETIME lpLastAccessTime = NULL;
     LPFILETIME lpLastWriteTime = NULL;
-
+    
     if ((wAttr = GetFileAttributes((LPTSTR)lpszFileName)) == (DWORD)-1L)
     ::win::file_exception::ThrowOsError(get_app(), (LONG)GetLastError());
-
+    
     if ((DWORD)status.m_attribute != wAttr && (wAttr & readOnly))
     {
     // Set file attribute, only if currently readonly.
     // This way we will be able to modify the time assuming the
     // caller changed the file from readonly.
-
+    
     if (!SetFileAttributes((LPTSTR)lpszFileName, (DWORD)status.m_attribute))
     ::win::file_exception::ThrowOsError(get_app(), (LONG)GetLastError());
     }
-
+    
     // last modification time
     if (status.m_mtime.get_time() != 0)
     {
     ::ca2::TimeToFileTime(status.m_mtime, &lastWriteTime);
     lpLastWriteTime = &lastWriteTime;
-
+    
     // last access time
     if (status.m_atime.get_time() != 0)
     {
     ::ca2::TimeToFileTime(status.m_atime, &lastAccessTime);
     lpLastAccessTime = &lastAccessTime;
     }
-
+    
     // create time
     if (status.m_ctime.get_time() != 0)
     {
     ::ca2::TimeToFileTime(status.m_ctime, &creationTime);
     lpCreationTime = &creationTime;
     }
-
+    
     HANDLE hFile = ::CreateFile(lpszFileName, GENERIC_READ|GENERIC_WRITE,
     FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL,
     NULL);
-
+    
     if (hFile == INVALID_HANDLE_VALUE)
     ::win::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());
-
+    
     if (!SetFileTime((HANDLE)hFile, lpCreationTime, lpLastAccessTime, lpLastWriteTime))
     ::win::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());
-
+    
     if (!::CloseHandle(hFile))
     ::win::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());
     }
-
+    
     if ((DWORD)status.m_attribute != wAttr && !(wAttr & readOnly))
     {
     if (!SetFileAttributes((LPTSTR)lpszFileName, (DWORD)status.m_attribute))
@@ -1030,34 +1073,33 @@ namespace ios
     }
     }
     */
-
+   
    bool file::IsOpened()
    {
       return m_iFile != hFileNull;
    }
-
-
+   
+   
    void file::SetFilePath(const char * lpszNewName)
    {
       ASSERT_VALID(this);
       ASSERT(__is_valid_string(lpszNewName));
       m_strFileName = lpszNewName;
    }
-
+   
    uint64_t file::ReadHuge(void * lpBuffer, uint64_t dwCount)
    {
-
-       return  read(lpBuffer, (::primitive::memory_size) dwCount);
-
+      
+      return  read(lpBuffer, dwCount);
+      
    }
-
+   
    void file::WriteHuge(const void * lpBuffer, uint64_t dwCount)
    {
-
-      write(lpBuffer, (::primitive::memory_size) dwCount);
-
+      
+      write(lpBuffer, dwCount);
+      
    }
-
 
 
 } // namespace win
@@ -1676,11 +1718,10 @@ CLASS_DECL_AURA bool vfxResolveShortcut(string & strTarget, const char * pszSour
 
 
 
-
 /////////////////////////////////////////////////////////////////////////////
 // WinFileException helpers
 
-void CLASS_DECL_AURA vfxThrowFileException(::aura::application * papp, int32_t cause, LONG lOsError, const char * lpszFileName /* == NULL */)
+void CLASS_DECL_AURA vfxThrowFileException(::aura::application * papp, ::file::exception::e_cause cause, LONG lOsError, const char * lpszFileName /* == NULL */)
 {
 #ifdef DEBUG
    const char * lpsz;
@@ -1693,39 +1734,63 @@ void CLASS_DECL_AURA vfxThrowFileException(::aura::application * papp, int32_t c
    throw ::file::exception(papp, cause, lOsError, lpszFileName);
 }
 
-namespace ios
+::file::exception * CLASS_DECL_AURA get_FileException(::aura::application * papp, ::file::exception::e_cause cause, LONG lOsError, const char * lpszFileName /* == NULL */)
 {
-
-namespace file_exception {
-
-int32_t PASCAL ErrnoToException(int32_t nErrno)
-{
-   switch(nErrno)
-   {
-      case EPERM:
-      case EACCES:
-         return ::file::exception::accessDenied;
-      case EBADF:
-         return ::file::exception::invalidFile;
-//      case EDEADLOCK:
-  //       return ::file::exception::sharingViolation;
-      case EMFILE:
-         return ::file::exception::tooManyOpenFiles;
-      case ENOENT:
-      case ENFILE:
-         return ::file::exception::fileNotFound;
-      case ENOSPC:
-         return ::file::exception::diskFull;
-      case EINVAL:
-      case EIO:
-         return ::file::exception::hardIO;
-      default:
-         return ::file::exception::type_generic;
-   }
+#ifdef DEBUG
+   const char * lpsz;
+   if (cause >= 0 && cause < _countof(::ios::rgszFileExceptionCause))
+      lpsz = ::ios::rgszFileExceptionCause[cause];
+   else
+      lpsz = ::ios::szUnknown;
+   //   TRACE3("file exception: %hs, file %s, App error information = %ld.\n", lpsz, (lpszFileName == NULL) ? "Unknown" : lpszFileName, lOsError);
+#endif
+   return canew(::file::exception(papp, cause, lOsError, lpszFileName));
 }
 
 
-
-} // namespace file_exception
-
+namespace ios
+{
+   
+   
+   namespace file_exception
+   {
+      
+      ::file::exception::e_cause ErrnoToException(int32_t nErrno)
+      {
+         switch(nErrno)
+         {
+            case EPERM:
+            case EACCES:
+               return ::file::exception::accessDenied;
+            case EBADF:
+               return ::file::exception::invalidFile;
+               //      case EDEADLOCK:
+               //       return ::file::exception::sharingViolation;
+            case EMFILE:
+               return ::file::exception::tooManyOpenFiles;
+            case ENOENT:
+            case ENFILE:
+               return ::file::exception::fileNotFound;
+            case ENOSPC:
+               return ::file::exception::diskFull;
+            case EINVAL:
+            case EIO:
+               return ::file::exception::hardIO;
+            default:
+               return ::file::exception::type_generic;
+         }
+      }
+      
+      
+      
+   } // namespace file_exception
+   
+   
 } // namespace ios
+
+
+
+
+
+
+

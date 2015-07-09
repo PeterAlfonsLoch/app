@@ -24,7 +24,6 @@ int __node_is_debugger_attached()
 // Returns true if the current process is being debugged (either
 // running under the debugger or has a debugger attached post facto).
 {
-   return 1;
    int                 junk;
    int                 mib[4];
    struct kinfo_proc   info;
@@ -56,19 +55,45 @@ int __node_is_debugger_attached()
 
 
 
+
+
+
+
+
+
+DWORD
+WINAPI
+FormatMessage(
+              DWORD dwFlags,
+              LPCVOID lpSource,
+              DWORD dwMessageId,
+              DWORD dwLanguageId,
+              LPSTR lpBuffer,
+              DWORD nSize,
+              va_list *Arguments
+              )
+{
+    
+    
+    return 0;
+    
+    
+}
+
+
 VOID
 WINAPI
 OutputDebugStringA(
                    LPCSTR lpOutputString
                    )
 {
-   
-   
-   fprintf(stderr, "%s", lpOutputString);
-   fflush(stderr);
-   //printf("%s", lpOutputString);
-   
-   
+    
+    
+    fprintf(stderr, "%s", lpOutputString);
+    fflush(stderr);
+    //printf("%s", lpOutputString);
+    
+    
 }
 
 
@@ -80,15 +105,9 @@ OutputDebugStringW(
                    LPCWSTR lpOutputString
                    )
 {
-   
-   
-   OutputDebugStringA(string(lpOutputString));
-   
-   
+    
+    
+    OutputDebugStringA(string(lpOutputString));
+    
+    
 }
-
-
-
-
-
-

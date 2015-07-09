@@ -135,3 +135,71 @@ unsigned int sleep(unsigned int seconds)
    return m_sleep(seconds);
    
 }
+
+
+
+
+
+
+
+//CLASS_DECL_AURA bool __node_aura_pre_init()
+//{
+//   
+//   
+//   return true;
+//   
+//}
+
+
+
+CLASS_DECL_AURA bool __node_aura_pos_init()
+{
+   
+   //   t_posthread = new os_thread(NULL, NULL);
+   //   
+   //   t_posthread->m_bRun = true;
+   
+   return true;
+   
+}
+
+
+
+
+
+CLASS_DECL_AURA bool __node_aura_pre_term()
+{
+   
+   //   if(t_posthread != NULL)
+   //   {
+   //      
+   //      try
+   //      {
+   //         
+   //         delete t_posthread;
+   //         
+   //      }
+   //      catch(...)
+   //      {
+   //         
+   //      }
+   //      
+   //      t_posthread = NULL;
+   //      
+   //   }
+   
+   return true;
+   
+}
+
+
+
+CLASS_DECL_AURA bool __node_aura_pos_term()
+{
+   
+   
+   
+   return true;
+   
+}
+

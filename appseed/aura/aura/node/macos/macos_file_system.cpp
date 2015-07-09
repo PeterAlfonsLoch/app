@@ -13,7 +13,7 @@ struct PROCESS_INFO_t
 };
 
 
-namespace macos
+namespace ios
 {
 
 
@@ -1318,9 +1318,82 @@ namespace macos
       return true;
       
    }
+   
+   
+//   bool application::update_module_paths()
+//   {
+//      string str;
+//      
+//      char * lpsz = str.GetBufferSetLength(1024);
+//      
+//      uint32_t size = 1024;
+//      
+//      if(_NSGetExecutablePath(lpsz, &size) == 0)
+//      {
+//         
+//         str.ReleaseBuffer();
+//         
+//      }
+//      else
+//      {
+//         
+//         lpsz = str.GetBufferSetLength(size);
+//         
+//         if(_NSGetExecutablePath(lpsz, &size) == 0)
+//         {
+//            
+//            str.ReleaseBuffer();
+//            
+//         }
+//         else
+//         {
+//            
+//            return false;
+//            
+//         }
+//         
+//      }
+//      
+//      m_strModuleFolder = ::dir::name(str);
+//      
+//      
+//      {
+//         
+//         char * pszCurDir = getcwd(NULL, 0);
+//         
+//         string strCurDir = pszCurDir;
+//         
+//         free(pszCurDir);
+//         
+//         if(file_exists_dup(::dir::path(strCurDir, "libcore.dylib")))
+//         {
+//            
+//            m_strCa2ModuleFolder = strCurDir;
+//            
+//         }
+//         else if(file_exists_dup(::dir::path(m_strModuleFolder, "libcore.dylib")))
+//         {
+//            
+//            m_strCa2ModuleFolder = m_strModuleFolder;
+//            
+//         }
+//         else
+//         {
+//            
+//            m_strCa2ModuleFolder = ::dir::name(::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libcore.dylib", "rfs")); // readable - normal file - non zero sized
+//            
+//         }
+//         
+//      }
+//      
+//      
+//      return true;
+//      
+//   }
 
 
-} // namespace macos
+
+} // namespace ios
 
 
 

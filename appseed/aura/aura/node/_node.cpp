@@ -14,8 +14,8 @@
 #include "macos/_macos_node.cpp"
 #include "ansios/_ansios_node.cpp"
 #elif defined(APPLE_IOS)
-#include "ios/_ios_node.cpp"
 #include "ansios/_ansios_node.cpp"
+#include "ios/_ios_node.cpp"
 #endif
 
 

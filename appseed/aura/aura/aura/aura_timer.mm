@@ -16,6 +16,13 @@ void * CreateDispatchQueue()
    
 }
 
+void CreateDispatchSource(void * p)
+{
+   
+   dispatch_source_cancel((dispatch_source_t) p);
+   
+}
+
 
 void * CreateDispatchTimer(uint64_t interval, uint64_t leeway, void * queue, void (*pfnTimer)(void * p), void * p)
 {

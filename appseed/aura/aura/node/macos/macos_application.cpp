@@ -189,13 +189,17 @@ namespace macos
    void application::get_time(struct timeval *p)
    {
 #ifdef _WIN32
-      FILETIME ft; // Contains a 64-bit value representing the number of 100-nanosecond intervals since January 1, 1601 (UTC).
-      GetSystemTimeAsFileTime(&ft);
-      uint64_t tt;
-      memcpy(&tt, &ft, sizeof(tt));
-      tt /= 10; // make it usecs
-      p->tv_sec = (long)tt / 1000000;
-      p->tv_usec = (long)tt % 1000000;
+      
+      // iOS contribution - a Fatty acid to eat this green comment block ... (#ifdef _WIN32 in macos::application?)
+      //
+//      FILETIME ft; // Contains a 64-bit value representing the number of 100-nanosecond intervals since January 1, 1601 (UTC).
+//      GetSystemTimeAsFileTime(&ft);
+//      uint64_t tt;
+//      memcpy(&tt, &ft, sizeof(tt));
+//      tt /= 10; // make it usecs
+//      p->tv_sec = (long)tt / 1000000;
+//      p->tv_usec = (long)tt % 1000000;
+      
 #else
       gettimeofday(p, NULL);
 #endif
@@ -203,25 +207,25 @@ namespace macos
 
    void application::set_env_var(const string & var,const string & value)
    {
-#if (defined(SOLARIS8) || defined(SOLARIS))
-      {
-         static std::collection::map<string, char *> vmap;
-         if (vmap.find(var) != vmap.end())
-         {
-            delete[] vmap[var];
-         }
-         vmap[var] = new char[var.get_length() + 1 + value.get_length() + 1];
-         sprintf(vmap[var], "%s=%s", var, value);
-         putenv( vmap[var] );
-      }
-#elif defined _WIN32
-      {
-         string slask = var + "=" + value;
-         _putenv( (const char *)slask);
-      }
-#else
+//#if (defined(SOLARIS8) || defined(SOLARIS))
+//      {
+//         static std::collection::map<string, char *> vmap;
+//         if (vmap.find(var) != vmap.end())
+//         {
+//            delete[] vmap[var];
+//         }
+//         vmap[var] = new char[var.get_length() + 1 + value.get_length() + 1];
+//         sprintf(vmap[var], "%s=%s", var, value);
+//         putenv( vmap[var] );
+//      }
+//#elif defined _WIN32
+//      {
+//         string slask = var + "=" + value;
+//         _putenv( (const char *)slask);
+//      }
+//#else
       setenv(var, value, 1);
-#endif
+//#endif
    }
 
    uint32_t application::get_thread_id()
