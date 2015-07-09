@@ -4,10 +4,11 @@
 //Pasta de Z:\ca2\app\appseed\aura\aura\os\macos
 
 #include "ios.cpp"
+#include "ios_base_user.cpp"
 #include "ios_cross_win.cpp"
 #include "ios_cross_win_file.cpp"
 #include "ios_debug.cpp"
-//#include "ios_file.cpp"
+#include "ios_file.cpp"
 #include "ios_file_watcher.cpp"
 //#include "ios_graphics.cpp"
 #include "ios_launcher.cpp"

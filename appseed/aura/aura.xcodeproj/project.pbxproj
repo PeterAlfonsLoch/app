@@ -776,6 +776,7 @@
 		07EC4CDD1B4C34CD00EB5965 /* aura_timer_item.h in Headers */ = {isa = PBXBuildFile; fileRef = 07EC4CD91B4C34CD00EB5965 /* aura_timer_item.h */; };
 		07EC4CDF1B4C350E00EB5965 /* aura_timer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07EC4CDE1B4C350E00EB5965 /* aura_timer.mm */; };
 		07EC4CE11B4C350E00EB5965 /* aura_timer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07EC4CDE1B4C350E00EB5965 /* aura_timer.mm */; };
+		07EDC2791B4E427700AF8928 /* MessageBoxA_W.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07EDC2781B4E427700AF8928 /* MessageBoxA_W.mm */; };
 		07F5B19F184A3B430092C3E1 /* file.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B12F184A3B420092C3E1 /* file.h */; };
 		07F5B1A3184A3B430092C3E1 /* file_binary_buffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B133184A3B420092C3E1 /* file_binary_buffer.h */; };
 		07F5B1A4184A3B430092C3E1 /* file_buffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B134184A3B420092C3E1 /* file_buffer.h */; };
@@ -1456,6 +1457,7 @@
 		07EC4CD81B4C34CD00EB5965 /* aura_timer_event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_timer_event.h; sourceTree = "<group>"; };
 		07EC4CD91B4C34CD00EB5965 /* aura_timer_item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_timer_item.h; sourceTree = "<group>"; };
 		07EC4CDE1B4C350E00EB5965 /* aura_timer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = aura_timer.mm; sourceTree = "<group>"; };
+		07EDC2781B4E427700AF8928 /* MessageBoxA_W.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MessageBoxA_W.mm; sourceTree = "<group>"; };
 		07F3372018111CA200A34D04 /* multithreading_set_event_on_exit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = multithreading_set_event_on_exit.h; sourceTree = "<group>"; };
 		07F5B12F184A3B420092C3E1 /* file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file.h; sourceTree = "<group>"; };
 		07F5B133184A3B420092C3E1 /* file_binary_buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file_binary_buffer.h; sourceTree = "<group>"; };
@@ -1998,6 +2000,7 @@
 				077A05621B4D70B7001C85FF /* UncaughtExceptionHandler.h */,
 				077A05631B4D70B7001C85FF /* UncaughtExceptionHandler.mm */,
 				07CAA96C1B4DBC4000180410 /* os.h */,
+				07EDC2781B4E427700AF8928 /* MessageBoxA_W.mm */,
 			);
 			path = ios;
 			sourceTree = "<group>";
@@ -4239,6 +4242,7 @@
 				077A05BD1B4D7403001C85FF /* _filesystem.cpp in Sources */,
 				077A05BE1B4D7403001C85FF /* framework.cpp in Sources */,
 				077A05BF1B4D7403001C85FF /* visual_cursor.cpp in Sources */,
+				07EDC2791B4E427700AF8928 /* MessageBoxA_W.mm in Sources */,
 				077A05C11B4D7403001C85FF /* str_ch.cpp in Sources */,
 				077A05C21B4D7403001C85FF /* exception_mm.mm in Sources */,
 				077A05C31B4D7403001C85FF /* teste.cpp in Sources */,
@@ -4337,8 +4341,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				ONLY_ACTIVE_ARCH = NO;
-				SDKROOT = iphoneos8.4;
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -4346,8 +4349,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				ONLY_ACTIVE_ARCH = NO;
-				SDKROOT = iphoneos8.4;
+				SDKROOT = iphoneos;
 			};
 			name = Release;
 		};

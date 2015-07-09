@@ -16,7 +16,7 @@ void * CreateDispatchQueue()
    
 }
 
-void CreateDispatchSource(void * p)
+void CancelDispatchSource(void * p)
 {
    
    dispatch_source_cancel((dispatch_source_t) p);

@@ -88,6 +88,32 @@ CLASS_DECL_AURA int call_async(
     
 }
 
+CLASS_DECL_AURA int call_async(
+                               const char * pszPath, 
+                               const char * pszParam, 
+                               const char * pszDir,
+                               int iShow,
+                               bool bPrivileged)
+{
+   
+   string strCmdLine;
+   
+   strCmdLine = pszPath;
+   if(strlen_dup(pszParam) > 0)
+   {
+      strCmdLine +=  " ";
+      strCmdLine += pszParam;
+   }
+   
+   int processId;
+   
+   if(!create_process(strCmdLine, &processId))
+      return -1;
+   
+   return 0;
+   
+}
+
 CLASS_DECL_AURA DWORD call_sync(
                              const char * pszPath, 
                              const char * pszParam, 
