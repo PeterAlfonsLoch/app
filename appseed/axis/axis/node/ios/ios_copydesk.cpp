@@ -7,8 +7,7 @@ namespace ios
 
    copydesk::copydesk(sp(::aura::application) papp) :
       ::object(papp),
-      ::core::copydesk(papp),
-      window_sp(papp)
+      ::user::copydesk(papp)
    {
    }
 
@@ -19,11 +18,11 @@ namespace ios
    int32_t copydesk::get_file_count()
    {
 
-      if(m_p == NULL)
-         return 0;
-
-      if(!m_p->OpenClipboard())
-         return 0;
+//      if(m_p == NULL)
+//         return 0;
+//
+//      if(!m_p->OpenClipboard())
+//         return 0;
       int32_t iCount = 0;
       throw todo(get_app());
       /* xxx HDROP hdrop = (HDROP) ::GetClipboardData(CF_HDROP);
@@ -41,8 +40,8 @@ namespace ios
       int32_t iCount = get_file_count();
       if(iCount <= 0)
          return;
-      if(!m_p->OpenClipboard())
-         return;
+//      if(!m_p->OpenClipboard())
+  //       return;
       throw todo(get_app());
       /* HDROP hdrop = (HDROP) ::GetClipboardData(CF_HDROP);
       string str;
@@ -61,7 +60,7 @@ namespace ios
    void copydesk::set_filea(stringa & stra)
    {
 
-      ASSERT(m_p->IsWindow());
+//      ASSERT(m_p->IsWindow());
 
       strsize iLen = 0;
 
@@ -115,7 +114,7 @@ namespace ios
    bool copydesk::initialize()
    {
 
-      if(!::core::copydesk::initialize())
+      if(!::user::copydesk::initialize())
          return false;
 
   //    if(!m_p->CreateEx(0, System.RegisterWndClass(0), NULL, 0, rect(0, 0, 0, 0), NULL, id()))
@@ -134,16 +133,16 @@ namespace ios
 
       bool bOk;
 
-      bOk = ::core::copydesk::finalize();
+      bOk = ::user::copydesk::finalize();
 
-      if(window_sp::is_set() && window_sp::m_p->IsWindow())
-      {
-         bOk = window_sp::m_p->DestroyWindow() != FALSE;
-      }
-      else
-      {
-         bOk = false;
-      }
+//      if(window_sp::is_set() && window_sp::m_p->IsWindow())
+//      {
+//         bOk = window_sp::m_p->DestroyWindow() != FALSE;
+//      }
+//      else
+//      {
+//         bOk = false;
+//      }
 
       return bOk;
 
@@ -151,19 +150,19 @@ namespace ios
 
    void copydesk::set_plain_text(const char * psz)
    {
-      ASSERT(m_p->IsWindow());
-   //   int32_t iLen = 0;
-
-      string str;
-      str = ::str::international::utf8_to_unicode(psz);
-
-
-
-      ASSERT(m_p->IsWindow());
-      if(!m_p->OpenClipboard())
-      {
-         return;
-      }
+//      ASSERT(m_p->IsWindow());
+//   //   int32_t iLen = 0;
+//
+//      string str;
+//      str = ::str::international::utf8_to_unicode(psz);
+//
+//
+//
+//      ASSERT(m_p->IsWindow());
+//      if(!m_p->OpenClipboard())
+//      {
+//         return;
+//      }
 
       throw todo(get_app());
 
@@ -227,8 +226,8 @@ namespace ios
 
    bool copydesk::desk_to_dib(::draw2d::dib * pdib)
    {
-      if(!m_p->OpenClipboard())
-         return false;
+//      if(!m_p->OpenClipboard())
+//         return false;
       bool bOk = false;
       throw todo(get_app());
 /* xxx

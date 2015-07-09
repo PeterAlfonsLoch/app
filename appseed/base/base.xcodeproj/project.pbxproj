@@ -62,9 +62,6 @@
 		07D967921B4C63E3004A3D2A /* database_user_interaction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D966F21B4C63E3004A3D2A /* database_user_interaction.cpp */; };
 		07D967931B4C63E3004A3D2A /* database_user_interaction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D966F21B4C63E3004A3D2A /* database_user_interaction.cpp */; };
 		07D967941B4C63E3004A3D2A /* database_user_interaction.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D966F31B4C63E3004A3D2A /* database_user_interaction.h */; };
-		07D967951B4C63E3004A3D2A /* graphics_window_graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D966F51B4C63E3004A3D2A /* graphics_window_graphics.cpp */; };
-		07D967961B4C63E3004A3D2A /* graphics_window_graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D966F51B4C63E3004A3D2A /* graphics_window_graphics.cpp */; };
-		07D967971B4C63E3004A3D2A /* graphics_window_graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D966F51B4C63E3004A3D2A /* graphics_window_graphics.cpp */; };
 		07D967981B4C63E3004A3D2A /* graphics_window_graphics.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D966F61B4C63E3004A3D2A /* graphics_window_graphics.h */; };
 		07D967991B4C63E3004A3D2A /* _user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D966F81B4C63E3004A3D2A /* _user.cpp */; };
 		07D9679A1B4C63E3004A3D2A /* _user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D966F81B4C63E3004A3D2A /* _user.cpp */; };
@@ -140,11 +137,12 @@
 		07D968B71B4C63E5004A3D2A /* user.inl in Resources */ = {isa = PBXBuildFile; fileRef = 07D9678E1B4C63E3004A3D2A /* user.inl */; };
 		07D968B81B4C63E5004A3D2A /* userex_scroll.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D967901B4C63E3004A3D2A /* userex_scroll.h */; };
 		07D968BB1B4C65FD004A3D2A /* macos_base_user_mm.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07D968B91B4C65FD004A3D2A /* macos_base_user_mm.mm */; };
-		07D968BC1B4C65FD004A3D2A /* macos_base_user_mm.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07D968B91B4C65FD004A3D2A /* macos_base_user_mm.mm */; };
-		07D968BD1B4C65FD004A3D2A /* macos_base_user_mm.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07D968B91B4C65FD004A3D2A /* macos_base_user_mm.mm */; };
 		07D968BE1B4C65FD004A3D2A /* macos_cross_gdi.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07D968BA1B4C65FD004A3D2A /* macos_cross_gdi.mm */; };
-		07D968BF1B4C65FD004A3D2A /* macos_cross_gdi.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07D968BA1B4C65FD004A3D2A /* macos_cross_gdi.mm */; };
-		07D968C01B4C65FD004A3D2A /* macos_cross_gdi.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07D968BA1B4C65FD004A3D2A /* macos_cross_gdi.mm */; };
+		07EDC52A1B4F1BB300AF8928 /* ios_cross_gdi.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07EDC5061B4F1BB300AF8928 /* ios_cross_gdi.mm */; };
+		07EDC52C1B4F1BB300AF8928 /* ios_user.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07EDC50B1B4F1BB300AF8928 /* ios_user.mm */; };
+		07EDC5401B4F1CB700AF8928 /* graphics_window_graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D966F51B4C63E3004A3D2A /* graphics_window_graphics.cpp */; };
+		07EDC5411B4F1CB800AF8928 /* graphics_window_graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D966F51B4C63E3004A3D2A /* graphics_window_graphics.cpp */; };
+		07EDC5421B4F1CB900AF8928 /* graphics_window_graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D966F51B4C63E3004A3D2A /* graphics_window_graphics.cpp */; };
 		9A98A6081771D67E000AE16E /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BD556C16210BD4008E31F0 /* AppKit.framework */; };
 		9A98A6091771D67E000AE16E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8897A514C24736006B4023 /* Foundation.framework */; };
 		9A98A60A1771D67E000AE16E /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE931714155F1599005F90F6 /* Carbon.framework */; };
@@ -164,7 +162,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A5E9DF919B7623B00949252 /* aura.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 9AE24D331904CEFE001AEFFB;
+			remoteGlobalIDString = 077A05B41B4D7403001C85FF;
 			remoteInfo = aura_ios;
 		};
 		07108A2D1B4C84B900A28F80 /* PBXContainerItemProxy */ = {
@@ -467,6 +465,17 @@
 		07D967901B4C63E3004A3D2A /* userex_scroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userex_scroll.h; sourceTree = "<group>"; };
 		07D968B91B4C65FD004A3D2A /* macos_base_user_mm.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = macos_base_user_mm.mm; sourceTree = "<group>"; };
 		07D968BA1B4C65FD004A3D2A /* macos_cross_gdi.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = macos_cross_gdi.mm; sourceTree = "<group>"; };
+		07EDC5021B4F1BB300AF8928 /* ios.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios.h; sourceTree = "<group>"; };
+		07EDC5031B4F1BB300AF8928 /* ios_base_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_base_internal.h; sourceTree = "<group>"; };
+		07EDC5041B4F1BB300AF8928 /* ios_base_mm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_base_mm.h; sourceTree = "<group>"; };
+		07EDC5061B4F1BB300AF8928 /* ios_cross_gdi.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ios_cross_gdi.mm; sourceTree = "<group>"; };
+		07EDC5071B4F1BB300AF8928 /* ios_graphics_mm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_graphics_mm.h; sourceTree = "<group>"; };
+		07EDC5081B4F1BB300AF8928 /* ios_m.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_m.h; sourceTree = "<group>"; };
+		07EDC50A1B4F1BB300AF8928 /* ios_mm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_mm.h; sourceTree = "<group>"; };
+		07EDC50B1B4F1BB300AF8928 /* ios_user.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ios_user.mm; sourceTree = "<group>"; };
+		07EDC50C1B4F1BB300AF8928 /* ios_window_boot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_window_boot.h; sourceTree = "<group>"; };
+		07EDC50D1B4F1BB300AF8928 /* ios_window_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_window_impl.h; sourceTree = "<group>"; };
+		07EDC50F1B4F1BB300AF8928 /* ios_windowing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_windowing.h; sourceTree = "<group>"; };
 		9A5E9DF919B7623B00949252 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../aura/aura.xcodeproj; sourceTree = "<group>"; };
 		9A8897A514C24736006B4023 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = ../../../../System/Library/Frameworks/Foundation.framework; sourceTree = "<group>"; };
 		9A98A6151771D67E000AE16E /* libbase.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libbase.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -621,6 +630,7 @@
 		07A36DD11B25D18E00E4F888 /* os */ = {
 			isa = PBXGroup;
 			children = (
+				07EDC5001B4F1BB300AF8928 /* ios */,
 				07A36DDA1B25D18E00E4F888 /* ansios */,
 				07A36E601B25D18E00E4F888 /* macos */,
 				07A36DE31B25D18E00E4F888 /* cross.h */,
@@ -816,6 +826,24 @@
 				07D967901B4C63E3004A3D2A /* userex_scroll.h */,
 			);
 			path = userex;
+			sourceTree = "<group>";
+		};
+		07EDC5001B4F1BB300AF8928 /* ios */ = {
+			isa = PBXGroup;
+			children = (
+				07EDC5021B4F1BB300AF8928 /* ios.h */,
+				07EDC5031B4F1BB300AF8928 /* ios_base_internal.h */,
+				07EDC5041B4F1BB300AF8928 /* ios_base_mm.h */,
+				07EDC5061B4F1BB300AF8928 /* ios_cross_gdi.mm */,
+				07EDC5071B4F1BB300AF8928 /* ios_graphics_mm.h */,
+				07EDC5081B4F1BB300AF8928 /* ios_m.h */,
+				07EDC50A1B4F1BB300AF8928 /* ios_mm.h */,
+				07EDC50B1B4F1BB300AF8928 /* ios_user.mm */,
+				07EDC50C1B4F1BB300AF8928 /* ios_window_boot.h */,
+				07EDC50D1B4F1BB300AF8928 /* ios_window_impl.h */,
+				07EDC50F1B4F1BB300AF8928 /* ios_windowing.h */,
+			);
+			path = ios;
 			sourceTree = "<group>";
 		};
 		9A5E9DFA19B7623B00949252 /* Products */ = {
@@ -1198,7 +1226,7 @@
 		};
 		9A5E9E0219B7623B00949252 /* libaura.dylib */ = {
 			isa = PBXReferenceProxy;
-			fileType = archive.ar;
+			fileType = "compiled.mach-o.dylib";
 			path = libaura.dylib;
 			remoteRef = 9A5E9E0119B7623B00949252 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -1254,9 +1282,9 @@
 				07D967911B4C63E3004A3D2A /* database_user_interaction.cpp in Sources */,
 				07D966E41B4C55BD004A3D2A /* round_window.mm in Sources */,
 				07D966E61B4C55BD004A3D2A /* RoundWindowApp.mm in Sources */,
+				07EDC5401B4F1CB700AF8928 /* graphics_window_graphics.cpp in Sources */,
 				07D968BE1B4C65FD004A3D2A /* macos_cross_gdi.mm in Sources */,
 				07D966E71B4C55BD004A3D2A /* RoundWindowFrameView.mm in Sources */,
-				07D967951B4C63E3004A3D2A /* graphics_window_graphics.cpp in Sources */,
 				07D967991B4C63E3004A3D2A /* _user.cpp in Sources */,
 				07D968BB1B4C65FD004A3D2A /* macos_base_user_mm.mm in Sources */,
 				07D966E51B4C55BD004A3D2A /* RoundWindow.mm in Sources */,
@@ -1269,10 +1297,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				07D9679A1B4C63E3004A3D2A /* _user.cpp in Sources */,
-				07D968BF1B4C65FD004A3D2A /* macos_cross_gdi.mm in Sources */,
-				07D967961B4C63E3004A3D2A /* graphics_window_graphics.cpp in Sources */,
-				07D968BC1B4C65FD004A3D2A /* macos_base_user_mm.mm in Sources */,
+				07EDC52A1B4F1BB300AF8928 /* ios_cross_gdi.mm in Sources */,
 				07D967921B4C63E3004A3D2A /* database_user_interaction.cpp in Sources */,
+				07EDC5411B4F1CB800AF8928 /* graphics_window_graphics.cpp in Sources */,
+				07EDC52C1B4F1BB300AF8928 /* ios_user.mm in Sources */,
 				07A36EC71B25D18F00E4F888 /* _base_base.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1281,11 +1309,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07EDC5421B4F1CB900AF8928 /* graphics_window_graphics.cpp in Sources */,
 				07D9679B1B4C63E3004A3D2A /* _user.cpp in Sources */,
-				07D968BD1B4C65FD004A3D2A /* macos_base_user_mm.mm in Sources */,
-				07D968C01B4C65FD004A3D2A /* macos_cross_gdi.mm in Sources */,
 				07D967931B4C63E3004A3D2A /* database_user_interaction.cpp in Sources */,
-				07D967971B4C63E3004A3D2A /* graphics_window_graphics.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

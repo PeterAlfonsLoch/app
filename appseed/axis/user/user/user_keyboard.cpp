@@ -5,7 +5,7 @@
 
 #if defined(LINUX) || defined(SOLARIS)
 //#include "base/base/os/x11/x11_keyboard.h"
-#elif defined(APPLEOS)
+#elif defined(MACOS)
 string keyboard_input_source();
 #endif
 
@@ -445,7 +445,7 @@ namespace user
       }
    }
 
-#elif defined(APPLEOS)
+#elif defined(MACOS)
 
       string strSymbol = keyboard_input_source();
 

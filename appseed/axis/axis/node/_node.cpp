@@ -19,4 +19,8 @@
 
 #include "macos/_macos_node.cpp"
 
+#elif defined(APPLE_IOS)
+
+#include "ios/_ios_node.cpp"
+
 #endif

@@ -16,7 +16,11 @@
 #endif
 #include "aes_ofb.c"
 #include "aes_wrap.c"
-#if !defined(_M_X64) && !defined(_LP64)
+// - Hi, I am Cortisol!!
+// - So let's reflect you !!
+// G: Passcrypt (No Weblang...) : on a Terminal t (.i.e. type, and press enter): clang -arch arm -dM -E - < /dev/null 
+#if !defined(_M_X64) && !defined(_LP64) && !defined(__ARM_ARCH)
+//#error "I know how to issue an error too!"
 #include "aes_x86core.c"
 #endif
 //2015-02-03  04:55                 0 _aes.c"

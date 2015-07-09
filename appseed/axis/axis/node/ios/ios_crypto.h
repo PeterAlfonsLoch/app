@@ -5,7 +5,7 @@ namespace ios
 {
 
 
-   class CLASS_DECL_BASE crypto :
+   class CLASS_DECL_AXIS crypto :
       virtual public ::crypto::crypto
    {
    public:
@@ -19,7 +19,7 @@ namespace ios
       virtual bool decrypt(primitive::memory & storageDecrypt, const primitive::memory & storageEncrypt, const char * pszSalt);
 
 
-      virtual string get_crypt_key_file_path();
+      virtual ::file::path get_crypt_key_file_path();
 
 
 

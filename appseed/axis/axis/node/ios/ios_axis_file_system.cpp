@@ -1,5 +1,3 @@
-#include "framework.h"
-#include "macos.h"
 
 
 #include <sys/stat.h>
@@ -13,7 +11,7 @@ struct PROCESS_INFO_t
 };
 
 
-namespace macos
+namespace ios
 {
    
    
@@ -25,7 +23,7 @@ namespace macos
          ::object(papp),
          ::file::system(papp),
          ::file::axis::system(papp),
-         ::macos::file_system(papp)
+         ::ios::file_system(papp)
       {
       }
       

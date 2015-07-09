@@ -10,6 +10,7 @@
 		07502CC11B252B6F008D207C /* libaxiscrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07502CBA1B252A49008D207C /* libaxiscrypto.dylib */; };
 		077A023E1B4D5BF4001C85FF /* libaxiscrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07502CBC1B252A49008D207C /* libaxiscrypto.dylib */; };
 		077CEF081B23BC7A009A57EF /* _ssl.c in Sources */ = {isa = PBXBuildFile; fileRef = 077CEF071B23BC7A009A57EF /* _ssl.c */; };
+		07EDC4EC1B4EFE1C00AF8928 /* _ssl.c in Sources */ = {isa = PBXBuildFile; fileRef = 077CEF071B23BC7A009A57EF /* _ssl.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -314,6 +315,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07EDC4EC1B4EFE1C00AF8928 /* _ssl.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

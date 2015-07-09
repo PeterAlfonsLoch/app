@@ -53,6 +53,10 @@
 *
 */
 
+//#error "eos2"
+
+#pragma once
+
 #include <openssl/opensslconf.h>
 
 #ifndef HEADER_E_OS2_H
@@ -327,8 +331,12 @@ extern "C" {
 #pragma warning( disable: 4267 )
 #pragma warning( disable: 4267 )
 
+#if defined(__clang__)
 
+#define _lrotl(ulValue,  iShift) \
+   (((unsigned long)(ulValue) << (int)(iShift)) | ((unsigned long)(ulValue)  >> (sizeof (unsigned long) * 8 - (int)(iShift))))
 
+#endif
 
 
 

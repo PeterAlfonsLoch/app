@@ -1,9 +1,13 @@
 /* opensslconf.h */
 /* WARNING: Generated automatically from opensslconf.h.in by Configure. */
-
+//#error "sslconf1"
 /* OpenSSL was configured with the following options: */
 #ifndef OPENSSL_DOING_MAKEDEPEND
-
+//#error "sslconf2"
+#ifdef __clang
+#ifdef __i386
+#endif
+#endif
 
 #ifndef OPENSSL_NO_EC_NISTP_64_GCC_128
 # define OPENSSL_NO_EC_NISTP_64_GCC_128
@@ -129,15 +133,17 @@
 #endif
 #endif
 
-#if (defined(HEADER_NEW_DES_H) || defined(HEADER_DES_H)) && !defined(DES_LONG)
+// commented out because of amalgamation
+//#if (defined(HEADER_NEW_DES_H) || defined(HEADER_DES_H)) && !defined(DES_LONG)
 /* If this is set to 'unsigned int' on a DEC Alpha, this gives about a
  * %20 speed up (longs are 8 bytes, int's are 4). */
 #ifndef DES_LONG
 #define DES_LONG unsigned long
 #endif
-#endif
+//#endif
 
-#if defined(HEADER_BN_H) && !defined(CONFIG_HEADER_BN_H)
+// commented out because of amalgamation
+//#if defined(HEADER_BN_H) && !defined(CONFIG_HEADER_BN_H)
 #define CONFIG_HEADER_BN_H
 #undef BN_LLONG
 
@@ -147,7 +153,8 @@
 #undef SIXTY_FOUR_BIT_LONG
 #undef SIXTY_FOUR_BIT
 #define THIRTY_TWO_BIT
-#endif
+//#error "32-bit"
+//#endif
 
 #if defined(HEADER_RC4_LOCL_H) && !defined(CONFIG_HEADER_RC4_LOCL_H)
 #define CONFIG_HEADER_RC4_LOCL_H
@@ -161,14 +168,15 @@
 #undef BF_PTR
 #endif /* HEADER_BF_LOCL_H */
 
-#if defined(HEADER_DES_LOCL_H) && !defined(CONFIG_HEADER_DES_LOCL_H)
+// commented out because of amalgamation
+//#if defined(HEADER_DES_LOCL_H) && !defined(CONFIG_HEADER_DES_LOCL_H)
 #define CONFIG_HEADER_DES_LOCL_H
 #ifndef DES_DEFAULT_OPTIONS
 /* the following is tweaked from a config script, that is why it is a
  * protected undef/define */
 #ifndef DES_PTR
 #undef DES_PTR
-#endif
+//#endif
 
 /* This helps C compiler generate the correct code for multiple functional
  * units.  It reduces register dependancies at the expense of 2 more

@@ -23,7 +23,7 @@
 //}
 
 
-void GetMainScreenRect(LPRECT lprect)
+int GetMainScreenRect(LPRECT lprect)
 {
 
    CGRect rect = [[UIScreen mainScreen] bounds];
@@ -33,6 +33,28 @@ void GetMainScreenRect(LPRECT lprect)
    lprect->right       = rect.origin.x  + rect.size.width;
    lprect->top         = lprect->bottom - rect.size.height;
    
+}
+
+
+
+int GetScreenRect(LPRECT lprect, int iMonitor)
+{
+   return GetMainScreenRect(lprect);
+}
+
+int GetScreenCount()
+{
+   return 1;
+}
+
+int GetWkspaceRect(LPRECT lprect, int iMonitor)
+{
+   return GetMainScreenRect(lprect);
+   
+}
+int GetWkspaceCount()
+{
+   return 1;
 }
 
 

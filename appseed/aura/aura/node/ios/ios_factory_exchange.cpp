@@ -4,7 +4,8 @@
 namespace ios
 {
 
-
+namespace aura
+   {
    factory_exchange::factory_exchange(::aura::application * papp) :
       ::object(papp)
    {
@@ -35,6 +36,7 @@ namespace ios
 
    }
 
+   } //   namespace aura
 
 } // namespace ios
 
@@ -43,7 +45,7 @@ namespace ios
 void __node_aura_factory_exchange(::aura::application * papp)
 {
 
-   ios::factory_exchange factoryexchange(papp);
+   ios::aura::factory_exchange factoryexchange(papp);
 
 }
 

@@ -1,10 +1,10 @@
 #pragma once
 
 
-#include "ios_ns_exception.h"
+//#include "ios_ns_exception.h"
 
 
-#include "ios_multithreading.h"
+//#include "ios_multithreading.h"
 
 
 #include "ios_base_internal.h"
@@ -90,6 +90,7 @@ public:
 
 */
 
+#include "base/graphics/graphics_window_graphics.h"
 
 #ifdef __OBJC__
 

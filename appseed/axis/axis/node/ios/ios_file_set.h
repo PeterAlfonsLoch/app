@@ -5,16 +5,16 @@ namespace ios
 {
    
    
-   class CLASS_DECL_BASE file_set :
-      public ::file::set
+   class CLASS_DECL_AXIS file_set :
+   public ::file::set
    {
    public:
       
       
-      stringa        m_straSearch;
-      bool_array     m_baRecursive;
-      stringa        m_straFilter;
-      stringa        m_straFile;
+      stringa           m_straSearch;
+      bool_array        m_baRecursive;
+      stringa           m_straFilter;
+      ::file::listing   m_straFile;
       
       
       file_set(sp(::aura::application) papp);

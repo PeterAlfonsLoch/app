@@ -37,55 +37,55 @@ void GetMainScreenRect(LPRECT lprect)
 
 
 
-WINBOOL SetForegroundWindow(oswindow window)
-{
-   
-   if(!::IsWindow(window))
-      return FALSE;
-   
-    /*
-     
-   [NSApp activateIgnoringOtherApps:YES];
-   
-//   [NSApp setWindow : window->window()];
-
-   [window->window() makeKeyAndOrderFront: NSApp];
-   
-   [window->window() orderFrontRegardless];
-     
-     */
-   
-   SetActiveWindow(window);
-   
-   return TRUE;
-   
-}
-
-
-WINBOOL BringWindowToTop(oswindow window)
-{
-   
-   if(!::IsWindow(window))
-      return FALSE;
-    
-    /*
-   
-   [NSApp activateIgnoringOtherApps:YES];
-   
-//   [NSApp setWindow : window->window()];
-   
-   [window->window() makeKeyAndOrderFront: NSApp];
-   
-   [window->window() orderFrontRegardless];
-     
-     */
-   
-   SetActiveWindow(window);
-   
-   return TRUE;
-   
-}
-
+//WINBOOL SetForegroundWindow(oswindow window)
+//{
+//   
+//   if(!::IsWindow(window))
+//      return FALSE;
+//   
+//    /*
+//     
+//   [NSApp activateIgnoringOtherApps:YES];
+//   
+////   [NSApp setWindow : window->window()];
+//
+//   [window->window() makeKeyAndOrderFront: NSApp];
+//   
+//   [window->window() orderFrontRegardless];
+//     
+//     */
+//   
+//   SetActiveWindow(window);
+//   
+//   return TRUE;
+//   
+//}
+//
+//
+//WINBOOL BringWindowToTop(oswindow window)
+//{
+//   
+//   if(!::IsWindow(window))
+//      return FALSE;
+//    
+//    /*
+//   
+//   [NSApp activateIgnoringOtherApps:YES];
+//   
+////   [NSApp setWindow : window->window()];
+//   
+//   [window->window() makeKeyAndOrderFront: NSApp];
+//   
+//   [window->window() orderFrontRegardless];
+//     
+//     */
+//   
+//   SetActiveWindow(window);
+//   
+//   return TRUE;
+//   
+//}
+//
 
 
 

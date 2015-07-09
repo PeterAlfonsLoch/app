@@ -225,6 +225,7 @@ extern "C" {
 #endif
 
 #ifdef THIRTY_TWO_BIT
+//#error "32-bit"
 #ifdef BN_LLONG
 # if defined(_WIN32) && !defined(__GNUC__)
 #  define BN_ULLONG	unsigned __int64

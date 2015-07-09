@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace macos
+namespace ios
 {
 
    
@@ -11,7 +11,7 @@ namespace macos
       
       class CLASS_DECL_AXIS file_system :
          virtual public ::file::axis::system,
-         virtual public ::macos::file_system
+         virtual public ::ios::file_system
       {
       public:
          
@@ -102,7 +102,7 @@ namespace macos
    } // namespace axis
    
       
-} // namespace ca2
+} // namespace ios
 
 
 

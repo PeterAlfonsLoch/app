@@ -1,9 +1,7 @@
-#include "framework.h"
-#include "macos.h"
 
 
 
-namespace macos
+namespace ios
 {
 
    
@@ -15,7 +13,7 @@ namespace macos
          ::object(papp),
          ::file::dir::system(papp),
          ::file::dir::axis::system(papp),
-         ::macos::dir(papp)
+         ::ios::dir(papp)
       {
 
 //      string strCa2Module = ca2module();
@@ -38,7 +36,7 @@ namespace macos
             
          }
          
-         return ::macos::dir::ls(papp,listing);
+         return ::ios::dir::ls(papp,listing);
          
       }
       
@@ -46,7 +44,7 @@ namespace macos
       bool dir::initialize()
       {
          
-         if(!::macos::dir::initialize())
+         if(!::ios::dir::initialize())
             return false;
          
          return true;
@@ -57,7 +55,7 @@ namespace macos
       bool dir::is(const ::file::path & lpcszPath, ::aura::application * papp)
       {
          
-         if(::macos::dir::is(lpcszPath,papp))
+         if(::ios::dir::is(lpcszPath,papp))
             return true;
          
          if(::file::dir::axis::system::is(lpcszPath, papp))
@@ -1592,4 +1590,4 @@ namespace macos
       
    } // namespace axis
 
-} // namespace macos
+} // namespace ios
