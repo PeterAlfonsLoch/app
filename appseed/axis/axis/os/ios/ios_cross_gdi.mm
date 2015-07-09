@@ -6,21 +6,21 @@
 //  Copyright (c) 2011 ca2 Desenvolvimento de Sofware Ltda. All rights reserved.
 //
 
-#include "ca_mm.h"
+#include "ios_mm.h"
 
 
-oswindow SetActiveWindow(oswindow window);
-
-
-
-CGContextRef get_nswindow_cgcontext(oswindow oswindow)
-{
-
-//    return (CGContextRef) [[oswindow->window() graphicsContext] graphicsPort];
-    
-    return 0;
-
-}
+//oswindow SetActiveWindow(oswindow window);
+//
+//
+//
+//CGContextRef get_nswindow_cgcontext(oswindow oswindow)
+//{
+//
+////    return (CGContextRef) [[oswindow->window() graphicsContext] graphicsPort];
+//    
+//    return 0;
+//
+//}
 
 
 void GetMainScreenRect(LPRECT lprect)
