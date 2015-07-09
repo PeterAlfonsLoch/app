@@ -848,7 +848,7 @@ CLASS_DECL_AURA mutex & draw2d_direct2_mutex();
 
 #include "aura/os/ansios/ansios.h"
 #include "aura/os/ios/ios.h"
-#include "aura/os/ios/ios_windowing.h"
+//#include "aura/os/ios/ios_windowing.h"
 
 #elif defined(SOLARIS)
 

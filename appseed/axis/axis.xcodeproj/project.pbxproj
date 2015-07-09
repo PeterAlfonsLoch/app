@@ -269,7 +269,6 @@
 		07B0980518495CBE007A0560 /* sockets_logger.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B096FD18495CBE007A0560 /* sockets_logger.h */; };
 		07B0980718495CBE007A0560 /* sockets_trace_logger.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B096FF18495CBE007A0560 /* sockets_trace_logger.h */; };
 		07D966ED1B4C5F54004A3D2A /* macos_base_user_mm.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07D966EC1B4C5F54004A3D2A /* macos_base_user_mm.mm */; };
-		07EDC2AC1B4ECB3C00AF8928 /* DDInvocationGrabber.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07EDC27E1B4ECB3C00AF8928 /* DDInvocationGrabber.mm */; };
 		07EDC2AD1B4ECB3C00AF8928 /* ios.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07EDC27F1B4ECB3C00AF8928 /* ios.cpp */; };
 		07EDC2AE1B4ECB3C00AF8928 /* ios_base_user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07EDC2831B4ECB3C00AF8928 /* ios_base_user.cpp */; };
 		07EDC2AF1B4ECB3C00AF8928 /* ios_cross_gdi.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07EDC2841B4ECB3C00AF8928 /* ios_cross_gdi.mm */; };
@@ -282,21 +281,12 @@
 		07EDC2B61B4ECB3C00AF8928 /* ios_fontopus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07EDC28D1B4ECB3C00AF8928 /* ios_fontopus.cpp */; };
 		07EDC2B71B4ECB3C00AF8928 /* ios_genResource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07EDC28F1B4ECB3C00AF8928 /* ios_genResource.cpp */; };
 		07EDC2B81B4ECB3C00AF8928 /* ios_launcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07EDC2931B4ECB3C00AF8928 /* ios_launcher.cpp */; };
-		07EDC2B91B4ECB3C00AF8928 /* ios_library.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07EDC2941B4ECB3C00AF8928 /* ios_library.cpp */; };
 		07EDC2BA1B4ECB3C00AF8928 /* ios_lock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07EDC2951B4ECB3C00AF8928 /* ios_lock.cpp */; };
 		07EDC2BB1B4ECB3C00AF8928 /* ios_message_loop.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07EDC2971B4ECB3C00AF8928 /* ios_message_loop.cpp */; };
-		07EDC2BC1B4ECB3C00AF8928 /* ios_multithreading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07EDC2991B4ECB3C00AF8928 /* ios_multithreading.cpp */; };
-		07EDC2BD1B4ECB3C00AF8928 /* ios_process.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07EDC29B1B4ECB3C00AF8928 /* ios_process.cpp */; };
 		07EDC2BE1B4ECB3C00AF8928 /* ios_process_pid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07EDC29D1B4ECB3C00AF8928 /* ios_process_pid.cpp */; };
-		07EDC2BF1B4ECB3C00AF8928 /* ios_simple_shell_launcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07EDC29E1B4ECB3C00AF8928 /* ios_simple_shell_launcher.cpp */; };
-		07EDC2C01B4ECB3C00AF8928 /* ios_small_ipca_channel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07EDC29F1B4ECB3C00AF8928 /* ios_small_ipca_channel.cpp */; };
-		07EDC2C11B4ECB3C00AF8928 /* ios_thread_mm.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07EDC2A01B4ECB3C00AF8928 /* ios_thread_mm.mm */; };
 		07EDC2C21B4ECB3C00AF8928 /* ios_time.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07EDC2A11B4ECB3C00AF8928 /* ios_time.cpp */; };
 		07EDC2C31B4ECB3C00AF8928 /* ios_user.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07EDC2A21B4ECB3C00AF8928 /* ios_user.mm */; };
 		07EDC2C41B4ECB3C00AF8928 /* ios_win_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07EDC2A31B4ECB3C00AF8928 /* ios_win_base.cpp */; };
-		07EDC2C51B4ECB3C00AF8928 /* ios_windowing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07EDC2A61B4ECB3C00AF8928 /* ios_windowing.cpp */; };
-		07EDC2C61B4ECB3C00AF8928 /* NSObject+DDExtensions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07EDC2A91B4ECB3C00AF8928 /* NSObject+DDExtensions.mm */; };
-		07EDC2C71B4ECB3C00AF8928 /* UncaughtExceptionHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07EDC2AB1B4ECB3C00AF8928 /* UncaughtExceptionHandler.mm */; };
 		07F5B1F8184A3B430092C3E1 /* filesystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B188184A3B430092C3E1 /* filesystem.h */; };
 		07F5B27F184A3B6A0092C3E1 /* graphics.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B243184A3B6A0092C3E1 /* graphics.h */; };
 		07F5B282184A3B6A0092C3E1 /* visual.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B247184A3B6A0092C3E1 /* visual.h */; };
@@ -942,8 +932,6 @@
 		07D966EC1B4C5F54004A3D2A /* macos_base_user_mm.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = macos_base_user_mm.mm; sourceTree = "<group>"; };
 		07EDC27B1B4ECB3C00AF8928 /* ca_os.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ca_os.h; sourceTree = "<group>"; };
 		07EDC27C1B4ECB3C00AF8928 /* ca_os_thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ca_os_thread.h; sourceTree = "<group>"; };
-		07EDC27D1B4ECB3C00AF8928 /* DDInvocationGrabber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDInvocationGrabber.h; sourceTree = "<group>"; };
-		07EDC27E1B4ECB3C00AF8928 /* DDInvocationGrabber.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DDInvocationGrabber.mm; sourceTree = "<group>"; };
 		07EDC27F1B4ECB3C00AF8928 /* ios.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ios.cpp; sourceTree = "<group>"; };
 		07EDC2801B4ECB3C00AF8928 /* ios.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios.h; sourceTree = "<group>"; };
 		07EDC2811B4ECB3C00AF8928 /* ios_base_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_base_internal.h; sourceTree = "<group>"; };
@@ -965,30 +953,14 @@
 		07EDC2911B4ECB3C00AF8928 /* ios_implementation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_implementation.h; sourceTree = "<group>"; };
 		07EDC2921B4ECB3C00AF8928 /* ios_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_internal.h; sourceTree = "<group>"; };
 		07EDC2931B4ECB3C00AF8928 /* ios_launcher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ios_launcher.cpp; sourceTree = "<group>"; };
-		07EDC2941B4ECB3C00AF8928 /* ios_library.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ios_library.cpp; sourceTree = "<group>"; };
 		07EDC2951B4ECB3C00AF8928 /* ios_lock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ios_lock.cpp; sourceTree = "<group>"; };
 		07EDC2961B4ECB3C00AF8928 /* ios_m.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_m.h; sourceTree = "<group>"; };
 		07EDC2971B4ECB3C00AF8928 /* ios_message_loop.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ios_message_loop.cpp; sourceTree = "<group>"; };
-		07EDC2981B4ECB3C00AF8928 /* ios_mm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_mm.h; sourceTree = "<group>"; };
-		07EDC2991B4ECB3C00AF8928 /* ios_multithreading.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ios_multithreading.cpp; sourceTree = "<group>"; };
-		07EDC29A1B4ECB3C00AF8928 /* ios_multithreading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_multithreading.h; sourceTree = "<group>"; };
-		07EDC29B1B4ECB3C00AF8928 /* ios_process.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ios_process.cpp; sourceTree = "<group>"; };
-		07EDC29C1B4ECB3C00AF8928 /* ios_process.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_process.h; sourceTree = "<group>"; };
 		07EDC29D1B4ECB3C00AF8928 /* ios_process_pid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ios_process_pid.cpp; sourceTree = "<group>"; };
-		07EDC29E1B4ECB3C00AF8928 /* ios_simple_shell_launcher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ios_simple_shell_launcher.cpp; sourceTree = "<group>"; };
-		07EDC29F1B4ECB3C00AF8928 /* ios_small_ipca_channel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ios_small_ipca_channel.cpp; sourceTree = "<group>"; };
-		07EDC2A01B4ECB3C00AF8928 /* ios_thread_mm.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ios_thread_mm.mm; sourceTree = "<group>"; };
 		07EDC2A11B4ECB3C00AF8928 /* ios_time.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ios_time.cpp; sourceTree = "<group>"; };
 		07EDC2A21B4ECB3C00AF8928 /* ios_user.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ios_user.mm; sourceTree = "<group>"; };
 		07EDC2A31B4ECB3C00AF8928 /* ios_win_base.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ios_win_base.cpp; sourceTree = "<group>"; };
 		07EDC2A41B4ECB3C00AF8928 /* ios_window_boot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_window_boot.h; sourceTree = "<group>"; };
-		07EDC2A51B4ECB3C00AF8928 /* ios_window_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_window_impl.h; sourceTree = "<group>"; };
-		07EDC2A61B4ECB3C00AF8928 /* ios_windowing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ios_windowing.cpp; sourceTree = "<group>"; };
-		07EDC2A71B4ECB3C00AF8928 /* ios_windowing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_windowing.h; sourceTree = "<group>"; };
-		07EDC2A81B4ECB3C00AF8928 /* NSObject+DDExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DDExtensions.h"; sourceTree = "<group>"; };
-		07EDC2A91B4ECB3C00AF8928 /* NSObject+DDExtensions.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "NSObject+DDExtensions.mm"; sourceTree = "<group>"; };
-		07EDC2AA1B4ECB3C00AF8928 /* UncaughtExceptionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UncaughtExceptionHandler.h; sourceTree = "<group>"; };
-		07EDC2AB1B4ECB3C00AF8928 /* UncaughtExceptionHandler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UncaughtExceptionHandler.mm; sourceTree = "<group>"; };
 		07F5B188184A3B430092C3E1 /* filesystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filesystem.h; sourceTree = "<group>"; };
 		07F5B243184A3B6A0092C3E1 /* graphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = graphics.h; sourceTree = "<group>"; };
 		07F5B247184A3B6A0092C3E1 /* visual.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = visual.h; sourceTree = "<group>"; };
@@ -1682,8 +1654,6 @@
 			children = (
 				07EDC27B1B4ECB3C00AF8928 /* ca_os.h */,
 				07EDC27C1B4ECB3C00AF8928 /* ca_os_thread.h */,
-				07EDC27D1B4ECB3C00AF8928 /* DDInvocationGrabber.h */,
-				07EDC27E1B4ECB3C00AF8928 /* DDInvocationGrabber.mm */,
 				07EDC27F1B4ECB3C00AF8928 /* ios.cpp */,
 				07EDC2801B4ECB3C00AF8928 /* ios.h */,
 				07EDC2811B4ECB3C00AF8928 /* ios_base_internal.h */,
@@ -1705,30 +1675,14 @@
 				07EDC2911B4ECB3C00AF8928 /* ios_implementation.h */,
 				07EDC2921B4ECB3C00AF8928 /* ios_internal.h */,
 				07EDC2931B4ECB3C00AF8928 /* ios_launcher.cpp */,
-				07EDC2941B4ECB3C00AF8928 /* ios_library.cpp */,
 				07EDC2951B4ECB3C00AF8928 /* ios_lock.cpp */,
 				07EDC2961B4ECB3C00AF8928 /* ios_m.h */,
 				07EDC2971B4ECB3C00AF8928 /* ios_message_loop.cpp */,
-				07EDC2981B4ECB3C00AF8928 /* ios_mm.h */,
-				07EDC2991B4ECB3C00AF8928 /* ios_multithreading.cpp */,
-				07EDC29A1B4ECB3C00AF8928 /* ios_multithreading.h */,
-				07EDC29B1B4ECB3C00AF8928 /* ios_process.cpp */,
-				07EDC29C1B4ECB3C00AF8928 /* ios_process.h */,
 				07EDC29D1B4ECB3C00AF8928 /* ios_process_pid.cpp */,
-				07EDC29E1B4ECB3C00AF8928 /* ios_simple_shell_launcher.cpp */,
-				07EDC29F1B4ECB3C00AF8928 /* ios_small_ipca_channel.cpp */,
-				07EDC2A01B4ECB3C00AF8928 /* ios_thread_mm.mm */,
 				07EDC2A11B4ECB3C00AF8928 /* ios_time.cpp */,
 				07EDC2A21B4ECB3C00AF8928 /* ios_user.mm */,
 				07EDC2A31B4ECB3C00AF8928 /* ios_win_base.cpp */,
 				07EDC2A41B4ECB3C00AF8928 /* ios_window_boot.h */,
-				07EDC2A51B4ECB3C00AF8928 /* ios_window_impl.h */,
-				07EDC2A61B4ECB3C00AF8928 /* ios_windowing.cpp */,
-				07EDC2A71B4ECB3C00AF8928 /* ios_windowing.h */,
-				07EDC2A81B4ECB3C00AF8928 /* NSObject+DDExtensions.h */,
-				07EDC2A91B4ECB3C00AF8928 /* NSObject+DDExtensions.mm */,
-				07EDC2AA1B4ECB3C00AF8928 /* UncaughtExceptionHandler.h */,
-				07EDC2AB1B4ECB3C00AF8928 /* UncaughtExceptionHandler.mm */,
 			);
 			path = ios;
 			sourceTree = "<group>";
@@ -2622,32 +2576,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07EDC2AC1B4ECB3C00AF8928 /* DDInvocationGrabber.mm in Sources */,
-				07EDC2B91B4ECB3C00AF8928 /* ios_library.cpp in Sources */,
 				07EDC2C41B4ECB3C00AF8928 /* ios_win_base.cpp in Sources */,
-				07EDC2C71B4ECB3C00AF8928 /* UncaughtExceptionHandler.mm in Sources */,
 				07502CE61B25CADC008D207C /* dib_console.cpp in Sources */,
 				07502CF11B25CB6D008D207C /* _sockets.cpp in Sources */,
 				07EDC2AD1B4ECB3C00AF8928 /* ios.cpp in Sources */,
 				07502CF41B25CC61008D207C /* _filesystem.cpp in Sources */,
-				07EDC2BF1B4ECB3C00AF8928 /* ios_simple_shell_launcher.cpp in Sources */,
-				07EDC2BC1B4ECB3C00AF8928 /* ios_multithreading.cpp in Sources */,
 				07EDC2AE1B4ECB3C00AF8928 /* ios_base_user.cpp in Sources */,
 				07EDC2B61B4ECB3C00AF8928 /* ios_fontopus.cpp in Sources */,
-				07EDC2BD1B4ECB3C00AF8928 /* ios_process.cpp in Sources */,
 				07502CEB1B25CAE9008D207C /* _visual.cpp in Sources */,
 				07EDC2B11B4ECB3C00AF8928 /* ios_cross_win_file.cpp in Sources */,
 				07EDC2B51B4ECB3C00AF8928 /* ios_file_watcher.cpp in Sources */,
 				07EDC2B21B4ECB3C00AF8928 /* ios_crypt.cpp in Sources */,
 				07502CEE1B25CB52008D207C /* _net.cpp in Sources */,
 				07EDC2BA1B4ECB3C00AF8928 /* ios_lock.cpp in Sources */,
-				07EDC2C51B4ECB3C00AF8928 /* ios_windowing.cpp in Sources */,
 				07EDC2B71B4ECB3C00AF8928 /* ios_genResource.cpp in Sources */,
 				07EDC2BE1B4ECB3C00AF8928 /* ios_process_pid.cpp in Sources */,
-				07EDC2C11B4ECB3C00AF8928 /* ios_thread_mm.mm in Sources */,
 				9AA6A6AF1907B84D000A1F4A /* javascript.cpp in Sources */,
 				9AA6A6B01907B84D000A1F4A /* javascript_functions.cpp in Sources */,
-				07EDC2C01B4ECB3C00AF8928 /* ios_small_ipca_channel.cpp in Sources */,
 				07EDC2C21B4ECB3C00AF8928 /* ios_time.cpp in Sources */,
 				9AA6A6B11907B84D000A1F4A /* javascript_tinyjs_functions.cpp in Sources */,
 				07EDC2B81B4ECB3C00AF8928 /* ios_launcher.cpp in Sources */,
@@ -2656,7 +2601,6 @@
 				07EDC2C31B4ECB3C00AF8928 /* ios_user.mm in Sources */,
 				07EDC2BB1B4ECB3C00AF8928 /* ios_message_loop.cpp in Sources */,
 				07EDC2B01B4ECB3C00AF8928 /* ios_cross_win.cpp in Sources */,
-				07EDC2C61B4ECB3C00AF8928 /* NSObject+DDExtensions.mm in Sources */,
 				07EDC2B31B4ECB3C00AF8928 /* ios_debug.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

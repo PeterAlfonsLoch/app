@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "ios_window.h"
+//#include "ios_window.h"
 
 
 #define MAX_LOADSTRING 100

@@ -173,7 +173,7 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 
 #include "axis/os/ansios/ansios.h"
 #include "axis/os/ios/ios.h"
-#include "axis/os/ios/ios_windowing.h"
+//#include "axis/os/ios/ios_windowing.h"
 
 #elif defined(SOLARIS)
 

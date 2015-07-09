@@ -9,18 +9,18 @@
 
 ////#define CLASS_DECL_AURA
 
-struct plane_system
-{
-
-   ::plane::system *    m_psystem;
-
-   plane_system(const char * pszId);
-
-   UIWindow * init_part_2ex(CGRect rect);
-
-   void begin();
-
-};
+//struct plane_system
+//{
+//
+//   ::plane::system *    m_psystem;
+//
+//   plane_system(const char * pszId);
+//
+//   UIWindow * init_part_2ex(CGRect rect);
+//
+//   void begin();
+//
+//};
 
 
 string get_error_message(DWORD dwError);
@@ -58,13 +58,13 @@ CLASS_DECL_AURA void AfxTryCleanup();
 // Global implementation helpers
 
 // window creation hooking
-CLASS_DECL_AURA void AfxHookWindowCreate(::user::interaction * pWnd);
-CLASS_DECL_AURA WINBOOL AfxUnhookWindowCreate();
-CLASS_DECL_AURA void AfxResetMsgCache();
-
-// for backward compatibility to previous versions
-#define _AfxHookWindowCreate    AfxHookWindowCreate
-#define _AfxUnhookWindowCreate  AfxUnhookWindowCreate
+//CLASS_DECL_AURA void AfxHookWindowCreate(::user::interaction * pWnd);
+//CLASS_DECL_AURA WINBOOL AfxUnhookWindowCreate();
+//CLASS_DECL_AURA void AfxResetMsgCache();
+//
+//// for backward compatibility to previous versions
+//#define _AfxHookWindowCreate    AfxHookWindowCreate
+//#define _AfxUnhookWindowCreate  AfxUnhookWindowCreate
 
 #include "ios_implementation.h"
 #include "ios_dir.h"
