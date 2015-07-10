@@ -625,7 +625,6 @@
 		079AE0671886481200635C39 /* math_scalar.h in Headers */ = {isa = PBXBuildFile; fileRef = 079AE0641886481200635C39 /* math_scalar.h */; };
 		079AE0811886486300635C39 /* primitive_relation_set.h in Headers */ = {isa = PBXBuildFile; fileRef = 079AE07F1886486300635C39 /* primitive_relation_set.h */; };
 		079DBF3C1886788000EFFEFB /* file_set.h in Headers */ = {isa = PBXBuildFile; fileRef = 079DBF3A1886788000EFFEFB /* file_set.h */; };
-		07A34AB01B4DA85600CC3FD9 /* libatomiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 076D0A1B1A3FCCD4007432B6 /* libatomiconv.dylib */; };
 		07AAB14B1926B2C20050A443 /* multithreading_thread_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AAB14A1926B2C20050A443 /* multithreading_thread_impl.h */; };
 		07B094AA18495C2A007A0560 /* collection.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B093DC18495C2A007A0560 /* collection.h */; };
 		07B094AD18495C2A007A0560 /* collection_array_decl.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B093E018495C2A007A0560 /* collection_array_decl.h */; };
@@ -770,6 +769,7 @@
 		07CABC161B3DFF200009F5B9 /* user_primitive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07CABC121B3DFF200009F5B9 /* user_primitive.cpp */; };
 		07CABC171B3DFF200009F5B9 /* user_primitive.h in Headers */ = {isa = PBXBuildFile; fileRef = 07CABC131B3DFF200009F5B9 /* user_primitive.h */; };
 		07D966D41B4C4E8C004A3D2A /* aura_timer.mm in Headers */ = {isa = PBXBuildFile; fileRef = 07EC4CDE1B4C350E00EB5965 /* aura_timer.mm */; };
+		07E42D3F1B501C970061D0BC /* libatomiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 076D0A1B1A3FCCD4007432B6 /* libatomiconv.dylib */; };
 		07EC4CDA1B4C34CD00EB5965 /* aura_timer_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 07EC4CD61B4C34CD00EB5965 /* aura_timer_array.h */; };
 		07EC4CDB1B4C34CD00EB5965 /* aura_timer_callback.h in Headers */ = {isa = PBXBuildFile; fileRef = 07EC4CD71B4C34CD00EB5965 /* aura_timer_callback.h */; };
 		07EC4CDC1B4C34CD00EB5965 /* aura_timer_event.h in Headers */ = {isa = PBXBuildFile; fileRef = 07EC4CD81B4C34CD00EB5965 /* aura_timer_event.h */; };
@@ -1217,19 +1217,19 @@
 			remoteGlobalIDString = 9A1647A219C4A73900966C5E;
 			remoteInfo = atomiconv;
 		};
-		076D0A1C1A3FCCE0007432B6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 076D0A161A3FCCD4007432B6 /* atomiconv.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9A1647A119C4A73900966C5E;
-			remoteInfo = atomiconv;
-		};
 		07CAA9791B4DC66B00180410 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 076D0A161A3FCCD4007432B6 /* atomiconv.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 077A014D1B4D5479001C85FF;
 			remoteInfo = atomiconv_ios;
+		};
+		07E42D3D1B501C850061D0BC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 076D0A161A3FCCD4007432B6 /* atomiconv.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A1647A119C4A73900966C5E;
+			remoteInfo = atomiconv;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -1916,11 +1916,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07A34AB01B4DA85600CC3FD9 /* libatomiconv.dylib in Frameworks */,
 				9A98A6081771D67E000AE16E /* AppKit.framework in Frameworks */,
 				9A98A6091771D67E000AE16E /* Foundation.framework in Frameworks */,
 				9A98A60A1771D67E000AE16E /* Carbon.framework in Frameworks */,
 				9A98A60B1771D67E000AE16E /* Security.framework in Frameworks */,
+				07E42D3F1B501C970061D0BC /* libatomiconv.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4128,7 +4128,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				076D0A1D1A3FCCE0007432B6 /* PBXTargetDependency */,
+				07E42D3E1B501C850061D0BC /* PBXTargetDependency */,
 			);
 			name = aura;
 			productName = c;
@@ -4309,15 +4309,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		076D0A1D1A3FCCE0007432B6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = atomiconv;
-			targetProxy = 076D0A1C1A3FCCE0007432B6 /* PBXContainerItemProxy */;
-		};
 		07CAA97A1B4DC66B00180410 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = atomiconv_ios;
 			targetProxy = 07CAA9791B4DC66B00180410 /* PBXContainerItemProxy */;
+		};
+		07E42D3E1B501C850061D0BC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = atomiconv;
+			targetProxy = 07E42D3D1B501C850061D0BC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

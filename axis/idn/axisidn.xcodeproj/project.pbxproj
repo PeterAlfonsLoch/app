@@ -33,7 +33,7 @@
 		077A00A61B4D4F9E001C85FF /* punycode.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A14419C6E1DC0018DF7D /* punycode.h */; };
 		077A00A71B4D4F9E001C85FF /* tld.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A14E19C6E1DC0018DF7D /* tld.h */; };
 		077A00B21B4D501B001C85FF /* libatomiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 076D0A251A3FDB08007432B6 /* libatomiconv.dylib */; };
-		077A02101B4D58F2001C85FF /* libatomiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 076D0A251A3FDB08007432B6 /* libatomiconv.dylib */; };
+		07E42D421B501D860061D0BC /* libatomiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 077A00AE1B4D4F9E001C85FF /* libatomiconv.dylib */; };
 		9A19A15219C6E1DC0018DF7D /* gunibreak.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A13619C6E1DC0018DF7D /* gunibreak.h */; };
 		9A19A15319C6E1DC0018DF7D /* gunicomp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A13719C6E1DC0018DF7D /* gunicomp.h */; };
 		9A19A15419C6E1DC0018DF7D /* gunidecomp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A13819C6E1DC0018DF7D /* gunidecomp.h */; };
@@ -83,7 +83,7 @@
 			remoteGlobalIDString = 077A014D1B4D5479001C85FF;
 			remoteInfo = atomiconv_ios;
 		};
-		07A34AAD1B4DA76D00CC3FD9 /* PBXContainerItemProxy */ = {
+		07E42D401B501D650061D0BC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 076D0A201A3FDB07007432B6 /* atomiconv.xcodeproj */;
 			proxyType = 1;
@@ -137,7 +137,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				077A02101B4D58F2001C85FF /* libatomiconv.dylib in Frameworks */,
+				07E42D421B501D860061D0BC /* libatomiconv.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,7 +271,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				07A34AAE1B4DA76D00CC3FD9 /* PBXTargetDependency */,
+				07E42D411B501D650061D0BC /* PBXTargetDependency */,
 			);
 			name = axisidn;
 			productName = FreeImage;
@@ -383,10 +383,10 @@
 			name = atomiconv_ios;
 			targetProxy = 077A00AF1B4D4FDC001C85FF /* PBXContainerItemProxy */;
 		};
-		07A34AAE1B4DA76D00CC3FD9 /* PBXTargetDependency */ = {
+		07E42D411B501D650061D0BC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = atomiconv;
-			targetProxy = 07A34AAD1B4DA76D00CC3FD9 /* PBXContainerItemProxy */;
+			targetProxy = 07E42D401B501D650061D0BC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

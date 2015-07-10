@@ -268,6 +268,7 @@
 		07B0980518495CBE007A0560 /* sockets_logger.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B096FD18495CBE007A0560 /* sockets_logger.h */; };
 		07B0980718495CBE007A0560 /* sockets_trace_logger.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B096FF18495CBE007A0560 /* sockets_trace_logger.h */; };
 		07D966ED1B4C5F54004A3D2A /* macos_base_user_mm.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07D966EC1B4C5F54004A3D2A /* macos_base_user_mm.mm */; };
+		07E42D521B5024610061D0BC /* libaxisidn.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A163D2519C4995100966C5E /* libaxisidn.dylib */; };
 		07EDC2AD1B4ECB3C00AF8928 /* ios.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07EDC27F1B4ECB3C00AF8928 /* ios.cpp */; };
 		07EDC2AE1B4ECB3C00AF8928 /* ios_base_user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07EDC2831B4ECB3C00AF8928 /* ios_base_user.cpp */; };
 		07EDC2AF1B4ECB3C00AF8928 /* ios_cross_gdi.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07EDC2841B4ECB3C00AF8928 /* ios_cross_gdi.mm */; };
@@ -335,7 +336,6 @@
 		9A19A12719C6931C0018DF7D /* libaxisfreeimage.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A19A0A219C67A8D0018DF7D /* libaxisfreeimage.dylib */; };
 		9A19A12D19C6933E0018DF7D /* sockets_ssl_server_context_map.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A12919C6933E0018DF7D /* sockets_ssl_server_context_map.h */; };
 		9A19A12F19C6933E0018DF7D /* sockets_ssl_server_context.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A12B19C6933E0018DF7D /* sockets_ssl_server_context.h */; };
-		9A19A16D19C6ED9E0018DF7D /* libaxisidn.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A163D2519C4995100966C5E /* libaxisidn.dylib */; };
 		9A98A6081771D67E000AE16E /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BD556C16210BD4008E31F0 /* AppKit.framework */; };
 		9A98A6091771D67E000AE16E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8897A514C24736006B4023 /* Foundation.framework */; };
 		9A98A60A1771D67E000AE16E /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE931714155F1599005F90F6 /* Carbon.framework */; };
@@ -541,6 +541,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 9A574B9716AAB906000CC4EF;
 			remoteInfo = axispng;
+		};
+		07E42D471B5024490061D0BC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A163D1E19C4995000966C5E /* axisidn.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AA5E4C216F7C61B005C45CE;
+			remoteInfo = axisidn;
 		};
 		9A163D2419C4995100966C5E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1026,6 +1033,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07E42D521B5024610061D0BC /* libaxisidn.dylib in Frameworks */,
 				9A98A6081771D67E000AE16E /* AppKit.framework in Frameworks */,
 				9A98A6091771D67E000AE16E /* Foundation.framework in Frameworks */,
 				9A98A60A1771D67E000AE16E /* Carbon.framework in Frameworks */,
@@ -1035,7 +1043,6 @@
 				9A19A0CC19C68CE70018DF7D /* libaxisbzip2.dylib in Frameworks */,
 				9A19A12719C6931C0018DF7D /* libaxisfreeimage.dylib in Frameworks */,
 				9A19A0CD19C68D140018DF7D /* libaxisfreetype.dylib in Frameworks */,
-				9A19A16D19C6ED9E0018DF7D /* libaxisidn.dylib in Frameworks */,
 				0747A6421B26353700E85AC7 /* libaxiscrypto.dylib in Frameworks */,
 				9A19A0C919C68C220018DF7D /* libaxisopenssl.dylib in Frameworks */,
 				9A19A0E819C6923E0018DF7D /* libaxiszlib.dylib in Frameworks */,
@@ -2212,6 +2219,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				07E42D481B5024490061D0BC /* PBXTargetDependency */,
 				07CABC541B3E99800009F5B9 /* PBXTargetDependency */,
 				0747A7081B2638A800E85AC7 /* PBXTargetDependency */,
 				0747A6411B26352100E85AC7 /* PBXTargetDependency */,
@@ -2682,6 +2690,11 @@
 			isa = PBXTargetDependency;
 			name = axispng;
 			targetProxy = 07CABC531B3E99800009F5B9 /* PBXContainerItemProxy */;
+		};
+		07E42D481B5024490061D0BC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = axisidn;
+			targetProxy = 07E42D471B5024490061D0BC /* PBXContainerItemProxy */;
 		};
 		9A19A0DB19C68DE00018DF7D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

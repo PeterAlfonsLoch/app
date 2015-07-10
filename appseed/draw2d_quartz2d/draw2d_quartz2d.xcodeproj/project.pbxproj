@@ -36,7 +36,7 @@
 		07E25F4C1B4FFC2100752DE1 /* draw2d_quartz2d.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6B40E317BBE291008391AD /* draw2d_quartz2d.h */; };
 		07E25F531B4FFD2200752DE1 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A19A19B19C6EF420018DF7D /* libaura.dylib */; };
 		07E25F541B4FFD4000752DE1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07E25F201B4FFAD000752DE1 /* UIKit.framework */; };
-		9A19A1A019C6EF9A0018DF7D /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A19A19919C6EF420018DF7D /* libaura.dylib */; };
+		07E42D461B501E790061D0BC /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A19A19919C6EF420018DF7D /* libaura.dylib */; };
 		9A1B496416A494A600875A94 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B496316A494A600875A94 /* framework.h */; };
 		9A1B496716A4A10100875A94 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B496616A4A10100875A94 /* framework.cpp */; };
 		9A6B40E417BBE291008391AD /* draw2d_quartz2d_bitmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B40CC17BBE291008391AD /* draw2d_quartz2d_bitmap.cpp */; };
@@ -78,6 +78,13 @@
 			remoteGlobalIDString = 077A05B41B4D7403001C85FF;
 			remoteInfo = aura_ios;
 		};
+		07E42D441B501E670061D0BC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A19A19219C6EF420018DF7D /* aura.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A98A6031771D67E000AE16E;
+			remoteInfo = aura;
+		};
 		9A19A19819C6EF420018DF7D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A19A19219C6EF420018DF7D /* aura.xcodeproj */;
@@ -98,13 +105,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 9AE24D431904CEFE001AEFFB;
 			remoteInfo = aura_iosTests;
-		};
-		9A19A19E19C6EF5D0018DF7D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A19A19219C6EF420018DF7D /* aura.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9A98A6031771D67E000AE16E;
-			remoteInfo = aura;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -170,7 +170,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A19A1A019C6EF9A0018DF7D /* libaura.dylib in Frameworks */,
+				07E42D461B501E790061D0BC /* libaura.dylib in Frameworks */,
 				9AA1B44A176361950019E812 /* Cocoa.framework in Frameworks */,
 				9A8997BD177D0E7F00C7761E /* Carbon.framework in Frameworks */,
 			);
@@ -359,7 +359,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				9A19A19F19C6EF5D0018DF7D /* PBXTargetDependency */,
+				07E42D451B501E670061D0BC /* PBXTargetDependency */,
 			);
 			name = draw2d_quartz2d;
 			productName = os;
@@ -497,10 +497,10 @@
 			name = aura_ios;
 			targetProxy = 07E25F511B4FFCC700752DE1 /* PBXContainerItemProxy */;
 		};
-		9A19A19F19C6EF5D0018DF7D /* PBXTargetDependency */ = {
+		07E42D451B501E670061D0BC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = aura;
-			targetProxy = 9A19A19E19C6EF5D0018DF7D /* PBXContainerItemProxy */;
+			targetProxy = 07E42D441B501E670061D0BC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -645,7 +645,7 @@
 				PRODUCT_NAME = draw2d_quartz2d;
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../.. $(WorkspaceDir)/../../base/include $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/base";
-				WorkspaceDir = "$(SRCROOT)/../../seed/metaseed";
+				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Debug;
 		};
@@ -690,7 +690,7 @@
 				PRODUCT_NAME = draw2d_quartz2d;
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../.. $(WorkspaceDir)/../../base/include $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/base";
-				WorkspaceDir = "$(SRCROOT)/../../seed/metaseed";
+				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Release;
 		};

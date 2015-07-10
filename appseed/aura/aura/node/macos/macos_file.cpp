@@ -1690,6 +1690,20 @@ void CLASS_DECL_AURA vfxThrowFileException(::aura::application * papp, ::file::e
    throw ::file::exception(papp, cause, lOsError, lpszFileName);
 }
 
+::file::exception * CLASS_DECL_AURA get_FileException(::aura::application * papp, ::file::exception::e_cause cause, LONG lOsError, const char * lpszFileName /* == NULL */)
+{
+#ifdef DEBUG
+   const char * lpsz;
+   if (cause >= 0 && cause < _countof(::macos::rgszFileExceptionCause))
+      lpsz = ::macos::rgszFileExceptionCause[cause];
+   else
+      lpsz = ::macos::szUnknown;
+   //   TRACE3("file exception: %hs, file %s, App error information = %ld.\n", lpsz, (lpszFileName == NULL) ? "Unknown" : lpszFileName, lOsError);
+#endif
+   
+   return new ::file::exception(papp, cause, lOsError, lpszFileName);
+   
+}
 
 namespace macos
 {

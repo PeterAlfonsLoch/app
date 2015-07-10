@@ -118,6 +118,7 @@ int32_t CLASS_DECL_AXIS __mac_main(int32_t argc, char * argv[]);
 
 CLASS_DECL_AXIS void vfxThrowFileException(sp(::aura::application) papp, int32_t cause, LONG lOsError, const char * lpszFileName = NULL);
 
+CLASS_DECL_AXIS ::file::exception * get_FileException(sp(::aura::application) papp, int32_t cause, LONG lOsError, const char * lpszFileName = NULL);
 
 
 #include "macos_axis_dir.h"

@@ -88,7 +88,7 @@ namespace macos
 
       if (m_pStream == NULL)
       {
-         vfxThrowFileException(get_app(), ::file::exception::type_generic, errno, m_strFileName);
+         ::file::exception * pe = get_FileException(get_app(), ::file::exception::type_generic, errno, m_strFileName);
          // an error somewhere along the way...
          //if (pException != NULL)
          {
@@ -97,13 +97,17 @@ namespace macos
          }
 
          ::macos::file::Abort(); // close m_hFile
-         return FALSE;
+         
+         return pe;
+         
       }
 
       m_strFileName = lpszFileName;
 
-      return TRUE;
+      return ::no_exception;
+      
    }
+   
 
    uint_ptr stdio_file::read(void * lpBuf, uint_ptr nCount)
    {

@@ -13,7 +13,7 @@ struct PROCESS_INFO_t
 };
 
 
-namespace ios
+namespace macos
 {
 
 
@@ -1393,7 +1393,7 @@ namespace ios
 
 
 
-} // namespace ios
+} // namespace macos
 
 
 

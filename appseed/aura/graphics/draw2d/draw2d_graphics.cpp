@@ -2848,44 +2848,12 @@ namespace draw2d
 
    int32_t graphics::draw_text(const string & str,const RECT & lpRect,UINT nFormat)
    {
+      
+      RECTD r;
+      
+      copy(&r, &lpRect);
 
-      synch_lock ml(m_spmutex);
-
-      size sz = GetTextExtent(str);
-
-      double dx;
-
-      double dy;
-
-      if(nFormat & DT_RIGHT)
-      {
-         dx = lpRect.right - lpRect.left - sz.cx;
-      }
-      else if(nFormat & DT_CENTER)
-      {
-         dx = ((lpRect.right - lpRect.left) - (sz.cx)) / 2.0;
-      }
-      else
-      {
-         dx = 0.;
-      }
-
-      if(nFormat & DT_BOTTOM)
-      {
-         dy = lpRect.bottom - lpRect.top - sz.cy;
-      }
-      else if(nFormat & DT_VCENTER)
-      {
-         dy = ((lpRect.bottom - lpRect.top) - (sz.cy)) / 2.0;
-      }
-      else
-      {
-         dy = 0.;
-      }
-
-      TextOut(lpRect.left + dx, lpRect.top + dy, str);
-
-      return 1;
+      return draw_text(str, r, nFormat);
 
    }
 
@@ -2898,8 +2866,10 @@ namespace draw2d
    }
 
 
-   int32_t graphics::draw_text(const string & str,const RECTD & lpRect,UINT nFormat)
+   int32_t graphics::draw_text(const string & strParam,const RECTD & lpRect,UINT nFormat)
    {
+      
+      string str(strParam);
 
       synch_lock ml(m_spmutex);
 
@@ -2934,12 +2904,57 @@ namespace draw2d
       {
          dy = 0.;
       }
+      
+      if(nFormat & DT_EXPANDTABS)
+      {
+       
+         str.replace("\t", "        ");
+         
+      }
+      else
+      {
+         
+         str.replace("\t", "");
+         
+      }
+      
+      if(nFormat & DT_SINGLELINE)
+      {
 
-      TextOut(lpRect.left + dx,lpRect.top + dy,str);
+         str.replace("\r", "");
+         
+         str.replace("\n", "");
+         
+         TextOut(lpRect.left + dx,lpRect.top + dy,str);
+         
+      }
+      else
+      {
+         
+         size s = GetTextExtent(str);
+         
+         stringa stra;
+         
+         stra.add_lines(str);
+         
+         int offsety = 0;
+         
+         for(auto str : stra)
+         {
+            
+            TextOut(lpRect.left + dx,lpRect.top + dy + offsety,str);
+            
+            offsety += s.cy;
+            
+         }
+         
+         
+      }
 
       return 1;
 
    }
+   
 
 #ifndef METROWIN
 

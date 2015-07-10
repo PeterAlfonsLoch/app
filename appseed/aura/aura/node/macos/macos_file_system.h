@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ios
+namespace macos
 {
    
    
@@ -39,7 +39,7 @@ namespace ios
    };
    
       
-} // namespace ios
+} // namespace macos
 
 
 
