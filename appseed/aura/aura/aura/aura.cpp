@@ -222,4 +222,9 @@ CLASS_DECL_AURA LPFN_CREATE_SYSTEM g_pfn_create_system;
 
 CLASS_DECL_AURA const char * g_pszCooperativeLevel;
 
+::aura::system * create_aura_system()
+{
+   
+   return g_pfn_create_system();
 
+}
