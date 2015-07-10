@@ -74,9 +74,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		07108AD51B4C95F600A28F80 /* aurasqlite_ios */ = {
+		07108AD51B4C95F600A28F80 /* ios_aurasqlite */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 07108ADC1B4C95F600A28F80 /* Build configuration list for PBXNativeTarget "aurasqlite_ios" */;
+			buildConfigurationList = 07108ADC1B4C95F600A28F80 /* Build configuration list for PBXNativeTarget "ios_aurasqlite" */;
 			buildPhases = (
 				07108AD61B4C95F600A28F80 /* Sources */,
 				07108AD91B4C95F600A28F80 /* Frameworks */,
@@ -86,7 +86,7 @@
 			);
 			dependencies = (
 			);
-			name = aurasqlite_ios;
+			name = ios_aurasqlite;
 			productName = aurasqlite;
 			productReference = 07108ADF1B4C95F600A28F80 /* libaurasqlite.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
@@ -130,7 +130,7 @@
 			projectRoot = "";
 			targets = (
 				9AEEAD9719C4D7A900866C9E /* aurasqlite */,
-				07108AD51B4C95F600A28F80 /* aurasqlite_ios */,
+				07108AD51B4C95F600A28F80 /* ios_aurasqlite */,
 			);
 		};
 /* End PBXProject section */
@@ -277,7 +277,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		07108ADC1B4C95F600A28F80 /* Build configuration list for PBXNativeTarget "aurasqlite_ios" */ = {
+		07108ADC1B4C95F600A28F80 /* Build configuration list for PBXNativeTarget "ios_aurasqlite" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				07108ADD1B4C95F600A28F80 /* Debug */,

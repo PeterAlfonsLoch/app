@@ -32,7 +32,7 @@
 		077A00A51B4D4F9E001C85FF /* gunibreak.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A13619C6E1DC0018DF7D /* gunibreak.h */; };
 		077A00A61B4D4F9E001C85FF /* punycode.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A14419C6E1DC0018DF7D /* punycode.h */; };
 		077A00A71B4D4F9E001C85FF /* tld.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A14E19C6E1DC0018DF7D /* tld.h */; };
-		077A00B21B4D501B001C85FF /* libatomiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 076D0A251A3FDB08007432B6 /* libatomiconv.dylib */; };
+		07D743791B5039B800821238 /* libatomiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 076D0A251A3FDB08007432B6 /* libatomiconv.dylib */; };
 		07E42D421B501D860061D0BC /* libatomiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 077A00AE1B4D4F9E001C85FF /* libatomiconv.dylib */; };
 		9A19A15219C6E1DC0018DF7D /* gunibreak.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A13619C6E1DC0018DF7D /* gunibreak.h */; };
 		9A19A15319C6E1DC0018DF7D /* gunicomp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A13719C6E1DC0018DF7D /* gunicomp.h */; };
@@ -129,7 +129,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				077A00B21B4D501B001C85FF /* libatomiconv.dylib in Frameworks */,
+				07D743791B5039B800821238 /* libatomiconv.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,9 +242,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		077A00881B4D4F9E001C85FF /* axisidn_ios */ = {
+		077A00881B4D4F9E001C85FF /* ios_axisidn */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 077A00A81B4D4F9E001C85FF /* Build configuration list for PBXNativeTarget "axisidn_ios" */;
+			buildConfigurationList = 077A00A81B4D4F9E001C85FF /* Build configuration list for PBXNativeTarget "ios_axisidn" */;
 			buildPhases = (
 				077A008B1B4D4F9E001C85FF /* Sources */,
 				077A009C1B4D4F9E001C85FF /* Frameworks */,
@@ -255,7 +255,7 @@
 			dependencies = (
 				077A00B01B4D4FDC001C85FF /* PBXTargetDependency */,
 			);
-			name = axisidn_ios;
+			name = ios_axisidn;
 			productName = FreeImage;
 			productReference = 077A00AB1B4D4F9E001C85FF /* libaxisidn.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
@@ -306,7 +306,7 @@
 			projectRoot = "";
 			targets = (
 				9AA5E4C216F7C61B005C45CE /* axisidn */,
-				077A00881B4D4F9E001C85FF /* axisidn_ios */,
+				077A00881B4D4F9E001C85FF /* ios_axisidn */,
 			);
 		};
 /* End PBXProject section */
@@ -499,7 +499,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		077A00A81B4D4F9E001C85FF /* Build configuration list for PBXNativeTarget "axisidn_ios" */ = {
+		077A00A81B4D4F9E001C85FF /* Build configuration list for PBXNativeTarget "ios_axisidn" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				077A00A91B4D4F9E001C85FF /* Debug */,

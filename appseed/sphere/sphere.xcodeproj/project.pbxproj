@@ -13,7 +13,7 @@
 		07B657F3190F3CCC002DAADE /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B657F2190F3CCC002DAADE /* XCTest.framework */; };
 		07B657F4190F3CCC002DAADE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B657E4190F3CCB002DAADE /* Foundation.framework */; };
 		07B657F6190F3CCC002DAADE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B657F5190F3CCC002DAADE /* UIKit.framework */; };
-		07B657F9190F3CCC002DAADE /* libsphere_ios.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B657E2190F3CCB002DAADE /* libsphere_ios.dylib */; };
+		07B657F9190F3CCC002DAADE /* libios_sphere.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B657E2190F3CCB002DAADE /* libios_sphere.dylib */; };
 		07B657FF190F3CCC002DAADE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 07B657FD190F3CCC002DAADE /* InfoPlist.strings */; };
 		07B65801190F3CCC002DAADE /* sphere_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B65800190F3CCC002DAADE /* sphere_iosTests.m */; };
 		9A57509E16AAB9A1000CC4EF /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A574D2B16AAB99E000CC4EF /* framework.cpp */; };
@@ -153,7 +153,7 @@
 /* Begin PBXFileReference section */
 		07A27B101808977D005F7B47 /* libbase.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbase.dylib; path = "../../../../Users/carlos/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/libbase.dylib"; sourceTree = "<group>"; };
 		07A27B121808977D005F7B47 /* libcore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcore.dylib; path = "../../../../Users/carlos/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/libcore.dylib"; sourceTree = "<group>"; };
-		07B657E2190F3CCB002DAADE /* libsphere_ios.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libsphere_ios.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		07B657E2190F3CCB002DAADE /* libios_sphere.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_sphere.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		07B657E4190F3CCB002DAADE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		07B657F1190F3CCC002DAADE /* sphere_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sphere_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		07B657F2190F3CCC002DAADE /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -291,7 +291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07B657F3190F3CCC002DAADE /* XCTest.framework in Frameworks */,
-				07B657F9190F3CCC002DAADE /* libsphere_ios.dylib in Frameworks */,
+				07B657F9190F3CCC002DAADE /* libios_sphere.dylib in Frameworks */,
 				07B657F6190F3CCC002DAADE /* UIKit.framework in Frameworks */,
 				07B657F4190F3CCC002DAADE /* Foundation.framework in Frameworks */,
 			);
@@ -352,7 +352,7 @@
 			children = (
 				9A2EA39719A63026004DAFFC /* libaxis.dylib */,
 				9A2EA39919A63026004DAFFC /* libaxis.dylib */,
-				9A2EA39B19A63026004DAFFC /* base_iosTests.xctest */,
+				9A2EA39B19A63026004DAFFC /* axis_iosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -375,7 +375,7 @@
 			isa = PBXGroup;
 			children = (
 				9A574B9816AAB906000CC4EF /* libsphere.dylib */,
-				07B657E2190F3CCB002DAADE /* libsphere_ios.dylib */,
+				07B657E2190F3CCB002DAADE /* libios_sphere.dylib */,
 				07B657F1190F3CCC002DAADE /* sphere_iosTests.xctest */,
 			);
 			name = Products;
@@ -606,9 +606,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		07B657E1190F3CCB002DAADE /* sphere_ios */ = {
+		07B657E1190F3CCB002DAADE /* ios_sphere */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 07B6580C190F3CCC002DAADE /* Build configuration list for PBXNativeTarget "sphere_ios" */;
+			buildConfigurationList = 07B6580C190F3CCC002DAADE /* Build configuration list for PBXNativeTarget "ios_sphere" */;
 			buildPhases = (
 				07B657DE190F3CCB002DAADE /* Sources */,
 				07B657DF190F3CCB002DAADE /* Frameworks */,
@@ -618,9 +618,9 @@
 			);
 			dependencies = (
 			);
-			name = sphere_ios;
+			name = ios_sphere;
 			productName = sphere_ios;
-			productReference = 07B657E2190F3CCB002DAADE /* libsphere_ios.dylib */;
+			productReference = 07B657E2190F3CCB002DAADE /* libios_sphere.dylib */;
 			productType = "com.apple.product-type.library.static";
 		};
 		07B657F0190F3CCC002DAADE /* sphere_iosTests */ = {
@@ -695,7 +695,7 @@
 			projectRoot = "";
 			targets = (
 				9A574B9716AAB906000CC4EF /* sphere */,
-				07B657E1190F3CCB002DAADE /* sphere_ios */,
+				07B657E1190F3CCB002DAADE /* ios_sphere */,
 				07B657F0190F3CCC002DAADE /* sphere_iosTests */,
 			);
 		};
@@ -737,10 +737,10 @@
 			remoteRef = 9A2EA39819A63026004DAFFC /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A2EA39B19A63026004DAFFC /* base_iosTests.xctest */ = {
+		9A2EA39B19A63026004DAFFC /* axis_iosTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = base_iosTests.xctest;
+			path = axis_iosTests.xctest;
 			remoteRef = 9A2EA39A19A63026004DAFFC /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -815,7 +815,7 @@
 /* Begin PBXTargetDependency section */
 		07B657F8190F3CCC002DAADE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 07B657E1190F3CCB002DAADE /* sphere_ios */;
+			target = 07B657E1190F3CCB002DAADE /* ios_sphere */;
 			targetProxy = 07B657F7190F3CCC002DAADE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1068,7 +1068,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		07B6580C190F3CCC002DAADE /* Build configuration list for PBXNativeTarget "sphere_ios" */ = {
+		07B6580C190F3CCC002DAADE /* Build configuration list for PBXNativeTarget "ios_sphere" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				07B65802190F3CCC002DAADE /* Debug */,

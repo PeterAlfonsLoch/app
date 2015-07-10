@@ -795,7 +795,7 @@ namespace aura
       strLibrary.replace("-","_");
 
 #else
-#if defined(CUBE) || defined(VSNORD)
+#if defined(CUBE) || defined(VSNORD) || defined(APPLE_IOS)
 
       string strLibrary = pszAppId;
 
@@ -853,7 +853,7 @@ namespace aura
 #endif // WINDOWSEX
 
 
-#if !defined(METROWIN) && !defined(VSNORD)
+#if !defined(METROWIN) && !defined(VSNORD) && !defined(APPLE_IOS)
 
 
       if(((!System.directrix()->m_varTopicQuery.has_property("install")

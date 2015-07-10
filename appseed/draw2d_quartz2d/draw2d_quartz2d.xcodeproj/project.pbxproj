@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07473E0E1B504277004688C5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07E25F571B4FFD5600752DE1 /* CoreGraphics.framework */; };
+		07473E131B504280004688C5 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07473E121B504280004688C5 /* CoreText.framework */; };
+		07473E151B5042A9004688C5 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07473E141B5042A9004688C5 /* CoreText.framework */; };
+		07473E171B5045B5004688C5 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07473E161B5045B5004688C5 /* CoreFoundation.framework */; };
+		07473E181B5045C4004688C5 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07473E111B504278004688C5 /* libaura.dylib */; };
 		07E25F2D1B4FFC2100752DE1 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B496616A4A10100875A94 /* framework.cpp */; };
 		07E25F2E1B4FFC2100752DE1 /* draw2d_quartz2d_bitmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B40CC17BBE291008391AD /* draw2d_quartz2d_bitmap.cpp */; };
 		07E25F2F1B4FFC2100752DE1 /* draw2d_quartz2d_brush.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B40CE17BBE291008391AD /* draw2d_quartz2d_brush.cpp */; };
@@ -34,7 +39,6 @@
 		07E25F4A1B4FFC2100752DE1 /* draw2d_quartz2d_pen.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6B40DF17BBE291008391AD /* draw2d_quartz2d_pen.h */; };
 		07E25F4B1B4FFC2100752DE1 /* draw2d_quartz2d_region.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6B40E217BBE291008391AD /* draw2d_quartz2d_region.h */; };
 		07E25F4C1B4FFC2100752DE1 /* draw2d_quartz2d.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6B40E317BBE291008391AD /* draw2d_quartz2d.h */; };
-		07E25F531B4FFD2200752DE1 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A19A19B19C6EF420018DF7D /* libaura.dylib */; };
 		07E25F541B4FFD4000752DE1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07E25F201B4FFAD000752DE1 /* UIKit.framework */; };
 		07E42D461B501E790061D0BC /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A19A19919C6EF420018DF7D /* libaura.dylib */; };
 		9A1B496416A494A600875A94 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B496316A494A600875A94 /* framework.h */; };
@@ -71,6 +75,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		07473E101B504278004688C5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A19A19219C6EF420018DF7D /* aura.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 077A080B1B4D7403001C85FF;
+			remoteInfo = ios_aura;
+		};
 		07E25F511B4FFCC700752DE1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A19A19219C6EF420018DF7D /* aura.xcodeproj */;
@@ -92,13 +103,6 @@
 			remoteGlobalIDString = 9A98A6151771D67E000AE16E;
 			remoteInfo = aura;
 		};
-		9A19A19A19C6EF420018DF7D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A19A19219C6EF420018DF7D /* aura.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9AE24D341904CEFE001AEFFB;
-			remoteInfo = aura_ios;
-		};
 		9A19A19C19C6EF420018DF7D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A19A19219C6EF420018DF7D /* aura.xcodeproj */;
@@ -109,6 +113,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		07473E121B504280004688C5 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/CoreText.framework; sourceTree = DEVELOPER_DIR; };
+		07473E141B5042A9004688C5 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/CoreText.framework; sourceTree = DEVELOPER_DIR; };
+		07473E161B5045B5004688C5 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/CoreFoundation.framework; sourceTree = DEVELOPER_DIR; };
 		07E25F201B4FFAD000752DE1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		07E25F501B4FFC2100752DE1 /* libdraw2d_quartz2d.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libdraw2d_quartz2d.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		07E25F571B4FFD5600752DE1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
@@ -154,8 +161,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07473E181B5045C4004688C5 /* libaura.dylib in Frameworks */,
+				07473E171B5045B5004688C5 /* CoreFoundation.framework in Frameworks */,
+				07473E151B5042A9004688C5 /* CoreText.framework in Frameworks */,
+				07473E131B504280004688C5 /* CoreText.framework in Frameworks */,
+				07473E0E1B504277004688C5 /* CoreGraphics.framework in Frameworks */,
 				07E25F541B4FFD4000752DE1 /* UIKit.framework in Frameworks */,
-				07E25F531B4FFD2200752DE1 /* libaura.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,7 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				9A19A19919C6EF420018DF7D /* libaura.dylib */,
-				9A19A19B19C6EF420018DF7D /* libaura.dylib */,
+				07473E111B504278004688C5 /* libaura.dylib */,
 				9A19A19D19C6EF420018DF7D /* aura_iosTests.xctest */,
 			);
 			name = Products;
@@ -210,9 +221,12 @@
 		A1CFD76D154F5EA7007447E2 = {
 			isa = PBXGroup;
 			children = (
+				07473E161B5045B5004688C5 /* CoreFoundation.framework */,
+				07473E121B504280004688C5 /* CoreText.framework */,
 				9A19A19219C6EF420018DF7D /* aura.xcodeproj */,
 				07E25F201B4FFAD000752DE1 /* UIKit.framework */,
 				07E25F571B4FFD5600752DE1 /* CoreGraphics.framework */,
+				07473E141B5042A9004688C5 /* CoreText.framework */,
 				9A8997BC177D0E7D00C7761E /* Carbon.framework */,
 				9AA1B449176361950019E812 /* Cocoa.framework */,
 				A1CFD896154FB715007447E2 /* draw2d_quartz2d */,
@@ -313,9 +327,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		07E25F291B4FFC2100752DE1 /* draw2d_quartz2d_ios */ = {
+		07E25F291B4FFC2100752DE1 /* ios_draw2d_quartz2d */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 07E25F4D1B4FFC2100752DE1 /* Build configuration list for PBXNativeTarget "draw2d_quartz2d_ios" */;
+			buildConfigurationList = 07E25F4D1B4FFC2100752DE1 /* Build configuration list for PBXNativeTarget "ios_draw2d_quartz2d" */;
 			buildPhases = (
 				07E25F2C1B4FFC2100752DE1 /* Sources */,
 				07E25F3A1B4FFC2100752DE1 /* Frameworks */,
@@ -326,7 +340,7 @@
 			dependencies = (
 				07E25F521B4FFCC700752DE1 /* PBXTargetDependency */,
 			);
-			name = draw2d_quartz2d_ios;
+			name = ios_draw2d_quartz2d;
 			productName = os;
 			productReference = 07E25F501B4FFC2100752DE1 /* libdraw2d_quartz2d.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
@@ -399,25 +413,25 @@
 			projectRoot = "";
 			targets = (
 				A1CFD777154F5EAA007447E2 /* draw2d_quartz2d */,
-				07E25F291B4FFC2100752DE1 /* draw2d_quartz2d_ios */,
+				07E25F291B4FFC2100752DE1 /* ios_draw2d_quartz2d */,
 				9AE24E141904CF99001AEFFB /* draw2d_quartz2d_iosTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		07473E111B504278004688C5 /* libaura.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libaura.dylib;
+			remoteRef = 07473E101B504278004688C5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		9A19A19919C6EF420018DF7D /* libaura.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
 			path = libaura.dylib;
 			remoteRef = 9A19A19819C6EF420018DF7D /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9A19A19B19C6EF420018DF7D /* libaura.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libaura.dylib;
-			remoteRef = 9A19A19A19C6EF420018DF7D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		9A19A19D19C6EF420018DF7D /* aura_iosTests.xctest */ = {
@@ -717,7 +731,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		07E25F4D1B4FFC2100752DE1 /* Build configuration list for PBXNativeTarget "draw2d_quartz2d_ios" */ = {
+		07E25F4D1B4FFC2100752DE1 /* Build configuration list for PBXNativeTarget "ios_draw2d_quartz2d" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				07E25F4E1B4FFC2100752DE1 /* Debug */,

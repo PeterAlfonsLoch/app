@@ -333,9 +333,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		07B65763190F3CA2002DAADE /* axispng_ios */ = {
+		07B65763190F3CA2002DAADE /* ios_axispng */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 07B65788190F3CA2002DAADE /* Build configuration list for PBXNativeTarget "axispng_ios" */;
+			buildConfigurationList = 07B65788190F3CA2002DAADE /* Build configuration list for PBXNativeTarget "ios_axispng" */;
 			buildPhases = (
 				07B65760190F3CA2002DAADE /* Sources */,
 				07B65761190F3CA2002DAADE /* Frameworks */,
@@ -347,7 +347,7 @@
 				077A00D31B4D514C001C85FF /* PBXTargetDependency */,
 				077A00D51B4D514C001C85FF /* PBXTargetDependency */,
 			);
-			name = axispng_ios;
+			name = ios_axispng;
 			productName = math_ios;
 			productReference = 07B65764190F3CA2002DAADE /* libaxispng.dylib */;
 			productType = "com.apple.product-type.library.static";
@@ -430,7 +430,7 @@
 			projectRoot = "";
 			targets = (
 				9A574B9716AAB906000CC4EF /* axispng */,
-				07B65763190F3CA2002DAADE /* axispng_ios */,
+				07B65763190F3CA2002DAADE /* ios_axispng */,
 				07B65772190F3CA2002DAADE /* axispng_iosTests */,
 			);
 		};
@@ -577,7 +577,7 @@
 		};
 		07B6577A190F3CA2002DAADE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 07B65763190F3CA2002DAADE /* axispng_ios */;
+			target = 07B65763190F3CA2002DAADE /* ios_axispng */;
 			targetProxy = 07B65779190F3CA2002DAADE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -812,7 +812,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		07B65788190F3CA2002DAADE /* Build configuration list for PBXNativeTarget "axispng_ios" */ = {
+		07B65788190F3CA2002DAADE /* Build configuration list for PBXNativeTarget "ios_axispng" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				07B65784190F3CA2002DAADE /* Debug */,

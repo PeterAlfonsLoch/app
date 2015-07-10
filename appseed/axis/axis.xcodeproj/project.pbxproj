@@ -2234,9 +2234,9 @@
 			productReference = 9A98A6151771D67E000AE16E /* libaxis.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
-		9AE24D331904CEFE001AEFFB /* axis_ios */ = {
+		9AE24D331904CEFE001AEFFB /* ios_axis */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9AE24D581904CEFF001AEFFB /* Build configuration list for PBXNativeTarget "axis_ios" */;
+			buildConfigurationList = 9AE24D581904CEFF001AEFFB /* Build configuration list for PBXNativeTarget "ios_axis" */;
 			buildPhases = (
 				9AE24D301904CEFE001AEFFB /* Sources */,
 				9AE24D311904CEFE001AEFFB /* Frameworks */,
@@ -2255,7 +2255,7 @@
 				07108DB91B4C999700A28F80 /* PBXTargetDependency */,
 				07108DB51B4C999700A28F80 /* PBXTargetDependency */,
 			);
-			name = axis_ios;
+			name = ios_axis;
 			productName = base_ios;
 			productReference = 9AE24D341904CEFE001AEFFB /* libaxis.dylib */;
 			productType = "com.apple.product-type.library.static";
@@ -2351,7 +2351,7 @@
 			projectRoot = "";
 			targets = (
 				9A98A6031771D67E000AE16E /* axis */,
-				9AE24D331904CEFE001AEFFB /* axis_ios */,
+				9AE24D331904CEFE001AEFFB /* ios_axis */,
 				9AE24D421904CEFE001AEFFB /* axis_iosTests */,
 			);
 		};
@@ -2723,7 +2723,7 @@
 		};
 		9AE24D4A1904CEFF001AEFFB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9AE24D331904CEFE001AEFFB /* axis_ios */;
+			target = 9AE24D331904CEFE001AEFFB /* ios_axis */;
 			targetProxy = 9AE24D491904CEFF001AEFFB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -2970,7 +2970,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9AE24D581904CEFF001AEFFB /* Build configuration list for PBXNativeTarget "axis_ios" */ = {
+		9AE24D581904CEFF001AEFFB /* Build configuration list for PBXNativeTarget "ios_axis" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9AE24D541904CEFF001AEFFB /* Debug */,

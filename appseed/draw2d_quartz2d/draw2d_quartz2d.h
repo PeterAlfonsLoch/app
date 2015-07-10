@@ -36,3 +36,8 @@
 #define COCOA_HDC(pgraphics) ((HDC)*(dynamic_cast < ::draw2d_quartz2d::graphics * > (dynamic_cast < ::draw2d::graphics * > (pgraphics))))
 #define SP_HDC(pgraphics) ((HDC)*(dynamic_cast < ::draw2d_quartz2d::graphics * > ((::draw2d::graphics *)(pgraphics))))
 #define COCOA_DIB(pdib) (dynamic_cast < ::mac::dib * > (dynamic_cast < ::draw2d::dib * >(pdib)))
+
+
+#include <CoreText/CoreText.h>
+
+

@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07473E0D1B503FE4004688C5 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07473E0C1B503FE4004688C5 /* libaura.dylib */; };
 		07502CB01B2529AF008D207C /* _cpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07502CAF1B2529AF008D207C /* _cpp.cpp */; };
 		07502CB21B2529BA008D207C /* charDistribution.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07502CB11B2529BA008D207C /* charDistribution.cpp */; };
 		07D6A82B1B4CBB45004FEBC2 /* _cpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07502CAF1B2529AF008D207C /* _cpp.cpp */; };
 		07D6A82C1B4CBB45004FEBC2 /* charDistribution.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07502CB11B2529BA008D207C /* charDistribution.cpp */; };
-		07D6A82E1B4CBB45004FEBC2 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A1EDB4E19C83FE800F5CCE8 /* libaura.dylib */; };
 		07D6A8301B4CBB45004FEBC2 /* codingStateMachine.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDAF019C83CD000F5CCE8 /* codingStateMachine.h */; };
 		07D6A8311B4CBB45004FEBC2 /* universal.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB1919C83CD000F5CCE8 /* universal.h */; };
 		07D6A8321B4CBB45004FEBC2 /* MBCSGroupProber.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB0E19C83CD000F5CCE8 /* MBCSGroupProber.h */; };
@@ -56,6 +56,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		07473E0B1B503FE4004688C5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A1EDB4719C83FE800F5CCE8 /* aura.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 077A080B1B4D7403001C85FF;
+			remoteInfo = ios_aura;
+		};
 		07557C321B4D905B0065594B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A1EDB4719C83FE800F5CCE8 /* aura.xcodeproj */;
@@ -69,13 +76,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 9A98A6151771D67E000AE16E;
 			remoteInfo = aura;
-		};
-		9A1EDB4F19C83FE800F5CCE8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A1EDB4719C83FE800F5CCE8 /* aura.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9AE24D341904CEFE001AEFFB;
-			remoteInfo = aura_ios;
 		};
 		9A1EDB5119C83FE800F5CCE8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -126,7 +126,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07D6A82E1B4CBB45004FEBC2 /* libaura.dylib in Frameworks */,
+				07473E0D1B503FE4004688C5 /* libaura.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,7 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				9A1EDB4E19C83FE800F5CCE8 /* libaura.dylib */,
-				9A1EDB5019C83FE800F5CCE8 /* libaura.dylib */,
+				07473E0C1B503FE4004688C5 /* libaura.dylib */,
 				9A1EDB5219C83FE800F5CCE8 /* aura_iosTests.xctest */,
 			);
 			name = Products;
@@ -250,9 +250,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		07D6A8271B4CBB45004FEBC2 /* auracharguess_ios */ = {
+		07D6A8271B4CBB45004FEBC2 /* ios_auracharguess */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 07D6A8441B4CBB45004FEBC2 /* Build configuration list for PBXNativeTarget "auracharguess_ios" */;
+			buildConfigurationList = 07D6A8441B4CBB45004FEBC2 /* Build configuration list for PBXNativeTarget "ios_auracharguess" */;
 			buildPhases = (
 				07D6A82A1B4CBB45004FEBC2 /* Sources */,
 				07D6A82D1B4CBB45004FEBC2 /* Frameworks */,
@@ -263,7 +263,7 @@
 			dependencies = (
 				07557C331B4D905B0065594B /* PBXTargetDependency */,
 			);
-			name = auracharguess_ios;
+			name = ios_auracharguess;
 			productName = FreeImage;
 			productReference = 07D6A8471B4CBB45004FEBC2 /* libauracharguess.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
@@ -314,24 +314,24 @@
 			projectRoot = "";
 			targets = (
 				9AA5E4C216F7C61B005C45CE /* auracharguess */,
-				07D6A8271B4CBB45004FEBC2 /* auracharguess_ios */,
+				07D6A8271B4CBB45004FEBC2 /* ios_auracharguess */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		07473E0C1B503FE4004688C5 /* libaura.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libaura.dylib;
+			remoteRef = 07473E0B1B503FE4004688C5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		9A1EDB4E19C83FE800F5CCE8 /* libaura.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
 			path = libaura.dylib;
 			remoteRef = 9A1EDB4D19C83FE800F5CCE8 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9A1EDB5019C83FE800F5CCE8 /* libaura.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libaura.dylib;
-			remoteRef = 9A1EDB4F19C83FE800F5CCE8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		9A1EDB5219C83FE800F5CCE8 /* aura_iosTests.xctest */ = {
@@ -488,7 +488,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		07D6A8441B4CBB45004FEBC2 /* Build configuration list for PBXNativeTarget "auracharguess_ios" */ = {
+		07D6A8441B4CBB45004FEBC2 /* Build configuration list for PBXNativeTarget "ios_auracharguess" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				07D6A8451B4CBB45004FEBC2 /* Debug */,

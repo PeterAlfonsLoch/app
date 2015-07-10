@@ -4099,9 +4099,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		077A05B41B4D7403001C85FF /* aura_ios */ = {
+		077A05B41B4D7403001C85FF /* ios_aura */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 077A08081B4D7403001C85FF /* Build configuration list for PBXNativeTarget "aura_ios" */;
+			buildConfigurationList = 077A08081B4D7403001C85FF /* Build configuration list for PBXNativeTarget "ios_aura" */;
 			buildPhases = (
 				077A05B71B4D7403001C85FF /* Sources */,
 				077A05D21B4D7403001C85FF /* Frameworks */,
@@ -4112,7 +4112,7 @@
 			dependencies = (
 				07CAA97A1B4DC66B00180410 /* PBXTargetDependency */,
 			);
-			name = aura_ios;
+			name = ios_aura;
 			productName = c;
 			productReference = 077A080B1B4D7403001C85FF /* libaura.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
@@ -4185,7 +4185,7 @@
 			projectRoot = "";
 			targets = (
 				9A98A6031771D67E000AE16E /* aura */,
-				077A05B41B4D7403001C85FF /* aura_ios */,
+				077A05B41B4D7403001C85FF /* ios_aura */,
 				9AE24D421904CEFE001AEFFB /* aura_iosTests */,
 			);
 		};
@@ -4546,7 +4546,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		077A08081B4D7403001C85FF /* Build configuration list for PBXNativeTarget "aura_ios" */ = {
+		077A08081B4D7403001C85FF /* Build configuration list for PBXNativeTarget "ios_aura" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				077A08091B4D7403001C85FF /* Debug */,

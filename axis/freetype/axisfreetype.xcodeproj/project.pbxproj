@@ -526,7 +526,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 9AEEB82C19C50E7D00866C9E /* aura.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 9AE24D331904CEFE001AEFFB;
+			remoteGlobalIDString = 077A05B41B4D7403001C85FF;
 			remoteInfo = aura_ios;
 		};
 		07108DD71B4C9A1300A28F80 /* PBXContainerItemProxy */ = {
@@ -1863,9 +1863,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		07108BDA1B4C97E300A28F80 /* axisfreetype_ios */ = {
+		07108BDA1B4C97E300A28F80 /* ios_axisfreetype */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 07108CD91B4C97E300A28F80 /* Build configuration list for PBXNativeTarget "axisfreetype_ios" */;
+			buildConfigurationList = 07108CD91B4C97E300A28F80 /* Build configuration list for PBXNativeTarget "ios_axisfreetype" */;
 			buildPhases = (
 				07108BE11B4C97E300A28F80 /* Sources */,
 				07108C051B4C97E300A28F80 /* Frameworks */,
@@ -1880,7 +1880,7 @@
 				07108DDA1B4C9A1C00A28F80 /* PBXTargetDependency */,
 				07108DD81B4C9A1300A28F80 /* PBXTargetDependency */,
 			);
-			name = axisfreetype_ios;
+			name = ios_axisfreetype;
 			productName = FreeImage;
 			productReference = 07108CDC1B4C97E300A28F80 /* libaxisfreetype.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
@@ -1949,7 +1949,7 @@
 			projectRoot = "";
 			targets = (
 				9AA5E4C216F7C61B005C45CE /* axisfreetype */,
-				07108BDA1B4C97E300A28F80 /* axisfreetype_ios */,
+				07108BDA1B4C97E300A28F80 /* ios_axisfreetype */,
 			);
 		};
 /* End PBXProject section */
@@ -2020,7 +2020,7 @@
 		};
 		9AEEB83519C50E7D00866C9E /* libaura.dylib */ = {
 			isa = PBXReferenceProxy;
-			fileType = archive.ar;
+			fileType = "compiled.mach-o.dylib";
 			path = libaura.dylib;
 			remoteRef = 9AEEB83419C50E7D00866C9E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -2272,7 +2272,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		07108CD91B4C97E300A28F80 /* Build configuration list for PBXNativeTarget "axisfreetype_ios" */ = {
+		07108CD91B4C97E300A28F80 /* Build configuration list for PBXNativeTarget "ios_axisfreetype" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				07108CDA1B4C97E300A28F80 /* Debug */,

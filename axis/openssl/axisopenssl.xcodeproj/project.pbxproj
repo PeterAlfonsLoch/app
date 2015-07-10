@@ -192,9 +192,9 @@
 			productReference = 07B2729A19A01A4600E822E1 /* libaxisopenssl.dylib */;
 			productType = "com.apple.product-type.library.static";
 		};
-		9AE24D871904CF46001AEFFB /* axisopenssl_ios */ = {
+		9AE24D871904CF46001AEFFB /* ios_axisopenssl */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9AE24DAC1904CF46001AEFFB /* Build configuration list for PBXNativeTarget "axisopenssl_ios" */;
+			buildConfigurationList = 9AE24DAC1904CF46001AEFFB /* Build configuration list for PBXNativeTarget "ios_axisopenssl" */;
 			buildPhases = (
 				9AE24D841904CF46001AEFFB /* Sources */,
 				9AE24D851904CF46001AEFFB /* Frameworks */,
@@ -205,7 +205,7 @@
 			dependencies = (
 				077A023B1B4D5BEB001C85FF /* PBXTargetDependency */,
 			);
-			name = axisopenssl_ios;
+			name = ios_axisopenssl;
 			productName = basefreeimage_ios;
 			productReference = 07B2729219A019AB00E822E1 /* libaxisopenssl.dylib */;
 			productType = "com.apple.product-type.library.static";
@@ -262,7 +262,7 @@
 			projectRoot = "";
 			targets = (
 				07B2729319A01A4600E822E1 /* axisopenssl */,
-				9AE24D871904CF46001AEFFB /* axisopenssl_ios */,
+				9AE24D871904CF46001AEFFB /* ios_axisopenssl */,
 				9AE24D961904CF46001AEFFB /* axisopenssl_iosTests */,
 			);
 		};
@@ -341,7 +341,7 @@
 		};
 		9AE24D9E1904CF46001AEFFB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9AE24D871904CF46001AEFFB /* axisopenssl_ios */;
+			target = 9AE24D871904CF46001AEFFB /* ios_axisopenssl */;
 			targetProxy = 9AE24D9D1904CF46001AEFFB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -609,7 +609,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9AE24DAC1904CF46001AEFFB /* Build configuration list for PBXNativeTarget "axisopenssl_ios" */ = {
+		9AE24DAC1904CF46001AEFFB /* Build configuration list for PBXNativeTarget "ios_axisopenssl" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9AE24DA81904CF46001AEFFB /* Debug */,

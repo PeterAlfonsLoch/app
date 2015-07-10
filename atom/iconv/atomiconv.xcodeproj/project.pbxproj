@@ -556,9 +556,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		077A014D1B4D5479001C85FF /* atomiconv_ios */ = {
+		077A014D1B4D5479001C85FF /* ios_atomiconv */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 077A01541B4D5479001C85FF /* Build configuration list for PBXNativeTarget "atomiconv_ios" */;
+			buildConfigurationList = 077A01541B4D5479001C85FF /* Build configuration list for PBXNativeTarget "ios_atomiconv" */;
 			buildPhases = (
 				077A014E1B4D5479001C85FF /* Sources */,
 				077A01521B4D5479001C85FF /* Frameworks */,
@@ -568,7 +568,7 @@
 			);
 			dependencies = (
 			);
-			name = atomiconv_ios;
+			name = ios_atomiconv;
 			productName = atomiconv;
 			productReference = 077A01571B4D5479001C85FF /* libatomiconv.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
@@ -612,7 +612,7 @@
 			projectRoot = "";
 			targets = (
 				9A1647A119C4A73900966C5E /* atomiconv */,
-				077A014D1B4D5479001C85FF /* atomiconv_ios */,
+				077A014D1B4D5479001C85FF /* ios_atomiconv */,
 			);
 		};
 /* End PBXProject section */
@@ -819,7 +819,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		077A01541B4D5479001C85FF /* Build configuration list for PBXNativeTarget "atomiconv_ios" */ = {
+		077A01541B4D5479001C85FF /* Build configuration list for PBXNativeTarget "ios_atomiconv" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				077A01551B4D5479001C85FF /* Debug */,

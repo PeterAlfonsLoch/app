@@ -301,7 +301,7 @@
    [m_controller->childContentView setNeedsDisplay];
    
    
-   [[NSRunLoop currentRunLoop] runMode: NSDefaultRunLoopMode beforeDate: [NSDate date]];
+//   [[NSRunLoop currentRunLoop] runMode: NSDefaultRunLoopMode beforeDate: [NSDate date]];
 
 }
 

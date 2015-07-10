@@ -124,7 +124,7 @@ namespace draw2d_quartz2d
    {
       
       CGContextRef    context = NULL;
-      CGColorSpaceRef colorSpace;
+//      CGColorSpaceRef colorSpace;
       void *          data;
       int             size;
       int             scan;
@@ -133,8 +133,9 @@ namespace draw2d_quartz2d
       
       size                 = (scan * cy);
       
-      colorSpace           = CGColorSpaceCreateWithName(kCGColorSpaceGenericRGB);
+      //      CGColorSpaceRef colorspace = CGColorSpaceCreateWithName(kCGColorSpaceGenericRGB);
       
+      CGColorSpaceRef colorspace = CGColorSpaceCreateDeviceRGB();      
       data                 = malloc(size);
       
       if(data == NULL)
@@ -144,9 +145,9 @@ namespace draw2d_quartz2d
          
       }
       
-      context              = CGBitmapContextCreate(data, cx, cy, 8, scan, colorSpace, kCGImageAlphaPremultipliedLast);
+      context              = CGBitmapContextCreate(data, cx, cy, 8, scan, colorspace, kCGImageAlphaPremultipliedLast);
       
-      CGColorSpaceRelease(colorSpace);
+      CGColorSpaceRelease(colorspace);
       
       if(context== NULL)
          

@@ -2214,6 +2214,8 @@ namespace user
 
 #if defined(WINDOWSEX) || defined(LINUX)
       if(pParentWnd == NULL || pParentWnd->get_safe_handle() == (oswindow)HWND_MESSAGE)
+#elif defined(APPLE_IOS)
+         if(pParentWnd == NULL || pParentWnd == System.m_posdata->m_pui)
 #else
       if(pParentWnd == NULL)
 #endif
@@ -2330,8 +2332,12 @@ namespace user
          m_threadptra.add(get_app());
 
       }
-#if !defined(METROWIN) && !defined(APPLE_IOS)
+#if !defined(METROWIN) 
+#if defined(APPLE_IOS)
+      if(pParentWnd == NULL || pParentWnd == System.m_posdata->m_pui)
+#else
       if(pParentWnd == NULL)
+#endif
       {
 
          if(!Application.defer_initialize_twf())
@@ -6644,7 +6650,11 @@ namespace user
 
       sp(::user::interaction) puiParent = GetParent();
 
+#ifdef APPLE_IOS
+      if(puiParent.is_set() && puiParent.m_p != System.m_posdata->m_pui)
+#else
       if(puiParent.is_set())
+#endif
       {
 
          str = puiParent->calc_data_id();

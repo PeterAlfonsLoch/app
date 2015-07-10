@@ -36,7 +36,9 @@ namespace draw2d_quartz2d
       
       scan = cx * 4;
       
-      CGColorSpaceRef colorspace = CGColorSpaceCreateWithName(kCGColorSpaceGenericRGB);
+//      CGColorSpaceRef colorspace = CGColorSpaceCreateWithName(kCGColorSpaceGenericRGB);
+      
+      CGColorSpaceRef colorspace = CGColorSpaceCreateDeviceRGB();
       
       m_context = CGBitmapContextCreate(NULL, cx, cy, 8, scan, colorspace, kCGImageAlphaPremultipliedLast);
       

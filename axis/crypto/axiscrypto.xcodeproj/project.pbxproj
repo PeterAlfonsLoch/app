@@ -1173,9 +1173,9 @@
 			productReference = 07B2729A19A01A4600E822E1 /* libaxiscrypto.dylib */;
 			productType = "com.apple.product-type.library.static";
 		};
-		9AE24D871904CF46001AEFFB /* axiscrypto_ios */ = {
+		9AE24D871904CF46001AEFFB /* ios_axiscrypto */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9AE24DAC1904CF46001AEFFB /* Build configuration list for PBXNativeTarget "axiscrypto_ios" */;
+			buildConfigurationList = 9AE24DAC1904CF46001AEFFB /* Build configuration list for PBXNativeTarget "ios_axiscrypto" */;
 			buildPhases = (
 				9AE24D841904CF46001AEFFB /* Sources */,
 				9AE24D851904CF46001AEFFB /* Frameworks */,
@@ -1186,7 +1186,7 @@
 			dependencies = (
 				07557C431B4D964A0065594B /* PBXTargetDependency */,
 			);
-			name = axiscrypto_ios;
+			name = ios_axiscrypto;
 			productName = basefreeimage_ios;
 			productReference = 07B2729219A019AB00E822E1 /* libaxiscrypto.dylib */;
 			productType = "com.apple.product-type.library.static";
@@ -1243,7 +1243,7 @@
 			projectRoot = "";
 			targets = (
 				07B2729319A01A4600E822E1 /* axiscrypto */,
-				9AE24D871904CF46001AEFFB /* axiscrypto_ios */,
+				9AE24D871904CF46001AEFFB /* ios_axiscrypto */,
 				9AE24D961904CF46001AEFFB /* axiscrypto_iosTests */,
 			);
 		};
@@ -1424,7 +1424,7 @@
 		};
 		9AE24D9E1904CF46001AEFFB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9AE24D871904CF46001AEFFB /* axiscrypto_ios */;
+			target = 9AE24D871904CF46001AEFFB /* ios_axiscrypto */;
 			targetProxy = 9AE24D9D1904CF46001AEFFB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1696,7 +1696,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9AE24DAC1904CF46001AEFFB /* Build configuration list for PBXNativeTarget "axiscrypto_ios" */ = {
+		9AE24DAC1904CF46001AEFFB /* Build configuration list for PBXNativeTarget "ios_axiscrypto" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9AE24DA81904CF46001AEFFB /* Debug */,

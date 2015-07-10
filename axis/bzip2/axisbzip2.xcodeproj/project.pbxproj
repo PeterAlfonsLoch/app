@@ -114,9 +114,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		07108B5C1B4C97C600A28F80 /* axisbzip2_ios */ = {
+		07108B5C1B4C97C600A28F80 /* ios_axisbzip2 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 07108B6B1B4C97C600A28F80 /* Build configuration list for PBXNativeTarget "axisbzip2_ios" */;
+			buildConfigurationList = 07108B6B1B4C97C600A28F80 /* Build configuration list for PBXNativeTarget "ios_axisbzip2" */;
 			buildPhases = (
 				07108B5D1B4C97C600A28F80 /* Sources */,
 				07108B681B4C97C600A28F80 /* Frameworks */,
@@ -126,7 +126,7 @@
 			);
 			dependencies = (
 			);
-			name = axisbzip2_ios;
+			name = ios_axisbzip2;
 			productName = FreeImage;
 			productReference = 07108B6E1B4C97C600A28F80 /* libaxisbzip2.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
@@ -170,7 +170,7 @@
 			projectRoot = "";
 			targets = (
 				9AA5E4C216F7C61B005C45CE /* axisbzip2 */,
-				07108B5C1B4C97C600A28F80 /* axisbzip2_ios */,
+				07108B5C1B4C97C600A28F80 /* ios_axisbzip2 */,
 			);
 		};
 /* End PBXProject section */
@@ -313,7 +313,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		07108B6B1B4C97C600A28F80 /* Build configuration list for PBXNativeTarget "axisbzip2_ios" */ = {
+		07108B6B1B4C97C600A28F80 /* Build configuration list for PBXNativeTarget "ios_axisbzip2" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				07108B6C1B4C97C600A28F80 /* Debug */,

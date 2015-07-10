@@ -42,7 +42,7 @@ typedef struct rsa_st RSA;
 //#include "crypto_md5.h"
 
 
-#include <openssl/md5.h>
+#include "openssl/md5.h"
 
 template < >
 inline string & to_string(string & str, MD5_CTX & ctx)
