@@ -90,7 +90,7 @@ int GetWkspaceCount()
 //   if(!::IsWindow(window))
 //      return FALSE;
 //    
-//    /*
+//   /*
 //   
 //   [NSApp activateIgnoringOtherApps:YES];
 //   
@@ -100,7 +100,7 @@ int GetWkspaceCount()
 //   
 //   [window->window() orderFrontRegardless];
 //     
-//     */
+//   */
 //   
 //   SetActiveWindow(window);
 //   

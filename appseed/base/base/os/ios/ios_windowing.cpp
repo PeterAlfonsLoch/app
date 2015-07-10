@@ -178,10 +178,13 @@ void oswindow_data::set_user_interaction(::user::interaction * pui)
 oswindow oswindow_data::get_parent()
 {
    
-   if(this == NULL)
+   if(::is_null(this))
       return NULL;
    
-   return m_pui->get_parent_handle();
+   if(m_pui->GetParent() == NULL)
+      return NULL;
+   
+   return m_pui->GetParent()->get_handle();
    
 }
 
@@ -189,24 +192,24 @@ oswindow oswindow_data::get_parent()
 oswindow oswindow_data::set_parent(oswindow oswindow)
 {
    
-   if(this == NULL)
+   if(::is_null(this))
       return NULL;
    
    ::oswindow oswindowOldParent = get_parent();
    
-   if(oswindow == NULL
-      || oswindow->m_pui == NULL)
-   {
-      
-      m_pui->set_parent_base(NULL);
-      
-   }
-   else
-   {
-      
-      m_pui->set_parent_base(oswindow->m_pui);
-      
-   }
+//   if(oswindow == NULL
+//      || oswindow->m_pui == NULL)
+//   {
+//      
+//      m_pui->set_parent_base(NULL);
+//      
+//   }
+//   else
+//   {
+//      
+//      m_pui->set_parent_base(oswindow->m_pui);
+//      
+//   }
    
    return oswindowOldParent;
    
@@ -345,8 +348,11 @@ static oswindow g_oswindowActive = NULL;
 
 oswindow GetActiveWindow()
 {
+   
    return g_oswindowActive;
+   
 }
+
 
 oswindow SetActiveWindow(oswindow window)
 {
@@ -362,5 +368,12 @@ oswindow SetActiveWindow(oswindow window)
    
 }
 
+
+oswindow GetWindow(oswindow window, int iParentHood)
+{
+   
+   return NULL;
+   
+}
 
 

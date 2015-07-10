@@ -1279,8 +1279,6 @@
 		077A05581B4D70B7001C85FF /* ios_thread_mm.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ios_thread_mm.mm; sourceTree = "<group>"; };
 		077A055A1B4D70B7001C85FF /* ios_user.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ios_user.mm; sourceTree = "<group>"; };
 		077A055C1B4D70B7001C85FF /* ios_window_boot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_window_boot.h; sourceTree = "<group>"; };
-		077A055D1B4D70B7001C85FF /* ios_window_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_window_impl.h; sourceTree = "<group>"; };
-		077A055F1B4D70B7001C85FF /* ios_windowing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_windowing.h; sourceTree = "<group>"; };
 		077A05601B4D70B7001C85FF /* NSObject+DDExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DDExtensions.h"; sourceTree = "<group>"; };
 		077A05611B4D70B7001C85FF /* NSObject+DDExtensions.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "NSObject+DDExtensions.mm"; sourceTree = "<group>"; };
 		077A05621B4D70B7001C85FF /* UncaughtExceptionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UncaughtExceptionHandler.h; sourceTree = "<group>"; };
@@ -1993,8 +1991,6 @@
 				077A05581B4D70B7001C85FF /* ios_thread_mm.mm */,
 				077A055A1B4D70B7001C85FF /* ios_user.mm */,
 				077A055C1B4D70B7001C85FF /* ios_window_boot.h */,
-				077A055D1B4D70B7001C85FF /* ios_window_impl.h */,
-				077A055F1B4D70B7001C85FF /* ios_windowing.h */,
 				077A05601B4D70B7001C85FF /* NSObject+DDExtensions.h */,
 				077A05611B4D70B7001C85FF /* NSObject+DDExtensions.mm */,
 				077A05621B4D70B7001C85FF /* UncaughtExceptionHandler.h */,

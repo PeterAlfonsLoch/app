@@ -143,6 +143,13 @@
 		07EDC5401B4F1CB700AF8928 /* graphics_window_graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D966F51B4C63E3004A3D2A /* graphics_window_graphics.cpp */; };
 		07EDC5411B4F1CB800AF8928 /* graphics_window_graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D966F51B4C63E3004A3D2A /* graphics_window_graphics.cpp */; };
 		07EDC5421B4F1CB900AF8928 /* graphics_window_graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D966F51B4C63E3004A3D2A /* graphics_window_graphics.cpp */; };
+		07EDC5811B4F234300AF8928 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07EDC5461B4F234300AF8928 /* AppDelegate.mm */; };
+		07EDC59A1B4F234300AF8928 /* round_window.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07EDC5791B4F234300AF8928 /* round_window.mm */; };
+		07EDC59B1B4F234300AF8928 /* RoundViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07EDC57B1B4F234300AF8928 /* RoundViewController.mm */; };
+		07EDC59C1B4F234300AF8928 /* RoundWindow.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07EDC57D1B4F234300AF8928 /* RoundWindow.mm */; };
+		07EDC59D1B4F234300AF8928 /* RoundWindowFrameView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07EDC57F1B4F234300AF8928 /* RoundWindowFrameView.mm */; };
+		07EDC59F1B4F435600AF8928 /* ios_interaction_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 07EDC59E1B4F435600AF8928 /* ios_interaction_impl.h */; };
+		07EDC5A11B4F611B00AF8928 /* ios_window_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 07EDC5A01B4F611B00AF8928 /* ios_window_impl.h */; };
 		9A98A6081771D67E000AE16E /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BD556C16210BD4008E31F0 /* AppKit.framework */; };
 		9A98A6091771D67E000AE16E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8897A514C24736006B4023 /* Foundation.framework */; };
 		9A98A60A1771D67E000AE16E /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE931714155F1599005F90F6 /* Carbon.framework */; };
@@ -476,6 +483,29 @@
 		07EDC50C1B4F1BB300AF8928 /* ios_window_boot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_window_boot.h; sourceTree = "<group>"; };
 		07EDC50D1B4F1BB300AF8928 /* ios_window_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_window_impl.h; sourceTree = "<group>"; };
 		07EDC50F1B4F1BB300AF8928 /* ios_windowing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_windowing.h; sourceTree = "<group>"; };
+		07EDC5451B4F234300AF8928 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		07EDC5461B4F234300AF8928 /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
+		07EDC5481B4F234300AF8928 /* ios.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios.h; sourceTree = "<group>"; };
+		07EDC54A1B4F234300AF8928 /* ios_application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_application.h; sourceTree = "<group>"; };
+		07EDC5541B4F234300AF8928 /* ios_factory_exchange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_factory_exchange.h; sourceTree = "<group>"; };
+		07EDC55B1B4F234300AF8928 /* ios_implementation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_implementation.h; sourceTree = "<group>"; };
+		07EDC55C1B4F234300AF8928 /* ios_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_internal.h; sourceTree = "<group>"; };
+		07EDC5601B4F234300AF8928 /* ios_m.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_m.h; sourceTree = "<group>"; };
+		07EDC5621B4F234300AF8928 /* ios_mm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_mm.h; sourceTree = "<group>"; };
+		07EDC5641B4F234300AF8928 /* ios_os.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_os.h; sourceTree = "<group>"; };
+		07EDC5681B4F234300AF8928 /* ios_printer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_printer.h; sourceTree = "<group>"; };
+		07EDC5751B4F234300AF8928 /* ios_window_draw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_window_draw.h; sourceTree = "<group>"; };
+		07EDC5771B4F234300AF8928 /* os.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = os.h; sourceTree = "<group>"; };
+		07EDC5781B4F234300AF8928 /* round_window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = round_window.h; sourceTree = "<group>"; };
+		07EDC5791B4F234300AF8928 /* round_window.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = round_window.mm; sourceTree = "<group>"; };
+		07EDC57A1B4F234300AF8928 /* RoundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundViewController.h; sourceTree = "<group>"; };
+		07EDC57B1B4F234300AF8928 /* RoundViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RoundViewController.mm; sourceTree = "<group>"; };
+		07EDC57C1B4F234300AF8928 /* RoundWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundWindow.h; sourceTree = "<group>"; };
+		07EDC57D1B4F234300AF8928 /* RoundWindow.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RoundWindow.mm; sourceTree = "<group>"; };
+		07EDC57E1B4F234300AF8928 /* RoundWindowFrameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundWindowFrameView.h; sourceTree = "<group>"; };
+		07EDC57F1B4F234300AF8928 /* RoundWindowFrameView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RoundWindowFrameView.mm; sourceTree = "<group>"; };
+		07EDC59E1B4F435600AF8928 /* ios_interaction_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_interaction_impl.h; sourceTree = "<group>"; };
+		07EDC5A01B4F611B00AF8928 /* ios_window_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_window_impl.h; sourceTree = "<group>"; };
 		9A5E9DF919B7623B00949252 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../aura/aura.xcodeproj; sourceTree = "<group>"; };
 		9A8897A514C24736006B4023 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = ../../../../System/Library/Frameworks/Foundation.framework; sourceTree = "<group>"; };
 		9A98A6151771D67E000AE16E /* libbase.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libbase.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -587,6 +617,7 @@
 		07A36D411B25D18E00E4F888 /* node */ = {
 			isa = PBXGroup;
 			children = (
+				07EDC5431B4F234300AF8928 /* ios */,
 				07A36D501B25D18E00E4F888 /* ansios */,
 				07A36D9D1B25D18E00E4F888 /* macos */,
 				07A36DC91B25D18E00E4F888 /* node.h */,
@@ -846,6 +877,36 @@
 			path = ios;
 			sourceTree = "<group>";
 		};
+		07EDC5431B4F234300AF8928 /* ios */ = {
+			isa = PBXGroup;
+			children = (
+				07EDC5A01B4F611B00AF8928 /* ios_window_impl.h */,
+				07EDC59E1B4F435600AF8928 /* ios_interaction_impl.h */,
+				07EDC5451B4F234300AF8928 /* AppDelegate.h */,
+				07EDC5461B4F234300AF8928 /* AppDelegate.mm */,
+				07EDC5481B4F234300AF8928 /* ios.h */,
+				07EDC54A1B4F234300AF8928 /* ios_application.h */,
+				07EDC5541B4F234300AF8928 /* ios_factory_exchange.h */,
+				07EDC55B1B4F234300AF8928 /* ios_implementation.h */,
+				07EDC55C1B4F234300AF8928 /* ios_internal.h */,
+				07EDC5601B4F234300AF8928 /* ios_m.h */,
+				07EDC5621B4F234300AF8928 /* ios_mm.h */,
+				07EDC5641B4F234300AF8928 /* ios_os.h */,
+				07EDC5681B4F234300AF8928 /* ios_printer.h */,
+				07EDC5751B4F234300AF8928 /* ios_window_draw.h */,
+				07EDC5771B4F234300AF8928 /* os.h */,
+				07EDC5781B4F234300AF8928 /* round_window.h */,
+				07EDC5791B4F234300AF8928 /* round_window.mm */,
+				07EDC57A1B4F234300AF8928 /* RoundViewController.h */,
+				07EDC57B1B4F234300AF8928 /* RoundViewController.mm */,
+				07EDC57C1B4F234300AF8928 /* RoundWindow.h */,
+				07EDC57D1B4F234300AF8928 /* RoundWindow.mm */,
+				07EDC57E1B4F234300AF8928 /* RoundWindowFrameView.h */,
+				07EDC57F1B4F234300AF8928 /* RoundWindowFrameView.mm */,
+			);
+			path = ios;
+			sourceTree = "<group>";
+		};
 		9A5E9DFA19B7623B00949252 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -953,6 +1014,7 @@
 				07A36EE11B25D18F00E4F888 /* base_policy.h in Headers */,
 				07A36F6E1B25D18F00E4F888 /* macos_factory_exchange.h in Headers */,
 				07D968531B4C63E4004A3D2A /* user_interaction_child.h in Headers */,
+				07EDC59F1B4F435600AF8928 /* ios_interaction_impl.h in Headers */,
 				07A36ECD1B25D18F00E4F888 /* base.h in Headers */,
 				07D967E91B4C63E3004A3D2A /* simple_ui_interaction.h in Headers */,
 				07D9681D1B4C63E3004A3D2A /* user_control.h in Headers */,
@@ -977,6 +1039,7 @@
 				07D967981B4C63E3004A3D2A /* graphics_window_graphics.h in Headers */,
 				07D9685F1B4C63E4004A3D2A /* user_menu_base.h in Headers */,
 				07D968801B4C63E4004A3D2A /* user_schema.h in Headers */,
+				07EDC5A11B4F611B00AF8928 /* ios_window_impl.h in Headers */,
 				07D967A91B4C63E3004A3D2A /* simple_ui_style.h in Headers */,
 				07A36EDB1B25D18F00E4F888 /* base_system.h in Headers */,
 				07A36FA31B25D18F00E4F888 /* node.h in Headers */,
@@ -1296,7 +1359,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07EDC59A1B4F234300AF8928 /* round_window.mm in Sources */,
+				07EDC59C1B4F234300AF8928 /* RoundWindow.mm in Sources */,
+				07EDC59D1B4F234300AF8928 /* RoundWindowFrameView.mm in Sources */,
+				07EDC59B1B4F234300AF8928 /* RoundViewController.mm in Sources */,
 				07D9679A1B4C63E3004A3D2A /* _user.cpp in Sources */,
+				07EDC5811B4F234300AF8928 /* AppDelegate.mm in Sources */,
 				07EDC52A1B4F1BB300AF8928 /* ios_cross_gdi.mm in Sources */,
 				07D967921B4C63E3004A3D2A /* database_user_interaction.cpp in Sources */,
 				07EDC5411B4F1CB800AF8928 /* graphics_window_graphics.cpp in Sources */,

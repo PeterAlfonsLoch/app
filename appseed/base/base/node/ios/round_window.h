@@ -9,7 +9,7 @@
 #pragma once
 
 
-#include "app/appseed/aura/user/user/user_key_enum.h"
+#include "app/appseed/axis/user/user/user_key_enum.h"
 
 
 #ifdef __OBJC__
@@ -42,7 +42,9 @@ bool m_bDirty;
    
    virtual void round_window_invalidate();
    virtual void round_window_show();
+   virtual void round_window_hide();
    virtual void round_window_redraw();
+   virtual void round_window_close();
    virtual void round_window_show_keyboard(bool bShow = true);
    
    

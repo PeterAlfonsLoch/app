@@ -742,11 +742,15 @@ namespace user
 
       try
       {
+         
          oswindowOrder = ::GetWindow(oswindow, GW_HWNDFIRST);
+         
       }
       catch(...)
       {
+         
          return 0x7fffffff;
+         
       }
 
       int32_t iOrder = 0;

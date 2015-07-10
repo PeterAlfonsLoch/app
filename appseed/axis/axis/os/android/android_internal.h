@@ -1,21 +1,15 @@
 #pragma once
 
 
-/*
-
-#include <X11/Xlib.h>
-#include <X11/Xutil.h>
-
-typedef Window oswindow;
-
-class CLASS_DECL_____ device_context
+class device_context
 {
 public:
 
-   Display *   m_display;
-   Drawable    m_d;
-   GC          m_gc;
-   oswindow        m_hwnd;
+
+   Display *      m_display;
+   Drawable       m_d;
+   GC             m_gc;
+   oswindow       m_hwnd;
 
 
    device_context()
@@ -27,8 +21,5 @@ public:
    }
 
 };
-
-
-*/
 
 

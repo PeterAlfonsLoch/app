@@ -4,6 +4,8 @@
 namespace ios
 {
 
+   namespace base
+   {
    
    class CLASS_DECL_AURA factory_exchange :
       virtual public ::object
@@ -16,6 +18,8 @@ namespace ios
       
       
    };
+      
+   } // namespace base
    
 
 } // namespace ios

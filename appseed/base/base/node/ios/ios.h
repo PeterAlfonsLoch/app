@@ -1,10 +1,9 @@
 #pragma once
 
 
-#define SECURITY_WIN32
+#include "app/appseed/axis/axis/axis/axis.h"
 
-
-#include "app/appseed/aura/aura/aura/aura.h"
+#include "app/appseed/axis/axis/os/ios/ios.h"
 
 
 ////#define CLASS_DECL_AURA
@@ -67,35 +66,30 @@ CLASS_DECL_AURA void AfxResetMsgCache();
 #define _AfxUnhookWindowCreate  AfxUnhookWindowCreate
 
 #include "ios_implementation.h"
-#include "ios_dir.h"
+//#include "ios_dir.h"
 #include "ios_factory_exchange.h"
 #include "ios_window_draw.h"
-#include "ios_thread.h"
-#include "ios_window.h"
-#include "ios_os.h"
-#include "ios_port_forward.h"
-#include "ios_copydesk.h"
-#include "ios_crypto.h"
-#include "ios_ip_enum.h"
+//#include "ios_thread.h"
+#include "ios_interaction_impl.h"
+//#include "ios_os.h"
+//#include "ios_port_forward.h"
+//#include "ios_copydesk.h"
+//#include "ios_crypto.h"
+//#include "ios_ip_enum.h"
 
 #define NULL_REF(class) (*((class *) NULL))
 // xxx CLASS_DECL_AURA WNDPROC AfxGetAfxWndProc();
 #define AfxWndProc (*AfxGetAfxWndProc())
 
-#define IOS_THREAD(pthread) (dynamic_cast < ::ios::thread * > (dynamic_cast < ::thread * >(pthread)))
-#define IOS_WINDOW(pwnd) (dynamic_cast < ::ios::window * > (dynamic_cast < ::window * >(pwnd)))
+#define IOS_WINDOW(pwnd) (dynamic_cast < ::ios::interaction_impl * > (dynamic_cast < ::user::interaction_impl * >(pwnd)))
 
-#include "ios_shell.h"
 
-CLASS_DECL_AURA void __trace_message(const char * lpszPrefix, signal_details * pobj);
-CLASS_DECL_AURA void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
+CLASS_DECL_BASE void AfxProcessWndProcException(::exception::base*, signal_details * pobj);
+CLASS_DECL_BASE void __cdecl __pre_translate_message(signal_details * pobj);
 
-CLASS_DECL_AURA void AfxProcessWndProcException(::exception::aura*, signal_details * pobj);
-CLASS_DECL_AURA void __cdecl __pre_translate_message(signal_details * pobj);
+//#include "ios_printer.h"
 
-#include "ios_printer.h"
-
-#include "ios_application.h"
+//#include "ios_application.h"
 
 
 
@@ -111,56 +105,4 @@ WINBOOL GetMessage(
                    oswindow hWnd,
                    UINT wMsgFilterMin,
                    UINT wMsgFilterMax);
-
-
-
-int32_t CLASS_DECL_AURA __ios_main(int32_t argc, char * argv[]);
-
-
-CLASS_DECL_AURA void vfxThrowFileException(::aura::application * papp, int32_t cause, LONG lOsError, const char * lpszFileName = NULL);
-
-
-
-
-namespace ios
-{
-
-
-   class thread;
-
-   class IOS
-   {
-      int32_t function();
-   };
-
-
-
-} // namespace ios
-
-
-
-// Placed on frame for EXCEPTION linkage, or ::exception::aura cleanup
-struct CLASS_DECL_AURA __exception_link
-{
-   __exception_link* m_pLinkPrev;    // previous top, next in handler chain
-   ::exception::aura * m_pException;   // current exception (NULL in try block)
-
-   __exception_link();       // for initialization and linking
-   ~__exception_link()       // for cleanup and unlinking
-   {
-      //__try_cleanup();
-   };
-};
-
-// Exception global state - never access directly
-struct CLASS_DECL_AURA __EXCEPTION_CONTEXT
-{
-   __exception_link* m_pLinkTop;
-
-   // Note: most of the exception context is now in the __exception_link
-};
-
-
-
-
 

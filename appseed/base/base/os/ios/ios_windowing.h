@@ -190,6 +190,7 @@ inline int32_t IsWindowVisible(::oswindow oswindow)
 #define SetWindowLong SetWindowLongA
 
 
+oswindow GetWindow(oswindow window, int iParentHood);
 
 
 

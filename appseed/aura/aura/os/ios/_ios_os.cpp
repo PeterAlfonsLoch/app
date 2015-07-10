@@ -1,7 +1,15 @@
+
+
+#include "os.h"
+
+
 // O volume na unidade Z ‚ eco
 // O N£mero de S‚rie do Volume ‚ 4A91-94E4
 
 //Pasta de Z:\ca2\app\appseed\aura\aura\os\macos
+
+
+
 
 #include "ios.cpp"
 #include "ios_base_user.cpp"
@@ -28,3 +36,6 @@
 //#include "_ios_os.cpp"
 //              22 arquivo(s)         64.733 bytes
   //             0 pasta(s)   29.364.445.184 bytes dispon¡veis
+
+
+#include "ios_app.cpp"
