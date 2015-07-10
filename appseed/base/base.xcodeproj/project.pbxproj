@@ -150,6 +150,7 @@
 		07EDC59D1B4F234300AF8928 /* RoundWindowFrameView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07EDC57F1B4F234300AF8928 /* RoundWindowFrameView.mm */; };
 		07EDC59F1B4F435600AF8928 /* ios_interaction_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 07EDC59E1B4F435600AF8928 /* ios_interaction_impl.h */; };
 		07EDC5A11B4F611B00AF8928 /* ios_window_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 07EDC5A01B4F611B00AF8928 /* ios_window_impl.h */; };
+		07EDC5B61B4FE64F00AF8928 /* main_mm.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07EDC5B51B4FE64F00AF8928 /* main_mm.mm */; };
 		9A98A6081771D67E000AE16E /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BD556C16210BD4008E31F0 /* AppKit.framework */; };
 		9A98A6091771D67E000AE16E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8897A514C24736006B4023 /* Foundation.framework */; };
 		9A98A60A1771D67E000AE16E /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE931714155F1599005F90F6 /* Carbon.framework */; };
@@ -506,6 +507,7 @@
 		07EDC57F1B4F234300AF8928 /* RoundWindowFrameView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RoundWindowFrameView.mm; sourceTree = "<group>"; };
 		07EDC59E1B4F435600AF8928 /* ios_interaction_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_interaction_impl.h; sourceTree = "<group>"; };
 		07EDC5A01B4F611B00AF8928 /* ios_window_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_window_impl.h; sourceTree = "<group>"; };
+		07EDC5B51B4FE64F00AF8928 /* main_mm.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = main_mm.mm; sourceTree = "<group>"; };
 		9A5E9DF919B7623B00949252 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../aura/aura.xcodeproj; sourceTree = "<group>"; };
 		9A8897A514C24736006B4023 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = ../../../../System/Library/Frameworks/Foundation.framework; sourceTree = "<group>"; };
 		9A98A6151771D67E000AE16E /* libbase.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libbase.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -862,6 +864,7 @@
 		07EDC5001B4F1BB300AF8928 /* ios */ = {
 			isa = PBXGroup;
 			children = (
+				07EDC5B51B4FE64F00AF8928 /* main_mm.mm */,
 				07EDC5021B4F1BB300AF8928 /* ios.h */,
 				07EDC5031B4F1BB300AF8928 /* ios_base_internal.h */,
 				07EDC5041B4F1BB300AF8928 /* ios_base_mm.h */,
@@ -1359,6 +1362,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07EDC5B61B4FE64F00AF8928 /* main_mm.mm in Sources */,
 				07EDC59A1B4F234300AF8928 /* round_window.mm in Sources */,
 				07EDC59C1B4F234300AF8928 /* RoundWindow.mm in Sources */,
 				07EDC59D1B4F234300AF8928 /* RoundWindowFrameView.mm in Sources */,

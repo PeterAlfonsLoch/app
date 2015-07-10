@@ -248,6 +248,16 @@ int32_t oswindow_data::set_window_long(int32_t iIndex, int32_t iNewLong)
 }
 
 
+::user::interaction * window_from_handle(oswindow oswindow)
+{
+   
+   if(oswindow == NULL)
+      return NULL;
+   
+   return oswindow->m_pui;
+   
+}
+
 static oswindow g_oswindowCapture;
 
 

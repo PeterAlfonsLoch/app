@@ -38,4 +38,4 @@
   //             0 pasta(s)   29.364.445.184 bytes dispon¡veis
 
 
-#include "ios_app.cpp"
+//#include "ios_app.cpp"

@@ -83,19 +83,14 @@ CLASS_DECL_AURA void AfxTryCleanup();
 //#include "ios_ip_enum.h"
 
 #define NULL_REF(class) (*((class *) NULL))
-// xxx CLASS_DECL_AURA WNDPROC AfxGetAfxWndProc();
-#define AfxWndProc (*AfxGetAfxWndProc())
 
 #define IOS_THREAD(pthread) (dynamic_cast < ::ios::thread * > (dynamic_cast < ::thread * >(pthread)))
-#define IOS_WINDOW(pwnd) (dynamic_cast < ::ios::window * > (dynamic_cast < ::window * >(pwnd)))
 
 #include "ios_shell.h"
 
 CLASS_DECL_AURA void __trace_message(const char * lpszPrefix, signal_details * pobj);
 CLASS_DECL_AURA void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
 
-//CLASS_DECL_AURA void AfxProcessWndProcException(::exception::aura*, signal_details * pobj);
-CLASS_DECL_AURA void __cdecl __pre_translate_message(signal_details * pobj);
 
 //#include "ios_printer.h"
 

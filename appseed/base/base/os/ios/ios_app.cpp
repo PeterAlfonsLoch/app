@@ -9,6 +9,7 @@
 
 
 
+ui_window_ptr new_round_window(plane_system * psystem, CGRect rect);
 
 
 
@@ -39,10 +40,33 @@ plane_system * new_system(const char * pszId)
    
 }
 
+::base::system * create_base_system()
+{
+   
+   ::aura::system * paurasystem = create_aura_system();
+   
+   if(paurasystem == NULL)
+      return NULL;
+      
+   ::base::system * pbasesystem = dynamic_cast<::base::system *>(paurasystem);
+   
+   if(pbasesystem == NULL)
+   {
+      
+      ::aura::del(paurasystem);
+      
+      return NULL;
+      
+   }
+   
+   return pbasesystem;
+   
+}
+
 plane_system::plane_system(const char * pszId)
 {
    
-   m_psystem = new create_aura_system();
+   m_psystem = create_base_system();
    
    m_psystem->m_posdata->m_pui = new ::user::interaction(m_psystem);
    
@@ -61,7 +85,7 @@ plane_system::plane_system(const char * pszId)
    
 }
 
-UIWindow * init_part_2ex(plane_system * psystem, CGRect rect)
+ui_window_ptr init_part_2ex(plane_system * psystem, CGRect rect)
 {
    
    return psystem->init_part_2ex(rect);
@@ -71,37 +95,37 @@ UIWindow * init_part_2ex(plane_system * psystem, CGRect rect)
 
 UINT system_main(LPVOID lp)
 {
-   ::plane::system * m_psystem = (::plane::system *) lp;
+   ::base::system * psystem = (::base::system *) lp;
    try
    {
-      m_psystem->set_thread(m_psystem);
-      m_psystem->m_iReturnCode = 0;
-      m_psystem->m_bReady = true;
-      m_psystem->m_bRun = true;
-      m_psystem->thread::m_p->m_bRun= true;
-      m_psystem->m_iReturnCode = m_psystem->on_run();
-      if(m_psystem->m_iReturnCode != 0)
+//      psystem->set_thread(psystem);
+      psystem->m_iReturnCode = 0;
+      psystem->m_bReady = true;
+      psystem->m_bRun = true;
+//      psystem->thread::m_p->m_bRun= true;
+      psystem->m_iReturnCode = psystem->on_run();
+      if(psystem->m_iReturnCode != 0)
       {
          ::OutputDebugStringW(L"application::main on_run termination failure");
       }
-      if(m_psystem->is_system())
+      if(psystem->is_system())
       {
-         m_psystem->os().post_to_all_threads(WM_QUIT, 0, 0);
+         psystem->post_to_all_threads(WM_QUIT, 0, 0);
       }
       try
       {
-         m_psystem->m_iReturnCode = m_psystem->exit();
+         psystem->m_iReturnCode = psystem->exit();
       }
       catch(...)
       {
-         m_psystem->m_iReturnCode = -1;
+         psystem->m_iReturnCode = -1;
       }
       
    }
    catch(::exit_exception &)
    {
       
-      m_psystem->os().post_to_all_threads(WM_QUIT, 0, 0);
+      psystem->post_to_all_threads(WM_QUIT, 0, 0);
       
    }
    
@@ -109,16 +133,23 @@ UINT system_main(LPVOID lp)
 }
 
 
-UIWindow * plane_system::init_part_2ex(CGRect rect)
+ui_window_ptr plane_system::init_part_2ex(CGRect rect)
 {
    
    //m_psystem->m_window = ios_start_window(this, rect);
    
    int nReturnCode = 0;
    
-   nReturnCode = m_psystem->main_start();
+   manual_reset_event ev(m_psystem);
    
-   UIWindow * pwindow = new_round_window(this, rect);
+   m_psystem->m_peventReady = &ev;
+   
+   if(!m_psystem->begin_synch())
+      return NULL;
+   
+   ev.wait();
+   
+   ui_window_ptr pwindow = new_round_window(this, rect);
    
    //::user::native_window_initialize initialize;
    
@@ -131,11 +162,11 @@ UIWindow * plane_system::init_part_2ex(CGRect rect)
    
    //m_psystem->m_ptwf->twf_start();
    
-   stringa straLibrary = m_psystem->command()->m_varTopicQuery["app"];
+   stringa straLibrary = m_psystem->command()->m_varTopicQuery["app"].stra();
    
-   for(int i = 0; i < m_psystem->command()->m_varTopicQuery["app"].get_count(); i++)
+   for(int i = 0; i < m_psystem->command()->m_varTopicQuery["app"].array_get_count(); i++)
    {
-      string strApp = m_psystem->command()->m_varTopicQuery["app"][i];
+      string strApp = m_psystem->command()->m_varTopicQuery["app"].at(i);
    }
    
    straLibrary.replace("\\", "_");
@@ -178,4 +209,112 @@ void plane_system::begin()
    __begin_thread(m_psystem, &system_main, m_psystem);
    
 }
+
+
+
+round_window * ios_start_window(plane_system * psystem, CGRect rect)
+{
+   
+   ::user::interaction * pui = psystem->m_psystem->m_posdata->m_pui;
+   
+   ::user::native_window_initialize initialize;
+   
+   initialize.m_rect.left = rect.origin.x;
+   initialize.m_rect.top = rect.origin.y;
+   initialize.m_rect.right = rect.origin.x + rect.size.width;
+   initialize.m_rect.bottom = rect.origin.x + rect.size.height;
+   
+   pui->initialize(&initialize);
+   
+   return pui->m_pimpl.cast < ::ios::interaction_impl > ();
+   
+}
+
+int ios_initialize_window(round_window * proundwindow, UIWindow * window)
+{
+   
+   ::ios::interaction_impl * puiimpl = dynamic_cast < ::ios::interaction_impl * > (proundwindow);
+   
+   puiimpl->m_oswindow = oswindow_get(window);
+   
+   puiimpl->m_oswindow->set_user_interaction(puiimpl->m_pui);
+   ::user::create_struct cs;
+   cs.dwExStyle = 0;
+   cs.lpszClass = 0;
+   cs.lpszName = NULL;
+   cs.style = 0;
+   cs.x = 0;
+   cs.y = 0;
+   cs.cx = 0;
+   cs.cy = 0;
+   //      cs.hwndParent = hWndParent;
+   //   cs.hMenu = hWndParent == NULL ? NULL : nIDorHMenu;
+   cs.hMenu = NULL;
+   //      cs.hInstance = System.m_hInstance;
+   cs.lpCreateParams = NULL;
+   
+   if(puiimpl->m_pui != NULL)
+   {
+      
+      if(!puiimpl->m_pui->pre_create_window(cs))
+      {
+         
+         puiimpl->PostNcDestroy();
+         
+         return FALSE;
+         
+      }
+      
+   }
+   else
+   {
+      
+      if (!puiimpl->pre_create_window(cs))
+      {
+         
+         puiimpl->PostNcDestroy();
+         
+         return FALSE;
+         
+      }
+      
+   }
+   
+   if(cs.hwndParent == NULL)
+   {
+      
+      cs.style &= ~WS_CHILD;
+      
+   }
+   
+//   puiimpl->m_pui->m_pthread = ::get_thread();
+   
+   puiimpl->send_message(WM_CREATE, 0, (LPARAM) &cs);
+   
+   ::rect rectMainScreen;
+   
+   GetMainScreenRect(rectMainScreen);
+   
+   puiimpl->SetPlacement(rectMainScreen);
+   
+   return TRUE;
+   
+}
+
+
+
+
+ui_window_ptr new_round_window(plane_system * psystem, CGRect rect)
+{
+   
+   round_window * pwindow = ios_start_window(psystem, rect);
+   
+   UIWindow * window = new_round_window(pwindow, rect);
+   
+   ios_initialize_window(pwindow, window);
+   
+   return window;
+   
+}
+
 

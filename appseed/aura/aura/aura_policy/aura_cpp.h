@@ -235,15 +235,15 @@ namespace primitive
 
 } // namespace primitive
 
-namespace plane
-{
-
-   class session;
-   class system;
-   //class cube;
-
-
-} // namespace plane
+//namespace plane
+//{
+//
+//   class session;
+//   class system;
+//   //class cube;
+//
+//
+//} // namespace plane
 
 class cmd_ui;
 

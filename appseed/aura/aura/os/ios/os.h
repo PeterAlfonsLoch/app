@@ -9,32 +9,6 @@
 #pragma once
 
 
-#ifdef __cplusplus
-
-#ifdef __OBJC__
-
-typedef UIWindow * ui_window_ptr;
-
-#else
-
-typedef void * ui_window_ptr;
-
-#endif
-
-struct plane_system
-{
-   
-   ::aura::system *    m_psystem;
-   
-   plane_system(const char * pszId);
-   
-   ui_window_ptr init_part_2ex(CGRect rect);
-   
-   void begin();
-   
-};
-
-#endif
 
 
 #include "ios_file_watcher.h"
@@ -131,3 +105,9 @@ void copy(LPRECT lprect, const NSRect & rectSrc);
 void window_copy(NSRect & rect, LPCRECT lpcrect);
 void window_copy(LPRECT lprect, const NSRect & rectSrc);
 #endif
+
+
+void ui_application_main(int argc, char * argv[]);
+void ui_app_run(int argc, char * argv[]);
+
+

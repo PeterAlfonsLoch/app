@@ -403,3 +403,6 @@ namespace aura
 
 
 
+CLASS_DECL_AURA ::aura::system * create_aura_system();
+
+
