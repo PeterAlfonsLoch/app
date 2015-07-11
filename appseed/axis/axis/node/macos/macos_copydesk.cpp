@@ -193,8 +193,8 @@ namespace macos
 
    string copydesk::get_plain_text()
    {
-      throw todo(get_app());
-      return "";
+//      throw todo(get_app());
+      return "https://www.livecoding.tv/static/img/logos/logo-white.png?h=fc4045ce";
 /* xxx
       if (IsClipboardFormatAvailable(CF_UNICODETEXT))
       {

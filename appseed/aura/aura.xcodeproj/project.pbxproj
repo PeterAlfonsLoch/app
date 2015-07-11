@@ -1135,9 +1135,6 @@
 		9AC315F1198E4CB8008FB109 /* colorertake5_text_region.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC315AA198E4CB8008FB109 /* colorertake5_text_region.h */; };
 		9AC315F2198E4CB8008FB109 /* colorertake5_Writer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC315AB198E4CB8008FB109 /* colorertake5_Writer.h */; };
 		9AC315F3198E4CB8008FB109 /* colorertake5_xmldom.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC315AC198E4CB8008FB109 /* colorertake5_xmldom.h */; };
-		9AE24D451904CEFF001AEFFB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D441904CEFF001AEFFB /* XCTest.framework */; };
-		9AE24D461904CEFF001AEFFB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D361904CEFE001AEFFB /* Foundation.framework */; };
-		9AE24D481904CEFF001AEFFB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D471904CEFF001AEFFB /* UIKit.framework */; };
 		9AE4C7F21996D29C00E50F88 /* data_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE4C7E41996D29C00E50F88 /* data_data.h */; };
 		9AE4C7F41996D29C00E50F88 /* data_data_container.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE4C7E61996D29C00E50F88 /* data_data_container.h */; };
 		9AE4C7F61996D29C00E50F88 /* data_data_listener.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE4C7E81996D29C00E50F88 /* data_data_listener.h */; };
@@ -1235,8 +1232,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		07108A6D1B4C909500A28F80 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
-		07108A6F1B4C90A300A28F80 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		07108A731B4C90D000A28F80 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		073EDDE1164E968100818801 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		073EDDE4164E96DA00818801 /* SecurityFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityFoundation.framework; path = System/Library/Frameworks/SecurityFoundation.framework; sourceTree = SDKROOT; };
@@ -1254,9 +1249,7 @@
 		07502CA41B251B0A008D207C /* net_url.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = net_url.cpp; path = net/net_url.cpp; sourceTree = "<group>"; };
 		0751A49C192AB15000CFD2B0 /* multithreading_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = multithreading_data.h; sourceTree = "<group>"; };
 		076C9BEF1B50ACB100CEA03E /* primitive_create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive_create.h; sourceTree = "<group>"; };
-		076D0A141A3FCCCB007432B6 /* libatomiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libatomiconv.dylib; path = ../../atom/iconv/build/Debug/libatomiconv.dylib; sourceTree = "<group>"; };
 		076D0A161A3FCCD4007432B6 /* atomiconv.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = atomiconv.xcodeproj; path = ../../atom/iconv/atomiconv.xcodeproj; sourceTree = "<group>"; };
-		077A026C1B4D6032001C85FF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		077A02701B4D60B7001C85FF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = ../../../../System/Library/Frameworks/Foundation.framework; sourceTree = "<group>"; };
 		077A02721B4D63B9001C85FF /* aura_vanity_c#_cnet_d.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = "aura_vanity_c#_cnet_d.rtf"; sourceTree = "<group>"; };
 		077A02741B4D64F4001C85FF /* aura_vanity_e_f_g_etc.doc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = aura_vanity_e_f_g_etc.doc; sourceTree = "<group>"; };
@@ -1296,9 +1289,6 @@
 		077CEF211B23D0B3009A57EF /* _draw2d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _draw2d.cpp; sourceTree = "<group>"; };
 		077CEF231B23D0FF009A57EF /* _multithreading.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _multithreading.cpp; sourceTree = "<group>"; };
 		077CEF251B23D151009A57EF /* _primitive.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _primitive.cpp; sourceTree = "<group>"; };
-		07857A081917B82000FFFE51 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		07857A0A1917B8CE00FFFE51 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
-		07857A0C1917B90400FFFE51 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/CoreText.framework; sourceTree = DEVELOPER_DIR; };
 		079AE0621886481200635C39 /* math_scalar_enum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = math_scalar_enum.h; sourceTree = "<group>"; };
 		079AE0641886481200635C39 /* math_scalar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = math_scalar.h; sourceTree = "<group>"; };
 		079AE07F1886486300635C39 /* primitive_relation_set.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive_relation_set.h; sourceTree = "<group>"; };
@@ -1832,10 +1822,7 @@
 		9AC315AB198E4CB8008FB109 /* colorertake5_Writer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = colorertake5_Writer.h; sourceTree = "<group>"; };
 		9AC315AC198E4CB8008FB109 /* colorertake5_xmldom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = colorertake5_xmldom.h; sourceTree = "<group>"; };
 		9AC945281829225F00AA7325 /* primitive_factory_impl.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = primitive_factory_impl.inl; sourceTree = "<group>"; };
-		9AE24D361904CEFE001AEFFB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9AE24D431904CEFE001AEFFB /* aura_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = aura_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9AE24D441904CEFF001AEFFB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		9AE24D471904CEFF001AEFFB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		9AE4C7E41996D29C00E50F88 /* data_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = data_data.h; sourceTree = "<group>"; };
 		9AE4C7E61996D29C00E50F88 /* data_data_container.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = data_data_container.h; sourceTree = "<group>"; };
 		9AE4C7E81996D29C00E50F88 /* data_data_listener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = data_data_listener.h; sourceTree = "<group>"; };
@@ -1897,7 +1884,6 @@
 		9AE7233C17E83B69003E47F9 /* version.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = version.cpp; sourceTree = "<group>"; };
 		9AE7233D17E83B69003E47F9 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
 		9AEEADA319C4DD2E00866C9E /* file_streambuf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file_streambuf.h; sourceTree = "<group>"; };
-		9AEEADAE19C4DDD500866C9E /* libiconv.2.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.2.4.0.dylib; path = usr/lib/libiconv.2.4.0.dylib; sourceTree = SDKROOT; };
 		9AEEADB319C4E10900866C9E /* simple_message_box.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = simple_message_box.cpp; sourceTree = "<group>"; };
 		9AEEADB419C4E10900866C9E /* simple_message_box.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = simple_message_box.h; sourceTree = "<group>"; };
 		9AF885B319D42E2400A3117D /* exception_throw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception_throw.h; sourceTree = "<group>"; };
@@ -1930,9 +1916,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AE24D451904CEFF001AEFFB /* XCTest.framework in Frameworks */,
-				9AE24D481904CEFF001AEFFB /* UIKit.framework in Frameworks */,
-				9AE24D461904CEFF001AEFFB /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2795,24 +2778,6 @@
 			path = colorertake5;
 			sourceTree = "<group>";
 		};
-		9AE24D351904CEFE001AEFFB /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				077A026C1B4D6032001C85FF /* Foundation.framework */,
-				07108A6F1B4C90A300A28F80 /* UIKit.framework */,
-				07108A6D1B4C909500A28F80 /* CoreGraphics.framework */,
-				076D0A141A3FCCCB007432B6 /* libatomiconv.dylib */,
-				9AEEADAE19C4DDD500866C9E /* libiconv.2.4.0.dylib */,
-				07857A0C1917B90400FFFE51 /* CoreText.framework */,
-				07857A0A1917B8CE00FFFE51 /* CoreGraphics.framework */,
-				07857A081917B82000FFFE51 /* UIKit.framework */,
-				9AE24D361904CEFE001AEFFB /* Foundation.framework */,
-				9AE24D441904CEFF001AEFFB /* XCTest.framework */,
-				9AE24D471904CEFF001AEFFB /* UIKit.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		9AE4C7E21996D29C00E50F88 /* data */ = {
 			isa = PBXGroup;
 			children = (
@@ -2945,7 +2910,6 @@
 				9A163D3019C4A4CC00966C5E /* aura */,
 				9A16414919C4A4CE00966C5E /* aura_iosTests */,
 				07F5B12D184A3B420092C3E1 /* filesystem */,
-				9AE24D351904CEFE001AEFFB /* Frameworks */,
 				07F5B20E184A3B690092C3E1 /* graphics */,
 				9AE7226817E83B68003E47F9 /* multithreading */,
 				07502CA81B251B15008D207C /* net */,

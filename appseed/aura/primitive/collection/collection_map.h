@@ -835,7 +835,8 @@ typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::
    if((passoc = get_assoc_at(key,nHashBucket,nHashValue)) == NULL)
    {
 
-      if(m_hashtable.m_ppassocHash == NULL)
+      // not precise (memleak? a watch dog can restart from the last check point... continuable tasks need...) but self-healing(self-recoverable/not-fatal)...
+      if(void_ptr_is_null(m_hashtable.m_ppassocHash))
          InitHashTable(m_hashtable.GetHashTableSize());
 
       ENSURE(m_hashtable.m_ppassocHash);
