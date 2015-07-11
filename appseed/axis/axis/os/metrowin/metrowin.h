@@ -70,7 +70,7 @@ CLASS_DECL_AXIS int_bool IsWindow(oswindow oswindow);
 //#include "metrowin_simple_ui.h"
 #include "metrowin_sockets.h"
 #include "metrowin_user_impl.h"
-#include "metrowin_window_impl.h"
+//#include "metrowin_window_impl.h"
 
 
 
