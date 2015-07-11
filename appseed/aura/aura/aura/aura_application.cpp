@@ -1223,8 +1223,14 @@ namespace aura
          throw e;
 
       }
+      catch(const char * psz)
+      {
+         TRACE("String Exception: This is the Error Message : \"%s\"", psz);
+         m_iReturnCode = -666;
+      }
       catch(...)
       {
+         m_iReturnCode = -66;
       }
       goto run;
    InitFailure:
