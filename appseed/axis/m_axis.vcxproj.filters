@@ -1618,9 +1618,6 @@
     <ClCompile Include="axis\os\metrowin\metrowin.cpp">
       <Filter>Source Files\axis\os\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="axis\os\metrowin\metrowin_user.cpp">
-      <Filter>Source Files\axis\os\metrowin</Filter>
-    </ClCompile>
     <ClCompile Include="axis\os\metrowin\metrowin_windowing.cpp">
       <Filter>Source Files\axis\os\metrowin</Filter>
     </ClCompile>
