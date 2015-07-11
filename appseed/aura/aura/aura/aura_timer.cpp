@@ -28,9 +28,6 @@ void aura_timer_handler(sigval sigval);
 #endif
 
 
-
-
-
 timer::timer(::aura::application * papp,uint_ptr uiTimer ,PFN_TIMER pfnTimer ,void * pvoidData, mutex * pmutex):
 object(papp),
 m_nIDEvent(uiTimer),
@@ -38,11 +35,18 @@ m_pfnTimer(pfnTimer),
 m_pvoidData(pvoidData),
 m_pmutex(pmutex)
 {
+
+   m_timer = nullptr;
+
    m_bDestroying = false;
    m_pcallback = NULL;
    // Create the timer queue.
+#ifdef METROWIN
 
-#ifdef WINDOWS
+
+
+
+#elif defined(WINDOWS)
    hTimerQueue = CreateTimerQueue();
    if (NULL == hTimerQueue)
    {
@@ -53,7 +57,7 @@ m_pmutex(pmutex)
     
     m_queue =  NULL;
     m_timer = NULL;
-    
+
 #else
    /*           sigset_t mask;
    struct sigaction sa;
@@ -80,8 +84,9 @@ timer::~timer()
 {
 
    stop();
+#ifdef METROWIN
 
-#ifdef WINDOWS
+#elif defined(WINDOWS)
 
    DeleteTimerQueue(hTimerQueue);
     
@@ -107,7 +112,28 @@ bool timer::start(int millis,bool bPeriodic)
 
    m_dwMillis = millis;
 
-#ifdef WINDOWS
+#ifdef METROWIN
+
+   ::Windows::Foundation::TimeSpan span;
+
+   span.Duration = millis * 10;
+   
+   if(bPeriodic)
+   {
+
+      m_timer = ThreadPoolTimer::CreatePeriodicTimer(ref new TimerElapsedHandler ([this](ThreadPoolTimer ^){call_on_timer();}),span ); // TimeSpan is 100 nanoseconds
+
+   }
+   else
+   {
+
+      m_timer = ThreadPoolTimer::CreateTimer(ref new TimerElapsedHandler([this](ThreadPoolTimer ^){call_on_timer();}),span);
+
+   }
+
+
+
+#elif define(WINDOWS)
    if(!CreateTimerQueueTimer(&hTimer,hTimerQueue,(WAITORTIMERCALLBACK)aura_timer_TimerRoutine,this,m_dwMillis,0,WT_EXECUTEONLYONCE))
    {
 
@@ -155,7 +181,18 @@ bool timer::start(int millis,bool bPeriodic)
 
 void timer::stop()
 {
-#ifdef WINDOWS
+#ifdef METROWIN
+
+   if(m_timer != nullptr)
+   {
+      
+      m_timer->Cancel();
+
+      m_timer = nullptr;
+
+   }
+
+#elif defined(WINDOWS)
 
    if(hTimer != NULL)
    {
@@ -249,7 +286,7 @@ bool timer::call_on_timer()
 
    }
 
-#ifdef WINDOWS
+#if defined(WINDOWSEX)
 
    if(m_bPeriodic)
    {

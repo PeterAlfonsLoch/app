@@ -826,17 +826,17 @@ restart:
 
    ml.unlock();
 
-   while(!pmq->m_eventNewMessage.wait(millis(84)).signaled())
-   {
+   //while(!pmq->m_eventNewMessage.wait(millis(84)).signaled())
+   //{
 
-      if(::get_thread() != NULL)
-      {
+   //   if(::get_thread() != NULL)
+   //   {
 
-         ::get_thread()->step_timer();
+   //      ::get_thread()->step_timer();
 
-      }
+   //   }
 
-   }
+   //}
 
    pmq->m_eventNewMessage.ResetEvent();
 

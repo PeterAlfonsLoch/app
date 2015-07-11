@@ -32,18 +32,27 @@ public:
    DWORD                m_dwMillis;
    bool                 m_bDestroying;
 
-#ifdef WINDOWS
+#ifdef METROWIN
 
-   HANDLE hTimerQueue;
-   HANDLE hTimer;
-#elif defined(__APPLE__)
-    void *              m_queue;
-    void *              m_timer;
+   Threading::ThreadPoolTimer ^     m_timer;
+
+#elif WINDOWS
+
+   HANDLE                           m_hTimerQueue;
+   HANDLE                           m_hTimer;
+
+#elif defined(__APPLE__)            
+    
+   void *                           m_queue;
+   void *                           m_timer;
+
 #else
 
-   timer_t timerid;
-   struct sigevent sev;
-   struct itimerspec its;
+   timer_t                          m_timerid;
+   struct sigevent                  m_sev;
+   struct itimerspec                m_its;
+
+
 #endif
 
    
