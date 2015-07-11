@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		07473E191B504642004688C5 /* libauracharguess.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D7432B1B5037B100821238 /* libauracharguess.dylib */; };
 		07473E251B50465B004688C5 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07473E1C1B504642004688C5 /* libaura.dylib */; };
+		076C9BE51B50A61F00CEA03E /* core_session.h in Headers */ = {isa = PBXBuildFile; fileRef = 076C9BE41B50A61F00CEA03E /* core_session.h */; };
 		0774CFC01B26D187007ECE77 /* _databaseuser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0774CFBF1B26D187007ECE77 /* _databaseuser.cpp */; };
 		0774CFD81B26D1FB007ECE77 /* libaxisbzip2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0774CFD51B26D1D9007ECE77 /* libaxisbzip2.dylib */; };
 		077A012D1B4D5301001C85FF /* libaxiscrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 077A01211B4D52B3001C85FF /* libaxiscrypto.dylib */; };
@@ -369,6 +370,7 @@
 /* Begin PBXFileReference section */
 		07011FE5190CAB3900C08335 /* libca2os.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libca2os.dylib; path = "../../../nodeapp/os/build/Debug-iphoneos/libca2os.dylib"; sourceTree = "<group>"; };
 		0713FB06183177EF00F4AEDC /* filemanager_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_data.h; sourceTree = "<group>"; };
+		076C9BE41B50A61F00CEA03E /* core_session.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = core_session.h; sourceTree = "<group>"; };
 		0774CFBF1B26D187007ECE77 /* _databaseuser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _databaseuser.cpp; sourceTree = "<group>"; };
 		0774CFD01B26D1D8007ECE77 /* axisbzip2.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisbzip2.xcodeproj; path = ../../axis/bzip2/axisbzip2.xcodeproj; sourceTree = "<group>"; };
 		077A01181B4D52B3001C85FF /* axiscrypto.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axiscrypto.xcodeproj; path = ../../axis/crypto/axiscrypto.xcodeproj; sourceTree = "<group>"; };
@@ -728,6 +730,7 @@
 		078C35E21921910B00354453 /* core */ = {
 			isa = PBXGroup;
 			children = (
+				076C9BE41B50A61F00CEA03E /* core_session.h */,
 				078451621B264DF400C91416 /* _core.cpp */,
 				9AA1006B1997028F004F84BD /* core_simple_app.h */,
 				9AA1006C1997028F004F84BD /* plane.h */,
@@ -1300,6 +1303,7 @@
 				9A19A3A119C6F5950018DF7D /* wndfrm_frame_dock_manager.h in Headers */,
 				9A19A3A419C6F5950018DF7D /* wndfrm_frame_frame.h in Headers */,
 				9A19A3B919C6F5960018DF7D /* wndfrm_interaction.h in Headers */,
+				076C9BE51B50A61F00CEA03E /* core_session.h in Headers */,
 				9A19A3A219C6F5950018DF7D /* wndfrm_frame_enum.h in Headers */,
 				9A19A39719C6F5940018DF7D /* wndfrm_frame.h in Headers */,
 				9A19A39F19C6F5940018DF7D /* wndfrm_frame_control_box_button.h in Headers */,

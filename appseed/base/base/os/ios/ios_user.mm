@@ -68,6 +68,9 @@ bool oswindow_data::show_window(int32_t nCmdShow)
 }
 
 
+WINBOOL ui_SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int cx, int cy, UINT uFlags)
+;
+
 bool oswindow_data::client_to_screen(POINT *lppoint)
 {
    RECT rect;
@@ -88,7 +91,7 @@ bool oswindow_data::screen_to_client(POINT *lppoint)
 
 
 
-WINBOOL set_nswindow_frame(oswindow hwnd, LPCRECT lpcrect, int iDisplay)
+WINBOOL set_nswindow_frame(oswindow hwnd,oswindow hwndAfter, LPCRECT lpcrect, int iDisplay)
 {
    
    CGRect rect = [[UIScreen mainScreen] bounds];
@@ -104,7 +107,7 @@ WINBOOL set_nswindow_frame(oswindow hwnd, LPCRECT lpcrect, int iDisplay)
    //   rect.size.height  = 500;
    
    //   printf("\nset nswindow frame (%f, %f)[%f, %f]", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
-   
+   ui_SetWindowPos(hwnd, hwndAfter, rect.origin.x, rect.origin.y, rect.size.width, rect.size.height, SWP_SHOWWINDOW);
    
    
 //   [hwnd->window() setFrame : rect display : iDisplay];
@@ -327,6 +330,7 @@ WINBOOL get_nswindow_rect(oswindow oswindow, LPRECT lprect)
 
 
 
+
 WINBOOL SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int cx, int cy, UINT uFlags)
 {
    
@@ -337,33 +341,24 @@ WINBOOL SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int 
    if(bMove && bSize)
    {
       
-      RECT rect;
-      
-      rect.left      = x;
-      rect.top       = y;
-      rect.right     = rect.left + cx;
-      rect.bottom    = rect.top + cy;
-      
-      set_nswindow_frame(hwnd, &rect, (uFlags & SWP_SHOWWINDOW));
+      hwnd->m_x = x;
+      hwnd->m_y = y;
+      hwnd->m_cx = cx;
+      hwnd->m_cy = cy;
       
    }
    else if(bSize) // bSize only
    {
       
-      RECT rect;
-      
-      GetWindowRect(hwnd, &rect);
-      
-      rect.right     = rect.left + cx;
-      rect.bottom    = rect.top + cy;
-      
-      set_nswindow_frame(hwnd, &rect, (uFlags & SWP_SHOWWINDOW));
+      hwnd->m_cx = cx;
+      hwnd->m_cy = cy;
       
    }
    else if(bMove) // bMove only
    {
       
-      move_nswindow(hwnd, x, y);
+      hwnd->m_x = x;
+      hwnd->m_y = y;
       
    }
    

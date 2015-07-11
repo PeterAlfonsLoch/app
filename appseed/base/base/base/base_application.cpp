@@ -2488,7 +2488,7 @@ namespace base
             m_puiMain = pwnd;
 
          }
-
+         
       }
 
    }

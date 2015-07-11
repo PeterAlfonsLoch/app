@@ -387,3 +387,33 @@ oswindow GetWindow(oswindow window, int iParentHood)
 }
 
 
+
+
+WINBOOL ui_SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int cx, int cy, UINT uFlags)
+{
+   if(hwnd == NULL)
+      return FALSE;
+   if(hwnd->m_pui == NULL)
+      return FALSE;
+   return hwnd->m_pui->SetWindowPos((int_ptr)hwndInsertAfter, x, y, cx, cy, uFlags);
+   
+}
+
+
+
+WINBOOL GetWindowRect(oswindow hwnd, LPRECT lprect)
+{
+   if(::void_ptr_is_null(hwnd))
+      return FALSE;
+   if(::void_ptr_is_null(lprect))
+      return FALSE;
+   lprect->left =hwnd->m_x;
+   lprect->top = hwnd->m_y;
+   lprect->right = hwnd->m_x + hwnd->m_cx;
+   lprect->bottom = hwnd->m_y + hwnd->m_cy;
+   return TRUE;
+}
+
+
+
+

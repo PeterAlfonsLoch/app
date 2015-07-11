@@ -4006,17 +4006,48 @@ namespace ios
       if(!::IsWindow(get_handle()))
          return;
       // if it is temporary user::interaction - probably not ca2 wrapped user::interaction
+      
       rect rect32;
-      ::GetWindowRect(get_handle(), rect32);
+      
+      if(m_pui == m_pauraapp->m_pbasesystem->m_posdata->m_pui)
+      {
+         
+         GetMainScreenRect(rect32);
+         
+      }
+      else
+      {
+         
+         ::GetWindowRect(get_handle(), rect32);
+         
+      }
+      
       ::copy(lprect, rect32);
+      
    }
    
    void interaction_impl::GetClientRect(RECT64 * lprect)
    {
+      
       ASSERT(::IsWindow(get_handle()));
+      
       rect rect32;
-      ::GetClientRect(get_handle(), rect32);
+      
+      if(m_pui == m_pauraapp->m_pbasesystem->m_posdata->m_pui)
+      {
+         
+         GetMainScreenRect(rect32);
+         
+      }
+      else
+      {
+         
+         ::GetWindowRect(get_handle(), rect32);
+         
+      }
+      
       ::copy(lprect, rect32);
+      
    }
    
    
@@ -5776,12 +5807,15 @@ namespace ios
       GetClientRect(rectClient);
       
       //       g->BitBlt(0, 0, rectClient.width(), rectClient.height(), m_spdib->get_graphics(), 0, 0, SRCCOPY);
+//      m_spdib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
+      
+  //    m_spdib->get_graphics()->FillSolidRect(300, 410, 77, 84, ARGB(128, 184, 184, 177));
       
       g->BitBlt(0, 0, m_spdib->m_size.cx, m_spdib->m_size.cy, m_spdib->get_graphics(), 0, 0, SRCCOPY);
       
       //       g->set_alpha_mode(::draw2d::alpha_mode_blend);
       
-      //      g->FillSolidRect(rectClient, ARGB(128, 0, 255, 0));
+//      g->FillSolidRect(rectClient, ARGB(128, 23, 77, 184));
       
    }
    

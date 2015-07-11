@@ -168,23 +168,23 @@ WINBOOL GetClientRect(oswindow hwnd, LPRECT lprect)
 }
 
 
-WINBOOL GetWindowRect(oswindow hwnd, LPRECT lprect)
-{
-  /* XWindowAttributes attrs;
-   /* Fill attribute structure with information about root window */
-/*   if(XGetWindowAttributes(XOpenDisplay(NULL), hwnd, &attrs) == 0)
-   {
-      return false;
-   }
-   lprect->left      = attrs.x;
-   lprect->top       = attrs.y;
-   lprect->right     = lprect->left    + attrs.width;
-   lprect->bottom    = lprect->top     + attrs.height;*/
-    
-   return get_nswindow_rect(hwnd, lprect) ? 1 : 0;
-    
-    
-}
+//WINBOOL GetWindowRect(oswindow hwnd, LPRECT lprect)
+//{
+//  /* XWindowAttributes attrs;
+//   /* Fill attribute structure with information about root window */
+///*   if(XGetWindowAttributes(XOpenDisplay(NULL), hwnd, &attrs) == 0)
+//   {
+//      return false;
+//   }
+//   lprect->left      = attrs.x;
+//   lprect->top       = attrs.y;
+//   lprect->right     = lprect->left    + attrs.width;
+//   lprect->bottom    = lprect->top     + attrs.height;*/
+//    
+//   return get_nswindow_rect(hwnd, lprect) ? 1 : 0;
+//    
+//    
+//}
 
 
 /*

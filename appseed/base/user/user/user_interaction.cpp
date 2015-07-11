@@ -2211,15 +2211,35 @@ namespace user
          m_threadptra.add(get_app());
 
       }
+      
+#if defined(APPLE_IOS)
+      
+      if(pParentWnd == NULL || pParentWnd == System.m_posdata->m_pui)
+      {
+         
+         pParentWnd = System.m_posdata->m_pui;
+         
+         if(!Application.defer_initialize_twf())
+         {
+            
+            m_threadptra.remove_all();
+            
+            return false;
+            
+         }
+         
+      }
+      
+#endif      
 
 #if defined(WINDOWSEX) || defined(LINUX)
       if(pParentWnd == NULL || pParentWnd->get_safe_handle() == (oswindow)HWND_MESSAGE)
-#elif defined(APPLE_IOS)
-         if(pParentWnd == NULL || pParentWnd == System.m_posdata->m_pui)
 #else
       if(pParentWnd == NULL)
 #endif
       {
+         
+         
 
          if(Application.defer_initialize_twf())
             return false;
@@ -2326,20 +2346,36 @@ namespace user
 
       }
 
+#if defined(APPLE_IOS)
+      
+      if(pParentWnd == NULL || pParentWnd == System.m_posdata->m_pui)
+      {
+         
+         pParentWnd = System.m_posdata->m_pui;
+         
+         if(!Application.defer_initialize_twf())
+         {
+            
+            m_threadptra.remove_all();
+            
+            return false;
+            
+         }
+         
+      }
+      
+#endif
+
       if(m_threadptra.get_count() <= 0)
       {
 
          m_threadptra.add(get_app());
 
       }
-#if !defined(METROWIN) 
-#if defined(APPLE_IOS)
-      if(pParentWnd == NULL || pParentWnd == System.m_posdata->m_pui)
-#else
+#if !defined(METROWIN)
       if(pParentWnd == NULL)
-#endif
       {
-
+         
          if(!Application.defer_initialize_twf())
          {
 

@@ -274,6 +274,8 @@ namespace ios
    // lprect should be in screen coordinates
    bool window_draw::UpdateBuffer()
    {
+      
+      System.m_posdata->m_pui->_001UpdateBuffer();
   
       System.m_posdata->m_pui->m_pimpl.cast<::ios::interaction_impl>()->round_window_invalidate();
       

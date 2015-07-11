@@ -297,5 +297,5 @@ WINBOOL mac_release_color(CGColorRef colorref);
 
 
 
-WINBOOL set_nswindow_frame(oswindow hwnd, LPCRECT prect, int iDisplay);
+WINBOOL set_nswindow_frame(oswindow hwnd, oswindow hwndInsertAfter, LPCRECT prect, int iDisplay);
 WINBOOL move_nswindow(oswindow hwnd, int x, int y);

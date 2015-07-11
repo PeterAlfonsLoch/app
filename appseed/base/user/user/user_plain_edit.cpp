@@ -465,8 +465,9 @@ namespace user
 
       SCAST_PTR(::message::create,pcreate,pobj);
 
+#ifndef APPLE_IOS
       Session.keyboard(); // trigger keyboard creationg
-
+#endif
 
 
       if(m_ptree == NULL)

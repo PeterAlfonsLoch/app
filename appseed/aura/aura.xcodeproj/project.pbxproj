@@ -21,6 +21,8 @@
 		07502CA51B251B0A008D207C /* net_url.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07502CA41B251B0A008D207C /* net_url.cpp */; };
 		07502CA71B251B0A008D207C /* net_url.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07502CA41B251B0A008D207C /* net_url.cpp */; };
 		0751A49E192AB15000CFD2B0 /* multithreading_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 0751A49C192AB15000CFD2B0 /* multithreading_data.h */; };
+		076C9BF01B50ACB100CEA03E /* primitive_create.h in Headers */ = {isa = PBXBuildFile; fileRef = 076C9BEF1B50ACB100CEA03E /* primitive_create.h */; };
+		076C9BF31B50AD2900CEA03E /* libatomiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 076D0A1B1A3FCCD4007432B6 /* libatomiconv.dylib */; };
 		077A02731B4D63B9001C85FF /* aura_vanity_c#_cnet_d.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 077A02721B4D63B9001C85FF /* aura_vanity_c#_cnet_d.rtf */; };
 		077A02751B4D64F4001C85FF /* aura_vanity_e_f_g_etc.doc in Resources */ = {isa = PBXBuildFile; fileRef = 077A02741B4D64F4001C85FF /* aura_vanity_e_f_g_etc.doc */; };
 		077A05681B4D70B7001C85FF /* DDInvocationGrabber.mm in Sources */ = {isa = PBXBuildFile; fileRef = 077A05341B4D70B7001C85FF /* DDInvocationGrabber.mm */; };
@@ -763,7 +765,6 @@
 		07CAA9761B4DC5E900180410 /* ios_user.mm in Sources */ = {isa = PBXBuildFile; fileRef = 077A055A1B4D70B7001C85FF /* ios_user.mm */; };
 		07CAA9771B4DC5E900180410 /* NSObject+DDExtensions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 077A05611B4D70B7001C85FF /* NSObject+DDExtensions.mm */; };
 		07CAA9781B4DC5E900180410 /* UncaughtExceptionHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = 077A05631B4D70B7001C85FF /* UncaughtExceptionHandler.mm */; };
-		07CAA97B1B4DC67D00180410 /* libatomiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07108AAD1B4C95C400A28F80 /* libatomiconv.dylib */; };
 		07CABC141B3DFF200009F5B9 /* user_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07CABC101B3DFF200009F5B9 /* user_frame.cpp */; };
 		07CABC151B3DFF200009F5B9 /* user_frame.h in Headers */ = {isa = PBXBuildFile; fileRef = 07CABC111B3DFF200009F5B9 /* user_frame.h */; };
 		07CABC161B3DFF200009F5B9 /* user_primitive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07CABC121B3DFF200009F5B9 /* user_primitive.cpp */; };
@@ -1203,12 +1204,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		07108AAC1B4C95C400A28F80 /* PBXContainerItemProxy */ = {
+		076C9BF11B50ACB100CEA03E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 076D0A161A3FCCD4007432B6 /* atomiconv.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 07108AAA1B4C958C00A28F80;
-			remoteInfo = atomiconv_ios;
+			remoteGlobalIDString = 077A01571B4D5479001C85FF;
+			remoteInfo = ios_atomiconv;
 		};
 		076D0A1A1A3FCCD4007432B6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1252,6 +1253,7 @@
 		07502CA21B251981008D207C /* teste.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = teste.cpp; sourceTree = "<group>"; };
 		07502CA41B251B0A008D207C /* net_url.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = net_url.cpp; path = net/net_url.cpp; sourceTree = "<group>"; };
 		0751A49C192AB15000CFD2B0 /* multithreading_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = multithreading_data.h; sourceTree = "<group>"; };
+		076C9BEF1B50ACB100CEA03E /* primitive_create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive_create.h; sourceTree = "<group>"; };
 		076D0A141A3FCCCB007432B6 /* libatomiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libatomiconv.dylib; path = ../../atom/iconv/build/Debug/libatomiconv.dylib; sourceTree = "<group>"; };
 		076D0A161A3FCCD4007432B6 /* atomiconv.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = atomiconv.xcodeproj; path = ../../atom/iconv/atomiconv.xcodeproj; sourceTree = "<group>"; };
 		077A026C1B4D6032001C85FF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
@@ -1907,8 +1909,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				076C9BF31B50AD2900CEA03E /* libatomiconv.dylib in Frameworks */,
 				077A05D41B4D7403001C85FF /* UIKit.framework in Frameworks */,
-				07CAA97B1B4DC67D00180410 /* libatomiconv.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1962,7 +1964,7 @@
 			isa = PBXGroup;
 			children = (
 				076D0A1B1A3FCCD4007432B6 /* libatomiconv.dylib */,
-				07108AAD1B4C95C400A28F80 /* libatomiconv.dylib */,
+				076C9BF21B50ACB100CEA03E /* libatomiconv.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2865,6 +2867,7 @@
 		9AE722BF17E83B69003E47F9 /* primitive */ = {
 			isa = PBXGroup;
 			children = (
+				076C9BEF1B50ACB100CEA03E /* primitive_create.h */,
 				077CEF251B23D151009A57EF /* _primitive.cpp */,
 				07B093DB18495C2A007A0560 /* collection */,
 				07B0943C18495C2A007A0560 /* comparison */,
@@ -4059,6 +4062,7 @@
 				9A16484619C4ADA100966C5E /* macos_os.h in Headers */,
 				07B0956018495C2B007A0560 /* x_charcategory.h in Headers */,
 				9A1641D719C4A4CE00966C5E /* aura_static_start.h in Headers */,
+				076C9BF01B50ACB100CEA03E /* primitive_create.h in Headers */,
 				9AE4C7F61996D29C00E50F88 /* data_data_listener.h in Headers */,
 				07B094EF18495C2B007A0560 /* collection_string_map.h in Headers */,
 				07F5B1C1184A3B430092C3E1 /* file_exception.h in Headers */,
@@ -4192,11 +4196,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		07108AAD1B4C95C400A28F80 /* libatomiconv.dylib */ = {
+		076C9BF21B50ACB100CEA03E /* libatomiconv.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
 			path = libatomiconv.dylib;
-			remoteRef = 07108AAC1B4C95C400A28F80 /* PBXContainerItemProxy */;
+			remoteRef = 076C9BF11B50ACB100CEA03E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		076D0A1B1A3FCCD4007432B6 /* libatomiconv.dylib */ = {

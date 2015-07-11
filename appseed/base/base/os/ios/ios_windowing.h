@@ -40,6 +40,11 @@ public:
    nswindow                      m_nswindow;
    ::user::interaction *    m_pui;
    
+   int m_x;
+   int m_y;
+   int m_cx;
+   int m_cy;
+   
    
    int_to_int *                  m_plongmap;
    
