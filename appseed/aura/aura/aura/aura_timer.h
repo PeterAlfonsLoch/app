@@ -34,23 +34,23 @@ public:
 
 #ifdef METROWIN
 
-   Threading::ThreadPoolTimer ^     m_timer;
+   ThreadPoolTimer ^     m_timer;
 
 #elif WINDOWS
 
-   HANDLE                           m_hTimerQueue;
-   HANDLE                           m_hTimer;
+   HANDLE               m_hTimerQueue;
+   HANDLE               m_hTimer;
 
-#elif defined(__APPLE__)            
+#elif defined(__APPLE__)
     
-   void *                           m_queue;
-   void *                           m_timer;
+   void *               m_queue;
+   void *               m_timer;
 
 #else
 
-   timer_t                          m_timerid;
-   struct sigevent                  m_sev;
-   struct itimerspec                m_its;
+   timer_t              m_timerid;
+   struct sigevent      m_sev;
+   struct itimerspec    m_its;
 
 
 #endif
