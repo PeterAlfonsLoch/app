@@ -1153,6 +1153,12 @@ namespace base
 
          bool system::get_monitor_rect(index iMonitor,LPRECT lprect)
 {
+#ifdef METROWIN
+
+      get_window_rect(m_posdata->m_pwindow,lprect);
+
+      return true;
+
 #ifdef LINUX
 
       xdisplay  d;

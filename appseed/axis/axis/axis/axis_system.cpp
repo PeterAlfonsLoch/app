@@ -1041,7 +1041,7 @@ namespace axis
 #elif defined(METROWIN)
 
 
-      get_window_rect(m_posdata->m_pwindow,lprect);
+      return false;
 
 
 #elif defined(LINUX)

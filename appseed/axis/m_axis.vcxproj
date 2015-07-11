@@ -206,7 +206,6 @@
     <ClInclude Include="filesystem\fs\fs_remote_native_fs.h" />
     <ClInclude Include="filesystem\fs\fs_set.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="graphics\graphics.h" />
     <ClInclude Include="graphics\visual\visual.h" />
     <ClInclude Include="graphics\visual\visual_api.h" />
     <ClInclude Include="graphics\visual\visual_buffered_graphics.h" />
@@ -1739,7 +1738,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="graphics\dib_console.cpp" />
-    <ClCompile Include="graphics\graphics_window_graphics.cpp" />
     <ClCompile Include="graphics\visual\visual_api.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>

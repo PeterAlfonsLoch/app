@@ -612,9 +612,6 @@
     <ClInclude Include="filesystem\fs\fs_set.h">
       <Filter>Header Files\filesystem\fs</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\graphics.h">
-      <Filter>Header Files\graphics</Filter>
-    </ClInclude>
     <ClInclude Include="graphics\visual\visual.h">
       <Filter>Header Files\graphics\visual</Filter>
     </ClInclude>
@@ -1644,9 +1641,6 @@
     </ClCompile>
     <ClCompile Include="user\_user.cpp">
       <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\graphics_window_graphics.cpp">
-      <Filter>Source Files\graphics</Filter>
     </ClCompile>
     <ClCompile Include="axis\os\metrowin\_metrowin_os.cpp">
       <Filter>Source Files\axis\os\metrowin</Filter>
