@@ -5,7 +5,7 @@
 #include <time.h>
 #endif
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
 VOID CALLBACK aura_timer_TimerRoutine(PVOID lpParam,BOOLEAN TimerOrWaitFired);
 
@@ -21,11 +21,54 @@ void ReleaseDispatch(void * p);
 
 void aura_timer(void * p);
 
+#elif defined(__cplusplus_winrt)
+
+namespace aura
+{
+
+   class Timer
+   { 
+   public: 
+
+
+      ThreadPoolTimer ^ m_timer; 
+
+
+      Timer()
+      {
+
+         m_timer = nullptr;
+
+      }
+
+
+      ~Timer()
+      {
+
+         if(m_timer != nullptr)
+         {
+
+            m_timer->Cancel();
+
+            m_timer = nullptr;
+
+         }
+
+      }
+
+
+   };
+
+
+} // namespace aura
+
 #else
 
 void aura_timer_handler(sigval sigval);
 
 #endif
+
+
 
 
 timer::timer(::aura::application * papp,uint_ptr uiTimer ,PFN_TIMER pfnTimer ,void * pvoidData, mutex * pmutex):
@@ -36,14 +79,13 @@ m_pvoidData(pvoidData),
 m_pmutex(pmutex)
 {
 
-   m_timer = nullptr;
-
    m_bDestroying = false;
    m_pcallback = NULL;
    // Create the timer queue.
-#ifdef METROWIN
+#ifdef __cplusplus_winrt
 
 
+   m_ptimer = new ::aura::Timer;
 
 
 #elif defined(WINDOWS)
@@ -86,6 +128,8 @@ timer::~timer()
    stop();
 #ifdef METROWIN
 
+   ::aura::del(m_ptimer);
+
 #elif defined(WINDOWS)
 
    DeleteTimerQueue(hTimerQueue);
@@ -121,13 +165,13 @@ bool timer::start(int millis,bool bPeriodic)
    if(bPeriodic)
    {
 
-      m_timer = ThreadPoolTimer::CreatePeriodicTimer(ref new TimerElapsedHandler ([this](ThreadPoolTimer ^){call_on_timer();}),span ); // TimeSpan is 100 nanoseconds
+      m_ptimer->m_timer = ThreadPoolTimer::CreatePeriodicTimer(ref new TimerElapsedHandler ([this](ThreadPoolTimer ^){call_on_timer();}),span ); // TimeSpan is 100 nanoseconds
 
    }
    else
    {
 
-      m_timer = ThreadPoolTimer::CreateTimer(ref new TimerElapsedHandler([this](ThreadPoolTimer ^){call_on_timer();}),span);
+      m_ptimer->m_timer = ThreadPoolTimer::CreateTimer(ref new TimerElapsedHandler([this](ThreadPoolTimer ^){call_on_timer();}),span);
 
    }
 
@@ -181,16 +225,10 @@ bool timer::start(int millis,bool bPeriodic)
 
 void timer::stop()
 {
+
 #ifdef METROWIN
 
-   if(m_timer != nullptr)
-   {
-      
-      m_timer->Cancel();
-
-      m_timer = nullptr;
-
-   }
+   ::aura::del(m_ptimer);
 
 #elif defined(WINDOWS)
 
