@@ -5,3 +5,7 @@
 //#include "linux_multithreading.cpp"
 #include "linux_os.cpp"
 #include "linux_simple_app.cpp"
+#include "linux_windowing.cpp"
+#include "linux_window_xlib.cpp"
+#include "linux_display.cpp"
+

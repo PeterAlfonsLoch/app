@@ -93,9 +93,9 @@ WINBOOL GetMessage(
 
 
 
-#include "linux_copydesk.h"
+//#include "linux_copydesk.h"
 //#include "linux_interaction_impl.h"
-#include "linux_message_queue.h"
+//#include "linux_message_queue.h"
 //#include "linux_window_draw.h"
 
 

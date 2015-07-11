@@ -1046,15 +1046,9 @@ namespace axis
 
 #elif defined(LINUX)
 
-      xdisplay  d;
 
-      if(!d.open(NULL))
-         return false;
+      return false;
 
-      lprect->left = 0;
-      lprect->right = WidthOfScreen(DefaultScreenOfDisplay(d.m_pdata->m_pdisplay));
-      lprect->top = 0;
-      lprect->bottom= HeightOfScreen(DefaultScreenOfDisplay(d.m_pdata->m_pdisplay));
 
 #elif defined(APPLEOS)
 
@@ -1165,15 +1159,7 @@ namespace axis
 
 #elif defined(LINUX)
 
-      xdisplay  d;
-
-      if(!d.open(NULL))
-         return false;
-
-      lprect->left = 0;
-      lprect->right = WidthOfScreen(DefaultScreenOfDisplay(d.m_pdata->m_pdisplay));
-      lprect->top = 0;
-      lprect->bottom= HeightOfScreen(DefaultScreenOfDisplay(d.m_pdata->m_pdisplay));
+return false;
 
 #elif defined(APPLEOS)
 

@@ -88,6 +88,7 @@ namespace base
 
 
 
+      bool get_monitor_rect(index iMonitor,LPRECT lprect);
 
 
    };

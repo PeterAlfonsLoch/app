@@ -7,7 +7,7 @@
 #include "linux_oswindow.h"
 
 
-
+#include "linux_user_impl.h"
 
 
 #include "linux_windowing.h"

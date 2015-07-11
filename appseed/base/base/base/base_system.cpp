@@ -1151,7 +1151,42 @@ namespace base
 
    }
 
-   
+         bool system::get_monitor_rect(index iMonitor,LPRECT lprect)
+{
+#ifdef LINUX
+
+      xdisplay  d;
+
+      if(!d.open(NULL))
+         return false;
+
+      lprect->left = 0;
+      lprect->right = WidthOfScreen(DefaultScreenOfDisplay(d.m_pdata->m_pdisplay));
+      lprect->top = 0;
+      lprect->bottom= HeightOfScreen(DefaultScreenOfDisplay(d.m_pdata->m_pdisplay));
+
+	return true;
+
+#else
+	return ::axis::system::get_monitor_rect(iMonitor, lprect);
+#endif
+}
+   bool system::get_wkspace_rect(index iWkspace,LPRECT lprect)
+{
+ #ifdef LINUX
+     xdisplay  d;
+
+      if(!d.open(NULL))
+         return false;
+
+      lprect->left = 0;
+      lprect->right = WidthOfScreen(DefaultScreenOfDisplay(d.m_pdata->m_pdisplay));
+      lprect->top = 0;
+      lprect->bottom= HeightOfScreen(DefaultScreenOfDisplay(d.m_pdata->m_pdisplay));
+#else
+	return ::axis::system::get_wkspace_rect(iWkspace, lprect);
+#endif
+}
 
 
 } // namespace base
