@@ -1,21 +1,6 @@
 #pragma once
 
 
-class timer_callback;
-
-// Thank you Belmiro (and related) for the conditional tautology : timer : if metrowin, then WinRT (timer) or the Ponendo Ponens if no WinRT, no Metrowin (timer context) i.e. no Timer
-//#if !defined(METROWIN) || defined(__cplusplus_winrt)
-//class CLASS_DECL_AURA timer_info { public: ThreadPoolTimer ^ m_timer; }
-//#else
-
-namespace aura
-{
-
-   class Timer;
-
-};
-
-//#endif
 
 class CLASS_DECL_AURA timer :
    virtual public thread

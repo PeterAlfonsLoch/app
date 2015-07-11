@@ -96,6 +96,15 @@ class object;
 class type;
 class base_edit;
 
+class timer_callback;
+
+
+namespace aura
+{
+
+   class Timer;
+
+};
 
 class timer;
 
