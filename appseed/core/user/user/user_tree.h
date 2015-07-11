@@ -148,8 +148,8 @@ namespace user
       DECL_GEN_SIGNAL(_001OnHScroll);
 
 
-      virtual bool      hover(::data::tree_item * pitem);
-      virtual bool      hover(::data::item * pitem, index i = 0);
+      virtual bool      ::timer::hover(::data::tree_item * pitem);
+      virtual bool      ::timer::hover(::data::item * pitem, index i = 0);
 
       virtual bool      is_hover(const ::data::tree_item * pitem) const;
       virtual bool      is_hover(const ::data::item * pitem) const;

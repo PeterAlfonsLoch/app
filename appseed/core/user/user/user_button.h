@@ -28,7 +28,7 @@ namespace user
          ::visual::dib_sp                    m_dibSel;       // pressed bitmap
          ::visual::dib_sp                    m_dibFocus;     // focus bitmap
          ::visual::dib_sp                    m_dibDisabled;  // disabled bitmap
-         ::visual::dib_sp                    m_dibHover;     // hover bitmap
+         ::visual::dib_sp                    m_dibHover;     // ::timer::hover bitmap
 
       };
 

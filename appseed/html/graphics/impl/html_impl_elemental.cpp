@@ -120,7 +120,7 @@ namespace html
 
                string strClass = m_pelemental->m_strClass;
 
-               style * pstyle = phtml->m_pdata->m_stylesheeta.rfind(etag, strClass, "hover", "");
+               style * pstyle = phtml->m_pdata->m_stylesheeta.rfind(etag, strClass, "::timer::hover", "");
 
                if (pstyle == NULL)
                {

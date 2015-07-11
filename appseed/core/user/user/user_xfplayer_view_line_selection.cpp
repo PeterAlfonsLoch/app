@@ -152,7 +152,7 @@ void XfplayerViewLineSelection::relay_event(XfplayerViewLine & viewline, signal_
    else if(message == WM_TIMER)
    {
       uint_ptr nIDEvent = pbase->m_wparam;
-      if(nIDEvent == ::timer::hover)
+      if(nIDEvent == ::timer::::timer::hover)
       {
          point pt;
          Session.get_cursor_pos(&pt);
@@ -160,7 +160,7 @@ void XfplayerViewLineSelection::relay_event(XfplayerViewLine & viewline, signal_
          if(!viewline.IsInHover())
          {
             sp(::user::interaction) pwnd = viewline.get_interaction();
-            pwnd->KillTimer(::timer::hover);
+            pwnd->KillTimer(::timer::::timer::hover);
          }
       }
    }
@@ -632,7 +632,7 @@ bool XfplayerViewLineSelection::OnLButtonUp(XfplayerViewLine & viewline, UINT us
 bool XfplayerViewLineSelection::OnTimer(XfplayerViewLine & viewline, UINT user)
 {
    UINT nIDEvent = user;
-   if(nIDEvent == ::timer::hover)
+   if(nIDEvent == ::timer::::timer::hover)
    {
       if(viewline.IsInHover())
       {

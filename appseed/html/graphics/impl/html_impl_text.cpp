@@ -564,7 +564,7 @@ namespace html
 
             if (m_pelemental->m_style.get_alpha("" , pdata, m_pelemental, d))
             {
-               if(m_bHover && m_pelemental->m_style.get_color("background-color", "hover", pdata, m_pelemental, cr))
+               if(m_bHover && m_pelemental->m_style.get_color("background-color", "::timer::hover", pdata, m_pelemental, cr))
                {
                   Sys(pdata->get_app()).visual().imaging().color_blend(
                      pdata->m_pdc,
@@ -591,7 +591,7 @@ namespace html
             }
             else
             {
-               if(m_bHover && m_pelemental->m_style.get_color("background-color", "hover", pdata, m_pelemental, cr))
+               if(m_bHover && m_pelemental->m_style.get_color("background-color", "::timer::hover", pdata, m_pelemental, cr))
                {
                   pdata->m_pdc->FillSolidRect(rect, cr);
                }
@@ -614,7 +614,7 @@ namespace html
          COLORREF cr = 0;
          bool bOpaque;
          COLORREF crBkColor;
-         if(m_bHover && m_pelemental->m_style.get_color("background-color", "hover", pdata, m_pelemental, cr))
+         if(m_bHover && m_pelemental->m_style.get_color("background-color", "::timer::hover", pdata, m_pelemental, cr))
          {
             bOpaque = true;
             //pdc->SetBkMode(OPAQUE);
@@ -643,7 +643,7 @@ namespace html
 
          ::draw2d::brush_sp brushText(allocer());
 
-         if(m_bHover && m_pelemental->m_style.get_color("color", "hover", pdata, m_pelemental, cr))
+         if(m_bHover && m_pelemental->m_style.get_color("color", "::timer::hover", pdata, m_pelemental, cr))
          {
             brushText->create_solid(cr);
          }
