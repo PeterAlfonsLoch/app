@@ -90,6 +90,7 @@ namespace base
 
       bool get_monitor_rect(index iMonitor,LPRECT lprect);
 
+   bool get_wkspace_rect(index iWkspace,LPRECT lprect);
 
    };
 

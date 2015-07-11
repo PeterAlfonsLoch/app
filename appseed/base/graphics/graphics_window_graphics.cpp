@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "fiasco_finder.h"
+//#include "fiasco_finder.h"
 
 
 #ifdef WINDOWSEX
@@ -54,7 +54,7 @@ void window_graphics::update_window(window_graphics * * ppdata,oswindow interact
 
    if(ppdata == NULL)
    {
-      
+
       return;
 
    }

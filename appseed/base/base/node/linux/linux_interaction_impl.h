@@ -267,8 +267,7 @@ namespace linux
 
 
    // Timer Functions
-      virtual uint_ptr SetTimer(uint_ptr nIDEvent, UINT nElapse,
-         void (CALLBACK* lpfnTimer)(oswindow, UINT, uint_ptr, DWORD));
+      virtual bool SetTimer(uint_ptr nIDEvent, UINT nElapse, PFN_TIMER pfnTimer);
       virtual bool KillTimer(uint_ptr nIDEvent);
 
    // oswindow State Functions

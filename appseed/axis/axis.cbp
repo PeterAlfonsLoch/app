@@ -393,7 +393,6 @@
 		</Unit>
 		<Unit filename="graphics/dib_console.cpp" />
 		<Unit filename="graphics/graphics.h" />
-		<Unit filename="graphics/graphics_window_graphics.cpp" />
 		<Unit filename="graphics/graphics_window_graphics.h" />
 		<Unit filename="graphics/visual/_visual.cpp" />
 		<Unit filename="graphics/visual/visual.h" />

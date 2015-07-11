@@ -147,7 +147,6 @@
 		<Unit filename="base/node/ios/round_window.h" />
 		<Unit filename="base/node/linux/linux.h" />
 		<Unit filename="base/node/linux/linux_copydesk.h" />
-		<Unit filename="base/node/linux/linux_factory_exchange.cpp" />
 		<Unit filename="base/node/linux/linux_factory_exchange.h" />
 		<Unit filename="base/node/linux/linux_interaction_impl.h" />
 		<Unit filename="base/node/linux/linux_internal.h" />
@@ -337,8 +336,11 @@
 		<Unit filename="base/os/windows/windows_window_gdi.h" />
 		<Unit filename="base/os/x11/x11_exception.h" />
 		<Unit filename="base/os/x11/x11_keyboard.h" />
+		<Unit filename="database/database/database_user_interaction.cpp" />
 		<Unit filename="framework.cpp" />
 		<Unit filename="framework.h" />
+		<Unit filename="graphics/graphics_window_graphics.cpp" />
+		<Unit filename="user/_user.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />

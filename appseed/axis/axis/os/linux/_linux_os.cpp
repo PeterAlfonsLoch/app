@@ -1,6 +1,6 @@
 // #include "framework.h"
 
-#include "linux_cross_win_gdi.cpp"
+//#include "linux_cross_win_gdi.cpp"
 
 
 

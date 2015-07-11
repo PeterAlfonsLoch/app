@@ -98,7 +98,7 @@ namespace linux
       if(!m_bProDevianMode)
       {
 
-         m_pthreadimpl->m_spqueue->message_queue_post_message(WM_USER + 1984 + 1977);
+         //m_pthreadimpl->m_spqueue->message_queue_post_message(WM_USER + 1984 + 1977);
 
       }
 

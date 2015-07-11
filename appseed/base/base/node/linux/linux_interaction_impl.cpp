@@ -1,8 +1,8 @@
 #include "framework.h" // from ""axis/user/user.h"
 #include "linux.h"
 #include <X11/Xatom.h>
-#include "axis/os/linux/linux_window_xlib.h"
-#include "axis/os/linux/linux_windowing.h"
+#include "base/os/linux/linux_window_xlib.h"
+#include "base/os/linux/linux_windowing.h"
 
 #define TEST 0
 
@@ -64,7 +64,8 @@ const char gen_Wnd[] = __WND;
 namespace linux
 {
 
-   interaction_impl::interaction_impl()
+   interaction_impl::interaction_impl() :
+   ::aura::timer_array(get_app())
    {
 
       m_oswindow     = NULL;
@@ -88,7 +89,8 @@ namespace linux
    }
 
    interaction_impl::interaction_impl(sp(::aura::application) papp) :
-      ::object(papp)
+      ::object(papp),
+      ::aura::timer_array(papp)
    {
 
       m_oswindow     = NULL;
@@ -4735,17 +4737,17 @@ if(psurface == g_cairosurface)
 
    }
 
-   uint_ptr interaction_impl::SetTimer(uint_ptr nIDEvent, UINT nElapse, void (CALLBACK* lpfnTimer)(oswindow, UINT, uint_ptr, DWORD))
+   bool interaction_impl::SetTimer(uint_ptr nIDEvent, UINT nElapse, PFN_TIMER pfnTimer)
    {
 
-      return ::user::interaction_impl::SetTimer(nIDEvent, nElapse, lpfnTimer);
+      return ::user::interaction_impl::SetTimer(nIDEvent, nElapse, pfnTimer);
 
 
-        UNREFERENCED_PARAMETER(lpfnTimer);
-
-        m_pui->m_pauraapp->set_timer(m_pui, nIDEvent, nElapse);
-
-        return nIDEvent;
+//        UNREFERENCED_PARAMETER(lpfnTimer);
+//
+//        m_pui->m_pauraapp->set_timer(m_pui, nIDEvent, nElapse);
+//
+//        return nIDEvent;
 
       //throw not_implemented(get_app());
       //ASSERT(::IsWindow((oswindow) get_handle()));
@@ -4759,9 +4761,11 @@ if(psurface == g_cairosurface)
 
    return ::user::interaction_impl::KillTimer(nIDEvent);
 
-       m_pui->m_pauraapp->unset_timer(m_pui, nIDEvent);
+//       m_pui->m_pauraapp->unset_timer(m_pui, nIDEvent);
 
-       return TRUE;
+  //     return TRUE;
+
+  //return ::user::int
 
       //ASSERT(::IsWindow((oswindow) get_handle()));
       //return ::KillTimer(get_handle(), nIDEvent)  != FALSE;
@@ -5169,7 +5173,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   void interaction_impl::Createcaret(::draw2d::bitmap* pBitmap)
+   void interaction_impl::CreateCaret(::draw2d::bitmap* pBitmap)
    {
 
       throw not_implemented(get_app());
@@ -5178,7 +5182,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   void interaction_impl::CreateSolidcaret(int32_t nWidth, int32_t nHeight)
+   void interaction_impl::CreateSolidCaret(int32_t nWidth, int32_t nHeight)
    {
 
       throw not_implemented(get_app());
@@ -5187,7 +5191,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   void interaction_impl::CreateGraycaret(int32_t nWidth, int32_t nHeight)
+   void interaction_impl::CreateGrayCaret(int32_t nWidth, int32_t nHeight)
    {
 
       throw not_implemented(get_app());
@@ -5196,7 +5200,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   point PASCAL interaction_impl::GetcaretPos()
+   point PASCAL interaction_impl::GetCaretPos()
    {
 
       throw not_implemented(::get_thread_app());
@@ -5205,7 +5209,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   void PASCAL interaction_impl::SetcaretPos(POINT point)
+   void PASCAL interaction_impl::SetCaretPos(POINT point)
    {
 
     throw not_implemented(::get_thread_app());
@@ -5213,7 +5217,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   void interaction_impl::Hidecaret()
+   void interaction_impl::HideCaret()
    {
 
       throw not_implemented(get_app());
@@ -5221,7 +5225,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   void interaction_impl::Showcaret()
+   void interaction_impl::ShowCaret()
    {
 
       throw not_implemented(get_app());

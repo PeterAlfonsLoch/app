@@ -65,6 +65,7 @@
 			<Add option="-Wl,-R\\$$$ORIGIN" />
 			<Add option="-Wl,-z,origin" />
 			<Add option="-ldl" />
+			<Add option="-lrt" />
 			<Add option="-lX11" />
 			<Add option="-lpthread" />
 			<Add option="-lncurses" />
