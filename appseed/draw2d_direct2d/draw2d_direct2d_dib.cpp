@@ -2844,7 +2844,7 @@ namespace draw2d_direct2d
 //#if defined(WINDOWSEX)
 
 
-   bool dib::update_window(::aura::draw_interface * pwnd, signal_details * pobj)
+   bool dib::update_window(::aura::draw_interface * pwnd,signal_details * pobj,bool bTransferBuffer)
    {
 
       rect64 rectWindow;
@@ -2857,7 +2857,7 @@ namespace draw2d_direct2d
 
       rect rect(rectWindow);
 
-      Application.window_graphics_update_window(pwnd->get_window_graphics(),pwnd->get_handle(),m_pcolorref,rect,m_size.cx, m_size.cy, m_iScan);
+      Application.window_graphics_update_window(pwnd->get_window_graphics(),pwnd->get_handle(),m_pcolorref,rect,m_size.cx, m_size.cy, m_iScan, bTransferBuffer);
 
       return true;
 
