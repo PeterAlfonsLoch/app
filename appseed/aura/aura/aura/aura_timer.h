@@ -8,16 +8,12 @@ class timer_callback;
 //class CLASS_DECL_AURA timer_info { public: ThreadPoolTimer ^ m_timer; }
 //#else
 
-#if defined(__cplusplus_winrt)
-
 namespace aura
 {
 
    class Timer;
 
 };
-
-#endif
 
 //#endif
 
@@ -49,28 +45,7 @@ public:
    DWORD                m_dwMillis;
    bool                 m_bDestroying;
 
-#ifdef METROWIN
-
    ::aura::Timer *      m_ptimer;
-
-#elif WINDOWS
-
-   HANDLE               m_hTimerQueue;
-   HANDLE               m_hTimer;
-
-#elif defined(__APPLE__)
-    
-   void *               m_queue;
-   void *               m_timer;
-
-#else
-
-   timer_t              m_timerid;
-   struct sigevent      m_sev;
-   struct itimerspec    m_its;
-
-
-#endif
 
    
    timer(::aura::application * papp,uint_ptr uiTimer = 0,PFN_TIMER pfnTimer = NULL,void * pvoidData = NULL, mutex * pmutex = NULL);

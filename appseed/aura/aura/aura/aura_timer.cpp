@@ -5,33 +5,19 @@
 #include <time.h>
 #endif
 
-#ifdef WINDOWSEX
 
-VOID CALLBACK aura_timer_TimerRoutine(PVOID lpParam,BOOLEAN TimerOrWaitFired);
+#ifdef METROWIN
 
-#elif defined(__APPLE__)
-
-void * CreateDispatchQueue();
-
-void CancelDispatchSource(void * p);
-
-void * CreateDispatchTimer(uint64_t interval, uint64_t leeway, void * queue, void (*timer)(void * p), void * p);
-
-void ReleaseDispatch(void * p);
-
-void aura_timer(void * p);
-
-#elif defined(__cplusplus_winrt)
 
 namespace aura
 {
 
    class Timer
    { 
-   public: 
+   public:
 
 
-      ThreadPoolTimer ^ m_timer; 
+      ThreadPoolTimer ^ m_timer;
 
 
       Timer()
@@ -61,6 +47,69 @@ namespace aura
 
 
 } // namespace aura
+
+#elif WINDOWS
+
+namespace aura
+{
+
+   class Timer
+   { 
+   public:
+      HANDLE               m_hTimerQueue;
+      HANDLE               m_hTimer;
+
+   };}
+
+#elif defined(__APPLE__)
+
+namespace aura
+{
+
+   class Timer
+   { 
+   public:
+      void *               m_queue;
+void *               m_timer;
+
+   };}
+
+#else
+
+namespace aura
+{
+
+   class Timer
+   { 
+   public:
+      timer_t              m_timerid;
+struct sigevent      m_sev;
+struct itimerspec    m_its;
+
+   };}
+
+
+#endif
+
+
+#ifdef WINDOWSEX
+
+VOID CALLBACK aura_timer_TimerRoutine(PVOID lpParam,BOOLEAN TimerOrWaitFired);
+
+#elif defined(__APPLE__)
+
+void * CreateDispatchQueue();
+
+void CancelDispatchSource(void * p);
+
+void * CreateDispatchTimer(uint64_t interval, uint64_t leeway, void * queue, void (*timer)(void * p), void * p);
+
+void ReleaseDispatch(void * p);
+
+void aura_timer(void * p);
+
+#elif defined(__cplusplus_winrt)
+
 
 #else
 
