@@ -56,8 +56,8 @@
 //
 ////#include "metrowin1.h"
 #include "metrowin_factory_exchange.h"
-//#include "metrowin_window_draw.h"
-//#include "metrowin_interaction_impl.h"
+#include "metrowin_window_draw.h"
+#include "metrowin_interaction_impl.h"
 //
 //#include "base/node/windows/windows_message_queue.h"
 //

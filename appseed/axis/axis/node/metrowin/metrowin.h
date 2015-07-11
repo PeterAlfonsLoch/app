@@ -178,8 +178,8 @@ string get_error_message(DWORD dwError);
 
 //#include "metrowin1.h"
 #include "metrowin_factory_exchange.h"
-#include "metrowin_window_draw.h"
-#include "metrowin_interaction_impl.h"
+//#include "metrowin_window_draw.h"
+//#include "metrowin_interaction_impl.h"
 
 //#include "axis/node/windows/windows_message_queue.h"
 
@@ -229,5 +229,5 @@ CLASS_DECL_AXIS void __cdecl __pre_translate_message(signal_details * pobj);
 
 
 
-#include "metrowin_directx.h"
-#include "metrowin_directx_application.h"
+//#include "metrowin_directx.h"
+//#include "metrowin_directx_application.h"

@@ -8,12 +8,12 @@
 #include "metrowin_ip_enum.cpp"
 #include "metrowin_port_forward.cpp"
 #include "metrowin_copydesk.cpp"
-#include "metrowin_interaction_impl.cpp"
-#include "metrowin_window_draw.cpp"
-#include "metrowin_directx.cpp"
-#include "metrowin_directx_application.cpp"
+//#include "metrowin_interaction_impl.cpp"
+//#include "metrowin_window_draw.cpp"
+//#include "metrowin_directx.cpp"
+//#include "metrowin_directx_application.cpp"
 
 
 
 
-#include "axis/axis/node/windows/windows_message_queue.cpp"
+//#include "axis/axis/node/windows/windows_message_queue.cpp"
