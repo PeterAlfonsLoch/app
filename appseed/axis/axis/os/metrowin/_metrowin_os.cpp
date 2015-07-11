@@ -11,7 +11,7 @@
 
 #include "metrowin_trace_message.cpp"
 
-#include "metrowin_multithreading.cpp"
+//#include "metrowin_multithreading.cpp"
 
 
 
