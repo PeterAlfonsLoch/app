@@ -151,14 +151,13 @@ namespace aura
       {
 
          m_preceiver    = NULL;
-         m_pthread = new pthread_t;
 
       }
 
 
       rx::~rx()
       {
-         delete (pthread_t *)m_pthread;
+
       }
 
 
@@ -219,7 +218,7 @@ namespace aura
 
          m_bRun = true;
 
-         if(pthread_create((pthread_t *)m_pthread,NULL,&rx::receive_proc,this) != 0)
+         if(pthread_create(&m_thread,NULL,&rx::receive_proc,this) != 0)
          {
 
             m_bRunning = false;

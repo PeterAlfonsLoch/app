@@ -91,3 +91,79 @@ gdb_check(void)
 
 	return result != NULL;
 }
+
+
+
+//
+//  macos_debug.cpp
+//  aura
+//
+//  Created by Camilo Sasuke Tsumanuma on 2013-09-17.
+//
+//
+
+//
+//  macos_debug.cpp
+//  ca
+//
+//  Created by Lion User on 26/05/2012.
+//  Copyright (c) 2012 ca2 Desenvolvimento de Sofware Ltda. All rights reserved.
+//
+
+
+
+
+
+
+
+
+DWORD
+WINAPI
+FormatMessage(
+              DWORD dwFlags,
+              LPCVOID lpSource,
+              DWORD dwMessageId,
+              DWORD dwLanguageId,
+              LPSTR lpBuffer,
+              DWORD nSize,
+              va_list *Arguments
+              )
+{
+    
+    
+    return 0;
+    
+    
+}
+
+
+VOID
+WINAPI
+OutputDebugStringA(
+                   LPCSTR lpOutputString
+                   )
+{
+    
+    
+    fprintf(stderr, "%s", lpOutputString);
+    fflush(stderr);
+    //printf("%s", lpOutputString);
+    
+    
+}
+
+
+
+
+VOID
+WINAPI
+OutputDebugStringW(
+                   LPCWSTR lpOutputString
+                   )
+{
+    
+    
+    OutputDebugStringA(string(lpOutputString));
+    
+    
+}

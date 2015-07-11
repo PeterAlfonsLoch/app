@@ -47,7 +47,7 @@ CLASS_DECL_AURA int throw_assert_exception(const char * lpszFileName,int iLineNu
 #define ASSERT(f)
 #define _ASSUME(cond)
 #if defined(ANDROID)
-#define ASSERT_VALID(cond) 
+#define ASSERT_VALID(cond)
 #else
 #define ASSERT_VALID(cond) __noop;
 #endif
@@ -77,10 +77,17 @@ CLASS_DECL_AURA int throw_assert_exception(const char * lpszFileName,int iLineNu
 #define _(c_string_to_be_translated_from_english) c_string_to_be_translated_from_english
 
 // risky
+#ifdef __cpluplus
 inline int void_ptr_is_null(const void * p)
 {
    return ((INT_PTR) p) < 4096;
 }
+#else
+static int void_ptr_is_null(const void * p)
+{
+   return ((INT_PTR) p) < 4096;
+}
+#endif
 
 #include "aura/primitive/math/math_mkint_c.h"
 

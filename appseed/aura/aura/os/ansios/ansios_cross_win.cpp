@@ -1,7 +1,7 @@
 //#include "framework.h"
 
 
-#if !defined(__APPLE__)
+#if 0
 
 
 DWORD
@@ -19,6 +19,38 @@ FormatMessage(
 
 
     return 0;
+
+
+}
+
+
+VOID
+WINAPI
+OutputDebugStringA(
+                   LPCSTR lpOutputString
+                   )
+{
+
+
+    fprintf(stderr, "%s", lpOutputString);
+    fflush(stderr);
+    //printf("%s", lpOutputString);
+
+
+}
+
+
+
+
+VOID
+WINAPI
+OutputDebugStringW(
+                   LPCWSTR lpOutputString
+                   )
+{
+
+
+    OutputDebugStringA(string(lpOutputString));
 
 
 }

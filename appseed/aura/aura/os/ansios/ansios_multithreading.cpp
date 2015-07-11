@@ -175,7 +175,7 @@ thread_data::thread_data()
 
 	if (!m_bInit)
 	{
-		
+
 		m_bInit = true;
 
 		pthread_key_create(&m_key, NULL);
@@ -1235,7 +1235,7 @@ restart:
       if(!::get_thread()->get_run())
          return FALSE;
 
-      ::get_thread()->step_timer();
+//      ::get_thread()->step_timer();
 
       if(!::get_thread()->get_run())
          return FALSE;
