@@ -31,10 +31,19 @@ namespace aura
 
    class ::id system::idEmpty;
 
+   system * system::g_p = NULL;
+
 
    system::system(::aura::application * papp) :
       m_process(this)
    {
+
+      if (g_p == NULL)
+      {
+         
+         g_p = this;
+
+      }
 
       g_pszCooperativeLevel = "aura";
 

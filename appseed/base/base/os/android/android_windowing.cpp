@@ -1584,3 +1584,66 @@ bool is_message_only_window(oswindow window)
 
 
 
+extern "C"
+void android_mouse(unsigned int message, float x, float y)
+{
+
+   if (::aura::system::g_p == NULL)
+      return;
+
+   if (::aura::system::g_p->m_pbasesystem == NULL)
+      return;
+
+   if (::aura::system::g_p->m_pbasesystem->m_posdata == NULL)
+      return;
+
+   if (::aura::system::g_p->m_pbasesystem->m_posdata->m_pui == NULL)
+      return;
+
+   MESSAGE msg;
+
+   msg.hwnd = ::aura::system::g_p->m_pbasesystem->m_posdata->m_pui->get_handle();
+
+   msg.message = message;
+
+   msg.pt.x = (long)x;
+
+   msg.pt.y = (long)y;
+
+   ::aura::system::g_p->m_pbasesystem->m_posdata->m_pui->message_handler(&msg);
+
+
+}
+
+
+extern "C"
+void android_l_button_down(float x, float y)
+{
+   
+   android_mouse(WM_LBUTTONDOWN, x, y);
+
+}
+
+
+
+
+
+extern "C"
+void android_mouse_move(float x, float y)
+{
+
+   android_mouse(WM_MOUSEMOVE, x, y);
+
+}
+
+
+
+
+
+extern "C"
+void android_l_button_up(float x, float y)
+{
+
+   android_mouse(WM_LBUTTONUP, x, y);
+
+}

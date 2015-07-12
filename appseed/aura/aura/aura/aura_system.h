@@ -52,6 +52,8 @@ namespace aura
       spa(::aura::session)                         m_basesessionptra;
       colorertake5::ParserFactory *                m_pparserfactory;
 
+      static system *                              g_p;
+
 #ifdef WINDOWS
       float                                        m_dpi;
       ID2D1DeviceContext *                         m_pdevicecontext;
