@@ -739,6 +739,27 @@ namespace user
    bool interaction_child::RedrawWindow(LPCRECT lpRectUpdate,::draw2d::region* prgnUpdate,UINT flags)
    {
 
+      if (m_pauraapp == NULL)
+      {
+
+         string str;
+
+         str.Format("uichild::Redraw get_app() => %d", m_pauraapp);
+
+         OutputDebugString(str);
+
+      }
+      else if (m_pauraapp != NULL)
+      {
+
+         string str;
+
+         str.Format("uichild::Redraw System => %d", m_pauraapp->m_pbasesystem);
+
+         OutputDebugString(str);
+
+      }
+
       if(System.get_twf() != NULL && System.get_twf()->m_bProDevianMode && get_wnd()->m_bMayProDevian)
          return true;
 

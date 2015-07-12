@@ -465,7 +465,7 @@ namespace user
 
       SCAST_PTR(::message::create,pcreate,pobj);
 
-#ifndef APPLE_IOS
+#if !defined(APPLE_IOS) && !defined(VSNORD)
       Session.keyboard(); // trigger keyboard creationg
 #endif
 

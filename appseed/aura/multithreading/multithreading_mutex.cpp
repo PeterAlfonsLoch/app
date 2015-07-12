@@ -66,68 +66,85 @@ mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrNa
 
    }
 
-#elif defined(ANDROID)
-
-    if(pstrName != NULL && *pstrName != '\0')
-    {
-
-       m_pmutex = NULL;
-
-       if(str::begins_ci(pstrName, "Global"))
-       {
-
-          m_strName = ::file::path("/var/tmp") / pstrName;
-
-       }
-       else
-       {
-
-          m_strName = ::file::path(getenv("HOME")) / pstrName;
-
-       }
-
-       int isCreator = 0;
-
-       if ((m_psem = sem_open(m_strName, O_CREAT|O_EXCL, 0666, 1)) != SEM_FAILED)
-       {
-
-          // We got here first
-
-          isCreator = 1;
-
-       }
-       else
-       {
-
-          if (errno != EEXIST)
-             throw resource_exception(get_app());
-
-          // We're not first.  Try again
-
-          m_psem = sem_open(m_strName, 0);
-
-          if (m_psem == SEM_FAILED)
-             throw resource_exception(get_app());;
-
-       }
-    }
-    else
-    {
-
-      m_psem = SEM_FAILED;
-
-      pthread_mutexattr_t attr;
-
-      pthread_mutexattr_init(&attr);
-
-      pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
-
-      pthread_mutex_init(&m_mutex, &attr);
-
-   }
+//#elif defined(ANDROID)
+//
+//    if(pstrName != NULL && *pstrName != '\0')
+//    {
+//
+//       m_pmutex = NULL;
+//
+//       string strName(pstrName);
+//
+//       //if(str::begins_ci(pstrName, "Global"))
+//       //{
+//
+//       //   m_strName = ::file::path(::aura::system::g_p->m_pandroidinitdata->m_pszCacheDir) / "var" / "tmp"/ strName;
+//
+//       //   ::dir::mk(::file::path(m_strName).folder());
+//
+//       //}
+//       //else
+//       //{
+//
+//       //   m_strName = ::file::path(getenv("HOME")) / strName;
+//
+//       //}
+//
+//       m_strName = strName;
+//
+//       m_strName.replace("/", "_");
+//       m_strName.replace(":", "_");
+//       m_strName.replace("/", "_");
+//
+//       //::file_put_contents_dup(m_strName, m_strName);
+//
+//       //string strTest = file_as_string_dup(m_strName);
+//
+//       int isCreator = 0;
+//
+//       if ((m_psem = sem_open(m_strName, O_CREAT|O_EXCL, 0644, 1)) != SEM_FAILED)
+//       {
+//
+//          // We got here first
+//
+//          isCreator = 1;
+//
+//       }
+//       else
+//       {
+//
+//          int err = errno;
+//
+//          if (err != EEXIST)
+//             throw resource_exception(get_app());
+//
+//          // We're not first.  Try again
+//
+//          m_psem = sem_open(m_strName, 0);
+//
+//          if (m_psem == SEM_FAILED)
+//             throw resource_exception(get_app());;
+//
+//       }
+//    }
+//    else
+//    {
+//
+//      m_psem = SEM_FAILED;
+//
+//      pthread_mutexattr_t attr;
+//
+//      pthread_mutexattr_init(&attr);
+//
+//      pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
+//
+//      pthread_mutex_init(&m_mutex, &attr);
+//
+//   }
 
 #else
 
+#ifndef ANDROID // because Google Android cannot support (to say the truth, it does not want it) security between processes, no IPC
    if(pstrName != NULL && *pstrName != '\0')
    {
 
@@ -169,6 +186,7 @@ mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrNa
 
    }
    else
+#endif
    {
 
       m_key = 0;
@@ -202,16 +220,16 @@ mutex::mutex(::aura::application * papp, const char * pstrName, HANDLE h) :
 
 }
 
-#elif defined(ANDROID)
-
-mutex::mutex(const char * pstrName, sem_t * psem) :
-sync_object(pstrName)
-{
-
-   m_strName      = pstrName;
-   m_psem         = psem;
-
-}
+//#elif defined(ANDROID)
+//
+//mutex::mutex(const char * pstrName, sem_t * psem) :
+//sync_object(pstrName)
+//{
+//
+//   m_strName      = pstrName;
+//   m_psem         = psem;
+//
+//}
 
 #else
 
@@ -233,28 +251,29 @@ mutex::mutex(const char * pstrName, key_t key, int32_t semid) :
 mutex::~mutex()
 {
 
-#if defined(ANDROID)
-
-   if(m_psem != SEM_FAILED)
-   {
-
-      sem_wait(m_psem);
-
-   }
-   else
-   {
-
-      pthread_mutex_destroy(&m_mutex);
-
-      if(m_pmutex != NULL)
-      {
-         delete (pthread_mutex_t *)m_pmutex;
-      }
-
-   }
-
-
-#elif defined(LINUX) || defined(APPLEOS)
+//#if defined(ANDROID)
+//
+//   if(m_psem != SEM_FAILED)
+//   {
+//
+//      sem_wait(m_psem);
+//
+//   }
+//   else
+//   {
+//
+//      pthread_mutex_destroy(&m_mutex);
+//
+//      if(m_pmutex != NULL)
+//      {
+//         delete (pthread_mutex_t *)m_pmutex;
+//      }
+//
+//   }
+//
+//
+//#elif defined(LINUX) || defined(APPLEOS)
+#if defined(LINUX) || defined(APPLEOS)
 
    if(m_semid >= 0)
    {
@@ -289,128 +308,129 @@ bool mutex::already_exists()
 }
 
 
-#ifdef ANDROID
-
-wait_result mutex::wait(const duration & duration)
-{
-
-   uint32_t dwTimeout = duration.lock_duration();
-
-   timespec delay;
-
-   delay.tv_sec = 0;
-   delay.tv_nsec = 1000000;  // 1 milli sec delay
-
-   int32_t irc;
-
-   bool bFirst = true;
-
-   uint32_t start = ::get_tick_count();
-
-   if(m_psem != SEM_FAILED)
-   {
-      //Wait for Zero
-
-      while((dwTimeout == (uint32_t) INFINITE || ::get_tick_count() - start < dwTimeout) || bFirst)
-      {
-
-         bFirst = false;
-
-         int32_t ret = sem_timedwait(m_psem, &delay);
-
-         if(ret < 0)
-         {
-            /* check whether somebody else has the mutex */
-            if (errno == ETIMEDOUT)
-            {
-               /* sleep for delay time */
-               //nanosleep(&delay, NULL);
-            }
-            else
-            {
-               return wait_result(wait_result::Failure);
-            }
-         }
-         else
-         {
-            return wait_result(wait_result::Event0);
-         }
-      }
-
-   }
-   else
-   {
-
-      if(duration.is_pos_infinity())
-      {
-
-         irc = pthread_mutex_lock(&m_mutex);
-         if (!irc)
-         {
-            return wait_result(wait_result::Event0);
-         }
-         else
-         {
-            return wait_result(wait_result::Failure);
-
-         }
-
-      }
-      else
-      {
-         while((::get_tick_count() - start < dwTimeout) || bFirst)
-         {
-
-            bFirst = false;
-
-            // Tries to acquire the mutex and access the shared resource,
-            // if success, access the shared resource,
-            // if the shared reosurce already in use, it tries every 1 milli sec
-            // to acquire the resource
-            // if it does not acquire the mutex within 2 secs delay,
-            // then it is considered to be failed
-
-            irc = pthread_mutex_trylock(&m_mutex);
-            if (!irc)
-            {
-               return wait_result(wait_result::Event0);
-            }
-            else
-            {
-               // check whether somebody else has the mutex
-               if (irc == EPERM )
-               {
-                  // Yes, Resource already in use so sleep
-                  nanosleep(&delay, NULL);
-               }
-               else
-               {
-                  return wait_result(wait_result::Failure);
-               }
-            }
-         }
-      }
-   }
-
-   return wait_result(wait_result::Timeout);
-
-}
-
-
-bool mutex::lock(const duration & duration)
-{
-
-   wait_result result = wait(duration);
-
-   if(!result.signaled())
-      return false;
-
-   return true;
-
-}
-
-
-#elif !defined(WINDOWS)
+//#ifdef ANDROID
+//
+//wait_result mutex::wait(const duration & duration)
+//{
+//
+//   uint32_t dwTimeout = duration.lock_duration();
+//
+//   timespec delay;
+//
+//   delay.tv_sec = 0;
+//   delay.tv_nsec = 1000000;  // 1 milli sec delay
+//
+//   int32_t irc;
+//
+//   bool bFirst = true;
+//
+//   uint32_t start = ::get_tick_count();
+//
+//   if(m_psem != SEM_FAILED)
+//   {
+//      //Wait for Zero
+//
+//      while((dwTimeout == (uint32_t) INFINITE || ::get_tick_count() - start < dwTimeout) || bFirst)
+//      {
+//
+//         bFirst = false;
+//
+//         int32_t ret = sem_timedwait(m_psem, &delay);
+//
+//         if(ret < 0)
+//         {
+//            /* check whether somebody else has the mutex */
+//            if (errno == ETIMEDOUT)
+//            {
+//               /* sleep for delay time */
+//               //nanosleep(&delay, NULL);
+//            }
+//            else
+//            {
+//               return wait_result(wait_result::Failure);
+//            }
+//         }
+//         else
+//         {
+//            return wait_result(wait_result::Event0);
+//         }
+//      }
+//
+//   }
+//   else
+//   {
+//
+//      if(duration.is_pos_infinity())
+//      {
+//
+//         irc = pthread_mutex_lock(&m_mutex);
+//         if (!irc)
+//         {
+//            return wait_result(wait_result::Event0);
+//         }
+//         else
+//         {
+//            return wait_result(wait_result::Failure);
+//
+//         }
+//
+//      }
+//      else
+//      {
+//         while((::get_tick_count() - start < dwTimeout) || bFirst)
+//         {
+//
+//            bFirst = false;
+//
+//            // Tries to acquire the mutex and access the shared resource,
+//            // if success, access the shared resource,
+//            // if the shared reosurce already in use, it tries every 1 milli sec
+//            // to acquire the resource
+//            // if it does not acquire the mutex within 2 secs delay,
+//            // then it is considered to be failed
+//
+//            irc = pthread_mutex_trylock(&m_mutex);
+//            if (!irc)
+//            {
+//               return wait_result(wait_result::Event0);
+//            }
+//            else
+//            {
+//               // check whether somebody else has the mutex
+//               if (irc == EPERM )
+//               {
+//                  // Yes, Resource already in use so sleep
+//                  nanosleep(&delay, NULL);
+//               }
+//               else
+//               {
+//                  return wait_result(wait_result::Failure);
+//               }
+//            }
+//         }
+//      }
+//   }
+//
+//   return wait_result(wait_result::Timeout);
+//
+//}
+//
+//
+//bool mutex::lock(const duration & duration)
+//{
+//
+//   wait_result result = wait(duration);
+//
+//   if(!result.signaled())
+//      return false;
+//
+//   return true;
+//
+//}
+//
+//
+//#elif !defined(WINDOWS)
+#if !defined(WINDOWS)
 
 wait_result mutex::wait(const duration & duration)
 {
@@ -434,6 +454,7 @@ wait_result mutex::wait(const duration & duration)
       ((::duration&)  duration) = millis(dwTimeout);
    }
 
+#ifndef ANDROID
    if(m_semid >= 0)
    {
       //Wait for Zero
@@ -476,6 +497,7 @@ wait_result mutex::wait(const duration & duration)
 
    }
    else
+#endif
    {
 
        if(duration.is_pos_infinity())
@@ -575,25 +597,26 @@ bool mutex::unlock()
 
    return ::ReleaseMutex(m_object) != FALSE;
 
-#elif defined(ANDROID)
-
-
-   if(m_psem != SEM_FAILED)
-   {
-
-      return sem_post(m_psem) == 0;
-
-   }
-   else
-   {
-
-      return pthread_mutex_unlock(&m_mutex) != 0;
-
-   }
-
+//#elif defined(ANDROID)
+//
+//
+//   if(m_psem != SEM_FAILED)
+//   {
+//
+//      return sem_post(m_psem) == 0;
+//
+//   }
+//   else
+//   {
+//
+//      return pthread_mutex_unlock(&m_mutex) != 0;
+//
+//   }
+//
 
 #else
 
+#ifndef ANDROID
    if(m_semid >= 0)
    {
 
@@ -612,6 +635,7 @@ bool mutex::unlock()
 
    }
    else
+#endif
    {
 
       return pthread_mutex_unlock(&m_mutex) != 0;

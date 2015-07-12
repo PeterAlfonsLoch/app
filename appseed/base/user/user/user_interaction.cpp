@@ -1329,6 +1329,7 @@ namespace user
 
          m_pauraapp->add(this);
 
+
          if(GetParent() == NULL && !is_message_only_window())
          {
 
@@ -2118,7 +2119,7 @@ namespace user
       return NULL;
    }
 
-#if defined(METROWIN) || defined(APPLE_IOS)
+#if defined(METROWIN) || defined(APPLE_IOS) || defined(ANDROID)
 
    bool interaction::initialize(::user::native_window_initialize * pinitialize)
    {
@@ -2404,7 +2405,7 @@ namespace user
       else
 #endif
       {
-#if defined(METROWIN) || defined(APPLE_IOS)
+#if defined(METROWIN) || defined(APPLE_IOS) || defined(VSNORD)
          if(pParentWnd == NULL)
             pParentWnd = System.m_posdata->m_pui;
 #endif
@@ -4470,6 +4471,13 @@ namespace user
 
       if(GetParent() == NULL)
          return NULL;
+
+#ifdef ANDROID
+
+      if (GetParent() == System.m_posdata->m_pui)
+         return (::user::interaction *) this;
+
+#endif
 
       return GetParent()->get_wnd();
 
@@ -6686,7 +6694,7 @@ namespace user
 
       sp(::user::interaction) puiParent = GetParent();
 
-#ifdef APPLE_IOS
+#if defined(APPLE_IOS) || defined(VSNORD)
       if(puiParent.is_set() && puiParent.m_p != System.m_posdata->m_pui)
 #else
       if(puiParent.is_set())

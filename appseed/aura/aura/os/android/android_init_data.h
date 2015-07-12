@@ -10,6 +10,7 @@ public:
    int            m_iScreenWidth;
    int            m_iScreenHeight;
    const char *   m_pszCommandLine;
+   const char *   m_pszCacheDir;
 
 };
 

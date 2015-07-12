@@ -378,6 +378,28 @@ namespace android
       return TRUE;
    }
 
+   bool interaction_impl::initialize(::user::native_window_initialize * pinitialize)
+   {
+
+      //RECT rect;
+
+
+      //rect.origin.x = pinitialize->m_rect.left;
+      //rect.origin.y = pinitialize->m_rect.top;
+      //rect.size.width = width(pinitialize->m_rect);
+      //rect.size.height = height(pinitialize->m_rect);
+
+      m_oswindow = oswindow_get(m_pui);
+
+      m_oswindow->set_user_interaction(m_pui);
+
+      SetWindowPos(ZORDER_TOP, pinitialize->m_rect, SWP_SHOWWINDOW);
+
+      //      m_pthread = dynamic_cast < ::thread * > (::get_thread());
+
+      return true;
+
+   }
 
    // for child android
    bool interaction_impl::pre_create_window(::user::create_struct& cs)

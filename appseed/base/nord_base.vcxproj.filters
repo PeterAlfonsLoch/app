@@ -451,6 +451,9 @@
     <ClCompile Include="base\os\ansios\ansios_file_std.cpp">
       <Filter>Source Files\base\os\ansios</Filter>
     </ClCompile>
+    <ClCompile Include="base\node\ios\ios_interaction_impl.cpp">
+      <Filter>Source Files\base\node\ios</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">

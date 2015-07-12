@@ -1606,6 +1606,10 @@ void android_mouse(unsigned int message, float x, float y)
 
    msg.message = message;
 
+   msg.wParam = 0;
+
+   msg.lParam = MAKELPARAM((long)x, (long)y);
+
    msg.pt.x = (long)x;
 
    msg.pt.y = (long)y;

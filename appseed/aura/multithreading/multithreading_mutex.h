@@ -20,16 +20,16 @@ public:
    // named process mutex
    string                  m_strName;
 
-#ifdef ANDROID
+//#ifdef ANDROID
+//
+//   sem_t *                 m_psem;
 
-   sem_t *                 m_psem;
-
-#else
+//#else
 
    key_t                   m_key;
    int32_t                 m_semid;
 
-#endif
+//#endif
 
 
 
@@ -48,9 +48,9 @@ protected:
 
    mutex(::aura::application * papp, const char * pstrName, HANDLE h);
 
-#elif defined(ANDROID)
-
-   mutex(const char * pstrName, sem_t * psem);
+//#elif defined(ANDROID)
+//
+//   mutex(const char * pstrName, sem_t * psem);
 
 #else
 

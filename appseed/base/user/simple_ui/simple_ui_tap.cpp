@@ -120,7 +120,7 @@ namespace simple_ui
    bool tap::keyboard_focus_is_focusable()
    {
 
-#ifdef APPLE_IOS
+#if defined(APPLE_IOS) || defined(VS_NORD)
 
       return false;
 

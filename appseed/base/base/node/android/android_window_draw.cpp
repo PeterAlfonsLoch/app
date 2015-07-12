@@ -335,6 +335,13 @@ namespace android
    bool window_draw::UpdateBuffer()
    {
 
+      System.m_posdata->m_pui->_001UpdateBuffer();
+
+      System.m_posdata->m_pui->_001UpdateScreen();
+
+
+      return true;
+
 #if DISABLE_UPDATE_BUFFER
 
       return false;

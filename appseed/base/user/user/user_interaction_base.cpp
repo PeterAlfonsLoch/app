@@ -835,7 +835,7 @@ namespace user
    }
 
 
-#if defined(METROWIN) || defined(APPLE_IOS)
+#if defined(METROWIN) || defined(APPLE_IOS) || defined(ANDROID)
 
 
    bool interaction_base::initialize(::user::native_window_initialize * pinitialize)

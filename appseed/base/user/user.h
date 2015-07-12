@@ -136,7 +136,7 @@ namespace user
 
    };
 
-#elif defined(APPLE_IOS)
+#elif defined(APPLE_IOS) || defined(ANDROID)
 
    class CLASS_DECL_BASE native_window_initialize
    {

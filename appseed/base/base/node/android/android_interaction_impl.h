@@ -34,6 +34,7 @@ namespace android
       virtual ~interaction_impl();
 
 
+      virtual bool initialize(::user::native_window_initialize * pinitialize);
 
       virtual void construct(oswindow oswindow);
 

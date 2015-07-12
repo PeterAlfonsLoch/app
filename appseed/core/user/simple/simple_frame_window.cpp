@@ -377,7 +377,12 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
 
    }
 
-   defer_synch_layered();
+   //if (GetParent() == NULL)
+   {
+
+      defer_synch_layered();
+
+   }
 
 
    create_bars();
