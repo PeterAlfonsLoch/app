@@ -4,7 +4,7 @@
 #include <DirectXMath.h>
 
 
-CLASS_DECL_AXIS int g_iMouse;
+CLASS_DECL_BASE int g_iMouse;
 
 #undef System
 #undef Platform
@@ -400,7 +400,7 @@ namespace metrowin
 {
 
 
-   directx_application::directx_application(::axis::system * psystem,::String ^ strId):
+   directx_application::directx_application(::base::system * psystem,::String ^ strId):
       m_mutex(NULL)
    {
 
@@ -423,9 +423,9 @@ namespace metrowin
       m_psystem = psystem;
 
 
-      m_psystem->m_paxissystem->m_posdata->m_pui = new ::user::interaction(m_psystem);
+      m_psystem->m_pbasesystem->m_posdata->m_pui = new ::user::interaction(m_psystem);
 
-      m_psystem->m_paxissystem->m_posdata->m_pwindow = this;
+      m_psystem->m_pbasesystem->m_posdata->m_pwindow = this;
 
       m_papp = m_psystem;
 
@@ -996,7 +996,7 @@ namespace metrowin
 
    }
 
-   directx_application_source::directx_application_source(::axis::system * paxissystem, const string & strId)
+   directx_application_source::directx_application_source(::base::system * paxissystem, const string & strId)
    {
 
       m_pbasesystem     = paxissystem;
@@ -1014,7 +1014,7 @@ namespace metrowin
    }
 
 
-   directx_application_source ^ new_directx_application_source(::axis::system * paxissystem, const string & strId)
+   directx_application_source ^ new_directx_application_source(::base::system * paxissystem, const string & strId)
    {
 
       string str = strId;

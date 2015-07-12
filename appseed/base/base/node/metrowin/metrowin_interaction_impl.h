@@ -273,7 +273,7 @@ namespace metrowin
 
 
       // Timer Functions
-      virtual uint_ptr SetTimer(UINT_PTR nIDEvent, UINT nElapse, void (CALLBACK * lpfnTimer)(oswindow, UINT, UINT_PTR, uint32_t));
+      virtual bool SetTimer(UINT_PTR nIDEvent, UINT nElapse, PFN_TIMER pfnTimer);
       virtual bool KillTimer(uint_ptr nIDEvent);
 
       // Window State Functions

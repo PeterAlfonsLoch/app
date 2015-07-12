@@ -70,9 +70,6 @@
     <Filter Include="Header Files\core\core">
       <UniqueIdentifier>{bd8a1afc-b4c6-4b88-a4ae-999ced891185}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\framework">
-      <UniqueIdentifier>{95a7375c-65f3-48ea-9ee3-14ca20629a4b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files">
       <UniqueIdentifier>{8039d5da-f8f2-47f3-97c8-443f4827f6e8}</UniqueIdentifier>
     </Filter>
@@ -819,20 +816,8 @@
     <ClInclude Include="core\core\core_system.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
-    <ClInclude Include="core\core\core_timer_callback.h">
-      <Filter>Header Files\core\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\core\core_timer_listener.h">
-      <Filter>Header Files\core\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\core\core_timer.h">
-      <Filter>Header Files\core\core</Filter>
-    </ClInclude>
     <ClInclude Include="core\core\core_types.h">
       <Filter>Header Files\core\core</Filter>
-    </ClInclude>
-    <ClInclude Include="framework\framework.h">
-      <Filter>Header Files\framework</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filehandler\filehandler.h">
       <Filter>Header Files\filesystem\filehandler</Filter>

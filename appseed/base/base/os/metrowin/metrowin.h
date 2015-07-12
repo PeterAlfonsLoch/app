@@ -30,11 +30,26 @@ extern CLASS_DECL_BASE int g_iMouse;
 //CLASS_DECL_BASE bool __cdecl __is_idle_message(MESSAGE * pMsg);
 
 
+CLASS_DECL_BASE oswindow WINAPI GetFocus();
+CLASS_DECL_BASE oswindow WINAPI SetFocus(oswindow oswindow);
+
+CLASS_DECL_BASE oswindow WINAPI GetCapture();
+CLASS_DECL_BASE oswindow WINAPI SetCapture(oswindow oswindow);
+CLASS_DECL_BASE oswindow WINAPI ReleaseCapture();
+
+CLASS_DECL_BASE oswindow WINAPI GetActiveWindow();
+CLASS_DECL_BASE oswindow WINAPI SetActiveWindow(oswindow oswindow);
+
+
+
+CLASS_DECL_BASE int_bool IsWindow(oswindow oswindow);
 
 
 //CLASS_DECL_BASE int WINAPI GetSystemMetrics(int i);
 
 
 
-
+#include "base/graphics/graphics_window_graphics.h"
 //#include "metrowin_gdi_winrt.h"
+
+#include "metrowin_window_impl.h"

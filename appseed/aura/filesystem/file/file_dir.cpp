@@ -772,7 +772,29 @@ bool dir::mk(const ::file::path & lpcsz)
 bool dir::is(const ::file::path & path1)
 {
 
-#ifdef WINDOWS
+#ifdef METROWIN
+
+   string str;
+
+   //str = "\\\\?\\";
+   //str += path1;
+
+   str = path1;
+
+   while(str_ends_dup(str,"\\") || str_ends_dup(str,"/"))
+   {
+      str = str.substr(0,str.length() - 1);
+   }
+
+   uint32_t dwFileAttributes = ::GetFileAttributesW(wstring(str));
+   if(dwFileAttributes != INVALID_FILE_ATTRIBUTES &&
+      dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+      return true;
+   else
+      return false;
+
+
+#elif defined(WINDOWSEX)
    string str;
 
    str = "\\\\?\\";

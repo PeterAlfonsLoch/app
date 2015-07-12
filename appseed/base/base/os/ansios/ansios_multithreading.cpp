@@ -3,7 +3,7 @@
 #if defined(LINUX) || defined(VSNORD)
 
 
-CLASS_DECL_AXIS int_bool WINAPI PostMessageW(oswindow oswindow, UINT Msg, WPARAM wParam, LPARAM lParam)
+CLASS_DECL_BASE int_bool WINAPI PostMessageW(oswindow oswindow, UINT Msg, WPARAM wParam, LPARAM lParam)
 {
 
    ::user::elemental * pui = window_from_handle(oswindow);
@@ -48,7 +48,7 @@ CLASS_DECL_AXIS int_bool WINAPI PostMessageW(oswindow oswindow, UINT Msg, WPARAM
 }
 
 
-CLASS_DECL_AXIS int_bool mq_remove_window_from_all_queues(oswindow oswindow)
+CLASS_DECL_BASE int_bool mq_remove_window_from_all_queues(oswindow oswindow)
 {
    ::user::interaction * pui = window_from_handle(oswindow);
 

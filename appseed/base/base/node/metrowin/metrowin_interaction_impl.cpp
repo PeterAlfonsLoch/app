@@ -12,7 +12,8 @@ namespace metrowin
 {
 
 
-   interaction_impl::interaction_impl()
+   interaction_impl::interaction_impl() :
+      ::aura::timer_array(get_app())
    {
 
       m_plistener = NULL;
@@ -38,7 +39,8 @@ namespace metrowin
    }
 
    interaction_impl::interaction_impl(::aura::application * papp):
-      ::object(papp)
+      ::object(papp),
+      ::aura::timer_array(papp)
    {
 
       m_plistener = NULL;
@@ -394,10 +396,10 @@ namespace metrowin
    interaction_impl::~interaction_impl()
    {
 
-      if(m_pauraapp != NULL && m_pauraapp->m_paxissession != NULL && m_pauraapp->m_paxissession->user() != NULL && m_pauraapp->m_paxissession->user()->m_pwindowmap != NULL)
+      if(m_pauraapp != NULL && m_pauraapp->m_pbasesession != NULL && m_pauraapp->m_pbasesession->user() != NULL && m_pauraapp->m_pbasesession->user()->m_pwindowmap != NULL)
       {
 
-         m_pauraapp->m_paxissession->user()->m_pwindowmap->m_map.remove_key((int_ptr)(void *)get_handle());
+         m_pauraapp->m_pbasesession->user()->m_pwindowmap->m_map.remove_key((int_ptr)(void *)get_handle());
 
       }
 
@@ -491,7 +493,7 @@ namespace metrowin
    {
       UNREFERENCED_PARAMETER(pobj);
       Default();
-      ::metrowin::window_draw * pdraw = dynamic_cast <::metrowin::window_draw *> (System.get_twf().m_p);
+      ::metrowin::window_draw * pdraw = dynamic_cast <::metrowin::window_draw *> (System.get_twf());
       if(pdraw != NULL)
       {
          retry_single_lock sl(&pdraw->m_eventFree,millis(84),millis(84));
@@ -1225,7 +1227,7 @@ namespace metrowin
 
       if(pbase->m_uiMessage == WM_TIMER)
       {
-         m_pui->m_pauraapp->step_timer();
+//         m_pui->m_pauraapp->step_timer();
       }
       else if(pbase->m_uiMessage == WM_LBUTTONDOWN)
       {
@@ -3866,7 +3868,7 @@ namespace metrowin
 
          if(m_pauraapp != NULL)
          {
-            m_pauraapp->step_timer();
+//            m_pauraapp->step_timer();
          }
          if(!ContinueModal(iLevel))
             goto ExitModal;
@@ -5085,11 +5087,11 @@ namespace metrowin
 
    }
 
-   uint_ptr interaction_impl::SetTimer(uint_ptr nIDEvent,UINT nElapse,void (CALLBACK* lpfnTimer)(oswindow,UINT,uint_ptr,uint32_t))
+   bool interaction_impl::SetTimer(uint_ptr nIDEvent,UINT nElapse,PFN_TIMER pfnTimer)
    {
 
 
-      return ::user::interaction_impl::SetTimer(nIDEvent,nElapse,lpfnTimer);
+      return ::user::interaction_impl::SetTimer(nIDEvent,nElapse,pfnTimer);
 
 
    }

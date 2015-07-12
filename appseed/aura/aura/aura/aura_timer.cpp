@@ -175,6 +175,7 @@ timer::~timer()
 {
 
    stop();
+
 #ifdef METROWIN
 
    ::aura::del(m_ptimer);
@@ -209,18 +210,34 @@ bool timer::start(int millis,bool bPeriodic)
 
    ::Windows::Foundation::TimeSpan span;
 
-   span.Duration = millis * 10;
+   span.Duration = millis * 1000 * 10;
+
+   auto pred = [this](ThreadPoolTimer ^)
+   {
+
+      try
+      {
+
+         call_on_timer();
+
+      }
+      catch(...)
+      {
+
+      }
+
+   };
    
    if(bPeriodic)
    {
 
-      m_ptimer->m_timer = ThreadPoolTimer::CreatePeriodicTimer(ref new TimerElapsedHandler ([this](ThreadPoolTimer ^){call_on_timer();}),span ); // TimeSpan is 100 nanoseconds
+      m_ptimer->m_timer = ThreadPoolTimer::CreatePeriodicTimer(ref new TimerElapsedHandler (pred),span ); // TimeSpan is 100 nanoseconds
 
    }
    else
    {
 
-      m_ptimer->m_timer = ThreadPoolTimer::CreateTimer(ref new TimerElapsedHandler([this](ThreadPoolTimer ^){call_on_timer();}),span);
+      m_ptimer->m_timer = ThreadPoolTimer::CreateTimer(ref new TimerElapsedHandler(pred),span);
 
    }
 
@@ -277,7 +294,14 @@ void timer::stop()
 
 #ifdef METROWIN
 
-   ::aura::del(m_ptimer);
+   if(m_ptimer->m_timer != nullptr)
+   {
+
+      m_ptimer->m_timer->Cancel();
+
+      m_ptimer->m_timer = nullptr;
+
+   }
 
 #elif defined(WINDOWS)
 
@@ -325,72 +349,83 @@ void timer::stop()
 bool timer::call_on_timer()
 {
 
-   if(::get_thread() == NULL)
+   try
    {
-    
-      ::set_thread(this);
 
-   }
-   
-   synch_lock sl(m_pmutex);
-
-   if(m_bKill || m_bDestroying || m_bDeal)
-      return true;
-
-   m_bDeal = true;
-
-   m_bRet = false;
-
-   sl.unlock();
-   
-   on_timer();
-
-   sl.lock();
-
-   m_bDeal = false;
-   
-   if(m_bKill)
-   {
-      
-      if(m_bDestroying)
+      if(::get_thread() == NULL)
       {
 
-         sl.unlock();
-         
-      }
-      else
-      {
-         
-         m_bDestroying = true;
-         
-         sl.unlock();
-         
-         delete this;
-         
+         ::set_thread(this);
+
       }
 
-      return false;
+      synch_lock sl(m_pmutex);
 
-   }
+      if(m_bKill || m_bDestroying || m_bDeal)
+         return true;
 
-#if defined(WINDOWSEX)
+      m_bDeal = true;
 
-   if(m_bPeriodic)
-   {
+      m_bRet = false;
 
-      if(!CreateTimerQueueTimer(&hTimer,hTimerQueue,(WAITORTIMERCALLBACK)aura_timer_TimerRoutine,this,m_dwMillis,0,WT_EXECUTEONLYONCE))
+      sl.unlock();
+
+      on_timer();
+
+      sl.lock();
+
+      m_bDeal = false;
+
+      if(m_bKill)
       {
+
+         if(m_bDestroying)
+         {
+
+            sl.unlock();
+
+         }
+         else
+         {
+
+            m_bDestroying = true;
+
+            sl.unlock();
+
+            delete this;
+
+         }
 
          return false;
 
       }
 
-   }
+#if defined(WINDOWSEX)
+
+      if(m_bPeriodic)
+      {
+
+         if(!CreateTimerQueueTimer(&hTimer,hTimerQueue,(WAITORTIMERCALLBACK)aura_timer_TimerRoutine,this,m_dwMillis,0,WT_EXECUTEONLYONCE))
+         {
+
+            return false;
+
+         }
+
+      }
 
 
 #endif
 
-   return !m_bRet;
+      return !m_bRet;
+
+   }
+   catch(...)
+   {
+
+   }
+
+   return false;
 
 }
 

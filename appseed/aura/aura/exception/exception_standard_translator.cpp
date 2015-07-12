@@ -153,6 +153,7 @@ namespace exception
       case EXCEPTION_GUARD_PAGE:                throw standard_guard_page(papp, ppointers);                 break;
       case EXCEPTION_INVALID_HANDLE:            throw standard_invalid_handle(papp, ppointers);             break;
       case 0xE06D7363:                          throw standard_microsoft_cpp(papp, ppointers);              break;
+      case 0x40080201:                          throw standard_winrt_originate_error(papp, ppointers);      break;
       default:                                  throw standard_exception(papp, ppointers);                  break;
       };
    }

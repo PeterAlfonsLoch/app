@@ -355,6 +355,7 @@ namespace exception
    DECLARE_SE_EXCEPTION_CLASS(standard_guard_page)
    DECLARE_SE_EXCEPTION_CLASS(standard_invalid_handle)
    DECLARE_SE_EXCEPTION_CLASS(standard_microsoft_cpp)
+   DECLARE_SE_EXCEPTION_CLASS(standard_winrt_originate_error)
 
    #endif
 

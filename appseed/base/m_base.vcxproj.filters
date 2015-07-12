@@ -165,9 +165,6 @@
     <ClInclude Include="base\base\base_system.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
-    <ClInclude Include="base\base\base_template.h">
-      <Filter>Header Files\base\base</Filter>
-    </ClInclude>
     <ClInclude Include="base\base_policy\base_c.h">
       <Filter>Header Files\base\base_policy</Filter>
     </ClInclude>
@@ -214,6 +211,21 @@
       <Filter>Header Files\base\node\metrowin</Filter>
     </ClInclude>
     <ClInclude Include="base\node\metrowin\metrowin_factory_exchange.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\metrowin\metrowin_window_impl.h">
+      <Filter>Header Files\base\os\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin_directx.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin_directx_application.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin_interaction_impl.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin_window_draw.h">
       <Filter>Header Files\base\node\metrowin</Filter>
     </ClInclude>
   </ItemGroup>
@@ -531,6 +543,12 @@
     </ClCompile>
     <ClCompile Include="database\database\database_user_interaction.cpp">
       <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\metrowin\metrowin_user.cpp">
+      <Filter>Source Files\base\os\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\metrowin\metrowin_windowing.cpp">
+      <Filter>Source Files\base\os\metrowin</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

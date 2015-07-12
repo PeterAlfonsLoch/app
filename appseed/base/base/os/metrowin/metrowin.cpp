@@ -5,38 +5,38 @@
 
 
 
-int32_t WINAPI MessageBoxW(oswindow window,const wchar_t * pszMessage,const wchar_t * pszTitle,unsigned int iFlags)
-{
-  
-
-   ::wait(Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new Windows::UI::Core::DispatchedHandler ([=]()
-   {
-   
-      Windows::UI::Popups::MessageDialog ^ msg = ref new Windows::UI::Popups::MessageDialog(wstring(pszMessage), wstring(pszTitle));
-
-//UICommand^ continueCommand = ref new UICommand(
-  //      "Try again", 
-    //    ref new UICommandInvokedHandler(this, &CancelCommand::CommandInvokedHandler));
-   Windows::UI::Popups::UICommand ^ upgradeCommand = ref new Windows::UI::Popups::UICommand(
-        "OK");
-
-    // Add the commands to the dialog
-    //msg->Commands->Append(continueCommand);
-    msg->Commands->Append(upgradeCommand);
-
-    // Set the command that will be invoked by default
-    msg->DefaultCommandIndex = 0;
-
-    // Set the command to be invoked when escape is pressed
-    msg->CancelCommandIndex = 0;
-  
-   Windows::UI::Popups::IUICommand ^ command = wait(msg->ShowAsync());
-
-      })));
-   
-   return 0;
-
-}
+//int32_t WINAPI MessageBoxW(oswindow window,const wchar_t * pszMessage,const wchar_t * pszTitle,unsigned int iFlags)
+//{
+//  
+//
+//   ::wait(Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new Windows::UI::Core::DispatchedHandler ([=]()
+//   {
+//   
+//      Windows::UI::Popups::MessageDialog ^ msg = ref new Windows::UI::Popups::MessageDialog(wstring(pszMessage), wstring(pszTitle));
+//
+////UICommand^ continueCommand = ref new UICommand(
+//  //      "Try again", 
+//    //    ref new UICommandInvokedHandler(this, &CancelCommand::CommandInvokedHandler));
+//   Windows::UI::Popups::UICommand ^ upgradeCommand = ref new Windows::UI::Popups::UICommand(
+//        "OK");
+//
+//    // Add the commands to the dialog
+//    //msg->Commands->Append(continueCommand);
+//    msg->Commands->Append(upgradeCommand);
+//
+//    // Set the command that will be invoked by default
+//    msg->DefaultCommandIndex = 0;
+//
+//    // Set the command to be invoked when escape is pressed
+//    msg->CancelCommandIndex = 0;
+//  
+//   Windows::UI::Popups::IUICommand ^ command = wait(msg->ShowAsync());
+//
+//      })));
+//   
+//   return 0;
+//
+//}
 
 //
 //VOID WINAPI Sleep(DWORD dwMilliseconds)
@@ -377,17 +377,17 @@ string key_to_char(WPARAM wparam, LPARAM lparam)
 //   return str;
 //}
 
-
-WINBOOL IsWindow(oswindow oswindow)
-{
-
-   if(((void *) oswindow) == NULL)
-      return FALSE;
-
-   return TRUE;
-
-}
-
+//
+//WINBOOL IsWindow(oswindow oswindow)
+//{
+//
+//   if(((void *) oswindow) == NULL)
+//      return FALSE;
+//
+//   return TRUE;
+//
+//}
+//
 
 
 

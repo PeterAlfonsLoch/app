@@ -1159,7 +1159,7 @@ namespace base
 
       return true;
 
-#ifdef LINUX
+#elif defined(LINUX)
 
       xdisplay  d;
 

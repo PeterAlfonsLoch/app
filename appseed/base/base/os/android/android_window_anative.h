@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AXIS window_android_anative :
+class CLASS_DECL_BASE window_android_anative :
    public window_graphics
 {
 public:

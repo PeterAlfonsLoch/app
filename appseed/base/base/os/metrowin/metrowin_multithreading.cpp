@@ -1052,7 +1052,7 @@ extern thread_int_ptr < HTHREAD > currentThread;
 //}
 
 
-CLASS_DECL_AXIS WINBOOL WINAPI PostMessageW(oswindow oswindow, UINT Msg, WPARAM wParam, LPARAM lParam)
+CLASS_DECL_BASE WINBOOL WINAPI PostMessageW(oswindow oswindow, UINT Msg, WPARAM wParam, LPARAM lParam)
 {
 
    int iThreadId = oswindow->m_pui->m_pauraapp->get_os_int();

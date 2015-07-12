@@ -960,25 +960,10 @@
     <ClInclude Include="axis\os\metrowin\metrowin_user_impl.h">
       <Filter>Header Files\axis\os\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="axis\os\metrowin\metrowin_window_impl.h">
-      <Filter>Header Files\axis\os\metrowin</Filter>
-    </ClInclude>
     <ClInclude Include="axis\node\metrowin\metrowin_copydesk.h">
       <Filter>Header Files\axis\node\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="axis\node\metrowin\metrowin_directx.h">
-      <Filter>Header Files\axis\node\metrowin</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\metrowin\metrowin_directx_application.h">
-      <Filter>Header Files\axis\node\metrowin</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\metrowin\metrowin_interaction_impl.h">
-      <Filter>Header Files\axis\node\metrowin</Filter>
-    </ClInclude>
     <ClInclude Include="axis\node\metrowin\metrowin_internal.h">
-      <Filter>Header Files\axis\node\metrowin</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\metrowin\metrowin_window_draw.h">
       <Filter>Header Files\axis\node\metrowin</Filter>
     </ClInclude>
   </ItemGroup>
