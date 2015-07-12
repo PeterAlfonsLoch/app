@@ -4472,12 +4472,12 @@ namespace user
       if(GetParent() == NULL)
          return NULL;
 
-#ifdef ANDROID
-
-      if (GetParent() == System.m_posdata->m_pui)
-         return (::user::interaction *) this;
-
-#endif
+//#ifdef ANDROID
+//
+//      if (GetParent() == System.m_posdata->m_pui)
+//         return (::user::interaction *) this;
+//
+//#endif
 
       return GetParent()->get_wnd();
 
