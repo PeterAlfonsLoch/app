@@ -2212,7 +2212,7 @@ namespace user
 
       }
       
-#if defined(APPLE_IOS)
+#if defined(APPLE_IOS) || defined(VSNORD)
       
       if(pParentWnd == NULL || pParentWnd == System.m_posdata->m_pui)
       {
@@ -2346,7 +2346,7 @@ namespace user
 
       }
 
-#if defined(APPLE_IOS)
+#if defined(APPLE_IOS) || defined(VSNORD)
       
       if(pParentWnd == NULL || pParentWnd == System.m_posdata->m_pui)
       {
