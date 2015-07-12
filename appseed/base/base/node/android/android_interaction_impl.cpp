@@ -1445,24 +1445,30 @@ namespace android
          {
             m_pui->_001OnTriggerMouseInside();
          }
-         user::oswindow_array oswindowa;
-         user::interaction_ptra wnda;
-         wnda = System.m_uiptraFrame;
-         oswindowa = wnda.get_hwnda();
-         user::window_util::SortByZOrder(oswindowa);
-         for(int32_t i = 0; i < oswindowa.get_size(); i++)
+
+         for(int32_t i = 0; i < m_pui->m_uiptraChild.get_size(); i++)
          {
-            sp(::user::interaction) pui = wnda.find_first(oswindowa[i]);
+            
+            sp(::user::interaction) pui = m_pui->m_uiptraChild[i];
+
             if(pui != NULL)
             {
+
                pui->_000OnMouse(pmouse);
+
                if(pmouse->m_bRet)
                   return;
+
             }
+
          }
+
          pbase->set_lresult(DefWindowProc(pbase->m_uiMessage,pbase->m_wparam,pbase->m_lparam));
+
          return;
+
       }
+
       if(pbase->m_uiMessage == MESSAGE_OLE_DRAGENTER ||
          pbase->m_uiMessage == MESSAGE_OLE_DRAGOVER ||
          pbase->m_uiMessage == MESSAGE_OLE_DRAGLEAVE ||

@@ -450,8 +450,8 @@ wait_result mutex::wait(const duration & duration)
 
    if(dwTimeout == (uint32_t) INFINITE)
    {
-      dwTimeout = 30000 + 1977;
-      ((::duration&)  duration) = millis(dwTimeout);
+      //dwTimeout = 30000 + 1977;
+      //((::duration&)  duration) = millis(dwTimeout);
    }
 
 #ifndef ANDROID

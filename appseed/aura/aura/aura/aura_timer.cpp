@@ -72,6 +72,7 @@ namespace aura
    public:
       void *               m_queue;
       void *               m_timer;
+      timer *              m_ptimer;
 
    };
 }
@@ -94,6 +95,7 @@ namespace aura
       timer_t              m_timerid;
       struct sigevent      m_sev;
       struct itimerspec    m_its;
+      timer *              m_ptimer;
 
 
       Timer()
@@ -191,6 +193,8 @@ timer::timer(::aura::application * papp, uint_ptr uiTimer, PFN_TIMER pfnTimer, v
 #else
 
    m_ptimer = new ::aura::Timer;
+
+   m_ptimer->m_ptimer = this;
 
 #endif
 
@@ -528,9 +532,9 @@ void aura_timer(void * p)
 void aura_timer_handler(sigval sigval)
 {
 
-   timer * ptimer = (timer *)sigval.sival_ptr;
+   ::aura::Timer * ptimer = (::aura::Timer *)sigval.sival_ptr;
 
-   ptimer->call_on_timer();
+   ptimer->m_ptimer->call_on_timer();
 
 }
 
