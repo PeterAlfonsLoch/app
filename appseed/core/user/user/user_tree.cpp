@@ -1286,13 +1286,13 @@ namespace user
       return m_itemptraSelected.remove_all();
    }
 
-   bool tree::::timer::hover(::data::item * pitemdata, index i)
+   bool tree::hover(::data::item * pitemdata, index i)
    {
       sp(::data::tree_item) pitem = find(pitemdata, &i);
-      return ::timer::hover(pitem);
+      return hover(pitem);
    }
 
-   bool tree::::timer::hover(::data::tree_item * pitem)
+   bool tree::hover(::data::tree_item * pitem)
    {
       if (pitem == NULL)
       {

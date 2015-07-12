@@ -51,10 +51,10 @@ namespace html
       int32_t iFont = -1;
       if(pelemental->m_pimpl->m_bHover)
       {
-         if(!pelemental->m_pimpl->m_mapFont.Lookup("::timer::hover", iFont))
+         if(!pelemental->m_pimpl->m_mapFont.Lookup("hover", iFont))
          {
             iFont = create_font(pelemental);
-            pelemental->m_pimpl->m_mapFont.set_at("::timer::hover", iFont);
+            pelemental->m_pimpl->m_mapFont.set_at("hover", iFont);
          }
          return m_fonta.element_at(iFont);
       }
@@ -88,7 +88,7 @@ namespace html
       class font font;
 
       if(!pelemental->m_pimpl->m_bHover
-      || !pelemental->m_style.get_text("font-family", "::timer::hover", this, pelemental, font.m_strFamily))
+      || !pelemental->m_style.get_text("font-family", "hover", this, pelemental, font.m_strFamily))
       {
          if(!pelemental->m_pimpl->has_link()
             || !pelemental->m_style.get_text("font-family", "link", this, pelemental, font.m_strFamily))
@@ -97,7 +97,7 @@ namespace html
          }
       }
       if(!pelemental->m_pimpl->m_bHover
-      || !pelemental->m_style.get_text("font-size", "::timer::hover", this, pelemental, font.m_strSize))
+      || !pelemental->m_style.get_text("font-size", "hover", this, pelemental, font.m_strSize))
       {
          if(!pelemental->m_pimpl->has_link()
             || !pelemental->m_style.get_text("font-size", "link", this, pelemental, font.m_strSize))
@@ -106,7 +106,7 @@ namespace html
          }
       }
       if(!pelemental->m_pimpl->m_bHover
-      || !pelemental->m_style.get_text("font-weight", "::timer::hover", this, pelemental, font.m_strWeight))
+      || !pelemental->m_style.get_text("font-weight", "hover", this, pelemental, font.m_strWeight))
       {
          if(!pelemental->m_pimpl->has_link()
             || !pelemental->m_style.get_text("font-weight", "link", this, pelemental, font.m_strWeight))
@@ -115,7 +115,7 @@ namespace html
          }
       }
       if(pelemental->m_pimpl->m_bHover
-      && !pelemental->m_style.get_text("text-decoration", "::timer::hover", this, pelemental, font.m_strTextDecoration))
+      && !pelemental->m_style.get_text("text-decoration", "hover", this, pelemental, font.m_strTextDecoration))
       {
          if(pelemental->m_pimpl->has_link()
             && !pelemental->m_style.get_text("text-decoration", "link", this, pelemental, font.m_strTextDecoration))
