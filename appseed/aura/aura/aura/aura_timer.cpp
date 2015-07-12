@@ -13,7 +13,7 @@ namespace aura
 {
 
    class Timer
-   { 
+   {
    public:
 
 
@@ -31,7 +31,7 @@ namespace aura
       ~Timer()
       {
 
-         if(m_timer != nullptr)
+         if (m_timer != nullptr)
          {
 
             m_timer->Cancel();
@@ -54,12 +54,13 @@ namespace aura
 {
 
    class Timer
-   { 
+   {
    public:
       HANDLE               m_hTimerQueue;
       HANDLE               m_hTimer;
 
-   };}
+   };
+}
 
 #elif defined(__APPLE__)
 
@@ -67,26 +68,65 @@ namespace aura
 {
 
    class Timer
-   { 
+   {
    public:
       void *               m_queue;
-void *               m_timer;
+      void *               m_timer;
 
-   };}
+   };
+}
 
 #else
+
+
+void aura_timer_handler(sigval sigval);
+
 
 namespace aura
 {
 
-   class Timer
-   { 
-   public:
-      timer_t              m_timerid;
-struct sigevent      m_sev;
-struct itimerspec    m_its;
 
-   };}
+   class Timer
+   {
+   public:
+
+
+      timer_t              m_timerid;
+      struct sigevent      m_sev;
+      struct itimerspec    m_its;
+
+
+      Timer()
+      {
+
+         ZERO(m_sev);
+
+         m_sev.sigev_notify = SIGEV_THREAD;
+
+         m_sev.sigev_signo = 0;
+
+         m_sev.sigev_value.sival_ptr = this;
+
+         m_sev.sigev_notify_function = aura_timer_handler;
+
+         if (timer_create(CLOCK_REALTIME, &m_sev, &m_timerid) == -1)
+            throw - 1;
+
+      }
+
+
+      ~Timer()
+      {
+
+         timer_delete(m_timerid);
+
+      }
+
+
+   };
+
+
+} // namespace aura
 
 
 #endif
@@ -94,7 +134,7 @@ struct itimerspec    m_its;
 
 #ifdef WINDOWSEX
 
-VOID CALLBACK aura_timer_TimerRoutine(PVOID lpParam,BOOLEAN TimerOrWaitFired);
+VOID CALLBACK aura_timer_TimerRoutine(PVOID lpParam, BOOLEAN TimerOrWaitFired);
 
 #elif defined(__APPLE__)
 
@@ -102,7 +142,7 @@ void * CreateDispatchQueue();
 
 void CancelDispatchSource(void * p);
 
-void * CreateDispatchTimer(uint64_t interval, uint64_t leeway, void * queue, void (*timer)(void * p), void * p);
+void * CreateDispatchTimer(uint64_t interval, uint64_t leeway, void * queue, void(*timer)(void * p), void * p);
 
 void ReleaseDispatch(void * p);
 
@@ -113,58 +153,45 @@ void aura_timer(void * p);
 
 #else
 
-void aura_timer_handler(sigval sigval);
 
 #endif
 
 
 
 
-timer::timer(::aura::application * papp,uint_ptr uiTimer ,PFN_TIMER pfnTimer ,void * pvoidData, mutex * pmutex):
-object(papp),
-m_nIDEvent(uiTimer),
-m_pfnTimer(pfnTimer),
-m_pvoidData(pvoidData),
-m_pmutex(pmutex)
+timer::timer(::aura::application * papp, uint_ptr uiTimer, PFN_TIMER pfnTimer, void * pvoidData, mutex * pmutex) :
+   object(papp),
+   m_nIDEvent(uiTimer),
+   m_pfnTimer(pfnTimer),
+   m_pvoidData(pvoidData),
+   m_pmutex(pmutex)
 {
 
    m_bDestroying = false;
    m_pcallback = NULL;
+
    // Create the timer queue.
-#ifdef __cplusplus_winrt
 
+#if defined(WINDOWSEX)
 
-   m_ptimer = new ::aura::Timer;
-
-
-#elif defined(WINDOWS)
    hTimerQueue = CreateTimerQueue();
+
    if (NULL == hTimerQueue)
    {
+
       throw - 1;
+
    }
 
 #elif defined(__APPLE__)
-    
-    m_queue =  NULL;
-    m_timer = NULL;
+
+   m_queue = NULL;
+   m_timer = NULL;
 
 #else
-   /*           sigset_t mask;
-   struct sigaction sa;
 
+   m_ptimer = new ::aura::Timer;
 
-   /* Establish handler for timer signal */
-
-
-   ZERO(sev);
-
-   sev.sigev_notify = SIGEV_THREAD;
-   sev.sigev_signo = 0;
-   sev.sigev_value.sival_ptr = this;
-   sev.sigev_notify_function = aura_timer_handler;
-   if (timer_create(CLOCK_REALTIME, &sev, &timerid) == -1)
-      throw - 1;
 #endif
 
    m_bRet = false;
@@ -176,28 +203,24 @@ timer::~timer()
 
    stop();
 
-#ifdef METROWIN
-
-   ::aura::del(m_ptimer);
-
-#elif defined(WINDOWS)
+#if defined(WINDOWSEX)
 
    DeleteTimerQueue(hTimerQueue);
-    
+
 #elif defined(__APPLE__)
 
-//    dispatch_release(m_queue);
-    
+   //    dispatch_release(m_queue);
+
 #else
 
-   timer_delete(timerid);
+   ::aura::del(m_ptimer);
 
 #endif
 
 }
 
 
-bool timer::start(int millis,bool bPeriodic)
+bool timer::start(int millis, bool bPeriodic)
 {
 
    stop();
@@ -221,67 +244,77 @@ bool timer::start(int millis,bool bPeriodic)
          call_on_timer();
 
       }
-      catch(...)
+      catch (...)
       {
 
       }
 
    };
-   
-   if(bPeriodic)
+
+   if (bPeriodic)
    {
 
-      m_ptimer->m_timer = ThreadPoolTimer::CreatePeriodicTimer(ref new TimerElapsedHandler (pred),span ); // TimeSpan is 100 nanoseconds
+      m_ptimer->m_timer = ThreadPoolTimer::CreatePeriodicTimer(ref new TimerElapsedHandler(pred), span); // TimeSpan is 100 nanoseconds
 
    }
    else
    {
 
-      m_ptimer->m_timer = ThreadPoolTimer::CreateTimer(ref new TimerElapsedHandler(pred),span);
+      m_ptimer->m_timer = ThreadPoolTimer::CreateTimer(ref new TimerElapsedHandler(pred), span);
 
    }
 
 
 
-#elif define(WINDOWS)
-   if(!CreateTimerQueueTimer(&hTimer,hTimerQueue,(WAITORTIMERCALLBACK)aura_timer_TimerRoutine,this,m_dwMillis,0,WT_EXECUTEONLYONCE))
+#elif defined(WINDOWS)
+
+   if (!CreateTimerQueueTimer(&hTimer, hTimerQueue, (WAITORTIMERCALLBACK)aura_timer_TimerRoutine, this, m_dwMillis, 0, WT_EXECUTEONLYONCE))
    {
 
       return false;
 
    }
-    
+
 #elif defined(__APPLE__)
-    
+
    m_queue = CreateDispatchQueue();
-    
-   if(m_queue == NULL)
+
+   if (m_queue == NULL)
       return false;
-    
+
    m_timer = CreateDispatchTimer(bPeriodic ? millis : 0, millis, m_queue, aura_timer, this);
-    
-    if(m_timer == NULL)
-        return false;
+
+   if (m_timer == NULL)
+      return false;
 
 #else
    /* Start the timer */
 
+   itimerspec & its = m_ptimer->m_its;
+
    its.it_value.tv_sec = millis / 1000; // expiration
+
    its.it_value.tv_nsec = (millis * 1000 * 1000) % (1000 * 1000 * 1000); // expiration
+
    if (bPeriodic)
    {
+
       its.it_interval.tv_sec = 0; // no freq
+
       its.it_interval.tv_nsec = 0; // no freq
+
    }
    else
    {
+
       its.it_value.tv_sec = millis / 1000; // freq period
+
       its.it_value.tv_nsec = (millis * 1000 * 1000) % (1000 * 1000 * 1000); // freq period
+
    }
 
-   if (timer_settime(timerid, 0, &its, NULL) == -1)
+   if (timer_settime(m_ptimer->m_timerid, 0, &its, NULL) == -1)
       return false;
-
 
 #endif
 
@@ -294,7 +327,7 @@ void timer::stop()
 
 #ifdef METROWIN
 
-   if(m_ptimer->m_timer != nullptr)
+   if (m_ptimer->m_timer != nullptr)
    {
 
       m_ptimer->m_timer->Cancel();
@@ -305,44 +338,44 @@ void timer::stop()
 
 #elif defined(WINDOWS)
 
-   if(hTimer != NULL)
+   if (hTimer != NULL)
    {
 
-      DeleteTimerQueueTimer(hTimerQueue,hTimer,INVALID_HANDLE_VALUE);
+      DeleteTimerQueueTimer(hTimerQueue, hTimer, INVALID_HANDLE_VALUE);
 
       hTimer = NULL;
 
    }
-    
+
 #elif defined(__APPLE__)
-    
-   if(m_timer != NULL)
+
+   if (m_timer != NULL)
    {
-        
+
       CancelDispatchSource(m_timer);
-        
+
       ReleaseDispatch(m_timer);
-       
+
       m_timer = NULL;
-        
+
    }
-    
-   if(m_queue != NULL)
+
+   if (m_queue != NULL)
    {
-        
+
       ReleaseDispatch(m_queue);
-      
+
       m_queue = NULL;
-        
+
    }
-    
+
 
 #else
 
-   timer_settime(timerid,0,NULL,NULL);
-
+   timer_settime(m_ptimer->m_timerid, 0, NULL, NULL);
 
 #endif
+
 }
 
 
@@ -352,7 +385,7 @@ bool timer::call_on_timer()
    try
    {
 
-      if(::get_thread() == NULL)
+      if (::get_thread() == NULL)
       {
 
          ::set_thread(this);
@@ -361,7 +394,7 @@ bool timer::call_on_timer()
 
       synch_lock sl(m_pmutex);
 
-      if(m_bKill || m_bDestroying || m_bDeal)
+      if (m_bKill || m_bDestroying || m_bDeal)
          return true;
 
       m_bDeal = true;
@@ -376,10 +409,10 @@ bool timer::call_on_timer()
 
       m_bDeal = false;
 
-      if(m_bKill)
+      if (m_bKill)
       {
 
-         if(m_bDestroying)
+         if (m_bDestroying)
          {
 
             sl.unlock();
@@ -402,10 +435,10 @@ bool timer::call_on_timer()
 
 #if defined(WINDOWSEX)
 
-      if(m_bPeriodic)
+      if (m_bPeriodic)
       {
 
-         if(!CreateTimerQueueTimer(&hTimer,hTimerQueue,(WAITORTIMERCALLBACK)aura_timer_TimerRoutine,this,m_dwMillis,0,WT_EXECUTEONLYONCE))
+         if (!CreateTimerQueueTimer(&hTimer, hTimerQueue, (WAITORTIMERCALLBACK)aura_timer_TimerRoutine, this, m_dwMillis, 0, WT_EXECUTEONLYONCE))
          {
 
             return false;
@@ -420,7 +453,7 @@ bool timer::call_on_timer()
       return !m_bRet;
 
    }
-   catch(...)
+   catch (...)
    {
 
    }
@@ -431,16 +464,16 @@ bool timer::call_on_timer()
 
 bool timer::on_timer()
 {
-   
-   if(m_pfnTimer != NULL)
+
+   if (m_pfnTimer != NULL)
    {
 
-      if(!m_pfnTimer(this) && m_bPeriodic)
+      if (!m_pfnTimer(this) && m_bPeriodic)
          return false;
 
    }
 
-   if(m_pcallback != NULL)
+   if (m_pcallback != NULL)
    {
 
       m_pcallback->on_timer(this);
@@ -456,7 +489,7 @@ bool timer::on_timer()
 
 #ifdef WINDOWS
 
-VOID CALLBACK aura_timer_TimerRoutine(PVOID lpParam,BOOLEAN TimerOrWaitFired)
+VOID CALLBACK aura_timer_TimerRoutine(PVOID lpParam, BOOLEAN TimerOrWaitFired)
 {
 
    timer * ptimer = (timer *)lpParam;
@@ -467,13 +500,13 @@ VOID CALLBACK aura_timer_TimerRoutine(PVOID lpParam,BOOLEAN TimerOrWaitFired)
       ptimer->call_on_timer();
 
    }
-   catch(::exception::base & e)
+   catch (::exception::base & e)
    {
 
    }
-   catch(...)
+   catch (...)
    {
-      
+
       delete ptimer;
 
    }
@@ -483,11 +516,11 @@ VOID CALLBACK aura_timer_TimerRoutine(PVOID lpParam,BOOLEAN TimerOrWaitFired)
 
 void aura_timer(void * p)
 {
-    
-    timer * ptimer = (timer *)p;
-    
-    ptimer->call_on_timer();
-    
+
+   timer * ptimer = (timer *)p;
+
+   ptimer->call_on_timer();
+
 }
 
 #else
