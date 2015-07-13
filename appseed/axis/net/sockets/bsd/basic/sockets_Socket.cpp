@@ -111,6 +111,13 @@ namespace sockets
 
       m_iSocketType = iType;
       m_strSocketProtocol = strProtocol;
+      int32_t protno = 0;
+#ifdef ANDROID
+      if (strProtocol.CollateNoCase("tcp") == 0)
+      {
+         protno = 6;
+      }
+#else
       if (strProtocol.get_length())
       {
          p = getprotobyname( strProtocol );
@@ -122,7 +129,11 @@ namespace sockets
             return INVALID_SOCKET;
          }
       }
-      int32_t protno = p ? p -> p_proto : 0;
+      if (p != NULL)
+      {
+         protno = p->p_proto
+      }
+#endif
 
       s = ::socket(af, iType, protno);
       if (s == INVALID_SOCKET)

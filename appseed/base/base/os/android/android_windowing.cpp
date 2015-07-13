@@ -1721,6 +1721,26 @@ int Java_keyCode_to_virtual_key_code(int keyCode)
       return 'A' + keyCode - 29;
 
    }
+   else if (keyCode >= 7 && keyCode <= 16)
+   {
+
+      return '0' + keyCode - 7;
+
+   }
+   switch (keyCode)
+   {
+   case 62:
+      return VK_SPACE;
+   case 67:
+      return VK_BACK;
+   case 112:
+      return VK_DELETE;
+   case 59:
+      return VK_LSHIFT;
+   case 60:
+      return VK_RSHIFT;
+   }
+
 
    return VK_SPACE;
 

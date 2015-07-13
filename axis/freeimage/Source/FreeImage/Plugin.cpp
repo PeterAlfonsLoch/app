@@ -333,6 +333,13 @@ TagLib::instance();
 
             ::dir::ls(patha,::dir::ca2_module());
 
+#ifdef VSNORD
+
+            patha.add("libaxispng.so");
+            patha.add("libaxisjpeg.so");
+
+#endif
+
             for(auto & path : patha)
             {
 
