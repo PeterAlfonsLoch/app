@@ -323,6 +323,23 @@ void __ios_do_events();
    
 }
 
+
+- (BOOL)textViewShouldBeginEditing:(UITextView * ) pview
+{
+   
+   return YES;
+   
+}
+
+
+- (BOOL) shouldChangeTextInRange:(UITextRange *)range 
+                 replacementText:(NSString *)text
+{
+   
+   return TRUE;
+   
+}
+
 - (void)flagsChanged:(UIEvent *)event
 {
 

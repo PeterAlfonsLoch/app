@@ -1,4 +1,4 @@
-﻿//#include "framework.h" // from "base/user/user.h"
+//#include "framework.h" // from "base/user/user.h"
 //#include "base/user/user.h"
 //#include "aura/user/colorertake5/colorertake5.h"
 
@@ -1676,6 +1676,9 @@ namespace user
          pszPrevious = pszEnd;
 
          pszEnd = ::str::utf8_inc(pszEnd);
+         
+         if(pszEnd == NULL)
+            break;
 
          lim1 = lim2;
 
@@ -2242,6 +2245,12 @@ namespace user
                m_ptree->m_iSelEnd = i1;
                m_ptree->m_editfile.seek(m_ptree->m_iSelEnd,::file::seek_begin);
                string str;
+               if(pkey->m_ekey == ::user::key_refer_to_text_member)
+               {
+                  str = pkey->m_strText;
+               }
+               else
+               {
                char ch = (char)pkey->m_nChar;
                if(ch == '\r')
                   ch = '\n';
@@ -2257,8 +2266,9 @@ namespace user
                {
                   iCode |= 0x80000000;
                }
-               string strMap;
-               str = Session.keyboard().process_key(pkey);
+                  str = Session.keyboard().process_key(pkey);
+               }
+//               string strMap;
                m_ptree->m_iSelEnd += str.get_length();
                m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
                m_ptree-> m_editfile.Insert(str,str.get_length());
