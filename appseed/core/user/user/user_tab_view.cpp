@@ -121,14 +121,14 @@ namespace user
    }
 
 
-   void tab_view::_001OnDropTab(int32_t iPane, e_position eposition)
+   void tab_view::_001OnDropTab(index iPane, e_position eposition)
    {
 
       id id1 = ::user::tab::get_id_by_tab(::user::tab::_001GetSel());
 
       id id2 = ::user::tab::get_id_by_tab(iPane);
 
-      id id3 = var(id1).get_string() + "-" + var(id2).get_string();
+      id id3 = var(id1).get_string() + "->:<-" + var(id2).get_string();
 
       pane * ppane1 = get_pane_by_id(id1);
 
@@ -138,7 +138,7 @@ namespace user
 
       string strName2 = ppane2->m_istrTitleEx;
 
-      add_tab(strName1 + "/" + strName2,id3);
+      add_tab(strName1 + "->:<-" + strName2,id3);
 
       ::user::view_creator_data * pcreatordata = m_pviewcreator->allocate(id3);
 

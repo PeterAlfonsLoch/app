@@ -36,7 +36,7 @@ namespace user
 
       void _000OnDraw(::draw2d::graphics * pdc);
 
-      void _001OnDropTab(int32_t iPane, e_position eposition);
+      void _001OnDropTab(index iPane, e_position eposition);
       
       ::user::interaction * _001GetTabWnd(int32_t iTab);
 

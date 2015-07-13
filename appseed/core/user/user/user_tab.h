@@ -14,6 +14,11 @@ namespace user
    {
    public:
 
+      enum e_message
+      {
+         message_start_tab_drag = WM_USER + 223 + 1984 + 77 + 51,
+      };
+
 
 
 
@@ -33,6 +38,8 @@ namespace user
          bool                                m_bVisible;
          bool                                m_bPermanent;
          size                                m_size;
+         stringa                             m_straTitle;
+         array<size>                         m_sizeaText;
          point                               m_pt;
 
 
@@ -45,6 +52,9 @@ namespace user
 
 
          string get_title();
+
+         virtual void do_split_layout(::visual::graphics_extension & dc, ::draw2d::graphics * pdc);
+         virtual void draw_title(tab * ptab,::draw2d::graphics * pdc,LPCRECT lprect,::draw2d::brush_sp & brushText);
 
       };
 
@@ -71,10 +81,12 @@ namespace user
       {
       public:
 
+         size                                m_sizeSep;
          int32_t                             m_iHeightAddUp;
          ::draw2d::pen_sp                    m_pen;
          ::draw2d::font_sp                   m_font;
          ::draw2d::font_sp                   m_fontUnderline;
+         ::draw2d::font_sp                   m_fontBigBold;
          ::draw2d::font_sp                   m_fontBold;
          ::draw2d::brush_sp                  m_brushTextHover;
          ::draw2d::brush_sp                  m_brushTextSel;
@@ -185,6 +197,8 @@ namespace user
       virtual int_ptr GetTabCount();
       virtual bool get_element_rect(::index iTab, LPRECT lprect, e_element eelement);
 
+      virtual void get_title(int iPane,stringa & stra);
+
       virtual void layout();
       virtual void layout_pane(index iPane);
 
@@ -245,6 +259,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnMouseMove);
       DECL_GEN_SIGNAL(_001OnMouseLeave);
       DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(_001OnStartTabDrag);
       
       DECL_GEN_SIGNAL(_001OnAppLanguage);
       DECL_GEN_SIGNAL(_001OnSize);

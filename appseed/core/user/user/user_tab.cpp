@@ -6,6 +6,11 @@
 //#endif
 extern CLASS_DECL_CORE thread_int_ptr < DWORD_PTR > t_time1;
 
+// pdc->GetTextExtent("->:<-"); // oh no!! omg!! The size is the size of the alien!!
+#define MAGIC_PALACE_TAB_SPLT "->:<-"
+#define MAGIC_PALACE_TAB_SIZE "-/-"
+#define MAGIC_PALACE_TAB_TEXT "/"
+
 namespace user
 {
 
@@ -16,6 +21,7 @@ namespace user
       m_pen(allocer()),
       m_font(allocer()),
       m_fontUnderline(allocer()),
+      m_fontBigBold(allocer()),
       m_fontBold(allocer()),
       m_brushTextHover(allocer()),
       m_brushTextSel(allocer()),
@@ -97,6 +103,8 @@ namespace user
       get_data()->m_font->create_point_font("Lucida Sans Unicode", 10);
 
       get_data()->m_fontBold->create_point_font("Lucida Sans Unicode", 10, FW_BOLD);
+
+      get_data()->m_fontBigBold->create_point_font("Lucida Sans Unicode",12,FW_EXTRABOLD);
 
       get_data()->m_fontUnderline->create_point_font("Lucida Sans Unicode", 10, FW_NORMAL, false, true);
 
@@ -687,7 +695,7 @@ namespace user
 
                //path->close_figure();
 
-               if(iVisiblePane == m_iHover && m_eelementHover != element_close_tab_button)
+               if(iVisiblePane == m_iHover && m_eelementHover != element_close_tab_button && m_eelementHover < element_split && m_eelementHover >(element_split + 100))
                {
 
                   pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 215, 215, 210), ARGB(250, 235, 235, 230));
@@ -789,7 +797,7 @@ namespace user
 
                path->end_figure(true);
 
-               if(iVisiblePane == m_iHover && m_eelementHover != element_close_tab_button)
+               if(iVisiblePane == m_iHover && m_eelementHover != element_close_tab_button && (m_eelementHover < element_split || m_eelementHover > (element_split + 100)))
                {
 
                   pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 215, 215, 210), ARGB(250, 235, 235, 230));
@@ -834,9 +842,7 @@ namespace user
          if(get_element_rect(iVisiblePane, rectText, element_text))
          {
 
-            pdc->SelectObject(brushText);
-
-            pdc->_DrawText(pane.get_title(), rectText, DT_LEFT | DT_BOTTOM | DT_NOPREFIX);
+            pane.draw_title(this, pdc, rectText, brushText);
 
          }
 
@@ -872,6 +878,15 @@ namespace user
 
    }
 
+   void tab::get_title(int iPane,stringa & stra)
+   {
+
+      pane & pane = get_data()->m_panea(iPane);
+
+      stra = pane.m_straTitle;
+
+   }
+
    void tab::GetTabClientRect(LPRECT lprect)
    {
       *lprect = get_data()->m_rectTabClient;
@@ -888,6 +903,8 @@ namespace user
    void tab::layout()
    {
 
+
+
       {
 
 //         DWORD dwTime2 = ::get_tick_count();
@@ -897,6 +914,12 @@ namespace user
       }
       if(!get_data()->m_bCreated)
          return;
+      ::draw2d::memory_graphics pdc(allocer());
+      pdc->SelectObject(get_data()->m_fontBold);
+
+      m_dcextension.GetTextExtent(pdc,MAGIC_PALACE_TAB_SIZE,get_data()->m_sizeSep);
+
+
 
       if(get_data()->m_bVertical)
       {
@@ -904,8 +927,6 @@ namespace user
          int32_t iTabHeight = 8;
          int32_t cx;
          int32_t cy;
-         ::draw2d::memory_graphics pdc(allocer());
-         pdc->SelectObject(get_data()->m_fontBold);
          for(int32_t iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
          {
 
@@ -914,11 +935,16 @@ namespace user
             if(!pane.m_bVisible)
                continue;
 
+
             string str = pane.get_title();
 
-            size size;
+            pane.do_split_layout(m_dcextension, pdc);
+
+            ::size size;
 
             m_dcextension.GetTextExtent(pdc, str, size);
+
+
 
             if(pane.m_dib.is_set())
             {
@@ -1007,6 +1033,8 @@ namespace user
                return;
 
             string str = pane.get_title();
+
+            pane.do_split_layout(m_dcextension,pdc);
 
             size size;
 
@@ -1427,6 +1455,30 @@ namespace user
       rect rect;
       for(int32_t iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
       {
+         pane & p = *get_data()->m_panea[iPane];
+
+         if(p.m_straTitle.get_size() > 1)
+         {
+
+            ::rect rectText;
+
+            if(get_element_rect(iPane,rectText,element_text) && rectText.contains(pt))
+            {
+               for(int iTitle = 0; iTitle < p.m_straTitle.get_size(); iTitle++)
+               {
+                  rectText.left += p.m_sizeaText[iTitle].cx;
+                  rectText.right = rectText.left + get_data()->m_sizeSep.cx;
+                  if(rectText.contains(pt))
+                  {
+                     eelement = (e_element)((int)element_split + iTitle);
+                     return iPane;
+                  }
+                  rectText.left += get_data()->m_sizeSep.cx;
+               }
+            }
+
+         }
+
          if(get_element_rect(iPane, rect, element_close_tab_button) && rect.contains(pt))
          {
             eelement = element_close_tab_button;
@@ -1520,6 +1572,7 @@ namespace user
       IGUI_WIN_MSG_LINK(WM_MOUSELEAVE  , pinterface, this, &tab::_001OnMouseLeave);
       IGUI_WIN_MSG_LINK(WM_CREATE      , pinterface, this, &tab::_001OnCreate);
       IGUI_WIN_MSG_LINK(::base::application::APPM_LANGUAGE, pinterface, this, &tab::_001OnAppLanguage);
+      IGUI_WIN_MSG_LINK(message_start_tab_drag,pinterface,this,&tab::_001OnStartTabDrag);
       //IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &tab::_001OnTimer);
    }
 
@@ -1595,6 +1648,84 @@ namespace user
       return m_istrTitleEx;
 
    }
+
+   void tab::pane::do_split_layout(::visual::graphics_extension & dc, ::draw2d::graphics * pdc)
+   {
+
+      stringa & straTitle = m_straTitle;
+
+      straTitle.explode(MAGIC_PALACE_TAB_SPLT,get_title());
+
+      m_sizeaText.set_size(straTitle.get_count());
+
+      for(int iTitle = 0; iTitle < straTitle.get_count(); iTitle++)
+      {
+         
+         dc.GetTextExtent(pdc,straTitle[iTitle],m_sizeaText[iTitle]);
+
+      }
+
+   }
+
+   void tab::pane::draw_title(tab * ptab,::draw2d::graphics * pdc,LPCRECT lpcrect, ::draw2d::brush_sp & brushText)
+   {
+
+      stringa & straTitle = m_straTitle;
+
+      pdc->SelectObject(brushText);
+
+      if(straTitle.get_count() <= 1)
+      {
+
+         pdc->_DrawText(get_title(),*lpcrect,DT_LEFT | DT_BOTTOM | DT_NOPREFIX);
+
+      }
+      else
+      {
+
+         ::rect rectText(lpcrect);
+
+         ::draw2d::font_sp font;
+         font = pdc->get_current_font();
+         size sSep = ptab->get_data()->m_sizeSep;
+         ::rect rectEmp;
+         for(index i = 0; i < straTitle.get_size(); i++)
+         {
+            string str = straTitle[i];
+            size s = m_sizeaText[i];
+            rectText.right =rectText.left + s.cx;
+            pdc->_DrawText(str,rectText,DT_LEFT | DT_BOTTOM | DT_NOPREFIX);
+            rectText.left += s.cx;
+            if(i < straTitle.get_upper_bound())
+            {
+               rectText.right = rectText.left + sSep.cx;
+               rectEmp = rectText;
+               rectEmp.deflate(1,1);
+               ::draw2d::e_alpha_mode emode = pdc->m_ealphamode;
+               pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
+               if(ptab->m_eelementHover == (int)element_split + i)
+               {
+                  pdc->FillSolidRect(rectEmp,ARGB(128,149,184,255));
+                  pdc->SelectObject(ptab->get_data()->m_brushTextHover);
+               }
+               else
+               {
+                  //pdc->FillSolidRect(rectEmp,ARGB(128,208,223,233));
+                  pdc->SelectObject(ptab->get_data()->m_brushText);
+               }
+               pdc->set_font(ptab->get_data()->m_fontBigBold);
+               pdc->set_alpha_mode(emode);
+               pdc->_DrawText(MAGIC_PALACE_TAB_TEXT,rectText,DT_CENTER | DT_VCENTER | DT_NOPREFIX);
+               rectText.left += sSep.cx;
+               pdc->selectFont(font);
+               pdc->SelectObject(brushText);
+            }
+         }
+
+      }
+
+   }
+
 
 
    tab::pane_array::pane_array(::aura::application * papp) :
@@ -2034,15 +2165,25 @@ namespace user
       if(ptimer->m_nIDEvent == 5432187)
       {
          get_data()->m_bDrag = true;
-         if(get_data()->m_pcallback != NULL)
-         {
-            get_data()->m_pcallback->_001DropTargetWindowInitialize(this);
-         }
          KillTimer(5432187);
+         post_message(message_start_tab_drag);
+
       }
 
    }
+   
+   
+   void tab::_001OnStartTabDrag(::signal_details * pobj)
+   {
 
+      if(get_data()->m_pcallback != NULL)
+      {
+
+         get_data()->m_pcallback->_001DropTargetWindowInitialize(this);
+
+      }
+
+   }
 
    void tab::_000OnMouse(::message::mouse * pmouse)
    {

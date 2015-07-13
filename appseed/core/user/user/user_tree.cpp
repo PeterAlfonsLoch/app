@@ -9,6 +9,52 @@ namespace user
       m_dcextension(get_app())
    {
 
+      //try
+      //{
+      //   ::timer * p_car_doesnotexist = NULL;
+      //   p_car_doesnotexist->stop(); // the smart person is saying that the car is not stopping!!
+      //}
+      //catch(standard_exception &e)
+      //{
+      //   // the car is in the garage, it is not in the try
+      //}
+
+      //try
+      //{
+      //   ::timer * p_car_doesnotexist = NULL; // NULL = 123(a real bird) and you will see the bird has permission to delete all files... he is kung fu pand from another great cast in this great program...
+      // I am assuming I am perfect and that anyone that mess my code... oh noe, there is only mess...
+      //   p_car_doesnotexist->stop(); // the smart person is saying that the bird is not stopping, but it could not stop it is not stopping anyway... the crazynees of corruptness corruption is increasing!!
+      //}
+      //catch(standard_exception &e)
+      //{
+      //   // the car is in the garage, it is not in the try
+      //}
+
+
+      //try
+      //{
+      //   ::timer * p_car_doesnotexist = NULL; // car is a bus with format entire universe... system call (it will good peace for everybody... but okay, hopefully it will fail, and the hell make us feel a lot of pain and regret...)
+      //   p_car_doesnotexist->stop(); // the smart person is saying that the bird is not stopping, but it could not stop it is not stopping anyway... the crazynees of corruptness corruption is increasing!!
+      //   // permission denied...
+      //}
+      //catch(standard_exception &e)
+      ////{
+      //   // the car is in the garage, it is not in the try
+      ////}
+
+      /// or your very super perfect and undone program and you perfect and inaccessible person... it is just a word processor that will save the universe and is critical, that has a bug that cannot be corrected because there is a bug in 1+1=2, that dont save .doc files never and you do not want to fix!!
+      ////////      final crazyness!!
+      /// the one who talks about corruption don't make any move because, you know... Iam still trying to discover the continuation of you know...
+
+      // the most difficult error to ignore is the logic error in this person mind!!! For example, a difficult program to be whenever, wherever, not and ever used...
+      // an access violation is so shallow that can be totally ignored and continued and unrolled... the hardware will scramble the bits for your peace of mind after you *****TRYING***** to write to inaccessible place because in fact it is teeling that you f***ed evertyhing in the universe of perfection you are!!
+      // I know what are you feeling... the Community Helvetica (Swiss) sign... yes, you need help... probably me tooo...
+      // the red sign may be is telling for me to create a really great program... but if it happens in the customer... maybe they never detect that need to be launched now movie-with-todays-bad-special-effects-star-wars-watched-mainly-in-last-century...
+      // use, the entire and all pallette of swiss knives to improve and yourslef and don't show it to your customer... ... 6 dots... ...
+
+      // This is classy:
+      // Try Catch!!
+
       user_tree_common_construct();
 
    }
