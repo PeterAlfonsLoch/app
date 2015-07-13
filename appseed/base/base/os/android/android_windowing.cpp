@@ -1583,6 +1583,9 @@ bool is_message_only_window(oswindow window)
 }
 
 
+int Java_keyCode_to_virtual_key_code(int keyCode);
+
+
 
 extern "C"
 void android_mouse(unsigned int message, float x, float y)
@@ -1649,5 +1652,76 @@ void android_l_button_up(float x, float y)
 {
 
    android_mouse(WM_LBUTTONUP, x, y);
+
+}
+
+
+
+extern "C"
+void android_key(unsigned int message, int keyCode)
+{
+
+   if (::aura::system::g_p == NULL)
+      return;
+
+   if (::aura::system::g_p->m_pbasesystem == NULL)
+      return;
+
+   if (::aura::system::g_p->m_pbasesystem->m_posdata == NULL)
+      return;
+
+   if (::aura::system::g_p->m_pbasesystem->m_posdata->m_pui == NULL)
+      return;
+
+   MESSAGE msg;
+
+   ZERO(msg);
+
+   msg.hwnd = ::aura::system::g_p->m_pbasesystem->m_posdata->m_pui->get_handle();
+
+   msg.message = message;
+
+   msg.wParam = Java_keyCode_to_virtual_key_code(keyCode);
+
+   msg.lParam = 0;
+
+   ::aura::system::g_p->m_pbasesystem->m_posdata->m_pui->message_handler(&msg);
+
+
+}
+
+
+extern "C"
+void android_key_down(int keyCode)
+{
+
+   android_key(WM_KEYDOWN, keyCode);
+
+}
+
+
+
+extern "C"
+void android_key_up(int keyCode)
+{
+
+   android_key(WM_KEYUP, keyCode);
+
+}
+
+
+
+
+int Java_keyCode_to_virtual_key_code(int keyCode)
+{
+
+   if (keyCode >= 29 && keyCode <= 54)
+   {
+
+      return 'A' + keyCode - 29;
+
+   }
+
+   return VK_SPACE;
 
 }

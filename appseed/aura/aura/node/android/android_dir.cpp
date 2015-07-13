@@ -14,11 +14,13 @@ namespace android
       ::file::dir::system(papp)
    {
 
-      string strCa2Module = ca2module();
+      //string strCa2Module = ca2module();
 
-      m_strCa2 = strCa2Module;
+      string strCacheDir = string(System.m_pandroidinitdata->m_pszCacheDir);
 
-      m_strCa2 -=2;
+      m_strCa2 = strCacheDir;
+
+      //m_strCa2 -=2;
 
    }
 
@@ -1011,6 +1013,15 @@ namespace android
 
       doc.load(Application.file().as_string(appdata() / "configuration\\directory.xml"));
 
+
+      m_strCommonAppData = m_strCa2 / "commonappdata"; 
+
+      mk(m_strCommonAppData, get_app());
+
+      if (!is(m_strCommonAppData, get_app()))
+         return false;
+
+
       if(doc.get_root()->get_name() == "directory_configuration")
       {
 
@@ -1019,16 +1030,9 @@ namespace android
          m_strNetSeedFolder = doc.get_root()->get_child_value("netseed");
 
       }
-#ifdef LINUX
-
-      m_strTimeFolder = "/var/tmp/ca2/time";
-
-#else
 
       if(m_strTimeFolder.is_empty())
          m_strTimeFolder = appdata()/ "time";
-
-#endif
 
       if(m_strNetSeedFolder.is_empty())
          m_strNetSeedFolder = element()/ "net/netseed";
@@ -1086,7 +1090,7 @@ namespace android
          CSIDL_COMMON_APPDATA,
          FALSE);*/
 
-      str = ::file::path(getenv("HOME")) / ".ca2/appdata";
+      str = string(System.m_pandroidinitdata->m_pszCacheDir) / ".ca2/appdata";
       string strRelative;
       strRelative = element();
       //index iFind = strRelative.find(':');
@@ -1241,7 +1245,7 @@ namespace android
    ::file::path dir::userquicklaunch(::aura::application * papp)
    {
    
-	   return ::file::path(getenv("HOME")) /  "Microsoft\\Internet Explorer\\Quick Launch";
+	   return string(System.m_pandroidinitdata->m_pszCacheDir) /  "Microsoft\\Internet Explorer\\Quick Launch";
    
    }
 
