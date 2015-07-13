@@ -48,7 +48,7 @@ namespace aura
 
 } // namespace aura
 
-#elif WINDOWS
+#elif defined(WINDOWS)
 
 namespace aura
 {
@@ -56,8 +56,41 @@ namespace aura
    class Timer
    {
    public:
+
+
       HANDLE               m_hTimerQueue;
       HANDLE               m_hTimer;
+      timer *              m_ptimer;
+
+
+      Timer()
+      {
+
+         m_hTimer = NULL;
+
+         m_ptimer = NULL;
+         
+         m_hTimerQueue = CreateTimerQueue();
+
+         if(NULL == m_hTimerQueue)
+         {
+
+            throw - 1;
+
+         }
+
+      }
+
+      ~Timer()
+      {
+
+#if defined(WINDOWSEX)
+
+         DeleteTimerQueue(m_hTimerQueue);
+
+#endif
+
+      }
 
    };
 }
@@ -73,6 +106,16 @@ namespace aura
       void *               m_queue;
       void *               m_timer;
       timer *              m_ptimer;
+
+      Timer()
+      {
+
+         m_queue = NULL;
+         m_timer = NULL;
+         m_ptimer = NULL;
+
+
+      }
 
    };
 }
@@ -100,6 +143,8 @@ namespace aura
 
       Timer()
       {
+
+         m_ptimer = NULL;
 
          ZERO(m_sev);
 
@@ -174,29 +219,9 @@ timer::timer(::aura::application * papp, uint_ptr uiTimer, PFN_TIMER pfnTimer, v
 
    // Create the timer queue.
 
-#if defined(WINDOWSEX)
-
-   hTimerQueue = CreateTimerQueue();
-
-   if (NULL == hTimerQueue)
-   {
-
-      throw - 1;
-
-   }
-
-#elif defined(__APPLE__)
-
-   m_queue = NULL;
-   m_timer = NULL;
-
-#else
-
    m_ptimer = new ::aura::Timer;
 
    m_ptimer->m_ptimer = this;
-
-#endif
 
    m_bRet = false;
    m_bKill = false;
@@ -207,19 +232,7 @@ timer::~timer()
 
    stop();
 
-#if defined(WINDOWSEX)
-
-   DeleteTimerQueue(hTimerQueue);
-
-#elif defined(__APPLE__)
-
-   //    dispatch_release(m_queue);
-
-#else
-
    ::aura::del(m_ptimer);
-
-#endif
 
 }
 
@@ -272,7 +285,7 @@ bool timer::start(int millis, bool bPeriodic)
 
 #elif defined(WINDOWS)
 
-   if (!CreateTimerQueueTimer(&hTimer, hTimerQueue, (WAITORTIMERCALLBACK)aura_timer_TimerRoutine, this, m_dwMillis, 0, WT_EXECUTEONLYONCE))
+   if(!CreateTimerQueueTimer(&m_ptimer->m_hTimer,m_ptimer->m_hTimerQueue,(WAITORTIMERCALLBACK)aura_timer_TimerRoutine,m_ptimer,m_dwMillis,0,WT_EXECUTEONLYONCE))
    {
 
       return false;
@@ -342,12 +355,12 @@ void timer::stop()
 
 #elif defined(WINDOWS)
 
-   if (hTimer != NULL)
+   if(m_ptimer->m_hTimer != NULL)
    {
 
-      DeleteTimerQueueTimer(hTimerQueue, hTimer, INVALID_HANDLE_VALUE);
+      DeleteTimerQueueTimer(m_ptimer->m_hTimerQueue,m_ptimer->m_hTimer,INVALID_HANDLE_VALUE);
 
-      hTimer = NULL;
+      m_ptimer->m_hTimer = NULL;
 
    }
 
@@ -442,7 +455,7 @@ bool timer::call_on_timer()
       if (m_bPeriodic)
       {
 
-         if (!CreateTimerQueueTimer(&hTimer, hTimerQueue, (WAITORTIMERCALLBACK)aura_timer_TimerRoutine, this, m_dwMillis, 0, WT_EXECUTEONLYONCE))
+         if(!CreateTimerQueueTimer(&m_ptimer->m_hTimer,m_ptimer->m_hTimerQueue,(WAITORTIMERCALLBACK)aura_timer_TimerRoutine,m_ptimer,m_dwMillis,0,WT_EXECUTEONLYONCE))
          {
 
             return false;
@@ -496,12 +509,12 @@ bool timer::on_timer()
 VOID CALLBACK aura_timer_TimerRoutine(PVOID lpParam, BOOLEAN TimerOrWaitFired)
 {
 
-   timer * ptimer = (timer *)lpParam;
+   ::aura::Timer * ptimer = (::aura::Timer *)lpParam;
 
    try
    {
 
-      ptimer->call_on_timer();
+      ptimer->m_ptimer->call_on_timer();
 
    }
    catch (::exception::base & e)
