@@ -690,7 +690,7 @@ namespace android
 
 
       ::user::interaction * get_next(bool bIgnoreChildren, int32_t * piLevel);
-
+      virtual void on_keyboard_focus(::user::elemental * pfocus);
 
    };
 

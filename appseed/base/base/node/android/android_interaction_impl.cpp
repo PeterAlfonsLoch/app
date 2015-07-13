@@ -5418,6 +5418,15 @@ namespace android
       m_guieptraMouseHover.remove(pinterface);
    }
 
+   void interaction_impl::on_keyboard_focus(::user::elemental * pfocus)
+   {
+
+      UNREFERENCED_PARAMETER(pfocus);
+
+      System.m_pandroidinitdata->m_bShowKeyboard = true;
+
+
+   }
 
 
 } // namespace android

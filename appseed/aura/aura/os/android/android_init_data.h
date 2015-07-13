@@ -11,6 +11,7 @@ public:
    int            m_iScreenHeight;
    const char *   m_pszCommandLine;
    const char *   m_pszCacheDir;
+   bool           m_bShowKeyboard;
 
 };
 
