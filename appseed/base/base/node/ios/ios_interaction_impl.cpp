@@ -4029,7 +4029,10 @@ namespace ios
    void interaction_impl::GetClientRect(RECT64 * lprect)
    {
       
-      ASSERT(::IsWindow(get_handle()));
+      if(!::IsWindow(get_handle()))
+         return;
+
+//      ASSERT(::IsWindow(get_handle()));
       
       rect rect32;
       

@@ -80,8 +80,8 @@ CLASS_DECL_AURA int throw_assert_exception(const char * lpszFileName,int iLineNu
 #ifdef __cpluplus
 inline int void_ptr_is_null(const void * p)
 {
-#ifdef ANDROID
-   return ((INT_PTR) p) == NULL;
+#if defined(ANDROID) || defined(APPLE_IOS)
+   return ((INT_PTR) p) == 0;
 #else
    return ((INT_PTR)p) < 4096;
 #endif
@@ -89,8 +89,8 @@ inline int void_ptr_is_null(const void * p)
 #else
 static int void_ptr_is_null(const void * p)
 {
-#ifdef ANDROID
-   return ((INT_PTR)p) == NULL;
+#if defined(ANDROID) || defined(APPLE_IOS)
+   return ((INT_PTR)p) == 0;
 #else
    return ((INT_PTR)p) < 4096;
 #endif

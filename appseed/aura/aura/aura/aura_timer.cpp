@@ -294,14 +294,14 @@ bool timer::start(int millis, bool bPeriodic)
 
 #elif defined(__APPLE__)
 
-   m_queue = CreateDispatchQueue();
+   m_ptimer->m_queue = CreateDispatchQueue();
 
-   if (m_queue == NULL)
+   if (m_ptimer->m_queue == NULL)
       return false;
 
-   m_timer = CreateDispatchTimer(bPeriodic ? millis : 0, millis, m_queue, aura_timer, this);
+   m_ptimer->m_timer = CreateDispatchTimer(bPeriodic ? millis : 0, millis, m_ptimer->m_queue, aura_timer, m_ptimer);
 
-   if (m_timer == NULL)
+   if (m_ptimer->m_timer == NULL)
       return false;
 
 #else
@@ -366,23 +366,23 @@ void timer::stop()
 
 #elif defined(__APPLE__)
 
-   if (m_timer != NULL)
+   if (m_ptimer->m_timer != NULL)
    {
 
-      CancelDispatchSource(m_timer);
+      CancelDispatchSource(m_ptimer->m_timer);
 
-      ReleaseDispatch(m_timer);
+      ReleaseDispatch(m_ptimer->m_timer);
 
-      m_timer = NULL;
+      m_ptimer->m_timer = NULL;
 
    }
 
-   if (m_queue != NULL)
+   if (m_ptimer->m_queue != NULL)
    {
 
-      ReleaseDispatch(m_queue);
+      ReleaseDispatch(m_ptimer->m_queue);
 
-      m_queue = NULL;
+      m_ptimer->m_queue = NULL;
 
    }
 
@@ -534,9 +534,9 @@ VOID CALLBACK aura_timer_TimerRoutine(PVOID lpParam, BOOLEAN TimerOrWaitFired)
 void aura_timer(void * p)
 {
 
-   timer * ptimer = (timer *)p;
-
-   ptimer->call_on_timer();
+   ::aura::Timer * ptimer = (::aura::Timer *)p;
+   
+   ptimer->m_ptimer->call_on_timer();
 
 }
 

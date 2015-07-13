@@ -12,6 +12,7 @@
 		077C88F01B51A04500AB2A41 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A371D01B25EB8D00E4F888 /* libaura.dylib */; };
 		077C88F11B51A04E00AB2A41 /* libaxiszlib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A371F11B25EC6000E4F888 /* libaxiszlib.dylib */; };
 		077C88F41B51A06D00AB2A41 /* libaxisfreeimage.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A371651B25DE2A00E4F888 /* libaxisfreeimage.dylib */; };
+		0790F4D81B543C700040A8FD /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 077C88D71B519D3900AB2A41 /* libaura.dylib */; };
 		07A371B11B25E34E00E4F888 /* PluginPNG.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A371891B25E34D00E4F888 /* PluginPNG.cpp */; };
 		07A371B21B25E34E00E4F888 /* png.c in Sources */ = {isa = PBXBuildFile; fileRef = 07A371981B25E34E00E4F888 /* png.c */; };
 		07A371B31B25E34E00E4F888 /* png.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A371991B25E34E00E4F888 /* png.h */; };
@@ -197,6 +198,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0790F4D81B543C700040A8FD /* libaura.dylib in Frameworks */,
 				077A00DA1B4D516E001C85FF /* libaxiszlib.dylib in Frameworks */,
 				077A00D91B4D5164001C85FF /* libaxisfreeimage.dylib in Frameworks */,
 			);

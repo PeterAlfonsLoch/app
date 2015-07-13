@@ -113,7 +113,7 @@ namespace sockets
       m_strSocketProtocol = strProtocol;
       int32_t protno = 0;
 #ifdef ANDROID
-      if (strProtocol.CollateNoCase("tcp") == 0)
+      if (strProtocol.CompareNoCase("tcp") == 0)
       {
          protno = 6;
       }
@@ -131,7 +131,7 @@ namespace sockets
       }
       if (p != NULL)
       {
-         protno = p->p_proto
+         protno = p->p_proto;
       }
 #endif
 
