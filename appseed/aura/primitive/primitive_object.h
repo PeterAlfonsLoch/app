@@ -27,7 +27,7 @@ public:
 
    enum flag
    {
-      
+
       flag_auto_clean = 1 << 0,
       flag_discard_to_factory = 1 << 1,
       flag_ready_for_delete = 1 << 2,
@@ -88,7 +88,7 @@ public:
 
    inline void set_ca_flag(object::flag eflag)
    {
-      
+
       m_ulFlags |= eflag;
 
    }
@@ -188,7 +188,7 @@ public:
    // virtual void on_request(sp(command_line) pcommandline);
    virtual void on_request(sp(::create) pcreatecontext);
 
-   
+
 
 
    // OBJECT :: object :> is a waitable
@@ -376,8 +376,15 @@ inline int64_t release(c_derived * & pca)
       return -1;
    c_derived * p = pca;
    pca = NULL;
-   int64_t count = p->release();
-   return count;
+   try
+   {
+      int64_t count = p->release();
+      return count;
+   }
+   catch(...)
+   {
+      return -1;
+   }
 }
 
 

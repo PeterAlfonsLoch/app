@@ -69,7 +69,7 @@ namespace aura
          m_hTimer = NULL;
 
          m_ptimer = NULL;
-         
+
          m_hTimerQueue = CreateTimerQueue();
 
          if(NULL == m_hTimerQueue)
@@ -225,6 +225,7 @@ timer::timer(::aura::application * papp, uint_ptr uiTimer, PFN_TIMER pfnTimer, v
 
    m_bRet = false;
    m_bKill = false;
+   m_bDeal = false;
 }
 
 timer::~timer()
@@ -407,6 +408,8 @@ bool timer::call_on_timer()
 
          ::set_thread(this);
 
+
+
       }
 
       synch_lock sl(m_pmutex);
@@ -535,7 +538,7 @@ void aura_timer(void * p)
 {
 
    ::aura::Timer * ptimer = (::aura::Timer *)p;
-   
+
    ptimer->m_ptimer->call_on_timer();
 
 }

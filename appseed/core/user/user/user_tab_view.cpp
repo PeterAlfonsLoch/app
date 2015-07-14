@@ -162,9 +162,9 @@ namespace user
       {
          psplitview->SetSplitOrientation(orientation_vertical);
       }
-      
+
       psplitview->SetPaneCount(2);
-      
+
       psplitview->set_position_rate(0,0.5);
 
       psplitview->initialize_split_layout();
@@ -386,7 +386,7 @@ namespace user
       {
          m_pviewcreator->on_show_view();
       }
-      
+
       if(m_pviewdata->m_pwnd == NULL && m_pviewdata->m_pholder != NULL)
       {
 
@@ -406,7 +406,7 @@ namespace user
          rect rectTabClient = get_data()->m_rectTabClient;
          if(rectTabClient.area() > 0)
          {
-            
+
             rectTabClient -= rectTabClient.top_left();
             if(rectClient != rectTabClient)
             {
@@ -658,7 +658,7 @@ namespace user
 
       DestroyWindow();
 
-      delete this;
+      //delete this;
 
       pobj->m_bRet = true;
 
