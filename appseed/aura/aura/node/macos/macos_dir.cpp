@@ -1594,8 +1594,18 @@ namespace macos
       m_strCa2 -= 2;
         
 #endif
-
-      ::file::path str = ::file::path(getenv("HOME")) / ".ca2/appdata";
+      ::file::path pathHome;
+      
+      pathHome = ::file::path(getenv("HOME"));
+      
+      if(pathHome.is_empty())
+      {
+         
+         pathHome = m_strCa2 / "default_user";
+         
+      }
+      
+      ::file::path str =  pathHome / ".ca2/appdata";
  
       string strRelative;
       
@@ -1617,7 +1627,9 @@ namespace macos
       str -= 2;
          
       m_strCommonAppData = str / "commonappdata";
-       
+      
+      m_pathUser = pathHome / ".ca2";
+      
       xml::document doc(get_app());
           
       string strPath = appdata() / "configuration\\directory.xml";

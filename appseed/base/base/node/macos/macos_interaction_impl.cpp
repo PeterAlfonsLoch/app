@@ -108,7 +108,6 @@ namespace macos
    interaction_impl::~interaction_impl()
    {
 
-
    }
 
 
@@ -825,9 +824,11 @@ namespace macos
 
       if(get_handle() == NULL)
          return false;
+      
+//      round_window_close();
 
       bool bResult = ::user::interaction_impl::DestroyWindow();
-
+      
       return bResult;
 
    }
@@ -2924,7 +2925,7 @@ namespace macos
 
 //      if(!System.get_twf()->m_bProDevianMode)
       {
-         SetTimer(2049, 184, NULL);
+         SetTimer(2049, 84, NULL);
       }
 
    }

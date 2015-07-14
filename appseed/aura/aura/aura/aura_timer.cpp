@@ -106,6 +106,7 @@ namespace aura
       void *               m_queue;
       void *               m_timer;
       timer *              m_ptimer;
+      bool                 m_bFirst;
 
       Timer()
       {
@@ -299,8 +300,10 @@ bool timer::start(int millis, bool bPeriodic)
 
    if (m_ptimer->m_queue == NULL)
       return false;
+   
+   m_ptimer->m_bFirst = true;
 
-   m_ptimer->m_timer = CreateDispatchTimer(bPeriodic ? millis : 0, millis, m_ptimer->m_queue, aura_timer, m_ptimer);
+   m_ptimer->m_timer = CreateDispatchTimer(millis, MAX(1, millis / 20), m_ptimer->m_queue, aura_timer, m_ptimer);
 
    if (m_ptimer->m_timer == NULL)
       return false;
@@ -432,18 +435,12 @@ bool timer::call_on_timer()
       if (m_bKill)
       {
 
-         if (m_bDestroying)
-         {
+         sl.m_pobjectSync = NULL;
 
-            sl.unlock();
-
-         }
-         else
+         if (!m_bDestroying)
          {
 
             m_bDestroying = true;
-
-            sl.unlock();
 
             delete this;
 
@@ -467,6 +464,17 @@ bool timer::call_on_timer()
 
       }
 
+#elif defined(__APPLE__)
+      
+      if (!m_bPeriodic)
+      {
+
+         stop();
+         
+         return false;
+         
+      }
+      
 
 #endif
 
@@ -538,6 +546,15 @@ void aura_timer(void * p)
 {
 
    ::aura::Timer * ptimer = (::aura::Timer *)p;
+   
+   if(ptimer->m_bFirst)
+   {
+      
+      ptimer->m_bFirst = false;
+      
+      return;
+      
+   }
 
    ptimer->m_ptimer->call_on_timer();
 

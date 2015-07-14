@@ -98,9 +98,9 @@ namespace exception
       ~result_sp() { release(); }
 
 
-      operator bool() const { return is_null(); }
+      bool succeeded() const { return is_null(); }
 
-      bool failed() {return !is_null();}
+      bool failed() const {return !is_null();}
 
       void add(exception * pexception)
       {

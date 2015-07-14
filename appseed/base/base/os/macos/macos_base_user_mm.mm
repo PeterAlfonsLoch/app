@@ -156,32 +156,32 @@ WINBOOL order_front_nswindow(oswindow hwnd)
 }
 
 
-CLASS_DECL_THREAD NSAutoreleasePool * g_ns_pool = NULL;
-
-
-
-
-NSAutoreleasePool * new_ns_pool()
-{
-   
-   NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
-   
-   return pool;
-   
-}
-
-
-void release_pool(NSAutoreleasePool * pool)
-{
-   
-   [pool release];
-   
-}
+//CLASS_DECL_THREAD NSAutoreleasePool * g_ns_pool = NULL;
+//
+//
+//
+//
+//NSAutoreleasePool * new_ns_pool()
+//{
+//   
+//   NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+//   
+//   return pool;
+//   
+//}
+//
+//
+//void release_pool(NSAutoreleasePool * pool)
+//{
+//   
+//   [pool release];
+//   
+//}
 
 void on_start_thread()
 {
    
-   g_ns_pool = new_ns_pool();
+//   g_ns_pool = new_ns_pool();
    
 }
 
@@ -189,9 +189,9 @@ void on_start_thread()
 void on_end_thread()
 {
    
-   release_pool(g_ns_pool);
+//   release_pool(g_ns_pool);
    
-   g_ns_pool = NULL;
+  // g_ns_pool = NULL;
    
 }
 

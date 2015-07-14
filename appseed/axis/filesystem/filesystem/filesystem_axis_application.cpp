@@ -431,7 +431,7 @@ namespace file
                   try
                   {
 
-                     if (spfile->open(strFile, nOpenFlags))
+                     if (spfile->open(strFile, nOpenFlags).succeeded())
                      {
                         TRACE("from_exist_cache:\"" + strPath + "\"");
                         return spfile;
@@ -484,7 +484,7 @@ namespace file
 
                   spfile = new ::sockets::http_buffer(get_app());
 
-                  if (!(cres = spfile->open(strPath, nOpenFlags)))
+                  if ((cres = spfile->open(strPath, nOpenFlags)).failed())
                   {
                      sl.lock();
 

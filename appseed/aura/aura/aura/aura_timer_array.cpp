@@ -16,16 +16,8 @@ namespace aura
    timer_array::~timer_array()
    {
 
-      MAP::pair * ppair = m_map.PGetFirstAssoc();
-
-      while(ppair != NULL)
-      {
-
-         delete ppair->m_element2;
-
-         ppair = m_map.PGetNextAssoc(ppair);
-
-      }
+      delete_all_timers(); // besides virtual
+      
 
    }
 
@@ -133,6 +125,26 @@ namespace aura
    void timer_array::_001OnTimer(timer * ptimer)
    {
 
+   }
+
+   void timer_array::delete_all_timers()
+   {
+   
+      MAP::pair * ppair = NULL;
+      
+   restart:
+      
+      ppair = m_map.PGetFirstAssoc();
+   
+      if(ppair != NULL)
+      {
+      
+         delete_timer(ppair->m_element1);
+         
+         goto restart;
+      
+      }
+      
    }
 
 

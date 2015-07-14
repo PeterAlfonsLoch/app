@@ -395,13 +395,13 @@
 //      [m_roundwindow makeMainWindow];
 //
 //   }
-   
-   if([[NSApp orderedWindows] firstObject] != m_roundwindow)
-   {
-   
-      [m_roundwindow orderFront:self];
-      
-   }
+//   
+//   if([[NSApp orderedWindows] firstObject] != m_roundwindow)
+//   {
+//   
+//      [m_roundwindow orderFront:self];
+//      
+//   }
 
    return YES;
    
@@ -426,8 +426,10 @@
       return YES;
 }*/
 
-//- (BOOL) becomeFirstResponder
-//{
+- (BOOL) becomeFirstResponder
+{
+   return YES;
+}
 //   if(m_bNoActivate)
   //    return NO;
   // else
@@ -442,12 +444,12 @@
 
 //- (BOOL) resignFirstResponder
 //{
-   
-   //if(m_bNoActivate)
-     // return YES;
-   //else
-  //    return YES;
-   
+//   return YES;
+//   //if(m_bNoActivate)
+//     // return YES;
+//   //else
+//  //    return YES;
+//   
 //}
 
 

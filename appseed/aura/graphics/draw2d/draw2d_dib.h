@@ -98,6 +98,8 @@ namespace draw2d
       virtual void construct(int32_t cx, int32_t cy);
 
       virtual void stretch_dib(dib * pdib);
+      
+      virtual size get_size();
 
       void rate_rgb(int iMul,int iDiv);
       virtual bool dc_select(bool bSelect = true);

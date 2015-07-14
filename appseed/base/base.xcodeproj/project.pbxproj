@@ -10,7 +10,6 @@
 		077A01381B4D539E001C85FF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 077A01371B4D539E001C85FF /* UIKit.framework */; };
 		077A013A1B4D53AC001C85FF /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 077A01391B4D53AC001C85FF /* CoreText.framework */; };
 		077A013C1B4D53B4001C85FF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 077A013B1B4D53B4001C85FF /* CoreGraphics.framework */; };
-		077A013D1B4D53CB001C85FF /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A5E9E0219B7623B00949252 /* libaura.dylib */; };
 		077A013E1B4D53D8001C85FF /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A371251B25D4A000E4F888 /* libaxis.dylib */; };
 		077A013F1B4D53E4001C85FF /* libaxiszlib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEEBDA319C581CB00866C9E /* libaxiszlib.dylib */; };
 		077A01401B4D53F1001C85FF /* libaxisbzip2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEEADDC19C4FB3400866C9E /* libaxisbzip2.dylib */; };
@@ -222,6 +221,13 @@
 			remoteGlobalIDString = 07108AD51B4C95F600A28F80;
 			remoteInfo = aurasqlite_ios;
 		};
+		079F60D61B54B4370055BC0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A5E9DF919B7623B00949252 /* aura.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 077A080B1B4D7403001C85FF;
+			remoteInfo = ios_aura;
+		};
 		07A371221B25D4A000E4F888 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 07A3711C1B25D49F00E4F888 /* axis.xcodeproj */;
@@ -256,13 +262,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 9A98A6151771D67E000AE16E;
 			remoteInfo = aura;
-		};
-		9A5E9E0119B7623B00949252 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A5E9DF919B7623B00949252 /* aura.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9AE24D341904CEFE001AEFFB;
-			remoteInfo = aura_ios;
 		};
 		9A5E9E0319B7623B00949252 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -553,7 +552,6 @@
 				077A01401B4D53F1001C85FF /* libaxisbzip2.dylib in Frameworks */,
 				077A013F1B4D53E4001C85FF /* libaxiszlib.dylib in Frameworks */,
 				077A013E1B4D53D8001C85FF /* libaxis.dylib in Frameworks */,
-				077A013D1B4D53CB001C85FF /* libaura.dylib in Frameworks */,
 				077A013C1B4D53B4001C85FF /* CoreGraphics.framework in Frameworks */,
 				077A013A1B4D53AC001C85FF /* CoreText.framework in Frameworks */,
 				077A01381B4D539E001C85FF /* UIKit.framework in Frameworks */,
@@ -914,7 +912,7 @@
 			isa = PBXGroup;
 			children = (
 				9A5E9E0019B7623B00949252 /* libaura.dylib */,
-				9A5E9E0219B7623B00949252 /* libaura.dylib */,
+				079F60D71B54B4370055BC0E /* libaura.dylib */,
 				9A5E9E0419B7623B00949252 /* aura_iosTests.xctest */,
 			);
 			name = Products;
@@ -1262,6 +1260,13 @@
 			remoteRef = 07108DE41B4C9A4600A28F80 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		079F60D71B54B4370055BC0E /* libaura.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libaura.dylib;
+			remoteRef = 079F60D61B54B4370055BC0E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		07A371231B25D4A000E4F888 /* libaxis.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
@@ -1288,13 +1293,6 @@
 			fileType = "compiled.mach-o.dylib";
 			path = libaura.dylib;
 			remoteRef = 9A5E9DFF19B7623B00949252 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9A5E9E0219B7623B00949252 /* libaura.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libaura.dylib;
-			remoteRef = 9A5E9E0119B7623B00949252 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		9A5E9E0419B7623B00949252 /* aura_iosTests.xctest */ = {
@@ -1575,6 +1573,7 @@
 				CLANG_ANALYZER_MEMORY_MANAGEMENT = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_STATIC_ANALYZER_MODE = deep;
 				CLANG_STATIC_ANALYZER_MODE_ON_ANALYZE_ACTION = deep;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -1638,6 +1637,7 @@
 				CLANG_ANALYZER_MEMORY_MANAGEMENT = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_STATIC_ANALYZER_MODE = deep;
 				CLANG_STATIC_ANALYZER_MODE_ON_ANALYZE_ACTION = deep;
 				CLANG_WARN_BOOL_CONVERSION = YES;

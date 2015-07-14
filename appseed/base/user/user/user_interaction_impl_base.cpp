@@ -1063,6 +1063,18 @@ namespace user
 
       if(m_pui == NULL)
          return false;
+      
+      try
+      {
+      
+         delete_all_timers();
+         
+      }
+      catch(...)
+      {
+         
+      }
+      
 
       {
 

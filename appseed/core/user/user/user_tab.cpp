@@ -1213,7 +1213,7 @@ namespace user
          else if(iPane != iSel)
          {
             get_data()->m_iDragTab = iPane;
-            SetTimer(5432187, 1230, NULL);
+            SetTimer(5432187, 840, NULL);
             pmouse->m_bRet = true;
             pmouse->set_lresult(1);
          }

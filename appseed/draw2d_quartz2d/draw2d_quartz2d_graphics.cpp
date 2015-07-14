@@ -1471,7 +1471,20 @@ namespace draw2d_quartz2d
          }
          
          
-         CGImageRef imageDst = CGBitmapContextCreateImage((CGContextRef) get_os_data());
+         CGImageRef imageDst;
+         
+         if(m_pdib == NULL)
+         {
+            
+            imageDst = NULL;
+            
+         }
+         else 
+         {
+            
+            imageDst = CGBitmapContextCreateImage((CGContextRef) get_os_data());
+            
+         }
          
          CGImageRef image = CGBitmapContextCreateImage((CGContextRef) pgraphicsSrc->get_os_data());
          

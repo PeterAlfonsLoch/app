@@ -744,7 +744,7 @@ namespace user
 
          string str;
 
-         str.Format("uichild::Redraw get_app() => %d", m_pauraapp);
+         str.Format("uichild::Redraw m_pauraapp == NULL");
 
          OutputDebugString(str);
 
@@ -752,11 +752,11 @@ namespace user
       else if (m_pauraapp != NULL)
       {
 
-         string str;
+//         string str;
 
-         str.Format("uichild::Redraw System => %d", m_pauraapp->m_pbasesystem);
+//         str.Format("uichild::Redraw System => %d", m_pauraapp->m_pbasesystem);
 
-         OutputDebugString(str);
+  //       OutputDebugString(str);
 
       }
 

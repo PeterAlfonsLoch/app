@@ -44,7 +44,14 @@ void ns_app_run()
 void round_window::round_window_close()
 {
    
+   if(m_proundwindow == NULL)
+      return;
+   
+   m_proundwindow->m_pwindow = NULL;
+   
    [[m_proundwindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE] close];
+   
+   m_proundwindow = NULL;
    
 }
 

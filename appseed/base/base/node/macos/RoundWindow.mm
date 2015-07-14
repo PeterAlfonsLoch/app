@@ -60,7 +60,7 @@
    m_pwindow = NULL;
 //	[[NSNotificationCenter defaultCenter] removeObserver:self];
    
-	[super dealloc];
+//	[super dealloc];
    
 }
 
@@ -160,6 +160,16 @@
    
 }
 */
+
+//- (BOOL) acceptsFirstResponder
+//{
+//   return YES;
+//}
+//
+//- (BOOL) becomeFirstResponder
+//{
+//   return YES;
+//}
 
 /*
  

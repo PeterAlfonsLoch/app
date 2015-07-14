@@ -359,7 +359,20 @@ namespace http
    {
 
       xml::document doc(get_app());
-      string str = Application.file().as_string(System.dir().appdata()/"proxy.xml");
+      ::file::path pathProxyXml = System.dir().appdata()/"proxy.xml";
+      
+      if(!Application.file().exists(pathProxyXml))
+      {
+         
+         pproxy->m_bDirect = true;
+         
+         return;
+         
+      }
+      
+      string str = Application.file().as_string(pathProxyXml);
+      
+      
       if(str.has_char() && str.find("<") < 0 && str.find(">") < 0)
       {
          stringa stra;
@@ -374,20 +387,29 @@ namespace http
             }
             else
             {
+               
                pproxy->m_iPort = 80;
+               
             }
+            
             return;
+            
          }
+         
       }
-      bool bOk = false;
+      
       if(!doc.load(str))
       {
+         
          pproxy->m_bDirect = true;
+         
+         return;
+         
       }
-      else
-      {
-         bOk = true;
-         string strHost = System.url().get_server(pszUrl);
+      
+      bool bOk = true;
+
+      string strHost = System.url().get_server(pszUrl);
          int32_t iHostPort = System.url().get_port(pszUrl);
          ::net::address ipHost(strHost, iHostPort);
          for(int32_t iNode = 0; iNode < doc.get_root()->get_children_count(); iNode++)
@@ -428,7 +450,7 @@ namespace http
             pproxy->m_iPort = doc.get_root()->attr("port");
             return;
          }
-      }
+      
 
       if(!bOk)
       {
@@ -477,9 +499,9 @@ namespace http
 
 
          pproxy->m_bDirect = true;
-
-
+         
       }
+
 
 
    }
