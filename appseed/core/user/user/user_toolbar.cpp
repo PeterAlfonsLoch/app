@@ -1586,7 +1586,7 @@ throw todo(get_app());
 
       //   ::aura::application * papp = (get_app());
 
-#if defined(WINDOWSEX) || defined(LINUX) || defined(METROWIN) || defined(APPLEOS)
+//#if defined(WINDOWSEX) || defined(LINUX) || defined(METROWIN) || defined(APPLEOS)
 
       sp(::user::toolbar_item) item;
 
@@ -1621,11 +1621,11 @@ throw todo(get_app());
          }
       }
 
-#else
+//#else
 
-      throw todo(get_app());
+  //    throw todo(get_app());
 
-#endif
+//#endif
 
       return TRUE;
 

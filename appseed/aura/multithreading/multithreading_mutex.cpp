@@ -242,13 +242,24 @@ sync_object(m.m_strName)
 
 #else
 
-mutex::mutex(const char * pstrName, key_t key, int32_t semid) :
+mutex::mutex(::aura::application * papp, const char * pstrName, void * psem, bool bOwner) :
+   object(papp),
    sync_object(pstrName)
 {
-
+   
+   m_bOwner       = bOwner;
    m_strName      = pstrName;
-   m_key          = key;
-   m_semid        = semid;
+   m_semid        = (int32_t) (int_ptr)psem;
+
+}
+
+mutex::mutex(const mutex & m) :
+   object(m.get_app()),
+   sync_object(m.m_strName)
+{
+
+   m_bOwner       = false;
+   m_semid        = m.m_semid;
 
 }
 

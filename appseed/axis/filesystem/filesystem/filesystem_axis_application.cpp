@@ -601,6 +601,7 @@ namespace file
             }
 
          }
+#ifdef METROWIN
          else if(::str::begins_ci(strPath,"winmetro-Pictures:\\\\"))
          {
 
@@ -609,6 +610,7 @@ namespace file
             cres = spfile->open(strPath,nOpenFlags);
 
          }
+#endif
          else
          {
 

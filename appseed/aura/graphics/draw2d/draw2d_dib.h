@@ -66,7 +66,7 @@ namespace draw2d
 
       BITMAPINFO        m_info;
       COLORREF *        m_pcolorref;
-      class size        m_size;
+      class ::size      m_size;
       int32_t           m_iScan;
       bool              m_bMapped; // optionally used by implementation
       descriptor        m_descriptor;
@@ -99,7 +99,7 @@ namespace draw2d
 
       virtual void stretch_dib(dib * pdib);
       
-      virtual size get_size();
+      virtual ::size get_size() const; 
 
       void rate_rgb(int iMul,int iDiv);
       virtual bool dc_select(bool bSelect = true);
@@ -264,7 +264,7 @@ namespace draw2d
       //virtual int32_t height();
       inline int64_t area() const{ return m_size.area(); }
       virtual double pi() const;
-      inline class size size() const { return m_size; }
+      inline class ::size size() const { return m_size; }
 
       virtual void write(::file::ostream & ostream) const;
       virtual void read(::file::istream & istream);
