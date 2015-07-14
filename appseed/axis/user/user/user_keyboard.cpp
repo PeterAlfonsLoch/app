@@ -2,7 +2,6 @@
 //#include "base/user/user.h"
 
 
-
 #if defined(LINUX) || defined(SOLARIS)
 //#include "base/base/os/x11/x11_keyboard.h"
 #elif defined(MACOS)
@@ -209,6 +208,10 @@ namespace user
 
       string str = Application.file().as_string(pszPath);
 
+      output_debug_string(pszPath);
+
+      output_debug_string(str);
+   
       if(str.is_empty())
       {
          TRACE0("unable to load os keyboard layout");
@@ -553,7 +556,7 @@ namespace user
    void keyboard::translate_os_key_message(::message::key * pkey)
    {
 
-#ifdef WINDOWSEX
+#if defined(WINDOWSEX)
 
       if(pkey->m_bExt)
       {

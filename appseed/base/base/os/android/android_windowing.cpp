@@ -1583,7 +1583,7 @@ bool is_message_only_window(oswindow window)
 }
 
 
-int Java_keyCode_to_virtual_key_code(int keyCode);
+int translate_android_key_message(::message::key * pkey, int keyCode);
 
 
 
@@ -1673,19 +1673,13 @@ void android_key(unsigned int message, int keyCode)
    if (::aura::system::g_p->m_pbasesystem->m_posdata->m_pui == NULL)
       return;
 
-   MESSAGE msg;
+   sp(::message::key) pkey = canew(::message::key(get_thread_app()));
 
-   ZERO(msg);
+   pkey->m_uiMessage = message;
 
-   msg.hwnd = ::aura::system::g_p->m_pbasesystem->m_posdata->m_pui->get_handle();
+   translate_android_key_message(pkey, keyCode);
 
-   msg.message = message;
-
-   msg.wParam = Java_keyCode_to_virtual_key_code(keyCode);
-
-   msg.lParam = 0;
-
-   ::aura::system::g_p->m_pbasesystem->m_posdata->m_pui->message_handler(&msg);
+   ::aura::system::g_p->m_pbasesystem->m_posdata->m_pui->message_handler(pkey);
 
 
 }
@@ -1712,36 +1706,42 @@ void android_key_up(int keyCode)
 
 
 
-int Java_keyCode_to_virtual_key_code(int keyCode)
+int translate_android_key_message(::message::key * pkey, int keyCode)
 {
 
    if (keyCode >= 29 && keyCode <= 54)
    {
 
-      return 'A' + keyCode - 29;
+      pkey->m_ekey = (::user::e_key) ((int) ::user::key_a + keyCode - 29);
 
    }
    else if (keyCode >= 7 && keyCode <= 16)
    {
 
-      return '0' + keyCode - 7;
+      pkey->m_ekey = (::user::e_key) ((int) ::user::key_0 + keyCode - 7);
 
    }
-   switch (keyCode)
+   else
    {
-   case 62:
-      return VK_SPACE;
-   case 67:
-      return VK_BACK;
-   case 112:
-      return VK_DELETE;
-   case 59:
-      return VK_LSHIFT;
-   case 60:
-      return VK_RSHIFT;
+      switch (keyCode)
+      {
+      case 62:
+         pkey->m_ekey = ::user::key_space;
+         break;
+      case 67:
+         pkey->m_ekey = ::user::key_back;
+         break;
+      case 112:
+         pkey->m_ekey = ::user::key_delete;
+         break;
+      case 59:
+         pkey->m_ekey = ::user::key_lshift;
+         break;
+      case 60:
+         pkey->m_ekey = ::user::key_rshift;
+         break;
+      }
+
    }
-
-
-   return VK_SPACE;
 
 }

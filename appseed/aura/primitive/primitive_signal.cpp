@@ -27,7 +27,7 @@ signal_details::signal_details(::aura::application * papp,class signal * psignal
    object(papp)
 {
 
-   if(m_pauraapp == NULL)
+   if(m_pauraapp == NULL && psignal != NULL)
    {
 
       m_pauraapp = psignal->m_pauraapp;
