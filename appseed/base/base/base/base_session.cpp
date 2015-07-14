@@ -1437,9 +1437,9 @@ bool session::initialize()
 
          p = System.m_posdata->m_pwindow->get_cursor_pos();
 
-         lppoint->x = (LONG)p.X;
+         m_ptCursor.x = (LONG)p.X;
 
-         lppoint->y = (LONG)p.Y;
+         m_ptCursor.y = (LONG)p.Y;
 
 #else
 

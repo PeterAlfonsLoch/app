@@ -2425,6 +2425,8 @@ namespace draw2d_direct2d
    bool graphics::alpha_blend(int xDst, int yDst, int nDstWidth, int nDstHeight, ::draw2d::graphics * pgraphicsSrc, int xSrc, int ySrc, int nSrcWidth, int nSrcHeight, double dRate)
    {
 
+      synch_lock sl(&draw2d_direct2_mutex());
+
 /*      float fA = (float) dRate;
 
       Gdiplus::ColorMatrix matrix = { 

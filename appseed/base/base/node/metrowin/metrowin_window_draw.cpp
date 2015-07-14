@@ -301,11 +301,16 @@ namespace metrowin
 
       user::oswindow_tree::Array hwndtreea;
 
-      m_xapp->m_directx->Render(wndpa);
+      HRESULT hr = m_xapp->m_directx->Render(wndpa);
 
       ml.unlock();
 
-      m_xapp->m_directx->Present();
+      if(SUCCEEDED(hr))
+      {
+
+         m_xapp->m_directx->Present();
+
+      }
 
       return true;
 

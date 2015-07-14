@@ -3,6 +3,7 @@
 
 sync_object::sync_object(const char * pstrName)
 {
+   m_bOwner = true;
 #ifdef WINDOWS
    m_object = NULL;
 #endif
@@ -14,7 +15,7 @@ sync_object::sync_object(const char * pstrName)
 sync_object::~sync_object()
 {
 #ifdef _WIN32
-   if (m_object != NULL)
+   if (m_bOwner && m_object != NULL)
    {
       ::CloseHandle(m_object);
       m_object = NULL;

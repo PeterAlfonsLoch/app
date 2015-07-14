@@ -746,7 +746,7 @@ namespace user
 
          str.Format("uichild::Redraw m_pauraapp == NULL");
 
-         OutputDebugString(str);
+         output_debug_string(str);
 
       }
       else if (m_pauraapp != NULL)

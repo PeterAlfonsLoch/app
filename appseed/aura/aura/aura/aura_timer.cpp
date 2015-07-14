@@ -17,13 +17,15 @@ namespace aura
    public:
 
 
-      ThreadPoolTimer ^ m_timer;
+      ThreadPoolTimer ^    m_timer;
+      timer *              m_ptimer;
 
 
       Timer()
       {
 
-         m_timer = nullptr;
+         m_timer     = nullptr;
+         m_ptimer    = NULL;
 
       }
 
@@ -270,13 +272,13 @@ bool timer::start(int millis, bool bPeriodic)
 
    };
 
-   if (bPeriodic)
-   {
+   //if (bPeriodic)
+   //{
 
-      m_ptimer->m_timer = ThreadPoolTimer::CreatePeriodicTimer(ref new TimerElapsedHandler(pred), span); // TimeSpan is 100 nanoseconds
+   //   m_ptimer->m_timer = ThreadPoolTimer::CreatePeriodicTimer(ref new TimerElapsedHandler(pred), span); // TimeSpan is 100 nanoseconds
 
-   }
-   else
+   //}
+//   else
    {
 
       m_ptimer->m_timer = ThreadPoolTimer::CreateTimer(ref new TimerElapsedHandler(pred), span);
@@ -415,6 +417,8 @@ bool timer::call_on_timer()
 
       }
 
+      //mutex m(*m_pmutex);
+
       synch_lock sl(m_pmutex);
 
       if (m_bKill || m_bDestroying || m_bDeal)
@@ -435,7 +439,11 @@ bool timer::call_on_timer()
       if (m_bKill)
       {
 
+#ifndef METROWIN
+
          sl.m_pobjectSync = NULL;
+
+#endif
 
          if (!m_bDestroying)
          {
@@ -475,6 +483,40 @@ bool timer::call_on_timer()
          
       }
       
+
+#elif defined(METROWIN)
+
+      if(m_bPeriodic)
+      {
+
+         m_ptimer->m_timer->Cancel();
+
+         m_ptimer->m_timer = nullptr;
+
+         ::Windows::Foundation::TimeSpan span;
+
+         span.Duration = m_dwMillis * 1000 * 10;
+
+         auto pred = [this](ThreadPoolTimer ^)
+         {
+
+            try
+            {
+
+               call_on_timer();
+
+            }
+            catch(...)
+            {
+
+            }
+
+         };
+
+
+         m_ptimer->m_timer = ThreadPoolTimer::CreateTimer(ref new TimerElapsedHandler(pred),span);
+
+      }
 
 #endif
 

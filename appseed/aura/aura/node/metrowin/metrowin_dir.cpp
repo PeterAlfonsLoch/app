@@ -25,9 +25,11 @@ namespace metrowin
    ::file::listing & dir::root_ones(::file::listing & listing,::aura::application *  papp)
    {
 
-      listing.add(::file::path(Windows::Storage::KnownFolders::DocumentsLibrary->Path));
+      listing.add("winmetro-Pictures://");
 
-      listing.m_straTitle.add("Documents");
+      listing.last().m_iDir = 1;
+
+      listing.m_straTitle.add("Picture");
 
       return listing;
 
@@ -146,7 +148,7 @@ namespace metrowin
 
             string strName = strPath.name();
 
-            if(!matches_wildcard_criteria(listing.m_strPattern,strName))
+            if(listing.m_strPattern.has_char() && !matches_wildcard_criteria(listing.m_strPattern,strName))
                continue;
 
             bool bDir = is(strPath, papp);
@@ -175,6 +177,9 @@ namespace metrowin
 
    bool dir::is(const ::file::path & lpcszPath,::aura::application *  papp)
    {
+
+      if(lpcszPath.CompareNoCase("winmetro-Pictures:") == 0)
+         return true;
 
       bool bIsDir;
 
@@ -687,7 +692,7 @@ namespace metrowin
    bool dir::has_subdir(::aura::application *  papp,const ::file::path & pszDir)
    {
 
-      throw todo(get_app());
+      return ::file::dir::system::has_subdir(papp,pszDir);
 
    }
 

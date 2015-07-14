@@ -918,10 +918,25 @@ void dir::ls(::file::patha & stra,const ::file::path & psz)
 
    ::Windows::Storage::StorageFolder ^ folder = nullptr;
 
+   string strPrefix;
+
    try
    {
 
-      folder = wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(string(psz)));
+      if(string(psz).CompareNoCase("winmetro-Pictures:") == 0)
+      {
+
+         strPrefix = "winmetro-Pictures://";
+
+         folder = ::Windows::Storage::KnownFolders::PicturesLibrary;
+
+      }
+      else
+      {
+
+         folder = wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(string(psz)));
+
+      }
 
    }
    catch (...)
@@ -938,7 +953,13 @@ void dir::ls(::file::patha & stra,const ::file::path & psz)
 
    for(uint32_t ui = 0; ui < a->Size; ui++)
    {
-      stra.add(begin(a->GetAt(ui)->Path));
+
+      string strPath = strPrefix + string(begin(a->GetAt(ui)->Path));
+
+      ::file::path path(strPath);
+      
+      stra.add(path);
+
    }
 
 

@@ -72,20 +72,26 @@ namespace metrowin
    }
 
 
-   ::cres file::open(const ::file::path & lpszFileName, UINT nOpenFlags)
+   ::cres file::open(const ::file::path & path, UINT nOpenFlags)
    {
 
       if (m_hFile != (UINT)hFileNull)
          close();
 
       ASSERT_VALID(this);
-      ASSERT(__is_valid_string(lpszFileName));
+      ASSERT(__is_valid_string(path));
       ASSERT((nOpenFlags & ::file::type_text) == 0);   // text mode not supported
 
       // file objects are always binary and CreateFile does not need flag
       nOpenFlags &= ~(UINT)::file::type_binary;
 
 
+      string strPath = path;
+
+      str::begins_eat_ci(strPath,"winmetro-Pictures:\\\\");
+
+
+      ::file::path lpszFileName(strPath);
       if(nOpenFlags & ::file::defer_create_directory)
       {
 

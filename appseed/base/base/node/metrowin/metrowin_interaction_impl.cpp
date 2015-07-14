@@ -1379,16 +1379,17 @@ namespace metrowin
                return;
             }
          }
-         for(int i = 0; i < m_pui->m_uiptraChild.get_size(); i++)
+         /*for(int i = 0; i < m_pui->m_uiptraChild.get_size(); i++)
          {
             ::user::interaction * pguie = m_pui->m_uiptraChild[i];
-            if(pguie != NULL)
+            if(pguie != NULL)*/
             {
-               pguie->_000OnMouse(pmouse);
+              // pguie->_000OnMouse(pmouse);
+               m_pui->_000OnMouse(pmouse);
                if(pmouse->m_bRet)
                   return;
             }
-         }
+         //}
          pbase->set_lresult(DefWindowProc(pbase->m_uiMessage,pbase->m_wparam,pbase->m_lparam));
          return;
       }

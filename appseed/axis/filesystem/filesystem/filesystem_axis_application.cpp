@@ -1,7 +1,11 @@
 #include "framework.h"
 #include "axis/net/net_sockets.h"
 
+#ifdef METROWIN
 
+#include "metrowin_native_buffer.cpp"
+
+#endif
 
 
 namespace file
@@ -595,6 +599,14 @@ namespace file
                spfile = get_file(App(m_pauraapp).dir().matter(strPath), nOpenFlags, &cres);
 
             }
+
+         }
+         else if(::str::begins_ci(strPath,"winmetro-Pictures:\\\\"))
+         {
+
+            spfile = canew(::metrowin::native_buffer(get_app()));
+
+            cres = spfile->open(strPath,nOpenFlags);
 
          }
          else

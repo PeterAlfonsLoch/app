@@ -18,6 +18,8 @@ public:
    HANDLE      m_object;
 #endif
    string      m_strName;
+   bool                    m_bOwner;
+
 
 
    sync_object(const char * pstrName);

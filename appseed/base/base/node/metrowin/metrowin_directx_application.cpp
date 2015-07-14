@@ -251,9 +251,17 @@ uint_ptr virtualkey_to_char(::Windows::System::VirtualKey e)
       return ::user::key_end;
    case 190:
       return ::user::key_dot;
+   case 191:
+      return ::user::key_semicolon2;
+   case 193:
+      return ::user::key_slash2;
    case ::Windows::System::VirtualKey::Space:
       return ::user::key_space;
    default:;
+   {
+      int iKey = (int)e;
+      debug_break();
+   }
    }
    return (::user::e_key) e;
 }

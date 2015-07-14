@@ -20,7 +20,7 @@ static int g_iMutex = 0;
 mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrName, LPSECURITY_ATTRIBUTES lpsaAttribute /* = NULL */) :
    sync_object(pstrName)
 {
-
+   m_bOwner = true;
    m_bAlreadyExists = false;
 
     static exception::translator * p = NULL;
@@ -211,12 +211,21 @@ mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrNa
 
 #ifdef WINDOWS
 
-mutex::mutex(::aura::application * papp, const char * pstrName, HANDLE h) :
+mutex::mutex(::aura::application * papp, const char * pstrName, void * h, bool bOwner) :
    object(papp),
    sync_object(pstrName)
 {
-
+   m_bOwner = bOwner;
    m_object = h;
+
+}
+
+mutex::mutex(const mutex & m):
+object(m.get_app()),
+sync_object(m.m_strName)
+{
+   m_bOwner = false;
+   m_object = m.m_object;
 
 }
 

@@ -1087,7 +1087,7 @@ namespace user
    void interaction::_001DrawChildren(::draw2d::graphics *pdc)
    {
 
-      single_lock sl(m_pmutex, true);
+      //single_lock sl(m_pmutex, true);
 
       interaction_ptra ptraChild;
 

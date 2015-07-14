@@ -112,6 +112,12 @@
     <Filter Include="Source Files\base\node\windows">
       <UniqueIdentifier>{390f3b77-3809-4053-a3b1-e3f6372e4029}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\user">
+      <UniqueIdentifier>{529c4383-9f8b-4552-9cc8-6a27dfc05987}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\user">
+      <UniqueIdentifier>{99991051-7761-4fd6-bbb4-f3604f3957ca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -227,6 +233,12 @@
     </ClInclude>
     <ClInclude Include="base\node\metrowin\metrowin_window_draw.h">
       <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_plain_edit.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_plain_text_data.h">
+      <Filter>Header Files\user\user</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -549,6 +561,9 @@
     </ClCompile>
     <ClCompile Include="base\os\metrowin\metrowin_windowing.cpp">
       <Filter>Source Files\base\os\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_plain_edit.cpp">
+      <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

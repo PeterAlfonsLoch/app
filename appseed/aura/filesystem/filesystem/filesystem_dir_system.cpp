@@ -421,9 +421,11 @@ namespace file
       bool system::has_subdir(::aura::application * papp,const ::file::path & psz)
       {
 
-         UNREFERENCED_PARAMETER(psz);
+         ::file::listing ls(papp);
 
-         throw interface_only_exception(papp, "this is an interface");
+         ls.ls_dir(psz);
+
+         return ls.get_count() > 0;
 
       }
 

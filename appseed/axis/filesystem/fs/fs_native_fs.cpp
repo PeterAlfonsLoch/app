@@ -140,7 +140,6 @@ namespace fs
          ::release(pfesp->m_p);
       }
 
-
       ::cres cres;
 
       ::file::binary_buffer_sp spfile(allocer());

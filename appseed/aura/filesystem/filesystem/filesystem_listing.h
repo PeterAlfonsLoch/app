@@ -45,9 +45,9 @@ namespace file
       stringa           m_straTitle;
 
 
-      operator bool () const
+      bool succeeded () const
       {
-         return m_cres;
+         return m_cres.succeeded();
       }
 
       listing & operator = (e_context_switcher_failed) { m_cres = failure; return *this; }

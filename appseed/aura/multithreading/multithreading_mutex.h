@@ -39,27 +39,10 @@ public:
    bool                    m_bAlreadyExists;
 
 
-   mutex(::aura::application * papp = NULL, bool bInitiallyOwn = FALSE, const char * lpszName = NULL, LPSECURITY_ATTRIBUTES lpsaAttribute = NULL);
+   mutex(const mutex & m);
+   mutex(::aura::application * papp,const char * pstrName,void * posdata, bool bOwner = true);
+   mutex(::aura::application * papp = NULL,bool bInitiallyOwn = FALSE,const char * lpszName = NULL,LPSECURITY_ATTRIBUTES lpsaAttribute = NULL);
 
-
-protected:
-
-#ifdef WINDOWS
-
-   mutex(::aura::application * papp, const char * pstrName, HANDLE h);
-
-//#elif defined(ANDROID)
-//
-//   mutex(const char * pstrName, sem_t * psem);
-
-#else
-
-   mutex(const char * pstrName, key_t key, int32_t semid);
-
-#endif
-
-
-public:
 
 
    virtual ~mutex();

@@ -787,11 +787,11 @@ namespace metrowin
    }
 
 
-   void directx_base::Render(::user::interaction_ptra & uiptra)
+   HRESULT directx_base::Render(::user::interaction_ptra & uiptra)
    {
 
       if(!defer_init())
-         return;
+         return E_FAIL;
 
       m_d2dContext->BeginDraw();
 
@@ -845,13 +845,32 @@ namespace metrowin
       // We ignore D2DERR_RECREATE_TARGET here. This error indicates that the device
       // is lost. It will be handled during the next call to Present.
       HRESULT hr = m_d2dContext->EndDraw();
-      if (hr != D2DERR_RECREATE_TARGET)
+
+      if(FAILED(hr))
       {
-         ::metrowin::throw_if_failed(hr);
+
+         if(hr == D2DERR_RECREATE_TARGET)
+         {
+
+            TRACE("directx_base::Render, EndDraw Failure : \"D2DERR_RECREATE_TARGET\"");
+
+         }
+         else if(hr == D2DERR_WRONG_STATE)
+         {
+
+            TRACE("directx_base::Render, EndDraw Failure : \"D2DERR_WRONG_STATE\"");
+
+         }
+         else
+         {
+
+            TRACE("directx_base::Render, EndDraw Failure : \"%d\"",hr);
+
+         }
+
       }
 
-//      m_sampleOverlay->Render();
-
+      return hr;
 
    }
 

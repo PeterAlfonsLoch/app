@@ -849,9 +849,10 @@ namespace primitive
 
    inline void memory_base::set_os_buffer(::Windows::Storage::Streams::IBuffer ^ ibuf, memory_position pos, memory_size size)
    {
-      Array < uchar, 1U > ^ a = nullptr;
-      (::Windows::Storage::Streams::DataReader::FromBuffer(ibuf))->ReadBytes(a);
-      return set_os_bytes(a, pos, size);
+      Windows::Storage::Streams::DataReader^ r = Windows::Storage::Streams::DataReader::FromBuffer(ibuf);
+      Array<uchar,1U>^ a = ref new Array<uchar,1U>(ibuf->Length);
+      r->ReadBytes(a);
+      return set_os_bytes(a,pos,size);
    }
 
 #elif defined(MACOS)

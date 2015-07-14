@@ -460,7 +460,20 @@ namespace user
 
 #else
 
-      TRACE("not implemented exception");
+      {
+
+         string strPath = Application.dir().matter("keyboard layout/br_abnt2.xml");
+
+         if(Application.file().exists(strPath))
+         {
+
+            return strPath;
+
+         }
+
+         return strPath;
+
+      }
 
 #endif
 

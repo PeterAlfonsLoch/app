@@ -2597,7 +2597,7 @@ namespace base
       //         ASSERT(__check_memory());
       //#endif
 
-      single_lock sl(&pimpl->m_mutexUiPtra,TRUE);
+      //single_lock sl(&pimpl->m_mutexUiPtra,TRUE);
 
       ::user::interaction * pui = NULL;
 
@@ -2642,7 +2642,7 @@ namespace base
             }
             else
             {
-               sl.unlock();
+//               sl.unlock();
                try
                {
                   pui->send_message(WM_IDLEUPDATECMDUI,(WPARAM)TRUE);
@@ -2651,7 +2651,7 @@ namespace base
                {
 
                }
-               sl.lock();
+  //             sl.lock();
             }
          }
 
