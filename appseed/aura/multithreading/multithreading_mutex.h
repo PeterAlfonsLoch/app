@@ -40,7 +40,11 @@ public:
 
 
    mutex(const mutex & m);
+#ifdef WINDOWS
    mutex(::aura::application * papp,const char * pstrName,void * posdata, bool bOwner = true);
+#else
+   mutex(::aura::application * papp,const char * pstrName,key_t key, int32_t semid, bool bOwner = true);
+#endif
    mutex(::aura::application * papp = NULL,bool bInitiallyOwn = FALSE,const char * lpszName = NULL,LPSECURITY_ATTRIBUTES lpsaAttribute = NULL);
 
 

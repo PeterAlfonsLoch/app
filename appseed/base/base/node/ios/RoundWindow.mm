@@ -100,7 +100,7 @@
    
 //	[[NSNotificationCenter defaultCenter] removeObserver:self];
    
-	[super dealloc];
+//	[super dealloc];
    
 }
 
@@ -342,7 +342,7 @@
    
    closeButton = nil;
    
-   [m_controller release];
+//   [m_controller release];
    
 }
 

@@ -484,7 +484,27 @@ void __ios_do_events();
         
         UITouch *touch = [touches anyObject];
         
-        if ([touch tapCount] == 1) {
+       // --------------------------------------------------------
+       //
+       //   tap/ClickCount == 0 :
+       //   not properly a tap/click, 
+       //   (but-a/"->"){eco/green-lang): drag.
+       //   So, still send mouse up message, now in the target location.
+       //
+       if ([touch tapCount] == 0)
+       {
+          
+          CGPoint point = [touch locationInView:self];
+          
+          int x = point.x;
+          
+          int y = point.y;
+          
+          p->round_window_mouse_up(x, y);
+          
+       }
+       else if ([touch tapCount] == 1) 
+       {
             
             // if touch is a single tap, store its location so we can average it with the second touch location
             

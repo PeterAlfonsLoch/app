@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		070652761B55D8D1006A764C /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 079F60D71B54B4370055BC0E /* libaura.dylib */; };
 		077A01381B4D539E001C85FF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 077A01371B4D539E001C85FF /* UIKit.framework */; };
 		077A013A1B4D53AC001C85FF /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 077A01391B4D53AC001C85FF /* CoreText.framework */; };
 		077A013C1B4D53B4001C85FF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 077A013B1B4D53B4001C85FF /* CoreGraphics.framework */; };
@@ -548,6 +549,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				070652761B55D8D1006A764C /* libaura.dylib in Frameworks */,
 				077A01411B4D53FC001C85FF /* libaurasqlite.dylib in Frameworks */,
 				077A01401B4D53F1001C85FF /* libaxisbzip2.dylib in Frameworks */,
 				077A013F1B4D53E4001C85FF /* libaxiszlib.dylib in Frameworks */,

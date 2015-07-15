@@ -280,23 +280,23 @@ WINBOOL get_nswindow_rect(oswindow oswindow, LPRECT lprect);
 
 
 
-void * new_ns_pool()
-{
-   
-   NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
-   
-   return pool;
-   
-}
-
-
-void release_pool(void * pool)
-{
-
-   NSAutoreleasePool * ppool =    (NSAutoreleasePool *)pool;
-   [ppool release];
-   
-}
+//void * new_ns_pool()
+//{
+//   
+//   NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+//   
+//   return pool;
+//   
+//}
+//
+//
+//void release_pool(void * pool)
+//{
+//
+//   NSAutoreleasePool * ppool =    (NSAutoreleasePool *)pool;
+//   [ppool release];
+//   
+//}
 
 
 
