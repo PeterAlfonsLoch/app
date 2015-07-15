@@ -6628,7 +6628,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
    bool imaging::load_from_file(::draw2d::dib * pdib,var varFile,bool bCache,::aura::application * papp)
    {
-      
+
       single_lock sl(&m_mutex);
 
       if(papp == NULL)
@@ -6720,6 +6720,8 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
       if(!LoadImageFile(pdib, pfile, papp))
          return false;
+
+         return true;
 
 #ifdef AXIS_FREEIMAGE
       FIBITMAP * pfi = LoadImageFile(pfile,papp);
