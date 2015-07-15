@@ -252,15 +252,15 @@ namespace axis
       string strFilePath = System.dir().matter_from_locator(Sess(this).str_context(),strLocator,strMatter);
       if(!System.file().exists(strFilePath,this))
       {
-         try
-         {
-            if(m_stringtable[pszId] != NULL)
-               delete m_stringtable[pszId];
-         }
-         catch(...)
-         {
-         }
-         m_stringtable.set_at(pszId,new string_to_string);
+         //try
+         //{
+         //   if(m_stringtable[pszId] != NULL)
+         //      delete m_stringtable[pszId];
+         //}
+         //catch(...)
+         //{
+         //}
+         //m_stringtable.set_at(pszId,new string_to_string);
          return;
       }
       string strFile = Application.file().as_string(strFilePath);

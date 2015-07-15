@@ -1009,7 +1009,9 @@ property_set & property_set::merge(const property_set & set)
 
          const property * pproperty = it.m_ppair;
 
-         property * ppropertyThis = find(pproperty->name());
+         id idName = pproperty->name();
+
+         property * ppropertyThis = find(idName);
 
          if(!pproperty->m_element2.is_new())
          {

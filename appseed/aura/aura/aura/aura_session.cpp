@@ -964,6 +964,7 @@ namespace aura
                      else
                      {
                         on_request(pcreatecontext);
+                        return;
                      }
                   }
                   //else if(pcreatecontext->m_spCommandLine->m_strApp.has_char() &&

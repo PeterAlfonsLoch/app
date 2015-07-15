@@ -6691,8 +6691,16 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
          {
 
             ::file::buffer_sp file =App(papp).file().get_file(strFile,::file::mode_create | ::file::mode_write | ::file::type_binary | ::file::defer_create_directory);
-            ::file::byte_ostream ostream(file);
-            ostream << *pdib;
+
+            if(file.is_set())
+            {
+
+               ::file::byte_ostream ostream(file);
+
+               ostream << *pdib;
+
+            }
+
          }
          catch(...)
          {
