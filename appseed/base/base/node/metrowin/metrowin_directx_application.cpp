@@ -367,7 +367,7 @@ uint_ptr virtualkey_to_code(::Windows::System::VirtualKey e)
 
 UINT system_main(LPVOID lp)
 {
-   ::aura::system * m_psystem = (::aura::system *) lp;
+   ::base::system * m_psystem = (::base::system *) lp;
    try
    {
       //m_psystem->set_thread(m_psystem);
@@ -1027,7 +1027,7 @@ namespace metrowin
 
       string str = strId;
 
-      str += " client_only";
+      //str += " client_only";
 
       return ref new directx_application_source(paxissystem, str);
 

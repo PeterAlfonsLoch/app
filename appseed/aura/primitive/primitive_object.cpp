@@ -448,7 +448,7 @@ bool object::is_locked() const
 
 void object::create(sp(::create) pcreatecontext)
 {
-   if(pcreatecontext->m_spCommandLine->m_varQuery["client_only"] != 0)
+   if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("client_only"))
    {
       pcreatecontext->m_bClientOnly = true;
    }

@@ -103,7 +103,7 @@ namespace aura
          virtual ~rx();
 
 
-#ifdef WINDOWSEX
+#ifdef WINDOWS
          bool create(const char * pszChannel,const char * pszWindowProcModule);
 #else
          bool create(const char * pszChannel);
@@ -151,7 +151,7 @@ namespace aura
 
          ipc();
 
-#ifdef WINDOWSEX
+#ifdef WINDOWS
          bool open_ab(const char * pszChannel,const char * pszModule,launcher * plauncher = NULL);
          bool open_ba(const char * pszChannel,const char * pszModule,launcher * plauncher = NULL);
 #else

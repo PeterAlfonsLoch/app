@@ -15,7 +15,7 @@ namespace turboc
 
       WfiEnableFullScreen();
 
-      m_bWindowFrame = !Application.command()->m_varTopicQuery["client_only"].is_set();
+      m_bWindowFrame = !Application.command()->m_varTopicQuery.has_property("client_only");
 
    }
 

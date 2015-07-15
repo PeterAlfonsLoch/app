@@ -238,6 +238,9 @@
     <Filter Include="Header Files\user\user">
       <UniqueIdentifier>{150881b2-0f92-457b-935f-7df9d660fb21}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\aura\os\windows">
+      <UniqueIdentifier>{b35c1d50-2c75-4e16-8e85-ab5b248236ff}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -3471,6 +3474,12 @@
     </ClCompile>
     <ClCompile Include="aura\aura\aura_ipi.cpp">
       <Filter>Source Files\aura\aura</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_ipc.cpp">
+      <Filter>Source Files\aura\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\metrowin\metrowin_dummy_ipc.cpp">
+      <Filter>Source Files\aura\os\metrowin</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

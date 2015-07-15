@@ -39,7 +39,7 @@ void simple_main_frame::_001OnCreate(signal_details * pobj)
 
    //      SCAST_PTR(::message::create, pcreate, pobj)
 
-   m_bWindowFrame = !Application.directrix()->m_varTopicQuery["client_only"].is_set();
+   m_bWindowFrame = !Application.directrix()->m_varTopicQuery.has_property("client_only");
 
    if(pobj->previous())
       return;

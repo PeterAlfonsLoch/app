@@ -250,7 +250,7 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
 
    if (m_bAutoWindowFrame)
    {
-      if(Application.command()->m_varTopicQuery["client_only"].is_set())
+      if(Application.command()->m_varTopicQuery.has_property("client_only"))
       {
          m_bWindowFrame = false;
       }
