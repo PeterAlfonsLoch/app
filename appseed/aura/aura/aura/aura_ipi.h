@@ -1,8 +1,6 @@
 #pragma once
 
 
-#ifndef METROWIN
-
 namespace aura
 {
 
@@ -53,10 +51,5 @@ namespace aura
 
 
 } // namespace aura
-
-
-
-#endif
-
 
 

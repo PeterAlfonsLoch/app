@@ -99,9 +99,7 @@
 #include "aura_session.cpp"
 //#include "aura_session_interface.cpp"
 #include "aura_shell_launcher.cpp"
-#if !defined(METROWIN) 
 #include "aura_ipc.cpp"
-#endif
 #include "aura_sprintf.cpp"
 #include "aura_static_start.cpp"
 #include "aura_str_context.cpp"

@@ -270,6 +270,9 @@
     <None Include="m_axiscrypto.def">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="asm\x86-win32-masm\rc4\rc4-586.asm">
+      <Filter>Assembler Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="crypto\arm_arch.h">

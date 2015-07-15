@@ -15,9 +15,9 @@
 /* Get strlen. */
 #include <string.h>
 
-char *getenv(
+/*char *getenv(
    const char *varname
    )
 {
    return NULL;
-}
+}*/

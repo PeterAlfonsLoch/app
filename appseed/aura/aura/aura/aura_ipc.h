@@ -24,9 +24,9 @@ namespace aura
       public:
 
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
          oswindow        m_oswindow;
-#else
+#elif !defined(METROWIN)
          key_t   m_key;
          int      m_iQueue;
 
@@ -90,9 +90,9 @@ namespace aura
 
          receiver *        m_preceiver;
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
          string          m_strWindowProcModule;
-#else
+#elif !defined(METROWIN)
          bool              m_bRunning;
          bool              m_bRun;
          pthread_t            m_thread;
@@ -103,7 +103,7 @@ namespace aura
          virtual ~rx();
 
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
          bool create(const char * pszChannel,const char * pszWindowProcModule);
 #else
          bool create(const char * pszChannel);
@@ -118,11 +118,11 @@ namespace aura
 
          virtual bool on_idle();
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
          ATOM register_class(HINSTANCE hInstance);
          static LRESULT CALLBACK s_message_queue_proc(oswindow oswindow,UINT message,WPARAM wParam,LPARAM lParam);
          LRESULT message_queue_proc(UINT message,WPARAM wParam,LPARAM lParam);
-#else
+#elif !defined(METROWIN)
          bool start_receiving();
 #ifndef SOLARIS
          static void * receive_proc(void * param);
@@ -151,7 +151,7 @@ namespace aura
 
          ipc();
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
          bool open_ab(const char * pszChannel,const char * pszModule,launcher * plauncher = NULL);
          bool open_ba(const char * pszChannel,const char * pszModule,launcher * plauncher = NULL);
 #else
