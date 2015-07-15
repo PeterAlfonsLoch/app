@@ -1036,9 +1036,10 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 
 
 #include "aura/aura/aura/aura_launcher.h"
-#ifndef METROWIN
+
+
 #include "aura/aura/aura/aura_ipc.h"
-#endif
+
 
 #include "aura/aura/aura/aura_app_launcher.h"
 
