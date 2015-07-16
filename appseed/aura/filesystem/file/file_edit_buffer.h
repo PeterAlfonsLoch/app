@@ -194,8 +194,8 @@ namespace file
 
       void flush();
       bool SaveTo(::file::ostream & file);
-      bool Save(::file::binary_buffer & file);
-      bool Save_N_to_CRLF(::file::binary_buffer & file);
+      bool Save(::file::stream_buffer & file);
+      bool Save_N_to_CRLF(::file::stream_buffer & file);
 
 
       void Insert(DeleteItem * pitem);

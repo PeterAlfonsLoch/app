@@ -597,7 +597,7 @@ namespace file
       return true;
    }
 
-   bool edit_buffer::Save(::file::binary_buffer & file)
+   bool edit_buffer::Save(::file::stream_buffer & file)
    {
       char buf[4096];
       primitive::memory_size uiRead;
@@ -612,7 +612,7 @@ namespace file
       return true;
    }
 
-   bool edit_buffer::Save_N_to_CRLF(::file::binary_buffer & file)
+   bool edit_buffer::Save_N_to_CRLF(::file::stream_buffer & file)
    {
       char buf[4096];
       string str;
