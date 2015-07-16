@@ -163,13 +163,13 @@ void XfplayerViewLines::OnLButtonUp(signal_details * pobj)
    }
 }
 
-void XfplayerViewLines::OnTimer(signal_details * pobj)
+void XfplayerViewLines::_001OnTimer(::timer * ptimer)
 {
 
    for(int32_t i = 0; i < this->get_size(); i++)
    {
-      this->element_at(i)->OnTimer(pobj);
-      if(pobj->m_bRet)
+      this->element_at(i)->_001OnTimer(ptimer);
+      if(ptimer->m_bRet)
          return;
    }
 }

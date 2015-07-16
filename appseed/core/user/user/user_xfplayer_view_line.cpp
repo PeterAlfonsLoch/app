@@ -1745,9 +1745,9 @@ void XfplayerViewLine::OnLButtonUp(signal_details * pobj)
    }
 }
 
-void XfplayerViewLine::OnTimer(signal_details * pobj)
+void XfplayerViewLine::_001OnTimer(::timer * ptimer)
 {
-   UNREFERENCED_PARAMETER(pobj);
+   UNREFERENCED_PARAMETER(ptimer);
    //if(GetSelection().OnTimer(*this, user))
      // return true;
 }

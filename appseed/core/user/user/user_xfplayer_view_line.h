@@ -207,7 +207,7 @@ public:
    DECL_GEN_SIGNAL(OnMouseMove);
    DECL_GEN_SIGNAL(OnLButtonDown);
    DECL_GEN_SIGNAL(OnLButtonUp);
-   DECL_GEN_SIGNAL(OnTimer);
+   virtual void _001OnTimer(::timer * ptimer);
    DECL_GEN_SIGNAL(OnSetCursor);
 
    XfplayerViewLineSelection::e_state GetSelectionState();
