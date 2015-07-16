@@ -1015,7 +1015,8 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
    if(m_bFrameMoveEnable)
    {
 
-      if(Application.command()->m_varTopicQuery.has_property("client_only"))
+      if(Application.command()->m_varTopicQuery.has_property("client_only") 
+      || Application.command()->m_varTopicQuery.has_property("full_screen"))
       {
 
          if(m_workset.IsAppearanceEnabled())

@@ -263,8 +263,11 @@ uint_ptr virtualkey_to_char(::Windows::System::VirtualKey e)
       debug_break();
    }
    }
+
    return (::user::e_key) e;
+
 }
+
 
 uint_ptr virtualkey_to_code(::Windows::System::VirtualKey e)
 {
@@ -1028,6 +1031,8 @@ namespace metrowin
       string str = strId;
 
       //str += " client_only";
+
+      str += " full_screen";
 
       return ref new directx_application_source(paxissystem, str);
 
