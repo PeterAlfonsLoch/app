@@ -132,6 +132,12 @@
     <Filter Include="Header Files\net">
       <UniqueIdentifier>{6eefab1f-2d4e-45cb-9720-919fa0df4b22}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\aura\os">
+      <UniqueIdentifier>{214091d7-ba72-4f75-8794-8b1eae9f02c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\aura\os\windows">
+      <UniqueIdentifier>{88863203-e2ba-4bbe-a04c-fd1001f4711d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive_id.h">
@@ -1777,6 +1783,9 @@
     <ClCompile Include="teste.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_ipc.cpp">
+      <Filter>Source Files\aura\os\windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -1790,9 +1799,6 @@
     </None>
     <None Include="primitive\collection\collection.inl">
       <Filter>Header Files\primitive\collection</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

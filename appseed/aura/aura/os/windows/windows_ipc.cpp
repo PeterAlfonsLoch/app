@@ -1,3 +1,5 @@
+typedef int (WINAPI * LPFN_ChangeWindowMessageFilter)(UINT message, DWORD dwFlag);
+
 
 
 extern LPFN_ChangeWindowMessageFilter g_pfnChangeWindowMessageFilter;

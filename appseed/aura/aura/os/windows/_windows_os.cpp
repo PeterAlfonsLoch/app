@@ -35,6 +35,7 @@
 #include "windows_gdi_cursor.cpp"
 #include "windows_gdi_icon.cpp"
 #include "windows_internal.cpp"
+#include "windows_ipc.cpp"
 #include "windows_launcher.cpp"
 #include "windows_library.cpp"
 #include "windows_local_memory_map.cpp"
