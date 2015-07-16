@@ -84,7 +84,6 @@ namespace data
       ::data::data_container_base *          m_pcontainerbase;
 
 
-      data();
       data(::aura::application * papp);
       virtual ~data();
 
