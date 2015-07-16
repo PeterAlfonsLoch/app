@@ -298,7 +298,7 @@ namespace sockets
                "\r\n";
             write( tmp );
             {
-               ::file::binary_buffer_sp spfile(allocer());
+               ::file::buffer_sp spfile(allocer());
                if(spfile->open(filename, ::file::type_binary | ::file::mode_read))
                {
                   transfer_from(*spfile);

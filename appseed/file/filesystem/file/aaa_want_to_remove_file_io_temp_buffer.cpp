@@ -87,7 +87,7 @@ namespace file
       }
       if (_tempFileCreated)
       {
-         ::file::binary_buffer_sp inFile(get_app());
+         ::file::buffer_sp inFile(get_app());
          if (!inFile->open(_tempFileName, ::file::mode_read | ::file::type_binary))
             return E_FAIL;
          while (size < _size)

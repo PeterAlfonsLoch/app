@@ -1588,7 +1588,7 @@ namespace aura
 
 
 
-   /*::file::binary_buffer_sp application::friendly_get_file(var varFile, UINT nOpenFlags)
+   /*::file::buffer_sp application::friendly_get_file(var varFile, UINT nOpenFlags)
    {
 
    try
@@ -2979,7 +2979,7 @@ namespace aura
 
       {
 
-         ::file::binary_buffer_sp file = this->file().get_file(Application.dir().userappdata() / strPath,::file::mode_read);
+         ::file::buffer_sp file = this->file().get_file(Application.dir().userappdata() / strPath,::file::mode_read);
 
          if(file.is_null())
          {
@@ -3020,7 +3020,7 @@ namespace aura
 
       {
 
-         ::file::binary_buffer_sp file = this->file().get_file(Application.dir().userappdata() / strPath,::file::mode_write | ::file::mode_create | ::file::defer_create_directory);
+         ::file::buffer_sp file = this->file().get_file(Application.dir().userappdata() / strPath,::file::mode_write | ::file::mode_create | ::file::defer_create_directory);
 
          if(file.is_null())
          {

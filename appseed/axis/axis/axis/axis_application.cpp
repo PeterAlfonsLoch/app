@@ -1741,7 +1741,7 @@ namespace axis
 */
 
 
-   /*::file::binary_buffer_sp application::friendly_get_file(var varFile, UINT nOpenFlags)
+   /*::file::buffer_sp application::friendly_get_file(var varFile, UINT nOpenFlags)
    {
 
    try

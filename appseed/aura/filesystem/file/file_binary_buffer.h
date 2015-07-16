@@ -84,7 +84,7 @@ namespace file
    };
 
 
-   typedef smart_pointer < binary_buffer > binary_buffer_sp;
+   typedef smart_pointer < binary_buffer > buffer_sp;
 
    inline void binary_buffer::SetFilePath(const char * lpszNewName)
    {

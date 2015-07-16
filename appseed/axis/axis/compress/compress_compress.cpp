@@ -190,7 +190,7 @@ namespace axis
    bool compress::bz(::file::ostream & ostreamBzFileCompressed, const ::file::path & lpcszUncompressed)
    {
 
-      ::file::binary_buffer_sp file = Application.file().get_file(lpcszUncompressed, ::file::mode_read | ::file::type_binary);
+      ::file::buffer_sp file = Application.file().get_file(lpcszUncompressed, ::file::mode_read | ::file::type_binary);
 
       if (file.is_null())
       {
@@ -281,7 +281,7 @@ namespace axis
 
          ::file::path strPath;
 
-         ::file::binary_buffer_sp file;
+         ::file::buffer_sp file;
 
          patha.rls_file(psz);
 

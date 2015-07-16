@@ -679,7 +679,7 @@ namespace dynamic_source
 
    void script_compiler::cppize1(ds_script * pscript)
    {
-      /*::file::binary_buffer_sp spfile(allocer());
+      /*::file::buffer_sp spfile(allocer());
       if(!spfile->open(pscript->m_strSourcePath, ::file::type_binary | ::file::mode_read | ::file::share_deny_none))
       return;
 

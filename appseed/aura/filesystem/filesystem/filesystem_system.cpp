@@ -395,7 +395,7 @@ restart:
    // fail if exists, create if not exists
    bool system::mk_time(const char * lpcszCandidate)
    {
-      ::file::binary_buffer_sp spfile(allocer());
+      ::file::buffer_sp spfile(allocer());
       if(System.file().exists(lpcszCandidate, get_app()))
          return false;
       try
@@ -554,7 +554,7 @@ restart:
    bool system::put_contents(var varFile, const void * pvoidContents, ::count count, ::aura::application * papp)
    {
 
-      ::file::binary_buffer_sp spfile;
+      ::file::buffer_sp spfile;
 
       try
       {
@@ -581,7 +581,7 @@ restart:
    bool system::add_contents(var varFile,const void * pvoidContents,::count count,::aura::application * papp)
    {
 
-      ::file::binary_buffer_sp spfile;
+      ::file::buffer_sp spfile;
 
       try
       {
@@ -638,7 +638,7 @@ restart:
 
    bool system::put_contents(var varFile, ::file::reader & reader, ::aura::application * papp)
    {
-      ::file::binary_buffer_sp spfile;
+      ::file::buffer_sp spfile;
       spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::share_deny_none | ::file::defer_create_directory);
       if(spfile.is_null())
          return false;
@@ -659,7 +659,7 @@ restart:
 
    bool system::put_contents_utf8(var varFile, const char * lpcszContents, ::aura::application * papp)
    {
-      ::file::binary_buffer_sp spfile;
+      ::file::buffer_sp spfile;
       spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::share_deny_none | ::file::defer_create_directory);
       if(spfile.is_null())
          return false;
@@ -1143,7 +1143,7 @@ restart:
 
       System.dir().mk(name.name(), papp);
 
-      ::file::binary_buffer_sp fileOut = App(papp).file().get_file(name, ::file::mode_create | ::file::type_binary | ::file::mode_write);
+      ::file::buffer_sp fileOut = App(papp).file().get_file(name, ::file::mode_create | ::file::type_binary | ::file::mode_write);
 
       if(fileOut.is_null())
          throw ::file::exception(papp, ::file::exception::none,-1L, name);
@@ -1288,7 +1288,7 @@ restart:
    string system::nessie(const ::file::path & psz)
    {
 
-      ::file::binary_buffer_sp spfile(allocer());
+      ::file::buffer_sp spfile(allocer());
       try
       {
          if(!spfile->open(psz,::file::type_binary | ::file::mode_read))

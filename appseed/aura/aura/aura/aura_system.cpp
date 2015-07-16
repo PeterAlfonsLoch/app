@@ -1809,7 +1809,7 @@ namespace aura
       if(directrix()->m_varTopicQuery.has_property("install"))
          return true;
 
-      ::file::binary_buffer_sp file = Session.m_spfile->get_file(System.dir().appdata() / "applibcache.bin",::file::type_binary | ::file::mode_read);
+      ::file::buffer_sp file = Session.m_spfile->get_file(System.dir().appdata() / "applibcache.bin",::file::type_binary | ::file::mode_read);
 
       if(file.is_null())
          return false;
@@ -1869,7 +1869,7 @@ namespace aura
       if(!bSave)
          return true;
 
-      ::file::binary_buffer_sp file;
+      ::file::buffer_sp file;
 
       try
       {

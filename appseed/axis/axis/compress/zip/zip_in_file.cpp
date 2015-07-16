@@ -35,7 +35,7 @@ namespace zip
          ASSERT(pFile->m_hFile != (UINT)hFileNull);
          pFile->m_bCloseOnDelete = m_bCloseOnDelete;*/
       return NULL;
-      //return new ::file::binary_buffer_sp(this);
+      //return new ::file::buffer_sp(this);
    }
 
 
@@ -615,7 +615,7 @@ namespace zip
 
       ::file::path strPath(pszDir / pszRelative);
 
-      ::file::binary_buffer_sp file;
+      ::file::buffer_sp file;
 
       file = Application.file().get_file(strPath,::file::mode_read | ::file::type_binary);
 

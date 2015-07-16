@@ -406,7 +406,7 @@ namespace file
       
       storage.allocate(1024 * 1024 * 8);
       
-      ::file::binary_buffer_sp spfile(allocer());
+      ::file::buffer_sp spfile(allocer());
       
       if(!spfile->open(psz, type_binary | mode_read | share_deny_none))
          return;

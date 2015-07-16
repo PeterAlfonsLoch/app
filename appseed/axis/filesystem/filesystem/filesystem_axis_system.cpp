@@ -382,7 +382,7 @@ namespace file
       // fail if exists, create if not exists
       bool system::mk_time(const ::file::path & lpcszCandidate)
       {
-         ::file::binary_buffer_sp spfile(allocer());
+         ::file::buffer_sp spfile(allocer());
          if (System.file().exists(lpcszCandidate, get_app()))
             return false;
          try
@@ -1368,7 +1368,7 @@ namespace file
       string system::md5(const ::file::path & psz)
       {
 
-         ::file::binary_buffer_sp spfile(allocer());
+         ::file::buffer_sp spfile(allocer());
 
          try
          {
@@ -1408,7 +1408,7 @@ namespace file
       void system::dtf(const ::file::path & pszFile, ::file::patha & stra, ::aura::application * papp)
       {
 
-         ::file::binary_buffer_sp spfile = App(papp).file().get_file(pszFile, ::file::mode_create | ::file::mode_write | ::file::type_binary);
+         ::file::buffer_sp spfile = App(papp).file().get_file(pszFile, ::file::mode_create | ::file::mode_write | ::file::type_binary);
 
          if (spfile.is_null())
             throw "failed";
@@ -1421,7 +1421,7 @@ namespace file
 
          write_gen_string(spfile, NULL, strVersion);
 
-         ::file::binary_buffer_sp file2(allocer());
+         ::file::buffer_sp file2(allocer());
 
          ::primitive::memory_size iBufSize = 1024 * 1024;
 
@@ -1473,7 +1473,7 @@ namespace file
 
          string strVersion;
 
-         ::file::binary_buffer_sp spfile = App(papp).file().get_file(pszFile, ::file::mode_read | ::file::type_binary);
+         ::file::buffer_sp spfile = App(papp).file().get_file(pszFile, ::file::mode_read | ::file::type_binary);
 
          if (spfile.is_null())
             throw "failed";
@@ -1490,7 +1490,7 @@ namespace file
          buf.allocate(iBufSize);
          int64_t iLen;
          MD5_CTX ctx;
-         ::file::binary_buffer_sp file2(allocer());
+         ::file::buffer_sp file2(allocer());
          ::primitive::memory_size uiRead;
          if (strVersion == "fileset v1")
          {
@@ -1647,7 +1647,7 @@ namespace file
       string system::nessie(const ::file::path & psz)
       {
 
-         ::file::binary_buffer_sp spfile(allocer());
+         ::file::buffer_sp spfile(allocer());
          try
          {
             if (!spfile->open(psz, ::file::type_binary | ::file::mode_read))

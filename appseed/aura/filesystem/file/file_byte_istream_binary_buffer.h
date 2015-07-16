@@ -10,7 +10,7 @@ namespace file
    {
    public:
 
-      binary_buffer_sp     m_spbinarybuffer;
+      buffer_sp     m_spbinarybuffer;
 
 
       byte_istream_binary_buffer(::aura::application * papp, const char * pszFilePath, uint32_t uiFlags = 0);

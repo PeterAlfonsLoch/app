@@ -180,7 +180,7 @@ namespace http
 
                      }
                      
-                     ::file::binary_buffer_sp spfile(Application.file().get_file(strTempFile, ::file::defer_create_directory | ::file::type_binary | ::file::mode_create | ::file::mode_write));
+                     ::file::buffer_sp spfile(Application.file().get_file(strTempFile, ::file::defer_create_directory | ::file::type_binary | ::file::mode_create | ::file::mode_write));
                      //sl.unlock();
                      if(spfile.is_set())
                      {

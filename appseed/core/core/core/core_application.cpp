@@ -642,7 +642,7 @@ namespace core
       try
       {
       // create the .mdb file
-      ::file::binary_buffer_sp f(get_app());
+      ::file::buffer_sp f(get_app());
 
       if(f->open(lpcszFilePath, ::file::mode_create | ::file::mode_write ))
       {
@@ -3694,7 +3694,7 @@ namespace core
 
 
 
-   ::file::binary_buffer_sp application::friendly_get_file(var varFile,UINT nOpenFlags)
+   ::file::buffer_sp application::friendly_get_file(var varFile,UINT nOpenFlags)
    {
 
       try

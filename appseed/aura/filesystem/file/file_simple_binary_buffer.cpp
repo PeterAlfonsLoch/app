@@ -53,7 +53,7 @@ namespace file
       char szMode[4]; // C-runtime open string
       int32_t nMode = 0;
 
-      // determine read/write mode depending on ::file::binary_buffer_sp mode
+      // determine read/write mode depending on ::file::buffer_sp mode
       if (nOpenFlags & mode_create)
       {
          if (nOpenFlags & mode_no_truncate)

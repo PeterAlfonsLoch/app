@@ -976,7 +976,7 @@ retry:
 
 
 
-   // ::file::binary_buffer_sp
+   // ::file::buffer_sp
    file::operator HFILE() const
    {
 

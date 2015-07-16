@@ -142,7 +142,7 @@ namespace fs
 
       ::cres cres;
 
-      ::file::binary_buffer_sp spfile(allocer());
+      ::file::buffer_sp spfile(allocer());
 
       // ::file::mode_read | ::file::share_deny_none | ::file::type_binary
       cres  = spfile->open(path,nOpenFlags);

@@ -297,7 +297,7 @@ namespace ios
    // fail if exists, create if not exists
    //   bool file_system::mk_time(const char * lpcszCandidate)
    //   {
-   //      ::file::binary_buffer_sp spfile(allocer());
+   //      ::file::buffer_sp spfile(allocer());
    //      if(System.file().exists(lpcszCandidate, get_app()))
    //         return false;
    //      try
