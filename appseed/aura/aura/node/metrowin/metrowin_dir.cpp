@@ -493,11 +493,11 @@ namespace metrowin
 
       m_strCa2 = strCa2Module;
 
-#if !defined(CUBE) && !defined(VSNORD)
-
-      m_strCa2 -= 2;
-
-#endif
+//#if !defined(CUBE) && !defined(VSNORD)
+//
+//      m_strCa2 -= 2;
+//
+//#endif
 
 
       xml::document doc(get_app());

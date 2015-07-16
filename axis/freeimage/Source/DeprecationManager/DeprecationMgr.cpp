@@ -72,7 +72,11 @@ void
 DeprecationMgr::AddDeprecatedFunction(const char *old_function_name, const char *new_function_name, const void *frame_ptr) {
 #ifdef _WIN32
 	int *preturn = (int *)frame_ptr + 1; // usual return address @ [ebp+4]
-	int called_from = IsBadReadPtr(preturn, 4) ? 0 : *preturn;
+#ifdef METROWIN
+	int called_from = preturn == NULL ? 0 : *preturn;
+#else
+   int called_from = IsBadReadPtr(preturn,4) ? 0 : *preturn;
+#endif
 
 	// check if this function was already listed as deprecated
 	// if it wasn't, make a new entry for it

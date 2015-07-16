@@ -1,4 +1,4 @@
-LIBRARY      "axiswicpng.fip"
+LIBRARY      "axiswicpng.dll"
 
 EXPORTS
 FreeImage_InitPlugin

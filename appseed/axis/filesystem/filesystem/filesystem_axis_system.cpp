@@ -1283,7 +1283,7 @@ namespace file
 
          System.dir().mk(name.folder(), papp);
 
-         ::file::binary_buffer_sp fileOut = App(papp).file().get_file(name, ::file::mode_create | ::file::type_binary | ::file::mode_write);
+         ::file::buffer_sp fileOut = App(papp).file().get_file(name, ::file::mode_create | ::file::type_binary | ::file::mode_write);
 
          if (fileOut.is_null())
             throw ::file::exception(papp, ::file::exception::none, -1L, name);

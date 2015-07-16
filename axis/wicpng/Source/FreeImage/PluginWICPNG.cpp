@@ -415,7 +415,7 @@ Load(FreeImageIO *io,fi_handle handle,int page,int flags,void *data) {
 
    Windows::Storage::Streams::InMemoryRandomAccessStream ^ randomAccessStream = ref new Windows::Storage::Streams::InMemoryRandomAccessStream();
 
-   ::wait(randomAccessStream->WriteAsync(mem.get_memory()->get_os_buffer()));
+   ::wait(randomAccessStream->WriteAsync(mem.get_os_buffer()));
 
    ::CreateStreamOverRandomAccessStream(randomAccessStream,IID_PPV_ARGS(&pstream));
 

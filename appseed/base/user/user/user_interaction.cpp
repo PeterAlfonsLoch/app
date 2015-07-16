@@ -2213,7 +2213,7 @@ namespace user
 
       }
       
-#if defined(APPLE_IOS) || defined(VSNORD)
+#if defined(APPLE_IOS) || defined(VSNORD) || defined(METROWIN)
       
       if(pParentWnd == NULL || pParentWnd == System.m_posdata->m_pui)
       {
@@ -2347,7 +2347,7 @@ namespace user
 
       }
 
-#if defined(APPLE_IOS) || defined(VSNORD)
+#if defined(APPLE_IOS) || defined(VSNORD) || defined(METROWIN)
       
       if(pParentWnd == NULL || pParentWnd == System.m_posdata->m_pui)
       {
@@ -6694,7 +6694,7 @@ namespace user
 
       sp(::user::interaction) puiParent = GetParent();
 
-#if defined(APPLE_IOS) || defined(VSNORD)
+#if defined(APPLE_IOS) || defined(VSNORD) || defined(METROWIN)
       if(puiParent.is_set() && puiParent.m_p != System.m_posdata->m_pui)
 #else
       if(puiParent.is_set())

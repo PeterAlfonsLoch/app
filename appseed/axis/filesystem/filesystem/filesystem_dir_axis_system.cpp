@@ -2273,7 +2273,7 @@ namespace file
 
             appmatter_locators(strRoot, strDomain, System.m_mapAppLibrary[strAppName], strAppName);
 
-#if defined(CUBE) || defined(VSNORD)
+#if defined(CUBE) || defined(VSNORD) || defined(METROWIN)
 
             return ::file::path(strRoot) / "appmatter" / strDomain;
 
