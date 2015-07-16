@@ -178,7 +178,7 @@ namespace userpresence
 
    }
 
-   void userpresence::_001OnTimer(timer * ptimer)
+   void userpresence::_001OnTimer(::timer * ptimer)
    {
       if(&ApplicationUser != NULL)
       {

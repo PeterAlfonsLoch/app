@@ -29,7 +29,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnMouseMove);
       DECL_GEN_SIGNAL(_001OnKeyDown);
       DECL_GEN_SIGNAL(_001OnKeyUp);
-      void _001OnTimer(timer * ptimer);
+      void _001OnTimer(::timer * ptimer);
 
    };
 

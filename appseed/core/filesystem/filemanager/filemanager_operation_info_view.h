@@ -25,7 +25,7 @@ namespace filemanager
       void OnFileOperationStep(int32_t iOperation,bool bFinal);
 
       DECL_GEN_SIGNAL(_001OnCreate);
-      void _001OnTimer(timer * ptimer);
+      void _001OnTimer(::timer * ptimer);
       virtual void install_message_handling(::message::dispatch * pdispatch);
 
    };

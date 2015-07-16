@@ -78,7 +78,7 @@ void simple_toolbar::install_message_handling(::message::dispatch * pdispatch)
    IGUI_WIN_MSG_LINK(WM_CREATE         , pdispatch, this, &simple_toolbar::_001OnCreate);
    IGUI_WIN_MSG_LINK(WM_MOUSEMOVE      , pdispatch, this, &simple_toolbar::_001OnMouseMove);
    IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN    , pdispatch, this, &simple_toolbar::_001OnLButtonDown);
-//   IGUI_WIN_MSG_LINK(WM_TIMER          , pdispatch, this, &simple_toolbar::_001OnTimer);
+//   //IGUI_WIN_MSG_LINK(WM_TIMER          , pdispatch, this, &simple_toolbar::_001OnTimer);
    IGUI_WIN_MSG_LINK(WM_LBUTTONUP      , pdispatch, this, &simple_toolbar::_001OnLButtonUp);
    IGUI_WIN_MSG_LINK(WM_NCCALCSIZE     , pdispatch, this, &simple_toolbar::_001OnNcCalcSize);
    IGUI_WIN_MSG_LINK(WM_NCHITTEST      , pdispatch, this, &simple_toolbar::_001OnNcHitTest);
@@ -1404,7 +1404,7 @@ void simple_toolbar::_001Hover(bool bRedraw)
    _001Hover(pt, bRedraw);
 }
 
-void simple_toolbar::_001OnTimer(timer * ptimer)
+void simple_toolbar::_001OnTimer(::timer * ptimer)
 {
    ::user::toolbar::_001OnTimer(ptimer);
       if(ptimer->m_nIDEvent == TIMER_HOVER)

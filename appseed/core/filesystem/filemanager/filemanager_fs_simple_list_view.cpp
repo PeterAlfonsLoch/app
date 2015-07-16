@@ -47,7 +47,7 @@ namespace filemanager
          {
             simple_list_view::install_message_handling(pinterface);
             IGUI_WIN_MSG_LINK(WM_LBUTTONDBLCLK, pinterface, this, &list_view::_001OnLButtonDblClk);
-//            IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &list_view::_001OnTimer);
+//            //IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &list_view::_001OnTimer);
             IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &list_view::_001OnSize);
             IGUI_WIN_MSG_LINK(WM_CONTEXTMENU, pinterface, this, &list_view::_001OnContextMenu);
             IGUI_WIN_MSG_LINK(WM_ERASEBKGND, pinterface, this, &list_view::_001OnEraseBkgnd);
@@ -356,7 +356,7 @@ namespace filemanager
             return 0;
          }
 
-         void list_view::_001OnTimer(timer * ptimer)
+         void list_view::_001OnTimer(::timer * ptimer)
          {
             simple_list_view::_001OnTimer(ptimer);
                if(ptimer->m_nIDEvent == 123654)

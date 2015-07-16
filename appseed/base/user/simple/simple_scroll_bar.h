@@ -62,7 +62,7 @@ public:
    DECL_GEN_SIGNAL(_001OnLButtonDown);
    DECL_GEN_SIGNAL(_001OnLButtonUp);
    DECL_GEN_SIGNAL(_001OnHScroll);
-   void _001OnTimer(timer * ptimer);
+   void _001OnTimer(::timer * ptimer);
    DECL_GEN_SIGNAL(_001OnCreate);
    DECL_GEN_SIGNAL(_001OnShowWindow);
    DECL_GEN_SIGNAL(_001OnDestroy);

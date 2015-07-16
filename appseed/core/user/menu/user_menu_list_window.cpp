@@ -211,7 +211,7 @@ namespace user
    }
 
 
-   void menu_list_window::_001OnTimer(timer * ptimer)
+   void menu_list_window::_001OnTimer(::timer * ptimer)
    {
       
       ::user::menu::_001OnTimer(ptimer);

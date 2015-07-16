@@ -44,7 +44,7 @@ void menu_view::install_message_handling(::message::dispatch * pinterface)
 {
    ::user::form::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &menu_view::_001OnCreate);
-//   IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &menu_view::_001OnTimer);
+//   //IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &menu_view::_001OnTimer);
    IGUI_WIN_MSG_LINK(WM_USER + 123, pinterface, this, &menu_view::_001OnUser123);
 
 }
@@ -56,7 +56,7 @@ void menu_view::_001OnCreate(signal_details * pobj)
 }
 
 
-void menu_view::_001OnTimer(timer * ptimer)
+void menu_view::_001OnTimer(::timer * ptimer)
 {
    ::user::form_view::_001OnTimer(ptimer);;
    if(m_pcallback != NULL)

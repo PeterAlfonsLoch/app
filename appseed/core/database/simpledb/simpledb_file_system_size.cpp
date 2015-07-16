@@ -492,7 +492,7 @@ void FileSystemSizeWnd::_001OnCopyData(signal_details * pobj)
 
 }
 
-void FileSystemSizeWnd::_001OnTimer(timer * ptimer)
+void FileSystemSizeWnd::_001OnTimer(::timer * ptimer)
 {
 
 #ifdef WINDOWSEX

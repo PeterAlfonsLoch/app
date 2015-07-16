@@ -601,7 +601,7 @@ namespace ios
       IGUI_WIN_MSG_LINK(WM_SIZE              , pinterface, this, &window::_001OnSize);
       IGUI_WIN_MSG_LINK(WM_SHOWWINDOW        , pinterface, this, &window::_001OnShowWindow);
       IGUI_WIN_MSG_LINK(ca2m_PRODEVIAN_SYNCH , pinterface, this, &window::_001OnProdevianSynch);
-      IGUI_WIN_MSG_LINK(WM_TIMER             , pinterface, this, &window::_001OnTimer);
+      //IGUI_WIN_MSG_LINK(WM_TIMER             , pinterface, this, &window::_001OnTimer);
    }
 
    void window::_001OnMove(signal_details * pobj)
@@ -3095,7 +3095,7 @@ namespace ios
    }
 
 
-   void window::_001OnTimer(timer * ptimer)
+   void window::_001OnTimer(::timer * ptimer)
    {
 
       super::_001OnTimer(ptimer);;

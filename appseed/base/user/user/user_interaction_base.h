@@ -86,7 +86,7 @@ namespace user
       virtual ~interaction_base();
 
 
-      virtual void _001OnTimer(timer * ptimer);
+      virtual void _001OnTimer(::timer * ptimer);
 
 
       virtual bool create_message_queue(const char * pszName);

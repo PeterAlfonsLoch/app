@@ -1573,7 +1573,7 @@ namespace user
       IGUI_WIN_MSG_LINK(WM_CREATE      , pinterface, this, &tab::_001OnCreate);
       IGUI_WIN_MSG_LINK(::base::application::APPM_LANGUAGE, pinterface, this, &tab::_001OnAppLanguage);
       IGUI_WIN_MSG_LINK(message_start_tab_drag,pinterface,this,&tab::_001OnStartTabDrag);
-      //IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &tab::_001OnTimer);
+      ////IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &tab::_001OnTimer);
    }
 
    void tab::_001SetSel(::index iSel)
@@ -2157,7 +2157,7 @@ namespace user
    }
 
 
-   void tab::_001OnTimer(timer * ptimer)
+   void tab::_001OnTimer(::timer * ptimer)
    {
 
       control::_001OnTimer(ptimer);;

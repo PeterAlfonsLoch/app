@@ -641,7 +641,7 @@ namespace user
    }
 
 
-   void tree::_001OnTimer(timer * ptimer)
+   void tree::_001OnTimer(::timer * ptimer)
    {
       ::user::control::_001OnTimer(ptimer);
 
@@ -772,7 +772,7 @@ namespace user
       IGUI_WIN_MSG_LINK(WM_MOUSELEAVE    , pdispatch, this, &tree::_001OnMouseLeave);
       IGUI_WIN_MSG_LINK(WM_HSCROLL       , pdispatch, this, &tree::_001OnHScroll);
       IGUI_WIN_MSG_LINK(WM_VSCROLL       , pdispatch, this, &tree::_001OnVScroll);
-//      IGUI_WIN_MSG_LINK(WM_TIMER         , pdispatch, this, &tree::_001OnTimer);
+//      //IGUI_WIN_MSG_LINK(WM_TIMER         , pdispatch, this, &tree::_001OnTimer);
 
    }
 

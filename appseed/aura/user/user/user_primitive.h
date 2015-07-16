@@ -29,7 +29,7 @@ namespace user
 
       virtual int32_t get_total_page_count(::job * pjob);
 
-      virtual void _001OnTimer(timer * ptimer);
+      virtual void _001OnTimer(::timer * ptimer);
 
    };
 

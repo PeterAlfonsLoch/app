@@ -45,7 +45,7 @@ namespace plugin
       IGUI_WIN_MSG_LINK(WM_WINDOWPOSCHANGED  , pinterface, this, &host_interaction::on_ignore_message);
       IGUI_WIN_MSG_LINK(WM_SIZE              , pinterface, this, &host_interaction::on_ignore_message);
       IGUI_WIN_MSG_LINK(WM_MOVE              , pinterface, this, &host_interaction::on_ignore_message);
-      IGUI_WIN_MSG_LINK(WM_TIMER             , pinterface, this, &host_interaction::on_ignore_message);
+      //IGUI_WIN_MSG_LINK(WM_TIMER             , pinterface, this, &host_interaction::on_ignore_message);
       IGUI_WIN_MSG_LINK(WM_IME_SETCONTEXT    , pinterface, this, &host_interaction::on_ignore_message);
       IGUI_WIN_MSG_LINK(WM_WINDOWPOSCHANGING , pinterface, this, &host_interaction::on_ignore_message);
       IGUI_WIN_MSG_LINK(WM_CHILDACTIVATE     , pinterface, this, &host_interaction::on_ignore_message);
@@ -102,7 +102,7 @@ namespace plugin
       }
    }
 
-   void host_interaction::_001OnTimer(timer * ptimer)
+   void host_interaction::_001OnTimer(::timer * ptimer)
    {
       ::database::user::interaction::_001OnTimer(ptimer);;
       if(ptimer->m_nIDEvent == 88881115)

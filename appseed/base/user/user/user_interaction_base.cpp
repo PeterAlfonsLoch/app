@@ -2637,7 +2637,7 @@ namespace user
    //   return &::user::interaction_base::_user_message_handler;
    //}
 
-   void interaction_base::_001OnTimer(timer * ptimer)
+   void interaction_base::_001OnTimer(::timer * ptimer)
    {
 
       

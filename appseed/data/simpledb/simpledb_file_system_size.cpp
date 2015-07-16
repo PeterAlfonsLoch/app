@@ -338,7 +338,7 @@ void FileSystemSizeWnd::install_message_handling(::message::dispatch * pinterfac
 {
    m_p->install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_COPYDATA, pinterface, this, &FileSystemSizeWnd::_001OnCopyData);
-   IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &FileSystemSizeWnd::_001OnTimer);
+   //IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &FileSystemSizeWnd::_001OnTimer);
 }
 
 bool FileSystemSizeWnd::CreateClient()
@@ -473,7 +473,7 @@ void FileSystemSizeWnd::_001OnCopyData(signal_details * pobj)
 
 }
 
-void FileSystemSizeWnd::_001OnTimer(timer * ptimer)
+void FileSystemSizeWnd::_001OnTimer(::timer * ptimer)
 {
 
 #ifdef WINDOWSEX

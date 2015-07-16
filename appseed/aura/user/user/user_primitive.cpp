@@ -63,7 +63,7 @@ namespace user
 
 
 
-   void primitive::_001OnTimer(timer * ptimer)
+   void primitive::_001OnTimer(::timer * ptimer)
    {
 
       UNREFERENCED_PARAMETER(ptimer);

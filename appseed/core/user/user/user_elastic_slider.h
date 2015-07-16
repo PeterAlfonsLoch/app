@@ -33,7 +33,7 @@ namespace user
       virtual void install_message_handling(::message::dispatch * pdispatch);
 
       DECL_GEN_SIGNAL(_001OnCreate);
-      void _001OnTimer(timer * ptimer);
+      void _001OnTimer(::timer * ptimer);
       DECL_GEN_SIGNAL(_001OnLButtonDown);
       DECL_GEN_SIGNAL(_001OnLButtonUp);
       DECL_GEN_SIGNAL(_001OnMouseMove);

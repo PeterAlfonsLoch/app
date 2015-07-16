@@ -454,7 +454,7 @@ namespace user
    }
 
 
-   void menu::_001OnTimer(timer * ptimer)
+   void menu::_001OnTimer(::timer * ptimer)
    {
 
       ::user::control::_001OnTimer(ptimer);;

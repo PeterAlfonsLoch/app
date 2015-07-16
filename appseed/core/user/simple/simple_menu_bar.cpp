@@ -748,7 +748,7 @@ void simple_menu_bar::_001Hover()
    _001Hover(pt);
 }*/
 
-void simple_menu_bar::_001OnTimer(timer * ptimer)
+void simple_menu_bar::_001OnTimer(::timer * ptimer)
 {
    simple_toolbar::_001OnTimer(ptimer);
    if(ptimer->m_nIDEvent == TIMER_HOVER)

@@ -42,7 +42,7 @@ namespace fontopus
       DECL_GEN_SIGNAL(_001OnLButtonDown);
       DECL_GEN_SIGNAL(_001OnLButtonUp);
       DECL_GEN_SIGNAL(_001OnMouseMove);
-      void _001OnTimer(timer * ptimer);
+      void _001OnTimer(::timer * ptimer);
       
 
       virtual void layout();

@@ -122,7 +122,7 @@ namespace aura
    }
 
 
-   void timer_array::_001OnTimer(timer * ptimer)
+   void timer_array::_001OnTimer(::timer * ptimer)
    {
 
    }

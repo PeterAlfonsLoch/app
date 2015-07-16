@@ -57,7 +57,7 @@ namespace userfs
    }
 
    
-   void main_view::_001OnTimer(timer * ptimer)
+   void main_view::_001OnTimer(::timer * ptimer)
    {
 
       ::user::split_view::_001OnTimer(ptimer);

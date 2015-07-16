@@ -417,7 +417,7 @@ namespace user
 
    }
 
-   void elemental::_001OnTimer(timer * ptimer)
+   void elemental::_001OnTimer(::timer * ptimer)
    {
 
       UNREFERENCED_PARAMETER(ptimer);

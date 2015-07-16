@@ -562,7 +562,7 @@ namespace user
       pobj->previous();
    }
 
-   void plain_edit::_001OnTimer(timer * ptimer)
+   void plain_edit::_001OnTimer(::timer * ptimer)
    {
       control::_001OnTimer(ptimer);
       if(ptimer->m_nIDEvent >= 100

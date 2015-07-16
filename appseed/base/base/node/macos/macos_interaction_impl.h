@@ -680,7 +680,7 @@ namespace macos
 
       void _001OnTriggerMouseInside();
 
-      void _001OnTimer(timer * ptimer);
+      void _001OnTimer(::timer * ptimer);
 
       void _001RedrawWindow();
 

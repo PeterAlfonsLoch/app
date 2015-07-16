@@ -56,7 +56,7 @@ namespace userstack
    {
       simple_frame_window::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CLOSE,          pinterface, this, &frame::_001OnClose);
-//      IGUI_WIN_MSG_LINK(WM_TIMER,          pinterface, this, &frame::_001OnTimer);
+//      //IGUI_WIN_MSG_LINK(WM_TIMER,          pinterface, this, &frame::_001OnTimer);
       IGUI_WIN_MSG_LINK(WM_CREATE,         pinterface, this, &frame::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_APP + 1,        pinterface, this, &frame::_001OnApp1);
       IGUI_WIN_MSG_LINK(WM_MOUSELEAVE,     pinterface, this, &frame::_001OnMouseLeave);
@@ -89,7 +89,7 @@ namespace userstack
 #endif //DEBUG
 
 
-   void frame::_001OnTimer(timer * ptimer)
+   void frame::_001OnTimer(::timer * ptimer)
    {
       
       simple_frame_window::_001OnTimer(ptimer);;

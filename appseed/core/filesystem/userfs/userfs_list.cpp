@@ -46,7 +46,7 @@ namespace userfs
    }
 
 
-   void list::_001OnTimer(timer * ptimer)
+   void list::_001OnTimer(::timer * ptimer)
    {
 //      UNREFERENCED_PARAMETER(pobj);
 

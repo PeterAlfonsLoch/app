@@ -32,7 +32,7 @@ namespace userpresence
 
       virtual bool is_initialized();
 
-      virtual void _001OnTimer(timer * ptimer);
+      virtual void _001OnTimer(::timer * ptimer);
 
 
    };

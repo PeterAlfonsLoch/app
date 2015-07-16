@@ -124,7 +124,7 @@ void XfplayerViewLines::InstallMessageHandling(::message::dispatch *pinterface)
 {
    IGUI_WIN_MSG_LINK(WM_MOUSEMOVE,    pinterface, this, &XfplayerViewLines::OnMouseMove);
    IGUI_WIN_MSG_LINK(WM_SETCURSOR,    pinterface, this, &XfplayerViewLines::OnSetCursor);
-   IGUI_WIN_MSG_LINK(WM_TIMER,        pinterface, this, &XfplayerViewLines::OnTimer);
+   //IGUI_WIN_MSG_LINK(WM_TIMER,        pinterface, this, &XfplayerViewLines::OnTimer);
    IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN,  pinterface, this, &XfplayerViewLines::OnLButtonDown);
    IGUI_WIN_MSG_LINK(WM_LBUTTONUP,    pinterface, this, &XfplayerViewLines::OnLButtonUp);
 }

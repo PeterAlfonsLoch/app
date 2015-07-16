@@ -1123,7 +1123,7 @@ namespace user
             IGUI_WIN_MSG_LINK(WM_NCHITTEST,pdispatch,this,&WorkSet::_001OnNcHitTest);
             IGUI_WIN_MSG_LINK(WM_ACTIVATE,pdispatch,this,&WorkSet::_001OnActivate);
             IGUI_WIN_MSG_LINK(WM_NCACTIVATE,pdispatch,this,&WorkSet::_001OnNcActivate);
-//            IGUI_WIN_MSG_LINK(WM_TIMER,pdispatch,this,&WorkSet::_001OnTimer);
+//            //IGUI_WIN_MSG_LINK(WM_TIMER,pdispatch,this,&WorkSet::_001OnTimer);
             IGUI_WIN_MSG_LINK(WM_SIZE,pdispatch,this,&WorkSet::_001OnSize);
             IGUI_WIN_MSG_LINK(WM_COMMAND,pdispatch,this,&WorkSet::_001OnCommand);
             IGUI_WIN_MSG_LINK(WM_MOVE,pdispatch,this,&WorkSet::_001OnMove);
@@ -1249,7 +1249,7 @@ namespace user
          }
 
          
-         void WorkSet::_001OnTimer(timer * ptimer)
+         void WorkSet::_001OnTimer(::timer * ptimer)
          {
             
             //return; //xxxtimer

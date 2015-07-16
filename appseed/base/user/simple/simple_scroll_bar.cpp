@@ -590,7 +590,7 @@ void simple_scroll_bar::layout()
 //   psize->m_bRet = false;
 }
 
-void simple_scroll_bar::_001OnTimer(timer * ptimer)
+void simple_scroll_bar::_001OnTimer(::timer * ptimer)
 {
 
    ::user::scroll_bar::_001OnTimer(ptimer);

@@ -41,7 +41,7 @@ namespace command
       virtual void _001OnInitialUpdate();
       DECL_GEN_SIGNAL(_001OnLButtonDown);
       DECL_GEN_SIGNAL(_001OnLButtonUp);
-      void _001OnTimer(timer * ptimer);
+      void _001OnTimer(::timer * ptimer);
       DECL_GEN_SIGNAL(_001OnRButtonUp);
 	   virtual void on_update(::user::impact * pSender, LPARAM lHint, ::object* pHint);
 

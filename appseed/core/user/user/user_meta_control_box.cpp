@@ -60,7 +60,7 @@ void MetaControlBox::_001OnLButtonUp(signal_details * pobj)
 
 
 
-void MetaControlBox::_001OnTimer(timer * ptimer)
+void MetaControlBox::_001OnTimer(::timer * ptimer)
 {
 
    ::user::wndfrm::frame::control_box::_001OnTimer(ptimer);
@@ -77,7 +77,7 @@ void MetaControlBox::install_message_handling(::message::dispatch *pinterface)
    IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &MetaControlBox::_001OnLButtonDown);
    IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &MetaControlBox::_001OnLButtonUp);
    IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &MetaControlBox::_001OnSize);
-//   IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &MetaControlBox::_001OnTimer);
+//   //IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &MetaControlBox::_001OnTimer);
 
 }
 

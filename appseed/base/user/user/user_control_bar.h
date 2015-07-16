@@ -205,7 +205,7 @@ namespace user
       void GetBarInfo(BaseControlBarInfo* pInfo);
       void SetBarInfo(BaseControlBarInfo* pInfo, sp(::user::frame_window) pFrameWnd);
 
-      void _001OnTimer(timer * ptimer);
+      void _001OnTimer(::timer * ptimer);
       DECL_GEN_SIGNAL(_001OnCreate);
       DECL_GEN_SIGNAL(_001OnDestroy);
       DECL_GEN_SIGNAL(_001OnCtlColor);

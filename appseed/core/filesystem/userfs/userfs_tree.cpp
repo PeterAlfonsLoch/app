@@ -234,7 +234,7 @@ namespace userfs
 
 
 
-   void tree::_001OnTimer(timer * ptimer)
+   void tree::_001OnTimer(::timer * ptimer)
    {
 
       if (ptimer->m_nIDEvent == 1234567)

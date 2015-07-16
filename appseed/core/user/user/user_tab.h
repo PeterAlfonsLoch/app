@@ -263,7 +263,7 @@ namespace user
       
       DECL_GEN_SIGNAL(_001OnAppLanguage);
       DECL_GEN_SIGNAL(_001OnSize);
-      void _001OnTimer(timer * ptimer);
+      void _001OnTimer(::timer * ptimer);
 
 
       virtual void defer_handle_full_screen_show_tabs();

@@ -391,7 +391,7 @@ namespace filemanager
    }
 
 
-   void file_list::_001OnTimer(timer * ptimer)
+   void file_list::_001OnTimer(::timer * ptimer)
    {
 
       ::userfs::list::_001OnTimer(ptimer);

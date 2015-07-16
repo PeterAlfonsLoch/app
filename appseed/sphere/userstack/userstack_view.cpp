@@ -49,7 +49,7 @@ namespace userstack
       IGUI_WIN_MSG_LINK(WM_SETCURSOR, pinterface, this, &view::_001OnSetCursor);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &view::_001OnLButtonUp);
 
-//      IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &view::_001OnTimer);
+//      //IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &view::_001OnTimer);
 
    }
    /////////////////////////////////////////////////////////////////////////////
@@ -223,7 +223,7 @@ namespace userstack
    }
 
 
-   void view::_001OnTimer(timer * ptimer)
+   void view::_001OnTimer(::timer * ptimer)
    {
       
       BASE::_001OnTimer(ptimer);

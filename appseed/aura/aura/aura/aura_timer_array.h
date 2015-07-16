@@ -29,7 +29,7 @@ namespace aura
       virtual void delete_all_timers();
 
       virtual bool on_timer(timer * ptimer);
-      virtual void _001OnTimer(timer * ptimer);
+      virtual void _001OnTimer(::timer * ptimer);
 
    };
 

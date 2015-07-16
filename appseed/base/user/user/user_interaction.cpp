@@ -1672,7 +1672,7 @@ namespace user
       //}
    }
 
-   void interaction::_001OnTimer(timer * ptimer)
+   void interaction::_001OnTimer(::timer * ptimer)
    {
 
       if(ptimer->m_nIDEvent == 1984 + 77 + 3)

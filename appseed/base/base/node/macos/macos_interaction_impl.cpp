@@ -548,7 +548,7 @@ namespace macos
       IGUI_WIN_MSG_LINK(WM_SIZE              , pinterface, this, &interaction_impl::_001OnSize);
       IGUI_WIN_MSG_LINK(WM_SHOWWINDOW        , pinterface, this, &interaction_impl::_001OnShowWindow);
       IGUI_WIN_MSG_LINK(ca2m_PRODEVIAN_SYNCH , pinterface, this, &interaction_impl::_001OnProdevianSynch);
-//      IGUI_WIN_MSG_LINK(WM_TIMER             , pinterface, this, &interaction_impl::_001OnTimer);
+//      //IGUI_WIN_MSG_LINK(WM_TIMER             , pinterface, this, &interaction_impl::_001OnTimer);
    }
 
    void interaction_impl::_001OnMove(signal_details * pobj)
@@ -2931,7 +2931,7 @@ namespace macos
    }
 
 
-   void interaction_impl::_001OnTimer(timer * ptimer)
+   void interaction_impl::_001OnTimer(::timer * ptimer)
    {
 
       ::user::interaction_impl::_001OnTimer(ptimer);;

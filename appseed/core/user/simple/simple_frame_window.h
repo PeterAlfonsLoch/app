@@ -242,7 +242,7 @@ public:
 
    virtual void InitialUpdateFrame(::user::document * pDoc,bool bMakeVisible);
 
-   virtual void _001OnTimer(timer * ptimer);
+   virtual void _001OnTimer(::timer * ptimer);
 
 };
 

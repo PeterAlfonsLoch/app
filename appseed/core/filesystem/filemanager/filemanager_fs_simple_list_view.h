@@ -138,7 +138,7 @@ namespace filemanager
          #endif
 
             DECL_GEN_SIGNAL(_001OnLButtonDblClk);
-            void _001OnTimer(timer * ptimer);
+            void _001OnTimer(::timer * ptimer);
             DECL_GEN_SIGNAL(_001OnSize);
             DECL_GEN_SIGNAL(_001OnContextMenu);
             DECL_GEN_SIGNAL(_001OnEraseBkgnd);

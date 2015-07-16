@@ -57,7 +57,7 @@ namespace user
       IGUI_WIN_MSG_LINK(WM_KEYDOWN,         pinterface, this, &list::_001OnKeyDown);
 
       IGUI_WIN_MSG_LINK(WM_CREATE,          pinterface, this, &list::_001OnCreate);
-//      IGUI_WIN_MSG_LINK(WM_TIMER,           pinterface, this, &list::_001OnTimer);
+//      //IGUI_WIN_MSG_LINK(WM_TIMER,           pinterface, this, &list::_001OnTimer);
       connect_command("list_view_auto_arrange", &list::_001OnListViewAutoArrange);
       connect_update_cmd_ui("list_view_auto_arrange", &list::_001OnUpdateListViewAutoArrange);
    }
@@ -3650,7 +3650,7 @@ namespace user
    }
 
 
-   void list::_001OnTimer(timer * ptimer)
+   void list::_001OnTimer(::timer * ptimer)
    {
 //      return; //xxxtimer
       ::user::mesh::_001OnTimer(ptimer);;

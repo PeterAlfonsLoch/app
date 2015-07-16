@@ -84,7 +84,7 @@ namespace user
    }
 
 
-   void check_box::_001OnTimer(timer * ptimer)
+   void check_box::_001OnTimer(::timer * ptimer)
    {
       
       ::user::control::_001OnTimer(ptimer);

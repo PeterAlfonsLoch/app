@@ -110,7 +110,7 @@ namespace filemanager
       return  (::user::impact::get_document());
    }
 
-   void operation_info_view::_001OnTimer(timer * ptimer)
+   void operation_info_view::_001OnTimer(::timer * ptimer)
    {
       ::user::impact::_001OnTimer(ptimer);
       if(ptimer->m_nIDEvent == 123)
@@ -128,7 +128,7 @@ namespace filemanager
    {
       ::user::impact::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE,pinterface,this,&operation_info_view::_001OnCreate);
-//      IGUI_WIN_MSG_LINK(WM_TIMER,pinterface,this,&operation_info_view::_001OnTimer);
+//      //IGUI_WIN_MSG_LINK(WM_TIMER,pinterface,this,&operation_info_view::_001OnTimer);
    }
 
    void operation_info_view::assert_valid() const

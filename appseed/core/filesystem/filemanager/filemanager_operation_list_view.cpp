@@ -16,7 +16,7 @@ namespace filemanager
    {
       ::user::impact::install_message_handling(pinterface);
       ::user::list::install_message_handling(pinterface);
-//      IGUI_WIN_MSG_LINK(WM_TIMER,pinterface,this,&operation_list_view::_001OnTimer);
+//      //IGUI_WIN_MSG_LINK(WM_TIMER,pinterface,this,&operation_list_view::_001OnTimer);
       IGUI_WIN_MSG_LINK(WM_CREATE,pinterface,this,&operation_list_view::_001OnCreate);
    }
 
@@ -101,7 +101,7 @@ namespace filemanager
       pobj->previous();
       SetTimer(123,500,NULL);
    }
-   void operation_list_view::_001OnTimer(timer * ptimer)
+   void operation_list_view::_001OnTimer(::timer * ptimer)
    {
       BASE::_001OnTimer(ptimer);
       if(ptimer->m_nIDEvent == 123)

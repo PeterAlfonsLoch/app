@@ -154,7 +154,7 @@ namespace user
          }
 
 
-         void control_box::_001OnTimer(timer * ptimer)
+         void control_box::_001OnTimer(::timer * ptimer)
          {
 
             if(GetTopLevel()->WfiIsMoving())
@@ -318,7 +318,7 @@ namespace user
             ::user::interaction::install_message_handling(pinterface);
 
             IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &control_box::_001OnShowWindow);
-//            IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &control_box::_001OnTimer);
+//            //IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &control_box::_001OnTimer);
             IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &control_box::_001OnCreate);
             IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pinterface, this, &control_box::_001OnMouseMove);
             IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &control_box::_001OnLButtonDown);

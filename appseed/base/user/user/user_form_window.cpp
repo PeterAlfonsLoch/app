@@ -1184,7 +1184,7 @@ namespace user
    //}
 
 
-   void form_window::_001OnTimer(timer * ptimer)
+   void form_window::_001OnTimer(::timer * ptimer)
    {
       control::_001OnTimer(ptimer);
       if(m_pcallback != NULL)

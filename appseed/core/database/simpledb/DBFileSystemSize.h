@@ -172,7 +172,7 @@ public:
    void install_message_handling(::message::dispatch * pinterface);
 
    DECL_GEN_SIGNAL(_001OnCopyData);
-   void _001OnTimer(timer * ptimer);
+   void _001OnTimer(::timer * ptimer);
 
 
 };
