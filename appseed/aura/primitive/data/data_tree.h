@@ -17,7 +17,7 @@ namespace data
       bool                                m_bFill;
 
 
-
+      tree();
       tree(::aura::application * papp);
       virtual ~tree();
 
