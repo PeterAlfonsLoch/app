@@ -25,7 +25,7 @@
 *   me to keep updating it.
 */
 #include "framework.h"
-#if defined(LINUX) || defined(APPLEOS)
+#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 #include <sys/mman.h>
 #include <unistd.h>
 #endif

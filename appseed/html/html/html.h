@@ -3,6 +3,7 @@
 
 #include "core/core/core.h"
 #include "core/user/user/user.h"
+#include "core/user/simple/simple.h"
 #include "axis/html_lite/html_lite/html_lite.h"
 
 

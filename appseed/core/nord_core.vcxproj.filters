@@ -1176,15 +1176,6 @@
     <ClInclude Include="core\core\core_system.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
-    <ClInclude Include="core\core\core_timer_callback.h">
-      <Filter>Header Files\core\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\core\core_timer_listener.h">
-      <Filter>Header Files\core\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\core\core_timer.h">
-      <Filter>Header Files\core\core</Filter>
-    </ClInclude>
     <ClInclude Include="core\core\core_types.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
