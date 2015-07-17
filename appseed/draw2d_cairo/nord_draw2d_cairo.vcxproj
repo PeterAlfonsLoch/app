@@ -133,20 +133,6 @@
   <ItemGroup>
     <None Include="draw2d_cairo.def" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\axis\cairo\nord_axiscairo.vcxproj">
-      <Project>{0d31523b-0c88-474f-a5c8-4091bb3d10ac}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\axis\pixman\nord_axispixman.vcxproj">
-      <Project>{005c309d-5880-4431-a65b-f04f6a6895b3}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\aqua\nord_aqua.vcxproj">
-      <Project>{bd207bc4-c08b-4a2d-b754-f3bd46ad3098}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\aura\nord_aura.vcxproj">
-      <Project>{02207bc4-c08b-4a2d-b754-f3bd46ad3098}</Project>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
 </Project>

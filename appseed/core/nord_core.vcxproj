@@ -1218,20 +1218,6 @@
     <None Include="user\user\interaction.inl" />
     <None Include="user\user\user_interaction.inl" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\aura\charguess\nord_auracharguess.vcxproj">
-      <Project>{05207bc4-c08b-4a2d-b754-f3bd46ad3098}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\aura\nord_aura.vcxproj">
-      <Project>{02207bc4-c08b-4a2d-b754-f3bd46ad3098}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\axis\nord_axis.vcxproj">
-      <Project>{03207bc4-c08b-4a2d-b754-f3bd46ad3098}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\base\nord_base.vcxproj">
-      <Project>{04207bc4-c08b-4a2d-b754-f3bd46ad3098}</Project>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
 </Project>

@@ -392,7 +392,37 @@ bool imaging::from(::draw2d::dib * pdib,::draw2d::graphics * pgraphics,FIBITMAP 
 
    pdib->map();
 
-#if defined(APPLEOS)
+   int stride = pbi->bmiHeader.biWidth * sizeof(COLORREF);
+
+#if  defined(VSNORD)
+
+   for (index y = 0; y < pdib->m_size.cy; y++)
+   {
+
+      byte * pbDst = ((byte *)pdib->m_pcolorref) + ((pdib->m_size.cy - y - 1) * pdib->m_iScan);
+
+      byte * pbSrc = (byte *)pdata + (y * stride);
+
+      for (index x = 0; x < pdib->m_size.cx; x++)
+      {
+
+         pbDst[0] = pbSrc[2];
+
+         pbDst[1] = pbSrc[1];
+
+         pbDst[2] = pbSrc[0];
+
+         pbDst[3] = pbSrc[3];
+
+         pbDst += 4;
+
+         pbSrc += 4;
+
+      }
+
+   }
+
+#elif defined(APPLEOS)
 
    byte * pbDst = (byte *)pdib->m_pcolorref;
 
