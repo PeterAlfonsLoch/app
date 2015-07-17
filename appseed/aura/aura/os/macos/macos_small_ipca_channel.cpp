@@ -192,13 +192,31 @@ namespace aura
 
       bool rx::create(const char * pszChannel)
       {
-         m_key = ftok(".",'c');
+         
+         ::dir::mk(::file::path(pszChannel).folder());
+         
+         file_put_contents_dup(pszChannel, pszChannel);
+         
+         m_key = ftok(pszChannel,'c');
 
-         if(m_key == 0)
-            return false;
-
-         if((m_iQueue = msgget(m_key,IPC_CREAT | IPC_EXCL | 0660)) == -1)
+         if(m_key == (key_t)-1)
          {
+            int err = errno;
+            string str;
+            str.Format("Error(1) small_ipca_channel::rx::create %d", err);
+            ::output_debug_string(str);
+            
+            return false;
+         }
+
+//         if((m_iQueue = msgget(m_key,IPC_CREAT | IPC_EXCL | 0660)) == -1)
+         if((m_iQueue = msgget(m_key,IPC_CREAT | 0660)) == -1)         
+         {
+            int err = errno;
+            string str;
+            str.Format("Error(2) small_ipca_channel::rx::create %d", err);
+            ::output_debug_string(str);
+
             return false;
          }
 
