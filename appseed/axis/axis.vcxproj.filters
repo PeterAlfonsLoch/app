@@ -1073,9 +1073,6 @@
     <ClInclude Include="axis\node\metrowin\metrowin_axis_file_system.h">
       <Filter>Header Files\axis\node\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="axis\node\metrowin\metrowin_native_buffer.h">
-      <Filter>Header Files\axis\node\metrowin</Filter>
-    </ClInclude>
     <ClInclude Include="axis\node\metrowin\metrowin.h">
       <Filter>Header Files\axis\node\metrowin</Filter>
     </ClInclude>
@@ -1834,17 +1831,14 @@
     <ClCompile Include="axis\node\windows\aaaa_windows_message_queue.cpp">
       <Filter>Source Files\axis\node\windows</Filter>
     </ClCompile>
-    <ClCompile Include="axis\node\metrowin\metrowin_native_buffer.cpp">
+    <ClCompile Include="axis\node\metrowin\metrowin_axis_file_system.cpp">
       <Filter>Source Files\axis\node\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="axis\node\metrowin\metrowin_axis_file_system.cpp">
+    <ClCompile Include="axis\node\metrowin\_metrowin_node.cpp">
       <Filter>Source Files\axis\node\metrowin</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>

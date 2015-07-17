@@ -58,6 +58,7 @@ CLASS_DECL_AURA void __try_cleanup();
 #include "metrowin_uac_tools.h"
 #include "metrowin_thread.h"
 #include "metrowin_file.h"
+#include "metrowin_native_buffer.h" // soon, from axis library 2015-07-17 20:06 Livecoding(.tv)
 #include "metrowin_stdio_file.h"
 #include "metrowin_os.h"
 

@@ -383,7 +383,7 @@ namespace file
       bool system::mk_time(const ::file::path & lpcszCandidate)
       {
          ::file::buffer_sp spfile(allocer());
-         if (System.file().exists(lpcszCandidate, papp))
+         if (System.file().exists(lpcszCandidate, get_app()))
             return false;
          try
          {
@@ -1665,7 +1665,7 @@ namespace file
       string system::nessie(::file::buffer_sp  pfile)
       {
 
-         ::primitive::memory mem(papp);
+         ::primitive::memory mem(get_app());
 
          mem.allocate(1024 * 256);
 
@@ -1991,7 +1991,7 @@ namespace file
             else
             {
 
-               spfile = get_file(App(papp).dir().matter(strPath),nOpenFlags,&cres);
+               spfile = get_file(App(papp).dir().matter(strPath),nOpenFlags,&cres, papp);
 
             }
 
@@ -1999,23 +1999,7 @@ namespace file
          else
          {
 
-            if(strPath.is_empty())
-            {
-               TRACE("::application::get_file file with empty name!!");
-               return spfile;
-            }
-
-            /*            if((nOpenFlags & ::file::mode_create) == 0 && !exists(strPath))
-            {
-            TRACE("::application::file does not exist!! : \"%s\"",strPath);
-            return spfile;
-            }
-            */
-
-            spfile = App(papp).alloc(System.type_info < ::file::binary_buffer >());
-
-            cres = spfile->open(strPath,nOpenFlags);
-
+            return NULL;
 
          }
 

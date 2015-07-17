@@ -108,6 +108,34 @@ namespace metrowin
 
    }
 
+   ::file::buffer_sp file_system::get_file(var varFile,UINT nOpenFlags,cres * pfesp,::aura::application * papp)
+   {
+
+      ::file::buffer_sp spfile;
+
+      if(::str::begins_ci(varFile.get_string(),"winmetro-Pictures:\\\\"))
+      {
+
+         spfile = canew(::metrowin::native_buffer(papp));
+
+         cres cres = spfile->open(varFile.get_string(),nOpenFlags);
+
+         if(pfesp != NULL)
+         {
+
+            *pfesp = cres;
+
+         }
+
+         return spfile;
+
+      }
+
+      spfile = ::file::system::get_file(varFile,nOpenFlags,pfesp,papp);
+
+      return spfile;
+
+   }
 
 
 } // namespace metrowin

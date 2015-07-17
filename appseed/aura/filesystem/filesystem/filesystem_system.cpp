@@ -1338,6 +1338,112 @@ restart:
       
    }
 
+   ::file::buffer_sp system::get_file(var varFile,UINT nOpenFlags,cres * pfesp,::aura::application * papp)
+   {
+
+      if(pfesp != NULL)
+      {
+         ::release(pfesp->m_p);
+      }
+
+      ::cres cres;
+
+      ::file::buffer_sp spfile;
+
+      ::file::path strPath;
+
+      if(varFile.get_type() == var::type_element)
+      {
+
+         spfile = varFile.cast < ::file::stream_buffer >();
+
+         if(spfile.is_set())
+            return spfile;
+
+      }
+      else if(varFile.get_type() == var::type_string)
+      {
+
+         strPath = varFile;
+
+         //strPath.trim("\"'");
+
+      }
+      else if(varFile.get_type() == var::type_stra)
+      {
+
+         if(varFile.stra().get_count() > 0)
+         {
+
+            strPath = varFile.stra()[0];
+
+         }
+
+         //strPath.trim("\"'");
+
+      }
+      else if(varFile.get_type() == var::type_propset)
+      {
+
+         if(varFile.has_property("url"))
+         {
+
+            strPath = varFile["url"];
+
+            //strPath.trim("\"'");
+
+         }
+
+      }
+
+      if(varFile.get_type() == var::type_propset && varFile.propset()["file"].cast < ::file::binary_buffer >() != NULL)
+      {
+
+         spfile = varFile.propset()["file"].cast < ::file::stream_buffer >();
+
+      }
+      else
+      {
+
+         if(strPath.is_empty())
+         {
+            TRACE("::application::get_file file with empty name!!");
+            return spfile;
+         }
+
+         /*            if((nOpenFlags & ::file::mode_create) == 0 && !exists(strPath))
+         {
+         TRACE("::application::file does not exist!! : \"%s\"",strPath);
+         return spfile;
+         }
+         */
+
+         spfile = App(papp).alloc(System.type_info < ::file::binary_buffer >());
+
+         cres = spfile->open(strPath,nOpenFlags);
+
+
+      }
+
+      if(cres.failed())
+      {
+
+         spfile.release();
+
+         if(pfesp != NULL)
+         {
+
+            *pfesp = cres;
+
+         }
+
+      }
+
+      return spfile;
+
+
+   }
+
 
 } // namespace file
 

@@ -32,3 +32,10 @@
 //2015-01-05  09:19                 0 _metrowin_node.cpp"
 //              17 arquivo(s)        251.930 bytes
 //               0 pasta(s)   36.161.654.784 bytes dispon¡veis
+
+
+
+#include "metrowin_native_buffer.cpp" // soon, from axis library 2015-07-17 20:06 Livecoding(.tv)
+
+
+

@@ -255,6 +255,12 @@
     <Filter Include="Source Files\user\user">
       <UniqueIdentifier>{974dd2df-2d21-488e-b03a-6f7b62219aae}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\aura\os\metrowin">
+      <UniqueIdentifier>{aa94c437-5144-4e81-9a16-c6b210d0f81c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\aura\node\metrowin">
+      <UniqueIdentifier>{60f1f6cd-c71a-44fb-a364-ab014a9a5b22}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive_id.h">
@@ -2066,6 +2072,12 @@
     <ClInclude Include="multithreading\multithreading_forking_thread.h">
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
+    <ClInclude Include="aura\node\metrowin\metrowin.h">
+      <Filter>Header Files\aura\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\node\metrowin\metrowin_file_system.h">
+      <Filter>Header Files\aura\node\metrowin</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -3462,6 +3474,15 @@
     </ClCompile>
     <ClCompile Include="aura\aura\aura_timer_callback.cpp">
       <Filter>Source Files\aura\aura</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\node\metrowin\metrowin_native_buffer.cpp">
+      <Filter>Source Files\aura\os\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\node\metrowin\_metrowin_node.cpp">
+      <Filter>Source Files\aura\os\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\node\metrowin\metrowin_file_system.cpp">
+      <Filter>Source Files\aura\os\metrowin</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

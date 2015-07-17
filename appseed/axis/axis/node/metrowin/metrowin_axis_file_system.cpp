@@ -119,27 +119,8 @@ namespace metrowin
       {
 
          ::file::buffer_sp spfile;
-         
-         if(::str::begins_ci(strPath,"winmetro-Pictures:\\\\"))
-         {
-
-            spfile = canew(::metrowin::native_buffer(papp));
-
-            cres cres = spfile->open(strPath,nOpenFlags);
-
-            if(pfesp != NULL)
-            {
-
-               *pfesp = cres;
-
-            }
-
-            return spfile;
-
-         }
 
          spfile = ::file::axis::system::get_file(varFile,nOpenFlags,pfesp,papp);
-
 
          if(spfile.is_set())
          {
@@ -147,8 +128,11 @@ namespace metrowin
             return spfile;
 
          }
-
-         return NULL;
+            
+            
+         spfile = ::metrowin::file_system::get_file(varFile,nOpenFlags,pfesp,app);
+         
+         return spfile;
 
       }
 
