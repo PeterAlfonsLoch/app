@@ -301,7 +301,7 @@ namespace file
       ::file::buffer_sp application::get_file(var varFile, UINT nOpenFlags, cres * pfesp)
       {
 
-         return m_pauraapp->m_paxissystem->get_file(varFile,nOpenFlags,pfesp,m_pauraapp);
+         return m_pauraapp->m_paxissystem->m_spfile->get_file(varFile,nOpenFlags,pfesp,m_pauraapp);
 
       }
 
