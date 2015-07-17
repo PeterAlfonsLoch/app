@@ -2269,6 +2269,11 @@
     <None Include="primitive\primitive_factory_impl.inl" />
     <None Include="primitive\str\str.inl" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\atom\iconv\nord_iconv.vcxproj">
+      <Project>{a9d5fc74-a2d7-49bc-b658-ccd5610c5a96}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
 </Project>

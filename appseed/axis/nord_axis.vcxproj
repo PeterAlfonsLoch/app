@@ -1727,6 +1727,11 @@
   <ItemGroup>
     <None Include="axis\axis\axis.inl" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\aura\nord_aura.vcxproj">
+      <Project>{02207bc4-c08b-4a2d-b754-f3bd46ad3098}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
 </Project>
