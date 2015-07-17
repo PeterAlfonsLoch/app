@@ -1592,7 +1592,11 @@ namespace ios
       
 #endif
       
-      ::file::path str = ::file::path(getenv("HOME")) / ".ca2/appdata";
+      ::file::path pathHome = ::file::path(getenv("HOME")) ;
+      
+      ::file::path str = pathHome/ ".ca2/appdata";
+      
+      m_pathUser = pathHome / ".ca2";
       
       string strRelative;
       

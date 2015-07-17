@@ -190,12 +190,19 @@ namespace aura
 
       bool rx::create(const char * pszChannel)
       {
-         m_key = ftok(".",'c');
+         
+         ::dir::mk(::file::path(pszChannel).folder());
+         
+         file_put_contents_dup(pszChannel, pszChannel);
+         m_key = ftok(pszChannel,'c');
 
-         if(m_key == 0)
+         if(m_key == -1)
+         {
             return false;
+         }
 
-         if((m_iQueue = msgget(m_key,IPC_CREAT | IPC_EXCL | 0660)) == -1)
+         //if((m_iQueue = msgget(m_key,IPC_CREAT | IPC_EXCL | 0660)) == -1)
+         if((m_iQueue = msgget(m_key,IPC_CREAT | 0660)) == -1)
          {
             return false;
          }
