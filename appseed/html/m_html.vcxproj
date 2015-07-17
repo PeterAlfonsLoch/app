@@ -27,7 +27,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{3B814DAF-FD98-487D-917E-9D708BE3BC61}</ProjectGuid>
+    <ProjectGuid>{F7A7C44A-61FA-4182-81B5-75240D07E5B9}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <ProjectName>html</ProjectName>
     <RootNamespace>html</RootNamespace>
@@ -92,8 +92,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
     <GenerateManifest>false</GenerateManifest>
     <IgnoreImportLibrary>false</IgnoreImportLibrary>
-    <OutDir>$(SolutionDir)..\..\..\stage\x86\</OutDir>
-    <IntDir>$(SolutionDir)..\..\..\time\intermediate\x86\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)..\..\..\$(ConfigurationName)\$(PlatformName)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(ConfigurationName)\$(PlatformName)\$(ProjectName)\</IntDir>
     <IncludePath>$(VCInstallDir)include;$(WindowsSDK_IncludePath);</IncludePath>
     <ReferencePath>$(VCInstallDir)lib</ReferencePath>
     <LibraryPath>$(VCInstallDir)lib;$(WindowsSDK_LibraryPath_x86);</LibraryPath>
@@ -255,6 +255,9 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\FreeImage.dll" "$(OutDir)
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\axis\html_lite\m_html_lite.vcxproj">
+      <Project>{3b814daf-fd98-487d-917e-9d708be3bc61}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\aqua\m_aqua.vcxproj">
       <Project>{19518477-75c4-4df7-acc2-325fa81a640c}</Project>
     </ProjectReference>
@@ -323,6 +326,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\FreeImage.dll" "$(OutDir)
     <ClInclude Include="graphics\impl\html_impl_text.h" />
     <ClInclude Include="hi5\hi5_twitter_authorization.h" />
     <ClInclude Include="html\html.h" />
+    <ClInclude Include="html_application.h" />
     <ClInclude Include="html_application_interface.h" />
     <ClInclude Include="html_lite\html_lite.h" />
     <ClInclude Include="html_lite\html_lite_html_attributes.h" />
@@ -343,57 +347,161 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\FreeImage.dll" "$(OutDir)
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="graphics\elemental\html_elemental_cell.cpp" />
-    <ClCompile Include="graphics\elemental\html_elemental_elemental.cpp" />
-    <ClCompile Include="graphics\elemental\html_elemental_form.cpp" />
-    <ClCompile Include="graphics\elemental\html_elemental_image.cpp" />
-    <ClCompile Include="graphics\elemental\html_elemental_input_button.cpp" />
-    <ClCompile Include="graphics\elemental\html_elemental_input_checkbox.cpp" />
-    <ClCompile Include="graphics\elemental\html_elemental_input_text.cpp" />
-    <ClCompile Include="graphics\elemental\html_elemental_select.cpp" />
-    <ClCompile Include="graphics\elemental\html_elemental_table.cpp" />
-    <ClCompile Include="graphics\elemental\html_elemental_table_elemental.cpp" />
-    <ClCompile Include="graphics\elemental\html_elemental_table_row.cpp" />
-    <ClCompile Include="graphics\elemental\html_elemental_text.cpp" />
-    <ClCompile Include="graphics\html_attribute.cpp" />
-    <ClCompile Include="graphics\html_base.cpp" />
-    <ClCompile Include="graphics\html_data.cpp" />
-    <ClCompile Include="graphics\html_font.cpp" />
-    <ClCompile Include="graphics\html_form.cpp" />
-    <ClCompile Include="graphics\html_html.cpp" />
-    <ClCompile Include="graphics\html_reader.cpp" />
-    <ClCompile Include="graphics\html_signal.cpp" />
-    <ClCompile Include="graphics\html_style.cpp" />
-    <ClCompile Include="graphics\html_style_sheet.cpp" />
-    <ClCompile Include="graphics\html_style_sheet_array.cpp" />
-    <ClCompile Include="graphics\html_tag.cpp" />
-    <ClCompile Include="graphics\html_value.cpp" />
-    <ClCompile Include="graphics\impl\html_impl.cpp" />
-    <ClCompile Include="graphics\impl\html_impl_cell.cpp" />
-    <ClCompile Include="graphics\impl\html_impl_elemental.cpp" />
-    <ClCompile Include="graphics\impl\html_impl_form.cpp" />
-    <ClCompile Include="graphics\impl\html_impl_image.cpp" />
-    <ClCompile Include="graphics\impl\html_impl_input_button.cpp" />
-    <ClCompile Include="graphics\impl\html_impl_input_checkbox.cpp" />
-    <ClCompile Include="graphics\impl\html_impl_input_text.cpp" />
-    <ClCompile Include="graphics\impl\html_impl_select.cpp" />
-    <ClCompile Include="graphics\impl\html_impl_table.cpp" />
-    <ClCompile Include="graphics\impl\html_impl_table_elemental.cpp" />
-    <ClCompile Include="graphics\impl\html_impl_table_row.cpp" />
-    <ClCompile Include="graphics\impl\html_impl_text.cpp" />
-    <ClCompile Include="hi5\hi5_twitter_authorization.cpp" />
-    <ClCompile Include="html_application_interface.cpp" />
-    <ClCompile Include="html_lite\html_lite_html_attributes.cpp" />
-    <ClCompile Include="html_lite\html_lite_html_entity_resolver.cpp" />
-    <ClCompile Include="html_lite\html_lite_html_reader.cpp" />
-    <ClCompile Include="html_lite\html_lite_html_tag.cpp" />
-    <ClCompile Include="userhtml\userhtml_child_frame.cpp" />
-    <ClCompile Include="userhtml\userhtml_document.cpp" />
-    <ClCompile Include="userhtml\userhtml_form.cpp" />
-    <ClCompile Include="userhtml\userhtml_form_view.cpp" />
-    <ClCompile Include="userhtml\userhtml_frame.cpp" />
-    <ClCompile Include="userhtml\userhtml_view.cpp" />
-    <ClCompile Include="userhtml\userhtml_view_update_hint.cpp" />
+    <ClCompile Include="graphics\elemental\html_elemental_cell.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="graphics\elemental\html_elemental_elemental.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="graphics\elemental\html_elemental_form.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="graphics\elemental\html_elemental_image.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="graphics\elemental\html_elemental_input_button.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="graphics\elemental\html_elemental_input_checkbox.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="graphics\elemental\html_elemental_input_text.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="graphics\elemental\html_elemental_select.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="graphics\elemental\html_elemental_table.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="graphics\elemental\html_elemental_table_elemental.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="graphics\elemental\html_elemental_table_row.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="graphics\elemental\html_elemental_text.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="graphics\elemental\_html_elemental.cpp" />
+    <ClCompile Include="graphics\html_attribute.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="graphics\html_base.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="graphics\html_data.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="graphics\html_font.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="graphics\html_form.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="graphics\html_html.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="graphics\html_reader.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="graphics\html_signal.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="graphics\html_style.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="graphics\html_style_sheet.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="graphics\html_style_sheet_array.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="graphics\html_tag.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="graphics\html_value.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="graphics\impl\html_impl.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="graphics\impl\html_impl_cell.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="graphics\impl\html_impl_elemental.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="graphics\impl\html_impl_form.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="graphics\impl\html_impl_image.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="graphics\impl\html_impl_input_button.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="graphics\impl\html_impl_input_checkbox.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="graphics\impl\html_impl_input_text.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="graphics\impl\html_impl_select.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="graphics\impl\html_impl_table.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="graphics\impl\html_impl_table_elemental.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="graphics\impl\html_impl_table_row.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="graphics\impl\html_impl_text.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="graphics\impl\_html_impl.cpp" />
+    <ClCompile Include="graphics\_graphics.cpp" />
+    <ClCompile Include="hi5\hi5_twitter_authorization.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="html_application.cpp" />
+    <ClCompile Include="html_lite\html_lite_html_attributes.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="html_lite\html_lite_html_entity_resolver.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="html_lite\html_lite_html_reader.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="html_lite\html_lite_html_tag.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="userhtml\userhtml_child_frame.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="userhtml\userhtml_document.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="userhtml\userhtml_form.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="userhtml\userhtml_form_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="userhtml\userhtml_frame.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="userhtml\userhtml_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="userhtml\userhtml_view_update_hint.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="userhtml\_userhtml.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="html.def" />
