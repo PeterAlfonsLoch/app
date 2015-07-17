@@ -276,6 +276,12 @@
     <Filter Include="Header Files\user\user">
       <UniqueIdentifier>{fbec3f5e-dc7e-4837-815e-fe4d02112173}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\axis\node\metrowin">
+      <UniqueIdentifier>{f8b5c8e2-6a6f-423c-964c-46a458af8ede}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\axis\node\metrowin">
+      <UniqueIdentifier>{6b2bcfdf-8b69-4656-baf7-fa078095ed33}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="net\net.h">
@@ -1064,6 +1070,15 @@
     <ClInclude Include="axis\node\windows\aaa_windows_message_queue.h">
       <Filter>Header Files\axis\node\windows</Filter>
     </ClInclude>
+    <ClInclude Include="axis\node\metrowin\metrowin_axis_file_system.h">
+      <Filter>Header Files\axis\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\metrowin\metrowin_native_buffer.h">
+      <Filter>Header Files\axis\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\metrowin\metrowin.h">
+      <Filter>Header Files\axis\node\metrowin</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="net\net_net.cpp">
@@ -1819,11 +1834,14 @@
     <ClCompile Include="axis\node\windows\aaaa_windows_message_queue.cpp">
       <Filter>Source Files\axis\node\windows</Filter>
     </ClCompile>
+    <ClCompile Include="axis\node\metrowin\metrowin_native_buffer.cpp">
+      <Filter>Source Files\axis\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\metrowin\metrowin_axis_file_system.cpp">
+      <Filter>Source Files\axis\node\metrowin</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>

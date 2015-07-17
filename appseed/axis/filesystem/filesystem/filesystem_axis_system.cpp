@@ -209,7 +209,7 @@ namespace file
 
             property_set set(papp);
 
-            return Application.http().length(strPath, set);
+            return App(papp).http().length(strPath, set);
 
          }
 
@@ -383,7 +383,7 @@ namespace file
       bool system::mk_time(const ::file::path & lpcszCandidate)
       {
          ::file::buffer_sp spfile(allocer());
-         if (System.file().exists(lpcszCandidate, get_app()))
+         if (System.file().exists(lpcszCandidate, papp))
             return false;
          try
          {
@@ -419,7 +419,7 @@ namespace file
                if (!exists(strFilePath, papp))
                   return "";
                ::file::memory_buffer memfile(papp, &storage);
-               zip::InFile infile(get_app());
+               zip::InFile infile(papp);
                if (!infile.unzip_open(strFilePath, 0))
                   return "";
                if (!infile.dump(&memfile))
@@ -530,7 +530,7 @@ namespace file
             if ((::str::begins(strPath, astr.strHttpProtocol) || ::str::begins(strPath, astr.strHttpsProtocol)))
             {
 
-               property_set set(get_app());
+               property_set set(papp);
 
                set["user"] = &AppUser(papp);
 
@@ -1050,7 +1050,7 @@ namespace file
                      return;
                   string strError;
                   strError.Format("Failed to delete file \"%s\" error=%d", psz, dwError);
-                  throw io_exception(get_app(), strError);
+                  throw io_exception(papp, strError);
                }*/
 #else
          if (remove(psz) != 0)
@@ -1190,7 +1190,7 @@ namespace file
          }
          if (strFail.has_char())
          {
-            Application.simple_message_box(NULL, strFail, MB_ICONEXCLAMATION);
+            App(papp).simple_message_box(NULL, strFail, MB_ICONEXCLAMATION);
          }
 
          return e;
@@ -1210,7 +1210,7 @@ namespace file
 
 #elif defined(METROWIN)
 
-         throw todo(get_app());
+         throw todo(papp);
 
 #else
 
@@ -1355,7 +1355,7 @@ namespace file
       //   {
       //      string strOld = System.file().name_(psz);
       //   }
-      //   ::exception::throw_not_implemented(get_app());
+      //   ::exception::throw_not_implemented(papp);
       //   //if(!System.file_as_string().move(psz, pszNew))
       //   {
       //      property_set propertyset;
@@ -1440,7 +1440,7 @@ namespace file
             if (::str::ends_ci(stra[i], ".zip"))
             {
             }
-            else if (System.dir().is(stra[i], get_app()))
+            else if (System.dir().is(stra[i], papp))
                continue;
             write_n_number(spfile, NULL, 1);
             iPos = spfile->get_position();
@@ -1635,7 +1635,7 @@ namespace file
 
 #else
 
-         throw todo(get_app());
+         throw todo(papp);
 
          return false;
 
@@ -1665,7 +1665,7 @@ namespace file
       string system::nessie(::file::buffer_sp  pfile)
       {
 
-         ::primitive::memory mem(get_app());
+         ::primitive::memory mem(papp);
 
          mem.allocate(1024 * 256);
 
@@ -1694,10 +1694,348 @@ namespace file
       //bool system::get_last_write_time(FILETIME * pfiletime,const string & strFilename)
       //{
 
-      //   throw interface_only_exception(get_app());
+      //   throw interface_only_exception(papp);
 
       //}
 
+      ::file::buffer_sp system::get_file(var varFile,UINT nOpenFlags,cres * pfesp, ::aura::application * papp)
+      {
+
+         if(pfesp != NULL)
+         {
+            ::release(pfesp->m_p);
+         }
+
+         ::cres cres;
+
+         ::file::buffer_sp spfile;
+
+         ::file::path strPath;
+
+         if(varFile.get_type() == var::type_element)
+         {
+
+            spfile = varFile.cast < ::file::stream_buffer >();
+
+            if(spfile.is_set())
+               return spfile;
+
+         }
+         else if(varFile.get_type() == var::type_string)
+         {
+
+            strPath = varFile;
+
+            //strPath.trim("\"'");
+
+         }
+         else if(varFile.get_type() == var::type_stra)
+         {
+
+            if(varFile.stra().get_count() > 0)
+            {
+
+               strPath = varFile.stra()[0];
+
+            }
+
+            //strPath.trim("\"'");
+
+         }
+         else if(varFile.get_type() == var::type_propset)
+         {
+
+            if(varFile.has_property("url"))
+            {
+
+               strPath = varFile["url"];
+
+               //strPath.trim("\"'");
+
+            }
+
+         }
+
+         if(varFile.get_type() == var::type_propset && varFile.propset()["file"].cast < ::file::binary_buffer >() != NULL)
+         {
+
+            spfile = varFile.propset()["file"].cast < ::file::binary_buffer >();
+
+         }
+         else if(::str::find_file_extension("zip:",strPath) >= 0)
+         {
+
+            zip::InFile * pinfile = new zip::InFile(papp);
+
+            if(pinfile != NULL)
+            {
+
+               if(!pinfile->unzip_open(strPath,0))
+               {
+
+                  delete pinfile;
+
+                  pinfile = NULL;
+
+               }
+
+            }
+
+            spfile = pinfile;
+
+         }
+         else if(::str::begins(strPath,astr.strHttpProtocol) || ::str::begins(strPath,astr.strHttpsProtocol))
+         {
+
+            ::url_domain domain;
+
+            domain.create(System.url().get_server(strPath));
+
+            if(domain.m_strRadix == "ca2" && ::str::begins(System.url().get_object(strPath),astr.strMatterUri))
+            {
+
+               ::file::path strFile(strPath);
+
+               if(::str::ends(strPath,"en_us_international.xml"))
+               {
+                  TRACE("Debug Here");
+               }
+
+               if(::str::ends(strPath,"text_select.xml"))
+               {
+                  TRACE("Debug Here");
+               }
+
+               if(::str::ends(strPath,"arialuni.ttf"))
+               {
+                  TRACE("Debug Here : arialuni.ttf");
+               }
+
+#ifdef WINDOWS
+               strFile.replace("://","_\\");
+#else
+               strFile.replace("://","_/");
+#endif
+               strFile = System.dir().appdata() / "cache" / strFile + ".local_copy";
+
+               single_lock sl(System.http().m_pmutexDownload,true);
+
+               if(App(papp).file().exists(strFile) && !(System.http().m_straDownloading.contains(strPath) || System.http().m_straExists.contains(strPath)))
+               {
+
+                  sl.unlock();
+
+                  spfile = App(papp).alloc(System.type_info < ::file::binary_buffer >());
+
+                  try
+                  {
+
+                     if(spfile->open(strFile,nOpenFlags).succeeded())
+                     {
+                        TRACE("from_exist_cache:\"" + strPath + "\"");
+                        return spfile;
+
+                     }
+                  }
+                  catch(...)
+                  {
+
+                  }
+
+                  try
+                  {
+
+                     spfile.release();
+
+                  }
+                  catch(...)
+                  {
+                  }
+
+               }
+
+
+               var varQuery;
+
+               varQuery["raw_http"] = true;
+
+               property_set set(papp);
+
+               set["raw_http"] = true;
+
+               //            bool bOk = true;
+
+               sl.lock();
+
+               while(System.http().m_straDownloading.contains(strPath) || System.http().m_straExists.contains(strPath))
+               {
+                  sl.unlock();
+                  Sleep(100);
+                  sl.lock();
+               }
+
+               if(!Sys(papp).http().m_straDownloading.contains(strPath) && Sess(papp).m_http.exists(strPath,&varQuery,set))
+               {
+
+                  System.http().m_straDownloading.add(strPath);
+
+                  sl.unlock();
+
+                  spfile = new ::sockets::http_buffer(papp);
+
+                  if((cres = spfile->open(strPath,nOpenFlags)).failed())
+                  {
+                     sl.lock();
+
+                     System.http().m_straDownloading.remove(strPath);
+
+                     sl.unlock();
+
+                  }
+                  else
+                  {
+
+                     try
+                     {
+
+                        ::file::istream is(spfile);
+
+                        System.file().output(papp,strFile,&System.compress(),&::axis::compress::null,is);
+
+                     }
+                     catch(...)
+                     {
+                     }
+
+                     sl.lock();
+
+                     System.http().m_straDownloading.remove(strPath);
+
+                     sl.unlock();
+
+                     spfile->seek_to_begin();
+
+                  }
+
+               }
+
+
+            }
+            else
+            {
+
+               spfile = new ::sockets::http_buffer(papp);
+
+               spfile->oprop("http_set") = varFile["http_set"];
+
+               cres = spfile->open(strPath,nOpenFlags);
+
+            }
+
+         }
+         else if(::str::begins(strPath,astr.strIfsProtocol) || ::str::begins(strPath,astr.strUifsProtocol))
+         {
+
+            if(&AppUser(papp) == NULL)
+            {
+
+               spfile = NULL;
+
+            }
+            else
+            {
+
+               spfile = AppUser(papp).m_pifs->get_file(strPath,nOpenFlags,&cres);
+
+            }
+
+         }
+         /* xxx      else if(::str::begins(strPath, "fs://"))
+         {
+
+         if(&Session == NULL)
+         {
+
+         spfile = NULL;
+
+         }
+         else
+         {
+
+         spfile = Session.m_prfs->get_file(varFile, nOpenFlags);
+
+         }
+
+         } */
+         else if(::str::begins_eat_ci(strPath,"matter://"))
+         {
+
+            sp(::aura::application) papp;
+
+            if(System.url().get_server("matter://" + strPath) == papp->m_strAppName)
+            {
+
+               strPath = System.url().get_object("matter://" + strPath).Mid(1);
+
+               spfile = App(papp).alloc(System.type_info < ::file::binary_buffer >());
+
+               cres = spfile->open(App(papp).dir().matter(strPath),nOpenFlags);
+
+            }
+            else if(&Session != NULL && Session.m_mapApplication.Lookup(System.url().get_server("matter://" + strPath),papp) && App(papp).m_strAppName.has_char())
+            {
+
+               spfile = App(papp).file().get_file("matter://" + strPath,nOpenFlags,&cres);
+
+            }
+            else
+            {
+
+               spfile = get_file(App(papp).dir().matter(strPath),nOpenFlags,&cres);
+
+            }
+
+         }
+         else
+         {
+
+            if(strPath.is_empty())
+            {
+               TRACE("::application::get_file file with empty name!!");
+               return spfile;
+            }
+
+            /*            if((nOpenFlags & ::file::mode_create) == 0 && !exists(strPath))
+            {
+            TRACE("::application::file does not exist!! : \"%s\"",strPath);
+            return spfile;
+            }
+            */
+
+            spfile = App(papp).alloc(System.type_info < ::file::binary_buffer >());
+
+            cres = spfile->open(strPath,nOpenFlags);
+
+
+         }
+
+         if(cres.failed())
+         {
+
+            spfile.release();
+
+            if(pfesp != NULL)
+            {
+
+               *pfesp = cres;
+
+            }
+
+         }
+
+         return spfile;
+
+      }
 
    } // namespace axis
 

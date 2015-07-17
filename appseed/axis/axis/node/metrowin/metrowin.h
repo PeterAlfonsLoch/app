@@ -231,3 +231,8 @@ CLASS_DECL_AXIS void __cdecl __pre_translate_message(signal_details * pobj);
 
 //#include "metrowin_directx.h"
 //#include "metrowin_directx_application.h"
+
+
+#include "metrowin_native_buffer.h"
+
+

@@ -143,6 +143,9 @@ namespace file
          virtual void write_gen_string(stream_buffer *  pfile,MD5_CTX * pctx,string & str);
          virtual void read_gen_string(stream_buffer *  pfile,MD5_CTX * pctx,string & str);
 
+         
+         virtual ::file::buffer_sp get_file(var varFile,UINT nOpenFlags,cres * pfesp,::aura::application * papp);
+
 
       };
 
