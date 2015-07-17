@@ -88,7 +88,7 @@
     </ClCompile>
     <Link />
     <Link>
-      <LibraryDependencies>draw2d_cairo;axisfreetype;axisfreeimage;axisidn;axisbzip2;axiszlib;axisopenssl;axiscrypto;aurasqlite;aura;$(StlLibraryName);m;log;android</LibraryDependencies>
+      <LibraryDependencies>$(StlLibraryName);m;log;android</LibraryDependencies>
       <SharedLibrarySearchPath>$(OutDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;%(SharedLibrarySearchPath)</SharedLibrarySearchPath>
       <AdditionalLibraryDirectories>$(OutDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\4.8;$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
@@ -1728,6 +1728,30 @@
     <None Include="axis\axis\axis.inl" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\aura\sqlite\nord_aurasqlite.vcxproj">
+      <Project>{fcfe40c7-eee9-43be-8ba2-61cdefd6b4bd}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\axis\bzip2\nord_axisbzip2.vcxproj">
+      <Project>{8fa09539-41bf-4e5b-a16a-ea4586690593}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\axis\crypto\nord_axiscrypto.vcxproj">
+      <Project>{640771cd-a0ed-4e2e-afba-4d1a84ae485b}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\axis\freeimage\nord_axisfreeimage.vcxproj">
+      <Project>{3f63b8ba-14b8-4147-a78a-0894b7207e37}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\axis\freetype\nord_freetype.vcxproj">
+      <Project>{ad0a44d0-7716-439b-aed5-48c654569171}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\axis\idn\nord_axisidn.vcxproj">
+      <Project>{7b1c236b-2382-40a4-8af6-2dfc0a551275}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\axis\openssl\nord_axisopenssl.vcxproj">
+      <Project>{a2e70e72-5407-4131-ad91-881a861114ed}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\axis\zlib\nord_axiszlib.vcxproj">
+      <Project>{032bd6dd-0da1-4a1f-9d36-6512b4127f7a}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\aura\nord_aura.vcxproj">
       <Project>{02207bc4-c08b-4a2d-b754-f3bd46ad3098}</Project>
     </ProjectReference>

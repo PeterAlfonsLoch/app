@@ -231,6 +231,11 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\crypto\nord_axiscrypto.vcxproj">
+      <Project>{640771cd-a0ed-4e2e-afba-4d1a84ae485b}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
 </Project>
