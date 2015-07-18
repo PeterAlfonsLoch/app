@@ -154,10 +154,16 @@ namespace windows
 
          }
 
-
          spfile = ::windows::file_system::get_file(varFile,nOpenFlags,pfesp,papp);
 
-         return spfile;
+         if(spfile.is_set())
+         {
+
+            return spfile;
+
+         }
+
+         return NULL;
 
       }
 
