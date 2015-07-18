@@ -95,6 +95,33 @@ namespace android
 		//      return true;
 		//   }
 
+      ::file::buffer_sp file_system::get_file(var varFile, UINT nOpenFlags, cres * pfesp, ::aura::application * papp)
+      {
+
+         ::file::buffer_sp spfile;
+
+         spfile = ::file::axis::system::get_file(varFile, nOpenFlags, pfesp, papp);
+
+
+         if (spfile.is_set())
+         {
+
+            return spfile;
+
+         }
+
+         spfile = ::android::file_system::get_file(varFile, nOpenFlags, pfesp, papp);
+
+         if (spfile.is_set())
+         {
+
+            return spfile;
+
+         }
+
+         return NULL;
+
+      }
 
 	} // namespace axis
 

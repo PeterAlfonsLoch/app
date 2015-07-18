@@ -1063,7 +1063,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
          ::draw2d::graphics_sp spgraphics(allocer());
 
-#if defined(LINUX) || defined(APPLEOS)
+#if defined(LINUX) || defined(APPLEOS) || defined(VSNORD)
 
          spgraphics->CreateCompatibleDC(NULL);
 

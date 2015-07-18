@@ -1970,7 +1970,7 @@ namespace file
          else if(::str::begins_eat_ci(strPath,"matter://"))
          {
 
-            sp(::aura::application) papp;
+            sp(::aura::application) pappLookup;
 
             if(System.url().get_server("matter://" + strPath) == papp->m_strAppName)
             {
@@ -1982,10 +1982,10 @@ namespace file
                cres = spfile->open(App(papp).dir().matter(strPath),nOpenFlags);
 
             }
-            else if(&Session != NULL && Session.m_mapApplication.Lookup(System.url().get_server("matter://" + strPath),papp) && App(papp).m_strAppName.has_char())
+            else if(&Session != NULL && Session.m_mapApplication.Lookup(System.url().get_server("matter://" + strPath), pappLookup) && App(pappLookup).m_strAppName.has_char())
             {
 
-               spfile = App(papp).file().get_file("matter://" + strPath,nOpenFlags,&cres);
+               spfile = App(pappLookup).file().get_file("matter://" + strPath,nOpenFlags,&cres);
 
             }
             else
