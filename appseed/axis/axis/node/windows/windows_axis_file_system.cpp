@@ -5,6 +5,7 @@
 namespace windows
 {
 
+
    namespace axis
    {
 
@@ -139,67 +140,32 @@ namespace windows
 
       }
 
+      ::file::buffer_sp file_system::get_file(var varFile,UINT nOpenFlags,cres * pfesp,::aura::application * papp)
+      {
+
+         ::file::buffer_sp spfile;
+
+         spfile = ::file::axis::system::get_file(varFile,nOpenFlags,pfesp,papp);
+
+         if(spfile.is_set())
+         {
+
+            return spfile;
+
+         }
+
+
+         spfile = ::windows::file_system::get_file(varFile,nOpenFlags,pfesp,papp);
+
+         return spfile;
+
+      }
+
+
    } // namespace axis
 
+
 } // namespace windows
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
