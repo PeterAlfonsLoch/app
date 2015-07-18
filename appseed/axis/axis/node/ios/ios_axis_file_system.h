@@ -94,7 +94,8 @@ namespace ios
          
          file_system(::aura::application *  papp);
 
-         
+         virtual ::file::buffer_sp get_file(var varFile,UINT nOpenFlags,cres * pfesp,::aura::application * papp);
+     
          
       };
       
