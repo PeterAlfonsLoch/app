@@ -45,6 +45,21 @@ namespace aura
       }
 
 
+      void stop()
+      {
+
+         if (m_timer != nullptr)
+         {
+
+            m_ptimer->m_timer->Cancel();
+
+            m_ptimer->m_timer = nullptr;
+
+         }
+
+      }
+
+
    };
 
 
@@ -94,7 +109,23 @@ namespace aura
 
       }
 
+
+      void stop()
+      {
+
+         if(m_hTimerQueue != NULL && m_hTimer != NULL)
+         {
+
+            DeleteTimerQueueTimer(m_hTimerQueue,m_hTimer,INVALID_HANDLE_VALUE);
+
+            m_hTimer = NULL;
+
+         }
+
+      }
+
    };
+
 }
 
 #elif defined(__APPLE__)
@@ -117,6 +148,31 @@ namespace aura
          m_timer = NULL;
          m_ptimer = NULL;
 
+
+      }
+
+      void stop()
+      {
+
+         if (m_timer != NULL)
+         {
+
+            CancelDispatchSource(m_timer);
+
+            ReleaseDispatch(m_timer);
+
+            m_timer = NULL;
+
+         }
+
+         if (m_ptimer->m_queue != NULL)
+         {
+
+            ReleaseDispatch(m_queue);
+
+            m_queue = NULL;
+
+         }
 
       }
 
@@ -172,6 +228,12 @@ namespace aura
 
       }
 
+      void stop()
+      {
+
+         timer_settime(m_ptimer->m_timerid, 0, NULL, NULL);
+
+      }
 
    };
 
@@ -348,56 +410,18 @@ bool timer::start(int millis, bool bPeriodic)
 void timer::stop()
 {
 
-#ifdef METROWIN
-
-   if (m_ptimer->m_timer != nullptr)
+   try
    {
 
-      m_ptimer->m_timer->Cancel();
-
-      m_ptimer->m_timer = nullptr;
+      m_ptimer->stop();
 
    }
-
-#elif defined(WINDOWS)
-
-   if(m_ptimer->m_hTimer != NULL)
+   catch(...)
    {
-
-      DeleteTimerQueueTimer(m_ptimer->m_hTimerQueue,m_ptimer->m_hTimer,INVALID_HANDLE_VALUE);
-
-      m_ptimer->m_hTimer = NULL;
-
-   }
-
-#elif defined(__APPLE__)
-
-   if (m_ptimer->m_timer != NULL)
-   {
-
-      CancelDispatchSource(m_ptimer->m_timer);
-
-      ReleaseDispatch(m_ptimer->m_timer);
-
-      m_ptimer->m_timer = NULL;
-
-   }
-
-   if (m_ptimer->m_queue != NULL)
-   {
-
-      ReleaseDispatch(m_ptimer->m_queue);
-
-      m_ptimer->m_queue = NULL;
-
+     
    }
 
 
-#else
-
-   timer_settime(m_ptimer->m_timerid, 0, NULL, NULL);
-
-#endif
 
 }
 
@@ -439,16 +463,18 @@ bool timer::call_on_timer()
       if (m_bKill)
       {
 
-#ifndef METROWIN
-
-         sl.m_pobjectSync = NULL;
-
-#endif
+//#ifndef METROWIN
+//
+//         sl.m_pobjectSync = NULL;
+//
+//#endif
 
          if (!m_bDestroying)
          {
 
             m_bDestroying = true;
+
+            sl.unlock();
 
             delete this;
 
@@ -463,7 +489,7 @@ bool timer::call_on_timer()
       if (m_bPeriodic)
       {
 
-         if(!CreateTimerQueueTimer(&m_ptimer->m_hTimer,m_ptimer->m_hTimerQueue,(WAITORTIMERCALLBACK)aura_timer_TimerRoutine,m_ptimer,m_dwMillis,0,WT_EXECUTEONLYONCE))
+         if(!CreateTimerQueueTimer(&m_ptimer->m_hTimer,m_ptimer->m_hTimerQueue,(WAITORTIMERCALLBACK)aura_timer_TimerRoutine,m_ptimer,m_dwMillis,0,WT_EXECUTEONLYONCE | WT_EXECUTELONGFUNCTION))
          {
 
             return false;
