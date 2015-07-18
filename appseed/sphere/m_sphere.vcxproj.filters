@@ -51,9 +51,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="framework.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="asphere\asphere_application.cpp">
       <Filter>Source Files\asphere</Filter>
     </ClCompile>
@@ -156,14 +153,11 @@
     <ClCompile Include="console\console_prompt_impact.cpp">
       <Filter>Source Files\console</Filter>
     </ClCompile>
+    <ClCompile Include="_sphere.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ca2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2_res.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>

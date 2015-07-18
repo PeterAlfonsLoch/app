@@ -22,9 +22,6 @@
     <Filter Include="Header Files\hi5">
       <UniqueIdentifier>{236e1dc7-c636-453a-85b3-11d810c0fe05}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\html_lite">
-      <UniqueIdentifier>{e9b98663-7e56-47fc-9bf3-0a233dcb0b9d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files">
       <UniqueIdentifier>{a7b45c5b-e2fc-4dbf-bb9b-d592fdba0677}</UniqueIdentifier>
     </Filter>
@@ -48,9 +45,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="html_application_interface.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -227,24 +221,6 @@
     </ClInclude>
     <ClInclude Include="hi5\hi5_twitter_authorization.h">
       <Filter>Header Files\hi5</Filter>
-    </ClInclude>
-    <ClInclude Include="html_lite\html_lite.h">
-      <Filter>Header Files\html_lite</Filter>
-    </ClInclude>
-    <ClInclude Include="html_lite\html_lite_html_attributes.h">
-      <Filter>Header Files\html_lite</Filter>
-    </ClInclude>
-    <ClInclude Include="html_lite\html_lite_html_common.h">
-      <Filter>Header Files\html_lite</Filter>
-    </ClInclude>
-    <ClInclude Include="html_lite\html_lite_html_entity_resolver.h">
-      <Filter>Header Files\html_lite</Filter>
-    </ClInclude>
-    <ClInclude Include="html_lite\html_lite_html_reader.h">
-      <Filter>Header Files\html_lite</Filter>
-    </ClInclude>
-    <ClInclude Include="html_lite\html_lite_html_tag.h">
-      <Filter>Header Files\html_lite</Filter>
     </ClInclude>
     <ClInclude Include="html_application.h">
       <Filter>Header Files</Filter>
