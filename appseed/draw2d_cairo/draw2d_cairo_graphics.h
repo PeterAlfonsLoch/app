@@ -265,10 +265,19 @@ namespace draw2d_cairo
          int32_t x4, int32_t y4);
       bool Chord(const RECT & lpRect, POINT ptStart, POINT ptEnd);
       void DrawFocusRect(const RECT & lpRect);
+      
       bool DrawEllipse(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
       bool DrawEllipse(const RECT & lpRect);
+
       bool FillEllipse(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
       bool FillEllipse(const RECT & lpRect);
+
+      bool DrawEllipse(double x1, double y1, double x2, double y2);
+      bool DrawEllipse(const RECTD & lpRect);
+      
+      bool FillEllipse(double x1, double y1, double x2, double y2);
+      bool FillEllipse(const RECTD & lpRect);
+
       bool Pie(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3, int32_t x4, int32_t y4);
       bool Pie(const RECT & lpRect, POINT ptStart, POINT ptEnd);
 

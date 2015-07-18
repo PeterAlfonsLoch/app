@@ -231,7 +231,7 @@ namespace aura
       void stop()
       {
 
-         timer_settime(m_ptimer->m_timerid, 0, NULL, NULL);
+         timer_settime(m_timerid, 0, NULL, NULL);
 
       }
 

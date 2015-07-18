@@ -976,6 +976,93 @@ synch_lock ml(m_spmutex);
 
    }
 
+   bool graphics::DrawEllipse(double x1, double y1, double x2, double y2)
+   {
+      synch_lock ml(m_spmutex);
+      double centerx = (x2 + x1) / 2.0;
+      double centery = (y2 + y1) / 2.0;
+
+      double radiusx = abs(x2 - x1) / 2.0;
+      double radiusy = abs(y2 - y1) / 2.0;
+
+      if (radiusx == 0.0 || radiusy == 0.0)
+         return false;
+
+      cairo_keep keep(m_pdc);
+
+      cairo_new_sub_path(m_pdc);
+
+      cairo_translate(m_pdc, centerx, centery);
+
+      cairo_scale(m_pdc, radiusx - m_sppen->m_dWidth / 2.0, radiusy - m_sppen->m_dWidth / 2.0);
+
+      cairo_arc(m_pdc, 0.0, 0.0, 1.0, 0.0, 2.0 * 3.1415);
+
+      keep.pulse();
+
+      set(m_sppen);
+
+      cairo_stroke(m_pdc);
+
+      return true;
+
+   }
+
+   bool graphics::DrawEllipse(const RECTD & lprect)
+   {
+
+      return DrawEllipse(lprect.left, lprect.top, lprect.right, lprect.bottom);
+
+      /*return ::Ellipse(get_handle1(), lpRect.left, lpRect.top,
+      lpRect.right, lpRect.bottom); */
+
+
+   }
+   bool graphics::FillEllipse(double x1, double y1, double x2, double y2)
+   {
+      synch_lock ml(m_spmutex);
+      double centerx = (x2 + x1) / 2.0;
+
+      double centery = (y2 + y1) / 2.0;
+
+      double radiusx = abs(x2 - x1) / 2.0;
+
+      double radiusy = abs(y2 - y1) / 2.0;
+
+      if (radiusx == 0.0 || radiusy == 0.0)
+         return false;
+
+
+      cairo_keep keep(m_pdc);
+
+      cairo_new_sub_path(m_pdc);
+
+      cairo_translate(m_pdc, centerx, centery);
+
+      cairo_scale(m_pdc, radiusx, radiusy);
+
+      cairo_arc(m_pdc, 0.0, 0.0, 1.0, 0.0, 2.0 * 3.1415);
+
+      keep.restore();
+
+      fill();
+
+
+      return true;
+
+   }
+
+   bool graphics::FillEllipse(const RECTD & lpRect)
+   {
+
+      /*return ::Ellipse(get_handle1(), lpRect.left, lpRect.top,
+      lpRect.right, lpRect.bottom); */
+
+      return FillEllipse(lpRect.left, lpRect.top, lpRect.right, lpRect.bottom);
+
+   }
+
+
    bool graphics::Pie(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3, int32_t x4, int32_t y4)
    {
 
