@@ -1660,8 +1660,11 @@
     <ClCompile Include="axis\os\metrowin\metrowin_message_loop.cpp">
       <Filter>Source Files\axis\os\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filesystem\metrowin_native_buffer.cpp">
+    <ClCompile Include="filesystem\filesystem\_filesystem.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\_filesystem.cpp">
+      <Filter>Source Files\filesystem</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

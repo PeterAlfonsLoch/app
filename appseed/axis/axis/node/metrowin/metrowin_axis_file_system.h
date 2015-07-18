@@ -28,6 +28,7 @@ namespace metrowin
          virtual var length(const char * pszPath);
 
 
+         virtual ::file::buffer_sp file_system::get_file(var varFile,UINT nOpenFlags,cres * pfesp,::aura::application * papp);
 
 
       };

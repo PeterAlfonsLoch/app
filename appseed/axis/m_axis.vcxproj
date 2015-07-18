@@ -1575,13 +1575,19 @@
     <ClCompile Include="database\simpledb\_simpledb.cpp" />
     <ClCompile Include="database\sqlitedb\sqlitedb_base.cpp" />
     <ClCompile Include="database\sqlitedb\sqlitedb_set.cpp" />
-    <ClCompile Include="filesystem\filesystem\filesystem_axis_application.cpp" />
-    <ClCompile Include="filesystem\filesystem\filesystem_axis_system.cpp" />
-    <ClCompile Include="filesystem\filesystem\filesystem_dir_axis_application.cpp" />
-    <ClCompile Include="filesystem\filesystem\filesystem_dir_axis_system.cpp" />
-    <ClCompile Include="filesystem\filesystem\metrowin_native_buffer.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
+    <ClCompile Include="filesystem\filesystem\filesystem_axis_application.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\filesystem_axis_system.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\filesystem_dir_axis_application.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\filesystem_dir_axis_system.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\_filesystem.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\fs\fs_data.cpp">
@@ -1705,7 +1711,10 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="filesystem\fs\_fs.cpp" />
+    <ClCompile Include="filesystem\fs\_fs.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\_filesystem.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|ARM'">Create</PrecompiledHeader>

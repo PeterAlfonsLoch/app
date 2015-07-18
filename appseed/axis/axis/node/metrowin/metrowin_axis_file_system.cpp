@@ -130,7 +130,7 @@ namespace metrowin
          }
             
             
-         spfile = ::metrowin::file_system::get_file(varFile,nOpenFlags,pfesp,app);
+         spfile = ::metrowin::file_system::get_file(varFile,nOpenFlags,pfesp,papp);
          
          return spfile;
 

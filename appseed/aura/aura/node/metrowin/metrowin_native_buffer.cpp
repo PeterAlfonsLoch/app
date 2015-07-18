@@ -14,23 +14,23 @@ namespace metrowin
 {
 
 
-   namespace WinFileException
-   {
+   //namespace WinFileException
+   //{
 
-      ::file::exception::e_cause OsErrorToException(LONG lOsError);
-      ::file::exception::e_cause ErrnoToException(int nErrno);
-      void ThrowOsError(::aura::application * papp,LONG lOsError,const char * lpszfileName = NULL);
-      void ThrowErrno(::aura::application * papp,int nErrno,const char * lpszfileName = NULL);
+   //   ::file::exception::e_cause OsErrorToException(LONG lOsError);
+   //   ::file::exception::e_cause ErrnoToException(int nErrno);
+   //   void ThrowOsError(::aura::application * papp,LONG lOsError,const char * lpszfileName = NULL);
+   //   void ThrowErrno(::aura::application * papp,int nErrno,const char * lpszfileName = NULL);
 
-   }
-
-
+   //}
 
 
-   __STATIC inline bool IsDirSep(WCHAR ch)
-   {
-      return (ch == '\\' || ch == '/');
-   }
+
+
+   //__STATIC inline bool IsDirSep(WCHAR ch)
+   //{
+   //   return (ch == '\\' || ch == '/');
+   //}
 
 
    native_buffer::native_buffer(::aura::application * papp):

@@ -1210,7 +1210,7 @@ namespace file
 
 #elif defined(METROWIN)
 
-         throw todo(papp);
+         throw todo(get_app());
 
 #else
 
@@ -1635,7 +1635,7 @@ namespace file
 
 #else
 
-         throw todo(papp);
+         throw todo(get_app());
 
          return false;
 
