@@ -1034,7 +1034,7 @@ namespace metrowin
 
       //str += " client_only";
 
-      str += " full_screen";
+      //str += " full_screen";
 
       return ref new directx_application_source(paxissystem, str);
 
