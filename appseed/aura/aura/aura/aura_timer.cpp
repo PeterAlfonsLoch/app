@@ -51,9 +51,9 @@ namespace aura
          if (m_timer != nullptr)
          {
 
-            m_ptimer->m_timer->Cancel();
+            m_timer->Cancel();
 
-            m_ptimer->m_timer = nullptr;
+            m_timer = nullptr;
 
          }
 

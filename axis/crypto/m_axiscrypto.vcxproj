@@ -113,8 +113,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
     <GenerateManifest>false</GenerateManifest>
     <IgnoreImportLibrary>false</IgnoreImportLibrary>
-    <OutDir>$(SolutionDir)..\..\..\$(ConfigurationName)\$(PlatformName)\</OutDir>
-    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(ConfigurationName)\$(PlatformName)\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)..\..\..\stage\$(SolutionName)\$(PlatformName)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(SolutionName)\$(PlatformName)\$(ProjectName)\</IntDir>
     <IncludePath>$(VCInstallDir)include;$(WindowsSDK_IncludePath);</IncludePath>
     <ReferencePath>$(VCInstallDir)lib</ReferencePath>
     <LibraryPath>$(VCInstallDir)lib;$(WindowsSDK_LibraryPath_x86);</LibraryPath>
@@ -137,8 +137,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
     <GenerateManifest>false</GenerateManifest>
     <IgnoreImportLibrary>false</IgnoreImportLibrary>
-    <OutDir>$(SolutionDir)..\..\..\$(ConfigurationName)\$(PlatformName)\</OutDir>
-    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(ConfigurationName)\$(PlatformName)\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)..\..\..\stage\$(SolutionName)\$(PlatformName)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(SolutionName)\$(PlatformName)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profiler|ARM'">
     <GenerateManifest>false</GenerateManifest>
@@ -147,8 +147,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
     <GenerateManifest>false</GenerateManifest>
     <IgnoreImportLibrary>false</IgnoreImportLibrary>
-    <OutDir>$(SolutionDir)..\..\..\$(ConfigurationName)\$(PlatformName)\</OutDir>
-    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(ConfigurationName)\$(PlatformName)\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)..\..\..\stage\$(SolutionName)\$(PlatformName)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(SolutionName)\$(PlatformName)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">
     <GenerateManifest>false</GenerateManifest>
@@ -177,7 +177,7 @@
       </IgnoreSpecificDefaultLibraries>
       <ModuleDefinitionFile>m_$(TargetName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(IntDir);$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ImportLibrary>$(SolutionDir)../../../time/library/$(PlatformName)/$(Configuration)/$(TargetName).lib</ImportLibrary>
+      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -244,7 +244,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\FreeImage.dll" "$(OutDir)
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <ImportLibrary>$(SolutionDir)../../../time/library/$(PlatformName)/$(Configuration)/$(TargetName).lib</ImportLibrary>
+      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='profiler|arm'">
@@ -289,7 +289,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\FreeImage.dll" "$(OutDir)
       <AdditionalLibraryDirectories>$(IntDir);$(SolutionDir)../../../time/library/$(PlatformName)/$(Configuration)/;$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>m_$(TargetName).def</ModuleDefinitionFile>
       <AdditionalDependencies>aura.lib;aes.o;aesni.o;aesnisha1.o;rc4.o;modexp512.o;mont.o;cmll.o;md5.o;rc4.o;rc4md5.o;sha1.o;sha512.o;wp.o;Crypt32.lib;Ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ImportLibrary>$(SolutionDir)../../../time/library/$(PlatformName)/$(Configuration)/$(TargetName).lib</ImportLibrary>
+      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
     </Link>
     <PreLinkEvent>
       <Command>ml64 /Zi /Fo"$(IntDir)aes.o" /c /Fl"$(IntDir)aes.lst" "$(ProjectDir)asm/x64-win32-masm/aes/aes-x86_64.asm

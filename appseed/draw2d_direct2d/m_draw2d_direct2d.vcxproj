@@ -128,8 +128,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
     <GenerateManifest>false</GenerateManifest>
     <IgnoreImportLibrary>false</IgnoreImportLibrary>
-    <OutDir>$(SolutionDir)..\..\..\$(ConfigurationName)\$(PlatformName)\</OutDir>
-    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(ConfigurationName)\$(PlatformName)\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)..\..\..\stage\$(SolutionName)\$(PlatformName)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(SolutionName)\$(PlatformName)\$(ProjectName)\</IntDir>
     <IncludePath>$(VCInstallDir)include;$(WindowsSDK_IncludePath);</IncludePath>
     <ReferencePath>$(VCInstallDir)lib</ReferencePath>
     <LibraryPath>$(VCInstallDir)lib;$(WindowsSDK_LibraryPath_x86);</LibraryPath>
@@ -164,8 +164,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
     <GenerateManifest>false</GenerateManifest>
     <IgnoreImportLibrary>false</IgnoreImportLibrary>
-    <OutDir>$(SolutionDir)..\..\..\$(ConfigurationName)\$(PlatformName)\</OutDir>
-    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(ConfigurationName)\$(PlatformName)\</IntDir>
+    <OutDir>$(SolutionDir)..\..\..\stage\$(SolutionName)\$(PlatformName)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(SolutionName)\$(PlatformName)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|ARM'">
     <GenerateManifest>false</GenerateManifest>
@@ -180,8 +180,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
     <GenerateManifest>false</GenerateManifest>
     <IgnoreImportLibrary>false</IgnoreImportLibrary>
-    <OutDir>$(SolutionDir)..\..\..\$(ConfigurationName)\$(PlatformName)\</OutDir>
-    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(ConfigurationName)\$(PlatformName)\</IntDir>
+    <OutDir>$(SolutionDir)..\..\..\stage\$(SolutionName)\$(PlatformName)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(SolutionName)\$(PlatformName)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">
     <GenerateManifest>false</GenerateManifest>
@@ -222,7 +222,7 @@
       <EntryPointSymbol>
       </EntryPointSymbol>
       <NoEntryPoint>false</NoEntryPoint>
-      <ImportLibrary>$(SolutionDir)../../../time/library/$(PlatformName)/$(Configuration)/$(TargetName).lib</ImportLibrary>
+      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
@@ -313,7 +313,7 @@
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <ImportLibrary>$(SolutionDir)../../../time/library/$(PlatformName)/$(Configuration)/$(TargetName).lib</ImportLibrary>
+      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
       <AdditionalDependencies>aura.lib;d2d1.lib;d3d11.lib;dxgi.lib;dwrite.lib;kernel32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -385,7 +385,7 @@
       <AdditionalLibraryDirectories>$(IntDir);$(SolutionDir)../../../time/library/$(PlatformName)/$(Configuration)/;$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AddModuleNamesToAssembly>
       </AddModuleNamesToAssembly>
-      <ImportLibrary>$(SolutionDir)../../../time/library/$(PlatformName)/$(Configuration)/$(TargetName).lib</ImportLibrary>
+      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
       <AdditionalDependencies>aura.lib;d2d1.lib;d3d11.lib;dxgi.lib;dwrite.lib;kernel32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>$(TargetName).def</ModuleDefinitionFile>
     </Link>

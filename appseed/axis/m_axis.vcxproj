@@ -2748,8 +2748,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
     <GenerateManifest>false</GenerateManifest>
     <IgnoreImportLibrary>false</IgnoreImportLibrary>
-    <OutDir>$(SolutionDir)..\..\..\$(ConfigurationName)\$(PlatformName)\</OutDir>
-    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(ConfigurationName)\$(PlatformName)\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)..\..\..\stage\$(SolutionName)\$(PlatformName)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(SolutionName)\$(PlatformName)\$(ProjectName)\</IntDir>
     <IncludePath>$(VCInstallDir)include;$(WindowsSDK_IncludePath);</IncludePath>
     <ReferencePath>$(VCInstallDir)lib</ReferencePath>
     <LibraryPath>$(VCInstallDir)lib;$(WindowsSDK_LibraryPath_x86);</LibraryPath>
@@ -2784,8 +2784,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
     <GenerateManifest>false</GenerateManifest>
     <IgnoreImportLibrary>false</IgnoreImportLibrary>
-    <OutDir>$(SolutionDir)..\..\..\$(ConfigurationName)\$(PlatformName)\</OutDir>
-    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(ConfigurationName)\$(PlatformName)\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)..\..\..\stage\$(SolutionName)\$(PlatformName)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(SolutionName)\$(PlatformName)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|ARM'">
     <GenerateManifest>false</GenerateManifest>
@@ -2800,8 +2800,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
     <GenerateManifest>false</GenerateManifest>
     <IgnoreImportLibrary>false</IgnoreImportLibrary>
-    <OutDir>$(SolutionDir)..\..\..\$(ConfigurationName)\$(PlatformName)\</OutDir>
-    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(ConfigurationName)\$(PlatformName)\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)..\..\..\stage\$(SolutionName)\$(PlatformName)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(SolutionName)\$(PlatformName)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">
     <GenerateManifest>false</GenerateManifest>
@@ -2840,7 +2840,7 @@
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <ModuleDefinitionFile>$(TargetName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ImportLibrary>$(SolutionDir)../../../time/library/$(PlatformName)/$(Configuration)/$(TargetName).lib</ImportLibrary>
+      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -2944,7 +2944,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\FreeImage.dll" "$(OutDir)
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <ModuleDefinitionFile>$(TargetName).def</ModuleDefinitionFile>
-      <ImportLibrary>$(SolutionDir)../../../time/library/$(PlatformName)/$(Configuration)/$(TargetName).lib</ImportLibrary>
+      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|arm'">
@@ -3014,7 +3014,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\FreeImage.dll" "$(OutDir)
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <ModuleDefinitionFile>$(TargetName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(IntDir);$(SolutionDir)../../../time/library/$(PlatformName)/$(Configuration)/;$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ImportLibrary>$(SolutionDir)../../../time/library/$(PlatformName)/$(Configuration)/$(TargetName).lib</ImportLibrary>
+      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
       <AdditionalDependencies>windowscodecs.lib;shcore.lib;OleAut32.lib;aura.lib;d2d1.lib;d3d11.lib;dxgi.lib;dwrite.lib;kernel32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>

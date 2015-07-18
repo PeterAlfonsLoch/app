@@ -27,7 +27,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{F7A7C44A-61FA-4182-81B5-75240D07E5B9}</ProjectGuid>
+    <ProjectGuid>{106E3938-FA19-4D4D-83D5-A36692C93E86}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <ProjectName>html</ProjectName>
     <RootNamespace>html</RootNamespace>
@@ -92,8 +92,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
     <GenerateManifest>false</GenerateManifest>
     <IgnoreImportLibrary>false</IgnoreImportLibrary>
-    <OutDir>$(SolutionDir)..\..\..\$(ConfigurationName)\$(PlatformName)\</OutDir>
-    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(ConfigurationName)\$(PlatformName)\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)..\..\..\stage\$(SolutionName)\$(PlatformName)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(SolutionName)\$(PlatformName)\$(ProjectName)\</IntDir>
     <IncludePath>$(VCInstallDir)include;$(WindowsSDK_IncludePath);</IncludePath>
     <ReferencePath>$(VCInstallDir)lib</ReferencePath>
     <LibraryPath>$(VCInstallDir)lib;$(WindowsSDK_LibraryPath_x86);</LibraryPath>
@@ -116,6 +116,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
     <GenerateManifest>false</GenerateManifest>
     <IgnoreImportLibrary>false</IgnoreImportLibrary>
+    <OutDir>$(SolutionDir)..\..\..\stage\$(SolutionName)\$(PlatformName)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(SolutionName)\$(PlatformName)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profiler|ARM'">
     <GenerateManifest>false</GenerateManifest>
@@ -124,6 +126,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
     <GenerateManifest>false</GenerateManifest>
     <IgnoreImportLibrary>false</IgnoreImportLibrary>
+    <OutDir>$(SolutionDir)..\..\..\stage\$(SolutionName)\$(PlatformName)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(SolutionName)\$(PlatformName)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">
     <GenerateManifest>false</GenerateManifest>
@@ -151,7 +155,7 @@
       </IgnoreSpecificDefaultLibraries>
       <ModuleDefinitionFile>$(TargetName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
+      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
     </Link>
     <PreBuildEvent>
       <Command>
