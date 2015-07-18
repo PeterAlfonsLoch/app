@@ -40,6 +40,27 @@
 			remoteGlobalIDString = 07B65763190F3CA2002DAADE;
 			remoteInfo = math_ios;
 		};
+		07E0843A1B5AC5E4005EE6C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07E084311B5AC5E4005EE6C8 /* html_lite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A574B9816AAB906000CC4EF;
+			remoteInfo = math;
+		};
+		07E0843C1B5AC5E4005EE6C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07E084311B5AC5E4005EE6C8 /* html_lite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07B65764190F3CA2002DAADE;
+			remoteInfo = math_ios;
+		};
+		07E0843E1B5AC5E4005EE6C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07E084311B5AC5E4005EE6C8 /* html_lite.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07B65773190F3CA2002DAADE;
+			remoteInfo = math_iosTests;
+		};
 		9A2EA37219A62C9E004DAFFC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A2EA36C19A62C9E004DAFFC /* axis.xcodeproj */;
@@ -85,6 +106,7 @@
 		07B6577E190F3CA2002DAADE /* math_iosTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "math_iosTests-Info.plist"; sourceTree = "<group>"; };
 		07B65780190F3CA2002DAADE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		07B65782190F3CA2002DAADE /* math_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = math_iosTests.m; sourceTree = "<group>"; };
+		07E084311B5AC5E4005EE6C8 /* html_lite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = html_lite.xcodeproj; path = ../../axis/html_lite/html_lite.xcodeproj; sourceTree = "<group>"; };
 		9A2EA36C19A62C9E004DAFFC /* axis.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axis.xcodeproj; path = ../axis/axis.xcodeproj; sourceTree = "<group>"; };
 		9A574B9816AAB906000CC4EF /* libmath.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libmath.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A574D2B16AAB99E000CC4EF /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
@@ -164,6 +186,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		07E084321B5AC5E4005EE6C8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				07E0843B1B5AC5E4005EE6C8 /* libmath.dylib */,
+				07E0843D1B5AC5E4005EE6C8 /* libmath_ios.dylib */,
+				07E0843F1B5AC5E4005EE6C8 /* math_iosTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		9A2EA36D19A62C9E004DAFFC /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -177,6 +209,7 @@
 		9A574B8D16AAB906000CC4EF = {
 			isa = PBXGroup;
 			children = (
+				07E084311B5AC5E4005EE6C8 /* html_lite.xcodeproj */,
 				9A2EA36C19A62C9E004DAFFC /* axis.xcodeproj */,
 				9ACABEAC17BD04FF004C3F85 /* math */,
 				07B6577C190F3CA2002DAADE /* math_iosTests */,
@@ -321,7 +354,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9A574B9216AAB906000CC4EF /* Build configuration list for PBXProject "math" */;
+			buildConfigurationList = 9A574B9216AAB906000CC4EF /* Build configuration list for PBXProject "html" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -336,6 +369,10 @@
 					ProductGroup = 9A2EA36D19A62C9E004DAFFC /* Products */;
 					ProjectRef = 9A2EA36C19A62C9E004DAFFC /* axis.xcodeproj */;
 				},
+				{
+					ProductGroup = 07E084321B5AC5E4005EE6C8 /* Products */;
+					ProjectRef = 07E084311B5AC5E4005EE6C8 /* html_lite.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -347,6 +384,27 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		07E0843B1B5AC5E4005EE6C8 /* libmath.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libmath.dylib;
+			remoteRef = 07E0843A1B5AC5E4005EE6C8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		07E0843D1B5AC5E4005EE6C8 /* libmath_ios.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libmath_ios.dylib;
+			remoteRef = 07E0843C1B5AC5E4005EE6C8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		07E0843F1B5AC5E4005EE6C8 /* math_iosTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = math_iosTests.xctest;
+			remoteRef = 07E0843E1B5AC5E4005EE6C8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		9A2EA37319A62C9E004DAFFC /* libaxis.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
@@ -364,7 +422,7 @@
 		9A2EA37719A62C9E004DAFFC /* base_iosTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = base_iosTests.xctest;
+			path = axis_iosTests.xctest;
 			remoteRef = 9A2EA37619A62C9E004DAFFC /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -686,7 +744,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9A574B9216AAB906000CC4EF /* Build configuration list for PBXProject "math" */ = {
+		9A574B9216AAB906000CC4EF /* Build configuration list for PBXProject "html" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9A574B9A16AAB906000CC4EF /* Debug */,

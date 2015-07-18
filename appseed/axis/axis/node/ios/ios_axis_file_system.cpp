@@ -1258,7 +1258,7 @@ namespace ios
             
          }
          
-         spfile = ::windows::file_system::get_file(varFile,nOpenFlags,pfesp,papp);
+         spfile = ::ios::file_system::get_file(varFile,nOpenFlags,pfesp,papp);
          
          if(spfile.is_set())
          {

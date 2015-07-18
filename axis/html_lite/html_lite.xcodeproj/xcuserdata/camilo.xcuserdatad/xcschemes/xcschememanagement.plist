@@ -4,20 +4,10 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>axisjpeg.xcscheme</key>
+		<key>install sphere/userstack.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>6</integer>
-		</dict>
-		<key>axisjpeg_ios.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>7</integer>
-		</dict>
-		<key>ios_axisjpeg.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>10</integer>
+			<integer>25</integer>
 		</dict>
 		<key>math.xcscheme</key>
 		<dict>

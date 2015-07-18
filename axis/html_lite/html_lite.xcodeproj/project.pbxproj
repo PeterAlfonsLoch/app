@@ -255,9 +255,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		07B65763190F3CA2002DAADE /* math_ios */ = {
+		07B65763190F3CA2002DAADE /* ios_html */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 07B65788190F3CA2002DAADE /* Build configuration list for PBXNativeTarget "math_ios" */;
+			buildConfigurationList = 07B65788190F3CA2002DAADE /* Build configuration list for PBXNativeTarget "ios_html" */;
 			buildPhases = (
 				07B65760190F3CA2002DAADE /* Sources */,
 				07B65761190F3CA2002DAADE /* Frameworks */,
@@ -267,7 +267,7 @@
 			);
 			dependencies = (
 			);
-			name = math_ios;
+			name = ios_html;
 			productName = math_ios;
 			productReference = 07B65764190F3CA2002DAADE /* libmath_ios.dylib */;
 			productType = "com.apple.product-type.library.static";
@@ -290,9 +290,9 @@
 			productReference = 07B65773190F3CA2002DAADE /* math_iosTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		9A574B9716AAB906000CC4EF /* math */ = {
+		9A574B9716AAB906000CC4EF /* html */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9A574B9C16AAB906000CC4EF /* Build configuration list for PBXNativeTarget "math" */;
+			buildConfigurationList = 9A574B9C16AAB906000CC4EF /* Build configuration list for PBXNativeTarget "html" */;
 			buildPhases = (
 				9A574B9416AAB906000CC4EF /* Sources */,
 				9A574B9516AAB906000CC4EF /* Frameworks */,
@@ -302,7 +302,7 @@
 			);
 			dependencies = (
 			);
-			name = math;
+			name = html;
 			productName = ca2;
 			productReference = 9A574B9816AAB906000CC4EF /* libmath.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
@@ -321,7 +321,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9A574B9216AAB906000CC4EF /* Build configuration list for PBXProject "math" */;
+			buildConfigurationList = 9A574B9216AAB906000CC4EF /* Build configuration list for PBXProject "html_lite" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -339,8 +339,8 @@
 			);
 			projectRoot = "";
 			targets = (
-				9A574B9716AAB906000CC4EF /* math */,
-				07B65763190F3CA2002DAADE /* math_ios */,
+				9A574B9716AAB906000CC4EF /* html */,
+				07B65763190F3CA2002DAADE /* ios_html */,
 				07B65772190F3CA2002DAADE /* math_iosTests */,
 			);
 		};
@@ -415,7 +415,7 @@
 /* Begin PBXTargetDependency section */
 		07B6577A190F3CA2002DAADE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 07B65763190F3CA2002DAADE /* math_ios */;
+			target = 07B65763190F3CA2002DAADE /* ios_html */;
 			targetProxy = 07B65779190F3CA2002DAADE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -668,7 +668,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		07B65788190F3CA2002DAADE /* Build configuration list for PBXNativeTarget "math_ios" */ = {
+		07B65788190F3CA2002DAADE /* Build configuration list for PBXNativeTarget "ios_html" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				07B65784190F3CA2002DAADE /* Debug */,
@@ -686,7 +686,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9A574B9216AAB906000CC4EF /* Build configuration list for PBXProject "math" */ = {
+		9A574B9216AAB906000CC4EF /* Build configuration list for PBXProject "html_lite" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9A574B9A16AAB906000CC4EF /* Debug */,
@@ -695,7 +695,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9A574B9C16AAB906000CC4EF /* Build configuration list for PBXNativeTarget "math" */ = {
+		9A574B9C16AAB906000CC4EF /* Build configuration list for PBXNativeTarget "html" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9A574B9D16AAB906000CC4EF /* Debug */,

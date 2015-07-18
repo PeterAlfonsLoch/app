@@ -301,8 +301,8 @@
 		076335181B5903BD0079C405 /* wrtarga.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = wrtarga.c; sourceTree = "<group>"; };
 		076335BD1B5907440079C405 /* jmemansi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jmemansi.c; sourceTree = "<group>"; };
 		07B65764190F3CA2002DAADE /* libaxisjpeg.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libaxisjpeg.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		07B65773190F3CA2002DAADE /* math_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = math_iosTests.xctest; path = axisjpeg_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A574B9816AAB906000CC4EF /* lib.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = lib.dylib; path = libaxisjpeg.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		07B65773190F3CA2002DAADE /* axisjpeg_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = axisjpeg_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A574B9816AAB906000CC4EF /* libaxisjpeg.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxisjpeg.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -474,9 +474,9 @@
 		9A574B9916AAB906000CC4EF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A574B9816AAB906000CC4EF /* lib.dylib */,
+				9A574B9816AAB906000CC4EF /* libaxisjpeg.dylib */,
 				07B65764190F3CA2002DAADE /* libaxisjpeg.dylib */,
-				07B65773190F3CA2002DAADE /* math_iosTests.xctest */,
+				07B65773190F3CA2002DAADE /* axisjpeg_iosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -540,7 +540,7 @@
 			);
 			name = axisjpeg_iosTests;
 			productName = math_iosTests;
-			productReference = 07B65773190F3CA2002DAADE /* math_iosTests.xctest */;
+			productReference = 07B65773190F3CA2002DAADE /* axisjpeg_iosTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		9A574B9716AAB906000CC4EF /* axisjpeg */ = {
@@ -557,7 +557,7 @@
 			);
 			name = axisjpeg;
 			productName = ca2;
-			productReference = 9A574B9816AAB906000CC4EF /* lib.dylib */;
+			productReference = 9A574B9816AAB906000CC4EF /* libaxisjpeg.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
