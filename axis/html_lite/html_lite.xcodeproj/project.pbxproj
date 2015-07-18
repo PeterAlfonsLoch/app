@@ -7,59 +7,68 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		07B59075188664C3002C6FEC /* libcore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B59074188664C3002C6FEC /* libcore.dylib */; };
-		07B65767190F3CA2002DAADE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65766190F3CA2002DAADE /* Foundation.framework */; };
+		071B6AAE1B5AD3D4002C55E2 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 071B6AA71B5AD3BF002C55E2 /* libaura.dylib */; };
+		071B6AAF1B5AD3E0002C55E2 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 071B6AA51B5AD3BF002C55E2 /* libaura.dylib */; };
 		07B65775190F3CA2002DAADE /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65774190F3CA2002DAADE /* XCTest.framework */; };
 		07B65776190F3CA2002DAADE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65766190F3CA2002DAADE /* Foundation.framework */; };
 		07B65778190F3CA2002DAADE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65777190F3CA2002DAADE /* UIKit.framework */; };
-		07B6577B190F3CA2002DAADE /* libmath_ios.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65764190F3CA2002DAADE /* libmath_ios.dylib */; };
-		07B65781190F3CA2002DAADE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 07B6577F190F3CA2002DAADE /* InfoPlist.strings */; };
-		07B65783190F3CA2002DAADE /* math_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B65782190F3CA2002DAADE /* math_iosTests.m */; };
-		9A57509E16AAB9A1000CC4EF /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A574D2B16AAB99E000CC4EF /* framework.cpp */; };
-		9A57509F16AAB9A1000CC4EF /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A574D2C16AAB99E000CC4EF /* framework.h */; };
-		9A8CCAE617EA060200F87A02 /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8CCAE317EA060200F87A02 /* libbase.dylib */; };
-		9AD4FD7817BD5A480008F751 /* kiss_fft.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD4FD6817BD5A480008F751 /* kiss_fft.cpp */; };
-		9AD4FD7917BD5A480008F751 /* kiss_fft.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD4FD6917BD5A480008F751 /* kiss_fft.h */; };
-		9AD4FD7A17BD5A480008F751 /* kiss_fft_guts.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD4FD6A17BD5A480008F751 /* kiss_fft_guts.h */; };
-		9AD4FD7B17BD5A480008F751 /* kiss_fft_shared.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD4FD6B17BD5A480008F751 /* kiss_fft_shared.cpp */; };
-		9AD4FD7C17BD5A480008F751 /* kiss_ifft.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD4FD6C17BD5A480008F751 /* kiss_ifft.cpp */; };
-		9AD4FD7D17BD5A480008F751 /* kiss_ifft.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD4FD6D17BD5A480008F751 /* kiss_ifft.h */; };
-		9AD4FD7E17BD5A480008F751 /* kissfft.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD4FD6E17BD5A480008F751 /* kissfft.h */; };
-		9AD4FD7F17BD5A480008F751 /* kissfft_fftd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD4FD6F17BD5A480008F751 /* kissfft_fftd.cpp */; };
-		9AD4FD8017BD5A480008F751 /* kissfft_fftd.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD4FD7017BD5A480008F751 /* kissfft_fftd.h */; };
-		9AD4FD8117BD5A480008F751 /* kissfft_ifftd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD4FD7117BD5A480008F751 /* kissfft_ifftd.cpp */; };
-		9AD4FD8217BD5A480008F751 /* kissfft_ifftd.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD4FD7217BD5A480008F751 /* kissfft_ifftd.h */; };
-		9AD4FD8517BD5A480008F751 /* math_math.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD4FD7617BD5A480008F751 /* math_math.h */; };
+		07B6577B190F3CA2002DAADE /* libhtml_lite.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65764190F3CA2002DAADE /* libhtml_lite.dylib */; };
+		07E084F41B5AC8E7005EE6C8 /* _html_lite_html_lite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07E084DF1B5AC8E7005EE6C8 /* _html_lite_html_lite.cpp */; };
+		07E084F61B5AC8E7005EE6C8 /* html.h in Headers */ = {isa = PBXBuildFile; fileRef = 07E084E21B5AC8E7005EE6C8 /* html.h */; };
+		07E084F71B5AC8E7005EE6C8 /* html_enum.h in Headers */ = {isa = PBXBuildFile; fileRef = 07E084E31B5AC8E7005EE6C8 /* html_enum.h */; };
+		07E084F91B5AC8E7005EE6C8 /* html_html.h in Headers */ = {isa = PBXBuildFile; fileRef = 07E084E51B5AC8E7005EE6C8 /* html_html.h */; };
+		07E084FB1B5AC8E7005EE6C8 /* html_lite.h in Headers */ = {isa = PBXBuildFile; fileRef = 07E084E81B5AC8E7005EE6C8 /* html_lite.h */; };
+		07E084FD1B5AC8E7005EE6C8 /* html_lite_application.h in Headers */ = {isa = PBXBuildFile; fileRef = 07E084EA1B5AC8E7005EE6C8 /* html_lite_application.h */; };
+		07E084FF1B5AC8E7005EE6C8 /* html_lite_html_attributes.h in Headers */ = {isa = PBXBuildFile; fileRef = 07E084EC1B5AC8E7005EE6C8 /* html_lite_html_attributes.h */; };
+		07E085001B5AC8E7005EE6C8 /* html_lite_html_common.h in Headers */ = {isa = PBXBuildFile; fileRef = 07E084ED1B5AC8E7005EE6C8 /* html_lite_html_common.h */; };
+		07E085021B5AC8E7005EE6C8 /* html_lite_html_entity_resolver.h in Headers */ = {isa = PBXBuildFile; fileRef = 07E084EF1B5AC8E7005EE6C8 /* html_lite_html_entity_resolver.h */; };
+		07E085041B5AC8E7005EE6C8 /* html_lite_html_reader.h in Headers */ = {isa = PBXBuildFile; fileRef = 07E084F11B5AC8E7005EE6C8 /* html_lite_html_reader.h */; };
+		07E085061B5AC8E7005EE6C8 /* html_lite_html_tag.h in Headers */ = {isa = PBXBuildFile; fileRef = 07E084F31B5AC8E7005EE6C8 /* html_lite_html_tag.h */; };
+		07E086BF1B5AD1FC005EE6C8 /* _html_lite_html_lite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07E084DF1B5AC8E7005EE6C8 /* _html_lite_html_lite.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		071B6AA41B5AD3BF002C55E2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 071B6A9E1B5AD3BF002C55E2 /* aura.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A98A6151771D67E000AE16E;
+			remoteInfo = aura;
+		};
+		071B6AA61B5AD3BF002C55E2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 071B6A9E1B5AD3BF002C55E2 /* aura.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 077A080B1B4D7403001C85FF;
+			remoteInfo = ios_aura;
+		};
+		071B6AA81B5AD3BF002C55E2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 071B6A9E1B5AD3BF002C55E2 /* aura.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AE24D431904CEFE001AEFFB;
+			remoteInfo = aura_iosTests;
+		};
+		071B6AAA1B5AD3C6002C55E2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 071B6A9E1B5AD3BF002C55E2 /* aura.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A98A6031771D67E000AE16E;
+			remoteInfo = aura;
+		};
+		071B6AAC1B5AD3CB002C55E2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 071B6A9E1B5AD3BF002C55E2 /* aura.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 077A05B41B4D7403001C85FF;
+			remoteInfo = ios_aura;
+		};
 		07B65779190F3CA2002DAADE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A574B8F16AAB906000CC4EF /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 07B65763190F3CA2002DAADE;
 			remoteInfo = math_ios;
-		};
-		9A2EA37219A62C9E004DAFFC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A2EA36C19A62C9E004DAFFC /* axis.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9A98A6151771D67E000AE16E;
-			remoteInfo = base;
-		};
-		9A2EA37419A62C9E004DAFFC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A2EA36C19A62C9E004DAFFC /* axis.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9AE24D341904CEFE001AEFFB;
-			remoteInfo = base_ios;
-		};
-		9A2EA37619A62C9E004DAFFC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A2EA36C19A62C9E004DAFFC /* axis.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9AE24D431904CEFE001AEFFB;
-			remoteInfo = base_iosTests;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -76,32 +85,24 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		07B59074188664C3002C6FEC /* libcore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcore.dylib; path = ../../../../Users/carlos/.Trash/build/Debug/libcore.dylib; sourceTree = "<group>"; };
-		07B65764190F3CA2002DAADE /* libmath_ios.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libmath_ios.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		071B6A9E1B5AD3BF002C55E2 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../../appseed/aura/aura.xcodeproj; sourceTree = "<group>"; };
+		07B65764190F3CA2002DAADE /* libhtml_lite.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libhtml_lite.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		07B65766190F3CA2002DAADE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		07B65773190F3CA2002DAADE /* math_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = math_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		07B65774190F3CA2002DAADE /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		07B65777190F3CA2002DAADE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		07B6577E190F3CA2002DAADE /* math_iosTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "math_iosTests-Info.plist"; sourceTree = "<group>"; };
-		07B65780190F3CA2002DAADE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		07B65782190F3CA2002DAADE /* math_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = math_iosTests.m; sourceTree = "<group>"; };
-		9A2EA36C19A62C9E004DAFFC /* axis.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axis.xcodeproj; path = ../axis/axis.xcodeproj; sourceTree = "<group>"; };
-		9A574B9816AAB906000CC4EF /* libmath.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libmath.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A574D2B16AAB99E000CC4EF /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
-		9A574D2C16AAB99E000CC4EF /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
-		9A8CCAE317EA060200F87A02 /* libbase.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbase.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/libbase.dylib"; sourceTree = "<group>"; };
-		9AD4FD6817BD5A480008F751 /* kiss_fft.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = kiss_fft.cpp; sourceTree = "<group>"; };
-		9AD4FD6917BD5A480008F751 /* kiss_fft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kiss_fft.h; sourceTree = "<group>"; };
-		9AD4FD6A17BD5A480008F751 /* kiss_fft_guts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kiss_fft_guts.h; sourceTree = "<group>"; };
-		9AD4FD6B17BD5A480008F751 /* kiss_fft_shared.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = kiss_fft_shared.cpp; sourceTree = "<group>"; };
-		9AD4FD6C17BD5A480008F751 /* kiss_ifft.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = kiss_ifft.cpp; sourceTree = "<group>"; };
-		9AD4FD6D17BD5A480008F751 /* kiss_ifft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kiss_ifft.h; sourceTree = "<group>"; };
-		9AD4FD6E17BD5A480008F751 /* kissfft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kissfft.h; sourceTree = "<group>"; };
-		9AD4FD6F17BD5A480008F751 /* kissfft_fftd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = kissfft_fftd.cpp; sourceTree = "<group>"; };
-		9AD4FD7017BD5A480008F751 /* kissfft_fftd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kissfft_fftd.h; sourceTree = "<group>"; };
-		9AD4FD7117BD5A480008F751 /* kissfft_ifftd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = kissfft_ifftd.cpp; sourceTree = "<group>"; };
-		9AD4FD7217BD5A480008F751 /* kissfft_ifftd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kissfft_ifftd.h; sourceTree = "<group>"; };
-		9AD4FD7617BD5A480008F751 /* math_math.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = math_math.h; sourceTree = "<group>"; };
+		07E084DF1B5AC8E7005EE6C8 /* _html_lite_html_lite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _html_lite_html_lite.cpp; sourceTree = "<group>"; };
+		07E084E21B5AC8E7005EE6C8 /* html.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = html.h; sourceTree = "<group>"; };
+		07E084E31B5AC8E7005EE6C8 /* html_enum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = html_enum.h; sourceTree = "<group>"; };
+		07E084E51B5AC8E7005EE6C8 /* html_html.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = html_html.h; sourceTree = "<group>"; };
+		07E084E81B5AC8E7005EE6C8 /* html_lite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = html_lite.h; sourceTree = "<group>"; };
+		07E084EA1B5AC8E7005EE6C8 /* html_lite_application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = html_lite_application.h; sourceTree = "<group>"; };
+		07E084EC1B5AC8E7005EE6C8 /* html_lite_html_attributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = html_lite_html_attributes.h; sourceTree = "<group>"; };
+		07E084ED1B5AC8E7005EE6C8 /* html_lite_html_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = html_lite_html_common.h; sourceTree = "<group>"; };
+		07E084EF1B5AC8E7005EE6C8 /* html_lite_html_entity_resolver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = html_lite_html_entity_resolver.h; sourceTree = "<group>"; };
+		07E084F11B5AC8E7005EE6C8 /* html_lite_html_reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = html_lite_html_reader.h; sourceTree = "<group>"; };
+		07E084F31B5AC8E7005EE6C8 /* html_lite_html_tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = html_lite_html_tag.h; sourceTree = "<group>"; };
+		9A574B9816AAB906000CC4EF /* libhtml_lite.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libhtml_lite.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,7 +110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07B65767190F3CA2002DAADE /* Foundation.framework in Frameworks */,
+				071B6AAE1B5AD3D4002C55E2 /* libaura.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,7 +120,7 @@
 			files = (
 				07B65775190F3CA2002DAADE /* XCTest.framework in Frameworks */,
 				07B65778190F3CA2002DAADE /* UIKit.framework in Frameworks */,
-				07B6577B190F3CA2002DAADE /* libmath_ios.dylib in Frameworks */,
+				07B6577B190F3CA2002DAADE /* libhtml_lite.dylib in Frameworks */,
 				07B65776190F3CA2002DAADE /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -128,14 +129,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A8CCAE617EA060200F87A02 /* libbase.dylib in Frameworks */,
-				07B59075188664C3002C6FEC /* libcore.dylib in Frameworks */,
+				071B6AAF1B5AD3E0002C55E2 /* libaura.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		071B6A9F1B5AD3BF002C55E2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				071B6AA51B5AD3BF002C55E2 /* libaura.dylib */,
+				071B6AA71B5AD3BF002C55E2 /* libaura.dylib */,
+				071B6AA91B5AD3BF002C55E2 /* aura_iosTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		07B65765190F3CA2002DAADE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -146,92 +156,50 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		07B6577C190F3CA2002DAADE /* math_iosTests */ = {
+		07E084E01B5AC8E7005EE6C8 /* html */ = {
 			isa = PBXGroup;
 			children = (
-				07B65782190F3CA2002DAADE /* math_iosTests.m */,
-				07B6577D190F3CA2002DAADE /* Supporting Files */,
+				07E084E21B5AC8E7005EE6C8 /* html.h */,
+				07E084E31B5AC8E7005EE6C8 /* html_enum.h */,
+				07E084E51B5AC8E7005EE6C8 /* html_html.h */,
 			);
-			path = math_iosTests;
+			path = html;
 			sourceTree = "<group>";
 		};
-		07B6577D190F3CA2002DAADE /* Supporting Files */ = {
+		07E084E61B5AC8E7005EE6C8 /* html_lite */ = {
 			isa = PBXGroup;
 			children = (
-				07B6577E190F3CA2002DAADE /* math_iosTests-Info.plist */,
-				07B6577F190F3CA2002DAADE /* InfoPlist.strings */,
+				07E084E81B5AC8E7005EE6C8 /* html_lite.h */,
+				07E084EA1B5AC8E7005EE6C8 /* html_lite_application.h */,
+				07E084EC1B5AC8E7005EE6C8 /* html_lite_html_attributes.h */,
+				07E084ED1B5AC8E7005EE6C8 /* html_lite_html_common.h */,
+				07E084EF1B5AC8E7005EE6C8 /* html_lite_html_entity_resolver.h */,
+				07E084F11B5AC8E7005EE6C8 /* html_lite_html_reader.h */,
+				07E084F31B5AC8E7005EE6C8 /* html_lite_html_tag.h */,
 			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		9A2EA36D19A62C9E004DAFFC /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9A2EA37319A62C9E004DAFFC /* libaxis.dylib */,
-				9A2EA37519A62C9E004DAFFC /* libaxis.dylib */,
-				9A2EA37719A62C9E004DAFFC /* base_iosTests.xctest */,
-			);
-			name = Products;
+			path = html_lite;
 			sourceTree = "<group>";
 		};
 		9A574B8D16AAB906000CC4EF = {
 			isa = PBXGroup;
 			children = (
-				9A2EA36C19A62C9E004DAFFC /* axis.xcodeproj */,
-				9ACABEAC17BD04FF004C3F85 /* math */,
-				07B6577C190F3CA2002DAADE /* math_iosTests */,
+				071B6A9E1B5AD3BF002C55E2 /* aura.xcodeproj */,
+				07E084E01B5AC8E7005EE6C8 /* html */,
+				07E084E61B5AC8E7005EE6C8 /* html_lite */,
 				07B65765190F3CA2002DAADE /* Frameworks */,
 				9A574B9916AAB906000CC4EF /* Products */,
-				9A8CCAE317EA060200F87A02 /* libbase.dylib */,
-				07B59074188664C3002C6FEC /* libcore.dylib */,
+				07E084DF1B5AC8E7005EE6C8 /* _html_lite_html_lite.cpp */,
 			);
 			sourceTree = "<group>";
 		};
 		9A574B9916AAB906000CC4EF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A574B9816AAB906000CC4EF /* libmath.dylib */,
-				07B65764190F3CA2002DAADE /* libmath_ios.dylib */,
+				9A574B9816AAB906000CC4EF /* libhtml_lite.dylib */,
+				07B65764190F3CA2002DAADE /* libhtml_lite.dylib */,
 				07B65773190F3CA2002DAADE /* math_iosTests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		9ACABEAC17BD04FF004C3F85 /* math */ = {
-			isa = PBXGroup;
-			children = (
-				9AD4FD6617BD5A480008F751 /* kissfft */,
-				9AD4FD7317BD5A480008F751 /* math */,
-				9A574D2B16AAB99E000CC4EF /* framework.cpp */,
-				9A574D2C16AAB99E000CC4EF /* framework.h */,
-			);
-			name = math;
-			sourceTree = "<group>";
-		};
-		9AD4FD6617BD5A480008F751 /* kissfft */ = {
-			isa = PBXGroup;
-			children = (
-				9AD4FD6817BD5A480008F751 /* kiss_fft.cpp */,
-				9AD4FD6917BD5A480008F751 /* kiss_fft.h */,
-				9AD4FD6A17BD5A480008F751 /* kiss_fft_guts.h */,
-				9AD4FD6B17BD5A480008F751 /* kiss_fft_shared.cpp */,
-				9AD4FD6C17BD5A480008F751 /* kiss_ifft.cpp */,
-				9AD4FD6D17BD5A480008F751 /* kiss_ifft.h */,
-				9AD4FD6E17BD5A480008F751 /* kissfft.h */,
-				9AD4FD6F17BD5A480008F751 /* kissfft_fftd.cpp */,
-				9AD4FD7017BD5A480008F751 /* kissfft_fftd.h */,
-				9AD4FD7117BD5A480008F751 /* kissfft_ifftd.cpp */,
-				9AD4FD7217BD5A480008F751 /* kissfft_ifftd.h */,
-			);
-			path = kissfft;
-			sourceTree = "<group>";
-		};
-		9AD4FD7317BD5A480008F751 /* math */ = {
-			isa = PBXGroup;
-			children = (
-				9AD4FD7617BD5A480008F751 /* math_math.h */,
-			);
-			path = math;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,23 +209,25 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A57509F16AAB9A1000CC4EF /* framework.h in Headers */,
-				9AD4FD7917BD5A480008F751 /* kiss_fft.h in Headers */,
-				9AD4FD7A17BD5A480008F751 /* kiss_fft_guts.h in Headers */,
-				9AD4FD7D17BD5A480008F751 /* kiss_ifft.h in Headers */,
-				9AD4FD7E17BD5A480008F751 /* kissfft.h in Headers */,
-				9AD4FD8017BD5A480008F751 /* kissfft_fftd.h in Headers */,
-				9AD4FD8217BD5A480008F751 /* kissfft_ifftd.h in Headers */,
-				9AD4FD8517BD5A480008F751 /* math_math.h in Headers */,
+				07E084F71B5AC8E7005EE6C8 /* html_enum.h in Headers */,
+				07E084F91B5AC8E7005EE6C8 /* html_html.h in Headers */,
+				07E085021B5AC8E7005EE6C8 /* html_lite_html_entity_resolver.h in Headers */,
+				07E084F61B5AC8E7005EE6C8 /* html.h in Headers */,
+				07E085041B5AC8E7005EE6C8 /* html_lite_html_reader.h in Headers */,
+				07E084FB1B5AC8E7005EE6C8 /* html_lite.h in Headers */,
+				07E084FD1B5AC8E7005EE6C8 /* html_lite_application.h in Headers */,
+				07E085061B5AC8E7005EE6C8 /* html_lite_html_tag.h in Headers */,
+				07E085001B5AC8E7005EE6C8 /* html_lite_html_common.h in Headers */,
+				07E084FF1B5AC8E7005EE6C8 /* html_lite_html_attributes.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		07B65763190F3CA2002DAADE /* ios_html */ = {
+		07B65763190F3CA2002DAADE /* ios_html_lite */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 07B65788190F3CA2002DAADE /* Build configuration list for PBXNativeTarget "ios_html" */;
+			buildConfigurationList = 07B65788190F3CA2002DAADE /* Build configuration list for PBXNativeTarget "ios_html_lite" */;
 			buildPhases = (
 				07B65760190F3CA2002DAADE /* Sources */,
 				07B65761190F3CA2002DAADE /* Frameworks */,
@@ -266,10 +236,11 @@
 			buildRules = (
 			);
 			dependencies = (
+				071B6AAD1B5AD3CB002C55E2 /* PBXTargetDependency */,
 			);
-			name = ios_html;
+			name = ios_html_lite;
 			productName = math_ios;
-			productReference = 07B65764190F3CA2002DAADE /* libmath_ios.dylib */;
+			productReference = 07B65764190F3CA2002DAADE /* libhtml_lite.dylib */;
 			productType = "com.apple.product-type.library.static";
 		};
 		07B65772190F3CA2002DAADE /* math_iosTests */ = {
@@ -290,9 +261,9 @@
 			productReference = 07B65773190F3CA2002DAADE /* math_iosTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		9A574B9716AAB906000CC4EF /* html */ = {
+		9A574B9716AAB906000CC4EF /* html_lite */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9A574B9C16AAB906000CC4EF /* Build configuration list for PBXNativeTarget "html" */;
+			buildConfigurationList = 9A574B9C16AAB906000CC4EF /* Build configuration list for PBXNativeTarget "html_lite" */;
 			buildPhases = (
 				9A574B9416AAB906000CC4EF /* Sources */,
 				9A574B9516AAB906000CC4EF /* Frameworks */,
@@ -301,10 +272,11 @@
 			buildRules = (
 			);
 			dependencies = (
+				071B6AAB1B5AD3C6002C55E2 /* PBXTargetDependency */,
 			);
-			name = html;
+			name = html_lite;
 			productName = ca2;
-			productReference = 9A574B9816AAB906000CC4EF /* libmath.dylib */;
+			productReference = 9A574B9816AAB906000CC4EF /* libhtml_lite.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
@@ -333,39 +305,39 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 9A2EA36D19A62C9E004DAFFC /* Products */;
-					ProjectRef = 9A2EA36C19A62C9E004DAFFC /* axis.xcodeproj */;
+					ProductGroup = 071B6A9F1B5AD3BF002C55E2 /* Products */;
+					ProjectRef = 071B6A9E1B5AD3BF002C55E2 /* aura.xcodeproj */;
 				},
 			);
 			projectRoot = "";
 			targets = (
-				9A574B9716AAB906000CC4EF /* html */,
-				07B65763190F3CA2002DAADE /* ios_html */,
+				9A574B9716AAB906000CC4EF /* html_lite */,
+				07B65763190F3CA2002DAADE /* ios_html_lite */,
 				07B65772190F3CA2002DAADE /* math_iosTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		9A2EA37319A62C9E004DAFFC /* libaxis.dylib */ = {
+		071B6AA51B5AD3BF002C55E2 /* libaura.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libaxis.dylib;
-			remoteRef = 9A2EA37219A62C9E004DAFFC /* PBXContainerItemProxy */;
+			path = libaura.dylib;
+			remoteRef = 071B6AA41B5AD3BF002C55E2 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A2EA37519A62C9E004DAFFC /* libaxis.dylib */ = {
+		071B6AA71B5AD3BF002C55E2 /* libaura.dylib */ = {
 			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libaxis.dylib;
-			remoteRef = 9A2EA37419A62C9E004DAFFC /* PBXContainerItemProxy */;
+			fileType = "compiled.mach-o.dylib";
+			path = libaura.dylib;
+			remoteRef = 071B6AA61B5AD3BF002C55E2 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A2EA37719A62C9E004DAFFC /* base_iosTests.xctest */ = {
+		071B6AA91B5AD3BF002C55E2 /* aura_iosTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = base_iosTests.xctest;
-			remoteRef = 9A2EA37619A62C9E004DAFFC /* PBXContainerItemProxy */;
+			path = aura_iosTests.xctest;
+			remoteRef = 071B6AA81B5AD3BF002C55E2 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -375,7 +347,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07B65781190F3CA2002DAADE /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,6 +357,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07E086BF1B5AD1FC005EE6C8 /* _html_lite_html_lite.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,7 +365,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07B65783190F3CA2002DAADE /* math_iosTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,35 +372,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A57509E16AAB9A1000CC4EF /* framework.cpp in Sources */,
-				9AD4FD7817BD5A480008F751 /* kiss_fft.cpp in Sources */,
-				9AD4FD7B17BD5A480008F751 /* kiss_fft_shared.cpp in Sources */,
-				9AD4FD7C17BD5A480008F751 /* kiss_ifft.cpp in Sources */,
-				9AD4FD7F17BD5A480008F751 /* kissfft_fftd.cpp in Sources */,
-				9AD4FD8117BD5A480008F751 /* kissfft_ifftd.cpp in Sources */,
+				07E084F41B5AC8E7005EE6C8 /* _html_lite_html_lite.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		071B6AAB1B5AD3C6002C55E2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = aura;
+			targetProxy = 071B6AAA1B5AD3C6002C55E2 /* PBXContainerItemProxy */;
+		};
+		071B6AAD1B5AD3CB002C55E2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_aura;
+			targetProxy = 071B6AAC1B5AD3CB002C55E2 /* PBXContainerItemProxy */;
+		};
 		07B6577A190F3CA2002DAADE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 07B65763190F3CA2002DAADE /* ios_html */;
+			target = 07B65763190F3CA2002DAADE /* ios_html_lite */;
 			targetProxy = 07B65779190F3CA2002DAADE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		07B6577F190F3CA2002DAADE /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				07B65780190F3CA2002DAADE /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		07B65784190F3CA2002DAADE /* Debug */ = {
@@ -457,7 +422,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MACH_O_TYPE = mh_dylib;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 			};
@@ -485,7 +449,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MACH_O_TYPE = mh_dylib;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				VALIDATE_PRODUCT = YES;
@@ -582,8 +545,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -604,8 +566,9 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = html_lite;
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/core $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../.. $(WorkspaceDir)/../../base/include $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/base";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/core $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../app/base $(WorkspaceDir)/../../../app/axis $(WorkspaceDir)/../../../app/aura $(WorkspaceDir)/../../../app/atom";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Debug;
@@ -627,8 +590,7 @@
 				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = framework.h;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
@@ -643,8 +605,9 @@
 					"\"$(TARGET_BUILD_DIR)\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = html_lite;
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/core $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../.. $(WorkspaceDir)/../../base/include $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/base";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/core $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../app/base $(WorkspaceDir)/../../../app/axis $(WorkspaceDir)/../../../app/aura $(WorkspaceDir)/../../../app/atom";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Release;
@@ -653,7 +616,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				PRODUCT_NAME = math;
 			};
 			name = Debug;
 		};
@@ -661,14 +623,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				PRODUCT_NAME = math;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		07B65788190F3CA2002DAADE /* Build configuration list for PBXNativeTarget "ios_html" */ = {
+		07B65788190F3CA2002DAADE /* Build configuration list for PBXNativeTarget "ios_html_lite" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				07B65784190F3CA2002DAADE /* Debug */,
@@ -695,7 +656,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9A574B9C16AAB906000CC4EF /* Build configuration list for PBXNativeTarget "html" */ = {
+		9A574B9C16AAB906000CC4EF /* Build configuration list for PBXNativeTarget "html_lite" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9A574B9D16AAB906000CC4EF /* Debug */,

@@ -252,6 +252,7 @@
 		077A020D1B4D58CB001C85FF /* libaxisfreeimage.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07108CE21B4C97E300A28F80 /* libaxisfreeimage.dylib */; };
 		077A02111B4D5903001C85FF /* libaxiszlib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEEBDA919C595DD00866C9E /* libaxiszlib.dylib */; };
 		07E084071B5AC2BD005EE6C8 /* libaxispng.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07E083DE1B5AC11B005EE6C8 /* libaxispng.dylib */; };
+		07E086301B5ACC74005EE6C8 /* libaxispng.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07E083DC1B5AC11B005EE6C8 /* libaxispng.dylib */; };
 		9A19A09819C677300018DF7D /* libaxisbzip2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A19A09519C677110018DF7D /* libaxisbzip2.dylib */; };
 		9AEEB67119C5089700866C9E /* afangles.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB49519C5089500866C9E /* afangles.h */; };
 		9AEEB67319C5089700866C9E /* afblue.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB49919C5089500866C9E /* afblue.h */; };
@@ -583,6 +584,13 @@
 			remoteGlobalIDString = 07B65763190F3CA2002DAADE;
 			remoteInfo = ios_axispng;
 		};
+		07E086291B5ACC5F005EE6C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07E083D51B5AC11B005EE6C8 /* axispng.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A574B9716AAB906000CC4EF;
+			remoteInfo = axispng;
+		};
 		9A19A09419C677110018DF7D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A19A08E19C677110018DF7D /* axisbzip2.xcodeproj */;
@@ -904,6 +912,7 @@
 				9AEEB83D19C50EC200866C9E /* libaura.dylib in Frameworks */,
 				9A19A09819C677300018DF7D /* libaxisbzip2.dylib in Frameworks */,
 				9AEEBDB519C5963200866C9E /* libaxiszlib.dylib in Frameworks */,
+				07E086301B5ACC74005EE6C8 /* libaxispng.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -932,10 +941,10 @@
 		9A1B2F7D16A2AF5C00875A94 = {
 			isa = PBXGroup;
 			children = (
-				07E083D51B5AC11B005EE6C8 /* axispng.xcodeproj */,
 				9AEEB82C19C50E7D00866C9E /* aura.xcodeproj */,
 				9A19A08E19C677110018DF7D /* axisbzip2.xcodeproj */,
 				9AEEB81719C50B1000866C9E /* axisfreeimage.xcodeproj */,
+				07E083D51B5AC11B005EE6C8 /* axispng.xcodeproj */,
 				9AEEBDA419C595DD00866C9E /* axiszlib.xcodeproj */,
 				9AEEB84719C5802F00866C9E /* include */,
 				9AEEB49219C5089500866C9E /* src */,
@@ -1887,6 +1896,7 @@
 			dependencies = (
 				9AEEB83C19C50EB900866C9E /* PBXTargetDependency */,
 				9A19A09719C6771D0018DF7D /* PBXTargetDependency */,
+				07E0862A1B5ACC5F005EE6C8 /* PBXTargetDependency */,
 			);
 			name = axisfreetype;
 			productName = FreeImage;
@@ -2141,6 +2151,11 @@
 			isa = PBXTargetDependency;
 			name = ios_axispng;
 			targetProxy = 07E084051B5AC2AC005EE6C8 /* PBXContainerItemProxy */;
+		};
+		07E0862A1B5ACC5F005EE6C8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = axispng;
+			targetProxy = 07E086291B5ACC5F005EE6C8 /* PBXContainerItemProxy */;
 		};
 		9A19A09719C6771D0018DF7D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

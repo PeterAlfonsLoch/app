@@ -1243,6 +1243,31 @@ namespace draw2d_quartz2d
       
    }
    
+   
+   bool graphics::Polygon(const POINTD* pa, int32_t nCount)
+   {
+      
+      if(nCount <= 0)
+         return TRUE;
+      
+      CGContextBeginPath(m_pdc);
+      
+      CGContextMoveToPoint(m_pdc, pa[0].x, pa[0].y);
+      
+      for(int32_t i = 1; i < nCount; i++)
+      {
+         
+         CGContextAddLineToPoint(m_pdc, pa[i].x, pa[i].y);
+         
+      }
+      
+      CGContextClosePath(m_pdc);
+      
+      return fill_and_draw();
+      
+   }
+  
+   
    bool graphics::Rectangle(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
    {
       

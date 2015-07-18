@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		071B6B281B5AE073002C55E2 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 076333E01B5902EB0079C405 /* libaura.dylib */; };
+		071B6B291B5AE07B002C55E2 /* libaxisfreeimage.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 076333EB1B5902FC0079C405 /* libaxisfreeimage.dylib */; };
 		076335191B5903BD0079C405 /* PluginJPEG.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 076334B11B5903BC0079C405 /* PluginJPEG.cpp */; };
 		0763351A1B5903BD0079C405 /* PluginJPEG.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 076334B11B5903BC0079C405 /* PluginJPEG.cpp */; };
 		0763351B1B5903BD0079C405 /* JPEGTransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 076334B31B5903BC0079C405 /* JPEGTransform.cpp */; };
@@ -149,6 +151,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		071B6B241B5AE063002C55E2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 076333D91B5902EB0079C405 /* aura.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A98A6031771D67E000AE16E;
+			remoteInfo = aura;
+		};
+		071B6B261B5AE067002C55E2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 076333E51B5902FB0079C405 /* axisfreeimage.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AA5E4C216F7C61B005C45CE;
+			remoteInfo = axisfreeimage;
+		};
 		076333DF1B5902EB0079C405 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 076333D91B5902EB0079C405 /* aura.xcodeproj */;
@@ -310,8 +326,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				076336251B590A310079C405 /* libaxisfreeimage.dylib in Frameworks */,
 				076336241B590A250079C405 /* libaura.dylib in Frameworks */,
+				076336251B590A310079C405 /* libaxisfreeimage.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,6 +343,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				071B6B281B5AE073002C55E2 /* libaura.dylib in Frameworks */,
+				071B6B291B5AE07B002C55E2 /* libaxisfreeimage.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -517,8 +535,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				076336231B590A1A0079C405 /* PBXTargetDependency */,
 				0763361C1B590A140079C405 /* PBXTargetDependency */,
+				076336231B590A1A0079C405 /* PBXTargetDependency */,
 			);
 			name = ios_axisjpeg;
 			productName = math_ios;
@@ -554,6 +572,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				071B6B251B5AE063002C55E2 /* PBXTargetDependency */,
+				071B6B271B5AE067002C55E2 /* PBXTargetDependency */,
 			);
 			name = axisjpeg;
 			productName = ca2;
@@ -800,6 +820,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		071B6B251B5AE063002C55E2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = aura;
+			targetProxy = 071B6B241B5AE063002C55E2 /* PBXContainerItemProxy */;
+		};
+		071B6B271B5AE067002C55E2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = axisfreeimage;
+			targetProxy = 071B6B261B5AE067002C55E2 /* PBXContainerItemProxy */;
+		};
 		0763361C1B590A140079C405 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ios_aura;
@@ -830,8 +860,6 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				DSTROOT = /tmp/math_ios.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -860,8 +888,6 @@
 				DSTROOT = /tmp/math_ios.dst;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
@@ -965,7 +991,6 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = framework.h;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -1011,7 +1036,6 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = framework.h;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
@@ -1037,6 +1061,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PREFIX_HEADER = "";
 			};
 			name = Debug;
 		};
@@ -1044,6 +1069,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PREFIX_HEADER = "";
 			};
 			name = Release;
 		};

@@ -308,6 +308,8 @@ namespace draw2d_quartz2d
       virtual bool fill_polygon(const POINT* lpPoints, int32_t nCount);
       bool Polygon(const POINT* lpPoints, int32_t nCount);
       bool PolyPolygon(const POINT* lpPoints, const INT* lpPolyCounts, int32_t nCount);
+      bool Polygon(const POINTD* lpPoints,int32_t nCount);
+//      bool PolyPolygon(const POINT* lpPoints, const INT* lpPolyCounts, int32_t nCount);
       bool Rectangle(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
       bool Rectangle(const RECT & lpRect);
       virtual bool DrawRectangle(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
