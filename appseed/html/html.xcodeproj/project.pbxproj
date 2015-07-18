@@ -19,6 +19,12 @@
 		07B65776190F3CA2002DAADE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65766190F3CA2002DAADE /* Foundation.framework */; };
 		07B65778190F3CA2002DAADE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65777190F3CA2002DAADE /* UIKit.framework */; };
 		07B6577B190F3CA2002DAADE /* libhtml.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65764190F3CA2002DAADE /* libhtml.dylib */; };
+		07DE6CF11B5AEA2D00FE3E55 /* _html_elemental.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07E085121B5AC9EE005EE6C8 /* _html_elemental.cpp */; };
+		07DE6CF21B5AEA2D00FE3E55 /* _graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07E085101B5AC9EE005EE6C8 /* _graphics.cpp */; };
+		07DE6CF31B5AEA2D00FE3E55 /* _userhtml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07E085751B5AC9EE005EE6C8 /* _userhtml.cpp */; };
+		07DE6CF41B5AEA3800FE3E55 /* html_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07E085721B5AC9EE005EE6C8 /* html_application.cpp */; };
+		07DE6CF51B5AEABF00FE3E55 /* _html_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07E085501B5AC9EE005EE6C8 /* _html_impl.cpp */; };
+		07DE6CF61B5AEAC900FE3E55 /* hi5_twitter_authorization.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07E0856C1B5AC9EE005EE6C8 /* hi5_twitter_authorization.cpp */; };
 		07E085851B5AC9EE005EE6C8 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07E0850D1B5AC9EE005EE6C8 /* framework.cpp */; };
 		07E085861B5AC9EE005EE6C8 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 07E0850E1B5AC9EE005EE6C8 /* framework.h */; };
 		07E085871B5AC9EE005EE6C8 /* _graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07E085101B5AC9EE005EE6C8 /* _graphics.cpp */; };
@@ -920,6 +926,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07DE6CF61B5AEAC900FE3E55 /* hi5_twitter_authorization.cpp in Sources */,
+				07DE6CF51B5AEABF00FE3E55 /* _html_impl.cpp in Sources */,
+				07DE6CF41B5AEA3800FE3E55 /* html_application.cpp in Sources */,
+				07DE6CF11B5AEA2D00FE3E55 /* _html_elemental.cpp in Sources */,
+				07DE6CF21B5AEA2D00FE3E55 /* _graphics.cpp in Sources */,
+				07DE6CF31B5AEA2D00FE3E55 /* _userhtml.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1018,8 +1030,6 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				DSTROOT = /tmp/math_ios.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "math_ios/math_ios-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -1049,8 +1059,6 @@
 				DSTROOT = /tmp/math_ios.dst;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "math_ios/math_ios-Prefix.pch";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
