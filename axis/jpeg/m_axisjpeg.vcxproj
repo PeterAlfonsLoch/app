@@ -27,10 +27,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{106E3938-FA19-4D4D-83D5-A36692C93E86}</ProjectGuid>
+    <ProjectGuid>{C99B1E59-5356-4164-996A-90BBE3967A01}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <ProjectName>math</ProjectName>
-    <RootNamespace>math</RootNamespace>
+    <ProjectName>axisjpeg</ProjectName>
+    <RootNamespace>axisjpeg</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
     <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
     <AppContainerApplication>true</AppContainerApplication>
@@ -92,8 +92,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
     <GenerateManifest>false</GenerateManifest>
     <IgnoreImportLibrary>false</IgnoreImportLibrary>
-    <OutDir>$(SolutionDir)..\..\..\stage\x86\</OutDir>
-    <IntDir>$(SolutionDir)..\..\..\time\intermediate\x86\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)..\..\..\stage\$(SolutionName)\$(PlatformName)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(SolutionName)\$(PlatformName)\$(ProjectName)\</IntDir>
     <IncludePath>$(VCInstallDir)include;$(WindowsSDK_IncludePath);</IncludePath>
     <ReferencePath>$(VCInstallDir)lib</ReferencePath>
     <LibraryPath>$(VCInstallDir)lib;$(WindowsSDK_LibraryPath_x86);</LibraryPath>
@@ -116,6 +116,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
     <GenerateManifest>false</GenerateManifest>
     <IgnoreImportLibrary>false</IgnoreImportLibrary>
+    <OutDir>$(SolutionDir)..\..\..\stage\$(SolutionName)\$(PlatformName)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(SolutionName)\$(PlatformName)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profiler|ARM'">
     <GenerateManifest>false</GenerateManifest>
@@ -124,6 +126,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
     <GenerateManifest>false</GenerateManifest>
     <IgnoreImportLibrary>false</IgnoreImportLibrary>
+    <OutDir>$(SolutionDir)..\..\..\stage\$(SolutionName)\$(PlatformName)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(SolutionName)\$(PlatformName)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">
     <GenerateManifest>false</GenerateManifest>
@@ -131,11 +135,11 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <CompileAsWinRT>true</CompileAsWinRT>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <CompileAsWinRT>false</CompileAsWinRT>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <PreprocessorDefinitions>_CA2_MATH_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NO_LCMS;NO_JASPER;USE_JPIP;_DEBUG;_WINDOWS;_USRDLL;OPJ_STATIC;FREEIMAGE_EXPORTS;_CRT_SECURE_NO_DEPRECATE;LIBRAW_NODLL;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)..;$(ProjectDir)../..;$(ProjectDir)../../..;$(ProjectDir)../../appseed;$(ProjectDir)../../appseed/axis;$(ProjectDir)../../appseed/aura;$(ProjectDir)../../include;$(ProjectDir)../freeimage/Source;Source\DeprecationManager;Source\LibJPEG;Source\LibRawLite;Source\OpenEXR;Source\OpenEXR\Half;Source\OpenEXR\Iex;Source\OpenEXR\IlmImf;Source\OpenEXR\Imath;Source\OpenEXR\IlmThread;Source\LibJXR\jxrgluelib;Source\LibJXR\image\sys;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zm384 /bigobj %(AdditionalOptions)</AdditionalOptions>
       <ExceptionHandling>Async</ExceptionHandling>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -151,7 +155,7 @@
       </IgnoreSpecificDefaultLibraries>
       <ModuleDefinitionFile>$(TargetName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
+      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -201,8 +205,11 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\FreeImage.dll" "$(OutDir)
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|arm'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <CompileAsWinRT>false</CompileAsWinRT>
+      <AdditionalIncludeDirectories>$(ProjectDir)..;$(ProjectDir)../..;$(ProjectDir)../../..;$(ProjectDir)../../appseed;$(ProjectDir)../../appseed/axis;$(ProjectDir)../../appseed/aura;$(ProjectDir)../../include;$(ProjectDir)../freeimage/Source;Source\DeprecationManager;Source\LibJPEG;Source\LibRawLite;Source\OpenEXR;Source\OpenEXR\Half;Source\OpenEXR\Iex;Source\OpenEXR\IlmImf;Source\OpenEXR\Imath;Source\OpenEXR\IlmThread;Source\LibJXR\jxrgluelib;Source\LibJXR\image\sys;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAsManaged>false</CompileAsManaged>
+      <PreprocessorDefinitions>NO_LCMS;NO_JASPER;USE_JPIP;_DEBUG;_WINDOWS;_USRDLL;OPJ_STATIC;FREEIMAGE_EXPORTS;_CRT_SECURE_NO_DEPRECATE;LIBRAW_NODLL;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -234,8 +241,11 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\FreeImage.dll" "$(OutDir)
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <CompileAsWinRT>false</CompileAsWinRT>
+      <AdditionalIncludeDirectories>$(ProjectDir)..;$(ProjectDir)../..;$(ProjectDir)../../..;$(ProjectDir)../../appseed;$(ProjectDir)../../appseed/axis;$(ProjectDir)../../appseed/aura;$(ProjectDir)../../include;$(ProjectDir)../freeimage/Source;Source\DeprecationManager;Source\LibJPEG;Source\LibRawLite;Source\OpenEXR;Source\OpenEXR\Half;Source\OpenEXR\Iex;Source\OpenEXR\IlmImf;Source\OpenEXR\Imath;Source\OpenEXR\IlmThread;Source\LibJXR\jxrgluelib;Source\LibJXR\image\sys;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAsManaged>false</CompileAsManaged>
+      <PreprocessorDefinitions>NO_LCMS;NO_JASPER;USE_JPIP;_DEBUG;_WINDOWS;_USRDLL;OPJ_STATIC;FREEIMAGE_EXPORTS;_CRT_SECURE_NO_DEPRECATE;LIBRAW_NODLL;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -255,42 +265,92 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\FreeImage.dll" "$(OutDir)
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\thirdparty\appseed\FreeImage\m_basefreeimage.vcxproj">
-      <Project>{fced5042-9a2d-4e71-8022-129e8e5d1993}</Project>
+    <ProjectReference Include="..\..\appseed\aura\m_aura.vcxproj">
+      <Project>{55f3f6b8-8baf-4f22-9e77-bcf9d5a23960}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\thirdparty\appseed\freetype\_m_ca2basefreetype.vcxproj">
-      <Project>{af9dfa62-6f0e-47b8-a55b-5ad825571f4f}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\base\m_base.vcxproj">
-      <Project>{5487686f-8a2f-401a-a38e-fda8900e1984}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\core\m_core.vcxproj">
-      <Project>{420d7aeb-cfca-45de-bb6e-95055df21987}</Project>
+    <ProjectReference Include="..\freeimage\m_axisfreeimage.vcxproj">
+      <Project>{4578272a-f76e-48d5-ac7d-5856f150cd7f}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="framework.h" />
-    <ClInclude Include="kissfft\aaa_vmskissfftfKiss_want_to_remove_xxx.h" />
-    <ClInclude Include="kissfft\kissfft.h" />
-    <ClInclude Include="kissfft\kissfft_fftd.h" />
-    <ClInclude Include="kissfft\kissfft_ifftd.h" />
-    <ClInclude Include="kissfft\kiss_fft.h" />
-    <ClInclude Include="kissfft\kiss_fft_guts.h" />
-    <ClInclude Include="kissfft\kiss_ifft.h" />
-    <ClInclude Include="math\math_math.h" />
+    <None Include="axisjpeg.def" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="framework.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="kissfft\kissfft_fftd.cpp" />
-    <ClCompile Include="kissfft\kissfft_ifftd.cpp" />
-    <ClCompile Include="kissfft\kiss_fft.cpp" />
-    <ClCompile Include="kissfft\kiss_fft_shared.cpp" />
-    <ClCompile Include="kissfft\kiss_ifft.cpp" />
+    <ClCompile Include="Source\FreeImage\PluginJPEG.cpp" />
+    <ClCompile Include="Source\LibJPEG\cdjpeg.c" />
+    <ClCompile Include="Source\LibJPEG\jaricom.c" />
+    <ClCompile Include="Source\LibJPEG\jcapimin.c" />
+    <ClCompile Include="Source\LibJPEG\jcapistd.c" />
+    <ClCompile Include="Source\LibJPEG\jcarith.c" />
+    <ClCompile Include="Source\LibJPEG\jccoefct.c" />
+    <ClCompile Include="Source\LibJPEG\jccolor.c" />
+    <ClCompile Include="Source\LibJPEG\jcdctmgr.c" />
+    <ClCompile Include="Source\LibJPEG\jchuff.c" />
+    <ClCompile Include="Source\LibJPEG\jcinit.c" />
+    <ClCompile Include="Source\LibJPEG\jcmainct.c" />
+    <ClCompile Include="Source\LibJPEG\jcmarker.c" />
+    <ClCompile Include="Source\LibJPEG\jcmaster.c" />
+    <ClCompile Include="Source\LibJPEG\jcomapi.c" />
+    <ClCompile Include="Source\LibJPEG\jcparam.c" />
+    <ClCompile Include="Source\LibJPEG\jcprepct.c" />
+    <ClCompile Include="Source\LibJPEG\jcsample.c" />
+    <ClCompile Include="Source\LibJPEG\jctrans.c" />
+    <ClCompile Include="Source\LibJPEG\jdapimin.c" />
+    <ClCompile Include="Source\LibJPEG\jdapistd.c" />
+    <ClCompile Include="Source\LibJPEG\jdarith.c" />
+    <ClCompile Include="Source\LibJPEG\jdatadst.c" />
+    <ClCompile Include="Source\LibJPEG\jdatasrc.c" />
+    <ClCompile Include="Source\LibJPEG\jdcoefct.c" />
+    <ClCompile Include="Source\LibJPEG\jdcolor.c" />
+    <ClCompile Include="Source\LibJPEG\jddctmgr.c" />
+    <ClCompile Include="Source\LibJPEG\jdhuff.c" />
+    <ClCompile Include="Source\LibJPEG\jdinput.c" />
+    <ClCompile Include="Source\LibJPEG\jdmainct.c" />
+    <ClCompile Include="Source\LibJPEG\jdmarker.c" />
+    <ClCompile Include="Source\LibJPEG\jdmaster.c" />
+    <ClCompile Include="Source\LibJPEG\jdmerge.c" />
+    <ClCompile Include="Source\LibJPEG\jdpostct.c" />
+    <ClCompile Include="Source\LibJPEG\jdsample.c" />
+    <ClCompile Include="Source\LibJPEG\jdtrans.c" />
+    <ClCompile Include="Source\LibJPEG\jerror.c" />
+    <ClCompile Include="Source\LibJPEG\jfdctflt.c" />
+    <ClCompile Include="Source\LibJPEG\jfdctfst.c" />
+    <ClCompile Include="Source\LibJPEG\jfdctint.c" />
+    <ClCompile Include="Source\LibJPEG\jidctflt.c" />
+    <ClCompile Include="Source\LibJPEG\jidctfst.c" />
+    <ClCompile Include="Source\LibJPEG\jidctint.c" />
+    <ClCompile Include="Source\LibJPEG\jmemmgr.c" />
+    <ClCompile Include="Source\LibJPEG\jmemnobs.c" />
+    <ClCompile Include="Source\LibJPEG\jquant1.c" />
+    <ClCompile Include="Source\LibJPEG\jquant2.c" />
+    <ClCompile Include="Source\LibJPEG\jutils.c" />
+    <ClCompile Include="Source\LibJPEG\rdbmp.c" />
+    <ClCompile Include="Source\LibJPEG\rdcolmap.c" />
+    <ClCompile Include="Source\LibJPEG\rdgif.c" />
+    <ClCompile Include="Source\LibJPEG\rdppm.c" />
+    <ClCompile Include="Source\LibJPEG\rdrle.c" />
+    <ClCompile Include="Source\LibJPEG\rdswitch.c" />
+    <ClCompile Include="Source\LibJPEG\rdtarga.c" />
+    <ClCompile Include="Source\LibJPEG\transupp.c" />
+    <ClCompile Include="Source\LibJPEG\wrbmp.c" />
+    <ClCompile Include="Source\LibJPEG\wrgif.c" />
+    <ClCompile Include="Source\LibJPEG\wrppm.c" />
+    <ClCompile Include="Source\LibJPEG\wrrle.c" />
+    <ClCompile Include="Source\LibJPEG\wrtarga.c" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="math.def" />
+    <ClInclude Include="Source\LibJPEG\cderror.h" />
+    <ClInclude Include="Source\LibJPEG\cdjpeg.h" />
+    <ClInclude Include="Source\LibJPEG\jconfig.h" />
+    <ClInclude Include="Source\LibJPEG\jdct.h" />
+    <ClInclude Include="Source\LibJPEG\jerror.h" />
+    <ClInclude Include="Source\LibJPEG\jinclude.h" />
+    <ClInclude Include="Source\LibJPEG\jmemsys.h" />
+    <ClInclude Include="Source\LibJPEG\jmorecfg.h" />
+    <ClInclude Include="Source\LibJPEG\jpegint.h" />
+    <ClInclude Include="Source\LibJPEG\jpeglib.h" />
+    <ClInclude Include="Source\LibJPEG\jversion.h" />
+    <ClInclude Include="Source\LibJPEG\transupp.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

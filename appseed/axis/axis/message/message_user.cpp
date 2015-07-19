@@ -179,6 +179,7 @@ namespace message
       m_ecursor(::visual::cursor_unmodified)
    {
       m_pcursor = NULL;
+      m_bTranslated = false;
    }
 
    mouse::~mouse()

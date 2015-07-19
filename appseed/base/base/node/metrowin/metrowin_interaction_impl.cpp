@@ -16,12 +16,13 @@ namespace metrowin
       ::aura::timer_array(get_app())
    {
 
-      m_plistener = NULL;
-      m_nModalResult = 0;
-      m_bMouseHover = false;
-      m_pfont = NULL;
-      m_pguieCapture = NULL;
-      m_pwindow = new ::user::native_window;
+      m_bScreenRelativeMouseMessagePosition  = false;
+      m_plistener                            = NULL;
+      m_nModalResult                         = 0;
+      m_bMouseHover                          = false;
+      m_pfont                                = NULL;
+      m_pguieCapture                         = NULL;
+      m_pwindow                              = new ::user::native_window;
 
    }
 
@@ -29,6 +30,7 @@ namespace metrowin
    void interaction_impl::construct(oswindow hWnd)
    {
 
+      m_bScreenRelativeMouseMessagePosition  = false;
       m_plistener = NULL;
       m_nModalResult = 0;
       m_bMouseHover = false;
@@ -43,6 +45,7 @@ namespace metrowin
       ::aura::timer_array(papp)
    {
 
+      m_bScreenRelativeMouseMessagePosition  = false;
       m_plistener = NULL;
       m_nModalResult = 0;
       m_bMouseHover = false;
@@ -1296,7 +1299,7 @@ namespace metrowin
          {
             pmouse->m_bTranslated = true;
             rect64 rectWindow;
-            if(m_bOSNativeMouseMessagePosition)
+            if(m_bScreenRelativeMouseMessagePosition)
             {
                /*               class rect rectWindow32;
                               ::GetWindowRect(get_handle(), &rectWindow32);

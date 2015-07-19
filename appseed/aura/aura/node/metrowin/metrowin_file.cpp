@@ -194,7 +194,7 @@ namespace metrowin
             {*/
 
 
-            ::file::throw_exception(get_app(), WinFileException::OsErrorToException(dwLastError), dwLastError, m_strFileName);
+            return canew(::file::exception(get_app(), WinFileException::OsErrorToException(dwLastError), dwLastError, m_strFileName));
 
             //}
 

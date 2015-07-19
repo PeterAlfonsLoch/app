@@ -10,14 +10,14 @@ namespace user
       ::aura::timer_array(get_app())
    {
 
-      m_bOSNativeMouseMessagePosition  = true;
-      m_bTranslateMouseMessageCursor   = true;
-      m_pgraphics                      = NULL;
-      m_bComposite                     = true;
-      m_bUpdateGraphics                = false;
-      m_oswindow                       = NULL;
-      m_bNeedLayout                    = false;
-      m_pcsDisplay                     = NULL;
+      m_bScreenRelativeMouseMessagePosition  = true;
+      m_bTranslateMouseMessageCursor         = true;
+      m_pgraphics                            = NULL;
+      m_bComposite                           = true;
+      m_bUpdateGraphics                      = false;
+      m_oswindow                             = NULL;
+      m_bNeedLayout                          = false;
+      m_pcsDisplay                           = NULL;
 
    }
 

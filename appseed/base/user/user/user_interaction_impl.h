@@ -54,7 +54,7 @@ namespace user
 
       oswindow                      m_oswindow;
       bool                          m_bMouseHover;
-      bool                          m_bOSNativeMouseMessagePosition;
+      bool                          m_bScreenRelativeMouseMessagePosition;
       bool                          m_bTranslateMouseMessageCursor;
       bool                          m_bComposite;
       bool                          m_bUpdateGraphics;

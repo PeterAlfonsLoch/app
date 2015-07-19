@@ -16,7 +16,7 @@ namespace metrowin
 {
 
    // Constructor.
-   directx_base::directx_base(::aura::application * papp) :
+   directx_base::directx_base(::aura::application * papp):
       m_pauraapp(papp),
       m_windowSizeChangeInProgress(false),
       m_dpi(-1.0f),
@@ -29,7 +29,7 @@ namespace metrowin
    }
 
    // Initialize the DirectX resources required to run.
-   void directx_base::Initialize(CoreWindow^ window, float dpi)
+   void directx_base::Initialize(CoreWindow^ window,float dpi)
    {
 
       m_window = window;
@@ -45,6 +45,7 @@ namespace metrowin
 
    bool directx_base::defer_init()
    {
+      synch_lock sl(&draw2d_direct2_mutex());
 
       if(m_bInitialized)
          return true;
@@ -64,6 +65,7 @@ namespace metrowin
    // Recreate all device resources and set them back to the current state.
    void directx_base::HandleDeviceLost()
    {
+      synch_lock sl(&draw2d_direct2_mutex());
 
       // Reset these member variables to ensure that SetDpi recreates all resources.
       float dpi = m_dpi;
@@ -79,23 +81,24 @@ namespace metrowin
    // These are the resources required independent of the device.
    void directx_base::CreateDeviceIndependentResources()
    {
+      synch_lock sl(&draw2d_direct2_mutex());
 
       D2D1_FACTORY_OPTIONS options;
-      ZeroMemory(&options, sizeof(D2D1_FACTORY_OPTIONS));
+      ZeroMemory(&options,sizeof(D2D1_FACTORY_OPTIONS));
 
 #if defined(_DEBUG)
       // If the project is in a debug build, enable Direct2D debugging via SDK Layers.
       options.debugLevel = D2D1_DEBUG_LEVEL_INFORMATION;
 #endif
 
-/*      ::metrowin::throw_if_failed(
-         D2D1CreateFactory(
-         D2D1_FACTORY_TYPE_SINGLE_THREADED,
-         __uuidof(ID2D1Factory1),
-         &options,
-         GetD
-         )
-         );*/
+      /*      ::metrowin::throw_if_failed(
+               D2D1CreateFactory(
+               D2D1_FACTORY_TYPE_SINGLE_THREADED,
+               __uuidof(ID2D1Factory1),
+               &options,
+               GetD
+               )
+               );*/
 
       ::metrowin::throw_if_failed(
          DWriteCreateFactory(
@@ -201,58 +204,59 @@ namespace metrowin
    void directx_base::CreateDeviceResources()
    {
 
+      synch_lock sl(&draw2d_direct2_mutex());
 
-//      // This flag adds support for surfaces with a different color channel ordering
-//      // than the API default. It is required for compatibility with Direct2D.
-//      UINT creationFlags = D3D11_CREATE_DEVICE_BGRA_SUPPORT;
-//      ComPtr<IDXGIDevice> dxgiDevice;
-//
-//#if defined(_DEBUG)
-//      // If the project is in a debug build, enable debugging via SDK Layers with this flag.
-//      creationFlags |= D3D11_CREATE_DEVICE_DEBUG;
-//#endif
-//
-//      // This array defines the set of DirectX hardware feature levels this app will support.
-//      // Note the ordering should be preserved.
-//      // Don't forget to declare your application's minimum required feature level in its
-//      // description.  All applications are assumed to support 9.1 unless otherwise stated.
-//      D3D_FEATURE_LEVEL featureLevels[] =
-//      {
-//         D3D_FEATURE_LEVEL_11_1,
-//         D3D_FEATURE_LEVEL_11_0,
-//         D3D_FEATURE_LEVEL_10_1,
-//         D3D_FEATURE_LEVEL_10_0,
-//         D3D_FEATURE_LEVEL_9_3,
-//         D3D_FEATURE_LEVEL_9_2,
-//         D3D_FEATURE_LEVEL_9_1
-//      };
-//
-//      // Create the Direct3D 11 API device object and a corresponding context.
-//      ComPtr<ID3D11Device> device;
-//      ComPtr<ID3D11DeviceContext> context;
-//      ::metrowin::throw_if_failed(
-//         D3D11CreateDevice(
-//         nullptr,                    // Specify nullptr to use the default adapter.
-//         D3D_DRIVER_TYPE_HARDWARE,
-//         0,
-//         creationFlags,              // Set debug and Direct2D compatibility flags.
-//         featureLevels,              // List of feature levels this app can support.
-//         ARRAYSIZE(featureLevels),
-//         D3D11_SDK_VERSION,          // Always set this to D3D11_SDK_VERSION for Metro style apps.
-//         &device,                    // Returns the Direct3D device created.
-//         &m_featureLevel,            // Returns feature level of device created.
-//         &context                    // Returns the device immediate context.
-//         )
-//         );
+      //      // This flag adds support for surfaces with a different color channel ordering
+      //      // than the API default. It is required for compatibility with Direct2D.
+      //      UINT creationFlags = D3D11_CREATE_DEVICE_BGRA_SUPPORT;
+      //      ComPtr<IDXGIDevice> dxgiDevice;
+      //
+      //#if defined(_DEBUG)
+      //      // If the project is in a debug build, enable debugging via SDK Layers with this flag.
+      //      creationFlags |= D3D11_CREATE_DEVICE_DEBUG;
+      //#endif
+      //
+      //      // This array defines the set of DirectX hardware feature levels this app will support.
+      //      // Note the ordering should be preserved.
+      //      // Don't forget to declare your application's minimum required feature level in its
+      //      // description.  All applications are assumed to support 9.1 unless otherwise stated.
+      //      D3D_FEATURE_LEVEL featureLevels[] =
+      //      {
+      //         D3D_FEATURE_LEVEL_11_1,
+      //         D3D_FEATURE_LEVEL_11_0,
+      //         D3D_FEATURE_LEVEL_10_1,
+      //         D3D_FEATURE_LEVEL_10_0,
+      //         D3D_FEATURE_LEVEL_9_3,
+      //         D3D_FEATURE_LEVEL_9_2,
+      //         D3D_FEATURE_LEVEL_9_1
+      //      };
+      //
+      //      // Create the Direct3D 11 API device object and a corresponding context.
+      //      ComPtr<ID3D11Device> device;
+      //      ComPtr<ID3D11DeviceContext> context;
+      //      ::metrowin::throw_if_failed(
+      //         D3D11CreateDevice(
+      //         nullptr,                    // Specify nullptr to use the default adapter.
+      //         D3D_DRIVER_TYPE_HARDWARE,
+      //         0,
+      //         creationFlags,              // Set debug and Direct2D compatibility flags.
+      //         featureLevels,              // List of feature levels this app can support.
+      //         ARRAYSIZE(featureLevels),
+      //         D3D11_SDK_VERSION,          // Always set this to D3D11_SDK_VERSION for Metro style apps.
+      //         &device,                    // Returns the Direct3D device created.
+      //         &m_featureLevel,            // Returns feature level of device created.
+      //         &context                    // Returns the device immediate context.
+      //         )
+      //         );
 
 
-      
 
-//
-//      // Get the Direct3D 11.1 API device and context interfaces.
-//      ::metrowin::throw_if_failed(
-//         device.As(&m_d3dDevice)
-//         );
+
+      //
+      //      // Get the Direct3D 11.1 API device and context interfaces.
+      //      ::metrowin::throw_if_failed(
+      //         device.As(&m_d3dDevice)
+      //         );
 
       m_d3dDevice = TlsGetD3D11Device1();
 
@@ -260,23 +264,23 @@ namespace metrowin
 
       //m_d2dDevice = TlsGetD3D11DeviceCo1();
 
-//
-//      ::metrowin::throw_if_failed(
-//         context.As(&m_d3dContext)
-//         );
-//
-//      // Get the underlying DXGI device of the Direct3D device.
-//      ::metrowin::throw_if_failed(
-//         m_d3dDevice.As(&dxgiDevice)
-//         );
-//
+      //
+      //      ::metrowin::throw_if_failed(
+      //         context.As(&m_d3dContext)
+      //         );
+      //
+      //      // Get the underlying DXGI device of the Direct3D device.
+      //      ::metrowin::throw_if_failed(
+      //         m_d3dDevice.As(&dxgiDevice)
+      //         );
+      //
       // Create the Direct2D device object and a corresponding context.
       //::metrowin::throw_if_failed(
       //   GetD2D1Factory1()->CreateDevice(TlsGetDXGIDevice(),&m_d2dDevice)
       //   );
 
       m_d2dDevice = TlsGetD2D1Device();
-//
+      //
       //::metrowin::throw_if_failed(
       //   m_d2dDevice->CreateDeviceContext(
       //   D2D1_DEVICE_CONTEXT_OPTIONS_NONE,
@@ -286,11 +290,11 @@ namespace metrowin
       //   );
 
       m_d2dContext = TlsGetD2D1DeviceContext();
-//
-//      ID2D1DeviceContext * pdevicecontext = m_d2dContext.Get();
-//
-//      System.m_pdevicecontext    = pdevicecontext;
-//      System.m_pmutexDc          = &m_mutexDc;
+      //
+      //      ID2D1DeviceContext * pdevicecontext = m_d2dContext.Get();
+      //
+      //      System.m_pdevicecontext    = pdevicecontext;
+      //      System.m_pmutexDc          = &m_mutexDc;
 
 
 
@@ -345,8 +349,9 @@ namespace metrowin
    // This is called in the dpiChanged event handler in the view class.
    void directx_base::SetDpi(float dpi)
    {
+      synch_lock sl(&draw2d_direct2_mutex());
 
-      if (dpi != m_dpi)
+      if(dpi != m_dpi)
       {
          // Save the DPI of this display in our class.
          m_dpi = dpi;
@@ -354,7 +359,7 @@ namespace metrowin
          System.m_dpi = dpi;
 
          // Update Direct2D's stored DPI.
-         m_d2dContext->SetDpi(m_dpi, m_dpi);
+         m_d2dContext->SetDpi(m_dpi,m_dpi);
 
          // Often a DPI change implies a window size change. In some cases Windows will issue
          // both a size changed event and a DPI changed event. In this case, the resulting bounds
@@ -372,6 +377,8 @@ namespace metrowin
       m_window->Dispatcher->RunAsync(CoreDispatcherPriority::Normal,ref new Windows::UI::Core::DispatchedHandler([this]()
       {
 
+         synch_lock sl(&draw2d_direct2_mutex());
+
          ::Windows::Graphics::Display::DisplayInformation ^ displayinformation = ::Windows::Graphics::Display::DisplayInformation::GetForCurrentView();
 
          if(m_dpi != displayinformation->LogicalDpi)
@@ -388,10 +395,21 @@ namespace metrowin
             m_d3dDepthStencilView = nullptr;
             m_windowSizeChangeInProgress = true;
             CreateWindowSizeDependentResources();
+            sl.unlock();
+            System.m_posdata->m_pui->SetWindowPos(ZORDER_TOP,0,0,m_window->Bounds.Width,m_window->Bounds.Height,SWP_SHOWWINDOW);
+            if(System.directrix()->m_varTopicQuery.has_property("client_only"))
+            {
+               for(int i = 0; i < System.m_posdata->m_pui->m_uiptraChild.get_count(); i++)
+               {
+                  if(System.m_posdata->m_pui->m_uiptraChild[i]->IsWindowVisible())
+                  {
+                     System.m_posdata->m_pui->m_uiptraChild[i]->SetWindowPos(ZORDER_TOP,0,0,m_window->Bounds.Width,m_window->Bounds.Height,SWP_SHOWWINDOW);
+
+                     //System.m_posdata->m_pui->m_uiptraChild[i]->layout();
+                  }
+               }
+            }
          }
-
-         System.m_posdata->m_pui->SetWindowPos(ZORDER_TOP,0,0,m_window->Bounds.Width,m_window->Bounds.Height,SWP_SHOWWINDOW);
-
       }));
 
    }
@@ -399,18 +417,23 @@ namespace metrowin
    // Allocate all memory resources that change on a window SizeChanged event.
    void directx_base::CreateWindowSizeDependentResources()
    {
-
+      synch_lock sl(&draw2d_direct2_mutex());
 
       // Store the window bounds so the next time we get a SizeChanged event we can
       // avoid rebuilding everything if the size is identical.
       m_windowBounds = m_window->Bounds;
 
-      if (m_swapChain != nullptr)
+      if(m_swapChain != nullptr)
       {
          // If the swap chain already exists, resize it.
-         HRESULT hr = m_swapChain->ResizeBuffers(2, 0, 0, DXGI_FORMAT_B8G8R8A8_UNORM, 0);
+         HRESULT hr = m_swapChain->ResizeBuffers(
+            2,
+            0, // If you specify zero, DXGI will use the width of the client area of the target window.
+            0, // If you specify zero, DXGI will use the height of the client area of the target window.
+            DXGI_FORMAT_UNKNOWN, // Set this value to DXGI_FORMAT_UNKNOWN to preserve the existing format of the back buffer. 
+            0);
 
-         if (hr == DXGI_ERROR_DEVICE_REMOVED)
+         if(hr == DXGI_ERROR_DEVICE_REMOVED)
          {
             // If the device was removed for any reason, a new device and swapchain will need to be created.
             HandleDeviceLost();
@@ -418,7 +441,13 @@ namespace metrowin
             // Everything is set up now. Do not continue execution of this method.
             return;
          }
-         else
+         else if(hr == DXGI_ERROR_INVALID_CALL)
+         {
+            // i1;
+          //  return;
+            TRACE("directx_base::CreateWindowSizeDependentResources(1) DXGI_ERROR_INVALID_CALL");
+         }
+         else 
          {
             ::metrowin::throw_if_failed(hr);
          }
@@ -426,7 +455,7 @@ namespace metrowin
       else
       {
          // Otherwise, create a new one using the same adapter as the existing Direct3D device.
-         DXGI_SWAP_CHAIN_DESC1 swapChainDesc = {0};
+         DXGI_SWAP_CHAIN_DESC1 swapChainDesc ={0};
          swapChainDesc.Width = 0;                                     // Use automatic sizing.
          swapChainDesc.Height = 0;
          swapChainDesc.Format = DXGI_FORMAT_B8G8R8A8_UNORM;           // This is the most common swap chain format.
@@ -475,7 +504,7 @@ namespace metrowin
       // Create a Direct3D render target view of the swap chain back buffer.
       ComPtr<ID3D11Texture2D> backBuffer;
       ::metrowin::throw_if_failed(
-         m_swapChain->GetBuffer(0, IID_PPV_ARGS(&backBuffer))
+         m_swapChain->GetBuffer(0,IID_PPV_ARGS(&backBuffer))
          );
 
       ::metrowin::throw_if_failed(
@@ -487,7 +516,7 @@ namespace metrowin
          );
 
       // Cache the rendertarget dimensions in our helper class for convenient use.
-      D3D11_TEXTURE2D_DESC backBufferDesc = {0};
+      D3D11_TEXTURE2D_DESC backBufferDesc ={0};
       backBuffer->GetDesc(&backBufferDesc);
       m_renderTargetSize.Width  = static_cast<float>(backBufferDesc.Width);
       m_renderTargetSize.Height = static_cast<float>(backBufferDesc.Height);
@@ -528,21 +557,21 @@ namespace metrowin
          static_cast<float>(backBufferDesc.Height)
          );
 
-      m_d3dContext->RSSetViewports(1, &viewport);
+      m_d3dContext->RSSetViewports(1,&viewport);
 
       // Create a Direct2D target bitmap associated with the
       // swap chain back buffer and set it as the current target.
       D2D1_BITMAP_PROPERTIES1 bitmapProperties =
          BitmapProperties1(
          D2D1_BITMAP_OPTIONS_TARGET | D2D1_BITMAP_OPTIONS_CANNOT_DRAW,
-         PixelFormat(DXGI_FORMAT_B8G8R8A8_UNORM, D2D1_ALPHA_MODE_PREMULTIPLIED),
+         PixelFormat(DXGI_FORMAT_B8G8R8A8_UNORM,D2D1_ALPHA_MODE_PREMULTIPLIED),
          m_dpi,
          m_dpi
          );
 
       ComPtr<IDXGISurface> dxgiBackBuffer;
       ::metrowin::throw_if_failed(
-         m_swapChain->GetBuffer(0, IID_PPV_ARGS(&dxgiBackBuffer))
+         m_swapChain->GetBuffer(0,IID_PPV_ARGS(&dxgiBackBuffer))
          );
 
       ::metrowin::throw_if_failed(
@@ -557,70 +586,6 @@ namespace metrowin
 
       // Grayscale text anti-aliasing is recommended for all Metro style apps.
       m_d2dContext->SetTextAntialiasMode(D2D1_TEXT_ANTIALIAS_MODE_GRAYSCALE);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
       String^ text = "Hello World From ... DirectWrite!";
 
@@ -639,11 +604,11 @@ namespace metrowin
          );
 
       // Text range for the "DirectWrite!" at the end of the string
-      DWRITE_TEXT_RANGE textRange = {21, 12}; // 21 references the "D" in DirectWrite! and 12 is the number of characters in the word
+      DWRITE_TEXT_RANGE textRange ={21,12}; // 21 references the "D" in DirectWrite! and 12 is the number of characters in the word
 
       // Set the font size on that text range to 100
       ::metrowin::throw_if_failed(
-         m_textLayout->SetFontSize(100.0f, textRange)
+         m_textLayout->SetFontSize(100.0f,textRange)
          );
 
       // Create a DirectWrite Typography object
@@ -654,7 +619,7 @@ namespace metrowin
          );
 
       // Enumerate a stylistic set 6 font feature for application to our text layout
-      DWRITE_FONT_FEATURE fontFeature = {DWRITE_FONT_FEATURE_TAG_STYLISTIC_SET_6, 1};
+      DWRITE_FONT_FEATURE fontFeature ={DWRITE_FONT_FEATURE_TAG_STYLISTIC_SET_6,1};
 
       // Apply the previously enumerated font feature to our Text Typography object
       ::metrowin::throw_if_failed(
@@ -679,12 +644,12 @@ namespace metrowin
 
       // Set the underline on the text range
       ::metrowin::throw_if_failed(
-         m_textLayout->SetUnderline(TRUE, textRange)
+         m_textLayout->SetUnderline(TRUE,textRange)
          );
 
       // Set the font weight on the text range
       ::metrowin::throw_if_failed(
-         m_textLayout->SetFontWeight(DWRITE_FONT_WEIGHT_BOLD, textRange)
+         m_textLayout->SetFontWeight(DWRITE_FONT_WEIGHT_BOLD,textRange)
          );
 
 
@@ -701,7 +666,7 @@ namespace metrowin
 
       // The application may optionally specify "dirty" or "scroll" rects to improve efficiency
       // in certain scenarios.  In this sample, however, we do not utilize those features.
-      DXGI_PRESENT_PARAMETERS parameters = {0};
+      DXGI_PRESENT_PARAMETERS parameters ={0};
       parameters.DirtyRectsCount = 0;
       parameters.pDirtyRects = nullptr;
       parameters.pScrollRect = nullptr;
@@ -710,7 +675,7 @@ namespace metrowin
       // The first argument instructs DXGI to block until VSync, putting the application
       // to sleep until the next VSync. This ensures we don't waste any cycles rendering
       // frames that will never be displayed to the screen.
-      HRESULT hr = m_swapChain->Present1(1, 0, &parameters);
+      HRESULT hr = m_swapChain->Present1(1,0,&parameters);
 
       // Discard the contents of the render target.
       // This is a valid operation only when the existing contents will be entirely
@@ -722,7 +687,7 @@ namespace metrowin
 
       // If the device was removed either by a disconnect or a driver upgrade, we
       // must recreate all device resources.
-      if (hr == DXGI_ERROR_DEVICE_REMOVED)
+      if(hr == DXGI_ERROR_DEVICE_REMOVED)
       {
          HandleDeviceLost();
       }
@@ -733,9 +698,9 @@ namespace metrowin
 
       sl.unlock();
 
-      m_window->Dispatcher->RunAsync(CoreDispatcherPriority::Normal, ref new Windows::UI::Core::DispatchedHandler([this]()
+      m_window->Dispatcher->RunAsync(CoreDispatcherPriority::Normal,ref new Windows::UI::Core::DispatchedHandler([this]()
       {
-         if (m_windowSizeChangeInProgress)
+         if(m_windowSizeChangeInProgress)
          {
             // A window size change has been initiated and the app has just completed presenting
             // the first frame with the new size. Notify the resize manager so we can short
@@ -749,6 +714,7 @@ namespace metrowin
 
    void directx_base::ValidateDevice()
    {
+      synch_lock sl(&draw2d_direct2_mutex());
       // The D3D Device is no longer valid if the default adapter changes or if
       // the device has been removed.
 
@@ -767,13 +733,13 @@ namespace metrowin
       ComPtr<IDXGIAdapter1> currentAdapter;
       DXGI_ADAPTER_DESC currentDesc;
       ::metrowin::throw_if_failed(CreateDXGIFactory1(IID_PPV_ARGS(&dxgiFactory)));
-      ::metrowin::throw_if_failed(dxgiFactory->EnumAdapters1(0, &currentAdapter));
+      ::metrowin::throw_if_failed(dxgiFactory->EnumAdapters1(0,&currentAdapter));
       ::metrowin::throw_if_failed(currentAdapter->GetDesc(&currentDesc));
 
       // If the adapter LUIDs don't match, or if the device reports that it has been removed,
       // a new D3D device must be created.
 
-      if ((deviceDesc.AdapterLuid.LowPart != currentDesc.AdapterLuid.LowPart) ||
+      if((deviceDesc.AdapterLuid.LowPart != currentDesc.AdapterLuid.LowPart) ||
          (deviceDesc.AdapterLuid.HighPart != currentDesc.AdapterLuid.HighPart) ||
          FAILED(m_d3dDevice->GetDeviceRemovedReason()))
       {
@@ -789,6 +755,7 @@ namespace metrowin
 
    HRESULT directx_base::Render(::user::interaction_ptra & uiptra)
    {
+      synch_lock sl(&draw2d_direct2_mutex());
 
       if(!defer_init())
          return E_FAIL;
@@ -828,6 +795,8 @@ namespace metrowin
       ::draw2d::graphics_sp dc(get_app()->allocer());
       dc->attach((ID2D1DeviceContext *)m_d2dContext.Get());
 
+      sl.unlock();
+
       //::os::simple_ui * psimpleui = System.m_psimpleui;
 
       //if (psimpleui != NULL && psimpleui->m_bVisible)
@@ -836,8 +805,10 @@ namespace metrowin
       //}
       //else
       //{
-         System.m_posdata->m_pui->_000OnDraw(dc);
+      System.m_posdata->m_pui->_000OnDraw(dc);
       //}
+
+      sl.lock();
 
       dc->detach();
 

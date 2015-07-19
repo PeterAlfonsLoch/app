@@ -169,10 +169,10 @@ thread* __begin_thread(::aura::application * papp,__THREADPROC pfnThreadProc,LPV
 mutex & user_mutex()
 {
 
-   static mutex * s_pmutexUser = new mutex();
+   //static mutex * s_pmutexUser = new mutex();
 
-   return *s_pmutexUser;
-   //return *((mutex *)NULL);
+   //return *s_pmutexUser;
+   return *((mutex *)NULL);
 
 }
 

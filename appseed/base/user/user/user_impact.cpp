@@ -8,6 +8,8 @@ namespace user
    impact::impact()
    {
 
+      id idProperty = "bk." + System.type_info < decltype(this) >()->friendly_name();
+
       m_pdocument = NULL;
 
       m_ulFlags |= object::flag_auto_delete;
@@ -615,6 +617,9 @@ namespace user
 
          // Note: can be a ::user::interaction with PostNcDestroy self cleanup
          pui = App(papp).alloc(pContext->m_user->m_typeinfoNewView);
+
+         ::id idProperty = "bk." + string(typeid(*pui.m_p).name());
+
          if (pui == NULL)
          {
             //         TRACE1("Warning: Dynamic create of ::user::impact type %hs failed.\n", pContext->m_typeinfoNewView.name());
