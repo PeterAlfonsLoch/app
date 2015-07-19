@@ -65,7 +65,9 @@ namespace aura
 
 } // namespace aura
 
-#elif defined(WINDOWS)
+#elif defined(WINDOWSEX)
+
+VOID CALLBACK aura_timer_TimerRoutine(PVOID lpParam, BOOLEAN TimerOrWaitFired);
 
 namespace aura
 {
@@ -130,6 +132,17 @@ namespace aura
 
 #elif defined(__APPLE__)
 
+
+void * CreateDispatchQueue();
+
+void CancelDispatchSource(void * p);
+
+void * CreateDispatchTimer(uint64_t interval, uint64_t leeway, void * queue, void(*timer)(void * p), void * p);
+
+void ReleaseDispatch(void * p);
+
+void aura_timer(void * p);
+
 namespace aura
 {
 
@@ -165,7 +178,7 @@ namespace aura
 
          }
 
-         if (m_ptimer->m_queue != NULL)
+         if (m_queue != NULL)
          {
 
             ReleaseDispatch(m_queue);
@@ -244,29 +257,6 @@ namespace aura
 #endif
 
 
-#ifdef WINDOWSEX
-
-VOID CALLBACK aura_timer_TimerRoutine(PVOID lpParam, BOOLEAN TimerOrWaitFired);
-
-#elif defined(__APPLE__)
-
-void * CreateDispatchQueue();
-
-void CancelDispatchSource(void * p);
-
-void * CreateDispatchTimer(uint64_t interval, uint64_t leeway, void * queue, void(*timer)(void * p), void * p);
-
-void ReleaseDispatch(void * p);
-
-void aura_timer(void * p);
-
-#elif defined(__cplusplus_winrt)
-
-
-#else
-
-
-#endif
 
 
 

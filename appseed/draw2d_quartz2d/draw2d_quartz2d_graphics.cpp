@@ -1136,6 +1136,112 @@ namespace draw2d_quartz2d
       
    }
    
+   bool graphics::DrawEllipse(double x1, double y1, double x2, double y2)
+   {
+      
+      //      double centerx    = (x2 + x1) / 2.0;
+      //      double centery    = (y2 + y1) / 2.0;
+      //      
+      //      double radiusx    = abs(x2 - x1) / 2.0;
+      //      double radiusy    = abs(y2 - y1) / 2.0;
+      //      
+      //      if(radiusx == 0.0 || radiusy == 0.0)
+      //         return false;
+      //      
+      //      cairo_translate(m_pdc, centerx, centery);
+      //      
+      //      cairo_scale(m_pdc, radiusx, radiusy);
+      //      
+      //      cairo_arc(m_pdc, 0.0, 0.0, 1.0, 0.0, 2.0 * 3.1415);
+      //      
+      //      draw();
+      //      
+      //      cairo_scale(m_pdc, 1.0 / radiusx, 1.0 / radiusy);
+      //      
+      //      cairo_translate(m_pdc, -centerx,  -centery);
+      
+      CGRect rect;
+      
+      rect.origin.x     = x1;
+      rect.origin.y     = y1;
+      rect.size.width   = x2 - x1;
+      rect.size.height  = y2 - y1;
+      
+      set(m_sppen);
+      
+      CGContextStrokeEllipseInRect(m_pdc, rect);
+      
+      return true;
+      
+   }
+   
+   
+   bool graphics::DrawEllipse(const RECTD & lprect)
+   {
+      
+      
+      return DrawEllipse(lprect.left, lprect.top, lprect.right, lprect.bottom);
+      
+      
+      /*return ::Ellipse(get_handle1(), lpRect.left, lpRect.top,
+       lpRect.right, lpRect.bottom); */
+      
+   }
+   
+   
+   bool graphics::FillEllipse(double x1, double y1, double x2, double y2)
+   {
+      
+      //      double centerx    = (x2 + x1) / 2.0;
+      //
+      //      double centery    = (y2 + y1) / 2.0;
+      //      
+      //      double radiusx    = abs(x2 - x1) / 2.0;
+      //      
+      //      double radiusy    = abs(y2 - y1) / 2.0;
+      //      
+      //      if(radiusx == 0.0 || radiusy == 0.0)
+      //         return false;
+      //      
+      //      cairo_translate(m_pdc, centerx, centery);
+      //      
+      //      cairo_scale(m_pdc, radiusx, radiusy);
+      //      
+      //      cairo_arc(m_pdc, 0.0, 0.0, 1.0, 0.0, 2.0 * 3.1415);
+      //      
+      //      fill();
+      //      
+      //      cairo_scale(m_pdc, 1.0 / radiusx, 1.0 / radiusy);
+      //      
+      //      cairo_translate(m_pdc, -centerx,  -centery);
+      
+      CGRect rect;
+      
+      rect.origin.x     = x1;
+      rect.origin.y     = y1;
+      rect.size.width   = x2 - x1;
+      rect.size.height  = y2 - y1;
+      
+      set(m_spbrush);
+      
+      CGContextFillEllipseInRect(m_pdc, rect);
+      
+      return true;
+      
+   }
+   
+   
+   bool graphics::FillEllipse(const RECTD & lpRect)
+   {
+      
+      /*return ::Ellipse(get_handle1(), lpRect.left, lpRect.top,
+       lpRect.right, lpRect.bottom); */
+      
+      return FillEllipse(lpRect.left, lpRect.top, lpRect.right - lpRect.left, lpRect.bottom - lpRect.top);
+      
+   }
+   
+   
    bool graphics::Pie(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3, int32_t x4, int32_t y4)
    {
       
