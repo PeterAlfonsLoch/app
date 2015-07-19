@@ -364,16 +364,12 @@
 		<Unit filename="database/sqlitedb/sqlitedb_base.h" />
 		<Unit filename="database/sqlitedb/sqlitedb_set.cpp" />
 		<Unit filename="database/sqlitedb/sqlitedb_set.h" />
+		<Unit filename="filesystem/_filesystem.cpp" />
 		<Unit filename="filesystem/filesystem.h" />
-		<Unit filename="filesystem/filesystem/filesystem_axis_application.cpp" />
 		<Unit filename="filesystem/filesystem/filesystem_axis_application.h" />
-		<Unit filename="filesystem/filesystem/filesystem_axis_system.cpp" />
 		<Unit filename="filesystem/filesystem/filesystem_axis_system.h" />
-		<Unit filename="filesystem/filesystem/filesystem_dir_axis_application.cpp" />
 		<Unit filename="filesystem/filesystem/filesystem_dir_axis_application.h" />
-		<Unit filename="filesystem/filesystem/filesystem_dir_axis_system.cpp" />
 		<Unit filename="filesystem/filesystem/filesystem_dir_axis_system.h" />
-		<Unit filename="filesystem/fs/_fs.cpp" />
 		<Unit filename="filesystem/fs/fs.h" />
 		<Unit filename="filesystem/fs/fs_data.h" />
 		<Unit filename="filesystem/fs/fs_fs.h" />
