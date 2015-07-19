@@ -11,7 +11,7 @@
 		07473E131B504280004688C5 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07473E121B504280004688C5 /* CoreText.framework */; };
 		07473E151B5042A9004688C5 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07473E141B5042A9004688C5 /* CoreText.framework */; };
 		07473E171B5045B5004688C5 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07473E161B5045B5004688C5 /* CoreFoundation.framework */; };
-		07473E181B5045C4004688C5 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07473E111B504278004688C5 /* libaura.dylib */; };
+		078E29751B5B34880057E664 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07473E111B504278004688C5 /* libaura.dylib */; };
 		07E25F2D1B4FFC2100752DE1 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B496616A4A10100875A94 /* framework.cpp */; };
 		07E25F2E1B4FFC2100752DE1 /* draw2d_quartz2d_bitmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B40CC17BBE291008391AD /* draw2d_quartz2d_bitmap.cpp */; };
 		07E25F2F1B4FFC2100752DE1 /* draw2d_quartz2d_brush.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B40CE17BBE291008391AD /* draw2d_quartz2d_brush.cpp */; };
@@ -161,12 +161,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07473E181B5045C4004688C5 /* libaura.dylib in Frameworks */,
+				07E25F541B4FFD4000752DE1 /* UIKit.framework in Frameworks */,
 				07473E171B5045B5004688C5 /* CoreFoundation.framework in Frameworks */,
 				07473E151B5042A9004688C5 /* CoreText.framework in Frameworks */,
 				07473E131B504280004688C5 /* CoreText.framework in Frameworks */,
 				07473E0E1B504277004688C5 /* CoreGraphics.framework in Frameworks */,
-				07E25F541B4FFD4000752DE1 /* UIKit.framework in Frameworks */,
+				078E29751B5B34880057E664 /* libaura.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
