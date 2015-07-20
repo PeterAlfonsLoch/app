@@ -1258,7 +1258,7 @@ namespace ios
             
             rect64 rectWindow;
             
-            if(m_bOSNativeMouseMessagePosition)
+            if(m_bScreenRelativeMouseMessagePosition)
             {
                class rect rectWindow32;
                //               ::GetWindowRect(get_handle(), &rectWindow32);
