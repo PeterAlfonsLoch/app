@@ -910,10 +910,20 @@ synch_lock ml(m_spmutex);
 
       //cairo_scale(m_pdc, radiusx, radiusy);
 
-      double dDeflate = m_sppen->m_dWidth / (2 * 3.1416); // magical number
+      double dDeflate;
+
+      #ifdef LINUX
+
+      dDeflate = m_sppen->m_dWidth / (3 * 3.1416); // magical number
+
+      #else
+
+      dDeflate = m_sppen->m_dWidth / (2 * 3.1416); // magical number
+
+      #endif
 
       cairo_scale(
-         m_pdc, 
+         m_pdc,
          radiusx - dDeflate,
          radiusy - dDeflate);
 
@@ -5258,7 +5268,7 @@ synch_lock ml(m_spmutex);
 
       }
 
-      
+
 
 
       pfont->m_ft = g_ft;
