@@ -65,3 +65,4 @@ inline UINT HashKey(sp(type) key)
 }
 
 
+CLASS_DECL_AURA string demangle(const char* name);

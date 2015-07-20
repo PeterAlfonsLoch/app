@@ -1,10 +1,20 @@
 //#include "framework.h"
 
 
-#if !defined(WINDOWS) && !defined(VSNORD)
+#if defined(WINDOWS)
 
 
-string demangle (const char* name);
+string demangle(const char* name)
+{
+   
+   return name;
+
+}
+
+#else
+
+
+
 
 
 #include <cxxabi.h>
@@ -14,7 +24,21 @@ string demangle (const char* name)
 
    int status = -4;
    char* res = abi::__cxa_demangle(name, 0, 0, &status);
-   return (status == 0) ? res : name;
+   string str;
+   if (status == 0)
+   {
+      str = res;
+
+   }
+   else
+   {
+      str = name;
+   }
+   if (res != NULL)
+   {
+      free(res);
+   }
+   return str;
 }
 
 #endif
@@ -59,7 +83,7 @@ type::type(const std_type_info & info)
    m_idFriendly      = info.name();
    m_id              = info.raw_name();
 #elif defined(VSNORD)
-	m_idFriendly	   = info.name();
+	m_idFriendly	   = demangle(info.name());
 	m_id			      = info.name();
 #elif defined(APPLEOS)
    m_idFriendly      = demangle(info.name());

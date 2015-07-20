@@ -906,7 +906,16 @@ synch_lock ml(m_spmutex);
 
       cairo_translate(m_pdc, centerx, centery);
 
-      cairo_scale(m_pdc, radiusx -m_sppen->m_dWidth /2.0, radiusy -m_sppen->m_dWidth /2.0);
+      //cairo_scale(m_pdc, radiusx -m_sppen->m_dWidth /2.0, radiusy -m_sppen->m_dWidth /2.0);
+
+      //cairo_scale(m_pdc, radiusx, radiusy);
+
+      double dDeflate = m_sppen->m_dWidth / (2 * 3.1416); // magical number
+
+      cairo_scale(
+         m_pdc, 
+         radiusx - dDeflate,
+         radiusy - dDeflate);
 
       cairo_arc(m_pdc, 0.0, 0.0, 1.0, 0.0, 2.0 * 3.1415);
 

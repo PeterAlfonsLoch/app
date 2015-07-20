@@ -1015,7 +1015,18 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
    if(m_bFrameMoveEnable)
    {
 
-      if(Application.command()->m_varTopicQuery.has_property("client_only") 
+      if(Application.command()->m_varTopicQuery.has_property("wfi_maximize")
+      && (GetParent() == NULL
+#if defined(ANDROID) || defined(METROWIN) || defined(APPLE_IOS)
+         || GetParent() == System.m_posdata->m_pui
+#endif
+))
+      {
+
+         WfiMaximize();
+
+      }
+      else if(Application.command()->m_varTopicQuery.has_property("client_only") 
       || Application.command()->m_varTopicQuery.has_property("full_screen"))
       {
 

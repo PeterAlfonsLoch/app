@@ -87,6 +87,8 @@ class smart_pointer;
 #define sp(TYPE) ::smart_pointer < TYPE >
 
 
+
+
 class string;
 class istring;
 class var;
@@ -757,6 +759,8 @@ namespace file
 #include "aura/primitive/str/str.h"
 #include "aura/aura/exception/exception.h"
 #include "aura/aura/aura/aura_common.h"
+
+
 
 
 #include "aura/filesystem/filesystem/filesystem_path.h"
