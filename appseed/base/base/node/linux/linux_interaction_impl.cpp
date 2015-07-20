@@ -1267,7 +1267,7 @@ d.unlock();
          {
             pmouse->m_bTranslated = true;
             rect64 rectWindow;
-            if(m_bOSNativeMouseMessagePosition)
+            if(m_bScreenRelativeMouseMessagePosition)
             {
                class rect rectWindow32;
                ::GetWindowRect((oswindow) get_handle(), &rectWindow32);
