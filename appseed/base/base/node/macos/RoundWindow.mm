@@ -41,6 +41,17 @@
 //	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mainWindowChanged:) name:NSWindowDidResignMainNotification object:self];
    
    [self setAcceptsMouseMovedEvents : YES];
+   
+   // Thank yous: http://ios.phonesdevelopers.com/195_17967545/
+   // Thank you: Author: unitom Date: 2013-07-14
+   // I have a fullscreen transparent window. When the user clicks on it I want the click to be sent to what's underneath the window. How would I do so?
+   // Best   Answer
+   
+//   Setting IgnoresMouseEvents to YES should do the trick..
+      
+  //    (void)setIgnoresMouseEvents:(BOOL)ignoreMouseEvents
+
+   [self setIgnoresMouseEvents : NO];
       
    m_controller = [[NSWindowController alloc] initWithWindow:self];
  
@@ -151,15 +162,6 @@
 }
 
 
-
-/*
-- (BOOL)acceptsFirstResponder
-{
-   
-   return TRUE;
-   
-}
-*/
 
 //- (BOOL) acceptsFirstResponder
 //{

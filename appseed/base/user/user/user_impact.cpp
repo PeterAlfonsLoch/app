@@ -8,8 +8,6 @@ namespace user
    impact::impact()
    {
 
-      id idProperty = "bk." + System.type_info < decltype(this) >()->friendly_name();
-
       m_pdocument = NULL;
 
       m_ulFlags |= object::flag_auto_delete;

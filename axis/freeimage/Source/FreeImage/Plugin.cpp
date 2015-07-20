@@ -359,7 +359,17 @@ TagLib::instance();
                   if(l.is_opened())
                   {
                      
-                     FI_InitProc pproc =l.get < FI_InitProc >("FreeImage_InitPlugin");
+                     string strProcName;
+                     
+                     string strTitle = path.title();
+                     
+                     ::str::begins_eat_ci(strTitle, "lib");
+                     
+                     strTitle.make_lower();
+                     
+                     strProcName = "FreeImage_InitPlugin_" + strTitle;
+                     
+                     FI_InitProc pproc =l.get < FI_InitProc >(strProcName);
                      
                      if(pproc != NULL)
                      {

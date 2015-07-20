@@ -415,43 +415,43 @@
 
 }
 
-
-// from RoundWindow.mm
-
-/*- (BOOL) acceptsFirstResponder
-{
-   if(m_bNoActivate)
-      return NO;
-   else
-      return YES;
-}*/
-
-- (BOOL) becomeFirstResponder
-{
-   return YES;
-}
+//
+//// from RoundWindow.mm
+//
+///*- (BOOL) acceptsFirstResponder
+//{
 //   if(m_bNoActivate)
-  //    return NO;
-  // else
-  // {
-      
-      //      m_pwindow->round_window_on_become_first_responder();
-      
-    //  return YES;
-      
-  // }
-//}
-
-//- (BOOL) resignFirstResponder
+//      return NO;
+//   else
+//      return YES;
+//}*/
+//
+//- (BOOL) becomeFirstResponder
 //{
 //   return YES;
-//   //if(m_bNoActivate)
-//     // return YES;
-//   //else
-//  //    return YES;
-//   
 //}
-
+////   if(m_bNoActivate)
+//  //    return NO;
+//  // else
+//  // {
+//      
+//      //      m_pwindow->round_window_on_become_first_responder();
+//      
+//    //  return YES;
+//      
+//  // }
+////}
+//
+////- (BOOL) resignFirstResponder
+////{
+////   return YES;
+////   //if(m_bNoActivate)
+////     // return YES;
+////   //else
+////  //    return YES;
+////   
+////}
+//
 
 #define DO_FLAG(m_f, p, now, key) \
 if(m_f) \
