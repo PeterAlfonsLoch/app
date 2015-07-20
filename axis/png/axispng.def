@@ -1,4 +1,4 @@
 LIBRARY      "axispng"
 
 EXPORTS
-FreeImage_InitPlugin
+FreeImage_InitPlugin_axispng

@@ -1534,7 +1534,10 @@ namespace windows
          {
             pmouse->m_bTranslated = true;
             rect64 rectWindow;
-            if(m_bOSNativeMouseMessagePosition)
+            // People always ask for feature centric Flag/Macros...
+            // ok, sometimes we attend them, besides it is easier to name the pigs... 
+            // (but I like pigs... and the porks... :-)
+            if(m_bScreenRelativeMouseMessagePosition) 
             {
                class rect rectWindow32;
                ::GetWindowRect(get_handle(), rectWindow32);
