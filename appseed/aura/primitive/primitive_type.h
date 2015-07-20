@@ -66,3 +66,18 @@ inline UINT HashKey(sp(type) key)
 
 
 CLASS_DECL_AURA string demangle(const char* name);
+
+template < typename T >
+inline string friendly_this_name(T const * pthis)
+{
+
+   string str = demangle(typeid(*pthis).name());
+
+   ::str::begins_eat_ci(str, "class ");
+
+   return str;
+
+}
+
+
+#define THIS_FRIENDLY_NAME() friendly_this_name(this)
