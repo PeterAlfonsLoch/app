@@ -895,7 +895,7 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Camilo Sasuke Tsumanuma";
 			};
-			buildConfigurationList = 9A1B358616A2D7A500875A94 /* Build configuration list for PBXProject "axiswinpr" */;
+			buildConfigurationList = 9A1B358616A2D7A500875A94 /* Build configuration list for PBXProject "axisclientchannels" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1052,7 +1052,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9A1B358616A2D7A500875A94 /* Build configuration list for PBXProject "axiswinpr" */ = {
+		9A1B358616A2D7A500875A94 /* Build configuration list for PBXProject "axisclientchannels" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9A1B358E16A2D7A500875A94 /* Debug */,

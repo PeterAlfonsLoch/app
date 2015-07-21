@@ -167,7 +167,6 @@
 		9A1B398116A2F94200875A94 /* ftsystem.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B398016A2F94200875A94 /* ftsystem.c */; };
 		9A1B398316A2F96000875A94 /* ftbbox.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B398216A2F96000875A94 /* ftbbox.c */; };
 		9A86CA4C16E8076D008420D3 /* ftgzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A86CA4B16E8076D008420D3 /* ftgzip.c */; };
-		9A8CCADB17EA05B000F87A02 /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8CCAD917EA05B000F87A02 /* libbase.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -332,7 +331,6 @@
 		9A1B398016A2F94200875A94 /* ftsystem.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ftsystem.c; sourceTree = "<group>"; };
 		9A1B398216A2F96000875A94 /* ftbbox.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ftbbox.c; sourceTree = "<group>"; };
 		9A86CA4B16E8076D008420D3 /* ftgzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ftgzip.c; path = src/gzip/ftgzip.c; sourceTree = "<group>"; };
-		9A8CCAD917EA05B000F87A02 /* libbase.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbase.dylib; path = "../../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/libbase.dylib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -340,7 +338,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A8CCADB17EA05B000F87A02 /* libbase.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,7 +347,6 @@
 		9A1B358116A2D7A500875A94 = {
 			isa = PBXGroup;
 			children = (
-				9A8CCAD917EA05B000F87A02 /* libbase.dylib */,
 				9A1B359916A2D80800875A94 /* autofit */,
 				9A1B35B816A2D80800875A94 /* base */,
 				9A1B35E216A2D80800875A94 /* bdf */,
@@ -899,7 +895,7 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Camilo Sasuke Tsumanuma";
 			};
-			buildConfigurationList = 9A1B358616A2D7A500875A94 /* Build configuration list for PBXProject "basefreetype" */;
+			buildConfigurationList = 9A1B358616A2D7A500875A94 /* Build configuration list for PBXProject "axisfreerdp" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1056,7 +1052,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9A1B358616A2D7A500875A94 /* Build configuration list for PBXProject "basefreetype" */ = {
+		9A1B358616A2D7A500875A94 /* Build configuration list for PBXProject "axisfreerdp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9A1B358E16A2D7A500875A94 /* Debug */,
