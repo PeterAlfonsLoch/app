@@ -306,7 +306,8 @@ namespace windows
 
    interaction_impl::~interaction_impl()
    {
-
+      m_guieptraMouseHover.m_pmutex = NULL;
+      m_pmutex = NULL;
       if(m_pauraapp != NULL &&  m_pauraapp->m_pbasesession != NULL &&  m_pauraapp->m_pbasesession->m_puser != NULL)
       {
 

@@ -427,7 +427,7 @@ bool timer::call_on_timer()
 
          ::set_thread(this);
 
-
+         m_bRun = true;
 
       }
 

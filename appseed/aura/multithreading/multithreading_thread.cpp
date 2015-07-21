@@ -621,7 +621,21 @@ bool thread::pump_message()
 {
 
    if(m_pthreadimpl.is_null())
-      return false;
+   {
+      if(dynamic_cast <::timer *> ((thread *) this) != NULL)
+      {
+         m_pthreadimpl.alloc(allocer());
+         if(m_pthreadimpl.is_null())
+         {
+            return false;
+         }
+         m_pthreadimpl->m_pthread = this;
+      }
+      else
+      {
+         return false;
+      }
+   }
 
    return m_pthreadimpl->pump_message();
 

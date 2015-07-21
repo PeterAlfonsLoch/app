@@ -132,7 +132,7 @@ namespace user
 
    interaction::~interaction()
    {
-
+      m_uiptraChild.m_pmutex  = NULL;
       add_ref();
       
       if(IsWindow())
