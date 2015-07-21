@@ -20,7 +20,7 @@ namespace ios
    ::file::path crypto::get_crypt_key_file_path()
    {
 
-      return ::file::path(getenv("home")) / ".ca2/cryptkey";
+      return Application.dir().userappdata() / ".ca2/cryptkey";
 
    }
 

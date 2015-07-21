@@ -1583,7 +1583,7 @@ bool is_message_only_window(oswindow window)
 }
 
 
-int translate_android_key_message(::message::key * pkey, int keyCode);
+int translate_android_key_message(::message::key * pkey, int keyCode, int iUni);
 
 
 
@@ -1658,7 +1658,7 @@ void android_l_button_up(float x, float y)
 
 
 extern "C"
-void android_key(unsigned int message, int keyCode)
+void android_key(unsigned int message, int keyCode, int iUni)
 {
 
    if (::aura::system::g_p == NULL)
@@ -1677,7 +1677,12 @@ void android_key(unsigned int message, int keyCode)
 
    pkey->m_uiMessage = message;
 
-   translate_android_key_message(pkey, keyCode);
+   if (!translate_android_key_message(pkey, keyCode, iUni))
+   {
+
+      return;
+
+   }
 
    ::aura::system::g_p->m_pbasesystem->m_posdata->m_pui->message_handler(pkey);
 
@@ -1686,39 +1691,53 @@ void android_key(unsigned int message, int keyCode)
 
 
 extern "C"
-void android_key_down(int keyCode)
+void android_key_down(int keyCode, int iUni)
 {
 
-   android_key(WM_KEYDOWN, keyCode);
+   android_key(WM_KEYDOWN, keyCode, iUni);
 
 }
 
 
 
 extern "C"
-void android_key_up(int keyCode)
+void android_key_up(int keyCode, int iUni)
 {
 
-   android_key(WM_KEYUP, keyCode);
+   android_key(WM_KEYUP, keyCode, iUni);
 
 }
 
 
 
 
-int translate_android_key_message(::message::key * pkey, int keyCode)
+int translate_android_key_message(::message::key * pkey, int keyCode, int iUni)
 {
+
+   if (0x80000000 & iUni)
+   {
+      
+      return 0;
+
+   }
 
    if (keyCode >= 29 && keyCode <= 54)
    {
 
-      pkey->m_ekey = (::user::e_key) ((int) ::user::key_a + keyCode - 29);
+      //pkey->m_ekey = (::user::e_key) ((int) ::user::key_a + keyCode - 29);
+      pkey->m_ekey = ::user::key_refer_to_text_member;
+
+      pkey->m_strText = string((wchar_t)iUni);
 
    }
    else if (keyCode >= 7 && keyCode <= 16)
    {
 
       pkey->m_ekey = (::user::e_key) ((int) ::user::key_0 + keyCode - 7);
+
+      pkey->m_ekey = ::user::key_refer_to_text_member;
+
+      pkey->m_strText = string((wchar_t)iUni);
 
    }
    else
@@ -1743,5 +1762,7 @@ int translate_android_key_message(::message::key * pkey, int keyCode)
       }
 
    }
+
+   return 1;
 
 }

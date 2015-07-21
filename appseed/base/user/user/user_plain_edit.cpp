@@ -2245,13 +2245,14 @@ namespace user
                m_ptree->m_iSelEnd = i1;
                m_ptree->m_editfile.seek(m_ptree->m_iSelEnd,::file::seek_begin);
                string str;
+               char ch = 0;
                if(pkey->m_ekey == ::user::key_refer_to_text_member)
                {
                   str = pkey->m_strText;
                }
                else
                {
-               char ch = (char)pkey->m_nChar;
+               ch = (char)pkey->m_nChar;
                if(ch == '\r')
                   ch = '\n';
                int32_t iChar = (int32_t)pkey->m_nChar;
@@ -2268,7 +2269,17 @@ namespace user
                }
                   str = Session.keyboard().process_key(pkey);
                }
-//               string strMap;
+               string strCh(ch);
+               output_debug_string("thechthech");
+               output_debug_string(strCh);
+               output_debug_string(";");
+               output_debug_string("thekey");
+               output_debug_string(System.get_enum_name< ::user::e_key> (pkey->m_ekey));
+               output_debug_string(";");
+               output_debug_string("thecharthechar");
+               output_debug_string(str);
+               output_debug_string("\n");
+               //               string strMap;
                m_ptree->m_iSelEnd += str.get_length();
                m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
                m_ptree-> m_editfile.Insert(str,str.get_length());

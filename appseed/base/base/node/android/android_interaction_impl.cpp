@@ -24,7 +24,8 @@ namespace android
    interaction_impl::interaction_impl() :
       ::aura::timer_array(get_app())
    {
-
+      m_bScreenRelativeMouseMessagePosition = true;
+//      m_bScreenRelativeMouseMessagePosition = false;
       m_oswindow           = NULL;
       m_bMouseHover        = false;
       m_puiCapture         = NULL;
@@ -45,7 +46,8 @@ namespace android
 
    void interaction_impl::construct(oswindow oswindow)
    {
-
+      m_bScreenRelativeMouseMessagePosition = true;
+  //    m_bScreenRelativeMouseMessagePosition = false;
       m_oswindow           = NULL;
       m_bMouseHover        = false;
       m_puiCapture         = NULL;
@@ -65,7 +67,8 @@ namespace android
       ::object(papp),
       ::aura::timer_array(papp)
    {
-
+      m_bScreenRelativeMouseMessagePosition = true;
+    //  m_bScreenRelativeMouseMessagePosition = false;
       m_oswindow           = NULL;
       m_bMouseHover        = false;
       m_puiCapture         = NULL;
@@ -1357,9 +1360,10 @@ namespace android
             rect64 rectWindow;
             if(m_bScreenRelativeMouseMessagePosition)
             {
-               class rect rectWindow32;
-               ::GetWindowRect(get_handle(), rectWindow32);
-               ::copy(rectWindow,rectWindow32);
+               rectWindow.null();
+               //class rect rectWindow32;
+               //::GetWindowRect(get_handle(), rectWindow32);
+               //::copy(rectWindow,rectWindow32);
             }
             else
             {

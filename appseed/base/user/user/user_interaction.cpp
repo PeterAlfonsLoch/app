@@ -3620,7 +3620,7 @@ namespace user
 
          }
 
-         post_message(WM_NULL);
+         //post_message(WM_NULL);
 
          try
          {

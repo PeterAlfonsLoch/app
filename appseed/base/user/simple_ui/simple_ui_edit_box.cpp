@@ -30,6 +30,7 @@ namespace simple_ui
       ::user::plain_edit::install_message_handling(pdispatch);
 
       IGUI_WIN_MSG_LINK(WM_KEYDOWN, pdispatch, this, &edit_box::_001OnKeyDown);
+      IGUI_WIN_MSG_LINK(WM_KEYUP, pdispatch, this, &edit_box::_001OnKeyDown);
       IGUI_LBUTTONDOWN(edit_box);
       IGUI_LBUTTONUP(edit_box);
 
@@ -46,7 +47,8 @@ namespace simple_ui
   //    keyboard_set_focus();
 
 //      pmouse->m_bRet = true;
-
+      pobj->previous();
+      pobj->m_bRet = true;
    }
 
 
@@ -54,11 +56,11 @@ namespace simple_ui
    {
 
       UNREFERENCED_PARAMETER(pobj);
-
+      pobj->previous();
 
 //      SCAST_PTR(::message::mouse,pmouse,pobj);
 
-      //pmouse->m_bRet = true;
+      pobj->m_bRet = true;
 
    }
 
@@ -113,7 +115,8 @@ namespace simple_ui
 
    void edit_box::_001OnKeyDown(signal_details * pobj)
    {
-
+      pobj->previous();
+      pobj->m_bRet = true;
       return;
 
 

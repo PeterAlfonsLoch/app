@@ -1013,6 +1013,7 @@ namespace android
 
       doc.load(Application.file().as_string(appdata() / "configuration\\directory.xml"));
 
+      m_pathUser = m_strCa2 / "userfolder";
 
       m_strCommonAppData = m_strCa2 / "commonappdata"; 
 

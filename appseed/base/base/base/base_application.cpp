@@ -2408,6 +2408,25 @@ namespace base
    bool application::get_frame(::user::interaction * & pui)
    {
 
+#ifdef VSNORD
+
+      if (System.m_posdata != NULL)
+      {
+         
+         if (System.m_posdata->m_pui != NULL)
+         {
+
+            pui = System.m_posdata->m_pui->m_uiptraChild.get_child(pui);
+
+            return pui != NULL;
+
+         }
+
+      }
+
+
+#endif
+
       synch_lock sl(&m_mutexFrame);
 
       if(m_uiptraFrame.get_count() <= 0)
