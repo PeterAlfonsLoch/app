@@ -169,6 +169,7 @@ typedef __time64_t time_t;
 
 #ifndef _WCHAR_T_DEFINED
 #ifndef __cplusplus
+#error "teste"
 typedef unsigned short wchar_t;
 #endif
 #define _WCHAR_T_DEFINED

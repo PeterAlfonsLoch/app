@@ -122,7 +122,6 @@ void utf8_to_utf16(wchar_t * pwsz, const char * psz)
 
 }
 
-
 void utf8_to_utf16_len(wchar_t * pwsz,const char * psz, strsize srclen)
 {
 
@@ -197,7 +196,7 @@ int32_t utf8_len_len(const wchar_t * pwsz, strsize srclen)
       if(n <= 0)
          break;
       count += n;
-      srclen -= n;
+      srclen--;
       pwsz++;
    }
    return count;
@@ -206,6 +205,7 @@ int32_t utf8_len_len(const wchar_t * pwsz, strsize srclen)
 
 void utf16_to_utf8(char * psz, const wchar_t * pwsz)
 {
+   //unsigned short * pwsz = (unsigned short *)pwszParam;
    int32_t n;
    while(*pwsz != L'\0')
    {
@@ -220,6 +220,7 @@ void utf16_to_utf8(char * psz, const wchar_t * pwsz)
 
 void utf16_to_utf8_len(char * psz,const wchar_t * pwsz, strsize srclen)
 {
+   //unsigned short * pwsz = (unsigned short *)pwszParam;
    int32_t n;
    while(srclen > 0 && *pwsz != L'\0')
    {

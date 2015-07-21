@@ -1720,8 +1720,30 @@ int translate_android_key_message(::message::key * pkey, int keyCode, int iUni)
       return 0;
 
    }
+   bool bOk = true;
+   switch (keyCode)
+   {
+   case 62:
+      pkey->m_ekey = ::user::key_space;
+      break;
+   case 67:
+      pkey->m_ekey = ::user::key_back;
+      break;
+   case 112:
+      pkey->m_ekey = ::user::key_delete;
+      break;
+   case 59:
+      pkey->m_ekey = ::user::key_lshift;
+      break;
+   case 60:
+      pkey->m_ekey = ::user::key_rshift;
+      break;
+   default:
+      bOk = false;
+   }
 
-   if (keyCode >= 29 && keyCode <= 54)
+   //if (keyCode >= 29 && keyCode <= 54)
+   if(!bOk)
    {
 
       //pkey->m_ekey = (::user::e_key) ((int) ::user::key_a + keyCode - 29);
@@ -1730,38 +1752,20 @@ int translate_android_key_message(::message::key * pkey, int keyCode, int iUni)
       pkey->m_strText = string((wchar_t)iUni);
 
    }
-   else if (keyCode >= 7 && keyCode <= 16)
-   {
+   //else if (keyCode >= 7 && keyCode <= 16)
+   //{
 
-      pkey->m_ekey = (::user::e_key) ((int) ::user::key_0 + keyCode - 7);
+   //   pkey->m_ekey = (::user::e_key) ((int) ::user::key_0 + keyCode - 7);
 
-      pkey->m_ekey = ::user::key_refer_to_text_member;
+   //   pkey->m_ekey = ::user::key_refer_to_text_member;
 
-      pkey->m_strText = string((wchar_t)iUni);
+   //   pkey->m_strText = string((wchar_t)iUni);
 
-   }
-   else
-   {
-      switch (keyCode)
-      {
-      case 62:
-         pkey->m_ekey = ::user::key_space;
-         break;
-      case 67:
-         pkey->m_ekey = ::user::key_back;
-         break;
-      case 112:
-         pkey->m_ekey = ::user::key_delete;
-         break;
-      case 59:
-         pkey->m_ekey = ::user::key_lshift;
-         break;
-      case 60:
-         pkey->m_ekey = ::user::key_rshift;
-         break;
-      }
+   //}
+   //else
+   //{
 
-   }
+   //}
 
    return 1;
 

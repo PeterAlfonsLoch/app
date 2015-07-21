@@ -484,11 +484,18 @@ namespace file
          {
             ::str::international::unicode_to_utf8(strResult, (const wchar_t *)&storage.get_data()[2], (int32_t)(storage.get_size() - 2));
          }
-         else if (storage.get_size() >= 3
+         else if (storage.get_size() >= 2
             && storage.get_data()[0] == 255
-            && storage.get_data()[1] == 254
-            && storage.get_data()[2] == 0x73)
+            && storage.get_data()[1] == 254)
          {
+#ifdef VSNORD
+            //for (index i = 2; i < storage.get_size(); i += 2)
+            //{
+            //   byte b = storage.get_data()[i];
+            //   storage.get_data()[i] = storage.get_data()[i + 1];
+            //   storage.get_data()[i + 1] = b;
+            //}
+#endif
             ::str::international::unicode_to_utf8(strResult, (const wchar_t *)&storage.get_data()[2], (int32_t)(storage.get_size() - 2));
          }
          else if (storage.get_size() >= 3

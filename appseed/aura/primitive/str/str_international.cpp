@@ -21,6 +21,26 @@ namespace str
 
       bool UnicodeToMultiByte(UINT uiCodePage, char * lpstrMultiByte, strsize iMultiByteCount, const wchar_t * lpcsz, strsize iCount)
       {
+         if (CP_UTF8 == uiCodePage)
+         {
+
+            if (iCount == -1)
+            {
+
+               utf16_to_utf8(lpstrMultiByte, lpcsz);
+
+               return true;
+
+            }
+            else
+            {
+
+               utf16_to_utf8_len(lpstrMultiByte, lpcsz, iCount);
+
+               return true;
+
+            }
+         }
          return WideCharToMultiByte(uiCodePage, 0, lpcsz, (int32_t) iCount, lpstrMultiByte, (int32_t) iMultiByteCount, NULL, NULL) != FALSE;
       }
 
@@ -48,7 +68,7 @@ namespace str
          LPSTR lpsz = str.GetBuffer(iMultiByteCount);
          if(UnicodeToMultiByte(uiCodePage, lpsz, iMultiByteCount + 1, lpcsz, iCount))
          {
-            str.ReleaseBufferSetLength(iCount);
+            str.ReleaseBufferSetLength(iMultiByteCount);
             return true;
          }
          else
@@ -71,13 +91,32 @@ namespace str
 
       strsize UnicodeToMultiByteCount(UINT uiCodePage, const wchar_t * lpcsz, strsize iCount)
       {
-         if(iCount == -1)
+         if (CP_UTF8 == uiCodePage)
          {
-            return WideCharToMultiByte(uiCodePage, 0, lpcsz, (int32_t) iCount, NULL, 0, NULL, NULL) - 1;
+
+            if (iCount == -1)
+            {
+
+               return utf8_len(lpcsz);
+
+            }
+            else
+            {
+
+               return utf8_len_len(lpcsz, iCount);
+
+            }
          }
          else
          {
-            return WideCharToMultiByte(uiCodePage, 0, lpcsz, (int32_t) iCount, NULL, 0, NULL, NULL);
+            if (iCount == -1)
+            {
+               return WideCharToMultiByte(uiCodePage, 0, lpcsz, (int32_t)iCount, NULL, 0, NULL, NULL) - 1;
+            }
+            else
+            {
+               return WideCharToMultiByte(uiCodePage, 0, lpcsz, (int32_t)iCount, NULL, 0, NULL, NULL);
+            }
          }
       }
 
