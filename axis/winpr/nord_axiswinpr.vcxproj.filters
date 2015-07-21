@@ -199,6 +199,9 @@
     <Filter Include="Source Files\libwinpr\bitmap">
       <UniqueIdentifier>{6feae06b-1d7e-4d02-a2fd-9237f31a76ee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\libwinpr\registry">
+      <UniqueIdentifier>{208e7742-14b3-44c7-88af-e1da9a4366c0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="libwinpr\crt\utf.h">
@@ -784,9 +787,6 @@
     <ClCompile Include="libwinpr\utils\ini.c">
       <Filter>Source Files\libwinpr\utils</Filter>
     </ClCompile>
-    <ClCompile Include="libwinpr\utils\utils_ntlm.c">
-      <Filter>Source Files\libwinpr\utils</Filter>
-    </ClCompile>
     <ClCompile Include="libwinpr\utils\print.c">
       <Filter>Source Files\libwinpr\utils</Filter>
     </ClCompile>
@@ -904,9 +904,6 @@
     <ClCompile Include="libwinpr\wtsapi\wtsapi.c">
       <Filter>Source Files\libwinpr\wtsapi</Filter>
     </ClCompile>
-    <ClCompile Include="libwinpr\wtsapi\wtsapi_win32.c">
-      <Filter>Source Files\libwinpr\wtsapi</Filter>
-    </ClCompile>
     <ClCompile Include="libwinpr\smartcard\smartcard.c">
       <Filter>Source Files\libwinpr\smartcard</Filter>
     </ClCompile>
@@ -921,6 +918,18 @@
     </ClCompile>
     <ClCompile Include="libwinpr\smartcard\smartcard_winscard.c">
       <Filter>Source Files\libwinpr\smartcard</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\registry\registry.c">
+      <Filter>Source Files\libwinpr\registry</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\registry\registry_reg.c">
+      <Filter>Source Files\libwinpr\registry</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\utils_utils_ntlm.c">
+      <Filter>Source Files\libwinpr\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\handle\nonehandle.c">
+      <Filter>Source Files\libwinpr\handle</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

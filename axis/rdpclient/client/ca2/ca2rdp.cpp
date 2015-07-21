@@ -36,6 +36,9 @@
 #include <winpr/crt.h>
 #include <winpr/synch.h>
 
+#ifdef ANDROID
+#include <sys/select.h>
+#endif
 
 #define TAG CLIENT_TAG("axisrdpclient")
 

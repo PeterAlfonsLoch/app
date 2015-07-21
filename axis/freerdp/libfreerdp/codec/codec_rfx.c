@@ -25,7 +25,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#ifdef _WIN32
 #include <VersionHelpers.h>
+#endif
 
 #ifdef HAVE_STDINT_H
 #include <stdint.h>

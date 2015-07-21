@@ -427,9 +427,6 @@
     <ClCompile Include="libfreerdp\codec\codec_region.c">
       <Filter>Source Files\libfreerdp\codec</Filter>
     </ClCompile>
-    <ClCompile Include="libfreerdp\codec\codec_rfx.c">
-      <Filter>Source Files\libfreerdp\codec</Filter>
-    </ClCompile>
     <ClCompile Include="libfreerdp\codec\codec_rfx_decode.c">
       <Filter>Source Files\libfreerdp\codec</Filter>
     </ClCompile>
@@ -789,6 +786,9 @@
     </ClCompile>
     <ClCompile Include="libfreerdp\utils\utils_stopwatch.c">
       <Filter>Source Files\libfreerdp\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\codec\codec_rfx.c">
+      <Filter>Source Files\libfreerdp\codec</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

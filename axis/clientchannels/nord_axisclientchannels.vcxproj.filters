@@ -10,9 +10,6 @@
     <Filter Include="Source Files\channels\audin">
       <UniqueIdentifier>{b147d542-71dc-4df7-9742-d42b074d187b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\channels\audin\winmm">
-      <UniqueIdentifier>{5f1f278a-852b-4b88-83d6-dc9a31cb7cc1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\channels\client">
       <UniqueIdentifier>{63b0110a-03d4-4ba4-9499-8c29eb8549a6}</UniqueIdentifier>
     </Filter>
@@ -51,9 +48,6 @@
     </Filter>
     <Filter Include="Source Files\channels\rdpsnd">
       <UniqueIdentifier>{56ef0a94-8473-4054-8ab8-c3f6f603d1d0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\channels\rdpsnd\winmm">
-      <UniqueIdentifier>{adfbb2cf-dd19-4341-a8e4-fda4133ab1f6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\channels\serial">
       <UniqueIdentifier>{c4a6ead2-cc3a-4d6a-9c2b-c268b68ed046}</UniqueIdentifier>
@@ -121,18 +115,18 @@
     <Filter Include="Header Files\channels\tsmf">
       <UniqueIdentifier>{29c18058-1062-4b01-860e-006ff8396652}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\channels\audin\opensles">
+      <UniqueIdentifier>{0e6ce770-6323-4a54-8033-083e1fe240a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\channels\rdpsnd\opensles">
+      <UniqueIdentifier>{f1598123-9a11-483e-8966-5286534e4f48}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="channels\audin\client\audin_main.c">
       <Filter>Source Files\channels\audin</Filter>
     </ClCompile>
-    <ClCompile Include="channels\audin\client\winmm\audin_winmm.c">
-      <Filter>Source Files\channels\audin\winmm</Filter>
-    </ClCompile>
     <ClCompile Include="channels\client\addin.c">
-      <Filter>Source Files\channels\client</Filter>
-    </ClCompile>
-    <ClCompile Include="channels\client\tables.c">
       <Filter>Source Files\channels\client</Filter>
     </ClCompile>
     <ClCompile Include="channels\cliprdr\client\cliprdr_format.c">
@@ -153,20 +147,11 @@
     <ClCompile Include="channels\drive\client\drive_main.c">
       <Filter>Source Files\channels\drive</Filter>
     </ClCompile>
-    <ClCompile Include="channels\drive\client\statvfs.c">
-      <Filter>Source Files\channels\drive</Filter>
-    </ClCompile>
     <ClCompile Include="channels\echo\client\echo_main.c">
       <Filter>Source Files\channels\echo</Filter>
     </ClCompile>
     <ClCompile Include="channels\parallel\client\parallel_main.c">
       <Filter>Source Files\channels\parallel</Filter>
-    </ClCompile>
-    <ClCompile Include="channels\printer\client\printer_main.c">
-      <Filter>Source Files\channels\printer</Filter>
-    </ClCompile>
-    <ClCompile Include="channels\printer\client\printer_win.c">
-      <Filter>Source Files\channels\printer</Filter>
     </ClCompile>
     <ClCompile Include="channels\rail\client\rail_main.c">
       <Filter>Source Files\channels\rail</Filter>
@@ -207,12 +192,6 @@
     <ClCompile Include="channels\rdpsnd\client\rdpsnd_main.c">
       <Filter>Source Files\channels\rdpsnd</Filter>
     </ClCompile>
-    <ClCompile Include="channels\rdpsnd\client\winmm\rdpsnd_winmm.c">
-      <Filter>Source Files\channels\rdpsnd\winmm</Filter>
-    </ClCompile>
-    <ClCompile Include="channels\serial\client\serial_main.c">
-      <Filter>Source Files\channels\serial</Filter>
-    </ClCompile>
     <ClCompile Include="channels\smartcard\client\smartcard_main.c">
       <Filter>Source Files\channels\smartcard</Filter>
     </ClCompile>
@@ -245,6 +224,21 @@
     </ClCompile>
     <ClCompile Include="channels\remdesk\client\remdesk_main.c">
       <Filter>Source Files\channels\remdesk</Filter>
+    </ClCompile>
+    <ClCompile Include="channels\audin\client\opensles\audin_opensl_es.c">
+      <Filter>Source Files\channels\audin\opensles</Filter>
+    </ClCompile>
+    <ClCompile Include="channels\audin\client\opensles\opensl_io.c">
+      <Filter>Source Files\channels\audin\opensles</Filter>
+    </ClCompile>
+    <ClCompile Include="channels\rdpsnd\client\opensles\rdpsnd_opensles.c">
+      <Filter>Source Files\channels\rdpsnd\opensles</Filter>
+    </ClCompile>
+    <ClCompile Include="channels\rdpsnd\client\opensles\rpdsnd_opensl_io.c">
+      <Filter>Source Files\channels\rdpsnd\opensles</Filter>
+    </ClCompile>
+    <ClCompile Include="channels\client\tables_android.c">
+      <Filter>Source Files\channels\client</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -347,5 +341,8 @@
     <ClInclude Include="channels\tsmf\client\tsmf_types.h">
       <Filter>Header Files\channels\tsmf</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="axisclientchannels.def" />
   </ItemGroup>
 </Project>
