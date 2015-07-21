@@ -422,7 +422,7 @@ bool timer::call_on_timer()
    try
    {
 
-      if (::get_thread() == NULL)
+      //if (::get_thread() == NULL)
       {
 
          ::set_thread(this);

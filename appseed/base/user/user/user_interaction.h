@@ -724,6 +724,9 @@ namespace user
 
       virtual void keyboard_focus_OnKeyDown(signal_details * pobj);
 
+      virtual sp(::user::interaction) get_child(::user::interaction * pui);
+
+
    };
 
 

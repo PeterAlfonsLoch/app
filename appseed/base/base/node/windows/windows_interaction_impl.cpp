@@ -51,7 +51,7 @@ namespace windows
       ::aura::timer_array(get_app())
    {
 
-      m_guieptraMouseHover = canew(ptr_array < ::user::interaction >);
+      //m_guieptraMouseHover = canew(::user::interaction_spa());
       //      m_bRectParentClient  = false;
       m_pfnSuper           = NULL;
       m_bMouseHover        = false;
@@ -265,7 +265,7 @@ namespace windows
    void interaction_impl::construct(oswindow oswindow)
    {
 
-      m_guieptraMouseHover = canew(ptr_array < ::user::interaction >);
+//      m_guieptraMouseHover = canew(ptr_array < ::user::interaction >);
       //      m_bRectParentClient  = false;
       m_pfnSuper           = NULL;
       m_bMouseHover        = false;
@@ -286,7 +286,7 @@ namespace windows
       ::aura::timer_array(papp)
    {
 
-      m_guieptraMouseHover = canew(ptr_array < ::user::interaction >);
+  //    m_guieptraMouseHover = canew(ptr_array < ::user::interaction >);
       //      m_bRectParentClient  = false;
       m_pfnSuper           = NULL;
       m_bMouseHover        = false;
@@ -1493,14 +1493,20 @@ namespace windows
 
       if(pbase->m_uiMessage == WM_MOUSELEAVE)
       {
+         
          m_bMouseHover = false;
-         for(int32_t i = 0; i < m_guieptraMouseHover->get_size(); i++)
+         
+         sp(::user::interaction) pui;
+         
+         while((pui = m_guieptraMouseHover.get_child(pui)).is_set())
          {
-            if(m_guieptraMouseHover->element_at(i) == m_pui)
-               continue;
-            m_guieptraMouseHover->element_at(i)->send_message(WM_MOUSELEAVE);
+
+            pui->send_message(WM_MOUSELEAVE);
+
          }
-         m_guieptraMouseHover->remove_all();
+
+         m_guieptraMouseHover.remove_all();
+
       }
 
       if(pbase->m_uiMessage == WM_LBUTTONDOWN ||
@@ -1582,14 +1588,16 @@ namespace windows
             pmouse->m_ecursor = visual::cursor_default;
          }
       restart_mouse_hover_check:
-         for(int32_t i = 0; i < m_guieptraMouseHover->get_size(); i++)
          {
-            if(!m_guieptraMouseHover->element_at(i)->_001IsPointInside(pmouse->m_pt))
+            sp(::user::interaction) pui;
+            while((pui = m_guieptraMouseHover.get_child(pui)).is_set())
             {
-               sp(::user::interaction) pui = m_guieptraMouseHover->element_at(i);
-               pui->send_message(WM_MOUSELEAVE);
-               m_guieptraMouseHover->remove(pui);
-               goto restart_mouse_hover_check;
+               if(!pui->_001IsPointInside(pmouse->m_pt))
+               {
+                  pui->send_message(WM_MOUSELEAVE);
+                  m_guieptraMouseHover.remove(pui);
+                  goto restart_mouse_hover_check;
+               }
             }
          }
          if(::GetCapture() == m_oswindow && m_puiCapture != NULL)
@@ -2394,6 +2402,9 @@ namespace windows
       UNREFERENCED_PARAMETER(pobj);
 
       Default();
+
+      m_pmutex = m_pui->m_pmutex;
+      m_guieptraMouseHover.m_pmutex = m_pui->m_pmutex;
 
    }
 
@@ -5750,7 +5761,7 @@ namespace windows
    void interaction_impl::mouse_hover_add(::user::interaction * pinterface)
    {
 
-      m_guieptraMouseHover->add_unique(pinterface);
+      m_guieptraMouseHover.add_unique(pinterface);
 
    }
 
@@ -5758,7 +5769,7 @@ namespace windows
    void interaction_impl::mouse_hover_remove(::user::interaction * pinterface)
    {
 
-      m_guieptraMouseHover->remove(pinterface);
+      m_guieptraMouseHover.remove(pinterface);
 
    }
 

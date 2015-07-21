@@ -1089,19 +1089,13 @@ namespace user
 
       //single_lock sl(m_pmutex, true);
 
-      interaction_ptra ptraChild;
+      sp(interaction) pui;
 
-      ptraChild = m_uiptraChild;
-
-      //sl.unlock();
-
-      for(index i = 0; i < ptraChild.get_count(); i++)
+      while((pui = get_child(pui)).is_set())
       {
 
          try
          {
-
-            interaction * pui = ptraChild[i];
 
             if(pui->m_bVisible && !pui->is_custom_draw())
             {
@@ -1363,6 +1357,8 @@ namespace user
       }
 
       m_pmutex = canew(::mutex(get_app()));
+
+      m_uiptraChild.m_pmutex = m_pmutex;
 
       try
       {
@@ -6486,7 +6482,8 @@ namespace user
          break;
       case ::message::PrototypeTimer:
       {
-                            pbase = canew(::message::timer(get_app()));
+         throw simple_exception(get_app(),"do not use WM_TIMER or Windows SetTimer/KillTimer");
+                 //           pbase = canew(::message::timer(get_app()));
       }
          break;
       case ::message::PrototypeShowWindow:
@@ -6765,6 +6762,17 @@ namespace user
          }
 
    }
+
+
+
+   sp(::user::interaction) interaction::get_child(::user::interaction * pui)
+   {
+      
+      return m_uiptraChild.get_child(pui);
+
+   }
+
+
 } // namespace user
 
 

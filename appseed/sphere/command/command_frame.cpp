@@ -199,7 +199,7 @@ namespace command
       simple_frame_window::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &frame::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_CLOSE, pinterface, this, &frame::_001OnClose);
-//      //IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &frame::_001OnTimer);
+//      
       IGUI_WIN_MSG_LINK(WM_MOVE, pinterface, this, &frame::_001OnMove);
       IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &frame::_001OnShowWindow);
       IGUI_WIN_MSG_LINK(WM_APP + 2000  , pinterface, this, &frame::_001OnApp2000);

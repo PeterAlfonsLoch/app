@@ -1204,4 +1204,57 @@ namespace user
       }
    }
 
+   sp(::user::interaction) interaction_spa::get_child(::user::interaction * pui)
+      {
+
+         synch_lock sl(m_pmutex);
+
+         if(get_count() <= 0)
+         {
+
+            return NULL;
+
+         }
+
+         if(pui == NULL)
+         {
+
+            return element_at(0);
+
+         }
+         else
+         {
+
+            for(index i = get_upper_bound(); i >= 0; i--)
+            {
+
+               if(element_at(i) == pui)
+               {
+
+                  i++;
+
+                  if(i < get_count())
+                  {
+
+                     return element_at(i);
+
+                  }
+                  else
+                  {
+
+                     return NULL;
+
+                  }
+
+               }
+
+            }
+
+         }
+
+         return NULL;
+
+      }
+
+
 } // namespace user

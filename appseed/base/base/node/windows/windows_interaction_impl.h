@@ -16,7 +16,7 @@ namespace windows
    public:
 
 
-      sp(ptr_array < ::user::interaction > )    m_guieptraMouseHover;
+      ::user::interaction_spa                   m_guieptraMouseHover;
       bool                                      m_bUpdateGraphics;
 
       size                                      m_size;

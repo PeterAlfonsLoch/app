@@ -39,7 +39,7 @@ namespace command
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &view::_001OnLButtonDown);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &view::_001OnLButtonUp);
       IGUI_WIN_MSG_LINK(WM_RBUTTONUP, pinterface, this, &view::_001OnRButtonUp);
-//      //IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &view::_001OnTimer);
+//      
 
       IGUI_WIN_MSG_LINK(MessageOp, pinterface, this, &view::_001OnOp);
       IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &view::_001OnShowWindow);
