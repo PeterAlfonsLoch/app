@@ -82,14 +82,14 @@ string_interface & string_interface::operator = (const char * psz)
 }
 
 
-string::string(wchar_t ch,strsize nLength):
+string::string(char16_t ch,strsize nLength):
 stdstring < simple_string >(string_trait::GetDefaultManager())
 {
    ASSERT(nLength >= 0);
    if(nLength > 0)
    {
       //Convert ch to the char
-      wchar_t pszCh[2] ={ch,0};
+      char16_t pszCh[2] ={ch,0};
       strsize ncharCharLen = 1;
 
       if(ch != L'\0')
@@ -124,13 +124,13 @@ stdstring < simple_string >(string_trait::GetDefaultManager())
    }
 }
 
-string::string(const wchar_t* pch,strsize nLength):
+string::string(const char16_t* pch,strsize nLength):
 stdstring < simple_string >(string_trait::GetDefaultManager())
 {
    ASSERT(nLength >= 0);
    if(nLength > 0)
    {
-      ASSERT(__is_valid_address(pch,nLength*sizeof(wchar_t),FALSE));
+      ASSERT(__is_valid_address(pch,nLength*sizeof(char16_t),FALSE));
       if(pch == NULL)
          throw invalid_argument_exception(get_thread_app());
 
@@ -141,13 +141,13 @@ stdstring < simple_string >(string_trait::GetDefaultManager())
    }
 }
 
-string::string(const wchar_t* pch,strsize nLength,string_manager * pstringmanager):
+string::string(const char16_t* pch,strsize nLength,string_manager * pstringmanager):
 stdstring < simple_string >(pstringmanager)
 {
    ASSERT(nLength >= 0);
    if(nLength > 0)
    {
-      ASSERT(__is_valid_address(pch,nLength*sizeof(wchar_t),FALSE));
+      ASSERT(__is_valid_address(pch,nLength*sizeof(char16_t),FALSE));
       if(pch == NULL)
          throw invalid_argument_exception(get_thread_app());
 
@@ -483,13 +483,13 @@ strsize __cdecl crt_char_traits::GetcharLength(const char * pszSrc,strsize nLeng
    return nLength;
 }
 
-strsize __cdecl crt_char_traits::GetcharLength(const wchar_t * pszSource) throw()
+strsize __cdecl crt_char_traits::GetcharLength(const char16_t * pszSource) throw()
 {
    // Returns required buffer length in XCHARs
    return ::WideCharToMultiByte(_gen_GetConversionACP(),0,pszSource,-1,NULL,0,NULL,NULL) - 1;
 }
 
-strsize __cdecl crt_char_traits::GetcharLength(const wchar_t * pszSource,strsize nLength) throw()
+strsize __cdecl crt_char_traits::GetcharLength(const char16_t * pszSource,strsize nLength) throw()
 {
    // Returns required buffer length in XCHARs
    return ::WideCharToMultiByte(_gen_GetConversionACP(),0,pszSource,(int32_t)nLength,NULL,0,NULL,NULL);
@@ -503,7 +503,7 @@ void __cdecl crt_char_traits::ConvertTochar(char * pszDest,strsize nDestLength,c
       pszSrc,nSrcLength*sizeof(char));
 }
 
-void __cdecl crt_char_traits::ConvertTochar(char * pszDest,strsize nDestLength,const wchar_t * pszSrc,strsize nSrcLength) throw()
+void __cdecl crt_char_traits::ConvertTochar(char * pszDest,strsize nDestLength,const char16_t * pszSrc,strsize nSrcLength) throw()
 {
    // nLen is in XCHARs
    ::WideCharToMultiByte(_gen_GetConversionACP(),0,pszSrc,(int32_t)nSrcLength,pszDest,(int32_t)nDestLength,NULL,NULL);
@@ -607,13 +607,13 @@ strsize __cdecl crt_char_traits::SafeStringLen(const char * psz) throw()
    return (psz != NULL) ? strsize(strlen(psz)) : 0;
 }
 
-strsize __cdecl crt_char_traits::SafeStringLen(const wchar_t * psz) throw()
+strsize __cdecl crt_char_traits::SafeStringLen(const char16_t * psz) throw()
 {
    // returns length in wchar_ts
    return (psz != NULL) ? strsize(wcslen(psz)) : 0;
 }
 
-strsize __cdecl crt_char_traits::GetCharLen(const wchar_t* pch) throw()
+strsize __cdecl crt_char_traits::GetCharLen(const char16_t* pch) throw()
 {
    (void)pch;
    // returns char length
@@ -770,7 +770,7 @@ stdstring < simple_string >(pstringmanager)
 }
 
 
-string::string(const wchar_t* pszSrc):
+string::string(const char16_t* pszSrc):
 stdstring < simple_string >(string_trait::GetDefaultManager())
 {
    //      if( !CheckImplicitLoad( pszSrc ) )
@@ -809,7 +809,7 @@ stdstring < simple_string >(string_trait::GetDefaultManager())
 //}
 
 
-string::string(const wchar_t * pszSrc,string_manager * pstringmanager):
+string::string(const char16_t * pszSrc,string_manager * pstringmanager):
 stdstring < simple_string >(pstringmanager)
 {
    //      if( !CheckImplicitLoad( pszSrc ) )
@@ -875,10 +875,10 @@ const char *psz = reinterpret_cast< const char* >( pszSrc );
 //   //  }
 //}
 //
-//string::string(wchar_t* pszSrc):
+//string::string(char16_t* pszSrc):
 //stdstring < simple_string >(string_trait::GetDefaultManager())
 //{
-//   const wchar_t *psz = reinterpret_cast<const wchar_t*>(pszSrc);
+//   const char16_t *psz = reinterpret_cast<const char16_t*>(pszSrc);
 //   //if (!CheckImplicitLoad( psz ))
 //   {
 //      *this = psz;
@@ -967,7 +967,7 @@ string& string::operator=(const string & str)
    return *this;
 }
 
-string& string::operator=(const wchar_t * pszSrc)
+string& string::operator=(const char16_t * pszSrc)
 {
    // nDestLength is in XCHARs
    strsize nDestLength = (pszSrc != NULL) ? string_trait::GetcharLength(pszSrc) : 0;
@@ -997,9 +997,9 @@ string& string::operator=(char ch)
    return(operator=(ach));
 }
 
-string& string::operator=(wchar_t ch)
+string& string::operator=(char16_t ch)
 {
-   wchar_t ach[2] ={ch,0};
+   char16_t ach[2] ={ch,0};
 
    return(operator=(ach));
 }
@@ -1017,7 +1017,7 @@ string& string::operator+=(const char * pszSrc)
 
    return *this;
 }
-string& string::operator+=(const wchar_t * pszSrc)
+string& string::operator+=(const char16_t * pszSrc)
 {
    string str(pszSrc,GetManager());
 
@@ -1045,7 +1045,7 @@ string & string::operator+=(uchar ch)
 }
 
 
-string & string::operator+=(wchar_t ch)
+string & string::operator+=(char16_t ch)
 {
 
    append_char((char)ch);
@@ -1197,7 +1197,7 @@ bool string::contains(char ch,strsize iStart,strsize nCount)
    return find(ch,iStart,nCount) >= 0;
 }
 
-bool string::contains(wchar_t wch,strsize iStart,strsize nCount)
+bool string::contains(char16_t wch,strsize iStart,strsize nCount)
 {
    return find_w(::str::uni_to_utf8(wch),iStart,nCount) >= 0;
 }
@@ -1222,7 +1222,7 @@ bool string::contains_ci(char ch,strsize iStart,strsize nCount)
    return find_ci(ch,iStart,nCount) >= 0;
 }
 
-bool string::contains_ci(wchar_t wch,strsize iStart,strsize nCount)
+bool string::contains_ci(char16_t wch,strsize iStart,strsize nCount)
 {
    return find_wci(::str::uni_to_utf8(wch),iStart,nCount) >= 0;
 }
@@ -1242,7 +1242,7 @@ bool string::contains_ci(const string & str,strsize iStart,strsize nCount)
    return find_ci(str,iStart,nCount) >= 0;
 }
 
-bool string::contains_wci(wchar_t wch,strsize iStart,strsize nCount)
+bool string::contains_wci(char16_t wch,strsize iStart,strsize nCount)
 {
    return find_wci(::str::uni_to_utf8(wch),iStart,nCount) >= 0;
 }

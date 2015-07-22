@@ -54,7 +54,7 @@ public:
 public:
 
 
-   wchar_t achNil[2];
+   char16_t achNil[2];
 
 
 };
@@ -235,7 +235,7 @@ namespace str
 {
 
    CLASS_DECL_AURA inline void copy(char * pszDest, const char * pszSrc) { strcpy(pszDest, pszSrc); }
-   CLASS_DECL_AURA inline void copy(wchar_t * pszDest, const wchar_t * pszSrc) { wcscpy_dup(pszDest, pszSrc); }
+   CLASS_DECL_AURA inline void copy(char16_t * pszDest, const char16_t * pszSrc) { wcscpy_dup(pszDest, pszSrc); }
 
 } // namespace str
 
@@ -248,15 +248,15 @@ namespace str
    namespace international
    {
 
-      CLASS_DECL_AURA strsize          UnicodeToMultiByteCount(UINT uiCodePage, const wchar_t * lpcsz);
-      CLASS_DECL_AURA bool         UnicodeToMultiByte(UINT uiCodePage, char * lpstrMultiByte, strsize nCount, const wchar_t * lpcsz);
-      CLASS_DECL_AURA const char * UnicodeToMultiByte(UINT uiCodePage, const wchar_t * lpcsz);
+      CLASS_DECL_AURA strsize          UnicodeToMultiByteCount(UINT uiCodePage, const char16_t * lpcsz);
+      CLASS_DECL_AURA bool         UnicodeToMultiByte(UINT uiCodePage, char * lpstrMultiByte, strsize nCount, const char16_t * lpcsz);
+      CLASS_DECL_AURA const char * UnicodeToMultiByte(UINT uiCodePage, const char16_t * lpcsz);
       CLASS_DECL_AURA
       inline const char * _001GetUtf8(const char * psz)
       {
          return _strdup(psz);
       }
-      inline const char * _001GetUtf8(const wchar_t * psz)
+      inline const char * _001GetUtf8(const char16_t * psz)
       {
          return UnicodeToMultiByte(CP_UTF8, psz);
       }
@@ -374,7 +374,7 @@ static_string& operator=( const static_string& str ) NOTHROW;
 
 #define _ST( psz ) ::core::static_string< char, sizeof( _T( psz ) ) >( _T( psz ) )
 #define _SA( psz ) ::core::static_string< char, sizeof( psz ) >( psz )
-#define _SW( psz ) ::core::static_string< wchar_t, sizeof( L##psz ) >( L##psz )
+#define _SW( psz ) ::core::static_string< char16_t, sizeof( L##psz ) >( L##psz )
 #define _SO( psz ) _SW( psz )
 
 class CLASS_DECL_AURA char_traits_base
@@ -434,7 +434,7 @@ public:
    simple_string(const simple_string & strSrc, string_manager * pstringmanager  );
    simple_string(const string_data * pdata, string_manager * pstringmanager  );
    simple_string(const char * pszSrc,string_manager * pstringmanager );
-   simple_string(const wchar_t * pszSrc,string_manager * pstringmanager);
+   simple_string(const char16_t * pszSrc,string_manager * pstringmanager);
    simple_string(const byte * pszSrc,string_manager * pstringmanager);
    simple_string(const char* pchSrc,strsize nLength,string_manager * pstringmanager );
    ~simple_string() NOTHROW
@@ -522,7 +522,7 @@ public:
    }
 
 
-   simple_string& operator+=(wchar_t ch )
+   simple_string& operator+=(char16_t ch )
    {
 
       append_char( char( ch ) );

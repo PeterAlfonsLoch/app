@@ -209,14 +209,14 @@ PUGI__NS_BEGIN
 	}
 
 	// Get length of wide string, even if CRT lacks wide character support
-	PUGI__FN size_t strlength_wide(const wchar_t* s)
+	PUGI__FN size_t strlength_wide(const char16_t* s)
 	{
 		assert(s);
 
 	#ifdef PUGIXML_WCHAR_MODE
 		return wcslen(s);
 	#else
-		const wchar_t* end = s;
+		const char16_t* end = s;
 		while (*end) end++;
 		return static_cast<size_t>(end - s);
 	#endif
@@ -224,7 +224,7 @@ PUGI__NS_BEGIN
 
 #ifdef PUGIXML_WCHAR_MODE
 	// Convert string to wide string, assuming all symbols are ASCII
-	PUGI__FN void widen_ascii(wchar_t* dest, const char* source)
+	PUGI__FN void widen_ascii(char16_t* dest, const char* source)
 	{
 		for (const char* i = source; *i; ++i) *dest++ = *i;
 		*dest = 0;
@@ -1026,8 +1026,8 @@ PUGI__NS_BEGIN
 		typedef utf32_writer writer;
 	};
 
-	typedef wchar_selector<sizeof(wchar_t)>::counter wchar_counter;
-	typedef wchar_selector<sizeof(wchar_t)>::writer wchar_writer;
+	typedef wchar_selector<sizeof(char16_t)>::counter wchar_counter;
+	typedef wchar_selector<sizeof(char16_t)>::writer wchar_writer;
 
 	template <typename Traits, typename opt_swap = opt_false> struct utf_decoder
 	{
@@ -1182,9 +1182,9 @@ PUGI__NS_BEGIN
 			return decode_utf32_block(data, size, result);
 		}
 
-		static inline typename Traits::value_type decode_wchar_block(const wchar_t* data, size_t size, typename Traits::value_type result)
+		static inline typename Traits::value_type decode_wchar_block(const char16_t* data, size_t size, typename Traits::value_type result)
 		{
-			return decode_wchar_block_impl(reinterpret_cast<const wchar_selector<sizeof(wchar_t)>::type*>(data), size, result);
+			return decode_wchar_block_impl(reinterpret_cast<const wchar_selector<sizeof(char16_t)>::type*>(data), size, result);
 		}
 	};
 
@@ -1194,9 +1194,9 @@ PUGI__NS_BEGIN
 	}
 
 #ifdef PUGIXML_WCHAR_MODE
-	PUGI__FN void convert_wchar_endian_swap(wchar_t* result, const wchar_t* data, size_t length)
+	PUGI__FN void convert_wchar_endian_swap(char16_t* result, const char16_t* data, size_t length)
 	{
-		for (size_t i = 0; i < length; ++i) result[i] = static_cast<wchar_t>(endian_swap(static_cast<wchar_selector<sizeof(wchar_t)>::type>(data[i])));
+		for (size_t i = 0; i < length; ++i) result[i] = static_cast<char16_t>(endian_swap(static_cast<wchar_selector<sizeof(char16_t)>::type>(data[i])));
 	}
 #endif
 PUGI__NS_END
@@ -1284,9 +1284,9 @@ PUGI__NS_BEGIN
 
 	PUGI__FN encoding get_wchar_encoding()
 	{
-		PUGI__STATIC_ASSERT(sizeof(wchar_t) == 2 || sizeof(wchar_t) == 4);
+		PUGI__STATIC_ASSERT(sizeof(char16_t) == 2 || sizeof(char16_t) == 4);
 
-		if (sizeof(wchar_t) == 2)
+		if (sizeof(char16_t) == 2)
 			return is_little_endian() ? encoding_utf16_le : encoding_utf16_be;
 		else 
 			return is_little_endian() ? encoding_utf32_le : encoding_utf32_be;
@@ -1410,14 +1410,14 @@ PUGI__NS_BEGIN
 		const uint8_t* data = static_cast<const uint8_t*>(contents);
 		size_t data_length = size;
 
-		// first pass: get length in wchar_t units
+		// first pass: get length in char16_t units
 		size_t length = utf_decoder<wchar_counter>::decode_utf8_block(data, data_length, 0);
 
 		// allocate buffer of suitable length
 		char_t* buffer = static_cast<char_t*>(memory::allocate((length + 1) * sizeof(char_t)));
 		if (!buffer) return false;
 
-		// second pass: convert utf8 input to wchar_t
+		// second pass: convert utf8 input to char16_t
 		wchar_writer::value_type obegin = reinterpret_cast<wchar_writer::value_type>(buffer);
 		wchar_writer::value_type oend = utf_decoder<wchar_writer>::decode_utf8_block(data, data_length, obegin);
 
@@ -1435,14 +1435,14 @@ PUGI__NS_BEGIN
 		const uint16_t* data = static_cast<const uint16_t*>(contents);
 		size_t data_length = size / sizeof(uint16_t);
 
-		// first pass: get length in wchar_t units
+		// first pass: get length in char16_t units
 		size_t length = utf_decoder<wchar_counter, opt_swap>::decode_utf16_block(data, data_length, 0);
 
 		// allocate buffer of suitable length
 		char_t* buffer = static_cast<char_t*>(memory::allocate((length + 1) * sizeof(char_t)));
 		if (!buffer) return false;
 
-		// second pass: convert utf16 input to wchar_t
+		// second pass: convert utf16 input to char16_t
 		wchar_writer::value_type obegin = reinterpret_cast<wchar_writer::value_type>(buffer);
 		wchar_writer::value_type oend = utf_decoder<wchar_writer, opt_swap>::decode_utf16_block(data, data_length, obegin);
 
@@ -1460,14 +1460,14 @@ PUGI__NS_BEGIN
 		const uint32_t* data = static_cast<const uint32_t*>(contents);
 		size_t data_length = size / sizeof(uint32_t);
 
-		// first pass: get length in wchar_t units
+		// first pass: get length in char16_t units
 		size_t length = utf_decoder<wchar_counter, opt_swap>::decode_utf32_block(data, data_length, 0);
 
 		// allocate buffer of suitable length
 		char_t* buffer = static_cast<char_t*>(memory::allocate((length + 1) * sizeof(char_t)));
 		if (!buffer) return false;
 
-		// second pass: convert utf32 input to wchar_t
+		// second pass: convert utf32 input to char16_t
 		wchar_writer::value_type obegin = reinterpret_cast<wchar_writer::value_type>(buffer);
 		wchar_writer::value_type oend = utf_decoder<wchar_writer, opt_swap>::decode_utf32_block(data, data_length, obegin);
 
@@ -1485,14 +1485,14 @@ PUGI__NS_BEGIN
 		const uint8_t* data = static_cast<const uint8_t*>(contents);
 		size_t data_length = size;
 
-		// get length in wchar_t units
+		// get length in char16_t units
 		size_t length = data_length;
 
 		// allocate buffer of suitable length
 		char_t* buffer = static_cast<char_t*>(memory::allocate((length + 1) * sizeof(char_t)));
 		if (!buffer) return false;
 
-		// convert latin1 input to wchar_t
+		// convert latin1 input to char16_t
 		wchar_writer::value_type obegin = reinterpret_cast<wchar_writer::value_type>(buffer);
 		wchar_writer::value_type oend = utf_decoder<wchar_writer>::decode_latin1_block(data, data_length, obegin);
 
@@ -1675,13 +1675,13 @@ PUGI__NS_BEGIN
 	}
 #endif
 
-	PUGI__FN size_t as_utf8_begin(const wchar_t* str, size_t length)
+	PUGI__FN size_t as_utf8_begin(const char16_t* str, size_t length)
 	{
 		// get length in utf8 characters
 		return utf_decoder<utf8_counter>::decode_wchar_block(str, length, 0);
 	}
 
-	PUGI__FN void as_utf8_end(char* buffer, size_t size, const wchar_t* str, size_t length)
+	PUGI__FN void as_utf8_end(char* buffer, size_t size, const char16_t* str, size_t length)
 	{
 		// convert to utf8
 		uint8_t* begin = reinterpret_cast<uint8_t*>(buffer);
@@ -1695,7 +1695,7 @@ PUGI__NS_BEGIN
 	}
 	
 //#ifndef PUGIXML_NO_STL
-//	PUGI__FN std::string as_utf8_impl(const wchar_t* str, size_t length)
+//	PUGI__FN std::string as_utf8_impl(const char16_t* str, size_t length)
 //	{
 //		// first pass: get length in utf8 characters
 //		size_t size = as_utf8_begin(str, length);
@@ -1710,18 +1710,18 @@ PUGI__NS_BEGIN
 //		return result;
 //	}
 //
-//	PUGI__FN std::basic_string<wchar_t> as_wide_impl(const char* str, size_t size)
+//	PUGI__FN std::basic_string<char16_t> as_wide_impl(const char* str, size_t size)
 //	{
 //		const uint8_t* data = reinterpret_cast<const uint8_t*>(str);
 //
-//		// first pass: get length in wchar_t units
+//		// first pass: get length in char16_t units
 //		size_t length = utf_decoder<wchar_counter>::decode_utf8_block(data, size, 0);
 //
 //		// allocate resulting string
-//		std::basic_string<wchar_t> result;
+//		std::basic_string<char16_t> result;
 //		result.resize(length);
 //
-//		// second pass: convert to wchar_t
+//		// second pass: convert to char16_t
 //		if (length > 0)
 //		{
 //			wchar_writer::value_type begin = reinterpret_cast<wchar_writer::value_type>(&result[0]);
@@ -2861,7 +2861,7 @@ PUGI__NS_BEGIN
 		static char_t* parse_skip_bom(char_t* s)
 		{
 			unsigned int bom = 0xfeff;
-			return (s[0] == static_cast<wchar_t>(bom)) ? s + 1 : s;
+			return (s[0] == static_cast<char16_t>(bom)) ? s + 1 : s;
 		}
 	#else
 		static char_t* parse_skip_bom(char_t* s)
@@ -2970,7 +2970,7 @@ PUGI__NS_BEGIN
 		if (length < 1) return 0;
 
 		// discard last character if it's the lead of a surrogate pair 
-		return (sizeof(wchar_t) == 2 && static_cast<unsigned int>(static_cast<uint16_t>(data[length - 1]) - 0xD800) < 0x400) ? length - 1 : length;
+		return (sizeof(char16_t) == 2 && static_cast<unsigned int>(static_cast<uint16_t>(data[length - 1]) - 0xD800) < 0x400) ? length - 1 : length;
 	}
 
 	PUGI__FN size_t convert_buffer_output(char_t* r_char, uint8_t* r_u8, uint16_t* r_u16, uint32_t* r_u32, const char_t* data, size_t length, encoding encoding)
@@ -4243,12 +4243,12 @@ PUGI__NS_BEGIN
 #endif
 
 #if defined(PUGI__MSVC_CRT_VERSION) || defined(__BORLANDC__) || (defined(__MINGW32__) && (!defined(__STRICT_ANSI__) || defined(__MINGW64_VERSION_MAJOR)))
-	PUGI__FN FILE* open_file_wide(const wchar_t* path, const wchar_t* mode)
+	PUGI__FN FILE* open_file_wide(const char16_t* path, const char16_t* mode)
 	{
 		return _wfopen(path, mode);
 	}
 #else
-	PUGI__FN char* convert_path_heap(const wchar_t* str)
+	PUGI__FN char* convert_path_heap(const char16_t* str)
 	{
 		assert(str);
 
@@ -4266,7 +4266,7 @@ PUGI__NS_BEGIN
 		return result;
 	}
 
-	PUGI__FN FILE* open_file_wide(const wchar_t* path, const wchar_t* mode)
+	PUGI__FN FILE* open_file_wide(const char16_t* path, const char16_t* mode)
 	{
 		// there is no standard function to open wide paths, so our best bet is to try utf8 path
 		char* path_utf8 = convert_path_heap(path);
@@ -5408,7 +5408,7 @@ namespace xml
 		print(writer, indent, flags, encoding, depth);
 	}
 
-	//PUGI__FN void node::print(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream, const char_t* indent, unsigned int flags, unsigned int depth) const
+	//PUGI__FN void node::print(std::basic_ostream<char16_t, std::char_traits<char16_t> >& stream, const char_t* indent, unsigned int flags, unsigned int depth) const
 	//{
 	//	writer_stream writer(stream);
 
@@ -6006,7 +6006,7 @@ namespace xml
 		return impl::load_stream_impl(*this, stream, options, encoding);
 	}
 
-	//PUGI__FN parse_result document::load(std::basic_istream<wchar_t, std::char_traits<wchar_t> >& stream, unsigned int options)
+	//PUGI__FN parse_result document::load(std::basic_istream<char16_t, std::char_traits<char16_t> >& stream, unsigned int options)
 	//{
 	//	reset();
 
@@ -6040,7 +6040,7 @@ namespace xml
 		return impl::load_file_impl(*this, file, options, encoding);
 	}
 
-	PUGI__FN parse_result document::load_file(const wchar_t* path_, unsigned int options, encoding encoding)
+	PUGI__FN parse_result document::load_file(const char16_t* path_, unsigned int options, encoding encoding)
 	{
 		reset();
 
@@ -6079,7 +6079,7 @@ namespace xml
 			// BOM always represents the codepoint U+FEFF, so just write it in native encoding
 		#ifdef PUGIXML_WCHAR_MODE
 			unsigned int bom = 0xfeff;
-			buffered_writer.write(static_cast<wchar_t>(bom));
+			buffered_writer.write(static_cast<char16_t>(bom));
 		#else
 			buffered_writer.write('\xef', '\xbb', '\xbf');
 		#endif
@@ -6112,7 +6112,7 @@ namespace xml
 		return impl::save_file_impl(*this, file, indent, flags, encoding);
 	}
 
-	PUGI__FN bool document::save_file(const wchar_t* path_, const char_t* indent, unsigned int flags, encoding encoding) const
+	PUGI__FN bool document::save_file(const char16_t* path_, const char_t* indent, unsigned int flags, encoding encoding) const
 	{
 		FILE* file = impl::open_file_wide(path_, (flags & format_save_file_text) ? L"w" : L"wb");
 		return impl::save_file_impl(*this, file, indent, flags, encoding);
@@ -6130,26 +6130,26 @@ namespace xml
 	}
 
 //#ifndef PUGIXML_NO_STL
-//	PUGI__FN std::string PUGIXML_FUNCTION as_utf8(const wchar_t* str)
+//	PUGI__FN std::string PUGIXML_FUNCTION as_utf8(const char16_t* str)
 //	{
 //		assert(str);
 //
 //		return impl::as_utf8_impl(str, impl::strlength_wide(str));
 //	}
 //
-//	PUGI__FN std::string PUGIXML_FUNCTION as_utf8(const std::basic_string<wchar_t>& str)
+//	PUGI__FN std::string PUGIXML_FUNCTION as_utf8(const std::basic_string<char16_t>& str)
 //	{
 //		return impl::as_utf8_impl(str.c_str(), str.size());
 //	}
 //	
-//	PUGI__FN std::basic_string<wchar_t> PUGIXML_FUNCTION as_wide(const char* str)
+//	PUGI__FN std::basic_string<char16_t> PUGIXML_FUNCTION as_wide(const char* str)
 //	{
 //		assert(str);
 //
 //		return impl::as_wide_impl(str, strlen(str));
 //	}
 //	
-//	PUGI__FN std::basic_string<wchar_t> PUGIXML_FUNCTION as_wide(const std::string& str)
+//	PUGI__FN std::basic_string<char16_t> PUGIXML_FUNCTION as_wide(const std::string& str)
 //	{
 //		return impl::as_wide_impl(str.c_str(), str.size());
 //	}

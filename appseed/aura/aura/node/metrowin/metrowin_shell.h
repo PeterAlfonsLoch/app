@@ -20,23 +20,23 @@ namespace metrowin
       static bool Initialize();
 
       /*
-      static BOOL WINAPI _SHGetPathFromIDList(LPCITEMIDLIST pidl, wchar_t * pszPath);
-      static HANDLE WINAPI _FindFirstFile(const wchar_t * lpcsz, WIN32_FIND_DATAW * lpdata);
+      static BOOL WINAPI _SHGetPathFromIDList(LPCITEMIDLIST pidl, char16_t * pszPath);
+      static HANDLE WINAPI _FindFirstFile(const char16_t * lpcsz, WIN32_FIND_DATAW * lpdata);
       static BOOL WINAPI _FindNextFile(HANDLE handle, WIN32_FIND_DATAW * lpdata);
-      static BOOL WINAPI _MoveFile(const wchar_t * lpExistingFileName, const wchar_t * lpNewFileName);
-      static DWORD WINAPI _GetFullPathName(const wchar_t * lpFileName, DWORD nBufferLength, wchar_t * lpBuffer, wchar_t ** lpFilePart);
+      static BOOL WINAPI _MoveFile(const char16_t * lpExistingFileName, const char16_t * lpNewFileName);
+      static DWORD WINAPI _GetFullPathName(const char16_t * lpFileName, DWORD nBufferLength, char16_t * lpBuffer, char16_t ** lpFilePart);
       static WCHAR * __cdecl __fullpath(WCHAR *UserBuf, const WCHAR *path, size_t maxlen);
       static BOOL WINAPI _GetVolumeInformation(
-      const wchar_t * lpRootPathName,           // root directory
-      wchar_t * lpVolumeNameBuffer,        // volume name buffer
+      const char16_t * lpRootPathName,           // root directory
+      char16_t * lpVolumeNameBuffer,        // volume name buffer
       DWORD nVolumeNameSize,            // length of name buffer
       LPDWORD lpVolumeSerialNumber,     // volume serial number
       LPDWORD lpMaximumComponentLength, // maximum file name length
       LPDWORD lpFileSystemFlags,        // file system options
-      wchar_t * lpFileSystemNameBuffer,    // file system name buffer
+      char16_t * lpFileSystemNameBuffer,    // file system name buffer
       DWORD nFileSystemNameSize);         // length of file system name buffer
       static dword_ptr __stdcall _SHGetFileInfo(      
-      const wchar_t * pszPath,
+      const char16_t * pszPath,
       DWORD dwFileAttributes,
       SHFILEINFOW *psfi,
       UINT cbFileInfo,
@@ -44,19 +44,19 @@ namespace metrowin
       static BOOL __stdcall _GetStringTypeEx(      
       LCID Locale,
       DWORD dwInfoType,
-      const wchar_t * lpSrcStr,
+      const char16_t * lpSrcStr,
       int cchSrc,
       LPWORD lpCharType);
       static DWORD WINAPI  _GetTempPath(
       DWORD nBufferLength,
-      wchar_t * lpBuffer);
+      char16_t * lpBuffer);
       static UINT WINAPI _GetTempFileName(
-      const wchar_t * lpPathName,
-      const wchar_t * lpPrefixString,
+      const char16_t * lpPathName,
+      const char16_t * lpPrefixString,
       UINT uUnique,
-      wchar_t * lpTempFileName);
+      char16_t * lpTempFileName);
       static HANDLE WINAPI _CreateFile(
-      const wchar_t * lpFileName,
+      const char16_t * lpFileName,
       DWORD dwDesiredAccess,
       DWORD dwShareMode,
       LPSECURITY_ATTRIBUTES lpSecurityAttributes,
@@ -66,20 +66,20 @@ namespace metrowin
       );
       static DWORD WINAPI _GetModuleFileName(
       HMODULE hModule,
-      wchar_t * lpFilename,
+      char16_t * lpFilename,
       DWORD nSize
       );
       static BOOL WINAPI _GetClassInfo(
       HINSTANCE hInstance ,
-      const wchar_t * lpClassName,
+      const char16_t * lpClassName,
       LPWNDCLASSW lpWndClass);
       static ATOM WINAPI _RegisterClass(
       CONST WNDCLASSW *lpWndClass);
 
       static oswindow WINAPI _CreateWindowEx(
       DWORD dwExStyle,
-      const wchar_t * lpClassName,
-      const wchar_t * lpWindowName,
+      const char16_t * lpClassName,
+      const char16_t * lpWindowName,
       DWORD dwStyle,
       int x,
       int y,
@@ -94,24 +94,24 @@ namespace metrowin
 
 
 
-      //BOOL (WINAPI * m_pfnSHGetPathFromIDList)(LPCITEMIDLIST pidl, wchar_t * pszPath);
-      HANDLE (WINAPI * m_pfnFindFirstFile)(const wchar_t * lpcsz, WIN32_FIND_DATAW * lpdata);
+      //BOOL (WINAPI * m_pfnSHGetPathFromIDList)(LPCITEMIDLIST pidl, char16_t * pszPath);
+      HANDLE (WINAPI * m_pfnFindFirstFile)(const char16_t * lpcsz, WIN32_FIND_DATAW * lpdata);
       BOOL (WINAPI * m_pfnFindNextFile)(HANDLE handle, WIN32_FIND_DATAW * lpdata);
-      BOOL (WINAPI * m_pfnMoveFile)(const wchar_t * lpExistingFileName, const wchar_t * lpNewFileName);
+      BOOL (WINAPI * m_pfnMoveFile)(const char16_t * lpExistingFileName, const char16_t * lpNewFileName);
       WCHAR * (__cdecl * m_pfn_fullpath)(WCHAR *UserBuf, const WCHAR *path, size_t maxlen);
-      DWORD (WINAPI * m_pfnGetFullPathName)(const wchar_t * lpFileName, DWORD nBufferLength, wchar_t * lpBuffer, wchar_t ** lpFilePart);
+      DWORD (WINAPI * m_pfnGetFullPathName)(const char16_t * lpFileName, DWORD nBufferLength, char16_t * lpBuffer, char16_t ** lpFilePart);
       BOOL (WINAPI * m_pfnGetVolumeInformation)(
-         const wchar_t * lpRootPathName,           // root directory
-         wchar_t * lpVolumeNameBuffer,        // volume name buffer
+         const char16_t * lpRootPathName,           // root directory
+         char16_t * lpVolumeNameBuffer,        // volume name buffer
          DWORD nVolumeNameSize,            // length of name buffer
          LPDWORD lpVolumeSerialNumber,     // volume serial number
          LPDWORD lpMaximumComponentLength, // maximum file name length
          LPDWORD lpFileSystemFlags,        // file system options
-         wchar_t * lpFileSystemNameBuffer,    // file system name buffer
+         char16_t * lpFileSystemNameBuffer,    // file system name buffer
          DWORD nFileSystemNameSize);         // length of file system name buffer
 
       /*   dword_ptr (WINAPI * m_pfnSHGetFileInfo)(      
-      const wchar_t * pszPath,
+      const char16_t * pszPath,
       DWORD dwFileAttributes,
       SHFILEINFOW *psfi,
       UINT cbFileInfo,
@@ -119,19 +119,19 @@ namespace metrowin
       BOOL (WINAPI * m_pfnGetStringTypeEx)(      
          LCID Locale,
          DWORD dwInfoType,
-         const wchar_t * lpSrcStr,
+         const char16_t * lpSrcStr,
          int cchSrc,
          LPWORD lpCharType);
       DWORD (WINAPI * m_pfnGetTempPath)(
          DWORD nBufferLength,
-         wchar_t * lpBuffer);
+         char16_t * lpBuffer);
       UINT (WINAPI * m_pfnGetTempFileName)(
-         const wchar_t * lpPathName,
-         const wchar_t * lpPrefixString,
+         const char16_t * lpPathName,
+         const char16_t * lpPrefixString,
          UINT uUnique,
-         wchar_t * lpTempFileName);
+         char16_t * lpTempFileName);
       HANDLE (WINAPI * m_pfnCreateFile)(
-         const wchar_t * lpFileName,
+         const char16_t * lpFileName,
          DWORD dwDesiredAccess,
          DWORD dwShareMode,
          LPSECURITY_ATTRIBUTES lpSecurityAttributes,
@@ -142,13 +142,13 @@ namespace metrowin
 
       DWORD (WINAPI * m_pfnGetModuleFileName)(
          HMODULE hModule,
-         wchar_t * lpFilename,
+         char16_t * lpFilename,
          DWORD nSize
          );
 
       /*   BOOL (WINAPI * m_pfnGetClassInfo)(
       HINSTANCE hInstance ,
-      const wchar_t * lpClassName,
+      const char16_t * lpClassName,
       LPWNDCLASSW lpWndClass);
 
       ATOM (WINAPI * m_pfnRegisterClass)(
@@ -156,8 +156,8 @@ namespace metrowin
 
       oswindow (WINAPI * m_pfnCreateWindowEx)(
          DWORD dwExStyle,
-         const wchar_t * lpClassName,
-         const wchar_t * lpWindowName,
+         const char16_t * lpClassName,
+         const char16_t * lpWindowName,
          DWORD dwStyle,
          int x,
          int y,
@@ -176,24 +176,24 @@ namespace metrowin
 
 
       //   static bool SHGetPathFromIDList(LPCITEMIDLIST pidl, string & str);
-      // static bool SHGetPathFromIDList(LPCITEMIDLIST pidl, wchar_t * pszPath);
-      static HANDLE FindFirstFile(const wchar_t * lpcsz, WIN32_FIND_DATAW * lpdata);
+      // static bool SHGetPathFromIDList(LPCITEMIDLIST pidl, char16_t * pszPath);
+      static HANDLE FindFirstFile(const char16_t * lpcsz, WIN32_FIND_DATAW * lpdata);
       static bool WINAPI FindNextFile(HANDLE handle, WIN32_FIND_DATAW * lpdata);
-      static bool MoveFile(const wchar_t * lpExistingFileName, const wchar_t * lpNewFileName);
+      static bool MoveFile(const char16_t * lpExistingFileName, const char16_t * lpNewFileName);
       static WCHAR * __cdecl _fullpath(WCHAR *UserBuf, const WCHAR *path, size_t maxlen);
-      static DWORD GetFullPathName(const wchar_t * lpFileName, DWORD nBufferLength, wchar_t * lpBuffer, wchar_t ** lpFilePart);
+      static DWORD GetFullPathName(const char16_t * lpFileName, DWORD nBufferLength, char16_t * lpBuffer, char16_t ** lpFilePart);
       static bool GetVolumeInformation(
-         const wchar_t * lpRootPathName,           // root directory
-         wchar_t * lpVolumeNameBuffer,        // volume name buffer
+         const char16_t * lpRootPathName,           // root directory
+         char16_t * lpVolumeNameBuffer,        // volume name buffer
          DWORD nVolumeNameSize,            // length of name buffer
          LPDWORD lpVolumeSerialNumber,     // volume serial number
          LPDWORD lpMaximumComponentLength, // maximum file name length
          LPDWORD lpFileSystemFlags,        // file system options
-         wchar_t * lpFileSystemNameBuffer,    // file system name buffer
+         char16_t * lpFileSystemNameBuffer,    // file system name buffer
          DWORD nFileSystemNameSize);         // length of file system name buffer
 
       /*   static WH_SHSTDAPI(DWORD) SHGetFileInfo(      
-      const wchar_t * pszPath,
+      const char16_t * pszPath,
       DWORD dwFileAttributes,
       SHFILEINFOW *psfi,
       UINT cbFileInfo,
@@ -209,16 +209,16 @@ namespace metrowin
 
       static DWORD GetTempPathW(
          DWORD nBufferLength,
-         wchar_t * lpBuffer);
+         char16_t * lpBuffer);
 
       static UINT GetTempFileNameW(
-         const wchar_t * lpPathName,
-         const wchar_t * lpPrefixString,
+         const char16_t * lpPathName,
+         const char16_t * lpPrefixString,
          UINT uUnique,
-         wchar_t * lpTempFileName);
+         char16_t * lpTempFileName);
 
       static HANDLE CreateFile(
-         const wchar_t * lpFileName,
+         const char16_t * lpFileName,
          DWORD dwDesiredAccess,
          DWORD dwShareMode,
          LPSECURITY_ATTRIBUTES lpSecurityAttributes,
@@ -228,13 +228,13 @@ namespace metrowin
 
       static DWORD WINAPI GetModuleFileName(
          HMODULE hModule,
-         wchar_t * lpFilename,
+         char16_t * lpFilename,
          DWORD nSize
          );
 
       /*   static bool WINAPI GetClassInfo(
       HINSTANCE hInstance ,
-      const wchar_t * lpClassName,
+      const char16_t * lpClassName,
       LPWNDCLASSW lpWndClass);
       */
 
@@ -245,8 +245,8 @@ namespace metrowin
 
       static oswindow WINAPI CreateWindowEx(
          DWORD dwExStyle,
-         const wchar_t * lpClassName,
-         const wchar_t * lpWindowName,
+         const char16_t * lpClassName,
+         const char16_t * lpWindowName,
          DWORD dwStyle,
          int x,
          int y,
@@ -281,7 +281,7 @@ namespace metrowin
 
    /*inline bool shell::SHGetPathFromIDList(LPCITEMIDLIST pidl, string & str)
    {
-   wchar_t * pwszPath = (wchar_t *) malloc(sizeof(wchar_t) * MAX_PATH * 4);
+   char16_t * pwszPath = (char16_t *) malloc(sizeof(char16_t) * MAX_PATH * 4);
    if(!(*theWindowsShell.m_pfnSHGetPathFromIDList)(pidl, pwszPath))
    {
    free(pwszPath);
@@ -294,13 +294,13 @@ namespace metrowin
    */
 
    /*
-   inline bool shell::SHGetPathFromIDList(LPCITEMIDLIST pidl, wchar_t * pszPath)
+   inline bool shell::SHGetPathFromIDList(LPCITEMIDLIST pidl, char16_t * pszPath)
    {
    return (*theWindowsShell.m_pfnSHGetPathFromIDList)(pidl, pszPath) != FALSE;
    }
    */
 
-   inline HANDLE shell::FindFirstFile(const wchar_t * lpcsz, WIN32_FIND_DATAW * lpdata)
+   inline HANDLE shell::FindFirstFile(const char16_t * lpcsz, WIN32_FIND_DATAW * lpdata)
    {
       return (*theWindowsShell.m_pfnFindFirstFile)(lpcsz, lpdata);
    }
@@ -315,25 +315,25 @@ namespace metrowin
       return (*theWindowsShell.m_pfn_fullpath)(UserBuf, path, maxlen);
    }
 
-   inline DWORD shell::GetFullPathName(const wchar_t * lpFileName, DWORD nBufferLength, wchar_t * lpBuffer, wchar_t ** lpFilePart)
+   inline DWORD shell::GetFullPathName(const char16_t * lpFileName, DWORD nBufferLength, char16_t * lpBuffer, char16_t ** lpFilePart)
    {
       return (*theWindowsShell.m_pfnGetFullPathName)(lpFileName, nBufferLength, lpBuffer, lpFilePart);
    }
 
 
-   inline bool shell::MoveFile(const wchar_t * lpExistingFileName, const wchar_t * lpNewFileName)
+   inline bool shell::MoveFile(const char16_t * lpExistingFileName, const char16_t * lpNewFileName)
    {
       return (*theWindowsShell.m_pfnMoveFile)(lpExistingFileName, lpNewFileName) != FALSE;
    }
 
    inline bool shell::GetVolumeInformation(
-      const wchar_t * lpRootPathName,           // root directory
-      wchar_t * lpVolumeNameBuffer,        // volume name buffer
+      const char16_t * lpRootPathName,           // root directory
+      char16_t * lpVolumeNameBuffer,        // volume name buffer
       DWORD nVolumeNameSize,            // length of name buffer
       LPDWORD lpVolumeSerialNumber,     // volume serial number
       LPDWORD lpMaximumComponentLength, // maximum file name length
       LPDWORD lpFileSystemFlags,        // file system options
-      wchar_t * lpFileSystemNameBuffer,    // file system name buffer
+      char16_t * lpFileSystemNameBuffer,    // file system name buffer
       DWORD nFileSystemNameSize)         // length of file system name buffer
    {
       return (*theWindowsShell.m_pfnGetVolumeInformation)(
@@ -349,7 +349,7 @@ namespace metrowin
 
    /*
    inline DWORD shell::SHGetFileInfo(
-   const wchar_t * pszPath,
+   const char16_t * pszPath,
    DWORD dwFileAttributes,
    SHFILEINFOW *psfi,
    UINT cbFileInfo,
@@ -367,7 +367,7 @@ namespace metrowin
 
    inline DWORD shell::GetTempPathW(
       DWORD nBufferLength,
-      wchar_t * lpBuffer)
+      char16_t * lpBuffer)
    {
       return (*theWindowsShell.m_pfnGetTempPath)(
          nBufferLength,
@@ -375,10 +375,10 @@ namespace metrowin
    }
 
    inline UINT shell::GetTempFileNameW(
-      const wchar_t * lpPathName,
-      const wchar_t * lpPrefixString,
+      const char16_t * lpPathName,
+      const char16_t * lpPrefixString,
       UINT uUnique,
-      wchar_t * lpTempFileName)
+      char16_t * lpTempFileName)
    {
       return (*theWindowsShell.m_pfnGetTempFileName)(
          lpPathName,
@@ -388,7 +388,7 @@ namespace metrowin
    }
 
    inline HANDLE shell::CreateFile(
-      const wchar_t * lpFileName,
+      const char16_t * lpFileName,
       DWORD dwDesiredAccess,
       DWORD dwShareMode,
       LPSECURITY_ATTRIBUTES lpSecurityAttributes,
@@ -408,7 +408,7 @@ namespace metrowin
 
    inline DWORD shell::GetModuleFileName(
       HMODULE hModule,
-      wchar_t * lpFilename,
+      char16_t * lpFilename,
       DWORD nSize
       )
    {
@@ -421,7 +421,7 @@ namespace metrowin
    /*
    inline bool shell::GetClassInfo(
    HINSTANCE hInstance ,
-   const wchar_t * lpClassName,
+   const char16_t * lpClassName,
    LPWNDCLASSW lpWndClass)
    {
    return (*theWindowsShell.m_pfnGetClassInfo)(hInstance, lpClassName, lpWndClass) != FALSE;
@@ -438,8 +438,8 @@ namespace metrowin
 
    inline oswindow shell::CreateWindowEx(
       DWORD dwExStyle,
-      const wchar_t * lpClassName,
-      const wchar_t * lpWindowName,
+      const char16_t * lpClassName,
+      const char16_t * lpWindowName,
       DWORD dwStyle,
       int x,
       int y,
@@ -468,8 +468,8 @@ namespace metrowin
 
    inline DWORD shell::GetTempPath(string & str)
    {
-      wchar_t * pwsz = (wchar_t *) malloc(sizeof(wchar_t) * MAX_PATH * 4);
-      DWORD dwResult = (*theWindowsShell.m_pfnGetTempPath)(sizeof(wchar_t) * MAX_PATH * 4, pwsz);
+      char16_t * pwsz = (char16_t *) malloc(sizeof(char16_t) * MAX_PATH * 4);
+      DWORD dwResult = (*theWindowsShell.m_pfnGetTempPath)(sizeof(char16_t) * MAX_PATH * 4, pwsz);
       ::str::international::unicode_to_utf8(str, pwsz);
       free(pwsz);
       return dwResult;

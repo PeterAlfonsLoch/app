@@ -99,7 +99,7 @@ int32_t uni_to_utf8(char * psz, int32_t w)
 }
 
 
-void utf8_to_utf16(wchar_t * pwsz, const char * psz)
+void utf8_to_utf16(char16_t * pwsz, const char * psz)
 {
 
    strsize len;
@@ -122,7 +122,7 @@ void utf8_to_utf16(wchar_t * pwsz, const char * psz)
 
 }
 
-void utf8_to_utf16_len(wchar_t * pwsz,const char * psz, strsize srclen)
+void utf8_to_utf16_len(char16_t * pwsz,const char * psz, strsize srclen)
 {
 
    strsize len;
@@ -165,7 +165,7 @@ WCHAR * utf8_to_utf16(const char * psz)
 
 }*/
 
-int32_t utf8_len(const wchar_t * pwsz)
+int32_t utf8_len(const char16_t * pwsz)
 {
    if(pwsz == NULL)
       return -1;
@@ -183,7 +183,7 @@ int32_t utf8_len(const wchar_t * pwsz)
    return count;
 }
 
-int32_t utf8_len_len(const wchar_t * pwsz, strsize srclen)
+int32_t utf8_len_len(const char16_t * pwsz, strsize srclen)
 {
    if(pwsz == NULL)
       return -1;
@@ -203,7 +203,7 @@ int32_t utf8_len_len(const wchar_t * pwsz, strsize srclen)
 }
 
 
-void utf16_to_utf8(char * psz, const wchar_t * pwsz)
+void utf16_to_utf8(char * psz, const char16_t * pwsz)
 {
    //unsigned short * pwsz = (unsigned short *)pwszParam;
    int32_t n;
@@ -218,7 +218,7 @@ void utf16_to_utf8(char * psz, const wchar_t * pwsz)
    *psz = L'\0';
 }
 
-void utf16_to_utf8_len(char * psz,const wchar_t * pwsz, strsize srclen)
+void utf16_to_utf8_len(char * psz,const char16_t * pwsz, strsize srclen)
 {
    //unsigned short * pwsz = (unsigned short *)pwszParam;
    int32_t n;
@@ -235,7 +235,7 @@ void utf16_to_utf8_len(char * psz,const wchar_t * pwsz, strsize srclen)
 }
 
 /*
-char * ::str::international::unicode_to_utf8(const wchar_t * pwsz)
+char * ::str::international::unicode_to_utf8(const char16_t * pwsz)
 {
    int32_t iCount = utf8_len(pwsz);
    if(iCount < 0)
@@ -247,12 +247,12 @@ char * ::str::international::unicode_to_utf8(const wchar_t * pwsz)
 */
 
 
-wchar_t w_to_lower(int32_t c)
+char16_t w_to_lower(int32_t c)
 {
    uint32_t c1 = CHAR_PROP(c);
-   if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Ll) return wchar_t(c);
-   if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lt) return wchar_t(c+1);
-   return wchar_t(c - (c1>>16));
+   if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Ll) return char16_t(c);
+   if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lt) return char16_t(c+1);
+   return char16_t(c - (c1>>16));
 }
 
 
@@ -263,13 +263,13 @@ wchar_t w_to_lower(int32_t c)
 
 
 
-wchar_t w_to_upper(int32_t c)
+char16_t w_to_upper(int32_t c)
 {
 
    uint32_t c1 = CHAR_PROP(c);
-   if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lu) return wchar_t(c);
-   if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lt) return wchar_t(c-1);
-   return wchar_t(c - (c1>>16));
+   if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lu) return char16_t(c);
+   if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lt) return char16_t(c-1);
+   return char16_t(c - (c1>>16));
 
 }
 

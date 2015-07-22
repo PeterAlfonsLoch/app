@@ -124,7 +124,7 @@ namespace n7z
             buffer.SetCapacity(sizeInBytes);
             for (int32_t i = 0; i < password.get_length(); i++)
             {
-               wchar_t ca = password[i];
+               char16_t ca = password[i];
                ((byte *)buffer)[i * 2] = (byte)ca;
                ((byte *)buffer)[i * 2 + 1] = (byte)(ca >> 8);
             }

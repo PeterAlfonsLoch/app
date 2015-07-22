@@ -3,7 +3,7 @@
 
 CLASS_DECL_AURA string_manager * __get_string_manager();
 CLASS_DECL_AURA int64_t strtoi(const char * psz);
-CLASS_DECL_AURA int64_t strtoi(const wchar_t * psz);
+CLASS_DECL_AURA int64_t strtoi(const char16_t * psz);
 
 
 
@@ -111,10 +111,10 @@ public:
    static strsize       __cdecl  Format(char * pszBuffer,size_t nlength,const char * pszFormat, va_list args ) throw();
    static strsize       __cdecl  GetcharLength(const char * pszSrc ) throw();
    static strsize       __cdecl  GetcharLength(const char * pszSrc, strsize nLength ) throw();
-   static strsize       __cdecl  GetcharLength(const wchar_t * pszSource ) throw();
-   static strsize       __cdecl  GetcharLength(const wchar_t * pszSource, strsize nLength ) throw();
+   static strsize       __cdecl  GetcharLength(const char16_t * pszSource ) throw();
+   static strsize       __cdecl  GetcharLength(const char16_t * pszSource, strsize nLength ) throw();
    static void          __cdecl  ConvertTochar(char * pszDest,strsize nDestLength, const char * pszSrc, strsize nSrcLength = -1 ) throw();
-   static void          __cdecl  ConvertTochar(char * pszDest,strsize nDestLength, const wchar_t * pszSrc,strsize nSrcLength = -1) throw();
+   static void          __cdecl  ConvertTochar(char * pszDest,strsize nDestLength, const char16_t * pszSrc,strsize nSrcLength = -1) throw();
    static void                   ConvertToOem(char* pstrString) RELEASENOTHROW;
    static void                   ConvertToAnsi(char* pstrString) RELEASENOTHROW;
    static void                   ConvertToOem(char* pstrString,size_t size);
@@ -131,8 +131,8 @@ public:
    static uint32_t         __cdecl  FormatMessage(uint32_t dwFlags, LPCVOID pSource, uint32_t dwMessageID,uint32_t dwLanguageID, char * pszBuffer, uint32_t nSize, va_list* pArguments ) throw();
    static uint32_t         __cdecl  format_message(uint32_t dwFlags, LPCVOID pSource, uint32_t dwMessageID,uint32_t dwLanguageID, char * pszBuffer, uint32_t nSize, va_list* pArguments ) throw();
    static strsize       __cdecl  SafeStringLen( const char * psz ) throw();
-   static strsize       __cdecl  SafeStringLen( const wchar_t * psz ) throw();
-   static strsize       __cdecl  GetCharLen(const wchar_t* pch ) throw();
+   static strsize       __cdecl  SafeStringLen( const char16_t * psz ) throw();
+   static strsize       __cdecl  GetCharLen(const char16_t* pch ) throw();
    static strsize       __cdecl  GetCharLen(const char* pch ) throw();
    static uint32_t         __cdecl  GetEnvironmentVariable(const char * pszVar, char * pszBuffer, uint32_t dwSize);
 
@@ -244,21 +244,21 @@ public:
    string(const uchar * pszSrc);
    //string(char * pszSrc);
    //string(uchar * pszSrc);
-   //string(wchar_t * pszSrc);
-   string(const wchar_t * pszSrc);
+   //string(char16_t * pszSrc);
+   string(const char16_t * pszSrc);
    string(const string & strSrc, strsize npos, strsize len = -1);
 
    string(const hstring & hstr) : stdstring< simple_string>(hstr.operator const char *(),string_trait::GetDefaultManager()){  }
-   string(const hwstring & hwstr) : stdstring< simple_string>(hwstr.operator const wchar_t *(),string_trait::GetDefaultManager()){  }
+   string(const hwstring & hwstr) : stdstring< simple_string>(hwstr.operator const char16_t *(),string_trait::GetDefaultManager()){  }
 
    string(const istring & istr);
 
    string(char ch,strsize nLength = 1);
-   string(wchar_t ch, strsize nLength = 1 );
+   string(char16_t ch, strsize nLength = 1 );
 
    string(strsize nLength, char ch);
    string(const char* pch,strsize nLength);
-   string(const wchar_t* pch,strsize nLength);
+   string(const char16_t* pch,strsize nLength);
 
 #if defined(METROWIN) && defined(__cplusplus_winrt)
    string(Object ^ o);
@@ -277,10 +277,10 @@ public:
 
 
    string(const char * pszSrc,string_manager * pstringmanager);
-   string(const wchar_t * pszSrc,string_manager * pstringmanager);
+   string(const char16_t * pszSrc,string_manager * pstringmanager);
    string(const uchar* pszSrc,string_manager * pstringmanager);
    string(const char* pch,strsize nLength,string_manager * pstringmanager);
-   string(const wchar_t* pch,strsize nLength,string_manager * pstringmanager);
+   string(const char16_t* pch,strsize nLength,string_manager * pstringmanager);
 
 #if defined(METROWIN) && defined(__cplusplus_winrt)
    string(Object ^ o, string_manager * pstringmanager);
@@ -299,13 +299,13 @@ public:
    string & operator = (const simple_string & strSrc);
    string & operator = (const string & strSrc);
    string & operator = (const char * pszSrc);
-   string & operator = (const wchar_t * pszSrc);
+   string & operator = (const char16_t * pszSrc);
    string & operator = (const uchar* pszSrc);
    string & operator = (char ch);
 #if defined(METROWIN) && defined(__cplusplus_winrt)
    string & operator = (const String ^ & str);
 #endif
-   string & operator = (wchar_t ch);
+   string & operator = (char16_t ch);
 
    // Assignment operators
    template < typename T >
@@ -319,10 +319,10 @@ public:
    string& operator+=(const char * pszSrc );
    template< strsize t_nSize >
    string& operator+=(const static_string<t_nSize >& strSrc );
-   string& operator+=(const wchar_t * pszSrc );
+   string& operator+=(const char16_t * pszSrc );
    string& operator+=(char ch );
    string& operator+=(uchar ch );
-   string& operator+=(wchar_t ch );
+   string& operator+=(char16_t ch );
 
    // Override from aura class
    string_manager * GetManager() const throw();
@@ -367,19 +367,19 @@ public:
    int32_t collate_no_case(strsize iStart, strsize iCount, const char * psz, strsize iStart2, strsize iCount2) const;
 
    bool contains(char ch, strsize start = 0, strsize count = -1);
-   bool contains(wchar_t wch, strsize start = 0, strsize count = -1);
+   bool contains(char16_t wch, strsize start = 0, strsize count = -1);
    bool contains(int32_t i, strsize start = 0, strsize count = -1); // utf8 char index
    bool contains(const char * psz, strsize start = 0, strsize count = -1);
    bool contains(const string & str, strsize start = 0, strsize count = -1);
 
    bool contains_ci(char ch, strsize start = 0, strsize count = -1);
-   bool contains_ci(wchar_t wch, strsize start = 0, strsize count = -1);
+   bool contains_ci(char16_t wch, strsize start = 0, strsize count = -1);
    bool contains_ci(int32_t i, strsize start = 0, strsize count = -1); // utf8 char index
    bool contains_ci(const char * psz, strsize start = 0, strsize count = -1);
    bool contains_ci(const string & str, strsize start = 0, strsize count = -1);
 
    bool contains_wci(char ch, strsize start = 0, strsize count = -1);
-   bool contains_wci(wchar_t wch, strsize start = 0, strsize count = -1);
+   bool contains_wci(char16_t wch, strsize start = 0, strsize count = -1);
    bool contains_wci(int32_t i, strsize start = 0, strsize count = -1); // utf8 char index
    bool contains_wci(const char * psz, strsize start = 0, strsize count = -1);
    bool contains_wci(const string & str, strsize start = 0, strsize count = -1);
@@ -795,8 +795,8 @@ public:
    friend string CLASS_DECL_AURA operator+(const string & str1,const string & str2 );
    friend string CLASS_DECL_AURA operator+(const string & str1,const char * psz2 );
    friend string CLASS_DECL_AURA operator+(const char * psz1,const string & str2 );
-   friend string CLASS_DECL_AURA operator+(const string & str1,wchar_t ch2 );
-   friend string CLASS_DECL_AURA operator+(wchar_t ch1,const string & str2 );
+   friend string CLASS_DECL_AURA operator+(const string & str1,char16_t ch2 );
+   friend string CLASS_DECL_AURA operator+(char16_t ch1,const string & str2 );
    friend string CLASS_DECL_AURA operator+(const string & str1,char ch2 );
    friend string CLASS_DECL_AURA operator+(char ch1,const string & str2 );
    friend string CLASS_DECL_AURA operator+(const string & str1,int32_t ch2 );
@@ -813,49 +813,49 @@ public:
    bool operator==(const string_interface & str) const;
    bool operator==(const string & str) const;
    bool operator==(const char * psz2) const;
-   bool operator==(const wchar_t * psz2) const;
+   bool operator==(const char16_t * psz2) const;
    bool operator==(char psz2) const;
-   bool operator==(wchar_t psz2) const;
+   bool operator==(char16_t psz2) const;
    bool operator==(int32_t i) const;
 
    bool operator>(const string_interface & str) const;
    bool operator>(const string & str) const;
    bool operator>(const char * psz2) const;
-   bool operator>(const wchar_t * psz2) const;
+   bool operator>(const char16_t * psz2) const;
    bool operator>(char psz2) const;
-   bool operator>(wchar_t psz2) const;
+   bool operator>(char16_t psz2) const;
    bool operator>(int32_t i) const;
 
    bool operator<(const string_interface & str) const;
    bool operator<(const string & str) const;
    bool operator<(const char * psz2) const;
-   bool operator<(const wchar_t * psz2) const;
+   bool operator<(const char16_t * psz2) const;
    bool operator<(char psz2) const;
-   bool operator<(wchar_t psz2) const;
+   bool operator<(char16_t psz2) const;
    bool operator<(int32_t i) const;
 
    inline bool operator!=(const string_interface & str)   const { return !operator ==(str); }
    inline bool operator!=(const string & str )            const { return !operator ==(str); }
    inline bool operator!=(const char * psz)                     const { return !operator ==(psz); }
-   inline bool operator!=(const wchar_t * psz)                     const { return !operator ==(psz); }
+   inline bool operator!=(const char16_t * psz)                     const { return !operator ==(psz); }
    inline bool operator!=(char ch)                       const { return !operator ==(ch);  }
-   inline bool operator!=(wchar_t ch)                       const { return !operator ==(ch);  }
+   inline bool operator!=(char16_t ch)                       const { return !operator ==(ch);  }
    inline bool operator!=(int32_t i)                      const { return !operator ==(i);  }
 
    inline bool operator>=(const string_interface & str)   const { return !operator <(str); }
    inline bool operator>=(const string & str )            const { return !operator <(str); }
    inline bool operator>=(const char * psz)                     const { return !operator <(psz); }
-   inline bool operator>=(const wchar_t * psz)                     const { return !operator <(psz); }
+   inline bool operator>=(const char16_t * psz)                     const { return !operator <(psz); }
    inline bool operator>=(char ch)                       const { return !operator <(ch);  }
-   inline bool operator>=(wchar_t ch)                       const { return !operator <(ch);  }
+   inline bool operator>=(char16_t ch)                       const { return !operator <(ch);  }
    inline bool operator>=(int32_t i)                      const { return !operator <(i);  }
 
    inline bool operator<=(const string_interface & str)   const { return !operator >(str); }
    inline bool operator<=(const string & str )            const { return !operator >(str); }
    inline bool operator<=(const char * psz)                     const { return !operator >(psz); }
-   inline bool operator<=(const wchar_t * psz)                     const { return !operator >(psz); }
+   inline bool operator<=(const char16_t * psz)                     const { return !operator >(psz); }
    inline bool operator<=(char ch)                       const { return !operator >(ch);  }
-   inline bool operator<=(wchar_t ch)                       const { return !operator >(ch);  }
+   inline bool operator<=(char16_t ch)                       const { return !operator >(ch);  }
    inline bool operator<=(int32_t i)                      const { return !operator >(i);  }
 
 
@@ -1086,7 +1086,7 @@ namespace str
 }
 
 
-#define BAD_WCHAR ((wchar_t)(0xFFFF))
+#define BAD_WCHAR ((char16_t)(0xFFFF))
 
 /// macro - number of elements in array
 #define ARRAY_SIZE(a) (sizeof(a)/sizeof(*(a)))
@@ -1348,7 +1348,7 @@ inline   string CLASS_DECL_AURA operator+(const char * psz1,const string & str2 
    return( strResult );
 }
 
-inline   string CLASS_DECL_AURA operator+(const string & str1,wchar_t ch2 )
+inline   string CLASS_DECL_AURA operator+(const string & str1,char16_t ch2 )
 {
    string strResult( str1.GetManager() );
    char chTemp = char( ch2 );
@@ -1368,7 +1368,7 @@ inline   string CLASS_DECL_AURA operator+(const string & str1,char ch2 )
    return( strResult );
 }
 
-inline   string CLASS_DECL_AURA operator+(wchar_t ch1,const string & str2 )
+inline   string CLASS_DECL_AURA operator+(char16_t ch1,const string & str2 )
 {
    string strResult( str2.GetManager() );
    char chTemp = char( ch1 );
@@ -1455,7 +1455,7 @@ inline bool string::operator==(const char * psz) const
 }
 
 
-inline bool string::operator==(const wchar_t * psz) const
+inline bool string::operator==(const char16_t * psz) const
 {
 
    return operator == (string(psz));
@@ -1471,7 +1471,7 @@ inline bool string::operator==(char ch) const
 }
 
 
-inline bool string::operator==(wchar_t ch) const
+inline bool string::operator==(char16_t ch) const
 {
 #ifdef __GNUC__
    return operator==(string(ch, 1));
@@ -1513,7 +1513,7 @@ inline bool string::operator<(const char * psz) const
 }
 
 
-inline bool string::operator<(const wchar_t * psz) const
+inline bool string::operator<(const char16_t * psz) const
 {
 
    return operator < (string(psz));
@@ -1533,7 +1533,7 @@ inline bool string::operator<(char ch) const
 }
 
 
-inline bool string::operator<(wchar_t ch) const
+inline bool string::operator<(char16_t ch) const
 {
 #ifdef __GNUC__
     return operator < (string(ch,1)) ;
@@ -1576,7 +1576,7 @@ inline bool string::operator>(const char * psz) const
 }
 
 
-inline bool string::operator>(const wchar_t * psz) const
+inline bool string::operator>(const char16_t * psz) const
 {
 
    return operator > (string(psz));
@@ -1595,7 +1595,7 @@ inline bool string::operator>(char ch) const
 }
 
 
-inline bool string::operator>(wchar_t ch) const
+inline bool string::operator>(char16_t ch) const
 {
 #ifdef __GNUC__
    return operator > (string(ch, 1));
@@ -1640,44 +1640,44 @@ inline strsize string::remove(strsize iIndex,strsize nCount)
 
 inline bool CLASS_DECL_AURA operator==(const string_interface & str1   , const string & str2)  { return str2 == str1; }
 inline bool CLASS_DECL_AURA operator==(const char *  psz                     , const string & str )  { return str  == psz ; }
-inline bool CLASS_DECL_AURA operator==(const wchar_t *  psz                     , const string & str )  { return str  == psz ; }
+inline bool CLASS_DECL_AURA operator==(const char16_t *  psz                     , const string & str )  { return str  == psz ; }
 inline bool CLASS_DECL_AURA operator==(char   ch                      , const string & str )  { return str  == ch  ; }
-inline bool CLASS_DECL_AURA operator==(wchar_t   ch                      , const string & str )  { return str  == ch  ; }
+inline bool CLASS_DECL_AURA operator==(char16_t   ch                      , const string & str )  { return str  == ch  ; }
 inline bool CLASS_DECL_AURA operator==(int32_t i                       , const string & str )  { return str  == i   ; }
 
 inline bool CLASS_DECL_AURA operator>(const string_interface & str1   , const string & str2 )   { return str2 < str1; }
 inline bool CLASS_DECL_AURA operator>(const char * psz                      , const string & str  )   { return str  < psz ; }
-inline bool CLASS_DECL_AURA operator>(const wchar_t * psz                      , const string & str  )   { return str  < psz ; }
+inline bool CLASS_DECL_AURA operator>(const char16_t * psz                      , const string & str  )   { return str  < psz ; }
 inline bool CLASS_DECL_AURA operator>(char ch                        , const string & str  )   { return str  < ch  ; }
-inline bool CLASS_DECL_AURA operator>(wchar_t ch                        , const string & str  )   { return str  < ch  ; }
+inline bool CLASS_DECL_AURA operator>(char16_t ch                        , const string & str  )   { return str  < ch  ; }
 inline bool CLASS_DECL_AURA operator>(int32_t i                       , const string & str  )   { return str  < i   ; }
 
 inline bool CLASS_DECL_AURA operator<(const string_interface & str1   , const string & str2 )   { return str2 > str1; }
 inline bool CLASS_DECL_AURA operator<(const char * psz                      , const string & str  )   { return str  > psz ; }
-inline bool CLASS_DECL_AURA operator<(const wchar_t * psz                      , const string & str  )   { return str  > psz ; }
+inline bool CLASS_DECL_AURA operator<(const char16_t * psz                      , const string & str  )   { return str  > psz ; }
 inline bool CLASS_DECL_AURA operator<(char ch                        , const string & str  )   { return str  > ch  ; }
-inline bool CLASS_DECL_AURA operator<(wchar_t ch                        , const string & str  )   { return str  > ch  ; }
+inline bool CLASS_DECL_AURA operator<(char16_t ch                        , const string & str  )   { return str  > ch  ; }
 inline bool CLASS_DECL_AURA operator<(int32_t i                       , const string & str  )   { return str  > i   ; }
 
 inline bool CLASS_DECL_AURA operator!=(const string_interface & str1,const string & str2)  { return !::operator==(str1, str2); }
 inline bool CLASS_DECL_AURA operator!=(const char * psz,const string & str)                      { return !::operator==(psz, str); }
-inline bool CLASS_DECL_AURA operator!=(const wchar_t * psz,const string & str)                      { return !::operator==(psz, str); }
+inline bool CLASS_DECL_AURA operator!=(const char16_t * psz,const string & str)                      { return !::operator==(psz, str); }
 inline bool CLASS_DECL_AURA operator!=(char ch,const string & str)                        { return !::operator==(ch, str); }
-inline bool CLASS_DECL_AURA operator!=(wchar_t ch,const string & str)                        { return !::operator==(ch, str); }
+inline bool CLASS_DECL_AURA operator!=(char16_t ch,const string & str)                        { return !::operator==(ch, str); }
 inline bool CLASS_DECL_AURA operator!=(int32_t i, const string & str)                      { return !::operator==(i, str); }
 
 inline bool CLASS_DECL_AURA operator>=(const string_interface & str1,const string & str2)  { return !::operator<(str1, str2); }
 inline bool CLASS_DECL_AURA operator>=(const char * psz,const string & str)                      { return !::operator<(psz, str); }
-inline bool CLASS_DECL_AURA operator>=(const wchar_t * psz,const string & str)                      { return !::operator<(psz, str); }
+inline bool CLASS_DECL_AURA operator>=(const char16_t * psz,const string & str)                      { return !::operator<(psz, str); }
 inline bool CLASS_DECL_AURA operator>=(char ch,const string & str)                        { return !::operator<(ch, str); }
-inline bool CLASS_DECL_AURA operator>=(wchar_t ch,const string & str)                        { return !::operator<(ch, str); }
+inline bool CLASS_DECL_AURA operator>=(char16_t ch,const string & str)                        { return !::operator<(ch, str); }
 inline bool CLASS_DECL_AURA operator>=(int32_t i, const string & str)                      { return !::operator<(i, str); }
 
 inline bool CLASS_DECL_AURA operator<=(const string_interface & str1,const string & str2)  { return !::operator>(str1, str2); }
 inline bool CLASS_DECL_AURA operator<=(const char * psz,const string & str)                      { return !::operator>(psz, str); }
-inline bool CLASS_DECL_AURA operator<=(const wchar_t * psz,const string & str)                      { return !::operator>(psz, str); }
+inline bool CLASS_DECL_AURA operator<=(const char16_t * psz,const string & str)                      { return !::operator>(psz, str); }
 inline bool CLASS_DECL_AURA operator<=(char ch,const string & str)                        { return !::operator>(ch, str); }
-inline bool CLASS_DECL_AURA operator<=(wchar_t ch,const string & str)                        { return !::operator>(ch, str); }
+inline bool CLASS_DECL_AURA operator<=(char16_t ch,const string & str)                        { return !::operator>(ch, str); }
 inline bool CLASS_DECL_AURA operator<=(int32_t i, const string & str)                      { return !::operator>(i, str); }
 
 
@@ -1740,7 +1740,7 @@ inline string & to_string(string & str, const char & ch)
 }
 
 template < >
-inline string & to_string(string & str, const wchar_t * pwsz)
+inline string & to_string(string & str, const char16_t * pwsz)
 {
 
    return str = pwsz;
@@ -1769,7 +1769,7 @@ template < >
 inline string & to_string(string & str, String ^ & strSrc)
 {
 
-   str= (const wchar_t *) wstring(begin(strSrc));
+   str= (const char16_t *) wstring(begin(strSrc));
 
    return str;
 

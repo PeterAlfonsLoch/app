@@ -273,7 +273,7 @@ void CInByte2::ReadString(string &s)
   int32_t len = (int32_t)(rem / 2);
   if (len < 0 || (size_t)len * 2 != rem)
     ThrowUnsupported();
-  s = ::str::international::unicode_to_utf8(wstring((wchar_t *) buf, len));
+  s = ::str::international::unicode_to_utf8(wstring((char16_t *) buf, len));
   _pos += rem + 2;
 }
 

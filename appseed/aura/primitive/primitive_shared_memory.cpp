@@ -410,7 +410,7 @@ namespace primitive
    }*/
 
 
-   /*void shared_memory::from_string(const wchar_t * pwsz)
+   /*void shared_memory::from_string(const char16_t * pwsz)
    {
       from_string(::str::international::unicode_to_utf8(pwsz));
    }

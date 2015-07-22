@@ -7,7 +7,7 @@
 class FileException;
 struct FileStatus;
 
-void CLASS_DECL_AURA vfxGetRoot(const wchar_t * lpszPath, string& wstrRoot);
+void CLASS_DECL_AURA vfxGetRoot(const char16_t * lpszPath, string& wstrRoot);
 void CLASS_DECL_AURA vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath);
 
 namespace metrowin

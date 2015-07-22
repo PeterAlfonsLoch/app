@@ -189,8 +189,8 @@ class job;
 
 // former core
 
-// Since core API itself is built with wchar_t as a native type, it will not have
-// the correct type info for types built with wchar_t typedef'd to uint32_t
+// Since core API itself is built with char16_t as a native type, it will not have
+// the correct type info for types built with char16_t typedef'd to uint32_t
 // int16_t.  Make sure that the ::fontopus::user's cast builds this type info in this case.
 #ifndef _NATIVE_WCHAR_T_DEFINED
 #define ___FULLTYPEINFO
@@ -247,7 +247,7 @@ struct memory_state;
 
 
 #ifndef _OLEAUTO_H_
-   typedef wchar_t * BSTR;// must (semantically) match typedef in oleauto.h
+   typedef char16_t * BSTR;// must (semantically) match typedef in oleauto.h
 #endif
 
 #undef new

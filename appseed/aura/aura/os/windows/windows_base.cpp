@@ -193,7 +193,7 @@ string key_to_char(WPARAM wparam, LPARAM lparam)
 
 
 
-   wchar_t wsz[32];
+   char16_t wsz[32];
 
    BYTE baState[256];
 

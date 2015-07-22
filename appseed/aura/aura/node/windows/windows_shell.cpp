@@ -275,7 +275,7 @@ namespace windows
       return true;
    }
 
-/*   BOOL shell::_SHGetPathFromIDList(LPCITEMIDLIST pidl, wchar_t * pszPath)
+/*   BOOL shell::_SHGetPathFromIDList(LPCITEMIDLIST pidl, char16_t * pszPath)
    {
       CHAR pszPathA[MAX_PATH * 2];
       if(!::SHGetPathFromIDListA(pidl, pszPathA))
@@ -283,7 +283,7 @@ namespace windows
       return ::str::international::utf8_to_unicode(pszPath, MAX_PATH * 2, pszPathA) ? TRUE : FALSE;
    }
 
-   BOOL shell::_MoveFile(const wchar_t * lpExistingFileName, const wchar_t * lpNewFileName)
+   BOOL shell::_MoveFile(const char16_t * lpExistingFileName, const char16_t * lpNewFileName)
    {
       string str1, str2;
       ::str::international::unicode_to_utf8(str1, lpExistingFileName);
@@ -291,7 +291,7 @@ namespace windows
       return ::MoveFileA(str1, str2);
    }
 
-   HANDLE shell::_FindFirstFile(const wchar_t * lpcsz, WIN32_FIND_DATAW * lpdata)
+   HANDLE shell::_FindFirstFile(const char16_t * lpcsz, WIN32_FIND_DATAW * lpdata)
    {
       string 
       ::str::international::unicode_to_utf8(pszPathA, MAX_PATH * 2, lpcsz);
@@ -387,10 +387,10 @@ namespace windows
 
 
    //DWORD WINAPI shell::_GetFullPathName(
-   //   const wchar_t * lpFileName, 
+   //   const char16_t * lpFileName, 
    //   DWORD nBufferLength, 
-   //   wchar_t * lpBuffer, 
-   //   wchar_t ** lpFilePart)
+   //   char16_t * lpBuffer, 
+   //   char16_t ** lpFilePart)
    //{
    //   CHAR pszPathA[MAX_PATH * 2];
    //   ::str::international::UnicodeToACP(pszPathA, MAX_PATH * 2, lpFileName);
@@ -405,13 +405,13 @@ namespace windows
    //}
 
    //BOOL WINAPI shell::_GetVolumeInformation(
-   //   const wchar_t * lpRootPathName,           // root directory
-   //   wchar_t * lpVolumeNameBuffer,        // volume name buffer
+   //   const char16_t * lpRootPathName,           // root directory
+   //   char16_t * lpVolumeNameBuffer,        // volume name buffer
    //   DWORD nVolumeNameSize,            // length of name buffer
    //   LPDWORD lpVolumeSerialNumber,     // volume serial number
    //   LPDWORD lpMaximumComponentLength, // maximum file name length
    //   LPDWORD lpFileSystemFlags,        // file system options
-   //   wchar_t * lpFileSystemNameBuffer,    // file system name buffer
+   //   char16_t * lpFileSystemNameBuffer,    // file system name buffer
    //   DWORD nFileSystemNameSize)         // length of file system name buffer
    //{
    //   string strRootPathName;
@@ -442,7 +442,7 @@ namespace windows
    //}
 
    //uint_ptr shell::_SHGetFileInfo(      
-   //   const wchar_t * pszPath,
+   //   const char16_t * pszPath,
    //   DWORD dwFileAttributes,
    //   SHFILEINFOW *psfi,
    //   UINT cbFileInfo,
@@ -472,7 +472,7 @@ namespace windows
    //BOOL shell::_GetStringTypeEx(      
    //   LCID uiCodePage,
    //   DWORD dwInfoType,
-   //   const wchar_t * lpSrcStr,
+   //   const char16_t * lpSrcStr,
    //   int32_t cchSrc,
    //   LPWORD lpCharType)
    //{
@@ -500,7 +500,7 @@ namespace windows
 
    //DWORD shell::_GetTempPath(
    //   DWORD nBufferLength,
-   //   wchar_t * lpBuffer)
+   //   char16_t * lpBuffer)
    //{
    //   string str;
    //   DWORD dw = ::GetTempPathA(nBufferLength, str.GetBuffer(nBufferLength * 2));
@@ -510,10 +510,10 @@ namespace windows
    //}
 
    //UINT shell::_GetTempFileName(
-   //   const wchar_t * lpPathName,
-   //   const wchar_t * lpPrefixString,
+   //   const char16_t * lpPathName,
+   //   const char16_t * lpPrefixString,
    //   UINT uUnique,
-   //   wchar_t * lpTempFileName)
+   //   char16_t * lpTempFileName)
    //{
    //   string strPathName;
    //   string strPrefixString;
@@ -539,7 +539,7 @@ namespace windows
 
 
    //HANDLE shell::_CreateFile(
-   //   const wchar_t * lpFileName,
+   //   const char16_t * lpFileName,
    //   DWORD dwDesiredAccess,
    //   DWORD dwShareMode,
    //   LPSECURITY_ATTRIBUTES lpSecurityAttributes,
@@ -564,7 +564,7 @@ namespace windows
 
    //DWORD shell::_GetModuleFileName(
    //   HMODULE hModule,
-   //   wchar_t * lpFilename,
+   //   char16_t * lpFilename,
    //   DWORD nSize
    //   )
    //{
@@ -575,7 +575,7 @@ namespace windows
    //   return dw;
    //}
 
-   //BOOL shell::_GetClassInfo(HINSTANCE hInstance , const wchar_t * lpClassName, LPWNDCLASSW lpWndClass)
+   //BOOL shell::_GetClassInfo(HINSTANCE hInstance , const char16_t * lpClassName, LPWNDCLASSW lpWndClass)
    //{
    //   WNDCLASS wndclass;
 
@@ -614,9 +614,9 @@ namespace windows
    //   }
    //   string strMenuName;*/
    //   //strMenuName = wndclass->lpszMenuName;
-   //   lpWndClass->lpszMenuName = (const wchar_t *) wndclass.lpszMenuName;
+   //   lpWndClass->lpszMenuName = (const char16_t *) wndclass.lpszMenuName;
 
-   //   lpWndClass->lpszClassName = (const wchar_t *) wndclass.lpszClassName;
+   //   lpWndClass->lpszClassName = (const char16_t *) wndclass.lpszClassName;
 
    //   return TRUE;
 
@@ -650,8 +650,8 @@ namespace windows
 
    //oswindow shell::_CreateWindowEx(
    //   DWORD dwExStyle,
-   //   const wchar_t * lpClassName,
-   //   const wchar_t * lpWindowName,
+   //   const char16_t * lpClassName,
+   //   const char16_t * lpWindowName,
    //   DWORD dwStyle,
    //   int32_t x,
    //   int32_t y,

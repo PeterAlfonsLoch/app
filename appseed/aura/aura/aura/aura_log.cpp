@@ -257,9 +257,9 @@ namespace aura
 
 #ifdef WINDOWSEX
 
-         wchar_t wsz[4096];
+         char16_t wsz[4096];
 
-         if(!GetModuleFileNameW(NULL,wsz,sizeof(wsz) / sizeof(wchar_t)))
+         if(!GetModuleFileNameW(NULL,wsz,sizeof(wsz) / sizeof(char16_t)))
          {
 
             strPath = "_";
@@ -384,7 +384,7 @@ namespace aura
 
    }
 
-/*   void log::trace_v(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const wchar_t * pszFmt, va_list args) const
+/*   void log::trace_v(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char16_t * pszFmt, va_list args) const
    {
    }*/
 

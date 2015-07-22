@@ -14,7 +14,7 @@ public:
 
 // Operations
    dump_context & operator<<(const char * lpsz);
-   dump_context & operator<<(const wchar_t * lpsz); // automatically thinned
+   dump_context & operator<<(const char16_t * lpsz); // automatically thinned
    dump_context & operator<<(string str);
    dump_context & operator<<(const void * lp);
    dump_context & operator<<(const object* pOb);

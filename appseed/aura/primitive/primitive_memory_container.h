@@ -39,7 +39,7 @@ namespace primitive
 
       memory_size get_size() const;
 
-      void from_string(const wchar_t * pwsz);
+      void from_string(const char16_t * pwsz);
       void from_string(const char * psz);
       void from_string(const string & str);
       void from_string(const var & str);
@@ -116,7 +116,7 @@ namespace primitive
    }
 
 
-   inline void memory_container ::from_string(const wchar_t * pwsz)
+   inline void memory_container ::from_string(const char16_t * pwsz)
    {
 
       if(m_spmemory.is_null())

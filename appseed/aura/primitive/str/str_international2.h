@@ -13,7 +13,7 @@ namespace str
   //    void CLASS_DECL_AURA utf8_to_unicode(stringa & stra, stringa & stra);
 
 
-      bool CLASS_DECL_AURA UnicodeToMultiByte(UINT uiCodePage, primitive::memory & str, const wchar_t * lpcsz);
+      bool CLASS_DECL_AURA UnicodeToMultiByte(UINT uiCodePage, primitive::memory & str, const char16_t * lpcsz);
 
       bool CLASS_DECL_AURA MultiByteToMultiByte(UINT uiCodePageDest, primitive::memory & str, UINT uiCodePageSrc, const char * lpcsz);
       bool CLASS_DECL_AURA MultiByteToMultiByte(UINT uiCodePageDest, primitive::memory & str, UINT uiCodePageSrc, const char * lpcsz, strsize nCount);

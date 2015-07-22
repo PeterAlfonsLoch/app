@@ -47,7 +47,7 @@ typedef void * _HFILE; /* file handle pointer */
 #endif
 
 typedef int32_t(DECL_C * _CRT_REPORT_HOOK)(int32_t, char *, int32_t *);
-typedef int32_t(DECL_C * _CRT_REPORT_HOOKW)(int32_t, wchar_t *, int32_t *);
+typedef int32_t(DECL_C * _CRT_REPORT_HOOKW)(int32_t, char16_t *, int32_t *);
 
 #define _CRT_RPTHOOK_INSTALL  0
 #define _CRT_RPTHOOK_REMOVE   1
@@ -331,10 +331,10 @@ typedef void (__clrcall * _CRT_DUMP_CLIENT_M)(void *, size_t);
 //#endif
 //CLASS_DECL_AURA int _CrtDbgReportW(
 //   int reportType,
-//   const wchar_t *filename,
+//   const char16_t *filename,
 //   int linenumber,
-//   const wchar_t *moduleName,
-//   const wchar_t *format,
+//   const char16_t *moduleName,
+//   const char16_t *format,
 //   ...
 //   );
 /* _CrtSetReportHook[[W]2]:
@@ -358,7 +358,7 @@ typedef struct _CrtMemState {
     size_t lHighWaterCount;
     size_t lTotalCount;
 } _CrtMemState;
-CLASS_DECL_AURA int32_t DECL_C _CrtDbgReportW(int32_t _ReportType, const wchar_t * _Filename, int32_t _LineNumber, const wchar_t * _ModuleName, const wchar_t * _Format, ...);
+CLASS_DECL_AURA int32_t DECL_C _CrtDbgReportW(int32_t _ReportType, const char16_t * _Filename, int32_t _LineNumber, const char16_t * _ModuleName, const char16_t * _Format, ...);
 
 /* Asserts */
 /* We use !! below to ensure that any overloaded operators used to evaluate expr do not end up at operator || */
@@ -553,21 +553,21 @@ should not have done so since it was not documented.
 //CLASS_DECL_AURA void * DECL_C _aligned_offset_recalloc_dbg(void * _Memory, size_t _NumOfElements, size_t _SizeOfElements, size_t _Alignment, size_t _Offset, const char * _Filename, int32_t _LineNumber);
 //CLASS_DECL_AURA void DECL_C _aligned_free_dbg(void * _Memory);
 //CLASS_DECL_AURA char * DECL_C _strdup_dbg(const char * _Str, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
-//CLASS_DECL_AURA wchar_t * DECL_C _wcsdup_dbg(const wchar_t * _Str, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
+//CLASS_DECL_AURA char16_t * DECL_C _wcsdup_dbg(const char16_t * _Str, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
 //CLASS_DECL_AURA char * DECL_C _tempnam_dbg(const char * _DirName, const char * _FilePrefix, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
-//CLASS_DECL_AURA wchar_t * DECL_C _wtempnam_dbg(const wchar_t * _DirName, const wchar_t * _FilePrefix, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
+//CLASS_DECL_AURA char16_t * DECL_C _wtempnam_dbg(const char16_t * _DirName, const char16_t * _FilePrefix, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
 //CLASS_DECL_AURA char * DECL_C _fullpath_dbg(char * _FullPath, const char * _Path, size_t _SizeInBytes, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
-//CLASS_DECL_AURA wchar_t * DECL_C _wfullpath_dbg(wchar_t * _FullPath, const wchar_t * _Path, size_t _SizeInWords, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
+//CLASS_DECL_AURA char16_t * DECL_C _wfullpath_dbg(char16_t * _FullPath, const char16_t * _Path, size_t _SizeInWords, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
 //CLASS_DECL_AURA char * DECL_C _getcwd_dbg(char * _DstBuf, int32_t _SizeInBytes, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
-//CLASS_DECL_AURA wchar_t * DECL_C _wgetcwd_dbg(wchar_t * _DstBuf, int32_t _SizeInWords, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
+//CLASS_DECL_AURA char16_t * DECL_C _wgetcwd_dbg(char16_t * _DstBuf, int32_t _SizeInWords, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
 //CLASS_DECL_AURA char * DECL_C _getdcwd_dbg(int32_t _Drive, char * _DstBuf, int32_t _SizeInBytes, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
-//CLASS_DECL_AURA wchar_t * DECL_C _wgetdcwd_dbg(int32_t _Drive, wchar_t * _DstBuf, int32_t _SizeInWords, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
+//CLASS_DECL_AURA char16_t * DECL_C _wgetdcwd_dbg(int32_t _Drive, char16_t * _DstBuf, int32_t _SizeInWords, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
 //
 //char * DECL_C _getdcwd_lk_dbg(int32_t _Drive, char * _DstBuf, int32_t _SizeInBytes, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
-//wchar_t * DECL_C _wgetdcwd_lk_dbg(int32_t _Drive, wchar_t * _DstBuf, int32_t _SizeInWords, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
+//char16_t * DECL_C _wgetdcwd_lk_dbg(int32_t _Drive, char16_t * _DstBuf, int32_t _SizeInWords, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
 //
 //CLASS_DECL_AURA errno_t DECL_C _dupenv_s_dbg(char ** _PBuffer, size_t * _PBufferSizeInBytes, const char * _VarName, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
-//CLASS_DECL_AURA errno_t DECL_C _wdupenv_s_dbg(wchar_t ** _PBuffer, size_t * _PBufferSizeInWords, const wchar_t * _VarName, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
+//CLASS_DECL_AURA errno_t DECL_C _wdupenv_s_dbg(char16_t ** _PBuffer, size_t * _PBufferSizeInWords, const char16_t * _VarName, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
 //
 ///*_Success_(return!=0)
 //_Check_return_ _Ret_opt_bytecap_x_(_NumOfElements*_SizeOfElements) CLASS_DECL_AURA void * DECL_C _recalloc_dbg
@@ -672,8 +672,8 @@ should not have done so since it was not documented.
 //        _In_ int32_t _LineNumber
 //        );
 //
-//_Check_return_ _Ret_opt_z_ CLASS_DECL_AURA wchar_t * DECL_C _wcsdup_dbg(
-//        _In_opt_z_ const wchar_t * _Str,
+//_Check_return_ _Ret_opt_z_ CLASS_DECL_AURA char16_t * DECL_C _wcsdup_dbg(
+//        _In_opt_z_ const char16_t * _Str,
 //        _In_ int32_t _BlockType,
 //        _In_opt_z_ const char * _Filename,
 //        _In_ int32_t _LineNumber
@@ -687,9 +687,9 @@ should not have done so since it was not documented.
 //        _In_ int32_t _LineNumber
 //        );
 //
-//_Check_return_ _Ret_opt_z_ CLASS_DECL_AURA wchar_t * DECL_C _wtempnam_dbg(
-//        _In_opt_z_ const wchar_t * _DirName,
-//        _In_opt_z_ const wchar_t * _FilePrefix,
+//_Check_return_ _Ret_opt_z_ CLASS_DECL_AURA char16_t * DECL_C _wtempnam_dbg(
+//        _In_opt_z_ const char16_t * _DirName,
+//        _In_opt_z_ const char16_t * _FilePrefix,
 //        _In_ int32_t _BlockType,
 //        _In_opt_z_ const char * _Filename,
 //        _In_ int32_t _LineNumber
@@ -704,9 +704,9 @@ should not have done so since it was not documented.
 //        _In_ int32_t _LineNumber
 //        );
 //
-//_Check_return_ _Ret_opt_z_ CLASS_DECL_AURA wchar_t * DECL_C _wfullpath_dbg(
-//        _Out_opt_z_cap_(_SizeInWords) wchar_t * _FullPath,
-//        _In_z_ const wchar_t * _Path,
+//_Check_return_ _Ret_opt_z_ CLASS_DECL_AURA char16_t * DECL_C _wfullpath_dbg(
+//        _Out_opt_z_cap_(_SizeInWords) char16_t * _FullPath,
+//        _In_z_ const char16_t * _Path,
 //        _In_ size_t _SizeInWords,
 //        _In_ int32_t _BlockType,
 //        _In_opt_z_ const char * _Filename,
@@ -721,8 +721,8 @@ should not have done so since it was not documented.
 //        _In_ int32_t _LineNumber
 //        );
 //
-//_Check_return_ _Ret_opt_z_ CLASS_DECL_AURA wchar_t * DECL_C _wgetcwd_dbg(
-//        _Out_opt_z_cap_(_SizeInWords) wchar_t * _DstBuf,
+//_Check_return_ _Ret_opt_z_ CLASS_DECL_AURA char16_t * DECL_C _wgetcwd_dbg(
+//        _Out_opt_z_cap_(_SizeInWords) char16_t * _DstBuf,
 //        _In_ int32_t _SizeInWords,
 //        _In_ int32_t _BlockType,
 //        _In_opt_z_ const char * _Filename,
@@ -738,9 +738,9 @@ should not have done so since it was not documented.
 //        _In_ int32_t _LineNumber
 //        );
 //
-//_Check_return_ _Ret_opt_z_ CLASS_DECL_AURA wchar_t * DECL_C _wgetdcwd_dbg(
+//_Check_return_ _Ret_opt_z_ CLASS_DECL_AURA char16_t * DECL_C _wgetdcwd_dbg(
 //        _In_ int32_t _Drive,
-//        _Out_opt_z_cap_(_SizeInWords) wchar_t * _DstBuf,
+//        _Out_opt_z_cap_(_SizeInWords) char16_t * _DstBuf,
 //        _In_ int32_t _SizeInWords,
 //        _In_ int32_t _BlockType,
 //        _In_opt_z_ const char * _Filename,
@@ -756,9 +756,9 @@ should not have done so since it was not documented.
 //        _In_ int32_t _LineNumber
 //        );
 //
-//_Check_return_ _Ret_opt_z_ wchar_t * DECL_C _wgetdcwd_lk_dbg(
+//_Check_return_ _Ret_opt_z_ char16_t * DECL_C _wgetdcwd_lk_dbg(
 //        _In_ int32_t _Drive,
-//        _Out_opt_z_cap_(_SizeInWords) wchar_t * _DstBuf,
+//        _Out_opt_z_cap_(_SizeInWords) char16_t * _DstBuf,
 //        _In_ int32_t _SizeInWords,
 //        _In_ int32_t _BlockType,
 //        _In_opt_z_ const char * _Filename,
@@ -775,9 +775,9 @@ should not have done so since it was not documented.
 //        );
 //
 //_Check_return_wat_ CLASS_DECL_AURA errno_t DECL_C _wdupenv_s_dbg(
-//        _Out_ _Deref_post_opt_z_cap_(*_PBufferSizeInWords) wchar_t ** _PBuffer,
+//        _Out_ _Deref_post_opt_z_cap_(*_PBufferSizeInWords) char16_t ** _PBuffer,
 //        _Out_opt_ size_t * _PBufferSizeInWords,
-//        _In_z_ const wchar_t * _VarName,
+//        _In_z_ const char16_t * _VarName,
 //        _In_ int32_t _BlockType,
 //        _In_opt_z_ const char * _Filename,
 //        _In_ int32_t _LineNumber

@@ -329,7 +329,7 @@ bool shell::Initialize()
 }
 
 /*
-WINBOOL shell::_SHGetPathFromIDList(LPCITEMIDLIST pidl, wchar_t * pszPath)
+WINBOOL shell::_SHGetPathFromIDList(LPCITEMIDLIST pidl, char16_t * pszPath)
 {
    CHAR pszPathA[MAX_PATH * 2];
    if(!::SHGetPathFromIDListA(pidl, pszPathA))
@@ -337,7 +337,7 @@ WINBOOL shell::_SHGetPathFromIDList(LPCITEMIDLIST pidl, wchar_t * pszPath)
    return ::str::international::ACPToUnicode(pszPath, MAX_PATH * 2, pszPathA) ? TRUE : FALSE;
 }
 
-WINBOOL shell::_MoveFile(const wchar_t * lpExistingFileName, const wchar_t * lpNewFileName)
+WINBOOL shell::_MoveFile(const char16_t * lpExistingFileName, const char16_t * lpNewFileName)
 {
    string str1, str2;
    ::str::international::UnicodeToACP(str1, lpExistingFileName);
@@ -345,7 +345,7 @@ WINBOOL shell::_MoveFile(const wchar_t * lpExistingFileName, const wchar_t * lpN
    return ::MoveFileA(str1, str2);
 }
 
-HANDLE shell::_FindFirstFile(const wchar_t * lpcsz, WIN32_FIND_DATAW * lpdata)
+HANDLE shell::_FindFirstFile(const char16_t * lpcsz, WIN32_FIND_DATAW * lpdata)
 {
    CHAR pszPathA[MAX_PATH * 2];
    ::str::international::UnicodeToACP(pszPathA, MAX_PATH * 2, lpcsz);
@@ -440,10 +440,10 @@ WCHAR * __cdecl shell::__fullpath (
 
 
 DWORD WINAPI shell::_GetFullPathName(
-   const wchar_t * lpFileName,
+   const char16_t * lpFileName,
    DWORD nBufferLength,
-   wchar_t * lpBuffer,
-   wchar_t ** lpFilePart)
+   char16_t * lpBuffer,
+   char16_t ** lpFilePart)
 {
    CHAR pszPathA[MAX_PATH * 2];
    ::str::international::UnicodeToACP(pszPathA, MAX_PATH * 2, lpFileName);
@@ -458,13 +458,13 @@ DWORD WINAPI shell::_GetFullPathName(
 }
 
 WINBOOL WINAPI shell::_GetVolumeInformation(
-      const wchar_t * lpRootPathName,           // root directory
-      wchar_t * lpVolumeNameBuffer,        // volume name buffer
+      const char16_t * lpRootPathName,           // root directory
+      char16_t * lpVolumeNameBuffer,        // volume name buffer
       DWORD nVolumeNameSize,            // length of name buffer
       LPDWORD lpVolumeSerialNumber,     // volume serial number
       LPDWORD lpMaximumComponentLength, // maximum file name length
       LPDWORD lpFileSystemFlags,        // file system options
-      wchar_t * lpFileSystemNameBuffer,    // file system name buffer
+      char16_t * lpFileSystemNameBuffer,    // file system name buffer
       DWORD nFileSystemNameSize)         // length of file system name buffer
 {
    string strRootPathName;
@@ -495,7 +495,7 @@ WINBOOL WINAPI shell::_GetVolumeInformation(
 }
 
 DWORD_PTR shell::_SHGetFileInfo(
-   const wchar_t * pszPath,
+   const char16_t * pszPath,
    DWORD dwFileAttributes,
    SHFILEINFOW *psfi,
    UINT cbFileInfo,
@@ -525,7 +525,7 @@ DWORD_PTR shell::_SHGetFileInfo(
 WINBOOL shell::_GetStringTypeEx(
    LCID uiCodePage,
    DWORD dwInfoType,
-   const wchar_t * lpSrcStr,
+   const char16_t * lpSrcStr,
    int32_t cchSrc,
    LPWORD lpCharType)
 {
@@ -553,7 +553,7 @@ WINBOOL shell::_GetStringTypeEx(
 
 DWORD shell::_GetTempPath(
       DWORD nBufferLength,
-      wchar_t * lpBuffer)
+      char16_t * lpBuffer)
 {
    string str;
    DWORD dw = ::GetTempPathA(nBufferLength, str.GetBuffer(nBufferLength * 2));
@@ -563,10 +563,10 @@ DWORD shell::_GetTempPath(
 }
 
 UINT shell::_GetTempFileName(
-   const wchar_t * lpPathName,
-   const wchar_t * lpPrefixString,
+   const char16_t * lpPathName,
+   const char16_t * lpPrefixString,
    UINT uUnique,
-   wchar_t * lpTempFileName)
+   char16_t * lpTempFileName)
 {
    string strPathName;
    string strPrefixString;
@@ -592,7 +592,7 @@ UINT shell::_GetTempFileName(
 
 
 HANDLE shell::_CreateFile(
-   const wchar_t * lpFileName,
+   const char16_t * lpFileName,
    DWORD dwDesiredAccess,
    DWORD dwShareMode,
    LPSECURITY_ATTRIBUTES lpSecurityAttributes,
@@ -617,7 +617,7 @@ HANDLE shell::_CreateFile(
 
 DWORD shell::_GetModuleFileName(
    HMODULE hModule,
-   wchar_t * lpFilename,
+   char16_t * lpFilename,
    DWORD nSize
    )
 {
@@ -630,7 +630,7 @@ DWORD shell::_GetModuleFileName(
 
 WINBOOL shell::_GetClassInfo(
     HINSTANCE hInstance ,
-    const wchar_t * lpClassName,
+    const char16_t * lpClassName,
     LPWNDCLASSW lpWndClass)
 {
    WNDCLASS wndclass;
@@ -670,9 +670,9 @@ WINBOOL shell::_GetClassInfo(
    }
  string strMenuName;*/
    //strMenuName = wndclass->lpszMenuName;
-/*   lpWndClass->lpszMenuName = (const wchar_t *) wndclass.lpszMenuName;
+/*   lpWndClass->lpszMenuName = (const char16_t *) wndclass.lpszMenuName;
 
-   lpWndClass->lpszClassName = (const wchar_t *) wndclass.lpszClassName;
+   lpWndClass->lpszClassName = (const char16_t *) wndclass.lpszClassName;
 
    return TRUE;
 
@@ -706,8 +706,8 @@ ATOM shell::_RegisterClass(
 
 oswindow shell::_CreateWindowEx(
    DWORD dwExStyle,
-   const wchar_t * lpClassName,
-   const wchar_t * lpWindowName,
+   const char16_t * lpClassName,
+   const char16_t * lpWindowName,
    DWORD dwStyle,
    int32_t x,
    int32_t y,

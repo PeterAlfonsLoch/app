@@ -23,7 +23,7 @@ namespace visual
       void FillSolidRect(HDC hdc, LPCRECT lpRect, COLORREF clr);
       void FillSolidRect(HDC hdc, int32_t x, int32_t y, int32_t cx, int32_t cy, COLORREF clr);
 
-      //static int32_t _FindPrefixV1(const wchar_t * lpcsz);
+      //static int32_t _FindPrefixV1(const char16_t * lpcsz);
 
    };
 

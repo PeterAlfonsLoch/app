@@ -120,9 +120,9 @@ CLASS_DECL_AURA uint64_t flen_dup(_FILE *s);
 
 
 #ifdef WINDOWS
-CLASS_DECL_AURA _FILE *_wfopen_dup(const wchar_t *path, const wchar_t *attrs);
-CLASS_DECL_AURA int32_t fwprintf_dup(_FILE *fp, const wchar_t *s, ...);
-CLASS_DECL_AURA wchar_t *fgetws_dup(wchar_t *str, int32_t n, _FILE *s);
+CLASS_DECL_AURA _FILE *_wfopen_dup(const char16_t *path, const char16_t *attrs);
+CLASS_DECL_AURA int32_t fwprintf_dup(_FILE *fp, const char16_t *s, ...);
+CLASS_DECL_AURA char16_t *fgetws_dup(char16_t *str, int32_t n, _FILE *s);
 CLASS_DECL_AURA wint_t fgetwc_dup(_FILE *s);
 CLASS_DECL_AURA wint_t ungetwc_dup(wint_t w, _FILE *s);
 #endif
@@ -261,9 +261,9 @@ CLASS_DECL_AURA int32_t fflush_dup(_FILE *s);
 
 
 #ifdef WINDOWS
-CLASS_DECL_AURA _FILE *_wfopen_dup(const wchar_t *path, const wchar_t *attrs);
-CLASS_DECL_AURA int32_t fwprintf_dup(_FILE *fp, const wchar_t *s, ...);
-CLASS_DECL_AURA wchar_t *fgetws_dup(wchar_t *str, int32_t n, _FILE *s);
+CLASS_DECL_AURA _FILE *_wfopen_dup(const char16_t *path, const char16_t *attrs);
+CLASS_DECL_AURA int32_t fwprintf_dup(_FILE *fp, const char16_t *s, ...);
+CLASS_DECL_AURA char16_t *fgetws_dup(char16_t *str, int32_t n, _FILE *s);
 CLASS_DECL_AURA wint_t fgetwc_dup(_FILE *s);
 CLASS_DECL_AURA wint_t ungetwc_dup(wint_t w, _FILE *s);
 #endif

@@ -498,7 +498,7 @@ namespace user
       //void AddMessageHandling(::message::dispatch * pinterface);
       void _001ShowTopText(bool bShow = true);
       void _001LayoutTopText();
-      void _001SetTopText(const wchar_t * lpcwsz);
+      void _001SetTopText(const char16_t * lpcwsz);
       bool DIDDXHeaderLayout(bool bSave);
       virtual void DIOnSectionSet();
 

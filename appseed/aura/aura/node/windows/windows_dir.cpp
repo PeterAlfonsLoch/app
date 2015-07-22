@@ -1031,8 +1031,8 @@ namespace windows
    ::file::path dir::default_os_user_path_prefix(::aura::application * papp)
    {
       UNREFERENCED_PARAMETER(papp);
-      wchar_t buf[MAX_PATH];
-      ULONG ulSize = sizeof(buf) / sizeof(wchar_t);
+      char16_t buf[MAX_PATH];
+      ULONG ulSize = sizeof(buf) / sizeof(char16_t);
       if(!::GetUserNameExW(NameCanonical, buf, &ulSize))
       {
          if(!::GetUserNameW(buf, &ulSize))

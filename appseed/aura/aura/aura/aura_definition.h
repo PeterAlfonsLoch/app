@@ -371,7 +371,7 @@ that we consider it dangerous to even throw an exception
    Same comes true for those definitions of constants which use the above macros
 */
 //#define MAKEINTRESOURCEA(i) ((char *)((uint_ptr)((WORD)(i))))
-//#define MAKEINTRESOURCEW(i) ((wchar_t *)((uint_ptr)((WORD)(i))))
+//#define MAKEINTRESOURCEW(i) ((char16_t *)((uint_ptr)((WORD)(i))))
 //#ifdef UNICODE
 //#define MAKEINTRESOURCE  MAKEINTRESOURCEW
 //#else

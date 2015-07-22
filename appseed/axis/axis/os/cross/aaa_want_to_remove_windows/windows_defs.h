@@ -418,9 +418,9 @@ typedef int32_t INT;
 //
 
 #ifndef _MAC
-//typedef wchar_t WCHAR;    // wc,   16-bit UNICODE character
+//typedef char16_t WCHAR;    // wc,   16-bit UNICODE character
 #else
-// some Macintosh compilers don't define wchar_t in a convenient location, or define it as a char
+// some Macintosh compilers don't define char16_t in a convenient location, or define it as a char
 typedef unsigned short WCHAR;    // wc,   16-bit UNICODE character
 #endif
 
@@ -608,7 +608,7 @@ typedef const CHAR *LPCSTR;
 typedef CHAR TCHAR;
 #endif
 typedef const TCHAR *LPCTSTR;
-typedef wchar_t WCHAR;
+typedef char16_t WCHAR;
 typedef const WCHAR *LPCWSTR;
 */
 typedef WCHAR OLECHAR;

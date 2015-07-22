@@ -2796,28 +2796,28 @@ namespace str
    }
 
 
-   void begin(wstring & wstr, const wchar_t * lpcszPrefix)
+   void begin(wstring & wstr, const char16_t * lpcszPrefix)
    {
 
       strsize iPrefixLen = wcslen_dup(lpcszPrefix);
-      if(natural(wstr.storage_size()) >= ((wstr.get_length() + iPrefixLen + 1) * sizeof(wchar_t)))
+      if(natural(wstr.storage_size()) >= ((wstr.get_length() + iPrefixLen + 1) * sizeof(char16_t)))
       {
-         memmove(&wstr[iPrefixLen], (const wchar_t *) wstr, (wstr.get_length() + 1) * sizeof(wchar_t));
+         memmove(&wstr[iPrefixLen], (const char16_t *) wstr, (wstr.get_length() + 1) * sizeof(char16_t));
          memcpy_dup(wstr, lpcszPrefix, iPrefixLen);
       }
       else
       {
          wstring wstrNew;
-         wstrNew.alloc((wstr.get_length() + iPrefixLen + 1) * sizeof(wchar_t));
-         memcpy_dup(&wstrNew[iPrefixLen], (const wchar_t *) wstr, (wstr.get_length() + 1) * sizeof(wchar_t));
-         memcpy_dup(wstrNew, lpcszPrefix, iPrefixLen * sizeof(wchar_t));
+         wstrNew.alloc((wstr.get_length() + iPrefixLen + 1) * sizeof(char16_t));
+         memcpy_dup(&wstrNew[iPrefixLen], (const char16_t *) wstr, (wstr.get_length() + 1) * sizeof(char16_t));
+         memcpy_dup(wstrNew, lpcszPrefix, iPrefixLen * sizeof(char16_t));
          wstr.attach(wstrNew.detach());
       }
 
    }
 
 
-   bool begins(const wchar_t * lpcsz, const wchar_t * lpcszPrefix)
+   bool begins(const char16_t * lpcsz, const char16_t * lpcszPrefix)
    {
       if(lpcsz == NULL || *lpcsz == L'\0')
       {
@@ -2849,12 +2849,12 @@ namespace str
       return false;
    }
 
-   bool begins_with(const wchar_t * lpcsz, const wchar_t * lpcszPrefix)
+   bool begins_with(const char16_t * lpcsz, const char16_t * lpcszPrefix)
    {
       return begins(lpcsz, lpcszPrefix);
    }
 
-   bool begins(const wstring & str, const wchar_t * lpcszPrefix)
+   bool begins(const wstring & str, const char16_t * lpcszPrefix)
    {
       if(str.is_empty())
       {
@@ -2867,7 +2867,7 @@ namespace str
             return false;
          }
       }
-      const wchar_t * lpcsz = str;
+      const char16_t * lpcsz = str;
       while(*lpcsz == *lpcszPrefix)
       {
          lpcsz++;
@@ -2887,7 +2887,7 @@ namespace str
       return false;
    }
 
-   bool begins_with(const wstring & str, const wchar_t * lpcszPrefix)
+   bool begins_with(const wstring & str, const char16_t * lpcszPrefix)
    {
       return begins(str, lpcszPrefix);
    }
@@ -2895,7 +2895,7 @@ namespace str
 
 
    // case insensitive, ignore white space - only in searched string
-   bool begins_ci(const wchar_t * lpcsz, const wchar_t * lpcszPrefix)
+   bool begins_ci(const char16_t * lpcsz, const char16_t * lpcszPrefix)
    {
       if(lpcsz == NULL || *lpcsz == L'\0')
       {
@@ -2927,13 +2927,13 @@ namespace str
       return false;
    }
 
-   bool begins_ci(const wstring & wstr, const wchar_t * lpcszPrefix)
+   bool begins_ci(const wstring & wstr, const char16_t * lpcszPrefix)
    {
-      return begins_ci_iws((const wchar_t *) wstr, lpcszPrefix);
+      return begins_ci_iws((const char16_t *) wstr, lpcszPrefix);
    }
 
    // case insensitive, ignore white space - only in searched string
-   bool begins_ci_iws(const wchar_t * lpcsz, const wchar_t * lpcszPrefix)
+   bool begins_ci_iws(const char16_t * lpcsz, const char16_t * lpcszPrefix)
    {
       if(lpcsz == NULL || *lpcsz == L'\0')
       {
@@ -2969,9 +2969,9 @@ namespace str
       return false;
    }
 
-   bool begins_ci_iws(const wstring & wstr, const wchar_t * lpcszPrefix)
+   bool begins_ci_iws(const wstring & wstr, const char16_t * lpcszPrefix)
    {
-      return begins_ci_iws((const wchar_t *) wstr, lpcszPrefix);
+      return begins_ci_iws((const char16_t *) wstr, lpcszPrefix);
    }
 
 

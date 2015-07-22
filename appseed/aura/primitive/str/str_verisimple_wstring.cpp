@@ -2,7 +2,7 @@
 
 const int verisimple_wstring::npos = -1;
 
-wchar_t * wstring_data::get_nil()
+char16_t * wstring_data::get_nil()
 {
 
    static wstring_data s_nil;
@@ -45,7 +45,7 @@ verisimple_wstring::verisimple_wstring(const byte * psz,manager * pmanager)
 }
 
 
-verisimple_wstring::verisimple_wstring(const wchar_t * pwsz,strsize iCount,manager * pmanager)
+verisimple_wstring::verisimple_wstring(const char16_t * pwsz,strsize iCount,manager * pmanager)
 {
 
    UNREFERENCED_PARAMETER(pmanager);
@@ -60,16 +60,16 @@ verisimple_wstring::verisimple_wstring(const wchar_t * pwsz,strsize iCount,manag
    {
       while(iCount < 0)
          iCount = wcslen(pwsz) + iCount + 1;
-      m_pwsz = (wchar_t *) wstring_data::alloc(iCount + 1);
+      m_pwsz = (char16_t *) wstring_data::alloc(iCount + 1);
       get_data()->m_iLength = iCount;
-      memcpy_dup(m_pwsz, pwsz, get_data()->m_iLength * sizeof(wchar_t));
+      memcpy_dup(m_pwsz, pwsz, get_data()->m_iLength * sizeof(char16_t));
       m_pwsz[get_data()->m_iLength] = L'\0';
 
    }
 }
 
 
-verisimple_wstring::verisimple_wstring(const wchar_t * pwsz,manager * pmanager)
+verisimple_wstring::verisimple_wstring(const char16_t * pwsz,manager * pmanager)
 {
 
    UNREFERENCED_PARAMETER(pmanager);
@@ -92,7 +92,7 @@ verisimple_wstring::verisimple_wstring(const wchar_t * pwsz,manager * pmanager)
 }
 
 
-void verisimple_wstring::assign(const wchar_t * pwsz)
+void verisimple_wstring::assign(const char16_t * pwsz)
 {
 
    if(m_pwsz != NULL && m_pwsz != wstring_data::get_nil())
@@ -106,11 +106,11 @@ void verisimple_wstring::assign(const wchar_t * pwsz)
 
    ::count iLen         = wcslen_dup(pwsz);
 
-   m_pwsz = (wchar_t *)wstring_data::alloc(iLen + 1);
+   m_pwsz = (char16_t *)wstring_data::alloc(iLen + 1);
 
    get_data()->m_iLength = iLen;
 
-   memcpy_dup(m_pwsz,pwsz,get_data()->m_iLength * sizeof(wchar_t));
+   memcpy_dup(m_pwsz,pwsz,get_data()->m_iLength * sizeof(char16_t));
 
    m_pwsz[get_data()->m_iLength] = L'\0';
 
@@ -136,7 +136,7 @@ verisimple_wstring::~verisimple_wstring()
 
 }
 
-wchar_t * verisimple_wstring::alloc(::count iCount)
+char16_t * verisimple_wstring::alloc(::count iCount)
 {
 
    if(m_pwsz != NULL && iCount < get_data()->m_iAllocation)
@@ -144,7 +144,7 @@ wchar_t * verisimple_wstring::alloc(::count iCount)
 
    wstring_data::free(m_pwsz);
 
-   m_pwsz            = (wchar_t *) wstring_data::alloc(iCount);
+   m_pwsz            = (char16_t *) wstring_data::alloc(iCount);
 
    return m_pwsz;
 
@@ -160,14 +160,14 @@ verisimple_wstring & verisimple_wstring::operator = (const verisimple_wstring & 
       if(m_pwsz != NULL && get_data()->m_iAllocation >= (wstr.length() + 1))
       {
 
-         memcpy_dup(m_pwsz, wstr.m_pwsz, (wstr.length() + 1) * sizeof(wchar_t));
+         memcpy_dup(m_pwsz, wstr.m_pwsz, (wstr.length() + 1) * sizeof(char16_t));
 
       }
       else
       {
 
          alloc(wstr.storage_size());
-         memcpy_dup(m_pwsz, wstr.m_pwsz, storage_size() * sizeof(wchar_t));
+         memcpy_dup(m_pwsz, wstr.m_pwsz, storage_size() * sizeof(char16_t));
 
       }
 
@@ -180,7 +180,7 @@ verisimple_wstring & verisimple_wstring::operator = (const verisimple_wstring & 
 
 }
 
-verisimple_wstring & verisimple_wstring::operator = (const wchar_t * pwsz)
+verisimple_wstring & verisimple_wstring::operator = (const char16_t * pwsz)
 {
 
    if(m_pwsz != pwsz)
@@ -191,7 +191,7 @@ verisimple_wstring & verisimple_wstring::operator = (const wchar_t * pwsz)
       if(storage_size() >= (iLen + 1))
       {
 
-         memcpy_dup(m_pwsz, pwsz, (iLen + 1) * sizeof(wchar_t));
+         memcpy_dup(m_pwsz, pwsz, (iLen + 1) * sizeof(char16_t));
 
 
       }
@@ -199,7 +199,7 @@ verisimple_wstring & verisimple_wstring::operator = (const wchar_t * pwsz)
       {
 
          alloc(iLen + 1);
-         memcpy_dup(m_pwsz, pwsz, storage_size() * sizeof(wchar_t));
+         memcpy_dup(m_pwsz, pwsz, storage_size() * sizeof(char16_t));
       }
 
       set_length(iLen);
@@ -263,12 +263,12 @@ verisimple_wstring operator + (const verisimple_wstring & wstr1, const verisimpl
 }
 
 
-verisimple_wstring operator + (const verisimple_wstring & wstr, const wchar_t * wpsz)
+verisimple_wstring operator + (const verisimple_wstring & wstr, const char16_t * wpsz)
 {
    return wstr + verisimple_wstring(wpsz);
 }
 
-verisimple_wstring operator + (const wchar_t * wpsz, const verisimple_wstring & wstr)
+verisimple_wstring operator + (const char16_t * wpsz, const verisimple_wstring & wstr)
 {
    return verisimple_wstring(wpsz) + wstr;
 }
@@ -331,7 +331,7 @@ verisimple_wstring verisimple_wstring::substr(::index iStart, ::count count)
 
 
 
-verisimple_wstring & verisimple_wstring::replace(::index iStart,::count c,const wchar_t * psz)
+verisimple_wstring & verisimple_wstring::replace(::index iStart,::count c,const char16_t * psz)
 {
    if(c < 0)
    {
@@ -348,7 +348,7 @@ verisimple_wstring & verisimple_wstring::replace(::index iStart,::count c,const 
 
 
 // find the first occurrence of character 'ch', starting at strsize 'iStart'
-strsize verisimple_wstring::find(wchar_t ch,strsize iStart,strsize nCount) const RELEASENOTHROW
+strsize verisimple_wstring::find(char16_t ch,strsize iStart,strsize nCount) const RELEASENOTHROW
 {
    // iStart is in XCHARs
    ASSERT(iStart >= 0);
@@ -369,7 +369,7 @@ strsize verisimple_wstring::find(wchar_t ch,strsize iStart,strsize nCount) const
    if(nCount < 0)
       return npos;
 
-   const wchar_t * psz = m_pwsz + iStart;
+   const char16_t * psz = m_pwsz + iStart;
    for(int32_t i = 0; i < nCount; i++)
    {
       if(psz[i] == ch)
@@ -380,7 +380,7 @@ strsize verisimple_wstring::find(wchar_t ch,strsize iStart,strsize nCount) const
    return npos;
 }
 // find the first occurrence of string 'pszSub', starting at strsize 'iStart'
-strsize verisimple_wstring::find(const wchar_t * pszSub,strsize iStart,strsize nCount,const wchar_t ** pszTail) const RELEASENOTHROW
+strsize verisimple_wstring::find(const char16_t * pszSub,strsize iStart,strsize nCount,const char16_t ** pszTail) const RELEASENOTHROW
 {
    // iStart is in XCHARs
    ASSERT(iStart >= 0);
@@ -408,7 +408,7 @@ strsize verisimple_wstring::find(const wchar_t * pszSub,strsize iStart,strsize n
    if(nCount < 0)
       return npos;
 
-   const wchar_t * psz = m_pwsz + iStart;
+   const char16_t * psz = m_pwsz + iStart;
    for(int32_t i = 0; i <= nCount; i++)
    {
       bool bFound = true;

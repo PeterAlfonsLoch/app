@@ -22,7 +22,7 @@ void SetCommandLineA(const char * psz)
 
 }
 
-void SetCommandLineW(const wchar_t * pwsz)
+void SetCommandLineW(const char16_t * pwsz)
 {
 
    get_command_line_string()     = pwsz;

@@ -49,7 +49,7 @@ namespace windows
       virtual ~registry();
       /*bool RegQueryValue(
          HKEY hKey,       // handle to key to query
-         const wchar_t * lpSubKey,
+         const char16_t * lpSubKey,
                       // name of subkey to query
          CWStr &str);*/
 

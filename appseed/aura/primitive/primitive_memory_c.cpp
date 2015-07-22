@@ -135,11 +135,11 @@ int32_t memcmp_dup(const void * sz1, const void * sz2, size_t iLen)
 
 
 
-wchar_t * wmemcpy_dup(wchar_t * dst, const wchar_t * src, size_t iSize)
+char16_t * wmemcpy_dup(char16_t * dst, const char16_t * src, size_t iSize)
 {
    if(dst == src)
       return dst;
-   memcpy(dst, src, iSize * sizeof(wchar_t));
+   memcpy(dst, src, iSize * sizeof(char16_t));
    /*while(iSize > 0)
    {
       *dst = *src;

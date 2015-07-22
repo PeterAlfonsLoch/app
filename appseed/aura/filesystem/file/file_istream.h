@@ -49,7 +49,7 @@ namespace file
       inline istream & operator >> (bool            & b               ) { read(b              ); return *this; }
       inline istream & operator >> (char            & ch              ) { read(ch             ); return *this; }
       inline istream & operator >> (uchar           & uch             ) { read(uch            ); return *this; }
-      inline istream & operator >> (wchar_t         & wch             ) { read(wch            ); return *this; }
+      inline istream & operator >> (char16_t         & wch             ) { read(wch            ); return *this; }
       inline istream & operator >> (int16_t         & sh              ) { read(sh             ); return *this; }
       inline istream & operator >> (uint16_t        & ui              ) { read(ui             ); return *this; }
       inline istream & operator >> (int32_t         & i               ) { read(i              ); return *this; }
@@ -80,7 +80,7 @@ namespace file
       virtual void read (bool & b);
       virtual void read (char & ch);
       virtual void read (uchar & uch);
-      virtual void read (wchar_t & wch);
+      virtual void read (char16_t & wch);
       virtual void read (int16_t & sh);
       virtual void read (uint16_t & uint16_t);
       virtual void read (int32_t & i);

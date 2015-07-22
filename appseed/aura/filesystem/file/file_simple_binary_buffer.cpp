@@ -205,13 +205,13 @@ namespace file
    throw_exception(get_app(), ::file::exception::diskFull, _doserrno, m_strFileName);
    }*/
 
-   /*wchar_t * simple_binary_buffer::read_string(wchar_t * lpsz, UINT nMax)
+   /*char16_t * simple_binary_buffer::read_string(char16_t * lpsz, UINT nMax)
    {
    ASSERT(lpsz != NULL);
    ASSERT(__is_valid_address(lpsz, nMax));
    ASSERT(m_pfile != NULL);
 
-   wchar_t * lpszResult = fgetws(lpsz, nMax, m_pfile);
+   char16_t * lpszResult = fgetws(lpsz, nMax, m_pfile);
    if (lpszResult == NULL && !feof(m_pfile))
    {
    clearerr(m_pfile);

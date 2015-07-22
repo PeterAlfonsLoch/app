@@ -48,7 +48,7 @@ namespace ios
       for(int32_t i = 0; i < iCount; i++)
       {
          UINT uiLen = ::DragQueryFileW(hdrop, i, NULL, 0);
-         wchar_t * lpwsz = (wchar_t *) malloc(sizeof(wchar_t) * (uiLen + 1));
+         char16_t * lpwsz = (char16_t *) malloc(sizeof(char16_t) * (uiLen + 1));
          ::DragQueryFileW(hdrop, i, lpwsz, uiLen + 1);
          stra.add(::str::international::unicode_to_utf8(lpwsz));
          free(lpwsz);
@@ -83,7 +83,7 @@ namespace ios
       ASSERT(m_p->IsWindow());
       LPTSTR lptstrCopy = (char *) pDropFiles;
       lptstrCopy += pDropFiles->pFiles;
-      wchar_t * lpwstrCopy = (wchar_t *) lptstrCopy;
+      char16_t * lpwstrCopy = (char16_t *) lptstrCopy;
       for(int32_t i = 0; i < stra.get_size(); i++)
       {
          ASSERT(m_p->IsWindow());
@@ -173,7 +173,7 @@ namespace ios
 
       count iCount = ::str::international::utf8_to_unicode_count(str) + 1;
       HGLOBAL hglbCopy = ::GlobalAlloc(GMEM_MOVEABLE, iCount * sizeof(WCHAR));
-      wchar_t * lpwstrCopy  = (wchar_t *) ::GlobalLock(hglbCopy);
+      char16_t * lpwstrCopy  = (char16_t *) ::GlobalLock(hglbCopy);
       ::str::international::utf8_to_unicode(lpwstrCopy, iCount, str);
       ::GlobalUnlock(hglbCopy);
 
@@ -202,7 +202,7 @@ namespace ios
          if(!m_p->OpenClipboard())
             return "";
          HGLOBAL hglb = GetClipboardData(CF_UNICODETEXT);
-         string str(::str::international::unicode_to_utf8((const wchar_t *) GlobalLock(hglb)));
+         string str(::str::international::unicode_to_utf8((const char16_t *) GlobalLock(hglb)));
          GlobalUnlock(hglb);
          VERIFY(::CloseClipboard());
          return str;

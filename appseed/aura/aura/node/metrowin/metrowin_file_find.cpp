@@ -72,8 +72,8 @@ namespace metrowin
       }
       wstring wstrRoot;
 
-      wchar_t * pstrRoot = wstrRoot.alloc(_MAX_PATH);
-      const wchar_t * pstr = shell::_fullpath(pstrRoot, wstrName, _MAX_PATH);
+      char16_t * pstrRoot = wstrRoot.alloc(_MAX_PATH);
+      const char16_t * pstr = shell::_fullpath(pstrRoot, wstrName, _MAX_PATH);
 
       // passed name isn't a valid path but was found by the API
       ASSERT(pstr != NULL);
@@ -87,8 +87,8 @@ namespace metrowin
       else
       {
          // find the last forward or backward whack
-         wchar_t * pstrBack  = wcsrchr(pstrRoot, '\\');
-         wchar_t * pstrFront = wcsrchr(pstrRoot, '/');
+         char16_t * pstrBack  = wcsrchr(pstrRoot, '\\');
+         char16_t * pstrFront = wcsrchr(pstrRoot, '/');
 
          if (pstrFront != NULL || pstrBack != NULL)
          {

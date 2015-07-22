@@ -26,7 +26,7 @@ namespace url
 //      }
 //
 //      url(const char * psz): url((const string &)psz){};
-//      url(const wchar_t * psz): url((const string &)psz){};
+//      url(const char16_t * psz): url((const string &)psz){};
 //      url(const wstring & wstr): url((const string &)wstr){};
 //
 //      url(const url & url):
@@ -123,8 +123,8 @@ namespace url
 //      url & operator = (const wstring & wstr) { return operator = (string(wstr)); }
 //      url & operator += (const wstring & wstr) { return operator += (string(wstr)); }
 //
-//      url & operator = (const wchar_t * psz) { return operator = (wstring(psz)); }
-//      url & operator += (const wchar_t * psz) { return operator += (wstring(psz)); }
+//      url & operator = (const char16_t * psz) { return operator = (wstring(psz)); }
+//      url & operator += (const char16_t * psz) { return operator += (wstring(psz)); }
 //
 //      url operator * ()
 //      {

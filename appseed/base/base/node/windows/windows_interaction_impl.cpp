@@ -3980,7 +3980,7 @@ namespace windows
 
       DWORD_PTR lresult = 0;
 
-      ::SendMessageTimeoutW(get_handle(),WM_SETTEXT,0,(LPARAM)(const wchar_t *)wstring(m_pui->m_strWindowText),SMTO_ABORTIFHUNG,84,&lresult);
+      ::SendMessageTimeoutW(get_handle(),WM_SETTEXT,0,(LPARAM)(const char16_t *)wstring(m_pui->m_strWindowText),SMTO_ABORTIFHUNG,84,&lresult);
 
    }
 

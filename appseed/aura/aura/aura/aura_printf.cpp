@@ -22,7 +22,7 @@ int32_t printf_dup(const char *format, ...)
 	return ret;
 }
 
-int32_t wprintf_dup(const wchar_t *format, ...)
+int32_t wprintf_dup(const char16_t *format, ...)
 {
 	va_list args;
 	va_start(args, format);
@@ -60,7 +60,7 @@ int32_t vprintf_dup(const char *format, va_list args)
 }
 
 
-int32_t vwprintf_dup(const wchar_t *format, va_list args)
+int32_t vwprintf_dup(const char16_t *format, va_list args)
 {
 
 #if defined(LINUX) || defined(APPLEOS) || defined(ANDROID) || defined(SOLARIS)
@@ -72,7 +72,7 @@ int32_t vwprintf_dup(const wchar_t *format, va_list args)
     return vwprintf(format, args);
 
 #else
-	wchar_t buf[1024];
+	char16_t buf[1024];
 	int32_t ret = wvsprintfW(buf, format, args);
 
 	char ansibuf[1024];

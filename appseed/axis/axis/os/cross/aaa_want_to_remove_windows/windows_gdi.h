@@ -223,7 +223,7 @@ struct tagLOGFONTW
    BYTE      lfClipPrecision;
    BYTE      lfQuality;
    BYTE      lfPitchAndFamily;
-   wchar_t   lfFaceName[LF_FACESIZE];
+   char16_t   lfFaceName[LF_FACESIZE];
 };
 
 

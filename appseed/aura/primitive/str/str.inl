@@ -378,7 +378,7 @@ inline void std_string_assign(stdstring < simple_string > & t,const char * psz)
 }
 
 template < >
-inline void std_string_assign(stdstring < simple_string > & t,const wchar_t * psz)
+inline void std_string_assign(stdstring < simple_string > & t,const char16_t * psz)
 {
    t = ::str::international::unicode_to_utf8(psz);
 }
@@ -415,7 +415,7 @@ inline void std_string_assign(stdstring < verisimple_wstring > & t,const char * 
 
 
 template < >
-inline void std_string_assign(stdstring < verisimple_wstring > & t,const wchar_t * psz)
+inline void std_string_assign(stdstring < verisimple_wstring > & t,const char16_t * psz)
 {
 
    t.assign(psz);
@@ -461,7 +461,7 @@ inline void std_string_assign(stdstring < ::primitive::memory > & t,const char *
 }
 
 template < >
-inline void std_string_assign(stdstring < ::primitive::memory > & t,const wchar_t * psz)
+inline void std_string_assign(stdstring < ::primitive::memory > & t,const char16_t * psz)
 {
    t.assign(::str::international::unicode_to_utf8(psz));
 }
@@ -631,7 +631,7 @@ inline id::operator string() const
 
 
 template < >
-inline string & to_string(string & str, wchar_t * pwsz)
+inline string & to_string(string & str, char16_t * pwsz)
 {
 
    ::str::international::unicode_to_utf8(str,pwsz);

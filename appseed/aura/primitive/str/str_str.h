@@ -69,12 +69,12 @@ namespace str
    inline bool begins_with(const string & str, const string & strPrefix);
 
 
-   void CLASS_DECL_AURA begin(wstring & wstr, const wchar_t * lpcszPrefix);
+   void CLASS_DECL_AURA begin(wstring & wstr, const char16_t * lpcszPrefix);
 
-   bool CLASS_DECL_AURA begins(const wchar_t * psz, const wchar_t * lpcszPrefix);
-   bool CLASS_DECL_AURA begins(const wstring & str, const wchar_t * lpcszPrefix);
-   bool CLASS_DECL_AURA begins_with(const wchar_t * psz, const wchar_t * lpcszPrefix);
-   bool CLASS_DECL_AURA begins_with(const wstring & str, const wchar_t * lpcszPrefix);
+   bool CLASS_DECL_AURA begins(const char16_t * psz, const char16_t * lpcszPrefix);
+   bool CLASS_DECL_AURA begins(const wstring & str, const char16_t * lpcszPrefix);
+   bool CLASS_DECL_AURA begins_with(const char16_t * psz, const char16_t * lpcszPrefix);
+   bool CLASS_DECL_AURA begins_with(const wstring & str, const char16_t * lpcszPrefix);
 
 
    bool CLASS_DECL_AURA begins_ci(const char * lpcsz, const char * lpcszPrefix);
@@ -83,11 +83,11 @@ namespace str
    bool CLASS_DECL_AURA begins_ci_iws(const string & str, const char * lpcszPrefix);
 
 
-   bool CLASS_DECL_AURA begins_ci(const wchar_t * lpcsz, const wchar_t * lpcszPrefix);
-   bool CLASS_DECL_AURA begins_ci(const wstring & wstr, const wchar_t * lpcszPrefix);
+   bool CLASS_DECL_AURA begins_ci(const char16_t * lpcsz, const char16_t * lpcszPrefix);
+   bool CLASS_DECL_AURA begins_ci(const wstring & wstr, const char16_t * lpcszPrefix);
    // case insensitive, ignore white space - only in searched string
-   bool CLASS_DECL_AURA begins_ci_iws(const wchar_t * psz, const wchar_t * lpcszPrefix);
-   bool CLASS_DECL_AURA begins_ci_iws(const wstring & str, const wchar_t * lpcszPrefix);
+   bool CLASS_DECL_AURA begins_ci_iws(const char16_t * psz, const char16_t * lpcszPrefix);
+   bool CLASS_DECL_AURA begins_ci_iws(const wstring & str, const char16_t * lpcszPrefix);
 
 
 

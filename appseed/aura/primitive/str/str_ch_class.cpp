@@ -119,18 +119,18 @@ namespace str
                break;
             case 's':
                cc->add_category("Z");
-               cc->add_char(string(wchar_t(0x09), 1));
-               cc->add_char(string(wchar_t(0x0A), 1));
-               cc->add_char(string(wchar_t(0x0C), 1));
-               cc->add_char(string(wchar_t(0x0D), 1));
+               cc->add_char(string(char16_t(0x09), 1));
+               cc->add_char(string(char16_t(0x0A), 1));
+               cc->add_char(string(char16_t(0x0C), 1));
+               cc->add_char(string(char16_t(0x0D), 1));
                break;
             case 'S':
                cc_temp.fill();
                cc_temp.clear_category("Z");
-               cc_temp.clear_char(string(wchar_t(0x09), 1));
-               cc_temp.clear_char(string(wchar_t(0x0A), 1));
-               cc_temp.clear_char(string(wchar_t(0x0C), 1));
-               cc_temp.clear_char(string(wchar_t(0x0D), 1));
+               cc_temp.clear_char(string(char16_t(0x09), 1));
+               cc_temp.clear_char(string(char16_t(0x0A), 1));
+               cc_temp.clear_char(string(char16_t(0x0C), 1));
+               cc_temp.clear_char(string(char16_t(0x0D), 1));
                cc->add_class(cc_temp);
                break;
             default:

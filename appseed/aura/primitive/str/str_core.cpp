@@ -7,7 +7,7 @@ CLASS_DECL_AURA int64_t strtoi(const char * psz)
    return ::str::to_int64(psz);
 }
 
-CLASS_DECL_AURA int64_t strtoi(const wchar_t * psz)
+CLASS_DECL_AURA int64_t strtoi(const char16_t * psz)
 {
    return wtoi64_dup(psz);
 }
@@ -16,7 +16,7 @@ CLASS_DECL_AURA int64_t strtoi(const wchar_t * psz)
 
 // string support for template collections
 
-template<> UINT HashKey<const wchar_t *> (const wchar_t * key)
+template<> UINT HashKey<const char16_t *> (const char16_t * key)
 {
    ENSURE_ARG(__is_valid_string(key));
    UINT nHash = 0;

@@ -73,7 +73,7 @@ namespace windows
    string application::get_version()
    {
 
-      wchar_t lpszModuleFilePath[MAX_PATH + 1];
+      char16_t lpszModuleFilePath[MAX_PATH + 1];
       GetModuleFileNameW(NULL, lpszModuleFilePath, MAX_PATH + 1);
 
       DWORD dw;

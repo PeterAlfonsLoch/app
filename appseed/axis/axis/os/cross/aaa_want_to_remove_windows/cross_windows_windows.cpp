@@ -20,7 +20,7 @@ static inline void FreeForBSTR(void *pv)
 }
 
 
-static UINT MyStringLen(const wchar_t *s)
+static UINT MyStringLen(const char16_t *s)
 {
   UINT i;
   for (i = 0; s[i] != '\0'; i++);

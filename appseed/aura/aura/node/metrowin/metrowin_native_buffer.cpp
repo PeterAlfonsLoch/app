@@ -564,7 +564,7 @@ namespace metrowin
 
 
    /*
-   UINT CLASS_DECL_AURA vfxGetnative_bufferTitle(const wchar_t * lpszPathName, wchar_t * lpszTitle, UINT nMax)
+   UINT CLASS_DECL_AURA vfxGetnative_bufferTitle(const char16_t * lpszPathName, char16_t * lpszTitle, UINT nMax)
    {
    ASSERT(lpszTitle == NULL ||
    __is_valid_address(lpszTitle, _MAX_FNAME));
@@ -572,7 +572,7 @@ namespace metrowin
 
    // use a temporary to avoid bugs in ::Getnative_bufferTitle when lpszTitle is NULL
    WCHAR szTemp[_MAX_PATH];
-   wchar_t * lpszTemp = lpszTitle;
+   char16_t * lpszTemp = lpszTitle;
    if (lpszTemp == NULL)
    {
    lpszTemp = szTemp;
@@ -587,7 +587,7 @@ namespace metrowin
    }
 
 
-   bool vfxComparePath(const wchar_t * lpszPath1, const wchar_t * lpszPath2)
+   bool vfxComparePath(const char16_t * lpszPath1, const char16_t * lpszPath2)
    {
    // use case insensitive compare as a starter
    if (lstrcmpiW(lpszPath1, lpszPath2) != 0)
@@ -621,7 +621,7 @@ namespace metrowin
 
    // for every C3_FULLWIDTH character, make sure it has same C1 value
    int i = 0;
-   for (const wchar_t * lpsz = lpszPath1; *lpsz != 0; lpsz = _wcsinc(lpsz))
+   for (const char16_t * lpsz = lpszPath1; *lpsz != 0; lpsz = _wcsinc(lpsz))
    {
    // check for C3_FULLWIDTH characters only
    if (aCharType13[i] & C3_FULLWIDTH)

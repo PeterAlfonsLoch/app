@@ -716,7 +716,7 @@ namespace n7z
                const string &name = db.Files[i].Name;
                for (int32_t t = 0; t <= name.get_length(); t++)
                {
-                  wchar_t ca = name[t];
+                  char16_t ca = name[t];
                   WriteByte((byte)ca);
                   WriteByte((byte)(ca >> 8));
                }

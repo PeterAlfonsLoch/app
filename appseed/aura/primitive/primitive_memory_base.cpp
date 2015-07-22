@@ -448,8 +448,8 @@ namespace primitive
       {
          ::primitive::memory mem;
          mem = *this;
-         allocate(utf8_len_len((const wchar_t *)&get_data()[2],get_size() - 2));
-         utf16_to_utf8_len((char *) get_data(),(const wchar_t *)&mem.get_data()[2],(int32_t)(mem.get_size() - 2));
+         allocate(utf8_len_len((const char16_t *)&get_data()[2],get_size() - 2));
+         utf16_to_utf8_len((char *) get_data(),(const char16_t *)&mem.get_data()[2],(int32_t)(mem.get_size() - 2));
          len = get_size();
          return (char *) get_data();
       }
@@ -460,8 +460,8 @@ namespace primitive
       {
          ::primitive::memory mem;
          mem = *this;
-         allocate(utf8_len_len((const wchar_t *)&get_data()[3],get_size() - 3));
-         utf16_to_utf8_len((char *)get_data(),(const wchar_t *)&mem.get_data()[3],(int32_t)(mem.get_size() - 3));
+         allocate(utf8_len_len((const char16_t *)&get_data()[3],get_size() - 3));
+         utf16_to_utf8_len((char *)get_data(),(const char16_t *)&mem.get_data()[3],(int32_t)(mem.get_size() - 3));
          len = get_size();
          return (char *)get_data();
       }

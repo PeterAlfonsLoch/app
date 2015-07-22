@@ -225,7 +225,7 @@ namespace str
       }
 
 
-      inline bool is_space_char(wchar_t wch)
+      inline bool is_space_char(char16_t wch)
       {
          return ((((1 << CHAR_CATEGORY_Zs) |
                    (1 << CHAR_CATEGORY_Zl)  |
@@ -236,35 +236,35 @@ namespace str
       inline bool is_space_char(int64_t ca)
       {
          if(!is_legal_uni_index(ca)) return false;
-         return is_space_char((wchar_t) ca);
+         return is_space_char((char16_t) ca);
       }
 
-      inline wchar_t to_lower_case(wchar_t wch)
+      inline char16_t to_lower_case(char16_t wch)
       {
         uint32_t c1 = CHAR_PROP(wch);
-        if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Ll) return wchar_t(wch);
-        if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lt) return wchar_t(wch+1);
-        return wchar_t(wch - (c1>>16));
+        if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Ll) return char16_t(wch);
+        if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lt) return char16_t(wch+1);
+        return char16_t(wch - (c1>>16));
       }
 
       inline int64_t to_lower_case(int64_t ca)
       {
          if(!is_legal_uni_index(ca)) return false;
-         return (int64_t) to_lower_case((wchar_t) ca);
+         return (int64_t) to_lower_case((char16_t) ca);
       }
 
-      inline wchar_t to_upper_case(wchar_t wch)
+      inline char16_t to_upper_case(char16_t wch)
       {
         uint32_t c1 = CHAR_PROP(wch);
-        if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lu) return wchar_t(wch);
-        if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lt) return wchar_t(wch-1);
-        return wchar_t(wch - (c1>>16));
+        if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lu) return char16_t(wch);
+        if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lt) return char16_t(wch-1);
+        return char16_t(wch - (c1>>16));
       }
 
       inline int64_t to_upper_case(int64_t ca)
       {
          if(!is_legal_uni_index(ca)) return false;
-         return (int64_t) to_upper_case((wchar_t) ca);
+         return (int64_t) to_upper_case((char16_t) ca);
       }
 
       inline bool to_numeric_value(const char * pszUtf8Char, float *f)

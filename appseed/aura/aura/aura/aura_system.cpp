@@ -1315,7 +1315,7 @@ namespace aura
 //
 //#ifdef WINDOWSEX
 //
-//      wchar_t lpszModuleFilePath[MAX_PATH + 1];
+//      char16_t lpszModuleFilePath[MAX_PATH + 1];
 //
 //      if(GetModuleFileNameW(::GetModuleHandleA("core.dll"),lpszModuleFilePath,MAX_PATH + 1))
 //      {

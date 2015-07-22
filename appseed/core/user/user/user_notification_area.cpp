@@ -100,9 +100,9 @@ namespace user
 
          info.sProcessPath = GetFilenameFromPid(dwProcessId);
 
-         wchar_t TipChar;
-         wchar_t sTip[1024] = {0};
-         wchar_t* pTip = (wchar_t*)tb.iString;
+         char16_t TipChar;
+         char16_t sTip[1024] = {0};
+         char16_t* pTip = (char16_t*)tb.iString;
 
          if(!(tb.fsState&TBSTATE_HIDDEN))
          {
@@ -114,7 +114,7 @@ namespace user
                   wcscpy(sTip,L"[ToolTip was either too long or not set]");
                   break;
                }
-               data.ReadData<wchar_t>(&TipChar, (LPCVOID)pTip++);
+               data.ReadData<char16_t>(&TipChar, (LPCVOID)pTip++);
             }while(sTip[x++] = TipChar);
          }
          else

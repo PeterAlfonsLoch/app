@@ -47,7 +47,7 @@ namespace file
 
 
    typedef dynamic_buffer < char >     char_dynamic_buffer;
-   typedef dynamic_buffer < wchar_t > wchar_dynamic_buffer;
+   typedef dynamic_buffer < char16_t > wchar_dynamic_buffer;
    typedef dynamic_buffer < byte >     byte_dynamic_buffer;
 
 

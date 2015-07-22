@@ -18,7 +18,7 @@
 
 
 
-int MessageBoxW(oswindow window, const wchar_t * pszMessageParam, const wchar_t * pszHeaderParam, UINT uType )
+int MessageBoxW(oswindow window, const char16_t * pszMessageParam, const char16_t * pszHeaderParam, UINT uType )
 {
    
    string pszMessage(pszMessageParam);

@@ -64,11 +64,11 @@ int_bool file_exists_dup(const char * path1)
 
    wcscat(wstr, L"\\\\?\\");
 
-   utf8_to_utf16((wchar_t *) wstr + wcslen(wstr), path1);
+   utf8_to_utf16((char16_t *) wstr + wcslen(wstr), path1);
 
    wstr.set_length(wcslen(wstr));
 
-   wchar_t * pwsz = (wchar_t *) wstr;
+   char16_t * pwsz = (char16_t *) wstr;
    while(*pwsz != L'\0')
    {
       if(*pwsz == '/')
@@ -168,10 +168,10 @@ int_bool file_is_equal_path_dup(const char * psz1, const char * psz2)
    const int32_t iBufSize = MAX_PATH * 8;
    wstring pwsz1 = ::str::international::utf8_to_unicode(psz1);
    wstring pwsz2 = ::str::international::utf8_to_unicode(psz2);
-   wchar_t * pwszFile1;
-   wchar_t * pwszFile2;
-   wchar_t * pwszPath1 = new wchar_t[iBufSize];
-   wchar_t * pwszPath2 = new wchar_t[iBufSize];
+   char16_t * pwszFile1;
+   char16_t * pwszFile2;
+   char16_t * pwszPath1 = new char16_t[iBufSize];
+   char16_t * pwszPath2 = new char16_t[iBufSize];
    int32_t iCmp = -1;
    if(GetFullPathNameW(pwsz1, iBufSize, pwszPath1, &pwszFile1))
    {
@@ -295,7 +295,7 @@ ret1:
 ::file::path dir::sys_temp()
 {
 
-   wchar_t  wsz[MAX_PATH * 4];
+   char16_t  wsz[MAX_PATH * 4];
 
    wsz[GetTempPathW(sizeof(wsz) / sizeof(wsz[0]), wsz)] = L'\0';
 
@@ -1169,10 +1169,10 @@ int_bool file_is_equal_path(const char * psz1,const char * psz2)
    const int32_t iBufSize = MAX_PATH * 8;
    wstring pwsz1 = ::str::international::utf8_to_unicode(psz1);
    wstring pwsz2 = ::str::international::utf8_to_unicode(psz2);
-   wchar_t * pwszFile1;
-   wchar_t * pwszFile2;
-   wchar_t * pwszPath1 = new wchar_t[iBufSize];
-   wchar_t * pwszPath2 = new wchar_t[iBufSize];
+   char16_t * pwszFile1;
+   char16_t * pwszFile2;
+   char16_t * pwszPath1 = new char16_t[iBufSize];
+   char16_t * pwszPath2 = new char16_t[iBufSize];
    int32_t iCmp = -1;
    if(GetFullPathNameW(pwsz1,iBufSize,pwszPath1,&pwszFile1))
    {

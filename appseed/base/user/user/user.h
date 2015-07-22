@@ -263,8 +263,8 @@ CLASS_DECL_BASE void ::core::BSTR2String(string* pStr, BSTR bstr);
 
 #if !defined(_UNICODE)
 CLASS_DECL_BASE BSTR::core::BSTR2ABSTR(BSTR bstrW);
-CLASS_DECL_BASE wchar_t * ::core::TaskStringA2W(const char * lpa);
-CLASS_DECL_BASE char * ::core::TaskStringW2A(const wchar_t * lpw);
+CLASS_DECL_BASE char16_t * ::core::TaskStringA2W(const char * lpa);
+CLASS_DECL_BASE char * ::core::TaskStringW2A(const char16_t * lpw);
 #endif
 
 #endif // __AFXPRIV2_H__DISP__

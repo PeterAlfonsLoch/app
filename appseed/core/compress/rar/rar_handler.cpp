@@ -35,7 +35,7 @@ using namespace NTime;*/
 namespace rar
 {
 
-   static const wchar_t *kHostOS[] =
+   static const char16_t *kHostOS[] =
    {
       L"MS DOS",
       L"OS/2",
@@ -47,7 +47,7 @@ namespace rar
 
    static const int32_t kNumHostOSes = sizeof(kHostOS) / sizeof(kHostOS[0]);
 
-   static const wchar_t *kUnknownOS = L"Unknown";
+   static const char16_t *kUnknownOS = L"Unknown";
 
    static const CUInt32PCharPair k_Flags[] =
    {
@@ -322,7 +322,7 @@ namespace rar
 
             for (i = numLetters - 1; i >= 0; i--)
             {
-               wchar_t ca = _changedPart[i];
+               char16_t ca = _changedPart[i];
                if (ca == '9')
                {
                   ca = '0';
@@ -713,7 +713,7 @@ namespace rar
                   buffer.SetCapacity(sizeInBytes);
                   for (int32_t i = 0; i < unicodePassword.get_length(); i++)
                   {
-                     wchar_t ca = unicodePassword[i];
+                     char16_t ca = unicodePassword[i];
                      ((byte *)buffer)[i * 2] = (byte)ca;
                      ((byte *)buffer)[i * 2 + 1] = (byte)(ca >> 8);
                   }

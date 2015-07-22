@@ -388,9 +388,9 @@ typedef long            LONG,       *PLONG;
 typedef int32_t             LONG,       *PLONG;
 #endif
 
-/* Some systems might have wchar_t, but we really need 16 bit characters */
+/* Some systems might have char16_t, but we really need 16 bit characters */
 #ifdef WINE_UNICODE_NATIVE
-typedef wchar_t         WCHAR,      *PWCHAR;
+typedef char16_t         WCHAR,      *PWCHAR;
 #else
 typedef unsigned short  WCHAR,      *PWCHAR;
 #endif

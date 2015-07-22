@@ -100,7 +100,7 @@ namespace database
       virtual bool data_set(class id, int32_t i, update_hint * puh = NULL);
       virtual bool data_set(class id, int64_t i, update_hint * puh = NULL);
       virtual bool data_set(class id, const char * lpsz, update_hint * puh = NULL);
-      virtual bool data_set(class id, const wchar_t * lpsz, update_hint * puh = NULL);
+      virtual bool data_set(class id, const char16_t * lpsz, update_hint * puh = NULL);
       virtual bool data_set(class id, ::file::stream_buffer & obj, update_hint * puh = NULL);
       virtual bool data_set(class id, ::file::serializable & obj, update_hint * puh = NULL);
       virtual bool data_set(class id, ::file::istream & obj, update_hint * puh = NULL);

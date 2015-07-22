@@ -51,7 +51,7 @@ CLASS_DECL_AURA void * memand_dup(void * p, const void * p1, const void * p2, si
 CLASS_DECL_AURA void * memcpy_dup(void * dst, const void * src, size_t iSize);
 CLASS_DECL_AURA void * memmov_dup(void * dst, const void * src, size_t iSize);
 CLASS_DECL_AURA int32_t  memcmp_dup(const void * sz1, const void * sz2, size_t iSize);
-CLASS_DECL_AURA wchar_t * wmemcpy_dup(wchar_t * dst, const wchar_t * src, size_t iSize);
+CLASS_DECL_AURA char16_t * wmemcpy_dup(char16_t * dst, const char16_t * src, size_t iSize);
 
 CLASS_DECL_AURA void * mem_reverse(void * p, size_t iSize);
 

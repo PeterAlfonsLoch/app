@@ -643,8 +643,8 @@ const string &pattern = global_pattern;
       if (!singleLine && (((const char *)pattern)[toParse] == 0x0A || ((const char *)pattern)[toParse] == 0x0B ||
                           ((const char *)pattern)[toParse] == 0x0C || ((const char *)pattern)[toParse] == 0x0D ||
                           ((const byte *)(const char *)pattern)[toParse] == 0x85 ||
-                          ((const wchar_t *)(const char *)pattern)[toParse] == 0x2028 ||
-                          ((const wchar_t *)(const char *)pattern)[toParse] == 0x2029)) return false;
+                          ((const char16_t *)(const char *)pattern)[toParse] == 0x2028 ||
+                          ((const char16_t *)(const char *)pattern)[toParse] == 0x2029)) return false;
       toParse++;
       return true;
     case ReSoL:
@@ -653,8 +653,8 @@ const string &pattern = global_pattern;
         if (toParse && (((const char *)pattern)[toParse-1] == 0x0A || ((const char *)pattern)[toParse-1] == 0x0B ||
                         ((const char *)pattern)[toParse-1] == 0x0C || ((const char *)pattern)[toParse-1] == 0x0D ||
                         ((const byte *)(const char *)pattern)[toParse-1] == 0x85 ||
-                        ((const wchar_t *)(const char *)pattern)[toParse-1] == 0x2028 ||
-                        ((const wchar_t *)(const char *)pattern)[toParse-1] == 0x2029)) ok = true;
+                        ((const char16_t *)(const char *)pattern)[toParse-1] == 0x2028 ||
+                        ((const char16_t *)(const char *)pattern)[toParse-1] == 0x2029)) ok = true;
         return (toParse == 0 || ok);
       };
       return (toParse == 0);
@@ -665,8 +665,8 @@ const string &pattern = global_pattern;
                          (((const char *)pattern)[toParse-1] == 0x0A || ((const char *)pattern)[toParse-1] == 0x0B ||
                           ((const char *)pattern)[toParse-1] == 0x0C || ((const char *)pattern)[toParse-1] == 0x0D ||
                           ((const byte *)(const char *)pattern)[toParse-1] == 0x85 ||
-                          ((const wchar_t *)(const char *)pattern)[toParse-1] == 0x2028 ||
-                          ((const wchar_t *)(const char *)pattern)[toParse-1] == 0x2029)) ok = true;
+                          ((const char16_t *)(const char *)pattern)[toParse-1] == 0x2028 ||
+                          ((const char16_t *)(const char *)pattern)[toParse-1] == 0x2029)) ok = true;
         return (toParse == end || ok);
       };
       return (end == toParse);

@@ -109,7 +109,7 @@ _AFX_INLINE CArchive& CArchive::operator<<(short w)
 _AFX_INLINE CArchive& CArchive::operator<<(char ch)
    { return CArchive::operator<<((BYTE)ch); }
 #ifdef _NATIVE_WCHAR_T_DEFINED
-_AFX_INLINE CArchive& CArchive::operator<<(wchar_t ch)
+_AFX_INLINE CArchive& CArchive::operator<<(char16_t ch)
    { return CArchive::operator<<((WORD)ch); }
 #endif
 _AFX_INLINE CArchive& CArchive::operator<<(bool b)
@@ -181,7 +181,7 @@ _AFX_INLINE CArchive& CArchive::operator>>(short& w)
 _AFX_INLINE CArchive& CArchive::operator>>(char& ch)
    { return CArchive::operator>>((BYTE&)ch); }
 #ifdef _NATIVE_WCHAR_T_DEFINED
-_AFX_INLINE CArchive& CArchive::operator>>(wchar_t& ch)
+_AFX_INLINE CArchive& CArchive::operator>>(char16_t& ch)
    { return CArchive::operator>>((WORD&)ch); }
 #endif
 _AFX_INLINE CArchive& CArchive::operator>>(bool& b)

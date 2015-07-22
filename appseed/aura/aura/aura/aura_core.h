@@ -8,7 +8,7 @@
 // return TRUE no matter how long the string is. The primitive::memory
 // used by the string can be read-only.
 
-//bool __is_valid_string(const wchar_t * psz, int32_t nLength /* = -1 */)
+//bool __is_valid_string(const char16_t * psz, int32_t nLength /* = -1 */)
 //{
 //   return __is_valid_string(psz, nLength);
 //}
@@ -39,7 +39,7 @@ typedef int32_t HRes;
 
 /////////////////////////////////////////////////////////////////////////////
 // Verify that a NULL-terminated string points to valid primitive::memory
-inline bool __is_valid_string(const wchar_t * psz, size_t nMaxLength = INT_MAX)
+inline bool __is_valid_string(const char16_t * psz, size_t nMaxLength = INT_MAX)
 {
 #ifdef WINDOWS
    (nMaxLength);
@@ -229,9 +229,9 @@ return ::CharNextA(p);
 }
 
 template <>
-inline wchar_t* gen_CharNext<wchar_t>(const wchar_t* p) throw()
+inline char16_t* gen_CharNext<char16_t>(const char16_t* p) throw()
 {
-return const_cast< wchar_t* >( p+1 );
+return const_cast< char16_t* >( p+1 );
 }
 template<typename CharType>
 inline const CharType* gen_strchrT(const CharType* p, CharType ch) throw()
@@ -271,7 +271,7 @@ return retval;
 #pragma warning(push)
 #pragma warning(disable : 4793)
 template<>
-inline int32_t gen_printfT(const wchar_t* pszFormat,... ) throw()
+inline int32_t gen_printfT(const char16_t* pszFormat,... ) throw()
 {
 int32_t retval=0;
 va_list argList;

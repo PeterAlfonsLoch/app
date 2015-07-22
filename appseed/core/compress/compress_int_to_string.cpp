@@ -32,7 +32,7 @@ string uint64_to_string(uint64_t value)
   int32_t pos = 0;
   do
   {
-    sz[pos++] = (wchar_t)('0' + (int32_t)(value % 10));
+    sz[pos++] = (char16_t)('0' + (int32_t)(value % 10));
     value /= 10;
   }
   while (value != 0);

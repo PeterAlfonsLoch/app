@@ -9,8 +9,8 @@ typedef stdstring < verisimple_wstring > wstring;
 
 
 CLASS_DECL_AURA verisimple_wstring operator + (const verisimple_wstring & wstr1, const verisimple_wstring & wstr2);
-CLASS_DECL_AURA verisimple_wstring operator + (const verisimple_wstring & str, const wchar_t * psz);
-CLASS_DECL_AURA verisimple_wstring operator + (const wchar_t * psz, const verisimple_wstring & str);
+CLASS_DECL_AURA verisimple_wstring operator + (const verisimple_wstring & str, const char16_t * psz);
+CLASS_DECL_AURA verisimple_wstring operator + (const char16_t * psz, const verisimple_wstring & str);
 
 
 CLASS_DECL_AURA wstring gen_utf8_to_16(const char * psz);
@@ -25,7 +25,7 @@ protected:
    friend class wtostring;
 
 
-   static wchar_t * get_nil();
+   static char16_t * get_nil();
 
 
 public:
@@ -33,7 +33,7 @@ public:
 
    ::count m_iAllocation; // in chars "with NULL characters"
    ::count m_iLength; // in chars without NULL character
-   wchar_t        m_wchFirst;
+   char16_t        m_wchFirst;
 
 
    // nil constructor
@@ -46,16 +46,16 @@ public:
 
    inline wstring_data * clone() const
    {
-      wstring_data * pdata = (wstring_data *) memory_alloc(((m_iAllocation + 1) * sizeof(wchar_t)) + sizeof(count) + sizeof(count) + sizeof(wchar_t));
-      memcpy(pdata, this, ((m_iAllocation + 1) * sizeof(wchar_t)) + sizeof(count) + sizeof(count) + sizeof(wchar_t));
+      wstring_data * pdata = (wstring_data *) memory_alloc(((m_iAllocation + 1) * sizeof(char16_t)) + sizeof(count) + sizeof(count) + sizeof(char16_t));
+      memcpy(pdata, this, ((m_iAllocation + 1) * sizeof(char16_t)) + sizeof(count) + sizeof(count) + sizeof(char16_t));
       return pdata;
    }
 
 
-   inline static wchar_t * alloc(::count iCount)
+   inline static char16_t * alloc(::count iCount)
    {
 
-      wstring_data * pdata = (wstring_data *) memory_alloc(((iCount + 1) * sizeof(wchar_t)) + sizeof(count) + sizeof(count) + sizeof(wchar_t));
+      wstring_data * pdata = (wstring_data *) memory_alloc(((iCount + 1) * sizeof(char16_t)) + sizeof(count) + sizeof(count) + sizeof(char16_t));
       pdata->m_iAllocation = iCount;
       pdata->m_iLength = 0;
       pdata->m_wchFirst = L'\0';
@@ -63,7 +63,7 @@ public:
 
    }
 
-   inline static void free(wchar_t * pwsz)
+   inline static void free(char16_t * pwsz)
    {
       if(pwsz == NULL)
          return;
@@ -75,8 +75,8 @@ public:
    }
 
 
-   inline operator const wchar_t * () const { return &m_wchFirst; }
-   inline operator wchar_t * () { return &m_wchFirst; }
+   inline operator const char16_t * () const { return &m_wchFirst; }
+   inline operator char16_t * () { return &m_wchFirst; }
 
 
 };
@@ -91,7 +91,7 @@ public:
 
    static const int npos;
    typedef wstring_manager manager;
-   typedef wchar_t value_type;
+   typedef char16_t value_type;
    typedef wstring_data data_type;
 
 
@@ -103,7 +103,7 @@ protected:
 
    // it is and should be really a pointer to the m_pwsz of a wstring_data alloced in heap
    // better always use wstring_data::alloc and wstring_data::free
-   wchar_t * m_pwsz;
+   char16_t * m_pwsz;
 
    inline wstring_data * get_data()
    {
@@ -123,12 +123,12 @@ public:
    verisimple_wstring(const verisimple_wstring & strSrc,manager * pstringmanager = NULL);
    verisimple_wstring(const char * pszSrc,manager * pstringmanager = NULL);
    verisimple_wstring(const byte * pszSrc,manager * pstringmanager = NULL);
-   verisimple_wstring(const wchar_t * pchSrc, manager * pstringmanager = NULL);
-   verisimple_wstring(const wchar_t * pchSrc, strsize nLength,manager * pstringmanager = NULL);
+   verisimple_wstring(const char16_t * pchSrc, manager * pstringmanager = NULL);
+   verisimple_wstring(const char16_t * pchSrc, strsize nLength,manager * pstringmanager = NULL);
    inline verisimple_wstring(const wstring_data * pdata,manager * pstringmanager = NULL)
    {
       UNREFERENCED_PARAMETER(pstringmanager);
-      m_pwsz = (wchar_t *) &pdata->m_wchFirst;
+      m_pwsz = (char16_t *) &pdata->m_wchFirst;
    }
    ~verisimple_wstring();
 
@@ -153,40 +153,40 @@ public:
    void reserve(strsize n) { UNREFERENCED_PARAMETER(n); } // wstring does not prereserve
 
    verisimple_wstring & operator = (const verisimple_wstring & wstr);
-   verisimple_wstring & operator = (const wchar_t * pwsz);
+   verisimple_wstring & operator = (const char16_t * pwsz);
    verisimple_wstring & operator = (const char * psz);
 
 
-   inline operator const wchar_t * () const { return get_data()->m_iAllocation <= 0 ? NULL : m_pwsz; }
-   inline operator const wchar_t * () { return get_data()->m_iAllocation <= 0 ? NULL : m_pwsz; }
+   inline operator const char16_t * () const { return get_data()->m_iAllocation <= 0 ? NULL : m_pwsz; }
+   inline operator const char16_t * () { return get_data()->m_iAllocation <= 0 ? NULL : m_pwsz; }
 
-   inline operator wchar_t * () const { return get_data()->m_iAllocation <= 0 ? NULL : m_pwsz; }
-   inline operator wchar_t * () { return get_data()->m_iAllocation <= 0 ? NULL : m_pwsz; }
+   inline operator char16_t * () const { return get_data()->m_iAllocation <= 0 ? NULL : m_pwsz; }
+   inline operator char16_t * () { return get_data()->m_iAllocation <= 0 ? NULL : m_pwsz; }
 
 
-   inline const wchar_t * c_str() const { return this->operator const wchar_t *();  }
+   inline const char16_t * c_str() const { return this->operator const char16_t *();  }
 
 #if defined(METROWIN) && defined(__cplusplus_winrt)
-   inline operator String ^ () const { return ref new String(operator const wchar_t *()); }
-   inline operator String ^ () { return ref new String(operator const wchar_t *()); }
+   inline operator String ^ () const { return ref new String(operator const char16_t *()); }
+   inline operator String ^ () { return ref new String(operator const char16_t *()); }
 #endif
 
-   inline verisimple_wstring & operator += (wchar_t wch) { append(wch); return *this; }
-   inline verisimple_wstring & operator += (const wchar_t * pwsz) { append(pwsz); return *this; }
+   inline verisimple_wstring & operator += (char16_t wch) { append(wch); return *this; }
+   inline verisimple_wstring & operator += (const char16_t * pwsz) { append(pwsz); return *this; }
 
 
 
-   inline wchar_t operator [] (index iIndex) const
+   inline char16_t operator [] (index iIndex) const
    {
       return m_pwsz[iIndex];
    }
 
-   inline wchar_t & operator [] (index iIndex)
+   inline char16_t & operator [] (index iIndex)
    {
       return m_pwsz[iIndex];
    }
 
-   wchar_t * alloc(::count iCount);
+   char16_t * alloc(::count iCount);
 
    inline ::count get_length() const
    {
@@ -223,7 +223,7 @@ public:
       return get_data()->m_iAllocation;
    }
 
-   inline bool operator == (const wchar_t * pwsz) const
+   inline bool operator == (const char16_t * pwsz) const
    {
       return Compare(pwsz) == 0;
    }
@@ -233,7 +233,7 @@ public:
       return Compare(wstr) == 0;
    }
 
-   inline int32_t Compare(const wchar_t * psz) const
+   inline int32_t Compare(const char16_t * psz) const
    {
       return wcscmp_dup(m_pwsz, psz);
    }
@@ -243,7 +243,7 @@ public:
       return wcscmp_dup(m_pwsz, str);
    }
 
-   inline int32_t CompareNoCase(const wchar_t * psz) const
+   inline int32_t CompareNoCase(const char16_t * psz) const
    {
       return wcsicmp_dup(m_pwsz, psz);
    }
@@ -287,10 +287,10 @@ public:
       return L"";
    }
 
-   inline verisimple_wstring & append(wchar_t wch)
+   inline verisimple_wstring & append(char16_t wch)
    {
 
-      wchar_t wsz[2];
+      char16_t wsz[2];
 
       wsz[0] = wch;
 
@@ -300,7 +300,7 @@ public:
 
    }
 
-   inline verisimple_wstring & append(wchar_t wch, ::count c)
+   inline verisimple_wstring & append(char16_t wch, ::count c)
    {
 
       while(c > 0)
@@ -316,20 +316,20 @@ public:
 
    }
 
-   inline verisimple_wstring & append(const wchar_t * pwsz) { assign(*this + pwsz); return *this; }
+   inline verisimple_wstring & append(const char16_t * pwsz) { assign(*this + pwsz); return *this; }
 
    verisimple_wstring substr(::index iStart, ::count c = -1);
-   verisimple_wstring & replace(::index iStart,::count c, const wchar_t * psz);
+   verisimple_wstring & replace(::index iStart,::count c, const char16_t * psz);
 
 
    verisimple_wstring & operator = (const string & str);
 
-   void assign(const wchar_t * pwsz);
+   void assign(const char16_t * pwsz);
    void assign(const char * psz);
 
 
-   strsize find(wchar_t ch,strsize start = 0,strsize count = -1) const RELEASENOTHROW;
-   strsize find(const wchar_t * pszSub,strsize start = 0,strsize count = -1,const wchar_t ** pszTail = NULL) const RELEASENOTHROW;
+   strsize find(char16_t ch,strsize start = 0,strsize count = -1) const RELEASENOTHROW;
+   strsize find(const char16_t * pszSub,strsize start = 0,strsize count = -1,const char16_t ** pszTail = NULL) const RELEASENOTHROW;
 
    bool empty() const { return is_empty();  }
 

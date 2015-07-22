@@ -294,7 +294,7 @@ WINBOOL
 (WINAPI
 *PGetModuleHandleExW)(
     __in        DWORD    dwFlags,
-    __in_opt    const wchar_t * lpModuleName,
+    __in_opt    const char16_t * lpModuleName,
     __out HMODULE* phModule
     );
 
@@ -401,7 +401,7 @@ RunNonElevated(
 
    if ( !pGetModuleHandleExW(
             GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
-            (const wchar_t *)VistaEelevator_HookProc_MsgRet,
+            (const char16_t *)VistaEelevator_HookProc_MsgRet,
             &hModule ) )
    {
       ASSERT_HERE;

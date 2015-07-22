@@ -61,11 +61,11 @@ public:
 
    index add(const char * psz);
 
-   index add(const wchar_t * pwsz);
+   index add(const char16_t * pwsz);
 
    index add(char ch);
 
-   index add(wchar_t wch);
+   index add(char16_t wch);
 
    void add(const var & var);
 
@@ -991,7 +991,7 @@ index string_array < Type, RawType >::add(const char * psz)
 
 
 template < typename Type, typename RawType >
-index string_array < Type, RawType >::add(const wchar_t * pwsz)
+index string_array < Type, RawType >::add(const char16_t * pwsz)
 {
    index nIndex = this->m_nSize;
    set_at_grow(nIndex,(Type)::str::international::unicode_to_utf8(pwsz));
@@ -1016,13 +1016,13 @@ index string_array < Type, RawType >::add(char ch)
 
 
 template < typename Type, typename RawType >
-index string_array < Type, RawType >::add(wchar_t wch)
+index string_array < Type, RawType >::add(char16_t wch)
 {
    if(wch == L'\0')
       return add("");
    else
    {
-      wchar_t wstr[16];
+      char16_t wstr[16];
       wstr[0] = wch;
       wstr[1] = L'\0';
       return add(wstr);
@@ -1235,7 +1235,7 @@ void SortEx(ARRAYCOMPARE * pacompare,
 
 template <class ARRAYCOMPARE,class ARRAYRELATION>
 void SortEx(ARRAYCOMPARE * pacompare,
-   int32_t fCompare(const wchar_t *,const wchar_t *),
+   int32_t fCompare(const char16_t *,const char16_t *),
    ARRAYRELATION * parelation)
 {
    index_array stackLowerBound;

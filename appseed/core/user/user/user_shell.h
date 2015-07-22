@@ -98,20 +98,20 @@ namespace filemanager
          virtual ~ImageSet();
 
 #ifdef WINDOWSEX
-         bool GetIcon(oswindow oswindow, const char * lpcsz, const wchar_t * lpcszExtra, EIcon eicon, HICON * phicon16, HICON * phicon48);
-         bool GetIcon(oswindow oswindow, IShellFolder * lpsf, LPITEMIDLIST lpiidlAbsolute, LPITEMIDLIST lpiidlChild, const wchar_t * lpcszExtra, EIcon eicon, HICON * phicon16, HICON * phicon48);
-         bool GetIcon(oswindow oswindow, LPITEMIDLIST lpiidlAbsolute, const wchar_t * lpcszExtra, EIcon eicon, HICON * phicon16, HICON * phicon48);
+         bool GetIcon(oswindow oswindow, const char * lpcsz, const char16_t * lpcszExtra, EIcon eicon, HICON * phicon16, HICON * phicon48);
+         bool GetIcon(oswindow oswindow, IShellFolder * lpsf, LPITEMIDLIST lpiidlAbsolute, LPITEMIDLIST lpiidlChild, const char16_t * lpcszExtra, EIcon eicon, HICON * phicon16, HICON * phicon48);
+         bool GetIcon(oswindow oswindow, LPITEMIDLIST lpiidlAbsolute, const char16_t * lpcszExtra, EIcon eicon, HICON * phicon16, HICON * phicon48);
 #endif
 
 #ifdef WINDOWSEX
-         int32_t GetImage(oswindow oswindow, IShellFolder * lpsf, const char * pszPath, LPITEMIDLIST lpiidlChild, const wchar_t * lpcszExtra, EIcon eicon);
+         int32_t GetImage(oswindow oswindow, IShellFolder * lpsf, const char * pszPath, LPITEMIDLIST lpiidlChild, const char16_t * lpcszExtra, EIcon eicon);
 #endif
          int32_t GetImage(oswindow oswindow, const char * lpcsz,EFileAttribute eattribute,EIcon eicon) ;
-         int32_t GetImage(oswindow oswindow, const char * lpcsz, const wchar_t * lpcszExtra, EIcon eicon, bool bFolder);
+         int32_t GetImage(oswindow oswindow, const char * lpcsz, const char16_t * lpcszExtra, EIcon eicon, bool bFolder);
          int32_t GetImageByExtension(oswindow oswindow,const ::file::path & lpcsz,EIcon eicon,bool bFolder);
 #ifdef WINDOWSEX
-         int32_t GetImage(oswindow oswindow, IShellFolder * lpsf, LPITEMIDLIST lpiidlAbsolute, LPITEMIDLIST lpiidlChild, const wchar_t * lpcszExtra, EIcon eicon);
-         int32_t GetImage(oswindow oswindow, LPITEMIDLIST lpiidlAbsolute, const wchar_t * lpcszExtra, EIcon eicon);
+         int32_t GetImage(oswindow oswindow, IShellFolder * lpsf, LPITEMIDLIST lpiidlAbsolute, LPITEMIDLIST lpiidlChild, const char16_t * lpcszExtra, EIcon eicon);
+         int32_t GetImage(oswindow oswindow, LPITEMIDLIST lpiidlAbsolute, const char16_t * lpcszExtra, EIcon eicon);
          int32_t GetFooImage(oswindow oswindow,EIcon eicon, bool bFolder, const string & strExtension);
 #endif
 
@@ -142,7 +142,7 @@ namespace filemanager
       HICON CLASS_DECL_CORE CalcIcon(LPITEMIDLIST lpiidl, const char * lpcszExtra, int32_t cx, int32_t cy);
       bool CLASS_DECL_CORE _017HasSubFolder(::aura::application * papp, LPITEMIDLIST lpiidl, const char * lpcszExtra);
 #endif
-      EFolder CLASS_DECL_CORE GetFolderType(::aura::application * papp, const wchar_t * lpcszPath);
+      EFolder CLASS_DECL_CORE GetFolderType(::aura::application * papp, const char16_t * lpcszPath);
       EFolder CLASS_DECL_CORE GetFolderType(::aura::application * papp, const char * lpcszPath);
 //      void CLASS_DECL_CORE GetChildren(stringa & stra, const char * lpcszPath);
 #ifdef WINDOWSEX

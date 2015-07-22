@@ -30,7 +30,7 @@ public:
   str_buffer &append(string string);
 
   /** Appends to this string buffer @ca string */
-  str_buffer &append(wchar_t ca);
+  str_buffer &append(char16_t ca);
 
   /** Appends to this string buffer @ca string.
       C++ operator+ form.

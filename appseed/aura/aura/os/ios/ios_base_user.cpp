@@ -325,7 +325,7 @@ int MessageBoxANative(oswindow hwnd, const char * message, const char * header, 
 
 
 
-int MessageBoxW(oswindow hwnd, const wchar_t * message, const wchar_t * header, unsigned int message_type )
+int MessageBoxW(oswindow hwnd, const char16_t * message, const char16_t * header, unsigned int message_type )
 {
    
    string strMessage(message); // string "absorbs" wide strings into utf8

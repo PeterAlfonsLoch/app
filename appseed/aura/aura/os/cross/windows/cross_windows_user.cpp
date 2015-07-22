@@ -259,9 +259,9 @@ MultiByteToWideChar(
 
          wstr.alloc(sOut);
 
-         sOut *= sizeof(wchar_t);
+         sOut *= sizeof(char16_t);
 
-         wchar_t * lpsz = (wchar_t *) (const wchar_t *) wstr;
+         char16_t * lpsz = (char16_t *) (const char16_t *) wstr;
 
          lpWideCharStr = lpsz;
 
@@ -273,15 +273,15 @@ MultiByteToWideChar(
 
          iconv_close(iconvPlease);
 
-         return ((sOutIn - sOut) / sizeof(wchar_t)) + (cbMultiByte < 0 ? 1 : 0);
+         return ((sOutIn - sOut) / sizeof(char16_t)) + (cbMultiByte < 0 ? 1 : 0);
 
       }
       else
       {
 
-         wchar_t * lpsz = (wchar_t *) (const wchar_t *) lpWideCharStr;
+         char16_t * lpsz = (char16_t *) (const char16_t *) lpWideCharStr;
 
-         size_t sOut = cchWideChar * sizeof(wchar_t);
+         size_t sOut = cchWideChar * sizeof(char16_t);
 
          iconv_t iconvPlease = iconv_open("UTF-16LE", iconv_charset_from_windows_code_page(CodePage));
 
@@ -291,7 +291,7 @@ MultiByteToWideChar(
 
          iconv_close(iconvPlease);
 
-         return ((sOutIn - sOut) / sizeof(wchar_t))  + (cbMultiByte < 0 ? 1 : 0);
+         return ((sOutIn - sOut) / sizeof(char16_t))  + (cbMultiByte < 0 ? 1 : 0);
 
       }
 

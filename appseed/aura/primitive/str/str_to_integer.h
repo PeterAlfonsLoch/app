@@ -16,8 +16,8 @@ CLASS_DECL_AURA int32_t natoi_dup(const char * sz, size_t iLen);
 
 
 
-CLASS_DECL_AURA int32_t wtoi_dup(const wchar_t * sz);
-CLASS_DECL_AURA int32_t nwtoi_dup(const wchar_t * sz, int32_t iCount);
+CLASS_DECL_AURA int32_t wtoi_dup(const char16_t * sz);
+CLASS_DECL_AURA int32_t nwtoi_dup(const char16_t * sz, int32_t iCount);
 
 
 
@@ -42,6 +42,6 @@ CLASS_DECL_AURA int64_t natoi64_dup(const char * sz, size_t iLen);
 #endif
 
 
-CLASS_DECL_AURA int64_t wtoi64_dup(const wchar_t * sz, const wchar_t ** pszEnd, int32_t iBase);
-CLASS_DECL_AURA int64_t wtoi64_dup(const wchar_t * sz, const wchar_t ** pszEnd);
-CLASS_DECL_AURA int64_t wtoi64_dup(const wchar_t * sz);
+CLASS_DECL_AURA int64_t wtoi64_dup(const char16_t * sz, const char16_t ** pszEnd, int32_t iBase);
+CLASS_DECL_AURA int64_t wtoi64_dup(const char16_t * sz, const char16_t ** pszEnd);
+CLASS_DECL_AURA int64_t wtoi64_dup(const char16_t * sz);

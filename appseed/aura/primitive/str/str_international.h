@@ -29,16 +29,16 @@ namespace str
       };
 
 
-       bool CLASS_DECL_AURA UnicodeToMultiByte(UINT uiCodePage, char * lpsz, strsize nCount, const wchar_t * lpcsz);
-       bool CLASS_DECL_AURA UnicodeToMultiByte(UINT uiCodePage, char * lpsz, strsize iBuffer, const wchar_t * lpcsz, strsize iCount);
-       strsize   CLASS_DECL_AURA UnicodeToMultiByteCount(UINT uiCodePage, const wchar_t * lpcsz);
-       strsize   CLASS_DECL_AURA UnicodeToMultiByteCount(UINT uiCodePage, const wchar_t * lpcsz, strsize iCount);
-       bool CLASS_DECL_AURA UnicodeToMultiByte(UINT uiCodePage, string & str, const wchar_t * lpcsz);
-       bool CLASS_DECL_AURA UnicodeToMultiByte(UINT uiCodePage, string & str, const wchar_t * lpcsz, strsize iCount);
-       string CLASS_DECL_AURA UnicodeToMultiByte(UINT uiCodePage, const wchar_t * lpcsz);
+       bool CLASS_DECL_AURA UnicodeToMultiByte(UINT uiCodePage, char * lpsz, strsize nCount, const char16_t * lpcsz);
+       bool CLASS_DECL_AURA UnicodeToMultiByte(UINT uiCodePage, char * lpsz, strsize iBuffer, const char16_t * lpcsz, strsize iCount);
+       strsize   CLASS_DECL_AURA UnicodeToMultiByteCount(UINT uiCodePage, const char16_t * lpcsz);
+       strsize   CLASS_DECL_AURA UnicodeToMultiByteCount(UINT uiCodePage, const char16_t * lpcsz, strsize iCount);
+       bool CLASS_DECL_AURA UnicodeToMultiByte(UINT uiCodePage, string & str, const char16_t * lpcsz);
+       bool CLASS_DECL_AURA UnicodeToMultiByte(UINT uiCodePage, string & str, const char16_t * lpcsz, strsize iCount);
+       string CLASS_DECL_AURA UnicodeToMultiByte(UINT uiCodePage, const char16_t * lpcsz);
 
-       bool CLASS_DECL_AURA MultiByteToUnicode(UINT uiCodePage, wchar_t * lpwsz, strsize iBuffer, const char  * lpcsz, strsize iCount);
-       bool CLASS_DECL_AURA MultiByteToUnicode(UINT uiCodePage, wchar_t * lpwsz, strsize nCount, const char * lpcsz);
+       bool CLASS_DECL_AURA MultiByteToUnicode(UINT uiCodePage, char16_t * lpwsz, strsize iBuffer, const char  * lpcsz, strsize iCount);
+       bool CLASS_DECL_AURA MultiByteToUnicode(UINT uiCodePage, char16_t * lpwsz, strsize nCount, const char * lpcsz);
        CLASS_DECL_AURA wstring MultiByteToUnicode(UINT uiCodePage, const char * lpcsz, strsize nCount);
        CLASS_DECL_AURA wstring MultiByteToUnicode(UINT uiCodePage, const string & str);
        strsize  CLASS_DECL_AURA MultiByteToUnicodeCount(UINT uiCodePage, const char * lpcsz);
@@ -66,11 +66,11 @@ namespace str
        //bool CLASS_DECL_AURA OemToUtf8(string & str, const char * lpcsz);
        //bool CLASS_DECL_AURA OemToUtf8(string & str, const char * lpcsz, strsize nCount);
 
-       bool CLASS_DECL_AURA unicode_to_utf8(string & str, const wchar_t * lpcsz);
+       bool CLASS_DECL_AURA unicode_to_utf8(string & str, const char16_t * lpcsz);
        CLASS_DECL_AURA wstring utf8_to_unicode(const string & str);
        CLASS_DECL_AURA wstring utf8_to_unicode(const char * lpcsz, strsize iCount);
-       bool CLASS_DECL_AURA unicode_to_utf8(string & str, const wchar_t * lpcsz, strsize iCount);
-       string CLASS_DECL_AURA unicode_to_utf8(const wchar_t * lpcsz);
+       bool CLASS_DECL_AURA unicode_to_utf8(string & str, const char16_t * lpcsz, strsize iCount);
+       string CLASS_DECL_AURA unicode_to_utf8(const char16_t * lpcsz);
 
 /*       bool CLASS_DECL_AURA AcpToUtf8(string & str, const char * lpcsz);
        bool CLASS_DECL_AURA AcpToUtf8(string & str, const char * lpcsz, strsize iSize);
@@ -78,28 +78,28 @@ namespace str
 
        bool CLASS_DECL_AURA Utf8ToAcp(string & str, const char * lpcsz);
 
-       bool CLASS_DECL_AURA UnicodeToACP(string & str, const wchar_t * lpcsz);
-       string CLASS_DECL_AURA UnicodeToACP(const wchar_t * lpcsz);
-       bool CLASS_DECL_AURA UnicodeToACP(char * lpstrUnicode, strsize nCount, const wchar_t * lpcsz);
+       bool CLASS_DECL_AURA UnicodeToACP(string & str, const char16_t * lpcsz);
+       string CLASS_DECL_AURA UnicodeToACP(const char16_t * lpcsz);
+       bool CLASS_DECL_AURA UnicodeToACP(char * lpstrUnicode, strsize nCount, const char16_t * lpcsz);
        CLASS_DECL_AURA wstring ACPToUnicode(const char * lpcsz);
        CLASS_DECL_AURA wstring ACPToUnicode(const char * lpcsz, strsize iSize);
-       bool CLASS_DECL_AURA ACPToUnicode(wchar_t * lpstrUnicode, strsize nCount, const char * lpcsz);
+       bool CLASS_DECL_AURA ACPToUnicode(char16_t * lpstrUnicode, strsize nCount, const char * lpcsz);
 
-       bool CLASS_DECL_AURA UnicodeToOEM(string & str, const wchar_t * lpcsz);
-       bool CLASS_DECL_AURA UnicodeToOEM(char * lpstrUnicode, strsize nCount, const wchar_t * lpcsz);
+       bool CLASS_DECL_AURA UnicodeToOEM(string & str, const char16_t * lpcsz);
+       bool CLASS_DECL_AURA UnicodeToOEM(char * lpstrUnicode, strsize nCount, const char16_t * lpcsz);
        CLASS_DECL_AURA wstring OEMToUnicode(const char * lpcsz);
-       bool CLASS_DECL_AURA OEMToUnicode(wchar_t * lpstrUnicode, strsize nCount, const char * lpcsz);
+       bool CLASS_DECL_AURA OEMToUnicode(char16_t * lpstrUnicode, strsize nCount, const char * lpcsz);
        */
 
       ///////////////////////////////////////////////////////////////
       // ACP ( GetACP() function) conversion
       ///////////////////////////////////////////////////////////////
 
-      CLASS_DECL_AURA string UnicodeToMultiByte(UINT uiCodePage, const wchar_t * lpcsz);
-      //CLASS_DECL_AURA bool UnicodeToACP(string & str, const wchar_t * lpcsz);
-      //CLASS_DECL_AURA bool UnicodeToACP(char * lpstrUnicode, strsize nCount, const wchar_t * lpcsz);
-      //CLASS_DECL_AURA string UnicodeToACP(const wchar_t * lpcsz);
-      //CLASS_DECL_AURA bool ACPToUnicode(wchar_t * lpstrUnicode, strsize nCount, const char * lpcsz);
+      CLASS_DECL_AURA string UnicodeToMultiByte(UINT uiCodePage, const char16_t * lpcsz);
+      //CLASS_DECL_AURA bool UnicodeToACP(string & str, const char16_t * lpcsz);
+      //CLASS_DECL_AURA bool UnicodeToACP(char * lpstrUnicode, strsize nCount, const char16_t * lpcsz);
+      //CLASS_DECL_AURA string UnicodeToACP(const char16_t * lpcsz);
+      //CLASS_DECL_AURA bool ACPToUnicode(char16_t * lpstrUnicode, strsize nCount, const char * lpcsz);
       //CLASS_DECL_AURA wstring  ACPToUnicode(const char * lpcsz);
       //CLASS_DECL_AURA wstring  ACPToUnicode(const char * lpcsz, strsize iSize);
 
@@ -107,16 +107,16 @@ namespace str
       // OEM ( GetOEM() function) conversion
       ///////////////////////////////////////////////////////////////
 
-      //CLASS_DECL_AURA bool UnicodeToOEM(string & str, const wchar_t * lpcsz);
-      //CLASS_DECL_AURA bool UnicodeToOEM(char * lpstrUnicode, strsize nCount, const wchar_t * lpcsz);
-      //CLASS_DECL_AURA bool OEMToUnicode(wchar_t * lpstrUnicode, strsize nCount, const char * lpcsz);
+      //CLASS_DECL_AURA bool UnicodeToOEM(string & str, const char16_t * lpcsz);
+      //CLASS_DECL_AURA bool UnicodeToOEM(char * lpstrUnicode, strsize nCount, const char16_t * lpcsz);
+      //CLASS_DECL_AURA bool OEMToUnicode(char16_t * lpstrUnicode, strsize nCount, const char * lpcsz);
       //CLASS_DECL_AURA wstring OEMToUnicode(const char * lpcsz);
-      CLASS_DECL_AURA bool unicode_to_utf8(string & str, const wchar_t * lpcsz);
+      CLASS_DECL_AURA bool unicode_to_utf8(string & str, const char16_t * lpcsz);
       CLASS_DECL_AURA strsize utf8_to_unicode_count(const char * lpcsz, strsize count = -1);
       CLASS_DECL_AURA strsize utf8_to_unicode_count(const string & str);
 
       /*
-      CLASS_DECL_AURA string UnicodeToACP(const wchar_t * lpcsz);
+      CLASS_DECL_AURA string UnicodeToACP(const char16_t * lpcsz);
       CLASS_DECL_AURA string ACPToUnicode(const char * lpcsz);
       */
 
@@ -127,8 +127,8 @@ namespace str
       //CLASS_DECL_AURA bool OemToUtf8(string & str, const char * lpcsz);
       //CLASS_DECL_AURA bool OemToUtf8(string & str, const char * lpcsz, strsize nCount);
       CLASS_DECL_AURA wstring utf8_to_unicode(const char * lpcsz, strsize iCount);
-      CLASS_DECL_AURA bool utf8_to_unicode(wchar_t * lpwsz, strsize iBuffer, const char * lpcsz, strsize iCount);
-      CLASS_DECL_AURA bool utf8_to_unicode(wchar_t * lpwsz, strsize iBuffer, const char * lpcsz);
+      CLASS_DECL_AURA bool utf8_to_unicode(char16_t * lpwsz, strsize iBuffer, const char * lpcsz, strsize iCount);
+      CLASS_DECL_AURA bool utf8_to_unicode(char16_t * lpwsz, strsize iBuffer, const char * lpcsz);
       CLASS_DECL_AURA bool utf8_to_multibyte(UINT uiCodePage, string & str, const char * lpcsz);
       CLASS_DECL_AURA bool utf8_to_multibyte(UINT uiCodePage, string & str, const char * lpcsz, strsize nCount);
       CLASS_DECL_AURA bool utf8_to_multibyte(UINT uiCodePage, char * lpsz, strsize nCount, const char * lpcsz);
@@ -142,7 +142,7 @@ namespace str
 } // namespace str
 
 inline wstring u16(const char * psz) { return ::str::international::utf8_to_unicode(psz);  }
-inline string u8(const wchar_t * pwsz) { return ::str::international::unicode_to_utf8(pwsz); }
+inline string u8(const char16_t * pwsz) { return ::str::international::unicode_to_utf8(pwsz); }
 
 
 #define unitext(text) (::str::international::unicode_to_utf8(L##text))

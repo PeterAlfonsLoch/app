@@ -4085,7 +4085,7 @@ namespace draw2d_direct2d
       ASSERT((nFormat & (DT_END_ELLIPSIS | DT_MODIFYSTRING)) != (DT_END_ELLIPSIS | DT_MODIFYSTRING));
       ASSERT((nFormat & (DT_PATH_ELLIPSIS | DT_MODIFYSTRING)) != (DT_PATH_ELLIPSIS | DT_MODIFYSTRING));
       wstring wstr = ::str::international::utf8_to_unicode(string(lpszString, nCount));
-      return ::DrawTextExW(get_handle1(), const_cast<wchar_t *>((const wchar_t *)wstr), (int)wcslen(wstr), lpRect, nFormat, lpDTParams); 
+      return ::DrawTextExW(get_handle1(), const_cast<char16_t *>((const char16_t *)wstr), (int)wcslen(wstr), lpRect, nFormat, lpDTParams); 
    }
 
    int graphics::draw_text_ex(const string & str, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams)
@@ -4095,7 +4095,7 @@ namespace draw2d_direct2d
       ASSERT((nFormat & (DT_END_ELLIPSIS | DT_MODIFYSTRING)) != (DT_END_ELLIPSIS | DT_MODIFYSTRING));
       ASSERT((nFormat & (DT_PATH_ELLIPSIS | DT_MODIFYSTRING)) != (DT_PATH_ELLIPSIS | DT_MODIFYSTRING));
       wstring wstr = ::str::international::utf8_to_unicode(str);
-      return ::DrawTextExW(get_handle1(), const_cast<wchar_t *>((const wchar_t *)wstr), (int)wcslen(wstr), lpRect, nFormat, lpDTParams); 
+      return ::DrawTextExW(get_handle1(), const_cast<char16_t *>((const char16_t *)wstr), (int)wcslen(wstr), lpRect, nFormat, lpDTParams); 
    }
    */
 

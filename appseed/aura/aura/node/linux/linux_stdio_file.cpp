@@ -219,13 +219,13 @@ bool stdio_file::read_string(string & rString)
       vfxThrowFileException(get_app(), ::file::exception::diskFull, errno, m_strFileName);
 }*/
 
-/*wchar_t * stdio_file::read_string(wchar_t * lpsz, UINT nMax)
+/*char16_t * stdio_file::read_string(char16_t * lpsz, UINT nMax)
 {
    ASSERT(lpsz != NULL);
    ASSERT(fx_is_valid_address(lpsz, nMax));
    ASSERT(m_pStream != NULL);
 
-   wchar_t * lpszResult = fgetws(lpsz, nMax, m_pStream);
+   char16_t * lpszResult = fgetws(lpsz, nMax, m_pStream);
    if (lpszResult == NULL && !feof(m_pStream))
    {
       clearerr(m_pStream);

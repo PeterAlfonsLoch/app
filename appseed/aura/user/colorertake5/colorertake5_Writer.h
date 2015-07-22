@@ -19,7 +19,7 @@ namespace colorertake5
      /** Writes @ca num characters of string, starting at @ca from position */
      virtual void write(string string, ::primitive::memory_size from, ::primitive::memory_size num);
      /** Writes single character */
-     virtual void write(wchar_t ca) = 0;
+     virtual void write(char16_t ca) = 0;
    protected:
      writer(){};
    };
