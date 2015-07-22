@@ -193,9 +193,9 @@ namespace aura
 
 
       CLASS_DECL_AURA void __cdecl __trace(const char * pszFormat, ...);
-      CLASS_DECL_AURA void __cdecl __trace(const char16_t * pszFormat, ...);
+      CLASS_DECL_AURA void __cdecl __trace(const unichar * pszFormat, ...);
       CLASS_DECL_AURA void __cdecl __trace(uint_ptr dwCategory, UINT nLevel, const char * pszFormat, ...);
-      CLASS_DECL_AURA void __cdecl __trace(uint_ptr dwCategory, UINT nLevel, const char16_t * pszFormat, ...);
+      CLASS_DECL_AURA void __cdecl __trace(uint_ptr dwCategory, UINT nLevel, const unichar * pszFormat, ...);
 #define TRACENOTIMPL(funcname)  do { TRACE(::core::atlTraceNotImpl, 0, "core: %s not implemented.\n", funcname); return E_NOTIMPL; } while(0)
    } // namespace trace
 

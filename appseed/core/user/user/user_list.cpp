@@ -3899,7 +3899,7 @@ namespace user
       return m_plistheader->DIDDXLayout(bSave);
    }
 
-   void list::_001SetTopText(const char16_t * lpcwsz)
+   void list::_001SetTopText(const unichar * lpcwsz)
    {
       m_strTopText = lpcwsz;
       _001LayoutTopText();

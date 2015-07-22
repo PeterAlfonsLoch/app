@@ -121,7 +121,7 @@ namespace file
 
    }
 
-   void byte_istream::read(char16_t & wch)
+   void byte_istream::read(unichar & wch)
    {
       read_arbitrary(&wch, sizeof(wch));
 

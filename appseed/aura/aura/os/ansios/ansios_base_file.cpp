@@ -413,10 +413,10 @@ int_bool file_is_equal_path(const char * psz1,const char * psz2)
    const int32_t iBufSize = MAX_PATH * 8;
    wstring pwsz1 = ::str::international::utf8_to_unicode(psz1);
    wstring pwsz2 = ::str::international::utf8_to_unicode(psz2);
-//   char16_t * pwszFile1;
-  // char16_t * pwszFile2;
-   char16_t * pwszPath1 = new char16_t[iBufSize];
-   char16_t * pwszPath2 = new char16_t[iBufSize];
+//   unichar * pwszFile1;
+  // unichar * pwszFile2;
+   unichar * pwszPath1 = new unichar[iBufSize];
+   unichar * pwszPath2 = new unichar[iBufSize];
    int32_t iCmp = -1;
 //   if(GetFullPathNameW(pwsz1,iBufSize,pwszPath1,&pwszFile1))
   // {

@@ -66,11 +66,11 @@ int_bool file_exists_dup(const char * path1)
 
    wcscat(wstr,L"\\\\?\\");
 
-   utf8_to_utf16((char16_t *)wstr + wcslen(wstr),path1);
+   utf8_to_utf16((unichar *)wstr + wcslen(wstr),path1);
 
    wstr.set_length(wcslen(wstr));
 
-   char16_t * pwsz = (char16_t *)wstr;
+   unichar * pwsz = (unichar *)wstr;
    while(*pwsz != L'\0')
    {
       if(*pwsz == '/')
@@ -298,10 +298,10 @@ int_bool file_is_equal_path_dup(const char * psz1,const char * psz2)
 //   wstring pwsz1 = ::str::international::utf8_to_unicode(psz1);
 //   wstring pwsz2 = ::str::international::utf8_to_unicode(psz2);
 //   int iCmp = pwsz1.CompareNoCase(pwsz2);
-///*   char16_t * pwszFile1;
-//   char16_t * pwszFile2;
-//   char16_t * pwszPath1 = new char16_t[iBufSize];
-//   char16_t * pwszPath2 = new char16_t[iBufSize];
+///*   unichar * pwszFile1;
+//   unichar * pwszFile2;
+//   unichar * pwszPath1 = new unichar[iBufSize];
+//   unichar * pwszPath2 = new unichar[iBufSize];
 //   int32_t iCmp = -1;
 //   if(GetFullPathNameW(pwsz1,iBufSize,pwszPath1,&pwszFile1))
 //   {
@@ -411,7 +411,7 @@ END_EXTERN_C
 //string get_sys_temp_path()
 //{
 //
-//   char16_t  wsz[MAX_PATH * 4];
+//   unichar  wsz[MAX_PATH * 4];
 //
 //   wsz[GetTempPathW(sizeof(wsz) / sizeof(wsz[0]),wsz)] = L'\0';
 //
@@ -1330,10 +1330,10 @@ int_bool file_delete_dup(const char * lpszFileName)
 //   /*const int32_t iBufSize = MAX_PATH * 8;
 //   wstring pwsz1 = ::str::international::utf8_to_unicode(psz1);
 //   wstring pwsz2 = ::str::international::utf8_to_unicode(psz2);
-//   char16_t * pwszFile1;
-//   char16_t * pwszFile2;
-//   char16_t * pwszPath1 = new char16_t[iBufSize];
-//   char16_t * pwszPath2 = new char16_t[iBufSize];
+//   unichar * pwszFile1;
+//   unichar * pwszFile2;
+//   unichar * pwszPath1 = new unichar[iBufSize];
+//   unichar * pwszPath2 = new unichar[iBufSize];
 //   int32_t iCmp = -1;
 //   if(GetFullPathNameW(pwsz1,iBufSize,pwszPath1,&pwszFile1))
 //   {
@@ -1445,7 +1445,7 @@ _FILE *fopen_dup(const char *path,const char *attrs)
 }
 
 
-_FILE *_wfopen_dup(const char16_t *path,const char16_t *attrs)
+_FILE *_wfopen_dup(const unichar *path,const unichar *attrs)
 {
 
    uint32_t access,disp;
@@ -1714,7 +1714,7 @@ char *fgets_dup(char *str,int32_t n,_FILE *s)
 
 }
 
-char16_t *fgetws_dup(char16_t *str,int32_t n,_FILE *s)
+unichar *fgetws_dup(unichar *str,int32_t n,_FILE *s)
 {
    // Text-mode fgetws converts MBCS->Unicode
    if(((_FILE*)str)->_flag & _FILE_TEXT)
@@ -1735,7 +1735,7 @@ char16_t *fgetws_dup(char16_t *str,int32_t n,_FILE *s)
    int32_t i;
    for(i = 0; i < n - 1; i++)
    {
-      if(!fread_dup(&str[i],1,sizeof(char16_t),s))
+      if(!fread_dup(&str[i],1,sizeof(unichar),s))
          break;
       if(str[i] == L'\r')
       {
@@ -1906,7 +1906,7 @@ DWORD GetFileSize(HANDLE h,LPDWORD lpdwHi)
 }
 
 
-DWORD GetFileAttributes(const char16_t * psz)
+DWORD GetFileAttributes(const unichar * psz)
 {
 
    WIN32_FILE_ATTRIBUTE_DATA data;
@@ -1927,7 +1927,7 @@ DWORD GetFileAttributes(const char16_t * psz)
 
 BEGIN_EXTERN_C
 
-HANDLE FindFirstFileW(const char16_t * pwsz,WIN32_FIND_DATAW * pdata)
+HANDLE FindFirstFileW(const unichar * pwsz,WIN32_FIND_DATAW * pdata)
 {
 
    return FindFirstFileExW(pwsz,FindExInfoStandard,pdata,FindExSearchNameMatch,NULL,0);

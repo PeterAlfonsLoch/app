@@ -185,9 +185,9 @@ static const uint64_t k_LZMA2 = 0x21;
 static const uint64_t k_LZMA  = 0x030101;
 static const uint64_t k_PPMD  = 0x030401;
 
-static char16_t GetHex(byte value)
+static unichar GetHex(byte value)
 {
-  return (char16_t)((value < 10) ? (L'0' + value) : (L'A' + (value - 10)));
+  return (unichar)((value < 10) ? (L'0' + value) : (L'A' + (value - 10)));
 }
 static inline void AddHexToString(string &res, byte value)
 {
@@ -447,7 +447,7 @@ HRes handler::Close()
 #ifdef __7Z_SET_PROPERTIES
 #ifdef EXTRACT_ONLY
 
-HRes handler::SetProperties(const char16_t **names, const PROPVARIANT *values, Int32 numProperties)
+HRes handler::SetProperties(const unichar **names, const PROPVARIANT *values, Int32 numProperties)
 {
   COM_TRY_BEGIN
   const uint32_t numProcessors = NSystem::GetNumberOfProcessors();

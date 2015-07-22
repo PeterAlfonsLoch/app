@@ -4,9 +4,9 @@
 
 #define _wcsinc(_pc)    ((_pc)+1)
 
-UINT __get_file_title(const char16_t * lpszPathName, char16_t * lpszTitle, UINT nMax);
+UINT __get_file_title(const unichar * lpszPathName, unichar * lpszTitle, UINT nMax);
 
-bool _set_reg_key(const char16_t * lpszKey, const char16_t * lpszValue, const char16_t * lpszValueName = NULL);
+bool _set_reg_key(const unichar * lpszKey, const unichar * lpszValue, const unichar * lpszValueName = NULL);
 
 void __get_module_short_file_name(HINSTANCE hInst, string& strShortName);
 
@@ -777,11 +777,11 @@ namespace user
    }
 
 
-   /*   bool __delete_reg_key(const char16_t * lpszKey)
+   /*   bool __delete_reg_key(const unichar * lpszKey)
    {
    // copy the string
-   char16_t * lpszKeyCopy = _wcsdup(lpszKey);
-   char16_t * lpszLast = lpszKeyCopy + lstrlenW(lpszKeyCopy);
+   unichar * lpszKeyCopy = _wcsdup(lpszKey);
+   unichar * lpszLast = lpszKeyCopy + lstrlenW(lpszKeyCopy);
 
    // work until the end of the string
    while (lpszLast != NULL)
@@ -818,7 +818,7 @@ namespace user
    }
 
    __STATIC bool AFXAPI
-   __set_reg_key(const char16_t * lpszKey, const char16_t * lpszValue, const char16_t * lpszValueName)
+   __set_reg_key(const unichar * lpszKey, const unichar * lpszValue, const unichar * lpszValueName)
    {
    if (lpszValueName == NULL)
    {

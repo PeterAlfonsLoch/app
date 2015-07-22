@@ -514,7 +514,7 @@ namespace zip
 
 
    /*void throw_file_exception(int32_t cause, LONG lOsError,
-   //   const char16_t * lpszFileName /* == NULL */
+   //   const unichar * lpszFileName /* == NULL */
    /*{
    #ifdef DEBUG
       const char * lpsz;

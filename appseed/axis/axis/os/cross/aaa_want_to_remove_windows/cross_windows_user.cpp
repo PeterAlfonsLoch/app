@@ -259,9 +259,9 @@ MultiByteToWideChar(
 
          wstr.alloc(sOut);
 
-         sOut *= sizeof(char16_t);
+         sOut *= sizeof(unichar);
 
-         char16_t * lpsz = (char16_t *) (const char16_t *) wstr;
+         unichar * lpsz = (unichar *) (const unichar *) wstr;
 
          lpWideCharStr = lpsz;
 
@@ -277,9 +277,9 @@ MultiByteToWideChar(
       else
       {
 
-         char16_t * lpsz = (char16_t *) (const char16_t *) lpWideCharStr;
+         unichar * lpsz = (unichar *) (const unichar *) lpWideCharStr;
 
-         size_t sOut = cchWideChar * sizeof(char16_t);
+         size_t sOut = cchWideChar * sizeof(unichar);
 
          iconv_t iconvPlease = iconv_open("UTF-16", iconv_charset_from_windows_code_page(CodePage));
 

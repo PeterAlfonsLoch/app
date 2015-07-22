@@ -106,7 +106,7 @@ namespace file
 
 
    typedef CLASS_DECL_AURA buffer < char >      char_buffer;
-   typedef CLASS_DECL_AURA buffer < char16_t >   wchar_buffer;
+   typedef CLASS_DECL_AURA buffer < unichar >   wchar_buffer;
    typedef CLASS_DECL_AURA buffer < byte >      byte_buffer;
 
 

@@ -617,9 +617,9 @@ namespace metrowin
    //   string dir::default_os_user_path_prefix(::aura::application *  papp)
    //   {
    //      UNREFERENCED_PARAMETER(papp);
-   ////      char16_t buf[MAX_PATH];
+   ////      unichar buf[MAX_PATH];
    //#ifdef WINDOWSEX
-   //      ULONG ulSize = sizeof(buf) / sizeof(char16_t);
+   //      ULONG ulSize = sizeof(buf) / sizeof(unichar);
    //      if(!::GetUserNameExW(NameCanonical, buf, &ulSize))
    //      {
    //         if(!::GetUserNameW(buf, &ulSize))

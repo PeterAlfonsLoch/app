@@ -3,13 +3,13 @@
 
 
 
-::count wcslen_dup(const char16_t * str)
+::count wcslen_dup(const unichar * str)
 {
 
    if(str == NULL)
       return 0;
 
-   const char16_t * pszEnd = str;
+   const unichar * pszEnd = str;
 
    while(*pszEnd != 0)
       pszEnd++;
@@ -36,7 +36,7 @@ int32_t iswspace_dup(int32_t ch)
 }
 
 
-int32_t wcsicmp_dup(const char16_t * sz1, const char16_t * sz2)
+int32_t wcsicmp_dup(const unichar * sz1, const unichar * sz2)
 {
    if(sz1 == NULL)
    {
@@ -61,7 +61,7 @@ int32_t wcsicmp_dup(const char16_t * sz1, const char16_t * sz2)
    return iCmp;
 }
 
-int32_t wcscmp_dup(const char16_t * sz1, const char16_t * sz2)
+int32_t wcscmp_dup(const unichar * sz1, const unichar * sz2)
 {
    if(sz1 == NULL)
    {
@@ -89,7 +89,7 @@ int32_t wcscmp_dup(const char16_t * sz1, const char16_t * sz2)
 
 
 
-errno_t wcslwr_s_dup(char16_t * sz, size_t size)
+errno_t wcslwr_s_dup(unichar * sz, size_t size)
 {
 
         while(size > 0 && *sz != L'\0')
@@ -105,7 +105,7 @@ errno_t wcslwr_s_dup(char16_t * sz, size_t size)
 }
 
 
-errno_t wcsupr_s_dup(char16_t * sz, size_t size)
+errno_t wcsupr_s_dup(unichar * sz, size_t size)
 {
 
         while(size > 0 && *sz != L'\0')
@@ -129,14 +129,14 @@ int32_t iswalnum_dup(int32_t wch)
 }
 
 
-char16_t * wcschr_dup(const char16_t * sz, char16_t ch)
+unichar * wcschr_dup(const unichar * sz, unichar ch)
 {
    if(sz == NULL)
       return NULL;
    while(true)
    {
       if(*sz == ch)
-         return (char16_t *) sz;
+         return (unichar *) sz;
       if(*sz == L'\0')
          return NULL;
       sz++;
@@ -355,7 +355,7 @@ void __cdecl wparse_cmdline(WCHAR *cmdstart, WCHAR **argv, WCHAR *args, int32_t 
 
 
 
-void wcscat_dup(char16_t * dest, const char16_t * cat)
+void wcscat_dup(unichar * dest, const unichar * cat)
 {
    if(dest == NULL)
       return;
@@ -372,7 +372,7 @@ void wcscat_dup(char16_t * dest, const char16_t * cat)
 
 
 
-void uitow_dup(char16_t * sz, uint32_t ui, int32_t iBase)
+void uitow_dup(unichar * sz, uint32_t ui, int32_t iBase)
 {
    if(ui == 0)
    {
@@ -384,7 +384,7 @@ void uitow_dup(char16_t * sz, uint32_t ui, int32_t iBase)
    while(ui > 0)
    {
       int32_t iDigit = (ui % iBase);
-      char16_t wch;
+      unichar wch;
       if(iDigit <= 9)
       {
          wch = iDigit + L'0';
@@ -403,7 +403,7 @@ void uitow_dup(char16_t * sz, uint32_t ui, int32_t iBase)
 
 
 
-void itow_dup(char16_t * sz, int32_t i, int32_t iBase)
+void itow_dup(unichar * sz, int32_t i, int32_t iBase)
 {
    if(i == 0)
    {
@@ -421,7 +421,7 @@ void itow_dup(char16_t * sz, int32_t i, int32_t iBase)
    while(i > 0)
    {
       int32_t iDigit = (i % iBase);
-      char16_t wch;
+      unichar wch;
       if(iDigit <= 9)
       {
          wch = iDigit + L'0';
@@ -446,7 +446,7 @@ void itow_dup(char16_t * sz, int32_t i, int32_t iBase)
 
 
 
-void wcs_reverse(char16_t * sz)
+void wcs_reverse(unichar * sz)
 {
 
    ::count iLen = wcslen_dup(sz);
@@ -457,7 +457,7 @@ void wcs_reverse(char16_t * sz)
 
    ::count iR = iLen - 1;
 
-   char16_t ch;
+   unichar ch;
 
    for(; iL < iMid; iL++, iR--)
    {
@@ -468,7 +468,7 @@ void wcs_reverse(char16_t * sz)
 
 }
 
-void w_zero_pad(char16_t * sz, ::count iPad)
+void w_zero_pad(unichar * sz, ::count iPad)
 {
 
    ::count iLen = wcslen_dup(sz);

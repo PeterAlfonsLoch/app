@@ -19,12 +19,12 @@ namespace aura
 #endif
    }
 
-   inline void __cdecl wmemcpy_s(char16_t *_S1, size_t _N1, const char16_t *_S2, size_t N)
+   inline void __cdecl wmemcpy_s(unichar *_S1, size_t _N1, const unichar *_S2, size_t N)
    {
 #ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::wmemcpy_s(_S1, _N1, _S2, N));
 #else
-      memcpy(_S1, _S2, N * sizeof(char16_t));
+      memcpy(_S1, _S2, N * sizeof(unichar));
 #endif
    }
 
@@ -46,7 +46,7 @@ namespace aura
 #endif
    }
 
-   inline void __cdecl wcscpy_s(char16_t *_S1, size_t _S1max, const char16_t *_S2)
+   inline void __cdecl wcscpy_s(unichar *_S1, size_t _S1max, const unichar *_S2)
    {
 #ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::wcscpy_s(_S1, _S1max, _S2));
@@ -65,7 +65,7 @@ namespace aura
 #endif
    }
 
-   inline errno_t __cdecl wcsncpy_s(char16_t *_Dest, size_t _SizeInChars, const char16_t *_Source, size_t _Count)
+   inline errno_t __cdecl wcsncpy_s(unichar *_Dest, size_t _SizeInChars, const unichar *_Source, size_t _Count)
    {
 #ifdef WINDOWS
        return C_RUNTIME_ERROR_CHECK(::wcsncpy_s(_Dest, _SizeInChars, _Source,_Count));
@@ -87,7 +87,7 @@ namespace aura
 #endif
    }
 
-   inline void __cdecl wcscat_s(char16_t * _Dst, size_t _SizeInChars, const char16_t * _Src)
+   inline void __cdecl wcscat_s(unichar * _Dst, size_t _SizeInChars, const unichar * _Src)
    {
 #ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::wcscat_s(_Dst, _SizeInChars, _Src));
@@ -107,7 +107,7 @@ namespace aura
 #endif
    }
 
-   inline void __cdecl wcslwr_s(char16_t * Str, size_t _SizeInChars)
+   inline void __cdecl wcslwr_s(unichar * Str, size_t _SizeInChars)
    {
 #ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::_wcslwr_s(Str, _SizeInChars));
@@ -127,7 +127,7 @@ namespace aura
 #endif
    }
 
-   inline void __cdecl wcsupr_s(char16_t * Str, size_t _SizeInChars)
+   inline void __cdecl wcsupr_s(unichar * Str, size_t _SizeInChars)
    {
 #ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::_wcsupr_s(Str, _SizeInChars));
@@ -154,7 +154,7 @@ namespace aura
 #endif
    }
 
-   inline void __cdecl i64tow_s(int64_t _Val, char16_t *_Buf, size_t _SizeInChars, int32_t _Radix)
+   inline void __cdecl i64tow_s(int64_t _Val, unichar *_Buf, size_t _SizeInChars, int32_t _Radix)
    {
 #ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::_i64tow_s(_Val, _Buf, _SizeInChars, _Radix));
@@ -172,7 +172,7 @@ namespace aura
 #endif
    }
 
-   inline void __cdecl ui64tow_s(uint64_t _Val, char16_t *_Buf, size_t _SizeInChars, int32_t _Radix)
+   inline void __cdecl ui64tow_s(uint64_t _Val, unichar *_Buf, size_t _SizeInChars, int32_t _Radix)
    {
 #ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::_ui64tow_s(_Val, _Buf, _SizeInChars, _Radix));
@@ -212,7 +212,7 @@ namespace aura
 #endif
    }
 
-   inline size_t __cdecl wcsnlen(const char16_t *_Wcs, size_t _Maxsize)
+   inline size_t __cdecl wcsnlen(const unichar *_Wcs, size_t _Maxsize)
    {
 #ifdef WINDOWS
       return ::wcsnlen(_Wcs, _Maxsize);

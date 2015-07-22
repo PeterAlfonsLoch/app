@@ -22,7 +22,7 @@ namespace file
       virtual void read (bool & b);
       virtual void read (char & ch);
       virtual void read (uchar & uch);
-      virtual void read (char16_t & wch);
+      virtual void read (unichar & wch);
       virtual void read (int16_t & sh);
       virtual void read (uint16_t & uint16_t);
       virtual void read (int32_t & i);

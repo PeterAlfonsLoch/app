@@ -3985,7 +3985,7 @@ namespace user
 
    }
 
-   void mesh::_001SetTopText(const char16_t * lpcwsz)
+   void mesh::_001SetTopText(const unichar * lpcwsz)
    {
       m_strTopText = lpcwsz;
       _001LayoutTopText();

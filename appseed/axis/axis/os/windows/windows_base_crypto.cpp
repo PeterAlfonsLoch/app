@@ -20,7 +20,7 @@ int32_t crypto_decrypt(::primitive::memory & storageDecrypt, const ::primitive::
    DataIn.pbData = (BYTE *) storageEncrypt.get_data();
    DataIn.cbData = (uint32_t) storageEncrypt.get_size();
 
-   char16_t * lpwsz = NULL;
+   unichar * lpwsz = NULL;
 
    //--------------------------------------------------------------------
    //  begin protect phase. Note that the encryption key is created
@@ -70,7 +70,7 @@ int32_t crypto_encrypt(::primitive::memory & storageEncrypt, const ::primitive::
    DataIn.pbData = (BYTE *) storageDecrypt.get_data();
    DataIn.cbData = (uint32_t) storageDecrypt.get_size();
 
-//      char16_t * lpwsz = NULL;
+//      unichar * lpwsz = NULL;
 
    //--------------------------------------------------------------------
    //  begin protect phase. Note that the encryption key is created

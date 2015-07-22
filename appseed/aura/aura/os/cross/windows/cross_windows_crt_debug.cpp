@@ -50,10 +50,10 @@ free(_Memory);
 
 CLASS_DECL_AURA int32_t DECL_C _CrtDbgReportW(
    int32_t _ReportType,
-   const char16_t * _Filename,
+   const unichar * _Filename,
    int32_t _LineNumber,
-   const char16_t * _ModuleName,
-   const char16_t * _Format,
+   const unichar * _ModuleName,
+   const unichar * _Format,
    ...)
 {
    return 0;

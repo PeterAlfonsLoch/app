@@ -607,7 +607,7 @@ static void _DestructElements(string* pOldData, int_ptr nCount)
 //   return nIndex;
 //}
 //
-//index string_array::add(const char16_t * pwsz)
+//index string_array::add(const unichar * pwsz)
 //{
 //   index nIndex = m_nSize;
 //   set_at_grow(nIndex, ::str::international::unicode_to_utf8(pwsz));
@@ -628,13 +628,13 @@ static void _DestructElements(string* pOldData, int_ptr nCount)
 //   }
 //}
 //
-//index string_array::add(char16_t wch)
+//index string_array::add(unichar wch)
 //{
 //   if(wch == L'\0')
 //      return add("");
 //   else
 //   {
-//      char16_t wstr[16];
+//      unichar wstr[16];
 //      wstr[0] = wch;
 //      wstr[1] = L'\0';
 //      return add(wstr);

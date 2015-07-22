@@ -81,7 +81,7 @@ inline int32_t __invariant_stricmp(const char *pszLeft,const char *pszRight)
 #endif
 }
 
-inline int32_t __invariant_stricmp(const char16_t *pwszLeft,const char16_t *pwszRight)
+inline int32_t __invariant_stricmp(const unichar *pwszLeft,const unichar *pwszRight)
 {
 #ifdef WINDOWSEX
    return ::CompareStringW(MAKELCID(MAKELANGID(LANG_ENGLISH,SUBLANG_ENGLISH_US),SORT_DEFAULT),

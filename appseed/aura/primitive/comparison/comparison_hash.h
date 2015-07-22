@@ -35,15 +35,15 @@ namespace comparison
 
       inline static UINT HashKey (const wstring & key)
       {
-         uint64_t * puiKey = (uint64_t *) (const char16_t *) key;
-         strsize counter = key.get_length() * sizeof(char16_t);
+         uint64_t * puiKey = (uint64_t *) (const unichar *) key;
+         strsize counter = key.get_length() * sizeof(unichar);
          uint64_t nHash = 0;
          while(compare::ge(counter, sizeof(*puiKey)))
          {
             nHash = (nHash<<5) + nHash + *puiKey++;
             counter -= sizeof(*puiKey);
          }
-         const char16_t * pszKey = (const char16_t *) puiKey;
+         const unichar * pszKey = (const unichar *) puiKey;
          while(true)
          {
             counter -= 2;
@@ -62,7 +62,7 @@ namespace comparison
 
 
 
-template<> CLASS_DECL_AURA UINT HashKey<const char16_t *> (const char16_t * key);
+template<> CLASS_DECL_AURA UINT HashKey<const unichar *> (const unichar * key);
 
 
 

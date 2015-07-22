@@ -29,7 +29,7 @@ using namespace ::Windows::System;
 
 #elif defined(METROWIN)
 
-   char16_t lpszModuleFolder[MAX_PATH * 8];
+   unichar lpszModuleFolder[MAX_PATH * 8];
 
 
    return "";
@@ -259,7 +259,7 @@ using namespace ::Windows::System;
 #if defined(METROWIN)
 
    return "";
-/*   char16_t lpszModuleFolder[MAX_PATH * 8];
+/*   unichar lpszModuleFolder[MAX_PATH * 8];
 
    char lpszModuleFilePath[MAX_PATH * 8];
 
@@ -399,7 +399,7 @@ using namespace ::Windows::System;
 
 #else
 
-   char16_t lpszModuleFolder[MAX_PATH * 8];
+   unichar lpszModuleFolder[MAX_PATH * 8];
 wcscpy_dup(lpszModuleFolder, L"/core/");
 
 
@@ -492,9 +492,9 @@ string ca2_module_folder_dup()
 
 #ifdef WINDOWSEX
 
-   char16_t lpszModuleFilePath[MAX_PATH + 1];
+   unichar lpszModuleFilePath[MAX_PATH + 1];
    GetModuleFileNameW(::GetModuleHandleA("ca.dll"), lpszModuleFilePath, MAX_PATH + 1);
-   char16_t lpszModuleFolder[MAX_PATH + 1];
+   unichar lpszModuleFolder[MAX_PATH + 1];
    LPWSTR lpszModuleFileName;
    GetFullPathNameW(lpszModuleFilePath, MAX_PATH + 1, lpszModuleFolder, &lpszModuleFileName);
    str = string(lpszModuleFolder, lpszModuleFileName - lpszModuleFolder);
@@ -576,7 +576,7 @@ string ca2_module_dup()
 
 #ifdef WINDOWSEX
 
-   char16_t lpszModuleFilePath[MAX_PATH + 1];
+   unichar lpszModuleFilePath[MAX_PATH + 1];
 
    GetModuleFileNameW(::GetModuleHandleA("aura.dll"), lpszModuleFilePath, MAX_PATH + 1);
 
@@ -738,9 +738,9 @@ bool dir::mk(const ::file::path & lpcsz)
 
 #ifdef WINDOWSEX
 
-   char16_t path[MAX_PATH * 4];
+   unichar path[MAX_PATH * 4];
 
-   if(!GetModuleFileNameW(NULL,path,sizeof(path) / sizeof(char16_t)))
+   if(!GetModuleFileNameW(NULL,path,sizeof(path) / sizeof(unichar)))
    {
 
       return "";
@@ -1074,8 +1074,8 @@ void dir::ls_dir(::file::patha & stra,const ::file::path & psz)
 ::file::path dir::default_os_user_path_prefix()
 {
 #if defined(WINDOWSEX)
-   char16_t buf[MAX_PATH];
-   ULONG ulSize = sizeof(buf) / sizeof(char16_t);
+   unichar buf[MAX_PATH];
+   ULONG ulSize = sizeof(buf) / sizeof(unichar);
    if(!::GetUserNameExW(NameCanonical, buf, &ulSize))
    {
       if(!::GetUserNameW(buf, &ulSize))
@@ -1267,9 +1267,9 @@ retry:
 ::file::path dir::program_files_x86()
 {
 
-   hwstring lpszModuleFolder(sizeof(char16_t) * 8);
+   hwstring lpszModuleFolder(sizeof(unichar) * 8);
 
-   hwstring lpszModuleFilePath(sizeof(char16_t) * 8);
+   hwstring lpszModuleFilePath(sizeof(unichar) * 8);
 
    wcscpy(lpszModuleFilePath,_wgetenv(L"PROGRAMFILES(X86)"));
 

@@ -12,8 +12,8 @@ namespace archive
    namespace item_name
    {
 
-   static const char16_t kOSDirDelimiter = CHAR_PATH_SEPARATOR;
-   static const char16_t kDirDelimiter = '/';
+   static const unichar kOSDirDelimiter = CHAR_PATH_SEPARATOR;
+   static const unichar kDirDelimiter = '/';
 
    string MakeLegalName(const string &name)
    {

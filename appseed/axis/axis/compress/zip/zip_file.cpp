@@ -103,7 +103,7 @@ namespace zip
       return true;
    }
 
-   void  File::write_to_file(::file::buffer_sp  pfileOut, const char16_t * lpcsz)
+   void  File::write_to_file(::file::buffer_sp  pfileOut, const unichar * lpcsz)
    {
       string str;
       ::str::international::unicode_to_utf8(str, lpcsz);

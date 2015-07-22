@@ -114,7 +114,7 @@ namespace database
       return false;
    }
 
-   bool client::data_set(class id id, const char16_t * lpsz, update_hint * puh)
+   bool client::data_set(class id id, const unichar * lpsz, update_hint * puh)
    {
       if(m_pdataserver != NULL)
       {

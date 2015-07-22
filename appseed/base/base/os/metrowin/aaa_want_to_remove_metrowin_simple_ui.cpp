@@ -252,7 +252,7 @@ namespace os
    {
 
       string str;
-      char16_t wsz[32];
+      unichar wsz[32];
 
       BYTE baState[256];
 

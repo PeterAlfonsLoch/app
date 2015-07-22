@@ -187,7 +187,7 @@ public:
 };
 
 
-typedef heap < char16_t > hwstring_base;
+typedef heap < unichar > hwstring_base;
 
 class CLASS_DECL_AURA hwstring:
    public hwstring_base

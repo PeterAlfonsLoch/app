@@ -170,7 +170,7 @@ typedef __time64_t time_t;
 #ifndef _WCHAR_T_DEFINED
 #ifndef __cplusplus
 #error "teste"
-typedef unsigned short char16_t;
+typedef unsigned short unichar;
 #endif
 #define _WCHAR_T_DEFINED
 #endif
@@ -215,7 +215,7 @@ typedef struct threadlocaleinfostruct {
     LC_ID lc_id[6];
     struct {
         char *locale;
-        char16_t *wlocale;
+        unichar *wlocale;
         int32_t *refcount;
         int32_t *wrefcount;
     } lc_category[6];

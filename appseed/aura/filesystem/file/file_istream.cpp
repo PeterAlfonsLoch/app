@@ -138,7 +138,7 @@ namespace file
    }
 
 
-   void istream::read (char16_t & wch)
+   void istream::read (unichar & wch)
    {
       UNREFERENCED_PARAMETER(wch);
       ::exception::throw_interface_only(get_app());

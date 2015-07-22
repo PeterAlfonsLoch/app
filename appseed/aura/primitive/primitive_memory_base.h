@@ -112,7 +112,7 @@ namespace primitive
       memory_base & operator += (const memory_base & s);
 
 
-      inline void from_string(const char16_t * pwsz);
+      inline void from_string(const unichar * pwsz);
       inline void from_string(const char * psz);
       inline void from_string(const string & str);
       inline void from_string(const var & var);
@@ -553,7 +553,7 @@ namespace primitive
    }
 
 
-   inline void memory_base::from_string(const char16_t * pwsz)
+   inline void memory_base::from_string(const unichar * pwsz)
    {
 
       from_string(::str::international::unicode_to_utf8(pwsz));

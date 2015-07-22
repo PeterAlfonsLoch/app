@@ -1230,7 +1230,7 @@ return false;
 
    #ifdef WINDOWSEX
 
-   char16_t lpszModuleFilePath[MAX_PATH + 1];
+   unichar lpszModuleFilePath[MAX_PATH + 1];
 
    GetModuleFileNameW(NULL,lpszModuleFilePath,MAX_PATH + 1);
 

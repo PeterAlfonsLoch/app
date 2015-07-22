@@ -407,7 +407,7 @@ namespace filemanager
       return GetFolderType(papp, ::str::international::utf8_to_unicode(lpcsz));
    }
 
-   EFolder GetFolderType(::aura::application * papp, const char16_t * lpcszPath)
+   EFolder GetFolderType(::aura::application * papp, const unichar * lpcszPath)
    {
 
       string strPath;
@@ -577,7 +577,7 @@ namespace filemanager
       IShellFolder * lpsf,
       LPITEMIDLIST lpiidlAbsolute,
       LPITEMIDLIST lpiidlChild,
-      const char16_t * lpcszExtra,
+      const unichar * lpcszExtra,
       EIcon eicon)
    {
 
@@ -1191,7 +1191,7 @@ namespace filemanager
       IShellFolder * lpsf,
       LPITEMIDLIST lpiidlAbsolute,
       LPITEMIDLIST lpiidlChild,
-      const char16_t * lpcszExtra,
+      const unichar * lpcszExtra,
       EIcon eicon,
       HICON * phicon16,
       HICON * phicon48)
@@ -1474,7 +1474,7 @@ namespace filemanager
    int32_t ImageSet::GetImage(
       oswindow oswindow,
       LPITEMIDLIST lpiidlAbsolute,
-      const char16_t * lpcszExtra,
+      const unichar * lpcszExtra,
       EIcon eicon)
    {
 
@@ -1505,7 +1505,7 @@ namespace filemanager
    int32_t ImageSet::GetImage(
       oswindow oswindow,
       const char * psz,
-      const char16_t * lpcszExtra,
+      const unichar * lpcszExtra,
       EIcon eicon,
       bool bFolder)
    {
@@ -1606,7 +1606,7 @@ namespace filemanager
    bool ImageSet::GetIcon(
       oswindow oswindow,
       const char * psz,
-      const char16_t * lpcszExtra,
+      const unichar * lpcszExtra,
       EIcon eicon,
       HICON * phicon16,
       HICON * phicon48)
@@ -1626,7 +1626,7 @@ namespace filemanager
    bool ImageSet::GetIcon(
       oswindow oswindow,
       LPITEMIDLIST lpiidlAbsolute,
-      const char16_t * lpcszExtra,
+      const unichar * lpcszExtra,
       EIcon eicon,
       HICON * phicon16,
       HICON * phicon48)

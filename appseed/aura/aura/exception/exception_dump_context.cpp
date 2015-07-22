@@ -443,7 +443,7 @@ void dump_context::hex_dump(const char * lpszLine, BYTE* pby, int32_t nBytes, in
       *this << "\n";
 }
 
-dump_context & dump_context::operator<<(const char16_t * lpsz)
+dump_context & dump_context::operator<<(const unichar * lpsz)
 {
 
    if (lpsz == NULL)

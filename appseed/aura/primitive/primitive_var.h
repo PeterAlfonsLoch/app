@@ -340,7 +340,7 @@ public:
    var & operator = (string * pstr);
    var & operator = (var * pvar);
    //var & operator = (const char * psz);
-   var & operator = (const char16_t * lpcsz);
+   var & operator = (const unichar * lpcsz);
    var & operator = (const property & prop);
    var & operator = (const var & var);
    var & operator = (const int_array & ia);

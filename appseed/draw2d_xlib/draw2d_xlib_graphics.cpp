@@ -4630,7 +4630,7 @@ return 1;
       ASSERT((nFormat & (DT_END_ELLIPSIS | DT_MODIFYSTRING)) != (DT_END_ELLIPSIS | DT_MODIFYSTRING));
       ASSERT((nFormat & (DT_PATH_ELLIPSIS | DT_MODIFYSTRING)) != (DT_PATH_ELLIPSIS | DT_MODIFYSTRING));
       wstring wstr = ::str::international::utf8_to_unicode(string(lpszString, nCount));
-      return ::DrawTextExW(get_handle1(), const_cast<char16_t *>((const char16_t *)wstr), (int32_t)wcslen(wstr), lpRect, nFormat, lpDTParams);
+      return ::DrawTextExW(get_handle1(), const_cast<unichar *>((const unichar *)wstr), (int32_t)wcslen(wstr), lpRect, nFormat, lpDTParams);
 */
    }
 
@@ -4646,7 +4646,7 @@ return 1;
       ASSERT((nFormat & (DT_END_ELLIPSIS | DT_MODIFYSTRING)) != (DT_END_ELLIPSIS | DT_MODIFYSTRING));
       ASSERT((nFormat & (DT_PATH_ELLIPSIS | DT_MODIFYSTRING)) != (DT_PATH_ELLIPSIS | DT_MODIFYSTRING));
       wstring wstr = ::str::international::utf8_to_unicode(str);
-      return ::DrawTextExW(get_handle1(), const_cast<char16_t *>((const char16_t *)wstr), (int32_t)wcslen(wstr), lpRect, nFormat, lpDTParams);
+      return ::DrawTextExW(get_handle1(), const_cast<unichar *>((const unichar *)wstr), (int32_t)wcslen(wstr), lpRect, nFormat, lpDTParams);
 */
 
    }

@@ -4109,7 +4109,7 @@ namespace aura
             //                  string strModuleFolder = System.get_module_folder();
             //                  wstring wstrModuleFolder = strModuleFolder;
             //                  LPSTR lpsz = (char *)(const char *)(strCmdLine);
-            //                  LPWSTR lpwsz = (char16_t *)(const char16_t *)(wstrCmdLine);
+            //                  LPWSTR lpwsz = (unichar *)(const unichar *)(wstrCmdLine);
             //                  STARTUPINFO m_si;
             //                  PROCESS_INFORMATION m_pi;
             //                  memset(&m_si,0,sizeof(m_si));

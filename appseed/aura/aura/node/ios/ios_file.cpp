@@ -931,7 +931,7 @@ namespace ios
    
    
    /*
-    UINT CLASS_DECL_AURA vfxGetFileTitle(const char16_t * lpszPathName, char16_t * lpszTitle, UINT nMax)
+    UINT CLASS_DECL_AURA vfxGetFileTitle(const unichar * lpszPathName, unichar * lpszTitle, UINT nMax)
     {
     ASSERT(lpszTitle == NULL ||
     __is_valid_address(lpszTitle, _MAX_FNAME));
@@ -939,7 +939,7 @@ namespace ios
     
     // use a temporary to avoid bugs in ::GetFileTitle when lpszTitle is NULL
     WCHAR szTemp[_MAX_PATH];
-    char16_t * lpszTemp = lpszTitle;
+    unichar * lpszTemp = lpszTitle;
     if (lpszTemp == NULL)
     {
     lpszTemp = szTemp;
@@ -954,7 +954,7 @@ namespace ios
     }
     
     
-    bool vfxComparePath(const char16_t * lpszPath1, const char16_t * lpszPath2)
+    bool vfxComparePath(const unichar * lpszPath1, const unichar * lpszPath2)
     {
     // use case insensitive compare as a starter
     if (lstrcmpiW(lpszPath1, lpszPath2) != 0)
@@ -988,7 +988,7 @@ namespace ios
     
     // for every C3_FULLWIDTH character, make sure it has same C1 value
     int32_t i = 0;
-    for (const char16_t * lpsz = lpszPath1; *lpsz != 0; lpsz = _wcsinc(lpsz))
+    for (const unichar * lpsz = lpszPath1; *lpsz != 0; lpsz = _wcsinc(lpsz))
     {
     // check for C3_FULLWIDTH characters only
     if (aCharType13[i] & C3_FULLWIDTH)
@@ -1134,7 +1134,7 @@ bool CLASS_DECL_AURA vfxFullPath(wstring & wstrFullPath, const wstring & wstrPat
     wstrFullPath.alloc(dwAllocLen);
 
     // first, fully qualify the path name
-    char16_t * lpszFilePart;
+    unichar * lpszFilePart;
 
     strsize dwLen = GetFullPathNameW(wstrPath, (DWORD) dwAllocLen, wstrFullPath, &lpszFilePart);
 
@@ -1197,7 +1197,7 @@ bool CLASS_DECL_AURA vfxFullPath(wstring & wstrFullPath, const wstring & wstrPat
     strsize iFilePart = lpszFilePart - wstrFullPath;
     wstrFullPath.alloc(iFilePart + iLenFileName + 32); // arrange more space with more 32 extra wchars
     lstrcpynW(wstrFullPath, wstrBackup, (int32_t) iFilePart);
-    lpszFilePart = (char16_t *) wstrFullPath + iFilePart;
+    lpszFilePart = (unichar *) wstrFullPath + iFilePart;
     }
     lstrcpyW(lpszFilePart, data.cFileName);
     wstrFullPath.release_buffer();
@@ -1494,7 +1494,7 @@ CLASS_DECL_AURA string vfxStringFromCLSID(REFCLSID rclsid)
 //}
 
 // turn a file, relative path or other into an absolute path
-//bool CLASS_DECL_AURA vfxFullPath(char16_t * lpszPathOut, const char16_t * lpszFileIn)
+//bool CLASS_DECL_AURA vfxFullPath(unichar * lpszPathOut, const unichar * lpszFileIn)
 // lpszPathOut = buffer of _MAX_PATH
 // lpszFileIn = file, relative path or absolute path
 // (both in ANSI character set)
@@ -1503,7 +1503,7 @@ CLASS_DECL_AURA string vfxStringFromCLSID(REFCLSID rclsid)
  ASSERT(__is_valid_address(lpszPathOut, _MAX_PATH));
 
  // first, fully qualify the path name
- char16_t * lpszFilePart;
+ unichar * lpszFilePart;
  if (!GetFullPathNameW(lpszFileIn, _MAX_PATH, lpszPathOut, &lpszFilePart))
  {
  #ifdef DEBUG
@@ -1552,8 +1552,8 @@ CLASS_DECL_AURA string vfxStringFromCLSID(REFCLSID rclsid)
  //   ASSERT(lpszPath != NULL);
  // determine the root name of the volume
  wstrRoot = wstrPath;
- char16_t * lpszRoot = wstrRoot;
- char16_t * lpsz;
+ unichar * lpszRoot = wstrRoot;
+ unichar * lpsz;
  for (lpsz = lpszRoot; *lpsz != L'\0'; lpsz = _wcsinc(lpsz))
  {
  // find first double slash and stop
@@ -1590,15 +1590,15 @@ CLASS_DECL_AURA string vfxStringFromCLSID(REFCLSID rclsid)
  }*/
 
 /*
- void CLASS_DECL_AURA vfxGetRoot(const char16_t * lpszPath, string& strRoot)
+ void CLASS_DECL_AURA vfxGetRoot(const unichar * lpszPath, string& strRoot)
  {
  ASSERT(lpszPath != NULL);
  wstring wstrRoot;
  // determine the root name of the volume
- char16_t * lpszRoot = wstrRoot.alloc(_MAX_PATH * 4);
+ unichar * lpszRoot = wstrRoot.alloc(_MAX_PATH * 4);
  memset(lpszRoot, 0, _MAX_PATH * 4);
  lstrcpynW(lpszRoot, lpszPath, _MAX_PATH * 4);
- char16_t * lpsz;
+ unichar * lpsz;
  for (lpsz = lpszRoot; *lpsz != '\0'; lpsz = _wcsinc(lpsz))
  {
  // find first double slash and stop
@@ -1644,7 +1644,7 @@ CLASS_DECL_AURA string vfxStringFromCLSID(REFCLSID rclsid)
  ASSERT(__is_valid_address(lpszPathOut, _MAX_PATH));
 
  // first, fully qualify the path name
- char16_t * lpszFilePart;
+ unichar * lpszFilePart;
  if (!shell::GetFullPathName(lpszFileIn, _MAX_PATH, lpszPathOut, &lpszFilePart))
  {
  #ifdef DEBUG

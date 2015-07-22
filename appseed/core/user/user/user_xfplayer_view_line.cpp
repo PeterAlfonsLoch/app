@@ -99,7 +99,7 @@ bool XfplayerViewLine::PrepareLine(::draw2d::graphics * pdc, const string & str,
 
 /*bool XfplayerViewLine::PrepareLine(
    ::draw2d::graphics * pdc,
-   const char16_t * lpcsz,
+   const unichar * lpcsz,
    int32_t flags,
    visual::font *pFont,
    LPRECT pRect)

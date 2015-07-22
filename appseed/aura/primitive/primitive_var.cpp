@@ -515,7 +515,7 @@ class var & var::operator = (id * pid)
 //   return *this;
 //}
 
-class var & var::operator = (const char16_t * lpcsz)
+class var & var::operator = (const unichar * lpcsz)
 {
    set_string(::str::international::unicode_to_utf8(lpcsz));
    return *this;

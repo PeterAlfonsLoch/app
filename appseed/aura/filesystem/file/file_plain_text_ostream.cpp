@@ -54,7 +54,7 @@ namespace file
       write ((uint32_t) ui);
    }
 
-   void plain_text_ostream:: write (char16_t wch)
+   void plain_text_ostream:: write (unichar wch)
    {
       raw_print(::str::uni_to_utf8(wch));
    }

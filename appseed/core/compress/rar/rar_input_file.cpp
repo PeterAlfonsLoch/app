@@ -141,7 +141,7 @@ namespace rar
       archiveInfo = _header;
    }
 
-   static void DecodeUnicodeFileName(const char *name, const byte *encName, int32_t encSize, char16_t *unicodeName, int32_t maxDecSize)
+   static void DecodeUnicodeFileName(const char *name, const byte *encName, int32_t encSize, unichar *unicodeName, int32_t maxDecSize)
    {
       int32_t encPos = 0;
       int32_t decPos = 0;
@@ -161,10 +161,10 @@ namespace rar
             unicodeName[decPos++] = encName[encPos++];
             break;
          case 1:
-            unicodeName[decPos++] = (char16_t)(encName[encPos++] + (highByte << 8));
+            unicodeName[decPos++] = (unichar)(encName[encPos++] + (highByte << 8));
             break;
          case 2:
-            unicodeName[decPos++] = (char16_t)(encName[encPos] + (encName[encPos + 1] << 8));
+            unicodeName[decPos++] = (unichar)(encName[encPos] + (encName[encPos + 1] << 8));
             encPos += 2;
             break;
          case 3:
@@ -175,7 +175,7 @@ namespace rar
                   byte correction = encName[encPos++];
                   for (length = (length & 0x7f) + 2;
                      length > 0 && decPos < maxDecSize; length--, decPos++)
-                     unicodeName[decPos] = (char16_t)(((name[decPos] + correction) & 0xff) + (highByte << 8));
+                     unicodeName[decPos] = (unichar)(((name[decPos] + correction) & 0xff) + (highByte << 8));
                }
                else
                   for (length += 2; length > 0 && decPos < maxDecSize; length--, decPos++)
@@ -368,7 +368,7 @@ namespace rar
             buffer.SetCapacity(sizeInBytes);
             for (int32_t i = 0; i < unicodePassword.get_length(); i++)
             {
-               char16_t ca = unicodePassword[i];
+               unichar ca = unicodePassword[i];
                ((byte *)buffer)[i * 2] = (byte)ca;
                ((byte *)buffer)[i * 2 + 1] = (byte)(ca >> 8);
             }

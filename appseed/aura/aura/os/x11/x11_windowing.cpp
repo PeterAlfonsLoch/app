@@ -97,7 +97,7 @@ int display_lines(const stringa & stra, const string & strTitle)
 }
 
 
-int_bool MessageBoxW(oswindow interaction_impl, const char16_t * pwsz, const char16_t * pwszTitle, uint32_t uiFlags)
+int_bool MessageBoxW(oswindow interaction_impl, const unichar * pwsz, const unichar * pwszTitle, uint32_t uiFlags)
 {
 
    stringa straSep;

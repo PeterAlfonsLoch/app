@@ -100,7 +100,7 @@ namespace file
 
    }
 
-   void byte_ostream:: write (char16_t wch)
+   void byte_ostream:: write (unichar wch)
    {
       write_arbitrary(wch);
 

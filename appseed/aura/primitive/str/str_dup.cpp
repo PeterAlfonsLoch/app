@@ -16,7 +16,7 @@ void strncpy_dup(char * dest, const char * cpy, ::count iLen)
       *dest++ = *cpy++;
 }
 
-void wcsncpy_dup(char16_t * dest, const char16_t * cpy, ::count iLen)
+void wcsncpy_dup(unichar * dest, const unichar * cpy, ::count iLen)
 {
    while(*cpy != 0 && iLen-- > 0)
       *dest++ = *cpy++;
@@ -55,7 +55,7 @@ char * strndup_dup(const char * src, ::count iLen)
 }
 
 
-void wcscpy_dup(char16_t * dest, const char16_t * cpy)
+void wcscpy_dup(unichar * dest, const unichar * cpy)
 {
    while(*cpy != 0)
       *dest++ = *cpy++;

@@ -53,7 +53,7 @@ namespace file
       path(const path & path) { operator = (path); }
       path(path && path): string(::move(path)) { *((path_meta *)this) = (const path_meta &) path; }
       path(const char * psz,e_path epath = path_none): path((const string &)psz, epath){};
-      path(const char16_t * psz,e_path epath = path_none): path((const string &)psz,epath){};
+      path(const unichar * psz,e_path epath = path_none): path((const string &)psz,epath){};
       path(const wstring & wstr,e_path epath = path_none): path((const string &)wstr,epath){};
       //path(const var & var,e_path epath = path_file);
       path(const property & property,e_path epath = path_none);
@@ -234,8 +234,8 @@ namespace file
       path & operator = (const wstring & wstr) { return operator = (string(wstr)); }
       path & operator += (const wstring & wstr) { return operator += (string(wstr)); }
 
-      path & operator = (const char16_t * psz) { return operator = (wstring(psz)); }
-      path & operator += (const char16_t * psz) { return operator += (wstring(psz)); }
+      path & operator = (const unichar * psz) { return operator = (wstring(psz)); }
+      path & operator += (const unichar * psz) { return operator += (wstring(psz)); }
 
       //path operator * () const;
 

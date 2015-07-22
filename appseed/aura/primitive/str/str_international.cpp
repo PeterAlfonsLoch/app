@@ -14,12 +14,12 @@ namespace str
    {
 
 
-      bool UnicodeToMultiByte(UINT uiCodePage, char * lpstrMultiByte, strsize nCount, const char16_t * lpcsz)
+      bool UnicodeToMultiByte(UINT uiCodePage, char * lpstrMultiByte, strsize nCount, const unichar * lpcsz)
       {
          return WideCharToMultiByte(uiCodePage, 0, lpcsz, -1, lpstrMultiByte, (int32_t) nCount, NULL, NULL) != FALSE;
       }
 
-      bool UnicodeToMultiByte(UINT uiCodePage, char * lpstrMultiByte, strsize iMultiByteCount, const char16_t * lpcsz, strsize iCount)
+      bool UnicodeToMultiByte(UINT uiCodePage, char * lpstrMultiByte, strsize iMultiByteCount, const unichar * lpcsz, strsize iCount)
       {
          if (CP_UTF8 == uiCodePage)
          {
@@ -44,7 +44,7 @@ namespace str
          return WideCharToMultiByte(uiCodePage, 0, lpcsz, (int32_t) iCount, lpstrMultiByte, (int32_t) iMultiByteCount, NULL, NULL) != FALSE;
       }
 
-      bool UnicodeToMultiByte(UINT uiCodePage, string &str, const char16_t * lpcsz)
+      bool UnicodeToMultiByte(UINT uiCodePage, string &str, const unichar * lpcsz)
       {
          strsize iCount = UnicodeToMultiByteCount(uiCodePage, lpcsz);
          LPSTR lpsz = str.GetBuffer(iCount);
@@ -62,7 +62,7 @@ namespace str
          return true;
       }
 
-      bool UnicodeToMultiByte(UINT uiCodePage, string &str, const char16_t * lpcsz, strsize iCount)
+      bool UnicodeToMultiByte(UINT uiCodePage, string &str, const unichar * lpcsz, strsize iCount)
       {
          strsize iMultiByteCount = UnicodeToMultiByteCount(uiCodePage, lpcsz, iCount);
          LPSTR lpsz = str.GetBuffer(iMultiByteCount);
@@ -79,17 +79,17 @@ namespace str
          }
       }
 
-      bool unicode_to_utf8(string & str, const char16_t * lpcsz, strsize iCount)
+      bool unicode_to_utf8(string & str, const unichar * lpcsz, strsize iCount)
       {
          return UnicodeToMultiByte(CodePageUtf8, str, lpcsz, iCount);
       }
 
-      strsize UnicodeToMultiByteCount(UINT uiCodePage, const char16_t * lpcsz)
+      strsize UnicodeToMultiByteCount(UINT uiCodePage, const unichar * lpcsz)
       {
          return UnicodeToMultiByteCount(uiCodePage, lpcsz, -1);
       }
 
-      strsize UnicodeToMultiByteCount(UINT uiCodePage, const char16_t * lpcsz, strsize iCount)
+      strsize UnicodeToMultiByteCount(UINT uiCodePage, const unichar * lpcsz, strsize iCount)
       {
          if (CP_UTF8 == uiCodePage)
          {
@@ -125,7 +125,7 @@ namespace str
          return WideCharToMultiByte(uiCodePage, 0, MultiByteToUnicode(uiCodePage, lpcsz), -1, NULL, 0, NULL, NULL) - 1;
       }
 
-      bool MultiByteToUnicode(UINT uiCodePage, char16_t * lpwsz, strsize iBuffer, const char * lpcsz, strsize iCount)
+      bool MultiByteToUnicode(UINT uiCodePage, unichar * lpwsz, strsize iBuffer, const char * lpcsz, strsize iCount)
       {
          if(lpwsz == NULL)
          {
@@ -141,7 +141,7 @@ namespace str
          return MultiByteToWideChar(uiCodePage, 0, lpcsz, (int32_t) iCount, lpwsz, (int32_t) iBuffer) != 0;
       }
 
-      bool MultiByteToUnicode(UINT uiCodePage, char16_t * lpwsz, strsize iBuffer, const char * lpcsz)
+      bool MultiByteToUnicode(UINT uiCodePage, unichar * lpwsz, strsize iBuffer, const char * lpcsz)
       {
          return MultiByteToUnicode(uiCodePage, lpwsz, iBuffer, lpcsz, -1);
       }
@@ -250,7 +250,7 @@ namespace str
       //   return MultiByteToMultiByte(uiCodePage, str, ::GetOEMCP(), lpcsz, nCount);
       //}
 
-      string unicode_to_utf8(const char16_t * lpcsz)
+      string unicode_to_utf8(const unichar * lpcsz)
       {
          string str;
          unicode_to_utf8(str, lpcsz);
@@ -267,7 +267,7 @@ namespace str
          return UnicodeToMultiByte(uiCodePageDst, str, MultiByteToUnicode(uiCodePageSrc, lpcsz, nCount));
       }
 
-      bool UnicodeToMultiByte(UINT uiCodePage, primitive::memory & memstorage, const char16_t * lpcsz)
+      bool UnicodeToMultiByte(UINT uiCodePage, primitive::memory & memstorage, const unichar * lpcsz)
       {
          memstorage.allocate(UnicodeToMultiByteCount(uiCodePage, lpcsz));
          return UnicodeToMultiByte(uiCodePage, (char *) memstorage.get_data(), (strsize) memstorage.get_size(), lpcsz);
@@ -287,31 +287,31 @@ namespace str
       // ACP ( GetACP() function) conversion
       ///////////////////////////////////////////////////////////////
 
-      string UnicodeToMultiByte(UINT uiCodePage, const char16_t * lpcsz)
+      string UnicodeToMultiByte(UINT uiCodePage, const unichar * lpcsz)
       {
          string str;
          UnicodeToMultiByte(uiCodePage, str, lpcsz);
          return str;
       }
 
-/*      bool UnicodeToACP(string & str, const char16_t * lpcsz)
+/*      bool UnicodeToACP(string & str, const unichar * lpcsz)
       {
          return UnicodeToMultiByte(g_uiACP, str, lpcsz);
       }
 
-      bool UnicodeToACP(char * lpstrUnicode, strsize nCount, const char16_t * lpcsz)
+      bool UnicodeToACP(char * lpstrUnicode, strsize nCount, const unichar * lpcsz)
       {
          return UnicodeToMultiByte(g_uiACP, lpstrUnicode, nCount, lpcsz);
       }
 
 
-      string UnicodeToACP(const char16_t * lpcsz)
+      string UnicodeToACP(const unichar * lpcsz)
       {
          return UnicodeToMultiByte(CP_ACP, lpcsz);
       }
 
 
-      bool ACPToUnicode(char16_t * lpstrUnicode, strsize nCount, const char * lpcsz)
+      bool ACPToUnicode(unichar * lpstrUnicode, strsize nCount, const char * lpcsz)
       {
          return MultiByteToUnicode(g_uiACP, lpstrUnicode, nCount, lpcsz);
       }
@@ -330,19 +330,19 @@ namespace str
       // OEM ( GetOEM() function) conversion
       ///////////////////////////////////////////////////////////////
 
-/*      bool UnicodeToOEM(string & str, const char16_t * lpcsz)
+/*      bool UnicodeToOEM(string & str, const unichar * lpcsz)
       {
          return UnicodeToMultiByte(CodePageOem, str, lpcsz);
       }
 
-      bool UnicodeToOEM(char * lpstrUnicode, strsize nCount, const char16_t * lpcsz)
+      bool UnicodeToOEM(char * lpstrUnicode, strsize nCount, const unichar * lpcsz)
       {
          return UnicodeToMultiByte(CodePageOem, lpstrUnicode, nCount, lpcsz);
       }
 
 
 
-      bool OEMToUnicode(char16_t * lpstrUnicode, strsize nCount, const char * lpcsz)
+      bool OEMToUnicode(unichar * lpstrUnicode, strsize nCount, const char * lpcsz)
       {
          return MultiByteToUnicode(CodePageOem, lpstrUnicode, nCount, lpcsz);
       }
@@ -352,7 +352,7 @@ namespace str
          return MultiByteToUnicode(CodePageOem, lpcsz).detach();
       } */
 
-      bool unicode_to_utf8(string & str, const char16_t * lpcsz)
+      bool unicode_to_utf8(string & str, const unichar * lpcsz)
       {
          return UnicodeToMultiByte(CodePageUtf8, str, lpcsz);
       }
@@ -382,7 +382,7 @@ namespace str
          return MultiByteToUnicodeCount(CodePageUtf8, str, (strsize) str.get_length());
       }
 
-      /*string UnicodeToACP(const char16_t * lpcsz)
+      /*string UnicodeToACP(const unichar * lpcsz)
       {
          string str;
          UnicodeToMultiByte(g_uiACP, str, lpcsz);
@@ -435,12 +435,12 @@ namespace str
          return MultiByteToUnicode(CP_UTF8, lpcsz, (strsize) iCount).detach();
       }
 
-      bool utf8_to_unicode(char16_t * lpwsz, strsize iBuffer, const char * lpcsz, strsize iCount)
+      bool utf8_to_unicode(unichar * lpwsz, strsize iBuffer, const char * lpcsz, strsize iCount)
       {
          return MultiByteToUnicode(CP_UTF8, lpwsz, (strsize) iBuffer, lpcsz, (strsize) iCount);
       }
 
-      bool utf8_to_unicode(char16_t * lpwsz, strsize iBuffer, const char * lpcsz)
+      bool utf8_to_unicode(unichar * lpwsz, strsize iBuffer, const char * lpcsz)
       {
          return utf8_to_unicode(lpwsz, (strsize) iBuffer, lpcsz, -1);
       }

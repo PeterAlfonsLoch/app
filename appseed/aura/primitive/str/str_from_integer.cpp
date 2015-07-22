@@ -201,7 +201,7 @@ void ltoa_dup(char * sz, int64_t i, int32_t iBase)
 
 
 
-void ultow_dup(char16_t * sz, uint64_t ui, int32_t iBase)
+void ultow_dup(unichar * sz, uint64_t ui, int32_t iBase)
 {
    if(ui == 0)
    {
@@ -213,7 +213,7 @@ void ultow_dup(char16_t * sz, uint64_t ui, int32_t iBase)
    while(ui > 0)
    {
       int32_t iDigit = (ui % iBase);
-      char16_t wch;
+      unichar wch;
       if(iDigit <= 9)
       {
          wch = iDigit + L'0';
@@ -232,7 +232,7 @@ void ultow_dup(char16_t * sz, uint64_t ui, int32_t iBase)
 
 
 
-void ltow_dup(char16_t * sz, int64_t i, int32_t iBase)
+void ltow_dup(unichar * sz, int64_t i, int32_t iBase)
 {
    if(i == 0)
    {
@@ -250,7 +250,7 @@ void ltow_dup(char16_t * sz, int64_t i, int32_t iBase)
    while(i > 0)
    {
       int32_t iDigit = (i % iBase);
-      char16_t wch;
+      unichar wch;
       if(iDigit <= 9)
       {
          wch = iDigit + L'0';

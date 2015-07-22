@@ -4,7 +4,7 @@
 // TODO(casey) : Handmade Hero Casei Muratori (Casey) contribution!! Thank you, (casey)!!
 // Casey Muratori stub function concept contribution!!
 //
-int MessageBoxW(oswindow_data * window,const char16_t * pszText,const char16_t * pszTitle,unsigned int uiFlags)
+int MessageBoxW(oswindow_data * window,const unichar * pszText,const unichar * pszTitle,unsigned int uiFlags)
 {
    
    UNREFERENCED_PARAMETER(window);

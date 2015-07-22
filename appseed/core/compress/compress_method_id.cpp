@@ -9,14 +9,14 @@
 
 string ConvertMethodIdToString(uint64_t id);
 
-static inline char16_t GetHex(byte value)
+static inline unichar GetHex(byte value)
 {
-  return (char16_t)((value < 10) ? ('0' + value) : ('A' + (value - 10)));
+  return (unichar)((value < 10) ? ('0' + value) : ('A' + (value - 10)));
 }
 
 string ConvertMethodIdToString(uint64_t id)
 {
-  char16_t s[32];
+  unichar s[32];
   int32_t len = 32;
   s[--len] = 0;
   do

@@ -659,7 +659,7 @@ namespace user
             dx = m_sizeButton.cx;
             string str;
             str = ::str::international::utf8_to_unicode(str);
-   //         str = (const char16_t *) pData[i].iString;
+   //         str = (const unichar *) pData[i].iString;
             size size;
             ::GetTextExtentPoint32U(
                (HDC)pdc->get_os_data(),
@@ -1055,7 +1055,7 @@ throw todo(get_app());
          // add new string to toolbar list
          string strTemp(str, str.get_length());
          ::exception::throw_not_implemented(get_app());
-         // xxx nString = (int32_t)DefWindowProc(TB_ADDSTRINGW, 0, (LPARAM)(const char *)(const char16_t *)strTemp);
+         // xxx nString = (int32_t)DefWindowProc(TB_ADDSTRINGW, 0, (LPARAM)(const char *)(const unichar *)strTemp);
          if (nString == -1)
             return FALSE;
 
@@ -1070,7 +1070,7 @@ throw todo(get_app());
    //   memset(&button, 0, sizeof(button));
    //   button.cbSize = sizeof(button);
    //   UINT uiID = GetItemID(nIndex);
-   //   button.pszText = (char16_t *) (const char16_t *) wstrText;
+   //   button.pszText = (unichar *) (const unichar *) wstrText;
    //   button.cchText = wstrText.get_length();
    //   button.dwMask |= TBIF_TEXT;
    //   GetToolBarCtrl().SetButtonInfo(uiID, &button);

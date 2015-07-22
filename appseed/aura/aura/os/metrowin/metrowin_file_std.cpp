@@ -90,7 +90,7 @@ _FILE *fopen_dup(const char *path, const char *attrs)
 }
 
 
-_FILE *_wfopen_dup(const char16_t *path, const char16_t *attrs)
+_FILE *_wfopen_dup(const unichar *path, const unichar *attrs)
 {
 
 	uint32_t access, disp;
@@ -359,7 +359,7 @@ char *fgets_dup(char *str, int32_t n, _FILE *s)
 
 }
 
-char16_t *fgetws_dup(char16_t *str, int32_t n, _FILE *s)
+unichar *fgetws_dup(unichar *str, int32_t n, _FILE *s)
 {
 	// Text-mode fgetws converts MBCS->Unicode
 	if (((_FILE*)str)->_flag & _FILE_TEXT)
@@ -380,7 +380,7 @@ char16_t *fgetws_dup(char16_t *str, int32_t n, _FILE *s)
 	int32_t i;
 	for (i = 0; i < n-1; i++)
 	{
-		if (!fread_dup(&str[i], 1, sizeof(char16_t), s))
+		if (!fread_dup(&str[i], 1, sizeof(unichar), s))
 			break;
 		if (str[i] == L'\r')
 		{
@@ -557,7 +557,7 @@ DWORD GetFileSize(HANDLE h,LPDWORD lpdwHi)
 }
 
 
-DWORD GetFileAttributes(const char16_t * psz)
+DWORD GetFileAttributes(const unichar * psz)
 {
 
    WIN32_FILE_ATTRIBUTE_DATA data;
@@ -578,7 +578,7 @@ DWORD GetFileAttributes(const char16_t * psz)
 
 BEGIN_EXTERN_C
 
-HANDLE FindFirstFileW(const char16_t * pwsz,WIN32_FIND_DATAW * pdata)
+HANDLE FindFirstFileW(const unichar * pwsz,WIN32_FIND_DATAW * pdata)
 {
 
    return FindFirstFileExW(pwsz,FindExInfoStandard,pdata,FindExSearchNameMatch,NULL,0);

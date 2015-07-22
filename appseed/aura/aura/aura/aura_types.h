@@ -5,6 +5,7 @@ typedef uint8_t      byte;
 typedef uint8_t      uchar;
 typedef uint32_t     dword;
 typedef int          int_bool;
+typedef uint16_t     unichar;
 
 
 #ifdef __cplusplus

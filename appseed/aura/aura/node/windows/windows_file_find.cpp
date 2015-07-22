@@ -89,9 +89,9 @@ namespace windows
 
       wstring wstrRoot;
 
-      char16_t * pstrRoot = wstrRoot.alloc(_MAX_PATH);
+      unichar * pstrRoot = wstrRoot.alloc(_MAX_PATH);
 
-      const char16_t * pstr = ::windows::shell::_fullpath(pstrRoot, wstrName, _MAX_PATH);
+      const unichar * pstr = ::windows::shell::_fullpath(pstrRoot, wstrName, _MAX_PATH);
 
       // passed name isn't a valid path but was found by the API
 
@@ -113,9 +113,9 @@ namespace windows
 
          // find the last forward or backward whack
 
-         char16_t * pstrBack  = wcsrchr(pstrRoot, '\\');
+         unichar * pstrBack  = wcsrchr(pstrRoot, '\\');
 
-         char16_t * pstrFront = wcsrchr(pstrRoot, '/');
+         unichar * pstrFront = wcsrchr(pstrRoot, '/');
 
          if (pstrFront != NULL || pstrBack != NULL)
          {

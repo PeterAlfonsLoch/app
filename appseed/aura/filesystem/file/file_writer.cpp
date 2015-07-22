@@ -143,7 +143,7 @@ namespace file
       ::exception::throw_interface_only(get_app());
    }
 
-   void writer::write (char16_t wch)
+   void writer::write (unichar wch)
    {
       UNREFERENCED_PARAMETER(wch);
       ::exception::throw_interface_only(get_app());

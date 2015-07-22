@@ -105,7 +105,7 @@ namespace filemanager
             class FillTask
             {
             public:
-               //FillTask(MAlbumView * pview, const char16_t * lpcsz);
+               //FillTask(MAlbumView * pview, const unichar * lpcsz);
          //      sp(list_view)      m_pview;
                string             m_strFile;
                UINT              m_uiTimer;

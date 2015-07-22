@@ -7,7 +7,7 @@
 
 
 
-int MessageBoxW(oswindow window,const char16_t * pszMessage,const char16_t * pszTitle,int iFlags)
+int MessageBoxW(oswindow window,const unichar * pszMessage,const unichar * pszTitle,int iFlags)
 {
   
 
@@ -374,7 +374,7 @@ string key_to_char(WPARAM wparam, LPARAM lparam)
 string get_system_error_message(uint32_t dwError)
 {
    wstring wstr;
-   wstr.alloc(64 * 1024 / sizeof(char16_t));
+   wstr.alloc(64 * 1024 / sizeof(unichar));
    FormatMessageW(
       FORMAT_MESSAGE_FROM_SYSTEM,
       NULL,

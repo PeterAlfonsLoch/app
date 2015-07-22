@@ -97,7 +97,7 @@ namespace windows
          wstring wstr = strCmd;
 
          bSuccess = CreateProcessW(NULL,
-            (char16_t *)(const char16_t *)wstr,     // command line
+            (unichar *)(const unichar *)wstr,     // command line
             NULL,          // process security attributes
             NULL,          // primary thread security attributes
             TRUE,          // handles are inherited
@@ -110,7 +110,7 @@ namespace windows
       else
       {
          bSuccess = CreateProcessW(NULL,
-            (char16_t *)(const char16_t *)wstring(szCmdline),     // command line
+            (unichar *)(const unichar *)wstring(szCmdline),     // command line
             NULL,          // process security attributes
             NULL,          // primary thread security attributes
             TRUE,          // handles are inherited

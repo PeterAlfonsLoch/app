@@ -14,7 +14,7 @@ public:
    wtostring(string & str, int32_t iAllocCount);
    ~wtostring();
 
-   inline operator const char16_t * () { return m_pwsz; }
-   inline operator char16_t * () { return m_pwsz; }
+   inline operator const unichar * () { return m_pwsz; }
+   inline operator unichar * () { return m_pwsz; }
 
 };

@@ -1749,7 +1749,7 @@ int translate_android_key_message(::message::key * pkey, int keyCode, int iUni)
       //pkey->m_ekey = (::user::e_key) ((int) ::user::key_a + keyCode - 29);
       pkey->m_ekey = ::user::key_refer_to_text_member;
 
-      pkey->m_strText = string((char16_t)iUni);
+      pkey->m_strText = string((unichar)iUni);
 
    }
    //else if (keyCode >= 7 && keyCode <= 16)
@@ -1759,7 +1759,7 @@ int translate_android_key_message(::message::key * pkey, int keyCode, int iUni)
 
    //   pkey->m_ekey = ::user::key_refer_to_text_member;
 
-   //   pkey->m_strText = string((char16_t)iUni);
+   //   pkey->m_strText = string((unichar)iUni);
 
    //}
    //else

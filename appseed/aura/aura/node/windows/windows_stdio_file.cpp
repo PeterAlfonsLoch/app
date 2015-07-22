@@ -219,13 +219,13 @@ namespace windows
    throw_file_exception(get_app(), ::file::exception::diskFull, _doserrno, m_strFileName);
    }*/
 
-   /*char16_t * stdio_file::read_string(char16_t * lpsz, UINT nMax)
+   /*unichar * stdio_file::read_string(unichar * lpsz, UINT nMax)
    {
    ASSERT(lpsz != NULL);
    ASSERT(__is_valid_address(lpsz, nMax));
    ASSERT(m_pStream != NULL);
 
-   char16_t * lpszResult = fgetws(lpsz, nMax, m_pStream);
+   unichar * lpszResult = fgetws(lpsz, nMax, m_pStream);
    if (lpszResult == NULL && !feof(m_pStream))
    {
    clearerr(m_pStream);

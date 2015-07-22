@@ -27,9 +27,9 @@
 namespace n7z
 {
 
-   char16_t MyCharUpper(char16_t ca);
-   char16_t MyCharLower(char16_t ca);
-   int32_t MyStringCompareNoCase(const char16_t *s1, const char16_t *s2);
+   unichar MyCharUpper(unichar ca);
+   unichar MyCharLower(unichar ca);
+   int32_t MyStringCompareNoCase(const unichar *s1, const unichar *s2);
    int32_t MyStringCompareNoCase(const char *s1, const char *s2);
    int32_t GetExtIndex(const char *ext);
 
@@ -37,27 +37,27 @@ namespace n7z
    template <class T> inline int32_t MyCompare(T a, T b)
    {  return a < b ? -1 : (a == b ? 0 : 1); }
 
-   char16_t MyCharUpper(char16_t ca)
+   unichar MyCharUpper(unichar ca)
    {
       return ::str::ch::to_upper_case(ca);
    }
 
-   char16_t MyCharLower(char16_t ca)
+   unichar MyCharLower(unichar ca)
    {
       return ::str::ch::to_lower_case(ca);
    }
 
 
-   int32_t MyStringCompareNoCase(const char16_t *s1, const char16_t *s2)
+   int32_t MyStringCompareNoCase(const unichar *s1, const unichar *s2)
    {
       for (;;)
       {
-         char16_t c1 = *s1++;
-         char16_t c2 = *s2++;
+         unichar c1 = *s1++;
+         unichar c2 = *s2++;
          if (c1 != c2)
          {
-            char16_t u1 = MyCharUpper(c1);
-            char16_t u2 = MyCharUpper(c2);
+            unichar u1 = MyCharUpper(c1);
+            unichar u2 = MyCharUpper(c2);
             if (u1 < u2) return -1;
             if (u1 > u2) return 1;
          }
@@ -77,7 +77,7 @@ namespace n7z
    static const uint64_t k_BCJ  = 0x03030103;
    static const uint64_t k_BCJ2 = 0x0303011B;
 
-   static const char16_t *kMatchFinderForBCJ2_LZMA = L"BT2";
+   static const unichar *kMatchFinderForBCJ2_LZMA = L"BT2";
    static const uint32_t kDictionaryForBCJ2_LZMA = 1 << 20;
    static const uint32_t kAlgorithmForBCJ2_LZMA = 1;
    static const uint32_t kNumFastBytesForBCJ2_LZMA = 64;
@@ -340,7 +340,7 @@ namespace n7z
                   string s;
                   for (i = 0; i < us.get_length(); i++)
                   {
-                     char16_t ca = us[i];
+                     unichar ca = us[i];
                      if (ca >= 0x80)
                         break;
                      s += (char)ca;

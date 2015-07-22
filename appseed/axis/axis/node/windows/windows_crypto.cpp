@@ -67,7 +67,7 @@ namespace windows
       DataIn.pbData = storageEncrypt.get_data();
       DataIn.cbData = (DWORD) storageEncrypt.get_size();
 
-      char16_t * lpwsz = NULL;
+      unichar * lpwsz = NULL;
 
       //--------------------------------------------------------------------
       //  begin protect phase. Note that the encryption key is created
@@ -144,7 +144,7 @@ namespace windows
       DataIn.pbData = (BYTE *) storageDecrypt.get_data();
       DataIn.cbData = (DWORD) storageDecrypt.get_size();
 
-//      char16_t * lpwsz = NULL;
+//      unichar * lpwsz = NULL;
 
       //--------------------------------------------------------------------
       //  begin protect phase. Note that the encryption key is created

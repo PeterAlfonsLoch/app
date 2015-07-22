@@ -153,7 +153,7 @@ _FILE *fopen_dup(const char *path, const char *attrs)
 
 #ifdef WINDOWSEX
 
-_FILE *_wfopen_dup(const char16_t *path, const char16_t *attrs)
+_FILE *_wfopen_dup(const unichar *path, const unichar *attrs)
 {
 
 	uint32_t access, disp;
@@ -185,7 +185,7 @@ _FILE *_wfopen_dup(const char16_t *path, const char16_t *attrs)
 
 #elif defined(METROWIN)
 
-_FILE *_wfopen_dup(const char16_t *path, const char16_t *attrs)
+_FILE *_wfopen_dup(const unichar *path, const unichar *attrs)
 {
 
 	uint32_t access, disp;
@@ -238,12 +238,12 @@ int32_t fprintf_dup(_FILE *fp, const char *s, ...)
 
 #ifdef WINDOWSEX
 
-int32_t fwprintf_dup(_FILE *fp, const char16_t *s, ...)
+int32_t fwprintf_dup(_FILE *fp, const unichar *s, ...)
 {
 	va_list args;
 	va_start(args, s);
 
-	char16_t bfr[1024];
+	unichar bfr[1024];
 	int32_t len = wvsprintfW(bfr, s, args);
 
 	va_end(args);
@@ -542,7 +542,7 @@ char *fgets_dup(char *str, int32_t n, _FILE *s)
 
 #ifdef WINDOWS
 
-char16_t *fgetws_dup(char16_t *str, int32_t n, _FILE *s)
+unichar *fgetws_dup(unichar *str, int32_t n, _FILE *s)
 {
 	// Text-mode fgetws converts MBCS->Unicode
 	if (((_FILE*)str)->_flag & _FILE_TEXT)
@@ -562,7 +562,7 @@ char16_t *fgetws_dup(char16_t *str, int32_t n, _FILE *s)
 	int32_t i;
 	for (i = 0; i < n-1; i++)
 	{
-		if (!fread_dup(&str[i], 1, sizeof(char16_t), s))
+		if (!fread_dup(&str[i], 1, sizeof(unichar), s))
 			break;
 		if (str[i] == L'\r')
 		{

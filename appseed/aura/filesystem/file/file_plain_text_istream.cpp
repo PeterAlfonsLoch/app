@@ -44,7 +44,7 @@ namespace file
 
    }
 
-   void plain_text_istream::read (char16_t & wch)
+   void plain_text_istream::read (unichar & wch)
    {
       m_spbuffer->read(&wch, sizeof(wch));
 

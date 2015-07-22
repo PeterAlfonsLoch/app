@@ -407,14 +407,14 @@ namespace ios
          && storage.get_data()[0] == 255
          && storage.get_data()[1] == 60)
       {
-         ::str::international::unicode_to_utf8(strResult, (const char16_t *) &storage.get_data()[2], (int32_t)(storage.get_size() - 2));
+         ::str::international::unicode_to_utf8(strResult, (const unichar *) &storage.get_data()[2], (int32_t)(storage.get_size() - 2));
       }
       else if(storage.get_size() >= 3
               && storage.get_data()[0] == 0xef
               && storage.get_data()[1] == 0xbb
               && storage.get_data()[2] == 0xbf)
       {
-         strResult = string((const char *) (const char16_t *) &storage.get_data()[3], (int32_t) (storage.get_size() - 3));
+         strResult = string((const char *) (const unichar *) &storage.get_data()[3], (int32_t) (storage.get_size() - 3));
       }
       else
       {

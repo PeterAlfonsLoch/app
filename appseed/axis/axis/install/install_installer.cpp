@@ -2370,7 +2370,7 @@ install_begin:;
                   if(string(lpnode->child_at(ui)->attr("type")) == "parse_file_name")
                   {
                      m_iStart = 4;
-                     char16_t buf[2048];
+                     unichar buf[2048];
                      ::GetModuleFileNameW(NULL, buf, sizeof(buf));
                      string str = ::str::international::unicode_to_utf8(buf);
                      index iFind = str.reverse_find('\\');
@@ -3720,7 +3720,7 @@ RetryBuildNumber:
       }
 
 #ifdef WINDOWSEX
-      char16_t * lpwstr = ::GetCommandLineW();
+      unichar * lpwstr = ::GetCommandLineW();
       int32_t numargs;
       int32_t numchars;
       wparse_cmdline(
@@ -3730,8 +3730,8 @@ RetryBuildNumber:
          &numargs,
          &numchars);
 
-      char16_t * pszCmdLine = new WCHAR[numchars];
-      char16_t ** argv = new WCHAR*[numargs];
+      unichar * pszCmdLine = new WCHAR[numchars];
+      unichar ** argv = new WCHAR*[numargs];
 
       wparse_cmdline(
          lpwstr,
@@ -4045,9 +4045,9 @@ RetryBuildNumber:
    void get_program_files_x86(wstring &wstr)
    {
 
-      char16_t * lpszModuleFolder = (char16_t *)malloc(MAX_PATH * sizeof(char16_t) * 8);
+      unichar * lpszModuleFolder = (unichar *)malloc(MAX_PATH * sizeof(unichar) * 8);
 
-      char16_t * lpszModuleFilePath = (char16_t *)malloc(MAX_PATH * sizeof(char16_t) * 8);
+      unichar * lpszModuleFilePath = (unichar *)malloc(MAX_PATH * sizeof(unichar) * 8);
 
       wcscpy(lpszModuleFilePath,_wgetenv(L"PROGRAMFILES(X86)"));
 
@@ -4110,7 +4110,7 @@ RetryBuildNumber:
       // a installation it can send app.install.exe a message with enable_desktop_launch set too.
       wstring wstrCmdLine = (L"\"" + wstrApp + L"\" : app=" + wstring(m_strApplicationId) + L" build_number=installed enable_desktop_launch").c_str();
 
-      if(::CreateProcessW((char16_t *)wstrApp.c_str(),(char16_t *)wstrCmdLine.c_str(),
+      if(::CreateProcessW((unichar *)wstrApp.c_str(),(unichar *)wstrCmdLine.c_str(),
          NULL,NULL,FALSE,0,NULL,NULL,
          &si,&pi))
          return TRUE;
@@ -4364,7 +4364,7 @@ RetryBuildNumber:
 //         System.install().trace().rich_trace("Application.http().get failed");
 //#ifdef WINDOWS
 //         uint32_t dw = ::GetLastError();
-//         char16_t lastErrorTxt[1024];
+//         unichar lastErrorTxt[1024];
 //         memset_dup(lastErrorTxt, 0, sizeof(lastErrorTxt));
 //         FormatMessageW(FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS, NULL, dw, 0, lastErrorTxt, 1024, NULL);
 //         System.install().trace().rich_trace().print_ln(string(lastErrorTxt));

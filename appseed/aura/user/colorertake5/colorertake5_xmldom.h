@@ -178,7 +178,7 @@ namespace colorertak5
      void consumeCDataSection(sp(::xml::node)root);
      void consumeText(sp(::xml::node)root);
      bool isCharRef();
-     char16_t consumeCharRef();
+     unichar consumeCharRef();
      bool isEntityRef();
      string *consumeEntityRef(bool useExtEnt);
 
@@ -210,7 +210,7 @@ namespace colorertak5
        return src[ppos+offset];
      }
 
-     inline char16_t get(){
+     inline unichar get(){
        if (src_overflow){
          if (opos == src_overflow->get_length()){
            delete src_overflow;

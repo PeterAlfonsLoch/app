@@ -100,7 +100,7 @@ namespace file
 
    }
 
-   void ostream:: write (char16_t wch)
+   void ostream:: write (unichar wch)
    {
 
    }

@@ -80,12 +80,12 @@ namespace visual
 
 
 
-   /*int32_t graphics_extension::_FindPrefixV1(const char16_t * lpcsz)
+   /*int32_t graphics_extension::_FindPrefixV1(const unichar * lpcsz)
    {
       int32_t iStart = 0;
       int32_t iIndex;
       int32_t iLen = wcslen(lpcsz);
-      char16_t * lpszFind;
+      unichar * lpszFind;
       while(true)
       {
          lpszFind = wcschr(lpcsz + iStart, L'&');

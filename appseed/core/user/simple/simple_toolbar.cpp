@@ -1631,7 +1631,7 @@ int32_t simple_toolbar::WrapToolBar(int32_t nCount, int32_t nWidth)
       {
          dx = m_sizeButton.cx;
          //         string str;
-         //         str = (const char16_t *) m_itema[i]->iString;
+         //         str = (const unichar *) m_itema[i]->iString;
          size size;
          ::GetTextExtentPoint32U(
             (HDC)pdc->get_os_data(),

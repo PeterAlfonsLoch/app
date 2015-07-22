@@ -102,7 +102,7 @@ return total;*/
 
 
 
-long wtol_dup(const char16_t *str)
+long wtol_dup(const unichar *str)
 {
    while (iswspace_dup(*str))			// skip whitespace
       ++str;
@@ -129,7 +129,7 @@ long wtol_dup(const char16_t *str)
       return total;
 }
 
-int32_t wtoi_dup(const char16_t *str)
+int32_t wtoi_dup(const unichar *str)
 {
    return (int32_t)wtol_dup(str);
 }
@@ -338,7 +338,7 @@ return total;*/
 
 
 
-long nwtol_dup(const char16_t *str, size_t iLen)
+long nwtol_dup(const unichar *str, size_t iLen)
 {
    while (iLen > 0 && iswspace_dup(*str))			// skip whitespace
    {
@@ -380,7 +380,7 @@ long nwtol_dup(const char16_t *str, size_t iLen)
       return total;
 }
 
-int32_t nwtoi_dup(const char16_t *str, size_t iLen)
+int32_t nwtoi_dup(const unichar *str, size_t iLen)
 {
    return (int32_t)nwtol_dup(str, iLen);
 }
@@ -824,7 +824,7 @@ int64_t natoi64_dup(const char * psz, char ** pszEnd, int32_t iBase, size_t iLen
       return 0;
 }
 
-int64_t nwtoi64_dup(const char16_t * str, const char16_t ** pszEnd, int32_t iBase, size_t iLen)
+int64_t nwtoi64_dup(const unichar * str, const unichar ** pszEnd, int32_t iBase, size_t iLen)
 {
    while (iLen > 0 && iswspace_dup(*str))			// skip whitespace
    {
@@ -891,7 +891,7 @@ int64_t nwtoi64_dup(const char16_t * str, const char16_t ** pszEnd, int32_t iBas
 }
 
 
-int64_t wtoi64_dup(const char16_t * str, const char16_t ** pszEnd, int32_t iBase)
+int64_t wtoi64_dup(const unichar * str, const unichar ** pszEnd, int32_t iBase)
 {
 
    while(*str != L'\0' && iswspace_dup(*str))			// skip whitespace
@@ -953,14 +953,14 @@ int64_t wtoi64_dup(const char16_t * str, const char16_t ** pszEnd, int32_t iBase
 }
 
 
- int64_t wtoi64_dup(const char16_t * sz, const char16_t ** pszEnd)
+ int64_t wtoi64_dup(const unichar * sz, const unichar ** pszEnd)
 {
 
    return wtoi64_dup(sz, NULL, 10);
 
 }
 
- int64_t wtoi64_dup(const char16_t * sz)
+ int64_t wtoi64_dup(const unichar * sz)
 {
 
    return wtoi64_dup(sz, NULL);

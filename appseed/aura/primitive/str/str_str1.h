@@ -61,32 +61,32 @@ int32_t stricmp(const char * sz1, const char * sz2);
 
 #endif
 
-//CLASS_DECL_AURA char16_t * wcsdup_dup(const char16_t * src);
-CLASS_DECL_AURA void wcscat_dup(char16_t * dest, const char16_t * cat);
-CLASS_DECL_AURA void wcscpy_dup(char16_t * dest, const char16_t * src);
-CLASS_DECL_AURA void wcsncpy_dup(char16_t * dest, const char16_t * src, strsize n);
+//CLASS_DECL_AURA unichar * wcsdup_dup(const unichar * src);
+CLASS_DECL_AURA void wcscat_dup(unichar * dest, const unichar * cat);
+CLASS_DECL_AURA void wcscpy_dup(unichar * dest, const unichar * src);
+CLASS_DECL_AURA void wcsncpy_dup(unichar * dest, const unichar * src, strsize n);
 CLASS_DECL_AURA int32_t iswalnum_dup(int32_t wch);
-CLASS_DECL_AURA count wcslen_dup(const char16_t * pwsz);
-CLASS_DECL_AURA char16_t * wcschr_dup(const char16_t * sz, char16_t ch);
-CLASS_DECL_AURA int32_t wcscmp_dup(const char16_t * sz1, const char16_t * sz2);
-CLASS_DECL_AURA int32_t wcsicmp_dup(const char16_t * sz1, const char16_t * sz2);
+CLASS_DECL_AURA count wcslen_dup(const unichar * pwsz);
+CLASS_DECL_AURA unichar * wcschr_dup(const unichar * sz, unichar ch);
+CLASS_DECL_AURA int32_t wcscmp_dup(const unichar * sz1, const unichar * sz2);
+CLASS_DECL_AURA int32_t wcsicmp_dup(const unichar * sz1, const unichar * sz2);
 
 
-CLASS_DECL_AURA void uitow_dup(char16_t * sz, uint64_t i, int32_t iBase);
-CLASS_DECL_AURA void itow_dup(char16_t * sz, int64_t i, int32_t iBase);
+CLASS_DECL_AURA void uitow_dup(unichar * sz, uint64_t i, int32_t iBase);
+CLASS_DECL_AURA void itow_dup(unichar * sz, int64_t i, int32_t iBase);
 
 
 //CLASS_DECL_AURA void l64toa_dup(char * sz, int64_t i, int64_t iBase);
 //CLASS_DECL_AURA void i64toa_dup(char * sz, int64_t i);
-CLASS_DECL_AURA void wcs_reverse(char16_t * sz);
+CLASS_DECL_AURA void wcs_reverse(unichar * sz);
 CLASS_DECL_AURA void w_zero_pad(char * sz, strsize iPad);
 
 
-CLASS_DECL_AURA char16_t w_to_lower(int32_t wch);
-CLASS_DECL_AURA char16_t w_to_upper(int32_t wch);
+CLASS_DECL_AURA unichar w_to_lower(int32_t wch);
+CLASS_DECL_AURA unichar w_to_upper(int32_t wch);
 
-CLASS_DECL_AURA errno_t wcslwr_s_dup(char16_t * sz, strsize size);
-CLASS_DECL_AURA errno_t wcsupr_s_dup(char16_t * sz, strsize size);
+CLASS_DECL_AURA errno_t wcslwr_s_dup(unichar * sz, strsize size);
+CLASS_DECL_AURA errno_t wcsupr_s_dup(unichar * sz, strsize size);
 
 CLASS_DECL_AURA int32_t iswalpha_dup(int32_t ch);
 CLASS_DECL_AURA int32_t iswdigit_dup(int32_t ch);
@@ -99,9 +99,9 @@ CLASS_DECL_AURA void __cdecl parse_cmdline(char *cmdstart, char **argv, char *ar
 CLASS_DECL_AURA char * strtok_r_dup(char *s1, const char *s2, char **lasts);
 
 CLASS_DECL_AURA count utf16_len(const char * psz);
-CLASS_DECL_AURA void utf8_to_utf16(char16_t * pwsz, const char * psz);
-//CLASS_DECL_AURA char16_t * ::str::international::utf8_to_unicode(const char * psz);
-//CLASS_DECL_AURA char * ::str::international::unicode_to_utf8(const char16_t * psz);
+CLASS_DECL_AURA void utf8_to_utf16(unichar * pwsz, const char * psz);
+//CLASS_DECL_AURA unichar * ::str::international::utf8_to_unicode(const char * psz);
+//CLASS_DECL_AURA char * ::str::international::unicode_to_utf8(const unichar * psz);
 
 
 
