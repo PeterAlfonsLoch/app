@@ -3,20 +3,14 @@
 <plist version="1.0">
 <dict>
 	<key>SchemeUserState</key>
-	<dict>
-		<key>basefreetype.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>30</integer>
-		</dict>
-		<key>freetype.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>21</integer>
-		</dict>
-	</dict>
+	<dict/>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>07DD66A51B5F0C16003A1CE1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>9A1B358B16A2D7A500875A94</key>
 		<dict>
 			<key>primary</key>
