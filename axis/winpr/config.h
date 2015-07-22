@@ -16,6 +16,9 @@
 
 /* Include files */
 #define HAVE_FCNTL_H
+#if defined(__APPLE__)
+#define HAVE_UNISTD_H 1
+#endif
 /* #undef HAVE_UNISTD_H */
 #define HAVE_STDINT_H
 #define HAVE_INTTYPES_H

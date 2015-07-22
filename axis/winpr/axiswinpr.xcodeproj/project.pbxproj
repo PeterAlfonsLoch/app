@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		074BD0801B5F277D00219723 /* libaxiscrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 074BD0791B5F275D00219723 /* libaxiscrypto.dylib */; };
+		074BD0811B5F278D00219723 /* libaxiscrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 074BD0771B5F275D00219723 /* libaxiscrypto.dylib */; };
+		074BD0921B5F280A00219723 /* libaxisopenssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 074BD08B1B5F27E400219723 /* libaxisopenssl.dylib */; };
+		074BD0931B5F281E00219723 /* libaxisopenssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 074BD0891B5F27E400219723 /* libaxisopenssl.dylib */; };
 		07DD5FC71B5F0B4E003A1CE1 /* config.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD5E051B5F0B4C003A1CE1 /* config.h */; };
 		07DD5FC81B5F0B4E003A1CE1 /* config.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD5E051B5F0B4C003A1CE1 /* config.h */; };
 		07DD5FC91B5F0B4E003A1CE1 /* asn1.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5E081B5F0B4C003A1CE1 /* asn1.c */; };
@@ -51,8 +55,6 @@
 		07DD5FF01B5F0B4E003A1CE1 /* alignment.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5E3E1B5F0B4C003A1CE1 /* alignment.c */; };
 		07DD5FF11B5F0B4E003A1CE1 /* buffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5E3F1B5F0B4C003A1CE1 /* buffer.c */; };
 		07DD5FF21B5F0B4E003A1CE1 /* buffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5E3F1B5F0B4C003A1CE1 /* buffer.c */; };
-		07DD5FF31B5F0B4E003A1CE1 /* casing.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5E401B5F0B4C003A1CE1 /* casing.c */; };
-		07DD5FF41B5F0B4E003A1CE1 /* casing.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5E401B5F0B4C003A1CE1 /* casing.c */; };
 		07DD5FF51B5F0B4E003A1CE1 /* conversion.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5E431B5F0B4C003A1CE1 /* conversion.c */; };
 		07DD5FF61B5F0B4E003A1CE1 /* conversion.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5E431B5F0B4C003A1CE1 /* conversion.c */; };
 		07DD5FF71B5F0B4E003A1CE1 /* memory.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5E441B5F0B4C003A1CE1 /* memory.c */; };
@@ -79,8 +81,6 @@
 		07DD600C1B5F0B4E003A1CE1 /* environment.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5E5D1B5F0B4C003A1CE1 /* environment.c */; };
 		07DD600D1B5F0B4E003A1CE1 /* err_err.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5E631B5F0B4C003A1CE1 /* err_err.c */; };
 		07DD600E1B5F0B4E003A1CE1 /* err_err.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5E631B5F0B4C003A1CE1 /* err_err.c */; };
-		07DD600F1B5F0B4E003A1CE1 /* error.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5E641B5F0B4C003A1CE1 /* error.c */; };
-		07DD60101B5F0B4E003A1CE1 /* error.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5E641B5F0B4C003A1CE1 /* error.c */; };
 		07DD60111B5F0B4E003A1CE1 /* file.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5E6A1B5F0B4C003A1CE1 /* file.c */; };
 		07DD60121B5F0B4E003A1CE1 /* file.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5E6A1B5F0B4C003A1CE1 /* file.c */; };
 		07DD60131B5F0B4E003A1CE1 /* pattern.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5E6C1B5F0B4C003A1CE1 /* pattern.c */; };
@@ -123,16 +123,6 @@
 		07DD60381B5F0B4E003A1CE1 /* nt.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5EAB1B5F0B4D003A1CE1 /* nt.c */; };
 		07DD60391B5F0B4E003A1CE1 /* nt.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD5EAC1B5F0B4D003A1CE1 /* nt.h */; };
 		07DD603A1B5F0B4E003A1CE1 /* nt.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD5EAC1B5F0B4D003A1CE1 /* nt.h */; };
-		07DD603B1B5F0B4E003A1CE1 /* PathAllocCombine.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5EB11B5F0B4D003A1CE1 /* PathAllocCombine.c */; };
-		07DD603C1B5F0B4E003A1CE1 /* PathAllocCombine.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5EB11B5F0B4D003A1CE1 /* PathAllocCombine.c */; };
-		07DD603D1B5F0B4E003A1CE1 /* PathCchAddExtension.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5EB21B5F0B4D003A1CE1 /* PathCchAddExtension.c */; };
-		07DD603E1B5F0B4E003A1CE1 /* PathCchAddExtension.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5EB21B5F0B4D003A1CE1 /* PathCchAddExtension.c */; };
-		07DD603F1B5F0B4E003A1CE1 /* PathCchAddSeparator.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5EB31B5F0B4D003A1CE1 /* PathCchAddSeparator.c */; };
-		07DD60401B5F0B4E003A1CE1 /* PathCchAddSeparator.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5EB31B5F0B4D003A1CE1 /* PathCchAddSeparator.c */; };
-		07DD60411B5F0B4E003A1CE1 /* PathCchAddSeparatorEx.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5EB41B5F0B4D003A1CE1 /* PathCchAddSeparatorEx.c */; };
-		07DD60421B5F0B4E003A1CE1 /* PathCchAddSeparatorEx.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5EB41B5F0B4D003A1CE1 /* PathCchAddSeparatorEx.c */; };
-		07DD60431B5F0B4E003A1CE1 /* PathCchAppend.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5EB51B5F0B4D003A1CE1 /* PathCchAppend.c */; };
-		07DD60441B5F0B4E003A1CE1 /* PathCchAppend.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5EB51B5F0B4D003A1CE1 /* PathCchAppend.c */; };
 		07DD60451B5F0B4E003A1CE1 /* path.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5EB71B5F0B4D003A1CE1 /* path.c */; };
 		07DD60461B5F0B4E003A1CE1 /* path.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5EB71B5F0B4D003A1CE1 /* path.c */; };
 		07DD60471B5F0B4E003A1CE1 /* shell.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5EB81B5F0B4D003A1CE1 /* shell.c */; };
@@ -149,10 +139,6 @@
 		07DD60521B5F0B4E003A1CE1 /* callback_environment.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5EC31B5F0B4D003A1CE1 /* callback_environment.c */; };
 		07DD60531B5F0B4E003A1CE1 /* cleanup_group.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5EC41B5F0B4D003A1CE1 /* cleanup_group.c */; };
 		07DD60541B5F0B4E003A1CE1 /* cleanup_group.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5EC41B5F0B4D003A1CE1 /* cleanup_group.c */; };
-		07DD60551B5F0B4E003A1CE1 /* io.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5EC71B5F0B4D003A1CE1 /* io.c */; };
-		07DD60561B5F0B4E003A1CE1 /* io.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5EC71B5F0B4D003A1CE1 /* io.c */; };
-		07DD60571B5F0B4E003A1CE1 /* pool.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5ECA1B5F0B4D003A1CE1 /* pool.c */; };
-		07DD60581B5F0B4E003A1CE1 /* pool.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5ECA1B5F0B4D003A1CE1 /* pool.c */; };
 		07DD60591B5F0B4E003A1CE1 /* pool.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD5ECB1B5F0B4D003A1CE1 /* pool.h */; };
 		07DD605A1B5F0B4E003A1CE1 /* pool.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD5ECB1B5F0B4D003A1CE1 /* pool.h */; };
 		07DD605B1B5F0B4E003A1CE1 /* pool_io.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5ECC1B5F0B4D003A1CE1 /* pool_io.c */; };
@@ -165,12 +151,6 @@
 		07DD60621B5F0B4E003A1CE1 /* pool_timer.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5ECF1B5F0B4D003A1CE1 /* pool_timer.c */; };
 		07DD60631B5F0B4E003A1CE1 /* pool_work.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5ED01B5F0B4D003A1CE1 /* pool_work.c */; };
 		07DD60641B5F0B4E003A1CE1 /* pool_work.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5ED01B5F0B4D003A1CE1 /* pool_work.c */; };
-		07DD60651B5F0B4E003A1CE1 /* synch.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5ED11B5F0B4D003A1CE1 /* synch.c */; };
-		07DD60661B5F0B4E003A1CE1 /* synch.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5ED11B5F0B4D003A1CE1 /* synch.c */; };
-		07DD60671B5F0B4E003A1CE1 /* timer.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5ED21B5F0B4D003A1CE1 /* timer.c */; };
-		07DD60681B5F0B4E003A1CE1 /* timer.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5ED21B5F0B4D003A1CE1 /* timer.c */; };
-		07DD60691B5F0B4E003A1CE1 /* work.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5ED31B5F0B4D003A1CE1 /* work.c */; };
-		07DD606A1B5F0B4E003A1CE1 /* work.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5ED31B5F0B4D003A1CE1 /* work.c */; };
 		07DD606B1B5F0B4E003A1CE1 /* registry.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5ED91B5F0B4D003A1CE1 /* registry.c */; };
 		07DD606C1B5F0B4E003A1CE1 /* registry.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5ED91B5F0B4D003A1CE1 /* registry.c */; };
 		07DD606D1B5F0B4E003A1CE1 /* registry_reg.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5EDA1B5F0B4D003A1CE1 /* registry_reg.c */; };
@@ -409,8 +389,6 @@
 		07DD61561B5F0B4E003A1CE1 /* triostr.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5F841B5F0B4D003A1CE1 /* triostr.c */; };
 		07DD61571B5F0B4E003A1CE1 /* triostr.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD5F851B5F0B4D003A1CE1 /* triostr.h */; };
 		07DD61581B5F0B4E003A1CE1 /* triostr.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD5F851B5F0B4D003A1CE1 /* triostr.h */; };
-		07DD61591B5F0B4E003A1CE1 /* utils_ntlm.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5F861B5F0B4D003A1CE1 /* utils_ntlm.c */; };
-		07DD615A1B5F0B4E003A1CE1 /* utils_ntlm.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5F861B5F0B4D003A1CE1 /* utils_ntlm.c */; };
 		07DD615B1B5F0B4E003A1CE1 /* utils_utils_ntlm.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5F871B5F0B4D003A1CE1 /* utils_utils_ntlm.c */; };
 		07DD615C1B5F0B4E003A1CE1 /* utils_utils_ntlm.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5F871B5F0B4D003A1CE1 /* utils_utils_ntlm.c */; };
 		07DD615D1B5F0B4E003A1CE1 /* Appender.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5F891B5F0B4D003A1CE1 /* Appender.c */; };
@@ -473,45 +451,96 @@
 		07DD61961B5F0B4E003A1CE1 /* wtsapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5FB71B5F0B4D003A1CE1 /* wtsapi.c */; };
 		07DD61971B5F0B4E003A1CE1 /* wtsapi.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD5FB81B5F0B4D003A1CE1 /* wtsapi.h */; };
 		07DD61981B5F0B4E003A1CE1 /* wtsapi.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD5FB81B5F0B4D003A1CE1 /* wtsapi.h */; };
-		07DD61991B5F0B4E003A1CE1 /* wtsapi_win32.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5FB91B5F0B4D003A1CE1 /* wtsapi_win32.c */; };
-		07DD619A1B5F0B4E003A1CE1 /* wtsapi_win32.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5FB91B5F0B4D003A1CE1 /* wtsapi_win32.c */; };
 		07DD619B1B5F0B4E003A1CE1 /* wtsapi_win32.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD5FBA1B5F0B4D003A1CE1 /* wtsapi_win32.h */; };
 		07DD619C1B5F0B4E003A1CE1 /* wtsapi_win32.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD5FBA1B5F0B4D003A1CE1 /* wtsapi_win32.h */; };
-		07DD619D1B5F0B4E003A1CE1 /* hash.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5FC11B5F0B4E003A1CE1 /* hash.c */; };
-		07DD619E1B5F0B4E003A1CE1 /* hash.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5FC11B5F0B4E003A1CE1 /* hash.c */; };
-		07DD619F1B5F0B4E003A1CE1 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5FC51B5F0B4E003A1CE1 /* main.c */; };
-		07DD61A01B5F0B4E003A1CE1 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5FC51B5F0B4E003A1CE1 /* main.c */; };
 		07DD61A11B5F0B4E003A1CE1 /* makecert.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5FC61B5F0B4E003A1CE1 /* makecert.c */; };
 		07DD61A21B5F0B4E003A1CE1 /* makecert.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5FC61B5F0B4E003A1CE1 /* makecert.c */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		074BD0761B5F275D00219723 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 074BD0701B5F275C00219723 /* axiscrypto.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07B2729A19A01A4600E822E1;
+			remoteInfo = axiscrypto;
+		};
+		074BD0781B5F275D00219723 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 074BD0701B5F275C00219723 /* axiscrypto.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07B2729219A019AB00E822E1;
+			remoteInfo = ios_axiscrypto;
+		};
+		074BD07A1B5F275D00219723 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 074BD0701B5F275C00219723 /* axiscrypto.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0778A245199FEF0700206CA1;
+			remoteInfo = axiscrypto_iosTests;
+		};
+		074BD07C1B5F276800219723 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 074BD0701B5F275C00219723 /* axiscrypto.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 07B2729319A01A4600E822E1;
+			remoteInfo = axiscrypto;
+		};
+		074BD07E1B5F276F00219723 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 074BD0701B5F275C00219723 /* axiscrypto.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AE24D871904CF46001AEFFB;
+			remoteInfo = ios_axiscrypto;
+		};
+		074BD0881B5F27E400219723 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 074BD0821B5F27E400219723 /* axisopenssl.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07B2729A19A01A4600E822E1;
+			remoteInfo = axisopenssl;
+		};
+		074BD08A1B5F27E400219723 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 074BD0821B5F27E400219723 /* axisopenssl.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07B2729219A019AB00E822E1;
+			remoteInfo = ios_axisopenssl;
+		};
+		074BD08C1B5F27E400219723 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 074BD0821B5F27E400219723 /* axisopenssl.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0778A245199FEF0700206CA1;
+			remoteInfo = axisopenssl_iosTests;
+		};
+		074BD08E1B5F27F900219723 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 074BD0821B5F27E400219723 /* axisopenssl.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 07B2729319A01A4600E822E1;
+			remoteInfo = axisopenssl;
+		};
+		074BD0901B5F280100219723 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 074BD0821B5F27E400219723 /* axisopenssl.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AE24D871904CF46001AEFFB;
+			remoteInfo = ios_axisopenssl;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		074BD0701B5F275C00219723 /* axiscrypto.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axiscrypto.xcodeproj; path = ../crypto/axiscrypto.xcodeproj; sourceTree = "<group>"; };
+		074BD0821B5F27E400219723 /* axisopenssl.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisopenssl.xcodeproj; path = ../openssl/axisopenssl.xcodeproj; sourceTree = "<group>"; };
 		07DD5DF91B5F0A1E003A1CE1 /* libaxiswinpr.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxiswinpr.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		07DD5E051B5F0B4C003A1CE1 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
 		07DD5E081B5F0B4C003A1CE1 /* asn1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = asn1.c; sourceTree = "<group>"; };
-		07DD5E091B5F0B4C003A1CE1 /* cmake_install.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_install.cmake; sourceTree = "<group>"; };
-		07DD5E0A1B5F0B4C003A1CE1 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
-		07DD5E0B1B5F0B4C003A1CE1 /* module.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = module.def; sourceTree = "<group>"; };
-		07DD5E0C1B5F0B4C003A1CE1 /* ModuleOptions.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModuleOptions.cmake; sourceTree = "<group>"; };
 		07DD5E0E1B5F0B4C003A1CE1 /* bcrypt.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bcrypt.c; sourceTree = "<group>"; };
-		07DD5E0F1B5F0B4C003A1CE1 /* cmake_install.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_install.cmake; sourceTree = "<group>"; };
-		07DD5E101B5F0B4C003A1CE1 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
-		07DD5E111B5F0B4C003A1CE1 /* ModuleOptions.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModuleOptions.cmake; sourceTree = "<group>"; };
 		07DD5E131B5F0B4C003A1CE1 /* clipboard.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = clipboard.c; sourceTree = "<group>"; };
 		07DD5E141B5F0B4C003A1CE1 /* clipboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = clipboard.h; sourceTree = "<group>"; };
-		07DD5E151B5F0B4C003A1CE1 /* cmake_install.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_install.cmake; sourceTree = "<group>"; };
-		07DD5E161B5F0B4C003A1CE1 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
-		07DD5E171B5F0B4C003A1CE1 /* ModuleOptions.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModuleOptions.cmake; sourceTree = "<group>"; };
 		07DD5E181B5F0B4C003A1CE1 /* synthetic.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = synthetic.c; sourceTree = "<group>"; };
-		07DD5E191B5F0B4C003A1CE1 /* cmake_install.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_install.cmake; sourceTree = "<group>"; };
-		07DD5E1A1B5F0B4C003A1CE1 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
-		07DD5E1C1B5F0B4C003A1CE1 /* cmake_install.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_install.cmake; sourceTree = "<group>"; };
-		07DD5E1D1B5F0B4C003A1CE1 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		07DD5E1E1B5F0B4C003A1CE1 /* com.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = com.c; sourceTree = "<group>"; };
-		07DD5E1F1B5F0B4C003A1CE1 /* module.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = module.def; sourceTree = "<group>"; };
-		07DD5E201B5F0B4C003A1CE1 /* ModuleOptions.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModuleOptions.cmake; sourceTree = "<group>"; };
-		07DD5E221B5F0B4C003A1CE1 /* cmake_install.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_install.cmake; sourceTree = "<group>"; };
-		07DD5E231B5F0B4C003A1CE1 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		07DD5E241B5F0B4C003A1CE1 /* comm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = comm.c; sourceTree = "<group>"; };
 		07DD5E251B5F0B4C003A1CE1 /* comm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = comm.h; sourceTree = "<group>"; };
 		07DD5E261B5F0B4C003A1CE1 /* comm_io.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = comm_io.c; sourceTree = "<group>"; };
@@ -523,162 +552,62 @@
 		07DD5E2C1B5F0B4C003A1CE1 /* comm_sercx_sys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = comm_sercx_sys.h; sourceTree = "<group>"; };
 		07DD5E2D1B5F0B4C003A1CE1 /* comm_serial_sys.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = comm_serial_sys.c; sourceTree = "<group>"; };
 		07DD5E2E1B5F0B4C003A1CE1 /* comm_serial_sys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = comm_serial_sys.h; sourceTree = "<group>"; };
-		07DD5E2F1B5F0B4C003A1CE1 /* module.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = module.def; sourceTree = "<group>"; };
-		07DD5E301B5F0B4C003A1CE1 /* ModuleOptions.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModuleOptions.cmake; sourceTree = "<group>"; };
-		07DD5E321B5F0B4C003A1CE1 /* cmake_install.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_install.cmake; sourceTree = "<group>"; };
-		07DD5E331B5F0B4C003A1CE1 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		07DD5E341B5F0B4C003A1CE1 /* credentials.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = credentials.c; sourceTree = "<group>"; };
-		07DD5E351B5F0B4C003A1CE1 /* module.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = module.def; sourceTree = "<group>"; };
-		07DD5E361B5F0B4C003A1CE1 /* ModuleOptions.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModuleOptions.cmake; sourceTree = "<group>"; };
-		07DD5E381B5F0B4C003A1CE1 /* cmake_install.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_install.cmake; sourceTree = "<group>"; };
-		07DD5E391B5F0B4C003A1CE1 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		07DD5E3A1B5F0B4C003A1CE1 /* credui.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = credui.c; sourceTree = "<group>"; };
-		07DD5E3B1B5F0B4C003A1CE1 /* module.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = module.def; sourceTree = "<group>"; };
-		07DD5E3C1B5F0B4C003A1CE1 /* ModuleOptions.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModuleOptions.cmake; sourceTree = "<group>"; };
 		07DD5E3E1B5F0B4C003A1CE1 /* alignment.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = alignment.c; sourceTree = "<group>"; };
 		07DD5E3F1B5F0B4C003A1CE1 /* buffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = buffer.c; sourceTree = "<group>"; };
-		07DD5E401B5F0B4C003A1CE1 /* casing.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = casing.c; sourceTree = "<group>"; };
-		07DD5E411B5F0B4C003A1CE1 /* cmake_install.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_install.cmake; sourceTree = "<group>"; };
-		07DD5E421B5F0B4C003A1CE1 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		07DD5E431B5F0B4C003A1CE1 /* conversion.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = conversion.c; sourceTree = "<group>"; };
 		07DD5E441B5F0B4C003A1CE1 /* memory.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = memory.c; sourceTree = "<group>"; };
-		07DD5E451B5F0B4C003A1CE1 /* module.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = module.def; sourceTree = "<group>"; };
-		07DD5E461B5F0B4C003A1CE1 /* ModuleOptions.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModuleOptions.cmake; sourceTree = "<group>"; };
 		07DD5E471B5F0B4C003A1CE1 /* string.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = string.c; sourceTree = "<group>"; };
 		07DD5E481B5F0B4C003A1CE1 /* unicode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unicode.c; sourceTree = "<group>"; };
 		07DD5E491B5F0B4C003A1CE1 /* utf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = utf.c; sourceTree = "<group>"; };
 		07DD5E4A1B5F0B4C003A1CE1 /* utf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utf.h; sourceTree = "<group>"; };
 		07DD5E4C1B5F0B4C003A1CE1 /* cert.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cert.c; sourceTree = "<group>"; };
-		07DD5E4D1B5F0B4C003A1CE1 /* cmake_install.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_install.cmake; sourceTree = "<group>"; };
-		07DD5E4E1B5F0B4C003A1CE1 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		07DD5E4F1B5F0B4C003A1CE1 /* crypto.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = crypto.c; sourceTree = "<group>"; };
 		07DD5E501B5F0B4C003A1CE1 /* crypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto.h; sourceTree = "<group>"; };
-		07DD5E511B5F0B4C003A1CE1 /* module.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = module.def; sourceTree = "<group>"; };
-		07DD5E521B5F0B4C003A1CE1 /* ModuleOptions.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModuleOptions.cmake; sourceTree = "<group>"; };
-		07DD5E541B5F0B4C003A1CE1 /* cmake_install.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_install.cmake; sourceTree = "<group>"; };
-		07DD5E551B5F0B4C003A1CE1 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		07DD5E561B5F0B4C003A1CE1 /* dsparse.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dsparse.c; sourceTree = "<group>"; };
-		07DD5E571B5F0B4C003A1CE1 /* module.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = module.def; sourceTree = "<group>"; };
-		07DD5E581B5F0B4C003A1CE1 /* ModuleOptions.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModuleOptions.cmake; sourceTree = "<group>"; };
 		07DD5E591B5F0B4C003A1CE1 /* dummy.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dummy.c; sourceTree = "<group>"; };
-		07DD5E5B1B5F0B4C003A1CE1 /* cmake_install.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_install.cmake; sourceTree = "<group>"; };
-		07DD5E5C1B5F0B4C003A1CE1 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		07DD5E5D1B5F0B4C003A1CE1 /* environment.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = environment.c; sourceTree = "<group>"; };
-		07DD5E5E1B5F0B4C003A1CE1 /* module.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = module.def; sourceTree = "<group>"; };
-		07DD5E5F1B5F0B4C003A1CE1 /* ModuleOptions.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModuleOptions.cmake; sourceTree = "<group>"; };
-		07DD5E611B5F0B4C003A1CE1 /* cmake_install.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_install.cmake; sourceTree = "<group>"; };
-		07DD5E621B5F0B4C003A1CE1 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		07DD5E631B5F0B4C003A1CE1 /* err_err.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = err_err.c; sourceTree = "<group>"; };
-		07DD5E641B5F0B4C003A1CE1 /* error.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = error.c; sourceTree = "<group>"; };
-		07DD5E651B5F0B4C003A1CE1 /* module.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = module.def; sourceTree = "<group>"; };
-		07DD5E661B5F0B4C003A1CE1 /* ModuleOptions.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModuleOptions.cmake; sourceTree = "<group>"; };
-		07DD5E681B5F0B4C003A1CE1 /* cmake_install.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_install.cmake; sourceTree = "<group>"; };
-		07DD5E691B5F0B4C003A1CE1 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		07DD5E6A1B5F0B4C003A1CE1 /* file.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = file.c; sourceTree = "<group>"; };
-		07DD5E6B1B5F0B4C003A1CE1 /* ModuleOptions.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModuleOptions.cmake; sourceTree = "<group>"; };
 		07DD5E6C1B5F0B4C003A1CE1 /* pattern.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pattern.c; sourceTree = "<group>"; };
-		07DD5E6E1B5F0B4C003A1CE1 /* cmake_install.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_install.cmake; sourceTree = "<group>"; };
-		07DD5E6F1B5F0B4C003A1CE1 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		07DD5E701B5F0B4C003A1CE1 /* handle.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = handle.c; sourceTree = "<group>"; };
 		07DD5E711B5F0B4C003A1CE1 /* handle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = handle.h; sourceTree = "<group>"; };
-		07DD5E721B5F0B4C003A1CE1 /* module.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = module.def; sourceTree = "<group>"; };
-		07DD5E731B5F0B4C003A1CE1 /* ModuleOptions.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModuleOptions.cmake; sourceTree = "<group>"; };
 		07DD5E741B5F0B4C003A1CE1 /* nonehandle.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nonehandle.c; sourceTree = "<group>"; };
 		07DD5E751B5F0B4C003A1CE1 /* nonehandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nonehandle.h; sourceTree = "<group>"; };
-		07DD5E771B5F0B4C003A1CE1 /* cmake_install.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_install.cmake; sourceTree = "<group>"; };
-		07DD5E781B5F0B4C003A1CE1 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		07DD5E791B5F0B4C003A1CE1 /* heap.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = heap.c; sourceTree = "<group>"; };
-		07DD5E7A1B5F0B4C003A1CE1 /* module.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = module.def; sourceTree = "<group>"; };
-		07DD5E7B1B5F0B4C003A1CE1 /* ModuleOptions.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModuleOptions.cmake; sourceTree = "<group>"; };
-		07DD5E7D1B5F0B4C003A1CE1 /* cmake_install.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_install.cmake; sourceTree = "<group>"; };
-		07DD5E7E1B5F0B4C003A1CE1 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		07DD5E7F1B5F0B4C003A1CE1 /* keycode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = keycode.c; sourceTree = "<group>"; };
-		07DD5E801B5F0B4D003A1CE1 /* ModuleOptions.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModuleOptions.cmake; sourceTree = "<group>"; };
 		07DD5E811B5F0B4D003A1CE1 /* scancode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = scancode.c; sourceTree = "<group>"; };
 		07DD5E821B5F0B4D003A1CE1 /* virtualkey.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = virtualkey.c; sourceTree = "<group>"; };
-		07DD5E841B5F0B4D003A1CE1 /* cmake_install.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_install.cmake; sourceTree = "<group>"; };
-		07DD5E851B5F0B4D003A1CE1 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		07DD5E861B5F0B4D003A1CE1 /* interlocked.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = interlocked.c; sourceTree = "<group>"; };
-		07DD5E871B5F0B4D003A1CE1 /* module.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = module.def; sourceTree = "<group>"; };
-		07DD5E881B5F0B4D003A1CE1 /* module_5.1.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = module_5.1.def; sourceTree = "<group>"; };
-		07DD5E891B5F0B4D003A1CE1 /* ModuleOptions.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModuleOptions.cmake; sourceTree = "<group>"; };
-		07DD5E8B1B5F0B4D003A1CE1 /* cmake_install.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_install.cmake; sourceTree = "<group>"; };
-		07DD5E8C1B5F0B4D003A1CE1 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		07DD5E8D1B5F0B4D003A1CE1 /* device.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = device.c; sourceTree = "<group>"; };
 		07DD5E8E1B5F0B4D003A1CE1 /* io.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = io.c; sourceTree = "<group>"; };
 		07DD5E8F1B5F0B4D003A1CE1 /* io.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = io.h; sourceTree = "<group>"; };
-		07DD5E901B5F0B4D003A1CE1 /* module.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = module.def; sourceTree = "<group>"; };
-		07DD5E911B5F0B4D003A1CE1 /* ModuleOptions.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModuleOptions.cmake; sourceTree = "<group>"; };
-		07DD5E931B5F0B4D003A1CE1 /* cmake_install.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_install.cmake; sourceTree = "<group>"; };
-		07DD5E941B5F0B4D003A1CE1 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		07DD5E951B5F0B4D003A1CE1 /* library.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = library.c; sourceTree = "<group>"; };
-		07DD5E961B5F0B4D003A1CE1 /* module.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = module.def; sourceTree = "<group>"; };
-		07DD5E971B5F0B4D003A1CE1 /* ModuleOptions.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModuleOptions.cmake; sourceTree = "<group>"; };
-		07DD5E991B5F0B4D003A1CE1 /* cmake_install.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_install.cmake; sourceTree = "<group>"; };
-		07DD5E9A1B5F0B4D003A1CE1 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		07DD5E9B1B5F0B4D003A1CE1 /* locale.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = locale.c; sourceTree = "<group>"; };
-		07DD5E9C1B5F0B4D003A1CE1 /* module.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = module.def; sourceTree = "<group>"; };
-		07DD5E9D1B5F0B4D003A1CE1 /* ModuleOptions.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModuleOptions.cmake; sourceTree = "<group>"; };
 		07DD5E9E1B5F0B4D003A1CE1 /* log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log.h; sourceTree = "<group>"; };
-		07DD5EA01B5F0B4D003A1CE1 /* cmake_install.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_install.cmake; sourceTree = "<group>"; };
-		07DD5EA11B5F0B4D003A1CE1 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		07DD5EA21B5F0B4D003A1CE1 /* memory.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = memory.c; sourceTree = "<group>"; };
 		07DD5EA31B5F0B4D003A1CE1 /* memory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = memory.h; sourceTree = "<group>"; };
-		07DD5EA41B5F0B4D003A1CE1 /* module.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = module.def; sourceTree = "<group>"; };
-		07DD5EA51B5F0B4D003A1CE1 /* ModuleOptions.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModuleOptions.cmake; sourceTree = "<group>"; };
-		07DD5EA71B5F0B4D003A1CE1 /* cmake_install.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_install.cmake; sourceTree = "<group>"; };
-		07DD5EA81B5F0B4D003A1CE1 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
-		07DD5EA91B5F0B4D003A1CE1 /* module.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = module.def; sourceTree = "<group>"; };
-		07DD5EAA1B5F0B4D003A1CE1 /* ModuleOptions.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModuleOptions.cmake; sourceTree = "<group>"; };
 		07DD5EAB1B5F0B4D003A1CE1 /* nt.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nt.c; sourceTree = "<group>"; };
 		07DD5EAC1B5F0B4D003A1CE1 /* nt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nt.h; sourceTree = "<group>"; };
-		07DD5EAE1B5F0B4D003A1CE1 /* cmake_install.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_install.cmake; sourceTree = "<group>"; };
-		07DD5EAF1B5F0B4D003A1CE1 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
-		07DD5EB11B5F0B4D003A1CE1 /* PathAllocCombine.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = PathAllocCombine.c; sourceTree = "<group>"; };
-		07DD5EB21B5F0B4D003A1CE1 /* PathCchAddExtension.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = PathCchAddExtension.c; sourceTree = "<group>"; };
-		07DD5EB31B5F0B4D003A1CE1 /* PathCchAddSeparator.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = PathCchAddSeparator.c; sourceTree = "<group>"; };
-		07DD5EB41B5F0B4D003A1CE1 /* PathCchAddSeparatorEx.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = PathCchAddSeparatorEx.c; sourceTree = "<group>"; };
-		07DD5EB51B5F0B4D003A1CE1 /* PathCchAppend.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = PathCchAppend.c; sourceTree = "<group>"; };
-		07DD5EB61B5F0B4D003A1CE1 /* ModuleOptions.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModuleOptions.cmake; sourceTree = "<group>"; };
 		07DD5EB71B5F0B4D003A1CE1 /* path.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = path.c; sourceTree = "<group>"; };
 		07DD5EB81B5F0B4D003A1CE1 /* shell.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = shell.c; sourceTree = "<group>"; };
-		07DD5EBA1B5F0B4D003A1CE1 /* cmake_install.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_install.cmake; sourceTree = "<group>"; };
-		07DD5EBB1B5F0B4D003A1CE1 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
-		07DD5EBC1B5F0B4D003A1CE1 /* module.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = module.def; sourceTree = "<group>"; };
-		07DD5EBD1B5F0B4D003A1CE1 /* ModuleOptions.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModuleOptions.cmake; sourceTree = "<group>"; };
 		07DD5EBE1B5F0B4D003A1CE1 /* pipe.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pipe.c; sourceTree = "<group>"; };
 		07DD5EBF1B5F0B4D003A1CE1 /* pipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pipe.h; sourceTree = "<group>"; };
 		07DD5EC11B5F0B4D003A1CE1 /* callback.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = callback.c; sourceTree = "<group>"; };
 		07DD5EC21B5F0B4D003A1CE1 /* callback_cleanup.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = callback_cleanup.c; sourceTree = "<group>"; };
 		07DD5EC31B5F0B4D003A1CE1 /* callback_environment.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = callback_environment.c; sourceTree = "<group>"; };
 		07DD5EC41B5F0B4D003A1CE1 /* cleanup_group.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cleanup_group.c; sourceTree = "<group>"; };
-		07DD5EC51B5F0B4D003A1CE1 /* cmake_install.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_install.cmake; sourceTree = "<group>"; };
-		07DD5EC61B5F0B4D003A1CE1 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
-		07DD5EC71B5F0B4D003A1CE1 /* io.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = io.c; sourceTree = "<group>"; };
-		07DD5EC81B5F0B4D003A1CE1 /* module.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = module.def; sourceTree = "<group>"; };
-		07DD5EC91B5F0B4D003A1CE1 /* ModuleOptions.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModuleOptions.cmake; sourceTree = "<group>"; };
-		07DD5ECA1B5F0B4D003A1CE1 /* pool.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pool.c; sourceTree = "<group>"; };
 		07DD5ECB1B5F0B4D003A1CE1 /* pool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pool.h; sourceTree = "<group>"; };
 		07DD5ECC1B5F0B4D003A1CE1 /* pool_io.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pool_io.c; sourceTree = "<group>"; };
 		07DD5ECD1B5F0B4D003A1CE1 /* pool_pool.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pool_pool.c; sourceTree = "<group>"; };
 		07DD5ECE1B5F0B4D003A1CE1 /* pool_synch.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pool_synch.c; sourceTree = "<group>"; };
 		07DD5ECF1B5F0B4D003A1CE1 /* pool_timer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pool_timer.c; sourceTree = "<group>"; };
 		07DD5ED01B5F0B4D003A1CE1 /* pool_work.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pool_work.c; sourceTree = "<group>"; };
-		07DD5ED11B5F0B4D003A1CE1 /* synch.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = synch.c; sourceTree = "<group>"; };
-		07DD5ED21B5F0B4D003A1CE1 /* timer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = timer.c; sourceTree = "<group>"; };
-		07DD5ED31B5F0B4D003A1CE1 /* work.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = work.c; sourceTree = "<group>"; };
-		07DD5ED51B5F0B4D003A1CE1 /* cmake_install.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_install.cmake; sourceTree = "<group>"; };
-		07DD5ED61B5F0B4D003A1CE1 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
-		07DD5ED71B5F0B4D003A1CE1 /* module.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = module.def; sourceTree = "<group>"; };
-		07DD5ED81B5F0B4D003A1CE1 /* ModuleOptions.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModuleOptions.cmake; sourceTree = "<group>"; };
 		07DD5ED91B5F0B4D003A1CE1 /* registry.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = registry.c; sourceTree = "<group>"; };
 		07DD5EDA1B5F0B4D003A1CE1 /* registry_reg.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = registry_reg.c; sourceTree = "<group>"; };
 		07DD5EDB1B5F0B4D003A1CE1 /* registry_reg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = registry_reg.h; sourceTree = "<group>"; };
-		07DD5EDD1B5F0B4D003A1CE1 /* cmake_install.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_install.cmake; sourceTree = "<group>"; };
-		07DD5EDE1B5F0B4D003A1CE1 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		07DD5EDF1B5F0B4D003A1CE1 /* midl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = midl.c; sourceTree = "<group>"; };
-		07DD5EE01B5F0B4D003A1CE1 /* module.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = module.def; sourceTree = "<group>"; };
-		07DD5EE11B5F0B4D003A1CE1 /* ModuleOptions.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModuleOptions.cmake; sourceTree = "<group>"; };
 		07DD5EE21B5F0B4D003A1CE1 /* ndr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ndr.c; sourceTree = "<group>"; };
 		07DD5EE31B5F0B4D003A1CE1 /* ndr_array.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ndr_array.c; sourceTree = "<group>"; };
 		07DD5EE41B5F0B4D003A1CE1 /* ndr_array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ndr_array.h; sourceTree = "<group>"; };
@@ -699,16 +628,8 @@
 		07DD5EF31B5F0B4D003A1CE1 /* ndr_union.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ndr_union.c; sourceTree = "<group>"; };
 		07DD5EF41B5F0B4D003A1CE1 /* ndr_union.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ndr_union.h; sourceTree = "<group>"; };
 		07DD5EF51B5F0B4D003A1CE1 /* rpc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rpc.c; sourceTree = "<group>"; };
-		07DD5EF71B5F0B4D003A1CE1 /* cmake_install.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_install.cmake; sourceTree = "<group>"; };
-		07DD5EF81B5F0B4D003A1CE1 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
-		07DD5EF91B5F0B4D003A1CE1 /* module.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = module.def; sourceTree = "<group>"; };
-		07DD5EFA1B5F0B4D003A1CE1 /* ModuleOptions.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModuleOptions.cmake; sourceTree = "<group>"; };
 		07DD5EFB1B5F0B4D003A1CE1 /* security.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = security.c; sourceTree = "<group>"; };
 		07DD5EFC1B5F0B4D003A1CE1 /* security.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = security.h; sourceTree = "<group>"; };
-		07DD5EFE1B5F0B4D003A1CE1 /* cmake_install.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_install.cmake; sourceTree = "<group>"; };
-		07DD5EFF1B5F0B4D003A1CE1 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
-		07DD5F001B5F0B4D003A1CE1 /* module.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = module.def; sourceTree = "<group>"; };
-		07DD5F011B5F0B4D003A1CE1 /* ModuleOptions.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModuleOptions.cmake; sourceTree = "<group>"; };
 		07DD5F021B5F0B4D003A1CE1 /* smartcard.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = smartcard.c; sourceTree = "<group>"; };
 		07DD5F031B5F0B4D003A1CE1 /* smartcard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = smartcard.h; sourceTree = "<group>"; };
 		07DD5F041B5F0B4D003A1CE1 /* smartcard_inspect.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = smartcard_inspect.c; sourceTree = "<group>"; };
@@ -718,12 +639,8 @@
 		07DD5F081B5F0B4D003A1CE1 /* smartcard_pcsc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = smartcard_pcsc.h; sourceTree = "<group>"; };
 		07DD5F091B5F0B4D003A1CE1 /* smartcard_winscard.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = smartcard_winscard.c; sourceTree = "<group>"; };
 		07DD5F0A1B5F0B4D003A1CE1 /* smartcard_winscard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = smartcard_winscard.h; sourceTree = "<group>"; };
-		07DD5F0C1B5F0B4D003A1CE1 /* cmake_install.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_install.cmake; sourceTree = "<group>"; };
-		07DD5F0D1B5F0B4D003A1CE1 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		07DD5F0F1B5F0B4D003A1CE1 /* credssp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = credssp.c; sourceTree = "<group>"; };
 		07DD5F101B5F0B4D003A1CE1 /* credssp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = credssp.h; sourceTree = "<group>"; };
-		07DD5F111B5F0B4D003A1CE1 /* module.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = module.def; sourceTree = "<group>"; };
-		07DD5F121B5F0B4D003A1CE1 /* ModuleOptions.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModuleOptions.cmake; sourceTree = "<group>"; };
 		07DD5F141B5F0B4D003A1CE1 /* negotiate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = negotiate.c; sourceTree = "<group>"; };
 		07DD5F151B5F0B4D003A1CE1 /* negotiate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = negotiate.h; sourceTree = "<group>"; };
 		07DD5F171B5F0B4D003A1CE1 /* ntlm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ntlm.c; sourceTree = "<group>"; };
@@ -743,19 +660,13 @@
 		07DD5F261B5F0B4D003A1CE1 /* sspi_export.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sspi_export.c; sourceTree = "<group>"; };
 		07DD5F271B5F0B4D003A1CE1 /* sspi_winpr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sspi_winpr.c; sourceTree = "<group>"; };
 		07DD5F281B5F0B4D003A1CE1 /* sspi_winpr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sspi_winpr.h; sourceTree = "<group>"; };
-		07DD5F2A1B5F0B4D003A1CE1 /* cmake_install.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_install.cmake; sourceTree = "<group>"; };
-		07DD5F2B1B5F0B4D003A1CE1 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
-		07DD5F2C1B5F0B4D003A1CE1 /* ModuleOptions.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModuleOptions.cmake; sourceTree = "<group>"; };
 		07DD5F2D1B5F0B4D003A1CE1 /* sspicli.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sspicli.c; sourceTree = "<group>"; };
 		07DD5F2F1B5F0B4D003A1CE1 /* address.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = address.c; sourceTree = "<group>"; };
 		07DD5F301B5F0B4D003A1CE1 /* barrier.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = barrier.c; sourceTree = "<group>"; };
-		07DD5F311B5F0B4D003A1CE1 /* cmake_install.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_install.cmake; sourceTree = "<group>"; };
-		07DD5F321B5F0B4D003A1CE1 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		07DD5F331B5F0B4D003A1CE1 /* condition.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = condition.c; sourceTree = "<group>"; };
 		07DD5F341B5F0B4D003A1CE1 /* critical.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = critical.c; sourceTree = "<group>"; };
 		07DD5F351B5F0B4D003A1CE1 /* event.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = event.c; sourceTree = "<group>"; };
 		07DD5F361B5F0B4D003A1CE1 /* init.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = init.c; sourceTree = "<group>"; };
-		07DD5F371B5F0B4D003A1CE1 /* ModuleOptions.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModuleOptions.cmake; sourceTree = "<group>"; };
 		07DD5F381B5F0B4D003A1CE1 /* mutex.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mutex.c; sourceTree = "<group>"; };
 		07DD5F391B5F0B4D003A1CE1 /* semaphore.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = semaphore.c; sourceTree = "<group>"; };
 		07DD5F3A1B5F0B4D003A1CE1 /* sleep.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sleep.c; sourceTree = "<group>"; };
@@ -763,27 +674,14 @@
 		07DD5F3C1B5F0B4D003A1CE1 /* synch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = synch.h; sourceTree = "<group>"; };
 		07DD5F3D1B5F0B4D003A1CE1 /* timer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = timer.c; sourceTree = "<group>"; };
 		07DD5F3E1B5F0B4D003A1CE1 /* wait.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = wait.c; sourceTree = "<group>"; };
-		07DD5F401B5F0B4D003A1CE1 /* cmake_install.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_install.cmake; sourceTree = "<group>"; };
-		07DD5F411B5F0B4D003A1CE1 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
-		07DD5F421B5F0B4D003A1CE1 /* module.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = module.def; sourceTree = "<group>"; };
-		07DD5F431B5F0B4D003A1CE1 /* ModuleOptions.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModuleOptions.cmake; sourceTree = "<group>"; };
 		07DD5F441B5F0B4D003A1CE1 /* sysinfo.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sysinfo.c; sourceTree = "<group>"; };
 		07DD5F461B5F0B4D003A1CE1 /* argv.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = argv.c; sourceTree = "<group>"; };
-		07DD5F471B5F0B4D003A1CE1 /* cmake_install.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_install.cmake; sourceTree = "<group>"; };
-		07DD5F481B5F0B4D003A1CE1 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
-		07DD5F491B5F0B4D003A1CE1 /* module.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = module.def; sourceTree = "<group>"; };
-		07DD5F4A1B5F0B4D003A1CE1 /* ModuleOptions.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModuleOptions.cmake; sourceTree = "<group>"; };
 		07DD5F4B1B5F0B4D003A1CE1 /* process.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = process.c; sourceTree = "<group>"; };
 		07DD5F4C1B5F0B4D003A1CE1 /* processor.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = processor.c; sourceTree = "<group>"; };
 		07DD5F4D1B5F0B4D003A1CE1 /* thread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = thread.c; sourceTree = "<group>"; };
 		07DD5F4E1B5F0B4D003A1CE1 /* thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = thread.h; sourceTree = "<group>"; };
 		07DD5F4F1B5F0B4D003A1CE1 /* tls.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tls.c; sourceTree = "<group>"; };
-		07DD5F511B5F0B4D003A1CE1 /* cmake_install.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_install.cmake; sourceTree = "<group>"; };
-		07DD5F521B5F0B4D003A1CE1 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
-		07DD5F531B5F0B4D003A1CE1 /* ModuleOptions.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModuleOptions.cmake; sourceTree = "<group>"; };
 		07DD5F541B5F0B4D003A1CE1 /* timezone.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = timezone.c; sourceTree = "<group>"; };
-		07DD5F561B5F0B4D003A1CE1 /* cmake_install.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_install.cmake; sourceTree = "<group>"; };
-		07DD5F571B5F0B4D003A1CE1 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		07DD5F581B5F0B4D003A1CE1 /* cmdline.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cmdline.c; sourceTree = "<group>"; };
 		07DD5F5A1B5F0B4D003A1CE1 /* ArrayList.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ArrayList.c; sourceTree = "<group>"; };
 		07DD5F5B1B5F0B4D003A1CE1 /* BitStream.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BitStream.c; sourceTree = "<group>"; };
@@ -826,7 +724,6 @@
 		07DD5F831B5F0B4D003A1CE1 /* triop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = triop.h; sourceTree = "<group>"; };
 		07DD5F841B5F0B4D003A1CE1 /* triostr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = triostr.c; sourceTree = "<group>"; };
 		07DD5F851B5F0B4D003A1CE1 /* triostr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = triostr.h; sourceTree = "<group>"; };
-		07DD5F861B5F0B4D003A1CE1 /* utils_ntlm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = utils_ntlm.c; sourceTree = "<group>"; };
 		07DD5F871B5F0B4D003A1CE1 /* utils_utils_ntlm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = utils_utils_ntlm.c; sourceTree = "<group>"; };
 		07DD5F891B5F0B4D003A1CE1 /* Appender.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Appender.c; sourceTree = "<group>"; };
 		07DD5F8A1B5F0B4D003A1CE1 /* Appender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Appender.h; sourceTree = "<group>"; };
@@ -852,31 +749,14 @@
 		07DD5F9E1B5F0B4D003A1CE1 /* TextMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextMessage.h; sourceTree = "<group>"; };
 		07DD5F9F1B5F0B4D003A1CE1 /* wlog.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = wlog.c; sourceTree = "<group>"; };
 		07DD5FA01B5F0B4D003A1CE1 /* wlog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wlog.h; sourceTree = "<group>"; };
-		07DD5FA21B5F0B4D003A1CE1 /* cmake_install.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_install.cmake; sourceTree = "<group>"; };
-		07DD5FA31B5F0B4D003A1CE1 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
-		07DD5FA41B5F0B4D003A1CE1 /* ModuleOptions.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModuleOptions.cmake; sourceTree = "<group>"; };
 		07DD5FA51B5F0B4D003A1CE1 /* winhttp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = winhttp.c; sourceTree = "<group>"; };
-		07DD5FA71B5F0B4D003A1CE1 /* cmake_install.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_install.cmake; sourceTree = "<group>"; };
-		07DD5FA81B5F0B4D003A1CE1 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
-		07DD5FA91B5F0B4D003A1CE1 /* module.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = module.def; sourceTree = "<group>"; };
-		07DD5FAA1B5F0B4D003A1CE1 /* ModuleOptions.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModuleOptions.cmake; sourceTree = "<group>"; };
 		07DD5FAB1B5F0B4D003A1CE1 /* winsock.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = winsock.c; sourceTree = "<group>"; };
-		07DD5FAD1B5F0B4D003A1CE1 /* cmake_install.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_install.cmake; sourceTree = "<group>"; };
-		07DD5FAE1B5F0B4D003A1CE1 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
-		07DD5FAF1B5F0B4D003A1CE1 /* module.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = module.def; sourceTree = "<group>"; };
-		07DD5FB01B5F0B4D003A1CE1 /* ModuleOptions.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModuleOptions.cmake; sourceTree = "<group>"; };
 		07DD5FB11B5F0B4D003A1CE1 /* wnd.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = wnd.c; sourceTree = "<group>"; };
 		07DD5FB21B5F0B4D003A1CE1 /* wnd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wnd.h; sourceTree = "<group>"; };
-		07DD5FB41B5F0B4D003A1CE1 /* cmake_install.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmake_install.cmake; sourceTree = "<group>"; };
-		07DD5FB51B5F0B4D003A1CE1 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
-		07DD5FB61B5F0B4D003A1CE1 /* ModuleOptions.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModuleOptions.cmake; sourceTree = "<group>"; };
 		07DD5FB71B5F0B4D003A1CE1 /* wtsapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = wtsapi.c; sourceTree = "<group>"; };
 		07DD5FB81B5F0B4D003A1CE1 /* wtsapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wtsapi.h; sourceTree = "<group>"; };
-		07DD5FB91B5F0B4D003A1CE1 /* wtsapi_win32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = wtsapi_win32.c; sourceTree = "<group>"; };
 		07DD5FBA1B5F0B4D003A1CE1 /* wtsapi_win32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wtsapi_win32.h; sourceTree = "<group>"; };
-		07DD5FC11B5F0B4E003A1CE1 /* hash.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = hash.c; sourceTree = "<group>"; };
 		07DD5FC31B5F0B4E003A1CE1 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		07DD5FC51B5F0B4E003A1CE1 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		07DD5FC61B5F0B4E003A1CE1 /* makecert.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = makecert.c; sourceTree = "<group>"; };
 		9A1B358C16A2D7A500875A94 /* libaxiswinpr.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxiswinpr.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -886,6 +766,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				074BD0921B5F280A00219723 /* libaxisopenssl.dylib in Frameworks */,
+				074BD0801B5F277D00219723 /* libaxiscrypto.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -893,12 +775,34 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				074BD0931B5F281E00219723 /* libaxisopenssl.dylib in Frameworks */,
+				074BD0811B5F278D00219723 /* libaxiscrypto.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		074BD0711B5F275C00219723 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				074BD0771B5F275D00219723 /* libaxiscrypto.dylib */,
+				074BD0791B5F275D00219723 /* libaxiscrypto.dylib */,
+				074BD07B1B5F275D00219723 /* axiscrypto_iosTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		074BD0831B5F27E400219723 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				074BD0891B5F27E400219723 /* libaxisopenssl.dylib */,
+				074BD08B1B5F27E400219723 /* libaxisopenssl.dylib */,
+				074BD08D1B5F27E400219723 /* axisopenssl_iosTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		07DD5DFA1B5F0B4C003A1CE1 /* winpr */ = {
 			isa = PBXGroup;
 			children = (
@@ -915,8 +819,6 @@
 				07DD5E071B5F0B4C003A1CE1 /* asn1 */,
 				07DD5E0D1B5F0B4C003A1CE1 /* bcrypt */,
 				07DD5E121B5F0B4C003A1CE1 /* clipboard */,
-				07DD5E191B5F0B4C003A1CE1 /* cmake_install.cmake */,
-				07DD5E1A1B5F0B4C003A1CE1 /* CMakeLists.txt */,
 				07DD5E1B1B5F0B4C003A1CE1 /* com */,
 				07DD5E211B5F0B4C003A1CE1 /* comm */,
 				07DD5E311B5F0B4C003A1CE1 /* credentials */,
@@ -964,10 +866,6 @@
 			isa = PBXGroup;
 			children = (
 				07DD5E081B5F0B4C003A1CE1 /* asn1.c */,
-				07DD5E091B5F0B4C003A1CE1 /* cmake_install.cmake */,
-				07DD5E0A1B5F0B4C003A1CE1 /* CMakeLists.txt */,
-				07DD5E0B1B5F0B4C003A1CE1 /* module.def */,
-				07DD5E0C1B5F0B4C003A1CE1 /* ModuleOptions.cmake */,
 			);
 			path = asn1;
 			sourceTree = "<group>";
@@ -976,9 +874,6 @@
 			isa = PBXGroup;
 			children = (
 				07DD5E0E1B5F0B4C003A1CE1 /* bcrypt.c */,
-				07DD5E0F1B5F0B4C003A1CE1 /* cmake_install.cmake */,
-				07DD5E101B5F0B4C003A1CE1 /* CMakeLists.txt */,
-				07DD5E111B5F0B4C003A1CE1 /* ModuleOptions.cmake */,
 			);
 			path = bcrypt;
 			sourceTree = "<group>";
@@ -988,9 +883,6 @@
 			children = (
 				07DD5E131B5F0B4C003A1CE1 /* clipboard.c */,
 				07DD5E141B5F0B4C003A1CE1 /* clipboard.h */,
-				07DD5E151B5F0B4C003A1CE1 /* cmake_install.cmake */,
-				07DD5E161B5F0B4C003A1CE1 /* CMakeLists.txt */,
-				07DD5E171B5F0B4C003A1CE1 /* ModuleOptions.cmake */,
 				07DD5E181B5F0B4C003A1CE1 /* synthetic.c */,
 			);
 			path = clipboard;
@@ -999,11 +891,7 @@
 		07DD5E1B1B5F0B4C003A1CE1 /* com */ = {
 			isa = PBXGroup;
 			children = (
-				07DD5E1C1B5F0B4C003A1CE1 /* cmake_install.cmake */,
-				07DD5E1D1B5F0B4C003A1CE1 /* CMakeLists.txt */,
 				07DD5E1E1B5F0B4C003A1CE1 /* com.c */,
-				07DD5E1F1B5F0B4C003A1CE1 /* module.def */,
-				07DD5E201B5F0B4C003A1CE1 /* ModuleOptions.cmake */,
 			);
 			path = com;
 			sourceTree = "<group>";
@@ -1011,8 +899,6 @@
 		07DD5E211B5F0B4C003A1CE1 /* comm */ = {
 			isa = PBXGroup;
 			children = (
-				07DD5E221B5F0B4C003A1CE1 /* cmake_install.cmake */,
-				07DD5E231B5F0B4C003A1CE1 /* CMakeLists.txt */,
 				07DD5E241B5F0B4C003A1CE1 /* comm.c */,
 				07DD5E251B5F0B4C003A1CE1 /* comm.h */,
 				07DD5E261B5F0B4C003A1CE1 /* comm_io.c */,
@@ -1024,8 +910,6 @@
 				07DD5E2C1B5F0B4C003A1CE1 /* comm_sercx_sys.h */,
 				07DD5E2D1B5F0B4C003A1CE1 /* comm_serial_sys.c */,
 				07DD5E2E1B5F0B4C003A1CE1 /* comm_serial_sys.h */,
-				07DD5E2F1B5F0B4C003A1CE1 /* module.def */,
-				07DD5E301B5F0B4C003A1CE1 /* ModuleOptions.cmake */,
 			);
 			path = comm;
 			sourceTree = "<group>";
@@ -1033,11 +917,7 @@
 		07DD5E311B5F0B4C003A1CE1 /* credentials */ = {
 			isa = PBXGroup;
 			children = (
-				07DD5E321B5F0B4C003A1CE1 /* cmake_install.cmake */,
-				07DD5E331B5F0B4C003A1CE1 /* CMakeLists.txt */,
 				07DD5E341B5F0B4C003A1CE1 /* credentials.c */,
-				07DD5E351B5F0B4C003A1CE1 /* module.def */,
-				07DD5E361B5F0B4C003A1CE1 /* ModuleOptions.cmake */,
 			);
 			path = credentials;
 			sourceTree = "<group>";
@@ -1045,11 +925,7 @@
 		07DD5E371B5F0B4C003A1CE1 /* credui */ = {
 			isa = PBXGroup;
 			children = (
-				07DD5E381B5F0B4C003A1CE1 /* cmake_install.cmake */,
-				07DD5E391B5F0B4C003A1CE1 /* CMakeLists.txt */,
 				07DD5E3A1B5F0B4C003A1CE1 /* credui.c */,
-				07DD5E3B1B5F0B4C003A1CE1 /* module.def */,
-				07DD5E3C1B5F0B4C003A1CE1 /* ModuleOptions.cmake */,
 			);
 			path = credui;
 			sourceTree = "<group>";
@@ -1059,13 +935,8 @@
 			children = (
 				07DD5E3E1B5F0B4C003A1CE1 /* alignment.c */,
 				07DD5E3F1B5F0B4C003A1CE1 /* buffer.c */,
-				07DD5E401B5F0B4C003A1CE1 /* casing.c */,
-				07DD5E411B5F0B4C003A1CE1 /* cmake_install.cmake */,
-				07DD5E421B5F0B4C003A1CE1 /* CMakeLists.txt */,
 				07DD5E431B5F0B4C003A1CE1 /* conversion.c */,
 				07DD5E441B5F0B4C003A1CE1 /* memory.c */,
-				07DD5E451B5F0B4C003A1CE1 /* module.def */,
-				07DD5E461B5F0B4C003A1CE1 /* ModuleOptions.cmake */,
 				07DD5E471B5F0B4C003A1CE1 /* string.c */,
 				07DD5E481B5F0B4C003A1CE1 /* unicode.c */,
 				07DD5E491B5F0B4C003A1CE1 /* utf.c */,
@@ -1078,12 +949,8 @@
 			isa = PBXGroup;
 			children = (
 				07DD5E4C1B5F0B4C003A1CE1 /* cert.c */,
-				07DD5E4D1B5F0B4C003A1CE1 /* cmake_install.cmake */,
-				07DD5E4E1B5F0B4C003A1CE1 /* CMakeLists.txt */,
 				07DD5E4F1B5F0B4C003A1CE1 /* crypto.c */,
 				07DD5E501B5F0B4C003A1CE1 /* crypto.h */,
-				07DD5E511B5F0B4C003A1CE1 /* module.def */,
-				07DD5E521B5F0B4C003A1CE1 /* ModuleOptions.cmake */,
 			);
 			path = crypto;
 			sourceTree = "<group>";
@@ -1091,11 +958,7 @@
 		07DD5E531B5F0B4C003A1CE1 /* dsparse */ = {
 			isa = PBXGroup;
 			children = (
-				07DD5E541B5F0B4C003A1CE1 /* cmake_install.cmake */,
-				07DD5E551B5F0B4C003A1CE1 /* CMakeLists.txt */,
 				07DD5E561B5F0B4C003A1CE1 /* dsparse.c */,
-				07DD5E571B5F0B4C003A1CE1 /* module.def */,
-				07DD5E581B5F0B4C003A1CE1 /* ModuleOptions.cmake */,
 			);
 			path = dsparse;
 			sourceTree = "<group>";
@@ -1103,11 +966,7 @@
 		07DD5E5A1B5F0B4C003A1CE1 /* environment */ = {
 			isa = PBXGroup;
 			children = (
-				07DD5E5B1B5F0B4C003A1CE1 /* cmake_install.cmake */,
-				07DD5E5C1B5F0B4C003A1CE1 /* CMakeLists.txt */,
 				07DD5E5D1B5F0B4C003A1CE1 /* environment.c */,
-				07DD5E5E1B5F0B4C003A1CE1 /* module.def */,
-				07DD5E5F1B5F0B4C003A1CE1 /* ModuleOptions.cmake */,
 			);
 			path = environment;
 			sourceTree = "<group>";
@@ -1115,12 +974,7 @@
 		07DD5E601B5F0B4C003A1CE1 /* error */ = {
 			isa = PBXGroup;
 			children = (
-				07DD5E611B5F0B4C003A1CE1 /* cmake_install.cmake */,
-				07DD5E621B5F0B4C003A1CE1 /* CMakeLists.txt */,
 				07DD5E631B5F0B4C003A1CE1 /* err_err.c */,
-				07DD5E641B5F0B4C003A1CE1 /* error.c */,
-				07DD5E651B5F0B4C003A1CE1 /* module.def */,
-				07DD5E661B5F0B4C003A1CE1 /* ModuleOptions.cmake */,
 			);
 			path = error;
 			sourceTree = "<group>";
@@ -1128,10 +982,7 @@
 		07DD5E671B5F0B4C003A1CE1 /* file */ = {
 			isa = PBXGroup;
 			children = (
-				07DD5E681B5F0B4C003A1CE1 /* cmake_install.cmake */,
-				07DD5E691B5F0B4C003A1CE1 /* CMakeLists.txt */,
 				07DD5E6A1B5F0B4C003A1CE1 /* file.c */,
-				07DD5E6B1B5F0B4C003A1CE1 /* ModuleOptions.cmake */,
 				07DD5E6C1B5F0B4C003A1CE1 /* pattern.c */,
 			);
 			path = file;
@@ -1140,12 +991,8 @@
 		07DD5E6D1B5F0B4C003A1CE1 /* handle */ = {
 			isa = PBXGroup;
 			children = (
-				07DD5E6E1B5F0B4C003A1CE1 /* cmake_install.cmake */,
-				07DD5E6F1B5F0B4C003A1CE1 /* CMakeLists.txt */,
 				07DD5E701B5F0B4C003A1CE1 /* handle.c */,
 				07DD5E711B5F0B4C003A1CE1 /* handle.h */,
-				07DD5E721B5F0B4C003A1CE1 /* module.def */,
-				07DD5E731B5F0B4C003A1CE1 /* ModuleOptions.cmake */,
 				07DD5E741B5F0B4C003A1CE1 /* nonehandle.c */,
 				07DD5E751B5F0B4C003A1CE1 /* nonehandle.h */,
 			);
@@ -1155,11 +1002,7 @@
 		07DD5E761B5F0B4C003A1CE1 /* heap */ = {
 			isa = PBXGroup;
 			children = (
-				07DD5E771B5F0B4C003A1CE1 /* cmake_install.cmake */,
-				07DD5E781B5F0B4C003A1CE1 /* CMakeLists.txt */,
 				07DD5E791B5F0B4C003A1CE1 /* heap.c */,
-				07DD5E7A1B5F0B4C003A1CE1 /* module.def */,
-				07DD5E7B1B5F0B4C003A1CE1 /* ModuleOptions.cmake */,
 			);
 			path = heap;
 			sourceTree = "<group>";
@@ -1167,10 +1010,7 @@
 		07DD5E7C1B5F0B4C003A1CE1 /* input */ = {
 			isa = PBXGroup;
 			children = (
-				07DD5E7D1B5F0B4C003A1CE1 /* cmake_install.cmake */,
-				07DD5E7E1B5F0B4C003A1CE1 /* CMakeLists.txt */,
 				07DD5E7F1B5F0B4C003A1CE1 /* keycode.c */,
-				07DD5E801B5F0B4D003A1CE1 /* ModuleOptions.cmake */,
 				07DD5E811B5F0B4D003A1CE1 /* scancode.c */,
 				07DD5E821B5F0B4D003A1CE1 /* virtualkey.c */,
 			);
@@ -1180,12 +1020,7 @@
 		07DD5E831B5F0B4D003A1CE1 /* interlocked */ = {
 			isa = PBXGroup;
 			children = (
-				07DD5E841B5F0B4D003A1CE1 /* cmake_install.cmake */,
-				07DD5E851B5F0B4D003A1CE1 /* CMakeLists.txt */,
 				07DD5E861B5F0B4D003A1CE1 /* interlocked.c */,
-				07DD5E871B5F0B4D003A1CE1 /* module.def */,
-				07DD5E881B5F0B4D003A1CE1 /* module_5.1.def */,
-				07DD5E891B5F0B4D003A1CE1 /* ModuleOptions.cmake */,
 			);
 			path = interlocked;
 			sourceTree = "<group>";
@@ -1193,13 +1028,9 @@
 		07DD5E8A1B5F0B4D003A1CE1 /* io */ = {
 			isa = PBXGroup;
 			children = (
-				07DD5E8B1B5F0B4D003A1CE1 /* cmake_install.cmake */,
-				07DD5E8C1B5F0B4D003A1CE1 /* CMakeLists.txt */,
 				07DD5E8D1B5F0B4D003A1CE1 /* device.c */,
 				07DD5E8E1B5F0B4D003A1CE1 /* io.c */,
 				07DD5E8F1B5F0B4D003A1CE1 /* io.h */,
-				07DD5E901B5F0B4D003A1CE1 /* module.def */,
-				07DD5E911B5F0B4D003A1CE1 /* ModuleOptions.cmake */,
 			);
 			path = io;
 			sourceTree = "<group>";
@@ -1207,11 +1038,7 @@
 		07DD5E921B5F0B4D003A1CE1 /* library */ = {
 			isa = PBXGroup;
 			children = (
-				07DD5E931B5F0B4D003A1CE1 /* cmake_install.cmake */,
-				07DD5E941B5F0B4D003A1CE1 /* CMakeLists.txt */,
 				07DD5E951B5F0B4D003A1CE1 /* library.c */,
-				07DD5E961B5F0B4D003A1CE1 /* module.def */,
-				07DD5E971B5F0B4D003A1CE1 /* ModuleOptions.cmake */,
 			);
 			path = library;
 			sourceTree = "<group>";
@@ -1219,11 +1046,7 @@
 		07DD5E981B5F0B4D003A1CE1 /* locale */ = {
 			isa = PBXGroup;
 			children = (
-				07DD5E991B5F0B4D003A1CE1 /* cmake_install.cmake */,
-				07DD5E9A1B5F0B4D003A1CE1 /* CMakeLists.txt */,
 				07DD5E9B1B5F0B4D003A1CE1 /* locale.c */,
-				07DD5E9C1B5F0B4D003A1CE1 /* module.def */,
-				07DD5E9D1B5F0B4D003A1CE1 /* ModuleOptions.cmake */,
 			);
 			path = locale;
 			sourceTree = "<group>";
@@ -1231,12 +1054,8 @@
 		07DD5E9F1B5F0B4D003A1CE1 /* memory */ = {
 			isa = PBXGroup;
 			children = (
-				07DD5EA01B5F0B4D003A1CE1 /* cmake_install.cmake */,
-				07DD5EA11B5F0B4D003A1CE1 /* CMakeLists.txt */,
 				07DD5EA21B5F0B4D003A1CE1 /* memory.c */,
 				07DD5EA31B5F0B4D003A1CE1 /* memory.h */,
-				07DD5EA41B5F0B4D003A1CE1 /* module.def */,
-				07DD5EA51B5F0B4D003A1CE1 /* ModuleOptions.cmake */,
 			);
 			path = memory;
 			sourceTree = "<group>";
@@ -1244,10 +1063,6 @@
 		07DD5EA61B5F0B4D003A1CE1 /* nt */ = {
 			isa = PBXGroup;
 			children = (
-				07DD5EA71B5F0B4D003A1CE1 /* cmake_install.cmake */,
-				07DD5EA81B5F0B4D003A1CE1 /* CMakeLists.txt */,
-				07DD5EA91B5F0B4D003A1CE1 /* module.def */,
-				07DD5EAA1B5F0B4D003A1CE1 /* ModuleOptions.cmake */,
 				07DD5EAB1B5F0B4D003A1CE1 /* nt.c */,
 				07DD5EAC1B5F0B4D003A1CE1 /* nt.h */,
 			);
@@ -1257,10 +1072,7 @@
 		07DD5EAD1B5F0B4D003A1CE1 /* path */ = {
 			isa = PBXGroup;
 			children = (
-				07DD5EAE1B5F0B4D003A1CE1 /* cmake_install.cmake */,
-				07DD5EAF1B5F0B4D003A1CE1 /* CMakeLists.txt */,
 				07DD5EB01B5F0B4D003A1CE1 /* include */,
-				07DD5EB61B5F0B4D003A1CE1 /* ModuleOptions.cmake */,
 				07DD5EB71B5F0B4D003A1CE1 /* path.c */,
 				07DD5EB81B5F0B4D003A1CE1 /* shell.c */,
 			);
@@ -1270,11 +1082,6 @@
 		07DD5EB01B5F0B4D003A1CE1 /* include */ = {
 			isa = PBXGroup;
 			children = (
-				07DD5EB11B5F0B4D003A1CE1 /* PathAllocCombine.c */,
-				07DD5EB21B5F0B4D003A1CE1 /* PathCchAddExtension.c */,
-				07DD5EB31B5F0B4D003A1CE1 /* PathCchAddSeparator.c */,
-				07DD5EB41B5F0B4D003A1CE1 /* PathCchAddSeparatorEx.c */,
-				07DD5EB51B5F0B4D003A1CE1 /* PathCchAppend.c */,
 			);
 			path = include;
 			sourceTree = "<group>";
@@ -1282,10 +1089,6 @@
 		07DD5EB91B5F0B4D003A1CE1 /* pipe */ = {
 			isa = PBXGroup;
 			children = (
-				07DD5EBA1B5F0B4D003A1CE1 /* cmake_install.cmake */,
-				07DD5EBB1B5F0B4D003A1CE1 /* CMakeLists.txt */,
-				07DD5EBC1B5F0B4D003A1CE1 /* module.def */,
-				07DD5EBD1B5F0B4D003A1CE1 /* ModuleOptions.cmake */,
 				07DD5EBE1B5F0B4D003A1CE1 /* pipe.c */,
 				07DD5EBF1B5F0B4D003A1CE1 /* pipe.h */,
 			);
@@ -1299,21 +1102,12 @@
 				07DD5EC21B5F0B4D003A1CE1 /* callback_cleanup.c */,
 				07DD5EC31B5F0B4D003A1CE1 /* callback_environment.c */,
 				07DD5EC41B5F0B4D003A1CE1 /* cleanup_group.c */,
-				07DD5EC51B5F0B4D003A1CE1 /* cmake_install.cmake */,
-				07DD5EC61B5F0B4D003A1CE1 /* CMakeLists.txt */,
-				07DD5EC71B5F0B4D003A1CE1 /* io.c */,
-				07DD5EC81B5F0B4D003A1CE1 /* module.def */,
-				07DD5EC91B5F0B4D003A1CE1 /* ModuleOptions.cmake */,
-				07DD5ECA1B5F0B4D003A1CE1 /* pool.c */,
 				07DD5ECB1B5F0B4D003A1CE1 /* pool.h */,
 				07DD5ECC1B5F0B4D003A1CE1 /* pool_io.c */,
 				07DD5ECD1B5F0B4D003A1CE1 /* pool_pool.c */,
 				07DD5ECE1B5F0B4D003A1CE1 /* pool_synch.c */,
 				07DD5ECF1B5F0B4D003A1CE1 /* pool_timer.c */,
 				07DD5ED01B5F0B4D003A1CE1 /* pool_work.c */,
-				07DD5ED11B5F0B4D003A1CE1 /* synch.c */,
-				07DD5ED21B5F0B4D003A1CE1 /* timer.c */,
-				07DD5ED31B5F0B4D003A1CE1 /* work.c */,
 			);
 			path = pool;
 			sourceTree = "<group>";
@@ -1321,10 +1115,6 @@
 		07DD5ED41B5F0B4D003A1CE1 /* registry */ = {
 			isa = PBXGroup;
 			children = (
-				07DD5ED51B5F0B4D003A1CE1 /* cmake_install.cmake */,
-				07DD5ED61B5F0B4D003A1CE1 /* CMakeLists.txt */,
-				07DD5ED71B5F0B4D003A1CE1 /* module.def */,
-				07DD5ED81B5F0B4D003A1CE1 /* ModuleOptions.cmake */,
 				07DD5ED91B5F0B4D003A1CE1 /* registry.c */,
 				07DD5EDA1B5F0B4D003A1CE1 /* registry_reg.c */,
 				07DD5EDB1B5F0B4D003A1CE1 /* registry_reg.h */,
@@ -1335,11 +1125,7 @@
 		07DD5EDC1B5F0B4D003A1CE1 /* rpc */ = {
 			isa = PBXGroup;
 			children = (
-				07DD5EDD1B5F0B4D003A1CE1 /* cmake_install.cmake */,
-				07DD5EDE1B5F0B4D003A1CE1 /* CMakeLists.txt */,
 				07DD5EDF1B5F0B4D003A1CE1 /* midl.c */,
-				07DD5EE01B5F0B4D003A1CE1 /* module.def */,
-				07DD5EE11B5F0B4D003A1CE1 /* ModuleOptions.cmake */,
 				07DD5EE21B5F0B4D003A1CE1 /* ndr.c */,
 				07DD5EE31B5F0B4D003A1CE1 /* ndr_array.c */,
 				07DD5EE41B5F0B4D003A1CE1 /* ndr_array.h */,
@@ -1367,10 +1153,6 @@
 		07DD5EF61B5F0B4D003A1CE1 /* security */ = {
 			isa = PBXGroup;
 			children = (
-				07DD5EF71B5F0B4D003A1CE1 /* cmake_install.cmake */,
-				07DD5EF81B5F0B4D003A1CE1 /* CMakeLists.txt */,
-				07DD5EF91B5F0B4D003A1CE1 /* module.def */,
-				07DD5EFA1B5F0B4D003A1CE1 /* ModuleOptions.cmake */,
 				07DD5EFB1B5F0B4D003A1CE1 /* security.c */,
 				07DD5EFC1B5F0B4D003A1CE1 /* security.h */,
 			);
@@ -1380,10 +1162,6 @@
 		07DD5EFD1B5F0B4D003A1CE1 /* smartcard */ = {
 			isa = PBXGroup;
 			children = (
-				07DD5EFE1B5F0B4D003A1CE1 /* cmake_install.cmake */,
-				07DD5EFF1B5F0B4D003A1CE1 /* CMakeLists.txt */,
-				07DD5F001B5F0B4D003A1CE1 /* module.def */,
-				07DD5F011B5F0B4D003A1CE1 /* ModuleOptions.cmake */,
 				07DD5F021B5F0B4D003A1CE1 /* smartcard.c */,
 				07DD5F031B5F0B4D003A1CE1 /* smartcard.h */,
 				07DD5F041B5F0B4D003A1CE1 /* smartcard_inspect.c */,
@@ -1400,11 +1178,7 @@
 		07DD5F0B1B5F0B4D003A1CE1 /* sspi */ = {
 			isa = PBXGroup;
 			children = (
-				07DD5F0C1B5F0B4D003A1CE1 /* cmake_install.cmake */,
-				07DD5F0D1B5F0B4D003A1CE1 /* CMakeLists.txt */,
 				07DD5F0E1B5F0B4D003A1CE1 /* CredSSP */,
-				07DD5F111B5F0B4D003A1CE1 /* module.def */,
-				07DD5F121B5F0B4D003A1CE1 /* ModuleOptions.cmake */,
 				07DD5F131B5F0B4D003A1CE1 /* Negotiate */,
 				07DD5F161B5F0B4D003A1CE1 /* NTLM */,
 				07DD5F1F1B5F0B4D003A1CE1 /* Schannel */,
@@ -1464,9 +1238,6 @@
 		07DD5F291B5F0B4D003A1CE1 /* sspicli */ = {
 			isa = PBXGroup;
 			children = (
-				07DD5F2A1B5F0B4D003A1CE1 /* cmake_install.cmake */,
-				07DD5F2B1B5F0B4D003A1CE1 /* CMakeLists.txt */,
-				07DD5F2C1B5F0B4D003A1CE1 /* ModuleOptions.cmake */,
 				07DD5F2D1B5F0B4D003A1CE1 /* sspicli.c */,
 			);
 			path = sspicli;
@@ -1477,13 +1248,10 @@
 			children = (
 				07DD5F2F1B5F0B4D003A1CE1 /* address.c */,
 				07DD5F301B5F0B4D003A1CE1 /* barrier.c */,
-				07DD5F311B5F0B4D003A1CE1 /* cmake_install.cmake */,
-				07DD5F321B5F0B4D003A1CE1 /* CMakeLists.txt */,
 				07DD5F331B5F0B4D003A1CE1 /* condition.c */,
 				07DD5F341B5F0B4D003A1CE1 /* critical.c */,
 				07DD5F351B5F0B4D003A1CE1 /* event.c */,
 				07DD5F361B5F0B4D003A1CE1 /* init.c */,
-				07DD5F371B5F0B4D003A1CE1 /* ModuleOptions.cmake */,
 				07DD5F381B5F0B4D003A1CE1 /* mutex.c */,
 				07DD5F391B5F0B4D003A1CE1 /* semaphore.c */,
 				07DD5F3A1B5F0B4D003A1CE1 /* sleep.c */,
@@ -1498,10 +1266,6 @@
 		07DD5F3F1B5F0B4D003A1CE1 /* sysinfo */ = {
 			isa = PBXGroup;
 			children = (
-				07DD5F401B5F0B4D003A1CE1 /* cmake_install.cmake */,
-				07DD5F411B5F0B4D003A1CE1 /* CMakeLists.txt */,
-				07DD5F421B5F0B4D003A1CE1 /* module.def */,
-				07DD5F431B5F0B4D003A1CE1 /* ModuleOptions.cmake */,
 				07DD5F441B5F0B4D003A1CE1 /* sysinfo.c */,
 			);
 			path = sysinfo;
@@ -1511,10 +1275,6 @@
 			isa = PBXGroup;
 			children = (
 				07DD5F461B5F0B4D003A1CE1 /* argv.c */,
-				07DD5F471B5F0B4D003A1CE1 /* cmake_install.cmake */,
-				07DD5F481B5F0B4D003A1CE1 /* CMakeLists.txt */,
-				07DD5F491B5F0B4D003A1CE1 /* module.def */,
-				07DD5F4A1B5F0B4D003A1CE1 /* ModuleOptions.cmake */,
 				07DD5F4B1B5F0B4D003A1CE1 /* process.c */,
 				07DD5F4C1B5F0B4D003A1CE1 /* processor.c */,
 				07DD5F4D1B5F0B4D003A1CE1 /* thread.c */,
@@ -1527,9 +1287,6 @@
 		07DD5F501B5F0B4D003A1CE1 /* timezone */ = {
 			isa = PBXGroup;
 			children = (
-				07DD5F511B5F0B4D003A1CE1 /* cmake_install.cmake */,
-				07DD5F521B5F0B4D003A1CE1 /* CMakeLists.txt */,
-				07DD5F531B5F0B4D003A1CE1 /* ModuleOptions.cmake */,
 				07DD5F541B5F0B4D003A1CE1 /* timezone.c */,
 			);
 			path = timezone;
@@ -1538,8 +1295,6 @@
 		07DD5F551B5F0B4D003A1CE1 /* utils */ = {
 			isa = PBXGroup;
 			children = (
-				07DD5F561B5F0B4D003A1CE1 /* cmake_install.cmake */,
-				07DD5F571B5F0B4D003A1CE1 /* CMakeLists.txt */,
 				07DD5F581B5F0B4D003A1CE1 /* cmdline.c */,
 				07DD5F591B5F0B4D003A1CE1 /* collections */,
 				07DD5F6B1B5F0B4D003A1CE1 /* corkscrew */,
@@ -1553,7 +1308,6 @@
 				07DD5F7A1B5F0B4D003A1CE1 /* ssl.c */,
 				07DD5F7B1B5F0B4D003A1CE1 /* stream.c */,
 				07DD5F7C1B5F0B4D003A1CE1 /* trio */,
-				07DD5F861B5F0B4D003A1CE1 /* utils_ntlm.c */,
 				07DD5F871B5F0B4D003A1CE1 /* utils_utils_ntlm.c */,
 				07DD5F881B5F0B4D003A1CE1 /* wlog */,
 			);
@@ -1655,9 +1409,6 @@
 		07DD5FA11B5F0B4D003A1CE1 /* winhttp */ = {
 			isa = PBXGroup;
 			children = (
-				07DD5FA21B5F0B4D003A1CE1 /* cmake_install.cmake */,
-				07DD5FA31B5F0B4D003A1CE1 /* CMakeLists.txt */,
-				07DD5FA41B5F0B4D003A1CE1 /* ModuleOptions.cmake */,
 				07DD5FA51B5F0B4D003A1CE1 /* winhttp.c */,
 			);
 			path = winhttp;
@@ -1666,10 +1417,6 @@
 		07DD5FA61B5F0B4D003A1CE1 /* winsock */ = {
 			isa = PBXGroup;
 			children = (
-				07DD5FA71B5F0B4D003A1CE1 /* cmake_install.cmake */,
-				07DD5FA81B5F0B4D003A1CE1 /* CMakeLists.txt */,
-				07DD5FA91B5F0B4D003A1CE1 /* module.def */,
-				07DD5FAA1B5F0B4D003A1CE1 /* ModuleOptions.cmake */,
 				07DD5FAB1B5F0B4D003A1CE1 /* winsock.c */,
 			);
 			path = winsock;
@@ -1678,10 +1425,6 @@
 		07DD5FAC1B5F0B4D003A1CE1 /* wnd */ = {
 			isa = PBXGroup;
 			children = (
-				07DD5FAD1B5F0B4D003A1CE1 /* cmake_install.cmake */,
-				07DD5FAE1B5F0B4D003A1CE1 /* CMakeLists.txt */,
-				07DD5FAF1B5F0B4D003A1CE1 /* module.def */,
-				07DD5FB01B5F0B4D003A1CE1 /* ModuleOptions.cmake */,
 				07DD5FB11B5F0B4D003A1CE1 /* wnd.c */,
 				07DD5FB21B5F0B4D003A1CE1 /* wnd.h */,
 			);
@@ -1691,12 +1434,8 @@
 		07DD5FB31B5F0B4D003A1CE1 /* wtsapi */ = {
 			isa = PBXGroup;
 			children = (
-				07DD5FB41B5F0B4D003A1CE1 /* cmake_install.cmake */,
-				07DD5FB51B5F0B4D003A1CE1 /* CMakeLists.txt */,
-				07DD5FB61B5F0B4D003A1CE1 /* ModuleOptions.cmake */,
 				07DD5FB71B5F0B4D003A1CE1 /* wtsapi.c */,
 				07DD5FB81B5F0B4D003A1CE1 /* wtsapi.h */,
-				07DD5FB91B5F0B4D003A1CE1 /* wtsapi_win32.c */,
 				07DD5FBA1B5F0B4D003A1CE1 /* wtsapi_win32.h */,
 			);
 			path = wtsapi;
@@ -1714,7 +1453,6 @@
 		07DD5FC01B5F0B4E003A1CE1 /* hash */ = {
 			isa = PBXGroup;
 			children = (
-				07DD5FC11B5F0B4E003A1CE1 /* hash.c */,
 			);
 			path = hash;
 			sourceTree = "<group>";
@@ -1732,7 +1470,6 @@
 		07DD5FC41B5F0B4E003A1CE1 /* cli */ = {
 			isa = PBXGroup;
 			children = (
-				07DD5FC51B5F0B4E003A1CE1 /* main.c */,
 			);
 			path = cli;
 			sourceTree = "<group>";
@@ -1740,6 +1477,8 @@
 		9A1B358116A2D7A500875A94 = {
 			isa = PBXGroup;
 			children = (
+				074BD0701B5F275C00219723 /* axiscrypto.xcodeproj */,
+				074BD0821B5F27E400219723 /* axisopenssl.xcodeproj */,
 				07DD5DFA1B5F0B4C003A1CE1 /* winpr */,
 				9A1B358D16A2D7A500875A94 /* Products */,
 			);
@@ -1927,6 +1666,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				074BD0911B5F280100219723 /* PBXTargetDependency */,
+				074BD07F1B5F276F00219723 /* PBXTargetDependency */,
 			);
 			name = ios_axiswinpr;
 			productName = freetype;
@@ -1944,6 +1685,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				074BD08F1B5F27F900219723 /* PBXTargetDependency */,
+				074BD07D1B5F276800219723 /* PBXTargetDependency */,
 			);
 			name = axiswinpr;
 			productName = freetype;
@@ -1969,6 +1712,16 @@
 			mainGroup = 9A1B358116A2D7A500875A94;
 			productRefGroup = 9A1B358D16A2D7A500875A94 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 074BD0711B5F275C00219723 /* Products */;
+					ProjectRef = 074BD0701B5F275C00219723 /* axiscrypto.xcodeproj */;
+				},
+				{
+					ProductGroup = 074BD0831B5F27E400219723 /* Products */;
+					ProjectRef = 074BD0821B5F27E400219723 /* axisopenssl.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				9A1B358B16A2D7A500875A94 /* axiswinpr */,
@@ -1976,6 +1729,51 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		074BD0771B5F275D00219723 /* libaxiscrypto.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libaxiscrypto.dylib;
+			remoteRef = 074BD0761B5F275D00219723 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		074BD0791B5F275D00219723 /* libaxiscrypto.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libaxiscrypto.dylib;
+			remoteRef = 074BD0781B5F275D00219723 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		074BD07B1B5F275D00219723 /* axiscrypto_iosTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = axiscrypto_iosTests.xctest;
+			remoteRef = 074BD07A1B5F275D00219723 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		074BD0891B5F27E400219723 /* libaxisopenssl.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libaxisopenssl.dylib;
+			remoteRef = 074BD0881B5F27E400219723 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		074BD08B1B5F27E400219723 /* libaxisopenssl.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libaxisopenssl.dylib;
+			remoteRef = 074BD08A1B5F27E400219723 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		074BD08D1B5F27E400219723 /* axisopenssl_iosTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = axisopenssl_iosTests.xctest;
+			remoteRef = 074BD08C1B5F27E400219723 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
 		07DD5D531B5F0A1E003A1CE1 /* Sources */ = {
@@ -1988,12 +1786,9 @@
 				07DD60D61B5F0B4E003A1CE1 /* sspi_export.c in Sources */,
 				07DD60E41B5F0B4E003A1CE1 /* critical.c in Sources */,
 				07DD61561B5F0B4E003A1CE1 /* triostr.c in Sources */,
-				07DD606A1B5F0B4E003A1CE1 /* work.c in Sources */,
-				07DD60661B5F0B4E003A1CE1 /* synch.c in Sources */,
 				07DD618E1B5F0B4E003A1CE1 /* winhttp.c in Sources */,
 				07DD60961B5F0B4E003A1CE1 /* ndr_union.c in Sources */,
 				07DD61101B5F0B4E003A1CE1 /* CountdownEvent.c in Sources */,
-				07DD603C1B5F0B4E003A1CE1 /* PathAllocCombine.c in Sources */,
 				07DD5FFE1B5F0B4E003A1CE1 /* utf.c in Sources */,
 				07DD5FDA1B5F0B4E003A1CE1 /* comm_io.c in Sources */,
 				07DD60C21B5F0B4E003A1CE1 /* ntlm_compute.c in Sources */,
@@ -2006,13 +1801,11 @@
 				07DD61661B5F0B4E003A1CE1 /* CallbackAppender.c in Sources */,
 				07DD61121B5F0B4E003A1CE1 /* Dictionary.c in Sources */,
 				07DD607E1B5F0B4E003A1CE1 /* ndr_correlation.c in Sources */,
-				07DD61A01B5F0B4E003A1CE1 /* main.c in Sources */,
 				07DD61421B5F0B4E003A1CE1 /* sam.c in Sources */,
 				07DD60161B5F0B4E003A1CE1 /* handle.c in Sources */,
 				07DD61081B5F0B4E003A1CE1 /* cmdline.c in Sources */,
 				07DD61921B5F0B4E003A1CE1 /* wnd.c in Sources */,
 				07DD611A1B5F0B4E003A1CE1 /* ListDictionary.c in Sources */,
-				07DD619A1B5F0B4E003A1CE1 /* wtsapi_win32.c in Sources */,
 				07DD60EC1B5F0B4E003A1CE1 /* semaphore.c in Sources */,
 				07DD606C1B5F0B4E003A1CE1 /* registry.c in Sources */,
 				07DD60201B5F0B4E003A1CE1 /* keycode.c in Sources */,
@@ -2038,7 +1831,6 @@
 				07DD61461B5F0B4E003A1CE1 /* stream.c in Sources */,
 				07DD60A01B5F0B4E003A1CE1 /* smartcard.c in Sources */,
 				07DD60821B5F0B4E003A1CE1 /* ndr_pointer.c in Sources */,
-				07DD60561B5F0B4E003A1CE1 /* io.c in Sources */,
 				07DD60B21B5F0B4E003A1CE1 /* credssp.c in Sources */,
 				07DD616E1B5F0B4E003A1CE1 /* DataMessage.c in Sources */,
 				07DD617E1B5F0B4E003A1CE1 /* Message.c in Sources */,
@@ -2069,17 +1861,13 @@
 				07DD60621B5F0B4E003A1CE1 /* pool_timer.c in Sources */,
 				07DD610C1B5F0B4E003A1CE1 /* BitStream.c in Sources */,
 				07DD61161B5F0B4E003A1CE1 /* KeyValuePair.c in Sources */,
-				07DD619E1B5F0B4E003A1CE1 /* hash.c in Sources */,
-				07DD603E1B5F0B4E003A1CE1 /* PathCchAddExtension.c in Sources */,
 				07DD61821B5F0B4E003A1CE1 /* PacketMessage.c in Sources */,
 				07DD612A1B5F0B4E003A1CE1 /* StreamPool.c in Sources */,
 				07DD61361B5F0B4E003A1CE1 /* debug.c in Sources */,
 				07DD604E1B5F0B4E003A1CE1 /* callback.c in Sources */,
 				07DD5FFA1B5F0B4E003A1CE1 /* string.c in Sources */,
-				07DD60101B5F0B4E003A1CE1 /* error.c in Sources */,
 				07DD61201B5F0B4E003A1CE1 /* ObjectPool.c in Sources */,
 				07DD610A1B5F0B4E003A1CE1 /* ArrayList.c in Sources */,
-				07DD60441B5F0B4E003A1CE1 /* PathCchAppend.c in Sources */,
 				07DD5FF81B5F0B4E003A1CE1 /* memory.c in Sources */,
 				07DD60041B5F0B4E003A1CE1 /* crypto.c in Sources */,
 				07DD60E61B5F0B4E003A1CE1 /* event.c in Sources */,
@@ -2093,7 +1881,6 @@
 				07DD60F81B5F0B4E003A1CE1 /* sysinfo.c in Sources */,
 				07DD600C1B5F0B4E003A1CE1 /* environment.c in Sources */,
 				07DD5FE41B5F0B4E003A1CE1 /* comm_sercx_sys.c in Sources */,
-				07DD60401B5F0B4E003A1CE1 /* PathCchAddSeparator.c in Sources */,
 				07DD60601B5F0B4E003A1CE1 /* pool_synch.c in Sources */,
 				07DD602A1B5F0B4E003A1CE1 /* io.c in Sources */,
 				07DD5FEC1B5F0B4E003A1CE1 /* credentials.c in Sources */,
@@ -2118,7 +1905,6 @@
 				07DD5FDC1B5F0B4E003A1CE1 /* comm_ioctl.c in Sources */,
 				07DD61221B5F0B4E003A1CE1 /* PubSub.c in Sources */,
 				07DD61261B5F0B4E003A1CE1 /* Reference.c in Sources */,
-				07DD615A1B5F0B4E003A1CE1 /* utils_ntlm.c in Sources */,
 				07DD5FEE1B5F0B4E003A1CE1 /* credui.c in Sources */,
 				07DD61241B5F0B4E003A1CE1 /* Queue.c in Sources */,
 				07DD5FCE1B5F0B4E003A1CE1 /* clipboard.c in Sources */,
@@ -2129,13 +1915,10 @@
 				07DD60221B5F0B4E003A1CE1 /* scancode.c in Sources */,
 				07DD60AE1B5F0B4E003A1CE1 /* smartcard_winscard.c in Sources */,
 				07DD60BE1B5F0B4E003A1CE1 /* ntlm_av_pairs.c in Sources */,
-				07DD60581B5F0B4E003A1CE1 /* pool.c in Sources */,
 				07DD60721B5F0B4E003A1CE1 /* midl.c in Sources */,
-				07DD60421B5F0B4E003A1CE1 /* PathCchAddSeparatorEx.c in Sources */,
 				07DD601A1B5F0B4E003A1CE1 /* nonehandle.c in Sources */,
 				07DD60D21B5F0B4E003A1CE1 /* sspi.c in Sources */,
 				07DD5FE81B5F0B4E003A1CE1 /* comm_serial_sys.c in Sources */,
-				07DD60681B5F0B4E003A1CE1 /* timer.c in Sources */,
 				07DD60C61B5F0B4E003A1CE1 /* ntlm_message.c in Sources */,
 				07DD60FA1B5F0B4E003A1CE1 /* argv.c in Sources */,
 				07DD60541B5F0B4E003A1CE1 /* cleanup_group.c in Sources */,
@@ -2146,7 +1929,6 @@
 				07DD608A1B5F0B4E003A1CE1 /* ndr_simple.c in Sources */,
 				07DD5FE01B5F0B4E003A1CE1 /* comm_sercx2_sys.c in Sources */,
 				07DD5FF21B5F0B4E003A1CE1 /* buffer.c in Sources */,
-				07DD5FF41B5F0B4E003A1CE1 /* casing.c in Sources */,
 				07DD61721B5F0B4E003A1CE1 /* FileAppender.c in Sources */,
 				07DD5FD21B5F0B4E003A1CE1 /* synthetic.c in Sources */,
 			);
@@ -2162,12 +1944,9 @@
 				07DD60D51B5F0B4E003A1CE1 /* sspi_export.c in Sources */,
 				07DD60E31B5F0B4E003A1CE1 /* critical.c in Sources */,
 				07DD61551B5F0B4E003A1CE1 /* triostr.c in Sources */,
-				07DD60691B5F0B4E003A1CE1 /* work.c in Sources */,
-				07DD60651B5F0B4E003A1CE1 /* synch.c in Sources */,
 				07DD618D1B5F0B4E003A1CE1 /* winhttp.c in Sources */,
 				07DD60951B5F0B4E003A1CE1 /* ndr_union.c in Sources */,
 				07DD610F1B5F0B4E003A1CE1 /* CountdownEvent.c in Sources */,
-				07DD603B1B5F0B4E003A1CE1 /* PathAllocCombine.c in Sources */,
 				07DD5FFD1B5F0B4E003A1CE1 /* utf.c in Sources */,
 				07DD5FD91B5F0B4E003A1CE1 /* comm_io.c in Sources */,
 				07DD60C11B5F0B4E003A1CE1 /* ntlm_compute.c in Sources */,
@@ -2180,13 +1959,11 @@
 				07DD61651B5F0B4E003A1CE1 /* CallbackAppender.c in Sources */,
 				07DD61111B5F0B4E003A1CE1 /* Dictionary.c in Sources */,
 				07DD607D1B5F0B4E003A1CE1 /* ndr_correlation.c in Sources */,
-				07DD619F1B5F0B4E003A1CE1 /* main.c in Sources */,
 				07DD61411B5F0B4E003A1CE1 /* sam.c in Sources */,
 				07DD60151B5F0B4E003A1CE1 /* handle.c in Sources */,
 				07DD61071B5F0B4E003A1CE1 /* cmdline.c in Sources */,
 				07DD61911B5F0B4E003A1CE1 /* wnd.c in Sources */,
 				07DD61191B5F0B4E003A1CE1 /* ListDictionary.c in Sources */,
-				07DD61991B5F0B4E003A1CE1 /* wtsapi_win32.c in Sources */,
 				07DD60EB1B5F0B4E003A1CE1 /* semaphore.c in Sources */,
 				07DD606B1B5F0B4E003A1CE1 /* registry.c in Sources */,
 				07DD601F1B5F0B4E003A1CE1 /* keycode.c in Sources */,
@@ -2212,7 +1989,6 @@
 				07DD61451B5F0B4E003A1CE1 /* stream.c in Sources */,
 				07DD609F1B5F0B4E003A1CE1 /* smartcard.c in Sources */,
 				07DD60811B5F0B4E003A1CE1 /* ndr_pointer.c in Sources */,
-				07DD60551B5F0B4E003A1CE1 /* io.c in Sources */,
 				07DD60B11B5F0B4E003A1CE1 /* credssp.c in Sources */,
 				07DD616D1B5F0B4E003A1CE1 /* DataMessage.c in Sources */,
 				07DD617D1B5F0B4E003A1CE1 /* Message.c in Sources */,
@@ -2243,17 +2019,13 @@
 				07DD60611B5F0B4E003A1CE1 /* pool_timer.c in Sources */,
 				07DD610B1B5F0B4E003A1CE1 /* BitStream.c in Sources */,
 				07DD61151B5F0B4E003A1CE1 /* KeyValuePair.c in Sources */,
-				07DD619D1B5F0B4E003A1CE1 /* hash.c in Sources */,
-				07DD603D1B5F0B4E003A1CE1 /* PathCchAddExtension.c in Sources */,
 				07DD61811B5F0B4E003A1CE1 /* PacketMessage.c in Sources */,
 				07DD61291B5F0B4E003A1CE1 /* StreamPool.c in Sources */,
 				07DD61351B5F0B4E003A1CE1 /* debug.c in Sources */,
 				07DD604D1B5F0B4E003A1CE1 /* callback.c in Sources */,
 				07DD5FF91B5F0B4E003A1CE1 /* string.c in Sources */,
-				07DD600F1B5F0B4E003A1CE1 /* error.c in Sources */,
 				07DD611F1B5F0B4E003A1CE1 /* ObjectPool.c in Sources */,
 				07DD61091B5F0B4E003A1CE1 /* ArrayList.c in Sources */,
-				07DD60431B5F0B4E003A1CE1 /* PathCchAppend.c in Sources */,
 				07DD5FF71B5F0B4E003A1CE1 /* memory.c in Sources */,
 				07DD60031B5F0B4E003A1CE1 /* crypto.c in Sources */,
 				07DD60E51B5F0B4E003A1CE1 /* event.c in Sources */,
@@ -2267,7 +2039,6 @@
 				07DD60F71B5F0B4E003A1CE1 /* sysinfo.c in Sources */,
 				07DD600B1B5F0B4E003A1CE1 /* environment.c in Sources */,
 				07DD5FE31B5F0B4E003A1CE1 /* comm_sercx_sys.c in Sources */,
-				07DD603F1B5F0B4E003A1CE1 /* PathCchAddSeparator.c in Sources */,
 				07DD605F1B5F0B4E003A1CE1 /* pool_synch.c in Sources */,
 				07DD60291B5F0B4E003A1CE1 /* io.c in Sources */,
 				07DD5FEB1B5F0B4E003A1CE1 /* credentials.c in Sources */,
@@ -2292,7 +2063,6 @@
 				07DD5FDB1B5F0B4E003A1CE1 /* comm_ioctl.c in Sources */,
 				07DD61211B5F0B4E003A1CE1 /* PubSub.c in Sources */,
 				07DD61251B5F0B4E003A1CE1 /* Reference.c in Sources */,
-				07DD61591B5F0B4E003A1CE1 /* utils_ntlm.c in Sources */,
 				07DD5FED1B5F0B4E003A1CE1 /* credui.c in Sources */,
 				07DD61231B5F0B4E003A1CE1 /* Queue.c in Sources */,
 				07DD5FCD1B5F0B4E003A1CE1 /* clipboard.c in Sources */,
@@ -2303,13 +2073,10 @@
 				07DD60211B5F0B4E003A1CE1 /* scancode.c in Sources */,
 				07DD60AD1B5F0B4E003A1CE1 /* smartcard_winscard.c in Sources */,
 				07DD60BD1B5F0B4E003A1CE1 /* ntlm_av_pairs.c in Sources */,
-				07DD60571B5F0B4E003A1CE1 /* pool.c in Sources */,
 				07DD60711B5F0B4E003A1CE1 /* midl.c in Sources */,
-				07DD60411B5F0B4E003A1CE1 /* PathCchAddSeparatorEx.c in Sources */,
 				07DD60191B5F0B4E003A1CE1 /* nonehandle.c in Sources */,
 				07DD60D11B5F0B4E003A1CE1 /* sspi.c in Sources */,
 				07DD5FE71B5F0B4E003A1CE1 /* comm_serial_sys.c in Sources */,
-				07DD60671B5F0B4E003A1CE1 /* timer.c in Sources */,
 				07DD60C51B5F0B4E003A1CE1 /* ntlm_message.c in Sources */,
 				07DD60F91B5F0B4E003A1CE1 /* argv.c in Sources */,
 				07DD60531B5F0B4E003A1CE1 /* cleanup_group.c in Sources */,
@@ -2320,13 +2087,35 @@
 				07DD60891B5F0B4E003A1CE1 /* ndr_simple.c in Sources */,
 				07DD5FDF1B5F0B4E003A1CE1 /* comm_sercx2_sys.c in Sources */,
 				07DD5FF11B5F0B4E003A1CE1 /* buffer.c in Sources */,
-				07DD5FF31B5F0B4E003A1CE1 /* casing.c in Sources */,
 				07DD61711B5F0B4E003A1CE1 /* FileAppender.c in Sources */,
 				07DD5FD11B5F0B4E003A1CE1 /* synthetic.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		074BD07D1B5F276800219723 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = axiscrypto;
+			targetProxy = 074BD07C1B5F276800219723 /* PBXContainerItemProxy */;
+		};
+		074BD07F1B5F276F00219723 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_axiscrypto;
+			targetProxy = 074BD07E1B5F276F00219723 /* PBXContainerItemProxy */;
+		};
+		074BD08F1B5F27F900219723 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = axisopenssl;
+			targetProxy = 074BD08E1B5F27F900219723 /* PBXContainerItemProxy */;
+		};
+		074BD0911B5F280100219723 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_axisopenssl;
+			targetProxy = 074BD0901B5F280100219723 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		07DD5DF71B5F0A1E003A1CE1 /* Debug */ = {
@@ -2364,19 +2153,21 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					FT2_BUILD_LIBRARY,
-					"DEBUG=1",
-					"$(inherited)",
+					_X86_,
+					_UNICODE,
+					WINPR_EXPORTS,
+					FREERDP_EXPORTS,
+					WINPR_EXPORTS,
+					_DEBUG,
+					HAVE_CONFIG_H,
+					"CMAKE_INTDIR=\"Debug\"",
+					winpr_EXPORTS,
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(WorkspaceDir)/../../../app/thirdparty/include",
-					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
-				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(TARGET_BUILD_DIR)\"",
@@ -2386,8 +2177,8 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = axiswinpr;
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/thirdparty/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/thirdparty/appseed $(WorkspaceDir)/../../../app/thirdparty/appseed/zlib";
-				WorkspaceDir = "$(SRCROOT)/../../../../nodeapp/seed/metaseed";
+				USER_HEADER_SEARCH_PATHS = "framework\nlibwinpr/utils/trio\nlibwinpr/utils\n$(WorkspaceDir)/../../../include\n$(WorkspaceDir)/../../../app/include/\n.\n$(WorkspaceDir)/../../../\n$(WorkspaceDir)/../../../app\n$(WorkspaceDir)/../../../app/appseed\n$(WorkspaceDir)/../../../app/appseed/axis\n$(WorkspaceDir)/../../../app/appseed/aura\n$(WorkspaceDir)/../../\n../../appseed\n../../\n../";
+				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Debug;
 		};
@@ -2408,15 +2199,21 @@
 				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = FT2_BUILD_LIBRARY;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					_X86_,
+					_UNICODE,
+					WINPR_EXPORTS,
+					FREERDP_EXPORTS,
+					WINPR_EXPORTS,
+					_DEBUG,
+					HAVE_CONFIG_H,
+					"CMAKE_INTDIR=\"Debug\"",
+					winpr_EXPORTS,
+				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(WorkspaceDir)/../../../app/thirdparty/include",
-					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
-				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(TARGET_BUILD_DIR)\"",
@@ -2425,8 +2222,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = axiswinpr;
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/thirdparty/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/thirdparty/appseed $(WorkspaceDir)/../../../app/thirdparty/appseed/zlib";
-				WorkspaceDir = "$(SRCROOT)/../../../../nodeapp/seed/metaseed";
+				USER_HEADER_SEARCH_PATHS = "framework\nlibwinpr/utils/trio\nlibwinpr/utils\n$(WorkspaceDir)/../../../include\n$(WorkspaceDir)/../../../app/include/\n.\n$(WorkspaceDir)/../../../\n$(WorkspaceDir)/../../../app\n$(WorkspaceDir)/../../../app/appseed\n$(WorkspaceDir)/../../../app/appseed/axis\n$(WorkspaceDir)/../../../app/appseed/aura\n$(WorkspaceDir)/../../\n../../appseed\n../../\n../";
+				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Release;
 		};
