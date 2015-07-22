@@ -2832,8 +2832,6 @@
 		9AE722BF17E83B69003E47F9 /* primitive */ = {
 			isa = PBXGroup;
 			children = (
-				076C9BEF1B50ACB100CEA03E /* primitive_create.h */,
-				077CEF251B23D151009A57EF /* _primitive.cpp */,
 				07B093DB18495C2A007A0560 /* collection */,
 				07B0943C18495C2A007A0560 /* comparison */,
 				9AE4C7E21996D29C00E50F88 /* data */,
@@ -2841,6 +2839,8 @@
 				07B0945018495C2A007A0560 /* geometry */,
 				07B0945C18495C2A007A0560 /* math */,
 				07B0946E18495C2A007A0560 /* str */,
+				076C9BEF1B50ACB100CEA03E /* primitive_create.h */,
+				077CEF251B23D151009A57EF /* _primitive.cpp */,
 				07B0946918495C2A007A0560 /* primitive_check.h */,
 				07B0946B18495C2A007A0560 /* primitive_color.h */,
 				07B0946D18495C2A007A0560 /* primitive_job.h */,

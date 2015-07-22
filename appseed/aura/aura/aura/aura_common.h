@@ -69,7 +69,7 @@ namespace aura
    {
 #ifdef WINDOWS
        return C_RUNTIME_ERROR_CHECK(::wcsncpy_s(_Dest, _SizeInChars, _Source,_Count));
-#elif defined ANDROID || defined APPLE_IOS
+#elif defined ANDROID || defined APPLEOS
       wcsncpy_dup(_Dest, _Source, _Count);
        return errno;
 #else

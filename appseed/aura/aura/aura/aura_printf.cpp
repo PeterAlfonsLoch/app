@@ -63,7 +63,17 @@ int32_t vprintf_dup(const char *format, va_list args)
 int32_t vwprintf_dup(const unichar *format, va_list args)
 {
 
-#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID) || defined(SOLARIS)
+#if defined(APPLEOS)
+   
+   unichar32 * v = utf16_to_utf32(format);
+   
+   int i = vwprintf((wchar_t *) v, args);
+   
+   free(v);
+   
+   return i; 
+   
+#elif defined(LINUX) || defined(ANDROID) || defined(SOLARIS)
 
     return vwprintf(format, args);
 

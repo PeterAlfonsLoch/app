@@ -11,6 +11,8 @@
 		074BD0A51B5F2EC300219723 /* libaxiscrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 074BD09B1B5F2E9B00219723 /* libaxiscrypto.dylib */; };
 		074BD0B71B5F2F0800219723 /* libaxisopenssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 074BD0AD1B5F2EDB00219723 /* libaxisopenssl.dylib */; };
 		074BD0B81B5F2F1100219723 /* libaxisopenssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 074BD0AD1B5F2EDB00219723 /* libaxisopenssl.dylib */; };
+		079FD66B1B601D24007CB5C6 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 079FD6601B601D0B007CB5C6 /* libaura.dylib */; };
+		079FD66C1B601D2D007CB5C6 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 079FD6601B601D0B007CB5C6 /* libaura.dylib */; };
 		07DD6BBF1B5F0C61003A1CE1 /* config.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD6AC51B5F0C60003A1CE1 /* config.h */; };
 		07DD6BC01B5F0C61003A1CE1 /* config.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD6AC51B5F0C60003A1CE1 /* config.h */; };
 		07DD6BC11B5F0C61003A1CE1 /* dummy.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6AC61B5F0C60003A1CE1 /* dummy.c */; };
@@ -540,6 +542,41 @@
 			remoteGlobalIDString = 9AE24D871904CF46001AEFFB;
 			remoteInfo = ios_axisopenssl;
 		};
+		079FD65F1B601D0B007CB5C6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 079FD6591B601D0B007CB5C6 /* aura.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A98A6151771D67E000AE16E;
+			remoteInfo = aura;
+		};
+		079FD6611B601D0B007CB5C6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 079FD6591B601D0B007CB5C6 /* aura.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 077A080B1B4D7403001C85FF;
+			remoteInfo = ios_aura;
+		};
+		079FD6631B601D0B007CB5C6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 079FD6591B601D0B007CB5C6 /* aura.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AE24D431904CEFE001AEFFB;
+			remoteInfo = aura_iosTests;
+		};
+		079FD6671B601D15007CB5C6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 079FD6591B601D0B007CB5C6 /* aura.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A98A6031771D67E000AE16E;
+			remoteInfo = aura;
+		};
+		079FD6691B601D1B007CB5C6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 079FD6591B601D0B007CB5C6 /* aura.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 077A05B41B4D7403001C85FF;
+			remoteInfo = ios_aura;
+		};
 		07DD70A81B5F0FD4003A1CE1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 07DD70A31B5F0FD4003A1CE1 /* axiswinpr.xcodeproj */;
@@ -573,6 +610,7 @@
 /* Begin PBXFileReference section */
 		074BD0941B5F2E9B00219723 /* axiscrypto.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axiscrypto.xcodeproj; path = ../crypto/axiscrypto.xcodeproj; sourceTree = "<group>"; };
 		074BD0A61B5F2EDB00219723 /* axisopenssl.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisopenssl.xcodeproj; path = ../openssl/axisopenssl.xcodeproj; sourceTree = "<group>"; };
+		079FD6591B601D0B007CB5C6 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../../appseed/aura/aura.xcodeproj; sourceTree = "<group>"; };
 		07DD674C1B5F0C16003A1CE1 /* libaxisfreerdp.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxisfreerdp.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		07DD6AC51B5F0C60003A1CE1 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
 		07DD6AC61B5F0C60003A1CE1 /* dummy.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dummy.c; sourceTree = "<group>"; };
@@ -811,6 +849,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				079FD66C1B601D2D007CB5C6 /* libaura.dylib in Frameworks */,
 				074BD0B71B5F2F0800219723 /* libaxisopenssl.dylib in Frameworks */,
 				074BD0A41B5F2EBA00219723 /* libaxiscrypto.dylib in Frameworks */,
 				07DD71121B5F1752003A1CE1 /* libaxiswinpr.dylib in Frameworks */,
@@ -821,6 +860,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				079FD66B1B601D24007CB5C6 /* libaura.dylib in Frameworks */,
 				074BD0B81B5F2F1100219723 /* libaxisopenssl.dylib in Frameworks */,
 				074BD0A51B5F2EC300219723 /* libaxiscrypto.dylib in Frameworks */,
 				07DD710F1B5F173E003A1CE1 /* libaxiswinpr.dylib in Frameworks */,
@@ -846,6 +886,16 @@
 				074BD0AD1B5F2EDB00219723 /* libaxisopenssl.dylib */,
 				074BD0AF1B5F2EDB00219723 /* libaxisopenssl.dylib */,
 				074BD0B11B5F2EDB00219723 /* axisopenssl_iosTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		079FD65A1B601D0B007CB5C6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				079FD6601B601D0B007CB5C6 /* libaura.dylib */,
+				079FD6621B601D0B007CB5C6 /* libaura.dylib */,
+				079FD6641B601D0B007CB5C6 /* aura_iosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1209,6 +1259,7 @@
 		9A1B358116A2D7A500875A94 = {
 			isa = PBXGroup;
 			children = (
+				079FD6591B601D0B007CB5C6 /* aura.xcodeproj */,
 				074BD0941B5F2E9B00219723 /* axiscrypto.xcodeproj */,
 				074BD0A61B5F2EDB00219723 /* axisopenssl.xcodeproj */,
 				07DD70A31B5F0FD4003A1CE1 /* axiswinpr.xcodeproj */,
@@ -1415,6 +1466,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				079FD66A1B601D1B007CB5C6 /* PBXTargetDependency */,
 				074BD0B61B5F2F0100219723 /* PBXTargetDependency */,
 				074BD0A31B5F2EAA00219723 /* PBXTargetDependency */,
 				07DD71111B5F1748003A1CE1 /* PBXTargetDependency */,
@@ -1435,6 +1487,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				079FD6681B601D15007CB5C6 /* PBXTargetDependency */,
 				074BD0B41B5F2EFB00219723 /* PBXTargetDependency */,
 				074BD0A11B5F2EA400219723 /* PBXTargetDependency */,
 				07DD710E1B5F125A003A1CE1 /* PBXTargetDependency */,
@@ -1464,6 +1517,10 @@
 			productRefGroup = 9A1B358D16A2D7A500875A94 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = 079FD65A1B601D0B007CB5C6 /* Products */;
+					ProjectRef = 079FD6591B601D0B007CB5C6 /* aura.xcodeproj */;
+				},
 				{
 					ProductGroup = 074BD0951B5F2E9B00219723 /* Products */;
 					ProjectRef = 074BD0941B5F2E9B00219723 /* axiscrypto.xcodeproj */;
@@ -1526,6 +1583,27 @@
 			fileType = wrapper.cfbundle;
 			path = axisopenssl_iosTests.xctest;
 			remoteRef = 074BD0B01B5F2EDB00219723 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		079FD6601B601D0B007CB5C6 /* libaura.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libaura.dylib;
+			remoteRef = 079FD65F1B601D0B007CB5C6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		079FD6621B601D0B007CB5C6 /* libaura.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libaura.dylib;
+			remoteRef = 079FD6611B601D0B007CB5C6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		079FD6641B601D0B007CB5C6 /* aura_iosTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = aura_iosTests.xctest;
+			remoteRef = 079FD6631B601D0B007CB5C6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		07DD70A91B5F0FD4003A1CE1 /* libaxiswinpr.dylib */ = {
@@ -1877,6 +1955,16 @@
 			isa = PBXTargetDependency;
 			name = ios_axisopenssl;
 			targetProxy = 074BD0B51B5F2F0100219723 /* PBXContainerItemProxy */;
+		};
+		079FD6681B601D15007CB5C6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = aura;
+			targetProxy = 079FD6671B601D15007CB5C6 /* PBXContainerItemProxy */;
+		};
+		079FD66A1B601D1B007CB5C6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_aura;
+			targetProxy = 079FD6691B601D1B007CB5C6 /* PBXContainerItemProxy */;
 		};
 		07DD710E1B5F125A003A1CE1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

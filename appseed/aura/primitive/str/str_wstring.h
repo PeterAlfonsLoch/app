@@ -84,6 +84,11 @@ public:
 
 class wstring_manager;
 
+#ifdef WINDOWS
+#define unilen wcslen
+#else
+#define unilen wcslen_dup
+#endif
 
 class CLASS_DECL_AURA verisimple_wstring
 {
@@ -284,7 +289,8 @@ public:
 
    inline static verisimple_wstring empty_string()
    {
-      return L"";
+      unsigned short push[]={0};
+      return push;
    }
 
    inline verisimple_wstring & append(unichar wch)

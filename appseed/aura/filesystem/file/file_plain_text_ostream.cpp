@@ -53,12 +53,12 @@ namespace file
    {
       write ((uint32_t) ui);
    }
-
+#ifdef WINDOWS
    void plain_text_ostream:: write (unichar wch)
    {
       raw_print(::str::uni_to_utf8(wch));
    }
-
+#endif
 
    void plain_text_ostream:: write (int32_t i)
    {

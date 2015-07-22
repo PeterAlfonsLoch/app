@@ -343,7 +343,7 @@ namespace simple_ui
       rectClient.left--;
       rectClient.top--;
 
-      if(Session.get_keyboard_focus() == this || has_action_hover())
+      if(m_pauraapp != NULL && (Session.get_keyboard_focus() == this || has_action_hover()))
       {
 
          ::draw2d::brush_sp brush(allocer());

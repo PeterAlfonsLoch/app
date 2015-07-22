@@ -169,7 +169,7 @@ GetTempPathW(
 
    ::count iLen = MIN(nBufferLength, wstr.get_length());
 
-   wcsncpy(lpBuffer, wstr, iLen);
+   unincpy(lpBuffer, wstr, iLen);
 
    if(nBufferLength > 0)
    {

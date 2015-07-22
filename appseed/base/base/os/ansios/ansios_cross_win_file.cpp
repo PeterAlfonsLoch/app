@@ -157,25 +157,25 @@ CloseHandle(
 
 
 
-DWORD
-WINAPI
-GetTempPathW(
-    DWORD nBufferLength,
-    LPWSTR lpBuffer
-    )
-{
-
-   wstring wstr = "/var/core/time/";
-
-   ::count iLen = MIN(nBufferLength, wstr.get_length());
-
-   wcsncpy(lpBuffer, wstr, iLen);
-
-   if(nBufferLength > 0)
-   {
-      lpBuffer[iLen] = '\0';
-   }
-
-   return (DWORD) iLen;
-
-}
+//DWORD
+//WINAPI
+//GetTempPathW(
+//    DWORD nBufferLength,
+//    LPWSTR lpBuffer
+//    )
+//{
+//
+//   wstring wstr = "/var/core/time/";
+//
+//   ::count iLen = MIN(nBufferLength, wstr.get_length());
+//
+//   unincpy(lpBuffer, wstr, iLen);
+//
+//   if(nBufferLength > 0)
+//   {
+//      lpBuffer[iLen] = '\0';
+//   }
+//
+//   return (DWORD) iLen;
+//
+//}

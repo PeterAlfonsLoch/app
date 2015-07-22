@@ -476,7 +476,7 @@ void memory_free_dbg(void * pmemory, int32_t iBlockType)
    else
    {
 
-      ::OutputDebugStringW(L"wrong free");
+      ::OutputDebugString("wrong free");
 
    }
 

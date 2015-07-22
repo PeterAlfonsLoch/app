@@ -1360,7 +1360,7 @@ namespace user
    interaction * interaction_base::GetDescendantWindow(id iId) const
    {
 
-      ::exception::throw_interface_only(get_app());
+//      ::exception::throw_interface_only(get_app());
 
       return NULL;
 

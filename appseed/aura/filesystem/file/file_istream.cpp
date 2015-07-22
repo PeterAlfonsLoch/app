@@ -137,14 +137,14 @@ namespace file
       ::exception::throw_interface_only(get_app());
    }
 
-
+#ifdef WINDOWS
    void istream::read (unichar & wch)
    {
       UNREFERENCED_PARAMETER(wch);
       ::exception::throw_interface_only(get_app());
    }
 
-
+#endif
    void istream::read (int16_t & sh)
    {
       UNREFERENCED_PARAMETER(sh);

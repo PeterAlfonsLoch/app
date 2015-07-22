@@ -785,17 +785,17 @@ namespace macos
 
       //OutputDebugStringW(wstrPath);
 
-      if(wstrPath.get_length() >= MAX_PATH)
-      {
-         if(::str::begins(wstrPath, L"\\\\"))
-         {
-            ::str::begin(wstrPath, L"\\\\?\\UNC");
-         }
-         else
-         {
-            ::str::begin(wstrPath, L"\\\\?\\");
-         }
-      }
+//      if(wstrPath.get_length() >= MAX_PATH)
+//      {
+//         if(::str::begins(wstrPath, unitext("\\\\"))
+//         {
+//            ::str::begin(wstrPath, L"\\\\?\\UNC");
+//         }
+//         else
+//         {
+//            ::str::begin(wstrPath, L"\\\\?\\");
+//         }
+//      }
 
       bIsDir = ::dir::is(::str::international::unicode_to_utf8(wstrPath));
 

@@ -59,7 +59,7 @@ verisimple_wstring::verisimple_wstring(const unichar * pwsz,strsize iCount,manag
    else
    {
       while(iCount < 0)
-         iCount = wcslen(pwsz) + iCount + 1;
+         iCount = unilen(pwsz) + iCount + 1;
       m_pwsz = (unichar *) wstring_data::alloc(iCount + 1);
       get_data()->m_iLength = iCount;
       memcpy_dup(m_pwsz, pwsz, get_data()->m_iLength * sizeof(unichar));
@@ -300,8 +300,8 @@ verisimple_wstring verisimple_wstring::substr(::index iStart, ::count count)
 {
    if(m_pwsz == NULL)
    {
-
-      return L"";
+      unsigned short push[]={0};
+      return push;
 
    }
    else
@@ -319,7 +319,8 @@ verisimple_wstring verisimple_wstring::substr(::index iStart, ::count count)
 
       if(count <= 0)
       {
-         return L"";
+         unsigned short push[]={0};
+         return push;
       }
 
       return wstring(&m_pwsz[iStart], count);
@@ -397,7 +398,7 @@ strsize verisimple_wstring::find(const unichar * pszSub,strsize iStart,strsize n
       return(npos);
    }
 
-   strsize nLength2 = wcslen(pszSub);
+   strsize nLength2 = unilen(pszSub);
 
    if(nCount < 0)
       nCount = nLength;

@@ -610,7 +610,11 @@ strsize __cdecl crt_char_traits::SafeStringLen(const char * psz) throw()
 strsize __cdecl crt_char_traits::SafeStringLen(const unichar * psz) throw()
 {
    // returns length in wchar_ts
+#ifdef WINDOWS
    return (psz != NULL) ? strsize(wcslen(psz)) : 0;
+#else
+   return (psz != NULL) ? strsize(wcslen_dup(psz)) : 0;
+#endif
 }
 
 strsize __cdecl crt_char_traits::GetCharLen(const unichar* pch) throw()

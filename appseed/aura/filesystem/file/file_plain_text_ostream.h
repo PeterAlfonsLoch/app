@@ -21,7 +21,9 @@ namespace file
       virtual void write (bool b);
       virtual void write (char ch);
       virtual void write (uchar uch);
+#ifdef WINDOWS
       virtual void write (unichar wch);
+#endif
       virtual void write (int16_t sh);
       virtual void write (uint16_t uint16_t);
       virtual void write (int32_t i);

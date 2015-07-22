@@ -43,13 +43,13 @@ namespace file
       m_spbuffer->read(&uch, sizeof(uch));
 
    }
-
+#ifdef WINDOWS
    void plain_text_istream::read (unichar & wch)
    {
       m_spbuffer->read(&wch, sizeof(wch));
 
    }
-
+#endif
    void plain_text_istream::read (int16_t & sh)
    {
       m_spbuffer->read(&sh, sizeof(sh));

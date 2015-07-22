@@ -1352,21 +1352,22 @@ namespace macos
                return;
             }
          }
-         user::oswindow_array hwnda;
+/*         user::oswindow_array hwnda;
          user::interaction_ptra wnda;
          wnda = System.m_uiptraFrame;
          hwnda = wnda.get_hwnda();
          user::window_util::SortByZOrder(hwnda);
          for(int32_t i = 0; i < hwnda.get_size(); i++)
-         {
-            ::user::interaction * pguie = wnda.find_first(hwnda[i]);
+         {*/
+//            ::user::interaction * pguie = wnda.find_first(hwnda[i]);
+         ::user::interaction * pguie = m_pui;
             if(pguie != NULL)
             {
                pguie->_000OnMouse(pmouse);
                if(pmouse->m_bRet)
                   return;
             }
-         }
+         //}
          pbase->set_lresult(DefWindowProc(pbase->m_uiMessage, pbase->m_wparam, pbase->m_lparam));
          return;
       }
@@ -3818,6 +3819,8 @@ namespace macos
          }
 
       }
+      
+//      if(!(nFlags & ))
 
 
 //      throw not_implemented(get_app());
@@ -5782,7 +5785,7 @@ namespace macos
    }
 
 
-   void interaction_impl::round_window_mouse_down(double x, double y)
+   void interaction_impl::round_window_mouse_down(int iButton, double x, double y)
    {
 
       sp(::message::base) spbase;
@@ -5828,7 +5831,14 @@ namespace macos
 
          ::message::mouse * pmouse = canew(::message::mouse(get_app()));
 
-         pmouse->m_uiMessage = WM_LBUTTONDOWN;
+         if(iButton == 1)
+         {
+            pmouse->m_uiMessage = WM_RBUTTONDOWN;
+         }
+         else
+         {
+            pmouse->m_uiMessage = WM_LBUTTONDOWN;
+         }
          pmouse->m_pt.x = (LONG) x;
          pmouse->m_pt.y = (LONG) y;
          pmouse->m_bTranslated = true;
@@ -5843,14 +5853,21 @@ namespace macos
    }
 
 
-   void interaction_impl::round_window_mouse_up(double x, double y)
+   void interaction_impl::round_window_mouse_up(int iButton, double x, double y)
    {
 
       sp(::message::base) spbase;
 
       ::message::mouse * pmouse = canew(::message::mouse(get_app()));
 
-      pmouse->m_uiMessage = WM_LBUTTONUP;
+      if(iButton == 1)
+      {
+         pmouse->m_uiMessage = WM_RBUTTONUP;
+      }
+      else
+      {
+         pmouse->m_uiMessage = WM_LBUTTONUP;
+      }
       pmouse->m_pt.x = (LONG) x;
       pmouse->m_pt.y = (LONG) y;
       pmouse->m_bTranslated = true;

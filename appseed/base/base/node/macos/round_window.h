@@ -27,8 +27,8 @@ bool m_bDirty;
    
    
    virtual void round_window_draw(CGContextRef cgc) = 0;
-   virtual void round_window_mouse_down(double x, double y) = 0;
-   virtual void round_window_mouse_up(double x, double y) = 0;
+   virtual void round_window_mouse_down(int iButton, double x, double y) = 0;
+   virtual void round_window_mouse_up(int iButton, double x, double y) = 0;
    virtual void round_window_mouse_moved(double x, double y) = 0;
    virtual void round_window_mouse_dragged(double x, double y) = 0;
    virtual bool round_window_key_down(unsigned int uiKeyCode) = 0;

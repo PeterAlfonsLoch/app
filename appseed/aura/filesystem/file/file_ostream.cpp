@@ -99,12 +99,12 @@ namespace file
    {
 
    }
-
+#ifdef WINDOWS
    void ostream:: write (unichar wch)
    {
 
    }
-
+#endif
    void ostream:: write (int32_t i)
    {
 

@@ -1175,7 +1175,7 @@ int tls_verify_certificate(rdpTls* tls, CryptoCert cert, char* hostname, int por
 
 #ifndef _WIN32
 	if (common_name)
-		free(common_name);
+		memory_free(common_name);
 #endif
 
 	if (alt_names)

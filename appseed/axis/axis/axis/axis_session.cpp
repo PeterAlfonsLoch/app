@@ -2985,6 +2985,9 @@ namespace axis
 
    ::user::elemental * session::get_keyboard_focus()
    {
+      
+      if(m_pauraapp == NULL)
+         return NULL;
       if(Application.is_session())
       {
          ::user::elemental * puieFocus = Application.get_focus_guie();

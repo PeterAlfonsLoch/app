@@ -99,13 +99,13 @@ namespace file
       write_arbitrary(ui);
 
    }
-
+#ifdef WINDOWS
    void byte_ostream:: write (unichar wch)
    {
       write_arbitrary(wch);
 
    }
-
+#endif
    void byte_ostream:: write (int32_t i)
    {
       write_arbitrary(i);

@@ -120,13 +120,13 @@ namespace file
       read_arbitrary(&ui, sizeof(ui));
 
    }
-
+#ifdef WINDOWS
    void byte_istream::read(unichar & wch)
    {
       read_arbitrary(&wch, sizeof(wch));
 
    }
-
+#endif
    void byte_istream::read(bool & b)
    {
       m_spbuffer->read(&b, sizeof(b));

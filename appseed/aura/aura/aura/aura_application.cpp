@@ -805,7 +805,7 @@ namespace aura
          if(m_iReturnCode != 0)
          {
             dappy(string(typeid(*this).name()) + " : on_run failure : " + ::str::from(m_iReturnCode));
-            ::OutputDebugStringW(L"application::main on_run termination failure");
+            ::OutputDebugString("application::main on_run termination failure");
          }
 
       }
@@ -905,7 +905,7 @@ namespace aura
             m_iReturnCode = -1;
             exit();
             m_bReady = true;
-            ::OutputDebugStringW(L"exiting on check directrix");
+            ::OutputDebugString("exiting on check directrix");
             return false;
          }
 
@@ -918,7 +918,7 @@ namespace aura
             exit();
             m_iReturnCode = -1;
             m_bReady = true;
-            ::OutputDebugStringW(L"application::main os_native_bergedge_start failure");
+            ::OutputDebugString("application::main os_native_bergedge_start failure");
             return false;
          }
 

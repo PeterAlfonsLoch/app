@@ -400,8 +400,10 @@ using namespace ::Windows::System;
 #else
 
    unichar lpszModuleFolder[MAX_PATH * 8];
-wcscpy_dup(lpszModuleFolder, L"/core/");
-
+   
+   throw todo(::get_thread_app());
+   
+//   wcscpy_dup(lpszModuleFolder, unitext("/core/"));
 
    return lpszModuleFolder;
 

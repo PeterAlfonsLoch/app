@@ -367,159 +367,159 @@ namespace crypto
 
       return true;
 
-#elif defined(MACOS)
-
-      CFMutableDictionaryRef parameters = CFDictionaryCreateMutable(NULL, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
-
-      CFDictionaryAddValue(parameters, kSecAttrKeyType, kSecAttrKeyTypeAES);
-
-      CFDataRef keyData = memSha1.get_os_cf_data();
-
-      CFErrorRef error = NULL;
-
-      SecKeyRef key = SecKeyCreateFromData(parameters, keyData, &error);
-
-      if(error != NULL)
-      {
-
-         CFRelease(error);
-
-         CFRelease(keyData);
-
-         CFRelease(parameters);
-
-         return false;
-
-      }
-
-      SecTransformRef transform = SecDecryptTransformCreate(key, &error);
-
-      if(error != NULL)
-      {
-
-         CFRelease(error);
-
-         CFRelease(key);
-
-         CFRelease(keyData);
-
-         CFRelease(parameters);
-
-         return false;
-
-      }
-
-      SecTransformSetAttribute(transform, kSecPaddingKey, kSecPaddingPKCS1Key, &error);
-
-      if(error != NULL)
-      {
-
-         CFRelease(transform);
-
-         CFRelease(keyData);
-
-         CFRelease(parameters);
-
-         CFRelease(key);
-
-         CFRelease(error);
-
-         return false;
-
-      }
-
-      CFDataRef dataIv = iv.get_os_cf_data();
-
-      SecTransformSetAttribute(transform, kSecIVKey, dataIv, &error);
-
-      if(error != NULL)
-      {
-
-         CFRelease(dataIv);
-
-         CFRelease(transform);
-
-         CFRelease(parameters);
-
-         CFRelease(keyData);
-
-         CFRelease(key);
-
-         CFRelease(error);
-
-         return false;
-
-      }
-
-      CFDataRef dataIn = storageEncrypt.get_os_cf_data();
-
-      SecTransformSetAttribute(transform, kSecTransformInputAttributeName, dataIn, &error);
-
-      if(error != NULL)
-      {
-
-         CFRelease(dataIn);
-
-         CFRelease(dataIv);
-
-         CFRelease(transform);
-
-         CFRelease(parameters);
-
-         CFRelease(keyData);
-
-         CFRelease(key);
-
-         CFRelease(error);
-
-         return false;
-
-      }
-
-      /* Encrypt the data. */
-
-      CFDataRef data = (CFDataRef) SecTransformExecute(transform, &error);
-
-      if(error != NULL)
-      {
-
-         CFRelease(dataIn);
-
-         CFRelease(dataIv);
-
-         CFRelease(transform);
-
-         CFRelease(parameters);
-
-         CFRelease(keyData);
-
-         CFRelease(key);
-
-         CFRelease(error);
-
-         return false;
-
-      }
-
-      ::primitive::memory memory;
-
-      storageDecrypt.set_os_cf_data(data);
-
-      CFRelease(data);
-
-      CFRelease(dataIv);
-
-      CFRelease(dataIn);
-
-      CFRelease(transform);
-
-      CFRelease(keyData);
-
-      CFRelease(parameters);
-
-      CFRelease(key);
-
-      return true;
+//#elif defined(MACOS)
+//
+//      CFMutableDictionaryRef parameters = CFDictionaryCreateMutable(NULL, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
+//
+//      CFDictionaryAddValue(parameters, kSecAttrKeyType, kSecAttrKeyTypeAES);
+//
+//      CFDataRef keyData = memSha1.get_os_cf_data();
+//
+//      CFErrorRef error = NULL;
+//
+//      SecKeyRef key = SecKeyCreateFromData(parameters, keyData, &error);
+//
+//      if(error != NULL)
+//      {
+//
+//         CFRelease(error);
+//
+//         CFRelease(keyData);
+//
+//         CFRelease(parameters);
+//
+//         return false;
+//
+//      }
+//
+//      SecTransformRef transform = SecDecryptTransformCreate(key, &error);
+//
+//      if(error != NULL)
+//      {
+//
+//         CFRelease(error);
+//
+//         CFRelease(key);
+//
+//         CFRelease(keyData);
+//
+//         CFRelease(parameters);
+//
+//         return false;
+//
+//      }
+//
+//      SecTransformSetAttribute(transform, kSecPaddingKey, kSecPaddingPKCS1Key, &error);
+//
+//      if(error != NULL)
+//      {
+//
+//         CFRelease(transform);
+//
+//         CFRelease(keyData);
+//
+//         CFRelease(parameters);
+//
+//         CFRelease(key);
+//
+//         CFRelease(error);
+//
+//         return false;
+//
+//      }
+//
+//      CFDataRef dataIv = iv.get_os_cf_data();
+//
+//      SecTransformSetAttribute(transform, kSecIVKey, dataIv, &error);
+//
+//      if(error != NULL)
+//      {
+//
+//         CFRelease(dataIv);
+//
+//         CFRelease(transform);
+//
+//         CFRelease(parameters);
+//
+//         CFRelease(keyData);
+//
+//         CFRelease(key);
+//
+//         CFRelease(error);
+//
+//         return false;
+//
+//      }
+//
+//      CFDataRef dataIn = storageEncrypt.get_os_cf_data();
+//
+//      SecTransformSetAttribute(transform, kSecTransformInputAttributeName, dataIn, &error);
+//
+//      if(error != NULL)
+//      {
+//
+//         CFRelease(dataIn);
+//
+//         CFRelease(dataIv);
+//
+//         CFRelease(transform);
+//
+//         CFRelease(parameters);
+//
+//         CFRelease(keyData);
+//
+//         CFRelease(key);
+//
+//         CFRelease(error);
+//
+//         return false;
+//
+//      }
+//
+//      /* Encrypt the data. */
+//
+//      CFDataRef data = (CFDataRef) SecTransformExecute(transform, &error);
+//
+//      if(error != NULL)
+//      {
+//
+//         CFRelease(dataIn);
+//
+//         CFRelease(dataIv);
+//
+//         CFRelease(transform);
+//
+//         CFRelease(parameters);
+//
+//         CFRelease(keyData);
+//
+//         CFRelease(key);
+//
+//         CFRelease(error);
+//
+//         return false;
+//
+//      }
+//
+//      ::primitive::memory memory;
+//
+//      storageDecrypt.set_os_cf_data(data);
+//
+//      CFRelease(data);
+//
+//      CFRelease(dataIv);
+//
+//      CFRelease(dataIn);
+//
+//      CFRelease(transform);
+//
+//      CFRelease(keyData);
+//
+//      CFRelease(parameters);
+//
+//      CFRelease(key);
+//
+//      return true;
 
 #else
 

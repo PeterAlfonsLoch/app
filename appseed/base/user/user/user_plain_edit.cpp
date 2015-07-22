@@ -2270,15 +2270,15 @@ namespace user
                   str = Session.keyboard().process_key(pkey);
                }
                string strCh(ch);
-               output_debug_string("thechthech");
-               output_debug_string(strCh);
-               output_debug_string(";");
-               output_debug_string("thekey");
-               output_debug_string(System.get_enum_name< ::user::e_key> (pkey->m_ekey));
-               output_debug_string(";");
-               output_debug_string("thecharthechar");
-               output_debug_string(str);
-               output_debug_string("\n");
+//               output_debug_string("thechthech");
+//               output_debug_string(strCh);
+//               output_debug_string(";");
+//               output_debug_string("thekey");
+//               output_debug_string(System.get_enum_name< ::user::e_key> (pkey->m_ekey));
+//               output_debug_string(";");
+//               output_debug_string("thecharthechar");
+//               output_debug_string(str);
+//               output_debug_string("\n");
                //               string strMap;
                m_ptree->m_iSelEnd += str.get_length();
                m_ptree->m_iSelStart = m_ptree->m_iSelEnd;

@@ -87,7 +87,19 @@
    
    int y = H - point.y;
    
-   p->round_window_mouse_up(x, y);
+   int iButton = 0;
+   
+   if(event.type == NSLeftMouseDown)
+   {
+      iButton = 0;
+   }
+   else if(event.type == NSRightMouseDown)
+   {
+      iButton = 1;
+   }
+ 
+   
+   p->round_window_mouse_up(iButton, x, y);
    
    return;
    
@@ -191,7 +203,18 @@
    
    int y = H - point.y;
    
-   p->round_window_mouse_down(x, y);
+   int iButton = 0;
+   
+   if(event.type == NSLeftMouseDown)
+   {
+      iButton = 0;
+   }
+   else if(event.type == NSRightMouseDown)
+   {
+      iButton = 1;
+   }
+   
+   p->round_window_mouse_down(iButton, x, y);
    
    return;
    
@@ -280,6 +303,65 @@
 	}
    
    */
+}
+- (void)rightMouseUp:(NSEvent *)event
+{
+   
+   //printf("\nmouseDown");
+   
+   round_window * p = m_roundwindow->m_pwindow;
+   
+   if(p == NULL)
+      return;
+   
+   NSRect e = [m_roundwindow frame];
+   
+   NSPoint point = [event locationInWindow];
+   
+   point.x = point.x + e.origin.x;
+   
+   point.y = point.y + e.origin.y;
+   
+   int H = (int) [[NSScreen mainScreen] frame].size.height;
+   
+   int x = point.x;
+   
+   int y = H - point.y;
+   
+   p->round_window_mouse_up(1, x, y);
+   
+   return;
+   
+}
+
+- (void)rightMouseDown:(NSEvent *)event
+{
+   
+   //printf("\nmouseDown");
+   
+   round_window * p = m_roundwindow->m_pwindow;
+   
+   if(p == NULL)
+      return;
+   
+   NSRect e = [m_roundwindow frame];
+   
+   NSPoint point = [event locationInWindow];
+   
+   point.x = point.x + e.origin.x;
+   
+   point.y = point.y + e.origin.y;
+   
+   int H = (int) [[NSScreen mainScreen] frame].size.height;
+   
+   int x = point.x;
+   
+   int y = H - point.y;
+  
+   p->round_window_mouse_down(1, x, y);
+   
+   return;
+
 }
 
 - (BOOL) isFlipped

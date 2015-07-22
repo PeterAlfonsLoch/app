@@ -48,7 +48,9 @@ namespace file
       inline ostream & operator << (uchar uch                            ) { write(uch             ); return *this;}
       inline ostream & operator << (int16_t sh                           ) { write(sh              ); return *this;}
       inline ostream & operator << (uint16_t ui                          ) { write(ui              ); return *this;}
+#ifdef WINDOWS
       inline ostream & operator << (unichar wch                          ) { write(wch             ); return *this;}
+#endif
       inline ostream & operator << (bool b                               ) { write(b               ); return *this;}
       inline ostream & operator << (int32_t i                            ) { write(i               ); return *this;}
       inline ostream & operator << (uint32_t ui                          ) { write(ui              ); return *this;}
@@ -83,7 +85,9 @@ namespace file
       virtual void write (uchar uch);
       virtual void write (int16_t sh);
       virtual void write (uint16_t uint16_t);
+#ifdef WINDOWS
       virtual void write (unichar wch);
+#endif
       virtual void write (bool b);
       virtual void write (int32_t i);
       virtual void write (uint32_t ui);

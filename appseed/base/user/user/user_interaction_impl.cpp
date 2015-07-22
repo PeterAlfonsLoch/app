@@ -1341,9 +1341,9 @@ namespace user
    ::user::interaction * interaction_impl::GetDescendantWindow(id id) const
    {
       UNREFERENCED_PARAMETER(id);
-      ::exception::throw_interface_only(get_app());
+    //  ::exception::throw_interface_only(get_app());
 
-      return NULL;
+      return ::user::interaction_impl_base::GetDescendantWindow(id);
    }
 
    ::draw2d::graphics * interaction_impl::GetDCEx(::draw2d::region * prgnClip,uint32_t flags)

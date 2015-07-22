@@ -166,11 +166,13 @@ namespace str
          strsize iBuffer = MultiByteToUnicodeCount(uiCodePage, lpcsz, nCount);
          if(iBuffer == ERROR_NO_UNICODE_TRANSLATION)
          {
-            return L"";
+            unsigned short push[]={0};
+            return push;
          }
          else if(iBuffer == 0)
          {
-            return L"";
+            unsigned short push[]={0};
+            return push;
          }
          wstring wstr;
          wstr.alloc(iBuffer);
@@ -179,7 +181,8 @@ namespace str
             wstr.set_length(iBuffer);
             return wstr.detach();
          }
-         return L"";
+         unsigned short push[]={0};
+         return push;
       }
 
       wstring MultiByteToUnicode(UINT uiCodePage, const string & str)
@@ -189,15 +192,20 @@ namespace str
            // return wstring(str);
          }
          if(str.length() <= 0)
-            return L"";
+         {
+            unsigned short push[]={0};
+            return push;
+         }
          strsize iBuffer = MultiByteToUnicodeCount(uiCodePage, str, (strsize) str.get_length());
          if(iBuffer == ERROR_NO_UNICODE_TRANSLATION)
          {
-            return L"";
+            unsigned short push[]={0};
+            return push;
          }
          else if(iBuffer == 0)
          {
-            return L"";
+            unsigned short push[]={0};
+            return push;
          }
          wstring wstr;
          wstr.alloc(iBuffer);
@@ -206,7 +214,8 @@ namespace str
             wstr.set_length(iBuffer);
             return wstr.detach();
          }
-         return L"";
+         unsigned short push[]={0};
+         return push;
       }
 
       bool MultiByteToMultiByte(UINT uiCodePageDst, string & str, UINT uiCodePageSrc, const char * lpcsz)

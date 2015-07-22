@@ -1265,3 +1265,311 @@ CLASS_DECL_AURA void * memmem_dup(const void * src, strsize srclen, const void *
    return NULL;
 
 }
+
+
+// http://stackoverflow.com/questions/23919515/how-to-convert-from-utf-16-to-utf-32-on-linux-with-std-library
+
+// peppe
+// http://stackoverflow.com/users/1873944/peppe
+
+//peppe top 3% this year
+//
+//Software engineer at KDAB, the Qt experts.
+//
+//Qt and Linux hacker.
+//
+//Free Software advocate.
+//
+//Refined chef.
+//
+
+int is_surrogate(unichar uc) { return (uc - 0xd800) < 2048; }
+int is_high_surrogate(unichar uc) { return (uc & 0xfffffc00) == 0xd800; }
+int is_low_surrogate(unichar uc) { return (uc & 0xfffffc00) == 0xdc00; }
+
+unichar32 surrogate_to_utf32(unichar high, unichar low)
+{ 
+   return (high << 10) + low - 0x35fdc00; 
+}
+
+strsize utf16_to_utf32(unichar32 * output, const unichar *input, strsize input_size) 
+{
+   
+   const unichar * const end = input + input_size;
+   
+   while (input < end)
+   {
+      
+      const unichar uc = *input++;
+      
+      if (!is_surrogate(uc))
+      {
+         
+         *output++ = uc; 
+         
+      }
+      else
+      {
+         
+         if (is_high_surrogate(uc) && input < end && is_low_surrogate(*input))
+         {
+            
+            *output++ = surrogate_to_utf32(uc, *input++);
+            
+         }
+         else
+         {
+            
+            throw simple_exception(get_thread_app(), "utf16_to_utf32_len");
+            
+         }
+      }
+   }
+}
+
+
+strsize utf16_to_utf32_len(const unichar *input, strsize input_size) 
+{
+   
+   const unichar * const end = input + input_size;
+   
+   int c = 0;
+   
+   while (((input_size < 0) && *input) || ((input_size >= 0) && input < end))
+   {
+      
+      const unichar uc = *input++;
+      
+      if (!is_surrogate(uc))
+      {
+         
+         c++; 
+         
+      }
+      else
+      {
+         
+         if (is_high_surrogate(uc) && input < end && is_low_surrogate(*input))
+         {
+            
+            c++;
+            
+         }
+         else
+         {
+            
+            throw simple_exception(get_thread_app(), "utf16_to_utf32_len");
+            
+         }
+         
+      }
+      
+   }
+   
+   return c;
+   
+}
+
+
+
+unichar32 * utf16_to_utf32(const unichar *input, strsize input_size) 
+{
+   
+   strsize s = utf16_to_utf32_len(input, input_size);
+   
+   unichar32 * v = (unichar32 *) memory_alloc(sizeof(unichar32) * (s+1));
+   
+   utf16_to_utf32(v, input, s);
+   
+   v[s] = 0;
+   
+   return v;
+   
+}
+
+// http://stackoverflow.com/questions/29433124/how-to-convert-a-codepoint-32bit-integer-array-utf-32-to-windows-native-strin
+
+// http://stackoverflow.com/users/65863/remy-lebeau
+//Remy Lebeau
+//
+//I am a highly visible member of the Embarcadero developer forums, which are public forums for software developers who use Borland/CodeGear/Embarcadero development tools (Delphi, C++Builder, RAD Studio, etc) to talk to each other, help each other out with problems in their projects and source code, and to provide expert advise to each other.
+//
+//I am a primary member of the development and admin teams for the Internet Direct (Indy) open source project and its support forums and newsgroups.
+//
+//I am a contributing author to the C++Builder Developer's Journal and its support forums. BCBJ is a monthly online magazine devoted to all things related to the Borland/CodeGear/Embarcadero C++Builder development IDE and compiler.
+//6,121 answers
+//4 questions
+//~5.0m people reached
+//
+//United States
+//lebeausoftware.org
+//Member for 6 years, 5 months
+//12,656 profile views
+//Last seen 2 hours ago
+//
+//Communities (5)
+//
+//Stack Overflow 175.2k 175.2k 896198
+//Anime & Manga 178 178 5
+//Science Fiction & Fantasy 173 173 6
+//Meta Stack Exchange 121 121 5
+//Cryptography 108 108 4
+//
+//Top Network Posts
+//
+//5Is it possible for a genin to become a jonin?
+//View more network posts →
+
+
+
+// on Windows, wchar_t is 2 bytes, suitable for UTF-16
+//std::wstring Utf32ToUtf16(const std::vector<uint32_t> &codepoints)
+//{
+//   std::wstring result;
+//   int len = 0;
+//   
+//   for (std::vector<uint32_t>::iterator iter = codepoints.begin(); iter != codepoints.end(); ++iter)
+//   {
+//      uint32_t cp = *iter;
+//      if (cp < 0x10000) {
+//         ++len;
+//      }
+//      else if (cp <= 0x10FFFF) {
+//         len += 2;
+//      }
+//      else {
+//         // invalid code_point, do something !
+//         ++len;
+//      }
+//   }
+//   
+//   if (len > 0)
+//   {
+//      result.resize(len);
+//      len = 0;
+//      
+//      for (std::vector<uint32_t>::iterator iter = codepoints.begin(); iter != codepoints.end(); ++iter)
+//      {
+//         uint32_t cp = *iter;
+//         if (cp < 0x10000) {
+//            result[len++] = static_cast<wchar_t>(cp);
+//         }
+//         else if (cp <= 0x10FFFF) {
+//            cp -= 0x10000;
+//            result[len++] = static_cast<wchar_t>((cp >> 10) + 0xD800);
+//            result[len++] = static_cast<wchar_t>((cp & 0x3FF) + 0xDC00);
+//         }
+//         else {
+//            result[len++] = static_cast<wchar_t>(0xFFFD);
+//         }
+//      }
+//   }
+//   
+//   return result;
+//}
+
+strsize utf32_to_utf16_len(const unichar32 * codepoints, strsize input_size)
+{
+   
+   strsize len = 0;
+
+   while(input_size != 0)  
+   {
+         
+      uint32_t cp = *codepoints++;
+      
+      input_size--;
+      
+      if(cp == 0)
+         break;
+      
+      if (cp < 0x10000)
+      {
+         
+         ++len;
+         
+      }
+      else if (cp <= 0x10FFFF) 
+      {
+      
+         len += 2;
+      
+      }
+      else
+      {
+      
+         // invalid code_point, do something !
+         throw simple_exception(::get_thread_app(), "utf32_to_utf16_len :: invalid code_point, do something ! ");
+         
+         ++len;
+         
+      }
+      
+   }
+   
+   return len;
+   
+}
+
+
+strsize utf32_to_utf16(unichar * p, const unichar32 * codepoints, strsize input_size)
+{
+
+   strsize len = 0;
+      
+   while(input_size != 0)  
+   {
+      
+      uint32_t cp = *codepoints++;
+      
+      input_size--;
+      
+      if(cp == 0)
+         break;
+
+      if (cp < 0x10000)
+      {
+         
+         *p++ = static_cast<unichar>(cp);
+         
+      }
+      else if (cp <= 0x10FFFF)
+      {
+
+         cp -= 0x10000;
+         
+         *p++ = static_cast<unichar>((cp >> 10) + 0xD800);
+         
+         *p++ = static_cast<unichar>((cp & 0x3FF) + 0xDC00);
+         
+      }
+      else
+      {
+         
+         *p++ = static_cast<unichar>(0xFFFD);
+         
+      }
+      
+   }
+   
+   return len;
+   
+}
+
+
+wstring utf32_to_utf16(const unichar32 *input, strsize input_size) 
+{
+   
+   strsize s = utf32_to_utf16_len(input, input_size);
+
+   wstring wstr;
+   
+   unichar * p = wstr.alloc(s);
+   
+   utf32_to_utf16(p, input, s);
+   
+   p[s] = 0;
+   
+   return wstr;
+   
+}

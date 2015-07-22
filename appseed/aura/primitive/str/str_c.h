@@ -22,5 +22,30 @@
 
 #endif
 
+#ifdef __cplusplus
 
+CLASS_DECL_AURA unichar32 * utf16_to_utf32(const unichar * pcwsz, strsize input_size = -1);
+CLASS_DECL_AURA strsize utf16_to_utf32(unichar * pwsz, const unichar * pcwsz, strsize input_size = -1);
+CLASS_DECL_AURA strsize utf16_to_utf32_len(const unichar * pcwsz, strsize input_size = -1);
+
+CLASS_DECL_AURA wstring utf32_to_utf16(const unichar32 * pcwsz, strsize input_size = -1);
+CLASS_DECL_AURA strsize utf32_to_utf16(unichar * pwsz, const unichar32 * pcwsz, strsize input_size = -1);
+CLASS_DECL_AURA strsize utf32_to_utf16_len(const unichar32 * pcwsz, strsize input_size = -1);
+
+
+#else
+
+CLASS_DECL_AURA strsize utf16_to_utf32(unichar * pwsz, const unichar * pcwsz, strsize input_size);
+CLASS_DECL_AURA strsize utf16_to_utf32_len(const unichar * pcwsz, strsize input_size);
+
+CLASS_DECL_AURA strsize utf32_to_utf16(unichar * pwsz, const unichar32 * pcwsz, strsize input_size);
+CLASS_DECL_AURA strsize utf32_to_utf16_len(const unichar32 * pcwsz, strsize input_size);
+
+#endif
+
+#ifdef WINDOWS
+#define unincpy wcsncpy 
+#else
+#define unincpy wcsncpy_dup
+#endif
 

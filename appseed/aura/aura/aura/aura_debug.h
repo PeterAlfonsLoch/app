@@ -358,13 +358,13 @@ typedef struct _CrtMemState {
     size_t lHighWaterCount;
     size_t lTotalCount;
 } _CrtMemState;
-CLASS_DECL_AURA int32_t DECL_C _CrtDbgReportW(int32_t _ReportType, const unichar * _Filename, int32_t _LineNumber, const unichar * _ModuleName, const unichar * _Format, ...);
+CLASS_DECL_AURA int32_t DECL_C _CrtDbgReport(int32_t _ReportType, const char * _Filename, int32_t _LineNumber, const char * _ModuleName, const char * _Format, ...);
 
 /* Asserts */
 /* We use !! below to ensure that any overloaded operators used to evaluate expr do not end up at operator || */
 #define _ASSERT_EXPR(expr, msg) \
         (void) ((!!(expr)) || \
-                (1 != _CrtDbgReportW(_CRT_ASSERT, _WIDEN(__FILE__), __LINE__, NULL, msg)) || \
+                (1 != _CrtDbgReport(_CRT_ASSERT, __FILE__, __LINE__, NULL, msg)) || \
                 (_CrtDbgBreak(), 0))
 #define _RPT_AXIS(args) \
         () ((1 != _CrtDbgReport args) || \

@@ -2068,6 +2068,8 @@ index session::get_good_move(LPRECT lprect,const RECT & rectParam,::user::intera
 
 ::user::interaction * session::get_focus_guie()
 {
+   try
+   {
 
 #if defined (METROWIN)
 
@@ -2126,7 +2128,12 @@ index session::get_good_move(LPRECT lprect,const RECT & rectParam,::user::intera
    return System.get_active_guie();
 
 #endif
+   }
+   catch(...)
+   {
+   }
 
+   return NULL;
 }
 
 
