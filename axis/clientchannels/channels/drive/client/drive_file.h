@@ -28,7 +28,7 @@
 #ifdef _WIN32
 #include <direct.h>
 #include <io.h>
-#include "dirent.h"
+#include "local_dirent.h"
 #include "statvfs.h"
 #else
 #include <dirent.h>

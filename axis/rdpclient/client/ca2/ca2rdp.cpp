@@ -36,7 +36,7 @@
 #include <winpr/crt.h>
 #include <winpr/synch.h>
 
-#ifdef ANDROID
+#if defined(ANDROID) || defined(__APPLE__)
 #include <sys/select.h>
 #endif
 

@@ -71,14 +71,15 @@
 
 - (void)dealloc
 {
-	[usernameText release];
-	[passwordText release];
-	[messageLabel release];
-	[serverHostname release];
-	[username release];
-	[password release];
-
-	[super dealloc];
+   // ARC - Automatic Reference Counting - (is it implicit smart pointers?)
+//	[usernameText release];
+//	[passwordText release];
+//	[messageLabel release];
+//	[serverHostname release];
+//	[username release];
+//	[password release];
+//
+//	[super dealloc];
 }
 
 @end
