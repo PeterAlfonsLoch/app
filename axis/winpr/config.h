@@ -99,3 +99,9 @@
 /* #undef WITH_DEBUG_ANDROID_JNI */
 /* #undef WITH_DEBUG_RINGBUFFER */
 #endif
+
+
+#ifdef LINUX
+#define HAVE_PTHREAD_GNU_EXT 1
+#define HAVE_UNISTD_H 1
+#endif

@@ -166,12 +166,12 @@ namespace str
          strsize iBuffer = MultiByteToUnicodeCount(uiCodePage, lpcsz, nCount);
          if(iBuffer == ERROR_NO_UNICODE_TRANSLATION)
          {
-            unsigned short push[]={0};
+            unichar push[]={0};
             return push;
          }
          else if(iBuffer == 0)
          {
-            unsigned short push[]={0};
+            unichar push[]={0};
             return push;
          }
          wstring wstr;
@@ -181,7 +181,7 @@ namespace str
             wstr.set_length(iBuffer);
             return wstr.detach();
          }
-         unsigned short push[]={0};
+         unichar push[]={0};
          return push;
       }
 
@@ -193,18 +193,18 @@ namespace str
          }
          if(str.length() <= 0)
          {
-            unsigned short push[]={0};
+            unichar push[]={0};
             return push;
          }
          strsize iBuffer = MultiByteToUnicodeCount(uiCodePage, str, (strsize) str.get_length());
          if(iBuffer == ERROR_NO_UNICODE_TRANSLATION)
          {
-            unsigned short push[]={0};
+            unichar push[]={0};
             return push;
          }
          else if(iBuffer == 0)
          {
-            unsigned short push[]={0};
+            unichar push[]={0};
             return push;
          }
          wstring wstr;
@@ -214,7 +214,7 @@ namespace str
             wstr.set_length(iBuffer);
             return wstr.detach();
          }
-         unsigned short push[]={0};
+         unichar push[]={0};
          return push;
       }
 

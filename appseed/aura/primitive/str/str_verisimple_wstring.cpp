@@ -97,7 +97,7 @@ void verisimple_wstring::assign(const unichar * pwsz)
 
    if(m_pwsz != NULL && m_pwsz != wstring_data::get_nil())
    {
-      
+
       wstring_data::free(m_pwsz);
 
       m_pwsz = NULL;
@@ -228,15 +228,15 @@ verisimple_wstring & verisimple_wstring::operator = (const char * psz)
 
 void verisimple_wstring::assign(const char * psz)
 {
-   
+
    ::count iLen = utf16_len(psz);
-   
+
    alloc(iLen + 1);
-   
+
    utf8_to_utf16(*this, psz);
-   
+
    set_length(iLen);
-   
+
 }
 
 
@@ -300,7 +300,7 @@ verisimple_wstring verisimple_wstring::substr(::index iStart, ::count count)
 {
    if(m_pwsz == NULL)
    {
-      unsigned short push[]={0};
+      unichar push[]={0};
       return push;
 
    }
@@ -319,7 +319,7 @@ verisimple_wstring verisimple_wstring::substr(::index iStart, ::count count)
 
       if(count <= 0)
       {
-         unsigned short push[]={0};
+         unichar push[]={0};
          return push;
       }
 
@@ -342,7 +342,7 @@ verisimple_wstring & verisimple_wstring::replace(::index iStart,::count c,const 
    {
       return operator = (substr(0,iStart) + psz + substr(iStart + c));
    }
-   
+
 
 }
 

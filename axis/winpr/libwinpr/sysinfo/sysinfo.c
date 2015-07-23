@@ -30,7 +30,9 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #endif
-
+#if defined(__linux__) && defined(__GNUC__)
+#include <unistd.h>
+#endif
 /**
  * api-ms-win-core-sysinfo-l1-1-1.dll:
  *

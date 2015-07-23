@@ -289,7 +289,7 @@ public:
 
    inline static verisimple_wstring empty_string()
    {
-      unsigned short push[]={0};
+      unichar push[]={0};
       return push;
    }
 

@@ -144,7 +144,7 @@ namespace str
 inline wstring u16(const char * psz) { return ::str::international::utf8_to_unicode(psz);  }
 inline string u8(const unichar * pwsz) { return ::str::international::unicode_to_utf8(pwsz); }
 
-#ifdef WINDOWS
+#if defined(WINDOWS) || defined(LINUX)
 #define unitext(text) (::str::international::unicode_to_utf8(L##text))
 #else
 #define unitext(text) (::str::international::unicode_to_utf8(utf32_to_utf16(L##text)))

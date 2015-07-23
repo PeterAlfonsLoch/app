@@ -88,6 +88,7 @@
 			<Add option="-lrt" />
 			<Add option="-ldl" />
 			<Add option="-lpthread" />
+			<Add option="-laxiscrypto" />
 			<Add option="-laxisopenssl" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../../stage/x86" />
@@ -182,6 +183,9 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libwinpr/handle/handle.h" />
+		<Unit filename="libwinpr/handle/nonehandle.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="libwinpr/heap/heap.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -204,12 +208,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libwinpr/io/io.h" />
-		<Unit filename="libwinpr/io/test/TestIoDevice.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libwinpr/io/test/TestIoGetOverlappedResult.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="libwinpr/library/library.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -341,6 +339,9 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libwinpr/sspi/CredSSP/credssp.h" />
+		<Unit filename="libwinpr/sspi/NTLM/ntlm.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="libwinpr/sspi/NTLM/ntlm.h" />
 		<Unit filename="libwinpr/sspi/NTLM/ntlm_av_pairs.c">
 			<Option compilerVar="CC" />
@@ -354,9 +355,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libwinpr/sspi/NTLM/ntlm_message.h" />
-		<Unit filename="libwinpr/sspi/NTLM/ntlm_ntlm.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="libwinpr/sspi/Negotiate/negotiate.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -380,27 +378,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libwinpr/sspi/sspi_winpr.h" />
-		<Unit filename="libwinpr/sspi/test/TestAcquireCredentialsHandle.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libwinpr/sspi/test/TestCredSSP.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libwinpr/sspi/test/TestEnumerateSecurityPackages.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libwinpr/sspi/test/TestInitializeSecurityContext.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libwinpr/sspi/test/TestNTLM.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libwinpr/sspi/test/TestQuerySecurityPackageInfo.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libwinpr/sspi/test/TestSchannel.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="libwinpr/sspicli/sspicli.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -528,9 +505,6 @@
 		<Unit filename="libwinpr/utils/ini.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="libwinpr/utils/ntlm.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="libwinpr/utils/print.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -558,6 +532,9 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libwinpr/utils/trio/triostr.h" />
+		<Unit filename="libwinpr/utils/utils_utils_ntlm.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="libwinpr/utils/wlog/Appender.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -566,6 +543,9 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libwinpr/utils/wlog/BinaryAppender.h" />
+		<Unit filename="libwinpr/utils/wlog/CallbackAppender.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="libwinpr/utils/wlog/ConsoleAppender.c">
 			<Option compilerVar="CC" />
 		</Unit>
