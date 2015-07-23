@@ -84,13 +84,12 @@ int32_t vswprintf_dup(unichar *dest, size_t n, const unichar *fmt, va_list args)
 	int32_t retValue = wvsprintfW(dest, fmt, args);
 #elif defined(METROWIN)
    int32_t retValue = vswprintf_s(dest, n, fmt, args);
-#elif defined(APPLEOS)
-   throw todo(::get_thread_app());
+#elif defined(APPLEOS) || defined LINUX
    unichar32 * vdest = (unichar32 *) memory_alloc(n * sizeof(unichar32));
    unichar32 * v = utf16_to_utf32(fmt);
    int32_t retValue = vswprintf(vdest, n, v, args);
    memory_free(v);
-//   utf32_to_16(dest, n, vdest, n);
+   utf32_to_utf16(dest, vdest, n);
    memory_free(vdest);
    return retValue;
 #else
