@@ -13,6 +13,11 @@
 		074BD0B81B5F2F1100219723 /* libaxisopenssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 074BD0AD1B5F2EDB00219723 /* libaxisopenssl.dylib */; };
 		079FD66B1B601D24007CB5C6 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 079FD6601B601D0B007CB5C6 /* libaura.dylib */; };
 		079FD66C1B601D2D007CB5C6 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 079FD6601B601D0B007CB5C6 /* libaura.dylib */; };
+		07B091731B608B6700B5BCA7 /* prim_YCoCg_opt.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6BAD1B5F0C61003A1CE1 /* prim_YCoCg_opt.c */; };
+		07B091741B608C7400B5BCA7 /* prim_16to32bpp_opt.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6B921B5F0C60003A1CE1 /* prim_16to32bpp_opt.c */; };
+		07B091751B608C7400B5BCA7 /* prim_sign_opt.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6BA91B5F0C61003A1CE1 /* prim_sign_opt.c */; };
+		07B091761B608C7400B5BCA7 /* prim_YCoCg_opt.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6BAD1B5F0C61003A1CE1 /* prim_YCoCg_opt.c */; };
+		07B091771B608C7400B5BCA7 /* prim_YUV_opt.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6BB01B5F0C61003A1CE1 /* prim_YUV_opt.c */; };
 		07DD6BBF1B5F0C61003A1CE1 /* config.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD6AC51B5F0C60003A1CE1 /* config.h */; };
 		07DD6BC01B5F0C61003A1CE1 /* config.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD6AC51B5F0C60003A1CE1 /* config.h */; };
 		07DD6BC11B5F0C61003A1CE1 /* dummy.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6AC61B5F0C60003A1CE1 /* dummy.c */; };
@@ -390,7 +395,6 @@
 		07DD6D3D1B5F0C61003A1CE1 /* prim_16to32bpp.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD6B911B5F0C60003A1CE1 /* prim_16to32bpp.h */; };
 		07DD6D3E1B5F0C61003A1CE1 /* prim_16to32bpp.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD6B911B5F0C60003A1CE1 /* prim_16to32bpp.h */; };
 		07DD6D3F1B5F0C61003A1CE1 /* prim_16to32bpp_opt.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6B921B5F0C60003A1CE1 /* prim_16to32bpp_opt.c */; };
-		07DD6D401B5F0C61003A1CE1 /* prim_16to32bpp_opt.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6B921B5F0C60003A1CE1 /* prim_16to32bpp_opt.c */; };
 		07DD6D411B5F0C61003A1CE1 /* prim_add.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6B931B5F0C60003A1CE1 /* prim_add.c */; };
 		07DD6D421B5F0C61003A1CE1 /* prim_add.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6B931B5F0C60003A1CE1 /* prim_add.c */; };
 		07DD6D431B5F0C61003A1CE1 /* prim_add.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD6B941B5F0C60003A1CE1 /* prim_add.h */; };
@@ -436,21 +440,17 @@
 		07DD6D6B1B5F0C61003A1CE1 /* prim_sign.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD6BA81B5F0C61003A1CE1 /* prim_sign.h */; };
 		07DD6D6C1B5F0C61003A1CE1 /* prim_sign.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD6BA81B5F0C61003A1CE1 /* prim_sign.h */; };
 		07DD6D6D1B5F0C61003A1CE1 /* prim_sign_opt.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6BA91B5F0C61003A1CE1 /* prim_sign_opt.c */; };
-		07DD6D6E1B5F0C61003A1CE1 /* prim_sign_opt.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6BA91B5F0C61003A1CE1 /* prim_sign_opt.c */; };
 		07DD6D6F1B5F0C61003A1CE1 /* prim_templates.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD6BAA1B5F0C61003A1CE1 /* prim_templates.h */; };
 		07DD6D701B5F0C61003A1CE1 /* prim_templates.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD6BAA1B5F0C61003A1CE1 /* prim_templates.h */; };
 		07DD6D711B5F0C61003A1CE1 /* prim_YCoCg.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6BAB1B5F0C61003A1CE1 /* prim_YCoCg.c */; };
 		07DD6D721B5F0C61003A1CE1 /* prim_YCoCg.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6BAB1B5F0C61003A1CE1 /* prim_YCoCg.c */; };
 		07DD6D731B5F0C61003A1CE1 /* prim_YCoCg.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD6BAC1B5F0C61003A1CE1 /* prim_YCoCg.h */; };
 		07DD6D741B5F0C61003A1CE1 /* prim_YCoCg.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD6BAC1B5F0C61003A1CE1 /* prim_YCoCg.h */; };
-		07DD6D751B5F0C61003A1CE1 /* prim_YCoCg_opt.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6BAD1B5F0C61003A1CE1 /* prim_YCoCg_opt.c */; };
-		07DD6D761B5F0C61003A1CE1 /* prim_YCoCg_opt.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6BAD1B5F0C61003A1CE1 /* prim_YCoCg_opt.c */; };
 		07DD6D771B5F0C61003A1CE1 /* prim_YUV.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6BAE1B5F0C61003A1CE1 /* prim_YUV.c */; };
 		07DD6D781B5F0C61003A1CE1 /* prim_YUV.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6BAE1B5F0C61003A1CE1 /* prim_YUV.c */; };
 		07DD6D791B5F0C61003A1CE1 /* prim_YUV.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD6BAF1B5F0C61003A1CE1 /* prim_YUV.h */; };
 		07DD6D7A1B5F0C61003A1CE1 /* prim_YUV.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD6BAF1B5F0C61003A1CE1 /* prim_YUV.h */; };
 		07DD6D7B1B5F0C61003A1CE1 /* prim_YUV_opt.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6BB01B5F0C61003A1CE1 /* prim_YUV_opt.c */; };
-		07DD6D7C1B5F0C61003A1CE1 /* prim_YUV_opt.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6BB01B5F0C61003A1CE1 /* prim_YUV_opt.c */; };
 		07DD6D7D1B5F0C61003A1CE1 /* primitives.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6BB11B5F0C61003A1CE1 /* primitives.c */; };
 		07DD6D7E1B5F0C61003A1CE1 /* primitives.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6BB11B5F0C61003A1CE1 /* primitives.c */; };
 		07DD6D7F1B5F0C61003A1CE1 /* utils_msusb.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6BB41B5F0C61003A1CE1 /* utils_msusb.c */; };
@@ -1627,6 +1627,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07B091741B608C7400B5BCA7 /* prim_16to32bpp_opt.c in Sources */,
+				07B091751B608C7400B5BCA7 /* prim_sign_opt.c in Sources */,
+				07B091761B608C7400B5BCA7 /* prim_YCoCg_opt.c in Sources */,
+				07B091771B608C7400B5BCA7 /* prim_YUV_opt.c in Sources */,
 				07DD6CFA1B5F0C61003A1CE1 /* crypto_tls.c in Sources */,
 				07DD6D3C1B5F0C61003A1CE1 /* prim_16to32bpp.c in Sources */,
 				07DD6BF21B5F0C61003A1CE1 /* codec_region.c in Sources */,
@@ -1641,7 +1645,6 @@
 				07DD6C2C1B5F0C61003A1CE1 /* common_settings.c in Sources */,
 				07DD6D541B5F0C61003A1CE1 /* prim_colors.c in Sources */,
 				07DD6C021B5F0C61003A1CE1 /* codec_rfx_rlgr.c in Sources */,
-				07DD6D761B5F0C61003A1CE1 /* prim_YCoCg_opt.c in Sources */,
 				07DD6D101B5F0C61003A1CE1 /* gdi_gfx.c in Sources */,
 				07DD6C7E1B5F0C61003A1CE1 /* tsg.c in Sources */,
 				07DD6C621B5F0C61003A1CE1 /* ntlm.c in Sources */,
@@ -1703,17 +1706,14 @@
 				07DD6C3E1B5F0C61003A1CE1 /* certificate.c in Sources */,
 				07DD6D0C1B5F0C61003A1CE1 /* gdi_drawing.c in Sources */,
 				07DD6C6E1B5F0C61003A1CE1 /* rpc_client.c in Sources */,
-				07DD6D6E1B5F0C61003A1CE1 /* prim_sign_opt.c in Sources */,
 				07DD6C2E1B5F0C61003A1CE1 /* activation.c in Sources */,
 				07DD6D8C1B5F0C61003A1CE1 /* utils_stopwatch.c in Sources */,
 				07DD6D421B5F0C61003A1CE1 /* prim_add.c in Sources */,
 				07DD6D7E1B5F0C61003A1CE1 /* primitives.c in Sources */,
-				07DD6D7C1B5F0C61003A1CE1 /* prim_YUV_opt.c in Sources */,
 				07DD6BE81B5F0C61003A1CE1 /* codec_nsc.c in Sources */,
 				07DD6CF01B5F0C61003A1CE1 /* crypto_certificate.c in Sources */,
 				07DD6D2A1B5F0C61003A1CE1 /* locale_keyboard.c in Sources */,
 				07DD6CEC1B5F0C61003A1CE1 /* crypto_base64.c in Sources */,
-				07DD6D401B5F0C61003A1CE1 /* prim_16to32bpp_opt.c in Sources */,
 				07DD6BD41B5F0C61003A1CE1 /* codec_audio.c in Sources */,
 				07DD6CDC1B5F0C61003A1CE1 /* tpkt.c in Sources */,
 				07DD6CEE1B5F0C61003A1CE1 /* crypto_ber.c in Sources */,
@@ -1782,6 +1782,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07B091731B608B6700B5BCA7 /* prim_YCoCg_opt.c in Sources */,
 				07DD6CF91B5F0C61003A1CE1 /* crypto_tls.c in Sources */,
 				07DD6D3B1B5F0C61003A1CE1 /* prim_16to32bpp.c in Sources */,
 				07DD6BF11B5F0C61003A1CE1 /* codec_region.c in Sources */,
@@ -1796,7 +1797,6 @@
 				07DD6C2B1B5F0C61003A1CE1 /* common_settings.c in Sources */,
 				07DD6D531B5F0C61003A1CE1 /* prim_colors.c in Sources */,
 				07DD6C011B5F0C61003A1CE1 /* codec_rfx_rlgr.c in Sources */,
-				07DD6D751B5F0C61003A1CE1 /* prim_YCoCg_opt.c in Sources */,
 				07DD6D0F1B5F0C61003A1CE1 /* gdi_gfx.c in Sources */,
 				07DD6C7D1B5F0C61003A1CE1 /* tsg.c in Sources */,
 				07DD6C611B5F0C61003A1CE1 /* ntlm.c in Sources */,
@@ -1983,6 +1983,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					APPLE_IOS,
+					_X86_,
+					_UNICODE,
+					WINPR_EXPORTS,
+					FREERDP_EXPORTS,
+					_DEBUG,
+					HAVE_CONFIG_H,
+					"EXT_PATH=“/Application/ca2/lib/freerdp/extensions\"\nCMAKE_BUILD_TYPE=Release\nCMAKE_INTDIR=\"Debug\"\nfreerdp_EXPORTS",
+				);
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1991,6 +2001,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					APPLE_IOS,
+					_X86_,
+					_UNICODE,
+					WINPR_EXPORTS,
+					FREERDP_EXPORTS,
+					_DEBUG,
+					HAVE_CONFIG_H,
+					"EXT_PATH=“/Application/ca2/lib/freerdp/extensions\"\nCMAKE_BUILD_TYPE=Release\nCMAKE_INTDIR=\"Debug\"\nfreerdp_EXPORTS",
+				);
 				SDKROOT = iphoneos;
 			};
 			name = Release;

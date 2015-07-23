@@ -38,7 +38,9 @@
 /* Options */
 /* #undef WITH_PROFILER */
 /* #undef WITH_GPROF */
+#if !defined(APPLE_IOS)
 #define WITH_SSE2
+#endif
 /* #undef WITH_NEON */
 /* #undef WITH_IPP */
 //#define WITH_NATIVE_SSPI

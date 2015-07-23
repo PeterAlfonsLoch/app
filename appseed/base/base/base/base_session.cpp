@@ -2123,6 +2123,10 @@ index session::get_good_move(LPRECT lprect,const RECT & rectParam,::user::intera
       }
    }
    return NULL;
+#elif defined (APPLE_IOS) || defined(ANDROID) || defined(VSNORD)
+      if(System.m_posdata == NULL)
+         return NULL;
+      return System.m_posdata->m_pui;
 #else
 
    return System.get_active_guie();

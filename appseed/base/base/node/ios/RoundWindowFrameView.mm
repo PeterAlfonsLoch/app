@@ -284,15 +284,36 @@ void __ios_do_events();
 -(void)on_text : (NSString *) text
 {
    
+
    round_window * p = m_roundwindow->m_pwindow;
    
    const char * pszText = [text UTF8String];
+//   if(pszText == NULL || *pszText == '\0') // Thank you MRS!!
+//   {
+//      return;
    
    if(p->round_window_on_text(pszText))
       return;
    
    
+}
+
+- (BOOL)shouldChangeTextInRange:(UITextRange *)range
+                replacementText:(NSString *)text
+
+{
+   return YES;
+}
+
+- (void)deleteBackward
+{
+
+   ::user::e_key ekey = ::user::key_back;
    
+   round_window * p = m_roundwindow->m_pwindow;
+   
+   if(p->round_window_key_down(ekey))
+      return;
 }
 
 - (void)keyDown:(UIEvent *)event {
@@ -332,13 +353,6 @@ void __ios_do_events();
 }
 
 
-- (BOOL) shouldChangeTextInRange:(UITextRange *)range 
-                 replacementText:(NSString *)text
-{
-   
-   return TRUE;
-   
-}
 
 - (void)flagsChanged:(UIEvent *)event
 {
@@ -989,18 +1003,19 @@ void __ios_do_events();
    
 }
 
-- (BOOL)becomeFirstResponder
-{
-   
-   return FALSE;
-   
-}
+//- (BOOL)becomeFirstResponder
+//{
+//   
+//   return FALSE;
+//   
+//}
 
 
 - (BOOL)roundBecomeFirstResponder
 {
    
-   [super becomeFirstResponder];
+   [[self dd_invokeOnMainThread] becomeFirstResponder ];
+//   [super ];
    
    return TRUE;
    

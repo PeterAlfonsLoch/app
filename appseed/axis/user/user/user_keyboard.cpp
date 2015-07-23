@@ -575,7 +575,7 @@ namespace user
 
 #endif
       
-      if(pkey->m_ekey != ::user::key_refer_to_text_member)
+      if(pkey->m_ekey == ::user::key_none)
       {
 
          pkey->m_ekey = m_mapKey[(int32_t) pkey->m_nChar];

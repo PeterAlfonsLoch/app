@@ -381,7 +381,7 @@ CLASS_DECL_AURA int32_t DECL_C _CrtDbgReport(int32_t _ReportType, const char * _
 #endif
 
 #ifndef _ASSERTE
-#define _ASSERTE(expr)  _ASSERT_EXPR((expr), _WIDEN("##expr##"))
+#define _ASSERTE(expr)  _ASSERT_EXPR((expr), "##expr##")
 #endif
 
 /*

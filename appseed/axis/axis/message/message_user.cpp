@@ -100,7 +100,13 @@ namespace message
       
       ::message::base(papp)
    {
-
+      m_ekey = ::user::key_none;
+      m_nScanCode = 0;
+      m_nChar = 0;
+      m_nRepCnt = 0;
+      m_iCode = 0;
+      m_bExt = false;
+      m_nFlags = 0;
    }
 
 

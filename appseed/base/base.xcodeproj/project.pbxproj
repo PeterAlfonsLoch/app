@@ -730,17 +730,17 @@
 		07D966F71B4C63E3004A3D2A /* user */ = {
 			isa = PBXGroup;
 			children = (
-				07D966F81B4C63E3004A3D2A /* _user.cpp */,
-				07D966F91B4C63E3004A3D2A /* _user_cpp.txt */,
 				07D966FA1B4C63E3004A3D2A /* fontopus */,
 				07D967031B4C63E3004A3D2A /* hotplugin */,
 				07D967101B4C63E3004A3D2A /* install */,
 				07D9671A1B4C63E3004A3D2A /* simple */,
 				07D9671E1B4C63E3004A3D2A /* simple_ui */,
 				07D9672E1B4C63E3004A3D2A /* user */,
+				07D9678F1B4C63E3004A3D2A /* userex */,
 				07D9678D1B4C63E3004A3D2A /* user.h */,
 				07D9678E1B4C63E3004A3D2A /* user.inl */,
-				07D9678F1B4C63E3004A3D2A /* userex */,
+				07D966F81B4C63E3004A3D2A /* _user.cpp */,
+				07D966F91B4C63E3004A3D2A /* _user_cpp.txt */,
 			);
 			path = user;
 			sourceTree = "<group>";

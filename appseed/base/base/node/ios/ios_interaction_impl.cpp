@@ -38,6 +38,7 @@ namespace ios
       m_bMouseHover        = false;
       m_puiCapture       = NULL;
       m_oswindow           = NULL;
+      m_proundwindow = NULL;
       
    }
    
@@ -52,7 +53,8 @@ namespace ios
       m_bMouseHover        = false;
       m_puiCapture       = NULL;
       m_oswindow           = NULL;
-      
+      m_proundwindow = NULL;
+ 
    }
    
    
@@ -68,7 +70,8 @@ namespace ios
       //        m_pfont              = NULL;
       m_puiCapture       = NULL;
       m_oswindow           = NULL;
-      
+      m_proundwindow = NULL;
+
    }
    
    
@@ -1341,21 +1344,22 @@ namespace ios
                return;
             }
          }
-         user::oswindow_array hwnda;
-         user::interaction_ptra wnda;
-         wnda = System.m_uiptraFrame;
-         hwnda = wnda.get_hwnda();
-         user::window_util::SortByZOrder(hwnda);
-         for(int32_t i = 0; i < hwnda.get_size(); i++)
-         {
-            ::user::interaction * pguie = wnda.find_first(hwnda[i]);
-            if(pguie != NULL)
-            {
-               pguie->_000OnMouse(pmouse);
+//         user::oswindow_array hwnda;
+//         user::interaction_ptra wnda;
+//         wnda = System.m_uiptraFrame;
+//         hwnda = wnda.get_hwnda();
+//         user::window_util::SortByZOrder(hwnda);
+//         for(int32_t i = 0; i < hwnda.get_size(); i++)
+//         {
+//            ::user::interaction * pguie = wnda.find_first(hwnda[i]);
+//            if(pguie != NULL)
+//            {
+              // pguie->_000OnMouse(pmouse);
+          m_pui->_000OnMouse(pmouse);
                if(pmouse->m_bRet)
                   return;
-            }
-         }
+            //}
+         //}
          pbase->set_lresult(DefWindowProc(pbase->m_uiMessage, pbase->m_wparam, pbase->m_lparam));
          return;
       }
@@ -5875,6 +5879,18 @@ namespace ios
       {
          
          pkey->m_ekey = ::user::key_back;
+         
+      }
+      else if(*pszText == '\t' && pszText[1] == '\0')
+      {
+         
+         pkey->m_ekey = ::user::key_tab;
+         
+      }
+      else if(*pszText == '\n' && pszText[1] == '\0')
+      {
+         
+         pkey->m_ekey = ::user::key_return;
          
       }
       else

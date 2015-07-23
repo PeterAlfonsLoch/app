@@ -17,9 +17,13 @@ UIWindow * new_round_window(round_window * pwindow, CGRect rect)
 {
    
    
-    
+   RoundWindow * proundwindow = [RoundWindow alloc];
    
-   pwindow->m_proundwindow = [RoundWindow alloc];
+   void * p = pwindow;
+   
+   RoundWindow * refp  = pwindow->m_proundwindow;
+   
+   pwindow->m_proundwindow = proundwindow;
    
    pwindow->m_proundwindow->m_pwindow = pwindow;
   
