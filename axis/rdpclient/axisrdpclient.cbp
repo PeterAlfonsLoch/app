@@ -88,15 +88,17 @@
 		<Unit filename="client/ca2/ca2rdp_event.h" />
 		<Unit filename="client/ca2/ca2rdp_graphics.cpp" />
 		<Unit filename="client/ca2/ca2rdp_graphics.h" />
-		<Unit filename="client/common/client.cpp" />
-		<Unit filename="client/common/cmdline.cpp" />
-		<Unit filename="client/common/compatibility.cpp" />
-		<Unit filename="client/common/compatibility.h" />
-		<Unit filename="client/common/file.cpp" />
-		<Unit filename="client/common/test/TestClientChannels.c">
+		<Unit filename="client/common/client.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="client/common/test/TestClientRdpFile.c">
+		<Unit filename="client/common/cmdline.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="client/common/compatibility.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="client/common/compatibility.h" />
+		<Unit filename="client/common/file.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="config.h" />

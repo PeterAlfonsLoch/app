@@ -389,10 +389,6 @@
 		<Unit filename="filesystem/userfs/userfs_update_hint.h" />
 		<Unit filename="filesystem/userfs/userfs_userfs.h" />
 		<Unit filename="framework.cpp" />
-		<Unit filename="framework/framework.h">
-			<Option compile="1" />
-			<Option weight="0" />
-		</Unit>
 		<Unit filename="math/_double.cpp" />
 		<Unit filename="math/_double.h" />
 		<Unit filename="math/_float.cpp" />
