@@ -538,7 +538,7 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libwinpr/utils/trio/triostr.h" />
-		<Unit filename="libwinpr/utils/utils_utils_ntlm.c">
+		<Unit filename="libwinpr/utils/utils_ntlm.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libwinpr/utils/wlog/Appender.c">

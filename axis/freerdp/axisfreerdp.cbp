@@ -261,6 +261,12 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libfreerdp/core/connection.h" />
+		<Unit filename="libfreerdp/core/errbase.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libfreerdp/core/errconnect.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="libfreerdp/core/errinfo.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -284,6 +290,9 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libfreerdp/core/gateway/ntlm.h" />
+		<Unit filename="libfreerdp/core/gateway/rdg.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="libfreerdp/core/gateway/rpc.c">
 			<Option compilerVar="CC" />
 		</Unit>
