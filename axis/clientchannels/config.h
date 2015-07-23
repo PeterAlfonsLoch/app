@@ -49,7 +49,7 @@
 #define WITH_PULSE
 #define WITH_IOSAUDIO
 #define WITH_OPENSLES
-#define WITH_GSM
+//#define WITH_GSM
 
 /* Plugins */
 #define STATIC_CHANNELS

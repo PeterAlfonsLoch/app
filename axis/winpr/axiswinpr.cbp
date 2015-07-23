@@ -502,7 +502,13 @@
 		<Unit filename="libwinpr/utils/debug.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="libwinpr/utils/image.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="libwinpr/utils/ini.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/utils/lodepng/lodepng.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libwinpr/utils/print.c">

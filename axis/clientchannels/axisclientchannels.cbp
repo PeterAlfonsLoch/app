@@ -88,6 +88,7 @@
 			<Add option="-Wl,-R\\$$$ORIGIN" />
 			<Add option="-Wl,-z,origin" />
 			<Add option="-lpthread" />
+			<Add option="-lpulse" />
 			<Add option="-laxiswinpr" />
 			<Add option="-laxisfreerdp" />
 			<Add option="-lasound" />
@@ -105,6 +106,9 @@
 		</Unit>
 		<Unit filename="channels/audin/client/audin_main.h" />
 		<Unit filename="channels/audin/client/opensles/opensl_io.h" />
+		<Unit filename="channels/audin/client/pulse/audin_pulse.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="channels/client/addin.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -131,9 +135,6 @@
 		</Unit>
 		<Unit filename="channels/drdynvc/client/drdynvc_main.h" />
 		<Unit filename="channels/drdynvc/client/drdynvc_types.h" />
-		<Unit filename="channels/drdynvc/client/dvcman.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="channels/drdynvc/client/dvcman.h" />
 		<Unit filename="channels/drdynvc/server/drdynvc_main.h" />
 		<Unit filename="channels/drive/client/dirent.h" />
@@ -195,14 +196,14 @@
 		</Unit>
 		<Unit filename="channels/rdpdr/client/rdpdr_main.h" />
 		<Unit filename="channels/rdpdr/server/rdpdr_main.h" />
-		<Unit filename="channels/rdpei/client/rdpei_common.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="channels/rdpei/client/rdpei_common.h" />
 		<Unit filename="channels/rdpei/client/rdpei_main.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="channels/rdpei/client/rdpei_main.h" />
+		<Unit filename="channels/rdpei/rdpei_common.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="channels/rdpgfx/client/rdpgfx_codec.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -220,6 +221,9 @@
 		</Unit>
 		<Unit filename="channels/rdpsnd/client/ios/TPCircularBuffer.h" />
 		<Unit filename="channels/rdpsnd/client/opensles/opensl_io.h" />
+		<Unit filename="channels/rdpsnd/client/pulse/rdpsnd_pulse.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="channels/rdpsnd/client/rdpsnd_main.c">
 			<Option compilerVar="CC" />
 		</Unit>
