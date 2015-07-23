@@ -1498,7 +1498,9 @@ static UINT64 freerdp_windows_gmtime()
 	UINT64 windows_time;
 
 	time(&unix_time);
-	windows_time = ((UINT64) unix_time * 10000000) + 621355968000000000ULL;
+	windows_time = unix_time;
+	windows_time *= 10000000;
+	windows_time += 621355968000000000ULL;
 
 	return windows_time;
 }
@@ -1521,8 +1523,11 @@ char* freerdp_get_unix_timezone_identifier()
 		return tzid;
 	}
 
+#if defined(__FreeBSD__) || defined(__OpenBSD__)
+	fp = fopen("/var/db/zoneinfo", "r");
+#else
 	fp = fopen("/etc/timezone", "r");
-
+#endif
 	if (fp != NULL)
 	{
 		fseek(fp, 0, SEEK_END);
@@ -1536,7 +1541,18 @@ char* freerdp_get_unix_timezone_identifier()
 		}
 
 		tzid = (char*) malloc(length + 1);
-		fread(tzid, length, 1, fp);
+		if (!tzid)
+		{
+			fclose(fp);
+			return NULL;
+		}
+
+		if (fread(tzid, length, 1, fp) != 1)
+		{
+			free(tzid);
+			fclose(fp);
+			return NULL;
+		}
 		tzid[length] = '\0';
 
 		if (tzid[length - 1] == '\n')
@@ -1574,6 +1590,9 @@ char* freerdp_get_unix_timezone_identifier()
 		}
 
 		tzid = (char*) malloc(len - pos + 1);
+		if (!tzid)
+			return NULL;
+
 		strncpy(tzid, buf + pos + 1, len - pos);
 
 		return tzid;	
@@ -1592,6 +1611,8 @@ BOOL freerdp_match_unix_timezone_identifier_with_list(const char* tzid, const ch
 	char* list_copy;
 
 	list_copy = _strdup(list);
+	if (!list_copy)
+		return FALSE;
 
 	p = strtok(list_copy, " ");
 
@@ -1631,10 +1652,13 @@ TIME_ZONE_ENTRY* freerdp_detect_windows_time_zone(UINT32 bias)
 
 			if (freerdp_match_unix_timezone_identifier_with_list(tzid, WindowsTimeZoneIdTable[j].tzid))
 			{
+				free(tzid);
+
 				timezone = (TIME_ZONE_ENTRY*) malloc(sizeof(TIME_ZONE_ENTRY));
+				if (!timezone)
+					return NULL;
 				memcpy((void*) timezone, (void*) &TimeZoneTable[i], sizeof(TIME_ZONE_ENTRY));
 				timezone->Bias = bias;
-				free(tzid);
 				return timezone;
 			}
 		}
@@ -1677,9 +1701,11 @@ void freerdp_time_zone_detect(TIME_ZONE_INFO* clientTimeZone)
 	local_time = localtime(&t);
 
 #ifdef HAVE_TM_GMTOFF
-	#if defined(__FreeBSD__)
-		/*not the best solution, but could not get the right tyepcast*/
-		clientTimeZone->bias = 0;
+	#if defined(__FreeBSD__) || defined(__OpenBSD__)
+		if (local_time->tm_gmtoff >= 0)
+			clientTimeZone->bias = (UINT32) (local_time->tm_gmtoff / 60);
+		else
+			clientTimeZone->bias = (UINT32) (1440 + (INT32) (local_time->tm_gmtoff / 60));
 	#else
 		clientTimeZone->bias = timezone / 60;
 	#endif

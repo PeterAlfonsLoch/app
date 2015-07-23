@@ -354,9 +354,7 @@ static int tsmf_plugin_terminated(IWTSPlugin* pPlugin)
 
 	DEBUG_TSMF("");
 
-	if (tsmf->listener_callback)
-		free(tsmf->listener_callback);
-
+	free(tsmf->listener_callback);
 	free(tsmf);
 
 	return 0;
@@ -364,8 +362,8 @@ static int tsmf_plugin_terminated(IWTSPlugin* pPlugin)
 
 COMMAND_LINE_ARGUMENT_A tsmf_args[] =
 {
-	{ "audio", COMMAND_LINE_VALUE_REQUIRED, "<subsystem>", NULL, NULL, -1, NULL, "audio subsystem" },
-	{ "audio-dev", COMMAND_LINE_VALUE_REQUIRED, "<device>", NULL, NULL, -1, NULL, "audio device name" },
+	{ "sys", COMMAND_LINE_VALUE_REQUIRED, "<subsystem>", NULL, NULL, -1, NULL, "audio subsystem" },
+	{ "dev", COMMAND_LINE_VALUE_REQUIRED, "<device>", NULL, NULL, -1, NULL, "audio device name" },
 	{ "decoder", COMMAND_LINE_VALUE_REQUIRED, "<subsystem>", NULL, NULL, -1, NULL, "decoder subsystem" },
 	{ NULL, 0, NULL, NULL, NULL, -1, NULL, NULL }
 };
@@ -388,11 +386,11 @@ static void tsmf_process_addin_args(IWTSPlugin *pPlugin, ADDIN_ARGV *args)
 		if (!(arg->Flags & COMMAND_LINE_VALUE_PRESENT))
 			continue;
 		CommandLineSwitchStart(arg)
-		CommandLineSwitchCase(arg, "audio")
+		CommandLineSwitchCase(arg, "sys")
 		{
 			tsmf->audio_name = _strdup(arg->Value);
 		}
-		CommandLineSwitchCase(arg, "audio-dev")
+		CommandLineSwitchCase(arg, "dev")
 		{
 			tsmf->audio_device = _strdup(arg->Value);
 		}
@@ -423,7 +421,6 @@ int DVCPluginEntry(IDRDYNVC_ENTRY_POINTS* pEntryPoints)
 	if (!tsmf)
 	{
 		tsmf = (TSMF_PLUGIN*) calloc(1, sizeof(TSMF_PLUGIN));
-
 		if (!tsmf)
 			return -1;
 
@@ -433,17 +430,14 @@ int DVCPluginEntry(IDRDYNVC_ENTRY_POINTS* pEntryPoints)
 		tsmf->iface.Terminated = tsmf_plugin_terminated;
 
 		context = (TsmfClientContext*) calloc(1, sizeof(TsmfClientContext));
-
 		if (!context)
-		{
-			free (tsmf);
-			return -1;
-		}
+			goto error_context;
 
 		context->handle = (void*) tsmf;
 		tsmf->iface.pInterface = (void*) context;
 
-		tsmf_media_init();
+		if (!tsmf_media_init())
+			goto error_init;
 
 		status = pEntryPoints->RegisterPlugin(pEntryPoints, "tsmf", (IWTSPlugin*) tsmf);
 	}
@@ -454,4 +448,10 @@ int DVCPluginEntry(IDRDYNVC_ENTRY_POINTS* pEntryPoints)
 	}
 
 	return status;
+
+error_init:
+	free(context);
+error_context:
+	free(tsmf);
+	return -1;
 }

@@ -53,13 +53,14 @@ void ca2rdp_context_free(freerdp* instance, rdpContext* context)
 
 }
 
-void ca2rdp_begin_paint(rdpContext* context)
+int ca2rdp_begin_paint(rdpContext* context)
 {
 	rdpGdi* gdi = context->gdi;
 	gdi->primary->hdc->hwnd->invalid->null = 1;
+	return 1;
 }
 
-void ca2rdp_end_paint(rdpContext* context)
+int ca2rdp_end_paint(rdpContext* context)
 {
 	rdpGdi* gdi;
 	ca2rdpInfo* ca2rdpi;
@@ -68,7 +69,7 @@ void ca2rdp_end_paint(rdpContext* context)
 	ca2rdpi = ((ca2rdpContext*) context)->ca2rdpi;
 
 	if (gdi->primary->hdc->hwnd->invalid->null)
-		return;
+		return 1;
 
 #ifdef WINDOWS
 	ca2rdpi->update_rect.left = gdi->primary->hdc->hwnd->invalid->x;
@@ -94,6 +95,7 @@ void ca2rdp_end_paint(rdpContext* context)
 #else
    ca2rdpi->primary->BitBlt(ca2rdpi->surface,SRCCOPY);
 #endif*/
+return 1;
 }
 
 BOOL ca2rdp_get_fds(freerdp* instance, void** rfds, int* rcount, void** wfds, int* wcount)

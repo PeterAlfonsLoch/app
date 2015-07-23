@@ -53,16 +53,13 @@ static const BYTE NTLM_NULL_BUFFER[16] =
 
 void ntlm_get_version_info(NTLM_VERSION_INFO* versionInfo)
 {
-	/*OSVERSIONINFOA osVersionInfo;
+	OSVERSIONINFOA osVersionInfo;
 	osVersionInfo.dwOSVersionInfoSize = sizeof(OSVERSIONINFOA);
-	GetVersionExA(&osVersionInfo);*/
-	/*versionInfo->ProductMajorVersion = (UINT8) osVersionInfo.dwMajorVersion;
+	GetVersionExA(&osVersionInfo);
+	versionInfo->ProductMajorVersion = (UINT8) osVersionInfo.dwMajorVersion;
 	versionInfo->ProductMinorVersion = (UINT8) osVersionInfo.dwMinorVersion;
-	versionInfo->ProductBuild = (UINT16) osVersionInfo.dwBuildNumber;*/
-   versionInfo->ProductMajorVersion = (UINT8) 6;
-   versionInfo->ProductMinorVersion = (UINT8) 1;
-   versionInfo->ProductBuild = (UINT16) 7601;
-   ZeroMemory(versionInfo->Reserved,sizeof(versionInfo->Reserved));
+	versionInfo->ProductBuild = (UINT16) osVersionInfo.dwBuildNumber;
+	ZeroMemory(versionInfo->Reserved, sizeof(versionInfo->Reserved));
 	versionInfo->NTLMRevisionCurrent = NTLMSSP_REVISION_W2K3;
 }
 

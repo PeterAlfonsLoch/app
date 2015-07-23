@@ -1,6 +1,13 @@
 #ifndef __CONFIG_H
 #define __CONFIG_H
 
+
+#define FREERDP_VENDOR_STRING "ca2"
+
+
+#define FREERDP_PRODUCT_STRING "rdpclient"
+
+
 #define FREERDP_DATA_PATH "C:/Program Files (x86)/FreeRDP/share/freerdp"
 #define FREERDP_KEYMAP_PATH ""
 #define FREERDP_PLUGIN_PATH "lib/freerdp"

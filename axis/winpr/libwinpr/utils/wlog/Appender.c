@@ -30,6 +30,8 @@
 wLogAppender* WLog_Appender_New(wLog* log, DWORD logAppenderType)
 {
 	wLogAppender* appender = NULL;
+	if (!log)
+		return NULL;
 
 	if (logAppenderType == WLOG_APPENDER_CONSOLE)
 	{
@@ -51,7 +53,14 @@ wLogAppender* WLog_Appender_New(wLog* log, DWORD logAppenderType)
 	if (!appender)
 		appender = (wLogAppender*) WLog_ConsoleAppender_New(log);
 
-	appender->Layout = WLog_Layout_New(log);
+	if (!appender)
+		return NULL;
+
+	if (!(appender->Layout = WLog_Layout_New(log)))
+	{
+		WLog_Appender_Free(log, appender);
+		return NULL;
+	}
 
 	InitializeCriticalSectionAndSpinCount(&appender->lock, 4000);
 
@@ -100,7 +109,7 @@ wLogAppender* WLog_GetLogAppender(wLog* log)
 	return log->Appender;
 }
 
-void WLog_SetLogAppenderType(wLog* log, DWORD logAppenderType)
+BOOL WLog_SetLogAppenderType(wLog* log, DWORD logAppenderType)
 {
 	if (log->Appender)
 	{
@@ -109,6 +118,7 @@ void WLog_SetLogAppenderType(wLog* log, DWORD logAppenderType)
 	}
 
 	log->Appender = WLog_Appender_New(log, logAppenderType);
+	return log->Appender != NULL;
 }
 
 int WLog_OpenAppender(wLog* log)

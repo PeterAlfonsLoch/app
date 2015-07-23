@@ -81,19 +81,30 @@ rdpChannels* freerdp_channels_new(void)
 	rdpChannels* channels;
 
 	channels = (rdpChannels*) calloc(1, sizeof(rdpChannels));
-
 	if (!channels)
 		return NULL;
 
 	channels->queue = MessageQueue_New(NULL);
+	if (!channels->queue)
+		goto error_queue;
 
 	if (!g_OpenHandles)
 	{
 		g_OpenHandles = HashTable_New(TRUE);
-		InitializeCriticalSectionAndSpinCount(&g_channels_lock, 4000);
+		if (!g_OpenHandles)
+			goto error_open_handles;
+
+		if (!InitializeCriticalSectionAndSpinCount(&g_channels_lock, 4000))
+			goto error_open_handles;
 	}
 
 	return channels;
+
+error_open_handles:
+	MessageQueue_Free(channels->queue);
+error_queue:
+	free(channels);
+	return NULL;
 }
 
 void freerdp_channels_free(rdpChannels* channels)
@@ -102,6 +113,9 @@ void freerdp_channels_free(rdpChannels* channels)
 	int nkeys;
 	ULONG_PTR* pKeys = NULL;
 	CHANNEL_OPEN_DATA* pChannelOpenData;
+
+	if (!channels)
+		return;
 
 	if (channels->queue)
 	{
@@ -223,6 +237,8 @@ int freerdp_channels_post_connect(rdpChannels* channels, freerdp* instance)
 			pChannelClientData->pChannelInitEventProc(pChannelClientData->pInitHandle, CHANNEL_EVENT_CONNECTED, hostname, hostnameLength);
 
 			name = (char*) malloc(9);
+			if (!name)
+				return -1;
 			CopyMemory(name, pChannelOpenData->name, 8);
 			name[8] = '\0';
 
@@ -435,6 +451,8 @@ int freerdp_channels_disconnect(rdpChannels* channels, freerdp* instance)
 		pChannelOpenData = &channels->openDataList[index];
 
 		name = (char*) malloc(9);
+		if (!name)
+			return -1;
 		CopyMemory(name, pChannelOpenData->name, 8);
 		name[8] = '\0';
 
@@ -651,7 +669,8 @@ UINT VCAPITYPE FreeRDP_VirtualChannelWrite(DWORD openHandle, LPVOID pData, ULONG
 	pChannelOpenEvent->UserData = pUserData;
 	pChannelOpenEvent->pChannelOpenData = pChannelOpenData;
 
-	MessageQueue_Post(channels->queue, (void*) channels, 0, (void*) pChannelOpenEvent, NULL);
+	if (!MessageQueue_Post(channels->queue, (void*) channels, 0, (void*) pChannelOpenEvent, NULL))
+		return CHANNEL_RC_NO_MEMORY;
 
 	return CHANNEL_RC_OK;
 }

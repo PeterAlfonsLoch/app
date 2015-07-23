@@ -72,6 +72,7 @@ struct crypto_hmac_struct
 struct crypto_cert_struct
 {
 	X509 * px509;
+	STACK_OF(X509) *px509chain;
 };
 
 #ifdef __cplusplus
@@ -102,15 +103,15 @@ typedef struct crypto_des3_struct* CryptoDes3;
 
 FREERDP_API CryptoDes3 crypto_des3_encrypt_init(const BYTE* key, const BYTE* ivec);
 FREERDP_API CryptoDes3 crypto_des3_decrypt_init(const BYTE* key, const BYTE* ivec);
-FREERDP_API void crypto_des3_encrypt(CryptoDes3 des3, UINT32 length, const BYTE *in_data, BYTE *out_data);
-FREERDP_API void crypto_des3_decrypt(CryptoDes3 des3, UINT32 length, const BYTE *in_data, BYTE* out_data);
+FREERDP_API BOOL crypto_des3_encrypt(CryptoDes3 des3, UINT32 length, const BYTE *in_data, BYTE *out_data);
+FREERDP_API BOOL crypto_des3_decrypt(CryptoDes3 des3, UINT32 length, const BYTE *in_data, BYTE* out_data);
 FREERDP_API void crypto_des3_free(CryptoDes3 des3);
 
 typedef struct crypto_hmac_struct* CryptoHmac;
 
 FREERDP_API CryptoHmac crypto_hmac_new(void);
-FREERDP_API void crypto_hmac_sha1_init(CryptoHmac hmac, const BYTE *data, UINT32 length);
-FREERDP_API void crypto_hmac_md5_init(CryptoHmac hmac, const BYTE *data, UINT32 length);
+FREERDP_API BOOL crypto_hmac_sha1_init(CryptoHmac hmac, const BYTE *data, UINT32 length);
+FREERDP_API BOOL crypto_hmac_md5_init(CryptoHmac hmac, const BYTE *data, UINT32 length);
 FREERDP_API void crypto_hmac_update(CryptoHmac hmac, const BYTE *data, UINT32 length);
 FREERDP_API void crypto_hmac_final(CryptoHmac hmac, BYTE *out_data, UINT32 length);
 FREERDP_API void crypto_hmac_free(CryptoHmac hmac);
@@ -132,7 +133,7 @@ FREERDP_API void crypto_cert_print_info(X509* xcert);
 FREERDP_API void crypto_cert_free(CryptoCert cert);
 
 FREERDP_API BOOL x509_verify_certificate(CryptoCert cert, char* certificate_store_path);
-FREERDP_API rdpCertificateData* crypto_get_certificate_data(X509* xcert, char* hostname);
+FREERDP_API rdpCertificateData* crypto_get_certificate_data(X509* xcert, char* hostname, UINT16 port);
 FREERDP_API BOOL crypto_cert_get_public_key(CryptoCert cert, BYTE** PublicKey, DWORD* PublicKeyLength);
 
 #define	TSSK_KEY_LENGTH	64

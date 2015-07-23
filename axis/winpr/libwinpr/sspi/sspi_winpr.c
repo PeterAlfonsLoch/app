@@ -243,14 +243,19 @@ void* sspi_SecBufferAlloc(PSecBuffer SecBuffer, ULONG size)
 	if (!SecBuffer)
 		return NULL;
 
-	SecBuffer->cbBuffer = size;
 	SecBuffer->pvBuffer = calloc(1, size);
+	if (!SecBuffer->pvBuffer)
+		return NULL;
 
+	SecBuffer->cbBuffer = size;
 	return SecBuffer->pvBuffer;
 }
 
 void sspi_SecBufferFree(PSecBuffer SecBuffer)
 {
+	if (!SecBuffer)
+		return;
+
 	free(SecBuffer->pvBuffer);
 	SecBuffer->pvBuffer = NULL;
 	SecBuffer->cbBuffer = 0;
@@ -310,9 +315,6 @@ void sspi_SecureHandleSetUpperPointer(SecHandle* handle, void* pointer)
 
 void sspi_SecureHandleFree(SecHandle* handle)
 {
-	if (!handle)
-		return;
-
 	free(handle);
 }
 
@@ -322,8 +324,7 @@ int sspi_SetAuthIdentity(SEC_WINNT_AUTH_IDENTITY* identity, const char* user, co
 
 	identity->Flags = SEC_WINNT_AUTH_IDENTITY_UNICODE;
 
-	if (identity->User)
-		free(identity->User);
+	free(identity->User);
 
 	identity->User = (UINT16*) NULL;
 	identity->UserLength = 0;
@@ -338,8 +339,7 @@ int sspi_SetAuthIdentity(SEC_WINNT_AUTH_IDENTITY* identity, const char* user, co
 		identity->UserLength = (ULONG) (status - 1);
 	}
 
-	if (identity->Domain)
-		free(identity->Domain);
+	free(identity->Domain);
 
 	identity->Domain = (UINT16*) NULL;
 	identity->DomainLength = 0;
@@ -354,8 +354,7 @@ int sspi_SetAuthIdentity(SEC_WINNT_AUTH_IDENTITY* identity, const char* user, co
 		identity->DomainLength = (ULONG) (status - 1);
 	}
 
-	if (identity->Password)
-		free(identity->Password);
+	free(identity->Password);
 
 	identity->Password = NULL;
 	identity->PasswordLength = 0;
@@ -633,6 +632,11 @@ SECURITY_STATUS SEC_ENTRY winpr_EnumerateSecurityPackagesA(ULONG* pcPackages, PS
 		pPackageInfo[index].cbMaxToken = SecPkgInfoA_LIST[index]->cbMaxToken;
 		pPackageInfo[index].Name = _strdup(SecPkgInfoA_LIST[index]->Name);
 		pPackageInfo[index].Comment = _strdup(SecPkgInfoA_LIST[index]->Comment);
+		if (!pPackageInfo[index].Name || !pPackageInfo[index].Comment)
+		{
+			sspi_ContextBufferFree(pPackageInfo);
+			return SEC_E_INSUFFICIENT_MEMORY;
+		}
 	}
 
 	*(pcPackages) = cPackages;
@@ -651,11 +655,8 @@ void FreeContextBuffer_EnumerateSecurityPackages(void* contextBuffer)
 
 	for (index = 0; index < (int) cPackages; index++)
 	{
-		if (pPackageInfo[index].Name)
-			free(pPackageInfo[index].Name);
-
-		if (pPackageInfo[index].Comment)
-			free(pPackageInfo[index].Comment);
+		free(pPackageInfo[index].Name);
+		free(pPackageInfo[index].Comment);
 	}
 
 	free(pPackageInfo);
@@ -733,6 +734,11 @@ SECURITY_STATUS SEC_ENTRY winpr_QuerySecurityPackageInfoA(SEC_CHAR* pszPackageNa
 			pPackageInfo->cbMaxToken = SecPkgInfoA_LIST[index]->cbMaxToken;
 			pPackageInfo->Name = _strdup(SecPkgInfoA_LIST[index]->Name);
 			pPackageInfo->Comment = _strdup(SecPkgInfoA_LIST[index]->Comment);
+			if (!pPackageInfo->Name || !pPackageInfo->Comment)
+			{
+				sspi_ContextBufferFree(pPackageInfo);
+				return SEC_E_INSUFFICIENT_MEMORY;
+			}
 
 			*(ppPackageInfo) = pPackageInfo;
 
@@ -749,12 +755,11 @@ void FreeContextBuffer_QuerySecurityPackageInfo(void* contextBuffer)
 {
 	SecPkgInfo* pPackageInfo = (SecPkgInfo*) contextBuffer;
 
-	if (pPackageInfo->Name)
-		free(pPackageInfo->Name);
+	if (!pPackageInfo)
+		return;
 
-	if (pPackageInfo->Comment)
-		free(pPackageInfo->Comment);
-
+	free(pPackageInfo->Name);
+	free(pPackageInfo->Comment);
 	free(pPackageInfo);
 }
 

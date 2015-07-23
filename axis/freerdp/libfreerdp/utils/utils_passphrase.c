@@ -42,14 +42,6 @@ char* freerdp_passphrase_read(const char* prompt, char* buf, size_t bufsiz, int 
 #include <unistd.h>
 #include <freerdp/utils/signal.h>
 
-//#ifdef ANDROID
-//char *ctermid(char *s)
-//{
-//   const char * psz = "/dev/tty";
-//   
-//}
-//#endif
-
 char* freerdp_passphrase_read(const char* prompt, char* buf, size_t bufsiz, int from_stdin)
 {
 	char read_char;

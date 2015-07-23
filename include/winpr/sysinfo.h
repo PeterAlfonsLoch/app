@@ -94,6 +94,8 @@ typedef struct _SYSTEM_INFO
 	WORD wProcessorRevision;
 } SYSTEM_INFO, *LPSYSTEM_INFO;
 
+#define MAX_COMPUTERNAME_LENGTH 31
+
 WINPR_API void GetSystemInfo(LPSYSTEM_INFO lpSystemInfo);
 WINPR_API void GetNativeSystemInfo(LPSYSTEM_INFO lpSystemInfo);
 
@@ -294,6 +296,8 @@ WINPR_API BOOL IsProcessorFeaturePresent(DWORD ProcessorFeature);
 WINPR_API ULONGLONG GetTickCount64(void);
 
 #endif
+
+WINPR_API DWORD GetTickCountPrecise(void);
 
 WINPR_API BOOL IsProcessorFeaturePresentEx(DWORD ProcessorFeature);
 

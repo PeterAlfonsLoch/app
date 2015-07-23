@@ -345,7 +345,7 @@ namespace base
    //      }
    //      else
    //      {
-   //       
+   //
    //         for(index i = m_uiptraFrame.get_upper_bound(); i >= 0; i--)
    //         {
    //
@@ -1294,7 +1294,7 @@ namespace base
    //   bool application::system_add_app_install(const char * pszId)
    //   {
    //
-   //      
+   //
    //
    //      return axis::application::system_add_app_install(pszId);
    //
@@ -1478,7 +1478,7 @@ namespace base
    //
    //   int32_t application::run()
    //   {
-   //      
+   //
    //      return ::axis::application::run();
    //
    //
@@ -1794,7 +1794,7 @@ namespace base
    //
    //   void application::on_create_keyboard()
    //   {
-   //      
+   //
    //      Session.set_keyboard_layout(NULL,::action::source::database());
    //
    //   }
@@ -2306,7 +2306,7 @@ namespace base
    //         return NULL;
    //
    //      return (::user::interaction *) m_puiMain->m_pvoidUserInteraction;
-   //    
+   //
    //   }
    //
    //
@@ -2412,7 +2412,7 @@ namespace base
 
       if (System.m_posdata != NULL)
       {
-         
+
          if (System.m_posdata->m_pui != NULL)
          {
 
@@ -2507,7 +2507,7 @@ namespace base
             m_puiMain = pwnd;
 
          }
-         
+
       }
 
    }
@@ -2538,7 +2538,7 @@ namespace base
 
       string str = ::fontopus::get_cred(this,strUsername,strPassword,strToken);
 
-      if(str == "ok")
+      if(str == "ok" && strUsername.has_char() && strPassword.has_char())
          return "ok";
 
       if(!bInteractive)
@@ -2976,7 +2976,7 @@ namespace base
 
    }
 
-   
+
    int32_t application::hotplugin_host_host_starter_start_sync(const char * pszCommandLine,::aura::application * papp,::hotplugin::host * phost,::hotplugin::plugin * pplugin)
    {
 

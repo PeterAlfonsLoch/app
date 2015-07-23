@@ -75,9 +75,6 @@ static BOOL strings_equals_nocase(void* obj1, void* obj2)
 
 static void string_free(void* obj1)
 {
-	if (!obj1)
-		return;
-
 	free(obj1);
 }
 
@@ -174,6 +171,17 @@ BOOL http_context_set_pragma(HttpContext* context, const char* Pragma)
 	return TRUE;
 }
 
+BOOL http_context_set_rdg_connection_id(HttpContext* context, const char* RdgConnectionId)
+{
+	free(context->RdgConnectionId);
+	context->RdgConnectionId = _strdup(RdgConnectionId);
+
+	if (!context->RdgConnectionId)
+		return FALSE;
+
+	return TRUE;
+}
+
 void http_context_free(HttpContext* context)
 {
 	if (context)
@@ -186,6 +194,7 @@ void http_context_free(HttpContext* context)
 		free(context->CacheControl);
 		free(context->Connection);
 		free(context->Pragma);
+		free(context->RdgConnectionId);
 		free(context);
 	}
 }
@@ -229,6 +238,17 @@ BOOL http_request_set_auth_param(HttpRequest* request, const char* AuthParam)
 	request->AuthParam = _strdup(AuthParam);
 
 	if (!request->AuthParam)
+		return FALSE;
+
+	return TRUE;
+}
+
+BOOL http_request_set_transfer_encoding(HttpRequest* request, const char* TransferEncoding)
+{
+	free(request->TransferEncoding);
+	request->TransferEncoding = _strdup(TransferEncoding);
+
+	if (!request->TransferEncoding)
 		return FALSE;
 
 	return TRUE;
@@ -325,6 +345,26 @@ wStream* http_request_write(HttpContext* context, HttpRequest* request)
 			goto out_free;
 	}
 
+	if (context->RdgConnectionId)
+	{
+		lines[count] = http_encode_body_line("RDG-Connection-Id", context->RdgConnectionId);
+
+		if (!lines[count])
+			goto out_free;
+
+		count++;
+	}
+
+	if (request->TransferEncoding)
+	{
+		lines[count] = http_encode_body_line("Transfer-Encoding", request->TransferEncoding);
+
+		if (!lines[count])
+			goto out_free;
+
+		count++;
+	}
+
 	if (request->Authorization)
 	{
 		lines[count] = http_encode_body_line("Authorization", request->Authorization);
@@ -369,13 +409,10 @@ wStream* http_request_write(HttpContext* context, HttpRequest* request)
 	Stream_Rewind(s, 1); /* don't include null terminator in length */
 	Stream_Length(s) = Stream_GetPosition(s);
 	return s;
-out_free:
 
-	for (i = 0; i < 9; i++)
-	{
-		if (lines[i])
-			free(lines[i]);
-	}
+out_free:
+	for (i = 0; i < count; i++)
+		free(lines[i]);
 
 	free(lines);
 	return NULL;
@@ -391,18 +428,13 @@ void http_request_free(HttpRequest* request)
 	if (!request)
 		return;
 
-	if (request->AuthParam)
-		free(request->AuthParam);
-
-	if (request->AuthScheme)
-		free(request->AuthScheme);
-
-	if (request->Authorization)
-		free(request->Authorization);
-
+	free(request->AuthParam);
+	free(request->AuthScheme);
+	free(request->Authorization);
 	free(request->Content);
 	free(request->Method);
 	free(request->URI);
+	free(request->TransferEncoding);
 	free(request);
 }
 
@@ -583,13 +615,13 @@ HttpResponse* http_response_recv(rdpTls* tls)
 	int position;
 	char* line;
 	char* buffer;
-	char* header;
+	char* header = NULL;
 	char* payload;
 	int bodyLength;
 	int payloadOffset;
 	HttpResponse* response;
 
-	size = 1024;
+	size = 2048;
 	payload = NULL;
 	payloadOffset = 0;
 
@@ -630,7 +662,8 @@ HttpResponse* http_response_recv(rdpTls* tls)
 
 			if (Stream_GetRemainingLength(s) < 1024)
 			{
-				Stream_EnsureRemainingCapacity(s, 1024);
+				if (!Stream_EnsureRemainingCapacity(s, 1024))
+					goto out_error;
 				buffer = (char*) Stream_Buffer(s);
 				payload = &buffer[payloadOffset];
 			}
@@ -695,8 +728,6 @@ HttpResponse* http_response_recv(rdpTls* tls)
 				count++;
 			}
 
-			free(header);
-
 			if (!http_response_parse_header(response))
 				goto out_error;
 
@@ -716,16 +747,22 @@ HttpResponse* http_response_recv(rdpTls* tls)
 
 			if (response->ContentType)
 			{
-				if (_stricmp(response->ContentType, "text/plain") == 0)
-				{
+				if (_stricmp(response->ContentType, "application/rpc") != 0)
 					bodyLength = response->ContentLength;
-				}
+				else if (_stricmp(response->ContentType, "text/plain") == 0)
+					bodyLength = response->ContentLength;
+				else if (_stricmp(response->ContentType, "text/html") == 0)
+					bodyLength = response->ContentLength;
+			}
+			else
+			{
+				bodyLength = response->BodyLength;
 			}
 
 			if (bodyLength != response->BodyLength)
 			{
 				WLog_WARN(TAG, "http_response_recv: %s unexpected body length: actual: %d, expected: %d",
-						response->ContentType, response->ContentLength, response->BodyLength);
+						response->ContentType, bodyLength, response->BodyLength);
 			}
 
 			break;
@@ -733,16 +770,19 @@ HttpResponse* http_response_recv(rdpTls* tls)
 
 		if (Stream_GetRemainingLength(s) < 1024)
 		{
-			Stream_EnsureRemainingCapacity(s, 1024);
+			if (!Stream_EnsureRemainingCapacity(s, 1024))
+				goto out_error;
 			buffer = (char*) Stream_Buffer(s);
 			payload = &buffer[payloadOffset];
 		}
 	}
 
+	free(header);
 	Stream_Free(s, TRUE);
 	return response;
 out_error:
 	http_response_free(response);
+	free(header);
 out_free:
 	Stream_Free(s, TRUE);
 	return NULL;
@@ -756,6 +796,11 @@ HttpResponse* http_response_new()
 		return NULL;
 
 	response->Authenticates = ListDictionary_New(FALSE);
+	if (!response->Authenticates)
+	{
+		free(response);
+		return NULL;
+	}
 
 	ListDictionary_KeyObject(response->Authenticates)->fnObjectEquals = strings_equals_nocase;
 	ListDictionary_KeyObject(response->Authenticates)->fnObjectFree = string_free;
@@ -773,11 +818,9 @@ void http_response_free(HttpResponse* response)
 	if (!response)
 		return;
 
-	for (i = 0; i < response->count; i++)
-	{
-		if (response->lines && response->lines[i])
+	if (response->lines)
+		for (i = 0; i < response->count; i++)
 			free(response->lines[i]);
-	}
 
 	free(response->lines);
 	free(response->ReasonPhrase);
@@ -786,8 +829,11 @@ void http_response_free(HttpResponse* response)
 
 	ListDictionary_Free(response->Authenticates);
 
-	if (response->ContentLength > 0)
+	if (response->BodyContent)
+	{
 		free(response->BodyContent);
+		response->BodyContent = NULL;
+	}
 
 	free(response);
 }

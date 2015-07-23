@@ -24,7 +24,7 @@
 
 /* Pointer Class */
 
-void ca2rdp_Pointer_New(rdpContext* context, rdpPointer* pointer)
+int ca2rdp_Pointer_New(rdpContext* context, rdpPointer* pointer)
 {
 	ca2rdpInfo* ca2rdpi;
 	int result;
@@ -58,6 +58,7 @@ void ca2rdp_Pointer_New(rdpContext* context, rdpPointer* pointer)
       freerdp_image_swap_color_order((BYTE *)::draw2d::dib_get_data(dib),pointer->width,pointer->height);
 	}
 
+return 1;
 }
 
 void ca2rdp_Pointer_Free(rdpContext* context, rdpPointer* pointer)
@@ -66,7 +67,7 @@ void ca2rdp_Pointer_Free(rdpContext* context, rdpPointer* pointer)
 ///	ca2rdp_pointer->surface->Release(ca2rdp_pointer->surface);
 }
 
-void ca2rdp_Pointer_Set(rdpContext* context, rdpPointer* pointer)
+int ca2rdp_Pointer_Set(rdpContext* context, rdpPointer* pointer)
 {
 
    ca2rdpInfo* ca2rdpi;
@@ -90,7 +91,7 @@ void ca2rdp_Pointer_Set(rdpContext* context, rdpPointer* pointer)
       ctx->m_pviewRdp->rdpclient_set_cursor(ca2rdp_pointer->m_pcursor);
 
    }
-   
+
 /*	ca2rdpInfo* ca2rdpi;
 	DFBResult result;
 	ca2rdpPointer* ca2rdp_pointer;
@@ -115,16 +116,18 @@ void ca2rdp_Pointer_Set(rdpContext* context, rdpPointer* pointer)
 	}
 
 	ca2rdpi->layer->SetCooperativeLevel(ca2rdpi->layer, DLSCL_SHARED);*/
+	return 1;
 }
 
-void ca2rdp_Pointer_SetNull(rdpContext* context)
+int ca2rdp_Pointer_SetNull(rdpContext* context)
 {
 	ca2rdp_Pointer_Set(context, NULL);
+	return 1;
 }
 
-void ca2rdp_Pointer_SetDefault(rdpContext* context)
+int ca2rdp_Pointer_SetDefault(rdpContext* context)
 {
-
+return 1;
 }
 
 /* Graphics Module */

@@ -1,6 +1,14 @@
 #ifndef __CONFIG_H
 #define __CONFIG_H
 
+
+#define FREERDP_VENDOR_STRING "ca2"
+
+
+#define FREERDP_PRODUCT_STRING "rdpclient"
+
+
+
 #define FREERDP_DATA_PATH "C:/Program Files (x86)/FreeRDP/share/freerdp"
 #define FREERDP_KEYMAP_PATH ""
 #define FREERDP_PLUGIN_PATH "lib/freerdp"
@@ -104,4 +112,5 @@
 #ifdef LINUX
 #define HAVE_PTHREAD_GNU_EXT 1
 #define HAVE_UNISTD_H 1
+#define HAVE_PTHREAD_MUTEX_TIMEDLOCK
 #endif

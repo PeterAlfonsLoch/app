@@ -62,7 +62,7 @@ static HANDLE freerdp_peer_virtual_channel_open(freerdp_peer* client, const char
 		if (!mcsChannel->joined)
 			continue;
 
-		if (strncmp(name, mcsChannel->Name, length) == 0)
+		if (_strnicmp(name, mcsChannel->Name, length) == 0)
 		{
 			joined = TRUE;
 			break;
@@ -145,6 +145,8 @@ static int freerdp_peer_virtual_channel_write(freerdp_peer* client, HANDLE hChan
 	while (length > 0)
 	{
 		s = rdp_send_stream_init(rdp);
+		if (!s)
+			return -1;
 
 		if (length > maxChunkSize)
 		{
@@ -161,10 +163,18 @@ static int freerdp_peer_virtual_channel_write(freerdp_peer* client, HANDLE hChan
 
 		Stream_Write_UINT32(s, totalLength);
 		Stream_Write_UINT32(s, flags);
-		Stream_EnsureRemainingCapacity(s, chunkSize);
+		if (!Stream_EnsureRemainingCapacity(s, chunkSize))
+		{
+			Stream_Release(s);
+			return -1;
+		}
 		Stream_Write(s, buffer, chunkSize);
 
-		rdp_send(rdp, s, peerChannel->channelId);
+		if (!rdp_send(rdp, s, peerChannel->channelId))
+		{
+			Stream_Release(s);
+			return -1;
+		}
 
 		buffer += chunkSize;
 		length -= chunkSize;
@@ -212,15 +222,8 @@ static BOOL freerdp_peer_initialize(freerdp_peer* client)
 
 		if (!settings->RdpServerRsaKey)
 		{
-			WLog_ERR(TAG, "inavlid RDP key file %s", settings->RdpKeyFile);
+			WLog_ERR(TAG, "invalid RDP key file %s", settings->RdpKeyFile);
 			return FALSE;
-		}
-
-		if (settings->RdpServerRsaKey->ModulusLength > 256)
-		{
-			WLog_ERR(TAG, "Key sizes > 2048 are currently not supported for RDP security.");
-			WLog_ERR(TAG, "Set a different key file than %s", settings->RdpKeyFile);
-			exit(1);
 		}
 	}
 
@@ -328,7 +331,7 @@ static BOOL peer_recv_data_pdu(freerdp_peer* client, wStream* s)
 			break;
 
 		default:
-			WLog_ERR(TAG,  "Data PDU type %d", type);
+			WLog_ERR(TAG, "Data PDU type %d", type);
 			break;
 	}
 
@@ -349,7 +352,7 @@ static int peer_recv_tpkt_pdu(freerdp_peer* client, wStream* s)
 
 	if (!rdp_read_header(rdp, s, &length, &channelId))
 	{
-		WLog_ERR(TAG,  "Incorrect RDP header.");
+		WLog_ERR(TAG, "Incorrect RDP header.");
 		return -1;
 	}
 
@@ -365,7 +368,7 @@ static int peer_recv_tpkt_pdu(freerdp_peer* client, wStream* s)
 		{
 			if (!rdp_decrypt(rdp, s, length - 4, securityFlags))
 			{
-				WLog_ERR(TAG,  "rdp_decrypt failed");
+				WLog_ERR(TAG, "rdp_decrypt failed");
 				return -1;
 			}
 		}
@@ -396,13 +399,17 @@ static int peer_recv_tpkt_pdu(freerdp_peer* client, wStream* s)
 				break;
 
 			default:
-				WLog_ERR(TAG,  "Client sent pduType %d", pduType);
+				WLog_ERR(TAG, "Client sent pduType %d", pduType);
 				return -1;
 		}
 	}
 	else if (rdp->mcs->messageChannelId && channelId == rdp->mcs->messageChannelId)
 	{
-		return rdp_recv_message_channel_pdu(rdp, s);
+		if (!rdp->settings->UseRdpSecurityLayer)
+			if (!rdp_read_security_header(s, &securityFlags))
+				return -1;
+
+		return rdp_recv_message_channel_pdu(rdp, s, securityFlags);
 	}
 	else
 	{
@@ -426,7 +433,7 @@ static int peer_recv_fastpath_pdu(freerdp_peer* client, wStream* s)
 
 	if ((length == 0) || (length > Stream_GetRemainingLength(s)))
 	{
-		WLog_ERR(TAG,  "incorrect FastPath PDU header length %d", length);
+		WLog_ERR(TAG, "incorrect FastPath PDU header length %d", length);
 		return -1;
 	}
 
@@ -456,11 +463,14 @@ static int peer_recv_callback(rdpTransport* transport, wStream* s, void* extra)
 	{
 		case CONNECTION_STATE_INITIAL:
 			if (!rdp_server_accept_nego(rdp, s))
+			{
+				WLog_ERR(TAG, "peer_recv_callback: CONNECTION_STATE_INITIAL - rdp_server_accept_nego() fail");
 				return -1;
+			}
 
 			if (rdp->nego->SelectedProtocol & PROTOCOL_NLA)
 			{
-				sspi_CopyAuthIdentity(&client->identity, &(rdp->nego->transport->nla->identity));
+				sspi_CopyAuthIdentity(&client->identity, rdp->nego->transport->nla->identity);
 				IFCALLRET(client->Logon, client->authenticated, client, &client->identity, TRUE);
 				nla_free(rdp->nego->transport->nla);
 				rdp->nego->transport->nla = NULL;
@@ -474,29 +484,44 @@ static int peer_recv_callback(rdpTransport* transport, wStream* s, void* extra)
 
 		case CONNECTION_STATE_NEGO:
 			if (!rdp_server_accept_mcs_connect_initial(rdp, s))
+			{
+				WLog_ERR(TAG, "peer_recv_callback: CONNECTION_STATE_NEGO - rdp_server_accept_mcs_connect_initial() fail");
 				return -1;
+			}
 			break;
 
 		case CONNECTION_STATE_MCS_CONNECT:
 			if (!rdp_server_accept_mcs_erect_domain_request(rdp, s))
+			{
+				WLog_ERR(TAG, "peer_recv_callback: CONNECTION_STATE_MCS_CONNECT - rdp_server_accept_mcs_erect_domain_request() fail");
 				return -1;
+			}
 			break;
 
 		case CONNECTION_STATE_MCS_ERECT_DOMAIN:
 			if (!rdp_server_accept_mcs_attach_user_request(rdp, s))
+			{
+				WLog_ERR(TAG, "peer_recv_callback: CONNECTION_STATE_MCS_ERECT_DOMAIN - rdp_server_accept_mcs_attach_user_request() fail");
 				return -1;
+			}
 			break;
 
 		case CONNECTION_STATE_MCS_ATTACH_USER:
 			if (!rdp_server_accept_mcs_channel_join_request(rdp, s))
+			{
+				WLog_ERR(TAG, "peer_recv_callback: CONNECTION_STATE_MCS_ATTACH_USER - rdp_server_accept_mcs_channel_join_request() fail");
 				return -1;
+			}
 			break;
 
 		case CONNECTION_STATE_RDP_SECURITY_COMMENCEMENT:
 			if (rdp->settings->UseRdpSecurityLayer)
 			{
 				if (!rdp_server_establish_keys(rdp, s))
+				{
+					WLog_ERR(TAG, "peer_recv_callback: CONNECTION_STATE_RDP_SECURITY_COMMENCEMENT - rdp_server_establish_keys() fail");
 					return -1;
+				}
 			}
 
 			rdp_server_transition_to_state(rdp, CONNECTION_STATE_SECURE_SETTINGS_EXCHANGE);
@@ -505,9 +530,11 @@ static int peer_recv_callback(rdpTransport* transport, wStream* s, void* extra)
 			break;
 
 		case CONNECTION_STATE_SECURE_SETTINGS_EXCHANGE:
-
 			if (!rdp_recv_client_info(rdp, s))
+			{
+				WLog_ERR(TAG, "peer_recv_callback: CONNECTION_STATE_SECURE_SETTINGS_EXCHANGE - rdp_recv_client_info() fail");
 				return -1;
+			}
 
 			rdp_server_transition_to_state(rdp, CONNECTION_STATE_LICENSING);
 			return peer_recv_callback(transport, NULL, extra);
@@ -515,9 +542,11 @@ static int peer_recv_callback(rdpTransport* transport, wStream* s, void* extra)
 			break;
 
 		case CONNECTION_STATE_LICENSING:
-
 			if (!license_send_valid_client_error_packet(rdp->license))
+			{
+				WLog_ERR(TAG, "peer_recv_callback: CONNECTION_STATE_LICENSING - license_send_valid_client_error_packet() fail");
 				return FALSE;
+			}
 
 			rdp_server_transition_to_state(rdp, CONNECTION_STATE_CAPABILITIES_EXCHANGE);
 			return peer_recv_callback(transport, NULL, extra);
@@ -531,14 +560,20 @@ static int peer_recv_callback(rdpTransport* transport, wStream* s, void* extra)
 				IFCALL(client->Capabilities, client);
 
 				if (!rdp_send_demand_active(rdp))
+				{
+					WLog_ERR(TAG, "peer_recv_callback: CONNECTION_STATE_CAPABILITIES_EXCHANGE - rdp_send_demand_active() fail");
 					return -1;
+				}
 
 				rdp->AwaitCapabilities = TRUE;
 
 				if (s)
 				{
 					if (peer_recv_pdu(client, s) < 0)
+					{
+						WLog_ERR(TAG, "peer_recv_callback: CONNECTION_STATE_CAPABILITIES_EXCHANGE - peer_recv_pdu() fail");
 						return -1;
+					}
 				}
 			}
 			else
@@ -549,23 +584,32 @@ static int peer_recv_callback(rdpTransport* transport, wStream* s, void* extra)
 				 */
 
 				if (peer_recv_pdu(client, s) < 0)
+				{
+					WLog_ERR(TAG, "peer_recv_callback: CONNECTION_STATE_CAPABILITIES_EXCHANGE - peer_recv_pdu() fail");
 					return -1;
+				}
 			}
 
 			break;
 
 		case CONNECTION_STATE_FINALIZATION:
 			if (peer_recv_pdu(client, s) < 0)
+			{
+				WLog_ERR(TAG, "peer_recv_callback: CONNECTION_STATE_FINALIZATION - peer_recv_pdu() fail");
 				return -1;
+			}
 			break;
 
 		case CONNECTION_STATE_ACTIVE:
 			if (peer_recv_pdu(client, s) < 0)
+			{
+				WLog_ERR(TAG, "peer_recv_callback: CONNECTION_STATE_ACTIVE - peer_recv_pdu() fail");
 				return -1;
+			}
 			break;
 
 		default:
-			WLog_ERR(TAG,  "Invalid state %d", rdp->state);
+			WLog_ERR(TAG, "Invalid state %d", rdp->state);
 			return -1;
 	}
 
@@ -618,21 +662,28 @@ static int freerdp_peer_drain_output_buffer(freerdp_peer* peer)
 	return transport_drain_output_buffer(transport);
 }
 
-void freerdp_peer_context_new(freerdp_peer* client)
+BOOL freerdp_peer_context_new(freerdp_peer* client)
 {
 	rdpRdp* rdp;
 	rdpContext* context;
+	BOOL ret = TRUE;
 
-	context = client->context = (rdpContext*) calloc(1, client->ContextSize);
+	if (!client)
+		return FALSE;
 
-	if (!context)
-		return;
+	if (!(context = (rdpContext*) calloc(1, client->ContextSize)))
+		goto fail_context;
 
+	client->context = context;
+
+	context->peer = client;
 	context->ServerMode = TRUE;
 
-	context->metrics = metrics_new(context);
+	if (!(context->metrics = metrics_new(context)))
+		goto fail_metrics;
 
-	rdp = rdp_new(context);
+	if (!(rdp = rdp_new(context)))
+		goto fail_rdp;
 
 	client->input = rdp->input;
 	client->update = rdp->update;
@@ -640,7 +691,6 @@ void freerdp_peer_context_new(freerdp_peer* client)
 	client->autodetect = rdp->autodetect;
 
 	context->rdp = rdp;
-	context->peer = client;
 	context->input = client->input;
 	context->update = client->update;
 	context->settings = client->settings;
@@ -653,7 +703,8 @@ void freerdp_peer_context_new(freerdp_peer* client)
 	update_register_server_callbacks(client->update);
 	autodetect_register_server_callbacks(client->autodetect);
 
-	transport_attach(rdp->transport, client->sockfd);
+	if (!transport_attach(rdp->transport, client->sockfd))
+		goto fail_transport_attach;
 
 	rdp->transport->ReceiveCallback = peer_recv_callback;
 	rdp->transport->ReceiveExtra = client;
@@ -662,7 +713,24 @@ void freerdp_peer_context_new(freerdp_peer* client)
 	client->IsWriteBlocked = freerdp_peer_is_write_blocked;
 	client->DrainOutputBuffer = freerdp_peer_drain_output_buffer;
 
-	IFCALL(client->ContextNew, client, client->context);
+	IFCALLRET(client->ContextNew, ret, client, client->context);
+
+	if (ret)
+		return TRUE;
+
+	WLog_ERR(TAG, "ContextNew callback failed");
+
+fail_transport_attach:
+	rdp_free(client->context->rdp);
+fail_rdp:
+	metrics_free(context->metrics);
+fail_metrics:
+	free(client->context);
+fail_context:
+	client->context = NULL;
+
+	WLog_ERR(TAG, "Failed to create new peer context");
+	return FALSE;
 }
 
 void freerdp_peer_context_free(freerdp_peer* client)
@@ -717,7 +785,10 @@ void freerdp_peer_free(freerdp_peer* client)
 	if (!client)
 		return;
 
-	rdp_free(client->context->rdp);
-	free(client->context);
+	if (client->context)
+	{
+		rdp_free(client->context->rdp);
+		free(client->context);
+	}
 	free(client);
 }

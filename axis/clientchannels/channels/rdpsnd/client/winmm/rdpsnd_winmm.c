@@ -36,7 +36,7 @@
 #include <freerdp/codec/dsp.h>
 #include <freerdp/channels/log.h>
 
-#include "../rdpsnd_main.h"
+#include "rdpsnd_main.h"
 
 typedef struct rdpsnd_winmm_plugin rdpsndWinmmPlugin;
 
@@ -130,8 +130,7 @@ static void CALLBACK rdpsnd_winmm_callback_function(HWAVEOUT hwo, UINT uMsg, DWO
 
 				winmm->device.WaveConfirm(&(winmm->device), wave);
 
-				if (lpWaveHdr->lpData)
-					free(lpWaveHdr->lpData);
+				free(lpWaveHdr->lpData);
 
 				free(wave);
 			}

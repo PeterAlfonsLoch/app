@@ -101,6 +101,8 @@ static void* clipboard_synthesize_cf_locale(wClipboard* clipboard, UINT32 format
 	UINT32* pDstData = NULL;
 
 	pDstData = (UINT32*) malloc(sizeof(UINT32));
+	if (!pDstData)
+		return NULL;
 	*pDstData = 0x0409; /* English - United States */
 
 	return (void*) pDstData;
@@ -354,10 +356,17 @@ static void* clipboard_synthesize_html_format(wClipboard* clipboard, UINT32 form
 		if (!pSrcData)
 		{
 			pSrcData = (char*) calloc(1, SrcSize + 1);
+			if (!pSrcData)
+				return NULL;
 			CopyMemory(pSrcData, data, SrcSize);
 		}
 
 		pDstData = (char*) calloc(1, SrcSize + 200);
+		if (!pDstData)
+		{
+			free(pSrcData);
+			return NULL;
+		}
 
 		strcpy(pDstData,
 			"Version:0.9\r\n"
@@ -372,7 +381,7 @@ static void* clipboard_synthesize_html_format(wClipboard* clipboard, UINT32 form
 			body = strstr(pSrcData, "<BODY");
 
 		/* StartHTML */
-		sprintf_s(num, sizeof(num), "%010lu", strlen(pDstData));
+		sprintf_s(num, sizeof(num), "%010lu", (unsigned long int)strlen(pDstData));
 		CopyMemory(&pDstData[23], num, 10);
 
 		if (!body)
@@ -381,12 +390,12 @@ static void* clipboard_synthesize_html_format(wClipboard* clipboard, UINT32 form
 		strcat(pDstData, "<!--StartFragment-->");
 
 		/* StartFragment */
-		sprintf_s(num, sizeof(num), "%010lu", strlen(pDstData));
+		sprintf_s(num, sizeof(num), "%010lu", (unsigned long int)strlen(pDstData));
 		CopyMemory(&pDstData[69], num, 10);
 		strcat(pDstData, pSrcData);
 
 		/* EndFragment */
-		sprintf_s(num, sizeof(num), "%010lu", strlen(pDstData));
+		sprintf_s(num, sizeof(num), "%010lu", (unsigned long int)strlen(pDstData));
 		CopyMemory(&pDstData[93], num, 10);
 		strcat(pDstData, "<!--EndFragment-->");
 
@@ -394,7 +403,7 @@ static void* clipboard_synthesize_html_format(wClipboard* clipboard, UINT32 form
 			strcat(pDstData, "</BODY></HTML>");
 
 		/* EndHTML */
-		sprintf_s(num, sizeof(num), "%010lu", strlen(pDstData));
+		sprintf_s(num, sizeof(num), "%010lu", (unsigned long int)strlen(pDstData));
 		CopyMemory(&pDstData[43], num, 10);
 
 		*pSize = (UINT32) strlen(pDstData) + 1;

@@ -4,6 +4,8 @@
  *
  * Copyright 2012 Fujitsu Technology Solutions GmbH
  * Copyright 2012 Dmitrij Jasnov <dmitrij.jasnov@ts.fujitsu.com>
+ * Copyright 2015 Thincast Technologies GmbH
+ * Copyright 2015 DI (FH) Martin Haimberger <martin.haimberger@thincast.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -122,6 +124,13 @@ DWORD TsProxySendToServer(handle_t IDL_handle, byte pRpcMessage[], UINT32 count,
 		return -1;
 
 	s = Stream_New(buffer, length);
+
+	if (!s)
+	{
+		free(buffer);
+		WLog_ERR(TAG, "Stream_New failed!");
+		return -1;
+	}
 	/* PCHANNEL_CONTEXT_HANDLE_NOSERIALIZE_NR (20 bytes) */
 	Stream_Write(s, &tsg->ChannelContext.ContextType, 4); /* ContextType (4 bytes) */
 	Stream_Write(s, tsg->ChannelContext.ContextUuid, 16); /* ContextUuid (16 bytes) */
@@ -731,7 +740,10 @@ BOOL TsProxyAuthorizeTunnelReadResponse(rdpTsg* tsg, RPC_PDU* pdu)
 	packetResponse = (PTSG_PACKET_RESPONSE) calloc(1, sizeof(TSG_PACKET_RESPONSE));
 
 	if (!packetResponse)
+	{
+		free(packet);
 		return FALSE;
+	}
 
 	packet->tsgPacket.packetResponse = packetResponse;
 	Pointer = *((UINT32*) &buffer[offset + 8]); /* PacketResponsePtr (4 bytes) */
@@ -881,7 +893,10 @@ BOOL TsProxyMakeTunnelCallReadResponse(rdpTsg* tsg, RPC_PDU* pdu)
 	packetMsgResponse = (PTSG_PACKET_MSG_RESPONSE) calloc(1, sizeof(TSG_PACKET_MSG_RESPONSE));
 
 	if (!packetMsgResponse)
+	{
+		free(packet);
 		return FALSE;
+	}
 
 	packet->tsgPacket.packetMsgResponse = packetMsgResponse;
 	Pointer = *((UINT32*) &buffer[offset + 8]); /* PacketMsgResponsePtr (4 bytes) */
@@ -896,7 +911,10 @@ BOOL TsProxyMakeTunnelCallReadResponse(rdpTsg* tsg, RPC_PDU* pdu)
 			packetStringMessage = (PTSG_PACKET_STRING_MESSAGE) calloc(1, sizeof(TSG_PACKET_STRING_MESSAGE));
 
 			if (!packetStringMessage)
-				return FALSE;
+			{
+				status = FALSE;
+				goto out;
+			}
 
 			packetMsgResponse->messagePacket.consentMessage = packetStringMessage;
 			Pointer = *((UINT32*) &buffer[offset + 28]); /* ConsentMessagePtr (4 bytes) */
@@ -916,7 +934,10 @@ BOOL TsProxyMakeTunnelCallReadResponse(rdpTsg* tsg, RPC_PDU* pdu)
 			packetStringMessage = (PTSG_PACKET_STRING_MESSAGE) calloc(1, sizeof(TSG_PACKET_STRING_MESSAGE));
 
 			if (!packetStringMessage)
-				return FALSE;
+			{
+				status = FALSE;
+				goto out;
+			}
 
 			packetMsgResponse->messagePacket.serviceMessage = packetStringMessage;
 			Pointer = *((UINT32*) &buffer[offset + 28]); /* ServiceMessagePtr (4 bytes) */
@@ -936,7 +957,10 @@ BOOL TsProxyMakeTunnelCallReadResponse(rdpTsg* tsg, RPC_PDU* pdu)
 			packetReauthMessage = (PTSG_PACKET_REAUTH_MESSAGE) calloc(1, sizeof(TSG_PACKET_REAUTH_MESSAGE));
 
 			if (!packetReauthMessage)
-				return FALSE;
+			{
+				status = FALSE;
+				goto out;
+			}
 
 			packetMsgResponse->messagePacket.reauthMessage = packetReauthMessage;
 			Pointer = *((UINT32*) &buffer[offset + 28]); /* ReauthMessagePtr (4 bytes) */
@@ -952,13 +976,12 @@ BOOL TsProxyMakeTunnelCallReadResponse(rdpTsg* tsg, RPC_PDU* pdu)
 			break;
 	}
 
+out:
 	if (packet)
 	{
 		if (packet->tsgPacket.packetMsgResponse)
 		{
-			if (packet->tsgPacket.packetMsgResponse->messagePacket.reauthMessage)
-				free(packet->tsgPacket.packetMsgResponse->messagePacket.reauthMessage);
-
+			free(packet->tsgPacket.packetMsgResponse->messagePacket.reauthMessage);
 			free(packet->tsgPacket.packetMsgResponse);
 		}
 
@@ -1609,42 +1632,62 @@ int tsg_check_event_handles(rdpTsg* tsg)
 	return status;
 }
 
-UINT32 tsg_get_event_handles(rdpTsg* tsg, HANDLE* events)
+DWORD tsg_get_event_handles(rdpTsg* tsg, HANDLE* events, DWORD count)
 {
 	UINT32 nCount = 0;
 	rdpRpc* rpc = tsg->rpc;
 	RpcVirtualConnection* connection = rpc->VirtualConnection;
 
-	if (events)
+	if (events && (nCount < count))
+	{
 		events[nCount] = rpc->client->PipeEvent;
-	nCount++;
+		nCount++;
+	}
+	else
+		return 0;
 
 	if (connection->DefaultInChannel && connection->DefaultInChannel->tls)
 	{
-		if (events)
+		if (events && (nCount < count))
+		{
 			BIO_get_event(connection->DefaultInChannel->tls->bio, &events[nCount]);
-		nCount++;
+			nCount++;
+		}
+		else
+			return 0;
 	}
 
 	if (connection->NonDefaultInChannel && connection->NonDefaultInChannel->tls)
 	{
-		if (events)
+		if (events && (nCount < count))
+		{
 			BIO_get_event(connection->NonDefaultInChannel->tls->bio, &events[nCount]);
-		nCount++;
+			nCount++;
+		}
+		else
+			return 0;
 	}
 
 	if (connection->DefaultOutChannel && connection->DefaultOutChannel->tls)
 	{
-		if (events)
+		if (events && (nCount < count))
+		{
 			BIO_get_event(connection->DefaultOutChannel->tls->bio, &events[nCount]);
-		nCount++;
+			nCount++;
+		}
+		else
+			return 0;
 	}
 
 	if (connection->NonDefaultOutChannel && connection->NonDefaultOutChannel->tls)
 	{
-		if (events)
+		if (events && (nCount < count))
+		{
 			BIO_get_event(connection->NonDefaultOutChannel->tls->bio, &events[nCount]);
-		nCount++;
+			nCount++;
+		}
+		else
+			return 0;
 	}
 
 	return nCount;
@@ -1700,11 +1743,14 @@ BOOL tsg_connect(rdpTsg* tsg, const char* hostname, UINT16 port, int timeout)
 	inChannel = connection->DefaultInChannel;
 	outChannel = connection->DefaultOutChannel;
 
-	nCount = tsg_get_event_handles(tsg, events);
+	nCount = tsg_get_event_handles(tsg, events, 64);
+
+	if (nCount == 0)
+		return FALSE;
 
 	while (tsg->state != TSG_STATE_PIPE_CREATED)
 	{
-		WaitForMultipleObjects(nCount, events, FALSE, 100);
+		WaitForMultipleObjects(nCount, events, FALSE, 250);
 
 		if (tsg_check_event_handles(tsg) < 0)
 		{
@@ -1897,10 +1943,11 @@ static int transport_bio_tsg_write(BIO* bio, const char* buf, int num)
 	if (status < 0)
 	{
 		BIO_clear_flags(bio, BIO_FLAGS_SHOULD_RETRY);
+		return -1;
 	}
 	else if (status == 0)
 	{
-		BIO_set_flags(bio, BIO_FLAGS_SHOULD_RETRY);
+		BIO_set_flags(bio, BIO_FLAGS_WRITE);
 		WSASetLastError(WSAEWOULDBLOCK);
 	}
 	else
@@ -1923,10 +1970,11 @@ static int transport_bio_tsg_read(BIO* bio, char* buf, int size)
 	if (status < 0)
 	{
 		BIO_clear_flags(bio, BIO_FLAGS_SHOULD_RETRY);
+		return -1;
 	}
 	else if (status == 0)
 	{
-		BIO_set_flags(bio, BIO_FLAGS_SHOULD_RETRY);
+		BIO_set_flags(bio, BIO_FLAGS_READ);
 		WSASetLastError(WSAEWOULDBLOCK);
 	}
 	else
@@ -1957,8 +2005,8 @@ static long transport_bio_tsg_ctrl(BIO* bio, int cmd, long arg1, void* arg2)
 
 	if (cmd == BIO_CTRL_FLUSH)
 	{
-		BIO_flush(inChannel->tls->bio);
-		BIO_flush(outChannel->tls->bio);
+		(void)BIO_flush(inChannel->tls->bio);
+		(void)BIO_flush(outChannel->tls->bio);
 		status = 1;
 	}
 	else if (cmd == BIO_C_GET_EVENT)

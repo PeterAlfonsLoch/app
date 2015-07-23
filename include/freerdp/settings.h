@@ -399,6 +399,7 @@ struct rdp_monitor
 	INT32 width;
 	INT32 height;
 	UINT32 is_primary;
+	UINT32 orig_screen;
 };
 typedef struct rdp_monitor rdpMonitor;
 
@@ -691,6 +692,9 @@ typedef struct _RDPDR_PARALLEL RDPDR_PARALLEL;
 #define FreeRDP_GatewayUseSameCredentials			1991
 #define FreeRDP_GatewayEnabled					1992
 #define FreeRDP_GatewayBypassLocal				1993
+#define FreeRDP_GatewayRpcTransport				1994
+#define FreeRDP_GatewayHttpTransport				1995
+#define FreeRDP_GatewayUdpTransport				1996
 #define FreeRDP_RemoteApplicationMode				2112
 #define FreeRDP_RemoteApplicationName				2113
 #define FreeRDP_RemoteApplicationIcon				2114
@@ -897,7 +901,10 @@ struct rdp_settings
 	ALIGN64 BOOL ListMonitors; /* 392 */
 	ALIGN64 UINT32* MonitorIds; /* 393 */
 	ALIGN64 UINT32 NumMonitorIds; /* 394 */
-	UINT64 padding0448[448 - 395]; /* 395 */
+	ALIGN64 UINT32 MonitorLocalShiftX; /*395 */
+	ALIGN64 UINT32 MonitorLocalShiftY; /* 396 */
+	UINT64 padding0448[448 - 397]; /* 397 */
+
 
 	/* Client Message Channel Data */
 	UINT64 padding0512[512 - 448]; /* 448 */
@@ -1025,7 +1032,8 @@ struct rdp_settings
 	ALIGN64 UINT32 RedirectionTsvUrlLength; /* 1227 */
 	ALIGN64 UINT32 TargetNetAddressCount; /* 1228 */
 	ALIGN64 char** TargetNetAddresses; /* 1229 */
-	UINT64 padding1280[1280 - 1230]; /* 1230 */
+	ALIGN64 UINT32* TargetNetPorts; /* 1230 */
+	UINT64 padding1280[1280 - 1231]; /* 1231 */
 
 	/**
 	 * Security
@@ -1125,7 +1133,10 @@ struct rdp_settings
 	ALIGN64 BOOL GatewayUseSameCredentials; /* 1991 */
 	ALIGN64 BOOL GatewayEnabled; /* 1992 */
 	ALIGN64 BOOL GatewayBypassLocal; /* 1993 */
-	UINT64 padding2048[2048 - 1994]; /* 1994 */
+	ALIGN64 BOOL GatewayRpcTransport; /* 1994 */
+	ALIGN64 BOOL GatewayHttpTransport; /* 1995 */
+	ALIGN64 BOOL GatewayUdpTransport; /* 1996 */
+	UINT64 padding2048[2048 - 1997]; /* 1997 */
 	UINT64 padding2112[2112 - 2048]; /* 2048 */
 
 	/**
@@ -1424,17 +1435,17 @@ FREERDP_API int freerdp_addin_replace_argument(ADDIN_ARGV* args, char* previous,
 FREERDP_API int freerdp_addin_set_argument_value(ADDIN_ARGV* args, char* option, char* value);
 FREERDP_API int freerdp_addin_replace_argument_value(ADDIN_ARGV* args, char* previous, char* option, char* value);
 
-FREERDP_API void freerdp_device_collection_add(rdpSettings* settings, RDPDR_DEVICE* device);
+FREERDP_API BOOL freerdp_device_collection_add(rdpSettings* settings, RDPDR_DEVICE* device);
 FREERDP_API RDPDR_DEVICE* freerdp_device_collection_find(rdpSettings* settings, const char* name);
 FREERDP_API RDPDR_DEVICE* freerdp_device_clone(RDPDR_DEVICE* device);
 FREERDP_API void freerdp_device_collection_free(rdpSettings* settings);
 
-FREERDP_API void freerdp_static_channel_collection_add(rdpSettings* settings, ADDIN_ARGV* channel);
+FREERDP_API BOOL freerdp_static_channel_collection_add(rdpSettings* settings, ADDIN_ARGV* channel);
 FREERDP_API ADDIN_ARGV* freerdp_static_channel_collection_find(rdpSettings* settings, const char* name);
 FREERDP_API ADDIN_ARGV* freerdp_static_channel_clone(ADDIN_ARGV* channel);
 FREERDP_API void freerdp_static_channel_collection_free(rdpSettings* settings);
 
-FREERDP_API void freerdp_dynamic_channel_collection_add(rdpSettings* settings, ADDIN_ARGV* channel);
+FREERDP_API BOOL freerdp_dynamic_channel_collection_add(rdpSettings* settings, ADDIN_ARGV* channel);
 FREERDP_API ADDIN_ARGV* freerdp_dynamic_channel_collection_find(rdpSettings* settings, const char* name);
 FREERDP_API ADDIN_ARGV* freerdp_dynamic_channel_clone(ADDIN_ARGV* channel);
 FREERDP_API void freerdp_dynamic_channel_collection_free(rdpSettings* settings);

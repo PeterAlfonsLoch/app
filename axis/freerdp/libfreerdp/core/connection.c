@@ -3,6 +3,8 @@
  * Connection Sequence
  *
  * Copyright 2011 Marc-Andre Moreau <marcandre.moreau@gmail.com>
+ * Copyright 2015 Thincast Technologies GmbH
+ * Copyright 2015 DI (FH) Martin Haimberger <martin.haimberger@thincast.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -332,11 +334,13 @@ BOOL rdp_client_redirect(rdpRdp* rdp)
 	rdpSettings* settings = rdp->settings;
 
 	rdp_client_disconnect(rdp);
-	rdp_redirection_apply_settings(rdp);
+	if (rdp_redirection_apply_settings(rdp) != 0)
+		return FALSE;
 
 	if (settings->RedirectionFlags & LB_LOAD_BALANCE_INFO)
 	{
-		nego_set_routing_token(rdp->nego, settings->LoadBalanceInfo, settings->LoadBalanceInfoLength);
+		if (!nego_set_routing_token(rdp->nego, settings->LoadBalanceInfo, settings->LoadBalanceInfoLength))
+			return FALSE;
 	}
 	else
 	{
@@ -344,16 +348,22 @@ BOOL rdp_client_redirect(rdpRdp* rdp)
 		{
 			free(settings->ServerHostname);
 			settings->ServerHostname = _strdup(settings->RedirectionTargetFQDN);
+			if (!settings->ServerHostname)
+				return FALSE;
 		}
 		else if (settings->RedirectionFlags & LB_TARGET_NET_ADDRESS)
 		{
 			free(settings->ServerHostname);
 			settings->ServerHostname = _strdup(settings->TargetNetAddress);
+			if (!settings->ServerHostname)
+				return FALSE;
 		}
 		else if (settings->RedirectionFlags & LB_TARGET_NETBIOS_NAME)
 		{
 			free(settings->ServerHostname);
 			settings->ServerHostname = _strdup(settings->RedirectionTargetNetBiosName);
+			if (!settings->ServerHostname)
+				return FALSE;
 		}
 	}
 
@@ -361,12 +371,16 @@ BOOL rdp_client_redirect(rdpRdp* rdp)
 	{
 		free(settings->Username);
 		settings->Username = _strdup(settings->RedirectionUsername);
+		if (!settings->Username)
+			return FALSE;
 	}
 
 	if (settings->RedirectionFlags & LB_DOMAIN)
 	{
 		free(settings->Domain);
 		settings->Domain = _strdup(settings->RedirectionDomain);
+		if (!settings->Domain)
+			return FALSE;
 	}
 
 	status = rdp_client_connect(rdp);
@@ -386,7 +400,7 @@ BOOL rdp_client_reconnect(rdpRdp* rdp)
 	status = rdp_client_connect(rdp);
 
 	if (status)
-		freerdp_channels_post_connect(channels, context->instance);
+		status = (freerdp_channels_post_connect(channels, context->instance) >= 0);
 
 	return status;
 }
@@ -415,8 +429,7 @@ static BOOL rdp_client_establish_keys(rdpRdp* rdp)
 
 	/* encrypt client random */
 
-	if (settings->ClientRandom)
-		free(settings->ClientRandom);
+	free(settings->ClientRandom);
 
 	settings->ClientRandomLength = CLIENT_RANDOM_LENGTH;
 	settings->ClientRandom = malloc(settings->ClientRandomLength);
@@ -443,6 +456,12 @@ static BOOL rdp_client_establish_keys(rdpRdp* rdp)
 	/* send crypt client random to server */
 	length = RDP_PACKET_HEADER_MAX_LENGTH + RDP_SECURITY_HEADER_LENGTH + 4 + key_len + 8;
 	s = Stream_New(NULL, length);
+
+	if (!s)
+	{
+		WLog_ERR(TAG, "Stream_New failed!");
+		goto end;
+	}
 
 	rdp_write_header(rdp, s, length, MCS_GLOBAL_CHANNEL_ID);
 	rdp_write_security_header(s, SEC_EXCHANGE_PKT | SEC_LICENSE_ENCRYPT_SC);
@@ -509,8 +528,7 @@ static BOOL rdp_client_establish_keys(rdpRdp* rdp)
 	}
 	ret = TRUE;
 end:
-	if (crypt_client_random)
-		free(crypt_client_random);
+	free(crypt_client_random);
 	return ret;
 }
 
@@ -628,11 +646,9 @@ BOOL rdp_server_establish_keys(rdpRdp* rdp, wStream* s)
 	}
 	ret = TRUE;
 end:
-	if (crypt_client_random)
-		free(crypt_client_random);
+	free(crypt_client_random);
 end2:
-	if (client_random)
-		free(client_random);
+	free(client_random);
 
 	return ret;
 }
@@ -751,7 +767,12 @@ BOOL rdp_client_connect_auto_detect(rdpRdp* rdp, wStream* s)
 		{
 			if (channelId == rdp->mcs->messageChannelId)
 			{
-				if (rdp_recv_message_channel_pdu(rdp, s) == 0)
+				UINT16 securityFlags;
+
+				if (!rdp_read_security_header(s, &securityFlags))
+					return FALSE;
+
+				if (rdp_recv_message_channel_pdu(rdp, s, securityFlags) == 0)
 					return TRUE;
 			}
 		}
@@ -817,7 +838,11 @@ int rdp_client_connect_demand_active(rdpRdp* rdp, wStream* s)
 	if (!rdp_send_confirm_active(rdp))
 		return -1;
 
-	input_register_client_callbacks(rdp->input);
+	if (!input_register_client_callbacks(rdp->input))
+	{
+		WLog_ERR(TAG, "error registering client callbacks");
+		return -1;
+	}
 
 	/**
 	 * The server may request a different desktop size during Deactivation-Reactivation sequence.
@@ -825,7 +850,15 @@ int rdp_client_connect_demand_active(rdpRdp* rdp, wStream* s)
 	 */
 	if (width != rdp->settings->DesktopWidth || height != rdp->settings->DesktopHeight)
 	{
-		IFCALL(rdp->update->DesktopResize, rdp->update->context);
+		BOOL status = TRUE;
+
+		IFCALLRET(rdp->update->DesktopResize, status, rdp->update->context);
+
+		if (!status)
+		{
+			WLog_ERR(TAG, "client desktop resize callback failed");
+			return -1;
+		}
 	}
 
 	rdp_client_transition_to_state(rdp, CONNECTION_STATE_FINALIZATION);

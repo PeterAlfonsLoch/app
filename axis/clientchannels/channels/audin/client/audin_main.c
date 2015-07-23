@@ -176,7 +176,14 @@ static int audin_process_formats(IWTSVirtualChannelCallback* pChannelCallback, w
 			/* Store the agreed format in the corresponding index */
 			callback->formats[callback->formats_count++] = format;
 			/* Put the format to output buffer */
-			Stream_EnsureRemainingCapacity(out, 18 + format.cbSize);
+			if (!Stream_EnsureRemainingCapacity(out, 18 + format.cbSize))
+			{
+				free(callback->formats);
+				Stream_Free(out, TRUE);
+				return 1;
+			}
+
+
 			Stream_Write(out, fm, 18 + format.cbSize);
 		}
 	}
@@ -353,7 +360,7 @@ static int audin_on_close(IWTSVirtualChannelCallback* pChannelCallback)
 	AUDIN_CHANNEL_CALLBACK* callback = (AUDIN_CHANNEL_CALLBACK*) pChannelCallback;
 	AUDIN_PLUGIN* audin = (AUDIN_PLUGIN*) callback->plugin;
 
-	DEBUG_DVC("");
+	DEBUG_DVC("...");
 
 	if (audin->device)
 		IFCALL(audin->device->Close, audin->device);
@@ -371,7 +378,7 @@ static int audin_on_new_channel_connection(IWTSListenerCallback* pListenerCallba
 	AUDIN_CHANNEL_CALLBACK* callback;
 	AUDIN_LISTENER_CALLBACK* listener_callback = (AUDIN_LISTENER_CALLBACK*) pListenerCallback;
 
-	DEBUG_DVC("");
+	DEBUG_DVC("...");
 
 	callback = (AUDIN_CHANNEL_CALLBACK*) malloc(sizeof(AUDIN_CHANNEL_CALLBACK));
 	ZeroMemory(callback, sizeof(AUDIN_CHANNEL_CALLBACK));
@@ -391,7 +398,7 @@ static int audin_plugin_initialize(IWTSPlugin* pPlugin, IWTSVirtualChannelManage
 {
 	AUDIN_PLUGIN* audin = (AUDIN_PLUGIN*) pPlugin;
 
-	DEBUG_DVC("");
+	DEBUG_DVC("...");
 
 	audin->listener_callback = (AUDIN_LISTENER_CALLBACK*) malloc(sizeof(AUDIN_LISTENER_CALLBACK));
 	ZeroMemory(audin->listener_callback, sizeof(AUDIN_LISTENER_CALLBACK));
@@ -408,7 +415,7 @@ static int audin_plugin_terminated(IWTSPlugin* pPlugin)
 {
 	AUDIN_PLUGIN* audin = (AUDIN_PLUGIN*) pPlugin;
 
-	DEBUG_DVC("");
+	DEBUG_DVC("...");
 
 	if (audin->device)
 	{
@@ -468,17 +475,13 @@ static BOOL audin_load_device_plugin(IWTSPlugin* pPlugin, const char* name, ADDI
 
 void audin_set_subsystem(AUDIN_PLUGIN* audin, char* subsystem)
 {
-	if (audin->subsystem)
-		free(audin->subsystem);
-
+	free(audin->subsystem);
 	audin->subsystem = _strdup(subsystem);
 }
 
 void audin_set_device_name(AUDIN_PLUGIN* audin, char* device_name)
 {
-	if (audin->device_name)
-		free(audin->device_name);
-
+	free(audin->device_name);
 	audin->device_name = _strdup(device_name);
 }
 
@@ -585,6 +588,15 @@ int DVCPluginEntry(IDRDYNVC_ENTRY_POINTS* pEntryPoints)
 	{
 		audin_set_subsystem(audin, "pulse");
 		audin_set_device_name(audin, "");
+		audin_load_device_plugin((IWTSPlugin*) audin, audin->subsystem, args);
+	}
+#endif
+
+#if defined(WITH_OSS)
+	if (!audin->device)
+	{
+		audin_set_subsystem(audin, "oss");
+		audin_set_device_name(audin, "default");
 		audin_load_device_plugin((IWTSPlugin*) audin, audin->subsystem, args);
 	}
 #endif

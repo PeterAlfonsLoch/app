@@ -25,7 +25,7 @@
 #include <freerdp/primitives.h>
 #include <winpr/sysinfo.h>
 
-#if defined(WITH_SSE2) && defined(__SSSE3__)
+#ifdef WITH_SSE2
 #include <emmintrin.h>
 #include <tmmintrin.h>
 #elif defined(WITH_NEON)

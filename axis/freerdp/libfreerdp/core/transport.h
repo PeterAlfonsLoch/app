@@ -35,6 +35,7 @@ typedef struct rdp_transport rdpTransport;
 #include "nla.h"
 
 #include "gateway/tsg.h"
+#include "gateway/rdg.h"
 
 #include <winpr/sspi.h>
 #include <winpr/wlog.h>
@@ -56,6 +57,7 @@ struct rdp_transport
 {
 	TRANSPORT_LAYER layer;
 	BIO* frontBio;
+	rdpRdg* rdg;
 	rdpTsg* tsg;
 	rdpTls* tls;
 	rdpContext* context;
@@ -74,6 +76,7 @@ struct rdp_transport
 	BOOL GatewayEnabled;
 	CRITICAL_SECTION ReadLock;
 	CRITICAL_SECTION WriteLock;
+	ULONG written;
 };
 
 wStream* transport_send_stream_init(rdpTransport* transport, int size);
@@ -93,7 +96,7 @@ int transport_write(rdpTransport* transport, wStream* s);
 void transport_get_fds(rdpTransport* transport, void** rfds, int* rcount);
 int transport_check_fds(rdpTransport* transport);
 
-UINT32 transport_get_event_handles(rdpTransport* transport, HANDLE* events);
+DWORD transport_get_event_handles(rdpTransport* transport, HANDLE* events, DWORD nCount);
 
 BOOL transport_set_blocking_mode(rdpTransport* transport, BOOL blocking);
 void transport_set_gateway_enabled(rdpTransport* transport, BOOL GatewayEnabled);

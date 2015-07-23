@@ -84,8 +84,7 @@ void crypto_rc4(CryptoRc4 rc4, UINT32 length, const BYTE* in_data, BYTE* out_dat
 
 void crypto_rc4_free(CryptoRc4 rc4)
 {
-	if (rc4)
-		free(rc4);
+	free(rc4);
 }
 
 CryptoDes3 crypto_des3_encrypt_init(const BYTE* key, const BYTE* ivec)
@@ -112,19 +111,20 @@ CryptoDes3 crypto_des3_decrypt_init(const BYTE* key, const BYTE* ivec)
 	return des3;
 }
 
-void crypto_des3_encrypt(CryptoDes3 des3, UINT32 length, const BYTE* in_data, BYTE* out_data)
+BOOL crypto_des3_encrypt(CryptoDes3 des3, UINT32 length, const BYTE* in_data, BYTE* out_data)
 {
 	int len;
-	EVP_EncryptUpdate(&des3->des3_ctx, out_data, &len, in_data, length);
+	return EVP_EncryptUpdate(&des3->des3_ctx, out_data, &len, in_data, length) == 1;
 }
 
-void crypto_des3_decrypt(CryptoDes3 des3, UINT32 length, const BYTE* in_data, BYTE* out_data)
+BOOL crypto_des3_decrypt(CryptoDes3 des3, UINT32 length, const BYTE* in_data, BYTE* out_data)
 {
 	int len;
-	EVP_DecryptUpdate(&des3->des3_ctx, out_data, &len, in_data, length);
+	int ret = EVP_DecryptUpdate(&des3->des3_ctx, out_data, &len, in_data, length);
 
 	if (length != len)
 		abort(); /* TODO */
+	return ret == 1;
 }
 
 void crypto_des3_free(CryptoDes3 des3)
@@ -145,14 +145,24 @@ CryptoHmac crypto_hmac_new(void)
 	return hmac;
 }
 
-void crypto_hmac_sha1_init(CryptoHmac hmac, const BYTE* data, UINT32 length)
+BOOL crypto_hmac_sha1_init(CryptoHmac hmac, const BYTE* data, UINT32 length)
 {
+#if (OPENSSL_VERSION_NUMBER >= 0x00909000)
+	return HMAC_Init_ex(&hmac->hmac_ctx, data, length, EVP_sha1(), NULL) == 1;
+#else
 	HMAC_Init_ex(&hmac->hmac_ctx, data, length, EVP_sha1(), NULL);
+	return TRUE;
+#endif
 }
 
-void crypto_hmac_md5_init(CryptoHmac hmac, const BYTE* data, UINT32 length)
+BOOL crypto_hmac_md5_init(CryptoHmac hmac, const BYTE* data, UINT32 length)
 {
+#if (OPENSSL_VERSION_NUMBER >= 0x00909000)
+	return HMAC_Init_ex(&hmac->hmac_ctx, data, length, EVP_md5(), NULL) == 1;
+#else
 	HMAC_Init_ex(&hmac->hmac_ctx, data, length, EVP_md5(), NULL);
+	return TRUE;
+#endif
 }
 
 void crypto_hmac_update(CryptoHmac hmac, const BYTE* data, UINT32 length)
@@ -221,6 +231,11 @@ BOOL crypto_cert_get_public_key(CryptoCert cert, BYTE** PublicKey, DWORD* Public
 	*PublicKeyLength = (DWORD) length;
 	*PublicKey = (BYTE*) malloc(length);
 	ptr = (BYTE*) (*PublicKey);
+	if (!ptr)
+	{
+		status = FALSE;
+		goto exit;
+	}
 
 	i2d_PublicKey(pkey, &ptr);
 
@@ -278,7 +293,7 @@ static int crypto_rsa_common(const BYTE* input, int length, UINT32 key_length, c
 	BN_free(&mod);
 	BN_CTX_free(ctx);
 
-out_free_input_reverse: 
+out_free_input_reverse:
 	free(input_reverse);
 
 	return output_length;
@@ -366,13 +381,13 @@ char* crypto_print_name(X509_NAME* name)
 {
 	char* buffer = NULL;
 	BIO* outBIO = BIO_new(BIO_s_mem());
-	
+
 	if (X509_NAME_print_ex(outBIO, name, 0, XN_FLAG_ONELINE) > 0)
 	{
 		unsigned long size = BIO_number_written(outBIO);
-		buffer = malloc(size + 1);
-		ZeroMemory(buffer, size + 1);
-		memset(buffer, 0, size + 1);
+		buffer = calloc(1, size + 1);
+		if (!buffer)
+			return NULL;
 		BIO_read(outBIO, buffer, size);
 	}
 
@@ -423,12 +438,11 @@ char* crypto_cert_subject_common_name(X509* xcert, int* length)
 }
 
 FREERDP_API void crypto_cert_subject_alt_name_free(int count, int *lengths,
-		char** alt_name)
+						   char** alt_name)
 {
 	int i;
 
-	if (lengths)
-		free(lengths);
+	free(lengths);
 
 	if (alt_name)
 	{
@@ -462,7 +476,16 @@ char** crypto_cert_subject_alt_name(X509* xcert, int* count, int** lengths)
 	if (num_subject_alt_names)
 	{
 		strings = (char**) malloc(sizeof(char*) * num_subject_alt_names);
+		if (!strings)
+			goto out;
+
 		*lengths = (int*) malloc(sizeof(int) * num_subject_alt_names);
+		if (!*lengths)
+		{
+			free(strings);
+			strings = NULL;
+			goto out;
+		}
 	}
 
 	for (index = 0; index < num_subject_alt_names; ++index)
@@ -485,6 +508,8 @@ char** crypto_cert_subject_alt_name(X509* xcert, int* count, int** lengths)
 		*lengths = NULL ;
 		return NULL;
 	}
+
+out:
 	GENERAL_NAMES_free(subject_alt_names);
 
 	return strings;
@@ -523,7 +548,7 @@ BOOL x509_verify_certificate(CryptoCert cert, char* certificate_store_path)
 
 	if (certificate_store_path != NULL)
 	{
-		X509_LOOKUP_add_dir(lookup, certificate_store_path, X509_FILETYPE_ASN1);
+		X509_LOOKUP_add_dir(lookup, certificate_store_path, X509_FILETYPE_PEM);
 	}
 
 	csc = X509_STORE_CTX_new();
@@ -533,7 +558,7 @@ BOOL x509_verify_certificate(CryptoCert cert, char* certificate_store_path)
 
 	X509_STORE_set_flags(cert_ctx, 0);
 
-	if (!X509_STORE_CTX_init(csc, cert_ctx, xcert, 0))
+	if (!X509_STORE_CTX_init(csc, cert_ctx, xcert, cert->px509chain))
 		goto end;
 
 	if (X509_verify_cert(csc) == 1)
@@ -546,8 +571,10 @@ end:
 	return status;
 }
 
-rdpCertificateData* crypto_get_certificate_data(X509* xcert, char* hostname)
+rdpCertificateData* crypto_get_certificate_data(X509* xcert, char* hostname, UINT16 port)
 {
+	char* issuer;
+	char* subject;
 	char* fp;
 	rdpCertificateData* certdata;
 
@@ -555,7 +582,13 @@ rdpCertificateData* crypto_get_certificate_data(X509* xcert, char* hostname)
 	if (!fp)
 		return NULL;
 
-	certdata = certificate_data_new(hostname, fp);
+	issuer = crypto_cert_issuer(xcert);
+	subject = crypto_cert_subject(xcert);
+
+	certdata = certificate_data_new(hostname, port, issuer, subject, fp);
+
+	free(subject);
+	free(issuer);
 	free(fp);
 
 	return certdata;
@@ -581,8 +614,8 @@ void crypto_cert_print_info(X509* xcert)
 	WLog_INFO(TAG,  "\tIssuer: %s", issuer);
 	WLog_INFO(TAG,  "\tThumbprint: %s", fp);
 	WLog_INFO(TAG,  "The above X.509 certificate could not be verified, possibly because you do not have "
-			  "the CA certificate in your certificate store, or the certificate has expired. "
-			  "Please look at the documentation on how to create local certificate store for a private CA.");
+			"the CA certificate in your certificate store, or the certificate has expired. "
+			"Please look at the documentation on how to create local certificate store for a private CA.");
 	free(fp);
 out_free_issuer:
 	free(issuer);

@@ -25,13 +25,14 @@
 #include <winpr/crt.h>
 #include <winpr/stream.h>
 
-void Stream_EnsureCapacity(wStream* s, size_t size)
+BOOL Stream_EnsureCapacity(wStream* s, size_t size)
 {
 	if (s->capacity < size)
 	{
 		size_t position;
 		size_t old_capacity;
 		size_t new_capacity;
+		BYTE* new_buf;
 
 		old_capacity = s->capacity;
 		new_capacity = old_capacity;
@@ -42,23 +43,27 @@ void Stream_EnsureCapacity(wStream* s, size_t size)
 		}
 		while (new_capacity < size);
 
-		s->capacity = new_capacity;
-		s->length = new_capacity;
 
 		position = Stream_GetPosition(s);
 
-		s->buffer = (BYTE*) realloc(s->buffer, s->capacity);
-
+		new_buf = (BYTE*) realloc(s->buffer, new_capacity);
+		if (!new_buf)
+			return FALSE;
+		s->buffer = new_buf;
+		s->capacity = new_capacity;
+		s->length = new_capacity;
 		ZeroMemory(&s->buffer[old_capacity], s->capacity - old_capacity);
 
 		Stream_SetPosition(s, position);
 	}
+	return TRUE;
 }
 
-void Stream_EnsureRemainingCapacity(wStream* s, size_t size)
+BOOL Stream_EnsureRemainingCapacity(wStream* s, size_t size)
 {
 	if (Stream_GetPosition(s) + size > Stream_Capacity(s))
-		Stream_EnsureCapacity(s, Stream_Capacity(s) + size);
+		return Stream_EnsureCapacity(s, Stream_Capacity(s) + size);
+	return TRUE;
 }
 
 wStream* Stream_New(BYTE* buffer, size_t size)
@@ -97,10 +102,7 @@ void Stream_Free(wStream* s, BOOL bFreeBuffer)
 	if (s)
 	{
 		if (bFreeBuffer)
-		{
-			if (s->buffer)
-				free(s->buffer);
-		}
+			free(s->buffer);
 
 		free(s);
 	}

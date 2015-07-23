@@ -228,7 +228,7 @@ typedef unsigned long trio_flags_t;
 
 
 /*************************************************************************
- * Session specific definitions
+ * Platform specific definitions
  */
 #if defined(TRIO_PLATFORM_UNIX)
 # include <unistd.h>
