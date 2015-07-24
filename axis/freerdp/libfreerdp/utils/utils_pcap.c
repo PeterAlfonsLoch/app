@@ -37,14 +37,14 @@
 #include <sys/timeb.h>
 #include <winpr/windows.h>
 
-int gettimeofday(struct timeval* tp, void* tz)
-{
-	struct _timeb timebuffer;
-	_ftime(&timebuffer);
-	tp->tv_sec = (long) timebuffer.time;
-	tp->tv_usec = timebuffer.millitm * 1000;
-	return 0;
-}
+//int gettimeofday(struct timeval* tp, void* tz)
+//{
+//	struct _timeb timebuffer;
+//	_ftime(&timebuffer);
+//	tp->tv_sec = (long) timebuffer.time;
+//	tp->tv_usec = timebuffer.millitm * 1000;
+//	return 0;
+//}
 #endif
 
 #include <freerdp/types.h>

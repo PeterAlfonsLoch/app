@@ -99,7 +99,7 @@ typedef volatile LONG my_pthread_once_t;
   FILETIME ft;
   __int64 i64;
  };
-struct timespec {
+struct my_timespec {
   union ft64 tv;
   /* The MAX timeout value in millisecond for pthread_cond_timedwait */
   long max_timeout_msec;

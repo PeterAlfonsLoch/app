@@ -1,7 +1,7 @@
 //#include "framework.h"
 
 
-
+extern "C"
 struct tm *gmtime_r(const time_t *timep,struct tm *result)
 {
 
@@ -27,3 +27,17 @@ struct tm *gmtime_r(const time_t *timep,struct tm *result)
 }
 
 
+#include <time.h>
+#include <sys/timeb.h>
+//#include <winpr/windows.h>
+
+// From FreeRDP utils_pcap.c - 2015-07-24
+extern "C"
+int gettimeofday(struct timeval* tp, void* tz)
+{
+   struct _timeb timebuffer;
+   _ftime(&timebuffer);
+   tp->tv_sec = (long)timebuffer.time;
+   tp->tv_usec = timebuffer.millitm * 1000;
+   return 0;
+}

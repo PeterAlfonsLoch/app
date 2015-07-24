@@ -41,6 +41,7 @@ my_bool init_tmpdir(MY_TMPDIR *tmpdir, const char *pathlist)
       pathlist=getenv("TEMP");
     if (!pathlist)
       pathlist=getenv("TMP");
+    const char * P_tmpdir = "/temp";
 #endif
     if (!pathlist || !pathlist[0])
       pathlist=(char*) P_tmpdir;
