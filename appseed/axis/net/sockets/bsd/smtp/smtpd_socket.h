@@ -30,7 +30,8 @@ namespace sockets
    /** Smtp server axis class. */
    class CLASS_DECL_AXIS smtpd_socket : public tcp_socket
    {
-   protected:
+   public:
+      
       typedef enum {
          SMTP_NO_HELLO,
          SMTP_NAME_TOO_LONG,
@@ -38,7 +39,12 @@ namespace sockets
          SMTP_QUIT
       } reason_t;
 
-   public:
+      bool m_hello; // we need HELO or EHLO first of all
+      bool m_data;
+      bool m_header;
+      string m_header_line;
+
+
       smtpd_socket(base_socket_handler&);
 
       void OnAccept();
@@ -69,11 +75,6 @@ namespace sockets
 
       virtual void OnNotSupported(const string & cmd, const string & arg) = 0;
 
-   private:
-      bool m_hello; // we need HELO or EHLO first of all
-      bool m_data;
-      bool m_header;
-      string m_header_line;
    };
 
 } // namespace sockets

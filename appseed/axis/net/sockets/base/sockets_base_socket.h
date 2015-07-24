@@ -64,14 +64,6 @@ namespace sockets
 
          virtual int run();
 
-
-      private:
-
-
-         socket_thread(const socket_thread& s);
-         socket_thread& operator=(const socket_thread& ) { return *this; }
-
-
       };
 
       /** Data pass class from source to destination. */
@@ -208,7 +200,6 @@ namespace sockets
       };
       */
 
-   public:
       /** "Default" constructor */
       base_socket(base_socket_handler&);
 

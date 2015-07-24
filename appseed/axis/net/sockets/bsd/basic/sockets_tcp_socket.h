@@ -48,7 +48,7 @@ namespace sockets
       virtual public stream_socket
    {
       /** \defgroup internal Internal utility */
-   protected:
+   public:
       /** Output buffer struct.
       \ingroup internal */
       struct OUTPUT {
@@ -82,7 +82,8 @@ namespace sockets
       };
       typedef list<OUTPUT *> output_list;
 
-   public:
+      ::file::circular_buffer ibuf; ///< Circular input buffer
+      string m_strUrl;
 
       mutex *        m_pmutexSslCtx;
       //
@@ -120,7 +121,6 @@ namespace sockets
       sp(ssl_client_context)     m_spsslclientcontext;
       string                     m_strInitSSLClientContext;
 
-      tcp_socket(const tcp_socket& );
       /** Constructor with standard values on input/output buffers. */
       tcp_socket(base_socket_handler& );
       /** Constructor with custom values for i/o buffer.
@@ -265,17 +265,11 @@ namespace sockets
       /** SSL; get ssl password. */
       const string & GetPassword();
 
-      ::file::circular_buffer ibuf; ///< Circular input buffer
-   public:
 
       virtual string get_url();
 
       virtual string get_short_description();
 
-      string m_strUrl;
-
-   private:
-      tcp_socket& operator=(const tcp_socket& ) { return *this; }
 
       /** the actual send() */
       ::primitive::memory_size try_write(const void * buf, ::primitive::memory_size len);

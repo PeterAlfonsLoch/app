@@ -40,7 +40,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
       class CLASS_DECL_AXIS udp_socket : 
          virtual public socket
       {
-      private:
+      public:
 
 
          char *m_ibuf; ///< Input buffer
@@ -51,8 +51,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          int32_t m_retries;
          bool m_b_read_ts;
 
-
-      public:
 
          int m_iWriteFlags;
 
@@ -188,8 +186,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          int32_t ReadTS(char *ioBuf, int32_t inBufSize, struct sockaddr *from, socklen_t fromlen, struct timeval *ts);
 #endif
 
-      private:
-         udp_socket& operator=(const udp_socket& ) { return *this; }
          /** create before using sendto methods */
          void CreateConnection();
 

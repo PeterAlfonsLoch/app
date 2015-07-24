@@ -65,8 +65,6 @@ namespace sockets
 
       
    
-   private:
-      httpd_socket& operator=(const httpd_socket& s);
       size_t m_received;
       string m_http_date;
    

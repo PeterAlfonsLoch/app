@@ -40,12 +40,8 @@ namespace sockets
 
 
 
-      http_base_socket(const http_base_socket& s);
-   protected:
       void Reset();
 
-   private:
-      http_base_socket& operator=(const http_base_socket& ) { return *this; } // assignment operator
       void Execute();
       int m_iContentLength;
    };

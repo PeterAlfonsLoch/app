@@ -50,6 +50,7 @@ namespace file
       path(e_path epath = path_file) { m_epath = epath; }
       path(const string & str,e_path epath = path_none): string(str) { m_epath = get_path_type(str, epath); normalize(); }
       path(const id & id,e_path epath = path_none): string(id) { m_epath = get_path_type(*this,epath); normalize(); }
+      path(const var & var, e_path epath = path_none) : string(var) { m_epath = get_path_type(*this, epath); normalize(); }
       path(const path & path) { operator = (path); }
       path(path && path): string(::move(path)) { *((path_meta *)this) = (const path_meta &) path; }
       path(const char * psz,e_path epath = path_none): path((const string &)psz, epath){};

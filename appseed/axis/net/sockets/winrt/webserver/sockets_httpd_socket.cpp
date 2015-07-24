@@ -152,11 +152,6 @@ namespace sockets
       */
    }
 
-   httpd_socket & httpd_socket::operator=(const httpd_socket& s)
-   {
-      UNREFERENCED_PARAMETER(s);
-      return *this;
-   }
 
 
 } // namespace sockets

@@ -23,7 +23,7 @@
          int32_t m_shutdown; ///< Shutdown status
 
          stream_socket(base_socket_handler& );
-         ~stream_socket();
+         virtual ~stream_socket();
 
 
          /** socket should Check Connect on next write event from select(). */
@@ -98,7 +98,7 @@
          int32_t GetShutdown();
 
          /** Returns IPPROTO_TCP or IPPROTO_SCTP */
-         virtual int32_t Protocol() = 0;
+         virtual int32_t Protocol();
 
       };
 

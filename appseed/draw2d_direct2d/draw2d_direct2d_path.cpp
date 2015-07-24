@@ -245,7 +245,7 @@ namespace draw2d_direct2d
          arcseg.sweepDirection = D2D1_SWEEP_DIRECTION_COUNTER_CLOCKWISE;
       }
 
-      if(abs(arc.m_dAngle) < g_dPi)
+      if(fabs(arc.m_dAngle) < g_dPi)
       {
          arcseg.arcSize = D2D1_ARC_SIZE_SMALL;
       }
@@ -254,7 +254,7 @@ namespace draw2d_direct2d
          arcseg.arcSize = D2D1_ARC_SIZE_LARGE;
       }
 
-      arcseg.rotationAngle = abs(arc.m_dAngle * 180.0 / g_dPi);
+      arcseg.rotationAngle = fabs(arc.m_dAngle * 180.0 / g_dPi);
 
       arcseg.size.width    = rx;
 

@@ -1001,8 +1001,8 @@ synch_lock ml(m_spmutex);
       double centerx = (x2 + x1) / 2.0;
       double centery = (y2 + y1) / 2.0;
 
-      double radiusx = abs(x2 - x1) / 2.0;
-      double radiusy = abs(y2 - y1) / 2.0;
+      double radiusx = fabs(x2 - x1) / 2.0;
+      double radiusy = fabs(y2 - y1) / 2.0;
 
       if (radiusx == 0.0 || radiusy == 0.0)
          return false;
@@ -1044,9 +1044,9 @@ synch_lock ml(m_spmutex);
 
       double centery = (y2 + y1) / 2.0;
 
-      double radiusx = abs(x2 - x1) / 2.0;
+      double radiusx = fabs(x2 - x1) / 2.0;
 
-      double radiusy = abs(y2 - y1) / 2.0;
+      double radiusy = fabs(y2 - y1) / 2.0;
 
       if (radiusx == 0.0 || radiusy == 0.0)
          return false;

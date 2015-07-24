@@ -44,7 +44,7 @@ namespace sockets
 
 
       http_socket(base_socket_handler& );
-      ~http_socket();
+      virtual ~http_socket();
 
       virtual void OnEndChunk();
 
@@ -53,7 +53,7 @@ namespace sockets
 
       /** Callback executes when first line has been received.
       GetMethod, GetUrl/GetUri, and GetHttpVersion are valid when this callback is executed. */
-      virtual void OnFirst() = 0;
+      virtual void OnFirst();
       /** For each header line this callback is executed.
       \param key Http header name
       \param value Http header value */
@@ -61,9 +61,9 @@ namespace sockets
       /** Callback fires when all http headers have been received. */
       virtual void OnHeaderComplete();
       /** Chunk of http body data recevied. */
-      virtual void OnData(const char *,size_t) = 0;
+      virtual void OnData(const char *,size_t);
       /** The full request/response body has been received. */
-      virtual void OnDataComplete() {}
+      virtual void OnDataComplete();
 
       bool IsRequest();
 

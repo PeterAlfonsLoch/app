@@ -35,6 +35,12 @@ namespace sockets
       public object
    {
    public:
+
+      BIO *bio_err;
+
+      string m_rand_file;
+      long m_rand_size;
+
       /**
          init openssl
          bio_err
@@ -55,11 +61,6 @@ namespace sockets
       /** Return thread id. */
       //static unsigned long SSL_id_function();
 
-      BIO *bio_err;
-
-   private:
-      string m_rand_file;
-      long m_rand_size;
 
    };
 

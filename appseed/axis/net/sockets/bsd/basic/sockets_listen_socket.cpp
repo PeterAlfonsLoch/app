@@ -17,15 +17,6 @@ namespace sockets
    }
 
 
-   listen_socket_axis::listen_socket_axis(const listen_socket_axis& s) : 
-      object(s.get_app()), 
-      base_socket(s),
-      socket(s)
-   {
-
-   }
-
-
    listen_socket_axis::~listen_socket_axis() 
    {
 
@@ -297,12 +288,6 @@ namespace sockets
       SetSoReuseaddr(true);
    }
 
-   listen_socket_axis& listen_socket_axis::operator=(const listen_socket_axis& )
-   { 
-
-      return *this; 
-
-   }
 
    sp(socket) listen_socket_axis::create_listen_socket()
    {

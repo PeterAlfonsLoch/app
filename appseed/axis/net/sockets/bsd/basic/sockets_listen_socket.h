@@ -29,14 +29,6 @@ namespace sockets
       listen_socket_axis(base_socket_handler& h);
 
 
-   protected:
-
-
-      listen_socket_axis(const listen_socket_axis& s);
-      listen_socket_axis& operator=(const listen_socket_axis& );
-
-
-   public:
 
 
       virtual ~listen_socket_axis();

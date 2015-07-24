@@ -38,7 +38,6 @@ namespace sockets
       bool m_b_http_1_1;
       bool m_b_keepalive;
 
-      sip_base_client_socket& operator=(const sip_base_client_socket& ) { return *this; }
       bool     m_bFirst;
       bool     m_bHeader;
       string   m_strLine;

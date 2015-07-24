@@ -8,6 +8,12 @@ namespace sip
       virtual public transaction
    {
    public:
+   
+      string m_null;
+      file::memory_buffer m_file;
+      http::form m_form;
+
+
       request(::aura::application * papp);
       request(const request& src);
       ~request();
@@ -33,10 +39,6 @@ namespace sip
 
       virtual void clear();
 
-   private:
-      string m_null;
-      file::memory_buffer m_file;
-      http::form m_form;
       
 
    }; // end of class

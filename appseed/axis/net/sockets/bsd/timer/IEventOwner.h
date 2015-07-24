@@ -39,6 +39,12 @@ namespace sockets
    class IEventOwner
    {
    public:
+      
+      
+      IEventHandler& m_event_handler;
+      bool m_handler_invalid;
+
+
       IEventOwner(IEventHandler& h);
       virtual ~IEventOwner();
 
@@ -58,9 +64,6 @@ namespace sockets
       IEventHandler& EventHandler();
       void SetHandlerInvalid(bool x = true) { m_handler_invalid = x; }
 
-   private:
-      IEventHandler& m_event_handler;
-      bool m_handler_invalid;
    };
 
 

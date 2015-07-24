@@ -242,6 +242,10 @@ namespace sockets
    }
 
 
+   void http_base_socket::OnExecute()
+   {
+   }
+
    void http_base_socket::OnResponseComplete()
    {
    }

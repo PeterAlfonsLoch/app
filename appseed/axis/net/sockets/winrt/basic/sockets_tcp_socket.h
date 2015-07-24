@@ -309,8 +309,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          virtual port_t get_connect_port();
 
 
-      private:
-         tcp_socket& operator=(const tcp_socket& ) { return *this; }
 
          /** the actual send() */
          int TryWrite(const char *buf, size_t len);

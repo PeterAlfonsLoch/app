@@ -31,6 +31,12 @@ namespace sockets
    {
    public:
 
+
+      int32_t m_state;
+      int32_t m_length;
+      int32_t m_ptr;
+      char m_message[8192];
+
       class Initializer
       {
       public:
@@ -62,11 +68,6 @@ namespace sockets
       void put_integer(char *buf, int32_t& ptr, int16_t zz);
       void put_string(char *buf, int32_t& ptr, const char * psz);
 
-   private:
-      int32_t m_state;
-      int32_t m_length;
-      int32_t m_ptr;
-      char m_message[8192];
    };
 
 

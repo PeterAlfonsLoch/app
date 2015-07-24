@@ -47,7 +47,6 @@ namespace sockets
       bool m_b_http_1_1;
       bool m_b_keepalive;
 
-      sip_base_client_socket& operator=(const sip_base_client_socket& ) { return *this; }
       bool     m_bFirst;
       bool     m_bHeader;
       string   m_strLine;
@@ -67,17 +66,17 @@ namespace sockets
 
       /** Callback executes when first line has been received.
          GetMethod, GetUrl/GetUri, and GetHttpVersion are valid when this callback is executed. */
-      virtual void OnFirst() = 0;
+      virtual void OnFirst();
       /** For each header line this callback is executed.
          \param key Http header name
          \param value Http header value */
       virtual void OnHeader(id idKey, const string & value);
       /** Callback fires when all http headers have been received. */
-      virtual void OnHeaderComplete() = 0;
+      virtual void OnHeaderComplete();
       /** Chunk of http body data recevied. */
-      virtual void OnData(const char *,size_t) = 0;
+      virtual void OnData(const char *,size_t);
       /** The full request/response body has been received. */
-      virtual void OnDataComplete() {}
+      virtual void OnDataComplete();
 
       bool IsRequest();
 

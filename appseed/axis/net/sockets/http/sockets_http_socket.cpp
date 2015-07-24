@@ -523,6 +523,10 @@ namespace sockets
    } // url_this
 
 
+   void http_socket::OnFirst()
+   {
+   }
+
    void http_socket::OnHeader(id key, const string & value)
    {
 
@@ -560,7 +564,14 @@ namespace sockets
       }
 
    }
+   
+   void http_socket::OnData(const char *, size_t)
+   {
+   }
 
+   void http_socket::OnDataComplete()
+   {
+   }
 
    void http_socket::client_to_server(http_socket * psocket)
    {

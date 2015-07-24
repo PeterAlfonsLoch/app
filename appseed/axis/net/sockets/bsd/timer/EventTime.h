@@ -54,9 +54,6 @@ namespace sockets
       EventTime operator - (const EventTime& x) const;
       bool operator < (const EventTime& x) const;
 
-   private:
-      EventTime(const EventTime& ) {} // copy constructor
-      EventTime& operator=(const EventTime& ) { return *this; } // assignment operator
       mytime_t m_time;
 
 

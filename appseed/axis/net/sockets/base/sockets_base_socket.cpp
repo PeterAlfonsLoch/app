@@ -831,14 +831,6 @@ namespace sockets
       begin();
    }
 
-   base_socket::socket_thread::socket_thread(const socket_thread& s) :
-      object(((socket_thread & )s).get_app()),
-      thread(((socket_thread & )s).get_app()),
-      m_spsocket(s.get_socket())
-   {
-   }
-
-
    base_socket::socket_thread::~socket_thread()
    {
    }

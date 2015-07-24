@@ -230,7 +230,11 @@ namespace sockets
    class WSAInitializer // Winsock Initializer
    {
    public:
-      WSAInitializer() {
+
+      WSADATA m_wsadata;
+
+      WSAInitializer()
+      {
          if (WSAStartup(0x101,&m_wsadata))
          {
             exit(-1);
@@ -239,8 +243,6 @@ namespace sockets
       ~WSAInitializer() {
          WSACleanup();
       }
-   private:
-      WSADATA m_wsadata;
    };
 
 } // namespace sockets

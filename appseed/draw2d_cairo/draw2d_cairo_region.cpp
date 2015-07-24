@@ -151,8 +151,8 @@ synch_lock ml(&cairo_mutex());
       double centerx    = (m_x2 + m_x1) / 2.0;
       double centery    = (m_y2 + m_y1) / 2.0;
 
-      double radiusx    = abs(m_x2 - m_x1) / 2.0;
-      double radiusy    = abs(m_y2 - m_y1) / 2.0;
+      double radiusx    = fabs(m_x2 - m_x1) / 2.0;
+      double radiusy    = fabs(m_y2 - m_y1) / 2.0;
 
       if(radiusx == 0.0 || radiusy == 0.0)
          return false;
@@ -319,8 +319,8 @@ synch_lock ml(&cairo_mutex());
       double centerx    = (m_x2 + m_x1) / 2.0;
       double centery    = (m_y2 + m_y1) / 2.0;
 
-      double radiusx    = abs(m_x2 - m_x1) / 2.0;
-      double radiusy    = abs(m_y2 - m_y1) / 2.0;
+      double radiusx    = fabs(m_x2 - m_x1) / 2.0;
+      double radiusy    = fabs(m_y2 - m_y1) / 2.0;
 
       if(radiusx == 0.0 || radiusy == 0.0)
          return false;

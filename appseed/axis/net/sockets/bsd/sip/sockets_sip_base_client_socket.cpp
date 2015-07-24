@@ -475,6 +475,11 @@ namespace sockets
       return m_response.headers();
    }
 
+   void sip_base_client_socket::OnFirst()
+   {
+      
+   }
+
    void sip_base_client_socket::OnHeader(id key, const string & value)
    {
       //sip_base_client_socket::OnHeader(key, value);
@@ -540,5 +545,13 @@ namespace sockets
       }*/
    }
 
+   void sip_base_client_socket::OnData(const char *, size_t)
+   {
+   }
+
+
+   void sip_base_client_socket::OnDataComplete()
+   {
+   }
 
 } // namespace sockets

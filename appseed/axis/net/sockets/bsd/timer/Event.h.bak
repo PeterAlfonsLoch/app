@@ -62,7 +62,6 @@ namespace sockets
       ~Event();
 
       
-      bool operator<(Event&);
       int32_t GetID();
       const EventTime& get_time() const;
       IEventOwner *GetFrom();

@@ -316,10 +316,6 @@
             SetSoReuseaddr(true);
          }
 
-      protected:
-         listen_socket(const listen_socket& s) : socket(s) {}
-      public:
-         listen_socket& operator=(const listen_socket& ) { return *this; }
          int m_depth;
          X *m_creator;
          bool m_bHasCreate;

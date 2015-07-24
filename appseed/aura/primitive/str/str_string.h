@@ -265,11 +265,13 @@ public:
    string(Array < byte > ^ a);
 #endif
 
-
-#ifdef __GNUC__
+//#ifdef __GNUC__
    string(const var & var);
+#ifdef __GNUC__
    string(const property & prop);
+#endif
    string(const id & id);
+#ifdef __GNUC__
    string(const string_interface & stri);
 //   string(const istring & istr);
 #endif

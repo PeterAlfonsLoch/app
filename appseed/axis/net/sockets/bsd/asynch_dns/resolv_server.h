@@ -48,9 +48,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
          bool Ready();
 
-      private:
-         resolv_server(const resolv_server& s);  // copy constructor
-         resolv_server& operator=(const resolv_server& ) { return *this; } // assignment operator
 
          bool m_quit;
          port_t m_port;

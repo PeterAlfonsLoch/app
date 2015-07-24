@@ -206,8 +206,6 @@ namespace sockets
       int ReadTS(char *ioBuf, int inBufSize, struct sockaddr *from, socklen_t fromlen, struct timeval *ts);
 #endif
 
-   private:
-      udp_socket& operator=(const udp_socket& ) { return *this; }
       /** create before using sendto methods */
       //void CreateConnection();
 

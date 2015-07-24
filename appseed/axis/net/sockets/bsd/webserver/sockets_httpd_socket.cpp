@@ -281,12 +281,6 @@ namespace sockets
    }
 
 
-   httpd_socket & httpd_socket::operator=(const httpd_socket& s)
-   {
-      UNREFERENCED_PARAMETER(s);
-      return *this;
-   }
-
 
    bool httpd_socket::read_file(const ::file::path & lpcsz,smart_pointer_array < int_array > * prangea,const char * pszContentType)
    {

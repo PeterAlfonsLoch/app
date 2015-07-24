@@ -86,13 +86,10 @@ namespace sockets
 
       virtual int Protocol();
 
-   protected:
       SctpSocket(const SctpSocket& s) : stream_socket(s) {}
       void OnRead();
       void OnWrite();
 
-   private:
-      SctpSocket& operator=(const SctpSocket& s) { return *this; }
       int m_type; ///< SCTP_STREAM or SCTP_SEQPACKET
       char *m_buf; ///< Temporary receive buffer
    };
