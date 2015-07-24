@@ -1905,7 +1905,7 @@
     </ClInclude>
     <ClInclude Include="aura\os\cross.h" />
     <ClInclude Include="aura\os\cross\ansios\ansios.h" />
-    <ClInclude Include="aura\os\cross\ansios\ansios_datetime.h" />
+    <ClInclude Include="aura\os\cross\ansios\ansios_datetime_c.h" />
     <ClInclude Include="aura\os\cross\ansios\ansios_file.h" />
     <ClInclude Include="aura\os\cross\cross.h" />
     <ClInclude Include="aura\os\os.h" />

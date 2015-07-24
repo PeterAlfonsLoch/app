@@ -270,6 +270,7 @@
     <ClInclude Include="..\..\include\winpr\wnd.h" />
     <ClInclude Include="..\..\include\winpr\wtsapi.h" />
     <ClInclude Include="..\..\include\winpr\wtypes.h" />
+    <ClInclude Include="config.h" />
     <ClInclude Include="libwinpr\crt\utf.h" />
     <ClInclude Include="libwinpr\crypto\crypto.h" />
     <ClInclude Include="libwinpr\handle\handle.h" />

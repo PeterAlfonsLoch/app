@@ -40,14 +40,11 @@
 #include <sys/timeb.h>
 #include <winpr/windows.h>
 
-static int gettimeofday(struct timeval* tp, void* tz)
-{
-	struct _timeb timebuffer;
-	_ftime(&timebuffer);
-	tp->tv_sec = (long) timebuffer.time;
-	tp->tv_usec = timebuffer.millitm * 1000;
-	return 0;
-}
+#define CLASS_DECL_AURA __declspec(dllimport)
+
+#include "aura/aura/os/cross/ansios/ansios_datetime_c.h"
+
+
 #endif
 
 static BOOL Pcap_Read_Header(wPcap* pcap, wPcapHeader* header)

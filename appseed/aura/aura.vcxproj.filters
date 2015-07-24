@@ -1718,9 +1718,6 @@
     <ClInclude Include="aura\os\cross\ansios\ansios.h">
       <Filter>Header Files\aura\os\cross\ansios</Filter>
     </ClInclude>
-    <ClInclude Include="aura\os\cross\ansios\ansios_datetime.h">
-      <Filter>Header Files\aura\os\cross\ansios</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\datetime\datetime_mktime.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
@@ -2077,6 +2074,9 @@
     </ClInclude>
     <ClInclude Include="aura\node\metrowin\metrowin_file_system.h">
       <Filter>Header Files\aura\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\cross\ansios\ansios_datetime_c.h">
+      <Filter>Header Files\aura\os\cross\ansios</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

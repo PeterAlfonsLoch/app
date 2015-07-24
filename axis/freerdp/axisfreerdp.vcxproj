@@ -1530,12 +1530,15 @@
     <ClCompile Include="libfreerdp\core\client.c" />
     <ClCompile Include="libfreerdp\core\codecs.c" />
     <ClCompile Include="libfreerdp\core\connection.c" />
+    <ClCompile Include="libfreerdp\core\errbase.c" />
+    <ClCompile Include="libfreerdp\core\errconnect.c" />
     <ClCompile Include="libfreerdp\core\errinfo.c" />
     <ClCompile Include="libfreerdp\core\fastpath.c" />
     <ClCompile Include="libfreerdp\core\freerdp.c" />
     <ClCompile Include="libfreerdp\core\gateway\http.c" />
     <ClCompile Include="libfreerdp\core\gateway\ncacn_http.c" />
     <ClCompile Include="libfreerdp\core\gateway\ntlm.c" />
+    <ClCompile Include="libfreerdp\core\gateway\rdg.c" />
     <ClCompile Include="libfreerdp\core\gateway\rpc.c" />
     <ClCompile Include="libfreerdp\core\gateway\rpc_bind.c" />
     <ClCompile Include="libfreerdp\core\gateway\rpc_client.c" />

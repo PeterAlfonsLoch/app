@@ -11,7 +11,13 @@
 #endif
 
 
-#include "ansios_datetime.h"
+BEGIN_EXTERN_C
+
+#include "ansios_datetime_c.h"
+
+END_EXTERN_C
+
+
 #include "ansios_file.h"
 
 

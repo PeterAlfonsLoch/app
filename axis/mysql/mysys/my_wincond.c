@@ -85,7 +85,7 @@ static void check_native_cond_availability(void)
   Convert abstime to milliseconds
 */
 
-static DWORD get_milliseconds(const struct timespec *abstime)
+static DWORD get_milliseconds(const struct my_timespec *abstime)
 {
   long long millis; 
   union ft64 now;
