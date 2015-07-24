@@ -22,7 +22,7 @@ typedef unsigned int uint32_t;
 
 #ifdef _WIN32
 #define strncasecmp _strnicmp
-#define snprintf _snprintf
+//#define snprintf _snprintf
 #define ssize_t SSIZE_T
 #endif
 
@@ -514,7 +514,7 @@ typedef unsigned int uint32_t;
 #define ssize_t SSIZE_T
 //#define strcasecmp _stricmp
 //#define strncasecmp _strnicmp
-#define snprintf _snprintf
+//#define snprintf _snprintf
 #define strtok_r strtok_s
 #define strtoll _strtoi64
 #define strtoull _strtoui64

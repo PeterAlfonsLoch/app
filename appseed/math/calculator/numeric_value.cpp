@@ -81,7 +81,7 @@ namespace calculator
          }
          else
          {
-            str.Format("%f - i%f", m_dR, abs(m_dI));
+            str.Format("%f - i%f", m_dR, fabs(m_dI));
             return str;
          }
       }

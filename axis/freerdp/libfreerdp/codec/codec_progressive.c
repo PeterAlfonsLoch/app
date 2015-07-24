@@ -938,7 +938,8 @@ INT16 progressive_rfx_srl_read(RFX_PROGRESSIVE_UPGRADE_STATE* state, UINT32 numB
 		mag++;
 	}
 
-	return sign ? -mag : mag;
+//	return sign ? -mag : mag;
+   return sign ? mag : mag;
 }
 
 int progressive_rfx_upgrade_state_finish(RFX_PROGRESSIVE_UPGRADE_STATE* state)

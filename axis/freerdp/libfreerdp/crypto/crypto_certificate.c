@@ -120,7 +120,7 @@ static int certificate_data_match_legacy(rdpCertificateStore* certificate_store,
 	char* data;
 	char* mdata;
 	char* pline;
-	char* hostname;
+	char* hostname = NULL;
 	long size;
 	size_t length;
 
