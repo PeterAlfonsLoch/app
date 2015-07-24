@@ -731,12 +731,12 @@ namespace user
 
       }
 
-      if (!(nFlags & SWP_NOZORDER))
-      {
-         synch_lock sl(GetParent()->m_pmutex);
-         GetParent()->m_uiptraChild.remove(m_pui);
-         GetParent()->m_uiptraChild.insert_at(0, m_pui);
-      }
+      //if (!(nFlags & SWP_NOZORDER))
+      //{
+      //   synch_lock sl(GetParent()->m_pmutex);
+      //   GetParent()->m_uiptraChild.remove(m_pui);
+      //   GetParent()->m_uiptraChild.insert_at(0, m_pui);
+      //}
 
       return true;
 
