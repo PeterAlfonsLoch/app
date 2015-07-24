@@ -149,7 +149,8 @@ static void rdpsnd_winmm_open(rdpsndDevicePlugin* device, AUDIO_FORMAT* format, 
 	rdpsnd_winmm_set_format(device, format, latency);
 	freerdp_dsp_context_reset_adpcm(winmm->dsp_context);
 
-	mmResult = waveOutOpen(&winmm->hWaveOut, WAVE_MAPPER, &winmm->format,
+	//mmResult = waveOutOpen(&winmm->hWaveOut, WAVE_MAPPER, &winmm->format,
+   mmResult = waveOutOpen(&winmm->hWaveOut, 0, &winmm->format,
 			(DWORD_PTR) rdpsnd_winmm_callback_function, (DWORD_PTR) winmm, CALLBACK_FUNCTION);
 
 	if (mmResult != MMSYSERR_NOERROR)
