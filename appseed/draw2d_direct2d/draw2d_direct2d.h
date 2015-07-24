@@ -31,6 +31,9 @@
 namespace draw2d_direct2d
 {
 
+   void initialize();
+
+   void finalize();
 
    class graphics;
 

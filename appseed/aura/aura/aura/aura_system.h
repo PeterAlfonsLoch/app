@@ -26,6 +26,9 @@ namespace aura
 
       sp(::aura::session::map)                     m_paurabergedgemap;
 
+      ::object *                                   m_pDraw2dFactoryExchange;
+
+
       sp(class ::datetime::departament)            m_pdatetime;
 
       stridsp(type)                                m_typemap;

@@ -47,7 +47,6 @@ namespace aura
       m_pcoresession   = NULL;
       m_peventReady     = NULL;
 
-
 #ifdef WINDOWS
 
       m_hinstance       = NULL;

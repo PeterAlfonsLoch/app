@@ -29,7 +29,7 @@ namespace aura
       ::core::application *                           m_pcoreapp; // can be used only from core and upper
       ::core::system *                                m_pcoresystem; // can be used only from core and upper
       ::core::session *                               m_pcoresession; // can be used only from core and upper
-
+      
 
 
       smart_pointer < application >                   m_pimpl;

@@ -5,22 +5,39 @@
 
 
 
-   Microsoft::WRL::ComPtr<IDWriteFactory> g_pwritefactory;
-   Microsoft::WRL::ComPtr<ID2D1Factory1> g_pd2factory;
-   Microsoft::WRL::ComPtr<ID2D1Device> g_pd2device;
-   Microsoft::WRL::ComPtr<ID2D1DeviceContext> g_pd2devicecontext;
-   Microsoft::WRL::ComPtr<ID3D11DeviceContext> g_pd3devicecontext;
-   Microsoft::WRL::ComPtr<ID3D11DeviceContext1> g_pd3devicecontext1;
-   Microsoft::WRL::ComPtr<ID3D11Device> g_pd3device;
-   Microsoft::WRL::ComPtr<ID3D11Device1> g_pd3device1;
-   Microsoft::WRL::ComPtr<IDXGIDevice> g_pdxgidevice;
-   D3D_FEATURE_LEVEL g_featurelevel;
-
 
    namespace draw2d_direct2d
    {
 
-void factory_exchange::draw2d_direct2d_initialize()
+      class plugin
+      {
+      public:
+
+         Microsoft::WRL::ComPtr<IDWriteFactory> g_pwritefactory;
+         Microsoft::WRL::ComPtr<ID2D1Factory1> g_pd2factory;
+         Microsoft::WRL::ComPtr<ID2D1Device> g_pd2device;
+         Microsoft::WRL::ComPtr<ID2D1DeviceContext> g_pd2devicecontext;
+         Microsoft::WRL::ComPtr<ID3D11DeviceContext> g_pd3devicecontext;
+         Microsoft::WRL::ComPtr<ID3D11DeviceContext1> g_pd3devicecontext1;
+         Microsoft::WRL::ComPtr<ID3D11Device> g_pd3device;
+         Microsoft::WRL::ComPtr<ID3D11Device1> g_pd3device1;
+         Microsoft::WRL::ComPtr<IDXGIDevice> g_pdxgidevice;
+         D3D_FEATURE_LEVEL g_featurelevel;
+         void initialize();
+      } * g_pplugin;
+
+      void finalize()
+      {
+         delete g_pplugin;
+      }
+
+      void initialize()
+      {
+         g_pplugin = new plugin;
+         g_pplugin->initialize();
+      }
+
+void plugin::initialize()
 {
       // This flag adds support for surfaces with a different color channel ordering
       // than the API default. It is required for compatibility with Direct2D.
@@ -99,7 +116,7 @@ void factory_exchange::draw2d_direct2d_initialize()
 
       ID2D1DeviceContext * pdevicecontext = g_pd2devicecontext.Get();
 
-      System.m_pdevicecontext    = pdevicecontext;
+      Sys(get_thread_app()).m_pdevicecontext    = pdevicecontext;
       //System.m_pmutexDc          = new mutex(get_app());
 
 
@@ -113,15 +130,15 @@ void factory_exchange::draw2d_direct2d_initialize()
 CLASS_DECL_DRAW2D_DIRECT2D IDWriteFactory * TlsGetWriteFactory(bool bCreate)
 {
 
-   if(g_pwritefactory != NULL || !bCreate)
-      return g_pwritefactory.Get();
+   if(::draw2d_direct2d::g_pplugin->g_pwritefactory != NULL || !bCreate)
+      return ::draw2d_direct2d::g_pplugin->g_pwritefactory.Get();
 
-   HRESULT hr = DWriteCreateFactory(DWRITE_FACTORY_TYPE_SHARED, __uuidof(IDWriteFactory), &g_pwritefactory);
+   HRESULT hr = DWriteCreateFactory(DWRITE_FACTORY_TYPE_SHARED, __uuidof(IDWriteFactory), &::draw2d_direct2d::g_pplugin->g_pwritefactory);
 
    if(FAILED(hr))
       return NULL;
 
-   return g_pwritefactory.Get();
+   return ::draw2d_direct2d::g_pplugin->g_pwritefactory.Get();
 
 }
 
@@ -130,18 +147,18 @@ ID2D1Factory1 * GetD2D1Factory1(bool bCreate)
 {
 
 
-   if(g_pd2factory != NULL || !bCreate)
-      return g_pd2factory.Get();
+   if(::draw2d_direct2d::g_pplugin->g_pd2factory != NULL || !bCreate)
+      return ::draw2d_direct2d::g_pplugin->g_pd2factory.Get();
 
    d2d1_fax_options options;
    memset(&options, 0, sizeof(options));
 
-   HRESULT hr = ::D2D1CreateFactory(single_threaded, __uuidof(ID2D1Factory1), &options, &g_pd2factory);
+   HRESULT hr = ::D2D1CreateFactory(single_threaded, __uuidof(ID2D1Factory1), &options, &::draw2d_direct2d::g_pplugin->g_pd2factory);
 
    if(FAILED(hr))
        return NULL;
 
-   return g_pd2factory.Get();
+   return ::draw2d_direct2d::g_pplugin->g_pd2factory.Get();
 
 }
 
@@ -149,7 +166,7 @@ ID2D1Factory1 * GetD2D1Factory1(bool bCreate)
 ID3D11Device * TlsGetD3D11Device()
 {
 
-   return g_pd3device.Get();
+   return ::draw2d_direct2d::g_pplugin->g_pd3device.Get();
 
 }
 
@@ -157,41 +174,41 @@ ID3D11Device * TlsGetD3D11Device()
 ID3D11DeviceContext * TlsGetD3D11DeviceContext()
 {
 
-   return g_pd3devicecontext.Get();
+   return ::draw2d_direct2d::g_pplugin->g_pd3devicecontext.Get();
 
 }
 
 ID3D11DeviceContext1 * TlsGetD3D11DeviceContext1()
 {
 
-   return g_pd3devicecontext1.Get();
+   return ::draw2d_direct2d::g_pplugin->g_pd3devicecontext1.Get();
 
 }
 
 ID3D11Device1 * TlsGetD3D11Device1()
 {
 
-   return g_pd3device1.Get();
+   return ::draw2d_direct2d::g_pplugin->g_pd3device1.Get();
 
 }
 
 IDXGIDevice * TlsGetDXGIDevice()
 {
 
-   return g_pdxgidevice.Get();
+   return ::draw2d_direct2d::g_pplugin->g_pdxgidevice.Get();
 
 }
 ID2D1DeviceContext * TlsGetD2D1DeviceContext()
 {
 
-   return g_pd2devicecontext.Get();
+   return ::draw2d_direct2d::g_pplugin->g_pd2devicecontext.Get();
 
 }
 
 ID2D1Device * TlsGetD2D1Device()
 {
 
-   return g_pd2device.Get();
+   return ::draw2d_direct2d::g_pplugin->g_pd2device.Get();
 
 }
 

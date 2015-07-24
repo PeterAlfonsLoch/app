@@ -22,6 +22,7 @@ namespace axis
    {
       g_pszCooperativeLevel = "axis";
 
+      m_pDraw2dFactoryExchange = NULL;
 
       m_puserstr                 = NULL;
 
@@ -373,8 +374,35 @@ namespace axis
 
       m_serviceptra.remove_all();
 
+
       try
       {
+         
+         if (m_libraryDraw2d.is_opened())
+         {
+
+            if (m_pDraw2dFactoryExchange != NULL)
+            {
+
+               delete m_pDraw2dFactoryExchange;
+            
+               m_pDraw2dFactoryExchange = NULL;
+
+            }
+
+            m_libraryDraw2d.close();
+
+         }
+
+      }
+      catch (...)
+      {
+
+      }
+
+      try
+      {
+
          if(m_pfactory != NULL)
          {
 

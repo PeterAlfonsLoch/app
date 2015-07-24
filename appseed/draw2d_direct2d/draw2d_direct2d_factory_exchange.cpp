@@ -21,13 +21,20 @@ namespace draw2d_direct2d
       System.factory().cloneable_large < printer               >  (System.type_info < ::aura::printer             > ());
       
 
-      draw2d_direct2d_initialize();
+      //draw2d_direct2d_initialize();
+
+      initialize();
 
    }
 
 
    factory_exchange::~factory_exchange()
    {
+
+
+
+      finalize();
+      
 
    }
 
@@ -49,7 +56,7 @@ namespace draw2d_direct2d
 void draw2d_factory_exchange(::aura::application * papp)
 {
 
-   draw2d_direct2d::factory_exchange factoryexchange(papp);
+   papp->m_paurasystem->m_pDraw2dFactoryExchange = new ::draw2d_direct2d::factory_exchange(papp);
 
 }
 
@@ -57,7 +64,7 @@ void draw2d_factory_exchange(::aura::application * papp)
 void ca2_factory_exchange(::aura::application * papp)
 {
 
-   draw2d_direct2d::factory_exchange factoryexchange(papp);
+   papp->m_paurasystem->m_pDraw2dFactoryExchange = new ::draw2d_direct2d::factory_exchange(papp);
 
 }
 
