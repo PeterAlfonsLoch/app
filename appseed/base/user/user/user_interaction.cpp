@@ -3842,7 +3842,7 @@ namespace user
    void interaction::_001RedrawWindow()
    {
       
-      if(!m_bMayProDevian && GetParent() == NULL)
+      if(m_bMayProDevian && GetParent() == NULL)
          return;
       
       ::user::interaction_base::_001RedrawWindow();

@@ -78,6 +78,16 @@ namespace user
             pui->_001RedrawWindow();
 
          }
+         else
+         {
+
+            synch_lock sl(m_pmutex);
+
+            _001UpdateBuffer();
+
+            _001UpdateScreen();
+
+         }
 
       }
       else
