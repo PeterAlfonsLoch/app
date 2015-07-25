@@ -202,6 +202,16 @@ size simple_toolbar::CalcSimpleLayout()
 void simple_toolbar::_001OnDraw(::draw2d::graphics *pgraphics)
 {
 
+   sp(::user::tab) ptab = GetTypedParent < ::user::tab >();
+
+   if (ptab.is_set())
+   {
+
+      //if (!ptab->m_bShowTabs)
+      //   return;
+
+   }
+
    if(m_bDelayedButtonLayout)
       layout();
 
@@ -1775,6 +1785,18 @@ struct ___CONTROLPOS
 
 size simple_toolbar::CalcLayout(uint32_t dwMode, int32_t nLength)
 {
+   sp(::user::tab) ptab = GetTypedParent < ::user::tab >();
+
+   if (ptab.is_set())
+   {
+
+      if (!ptab->m_bShowTabs)
+      {
+         return size(0, 0);
+      }
+
+   }
+
    ASSERT_VALID(this);
    ASSERT(IsWindow());
    if (dwMode & LM_HORZDOCK)

@@ -1912,7 +1912,29 @@ namespace axis
       if(is_system())
       {
 
-         draw2d_factory_exchange();
+         bool bOk = true;
+
+         try
+         {
+
+            draw2d_factory_exchange();
+
+         }
+         catch (...)
+         {
+
+            bOk = false;
+
+         }
+
+         if (!bOk)
+         {
+
+            simple_message_box("Unable to find draw2d plugin. Quitting...", MB_OK);
+
+            return false;
+
+         }
 
       }
 
