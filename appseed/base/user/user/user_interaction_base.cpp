@@ -72,16 +72,12 @@ namespace user
       if(pui.is_set())
       {
 
-         single_lock sl(pui->m_pmutex, true);
+         if (pui != this)
+         {
 
-         if(pui->m_bDestroying)
-            return;
+            pui->_001RedrawWindow();
 
-         //TRACE("!! Yes !!");
-
-         get_wnd()->_001UpdateBuffer();
-
-         get_wnd()->_001UpdateScreen();
+         }
 
       }
       else
