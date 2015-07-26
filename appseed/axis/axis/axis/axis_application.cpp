@@ -4355,22 +4355,40 @@ namespace axis
       if(library.is_opened())
          return;
 
-      if(!library.open(strLibrary))
+      library.open(strLibrary);
+
+      if (library.is_opened())
+         goto finalize;
+
+#ifdef WINDOWSEX
+
+      if (strLibrary != "draw2d_gdiplus")
       {
 
-         if(strLibrary != "draw2d_cairo")
-         {
-            if(!library.open("draw2d_cairo"))
-            {
-               throw "failed to do draw2d factory exchange";
-            }
-         }
-         else
-         {
-            throw "failed to do draw2d factory exchange";
-         }
+         library.open("draw2d_gdiplus");
+
+         if (library.is_opened())
+            goto finalize;
+
       }
 
+
+#endif
+
+      if (strLibrary != "draw2d_cairo")
+      {
+         
+
+         library.open("draw2d_cairo");
+
+         if (library.is_opened())
+            goto finalize;
+
+      }
+
+      throw "Could not draw2d_factory_exchange.";
+
+finalize:
 
       PFN_ca2_factory_exchange pfn_ca2_factory_exchange = library.get < PFN_ca2_factory_exchange >("ca2_factory_exchange");
 
