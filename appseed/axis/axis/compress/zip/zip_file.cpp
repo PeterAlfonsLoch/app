@@ -41,7 +41,7 @@ namespace zip
 
       try
       {
-         if(!spfile->open(lpcwsz, ::file::mode_read | ::file::type_binary))
+         if(spfile->open(lpcwsz, ::file::mode_read | ::file::type_binary).failed())
          {
             return false;
          }
@@ -75,7 +75,7 @@ namespace zip
       ::file::buffer_sp spfile(allocer());
       try
       {
-         if(!spfile->open(lpcwsz, ::file::mode_read_write | ::file::type_binary | ::file::mode_create | ::file::defer_create_directory))
+         if(spfile->open(lpcwsz, ::file::mode_read_write | ::file::type_binary | ::file::mode_create | ::file::defer_create_directory).failed())
          {
             return false;
          }

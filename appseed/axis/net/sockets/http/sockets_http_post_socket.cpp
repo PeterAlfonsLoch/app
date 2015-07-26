@@ -299,7 +299,7 @@ namespace sockets
             write( tmp );
             {
                ::file::buffer_sp spfile(allocer());
-               if(spfile->open(filename, ::file::type_binary | ::file::mode_read))
+               if(spfile->open(filename, ::file::type_binary | ::file::mode_read).succeeded())
                {
                   transfer_from(*spfile);
                }

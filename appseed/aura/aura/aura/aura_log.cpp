@@ -528,10 +528,10 @@ namespace aura
 
          try
          {
-            if(!plog->m_spfile->open(m_strLogPath, ::file::type_text
+            if(plog->m_spfile->open(m_strLogPath, ::file::type_text
                | ::file::mode_write
                | ::file::share_deny_write | ::file::mode_create | ::file::mode_no_truncate
-               | ::file::defer_create_directory))
+               | ::file::defer_create_directory).faile())
             {
                if(plog->m_spfile->IsOpened())
                {

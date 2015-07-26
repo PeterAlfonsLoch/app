@@ -302,7 +302,7 @@ namespace ios
    //         return false;
    //      try
    //      {
-   //         if(!spfile->open(lpcszCandidate, ::file::mode_create | ::file::type_binary))
+   //         if(spfile->open(lpcszCandidate, ::file::mode_create | ::file::type_binary).failed())
    //            return false;
    //      }
    //      catch(...)

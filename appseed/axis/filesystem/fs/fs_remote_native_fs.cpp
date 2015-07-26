@@ -319,7 +319,7 @@ namespace fs
 
       cres = spfile->open(path,nOpenFlags);
 
-      if(!cres)
+      if(cres.failed())
       {
 
          spfile.release();

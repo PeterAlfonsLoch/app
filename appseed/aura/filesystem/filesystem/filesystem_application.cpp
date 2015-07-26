@@ -325,7 +325,7 @@ namespace file
 
       }
 
-      if(!cres)
+      if(cres.failed())
       {
 
          spfile.release();

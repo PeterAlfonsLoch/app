@@ -1801,7 +1801,7 @@ namespace sockets
    }
    */
 
-   void base_socket::on_read(const void * pdata, ::primitive::memory_size n )
+   void base_socket::on_read(const void * pdata, int_ptr n )
    {
 
       char * buf = (char *) pdata;

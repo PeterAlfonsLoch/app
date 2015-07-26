@@ -147,7 +147,7 @@ namespace fs
       // ::file::mode_read | ::file::share_deny_none | ::file::type_binary
       cres  = spfile->open(path,nOpenFlags);
 
-      if(!cres)
+      if(cres.failed())
       {
 
          spfile.release();

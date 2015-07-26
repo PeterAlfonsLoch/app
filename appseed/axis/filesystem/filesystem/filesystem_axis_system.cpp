@@ -387,7 +387,7 @@ namespace file
             return false;
          try
          {
-            if (!spfile->open(lpcszCandidate, ::file::mode_create | ::file::type_binary))
+            if (spfile->open(lpcszCandidate, ::file::mode_create | ::file::type_binary).failed())
                return false;
          }
          catch (...)
@@ -587,7 +587,7 @@ namespace file
 
          try
          {
-            if (!spfile->open(varFile, ::file::type_text | ::file::mode_read))
+            if (spfile->open(varFile, ::file::type_text | ::file::mode_read).failed())
             {
                return;
             }
@@ -1379,7 +1379,7 @@ namespace file
 
          try
          {
-            if (!spfile->open(psz, ::file::type_binary | ::file::mode_read | ::file::share_deny_none))
+            if (spfile->open(psz, ::file::type_binary | ::file::mode_read | ::file::share_deny_none).failed())
                return "";
          }
          catch (::file::exception &)
@@ -1657,7 +1657,7 @@ namespace file
          ::file::buffer_sp spfile(allocer());
          try
          {
-            if (!spfile->open(psz, ::file::type_binary | ::file::mode_read))
+            if (spfile->open(psz, ::file::type_binary | ::file::mode_read).failed())
                return "";
          }
          catch (::file::exception &)

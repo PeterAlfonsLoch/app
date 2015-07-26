@@ -325,7 +325,7 @@ namespace sockets
 
       //virtual primitive::memory_size read(void * buf, primitive::memory_size c);
 
-      virtual void on_read(const void * buf, primitive::memory_size c);
+      virtual void on_read(const void * buf, int_ptr c);
       virtual void OnRawData(char * buf, size_t len);
 
       /** Called on connect timeout (5s). */

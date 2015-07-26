@@ -400,7 +400,7 @@ restart:
          return false;
       try
       {
-         if(!spfile->open(lpcszCandidate, ::file::mode_create | ::file::type_binary))
+         if(spfile->open(lpcszCandidate, ::file::mode_create | ::file::type_binary).failed())
             return false;
       }
       catch(...)
@@ -1291,7 +1291,7 @@ restart:
       ::file::buffer_sp spfile(allocer());
       try
       {
-         if(!spfile->open(psz,::file::type_binary | ::file::mode_read))
+         if(spfile->open(psz,::file::type_binary | ::file::mode_read).failed())
             return "";
       }
       catch(::file::exception &)

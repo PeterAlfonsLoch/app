@@ -158,7 +158,7 @@ namespace fs
       ::file::buffer_sp spfile(allocer());
 
       // ::file::mode_read | ::file::share_deny_none | ::file::type_binary
-      if(!spfile->open(varFile.get_string(),nOpenFlags))
+      if(spfile->open(varFile.get_string(),nOpenFlags).failed())
       {
 
          throw new ::file::exception(get_app(),::file::exception::none,01,varFile.get_string());

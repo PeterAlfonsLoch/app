@@ -526,7 +526,7 @@ void ssl_sigpipe_handle( int x );
       char *buf = m_buf;
 
 
-      ::primitive::memory_size n = 0;
+      int_ptr n = 0;
 
       try
       {
@@ -546,7 +546,7 @@ void ssl_sigpipe_handle( int x );
    }
 
 
-   void tcp_socket::on_read(const void * buf, ::primitive::memory_size n)
+   void tcp_socket::on_read(const void * buf, int_ptr n)
    {
 
       // unbuffered

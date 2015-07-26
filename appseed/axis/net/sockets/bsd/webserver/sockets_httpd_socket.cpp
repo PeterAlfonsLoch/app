@@ -337,7 +337,7 @@ namespace sockets
             if(!System.compress().ungz(response().ostream(),lpcsz))
             {
                ::file::buffer_sp spfile(allocer());
-               if(!spfile->open(lpcsz,::file::type_binary | ::file::mode_read | ::file::share_deny_none))
+               if(spfile->open(lpcsz,::file::type_binary | ::file::mode_read | ::file::share_deny_none).failed())
                {
                   return false;
                }
@@ -349,7 +349,7 @@ namespace sockets
             ::file::buffer_sp spfile(allocer());
             try
             {
-               if(!spfile->open(lpcsz,::file::type_binary | ::file::mode_read | ::file::share_deny_none))
+               if(spfile->open(lpcsz,::file::type_binary | ::file::mode_read | ::file::share_deny_none).failed())
                {
                   return false;
                }
@@ -367,7 +367,7 @@ namespace sockets
          ::file::buffer_sp spfile(allocer());
          try
          {
-            if(!spfile->open(lpcsz,::file::type_binary | ::file::mode_read | ::file::share_deny_none))
+            if(spfile->open(lpcsz,::file::type_binary | ::file::mode_read | ::file::share_deny_none).failed())
             {
                return false;
             }

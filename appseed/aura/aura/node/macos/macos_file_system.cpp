@@ -302,7 +302,7 @@ namespace macos
 //         return false;
 //      try
 //      {
-//         if(!spfile->open(lpcszCandidate, ::file::mode_create | ::file::type_binary))
+//         if(spfile->open(lpcszCandidate, ::file::mode_create | ::file::type_binary).failed())
 //            return false;
 //      }
 //      catch(...)
@@ -476,7 +476,7 @@ namespace macos
 //
 //      try
 //      {
-//         if(!spfile->open(varFile, ::file::type_text | ::file::mode_read))
+//         if(spfile->open(varFile, ::file::type_text | ::file::mode_read).failed())
 //         {
 //            return;
 //         }

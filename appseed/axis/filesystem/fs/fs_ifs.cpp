@@ -367,7 +367,7 @@ bool ifs::file_move(const ::file::path & pszDst,const ::file::path & pszSrc)
 
    cres = spfile->open(path,nOpenFlags);
 
-   if(!cres)
+   if(cres.failed())
    {
       
       spfile.release();

@@ -234,7 +234,7 @@ namespace sockets
       using ::sockets::stream_socket::read;
       virtual primitive::memory_size read(void * buf, ::primitive::memory_size n);
       virtual primitive::memory_size recv(void * buf, ::primitive::memory_size n);
-      virtual void on_read(const void * buf, ::primitive::memory_size n );
+      virtual void on_read(const void * buf, int_ptr n );
       void OnWrite();
 
 

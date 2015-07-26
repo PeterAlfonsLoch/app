@@ -408,7 +408,7 @@ namespace file
       
       ::file::buffer_sp spfile(allocer());
       
-      if(!spfile->open(psz, type_binary | mode_read | share_deny_none))
+      if(spfile->open(psz, type_binary | mode_read | share_deny_none).failed())
          return;
 
       else
