@@ -71,7 +71,7 @@ namespace dynamic_source
 
 #ifndef METROWIN
 
-      strVars = getenv("VS120COMNTOOLS");
+      strVars = getenv("VS140COMNTOOLS");
 
 #endif
 
@@ -84,7 +84,7 @@ namespace dynamic_source
       //m_strEnv = "C:\\Program Files\\Microsoft SDKs\\Windows\\v7.1\\Bin\\SetEnv.cmd";
 
       //m_strSdk1 = "windows7.1sdk";
-      m_strSdk1 = "vc120";
+      m_strSdk1 = "vc140";
       string strPlat2;
 #ifdef OS64BIT
 #ifdef LINUX

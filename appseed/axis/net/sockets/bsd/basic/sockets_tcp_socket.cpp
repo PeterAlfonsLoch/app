@@ -412,7 +412,7 @@ void ssl_sigpipe_handle( int x );
             SetFlushBeforeClose(false);
             SetLost();
             SetShutdown(SHUT_WR);
-            TRACE("tcp_socket::recv ssl disconnect(2)");
+            //TRACE("tcp_socket::recv ssl disconnect(2)");
 
          }
          else if (n > 0 && n <= nBufSize)
@@ -453,7 +453,7 @@ void ssl_sigpipe_handle( int x );
             SetFlushBeforeClose(false);
             SetLost();
             SetShutdown(SHUT_WR);
-            TRACE("tcp_socket::recv (B2) recv disconnect");
+            //TRACE("tcp_socket::recv (B2) recv disconnect");
          }
          else
          if (n > 0 && n <= nBufSize)
@@ -468,7 +468,7 @@ void ssl_sigpipe_handle( int x );
 
       }
 
-      return 0;
+      return n;
 
    }
 
@@ -511,9 +511,9 @@ void ssl_sigpipe_handle( int x );
          }
 
       }
-      else
+      else if(n < 0)
       {
-         log("tcp_socket::read", (int32_t) n, "abnormal value from SSL_read", ::aura::log::level_error);
+         log("tcp_socket::read", (int32_t) n, "abnormal value from rcv", ::aura::log::level_error);
       }
 
       return n;

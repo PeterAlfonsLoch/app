@@ -3,21 +3,21 @@
 //#include <ddeml.h>  // for MSGF_DDEMGR
 
 
-__declspec(thread) HHOOK t_hHookOldMsgFilter = NULL;
+//__declspec(thread) HHOOK t_hHookOldMsgFilter = NULL;
 
 
-LRESULT CALLBACK __message_filter_hook(int32_t code,WPARAM wParam,LPARAM lParam);
+//LRESULT CALLBACK __message_filter_hook(int32_t code,WPARAM wParam,LPARAM lParam);
 
 
 void CLASS_DECL_AURA __init_thread()
 {
 
-   if(t_hHookOldMsgFilter == NULL)
-   {
+   //if(t_hHookOldMsgFilter == NULL)
+   //{
 
-      t_hHookOldMsgFilter = ::SetWindowsHookEx(WH_MSGFILTER,__message_filter_hook,NULL,::GetCurrentThreadId());
+   //   t_hHookOldMsgFilter = ::SetWindowsHookEx(WH_MSGFILTER,__message_filter_hook,NULL,::GetCurrentThreadId());
 
-   }
+   //}
 
 }
 
@@ -239,22 +239,22 @@ namespace windows
 
 
 
-LRESULT CALLBACK __message_filter_hook(int32_t code,WPARAM wParam,LPARAM lParam)
-{
-   ::thread * pthread;
-   if((code < 0 && code != MSGF_DDEMGR) || ((pthread = ::get_thread()) == NULL))
-   {
-      return ::CallNextHookEx(t_hHookOldMsgFilter,code,wParam,lParam);
-   }
-   ASSERT(pthread != NULL);
-   smart_pointer < ::message::base > spbase;
-   spbase = pthread->get_base((LPMSG)lParam);
-   if(spbase.is_null())
-      return ::CallNextHookEx(t_hHookOldMsgFilter,code,wParam,lParam);
-   pthread->process_message_filter(code,spbase);
-   LRESULT lresult = spbase->m_bRet ? 1 : 0;
-   return lresult;
-}
+//LRESULT CALLBACK __message_filter_hook(int32_t code,WPARAM wParam,LPARAM lParam)
+//{
+//   ::thread * pthread;
+//   if((code < 0 && code != MSGF_DDEMGR) || ((pthread = ::get_thread()) == NULL))
+//   {
+//      return ::CallNextHookEx(t_hHookOldMsgFilter,code,wParam,lParam);
+//   }
+//   ASSERT(pthread != NULL);
+//   smart_pointer < ::message::base > spbase;
+//   spbase = pthread->get_base((LPMSG)lParam);
+//   if(spbase.is_null())
+//      return ::CallNextHookEx(t_hHookOldMsgFilter,code,wParam,lParam);
+//   pthread->process_message_filter(code,spbase);
+//   LRESULT lresult = spbase->m_bRet ? 1 : 0;
+//   return lresult;
+//}
 
 __STATIC bool CLASS_DECL_AURA IsHelpKey(LPMSG lpMsg)
 // return TRUE only for non-repeat F1 keydowns.
@@ -282,11 +282,11 @@ __STATIC inline bool IsButtonUp(LPMSG lpMsg)
 void __term_threading()
 {
 
-   if(t_hHookOldMsgFilter != NULL)
-   {
-      ::UnhookWindowsHookEx(t_hHookOldMsgFilter);
-      t_hHookOldMsgFilter = NULL;
-   }
+   //if(t_hHookOldMsgFilter != NULL)
+   //{
+   //   ::UnhookWindowsHookEx(t_hHookOldMsgFilter);
+   //   t_hHookOldMsgFilter = NULL;
+   //}
 
 }
 
