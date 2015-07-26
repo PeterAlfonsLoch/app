@@ -21,6 +21,7 @@ namespace aura
 
          System.factory().cloneable_large    < ::windows::stdio_file         >(System.type_info < ::file::text_buffer         >());
          System.factory().cloneable_large    < ::windows::file               >(System.type_info < ::file::binary_buffer       >(),true);
+         System.factory().cloneable_large    < ::windows::file               >(System.type_info < ::file::stream_buffer       >(),true);
          System.factory().creatable          < ::windows::application        >(System.type_info < ::aura::application         >(),1);
          System.factory().cloneable_small    < ::windows::folder_watch       >(System.type_info < ::file::folder_watch        >());
          System.factory().creatable_large    < ::windows::thread             >(System.type_info < ::thread_impl               >());
