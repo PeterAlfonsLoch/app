@@ -510,9 +510,9 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>Shlwapi.lib;Gdiplus.lib;WinInet.lib;libmysql.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
+      <ImportLibrary>$(SolutionDir)../../../time/library/$(PlatformName)/$(Configuration)/$(TargetName).lib</ImportLibrary>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
-      <AdditionalLibraryDirectories>$(IntDir);$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(IntDir);$(SolutionDir)../../../time/library/$(PlatformName)/$(Configuration)/;$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <EntryPointSymbol>
       </EntryPointSymbol>
@@ -924,9 +924,9 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>Shlwapi.lib;Gdiplus.lib;WinInet.lib;libmysql.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ImportLibrary>$(SolutionDir)../../../time/library/x64/$(Configuration)/$(TargetName).lib</ImportLibrary>
+      <ImportLibrary>$(SolutionDir)../../../time/library/$(PlatformName)/$(Configuration)/$(TargetName).lib</ImportLibrary>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
-      <AdditionalLibraryDirectories>$(IntDir);$(SolutionDir)../../../time/library/x64/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library/x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(IntDir);$(SolutionDir)../../../time/library/$(PlatformName)/$(Configuration)/;$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <EntryPointSymbol>
