@@ -4151,6 +4151,8 @@ RetryBuildNumber:
 
       ::aura::library libraryCore(get_app());
 
+      ::SetDllDirectory(dir::stage());
+
       // load core library so that a core system is alloced
       libraryCore.open(dir::stage() / "core");
 
