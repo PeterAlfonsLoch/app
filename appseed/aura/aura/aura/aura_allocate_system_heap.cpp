@@ -102,7 +102,7 @@ void system_heap_free(void * p)
    catch(...)
    {
 
-      ::OutputDebugString("system_heap_free : Failed to free memory");
+      ::output_debug_string("system_heap_free : Failed to free memory");
 
    }
 
