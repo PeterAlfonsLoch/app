@@ -4174,6 +4174,8 @@ RetryBuildNumber:
 
       strFullCommandLine = strFullCommandLine + pszCommandLine;
 
+      strFullCommandLine += " install";
+
       if(!pfn_core_init())
          return -1;
 
