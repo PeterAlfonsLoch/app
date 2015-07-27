@@ -512,7 +512,7 @@ namespace install
 
 #if 1
 
-      sp(mutex) spmutex = ::mutex::open_mutex(get_app(), "Global\\::ca::fontopus::ca2_spaboot_install::7807e510-5579-11dd-ae16-0800200c7784");
+      sp(mutex) spmutex = ::mutex::open_mutex(get_app(), "Global\\::ca::fontopus::ca2_spaboot_install_" + process_platform_dir_name() + "::7807e510-5579-11dd-ae16-0800200c7784");
 
       return spmutex.is_set();
 
