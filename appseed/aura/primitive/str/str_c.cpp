@@ -1294,6 +1294,8 @@ unichar32 surrogate_to_utf32(unichar high, unichar low)
 
 strsize utf16_to_utf32(unichar32 * output, const unichar *input, strsize input_size) 
 {
+
+   unichar32 * start = output;
    
    const unichar * const end = input + input_size;
    
@@ -1323,8 +1325,13 @@ strsize utf16_to_utf32(unichar32 * output, const unichar *input, strsize input_s
             throw simple_exception(get_thread_app(), "utf16_to_utf32_len");
             
          }
+
       }
+
    }
+
+   return output - start;
+
 }
 
 
