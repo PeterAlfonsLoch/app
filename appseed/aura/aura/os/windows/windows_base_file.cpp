@@ -156,7 +156,9 @@ int_bool file_copy_dup(const char * pszNew, const char * pszSrc, int_bool bOverw
 handle create_file(const char * lpcszFileName, dword dwDesiredAccess, dword dwShareMode, LPSECURITY_ATTRIBUTES lpSA, dword dwCreationDisposition, dword dwFlagsAndAttributes, HANDLE hTemplateFile)
 {
 
-   return CreateFileW(wstring(lpcszFileName), dwDesiredAccess, dwShareMode, lpSA, dwCreationDisposition, dwFlagsAndAttributes, hTemplateFile);
+   wstring wstr(lpcszFileName);
+
+   return CreateFileW(wstr, dwDesiredAccess, dwShareMode, lpSA, dwCreationDisposition, dwFlagsAndAttributes, hTemplateFile);
 
 }
 
@@ -310,10 +312,17 @@ string file_as_string_dup(const char * path)
 
    string str;
 
-   HANDLE hfile = ::create_file(path, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+   HANDLE hfile = ::create_file(path, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
-   if(hfile == INVALID_HANDLE_VALUE)
+
+   if (hfile == INVALID_HANDLE_VALUE)
+   {
+
+      DWORD dw = ::GetLastError();
+   
       return "";
+
+   }
 
    DWORD dwSizeHigh;
 

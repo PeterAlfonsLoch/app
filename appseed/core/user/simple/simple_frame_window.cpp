@@ -745,8 +745,10 @@ void simple_frame_window::_001OnClose(signal_details * pobj)
       return;
    }
 
-
-   pobj->m_bRet = true;
+   if (pobj)
+   {
+      pobj->m_bRet = true;
+   }
    // Note: only queries the active document
    sp(::user::document) pdocument = GetActiveDocument();
    if (pdocument != NULL && !pdocument->can_close_frame(this))
