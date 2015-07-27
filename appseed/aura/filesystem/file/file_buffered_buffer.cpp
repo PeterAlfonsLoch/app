@@ -76,9 +76,9 @@ namespace file
       }
       else if(nFrom == ::file::seek_end)
       {
-         if(compare::gt(lOff, m_pfile->get_length()))
-            lOff = m_pfile->get_length();
          uiNewPos = m_pfile->get_length() + lOff;
+         if (compare::gt(uiNewPos, m_pfile->get_length()))
+            uiNewPos = m_pfile->get_length();
       }
       else if(nFrom == ::file::seek_current)
       {
