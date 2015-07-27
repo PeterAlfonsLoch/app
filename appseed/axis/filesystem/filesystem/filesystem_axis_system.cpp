@@ -1455,7 +1455,7 @@ namespace file
             MD5_Init(&ctx);
             string strRelative = stra[i].relative();
             write_gen_string(spfile, &ctx, strRelative);
-            if (!file2->open(stra[i], ::file::mode_read | ::file::type_binary))
+            if (file2->open(stra[i], ::file::mode_read | ::file::type_binary).failed())
                throw "failed";
             write_n_number(spfile, &ctx, (int32_t)file2->get_length());
             while ((uiRead = file2->read(buf, iBufSize)) > 0)

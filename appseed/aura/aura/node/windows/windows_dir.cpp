@@ -256,7 +256,7 @@ namespace windows
 
             RESTORE(listing.m_eextract);
 
-            if(::file::dir::system::ls(papp,listing))
+            if(::file::dir::system::ls(papp,listing).succeeded())
             {
 
                listing.m_cres = cres(failure);
@@ -342,7 +342,7 @@ namespace windows
       else
       {
 
-         if(::file::dir::system::ls(papp,listing))
+         if(::file::dir::system::ls(papp,listing).succeeded())
          {
 
             return listing;

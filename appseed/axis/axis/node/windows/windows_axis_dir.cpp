@@ -269,7 +269,7 @@ namespace windows
    ::file::listing & dir::ls(::aura::application * papp, ::file::listing & listing)
    {
       
-      if(::file::dir::axis::system::ls(papp,listing))
+      if(::file::dir::axis::system::ls(papp,listing).succeeded())
       {
 
          return listing;
