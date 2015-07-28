@@ -187,6 +187,8 @@ namespace multimedia
          virtual bool initialize_instance();
          virtual int32_t exit_instance();
 
+         int32_t wave_out_get_buffered_buffer_count();
+
          virtual int32_t run();
 
          //DECL_GEN_SIGNAL(OnMultimediaOpen);

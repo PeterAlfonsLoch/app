@@ -650,6 +650,12 @@ Opened:
 
       }
 
+      int32_t wave_out::wave_out_get_buffered_buffer_count()
+      {
+
+         return ::multimedia::audio::wave_out::wave_out_get_buffered_buffer_count();
+
+      }
 
 
       WAVEFORMATEX * wave_out::wave_format()
