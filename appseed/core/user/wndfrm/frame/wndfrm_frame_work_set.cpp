@@ -371,6 +371,26 @@ namespace user
          bool WorkSet::BaseOnControlEvent(::user::control_event * pevent)
          {
 
+            //if (pevent->m_eevent == ::user::event_m_button_down)
+            //{
+            //   
+            //   sp(WorkSetClientInterface) pinterface = m_pwndCommand;
+
+            //   if (pinterface == NULL)
+            //      return false;
+
+            //   e_button ebutton = m_pframeschema->get_control_box()->get_control_box_button_type(pevent->m_puie->GetDlgCtrlId());
+
+            //   if(ebutton == ::user::wndfrm::frame::button_maximize)
+            //   {
+
+            //      pinterface->WfiFullScreen();
+
+            //   }
+
+
+            //}
+            //else 
             if(pevent->m_eevent == ::user::event_button_down)
             {
 
@@ -1287,7 +1307,9 @@ namespace user
 
             }
 
-            if(m_pframeschema != NULL)
+            sp(WorkSetClientInterface) pinterface = m_pwndDraw;
+
+            if(m_pframeschema != NULL && pinterface.is_set() && pinterface->m_bLayoutEnable)
             {
                {
 

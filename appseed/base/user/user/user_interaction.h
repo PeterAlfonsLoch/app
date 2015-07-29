@@ -30,7 +30,7 @@ namespace user
       bool                                m_bVoidPaint;
       bool                                m_bLockWindowUpdate;
       bool                                m_bEnableSaveWindowRect;
-
+      bool                                m_bLayoutEnable;
 
       point                               m_ptMoveCursor;
 

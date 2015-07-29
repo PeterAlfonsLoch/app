@@ -14,7 +14,7 @@ namespace user
 
 
          class  CLASS_DECL_CORE control_box :
-            virtual public ::user::interaction
+            virtual public ::database::user::interaction
          {
          public:
 

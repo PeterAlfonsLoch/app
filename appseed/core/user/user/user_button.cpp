@@ -47,6 +47,8 @@ namespace user
 
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &button::_001OnLButtonDown);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &button::_001OnLButtonUp);
+      IGUI_WIN_MSG_LINK(WM_MBUTTONDOWN, pinterface, this, &button::_001OnMButtonDown);
+      IGUI_WIN_MSG_LINK(WM_MBUTTONUP, pinterface, this, &button::_001OnMButtonUp);
       IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pinterface, this, &button::_001OnMouseMove);
       IGUI_WIN_MSG_LINK(WM_MOUSELEAVE, pinterface, this, &button::_001OnMouseLeave);
       IGUI_WIN_MSG_LINK(WM_KEYDOWN,pinterface,this,&button::_001OnKeyDown);
@@ -198,6 +200,57 @@ namespace user
          }
 
          
+
+      }
+
+   }
+
+   void button::_001OnMButtonDown(signal_details * pobj)
+   {
+      SCAST_PTR(::message::mouse, pmouse, pobj)
+
+         pobj->previous();
+
+      e_element eelement;
+
+      if (hit_test(pmouse->m_pt, eelement) >= 0)
+      {
+
+         if (!simple_process_system_message(pobj, ::user::event_m_button_down))
+         {
+
+            //Session.m_puiLastLButtonDown = this;
+
+            pmouse->m_bRet = true;
+
+         }
+
+
+
+      }
+
+   }
+   void button::_001OnMButtonUp(signal_details * pobj)
+   {
+      SCAST_PTR(::message::mouse, pmouse, pobj)
+
+         pobj->previous();
+
+      e_element eelement;
+
+      if (hit_test(pmouse->m_pt, eelement) >= 0)
+      {
+
+         if (!simple_process_system_message(pobj, ::user::event_m_button_up))
+         {
+
+            //Session.m_puiLastLButtonDown = this;
+
+            pmouse->m_bRet = true;
+
+         }
+
+
 
       }
 

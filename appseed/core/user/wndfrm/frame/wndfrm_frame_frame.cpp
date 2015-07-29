@@ -163,7 +163,9 @@ namespace user
 
             sp(::user::interaction) pwndDraw = get_draw_window();
 
-            title_bar_layout(false);
+            sp(::user::wndfrm::frame::WorkSetClientInterface) pinterface = pwndDraw;
+
+            title_bar_layout(pinterface != NULL && pinterface->m_bInitialFramePosition);
 
             update_window_client_rect();
 
@@ -605,6 +607,8 @@ namespace user
             int iControlBoxHeight = m_spcontrolbox->calc_control_box_height();
 
 
+            bool bShow = true;
+
             if(m_bInitialControlBoxPosition || bInitialControlBoxPosition)
             {
 
@@ -614,8 +618,8 @@ namespace user
                int iControlBoxWidthZoomed = m_spcontrolbox->calc_control_box_zoomed_width();
                int iControlBoxWidthNormal = m_spcontrolbox->calc_control_box_normal_width();
 
-               m_rectControlBoxFullScreen.left = cx / 2 - iControlBoxWidthFullScreen / 2;
-               m_rectControlBoxFullScreen.right = cx / 2 + iControlBoxWidthFullScreen / 2;
+               m_rectControlBoxFullScreen.left = cx  - iControlBoxWidthFullScreen ;
+               m_rectControlBoxFullScreen.right = cx;
                m_rectControlBoxFullScreen.top = 0;
                m_rectControlBoxFullScreen.bottom = m_rectControlBoxFullScreen.top + iControlBoxHeight;
 
@@ -645,6 +649,7 @@ namespace user
 
                pwndDraw->best_monitor(rectParent);
 
+               bShow = !(m_bInitialControlBoxPosition || bInitialControlBoxPosition);
 
             }
             else if (pappearance->IsZoomed())
@@ -723,7 +728,7 @@ namespace user
                   prectControlBox->left,
                   prectControlBox->top,
                   prectControlBox->width(),
-                  prectControlBox->height(),SWP_SHOWWINDOW);
+                  prectControlBox->height(),bShow ? SWP_SHOWWINDOW : 0);
 
             }
             else
@@ -734,7 +739,7 @@ namespace user
                   prectControlBox->left,
                   prectControlBox->top,
                   prectControlBox->width(),
-                  prectControlBox->height(),SWP_SHOWWINDOW);
+                  prectControlBox->height(), bShow ? SWP_SHOWWINDOW : 0);
 
                if(get_control_box()->m_eappearance != pappearance->GetAppearance())
                {

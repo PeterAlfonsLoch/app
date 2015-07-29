@@ -482,7 +482,7 @@ namespace user
 
       void _001SetHighlightRange(range & range);
 
-      void _001SetView(EView eview);
+      //void _001SetView(EView eview, bool bLayout = true);
 
       EView _001GetView();
 

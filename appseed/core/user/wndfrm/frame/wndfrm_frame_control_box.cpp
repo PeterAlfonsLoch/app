@@ -223,7 +223,7 @@ namespace user
             }
             else if (m_bShowAttempt)
             {
-               if ((::get_tick_count() - m_dwShowTime) > 284)
+               //if ((::get_tick_count() - m_dwShowTime) > 284)
                {
                   if (m_pworkset->get_draw_window() != NULL)
                   {
@@ -307,7 +307,9 @@ namespace user
 
             create_buttons();
 
-            //SetTimer(123, 184, NULL);
+            SetTimer(123, 5, NULL);
+
+            //WindowDataLoadWindowRect();
 
          }
 
@@ -850,6 +852,7 @@ namespace user
             *m_pworkset->m_pframeschema->get_control_box_rect() = rect;
 
 
+            //WindowDataSaveWindowRect();
 
          }
 

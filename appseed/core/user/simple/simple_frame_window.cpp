@@ -864,11 +864,14 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, uint32_t dwDefaultSt
 
    ::rect rectFrame(0,0,0,0);
 
+   m_bLayoutEnable = false;
+
    if (!create_window_ex(0L, NULL, lpszTitle, dwDefaultStyle, rectFrame, pParentWnd, /*nIDResource*/ 0, pContext))
    {
 
       return FALSE;   // will self destruct on failure normally
    }
+
 
    /* trans   // save the default menu handle
       ASSERT(get_handle() != NULL);
@@ -1062,24 +1065,24 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
 
    BringToTop(-1);
 
-   if(m_workset.IsAppearanceEnabled())
+   if (m_workset.IsAppearanceEnabled())
    {
 
-      if(m_workset.get_appearance() != NULL && m_workset.GetAppearance() == ::user::AppearanceIconic)
+      if (m_workset.get_appearance() != NULL && m_workset.GetAppearance() == ::user::AppearanceIconic)
       {
 
          WfiRestore(false);
 
       }
 
-      if(m_workset.m_pframeschema != NULL)
-      {
-
-         m_workset.m_pframeschema->title_bar_layout(true);
-
-      }
-
    }
+
+   m_bLayoutEnable = true;
+
+   layout();
+
+   m_bInitialFramePosition = false;
+
 
 }
 
@@ -2095,7 +2098,12 @@ bool simple_frame_window::create_bars()
    if(!on_create_bars())
       return false;
 
-   set_need_layout();
+   if (!m_bInitialFramePosition)
+   {
+
+      set_need_layout();
+
+   }
 
    return true;
 

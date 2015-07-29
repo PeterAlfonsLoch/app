@@ -17,6 +17,10 @@ namespace user
          {
             m_workset.set_app(m_pauraapp);
             m_pupdowntarget = NULL;
+            m_bFullScreenOnZoom = false;
+
+            m_bInitialFramePosition = true;
+             
          }
 
          WorkSetClientInterface::~WorkSetClientInterface()
@@ -243,6 +247,13 @@ namespace user
 
          bool WorkSetClientInterface::WfiMaximize()
          {
+            
+            if (m_bFullScreenOnZoom)
+            {
+
+               return WfiFullScreen();
+
+            }
 
             if(!WfiOnBeforeMaximize())
                return false;

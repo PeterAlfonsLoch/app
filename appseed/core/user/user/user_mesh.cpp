@@ -3692,7 +3692,7 @@ namespace user
 
       rect.null();
 
-      layout();
+      //layout();
 
       pcreate->set_lresult(0);
 
@@ -5116,14 +5116,19 @@ namespace user
    }
 
 
-   void mesh::_001SetView(EView eview)
+   void mesh::_001SetView(EView eview, bool bLayout)
    {
 
       m_eview = eview;
 
       data_get_DisplayToStrict();
 
-      layout();
+      if (bLayout)
+      {
+
+         layout();
+
+      }
 
    }
 

@@ -3608,7 +3608,7 @@ namespace user
 
       rect.null();
 
-      layout();
+      //layout();
 
       pcreate->set_lresult(0);
 
@@ -4966,14 +4966,14 @@ namespace user
    //}
 
 
-   void list::_001SetView(EView eview)
-   {
-      m_eview = eview;
+   //void list::_001SetView(EView eview, bool bLya)
+   //{
+   //   m_eview = eview;
 
-      data_get_DisplayToStrict();
+   //   data_get_DisplayToStrict();
 
-      layout();
-   }
+   //   layout();
+   //}
 
 
 

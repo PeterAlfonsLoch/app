@@ -274,8 +274,17 @@ namespace user
    }
 
 
-   void tab::defer_handle_full_screen_show_tabs()
+   bool tab::defer_handle_full_screen_show_tabs(bool bLayout)
    {
+
+      //sp(::user::wndfrm::frame::WorkSetClientInterface) pinterface = GetTopLevelFrame();
+      //
+      //if (pinterface != NULL && pinterface->m_bInitialFramePosition)
+      //{
+      //   return false;
+      //}
+
+      bool bNeedLayout = false;
 
       if(m_bNoTabs)
       {
@@ -285,11 +294,18 @@ namespace user
 
             m_bShowTabs = false;
 
-            layout();
+            if (bLayout)
+            {
+
+               layout();
+
+            }
+
+            bNeedLayout = true;
 
          }
 
-         return;
+         return bNeedLayout;
 
       }
 
@@ -325,7 +341,14 @@ namespace user
 
                   m_bShowTabs = false;
 
-                  layout();
+                  if (bLayout)
+                  {
+
+                     layout();
+
+                  }
+
+                  bNeedLayout = true;
 
                }
 
@@ -350,7 +373,14 @@ namespace user
 
             m_bShowTabs = true;
 
-            layout();
+            if (bLayout)
+            {
+
+               layout();
+
+            }
+
+            bNeedLayout = true;
 
          }
          else
@@ -380,7 +410,14 @@ namespace user
             if(bShowTabs)
             {
 
-               layout();
+               if (bLayout)
+               {
+
+                  layout();
+
+               }
+
+               bNeedLayout = true;
 
             }
 
@@ -388,7 +425,7 @@ namespace user
 
       }
 
-
+      return bNeedLayout;
 
    }
 
@@ -903,7 +940,7 @@ namespace user
    void tab::layout()
    {
 
-
+      
 
       {
 
@@ -914,6 +951,10 @@ namespace user
       }
       if(!get_data()->m_bCreated)
          return;
+
+      if (!defer_handle_full_screen_show_tabs(false))
+         return;
+
       ::draw2d::memory_graphics pdc(allocer());
       pdc->SelectObject(get_data()->m_fontBold);
 

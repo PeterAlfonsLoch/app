@@ -266,7 +266,7 @@ namespace user
       void _001OnTimer(::timer * ptimer);
 
 
-      virtual void defer_handle_full_screen_show_tabs();
+      virtual bool defer_handle_full_screen_show_tabs(bool bLayout = true);
 
 
       virtual void restore_tabs();

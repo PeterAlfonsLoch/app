@@ -35,7 +35,7 @@ namespace user
    bool interaction::defer_check_layout()
    {
 
-      if(!check_need_layout())
+      if(!check_need_layout() || !m_bLayoutEnable)
          return false;
 
       layout();
@@ -104,7 +104,7 @@ namespace user
       m_iModalCount              = 0;
       m_bRectOk                  = false;
       m_bVisible                 = true;
-
+      m_bLayoutEnable            = true;
       //m_psession                 = NULL;
       m_bMessageWindow           = false;
 
@@ -904,8 +904,13 @@ namespace user
       }
       else
       {
+         
+         if (m_bLayoutEnable)
+         {
 
-         layout();
+            layout();
+
+         }
 
       }
 

@@ -3708,15 +3708,23 @@ namespace windows
 
    bool interaction_impl::WfiIsIconic()
    {
-      ASSERT(::IsWindow(get_handle()));
+      
+      if (!::IsWindow(get_handle()))
+         return false;
+
       if(GetExStyle() & WS_EX_LAYERED)
       {
+
          return m_pui->m_eappearance == ::user::AppearanceIconic;
+
       }
       else
       {
+
          return ::IsIconic(get_handle()) != FALSE;
+
       }
+
    }
 
 

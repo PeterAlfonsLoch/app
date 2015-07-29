@@ -10,6 +10,8 @@ namespace user
       event_initialize_control,
       event_button_down,
       event_button_clicked,
+      event_m_button_down,
+      event_m_button_up,
       event_list_clicked,
       event_mouse_enter,
       event_mouse_leave,
