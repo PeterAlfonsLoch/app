@@ -5642,7 +5642,7 @@ namespace user
 
       mesh::_001OnClip(pgraphics);
 
-      if(m_bHeaderCtrl)
+      if(m_bHeaderCtrl && m_plistheader != NULL)
       {
 
          try

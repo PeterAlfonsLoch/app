@@ -199,12 +199,12 @@ namespace user
       return id();
    }
 
-   void view_creator::hide_all_except(id id)
+   void view_creator::hide_all_except(const id_array & ida)
    {
       view_map::pair * ppair = m_viewmap.PGetFirstAssoc();
       while(ppair != NULL)
       {
-         if(id != ppair->m_element1)
+         if(!ida.contains(ppair->m_element1))
          {
             try
             {
@@ -230,6 +230,13 @@ namespace user
 
    }
 
+   //void view_creator::hide_all_except(id id)
+   //{
+   //   array<id> ida;
+   //   ida.add(id);
+   //   hide_all_except(id);
+
+   //}
 
    void view_creator::on_new_view_creator_data(::user::view_creator_data * pcreatordata)
    {

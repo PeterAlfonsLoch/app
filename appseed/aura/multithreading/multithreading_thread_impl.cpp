@@ -751,10 +751,10 @@ int32_t thread_impl::exit_instance()
 bool thread_impl::on_idle(LONG lCount)
 {
 
-   if(m_pauraapp == NULL)
+   if(m_pthread == NULL)
       return false;
 
-   return Application.on_thread_on_idle(this, lCount);
+   return m_pthread->on_thread_on_idle(this, lCount);
 
 
 }

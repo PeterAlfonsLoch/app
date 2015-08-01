@@ -12,6 +12,7 @@ public:
    typedef ARRAY_TYPE BASE_ARRAY;
    //DECLARE_AND_IMPLEMENT_DEFAULT_CONSTRUCTION_AND_ASSIGNMENT(comparable_array, ARRAY_TYPE)
 
+   comparable_array(::std::initializer_list < TYPE > l) : BASE_ARRAY(l) {   }
    comparable_array() {}
    comparable_array(const comparable_array & array)
    {

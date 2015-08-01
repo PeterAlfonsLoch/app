@@ -63,7 +63,7 @@ namespace user
 
       virtual ::user::view_creator_data * ensure_impact(id id, LPCRECT lpcrectCreate);
 
-      virtual void hide_all_except(id id);
+      virtual void hide_all_except(const id_array & id);
 
       template < class T > T *
       get_typed_document()

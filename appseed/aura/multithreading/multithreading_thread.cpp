@@ -671,6 +671,11 @@ bool thread::on_idle(LONG lCount)
 
 }
 
+bool thread::on_thread_on_idle(thread_impl *pimpl, LONG lCount)
+{
+   return true;
+}
+
 
 bool thread::is_idle_message(signal_details * pobj)
 {

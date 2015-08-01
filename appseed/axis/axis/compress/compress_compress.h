@@ -19,6 +19,8 @@ namespace axis
 
       bool ungz(::file::memory_buffer & memoryfile);
 
+      bool ungz(::primitive::memory & memory);
+
       bool unbz(::aura::application * papp,const ::file::path & lpcszUncompressed,const ::file::path & lpcszBzFileCompressed);
       bool bz(::aura::application * papp,const ::file::path & lpcszBzFileCompressed,const ::file::path & lpcszUncompressed);
 

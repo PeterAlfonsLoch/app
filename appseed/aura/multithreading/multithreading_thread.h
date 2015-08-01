@@ -148,6 +148,7 @@ public:
    virtual bool defer_pump_message();     // deferred message pump
    virtual bool process_message(LPMESSAGE lpmessage);     // route message
    virtual bool on_idle(LONG lCount); // return TRUE if more idle processing
+   virtual bool on_thread_on_idle(::thread_impl * pimpl, LONG lCount);
    virtual bool is_idle_message(signal_details * pobj);  // checks for special messages
    virtual bool is_idle_message(LPMESSAGE lpmessage);  // checks for special messages
 

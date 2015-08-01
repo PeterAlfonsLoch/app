@@ -1043,6 +1043,7 @@ namespace user
             {
                _001OnButtonAction(pdescriptor->m_pcontrol);
                pevent->m_bRet = true;
+               pevent->m_bProcessed = true;
                return true;
             }
             else

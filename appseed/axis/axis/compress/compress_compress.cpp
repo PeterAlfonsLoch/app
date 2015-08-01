@@ -111,6 +111,42 @@ namespace axis
 
    }
 
+   bool compress::ungz(::primitive::memory & memory)
+   {
+
+      ::primitive::memory dest;
+
+      int iRate = 1;
+      while(true)
+      {
+
+         dest.allocate(memory.get_size() * 10);
+
+         uLong l = dest.get_size();
+
+         int i = ::uncompress(dest.get_data(), &l, memory.get_data(), memory.get_size());
+
+         if (i == Z_OK)
+            break;
+
+         if (i == Z_BUF_ERROR)
+         {
+            iRate++;
+            if (iRate > 4)
+               return false;
+            dest.allocate(dest.get_size() * 2);
+            continue;
+         }
+
+         return false;
+
+      }
+
+      memory = dest;
+
+      return true;
+
+   }
 
    bool compress::gz(::file::ostream & ostreamCompressed, const ::file::path & lpcszUncompressed)
    {
