@@ -375,30 +375,6 @@ namespace axis
       m_serviceptra.remove_all();
 
 
-      try
-      {
-         
-         if (m_libraryDraw2d.is_opened())
-         {
-
-            if (m_pDraw2dFactoryExchange != NULL)
-            {
-
-               delete m_pDraw2dFactoryExchange;
-            
-               m_pDraw2dFactoryExchange = NULL;
-
-            }
-
-            m_libraryDraw2d.close();
-
-         }
-
-      }
-      catch (...)
-      {
-
-      }
 
       try
       {
@@ -542,6 +518,30 @@ namespace axis
 
       }
 
+      try
+      {
+
+         if(m_libraryDraw2d.is_opened())
+         {
+
+            if(m_pDraw2dFactoryExchange != NULL)
+            {
+
+               delete m_pDraw2dFactoryExchange;
+
+               m_pDraw2dFactoryExchange = NULL;
+
+            }
+
+            m_libraryDraw2d.close();
+
+         }
+
+      }
+      catch(...)
+      {
+
+      }
 
       return iRet;
 
