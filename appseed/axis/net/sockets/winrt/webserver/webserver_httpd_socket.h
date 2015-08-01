@@ -20,8 +20,6 @@ namespace sockets
       ~httpd_socket();
 
 
-   protected:
-      httpd_socket(const httpd_socket& s);
       /** Decode and send a base64-encoded string.
          \param str64 Base64-encoded string
          \param type Mime type of content (content-type header) */

@@ -628,7 +628,11 @@ namespace metrowin
    void directx_application::OnWindowSizeChanged(CoreWindow ^ sender, WindowSizeChangedEventArgs ^ args)
    {
 
-      m_rectLastWindowRect = m_window->Bounds;
+      m_directx->m_size.set_size(args->Size.Width,args->Size.Height);
+
+      m_rectLastWindowRect.Width = m_directx->m_size.cx;
+
+      m_rectLastWindowRect.Height = m_directx->m_size.cy;
 
       m_directx->UpdateForWindowSizeChange();
 

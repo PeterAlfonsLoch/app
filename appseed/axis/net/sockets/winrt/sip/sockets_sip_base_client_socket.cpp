@@ -27,14 +27,6 @@ namespace sockets
       SetLineProtocol();
    }
 
-   sip_base_client_socket::sip_base_client_socket(const sip_base_client_socket& s) :
-      object(((resolv_server&)s).get_app()),
-      base_socket(s),
-      socket(s),
-      m_request(s.get_app()),
-      m_response(s.get_app())
-   {
-   }
 
 
    sip_base_client_socket::~sip_base_client_socket()
@@ -460,6 +452,11 @@ namespace sockets
       return m_response.headers();
    }
 
+   void sip_base_client_socket::OnFirst()
+   {
+
+   }
+
    void sip_base_client_socket::OnHeader(const string & key,const string & value, const string & lowvalue)
    {
       //sip_base_client_socket::OnHeader(key, value);
@@ -473,6 +470,15 @@ namespace sockets
          m_request.header(key) = value;
    }
 
+   //void sip_base_client_socket::OnHeaderComplete()
+   //{
+
+   //}
+   //   
+   void sip_base_client_socket::OnData(const char *,size_t)
+   {
+
+   }
 
    void sip_base_client_socket::OnHeaderComplete()
    {

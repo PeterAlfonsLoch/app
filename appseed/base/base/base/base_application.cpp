@@ -1,6 +1,11 @@
 //#include "framework.h" // from "axis/user/user.h"
 //#include "base/user/user.h"
 
+#ifdef METROWIN
+
+CLASS_DECL_IMPORT void draw2d_factory_exchange(::aura::application * papp);
+
+#endif
 
 namespace base
 {
@@ -3019,6 +3024,20 @@ namespace base
 
    }
 
+   void application::draw2d_factory_exchange()
+   {
+
+#if defined(METROWIN)
+
+      ::draw2d_factory_exchange(this);
+
+#else
+
+      ::axis::application::draw2d_factory_exchange();
+
+#endif
+
+   }
 
 } // namespace base
 

@@ -671,6 +671,7 @@ typedef struct _UNICODE_STRING {
         ObjectDataInformation
     } OBJECT_INFORMATION_CLASS, *POBJECT_INFORMATION_CLASS;
 
+#ifndef METROWIN
     typedef enum _PROCESSINFOCLASS {
         ProcessBasicInformation = 0,
         ProcessQuotaLimits = 1,
@@ -708,6 +709,12 @@ typedef struct _UNICODE_STRING {
         ProcessExecuteFlags = 34,
         MaxProcessInfoClass
     } PROCESSINFOCLASS, PROCESS_INFORMATION_CLASS;
+
+#else
+
+    typedef PROCESS_INFORMATION_CLASS PROCESSINFOCLASS;
+
+#endif
 
 #define MEM_EXECUTE_OPTION_DISABLE   0x01
 #define MEM_EXECUTE_OPTION_ENABLE    0x02

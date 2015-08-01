@@ -41,10 +41,10 @@ CLASS_DECL_AURA DWORD WINAPI WaitForSingleObject( _In_ HANDLE hHandle, _In_ DWOR
 BEGIN_EXTERN_C
 
    
-CLASS_DECL_AURA char* getenv(const char* name);
-CLASS_DECL_AURA HANDLE WINAPI CreateMutex(_In_opt_ LPSECURITY_ATTRIBUTES lpMutexAttributes, _In_ BOOL bInitialOwner, _In_opt_ LPCSTR lpName  );
+//CLASS_DECL_AURA char* getenv(const char* name);
+//CLASS_DECL_AURA HANDLE WINAPI CreateMutex(_In_opt_ LPSECURITY_ATTRIBUTES lpMutexAttributes, _In_ BOOL bInitialOwner, _In_opt_ LPCSTR lpName  );
 END_EXTERN_C
-CLASS_DECL_AURA HANDLE WINAPI CreateMutexW(    _In_opt_ LPSECURITY_ATTRIBUTES lpMutexAttributes,    _In_ BOOL bInitialOwner,    _In_opt_ LPCWSTR lpName    );
+//CLASS_DECL_AURA HANDLE WINAPI CreateMutexW(    _In_opt_ LPSECURITY_ATTRIBUTES lpMutexAttributes,    _In_ BOOL bInitialOwner,    _In_opt_ LPCWSTR lpName    );
 
 
 #ifdef __cplusplus

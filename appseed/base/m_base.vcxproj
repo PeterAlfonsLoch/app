@@ -36,9 +36,6 @@
     <ProjectReference Include="..\..\axis\zlib\m_axiszlib.vcxproj">
       <Project>{7ebfd809-20d7-4744-81c0-9f3ff41a070f}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\aura\m_aura.vcxproj">
-      <Project>{55f3f6b8-8baf-4f22-9e77-bcf9d5a23960}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\axis\m_axis.vcxproj">
       <Project>{3bae8362-f135-4513-9163-58532baba44a}</Project>
     </ProjectReference>

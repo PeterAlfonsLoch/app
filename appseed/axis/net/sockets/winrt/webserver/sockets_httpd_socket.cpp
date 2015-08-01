@@ -24,15 +24,6 @@ namespace sockets
    }
 
 
-   httpd_socket::httpd_socket(const httpd_socket& s) :
-      object(((resolv_server&)s).get_app()),
-      base_socket(s),
-      socket(s),
-      stream_socket(s),
-      tcp_socket(s),
-      http_base_socket(s)
-   {
-   }
 
    httpd_socket::~httpd_socket()
    {

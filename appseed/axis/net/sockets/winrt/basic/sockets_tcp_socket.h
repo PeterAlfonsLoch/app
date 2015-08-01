@@ -262,7 +262,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          set by SetTransferLimit. Default: 0 (disabled). */
          virtual void OnTransferLimit();
 
-         tcp_socket(const tcp_socket& );
          void OnRead();
          virtual void on_read(const void * buf, int_ptr n );
          void OnWrite();

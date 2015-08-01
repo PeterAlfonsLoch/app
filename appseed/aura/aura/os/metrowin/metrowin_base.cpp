@@ -408,17 +408,17 @@ DWORD WINAPI WaitForSingleObject( _In_ HANDLE hHandle, _In_ DWORD dwMilliseconds
 
 BEGIN_EXTERN_C
 
-CLASS_DECL_AURA
-HANDLE
-WINAPI
-CreateMutex(
-    _In_opt_ LPSECURITY_ATTRIBUTES lpMutexAttributes,
-    _In_ BOOL bInitialOwner,
-    _In_opt_ LPCSTR lpName
-    )
-{
-   return CreateMutexW(lpMutexAttributes, bInitialOwner, wstring(lpName));
-}
+//CLASS_DECL_AURA
+//HANDLE
+//WINAPI
+//CreateMutex(
+//    _In_opt_ LPSECURITY_ATTRIBUTES lpMutexAttributes,
+//    _In_ BOOL bInitialOwner,
+//    _In_opt_ LPCSTR lpName
+//    )
+//{
+//   return CreateMutexW(lpMutexAttributes, bInitialOwner, wstring(lpName));
+//}
 
 CLASS_DECL_AURA char* getenv (const char* name)
 {

@@ -295,6 +295,8 @@ virtual ::user::interaction * main_window();
       virtual ::user::interaction * FindWindowEx(oswindow oswindowParent,oswindow oswindowChildAfter,const char * lpszClass,const char * lpszWindow);
       virtual bool post_user_message(::thread_impl * pimpl,::user::primitive * pui,UINT message,WPARAM wparam = 0,lparam lparam = 0);
 
+      virtual void draw2d_factory_exchange();
+
    };
 
 

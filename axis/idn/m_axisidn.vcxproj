@@ -151,11 +151,6 @@
     </ClCompile>
     <ClCompile Include="winmetro_dummy.c" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\appseed\aura\m_aura.vcxproj">
-      <Project>{55f3f6b8-8baf-4f22-9e77-bcf9d5a23960}</Project>
-    </ProjectReference>
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F9917855-9C31-41A0-85B1-8BA8DFD6E3B6}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>

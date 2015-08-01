@@ -91,11 +91,6 @@
   <ItemGroup>
     <None Include="auracharguess.def" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\appseed\aura\m_aura.vcxproj">
-      <Project>{55f3f6b8-8baf-4f22-9e77-bcf9d5a23960}</Project>
-    </ProjectReference>
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{67C95418-596B-4860-AFAE-B53262AE5E43}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>

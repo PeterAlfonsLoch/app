@@ -821,20 +821,7 @@ namespace sockets
    }
 
 
-   #ifdef _MSC_VER
-   #pragma warning(disable:4355)
-   #endif
-   tcp_socket::tcp_socket(const tcp_socket& s) :
-      object(((resolv_server&)s).get_app()),
-      base_socket(s),
-      socket(s),
-      stream_socket(s),
-      ibuf(0)
-   {
-   }
-   #ifdef _MSC_VER
-   #pragma warning(default:4355)
-   #endif
+
 
 
    void tcp_socket::OnSocks4Connect()

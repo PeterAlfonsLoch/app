@@ -361,6 +361,10 @@ namespace metrowin
          // Update Direct2D's stored DPI.
          m_d2dContext->SetDpi(m_dpi,m_dpi);
 
+         m_size.cx = m_window->Bounds.Width;
+
+         m_size.cy = m_window->Bounds.Height;
+
          // Often a DPI change implies a window size change. In some cases Windows will issue
          // both a size changed event and a DPI changed event. In this case, the resulting bounds
          // will not change, and the window resize code will only be executed once.
@@ -386,8 +390,8 @@ namespace metrowin
             return;
          }
 
-         if(m_window->Bounds.Width != m_windowBounds.Width ||
-            m_window->Bounds.Height != m_windowBounds.Height)
+         if(m_size.cx != m_windowBounds.Width ||
+            m_size.cy != m_windowBounds.Height)
          {
             m_d2dContext->SetTarget(nullptr);
             m_d2dTargetBitmap = nullptr;
@@ -396,14 +400,14 @@ namespace metrowin
             m_windowSizeChangeInProgress = true;
             CreateWindowSizeDependentResources();
             sl.unlock();
-            System.m_posdata->m_pui->SetWindowPos(ZORDER_TOP,0,0,m_window->Bounds.Width,m_window->Bounds.Height,SWP_SHOWWINDOW);
+            System.m_posdata->m_pui->SetWindowPos(ZORDER_TOP,0,0,m_size.cx,m_size.cy,SWP_SHOWWINDOW);
             if(System.directrix()->m_varTopicQuery.has_property("client_only"))
             {
                for(int i = 0; i < System.m_posdata->m_pui->m_uiptraChild.get_count(); i++)
                {
                   if(System.m_posdata->m_pui->m_uiptraChild[i]->IsWindowVisible())
                   {
-                     System.m_posdata->m_pui->m_uiptraChild[i]->SetWindowPos(ZORDER_TOP,0,0,m_window->Bounds.Width,m_window->Bounds.Height,SWP_SHOWWINDOW);
+                     System.m_posdata->m_pui->m_uiptraChild[i]->SetWindowPos(ZORDER_TOP,0,0,m_size.cx,m_size.cy,SWP_SHOWWINDOW);
 
                      //System.m_posdata->m_pui->m_uiptraChild[i]->layout();
                   }
@@ -421,7 +425,8 @@ namespace metrowin
 
       // Store the window bounds so the next time we get a SizeChanged event we can
       // avoid rebuilding everything if the size is identical.
-      m_windowBounds = m_window->Bounds;
+      m_windowBounds.Width = m_size.cx;
+      m_windowBounds.Height = m_size.cy;
 
       if(m_swapChain != nullptr)
       {

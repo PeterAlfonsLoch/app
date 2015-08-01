@@ -114,7 +114,7 @@
          int GetShutdown();
 
          /** Returns IPPROTO_TCP or IPPROTO_SCTP */
-         virtual int Protocol() = 0;
+         virtual int Protocol();
 
          virtual port_t GetRemotePort();
          virtual ::net::address GetRemoteAddress();

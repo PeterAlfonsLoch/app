@@ -1094,11 +1094,14 @@ void dir::ls_dir(::file::patha & stra,const ::file::path & psz)
 
 //#pragma push_macro("System")
 //#undef System
-
-   string str(UserProfile::UserInformation::GetDomainNameAsync()->GetResults()->Data());
+//
+//   string str(::Windows::System::UserProfile::UserInformation->GetDomainNameAsync()->GetResults()->Data());
+//
 //#pragma pop_macro("System")
 
-   return str;
+   return "User";
+
+   //return str;
 
 #elif defined(ANDROID)
 

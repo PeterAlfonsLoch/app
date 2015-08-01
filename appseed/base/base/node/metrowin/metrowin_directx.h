@@ -37,7 +37,7 @@ namespace metrowin
 
       mutex    m_mutexDc;
 
-      
+      size        m_size;
 
       bool m_bInitialized;
       bool m_bInit;

@@ -7818,11 +7818,6 @@ ml64 /Zi /Fo"$(IntDir)x64cpuid.o" /c /Fl"$(IntDir)x64cpuid.lst" "$(ProjectDir)as
     <ClCompile Include="engines\_engines.c" />
     <ClCompile Include="openssl_exception.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\appseed\aura\m_aura.vcxproj">
-      <Project>{55f3f6b8-8baf-4f22-9e77-bcf9d5a23960}</Project>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

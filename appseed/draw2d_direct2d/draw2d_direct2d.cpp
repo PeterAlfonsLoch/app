@@ -60,40 +60,40 @@ WINBOOL APIENTRY DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
 #pragma init_seg( lib )
 
 extern int __abi___threading_model;
-__abi_Module* __abi_module = nullptr;
+//__abi_Module* __abi_module = nullptr;
 
 #undef Platform
 
 namespace Platform {
 	namespace Details {
 
-		class InProcModule :
-			public Microsoft::WRL::Module<Microsoft::WRL::InProcDisableCaching, InProcModule>,
-			public __abi_Module
-		{
-		public:
-			InProcModule()
-			{
-				__abi_module = this;
-			}
+		//class InProcModule :
+		//	public Microsoft::WRL::Module<Microsoft::WRL::InProcDisableCaching, InProcModule>,
+		//	public __abi_Module
+		//{
+		//public:
+		//	InProcModule()
+		//	{
+		//		__abi_module = this;
+		//	}
 
-			virtual ~InProcModule()
-			{
-				__abi_module = nullptr;
-			}
+		//	virtual ~InProcModule()
+		//	{
+		//		__abi_module = nullptr;
+		//	}
 
-			virtual unsigned long __stdcall __abi_IncrementObjectCount()
-			{
-				return Module::IncrementObjectCount();
-			}
+		//	virtual unsigned long __stdcall __abi_IncrementObjectCount()
+		//	{
+		//		return Module::IncrementObjectCount();
+		//	}
 
-			virtual unsigned long __stdcall __abi_DecrementObjectCount()
-			{
-				return Module::DecrementObjectCount();
-			}
-		};
+		//	virtual unsigned long __stdcall __abi_DecrementObjectCount()
+		//	{
+		//		return Module::DecrementObjectCount();
+		//	}
+		//};
 
-		auto &module_ = InProcModule::Create();
+		//auto &module_ = InProcModule::Create();
 
 
 		// Forward declarations from vccorlib DLL
@@ -104,32 +104,32 @@ namespace Platform {
 		void __cdecl Cleanup();
 
 		// Initialize MoCOM data and clean up handlers
-		int __cdecl Initialize()
-		{
-			//Global initialization
-/*			HRESULT hr = InitializeData(__abi___threading_model);
-			if (FAILED(hr))
-			{
-				Cleanup();
-				return hr;
-			}*/
-
-			// Register cleaning handler
-			atexit(Cleanup);
-			return 0;
-		}
-
-		// Global clean up
-		void __cdecl Cleanup()
-		{
-			UninitializeData(__abi___threading_model);
-		}
+//		int __cdecl Initialize()
+//		{
+//			//Global initialization
+///*			HRESULT hr = InitializeData(__abi___threading_model);
+//			if (FAILED(hr))
+//			{
+//				Cleanup();
+//				return hr;
+//			}*/
+//
+//			// Register cleaning handler
+//			atexit(Cleanup);
+//			return 0;
+//		}
+//
+//		// Global clean up
+//		void __cdecl Cleanup()
+//		{
+//			UninitializeData(__abi___threading_model);
+//		}
 
 	} } // namespace Details
 
 //Put initialization data into the departament that we can return failure
-#pragma section(".CRT$XIY",long,read)
-extern "C" __declspec(allocate(".CRT$XIY")) void* __abi__initialize = Details::Initialize;
+//#pragma section(".CRT$XIY",long,read)
+//extern "C" __declspec(allocate(".CRT$XIY")) void* __abi__initialize = Details::Initialize;
 
 // All required libraries must be pulled in in init.cpp file because it always referenced
 // The librairies should not be pulled in vccorlib.h unless it's vccorlib*.lib

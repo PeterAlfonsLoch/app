@@ -57,15 +57,15 @@ namespace sockets
 
       /** Callback executes when first line has been received.
          GetMethod, GetUrl/GetUri, and GetHttpVersion are valid when this callback is executed. */
-      virtual void OnFirst() = 0;
+      virtual void OnFirst();
       /** For each header line this callback is executed.
          \param key Http header name
          \param value Http header value */
       virtual void OnHeader(const string & key,const string & value, const string & lowvalue);
       /** Callback fires when all http headers have been received. */
-      virtual void OnHeaderComplete() = 0;
+      virtual void OnHeaderComplete();
       /** Chunk of http body data recevied. */
-      virtual void OnData(const char *,size_t) = 0;
+      virtual void OnData(const char *,size_t);
       /** The full request/response body has been received. */
       virtual void OnDataComplete() {}
 
@@ -106,8 +106,6 @@ namespace sockets
       sip::request & request();
       sip::response & response();
 
-   protected:
-      sip_base_client_socket(const sip_base_client_socket& s);
       /** Reset state of socket to sucessfully implement keep-alive. */
       virtual void Reset();
 

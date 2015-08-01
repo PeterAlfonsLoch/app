@@ -156,6 +156,15 @@ namespace sockets
       return m_shutdown;
    }
 
+   /** Returns IPPROTO_TCP or IPPROTO_SCTP */
+   int stream_socket::Protocol()
+   {
+
+      throw interface_only_exception(get_app(),"stream_socket::Protocol");
+
+      return -1;
+
+   }
 
    port_t stream_socket::GetRemotePort()
    {

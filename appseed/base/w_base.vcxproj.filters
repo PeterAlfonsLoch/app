@@ -1,0 +1,574 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{9010b119-6b24-45e5-bc6f-8718443fc6d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base">
+      <UniqueIdentifier>{45721b40-b1d2-417c-9807-c5443930fa77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\os">
+      <UniqueIdentifier>{60f2930c-6c6f-445a-93c7-9f290c6d744d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\os\cross">
+      <UniqueIdentifier>{4f3bdfca-b158-4569-8bd5-698c5fc26adf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\os\cross\windows">
+      <UniqueIdentifier>{c63aceac-1ff3-4d1c-af03-462128d35f3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\os\ansios">
+      <UniqueIdentifier>{0f80ce40-4c75-4215-8de3-3df0c5ce188f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\os\metrowin">
+      <UniqueIdentifier>{b16c3083-2a0f-435d-bb4a-e5711831ab7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\node">
+      <UniqueIdentifier>{775e8a9c-5a0b-48a3-8b7b-899ee29fa583}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\node\android">
+      <UniqueIdentifier>{547d9846-d5d7-499e-92b0-a33566ae8672}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\node\ansios">
+      <UniqueIdentifier>{a21c941e-03e0-474f-81d4-5dfbd7c9639f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\node\metrowin">
+      <UniqueIdentifier>{4b301b5a-7282-42d7-a849-34de18ced30e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\node\windows">
+      <UniqueIdentifier>{51a16d2e-74a9-44b9-b72f-6b639b30024c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\base">
+      <UniqueIdentifier>{eabc6a83-d21c-48b8-9428-3b73e6878cff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\base_policy">
+      <UniqueIdentifier>{49a783e3-c564-490d-8cab-98f732fc77ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user">
+      <UniqueIdentifier>{eae143e5-7c01-4405-b53f-5855e6d6c32b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\user">
+      <UniqueIdentifier>{d722b0ef-e181-49cb-a4de-b34ddd70fc8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{fcda8a7c-3a09-4567-8c40-de22317a1b5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user">
+      <UniqueIdentifier>{70f44c8d-d4cc-40e3-93c2-5100701ee4ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\simple_ui">
+      <UniqueIdentifier>{c7062c77-6ee0-4d7b-8d0b-1584c95532e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\user">
+      <UniqueIdentifier>{10e8db35-3bfb-4e39-98d7-0a2d72c7de1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\simple">
+      <UniqueIdentifier>{cc714d65-eadb-422d-b835-d62793d7c269}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\userpresence">
+      <UniqueIdentifier>{928047ad-f1c6-4d7f-aa27-63ff020a1236}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\fontopus">
+      <UniqueIdentifier>{4d4f0cff-f201-49d7-982b-62f13ee9b0b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics">
+      <UniqueIdentifier>{2b696191-c162-4e86-b3b2-734e2d2c2eba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\filesystem">
+      <UniqueIdentifier>{5e4f06fe-e10b-41bf-b3ca-eb566bdea8aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\filesystem\file">
+      <UniqueIdentifier>{2a4bbb5c-a6cf-4be5-962c-9d90c458bff2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base">
+      <UniqueIdentifier>{43071cd3-694c-4410-b679-c0fdd1995805}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\os">
+      <UniqueIdentifier>{de30e027-1fbb-466f-bb01-9ad799ab58bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\os\metrowin">
+      <UniqueIdentifier>{76728e76-5164-418e-8763-5f49e7ab8eda}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\base">
+      <UniqueIdentifier>{3996f5dd-5f52-4063-a9e8-dd7889bbd046}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\message">
+      <UniqueIdentifier>{b648c01c-b10d-49d3-ba64-af51e861f7d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\node">
+      <UniqueIdentifier>{bc14080d-c7f2-4217-aabd-1744669c8b94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\node\ansios">
+      <UniqueIdentifier>{6bfab1ef-87d0-4eee-900a-485b74fa1b72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\node\metrowin">
+      <UniqueIdentifier>{618398c3-101e-4a70-9844-f0c2851d149a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\node\windows">
+      <UniqueIdentifier>{7a22a162-0c37-437a-8861-8402c741cd97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\hotplugin">
+      <UniqueIdentifier>{9df79a19-7ac6-4cbc-a071-4298aa359b0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\install">
+      <UniqueIdentifier>{eff22b4f-70cf-4b02-bb0d-f324c48307a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\database">
+      <UniqueIdentifier>{a93825fa-fadd-47e7-a509-0dd4c071599c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\database\database">
+      <UniqueIdentifier>{40ba5145-bb88-44a9-899c-7f69abac2f1e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\cross.h">
+      <Filter>Header Files\base\os</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\os.h">
+      <Filter>Header Files\base\os</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\ansios\ansios.h">
+      <Filter>Header Files\base\os\ansios</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\metrowin\ca_os.h">
+      <Filter>Header Files\base\os\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\metrowin\metrowin.h">
+      <Filter>Header Files\base\os\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\metrowin\metrowin_file_watcher.h">
+      <Filter>Header Files\base\os\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\metrowin\metrowin_file_winrt.h">
+      <Filter>Header Files\base\os\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\metrowin\metrowin_internal.h">
+      <Filter>Header Files\base\os\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\metrowin\metrowin_process.h">
+      <Filter>Header Files\base\os\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\metrowin\metrowin_simple_hold_handle.h">
+      <Filter>Header Files\base\os\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\metrowin\metrowin_sockets.h">
+      <Filter>Header Files\base\os\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\metrowin\metrowin_window_impl.h">
+      <Filter>Header Files\base\os\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\node.h">
+      <Filter>Header Files\base\node</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\android\android.h">
+      <Filter>Header Files\base\node\android</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\android\android1.h">
+      <Filter>Header Files\base\node\android</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\android\android_factory_exchange.h">
+      <Filter>Header Files\base\node\android</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\android\android_implementation.h">
+      <Filter>Header Files\base\node\android</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\ansios\ansios.h">
+      <Filter>Header Files\base\node\ansios</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin_directx.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin_directx_application.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin_factory_exchange.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin_interaction_impl.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin_window_draw.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_application.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_platform_interface.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_session.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_simple_app.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_static_start.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_system.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_policy\base_c.h">
+      <Filter>Header Files\base\base_policy</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_policy\base_cpp.h">
+      <Filter>Header Files\base\base_policy</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_policy\base_policy.h">
+      <Filter>Header Files\base\base_policy</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_policy\base_policy_objc.h">
+      <Filter>Header Files\base\base_policy</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_policy\base_policy_objcpp.h">
+      <Filter>Header Files\base\base_policy</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_policy\base_policy_winrt.h">
+      <Filter>Header Files\base\base_policy</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_plain_edit.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_plain_text_data.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="base\base\base.inl">
+      <Filter>Header Files\base\base</Filter>
+    </None>
+    <None Include="base\base\base_system_xml.inl">
+      <Filter>Header Files\base\base</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="user\_user.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple_ui\simple_ui_edit_box.cpp">
+      <Filter>Source Files\user\simple_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple_ui\simple_ui_interaction.cpp">
+      <Filter>Source Files\user\simple_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple_ui\simple_ui_label.cpp">
+      <Filter>Source Files\user\simple_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple_ui\simple_ui_message_box.cpp">
+      <Filter>Source Files\user\simple_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple_ui\simple_ui_password.cpp">
+      <Filter>Source Files\user\simple_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple_ui\simple_ui_style.cpp">
+      <Filter>Source Files\user\simple_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple_ui\simple_ui_tap.cpp">
+      <Filter>Source Files\user\simple_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\aaa_want_to_remove_user_buffer.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\aaa_want_to_remove_user_keyboard_focus.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\aaa_want_to_remove_user_mouse_focus.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\aaa_want_to_remove_user_text_interface.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_control.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_control_bar.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_control_event.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_document.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_edit_plain_text.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_elemental.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_form_interface.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_frame_window.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_impact.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_impact_system.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_impact_update_hint.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_interaction.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_interaction_base.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_interaction_child.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_interaction_impl.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_interaction_impl_base.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_job.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_keyboard.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_keyboard_layout.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_menu_base.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_menu_base_item.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_message.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_place_holder.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_place_holder_container.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_plain_edit.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_plain_text_data.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_print_job.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_schema.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_schema_layered_frame.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_schema_simple_impl.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_scroll_bar.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_scroll_control.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_scroll_view.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_server.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_user.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_view_container.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_view_creator.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_wait_cursor.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_windowing.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_window_draw.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_window_map.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_window_util.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_scroll_bar.cpp">
+      <Filter>Source Files\user\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="user\userpresence\userpresence_userpresence.cpp">
+      <Filter>Source Files\user\userpresence</Filter>
+    </ClCompile>
+    <ClCompile Include="user\userpresence\userpresence_user_presence.cpp">
+      <Filter>Source Files\user\userpresence</Filter>
+    </ClCompile>
+    <ClCompile Include="user\fontopus\fontopus.cpp">
+      <Filter>Source Files\user\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="user\fontopus\fontopus_login.cpp">
+      <Filter>Source Files\user\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="user\fontopus\fontopus_simple_ui.cpp">
+      <Filter>Source Files\user\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\graphics_window_graphics.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="base\_base_base.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\_os.cpp">
+      <Filter>Source Files\base\os</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\metrowin\metrowin.cpp">
+      <Filter>Source Files\base\os\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\metrowin\metrowin_message_loop.cpp">
+      <Filter>Source Files\base\os\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\metrowin\metrowin_multithreading.cpp">
+      <Filter>Source Files\base\os\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\metrowin\metrowin_process.cpp">
+      <Filter>Source Files\base\os\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\metrowin\metrowin_simple_app.cpp">
+      <Filter>Source Files\base\os\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\metrowin\metrowin_trace_message.cpp">
+      <Filter>Source Files\base\os\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\metrowin\metrowin_user.cpp">
+      <Filter>Source Files\base\os\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\metrowin\metrowin_windowing.cpp">
+      <Filter>Source Files\base\os\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\metrowin\_metrowin_os.cpp">
+      <Filter>Source Files\base\os\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_application.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_core_copydesk.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_print_job.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_session.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_static_start.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\base_system.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\message\message.cpp">
+      <Filter>Source Files\base\message</Filter>
+    </ClCompile>
+    <ClCompile Include="base\message\message_user.cpp">
+      <Filter>Source Files\base\message</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\_node.cpp">
+      <Filter>Source Files\base\node</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\metrowin\metrowin_copydesk.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\metrowin\metrowin_directx.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\metrowin\metrowin_directx_application.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\metrowin\metrowin_factory_exchange.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\metrowin\metrowin_interaction_impl.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\metrowin\metrowin_window_draw.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\metrowin\_metrowin_node.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\windows\windows_message_queue.cpp">
+      <Filter>Source Files\base\node\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\hotplugin\hotplugin.cpp">
+      <Filter>Source Files\base\hotplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\hotplugin\hotplugin_composer.cpp">
+      <Filter>Source Files\base\hotplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\hotplugin\hotplugin_container_launcher.cpp">
+      <Filter>Source Files\base\hotplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\hotplugin\hotplugin_host.cpp">
+      <Filter>Source Files\base\hotplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\hotplugin\hotplugin_plugin.cpp">
+      <Filter>Source Files\base\hotplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\hotplugin\hotplugin_windows.cpp">
+      <Filter>Source Files\base\hotplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\install\install_plugin.cpp">
+      <Filter>Source Files\base\install</Filter>
+    </ClCompile>
+    <ClCompile Include="base\install\install_plugin_bare_paint_discreet.cpp">
+      <Filter>Source Files\base\install</Filter>
+    </ClCompile>
+    <ClCompile Include="base\install\install_plugin_bare_paint_full_screen.cpp">
+      <Filter>Source Files\base\install</Filter>
+    </ClCompile>
+    <ClCompile Include="base\install\install_plugin_bare_paint_veri_discreet.cpp">
+      <Filter>Source Files\base\install</Filter>
+    </ClCompile>
+    <ClCompile Include="base\install\install_starter_start.cpp">
+      <Filter>Source Files\base\install</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\database_user_interaction.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="base.rc">
+      <Filter>Source Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

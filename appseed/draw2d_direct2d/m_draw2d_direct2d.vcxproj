@@ -481,11 +481,6 @@
   <ItemGroup>
     <None Include="draw2d_direct2d.def" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\aura\m_aura.vcxproj">
-      <Project>{55f3f6b8-8baf-4f22-9e77-bcf9d5a23960}</Project>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

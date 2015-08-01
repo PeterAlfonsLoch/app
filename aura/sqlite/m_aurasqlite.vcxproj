@@ -59,11 +59,6 @@
   <ItemGroup>
     <None Include="aurasqlite.def" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\appseed\aura\m_aura.vcxproj">
-      <Project>{55f3f6b8-8baf-4f22-9e77-bcf9d5a23960}</Project>
-    </ProjectReference>
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{5DA9963D-5824-48A8-B869-BA93618DA5F4}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
