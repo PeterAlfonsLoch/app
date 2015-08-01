@@ -952,8 +952,7 @@ namespace user
       if(!get_data()->m_bCreated)
          return;
 
-      if (!defer_handle_full_screen_show_tabs(false))
-         return;
+      defer_handle_full_screen_show_tabs(false);
 
       ::draw2d::memory_graphics pdc(allocer());
       pdc->SelectObject(get_data()->m_fontBold);

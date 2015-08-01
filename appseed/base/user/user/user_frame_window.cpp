@@ -855,6 +855,8 @@ namespace user
 
          }
 
+         m_bLayoutEnable = true;
+
          // send initial update to all views (and other controls) in the frame
          SendMessageToDescendants(WM_INITIALUPDATE, 0, (LPARAM)0, TRUE, TRUE);
 
@@ -869,6 +871,8 @@ namespace user
          if (pview != NULL)
             pview->OnActivateView(TRUE, pview, pview);
       }
+
+      m_bLayoutEnable = true;
 
       // update frame counts and frame title (may already have been visible)
       if (pDoc != NULL)

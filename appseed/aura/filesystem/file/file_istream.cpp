@@ -232,8 +232,7 @@ namespace file
 
    void istream::read (serializable & serializable)
    {
-      UNREFERENCED_PARAMETER(serializable);
-      ::exception::throw_interface_only(get_app());
+      serializable.read(*this);
    }
 
 

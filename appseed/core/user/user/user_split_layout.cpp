@@ -80,7 +80,7 @@ namespace user
 
       ASSERT(iPaneCount > 0);
 
-      layout();
+      //layout();
 
       rect rectPane;
 
