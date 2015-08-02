@@ -708,6 +708,9 @@ Opened:
       {
          ::multimedia::audio::wave_buffer::buffer * pbuffer = (::multimedia::audio::wave_buffer::buffer *)pBufferContext;
 
+         m_iBufferedCount--;
+
+
          //pbuffer->m_bIsPlaying = false;
 
          int32_t iBuffer = (int32_t)pbuffer->m_iIndex;
