@@ -246,6 +246,7 @@ public:
    //string(uchar * pszSrc);
    //string(unichar * pszSrc);
    string(const unichar * pszSrc);
+   string(const unichar32 * pszSrc);
    string(const string & strSrc, strsize npos, strsize len = -1);
 
    string(const hstring & hstr) : stdstring< simple_string>(hstr.operator const char *(),string_trait::GetDefaultManager()){  }
@@ -302,6 +303,7 @@ public:
    string & operator = (const string & strSrc);
    string & operator = (const char * pszSrc);
    string & operator = (const unichar * pszSrc);
+   string & operator = (const unichar32 * pszSrc);
    string & operator = (const uchar* pszSrc);
    string & operator = (char ch);
 #if defined(METROWIN) && defined(__cplusplus_winrt)

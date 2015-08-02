@@ -783,6 +783,14 @@ stdstring < simple_string >(string_trait::GetDefaultManager())
    //      }
 }
 
+string::string(const unichar32* pszSrc):
+stdstring < simple_string >(string_trait::GetDefaultManager())
+{
+   //      if( !CheckImplicitLoad( pszSrc ) )
+   //      {
+   *this = pszSrc;
+   //      }
+}
 
 /*string::string(const string & str ) :
    simple_string( string_trait::GetDefaultManager() )
@@ -988,6 +996,25 @@ string& string::operator=(const unichar * pszSrc)
 
    return *this;
 }
+
+string& string::operator=(const unichar32 * pszSrc)
+{
+   // nDestLength is in XCHARs
+   strsize nDestLength = (pszSrc != NULL) ? utf32_to_utf16_len(pszSrc) : 0;
+   if(nDestLength > 0)
+   {
+      char * pszBuffer = GetBuffer(nDestLength);
+      utf32_to_utf8(pszBuffer,pszSrc,nDestLength);
+      ReleaseBufferSetLength(nDestLength);
+   }
+   else
+   {
+      Empty();
+   }
+   
+   return *this;
+}
+
 
 string& string::operator=(const uchar* pszSrc)
 {

@@ -290,7 +290,7 @@ public:
 
    }
 
-   operator ::file::path() const { return get_file_path(); }
+//   operator ::file::path() const { return get_file_path(); }
 
    operator ::datetime::file_time() const;
 

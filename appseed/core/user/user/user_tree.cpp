@@ -113,9 +113,13 @@ namespace user
 
       m_pimagelist = new image_list(get_app());
       m_pimagelist->create(16, 16, 0, 10, 10);
+      
+      ::fork(get_app(), [this](){
 
       _001SetCollapseImage("list/collapse.png");
       _001SetExpandImage("list/expand.png");
+         
+      });
 
 
    }

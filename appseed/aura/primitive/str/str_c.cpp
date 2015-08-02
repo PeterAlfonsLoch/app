@@ -1475,6 +1475,127 @@ unichar32 * utf16_to_utf32(const unichar *input, strsize input_size)
 //   return result;
 //}
 
+strsize utf32_to_utf8_len(const unichar32 * pwsz, strsize input_size)
+{
+   if(pwsz == NULL)
+      return -1;
+   int32_t len = 0;
+   int32_t n;
+   char sz[16];
+   while(input_size != 0 && *pwsz != L'\0')
+   {
+      n = uni_to_utf8(sz,*pwsz);
+      if(n <= 0)
+         break;
+      len += n;
+      input_size--;
+      pwsz++;
+   }
+   return len;
+}
+
+strsize utf32_to_utf8(char * psz,const unichar32 * pwsz, strsize srclen)
+{
+   //unsigned short * pwsz = (unsigned short *)pwszParam;
+   strsize c = 0;
+   int32_t n;
+   while(srclen != 0 && *pwsz != L'\0')
+   {
+      n = uni_to_utf8(psz,*pwsz);
+      if(n <= 0)
+         break;
+      c+=n;
+      pwsz++;
+      psz += n;
+      srclen--;
+   }
+   
+   *psz = L'\0';
+   return c;
+}
+
+string utf32_to_utf8(const unichar32 *input, strsize input_size) 
+{
+   
+   strsize s = utf32_to_utf8_len(input, input_size);
+   
+   string str;
+   
+   char * p = str.GetBufferSetLength(s);
+   
+   utf32_to_utf8(p, input, s);
+   
+   p[s] = 0;
+   
+   return str;
+   
+}
+
+strsize utf8_to_utf32_len(const char * psz, strsize srclen)
+{
+   
+   strsize len;
+   
+   while(srclen != 0 && psz != NULL && *psz != '\0')
+   {
+      
+      ::str::ch::uni_index_len(psz, len);
+      
+      psz += len;
+      
+      srclen--;
+      
+   }
+   
+   return len;
+   
+}
+
+strsize utf8_to_utf32(unichar32 * pwsz,const char * psz, strsize srclen)
+{
+   
+   strsize len;
+   
+   while(srclen != 0 && psz != NULL && *psz != '\0')
+   {
+      
+      *pwsz++ = ::str::ch::uni_index_len(psz,len);
+      
+      psz += len;
+      
+      srclen -= len;
+      
+   }
+   
+   if(psz != NULL)
+   {
+      
+      *pwsz = L'\0';
+      
+   }
+   
+}
+
+
+
+
+unichar32 * utf8_to_utf32(const char *input, strsize input_size) 
+{
+   
+   strsize s = utf8_to_utf32_len(input, input_size);
+   
+   unichar32 * v = (unichar32 *) memory_alloc(sizeof(unichar32) * (s+1));
+   
+   utf8_to_utf32(v, input, s);
+   
+   v[s] = 0;
+   
+   return v;
+   
+}
+
+
+
 strsize utf32_to_utf16_len(const unichar32 * codepoints, strsize input_size)
 {
    

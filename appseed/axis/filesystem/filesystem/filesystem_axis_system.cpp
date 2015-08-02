@@ -582,8 +582,8 @@ namespace file
 
       void system::lines(stringa & stra, var varFile, ::aura::application * papp)
       {
-         UNREFERENCED_PARAMETER(papp);
-         ::file::text_buffer_sp spfile(allocer());
+         
+         ::file::text_buffer_sp spfile(papp == NULL ? allocer() : papp->allocer());
 
          try
          {

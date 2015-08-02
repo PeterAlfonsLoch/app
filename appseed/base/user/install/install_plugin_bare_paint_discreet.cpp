@@ -317,7 +317,7 @@ namespace hotplugin
       wstring wstrStatus;
 
       wstrStatus = wstr;
-      wstrStatus = wstrStatus + L" : ";
+      wstrStatus = wstrStatus + unitext(" : ");
       wstrStatus = wstrStatus + wstrProgress;
 
 
