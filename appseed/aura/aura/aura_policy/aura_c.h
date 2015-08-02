@@ -46,7 +46,7 @@ CLASS_DECL_AURA int throw_assert_exception(const char * lpszFileName,int iLineNu
 #else
 #define ASSERT(f)
 #define _ASSUME(cond)
-#if defined(ANDROID)
+#if defined(ANDROID) || defined(APPLEOS)
 #define ASSERT_VALID(cond)
 #else
 #define ASSERT_VALID(cond) __noop;

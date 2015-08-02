@@ -252,8 +252,13 @@ CLASS_DECL_AURA void __dump(const object* pOb); // dump an object from CodeView
 #pragma warning(disable : 4793)
 inline void c_cdecl __trace(...) { }
 #pragma warning(pop)
+#if defined(APPLEOS)
+#define TRACE              
+#define APPTRACE           
+#else
 #define TRACE              __noop
 #define APPTRACE           __noop
+#endif
 #define TRACE0(sz)
 #define TRACE1(sz, p1)
 #define TRACE2(sz, p1, p2)

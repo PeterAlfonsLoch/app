@@ -98,7 +98,6 @@
 		07108BD11B4C97D500A28F80 /* PSDParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAEBA19C5080A00866C9E /* PSDParser.h */; };
 		07108BD21B4C97D500A28F80 /* Resize.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAEDC19C5080A00866C9E /* Resize.h */; };
 		07108BD31B4C97D500A28F80 /* CacheFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAE7519C5080A00866C9E /* CacheFile.h */; };
-		077A01661B4D555C001C85FF /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEEB82919C50E7500866C9E /* libaura.dylib */; };
 		077A01671B4D5568001C85FF /* libaxiszlib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEEBDAF19C595E900866C9E /* libaxiszlib.dylib */; };
 		9AEEB1D119C5080D00866C9E /* CacheFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAE7519C5080A00866C9E /* CacheFile.h */; };
 		9AEEB1D219C5080D00866C9E /* Deprecated.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE7719C5080A00866C9E /* Deprecated.cpp */; };
@@ -203,6 +202,13 @@
 			remoteGlobalIDString = 07108D041B4C97EF00A28F80;
 			remoteInfo = axiszlib_ios;
 		};
+		071B2AFC1B6E631B0088E158 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AEEB82019C50E7500866C9E /* aura.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 077A080B1B4D7403001C85FF;
+			remoteInfo = ios_aura;
+		};
 		07D6A7421B4CB107004FEBC2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9AEEB82019C50E7500866C9E /* aura.xcodeproj */;
@@ -223,13 +229,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 9A98A6151771D67E000AE16E;
 			remoteInfo = aura;
-		};
-		9AEEB82819C50E7500866C9E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9AEEB82019C50E7500866C9E /* aura.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9AE24D341904CEFE001AEFFB;
-			remoteInfo = aura_ios;
 		};
 		9AEEB82A19C50E7500866C9E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -365,7 +364,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				077A01671B4D5568001C85FF /* libaxiszlib.dylib in Frameworks */,
-				077A01661B4D555C001C85FF /* libaura.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -542,7 +540,7 @@
 			isa = PBXGroup;
 			children = (
 				9AEEB82719C50E7500866C9E /* libaura.dylib */,
-				9AEEB82919C50E7500866C9E /* libaura.dylib */,
+				071B2AFD1B6E631B0088E158 /* libaura.dylib */,
 				9AEEB82B19C50E7500866C9E /* aura_iosTests.xctest */,
 			);
 			name = Products;
@@ -694,18 +692,18 @@
 			remoteRef = 07108DCC1B4C99E400A28F80 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		071B2AFD1B6E631B0088E158 /* libaura.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libaura.dylib;
+			remoteRef = 071B2AFC1B6E631B0088E158 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		9AEEB82719C50E7500866C9E /* libaura.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
 			path = libaura.dylib;
 			remoteRef = 9AEEB82619C50E7500866C9E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9AEEB82919C50E7500866C9E /* libaura.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libaura.dylib;
-			remoteRef = 9AEEB82819C50E7500866C9E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		9AEEB82B19C50E7500866C9E /* aura_iosTests.xctest */ = {
@@ -964,11 +962,13 @@
 					"$(WorkspaceDir)/../../../app/thirdparty/include",
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
 				);
+				INSTALL_PATH = "@executable_path";
 				LIBRARY_SEARCH_PATHS = "$(WorkspaceDir)/../../../nodeapp/thirdparty/library";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = axisfreeimage;
 				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/appseed/aura Source Source/LibRawLite";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
@@ -1005,10 +1005,12 @@
 					"$(WorkspaceDir)/../../../app/thirdparty/include",
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
 				);
+				INSTALL_PATH = "@executable_path";
 				LIBRARY_SEARCH_PATHS = "$(WorkspaceDir)/../../../nodeapp/thirdparty/library";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = axisfreeimage;
 				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/appseed/aura Source Source/LibRawLite";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};

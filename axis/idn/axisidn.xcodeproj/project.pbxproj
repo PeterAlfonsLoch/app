@@ -33,7 +33,6 @@
 		077A00A61B4D4F9E001C85FF /* punycode.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A14419C6E1DC0018DF7D /* punycode.h */; };
 		077A00A71B4D4F9E001C85FF /* tld.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A14E19C6E1DC0018DF7D /* tld.h */; };
 		07D743791B5039B800821238 /* libatomiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 076D0A251A3FDB08007432B6 /* libatomiconv.dylib */; };
-		07E42D421B501D860061D0BC /* libatomiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 077A00AE1B4D4F9E001C85FF /* libatomiconv.dylib */; };
 		9A19A15219C6E1DC0018DF7D /* gunibreak.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A13619C6E1DC0018DF7D /* gunibreak.h */; };
 		9A19A15319C6E1DC0018DF7D /* gunicomp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A13719C6E1DC0018DF7D /* gunicomp.h */; };
 		9A19A15419C6E1DC0018DF7D /* gunidecomp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A13819C6E1DC0018DF7D /* gunidecomp.h */; };
@@ -62,19 +61,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		071B2B051B6E63260088E158 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 076D0A201A3FDB07007432B6 /* atomiconv.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 077A01571B4D5479001C85FF;
+			remoteInfo = ios_atomiconv;
+		};
 		076D0A241A3FDB08007432B6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 076D0A201A3FDB07007432B6 /* atomiconv.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9A1647A219C4A73900966C5E;
 			remoteInfo = atomiconv;
-		};
-		077A00AD1B4D4F9E001C85FF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 076D0A201A3FDB07007432B6 /* atomiconv.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 07108AAA1B4C958C00A28F80;
-			remoteInfo = atomiconv_ios;
 		};
 		077A00AF1B4D4FDC001C85FF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -137,7 +136,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07E42D421B501D860061D0BC /* libatomiconv.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,7 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				076D0A251A3FDB08007432B6 /* libatomiconv.dylib */,
-				077A00AE1B4D4F9E001C85FF /* libatomiconv.dylib */,
+				071B2B061B6E63260088E158 /* libatomiconv.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -312,18 +310,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		071B2B061B6E63260088E158 /* libatomiconv.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libatomiconv.dylib;
+			remoteRef = 071B2B051B6E63260088E158 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		076D0A251A3FDB08007432B6 /* libatomiconv.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
 			path = libatomiconv.dylib;
 			remoteRef = 076D0A241A3FDB08007432B6 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		077A00AE1B4D4F9E001C85FF /* libatomiconv.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libatomiconv.dylib;
-			remoteRef = 077A00AD1B4D4F9E001C85FF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -434,11 +432,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
+				INSTALL_PATH = "@executable_path";
 				LIBRARY_SEARCH_PATHS = "$(WorkspaceDir)/../../../nodeapp/thirdparty/library";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = axisidn;
 				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/appseed/aura";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
@@ -465,10 +465,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
+				INSTALL_PATH = "@executable_path";
 				LIBRARY_SEARCH_PATHS = "$(WorkspaceDir)/../../../nodeapp/thirdparty/library";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = axisidn;
 				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/appseed/aura";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};

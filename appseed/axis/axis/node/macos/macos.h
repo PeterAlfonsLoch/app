@@ -21,7 +21,7 @@ sp(::aura::application)     mac_instantiate_application(sp(::aura::application) 
 CLASS_DECL_AXIS void AfxSetAllocStop(LONG lRequestNumber);
 
 // Return TRUE if primitive::memory is sane or print out what is wrong
-CLASS_DECL_AXIS bool __check_memory();
+CLASS_DECL_AXIS WINBOOL AfxCheckMemory();
 
 // Return TRUE if valid primitive::memory block of nBytes
 //CLASS_DECL_AXIS WINBOOL AfxIsMemoryBlock(const void * p, UINT nBytes, LONG* plRequestNumber = NULL);

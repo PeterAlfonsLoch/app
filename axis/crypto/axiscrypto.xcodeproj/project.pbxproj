@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		071B2B4D1B6E639F0088E158 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07502C881B247427008D207C /* libaura.dylib */; };
 		07558DA91B23DD56008C63AF /* bss_dgram.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DA71B23DD56008C63AF /* bss_dgram.c */; };
 		07558DAA1B23DD56008C63AF /* bss_sock.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DA81B23DD56008C63AF /* bss_sock.c */; };
 		07558DAC1B23DD8B008C63AF /* _bn.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DAB1B23DD8B008C63AF /* _bn.c */; };
@@ -31,7 +32,6 @@
 		07558DD21B23E19B008C63AF /* txt_db.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DD11B23E19B008C63AF /* txt_db.c */; };
 		07558DD41B23E1C8008C63AF /* v3_lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DD31B23E1C8008C63AF /* v3_lib.c */; };
 		07558DD61B23E34B008C63AF /* mem_aura.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DD51B23E34B008C63AF /* mem_aura.c */; };
-		077A02451B4D5C2B001C85FF /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07502C8A1B247427008D207C /* libaura.dylib */; };
 		077CEF191B23C505009A57EF /* _crypto.c in Sources */ = {isa = PBXBuildFile; fileRef = 077CEF181B23C505009A57EF /* _crypto.c */; };
 		077CEF2A1B23DC97009A57EF /* _x509.c in Sources */ = {isa = PBXBuildFile; fileRef = 077CEF291B23DC97009A57EF /* _x509.c */; };
 		077CEF2C1B23DCB7009A57EF /* _x509v3.c in Sources */ = {isa = PBXBuildFile; fileRef = 077CEF2B1B23DCB7009A57EF /* _x509v3.c */; };
@@ -88,7 +88,6 @@
 		07EDC4DB1B4EF94E00AF8928 /* cm_ameth.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DAD1B23DF4A008C63AF /* cm_ameth.c */; };
 		07EDC4DC1B4EF95100AF8928 /* cm_pmeth.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DAE1B23DF4A008C63AF /* cm_pmeth.c */; };
 		07EDC4DD1B4EF95500AF8928 /* cmac.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DAF1B23DF4A008C63AF /* cmac.c */; };
-		07EDC4DE1B4EF98B00AF8928 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07502C8A1B247427008D207C /* libaura.dylib */; };
 		07EDC4DF1B4EF9B900AF8928 /* rc4-586.s in Sources */ = {isa = PBXBuildFile; fileRef = 9A9D336019D4C44D00DC2067 /* rc4-586.s */; };
 		07EDC4E21B4EF9F100AF8928 /* _ccgost.c in Sources */ = {isa = PBXBuildFile; fileRef = 07EDC4E01B4EF9EE00AF8928 /* _ccgost.c */; };
 		07EDC4E31B4EFAF500AF8928 /* bss_sock.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DA81B23DD56008C63AF /* bss_sock.c */; };
@@ -116,19 +115,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		071B2AF91B6E63150088E158 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07502C811B247427008D207C /* aura.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 077A080B1B4D7403001C85FF;
+			remoteInfo = ios_aura;
+		};
 		07502C871B247427008D207C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 07502C811B247427008D207C /* aura.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9A98A6151771D67E000AE16E;
 			remoteInfo = aura;
-		};
-		07502C891B247427008D207C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 07502C811B247427008D207C /* aura.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9AE24D341904CEFE001AEFFB;
-			remoteInfo = aura_ios;
 		};
 		07502C8B1B247427008D207C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -319,7 +318,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				077A02451B4D5C2B001C85FF /* libaura.dylib in Frameworks */,
+				071B2B4D1B6E639F0088E158 /* libaura.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,7 +326,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07EDC4DE1B4EF98B00AF8928 /* libaura.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,7 +343,7 @@
 			isa = PBXGroup;
 			children = (
 				07502C881B247427008D207C /* libaura.dylib */,
-				07502C8A1B247427008D207C /* libaura.dylib */,
+				071B2AFA1B6E63150088E158 /* libaura.dylib */,
 				07502C8C1B247427008D207C /* aura_iosTests.xctest */,
 			);
 			name = Products;
@@ -1250,18 +1248,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		071B2AFA1B6E63150088E158 /* libaura.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libaura.dylib;
+			remoteRef = 071B2AF91B6E63150088E158 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		07502C881B247427008D207C /* libaura.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
 			path = libaura.dylib;
 			remoteRef = 07502C871B247427008D207C /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		07502C8A1B247427008D207C /* libaura.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libaura.dylib;
-			remoteRef = 07502C891B247427008D207C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		07502C8C1B247427008D207C /* aura_iosTests.xctest */ = {
@@ -1509,7 +1507,7 @@
 					"$(WorkspaceDir)/../../../app/base/include",
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
 				);
-				INSTALL_PATH = "$(LOCAL_APPS_DIR)/ca2";
+				INSTALL_PATH = "@executable_path";
 				LD_DYLIB_INSTALL_NAME = "$(DYLIB_INSTALL_NAME_BASE:standardizepath)/$(EXECUTABLE_PATH)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1519,6 +1517,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../base/include $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/base/appseed $(WorkspaceDir)/../../../app/appseed/base crypto/asn1 crypto/evp crypto/modes";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
@@ -1564,7 +1563,7 @@
 					"$(WorkspaceDir)/../../../app/base/include",
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
 				);
-				INSTALL_PATH = "$(LOCAL_APPS_DIR)/ca2";
+				INSTALL_PATH = "@executable_path";
 				LD_DYLIB_INSTALL_NAME = "$(DYLIB_INSTALL_NAME_BASE:standardizepath)/$(EXECUTABLE_PATH)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1573,6 +1572,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../base/include $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/base/appseed $(WorkspaceDir)/../../../app/appseed/base crypto/asn1 crypto/evp crypto/modes";
 				VALIDATE_PRODUCT = YES;
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";

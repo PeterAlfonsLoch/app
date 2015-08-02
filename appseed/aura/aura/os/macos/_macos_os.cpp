@@ -27,3 +27,8 @@
 //#include "_macos_os.cpp"
 //              22 arquivo(s)         64.733 bytes
   //             0 pasta(s)   29.364.445.184 bytes dispon¡veis
+
+
+#include "macos_main.cpp"
+
+

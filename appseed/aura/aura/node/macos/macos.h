@@ -22,7 +22,7 @@ CLASS_DECL_AURA WINBOOL AfxInitialize(WINBOOL bDLL = FALSE, DWORD dwVersion = 0)
 CLASS_DECL_AURA void AfxSetAllocStop(LONG lRequestNumber);
 
 // Return TRUE if primitive::memory is sane or print out what is wrong
-CLASS_DECL_AURA bool __check_memory();
+CLASS_DECL_AURA WINBOOL AfxCheckMemory();
 
 // Return TRUE if valid primitive::memory block of nBytes
 CLASS_DECL_AURA WINBOOL AfxIsMemoryBlock(const void * p, UINT nBytes, LONG* plRequestNumber = NULL);

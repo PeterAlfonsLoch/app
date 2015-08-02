@@ -341,7 +341,7 @@ namespace macos
       throw not_supported_exception(get_app());
    }
 
-#ifdef _DEBUG
+//#ifdef _DEBUG
    void stdio_file::dump(dump_context & dumpcontext) const
    {
       ::macos::file::dump(dumpcontext);
@@ -349,7 +349,7 @@ namespace macos
       dumpcontext << "m_pStream = " << (void *)m_pStream;
       dumpcontext << "\n";
    }
-#endif
+//#endif
 
 
 

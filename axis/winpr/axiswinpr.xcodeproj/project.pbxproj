@@ -2168,6 +2168,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INSTALL_PATH = "@executable_path";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(TARGET_BUILD_DIR)\"",
@@ -2177,6 +2178,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = axiswinpr;
 				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "framework\nlibwinpr/utils/trio\nlibwinpr/utils\n$(WorkspaceDir)/../../../include\n$(WorkspaceDir)/../../../app/include/\n.\n$(WorkspaceDir)/../../../\n$(WorkspaceDir)/../../../app\n$(WorkspaceDir)/../../../app/appseed\n$(WorkspaceDir)/../../../app/appseed/axis\n$(WorkspaceDir)/../../../app/appseed/aura\n$(WorkspaceDir)/../../\n../../appseed\n../../\n../";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
@@ -2214,6 +2216,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INSTALL_PATH = "@executable_path";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(TARGET_BUILD_DIR)\"",
@@ -2222,6 +2225,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = axiswinpr;
 				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "framework\nlibwinpr/utils/trio\nlibwinpr/utils\n$(WorkspaceDir)/../../../include\n$(WorkspaceDir)/../../../app/include/\n.\n$(WorkspaceDir)/../../../\n$(WorkspaceDir)/../../../app\n$(WorkspaceDir)/../../../app/appseed\n$(WorkspaceDir)/../../../app/appseed/axis\n$(WorkspaceDir)/../../../app/appseed/aura\n$(WorkspaceDir)/../../\n../../appseed\n../../\n../";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};

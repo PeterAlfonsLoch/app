@@ -96,3 +96,20 @@ CLASS_DECL_AURA bool __node_base_pos_term()
 }
 
 
+
+
+int32_t base_main_command_line(const char * pszCommandLine)
+{
+   
+   setlocale(LC_ALL,"");
+   
+   ns_shared_application();
+   
+   __run_system_command_line(pszCommandLine);
+   
+   ns_app_run();
+   
+   return 0;
+   
+   
+}

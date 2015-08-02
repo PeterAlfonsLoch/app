@@ -342,3 +342,7 @@
 
 #include "base/graphics/graphics_window_graphics.h"
 //#include "macos_window_gdi.h"
+
+
+
+int32_t base_main_command_line(const char * pszCommandLine);
