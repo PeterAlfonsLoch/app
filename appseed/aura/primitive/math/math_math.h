@@ -26,7 +26,7 @@ CLASS_DECL_AURA int max_cvt_dup(char *buf,int nchar,double arg,int ndigits,int *
 
 
 
-
+#ifdef __cplusplus
 
 #include "_value.h"
 #include "_number.h"
@@ -39,6 +39,13 @@ CLASS_DECL_AURA int max_cvt_dup(char *buf,int nchar,double arg,int ndigits,int *
 
 #include "binary_operation.h"
 
+
 #include "math_int_biunique.h"
+
+
+#endif
+
+
+
 
 

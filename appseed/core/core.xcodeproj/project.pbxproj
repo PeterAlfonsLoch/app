@@ -23,13 +23,6 @@
 		078E29701B5B326D0057E664 /* libauracharguess.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D7432B1B5037B100821238 /* libauracharguess.dylib */; };
 		078E29731B5B346B0057E664 /* libaxisbzip2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07108DF81B4C9A8D00A28F80 /* libaxisbzip2.dylib */; };
 		07A4ABA1190C45F8005B6DE5 /* simpledb_file_system_size.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D2FC173C27E7009E6FB8 /* simpledb_file_system_size.cpp */; };
-		07A4AC48190C45F9005B6DE5 /* _double.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D45C173C27E8009E6FB8 /* _double.cpp */; };
-		07A4AC49190C45F9005B6DE5 /* _float.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D45E173C27E8009E6FB8 /* _float.cpp */; };
-		07A4AC4A190C45F9005B6DE5 /* _integer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D460173C27E8009E6FB8 /* _integer.cpp */; };
-		07A4AC4B190C45F9005B6DE5 /* binary_operation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D462173C27E8009E6FB8 /* binary_operation.cpp */; };
-		07A4AC55190C45F9005B6DE5 /* math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D479173C27E8009E6FB8 /* math.cpp */; };
-		07A4AC56190C45F9005B6DE5 /* number.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D47B173C27E8009E6FB8 /* number.cpp */; };
-		07A4AC57190C45F9005B6DE5 /* value.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D47D173C27E8009E6FB8 /* value.cpp */; };
 		07A4AC58190C45F9005B6DE5 /* hi5_oauth.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE72BD517E900B8003E47F9 /* hi5_oauth.cpp */; };
 		07A4AC59190C45F9005B6DE5 /* hi5_twit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE72BD717E900B8003E47F9 /* hi5_twit.cpp */; };
 		07A4AD2D190C45FA005B6DE5 /* os_cross_windows_crt_debug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D5D7173C27E9009E6FB8 /* os_cross_windows_crt_debug.cpp */; };
@@ -41,13 +34,6 @@
 		07EDC5D71B4FEC3D00AF8928 /* _userfs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 078450F01B264BA200C91416 /* _userfs.cpp */; };
 		07EDC5D81B4FEC6500AF8928 /* _user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 078450F71B264C6200C91416 /* _user.cpp */; };
 		9A19A21619C6F54F0018DF7D /* simpledb_file_system_size.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D2FC173C27E7009E6FB8 /* simpledb_file_system_size.cpp */; };
-		9A19A2C619C6F5500018DF7D /* _double.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D45C173C27E8009E6FB8 /* _double.cpp */; };
-		9A19A2C719C6F5500018DF7D /* _float.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D45E173C27E8009E6FB8 /* _float.cpp */; };
-		9A19A2C819C6F5500018DF7D /* _integer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D460173C27E8009E6FB8 /* _integer.cpp */; };
-		9A19A2C919C6F5500018DF7D /* binary_operation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D462173C27E8009E6FB8 /* binary_operation.cpp */; };
-		9A19A2CA19C6F5500018DF7D /* math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D479173C27E8009E6FB8 /* math.cpp */; };
-		9A19A2CB19C6F5500018DF7D /* number.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D47B173C27E8009E6FB8 /* number.cpp */; };
-		9A19A2CC19C6F5500018DF7D /* value.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D47D173C27E8009E6FB8 /* value.cpp */; };
 		9A19A2CD19C6F5500018DF7D /* hi5_oauth.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE72BD517E900B8003E47F9 /* hi5_oauth.cpp */; };
 		9A19A2CE19C6F5500018DF7D /* hi5_twit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE72BD717E900B8003E47F9 /* hi5_twit.cpp */; };
 		9A19A39719C6F5940018DF7D /* wndfrm_frame.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A37219C6F5940018DF7D /* wndfrm_frame.h */; };
@@ -408,20 +394,6 @@
 		07A6D3BD173C27E7009E6FB8 /* userfs_main_view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userfs_main_view.h; sourceTree = "<group>"; };
 		07A6D3BF173C27E7009E6FB8 /* userfs_tree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userfs_tree.h; sourceTree = "<group>"; };
 		07A6D3C7173C27E7009E6FB8 /* userfs_userfs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userfs_userfs.h; sourceTree = "<group>"; };
-		07A6D45C173C27E8009E6FB8 /* _double.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _double.cpp; sourceTree = "<group>"; };
-		07A6D45D173C27E8009E6FB8 /* _double.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _double.h; sourceTree = "<group>"; };
-		07A6D45E173C27E8009E6FB8 /* _float.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _float.cpp; sourceTree = "<group>"; };
-		07A6D45F173C27E8009E6FB8 /* _float.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _float.h; sourceTree = "<group>"; };
-		07A6D460173C27E8009E6FB8 /* _integer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _integer.cpp; sourceTree = "<group>"; };
-		07A6D461173C27E8009E6FB8 /* _integer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _integer.h; sourceTree = "<group>"; };
-		07A6D462173C27E8009E6FB8 /* binary_operation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = binary_operation.cpp; sourceTree = "<group>"; };
-		07A6D463173C27E8009E6FB8 /* binary_operation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = binary_operation.h; sourceTree = "<group>"; };
-		07A6D479173C27E8009E6FB8 /* math.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = math.cpp; sourceTree = "<group>"; };
-		07A6D47A173C27E8009E6FB8 /* math_math.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = math_math.h; sourceTree = "<group>"; };
-		07A6D47B173C27E8009E6FB8 /* number.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = number.cpp; sourceTree = "<group>"; };
-		07A6D47C173C27E8009E6FB8 /* number.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = number.h; sourceTree = "<group>"; };
-		07A6D47D173C27E8009E6FB8 /* value.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = value.cpp; sourceTree = "<group>"; };
-		07A6D47E173C27E8009E6FB8 /* value.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = value.h; sourceTree = "<group>"; };
 		07A6D5D4173C27E9009E6FB8 /* usernet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = usernet.h; sourceTree = "<group>"; };
 		07A6D5D6173C27E9009E6FB8 /* usernet_network_configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = usernet_network_configuration.h; sourceTree = "<group>"; };
 		07A6D5D7173C27E9009E6FB8 /* os_cross_windows_crt_debug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = os_cross_windows_crt_debug.cpp; sourceTree = "<group>"; };
@@ -832,27 +804,6 @@
 			path = userfs;
 			sourceTree = "<group>";
 		};
-		07A6D45B173C27E8009E6FB8 /* math */ = {
-			isa = PBXGroup;
-			children = (
-				07A6D45C173C27E8009E6FB8 /* _double.cpp */,
-				07A6D45D173C27E8009E6FB8 /* _double.h */,
-				07A6D45E173C27E8009E6FB8 /* _float.cpp */,
-				07A6D45F173C27E8009E6FB8 /* _float.h */,
-				07A6D460173C27E8009E6FB8 /* _integer.cpp */,
-				07A6D461173C27E8009E6FB8 /* _integer.h */,
-				07A6D462173C27E8009E6FB8 /* binary_operation.cpp */,
-				07A6D463173C27E8009E6FB8 /* binary_operation.h */,
-				07A6D479173C27E8009E6FB8 /* math.cpp */,
-				07A6D47A173C27E8009E6FB8 /* math_math.h */,
-				07A6D47B173C27E8009E6FB8 /* number.cpp */,
-				07A6D47C173C27E8009E6FB8 /* number.h */,
-				07A6D47D173C27E8009E6FB8 /* value.cpp */,
-				07A6D47E173C27E8009E6FB8 /* value.h */,
-			);
-			path = math;
-			sourceTree = "<group>";
-		};
 		07A6D47F173C27E8009E6FB8 /* net */ = {
 			isa = PBXGroup;
 			children = (
@@ -1137,7 +1088,6 @@
 				9AE728EA17E85ECD003E47F9 /* core */,
 				07A6D2C3173C27E7009E6FB8 /* database */,
 				07A6D326173C27E7009E6FB8 /* filesystem */,
-				07A6D45B173C27E8009E6FB8 /* math */,
 				07A6D47F173C27E8009E6FB8 /* net */,
 				07A6D694173C27E9009E6FB8 /* user */,
 				9AE24DF41904CF6E001AEFFB /* core_iosTests */,
@@ -1543,13 +1493,6 @@
 				078450F51B264C3200C91416 /* _filehandler.cpp in Sources */,
 				9A19A21619C6F54F0018DF7D /* simpledb_file_system_size.cpp in Sources */,
 				078451631B264DF400C91416 /* _core.cpp in Sources */,
-				9A19A2C619C6F5500018DF7D /* _double.cpp in Sources */,
-				9A19A2C719C6F5500018DF7D /* _float.cpp in Sources */,
-				9A19A2C819C6F5500018DF7D /* _integer.cpp in Sources */,
-				9A19A2C919C6F5500018DF7D /* binary_operation.cpp in Sources */,
-				9A19A2CA19C6F5500018DF7D /* math.cpp in Sources */,
-				9A19A2CB19C6F5500018DF7D /* number.cpp in Sources */,
-				9A19A2CC19C6F5500018DF7D /* value.cpp in Sources */,
 				9A19A2CD19C6F5500018DF7D /* hi5_oauth.cpp in Sources */,
 				9A19A2CE19C6F5500018DF7D /* hi5_twit.cpp in Sources */,
 				078451651B264E0F00C91416 /* _plugin.cpp in Sources */,
@@ -1566,17 +1509,10 @@
 			files = (
 				07A4ABA1190C45F8005B6DE5 /* simpledb_file_system_size.cpp in Sources */,
 				07EDC5D81B4FEC6500AF8928 /* _user.cpp in Sources */,
-				07A4AC48190C45F9005B6DE5 /* _double.cpp in Sources */,
-				07A4AC49190C45F9005B6DE5 /* _float.cpp in Sources */,
-				07A4AC4A190C45F9005B6DE5 /* _integer.cpp in Sources */,
-				07A4AC4B190C45F9005B6DE5 /* binary_operation.cpp in Sources */,
 				07EDC5D71B4FEC3D00AF8928 /* _userfs.cpp in Sources */,
 				07EDC5D61B4FEC3800AF8928 /* _filemanager.cpp in Sources */,
-				07A4AC55190C45F9005B6DE5 /* math.cpp in Sources */,
 				07EDC5D31B4FEC1E00AF8928 /* _plugin.cpp in Sources */,
-				07A4AC56190C45F9005B6DE5 /* number.cpp in Sources */,
 				07EDC5D21B4FEC1000AF8928 /* _core.cpp in Sources */,
-				07A4AC57190C45F9005B6DE5 /* value.cpp in Sources */,
 				07A4AC58190C45F9005B6DE5 /* hi5_oauth.cpp in Sources */,
 				07A4AC59190C45F9005B6DE5 /* hi5_twit.cpp in Sources */,
 				07EDC5D41B4FEC2400AF8928 /* _databaseuser.cpp in Sources */,
