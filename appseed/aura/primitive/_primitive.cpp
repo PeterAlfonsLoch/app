@@ -140,6 +140,8 @@
 #include "math/_number.cpp"
 #include "math/_value.cpp"
 
+#include "math/binary_operation.cpp"
+
 #include "math/math_cvt.cpp"
 #include "math/math_cvt_g.cpp"
 #include "math/math_departament.cpp"

@@ -1241,9 +1241,6 @@
 /* Begin PBXFileReference section */
 		070B8F171B6E578900D26137 /* macos_main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_main.h; sourceTree = "<group>"; };
 		07108A731B4C90D000A28F80 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		073D6E701B6EA70B00B8AC34 /* primitive_int_biunique.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = primitive_int_biunique.cpp; sourceTree = "<group>"; };
-		073D6E711B6EA70B00B8AC34 /* primitive_int_biunique.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive_int_biunique.h; sourceTree = "<group>"; };
-		073D6E721B6EA70B00B8AC34 /* primitive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive.h; sourceTree = "<group>"; };
 		073EDDE1164E968100818801 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		073EDDE4164E96DA00818801 /* SecurityFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityFoundation.framework; path = System/Library/Frameworks/SecurityFoundation.framework; sourceTree = SDKROOT; };
 		0747A6451B26375F00E85AC7 /* visual_cursor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = visual_cursor.cpp; sourceTree = "<group>"; };
@@ -1312,6 +1309,7 @@
 		079E27921B6EB7A60065FDE7 /* math_binary_operation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = math_binary_operation.h; sourceTree = "<group>"; };
 		079E27931B6EB7A60065FDE7 /* math_c_number.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = math_c_number.h; sourceTree = "<group>"; };
 		079E27941B6EB7A60065FDE7 /* math_int_biunique.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = math_int_biunique.h; sourceTree = "<group>"; };
+		079E279F1B6EBDEE0065FDE7 /* math_objects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = math_objects.h; sourceTree = "<group>"; };
 		07AAB14A1926B2C20050A443 /* multithreading_thread_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = multithreading_thread_impl.h; sourceTree = "<group>"; };
 		07B093DC18495C2A007A0560 /* collection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = collection.h; sourceTree = "<group>"; };
 		07B093DD18495C2A007A0560 /* collection.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = collection.inl; sourceTree = "<group>"; };
@@ -2149,6 +2147,7 @@
 				07B0946518495C2A007A0560 /* math_natural.h */,
 				07B0946718495C2A007A0560 /* math_numeric_info.h */,
 				07B0946818495C2A007A0560 /* math_static_numeric_info.h */,
+				079E279F1B6EBDEE0065FDE7 /* math_objects.h */,
 			);
 			path = math;
 			sourceTree = "<group>";
@@ -3299,7 +3298,6 @@
 				077A07281B4D7403001C85FF /* aura_file_watcher.h in Headers */,
 				077A07291B4D7403001C85FF /* draw2d_pen.h in Headers */,
 				077A072A1B4D7403001C85FF /* windows_crtdefs.h in Headers */,
-				073D6E761B6EA70B00B8AC34 /* primitive_int_biunique.h in Headers */,
 				077A072B1B4D7403001C85FF /* collection_bit_array.h in Headers */,
 				077A072C1B4D7403001C85FF /* message_dispatch.h in Headers */,
 				077A072D1B4D7403001C85FF /* datetime_duration.h in Headers */,
@@ -3425,7 +3423,6 @@
 				077A07A51B4D7403001C85FF /* file_writer.h in Headers */,
 				077A07A61B4D7403001C85FF /* primitive_var.h in Headers */,
 				077A07A71B4D7403001C85FF /* aura_printf.h in Headers */,
-				073D6E781B6EA70B00B8AC34 /* primitive.h in Headers */,
 				077A07A81B4D7403001C85FF /* primitive_var2.h in Headers */,
 				077A07A91B4D7403001C85FF /* colorertake5_line_regions_compact_support.h in Headers */,
 				077A07AA1B4D7403001C85FF /* macos_ns_exception.h in Headers */,
@@ -3556,7 +3553,6 @@
 				9A16419119C4A4CE00966C5E /* aura_id_pool.h in Headers */,
 				9A16422919C4A4CE00966C5E /* exception_overflow_error.h in Headers */,
 				9A16454519C4A56200966C5E /* math_std_template.h in Headers */,
-				073D6E771B6EA70B00B8AC34 /* primitive.h in Headers */,
 				9A16424519C4A4CE00966C5E /* message.h in Headers */,
 				9A16421419C4A4CE00966C5E /* exception_io.h in Headers */,
 				9A16421019C4A4CE00966C5E /* exception_invalid_handle.h in Headers */,
@@ -3898,7 +3894,6 @@
 				9A16422B19C4A4CE00966C5E /* exception_parsing.h in Headers */,
 				07B094F118495C2B007A0560 /* collection_string_sort_array.h in Headers */,
 				9A1641B619C4A4CE00966C5E /* aura_new.h in Headers */,
-				073D6E751B6EA70B00B8AC34 /* primitive_int_biunique.h in Headers */,
 				9A16452D19C4A4CF00966C5E /* xml_var_exchange.h in Headers */,
 				9AC315B0198E4CB8008FB109 /* colorertake5_base_editor.h in Headers */,
 				9AC315D8198E4CB8008FB109 /* colorertake5_parser_factory.h in Headers */,
@@ -4248,7 +4243,6 @@
 				077A05C21B4D7403001C85FF /* exception_mm.mm in Sources */,
 				077A05C31B4D7403001C85FF /* teste.cpp in Sources */,
 				077A05C41B4D7403001C85FF /* simple_message_box.cpp in Sources */,
-				073D6E741B6EA70B00B8AC34 /* primitive_int_biunique.cpp in Sources */,
 				077A05C51B4D7403001C85FF /* str_ch_class.cpp in Sources */,
 				077A05C61B4D7403001C85FF /* visual_icon.cpp in Sources */,
 				077A05C71B4D7403001C85FF /* _primitive.cpp in Sources */,
@@ -4278,7 +4272,6 @@
 				0747A6471B26375F00E85AC7 /* visual_cursor.cpp in Sources */,
 				9A16447719C4A4CF00966C5E /* NSObject+DDExtensions.mm in Sources */,
 				07B0953418495C2B007A0560 /* str_ch.cpp in Sources */,
-				073D6E731B6EA70B00B8AC34 /* primitive_int_biunique.cpp in Sources */,
 				9A16421B19C4A4CE00966C5E /* exception_mm.mm in Sources */,
 				07502CA31B251981008D207C /* teste.cpp in Sources */,
 				9AEEADB519C4E10900866C9E /* simple_message_box.cpp in Sources */,

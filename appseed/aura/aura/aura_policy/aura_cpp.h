@@ -660,6 +660,15 @@ CLASS_DECL_AURA ::aura::application * get_thread_app();
 
 
 
+template <class TYPE>
+inline bool is_null(const TYPE & ref)
+{
+   return &ref == NULL;
+}
+
+#define NULL_REF(class) (*((class *) NULL))
+
+
 #include "aura/aura/aura/aura_auto_pointer.h"
 
 #include "aura/aura/aura/aura_smart_pointer1.h"
@@ -685,7 +694,7 @@ namespace file
 
 #include "aura/primitive/math/math_static_numeric_info.h"
 #include "aura/primitive/math/math_numeric_info.h"
-#include "aura/primitive/math/math_number.h"
+#include "aura/primitive/math/math_c_number.h"
 //#include "aura/primitive/math/math_complex.h"
 
 
@@ -759,10 +768,6 @@ namespace file
 #include "aura/primitive/str/str.h"
 #include "aura/aura/exception/exception.h"
 #include "aura/aura/aura/aura_common.h"
-
-
-
-
 #include "aura/filesystem/filesystem/filesystem_path.h"
 
 
@@ -941,6 +946,29 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 //#include "aura/primitive/data/data_tree_item.h"
 //#include "aura/primitive/data/data_tree.h"
 //#include "aura/primitive/data/data_simple_item.h"
+
+
+
+
+
+
+
+//----------
+
+
+
+
+#include "aura/primitive/math/math_objects.h"
+
+
+
+
+//----------
+
+
+
+
+
 
 
 

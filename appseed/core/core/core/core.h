@@ -258,7 +258,7 @@ struct memory_state;
 
 
 
-#include "core/primitive/primitive.h"
+//#include "core/primitive/primitive.h"
 
 
 #include "core_strn.h"
@@ -756,7 +756,7 @@ namespace core
 
 #include "core_debug.h"
 
-#include "core/math/math_math.h"
+//#include "core/math/math_math.h"
 
 
 #include "core_iterator.h"
@@ -780,15 +780,8 @@ namespace core
 
 #include "core_util1.h"
 
-#include "core/primitive/primitive_int_biunique.h"
+//#include "core/primitive/primitive_int_biunique.h"
 
-template <class TYPE>
-inline bool is_null(const TYPE & ref)
-{
-   return &ref == NULL;
-}
-
-#define NULL_REF(class) (*((class *) NULL))
 
 
 //CLASS_DECL_CORE ::core::byte_istream &  operator >>(::core::byte_istream & istream, string & string);
