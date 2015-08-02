@@ -134,6 +134,11 @@
 
  //Pasta de Z:\nordroid\app\appseed\aura\primitive\math
 
+#include "math/_double.cpp"
+#include "math/_float.cpp"
+#include "math/_integer.cpp"
+#include "math/_number.cpp"
+
 #include "math/math_cvt.cpp"
 #include "math/math_cvt_g.cpp"
 #include "math/math_departament.cpp"
@@ -142,6 +147,9 @@
 #include "math/math_mkint_c.cpp"
 #include "math/math_natural.cpp"
 #include "math/math_scalar.cpp"
+
+
+#include "math/primitive_int_biunique.cpp"
  //              8 arquivo(s)         27.817 bytes
 
  //Pasta de Z:\nordroid\app\appseed\aura\primitive\str
