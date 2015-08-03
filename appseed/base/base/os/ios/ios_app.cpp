@@ -93,44 +93,44 @@ ui_window_ptr init_part_2ex(plane_system * psystem, CGRect rect)
 }
 
 
-UINT system_main(LPVOID lp)
-{
-   ::base::system * psystem = (::base::system *) lp;
-   try
-   {
-//      psystem->set_thread(psystem);
-      psystem->m_iReturnCode = 0;
-      psystem->m_bReady = true;
-      psystem->m_bRun = true;
-//      psystem->thread::m_p->m_bRun= true;
-      psystem->m_iReturnCode = psystem->on_run();
-      if(psystem->m_iReturnCode != 0)
-      {
-         ::OutputDebugString("application::main on_run termination failure");
-      }
-      if(psystem->is_system())
-      {
-         psystem->post_to_all_threads(WM_QUIT, 0, 0);
-      }
-      try
-      {
-         psystem->m_iReturnCode = psystem->exit();
-      }
-      catch(...)
-      {
-         psystem->m_iReturnCode = -1;
-      }
-      
-   }
-   catch(::exit_exception &)
-   {
-      
-      psystem->post_to_all_threads(WM_QUIT, 0, 0);
-      
-   }
-   
-   return 0;
-}
+//UINT system_main(LPVOID lp)
+//{
+//   ::base::system * psystem = (::base::system *) lp;
+//   try
+//   {
+////      psystem->set_thread(psystem);
+//      psystem->m_iReturnCode = 0;
+//      psystem->m_bReady = true;
+//      psystem->m_bRun = true;
+////      psystem->thread::m_p->m_bRun= true;
+//      psystem->m_iReturnCode = psystem->on_run();
+//      if(psystem->m_iReturnCode != 0)
+//      {
+//         ::OutputDebugString("application::main on_run termination failure");
+//      }
+//      if(psystem->is_system())
+//      {
+//         psystem->post_to_all_threads(WM_QUIT, 0, 0);
+//      }
+//      try
+//      {
+//         psystem->m_iReturnCode = psystem->exit();
+//      }
+//      catch(...)
+//      {
+//         psystem->m_iReturnCode = -1;
+//      }
+//      
+//   }
+//   catch(::exit_exception &)
+//   {
+//      
+//      psystem->post_to_all_threads(WM_QUIT, 0, 0);
+//      
+//   }
+//   
+//   return 0;
+//}
 
 
 ui_window_ptr plane_system::init_part_2ex(CGRect rect)
@@ -200,13 +200,13 @@ void system_begin_main(plane_system * psystem)
 {
    
    psystem->begin();
-   
+  
 }
 
 void plane_system::begin()
 {
    
-   __begin_thread(m_psystem, &system_main, m_psystem);
+   m_psystem->begin();
    
 }
 

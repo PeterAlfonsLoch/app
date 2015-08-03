@@ -1,11 +1,13 @@
 #include "framework.h"
 #include "user/user.h"
 
-
+#include "databaseuser/databaseuser.h"
 #include "core/user/simple/simple.h"
 #include "core/user/userex/userex.h"
 
 #include "core/user/menu/menu.h"
+#include "core/user/hi5/hi5.h"
+#include "core/user/netuser/netuser.h"
 
 
 
@@ -181,8 +183,18 @@
      //          0 pasta(s)   65.377.120.256 bytes dispon¡veis
 
 
-#include "app/appseed/core/net/usernet/usernet_network_configuration.cpp"
+//#include "app/appseed/core/user/netuser/netuser_network_configuration.cpp"
 
 
 
 #include "user/user_margin.cpp"
+
+
+#include "databaseuser/_databaseuser.cpp"
+#include "netuser/_netuser.cpp"
+#include "hi5/_hi5.cpp"
+
+
+
+
+

@@ -887,15 +887,13 @@ extern CLASS_DECL_CORE LPFN_instantiate_application g_lpfn_instantiate_applicati
 
 
 
-#include "core/net/hi5/hi5_oauth.h"
-#include "core/net/hi5/hi5_twit.h"
 
 
 
-#include "core/database/simpledb/DBFileSystemSize.h"
+//#include "core/database/simpledb/DBFileSystemSize.h"
 
 
-#include "core/net/hi5/hi5.h"
+//#include "core/net/hi5/hi5.h"
 
 
 #include "filesystem/filemanager/filemanager_callback.h"

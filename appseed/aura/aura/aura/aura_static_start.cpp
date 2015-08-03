@@ -71,6 +71,11 @@ extern mutex * g_pmutexTlsData;
 
 #if defined(LINUX) || defined(APPLEOS)
 
+extern mutex * g_pmutexMq;
+
+extern map < HTHREAD, HTHREAD, mq *, mq * > * g_pmapMq;
+
+
 extern mutex * g_pmutexTz;
 
 //extern map < HTHREAD, HTHREAD, PendingThreadInfo, PendingThreadInfo > * g_ppendingThreads;
@@ -187,6 +192,7 @@ namespace aura
 //         g_pmutexThreadIdHandleLock = new mutex;
 
   //       g_pmutexThreadIdLock = new mutex;
+         
 
 #ifndef METROWIN
 
@@ -203,6 +209,10 @@ namespace aura
 #endif // defined(LINUX) || defined(APPLEOS) || defined(METROWIN)
 
 #if defined(LINUX) || defined(APPLEOS)
+
+         g_pmutexMq = new mutex;
+         
+         g_pmapMq = new map < HTHREAD, HTHREAD, mq *, mq * >;
 
          g_pmutexTz = new mutex();
 
@@ -321,7 +331,11 @@ namespace aura
          delete g_pmutexTz;
 
          g_pmutexTz = NULL;
+         
+         ::aura::del(g_pmutexMq);
 
+         ::aura::del(g_pmapMq);
+         
 #endif // defined(LINUX) || defined(APPLEOS)
 
 #if defined(LINUX) || defined(APPLEOS) || defined(METROWIN)

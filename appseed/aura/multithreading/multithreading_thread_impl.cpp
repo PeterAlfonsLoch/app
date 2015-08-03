@@ -779,6 +779,14 @@ bool thread_impl::post_thread_message(UINT message,WPARAM wParam,lparam lParam)
    if(m_hthread == (HTHREAD) NULL)
       return false;
 
+   if(message == WM_QUIT)
+   {
+      ::output_debug_string("\n\n\nWM_QUIT posted to thread "+demangle(typeid(*m_pthread).name())+"(" + ::str::from((uint64_t)m_uiThread) + ")\n\n\n");
+      if(demangle(typeid(*m_pthread).name()) == "::core::system")
+      {
+         ::output_debug_string("\n\n\nWM_QUIT at ::core::system\n\n\n");
+      }
+   }
    return ::PostThreadMessage(m_uiThread,message,wParam,lParam) != FALSE;
 
 }
@@ -1280,7 +1288,7 @@ bool thread_impl::defer_pump_message()
       if(!m_pthread->m_bRun || !pump_message())
       {
 
-         ::output_debug_string("defer_pump_message (1) quitting : " + string(demangle(typeid(*m_pthread).name())) + "\n\n");
+         ::output_debug_string("\n\n\ndefer_pump_message (1) quitting : " + string(demangle(typeid(*m_pthread).name())) + " ("+::str::from((uint64_t)::GetCurrentThreadId())+")\n\n\n");
          
          return false;
 
@@ -1329,6 +1337,8 @@ bool thread_impl::pump_message()
 
          TRACE(::aura::trace::category_AppMsg,1,"thread::pump_message - Received WM_QUIT.\n");
 
+         ::output_debug_string("thread::pump_message - Received WM_QUIT.\n");
+         
          m_nDisablePumpCount++; // application must die
          // Note: prevents calling message loop things in 'exit_instance'
          // will never be decremented

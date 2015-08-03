@@ -199,7 +199,7 @@ namespace aura
    bool system::install_uninstall_verb()
    {
       
-      ::output_debug_string("::aura::system::install_uninstall_verb " + demangle(typeid(*this).name()) + "\n");
+//      ::output_debug_string("::aura::system::install_uninstall_verb " + demangle(typeid(*this).name()) + "\n");
 
       static DWORD dwStart = get_tick_count();
 
@@ -231,7 +231,7 @@ namespace aura
    bool system::common_verb()
    {
       
-      ::output_debug_string("::aura::system::common_verb " + demangle(typeid(*this).name()) + " m_bDoNotExitIfNoApplication = "+::str::from(int(m_bDoNotExitIfNoApplications))+"\n");
+//      ::output_debug_string("::aura::system::common_verb " + demangle(typeid(*this).name()) + " m_bDoNotExitIfNoApplication = "+::str::from(int(m_bDoNotExitIfNoApplications))+"\n");
 
       if(!m_bDoNotExitIfNoApplications)
       {
@@ -433,13 +433,13 @@ namespace aura
 
       if(m_pmachineeventcentral == NULL)
       {
-
+#ifndef APPLE_IOS
          m_pmachineeventcentral = new ::machine_event_central(this);
          if(!m_pmachineeventcentral->initialize())
             return false;
          if(m_pmachineeventcentral->is_close_application())
             return false;
-
+#endif
       }
 
       m_spfile.alloc(allocer());

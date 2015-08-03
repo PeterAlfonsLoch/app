@@ -7,13 +7,13 @@
 //
 
 
-#include "database/database.h"
+#include "base/database/database/database.h"
 
 
-#include "databaseuser/databaseuser.h"
+//#include "base/database/databaseuser/databaseuser.h"
 
 
-#include "simpledb/simpledb.h"
+#include "base/database/simpledb/simpledb.h"
 
 
 

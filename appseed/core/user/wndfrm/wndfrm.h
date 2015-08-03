@@ -30,7 +30,7 @@ namespace user
 #include "wndfrm_interaction.h"
 
 
-#include "core/database/databaseuser/databaseuser.h"
+#include "core/user/databaseuser/databaseuser.h"
 
 
 #include "frame/wndfrm_frame.h"

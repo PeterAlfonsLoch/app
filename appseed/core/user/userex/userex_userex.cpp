@@ -1,5 +1,6 @@
 //#include "framework.h"
 
+#include "base/database/simpledb/simpledb.h"
 
 namespace userex
 {

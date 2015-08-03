@@ -359,7 +359,7 @@ namespace user
 
 
 
-#include "core/net/usernet/usernet.h"
+#include "core/user/netuser/netuser.h"
 
 
 

@@ -1,6 +1,8 @@
 //#include "framework.h"
 //#include "framework.h"
 
+#include "base/database/simpledb/simpledb.h"
+
 
 namespace filemanager
 {

@@ -52,7 +52,7 @@ CLASS_DECL_AURA int_bool WINAPI PostThreadMessageW(IDTHREAD idthread, UINT Msg, 
 
 CLASS_DECL_AURA HTHREAD GetCurrentThread();
 
-CLASS_DECL_AURA UINT GetCurrentThreadId();
+CLASS_DECL_AURA UINT_PTR GetCurrentThreadId();
 
 
 

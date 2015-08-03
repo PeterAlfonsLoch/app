@@ -43,7 +43,7 @@ void system_begin_main(plane_system * psystem);
    
    [self.window makeKeyAndVisible];
    
-   system_begin_main(m_psystem);
+//   system_begin_main(m_psystem);
    
    return YES;
    

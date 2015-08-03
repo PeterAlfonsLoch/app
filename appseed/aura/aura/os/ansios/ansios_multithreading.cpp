@@ -1156,24 +1156,33 @@ CLASS_DECL_AURA void attach_thread_input_to_main_thread(bool bAttach)
 //   return GetThreadId(h) != 0;
 //}
 
+mutex * g_pmutexMq = NULL;
+
+map < HTHREAD, HTHREAD, mq *, mq * > * g_pmapMq = NULL;
+
+
 mq * get_mq(HTHREAD hthread)
 {
+   
+   
+   synch_lock sl(g_pmutexMq);
 
+   auto ppair = g_pmapMq->PLookup(hthread);
+   
+   if(ppair != NULL)
+      return ppair->m_element2;
+      
+   auto passoc = g_pmapMq->get_assoc(hthread);
 
-   mq * pmq = (mq *)TlsGetValue(hthread,TLS_MESSAGE_QUEUE);
+   passoc->m_element2   = new mq();
 
-   if(pmq != NULL)
-      return pmq;
-
-   pmq               = new mq();
-
-   pmq->m_hthread    = hthread;
+   passoc->m_element2->m_hthread    = hthread;
 
    //pmq->m_uiId       = ::GetThreadId(h);
 
-   TlsSetValue(hthread,TLS_MESSAGE_QUEUE,pmq);
+//   TlsSetValue(hthread,TLS_MESSAGE_QUEUE,pmq);
 
-   return pmq;
+   return  passoc->m_element2;
 
 }
 
@@ -1377,6 +1386,11 @@ CLASS_DECL_AURA int_bool WINAPI PostThreadMessageW(IDTHREAD iThreadId,UINT Msg,W
    MESSAGE msg;
 
    //zero(&msg, sizeof(msg));
+   
+   if(Msg == WM_QUIT)
+   {
+      ::output_debug_string("\n\n\nWM_QUIT posted to thread " + ::str::from((uint64_t)iThreadId) + "\n\n\n");
+   }
 
    msg.message = Msg;
    msg.wParam  = wParam;
@@ -1484,7 +1498,7 @@ CLASS_DECL_AURA HTHREAD GetCurrentThread()
 
 }
 
-CLASS_DECL_AURA UINT GetCurrentThreadId()
+CLASS_DECL_AURA UINT_PTR GetCurrentThreadId()
 {
 
    return (ulong_ptr)pthread_self();
