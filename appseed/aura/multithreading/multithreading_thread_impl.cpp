@@ -9,6 +9,9 @@
 
 #if defined(LINUX) || defined(ANDROID) || defined(APPLEOS)
 #define QS_ALLEVENTS 0xffff
+
+void clear_mq();
+
 #endif
 
 uint32_t __thread_entry(void * pparam);
@@ -781,8 +784,10 @@ bool thread_impl::post_thread_message(UINT message,WPARAM wParam,lparam lParam)
 
    if(message == WM_QUIT)
    {
-      ::output_debug_string("\n\n\nWM_QUIT posted to thread "+demangle(typeid(*m_pthread).name())+"(" + ::str::from((uint64_t)m_uiThread) + ")\n\n\n");
-      if(demangle(typeid(*m_pthread).name()) == "::core::system")
+      
+      string strName = demangle(typeid(*m_pthread).name());
+      ::output_debug_string("\n\n\nWM_QUIT posted to thread "+strName+"(" + ::str::from((uint64_t)m_uiThread) + ")\n\n\n");
+      if(strName == "::core::system")
       {
          ::output_debug_string("\n\n\nWM_QUIT at ::core::system\n\n\n");
       }
@@ -1287,6 +1292,7 @@ bool thread_impl::defer_pump_message()
       // pump message, but quit on WM_QUIT
       if(!m_pthread->m_bRun || !pump_message())
       {
+         
 
          ::output_debug_string("\n\n\ndefer_pump_message (1) quitting : " + string(demangle(typeid(*m_pthread).name())) + " ("+::str::from((uint64_t)::GetCurrentThreadId())+")\n\n\n");
          

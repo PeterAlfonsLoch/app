@@ -3,6 +3,8 @@
 //#include <fcntl.h>
 //#include <sys/time.h>
 
+void clear_mq();
+
 namespace ansios
 {
 
@@ -23,6 +25,7 @@ namespace ansios
    thread_impl::~thread_impl()
    {
 
+      clear_mq();
 
    }
 

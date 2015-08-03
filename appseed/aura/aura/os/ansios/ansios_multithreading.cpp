@@ -21,6 +21,26 @@ mq * get_mq()
 
 }
 
+void clear_mq()
+{
+
+   synch_lock sl(g_pmutexMq);
+   
+   HTHREAD hthread = GetCurrentThread();
+   
+   auto ppair = g_pmapMq->PLookup(hthread);
+   
+   if(ppair != NULL)
+      return;
+   
+   auto passoc = g_pmapMq->get_assoc(hthread);
+   
+   ::aura::del(passoc->m_element2);
+   
+   g_pmapMq->remove_key(hthread);
+   
+}
+
 
 DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, object * * pobjectptra, DWORD dwTimeout, DWORD dwWakeMask, DWORD dwFlags)
 {
@@ -1223,6 +1243,9 @@ restart:
       {
          *lpMsg = msg;
          pmq->ma.remove_at(i);
+         
+         clear_mq();
+         
          return FALSE;
       }
 

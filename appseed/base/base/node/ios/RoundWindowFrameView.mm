@@ -868,14 +868,14 @@ void __ios_do_events();
    
    p->round_window_draw(context);
    
-   {
-      
-      CGRect rectangle = CGRectMake(100, 200, 100, 100);
-      CGContextSetRGBFillColor(context, 0.0, 0.0, 1.0, 0.5);
-      CGContextSetRGBStrokeColor(context, 0.0, 0.0, 0.0, 0.5);
-      CGContextFillRect(context, rectangle);
-      
-   }
+//   {
+//      
+//      CGRect rectangle = CGRectMake(100, 200, 100, 100);
+//      CGContextSetRGBFillColor(context, 0.0, 0.0, 1.0, 0.5);
+//      CGContextSetRGBStrokeColor(context, 0.0, 0.0, 0.0, 0.5);
+//      CGContextFillRect(context, rectangle);
+//      
+//   }
 
    
    
