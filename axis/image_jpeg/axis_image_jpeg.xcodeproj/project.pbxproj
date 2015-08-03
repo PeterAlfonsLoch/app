@@ -524,9 +524,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		07B65763190F3CA2002DAADE /* ios_axisjpeg */ = {
+		07B65763190F3CA2002DAADE /* ios_axis_image_jpeg */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 07B65788190F3CA2002DAADE /* Build configuration list for PBXNativeTarget "ios_axisjpeg" */;
+			buildConfigurationList = 07B65788190F3CA2002DAADE /* Build configuration list for PBXNativeTarget "ios_axis_image_jpeg" */;
 			buildPhases = (
 				07B65760190F3CA2002DAADE /* Sources */,
 				07B65761190F3CA2002DAADE /* Frameworks */,
@@ -538,7 +538,7 @@
 				0763361C1B590A140079C405 /* PBXTargetDependency */,
 				076336231B590A1A0079C405 /* PBXTargetDependency */,
 			);
-			name = ios_axisjpeg;
+			name = ios_axis_image_jpeg;
 			productName = math_ios;
 			productReference = 07B65764190F3CA2002DAADE /* libaxisjpeg.dylib */;
 			productType = "com.apple.product-type.library.static";
@@ -561,9 +561,9 @@
 			productReference = 07B65773190F3CA2002DAADE /* axisjpeg_iosTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		9A574B9716AAB906000CC4EF /* axisjpeg */ = {
+		9A574B9716AAB906000CC4EF /* axis_image_jpeg */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9A574B9C16AAB906000CC4EF /* Build configuration list for PBXNativeTarget "axisjpeg" */;
+			buildConfigurationList = 9A574B9C16AAB906000CC4EF /* Build configuration list for PBXNativeTarget "axis_image_jpeg" */;
 			buildPhases = (
 				9A574B9416AAB906000CC4EF /* Sources */,
 				9A574B9516AAB906000CC4EF /* Frameworks */,
@@ -575,7 +575,7 @@
 				071B6B251B5AE063002C55E2 /* PBXTargetDependency */,
 				071B6B271B5AE067002C55E2 /* PBXTargetDependency */,
 			);
-			name = axisjpeg;
+			name = axis_image_jpeg;
 			productName = ca2;
 			productReference = 9A574B9816AAB906000CC4EF /* libaxisjpeg.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
@@ -594,7 +594,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9A574B9216AAB906000CC4EF /* Build configuration list for PBXProject "axisjpeg" */;
+			buildConfigurationList = 9A574B9216AAB906000CC4EF /* Build configuration list for PBXProject "axis_image_jpeg" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -616,8 +616,8 @@
 			);
 			projectRoot = "";
 			targets = (
-				9A574B9716AAB906000CC4EF /* axisjpeg */,
-				07B65763190F3CA2002DAADE /* ios_axisjpeg */,
+				9A574B9716AAB906000CC4EF /* axis_image_jpeg */,
+				07B65763190F3CA2002DAADE /* ios_axis_image_jpeg */,
 				07B65772190F3CA2002DAADE /* axisjpeg_iosTests */,
 			);
 		};
@@ -842,7 +842,7 @@
 		};
 		07B6577A190F3CA2002DAADE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 07B65763190F3CA2002DAADE /* ios_axisjpeg */;
+			target = 07B65763190F3CA2002DAADE /* ios_axis_image_jpeg */;
 			targetProxy = 07B65779190F3CA2002DAADE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1011,7 +1011,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = axisjpeg;
+				PRODUCT_NAME = axis_image_jpeg;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../.. $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/axis/FreeImage/Source $(WorkspaceDir)/../../../app/axis/FreeImage/Source/FreeImage";
@@ -1051,7 +1051,7 @@
 					"\"$(TARGET_BUILD_DIR)\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				PRODUCT_NAME = axisjpeg;
+				PRODUCT_NAME = axis_image_jpeg;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../.. $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/axis/FreeImage/Source $(WorkspaceDir)/../../../app/axis/FreeImage/Source/FreeImage";
@@ -1078,7 +1078,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		07B65788190F3CA2002DAADE /* Build configuration list for PBXNativeTarget "ios_axisjpeg" */ = {
+		07B65788190F3CA2002DAADE /* Build configuration list for PBXNativeTarget "ios_axis_image_jpeg" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				07B65784190F3CA2002DAADE /* Debug */,
@@ -1096,7 +1096,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9A574B9216AAB906000CC4EF /* Build configuration list for PBXProject "axisjpeg" */ = {
+		9A574B9216AAB906000CC4EF /* Build configuration list for PBXProject "axis_image_jpeg" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9A574B9A16AAB906000CC4EF /* Debug */,
@@ -1105,7 +1105,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9A574B9C16AAB906000CC4EF /* Build configuration list for PBXNativeTarget "axisjpeg" */ = {
+		9A574B9C16AAB906000CC4EF /* Build configuration list for PBXNativeTarget "axis_image_jpeg" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9A574B9D16AAB906000CC4EF /* Debug */,
