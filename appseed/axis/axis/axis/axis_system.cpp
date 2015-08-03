@@ -226,6 +226,12 @@ namespace axis
 
    }
 
+   bool system::verb() // ambigous inheritance from ::aura::system/::axis::application
+   {
+      
+      return ::aura::system::verb();
+      
+   }
 
    bool system::initialize_instance()
    {
@@ -546,24 +552,6 @@ namespace axis
       return iRet;
 
    }
-
-
-   bool system::verb()
-   {
-
-      return ::aura::system::verb();
-
-   }
-
-
-   //UINT system::os_post_to_all_threads(UINT uiMessage,WPARAM wparam,lparam lparam)
-   //{
-
-   //   post_to_all_threads(uiMessage,wparam,lparam);
-
-   //   return 0;
-
-   //}
 
    //sp(object) system::clone()
    //{

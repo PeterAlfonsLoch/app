@@ -101,8 +101,7 @@ namespace axis
       virtual bool initialize2();
 
 
-      virtual bool verb();
-
+      virtual bool verb(); // ambigous inheritance from ::aura::system/::axis::application
 
 
       virtual ::file::path dir_appmatter_locator(::aura::application * papp);

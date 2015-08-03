@@ -1231,6 +1231,9 @@ namespace axis
 
    bool application::pre_run()
    {
+      
+      if(!::thread::pre_run())
+         return false;
 
       TRACE(string(typeid(*this).name()) + " main_start");;
       try
@@ -1493,6 +1496,7 @@ namespace axis
 
          if(!on_install())
          {
+            ::output_debug_string("Failed at on_install : " + m_strAppId + "\n\n");
             System.m_iReturnCode = -1;
             return false;
          }
@@ -1575,6 +1579,9 @@ namespace axis
          }
 
       }
+
+      
+      ::output_debug_string("initial_check_directrix : ok ("+string(typeid(*this).name())+")" + m_strAppId + "\n\n");
 
 
       return true;

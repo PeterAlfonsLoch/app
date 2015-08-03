@@ -52,6 +52,7 @@ var command_thread::run()
       {
          try
          {
+            ::output_debug_string("command_thread::run - on_request : appid : " + pcreatecontext->m_spCommandLine->m_strApp + "\n\n");
             on_request(pcreatecontext);
          }
          catch(::exit_exception & e)

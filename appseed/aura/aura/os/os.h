@@ -14,6 +14,8 @@
 
 inline bool IsDirSep(WCHAR ch);
 
+
+
 #endif
 
 CLASS_DECL_AURA void set_splash(oswindow oswindow);

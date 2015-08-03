@@ -1052,6 +1052,7 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 #include "aura/primitive/geometry/geometry_geometry.h"
 
 
+CLASS_DECL_AURA string get_exe_path();
 
 
 //#include "user/user/user_window_map.h"

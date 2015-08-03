@@ -1123,32 +1123,26 @@ void thread::register_at_required_threads()
 {
 
    // register default dependencies
-
-   sp(::aura::application) papp = this;
-
-   sp(::aura::session) psession = this;
-
-   sp(::aura::system) psystem = this;
-
+   
    if(&Application != NULL)
    {
 
       Application.register_dependent_thread(this);
-
-      if(psystem == NULL && &Session != NULL)
-      {
-
-         Session.register_dependent_thread(this);
-
-      }
-
-      if(&System != NULL)
-      {
-
-         System.register_dependent_thread(this);
-
-      }
-
+      
+   }
+   
+   if(&Session != NULL)
+   {
+      
+      Session.register_dependent_thread(this);
+      
+   }
+   
+   if(&System != NULL)
+   {
+      
+      System.register_dependent_thread(this);
+      
    }
 
 }
@@ -1235,6 +1229,8 @@ void thread::set_run_thread(bool bRun)
       }
 
       m_bRun = false;
+      
+      post_quit();
 
 
    }

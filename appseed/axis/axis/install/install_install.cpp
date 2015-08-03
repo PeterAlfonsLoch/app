@@ -851,14 +851,24 @@ namespace install
       ::file::path path;
 
       path = System.install_meta_dir(m_strVersion,pszBuild,pszType,pszId,pszLocale,pszSchema) / "installed.txt";
+      
+      ::output_debug_string(path);
+      ::output_debug_string("\n");
 
       Application.file().put_contents(path,"");
 
       string strBuildPath;
 
       strBuildPath = System.dir().commonappdata() / "spa_build_" + get_platform() + ".txt";
-
-      string strNewBuildNumber = Application.file().as_string(strBuildPath);
+      
+      string strNewBuildNumber;
+      
+      if(Application.file().exists(strBuildPath))
+      {
+         
+         strNewBuildNumber = Application.file().as_string(strBuildPath);
+         
+      }
 
       string strBuild(pszBuild);
 

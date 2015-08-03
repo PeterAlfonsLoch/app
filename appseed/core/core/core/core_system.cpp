@@ -587,7 +587,7 @@ namespace core
    {
 
       sp(::core::session) pplatform = get_platform(pcreate->m_spCommandLine->m_iEdge,pcreate->m_spCommandLine->m_pbiasCreate);
-
+      
       ::base::system::on_request(pcreate);
  
 
@@ -781,19 +781,19 @@ namespace core
 
 #if !defined(CUBE) && !defined(VSNORD)
 
-      try
-      {
-
-         if(!find_applications_to_cache())
-            return false;
-
-      }
-      catch(...)
-      {
-
-         return false;
-
-      }
+//      try
+//      {
+//
+//         if(!find_applications_to_cache())
+//            return false;
+//
+//      }
+//      catch(...)
+//      {
+//
+//         return false;
+//
+//      }
 
 #endif
 

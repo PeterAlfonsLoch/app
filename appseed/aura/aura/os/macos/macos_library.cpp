@@ -20,10 +20,25 @@
       if(!str_ends_dup(strPath, ".dylib"))
          strPath += ".dylib";
 
-      if(!str_begins_dup(strPath, "lib"))
+      if(!::str::begins_ci(strPath, "/") && !str_begins_dup(strPath, "lib"))
          strPath = "lib" + strPath;
       
+      ::output_debug_string("\n\nGoing to dlopen(\"" + strPath + "\", RTLD_LOCAL | RTLD_LAZY)\n\n");
+
       void * plibrary = dlopen(strPath, RTLD_LOCAL | RTLD_LAZY);
+      
+      if(plibrary == NULL)
+      {
+         
+         ::output_debug_string("\n\n__node_library_open Failed " + strPath + "\n\n");
+         
+      }
+      else
+      {
+
+         ::output_debug_string("\n\n__node_library_open Succeeded " + strPath + "\n\n");
+         
+      }
       
       return plibrary;
       

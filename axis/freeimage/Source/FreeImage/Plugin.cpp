@@ -344,11 +344,11 @@ TagLib::instance();
             {
 
 #ifdef WINDOWSEX
-               if(::str::ends_ci(path,".dll"))
+               if(::str::ends_ci(path,".dll") && ::str::begins_ci(path, "axis_image_"))
 #elif defined(APPLEOS)
-               if(::str::ends_ci(path,".dylib"))
+               if(::str::ends_ci(path,".dylib") && ::str::begins_ci(path, "libaxis_image_"))
 #else
-               if(::str::ends_ci(path,".so"))
+               if(::str::ends_ci(path,".so") && ::str::begins_ci(path, "libaxis_image_"))
 #endif
                {
                   

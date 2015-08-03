@@ -380,7 +380,7 @@ namespace ansios
 
       straParam.add("-c");
 
-      string strC = "ignit_phase2 () { export DYLD_FALLBACK_LIBRARY_PATH="+strFallback+" ; cd "+strFolder+" ; "+string(pszCmdLineParam)+" ; } ; ignit_phase2 ;";
+      string strC = "ignit_phase2 () { export DYLD_FALLBACK_LIBRARY_PATH=\""+strFallback+"\" ; cd "+strFolder+" ; "+string(pszCmdLineParam)+" ; } ; ignit_phase2 ;";
 //            string strC = "export DYLD_FALLBACK_LIBRARY_PATH="+strFallback;
 
       straParam.add(strC);
@@ -402,7 +402,26 @@ namespace ansios
 
 //      int uid = getuid();
 
-
+      ::output_debug_string("---\n");
+      ::output_debug_string("---\n");
+      ::output_debug_string("---\n");
+      ::output_debug_string("---\n");
+      ::output_debug_string("---\n");
+      ::output_debug_string("---\n");
+      ::output_debug_string("---\n");
+      ::output_debug_string("---\n");
+      ::output_debug_string("---\n");
+      ::output_debug_string("---\n");
+      ::output_debug_string("---\n");
+      ::output_debug_string("---\n");
+      ::output_debug_string("---\n");
+      ::output_debug_string("---\n");
+      ::output_debug_string("---\n");
+      ::output_debug_string("---\n");
+      ::output_debug_string("---\n");
+      ::output_debug_string("---\n");
+      ::output_debug_string("---\n");
+      ::output_debug_string("---\n");
 
 //      int i = setuid(0);
 
@@ -489,20 +508,41 @@ namespace ansios
       if(pipe != NULL)
       {
 
-         int pptp_pid = 0;
+ //        int pptp_pid = 0;
 
-         fscanf(pipe, "%d", &pptp_pid);
+  //       fscanf(pipe, "%d", &pptp_pid);
 
-//         pid_t pptp_pid = 0;
+         pid_t pptp_pid = 0;
 
-  //       fread(&pptp_pid,sizeof(pptp_pid),1,pipe); // get pid
+         fread(&pptp_pid,sizeof(pptp_pid),1,pipe); // get pid
 
          m_iPid = pptp_pid;
 
          DWORD dwStart = get_tick_count();
+         
+         DWORD dwTimeOut = durationTimeOut.get_total_milliseconds();
+         
+         char sz[1025];
+         
+         int iRead;
 
-         while(!has_exited() && get_tick_count() - dwStart < durationTimeOut.get_total_milliseconds())
+         while(!has_exited() && get_tick_count() - dwStart < dwTimeOut)
          {
+//            memset(sz, 0, sizeof(sz));
+//               iRead = fread(sz,1,1024, pipe);
+//               if(iRead >0)
+//               {
+//                  ::output_debug_string(sz);
+//               }
+//               else if(ferror(pipe))
+//               {
+//                  TRACE("Error reading from file");
+//                  break;
+//               }
+//               else
+//               {
+//               }
+
             Sleep(84);
          }
          if(!has_exited(&dwExitCode))

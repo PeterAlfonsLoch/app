@@ -198,14 +198,30 @@ namespace aura
 
    bool system::install_uninstall_verb()
    {
+      
+      ::output_debug_string("::aura::system::install_uninstall_verb " + demangle(typeid(*this).name()) + "\n");
 
       static DWORD dwStart = get_tick_count();
 
       if(directrix()->m_varTopicQuery.has_property("install") && (get_tick_count() - dwStart) > (5 * 184 * 1000))
+      {
+         
+         ::output_debug_string("::aura::system::install_uninstall_verb " + demangle(typeid(*this).name()) + 
+         " quitting (1)\n");
+
          return false;
+         
+      }
 
       if(directrix()->m_varTopicQuery.has_property("uninstall") && (get_tick_count() - dwStart) > (5 * 184 * 1000))
+      {
+         
+         ::output_debug_string("::aura::system::install_uninstall_verb " + demangle(typeid(*this).name()) + 
+         " quitting (2)\n");
+         
          return false;
+         
+      }
 
       return common_verb();
 
@@ -214,6 +230,8 @@ namespace aura
 
    bool system::common_verb()
    {
+      
+      ::output_debug_string("::aura::system::common_verb " + demangle(typeid(*this).name()) + " m_bDoNotExitIfNoApplication = "+::str::from(int(m_bDoNotExitIfNoApplications))+"\n");
 
       if(!m_bDoNotExitIfNoApplications)
       {
@@ -1735,20 +1753,30 @@ namespace aura
          string strBuildPath;
 
          strBuildPath = System.dir().commonappdata() / "spa_build_" + strPlatform + ".txt";
-
-         string strNewBuildNumber = Application.file().as_string(strBuildPath);
-
-         if(strNewBuildNumber.is_empty())
+         
+         if(Application.file().exists(strBuildPath))
          {
+
+            string strNewBuildNumber = Application.file().as_string(strBuildPath);
+
+           if(strNewBuildNumber.is_empty())
+            {
 
             strBuildNumber = "installed";
-
-         }
-         else
-         {
+          }
+           else
+          {
 
             strBuildNumber = strNewBuildNumber;
 
+         }
+            
+         }
+         else
+         {
+            
+            strBuildNumber = "installed";
+            
          }
 
       }
@@ -1779,10 +1807,12 @@ namespace aura
    {
 
       sp(::aura::session) psession = get_session(pcreate->m_spCommandLine->m_iEdge,pcreate->m_spCommandLine->m_pbiasCreate);
-
+      
       if(psession == NULL)
       {
 
+         ::output_debug_string("::aura::system::on_request session NULL An error that prevents the application from starting has occurred.\r\n\r\nPlease run app-removal.exe and restart the application, or contact the administrator. Startup Error !!");
+                              
          ::simple_message_box(get_splash(),"An error that prevents the application from starting has occurred.\r\n\r\nPlease run app-removal.exe and restart the application, or contact the administrator.","Startup Error",MB_ICONEXCLAMATION);
 
 #ifdef WINDOWSEX
@@ -1794,6 +1824,9 @@ namespace aura
          return;
 
       }
+      
+      ::output_debug_string("::aura::system::on_request session = " + demangle(typeid(*psession).name()) + "("+::str::from(psession.m_p)+")\n\n");
+      
 
       psession->request_create(pcreate);
 
@@ -1829,6 +1862,7 @@ namespace aura
    bool system::find_applications_to_cache(bool bSave)
    {
 
+      return true;
 
 #if defined(CUBE) || defined(VSNORD)
       return true;
@@ -1841,13 +1875,22 @@ namespace aura
       string strLibraryId;
 
       ::file::listing straTitle(this);
+      
+      ::file::path pathCa2Module = System.dir().ca2module();
+      
+      ::output_debug_string("\n\n::aura::system::find_applications_to_cache\n\n");
 
-      straTitle.ls_pattern(System.dir().ca2module(),"*.*");
+      ::output_debug_string("ca2 module folder : " + pathCa2Module);
+      
+      ::output_debug_string("\n\n\n");
+      
+      straTitle.ls_pattern(pathCa2Module,"*.*");
 
       for(int32_t i = 0; i < straTitle.get_count(); i++)
       {
 
          strLibraryId = straTitle[i];
+         
 
          if(::str::ends_eat_ci(strLibraryId,".dll")
             || ::str::ends_eat_ci(strLibraryId,".so")
@@ -1860,6 +1903,8 @@ namespace aura
                continue;
             }
 
+            ::output_debug_string("library("+::str::from(i)+") : " + strLibraryId+"\n\n");
+            
             map_application_library(strLibraryId);
 
          }
@@ -1920,10 +1965,19 @@ namespace aura
       }
 
       if(!library.open(pszLibrary,true))
+      {
+         ::output_debug_string("::system::map_application_library Failed to open library :" + string(pszLibrary) + "\n\n");
          return false;
+      }
 
       if(!library.open_ca2_library())
+      {
+         
+         ::output_debug_string("::system::map_application_library open_ca2_library(2) Failed :" + string(pszLibrary) + "\n\n");
+         
          return false;
+         
+      }
 
       on_map_application_library(library);
 

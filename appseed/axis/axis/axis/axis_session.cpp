@@ -2990,7 +2990,19 @@ namespace axis
          return NULL;
       if(Application.is_session())
       {
-         ::user::elemental * puieFocus = Application.get_focus_guie();
+         ::user::elemental * puieFocus = NULL;
+         
+         try
+         {
+            
+            puieFocus = Application.get_focus_guie();
+            
+         }
+         catch(...)
+         {
+            
+         }
+         
          if(m_pkeyboardfocus != NULL && puieFocus != NULL)
          {
             if((bool)oprop("NativeWindowFocus") && puieFocus != m_pkeyboardfocus)

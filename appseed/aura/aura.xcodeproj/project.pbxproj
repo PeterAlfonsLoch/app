@@ -765,6 +765,7 @@
 		07B0956518495C2B007A0560 /* x_tables.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B094A818495C2A007A0560 /* x_tables.h */; };
 		07B4AFE119CB9D8500E56AFA /* file_file_stream_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B4AFD919CB9D8500E56AFA /* file_file_stream_base.h */; };
 		07B4AFE319CB9D8500E56AFA /* file_file_stream.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B4AFDB19CB9D8500E56AFA /* file_file_stream.h */; };
+		07C530BD1B6FBA1300379625 /* ns_exe_path.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07C530BC1B6FBA1200379625 /* ns_exe_path.cpp */; };
 		07CAA96D1B4DBC4000180410 /* os.h in Headers */ = {isa = PBXBuildFile; fileRef = 07CAA96C1B4DBC4000180410 /* os.h */; };
 		07CAA9731B4DC5E900180410 /* DDInvocationGrabber.mm in Sources */ = {isa = PBXBuildFile; fileRef = 077A05341B4D70B7001C85FF /* DDInvocationGrabber.mm */; };
 		07CAA9741B4DC5E900180410 /* ios_cross_gdi.mm in Sources */ = {isa = PBXBuildFile; fileRef = 077A053A1B4D70B7001C85FF /* ios_cross_gdi.mm */; };
@@ -1453,6 +1454,7 @@
 		07B4AFD919CB9D8500E56AFA /* file_file_stream_base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file_file_stream_base.h; sourceTree = "<group>"; };
 		07B4AFDB19CB9D8500E56AFA /* file_file_stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file_file_stream.h; sourceTree = "<group>"; };
 		07BD556C16210BD4008E31F0 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		07C530BC1B6FBA1200379625 /* ns_exe_path.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ns_exe_path.cpp; sourceTree = "<group>"; };
 		07CAA96C1B4DBC4000180410 /* os.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = os.h; sourceTree = "<group>"; };
 		07CABC101B3DFF200009F5B9 /* user_frame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user_frame.cpp; sourceTree = "<group>"; };
 		07CABC111B3DFF200009F5B9 /* user_frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_frame.h; sourceTree = "<group>"; };
@@ -2662,6 +2664,7 @@
 				9A16408519C4A4CE00966C5E /* UncaughtExceptionHandler.h */,
 				9A16408619C4A4CE00966C5E /* UncaughtExceptionHandler.mm */,
 				070B8F171B6E578900D26137 /* macos_main.h */,
+				07C530BC1B6FBA1200379625 /* ns_exe_path.cpp */,
 			);
 			path = macos;
 			sourceTree = "<group>";
@@ -4273,6 +4276,7 @@
 				9A16447719C4A4CF00966C5E /* NSObject+DDExtensions.mm in Sources */,
 				07B0953418495C2B007A0560 /* str_ch.cpp in Sources */,
 				9A16421B19C4A4CE00966C5E /* exception_mm.mm in Sources */,
+				07C530BD1B6FBA1300379625 /* ns_exe_path.cpp in Sources */,
 				07502CA31B251981008D207C /* teste.cpp in Sources */,
 				9AEEADB519C4E10900866C9E /* simple_message_box.cpp in Sources */,
 				07B0953618495C2B007A0560 /* str_ch_class.cpp in Sources */,

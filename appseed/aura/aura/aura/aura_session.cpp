@@ -363,8 +363,9 @@ namespace aura
    void session::on_request(sp(::create) pcreatecontext)
    {
 
-      TRACE("::core::session::on_request(sp(::create))");
+      TRACE("::aura::session::on_request(sp(::create)) " + demangle(typeid(*this).name()));
 
+      ::output_debug_string("::aura::session::on_request(sp(::create)) " + THIS_FRIENDLY_NAME());
 
       if(pcreatecontext->m_spCommandLine->m_varQuery["app"].array_get_count() > 1)
       {
@@ -785,59 +786,131 @@ namespace aura
 
 
 #endif
-
-      ::aura::library library(pappNewApplicationParent,0,NULL);
-
-#if defined(METROWIN)
-      string strLibrary = pszAppId;
-
-      strLibrary.replace("/","_");
-      strLibrary.replace("-","_");
-
-#else
-#if defined(CUBE) || defined(VSNORD) || defined(APPLE_IOS)
-
-      string strLibrary = pszAppId;
-
-      strLibrary.replace("/","_");
-      strLibrary.replace("-","_");
-
-
-#else
-
-      string strLibrary = System.m_mapAppLibrary[pszAppId];
-
-      if(strLibrary.is_empty())
+      
+#if !defined(METROWIN) && !defined(VSNORD) && !defined(APPLE_IOS)
+      
+      
+      if(((!System.directrix()->m_varTopicQuery.has_property("install")
+           && !System.directrix()->m_varTopicQuery.has_property("uninstall"))
+          ) //         || (papp->is_serviceable() && !papp->is_user_service() && strUserName != "NetworkService"))
+         && strId.has_char()
+         && !System.install_is(System.install_get_version(),strBuildNumber,pszType,strApplicationId,Session.m_strLocale,Session.m_strSchema))
       {
+         
+         throw not_installed(get_app(),System.install_get_version(),strBuildNumber,pszType,strApplicationId,Session.m_strLocale,Session.m_strSchema);
+         
+      }
+      
+#endif
 
-         System.find_applications_to_cache(false);
+      
+      ::aura::library library(pappNewApplicationParent,0,NULL);
+      
+//#if defined(METROWIN)
+      string strLibrary = pszAppId;
 
-         strLibrary = System.m_mapAppLibrary[pszAppId];
+      strLibrary.replace("/","_");
+      strLibrary.replace("-","_");
 
-         if(strLibrary.is_empty())
+//#else
+//#if defined(CUBE) || defined(VSNORD) || defined(APPLE_IOS)
+
+  //    string strLibrary = pszAppId;
+
+    //  strLibrary.replace("/","_");
+      //strLibrary.replace("-","_");
+
+
+//#else
+
+  //    string strLibrary = System.m_mapAppLibrary[pszAppId];
+
+    //  if(strLibrary.is_empty())
+      //{
+         
+         //strLibrary =  pszAppId;
+         
+         //strLibrary.replace("/","_");
+         //strLibrary.replace("-","_");
+      
+#ifdef WINDOWS
+         
+  //      strLibrary = System.dir().ca2module() / strLibrary;
+      
+#else
+
+//      strLibrary = System.dir().ca2module() / "lib" + strLibrary;
+      
+#endif
+         
+         ::output_debug_string("\n\n::aura::session::get_new_app assembled library path " + strLibrary + "\n\n");
+         
+         
+         if(!library.open(strLibrary,false))
          {
+
+        // System.find_applications_to_cache(false);
+
+        // strLibrary = System.m_mapAppLibrary[pszAppId];
+
+        // if(strLibrary.is_empty())
+         //{
 
             if(System.directrix()->m_varTopicQuery.has_property("uninstall") &&
                System.directrix()->m_varTopicQuery["app"] == strApplicationId)
                return NULL;
+            
+            ::output_debug_string("\n\nSystem.find_applications_to_cache Failed(3) " + string(pszAppId) + "\n\n");
 
             throw not_installed(get_app(),System.install_get_version(),strBuildNumber,pszType,strApplicationId,Session.m_strLocale,Session.m_strSchema);
 
          }
+            
+         //}
 
+      //}
+
+      ::output_debug_string("\n\n::aura::session::get_new_app Found library : " + strLibrary + "\n\n");
+      
+//#endif
+//#endif
+
+//      if(!library.is_opened() && !library.open(strLibrary,false,false))
+                  if(!library.is_opened())
+      {
+         
+         ::output_debug_string("\n\n::aura::session::get_new_app Failed to load library : " + strLibrary + "\n\n");
+         
+         return NULL;
+         
       }
 
-#endif
-#endif
-      sp(::aura::application) papp;
-
-      if(!library.open(strLibrary,false,false))
-         return NULL;
-
+      ::output_debug_string("\n\n::aura::session::get_new_app Opened library : " + strLibrary + "\n\n");
+      Sleep(4984);
+      
       if(!library.open_ca2_library())
+      {
+         
+         ::output_debug_string("\n\n::aura::session::get_new_app open_ca2_library failed(2) : " + strLibrary+ "\n\n");
+         
          return NULL;
+         
+      }
 
-      papp = library.get_new_app(pszAppId);
+      ::output_debug_string("\n\n\n|(5)----");
+      ::output_debug_string("| app : " + strApplicationId + "\n");
+      ::output_debug_string("|\n");
+      ::output_debug_string("|\n");
+      ::output_debug_string("|----");
+
+      sp(::aura::application) papp = library.get_new_app(pszAppId);
+      
+      ::output_debug_string("\n\n\n|(4)----");
+      ::output_debug_string("| app : " + strApplicationId + "(papp="+::str::from(papp)+")\n");
+      ::output_debug_string("|\n");
+      ::output_debug_string("|\n");
+      ::output_debug_string("|----");
+      
 
       WCHAR wsz[1024];
 
@@ -852,22 +925,19 @@ namespace aura
 
 #endif // WINDOWSEX
 
+      ::output_debug_string("\n\n\n|(3)----");
+      ::output_debug_string("| app : " + strApplicationId + "\n");
+      ::output_debug_string("|\n");
+      ::output_debug_string("|\n");
+      ::output_debug_string("|----");
 
-#if !defined(METROWIN) && !defined(VSNORD) && !defined(APPLE_IOS)
 
 
-      if(((!System.directrix()->m_varTopicQuery.has_property("install")
-         && !System.directrix()->m_varTopicQuery.has_property("uninstall"))
-         ) //         || (papp->is_serviceable() && !papp->is_user_service() && strUserName != "NetworkService"))
-         && strId.has_char()
-         && !System.install_is(System.install_get_version(),strBuildNumber,pszType,strApplicationId,Session.m_strLocale,Session.m_strSchema))
-      {
-
-         throw not_installed(get_app(),System.install_get_version(),strBuildNumber,pszType,strApplicationId,Session.m_strLocale,Session.m_strSchema);
-
-      }
-
-#endif
+      ::output_debug_string("\n\n\n|(2)----");
+      ::output_debug_string("| app : " + strApplicationId + "\n");
+      ::output_debug_string("|\n");
+      ::output_debug_string("|\n");
+      ::output_debug_string("|----");
 
 #if !defined(VSNORD)
 
@@ -883,6 +953,12 @@ namespace aura
 
       if(papp == NULL)
          return NULL;
+      
+      ::output_debug_string("\n\n\n|(1)----");
+      ::output_debug_string("| app : " + strApplicationId + "\n");
+      ::output_debug_string("|\n");
+      ::output_debug_string("|\n");
+      ::output_debug_string("|----");
 
       sp(::aura::application) pgenapp = (papp);
 

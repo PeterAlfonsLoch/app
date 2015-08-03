@@ -329,6 +329,10 @@ namespace base
 
 #endif
 
+      
+#ifdef MACOS
+      ns_app_close();
+#endif
 
       return m_iReturnCode;
 
@@ -395,27 +399,6 @@ namespace base
 //   }
 //
 //
-//   void system::wait_twf()
-//   {
-//
-//   }
-//
-//
-//   bool system::verb()
-//   {
-//
-//      return ::axis::system::verb();
-//
-//   }
-//
-//
-//
-//   bool system::is_system()
-//   {
-//
-//      return true;
-//
-//   }
 //
 //
 //

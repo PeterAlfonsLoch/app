@@ -879,6 +879,9 @@ namespace aura
 
    bool application::pre_run()
    {
+      
+      if(!::thread::pre_run())
+         return false;
 
       TRACE(string(typeid(*this).name()) + " main_start");;
       try
@@ -954,12 +957,16 @@ namespace aura
 
       dappy(string(typeid(*this).name()) + " : starting on_run : " + ::str::from(m_iReturnCode));
 
+      ::output_debug_string(string(typeid(*this).name()) + " : starting on_run : " + ::str::from(m_iReturnCode) + "\n\n");
+
       thread * pthread = ::get_thread();
 
       install_message_handling(pthread->m_pthreadimpl);
 
       dappy(string(typeid(*this).name()) + " : starting on_run 2 : " + ::str::from(m_iReturnCode));
 
+      ::output_debug_string(string(typeid(*this).name()) + " : starting on_run 2 : " + ::str::from(m_iReturnCode) + "\n\n");
+    
       try
       {
          try
@@ -1486,6 +1493,8 @@ namespace aura
 
       if(is_system() || is_session())
       {
+         
+         ::output_debug_string("::aura::application::run " + string(typeid(*this).name()) + "\n\n");
 
          return ::thread::run();
 
@@ -4074,9 +4083,11 @@ namespace aura
 
 
             //                     strPath += ".app/Contents/MacOS/app";
-            strPath += ".app/Contents/MacOS/app";
+            strPath = get_exe_path();
             //                     setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
             //                     setenv("DYLD_FALLBACK_LIBRARY_PATH",strPath, 1 );
+            
+            strPath = "\"" + strPath + "\"";
 
 #endif
 

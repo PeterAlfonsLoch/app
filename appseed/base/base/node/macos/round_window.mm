@@ -40,6 +40,13 @@ void ns_app_run()
    
 }
 
+void ns_app_close()
+{
+   
+   [NSApp terminate:nil];
+   
+}
+
 
 void round_window::round_window_close()
 {
