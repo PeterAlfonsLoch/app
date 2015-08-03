@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_CORE margin_base:
+   class CLASS_DECL_B margin_base:
       virtual public ::user::interaction
    {
    public:
