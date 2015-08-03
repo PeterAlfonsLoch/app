@@ -36,7 +36,7 @@
 		07A371C61B25E34E00E4F888 /* pngwrite.c in Sources */ = {isa = PBXBuildFile; fileRef = 07A371AC1B25E34E00E4F888 /* pngwrite.c */; };
 		07A371C71B25E34E00E4F888 /* pngwtran.c in Sources */ = {isa = PBXBuildFile; fileRef = 07A371AD1B25E34E00E4F888 /* pngwtran.c */; };
 		07A371C81B25E34E00E4F888 /* pngwutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 07A371AE1B25E34E00E4F888 /* pngwutil.c */; };
-		07B6577B190F3CA2002DAADE /* libaxispng.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65764190F3CA2002DAADE /* libaxispng.dylib */; };
+		07B6577B190F3CA2002DAADE /* libaxis_image_png.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65764190F3CA2002DAADE /* libaxis_image_png.dylib */; };
 		07D6A8061B4CB876004FEBC2 /* png.c in Sources */ = {isa = PBXBuildFile; fileRef = 07A371981B25E34E00E4F888 /* png.c */; };
 		07D6A8071B4CB876004FEBC2 /* pngerror.c in Sources */ = {isa = PBXBuildFile; fileRef = 07A3719C1B25E34E00E4F888 /* pngerror.c */; };
 		07D6A8081B4CB876004FEBC2 /* pngget.c in Sources */ = {isa = PBXBuildFile; fileRef = 07A3719D1B25E34E00E4F888 /* pngget.c */; };
@@ -188,7 +188,7 @@
 		07A371AE1B25E34E00E4F888 /* pngwutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngwutil.c; sourceTree = "<group>"; };
 		07A371C91B25EB8C00E4F888 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../../appseed/aura/aura.xcodeproj; sourceTree = "<group>"; };
 		07A371EC1B25EC6000E4F888 /* axiszlib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axiszlib.xcodeproj; path = ../zlib/axiszlib.xcodeproj; sourceTree = "<group>"; };
-		07B65764190F3CA2002DAADE /* libaxispng.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libaxispng.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		07B65764190F3CA2002DAADE /* libaxis_image_png.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libaxis_image_png.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		07B65773190F3CA2002DAADE /* axispng_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = axispng_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A574B9816AAB906000CC4EF /* libaxis_image_png.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxis_image_png.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -208,7 +208,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07B6577B190F3CA2002DAADE /* libaxispng.dylib in Frameworks */,
+				07B6577B190F3CA2002DAADE /* libaxis_image_png.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,7 +314,7 @@
 			isa = PBXGroup;
 			children = (
 				9A574B9816AAB906000CC4EF /* libaxis_image_png.dylib */,
-				07B65764190F3CA2002DAADE /* libaxispng.dylib */,
+				07B65764190F3CA2002DAADE /* libaxis_image_png.dylib */,
 				07B65773190F3CA2002DAADE /* axispng_iosTests.xctest */,
 			);
 			name = Products;
@@ -356,7 +356,7 @@
 			);
 			name = ios_axis_image_png;
 			productName = math_ios;
-			productReference = 07B65764190F3CA2002DAADE /* libaxispng.dylib */;
+			productReference = 07B65764190F3CA2002DAADE /* libaxis_image_png.dylib */;
 			productType = "com.apple.product-type.library.static";
 		};
 		07B65772190F3CA2002DAADE /* axispng_iosTests */ = {

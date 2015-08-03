@@ -147,7 +147,7 @@
 		076335BF1B5907440079C405 /* jmemansi.c in Sources */ = {isa = PBXBuildFile; fileRef = 076335BD1B5907440079C405 /* jmemansi.c */; };
 		076336241B590A250079C405 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 076333E21B5902EB0079C405 /* libaura.dylib */; };
 		076336251B590A310079C405 /* libaxisfreeimage.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 076333ED1B5902FC0079C405 /* libaxisfreeimage.dylib */; };
-		07B6577B190F3CA2002DAADE /* libaxisjpeg.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65764190F3CA2002DAADE /* libaxisjpeg.dylib */; };
+		07B6577B190F3CA2002DAADE /* libaxis_image_jpeg.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65764190F3CA2002DAADE /* libaxis_image_jpeg.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -316,9 +316,9 @@
 		076335171B5903BD0079C405 /* wrrle.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = wrrle.c; sourceTree = "<group>"; };
 		076335181B5903BD0079C405 /* wrtarga.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = wrtarga.c; sourceTree = "<group>"; };
 		076335BD1B5907440079C405 /* jmemansi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = jmemansi.c; sourceTree = "<group>"; };
-		07B65764190F3CA2002DAADE /* libaxisjpeg.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libaxisjpeg.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		07B65764190F3CA2002DAADE /* libaxis_image_jpeg.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libaxis_image_jpeg.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		07B65773190F3CA2002DAADE /* axisjpeg_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = axisjpeg_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A574B9816AAB906000CC4EF /* libaxisjpeg.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxisjpeg.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A574B9816AAB906000CC4EF /* libaxis_image_jpeg.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxis_image_jpeg.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -335,7 +335,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07B6577B190F3CA2002DAADE /* libaxisjpeg.dylib in Frameworks */,
+				07B6577B190F3CA2002DAADE /* libaxis_image_jpeg.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,8 +492,8 @@
 		9A574B9916AAB906000CC4EF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A574B9816AAB906000CC4EF /* libaxisjpeg.dylib */,
-				07B65764190F3CA2002DAADE /* libaxisjpeg.dylib */,
+				9A574B9816AAB906000CC4EF /* libaxis_image_jpeg.dylib */,
+				07B65764190F3CA2002DAADE /* libaxis_image_jpeg.dylib */,
 				07B65773190F3CA2002DAADE /* axisjpeg_iosTests.xctest */,
 			);
 			name = Products;
@@ -540,7 +540,7 @@
 			);
 			name = ios_axis_image_jpeg;
 			productName = math_ios;
-			productReference = 07B65764190F3CA2002DAADE /* libaxisjpeg.dylib */;
+			productReference = 07B65764190F3CA2002DAADE /* libaxis_image_jpeg.dylib */;
 			productType = "com.apple.product-type.library.static";
 		};
 		07B65772190F3CA2002DAADE /* axisjpeg_iosTests */ = {
@@ -577,7 +577,7 @@
 			);
 			name = axis_image_jpeg;
 			productName = ca2;
-			productReference = 9A574B9816AAB906000CC4EF /* libaxisjpeg.dylib */;
+			productReference = 9A574B9816AAB906000CC4EF /* libaxis_image_jpeg.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
