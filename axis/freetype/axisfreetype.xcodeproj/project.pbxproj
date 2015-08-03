@@ -248,10 +248,11 @@
 		07108CD61B4C97E300A28F80 /* cf2error.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB51419C5089600866C9E /* cf2error.h */; };
 		07108CD71B4C97E300A28F80 /* pshpic.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB5D919C5089700866C9E /* pshpic.h */; };
 		07108CD81B4C97E300A28F80 /* hbshim.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB4BB19C5089600866C9E /* hbshim.h */; };
+		07703C3A1B6FE00C009026EA /* libaxis_image_png.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D1B0ED1B6FBEFD004E8E35 /* libaxis_image_png.dylib */; };
 		077A020B1B4D58B8001C85FF /* libaxisbzip2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A19A09519C677110018DF7D /* libaxisbzip2.dylib */; };
 		077A020D1B4D58CB001C85FF /* libaxisfreeimage.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07108CE21B4C97E300A28F80 /* libaxisfreeimage.dylib */; };
 		077A02111B4D5903001C85FF /* libaxiszlib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEEBDA919C595DD00866C9E /* libaxiszlib.dylib */; };
-		07D1B10F1B6FC19E004E8E35 /* libaxispng.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D1B0ED1B6FBEFD004E8E35 /* libaxispng.dylib */; };
+		07D1B10F1B6FC19E004E8E35 /* libaxis_image_png.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D1B0ED1B6FBEFD004E8E35 /* libaxis_image_png.dylib */; };
 		9A19A09819C677300018DF7D /* libaxisbzip2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A19A09519C677110018DF7D /* libaxisbzip2.dylib */; };
 		9AEEB67119C5089700866C9E /* afangles.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB49519C5089500866C9E /* afangles.h */; };
 		9AEEB67319C5089700866C9E /* afblue.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB49919C5089500866C9E /* afblue.h */; };
@@ -897,6 +898,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07703C3A1B6FE00C009026EA /* libaxis_image_png.dylib in Frameworks */,
 				077A02111B4D5903001C85FF /* libaxiszlib.dylib in Frameworks */,
 				077A020D1B4D58CB001C85FF /* libaxisfreeimage.dylib in Frameworks */,
 				077A020B1B4D58B8001C85FF /* libaxisbzip2.dylib in Frameworks */,
@@ -907,7 +909,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07D1B10F1B6FC19E004E8E35 /* libaxispng.dylib in Frameworks */,
+				07D1B10F1B6FC19E004E8E35 /* libaxis_image_png.dylib in Frameworks */,
 				9AEEB83D19C50EC200866C9E /* libaura.dylib in Frameworks */,
 				9A19A09819C677300018DF7D /* libaxisbzip2.dylib in Frameworks */,
 				9AEEBDB519C5963200866C9E /* libaxiszlib.dylib in Frameworks */,
@@ -920,7 +922,7 @@
 		07D1B0E71B6FBEFD004E8E35 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				07D1B0ED1B6FBEFD004E8E35 /* libaxispng.dylib */,
+				07D1B0ED1B6FBEFD004E8E35 /* libaxis_image_png.dylib */,
 				07D1B0EF1B6FBEFD004E8E35 /* libaxispng.dylib */,
 				07D1B0F11B6FBEFD004E8E35 /* axispng_iosTests.xctest */,
 			);
@@ -1972,17 +1974,17 @@
 			remoteRef = 07108DD31B4C9A0100A28F80 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		07D1B0ED1B6FBEFD004E8E35 /* libaxispng.dylib */ = {
+		07D1B0ED1B6FBEFD004E8E35 /* libaxis_image_png.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libaxispng.dylib;
+			path = libaxis_image_png.dylib;
 			remoteRef = 07D1B0EC1B6FBEFD004E8E35 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		07D1B0EF1B6FBEFD004E8E35 /* libaxispng.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libaxispng.dylib;
+			path = libaxis_image_png.dylib;
 			remoteRef = 07D1B0EE1B6FBEFD004E8E35 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};

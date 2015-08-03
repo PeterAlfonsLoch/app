@@ -98,6 +98,7 @@
 		07108BD11B4C97D500A28F80 /* PSDParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAEBA19C5080A00866C9E /* PSDParser.h */; };
 		07108BD21B4C97D500A28F80 /* Resize.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAEDC19C5080A00866C9E /* Resize.h */; };
 		07108BD31B4C97D500A28F80 /* CacheFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAE7519C5080A00866C9E /* CacheFile.h */; };
+		07703C381B6FDFBD009026EA /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 071B2AFD1B6E631B0088E158 /* libaura.dylib */; };
 		077A01671B4D5568001C85FF /* libaxiszlib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEEBDAF19C595E900866C9E /* libaxiszlib.dylib */; };
 		9AEEB1D119C5080D00866C9E /* CacheFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAE7519C5080A00866C9E /* CacheFile.h */; };
 		9AEEB1D219C5080D00866C9E /* Deprecated.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE7719C5080A00866C9E /* Deprecated.cpp */; };
@@ -363,6 +364,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07703C381B6FDFBD009026EA /* libaura.dylib in Frameworks */,
 				077A01671B4D5568001C85FF /* libaxiszlib.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -84,6 +84,7 @@
 		07502CF11B25CB6D008D207C /* _sockets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07502CEF1B25CB6D008D207C /* _sockets.cpp */; };
 		07502CF31B25CC61008D207C /* _filesystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07502CF21B25CC61008D207C /* _filesystem.cpp */; };
 		07502CF41B25CC61008D207C /* _filesystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07502CF21B25CC61008D207C /* _filesystem.cpp */; };
+		07703C3F1B6FE06B009026EA /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 076A1FE81B6E65F800BF6C7D /* libaura.dylib */; };
 		077A02131B4D5979001C85FF /* libaxisfreeimage.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07108DC21B4C999700A28F80 /* libaxisfreeimage.dylib */; };
 		077A02141B4D5979001C85FF /* libaxisfreetype.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07108DC51B4C999700A28F80 /* libaxisfreetype.dylib */; };
 		077A02181B4D5A01001C85FF /* libaxisopenssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9F2D7519A64298007AE2C7 /* libaxisopenssl.dylib */; };
@@ -1038,6 +1039,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07108A831B4C923800A28F80 /* UIKit.framework in Frameworks */,
+				07703C3F1B6FE06B009026EA /* libaura.dylib in Frameworks */,
 				077A021D1B4D5A37001C85FF /* libaurasqlite.dylib in Frameworks */,
 				077A021C1B4D5A31001C85FF /* libaxisidn.dylib in Frameworks */,
 				077A021A1B4D5A1F001C85FF /* libaxisbzip2.dylib in Frameworks */,
@@ -1634,8 +1636,8 @@
 		07D1B1011B6FBF3E004E8E35 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				07D1B1071B6FBF3E004E8E35 /* libaxispng.dylib */,
-				07D1B1091B6FBF3E004E8E35 /* libaxispng.dylib */,
+				07D1B1071B6FBF3E004E8E35 /* libaxis_image_png.dylib */,
+				07D1B1091B6FBF3E004E8E35 /* libaxis_image_png.dylib */,
 				07D1B10B1B6FBF3E004E8E35 /* axispng_iosTests.xctest */,
 			);
 			name = Products;
@@ -2429,17 +2431,17 @@
 			remoteRef = 077A00C91B4D50A0001C85FF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		07D1B1071B6FBF3E004E8E35 /* libaxispng.dylib */ = {
+		07D1B1071B6FBF3E004E8E35 /* libaxis_image_png.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libaxispng.dylib;
+			path = libaxis_image_png.dylib;
 			remoteRef = 07D1B1061B6FBF3E004E8E35 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		07D1B1091B6FBF3E004E8E35 /* libaxispng.dylib */ = {
+		07D1B1091B6FBF3E004E8E35 /* libaxis_image_png.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libaxispng.dylib;
+			path = libaxis_image_png.dylib;
 			remoteRef = 07D1B1081B6FBF3E004E8E35 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};

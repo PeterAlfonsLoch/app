@@ -203,3 +203,30 @@ CLASS_DECL_AURA bool __node_aura_pos_term()
    
 }
 
+
+
+int _get_exe_path_len();
+void _get_exe_path(char * pszPath, int size);
+
+
+string get_exe_path()
+{
+   
+   string str;
+   
+   int len = _get_exe_path_len();
+   
+   char * psz = str.GetBufferSetLength(len);
+   
+   _get_exe_path(psz, len);
+   
+   str.ReleaseBuffer(len);
+   
+   return str;
+   
+}
+
+
+
+
+
