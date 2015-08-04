@@ -78,6 +78,13 @@ lock at the same time as multiple read locks.
 #include <m_string.h>
 #include <errno.h>
 
+
+#ifndef _WIN32
+#define my_timespec timespec
+#endif // _WIN32
+
+
+
 my_bool thr_lock_inited=0;
 ulong locks_immediate = 0L, locks_waited = 0L;
 enum thr_lock_type thr_upgraded_concurrent_insert_lock = TL_WRITE;

@@ -22,6 +22,12 @@
 #include <m_string.h>
 #include <signal.h>
 
+
+#ifndef _WIN32
+#define my_timespec timespec
+#endif // _WIN32
+
+
 pthread_key(struct st_my_thread_var*, THR_KEY_mysys);
 my_bool THR_KEY_mysys_initialized= FALSE;
 mysql_mutex_t THR_LOCK_malloc, THR_LOCK_open,

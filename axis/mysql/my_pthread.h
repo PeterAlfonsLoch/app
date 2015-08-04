@@ -187,7 +187,7 @@ int pthread_cancel(pthread_t thread);
 #define my_sigset(A,B) signal(A,B)
 
 #else /* Normal threads */
-
+typedef struct timespec my_timespec;
 #include <pthread.h>
 #ifndef _REENTRANT
 #define _REENTRANT
