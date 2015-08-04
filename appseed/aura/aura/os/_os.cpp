@@ -12,6 +12,7 @@
 #include "ansios/ansios_file_std.cpp"
 #include "cross/ansios/ansios_datetime.cpp"
 #include "cross/metrowin/cross_metrowin_user.cpp"
+#include "windows_common/_windows_common.cpp"
 #include "windows/_windows_os.cpp"
 #elif defined(METROWIN)
 #include "ansios/ansios_message_loop.cpp"
@@ -22,6 +23,7 @@
 #include "cross/windows/cross_windows_threading.cpp"
 #include "cross/windows/cross_windows_user.cpp"
 #include "metrowin/_metrowin_os.cpp"
+#include "windows_common/_windows_common.cpp"
 #include "windows/windows_ansi_file.cpp"
 #elif defined(ANDROID)
 #include "cross/windows/_cross_windows.cpp"

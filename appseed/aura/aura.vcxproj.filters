@@ -261,6 +261,9 @@
     <Filter Include="Header Files\aura\node\metrowin">
       <UniqueIdentifier>{60f1f6cd-c71a-44fb-a364-ab014a9a5b22}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\aura\os\windows_common">
+      <UniqueIdentifier>{47304b31-5aaa-4323-a2e1-070743f2f4aa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive_id.h">
@@ -3534,6 +3537,12 @@
     </ClCompile>
     <ClCompile Include="primitive\math\math_int_biunique.cpp">
       <Filter>Source Files\primitive\math</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows_common\windows_common_base.cpp">
+      <Filter>Source Files\aura\os\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows_common\_windows_common.cpp">
+      <Filter>Source Files\aura\os\windows_common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
