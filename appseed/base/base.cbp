@@ -336,7 +336,7 @@
 		<Unit filename="base/os/windows/windows_window_gdi.h" />
 		<Unit filename="base/os/x11/x11_exception.h" />
 		<Unit filename="base/os/x11/x11_keyboard.h" />
-		<Unit filename="database/database/database_user_interaction.cpp" />
+		<Unit filename="database/_database.cpp" />
 		<Unit filename="framework.cpp" />
 		<Unit filename="framework.h" />
 		<Unit filename="graphics/graphics_window_graphics.cpp" />

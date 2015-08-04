@@ -227,8 +227,6 @@
 		<Unit filename="database/database_update_hint.h" />
 		<Unit filename="database/database_user_interaction.h" />
 		<Unit filename="database/databaseuser/data_key_list_data.h" />
-		<Unit filename="database/databaseuser/database_key_mesh_data.cpp" />
-		<Unit filename="database/databaseuser/database_mesh_data.cpp" />
 		<Unit filename="database/databaseuser/databaseuser.h" />
 		<Unit filename="database/databaseuser/list_data.h" />
 		<Unit filename="database/simpledb/DBFileSystemSize.h" />
@@ -243,7 +241,6 @@
 		<Unit filename="database/simpledb/mysql_result.h" />
 		<Unit filename="database/simpledb/simpledb.h" />
 		<Unit filename="database/simpledb/simpledb_base.h" />
-		<Unit filename="database/simpledb/simpledb_file_system_size.cpp" />
 		<Unit filename="database/simpledb/simpledb_manager.h" />
 		<Unit filename="database/simpledb/simpledb_record.h" />
 		<Unit filename="database/simpledb/simpledb_server.h" />
@@ -259,6 +256,7 @@
 		<Unit filename="database/simpledb/veiev_post.h" />
 		<Unit filename="database/sqlite/sqlite.h" />
 		<Unit filename="database/sqlite/sqlite3.h" />
+		<Unit filename="filesystem/_file.cpp" />
 		<Unit filename="filesystem/file/file_bitl_decoder.h" />
 		<Unit filename="filesystem/file/file_bitl_encoder.h" />
 		<Unit filename="filesystem/file/file_bitm_decoder.h" />
@@ -278,7 +276,6 @@
 		<Unit filename="filesystem/file/file_out_buffer.h" />
 		<Unit filename="filesystem/file/file_size_count_writer.h" />
 		<Unit filename="filesystem/file/file_stream_binder.h" />
-		<Unit filename="filesystem/filehandler/_filehandler.cpp" />
 		<Unit filename="filesystem/filehandler/filehandler.h" />
 		<Unit filename="filesystem/filehandler/filehandler_handler.h" />
 		<Unit filename="filesystem/filehandler/filehandler_item.h" />
@@ -308,7 +305,6 @@
 		<Unit filename="filesystem/filemanager/SimpleFolderTreeView.h" />
 		<Unit filename="filesystem/filemanager/SimplePreview.h" />
 		<Unit filename="filesystem/filemanager/SimplePreviewInterface.h" />
-		<Unit filename="filesystem/filemanager/_filemanager.cpp" />
 		<Unit filename="filesystem/filemanager/file_operation.h" />
 		<Unit filename="filesystem/filemanager/filemanager.h" />
 		<Unit filename="filesystem/filemanager/filemanager_callback.h" />
@@ -372,7 +368,6 @@
 		<Unit filename="filesystem/fs/fs_remote_native_file.h" />
 		<Unit filename="filesystem/fs/fs_remote_native_fs.h" />
 		<Unit filename="filesystem/fs/fs_set.h" />
-		<Unit filename="filesystem/userfs/_userfs.cpp" />
 		<Unit filename="filesystem/userfs/userfs.h" />
 		<Unit filename="filesystem/userfs/userfs_document.h" />
 		<Unit filename="filesystem/userfs/userfs_item.h" />
@@ -389,24 +384,15 @@
 		<Unit filename="filesystem/userfs/userfs_update_hint.h" />
 		<Unit filename="filesystem/userfs/userfs_userfs.h" />
 		<Unit filename="framework.cpp" />
-		<Unit filename="math/_double.cpp" />
 		<Unit filename="math/_double.h" />
-		<Unit filename="math/_float.cpp" />
 		<Unit filename="math/_float.h" />
-		<Unit filename="math/_integer.cpp" />
 		<Unit filename="math/_integer.h" />
-		<Unit filename="math/binary_operation.cpp" />
 		<Unit filename="math/binary_operation.h" />
-		<Unit filename="math/math.cpp" />
 		<Unit filename="math/math_math.h" />
-		<Unit filename="math/number.cpp" />
 		<Unit filename="math/number.h" />
-		<Unit filename="math/value.cpp" />
 		<Unit filename="math/value.h" />
 		<Unit filename="net/hi5/hi5.h" />
-		<Unit filename="net/hi5/hi5_oauth.cpp" />
 		<Unit filename="net/hi5/hi5_oauth.h" />
-		<Unit filename="net/hi5/hi5_twit.cpp" />
 		<Unit filename="net/hi5/hi5_twit.h" />
 		<Unit filename="net/net_email_departament.h" />
 		<Unit filename="net/usernet/usernet.h" />
@@ -447,7 +433,6 @@
 		<Unit filename="plane/session/platform/platform_resource.h" />
 		<Unit filename="plane/session/platform/platform_view.h" />
 		<Unit filename="primitive/primitive.h" />
-		<Unit filename="primitive/primitive_int_biunique.cpp" />
 		<Unit filename="primitive/primitive_int_biunique.h" />
 		<Unit filename="programming/javascript/javascript.h" />
 		<Unit filename="programming/javascript/javascript_functions.h" />
