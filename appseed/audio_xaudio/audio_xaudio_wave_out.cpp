@@ -359,15 +359,36 @@ Opened:
          //}
 
 
-         m_psourcevoice->DestroyVoice();
+         //m_psourcevoice->DestroyVoice();
 
-         m_psourcevoice = nullptr;
+         try
+         {
+
+            m_psourcevoice = nullptr;
+
+         }
+         catch(...)
+         {
+
+         }
 
          //m_bufferptra.remove_all();
 
 
          if(m_pvoice != nullptr)
          {
+
+            //m_pvoice->DestroyVoice();
+
+            m_pvoice = nullptr;
+
+         }
+
+
+         if(m_pxaudio != nullptr)
+         {
+            
+            m_pxaudio = nullptr;
 
          }
 
