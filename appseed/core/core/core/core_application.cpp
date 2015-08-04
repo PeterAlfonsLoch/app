@@ -569,27 +569,27 @@ namespace core
 
       }
 
-      try
-      {
+      //try
+      //{
 
-         if(System.get_application_count() <= 1)
-         {
+      //   if(System.get_application_count() <= 1)
+      //   {
 
-            if(System.thread::get_os_data() != NULL)
-            {
-               System.post_thread_message(WM_QUIT);
+      //      if(System.thread::get_os_data() != NULL)
+      //      {
+      //         System.post_thread_message(WM_QUIT);
 
-            }
+      //      }
 
-         }
+      //   }
 
-      }
-      catch(...)
-      {
-         ::simple_message_box(NULL,"a","b",MB_OK);
-         m_iReturnCode = -1;
+      //}
+      //catch(...)
+      //{
+      //   ::simple_message_box(NULL,"a","b",MB_OK);
+      //   m_iReturnCode = -1;
 
-      }
+      //}
 
       try
       {

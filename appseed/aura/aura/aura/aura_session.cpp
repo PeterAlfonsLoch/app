@@ -886,7 +886,7 @@ namespace aura
       }
 
       ::output_debug_string("\n\n::aura::session::get_new_app Opened library : " + strLibrary + "\n\n");
-      Sleep(4984);
+      //Sleep(4984);
       
       if(!library.open_ca2_library())
       {

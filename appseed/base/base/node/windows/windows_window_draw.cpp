@@ -296,7 +296,7 @@ namespace windows
             while(::PeekMessageA(&msg,NULL,0,0,PM_NOREMOVE))
             {
                if(!get_thread()->pump_message())
-                  break;
+                  goto exit;
             }
             if(msg.message == WM_QUIT)
                break;
@@ -314,6 +314,7 @@ namespace windows
                Sleep(iUiDataWriteWindowTimeForTheApplicationInThisMachine);
             }
          }
+      exit:;
 
       }
       catch(...)

@@ -2097,6 +2097,13 @@ namespace aura
          command()->add_line(strCommandLine);
       }
 
+      if(!(set.has_property("install") || set.has_property("uninstall")))
+      {
+
+         m_pfnVerb = &system::common_verb;
+
+      }
+
 
       //if(!::core::application::set_main_init_data(pdata))
       // return false;

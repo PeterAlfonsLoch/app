@@ -1122,8 +1122,25 @@ void thread::wait_close_dependent_threads(const duration & duration)
 void thread::register_at_required_threads()
 {
 
+   if(is_system())
+      return;
+
    // register default dependencies
-   
+
+   if(&System != NULL)
+   {
+
+      System.register_dependent_thread(this);
+
+   }
+
+   if(&Session != NULL)
+   {
+
+      Session.register_dependent_thread(this);
+
+   }
+
    if(&Application != NULL)
    {
 
@@ -1131,19 +1148,7 @@ void thread::register_at_required_threads()
       
    }
    
-   if(&Session != NULL)
-   {
-      
-      Session.register_dependent_thread(this);
-      
-   }
    
-   if(&System != NULL)
-   {
-      
-      System.register_dependent_thread(this);
-      
-   }
 
 }
 
