@@ -1296,7 +1296,7 @@ namespace user
    ::user::interaction * interaction_base::SetOwner(::user::interaction * pui)
    {
 
-      ::exception::throw_interface_only(get_app());
+      //::exception::throw_interface_only(get_app());
 
       return NULL;
 
@@ -1316,7 +1316,7 @@ namespace user
    ::user::interaction * interaction_base::GetOwner() const
    {
 
-      ::exception::throw_interface_only(get_app());
+      //::exception::throw_interface_only(get_app());
 
       return NULL;
 
@@ -2646,7 +2646,7 @@ namespace user
    void interaction_base::_001OnTimer(::timer * ptimer)
    {
 
-      
+
 
    }
 
