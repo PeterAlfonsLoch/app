@@ -133,7 +133,8 @@ CLASS_DECL_AURA int_bool defer_aura_term()
 
 }
 
-
+void set_simple_output_debug_string();
+void set_extended_output_debug_string();
 
 bool aura_init()
 {
@@ -157,6 +158,8 @@ bool aura_init()
    if(!__node_aura_pos_init())
       return false;
 
+   set_extended_output_debug_string();
+
    return true;
 
 }
@@ -172,6 +175,8 @@ bool aura_term()
    ::multithreading::term_multithreading();
 
    __term_threading_count();
+
+   set_simple_output_debug_string();
 
    __node_aura_pos_term();
 

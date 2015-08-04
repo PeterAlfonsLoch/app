@@ -1573,6 +1573,8 @@ strsize utf8_to_utf32(unichar32 * pwsz,const char * psz, strsize srclen)
       *pwsz = L'\0';
       
    }
+
+   return len;
    
 }
 

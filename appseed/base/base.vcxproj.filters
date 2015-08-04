@@ -138,6 +138,12 @@
     <Filter Include="Header Files\graphics">
       <UniqueIdentifier>{1ae520e2-f29c-4184-84ab-8b007029926e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\database\simpledb">
+      <UniqueIdentifier>{126f6e4e-e5ff-4630-bc2a-474f42a7c519}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\database\simpledb">
+      <UniqueIdentifier>{e777b449-2a9a-4e55-8350-ac4b81364f65}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base\os\cross.h">
@@ -433,6 +439,18 @@
     </ClInclude>
     <ClInclude Include="base\os\windows\windows_window_gdi.h">
       <Filter>Header Files\base\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_file_system_size.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\database.h">
+      <Filter>Header Files\database\database</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -774,6 +792,18 @@
     </ClCompile>
     <ClCompile Include="base\os\windows\windows_window_gdi.cpp">
       <Filter>Source Files\base\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="database\_database.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\_simpledb.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_file_system_size.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\_database_database.cpp">
+      <Filter>Source Files\database\database</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

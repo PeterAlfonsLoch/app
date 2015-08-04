@@ -650,9 +650,6 @@
     <ClInclude Include="primitive\math\math_natural.h">
       <Filter>Header Files\primitive\math</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\math\math_number.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\math\math_numeric_info.h">
       <Filter>Header Files\primitive\math</Filter>
     </ClInclude>
@@ -2078,6 +2075,36 @@
     <ClInclude Include="aura\os\cross\ansios\ansios_datetime_c.h">
       <Filter>Header Files\aura\os\cross\ansios</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\math\_double.h">
+      <Filter>Header Files\primitive\math</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\math\_float.h">
+      <Filter>Header Files\primitive\math</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\math\_integer.h">
+      <Filter>Header Files\primitive\math</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\math\_number.h">
+      <Filter>Header Files\primitive\math</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\math\_value.h">
+      <Filter>Header Files\primitive\math</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\math\binary_operation.h">
+      <Filter>Header Files\primitive\math</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\math\math_c_number.h">
+      <Filter>Header Files\primitive\math</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\math\math_int_biunique.h">
+      <Filter>Header Files\primitive\math</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\math\math_objects.h">
+      <Filter>Header Files\primitive\math</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\math\math_std_template.h">
+      <Filter>Header Files\primitive\math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -3483,6 +3510,30 @@
     </ClCompile>
     <ClCompile Include="aura\node\metrowin\metrowin_file_system.cpp">
       <Filter>Source Files\aura\os\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\math\_double.cpp">
+      <Filter>Source Files\primitive\math</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\math\_float.cpp">
+      <Filter>Source Files\primitive\math</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\math\_integer.cpp">
+      <Filter>Source Files\primitive\math</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\math\_number.cpp">
+      <Filter>Source Files\primitive\math</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\math\_value.cpp">
+      <Filter>Source Files\primitive\math</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\math\binary_operation.cpp">
+      <Filter>Source Files\primitive\math</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\math\math.cpp">
+      <Filter>Source Files\primitive\math</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\math\math_int_biunique.cpp">
+      <Filter>Source Files\primitive\math</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
