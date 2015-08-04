@@ -86,7 +86,7 @@
     </ClCompile>
     <Link />
     <Link>
-      <LibraryDependencies>axisfreetype;axispng;axiszlib;axispixman;aura;$(StlLibraryName);m;GLESv2;GLESv1_CM;EGL;</LibraryDependencies>
+      <LibraryDependencies>axisfreetype;axis_image_png;axiszlib;axispixman;aura;$(StlLibraryName);m;GLESv2;GLESv1_CM;EGL;</LibraryDependencies>
       <SharedLibrarySearchPath>$(OutDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;%(SharedLibrarySearchPath)</SharedLibrarySearchPath>
       <AdditionalLibraryDirectories>$(OutDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\4.8;$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>

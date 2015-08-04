@@ -53,7 +53,15 @@ extern mutex * g_pmutexUiDestroyed;
 
 //extern string * g_pstrLastGlsStatus;
 
-#if defined(LINUX) || defined(APPLEOS) || defined(METROWIN)
+#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
+
+extern mutex * g_pmutexMq;
+
+extern map < HTHREAD,HTHREAD,mq *,mq * > * g_pmapMq;
+
+#endif
+
+#if defined(LINUX) || defined(APPLEOS) || defined(METROWIN) || defined(ANDROID)
 
 //extern mutex * g_pmutexThreadIdHandleLock;
 
@@ -71,9 +79,6 @@ extern mutex * g_pmutexTlsData;
 
 #if defined(LINUX) || defined(APPLEOS)
 
-extern mutex * g_pmutexMq;
-
-extern map < HTHREAD, HTHREAD, mq *, mq * > * g_pmapMq;
 
 
 extern mutex * g_pmutexTz;
@@ -187,6 +192,14 @@ namespace aura
 
 #endif
 
+#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
+
+         g_pmutexMq = new mutex;
+
+         g_pmapMq = new map < HTHREAD,HTHREAD,mq *,mq * >;
+
+#endif
+
 #if defined(LINUX) || defined(APPLEOS) || defined(METROWIN)
 
 //         g_pmutexThreadIdHandleLock = new mutex;
@@ -210,9 +223,6 @@ namespace aura
 
 #if defined(LINUX) || defined(APPLEOS)
 
-         g_pmutexMq = new mutex;
-         
-         g_pmapMq = new map < HTHREAD, HTHREAD, mq *, mq * >;
 
          g_pmutexTz = new mutex();
 
@@ -332,13 +342,10 @@ namespace aura
 
          g_pmutexTz = NULL;
          
-         ::aura::del(g_pmutexMq);
-
-         ::aura::del(g_pmapMq);
          
 #endif // defined(LINUX) || defined(APPLEOS)
 
-#if defined(LINUX) || defined(APPLEOS) || defined(METROWIN)
+#if defined(LINUX) || defined(APPLEOS) || defined(METROWIN) || defined(ANDROID)
 
          //delete hthread::s_pptra;
 
@@ -351,6 +358,7 @@ namespace aura
          delete g_pmutexTlsData;
 
          g_pmutexTlsData = NULL;
+
 
 #ifndef METROWIN
 
@@ -370,6 +378,14 @@ namespace aura
 
 #endif  // defined(LINUX) || defined(APPLEOS) || defined(METROWIN)
 
+#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
+
+         ::aura::del(g_pmutexMq);
+
+         ::aura::del(g_pmapMq);
+
+
+#endif // defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 
 //#if defined(APPLEOS)
 

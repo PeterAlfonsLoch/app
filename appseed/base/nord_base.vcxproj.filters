@@ -238,9 +238,6 @@
     <ClCompile Include="graphics\graphics_window_graphics.cpp">
       <Filter>Source Files\graphics</Filter>
     </ClCompile>
-    <ClCompile Include="database\database\database_user_interaction.cpp">
-      <Filter>Source Files\database\database</Filter>
-    </ClCompile>
     <ClCompile Include="base\os\android\android_vsnord_native_app_glue.c">
       <Filter>Source Files\base\os\android</Filter>
     </ClCompile>
@@ -453,6 +450,9 @@
     </ClCompile>
     <ClCompile Include="base\node\ios\ios_interaction_impl.cpp">
       <Filter>Source Files\base\node\ios</Filter>
+    </ClCompile>
+    <ClCompile Include="database\_database.cpp">
+      <Filter>Source Files\database</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -793,9 +793,6 @@
     </Filter>
     <Filter Include="Source Files\database">
       <UniqueIdentifier>{9ee81ee4-02f3-455f-9be5-9224c47911ed}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\database\database">
-      <UniqueIdentifier>{44d5c5dc-4ac7-4cae-b82e-8149dbdec75e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\base\os\ios">
       <UniqueIdentifier>{202418d6-df37-4784-a4f9-89d6874530df}</UniqueIdentifier>

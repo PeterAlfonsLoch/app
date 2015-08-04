@@ -335,8 +335,8 @@ TagLib::instance();
 
 #ifdef VSNORD
 
-            patha.add("libaxispng.so");
-            patha.add("libaxisjpeg.so");
+            patha.add("libaxis_image_png.so");
+            patha.add("libaxis_image_jpeg.so");
 
 #endif
 

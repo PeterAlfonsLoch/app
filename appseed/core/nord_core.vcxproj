@@ -218,9 +218,6 @@
     </ClCompile>
     <ClCompile Include="core\core\_core.cpp" />
     <ClCompile Include="core\plugin\_plugin.cpp" />
-    <ClCompile Include="database\databaseuser\_databaseuser.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_file_system_size.cpp" />
-    <ClCompile Include="filesystem\filehandler\_filehandler.cpp" />
     <ClCompile Include="filesystem\filemanager\filemanager_callback.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
@@ -485,25 +482,8 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\_filemanager.cpp" />
-    <ClCompile Include="filesystem\userfs\_userfs.cpp" />
+    <ClCompile Include="filesystem\_file.cpp" />
     <ClCompile Include="framework.cpp" />
-    <ClCompile Include="math\binary_operation.cpp" />
-    <ClCompile Include="math\math.cpp" />
-    <ClCompile Include="math\number.cpp" />
-    <ClCompile Include="math\value.cpp" />
-    <ClCompile Include="math\_double.cpp" />
-    <ClCompile Include="math\_float.cpp" />
-    <ClCompile Include="math\_integer.cpp" />
-    <ClCompile Include="net\hi5\hi5_oauth.cpp" />
-    <ClCompile Include="net\hi5\hi5_twit.cpp" />
-    <ClCompile Include="net\usernet\usernet_network_configuration.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_int_biunique.cpp" />
     <ClCompile Include="user\simple\simple_child_frame.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
@@ -1032,8 +1012,6 @@
     <ClInclude Include="core\plugin\plugin_plugin.h" />
     <ClInclude Include="core\plugin\plugin_run_start_installer.h" />
     <ClInclude Include="core\plugin\plugin_system.h" />
-    <ClInclude Include="database\databaseuser\databaseuser.h" />
-    <ClInclude Include="database\simpledb\DBFileSystemSize.h" />
     <ClInclude Include="filesystem\filehandler\filehandler.h" />
     <ClInclude Include="filesystem\filehandler\filehandler_handler.h" />
     <ClInclude Include="filesystem\filehandler\filehandler_item.h" />
@@ -1096,20 +1074,6 @@
     <ClInclude Include="filesystem\userfs\userfs_tree.h" />
     <ClInclude Include="filesystem\userfs\userfs_userfs.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="math\binary_operation.h" />
-    <ClInclude Include="math\math_math.h" />
-    <ClInclude Include="math\number.h" />
-    <ClInclude Include="math\value.h" />
-    <ClInclude Include="math\_double.h" />
-    <ClInclude Include="math\_float.h" />
-    <ClInclude Include="math\_integer.h" />
-    <ClInclude Include="net\hi5\hi5.h" />
-    <ClInclude Include="net\hi5\hi5_oauth.h" />
-    <ClInclude Include="net\hi5\hi5_twit.h" />
-    <ClInclude Include="net\usernet\usernet.h" />
-    <ClInclude Include="net\usernet\usernet_network_configuration.h" />
-    <ClInclude Include="primitive\primitive.h" />
-    <ClInclude Include="primitive\primitive_int_biunique.h" />
     <ClInclude Include="user\menu\user_menu.h" />
     <ClInclude Include="user\menu\user_menu_button.h" />
     <ClInclude Include="user\menu\user_menu_central.h" />

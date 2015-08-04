@@ -628,7 +628,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="base\_base_base.cpp" />
-    <ClCompile Include="database\database\database_user_interaction.cpp" />
+    <ClCompile Include="database\_database.cpp" />
     <ClCompile Include="framework.cpp" />
     <ClCompile Include="graphics\graphics_window_graphics.cpp" />
     <ClCompile Include="user\fontopus\fontopus.cpp">

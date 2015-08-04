@@ -133,8 +133,13 @@ CLASS_DECL_AURA int_bool defer_aura_term()
 
 }
 
+#ifdef WINDOWS
+
 void set_simple_output_debug_string();
+
 void set_extended_output_debug_string();
+
+#endif
 
 bool aura_init()
 {
@@ -158,7 +163,12 @@ bool aura_init()
    if(!__node_aura_pos_init())
       return false;
 
+
+#ifdef WINDOWS
+
    set_extended_output_debug_string();
+
+#endif
 
    return true;
 
@@ -176,7 +186,11 @@ bool aura_term()
 
    __term_threading_count();
 
+#ifdef WINDOWS
+
    set_simple_output_debug_string();
+
+#endif
 
    __node_aura_pos_term();
 
