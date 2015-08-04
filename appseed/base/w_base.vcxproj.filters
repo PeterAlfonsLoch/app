@@ -118,6 +118,18 @@
     <Filter Include="Source Files\database\database">
       <UniqueIdentifier>{40ba5145-bb88-44a9-899c-7f69abac2f1e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\database\simpledb">
+      <UniqueIdentifier>{45dbfdd4-54b4-497a-978f-93824b6e5f2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\database">
+      <UniqueIdentifier>{485ab6a1-2b76-4241-adb9-10d09dcdb001}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\database\simpledb">
+      <UniqueIdentifier>{9ec27e6f-3c55-4ed9-9736-e979df955366}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\database\database">
+      <UniqueIdentifier>{7690fb55-bd10-4b38-87da-8cb8f88bc1b7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -239,6 +251,21 @@
     </ClInclude>
     <ClInclude Include="user\user\user_plain_text_data.h">
       <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_file_system_size.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\database_user_interaction.h">
+      <Filter>Header Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\database.h">
+      <Filter>Header Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database.h">
+      <Filter>Header Files\database</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -563,6 +590,18 @@
       <Filter>Source Files\base\install</Filter>
     </ClCompile>
     <ClCompile Include="database\database\database_user_interaction.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_file_system_size.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\_simpledb.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\_database.cpp">
+      <Filter>Source Files\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\_database_database.cpp">
       <Filter>Source Files\database\database</Filter>
     </ClCompile>
   </ItemGroup>

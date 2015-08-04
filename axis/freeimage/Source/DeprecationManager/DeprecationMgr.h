@@ -68,6 +68,15 @@ private:
 		const char *old_function_name;
 		const char *new_function_name;
 		std::set<int> called_from;
+      DeprecatedFunction & operator = (const DeprecatedFunction & f)
+      {
+         if(this == &f)
+            return *this;
+         old_function_name = f.old_function_name;
+         new_function_name = f.new_function_name;
+         called_from = f.called_from;
+         return *this;
+      }
 	};
 
 	std::map<const char *, DeprecatedFunction> m_functions;

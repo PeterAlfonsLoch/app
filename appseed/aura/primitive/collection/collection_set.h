@@ -111,6 +111,8 @@ public:
    inline ::count get_count() { return get_size(); }
    inline ::count get_size() { return BASE_ARRAY_TYPE::get_size(); }
 
+   set & operator = (const set & s) { BASE_ARRAY_TYPE::operator = (s); return*this; }
+
 };
 
 template < class TYPE,class ARG_TYPE,class BASE_ARRAY_TYPE,class COMPARE>

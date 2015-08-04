@@ -4,9 +4,6 @@
     <Filter Include="Source Files">
       <UniqueIdentifier>{52a93650-3e3b-4ef5-89af-14f5773c2a4f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\primitive">
-      <UniqueIdentifier>{4b3c4926-568d-454f-b71e-f4a1abfda956}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\user">
       <UniqueIdentifier>{e56add6e-9983-448c-9b42-9d9631c750e6}</UniqueIdentifier>
     </Filter>
@@ -28,18 +25,6 @@
     <Filter Include="Source Files\user\wndfrm\frame">
       <UniqueIdentifier>{53e3b58d-191d-4bf6-b5f5-f9a459ae7bb6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\database">
-      <UniqueIdentifier>{e4d3b0aa-0499-4e7c-aefc-94267e96613f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\database\simpledb">
-      <UniqueIdentifier>{feb5bbdf-1e31-4cf1-a16d-82f136eb5fab}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\database\databaseuser">
-      <UniqueIdentifier>{abde5223-eda8-42c9-9fc9-a72196991989}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\math">
-      <UniqueIdentifier>{c0754707-276c-4841-9961-f695c926303a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\filesystem">
       <UniqueIdentifier>{e2153fe5-25fa-4efd-bac5-9379328676c3}</UniqueIdentifier>
     </Filter>
@@ -54,15 +39,6 @@
     </Filter>
     <Filter Include="Source Files\filesystem\file">
       <UniqueIdentifier>{652326ad-328f-4434-a5f9-91bfa37bcdb0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\net">
-      <UniqueIdentifier>{bf4128eb-8e17-4a9b-9783-bb71043e004d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\net\hi5">
-      <UniqueIdentifier>{1d0ddc05-016f-4f44-b214-c5746c3a661e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\net\usernet">
-      <UniqueIdentifier>{b033b800-b8ef-4a40-928d-a53a641dd780}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\core">
       <UniqueIdentifier>{98512698-530c-4e62-a806-ef7dea06b7ee}</UniqueIdentifier>
@@ -81,18 +57,6 @@
     </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{3b593411-9334-44de-a4ac-66c4d900a479}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\primitive">
-      <UniqueIdentifier>{2d122065-69b2-4543-ade6-d09a3b72f29a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\database">
-      <UniqueIdentifier>{057108ba-f09b-4c21-9ca0-3fecee150de3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\database\simpledb">
-      <UniqueIdentifier>{eca825ef-490d-4fe7-87e3-6a2dcabd3f27}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\database\databaseuser">
-      <UniqueIdentifier>{6f1ac0d4-3ab9-4ec1-bad0-083bc34c3e0c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\user">
       <UniqueIdentifier>{88e16186-9274-4c2c-91ef-b0cbaf98cf18}</UniqueIdentifier>
@@ -115,9 +79,6 @@
     <Filter Include="Header Files\user\wndfrm\frame">
       <UniqueIdentifier>{a5fd623f-4c01-49df-a666-c14d22a75f62}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\math">
-      <UniqueIdentifier>{402dd755-3252-4ce6-92d1-27922299e0f5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\filesystem">
       <UniqueIdentifier>{6a68972f-5dde-4926-9cd8-333c19ccfcd0}</UniqueIdentifier>
     </Filter>
@@ -130,15 +91,6 @@
     <Filter Include="Header Files\filesystem\filehandler">
       <UniqueIdentifier>{c276dc98-99c0-4785-a931-3a4abcca0afb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\net">
-      <UniqueIdentifier>{c554a166-dd44-45cb-b593-6e2a1b36da59}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\usernet">
-      <UniqueIdentifier>{2f2ce93e-9d10-4ed7-8ca6-29396d2074de}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\hi5">
-      <UniqueIdentifier>{2ed09ac8-9051-47f5-8db9-aed9de9ca2cc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\core">
       <UniqueIdentifier>{9032619b-ba7a-4947-9d31-6401aabfc8ed}</UniqueIdentifier>
     </Filter>
@@ -148,13 +100,28 @@
     <Filter Include="Header Files\core\core">
       <UniqueIdentifier>{6a53d43c-4d78-428e-aec9-3dbc42d25deb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\user\databaseuser">
+      <UniqueIdentifier>{01c6ac7a-896e-425c-bcfa-f08c506e2368}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\netuser">
+      <UniqueIdentifier>{47706024-42ee-46b1-92ad-3b8192400237}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\hi5">
+      <UniqueIdentifier>{d5dee1fa-0779-4c90-bf54-f6ae75922b61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\hi5">
+      <UniqueIdentifier>{cc29284d-f9f2-471c-abe6-b7bd901828ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\databaseuser">
+      <UniqueIdentifier>{1667ab92-2f4c-485e-a5de-946f84458222}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\netuser">
+      <UniqueIdentifier>{f4f337cd-9099-484d-b06d-41b350b5d90c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_int_biunique.cpp">
-      <Filter>Source Files\primitive</Filter>
     </ClCompile>
     <ClCompile Include="user\_user.cpp">
       <Filter>Source Files\user</Filter>
@@ -507,33 +474,6 @@
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set_listener_array.cpp">
       <Filter>Source Files\user\wndfrm\frame</Filter>
     </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_file_system_size.cpp">
-      <Filter>Source Files\database\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="database\databaseuser\_databaseuser.cpp">
-      <Filter>Source Files\database\databaseuser</Filter>
-    </ClCompile>
-    <ClCompile Include="math\binary_operation.cpp">
-      <Filter>Source Files\math</Filter>
-    </ClCompile>
-    <ClCompile Include="math\math.cpp">
-      <Filter>Source Files\math</Filter>
-    </ClCompile>
-    <ClCompile Include="math\number.cpp">
-      <Filter>Source Files\math</Filter>
-    </ClCompile>
-    <ClCompile Include="math\value.cpp">
-      <Filter>Source Files\math</Filter>
-    </ClCompile>
-    <ClCompile Include="math\_double.cpp">
-      <Filter>Source Files\math</Filter>
-    </ClCompile>
-    <ClCompile Include="math\_float.cpp">
-      <Filter>Source Files\math</Filter>
-    </ClCompile>
-    <ClCompile Include="math\_integer.cpp">
-      <Filter>Source Files\math</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_callback.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
@@ -717,15 +657,6 @@
     <ClCompile Include="filesystem\filehandler\_filehandler.cpp">
       <Filter>Source Files\filesystem\filehandler</Filter>
     </ClCompile>
-    <ClCompile Include="net\hi5\hi5_oauth.cpp">
-      <Filter>Source Files\net\hi5</Filter>
-    </ClCompile>
-    <ClCompile Include="net\hi5\hi5_twit.cpp">
-      <Filter>Source Files\net\hi5</Filter>
-    </ClCompile>
-    <ClCompile Include="net\usernet\usernet_network_configuration.cpp">
-      <Filter>Source Files\net\usernet</Filter>
-    </ClCompile>
     <ClCompile Include="core\plugin\plugin_history.cpp">
       <Filter>Source Files\core\plugin</Filter>
     </ClCompile>
@@ -810,6 +741,33 @@
     <ClCompile Include="core\os\metrowin\metrowin_main.cpp">
       <Filter>Source Files\core\os\metrowin</Filter>
     </ClCompile>
+    <ClCompile Include="user\hi5\_hi5.cpp">
+      <Filter>Source Files\user\hi5</Filter>
+    </ClCompile>
+    <ClCompile Include="user\hi5\hi5_oauth.cpp">
+      <Filter>Source Files\user\hi5</Filter>
+    </ClCompile>
+    <ClCompile Include="user\hi5\hi5_twit.cpp">
+      <Filter>Source Files\user\hi5</Filter>
+    </ClCompile>
+    <ClCompile Include="user\netuser\_netuser.cpp">
+      <Filter>Source Files\user\netuser</Filter>
+    </ClCompile>
+    <ClCompile Include="user\netuser\netuser_network_configuration.cpp">
+      <Filter>Source Files\user\netuser</Filter>
+    </ClCompile>
+    <ClCompile Include="user\databaseuser\_databaseuser.cpp">
+      <Filter>Source Files\user\databaseuser</Filter>
+    </ClCompile>
+    <ClCompile Include="user\databaseuser\databaseuser_key_mesh_data.cpp">
+      <Filter>Source Files\user\databaseuser</Filter>
+    </ClCompile>
+    <ClCompile Include="user\databaseuser\databaseuser_mesh_data.cpp">
+      <Filter>Source Files\user\databaseuser</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\_file.cpp">
+      <Filter>Source Files\filesystem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="core.def">
@@ -826,24 +784,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="primitive\primitive.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive_int_biunique.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="database\simpledb\DBFileSystemSize.h">
-      <Filter>Header Files\database\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="database\databaseuser\databaseuser.h">
-      <Filter>Header Files\database\databaseuser</Filter>
-    </ClInclude>
-    <ClInclude Include="database\databaseuser\data_key_mesh_data.h">
-      <Filter>Header Files\database\databaseuser</Filter>
-    </ClInclude>
-    <ClInclude Include="database\databaseuser\mesh_data.h">
-      <Filter>Header Files\database\databaseuser</Filter>
-    </ClInclude>
     <ClInclude Include="user\simple\simple_child_frame.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
@@ -1210,27 +1150,6 @@
     <ClInclude Include="user\wndfrm\frame\wndfrm_frame_work_set_listener_array.h">
       <Filter>Header Files\user\wndfrm\frame</Filter>
     </ClInclude>
-    <ClInclude Include="math\binary_operation.h">
-      <Filter>Header Files\math</Filter>
-    </ClInclude>
-    <ClInclude Include="math\math_math.h">
-      <Filter>Header Files\math</Filter>
-    </ClInclude>
-    <ClInclude Include="math\number.h">
-      <Filter>Header Files\math</Filter>
-    </ClInclude>
-    <ClInclude Include="math\value.h">
-      <Filter>Header Files\math</Filter>
-    </ClInclude>
-    <ClInclude Include="math\_double.h">
-      <Filter>Header Files\math</Filter>
-    </ClInclude>
-    <ClInclude Include="math\_float.h">
-      <Filter>Header Files\math</Filter>
-    </ClInclude>
-    <ClInclude Include="math\_integer.h">
-      <Filter>Header Files\math</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\filemanager\filemanager.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
@@ -1414,21 +1333,6 @@
     <ClInclude Include="filesystem\filehandler\filehandler_tree_interface.h">
       <Filter>Header Files\filesystem\filehandler</Filter>
     </ClInclude>
-    <ClInclude Include="net\usernet\usernet.h">
-      <Filter>Header Files\net\usernet</Filter>
-    </ClInclude>
-    <ClInclude Include="net\usernet\usernet_network_configuration.h">
-      <Filter>Header Files\net\usernet</Filter>
-    </ClInclude>
-    <ClInclude Include="net\hi5\hi5.h">
-      <Filter>Header Files\net\hi5</Filter>
-    </ClInclude>
-    <ClInclude Include="net\hi5\hi5_oauth.h">
-      <Filter>Header Files\net\hi5</Filter>
-    </ClInclude>
-    <ClInclude Include="net\hi5\hi5_twit.h">
-      <Filter>Header Files\net\hi5</Filter>
-    </ClInclude>
     <ClInclude Include="core\plugin\plugin.h">
       <Filter>Header Files\core\plugin</Filter>
     </ClInclude>
@@ -1527,6 +1431,30 @@
     </ClInclude>
     <ClInclude Include="core\core\core_types.h">
       <Filter>Header Files\core\core</Filter>
+    </ClInclude>
+    <ClInclude Include="user\hi5\hi5.h">
+      <Filter>Header Files\user\hi5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\hi5\hi5_oauth.h">
+      <Filter>Header Files\user\hi5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\hi5\hi5_twit.h">
+      <Filter>Header Files\user\hi5</Filter>
+    </ClInclude>
+    <ClInclude Include="user\netuser\netuser.h">
+      <Filter>Header Files\user\netuser</Filter>
+    </ClInclude>
+    <ClInclude Include="user\netuser\netuser_network_configuration.h">
+      <Filter>Header Files\user\netuser</Filter>
+    </ClInclude>
+    <ClInclude Include="user\databaseuser\databaseuser_mesh_data.h">
+      <Filter>Header Files\user\databaseuser</Filter>
+    </ClInclude>
+    <ClInclude Include="user\databaseuser\databaseuser_key_mesh_data.h">
+      <Filter>Header Files\user\databaseuser</Filter>
+    </ClInclude>
+    <ClInclude Include="user\databaseuser\databaseuser.h">
+      <Filter>Header Files\user\databaseuser</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

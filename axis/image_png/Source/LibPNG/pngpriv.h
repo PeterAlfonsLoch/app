@@ -477,7 +477,11 @@
 /* Memory model/platform independent fns */
 #ifndef PNG_ABORT
 #  ifdef _WINDOWS_
+#ifdef WINDOWSEX
 #    define PNG_ABORT() ExitProcess(0)
+#else
+#    define PNG_ABORT() 
+#endif
 #  else
 #    define PNG_ABORT() abort()
 #  endif

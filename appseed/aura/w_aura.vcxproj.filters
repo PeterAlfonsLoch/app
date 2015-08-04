@@ -217,9 +217,6 @@
     <Filter Include="Source Files\aura\os\windows">
       <UniqueIdentifier>{977a2476-8ace-4893-b1b2-666c8e1202d0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\aura\os\NewFilter1">
-      <UniqueIdentifier>{60b50081-d6fa-47b8-8d49-21e721dd3aed}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\aura\exception">
       <UniqueIdentifier>{fdf735f4-7039-4ee6-ad2b-22a3378a7323}</UniqueIdentifier>
     </Filter>
@@ -240,6 +237,9 @@
     </Filter>
     <Filter Include="Source Files\net">
       <UniqueIdentifier>{5b23fb02-2e32-463d-80b4-594d6e028463}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\aura\os\windows_common">
+      <UniqueIdentifier>{60b50081-d6fa-47b8-8d49-21e721dd3aed}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -3025,9 +3025,6 @@
     <ClCompile Include="aura\os\windows\windows_ipc.cpp">
       <Filter>Source Files\aura\os\windows</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\ansios\ansios_multithreading.cpp">
-      <Filter>Source Files\aura\os\NewFilter1</Filter>
-    </ClCompile>
     <ClCompile Include="aura\exception\exception.cpp">
       <Filter>Source Files\aura\exception</Filter>
     </ClCompile>
@@ -3480,6 +3477,15 @@
     </ClCompile>
     <ClCompile Include="net\net_url.cpp">
       <Filter>Source Files\net</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\ansios\ansios_multithreading.cpp">
+      <Filter>Source Files\aura\os\ansios</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows_common\_windows_common.cpp">
+      <Filter>Source Files\aura\os\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows_common\windows_common_base.cpp">
+      <Filter>Source Files\aura\os\windows_common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
