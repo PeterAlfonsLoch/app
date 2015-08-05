@@ -11,7 +11,7 @@
 		07B657F3190F3CCC002DAADE /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B657F2190F3CCC002DAADE /* XCTest.framework */; };
 		07B657F4190F3CCC002DAADE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B657E4190F3CCB002DAADE /* Foundation.framework */; };
 		07B657F6190F3CCC002DAADE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B657F5190F3CCC002DAADE /* UIKit.framework */; };
-		07B657F9190F3CCC002DAADE /* lib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B657E2190F3CCB002DAADE /* lib.dylib */; };
+		07B657F9190F3CCC002DAADE /* libsphere.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B657E2190F3CCB002DAADE /* libsphere.dylib */; };
 		07B657FF190F3CCC002DAADE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 07B657FD190F3CCC002DAADE /* InfoPlist.strings */; };
 		07B65801190F3CCC002DAADE /* sphere_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B65800190F3CCC002DAADE /* sphere_iosTests.m */; };
 		07DA478A1B71ED7A006F27E6 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DA475D1B71ECF5006F27E6 /* libaura.dylib */; };
@@ -375,7 +375,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		07B657E2190F3CCB002DAADE /* lib.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = lib.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		07B657E2190F3CCB002DAADE /* libsphere.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libsphere.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		07B657E4190F3CCB002DAADE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		07B657F1190F3CCC002DAADE /* sphere_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sphere_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		07B657F2190F3CCC002DAADE /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -400,7 +400,7 @@
 		07DA47E01B71F03B006F27E6 /* console_prompt_impact.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = console_prompt_impact.cpp; sourceTree = "<group>"; };
 		07DA47E11B71F03B006F27E6 /* console_prompt_impact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = console_prompt_impact.h; sourceTree = "<group>"; };
 		9A2EA39019A63026004DAFFC /* axis.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axis.xcodeproj; path = ../axis/axis.xcodeproj; sourceTree = "<group>"; };
-		9A574B9816AAB906000CC4EF /* lib.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = lib.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A574B9816AAB906000CC4EF /* libsphere.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libsphere.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A574D2B16AAB99E000CC4EF /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
 		9A574D2C16AAB99E000CC4EF /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
 		9ACABEAE17BD0515004C3F85 /* asphere.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = asphere.h; sourceTree = "<group>"; };
@@ -534,7 +534,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07B657F3190F3CCC002DAADE /* XCTest.framework in Frameworks */,
-				07B657F9190F3CCC002DAADE /* lib.dylib in Frameworks */,
+				07B657F9190F3CCC002DAADE /* libsphere.dylib in Frameworks */,
 				07B657F6190F3CCC002DAADE /* UIKit.framework in Frameworks */,
 				07B657F4190F3CCC002DAADE /* Foundation.framework in Frameworks */,
 			);
@@ -681,8 +681,8 @@
 		9A574B9916AAB906000CC4EF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A574B9816AAB906000CC4EF /* lib.dylib */,
-				07B657E2190F3CCB002DAADE /* lib.dylib */,
+				9A574B9816AAB906000CC4EF /* libsphere.dylib */,
+				07B657E2190F3CCB002DAADE /* libsphere.dylib */,
 				07B657F1190F3CCC002DAADE /* sphere_iosTests.xctest */,
 			);
 			name = Products;
@@ -940,7 +940,7 @@
 			);
 			name = ios_sphere;
 			productName = sphere_ios;
-			productReference = 07B657E2190F3CCB002DAADE /* lib.dylib */;
+			productReference = 07B657E2190F3CCB002DAADE /* libsphere.dylib */;
 			productType = "com.apple.product-type.library.static";
 		};
 		07B657F0190F3CCC002DAADE /* sphere_iosTests */ = {
@@ -981,7 +981,7 @@
 			);
 			name = sphere;
 			productName = ca2;
-			productReference = 9A574B9816AAB906000CC4EF /* lib.dylib */;
+			productReference = 9A574B9816AAB906000CC4EF /* libsphere.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
