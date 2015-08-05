@@ -78,18 +78,6 @@ typedef pthread_t IDTHREAD;
 
 inline int id_thread_equals(IDTHREAD a, IDTHREAD b) {return pthread_equal(a, b)!=0;}
 
-#ifdef __cplusplus
-template <  >
-inline bool EqualsCompareElements(const IDTHREAD & r1, const IDTHREAD & r2)
-{
-   return id_thread_equals(r1, r2) != 0;
-}
-template <  >
-inline bool EqualsCompareElements(const IDTHREAD * pElement1, const IDTHREAD & element2)
-{
-   return EqualsCompareElements(*pElement1,element2);
-}
-#endif
 
 #endif
 
