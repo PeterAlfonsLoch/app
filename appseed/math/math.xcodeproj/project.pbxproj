@@ -21,6 +21,16 @@
 		07C8A4681B71DCD1000226A8 /* kissfft_ifftd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD4FD7117BD5A480008F751 /* kissfft_ifftd.cpp */; };
 		07C8A4771B71DD67000226A8 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07C8A4701B71DD45000226A8 /* libaura.dylib */; };
 		07C8A47A1B71DD73000226A8 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07C8A4701B71DD45000226A8 /* libaura.dylib */; };
+		07DA47C61B71EFF7006F27E6 /* _calculator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07DA47B71B71EFF7006F27E6 /* _calculator.cpp */; };
+		07DA47C71B71EFF7006F27E6 /* calculator.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DA47B81B71EFF7006F27E6 /* calculator.h */; };
+		07DA47C91B71EFF7006F27E6 /* calculator_calculator.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DA47BA1B71EFF7006F27E6 /* calculator_calculator.h */; };
+		07DA47CB1B71EFF7006F27E6 /* numeric_element.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DA47BC1B71EFF7006F27E6 /* numeric_element.h */; };
+		07DA47CD1B71EFF7006F27E6 /* numeric_parser.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DA47BE1B71EFF7006F27E6 /* numeric_parser.h */; };
+		07DA47CF1B71EFF7006F27E6 /* numeric_parser_exception.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DA47C01B71EFF7006F27E6 /* numeric_parser_exception.h */; };
+		07DA47D11B71EFF7006F27E6 /* numeric_scanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DA47C21B71EFF7006F27E6 /* numeric_scanner.h */; };
+		07DA47D21B71EFF7006F27E6 /* numeric_token.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DA47C31B71EFF7006F27E6 /* numeric_token.h */; };
+		07DA47D41B71EFF7006F27E6 /* numeric_value.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DA47C51B71EFF7006F27E6 /* numeric_value.h */; };
+		07DA47D51B71F011006F27E6 /* _calculator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07DA47B71B71EFF7006F27E6 /* _calculator.cpp */; };
 		9A57509E16AAB9A1000CC4EF /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A574D2B16AAB99E000CC4EF /* framework.cpp */; };
 		9A57509F16AAB9A1000CC4EF /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A574D2C16AAB99E000CC4EF /* framework.h */; };
 		9AD4FD7817BD5A480008F751 /* kiss_fft.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD4FD6817BD5A480008F751 /* kiss_fft.cpp */; };
@@ -125,6 +135,15 @@
 		07B65780190F3CA2002DAADE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		07B65782190F3CA2002DAADE /* math_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = math_iosTests.m; sourceTree = "<group>"; };
 		07C8A4691B71DD44000226A8 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../aura/aura.xcodeproj; sourceTree = "<group>"; };
+		07DA47B71B71EFF7006F27E6 /* _calculator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _calculator.cpp; sourceTree = "<group>"; };
+		07DA47B81B71EFF7006F27E6 /* calculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = calculator.h; sourceTree = "<group>"; };
+		07DA47BA1B71EFF7006F27E6 /* calculator_calculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = calculator_calculator.h; sourceTree = "<group>"; };
+		07DA47BC1B71EFF7006F27E6 /* numeric_element.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = numeric_element.h; sourceTree = "<group>"; };
+		07DA47BE1B71EFF7006F27E6 /* numeric_parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = numeric_parser.h; sourceTree = "<group>"; };
+		07DA47C01B71EFF7006F27E6 /* numeric_parser_exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = numeric_parser_exception.h; sourceTree = "<group>"; };
+		07DA47C21B71EFF7006F27E6 /* numeric_scanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = numeric_scanner.h; sourceTree = "<group>"; };
+		07DA47C31B71EFF7006F27E6 /* numeric_token.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = numeric_token.h; sourceTree = "<group>"; };
+		07DA47C51B71EFF7006F27E6 /* numeric_value.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = numeric_value.h; sourceTree = "<group>"; };
 		9A2EA36C19A62C9E004DAFFC /* axis.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axis.xcodeproj; path = ../axis/axis.xcodeproj; sourceTree = "<group>"; };
 		9A574B9816AAB906000CC4EF /* libmath.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libmath.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A574D2B16AAB99E000CC4EF /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
@@ -213,6 +232,22 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		07DA47B61B71EFF7006F27E6 /* calculator */ = {
+			isa = PBXGroup;
+			children = (
+				07DA47B71B71EFF7006F27E6 /* _calculator.cpp */,
+				07DA47B81B71EFF7006F27E6 /* calculator.h */,
+				07DA47BA1B71EFF7006F27E6 /* calculator_calculator.h */,
+				07DA47BC1B71EFF7006F27E6 /* numeric_element.h */,
+				07DA47BE1B71EFF7006F27E6 /* numeric_parser.h */,
+				07DA47C01B71EFF7006F27E6 /* numeric_parser_exception.h */,
+				07DA47C21B71EFF7006F27E6 /* numeric_scanner.h */,
+				07DA47C31B71EFF7006F27E6 /* numeric_token.h */,
+				07DA47C51B71EFF7006F27E6 /* numeric_value.h */,
+			);
+			path = calculator;
+			sourceTree = "<group>";
+		};
 		9A2EA36D19A62C9E004DAFFC /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -226,6 +261,7 @@
 		9A574B8D16AAB906000CC4EF = {
 			isa = PBXGroup;
 			children = (
+				07DA47B61B71EFF7006F27E6 /* calculator */,
 				07C8A4691B71DD44000226A8 /* aura.xcodeproj */,
 				9A2EA36C19A62C9E004DAFFC /* axis.xcodeproj */,
 				9ACABEAC17BD04FF004C3F85 /* math */,
@@ -289,14 +325,22 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07DA47CB1B71EFF7006F27E6 /* numeric_element.h in Headers */,
+				07DA47D11B71EFF7006F27E6 /* numeric_scanner.h in Headers */,
+				07DA47C71B71EFF7006F27E6 /* calculator.h in Headers */,
 				9A57509F16AAB9A1000CC4EF /* framework.h in Headers */,
+				07DA47D41B71EFF7006F27E6 /* numeric_value.h in Headers */,
 				9AD4FD7917BD5A480008F751 /* kiss_fft.h in Headers */,
+				07DA47CF1B71EFF7006F27E6 /* numeric_parser_exception.h in Headers */,
 				9AD4FD7A17BD5A480008F751 /* kiss_fft_guts.h in Headers */,
+				07DA47CD1B71EFF7006F27E6 /* numeric_parser.h in Headers */,
 				9AD4FD7D17BD5A480008F751 /* kiss_ifft.h in Headers */,
 				9AD4FD7E17BD5A480008F751 /* kissfft.h in Headers */,
 				9AD4FD8017BD5A480008F751 /* kissfft_fftd.h in Headers */,
 				9AD4FD8217BD5A480008F751 /* kissfft_ifftd.h in Headers */,
+				07DA47C91B71EFF7006F27E6 /* calculator_calculator.h in Headers */,
 				9AD4FD8517BD5A480008F751 /* math_math.h in Headers */,
+				07DA47D21B71EFF7006F27E6 /* numeric_token.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,6 +505,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07DA47D51B71F011006F27E6 /* _calculator.cpp in Sources */,
 				07C8A4641B71DCD1000226A8 /* kiss_fft.cpp in Sources */,
 				07C8A4651B71DCD1000226A8 /* kiss_fft_shared.cpp in Sources */,
 				07C8A4661B71DCD1000226A8 /* kiss_ifft.cpp in Sources */,
@@ -487,6 +532,7 @@
 				9AD4FD7C17BD5A480008F751 /* kiss_ifft.cpp in Sources */,
 				9AD4FD7F17BD5A480008F751 /* kissfft_fftd.cpp in Sources */,
 				9AD4FD8117BD5A480008F751 /* kissfft_ifftd.cpp in Sources */,
+				07DA47C61B71EFF7006F27E6 /* _calculator.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
