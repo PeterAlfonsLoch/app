@@ -229,7 +229,7 @@ CLASS_DECL_AURA HTHREAD get_current_thread()
 }
 
 
-CLASS_DECL_AURA DWORD get_current_thread_id()
+CLASS_DECL_AURA IDTHREAD get_current_thread_id()
 {
 
    return ::GetCurrentThreadId();
@@ -1242,7 +1242,9 @@ restart:
       if(msg.message == WM_QUIT)
       {
          *lpMsg = msg;
-         pmq->ma.remove_at(i);
+         //pmq->ma.remove_at(i);
+         
+         pmq->ma.remove_all();
          
          clear_mq();
          
@@ -1521,10 +1523,10 @@ CLASS_DECL_AURA HTHREAD GetCurrentThread()
 
 }
 
-CLASS_DECL_AURA UINT_PTR GetCurrentThreadId()
+CLASS_DECL_AURA IDTHREAD GetCurrentThreadId()
 {
 
-   return (ulong_ptr)pthread_self();
+   return pthread_self();
 
 }
 

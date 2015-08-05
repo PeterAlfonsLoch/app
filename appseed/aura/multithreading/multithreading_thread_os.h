@@ -65,13 +65,31 @@
 //
 //};
 
+
 #ifdef WINDOWS
 
 typedef uint32_t IDTHREAD;
 
+inline int id_thread_equals(IDTHREAD a, IDTHREAD b) {return a==b;}
+
 #else
 
-typedef HTHREAD IDTHREAD;
+typedef pthread_t IDTHREAD;
+
+inline int id_thread_equals(IDTHREAD a, IDTHREAD b) {return pthread_equal(a, b)!=0;}
+
+#ifdef __cplusplus
+template <  >
+inline bool EqualsCompareElements(const IDTHREAD & r1, const IDTHREAD & r2)
+{
+   return id_thread_equals(r1, r2) != 0;
+}
+template <  >
+inline bool EqualsCompareElements(const IDTHREAD * pElement1, const IDTHREAD & element2)
+{
+   return EqualsCompareElements(*pElement1,element2);
+}
+#endif
 
 #endif
 
@@ -111,7 +129,7 @@ CLASS_DECL_AURA HTHREAD create_thread(LPSECURITY_ATTRIBUTES lpsa, uint_ptr cbSta
 //
 
 
-CLASS_DECL_AURA DWORD get_current_thread_id();
+CLASS_DECL_AURA IDTHREAD get_current_thread_id();
 
 
 
@@ -219,7 +237,7 @@ namespace multithreading
 
    CLASS_DECL_AURA uint32_t __on_thread_finally(thread * pthread);
 
-   CLASS_DECL_AURA extern int_ptr_array * s_piaThread;
+   CLASS_DECL_AURA extern comparable_eq_array <IDTHREAD> * s_piaThread;
    CLASS_DECL_AURA extern ptr_array < thread > * s_pthreadptra;
    CLASS_DECL_AURA extern mutex * s_pmutex;
 

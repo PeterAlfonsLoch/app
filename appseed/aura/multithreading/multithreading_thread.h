@@ -75,14 +75,14 @@ public:
    virtual void start();
 
    virtual void * get_os_data() const;
-   virtual int_ptr get_os_int() const;
+   virtual IDTHREAD get_os_int() const;
 
 
    virtual HTHREAD get_os_handle() const;
 
 
    virtual void set_os_data(void * pvoidOsData);
-   virtual void set_os_int(int_ptr iData);
+   virtual void set_os_int(IDTHREAD iData);
 
 
    friend bool __internal_pre_translate_message(MESSAGE * pMsg);

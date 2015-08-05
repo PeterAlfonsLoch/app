@@ -69,7 +69,7 @@ namespace filemanager
 
       map < icon_key,const icon_key &,icon,icon & > m_iconmap;
 
-      mutex            m_mutex;
+//      mutex            m_mutex;
 #ifdef WINDOWSEX
       IShellFolder *   m_pshellfolder;
 #endif

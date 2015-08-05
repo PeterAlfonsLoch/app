@@ -106,11 +106,11 @@ public:
 
 
    virtual void * get_os_data() const;
-   virtual int_ptr get_os_int() const;
+   virtual IDTHREAD get_os_int() const;
 
    operator HTHREAD() const;
 
-   virtual int_ptr item() const;
+   virtual HTHREAD item() const;
 
    virtual void add(::user::primitive * pui);
    virtual void remove(::user::primitive * pui);
@@ -129,7 +129,7 @@ public:
 
 
    virtual void set_os_data(void * pvoidOsData);
-   virtual void set_os_int(int_ptr iData);
+   virtual void set_os_int(IDTHREAD iData);
 
    virtual bool initialize_message_queue();
 

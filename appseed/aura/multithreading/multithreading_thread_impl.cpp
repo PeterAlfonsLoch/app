@@ -359,18 +359,18 @@ void * thread_impl::get_os_data() const
 }
 
 
-int_ptr thread_impl::get_os_int() const
+IDTHREAD thread_impl::get_os_int() const
 {
 
-   return (int_ptr) m_uiThread;
+   return  m_uiThread;
 
 }
 
 
-int_ptr thread_impl::item() const
+HTHREAD thread_impl::item() const
 {
 
-   return (int_ptr)m_hthread;
+   return m_hthread;
 
 }
 
@@ -579,7 +579,7 @@ uint32_t __thread_entry(void * pparam)
       catch(::exit_exception &)
       {
 
-         Sys(pthreadimpl->m_pauraapp).post_thread_message(WM_QUIT);
+         Sys(pthreadimpl->m_pauraapp).post_quit();
 
          return ::multithreading::__on_thread_finally(pthread);
 
@@ -791,6 +791,18 @@ bool thread_impl::post_thread_message(UINT message,WPARAM wParam,lparam lParam)
       {
          ::output_debug_string("\n\n\nWM_QUIT at ::core::system\n\n\n");
       }
+      if(strName == "multimedia::audio_core_audio::wave_out")
+      {
+         ::output_debug_string("\n\n\nWM_QUIT at multimedia::audio_core_audio::wave_out\n\n\n");
+      }
+      if(strName == "multimedia::audio::wave_out")
+      {
+         ::output_debug_string("\n\n\nWM_QUIT at multimedia::audio::wave_out\n\n\n");
+      }
+      if(strName == "multimedia::audio::wave_player")
+      {
+         ::output_debug_string("\n\n\nWM_QUIT at multimedia::audio::wave_player\n\n\n");
+      }
    }
    return ::PostThreadMessage(m_uiThread,message,wParam,lParam) != FALSE;
 
@@ -828,7 +840,7 @@ void thread_impl::set_os_data(void * pvoidOsData)
 #endif
 }
 
-void thread_impl::set_os_int(int_ptr iData)
+void thread_impl::set_os_int(IDTHREAD iData)
 {
 #ifdef WINDOWSEX
    m_uiThread = (DWORD)iData;
@@ -1294,7 +1306,7 @@ bool thread_impl::defer_pump_message()
       {
          
 
-         ::output_debug_string("\n\n\ndefer_pump_message (1) quitting : " + string(demangle(typeid(*m_pthread).name())) + " ("+::str::from((uint64_t)::GetCurrentThreadId())+")\n\n\n");
+         ::output_debug_string("\n\n\nthread_impl::defer_pump_message (1) quitting (WM_QUIT? {PeekMessage->message : "+::str::from(msg.message == WM_QUIT?1:0)+"!}) : " + string(demangle(typeid(*m_pthread).name())) + " ("+::str::from((uint64_t)::GetCurrentThreadId())+")\n\n\n");
          
          return false;
 
@@ -1341,9 +1353,9 @@ bool thread_impl::pump_message()
       if(!::GetMessage(&msg,NULL,0,0))
       {
 
-         TRACE(::aura::trace::category_AppMsg,1,"thread::pump_message - Received WM_QUIT.\n");
+         TRACE(::aura::trace::category_AppMsg,1,"thread_impl::pump_message - Received WM_QUIT.\n");
 
-         ::output_debug_string("thread::pump_message - Received WM_QUIT.\n");
+         ::output_debug_string("thread_impl::pump_message - Received WM_QUIT.\n");
          
          m_nDisablePumpCount++; // application must die
          // Note: prevents calling message loop things in 'exit_instance'

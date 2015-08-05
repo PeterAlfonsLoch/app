@@ -81,7 +81,7 @@ namespace macos
       
       virtual void get_time(struct timeval *p);
       virtual void set_env_var(const string & var,const string & value);
-      virtual uint32_t get_thread_id();
+      virtual IDTHREAD get_thread_id();
       
       
       string draw2d_get_default_library_name();

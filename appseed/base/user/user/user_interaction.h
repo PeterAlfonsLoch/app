@@ -69,15 +69,7 @@ namespace user
       string                              m_strWindowText;
 
 
-#if defined(WINDOWS) || defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
-
-      comparable_array < int_ptr >        m_iaModalThread;
-
-#else
-
-      comparable_array < pthread_t >      m_iaModalThread;
-
-#endif
+      comparable_eq_array < IDTHREAD >    m_iaModalThread;
 
       id                                  m_idModalResult; // for return values from interaction_impl::RunModalLoop
 

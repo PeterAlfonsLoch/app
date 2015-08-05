@@ -167,10 +167,13 @@ void * thread::get_os_data() const
 }
 
 
-int_ptr thread::get_os_int() const
+IDTHREAD thread::get_os_int() const
 {
+   
+   if(m_pthreadimpl == NULL)
+      throw simple_exception(get_app(), "invalid call");
 
-   return m_pthreadimpl == NULL ? -1 : m_pthreadimpl->get_os_int();
+   return m_pthreadimpl->get_os_int();
 
 }
 
@@ -405,7 +408,7 @@ void thread::set_os_data(void * pvoidOsData)
 }
 
 
-void thread::set_os_int(int_ptr iData)
+void thread::set_os_int(IDTHREAD iData)
 {
 
    if(m_pthreadimpl.is_null())
@@ -974,7 +977,7 @@ int_ptr thread::item() const
    if(m_pthreadimpl.is_null())
       return -1;
 
-   return m_pthreadimpl->item();
+   return (int_ptr) m_pthreadimpl->item();
 
 }
 

@@ -3422,7 +3422,7 @@ namespace axis
 
 
 
-   uint32_t application::get_thread_id()
+   IDTHREAD application::get_thread_id()
    {
       return m_pimpl->get_thread_id();
    }

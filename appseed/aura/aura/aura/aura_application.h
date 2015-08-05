@@ -313,7 +313,7 @@ namespace aura
       virtual void SetCurrentHandles();
 
       virtual void set_env_var(const string & var,const string & value);
-      virtual uint32_t get_thread_id();
+      virtual IDTHREAD get_thread_id();
 
 
       virtual bool _001OnDDECommand(const char * lpcsz);

@@ -261,7 +261,8 @@ mutex::mutex(const mutex & m) :
 
    m_bOwner       = false;
    m_semid        = m.m_semid;
-
+   m_mutex        = m.m_mutex;
+   
 }
 
 #endif

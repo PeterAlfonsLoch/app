@@ -184,11 +184,11 @@
 			isa = PBXGroup;
 			children = (
 				071B6A9E1B5AD3BF002C55E2 /* aura.xcodeproj */,
+				07E084DF1B5AC8E7005EE6C8 /* _html_lite_html_lite.cpp */,
 				07E084E01B5AC8E7005EE6C8 /* html */,
 				07E084E61B5AC8E7005EE6C8 /* html_lite */,
 				07B65765190F3CA2002DAADE /* Frameworks */,
 				9A574B9916AAB906000CC4EF /* Products */,
-				07E084DF1B5AC8E7005EE6C8 /* _html_lite_html_lite.cpp */,
 			);
 			sourceTree = "<group>";
 		};

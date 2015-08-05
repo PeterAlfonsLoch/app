@@ -11,8 +11,7 @@ namespace filemanager
    file_list::file_list(::aura::application * papp) :
       object(papp),
       ::user::interaction(papp),
-      ::userfs::list(papp),
-      m_mutex(papp)
+      ::userfs::list(papp)
    {
 
       m_iAnimate = 0;
@@ -1227,7 +1226,7 @@ namespace filemanager
    bool file_list::_001CreateImageListStep()
    {
 
-      single_lock sl(&m_mutex, true);
+      single_lock sl(m_pmutex, true);
 
       if (m_iCreateImageListStep < 0 || m_iCreateImageListStep >= get_fs_mesh_data()->m_itema.get_count())
       {

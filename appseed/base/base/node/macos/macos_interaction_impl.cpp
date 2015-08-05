@@ -631,16 +631,16 @@ namespace macos
 
       Default();
 
-      ::macos::window_draw * pdraw = dynamic_cast < ::macos::window_draw * > (System.get_twf());
-
-      if(pdraw != NULL)
-      {
-
-         retry_single_lock sl(&pdraw->m_eventFree, millis(84), millis(84));
-
-         pdraw->m_wndpaOut.remove(m_pui);
-
-      }
+//      ::macos::window_draw * pdraw = dynamic_cast < ::macos::window_draw * > (System.get_twf());
+//
+//      if(pdraw != NULL)
+//      {
+//
+//         retry_single_lock sl(&pdraw->m_eventFree, millis(84), millis(84));
+//
+//         pdraw->m_wndpaOut.remove(m_pui);
+//
+//      }
 
    }
 
@@ -1360,13 +1360,19 @@ namespace macos
          for(int32_t i = 0; i < hwnda.get_size(); i++)
          {*/
 //            ::user::interaction * pguie = wnda.find_first(hwnda[i]);
-         ::user::interaction * pguie = m_pui;
-            if(pguie != NULL)
-            {
-               pguie->_000OnMouse(pmouse);
-               if(pmouse->m_bRet)
-                  return;
-            }
+         
+         ::user::interaction * pguie = NULL;
+         
+         while(System.get_frame(pguie))
+         {
+            
+            pguie->_000OnMouse(pmouse);
+         
+            if(pmouse->m_bRet)
+               return;
+            
+         }
+         
          //}
          pbase->set_lresult(DefWindowProc(pbase->m_uiMessage, pbase->m_wparam, pbase->m_lparam));
          return;
@@ -3738,6 +3744,20 @@ namespace macos
 
       if(!::IsWindow(get_handle()))
          return false;
+      
+      if(!(nFlags & SWP_NOZORDER))
+      {
+         
+         synch_lock sl(&System.m_mutexFrame);
+         
+         if(System.m_uiptraFrame.remove(m_pui)>= 0)
+         {
+            
+            System.m_uiptraFrame.insert_at(0, m_pui);
+            
+         }
+         
+      }
 
       /*
          return ::SetWindowPos(get_handle(), pWndInsertAfter->get_handle(),

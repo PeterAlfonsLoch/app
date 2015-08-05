@@ -228,9 +228,12 @@ namespace macos
 //#endif
    }
 
-   uint32_t application::get_thread_id()
+
+   IDTHREAD application::get_thread_id()
    {
+      
       return ::GetCurrentThreadId();
+      
    }
 
 

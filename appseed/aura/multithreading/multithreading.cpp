@@ -5,7 +5,7 @@ namespace multithreading
 {
 
 
-   CLASS_DECL_AURA int_ptr_array * s_piaThread = NULL;
+   CLASS_DECL_AURA comparable_eq_array<IDTHREAD> * s_piaThread = NULL;
    CLASS_DECL_AURA ptr_array < thread > * s_pthreadptra = NULL;
    CLASS_DECL_AURA mutex * s_pmutex = NULL;
 
@@ -13,7 +13,7 @@ namespace multithreading
    CLASS_DECL_AURA void init_multithreading()
    {
       s_pmutex = new mutex(NULL);
-      s_piaThread = new int_ptr_array;
+      s_piaThread = new comparable_eq_array<IDTHREAD>;
       s_pthreadptra = new ptr_array < thread >;
 
       __node_init_multithreading();
