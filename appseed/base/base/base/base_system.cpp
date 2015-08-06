@@ -1060,7 +1060,7 @@ namespace base
    ::user::interaction * system::get_active_guie()
    {
 
-#if defined(WINDOWSEX) || defined(LINUX) || defined(APPLEOS)
+#if defined(WINDOWSEX) || defined(LINUX) //  || defined(APPLEOS)
 
       return window_from_os_data(::GetActiveWindow());
 
