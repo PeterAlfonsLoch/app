@@ -190,12 +190,12 @@ int32_t process_get_scheduling_priority(int32_t iOsPriority)
 }
 
 
-namespace ca2
+namespace process
 {
 
 
 
-   bool set_priority_class(int32_t iCa2Priority)
+   bool set_priority(int32_t iCa2Priority)
    {
 
       int iOsPriority = process_get_os_priority(iCa2Priority);

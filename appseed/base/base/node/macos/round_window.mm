@@ -24,11 +24,16 @@ NSWindow * new_round_window(round_window * pwindow, CGRect rect)
    
 }
 
+const char * app[1] = {"app.exe"};
 
 void ns_shared_application()
 {
+   
 
-   [RoundWindowApp sharedApplication];
+   
+   NSApplicationMain(1, app);
+
+//   [RoundWindowApp sharedApplication];
    
 }
 

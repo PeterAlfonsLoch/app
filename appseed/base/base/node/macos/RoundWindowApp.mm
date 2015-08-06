@@ -13,6 +13,13 @@
 @implementation RoundWindowApp
 
 
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
+{
+   
+   run_system();
+   
+}
+
 - (void)sendEvent:(NSEvent *)theEvent
 {
 
@@ -48,7 +55,7 @@
    
    */
    
-   [super sendEvent:theEvent];
+//   [super sendEvent:theEvent];
    
 }
 
