@@ -1589,23 +1589,35 @@ namespace macos
         
       m_strCa2 = strCa2Module;
         
-#if !defined(CUBE) && !defined(VSNORD)
+//#if !defined(CUBE) && !defined(VSNORD)
         
       m_strCa2 -= 2;
+      
+      ::str::ends_eat_ci(m_strCa2, ".app");
         
-#endif
+//#endif
       ::file::path pathHome;
       
       pathHome = ::file::path(getenv("HOME"));
       
+      ::file::path str;
+      
       if(pathHome.is_empty())
       {
          
-         pathHome = m_strCa2 / "default_user";
+         pathHome = "~/Library/Application Support";
+         
+         pathHome /= ".default_user";
+         
+         str =  pathHome / "ca2";
          
       }
+      else
+      {
       
-      ::file::path str =  pathHome / ".ca2/appdata";
+         str =  pathHome / "Library/Application Support" / "ca2";
+         
+      }
  
       string strRelative;
       
@@ -1620,15 +1632,11 @@ namespace macos
          //strRelative = strRelative.Left(iFind - 1) + "_" + strRelative.Mid(iStart, iFind - iStart) + strRelative.Mid(iFind + 1);
       }
 
-      m_strCa2AppData = str / "ca2" / strRelative;
+      m_strCa2AppData = str / strRelative / "appdata";
       
-      str = m_pathModule.folder();
-         
-      str -= 2;
-         
-      m_strCommonAppData = str / "commonappdata";
+      m_strCommonAppData = str / strRelative / "commonappdata";
       
-      m_pathUser = pathHome / ".ca2";
+      m_pathUser = str / strRelative / "user";
       
       xml::document doc(get_app());
           
@@ -1725,7 +1733,13 @@ namespace macos
         return m_strCommonAppData;
         
     }
-    
+   ::file::path dir::commonappdata()
+   {
+      
+      return m_strCommonAppData;
+      
+   }
+
     
     ::file::path dir::usersystemappdata(::aura::application * papp,const char * lpcszPrefix)
     {

@@ -64,6 +64,7 @@ namespace macos
        
        virtual ::file::path appdata();
        virtual ::file::path commonappdata_root();
+       virtual ::file::path commonappdata();
        
        virtual ::file::path usersystemappdata(::aura::application * papp, const char * lpcszPrefix);
        virtual ::file::path userappdata(::aura::application * papp);

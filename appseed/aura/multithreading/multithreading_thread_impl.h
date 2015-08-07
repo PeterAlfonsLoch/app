@@ -12,6 +12,9 @@
 typedef uint32_t IDTHREAD;
 
 #else
+#define QS_ALLEVENTS 0xffff
+
+void clear_mq();
 
 typedef HTHREAD IDTHREAD;
 
@@ -25,7 +28,11 @@ inline bool EqualsCompareElements(const IDTHREAD * pElement1, const IDTHREAD  el
 {
    return EqualsCompareElements(*pElement1,element2);
 }
-
+template <  >
+inline UINT HashKey(IDTHREAD key)
+{
+   return 0;
+}
 
 #endif
 
@@ -62,6 +69,12 @@ public:
 
    //bool                                      m_bIdle;
    //LONG                                      m_lIdleCount;
+   
+#ifndef WINDOWSEX
+   
+   mq *                                      m_mq;
+   
+#endif
 
    thread *                                  m_pthread;
 

@@ -63,7 +63,7 @@ void __post_quit_message(int32_t nExitCode)
 
 #else
 
-   throw not_implemented(get_thread_app());
+   ::get_thread_app()->post_quit();
 
 #endif
 

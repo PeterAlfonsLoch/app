@@ -4051,8 +4051,16 @@ namespace aura
       notinstalled.m_bHandled = true;
 
       notinstalled.m_bContinue = true;
+      
+      bool bDebuggerCheck = true;
+      
+#ifdef APPLEOS
+      
+      bDebuggerCheck = false;
+      
+#endif
 
-      if((::is_debugger_attached() && !file_exists_dup("C:\\ca2\\config\\plugin\\disable_manual_install_warning.txt")
+      if(((!bDebuggerCheck || ::is_debugger_attached()) && !file_exists_dup("C:\\ca2\\config\\plugin\\disable_manual_install_warning.txt")
          && !file_exists_dup("C:\\ca2\\config\\system\\skip_debug_install.txt")) || file_exists_dup("C:\\ca2\\config\\system\\enable_debug_install.txt"))
          //|| (App(notinstalled.get_app()).is_serviceable() && !App(notinstalled.get_app()).is_user_service()))
       {

@@ -41,7 +41,7 @@ void * system_heap_alloc(size_t size)
 #else
 
    p = ::malloc(size);
-
+   
 #endif
 //#endif
 
@@ -51,6 +51,8 @@ void * system_heap_alloc(size_t size)
       throw_memory_exception();
 
    }
+   
+   memset(p, 0x00, size);
 
    return p;
 

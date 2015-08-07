@@ -171,16 +171,9 @@ using namespace ::Windows::System;
 
 #elif defined(APPLEOS)
    
-   
    string str;
    
    {
-      
-      char * pszCurDir = getcwd(NULL, 0);
-      
-      string strCurDir = pszCurDir;
-      
-      free(pszCurDir);
       
       str = ::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libaura.dylib", "rfs"); // readable - normal file - non zero sized
       
@@ -191,12 +184,28 @@ using namespace ::Windows::System;
          
       }
       
+      str = get_exe_path();
+      
+      
+      if(str.has_char())
+      {
+         str = ::file::path(str).folder();
+         goto found;
+      }
+
       str = ::dir::pathfind(getenv("DYLD_FALLBACK_LIBRARY_PATH"), "libaura.dylib", "rfs"); // readable - normal file - non zero sized
 
-      str = ::file::path(str).folder();
+      if(str.has_char())
+      {
+         str = ::file::path(str).folder();
+         goto found;
+         
+      }
       
-   found:;
+      
+      
    }
+found:;
    
    return str;
    
@@ -609,12 +618,17 @@ string ca2_module_dup()
 
    {
 
-      char * pszCurDir = getcwd(NULL, 0);
+      str = get_exe_path();
+      
+      str = ::dir::pathfind(::file::path(str).folder(), "libaura.dylib", "rfs"); // readable - normal file - non zero sized
 
-      string strCurDir = pszCurDir;
-
-      free(pszCurDir);
-
+      if(str.has_char())
+      {
+         
+         goto found;
+         
+      }
+      
       str = ::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libaura.dylib", "rfs"); // readable - normal file - non zero sized
 
       if(str.has_char())
@@ -624,10 +638,27 @@ string ca2_module_dup()
 
       }
 
+      str = get_exe_path();
+      
+      if(str.has_char())
+      {
+         
+         goto found;
+         
+      }
+
       str = ::dir::pathfind(getenv("DYLD_FALLBACK_LIBRARY_PATH"), "libaura.dylib", "rfs"); // readable - normal file - non zero sized
 
-   found:;
+      if(str.has_char())
+      {
+         
+         goto found;
+         
+      }
+      
    }
+
+found:;
 
 #endif
 

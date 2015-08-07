@@ -1208,7 +1208,7 @@ namespace file
 
       }
 
-      return commonappdata_root()/ "ca2"/strRelative;
+      return commonappdata_root()/ strRelative;
 
       }
 

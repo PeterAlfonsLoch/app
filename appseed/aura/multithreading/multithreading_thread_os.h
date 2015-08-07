@@ -76,7 +76,7 @@ inline int id_thread_equals(IDTHREAD a, IDTHREAD b) {return a==b;}
 
 typedef pthread_t IDTHREAD;
 
-inline int id_thread_equals(IDTHREAD a, IDTHREAD b) {return pthread_equal(a, b)!=0;}
+inline int id_thread_equals(IDTHREAD a, IDTHREAD b) {return pthread_equal(a, b);}
 
 
 #endif

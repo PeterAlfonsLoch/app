@@ -41,6 +41,8 @@ bool __node_init_thread(::thread * pthread)
 {
 
    UNREFERENCED_PARAMETER(pthread);
+   
+//   clear_mq();
 
    return true;
 

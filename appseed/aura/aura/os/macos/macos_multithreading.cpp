@@ -228,6 +228,8 @@ void __node_term_thread()
 
 bool __os_init_thread()
 {
+   TlsAlloc();
+   clear_mq();
 
    return true;
 
@@ -236,6 +238,10 @@ bool __os_init_thread()
 
 bool __os_term_thread()
 {
+   
+   clear_mq();
+   
+   TlsShutdown();
 
    return true;
 

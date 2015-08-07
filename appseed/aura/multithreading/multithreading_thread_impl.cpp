@@ -7,12 +7,7 @@
 
 #include "framework.h"
 
-#if defined(LINUX) || defined(ANDROID) || defined(APPLEOS)
-#define QS_ALLEVENTS 0xffff
 
-void clear_mq();
-
-#endif
 
 uint32_t __thread_entry(void * pparam);
 
@@ -23,6 +18,7 @@ m_mutexUiPtra(papp)
 {
 
    CommonConstruct();
+   
 
 }
 
@@ -56,8 +52,14 @@ void thread_impl::construct(__THREADPROC pfnThreadProc, LPVOID pParam)
 
 
 void thread_impl::CommonConstruct()
-{
+{  
+   
+#ifndef WINDOWSEX
+   
+   m_mq = NULL;
 
+#endif
+   
    m_bDupHandle = false;
 
    m_hthread = (HTHREAD) NULL;

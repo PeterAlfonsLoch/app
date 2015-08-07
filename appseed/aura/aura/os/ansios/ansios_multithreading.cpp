@@ -17,9 +17,29 @@ mq * get_mq(HTHREAD  h);
 mq * get_mq()
 {
 
-   return get_mq(GetCurrentThread());
+   synch_lock sl(g_pmutexMq);
+   
+   auto pmq = (mq *) TlsGetValue(TLS_MESSAGE_QUEUE);
+   
+   if(pmq != NULL)
+      return pmq;
+   
+   pmq   = new mq();
+   
+   pmq->m_hthread    = (IDTHREAD) pthread_self();
+   
+   TlsSetValue(TLS_MESSAGE_QUEUE,pmq);
+   
+   return pmq;
 
 }
+
+
+LPVOID WINAPI TlsGetValue(HTHREAD hthread,DWORD dwTlsIndex);
+
+
+int_bool WINAPI TlsSetValue(HTHREAD hthread,DWORD dwTlsIndex,LPVOID lpTlsValue);
+
 
 void clear_mq()
 {
@@ -28,16 +48,14 @@ void clear_mq()
    
    HTHREAD hthread = GetCurrentThread();
    
-   auto ppair = g_pmapMq->PLookup(hthread);
+   auto pmq = (mq *) TlsGetValue(hthread, TLS_MESSAGE_QUEUE);
    
-   if(ppair != NULL)
+   if(pmq == NULL)
       return;
    
-   auto passoc = g_pmapMq->get_assoc(hthread);
+   ::aura::del(pmq);
    
-   ::aura::del(passoc->m_element2);
-   
-   g_pmapMq->remove_key(hthread);
+   TlsSetValue(hthread, TLS_MESSAGE_QUEUE, NULL);
    
 }
 
@@ -242,7 +260,7 @@ typedef void_ptra ThreadLocalData;
 
 
 
-thread_pointer < ThreadLocalData > currentThreadData;
+CLASS_DECL_THREAD ThreadLocalData * currentThreadData;
 //thread_int_ptr < DWORD > currentThreadId;
 //thread_pointer < HTHREAD > currentThread;
 //thread_pointer < hthread > t_phthread;
@@ -255,7 +273,7 @@ mutex * g_pmutexTlsData = NULL;
 //map < HTHREAD,HTHREAD,HTHREAD,HTHREAD > * s_pmapHthreadHthread = NULL;
 //map < DWORD,DWORD,HTHREAD,HTHREAD > * s_pmapDwordHthread = NULL;
 //map < HTHREAD,HTHREAD,DWORD,DWORD > * s_pmapHthreadDword = NULL;
-map < int_ptr,int_ptr,ThreadLocalData *,ThreadLocalData * > * allthreaddata = NULL;
+map < IDTHREAD,IDTHREAD,ThreadLocalData *,ThreadLocalData * > * allthreaddata = NULL;
 
 
 
@@ -271,7 +289,7 @@ void __node_init_multithreading()
 
    //s_pmapHthreadDword = new map < HTHREAD,HTHREAD,DWORD,DWORD >();
 
-   allthreaddata = new map < int_ptr,int_ptr,ThreadLocalData *,ThreadLocalData * >();
+   allthreaddata = new map < IDTHREAD,IDTHREAD,ThreadLocalData *,ThreadLocalData * >();
 
    freeTlsIndices = new raw_array<DWORD>();
 
@@ -677,7 +695,7 @@ int_bool WINAPI TlsFree(DWORD dwTlsIndex)
    while(pos != NULL)
    {
 
-      int_ptr iThreadId;
+      IDTHREAD iThreadId;
 
       ThreadLocalData * pdata;
 
@@ -704,7 +722,7 @@ LPVOID WINAPI TlsGetValue(DWORD dwTlsIndex)
    }
    else
    {
-      threadData = allthreaddata->operator[]((ulong_ptr)pthread_self());
+      threadData = allthreaddata->operator[]((IDTHREAD)pthread_self());
       if(threadData)
       {
          currentThreadData = threadData;
@@ -729,8 +747,12 @@ LPVOID WINAPI TlsGetValue(HTHREAD hthread,DWORD dwTlsIndex)
 
       if(allthreaddata->is_empty())
          return NULL;
+      auto ppair = allthreaddata->PLookup((IDTHREAD)hthread);
+      
+      if(ppair == NULL)
+         return NULL;
 
-      ThreadLocalData * threadData = allthreaddata->operator [] ((ulong_ptr)hthread);
+      ThreadLocalData * threadData = ppair->m_element2;
 
 	  if (threadData && compare::gt(threadData->get_count(), dwTlsIndex))
       {
@@ -772,7 +794,7 @@ int_bool WINAPI TlsSetValue(DWORD dwTlsIndex,LPVOID lpTlsValue)
 
          synch_lock lock(g_pmutexTlsData);
 
-         allthreaddata->set_at((ulong_ptr)pthread_self(),threadData);
+         allthreaddata->set_at((IDTHREAD)pthread_self(),threadData);
 
          currentThreadData = threadData;
 
@@ -797,7 +819,7 @@ int_bool WINAPI TlsSetValue(HTHREAD hthread,DWORD dwTlsIndex,LPVOID lpTlsValue)
 
    synch_lock lock(g_pmutexTlsData);
 
-   ThreadLocalData * threadData = allthreaddata->operator [] ((ulong_ptr)hthread);
+   ThreadLocalData * threadData = allthreaddata->operator [] ((IDTHREAD)hthread);
 
    if(!threadData)
    {
@@ -806,7 +828,7 @@ int_bool WINAPI TlsSetValue(HTHREAD hthread,DWORD dwTlsIndex,LPVOID lpTlsValue)
       {
          threadData = new ThreadLocalData;
 
-         allthreaddata->set_at((ulong_ptr)hthread,threadData);
+         allthreaddata->set_at((IDTHREAD)hthread,threadData);
 
       }
       catch(...)
@@ -870,8 +892,17 @@ void WINAPI TlsShutdown()
       */
 
       synch_lock ml(g_pmutexTlsData);
+      
+      auto pmq = (mq *) TlsGetValue((IDTHREAD)pthread_self(), TLS_MESSAGE_QUEUE);
+      
+      if(pmq != NULL)
+      {
+         
+         ::aura::del(pmq);
+         
+      }
 
-      allthreaddata->remove_key((ulong_ptr)pthread_self());
+      allthreaddata->remove_key((IDTHREAD)pthread_self());
 
       currentThreadData = NULL;
 
@@ -1181,28 +1212,29 @@ mutex * g_pmutexMq = NULL;
 map < HTHREAD, HTHREAD, mq *, mq * > * g_pmapMq = NULL;
 
 
+LPVOID WINAPI TlsGetValue(HTHREAD hthread,DWORD dwTlsIndex);
+
+
+int_bool WINAPI TlsSetValue(HTHREAD hthread,DWORD dwTlsIndex,LPVOID lpTlsValue);
+
+
 mq * get_mq(HTHREAD hthread)
 {
    
-   
    synch_lock sl(g_pmutexMq);
-
-   auto ppair = g_pmapMq->PLookup(hthread);
    
-   if(ppair != NULL)
-      return ppair->m_element2;
+   auto pmq = (mq *) TlsGetValue(hthread, TLS_MESSAGE_QUEUE);
+   
+   if(pmq != NULL)
+      return pmq;
       
-   auto passoc = g_pmapMq->get_assoc(hthread);
+   pmq   = new mq();
 
-   passoc->m_element2   = new mq();
+   pmq->m_hthread    = hthread;
 
-   passoc->m_element2->m_hthread    = hthread;
+   TlsSetValue(hthread,TLS_MESSAGE_QUEUE,pmq);
 
-   //pmq->m_uiId       = ::GetThreadId(h);
-
-//   TlsSetValue(hthread,TLS_MESSAGE_QUEUE,pmq);
-
-   return  passoc->m_element2;
+   return pmq;
 
 }
 
@@ -1246,7 +1278,7 @@ restart:
          
          pmq->ma.remove_all();
          
-         clear_mq();
+//         clear_mq();
          
          return FALSE;
       }

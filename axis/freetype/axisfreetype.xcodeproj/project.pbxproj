@@ -923,7 +923,7 @@
 			isa = PBXGroup;
 			children = (
 				07D1B0ED1B6FBEFD004E8E35 /* libaxis_image_png.dylib */,
-				07D1B0EF1B6FBEFD004E8E35 /* libaxispng.dylib */,
+				07D1B0EF1B6FBEFD004E8E35 /* libaxis_image_png.dylib */,
 				07D1B0F11B6FBEFD004E8E35 /* axispng_iosTests.xctest */,
 			);
 			name = Products;
@@ -1981,7 +1981,7 @@
 			remoteRef = 07D1B0EC1B6FBEFD004E8E35 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		07D1B0EF1B6FBEFD004E8E35 /* libaxispng.dylib */ = {
+		07D1B0EF1B6FBEFD004E8E35 /* libaxis_image_png.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libaxis_image_png.dylib;
@@ -2214,7 +2214,11 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
 				INSTALL_PATH = "@executable_path";
-				LIBRARY_SEARCH_PATHS = "$(WorkspaceDir)/../../../nodeapp/thirdparty/library";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(TARGET_BUILD_DIR)",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = axisfreetype;
@@ -2247,7 +2251,11 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
 				INSTALL_PATH = "@executable_path";
-				LIBRARY_SEARCH_PATHS = "$(WorkspaceDir)/../../../nodeapp/thirdparty/library";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(TARGET_BUILD_DIR)",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = axisfreetype;
 				SDKROOT = macosx;
