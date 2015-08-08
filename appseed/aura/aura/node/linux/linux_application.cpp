@@ -383,9 +383,12 @@ namespace linux
    #endif
    }
 
-   uint32_t application::get_thread_id()
+
+   IDTHREAD application::get_thread_id()
    {
+
       return ::pthread_self();
+
    }
 
 
