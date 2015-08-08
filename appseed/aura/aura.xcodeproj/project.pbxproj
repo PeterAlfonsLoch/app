@@ -4345,7 +4345,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				INSTALL_PATH = "@executable_path/../Frameworks";
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
 			};
 			name = Debug;
 		};
@@ -4353,7 +4355,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				INSTALL_PATH = "@executable_path/../Frameworks";
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
 			};
 			name = Release;
 		};

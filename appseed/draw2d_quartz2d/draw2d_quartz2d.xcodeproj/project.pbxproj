@@ -536,7 +536,9 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = framework.h;
+				INSTALL_PATH = "@executable_path/../Frameworks";
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
 			};
 			name = Debug;
 		};
@@ -546,7 +548,9 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = framework.h;
+				INSTALL_PATH = "@executable_path/../Frameworks";
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
 			};
 			name = Release;
 		};

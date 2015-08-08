@@ -218,7 +218,9 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				INSTALL_PATH = "@executable_path/../Frameworks";
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
 			};
 			name = Debug;
 		};
@@ -227,7 +229,9 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				INSTALL_PATH = "@executable_path/../Frameworks";
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
 			};
 			name = Release;
 		};

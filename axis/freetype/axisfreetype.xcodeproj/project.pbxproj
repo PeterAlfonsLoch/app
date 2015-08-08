@@ -556,20 +556,6 @@
 			remoteGlobalIDString = 07B65773190F3CA2002DAADE;
 			remoteInfo = axispng_iosTests;
 		};
-		07D1B0F21B6FBF11004E8E35 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 07D1B0E61B6FBEFD004E8E35 /* axis_image_png.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9A574B9716AAB906000CC4EF;
-			remoteInfo = axispng;
-		};
-		07D1B0F41B6FBF1D004E8E35 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 07D1B0E61B6FBEFD004E8E35 /* axis_image_png.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 07B65763190F3CA2002DAADE;
-			remoteInfo = ios_axispng;
-		};
 		07D6A7FE1B4CB81F004FEBC2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9AEEB81719C50B1000866C9E /* axisfreeimage.xcodeproj */;
@@ -1872,7 +1858,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				07D1B0F51B6FBF1D004E8E35 /* PBXTargetDependency */,
 				07108DD61B4C9A0D00A28F80 /* PBXTargetDependency */,
 				07D6A8011B4CB81F004FEBC2 /* PBXTargetDependency */,
 				07D6A7FF1B4CB81F004FEBC2 /* PBXTargetDependency */,
@@ -1894,7 +1879,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				07D1B0F31B6FBF11004E8E35 /* PBXTargetDependency */,
 				9AEEB83C19C50EB900866C9E /* PBXTargetDependency */,
 				9A19A09719C6771D0018DF7D /* PBXTargetDependency */,
 			);
@@ -2137,16 +2121,6 @@
 			name = axisbzip2_ios;
 			targetProxy = 07108DD71B4C9A1300A28F80 /* PBXContainerItemProxy */;
 		};
-		07D1B0F31B6FBF11004E8E35 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = axispng;
-			targetProxy = 07D1B0F21B6FBF11004E8E35 /* PBXContainerItemProxy */;
-		};
-		07D1B0F51B6FBF1D004E8E35 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ios_axispng;
-			targetProxy = 07D1B0F41B6FBF1D004E8E35 /* PBXContainerItemProxy */;
-		};
 		07D6A7FF1B4CB81F004FEBC2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = axisfreeimage_ios;
@@ -2174,7 +2148,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				INSTALL_PATH = "@executable_path/../Frameworks";
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
 			};
 			name = Debug;
 		};
@@ -2182,7 +2158,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				INSTALL_PATH = "@executable_path/../Frameworks";
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
 			};
 			name = Release;
 		};

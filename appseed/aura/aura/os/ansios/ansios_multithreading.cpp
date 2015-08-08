@@ -259,8 +259,11 @@ CLASS_DECL_AURA IDTHREAD get_current_thread_id()
 typedef void_ptra ThreadLocalData;
 
 
-
+#ifdef APPLE_IOS
+thread_pointer < ThreadLocalData > currentThreadData;
+#else
 CLASS_DECL_THREAD ThreadLocalData * currentThreadData;
+#endif
 //thread_int_ptr < DWORD > currentThreadId;
 //thread_pointer < HTHREAD > currentThread;
 //thread_pointer < hthread > t_phthread;
