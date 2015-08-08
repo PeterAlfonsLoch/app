@@ -9,6 +9,31 @@
 /* Begin PBXBuildFile section */
 		07473E0D1B503FE4004688C5 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07473E0C1B503FE4004688C5 /* libaura.dylib */; };
 		077832E51B72FC99005D0C27 /* pcre2_chartables.c in Sources */ = {isa = PBXBuildFile; fileRef = 077832E41B72FC99005D0C27 /* pcre2_chartables.c */; };
+		07A4B11E1B76466800DA5C57 /* pcre2_chartables.c in Sources */ = {isa = PBXBuildFile; fileRef = 077832E41B72FC99005D0C27 /* pcre2_chartables.c */; };
+		07A4B11F1B76466800DA5C57 /* pcre2_auto_possess.c in Sources */ = {isa = PBXBuildFile; fileRef = 07EF5D2C1B72F09600863D39 /* pcre2_auto_possess.c */; };
+		07A4B1201B76466800DA5C57 /* pcre2_compile.c in Sources */ = {isa = PBXBuildFile; fileRef = 07EF5D2E1B72F09600863D39 /* pcre2_compile.c */; };
+		07A4B1211B76466800DA5C57 /* pcre2_config.c in Sources */ = {isa = PBXBuildFile; fileRef = 07EF5D2F1B72F09600863D39 /* pcre2_config.c */; };
+		07A4B1221B76466800DA5C57 /* pcre2_context.c in Sources */ = {isa = PBXBuildFile; fileRef = 07EF5D301B72F09600863D39 /* pcre2_context.c */; };
+		07A4B1231B76466800DA5C57 /* pcre2_dfa_match.c in Sources */ = {isa = PBXBuildFile; fileRef = 07EF5D311B72F09600863D39 /* pcre2_dfa_match.c */; };
+		07A4B1241B76466800DA5C57 /* pcre2_error.c in Sources */ = {isa = PBXBuildFile; fileRef = 07EF5D321B72F09600863D39 /* pcre2_error.c */; };
+		07A4B1251B76466800DA5C57 /* pcre2_jit_compile.c in Sources */ = {isa = PBXBuildFile; fileRef = 07EF5D351B72F09600863D39 /* pcre2_jit_compile.c */; };
+		07A4B1261B76466800DA5C57 /* pcre2_maketables.c in Sources */ = {isa = PBXBuildFile; fileRef = 07EF5D391B72F09600863D39 /* pcre2_maketables.c */; };
+		07A4B1271B76466800DA5C57 /* pcre2_match.c in Sources */ = {isa = PBXBuildFile; fileRef = 07EF5D3A1B72F09600863D39 /* pcre2_match.c */; };
+		07A4B1281B76466800DA5C57 /* pcre2_match_data.c in Sources */ = {isa = PBXBuildFile; fileRef = 07EF5D3B1B72F09600863D39 /* pcre2_match_data.c */; };
+		07A4B1291B76466800DA5C57 /* pcre2_newline.c in Sources */ = {isa = PBXBuildFile; fileRef = 07EF5D3C1B72F09600863D39 /* pcre2_newline.c */; };
+		07A4B12A1B76466800DA5C57 /* pcre2_ord2utf.c in Sources */ = {isa = PBXBuildFile; fileRef = 07EF5D3D1B72F09600863D39 /* pcre2_ord2utf.c */; };
+		07A4B12B1B76466800DA5C57 /* pcre2_pattern_info.c in Sources */ = {isa = PBXBuildFile; fileRef = 07EF5D3E1B72F09600863D39 /* pcre2_pattern_info.c */; };
+		07A4B12C1B76466800DA5C57 /* pcre2_serialize.c in Sources */ = {isa = PBXBuildFile; fileRef = 07EF5D401B72F09600863D39 /* pcre2_serialize.c */; };
+		07A4B12D1B76466800DA5C57 /* pcre2_string_utils.c in Sources */ = {isa = PBXBuildFile; fileRef = 07EF5D411B72F09600863D39 /* pcre2_string_utils.c */; };
+		07A4B12E1B76466800DA5C57 /* pcre2_study.c in Sources */ = {isa = PBXBuildFile; fileRef = 07EF5D421B72F09600863D39 /* pcre2_study.c */; };
+		07A4B12F1B76466800DA5C57 /* pcre2_substitute.c in Sources */ = {isa = PBXBuildFile; fileRef = 07EF5D431B72F09600863D39 /* pcre2_substitute.c */; };
+		07A4B1301B76466800DA5C57 /* pcre2_substring.c in Sources */ = {isa = PBXBuildFile; fileRef = 07EF5D441B72F09600863D39 /* pcre2_substring.c */; };
+		07A4B1311B76466800DA5C57 /* pcre2_tables.c in Sources */ = {isa = PBXBuildFile; fileRef = 07EF5D451B72F09600863D39 /* pcre2_tables.c */; };
+		07A4B1321B76466800DA5C57 /* pcre2_ucd.c in Sources */ = {isa = PBXBuildFile; fileRef = 07EF5D461B72F09600863D39 /* pcre2_ucd.c */; };
+		07A4B1331B76466800DA5C57 /* pcre2_valid_utf.c in Sources */ = {isa = PBXBuildFile; fileRef = 07EF5D481B72F09600863D39 /* pcre2_valid_utf.c */; };
+		07A4B1341B76466800DA5C57 /* pcre2_xclass.c in Sources */ = {isa = PBXBuildFile; fileRef = 07EF5D491B72F09600863D39 /* pcre2_xclass.c */; };
+		07A4B1351B76466800DA5C57 /* pcre2posix.c in Sources */ = {isa = PBXBuildFile; fileRef = 07EF5D4C1B72F09600863D39 /* pcre2posix.c */; };
+		07A4B1361B76466800DA5C57 /* sljitLir.c in Sources */ = {isa = PBXBuildFile; fileRef = 07EF5D531B72F09600863D39 /* sljitLir.c */; };
 		07EF5D671B72F09600863D39 /* pcre2_auto_possess.c in Sources */ = {isa = PBXBuildFile; fileRef = 07EF5D2C1B72F09600863D39 /* pcre2_auto_possess.c */; };
 		07EF5D681B72F09600863D39 /* pcre2_compile.c in Sources */ = {isa = PBXBuildFile; fileRef = 07EF5D2E1B72F09600863D39 /* pcre2_compile.c */; };
 		07EF5D691B72F09600863D39 /* pcre2_config.c in Sources */ = {isa = PBXBuildFile; fileRef = 07EF5D2F1B72F09600863D39 /* pcre2_config.c */; };
@@ -354,6 +379,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07A4B11E1B76466800DA5C57 /* pcre2_chartables.c in Sources */,
+				07A4B11F1B76466800DA5C57 /* pcre2_auto_possess.c in Sources */,
+				07A4B1201B76466800DA5C57 /* pcre2_compile.c in Sources */,
+				07A4B1211B76466800DA5C57 /* pcre2_config.c in Sources */,
+				07A4B1221B76466800DA5C57 /* pcre2_context.c in Sources */,
+				07A4B1231B76466800DA5C57 /* pcre2_dfa_match.c in Sources */,
+				07A4B1241B76466800DA5C57 /* pcre2_error.c in Sources */,
+				07A4B1251B76466800DA5C57 /* pcre2_jit_compile.c in Sources */,
+				07A4B1261B76466800DA5C57 /* pcre2_maketables.c in Sources */,
+				07A4B1271B76466800DA5C57 /* pcre2_match.c in Sources */,
+				07A4B1281B76466800DA5C57 /* pcre2_match_data.c in Sources */,
+				07A4B1291B76466800DA5C57 /* pcre2_newline.c in Sources */,
+				07A4B12A1B76466800DA5C57 /* pcre2_ord2utf.c in Sources */,
+				07A4B12B1B76466800DA5C57 /* pcre2_pattern_info.c in Sources */,
+				07A4B12C1B76466800DA5C57 /* pcre2_serialize.c in Sources */,
+				07A4B12D1B76466800DA5C57 /* pcre2_string_utils.c in Sources */,
+				07A4B12E1B76466800DA5C57 /* pcre2_study.c in Sources */,
+				07A4B12F1B76466800DA5C57 /* pcre2_substitute.c in Sources */,
+				07A4B1301B76466800DA5C57 /* pcre2_substring.c in Sources */,
+				07A4B1311B76466800DA5C57 /* pcre2_tables.c in Sources */,
+				07A4B1321B76466800DA5C57 /* pcre2_ucd.c in Sources */,
+				07A4B1331B76466800DA5C57 /* pcre2_valid_utf.c in Sources */,
+				07A4B1341B76466800DA5C57 /* pcre2_xclass.c in Sources */,
+				07A4B1351B76466800DA5C57 /* pcre2posix.c in Sources */,
+				07A4B1361B76466800DA5C57 /* sljitLir.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,18 +458,18 @@
 		07D6A8451B4CBB45004FEBC2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				INSTALL_PATH = "$(LOCAL_APPS_DIR)/ca2.app";
+				INSTALL_PATH = "@executable_path/../Frameworks";
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
 			};
 			name = Debug;
 		};
 		07D6A8461B4CBB45004FEBC2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				INSTALL_PATH = "$(LOCAL_APPS_DIR)/ca2.app";
+				INSTALL_PATH = "@executable_path/../Frameworks";
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
 			};
 			name = Release;
 		};
@@ -434,6 +484,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = NO;
+				DEPLOYMENT_POSTPROCESSING = YES;
 				EXECUTABLE_EXTENSION = dylib;
 				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -482,6 +533,7 @@
 				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_POSTPROCESSING = YES;
 				EXECUTABLE_EXTENSION = dylib;
 				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
