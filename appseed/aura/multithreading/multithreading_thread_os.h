@@ -74,7 +74,11 @@ inline int id_thread_equals(IDTHREAD a, IDTHREAD b) {return a==b;}
 
 #else
 
+#ifdef LINUX
+typedef HTHREAD IDTHREAD;
+#else
 typedef pthread_t IDTHREAD;
+#endif // LINUX
 
 inline int id_thread_equals(IDTHREAD a, IDTHREAD b) {return pthread_equal(a, b);}
 

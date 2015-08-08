@@ -555,7 +555,9 @@ typedef HANDLE HTHREAD;
 
 #else
 
+#ifndef LINUX
 typedef pthread_t HTHREAD;
+#endif
 
 #endif
 
@@ -1692,7 +1694,7 @@ namespace user
    }
 
 
-   
+
 
 
 

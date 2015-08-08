@@ -15,8 +15,9 @@ class event;
 #endif
 
 //#include <pthread.h>
-
+#ifndef LINUX
 typedef pthread_t HTHREAD;
+#endif // LINUX
 
 struct oswindow_data;
 

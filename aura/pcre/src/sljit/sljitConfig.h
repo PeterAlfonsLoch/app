@@ -43,6 +43,9 @@
 #ifdef __APPLE__
 #define SLJIT_CONFIG_X86_64 1
 #endif
+#ifdef LINUX
+#define SLJIT_CONFIG_X86_64 1
+#endif
 /* #define SLJIT_CONFIG_ARM_V5 1 */
 /* #define SLJIT_CONFIG_ARM_V7 1 */
 /* #define SLJIT_CONFIG_ARM_THUMB2 1 */

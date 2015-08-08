@@ -554,6 +554,11 @@ namespace file
          try
          {
 
+         if(varFile.get_string().find_ci("/left/") >= 0)
+         {
+         TRACE("left folder");
+         }
+
             spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_read | ::file::share_deny_none);
 
             if (spfile.is_null())
@@ -582,7 +587,7 @@ namespace file
 
       void system::lines(stringa & stra, var varFile, ::aura::application * papp)
       {
-         
+
          ::file::text_buffer_sp spfile(papp == NULL ? allocer() : papp->allocer());
 
          try

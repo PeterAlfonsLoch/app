@@ -18,7 +18,7 @@ m_mutexUiPtra(papp)
 {
 
    CommonConstruct();
-   
+
 
 }
 
@@ -52,14 +52,14 @@ void thread_impl::construct(__THREADPROC pfnThreadProc, LPVOID pParam)
 
 
 void thread_impl::CommonConstruct()
-{  
-   
+{
+
 #ifndef WINDOWSEX
-   
+
    m_mq = NULL;
 
 #endif
-   
+
    m_bDupHandle = false;
 
    m_hthread = (HTHREAD) NULL;
@@ -786,7 +786,7 @@ bool thread_impl::post_thread_message(UINT message,WPARAM wParam,lparam lParam)
 
    if(message == WM_QUIT)
    {
-      
+
       string strName = demangle(typeid(*m_pthread).name());
       ::output_debug_string("\n\n\nWM_QUIT posted to thread "+strName+"(" + ::str::from((uint64_t)m_uiThread) + ")\n\n\n");
       if(strName == "::core::system")
@@ -1247,7 +1247,7 @@ int32_t thread_impl::run()
    m_pthread->defer_add_thread_run_wait(soa);
 
    multi_lock ml(soa);
-   
+
    ::output_debug_string("::thread_impl::run " + string(demangle(typeid(*m_pthread).name())) + " m_bRun = "+::str::from((int)m_pthread->m_bRun)+"\n\n");
 
 
@@ -1276,9 +1276,9 @@ int32_t thread_impl::run()
 
 
    }
-   
+
    ::output_debug_string("::thread_impl::run Exiting " + string(demangle(typeid(*m_pthread).name())) + " m_bRun = "+::str::from((int)m_pthread->m_bRun)+" m_iReturnCode = "+::str::from(m_pthread->m_iReturnCode)+"\n\n");
-   
+
 
 //stop_run:
 
@@ -1306,10 +1306,10 @@ bool thread_impl::defer_pump_message()
       // pump message, but quit on WM_QUIT
       if(!m_pthread->m_bRun || !pump_message())
       {
-         
+
 
          ::output_debug_string("\n\n\nthread_impl::defer_pump_message (1) quitting (WM_QUIT? {PeekMessage->message : "+::str::from(msg.message == WM_QUIT?1:0)+"!}) : " + string(demangle(typeid(*m_pthread).name())) + " ("+::str::from((uint64_t)::GetCurrentThreadId())+")\n\n\n");
-         
+
          return false;
 
       }
@@ -1329,7 +1329,7 @@ bool thread_impl::defer_pump_message()
 
    if(!m_pthread->on_run_step())
    {
-      
+
       ::output_debug_string("defer_pump_message (2) quitting : " + string(demangle(typeid(*m_pthread).name())) + "\n\n");
 
       return false;
@@ -1358,7 +1358,7 @@ bool thread_impl::pump_message()
          TRACE(::aura::trace::category_AppMsg,1,"thread_impl::pump_message - Received WM_QUIT.\n");
 
          ::output_debug_string("thread_impl::pump_message - Received WM_QUIT.\n");
-         
+
          m_nDisablePumpCount++; // application must die
          // Note: prevents calling message loop things in 'exit_instance'
          // will never be decremented
