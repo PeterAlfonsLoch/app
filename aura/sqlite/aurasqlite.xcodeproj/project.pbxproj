@@ -160,6 +160,7 @@
 		07108ADD1B4C95F600A28F80 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				SDKROOT = iphoneos;
@@ -170,6 +171,7 @@
 		07108ADE1B4C95F600A28F80 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				SDKROOT = iphoneos;
