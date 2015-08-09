@@ -3170,8 +3170,8 @@ that the match-time bits are not more significant than the flag bits. If by
 accident this is not the case, a compile-time division by zero error will
 occur. */
 
-#define FF (PCRE2_NOTEMPTY_SET|PCRE2_NE_ATST_SET)
-#define OO (PCRE2_NOTEMPTY|PCRE2_NOTEMPTY_ATSTART)
+#define FF ((int)(PCRE2_NOTEMPTY_SET|PCRE2_NE_ATST_SET))
+#define OO ((int)(PCRE2_NOTEMPTY|PCRE2_NOTEMPTY_ATSTART))
 options |= (re->flags & FF) / ((FF & -FF) / (OO & -OO));
 #undef FF
 #undef OO

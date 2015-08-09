@@ -6513,7 +6513,7 @@ occur. */
 
 #define FF (PCRE2_NOTEMPTY_SET|PCRE2_NE_ATST_SET)
 #define OO (PCRE2_NOTEMPTY|PCRE2_NOTEMPTY_ATSTART)
-options |= (re->flags & FF) / ((FF & -FF) / (OO & -OO));
+options |= (re->flags & FF) / ((FF & -(int)FF) / (OO & -(int)OO));
 #undef FF
 #undef OO
 

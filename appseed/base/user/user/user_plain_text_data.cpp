@@ -16,6 +16,8 @@ namespace user
       m_pgroupcommand      = NULL;
       m_pfile              = NULL;
       m_iBranch            = 0;
+      m_iSelStart          = -1;
+      m_iSelEnd            = -1;
 
    }
 

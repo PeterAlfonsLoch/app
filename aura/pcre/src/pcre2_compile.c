@@ -1884,7 +1884,7 @@ else
       s = cb->bracount - (s - 1);
       }
 
-    escape = -s;
+    escape = -(int)s;
     break;
 
     /* The handling of escape sequences consisting of a string of digits
@@ -1933,7 +1933,7 @@ else
 
       if (s < 10 || *oldptr >= CHAR_8 || s <= cb->bracount)
         {
-        escape = -s;     /* Indicates a back reference */
+        escape = -(int)s;     /* Indicates a back reference */
         break;
         }
       ptr = oldptr;      /* Put the pointer back and fall through */

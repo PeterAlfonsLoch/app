@@ -46,6 +46,13 @@
 #ifdef LINUX
 #define SLJIT_CONFIG_X86_64 1
 #endif
+#ifdef _WIN32
+#if defined(_M_X64)  // X64
+#define SLJIT_CONFIG_X86_64 1
+#else
+#define SLJIT_CONFIG_X86_32 1
+#endif
+#endif
 /* #define SLJIT_CONFIG_ARM_V5 1 */
 /* #define SLJIT_CONFIG_ARM_V7 1 */
 /* #define SLJIT_CONFIG_ARM_THUMB2 1 */

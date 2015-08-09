@@ -589,6 +589,8 @@ namespace user
    void plain_edit::_001OnKeyDown(signal_details * pobj)
    {
 
+      synch_lock sl(m_pmutex);
+
       SCAST_PTR(::message::key,pkey,pobj)
 
       if(pkey->m_ekey == ::user::key_return)
@@ -2042,6 +2044,8 @@ namespace user
                   m_ptree->m_editfile.seek(iBegin,::file::seek_begin);
                   m_ptree->m_editfile.read(buf,sizeof(buf));
                   const char * psz = ::str::utf8_dec(buf,&buf[iCur]);
+                  if(psz == NULL)
+                     psz = MAX(buf,&buf[iCur - 1]);
                   strsize iMultiByteUtf8DeleteCount = &buf[iCur] - psz;
                   m_ptree->m_iSelEnd -= iMultiByteUtf8DeleteCount;
                   m_ptree->m_editfile.seek(m_ptree->m_iSelEnd,::file::seek_begin);
