@@ -322,7 +322,7 @@ copy         FreeImagePlus.h         dist\
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\FreeImage.2008.vcxproj">
-      <Project>{b39ed2b3-d53a-4077-b957-930979a3577d}</Project>
+      <Project>{B39ED2B3-D53A-4077-B957-ABCDEF775184}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
   </ItemGroup>

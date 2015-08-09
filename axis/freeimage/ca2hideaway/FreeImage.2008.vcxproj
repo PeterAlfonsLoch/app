@@ -20,7 +20,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectName>FreeImage</ProjectName>
-    <ProjectGuid>{B39ED2B3-D53A-4077-B957-930979A3577D}</ProjectGuid>
+    <ProjectGuid>{B39ED2B3-D53A-4077-B957-ABCDEF775184}</ProjectGuid>
     <RootNamespace>FreeImage</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

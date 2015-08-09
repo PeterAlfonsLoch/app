@@ -567,7 +567,7 @@
       <Project>{03e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
     </ProjectReference>
     <ProjectReference Include="..\freeimage\axisfreeimage.vcxproj">
-      <Project>{b39ed2b3-d53a-4077-b957-930979a3577d}</Project>
+      <Project>{B39ED2B3-D53A-4077-B957-ABCDEF775184}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
