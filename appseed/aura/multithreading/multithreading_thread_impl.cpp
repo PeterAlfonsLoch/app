@@ -1693,12 +1693,19 @@ void thread_impl::thread_impl_delete()
    }
    else if(m_pthread->m_bAutoDelete)
    {
-
+      //if(m_pthread->m_countReference > 1)
+      //{
+      //   throw simple_exception(get_app(), "thread should be deleted here");
+      //}
        m_pthread->release();
 
    }
    else
    {
+      //if(m_pthread->m_countReference > 1)
+      //{
+      //   throw simple_exception(get_app(),"thread should be deleted here");
+      //}
 
       m_pthread->set_os_data(NULL);
 

@@ -72,6 +72,19 @@ namespace multithreading
    CLASS_DECL_AURA uint32_t __on_thread_finally(thread * pthread)
    {
 
+      try
+      {
+
+         pthread->unregister_from_required_threads();
+
+      }
+      catch(...)
+      {
+
+
+      }
+
+
       __node_term_thread(pthread);
 
       ::multithreading::__node_on_term_thread(pthread);
@@ -102,7 +115,17 @@ namespace multithreading
 
       }
 
-      pthread->m_pthreadimpl->thread_term();
+      try
+      {
+
+         pthread->m_pthreadimpl->thread_term();
+
+      }
+      catch(...)
+      {
+
+      }
+
 
       __end_thread(papp);
 

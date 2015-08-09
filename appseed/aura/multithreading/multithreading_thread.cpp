@@ -144,6 +144,8 @@ void thread::CommonConstruct()
 thread::~thread()
 {
 
+
+
    if(m_pmutex != NULL)
       delete m_pmutex;
 
@@ -272,8 +274,6 @@ bool thread::finalize()
 {
 
    signal_close_dependent_threads();
-
-   unregister_from_required_threads();
 
    wait_close_dependent_threads(minutes(1));
 
@@ -1116,7 +1116,7 @@ void thread::wait_close_dependent_threads(const duration & duration)
 
       }
 
-      Sleep(11);
+      Sleep(284);
 
    }
 
