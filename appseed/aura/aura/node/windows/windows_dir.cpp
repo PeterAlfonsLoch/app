@@ -866,6 +866,9 @@ namespace windows
       //   m_strAppData,
       //   CSIDL_APPDATA,
       //   FALSE);
+      m_strCommonAppData /= "ca2";
+      m_pathProfile /= "ca2";
+
       m_strAppData = get_known_folder(FOLDERID_RoamingAppData);
 
       SHGetSpecialFolderPath(
