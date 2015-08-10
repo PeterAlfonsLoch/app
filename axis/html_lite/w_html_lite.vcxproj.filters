@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{e6f7433b-bf96-4746-966d-9c48c0dc85f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\html_lite">
+      <UniqueIdentifier>{f6bc971e-b968-49c6-a08d-382649c21554}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\html">
+      <UniqueIdentifier>{df6ba304-298c-4a46-b20f-974d820d934e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{62ea8268-8d89-4d2c-b69c-3a5172285a34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\html_lite">
+      <UniqueIdentifier>{ee2220f0-3b5e-4ff5-85de-b11f51531e57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\html">
+      <UniqueIdentifier>{1f48bbc8-afb5-427e-b75a-077b245dee68}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="html_lite\html_lite.h">
+      <Filter>Header Files\html_lite</Filter>
+    </ClInclude>
+    <ClInclude Include="html_lite\html_lite_application.h">
+      <Filter>Header Files\html_lite</Filter>
+    </ClInclude>
+    <ClInclude Include="html_lite\html_lite_html_attributes.h">
+      <Filter>Header Files\html_lite</Filter>
+    </ClInclude>
+    <ClInclude Include="html_lite\html_lite_html_common.h">
+      <Filter>Header Files\html_lite</Filter>
+    </ClInclude>
+    <ClInclude Include="html_lite\html_lite_html_entity_resolver.h">
+      <Filter>Header Files\html_lite</Filter>
+    </ClInclude>
+    <ClInclude Include="html_lite\html_lite_html_reader.h">
+      <Filter>Header Files\html_lite</Filter>
+    </ClInclude>
+    <ClInclude Include="html_lite\html_lite_html_tag.h">
+      <Filter>Header Files\html_lite</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html.h">
+      <Filter>Header Files\html</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html_enum.h">
+      <Filter>Header Files\html</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html_html.h">
+      <Filter>Header Files\html</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="_html_lite_html_lite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="html_lite\html_lite_application.cpp">
+      <Filter>Source Files\html_lite</Filter>
+    </ClCompile>
+    <ClCompile Include="html_lite\html_lite_html_attributes.cpp">
+      <Filter>Source Files\html_lite</Filter>
+    </ClCompile>
+    <ClCompile Include="html_lite\html_lite_html_entity_resolver.cpp">
+      <Filter>Source Files\html_lite</Filter>
+    </ClCompile>
+    <ClCompile Include="html_lite\html_lite_html_reader.cpp">
+      <Filter>Source Files\html_lite</Filter>
+    </ClCompile>
+    <ClCompile Include="html_lite\html_lite_html_tag.cpp">
+      <Filter>Source Files\html_lite</Filter>
+    </ClCompile>
+    <ClCompile Include="html_lite\_html_lite.cpp">
+      <Filter>Source Files\html_lite</Filter>
+    </ClCompile>
+    <ClCompile Include="html\html_html.cpp">
+      <Filter>Source Files\html</Filter>
+    </ClCompile>
+    <ClCompile Include="html\_html.cpp">
+      <Filter>Source Files\html</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="html_lite.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

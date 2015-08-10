@@ -4,104 +4,117 @@
     <Filter Include="Source Files">
       <UniqueIdentifier>{dc78b607-eade-4e45-b061-cbe3be1f7548}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\cpp">
-      <UniqueIdentifier>{87d49307-6c03-4d60-a697-3776bca141d0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\framework">
-      <UniqueIdentifier>{6e8e1471-6a1b-4054-b4be-75b5ae29d2f9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{4c4e8124-bbfe-40d0-be69-58030e541d85}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\cpp">
-      <UniqueIdentifier>{5c0abbf0-2c11-49ba-9546-efc11b0c89b0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\framework">
-      <UniqueIdentifier>{3995c6f5-84e9-4903-af54-30155fb4656f}</UniqueIdentifier>
+    <Filter Include="Source Files\sljit">
+      <UniqueIdentifier>{77fa8143-5960-4060-896a-7551f6191926}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="auracharguess.def">
-      <Filter>Source Files</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="cpp\charDistribution.cpp">
-      <Filter>Source Files\cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="cpp\_.cpp">
-      <Filter>Source Files\cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="framework\framework.cpp">
-      <Filter>Source Files\framework</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\include\charguess.h">
+    <ClInclude Include="src\sljit\sljitConfig.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="cpp\big5Prober.h">
-      <Filter>Header Files\cpp</Filter>
+    <ClInclude Include="src\sljit\sljitConfigInternal.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="cpp\charDistribution.h">
-      <Filter>Header Files\cpp</Filter>
+    <ClInclude Include="src\sljit\sljitLir.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="cpp\charsetProber.h">
-      <Filter>Header Files\cpp</Filter>
+    <ClInclude Include="src\pcre2posix.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="cpp\codingStateMachine.h">
-      <Filter>Header Files\cpp</Filter>
+    <ClInclude Include="src\pcre2_ucp.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="cpp\config.h">
-      <Filter>Header Files\cpp</Filter>
+    <ClInclude Include="src\pcre2_intmodedep.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="cpp\EscCharsetProber.h">
-      <Filter>Header Files\cpp</Filter>
+    <ClInclude Include="src\pcre2_internal.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="cpp\EUCJPProber.h">
-      <Filter>Header Files\cpp</Filter>
+    <ClInclude Include="src\pcre2.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="cpp\EUCKRProber.h">
-      <Filter>Header Files\cpp</Filter>
+    <ClInclude Include="src\config.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="cpp\EUCTWProber.h">
-      <Filter>Header Files\cpp</Filter>
-    </ClInclude>
-    <ClInclude Include="cpp\GB2312Prober.h">
-      <Filter>Header Files\cpp</Filter>
-    </ClInclude>
-    <ClInclude Include="cpp\jpCntx.h">
-      <Filter>Header Files\cpp</Filter>
-    </ClInclude>
-    <ClInclude Include="cpp\Latin1Prober.h">
-      <Filter>Header Files\cpp</Filter>
-    </ClInclude>
-    <ClInclude Include="cpp\MBCSGroupProber.h">
-      <Filter>Header Files\cpp</Filter>
-    </ClInclude>
-    <ClInclude Include="cpp\pkgInt.h">
-      <Filter>Header Files\cpp</Filter>
-    </ClInclude>
-    <ClInclude Include="cpp\SBCharsetProber.h">
-      <Filter>Header Files\cpp</Filter>
-    </ClInclude>
-    <ClInclude Include="cpp\SBCSGroupProber.h">
-      <Filter>Header Files\cpp</Filter>
-    </ClInclude>
-    <ClInclude Include="cpp\SJISProber.h">
-      <Filter>Header Files\cpp</Filter>
-    </ClInclude>
-    <ClInclude Include="cpp\types.h">
-      <Filter>Header Files\cpp</Filter>
-    </ClInclude>
-    <ClInclude Include="cpp\universal.h">
-      <Filter>Header Files\cpp</Filter>
-    </ClInclude>
-    <ClInclude Include="cpp\UTF8Prober.h">
-      <Filter>Header Files\cpp</Filter>
-    </ClInclude>
-    <ClInclude Include="framework\framework.h">
-      <Filter>Header Files\framework</Filter>
-    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\dftables.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pcre2_auto_possess.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pcre2_chartables.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pcre2_compile.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pcre2_config.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pcre2_context.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pcre2_dfa_match.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pcre2_error.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pcre2_jit_compile.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pcre2_maketables.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pcre2_match.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pcre2_match_data.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pcre2_newline.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pcre2_ord2utf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pcre2_pattern_info.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pcre2_serialize.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pcre2_string_utils.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pcre2_study.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pcre2_substitute.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pcre2_substring.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pcre2_tables.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pcre2_ucd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pcre2_valid_utf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pcre2_xclass.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sljit\sljitLir.c">
+      <Filter>Source Files\sljit</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
