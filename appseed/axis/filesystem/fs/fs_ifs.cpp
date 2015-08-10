@@ -17,7 +17,7 @@ ifs::ifs(::aura::application * papp, const char * pszRoot) :
 bool ifs::fast_has_subdir(const ::file::path & path)
 {
 
-   synch_lock sl(data_mutex());
+   synch_lock sl(m_pmutex);
 
    uint32_t dwTimeout;
 
@@ -37,7 +37,7 @@ bool ifs::fast_has_subdir(const ::file::path & path)
 bool ifs::has_subdir(const ::file::path & path)
 {
 
-   synch_lock sl(data_mutex());
+   synch_lock sl(m_pmutex);
 
    uint32_t dwTimeout;
 
@@ -85,7 +85,7 @@ bool ifs::has_subdir(const ::file::path & path)
 ::file::listing & ifs::ls(::file::listing & listing)
 {
 
-   synch_lock sl(data_mutex());
+   synch_lock sl(m_pmutex);
 
    uint32_t dwTimeout;
 
@@ -299,7 +299,7 @@ bool ifs::is_dir(const ::file::path & path)
 
    uint32_t dwTimeout;
 
-   synch_lock sl(data_mutex());
+   synch_lock sl(m_pmutex);
 
    dir_listing & dir = m_map[path.folder()];
 

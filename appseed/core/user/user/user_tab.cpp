@@ -1621,7 +1621,7 @@ namespace user
 
       {
 
-         ::data::lock lock(get_data());
+         synch_lock lock(get_data()->m_pmutex);
 
          get_data()->m_iaSel.remove_all();
 
@@ -1635,11 +1635,16 @@ namespace user
 
    }
 
+
    void tab::_001AddSel(::index iSel)
    {
-      ::data::lock lock(get_data());
+      
+      synch_lock lock(get_data()->m_pmutex);
+      
       get_data()->m_iaSel.add(iSel);
+      
       on_change_pane_count();
+      
    }
 
 

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 
 html_form::html_form(::aura::application * papp) :
@@ -91,7 +91,7 @@ void html_form::_001OnImageLoaded(signal_details * pobj)
 
          get_html_data()->m_box = rectClient;
 
-         ::data::lock lock(get_html_data());
+         synch_lock lock(get_html_data()->m_pmutex);
 
          ::draw2d::memory_graphics pdc(allocer());
          get_html_data()->delete_implementation();
@@ -157,7 +157,7 @@ void html_form::GetClientBox(::html::box & box)
 void html_form::layout()
 {
 
-   synch_lock sl(&user_mutex());
+   synch_lock sl(m_pmutex);
 
    if(get_html_data() == NULL)
       return;

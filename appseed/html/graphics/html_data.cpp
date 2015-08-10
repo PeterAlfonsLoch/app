@@ -143,7 +143,7 @@ namespace html
    void data::delete_contents()
    {
       
-      ::data::lock lock(this);
+      synch_lock lock(m_pmutex);
 
       destroy();
 
@@ -245,7 +245,7 @@ namespace html
    {
 
 
-      synch_lock sl(&user_mutex());
+      synch_lock sl(m_pmutex);
 
 
       int32_t iCount = 24;
@@ -499,10 +499,10 @@ namespace html
    {
 
       int32_t iRetry = 0;
+      
+      synch_lock lock(m_pmutex);
 
 restart:
-
-      ::data::lock lock(this);
 
       if (varFile.get_type() == var::type_propset && varFile.propset()["url"].get_string().has_char())
       {
@@ -667,7 +667,7 @@ restart:
 
       ::draw2d::memory_graphics pdc(allocer());
 
-      ::data::lock l(this);
+      synch_lock lock(m_pmutex);
 
       m_pui  = pform;
 

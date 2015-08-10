@@ -872,11 +872,11 @@ namespace user
    void plain_edit::_001GetText(string & str) const
    {
 
-      ::data::simple_lock lock(m_ptree);
-
       if(m_ptree == NULL)
          return;
 
+      synch_lock lock(m_ptree->m_pmutex);
+      
       file_size iSize = m_ptree->m_editfile.get_length();
 
       char * psz = str.GetBufferSetLength((strsize)(iSize + 1));
@@ -1970,7 +1970,7 @@ namespace user
 
       {
 
-         ::data::simple_lock lockRoot(m_ptree);
+         synch_lock lockRoot(m_ptree == NULL ? NULL:m_ptree->m_pmutex);
 
          _009OnChar(pobj);
 
@@ -2316,7 +2316,9 @@ namespace user
 
    void plain_edit::_001OnSysChar(signal_details * pobj)
    {
-      ::data::simple_lock lockRoot(m_ptree);
+      
+      synch_lock lockRoot(m_ptree == NULL ? NULL:m_ptree->m_pmutex);
+
       SCAST_PTR(::message::key,pkey,pobj)
       if(pkey->m_ekey == ::user::key_delete)
       {
@@ -2636,7 +2638,7 @@ namespace user
 
    void plain_edit::_001SetText(const string & str,::action::context actioncontext)
    {
-      ::data::simple_lock lockRoot(m_ptree);
+      synch_lock lockRoot(m_ptree == NULL ? NULL:m_ptree->m_pmutex);
       m_ptree->m_editfile.seek(0,::file::seek_begin);
       m_ptree->m_editfile.Delete((::primitive::memory_size)m_ptree->m_editfile.get_length());
       m_ptree->m_editfile.seek(0,::file::seek_begin);
@@ -2855,7 +2857,7 @@ namespace user
 
    void plain_edit::set_root(plain_text_tree * pdata,bool bOwnData)
    {
-      ::data::simple_lock lockRoot(m_ptree);
+      synch_lock lockRoot(m_ptree == NULL ? NULL:m_ptree->m_pmutex);
       if(m_ptree != NULL && m_bOwnData)
       {
          delete m_ptree;

@@ -118,7 +118,7 @@ namespace data
       for(index i = 0; i < m_spadata.get_count(); i++)
       {
 
-         ptra.add(m_spadata[i]->data_mutex());
+         ptra.add(m_spadata[i]->m_pmutex);
 
       }
 

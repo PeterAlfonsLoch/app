@@ -32,8 +32,8 @@ namespace aura
 
          struct data_struct
          {
-            long     mtype;          /* Message type */
-            int      request;        /* Work request number */
+            long     message;
+            long     request;
             int      size;
             char     data[512];
          } msg;

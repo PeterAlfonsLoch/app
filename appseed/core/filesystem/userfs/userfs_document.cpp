@@ -35,7 +35,7 @@ namespace userfs
    {
 
       {
-         synch_lock sl(get_fs_data()->data_mutex());
+         synch_lock sl(get_fs_data()->m_pmutex);
          m_strFolder = pszFolder;
       }
 
@@ -48,7 +48,7 @@ namespace userfs
 
          {
 
-            synch_lock sl(get_fs_data()->data_mutex());
+            synch_lock sl(get_fs_data()->m_pmutex);
 
             m_straRootPath = listing;
 
@@ -59,7 +59,7 @@ namespace userfs
       if(strlen(pszFolder) == 0)
       {
 
-         synch_lock sl(get_fs_data()->data_mutex());
+         synch_lock sl(get_fs_data()->m_pmutex);
 
          m_straPath = m_straRootPath;
 
@@ -73,7 +73,7 @@ namespace userfs
 
          {
 
-            synch_lock sl(get_fs_data()->data_mutex());
+            synch_lock sl(get_fs_data()->m_pmutex);
 
             m_straPath = listing;
 

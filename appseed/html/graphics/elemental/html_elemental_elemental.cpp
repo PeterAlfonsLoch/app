@@ -35,7 +35,7 @@ namespace html
 
       m_pdata = pdata;
 
-      ::data::lock lock(pdata);
+      synch_lock lock(pdata->m_pmutex);
 
       implement_phase1(pdata);
 
@@ -769,40 +769,69 @@ namespace html
 
    }
 
+
    void elemental::load(data * pdata, base * pbase)
    {
+      
       if (pdata == NULL)
+      {
+         
          return;
+         
+      }
+      
       if (pdata->m_pform == NULL)
+      {
+         
          return;
+         
+      }
+      
       if (pbase == NULL)
+      {
+         
          return;
-      ::data::lock lock(pdata);
+         
+      }
+      
+      synch_lock lock(pdata->m_pmutex);
 
       m_pbase = pbase;
+      
       m_elementalptra.remove_all();
+      
       var var;
+      
       var.set_type(var::type_string);
+      
       if (m_pbase->get_type() == base::type_tag)
       {
 
          ::html::tag * ptag = dynamic_cast < ::html::tag * > (m_pbase);
 
          m_idTagName = ptag->get_name();
+         
          for (int32_t i = 0; i < ptag->attra().get_size(); i++)
          {
+            
             m_propertyset[ptag->attra()[i]->get_name()] = ptag->attra()[i]->get_value();
+            
          }
+         
          if (m_idTagName == __id(html_link) && get_tag()->get_attr_value("rel").CompareNoCase("stylesheet") == 0)
          {
+            
             sp(style_sheet) pstylesheet(new style_sheet(m_pauraapp));
 
             string strUrl(get_tag()->get_attr_value("href"));
+            
             if(strUrl.find(":") >= 0)
             {
+               
             }
             else if(strUrl[0] == '\\')
             {
+               
             }
             else if(::str::begins(m_pdata->m_strPathName,"http://") ||
                ::str::begins(m_pdata->m_strPathName,"https://"))

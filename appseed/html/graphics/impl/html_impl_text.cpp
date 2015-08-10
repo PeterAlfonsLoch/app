@@ -34,7 +34,7 @@ namespace html
       void text::implement_phase1(data * pdata, ::html::elemental * pelemental)
       {
 
-         ::data::lock lock(pdata);
+         synch_lock lock(pdata->m_pmutex);
 
          ::html::impl::elemental::implement_phase1(pdata, pelemental);
 
@@ -113,7 +113,7 @@ namespace html
       void text::layout_phase0(data * pdata)
       {
 
-         ::data::lock lock(pdata);
+         synch_lock lock(pdata->m_pmutex);
 
          ::html::impl::elemental::layout_phase0(pdata);
 

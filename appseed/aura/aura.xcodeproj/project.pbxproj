@@ -624,6 +624,7 @@
 		077CEF221B23D0B3009A57EF /* _draw2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 077CEF211B23D0B3009A57EF /* _draw2d.cpp */; };
 		077CEF241B23D0FF009A57EF /* _multithreading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 077CEF231B23D0FF009A57EF /* _multithreading.cpp */; };
 		077CEF261B23D151009A57EF /* _primitive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 077CEF251B23D151009A57EF /* _primitive.cpp */; };
+		078E7D441B7938E90093DDF8 /* aura_allocate_heap.h in Headers */ = {isa = PBXBuildFile; fileRef = 078E7D431B7938E90093DDF8 /* aura_allocate_heap.h */; };
 		079AE0651886481200635C39 /* math_scalar_enum.h in Headers */ = {isa = PBXBuildFile; fileRef = 079AE0621886481200635C39 /* math_scalar_enum.h */; };
 		079AE0671886481200635C39 /* math_scalar.h in Headers */ = {isa = PBXBuildFile; fileRef = 079AE0641886481200635C39 /* math_scalar.h */; };
 		079AE0811886486300635C39 /* primitive_relation_set.h in Headers */ = {isa = PBXBuildFile; fileRef = 079AE07F1886486300635C39 /* primitive_relation_set.h */; };
@@ -1300,6 +1301,7 @@
 		077CEF211B23D0B3009A57EF /* _draw2d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _draw2d.cpp; sourceTree = "<group>"; };
 		077CEF231B23D0FF009A57EF /* _multithreading.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _multithreading.cpp; sourceTree = "<group>"; };
 		077CEF251B23D151009A57EF /* _primitive.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _primitive.cpp; sourceTree = "<group>"; };
+		078E7D431B7938E90093DDF8 /* aura_allocate_heap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_allocate_heap.h; sourceTree = "<group>"; };
 		079AE0621886481200635C39 /* math_scalar_enum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = math_scalar_enum.h; sourceTree = "<group>"; };
 		079AE0641886481200635C39 /* math_scalar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = math_scalar.h; sourceTree = "<group>"; };
 		079AE07F1886486300635C39 /* primitive_relation_set.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive_relation_set.h; sourceTree = "<group>"; };
@@ -2349,6 +2351,7 @@
 				9A163D3619C4A4CC00966C5E /* aura_action_context.h */,
 				9A163D3719C4A4CC00966C5E /* aura_action_source.h */,
 				9A163D3819C4A4CC00966C5E /* aura_allocate.h */,
+				078E7D431B7938E90093DDF8 /* aura_allocate_heap.h */,
 				9A163D3C19C4A4CC00966C5E /* aura_application.h */,
 				9A163D3F19C4A4CC00966C5E /* aura_application_signal_details.h */,
 				9A163D4219C4A4CC00966C5E /* aura_async.h */,
@@ -4000,6 +4003,7 @@
 				9A16420619C4A4CE00966C5E /* exception_hresult.h in Headers */,
 				07F5B1F5184A3B430092C3E1 /* file_writer.h in Headers */,
 				9AE7258217E83B69003E47F9 /* primitive_var.h in Headers */,
+				078E7D441B7938E90093DDF8 /* aura_allocate_heap.h in Headers */,
 				9A1641C119C4A4CE00966C5E /* aura_printf.h in Headers */,
 				9AE7258317E83B69003E47F9 /* primitive_var2.h in Headers */,
 				9AC315C8198E4CB8008FB109 /* colorertake5_line_regions_compact_support.h in Headers */,

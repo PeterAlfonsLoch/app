@@ -101,27 +101,26 @@ void html_document::OnBeforeNavigate2(::html::data * pdata, var & varFile, uint3
 bool html_document::on_open_document(var varFile)
 {
 
-   ::data::lock lock(get_html_data());
-
-
-
-
+   synch_lock lock(get_html_data()->m_pmutex);
 
    get_html_data()->m_pform = get_typed_view < html_form > ();
 
-
-
-
-
    if(get_html_data()->m_pform == NULL)
+   {
+      
       return false;
-
+      
+   }
 
    get_html_data()->m_propset.merge(oprop("html_data_propset").propset());
 
 
    if(!get_html_data()->open_document(varFile))
-      return FALSE;
+   {
+      
+      return false;
+      
+   }
 
    set_path_name(get_html_data()->m_strPathName);
    /*   m_document.m_pauraapp = get_app();*/
@@ -140,8 +139,11 @@ bool html_document::on_open_document(var varFile)
 
 void html_document::soft_reload()
 {
-   ::data::lock lock(get_html_data());
+
+   synch_lock lock(get_html_data()->m_pmutex);
+   
    string str = get_html_data()->m_strSource;
+   
    //if(m_propset["bReplaceEx1"])
    {
       get_html_data()->m_propertyset.replace_gen(str);

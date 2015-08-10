@@ -991,8 +991,7 @@ namespace filemanager
    void file_list::browse_sync(::action::context actioncontext)
    {
 
-      ::data::lock lock(get_fs_mesh_data());
-
+      synch_lock lock(get_fs_mesh_data()->m_pmutex);
 
       if(m_bStatic)
       {

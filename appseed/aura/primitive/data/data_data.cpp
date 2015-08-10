@@ -3,7 +3,7 @@
 
 namespace data
 {
-
+/*
    simple_lock::simple_lock(simple_data * pdata) :
       interlocked_long_pulse(pdata != NULL ? &pdata->m_lockedlong : NULL, 1)
    {
@@ -29,23 +29,25 @@ namespace data
       }
       
    }
-
+*/
 
    simple_data::simple_data()
    {
+      m_pmutex = new mutex();
    }
    
    simple_data::~simple_data()
    {
+      ::aura::del(m_pmutex);
    }
 
    
-   bool simple_data::is_locked() const
-   {
-
-      return m_lockedlong > 0;
-
-   }
+//   bool simple_data::is_locked() const
+//   {
+//
+//      return m_lockedlong > 0;
+//
+//   }
 
 
    void simple_data::on_update_data(int32_t iHint)
@@ -54,26 +56,25 @@ namespace data
    }
 
 
-   lock::lock(::data::data * pdata) :
-      interlocked_long_pulse(pdata != NULL ? &pdata->m_lockedlong : NULL, 1)
-   {
-      //if (pdata != NULL)
-      //{
-      //   if (pdata->m_lockedlong == 1 && (pdata->m_spdataParentLock.is_null() || !pdata->m_spdataParentLock->is_locked()))
-      //   {
-      //      Sys(pdata->m_pauraapp).wait_twf();
-      //   }
-      //}
-   }
-
-   lock::~lock()
-   {
-   }
+//   lock::lock(::data::data * pdata) :
+//      interlocked_long_pulse(pdata != NULL ? &pdata->m_lockedlong : NULL, 1)
+//   {
+//      //if (pdata != NULL)
+//      //{
+//      //   if (pdata->m_lockedlong == 1 && (pdata->m_spdataParentLock.is_null() || !pdata->m_spdataParentLock->is_locked()))
+//      //   {
+//      //      Sys(pdata->m_pauraapp).wait_twf();
+//      //   }
+//      //}
+//   }
+//
+//   lock::~lock()
+//   {
+//   }
 
 
    data::data(::aura::application * papp) :
-      object(papp),
-      m_pmutex(NULL)
+      object(papp)
    {
       
       m_pcontainerbase = NULL;
@@ -112,10 +113,10 @@ namespace data
    }
 
 
-   bool data::is_locked() const
-   {
-      return ::data::simple_data::is_locked() || (m_spdataParentLock.is_set() && m_spdataParentLock->is_locked());
-   }
+//   bool data::is_locked() const
+//   {
+//      return ::data::simple_data::is_locked() || (m_spdataParentLock.is_set() && m_spdataParentLock->is_locked());
+//   }
 
    void data::on_update_data(int32_t iHint)
    {

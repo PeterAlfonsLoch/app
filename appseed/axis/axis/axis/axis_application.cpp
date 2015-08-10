@@ -92,7 +92,7 @@ namespace axis
 
       m_pinitmaindata = NULL;
 
-
+      Sleep(1);
 
    }
 

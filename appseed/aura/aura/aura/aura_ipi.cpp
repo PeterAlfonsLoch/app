@@ -86,7 +86,7 @@ namespace aura
 #ifdef WINDOWS
       strKey = "::ca2::fontopus::cgcl-1984-11-15::m-1951-04-22::cx-1977-02-04::votagus::" + strApp;
 #else
-      strKey = Application.dir().userappdata() / "ca2/fontopus/cgcl-1984-11-15/m-1951-04-22/cx-1977-02-04/votagus" / strApp;
+      strKey = ::file::path(getenv("HOME")) / ".ca2/fontopus/cgcl-1984-11-15/m-1951-04-22/cx-1977-02-04/votagus" / strApp;
 #endif
 
       return strKey;

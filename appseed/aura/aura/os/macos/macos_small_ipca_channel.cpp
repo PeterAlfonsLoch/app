@@ -30,20 +30,49 @@ namespace aura
          if(m_iQueue >= 0)
             close();
 
-         m_key = ftok(".",'c');
+//         m_key = ftok(".",'c');
+//
+//         if(m_key == 0)
+//            return false;
+//
+//         if((m_iQueue = msgget(m_key,0660)) == -1)
+//         {
+//            return false;
+//         }
+//
+//         m_strBaseChannel = pszChannel;
+//
+//         return true;
 
-         if(m_key == 0)
-            return false;
-
-         if((m_iQueue = msgget(m_key,0660)) == -1)
+         ::dir::mk(::file::path(pszChannel).folder());
+         
+         file_put_contents_dup(pszChannel, pszChannel);
+         
+         m_key = ftok(pszChannel,'c');
+         
+         if(m_key == (key_t)-1)
          {
+            int err = errno;
+            string str;
+            str.Format("Error(1) small_ipca_channel::rx::create %d", err);
+            ::output_debug_string(str);
+            
             return false;
          }
-
+         
+         //         if((m_iQueue = msgget(m_key,IPC_CREAT | IPC_EXCL | 0660)) == -1)
+         if((m_iQueue = msgget(m_key,IPC_CREAT | 0660)) == -1)         
+         {
+            int err = errno;
+            string str;
+            str.Format("Error(2) small_ipca_channel::rx::create %d", err);
+            ::output_debug_string(str);
+            
+            return false;
+         }
          m_strBaseChannel = pszChannel;
 
          return true;
-
       }
 
       bool tx::close()
@@ -69,8 +98,8 @@ namespace aura
          ::count cSend;
 
          data_struct data;
-         data.mtype        = 15111984;
-         data.request      = 0x80000000;
+         data.message      = 1984;
+         data.request      = 5; // "handy" message : just a string
          data.size         = (int)strlen_dup(pszMessage);
 
          ::count cPos = 0;
@@ -111,7 +140,7 @@ namespace aura
       bool tx::send(int message,void * pdata,int len,DWORD dwTimeout)
       {
 
-         if(message == 0x80000000)
+         if(message == 5)
             return false;
 
 
@@ -125,9 +154,9 @@ namespace aura
          ::count cSend;
 
          data_struct data;
-         data.mtype        = 15111984;
-         data.request      = 0x80000000;
-         data.size         = (int)strlen_dup(pszMessage);
+         data.message      = 1984;
+         data.request      = 8; // almost "infinite" size message
+         data.size         = len;
 
          ::count cPos = 0;
 
@@ -370,14 +399,14 @@ namespace aura
             data_struct data;
 
             /* The length is essentially the size of the structure minus sizeof(mtype) */
-            length = sizeof(data_struct) - sizeof(long);
+            length = sizeof(data_struct);
 
             ::primitive::memory mem;
 
             do
             {
 
-               if((result = msgrcv(m_iQueue,&data,length,15111984,IPC_NOWAIT)) == -1)
+               if((result = msgrcv(m_iQueue,&data,length,1984,0)) == -1)
                {
 
                   if(errno == ENOMSG)
@@ -403,7 +432,7 @@ namespace aura
             } while(true);
 
 
-            if(data.request == 0)
+            if(data.request == 5)
             {
 
                on_receive(this,mem.to_string());
