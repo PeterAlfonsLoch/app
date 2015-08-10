@@ -50,6 +50,12 @@ namespace aura
          return m_txmap[strApp].open(key(strApp),&launcher);
 
       }
+      else if(m_txmap[strApp].is_tx_ok())
+      {
+         
+         return true;
+         
+      }
       else
       {
 
@@ -86,7 +92,7 @@ namespace aura
 #ifdef WINDOWS
       strKey = "::ca2::fontopus::cgcl-1984-11-15::m-1951-04-22::cx-1977-02-04::votagus::" + strApp;
 #else
-      strKey = ::file::path(getenv("HOME")) / ".ca2/fontopus/cgcl-1984-11-15/m-1951-04-22/cx-1977-02-04/votagus" / strApp;
+      strKey = ::file::path(getenv("HOME")) / "Library/Application Support/ca2/ipi" / strApp;
 #endif
 
       return strKey;

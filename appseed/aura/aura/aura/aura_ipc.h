@@ -26,6 +26,8 @@ namespace aura
 
 #ifdef WINDOWSEX
          oswindow        m_oswindow;
+#elif defined(APPLEOS)
+         CFMessagePortRef remotePort;
 #elif !defined(METROWIN)
          key_t   m_key;
          int      m_iQueue;

@@ -4,6 +4,8 @@
 #include <pthread.h>
 
 
+
+
 namespace aura
 {
 
@@ -14,8 +16,7 @@ namespace aura
 
       base::base()
       {
-         m_key = 0;
-         m_iQueue = -1;
+         remotePort = NULL;
       }
 
       base::~base()
@@ -27,50 +28,12 @@ namespace aura
       bool tx::open(const char * pszChannel,launcher * plauncher)
       {
 
-         if(m_iQueue >= 0)
-            close();
-
-//         m_key = ftok(".",'c');
-//
-//         if(m_key == 0)
-//            return false;
-//
-//         if((m_iQueue = msgget(m_key,0660)) == -1)
-//         {
-//            return false;
-//         }
-//
-//         m_strBaseChannel = pszChannel;
-//
-//         return true;
-
-         ::dir::mk(::file::path(pszChannel).folder());
+         CFDataRef data;
+         SInt32 messageID = 0x1111; // Arbitrary
+         CFTimeInterval timeout = 10.0;
+         CFStringRef kungfuck = CFStringCreateWithCString(NULL,  (string("com.ca2.app.port.server.") + pszChannel), kCFStringEncodingUTF8);
+         remotePort =        CFMessagePortCreateRemote(nil,kungfuck);
          
-         file_put_contents_dup(pszChannel, pszChannel);
-         
-         m_key = ftok(pszChannel,'c');
-         
-         if(m_key == (key_t)-1)
-         {
-            int err = errno;
-            string str;
-            str.Format("Error(1) small_ipca_channel::rx::create %d", err);
-            ::output_debug_string(str);
-            
-            return false;
-         }
-         
-         //         if((m_iQueue = msgget(m_key,IPC_CREAT | IPC_EXCL | 0660)) == -1)
-         if((m_iQueue = msgget(m_key,IPC_CREAT | 0660)) == -1)         
-         {
-            int err = errno;
-            string str;
-            str.Format("Error(2) small_ipca_channel::rx::create %d", err);
-            ::output_debug_string(str);
-            
-            return false;
-         }
-         m_strBaseChannel = pszChannel;
 
          return true;
       }
@@ -78,12 +41,12 @@ namespace aura
       bool tx::close()
       {
 
-         if(m_iQueue < 0)
+         if(remotePort == NULL)
             return true;
 
-         m_iQueue = -1;
+         CFRelease(remotePort);
 
-         m_strBaseChannel = "";
+         remotePort = NULL;
 
          return true;
 
@@ -92,47 +55,37 @@ namespace aura
 
       bool tx::send(const char * pszMessage,DWORD dwTimeout)
       {
+         
+         if(remotePort == NULL)
+            return false;
 
          ::count c = strlen_dup(pszMessage);
 
          ::count cSend;
+         
+         primitive::memory m;
+         
+         m.assign(pszMessage, c);
+         
+         CFDataRef data = m.get_os_cf_data();
+         
 
-         data_struct data;
-         data.message      = 1984;
-         data.request      = 5; // "handy" message : just a string
-         data.size         = (int)strlen_dup(pszMessage);
-
-         ::count cPos = 0;
-
-         while(c > 0)
-         {
-
-            cSend = MIN(c,511);
-
-            memcpy(data.data,&pszMessage[cPos],MIN(c,511));
-
-            c -= cSend;
-
-            cPos += cSend;
-
-            if(c > 0)
-               data.size = 512;
-            else
-               data.size = (int)cSend;
-
-            /* The length is essentially the size of the structure minus sizeof(mtype) */
-            int length = sizeof(data_struct) - sizeof(long);
-
-            int result;
-
-            if((result = msgsnd(m_iQueue,&data,length,0)) == -1)
-            {
-               return false;
-            }
-
+         SInt32 status =
+         CFMessagePortSendRequest(remotePort,
+                                  0x80000000,
+                                  data,
+                                  dwTimeout / 1000.0,
+                                  dwTimeout / 1000.0,
+                                  NULL,
+                                  NULL);
+         if (status == kCFMessagePortSuccess) {
+            return true;
          }
-
-         return true;
+         if(status != kCFMessagePortSendTimeout && status != kCFMessagePortReceiveTimeout)
+         {
+            close();
+         }
+         return false;
 
       }
 
@@ -140,54 +93,31 @@ namespace aura
       bool tx::send(int message,void * pdata,int len,DWORD dwTimeout)
       {
 
-         if(message == 5)
+         if(message == 0x80000000)
             return false;
 
 
          if(!is_tx_ok())
             return false;
 
-         const char * pszMessage = (const char *)pdata;
+         ::primitive::memory m(pdata, len);
 
          ::count c = len;
 
          ::count cSend;
 
-         data_struct data;
-         data.message      = 1984;
-         data.request      = 8; // almost "infinite" size message
-         data.size         = len;
 
-         ::count cPos = 0;
-
-         while(c > 0)
-         {
-
-            cSend = MIN(c,511);
-
-            memcpy(data.data,&pszMessage[cPos],MIN(c,511));
-
-            c -= cSend;
-
-            cPos += cSend;
-
-            if(c > 0)
-               data.size = 512;
-            else
-               data.size = (int)cSend;
-
-            /* The length is essentially the size of the structure minus sizeof(mtype) */
-            int length = sizeof(data_struct) - sizeof(long);
-
-            int result;
-
-            if((result = msgsnd(m_iQueue,&data,length,0)) == -1)
-            {
-               return false;
-            }
-
+         SInt32 status =
+         CFMessagePortSendRequest(remotePort,
+                                  message,
+                                  m.get_os_cf_data(),
+                                  dwTimeout / 1000.0,
+                                  dwTimeout / 1000.0,
+                                  NULL,
+                                  NULL);
+         if (status == kCFMessagePortSuccess) {
+            // ...
          }
-
          return true;
 
       }
@@ -197,7 +127,7 @@ namespace aura
       bool tx::is_tx_ok()
       {
 
-         return m_iQueue != -1;
+         return remotePort != NULL;
 
       }
 
@@ -218,61 +148,64 @@ namespace aura
       }
 
 
+      CFDataRef Callback(CFMessagePortRef port,
+                                SInt32 messageID,
+                                CFDataRef data,
+                                void *info)
+      {
+         rx * p = (rx*) info;
+         
+         if(messageID == 0x80000000)
+         {
+            
+            ::primitive::memory m;
+            
+            m.set_os_cf_data(data);
+         
+            p->on_receive(p,m.to_string());
+         
+         }
+         else
+         {
+         
+            ::primitive::memory m;
+            
+            m.set_os_cf_data(data);
+            
+            p->on_receive(p,messageID,m.get_data(),(int)m.get_size());
+            
+         }
+         return NULL;
+      }
 
       bool rx::create(const char * pszChannel)
       {
+         CFMessagePortContext c = {};
          
-         ::dir::mk(::file::path(pszChannel).folder());
+         c.info = this;
+         CFStringRef kungfuck = CFStringCreateWithCString(NULL,  (string("com.ca2.app.port.server.") + pszChannel), kCFStringEncodingUTF8);
+         Boolean b = false;
+remotePort =
+         CFMessagePortCreateLocal(nil,
+                                  kungfuck,
+                                  Callback,
+                                  &c,
+                                  &b);
          
-         file_put_contents_dup(pszChannel, pszChannel);
-         
-         m_key = ftok(pszChannel,'c');
-
-         if(m_key == (key_t)-1)
-         {
-            int err = errno;
-            string str;
-            str.Format("Error(1) small_ipca_channel::rx::create %d", err);
-            ::output_debug_string(str);
-            
-            return false;
-         }
-
-//         if((m_iQueue = msgget(m_key,IPC_CREAT | IPC_EXCL | 0660)) == -1)
-         if((m_iQueue = msgget(m_key,IPC_CREAT | 0660)) == -1)         
-         {
-            int err = errno;
-            string str;
-            str.Format("Error(2) small_ipca_channel::rx::create %d", err);
-            ::output_debug_string(str);
-
-            return false;
-         }
-
+//         begin();
          return true;
       }
 
 
       bool rx::destroy()
       {
-
-         int iRetry = 23;
-         while(m_bRunning && iRetry > 0)
-         {
-            m_bRun = false;
-            Sleep(1000);
-            iRetry--;
-         }
-
-         if(m_iQueue < 0)
+         
+         if(remotePort == NULL)
             return true;
+         
+         CFRelease(remotePort);
 
-         if(msgctl(m_iQueue,IPC_RMID,0) == -1)
-         {
-            return false;
-         }
-
-         m_iQueue = -1;
+         remotePort = NULL;
 
          return true;
 
@@ -379,7 +312,7 @@ namespace aura
       bool rx::is_rx_ok()
       {
 
-         return m_iQueue != -1;
+         return remotePort != NULL;
       }
 
 
@@ -387,67 +320,84 @@ namespace aura
       void * rx::receive()
       {
 
+         
+         CFRunLoopSourceRef runLoopSource =
+         CFMessagePortCreateRunLoopSource(nil, remotePort, 0);
+         
+         CFRunLoopAddSource(CFRunLoopGetCurrent(),
+                            runLoopSource,
+                            kCFRunLoopCommonModes);
+         
          while(m_bRun)
          {
-
-            m_bRunning = true;
-
-            ssize_t  result;
-
-            int length;
-
-            data_struct data;
-
-            /* The length is essentially the size of the structure minus sizeof(mtype) */
-            length = sizeof(data_struct);
-
-            ::primitive::memory mem;
-
-            do
-            {
-
-               if((result = msgrcv(m_iQueue,&data,length,1984,0)) == -1)
-               {
-
-                  if(errno == ENOMSG)
-                  {
-                     if(!on_idle())
-                     {
-                        Sleep(84 * 1000);
-                     }
-                  }
-                  else
-                  {
-                     return (void *)-1;
-                  }
-
-               }
-
-               mem.append(data.data,data.size);
-
-
-               if(data.size < 512)
-                  break;
-
-            } while(true);
-
-
-            if(data.request == 5)
-            {
-
-               on_receive(this,mem.to_string());
-
-            }
-            else
-            {
-
-               on_receive(this,data.request,mem.get_data(),(int)mem.get_size());
-
-            }
-
+         CFRunLoopRun();
          }
 
-         m_bRunning = false;
+//         while(m_bRun)
+//         {
+//
+//            m_bRunning = true;
+//
+//            ssize_t  result;
+//
+//            int length;
+//
+//            data_struct data;
+//
+//            /* The length is essentially the size of the structure minus sizeof(mtype) */
+//            length = sizeof(data) - sizeof(data.message);
+//
+//            ::primitive::memory mem;
+//
+//            do
+//            {
+//
+//               ZERO(data);
+//               if((result = msgrcv(m_iQueue,&data,length,1984,IPC_NOWAIT)) == -1)
+//               {
+//
+//                  if(errno == ENOMSG)
+//                  {
+////                     if(!on_idle())
+//  //                   {
+//    //                    Sleep(84 * 1000);
+//      //               }
+//                     Sleep(84);
+//                  }
+//                  else
+//                  {
+//                     return (void *)-1;
+//                  }
+//
+//               }
+//
+//               mem.append(data.data,data.size);
+//
+//
+//               if(data.size < 512)
+//                  break;
+//
+//            } while(true);
+//
+//            if(data.size > 0)
+//            {
+//            if(data.request == 5)
+//            {
+//
+//               on_receive(this,mem.to_string());
+//
+//            }
+//            else
+//            {
+//
+//               on_receive(this,data.request,mem.get_data(),(int)mem.get_size());
+//
+//            }
+//            }
+//
+//         }
+//
+//         m_bRunning = false;
 
          return NULL;
 
