@@ -1526,7 +1526,6 @@ copy Source\FreeImage.h Dist
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\dftables.c" />
-    <ClCompile Include="src\pcre2posix.c" />
     <ClCompile Include="src\pcre2_auto_possess.c" />
     <ClCompile Include="src\pcre2_chartables.c" />
     <ClCompile Include="src\pcre2_compile.c" />

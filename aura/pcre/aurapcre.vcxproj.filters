@@ -76,9 +76,6 @@
     <ClCompile Include="src\pcre2_xclass.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\pcre2posix.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\config.h">
