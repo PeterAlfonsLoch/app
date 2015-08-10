@@ -702,6 +702,18 @@ namespace user
 
       single_lock sl(m_pmutex,true);
 
+      try
+      {
+
+         m_pimpl->delete_all_timers();
+
+      }
+      catch(...)
+      {
+
+      }
+
+
       user_interaction_on_hide();
 
       try

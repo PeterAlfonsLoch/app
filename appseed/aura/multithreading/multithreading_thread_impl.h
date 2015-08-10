@@ -79,7 +79,6 @@ public:
    thread *                                  m_pthread;
 
    sp(ptr_array < ::user::primitive >)     m_spuiptra;
-   //sp(::aura::timer_array)                   m_sptimera;
 
    bool                                      m_bDupHandle;
    HTHREAD                                   m_hthread;

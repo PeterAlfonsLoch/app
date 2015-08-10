@@ -45,7 +45,7 @@ namespace userpresence
 
    bool userpresence::finalize()
    {
-
+      
       if(!m_pauraapp->is_system())
       {
          defer_finalize_user_presence();
@@ -57,6 +57,8 @@ namespace userpresence
 
    bool userpresence::defer_initialize_user_presence()
    {
+      delete_all_timers();
+
       return true;
 
       if(!is_initialized())

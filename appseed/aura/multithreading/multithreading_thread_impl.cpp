@@ -1146,13 +1146,6 @@ thread_impl::operator HTHREAD() const
 bool thread_impl::initialize_message_queue()
 {
 
-   //if(m_sptimera.is_null())
-   //{
-
-   //   m_sptimera = canew(::aura::timer_array(get_app()));
-
-   //}
-
    if(m_spuiptra.is_null())
    {
 
