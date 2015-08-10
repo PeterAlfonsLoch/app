@@ -912,12 +912,11 @@ namespace aura
       ::output_debug_string("|----");
       
 
+#ifdef WINDOWSEX
+
       WCHAR wsz[1024];
 
       DWORD dwSize = sizeof(wsz) / sizeof(WCHAR);
-
-
-#ifdef WINDOWSEX
 
       GetUserNameW(wsz,&dwSize);
 

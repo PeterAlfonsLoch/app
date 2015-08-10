@@ -1178,11 +1178,13 @@ void _on_os_hthread_end()
 
 
 
-DWORD get_current_thread_id()
+IDTHREAD get_current_thread_id()
 {
 
    return ::GetCurrentThreadId();
+
 }
+
 
 HTHREAD get_current_thread()
 {

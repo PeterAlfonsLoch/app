@@ -155,7 +155,7 @@ void * aligned_memory_alloc(size_t size)
        if (pbase == NULL)
        {
            
-           throw memory_exception(get_thread_app());
+          return NULL;
            
        }
        
@@ -170,7 +170,7 @@ void * aligned_memory_alloc(size_t size)
        if (pbase == NULL)
        {
 
-           throw memory_exception(get_thread_app());
+          return NULL;
 
        }
 
@@ -194,7 +194,7 @@ void * unaligned_memory_alloc(size_t size)
    if (pbase == NULL)
    {
 
-      throw memory_exception(get_thread_app());
+      return NULL;
 
    }
 
@@ -222,7 +222,7 @@ void * aligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * szF
         if (pbase == NULL)
         {
             
-            throw memory_exception(get_thread_app());
+            return NULL;
             
         }
         
@@ -237,7 +237,7 @@ void * aligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * szF
         if (pbase == NULL)
         {
 
-            throw memory_exception(get_thread_app());
+           return NULL;
 
         }
 
@@ -267,7 +267,7 @@ void * unaligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * s
    if (pbase == NULL)
    {
 
-      throw memory_exception(get_thread_app());
+      return NULL;
 
    }
 
@@ -378,14 +378,14 @@ void * memory_realloc_dbg(void * pmemory, size_t size, int32_t nBlockUse, const 
    else
    {
 
-      throw memory_exception(get_thread_app());
+      return NULL;
 
    }
 
    if(pbase == NULL)
    {
 
-      throw memory_exception(get_thread_app());
+      return NULL;
 
    }
 
