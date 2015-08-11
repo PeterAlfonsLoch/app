@@ -185,11 +185,11 @@ int ui_open_url(const char * pszUrl)
       
    }
    
-   [strUrl release];
+  // [strUrl release];
    
    BOOL b = [[UIApplication sharedApplication] openURL:url];   
    
-   [url release];
+//   [url release];
 
    return b ? 1 : 0;
 

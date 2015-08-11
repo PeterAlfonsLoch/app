@@ -5784,7 +5784,12 @@ namespace ios
    void interaction_impl::round_window_draw(CGContextRef cgc)
    {
       
-//      single_lock sl(m_pui->m_pmutex, true);
+      try 
+      {
+         
+         {
+      
+      single_lock sl(m_pui->m_pmutex, true);
       
       if(m_bUpdateGraphics)
       {
@@ -5805,6 +5810,7 @@ namespace ios
       if(m_spdib->get_data() == NULL)
          return;
       
+         }
       ::draw2d::graphics_sp g(allocer());
       
       g->attach(cgc);
@@ -5823,6 +5829,10 @@ namespace ios
       //       g->set_alpha_mode(::draw2d::alpha_mode_blend);
       
 //      g->FillSolidRect(rectClient, ARGB(128, 23, 77, 184));
+         
+      } catch (...) {
+      }
+
       
    }
    
