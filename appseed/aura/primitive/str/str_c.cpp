@@ -1288,42 +1288,42 @@ int is_high_surrogate(unichar uc) { return (uc & 0xfffffc00) == 0xd800; }
 int is_low_surrogate(unichar uc) { return (uc & 0xfffffc00) == 0xdc00; }
 
 unichar32 surrogate_to_utf32(unichar high, unichar low)
-{ 
-   return (high << 10) + low - 0x35fdc00; 
+{
+   return (high << 10) + low - 0x35fdc00;
 }
 
-strsize utf16_to_utf32(unichar32 * output, const unichar *input, strsize input_size) 
+strsize utf16_to_utf32(unichar32 * output, const unichar *input, strsize input_size)
 {
 
    unichar32 * start = output;
-   
+
    const unichar * const end = input + input_size;
-   
+
    while (input < end)
    {
-      
+
       const unichar uc = *input++;
-      
+
       if (!is_surrogate(uc))
       {
-         
-         *output++ = uc; 
-         
+
+         *output++ = uc;
+
       }
       else
       {
-         
+
          if (is_high_surrogate(uc) && input < end && is_low_surrogate(*input))
          {
-            
+
             *output++ = surrogate_to_utf32(uc, *input++);
-            
+
          }
          else
          {
-            
+
             throw simple_exception(get_thread_app(), "utf16_to_utf32_len");
-            
+
          }
 
       }
@@ -1335,63 +1335,63 @@ strsize utf16_to_utf32(unichar32 * output, const unichar *input, strsize input_s
 }
 
 
-strsize utf16_to_utf32_len(const unichar *input, strsize input_size) 
+strsize utf16_to_utf32_len(const unichar *input, strsize input_size)
 {
-   
+
    const unichar * const end = input + input_size;
-   
+
    int c = 0;
-   
+
    while (((input_size < 0) && *input) || ((input_size >= 0) && input < end))
    {
-      
+
       const unichar uc = *input++;
-      
+
       if (!is_surrogate(uc))
       {
-         
-         c++; 
-         
+
+         c++;
+
       }
       else
       {
-         
+
          if (is_high_surrogate(uc) && input < end && is_low_surrogate(*input))
          {
-            
+
             c++;
-            
+
          }
          else
          {
-            
+
             throw simple_exception(get_thread_app(), "utf16_to_utf32_len");
-            
+
          }
-         
+
       }
-      
+
    }
-   
+
    return c;
-   
+
 }
 
 
 
-unichar32 * utf16_to_utf32(const unichar *input, strsize input_size) 
+unichar32 * utf16_to_utf32(const unichar *input, strsize input_size)
 {
-   
+
    strsize s = utf16_to_utf32_len(input, input_size);
-   
+
    unichar32 * v = (unichar32 *) memory_alloc(sizeof(unichar32) * (s+1));
-   
+
    utf16_to_utf32(v, input, s);
-   
+
    v[s] = 0;
-   
+
    return v;
-   
+
 }
 
 // http://stackoverflow.com/questions/29433124/how-to-convert-a-codepoint-32bit-integer-array-utf-32-to-windows-native-strin
@@ -1434,7 +1434,7 @@ unichar32 * utf16_to_utf32(const unichar *input, strsize input_size)
 //{
 //   std::wstring result;
 //   int len = 0;
-//   
+//
 //   for (std::vector<uint32_t>::iterator iter = codepoints.begin(); iter != codepoints.end(); ++iter)
 //   {
 //      uint32_t cp = *iter;
@@ -1449,12 +1449,12 @@ unichar32 * utf16_to_utf32(const unichar *input, strsize input_size)
 //         ++len;
 //      }
 //   }
-//   
+//
 //   if (len > 0)
 //   {
 //      result.resize(len);
 //      len = 0;
-//      
+//
 //      for (std::vector<uint32_t>::iterator iter = codepoints.begin(); iter != codepoints.end(); ++iter)
 //      {
 //         uint32_t cp = *iter;
@@ -1471,7 +1471,7 @@ unichar32 * utf16_to_utf32(const unichar *input, strsize input_size)
 //         }
 //      }
 //   }
-//   
+//
 //   return result;
 //}
 
@@ -1509,136 +1509,136 @@ strsize utf32_to_utf8(char * psz,const unichar32 * pwsz, strsize srclen)
       psz += n;
       srclen--;
    }
-   
+
    *psz = L'\0';
    return c;
 }
 
-string utf32_to_utf8(const unichar32 *input, strsize input_size) 
+string utf32_to_utf8(const unichar32 *input, strsize input_size)
 {
-   
+
    strsize s = utf32_to_utf8_len(input, input_size);
-   
+
    string str;
-   
+
    char * p = str.GetBufferSetLength(s);
-   
+
    utf32_to_utf8(p, input, s);
-   
+
    p[s] = 0;
-   
+
    return str;
-   
+
 }
 
 strsize utf8_to_utf32_len(const char * psz, strsize srclen)
 {
-   
+
    strsize len;
-   
+
    while(srclen != 0 && psz != NULL && *psz != '\0')
    {
-      
+
       ::str::ch::uni_index_len(psz, len);
-      
+
       psz += len;
-      
+
       srclen--;
-      
+
    }
-   
+
    return len;
-   
+
 }
 
 strsize utf8_to_utf32(unichar32 * pwsz,const char * psz, strsize srclen)
 {
-   
+
    strsize len;
-   
+
    while(srclen != 0 && psz != NULL && *psz != '\0')
    {
-      
+
       *pwsz++ = ::str::ch::uni_index_len(psz,len);
-      
+
       psz += len;
-      
+
       srclen -= len;
-      
+
    }
-   
+
    if(psz != NULL)
    {
-      
+
       *pwsz = L'\0';
-      
+
    }
 
    return len;
-   
+
 }
 
 
 
 
-unichar32 * utf8_to_utf32(const char *input, strsize input_size) 
+unichar32 * utf8_to_utf32(const char *input, strsize input_size)
 {
-   
+
    strsize s = utf8_to_utf32_len(input, input_size);
-   
+
    unichar32 * v = (unichar32 *) memory_alloc(sizeof(unichar32) * (s+1));
-   
+
    utf8_to_utf32(v, input, s);
-   
+
    v[s] = 0;
-   
+
    return v;
-   
+
 }
 
 
 
 strsize utf32_to_utf16_len(const unichar32 * codepoints, strsize input_size)
 {
-   
+
    strsize len = 0;
 
-   while(input_size != 0)  
+   while(input_size != 0)
    {
-         
+
       uint32_t cp = *codepoints++;
-      
+
       input_size--;
-      
+
       if(cp == 0)
          break;
-      
+
       if (cp < 0x10000)
       {
-         
+
          ++len;
-         
+
       }
-      else if (cp <= 0x10FFFF) 
+      else if (cp <= 0x10FFFF)
       {
-      
+
          len += 2;
-      
+
       }
       else
       {
-      
+
          // invalid code_point, do something !
          throw simple_exception(::get_thread_app(), "utf32_to_utf16_len :: invalid code_point, do something ! ");
-         
+
          ++len;
-         
+
       }
-      
+
    }
-   
+
    return len;
-   
+
 }
 
 
@@ -1646,60 +1646,75 @@ strsize utf32_to_utf16(unichar * p, const unichar32 * codepoints, strsize input_
 {
 
    strsize len = 0;
-      
-   while(input_size != 0)  
+
+   while(input_size != 0)
    {
-      
+
       uint32_t cp = *codepoints++;
-      
+
       input_size--;
-      
+
       if(cp == 0)
          break;
 
       if (cp < 0x10000)
       {
-         
+
          *p++ = static_cast<unichar>(cp);
-         
+
       }
       else if (cp <= 0x10FFFF)
       {
 
          cp -= 0x10000;
-         
+
          *p++ = static_cast<unichar>((cp >> 10) + 0xD800);
-         
+
          *p++ = static_cast<unichar>((cp & 0x3FF) + 0xDC00);
-         
+
       }
       else
       {
-         
+
          *p++ = static_cast<unichar>(0xFFFD);
-         
+
       }
-      
+
    }
-   
+
    return len;
-   
+
 }
 
 
-wstring utf32_to_utf16(const unichar32 *input, strsize input_size) 
+wstring utf32_to_utf16(const unichar32 *input, strsize input_size)
 {
-   
+
    strsize s = utf32_to_utf16_len(input, input_size);
 
    wstring wstr;
-   
+
    unichar * p = wstr.alloc(s);
-   
+
    utf32_to_utf16(p, input, s);
-   
+
    p[s] = 0;
-   
+
    return wstr;
-   
+
 }
+
+#ifdef WINDOWS
+CLASS_DECL_AURA string w_to_8(const wchar_t * pcwsz, strsize input_size)
+{
+   return utf16_to_utf8(pcwsz, input_size);
+}
+#else
+CLASS_DECL_AURA string w_to_8(const wchar_t * pcwsz, strsize input_size)
+{
+   return utf32_to_utf8(pcwsz, input_size);
+}
+#endif
+
+
+

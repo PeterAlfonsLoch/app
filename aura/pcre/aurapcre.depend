@@ -45,7 +45,7 @@
 	"config.h"
 	"pcre2_internal.h"
 
-1439051622 source:/ca2/app/aura/pcre/src/pcre2_compile.c
+1439257457 source:/ca2/app/aura/pcre/src/pcre2_compile.c
 	"config.h"
 	"pcre2_internal.h"
 	"pcre2_printint.c"
@@ -60,7 +60,7 @@
 	"config.h"
 	"pcre2_internal.h"
 
-1439051621 source:/ca2/app/aura/pcre/src/pcre2_dfa_match.c
+1439257451 source:/ca2/app/aura/pcre/src/pcre2_dfa_match.c
 	"config.h"
 	"pcre2_internal.h"
 
@@ -93,7 +93,7 @@
 	"sljitConfig.h"
 	"sljitConfigInternal.h"
 
-1439053535 /ca2/app/aura/pcre/src/sljit/sljitConfig.h
+1439257451 /ca2/app/aura/pcre/src/sljit/sljitConfig.h
 
 1439051622 /ca2/app/aura/pcre/src/sljit/sljitConfigInternal.h
 	<stdlib.h>
@@ -169,7 +169,7 @@
 	"config.h"
 	"pcre2_internal.h"
 
-1439051622 source:/ca2/app/aura/pcre/src/pcre2_match.c
+1439257452 source:/ca2/app/aura/pcre/src/pcre2_match.c
 	"config.h"
 	"pcre2_internal.h"
 
@@ -233,4 +233,18 @@
 
 1439051628 /ca2/app/aura/pcre/src/pcre2posix.h
 	<stdlib.h>
+
+1439051624 source:/ca2/app/aura/pcre/src/sljit/sljitLir.c
+	"sljitLir.h"
+	"sljitUtils.c"
+	"sljitExecAllocator.c"
+	"sljitNativeX86_common.c"
+	"sljitNativeARM_32.c"
+	"sljitNativeARM_32.c"
+	"sljitNativeARM_T2_32.c"
+	"sljitNativeARM_64.c"
+	"sljitNativePPC_common.c"
+	"sljitNativeMIPS_common.c"
+	"sljitNativeSPARC_common.c"
+	"sljitNativeTILEGX_64.c"
 
