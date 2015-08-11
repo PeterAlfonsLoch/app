@@ -6,22 +6,22 @@
 #ifdef __cplusplus
 
 
-
-class CLASS_DECL_AURA thread_data
-{
-public:
-
-
-   DWORD g_dwTlsIndex;
-
-   thread_data();
-   ~thread_data();
-
-   void * get();
-   void set(void * p);
-
-
-};
+//
+//class CLASS_DECL_AURA thread_data
+//{
+//public:
+//
+//
+//   DWORD g_dwTlsIndex;
+//
+//   thread_data();
+//   ~thread_data();
+//
+//   void * get();
+//   void set(void * p);
+//
+//
+//};
 
 
 #endif

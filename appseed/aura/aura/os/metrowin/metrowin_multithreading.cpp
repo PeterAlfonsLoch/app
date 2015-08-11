@@ -35,7 +35,7 @@ mutex * g_pmutexThreadIdLock = NULL;
 thread_data::thread_data()
 {
 
-   g_dwTlsIndex = thread_alloc();
+   m_dwIndex = thread_alloc();
 
 }
 
@@ -43,7 +43,7 @@ thread_data::thread_data()
 thread_data::~thread_data()
 {
 
-   tls_free(g_dwTlsIndex);
+   thread_free(m_dwIndex);
 
 }
 
@@ -51,7 +51,7 @@ thread_data::~thread_data()
 void * thread_data::get()
 {
 
-   return tls_get_value(g_dwTlsIndex);
+   return tls_get_value(m_dwIndex);
 
 }
 
@@ -59,7 +59,7 @@ void * thread_data::get()
 void thread_data::set(void * p)
 {
 
-   thread_set_value(g_dwTlsIndex,(LPVOID)p);
+   thread_set_value(m_dwIndex,(LPVOID)p);
 
 }
 

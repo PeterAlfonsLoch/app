@@ -47,3 +47,20 @@ void __node_init_cross_windows_threading();
 
 
 void __node_term_cross_windows_threading();
+
+
+class CLASS_DECL_AURA thread_data
+{
+public:
+
+
+   DWORD       m_dwIndex;
+
+   thread_data();
+   ~thread_data();
+
+   void * get();
+   void set(void * p);
+
+
+};

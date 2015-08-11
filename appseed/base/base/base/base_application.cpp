@@ -116,6 +116,13 @@ namespace base
          return NULL;
       return oswindowCapture->get_user_interaction()->ReleaseCapture();
 
+#elif defined(METROWIN)
+
+      oswindow oswindowCapture = ::GetCapture();
+      if(oswindowCapture == NULL)
+         return NULL;
+      return oswindowCapture->m_pui->ReleaseCapture();
+
 #elif defined(WINDOWS)
 
       oswindow oswindowCapture = ::GetCapture();

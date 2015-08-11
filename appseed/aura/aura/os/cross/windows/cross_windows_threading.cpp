@@ -480,7 +480,7 @@ uint32_t thread_alloc()
    synch_lock lock(g_pmutexTlsData);
 
    // Can we reuse a previously freed TLS slot?
-   if(freeTlsIndices->get_count() > 0)
+   if(freeTlsIndices != NULL && freeTlsIndices->get_count() > 0)
    {
       DWORD result = freeTlsIndices->element_at(freeTlsIndices->get_count() - 1);
       freeTlsIndices->remove_at(freeTlsIndices->get_count() - 1);
