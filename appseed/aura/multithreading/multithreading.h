@@ -12,7 +12,6 @@ class multi_lock;
 
 
 
-
 // Use instead of PostQuitMessage in OLE server applications
 CLASS_DECL_AURA void __post_quit_message(int32_t nExitCode);
 

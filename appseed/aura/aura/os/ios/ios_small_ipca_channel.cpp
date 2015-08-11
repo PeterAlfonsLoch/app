@@ -180,19 +180,21 @@ namespace aura
       
       bool rx::create(const char * pszChannel)
       {
+
          CFMessagePortContext c = {};
          
          c.info = this;
-         CFStringRef kungfuck = CFStringCreateWithCString(NULL,  (string("com.ca2.app.port.server.") + pszChannel), kCFStringEncodingUTF8);
+
+         CFStringRef str = CFStringCreateWithCString(NULL,  (string("com.ca2.app.port.server.") + pszChannel), kCFStringEncodingUTF8);
+
          Boolean b = false;
-         remotePort =
-         CFMessagePortCreateLocal(nil,
-                                  kungfuck,
-                                  Callback,
-                                  &c,
-                                  &b);
+
+         m_port = CFMessagePortCreateLocal(nil, str, Callback, &c, &b);
+
+         CFRelease(str);
+
+         start_receiving();
          
-         //         begin();
          return true;
       }
       

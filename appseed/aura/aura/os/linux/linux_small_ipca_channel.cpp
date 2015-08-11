@@ -195,7 +195,10 @@ namespace aura
             return false;
          }
 
+         start_receiving();
+
          return true;
+
       }
 
 
