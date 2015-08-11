@@ -15,26 +15,11 @@ class CLASS_DECL_AURA message_array :
 public array < MESSAGE > {
 };
 
-class CLASS_DECL_AURA mq {
-public:
 
-
-    mutex m_mutex;
-    message_array ma;
-    manual_reset_event m_eventNewMessage;
-    HTHREAD m_hthread;
-    //uint32_t m_uiId;
-
-
-    mq();
-
-
-
-};
 
 typedef HTHREAD idthread;
 
-CLASS_DECL_AURA mq * get_mq(HTHREAD h);
+CLASS_DECL_AURA mq * __get_mq(HTHREAD h);
 
 CLASS_DECL_AURA int_bool WINAPI GetMessageW(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax);
 

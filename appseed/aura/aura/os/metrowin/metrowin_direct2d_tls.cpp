@@ -7,14 +7,14 @@
 //IDWriteFactory * TlsGetWriteFactory()
 //{
 //
-//   IDWriteFactory * pfactory = (IDWriteFactory *) TlsGetValue(TLS_WRITE_FACTORY);
+//   IDWriteFactory * pfactory = (IDWriteFactory *) thread_get_value(TLS_WRITE_FACTORY);
 //
 //   if(pfactory != NULL)
 //      return pfactory;
 //
 //   HRESULT hr = DWriteCreateFactory(DWRITE_FACTORY_TYPE_SHARED, __uuidof(IDWriteFactory), reinterpret_cast<IUnknown**>(&pfactory));
 //
-//   TlsSetValue(TLS_WRITE_FACTORY, pfactory);
+//   thread_set_value(TLS_WRITE_FACTORY, pfactory);
 //
 //   if(FAILED(hr))
 //      return NULL;
@@ -48,7 +48,7 @@
 //ID3D11Device * TlsGetD3D11Device()
 //{
 //
-//   ID3D11Device * pdevice = (ID3D11Device *) TlsGetValue(TLS_d3_1);
+//   ID3D11Device * pdevice = (ID3D11Device *) thread_get_value(TLS_d3_1);
 //
 //   if(pdevice != NULL)
 //      return pdevice;
@@ -94,8 +94,8 @@
 //            &pcontext                    // returns the device immediate context
 //            );
 //
-//   TlsSetValue(TLS_d3_1, pdevice);
-//   TlsSetValue(TLS_d3_2, pcontext);
+//   thread_set_value(TLS_d3_1, pdevice);
+//   thread_set_value(TLS_d3_2, pcontext);
 //
 //   if(FAILED(hr))
 //       return NULL;
@@ -108,7 +108,7 @@
 //ID3D11DeviceContext * TlsGetD3D11DeviceContext()
 //{
 //
-//   ID3D11DeviceContext * pcontext = (ID3D11DeviceContext *) TlsGetValue(TLS_d3_2);
+//   ID3D11DeviceContext * pcontext = (ID3D11DeviceContext *) thread_get_value(TLS_d3_2);
 //
 //   if(pcontext != NULL)
 //      return pcontext;
@@ -118,7 +118,7 @@
 //   if(pdevice == NULL)
 //      return NULL;
 //
-//   pcontext = (ID3D11DeviceContext *) TlsGetValue(TLS_d3_2);
+//   pcontext = (ID3D11DeviceContext *) thread_get_value(TLS_d3_2);
 //
 //   if(pcontext == NULL)
 //      return NULL;
@@ -130,7 +130,7 @@
 //ID3D11Device1 * TlsGetD3D11Device1()
 //{
 //
-//   ID3D11Device1 * pdevice1 = (ID3D11Device1 *) TlsGetValue(TLS_d3_3);
+//   ID3D11Device1 * pdevice1 = (ID3D11Device1 *) thread_get_value(TLS_d3_3);
 //
 //   if(pdevice1 != NULL)
 //      return pdevice1;
@@ -142,7 +142,7 @@
 //
 //   HRESULT hr = pdevice->QueryInterface(__uuidof(ID3D11Device1), (void **) &pdevice1);
 //
-//   TlsSetValue(TLS_d3_3, pdevice1);
+//   thread_set_value(TLS_d3_3, pdevice1);
 //
 //   if(pdevice1 == NULL)
 //      return NULL;
@@ -154,7 +154,7 @@
 //IDXGIDevice * TlsGetDXGIDevice()
 //{
 //
-//   IDXGIDevice * pdxgidevice = (IDXGIDevice *) TlsGetValue(TLS_d3_4);
+//   IDXGIDevice * pdxgidevice = (IDXGIDevice *) thread_get_value(TLS_d3_4);
 //
 //   if(pdxgidevice != NULL)
 //      return pdxgidevice;
@@ -166,7 +166,7 @@
 //
 //   HRESULT hr = pdevice1->QueryInterface(__uuidof(IDXGIDevice), (void **) &pdxgidevice);
 //
-//   TlsSetValue(TLS_d3_4, pdxgidevice);
+//   thread_set_value(TLS_d3_4, pdxgidevice);
 //
 //   if(pdxgidevice == NULL)
 //      return NULL;

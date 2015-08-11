@@ -340,7 +340,7 @@ extern thread_int_ptr < HTHREAD > currentThread;
 //}
 //
 //
-//LPVOID WINAPI TlsGetValue(DWORD dwTlsIndex)
+//LPVOID WINAPI thread_get_value(DWORD dwTlsIndex)
 //{
 //   ThreadLocalData* threadData = currentThreadData;
 //
@@ -356,7 +356,7 @@ extern thread_int_ptr < HTHREAD > currentThread;
 //   }
 //}
 //
-//LPVOID WINAPI TlsGetValue(HTHREAD hthread, DWORD dwTlsIndex)
+//LPVOID WINAPI thread_get_value(HTHREAD hthread, DWORD dwTlsIndex)
 //{
 //   ThreadLocalData* threadData = all_thread_data()[hthread];
 //
@@ -373,7 +373,7 @@ extern thread_int_ptr < HTHREAD > currentThread;
 //}
 //
 //
-//BOOL WINAPI TlsSetValue(DWORD dwTlsIndex, LPVOID lpTlsValue)
+//BOOL WINAPI thread_set_value(DWORD dwTlsIndex, LPVOID lpTlsValue)
 //{
 //   ThreadLocalData* threadData = currentThreadData;
 //
@@ -406,7 +406,7 @@ extern thread_int_ptr < HTHREAD > currentThread;
 //   return true;
 //}
 //
-//BOOL WINAPI TlsSetValue(HTHREAD hthread, DWORD dwTlsIndex, LPVOID lpTlsValue)
+//BOOL WINAPI thread_set_value(HTHREAD hthread, DWORD dwTlsIndex, LPVOID lpTlsValue)
 //{
 //
 //   ThreadLocalData* threadData = all_thread_data()[hthread];
@@ -860,14 +860,14 @@ extern thread_int_ptr < HTHREAD > currentThread;
 //mq * get_mq()
 //{
 //
-//   mq * pmq = (mq *) TlsGetValue(TLS_MESSAGE_QUEUE);
+//   mq * pmq = (mq *) thread_get_value(TLS_MESSAGE_QUEUE);
 //
 //   if(pmq != NULL)
 //      return pmq;
 //
 //   pmq = new mq();
 //
-//   TlsSetValue(TLS_MESSAGE_QUEUE, pmq);
+//   thread_set_value(TLS_MESSAGE_QUEUE, pmq);
 //
 //   return pmq;
 //
@@ -882,14 +882,14 @@ extern thread_int_ptr < HTHREAD > currentThread;
 //{
 //
 //
-//   mq * pmq = (mq *) TlsGetValue(h, TLS_MESSAGE_QUEUE);
+//   mq * pmq = (mq *) thread_get_value(h, TLS_MESSAGE_QUEUE);
 //
 //   if(pmq != NULL)
 //      return pmq;
 //
 //   pmq = new mq();
 //
-//   TlsSetValue(h, TLS_MESSAGE_QUEUE, pmq);
+//   thread_set_value(h, TLS_MESSAGE_QUEUE, pmq);
 //
 //   return pmq;
 //
@@ -1052,37 +1052,37 @@ extern thread_int_ptr < HTHREAD > currentThread;
 //}
 
 
-CLASS_DECL_BASE WINBOOL WINAPI PostMessageW(oswindow oswindow, UINT Msg, WPARAM wParam, LPARAM lParam)
-{
-
-   int iThreadId = oswindow->m_pui->m_pauraapp->get_os_int();
-
-   mq * pmq = get_mq(iThreadId);
-
-   if(pmq == NULL)
-      return FALSE;
-
-   synch_lock ml(&pmq->m_mutex);
-
-   MESSAGE msg;
-
-   //zero(&msg, sizeof(msg));
-
-   msg.hwnd   = oswindow;
-   msg.message    = Msg;
-   msg.wParam     = wParam;
-   msg.lParam     = lParam;
-   msg.pt.x       = 0x80000000;
-   msg.pt.y       = 0x80000000;
-
-
-   pmq->ma.add(msg);
-
-   pmq->m_eventNewMessage.set_event();
-
-   return true;
-
-}
+//CLASS_DECL_BASE WINBOOL WINAPI PostMessageW(oswindow oswindow, UINT Msg, WPARAM wParam, LPARAM lParam)
+//{
+//
+//   int iThreadId = oswindow->m_pui->m_pauraapp->get_os_int();
+//
+//   mq * pmq = get_mq(iThreadId);
+//
+//   if(pmq == NULL)
+//      return FALSE;
+//
+//   synch_lock ml(&pmq->m_mutex);
+//
+//   MESSAGE msg;
+//
+//   //zero(&msg, sizeof(msg));
+//
+//   msg.hwnd   = oswindow;
+//   msg.message    = Msg;
+//   msg.wParam     = wParam;
+//   msg.lParam     = lParam;
+//   msg.pt.x       = 0x80000000;
+//   msg.pt.y       = 0x80000000;
+//
+//
+//   pmq->ma.add(msg);
+//
+//   pmq->m_eventNewMessage.set_event();
+//
+//   return true;
+//
+//}
 
 
 //namespace core

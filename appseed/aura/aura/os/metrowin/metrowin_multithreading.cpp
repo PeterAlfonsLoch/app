@@ -28,14 +28,14 @@ using namespace Windows::System::Threading;
 //mutex * g_pmutexPendingThreadsLock = NULL;
 mutex * g_pmutexThreadIdHandleLock = NULL;
 mutex * g_pmutexThreadIdLock = NULL;
-mutex * g_pmutexTlsData = NULL;
+//mutex * g_pmutexTlsData = NULL;
 //END_EXTERN_C
 
 
 thread_data::thread_data()
 {
 
-   g_dwTlsIndex = tls_alloc();
+   g_dwTlsIndex = thread_alloc();
 
 }
 
@@ -59,7 +59,7 @@ void * thread_data::get()
 void thread_data::set(void * p)
 {
 
-   tls_set_value(g_dwTlsIndex,(LPVOID)p);
+   thread_set_value(g_dwTlsIndex,(LPVOID)p);
 
 }
 
@@ -104,26 +104,31 @@ void thread_data::set(void * p)
 //   return g_dw_thread_id++;
 //}
 
-// Thread local storage.
-typedef comparable_array < void *,void *,array < void *,void *,::allocator::nodef < void *  > > > ThreadLocalData;
+
+//typedef void_ptra ThreadLocalData;
 
 
+//#ifdef APPLE_IOS
+//thread_pointer < ThreadLocalData > currentThreadData;
+//#else
+//CLASS_DECL_THREAD ThreadLocalData * currentThreadData;
+//#endif
+////thread_int_ptr < DWORD > currentThreadId;
+////thread_pointer < HTHREAD > currentThread;
+////thread_pointer < hthread > t_phthread;
+//
+//
+//raw_array<DWORD> * freeTlsIndices = NULL;
+//
 
-__declspec(thread) ThreadLocalData* currentThreadData = nullptr;
-//__declspec(thread) DWORD currentThreadId = -1;
-//extern thread_pointer < hthread > t_phthread;
+//map < HTHREAD,HTHREAD,HTHREAD,HTHREAD > * s_pmapHthreadHthread = NULL;
+//map < DWORD,DWORD,HTHREAD,HTHREAD > * s_pmapDwordHthread = NULL;
+//map < HTHREAD,HTHREAD,DWORD,DWORD > * s_pmapHthreadDword = NULL;
+//map < IDTHREAD,IDTHREAD,ThreadLocalData *,ThreadLocalData * > * allthreaddata = NULL;
+//
+//
+//DWORD nextTlsIndex = 0;
 
-map < int, int, ThreadLocalData* ,  ThreadLocalData * > & all_thread_data()
-{
-
-   static map < int, int, ThreadLocalData* ,  ThreadLocalData * > * s_pallthreaddata = new map < int, int, ThreadLocalData* , ThreadLocalData * >();
-
-   return *s_pallthreaddata;
-
-}
-
-DWORD nextTlsIndex = 0;
-uint_array freeTlsIndices;
 
 
 // Converts a Win32 thread priority to WinRT format.
@@ -317,226 +322,226 @@ WorkItemPriority GetWorkItemPriority(int nPriority)
 //}
 //
 
-
-
-DWORD WINAPI tls_alloc()
-{
-   synch_lock lock(g_pmutexTlsData);
-
-   // Can we reuse a previously freed TLS slot?
-   if (freeTlsIndices.get_count() > 0)
-   {
-      DWORD result = freeTlsIndices.element_at(freeTlsIndices.get_count() - 1);
-      freeTlsIndices.remove_at(freeTlsIndices.get_count() - 1);
-      return result;
-   }
-
-   // Allocate a new TLS slot.
-   return nextTlsIndex++;
-}
-
-
-BOOL WINAPI tls_free(DWORD dwTlsIndex)
-{
-   synch_lock lock(g_pmutexTlsData);
-
-   assert(dwTlsIndex < nextTlsIndex);
-   for(int i = 0; i < freeTlsIndices.get_count(); i++)
-   {
-      assert(freeTlsIndices.element_at(i) != dwTlsIndex);
-   }
-
-   // Store this slot for reuse by TlsAlloc.
-   try
-   {
-      freeTlsIndices.add(dwTlsIndex);
-   }
-   catch (...)
-   {
-      return false;
-   }
-
-   // Zero the value for all threads that might be using this now freed slot.
-
-   POSITION pos = all_thread_data().get_start_position();
-   while( pos != NULL)
-   {
-
-      int iThreadId;
-
-      ThreadLocalData * pdata;
-
-      all_thread_data().get_next_assoc(pos,iThreadId,pdata);
-
-      if(natural(pdata->get_count()) > dwTlsIndex)
-      {
-         pdata->element_at(dwTlsIndex) = nullptr;
-      }
-   }
-
-   return true;
-}
-
-
-LPVOID WINAPI tls_get_value(DWORD dwTlsIndex)
-{
-   ThreadLocalData* threadData = currentThreadData;
-
-   if (threadData && natural(threadData->get_count()) > dwTlsIndex)
-   {
-      // Return the value of an allocated TLS slot.
-      return threadData->element_at(dwTlsIndex);
-   }
-   else
-   {
-      // Default value for unallocated slots.
-      return nullptr;
-   }
-}
-
-LPVOID WINAPI tls_get_value(int iThreadId,DWORD dwTlsIndex)
-{
-   ThreadLocalData* threadData = all_thread_data()[iThreadId];
-
-   if (threadData && natural(threadData->get_count()) > dwTlsIndex)
-   {
-      // Return the value of an allocated TLS slot.
-      return threadData->element_at(dwTlsIndex);
-   }
-   else
-   {
-      // Default value for unallocated slots.
-      return nullptr;
-   }
-}
-
-
-BOOL WINAPI tls_set_value(DWORD dwTlsIndex, LPVOID lpTlsValue)
-{
-   ThreadLocalData* threadData = currentThreadData;
-
-   if (!threadData)
-   {
-      // First time allocation of TLS data for this thread.
-      try
-      {
-         threadData = new ThreadLocalData;
-
-         synch_lock lock(g_pmutexTlsData);
-
-         int iThreadId = ::GetCurrentThreadId();
-
-         all_thread_data().set_at(iThreadId,threadData);
-
-         currentThreadData = threadData;
-
-      }
-      catch (...)
-      {
-         if (threadData)
-            delete threadData;
-
-         return false;
-      }
-   }
-
-   // Store the new value for this slot.
-   threadData->set_at_grow(dwTlsIndex, lpTlsValue);
-
-   return true;
-}
-
-BOOL WINAPI tls_set_value(int iThreadId,DWORD dwTlsIndex,LPVOID lpTlsValue)
-{
-
-   ThreadLocalData* threadData = all_thread_data()[iThreadId];
-
-   if (!threadData)
-   {
-      // First time allocation of TLS data for this thread.
-      try
-      {
-         threadData = new ThreadLocalData;
-
-         synch_lock lock(g_pmutexTlsData);
-
-         all_thread_data().set_at(iThreadId,threadData);
-
-         //currentThreadData = threadData;
-      }
-      catch (...)
-      {
-         if (threadData)
-            delete threadData;
-
-         return false;
-      }
-   }
-
-   // Store the new value for this slot.
-   threadData->set_at_grow(dwTlsIndex, lpTlsValue);
-
-   return true;
-}
-
-
-// Called at thread exit to clean up TLS allocations.
-void WINAPI tls_shutdown()
-{
-
-   ThreadLocalData * threadData = currentThreadData;
-
-   if (threadData)
-   {
-
-      //try
-      //{
-
-      //   IDWriteFactory * pfactory = TlsGetWriteFactory();
-
-      //   if(pfactory != NULL)
-      //   {
-
-      //      pfactory->Release();
-
-      //   }
-
-      //}
-      //catch(...)
-      //{
-      //}
-
-      //try
-      //{
-
-      //   ID2D1Factory1 * pfactory = GetD2D1Factory1();
-
-      //   if(pfactory != NULL)
-      //   {
-
-      //      //pfactory->Release();
-
-      //   }
-
-      //}
-      //catch(...)
-      //{
-      //}
-
-
-
-      synch_lock ml(g_pmutexTlsData);
-
-      int iThreadId = ::GetCurrentThreadId();
-
-      all_thread_data().remove_key(iThreadId);
-
-      currentThreadData = nullptr;
-
-      delete threadData;
-   }
-}
-
+//
+//
+//DWORD WINAPI tls_alloc()
+//{
+//   synch_lock lock(g_pmutexTlsData);
+//
+//   // Can we reuse a previously freed TLS slot?
+//   if (freeTlsIndices.get_count() > 0)
+//   {
+//      DWORD result = freeTlsIndices.element_at(freeTlsIndices.get_count() - 1);
+//      freeTlsIndices.remove_at(freeTlsIndices.get_count() - 1);
+//      return result;
+//   }
+//
+//   // Allocate a new TLS slot.
+//   return nextTlsIndex++;
+//}
+
+//
+//BOOL WINAPI tls_free(DWORD dwIndex)
+//{
+//   synch_lock lock(g_pmutexTlsData);
+//
+//   assert(dwIndex < nextTlsIndex);
+//   for(int i = 0; i < freeTlsIndices.get_count(); i++)
+//   {
+//      assert(freeTlsIndices.element_at(i) != dwIndex);
+//   }
+//
+//   // Store this slot for reuse by TlsAlloc.
+//   try
+//   {
+//      freeTlsIndices.add(dwIndex);
+//   }
+//   catch (...)
+//   {
+//      return false;
+//   }
+//
+//   // Zero the value for all threads that might be using this now freed slot.
+//
+//   POSITION pos = all_thread_data().get_start_position();
+//   while( pos != NULL)
+//   {
+//
+//      int iThreadId;
+//
+//      ThreadLocalData * pdata;
+//
+//      allthreaddata->get_next_assoc(pos,iThreadId,pdata);
+//
+//      if(natural(pdata->get_count()) > dwIndex)
+//      {
+//         pdata->element_at(dwIndex) = nullptr;
+//      }
+//   }
+//
+//   return true;
+//}
+
+//
+//LPVOID WINAPI tls_get_value(DWORD dwIndex)
+//{
+//   ThreadLocalData* threadData = currentThreadData;
+//
+//   if (threadData && natural(threadData->get_count()) > dwIndex)
+//   {
+//      // Return the value of an allocated TLS slot.
+//      return threadData->element_at(dwIndex);
+//   }
+//   else
+//   {
+//      // Default value for unallocated slots.
+//      return nullptr;
+//   }
+//}
+//
+//LPVOID WINAPI tls_get_value(IDTHREAD iThreadId,DWORD dwIndex)
+//{
+//   ThreadLocalData* threadData = all_thread_data()[iThreadId];
+//
+//   if (threadData && natural(threadData->get_count()) > dwIndex)
+//   {
+//      // Return the value of an allocated TLS slot.
+//      return threadData->element_at(dwIndex);
+//   }
+//   else
+//   {
+//      // Default value for unallocated slots.
+//      return nullptr;
+//   }
+//}
+//
+//
+//BOOL WINAPI tls_set_value(DWORD dwIndex, LPVOID lpTlsValue)
+//{
+//   ThreadLocalData* threadData = currentThreadData;
+//
+//   if (!threadData)
+//   {
+//      // First time allocation of TLS data for this thread.
+//      try
+//      {
+//         threadData = new ThreadLocalData;
+//
+//         synch_lock lock(g_pmutexTlsData);
+//
+//         int iThreadId = ::GetCurrentThreadId();
+//
+//         all_thread_data().set_at(iThreadId,threadData);
+//
+//         currentThreadData = threadData;
+//
+//      }
+//      catch (...)
+//      {
+//         if (threadData)
+//            delete threadData;
+//
+//         return false;
+//      }
+//   }
+//
+//   // Store the new value for this slot.
+//   threadData->set_at_grow(dwIndex, lpTlsValue);
+//
+//   return true;
+//}
+//
+//BOOL WINAPI tls_set_value(int iThreadId,DWORD dwIndex,LPVOID lpTlsValue)
+//{
+//
+//   ThreadLocalData* threadData = all_thread_data()[iThreadId];
+//
+//   if (!threadData)
+//   {
+//      // First time allocation of TLS data for this thread.
+//      try
+//      {
+//         threadData = new ThreadLocalData;
+//
+//         synch_lock lock(g_pmutexTlsData);
+//
+//         all_thread_data().set_at(iThreadId,threadData);
+//
+//         //currentThreadData = threadData;
+//      }
+//      catch (...)
+//      {
+//         if (threadData)
+//            delete threadData;
+//
+//         return false;
+//      }
+//   }
+//
+//   // Store the new value for this slot.
+//   threadData->set_at_grow(dwIndex, lpTlsValue);
+//
+//   return true;
+//}
+//
+//
+//// Called at thread exit to clean up TLS allocations.
+//void WINAPI tls_shutdown()
+//{
+//
+//   ThreadLocalData * threadData = currentThreadData;
+//
+//   if (threadData)
+//   {
+//
+//      //try
+//      //{
+//
+//      //   IDWriteFactory * pfactory = TlsGetWriteFactory();
+//
+//      //   if(pfactory != NULL)
+//      //   {
+//
+//      //      pfactory->Release();
+//
+//      //   }
+//
+//      //}
+//      //catch(...)
+//      //{
+//      //}
+//
+//      //try
+//      //{
+//
+//      //   ID2D1Factory1 * pfactory = GetD2D1Factory1();
+//
+//      //   if(pfactory != NULL)
+//      //   {
+//
+//      //      //pfactory->Release();
+//
+//      //   }
+//
+//      //}
+//      //catch(...)
+//      //{
+//      //}
+//
+//
+//
+//      synch_lock ml(g_pmutexTlsData);
+//
+//      int iThreadId = ::GetCurrentThreadId();
+//
+//      all_thread_data().remove_key(iThreadId);
+//
+//      currentThreadData = nullptr;
+//
+//      delete threadData;
+//   }
+//}
+//
 
 
 //int WINAPI __GetThreadPriority(_In_ HTHREAD hThread)
@@ -749,132 +754,132 @@ void attach_thread_input_to_main_thread(int_bool bAttach)
 //}
 
 
-mq * get_mq()
-{
-
-   mq * pmq = (mq *) tls_get_value(TLS_MESSAGE_QUEUE);
-
-   if(pmq != NULL)
-      return pmq;
-
-   pmq = new mq();
-
-   tls_set_value(TLS_MESSAGE_QUEUE, pmq);
-
-   return pmq;
-
-}
-
-//bool is_thread(HTHREAD h)
+//mq * __get_mq()
 //{
-//   return get_thread_id(h) != 0;
+//
+//   mq * pmq = (mq *) tls_get_value(TLS_MESSAGE_QUEUE);
+//
+//   if(pmq != NULL)
+//      return pmq;
+//
+//   pmq = new mq();
+//
+//   tls_set_value(TLS_MESSAGE_QUEUE, pmq);
+//
+//   return pmq;
+//
+//}
+//
+////bool is_thread(HTHREAD h)
+////{
+////   return get_thread_id(h) != 0;
+////}
+//
+//mq * __get_mq(IDTHREAD iThreadId)
+//{
+//
+//
+//   mq * pmq = (mq *)tls_get_value(iThreadId,TLS_MESSAGE_QUEUE);
+//
+//   if(pmq != NULL)
+//      return pmq;
+//
+//   pmq = new mq();
+//
+//   tls_set_value(iThreadId,TLS_MESSAGE_QUEUE,pmq);
+//
+//   return pmq;
+//
 //}
 
-mq * get_mq(IDTHREAD iThreadId)
-{
 
-
-   mq * pmq = (mq *)tls_get_value(iThreadId,TLS_MESSAGE_QUEUE);
-
-   if(pmq != NULL)
-      return pmq;
-
-   pmq = new mq();
-
-   tls_set_value(iThreadId,TLS_MESSAGE_QUEUE,pmq);
-
-   return pmq;
-
-}
-
-
-WINBOOL WINAPI GetMessageW(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax)
-{
-
-   mq * pmq = get_mq();
-
-   if(pmq == NULL)
-      return FALSE;
-
-   single_lock ml(&pmq->m_mutex, false);
-
-   if(wMsgFilterMax == 0)
-      wMsgFilterMax = (UINT) -1;
-
-restart:
-
-   ml.lock();
-
-   for(int i = 0; i < pmq->ma.get_count(); i++)
-   {
-      MESSAGE & msg = pmq->ma[i];
-
-
-      if(msg.message == WM_QUIT)
-      {
-         return FALSE;
-      }
-
-
-      if((oswindow == NULL || msg.hwnd == oswindow) && msg.message >= wMsgFilterMin && msg.message <= wMsgFilterMax)
-      {
-         *lpMsg = msg;
-         pmq->ma.remove_at(i);
-         return TRUE;
-      }
-   }
-
-   ml.unlock();
-
-   //while(!pmq->m_eventNewMessage.wait(millis(84)).signaled())
-   //{
-
-   //   if(::get_thread() != NULL)
-   //   {
-
-   //      ::get_thread()->step_timer();
-
-   //   }
-
-   //}
-
-   pmq->m_eventNewMessage.ResetEvent();
-
-   goto restart;
-
-}
-
-
-BOOL WINAPI PeekMessageW(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg)
-{
-
-   mq * pmq = get_mq();
-
-   if(pmq == NULL)
-      return FALSE;
-
-   synch_lock ml(&pmq->m_mutex);
-
-   if(wMsgFilterMax == 0)
-      wMsgFilterMax = (UINT) -1;
-
-   for(int i = 0; i < pmq->ma.get_count(); i++)
-   {
-      MESSAGE & msg = pmq->ma[i];
-
-      if((oswindow == NULL || msg.hwnd == oswindow) && msg.message >= wMsgFilterMin && msg.message <= wMsgFilterMax)
-      {
-         *lpMsg = msg;
-         if(wRemoveMsg & PM_REMOVE)
-         {
-            pmq->ma.remove_at(i);
-         }
-         return TRUE;
-      }
-   }
-
-   return FALSE;
-}
+//WINBOOL WINAPI GetMessageW(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax)
+//{
+//
+//   mq * pmq = __get_mq();
+//
+//   if(pmq == NULL)
+//      return FALSE;
+//
+//   single_lock ml(&pmq->m_mutex, false);
+//
+//   if(wMsgFilterMax == 0)
+//      wMsgFilterMax = (UINT) -1;
+//
+//restart:
+//
+//   ml.lock();
+//
+//   for(int i = 0; i < pmq->ma.get_count(); i++)
+//   {
+//      MESSAGE & msg = pmq->ma[i];
+//
+//
+//      if(msg.message == WM_QUIT)
+//      {
+//         return FALSE;
+//      }
+//
+//
+//      if((oswindow == NULL || msg.hwnd == oswindow) && msg.message >= wMsgFilterMin && msg.message <= wMsgFilterMax)
+//      {
+//         *lpMsg = msg;
+//         pmq->ma.remove_at(i);
+//         return TRUE;
+//      }
+//   }
+//
+//   ml.unlock();
+//
+//   //while(!pmq->m_eventNewMessage.wait(millis(84)).signaled())
+//   //{
+//
+//   //   if(::get_thread() != NULL)
+//   //   {
+//
+//   //      ::get_thread()->step_timer();
+//
+//   //   }
+//
+//   //}
+//
+//   pmq->m_eventNewMessage.ResetEvent();
+//
+//   goto restart;
+//
+//}
+//
+//
+//BOOL WINAPI PeekMessageW(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg)
+//{
+//
+//   mq * pmq = __get_mq();
+//
+//   if(pmq == NULL)
+//      return FALSE;
+//
+//   synch_lock ml(&pmq->m_mutex);
+//
+//   if(wMsgFilterMax == 0)
+//      wMsgFilterMax = (UINT) -1;
+//
+//   for(int i = 0; i < pmq->ma.get_count(); i++)
+//   {
+//      MESSAGE & msg = pmq->ma[i];
+//
+//      if((oswindow == NULL || msg.hwnd == oswindow) && msg.message >= wMsgFilterMin && msg.message <= wMsgFilterMax)
+//      {
+//         *lpMsg = msg;
+//         if(wRemoveMsg & PM_REMOVE)
+//         {
+//            pmq->ma.remove_at(i);
+//         }
+//         return TRUE;
+//      }
+//   }
+//
+//   return FALSE;
+//}
 
 
 
@@ -949,7 +954,7 @@ BOOL WINAPI PostThreadMessageW(IDTHREAD iThreadId,UINT message,WPARAM wparam,LPA
      // return FALSE;
 
 
-   mq * pmq = get_mq(iThreadId);
+   mq * pmq = __get_mq(iThreadId);
 
    if(pmq == NULL)
       return FALSE;
@@ -1037,12 +1042,16 @@ bool on_term_thread()
 void __node_init_multithreading()
 {
 
+   __node_init_cross_windows_threading();
+
 }
 
 
 
 void __node_term_multithreading()
 {
+
+   __node_term_cross_windows_threading();
 
 }
 
@@ -1051,9 +1060,12 @@ void __node_term_multithreading()
 
 //thread_int_ptr < HRESULT > t_hresultCoInitialize;
 
+//CLASS_DECL_AURA void __clear_mq();
 
 bool __os_init_thread()
 {
+
+   __clear_mq();
 
    if(!defer_co_initialize_ex())
       return false;
@@ -1062,10 +1074,36 @@ bool __os_init_thread()
 
 }
 
-
+//mutex * g_pmutexMq = NULL;
+//
+//map < HTHREAD,HTHREAD,mq *,mq * > * g_pmapMq = NULL;
+//
+//void __clear_mq()
+//{
+//
+//   synch_lock sl(g_pmutexMq);
+//
+//   HTHREAD hthread = GetCurrentThread();
+//
+//   auto pmq = (mq *)tls_get_value(hthread,TLS_MESSAGE_QUEUE);
+//
+//   if(pmq == NULL)
+//      return;
+//
+//   ::aura::del(pmq);
+//
+//   tls_set_value(hthread,TLS_MESSAGE_QUEUE,NULL);
+//
+//}
+//
+//
 
 bool __os_term_thread()
 {
+
+   __clear_mq();
+
+   thread_shutdown();
 
    if(SUCCEEDED(t_hresultCoInitialize))
    {
@@ -1135,7 +1173,7 @@ bool __os_term_thread()
 //
 //   memcpy(ph,lphandles,sizeof(HANDLE) *dwSize);
 //
-//   ph[dwSize] = (HANDLE)get_mq()->m_eventNewMessage.m_object;
+//   ph[dwSize] = (HANDLE)__get_mq()->m_eventNewMessage.m_object;
 //
 //   DWORD r = ::WaitForMultipleObjectsEx(dwSize + 1,lphandles,dwFlags & MWMO_WAITALL,dwTimeout,dwWakeMask & MWMO_ALERTABLE);
 //
@@ -1157,7 +1195,7 @@ DWORD MsgWaitForMultipleObjects(DWORD dwSize,const HANDLE * lphandles,DWORD dwTi
 
    memcpy(ph,lphandles,sizeof(HANDLE) *dwSize);
 
-   ph[dwSize] = (HANDLE) get_mq()->m_eventNewMessage.m_object;
+   ph[dwSize] = (HANDLE) __get_mq()->m_eventNewMessage.m_object;
 
    DWORD r = ::WaitForMultipleObjectsEx(dwSize + 1,ph,dwFlags & MWMO_WAITALL,dwTimeout,dwWakeMask & MWMO_ALERTABLE);
 

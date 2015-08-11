@@ -27,7 +27,7 @@ public:
 inline void * thread_data::get()
 {
 
-   return TlsGetValue(g_dwTlsIndex);
+   return thread_get_value(g_dwTlsIndex);
 
 }
 
@@ -35,7 +35,7 @@ inline void * thread_data::get()
 inline void thread_data::set(void * p)
 {
 
-   TlsSetValue(g_dwTlsIndex,(LPVOID)p);
+   thread_set_value(g_dwTlsIndex,(LPVOID)p);
 
 }
 

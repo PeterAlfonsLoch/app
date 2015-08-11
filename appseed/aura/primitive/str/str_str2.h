@@ -294,4 +294,8 @@ CLASS_DECL_AURA int32_t utf8_len_len(const unichar * pwsz, strsize srclen);
 CLASS_DECL_AURA void utf16_to_utf8(char * psz, const unichar * pwsz);
 CLASS_DECL_AURA void utf16_to_utf8_len(char * psz,const unichar * pwsz,strsize srclen);
 
+#ifdef __cplusplus
 
+CLASS_DECL_AURA string utf16_to_utf8(const unichar * pwsz, strsize srcLine = -1);
+
+#endif

@@ -162,11 +162,11 @@ int pthread_cancel(pthread_t thread);
 #define pthread_key(T,V)  DWORD V
 #define pthread_key_create(A,B) ((*A=TlsAlloc())==0xFFFFFFFF)
 #define pthread_key_delete(A) TlsFree(A)
-#define my_pthread_setspecific_ptr(T,V) (!TlsSetValue((T),(V)))
-#define pthread_setspecific(A,B) (!TlsSetValue((A),(B)))
-#define pthread_getspecific(A) (TlsGetValue(A))
-#define my_pthread_getspecific(T,A) ((T) TlsGetValue(A))
-#define my_pthread_getspecific_ptr(T,V) ((T) TlsGetValue(V))
+#define my_pthread_setspecific_ptr(T,V) (!thread_set_value((T),(V)))
+#define pthread_setspecific(A,B) (!thread_set_value((A),(B)))
+#define pthread_getspecific(A) (thread_get_value(A))
+#define my_pthread_getspecific(T,A) ((T) thread_get_value(A))
+#define my_pthread_getspecific_ptr(T,V) ((T) thread_get_value(V))
 
 #define pthread_equal(A,B) ((A) == (B))
 #define pthread_mutex_init(A,B)  (InitializeCriticalSection(A),0)

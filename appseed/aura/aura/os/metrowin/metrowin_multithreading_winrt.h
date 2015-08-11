@@ -249,26 +249,22 @@ inline ::Windows::Foundation::AsyncStatus wait(::Windows::Foundation::IAsyncActi
 }
 
 
-class CLASS_DECL_AURA message_array :
-   public raw_array < MESSAGE >
-{
-};
 
-class CLASS_DECL_AURA mq
-{
-public:
+//class CLASS_DECL_AURA mq
+//{
+//public:
+//
+//   mutex                      m_mutex;
+//   message_array              ma;
+//   manual_reset_event         m_eventNewMessage;
+//
+//   mq() : m_eventNewMessage(get_thread_app()) {}
+//
+//
+//
+//};
 
-   mutex                      m_mutex;
-   message_array              ma;
-   manual_reset_event         m_eventNewMessage;
-
-   mq() : m_eventNewMessage(get_thread_app()) {}
-
-
-
-};
-
-//CLASS_DECL_AURA mq * get_mq(HTHREAD h);
+//CLASS_DECL_AURA mq * __get_mq(HTHREAD h);
 
 
 

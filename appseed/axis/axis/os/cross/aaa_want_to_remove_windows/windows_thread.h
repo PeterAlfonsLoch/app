@@ -14,7 +14,7 @@
 //    - CREATE_SUSPENDED and ResumeThread
 //    - Partial support for SetThreadPriority (see below)
 //    - Sleep
-//    - Thread local storage (TlsAlloc, TlsFree, TlsGetValue, TlsSetValue)
+//    - Thread local storage (TlsAlloc, TlsFree, thread_get_value, thread_set_value)
 //
 // Differences from Win32:
 //
@@ -51,8 +51,8 @@ CLASS_DECL_AXIS VOID WINAPI Sleep(DWORD dwMilliseconds);
 
 CLASS_DECL_AXIS DWORD WINAPI TlsAlloc();
 CLASS_DECL_AXIS int_bool WINAPI TlsFree(DWORD dwTlsIndex);
-CLASS_DECL_AXIS LPVOID WINAPI TlsGetValue(DWORD dwTlsIndex);
-CLASS_DECL_AXIS int_bool WINAPI TlsSetValue(DWORD dwTlsIndex, LPVOID lpTlsValue);
+CLASS_DECL_AXIS LPVOID WINAPI thread_get_value(DWORD dwTlsIndex);
+CLASS_DECL_AXIS int_bool WINAPI thread_set_value(DWORD dwTlsIndex, LPVOID lpTlsValue);
 
 void WINAPI TlsShutdown();
 

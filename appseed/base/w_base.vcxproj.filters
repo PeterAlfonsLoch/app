@@ -130,6 +130,12 @@
     <Filter Include="Header Files\database\database">
       <UniqueIdentifier>{7690fb55-bd10-4b38-87da-8cb8f88bc1b7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\base\os\cross">
+      <UniqueIdentifier>{5c794f23-f181-4b27-9a8b-be2860ab3a3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\os\cross\windows">
+      <UniqueIdentifier>{e6651ba8-11eb-4d61-a421-cb6145bc0df9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -266,6 +272,12 @@
     </ClInclude>
     <ClInclude Include="database\database.h">
       <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\cross\windows\windows.h">
+      <Filter>Header Files\base\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\cross\cross.h">
+      <Filter>Header Files\base\os\cross</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -603,6 +615,9 @@
     </ClCompile>
     <ClCompile Include="database\database\_database_database.cpp">
       <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\cross\windows\base_cross_windows_threading.cpp">
+      <Filter>Source Files\base\os\cross\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -203,6 +203,37 @@ int32_t utf8_len_len(const unichar * pwsz, strsize srclen)
 }
 
 
+CLASS_DECL_AURA string utf16_to_utf8(const unichar * pwsz,strsize srcLen)
+{
+
+   string str;
+
+   strsize len;
+
+   if(srcLen < 0)
+   {
+
+      len = utf8_len(pwsz);
+
+   }
+   else
+   {
+
+      len = utf8_len_len(pwsz,srcLen);
+
+   }
+
+   LPSTR psz = str.GetBufferSetLength(len);
+
+   utf16_to_utf8(psz, pwsz);
+
+   str.ReleaseBuffer();
+
+   return str;
+}
+
+
+
 void utf16_to_utf8(char * psz, const unichar * pwsz)
 {
    //unsigned short * pwsz = (unsigned short *)pwszParam;

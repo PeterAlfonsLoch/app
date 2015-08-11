@@ -38,15 +38,6 @@ POINT       pt;
 } MESSAGE, * LPMESSAGE;
 #endif
 
-#ifdef WINDOWS
-
-typedef uint32_t IDTHREAD;
-
-#else
-
-typedef HTHREAD IDTHREAD;
-
-#endif
 
 
 CLASS_DECL_AURA WINBOOL WINAPI GetMessageW(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax);
@@ -72,8 +63,8 @@ CLASS_DECL_AURA void WINAPI TlsShutdown();
 
 class mq;
 
-CLASS_DECL_AURA mq * get_mq();
-CLASS_DECL_AURA mq * get_mq(IDTHREAD iThreadId);
+CLASS_DECL_AURA mq * __get_mq();
+CLASS_DECL_AURA mq * __get_mq(IDTHREAD iThreadId);
 
 
 #endif

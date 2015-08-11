@@ -14,7 +14,7 @@ typedef uint32_t IDTHREAD;
 #else
 #define QS_ALLEVENTS 0xffff
 
-void clear_mq();
+void __clear_mq();
 
 typedef HTHREAD IDTHREAD;
 

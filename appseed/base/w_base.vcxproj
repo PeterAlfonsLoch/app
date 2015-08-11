@@ -96,6 +96,8 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="base\os\cross.h" />
+    <ClInclude Include="base\os\cross\cross.h" />
+    <ClInclude Include="base\os\cross\windows\windows.h" />
     <ClInclude Include="base\os\metrowin\ca_os.h" />
     <ClInclude Include="base\os\metrowin\metrowin.h" />
     <ClInclude Include="base\os\metrowin\metrowin_file_watcher.h" />
@@ -971,6 +973,12 @@
     <ProjectReference Include="..\draw2d_direct2d\w_draw2d_direct2d.vcxproj">
       <Project>{ba9bff50-1888-4722-8dee-73a3b5b32bcb}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="base\os\cross\windows\base_cross_windows_threading.cpp">
+      <SubType>Designer</SubType>
+      <FileType>Document</FileType>
+    </ClCompile>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{BD7D3626-ADA6-4CA2-9566-ED7B131E3D51}</ProjectGuid>

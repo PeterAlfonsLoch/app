@@ -273,7 +273,7 @@ namespace metrowin
 
    bool window_draw::UpdateBuffer()
    {
-      synch_lock ml(&user_mutex());
+      //synch_lock ml(&user_mutex());
       if(m_bRender)
          return false;
       single_lock sl(&m_mutexRender, FALSE);
@@ -303,7 +303,7 @@ namespace metrowin
 
       HRESULT hr = m_xapp->m_directx->Render(wndpa);
 
-      ml.unlock();
+//      ml.unlock();
 
       if(SUCCEEDED(hr))
       {
