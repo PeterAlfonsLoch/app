@@ -3103,12 +3103,12 @@ namespace core
       //m_splicense(new class ::fontopus::license(this));
 
 
-      if(!is_system() && !is_session())
-      {
-
-         Session.register_bergedge_application(this);
-
-      }
+//      if(!is_system() && !is_session())
+//      {
+//
+//         Session.register_bergedge_application(this);
+//
+//      }
 
       xxdebug_box("register_bergedge_application ok","register_bergedge_application ok",MB_ICONINFORMATION);
 

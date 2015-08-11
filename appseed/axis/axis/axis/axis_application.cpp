@@ -54,7 +54,7 @@ namespace axis
 
 //      m_pcoreapp                 = NULL;
 
-      
+
       m_http.set_app(this);
 
 
@@ -82,7 +82,7 @@ namespace axis
 
 
 
-      
+
       // initialize wait cursor state
       m_iWaitCursorCount         = 0;
 
@@ -235,7 +235,7 @@ namespace axis
       {
          strMatter = "stringtable.xml";
       }
-      else 
+      else
       {
          strMatter = pszId + ".xml";
       }
@@ -338,7 +338,7 @@ namespace axis
       return false;
 
    }
-   
+
 
    //bool application::app_map_lookup(const char * psz,void * & p)
    //{
@@ -1231,7 +1231,7 @@ namespace axis
 
    bool application::pre_run()
    {
-      
+
       if(!::thread::pre_run())
          return false;
 
@@ -1580,7 +1580,7 @@ namespace axis
 
       }
 
-      
+
       ::output_debug_string("initial_check_directrix : ok ("+string(typeid(*this).name())+")" + m_strAppId + "\n\n");
 
 
@@ -1882,7 +1882,7 @@ namespace axis
 
       if(!::aura::application::process_initialize())
          return false;
-      
+
 
       //if(m_pthreadimpl == NULL)
       //{
@@ -2139,7 +2139,7 @@ namespace axis
       try
       {
 
-         
+
          //destroy_message_queue();
 
       }
@@ -2945,7 +2945,7 @@ namespace axis
 
    //   if(m_strLicense.is_empty())
    //   {
-   //      
+   //
    //      m_strLicense = m_strAppId;
 
    //      if(m_strLicense.is_empty())
@@ -3039,7 +3039,7 @@ namespace axis
 //      return file().is_read_only(pszPath);
       throw not_implemented(this);
       return false;
-      
+
    }
 
 //   string application::file_as_string(var varFile)
@@ -3114,9 +3114,9 @@ namespace axis
 //
 //   string application::dir_pathfind(const char * pszEnv, const char * pszTopic, const char * pszMode)
 //   {
-//      
+//
 //      return dir().pathfind(pszEnv, pszTopic, pszMode);
-//      
+//
 //   }
 //
 //#endif
@@ -3255,7 +3255,7 @@ namespace axis
    //}
 
 
-   
+
 
 
 } // namespace axis
@@ -4384,7 +4384,7 @@ namespace axis
 
       if (strLibrary != "draw2d_cairo")
       {
-         
+
 
          library.open("draw2d_cairo");
 
@@ -4520,7 +4520,7 @@ finalize:
 
    ::user::primitive * application::window_from_os_data(void * pdata)
    {
-   
+
       return NULL;
 
    }
@@ -4722,7 +4722,7 @@ finalize:
 
    int32_t application::hotplugin_host_host_starter_start_sync(const char * pszCommandLine,::aura::application * papp,hotplugin::host * phost,hotplugin::plugin * pplugin)
    {
-   
+
       return -1;
 
    }
@@ -4735,7 +4735,7 @@ finalize:
 
    }
 
-   
+
    bool application::on_open_document(::user::document * pdocument,var varFile)
    {
 
@@ -4748,14 +4748,14 @@ finalize:
 
    bool application::on_save_document(::user::document * pdocument,var varFile)
    {
-      
+
       UNREFERENCED_PARAMETER(pdocument);
       UNREFERENCED_PARAMETER(varFile);
       return true;
 
    }
 
-   
+
    void application::on_update_view(::user::impact * pview,::user::impact * pviewSender,LPARAM lHint,object* pHint)
    {
 
