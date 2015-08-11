@@ -1,480 +1,472 @@
 #include "framework.h"
 #include <sys/ipc.h>
 #include <sys/msg.h>
+#include <pthread.h>
+
+
 
 
 namespace aura
 {
-
+   
+   
    namespace ipc
    {
-
-
+      
+      
       base::base()
       {
-         m_key = 0;
-         m_iQueue = -1;
+         remotePort = NULL;
       }
-
+      
       base::~base()
       {
       }
-
-
-
+      
+      
+      
       bool tx::open(const char * pszChannel,launcher * plauncher)
       {
-
-         if(m_iQueue >= 0)
-            close();
-
-         m_key = ftok(".",'c');
-
-         if(m_key == 0)
-            return false;
-
-         if((m_iQueue = msgget(m_key,0660)) == -1)
-         {
-            return false;
-         }
-
-         m_strBaseChannel = pszChannel;
-
+         
+         CFDataRef data;
+         SInt32 messageID = 0x1111; // Arbitrary
+         CFTimeInterval timeout = 10.0;
+         CFStringRef kungfuck = CFStringCreateWithCString(NULL,  (string("com.ca2.app.port.server.") + pszChannel), kCFStringEncodingUTF8);
+         remotePort =        CFMessagePortCreateRemote(nil,kungfuck);
+         
+         
          return true;
-
       }
-
+      
       bool tx::close()
       {
-
-         if(m_iQueue < 0)
+         
+         if(remotePort == NULL)
             return true;
-
-         m_iQueue = -1;
-
-         m_strBaseChannel = "";
-
+         
+         CFRelease(remotePort);
+         
+         remotePort = NULL;
+         
          return true;
-
+         
       }
-
-
+      
+      
       bool tx::send(const char * pszMessage,DWORD dwTimeout)
       {
-
+         
+         if(remotePort == NULL)
+            return false;
+         
          ::count c = strlen_dup(pszMessage);
-
+         
          ::count cSend;
-
-         data_struct data;
-         data.mtype        = 15111984;
-         data.request      = 0x80000000;
-         data.size         = (int)strlen_dup(pszMessage);
-
-         ::count cPos = 0;
-
-         while(c > 0)
-         {
-
-            cSend = MIN(c,511);
-
-            memcpy(data.data,&pszMessage[cPos],MIN(c,511));
-
-            c -= cSend;
-
-            cPos += cSend;
-
-            if(c > 0)
-               data.size = 512;
-            else
-               data.size = (int)cSend;
-
-            /* The length is essentially the size of the structure minus sizeof(mtype) */
-            int length = sizeof(data_struct) - sizeof(long);
-
-            int result;
-
-            if((result = msgsnd(m_iQueue,&data,length,0)) == -1)
-            {
-               return false;
-            }
-
+         
+         primitive::memory m;
+         
+         m.assign(pszMessage, c);
+         
+         CFDataRef data = m.get_os_cf_data();
+         
+         
+         SInt32 status =
+         CFMessagePortSendRequest(remotePort,
+                                  0x80000000,
+                                  data,
+                                  dwTimeout / 1000.0,
+                                  dwTimeout / 1000.0,
+                                  NULL,
+                                  NULL);
+         if (status == kCFMessagePortSuccess) {
+            return true;
          }
-
-         return true;
-
+         if(status != kCFMessagePortSendTimeout && status != kCFMessagePortReceiveTimeout)
+         {
+            close();
+         }
+         return false;
+         
       }
-
-
+      
+      
       bool tx::send(int message,void * pdata,int len,DWORD dwTimeout)
       {
-
+         
          if(message == 0x80000000)
             return false;
-
-
+         
+         
          if(!is_tx_ok())
             return false;
-
-         const char * pszMessage = (const char *)pdata;
-
+         
+         ::primitive::memory m(pdata, len);
+         
          ::count c = len;
-
+         
          ::count cSend;
-
-         data_struct data;
-         data.mtype        = 15111984;
-         data.request      = 0x80000000;
-         data.size         = (int)strlen_dup(pszMessage);
-
-         ::count cPos = 0;
-
-         while(c > 0)
-         {
-
-            cSend = MIN(c,511);
-
-            memcpy(data.data,&pszMessage[cPos],MIN(c,511));
-
-            c -= cSend;
-
-            cPos += cSend;
-
-            if(c > 0)
-               data.size = 512;
-            else
-               data.size = (int)cSend;
-
-            /* The length is essentially the size of the structure minus sizeof(mtype) */
-            int length = sizeof(data_struct) - sizeof(long);
-
-            int result;
-
-            if((result = msgsnd(m_iQueue,&data,length,0)) == -1)
-            {
-               return false;
-            }
-
+         
+         
+         SInt32 status =
+         CFMessagePortSendRequest(remotePort,
+                                  message,
+                                  m.get_os_cf_data(),
+                                  dwTimeout / 1000.0,
+                                  dwTimeout / 1000.0,
+                                  NULL,
+                                  NULL);
+         if (status == kCFMessagePortSuccess) {
+            // ...
          }
-
          return true;
-
+         
       }
-
-
-
+      
+      
+      
       bool tx::is_tx_ok()
       {
-
-         return m_iQueue != -1;
-
+         
+         return remotePort != NULL;
+         
       }
-
-
-
-
+      
+      
+      
+      
       rx::rx()
       {
-
+         
          m_preceiver    = NULL;
-
+         
       }
-
-
+      
+      
       rx::~rx()
       {
-
+         
       }
-
-
-
+      
+      
+      CFDataRef Callback(CFMessagePortRef port,
+                         SInt32 messageID,
+                         CFDataRef data,
+                         void *info)
+      {
+         rx * p = (rx*) info;
+         
+         if(messageID == 0x80000000)
+         {
+            
+            ::primitive::memory m;
+            
+            m.set_os_cf_data(data);
+            
+            p->on_receive(p,m.to_string());
+            
+         }
+         else
+         {
+            
+            ::primitive::memory m;
+            
+            m.set_os_cf_data(data);
+            
+            p->on_receive(p,messageID,m.get_data(),(int)m.get_size());
+            
+         }
+         return NULL;
+      }
+      
       bool rx::create(const char * pszChannel)
       {
+         CFMessagePortContext c = {};
          
-         ::dir::mk(::file::path(pszChannel).folder());
+         c.info = this;
+         CFStringRef kungfuck = CFStringCreateWithCString(NULL,  (string("com.ca2.app.port.server.") + pszChannel), kCFStringEncodingUTF8);
+         Boolean b = false;
+         remotePort =
+         CFMessagePortCreateLocal(nil,
+                                  kungfuck,
+                                  Callback,
+                                  &c,
+                                  &b);
          
-         file_put_contents_dup(pszChannel, pszChannel);
-         m_key = ftok(pszChannel,'c');
-
-         if(m_key == -1)
-         {
-            return false;
-         }
-
-         //if((m_iQueue = msgget(m_key,IPC_CREAT | IPC_EXCL | 0660)) == -1)
-         if((m_iQueue = msgget(m_key,IPC_CREAT | 0660)) == -1)
-         {
-            return false;
-         }
-
+         //         begin();
          return true;
       }
-
-
+      
+      
       bool rx::destroy()
       {
-
-         int iRetry = 23;
-         while(m_bRunning && iRetry > 0)
-         {
-            m_bRun = false;
-            Sleep(1000);
-            iRetry--;
-         }
-
-         if(m_iQueue < 0)
+         
+         if(remotePort == NULL)
             return true;
-
-         if(msgctl(m_iQueue,IPC_RMID,0) == -1)
-         {
-            return false;
-         }
-
-         m_iQueue = -1;
-
+         
+         CFRelease(remotePort);
+         
+         remotePort = NULL;
+         
          return true;
-
+         
       }
-
+      
       bool rx::start_receiving()
       {
-
+         
          m_bRunning = true;
-
+         
          m_bRun = true;
-
+         
          if(pthread_create(&m_thread,NULL,&rx::receive_proc,this) != 0)
          {
-
+            
             m_bRunning = false;
-
+            
             m_bRun = false;
-
+            
             return false;
-
+            
          }
-
+         
          return true;
-
+         
       }
-
+      
       void * rx::receive_proc(void * param)
       {
-
+         
          rx * pchannel = (rx *)param;
-
+         
          return pchannel->receive();
-
+         
       }
-
-      void rx::receiver::on_receive(rx * prxchannel,const char * pszMessage)
+      
+      void rx::receiver::on_receive(rx * prx,const char * pszMessage)
       {
       }
-
-      void rx::receiver::on_receive(rx * prxchannel,int message,void * pdata,int len)
+      
+      void rx::receiver::on_receive(rx * prx,int message,void * pdata,int len)
       {
       }
-
-      void rx::receiver::on_post(rx * prxchannel,int64_t a,int64_t b)
+      
+      void rx::receiver::on_post(rx * prx,int64_t a,int64_t b)
       {
       }
-
-
-
-      void * rx::on_receive(rx * prxchannel,const char * pszMessage)
+      
+      
+      
+      void * rx::on_receive(rx * prx,const char * pszMessage)
       {
-
+         
          if(m_preceiver != NULL)
          {
-            m_preceiver->on_receive(prxchannel,pszMessage);
+            m_preceiver->on_receive(prx,pszMessage);
          }
-
+         
          // ODOW - on date of writing : return ignored by this windows implementation
-
+         
          return NULL;
-
+         
       }
-
-      void * rx::on_receive(rx * prxchannel,int message,void * pdata,int len)
+      
+      void * rx::on_receive(rx * prx,int message,void * pdata,int len)
       {
-
+         
          if(m_preceiver != NULL)
          {
-            m_preceiver->on_receive(prxchannel,message,pdata,len);
+            m_preceiver->on_receive(prx,message,pdata,len);
          }
-
+         
          // ODOW - on date of writing : return ignored by this windows implementation
-
+         
          return NULL;
-
+         
       }
-
-
-      void * rx::on_post(rx * prxchannel,int64_t a,int64_t b)
+      
+      
+      void * rx::on_post(rx * prx,int64_t a,int64_t b)
       {
-
+         
          if(m_preceiver != NULL)
          {
-            m_preceiver->on_post(prxchannel,a,b);
+            m_preceiver->on_post(prx,a,b);
          }
-
+         
          // ODOW - on date of writing : return ignored by this windows implementation
-
+         
          return NULL;
-
+         
       }
-
-
-
+      
+      
+      
       bool rx::on_idle()
       {
-
+         
          return false;
-
+         
       }
-
-
+      
+      
       bool rx::is_rx_ok()
       {
-
-         return m_iQueue != -1;
+         
+         return remotePort != NULL;
       }
-
-
-
+      
+      
+      
       void * rx::receive()
       {
-
+         
+         
+         CFRunLoopSourceRef runLoopSource =
+         CFMessagePortCreateRunLoopSource(nil, remotePort, 0);
+         
+         CFRunLoopAddSource(CFRunLoopGetCurrent(),
+                            runLoopSource,
+                            kCFRunLoopCommonModes);
+         
          while(m_bRun)
          {
-
-            m_bRunning = true;
-
-            ssize_t  result;
-
-            int length;
-
-            data_struct data;
-
-            /* The length is essentially the size of the structure minus sizeof(mtype) */
-            length = sizeof(data_struct) - sizeof(long);
-
-            ::primitive::memory mem;
-
-            do
-            {
-
-               if((result = msgrcv(m_iQueue,&data,length,15111984,IPC_NOWAIT)) == -1)
-               {
-
-                  if(errno == ENOMSG)
-                  {
-                     if(!on_idle())
-                     {
-                        Sleep(84 * 1000);
-                     }
-                  }
-                  else
-                  {
-                     return (void *)-1;
-                  }
-
-               }
-
-               mem.append(data.data,data.size);
-
-
-               if(data.size < 512)
-                  break;
-
-            } while(true);
-
-
-            if(data.request == 0)
-            {
-
-               on_receive(this,mem.to_string());
-
-            }
-            else
-            {
-
-               on_receive(this,data.request,mem.get_data(),(int)mem.get_size());
-
-            }
-
+            CFRunLoopRun();
          }
-
-         m_bRunning = false;
-
+         
+         //         while(m_bRun)
+         //         {
+         //
+         //            m_bRunning = true;
+         //
+         //            ssize_t  result;
+         //
+         //            int length;
+         //
+         //            data_struct data;
+         //
+         //            /* The length is essentially the size of the structure minus sizeof(mtype) */
+         //            length = sizeof(data) - sizeof(data.message);
+         //
+         //            ::primitive::memory mem;
+         //
+         //            do
+         //            {
+         //
+         //               ZERO(data);
+         //               if((result = msgrcv(m_iQueue,&data,length,1984,IPC_NOWAIT)) == -1)
+         //               {
+         //
+         //                  if(errno == ENOMSG)
+         //                  {
+         ////                     if(!on_idle())
+         //  //                   {
+         //    //                    Sleep(84 * 1000);
+         //      //               }
+         //                     Sleep(84);
+         //                  }
+         //                  else
+         //                  {
+         //                     return (void *)-1;
+         //                  }
+         //
+         //               }
+         //
+         //               mem.append(data.data,data.size);
+         //
+         //
+         //               if(data.size < 512)
+         //                  break;
+         //
+         //            } while(true);
+         //
+         //            if(data.size > 0)
+         //            {
+         //            if(data.request == 5)
+         //            {
+         //
+         //               on_receive(this,mem.to_string());
+         //
+         //            }
+         //            else
+         //            {
+         //
+         //               on_receive(this,data.request,mem.get_data(),(int)mem.get_size());
+         //
+         //            }
+         //            }
+         //
+         //         }
+         //
+         //         m_bRunning = false;
+         
          return NULL;
-
+         
       }
-
-
-
+      
+      
+      
       bool ipc::open_ab(const char * pszChannel,launcher * plauncher)
       {
-
+         
          m_strChannel = pszChannel;
-
+         
          m_rx.m_preceiver = this;
-
+         
          string strChannelRx = m_strChannel + "-a";
          string strChannelTx = m_strChannel + "-b";
-
-
+         
+         
          if(!m_rx.create(strChannelRx))
          {
             return false;
          }
-
+         
          if(!tx::open(strChannelTx,plauncher))
          {
             return false;
          }
-
+         
          return true;
-
+         
       }
-
+      
       bool ipc::open_ba(const char * pszChannel,launcher * plauncher)
       {
-
+         
          m_strChannel = pszChannel;
-
+         
          m_rx.m_preceiver = this;
-
+         
          string strChannelRx = m_strChannel + "-b";
          string strChannelTx = m_strChannel + "-a";
-
-
+         
+         
          if(!m_rx.create(strChannelRx))
          {
             return false;
          }
-
+         
          if(!tx::open(strChannelTx,plauncher))
          {
             return false;
          }
-
+         
          return true;
-
+         
       }
-
-
+      
+      
       bool ipc::is_rx_tx_ok()
       {
-
+         
          return m_rx.is_rx_ok() && is_tx_ok();
-
+         
       }
-
-
+      
+      
    } // namespace ipc
-
-
+   
+   
 } // namespace aura
 
 
