@@ -2,14 +2,14 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="aurasqlite" />
+		<Option title="aurapcre" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="../../../stage/x86/libaurasqlite.so" prefix_auto="0" extension_auto="0" />
+				<Option output="../../../stage/x86/libaurapcre.so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="../../../stage/x86/" />
-				<Option object_output="../../../time/intermediate/app/aurasqlite" />
+				<Option object_output="../../../time/intermediate/app/aurapcre" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -24,9 +24,9 @@
 				</Linker>
 			</Target>
 			<Target title="memdleak">
-				<Option output="../../../stage/x86/libaurasqlite.so" prefix_auto="0" extension_auto="0" />
+				<Option output="../../../stage/x86/libaurapcre.so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="../../../stage/x86/" />
-				<Option object_output="../../../time/intermediate/app/aurasqlite" />
+				<Option object_output="../../../time/intermediate/app/aurapcre" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -52,6 +52,7 @@
 			<Add option="-Winvalid-pch" />
 			<Add option="-fPIC" />
 			<Add option="-DLINUX" />
+			<Add option="-DHAVE_CONFIG_H" />
 			<Add directory="../../../include" />
 			<Add directory="../../include" />
 			<Add directory="framework" />
@@ -67,21 +68,98 @@
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
 			<Add option="-Wl,-z,origin" />
-			<Add option="-ldl" />
-			<Add option="-lpthread" />
-			<Add option="-laura" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 		</Linker>
-		<Unit filename="shell.c">
+		<Unit filename="config.guess.h" />
+		<Unit filename="pcre2-config.in.h" />
+		<Unit filename="src/config.h" />
+		<Unit filename="src/dftables.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="sqlite3.c">
+		<Unit filename="src/pcre2.h" />
+		<Unit filename="src/pcre2_auto_possess.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="version.c">
+		<Unit filename="src/pcre2_chartables.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/pcre2_compile.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/pcre2_config.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/pcre2_context.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/pcre2_dfa_match.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/pcre2_error.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/pcre2_internal.h" />
+		<Unit filename="src/pcre2_intmodedep.h" />
+		<Unit filename="src/pcre2_jit_compile.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/pcre2_maketables.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/pcre2_match.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/pcre2_match_data.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/pcre2_newline.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/pcre2_ord2utf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/pcre2_pattern_info.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/pcre2_serialize.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/pcre2_string_utils.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/pcre2_study.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/pcre2_substitute.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/pcre2_substring.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/pcre2_tables.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/pcre2_ucd.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/pcre2_ucp.h" />
+		<Unit filename="src/pcre2_valid_utf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/pcre2_xclass.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/pcre2posix.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/pcre2posix.h" />
+		<Unit filename="src/sljit/sljitConfig.h" />
+		<Unit filename="src/sljit/sljitConfigInternal.h" />
+		<Unit filename="src/sljit/sljitLir.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/sljit/sljitLir.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />
