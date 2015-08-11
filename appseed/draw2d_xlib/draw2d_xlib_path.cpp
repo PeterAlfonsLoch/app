@@ -5,7 +5,7 @@ namespace draw2d_xlib
 {
 
 
-   path::path(sp(::base::application) papp) :
+   path::path(::aura::application * papp) :
       ::object(papp)
    {
 

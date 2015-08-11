@@ -10,9 +10,10 @@ namespace draw2d_xlib
 {
 
 
-   graphics::graphics(sp(::base::application) papp) :
+   graphics::graphics(::aura::application * papp) :
       ::object(papp),
-      m_ui(papp)
+      ::draw2d::graphics(papp)
+      //,     m_ui(papp)
    {
 
       m_bPrinting       = FALSE;
@@ -24,7 +25,7 @@ namespace draw2d_xlib
       */
       m_etextrendering  = ::draw2d::text_rendering_anti_alias_grid_fit;
 
-      m_spfont.create(allocer());
+      m_spfont.alloc(allocer());
       m_spfont->m_strFontFamilyName = "Helvetica";
       m_spfont->m_dFontSize = 12.0;
 
@@ -33,22 +34,22 @@ namespace draw2d_xlib
 
    }
 
-   graphics::graphics() :
-      m_ui(NULL)
-   {
-
-      m_bPrinting       = FALSE;
-      m_pdc             = NULL;
-/*      m_pgraphics       = NULL;
-      m_hdc             = NULL;
-      m_ppath           = NULL;
-      m_ppathPaint      = NULL;*/
-      m_etextrendering  = ::draw2d::text_rendering_anti_alias_grid_fit;
-
-
-      m_nStretchBltMode = HALFTONE;
-
-   }
+//   graphics::graphics() //:
+////      m_ui(NULL)
+//   {
+//
+//      m_bPrinting       = FALSE;
+//      m_pdc             = NULL;
+///*      m_pgraphics       = NULL;
+//      m_hdc             = NULL;
+//      m_ppath           = NULL;
+//      m_ppathPaint      = NULL;*/
+//      m_etextrendering  = ::draw2d::text_rendering_anti_alias_grid_fit;
+//
+//
+//      m_nStretchBltMode = HALFTONE;
+//
+//   }
 
 
    void graphics::assert_valid() const
@@ -168,7 +169,7 @@ namespace draw2d_xlib
 //}         xlib_surface_destroy(psurface);
 
 
-         m_spbitmap.create(allocer());
+         m_spbitmap.alloc(allocer());
 
          m_spbitmap->CreateCompatibleBitmap(this, 256, 256);
 
@@ -313,7 +314,7 @@ if(psurfaceNew == xlib_keep::g_xlibsurface)
 
       m_pdc                = new device_context();
 
-      m_pdc->m_pdisplay    = pbitmap->m_ui.m_window->display();
+//      m_pdc->m_pdisplay    = pbitmap->m_ui.m_window->display();
 
       m_pdc->m_pixmap      = pbitmap->m_pixmap;
 
@@ -1744,13 +1745,13 @@ if(psurfaceNew == xlib_keep::g_xlibsurface)
                ::draw2d::dib_sp dib2(allocer());
                dib2->create(rectText.size());
                dib2->Fill(255, 0, 0, 0);
-               dib2->from(point((int64_t) max(0, m_ptAlphaBlend.x - x), (int64_t) max(0, m_ptAlphaBlend.y - y)),
-               m_pdibAlphaBlend->get_graphics(), point((int64_t) max(0, x - m_ptAlphaBlend.x), (int64_t) max(0, y - m_ptAlphaBlend.y)), rectText.size());
+               dib2->from(point((int64_t) MAX(0, m_ptAlphaBlend.x - x), (int64_t) MAX(0, m_ptAlphaBlend.y - y)),
+               m_pdibAlphaBlend->get_graphics(), point((int64_t) MAX(0, x - m_ptAlphaBlend.x), (int64_t) MAX(0, y - m_ptAlphaBlend.y)), rectText.size());
                dib1->channel_multiply(visual::rgba::channel_alpha, dib2.m_p);
                /*::draw2d::dib_sp dib3(get_app());
                dib1->mult_alpha(dib3);*/
 
-               keeper < ::draw2d::dib * > keep(&m_pdibAlphaBlend, NULL, m_pdibAlphaBlend, true);
+               keep < ::draw2d::dib * > keep(&m_pdibAlphaBlend, NULL, m_pdibAlphaBlend, true);
 
                return BitBlt((int32_t) x, (int32_t) y, rectText.width(), rectText.height(), dib1->get_graphics(), 0, 0, SRCCOPY);
 
@@ -3161,7 +3162,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
    /////////////////////////////////////////////////////////////////////////////
    // special graphics drawing primitives/helpers
 
-   ::draw2d::brush* PASCAL graphics::GetHalftoneBrush(sp(::base::application) papp)
+   ::draw2d::brush* PASCAL graphics::GetHalftoneBrush(::aura::application * papp)
    {
 /*      ::core::LockGlobals(CRIT_HALFTONEBRUSH);
       if (gen_HalftoneBrush == NULL)
@@ -3496,7 +3497,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 
    }
 
-//   object* PASCAL graphics::SelectGdiObject(sp(::base::application) papp, HDC hDC, HGDIOBJ h)
+//   object* PASCAL graphics::SelectGdiObject(::aura::application * papp, HDC hDC, HGDIOBJ h)
   // {
 //      return ::win::object::from_handle(papp, ::SelectObject(hDC, h));
    //}
@@ -4603,13 +4604,13 @@ return 1;
       c.alpha = argb_get_a_value(m_spbrush->m_cr) * 255;
 
       XftColor ftc;
-      XftColorAllocValue(m_pdc->m_pdisplay, pbitmap->m_ui.m_window->visual(), pbitmap->m_ui.m_window->m_colormap, &c, &ftc);
+//      XftColorAllocValue(m_pdc->m_pdisplay, pbitmap->m_ui.m_window->visual(), pbitmap->m_ui.m_window->m_colormap, &c, &ftc);
 
       XftDrawStringUtf8(pdraw, &ftc, pfont->m_pft,
       lpRect->left + dx + m_pdc->m_ptOffset.x,
       lpRect->top + h + dy + m_pdc->m_ptOffset.y, (const FcChar8 *) (const char *) str, str.get_length());
 
-      XftColorFree(m_pdc->m_pdisplay, pbitmap->m_ui.m_window->visual(), pbitmap->m_ui.m_window->m_colormap, &ftc);
+//      XftColorFree(m_pdc->m_pdisplay, pbitmap->m_ui.m_window->visual(), pbitmap->m_ui.m_window->m_colormap, &ftc);
 
       XftDrawDestroy(pdraw);
 
@@ -4989,7 +4990,7 @@ return 1;
       c.alpha = 0xffff;
 
       XftColor ftc;
-      XftColorAllocValue(m_pdc->m_pdisplay, pbitmap->m_ui.m_window->visual(), pbitmap->m_ui.m_window->m_colormap, &c, &ftc);
+//      XftColorAllocValue(m_pdc->m_pdisplay, pbitmap->m_ui.m_window->visual(), pbitmap->m_ui.m_window->m_colormap, &c, &ftc);
 
 //      wstring wstr(lpszString, nCount);
 
@@ -4997,7 +4998,7 @@ return 1;
       x + m_pdc->m_ptOffset.x,
       y + h + m_pdc->m_ptOffset.y, (const FcChar8 *) (const char *) lpszString, nCount);
 
-      XftColorFree(m_pdc->m_pdisplay, pbitmap->m_ui.m_window->visual(), pbitmap->m_ui.m_window->m_colormap, &ftc);
+//      XftColorFree(m_pdc->m_pdisplay, pbitmap->m_ui.m_window->visual(), pbitmap->m_ui.m_window->m_colormap, &ftc);
 
       XftDrawDestroy(pdraw);
 

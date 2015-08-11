@@ -10,7 +10,7 @@ namespace draw2d_xlib
    {
    public:
 
-      factory_exchange(sp(::base::application) papp);
+      factory_exchange(::aura::application * papp);
       virtual ~factory_exchange();
 
    };

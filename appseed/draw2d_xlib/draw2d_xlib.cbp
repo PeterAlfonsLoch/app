@@ -58,6 +58,9 @@
 			<Add directory="../../../app" />
 			<Add directory="../../../app/thirdparty/include" />
 			<Add directory="../base" />
+			<Add directory="../../appseed" />
+			<Add directory="../axis" />
+			<Add directory="../aura" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
@@ -67,11 +70,9 @@
 			<Add option="-lX11" />
 			<Add option="-lXft" />
 			<Add option="-lXmu" />
+			<Add option="-laura" />
+			<Add option="-laxis" />
 			<Add option="-lbase" />
-			<Add option="-lbasefreeimage" />
-			<Add option="-lbasefreetype" />
-			<Add option="-lbasecairo" />
-			<Add option="-lcore" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 		</Linker>

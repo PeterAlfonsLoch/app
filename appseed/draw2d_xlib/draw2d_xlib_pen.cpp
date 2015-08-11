@@ -5,7 +5,7 @@ namespace draw2d_xlib
 {
 
 
-   pen::pen(sp(::base::application) papp) :
+   pen::pen(::aura::application * papp) :
       ::object(papp)
    {
    }
@@ -16,7 +16,7 @@ namespace draw2d_xlib
    {
       return (HPEN)(this == NULL ? NULL : get_handle());
    }*/
-/*   pen* PASCAL pen::from_handle(sp(::base::application) papp, HPEN hPen)
+/*   pen* PASCAL pen::from_handle(::aura::application * papp, HPEN hPen)
    {
       return dynamic_cast < pen* > (::win::object::from_handle(papp, hPen));
    }*/

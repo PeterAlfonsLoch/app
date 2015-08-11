@@ -4,9 +4,9 @@
 namespace draw2d_xlib
 {
 
-   bitmap::bitmap(sp(::base::application) papp) :
-      ::object(papp),
-      m_ui(papp)
+   bitmap::bitmap(::aura::application * papp) :
+      ::object(papp) // ,
+//      m_ui(papp)
    {
 
       m_pixmap = None;
@@ -67,32 +67,32 @@ namespace draw2d_xlib
          memcpy(m_mem.get_data(), pdata, iStride * cy);
       }
 
-      if(m_ui.m_window == NULL)
-      {
+//      if(m_ui.m_window == NULL)
+//      {
+//
+//         rect r(100, 100, 200, 200);
+//
+//         m_ui.create_window(r);
+//
+//      }
 
-         rect r(100, 100, 200, 200);
+//      if(m_ui.m_window == NULL)
+//      {
+//
+//         return false;
+//
+//      }
 
-         m_ui.create_window(r);
-
-      }
-
-      if(m_ui.m_window == NULL)
-      {
-
-         return false;
-
-      }
-
-      ::oswindow window = m_ui.m_window;
-
-      m_pixmap = XCreatePixmap(window->display(), window->window(), cx, cy, window->m_iDepth);
-
-      if(m_pixmap == None)
-      {
-
-         return false;
-
-      }
+//      ::oswindow window = m_ui.m_window;
+//
+//      m_pixmap = XCreatePixmap(window->display(), window->window(), cx, cy, window->m_iDepth);
+//
+//      if(m_pixmap == None)
+//      {
+//
+//         return false;
+//
+//      }
 
       m_size.cx = cx;
 
@@ -159,32 +159,32 @@ namespace draw2d_xlib
 
       }
 
-      if(m_ui.m_window == NULL)
-      {
+//      if(m_ui.m_window == NULL)
+//      {
+//
+//         rect r(100, 100, 200, 200);
+//
+//         m_ui.create_window(r);
+//
+//      }
+//
+//      if(m_ui.m_window == NULL)
+//      {
+//
+//         return false;
+//
+//      }
 
-         rect r(100, 100, 200, 200);
+//      ::oswindow window = m_ui.m_window;
 
-         m_ui.create_window(r);
-
-      }
-
-      if(m_ui.m_window == NULL)
-      {
-
-         return false;
-
-      }
-
-      ::oswindow window = m_ui.m_window;
-
-      m_pixmap = XCreatePixmap(window->display(), window->window(), cx, cy, window->m_iDepth);
-
-      if(m_pixmap == None)
-      {
-
-         return false;
-
-      }
+////      m_pixmap = XCreatePixmap(window->display(), window->window(), cx, cy, window->m_iDepth);
+//
+//      if(m_pixmap == None)
+//      {
+//
+//         return false;
+//
+//      }
 
 
       if(ppdata != NULL)
@@ -419,7 +419,7 @@ namespace draw2d_xlib
 
 //      xlib_surface_destroy(m_pixmap);
 
-      XFreePixmap(m_ui.m_window->display(), m_pixmap);
+//      XFreePixmap(m_ui.m_window->display(), m_pixmap);
 
       m_pixmap = None;
 

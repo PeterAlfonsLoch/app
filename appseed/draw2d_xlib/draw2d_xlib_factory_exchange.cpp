@@ -5,7 +5,7 @@ namespace draw2d_xlib
 {
 
 
-   factory_exchange::factory_exchange(sp(::base::application) papp) :
+   factory_exchange::factory_exchange(::aura::application * papp) :
       ::object(papp)
    {
 
@@ -34,7 +34,7 @@ namespace draw2d_xlib
 
 
 extern "C"
-void ca2_factory_exchange(sp(::base::application) papp)
+void ca2_factory_exchange(::aura::application * papp)
 {
    draw2d_xlib::factory_exchange factoryexchange(papp);
 }

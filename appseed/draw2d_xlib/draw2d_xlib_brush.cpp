@@ -5,7 +5,7 @@ namespace draw2d_xlib
 {
 
 
-   brush::brush(sp(::base::application) papp) :
+   brush::brush(::aura::application * papp) :
       ::object(papp)
    {
 

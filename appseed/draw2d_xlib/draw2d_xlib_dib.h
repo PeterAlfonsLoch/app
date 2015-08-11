@@ -33,7 +33,7 @@ namespace draw2d_xlib
 
 
 
-      dib(sp(::base::application) papp);
+      dib(::aura::application * papp);
       virtual void construct(int32_t cx, int32_t cy);
       virtual ~dib();
 
@@ -56,7 +56,7 @@ namespace draw2d_xlib
 
 
 
-      using request_interface::create;
+      using object::create;
       bool create(class size size);
       bool create(int32_t iWidth, int32_t iHeight);
       bool create(::draw2d::graphics * pdc);
@@ -160,7 +160,7 @@ namespace draw2d_xlib
       //double pi();
 
 
-      virtual void read(::file::input_stream & istream);
+      virtual void read(::file::istream & istream);
 
 
    };

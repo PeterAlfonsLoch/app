@@ -5,7 +5,7 @@ namespace draw2d_xlib
 {
 
 
-   palette::palette(sp(::base::application) papp) :
+   palette::palette(::aura::application * papp) :
       ::object(papp)
    {
 
@@ -31,7 +31,7 @@ namespace draw2d_xlib
 */
 /*
 
-   palette* PASCAL palette::from_handle(sp(::base::application) papp, HPALETTE hPalette)
+   palette* PASCAL palette::from_handle(::aura::application * papp, HPALETTE hPalette)
    {
 
       //return dynamic_cast < palette * > (::win::object::from_handle(papp, hPalette));

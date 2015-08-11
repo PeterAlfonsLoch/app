@@ -38,7 +38,7 @@ namespace draw2d_xlib
       return 0;
    }
 
-   object * graphics_object_allocator(sp(::base::application) papp, HANDLE h)
+   object * graphics_object_allocator(::aura::application * papp, HANDLE h)
    {
       return NULL;
    }

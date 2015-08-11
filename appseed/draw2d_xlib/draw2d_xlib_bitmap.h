@@ -11,13 +11,13 @@ namespace draw2d_xlib
    public:
 
 
-      ::os::simple_ui         m_ui;
+//      ::simple_ui::interaction   m_ui;
       ::Pixmap                m_pixmap;
       ::primitive::memory     m_mem;
       ::size                  m_size;
 
 
-      bitmap(sp(::base::application) papp);
+      bitmap(::aura::application * papp);
       virtual ~bitmap();
 
 

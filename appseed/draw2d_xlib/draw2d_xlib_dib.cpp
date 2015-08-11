@@ -14,7 +14,7 @@ namespace draw2d_xlib
 
 
 
-   dib::dib(sp(::base::application) papp) :
+   dib::dib(::aura::application * papp) :
       ::object(papp),
       m_spbitmap(allocer()),
       m_spgraphics(allocer())
@@ -41,7 +41,7 @@ namespace draw2d_xlib
    }
 
 
-   void dib::read(::file::input_stream & istream)
+   void dib::read(::file::istream & istream)
    {
 
       ::draw2d::dib::read(istream);
@@ -100,8 +100,8 @@ namespace draw2d_xlib
 
       m_bMapped = false;
 
-      m_spbitmap.create(allocer());
-      m_spgraphics.create(allocer());
+      m_spbitmap.alloc(allocer());
+      m_spgraphics.alloc(allocer());
 
       if(m_spbitmap.m_p == NULL)
       {
@@ -400,13 +400,13 @@ namespace draw2d_xlib
 
       ::draw2d_xlib::bitmap * pb = m_spbitmap.cast < ::draw2d_xlib::bitmap >();
 
-      m_pimage = XGetImage(
-                     pb->m_ui.m_window->display(),
-                     pb->m_pixmap,
-                     0, 0,
-                     m_size.cx, m_size.cy,
-                     -1,
-                     ZPixmap);
+//      m_pimage = XGetImage(
+//                     pb->m_ui.m_window->display(),
+//                     pb->m_pixmap,
+//                     0, 0,
+//                     m_size.cx, m_size.cy,
+//                     -1,
+//                     ZPixmap);
 
       memcpy(m_pcolorref, m_pimage->data, m_iScan * m_size.cy);
 
@@ -432,14 +432,14 @@ namespace draw2d_xlib
 
       memcpy(m_pimage->data, m_pcolorref, m_iScan * m_size.cy);
 
-      XPutImage(
-                     pb->m_ui.m_window->display(),
-                     pb->m_pixmap,
-                     pg->m_pdc->m_gc,
-                     m_pimage,
-                     0, 0,
-                     0, 0,
-                     m_size.cx, m_size.cy);
+//      XPutImage(
+//                     pb->m_ui.m_window->display(),
+//                     pb->m_pixmap,
+//                     pg->m_pdc->m_gc,
+//                     m_pimage,
+//                     0, 0,
+//                     0, 0,
+//                     m_size.cx, m_size.cy);
 
       XDestroyImage(m_pimage);
 
@@ -1820,11 +1820,11 @@ namespace draw2d_xlib
             {
                bMax = 0;
                b =(BYTE)(r1[0]  - r2[0]);
-               bMax = max(b, bMax);
+               bMax = MAX(b, bMax);
                b =(BYTE)(r1[1]  - r2[1]);
-               bMax = max(b, bMax);
+               bMax = MAX(b, bMax);
                b =(BYTE)(r1[2]  - r2[2]);
-               bMax = max(b, bMax);
+               bMax = MAX(b, bMax);
                bMax = 255 - bMax;
             }
             dest[0]  =  bMax;
@@ -2662,23 +2662,23 @@ namespace draw2d_xlib
    }
 
 
-#elif defined(LINUX)
+#endif
 
 
    bool dib::update_window(::window * pwnd, signal_details * pobj)
    {
 
-      rect64 rectWindow;
-
-      rectWindow = pwnd->m_rectParentClient;
-
-      m_spgraphics->SetViewportOrg(0, 0);
-
-      map(true);
-
-      rect rect(rectWindow);
-
-      window_graphics::update_window(pwnd->m_pgraphics, pwnd->get_handle(), m_pcolorref, rect, m_iScan);
+//      rect64 rectWindow;
+//
+//      rectWindow = pwnd->m_rectParentClient;
+//
+//      m_spgraphics->SetViewportOrg(0, 0);
+//
+//      map(true);
+//
+//      rect rect(rectWindow);
+//
+//      window_graphics::update_window(pwnd->m_pgraphics, pwnd->get_handle(), m_pcolorref, rect, m_iScan);
 
       return true;
 
@@ -2686,7 +2686,7 @@ namespace draw2d_xlib
       }
 
 
-#endif
+
 
 
 } // namespace draw2d_xlib

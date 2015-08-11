@@ -21,7 +21,7 @@ namespace draw2d_xlib
    public:
 
 
-      ::os::simple_ui         m_ui;
+      ::simple_ui::interaction         m_ui;
       device_context *        m_pdc;
       int32_t                 m_iType;
       //bool                    m_bForeColor;
@@ -39,8 +39,8 @@ namespace draw2d_xlib
 
 
 
-      graphics();
-      graphics(sp(::base::application) papp);
+      //graphics();
+      graphics(::aura::application * papp);
       virtual ~graphics();
 
 
@@ -479,7 +479,7 @@ namespace draw2d_xlib
 
    // Misc Helper Functions
       using ::draw2d::graphics::GetHalftoneBrush;
-      static ::draw2d::brush* PASCAL GetHalftoneBrush(sp(::base::application) papp);
+      static ::draw2d::brush* PASCAL GetHalftoneBrush(::aura::application * papp);
       void DrawDragRect(LPCRECT lpRect, SIZE size,
          LPCRECT lpRectLast, SIZE sizeLast,
          ::draw2d::brush* pBrush = NULL, ::draw2d::brush* pBrushLast = NULL);
@@ -518,7 +518,7 @@ namespace draw2d_xlib
 
    //protected:
       // used for implementation of non-virtual SelectObject calls
-      //static ::draw2d_xlib::object* PASCAL SelectGdiObject(sp(::base::application) papp, HDC hDC, HGDIOBJ h);
+      //static ::draw2d_xlib::object* PASCAL SelectGdiObject(::aura::application * papp, HDC hDC, HGDIOBJ h);
 
 
       // platform-specific or platform-internals
