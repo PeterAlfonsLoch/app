@@ -313,16 +313,16 @@ namespace str
 
    CLASS_DECL_AURA void format(string_format * pformat,const lparam & lparam);
 
-#ifdef LINUX
-
-   inline CLASS_DECL_AURA void format(string_format * pformat,const pthread & p)
-   {
-
-      ::str::format(pformat, p.m_thread);
-
-   }
-
-#endif
+//#ifdef LINUX
+//
+//   inline CLASS_DECL_AURA void format(string_format * pformat,const pthread & p)
+//   {
+//
+//      ::str::format(pformat, p.m_thread);
+//
+//   }
+//
+//#endif
 
    template < class TYPE >
    void format_type(string_format * pformat,const TYPE & t)

@@ -27,14 +27,23 @@ namespace aura
          if(m_iQueue >= 0)
             close();
 
-         m_key = ftok(".",'c');
+         if(!file_exists_dup(pszChannel))
+         {
+
+            file_put_contents_dup(pszChannel, pszChannel);
+
+         }
+
+         m_key = ftok(pszChannel,'c');
 
          if(m_key == 0)
             return false;
 
-         if((m_iQueue = msgget(m_key,0660)) == -1)
+         if((m_iQueue = msgget(m_key,IPC_CREAT | 0660)) == -1)
          {
+
             return false;
+
          }
 
          m_strBaseChannel = pszChannel;
@@ -63,7 +72,7 @@ namespace aura
 
          data_struct data;
          data.mtype        = 15111984;
-         data.request      = 0;
+         data.request      = 0x80000000;
          data.size         = strlen_dup(pszMessage);
          if(data.size > 512)
             return false;
@@ -164,10 +173,12 @@ namespace aura
       bool rx::create(const char * pszChannel)
       {
 
+
+
          if(!file_exists_dup(pszChannel))
          {
 
-            file_put_contents_dup(pszChannel, "");
+            file_put_contents_dup(pszChannel, pszChannel);
 
          }
 

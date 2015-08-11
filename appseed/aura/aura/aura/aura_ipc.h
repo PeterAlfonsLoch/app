@@ -29,19 +29,23 @@ namespace aura
 #elif defined(APPLEOS)
          CFMessagePortRef remotePort;
 #elif !defined(METROWIN)
-         key_t   m_key;
-         int      m_iQueue;
+
+         key_t       m_key;
+         int         m_iQueue;
 
          struct data_struct
          {
-            long     message;
+
+            long     mtype;
             long     request;
             int      size;
             char     data[512];
-         } msg;
+
+         };
+
 #endif
 
-         
+
          string   m_strBaseChannel;
 
 

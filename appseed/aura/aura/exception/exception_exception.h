@@ -41,9 +41,10 @@ namespace exception
 
       result() {}
       result(e_context_switcher_no_exception) {}
-      result(e_context_switcher_failed)
+      result(e_context_switcher_failed e) :
+         exception(e)
       {
-         add(canew(exception(failure)));
+         add(canew(exception(e)));
       }
       result(std::initializer_list < exception * > list);
       ~result() { release(); }
