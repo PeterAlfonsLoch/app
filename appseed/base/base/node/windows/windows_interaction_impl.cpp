@@ -1071,7 +1071,7 @@ namespace windows
    bool interaction_impl::SetWindowPlacement(const WINDOWPLACEMENT* lpwndpl)
    {
 
-      synch_lock sl(&user_mutex());
+      synch_lock sl(m_pui->m_pmutex);
 
       ASSERT(::IsWindow(get_handle()));
 

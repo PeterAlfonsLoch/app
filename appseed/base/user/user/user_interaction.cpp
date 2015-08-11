@@ -5288,7 +5288,7 @@ namespace user
 
 #ifdef WINDOWSEX
 
-         synch_lock slUserMutex(&user_mutex());
+         synch_lock slUserMutex(m_pmutex);
 
          {
 
@@ -5385,7 +5385,7 @@ namespace user
 #ifdef WINDOWSEX
 
 
-         synch_lock slUserMutex(&user_mutex());
+         synch_lock slUserMutex(m_pmutex);
 
          {
 
@@ -5498,7 +5498,7 @@ namespace user
 #ifdef WINDOWSEX
 
 
-         synch_lock slUserMutex(&user_mutex());
+         synch_lock slUserMutex(m_pmutex);
 
          set_appearance(*peappearance);
 
@@ -5616,7 +5616,7 @@ namespace user
 #ifdef WINDOWSEX
 
 
-         synch_lock slUserMutex(&user_mutex());
+         synch_lock slUserMutex(m_pmutex);
 
          set_appearance(*peappearance);
 
@@ -5723,7 +5723,7 @@ namespace user
       {
 #ifdef WINDOWSEX
 
-         //synch_lock slUserMutex(&user_mutex());
+         //synch_lock slUserMutex(m_pmutex);
 
          {
 
@@ -5821,7 +5821,7 @@ namespace user
 
 #ifdef WINDOWSEX
 
-         synch_lock slUserMutex(&user_mutex());
+         synch_lock slUserMutex(m_pmutex);
 
          {
 

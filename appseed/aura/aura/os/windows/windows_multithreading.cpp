@@ -13,7 +13,7 @@
 thread_data::thread_data()
 {
 
-   m_dwIndex = TlsAlloc();
+   m_dwIndex = thread_alloc();
 
 }
 
@@ -21,11 +21,9 @@ thread_data::thread_data()
 thread_data::~thread_data()
 {
 
-   TlsFree(m_dwIndex);
+   thread_free(m_dwIndex);
 
 }
-
-
 
 
 static HANDLE g_hMainThread = NULL;
@@ -388,3 +386,40 @@ bool __os_term_thread()
 //   }
 //
 //}
+
+CLASS_DECL_AURA uint32_t thread_alloc()
+{
+
+   return (uint32_t) TlsAlloc();
+
+}
+
+
+CLASS_DECL_AURA void * thread_get_data(uint32_t uiIndex)
+{
+   
+   return (void *) TlsGetValue((DWORD) uiIndex);
+
+}
+
+
+CLASS_DECL_AURA void thread_set_data(uint32_t uiIndex, void * pvalue)
+{
+  
+   TlsSetValue((DWORD)uiIndex, (LPVOID) pvalue);
+
+}
+
+
+CLASS_DECL_AURA int_bool thread_free(uint32_t uiIndex)
+{
+
+   return TlsFree((DWORD) uiIndex);
+
+}
+
+
+CLASS_DECL_AURA void thread_shutdown()
+{
+
+}
