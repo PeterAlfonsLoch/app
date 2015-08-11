@@ -275,7 +275,7 @@ bool oswindow_remove_message_only_window(::user::interaction * pui)
 int32_t oswindow_data::store_name(const char * psz)
 {
 
-	synch_lock sl(&user_mutex());
+	synch_lock sl(m_pui == NULL ? NULL : m_pui->m_pmutex);
 
 	synch_lock slOsWindow(s_pmutex);
 
@@ -296,7 +296,7 @@ int32_t oswindow_data::select_input(int32_t iInput)
 {
 
 
-	synch_lock sl(&user_mutex());
+	synch_lock sl(m_pui == NULL ? NULL : m_pui->m_pmutex);
 
 	synch_lock slOsWindow(s_pmutex);
 
@@ -334,7 +334,7 @@ int32_t oswindow_data::map_window()
 
 	/*
 
-	synch_lock sl(&user_mutex());
+	synch_lock sl(m_pui == NULL ? NULL : m_pui->m_pmutex);
 
 	synch_lock slOsWindow(s_pmutex);
 
@@ -408,7 +408,7 @@ void oswindow_data::set_user_interaction(::user::interaction * pui)
 bool oswindow_data::is_child(::oswindow oswindow)
 {
 
-	synch_lock sl(&user_mutex());
+	synch_lock sl(m_pui == NULL ? NULL : m_pui->m_pmutex);
 
 	synch_lock slOsWindow(s_pmutex);
 
@@ -427,7 +427,7 @@ bool oswindow_data::is_child(::oswindow oswindow)
 oswindow oswindow_data::GetParent()
 {
 
-	synch_lock sl(&user_mutex());
+	synch_lock sl(m_pui == NULL ? NULL : m_pui->m_pmutex);
 
 	synch_lock slOsWindow(s_pmutex);
 
@@ -459,7 +459,7 @@ oswindow oswindow_data::GetParent()
 oswindow oswindow_data::SetParent(oswindow oswindow)
 {
 
-	synch_lock sl(&user_mutex());
+	synch_lock sl(m_pui == NULL ? NULL : m_pui->m_pmutex);
 
 	synch_lock slOsWindow(s_pmutex);
 
@@ -485,7 +485,7 @@ oswindow oswindow_data::SetParent(oswindow oswindow)
 bool oswindow_data::ShowWindow(int32_t nCmdShow)
 {
 
-	synch_lock sl(&user_mutex());
+	synch_lock sl(m_pui == NULL ? NULL : m_pui->m_pmutex);
 
 	synch_lock slOsWindow(s_pmutex);
 
@@ -597,7 +597,7 @@ long oswindow_data::get_state()
 {
 
 
-	synch_lock sl(&user_mutex());
+	synch_lock sl(m_pui == NULL ? NULL : m_pui->m_pmutex);
 
 	/*
 
@@ -646,7 +646,7 @@ bool oswindow_data::is_iconic()
 bool oswindow_data::is_window_visible()
 {
 
-	synch_lock sl(&user_mutex());
+	synch_lock sl(m_pui == NULL ? NULL : m_pui->m_pmutex);
 
 	return m_bVisible;
 
@@ -999,38 +999,23 @@ return 0;
 */
 
 static oswindow g_oswindowCapture;
+static oswindow g_oswindowFocus;
+static oswindow g_oswindowActive;
 
 
 oswindow GetCapture()
 {
-	return g_oswindowCapture;
+
+   return g_oswindowCapture;
+
 }
 
 oswindow SetCapture(oswindow interaction_impl)
 {
 
-	synch_lock sl(&user_mutex());
 
-	oswindow windowOld(g_oswindowCapture);
-	/*
-	if(interaction_impl->display() == NULL)
-	return NULL;
+   g_oswindowCapture = interaction_impl;
 
-	if(interaction_impl->interaction_impl() == None)
-	return NULL;
-
-	xdisplay d(interaction_impl->display());
-
-	if(XGrabPointer(interaction_impl->display(), interaction_impl->interaction_impl(), False, ButtonPressMask | ButtonReleaseMask | PointerMotionMask, GrabModeAsync, GrabModeAsync, None, None, CurrentTime) == GrabSuccess)
-	{
-
-	g_oswindowCapture = interaction_impl;
-
-	return windowOld;
-
-	}
-	*/
-	return NULL;
 
 }
 
@@ -1038,19 +1023,7 @@ oswindow SetCapture(oswindow interaction_impl)
 int_bool ReleaseCapture()
 {
 
-	synch_lock sl(&user_mutex());
-
-	/*
-	xdisplay d(g_oswindowCapture->display());
-
-
-	int_bool bRet = XUngrabPointer(g_oswindowCapture->display(), CurrentTime) != FALSE;
-
-	if(bRet)
-	g_oswindowCapture = NULL;
-	//return bRet;
-
-	*/
+   g_oswindowCapture = NULL;
 
 }
 
@@ -1058,60 +1031,16 @@ int_bool ReleaseCapture()
 oswindow SetFocus(oswindow interaction_impl)
 {
 
-	synch_lock sl(&user_mutex());
+   g_oswindowFocus = interaction_impl;
 
-	/*
-	xdisplay display(interaction_impl->display());
-
-	if(!IsWindow(interaction_impl))
-	return NULL;
-
-	oswindow windowOld = ::GetFocus();
-
-	if(!XSetInputFocus(interaction_impl->display(), interaction_impl->interaction_impl(), RevertToNone, CurrentTime))
-	return NULL;
-
-	return windowOld;
-
-
-
-	*/
-
-	return NULL;
+   return g_oswindowFocus;
 
 }
 
 oswindow GetFocus()
 {
 
-	synch_lock sl(&user_mutex());
-
-	/*
-	xdisplay pdisplay;
-
-	pdisplay.open(NULL);
-
-	if(pdisplay == NULL)
-	return NULL;
-
-	Window interaction_impl = None;
-
-	int revert_to = 0;
-
-	bool bOk = XGetInputFocus(pdisplay, &interaction_impl, &revert_to) != 0;
-
-	pdisplay.close();
-
-	if(!bOk)
-	return NULL;
-
-	if(interaction_impl == None || interaction_impl == PointerRoot)
-	return NULL;
-
-	return oswindow_defer_get(interaction_impl);
-	*/
-
-	return NULL;
+   return g_oswindowFocus;
 
 }
 
@@ -1252,7 +1181,7 @@ oswindow SetActiveWindow(oswindow interaction_impl)
 oswindow GetWindow(oswindow windowParam, int iParentHood)
 {
 
-	synch_lock sl(&user_mutex());
+	synch_lock sl(windowParam == NULL ? NULL : (windowParam->m_pui == NULL ? NULL : windowParam->m_pui->m_pmutex));
 
 
 
@@ -1371,7 +1300,7 @@ oswindow GetWindow(oswindow windowParam, int iParentHood)
 int_bool DestroyWindow(oswindow interaction_impl)
 {
 
-	synch_lock sl(&user_mutex());
+   synch_lock sl(interaction_impl == NULL ? NULL : (interaction_impl->m_pui == NULL ? NULL : interaction_impl->m_pui->m_pmutex));
 
 	if (!IsWindow(interaction_impl))
 		return FALSE;

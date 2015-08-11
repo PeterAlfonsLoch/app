@@ -477,6 +477,10 @@ thread_int_ptr < HRESULT > t_hresultCoInitialize;
 bool __os_init_thread()
 {
 
+   TlsAlloc();
+
+   clear_mq();
+
    return true;
 
 }
@@ -485,6 +489,10 @@ bool __os_init_thread()
 
 bool __os_term_thread()
 {
+
+   clear_mq();
+
+   TlsAlloc();
 
    return true;
 

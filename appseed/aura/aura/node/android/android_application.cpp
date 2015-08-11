@@ -551,7 +551,7 @@ if(__get_module_state()->m_pmapHWND == NULL)
    #endif
    }
 
-   uint32_t application::get_thread_id()
+   IDTHREAD application::get_thread_id()
    {
       return ::pthread_self();
    }

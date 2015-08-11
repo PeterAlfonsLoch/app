@@ -242,7 +242,7 @@ CLASS_DECL_AURA void __dump(const object* pOb); // dump an object from CodeView
 
 #define DEBUG_ONLY(f)      f
 
-#else
+#else // DEBUG
 
 #define DEBUG_ONLY(f)      
 
@@ -252,7 +252,7 @@ CLASS_DECL_AURA void __dump(const object* pOb); // dump an object from CodeView
 #pragma warning(disable : 4793)
 inline void c_cdecl __trace(...) { }
 #pragma warning(pop)
-#if defined(APPLEOS)
+#if defined(APPLEOS) || defined(ANDROID)
 #define TRACE              
 #define APPTRACE           
 #else

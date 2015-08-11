@@ -22,13 +22,17 @@ window_android_anative::~window_android_anative()
 void window_android_anative::create_window_graphics(oswindow interaction_impl,int64_t cxParam,int64_t cyParam,int iStrideParam)
 {
 
+   if(interaction_impl == NULL)
+      return;
 
+   if(interaction_impl->m_pui == NULL)
+      return;
 
    destroy_window_graphics();
 
 
 
-   synch_lock sl(&user_mutex());
+   synch_lock sl(interaction_impl->m_pui->m_pmutex);
 
    int w;
 

@@ -259,7 +259,7 @@ CLASS_DECL_AURA IDTHREAD get_current_thread_id()
 typedef void_ptra ThreadLocalData;
 
 
-#ifdef APPLE_IOS
+#if defined(APPLE_IOS) || defined(ANDROID)
 thread_pointer < ThreadLocalData > currentThreadData;
 #else
 CLASS_DECL_THREAD ThreadLocalData * currentThreadData;
