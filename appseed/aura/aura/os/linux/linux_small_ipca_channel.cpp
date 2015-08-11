@@ -82,6 +82,8 @@ namespace aura
 
          int32_t result;
 
+         memcpy(data.data, pszMessage, data.size);
+
          if((result = msgsnd(m_iQueue,&data,length,0)) == -1)
          {
             return false;
@@ -337,6 +339,7 @@ namespace aura
 
       void * rx::receive()
       {
+            ::primitive::memory mem;
 
          while(m_bRun)
          {
@@ -352,20 +355,15 @@ namespace aura
             /* The length is essentially the size of the structure minus sizeof(mtype) */
             length = sizeof(data_struct) - sizeof(long);
 
-            ::primitive::memory mem;
-
+            mem.allocate(0);
             do
             {
 
-               if((result = msgrcv(m_iQueue,&data,length,15111984,IPC_NOWAIT)) == -1)
+               if((result = msgrcv(m_iQueue,&data,length,15111984,0)) == -1)
                {
 
                   if(errno == ENOMSG)
                   {
-                     if(!on_idle())
-                     {
-                        sleep(84);
-                     }
                   }
                   else
                   {
@@ -383,7 +381,7 @@ namespace aura
             } while(true);
 
 
-            if(data.request == 0)
+            if(data.request == 0x80000000)
             {
 
                on_receive(this,mem.to_string());
