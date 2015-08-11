@@ -172,6 +172,14 @@ namespace primitive
       m_pbStorage          = NULL;
       m_pbComputed         = NULL;
       m_pcontainer         = pcontainer;
+      if(dwAllocationAddUp == 0)
+      {
+#ifdef DEBUG
+         dwAllocationAddUp = 16 * 1024; // 16k
+#else
+         dwAllocationAddUp = 4 * 1024; // 4k
+#endif
+      }
       m_dwAllocationAddUp  = dwAllocationAddUp;
       m_iOffset            = 0;
       m_dwAllocation       = 0;
@@ -253,13 +261,27 @@ namespace primitive
             m_iOffset = 0;
             memory_size dwAllocation = dwNewLength + m_dwAllocationAddUp;
             LPVOID lpVoid = NULL;
-            if (m_bAligned)
+            if(dwAllocation > m_dwAllocation)
             {
-               lpVoid = aligned_memory_alloc((size_t)dwAllocation);
+               if(m_bAligned)
+               {
+                  lpVoid = aligned_memory_alloc((size_t)dwAllocation);
+               }
+               else
+               {
+                  lpVoid = memory_alloc((size_t)dwAllocation);
+               }
+               if(lpVoid != NULL)
+               {
+                  m_dwAllocation = dwAllocation;
+
+               }
             }
             else
             {
-               lpVoid = memory_alloc((size_t)dwAllocation);
+               
+               output_debug_string("Moin"); // RocketBeansTV
+
             }
             if(lpVoid == NULL)
             {
@@ -274,7 +296,6 @@ namespace primitive
                   m_pcontainer->offset_kept_pointers(iOffset);
                }
 
-               m_dwAllocation = dwAllocation;
                memory_free(m_pbStorage);
                m_pbStorage = (LPBYTE) lpVoid;
                m_pbComputed = m_pbStorage;
