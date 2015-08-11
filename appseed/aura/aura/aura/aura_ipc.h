@@ -25,23 +25,34 @@ namespace aura
 
 
 #ifdef WINDOWSEX
-         oswindow        m_oswindow;
+
+
+         oswindow             m_oswindow;
+
+
 #elif defined(APPLEOS)
-         CFMessagePortRef remotePort;
+
+
+         CFMessagePortRef     m_port;
+
+
 #elif !defined(METROWIN)
 
-         key_t       m_key;
-         int         m_iQueue;
+         key_t                m_key;
+         int                  m_iQueue;
 
          struct data_struct
          {
+
 
             long     mtype;
             long     request;
             int      size;
             char     data[512];
 
+
          };
+
 
 #endif
 
@@ -128,7 +139,7 @@ namespace aura
          ATOM register_class(HINSTANCE hInstance);
          static LRESULT CALLBACK s_message_queue_proc(oswindow oswindow,UINT message,WPARAM wParam,LPARAM lParam);
          LRESULT message_queue_proc(UINT message,WPARAM wParam,LPARAM lParam);
-#elif !defined(METROWIN)
+#else
          bool start_receiving();
 #ifndef SOLARIS
          static void * receive_proc(void * param);

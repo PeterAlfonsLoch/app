@@ -204,17 +204,6 @@ namespace aura
 
             on_request(pcreatecontext);
 
-#ifndef METROWIN
-
-            if(m_pipi.is_set() && m_pipi->is_alive())
-            {
-               
-               m_pipi->m_rx.start_receiving();
-               
-            }
-
-#endif
-
             // Verry Sory for the per request overhead here for the needed information of only first request
             if(System.m_dwAfterApplicationFirstRequest == 0)
             {

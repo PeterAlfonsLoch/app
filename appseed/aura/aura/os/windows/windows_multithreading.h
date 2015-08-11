@@ -11,7 +11,7 @@ class CLASS_DECL_AURA thread_data
 public:
 
    
-   DWORD g_dwTlsIndex;
+   DWORD m_dwIndex;
 
    thread_data();
    ~thread_data();
@@ -27,7 +27,7 @@ public:
 inline void * thread_data::get()
 {
 
-   return thread_get_value(g_dwTlsIndex);
+   return TlsGetValue(m_dwIndex);
 
 }
 
@@ -35,7 +35,7 @@ inline void * thread_data::get()
 inline void thread_data::set(void * p)
 {
 
-   thread_set_value(g_dwTlsIndex,(LPVOID)p);
+   TlsSetValue(m_dwIndex,(LPVOID)p);
 
 }
 
