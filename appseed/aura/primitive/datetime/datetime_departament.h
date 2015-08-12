@@ -28,10 +28,26 @@ namespace datetime
       public:
          international(::aura::application * papp);
          void parse_str(const char * psz,property_set & set);
+         
+         
          string get_gmt_date_time(const ::datetime::time & time);
          string get_gmt_date_time();
          string get_local_date_time(const ::datetime::time & time);
          string get_local_date_time();
+         
+         
+         inline string get_gmt() { return get_gmt_date_time();  }
+         inline string get_gmt(const ::datetime::time & time) { return get_gmt_date_time(time); }
+         inline string get_local() { return get_local_date_time(); }
+         inline string get_local(const ::datetime::time & time) { return get_local_date_time(time); }
+         
+         
+         inline string gmt() { return get_gmt(); }
+         inline string gmt(const ::datetime::time & time) { return get_gmt(time); }
+         inline string local() { return get_local(); }
+         inline string local(const ::datetime::time & time) { return get_local(time); }
+
+
       };
 
       class CLASS_DECL_AURA str:
@@ -56,6 +72,8 @@ namespace datetime
       int64_t strtotime(::aura::str_context * pcontext,const char * psz,time_t time,int32_t iPath,int32_t & iPathCount);
       int64_t strtotime(::aura::str_context * pcontext,const char * psz,int32_t iPath,int32_t & iPathCount);
       int64_t gmt_strtotime(::aura::str_context * pcontext,const char * psz,int32_t iPath,int32_t & iPathCount);
+
+      ::datetime::time from(const string & str);
 
       // 1 - domingo
       string get_week_day_str(aura::str_context * pcontext,int32_t iWeekDay);

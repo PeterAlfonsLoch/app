@@ -101,7 +101,7 @@ public:
 
    void get_quick_sort_ci(index_array & ia);
 
-   string_array slice(index iStart, ::count iCount = -1);
+   string_array slice(index iStart, ::count iCount = -1) const;
 
    string_array & operator =(const string_array & stra);
 
@@ -914,7 +914,7 @@ void string_array < Type, RawType >::get_quick_sort_ci(index_array & ia)
 
 
 template < typename Type, typename RawType >
-string_array < Type, RawType > string_array < Type, RawType >::slice(index start,::count count)
+string_array < Type, RawType > string_array < Type, RawType >::slice(index start,::count count) const
 {
    string_array < Type, RawType > stra;
    if(start < 0)
@@ -924,7 +924,7 @@ string_array < Type, RawType > string_array < Type, RawType >::slice(index start
    index last;
    if(count < 0)
    {
-      last = this->get_count() - count;
+      last = this->get_count() + count;
    }
    else
    {

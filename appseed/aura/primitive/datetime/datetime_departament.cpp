@@ -9,7 +9,11 @@
 namespace datetime
 {
 
-
+   ::datetime::time departament::from(const string & str)
+   {
+      int iPathCount;
+         return ::datetime::time(strtotime(Session.str_context(),str,0,iPathCount));
+   }
 
 
    departament::departament(::aura::application * papp):
