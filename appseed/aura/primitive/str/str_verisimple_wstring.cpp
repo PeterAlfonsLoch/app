@@ -59,8 +59,8 @@ verisimple_wstring::verisimple_wstring(const unichar * pwsz,strsize iCount,manag
    else
    {
       while(iCount < 0)
-         iCount = unilen(pwsz) + iCount + 1;
-      m_pwsz = (unichar *) wstring_data::alloc(iCount + 1);
+         iCount = unilen(pwsz) + iCount;
+      m_pwsz = (unichar *) wstring_data::alloc(iCount);
       get_data()->m_iLength = iCount;
       memcpy_dup(m_pwsz, pwsz, get_data()->m_iLength * sizeof(unichar));
       m_pwsz[get_data()->m_iLength] = L'\0';
@@ -106,7 +106,7 @@ void verisimple_wstring::assign(const unichar * pwsz)
 
    ::count iLen         = wcslen_dup(pwsz);
 
-   m_pwsz = (unichar *)wstring_data::alloc(iLen + 1);
+   m_pwsz = (unichar *)wstring_data::alloc(iLen);
 
    get_data()->m_iLength = iLen;
 

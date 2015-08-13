@@ -207,9 +207,12 @@ namespace str
             unichar push[]={0};
             return push;
          }
+         
          wstring wstr;
-         wstr.alloc(iBuffer);
-         if(MultiByteToUnicode(uiCodePage, wstr, iBuffer + 1, str, (strsize) str.get_length()))
+         
+         unichar * pwsz = wstr.alloc(iBuffer);
+
+         if(MultiByteToUnicode(uiCodePage,pwsz, iBuffer + 1, str, (strsize) str.get_length()))
          {
             wstr.set_length(iBuffer);
             return wstr.detach();
