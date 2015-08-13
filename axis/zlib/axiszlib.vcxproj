@@ -388,6 +388,7 @@
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
+      <AdditionalOptions />
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -433,6 +434,7 @@ ml /safeseh /coff /Zi /Fo"$(SolutionDir)../../../time/library/$(PlatformName)/$(
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
+      <AdditionalOptions />
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -478,6 +480,7 @@ ml /safeseh /coff /Zi /Fo"$(SolutionDir)../../../time/library/$(PlatformName)/$(
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
+      <AdditionalOptions />
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -526,7 +529,8 @@ ml /safeseh /coff /Zi /Fo"$(SolutionDir)../../../time/library/$(PlatformName)/$(
       <OpenMPSupport>false</OpenMPSupport>
       <SDLCheck>
       </SDLCheck>
-      <AdditionalOptions>-Zm384 /bigobj</AdditionalOptions>
+      <AdditionalOptions>
+      </AdditionalOptions>
       <OmitFramePointers>true</OmitFramePointers>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
     </ClCompile>
@@ -581,7 +585,8 @@ ml /safeseh /coff /Zi /Fo"$(SolutionDir)../../../time/library/$(PlatformName)/$(
       <OpenMPSupport>false</OpenMPSupport>
       <SDLCheck>
       </SDLCheck>
-      <AdditionalOptions>-Zm384 /bigobj</AdditionalOptions>
+      <AdditionalOptions>
+      </AdditionalOptions>
       <OmitFramePointers>true</OmitFramePointers>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
     </ClCompile>
@@ -634,7 +639,8 @@ ml /safeseh /coff /Zi /Fo"$(SolutionDir)../../../time/library/$(PlatformName)/$(
       <OpenMPSupport>false</OpenMPSupport>
       <SDLCheck>
       </SDLCheck>
-      <AdditionalOptions>-Zm384 /bigobj</AdditionalOptions>
+      <AdditionalOptions>
+      </AdditionalOptions>
       <OmitFramePointers>true</OmitFramePointers>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
     </ClCompile>
@@ -687,6 +693,7 @@ ml /safeseh /coff /Zi /Fo"$(SolutionDir)../../../time/library/$(PlatformName)/$(
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
+      <AdditionalOptions />
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -736,6 +743,7 @@ ml /safeseh /coff /Zi /Fo"$(SolutionDir)../../../time/library/$(PlatformName)/$(
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <OpenMPSupport>false</OpenMPSupport>
+      <AdditionalOptions />
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -780,6 +788,7 @@ ml64 /Zi /Fo"$(IntDir)gvmat64.o" /c /Fl"$(IntDir)gvmat.lst" "$(ProjectDir)contri
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <OpenMPSupport>false</OpenMPSupport>
+      <AdditionalOptions />
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -824,6 +833,7 @@ ml64 /Zi /Fo"$(IntDir)gvmat64.o" /c /Fl"$(IntDir)gvmat.lst" "$(ProjectDir)contri
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <OpenMPSupport>false</OpenMPSupport>
+      <AdditionalOptions />
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -874,6 +884,7 @@ ml64 /Zi /Fo"$(IntDir)gvmat64.o" /c /Fl"$(IntDir)gvmat.lst" "$(ProjectDir)contri
       <SDLCheck>
       </SDLCheck>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalOptions />
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -925,6 +936,7 @@ ml64 /Zi /Fo"$(IntDir)gvmat64.o" /c /Fl"$(IntDir)gvmat.lst" "$(ProjectDir)contri
       <SDLCheck>
       </SDLCheck>
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
+      <AdditionalOptions />
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -975,6 +987,7 @@ ml64 /Zi /Fo"$(IntDir)gvmat64.o" /c /Fl"$(IntDir)gvmat.lst" "$(ProjectDir)contri
       <SDLCheck>
       </SDLCheck>
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
+      <AdditionalOptions />
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -1021,6 +1034,7 @@ ml64 /Zi /Fo"$(IntDir)gvmat64.o" /c /Fl"$(IntDir)gvmat.lst" "$(ProjectDir)contri
       <FloatingPointModel>Fast</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
+      <AdditionalOptions />
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -1061,6 +1075,7 @@ ml64 /Zi /Fo"$(IntDir)gvmat64.o" /c /Fl"$(IntDir)gvmat.lst" "$(ProjectDir)contri
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
+      <AdditionalOptions />
     </ClCompile>
     <PreLinkEvent>
       <Command>ml64 /Zi /Fo"$(IntDir)inffasx64.o" /c /Fl"$(IntDir)inffas.lst" "$(ProjectDir)contrib/masmx64/inffasx64.asm"
@@ -1117,6 +1132,7 @@ ml64 /Zi /Fo"$(IntDir)gvmat64.o" /c /Fl"$(IntDir)gvmat.lst" "$(ProjectDir)contri
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <AdditionalOptions />
     </ClCompile>
     <Link>
       <ImportLibrary>$(SolutionDir)../../../time/library/$(PlatformName)/$(Configuration)/$(TargetName).lib</ImportLibrary>

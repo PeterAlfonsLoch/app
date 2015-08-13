@@ -365,7 +365,7 @@
       <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
-      <AdditionalDependencies>kernel32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
@@ -3800,7 +3800,7 @@
       <Project>{39807406-816f-4c0d-a632-4bb8ab13887b}</Project>
     </ProjectReference>
     <ProjectReference Include="..\image_png\axis_image_png.vcxproj">
-      <Project>{84517714-2000-419D-A87F-C338C9DDE3FA}</Project>
+      <Project>{84517714-2000-419d-a87f-4338c9dde3fa}</Project>
     </ProjectReference>
     <ProjectReference Include="..\zlib\axiszlib.vcxproj">
       <Project>{34fcfbf1-e922-4fdc-bc83-b3c04623e8c2}</Project>
