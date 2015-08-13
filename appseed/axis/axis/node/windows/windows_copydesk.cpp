@@ -117,7 +117,30 @@ namespace windows
       if(!::user::copydesk::initialize())
          return false;
 
-      m_hwnd = ::CreateWindowEx(0,0,0,0,0,0,0,0,0,0,0,NULL);
+      WNDCLASS wndcls ={};
+
+      string strClass = "ca2_fontopus_cc_votagus_windows_message_queue";
+
+      if(!GetClassInfo(System.m_hinstance,strClass,&wndcls))
+      {
+
+         wndcls.style = 0;
+         wndcls.lpfnWndProc = DefWindowProc;
+         wndcls.cbClsExtra = 0;
+         wndcls.cbWndExtra = 0;
+         wndcls.hInstance = System.m_hinstance;
+         wndcls.hIcon = NULL;
+         wndcls.hCursor = NULL;
+         wndcls.hbrBackground = NULL;
+         wndcls.lpszMenuName = NULL;
+         wndcls.lpszClassName = strClass;
+         if(!::RegisterClass(&wndcls))
+         {
+            return false;
+         }
+
+      }
+      m_hwnd = ::CreateWindowEx(0,strClass,0,0,0,0,0,0,HWND_MESSAGE,0,0,NULL);
 
       if(m_hwnd == NULL)
          return false;
