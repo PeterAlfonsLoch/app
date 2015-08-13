@@ -60,7 +60,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectName>axisfreeimage</ProjectName>
-    <ProjectGuid>{B39ED2B3-D53A-4077-B957-930979A3577D}</ProjectGuid>
+    <ProjectGuid>{B39ED2B3-D53A-4077-B957-ABCDEF775184}</ProjectGuid>
     <RootNamespace>axisfreeimage</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>

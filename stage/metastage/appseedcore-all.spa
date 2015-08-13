@@ -6,6 +6,7 @@ stage\basis\app_core.dll
 stage\basis\aqua.dll
 stage\basis\aura.dll
 stage\basis\auracharguess.dll
+stage\basis\aurapcre.dll
 stage\basis\aurasqlite.dll
 stage\basis\axis.dll
 stage\basis\axisbzip2.dll
