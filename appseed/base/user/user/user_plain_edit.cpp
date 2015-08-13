@@ -589,7 +589,7 @@ namespace user
    void plain_edit::_001OnKeyDown(signal_details * pobj)
    {
 
-      synch_lock sl(m_pmutex);
+      //synch_lock sl(m_pmutex);
 
       SCAST_PTR(::message::key,pkey,pobj)
 
