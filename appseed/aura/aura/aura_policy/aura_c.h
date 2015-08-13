@@ -17,7 +17,7 @@
 
 
 BEGIN_EXTERN_C
-
+extern CLASS_DECL_AURA int g_bAura;
 CLASS_DECL_AURA int __assert_failed_line(const char * lpszFileName,int iLineNumber);
 CLASS_DECL_AURA int is_debugger_attached();
 CLASS_DECL_AURA void debug_print(const char * psz,...);
@@ -25,6 +25,8 @@ CLASS_DECL_AURA void debug_print(const char * psz,...);
 END_EXTERN_C
 
 CLASS_DECL_AURA int throw_assert_exception(const char * lpszFileName,int iLineNumber);
+
+#define WM_APPREQUEST WM_APP + 2043
 
 
 #ifndef __cplusplus

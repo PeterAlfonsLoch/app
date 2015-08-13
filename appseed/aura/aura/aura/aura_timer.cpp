@@ -418,6 +418,11 @@ void timer::stop()
 
 bool timer::call_on_timer()
 {
+   if(!g_bAura)
+   {
+      output_debug_string("there is timer on (timer::call_on_timer) and aura has gone (!g_bAura)\n");
+      return  false;
+   }
 
    try
    {
@@ -578,12 +583,20 @@ bool timer::on_timer()
 VOID CALLBACK aura_timer_TimerRoutine(PVOID lpParam, BOOLEAN TimerOrWaitFired)
 {
 
+   if(!g_bAura)
+   {
+      output_debug_string("there is timer on (aura_timer_TimerRoutine) and aura is going away (!g_bAura)\n");
+      return;
+   }
+
    ::aura::Timer * ptimer = (::aura::Timer *)lpParam;
 
    try
    {
 
       ptimer->m_ptimer->call_on_timer();
+
+      return;
 
    }
    catch (::exception::base &)
@@ -593,9 +606,9 @@ VOID CALLBACK aura_timer_TimerRoutine(PVOID lpParam, BOOLEAN TimerOrWaitFired)
    catch (...)
    {
 
-      delete ptimer;
-
    }
+
+   ::aura::del(ptimer);
 
 }
 #elif defined(__APPLE__)

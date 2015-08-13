@@ -34,6 +34,10 @@ namespace aura
       m_mutexStr(this)
    {
 
+      m_bAgreeExit = true;
+      m_bAgreeExitOk = true;
+      m_bFranceExit = true;
+
       m_paurasystem     = NULL;
       m_paurasession    = NULL;
       m_paxisapp        = NULL;
@@ -180,7 +184,7 @@ namespace aura
       ::signalizable::install_message_handling(pdispatch);
       ::thread::install_message_handling(pdispatch);
 
-      IGUI_WIN_MSG_LINK(WM_APP + 2043,pdispatch,this,&application::_001OnApplicationRequest);
+      IGUI_WIN_MSG_LINK(WM_APPREQUEST,pdispatch,this,&application::_001OnApplicationRequest);
 
 
    }
@@ -189,6 +193,8 @@ namespace aura
    void application::_001OnApplicationRequest(signal_details * pobj)
    {
       SCAST_PTR(::message::base,pbase,pobj);
+
+
       if(pbase->m_wparam == 2)
       {
          pobj->m_bRet = true;
@@ -243,6 +249,20 @@ namespace aura
          pbergedge->on_app_request_bergedge_callback(this);
          }*/
          pcreatecontext->m_spCommandLine->m_eventReady.SetEvent();
+
+      }
+      else if(pbase->m_wparam == 9)
+      {
+         
+         m_bAgreeExit = _001OnAgreeExit();
+         m_bAgreeExitOk = true;
+
+      }
+      else if(pbase->m_wparam == 19)
+      {
+
+         _001OnFranceExit();
+         m_bFranceExit = true;
 
       }
    }
@@ -3831,7 +3851,7 @@ namespace aura
 
          }
 
-         papp = Session.get_new_app(this,pszType,strNewId);
+         papp = Session.get_new_app(pbias == NULL ? this : pbias->get_app(),pszType,strNewId);
 
          if(papp == NULL)
             return NULL;
@@ -4319,6 +4339,18 @@ namespace aura
    {
 
       return dir().ls(listing);
+
+   }
+
+   bool application::_001OnAgreeExit()
+   {
+
+      return true;
+
+   }
+   
+   void application::_001OnFranceExit()
+   {
 
    }
 

@@ -1230,9 +1230,17 @@ namespace core
    void session::unregister_bergedge_application(::aura::application * papp)
    {
 
-      retry_single_lock rsl(m_pmutex,millis(84),millis(84));
+      {
 
-      Session.m_appptra.remove(papp);
+         synch_lock rsl(m_pmutex);
+
+         m_appptra.remove(papp);
+
+      }
+
+      ::get_thread()->post_thread_message(NULL);
+
+      post_thread_message(NULL);
 
       System.post_thread_message(WM_NULL);
 

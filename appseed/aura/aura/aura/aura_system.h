@@ -400,6 +400,9 @@ namespace aura
 
       virtual bool set_main_init_data(::aura::main_init_data * pdata);
 
+
+      virtual void request_exit();
+
    };
 
 

@@ -1811,7 +1811,8 @@ namespace aura
       if(psession == NULL)
       {
 
-         ::output_debug_string("::aura::system::on_request session NULL An error that prevents the application from starting has occurred.\r\n\r\nPlease run app-removal.exe and restart the application, or contact the administrator. Startup Error !!");
+         ::output_debug_string("::aura::system::on_request session NULL An error that prevents the application from starting has occurred.\
+\n\r\nPlease run app-removal.exe and restart the application, or contact the administrator. Startup Error !!");
                               
          ::simple_message_box(get_splash(),"An error that prevents the application from starting has occurred.\r\n\r\nPlease run app-removal.exe and restart the application, or contact the administrator.","Startup Error",MB_ICONEXCLAMATION);
 
@@ -2112,7 +2113,122 @@ namespace aura
 
    }
 
+   void system::request_exit()
+   {
 
+      auto ptra = Session.m_appptra;
+
+      for(auto papp : ptra)
+      {
+         
+         papp->m_bAgreeExit            = false;
+         
+         papp->m_bAgreeExitOk          = false;
+
+      }
+
+      for(auto papp : ptra)
+      {
+
+         papp->post_thread_message(WM_APPREQUEST, 9);
+
+      }
+
+      int i = 284;
+
+      while(i > 0 && ptra.get_size() > 0)
+      {
+
+         ::get_thread()->defer_pump_message();
+
+         for(index j = 0; j < ptra.get_size(); )
+         {
+
+            if(ptra[j]->m_bAgreeExitOk)
+            {
+
+               if(!ptra[j]->m_bAgreeExit)
+               {
+
+                  return;
+
+               }
+               else
+               {
+
+                  ptra.remove_at(j);
+
+               }
+
+            }
+            else
+            {
+
+               j++;
+
+            }
+
+         }
+         
+         Sleep(84);
+         
+         i--;
+
+      }
+
+      if(i == 0)
+      {
+
+         return;
+
+      }
+
+      ptra = Session.m_appptra;
+
+      for(auto papp : ptra)
+      {
+         papp->m_bFranceExit = false;
+      }
+
+      for(auto papp : ptra)
+      {
+         papp->post_thread_message(WM_APPREQUEST,19);
+      }
+
+      i = 284;
+
+      while(i > 0 && ptra.get_size() > 0)
+      {
+
+         ::get_thread()->defer_pump_message();
+
+         for(index j = 0; j < ptra.get_size(); )
+         {
+
+            if(ptra[j]->m_bFranceExit)
+            {
+
+               ptra.remove_at(j);
+
+            }
+            else
+            {
+
+               j++;
+
+            }
+
+         }
+
+         Sleep(84);
+
+         i--;
+
+      }
+
+      post_quit();
+
+   }
 
 
 } // namespace aura

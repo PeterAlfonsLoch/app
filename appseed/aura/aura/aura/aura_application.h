@@ -30,7 +30,9 @@ namespace aura
       ::core::system *                                m_pcoresystem; // can be used only from core and upper
       ::core::session *                               m_pcoresession; // can be used only from core and upper
       
-
+      bool                                            m_bAgreeExit;
+      bool                                            m_bAgreeExitOk;
+      bool                                            m_bFranceExit;
 
       smart_pointer < application >                   m_pimpl;
       sp(ipi)                                         m_pipi;
@@ -492,6 +494,9 @@ namespace aura
       virtual bool is_application();
 
       virtual ::file::listing & perform_file_listing(::file::listing & listing) override;
+
+      virtual bool _001OnAgreeExit();
+      virtual void _001OnFranceExit();
 
    };
 

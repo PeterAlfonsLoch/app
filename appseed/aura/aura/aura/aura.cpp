@@ -1,5 +1,8 @@
 //#include "framework.h"
 
+BEGIN_EXTERN_C
+CLASS_DECL_AURA int g_bAura = 0;
+END_EXTERN_C
 
 
 BEGIN_EXTERN_C
@@ -114,6 +117,9 @@ CLASS_DECL_AURA int_bool defer_aura_init()
 
    s_paurastrpool = new aura_str_pool();
 
+   g_bAura = 1;
+
+
    return TRUE;
 
 }
@@ -126,6 +132,8 @@ CLASS_DECL_AURA int_bool defer_aura_term()
 
    if(g_iAuraRefCount >= 1)
       return TRUE;
+
+   g_bAura = 0;
 
    aura_term();
 
