@@ -19,7 +19,7 @@ CLASS_DECL_AURA int32_t process_get_scheduling_priority(int iOsPolicy, const sch
 //
 //   synch_lock sl(g_pmutexMq);
 //   
-//   auto pmq = (mq *) thread_get_value(TLS_MESSAGE_QUEUE);
+//   auto pmq = (mq *) thread_get_data(TLS_MESSAGE_QUEUE);
 //   
 //   if(pmq != NULL)
 //      return pmq;
@@ -28,17 +28,17 @@ CLASS_DECL_AURA int32_t process_get_scheduling_priority(int iOsPolicy, const sch
 //   
 //   pmq->m_hthread    = (IDTHREAD) pthread_self();
 //   
-//   thread_set_value(TLS_MESSAGE_QUEUE,pmq);
+//   thread_set_data(TLS_MESSAGE_QUEUE,pmq);
 //   
 //   return pmq;
 //
 //}
 
 //
-//LPVOID WINAPI thread_get_value(IDTHREAD hthread,DWORD dwIndex);
+//LPVOID WINAPI thread_get_data(IDTHREAD hthread,DWORD dwIndex);
 //
 //
-//int_bool WINAPI thread_set_value(HTHREAD hthread,DWORD dwIndex,LPVOID lpTlsValue);
+//int_bool WINAPI thread_set_data(HTHREAD hthread,DWORD dwIndex,LPVOID lpTlsValue);
 //
 
 //void __clear_mq()
@@ -48,14 +48,14 @@ CLASS_DECL_AURA int32_t process_get_scheduling_priority(int iOsPolicy, const sch
 //   
 //   HTHREAD hthread = GetCurrentThread();
 //   
-//   auto pmq = (mq *) thread_get_value(hthread, TLS_MESSAGE_QUEUE);
+//   auto pmq = (mq *) thread_get_data(hthread, TLS_MESSAGE_QUEUE);
 //   
 //   if(pmq == NULL)
 //      return;
 //   
 //   ::aura::del(pmq);
 //   
-//   thread_set_value(hthread, TLS_MESSAGE_QUEUE, NULL);
+//   thread_set_data(hthread, TLS_MESSAGE_QUEUE, NULL);
 //   
 //}
 //
@@ -920,10 +920,10 @@ mutex * g_pmutexMq = NULL;
 map < HTHREAD, HTHREAD, mq *, mq * > * g_pmapMq = NULL;
 
 
-LPVOID WINAPI thread_get_value(HTHREAD hthread,DWORD dwIndex);
+LPVOID WINAPI thread_get_data(HTHREAD hthread,DWORD dwIndex);
 
 
-int_bool WINAPI thread_set_value(HTHREAD hthread,DWORD dwIndex,LPVOID lpTlsValue);
+int_bool WINAPI thread_set_data(HTHREAD hthread,DWORD dwIndex,LPVOID lpTlsValue);
 
 
 //mq * __get_mq(HTHREAD hthread)
@@ -931,7 +931,7 @@ int_bool WINAPI thread_set_value(HTHREAD hthread,DWORD dwIndex,LPVOID lpTlsValue
 //   
 //   synch_lock sl(g_pmutexMq);
 //   
-//   auto pmq = (mq *) thread_get_value(hthread, TLS_MESSAGE_QUEUE);
+//   auto pmq = (mq *) thread_get_data(hthread, TLS_MESSAGE_QUEUE);
 //   
 //   if(pmq != NULL)
 //      return pmq;
@@ -940,7 +940,7 @@ int_bool WINAPI thread_set_value(HTHREAD hthread,DWORD dwIndex,LPVOID lpTlsValue
 //
 //   pmq->m_hthread    = hthread;
 //
-//   thread_set_value(hthread,TLS_MESSAGE_QUEUE,pmq);
+//   thread_set_data(hthread,TLS_MESSAGE_QUEUE,pmq);
 //
 //   return pmq;
 //

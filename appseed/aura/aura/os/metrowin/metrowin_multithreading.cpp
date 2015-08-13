@@ -59,7 +59,7 @@ void * thread_data::get()
 void thread_data::set(void * p)
 {
 
-   thread_set_value(m_dwIndex,(LPVOID)p);
+   thread_set_data(m_dwIndex,(LPVOID)p);
 
 }
 

@@ -750,7 +750,7 @@ bool var::is_true(bool bDefault) const
    case type_empty:
       return bDefault;
    case type_string:
-      return !m_str.is_empty() && !m_str.CompareNoCase("false");
+      return !m_str.is_empty() && !(m_str.CompareNoCase("false") == 0 || m_str.CompareNoCase("0") == 0);
    case type_int32:
       return m_i32 != 0;
    case type_uint32:
@@ -1466,6 +1466,10 @@ string var::get_string(const char * pszOnNull) const
       else if(m_etype == var::type_stra)
       {
          str = stra().implode("");
+      }
+      else if(m_etype == var::type_bool)
+      {
+         str = ::str::from((int)m_b);
       }
 
       return str;

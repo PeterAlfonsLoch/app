@@ -14,7 +14,7 @@
 //    - CREATE_SUSPENDED and ResumeThread
 //    - Partial support for SetThreadPriority (see below)
 //    - Sleep
-//    - Thread local storage (TlsAlloc, TlsFree, thread_get_value, thread_set_value)
+//    - Thread local storage (TlsAlloc, TlsFree, thread_get_data, thread_set_data)
 //
 // Differences from Win32:
 //

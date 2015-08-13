@@ -232,12 +232,6 @@ FIBITMAP * imaging::HBITMAPtoFI(::draw2d::bitmap_sp pbitmap)
 
    //return dibSource->detach_bitmap();
 }
-/*HBITMAP imaging::LoadImageSync(const char * lpcszImageFilePath)
-{
-string str;
-::str::international::UTF8ToUnicode(str, lpcszImageFilePath);
-return LoadImageSync(str);
-}*/
 
 ::draw2d::bitmap_sp imaging::CreateDIBitmap(::draw2d::graphics * pdc,FIBITMAP * pFreeImage)
 {

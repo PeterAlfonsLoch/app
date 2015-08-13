@@ -32,8 +32,8 @@ public:
 
 #ifdef __cplusplus
 
-CLASS_DECL_AURA void * __thread_get_value(IDTHREAD thread,uint32_t dwIndex);
-CLASS_DECL_AURA int_bool __thread_set_value(IDTHREAD thread,uint32_t dwIndex,void * lpTlsValue);
+CLASS_DECL_AURA void * __thread_get_data(IDTHREAD thread,uint32_t dwIndex);
+CLASS_DECL_AURA int_bool __thread_set_data(IDTHREAD thread,uint32_t dwIndex,void * lpTlsValue);
 
 #endif
 

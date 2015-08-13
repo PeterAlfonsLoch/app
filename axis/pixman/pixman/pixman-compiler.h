@@ -133,7 +133,7 @@
     {									\
         type *value = calloc (1, sizeof (type));			\
         if (value)							\
-            thread_set_value (tls_ ## name ## _index, value);		\
+            thread_set_data (tls_ ## name ## _index, value);		\
         return value;							\
     }									\
 									\
@@ -162,7 +162,7 @@
 	}								\
 	if (tls_ ## name ## _index == 0xFFFFFFFF)			\
 	    return NULL;						\
-	value = thread_get_value (tls_ ## name ## _index);			\
+	value = thread_get_data (tls_ ## name ## _index);			\
 	if (!value)							\
 	    value = tls_ ## name ## _alloc ();				\
 	return value;							\

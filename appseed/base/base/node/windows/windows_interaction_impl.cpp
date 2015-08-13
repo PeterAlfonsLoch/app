@@ -1502,7 +1502,12 @@ namespace windows
          while((pui = m_guieptraMouseHover.get_child(pui)).is_set())
          {
 
-            pui->send_message(WM_MOUSELEAVE);
+            if(pui != m_pui)
+            {
+             
+               pui->send_message(WM_MOUSELEAVE);
+
+            }
 
          }
 
@@ -4373,21 +4378,18 @@ namespace windows
 
    }
 
-   uint_ptr interaction_impl::SetTimer(uint_ptr nIDEvent,UINT nElapse,void (CALLBACK* lpfnTimer)(oswindow,UINT,uint_ptr,uint32_t))
+   bool interaction_impl::SetTimer(uint_ptr nIDEvent,UINT nElapse,PFN_TIMER pfnTimer)
    {
 
-      ASSERT(::IsWindow(get_handle()));
-
-      return ::SetTimer(get_handle(),nIDEvent,nElapse,(TIMERPROC)lpfnTimer);
+      return create_timer(nIDEvent,nElapse,pfnTimer,true,m_pui);
 
    }
+
 
    bool interaction_impl::KillTimer(uint_ptr nIDEvent)
    {
 
-      ASSERT(::IsWindow(get_handle()));
-
-      return ::KillTimer(get_handle(),nIDEvent) != FALSE;
+      return delete_timer(nIDEvent);
 
    }
 

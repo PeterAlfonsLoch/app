@@ -56,18 +56,43 @@ namespace simpledb
    }
 
 
-   bool file_set::add_search(const char * pszSearchDirectory)
+   bool file_set::add_search(const char * pszSearchDirectory, bool bRecursive)
    {
 
       stringa stra;
 
+      bool_array baRecursive;
+
       data_get(::aura::system::idEmpty, stra);
 
-      if(stra.add_unique(pszSearchDirectory) < 0)
-         return true;
+      data_load("recursive",baRecursive);
 
-      if(!data_set(::aura::system::idEmpty, stra))
-         return false;
+      index i = -1;
+
+      if((i = stra.find_first_ci(pszSearchDirectory)) < 0)
+      {
+
+         stra.add(pszSearchDirectory);
+
+         baRecursive.add(bRecursive);
+
+         if(!data_set(::aura::system::idEmpty,stra))
+            return false;
+
+         if(!data_save("recursive",baRecursive))
+            return false;
+
+      }
+      else
+      {
+
+         baRecursive.set_at_grow(i,bRecursive);
+
+         if(!data_save("recursive",baRecursive))
+            return false;
+
+      }
+
 
       if(!refresh())
          return false;

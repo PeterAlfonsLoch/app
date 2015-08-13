@@ -10,7 +10,12 @@ namespace aura
    string app_launcher::get_executable_path()
    {
 
+#ifdef DEBUG
+      return Sys(get_thread_app()).dir().ca2module() / "app.exe";
+#else
+
       return path::a_spa();
+#endif
 
    }
 

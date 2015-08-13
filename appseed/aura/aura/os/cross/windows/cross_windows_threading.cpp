@@ -337,7 +337,7 @@ LPVOID WINAPI tls_get_value(DWORD dwIndex)
 //}
 
 
-int_bool thread_set_value(uint32_t dwIndex,void * pvalue)
+int_bool thread_set_data(uint32_t dwIndex,void * pvalue)
 {
 
    ThreadLocalData* threadData = currentThreadData;
@@ -535,7 +535,7 @@ int_bool thread_free(uint32_t dwIndex)
 }
 
 
-void * thread_get_value(uint32_t dwIndex)
+void * thread_get_data(uint32_t dwIndex)
 {
    ThreadLocalData* threadData = currentThreadData;
 
@@ -604,7 +604,7 @@ void * __thread_get_value(IDTHREAD hthread,uint32_t dwIndex)
 }
 
 
-//int_bool thread_set_value(uint32_t dwIndex,void * lpTlsValue)
+//int_bool thread_set_data(uint32_t dwIndex,void * lpTlsValue)
 //{
 //
 //   ThreadLocalData* threadData = currentThreadData;
@@ -717,7 +717,7 @@ void * __thread_get_value(IDTHREAD hthread,uint32_t dwIndex)
 //
 //      synch_lock ml(g_pmutexTlsData);
 //
-//      auto pmq = (mq *)thread_get_value((IDTHREAD)pthread_self(),TLS_MESSAGE_QUEUE);
+//      auto pmq = (mq *)thread_get_data((IDTHREAD)pthread_self(),TLS_MESSAGE_QUEUE);
 //
 //      if(pmq != NULL)
 //      {
@@ -744,7 +744,7 @@ mq * __get_mq()
 
    synch_lock sl(g_pmutexMq);
 
-   auto pmq = (mq *)thread_get_value(TLS_MESSAGE_QUEUE);
+   auto pmq = (mq *)thread_get_data(TLS_MESSAGE_QUEUE);
 
    if(pmq != NULL)
       return pmq;
@@ -753,7 +753,7 @@ mq * __get_mq()
 
    pmq->m_idthread    = get_current_thread_id();
 
-   thread_set_value(TLS_MESSAGE_QUEUE,pmq);
+   thread_set_data(TLS_MESSAGE_QUEUE,pmq);
 
    return pmq;
 

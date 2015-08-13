@@ -340,7 +340,7 @@ extern thread_int_ptr < HTHREAD > currentThread;
 //}
 //
 //
-//LPVOID WINAPI thread_get_value(DWORD dwTlsIndex)
+//LPVOID WINAPI thread_get_data(DWORD dwTlsIndex)
 //{
 //   ThreadLocalData* threadData = currentThreadData;
 //
@@ -356,7 +356,7 @@ extern thread_int_ptr < HTHREAD > currentThread;
 //   }
 //}
 //
-//LPVOID WINAPI thread_get_value(HTHREAD hthread, DWORD dwTlsIndex)
+//LPVOID WINAPI thread_get_data(HTHREAD hthread, DWORD dwTlsIndex)
 //{
 //   ThreadLocalData* threadData = all_thread_data()[hthread];
 //
@@ -373,7 +373,7 @@ extern thread_int_ptr < HTHREAD > currentThread;
 //}
 //
 //
-//BOOL WINAPI thread_set_value(DWORD dwTlsIndex, LPVOID lpTlsValue)
+//BOOL WINAPI thread_set_data(DWORD dwTlsIndex, LPVOID lpTlsValue)
 //{
 //   ThreadLocalData* threadData = currentThreadData;
 //
@@ -406,7 +406,7 @@ extern thread_int_ptr < HTHREAD > currentThread;
 //   return true;
 //}
 //
-//BOOL WINAPI thread_set_value(HTHREAD hthread, DWORD dwTlsIndex, LPVOID lpTlsValue)
+//BOOL WINAPI thread_set_data(HTHREAD hthread, DWORD dwTlsIndex, LPVOID lpTlsValue)
 //{
 //
 //   ThreadLocalData* threadData = all_thread_data()[hthread];
@@ -860,14 +860,14 @@ extern thread_int_ptr < HTHREAD > currentThread;
 //mq * get_mq()
 //{
 //
-//   mq * pmq = (mq *) thread_get_value(TLS_MESSAGE_QUEUE);
+//   mq * pmq = (mq *) thread_get_data(TLS_MESSAGE_QUEUE);
 //
 //   if(pmq != NULL)
 //      return pmq;
 //
 //   pmq = new mq();
 //
-//   thread_set_value(TLS_MESSAGE_QUEUE, pmq);
+//   thread_set_data(TLS_MESSAGE_QUEUE, pmq);
 //
 //   return pmq;
 //
@@ -882,14 +882,14 @@ extern thread_int_ptr < HTHREAD > currentThread;
 //{
 //
 //
-//   mq * pmq = (mq *) thread_get_value(h, TLS_MESSAGE_QUEUE);
+//   mq * pmq = (mq *) thread_get_data(h, TLS_MESSAGE_QUEUE);
 //
 //   if(pmq != NULL)
 //      return pmq;
 //
 //   pmq = new mq();
 //
-//   thread_set_value(h, TLS_MESSAGE_QUEUE, pmq);
+//   thread_set_data(h, TLS_MESSAGE_QUEUE, pmq);
 //
 //   return pmq;
 //

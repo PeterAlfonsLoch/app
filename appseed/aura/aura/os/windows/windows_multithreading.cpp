@@ -403,10 +403,10 @@ CLASS_DECL_AURA void * thread_get_data(uint32_t uiIndex)
 }
 
 
-CLASS_DECL_AURA void thread_set_data(uint32_t uiIndex, void * pvalue)
+CLASS_DECL_AURA int32_t thread_set_data(uint32_t uiIndex, void * pvalue)
 {
   
-   TlsSetValue((DWORD)uiIndex, (LPVOID) pvalue);
+   return TlsSetValue((DWORD)uiIndex, (LPVOID) pvalue);
 
 }
 
