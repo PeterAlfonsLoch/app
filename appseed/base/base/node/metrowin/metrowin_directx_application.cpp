@@ -251,6 +251,8 @@ uint_ptr virtualkey_to_char(::Windows::System::VirtualKey e)
       return ::user::key_end;
    case ::Windows::System::VirtualKey::Escape:
       return ::user::key_escape;
+   case 189:
+      return ::user::key_hyphen;
    case 190:
       return ::user::key_dot;
    case 191:

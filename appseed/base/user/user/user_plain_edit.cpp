@@ -1968,9 +1968,10 @@ namespace user
    void plain_edit::_001OnChar(signal_details * pobj)
    {
 
-      {
+      bool bUpdate = false;
 
-         synch_lock lockRoot(m_ptree == NULL ? NULL:m_ptree->m_pmutex);
+
+      {
 
          _009OnChar(pobj);
 
@@ -2005,308 +2006,319 @@ namespace user
             }
          }
 
-         bool bShift = Session.is_key_pressed(::user::key_shift);
-
-         if(pkey->m_ekey == ::user::key_back)
          {
-            if(!m_bReadOnly)
+
+            synch_lock sl(m_pmutex);
+
+            synch_lock lockRoot(m_ptree == NULL ? NULL:m_ptree->m_pmutex);
+
+            bool bShift = Session.is_key_pressed(::user::key_shift);
+
+            if(pkey->m_ekey == ::user::key_back)
             {
-               strsize i1 = m_ptree->m_iSelStart;
-               strsize i2 = m_ptree->m_iSelEnd;
-               if(i1 != i2)
+               if(!m_bReadOnly)
                {
-                  plain_text_set_sel_command * psetsel = new plain_text_set_sel_command;
-                  psetsel->m_iPreviousSelStart = m_ptree->m_iSelStart;
-                  psetsel->m_iPreviousSelEnd = m_ptree->m_iSelEnd;
-                  ::sort::sort(i1,i2);
-                  m_ptree->m_editfile.seek(i1,::file::seek_begin);
-                  m_ptree->m_editfile.Delete((::primitive::memory_size)(i2 - i1));
-                  IndexRegisterDelete(i1,i2 - i1);
-                  m_ptree->m_iSelEnd = i1;
-                  m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
-                  psetsel->m_iSelStart = m_ptree->m_iSelStart;
-                  psetsel->m_iSelEnd = m_ptree->m_iSelEnd;
-                  MacroBegin();
-                  MacroRecord(psetsel);
-                  MacroRecord(new plain_text_file_command());
-                  MacroEnd();
-                  _001OnUpdate(::action::source_user);
-               }
-               else if(m_ptree->m_iSelEnd >= 0 && m_ptree->m_editfile.get_length() > 0)
-               {
-                  plain_text_set_sel_command * psetsel = new plain_text_set_sel_command;
-                  psetsel->m_iPreviousSelStart = m_ptree->m_iSelStart;
-                  psetsel->m_iPreviousSelEnd = m_ptree->m_iSelEnd;
-                  char buf[512];
-                  memset(buf,0,sizeof(buf));
-                  strsize iBegin = MAX(0,m_ptree->m_iSelEnd - 256);
-                  strsize iCur = m_ptree->m_iSelEnd - iBegin;
-                  m_ptree->m_editfile.seek(iBegin,::file::seek_begin);
-                  m_ptree->m_editfile.read(buf,sizeof(buf));
-                  const char * psz = ::str::utf8_dec(buf,&buf[iCur]);
-                  if(psz == NULL)
-                     psz = MAX(buf,&buf[iCur - 1]);
-                  strsize iMultiByteUtf8DeleteCount = &buf[iCur] - psz;
-                  m_ptree->m_iSelEnd -= iMultiByteUtf8DeleteCount;
-                  m_ptree->m_editfile.seek(m_ptree->m_iSelEnd,::file::seek_begin);
-                  m_ptree->m_editfile.Delete((::primitive::memory_size) iMultiByteUtf8DeleteCount);
-                  IndexRegisterDelete(m_ptree->m_iSelEnd,iMultiByteUtf8DeleteCount);
-                  m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
-                  psetsel->m_iSelStart = m_ptree->m_iSelStart;
-                  psetsel->m_iSelEnd = m_ptree->m_iSelEnd;
-                  MacroBegin();
-                  MacroRecord(psetsel);
-                  MacroRecord(new plain_text_file_command());
-                  MacroEnd();
-                  _001OnUpdate(::action::source_user);
+                  strsize i1 = m_ptree->m_iSelStart;
+                  strsize i2 = m_ptree->m_iSelEnd;
+                  if(i1 != i2)
+                  {
+                     plain_text_set_sel_command * psetsel = new plain_text_set_sel_command;
+                     psetsel->m_iPreviousSelStart = m_ptree->m_iSelStart;
+                     psetsel->m_iPreviousSelEnd = m_ptree->m_iSelEnd;
+                     ::sort::sort(i1,i2);
+                     m_ptree->m_editfile.seek(i1,::file::seek_begin);
+                     m_ptree->m_editfile.Delete((::primitive::memory_size)(i2 - i1));
+                     IndexRegisterDelete(i1,i2 - i1);
+                     m_ptree->m_iSelEnd = i1;
+                     m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
+                     psetsel->m_iSelStart = m_ptree->m_iSelStart;
+                     psetsel->m_iSelEnd = m_ptree->m_iSelEnd;
+                     MacroBegin();
+                     MacroRecord(psetsel);
+                     MacroRecord(new plain_text_file_command());
+                     MacroEnd();
+                     bUpdate = true;
+
+                  }
+                  else if(m_ptree->m_iSelEnd >= 0 && m_ptree->m_editfile.get_length() > 0)
+                  {
+                     plain_text_set_sel_command * psetsel = new plain_text_set_sel_command;
+                     psetsel->m_iPreviousSelStart = m_ptree->m_iSelStart;
+                     psetsel->m_iPreviousSelEnd = m_ptree->m_iSelEnd;
+                     char buf[512];
+                     memset(buf,0,sizeof(buf));
+                     strsize iBegin = MAX(0,m_ptree->m_iSelEnd - 256);
+                     strsize iCur = m_ptree->m_iSelEnd - iBegin;
+                     m_ptree->m_editfile.seek(iBegin,::file::seek_begin);
+                     m_ptree->m_editfile.read(buf,sizeof(buf));
+                     const char * psz = ::str::utf8_dec(buf,&buf[iCur]);
+                     if(psz == NULL)
+                        psz = MAX(buf,&buf[iCur - 1]);
+                     strsize iMultiByteUtf8DeleteCount = &buf[iCur] - psz;
+                     m_ptree->m_iSelEnd -= iMultiByteUtf8DeleteCount;
+                     m_ptree->m_editfile.seek(m_ptree->m_iSelEnd,::file::seek_begin);
+                     m_ptree->m_editfile.Delete((::primitive::memory_size) iMultiByteUtf8DeleteCount);
+                     IndexRegisterDelete(m_ptree->m_iSelEnd,iMultiByteUtf8DeleteCount);
+                     m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
+                     psetsel->m_iSelStart = m_ptree->m_iSelStart;
+                     psetsel->m_iSelEnd = m_ptree->m_iSelEnd;
+                     MacroBegin();
+                     MacroRecord(psetsel);
+                     MacroRecord(new plain_text_file_command());
+                     MacroEnd();
+                     bUpdate = true;
+                  }
                }
             }
-         }
-         else if(pkey->m_ekey == ::user::key_delete)
-         {
-            if(!m_bReadOnly)
+            else if(pkey->m_ekey == ::user::key_delete)
             {
-               strsize i1 = m_ptree->m_iSelStart;
-               strsize i2 = m_ptree->m_iSelEnd;
-               if(i1 != i2)
+               if(!m_bReadOnly)
                {
-                  plain_text_set_sel_command * psetsel = new plain_text_set_sel_command;
-                  psetsel->m_iPreviousSelStart = m_ptree->m_iSelStart;
-                  psetsel->m_iPreviousSelEnd = m_ptree->m_iSelEnd;
-                  ::sort::sort(i1,i2);
-                  m_ptree->m_editfile.seek(i1,::file::seek_begin);
-                  m_ptree->m_editfile.Delete((::primitive::memory_size) (i2 - i1));
-                  m_ptree->m_iSelEnd = i1;
+                  strsize i1 = m_ptree->m_iSelStart;
+                  strsize i2 = m_ptree->m_iSelEnd;
+                  if(i1 != i2)
+                  {
+                     plain_text_set_sel_command * psetsel = new plain_text_set_sel_command;
+                     psetsel->m_iPreviousSelStart = m_ptree->m_iSelStart;
+                     psetsel->m_iPreviousSelEnd = m_ptree->m_iSelEnd;
+                     ::sort::sort(i1,i2);
+                     m_ptree->m_editfile.seek(i1,::file::seek_begin);
+                     m_ptree->m_editfile.Delete((::primitive::memory_size) (i2 - i1));
+                     m_ptree->m_iSelEnd = i1;
+                     m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
+                     psetsel->m_iSelStart = m_ptree->m_iSelStart;
+                     psetsel->m_iSelEnd = m_ptree->m_iSelEnd;
+                     MacroBegin();
+                     MacroRecord(psetsel);
+                     MacroRecord(new plain_text_file_command());
+                     MacroEnd();
+                     bUpdate = true;
+                  }
+                  else if(natural(m_ptree->m_iSelEnd) < m_ptree->m_editfile.get_length())
+                  {
+                     char buf[512];
+                     memset(buf,0,sizeof(buf));
+                     strsize iBegin = MAX(0,m_ptree->m_iSelEnd - 256);
+                     strsize iCur = m_ptree->m_iSelEnd - iBegin;
+                     m_ptree->m_editfile.seek(iBegin,::file::seek_begin);
+                     m_ptree->m_editfile.read(buf,sizeof(buf));
+                     const char * psz = ::str::utf8_dec(buf,&buf[iCur]);
+                     strsize iMultiByteUtf8DeleteCount = &buf[iCur] - psz;
+                     m_ptree->m_editfile.seek(m_ptree->m_iSelEnd,::file::seek_begin);
+                     m_ptree->m_editfile.Delete((::primitive::memory_size) (iMultiByteUtf8DeleteCount));
+                     IndexRegisterDelete(m_ptree->m_iSelEnd,iMultiByteUtf8DeleteCount);
+                     m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
+                     MacroBegin();
+                     MacroRecord(new plain_text_file_command());
+                     MacroEnd();
+                     bUpdate = true;
+                  }
+               }
+            }
+            else if(pkey->m_ekey == ::user::key_up)
+            {
+               int32_t x;
+               index iLine = SelToLineX(m_ptree->m_iSelEnd,x);
+               iLine--;
+               m_ptree->m_iSelEnd = LineXToSel(iLine,x);
+               if(!bShift)
+               {
                   m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
-                  psetsel->m_iSelStart = m_ptree->m_iSelStart;
-                  psetsel->m_iSelEnd = m_ptree->m_iSelEnd;
-                  MacroBegin();
-                  MacroRecord(psetsel);
-                  MacroRecord(new plain_text_file_command());
-                  MacroEnd();
-                  _001OnUpdate(::action::source_user);
+               }
+            }
+            else if(pkey->m_ekey == ::user::key_down)
+            {
+               int32_t x;
+               index iLine = SelToLineX(m_ptree->m_iSelEnd,x);
+               iLine++;
+               m_ptree->m_iSelEnd = LineXToSel(iLine,x);
+               if(!bShift)
+               {
+                  m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
+               }
+            }
+            else if(pkey->m_ekey == ::user::key_right)
+            {
+               if(!bShift && m_ptree->m_iSelStart > m_ptree->m_iSelEnd)
+               {
+                  m_ptree->m_iSelEnd = m_ptree->m_iSelStart;
+               }
+               else if(!bShift && m_ptree->m_iSelEnd > m_ptree->m_iSelStart)
+               {
+                  m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
                }
                else if(natural(m_ptree->m_iSelEnd) < m_ptree->m_editfile.get_length())
                {
-                  char buf[512];
-                  memset(buf,0,sizeof(buf));
-                  strsize iBegin = MAX(0,m_ptree->m_iSelEnd - 256);
-                  strsize iCur = m_ptree->m_iSelEnd - iBegin;
-                  m_ptree->m_editfile.seek(iBegin,::file::seek_begin);
-                  m_ptree->m_editfile.read(buf,sizeof(buf));
-                  const char * psz = ::str::utf8_dec(buf,&buf[iCur]);
-                  strsize iMultiByteUtf8DeleteCount = &buf[iCur] - psz;
+                  char buf[32];
                   m_ptree->m_editfile.seek(m_ptree->m_iSelEnd,::file::seek_begin);
-                  m_ptree->m_editfile.Delete((::primitive::memory_size) (iMultiByteUtf8DeleteCount));
-                  IndexRegisterDelete(m_ptree->m_iSelEnd,iMultiByteUtf8DeleteCount);
-                  m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
-                  MacroBegin();
-                  MacroRecord(new plain_text_file_command());
-                  MacroEnd();
-                  _001OnUpdate(::action::source_user);
-               }
-            }
-         }
-         else if(pkey->m_ekey == ::user::key_up)
-         {
-            int32_t x;
-            index iLine = SelToLineX(m_ptree->m_iSelEnd,x);
-            iLine--;
-            m_ptree->m_iSelEnd = LineXToSel(iLine,x);
-            if(!bShift)
-            {
-               m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
-            }
-            RedrawWindow();
-         }
-         else if(pkey->m_ekey == ::user::key_down)
-         {
-            int32_t x;
-            index iLine = SelToLineX(m_ptree->m_iSelEnd,x);
-            iLine++;
-            m_ptree->m_iSelEnd = LineXToSel(iLine,x);
-            if(!bShift)
-            {
-               m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
-            }
-            RedrawWindow();
-         }
-         else if(pkey->m_ekey == ::user::key_right)
-         {
-            if(!bShift && m_ptree->m_iSelStart > m_ptree->m_iSelEnd)
-            {
-               m_ptree->m_iSelEnd = m_ptree->m_iSelStart;
-            }
-            else if(!bShift && m_ptree->m_iSelEnd > m_ptree->m_iSelStart)
-            {
-               m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
-            }
-            else if(natural(m_ptree->m_iSelEnd) < m_ptree->m_editfile.get_length())
-            {
-               char buf[32];
-               m_ptree->m_editfile.seek(m_ptree->m_iSelEnd,::file::seek_begin);
-               ::primitive::memory_size uiRead = m_ptree->m_editfile.read(buf,32);
-               if(uiRead == 2 &&
-                  buf[0] == '\r' &&
-                  buf[1] == '\n')
-               {
-                  m_ptree->m_iSelEnd += 2;
-               }
-               else
-               {
-                  m_ptree->m_iSelEnd += ::str::utf8_inc(buf) - buf;
-               }
-               if(!bShift)
-               {
-                  m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
-               }
-            }
-            RedrawWindow();
-         }
-         else if(pkey->m_ekey == ::user::key_left)
-         {
-            if(!bShift && m_ptree->m_iSelStart < m_ptree->m_iSelEnd)
-            {
-               m_ptree->m_iSelEnd = m_ptree->m_iSelStart;
-            }
-            else if(!bShift && m_ptree->m_iSelEnd < m_ptree->m_iSelStart)
-            {
-               m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
-            }
-            else if(m_ptree->m_iSelEnd > 0)
-            {
-               if(m_ptree->m_iSelEnd > 2)
-               {
-                  char buf[64];
-                  char * psz;
-                  m_ptree->m_editfile.seek(MAX(0,m_ptree->m_iSelEnd - 32),::file::seek_begin);
-                  psz = &buf[MIN(32,m_ptree->m_iSelEnd)];
-                  ::primitive::memory_size uiRead = m_ptree->m_editfile.read(buf,64);
+                  ::primitive::memory_size uiRead = m_ptree->m_editfile.read(buf,32);
                   if(uiRead == 2 &&
-                     psz[0] == '\r' &&
-                     psz[1] == '\n')
+                     buf[0] == '\r' &&
+                     buf[1] == '\n')
                   {
-                     m_ptree->m_iSelEnd -= 2;
+                     m_ptree->m_iSelEnd += 2;
                   }
                   else
                   {
-                     m_ptree->m_iSelEnd -= psz - ::str::utf8_dec(buf,psz);
+                     m_ptree->m_iSelEnd += ::str::utf8_inc(buf) - buf;
+                  }
+                  if(!bShift)
+                  {
+                     m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
                   }
                }
-               else
+            }
+            else if(pkey->m_ekey == ::user::key_left)
+            {
+               if(!bShift && m_ptree->m_iSelStart < m_ptree->m_iSelEnd)
                {
-                  m_ptree->m_iSelEnd--;
+                  m_ptree->m_iSelEnd = m_ptree->m_iSelStart;
                }
+               else if(!bShift && m_ptree->m_iSelEnd < m_ptree->m_iSelStart)
+               {
+                  m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
+               }
+               else if(m_ptree->m_iSelEnd > 0)
+               {
+                  if(m_ptree->m_iSelEnd > 2)
+                  {
+                     char buf[64];
+                     char * psz;
+                     m_ptree->m_editfile.seek(MAX(0,m_ptree->m_iSelEnd - 32),::file::seek_begin);
+                     psz = &buf[MIN(32,m_ptree->m_iSelEnd)];
+                     ::primitive::memory_size uiRead = m_ptree->m_editfile.read(buf,64);
+                     if(uiRead == 2 &&
+                        psz[0] == '\r' &&
+                        psz[1] == '\n')
+                     {
+                        m_ptree->m_iSelEnd -= 2;
+                     }
+                     else
+                     {
+                        m_ptree->m_iSelEnd -= psz - ::str::utf8_dec(buf,psz);
+                     }
+                  }
+                  else
+                  {
+                     m_ptree->m_iSelEnd--;
+                  }
+                  if(!bShift)
+                  {
+                     m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
+                  }
+               }
+            }
+            else if(pkey->m_ekey == ::user::key_home)
+            {
+               index iLine = SelToLine(m_ptree->m_iSelEnd);
+               m_ptree->m_iSelEnd = LineColumnToSel(iLine,0);
                if(!bShift)
                {
                   m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
                }
             }
-            RedrawWindow();
-         }
-         else if(pkey->m_ekey == ::user::key_home)
-         {
-            index iLine = SelToLine(m_ptree->m_iSelEnd);
-            m_ptree->m_iSelEnd = LineColumnToSel(iLine,0);
-            if(!bShift)
+            else if(pkey->m_ekey == ::user::key_end)
             {
-               m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
+               index iLine = SelToLine(m_ptree->m_iSelEnd);
+               m_ptree->m_iSelEnd = LineColumnToSel(iLine,-1);
+               if(!bShift)
+               {
+                  m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
+               }
             }
-            RedrawWindow();
-         }
-         else if(pkey->m_ekey == ::user::key_end)
-         {
-            index iLine = SelToLine(m_ptree->m_iSelEnd);
-            m_ptree->m_iSelEnd = LineColumnToSel(iLine,-1);
-            if(!bShift)
+            else if(pkey->m_ekey == ::user::key_escape)
             {
-               m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
             }
-            RedrawWindow();
-         }
-         else if(pkey->m_ekey == ::user::key_escape)
-         {
-         }
-         else
-         {
-            if(!m_bReadOnly)
+            else
             {
-               if(pkey->m_ekey == ::user::key_return)
+               if(!m_bReadOnly)
                {
-                  // Kill Focus => Kill Key Repeat timer
-                  //System.simple_message_box("VK_RETURN reached plain_edit");
+                  if(pkey->m_ekey == ::user::key_return)
+                  {
+                     // Kill Focus => Kill Key Repeat timer
+                     //System.simple_message_box("VK_RETURN reached plain_edit");
+                  }
+                  plain_text_set_sel_command * psetsel = new plain_text_set_sel_command;
+                  psetsel->m_iPreviousSelStart = m_ptree->m_iSelStart;
+                  psetsel->m_iPreviousSelEnd = m_ptree->m_iSelEnd;
+                  m_ptree->m_editfile.MacroBegin();
+                  strsize i1 = m_ptree->m_iSelStart;
+                  strsize i2 = m_ptree->m_iSelEnd;
+                  ::sort::sort(i1,i2);
+                  m_ptree->m_editfile.seek(i1,::file::seek_begin);
+                  m_ptree->m_editfile.Delete((::primitive::memory_size) (i2 - i1));
+                  IndexRegisterDelete(i1,i2 - i1);
+                  m_ptree->m_iSelEnd = i1;
+                  m_ptree->m_editfile.seek(m_ptree->m_iSelEnd,::file::seek_begin);
+                  string str;
+                  char ch = 0;
+                  if(pkey->m_ekey == ::user::key_refer_to_text_member)
+                  {
+                     str = pkey->m_strText;
+                  }
+                  else
+                  {
+                     ch = (char)pkey->m_nChar;
+                     if(ch == '\r')
+                        ch = '\n';
+                     int32_t iChar = (int32_t)pkey->m_nChar;
+                     if(iChar == '\r')
+                        iChar = '\n';
+                     if(bShift)
+                     {
+                        iChar |= 0x80000000;
+                     }
+                     int32_t iCode = pkey->m_nFlags & 0xff;
+                     if(bShift)
+                     {
+                        iCode |= 0x80000000;
+                     }
+                     str = Session.keyboard().process_key(pkey);
+                  }
+                  string strCh(ch);
+                  //               output_debug_string("thechthech");
+                  //               output_debug_string(strCh);
+                  //               output_debug_string(";");
+                  //               output_debug_string("thekey");
+                  //               output_debug_string(System.get_enum_name< ::user::e_key> (pkey->m_ekey));
+                  //               output_debug_string(";");
+                  //               output_debug_string("thecharthechar");
+                  //               output_debug_string(str);
+                  //               output_debug_string("\n");
+                                 //               string strMap;
+                  m_ptree->m_iSelEnd += str.get_length();
+                  m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
+                  m_ptree-> m_editfile.Insert(str,str.get_length());
+                  IndexRegisterInsert(m_ptree->m_iSelEnd,str);
+                  m_ptree->m_editfile.MacroEnd();
+                  psetsel->m_iSelStart = m_ptree->m_iSelStart;
+                  psetsel->m_iSelEnd = m_ptree->m_iSelEnd;
+                  MacroBegin();
+                  MacroRecord(psetsel);
+                  MacroRecord(new plain_text_file_command());
+                  MacroEnd();
+                  _001OnUpdate(::action::source_user);
+                  //_001OnAfterChangeText(::action::source_user);
                }
-               plain_text_set_sel_command * psetsel = new plain_text_set_sel_command;
-               psetsel->m_iPreviousSelStart = m_ptree->m_iSelStart;
-               psetsel->m_iPreviousSelEnd = m_ptree->m_iSelEnd;
-               m_ptree->m_editfile.MacroBegin();
-               strsize i1 = m_ptree->m_iSelStart;
-               strsize i2 = m_ptree->m_iSelEnd;
-               ::sort::sort(i1,i2);
-               m_ptree->m_editfile.seek(i1,::file::seek_begin);
-               m_ptree->m_editfile.Delete((::primitive::memory_size) (i2 - i1));
-               IndexRegisterDelete(i1,i2 - i1);
-               m_ptree->m_iSelEnd = i1;
-               m_ptree->m_editfile.seek(m_ptree->m_iSelEnd,::file::seek_begin);
-               string str;
-               char ch = 0;
-               if(pkey->m_ekey == ::user::key_refer_to_text_member)
-               {
-                  str = pkey->m_strText;
-               }
-               else
-               {
-               ch = (char)pkey->m_nChar;
-               if(ch == '\r')
-                  ch = '\n';
-               int32_t iChar = (int32_t)pkey->m_nChar;
-               if(iChar == '\r')
-                  iChar = '\n';
-               if(bShift)
-               {
-                  iChar |= 0x80000000;
-               }
-               int32_t iCode = pkey->m_nFlags & 0xff;
-               if(bShift)
-               {
-                  iCode |= 0x80000000;
-               }
-                  str = Session.keyboard().process_key(pkey);
-               }
-               string strCh(ch);
-//               output_debug_string("thechthech");
-//               output_debug_string(strCh);
-//               output_debug_string(";");
-//               output_debug_string("thekey");
-//               output_debug_string(System.get_enum_name< ::user::e_key> (pkey->m_ekey));
-//               output_debug_string(";");
-//               output_debug_string("thecharthechar");
-//               output_debug_string(str);
-//               output_debug_string("\n");
-               //               string strMap;
-               m_ptree->m_iSelEnd += str.get_length();
-               m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
-               m_ptree-> m_editfile.Insert(str,str.get_length());
-               IndexRegisterInsert(m_ptree->m_iSelEnd,str);
-               m_ptree->m_editfile.MacroEnd();
-               psetsel->m_iSelStart = m_ptree->m_iSelStart;
-               psetsel->m_iSelEnd = m_ptree->m_iSelEnd;
-               MacroBegin();
-               MacroRecord(psetsel);
-               MacroRecord(new plain_text_file_command());
-               MacroEnd();
-               _001OnUpdate(::action::source_user);
-               //_001OnAfterChangeText(::action::source_user);
             }
-         }
-         if(pkey->m_ekey != ::user::key_up
-            && pkey->m_ekey != ::user::key_down)
-         {
-            m_iColumn = SelToColumn(m_ptree->m_iSelEnd);
-         }
-      }
-      RedrawWindow();
+            if(pkey->m_ekey != ::user::key_up
+               && pkey->m_ekey != ::user::key_down)
+            {
+               m_iColumn = SelToColumn(m_ptree->m_iSelEnd);
+            }
 
+         }
+
+      }
+
+      if(bUpdate)
+      {
+
+         _001OnUpdate(::action::source_user);
+
+      }
+
+      RedrawWindow();
 
    }
 

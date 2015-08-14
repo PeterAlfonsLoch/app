@@ -37,7 +37,7 @@ map < HTHREAD,HTHREAD,mq *,mq * > * g_pmapMq = NULL;
 //
 //   synch_lock sl(g_pmutexMq);
 //
-//   auto pmq = (mq *)__thread_get_value(idthread,TLS_MESSAGE_QUEUE);
+//   auto pmq = (mq *)__thread_get_data(idthread,TLS_MESSAGE_QUEUE);
 //
 //   if(pmq != NULL)
 //      return pmq;
@@ -46,7 +46,7 @@ map < HTHREAD,HTHREAD,mq *,mq * > * g_pmapMq = NULL;
 //
 //   pmq->m_idthread    = idthread;
 //
-//   __thread_set_value(idthread,TLS_MESSAGE_QUEUE,pmq);
+//   __thread_set_data(idthread,TLS_MESSAGE_QUEUE,pmq);
 //
 //   return pmq;
 //
@@ -294,7 +294,7 @@ LPVOID WINAPI tls_get_value(DWORD dwIndex)
 }
 
 
-//void * __thread_get_value(IDTHREAD hthread,uint32_t dwIndex)
+//void * __thread_get_data(IDTHREAD hthread,uint32_t dwIndex)
 //{
 //
 //   try
@@ -373,7 +373,7 @@ int_bool thread_set_data(uint32_t dwIndex,void * pvalue)
 }
 
 
-int_bool __thread_set_value(IDTHREAD hthread,uint32_t dwIndex,void * pvalue)
+int_bool __thread_set_data(IDTHREAD hthread,uint32_t dwIndex,void * pvalue)
 {
 
    synch_lock lock(g_pmutexTlsData);
@@ -454,7 +454,7 @@ void thread_shutdown()
 
       synch_lock ml(g_pmutexTlsData);
 
-      auto pmq = (mq *) __thread_get_value(get_current_thread_id(),TLS_MESSAGE_QUEUE);
+      auto pmq = (mq *) __thread_get_data(get_current_thread_id(),TLS_MESSAGE_QUEUE);
 
       if(pmq != NULL)
       {
@@ -561,7 +561,7 @@ void * thread_get_data(uint32_t dwIndex)
 }
 
 
-void * __thread_get_value(IDTHREAD hthread,uint32_t dwIndex)
+void * __thread_get_data(IDTHREAD hthread,uint32_t dwIndex)
 {
 
    try
@@ -638,7 +638,7 @@ void * __thread_get_value(IDTHREAD hthread,uint32_t dwIndex)
 //   return true;
 //}
 
-//int_bool __thread_set_value(IDTHREAD hthread,uint32_t dwIndex,void * pvalue)
+//int_bool __thread_set_data(IDTHREAD hthread,uint32_t dwIndex,void * pvalue)
 //{
 //
 //   synch_lock lock(g_pmutexTlsData);
@@ -766,7 +766,7 @@ mq * __get_mq(IDTHREAD idthread)
 
    synch_lock sl(g_pmutexMq);
 
-   mq * pmq = (mq *)__thread_get_value(idthread,TLS_MESSAGE_QUEUE);
+   mq * pmq = (mq *)__thread_get_data(idthread,TLS_MESSAGE_QUEUE);
 
    if(pmq != NULL)
       return pmq;
@@ -775,7 +775,7 @@ mq * __get_mq(IDTHREAD idthread)
 
    pmq->m_idthread    = idthread;
 
-   __thread_set_value(idthread,TLS_MESSAGE_QUEUE,pmq);
+   __thread_set_data(idthread,TLS_MESSAGE_QUEUE,pmq);
 
    return pmq;
 
@@ -793,14 +793,14 @@ void __clear_mq()
    
    IDTHREAD idthread = get_current_thread_id();
    
-   auto pmq = (mq *) __thread_get_value(idthread, TLS_MESSAGE_QUEUE);
+   auto pmq = (mq *) __thread_get_data(idthread, TLS_MESSAGE_QUEUE);
    
    if(pmq == NULL)
       return;
    
    ::aura::del(pmq);
    
-   __thread_set_value(idthread, TLS_MESSAGE_QUEUE, NULL);
+   __thread_set_data(idthread, TLS_MESSAGE_QUEUE, NULL);
    
 }
 
