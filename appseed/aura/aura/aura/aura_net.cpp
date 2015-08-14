@@ -424,7 +424,30 @@ bool open_url::open()
    openURL(strLink);
    return true;
 #else
-   throw not_implemented(get_thread_app());
+   
+   string strOpenUrl;
+
+   if(System.m_pandroidinitdata->m_pszOpenUrl != NULL)
+   {
+      
+      strOpenUrl = System.m_pandroidinitdata->m_pszOpenUrl;
+
+      free((void *) System.m_pandroidinitdata->m_pszOpenUrl);
+
+      System.m_pandroidinitdata->m_pszOpenUrl = NULL;
+
+   }
+
+
+   strOpenUrl = m_strLink + str::has_char(strOpenUrl,";");
+
+   if(strOpenUrl.has_char())
+   {
+
+      System.m_pandroidinitdata->m_pszOpenUrl = strdup(strLink);
+
+   }
+
 #endif
 
 }

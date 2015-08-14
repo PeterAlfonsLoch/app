@@ -12,6 +12,7 @@ public:
    const char *   m_pszCommandLine;
    const char *   m_pszCacheDir;
    bool           m_bShowKeyboard;
+   const char *   m_pszOpenUrl;
 
 };
 
