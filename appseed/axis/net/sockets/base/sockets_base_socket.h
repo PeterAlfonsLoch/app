@@ -745,8 +745,8 @@ namespace sockets
 
    typedef map < base_socket *, base_socket *, bool, bool > socket_bool;
    typedef map < SOCKET, SOCKET, socket_bool, socket_bool > socket_socket_bool;
-   typedef map < SOCKET, SOCKET, sp(base_socket), sp(base_socket) > socket_map;
-   typedef ::comparable_eq_list < sp(base_socket) > socket_list;
+   typedef map < SOCKET, SOCKET, base_socket *, base_socket * > socket_map;
+   typedef ::comparable_eq_list < base_socket * > socket_list;
 
 
 } // namespace sockets
