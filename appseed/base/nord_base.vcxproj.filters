@@ -454,6 +454,9 @@
     <ClCompile Include="database\_database.cpp">
       <Filter>Source Files\database</Filter>
     </ClCompile>
+    <ClCompile Include="base\os\cross\windows\base_cross_windows_threading.cpp">
+      <Filter>Source Files\base\os\cross\windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">

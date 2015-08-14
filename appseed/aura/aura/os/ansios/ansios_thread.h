@@ -10,11 +10,11 @@
 
 
 class thread;
-
-class CLASS_DECL_AURA message_array :
-public array < MESSAGE > {
-};
-
+//
+//class CLASS_DECL_AURA message_array :
+//public array < MESSAGE > {
+//};
+class mq;
 
 
 typedef HTHREAD idthread;

@@ -237,6 +237,8 @@ CLASS_DECL_AURA string utf16_to_utf8(const unichar * pwsz,strsize srcLen)
 void utf16_to_utf8(char * psz, const unichar * pwsz)
 {
    //unsigned short * pwsz = (unsigned short *)pwszParam;
+   if(pwsz == NULL || psz == NULL)
+      return;
    int32_t n;
    while(*pwsz != L'\0')
    {

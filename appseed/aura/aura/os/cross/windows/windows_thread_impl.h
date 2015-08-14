@@ -54,10 +54,20 @@ class CLASS_DECL_AURA thread_data
 public:
 
 
-   DWORD       m_dwIndex;
+#ifdef _POSIX_THREADS
+   
+   pthread_key_t        m_key;
+
+#else
+
+   DWORD                m_dwIndex;
+
+#endif
+
 
    thread_data();
    ~thread_data();
+
 
    void * get();
    void set(void * p);

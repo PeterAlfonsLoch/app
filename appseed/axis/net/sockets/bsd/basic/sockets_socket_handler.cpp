@@ -103,7 +103,7 @@ namespace sockets
          SOCKET s;
          while(pos != NULL)
          {
-            sp(base_socket) p = NULL;
+            base_socket * p = NULL;
             m_sockets.get_next_assoc(pos, s, p);
             if(p)
             {
@@ -116,13 +116,7 @@ namespace sockets
                }
                if(m_slave)
                {
-                  try
-                  {
-                     p.release();
-                  }
-                  catch(...)
-                  {
-                  }
+                  ::aura::del(p);
                }
             }
          }
@@ -174,7 +168,7 @@ namespace sockets
          }
          return;
       }
-      sp(base_socket) plookup;
+      base_socket * plookup;
       if (m_add.Lookup(p -> GetSocket(), plookup))
       {
          log(p, "add", (int32_t)p -> GetSocket(), "Attempt to add socket already in add queue", ::aura::log::level_info);
@@ -288,11 +282,11 @@ namespace sockets
 
          POSITION pos = m_add.get_start_position();
          SOCKET s;
-         sp(base_socket) p;
+         base_socket * p;
          m_add.get_next_assoc(pos, s, p);
          //TRACE("Trying to add fd %d,  m_add.size() %d,  ignore %d\n", (int32_t)s, (int32_t)m_add.get_size(), (int32_t)ignore);
          //
-         sp(base_socket) plookup;
+         base_socket * plookup;
          if (m_sockets.Lookup(p -> GetSocket(), plookup))
          {
             log(p, "add", (int32_t)p -> GetSocket(), "Attempt to add socket already in controlled queue", ::aura::log::level_fatal);
@@ -447,19 +441,16 @@ namespace sockets
                   FD_SET(i, &efds);
                   t = true;
                }
-               sp(base_socket) psocket;
+               base_socket * psocket;
                if (t && m_sockets.Lookup(i, psocket))
                {
                   TRACE("Bad fd in fd_set: %d\n", i);
                   TRACE("Deleting and removing socket: %d\n", i);
-                  try
-                  {
-                     psocket.release();
-                  }
-                  catch(...)
-                  {
-                  }
+                  
+                  ::aura::del(psocket);
+                  
                   m_sockets.remove_key(i);
+
                }
             }
 
@@ -475,8 +466,11 @@ namespace sockets
 		      FD_ZERO(&efds);
 
             SOCKET s;
-            sp(base_socket) psocket;
+            
+            base_socket * psocket;
+
             POSITION pos = m_sockets.get_start_position();
+
             while(pos != NULL)
             {
 
@@ -560,7 +554,7 @@ namespace sockets
             SOCKET socket = m_fds.get_next(pos);;
             if (FD_ISSET(socket, &rfds))
             {
-               sp(base_socket) psocket = NULL;
+               base_socket * psocket = NULL;
                if(m_sockets.Lookup(socket, psocket)) // found
                {
                   // new SSL negotiate method
@@ -581,7 +575,7 @@ namespace sockets
             }
             if (FD_ISSET(socket, &wfds))
             {
-               sp(base_socket) psocket = NULL;
+               base_socket * psocket = NULL;
                if(m_sockets.Lookup(socket, psocket)) // found
                {
                   // new SSL negotiate method
@@ -602,7 +596,7 @@ namespace sockets
             }
             if(FD_ISSET(socket, &efds))
             {
-               sp(base_socket) psocket = NULL;
+               base_socket * psocket = NULL;
                if(m_sockets.Lookup(socket, psocket)) // found
                {
                   time_t tnow = time(NULL);
@@ -638,7 +632,7 @@ namespace sockets
          for(; pos != NULL; )
          {
             SOCKET socket = tmp.get_next(pos);
-            sp(base_socket) psocket = NULL;
+            base_socket * psocket = NULL;
             if(!m_sockets.Lookup(socket, psocket)) // not found
             {
                log(NULL, "GetSocket/handler/4", (int32_t)socket, "Did not find expected socket using file descriptor", ::aura::log::level_warning);
@@ -689,7 +683,7 @@ namespace sockets
          POSITION pos = m_fds_detach.get_head_position();
          for(; pos != NULL; )
          {
-            sp(base_socket) p = NULL;
+            base_socket * p = NULL;
             SOCKET socket = m_fds_detach.get_next(pos);
             if(m_sockets.Lookup(socket, p) && p != NULL)
             {
@@ -738,7 +732,7 @@ namespace sockets
             POSITION pos = tmp.get_head_position();
             for(; pos != NULL;)
             {
-               sp(base_socket) p = NULL;
+               base_socket * p = NULL;
                SOCKET socket = tmp.get_next(pos);
                if (!m_sockets.Lookup(socket, p)) // not found
                {
@@ -771,7 +765,7 @@ namespace sockets
          for(; pos != NULL;)
          {
             SOCKET socket = tmp.get_next(pos);
-            sp(base_socket) p = NULL;
+            base_socket * p = NULL;
             if(m_sockets.Lookup(socket, p))
             {
                log(NULL, "GetSocket/handler/7", (int32_t)socket, "Did not find expected socket using file descriptor", ::aura::log::level_warning);
@@ -813,7 +807,7 @@ namespace sockets
          while(pos != NULL)
          {
             SOCKET socket = tmp.get_next(pos);
-            sp(base_socket) p = NULL;
+            base_socket * p = NULL;
             if(!m_sockets.Lookup(socket, p)) // not found
             {
                if(!m_add.Lookup(socket, p))
@@ -910,7 +904,7 @@ namespace sockets
          SOCKET socket = m_fds_erase.remove_head();
          m_fds_detach.remove(socket);
          m_fds.remove(socket);
-         sp(::sockets::base_socket) psocket;
+         base_socket * psocket;
          if(m_sockets.Lookup(socket, psocket))
          {
             psocket->SetErasedByHandler();
@@ -955,7 +949,7 @@ namespace sockets
                while(posSrc != NULL)
                {
                   SOCKET id = 0;
-                  sp(base_socket) src = NULL;
+                  base_socket * src = NULL;
                   m_trigger_src.get_next_assoc(posSrc, id, src);
                   if (src == p)
                   {
@@ -1179,7 +1173,7 @@ namespace sockets
       socket_map::pair * ppair = m_sockets.PGetFirstAssoc();
       while(ppair != NULL)
       {
-         pool_socket *pools = dynamic_cast<pool_socket *>(ppair->m_element2.m_p);
+         pool_socket *pools = dynamic_cast<pool_socket *>(ppair->m_element2);
          if (pools)
          {
             if (pools -> GetSocketType() == type &&
