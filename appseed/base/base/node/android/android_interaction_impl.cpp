@@ -1450,7 +1450,7 @@ namespace android
             m_pui->_001OnTriggerMouseInside();
          }
 
-         for(int32_t i = 0; i < m_pui->m_uiptraChild.get_size(); i++)
+         for(int32_t i = m_pui->m_uiptraChild.get_upper_bound(); i >= 0; i--)
          {
             
             sp(::user::interaction) pui = m_pui->m_uiptraChild[i];

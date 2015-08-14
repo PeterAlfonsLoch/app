@@ -241,7 +241,6 @@
     <ClCompile Include="libwinpr\utils\image.c" />
     <ClCompile Include="libwinpr\utils\ini.c" />
     <ClCompile Include="libwinpr\utils\lodepng\lodepng.c" />
-    <ClCompile Include="libwinpr\utils\utils_utils_ntlm.c" />
     <ClCompile Include="libwinpr\utils\print.c" />
     <ClCompile Include="libwinpr\utils\sam.c" />
     <ClCompile Include="libwinpr\utils\ssl.c" />
@@ -249,6 +248,7 @@
     <ClCompile Include="libwinpr\utils\trio\trio.c" />
     <ClCompile Include="libwinpr\utils\trio\trionan.c" />
     <ClCompile Include="libwinpr\utils\trio\triostr.c" />
+    <ClCompile Include="libwinpr\utils\utils_ntlm.c" />
     <ClCompile Include="libwinpr\utils\wlog\Appender.c" />
     <ClCompile Include="libwinpr\utils\wlog\BinaryAppender.c" />
     <ClCompile Include="libwinpr\utils\wlog\CallbackAppender.c" />
@@ -277,7 +277,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>Gcc_4_8</PlatformToolset>
+    <PlatformToolset>Gcc_4_9</PlatformToolset>
     <AndroidAPILevel>android-19</AndroidAPILevel>
     <UseOfStl>gnustl_shared</UseOfStl>
     <ThumbMode>Disabled</ThumbMode>
@@ -285,13 +285,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>Clang_3_4</PlatformToolset>
+    <PlatformToolset>Clang_3_6</PlatformToolset>
     <UseOfStl>c++_shared</UseOfStl>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>Clang_3_4</PlatformToolset>
+    <PlatformToolset>Clang_3_6</PlatformToolset>
     <AndroidAPILevel>android-19</AndroidAPILevel>
     <UseOfStl>c++_shared</UseOfStl>
     <ThumbMode>Thumb</ThumbMode>
@@ -299,7 +299,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>Clang_3_4</PlatformToolset>
+    <PlatformToolset>Clang_3_6</PlatformToolset>
     <UseOfStl>c++_shared</UseOfStl>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />

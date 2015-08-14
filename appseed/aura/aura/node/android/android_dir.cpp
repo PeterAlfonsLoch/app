@@ -4,7 +4,10 @@
 
 //#include <unistd.h>
 
-
+CLASS_DECL_EXPORT const char * android_get_cache_dir()
+{
+   return Sys(::get_thread_app()).m_pandroidinitdata->m_pszCacheDir;
+}
 namespace android
 {
 

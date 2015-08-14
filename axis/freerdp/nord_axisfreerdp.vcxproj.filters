@@ -790,5 +790,14 @@
     <ClCompile Include="libfreerdp\codec\codec_rfx.c">
       <Filter>Source Files\libfreerdp\codec</Filter>
     </ClCompile>
+    <ClCompile Include="libfreerdp\core\errbase.c">
+      <Filter>Source Files\libfreerdp\core</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\core\errconnect.c">
+      <Filter>Source Files\libfreerdp\core</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\core\gateway\rdg.c">
+      <Filter>Source Files\libfreerdp\core\gateway</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

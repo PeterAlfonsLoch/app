@@ -925,11 +925,11 @@
     <ClCompile Include="libwinpr\registry\registry_reg.c">
       <Filter>Source Files\libwinpr\registry</Filter>
     </ClCompile>
-    <ClCompile Include="libwinpr\utils\utils_utils_ntlm.c">
-      <Filter>Source Files\libwinpr\utils</Filter>
-    </ClCompile>
     <ClCompile Include="libwinpr\handle\nonehandle.c">
       <Filter>Source Files\libwinpr\handle</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\utils_ntlm.c">
+      <Filter>Source Files\libwinpr\utils</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

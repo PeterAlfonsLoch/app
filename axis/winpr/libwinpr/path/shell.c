@@ -147,7 +147,9 @@ static char* GetPath_XDG_CONFIG_HOME(void)
 {
 	char* path = NULL;
 
-#if defined(WIN32)
+#if defined(ANDROID)
+   return strdup(".config");
+#elif defined(WIN32)
 	path = calloc(MAX_PATH, sizeof(char));
 	if (!path)
 		return NULL;
