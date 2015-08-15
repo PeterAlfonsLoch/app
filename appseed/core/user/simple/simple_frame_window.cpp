@@ -544,7 +544,10 @@ void simple_frame_window::ShowControlBars(bool bShow)
       m_toolbarmap.get_next_assoc(pos, idKey, pbar);
       try
       {
-         pbar->ShowWindow(nShow);
+         if(pbar != NULL)
+         {
+            pbar->ShowWindow(nShow);
+         }
       }
       catch (...)
       {

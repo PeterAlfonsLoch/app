@@ -184,6 +184,8 @@ void ca2rdp_send_mouse_button_event(rdpInput* input, UINT uiMessage, POINT pt)
    case WM_MBUTTONUP:
       flags = PTR_FLAGS_BUTTON3;
       break;
+   default:
+      return;
    }
 
 

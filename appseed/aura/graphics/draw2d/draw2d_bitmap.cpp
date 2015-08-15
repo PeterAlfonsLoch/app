@@ -16,6 +16,7 @@ namespace draw2d
 
 #endif
 
+      m_iStride               = 0;
 
    }
 

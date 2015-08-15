@@ -10,7 +10,9 @@
 #else
 
 
-#define ALIGN_BYTE_COUNT (sizeof(size_t))
+//#define ALIGN_BYTE_COUNT (sizeof(size_t))
+
+#define ALIGN_BYTE_COUNT 16
 
 
 #endif

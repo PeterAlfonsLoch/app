@@ -11,10 +11,11 @@ namespace draw2d
    {
    public:
 
+      int                  m_iStride;
 
 #ifdef WINDOWSEX
 
-      HBITMAP        m_hbitmapGet;
+      HBITMAP              m_hbitmapGet;
 
 #endif
 

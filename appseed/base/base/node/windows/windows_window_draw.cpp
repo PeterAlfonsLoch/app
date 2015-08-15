@@ -270,7 +270,7 @@ namespace windows
 
    UINT window_draw::RedrawProc()
    {
-
+      m_iFramesPerSecond = 120.0;
       try
       {
 
@@ -293,21 +293,22 @@ namespace windows
             catch(...)
             {
             }
-            while(::PeekMessageA(&msg,NULL,0,0,PM_NOREMOVE))
-            {
-               if(!get_thread()->pump_message())
-                  goto exit;
-            }
-            if(msg.message == WM_QUIT)
-               break;
-            int32_t iUiDataWriteWindowTimeForTheApplicationInThisMachine = 8;
+            //while(::PeekMessageA(&msg,NULL,0,0,PM_NOREMOVE))
+            //{
+            //   if(!get_thread()->pump_message())
+            //      goto exit;
+            //}
+            //if(msg.message == WM_QUIT)
+            //   break;
+            int32_t iUiDataWriteWindowTimeForTheApplicationInThisMachine = 1;
             if(m_iFramesPerSecond == 0)
             {
                Sleep(1000);
             }
             else if((1000 / m_iFramesPerSecond) > m_dwLastDelay)
             {
-               Sleep(MAX((DWORD)MAX(0,iUiDataWriteWindowTimeForTheApplicationInThisMachine),(1000 / m_iFramesPerSecond) - m_dwLastDelay));
+               DWORD dw = MAX((DWORD)MAX(0,iUiDataWriteWindowTimeForTheApplicationInThisMachine),(1000 / m_iFramesPerSecond) - m_dwLastDelay);
+               Sleep(dw);
             }
             else
             {
