@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
-    <ProjectConfiguration Include="basis|ARM">
-      <Configuration>basis</Configuration>
+    <ProjectConfiguration Include="Debug|ARM">
+      <Configuration>Debug</Configuration>
       <Platform>ARM</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="basis|x86">
-      <Configuration>basis</Configuration>
+    <ProjectConfiguration Include="Debug|x86">
+      <Configuration>Debug</Configuration>
       <Platform>x86</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="stage|ARM">
@@ -27,7 +27,7 @@
     <RootNamespace>axisfreetype</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>Gcc_4_9</PlatformToolset>
@@ -35,7 +35,7 @@
     <UseOfStl>gnustl_shared</UseOfStl>
     <ThumbMode>Disabled</ThumbMode>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>Gcc_4_9</PlatformToolset>
@@ -60,11 +60,11 @@
   <ImportGroup Label="ExtensionSettings" />
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
     <OutDir>$(SolutionDir)..\..\..\stage\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <OutDir>$(SolutionDir)..\..\..\stage\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
@@ -76,7 +76,7 @@
     <OutDir>$(SolutionDir)..\..\..\stage\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
     <ClCompile>
       <AdditionalIncludeDirectories>$(ProjectDir)..;$(ProjectDir)../..;$(ProjectDir)../../..;$(ProjectDir)../../include;include;$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>NDEBUG;_LIB;FT2_BUILD_LIBRARY;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -84,6 +84,7 @@
       <RuntimeTypeInfo>
       </RuntimeTypeInfo>
       <AdditionalOptions>-fshort-wchar -Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int -Wno-sometimes-uninitialized -Wno-unused-variable -Wno-incompatible-pointer-types  -Wno-pointer-sign -Wno-typedef-redefinition </AdditionalOptions>
+      <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
     </ClCompile>
     <Link />
     <Link>
@@ -92,7 +93,7 @@
       <LibraryDependencies>axis_image_png;axiszlib;axisbzip2;aura;log;android</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <ClCompile>
       <AdditionalOptions>-fshort-wchar -Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int -Wno-sometimes-uninitialized -Wno-unused-variable -Wno-incompatible-pointer-types  -Wno-pointer-sign -Wno-typedef-redefinition </AdditionalOptions>
     </ClCompile>
@@ -103,8 +104,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">ft2build.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
@@ -113,34 +114,34 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Use</PrecompiledHeader>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="src\base\ftbase.c">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">Disabled</Optimization>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='basis|x86'">Disabled</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Disabled</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Disabled</Optimization>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='stage|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='stage|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">EnableFastChecks</BasicRuntimeChecks>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='basis|x86'">EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">EnableFastChecks</BasicRuntimeChecks>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">EnableFastChecks</BasicRuntimeChecks>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='stage|x86'">EnableFastChecks</BasicRuntimeChecks>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Use</PrecompiledHeader>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
@@ -149,8 +150,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">ft2build.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
@@ -159,8 +160,8 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Use</PrecompiledHeader>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
@@ -169,8 +170,8 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Use</PrecompiledHeader>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
@@ -179,34 +180,34 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Use</PrecompiledHeader>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="src\base\ftglyph.c">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">Disabled</Optimization>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='basis|x86'">Disabled</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Disabled</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Disabled</Optimization>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='stage|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='stage|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">EnableFastChecks</BasicRuntimeChecks>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='basis|x86'">EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">EnableFastChecks</BasicRuntimeChecks>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">EnableFastChecks</BasicRuntimeChecks>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='stage|x86'">EnableFastChecks</BasicRuntimeChecks>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Use</PrecompiledHeader>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
@@ -215,34 +216,34 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">ft2build.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="src\base\ftinit.c">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">Disabled</Optimization>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='basis|x86'">Disabled</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Disabled</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Disabled</Optimization>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='stage|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='stage|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">EnableFastChecks</BasicRuntimeChecks>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='basis|x86'">EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">EnableFastChecks</BasicRuntimeChecks>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">EnableFastChecks</BasicRuntimeChecks>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='stage|x86'">EnableFastChecks</BasicRuntimeChecks>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Use</PrecompiledHeader>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
@@ -251,34 +252,34 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">ft2build.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="src\base\ftmm.c">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">Disabled</Optimization>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='basis|x86'">Disabled</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Disabled</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Disabled</Optimization>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='stage|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='stage|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">EnableFastChecks</BasicRuntimeChecks>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='basis|x86'">EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">EnableFastChecks</BasicRuntimeChecks>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">EnableFastChecks</BasicRuntimeChecks>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='stage|x86'">EnableFastChecks</BasicRuntimeChecks>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">ft2build.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
@@ -287,8 +288,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">ft2build.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
@@ -297,8 +298,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">ft2build.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
@@ -307,8 +308,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">ft2build.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
@@ -317,8 +318,8 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Use</PrecompiledHeader>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
@@ -327,34 +328,34 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">ft2build.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="src\base\ftsystem.c">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">Disabled</Optimization>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='basis|x86'">Disabled</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Disabled</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Disabled</Optimization>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='stage|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='stage|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">EnableFastChecks</BasicRuntimeChecks>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='basis|x86'">EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">EnableFastChecks</BasicRuntimeChecks>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">EnableFastChecks</BasicRuntimeChecks>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='stage|x86'">EnableFastChecks</BasicRuntimeChecks>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Use</PrecompiledHeader>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
@@ -363,8 +364,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">ft2build.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
@@ -373,8 +374,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">ft2build.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
@@ -383,34 +384,34 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">ft2build.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="src\bdf\bdf.c">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">Disabled</Optimization>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='basis|x86'">Disabled</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Disabled</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Disabled</Optimization>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='stage|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='stage|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">EnableFastChecks</BasicRuntimeChecks>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='basis|x86'">EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">EnableFastChecks</BasicRuntimeChecks>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">EnableFastChecks</BasicRuntimeChecks>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='stage|x86'">EnableFastChecks</BasicRuntimeChecks>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Use</PrecompiledHeader>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
@@ -419,86 +420,86 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">ft2build.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="src\cache\ftcache.c">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">Disabled</Optimization>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='basis|x86'">Disabled</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Disabled</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Disabled</Optimization>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='stage|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='stage|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">EnableFastChecks</BasicRuntimeChecks>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='basis|x86'">EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">EnableFastChecks</BasicRuntimeChecks>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">EnableFastChecks</BasicRuntimeChecks>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='stage|x86'">EnableFastChecks</BasicRuntimeChecks>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Use</PrecompiledHeader>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="src\cff\cff.c">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">Disabled</Optimization>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='basis|x86'">Disabled</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Disabled</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Disabled</Optimization>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='stage|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='stage|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">EnableFastChecks</BasicRuntimeChecks>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='basis|x86'">EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">EnableFastChecks</BasicRuntimeChecks>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">EnableFastChecks</BasicRuntimeChecks>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='stage|x86'">EnableFastChecks</BasicRuntimeChecks>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Use</PrecompiledHeader>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="src\cid\type1cid.c">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">Disabled</Optimization>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='basis|x86'">Disabled</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Disabled</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Disabled</Optimization>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='stage|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='stage|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">EnableFastChecks</BasicRuntimeChecks>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='basis|x86'">EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">EnableFastChecks</BasicRuntimeChecks>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">EnableFastChecks</BasicRuntimeChecks>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='stage|x86'">EnableFastChecks</BasicRuntimeChecks>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x86'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">ft2build.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
@@ -507,346 +508,346 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Use</PrecompiledHeader>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="src\lzw\ftlzw.c">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">Disabled</Optimization>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='basis|x86'">Disabled</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Disabled</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Disabled</Optimization>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='stage|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='stage|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">EnableFastChecks</BasicRuntimeChecks>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='basis|x86'">EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">EnableFastChecks</BasicRuntimeChecks>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">EnableFastChecks</BasicRuntimeChecks>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='stage|x86'">EnableFastChecks</BasicRuntimeChecks>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Use</PrecompiledHeader>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="src\pcf\pcf.c">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">Disabled</Optimization>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='basis|x86'">Disabled</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Disabled</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Disabled</Optimization>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='stage|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='stage|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">EnableFastChecks</BasicRuntimeChecks>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='basis|x86'">EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">EnableFastChecks</BasicRuntimeChecks>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">EnableFastChecks</BasicRuntimeChecks>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='stage|x86'">EnableFastChecks</BasicRuntimeChecks>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x86'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">ft2build.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="src\pfr\pfr.c">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">Disabled</Optimization>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='basis|x86'">Disabled</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Disabled</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Disabled</Optimization>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='stage|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='stage|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">EnableFastChecks</BasicRuntimeChecks>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='basis|x86'">EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">EnableFastChecks</BasicRuntimeChecks>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">EnableFastChecks</BasicRuntimeChecks>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='stage|x86'">EnableFastChecks</BasicRuntimeChecks>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x86'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">ft2build.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="src\psaux\psaux.c">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">Disabled</Optimization>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='basis|x86'">Disabled</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Disabled</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Disabled</Optimization>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='stage|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='stage|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">EnableFastChecks</BasicRuntimeChecks>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='basis|x86'">EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">EnableFastChecks</BasicRuntimeChecks>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">EnableFastChecks</BasicRuntimeChecks>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='stage|x86'">EnableFastChecks</BasicRuntimeChecks>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x86'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">ft2build.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="src\pshinter\pshinter.c">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">Disabled</Optimization>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='basis|x86'">Disabled</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Disabled</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Disabled</Optimization>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='stage|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='stage|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">EnableFastChecks</BasicRuntimeChecks>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='basis|x86'">EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">EnableFastChecks</BasicRuntimeChecks>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">EnableFastChecks</BasicRuntimeChecks>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='stage|x86'">EnableFastChecks</BasicRuntimeChecks>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x86'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">ft2build.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="src\psnames\psmodule.c">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">Disabled</Optimization>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='basis|x86'">Disabled</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Disabled</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Disabled</Optimization>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='stage|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='stage|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">EnableFastChecks</BasicRuntimeChecks>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='basis|x86'">EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">EnableFastChecks</BasicRuntimeChecks>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">EnableFastChecks</BasicRuntimeChecks>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='stage|x86'">EnableFastChecks</BasicRuntimeChecks>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">ft2build.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="src\raster\raster.c">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">Disabled</Optimization>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='basis|x86'">Disabled</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Disabled</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Disabled</Optimization>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='stage|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='stage|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">EnableFastChecks</BasicRuntimeChecks>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='basis|x86'">EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">EnableFastChecks</BasicRuntimeChecks>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">EnableFastChecks</BasicRuntimeChecks>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='stage|x86'">EnableFastChecks</BasicRuntimeChecks>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x86'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">ft2build.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="src\sfnt\sfnt.c">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">Disabled</Optimization>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='basis|x86'">Disabled</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Disabled</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Disabled</Optimization>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='stage|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='stage|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">EnableFastChecks</BasicRuntimeChecks>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='basis|x86'">EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">EnableFastChecks</BasicRuntimeChecks>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">EnableFastChecks</BasicRuntimeChecks>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='stage|x86'">EnableFastChecks</BasicRuntimeChecks>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x86'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">ft2build.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="src\smooth\smooth.c">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">Disabled</Optimization>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='basis|x86'">Disabled</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Disabled</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Disabled</Optimization>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='stage|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='stage|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">EnableFastChecks</BasicRuntimeChecks>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='basis|x86'">EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">EnableFastChecks</BasicRuntimeChecks>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">EnableFastChecks</BasicRuntimeChecks>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='stage|x86'">EnableFastChecks</BasicRuntimeChecks>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Use</PrecompiledHeader>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="src\truetype\truetype.c">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">Disabled</Optimization>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='basis|x86'">Disabled</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Disabled</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Disabled</Optimization>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='stage|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='stage|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">EnableFastChecks</BasicRuntimeChecks>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='basis|x86'">EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">EnableFastChecks</BasicRuntimeChecks>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">EnableFastChecks</BasicRuntimeChecks>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='stage|x86'">EnableFastChecks</BasicRuntimeChecks>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x86'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">ft2build.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="src\type1\type1.c">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">Disabled</Optimization>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='basis|x86'">Disabled</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Disabled</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Disabled</Optimization>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='stage|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='stage|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">EnableFastChecks</BasicRuntimeChecks>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='basis|x86'">EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">EnableFastChecks</BasicRuntimeChecks>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">EnableFastChecks</BasicRuntimeChecks>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='stage|x86'">EnableFastChecks</BasicRuntimeChecks>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x86'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">ft2build.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="src\type42\type42.c">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">Disabled</Optimization>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='basis|x86'">Disabled</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Disabled</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Disabled</Optimization>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='stage|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='stage|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">EnableFastChecks</BasicRuntimeChecks>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='basis|x86'">EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">EnableFastChecks</BasicRuntimeChecks>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">EnableFastChecks</BasicRuntimeChecks>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='stage|x86'">EnableFastChecks</BasicRuntimeChecks>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x86'">NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">ft2build.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="src\winfonts\winfnt.c">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">Disabled</Optimization>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='basis|x86'">Disabled</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Disabled</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Disabled</Optimization>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='basis|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='stage|x86'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='stage|x86'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">EnableFastChecks</BasicRuntimeChecks>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='basis|x86'">EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">EnableFastChecks</BasicRuntimeChecks>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">EnableFastChecks</BasicRuntimeChecks>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='stage|x86'">EnableFastChecks</BasicRuntimeChecks>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x86'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">ft2build.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">ft2build.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x86'">$(IntDir)ft.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
