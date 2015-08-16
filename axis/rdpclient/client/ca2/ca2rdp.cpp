@@ -66,7 +66,7 @@ int ca2rdp_end_paint(rdpContext* context)
 {
 	rdpGdi* gdi;
 	ca2rdpInfo* ca2rdpi;
-#ifdef WINDOWSEX
+#ifdef _WIN32
 	gdi = context->gdi;
 	ca2rdpi = ((ca2rdpContext*) context)->ca2rdpi;
 
@@ -84,9 +84,9 @@ int ca2rdp_end_paint(rdpContext* context)
 	ca2rdpi->w = gdi->width;
 	ca2rdpi->h = gdi->height;
 #endif
+   ::draw2d::dib_copy(ca2rdpi->surface,ca2rdpi->primary);
 #endif
 
-   ::draw2d::dib_copy(ca2rdpi->surface,ca2rdpi->primary);
 
 /*#ifdef WINDOWS
    ::draw2d::graphics_sp g(((ca2rdpContext*)context)->m_papp->allocer());
@@ -531,15 +531,21 @@ int main(int argc, char* argv[])
 
 COLORREF * ca2rdp_ctx_get_primary(ca2rdp_context * pcontext)
 {
-#ifdef _WIN32
-   if(pcontext->primary == NULL)
-      return NULL;
-   return (COLORREF *) pcontext->primary->pdata;
-#else
+//#ifdef _WIN32
+//   if(pcontext->primary == NULL)
+//      return NULL;
+//   return (COLORREF *) pcontext->primary->pdata;
+//#else
    if(pcontext->gdi == NULL)
       return NULL;
+/*   if(pcontext->gdi->drawing == NULL)
+      return NULL;
+   if(pcontext->gdi->drawing->bitmap == NULL)
+      return NULL;
+   return (COLORREF *)pcontext->gdi->drawing->bitmap->p*/
    return (COLORREF *)pcontext->gdi->primary_buffer;
-#endif
+;
+//#endif
 }
 
 

@@ -29,8 +29,8 @@ struct axisrdp_context:
    UINT32 bitmap_size;
    BYTE* bitmap_buffer;
 
-   axisrdp_bitmap* primary;
-   axisrdp_bitmap* drawing;
+   //axisrdp_bitmap* primary;
+   //axisrdp_bitmap* drawing;
 
    UINT16 srcBpp;
    UINT16 dstBpp;
