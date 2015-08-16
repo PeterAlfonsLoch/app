@@ -23,24 +23,41 @@
 #define __WF_GDI_H
 
 
-#include "../../freerdp_rdpclient_setup.h"
 
-#include "wf_interface.h"
+#include "wf_client.h"
+
+#if defined(__cplusplus)
 
 
+#define DECL_EXTERN_C	   extern "C"
+#define BEGIN_EXTERN_C		extern "C" {
+#define END_EXTERN_C		   }
+
+
+#else
+
+
+#define DECL_EXTERN_C
+#define BEGIN_EXTERN_C
+#define END_EXTERN_C
+
+
+#endif
 
 BEGIN_EXTERN_C
 
-CLASS_DECL_RDPCLIENT void wf_invalidate_region(wfContext* wfc, int x, int y, int width, int height);
-CLASS_DECL_RDPCLIENT wfBitmap* wf_image_new(wfContext* wfc,int width,int height,int bpp,BYTE* data);
-CLASS_DECL_RDPCLIENT void wf_image_free(wfBitmap* image);
-CLASS_DECL_RDPCLIENT void wf_update_offset(wfContext* wfc);
-CLASS_DECL_RDPCLIENT void wf_resize_window(wfContext* wfc);
-CLASS_DECL_RDPCLIENT void wf_toggle_fullscreen(wfContext* wfc);
 
-CLASS_DECL_RDPCLIENT void wf_gdi_register_update_callbacks(rdpUpdate* update);
+void wf_invalidate_region(wfContext* wfc, int x, int y, int width, int height);
+wfBitmap* wf_image_new(wfContext* wfc, int width, int height, int bpp, BYTE* data);
+void wf_image_free(wfBitmap* image);
+void wf_update_offset(wfContext* wfc);
+void wf_resize_window(wfContext* wfc);
+void wf_toggle_fullscreen(wfContext* wfc);
 
-CLASS_DECL_RDPCLIENT void wf_update_canvas_diff(wfContext* wfc);
+BOOL wf_gdi_bitmap_update(rdpContext* context, BITMAP_UPDATE* bitmapUpdate);
+void wf_gdi_register_update_callbacks(rdpUpdate* update);
+
+void wf_update_canvas_diff(wfContext* wfc);
 
 END_EXTERN_C
 

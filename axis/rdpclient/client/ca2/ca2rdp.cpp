@@ -249,7 +249,7 @@ BOOL ca2rdp_post_connect(freerdp* instance)
 	pointer_cache_register_callbacks(instance->update);
 	ca2rdp_register_graphics(instance->context->graphics);
 
-	freerdp_channels_post_connect(instance->context->channels, instance);
+	//freerdp_channels_post_connect(instance->context->channels, instance);
 
 	return TRUE;
 }
@@ -520,11 +520,19 @@ int main(int argc, char* argv[])
 
 ::draw2d::graphics * ca2rdp_ctx_get_graphics(ca2rdp_context * pcontext)
 {
-
+   if(pcontext->ca2rdpi == NULL)
+      return NULL;
    return ::draw2d::dib_get_graphics(pcontext->ca2rdpi->surface);
 
 }
 
+COLORREF * ca2rdp_ctx_get_primary(ca2rdp_context * pcontext)
+{
+   if(pcontext->primary == NULL)
+      return NULL;
+   return (COLORREF *) pcontext->primary->pdata;
+
+}
 
 
 

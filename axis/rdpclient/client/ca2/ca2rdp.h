@@ -21,6 +21,7 @@
 #define __DFREERDP_H
 
 #include "axis/rdpclient/config.h"
+#include "axis/rdpclient/client/Windows/wf_client.h"
 #include <freerdp/freerdp.h>
 #include <freerdp/graphics.h>
 #include <freerdp/gdi/gdi.h>
@@ -76,7 +77,7 @@ namespace draw2d
 }
 
 struct ca2rdp_context :
-   public rdpContext
+   public wf_context
 {
 
    DWORD mainThreadId;
@@ -88,6 +89,7 @@ struct ca2rdp_context :
 };
 
 CLASS_DECL_RDPCLIENT ::draw2d::graphics * ca2rdp_ctx_get_graphics(ca2rdp_context * pcontext);
+CLASS_DECL_RDPCLIENT COLORREF * ca2rdp_ctx_get_primary(ca2rdp_context * pcontext);
 
 
 typedef struct ca2rdp_context ca2rdpContext;

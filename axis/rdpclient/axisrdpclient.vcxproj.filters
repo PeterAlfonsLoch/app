@@ -25,6 +25,30 @@
     <ClCompile Include="client\common\file.c">
       <Filter>Source Files\client\common</Filter>
     </ClCompile>
+    <ClCompile Include="client\Windows\wf_channels.c">
+      <Filter>Source Files\client\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="client\Windows\wf_client.c">
+      <Filter>Source Files\client\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="client\Windows\wf_cliprdr.c">
+      <Filter>Source Files\client\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="client\Windows\wf_event.c">
+      <Filter>Source Files\client\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="client\Windows\wf_floatbar.c">
+      <Filter>Source Files\client\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="client\Windows\wf_gdi.c">
+      <Filter>Source Files\client\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="client\Windows\wf_graphics.c">
+      <Filter>Source Files\client\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="client\Windows\wf_rail.c">
+      <Filter>Source Files\client\Windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -51,6 +75,12 @@
     <Filter Include="Source Files\client\ca2">
       <UniqueIdentifier>{a21b1435-2916-4b45-bfe1-5328cd24fcaf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\client\Windows">
+      <UniqueIdentifier>{59286ff8-248f-44e3-9d3f-3e933fc7cff4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Windows">
+      <UniqueIdentifier>{2c3260b3-18a7-4130-b79e-ea8cf5a77e74}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="client\common\compatibility.h">
@@ -70,6 +100,33 @@
     </ClInclude>
     <ClInclude Include="client\ca2\ca2rdp.h">
       <Filter>Header Files\client\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="client\Windows\wf_channels.h">
+      <Filter>Header Files\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="client\Windows\resource.h">
+      <Filter>Header Files\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="client\Windows\wf_client.h">
+      <Filter>Header Files\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="client\Windows\wf_cliprdr.h">
+      <Filter>Header Files\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="client\Windows\wf_event.h">
+      <Filter>Header Files\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="client\Windows\wf_floatbar.h">
+      <Filter>Header Files\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="client\Windows\wf_gdi.h">
+      <Filter>Header Files\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="client\Windows\wf_graphics.h">
+      <Filter>Header Files\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="client\Windows\wf_rail.h">
+      <Filter>Header Files\Windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

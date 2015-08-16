@@ -20,23 +20,35 @@
 #ifndef __WF_GRAPHICS_H
 #define __WF_GRAPHICS_H
 
-#include "../../freerdp_rdpclient_setup.h"
+#include "wf_client.h"
 
-#include "wf_interface.h"
+#if defined(__cplusplus)
 
-#ifdef __cplusplus
-extern "C" {
+
+#define DECL_EXTERN_C	   extern "C"
+#define BEGIN_EXTERN_C		extern "C" {
+#define END_EXTERN_C		   }
+
+
+#else
+
+
+#define DECL_EXTERN_C
+#define BEGIN_EXTERN_C
+#define END_EXTERN_C
+
+
 #endif
 
+BEGIN_EXTERN_C
 
-CLASS_DECL_RDPCLIENT HBITMAP wf_create_dib(wfContext* wfc,int width,int height,int bpp,BYTE* data,BYTE** pdata);
-CLASS_DECL_RDPCLIENT wfBitmap* wf_image_new(wfContext* wfc,int width,int height,int bpp,BYTE* data);
-CLASS_DECL_RDPCLIENT void wf_image_free(wfBitmap* image);
+HBITMAP wf_create_dib(wfContext* wfc, int width, int height, int bpp, BYTE* data, BYTE** pdata);
+wfBitmap* wf_image_new(wfContext* wfc, int width, int height, int bpp, BYTE* data);
+void wf_image_free(wfBitmap* image);
 
-CLASS_DECL_RDPCLIENT void wf_register_graphics(rdpGraphics* graphics);
+void wf_register_pointer(rdpGraphics* graphics);
+void wf_register_graphics(rdpGraphics* graphics);
 
-#ifdef __cplusplus
-} // extern "C"
-#endif
+END_EXTERN_C
 
 #endif /* WF_GRAPHICS */

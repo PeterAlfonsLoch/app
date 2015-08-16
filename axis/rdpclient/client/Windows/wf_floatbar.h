@@ -23,8 +23,30 @@
 typedef struct _FloatBar FloatBar;
 typedef struct wf_context wfContext;
 
+#if defined(__cplusplus)
+
+
+#define DECL_EXTERN_C	   extern "C"
+#define BEGIN_EXTERN_C		extern "C" {
+#define END_EXTERN_C		   }
+
+
+#else
+
+
+#define DECL_EXTERN_C
+#define BEGIN_EXTERN_C
+#define END_EXTERN_C
+
+
+#endif
+
+BEGIN_EXTERN_C
+
 void floatbar_window_create(wfContext* wfc);
 int floatbar_show(FloatBar* floatbar);
 int floatbar_hide(FloatBar* floatbar);
+
+END_EXTERN_C
 
 #endif

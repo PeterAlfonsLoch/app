@@ -3885,7 +3885,7 @@ namespace user
    void interaction::_001UpdateBuffer()
    {
 
-      single_lock sl(m_pmutex, true);
+      //single_lock sl(m_pmutex, true);
 
       if(m_bLockWindowUpdate)
       {

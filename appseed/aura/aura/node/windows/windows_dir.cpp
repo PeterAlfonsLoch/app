@@ -849,7 +849,7 @@ namespace windows
 
       m_strCa2 = strCa2Module;
 
-      m_strCa2 -= 2;
+      m_strCa2 -= 3;
 
       SHGetSpecialFolderPath(
          NULL,

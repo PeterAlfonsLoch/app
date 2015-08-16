@@ -19,85 +19,121 @@
 #ifndef __WF_CLIPRDR_H
 #define __WF_CLIPRDR_H
 
-#include "../../freerdp_rdpclient_setup.h"
-
 #define CINTERFACE
 #define COBJMACROS
 
 #include <Ole2.h>
 #include <ShlObj.h>
-#include "wf_interface.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+typedef struct wf_clipboard wfClipboard;
+
+#include "wf_client.h"
+
+#include <freerdp/log.h>
 
 #ifdef WITH_DEBUG_CLIPRDR
-#define DEBUG_CLIPRDR(fmt, ...) DEBUG_CLASS(WIN_CLIPRDR, fmt, ## __VA_ARGS__)
+#define DEBUG_CLIPRDR(fmt, ...) WLog_DBG(TAG, fmt, ## __VA_ARGS__)
 #else
-#define DEBUG_CLIPRDR(fmt, ...) DEBUG_NULL(fmt, ## __VA_ARGS__)
+#define DEBUG_CLIPRDR(fmt, ...) do { } while (0)
 #endif
 
-   typedef struct format_mapping formatMapping;
-   struct format_mapping {
-      UINT32 remote_format_id;
-      UINT32 local_format_id;
-      void *name;					/* Unicode or ASCII characters with NULL terminate */
-   };
+struct _CliprdrStream
+{
+	IStream iStream;
 
-   typedef struct cliprdr_context cliprdrContext;
-   struct cliprdr_context {
-      rdpChannels *channels;
+	LONG m_lRefCount;
+	LONG m_lIndex;
+	ULARGE_INTEGER m_lSize;
+	ULARGE_INTEGER m_lOffset;
+	void* m_pData;
+};
+typedef struct _CliprdrStream CliprdrStream;
 
-      UINT32 capabilities;
+CliprdrStream* CliprdrStream_New(LONG index, void* pData);
+void CliprdrStream_Delete(CliprdrStream* instance);
 
-      formatMapping *format_mappings;
-      int map_capacity;
-      int map_size;
+struct _CliprdrDataObject
+{
+	IDataObject iDataObject;
 
-      UINT32 request_format;
-      BOOL channel_initialized;
+	LONG m_lRefCount;
+	FORMATETC* m_pFormatEtc;
+	STGMEDIUM* m_pStgMedium;
+	LONG m_nNumFormats;
+	LONG m_nStreams;
+	IStream** m_pStream;
+	void* m_pData;
+};
+typedef struct _CliprdrDataObject CliprdrDataObject;
 
-      HWND hwndClipboard;
+CliprdrDataObject* CliprdrDataObject_New(FORMATETC* fmtetc, STGMEDIUM* stgmed, int count, void* data);
+void CliprdrDataObject_Delete(CliprdrDataObject* instance);
 
-      HANDLE cliprdr_thread;
-      HANDLE hmem;
-      HANDLE response_data_event;
+struct _CliprdrEnumFORMATETC
+{
+	IEnumFORMATETC iEnumFORMATETC;
 
-      /* file clipping */
-      CLIPFORMAT ID_FILEDESCRIPTORW;
-      CLIPFORMAT ID_FILECONTENTS;
-      CLIPFORMAT ID_PREFERREDDROPEFFECT;
+	LONG m_lRefCount;
+	LONG m_nIndex;
+	LONG m_nNumFormats;
+	FORMATETC* m_pFormatEtc;
+};
+typedef struct _CliprdrEnumFORMATETC CliprdrEnumFORMATETC;
 
-      LPDATAOBJECT data_obj;
-      ULONG req_fsize;
-      char *req_fdata;
-      HANDLE req_fevent;
+CliprdrEnumFORMATETC* CliprdrEnumFORMATETC_New(int nFormats, FORMATETC* pFormatEtc);
+void CliprdrEnumFORMATETC_Delete(CliprdrEnumFORMATETC* This);
 
-      int nFiles;
-      int file_array_size;
-      wchar_t **file_names;
-      FILEDESCRIPTORW **fileDescriptor;
-   };
+struct format_mapping
+{
+	UINT32 remote_format_id;
+	UINT32 local_format_id;
+	void* name; /* Unicode or ASCII characters with NULL terminator */
+};
+typedef struct format_mapping formatMapping;
 
-   CLASS_DECL_RDPCLIENT void wf_cliprdr_init(wfContext* wfc,rdpChannels* channels);
-   CLASS_DECL_RDPCLIENT void wf_cliprdr_uninit(wfContext* wfc);
-   CLASS_DECL_RDPCLIENT void wf_process_cliprdr_event(wfContext* wfc,wMessage* event);
-   CLASS_DECL_RDPCLIENT BOOL wf_cliprdr_process_selection_notify(wfContext* wfc,HWND hWnd,UINT Msg,WPARAM wParam,LPARAM lParam);
-   CLASS_DECL_RDPCLIENT BOOL wf_cliprdr_process_selection_request(wfContext* wfc,HWND hWnd,UINT Msg,WPARAM wParam,LPARAM lParam);
-   CLASS_DECL_RDPCLIENT BOOL wf_cliprdr_process_selection_clear(wfContext* wfc,HWND hWnd,UINT Msg,WPARAM wParam,LPARAM lParam);
-   CLASS_DECL_RDPCLIENT BOOL wf_cliprdr_process_property_notify(wfContext* wfc,HWND hWnd,UINT Msg,WPARAM wParam,LPARAM lParam);
-   CLASS_DECL_RDPCLIENT void wf_cliprdr_check_owner(wfContext* wfc);
+struct wf_clipboard
+{
+	wfContext* wfc;
+	rdpChannels* channels;
+	CliprdrClientContext* context;
 
-   CLASS_DECL_RDPCLIENT int cliprdr_send_data_request(cliprdrContext *cliprdr,UINT32 format);
-   CLASS_DECL_RDPCLIENT int cliprdr_send_lock(cliprdrContext *cliprdr);
-   CLASS_DECL_RDPCLIENT int cliprdr_send_unlock(cliprdrContext *cliprdr);
-   CLASS_DECL_RDPCLIENT int cliprdr_send_request_filecontents(cliprdrContext *cliprdr,void *streamid,
-      int index,int flag,DWORD positionhigh,
-      DWORD positionlow,ULONG request);
+	BOOL sync;
+	UINT32 capabilities;
 
+	int map_size;
+	int map_capacity;
+	formatMapping* format_mappings;
 
-#ifdef __cplusplus
-} // extern "C"
-#endif
+	UINT32 requestedFormatId;
+
+	HWND hwnd;
+	HANDLE hmem;
+	HANDLE thread;
+	HANDLE response_data_event;
+
+	/* file clipping */
+	CLIPFORMAT ID_FILEDESCRIPTORW;
+	CLIPFORMAT ID_FILECONTENTS;
+	CLIPFORMAT ID_PREFERREDDROPEFFECT;
+
+	LPDATAOBJECT data_obj;
+	ULONG req_fsize;
+	char* req_fdata;
+	HANDLE req_fevent;
+
+	int nFiles;
+	int file_array_size;
+	WCHAR** file_names;
+	FILEDESCRIPTORW** fileDescriptor;
+};
+
+void wf_cliprdr_init(wfContext* wfc, CliprdrClientContext* cliprdr);
+void wf_cliprdr_uninit(wfContext* wfc, CliprdrClientContext* cliprdr);
+
+int cliprdr_send_data_request(wfClipboard* clipboard, UINT32 format);
+int cliprdr_send_lock(wfClipboard* clipboard);
+int cliprdr_send_unlock(wfClipboard* clipboard);
+int cliprdr_send_request_filecontents(wfClipboard* clipboard, void* streamid,
+		int index, int flag, DWORD positionhigh, DWORD positionlow, ULONG request);
+
 #endif /* __WF_CLIPRDR_H */

@@ -249,9 +249,6 @@
     <ClCompile Include="libwinpr\environment\environment.c">
       <Filter>Source Files\libwinpr\environment</Filter>
     </ClCompile>
-    <ClCompile Include="libwinpr\error\err_err.c">
-      <Filter>Source Files\libwinpr\error</Filter>
-    </ClCompile>
     <ClCompile Include="libwinpr\file\file.c">
       <Filter>Source Files\libwinpr\file</Filter>
     </ClCompile>
@@ -296,21 +293,6 @@
     </ClCompile>
     <ClCompile Include="libwinpr\pipe\pipe.c">
       <Filter>Source Files\libwinpr\pipe</Filter>
-    </ClCompile>
-    <ClCompile Include="libwinpr\pool\pool_io.c">
-      <Filter>Source Files\libwinpr\pool</Filter>
-    </ClCompile>
-    <ClCompile Include="libwinpr\pool\pool_pool.c">
-      <Filter>Source Files\libwinpr\pool</Filter>
-    </ClCompile>
-    <ClCompile Include="libwinpr\pool\pool_synch.c">
-      <Filter>Source Files\libwinpr\pool</Filter>
-    </ClCompile>
-    <ClCompile Include="libwinpr\pool\pool_timer.c">
-      <Filter>Source Files\libwinpr\pool</Filter>
-    </ClCompile>
-    <ClCompile Include="libwinpr\pool\pool_work.c">
-      <Filter>Source Files\libwinpr\pool</Filter>
     </ClCompile>
     <ClCompile Include="libwinpr\rpc\midl.c">
       <Filter>Source Files\libwinpr\rpc</Filter>
@@ -522,18 +504,6 @@
     <ClCompile Include="libwinpr\wtsapi\wtsapi.c">
       <Filter>Source Files\libwinpr\wtsapi</Filter>
     </ClCompile>
-    <ClCompile Include="libwinpr\pool\callback.c">
-      <Filter>Source Files\libwinpr\pool</Filter>
-    </ClCompile>
-    <ClCompile Include="libwinpr\pool\callback_cleanup.c">
-      <Filter>Source Files\libwinpr\pool</Filter>
-    </ClCompile>
-    <ClCompile Include="libwinpr\pool\callback_environment.c">
-      <Filter>Source Files\libwinpr\pool</Filter>
-    </ClCompile>
-    <ClCompile Include="libwinpr\pool\cleanup_group.c">
-      <Filter>Source Files\libwinpr\pool</Filter>
-    </ClCompile>
     <ClCompile Include="libwinpr\sspi\Schannel\schannel.c">
       <Filter>Source Files\libwinpr\sspi\Schannel</Filter>
     </ClCompile>
@@ -567,21 +537,6 @@
     <ClCompile Include="libwinpr\utils\collections\HashTable.c">
       <Filter>Source Files\libwinpr\utils\collections</Filter>
     </ClCompile>
-    <ClCompile Include="libwinpr\smartcard\smartcard.c">
-      <Filter>Source Files\libwinpr\smartcard</Filter>
-    </ClCompile>
-    <ClCompile Include="libwinpr\smartcard\smartcard_inspect.c">
-      <Filter>Source Files\libwinpr\smartcard</Filter>
-    </ClCompile>
-    <ClCompile Include="libwinpr\smartcard\smartcard_link.c">
-      <Filter>Source Files\libwinpr\smartcard</Filter>
-    </ClCompile>
-    <ClCompile Include="libwinpr\smartcard\smartcard_pcsc.c">
-      <Filter>Source Files\libwinpr\smartcard</Filter>
-    </ClCompile>
-    <ClCompile Include="libwinpr\smartcard\smartcard_winscard.c">
-      <Filter>Source Files\libwinpr\smartcard</Filter>
-    </ClCompile>
     <ClCompile Include="libwinpr\sspi\sspi_winpr.c">
       <Filter>Source Files\libwinpr\sspi</Filter>
     </ClCompile>
@@ -597,9 +552,6 @@
     <ClCompile Include="libwinpr\sspi\NTLM\ntlm.c">
       <Filter>Source Files\libwinpr\sspi\NTLM</Filter>
     </ClCompile>
-    <ClCompile Include="libwinpr\utils\utils_ntlm.c">
-      <Filter>Source Files\libwinpr\utils</Filter>
-    </ClCompile>
     <ClCompile Include="libwinpr\utils\image.c">
       <Filter>Source Files\libwinpr\utils</Filter>
     </ClCompile>
@@ -608,6 +560,51 @@
     </ClCompile>
     <ClCompile Include="libwinpr\wtsapi\wtsapi_win32.c">
       <Filter>Source Files\libwinpr\wtsapi</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\error\error.c">
+      <Filter>Source Files\libwinpr\error</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\pool\callback.c">
+      <Filter>Source Files\libwinpr\pool</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\pool\callback_cleanup.c">
+      <Filter>Source Files\libwinpr\pool</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\pool\callback_environment.c">
+      <Filter>Source Files\libwinpr\pool</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\pool\cleanup_group.c">
+      <Filter>Source Files\libwinpr\pool</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\pool\io.c">
+      <Filter>Source Files\libwinpr\pool</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\pool\pool.c">
+      <Filter>Source Files\libwinpr\pool</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\pool\synch.c">
+      <Filter>Source Files\libwinpr\pool</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\pool\timer.c">
+      <Filter>Source Files\libwinpr\pool</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\pool\work.c">
+      <Filter>Source Files\libwinpr\pool</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\smartcard\smartcard.c">
+      <Filter>Source Files\libwinpr\smartcard</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\smartcard\smartcard_inspect.c">
+      <Filter>Source Files\libwinpr\smartcard</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\smartcard\smartcard_pcsc.c">
+      <Filter>Source Files\libwinpr\smartcard</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\smartcard\smartcard_winscard.c">
+      <Filter>Source Files\libwinpr\smartcard</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\ntlm.c">
+      <Filter>Source Files\libwinpr\utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

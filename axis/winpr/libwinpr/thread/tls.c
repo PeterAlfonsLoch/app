@@ -28,8 +28,8 @@
 /**
  * TlsAlloc
  * TlsFree
- * thread_get_data
- * thread_set_data
+ * TlsGetValue
+ * TlsSetValue
  */
 
 #ifndef _WIN32
@@ -49,7 +49,7 @@ DWORD TlsAlloc(VOID)
 	return key;
 }
 
-LPVOID thread_get_data(DWORD dwTlsIndex)
+LPVOID TlsGetValue(DWORD dwTlsIndex)
 {
 	LPVOID value;
 	pthread_key_t key;
@@ -60,7 +60,7 @@ LPVOID thread_get_data(DWORD dwTlsIndex)
 	return value;
 }
 
-BOOL thread_set_data(DWORD dwTlsIndex, LPVOID lpTlsValue)
+BOOL TlsSetValue(DWORD dwTlsIndex, LPVOID lpTlsValue)
 {
 	pthread_key_t key;
 

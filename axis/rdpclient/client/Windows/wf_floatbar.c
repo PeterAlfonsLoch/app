@@ -16,19 +16,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
 
-#include <WinSock2.h>
-#include <Windows.h>
-#include <stdlib.h>
+#include <winpr/crt.h>
+#include <winpr/windows.h>
 
-#include "wf_interface.h"
-#include "wf_floatbar.h"
-#include "wf_window.h"
-#include "wf_gdi.h"
 #include "resource.h"
+
+#include "wf_client.h"
+#include "wf_floatbar.h"
+#include "wf_gdi.h"
 
 typedef struct _Button Button;
 
@@ -449,7 +445,7 @@ void floatbar_window_create(wfContext *wfc)
 	wnd_cls.hCursor       = LoadCursor(wfc->hInstance, IDC_ARROW);
 	wnd_cls.hbrBackground = NULL;
 	wnd_cls.lpszMenuName  = NULL;
-	wnd_cls.lpszClassName = "floatbar";
+	wnd_cls.lpszClassName = L"floatbar";
 	wnd_cls.hInstance     = wfc->hInstance;
 	wnd_cls.hIconSm       = LoadIcon(NULL, IDI_APPLICATION);
 
@@ -457,7 +453,7 @@ void floatbar_window_create(wfContext *wfc)
 
 	wfc->floatbar = floatbar_create(wfc);
 
-	barWnd = CreateWindowEx(WS_EX_TOPMOST, "floatbar", "floatbar", WS_CHILD, x, 0, BACKGROUND_W, BACKGROUND_H, wfc->hwnd, NULL, wfc->hInstance, wfc->floatbar);
+	barWnd = CreateWindowEx(WS_EX_TOPMOST, L"floatbar", L"floatbar", WS_CHILD, x, 0, BACKGROUND_W, BACKGROUND_H, wfc->hwnd, NULL, wfc->hInstance, wfc->floatbar);
 	if (barWnd == NULL)
 		return;
 	ShowWindow(barWnd, SW_SHOWNORMAL);

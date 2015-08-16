@@ -30,7 +30,6 @@
 
 #include <freerdp/freerdp.h>
 #include <freerdp/constants.h>
-#include <freerdp/utils/event.h>
 
 #include <freerdp/client/file.h>
 #include <freerdp/client/cmdline.h>
@@ -39,7 +38,7 @@
 
 #include "resource.h"
 
-#include "wf_interface.h"
+#include "wf_client.h"
 
 INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
@@ -51,6 +50,7 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	rdpContext* context;
 	rdpSettings* settings;
 	RDP_CLIENT_ENTRY_POINTS clientEntryPoints;
+	int ret = 0;
 
 	ZeroMemory(&clientEntryPoints, sizeof(RDP_CLIENT_ENTRY_POINTS));
 	clientEntryPoints.Size = sizeof(RDP_CLIENT_ENTRY_POINTS);
@@ -63,13 +63,32 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	settings = context->settings;
 	wfc = (wfContext*) context;
 
+	settings->SoftwareGdi = TRUE;
+
 	context->argc = __argc;
 	context->argv = (char**) malloc(sizeof(char*) * __argc);
+	if (!context->argv)
+	{
+		ret = 1;
+		goto out;
+	}
 
 	for (index = 0; index < context->argc; index++)
+	{
 		context->argv[index] = _strdup(__argv[index]);
+		if (!context->argv[index])
+		{
+			ret = 1;
+			for (--index; index >= 0; --index)
+				free(context->argv[index]);
+			free(context->argv);
+			context->argv = NULL;
+			goto out;
+		}
 
-	status = freerdp_client_settings_parse_command_line(settings, context->argc, context->argv);
+	}
+
+	status = freerdp_client_settings_parse_command_line(settings, context->argc, context->argv, FALSE);
 
 	status = freerdp_client_settings_command_line_status_print(settings, status, context->argc, context->argv);
 
@@ -88,8 +107,8 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	GetExitCodeThread(thread, &dwExitCode);
 
 	freerdp_client_stop(context);
-
+out:
 	freerdp_client_context_free(context);
 
-	return 0;
+	return ret;
 }

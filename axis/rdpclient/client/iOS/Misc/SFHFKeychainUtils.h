@@ -31,7 +31,7 @@
 
 
 @interface SFHFKeychainUtils : NSObject {
-
+  
 }
 
 + (NSString *) getPasswordForUsername: (NSString *) username andServerName: (NSString *) serverName error: (NSError **) error;
