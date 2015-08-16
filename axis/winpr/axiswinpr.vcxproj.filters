@@ -561,9 +561,6 @@
     <ClCompile Include="libwinpr\wtsapi\wtsapi_win32.c">
       <Filter>Source Files\libwinpr\wtsapi</Filter>
     </ClCompile>
-    <ClCompile Include="libwinpr\error\error.c">
-      <Filter>Source Files\libwinpr\error</Filter>
-    </ClCompile>
     <ClCompile Include="libwinpr\pool\callback.c">
       <Filter>Source Files\libwinpr\pool</Filter>
     </ClCompile>
@@ -605,6 +602,9 @@
     </ClCompile>
     <ClCompile Include="libwinpr\utils\ntlm.c">
       <Filter>Source Files\libwinpr\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\error\err_err.c">
+      <Filter>Source Files\libwinpr\error</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

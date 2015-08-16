@@ -22,6 +22,6 @@
 
 #include "ca2rdp.h"
 
-CLASS_DECL_RDPCLIENT  void ca2rdp_register_graphics(rdpGraphics* graphics);
+CLASS_DECL_AXIS_RDPCLIENT  void ca2rdp_register_graphics(rdpGraphics* graphics);
 
 #endif /* __DF_GRAPHICS_H */

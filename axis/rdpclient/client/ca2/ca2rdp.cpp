@@ -531,7 +531,7 @@ int main(int argc, char* argv[])
 
 COLORREF * ca2rdp_ctx_get_primary(ca2rdp_context * pcontext)
 {
-#ifdef WINDOWSEX
+#ifdef _WIN32
    if(pcontext->primary == NULL)
       return NULL;
    return (COLORREF *) pcontext->primary->pdata;

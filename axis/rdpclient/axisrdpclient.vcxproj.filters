@@ -89,9 +89,6 @@
     <ClInclude Include="config.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="freerdp_rdpclient_setup.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="client\ca2\ca2rdp_event.h">
       <Filter>Header Files\client\ca2</Filter>
     </ClInclude>
@@ -128,7 +125,10 @@
     <ClInclude Include="client\Windows\wf_rail.h">
       <Filter>Header Files\Windows</Filter>
     </ClInclude>
-    <ClInclude Include="client\common\axis_graphics.h">
+    <ClInclude Include="client\common\rdpclient.h">
+      <Filter>Header Files\client\common</Filter>
+    </ClInclude>
+    <ClInclude Include="client\common\graphics.h">
       <Filter>Header Files\client\common</Filter>
     </ClInclude>
   </ItemGroup>

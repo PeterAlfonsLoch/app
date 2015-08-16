@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "freerdp_rdpclient_setup.h"
+#include "axis/rdpclient/client/common/rdpclient.h"
 
 #define FREERDP_DATA_PATH "${FREERDP_DATA_PATH}"
 #define FREERDP_KEYMAP_PATH "${FREERDP_KEYMAP_PATH}"

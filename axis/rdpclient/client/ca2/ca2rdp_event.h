@@ -22,7 +22,7 @@
 
 #include "ca2rdp.h"
 
-CLASS_DECL_RDPCLIENT void ca2rdp_send_mouse_button_event(rdpInput* input,UINT uiMessage,POINT pt);
-CLASS_DECL_RDPCLIENT void ca2rdp_send_keyboard_event(rdpInput* input,BOOL down,UINT scancode);
+CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_mouse_button_event(rdpInput* input,UINT uiMessage,POINT pt);
+CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_keyboard_event(rdpInput* input,BOOL down,UINT scancode);
 
 #endif /* __DF_EVENT_H */

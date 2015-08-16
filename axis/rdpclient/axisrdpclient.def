@@ -1,6 +1,6 @@
 LIBRARY		"axisrdpclient"
 EXPORTS
-wf_pre_connect
+;wf_pre_connect
 ;wf_add_system_menu
 ;wf_sw_begin_paint
 ;wf_sw_end_paint

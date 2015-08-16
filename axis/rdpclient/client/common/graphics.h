@@ -1,5 +1,6 @@
 #pragma once
 
+#include "rdpclient.h"
 
 struct axisrdp_bitmap
 {

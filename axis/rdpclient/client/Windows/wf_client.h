@@ -42,13 +42,15 @@
 
 typedef struct wf_context wfContext;
 
+#include "axis/rdpclient/client/common/graphics.h"
+
 #include "wf_channels.h"
 #include "wf_floatbar.h"
 #include "wf_event.h"
 #include "wf_cliprdr.h"
 
 
-#include "axis/rdpclient/client/common/axis_graphics.h"
+
 
 #ifdef __cplusplus
 extern "C" {

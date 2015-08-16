@@ -209,7 +209,7 @@ BOOL wf_sw_end_paint(wfContext* wfc)
 //	return TRUE;
 //}
 
-BOOL wf_pre_connect(freerdp* instance)
+CLASS_DECL_EXPORT BOOL wf_pre_connect(freerdp* instance)
 {
 	wfContext* wfc;
 	int desktopWidth;

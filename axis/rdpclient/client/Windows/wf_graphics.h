@@ -43,7 +43,7 @@
 BEGIN_EXTERN_C
 
 HBITMAP wf_create_dib(wfContext* wfc, int width, int height, int bpp, BYTE* data, BYTE** pdata);
-wfBitmap* wf_image_new(wfContext* wfc, int width, int height, int bpp, BYTE* data);
+CLASS_DECL_AXIS_RDPCLIENT wfBitmap* wf_image_new(wfContext* wfc, int width, int height, int bpp, BYTE* data);
 void wf_image_free(wfBitmap* image);
 
 void wf_register_pointer(rdpGraphics* graphics);

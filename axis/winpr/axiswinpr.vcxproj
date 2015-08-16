@@ -89,7 +89,7 @@
     <ClCompile Include="libwinpr\crypto\crypto.c" />
     <ClCompile Include="libwinpr\dsparse\dsparse.c" />
     <ClCompile Include="libwinpr\environment\environment.c" />
-    <ClCompile Include="libwinpr\error\error.c" />
+    <ClCompile Include="libwinpr\error\err_err.c" />
     <ClCompile Include="libwinpr\file\file.c" />
     <ClCompile Include="libwinpr\file\pattern.c" />
     <ClCompile Include="libwinpr\handle\handle.c" />

@@ -26,29 +26,12 @@
 
 #include "wf_client.h"
 
-#if defined(__cplusplus)
-
-
-#define DECL_EXTERN_C	   extern "C"
-#define BEGIN_EXTERN_C		extern "C" {
-#define END_EXTERN_C		   }
-
-
-#else
-
-
-#define DECL_EXTERN_C
-#define BEGIN_EXTERN_C
-#define END_EXTERN_C
-
-
-#endif
 
 BEGIN_EXTERN_C
 
 
 void wf_invalidate_region(wfContext* wfc, int x, int y, int width, int height);
-wfBitmap* wf_image_new(wfContext* wfc, int width, int height, int bpp, BYTE* data);
+CLASS_DECL_AXIS_RDPCLIENT wfBitmap* wf_image_new(wfContext* wfc, int width, int height, int bpp, BYTE* data);
 void wf_image_free(wfBitmap* image);
 void wf_update_offset(wfContext* wfc);
 void wf_resize_window(wfContext* wfc);

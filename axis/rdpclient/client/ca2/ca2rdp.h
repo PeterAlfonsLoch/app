@@ -21,7 +21,7 @@
 #define __DFREERDP_H
 
 #include "axis/rdpclient/config.h"
-#ifdef WINDOWSEX
+#ifdef _WIN32
 #include "axis/rdpclient/client/Windows/wf_client.h"
 //#elif defined(ANDROID)
 //#include "axis/rdpclient/client/A"
@@ -37,9 +37,9 @@
 
 typedef struct ca2rdp_info ca2rdpInfo;
 
-CLASS_DECL_RDPCLIENT BOOL ca2rdp_pre_connect(freerdp* instance);
+CLASS_DECL_AXIS_RDPCLIENT BOOL ca2rdp_pre_connect(freerdp* instance);
 
-#ifdef WINDOWS
+#ifdef _WIN32
 #else
 typedef uint32_t COLORREF;
 #endif
@@ -84,7 +84,7 @@ namespace draw2d
 }
 
 struct ca2rdp_context :
-#ifdef WINDOWSEX
+#ifdef _WIN32
    public wf_context
 #elif defined(ANDROID)
    public rdpContext
@@ -101,8 +101,8 @@ struct ca2rdp_context :
 	ca2rdpInfo* ca2rdpi;
 };
 
-CLASS_DECL_RDPCLIENT ::draw2d::graphics * ca2rdp_ctx_get_graphics(ca2rdp_context * pcontext);
-CLASS_DECL_RDPCLIENT COLORREF * ca2rdp_ctx_get_primary(ca2rdp_context * pcontext);
+CLASS_DECL_AXIS_RDPCLIENT ::draw2d::graphics * ca2rdp_ctx_get_graphics(ca2rdp_context * pcontext);
+CLASS_DECL_AXIS_RDPCLIENT COLORREF * ca2rdp_ctx_get_primary(ca2rdp_context * pcontext);
 
 
 typedef struct ca2rdp_context ca2rdpContext;
@@ -138,6 +138,6 @@ struct ca2rdp_info
 };
 
 
-CLASS_DECL_RDPCLIENT BOOL ca2rdp_post_connect(freerdp* instance);
+CLASS_DECL_AXIS_RDPCLIENT BOOL ca2rdp_post_connect(freerdp* instance);
 
 #endif /* __DFREERDP_H */
