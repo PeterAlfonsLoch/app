@@ -21,7 +21,11 @@
 #define __DFREERDP_H
 
 #include "axis/rdpclient/config.h"
+#ifdef WINDOWSEX
 #include "axis/rdpclient/client/Windows/wf_client.h"
+//#elif defined(ANDROID)
+//#include "axis/rdpclient/client/A"
+#endif
 #include <freerdp/freerdp.h>
 #include <freerdp/graphics.h>
 #include <freerdp/gdi/gdi.h>
@@ -35,7 +39,10 @@ typedef struct ca2rdp_info ca2rdpInfo;
 
 CLASS_DECL_RDPCLIENT BOOL ca2rdp_pre_connect(freerdp* instance);
 
-
+#ifdef WINDOWS
+#else
+typedef uint32_t COLORREF;
+#endif
 
 namespace aura
 {
@@ -77,7 +84,11 @@ namespace draw2d
 }
 
 struct ca2rdp_context :
+#ifdef WINDOWSEX
    public wf_context
+#elif defined(ANDROID)
+   public rdpContext
+#endif
 {
 
    DWORD mainThreadId;

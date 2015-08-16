@@ -196,9 +196,6 @@
     <Filter Include="Source Files\libwinpr\smartcard">
       <UniqueIdentifier>{dae8926b-e29f-4a14-9edd-658001445e72}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\libwinpr\bitmap">
-      <UniqueIdentifier>{6feae06b-1d7e-4d02-a2fd-9237f31a76ee}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\libwinpr\registry">
       <UniqueIdentifier>{208e7742-14b3-44c7-88af-e1da9a4366c0}</UniqueIdentifier>
     </Filter>
@@ -895,9 +892,6 @@
     <ClCompile Include="libwinpr\handle\nonehandle.c">
       <Filter>Source Files\libwinpr\handle</Filter>
     </ClCompile>
-    <ClCompile Include="libwinpr\utils\utils_ntlm.c">
-      <Filter>Source Files\libwinpr\utils</Filter>
-    </ClCompile>
     <ClCompile Include="libwinpr\error\err_err.c">
       <Filter>Source Files\libwinpr\error</Filter>
     </ClCompile>
@@ -915,6 +909,13 @@
     </ClCompile>
     <ClCompile Include="libwinpr\pool\work.c">
       <Filter>Source Files\libwinpr\pool</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\smartcard\smartcard.c" />
+    <ClCompile Include="libwinpr\smartcard\smartcard_inspect.c" />
+    <ClCompile Include="libwinpr\smartcard\smartcard_pcsc.c" />
+    <ClCompile Include="libwinpr\smartcard\smartcard_winscard.c" />
+    <ClCompile Include="libwinpr\utils\ntlm.c">
+      <Filter>Source Files\libwinpr\utils</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

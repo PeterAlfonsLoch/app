@@ -25,6 +25,9 @@
     <Filter Include="Source Files\client\ca2">
       <UniqueIdentifier>{222f8184-907b-484a-a349-aee4b790780c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\client\Android">
+      <UniqueIdentifier>{9a8c5302-0a51-4e96-b343-0eb1b4893dfb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="config.h">

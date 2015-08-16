@@ -240,6 +240,7 @@
     <ClCompile Include="libwinpr\utils\image.c" />
     <ClCompile Include="libwinpr\utils\ini.c" />
     <ClCompile Include="libwinpr\utils\lodepng\lodepng.c" />
+    <ClCompile Include="libwinpr\utils\ntlm.c" />
     <ClCompile Include="libwinpr\utils\print.c" />
     <ClCompile Include="libwinpr\utils\sam.c" />
     <ClCompile Include="libwinpr\utils\ssl.c" />
@@ -247,7 +248,6 @@
     <ClCompile Include="libwinpr\utils\trio\trio.c" />
     <ClCompile Include="libwinpr\utils\trio\trionan.c" />
     <ClCompile Include="libwinpr\utils\trio\triostr.c" />
-    <ClCompile Include="libwinpr\utils\utils_ntlm.c" />
     <ClCompile Include="libwinpr\utils\wlog\Appender.c" />
     <ClCompile Include="libwinpr\utils\wlog\BinaryAppender.c" />
     <ClCompile Include="libwinpr\utils\wlog\CallbackAppender.c" />

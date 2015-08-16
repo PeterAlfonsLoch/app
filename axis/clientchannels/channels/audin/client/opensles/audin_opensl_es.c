@@ -37,7 +37,7 @@
 
 #include <SLES/OpenSLES.h>
 
-#include "audin_main.h"
+#include "../audin_main.h"
 #include "opensl_io.h"
 
 typedef struct _AudinOpenSLESDevice

@@ -48,7 +48,7 @@
     <ClCompile Include="channels\rdpgfx\client\rdpgfx_codec.c" />
     <ClCompile Include="channels\rdpgfx\client\rdpgfx_common.c" />
     <ClCompile Include="channels\rdpgfx\client\rdpgfx_main.c" />
-    <ClCompile Include="channels\rdpsnd\client\opensles\rpdsnd_opensl_io.c" />
+    <ClCompile Include="channels\rdpsnd\client\opensles\opensl_io.c" />
     <ClCompile Include="channels\rdpsnd\client\opensles\rdpsnd_opensles.c" />
     <ClCompile Include="channels\rdpsnd\client\rdpsnd_main.c" />
     <ClCompile Include="channels\remdesk\client\remdesk_main.c" />
