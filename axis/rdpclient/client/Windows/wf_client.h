@@ -47,6 +47,9 @@ typedef struct wf_context wfContext;
 #include "wf_event.h"
 #include "wf_cliprdr.h"
 
+
+#include "axis/rdpclient/client/common/axis_graphics.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -54,7 +57,8 @@ extern "C" {
 // System menu constants
 #define SYSCOMMAND_ID_SMARTSIZING 1000
 
-struct wf_bitmap
+struct wf_bitmap :
+   public axisrdp_bitmap
 {
 	rdpBitmap _bitmap;
 	HDC hdc;
@@ -71,27 +75,14 @@ struct wf_pointer
 };
 typedef struct wf_pointer wfPointer;
 
-struct wf_context
+struct wf_context :
+   public axisrdp_context
 {
-	rdpContext context;
-	DEFINE_RDP_CLIENT_COMMON();
+	
 
-	rdpSettings* settings;
-
-	int width;
-	int height;
-	int offset_x;
-	int offset_y;
 	int fs_toggle;
 	int fullscreen;
 	int percentscreen;
-	char window_title[64];
-	int client_x;
-	int client_y;
-	int client_width;
-	int client_height;
-	UINT32 bitmap_size;
-	BYTE* bitmap_buffer;
 
 	HANDLE keyboardThread;
 
@@ -105,12 +96,7 @@ struct wf_context
 	HWND hwnd;
 	POINT diff;
 	HGDI_DC hdc;
-	UINT16 srcBpp;
-	UINT16 dstBpp;
-	rdpCodecs* codecs;
-	freerdp* instance;
-	wfBitmap* primary;
-	wfBitmap* drawing;
+
 	HCLRCONV clrconv;
 	HCURSOR cursor;
 	HBRUSH brush;

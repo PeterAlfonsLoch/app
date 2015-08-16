@@ -43,11 +43,11 @@ void wf_OnChannelConnectedEventHandler(rdpContext* context, ChannelConnectedEven
 	}
 	else if (strcmp(e->name, RAIL_SVC_CHANNEL_NAME) == 0)
 	{
-		wf_rail_init(wfc, (RailClientContext*) e->pInterface);
+		// xxx wf_rail_init(wfc, (RailClientContext*) e->pInterface);
 	}
 	else if (strcmp(e->name, CLIPRDR_SVC_CHANNEL_NAME) == 0)
 	{
-		wf_cliprdr_init(wfc, (CliprdrClientContext*) e->pInterface);
+		//xxx wf_cliprdr_init(wfc, (CliprdrClientContext*) e->pInterface);
 	}
 	else if (strcmp(e->name, ENCOMSP_SVC_CHANNEL_NAME) == 0)
 	{
@@ -71,11 +71,11 @@ void wf_OnChannelDisconnectedEventHandler(rdpContext* context, ChannelDisconnect
 	}
 	else if (strcmp(e->name, RAIL_SVC_CHANNEL_NAME) == 0)
 	{
-		wf_rail_uninit(wfc, (RailClientContext*) e->pInterface);
+		//xxx wf_rail_uninit(wfc, (RailClientContext*) e->pInterface);
 	}
 	else if (strcmp(e->name, CLIPRDR_SVC_CHANNEL_NAME) == 0)
 	{
-		wf_cliprdr_uninit(wfc, (CliprdrClientContext*) e->pInterface);
+		//xxx  wf_cliprdr_uninit(wfc, (CliprdrClientContext*) e->pInterface);
 	}
 	else if (strcmp(e->name, ENCOMSP_SVC_CHANNEL_NAME) == 0)
 	{

@@ -132,88 +132,88 @@ void wf_Bitmap_Free(wfContext* wfc, rdpBitmap* bitmap)
 	}
 }
 
-void wf_Bitmap_Paint(wfContext* wfc, rdpBitmap* bitmap)
-{
-	int width, height;
-	wfBitmap* wf_bitmap = (wfBitmap*) bitmap;
-
-	width = bitmap->right - bitmap->left + 1;
-	height = bitmap->bottom - bitmap->top + 1;
-
-	BitBlt(wfc->primary->hdc, bitmap->left, bitmap->top,
-		width, height, wf_bitmap->hdc, 0, 0, SRCCOPY);
-
-	wf_invalidate_region(wfc, bitmap->left, bitmap->top, width, height);
-}
-
-void wf_Bitmap_Decompress(wfContext* wfc, rdpBitmap* bitmap,
-		BYTE* data, int width, int height, int bpp, int length, BOOL compressed, int codecId)
-{
-	int status;
-	UINT16 size;
-	BYTE* pSrcData;
-	BYTE* pDstData;
-	UINT32 SrcSize;
-	UINT32 SrcFormat;
-	UINT32 bytesPerPixel;
-
-	bytesPerPixel = (bpp + 7) / 8;
-	size = width * height * 4;
-
-	if (!bitmap->data)
-		bitmap->data = (BYTE*) _aligned_malloc(size, 16);
-	else
-		bitmap->data = (BYTE*) _aligned_realloc(bitmap->data, size, 16);
-
-	pSrcData = data;
-	SrcSize = (UINT32) length;
-	pDstData = bitmap->data;
-
-	if (compressed)
-	{
-		if (bpp < 32)
-		{
-			if (!freerdp_client_codecs_prepare(wfc->codecs, FREERDP_CODEC_INTERLEAVED))
-				return;
-
-			status = interleaved_decompress(wfc->codecs->interleaved, pSrcData, SrcSize, bpp,
-					&pDstData, PIXEL_FORMAT_XRGB32, width * 4, 0, 0, width, height, NULL);
-		}
-		else
-		{
-			if (!freerdp_client_codecs_prepare(wfc->codecs, FREERDP_CODEC_PLANAR))
-				return;
-
-			status = planar_decompress(wfc->codecs->planar, pSrcData, SrcSize, &pDstData,
-					PIXEL_FORMAT_XRGB32, width * 4, 0, 0, width, height, TRUE);
-		}
-
-		if (status < 0)
-		{
-			WLog_ERR(TAG, "Bitmap Decompression Failed");
-			return;
-		}
-	}
-	else
-	{
-		SrcFormat = gdi_get_pixel_format(bpp, TRUE);
-
-		status = freerdp_image_copy(pDstData, PIXEL_FORMAT_XRGB32, width * 4, 0, 0,
-				width, height, pSrcData, SrcFormat, width * bytesPerPixel, 0, 0, NULL);
-	}
-
-	bitmap->compressed = FALSE;
-	bitmap->length = size;
-	bitmap->bpp = 32;
-}
-
-void wf_Bitmap_SetSurface(wfContext* wfc, rdpBitmap* bitmap, BOOL primary)
-{
-	if (primary)
-		wfc->drawing = wfc->primary;
-	else
-		wfc->drawing = (wfBitmap*) bitmap;
-}
+//void wf_Bitmap_Paint(wfContext* wfc, rdpBitmap* bitmap)
+//{
+//	int width, height;
+//	wfBitmap* wf_bitmap = (wfBitmap*) bitmap;
+//
+//	width = bitmap->right - bitmap->left + 1;
+//	height = bitmap->bottom - bitmap->top + 1;
+//
+//	BitBlt(wfc->primary->hdc, bitmap->left, bitmap->top,
+//		width, height, wf_bitmap->hdc, 0, 0, SRCCOPY);
+//
+//	wf_invalidate_region(wfc, bitmap->left, bitmap->top, width, height);
+//}
+//
+//void wf_Bitmap_Decompress(wfContext* wfc, rdpBitmap* bitmap,
+//		BYTE* data, int width, int height, int bpp, int length, BOOL compressed, int codecId)
+//{
+//	int status;
+//	UINT16 size;
+//	BYTE* pSrcData;
+//	BYTE* pDstData;
+//	UINT32 SrcSize;
+//	UINT32 SrcFormat;
+//	UINT32 bytesPerPixel;
+//
+//	bytesPerPixel = (bpp + 7) / 8;
+//	size = width * height * 4;
+//
+//	if (!bitmap->data)
+//		bitmap->data = (BYTE*) _aligned_malloc(size, 16);
+//	else
+//		bitmap->data = (BYTE*) _aligned_realloc(bitmap->data, size, 16);
+//
+//	pSrcData = data;
+//	SrcSize = (UINT32) length;
+//	pDstData = bitmap->data;
+//
+//	if (compressed)
+//	{
+//		if (bpp < 32)
+//		{
+//			if (!freerdp_client_codecs_prepare(wfc->codecs, FREERDP_CODEC_INTERLEAVED))
+//				return;
+//
+//			status = interleaved_decompress(wfc->codecs->interleaved, pSrcData, SrcSize, bpp,
+//					&pDstData, PIXEL_FORMAT_XRGB32, width * 4, 0, 0, width, height, NULL);
+//		}
+//		else
+//		{
+//			if (!freerdp_client_codecs_prepare(wfc->codecs, FREERDP_CODEC_PLANAR))
+//				return;
+//
+//			status = planar_decompress(wfc->codecs->planar, pSrcData, SrcSize, &pDstData,
+//					PIXEL_FORMAT_XRGB32, width * 4, 0, 0, width, height, TRUE);
+//		}
+//
+//		if (status < 0)
+//		{
+//			WLog_ERR(TAG, "Bitmap Decompression Failed");
+//			return;
+//		}
+//	}
+//	else
+//	{
+//		SrcFormat = gdi_get_pixel_format(bpp, TRUE);
+//
+//		status = freerdp_image_copy(pDstData, PIXEL_FORMAT_XRGB32, width * 4, 0, 0,
+//				width, height, pSrcData, SrcFormat, width * bytesPerPixel, 0, 0, NULL);
+//	}
+//
+//	bitmap->compressed = FALSE;
+//	bitmap->length = size;
+//	bitmap->bpp = 32;
+//}
+//
+//void wf_Bitmap_SetSurface(wfContext* wfc, rdpBitmap* bitmap, BOOL primary)
+//{
+//	if (primary)
+//		wfc->drawing = wfc->primary;
+//	else
+//		wfc->drawing = (wfBitmap*) bitmap;
+//}
 
 /* Pointer Class */
 
@@ -307,20 +307,20 @@ void wf_register_pointer(rdpGraphics* graphics)
 
 /* Graphics Module */
 
-void wf_register_graphics(rdpGraphics* graphics)
-{
-	wfContext* wfc;
-	rdpBitmap bitmap;
-
-	wfc = (wfContext*) graphics->context;
-
-	ZeroMemory(&bitmap, sizeof(rdpBitmap));
-	bitmap.size = sizeof(wfBitmap);
-	bitmap.New = (pBitmap_New) wf_Bitmap_New;
-	bitmap.Free = (pBitmap_Free) wf_Bitmap_Free;
-	bitmap.Paint = (pBitmap_Paint) wf_Bitmap_Paint;
-	bitmap.Decompress = (pBitmap_Decompress) wf_Bitmap_Decompress;
-	bitmap.SetSurface = (pBitmap_SetSurface) wf_Bitmap_SetSurface;
-
-	graphics_register_bitmap(graphics, &bitmap);
-}
+//void wf_register_graphics(rdpGraphics* graphics)
+//{
+//	wfContext* wfc;
+//	rdpBitmap bitmap;
+//
+//	wfc = (wfContext*) graphics->context;
+//
+//	ZeroMemory(&bitmap, sizeof(rdpBitmap));
+//	bitmap.size = sizeof(wfBitmap);
+//	bitmap.New = (pBitmap_New) wf_Bitmap_New;
+//	bitmap.Free = (pBitmap_Free) wf_Bitmap_Free;
+//	bitmap.Paint = (pBitmap_Paint) wf_Bitmap_Paint;
+//	bitmap.Decompress = (pBitmap_Decompress) wf_Bitmap_Decompress;
+//	bitmap.SetSurface = (pBitmap_SetSurface) wf_Bitmap_SetSurface;
+//
+//	graphics_register_bitmap(graphics, &bitmap);
+//}

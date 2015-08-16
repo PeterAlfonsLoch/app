@@ -281,370 +281,370 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 	WLog_INFO(TAG, "}");
 }
 
-LRESULT CALLBACK wf_RailWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
-{
-	HDC hDC;
-	int x, y;
-	int width;
-	int height;
-	UINT32 xPos;
-	UINT32 yPos;
-	PAINTSTRUCT ps;
-	UINT32 inputFlags;
-	wfContext* wfc = NULL;
-	rdpInput* input = NULL;
-	rdpContext* context = NULL;
-	wfRailWindow* railWindow;
-
-	railWindow = (wfRailWindow*) GetWindowLongPtr(hWnd, GWLP_USERDATA);
-
-	if (railWindow)
-		wfc = railWindow->wfc;
-
-	if (wfc)
-		context = (rdpContext*) wfc;
-
-	if (context)
-		input = context->input;
-
-	switch (msg)
-	{
-		case WM_PAINT:
-			{
-				if (!wfc)
-					return 0;
-
-				hDC = BeginPaint(hWnd, &ps);
-
-				x = ps.rcPaint.left;
-				y = ps.rcPaint.top;
-				width = ps.rcPaint.right - ps.rcPaint.left + 1;
-				height = ps.rcPaint.bottom - ps.rcPaint.top + 1;
-
-				BitBlt(hDC, x, y, width, height, wfc->primary->hdc,
-					railWindow->x + x, railWindow->y + y, SRCCOPY);
-
-				EndPaint(hWnd, &ps);
-			}
-			break;
-
-		case WM_LBUTTONDOWN:
-			{
-				if (!railWindow || !input)
-					return 0;
-
-				xPos = GET_X_LPARAM(lParam) + railWindow->x;
-				yPos = GET_Y_LPARAM(lParam) + railWindow->y;
-				inputFlags = PTR_FLAGS_DOWN | PTR_FLAGS_BUTTON1;
-
-				if (input)
-					input->MouseEvent(input, inputFlags, xPos, yPos);
-			}
-			break;
-
-		case WM_LBUTTONUP:
-			{
-				if (!railWindow || !input)
-					return 0;
-
-				xPos = GET_X_LPARAM(lParam) + railWindow->x;
-				yPos = GET_Y_LPARAM(lParam) + railWindow->y;
-				inputFlags = PTR_FLAGS_BUTTON1;
-
-				if (input)
-					input->MouseEvent(input, inputFlags, xPos, yPos);
-			}
-			break;
-
-		case WM_RBUTTONDOWN:
-			{
-				if (!railWindow || !input)
-					return 0;
-
-				xPos = GET_X_LPARAM(lParam) + railWindow->x;
-				yPos = GET_Y_LPARAM(lParam) + railWindow->y;
-				inputFlags = PTR_FLAGS_DOWN | PTR_FLAGS_BUTTON2;
-
-				if (input)
-					input->MouseEvent(input, inputFlags, xPos, yPos);
-			}
-			break;
-
-		case WM_RBUTTONUP:
-			{
-				if (!railWindow || !input)
-					return 0;
-
-				xPos = GET_X_LPARAM(lParam) + railWindow->x;
-				yPos = GET_Y_LPARAM(lParam) + railWindow->y;
-				inputFlags = PTR_FLAGS_BUTTON2;
-
-				if (input)
-					input->MouseEvent(input, inputFlags, xPos, yPos);
-			}
-			break;
-
-		case WM_MOUSEMOVE:
-			{
-				if (!railWindow || !input)
-					return 0;
-
-				xPos = GET_X_LPARAM(lParam) + railWindow->x;
-				yPos = GET_Y_LPARAM(lParam) + railWindow->y;
-				inputFlags = PTR_FLAGS_MOVE;
-
-				if (input)
-					input->MouseEvent(input, inputFlags, xPos, yPos);
-			}
-			break;
-
-		case WM_MOUSEWHEEL:
-			break;
-
-		case WM_CLOSE:
-			DestroyWindow(hWnd);
-			break;
-
-		case WM_DESTROY:
-			PostQuitMessage(0);
-			break;
-
-		default:
-			return DefWindowProc(hWnd, msg, wParam, lParam);
-	}
-
-	return 0;
-}
-
-#define RAIL_DISABLED_WINDOW_STYLES (WS_BORDER | WS_THICKFRAME | WS_DLGFRAME | WS_CAPTION | \
-	WS_OVERLAPPED | WS_VSCROLL | WS_HSCROLL | WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZEBOX)
-#define RAIL_DISABLED_EXTENDED_WINDOW_STYLES (WS_EX_DLGMODALFRAME | WS_EX_CLIENTEDGE | WS_EX_STATICEDGE | WS_EX_WINDOWEDGE)
-
-static BOOL wf_rail_window_common(rdpContext* context, WINDOW_ORDER_INFO* orderInfo, WINDOW_STATE_ORDER* windowState)
-{
-	wfRailWindow* railWindow = NULL;
-	wfContext* wfc = (wfContext*) context;
-	RailClientContext* rail = wfc->rail;
-	UINT32 fieldFlags = orderInfo->fieldFlags;
-
-	PrintRailWindowState(orderInfo, windowState);
-
-	if (fieldFlags & WINDOW_ORDER_STATE_NEW)
-	{
-		HANDLE hInstance;
-		WCHAR* titleW = NULL;
-		WNDCLASSEX wndClassEx;
-
-		railWindow = (wfRailWindow*) calloc(1, sizeof(wfRailWindow));
-
-		if (!railWindow)
-			return FALSE;
-
-		railWindow->wfc = wfc;
-
-		railWindow->dwStyle = windowState->style;
-		railWindow->dwStyle &= ~RAIL_DISABLED_WINDOW_STYLES;
-		railWindow->dwExStyle = windowState->extendedStyle;
-		railWindow->dwExStyle &= ~RAIL_DISABLED_EXTENDED_WINDOW_STYLES;
-
-		railWindow->x = windowState->windowOffsetX;
-		railWindow->y = windowState->windowOffsetY;
-		railWindow->width = windowState->windowWidth;
-		railWindow->height = windowState->windowHeight;
-
-		if (fieldFlags & WINDOW_ORDER_FIELD_TITLE)
-		{
-			char* title = NULL;
-
-			ConvertFromUnicode(CP_UTF8, 0, (WCHAR*) windowState->titleInfo.string,
-				   windowState->titleInfo.length / 2, &title, 0, NULL, NULL);
-
-			railWindow->title = title;
-		}
-		else
-		{
-			railWindow->title = _strdup("RdpRailWindow");
-		}
-
-		ConvertToUnicode(CP_UTF8, 0, railWindow->title, -1, &titleW, 0);
-
-		hInstance = GetModuleHandle(NULL);
-
-		ZeroMemory(&wndClassEx, sizeof(WNDCLASSEX));
-		wndClassEx.cbSize = sizeof(WNDCLASSEX);
-		wndClassEx.style = 0;
-		wndClassEx.lpfnWndProc = wf_RailWndProc;
-		wndClassEx.cbClsExtra = 0;
-		wndClassEx.cbWndExtra = 0;
-		wndClassEx.hIcon = NULL;
-		wndClassEx.hCursor = NULL;
-		wndClassEx.hbrBackground = NULL;
-		wndClassEx.lpszMenuName = NULL;
-		wndClassEx.lpszClassName = _T("RdpRailWindow");
-		wndClassEx.hInstance = hInstance;
-		wndClassEx.hIconSm = NULL;
-
-		RegisterClassEx(&wndClassEx);
-
-		railWindow->hWnd = CreateWindowExW(
-				railWindow->dwExStyle, /* dwExStyle */
-				_T("RdpRailWindow"), /* lpClassName */
-				titleW, /* lpWindowName */
-				railWindow->dwStyle, /* dwStyle */
-				railWindow->x, /* x */
-				railWindow->y, /* y */
-				railWindow->width, /* nWidth */
-				railWindow->height, /* nHeight */
-				NULL, /* hWndParent */
-				NULL, /* hMenu */
-				hInstance, /* hInstance */
-				NULL /* lpParam */
-				);
-
-		SetWindowLongPtr(railWindow->hWnd, GWLP_USERDATA, (LONG_PTR) railWindow);
-
-		HashTable_Add(wfc->railWindows, (void*) (UINT_PTR) orderInfo->windowId, (void*) railWindow);
-
-		free(titleW);
-
-		UpdateWindow(railWindow->hWnd);
-
-		return TRUE;
-	}
-	else
-	{
-		railWindow = (wfRailWindow*) HashTable_GetItemValue(wfc->railWindows,
-			(void*) (UINT_PTR) orderInfo->windowId);
-	}
-
-	if (!railWindow)
-		return TRUE;
-
-	if ((fieldFlags & WINDOW_ORDER_FIELD_WND_OFFSET) ||
-		(fieldFlags & WINDOW_ORDER_FIELD_WND_SIZE))
-	{
-		if (fieldFlags & WINDOW_ORDER_FIELD_WND_OFFSET)
-		{
-			railWindow->x = windowState->windowOffsetX;
-			railWindow->y = windowState->windowOffsetY;
-		}
-
-		if (fieldFlags & WINDOW_ORDER_FIELD_WND_SIZE)
-		{
-			railWindow->width = windowState->windowWidth;
-			railWindow->height = windowState->windowHeight;
-		}
-
-		SetWindowPos(railWindow->hWnd, NULL,
-			railWindow->x,
-			railWindow->y,
-			railWindow->width,
-			railWindow->height,
-			0);
-	}
-
-	if (fieldFlags & WINDOW_ORDER_FIELD_OWNER)
-	{
-		
-	}
-
-	if (fieldFlags & WINDOW_ORDER_FIELD_STYLE)
-	{
-		railWindow->dwStyle = windowState->style;
-		railWindow->dwStyle &= ~RAIL_DISABLED_WINDOW_STYLES;
-		railWindow->dwExStyle = windowState->extendedStyle;
-		railWindow->dwExStyle &= ~RAIL_DISABLED_EXTENDED_WINDOW_STYLES;
-
-		SetWindowLongPtr(railWindow->hWnd, GWL_STYLE, (LONG) railWindow->dwStyle);
-		SetWindowLongPtr(railWindow->hWnd, GWL_EXSTYLE, (LONG) railWindow->dwExStyle);
-	}
-
-	if (fieldFlags & WINDOW_ORDER_FIELD_SHOW)
-	{
-		ShowWindow(railWindow->hWnd, windowState->showState);
-	}
-
-	if (fieldFlags & WINDOW_ORDER_FIELD_TITLE)
-	{
-		char* title = NULL;
-		WCHAR* titleW = NULL;
-
-		ConvertFromUnicode(CP_UTF8, 0, (WCHAR*) windowState->titleInfo.string,
-			   windowState->titleInfo.length / 2, &title, 0, NULL, NULL);
-
-		free(railWindow->title);
-		railWindow->title = title;
-
-		ConvertToUnicode(CP_UTF8, 0, railWindow->title, -1, &titleW, 0);
-
-		SetWindowTextW(railWindow->hWnd, titleW);
-
-		free(titleW);
-	}
-
-	if (fieldFlags & WINDOW_ORDER_FIELD_CLIENT_AREA_OFFSET)
-	{
-
-	}
-
-	if (fieldFlags & WINDOW_ORDER_FIELD_CLIENT_AREA_SIZE)
-	{
-
-	}
-
-	if (fieldFlags & WINDOW_ORDER_FIELD_WND_CLIENT_DELTA)
-	{
-
-	}
-
-	if (fieldFlags & WINDOW_ORDER_FIELD_RP_CONTENT)
-	{
-
-	}
-
-	if (fieldFlags & WINDOW_ORDER_FIELD_ROOT_PARENT)
-	{
-
-	}
-
-	if (fieldFlags & WINDOW_ORDER_FIELD_WND_RECTS)
-	{
-		UINT32 index;
-		HRGN hWndRect;
-		HRGN hWndRects;
-		RECTANGLE_16* rect;
-
-		if (windowState->numWindowRects > 0)
-		{
-			rect = &(windowState->windowRects[0]);
-			hWndRects = CreateRectRgn(rect->left, rect->top, rect->right, rect->bottom);
-
-			for (index = 1; index < windowState->numWindowRects; index++)
-			{
-				rect = &(windowState->windowRects[index]);
-				hWndRect = CreateRectRgn(rect->left, rect->top, rect->right, rect->bottom);
-				CombineRgn(hWndRects, hWndRects, hWndRect, RGN_OR);
-				DeleteObject(hWndRect);
-			}
-
-			SetWindowRgn(railWindow->hWnd, hWndRects, TRUE);
-			DeleteObject(hWndRects);
-		}
-	}
-
-	if (fieldFlags & WINDOW_ORDER_FIELD_VIS_OFFSET)
-	{
-
-	}
-
-	if (fieldFlags & WINDOW_ORDER_FIELD_VISIBILITY)
-	{
-
-	}
-
-	UpdateWindow(railWindow->hWnd);
-	return TRUE;
-}
+//LRESULT CALLBACK wf_RailWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
+//{
+//	HDC hDC;
+//	int x, y;
+//	int width;
+//	int height;
+//	UINT32 xPos;
+//	UINT32 yPos;
+//	PAINTSTRUCT ps;
+//	UINT32 inputFlags;
+//	wfContext* wfc = NULL;
+//	rdpInput* input = NULL;
+//	rdpContext* context = NULL;
+//	wfRailWindow* railWindow;
+//
+//	railWindow = (wfRailWindow*) GetWindowLongPtr(hWnd, GWLP_USERDATA);
+//
+//	if (railWindow)
+//		wfc = railWindow->wfc;
+//
+//	if (wfc)
+//		context = (rdpContext*) wfc;
+//
+//	if (context)
+//		input = context->input;
+//
+//	switch (msg)
+//	{
+//		case WM_PAINT:
+//			{
+//				if (!wfc)
+//					return 0;
+//
+//				hDC = BeginPaint(hWnd, &ps);
+//
+//				x = ps.rcPaint.left;
+//				y = ps.rcPaint.top;
+//				width = ps.rcPaint.right - ps.rcPaint.left + 1;
+//				height = ps.rcPaint.bottom - ps.rcPaint.top + 1;
+//
+//				BitBlt(hDC, x, y, width, height, wfc->primary->hdc,
+//					railWindow->x + x, railWindow->y + y, SRCCOPY);
+//
+//				EndPaint(hWnd, &ps);
+//			}
+//			break;
+//
+//		case WM_LBUTTONDOWN:
+//			{
+//				if (!railWindow || !input)
+//					return 0;
+//
+//				xPos = GET_X_LPARAM(lParam) + railWindow->x;
+//				yPos = GET_Y_LPARAM(lParam) + railWindow->y;
+//				inputFlags = PTR_FLAGS_DOWN | PTR_FLAGS_BUTTON1;
+//
+//				if (input)
+//					input->MouseEvent(input, inputFlags, xPos, yPos);
+//			}
+//			break;
+//
+//		case WM_LBUTTONUP:
+//			{
+//				if (!railWindow || !input)
+//					return 0;
+//
+//				xPos = GET_X_LPARAM(lParam) + railWindow->x;
+//				yPos = GET_Y_LPARAM(lParam) + railWindow->y;
+//				inputFlags = PTR_FLAGS_BUTTON1;
+//
+//				if (input)
+//					input->MouseEvent(input, inputFlags, xPos, yPos);
+//			}
+//			break;
+//
+//		case WM_RBUTTONDOWN:
+//			{
+//				if (!railWindow || !input)
+//					return 0;
+//
+//				xPos = GET_X_LPARAM(lParam) + railWindow->x;
+//				yPos = GET_Y_LPARAM(lParam) + railWindow->y;
+//				inputFlags = PTR_FLAGS_DOWN | PTR_FLAGS_BUTTON2;
+//
+//				if (input)
+//					input->MouseEvent(input, inputFlags, xPos, yPos);
+//			}
+//			break;
+//
+//		case WM_RBUTTONUP:
+//			{
+//				if (!railWindow || !input)
+//					return 0;
+//
+//				xPos = GET_X_LPARAM(lParam) + railWindow->x;
+//				yPos = GET_Y_LPARAM(lParam) + railWindow->y;
+//				inputFlags = PTR_FLAGS_BUTTON2;
+//
+//				if (input)
+//					input->MouseEvent(input, inputFlags, xPos, yPos);
+//			}
+//			break;
+//
+//		case WM_MOUSEMOVE:
+//			{
+//				if (!railWindow || !input)
+//					return 0;
+//
+//				xPos = GET_X_LPARAM(lParam) + railWindow->x;
+//				yPos = GET_Y_LPARAM(lParam) + railWindow->y;
+//				inputFlags = PTR_FLAGS_MOVE;
+//
+//				if (input)
+//					input->MouseEvent(input, inputFlags, xPos, yPos);
+//			}
+//			break;
+//
+//		case WM_MOUSEWHEEL:
+//			break;
+//
+//		case WM_CLOSE:
+//			DestroyWindow(hWnd);
+//			break;
+//
+//		case WM_DESTROY:
+//			PostQuitMessage(0);
+//			break;
+//
+//		default:
+//			return DefWindowProc(hWnd, msg, wParam, lParam);
+//	}
+//
+//	return 0;
+//}
+//
+//#define RAIL_DISABLED_WINDOW_STYLES (WS_BORDER | WS_THICKFRAME | WS_DLGFRAME | WS_CAPTION | \
+//	WS_OVERLAPPED | WS_VSCROLL | WS_HSCROLL | WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZEBOX)
+//#define RAIL_DISABLED_EXTENDED_WINDOW_STYLES (WS_EX_DLGMODALFRAME | WS_EX_CLIENTEDGE | WS_EX_STATICEDGE | WS_EX_WINDOWEDGE)
+//
+//static BOOL wf_rail_window_common(rdpContext* context, WINDOW_ORDER_INFO* orderInfo, WINDOW_STATE_ORDER* windowState)
+//{
+//	wfRailWindow* railWindow = NULL;
+//	wfContext* wfc = (wfContext*) context;
+//	RailClientContext* rail = wfc->rail;
+//	UINT32 fieldFlags = orderInfo->fieldFlags;
+//
+//	PrintRailWindowState(orderInfo, windowState);
+//
+//	if (fieldFlags & WINDOW_ORDER_STATE_NEW)
+//	{
+//		HANDLE hInstance;
+//		WCHAR* titleW = NULL;
+//		WNDCLASSEX wndClassEx;
+//
+//		railWindow = (wfRailWindow*) calloc(1, sizeof(wfRailWindow));
+//
+//		if (!railWindow)
+//			return FALSE;
+//
+//		railWindow->wfc = wfc;
+//
+//		railWindow->dwStyle = windowState->style;
+//		railWindow->dwStyle &= ~RAIL_DISABLED_WINDOW_STYLES;
+//		railWindow->dwExStyle = windowState->extendedStyle;
+//		railWindow->dwExStyle &= ~RAIL_DISABLED_EXTENDED_WINDOW_STYLES;
+//
+//		railWindow->x = windowState->windowOffsetX;
+//		railWindow->y = windowState->windowOffsetY;
+//		railWindow->width = windowState->windowWidth;
+//		railWindow->height = windowState->windowHeight;
+//
+//		if (fieldFlags & WINDOW_ORDER_FIELD_TITLE)
+//		{
+//			char* title = NULL;
+//
+//			ConvertFromUnicode(CP_UTF8, 0, (WCHAR*) windowState->titleInfo.string,
+//				   windowState->titleInfo.length / 2, &title, 0, NULL, NULL);
+//
+//			railWindow->title = title;
+//		}
+//		else
+//		{
+//			railWindow->title = _strdup("RdpRailWindow");
+//		}
+//
+//		ConvertToUnicode(CP_UTF8, 0, railWindow->title, -1, &titleW, 0);
+//
+//		hInstance = GetModuleHandle(NULL);
+//
+//		ZeroMemory(&wndClassEx, sizeof(WNDCLASSEX));
+//		wndClassEx.cbSize = sizeof(WNDCLASSEX);
+//		wndClassEx.style = 0;
+//		wndClassEx.lpfnWndProc = wf_RailWndProc;
+//		wndClassEx.cbClsExtra = 0;
+//		wndClassEx.cbWndExtra = 0;
+//		wndClassEx.hIcon = NULL;
+//		wndClassEx.hCursor = NULL;
+//		wndClassEx.hbrBackground = NULL;
+//		wndClassEx.lpszMenuName = NULL;
+//		wndClassEx.lpszClassName = _T("RdpRailWindow");
+//		wndClassEx.hInstance = hInstance;
+//		wndClassEx.hIconSm = NULL;
+//
+//		RegisterClassEx(&wndClassEx);
+//
+//		railWindow->hWnd = CreateWindowExW(
+//				railWindow->dwExStyle, /* dwExStyle */
+//				_T("RdpRailWindow"), /* lpClassName */
+//				titleW, /* lpWindowName */
+//				railWindow->dwStyle, /* dwStyle */
+//				railWindow->x, /* x */
+//				railWindow->y, /* y */
+//				railWindow->width, /* nWidth */
+//				railWindow->height, /* nHeight */
+//				NULL, /* hWndParent */
+//				NULL, /* hMenu */
+//				hInstance, /* hInstance */
+//				NULL /* lpParam */
+//				);
+//
+//		SetWindowLongPtr(railWindow->hWnd, GWLP_USERDATA, (LONG_PTR) railWindow);
+//
+//		HashTable_Add(wfc->railWindows, (void*) (UINT_PTR) orderInfo->windowId, (void*) railWindow);
+//
+//		free(titleW);
+//
+//		UpdateWindow(railWindow->hWnd);
+//
+//		return TRUE;
+//	}
+//	else
+//	{
+//		railWindow = (wfRailWindow*) HashTable_GetItemValue(wfc->railWindows,
+//			(void*) (UINT_PTR) orderInfo->windowId);
+//	}
+//
+//	if (!railWindow)
+//		return TRUE;
+//
+//	if ((fieldFlags & WINDOW_ORDER_FIELD_WND_OFFSET) ||
+//		(fieldFlags & WINDOW_ORDER_FIELD_WND_SIZE))
+//	{
+//		if (fieldFlags & WINDOW_ORDER_FIELD_WND_OFFSET)
+//		{
+//			railWindow->x = windowState->windowOffsetX;
+//			railWindow->y = windowState->windowOffsetY;
+//		}
+//
+//		if (fieldFlags & WINDOW_ORDER_FIELD_WND_SIZE)
+//		{
+//			railWindow->width = windowState->windowWidth;
+//			railWindow->height = windowState->windowHeight;
+//		}
+//
+//		SetWindowPos(railWindow->hWnd, NULL,
+//			railWindow->x,
+//			railWindow->y,
+//			railWindow->width,
+//			railWindow->height,
+//			0);
+//	}
+//
+//	if (fieldFlags & WINDOW_ORDER_FIELD_OWNER)
+//	{
+//		
+//	}
+//
+//	if (fieldFlags & WINDOW_ORDER_FIELD_STYLE)
+//	{
+//		railWindow->dwStyle = windowState->style;
+//		railWindow->dwStyle &= ~RAIL_DISABLED_WINDOW_STYLES;
+//		railWindow->dwExStyle = windowState->extendedStyle;
+//		railWindow->dwExStyle &= ~RAIL_DISABLED_EXTENDED_WINDOW_STYLES;
+//
+//		SetWindowLongPtr(railWindow->hWnd, GWL_STYLE, (LONG) railWindow->dwStyle);
+//		SetWindowLongPtr(railWindow->hWnd, GWL_EXSTYLE, (LONG) railWindow->dwExStyle);
+//	}
+//
+//	if (fieldFlags & WINDOW_ORDER_FIELD_SHOW)
+//	{
+//		ShowWindow(railWindow->hWnd, windowState->showState);
+//	}
+//
+//	if (fieldFlags & WINDOW_ORDER_FIELD_TITLE)
+//	{
+//		char* title = NULL;
+//		WCHAR* titleW = NULL;
+//
+//		ConvertFromUnicode(CP_UTF8, 0, (WCHAR*) windowState->titleInfo.string,
+//			   windowState->titleInfo.length / 2, &title, 0, NULL, NULL);
+//
+//		free(railWindow->title);
+//		railWindow->title = title;
+//
+//		ConvertToUnicode(CP_UTF8, 0, railWindow->title, -1, &titleW, 0);
+//
+//		SetWindowTextW(railWindow->hWnd, titleW);
+//
+//		free(titleW);
+//	}
+//
+//	if (fieldFlags & WINDOW_ORDER_FIELD_CLIENT_AREA_OFFSET)
+//	{
+//
+//	}
+//
+//	if (fieldFlags & WINDOW_ORDER_FIELD_CLIENT_AREA_SIZE)
+//	{
+//
+//	}
+//
+//	if (fieldFlags & WINDOW_ORDER_FIELD_WND_CLIENT_DELTA)
+//	{
+//
+//	}
+//
+//	if (fieldFlags & WINDOW_ORDER_FIELD_RP_CONTENT)
+//	{
+//
+//	}
+//
+//	if (fieldFlags & WINDOW_ORDER_FIELD_ROOT_PARENT)
+//	{
+//
+//	}
+//
+//	if (fieldFlags & WINDOW_ORDER_FIELD_WND_RECTS)
+//	{
+//		UINT32 index;
+//		HRGN hWndRect;
+//		HRGN hWndRects;
+//		RECTANGLE_16* rect;
+//
+//		if (windowState->numWindowRects > 0)
+//		{
+//			rect = &(windowState->windowRects[0]);
+//			hWndRects = CreateRectRgn(rect->left, rect->top, rect->right, rect->bottom);
+//
+//			for (index = 1; index < windowState->numWindowRects; index++)
+//			{
+//				rect = &(windowState->windowRects[index]);
+//				hWndRect = CreateRectRgn(rect->left, rect->top, rect->right, rect->bottom);
+//				CombineRgn(hWndRects, hWndRects, hWndRect, RGN_OR);
+//				DeleteObject(hWndRect);
+//			}
+//
+//			SetWindowRgn(railWindow->hWnd, hWndRects, TRUE);
+//			DeleteObject(hWndRects);
+//		}
+//	}
+//
+//	if (fieldFlags & WINDOW_ORDER_FIELD_VIS_OFFSET)
+//	{
+//
+//	}
+//
+//	if (fieldFlags & WINDOW_ORDER_FIELD_VISIBILITY)
+//	{
+//
+//	}
+//
+//	UpdateWindow(railWindow->hWnd);
+//	return TRUE;
+//}
 
 static BOOL wf_rail_window_delete(rdpContext* context, WINDOW_ORDER_INFO* orderInfo)
 {
@@ -842,21 +842,21 @@ static BOOL wf_rail_non_monitored_desktop(rdpContext* context, WINDOW_ORDER_INFO
 	return TRUE;
 }
 
-void wf_rail_register_update_callbacks(rdpUpdate* update)
-{
-	rdpWindowUpdate* window = update->window;
-
-	window->WindowCreate = wf_rail_window_common;
-	window->WindowUpdate = wf_rail_window_common;
-	window->WindowDelete = wf_rail_window_delete;
-	window->WindowIcon = wf_rail_window_icon;
-	window->WindowCachedIcon = wf_rail_window_cached_icon;
-	window->NotifyIconCreate = wf_rail_notify_icon_create;
-	window->NotifyIconUpdate = wf_rail_notify_icon_update;
-	window->NotifyIconDelete = wf_rail_notify_icon_delete;
-	window->MonitoredDesktop = wf_rail_monitored_desktop;
-	window->NonMonitoredDesktop = wf_rail_non_monitored_desktop;
-}
+//void wf_rail_register_update_callbacks(rdpUpdate* update)
+//{
+//	rdpWindowUpdate* window = update->window;
+//
+//	window->WindowCreate = wf_rail_window_common;
+//	window->WindowUpdate = wf_rail_window_common;
+//	window->WindowDelete = wf_rail_window_delete;
+//	window->WindowIcon = wf_rail_window_icon;
+//	window->WindowCachedIcon = wf_rail_window_cached_icon;
+//	window->NotifyIconCreate = wf_rail_notify_icon_create;
+//	window->NotifyIconUpdate = wf_rail_notify_icon_update;
+//	window->NotifyIconDelete = wf_rail_notify_icon_delete;
+//	window->MonitoredDesktop = wf_rail_monitored_desktop;
+//	window->NonMonitoredDesktop = wf_rail_non_monitored_desktop;
+//}
 
 /* RemoteApp Virtual Channel Extension */
 
@@ -1007,27 +1007,27 @@ void wf_rail_invalidate_region(wfContext* wfc, REGION16* invalidRegion)
 	region16_uninit(&windowInvalidRegion);
 }
 
-BOOL wf_rail_init(wfContext* wfc, RailClientContext* rail)
-{
-	rdpContext* context = (rdpContext*) wfc;
-
-	wfc->rail = rail;
-	rail->custom = (void*) wfc;
-
-	rail->ServerExecuteResult = wf_rail_server_execute_result;
-	rail->ServerSystemParam = wf_rail_server_system_param;
-	rail->ServerHandshake = wf_rail_server_handshake;
-	rail->ServerHandshakeEx = wf_rail_server_handshake_ex;
-	rail->ServerLocalMoveSize = wf_rail_server_local_move_size;
-	rail->ServerMinMaxInfo = wf_rail_server_min_max_info;
-	rail->ServerLanguageBarInfo = wf_rail_server_language_bar_info;
-	rail->ServerGetAppIdResponse = wf_rail_server_get_appid_response;
-
-	wf_rail_register_update_callbacks(context->update);
-
-	wfc->railWindows = HashTable_New(TRUE);
-	return (wfc->railWindows != NULL);
-}
+//BOOL wf_rail_init(wfContext* wfc, RailClientContext* rail)
+//{
+//	rdpContext* context = (rdpContext*) wfc;
+//
+//	wfc->rail = rail;
+//	rail->custom = (void*) wfc;
+//
+//	rail->ServerExecuteResult = wf_rail_server_execute_result;
+//	rail->ServerSystemParam = wf_rail_server_system_param;
+//	rail->ServerHandshake = wf_rail_server_handshake;
+//	rail->ServerHandshakeEx = wf_rail_server_handshake_ex;
+//	rail->ServerLocalMoveSize = wf_rail_server_local_move_size;
+//	rail->ServerMinMaxInfo = wf_rail_server_min_max_info;
+//	rail->ServerLanguageBarInfo = wf_rail_server_language_bar_info;
+//	rail->ServerGetAppIdResponse = wf_rail_server_get_appid_response;
+//
+//	wf_rail_register_update_callbacks(context->update);
+//
+//	wfc->railWindows = HashTable_New(TRUE);
+//	return (wfc->railWindows != NULL);
+//}
 
 void wf_rail_uninit(wfContext* wfc, RailClientContext* rail)
 {

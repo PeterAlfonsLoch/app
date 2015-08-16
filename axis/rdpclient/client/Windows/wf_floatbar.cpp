@@ -430,31 +430,31 @@ int floatbar_show(FloatBar* floatbar)
 	return 0;
 }
 
-void floatbar_window_create(wfContext *wfc)
-{
-	WNDCLASSEX wnd_cls;
-	HWND barWnd;
-	int x = (GetSystemMetrics(SM_CXSCREEN) - BACKGROUND_W) / 2;
-
-	wnd_cls.cbSize        = sizeof(WNDCLASSEX);
-	wnd_cls.style         = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
-	wnd_cls.lpfnWndProc   = floatbar_proc;
-	wnd_cls.cbClsExtra    = 0;
-	wnd_cls.cbWndExtra    = 0;
-	wnd_cls.hIcon         = LoadIcon(NULL, IDI_APPLICATION);
-	wnd_cls.hCursor       = LoadCursor(wfc->hInstance, IDC_ARROW);
-	wnd_cls.hbrBackground = NULL;
-	wnd_cls.lpszMenuName  = NULL;
-	wnd_cls.lpszClassName = L"floatbar";
-	wnd_cls.hInstance     = wfc->hInstance;
-	wnd_cls.hIconSm       = LoadIcon(NULL, IDI_APPLICATION);
-
-	RegisterClassEx(&wnd_cls);
-
-	wfc->floatbar = floatbar_create(wfc);
-
-	barWnd = CreateWindowEx(WS_EX_TOPMOST, L"floatbar", L"floatbar", WS_CHILD, x, 0, BACKGROUND_W, BACKGROUND_H, wfc->hwnd, NULL, wfc->hInstance, wfc->floatbar);
-	if (barWnd == NULL)
-		return;
-	ShowWindow(barWnd, SW_SHOWNORMAL);
-}
+//void floatbar_window_create(wfContext *wfc)
+//{
+//	WNDCLASSEX wnd_cls;
+//	HWND barWnd;
+//	int x = (GetSystemMetrics(SM_CXSCREEN) - BACKGROUND_W) / 2;
+//
+//	wnd_cls.cbSize        = sizeof(WNDCLASSEX);
+//	wnd_cls.style         = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
+//	wnd_cls.lpfnWndProc   = floatbar_proc;
+//	wnd_cls.cbClsExtra    = 0;
+//	wnd_cls.cbWndExtra    = 0;
+//	wnd_cls.hIcon         = LoadIcon(NULL, IDI_APPLICATION);
+//	wnd_cls.hCursor       = LoadCursor(wfc->hInstance, IDC_ARROW);
+//	wnd_cls.hbrBackground = NULL;
+//	wnd_cls.lpszMenuName  = NULL;
+//	wnd_cls.lpszClassName = L"floatbar";
+//	wnd_cls.hInstance     = wfc->hInstance;
+//	wnd_cls.hIconSm       = LoadIcon(NULL, IDI_APPLICATION);
+//
+//	RegisterClassEx(&wnd_cls);
+//
+//	wfc->floatbar = floatbar_create(wfc);
+//
+//	barWnd = CreateWindowEx(WS_EX_TOPMOST, L"floatbar", L"floatbar", WS_CHILD, x, 0, BACKGROUND_W, BACKGROUND_H, wfc->hwnd, NULL, wfc->hInstance, wfc->floatbar);
+//	if (barWnd == NULL)
+//		return;
+//	ShowWindow(barWnd, SW_SHOWNORMAL);
+//}

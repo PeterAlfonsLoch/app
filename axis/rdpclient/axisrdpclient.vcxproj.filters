@@ -13,41 +13,41 @@
     <ClCompile Include="client\ca2\ca2rdp.cpp">
       <Filter>Source Files\client\ca2</Filter>
     </ClCompile>
-    <ClCompile Include="client\common\client.c">
+    <ClCompile Include="client\Windows\wf_channels.cpp">
+      <Filter>Source Files\client\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="client\Windows\wf_client.cpp">
+      <Filter>Source Files\client\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="client\Windows\wf_cliprdr.cpp">
+      <Filter>Source Files\client\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="client\Windows\wf_event.cpp">
+      <Filter>Source Files\client\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="client\Windows\wf_floatbar.cpp">
+      <Filter>Source Files\client\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="client\Windows\wf_gdi.cpp">
+      <Filter>Source Files\client\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="client\Windows\wf_graphics.cpp">
+      <Filter>Source Files\client\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="client\Windows\wf_rail.cpp">
+      <Filter>Source Files\client\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="client\common\client.cpp">
       <Filter>Source Files\client\common</Filter>
     </ClCompile>
-    <ClCompile Include="client\common\cmdline.c">
+    <ClCompile Include="client\common\cmdline.cpp">
       <Filter>Source Files\client\common</Filter>
     </ClCompile>
-    <ClCompile Include="client\common\compatibility.c">
+    <ClCompile Include="client\common\compatibility.cpp">
       <Filter>Source Files\client\common</Filter>
     </ClCompile>
-    <ClCompile Include="client\common\file.c">
+    <ClCompile Include="client\common\file.cpp">
       <Filter>Source Files\client\common</Filter>
-    </ClCompile>
-    <ClCompile Include="client\Windows\wf_channels.c">
-      <Filter>Source Files\client\Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="client\Windows\wf_client.c">
-      <Filter>Source Files\client\Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="client\Windows\wf_cliprdr.c">
-      <Filter>Source Files\client\Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="client\Windows\wf_event.c">
-      <Filter>Source Files\client\Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="client\Windows\wf_floatbar.c">
-      <Filter>Source Files\client\Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="client\Windows\wf_gdi.c">
-      <Filter>Source Files\client\Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="client\Windows\wf_graphics.c">
-      <Filter>Source Files\client\Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="client\Windows\wf_rail.c">
-      <Filter>Source Files\client\Windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -127,6 +127,9 @@
     </ClInclude>
     <ClInclude Include="client\Windows\wf_rail.h">
       <Filter>Header Files\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="client\common\axis_graphics.h">
+      <Filter>Header Files\client\common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

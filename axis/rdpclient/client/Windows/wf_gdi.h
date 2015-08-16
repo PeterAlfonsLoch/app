@@ -57,7 +57,7 @@ void wf_toggle_fullscreen(wfContext* wfc);
 BOOL wf_gdi_bitmap_update(rdpContext* context, BITMAP_UPDATE* bitmapUpdate);
 void wf_gdi_register_update_callbacks(rdpUpdate* update);
 
-void wf_update_canvas_diff(wfContext* wfc);
+//void wf_update_canvas_diff(wfContext* wfc);
 
 END_EXTERN_C
 
