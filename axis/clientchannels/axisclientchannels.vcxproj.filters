@@ -142,11 +142,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="axisclientchannels.def" />
-    <None Include="..\..\..\nodeapp\thirdparty\binary\debug\x86\swresample-1.dll">
-      <Filter>Binary Files\x86\Debug</Filter>
+    <None Include="..\..\..\nodeapp\thirdparty\binary\debug\x64\swresample-1.dll">
+      <Filter>Binary Files\x64\Debug</Filter>
     </None>
-    <None Include="..\..\..\nodeapp\thirdparty\binary\release\x86\swresample-1.dll">
-      <Filter>Binary Files\x86\Release</Filter>
+    <None Include="..\..\..\nodeapp\thirdparty\binary\release\x64\swresample-1.dll">
+      <Filter>Binary Files\x64\Release</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -405,6 +405,12 @@
     </CustomBuild>
     <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\debug\x64\swscale-3.dll">
       <Filter>Binary Files\x64\Debug</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\release\x86\swresample-1.dll">
+      <Filter>Binary Files\x86\Release</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\debug\x86\swresample-1.dll">
+      <Filter>Binary Files\x86\Debug</Filter>
     </CustomBuild>
   </ItemGroup>
 </Project>
