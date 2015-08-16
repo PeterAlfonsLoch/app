@@ -50,7 +50,7 @@ static const BYTE NTLM_NULL_BUFFER[16] =
  * VERSION @msdn{cc236654}
  * @param s
  */
-
+#ifdef WINDOWS
 void ntlm_get_version_info(NTLM_VERSION_INFO* versionInfo)
 {
    RTL_OSVERSIONINFOEXW osVersionInfo;
@@ -64,6 +64,20 @@ void ntlm_get_version_info(NTLM_VERSION_INFO* versionInfo)
 	ZeroMemory(versionInfo->Reserved, sizeof(versionInfo->Reserved));
 	versionInfo->NTLMRevisionCurrent = NTLMSSP_REVISION_W2K3;
 }
+#else
+void ntlm_get_version_info(NTLM_VERSION_INFO* versionInfo)
+{
+   OSVERSIONINFOA osVersionInfo;
+   osVersionInfo.dwOSVersionInfoSize = sizeof(OSVERSIONINFOA);
+   GetVersionExA(&osVersionInfo);
+   versionInfo->ProductMajorVersion = (UINT8)osVersionInfo.dwMajorVersion;
+   versionInfo->ProductMinorVersion = (UINT8)osVersionInfo.dwMinorVersion;
+   versionInfo->ProductBuild = (UINT16)osVersionInfo.dwBuildNumber;
+   ZeroMemory(versionInfo->Reserved,sizeof(versionInfo->Reserved));
+   versionInfo->NTLMRevisionCurrent = NTLMSSP_REVISION_W2K3;
+}
+
+#endif
 
 /**
  * Read VERSION structure.
