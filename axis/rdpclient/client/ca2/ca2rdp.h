@@ -90,7 +90,9 @@ struct ca2rdp_context :
    public rdpContext
 #endif
 {
-
+   int width;
+   int height;
+   int dstBpp;
    DWORD mainThreadId;
    HANDLE thread;
    ::aura::application * m_pappRdp;
