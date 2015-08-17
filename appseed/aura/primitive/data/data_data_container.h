@@ -47,6 +47,14 @@ namespace data
 
       bool is_empty() const;
 
+      template < class TYPE >
+      TYPE * get_typed_data(index i = 0)
+      {
+         
+         return m_spadata.typed_ptr_at < TYPE >(i);
+
+      }
+
 
       template < class TYPE >
       bool replace_data(TYPE * pdata)
