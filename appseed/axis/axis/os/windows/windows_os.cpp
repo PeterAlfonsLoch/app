@@ -24,6 +24,7 @@ bool CLASS_DECL_AXIS vfxResolveShortcut(string & strTarget,const char * pszSourc
 
    if((::windows::shell::SHGetFileInfo(wstrFileIn,0,&info,sizeof(info),SHGFI_ATTRIBUTES) == 0) || !(info.dwAttributes & SFGAO_LINK))
    {
+      strTarget = wstrFileIn;
       return FALSE;
    }
 
