@@ -93,6 +93,9 @@ struct ca2rdp_context :
    int width;
    int height;
    int dstBpp;
+
+
+
    DWORD mainThreadId;
    HANDLE thread;
    ::aura::application * m_pappRdp;
