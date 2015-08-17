@@ -1210,6 +1210,10 @@ namespace aura
             if(!initialize_instance())
             {
                dappy(string(typeid(*this).name()) + " : initialize_instance failure : " + ::str::from(m_iReturnCode));
+               if(System.directix()->m_spCommandLine->m_strApp == m_strAppName)
+               {
+                  System.post_quit();
+               }
                try
                {
                   exit();
