@@ -26,37 +26,23 @@
 #include <stdlib.h>
 #include <string.h>
 
-// -  -  - BA7C - 066C40B5E2B9
-#include <initguid.h>
-#include <Windows.h>
-#include <MMSystem.h>
-#include <Mfapi.h>
-#include <strmif.h>
-#include <Mftransform.h>
-#include <wmcodecdsp.h>
-#include <Codecapi.h>
- #include <math.h>
-#include <float.h>
- #include <libavutil/opt.h>
- #include <libavcodec/avcodec.h>
- #include <libavutil/channel_layout.h>
- #include <libavutil/common.h>
- #include <libavutil/imgutils.h>
- #include <libavutil/mathematics.h>
- #include <libavutil/samplefmt.h>
-#include <libswresample/swresample.h>
-
- #define INBUF_SIZE 4096
- #define AUDIO_INBUF_SIZE 20480
- #define AUDIO_REFILL_THRESH 4096
+//// -  -  - BA7C - 066C40B5E2B9
+//#include <initguid.h>
+//#include <Windows.h>
+//#include <MMSystem.h>
+//#include <Mfapi.h>
+//#include <strmif.h>
+//#include <Mftransform.h>
+//#include <wmcodecdsp.h>
+//#include <Codecapi.h>
 //EXTERN_C const CLSID CLSID_CMSAACDecMFT;
 
-#ifdef __cplusplus
-
-class DECLSPEC_UUID("32d186a7-218f-4c75-8876-dd77273a8999")
-   CMSAACDecMFT;
-#endif
-DEFINE_GUID(CLSID_CMSAACDecMFT,0x32d186a7,0x218f,0x4c75,0x88,0x76,0xdd,0x77,0x27,0x3a,0x89,0x99);
+//#ifdef __cplusplus
+//
+//class DECLSPEC_UUID("32d186a7-218f-4c75-8876-dd77273a8999")
+//   CMSAACDecMFT;
+//#endif
+//DEFINE_GUID(CLSID_CMSAACDecMFT,0x32d186a7,0x218f,0x4c75,0x88,0x76,0xdd,0x77,0x27,0x3a,0x89,0x99);
 
 #include <winpr/crt.h>
 #include <winpr/cmdline.h>
@@ -69,66 +55,6 @@ DEFINE_GUID(CLSID_CMSAACDecMFT,0x32d186a7,0x218f,0x4c75,0x88,0x76,0xdd,0x77,0x27
 
 typedef struct rdpsnd_winmm_plugin rdpsndWinmmPlugin;
 
-typedef HRESULT(__stdcall * pfnMFStartup)(ULONG Version,DWORD dwFlags);
-typedef HRESULT(__stdcall * pfnMFShutdown)(void);
-typedef HRESULT(__stdcall * pfnMFCreateSample)(IMFSample** ppIMFSample);
-typedef HRESULT(__stdcall * pfnMFCreateMemoryBuffer)(DWORD cbMaxLength,IMFMediaBuffer** ppBuffer);
-typedef HRESULT(__stdcall * pfnMFCreateMediaType)(IMFMediaType** ppMFType);
-typedef HRESULT(__stdcall * pfnMFCreateDXGIDeviceManager)(UINT* pResetToken,IMFDXGIDeviceManager** ppDXVAManager);
-
-
-
-struct _AAC_CONTEXT
-{
-   BOOL Compressor;
-
-   UINT32 width;
-   UINT32 height;
-
-   //H264_RATECONTROL_MODE RateControlMode;
-   UINT32 BitRate;
-   FLOAT FrameRate;
-   UINT32 QP;
-   UINT32 NumberOfThreads;
-
-   int iStride[3];
-   BYTE* pYUVData[3];
-
-   void* pSystemData;
-   //H264_CONTEXT_SUBSYSTEM* subsystem;
-};
-
-typedef struct _AAC_CONTEXT AAC_CONTEXT;
-struct _AAC_CONTEXT_MF
-{
-   AVCodec *codec;
-   AVCodecContext *c;
-   SwrContext* v;
-   int got_frame;
-   int len;
-   FILE *f,*outfile;
-   uint8_t inbuf[AUDIO_INBUF_SIZE + FF_INPUT_BUFFER_PADDING_SIZE];
-   AVPacket avpkt;
-   AVFrame *decoded_frame;
-   //ICodecAPI* codecApi;
-   //IMFTransform* transform;
-   //IMFMediaType* inputType;
-   //IMFMediaType* outputType;
-   //IMFSample* sample;
-   //UINT32 frameWidth;
-   //UINT32 frameHeight;
-   //IMFSample* outputSample;
-   //IMFMediaBuffer* outputBuffer;
-   //HMODULE mfplat;
-   //pfnMFStartup MFStartup;
-   //pfnMFShutdown MFShutdown;
-   //pfnMFCreateSample MFCreateSample;
-   //pfnMFCreateMemoryBuffer MFCreateMemoryBuffer;
-   //pfnMFCreateMediaType MFCreateMediaType;
-   //pfnMFCreateDXGIDeviceManager MFCreateDXGIDeviceManager;
-};
-
-typedef struct _AAC_CONTEXT_MF AAC_CONTEXT_MF;
 
 struct rdpsnd_winmm_plugin
 {
@@ -145,225 +71,6 @@ struct rdpsnd_winmm_plugin
 
 
 
-static BOOL mf_aac_init(AAC_CONTEXT* h264,WAVEFORMATEX * format,AUDIO_FORMAT * in)
-{
-   avcodec_register_all();
-      HRESULT hr;
-      AAC_CONTEXT_MF* sys;
-   
-      sys = (AAC_CONTEXT_MF*)calloc(1,sizeof(AAC_CONTEXT_MF));
-   
-      if(!sys)
-         goto error;
-   
-      h264->pSystemData = (void*)sys;
-      sys->c= NULL;
-      sys->decoded_frame = NULL;
-
-
-   //printf("Decode audio file %s to %s\n",filename,outfilename);
-
-   /* find the mpeg audio decoder */
-   sys->codec = avcodec_find_decoder(AV_CODEC_ID_AAC);
-   if(!sys->codec) {
-      fprintf(stderr,"Codec not found\n");
-      return FALSE;
-   }
-
-   sys->c = avcodec_alloc_context3(sys->codec);
-   if(!sys->c) {
-      fprintf(stderr,"Could not allocate audio codec context\n");
-      return FALSE;
-   }
-
-
-   sys->c->sample_rate = in->nSamplesPerSec;
-   sys->c->channels = in->nChannels;
-   sys->c->channel_layout = in->nChannels == 1 ? AV_CH_LAYOUT_MONO : AV_CH_LAYOUT_STEREO;
-   //sys->c->sample_fmt = AV_SAMPLE_FMT_S16;
-
-   /* open it */
-   if(avcodec_open2(sys->c,sys->codec,NULL) < 0) {
-      fprintf(stderr,"Could not open codec\n");
-      return FALSE;
-   }
-   av_init_packet(&sys->avpkt);
-   sys->v = swr_alloc_set_opts(NULL,
-      format->nChannels == 1 ? AV_CH_LAYOUT_MONO : AV_CH_LAYOUT_STEREO,
-      AV_SAMPLE_FMT_S16,
-      format->nSamplesPerSec,
-      sys->c->channel_layout,
-      sys->c->sample_fmt,
-      sys->c->sample_rate,
-      0,
-      NULL
-      );
-   //,sys->c->sample_fmt,sys->c,NULL,0
-      //Create an audio sample format converter context. More...
-
-      //void 	swri_audio_convert_free(AudioConvert **ctx)
-      //Free audio sample format converter context. More...
-
-      //      Convert between audio sample formats. More...
-   //f = fopen(filename,"rb");
-   //if(!f) {
-   //   fprintf(stderr,"Could not open %s\n",filename);
-   //   exit(1);
-   //}
-   //outfile = fopen(outfilename,"wb");
-   //if(!outfile) {
-   //   av_free(c);
-   //   exit(1);
-   //}
-
-   /* decode until eof */
-   //avpkt.data = inbuf;
-   //avpkt.size = fread(inbuf,1,AUDIO_INBUF_SIZE,f);
-
-   //while(avpkt.size > 0) {
-   //   int got_frame = 0;
-
-   //   if(!decoded_frame) {
-   //      if(!(decoded_frame = av_frame_alloc())) {
-   //         fprintf(stderr,"Could not allocate audio frame\n");
-   //         exit(1);
-   //      }
-   //   }
-   //   else
-   //      av_frame_unref(decoded_frame);
-
-   //   len = avcodec_decode_audio4(c,decoded_frame,&got_frame,&avpkt);
-   //   if(len < 0) {
-   //      fprintf(stderr,"Error while decoding\n");
-   //      exit(1);
-   //   }
-   //   if(got_frame) {
-   //      /* if a frame has been decoded, output it */
-   //      int data_size = av_samples_get_buffer_size(NULL,c->channels,
-   //         decoded_frame->nb_samples,
-   //         c->sample_fmt,1);
-   //      fwrite(decoded_frame->data[0],1,data_size,outfile);
-   //   }
-   //   avpkt.size -= len;
-   //   avpkt.data += len;
-   //   avpkt.dts =
-   //      avpkt.pts = AV_NOPTS_VALUE;
-   //   if(avpkt.size < AUDIO_REFILL_THRESH) {
-   //      /* Refill the input buffer, to avoid trying to decode
-   //      * incomplete frames. Instead of this, one could also use
-   //      * a parser, or use a proper container format through
-   //      * libavformat. */
-   //      memmove(inbuf,avpkt.data,avpkt.size);
-   //      avpkt.data = inbuf;
-   //      len = fread(avpkt.data + avpkt.size,1,
-   //         AUDIO_INBUF_SIZE - avpkt.size,f);
-   //      if(len > 0)
-   //         avpkt.size += len;
-   //   }
-   //}
-   return TRUE;
-error:
-   return FALSE;
-}
-
-
-int audio_decode_example2(AAC_CONTEXT* h264, void ** pout, const void * inbuf, int sin)
-{
-   int data_size = 0;
-   AAC_CONTEXT_MF* sys = h264->pSystemData;
-   /* decode until eof */
-   int olen = 0;
-   sys->avpkt.data = inbuf;
-   sys->avpkt.size = sin;
-
-      if(!sys->decoded_frame)
-      {
-         if(!(sys->decoded_frame = av_frame_alloc()))
-         {
-            fprintf(stderr,"Could not allocate audio frame\n");
-            return 0;
-         }
-      }
-      else
-      {
-         av_frame_unref(sys->decoded_frame);
-      }
-
-      sys->len = avcodec_decode_audio4(sys->c,sys->decoded_frame,&sys->got_frame,&sys->avpkt);
-      if(sys->len < 0)
-      {
-         fprintf(stderr,"Error while decoding\n");
-         return 0;
-      }
-      if(sys->got_frame)
-      {
-         /* if a frame has been decoded, output it */
-         data_size = av_samples_get_buffer_size(NULL,sys->c->channels,sys->decoded_frame->nb_samples,
-            AV_SAMPLE_FMT_S16,1);
-         int dst_linesize = 0;
-         //int ret = av_samples_alloc_array_and_samples(pout,&dst_linesize,sys->c->channels,
-           // sys->decoded_frame->nb_samples * 2,AV_SAMPLE_FMT_S16,0);
-         *pout = malloc(data_size * 2);
-         //int b = ret == EAGAIN;
-         if(*pout != NULL)
-         {
-
-            short * psh = *pout;
-            float * f1 = sys->decoded_frame->data[0];
-            float * f2 = sys->decoded_frame->data[0];
-            int sample;
-            for(int i = 0; i < sys->decoded_frame->nb_samples; i++)
-            {
-
-               sample = (int)(*f1++ * 32768.f);
-
-               if(sample > 32767) sample = 32767;
-               if(sample < -32768) sample = -32768;
-
-               *psh++ = (short)sample;
-
-               sample = (int)(*f2++ * 32768.f);
-
-               if(sample > 32767) sample = 32767;
-               if(sample < -32768) sample = -32768;
-
-               *psh++ = (short)sample;
-
-            }
-            olen =data_size;
-            //olen = swr_convert(sys->v,*pout,sys->decoded_frame->nb_samples * 2,sys->decoded_frame->data,sys->decoded_frame->nb_samples);
-
-            /*if(olen < 0)
-            {
-               olen = 0;
-            }
-            else
-            {
-               olen *= 2 * 2;
-            }*/
-         }
-         //memcpy(*pout,,data_size);
-
-         //fwrite(sys->decoded_frame->data[0],1,data_size,outfile);
-      }
-      sys->avpkt.size -= sys->len;
-      sys->avpkt.data += sys->len;
-      sys->avpkt.dts = sys->avpkt.pts = AV_NOPTS_VALUE;
-      //if(avpkt.size < AUDIO_REFILL_THRESH) {
-      //   /* Refill the input buffer, to avoid trying to decode
-      //   * incomplete frames. Instead of this, one could also use
-      //   * a parser, or use a proper container format through
-      //   * libavformat. */
-      //   memmove(inbuf,avpkt.data,avpkt.size);
-      //   avpkt.data = inbuf;
-      //   len = fread(avpkt.data + avpkt.size,1,
-      //      AUDIO_INBUF_SIZE - avpkt.size,f);
-      //   if(len > 0)
-      //      avpkt.size += len;
-      //}
-
-      return olen;
-}
 //
 //
 //

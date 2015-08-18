@@ -240,6 +240,12 @@
     <ClCompile Include="channels\rdpsnd\client\opensles\opensl_io.c">
       <Filter>Source Files\channels\rdpsnd\opensles</Filter>
     </ClCompile>
+    <ClCompile Include="channels\rdpsnd\client\winmm\rdpsnd_winmm.c">
+      <Filter>Source Files\channels\rdpsnd\opensles</Filter>
+    </ClCompile>
+    <ClCompile Include="channels\rdpsnd\client\codec_aac.c">
+      <Filter>Source Files\channels\rdpsnd</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="config.h">
@@ -340,6 +346,9 @@
     </ClInclude>
     <ClInclude Include="channels\tsmf\client\tsmf_types.h">
       <Filter>Header Files\channels\tsmf</Filter>
+    </ClInclude>
+    <ClInclude Include="channels\rdpsnd\client\codec_aac.h">
+      <Filter>Source Files\channels\rdpsnd</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -39,6 +39,7 @@
 
 #include "opensl_io.h"
 #include "../rdpsnd_main.h"
+#include "../codec_aac.h"
 
 typedef struct rdpsnd_opensles_plugin rdpsndopenslesPlugin;
 
@@ -59,6 +60,10 @@ struct rdpsnd_opensles_plugin
 	UINT32 channels;
 	int format;
 	FREERDP_DSP_CONTEXT* dsp_context;
+
+   AAC_CONTEXT * aac_context;
+   AAC_CONTEXT_MF * aac_context_mf;
+
 };
 
 static int rdpsnd_opensles_volume_to_millibel(unsigned short level, int max)
@@ -182,6 +187,18 @@ static void rdpsnd_opensles_open(rdpsndDevicePlugin* device,
 	if( rdpsnd_opensles_check_handle(opensles))
 		return;
 
+   if(opensles->format == 41222)
+   {
+      opensles->dsp_context = NULL;
+      opensles->format = 1;
+      opensles->aac_context = calloc(1,sizeof(AAC_CONTEXT));
+      if(!mf_aac_init(opensles->aac_context,opensles->channels, opensles->rate, format))
+      {
+         WLog_ERR(TAG,"mf_aac_init failed");
+      }
+   }
+
+
 	opensles->stream = android_OpenAudioDevice(
 		opensles->rate, opensles->channels, 20);
 	assert(opensles->stream);
@@ -261,6 +278,14 @@ static BOOL rdpsnd_opensles_format_supported(rdpsndDevicePlugin* device,
 		case WAVE_FORMAT_GSM610:
 		default:
 			break;
+      case 41222:
+      {
+         if(format->cbSize == 0 &&
+            format->nSamplesPerSec <= 48000 &&
+            (format->wBitsPerSample == 8 || format->wBitsPerSample == 16) &&
+            (format->nChannels == 1 || format->nChannels == 2))
+            return TRUE;
+      }
 	}
 
 	return FALSE;
@@ -352,7 +377,12 @@ static void rdpsnd_opensles_play(rdpsndDevicePlugin* device,
 		size = opensles->dsp_context->adpcm_size;
 		src.b = opensles->dsp_context->adpcm_buffer;
 	}
-	else
+   else if(opensles->aac_context != NULL)
+   {
+      size = audio_decode_example2(opensles->aac_context,&data,data,size);
+      //free(wave->data);
+   }
+   else
 	{   
 		src.b = data;
 	} 
@@ -365,6 +395,10 @@ static void rdpsnd_opensles_play(rdpsndDevicePlugin* device,
 	ret = android_AudioOut(opensles->stream, src.s, size / 2);
 	if (ret < 0)
 		WLog_ERR(TAG, "android_AudioOut failed (%d)", ret);
+   if(opensles->aac_context != NULL)
+   {
+      free(src.b);
+   }
 }
 
 static void rdpsnd_opensles_start(rdpsndDevicePlugin* device)

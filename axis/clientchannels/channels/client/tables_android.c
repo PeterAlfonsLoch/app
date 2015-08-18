@@ -135,7 +135,7 @@ const STATIC_SUBSYSTEM_ENTRY CLIENT_RDPGFX_SUBSYSTEM_TABLE[] =
 };
 const STATIC_SUBSYSTEM_ENTRY CLIENT_RDPSND_SUBSYSTEM_TABLE[] =
 {
-	{ "winmm", "", opensles_freerdp_rdpsnd_client_subsystem_entry },
+	{ "opensles", "", opensles_freerdp_rdpsnd_client_subsystem_entry },
 	{ NULL, NULL, NULL }
 };
 const STATIC_SUBSYSTEM_ENTRY CLIENT_REMDESK_SUBSYSTEM_TABLE[] =

@@ -548,6 +548,17 @@ COLORREF * ca2rdp_ctx_get_primary(ca2rdp_context * pcontext)
 //#endif
 }
 
-
+int ca2rdp_ctx_get_bitmap_size(ca2rdp_context * pcontext)
+{
+   if(pcontext->gdi == NULL)
+      return NULL;
+   /*   if(pcontext->gdi->drawing == NULL)
+   return NULL;
+   if(pcontext->gdi->drawing->bitmap == NULL)
+   return NULL;
+   return (COLORREF *)pcontext->gdi->drawing->bitmap->p*/
+   return pcontext->gdi->bitmap_size;
+   ;
+}
 
 

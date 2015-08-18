@@ -28,6 +28,9 @@
     <Filter Include="Header Files\client\Android">
       <UniqueIdentifier>{9a8c5302-0a51-4e96-b343-0eb1b4893dfb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\client\Android">
+      <UniqueIdentifier>{6a1ed7ea-b4dd-475c-ac54-714a1b09a40e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="config.h">
@@ -48,20 +51,14 @@
     <ClInclude Include="client\ca2\ca2rdp_graphics.h">
       <Filter>Header Files\client\ca2</Filter>
     </ClInclude>
+    <ClInclude Include="client\Android\af_client.h">
+      <Filter>Header Files\client\Android</Filter>
+    </ClInclude>
+    <ClInclude Include="client\Android\af_channels.h">
+      <Filter>Header Files\client\Android</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="client\common\client.c">
-      <Filter>Source Files\client\common</Filter>
-    </ClCompile>
-    <ClCompile Include="client\common\cmdline.c">
-      <Filter>Source Files\client\common</Filter>
-    </ClCompile>
-    <ClCompile Include="client\common\compatibility.c">
-      <Filter>Source Files\client\common</Filter>
-    </ClCompile>
-    <ClCompile Include="client\common\file.c">
-      <Filter>Source Files\client\common</Filter>
-    </ClCompile>
     <ClCompile Include="client\ca2\ca2rdp.cpp">
       <Filter>Source Files\client\ca2</Filter>
     </ClCompile>
@@ -70,6 +67,24 @@
     </ClCompile>
     <ClCompile Include="client\ca2\ca2rdp_graphics.cpp">
       <Filter>Source Files\client\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="client\common\client.cpp">
+      <Filter>Source Files\client\common</Filter>
+    </ClCompile>
+    <ClCompile Include="client\common\cmdline.cpp">
+      <Filter>Source Files\client\common</Filter>
+    </ClCompile>
+    <ClCompile Include="client\common\compatibility.cpp">
+      <Filter>Source Files\client\common</Filter>
+    </ClCompile>
+    <ClCompile Include="client\common\file.cpp">
+      <Filter>Source Files\client\common</Filter>
+    </ClCompile>
+    <ClCompile Include="client\Android\af_client.cpp">
+      <Filter>Source Files\client\Android</Filter>
+    </ClCompile>
+    <ClCompile Include="client\Android\af_channels.cpp">
+      <Filter>Source Files\client\Android</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -106,7 +106,7 @@ struct ca2rdp_context :
 
 CLASS_DECL_AXIS_RDPCLIENT ::draw2d::graphics * ca2rdp_ctx_get_graphics(ca2rdp_context * pcontext);
 CLASS_DECL_AXIS_RDPCLIENT COLORREF * ca2rdp_ctx_get_primary(ca2rdp_context * pcontext);
-
+CLASS_DECL_AXIS_RDPCLIENT int ca2rdp_ctx_get_bitmap_size(ca2rdp_context * pcontext);
 
 typedef struct ca2rdp_context ca2rdpContext;
 

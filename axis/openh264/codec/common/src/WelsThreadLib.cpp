@@ -470,6 +470,9 @@ WELS_THREAD_ERROR_CODE    WelsQueryLogicalProcessInfo (WelsLogicalProcessInfo* p
 #ifdef ANDROID_NDK
   pInfo->ProcessorCount = android_getCpuCount();
   return WELS_THREAD_ERROR_OK;
+#elif defined(__ANDROID__)
+   pInfo->ProcessorCount = 1;
+   return WELS_THREAD_ERROR_OK;
 #elif defined(__linux__)
 
   cpu_set_t cpuset;

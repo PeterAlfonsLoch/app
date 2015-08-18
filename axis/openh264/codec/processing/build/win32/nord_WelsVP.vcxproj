@@ -19,36 +19,61 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="client\Android\af_channels.h" />
-    <ClInclude Include="client\Android\af_client.h" />
-    <ClInclude Include="client\ca2\ca2rdp.h" />
-    <ClInclude Include="client\ca2\ca2rdp_event.h" />
-    <ClInclude Include="client\ca2\ca2rdp_graphics.h" />
-    <ClInclude Include="client\common\compatibility.h" />
-    <ClInclude Include="config.h" />
-    <ClInclude Include="freerdp_rdpclient_setup.h" />
+    <ClCompile Include="..\..\..\common\src\cpu.cpp" />
+    <ClCompile Include="..\..\..\common\src\intra_pred_common.cpp" />
+    <ClCompile Include="..\..\..\common\src\sad_common.cpp" />
+    <ClCompile Include="..\..\..\common\src\WelsThreadLib.cpp" />
+    <ClCompile Include="..\..\src\adaptivequantization\AdaptiveQuantization.cpp" />
+    <ClCompile Include="..\..\src\backgrounddetection\BackgroundDetection.cpp" />
+    <ClCompile Include="..\..\src\common\memory.cpp" />
+    <ClCompile Include="..\..\src\common\WelsFrameWork.cpp" />
+    <ClCompile Include="..\..\src\common\WelsFrameWorkEx.cpp" />
+    <ClCompile Include="..\..\src\complexityanalysis\ComplexityAnalysis.cpp" />
+    <ClCompile Include="..\..\src\denoise\denoise.cpp" />
+    <ClCompile Include="..\..\src\denoise\denoise_filter.cpp" />
+    <ClCompile Include="..\..\src\downsample\downsample.cpp" />
+    <ClCompile Include="..\..\src\downsample\downsamplefuncs.cpp" />
+    <ClCompile Include="..\..\src\imagerotate\imagerotate.cpp" />
+    <ClCompile Include="..\..\src\imagerotate\imagerotatefuncs.cpp" />
+    <ClCompile Include="..\..\src\scenechangedetection\SceneChangeDetection.cpp" />
+    <ClCompile Include="..\..\src\scrolldetection\ScrollDetection.cpp" />
+    <ClCompile Include="..\..\src\scrolldetection\ScrollDetectionFuncs.cpp" />
+    <ClCompile Include="..\..\src\vaacalc\vaacalcfuncs.cpp" />
+    <ClCompile Include="..\..\src\vaacalc\vaacalculation.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="client\Android\af_channels.cpp" />
-    <ClCompile Include="client\Android\af_client.cpp" />
-    <ClCompile Include="client\ca2\ca2rdp.cpp" />
-    <ClCompile Include="client\ca2\ca2rdp_event.cpp" />
-    <ClCompile Include="client\ca2\ca2rdp_graphics.cpp" />
-    <ClCompile Include="client\common\client.cpp" />
-    <ClCompile Include="client\common\cmdline.cpp" />
-    <ClCompile Include="client\common\compatibility.cpp" />
-    <ClCompile Include="client\common\file.cpp" />
+    <ClInclude Include="..\..\..\common\inc\cpu.h" />
+    <ClInclude Include="..\..\..\common\inc\intra_pred_common.h" />
+    <ClInclude Include="..\..\..\common\inc\sad_common.h" />
+    <ClInclude Include="..\..\..\common\inc\WelsThreadLib.h" />
+    <ClInclude Include="..\..\interface\IWelsVP.h" />
+    <ClInclude Include="..\..\src\adaptivequantization\AdaptiveQuantization.h" />
+    <ClInclude Include="..\..\src\backgrounddetection\BackgroundDetection.h" />
+    <ClInclude Include="..\..\src\common\common.h" />
+    <ClInclude Include="..\..\src\common\memory.h" />
+    <ClInclude Include="..\..\src\common\resource.h" />
+    <ClInclude Include="..\..\src\common\typedef.h" />
+    <ClInclude Include="..\..\src\common\util.h" />
+    <ClInclude Include="..\..\src\common\WelsFrameWork.h" />
+    <ClInclude Include="..\..\src\complexityanalysis\ComplexityAnalysis.h" />
+    <ClInclude Include="..\..\src\denoise\denoise.h" />
+    <ClInclude Include="..\..\src\downsample\downsample.h" />
+    <ClInclude Include="..\..\src\imagerotate\imagerotate.h" />
+    <ClInclude Include="..\..\src\scenechangedetection\SceneChangeDetection.h" />
+    <ClInclude Include="..\..\src\scrolldetection\ScrollDetection.h" />
+    <ClInclude Include="..\..\src\scrolldetection\ScrollDetectionFuncs.h" />
+    <ClInclude Include="..\..\src\vaacalc\vaacalculation.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="axisrdpclient.def" />
+    <None Include="..\..\src\common\WelsVP.def" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{7AEF277A-CE4F-4588-A0A2-BEB7CE9AF7B0}</ProjectGuid>
+    <ProjectGuid>{C8901976-D974-4D41-9CFE-5A2A1D4E4BEE}</ProjectGuid>
     <Keyword>Android</Keyword>
     <ApplicationType>Android</ApplicationType>
     <ApplicationTypeRevision>1.0</ApplicationTypeRevision>
-    <ProjectName>axisrdpclient</ProjectName>
-    <RootNamespace>axisrdpclient</RootNamespace>
+    <ProjectName>WelsVP</ProjectName>
+    <RootNamespace>WelsVP</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'" Label="Configuration">
@@ -103,8 +128,8 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.;..;client;$(SolutionDir)../../../include;$(SolutionDir)../../../app/include/;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/axis/freerdp;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>ANDROID;_FREERDP_RDPCLIENT_DLL;BYEWINDOWS_UNICODE;FREERDP_EXPORTS;HAVE_CONFIG_H;_USRDLL; _CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../../common/inc;../../interface;../../src/common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Enabled</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CppLanguageStandard>gnu++11</CppLanguageStandard>
@@ -116,7 +141,7 @@
     </ClCompile>
     <Link />
     <Link>
-      <LibraryDependencies>axisclientchannels;axisfreerdp;axiswinpr;axiszlib;aura;$(StlLibraryName);m</LibraryDependencies>
+      <LibraryDependencies>$(StlLibraryName);m</LibraryDependencies>
       <SharedLibrarySearchPath>$(OutDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;%(SharedLibrarySearchPath)</SharedLibrarySearchPath>
       <AdditionalLibraryDirectories>$(OutDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\4.8;$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
