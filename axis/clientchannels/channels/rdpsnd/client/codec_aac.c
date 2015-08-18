@@ -17,8 +17,9 @@
 #include "codec_aac.h"
 
 void o_debug_string(const char * psz);
-
+#ifdef ANDROID
 extern AVCodec ff_aac_decoder;
+#endif
 #include <assert.h>
 
 void assert_a(int i)
@@ -97,7 +98,9 @@ int mf_aac_init(AAC_CONTEXT* h264,int rate,int channels,AUDIO_FORMAT * in)
    //printf("Decode audio file %s to %s\n",filename,outfilename);
 
    /* find the mpeg audio decoder */
+#ifdef ANDROID
    sys->codec = &ff_aac_decoder;
+#endif
    sys->codec = avcodec_find_decoder(AV_CODEC_ID_AAC);
    if(!sys->codec) {
       assert_b(0);

@@ -243,6 +243,9 @@
     <ClInclude Include="config.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="channels\rdpsnd\client\codec_aac.h">
+      <Filter>Header Files\channels\rdpsnd</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="channels\audin\client\audin_main.c">
@@ -349,6 +352,9 @@
     </ClCompile>
     <ClCompile Include="channels\rdpei\rdpei_common.c">
       <Filter>Source Files\channels\rdpei</Filter>
+    </ClCompile>
+    <ClCompile Include="channels\rdpsnd\client\codec_aac.c">
+      <Filter>Source Files\channels\rdpsnd</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -51,7 +51,10 @@
 #include <freerdp/codec/dsp.h>
 #include <freerdp/channels/log.h>
 
+#include <mmsystem.h>
+
 #include "../rdpsnd_main.h"
+#include "../codec_aac.h"
 
 typedef struct rdpsnd_winmm_plugin rdpsndWinmmPlugin;
 
@@ -699,7 +702,7 @@ static void rdpsnd_winmm_open(rdpsndDevicePlugin* device, AUDIO_FORMAT* format, 
       winmm->dsp_context = NULL;
       winmm->format.wFormatTag = 1;
       winmm->aac_context = calloc(1,sizeof(AAC_CONTEXT));
-      if(!mf_aac_init(winmm->aac_context, &winmm->format,format))
+      if(!mf_aac_init(winmm->aac_context, winmm->format.nSamplesPerSec, winmm->format.nChannels,format))
       {
          WLog_ERR(TAG,"mf_aac_init failed");
       }

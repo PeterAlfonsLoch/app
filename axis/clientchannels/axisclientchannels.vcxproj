@@ -510,6 +510,7 @@
     <ClInclude Include="channels\rdpei\client\rdpei_main.h" />
     <ClInclude Include="channels\rdpgfx\client\rdpgfx_common.h" />
     <ClInclude Include="channels\rdpgfx\client\rdpgfx_main.h" />
+    <ClInclude Include="channels\rdpsnd\client\codec_aac.h" />
     <ClInclude Include="channels\rdpsnd\client\rdpsnd_main.h" />
     <ClInclude Include="channels\smartcard\client\smartcard_main.h" />
     <ClInclude Include="channels\tsmf\client\tsmf_audio.h" />
@@ -558,6 +559,7 @@
     <ClCompile Include="channels\rdpgfx\client\rdpgfx_codec.c" />
     <ClCompile Include="channels\rdpgfx\client\rdpgfx_common.c" />
     <ClCompile Include="channels\rdpgfx\client\rdpgfx_main.c" />
+    <ClCompile Include="channels\rdpsnd\client\codec_aac.c" />
     <ClCompile Include="channels\rdpsnd\client\rdpsnd_main.c" />
     <ClCompile Include="channels\rdpsnd\client\winmm\rdpsnd_winmm.c" />
     <ClCompile Include="channels\remdesk\client\remdesk_main.c" />

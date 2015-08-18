@@ -27,3 +27,10 @@ string FormatMessageFromSystem(uint32_t dwError)
 
 
 }
+
+
+extern "C"
+void o_debug_string(const char * psz)
+{
+   output_debug_string(psz);
+}
