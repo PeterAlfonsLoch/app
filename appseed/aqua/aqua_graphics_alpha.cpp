@@ -1,4 +1,5 @@
 #include "framework.h"
+#include <math.h>
 
 CLASS_DECL_AQUA void pre_multiply_alpha(unsigned int * pui,int cx,int cy,int stride)
 {
@@ -40,3 +41,11 @@ CLASS_DECL_AQUA void pre_multiply_alpha(unsigned int * pui,int cx,int cy,int str
    }
 
 }
+
+/*
+extern "C"
+double hypot(double x,double y)
+{
+   return sqrt(x*x + y*y);
+}
+*/

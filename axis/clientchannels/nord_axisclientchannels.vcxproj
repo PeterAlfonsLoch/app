@@ -177,17 +177,22 @@
     </ClCompile>
     <Link />
     <Link>
-      <LibraryDependencies>ffmpeg;axisfreerdp;axiswinpr;axiszlib;aura;$(StlLibraryName);m;OpenSLES</LibraryDependencies>
+      <LibraryDependencies>axisfreerdp;axiswinpr;axiszlib;aura;$(StlLibraryName);OpenSLES;m</LibraryDependencies>
       <SharedLibrarySearchPath>$(OutDir);$(SolutionDir)../../thirdparty/library/x86/;$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;%(SharedLibrarySearchPath)</SharedLibrarySearchPath>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../thirdparty/library/x86/;$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\4.8;$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>
-      </AdditionalDependencies>
+      <AdditionalDependencies>$(SolutionDir)../../thirdparty/library/x86/libavcodec.a;$(SolutionDir)../../thirdparty/library/x86/libavutil.a;$(SolutionDir)../../thirdparty/library/x86/libswresample.a</AdditionalDependencies>
+      <ForceSymbolReferences>
+      </ForceSymbolReferences>
     </Link>
     <CustomBuildStep>
       <Command>mkdir $(SolutionDir)..\..\..\time\x86\Debug\nord_app_core_rdpclient\Package\libs\x86\
-copy $(SolutionDir)..\..\thirdparty\library\x86\libffmpeg.so  $(SolutionDir)..\..\..\time\x86\Debug\nord_app_core_rdpclient\Package\libs\x86\libffmpeg.so
+copy $(SolutionDir)..\..\thirdparty\library\x86\libavcodec.a  $(SolutionDir)..\..\..\time\x86\Debug\nord_app_core_rdpclient\Package\libs\x86\libavcodec.a
+copy $(SolutionDir)..\..\thirdparty\library\x86\libavutil.a  $(SolutionDir)..\..\..\time\x86\Debug\nord_app_core_rdpclient\Package\libs\x86\libavutil.a
+copy $(SolutionDir)..\..\thirdparty\library\x86\libswresample.a  $(SolutionDir)..\..\..\time\x86\Debug\nord_app_core_rdpclient\Package\libs\x86\libswresample.a
 mkdir $(SolutionDir)..\..\..\time\x86\Debug\Package\libs\x86
-copy $(SolutionDir)..\..\thirdparty\library\x86\libffmpeg.so  $(SolutionDir)..\..\..\time\x86\Debug\Package\libs\x86\libffmpeg.so</Command>
+copy $(SolutionDir)..\..\thirdparty\library\x86\libavcodec.a  $(SolutionDir)..\..\..\time\x86\Debug\Package\libs\x86\libavcodec.a
+copy $(SolutionDir)..\..\thirdparty\library\x86\libavutil.a  $(SolutionDir)..\..\..\time\x86\Debug\Package\libs\x86\libavutil.a
+copy $(SolutionDir)..\..\thirdparty\library\x86\libswresample.a  $(SolutionDir)..\..\..\time\x86\Debug\Package\libs\x86\libswresample.a</Command>
       <Outputs>$(SolutionDir)..\..\..\time\x86\Debug\nord_app_core_rdpclient\Package\libs\x86\libffmpeg.so</Outputs>
     </CustomBuildStep>
   </ItemDefinitionGroup>

@@ -98,7 +98,7 @@ static bool rdpsnd_opensles_check_handle(const rdpsndopenslesPlugin *hdl)
 		rc = false;
 	else
 	{
-		if (!hdl->dsp_context)
+		if (!hdl->dsp_context && !hdl->aac_context)
 			rc = false;
 		if (!hdl->stream)
 			rc = false;
@@ -184,10 +184,8 @@ static void rdpsnd_opensles_open(rdpsndDevicePlugin* device,
 	DEBUG_SND("opensles=%p format=%p, latency=%d, rate=%d",
 			opensles, format, latency, opensles->rate);
 	
-	if( rdpsnd_opensles_check_handle(opensles))
-		return;
 
-   if(opensles->format == 41222)
+   if(format->wFormatTag == 41222)
    {
       opensles->dsp_context = NULL;
       opensles->format = 1;
@@ -198,6 +196,8 @@ static void rdpsnd_opensles_open(rdpsndDevicePlugin* device,
       }
    }
 
+   if(rdpsnd_opensles_check_handle(opensles))
+      return;
 
 	opensles->stream = android_OpenAudioDevice(
 		opensles->rate, opensles->channels, 20);

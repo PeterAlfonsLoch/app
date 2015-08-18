@@ -16,10 +16,15 @@
 #include "rdpsnd_main.h"
 #include "codec_aac.h"
 
+extern AVCodec ff_aac_decoder;
 
 int mf_aac_init(AAC_CONTEXT* h264,int rate,int channels,AUDIO_FORMAT * in)
 {
-   avcodec_register_all();
+
+
+
+
+//   avcodec_register_all();
    HRESULT hr;
    AAC_CONTEXT_MF* sys;
 
@@ -36,7 +41,8 @@ int mf_aac_init(AAC_CONTEXT* h264,int rate,int channels,AUDIO_FORMAT * in)
    //printf("Decode audio file %s to %s\n",filename,outfilename);
 
    /* find the mpeg audio decoder */
-   sys->codec = avcodec_find_decoder(AV_CODEC_ID_AAC);
+   sys->codec = &ff_aac_decoder;
+   //sys->codec = avcodec_find_decoder(AV_CODEC_ID_AAC);
    if(!sys->codec) {
       fprintf(stderr,"Codec not found\n");
       return FALSE;
@@ -60,16 +66,16 @@ int mf_aac_init(AAC_CONTEXT* h264,int rate,int channels,AUDIO_FORMAT * in)
       return FALSE;
    }
    av_init_packet(&sys->avpkt);
-   sys->v = swr_alloc_set_opts(NULL,
-      channels == 1 ? AV_CH_LAYOUT_MONO : AV_CH_LAYOUT_STEREO,
-      AV_SAMPLE_FMT_S16,
-      rate,
-      sys->c->channel_layout,
-      sys->c->sample_fmt,
-      sys->c->sample_rate,
-      0,
-      NULL
-      );
+   //sys->v = swr_alloc_set_opts(NULL,
+   //   channels == 1 ? AV_CH_LAYOUT_MONO : AV_CH_LAYOUT_STEREO,
+   //   AV_SAMPLE_FMT_S16,
+   //   rate,
+   //   sys->c->channel_layout,
+   //   sys->c->sample_fmt,
+   //   sys->c->sample_rate,
+   //   0,
+   //   NULL
+   //   );
    //,sys->c->sample_fmt,sys->c,NULL,0
    //Create an audio sample format converter context. More...
 
