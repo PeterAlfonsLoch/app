@@ -16,7 +16,60 @@
 #include "rdpsnd_main.h"
 #include "codec_aac.h"
 
+void o_debug_string(const char * psz);
+
 extern AVCodec ff_aac_decoder;
+#include <assert.h>
+
+void assert_a(int i)
+{
+   assert(i);
+}
+void assert_b(int i)
+{
+   assert(i);
+}
+void assert_c(int i)
+{
+   assert(i);
+}
+void assert_d(int i)
+{
+   assert(i);
+}
+void assert_e(int i)
+{
+   assert(i);
+}
+void assert_f(int i)
+{
+   assert(i);
+}
+void assert_g(int i)
+{
+   assert(i);
+}
+void assert_h(int i)
+{
+   assert(i);
+}
+void assert_i(int i)
+{
+   assert(i);
+}
+void assert_j(int i)
+{
+   assert(i);
+}
+void assert_k(int i)
+{
+   assert(i);
+}
+void assert_l(int i)
+{
+   assert(i);
+}
+
 
 int mf_aac_init(AAC_CONTEXT* h264,int rate,int channels,AUDIO_FORMAT * in)
 {
@@ -24,14 +77,17 @@ int mf_aac_init(AAC_CONTEXT* h264,int rate,int channels,AUDIO_FORMAT * in)
 
 
 
-//   avcodec_register_all();
+   avcodec_register_all();
    HRESULT hr;
    AAC_CONTEXT_MF* sys;
 
    sys = (AAC_CONTEXT_MF*)calloc(1,sizeof(AAC_CONTEXT_MF));
 
    if(!sys)
+   {
+      assert_a(0);
       goto error;
+   }
 
    h264->pSystemData = (void*)sys;
    sys->c= NULL;
@@ -42,14 +98,16 @@ int mf_aac_init(AAC_CONTEXT* h264,int rate,int channels,AUDIO_FORMAT * in)
 
    /* find the mpeg audio decoder */
    sys->codec = &ff_aac_decoder;
-   //sys->codec = avcodec_find_decoder(AV_CODEC_ID_AAC);
+   sys->codec = avcodec_find_decoder(AV_CODEC_ID_AAC);
    if(!sys->codec) {
+      assert_b(0);
       fprintf(stderr,"Codec not found\n");
       return FALSE;
    }
 
    sys->c = avcodec_alloc_context3(sys->codec);
    if(!sys->c) {
+      assert_c(0);
       fprintf(stderr,"Could not allocate audio codec context\n");
       return FALSE;
    }
@@ -59,9 +117,12 @@ int mf_aac_init(AAC_CONTEXT* h264,int rate,int channels,AUDIO_FORMAT * in)
    sys->c->channels = channels;
    sys->c->channel_layout = channels == 1 ? AV_CH_LAYOUT_MONO : AV_CH_LAYOUT_STEREO;
    //sys->c->sample_fmt = AV_SAMPLE_FMT_S16;
-
+   char string[200];
+   sprintf(string,"rate = %d, channels = %d",rate,channels);
+   o_debug_string(string);
    /* open it */
    if(avcodec_open2(sys->c,sys->codec,NULL) < 0) {
+      assert_d(0);
       fprintf(stderr,"Could not open codec\n");
       return FALSE;
    }
@@ -159,6 +220,7 @@ int audio_decode_example2(AAC_CONTEXT* h264,void ** pout,const void * inbuf,int 
    {
       if(!(sys->decoded_frame = av_frame_alloc()))
       {
+         assert_e(0);
          fprintf(stderr,"Could not allocate audio frame\n");
          return 0;
       }
@@ -171,6 +233,7 @@ int audio_decode_example2(AAC_CONTEXT* h264,void ** pout,const void * inbuf,int 
    sys->len = avcodec_decode_audio4(sys->c,sys->decoded_frame,&sys->got_frame,&sys->avpkt);
    if(sys->len < 0)
    {
+      assert_f(0);
       fprintf(stderr,"Error while decoding\n");
       return 0;
    }
@@ -220,6 +283,10 @@ int audio_decode_example2(AAC_CONTEXT* h264,void ** pout,const void * inbuf,int 
          {
          olen *= 2 * 2;
          }*/
+      }
+      else
+      {
+         assert_g(0);
       }
       //memcpy(*pout,,data_size);
 

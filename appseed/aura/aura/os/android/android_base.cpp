@@ -60,7 +60,11 @@ void output_debug_string(const char * psz)
 
 }
 
-
+extern "C"
+void o_debug_string(const char * psz)
+{
+   output_debug_string(psz);
+}
 
 
 

@@ -43,6 +43,41 @@
 
 typedef struct rdpsnd_opensles_plugin rdpsndopenslesPlugin;
 
+void assert3(int i)
+{
+
+   assert(i);
+}
+
+#define assert assert3
+
+
+
+void assert4(int i)
+{
+   assert(i);
+}
+void assert5(int i)
+{
+   assert(i);
+}
+void assert6(int i)
+{
+   assert(i);
+}
+void assert7(int i)
+{
+   assert(i);
+}
+void assert8(int i)
+{
+   assert(i);
+}
+void assert9(int i)
+{
+   assert(i);
+}
+
 struct rdpsnd_opensles_plugin
 {
 	rdpsndDevicePlugin device;
@@ -190,7 +225,7 @@ static void rdpsnd_opensles_open(rdpsndDevicePlugin* device,
       opensles->dsp_context = NULL;
       opensles->format = 1;
       opensles->aac_context = calloc(1,sizeof(AAC_CONTEXT));
-      if(!mf_aac_init(opensles->aac_context,opensles->channels, opensles->rate, format))
+      if(!mf_aac_init(opensles->aac_context,opensles->rate, opensles->channels, format))
       {
          WLog_ERR(TAG,"mf_aac_init failed");
       }
@@ -201,7 +236,7 @@ static void rdpsnd_opensles_open(rdpsndDevicePlugin* device,
 
 	opensles->stream = android_OpenAudioDevice(
 		opensles->rate, opensles->channels, 20);
-	assert(opensles->stream);
+	assert4(opensles->stream);
 
 	if (!opensles->stream)
 		WLog_ERR(TAG, "android_OpenAudioDevice failed");
@@ -379,25 +414,32 @@ static void rdpsnd_opensles_play(rdpsndDevicePlugin* device,
 	}
    else if(opensles->aac_context != NULL)
    {
-      size = audio_decode_example2(opensles->aac_context,&data,data,size);
+      void * out;
+      size = audio_decode_example2(opensles->aac_context,&out,data,size);
       //free(wave->data);
+      src.b = out;
    }
    else
 	{   
 		src.b = data;
 	} 
 
-	DEBUG_SND("size=%d, src=%p", size, src.b);
-	assert(0 == size % 2);
-	assert(size > 0);
-	assert(src.b);
-
-	ret = android_AudioOut(opensles->stream, src.s, size / 2);
-	if (ret < 0)
-		WLog_ERR(TAG, "android_AudioOut failed (%d)", ret);
-   if(opensles->aac_context != NULL)
+   if(size > 0)
    {
-      free(src.b);
+
+      DEBUG_SND("size=%d, src=%p",size,src.b);
+      assert5(0 == size % 2);
+      assert6(size > 0);
+      assert7(src.b);
+
+      ret = android_AudioOut(opensles->stream,src.s,size / 2);
+      if(ret < 0)
+         WLog_ERR(TAG,"android_AudioOut failed (%d)",ret);
+      if(opensles->aac_context != NULL)
+      {
+         free(src.b);
+      }
+
    }
 }
 
