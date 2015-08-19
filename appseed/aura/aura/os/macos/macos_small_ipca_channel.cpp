@@ -320,6 +320,9 @@ namespace aura
 
       void * rx::receive()
       {
+         
+         if(remotePort == NULL)
+            return NULL;
 
          
          CFRunLoopSourceRef runLoopSource =
