@@ -4231,21 +4231,33 @@ namespace user
    ::user::interaction * interaction::first_child()
    {
 
-      single_lock sl(m_pmutex,TRUE);
-      if(m_uiptraChild.get_count() <= 0)
+      try
+      {
+         if(m_uiptraChild.get_count() <= 0)
          return NULL;
       else
          return m_uiptraChild.first_sp();
 
+      }
+      catch(...)
+      {
+      }
+      return NULL;
    }
 
    ::user::interaction * interaction::last_child()
    {
-      single_lock sl(m_pmutex,TRUE);
-      if(m_uiptraChild.get_count() <= 0)
-         return NULL;
-      else
-         return m_uiptraChild.last_sp();
+      try
+      {
+         if(m_uiptraChild.get_count() <= 0)
+            return NULL;
+         else
+            return m_uiptraChild.last_sp();
+      }
+      catch(...)
+      {
+      }
+      return NULL;
    }
 
 
