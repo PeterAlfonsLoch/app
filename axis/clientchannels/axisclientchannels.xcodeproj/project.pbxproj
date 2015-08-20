@@ -15,6 +15,17 @@
 		07B091821B608E5400B5BCA7 /* TPCircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B091811B608E5400B5BCA7 /* TPCircularBuffer.c */; };
 		07B0918B1B60905100B5BCA7 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B0918A1B60905100B5BCA7 /* AudioToolbox.framework */; };
 		07B0918F1B60916500B5BCA7 /* tables_ios.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B0918E1B60916500B5BCA7 /* tables_ios.c */; };
+		07B098B01B84934F002AC4F0 /* codec_aac.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B098AE1B84934F002AC4F0 /* codec_aac.c */; };
+		07B098B11B84934F002AC4F0 /* codec_aac.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B098AF1B84934F002AC4F0 /* codec_aac.h */; };
+		07B098B51B8493B5002AC4F0 /* libavcodec.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B098B21B8493B5002AC4F0 /* libavcodec.a */; };
+		07B098B61B8493B6002AC4F0 /* libavutil.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B098B31B8493B5002AC4F0 /* libavutil.a */; };
+		07B098B71B8493B6002AC4F0 /* libswresample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B098B41B8493B5002AC4F0 /* libswresample.a */; };
+		07B098B91B8493F3002AC4F0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 074BD0BD1B5F35C100219723 /* Foundation.framework */; };
+		07B098BD1B849411002AC4F0 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B098BC1B849411002AC4F0 /* CoreVideo.framework */; };
+		07B098C11B8494DE002AC4F0 /* VideoDecodeAcceleration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B098C01B8494DE002AC4F0 /* VideoDecodeAcceleration.framework */; };
+		07B098C31B8494EC002AC4F0 /* libaxiszlib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B098C21B8494EC002AC4F0 /* libaxiszlib.dylib */; };
+		07B098C71B84950B002AC4F0 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B098C61B84950B002AC4F0 /* libaura.dylib */; };
+		07B098C91B849526002AC4F0 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B098C81B849526002AC4F0 /* libiconv.dylib */; };
 		07DD6F101B5F0CA2003A1CE1 /* audin_main.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6E451B5F0CA2003A1CE1 /* audin_main.c */; };
 		07DD6F111B5F0CA2003A1CE1 /* audin_main.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD6E461B5F0CA2003A1CE1 /* audin_main.h */; };
 		07DD6F181B5F0CA2003A1CE1 /* addin.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6E521B5F0CA2003A1CE1 /* addin.c */; };
@@ -28,10 +39,7 @@
 		07DD6F241B5F0CA2003A1CE1 /* disp_main.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD6E651B5F0CA2003A1CE1 /* disp_main.h */; };
 		07DD6F251B5F0CA2003A1CE1 /* drdynvc_main.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6E681B5F0CA2003A1CE1 /* drdynvc_main.c */; };
 		07DD6F261B5F0CA2003A1CE1 /* drdynvc_main.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD6E691B5F0CA2003A1CE1 /* drdynvc_main.h */; };
-		07DD6F291B5F0CA2003A1CE1 /* local_dirent.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD6E6F1B5F0CA2003A1CE1 /* local_dirent.h */; };
-		07DD6F2A1B5F0CA2003A1CE1 /* drive_file.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6E701B5F0CA2003A1CE1 /* drive_file.c */; };
 		07DD6F2B1B5F0CA2003A1CE1 /* drive_file.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD6E711B5F0CA2003A1CE1 /* drive_file.h */; };
-		07DD6F2C1B5F0CA2003A1CE1 /* drive_main.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6E721B5F0CA2003A1CE1 /* drive_main.c */; };
 		07DD6F2E1B5F0CA2003A1CE1 /* statvfs.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD6E751B5F0CA2003A1CE1 /* statvfs.h */; };
 		07DD6F2F1B5F0CA2003A1CE1 /* echo_main.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6E781B5F0CA2003A1CE1 /* echo_main.c */; };
 		07DD6F301B5F0CA2003A1CE1 /* echo_main.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD6E791B5F0CA2003A1CE1 /* echo_main.h */; };
@@ -110,8 +118,6 @@
 		07DD6FA11B5F0CD3003A1CE1 /* cliprdr_main.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6E5C1B5F0CA2003A1CE1 /* cliprdr_main.c */; };
 		07DD6FA31B5F0CD3003A1CE1 /* disp_main.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6E641B5F0CA2003A1CE1 /* disp_main.c */; };
 		07DD6FA41B5F0CD3003A1CE1 /* drdynvc_main.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6E681B5F0CA2003A1CE1 /* drdynvc_main.c */; };
-		07DD6FA61B5F0CD3003A1CE1 /* drive_file.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6E701B5F0CA2003A1CE1 /* drive_file.c */; };
-		07DD6FA71B5F0CD3003A1CE1 /* drive_main.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6E721B5F0CA2003A1CE1 /* drive_main.c */; };
 		07DD6FA91B5F0CD3003A1CE1 /* echo_main.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6E781B5F0CA2003A1CE1 /* echo_main.c */; };
 		07DD6FAB1B5F0CD3003A1CE1 /* encomsp_main.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6E7E1B5F0CA2003A1CE1 /* encomsp_main.c */; };
 		07DD6FAD1B5F0CD3003A1CE1 /* parallel_main.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6E851B5F0CA2003A1CE1 /* parallel_main.c */; };
@@ -212,6 +218,7 @@
 		074BD0C11B5F361500219723 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		074BD0C31B5F366500219723 /* tables_mac.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tables_mac.c; sourceTree = "<group>"; };
 		074BD0C51B5F368F00219723 /* libcups.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcups.dylib; path = usr/lib/libcups.dylib; sourceTree = SDKROOT; };
+		0763A2421B84E8B400C601B8 /* rdpsnd_opensles.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = rdpsnd_opensles.c; path = channels/rdpsnd/client/opensles/rdpsnd_opensles.c; sourceTree = SOURCE_ROOT; };
 		07B091791B608D8500B5BCA7 /* rdpsnd_ios.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rdpsnd_ios.c; sourceTree = "<group>"; };
 		07B0917B1B608D8500B5BCA7 /* TPCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPCircularBuffer.h; sourceTree = "<group>"; };
 		07B0917F1B608DD200B5BCA7 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
@@ -219,6 +226,19 @@
 		07B091831B608F7300B5BCA7 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/AudioUnit.framework; sourceTree = DEVELOPER_DIR; };
 		07B0918A1B60905100B5BCA7 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
 		07B0918E1B60916500B5BCA7 /* tables_ios.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tables_ios.c; sourceTree = "<group>"; };
+		07B098AE1B84934F002AC4F0 /* codec_aac.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = codec_aac.c; sourceTree = "<group>"; };
+		07B098AF1B84934F002AC4F0 /* codec_aac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = codec_aac.h; sourceTree = "<group>"; };
+		07B098B21B8493B5002AC4F0 /* libavcodec.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libavcodec.a; path = ../../../nodeapp/thirdparty/library/libavcodec.a; sourceTree = "<group>"; };
+		07B098B31B8493B5002AC4F0 /* libavutil.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libavutil.a; path = ../../../nodeapp/thirdparty/library/libavutil.a; sourceTree = "<group>"; };
+		07B098B41B8493B5002AC4F0 /* libswresample.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libswresample.a; path = ../../../nodeapp/thirdparty/library/libswresample.a; sourceTree = "<group>"; };
+		07B098BA1B8493FF002AC4F0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		07B098BC1B849411002AC4F0 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		07B098BE1B84941B002AC4F0 /* DVDPlayback.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVDPlayback.framework; path = System/Library/Frameworks/DVDPlayback.framework; sourceTree = SDKROOT; };
+		07B098C01B8494DE002AC4F0 /* VideoDecodeAcceleration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoDecodeAcceleration.framework; path = System/Library/Frameworks/VideoDecodeAcceleration.framework; sourceTree = SDKROOT; };
+		07B098C21B8494EC002AC4F0 /* libaxiszlib.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxiszlib.dylib; path = "../../../../Users/carlos/Library/Developer/Xcode/DerivedData/all-mac-exvrklrokleuokawrbpzmvyzamwr/Build/Products/Debug/libaxiszlib.dylib"; sourceTree = "<group>"; };
+		07B098C41B8494F5002AC4F0 /* libatomiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libatomiconv.dylib; path = "../../../../Users/carlos/Library/Developer/Xcode/DerivedData/all-mac-exvrklrokleuokawrbpzmvyzamwr/Build/Products/Debug/libatomiconv.dylib"; sourceTree = "<group>"; };
+		07B098C61B84950B002AC4F0 /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = "../../../../Users/carlos/Library/Developer/Xcode/DerivedData/all-mac-exvrklrokleuokawrbpzmvyzamwr/Build/Products/Debug/libaura.dylib"; sourceTree = "<group>"; };
+		07B098C81B849526002AC4F0 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		07DD6E341B5F0C87003A1CE1 /* libaxisclientchannels.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxisclientchannels.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		07DD6E451B5F0CA2003A1CE1 /* audin_main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = audin_main.c; sourceTree = "<group>"; };
 		07DD6E461B5F0CA2003A1CE1 /* audin_main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = audin_main.h; sourceTree = "<group>"; };
@@ -235,10 +255,7 @@
 		07DD6E651B5F0CA2003A1CE1 /* disp_main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = disp_main.h; sourceTree = "<group>"; };
 		07DD6E681B5F0CA2003A1CE1 /* drdynvc_main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = drdynvc_main.c; sourceTree = "<group>"; };
 		07DD6E691B5F0CA2003A1CE1 /* drdynvc_main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = drdynvc_main.h; sourceTree = "<group>"; };
-		07DD6E6F1B5F0CA2003A1CE1 /* local_dirent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = local_dirent.h; sourceTree = "<group>"; };
-		07DD6E701B5F0CA2003A1CE1 /* drive_file.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = drive_file.c; sourceTree = "<group>"; };
 		07DD6E711B5F0CA2003A1CE1 /* drive_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = drive_file.h; sourceTree = "<group>"; };
-		07DD6E721B5F0CA2003A1CE1 /* drive_main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = drive_main.c; sourceTree = "<group>"; };
 		07DD6E731B5F0CA2003A1CE1 /* module.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = module.def; sourceTree = "<group>"; };
 		07DD6E751B5F0CA2003A1CE1 /* statvfs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = statvfs.h; sourceTree = "<group>"; };
 		07DD6E781B5F0CA2003A1CE1 /* echo_main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = echo_main.c; sourceTree = "<group>"; };
@@ -332,9 +349,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07B098C91B849526002AC4F0 /* libiconv.dylib in Frameworks */,
+				07B098C71B84950B002AC4F0 /* libaura.dylib in Frameworks */,
+				07B098C31B8494EC002AC4F0 /* libaxiszlib.dylib in Frameworks */,
+				07B098C11B8494DE002AC4F0 /* VideoDecodeAcceleration.framework in Frameworks */,
+				07B098BD1B849411002AC4F0 /* CoreVideo.framework in Frameworks */,
+				07B098B91B8493F3002AC4F0 /* Foundation.framework in Frameworks */,
+				07B098B61B8493B6002AC4F0 /* libavutil.a in Frameworks */,
 				074BD0C21B5F361500219723 /* AudioToolbox.framework in Frameworks */,
 				07DD711E1B5F18F8003A1CE1 /* libaxiswinpr.dylib in Frameworks */,
+				07B098B51B8493B5002AC4F0 /* libavcodec.a in Frameworks */,
 				07DD711D1B5F18EE003A1CE1 /* libaxisfreerdp.dylib in Frameworks */,
+				07B098B71B8493B6002AC4F0 /* libswresample.a in Frameworks */,
 				074BD0C61B5F368F00219723 /* libcups.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -350,6 +376,16 @@
 				07B0917B1B608D8500B5BCA7 /* TPCircularBuffer.h */,
 			);
 			path = ios;
+			sourceTree = "<group>";
+		};
+		07B098B81B8493C4002AC4F0 /* mac */ = {
+			isa = PBXGroup;
+			children = (
+				07B098B21B8493B5002AC4F0 /* libavcodec.a */,
+				07B098B31B8493B5002AC4F0 /* libavutil.a */,
+				07B098B41B8493B5002AC4F0 /* libswresample.a */,
+			);
+			name = mac;
 			sourceTree = "<group>";
 		};
 		07DD6E351B5F0CA2003A1CE1 /* clientchannels */ = {
@@ -483,10 +519,7 @@
 		07DD6E6E1B5F0CA2003A1CE1 /* client */ = {
 			isa = PBXGroup;
 			children = (
-				07DD6E6F1B5F0CA2003A1CE1 /* local_dirent.h */,
-				07DD6E701B5F0CA2003A1CE1 /* drive_file.c */,
 				07DD6E711B5F0CA2003A1CE1 /* drive_file.h */,
-				07DD6E721B5F0CA2003A1CE1 /* drive_main.c */,
 				07DD6E731B5F0CA2003A1CE1 /* module.def */,
 				07DD6E751B5F0CA2003A1CE1 /* statvfs.h */,
 			);
@@ -658,6 +691,8 @@
 		07DD6EB51B5F0CA2003A1CE1 /* client */ = {
 			isa = PBXGroup;
 			children = (
+				07B098AE1B84934F002AC4F0 /* codec_aac.c */,
+				07B098AF1B84934F002AC4F0 /* codec_aac.h */,
 				07B091781B608D8500B5BCA7 /* ios */,
 				07DD6EBC1B5F0CA2003A1CE1 /* mac */,
 				07DD6EC41B5F0CA2003A1CE1 /* rdpsnd_main.c */,
@@ -669,6 +704,7 @@
 		07DD6EBC1B5F0CA2003A1CE1 /* mac */ = {
 			isa = PBXGroup;
 			children = (
+				0763A2421B84E8B400C601B8 /* rdpsnd_opensles.c */,
 				07DD6EBD1B5F0CA2003A1CE1 /* rdpsnd_mac.c */,
 			);
 			path = mac;
@@ -811,6 +847,15 @@
 		9A1B358116A2D7A500875A94 = {
 			isa = PBXGroup;
 			children = (
+				07B098C81B849526002AC4F0 /* libiconv.dylib */,
+				07B098C61B84950B002AC4F0 /* libaura.dylib */,
+				07B098C41B8494F5002AC4F0 /* libatomiconv.dylib */,
+				07B098C21B8494EC002AC4F0 /* libaxiszlib.dylib */,
+				07B098C01B8494DE002AC4F0 /* VideoDecodeAcceleration.framework */,
+				07B098BE1B84941B002AC4F0 /* DVDPlayback.framework */,
+				07B098BC1B849411002AC4F0 /* CoreVideo.framework */,
+				07B098BA1B8493FF002AC4F0 /* CoreGraphics.framework */,
+				07B098B81B8493C4002AC4F0 /* mac */,
 				07B0918A1B60905100B5BCA7 /* AudioToolbox.framework */,
 				07B091831B608F7300B5BCA7 /* AudioUnit.framework */,
 				07B0917F1B608DD200B5BCA7 /* AVFoundation.framework */,
@@ -872,6 +917,7 @@
 				07DD6F111B5F0CA2003A1CE1 /* audin_main.h in Headers */,
 				07DD6F931B5F0CA2003A1CE1 /* urbdrc_main.h in Headers */,
 				07DD6F4A1B5F0CA2003A1CE1 /* rdpdr_main.h in Headers */,
+				07B098B11B84934F002AC4F0 /* codec_aac.h in Headers */,
 				07DD6F7F1B5F0CA2003A1CE1 /* tsmf_decoder.h in Headers */,
 				07DD6F501B5F0CA2003A1CE1 /* rdpei_common.h in Headers */,
 				07DD6F331B5F0CA2003A1CE1 /* encomsp_main.h in Headers */,
@@ -894,7 +940,6 @@
 				07DD6F541B5F0CA2003A1CE1 /* rdpgfx_codec.h in Headers */,
 				07DD6F441B5F0CA2003A1CE1 /* devman.h in Headers */,
 				07DD6F1E1B5F0CA2003A1CE1 /* cliprdr_format.h in Headers */,
-				07DD6F291B5F0CA2003A1CE1 /* local_dirent.h in Headers */,
 				07DD6F421B5F0CA2003A1CE1 /* rail_common.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1019,8 +1064,6 @@
 				07DD6FA11B5F0CD3003A1CE1 /* cliprdr_main.c in Sources */,
 				07DD6FA31B5F0CD3003A1CE1 /* disp_main.c in Sources */,
 				07DD6FA41B5F0CD3003A1CE1 /* drdynvc_main.c in Sources */,
-				07DD6FA61B5F0CD3003A1CE1 /* drive_file.c in Sources */,
-				07DD6FA71B5F0CD3003A1CE1 /* drive_main.c in Sources */,
 				07DD6FA91B5F0CD3003A1CE1 /* echo_main.c in Sources */,
 				07DD6FAB1B5F0CD3003A1CE1 /* encomsp_main.c in Sources */,
 				07B0918F1B60916500B5BCA7 /* tables_ios.c in Sources */,
@@ -1079,15 +1122,14 @@
 				07DD6F891B5F0CA2003A1CE1 /* isoch_queue.c in Sources */,
 				07DD6F901B5F0CA2003A1CE1 /* searchman.c in Sources */,
 				07DD6F571B5F0CA2003A1CE1 /* rdpgfx_main.c in Sources */,
-				07DD6F2A1B5F0CA2003A1CE1 /* drive_file.c in Sources */,
 				07DD6F371B5F0CA2003A1CE1 /* printer_cups.c in Sources */,
-				07DD6F2C1B5F0CA2003A1CE1 /* drive_main.c in Sources */,
 				07DD6F1F1B5F0CA2003A1CE1 /* cliprdr_main.c in Sources */,
 				07DD6F321B5F0CA2003A1CE1 /* encomsp_main.c in Sources */,
 				07DD6F251B5F0CA2003A1CE1 /* drdynvc_main.c in Sources */,
 				07DD6F431B5F0CA2003A1CE1 /* devman.c in Sources */,
 				07DD6F711B5F0CA2003A1CE1 /* smartcard_pack.c in Sources */,
 				07DD6F701B5F0CA2003A1CE1 /* smartcard_operations.c in Sources */,
+				07B098B01B84934F002AC4F0 /* codec_aac.c in Sources */,
 				07DD6F5D1B5F0CA2003A1CE1 /* rdpsnd_mac.c in Sources */,
 				07DD6F2F1B5F0CA2003A1CE1 /* echo_main.c in Sources */,
 				07DD6F491B5F0CA2003A1CE1 /* rdpdr_main.c in Sources */,
@@ -1249,6 +1291,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/ca2/nodeapp/thirdparty/library,
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/all-mac-exvrklrokleuokawrbpzmvyzamwr/Build/Products/Debug",
+				);
 			};
 			name = Debug;
 		};
@@ -1256,6 +1303,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/ca2/nodeapp/thirdparty/library,
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/all-mac-exvrklrokleuokawrbpzmvyzamwr/Build/Products/Debug",
+				);
 			};
 			name = Release;
 		};

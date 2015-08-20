@@ -17,7 +17,7 @@
 #include "codec_aac.h"
 
 void o_debug_string(const char * psz);
-#ifdef ANDROID
+#if defined(ANDROID) || defined(__APPLE__)
 extern AVCodec ff_aac_decoder;
 #endif
 #include <assert.h>
@@ -98,7 +98,7 @@ int mf_aac_init(AAC_CONTEXT* h264,int rate,int channels,AUDIO_FORMAT * in)
    //printf("Decode audio file %s to %s\n",filename,outfilename);
 
    /* find the mpeg audio decoder */
-#ifdef ANDROID
+#if defined(ANDROID) || defined(__APPLE__)
    sys->codec = &ff_aac_decoder;
 #endif
    sys->codec = avcodec_find_decoder(AV_CODEC_ID_AAC);
@@ -208,7 +208,6 @@ error:
    return 0;
 }
 
-
 int audio_decode_example2(AAC_CONTEXT* h264,void ** pout,const void * inbuf,int sin)
 {
    int data_size = 0;
@@ -248,6 +247,7 @@ int audio_decode_example2(AAC_CONTEXT* h264,void ** pout,const void * inbuf,int 
       int dst_linesize = 0;
       //int ret = av_samples_alloc_array_and_samples(pout,&dst_linesize,sys->c->channels,
       // sys->decoded_frame->nb_samples * 2,AV_SAMPLE_FMT_S16,0);
+
       *pout = malloc(data_size * 2);
       //int b = ret == EAGAIN;
       if(*pout != NULL)
@@ -312,4 +312,20 @@ int audio_decode_example2(AAC_CONTEXT* h264,void ** pout,const void * inbuf,int 
    //}
 
    return olen;
+}
+
+
+int mf_aac_uninit(AAC_CONTEXT* h264)
+{
+
+   AAC_CONTEXT_MF* sys = h264->pSystemData;
+
+   avcodec_close(sys->c);
+   
+   avcodec_free_context(&sys->c);
+   
+   free(h264->pSystemData);
+   
+   free(h264);
+   
 }

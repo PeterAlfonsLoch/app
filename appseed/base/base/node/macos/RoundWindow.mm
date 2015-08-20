@@ -32,9 +32,11 @@
 	if(self == NULL)
       return NULL;
    
-	[self setOpaque:NO];
+//	[self setOpaque:NO];
+   
+   	[self setOpaque:YES];
 
-   [self setBackgroundColor:[NSColor clearColor]];
+//   [self setBackgroundColor:[NSColor clearColor]];
 		
 //	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mainWindowChanged:) name:NSWindowDidBecomeMainNotification object:self];
 		

@@ -7,33 +7,54 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4C3406C918D96EA600DFA14A /* arm_arch_common_macro.S in Sources */ = {isa = PBXBuildFile; fileRef = 4C3406B218D96EA600DFA14A /* arm_arch_common_macro.S */; };
-		4C3406CA18D96EA600DFA14A /* deblocking_neon.S in Sources */ = {isa = PBXBuildFile; fileRef = 4C3406B318D96EA600DFA14A /* deblocking_neon.S */; };
-		4C3406CB18D96EA600DFA14A /* expand_picture_neon.S in Sources */ = {isa = PBXBuildFile; fileRef = 4C3406B418D96EA600DFA14A /* expand_picture_neon.S */; };
-		4C3406CC18D96EA600DFA14A /* mc_neon.S in Sources */ = {isa = PBXBuildFile; fileRef = 4C3406B518D96EA600DFA14A /* mc_neon.S */; };
+		07B09A091B8497A9002AC4F0 /* mc_aarch64_neon.S in Sources */ = {isa = PBXBuildFile; fileRef = F5B8D82C190757290037849A /* mc_aarch64_neon.S */; };
+		07B09A0A1B8497A9002AC4F0 /* arm_arch_common_macro.S in Sources */ = {isa = PBXBuildFile; fileRef = 4C3406B218D96EA600DFA14A /* arm_arch_common_macro.S */; };
+		07B09A0B1B8497A9002AC4F0 /* arm_arch64_common_macro.S in Sources */ = {isa = PBXBuildFile; fileRef = F556A8221906673900E156A8 /* arm_arch64_common_macro.S */; };
+		07B09A0C1B8497A9002AC4F0 /* mc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BDD15EC1A79027600B6CA2E /* mc.cpp */; };
+		07B09A0D1B8497A9002AC4F0 /* deblocking_aarch64_neon.S in Sources */ = {isa = PBXBuildFile; fileRef = F5AC94FE193EB7D800F58154 /* deblocking_aarch64_neon.S */; };
+		07B09A0E1B8497A9002AC4F0 /* crt_util_safe_x.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C3406C518D96EA600DFA14A /* crt_util_safe_x.cpp */; };
+		07B09A0F1B8497A9002AC4F0 /* intra_pred_common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F791965819D3BE2200F60C6B /* intra_pred_common.cpp */; };
+		07B09A101B8497A9002AC4F0 /* memory_align.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BD896B91A7B839B00D32B7D /* memory_align.cpp */; };
+		07B09A111B8497A9002AC4F0 /* deblocking_common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C3406C618D96EA600DFA14A /* deblocking_common.cpp */; };
+		07B09A121B8497A9002AC4F0 /* common_tables.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BA8F2BF19603F5F00011CE4 /* common_tables.cpp */; };
+		07B09A131B8497A9002AC4F0 /* intra_pred_common_aarch64_neon.S in Sources */ = {isa = PBXBuildFile; fileRef = F791965319D3B89D00F60C6B /* intra_pred_common_aarch64_neon.S */; };
+		07B09A141B8497A9002AC4F0 /* WelsThreadLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C3406C818D96EA600DFA14A /* WelsThreadLib.cpp */; };
+		07B09A151B8497A9002AC4F0 /* mc_neon.S in Sources */ = {isa = PBXBuildFile; fileRef = 4C3406B518D96EA600DFA14A /* mc_neon.S */; };
+		07B09A161B8497A9002AC4F0 /* copy_mb_aarch64_neon.S in Sources */ = {isa = PBXBuildFile; fileRef = F5BB0BB7196BB5960072D50D /* copy_mb_aarch64_neon.S */; };
+		07B09A171B8497A9002AC4F0 /* expand_picture_neon.S in Sources */ = {isa = PBXBuildFile; fileRef = 4C3406B418D96EA600DFA14A /* expand_picture_neon.S */; };
+		07B09A181B8497A9002AC4F0 /* intra_pred_common_neon.S in Sources */ = {isa = PBXBuildFile; fileRef = F791965519D3B8A600F60C6B /* intra_pred_common_neon.S */; };
+		07B09A191B8497A9002AC4F0 /* copy_mb_neon.S in Sources */ = {isa = PBXBuildFile; fileRef = 4CC61F0818FF6B4B00E56EAB /* copy_mb_neon.S */; };
+		07B09A1A1B8497A9002AC4F0 /* expand_pic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53C1C9BB193F0FB000404D8F /* expand_pic.cpp */; };
+		07B09A1B1B8497A9002AC4F0 /* cpu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C3406C418D96EA600DFA14A /* cpu.cpp */; };
+		07B09A1C1B8497A9002AC4F0 /* expand_picture_aarch64_neon.S in Sources */ = {isa = PBXBuildFile; fileRef = F556A8231906673900E156A8 /* expand_picture_aarch64_neon.S */; };
+		07B09A1D1B8497A9002AC4F0 /* deblocking_neon.S in Sources */ = {isa = PBXBuildFile; fileRef = 4C3406B318D96EA600DFA14A /* deblocking_neon.S */; };
+		07B09A1E1B8497A9002AC4F0 /* copy_mb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0B204F818FD23BF005DA23F /* copy_mb.cpp */; };
+		07B09A1F1B8497A9002AC4F0 /* sad_common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAABAA1718E9354A00D4186F /* sad_common.cpp */; };
+		07B09A211B8497A9002AC4F0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CE443D818B722CD0017DF25 /* Foundation.framework */; };
 		4C3406CD18D96EA600DFA14A /* cpu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C3406C418D96EA600DFA14A /* cpu.cpp */; };
 		4C3406CE18D96EA600DFA14A /* crt_util_safe_x.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C3406C518D96EA600DFA14A /* crt_util_safe_x.cpp */; };
 		4C3406CF18D96EA600DFA14A /* deblocking_common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C3406C618D96EA600DFA14A /* deblocking_common.cpp */; };
 		4C3406D118D96EA600DFA14A /* WelsThreadLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C3406C818D96EA600DFA14A /* WelsThreadLib.cpp */; };
-		4CC61F0918FF6B4B00E56EAB /* copy_mb_neon.S in Sources */ = {isa = PBXBuildFile; fileRef = 4CC61F0818FF6B4B00E56EAB /* copy_mb_neon.S */; };
 		4CE443D918B722CD0017DF25 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CE443D818B722CD0017DF25 /* Foundation.framework */; };
 		53C1C9BC193F0FB000404D8F /* expand_pic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53C1C9BB193F0FB000404D8F /* expand_pic.cpp */; };
 		5BA8F2C019603F5F00011CE4 /* common_tables.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BA8F2BF19603F5F00011CE4 /* common_tables.cpp */; };
 		5BD896BA1A7B839B00D32B7D /* memory_align.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BD896B91A7B839B00D32B7D /* memory_align.cpp */; };
 		5BDD15ED1A79027600B6CA2E /* mc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BDD15EC1A79027600B6CA2E /* mc.cpp */; };
 		F0B204F918FD23BF005DA23F /* copy_mb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0B204F818FD23BF005DA23F /* copy_mb.cpp */; };
-		F556A8241906673900E156A8 /* arm_arch64_common_macro.S in Sources */ = {isa = PBXBuildFile; fileRef = F556A8221906673900E156A8 /* arm_arch64_common_macro.S */; };
-		F556A8251906673900E156A8 /* expand_picture_aarch64_neon.S in Sources */ = {isa = PBXBuildFile; fileRef = F556A8231906673900E156A8 /* expand_picture_aarch64_neon.S */; };
-		F5AC94FF193EB7D800F58154 /* deblocking_aarch64_neon.S in Sources */ = {isa = PBXBuildFile; fileRef = F5AC94FE193EB7D800F58154 /* deblocking_aarch64_neon.S */; };
-		F5B8D82D190757290037849A /* mc_aarch64_neon.S in Sources */ = {isa = PBXBuildFile; fileRef = F5B8D82C190757290037849A /* mc_aarch64_neon.S */; };
-		F5BB0BB8196BB5960072D50D /* copy_mb_aarch64_neon.S in Sources */ = {isa = PBXBuildFile; fileRef = F5BB0BB7196BB5960072D50D /* copy_mb_aarch64_neon.S */; };
-		F791965419D3B89D00F60C6B /* intra_pred_common_aarch64_neon.S in Sources */ = {isa = PBXBuildFile; fileRef = F791965319D3B89D00F60C6B /* intra_pred_common_aarch64_neon.S */; };
-		F791965619D3B8A600F60C6B /* intra_pred_common_neon.S in Sources */ = {isa = PBXBuildFile; fileRef = F791965519D3B8A600F60C6B /* intra_pred_common_neon.S */; };
 		F791965919D3BE2200F60C6B /* intra_pred_common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F791965819D3BE2200F60C6B /* intra_pred_common.cpp */; };
 		FAABAA1818E9354A00D4186F /* sad_common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAABAA1718E9354A00D4186F /* sad_common.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		07B09A221B8497A9002AC4F0 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4CE443D318B722CD0017DF25 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -46,6 +67,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		07B09A261B8497A9002AC4F0 /* libwelscommon.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libwelscommon.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C3406B218D96EA600DFA14A /* arm_arch_common_macro.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = arm_arch_common_macro.S; sourceTree = "<group>"; };
 		4C3406B318D96EA600DFA14A /* deblocking_neon.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = deblocking_neon.S; sourceTree = "<group>"; };
 		4C3406B418D96EA600DFA14A /* expand_picture_neon.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = expand_picture_neon.S; sourceTree = "<group>"; };
@@ -64,7 +86,7 @@
 		4C3406C618D96EA600DFA14A /* deblocking_common.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = deblocking_common.cpp; sourceTree = "<group>"; };
 		4C3406C818D96EA600DFA14A /* WelsThreadLib.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WelsThreadLib.cpp; sourceTree = "<group>"; };
 		4CC61F0818FF6B4B00E56EAB /* copy_mb_neon.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = copy_mb_neon.S; sourceTree = "<group>"; };
-		4CE443D518B722CD0017DF25 /* libcommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libcommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		4CE443D518B722CD0017DF25 /* libwelscommon.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libwelscommon.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CE443D818B722CD0017DF25 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4CE443E918B722CD0017DF25 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		53C1C9BA193F0F9E00404D8F /* expand_pic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = expand_pic.h; sourceTree = "<group>"; };
@@ -92,6 +114,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		07B09A201B8497A9002AC4F0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07B09A211B8497A9002AC4F0 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4CE443D218B722CD0017DF25 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -170,7 +200,8 @@
 		4CE443D618B722CD0017DF25 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4CE443D518B722CD0017DF25 /* libcommon.a */,
+				4CE443D518B722CD0017DF25 /* libwelscommon.dylib */,
+				07B09A261B8497A9002AC4F0 /* libwelscommon.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -212,9 +243,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4CE443D418B722CD0017DF25 /* common */ = {
+		07B09A071B8497A9002AC4F0 /* ios_welscommon */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4CE443F818B722CD0017DF25 /* Build configuration list for PBXNativeTarget "common" */;
+			buildConfigurationList = 07B09A231B8497A9002AC4F0 /* Build configuration list for PBXNativeTarget "ios_welscommon" */;
+			buildPhases = (
+				07B09A081B8497A9002AC4F0 /* Sources */,
+				07B09A201B8497A9002AC4F0 /* Frameworks */,
+				07B09A221B8497A9002AC4F0 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ios_welscommon;
+			productName = common;
+			productReference = 07B09A261B8497A9002AC4F0 /* libwelscommon.dylib */;
+			productType = "com.apple.product-type.library.static";
+		};
+		4CE443D418B722CD0017DF25 /* welscommon */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4CE443F818B722CD0017DF25 /* Build configuration list for PBXNativeTarget "welscommon" */;
 			buildPhases = (
 				4CE443D118B722CD0017DF25 /* Sources */,
 				4CE443D218B722CD0017DF25 /* Frameworks */,
@@ -224,9 +272,9 @@
 			);
 			dependencies = (
 			);
-			name = common;
+			name = welscommon;
 			productName = common;
-			productReference = 4CE443D518B722CD0017DF25 /* libcommon.a */;
+			productReference = 4CE443D518B722CD0017DF25 /* libwelscommon.dylib */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -238,7 +286,7 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = video;
 			};
-			buildConfigurationList = 4CE443D018B722CC0017DF25 /* Build configuration list for PBXProject "common" */;
+			buildConfigurationList = 4CE443D018B722CC0017DF25 /* Build configuration list for PBXProject "welscommon" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -250,37 +298,56 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4CE443D418B722CD0017DF25 /* common */,
+				4CE443D418B722CD0017DF25 /* welscommon */,
+				07B09A071B8497A9002AC4F0 /* ios_welscommon */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		07B09A081B8497A9002AC4F0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07B09A091B8497A9002AC4F0 /* mc_aarch64_neon.S in Sources */,
+				07B09A0A1B8497A9002AC4F0 /* arm_arch_common_macro.S in Sources */,
+				07B09A0B1B8497A9002AC4F0 /* arm_arch64_common_macro.S in Sources */,
+				07B09A0C1B8497A9002AC4F0 /* mc.cpp in Sources */,
+				07B09A0D1B8497A9002AC4F0 /* deblocking_aarch64_neon.S in Sources */,
+				07B09A0E1B8497A9002AC4F0 /* crt_util_safe_x.cpp in Sources */,
+				07B09A0F1B8497A9002AC4F0 /* intra_pred_common.cpp in Sources */,
+				07B09A101B8497A9002AC4F0 /* memory_align.cpp in Sources */,
+				07B09A111B8497A9002AC4F0 /* deblocking_common.cpp in Sources */,
+				07B09A121B8497A9002AC4F0 /* common_tables.cpp in Sources */,
+				07B09A131B8497A9002AC4F0 /* intra_pred_common_aarch64_neon.S in Sources */,
+				07B09A141B8497A9002AC4F0 /* WelsThreadLib.cpp in Sources */,
+				07B09A151B8497A9002AC4F0 /* mc_neon.S in Sources */,
+				07B09A161B8497A9002AC4F0 /* copy_mb_aarch64_neon.S in Sources */,
+				07B09A171B8497A9002AC4F0 /* expand_picture_neon.S in Sources */,
+				07B09A181B8497A9002AC4F0 /* intra_pred_common_neon.S in Sources */,
+				07B09A191B8497A9002AC4F0 /* copy_mb_neon.S in Sources */,
+				07B09A1A1B8497A9002AC4F0 /* expand_pic.cpp in Sources */,
+				07B09A1B1B8497A9002AC4F0 /* cpu.cpp in Sources */,
+				07B09A1C1B8497A9002AC4F0 /* expand_picture_aarch64_neon.S in Sources */,
+				07B09A1D1B8497A9002AC4F0 /* deblocking_neon.S in Sources */,
+				07B09A1E1B8497A9002AC4F0 /* copy_mb.cpp in Sources */,
+				07B09A1F1B8497A9002AC4F0 /* sad_common.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4CE443D118B722CD0017DF25 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F5B8D82D190757290037849A /* mc_aarch64_neon.S in Sources */,
-				4C3406C918D96EA600DFA14A /* arm_arch_common_macro.S in Sources */,
-				F556A8241906673900E156A8 /* arm_arch64_common_macro.S in Sources */,
 				5BDD15ED1A79027600B6CA2E /* mc.cpp in Sources */,
-				F5AC94FF193EB7D800F58154 /* deblocking_aarch64_neon.S in Sources */,
 				4C3406CE18D96EA600DFA14A /* crt_util_safe_x.cpp in Sources */,
 				F791965919D3BE2200F60C6B /* intra_pred_common.cpp in Sources */,
 				5BD896BA1A7B839B00D32B7D /* memory_align.cpp in Sources */,
 				4C3406CF18D96EA600DFA14A /* deblocking_common.cpp in Sources */,
 				5BA8F2C019603F5F00011CE4 /* common_tables.cpp in Sources */,
-				F791965419D3B89D00F60C6B /* intra_pred_common_aarch64_neon.S in Sources */,
 				4C3406D118D96EA600DFA14A /* WelsThreadLib.cpp in Sources */,
-				4C3406CC18D96EA600DFA14A /* mc_neon.S in Sources */,
-				F5BB0BB8196BB5960072D50D /* copy_mb_aarch64_neon.S in Sources */,
-				4C3406CB18D96EA600DFA14A /* expand_picture_neon.S in Sources */,
-				F791965619D3B8A600F60C6B /* intra_pred_common_neon.S in Sources */,
-				4CC61F0918FF6B4B00E56EAB /* copy_mb_neon.S in Sources */,
 				53C1C9BC193F0FB000404D8F /* expand_pic.cpp in Sources */,
 				4C3406CD18D96EA600DFA14A /* cpu.cpp in Sources */,
-				F556A8251906673900E156A8 /* expand_picture_aarch64_neon.S in Sources */,
-				4C3406CA18D96EA600DFA14A /* deblocking_neon.S in Sources */,
 				F0B204F918FD23BF005DA23F /* copy_mb.cpp in Sources */,
 				FAABAA1818E9354A00D4186F /* sad_common.cpp in Sources */,
 			);
@@ -289,6 +356,72 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		07B09A241B8497A9002AC4F0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DSTROOT = /tmp/common.dst;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = "";
+				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphoneos*][arch=arm64]" = (
+					APPLE_IOS,
+					HAVE_NEON_AARCH64,
+				);
+				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphoneos*][arch=armv7]" = (
+					APPLE_IOS,
+					HAVE_NEON,
+				);
+				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphoneos*][arch=armv7s]" = (
+					APPLE_IOS,
+					HAVE_NEON,
+				);
+				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphonesimulator*]" = APPLE_IOS;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/../../../api/svc",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				SDKROOT = iphoneos8.4;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		07B09A251B8497A9002AC4F0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DSTROOT = /tmp/common.dst;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphoneos*][arch=arm64]" = (
+					APPLE_IOS,
+					HAVE_NEON_AARCH64,
+				);
+				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphoneos*][arch=armv7]" = (
+					APPLE_IOS,
+					HAVE_NEON,
+				);
+				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphoneos*][arch=armv7s]" = (
+					APPLE_IOS,
+					HAVE_NEON,
+				);
+				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphonesimulator*]" = APPLE_IOS;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/../../../api/svc",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				SDKROOT = iphoneos8.4;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		4CE443F618B722CD0017DF25 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -306,6 +439,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				EXECUTABLE_EXTENSION = dylib;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -320,9 +454,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INSTALL_PATH = "@executable_path";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				MACH_O_TYPE = mh_dylib;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
+				PRODUCT_NAME = welscommon;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
@@ -344,6 +482,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
+				EXECUTABLE_EXTENSION = dylib;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -351,8 +490,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INSTALL_PATH = "@executable_path";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				SDKROOT = iphoneos;
+				MACH_O_TYPE = mh_dylib;
+				PRODUCT_NAME = welscommon;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -385,8 +528,8 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../../../api/svc",
 				);
+				INSTALL_PATH = "@executable_path";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -417,8 +560,8 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../../../api/svc",
 				);
+				INSTALL_PATH = "@executable_path";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -426,7 +569,16 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4CE443D018B722CC0017DF25 /* Build configuration list for PBXProject "common" */ = {
+		07B09A231B8497A9002AC4F0 /* Build configuration list for PBXNativeTarget "ios_welscommon" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				07B09A241B8497A9002AC4F0 /* Debug */,
+				07B09A251B8497A9002AC4F0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4CE443D018B722CC0017DF25 /* Build configuration list for PBXProject "welscommon" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4CE443F618B722CD0017DF25 /* Debug */,
@@ -435,7 +587,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4CE443F818B722CD0017DF25 /* Build configuration list for PBXNativeTarget "common" */ = {
+		4CE443F818B722CD0017DF25 /* Build configuration list for PBXNativeTarget "welscommon" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4CE443F918B722CD0017DF25 /* Debug */,

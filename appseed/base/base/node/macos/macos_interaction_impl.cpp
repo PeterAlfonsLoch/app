@@ -5765,16 +5765,38 @@ namespace macos
 //      g->FillSolidRect(rectClient, ARGB(128, 0, 255, 0));
 
    }
-
-
+   
+   
    bool interaction_impl::round_window_key_down(unsigned int uiKeyCode)
+   {
+      
+      sp(::message::base) spbase;
+      
+      ::message::key * pkey = canew(::message::key(get_app()));
+      
+      pkey->m_uiMessage = WM_KEYDOWN;
+
+      pkey->m_nChar = uiKeyCode;
+      
+      
+      spbase = pkey;
+      
+      send(spbase);
+      
+      return spbase->m_bRet;
+      
+   }
+   
+
+   bool interaction_impl::round_window_key_up(unsigned int uiKeyCode)
    {
 
       sp(::message::base) spbase;
 
       ::message::key * pkey = canew(::message::key(get_app()));
 
-      pkey->m_uiMessage = WM_KEYDOWN;
+      pkey->m_uiMessage = WM_KEYUP;
+  
       pkey->m_nChar = uiKeyCode;
 
       spbase = pkey;
@@ -5785,16 +5807,35 @@ namespace macos
 
    }
 
+   bool interaction_impl::round_window_key_down(unsigned int vk, unsigned int scan)
+   {
+      
+      sp(::message::base) spbase;
+      
+      ::message::key * pkey = canew(::message::key(get_app()));
+      
+      LRESULT l = 0;
+      
+      pkey->set(m_pui, WM_KEYDOWN, vk, scan << 16, l);
+      
+      spbase = pkey;
+      
+      send(spbase);
+      
+      return spbase->m_bRet;
+      
+   }
 
-   bool interaction_impl::round_window_key_up(unsigned int uiKeyCode)
+   bool interaction_impl::round_window_key_up(unsigned int vk, unsigned int scan)
    {
 
       sp(::message::base) spbase;
 
       ::message::key * pkey = canew(::message::key(get_app()));
 
-      pkey->m_uiMessage = WM_KEYUP;
-      pkey->m_nChar = uiKeyCode;
+      LRESULT l = 0;
+      
+      pkey->set(m_pui, WM_KEYUP, vk, scan << 16, l);
 
       spbase = pkey;
 

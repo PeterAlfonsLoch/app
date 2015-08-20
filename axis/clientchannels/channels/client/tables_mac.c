@@ -35,7 +35,7 @@ extern BOOL VCAPITYPE rdpdr_VirtualChannelEntry(PCHANNEL_ENTRY_POINTS);
 extern BOOL VCAPITYPE rdpsnd_VirtualChannelEntry(PCHANNEL_ENTRY_POINTS);
 extern BOOL VCAPITYPE remdesk_VirtualChannelEntry(PCHANNEL_ENTRY_POINTS);
 
-extern void drive_DeviceServiceEntry();
+//extern void drive_DeviceServiceEntry();
 extern void printer_DeviceServiceEntry();
 extern void smartcard_DeviceServiceEntry();
 
@@ -65,7 +65,7 @@ const STATIC_ENTRY CLIENT_VirtualChannelEntry_TABLE[] =
 const STATIC_ENTRY CLIENT_DeviceServiceEntry_TABLE[] =
 {
 
-	{ "drive", drive_DeviceServiceEntry },
+//	{ "drive", drive_DeviceServiceEntry },
 	{ "printer", printer_DeviceServiceEntry },
 	{ "smartcard", smartcard_DeviceServiceEntry },
 	{ NULL, NULL }
@@ -154,7 +154,7 @@ const STATIC_ADDIN_TABLE CLIENT_STATIC_ADDIN_TABLE[] =
 	{ "cliprdr", cliprdr_VirtualChannelEntry, CLIENT_CLIPRDR_SUBSYSTEM_TABLE },
 	{ "disp", disp_DVCPluginEntry, CLIENT_DISP_SUBSYSTEM_TABLE },
 	{ "drdynvc", drdynvc_VirtualChannelEntry, CLIENT_DRDYNVC_SUBSYSTEM_TABLE },
-	{ "drive", drive_DeviceServiceEntry, CLIENT_DRIVE_SUBSYSTEM_TABLE },
+//	{ "drive", drive_DeviceServiceEntry, CLIENT_DRIVE_SUBSYSTEM_TABLE },
 	{ "echo", echo_DVCPluginEntry, CLIENT_ECHO_SUBSYSTEM_TABLE },
 	{ "encomsp", encomsp_VirtualChannelEntry, CLIENT_ENCOMSP_SUBSYSTEM_TABLE },
 	{ "printer", printer_DeviceServiceEntry, CLIENT_PRINTER_SUBSYSTEM_TABLE },

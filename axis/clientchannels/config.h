@@ -43,12 +43,15 @@
 #define WITH_FFMPEG
 #define WITH_GSTREAMER_1_0
 #define WITH_GSTREAMER_0_10
-#define WITH_WINMM
+#ifdef MACOS
 #define WITH_MACAUDIO
+#else
+#define WITH_WINMM
 #define WITH_ALSA
 #define WITH_PULSE
 #define WITH_IOSAUDIO
 #define WITH_OPENSLES
+#endif
 //#define WITH_GSM
 
 /* Plugins */

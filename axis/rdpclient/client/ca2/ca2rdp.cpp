@@ -53,7 +53,7 @@ void ca2rdp_context_free(freerdp* instance, rdpContext* context)
 
 }
 
-int ca2rdp_begin_paint(rdpContext* context)
+BOOL ca2rdp_begin_paint(rdpContext* context)
 {
 	rdpGdi* gdi = context->gdi;
 #ifdef WINDOWSEX
@@ -62,7 +62,7 @@ int ca2rdp_begin_paint(rdpContext* context)
 	return 1;
 }
 
-int ca2rdp_end_paint(rdpContext* context)
+BOOL ca2rdp_end_paint(rdpContext* context)
 {
 	rdpGdi* gdi;
 	ca2rdpInfo* ca2rdpi;

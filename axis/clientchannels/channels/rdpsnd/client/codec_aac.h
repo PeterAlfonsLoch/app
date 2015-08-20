@@ -59,3 +59,4 @@ typedef struct _AAC_CONTEXT_MF AAC_CONTEXT_MF;
 
 int mf_aac_init(AAC_CONTEXT* h264,int rate, int channels,AUDIO_FORMAT * in);
 int audio_decode_example2(AAC_CONTEXT* h264,void ** pout,const void * inbuf,int sin);
+int mf_aac_uninit(AAC_CONTEXT* h264);

@@ -31,6 +31,8 @@ bool m_bDirty;
    virtual void round_window_mouse_up(int iButton, double x, double y) = 0;
    virtual void round_window_mouse_moved(double x, double y) = 0;
    virtual void round_window_mouse_dragged(double x, double y) = 0;
+   virtual bool round_window_key_down(unsigned int vk, unsigned int scan) = 0;
+   virtual bool round_window_key_up(unsigned int vk, unsigned int scan) = 0;
    virtual bool round_window_key_down(unsigned int uiKeyCode) = 0;
    virtual bool round_window_key_up(unsigned int uiKeyCode) = 0;
    

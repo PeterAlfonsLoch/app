@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		070652761B55D8D1006A764C /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 079F60D71B54B4370055BC0E /* libaura.dylib */; };
+		070FC0EF1B85650800D12AD0 /* Keyboard.mm in Sources */ = {isa = PBXBuildFile; fileRef = 070FC0EE1B85650800D12AD0 /* Keyboard.mm */; settings = {COMPILER_FLAGS = "-DNO_PREFIX_HEADER"; }; };
+		070FC0F31B85657800D12AD0 /* Keyboard.h in Headers */ = {isa = PBXBuildFile; fileRef = 070FC0F21B85657800D12AD0 /* Keyboard.h */; };
+		070FC0FF1B856D1100D12AD0 /* libaxiswinpr.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 070FC0FA1B856CE000D12AD0 /* libaxiswinpr.dylib */; };
+		070FC1031B856DBE00D12AD0 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 070FC1021B856DBE00D12AD0 /* IOKit.framework */; };
 		07703C571B6FE324009026EA /* database_user_interaction.h in Headers */ = {isa = PBXBuildFile; fileRef = 07703C4B1B6FE324009026EA /* database_user_interaction.h */; };
 		07703C5E1B6FE324009026EA /* simpledb_file_system_size.h in Headers */ = {isa = PBXBuildFile; fileRef = 07703C541B6FE324009026EA /* simpledb_file_system_size.h */; };
 		07703C631B6FE344009026EA /* _database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07703C621B6FE344009026EA /* _database.cpp */; };
@@ -167,6 +171,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		070FC0F91B856CE000D12AD0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 070FC0F41B856CDF00D12AD0 /* axiswinpr.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A1B358C16A2D7A500875A94;
+			remoteInfo = axiswinpr;
+		};
+		070FC0FB1B856CE000D12AD0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 070FC0F41B856CDF00D12AD0 /* axiswinpr.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07DD5DF91B5F0A1E003A1CE1;
+			remoteInfo = ios_axiswinpr;
+		};
+		070FC0FD1B856D0300D12AD0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 070FC0F41B856CDF00D12AD0 /* axiswinpr.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A1B358B16A2D7A500875A94;
+			remoteInfo = axiswinpr;
+		};
 		07108A2B1B4C84B900A28F80 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A5E9DF919B7623B00949252 /* aura.xcodeproj */;
@@ -343,6 +368,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		070FC0EE1B85650800D12AD0 /* Keyboard.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Keyboard.mm; sourceTree = "<group>"; };
+		070FC0F21B85657800D12AD0 /* Keyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Keyboard.h; sourceTree = "<group>"; };
+		070FC0F41B856CDF00D12AD0 /* axiswinpr.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axiswinpr.xcodeproj; path = ../../axis/winpr/axiswinpr.xcodeproj; sourceTree = "<group>"; };
+		070FC1001B856D5A00D12AD0 /* InputMethodKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InputMethodKit.framework; path = System/Library/Frameworks/InputMethodKit.framework; sourceTree = SDKROOT; };
+		070FC1021B856DBE00D12AD0 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		073EDDE1164E968100818801 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		073EDDE4164E96DA00818801 /* SecurityFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityFoundation.framework; path = System/Library/Frameworks/SecurityFoundation.framework; sourceTree = SDKROOT; };
 		07703C4B1B6FE324009026EA /* database_user_interaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = database_user_interaction.h; sourceTree = "<group>"; };
@@ -538,6 +568,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				070FC1031B856DBE00D12AD0 /* IOKit.framework in Frameworks */,
+				070FC0FF1B856D1100D12AD0 /* libaxiswinpr.dylib in Frameworks */,
 				9A98A6081771D67E000AE16E /* AppKit.framework in Frameworks */,
 				9A98A6091771D67E000AE16E /* Foundation.framework in Frameworks */,
 				9A98A60A1771D67E000AE16E /* Carbon.framework in Frameworks */,
@@ -579,6 +611,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		070FC0F51B856CDF00D12AD0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				070FC0FA1B856CE000D12AD0 /* libaxiswinpr.dylib */,
+				070FC0FC1B856CE000D12AD0 /* libaxiswinpr.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		07703C491B6FE324009026EA /* database */ = {
 			isa = PBXGroup;
 			children = (
@@ -662,6 +703,8 @@
 		07A36D9D1B25D18E00E4F888 /* macos */ = {
 			isa = PBXGroup;
 			children = (
+				070FC0F21B85657800D12AD0 /* Keyboard.h */,
+				070FC0EE1B85650800D12AD0 /* Keyboard.mm */,
 				07D966E01B4C55BD004A3D2A /* round_window.mm */,
 				07D966E11B4C55BD004A3D2A /* RoundWindow.mm */,
 				07D966E21B4C55BD004A3D2A /* RoundWindowApp.mm */,
@@ -940,6 +983,8 @@
 		9AE24D351904CEFE001AEFFB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				070FC1021B856DBE00D12AD0 /* IOKit.framework */,
+				070FC1001B856D5A00D12AD0 /* InputMethodKit.framework */,
 				077A013B1B4D53B4001C85FF /* CoreGraphics.framework */,
 				077A01391B4D53AC001C85FF /* CoreText.framework */,
 				077A01371B4D539E001C85FF /* UIKit.framework */,
@@ -996,6 +1041,7 @@
 		CEA754B914411F2B007E04DE = {
 			isa = PBXGroup;
 			children = (
+				070FC0F41B856CDF00D12AD0 /* axiswinpr.xcodeproj */,
 				9A5E9DF919B7623B00949252 /* aura.xcodeproj */,
 				9AEEBD9819C5816D00866C9E /* aurasqlite.xcodeproj */,
 				07A3711C1B25D49F00E4F888 /* axis.xcodeproj */,
@@ -1106,6 +1152,7 @@
 				07A36ED41B25D18F00E4F888 /* base_session.h in Headers */,
 				07A36F681B25D18F00E4F888 /* macos.h in Headers */,
 				07A36EF71B25D18F00E4F888 /* ansios.h in Headers */,
+				070FC0F31B85657800D12AD0 /* Keyboard.h in Headers */,
 				07A36F821B25D18F00E4F888 /* RoundWindow.h in Headers */,
 				07D968421B4C63E4004A3D2A /* user_impact_system.h in Headers */,
 				07A36FBB1B25D18F00E4F888 /* ansios.h in Headers */,
@@ -1153,6 +1200,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				070FC0FE1B856D0300D12AD0 /* PBXTargetDependency */,
 				9AEEAE0319C4FC8C00866C9E /* PBXTargetDependency */,
 				9AEEBDB919C5965000866C9E /* PBXTargetDependency */,
 				9AEEAE0019C4FC2D00866C9E /* PBXTargetDependency */,
@@ -1246,6 +1294,10 @@
 					ProjectRef = 9AEEADD719C4FB3400866C9E /* axisbzip2.xcodeproj */;
 				},
 				{
+					ProductGroup = 070FC0F51B856CDF00D12AD0 /* Products */;
+					ProjectRef = 070FC0F41B856CDF00D12AD0 /* axiswinpr.xcodeproj */;
+				},
+				{
 					ProductGroup = 9AEEBD9F19C581CA00866C9E /* Products */;
 					ProjectRef = 9AEEBD9E19C581CA00866C9E /* axiszlib.xcodeproj */;
 				},
@@ -1260,6 +1312,20 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		070FC0FA1B856CE000D12AD0 /* libaxiswinpr.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libaxiswinpr.dylib;
+			remoteRef = 070FC0F91B856CE000D12AD0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		070FC0FC1B856CE000D12AD0 /* libaxiswinpr.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libaxiswinpr.dylib;
+			remoteRef = 070FC0FB1B856CE000D12AD0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		07108DDF1B4C9A4600A28F80 /* libaurasqlite.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
@@ -1365,6 +1431,7 @@
 			files = (
 				077C2A1D190F144000A1F6B0 /* framework.cpp in Sources */,
 				07D966E41B4C55BD004A3D2A /* round_window.mm in Sources */,
+				070FC0EF1B85650800D12AD0 /* Keyboard.mm in Sources */,
 				07703C631B6FE344009026EA /* _database.cpp in Sources */,
 				07D966E61B4C55BD004A3D2A /* RoundWindowApp.mm in Sources */,
 				07EDC5401B4F1CB700AF8928 /* graphics_window_graphics.cpp in Sources */,
@@ -1408,6 +1475,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		070FC0FE1B856D0300D12AD0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = axiswinpr;
+			targetProxy = 070FC0FD1B856D0300D12AD0 /* PBXContainerItemProxy */;
+		};
 		07108A2C1B4C84B900A28F80 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = aura_ios;

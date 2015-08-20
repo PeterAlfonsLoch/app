@@ -7,6 +7,34 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07B098391B8491EC002AC4F0 /* parse_mb_syn_cabac.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A3E814319D7A40600C19C1F /* parse_mb_syn_cabac.cpp */; };
+		07B0983A1B8491EC002AC4F0 /* pic_queue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CE4467818BC5EAA0017DF25 /* pic_queue.cpp */; };
+		07B0983B1B8491EC002AC4F0 /* welsDecoderExt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CE4468518BC5EAB0017DF25 /* welsDecoderExt.cpp */; };
+		07B0983C1B8491EC002AC4F0 /* fmo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CE4467018BC5EAA0017DF25 /* fmo.cpp */; };
+		07B0983D1B8491EC002AC4F0 /* decoder_data_tables.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CE4466E18BC5EAA0017DF25 /* decoder_data_tables.cpp */; };
+		07B0983E1B8491EC002AC4F0 /* manage_dec_ref.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CE4467218BC5EAA0017DF25 /* manage_dec_ref.cpp */; };
+		07B0983F1B8491EC002AC4F0 /* au_parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CE4466718BC5EAA0017DF25 /* au_parser.cpp */; };
+		07B098401B8491EC002AC4F0 /* mv_pred.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CE4467618BC5EAA0017DF25 /* mv_pred.cpp */; };
+		07B098411B8491EC002AC4F0 /* cabac_decoder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A3E814119D79AE900C19C1F /* cabac_decoder.cpp */; };
+		07B098421B8491EC002AC4F0 /* block_add_neon.S in Sources */ = {isa = PBXBuildFile; fileRef = 4CE447A718BC6BE90017DF25 /* block_add_neon.S */; };
+		07B098431B8491EC002AC4F0 /* block_add_aarch64_neon.S in Sources */ = {isa = PBXBuildFile; fileRef = 6C749B69197CC6E600A111F9 /* block_add_aarch64_neon.S */; };
+		07B098441B8491EC002AC4F0 /* get_intra_predictor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CE4467118BC5EAA0017DF25 /* get_intra_predictor.cpp */; };
+		07B098451B8491EC002AC4F0 /* welsCodecTrace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AED66551946A1DE009A3567 /* welsCodecTrace.cpp */; };
+		07B098461B8491EC002AC4F0 /* error_concealment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0B204FB18FD23D8005DA23F /* error_concealment.cpp */; };
+		07B098471B8491EC002AC4F0 /* intra_pred_aarch64_neon.S in Sources */ = {isa = PBXBuildFile; fileRef = 4CBC1B80194AC4E100214D9E /* intra_pred_aarch64_neon.S */; };
+		07B098481B8491EC002AC4F0 /* decoder_core.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CE4466D18BC5EAA0017DF25 /* decoder_core.cpp */; };
+		07B098491B8491EC002AC4F0 /* intra_pred_neon.S in Sources */ = {isa = PBXBuildFile; fileRef = 4CE447A918BC6BE90017DF25 /* intra_pred_neon.S */; };
+		07B0984A1B8491EC002AC4F0 /* rec_mb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CE4467918BC5EAA0017DF25 /* rec_mb.cpp */; };
+		07B0984B1B8491EC002AC4F0 /* bit_stream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CE4466818BC5EAA0017DF25 /* bit_stream.cpp */; };
+		07B0984C1B8491EC002AC4F0 /* decode_mb_aux.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CE4466A18BC5EAA0017DF25 /* decode_mb_aux.cpp */; };
+		07B0984D1B8491EC002AC4F0 /* decode_slice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CE4466B18BC5EAA0017DF25 /* decode_slice.cpp */; };
+		07B0984E1B8491EC002AC4F0 /* decoder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CE4466C18BC5EAA0017DF25 /* decoder.cpp */; };
+		07B0984F1B8491EC002AC4F0 /* utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AED66581946A203009A3567 /* utils.cpp */; };
+		07B098501B8491EC002AC4F0 /* memmgr_nal_unit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CE4467518BC5EAA0017DF25 /* memmgr_nal_unit.cpp */; };
+		07B098511B8491EC002AC4F0 /* deblocking.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CE4466918BC5EAA0017DF25 /* deblocking.cpp */; };
+		07B098521B8491EC002AC4F0 /* parse_mb_syn_cavlc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CE4467718BC5EAA0017DF25 /* parse_mb_syn_cavlc.cpp */; };
+		07B098541B8491EC002AC4F0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CE4427C18B6FC360017DF25 /* Foundation.framework */; };
+		07BB9F541B84A180007ADA8F /* libwelscommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BB9F4F1B84A16E007ADA8F /* libwelscommon.a */; };
 		4CBC1B81194AC4E100214D9E /* intra_pred_aarch64_neon.S in Sources */ = {isa = PBXBuildFile; fileRef = 4CBC1B80194AC4E100214D9E /* intra_pred_aarch64_neon.S */; };
 		4CE4427D18B6FC360017DF25 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CE4427C18B6FC360017DF25 /* Foundation.framework */; };
 		4CE4468A18BC5EAB0017DF25 /* au_parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CE4466718BC5EAA0017DF25 /* au_parser.cpp */; };
@@ -36,7 +64,40 @@
 		F0B204FC18FD23D8005DA23F /* error_concealment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0B204FB18FD23D8005DA23F /* error_concealment.cpp */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		07BB9F4E1B84A16E007ADA8F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07BB9F491B84A16E007ADA8F /* welscommon.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4CE443D518B722CD0017DF25;
+			remoteInfo = welscommon;
+		};
+		07BB9F501B84A16E007ADA8F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07BB9F491B84A16E007ADA8F /* welscommon.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07B09A261B8497A9002AC4F0;
+			remoteInfo = ios_welscommon;
+		};
+		07BB9F521B84A176007ADA8F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07BB9F491B84A16E007ADA8F /* welscommon.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 4CE443D418B722CD0017DF25;
+			remoteInfo = welscommon;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
+		07B098551B8491EC002AC4F0 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4CE4427718B6FC360017DF25 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -50,8 +111,10 @@
 
 /* Begin PBXFileReference section */
 		04FE0680196FD8BE0004D7CE /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = version.h; path = ../../../common/inc/version.h; sourceTree = "<group>"; };
+		07B098591B8491EC002AC4F0 /* libwelsdec.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libwelsdec.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		07BB9F491B84A16E007ADA8F /* welscommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = welscommon.xcodeproj; path = /ca2/app/axis/openh264/codec/build/iOS/common/welscommon.xcodeproj; sourceTree = "<absolute>"; };
 		4CBC1B80194AC4E100214D9E /* intra_pred_aarch64_neon.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; name = intra_pred_aarch64_neon.S; path = arm64/intra_pred_aarch64_neon.S; sourceTree = "<group>"; };
-		4CE4427918B6FC360017DF25 /* libwelsdec.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libwelsdec.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		4CE4427918B6FC360017DF25 /* libwelsdec.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libwelsdec.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CE4427C18B6FC360017DF25 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4CE4428D18B6FC360017DF25 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		4CE4464618BC5EAA0017DF25 /* au_parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = au_parser.h; sourceTree = "<group>"; };
@@ -117,10 +180,19 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		07B098531B8491EC002AC4F0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07B098541B8491EC002AC4F0 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4CE4427618B6FC360017DF25 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07BB9F541B84A180007ADA8F /* libwelscommon.a in Frameworks */,
 				4CE4427D18B6FC360017DF25 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -128,6 +200,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		07BB9F4A1B84A16E007ADA8F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				07BB9F4F1B84A16E007ADA8F /* libwelscommon.a */,
+				07BB9F511B84A16E007ADA8F /* libwelscommon.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		4CBC1B7F194AC4A400214D9E /* arm64 */ = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +221,7 @@
 		4CE4427018B6FC360017DF25 = {
 			isa = PBXGroup;
 			children = (
+				07BB9F491B84A16E007ADA8F /* welscommon.xcodeproj */,
 				4CE4463E18BC5EAA0017DF25 /* decoder */,
 				4CE4427B18B6FC360017DF25 /* Frameworks */,
 				4CE4427A18B6FC360017DF25 /* Products */,
@@ -149,7 +231,8 @@
 		4CE4427A18B6FC360017DF25 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4CE4427918B6FC360017DF25 /* libwelsdec.a */,
+				4CE4427918B6FC360017DF25 /* libwelsdec.dylib */,
+				07B098591B8491EC002AC4F0 /* libwelsdec.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -291,6 +374,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		07B098371B8491EC002AC4F0 /* ios_welsdec */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 07B098561B8491EC002AC4F0 /* Build configuration list for PBXNativeTarget "ios_welsdec" */;
+			buildPhases = (
+				07B098381B8491EC002AC4F0 /* Sources */,
+				07B098531B8491EC002AC4F0 /* Frameworks */,
+				07B098551B8491EC002AC4F0 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ios_welsdec;
+			productName = welsdec;
+			productReference = 07B098591B8491EC002AC4F0 /* libwelsdec.dylib */;
+			productType = "com.apple.product-type.library.static";
+		};
 		4CE4427818B6FC360017DF25 /* welsdec */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4CE4429C18B6FC360017DF25 /* Build configuration list for PBXNativeTarget "welsdec" */;
@@ -302,10 +402,11 @@
 			buildRules = (
 			);
 			dependencies = (
+				07BB9F531B84A176007ADA8F /* PBXTargetDependency */,
 			);
 			name = welsdec;
 			productName = welsdec;
-			productReference = 4CE4427918B6FC360017DF25 /* libwelsdec.a */;
+			productReference = 4CE4427918B6FC360017DF25 /* libwelsdec.dylib */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -327,14 +428,71 @@
 			mainGroup = 4CE4427018B6FC360017DF25;
 			productRefGroup = 4CE4427A18B6FC360017DF25 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 07BB9F4A1B84A16E007ADA8F /* Products */;
+					ProjectRef = 07BB9F491B84A16E007ADA8F /* welscommon.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				4CE4427818B6FC360017DF25 /* welsdec */,
+				07B098371B8491EC002AC4F0 /* ios_welsdec */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		07BB9F4F1B84A16E007ADA8F /* libwelscommon.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libwelscommon.a;
+			remoteRef = 07BB9F4E1B84A16E007ADA8F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		07BB9F511B84A16E007ADA8F /* libwelscommon.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libwelscommon.a;
+			remoteRef = 07BB9F501B84A16E007ADA8F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXSourcesBuildPhase section */
+		07B098381B8491EC002AC4F0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07B098391B8491EC002AC4F0 /* parse_mb_syn_cabac.cpp in Sources */,
+				07B0983A1B8491EC002AC4F0 /* pic_queue.cpp in Sources */,
+				07B0983B1B8491EC002AC4F0 /* welsDecoderExt.cpp in Sources */,
+				07B0983C1B8491EC002AC4F0 /* fmo.cpp in Sources */,
+				07B0983D1B8491EC002AC4F0 /* decoder_data_tables.cpp in Sources */,
+				07B0983E1B8491EC002AC4F0 /* manage_dec_ref.cpp in Sources */,
+				07B0983F1B8491EC002AC4F0 /* au_parser.cpp in Sources */,
+				07B098401B8491EC002AC4F0 /* mv_pred.cpp in Sources */,
+				07B098411B8491EC002AC4F0 /* cabac_decoder.cpp in Sources */,
+				07B098421B8491EC002AC4F0 /* block_add_neon.S in Sources */,
+				07B098431B8491EC002AC4F0 /* block_add_aarch64_neon.S in Sources */,
+				07B098441B8491EC002AC4F0 /* get_intra_predictor.cpp in Sources */,
+				07B098451B8491EC002AC4F0 /* welsCodecTrace.cpp in Sources */,
+				07B098461B8491EC002AC4F0 /* error_concealment.cpp in Sources */,
+				07B098471B8491EC002AC4F0 /* intra_pred_aarch64_neon.S in Sources */,
+				07B098481B8491EC002AC4F0 /* decoder_core.cpp in Sources */,
+				07B098491B8491EC002AC4F0 /* intra_pred_neon.S in Sources */,
+				07B0984A1B8491EC002AC4F0 /* rec_mb.cpp in Sources */,
+				07B0984B1B8491EC002AC4F0 /* bit_stream.cpp in Sources */,
+				07B0984C1B8491EC002AC4F0 /* decode_mb_aux.cpp in Sources */,
+				07B0984D1B8491EC002AC4F0 /* decode_slice.cpp in Sources */,
+				07B0984E1B8491EC002AC4F0 /* decoder.cpp in Sources */,
+				07B0984F1B8491EC002AC4F0 /* utils.cpp in Sources */,
+				07B098501B8491EC002AC4F0 /* memmgr_nal_unit.cpp in Sources */,
+				07B098511B8491EC002AC4F0 /* deblocking.cpp in Sources */,
+				07B098521B8491EC002AC4F0 /* parse_mb_syn_cavlc.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4CE4427518B6FC360017DF25 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -370,7 +528,85 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		07BB9F531B84A176007ADA8F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = welscommon;
+			targetProxy = 07BB9F521B84A176007ADA8F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		07B098571B8491EC002AC4F0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DSTROOT = /tmp/welsdec.dst;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = "";
+				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphoneos*][arch=arm64]" = (
+					APPLE_IOS,
+					HAVE_NEON_AARCH64,
+				);
+				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphoneos*][arch=armv7]" = (
+					APPLE_IOS,
+					HAVE_NEON,
+				);
+				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphoneos*][arch=armv7s]" = (
+					APPLE_IOS,
+					HAVE_NEON,
+				);
+				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphonesimulator*]" = APPLE_IOS;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../../../../common/inc",
+					"$(SRCROOT)/../../../../api/svc",
+					"$(SRCROOT)/../../../../common/arm",
+					"$(SRCROOT)/../../../../common/arm64",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		07B098581B8491EC002AC4F0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DSTROOT = /tmp/welsdec.dst;
+				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphoneos*][arch=arm64]" = (
+					APPLE_IOS,
+					HAVE_NEON_AARCH64,
+				);
+				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphoneos*][arch=armv7]" = (
+					APPLE_IOS,
+					HAVE_NEON,
+				);
+				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphoneos*][arch=armv7s]" = (
+					APPLE_IOS,
+					HAVE_NEON,
+				);
+				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphonesimulator*]" = APPLE_IOS;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../../../../common/inc",
+					"$(SRCROOT)/../../../../api/svc",
+					"$(SRCROOT)/../../../../common/arm",
+					"$(SRCROOT)/../../../../common/arm64",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		4CE4429A18B6FC360017DF25 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -388,6 +624,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				EXECUTABLE_EXTENSION = dylib;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -402,9 +639,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INSTALL_PATH = "@executable_path";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				MACH_O_TYPE = mh_dylib;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
+				PRODUCT_NAME = welsdec;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
@@ -426,6 +667,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
+				EXECUTABLE_EXTENSION = dylib;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -433,8 +675,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INSTALL_PATH = "@executable_path";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				SDKROOT = iphoneos;
+				MACH_O_TYPE = mh_dylib;
+				PRODUCT_NAME = welsdec;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -469,7 +715,6 @@
 					"$(SRCROOT)/../../../../common/arm64",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -503,7 +748,6 @@
 					"$(SRCROOT)/../../../../common/arm64",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -512,6 +756,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		07B098561B8491EC002AC4F0 /* Build configuration list for PBXNativeTarget "ios_welsdec" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				07B098571B8491EC002AC4F0 /* Debug */,
+				07B098581B8491EC002AC4F0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4CE4427418B6FC360017DF25 /* Build configuration list for PBXProject "welsdec" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

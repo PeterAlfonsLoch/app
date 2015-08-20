@@ -115,8 +115,10 @@ namespace user
    {
 
       string strPath;
+#ifdef MACOS
+      strPath = Application.dir().matter("keyboard/windows/default.xml");
 
-#ifdef LINUX
+#elif defined( LINUX)
       strPath = Application.dir().matter("keyboard/linux/default.xml");
 #elif defined(APPLEOS)
       strPath = Application.dir().matter("keyboard/macos/default.xml");
@@ -556,7 +558,7 @@ namespace user
    void keyboard::translate_os_key_message(::message::key * pkey)
    {
 
-#if defined(WINDOWSEX)
+#if defined(WINDOWSEX) || defined(MACOS)
 
       if(pkey->m_bExt)
       {

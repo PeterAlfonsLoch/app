@@ -46,7 +46,7 @@
 /* #undef WITH_PROFILER */
 /* #undef WITH_GPROF */
 #if !defined(APPLE_IOS)
-#define WITH_SSE2
+//#define WITH_SSE2
 #endif
 /* #undef WITH_NEON */
 /* #undef WITH_IPP */
@@ -58,7 +58,9 @@
 /* #undef WITH_FFMPEG */
 /* #undef WITH_GSTREAMER_1_0 */
 /* #undef WITH_GSTREAMER_0_10 */
+#ifdef WINDOWSEX
 #define WITH_WINMM
+#endif
 /* #undef WITH_MACAUDIO */
 /* #undef WITH_ALSA */
 /* #undef WITH_PULSE */

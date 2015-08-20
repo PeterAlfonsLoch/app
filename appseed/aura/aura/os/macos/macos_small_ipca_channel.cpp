@@ -16,7 +16,7 @@ namespace aura
 
       base::base()
       {
-         remotePort = NULL;
+         m_port = NULL;
       }
 
       base::~base()
@@ -32,7 +32,7 @@ namespace aura
          SInt32 messageID = 0x1111; // Arbitrary
          CFTimeInterval timeout = 10.0;
          CFStringRef kungfuck = CFStringCreateWithCString(NULL,  (string("com.ca2.app.port.server.") + pszChannel), kCFStringEncodingUTF8);
-         remotePort =        CFMessagePortCreateRemote(nil,kungfuck);
+         m_port =        CFMessagePortCreateRemote(nil,kungfuck);
          
 
          return true;
@@ -41,12 +41,12 @@ namespace aura
       bool tx::close()
       {
 
-         if(remotePort == NULL)
+         if(m_port == NULL)
             return true;
 
-         CFRelease(remotePort);
+         CFRelease(m_port);
 
-         remotePort = NULL;
+         m_port = NULL;
 
          return true;
 
@@ -56,7 +56,7 @@ namespace aura
       bool tx::send(const char * pszMessage,DWORD dwTimeout)
       {
          
-         if(remotePort == NULL)
+         if(m_port == NULL)
             return false;
 
          ::count c = strlen_dup(pszMessage);
@@ -71,7 +71,7 @@ namespace aura
          
 
          SInt32 status =
-         CFMessagePortSendRequest(remotePort,
+         CFMessagePortSendRequest(m_port,
                                   0x80000000,
                                   data,
                                   dwTimeout / 1000.0,
@@ -108,7 +108,7 @@ namespace aura
 
 
          SInt32 status =
-         CFMessagePortSendRequest(remotePort,
+         CFMessagePortSendRequest(m_port,
                                   message,
                                   m.get_os_cf_data(),
                                   dwTimeout / 1000.0,
@@ -127,7 +127,7 @@ namespace aura
       bool tx::is_tx_ok()
       {
 
-         return remotePort != NULL;
+         return m_port != NULL;
 
       }
 
@@ -189,7 +189,7 @@ namespace aura
 
          Boolean b = false;
 
-         remotePort = CFMessagePortCreateLocal(nil, kungfuck, Callback, &c, &b);
+         m_port = CFMessagePortCreateLocal(nil, kungfuck, Callback, &c, &b);
          
          start_receiving();
 
@@ -201,12 +201,12 @@ namespace aura
       bool rx::destroy()
       {
          
-         if(remotePort == NULL)
+         if(m_port == NULL)
             return true;
          
-         CFRelease(remotePort);
+         CFRelease(m_port);
 
-         remotePort = NULL;
+         m_port = NULL;
 
          return true;
 
@@ -313,7 +313,7 @@ namespace aura
       bool rx::is_rx_ok()
       {
 
-         return remotePort != NULL;
+         return m_port != NULL;
       }
 
 
@@ -321,12 +321,12 @@ namespace aura
       void * rx::receive()
       {
          
-         if(remotePort == NULL)
+         if(m_port == NULL)
             return NULL;
 
          
          CFRunLoopSourceRef runLoopSource =
-         CFMessagePortCreateRunLoopSource(nil, remotePort, 0);
+         CFMessagePortCreateRunLoopSource(nil, m_port, 0);
          
          CFRunLoopAddSource(CFRunLoopGetCurrent(),
                             runLoopSource,

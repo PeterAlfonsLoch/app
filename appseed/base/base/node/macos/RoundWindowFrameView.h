@@ -14,11 +14,22 @@
 
 
 #define NS_ROUND_WINDOW_FRAME_PADDING 0
+//#include <AppKit/NSView.h>
+#include "Keyboard.h"
+struct mf_context
+{
+
+//   enum APPLE_KEYBOARD_TYPE appleKeyboardType;
+   
+};
+
 
 
 @interface RoundWindowFrameView : NSView
 {
    @public
+//   mf_context* mfc;
+   APPLE_KEYBOARD_TYPE appleKeyboardType;
    RoundWindow * m_roundwindow;
    bool m_bLShift;
    bool m_bRShift;
@@ -28,7 +39,7 @@
    bool m_bRAlt;
    bool m_bLCommand; // In Windows, the Windows Key
    bool m_bRCommand; // In Windows, the Windows Key
-   
+   DWORD kbdModFlags;
    
 }
 

@@ -18,7 +18,7 @@ namespace user
       g_bSuppressTwf = file_exists_dup("C:\\ca2\\config\\system\\suppress_twf.txt") != 0;
 
       m_bProDevianMode                    = true;
-      m_iFramesPerSecond                  = 120.0;
+      m_iFramesPerSecond                  = 15.0;
       m_bRunning                          = false;
       m_bRun                              = true;
       m_bRender                           = false;

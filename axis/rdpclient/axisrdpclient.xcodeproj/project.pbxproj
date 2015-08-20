@@ -12,6 +12,12 @@
 		074BD0C91B5F3CF400219723 /* libaxisclientchannels.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD70E81B5F1039003A1CE1 /* libaxisclientchannels.dylib */; };
 		074BD0D61B5F409400219723 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 074BD0D11B5F406300219723 /* libaura.dylib */; };
 		074BD0D71B5F409E00219723 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 074BD0D11B5F406300219723 /* libaura.dylib */; };
+		07B0980E1B848AA9002AC4F0 /* client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B098071B848AA9002AC4F0 /* client.cpp */; };
+		07B0980F1B848AA9002AC4F0 /* cmdline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B098081B848AA9002AC4F0 /* cmdline.cpp */; };
+		07B098101B848AA9002AC4F0 /* compatibility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B098091B848AA9002AC4F0 /* compatibility.cpp */; };
+		07B098111B848AA9002AC4F0 /* file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B0980A1B848AA9002AC4F0 /* file.cpp */; };
+		07B098121B848AA9002AC4F0 /* graphics.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B0980B1B848AA9002AC4F0 /* graphics.h */; };
+		07B098131B848AA9002AC4F0 /* rdpclient.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B0980D1B848AA9002AC4F0 /* rdpclient.h */; };
 		07DD652D1B5F0BC2003A1CE1 /* ca2rdp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07DD63731B5F0BC1003A1CE1 /* ca2rdp.cpp */; };
 		07DD652E1B5F0BC2003A1CE1 /* ca2rdp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07DD63731B5F0BC1003A1CE1 /* ca2rdp.cpp */; };
 		07DD652F1B5F0BC2003A1CE1 /* ca2rdp.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD63741B5F0BC1003A1CE1 /* ca2rdp.h */; };
@@ -24,20 +30,8 @@
 		07DD65361B5F0BC2003A1CE1 /* ca2rdp_graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07DD63771B5F0BC1003A1CE1 /* ca2rdp_graphics.cpp */; };
 		07DD65371B5F0BC2003A1CE1 /* ca2rdp_graphics.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD63781B5F0BC1003A1CE1 /* ca2rdp_graphics.h */; };
 		07DD65381B5F0BC2003A1CE1 /* ca2rdp_graphics.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD63781B5F0BC1003A1CE1 /* ca2rdp_graphics.h */; };
-		07DD65391B5F0BC2003A1CE1 /* client.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD637A1B5F0BC1003A1CE1 /* client.c */; };
-		07DD653A1B5F0BC2003A1CE1 /* client.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD637A1B5F0BC1003A1CE1 /* client.c */; };
-		07DD653B1B5F0BC2003A1CE1 /* cmdline.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD637B1B5F0BC1003A1CE1 /* cmdline.c */; };
-		07DD653C1B5F0BC2003A1CE1 /* cmdline.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD637B1B5F0BC1003A1CE1 /* cmdline.c */; };
-		07DD653D1B5F0BC2003A1CE1 /* compatibility.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD637C1B5F0BC1003A1CE1 /* compatibility.c */; };
-		07DD653E1B5F0BC2003A1CE1 /* compatibility.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD637C1B5F0BC1003A1CE1 /* compatibility.c */; };
 		07DD653F1B5F0BC2003A1CE1 /* compatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD637D1B5F0BC1003A1CE1 /* compatibility.h */; };
 		07DD65401B5F0BC2003A1CE1 /* compatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD637D1B5F0BC1003A1CE1 /* compatibility.h */; };
-		07DD65411B5F0BC2003A1CE1 /* file.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD637E1B5F0BC1003A1CE1 /* file.c */; };
-		07DD65421B5F0BC2003A1CE1 /* file.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD637E1B5F0BC1003A1CE1 /* file.c */; };
-		07DD65431B5F0BC2003A1CE1 /* TestClientChannels.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD63801B5F0BC1003A1CE1 /* TestClientChannels.c */; };
-		07DD65441B5F0BC2003A1CE1 /* TestClientChannels.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD63801B5F0BC1003A1CE1 /* TestClientChannels.c */; };
-		07DD65451B5F0BC2003A1CE1 /* TestClientRdpFile.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD63811B5F0BC1003A1CE1 /* TestClientRdpFile.c */; };
-		07DD65461B5F0BC2003A1CE1 /* TestClientRdpFile.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD63811B5F0BC1003A1CE1 /* TestClientRdpFile.c */; };
 		07DD669D1B5F0BC2003A1CE1 /* config.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD64B91B5F0BC2003A1CE1 /* config.h */; };
 		07DD669E1B5F0BC2003A1CE1 /* config.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD64B91B5F0BC2003A1CE1 /* config.h */; };
 		07DD66A11B5F0BC2003A1CE1 /* freerdp_rdpclient_setup.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD64BB1B5F0BC2003A1CE1 /* freerdp_rdpclient_setup.h */; };
@@ -45,6 +39,10 @@
 		07DD712D1B5F196F003A1CE1 /* libaxisclientchannels.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD70EA1B5F1039003A1CE1 /* libaxisclientchannels.dylib */; };
 		07DD712E1B5F1978003A1CE1 /* libaxisfreerdp.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD70E11B5F1030003A1CE1 /* libaxisfreerdp.dylib */; };
 		07DD712F1B5F1980003A1CE1 /* libaxiswinpr.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD70BD1B5F1001003A1CE1 /* libaxiswinpr.dylib */; };
+		07FACBA91B84BB660035DF9D /* cf_channels.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07FACBA51B84BB660035DF9D /* cf_channels.cpp */; };
+		07FACBAA1B84BB660035DF9D /* cf_channels.h in Headers */ = {isa = PBXBuildFile; fileRef = 07FACBA61B84BB660035DF9D /* cf_channels.h */; };
+		07FACBAB1B84BB660035DF9D /* cf_client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07FACBA71B84BB660035DF9D /* cf_client.cpp */; };
+		07FACBAC1B84BB660035DF9D /* cf_client.h in Headers */ = {isa = PBXBuildFile; fileRef = 07FACBA81B84BB660035DF9D /* cf_client.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -157,6 +155,12 @@
 
 /* Begin PBXFileReference section */
 		074BD0CA1B5F406300219723 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../../appseed/aura/aura.xcodeproj; sourceTree = "<group>"; };
+		07B098071B848AA9002AC4F0 /* client.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = client.cpp; sourceTree = "<group>"; };
+		07B098081B848AA9002AC4F0 /* cmdline.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cmdline.cpp; sourceTree = "<group>"; };
+		07B098091B848AA9002AC4F0 /* compatibility.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = compatibility.cpp; sourceTree = "<group>"; };
+		07B0980A1B848AA9002AC4F0 /* file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = file.cpp; sourceTree = "<group>"; };
+		07B0980B1B848AA9002AC4F0 /* graphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = graphics.h; sourceTree = "<group>"; };
+		07B0980D1B848AA9002AC4F0 /* rdpclient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rdpclient.h; sourceTree = "<group>"; };
 		07DD624A1B5F0B8D003A1CE1 /* libaxisrdpclient.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxisrdpclient.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		07DD63731B5F0BC1003A1CE1 /* ca2rdp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ca2rdp.cpp; sourceTree = "<group>"; };
 		07DD63741B5F0BC1003A1CE1 /* ca2rdp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ca2rdp.h; sourceTree = "<group>"; };
@@ -164,18 +168,16 @@
 		07DD63761B5F0BC1003A1CE1 /* ca2rdp_event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ca2rdp_event.h; sourceTree = "<group>"; };
 		07DD63771B5F0BC1003A1CE1 /* ca2rdp_graphics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ca2rdp_graphics.cpp; sourceTree = "<group>"; };
 		07DD63781B5F0BC1003A1CE1 /* ca2rdp_graphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ca2rdp_graphics.h; sourceTree = "<group>"; };
-		07DD637A1B5F0BC1003A1CE1 /* client.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = client.c; sourceTree = "<group>"; };
-		07DD637B1B5F0BC1003A1CE1 /* cmdline.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cmdline.c; sourceTree = "<group>"; };
-		07DD637C1B5F0BC1003A1CE1 /* compatibility.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = compatibility.c; sourceTree = "<group>"; };
 		07DD637D1B5F0BC1003A1CE1 /* compatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compatibility.h; sourceTree = "<group>"; };
-		07DD637E1B5F0BC1003A1CE1 /* file.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = file.c; sourceTree = "<group>"; };
-		07DD63801B5F0BC1003A1CE1 /* TestClientChannels.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TestClientChannels.c; sourceTree = "<group>"; };
-		07DD63811B5F0BC1003A1CE1 /* TestClientRdpFile.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TestClientRdpFile.c; sourceTree = "<group>"; };
 		07DD64B91B5F0BC2003A1CE1 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
 		07DD64BB1B5F0BC2003A1CE1 /* freerdp_rdpclient_setup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = freerdp_rdpclient_setup.h; sourceTree = "<group>"; };
 		07DD70B51B5F1001003A1CE1 /* axiswinpr.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axiswinpr.xcodeproj; path = ../winpr/axiswinpr.xcodeproj; sourceTree = "<group>"; };
 		07DD70D91B5F1030003A1CE1 /* axisfreerdp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisfreerdp.xcodeproj; path = ../freerdp/axisfreerdp.xcodeproj; sourceTree = "<group>"; };
 		07DD70E21B5F1039003A1CE1 /* axisclientchannels.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisclientchannels.xcodeproj; path = ../clientchannels/axisclientchannels.xcodeproj; sourceTree = "<group>"; };
+		07FACBA51B84BB660035DF9D /* cf_channels.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cf_channels.cpp; sourceTree = "<group>"; };
+		07FACBA61B84BB660035DF9D /* cf_channels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cf_channels.h; sourceTree = "<group>"; };
+		07FACBA71B84BB660035DF9D /* cf_client.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cf_client.cpp; sourceTree = "<group>"; };
+		07FACBA81B84BB660035DF9D /* cf_client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cf_client.h; sourceTree = "<group>"; };
 		9A1B358C16A2D7A500875A94 /* libaxisrdpclient.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxisrdpclient.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -250,23 +252,19 @@
 		07DD63791B5F0BC1003A1CE1 /* common */ = {
 			isa = PBXGroup;
 			children = (
-				07DD637A1B5F0BC1003A1CE1 /* client.c */,
-				07DD637B1B5F0BC1003A1CE1 /* cmdline.c */,
-				07DD637C1B5F0BC1003A1CE1 /* compatibility.c */,
+				07FACBA51B84BB660035DF9D /* cf_channels.cpp */,
+				07FACBA61B84BB660035DF9D /* cf_channels.h */,
+				07FACBA71B84BB660035DF9D /* cf_client.cpp */,
+				07FACBA81B84BB660035DF9D /* cf_client.h */,
+				07B098071B848AA9002AC4F0 /* client.cpp */,
+				07B098081B848AA9002AC4F0 /* cmdline.cpp */,
+				07B098091B848AA9002AC4F0 /* compatibility.cpp */,
+				07B0980A1B848AA9002AC4F0 /* file.cpp */,
+				07B0980B1B848AA9002AC4F0 /* graphics.h */,
+				07B0980D1B848AA9002AC4F0 /* rdpclient.h */,
 				07DD637D1B5F0BC1003A1CE1 /* compatibility.h */,
-				07DD637E1B5F0BC1003A1CE1 /* file.c */,
-				07DD637F1B5F0BC1003A1CE1 /* test */,
 			);
 			path = common;
-			sourceTree = "<group>";
-		};
-		07DD637F1B5F0BC1003A1CE1 /* test */ = {
-			isa = PBXGroup;
-			children = (
-				07DD63801B5F0BC1003A1CE1 /* TestClientChannels.c */,
-				07DD63811B5F0BC1003A1CE1 /* TestClientRdpFile.c */,
-			);
-			path = test;
 			sourceTree = "<group>";
 		};
 		07DD70B61B5F1001003A1CE1 /* Products */ = {
@@ -337,11 +335,15 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07FACBAC1B84BB660035DF9D /* cf_client.h in Headers */,
+				07B098121B848AA9002AC4F0 /* graphics.h in Headers */,
 				07DD652F1B5F0BC2003A1CE1 /* ca2rdp.h in Headers */,
 				07DD669D1B5F0BC2003A1CE1 /* config.h in Headers */,
 				07DD66A11B5F0BC2003A1CE1 /* freerdp_rdpclient_setup.h in Headers */,
 				07DD65331B5F0BC2003A1CE1 /* ca2rdp_event.h in Headers */,
+				07FACBAA1B84BB660035DF9D /* cf_channels.h in Headers */,
 				07DD65371B5F0BC2003A1CE1 /* ca2rdp_graphics.h in Headers */,
+				07B098131B848AA9002AC4F0 /* rdpclient.h in Headers */,
 				07DD653F1B5F0BC2003A1CE1 /* compatibility.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -506,13 +508,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07DD652E1B5F0BC2003A1CE1 /* ca2rdp.cpp in Sources */,
-				07DD653E1B5F0BC2003A1CE1 /* compatibility.c in Sources */,
 				07DD65361B5F0BC2003A1CE1 /* ca2rdp_graphics.cpp in Sources */,
-				07DD65421B5F0BC2003A1CE1 /* file.c in Sources */,
-				07DD653C1B5F0BC2003A1CE1 /* cmdline.c in Sources */,
-				07DD653A1B5F0BC2003A1CE1 /* client.c in Sources */,
-				07DD65441B5F0BC2003A1CE1 /* TestClientChannels.c in Sources */,
-				07DD65461B5F0BC2003A1CE1 /* TestClientRdpFile.c in Sources */,
 				07DD65321B5F0BC2003A1CE1 /* ca2rdp_event.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -522,13 +518,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				07DD652D1B5F0BC2003A1CE1 /* ca2rdp.cpp in Sources */,
-				07DD653D1B5F0BC2003A1CE1 /* compatibility.c in Sources */,
 				07DD65351B5F0BC2003A1CE1 /* ca2rdp_graphics.cpp in Sources */,
-				07DD65411B5F0BC2003A1CE1 /* file.c in Sources */,
-				07DD653B1B5F0BC2003A1CE1 /* cmdline.c in Sources */,
-				07DD65391B5F0BC2003A1CE1 /* client.c in Sources */,
-				07DD65431B5F0BC2003A1CE1 /* TestClientChannels.c in Sources */,
-				07DD65451B5F0BC2003A1CE1 /* TestClientRdpFile.c in Sources */,
+				07B098111B848AA9002AC4F0 /* file.cpp in Sources */,
+				07B0980F1B848AA9002AC4F0 /* cmdline.cpp in Sources */,
+				07FACBA91B84BB660035DF9D /* cf_channels.cpp in Sources */,
+				07B0980E1B848AA9002AC4F0 /* client.cpp in Sources */,
+				07FACBAB1B84BB660035DF9D /* cf_client.cpp in Sources */,
+				07B098101B848AA9002AC4F0 /* compatibility.cpp in Sources */,
 				07DD65311B5F0BC2003A1CE1 /* ca2rdp_event.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

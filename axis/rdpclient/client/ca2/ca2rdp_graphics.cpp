@@ -24,7 +24,7 @@
 
 /* Pointer Class */
 
-int ca2rdp_Pointer_New(rdpContext* context, rdpPointer* pointer)
+BOOL ca2rdp_Pointer_New(rdpContext* context, rdpPointer* pointer)
 {
 	ca2rdpInfo* ca2rdpi;
 	int result;
@@ -67,7 +67,7 @@ void ca2rdp_Pointer_Free(rdpContext* context, rdpPointer* pointer)
 ///	ca2rdp_pointer->surface->Release(ca2rdp_pointer->surface);
 }
 
-int ca2rdp_Pointer_Set(rdpContext* context, rdpPointer* pointer)
+BOOL ca2rdp_Pointer_Set(rdpContext* context, rdpPointer* pointer)
 {
 
    ca2rdpInfo* ca2rdpi;
@@ -119,13 +119,13 @@ int ca2rdp_Pointer_Set(rdpContext* context, rdpPointer* pointer)
 	return 1;
 }
 
-int ca2rdp_Pointer_SetNull(rdpContext* context)
+BOOL ca2rdp_Pointer_SetNull(rdpContext* context)
 {
 	ca2rdp_Pointer_Set(context, NULL);
 	return 1;
 }
 
-int ca2rdp_Pointer_SetDefault(rdpContext* context)
+BOOL ca2rdp_Pointer_SetDefault(rdpContext* context)
 {
 return 1;
 }

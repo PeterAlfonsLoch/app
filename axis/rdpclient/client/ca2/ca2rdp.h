@@ -19,7 +19,6 @@
 
 #ifndef __DFREERDP_H
 #define __DFREERDP_H
-
 #include "axis/rdpclient/config.h"
 #ifdef _WIN32
 #include "axis/rdpclient/client/Windows/wf_client.h"
@@ -34,6 +33,13 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+
+#ifdef _WIN32
+typedef UINT IDTHREAD;
+#else
+typedef pthread_t IDTHREAD;
+#endif
+
 
 typedef struct ca2rdp_info ca2rdpInfo;
 
@@ -86,7 +92,7 @@ namespace draw2d
 struct ca2rdp_context :
 #ifdef _WIN32
    public wf_context
-#elif defined(ANDROID)
+#elif defined(ANDROID) || defined(__APPLE__)
    public rdpContext
 #endif
 {
@@ -96,7 +102,7 @@ struct ca2rdp_context :
 
 
 
-   DWORD mainThreadId;
+   IDTHREAD mainThreadId;
    HANDLE thread;
    ::aura::application * m_pappRdp;
    rdpclient_view_interface * m_pviewRdp;
