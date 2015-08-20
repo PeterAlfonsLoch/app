@@ -421,9 +421,9 @@ bool string_format::parse(const char * & s)
       void format(string_format * pformat, double const & d)
       {
          // TODO: use specs
-         char sz[1024];
+         char sz[_CVTBUFSIZE];
          int decimal_point;
-         int negative;
+         int negative = d < 0.0;
          if(pformat->m_iPrecision >= 0)
          {
              if(fcvt_dup(sz, sizeof(sz), d, pformat->m_iPrecision, &decimal_point, &negative) != 0)
@@ -474,13 +474,23 @@ bool string_format::parse(const char * & s)
 
             int i = 0;
 
-             if(max_cvt_dup(sz, sizeof(sz), d, 1024, &decimal_point, &negative, &i) != 0)
-             {
-                pformat->append(::str::from(d));
-                return;
-             }
+            int digits = MIN(10,sizeof(sz) - 2);
 
-             string str(sz, i + 1);
+#ifdef WINDOWSEX
+            if(_gcvt_s(sz,sizeof(sz),fabs(d),digits))
+            {
+               pformat->append(::str::from(d));
+               return;
+            }
+#else
+            if(max_cvt_dup(sz,sizeof(sz),d,1024,&decimal_point,&negative,sizeof(sz)-1) != 0)
+            {
+               pformat->append(::str::from(d));
+               return;
+            }
+#endif
+
+             string str(sz);
              string strResult;
 
              if(negative)
@@ -492,13 +502,15 @@ bool string_format::parse(const char * & s)
                 strResult = "+";
              }
 
-             strResult += str.substr(0, decimal_point);
+             ::str::ends_eat(str,".");
+
+             /*strResult += str.substr(0, decimal_point);
              if(decimal_point < str.get_length())
              {
                 strResult += ".";
                 strResult += str.substr(decimal_point);
-             }
-
+             }*/
+             strResult += str;
 
 
             pformat->append(strResult);
