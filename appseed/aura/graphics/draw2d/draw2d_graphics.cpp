@@ -4212,7 +4212,10 @@ namespace draw2d
    bool graphics::DrawErrorLine(int32_t x1,int32_t y1,int32_t x2,int32_t iStyle)
    {
 
-      int iColor = m_sppen->m_cr;
+      int iR = argb_get_r_value(m_sppen->m_cr);
+      int iG = argb_get_g_value(m_sppen->m_cr);
+      int iB = argb_get_b_value(m_sppen->m_cr);
+      int iA = argb_get_a_value(m_sppen->m_cr);
 
       int maxy = y1;
 
@@ -4225,7 +4228,7 @@ namespace draw2d
 
          ::draw2d::dib_sp dib(allocer());
 
-         dib->create(x2 - x1 + 1,5);
+         dib->create(x2 - x1 + 1,6);
 
          if(dib->area() <= 0)
             return false;
@@ -4233,25 +4236,12 @@ namespace draw2d
          double dStep = 0.125;
          double dPeriod = 8.0;
          double dTint;
-         for(double dx = x1; dx <= x2; dx+=dStep)
+         for(double dx = x1; dx < x2; dx+=dStep)
          {
-            dTint = 7.0;
-            {
-               double dy = (sin((double)dx * 2.0 * 3.1415 / dPeriod) - fmod(dx,(double)(dPeriod / 2.0)) / (dPeriod * 1.23));
-               dy = (dy * 1.25 + 2.25);
-               int x = MIN(MAX(0,(int)round(dx)),dib->m_size.cx - 1);
-               int y = MIN(MAX(0,(int)round(dy)),dib->m_size.cy - 1);
-               int A = (dib->m_pcolorref[x + dib->m_iScan * y / sizeof(COLORREF)] >> 24) & 0xff;
-               double fy = 1.0 - fmod(fabs(dy),1.0);
-               double fx = 1.0 - fmod(fabs(dx),1.0);
-               A = (A + ((fx * fy) * 255.0 * dStep*dTint));
-               A = MIN(A,255);
-               dib->m_pcolorref[x + dib->m_iScan * y / sizeof(COLORREF)] =  ARGB(A,49,49,255);
-            }
             dTint = 3.3;
             {
                double dy = (sin((double)dx * 2.0 * 3.1415 / dPeriod) - fmod(dx,(double)(dPeriod / 2.0)) / (dPeriod * 1.23));
-               dy = (dy * 1.25 + 2.75);
+               dy = (dy * 1.5 + 2.0);
                int x = MIN(MAX(0,(int)round(dx)),dib->m_size.cx - 1);
                int y = MIN(MAX(0,(int)round(dy)),dib->m_size.cy - 1);
                int A = (dib->m_pcolorref[x + dib->m_iScan * y / sizeof(COLORREF)] >> 24) & 0xff;
@@ -4259,7 +4249,20 @@ namespace draw2d
                double fx = 1.0 - fmod(fabs(dx),1.0);
                A = (A + ((fx * fy) * 255.0 * dStep*dTint));
                A = MIN(A,255);
-               dib->m_pcolorref[x + dib->m_iScan * y / sizeof(COLORREF)] =  ARGB(A,49,49,255);
+               dib->m_pcolorref[x + dib->m_iScan * y / sizeof(COLORREF)] =  ARGB((A * iA)/255,iB,iG,iR);
+            }
+            dTint = 1.9;
+            {
+               double dy = (sin((double)dx * 2.0 * 3.1415 / dPeriod) - fmod(dx,(double)(dPeriod / 2.0)) / (dPeriod * 1.23));
+               dy = (dy * 1.5 + 2.5);
+               int x = MIN(MAX(0,(int)round(dx)),dib->m_size.cx - 1);
+               int y = MIN(MAX(0,(int)round(dy)),dib->m_size.cy - 1);
+               int A = (dib->m_pcolorref[x + dib->m_iScan * y / sizeof(COLORREF)] >> 24) & 0xff;
+               double fy = 1.0 - fmod(fabs(dy),1.0);
+               double fx = 1.0 - fmod(fabs(dx),1.0);
+               A = (A + ((fx * fy) * 255.0 * dStep*dTint));
+               A = MIN(A,255);
+               dib->m_pcolorref[x + dib->m_iScan * y / sizeof(COLORREF)] =  ARGB((A * iA) / 255,iB,iG,iR);
             }
          }
 

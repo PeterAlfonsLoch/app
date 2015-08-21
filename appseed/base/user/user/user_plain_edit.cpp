@@ -390,14 +390,28 @@ namespace user
          {
             int iErrorBeg = -1;
             int iErrorEnd = -1;
+            int iErrorA = 0;
             if(m_errora.get_size() > 0)
             {
-               iErrorBeg = m_errora[0].m_iStart;
-               iErrorEnd = m_errora[0].m_iEnd;
-               iErrorBeg -= lim;
-               iErrorEnd -= lim;
-               iErrorBeg = MAX(0,iErrorBeg);
-               iErrorEnd = MIN(iErrorEnd,strLine.get_length());
+               DWORD dwTimeout = 1284;
+               DWORD dwPeriod = 84;
+               if(::get_tick_count() - m_errora[0].m_dwTime > dwTimeout)
+               {
+                  if(::get_tick_count() - m_errora[0].m_dwTime < (dwTimeout + dwPeriod))
+                  {
+                     iErrorA = (::get_tick_count() - m_errora[0].m_dwTime - dwTimeout) * 255 / dwPeriod;
+                  }
+                  else
+                  {
+                     iErrorA = 255;
+                  }
+                  iErrorBeg = m_errora[0].m_iStart;
+                  iErrorEnd = m_errora[0].m_iEnd;
+                  iErrorBeg -= lim;
+                  iErrorEnd -= lim;
+                  iErrorBeg = MAX(0,iErrorBeg);
+                  iErrorEnd = MIN(iErrorEnd,strLine.get_length());
+               }
             }
             stringa stra;
             strsize i1 = iSelStart - lim;
@@ -440,7 +454,7 @@ namespace user
                pdc->GetTextExtent(sizeB,strLine,(int32_t)strLine.length(),(int32_t)iErrorEnd);
                int y = MAX(sizeA.cy,sizeB.cy);
                ::draw2d::pen_sp p(allocer());
-               p->create_solid(1.0,ARGB(255,255,0,0));
+               p->create_solid(1.0,ARGB(iErrorA,255,0,0));
                pdc->SelectObject(p);
                pdc->DrawErrorLine(sizeA.cx,y, sizeB.cx, 1);
             }

@@ -27,6 +27,7 @@ namespace user
       public:
          int m_iStart;
          int m_iEnd;
+         DWORD m_dwTime;
          string m_strMessage;
       };
 
