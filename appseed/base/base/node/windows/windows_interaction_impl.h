@@ -464,7 +464,7 @@ namespace windows
       void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
       bool OnHelpInfo(HELPINFO* lpHelpInfo);
       void OnIconEraseBkgnd(::draw2d::graphics * pgraphics);
-      void OnKillFocus(::window_sp pNewWnd);
+      DECL_GEN_SIGNAL(_001OnKillFocus);
       LRESULT OnMenuChar(UINT nChar,UINT nFlags,::user::menu* pMenu);
       void OnMenuSelect(UINT nItemID,UINT nFlags,HMENU hSysMenu);
       void OnMove(int32_t x,int32_t y);

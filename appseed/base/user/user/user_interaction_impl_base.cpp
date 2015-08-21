@@ -1172,6 +1172,25 @@ namespace user
    }
 
 
+   ::user::interaction * interaction_impl_base::get_focus_guie()
+   {
+      
+      return NULL;
+
+   }
+
+
+   void interaction_impl_base::set_focus_guie(::user::interaction * pguie)
+   {
+
+      UNREFERENCED_PARAMETER(pguie);
+
+   }
+
+
+
+
+
 } // namespace user
 
 

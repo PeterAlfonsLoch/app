@@ -388,6 +388,17 @@ namespace user
          }
          else
          {
+            int iErrorBeg = -1;
+            int iErrorEnd = -1;
+            if(m_errora.get_size() > 0)
+            {
+               iErrorBeg = m_errora[0].m_iStart;
+               iErrorEnd = m_errora[0].m_iEnd;
+               iErrorBeg -= lim;
+               iErrorEnd -= lim;
+               iErrorBeg = MAX(0,iErrorBeg);
+               iErrorEnd = MIN(iErrorEnd,strLine.get_length());
+            }
             stringa stra;
             strsize i1 = iSelStart - lim;
             strsize i2 = iSelEnd - lim;
@@ -418,8 +429,21 @@ namespace user
             pdc->SelectObject(brushText);
             pdc->TextOut(left,y,strExtent1);
 
+
             sized size1(0.0,0.0);
             pdc->GetTextExtent(size1,strLine,(int32_t)strLine.length(),(int32_t)iStart);
+            if(0 <= iErrorBeg && iErrorEnd <= strExtent1.length())
+            {
+               sized sizeA(0.0,0.0);
+               pdc->GetTextExtent(sizeA,strLine,(int32_t)strLine.length(),(int32_t)iErrorBeg);
+               sized sizeB(0.0,0.0);
+               pdc->GetTextExtent(sizeB,strLine,(int32_t)strLine.length(),(int32_t)iErrorEnd);
+               int y = MAX(sizeA.cy,sizeB.cy);
+               ::draw2d::pen_sp p(allocer());
+               p->create_solid(1.0,ARGB(255,255,0,0));
+               pdc->SelectObject(p);
+               pdc->DrawLine(sizeA.cx,y, sizeB.cx, y);
+            }
             sized sizeb(0.0,0.0);
             pdc->GetTextExtent(sizeb,strLine,iEnd);
             sized size2(0.0,0.0);
@@ -457,6 +481,7 @@ namespace user
          lim += straLines[i].get_length();
          //ASSERT(FALSE);
       }
+
 
    }
 

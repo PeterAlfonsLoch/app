@@ -26,6 +26,8 @@ namespace user
 
    combo_list::~combo_list()
    {
+
+
    }
 
 
@@ -644,19 +646,19 @@ namespace user
 
          
 
-         if(pActive != m_puiDeactivateTogether)
-         {
+         //if(pActive != m_puiDeactivateTogether)
+         //{
 
-            ::user::wndfrm::frame::WorkSet * pset = m_puiDeactivateTogetherSet;
+         //   ::user::wndfrm::frame::WorkSet * pset = m_puiDeactivateTogetherSet;
 
-            if(pset != NULL)
-            {
+         //   if(pset != NULL)
+         //   {
 
-               pset->SetActiveFlag(FALSE);
+         //      pset->SetActiveFlag(FALSE);
 
-            }
+         //   }
 
-         }
+         //}
 
 
 

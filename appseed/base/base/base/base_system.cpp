@@ -1134,6 +1134,78 @@ namespace base
 
    }
 
+
+
+   void system::set_active_guie(::user::interaction * pui)
+   {
+
+#if defined(WINDOWSEX) || defined(LINUX) //  || defined(APPLEOS)
+
+      if(pui == NULL)
+      {
+
+         ::SetActiveWindow(NULL);
+
+      }
+      else
+      {
+
+         ::SetActiveWindow(pui->get_wnd()->get_safe_handle());
+
+      }
+
+      return;
+
+#else
+
+      synch_lock sl(&m_uiptraFrame);
+
+      if(m_uiptraFrame.find(pui) > 0)
+      {
+
+         m_uiptraFrame.remove(pui);
+
+         m_uiptraFrame.insert_at(0,pui);
+
+      }
+
+      return pui;
+
+#endif
+
+   }
+
+
+   void system::set_focus_guie(::user::interaction * pui)
+   {
+
+#if defined (METROWIN)
+
+      oswindow window = GetFocus();
+
+      if(window == NULL)
+         return NULL;
+
+      return window->m_pui;
+
+#elif defined(WINDOWSEX) || defined(LINUX)
+
+      ::SetFocus(pui->get_safe_handle());
+      if(pui->get_wnd() != NULL)
+      {
+         pui->SetFocus();
+      }
+
+      return;
+
+#else
+
+      return System.get_active_guie();
+
+#endif
+
+   }
+
          bool system::get_monitor_rect(index iMonitor,LPRECT lprect)
 {
 #ifdef METROWIN

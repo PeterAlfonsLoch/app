@@ -719,6 +719,13 @@ namespace user
       virtual sp(::user::interaction) get_child(::user::interaction * pui);
 
 
+      virtual ::user::interaction * get_focus_guie();
+      virtual void set_focus_guie(::user::interaction * pguie);
+
+
+      virtual bool is_descendant_of(::user::interaction * puiAscendantCandidate);
+
+
    };
 
 

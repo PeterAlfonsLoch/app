@@ -193,6 +193,11 @@ namespace user
 
       virtual void register_drop_target();
 
+
+      virtual ::user::interaction * get_focus_guie();
+      virtual void set_focus_guie(::user::interaction * pguie);
+
+
    };
 
 

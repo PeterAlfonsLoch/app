@@ -21,10 +21,13 @@ public:
       move(::move(array));
    }
 
-   index find_first(ARG_TYPE t, index find = 0, index last = -1) const;
+   index find_first(ARG_TYPE t) const;
+   index find_first(ARG_TYPE t, index find, index last = -1) const;
+   index find_last(ARG_TYPE t) const;
    ::count get_count() const;
    ::count get_count(ARG_TYPE t, index start = 0, index last = -1, ::count countMax = -1) const;
-   bool contains(ARG_TYPE t, index start = 0, index last = -1, ::count countMin = 1, ::count countMax = -1) const;
+   bool contains(ARG_TYPE t) const;
+   bool contains(ARG_TYPE t, index start, index last = -1, ::count countMin = 1, ::count countMax = -1) const;
    bool contains(comparable_eq_array & a, ::count cMinCount = -1) const
    {
       if(cMinCount < 0)
@@ -39,8 +42,12 @@ public:
       }
       return true;
    }
-   index remove_first(ARG_TYPE t, index find = 0, index last = -1);
-   index remove(ARG_TYPE t, index find = 0, index last = -1, ::count countMin = 0, ::count countMax = -1);
+   using BASE_ARRAY::remove_last;
+   index remove_last(ARG_TYPE t);
+   index remove_first(ARG_TYPE t);
+   index remove_first(ARG_TYPE t, index find, index last = -1);
+   index remove(ARG_TYPE t);
+   index remove(ARG_TYPE t, index find, index last = -1, ::count countMin = 0, ::count countMax = -1);
    typename ARRAY_TYPE::iterator erase(typename ARRAY_TYPE::iterator it);
    typename ARRAY_TYPE::iterator erase(typename ARRAY_TYPE::iterator first, typename ARRAY_TYPE::iterator last);
    index erase(ARG_TYPE t, index find = 0, index last = -1, ::count countMin = 0, ::count countMax = -1);
@@ -111,6 +118,32 @@ public:
 //
 //}
 
+template <class TYPE,class ARG_TYPE,class ARRAY_TYPE,typename EQUALS>
+index comparable_eq_array < TYPE,ARG_TYPE,ARRAY_TYPE,EQUALS>::
+find_first(ARG_TYPE t) const
+{
+   index find = 0;
+   index c = get_size();
+   for(; find < c; find++)
+   {
+      if(EQUALS::CompareElements(this->element_at(find),t))
+         return find;
+   }
+   return -1;
+}
+
+template <class TYPE,class ARG_TYPE,class ARRAY_TYPE,typename EQUALS>
+index comparable_eq_array < TYPE,ARG_TYPE,ARRAY_TYPE,EQUALS>::
+find_last(ARG_TYPE t) const
+{
+   index find = get_upper_bound();
+   for(; find >= 0; find--)
+   {
+      if(EQUALS::CompareElements(this->element_at(find),t))
+         return find;
+   }
+   return -1;
+}
 
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE, typename EQUALS>
 index comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS>::
@@ -146,6 +179,17 @@ get_count(ARG_TYPE t, index find, index last, ::count countMax) const
       count++;
    return count;
 }
+
+
+template <class TYPE,class ARG_TYPE,class ARRAY_TYPE,typename EQUALS>
+bool comparable_eq_array < TYPE,ARG_TYPE,ARRAY_TYPE,EQUALS>::
+contains(ARG_TYPE t) const
+{
+   
+   return find_first(t) >= 0;
+
+}
+
 
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE, typename EQUALS>
 bool comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS>::
@@ -261,6 +305,31 @@ operator |= (const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS> & a)
    return *this;
 }
 
+template <class TYPE,class ARG_TYPE,class ARRAY_TYPE,typename EQUALS>
+index comparable_eq_array < TYPE,ARG_TYPE,ARRAY_TYPE,EQUALS>::
+remove_last(ARG_TYPE t)
+{
+   int find;
+   if((find = find_last(t)) >= 0)
+   {
+      this->remove_at(find);
+   }
+   return find;
+}
+
+
+template <class TYPE,class ARG_TYPE,class ARRAY_TYPE,typename EQUALS>
+index comparable_eq_array < TYPE,ARG_TYPE,ARRAY_TYPE,EQUALS>::
+remove_first(ARG_TYPE t)
+{
+   int find;
+   if((find = find_first(t)) >= 0)
+   {
+      this->remove_at(find);
+   }
+   return find;
+}
+
 
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE, typename EQUALS>
 index comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS>::
@@ -283,6 +352,21 @@ remove(ARG_TYPE t, index find, index last, ::count countMin, ::count countMax)
          && (find = remove_first(t, find, last)) >= 0)
          count++;
    return count;
+}
+
+
+template <class TYPE,class ARG_TYPE,class ARRAY_TYPE,typename EQUALS>
+::count comparable_eq_array < TYPE,ARG_TYPE,ARRAY_TYPE,EQUALS>::
+remove(ARG_TYPE t)
+{
+   
+   ::count count = 0;
+   
+   if(remove_last(t) >= 0)
+      count++;
+
+   return count;
+
 }
 
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE, typename EQUALS>

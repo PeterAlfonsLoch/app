@@ -51,6 +51,7 @@ namespace user
    {
    public:
 
+      ::user::interaction *         m_puiFocus;
 
       oswindow                      m_oswindow;
       bool                          m_bMouseHover;
@@ -725,6 +726,10 @@ namespace user
       virtual bool is_composite();
 
 
+      virtual ::user::interaction * get_focus_guie() override;
+      virtual void set_focus_guie(::user::interaction * pguie) override;
+
+
    };
 
 
@@ -748,7 +753,7 @@ namespace user
       virtual void message_handler(signal_details * pobj);
 
 
-   };
+   }; // guie_message_wnd
 
 
 } // namespace user

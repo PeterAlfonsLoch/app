@@ -83,6 +83,9 @@ namespace base
       virtual ::user::interaction * get_active_guie();
       virtual ::user::interaction * get_focus_guie();
 
+      virtual void set_active_guie(::user::interaction * pui);
+      virtual void set_focus_guie(::user::interaction * pui);
+
 
       virtual bool initialize_twf();
 

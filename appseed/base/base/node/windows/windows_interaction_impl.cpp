@@ -666,10 +666,12 @@ namespace windows
          IGUI_WIN_MSG_LINK(WM_WINDOWPOSCHANGED,pinterface,this,&interaction_impl::_001OnWindowPosChanged);
          IGUI_WIN_MSG_LINK(WM_GETMINMAXINFO,pinterface,this,&interaction_impl::_001OnGetMinMaxInfo);
          IGUI_WIN_MSG_LINK(WM_SHOWWINDOW,pinterface,this,&interaction_impl::_001OnShowWindow);
+         IGUI_WIN_MSG_LINK(WM_KILLFOCUS,pinterface,this,&interaction_impl::_001OnKillFocus);
          IGUI_WIN_MSG_LINK(ca2m_PRODEVIAN_SYNCH,pinterface,this,&interaction_impl::_001OnProdevianSynch);
       }
       IGUI_WIN_MSG_LINK(WM_DESTROY,pinterface,this,&interaction_impl::_001OnDestroy);
       IGUI_WIN_MSG_LINK(WM_NCCALCSIZE,pinterface,this,&interaction_impl::_001OnNcCalcSize);
+
    }
 
    void interaction_impl::win_update_graphics()
@@ -1391,6 +1393,7 @@ namespace windows
       //}
 
 
+      bool bDestroying = m_pui->m_bDestroying;
 
       if(pbase->m_uiMessage == WM_SIZE || pbase->m_uiMessage == WM_MOVE)
       {
@@ -1733,13 +1736,16 @@ namespace windows
       //if(pobj->m_bRet && !pbase->m_bDoSystemDefault)
       if(pobj->m_bRet)
          return;
-      if(m_pui != NULL)
+      if(!bDestroying)
       {
-         pbase->set_lresult(m_pui->DefWindowProc(pbase->m_uiMessage,pbase->m_wparam,pbase->m_lparam));
-      }
-      else
-      {
-         pbase->set_lresult(DefWindowProc(pbase->m_uiMessage,pbase->m_wparam,pbase->m_lparam));
+         if(m_pui != NULL)
+         {
+            pbase->set_lresult(m_pui->DefWindowProc(pbase->m_uiMessage,pbase->m_wparam,pbase->m_lparam));
+         }
+         else
+         {
+            pbase->set_lresult(DefWindowProc(pbase->m_uiMessage,pbase->m_wparam,pbase->m_lparam));
+         }
       }
    }
 
@@ -4956,10 +4962,40 @@ namespace windows
    {
       Default();
    }
-   void interaction_impl::OnKillFocus(::window_sp)
+   
+   
+   void interaction_impl::_001OnKillFocus(signal_details * pobj)
    {
+   //   Default();
+
       Default();
+
+      if(GetParent() == NULL)
+      {
+         
+         m_puiFocus = NULL;
+
+         sp(::user::interaction) puiKeyboardFocus = Session.get_keyboard_focus();
+
+         if(puiKeyboardFocus.is_set())
+         {
+
+            if(puiKeyboardFocus == m_pui
+               || puiKeyboardFocus->is_descendant_of(m_pui))
+            {
+
+               Session.set_keyboard_focus(NULL);
+
+            }
+
+         }
+
+      }
+
    }
+
+
+
    LRESULT interaction_impl::OnMenuChar(UINT,UINT,::user::menu*)
    {
       return Default();

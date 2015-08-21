@@ -2173,6 +2173,15 @@ namespace base
 
       synch_lock sl(&m_mutexFrame); // recursive lock (on m_framea.remove(pwnd)) but m_puiMain is "cared" by m_frame.m_mutex
 
+
+      //if(get_active_uie() == pwnd)
+      //{
+
+      //   set_a
+
+      //}
+
+
       if(m_puiMain == pwnd)
       {
 
@@ -2180,7 +2189,7 @@ namespace base
 
       }
 
-      m_uiptraFrame.remove(pwnd);
+      m_uiptraFrame.remove(pwnd.m_p);
 
 
    }

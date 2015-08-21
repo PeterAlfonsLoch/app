@@ -132,17 +132,60 @@ namespace user
 
    interaction::~interaction()
    {
+
       m_uiptraChild.m_pmutex  = NULL;
+
       add_ref();
       
-      if(IsWindow())
+      try
       {
 
-         DestroyWindow();
+         if(Application.m_uiptraFrame.contains(this))
+         {
 
-         user_interaction_on_destroy();
-         
+            Application.remove_frame(this);
+
+         }
+
       }
+      catch(...)
+      {
+
+      }
+      try
+      {
+
+         if(Session.m_uiptraFrame.contains(this))
+         {
+
+            Session.remove_frame(this);
+
+         }
+
+      }
+      catch(...)
+      {
+
+      }
+      try
+      {
+
+         if(System.m_uiptraFrame.contains(this))
+         {
+
+            System.remove_frame(this);
+
+         }
+
+      }
+      catch(...)
+      {
+
+      }
+
+      DestroyWindow();
+
+      user_interaction_on_destroy();
 
    }
 
@@ -568,6 +611,32 @@ namespace user
    void interaction::user_interaction_on_hide()
    {
 
+
+      if(System.get_active_guie() == this)
+      {
+         // TODO : to be possibly done by camilo : instead of setting active guie to null
+         // you could relinquish (I don't know what it is it) the active window status
+         // to another window by using a function like kill_focus or relinquish_focus.
+         // But, if you set active guie to NULL, Session could ignore the NULL assignment,
+         // and use as a tip to set to a proper alive windows/guie.
+         System.set_active_guie(NULL);
+      }
+
+      if(Session.get_focus_guie() == this)
+      {
+
+         System.set_focus_guie(NULL);
+
+      }
+
+
+      //if(Session.get_keyboard_focus() == this)
+      //{
+
+      //   Session.set_keyboard_focus(NULL);
+
+      //}
+
       try
       {
 
@@ -582,10 +651,10 @@ namespace user
       try
       {
 
-         if(GetParent() != NULL && Session.m_pkeyboardfocus == this)
+         if(Session.m_pkeyboardfocus == this)
          {
 
-            if(GetParent()->m_bDestroying || !GetParent()->IsWindowVisible())
+            if(GetParent() == NULL || GetParent()->m_bDestroying || !GetParent()->IsWindowVisible())
             {
 
                Session.m_pkeyboardfocus = NULL;
@@ -702,10 +771,17 @@ namespace user
 
       single_lock sl(m_pmutex,true);
 
+      user_interaction_on_hide();
+
       try
       {
 
-         m_pimpl->delete_all_timers();
+         if(m_pimpl != NULL)
+         {
+
+            m_pimpl->delete_all_timers();
+
+         }
 
       }
       catch(...)
@@ -713,8 +789,6 @@ namespace user
 
       }
 
-
-      user_interaction_on_hide();
 
       try
       {
@@ -6801,6 +6875,49 @@ namespace user
 
    }
 
+
+   ::user::interaction * interaction::get_focus_guie()
+   {
+
+      if(m_pimpl == NULL)
+         return NULL;
+
+      return m_pimpl->get_focus_guie();
+
+   }
+
+
+   void interaction::set_focus_guie(::user::interaction * pguie)
+   {
+
+      if(m_pimpl == NULL)
+         return;
+
+      m_pimpl->set_focus_guie(pguie);
+
+   }
+
+
+   bool interaction::is_descendant_of(::user::interaction * puiAscendantCandidate)
+   {
+
+      sp(::user::interaction) pui = GetParent();
+
+      while(pui.is_set())
+      {
+
+         if(pui == puiAscendantCandidate)
+            return true;
+
+         pui = pui->GetParent();
+
+      }
+
+      return false;
+
+
+
+   }
 
 } // namespace user
 

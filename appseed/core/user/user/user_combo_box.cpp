@@ -74,7 +74,12 @@ namespace user
 
       GetClientRect(rectClient);
 
-      select_text_color(pdc, color_text);
+      if(!select_text_color(pdc,color_text))
+      {
+
+         pdc->set_text_color(ARGB(255,0,0,0));
+
+      }
 
       rect rectText;
 
@@ -221,8 +226,6 @@ namespace user
       get_element_rect(rectDropDown, element_drop_down);
 
 
-#ifdef WINDOWSEX
-
       int32_t iMargin = rectClient.height() / 8;
 
       rect r = rectDropDown;
@@ -320,17 +323,15 @@ namespace user
 
       pdc->fill_path(path);
 
-#else
-
-      throw todo(get_app());
-
-#endif
 
    }
 
 
    void combo_box::_001OnDraw(::draw2d::graphics * pdc)
    {
+
+      ::user::control::_001OnDraw(pdc);
+
 
       //if(m_estyle == style_simply)
       if(m_plist == NULL)
@@ -733,18 +734,29 @@ namespace user
       else
       {
 
+         //m_plist->post_message(WM_CLOSE);
 
+         //m_plist.m_p = NULL;
+
+         //if(m_plist.is_set())
+         //{
+
+         //   m_plist->DestroyWindow();
+
+         //   m_plist.release();
+
+         //}
+
+         keyboard_set_focus();
 
          if(m_plist.is_set())
          {
 
-            m_plist->DestroyWindow();
+            m_plist->post_message(WM_CLOSE);
 
-            m_plist.release();
+            m_plist.m_p = NULL;
 
          }
-
-         keyboard_set_focus();
 
       }
 
@@ -814,11 +826,16 @@ namespace user
       if(!IsWindow())
          return;
 
-      string strItem;
+      if(m_bEdit)
+      {
 
-      _001GetListText(iSel, strItem);
+         string strItem;
 
-      _001SetText(strItem, actioncontext);
+         _001GetListText(iSel,strItem);
+
+         _001SetText(strItem,actioncontext);
+
+      }
 
    }
 

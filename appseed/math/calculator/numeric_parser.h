@@ -11,8 +11,8 @@ namespace calculator
    public:
 
 
-      scanner           m_scanner;
-      spa(::calculator::element)      m_elementa;
+      scanner                          m_scanner;
+      spa(::calculator::element)       m_elementa;
 
 
       parser(::aura::application * papp);

@@ -18,6 +18,8 @@ namespace user
       m_oswindow                             = NULL;
       m_bNeedLayout                          = false;
       m_pcsDisplay                           = NULL;
+      m_puiFocus                             = NULL;
+
 
    }
 
@@ -2881,6 +2883,48 @@ namespace user
    {
 
       return &m_pgraphics;
+
+   }
+
+   ::user::interaction * interaction_impl::get_focus_guie()
+   {
+
+      return m_puiFocus;
+
+   }
+
+
+   void interaction_impl::set_focus_guie(::user::interaction * pguie)
+   {
+
+      if(pguie == NULL)
+      {
+         
+         m_puiFocus = NULL;
+
+         return;
+
+      }
+
+      if(pguie == m_pui)
+      {
+
+         m_puiFocus = m_pui;
+
+         return;
+
+      }
+
+      if(pguie->is_descendant_of(m_pui))
+      {
+
+         m_puiFocus = pguie;
+
+         return;
+
+      }
+
+      throw invalid_argument_exception(get_app(),"Focus of a window implementation should be set NULL, to itself or to a descendant window");
 
    }
 

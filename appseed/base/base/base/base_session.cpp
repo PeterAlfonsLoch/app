@@ -81,8 +81,6 @@ namespace base
 
       m_pcopydesk = NULL;
 
-      m_puiFocus = NULL;
-
       m_pschemasimple               = canew(::user::schema_simple_impl);
 
       m_puserschema                 = m_pschemasimple;
@@ -90,10 +88,6 @@ namespace base
       m_pschemasimple->m_pfont.alloc(allocer());
 
       m_pschemasimple->m_pfont->create_pixel_font("Helvetica",16);
-
-      m_puiFocus = NULL;
-
-
 
    }
 
@@ -2068,80 +2062,15 @@ index session::get_good_move(LPRECT lprect,const RECT & rectParam,::user::intera
 
 ::user::interaction * session::get_focus_guie()
 {
-   try
-   {
 
-#if defined (METROWIN)
+   ::user::interaction * puiTopLevel = ::window_from_handle(::GetFocus());
 
-   oswindow window = GetFocus();
-
-   if(window == NULL)
+   if(puiTopLevel == NULL)
       return NULL;
 
-   return GetFocus()->m_pui;
+   return puiTopLevel->get_focus_guie();
 
-#elif defined(WINDOWSEX) || defined(LINUX)
-
-   ::user::interaction * pwnd = ::window_from_handle(::GetFocus());
-   if(pwnd != NULL)
-   {
-      if(get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
-         || ::user::window_util::IsAscendant(get_active_guie()->get_safe_handle(),pwnd->get_safe_handle()))
-      {
-         return pwnd;
-      }
-      else
-      {
-         return NULL;
-      }
-   }
-   pwnd = System.window_from_os_data(::GetFocus());
-   if(pwnd != NULL)
-   {
-      if(get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
-         || ::user::window_util::IsAscendant(get_active_guie()->get_safe_handle(),pwnd->get_safe_handle()))
-      {
-         return pwnd;
-      }
-      else
-      {
-         return NULL;
-      }
-   }
-   pwnd = m_puiFocus;
-   if(pwnd != NULL)
-   {
-      if(get_active_guie() != NULL
-         && (get_active_guie() == pwnd
-         || get_active_guie()->is_descendant(pwnd)))
-      {
-         return pwnd;
-      }
-      else
-      {
-         return NULL;
-      }
-   }
-   return NULL;
-#elif defined (APPLE_IOS) || defined(ANDROID) || defined(VSNORD)
-      if(System.m_posdata == NULL)
-         return NULL;
-      return System.m_posdata->m_pui;
-#else
-
-   return System.get_active_guie();
-
-#endif
-   }
-   catch(...)
-   {
-   }
-
-   return NULL;
 }
-
-
-
 
 
 ::user::interaction * session::get_active_guie()

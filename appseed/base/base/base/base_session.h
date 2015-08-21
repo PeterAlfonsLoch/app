@@ -15,7 +15,6 @@ namespace base
    public:
 
 
-      ::user::interaction *                                   m_puiFocus;
       ::user::user *                                          m_puser;
 
 

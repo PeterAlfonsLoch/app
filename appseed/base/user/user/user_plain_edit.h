@@ -22,7 +22,15 @@ namespace user
    {
    public:
 
+      class error
+      {
+      public:
+         int m_iStart;
+         int m_iEnd;
+         string m_strMessage;
+      };
 
+      array <error> m_errora;
       //WPARAM                        m_dwLastKeyWparam;
       //LPARAM                        m_dwLastKeyLparam;
       ::message::key                m_keymessageLast;
