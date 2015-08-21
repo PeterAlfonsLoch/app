@@ -89,6 +89,7 @@
 			<Add option="-Wl,-z,origin" />
 			<Add option="-lpthread" />
 			<Add option="-lpulse" />
+			<Add option="-laura" />
 			<Add option="-laxiswinpr" />
 			<Add option="-laxisfreerdp" />
 			<Add option="-lasound" />
