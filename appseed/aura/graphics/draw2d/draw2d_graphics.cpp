@@ -4217,11 +4217,9 @@ namespace draw2d
       int iB = argb_get_b_value(m_sppen->m_cr);
       int iA = argb_get_a_value(m_sppen->m_cr);
 
-      int maxy = y1;
-
       if(iStyle == 0)
       {
-         DrawLine(x1,maxy+2,x2,maxy+ 2);
+         DrawLine(x1,y1+2,x2,y1+ 2);
       }
       else
       {
@@ -4234,40 +4232,83 @@ namespace draw2d
             return false;
          dib->Fill(0,0,0,0);
          double dStep = 0.125;
-         double dPeriod = 8.0;
+         double dPeriod = 7.0;
          double dTint;
+         double dHalfH = 1.33;
+         double dHSpan = 0.7;
+         double dH = 2.5;
+         double dCurl = 2.3;
+         double dBaseTint = 2.0;
+         double dCircleX;
+         double dCircleY;
          for(double dx = x1; dx < x2; dx+=dStep)
          {
-            dTint = 3.3;
+            dCircleX = fmod(dx,(double)(dPeriod)) ;
+            double dSign = dCircleX < (dPeriod / 2.0)? 1.0 : -1.0;
+            dCircleX -= dPeriod / 2.0;
+            dTint = dBaseTint * 0.51;
+            dCircleY = dSign*sqrt(dPeriod *dPeriod / 4.0 - dCircleX*dCircleX) * 0.05;
             {
-               double dy = (sin((double)dx * 2.0 * 3.1415 / dPeriod) - fmod(dx,(double)(dPeriod / 2.0)) / (dPeriod * 1.23));
-               dy = (dy * 1.5 + 2.0);
-               int x = MIN(MAX(0,(int)round(dx)),dib->m_size.cx - 1);
-               int y = MIN(MAX(0,(int)round(dy)),dib->m_size.cy - 1);
-               int A = (dib->m_pcolorref[x + dib->m_iScan * y / sizeof(COLORREF)] >> 24) & 0xff;
-               double fy = 1.0 - fmod(fabs(dy),1.0);
-               double fx = 1.0 - fmod(fabs(dx),1.0);
-               A = (A + ((fx * fy) * 255.0 * dStep*dTint));
-               A = MIN(A,255);
-               dib->m_pcolorref[x + dib->m_iScan * y / sizeof(COLORREF)] =  ARGB((A * iA)/255,iB,iG,iR);
+               double dy = (sin((double)dx * 2.0 * 3.1415 / dPeriod) - fmod(dx,(double)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
+                  ;
+               dy = (dy * dHalfH + dH - dHSpan);
+               int x = (int)round(dx);
+               int y = (int)round(dy);
+               if(x < 0 || y < 0 || x >= dib->m_size.cx || y >= dib->m_size.cy)
+               {
+               }
+               else
+               {
+                  int A = (dib->m_pcolorref[x + dib->m_iScan * y / sizeof(COLORREF)] >> 24) & 0xff;
+                  double fy = 1.0 - fmod(fabs(dy),1.0);
+                  double fx = 1.0 - fmod(fabs(dx),1.0);
+                  A = (A + ((fx * fy) * 255.0 * dStep*dTint));
+                  A = MIN(A,255);
+                  dib->m_pcolorref[x + dib->m_iScan * y / sizeof(COLORREF)] =  ARGB((A * iA) / 255,iB,iG,iR);
+               }
             }
-            dTint = 1.9;
+            dTint = dBaseTint * 0.51;
             {
-               double dy = (sin((double)dx * 2.0 * 3.1415 / dPeriod) - fmod(dx,(double)(dPeriod / 2.0)) / (dPeriod * 1.23));
-               dy = (dy * 1.5 + 2.5);
-               int x = MIN(MAX(0,(int)round(dx)),dib->m_size.cx - 1);
-               int y = MIN(MAX(0,(int)round(dy)),dib->m_size.cy - 1);
-               int A = (dib->m_pcolorref[x + dib->m_iScan * y / sizeof(COLORREF)] >> 24) & 0xff;
-               double fy = 1.0 - fmod(fabs(dy),1.0);
-               double fx = 1.0 - fmod(fabs(dx),1.0);
-               A = (A + ((fx * fy) * 255.0 * dStep*dTint));
-               A = MIN(A,255);
-               dib->m_pcolorref[x + dib->m_iScan * y / sizeof(COLORREF)] =  ARGB((A * iA) / 255,iB,iG,iR);
+               double dy = (sin((double)dx * 2.0 * 3.1415 / dPeriod) - fmod(dx,(double)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
+               dy = (dy * dHalfH + dH + dHSpan);
+               int x = (int)round(dx);
+               int y = (int)round(dy);
+               if(x < 0 || y < 0 || x >= dib->m_size.cx || y >= dib->m_size.cy)
+               {
+               }
+               else
+               {
+                  int A = (dib->m_pcolorref[x + dib->m_iScan * y / sizeof(COLORREF)] >> 24) & 0xff;
+                  double fy = 1.0 - fmod(fabs(dy),1.0);
+                  double fx = 1.0 - fmod(fabs(dx),1.0);
+                  A = (A + ((fx * fy) * 255.0 * dStep*dTint));
+                  A = MIN(A,255);
+                  dib->m_pcolorref[x + dib->m_iScan * y / sizeof(COLORREF)] =  ARGB((A * iA) / 255,iB,iG,iR);
+               }
+            }
+            dTint = dBaseTint * 2.3;
+            {
+               double dy = (sin((double)dx * 2.0 * 3.1415 / dPeriod) - fmod(dx,(double)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
+               dy = (dy * dHalfH + dH);
+               int x = (int)round(dx);
+               int y = (int)round(dy);
+               if(x < 0 || y < 0 || x >= dib->m_size.cx || y >= dib->m_size.cy)
+               {
+               }
+               else
+               {
+                  int A = (dib->m_pcolorref[x + dib->m_iScan * y / sizeof(COLORREF)] >> 24) & 0xff;
+                  double fy = 1.0 - fmod(fabs(dy),1.0);
+                  double fx = 1.0 - fmod(fabs(dx),1.0);
+                  A = (A + ((fx * fy) * 255.0 * dStep*dTint));
+                  A = MIN(A,255);
+                  dib->m_pcolorref[x + dib->m_iScan * y / sizeof(COLORREF)] =  ARGB((A * iA) / 255,iB,iG,iR);
+               }
             }
          }
 
          set_alpha_mode(::draw2d::alpha_mode_blend);
-         BitBlt(x1,maxy + 1,dib->m_size.cx,dib->m_size.cy,dib->get_graphics(),0,0);
+         BitBlt(x1,y1,dib->m_size.cx,dib->m_size.cy,dib->get_graphics(),0,0);
 
       }
 
