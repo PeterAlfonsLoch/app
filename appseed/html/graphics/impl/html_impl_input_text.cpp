@@ -9,11 +9,23 @@ namespace html
    {
 
 
-      input_text::input_text(data * pdata)
+      input_text::input_text(data * pdata, const string & strType, const string & strUnit)
       {
 
          m_iFont = -1;
-         m_pedit = canew(::user::plain_edit(pdata->get_app()));
+         m_strType = strType;
+         m_strUnit = strUnit;
+         if(strType.CompareNoCase("calculator") == 0)
+         {
+            m_pedit = canew(::calculator::plain_edit_view(pdata->get_app()));
+            m_pedit.cast <::calculator::plain_edit_view>()->m_strFormat = strUnit;
+            m_pedit.cast <::calculator::plain_edit_view>()->m_pcallback = this;
+         }
+         else
+         {
+            m_pedit = canew(::user::plain_edit(pdata->get_app()));
+         }
+
          m_pedit->m_ulFlags &= ~::object::flag_auto_delete;
          m_pedit->m_bMultiLine      = false;
 
@@ -119,7 +131,6 @@ namespace html
          UNREFERENCED_PARAMETER(pdata);
          m_pedit->SetWindowPos(0, (int32_t) m_box.left, (int32_t) m_box.top, (int32_t) m_box.get_cx(), (int32_t) m_box.get_cy(), SWP_NOREDRAW);
       }
-
    }
 
 } // namespace html

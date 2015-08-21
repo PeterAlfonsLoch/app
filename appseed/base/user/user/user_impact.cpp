@@ -1169,7 +1169,7 @@ namespace user
 
       }
 
-      if(!get_document()->m_dataid.m_id.is_empty())
+      if(get_document() != NULL && !get_document()->m_dataid.m_id.is_empty())
       {
 
          str += ".";

@@ -235,6 +235,12 @@ namespace html
                m_pimpl = new ::html::impl::input_text(pdata);
 
             }
+            else if(strType == "calculator")
+            {
+
+               m_pimpl = new ::html::impl::input_text(pdata, "calculator", m_propertyset["unit"]);
+
+            }
             else if (strType == "password")
             {
 

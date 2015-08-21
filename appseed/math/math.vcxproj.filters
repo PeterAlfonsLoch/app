@@ -59,22 +59,25 @@
     <ClInclude Include="calculator\calculator_calculator.h">
       <Filter>Header Files\calculator</Filter>
     </ClInclude>
-    <ClInclude Include="calculator\numeric_element.h">
+    <ClInclude Include="calculator\calculator_element.h">
       <Filter>Header Files\calculator</Filter>
     </ClInclude>
-    <ClInclude Include="calculator\numeric_parser.h">
+    <ClInclude Include="calculator\calculator_parser.h">
       <Filter>Header Files\calculator</Filter>
     </ClInclude>
-    <ClInclude Include="calculator\numeric_parser_exception.h">
+    <ClInclude Include="calculator\calculator_parser_exception.h">
       <Filter>Header Files\calculator</Filter>
     </ClInclude>
-    <ClInclude Include="calculator\numeric_scanner.h">
+    <ClInclude Include="calculator\calculator_plain_edit_view.h">
       <Filter>Header Files\calculator</Filter>
     </ClInclude>
-    <ClInclude Include="calculator\numeric_token.h">
+    <ClInclude Include="calculator\calculator_scanner.h">
       <Filter>Header Files\calculator</Filter>
     </ClInclude>
-    <ClInclude Include="calculator\numeric_value.h">
+    <ClInclude Include="calculator\calculator_token.h">
+      <Filter>Header Files\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="calculator\calculator_value.h">
       <Filter>Header Files\calculator</Filter>
     </ClInclude>
   </ItemGroup>
@@ -100,21 +103,6 @@
     <ClCompile Include="calculator\calculator_calculator.cpp">
       <Filter>Source Files\calculator</Filter>
     </ClCompile>
-    <ClCompile Include="calculator\numeric_element.cpp">
-      <Filter>Source Files\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="calculator\numeric_parser.cpp">
-      <Filter>Source Files\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="calculator\numeric_parser_exception.cpp">
-      <Filter>Source Files\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="calculator\numeric_scanner.cpp">
-      <Filter>Source Files\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="calculator\numeric_value.cpp">
-      <Filter>Source Files\calculator</Filter>
-    </ClCompile>
     <ClCompile Include="kissfft\_kissfft.cpp">
       <Filter>Source Files\kissfft</Filter>
     </ClCompile>
@@ -123,6 +111,24 @@
     </ClCompile>
     <ClCompile Include="_math_math.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="calculator\calculator_element.cpp">
+      <Filter>Source Files\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="calculator\calculator_parser.cpp">
+      <Filter>Source Files\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="calculator\calculator_parser_exception.cpp">
+      <Filter>Source Files\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="calculator\calculator_plain_edit_view.cpp">
+      <Filter>Source Files\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="calculator\calculator_scanner.cpp">
+      <Filter>Source Files\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="calculator\calculator_value.cpp">
+      <Filter>Source Files\calculator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

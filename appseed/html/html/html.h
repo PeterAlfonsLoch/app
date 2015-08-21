@@ -5,6 +5,7 @@
 #include "core/user/user/user.h"
 #include "core/user/simple/simple.h"
 #include "axis/html_lite/html_lite/html_lite.h"
+#include "math/math/math_math.h"
 
 
 #if defined(_CA2_HTML_DLL)
