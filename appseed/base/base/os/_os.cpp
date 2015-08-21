@@ -20,6 +20,7 @@
 
 #include "ansios/_ansios_os.cpp"
 #include "linux/_linux_os.cpp"
+#include "cross/_cross_os.cpp"
 
 
 #elif defined(MACOS)

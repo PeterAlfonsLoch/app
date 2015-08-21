@@ -54,8 +54,8 @@ class CLASS_DECL_AURA thread_data
 public:
 
 
-#ifdef _POSIX_THREADS
-   
+#if defined(_POSIX_THREADS) || defined(LINUX)
+
    pthread_key_t        m_key;
 
 #else

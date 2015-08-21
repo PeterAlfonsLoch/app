@@ -100,6 +100,13 @@
 		<Unit filename="libwinpr/bcrypt/bcrypt.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="libwinpr/clipboard/clipboard.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/clipboard/clipboard.h" />
+		<Unit filename="libwinpr/clipboard/synthetic.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="libwinpr/com/com.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -144,6 +151,7 @@
 		<Unit filename="libwinpr/crt/memory.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="libwinpr/crt/module.def" />
 		<Unit filename="libwinpr/crt/string.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -186,6 +194,7 @@
 		<Unit filename="libwinpr/handle/nonehandle.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="libwinpr/handle/nonehandle.h" />
 		<Unit filename="libwinpr/heap/heap.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -214,6 +223,7 @@
 		<Unit filename="libwinpr/locale/locale.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="libwinpr/log.h" />
 		<Unit filename="libwinpr/memory/memory.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -244,20 +254,20 @@
 		<Unit filename="libwinpr/pool/cleanup_group.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="libwinpr/pool/io.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/pool/pool.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="libwinpr/pool/pool.h" />
-		<Unit filename="libwinpr/pool/pool_io.c">
+		<Unit filename="libwinpr/pool/synch.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="libwinpr/pool/pool_pool.c">
+		<Unit filename="libwinpr/pool/timer.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="libwinpr/pool/pool_synch.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libwinpr/pool/pool_timer.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libwinpr/pool/pool_work.c">
+		<Unit filename="libwinpr/pool/work.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libwinpr/registry/registry.c">
@@ -316,6 +326,9 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libwinpr/security/security.h" />
+		<Unit filename="libwinpr/shell/shell.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="libwinpr/smartcard/smartcard.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -324,9 +337,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libwinpr/smartcard/smartcard_inspect.h" />
-		<Unit filename="libwinpr/smartcard/smartcard_link.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="libwinpr/smartcard/smartcard_pcsc.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -446,6 +456,9 @@
 		<Unit filename="libwinpr/utils/collections/ArrayList.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="libwinpr/utils/collections/BipBuffer.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="libwinpr/utils/collections/BitStream.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -511,6 +524,10 @@
 		<Unit filename="libwinpr/utils/lodepng/lodepng.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="libwinpr/utils/lodepng/lodepng.h" />
+		<Unit filename="libwinpr/utils/ntlm.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="libwinpr/utils/print.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -538,9 +555,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libwinpr/utils/trio/triostr.h" />
-		<Unit filename="libwinpr/utils/utils_ntlm.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="libwinpr/utils/wlog/Appender.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -552,6 +566,7 @@
 		<Unit filename="libwinpr/utils/wlog/CallbackAppender.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="libwinpr/utils/wlog/CallbackAppender.h" />
 		<Unit filename="libwinpr/utils/wlog/ConsoleAppender.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -602,6 +617,7 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libwinpr/wtsapi/wtsapi.h" />
+		<Unit filename="libwinpr/wtsapi/wtsapi_win32.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

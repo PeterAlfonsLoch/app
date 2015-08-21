@@ -70,6 +70,7 @@
 			<Add option="-DLINUX" />
 			<Add option="-DHAVE_CONFIG_H" />
 			<Add option="-DBYEWINDOWS_UNICODE" />
+			<Add option="-DWITH_OPENH264" />
 			<Add directory="../../../../include" />
 			<Add directory="../../../include" />
 			<Add directory="../../include" />
@@ -98,132 +99,132 @@
 		<Unit filename="dummy.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="libfreerdp/cache/cache_bitmap.c">
+		<Unit filename="libfreerdp/cache/bitmap.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="libfreerdp/cache/cache_brush.c">
+		<Unit filename="libfreerdp/cache/brush.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="libfreerdp/cache/cache_cache.c">
+		<Unit filename="libfreerdp/cache/cache.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="libfreerdp/cache/cache_glyph.c">
+		<Unit filename="libfreerdp/cache/glyph.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="libfreerdp/cache/cache_nine_grid.c">
+		<Unit filename="libfreerdp/cache/nine_grid.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="libfreerdp/cache/cache_offscreen.c">
+		<Unit filename="libfreerdp/cache/offscreen.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="libfreerdp/cache/cache_palette.c">
+		<Unit filename="libfreerdp/cache/palette.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="libfreerdp/cache/cache_pointer.c">
+		<Unit filename="libfreerdp/cache/pointer.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="libfreerdp/codec/codec_audio.c">
+		<Unit filename="libfreerdp/codec/audio.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="libfreerdp/codec/codec_bitmap.c">
+		<Unit filename="libfreerdp/codec/bitmap.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="libfreerdp/codec/codec_clear.c">
+		<Unit filename="libfreerdp/codec/clear.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="libfreerdp/codec/codec_color.c">
+		<Unit filename="libfreerdp/codec/color.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="libfreerdp/codec/codec_dsp.c">
+		<Unit filename="libfreerdp/codec/dsp.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="libfreerdp/codec/codec_h264.c">
+		<Unit filename="libfreerdp/codec/h264.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="libfreerdp/codec/codec_interleaved.c">
+		<Unit filename="libfreerdp/codec/interleaved.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="libfreerdp/codec/codec_jpeg.c">
+		<Unit filename="libfreerdp/codec/jpeg.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="libfreerdp/codec/codec_mppc.c">
+		<Unit filename="libfreerdp/codec/mppc.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="libfreerdp/codec/codec_ncrush.c">
+		<Unit filename="libfreerdp/codec/ncrush.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="libfreerdp/codec/codec_nsc.c">
+		<Unit filename="libfreerdp/codec/nsc.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="libfreerdp/codec/codec_nsc_encode.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libfreerdp/codec/codec_nsc_sse2.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libfreerdp/codec/codec_planar.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libfreerdp/codec/codec_progressive.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libfreerdp/codec/codec_region.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libfreerdp/codec/codec_rfx.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libfreerdp/codec/codec_rfx_decode.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libfreerdp/codec/codec_rfx_differential.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libfreerdp/codec/codec_rfx_dwt.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libfreerdp/codec/codec_rfx_encode.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libfreerdp/codec/codec_rfx_neon.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libfreerdp/codec/codec_rfx_quantization.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libfreerdp/codec/codec_rfx_rlgr.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libfreerdp/codec/codec_rfx_sse2.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libfreerdp/codec/codec_xcrush.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libfreerdp/codec/codec_zgfx.c">
+		<Unit filename="libfreerdp/codec/nsc_encode.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libfreerdp/codec/nsc_encode.h" />
+		<Unit filename="libfreerdp/codec/nsc_sse2.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="libfreerdp/codec/nsc_sse2.h" />
 		<Unit filename="libfreerdp/codec/nsc_types.h" />
+		<Unit filename="libfreerdp/codec/planar.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libfreerdp/codec/progressive.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libfreerdp/codec/region.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libfreerdp/codec/rfx.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="libfreerdp/codec/rfx_bitstream.h" />
 		<Unit filename="libfreerdp/codec/rfx_constants.h" />
+		<Unit filename="libfreerdp/codec/rfx_decode.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="libfreerdp/codec/rfx_decode.h" />
+		<Unit filename="libfreerdp/codec/rfx_differential.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="libfreerdp/codec/rfx_differential.h" />
+		<Unit filename="libfreerdp/codec/rfx_dwt.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="libfreerdp/codec/rfx_dwt.h" />
+		<Unit filename="libfreerdp/codec/rfx_encode.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="libfreerdp/codec/rfx_encode.h" />
+		<Unit filename="libfreerdp/codec/rfx_neon.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="libfreerdp/codec/rfx_neon.h" />
+		<Unit filename="libfreerdp/codec/rfx_quantization.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="libfreerdp/codec/rfx_quantization.h" />
+		<Unit filename="libfreerdp/codec/rfx_rlgr.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="libfreerdp/codec/rfx_rlgr.h" />
+		<Unit filename="libfreerdp/codec/rfx_sse2.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="libfreerdp/codec/rfx_sse2.h" />
 		<Unit filename="libfreerdp/codec/rfx_types.h" />
-		<Unit filename="libfreerdp/common/common_addin.c">
+		<Unit filename="libfreerdp/codec/xcrush.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="libfreerdp/common/common_assistance.c">
+		<Unit filename="libfreerdp/codec/zgfx.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="libfreerdp/common/common_settings.c">
+		<Unit filename="libfreerdp/common/addin.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libfreerdp/common/assistance.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libfreerdp/common/settings.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libfreerdp/core/activation.c">
@@ -293,6 +294,7 @@
 		<Unit filename="libfreerdp/core/gateway/rdg.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="libfreerdp/core/gateway/rdg.h" />
 		<Unit filename="libfreerdp/core/gateway/rpc.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -430,106 +432,103 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libfreerdp/core/window.h" />
-		<Unit filename="libfreerdp/crypto/crypto_base64.c">
+		<Unit filename="libfreerdp/crypto/base64.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="libfreerdp/crypto/crypto_ber.c">
+		<Unit filename="libfreerdp/crypto/ber.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="libfreerdp/crypto/crypto_certificate.c">
+		<Unit filename="libfreerdp/crypto/certificate.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="libfreerdp/crypto/crypto_crypto.c">
+		<Unit filename="libfreerdp/crypto/crypto.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="libfreerdp/crypto/crypto_der.c">
+		<Unit filename="libfreerdp/crypto/der.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="libfreerdp/crypto/crypto_er.c">
+		<Unit filename="libfreerdp/crypto/er.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="libfreerdp/crypto/crypto_per.c">
+		<Unit filename="libfreerdp/crypto/per.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="libfreerdp/crypto/crypto_tls.c">
+		<Unit filename="libfreerdp/crypto/tls.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libfreerdp/gdi/16bpp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libfreerdp/gdi/32bpp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libfreerdp/gdi/8bpp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libfreerdp/gdi/bitmap.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libfreerdp/gdi/brush.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libfreerdp/gdi/clipping.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libfreerdp/gdi/dc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libfreerdp/gdi/drawing.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libfreerdp/gdi/gdi.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libfreerdp/gdi/gdi.h" />
-		<Unit filename="libfreerdp/gdi/gdi_16bpp.c">
+		<Unit filename="libfreerdp/gdi/gfx.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="libfreerdp/gdi/gdi_32bpp.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libfreerdp/gdi/gdi_8bpp.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libfreerdp/gdi/gdi_bitmap.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libfreerdp/gdi/gdi_brush.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libfreerdp/gdi/gdi_clipping.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libfreerdp/gdi/gdi_dc.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libfreerdp/gdi/gdi_drawing.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libfreerdp/gdi/gdi_gdi.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libfreerdp/gdi/gdi_gfx.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libfreerdp/gdi/gdi_graphics.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libfreerdp/gdi/gdi_line.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libfreerdp/gdi/gdi_palette.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libfreerdp/gdi/gdi_pen.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libfreerdp/gdi/gdi_region.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libfreerdp/gdi/gdi_shape.c">
+		<Unit filename="libfreerdp/gdi/graphics.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libfreerdp/gdi/graphics.h" />
+		<Unit filename="libfreerdp/gdi/line.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libfreerdp/gdi/palette.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libfreerdp/gdi/pen.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libfreerdp/gdi/region.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libfreerdp/gdi/shape.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libfreerdp/locale/keyboard.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libfreerdp/locale/keyboard_layout.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="libfreerdp/locale/keyboard_sun.h" />
+		<Unit filename="libfreerdp/locale/keyboard_x11.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="libfreerdp/locale/keyboard_x11.h" />
+		<Unit filename="libfreerdp/locale/keyboard_xkbfile.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="libfreerdp/locale/keyboard_xkbfile.h" />
 		<Unit filename="libfreerdp/locale/liblocale.h" />
-		<Unit filename="libfreerdp/locale/locale_keyboard.c">
+		<Unit filename="libfreerdp/locale/locale.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="libfreerdp/locale/locale_keyboard_layout.c">
+		<Unit filename="libfreerdp/locale/timezone.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="libfreerdp/locale/locale_keyboard_sun.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libfreerdp/locale/locale_keyboard_x11.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libfreerdp/locale/locale_keyboard_xkbfile.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libfreerdp/locale/locale_locale.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libfreerdp/locale/locale_timezone.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libfreerdp/locale/locale_xkb_layout_ids.c">
+		<Unit filename="libfreerdp/locale/xkb_layout_ids.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libfreerdp/locale/xkb_layout_ids.h" />
@@ -611,25 +610,25 @@
 		<Unit filename="libfreerdp/primitives/primitives.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="libfreerdp/utils/utils_msusb.c">
+		<Unit filename="libfreerdp/utils/msusb.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="libfreerdp/utils/utils_passphrase.c">
+		<Unit filename="libfreerdp/utils/passphrase.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="libfreerdp/utils/utils_pcap.c">
+		<Unit filename="libfreerdp/utils/pcap.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="libfreerdp/utils/utils_profiler.c">
+		<Unit filename="libfreerdp/utils/profiler.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="libfreerdp/utils/utils_ringbuffer.c">
+		<Unit filename="libfreerdp/utils/ringbuffer.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="libfreerdp/utils/utils_signal.c">
+		<Unit filename="libfreerdp/utils/signal.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="libfreerdp/utils/utils_stopwatch.c">
+		<Unit filename="libfreerdp/utils/stopwatch.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Extensions>

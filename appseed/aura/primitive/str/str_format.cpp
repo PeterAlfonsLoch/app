@@ -421,7 +421,11 @@ bool string_format::parse(const char * & s)
       void format(string_format * pformat, double const & d)
       {
          // TODO: use specs
+         #ifdef WINDOWSEX
          char sz[_CVTBUFSIZE];
+         #else
+         char sz[CVTBUFSIZE];
+         #endif
          int decimal_point;
          int negative = d < 0.0;
          if(pformat->m_iPrecision >= 0)
@@ -482,6 +486,13 @@ bool string_format::parse(const char * & s)
                pformat->append(::str::from(d));
                return;
             }
+#elif defined(LINUX)
+            if(gcvt(fabs(d),digits, sz))
+            {
+               pformat->append(::str::from(d));
+               return;
+            }
+
 #else
             if(max_cvt_dup(sz,sizeof(sz),d,1024,&decimal_point,&negative,sizeof(sz)-1) != 0)
             {

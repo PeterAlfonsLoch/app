@@ -123,7 +123,7 @@ index comparable_eq_array < TYPE,ARG_TYPE,ARRAY_TYPE,EQUALS>::
 find_first(ARG_TYPE t) const
 {
    index find = 0;
-   index c = get_size();
+   index c = this->get_size();
    for(; find < c; find++)
    {
       if(EQUALS::CompareElements(this->element_at(find),t))
@@ -136,7 +136,7 @@ template <class TYPE,class ARG_TYPE,class ARRAY_TYPE,typename EQUALS>
 index comparable_eq_array < TYPE,ARG_TYPE,ARRAY_TYPE,EQUALS>::
 find_last(ARG_TYPE t) const
 {
-   index find = get_upper_bound();
+   index find = this->get_upper_bound();
    for(; find >= 0; find--)
    {
       if(EQUALS::CompareElements(this->element_at(find),t))
@@ -185,7 +185,7 @@ template <class TYPE,class ARG_TYPE,class ARRAY_TYPE,typename EQUALS>
 bool comparable_eq_array < TYPE,ARG_TYPE,ARRAY_TYPE,EQUALS>::
 contains(ARG_TYPE t) const
 {
-   
+
    return find_first(t) >= 0;
 
 }
@@ -359,9 +359,9 @@ template <class TYPE,class ARG_TYPE,class ARRAY_TYPE,typename EQUALS>
 ::count comparable_eq_array < TYPE,ARG_TYPE,ARRAY_TYPE,EQUALS>::
 remove(ARG_TYPE t)
 {
-   
+
    ::count count = 0;
-   
+
    if(remove_last(t) >= 0)
       count++;
 

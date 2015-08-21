@@ -1,0 +1,232 @@
+# depslib dependency file v1.0
+1440178498 source:/ca2/app/axis/openh264/codec/processing/src/arm/adaptive_quantization.S
+	"arm_arch_common_macro.S"
+
+1440178501 source:/ca2/app/axis/openh264/codec/processing/src/arm/down_sample_neon.S
+	"arm_arch_common_macro.S"
+
+1440178499 source:/ca2/app/axis/openh264/codec/processing/src/arm/pixel_sad_neon.S
+	"arm_arch_common_macro.S"
+
+1440178500 source:/ca2/app/axis/openh264/codec/processing/src/arm/vaa_calc_neon.S
+	"arm_arch_common_macro.S"
+
+1440178502 source:/ca2/app/axis/openh264/codec/processing/src/arm64/adaptive_quantization_aarch64_neon.S
+	"arm_arch64_common_macro.S"
+
+1440178501 source:/ca2/app/axis/openh264/codec/processing/src/arm64/down_sample_aarch64_neon.S
+	"arm_arch64_common_macro.S"
+
+1440178501 source:/ca2/app/axis/openh264/codec/processing/src/arm64/pixel_sad_aarch64_neon.S
+	"arm_arch64_common_macro.S"
+
+1440178499 source:/ca2/app/axis/openh264/codec/processing/src/arm64/vaa_calc_aarch64_neon.S
+	"arm_arch64_common_macro.S"
+
+1440178500 source:/ca2/app/axis/openh264/codec/processing/src/adaptivequantization/AdaptiveQuantization.cpp
+	"AdaptiveQuantization.h"
+	"macros.h"
+
+1440178498 /ca2/app/axis/openh264/codec/processing/src/adaptivequantization/AdaptiveQuantization.h
+	"util.h"
+	"memory.h"
+	"WelsFrameWork.h"
+	"IWelsVP.h"
+	"cpu.h"
+
+1440178498 /ca2/app/axis/openh264/codec/processing/src/common/util.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<stdarg.h>
+	<assert.h>
+	"typedef.h"
+	"memory.h"
+	"IWelsVP.h"
+
+1440178500 /ca2/app/axis/openh264/codec/processing/src/common/typedef.h
+	"typedefs.h"
+
+1440178499 /ca2/app/axis/openh264/codec/common/inc/typedefs.h
+	<limits.h>
+	<stddef.h>
+	<stdint.h>
+	<inttypes.h>
+
+1440178502 /ca2/app/axis/openh264/codec/processing/src/common/memory.h
+	"util.h"
+	"typedef.h"
+
+1440178499 /ca2/app/axis/openh264/codec/processing/interface/IWelsVP.h
+
+1440178501 /ca2/app/axis/openh264/codec/processing/src/common/WelsFrameWork.h
+	"IWelsVP.h"
+	"util.h"
+	"WelsThreadLib.h"
+
+1440178499 /ca2/app/axis/openh264/codec/common/inc/WelsThreadLib.h
+	"typedefs.h"
+	<windows.h>
+	<stdlib.h>
+	<unistd.h>
+	<string.h>
+	<pthread.h>
+	<semaphore.h>
+	<signal.h>
+	<errno.h>
+	<time.h>
+	<sys/time.h>
+	<sys/stat.h>
+	<fcntl.h>
+
+1440178498 /ca2/app/axis/openh264/codec/common/inc/cpu.h
+	"typedefs.h"
+	"cpu_core.h"
+
+1440178497 /ca2/app/axis/openh264/codec/common/inc/cpu_core.h
+
+1440178498 /ca2/app/axis/openh264/codec/common/inc/macros.h
+	<math.h>
+	<assert.h>
+	<string.h>
+	"typedefs.h"
+
+1440178499 source:/ca2/app/axis/openh264/codec/processing/src/backgrounddetection/BackgroundDetection.cpp
+	"BackgroundDetection.h"
+
+1440178503 /ca2/app/axis/openh264/codec/processing/src/backgrounddetection/BackgroundDetection.h
+	"util.h"
+	"memory.h"
+	"WelsFrameWork.h"
+	"IWelsVP.h"
+
+1440178498 source:/ca2/app/axis/openh264/codec/processing/src/common/memory.cpp
+	"memory.h"
+
+1440178501 source:/ca2/app/axis/openh264/codec/processing/src/common/WelsFrameWork.cpp
+	"WelsFrameWork.h"
+	"../denoise/denoise.h"
+	"../downsample/downsample.h"
+	"../scrolldetection/ScrollDetection.h"
+	"../scenechangedetection/SceneChangeDetection.h"
+	"../vaacalc/vaacalculation.h"
+	"../backgrounddetection/BackgroundDetection.h"
+	"../adaptivequantization/AdaptiveQuantization.h"
+	"../complexityanalysis/ComplexityAnalysis.h"
+	"../imagerotate/imagerotate.h"
+	"util.h"
+
+1440178502 /ca2/app/axis/openh264/codec/processing/src/denoise/denoise.h
+	"util.h"
+	"memory.h"
+	"WelsFrameWork.h"
+	"IWelsVP.h"
+
+1440178501 /ca2/app/axis/openh264/codec/processing/src/downsample/downsample.h
+	"util.h"
+	"WelsFrameWork.h"
+	"IWelsVP.h"
+	"macros.h"
+
+1440178503 /ca2/app/axis/openh264/codec/processing/src/scrolldetection/ScrollDetection.h
+	"util.h"
+	"memory.h"
+	"WelsFrameWork.h"
+	"IWelsVP.h"
+
+1440178500 /ca2/app/axis/openh264/codec/processing/src/scenechangedetection/SceneChangeDetection.h
+	"util.h"
+	"memory.h"
+	"cpu.h"
+	"WelsFrameWork.h"
+	"IWelsVP.h"
+	"common.h"
+
+1440178499 /ca2/app/axis/openh264/codec/processing/src/common/common.h
+	"util.h"
+	"memory.h"
+	"WelsFrameWork.h"
+	"IWelsVP.h"
+	"sad_common.h"
+	"intra_pred_common.h"
+
+1440178498 /ca2/app/axis/openh264/codec/common/inc/sad_common.h
+	"typedefs.h"
+
+1440178498 /ca2/app/axis/openh264/codec/common/inc/intra_pred_common.h
+	"typedefs.h"
+
+1440178501 /ca2/app/axis/openh264/codec/processing/src/vaacalc/vaacalculation.h
+	"util.h"
+	"memory.h"
+	"WelsFrameWork.h"
+	"IWelsVP.h"
+
+1440178501 /ca2/app/axis/openh264/codec/processing/src/complexityanalysis/ComplexityAnalysis.h
+	"util.h"
+	"memory.h"
+	"WelsFrameWork.h"
+	"IWelsVP.h"
+	"common.h"
+
+1440178498 /ca2/app/axis/openh264/codec/processing/src/imagerotate/imagerotate.h
+	"util.h"
+	"WelsFrameWork.h"
+	"IWelsVP.h"
+
+1440178502 source:/ca2/app/axis/openh264/codec/processing/src/common/WelsFrameWorkEx.cpp
+	"WelsFrameWork.h"
+
+1440178498 source:/ca2/app/axis/openh264/codec/processing/src/complexityanalysis/ComplexityAnalysis.cpp
+	"ComplexityAnalysis.h"
+	"cpu.h"
+	"macros.h"
+	"intra_pred_common.h"
+
+1440178498 source:/ca2/app/axis/openh264/codec/processing/src/denoise/denoise.cpp
+	"denoise.h"
+	"cpu.h"
+
+1440178500 source:/ca2/app/axis/openh264/codec/processing/src/denoise/denoise_filter.cpp
+	"denoise.h"
+
+1440178499 source:/ca2/app/axis/openh264/codec/processing/src/downsample/downsample.cpp
+	"downsample.h"
+	"cpu.h"
+
+1440178501 source:/ca2/app/axis/openh264/codec/processing/src/downsample/downsamplefuncs.cpp
+	"downsample.h"
+
+1440178500 source:/ca2/app/axis/openh264/codec/processing/src/imagerotate/imagerotate.cpp
+	"imagerotate.h"
+
+1440178500 source:/ca2/app/axis/openh264/codec/processing/src/imagerotate/imagerotatefuncs.cpp
+	"imagerotate.h"
+
+1440178501 source:/ca2/app/axis/openh264/codec/processing/src/scenechangedetection/SceneChangeDetection.cpp
+	"SceneChangeDetection.h"
+	"cpu.h"
+
+1440178502 source:/ca2/app/axis/openh264/codec/processing/src/scrolldetection/ScrollDetection.cpp
+	"ScrollDetection.h"
+	"ScrollDetectionFuncs.h"
+	"cpu.h"
+
+1440178499 /ca2/app/axis/openh264/codec/processing/src/scrolldetection/ScrollDetectionFuncs.h
+
+1440178501 source:/ca2/app/axis/openh264/codec/processing/src/scrolldetection/ScrollDetectionFuncs.cpp
+	"ScrollDetection.h"
+	"ScrollDetectionFuncs.h"
+	"ls_defines.h"
+
+1440178499 /ca2/app/axis/openh264/codec/common/inc/ls_defines.h
+	<string.h>
+	"typedefs.h"
+
+1440178501 source:/ca2/app/axis/openh264/codec/processing/src/vaacalc/vaacalcfuncs.cpp
+	"util.h"
+
+1440178503 source:/ca2/app/axis/openh264/codec/processing/src/vaacalc/vaacalculation.cpp
+	"vaacalculation.h"
+	"cpu.h"
+

@@ -3,8 +3,13 @@
 static DWORD nextTlsIndex = 0;
 typedef void_ptra ThreadLocalData;
 
+#if defined(LINUX) // || defined(ANDROID)
 
-#if defined(APPLE_IOS) || defined(ANDROID)
+bool aura_defer_process_x_message(HTHREAD hthread,LPMESSAGE lpMsg,oswindow oswindow,bool bPeek);
+
+#endif
+
+#if defined(APPLE_IOS) || defined(ANDROID) || defined(LINUX)
 thread_pointer < ThreadLocalData > currentThreadData;
 #else
 CLASS_DECL_THREAD ThreadLocalData * currentThreadData;
@@ -790,18 +795,18 @@ void __clear_mq()
 {
 
    synch_lock sl(g_pmutexMq);
-   
+
    IDTHREAD idthread = get_current_thread_id();
-   
+
    auto pmq = (mq *) __thread_get_data(idthread, TLS_MESSAGE_QUEUE);
-   
+
    if(pmq == NULL)
       return;
-   
+
    ::aura::del(pmq);
-   
+
    __thread_set_data(idthread, TLS_MESSAGE_QUEUE, NULL);
-   
+
 }
 
 

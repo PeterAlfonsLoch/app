@@ -111,4 +111,6 @@
 #include <WinSock2.h>
 #endif
 
-
+#ifdef LINUX
+#define _strdup strdup
+#endif
