@@ -244,6 +244,8 @@ namespace draw2d
 
    // Line-Output Functions
 
+      virtual bool DrawErrorLine(int32_t x1,int32_t y1,int32_t x2,int32_t y2);
+
       virtual bool DrawLine(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
       virtual bool drawLine(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
       virtual bool draw_line(int32_t x1, int32_t y1, int32_t x2, int32_t y2);

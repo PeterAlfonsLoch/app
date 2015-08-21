@@ -442,7 +442,7 @@ namespace user
                ::draw2d::pen_sp p(allocer());
                p->create_solid(1.0,ARGB(255,255,0,0));
                pdc->SelectObject(p);
-               pdc->DrawLine(sizeA.cx,y, sizeB.cx, y);
+               pdc->DrawErrorLine(sizeA.cx,y, sizeB.cx, 1);
             }
             sized sizeb(0.0,0.0);
             pdc->GetTextExtent(sizeb,strLine,iEnd);
