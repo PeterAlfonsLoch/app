@@ -92,6 +92,8 @@
 			<Add option="-laxiswinpr" />
 			<Add option="-laxisfreeimage" />
 			<Add option="-laxisopenssl" />
+			<Add option="-lWelsDecoder" />
+			<Add option="-lWelsEncoder" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../../stage/x86" />
 		</Linker>
