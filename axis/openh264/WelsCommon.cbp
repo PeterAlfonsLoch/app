@@ -51,20 +51,13 @@
 			<Add option="-Winvalid-pch" />
 			<Add option="-fPIC" />
 			<Add option="-DLINUX" />
-			<Add directory="../../../include" />
-			<Add directory="../../include" />
-			<Add directory="framework" />
-			<Add directory="." />
-			<Add directory=".." />
-			<Add directory="../.." />
-			<Add directory="../../.." />
-			<Add directory="../../appseed/axis" />
-			<Add directory="../../appseed" />
-			<Add directory="../../appseed/aura" />
+			<Add directory="codec/common/inc" />
+			<Add directory="codec/api/svc" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
 			<Add option="-Wl,-z,origin" />
+			<Add option="-lpthread" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 		</Linker>

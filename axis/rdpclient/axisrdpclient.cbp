@@ -61,6 +61,7 @@
 			<Add option="-fPIC" />
 			<Add option="-DLINUX" />
 			<Add option="-DBYEWINDOWS_UNICODE" />
+			<Add option="-DHAVE_CONFIG_H" />
 			<Add directory="../../../../include" />
 			<Add directory="../../../include" />
 			<Add directory="../../include" />
@@ -71,6 +72,7 @@
 			<Add directory="../../appseed/axis" />
 			<Add directory="../../appseed/aura" />
 			<Add directory="../../../app" />
+			<Add directory="." />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
@@ -100,7 +102,6 @@
 		<Unit filename="client/common/graphics.h" />
 		<Unit filename="client/common/rdpclient.h" />
 		<Unit filename="config.h" />
-		<Unit filename="freerdp_rdpclient_setup.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />
