@@ -58,11 +58,18 @@
 			<Add directory="../../../app/thirdparty/include" />
 			<Add directory="../../../app/thirdparty/appseed" />
 			<Add directory="../aura" />
+			<Add directory="../../appseed" />
+			<Add directory="../core" />
+			<Add directory="../base" />
+			<Add directory="../axis" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
 			<Add option="-Wl,-z,origin" />
 			<Add option="-laura" />
+			<Add option="-laxis" />
+			<Add option="-lbase" />
+			<Add option="-lcore" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 			<Add directory="/usr/lib64/mysql/" />

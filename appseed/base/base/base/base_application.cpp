@@ -115,21 +115,6 @@ namespace base
    sp(::user::interaction) application::get_capture_uie()
    {
 
-#if defined(METROWIN)
-
-      oswindow oswindowCapture = ::GetCapture();
-
-      if(oswindowCapture == NULL)
-         return NULL;
-
-      ::user::interaction * pui = oswindowCapture->window();
-
-      if(pui == NULL)
-         return NULL;
-
-      return pui->GetCapture();
-
-#elif defined(WINDOWS) || defined(APPLE_IOS)
 
       oswindow oswindowCapture = ::GetCapture();
 
@@ -143,18 +128,6 @@ namespace base
 
       return pui->GetCapture();
 
-#else
-
-      //      ::exception::throw_not_implemented(get_app());
-
-      oswindow oswindowCapture = ::GetCapture();
-
-      if(oswindowCapture == NULL)
-         return NULL;
-
-      return window_from_handle(::GetCapture());
-
-#endif
 
    }
 
