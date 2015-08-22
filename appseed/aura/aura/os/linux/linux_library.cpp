@@ -28,6 +28,24 @@ CLASS_DECL_AURA void * __node_library_open(const char * pszPath)
 
    void * plibrary = dlopen(strPath, RTLD_LOCAL | RTLD_NOW | RTLD_NODELETE);
 
+   if(plibrary == NULL)
+   {
+
+      // pubs.opengroup.org contribution
+
+      char *errstr;
+
+      errstr = dlerror();
+
+      if (errstr != NULL)
+      {
+
+         printf ("A dynamic linking error occurred: (%s)\n", errstr);
+
+      }
+
+   }
+
    int iError = errno;
 
    const char * psz = strerror(iError);

@@ -1354,7 +1354,7 @@ restart_mouse_hover_check:
          //user::oswindow_array hwnda;
          //user::interaction_ptra wnda;
          //wnda = System.get_hwnda();
-         user::oswindow_array oswindowa;
+         /*user::oswindow_array oswindowa;
          user::interaction_spa wnda(get_app());
          wnda = System.m_uiptraFrame;
          oswindowa = wnda.get_hwnda();
@@ -1377,7 +1377,29 @@ restart_mouse_hover_check:
                if(pmouse->m_bRet)
                   return;
             }
+         }*/
+
+         if(pmouse->m_uiMessage == WM_LBUTTONDOWN)
+         {
+//         TRACE("button down\n");
          }
+               m_pui->_000OnMouse(pmouse);
+               if(pmouse->m_bRet)
+                  return;
+
+         ::user::interaction * pui = NULL;
+
+         while(System.get_frame(pui))
+         {
+            if(pui != m_pui)
+            {
+               pui->_000OnMouse(pmouse);
+               if(pmouse->m_bRet)
+                  return;
+
+            }
+         }
+
          pbase->set_lresult(DefWindowProc(pbase->m_uiMessage, pbase->m_wparam, pbase->m_lparam));
          return;
       }
