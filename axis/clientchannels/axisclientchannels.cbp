@@ -103,6 +103,12 @@
 			<Add directory="../../../../stage/x86" />
 			<Add directory="../../../nodeapp/thirdparty/library/x64" />
 		</Linker>
+		<ExtraCommands>
+			<Add after="cp ../../../nodeapp/thirdparty/library/x64/libavcodec.so ../../../stage/x86/" />
+			<Add after="cp ../../../nodeapp/thirdparty/library/x64/libavutil.so ../../../stage/x86/" />
+			<Add after="cp ../../../nodeapp/thirdparty/library/x64/libswresample.so ../../../stage/x86/" />
+			<Mode after="always" />
+		</ExtraCommands>
 		<Unit filename="channels/audin/client/alsa/audin_alsa.c">
 			<Option compilerVar="CC" />
 		</Unit>
