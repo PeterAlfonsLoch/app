@@ -47,7 +47,7 @@ CLASS_DECL_AXIS_RDPCLIENT BOOL ca2rdp_pre_connect(freerdp* instance);
 
 #ifdef _WIN32
 #else
-typedef uint32_t COLORREF;
+typedef unsigned int COLORREF;
 #endif
 
 namespace aura
@@ -92,7 +92,7 @@ namespace draw2d
 struct ca2rdp_context :
 #ifdef _WIN32
    public wf_context
-#elif defined(ANDROID) || defined(__APPLE__)
+#else
    public rdpContext
 #endif
 {
@@ -106,7 +106,7 @@ struct ca2rdp_context :
    HANDLE thread;
    ::aura::application * m_pappRdp;
    rdpclient_view_interface * m_pviewRdp;
-   
+
 	ca2rdpInfo* ca2rdpi;
 };
 
