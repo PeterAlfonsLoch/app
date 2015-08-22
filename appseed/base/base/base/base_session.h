@@ -34,8 +34,6 @@ namespace base
 
       virtual index initial_frame_position(LPRECT lprect,const RECT & rect,bool bMove,::user::interaction * pui);
 
-      virtual ::user::interaction * get_active_guie();
-      virtual ::user::interaction * get_focus_guie();
       virtual void frame_pre_translate_message(signal_details * pobj);
 
       bool process_initialize();
@@ -47,7 +45,12 @@ namespace base
       virtual string get_cred(::aura::application * papp,const string & strRequestUrlParam,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive);
 
       virtual void get_cursor_pos(LPPOINT lppoint);
-      
+
+      virtual ::user::primitive * get_active_ui();
+      virtual ::user::primitive * get_focus_ui();
+
+      ::user::elemental * get_keyboard_focus();
+
    };
 
 

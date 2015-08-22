@@ -24,7 +24,7 @@ namespace user
 
       bool load_layout(const char * pszPath, ::action::context actioncontext);
 
-      string process_key(::message::key * pkey);
+      string process_key(key * pkey);
 
       string process_key(::user::e_key ekey);
 
@@ -38,7 +38,7 @@ namespace user
 
       bool initialize(::user::keyboard_layout_id * playoutid, const char * pszPath);
 
-      void translate_os_key_message(::message::key * pkey);
+      void translate_os_key_message(key * pkey);
 
       virtual bool load_os_layout(const ::file::path & pszPath);
 

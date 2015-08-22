@@ -3109,21 +3109,9 @@ namespace aura
    }
 
 
-   //::user::primitive * application::get_active_guie()
-   //{
+   
 
-   //   return Session.get_active_guie();
-
-   //}
-
-
-   //::user::primitive * application::get_focus_guie()
-   //{
-
-   //   return Session.get_focus_guie();
-
-   //}
-
+   
 
    //void application::dir_matter_ls_file(const string & str,stringa & stra)
    //{

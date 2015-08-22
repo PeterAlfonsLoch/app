@@ -1484,14 +1484,6 @@ namespace aura
    }
 
 
-   //::user::primitive * system::get_focus_guie()
-   //{
-
-   //   return NULL;
-
-   //}
-
-
    uint32_t _thread_proc_start_system(void * p)
    {
 

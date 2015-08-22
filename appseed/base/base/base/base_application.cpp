@@ -91,57 +91,23 @@ namespace base
 
 
 
-   ::user::interaction * application::window_from_os_data(void * pdata)
-   {
-
-      if(pdata == NULL)
-      {
-
-         return NULL;
-
-      }
-
-      return window_from_handle((oswindow)pdata);
-
-   }
-
 
    sp(::user::interaction) application::release_capture_uie()
    {
 
-#if defined(LINUX)
 
       oswindow oswindowCapture = ::GetCapture();
+
       if(oswindowCapture == NULL)
          return NULL;
-      return oswindowCapture->get_user_interaction()->ReleaseCapture();
 
-#elif defined(METROWIN)
+      ::user::interaction * pui = System.ui_from_handle(oswindowCapture);
 
-      oswindow oswindowCapture = ::GetCapture();
-      if(oswindowCapture == NULL)
+      if(pui == NULL)
          return NULL;
-      return oswindowCapture->m_pui->ReleaseCapture();
 
-#elif defined(WINDOWS)
+      return pui->ReleaseCapture();
 
-      oswindow oswindowCapture = ::GetCapture();
-      if(oswindowCapture == NULL)
-         return NULL;
-      return System.window_from_os_data(oswindowCapture)->ReleaseCapture();
-
-#elif defined(APPLEOS)
-
-      oswindow oswindowCapture = ::GetCapture();
-      if(oswindowCapture == NULL)
-         return NULL;
-      return oswindowCapture->get_user_interaction()->ReleaseCapture();
-
-#else
-
-      ::exception::throw_not_implemented(get_app());
-
-#endif
 
    }
 
@@ -170,7 +136,7 @@ namespace base
       if(oswindowCapture == NULL)
          return NULL;
 
-      sp(::user::interaction) pui = System.window_from_os_data(oswindowCapture);
+      sp(::user::interaction) pui = System.ui_from_handle(oswindowCapture);
 
       if(pui == NULL)
          return NULL;
@@ -674,7 +640,7 @@ namespace base
    //      oswindow oswindowCapture = ::GetCapture();
    //      if(oswindowCapture == NULL)
    //         return NULL;
-   //      return System.window_from_os_data(oswindowCapture)->ReleaseCapture();
+   //      return System.ui_from_handle(oswindowCapture)->ReleaseCapture();
    //
    //#elif defined(APPLEOS)
    //
@@ -716,7 +682,7 @@ namespace base
    //      if(oswindowCapture == NULL)
    //         return NULL;
    //
-   //      sp(::user::interaction) pui = System.window_from_os_data(oswindowCapture);
+   //      sp(::user::interaction) pui = System.ui_from_handle(oswindowCapture);
    //
    //      if(pui == NULL)
    //         return NULL;
@@ -1490,20 +1456,6 @@ namespace base
    //   }
    //
    //
-   //   ::user::interaction * application::get_active_guie()
-   //   {
-   //
-   //      return Session.get_active_guie();
-   //
-   //   }
-   //
-   //
-   //   ::user::interaction * application::get_focus_guie()
-   //   {
-   //
-   //      return Session.get_focus_guie();
-   //
-   //   }
    //
    //
    //
@@ -1663,7 +1615,7 @@ namespace base
    //      if(!bEnable)
    //      {
    //
-   //         if(System.get_focus_guie() == ((::user::interaction *)pui->m_pvoidUserInteraction))
+   //         if(System.get_focus_ui() == ((::user::interaction *)pui->m_pvoidUserInteraction))
    //         {
    //
    //            Application.send_message(Application.get_parent(((::user::interaction *)pui->m_pvoidUserInteraction)),WM_NEXTDLGCTL,0,(LPARAM)FALSE);
@@ -1733,7 +1685,7 @@ namespace base
    //
    //         }
    //
-   //         ::user::interaction * pwindow = System.window_from_os_data(lpmsg->hwnd);
+   //         ::user::interaction * pwindow = System.ui_from_handle(lpmsg->hwnd);
    //
    //         if(pwindow != NULL)
    //         {
@@ -2254,20 +2206,6 @@ namespace base
 
    }
 
-   ::user::interaction * application::get_active_guie()
-   {
-
-      return Session.get_active_guie();
-
-   }
-
-
-   ::user::interaction * application::get_focus_guie()
-   {
-
-      return Session.get_focus_guie();
-
-   }
 
    bool application::on_thread_on_idle(::thread_impl * pimpl,LONG lCount)
    {
@@ -2424,7 +2362,7 @@ namespace base
       if(!bEnable)
       {
 
-         if(System.get_focus_guie() == ((::user::interaction *)pui->m_pvoidUserInteraction))
+         if(Session.get_focus_ui() == ((::user::interaction *)pui->m_pvoidUserInteraction))
          {
 
             Application.send_message(Application.get_parent(((::user::interaction *)pui->m_pvoidUserInteraction)),WM_NEXTDLGCTL,0,(LPARAM)FALSE);
@@ -2493,7 +2431,7 @@ namespace base
 
          }
 
-         ::user::interaction * pwindow = System.window_from_os_data(lpmsg->hwnd);
+         ::user::interaction * pwindow = System.ui_from_handle(lpmsg->hwnd);
 
          if(pwindow != NULL)
          {

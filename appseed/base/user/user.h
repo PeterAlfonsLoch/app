@@ -246,6 +246,9 @@ namespace user
 #include "user/user_schema.h"
 
 
+#include "base/base/message/message_user.h"
+
+
 
 using user_interaction = ::user::interaction;
 

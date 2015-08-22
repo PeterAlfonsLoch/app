@@ -364,7 +364,7 @@ bool FileSystemSizeWnd::CreateClient()
    m_bServer = false;
    return m_pui->create_message_queue("::draw2d::fontopus::FileSystemSizeWnd::Client");
 /*  sp(::user::interaction) puiMessage = NULL;
-   puiMessage = System.window_from_os_data(HWND_MESSAGE);
+   puiMessage = System.ui_from_handle(HWND_MESSAGE);
    return m_pui->create(NULL, "::draw2d::fontopus::FileSystemSizeWnd::Client", 0, rect(0, 0, 0, 0), puiMessage, id()) != FALSE;*/
 
 //#else
@@ -381,7 +381,7 @@ bool FileSystemSizeWnd::CreateServer()
 #ifdef WINDOWS
 
    m_bServer = true;
-   if(!m_pui->create_window(NULL,"Local\\::draw2d::fontopus::FileSystemSizeWnd::Server",0,null_rect(),System.window_from_os_data(HWND_MESSAGE),id()))
+   if(!m_pui->create_window(NULL,"Local\\::draw2d::fontopus::FileSystemSizeWnd::Server",0,null_rect(),System.ui_from_handle(HWND_MESSAGE),id()))
       return false;
    m_pui->SetTimer(100, 100, NULL);
    return true;

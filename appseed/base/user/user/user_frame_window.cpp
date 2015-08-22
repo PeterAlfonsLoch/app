@@ -633,7 +633,7 @@ namespace user
          EndModalState();
 
          // cause normal focus logic to kick in
-         if (System.get_active_guie() == this)
+         if (System.get_active_ui() == this)
             send_message(WM_ACTIVATE, WA_ACTIVE);
       }
 

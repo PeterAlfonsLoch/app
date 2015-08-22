@@ -10,6 +10,28 @@ namespace userpresence
 
 } // namespace userpresence
 
+namespace user
+{
+
+   class CLASS_DECL_AXIS mouse
+   {
+   public:
+      uint_ptr                m_nFlags;
+      point                   m_pt;
+      point                   m_ptDesired;
+      bool                    m_bTranslated;
+      ::visual::e_cursor      m_ecursor;
+      ::visual::cursor *      m_pcursor;
+
+
+      virtual unsigned int get_message()
+      {
+         return 0;
+      }
+
+   };
+
+} // namespace user
 
 namespace axis
 {
@@ -234,7 +256,7 @@ namespace axis
 
 
 
-      virtual bool on_ui_mouse_message(::message::mouse * pmouse);
+      virtual bool on_ui_mouse_message(::user::mouse * pmouse);
 
 
 
@@ -259,6 +281,9 @@ namespace axis
 
       virtual ::user::elemental * get_keyboard_focus();
       virtual void set_keyboard_focus(::user::elemental * pkeyboardfocus);
+
+      virtual ::user::primitive * get_active_ui();
+      virtual ::user::primitive * get_focus_ui();
 
    };
 

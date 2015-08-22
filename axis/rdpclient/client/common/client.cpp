@@ -298,3 +298,6 @@ int freerdp_client_settings_parse_assistance_file(rdpSettings* settings, const c
 	return 0;
 }
 
+
+
+

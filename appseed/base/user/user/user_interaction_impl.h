@@ -726,7 +726,7 @@ namespace user
       virtual bool is_composite();
 
 
-      virtual ::user::interaction * get_focus_guie() override;
+      virtual ::user::interaction * get_focus_ui() override;
       virtual void set_focus_guie(::user::interaction * pguie) override;
 
 

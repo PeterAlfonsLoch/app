@@ -39,6 +39,14 @@ namespace user
 
 } // namespace user
 
+CLASS_DECL_BASE ::user::interaction * oswindow_get(oswindow oswindow)
+{
+
+   cslock slOsWindow(::user::g_pcsUi);
+
+   return ::user::g_pmapUi->operator[](oswindow);
+
+}
 
 
 CLASS_DECL_BASE bool oswindow_assign(oswindow oswindow,::user::interaction * pui)

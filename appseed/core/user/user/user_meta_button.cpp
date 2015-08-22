@@ -56,7 +56,7 @@ void MetaButton::_001OnDraw(::draw2d::graphics * pdc)
       crText = m_pcontrolbox->m_crButtonForeSel;
 
    }
-   else if(System.get_focus_guie() == this)
+   else if(Session.get_keyboard_focus() == this)
    {
 
       pdc->SelectObject(m_pcontrolbox->m_brushButtonBackFocus);

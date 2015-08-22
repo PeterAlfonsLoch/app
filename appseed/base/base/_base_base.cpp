@@ -30,7 +30,7 @@
 #include "base/_base_base_base.cpp"
 //#include "hotplugin/_hotplugin.cpp"
 //#include "install/_install.cpp"
-//#include "message/_message.cpp"
+#include "message/_message.cpp"
 #include "node/_node.cpp"
 #include "os/_os.cpp"
 

@@ -612,7 +612,7 @@ namespace user
    {
 
 
-      if(System.get_active_guie() == this)
+      if(System.get_active_ui() == this)
       {
          // TODO : to be possibly done by camilo : instead of setting active guie to null
          // you could relinquish (I don't know what it is it) the active window status
@@ -622,7 +622,7 @@ namespace user
          System.set_active_guie(NULL);
       }
 
-      if(Session.get_focus_guie() == this)
+      if(Session.get_focus_ui() == this)
       {
 
          System.set_focus_guie(NULL);
@@ -717,7 +717,7 @@ namespace user
       }
 
 
-      if(System.get_active_guie() == this)
+      if(System.get_active_ui() == this)
       {
 
          //#ifdef WINDOWS
@@ -3847,7 +3847,7 @@ namespace user
    bool interaction::has_focus()
    {
 
-      return System.get_focus_guie() == this;
+      return Session.get_keyboard_focus() == this;
 
    }
 
@@ -6876,13 +6876,13 @@ namespace user
    }
 
 
-   ::user::interaction * interaction::get_focus_guie()
+   ::user::interaction * interaction::get_focus_ui()
    {
 
       if(m_pimpl == NULL)
          return NULL;
 
-      return m_pimpl->get_focus_guie();
+      return m_pimpl->get_focus_ui();
 
    }
 

@@ -744,7 +744,7 @@ namespace user
          pdib = m_pbitmap->m_dibSel;
       else if(m_iHover >= 0 && is_window_enabled() && m_pbitmap->m_dibHover.is_set() && m_pbitmap->m_dibHover->area() > 0)
          pdib = m_pbitmap->m_dibHover;
-      else if(Session.get_focus_guie() == this && m_pbitmap->m_dibFocus.is_set() && m_pbitmap->m_dibFocus->area() > 0)
+      else if(Session.get_focus_ui() == this && m_pbitmap->m_dibFocus.is_set() && m_pbitmap->m_dibFocus->area() > 0)
          pdib = m_pbitmap->m_dibFocus;   // third image for focused
       else if(!is_window_enabled() && m_pbitmap->m_dibDisabled.is_set() && m_pbitmap->m_dibDisabled->area() > 0)
          pdib = m_pbitmap->m_dibDisabled;   // last image for disabled

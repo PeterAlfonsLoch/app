@@ -106,6 +106,7 @@ namespace user
       IGUI_WIN_MSG_LINK(WM_RBUTTONDOWN,pinterface,this,&plain_edit::_001OnRButtonDown);
       IGUI_WIN_MSG_LINK(WM_RBUTTONUP,pinterface,this,&plain_edit::_001OnRButtonUp);
       IGUI_WIN_MSG_LINK(WM_MOUSEMOVE,pinterface,this,&plain_edit::_001OnMouseMove);
+      IGUI_WIN_MSG_LINK(WM_MOUSELEAVE,pinterface,this,&plain_edit::_001OnMouseLeave);
       IGUI_WIN_MSG_LINK(WM_KEYDOWN,pinterface,this,&plain_edit::_001OnKeyDown);
       IGUI_WIN_MSG_LINK(WM_KEYUP,pinterface,this,&plain_edit::_001OnKeyUp);
       //IGUI_WIN_MSG_LINK(WM_CHAR,pinterface,this,&plain_edit::_001OnChar);
@@ -1797,12 +1798,16 @@ namespace user
 
       m_bActionHover = true;
 
+      RedrawWindow();
+
    }
 
    void plain_edit::_001OnMouseLeave(signal_details * pobj)
    {
 
       m_bActionHover = false;
+
+      RedrawWindow();
 
    }
 

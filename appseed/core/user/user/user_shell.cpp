@@ -699,7 +699,7 @@ namespace filemanager
       if(imagekey.m_iIcon == 0x80000000)
       {
          ::file::path strTarget;
-         //if(System.file().resolve_link(strTarget, strFilePath, System.window_from_os_data))
+         //if(System.file().resolve_link(strTarget, strFilePath, System.ui_from_handle))
          if(System.file().resolve_link(strTarget, strFilePath, NULL))
          {
 

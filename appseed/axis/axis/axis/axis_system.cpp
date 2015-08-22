@@ -614,20 +614,6 @@ namespace axis
 
 
 
-   //::user::interaction * system::get_active_guie()
-   //{
-
-   //   return ::aura::system::get_active_guie();
-
-   //}
-
-
-   //::user::interaction * system::get_focus_guie()
-   //{
-
-   //   return ::aura::system::get_focus_guie();
-
-   //}
 
 
    ::file::path system::dir_appmatter_locator(::aura::application * papp)
@@ -1374,6 +1360,14 @@ return false;
    //   ::axis::system::on_request(pcreate);
 
    //}
+
+   ::user::interaction * system::ui_from_handle(void * posdata)
+   {
+
+      return NULL;
+
+   }
+
 
 } // namespace base
 

@@ -515,7 +515,7 @@ namespace user
          void MoveManager::MoveWindow(void * oswindow, point pt)
          {
 
-            sp(::user::interaction) pwnd = System.window_from_os_data(oswindow);
+            sp(::user::interaction) pwnd = System.ui_from_handle(oswindow);
 
 
             rect rectWindow;

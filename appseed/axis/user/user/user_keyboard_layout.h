@@ -45,6 +45,24 @@ namespace user
    public:
    };
 
+   class CLASS_DECL_AXIS key
+   {
+   public:
+
+      int               m_iCode;
+      uint_ptr          m_nChar;
+      uint_ptr          m_nScanCode;
+      UINT              m_nRepCnt;
+      UINT              m_nFlags;
+      bool              m_bExt;
+
+      ::user::e_key     m_ekey;
+
+      string   m_strText;
+
+
+   };
+
 
    class CLASS_DECL_AXIS keyboard_layout :
       virtual public ::object,
@@ -65,7 +83,7 @@ namespace user
 
       bool load(const char * pszPath);
 
-      string process_key(::message::key * pkey);
+      string process_key(key * pkey);
 
       string process_key(int32_t iCode);
 

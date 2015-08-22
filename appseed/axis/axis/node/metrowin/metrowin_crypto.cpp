@@ -125,7 +125,6 @@ namespace metrowin
 
          RAND_METHOD rand_meth;
 
-         ::aura::system * g_psystem = NULL;
 
 
 

@@ -719,7 +719,7 @@ namespace user
       virtual sp(::user::interaction) get_child(::user::interaction * pui);
 
 
-      virtual ::user::interaction * get_focus_guie();
+      virtual ::user::interaction * get_focus_ui();
       virtual void set_focus_guie(::user::interaction * pguie);
 
 

@@ -925,17 +925,6 @@ namespace ios
 //   /////////////////////////////////////////////////////////////////////////////
 //   // Access to GetMainWnd() & m_pActiveWnd
 //
-//   sp(::user::interaction) thread::GetMainWnd()
-//   {
-//      if (m_puiActive != NULL)
-//         return m_puiActive;    // probably in-place active
-//
-//      // when not inplace active, just return main window
-//      if (m_puiMain != NULL)
-//         return m_puiMain;
-//
-//      return System.get_active_guie();
-//   }
 //
 //   /////////////////////////////////////////////////////////////////////////////
 //   // thread implementation helpers

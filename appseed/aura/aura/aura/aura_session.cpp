@@ -331,22 +331,9 @@ namespace aura
    }
 
 
-   //::user::primitive * session::get_active_guie()
-   //{
-
-   //   return NULL;
-
-   //}
 
 
-   //::user::primitive * session::get_focus_guie()
-   //{
-
-
-   //   return NULL;
-
-   //}
-
+   
 
 
 

@@ -186,7 +186,7 @@ namespace user
    }
 
 
-   string keyboard_layout::process_key(::message::key * pkey)
+   string keyboard_layout::process_key(key * pkey)
    {
       
       string str;

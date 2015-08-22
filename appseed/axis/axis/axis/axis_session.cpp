@@ -1372,21 +1372,6 @@ namespace axis
 //   }
 
 
-   //::user::interaction * session::get_active_guie()
-   //{
-
-   //   return ::aura::session::get_active_guie();
-
-   //}
-
-
-   //::user::interaction * session::get_focus_guie()
-   //{
-
-   //   return ::aura::session::get_focus_guie();
-
-   //}
-
 
 
 
@@ -2875,7 +2860,7 @@ namespace axis
 
 
 
-   bool session::on_ui_mouse_message(::message::mouse * pmouse)
+   bool session::on_ui_mouse_message(::user::mouse * pmouse)
    {
 
 
@@ -2891,10 +2876,10 @@ namespace axis
 
 
       // user presence status activity reporting
-      if(pmouse->m_uiMessage == WM_LBUTTONDOWN
-         || pmouse->m_uiMessage == WM_RBUTTONDOWN
-         || pmouse->m_uiMessage == WM_MBUTTONDOWN
-         || pmouse->m_uiMessage == WM_MOUSEMOVE)
+      if(pmouse->get_message() == WM_LBUTTONDOWN
+         || pmouse->get_message() == WM_RBUTTONDOWN
+         || pmouse->get_message() == WM_MBUTTONDOWN
+         || pmouse->get_message() == WM_MOUSEMOVE)
       {
 
          if(fontopus() != NULL && fontopus()->m_puser != NULL)
@@ -2990,21 +2975,23 @@ namespace axis
          return NULL;
       if(Application.is_session())
       {
-         ::user::elemental * puieFocus = NULL;
+         sp(::user::elemental) puieFocus;
          
          try
          {
             
-            puieFocus = Application.get_focus_guie();
+            puieFocus = Session.get_focus_ui();
             
          }
          catch(...)
          {
             
          }
-         
+
          if(m_pkeyboardfocus != NULL && puieFocus != NULL)
          {
+
+
             if((bool)oprop("NativeWindowFocus") && puieFocus != m_pkeyboardfocus)
                return NULL;
             return m_pkeyboardfocus;
@@ -3083,6 +3070,18 @@ namespace axis
 
    }
 
+   ::user::primitive * session::get_active_ui()
+   {
+
+      return NULL;
+
+   }
+
+   ::user::primitive * session::get_focus_ui()
+   {
+      return NULL;
+
+   }
 
 
 } // namespace axis

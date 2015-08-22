@@ -1030,17 +1030,6 @@ void thread::set_p(::thread * p)
 //   /////////////////////////////////////////////////////////////////////////////
 //   // Access to GetMainWnd() & m_pActiveWnd
 //
-//   sp(::user::interaction) thread::GetMainWnd()
-//   {
-//      if (m_puiActive != NULL)
-//         return m_puiActive;    // probably in-place active
-//
-//      // when not inplace active, just return main window
-//      if (m_puiMain != NULL)
-//         return m_puiMain;
-//
-//      return System.get_active_guie();
-//   }
 //
 //   /////////////////////////////////////////////////////////////////////////////
 //   // thread implementation helpers
@@ -2326,17 +2315,6 @@ void thread::set_p(::thread * p)
 /////////////////////////////////////////////////////////////////////////////////
 ////// Access to GetMainWnd() & m_pActiveWnd
 ////
-////::user::interaction* thread::GetMainWnd()
-////{
-////if (m_pActiveWnd != NULL)
-////return m_pActiveWnd;    // probably in-place active
-////
-////// when not inplace active, just return main ::user::interaction_impl
-////if (GetMainWnd() != NULL)
-////return GetMainWnd();
-////
-////return System.get_active_guie();
-////}
 ////
 /////////////////////////////////////////////////////////////////////////////////
 ////// thread implementation helpers

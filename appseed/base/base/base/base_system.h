@@ -80,8 +80,6 @@ namespace base
 
       ::user::window_draw *                         get_twf();
       virtual index get_ui_wkspace(::user::interaction * pui);
-      virtual ::user::interaction * get_active_guie();
-      virtual ::user::interaction * get_focus_guie();
 
       virtual void set_active_guie(::user::interaction * pui);
       virtual void set_focus_guie(::user::interaction * pui);
@@ -90,11 +88,10 @@ namespace base
       virtual bool initialize_twf();
 
 
-
       bool get_monitor_rect(index iMonitor,LPRECT lprect);
 
    bool get_wkspace_rect(index iWkspace,LPRECT lprect);
-
+   virtual ::user::interaction * ui_from_handle(void * pdata);
    };
 
 

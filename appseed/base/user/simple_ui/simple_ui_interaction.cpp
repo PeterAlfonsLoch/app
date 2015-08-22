@@ -325,7 +325,7 @@ namespace simple_ui
    COLORREF interaction::get_action_hover_border_color()
    {
       
-      return ARGB(135,120,190,255);
+      return ARGB(135,123,184,255);
 
    }
 

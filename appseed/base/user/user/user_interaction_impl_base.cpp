@@ -1172,7 +1172,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction_impl_base::get_focus_guie()
+   ::user::interaction * interaction_impl_base::get_focus_ui()
    {
       
       return NULL;

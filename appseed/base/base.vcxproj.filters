@@ -144,6 +144,12 @@
     <Filter Include="Source Files\database\simpledb">
       <UniqueIdentifier>{e777b449-2a9a-4e55-8350-ac4b81364f65}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\base\message">
+      <UniqueIdentifier>{2d9db8ba-ff44-481c-9f6f-f277e12685bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\message\NewFilter1">
+      <UniqueIdentifier>{95110d94-f615-4015-a145-ed163150ee24}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base\os\cross.h">
@@ -452,6 +458,9 @@
     <ClInclude Include="database\database\database.h">
       <Filter>Header Files\database\database</Filter>
     </ClInclude>
+    <ClInclude Include="base\message\message_user.h">
+      <Filter>Header Files\base\message</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="base\base\base.cpp">
@@ -469,14 +478,8 @@
     <ClCompile Include="base\node\windows\windows_factory_exchange.cpp">
       <Filter>Source Files\base\node\windows</Filter>
     </ClCompile>
-    <ClCompile Include="base\message\message_user.cpp">
-      <Filter>Source Files\base\message</Filter>
-    </ClCompile>
     <ClCompile Include="base\os\windows\windows.cpp">
       <Filter>Source Files\base\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\message\message.cpp">
-      <Filter>Source Files\base\message</Filter>
     </ClCompile>
     <ClCompile Include="base\hotplugin\hotplugin.cpp">
       <Filter>Source Files\base\hotplugin</Filter>
@@ -534,9 +537,6 @@
     </ClCompile>
     <ClCompile Include="base\install\_install.cpp">
       <Filter>Source Files\base\install</Filter>
-    </ClCompile>
-    <ClCompile Include="base\message\_message.cpp">
-      <Filter>Source Files\base\message</Filter>
     </ClCompile>
     <ClCompile Include="base\node\_node.cpp">
       <Filter>Source Files\base\node</Filter>
@@ -804,6 +804,12 @@
     </ClCompile>
     <ClCompile Include="database\database\_database_database.cpp">
       <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="base\message\message_user.cpp">
+      <Filter>Source Files\base\message</Filter>
+    </ClCompile>
+    <ClCompile Include="base\message\_message.cpp">
+      <Filter>Source Files\base\message</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

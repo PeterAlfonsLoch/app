@@ -29,11 +29,7 @@ namespace base
       virtual ~application();
 
 
-      virtual ::user::interaction * get_active_guie();
-      virtual ::user::interaction * get_focus_guie();
 
-
-      virtual ::user::interaction * window_from_os_data(void * pdata);
 
       virtual sp(::user::interaction) release_capture_uie();
       virtual sp(::user::interaction) get_capture_uie();
@@ -141,8 +137,6 @@ namespace base
 //      virtual string get_license_id();
 //
 //
-//      virtual ::user::interaction * get_active_guie();
-//      virtual ::user::interaction * get_focus_guie();
 //
 //
 //      virtual ::user::interaction * window_from_os_data(void * pdata);
@@ -249,8 +243,6 @@ namespace base
 //
 //      virtual void process_message(signal_details * pobj);
 //
-//      //virtual ::user::interaction * get_active_guie();
-//      //virtual ::user::interaction * get_focus_guie();
 //
 //      virtual bool set_keyboard_layout(const char * pszPath,::action::context actioncontext);
 //      virtual sp(type) user_default_controltype_to_typeinfo(::user::e_control_type e_type);

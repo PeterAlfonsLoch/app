@@ -160,15 +160,6 @@ namespace android
    }
 
 
-   ::user::interaction * interaction_impl::from_handle(oswindow oswindow)
-   {
-
-      if (oswindow->get_user_interaction() == NULL)
-         return NULL;
-
-      return oswindow->get_user_interaction();
-
-   }
 
 
    ::user::interaction * interaction_impl::FromHandlePermanent(oswindow oswindow)
@@ -1694,7 +1685,7 @@ namespace android
    //   //   // if bOnlyPerm is TRUE, don't send to non-permanent android
    //   //   if(bOnlyPerm)
    //   //   {
-   //   //      ::user::interaction * pwindow = ::window_from_handle(oswindow_Child);
+   //   //      ::user::interaction * pwindow = System.ui_from_handle(oswindow_Child);
    //   //      if(pwindow != NULL)
    //   //      {
    //   //         // call interaction_impl proc directly since it is a C++ interaction_impl

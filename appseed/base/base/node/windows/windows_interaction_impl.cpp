@@ -323,12 +323,6 @@ namespace windows
    }
 
 
-   ::user::interaction * interaction_impl::from_os_data(void * pdata)
-   {
-
-      return from_handle((oswindow)pdata);
-
-   }
 
 
    void * interaction_impl::get_os_data() const
@@ -381,12 +375,6 @@ namespace windows
    }
 
 
-   ::user::interaction * interaction_impl::from_handle(oswindow oswindow)
-   {
-
-      return ::window_from_handle(oswindow);
-
-   }
 
 
 
@@ -935,7 +923,7 @@ namespace windows
          return; // don't do anything more
       }
 
-      ::window_sp pwindow = ::windows::interaction_impl::from_handle(((::windows::interaction_impl *)this)->get_handle());
+      ::window_sp pwindow = System.ui_from_handle(((::windows::interaction_impl *)this)->get_handle());
       if(pwindow.m_p != this)
          dumpcontext << " (Detached or temporary interaction_impl)";
       else
@@ -1137,7 +1125,7 @@ namespace windows
       }
       else
       {
-         sp(::user::interaction) pChild = GetDescendantWindow(lpMeasureItemStruct->CtlID);
+//         sp(::user::interaction) pChild = GetDescendantWindow(lpMeasureItemStruct->CtlID);
          //         if (pChild != NULL && pChild->OnChildNotify(0, 0, 0, NULL))
          //          return;     // eaten by child
       }
@@ -1153,7 +1141,7 @@ namespace windows
 
    ::window_sp interaction_impl::GetAncestor(UINT gaFlags) const
    {
-      ASSERT(::IsWindow(((interaction_impl *) this)->get_handle())); return  ::windows::interaction_impl::from_handle(::GetAncestor(((interaction_impl *) this)->get_handle(),gaFlags));
+      ASSERT(::IsWindow(((interaction_impl *) this)->get_handle())); return  System.ui_from_handle(::GetAncestor(((interaction_impl *) this)->get_handle(),gaFlags));
    }
 
 
@@ -1812,12 +1800,6 @@ namespace windows
 
 
 
-   ::window_sp interaction_impl::get_safe_owner(::window_sp pParent,oswindow* pWndTop)
-   {
-      oswindow oswindow = get_safe_owner(pParent->get_handle(),pWndTop);
-      return ::windows::interaction_impl::from_handle(oswindow);
-   }
-
    int32_t interaction_impl::message_box(const char * lpszText,const char * lpszCaption,UINT nType)
    {
       if(lpszCaption == NULL)
@@ -1881,7 +1863,7 @@ namespace windows
          // if bOnlyPerm is TRUE, don't send to non-permanent windows
          if(bOnlyPerm)
          {
-            ::window_sp pwindow = ::window_from_handle(oswindow_Child);
+            ::window_sp pwindow = System.ui_from_handle(oswindow_Child);
             if(pwindow != NULL)
             {
                // call interaction_impl proc directly since it is a C++ interaction_impl
@@ -2207,7 +2189,7 @@ namespace windows
    {
 
       // check if in permanent map, if it is reflect it (could be OLE control)
-      ::window_sp pwindow = ::window_from_handle(oswindow_Child);
+      ::window_sp pwindow = System.ui_from_handle(oswindow_Child);
       ASSERT(pwindow == NULL || NODE_WINDOW(pwindow)->get_handle() == oswindow_Child);
       if(pwindow == NULL)
       {
@@ -2432,7 +2414,10 @@ namespace windows
    Default();
    }*/
 
-   BOOL CALLBACK interaction_impl::GetAppsEnumWindowsProc(oswindow oswindow,LPARAM lParam)
+   BOOL CALLBACK GetAppsEnumWindowsProc(oswindow oswindow,LPARAM lParam);
+
+
+   BOOL CALLBACK GetAppsEnumWindowsProc(oswindow oswindow,LPARAM lParam)
    {
 
       user::oswindow_array * poswindowa = (user::oswindow_array *) lParam;
@@ -3764,7 +3749,7 @@ namespace windows
       if(hwndParent == NULL)
          return NULL;
 
-      return ::windows::interaction_impl::from_handle(hwndParent);
+      return System.ui_from_handle(hwndParent);
 
    }
 
@@ -3774,7 +3759,7 @@ namespace windows
 
       ASSERT(::IsWindow(get_handle()));
 
-      return ::windows::interaction_impl::from_handle(::SetParent(get_handle(),pWndNewParent->get_handle()));
+      return System.ui_from_handle(::SetParent(get_handle(),pWndNewParent->get_handle()));
 
    }
 
@@ -3792,7 +3777,7 @@ namespace windows
       if(hwndParent == NULL)
          return GetParent();
 
-      return ::windows::interaction_impl::from_handle(hwndParent);
+      return System.ui_from_handle(hwndParent);
    }
 
    ::user::interaction * interaction_impl::SetOwner(::user::interaction * pWndNewParent)
@@ -4095,7 +4080,7 @@ namespace windows
 
             oswindow = ::GetLastActivePopup(oswindow);
 
-            ::user::interaction * pui = from_handle(oswindow);
+            ::user::interaction * pui = System.ui_from_handle(oswindow);
 
             if(pui == NULL)
                BringWindowToTop();
@@ -4286,15 +4271,6 @@ namespace windows
    }
 
 
-   ::user::interaction * interaction_impl::GetDescendantWindow(id id) const
-   {
-
-      ASSERT(::IsWindow(get_handle()));
-
-
-      return interaction_impl::GetDescendantWindow(m_pui,id);
-   }
-
 
    ::draw2d::graphics * interaction_impl::GetDCEx(::draw2d::region* prgnClip,uint32_t flags)
    {
@@ -4422,7 +4398,7 @@ namespace windows
    ::user::interaction * interaction_impl::GetActiveWindow()
    {
 
-      return ::windows::interaction_impl::from_handle(::GetActiveWindow());
+      return System.ui_from_handle(::GetActiveWindow());
 
    }
 
@@ -4432,17 +4408,11 @@ namespace windows
 
       ASSERT(::IsWindow(get_handle()));
 
-      return ::windows::interaction_impl::from_handle(::SetActiveWindow(get_handle()));
+      return System.ui_from_handle(::SetActiveWindow(get_handle()));
 
    }
 
 
-   ::user::interaction * interaction_impl::s_GetCapture()
-   {
-
-      return ::windows::interaction_impl::from_handle(::GetCapture());
-
-   }
 
 
    ::user::interaction * interaction_impl::SetCapture(::user::interaction * pinterface)
@@ -4454,7 +4424,7 @@ namespace windows
       if(!::IsWindow(get_handle()))
          return NULL;
 
-      return ::windows::interaction_impl::from_handle(::SetCapture(get_handle()));
+      return System.ui_from_handle(::SetCapture(get_handle()));
 
    }
 
@@ -4462,7 +4432,7 @@ namespace windows
    ::user::interaction * interaction_impl::GetFocus()
    {
 
-      return ::windows::interaction_impl::from_handle(::GetFocus());
+      return System.ui_from_handle(::GetFocus());
 
    }
 
@@ -4472,7 +4442,7 @@ namespace windows
 
       ASSERT(::IsWindow(get_handle()));
 
-      return ::windows::interaction_impl::from_handle(::SetFocus(get_handle()));
+      return System.ui_from_handle(::SetFocus(get_handle()));
 
    }
 
@@ -4480,7 +4450,7 @@ namespace windows
    ::user::interaction *  interaction_impl::GetDesktopWindow()
    {
 
-      return ::windows::interaction_impl::from_handle(::GetDesktopWindow());
+      return System.ui_from_handle(::GetDesktopWindow());
 
    }
 
@@ -4594,7 +4564,7 @@ namespace windows
 
       ASSERT(::IsWindow(((interaction_impl *) this)->get_handle()));
 
-      return ::windows::interaction_impl::from_handle(::GetNextDlgGroupItem(((interaction_impl *) this)->get_handle(),pWndCtl->get_handle(),bPrevious));
+      return System.ui_from_handle(::GetNextDlgGroupItem(((interaction_impl *) this)->get_handle(),pWndCtl->get_handle(),bPrevious));
 
    }
 
@@ -4604,7 +4574,7 @@ namespace windows
 
       ASSERT(::IsWindow(((interaction_impl *) this)->get_handle()));
 
-      return ::windows::interaction_impl::from_handle(::GetNextDlgTabItem(((interaction_impl *) this)->get_handle(),pWndCtl->get_handle(),bPrevious));
+      return System.ui_from_handle(::GetNextDlgTabItem(((interaction_impl *) this)->get_handle(),pWndCtl->get_handle(),bPrevious));
 
    }
 
@@ -4641,7 +4611,7 @@ namespace windows
    {
       ASSERT(::IsWindow(get_handle()));
 
-      return  ::windows::interaction_impl::from_handle(::ChildWindowFromPoint(get_handle(),point));
+      return  System.ui_from_handle(::ChildWindowFromPoint(get_handle(),point));
 
 
    }
@@ -4650,19 +4620,11 @@ namespace windows
    {
       ASSERT(::IsWindow(get_handle()));
 
-      return  ::windows::interaction_impl::from_handle(::ChildWindowFromPointEx(get_handle(),point,nFlags));
+      return  System.ui_from_handle(::ChildWindowFromPointEx(get_handle(),point,nFlags));
 
 
    }
 
-   ::window_sp interaction_impl::FindWindow(const char * lpszClassName,const char * lpszWindowName)
-   {
-      return ::windows::interaction_impl::from_handle(::FindWindow(lpszClassName,lpszWindowName));
-   }
-   ::window_sp interaction_impl::FindWindowEx(oswindow oswindowParent,oswindow oswindowChildAfter,const char * lpszClass,const char * lpszWindow)
-   {
-      return ::windows::interaction_impl::from_handle(::FindWindowEx(oswindowParent,oswindowChildAfter,lpszClass,lpszWindow));
-   }
 
 
    ::user::interaction * interaction_impl::GetNextWindow(UINT nFlag)
@@ -4671,7 +4633,7 @@ namespace windows
       if(!::IsWindow(get_handle()))
          return NULL;
 
-      return  ::windows::interaction_impl::from_handle(::GetNextWindow(get_handle(),nFlag));
+      return  System.ui_from_handle(::GetNextWindow(get_handle(),nFlag));
 
    }
 
@@ -4681,7 +4643,7 @@ namespace windows
 
       ASSERT(::IsWindow(get_handle()));
 
-      return ::windows::interaction_impl::from_handle(::GetTopWindow(get_handle()));
+      return System.ui_from_handle(::GetTopWindow(get_handle()));
 
    }
 
@@ -4691,7 +4653,7 @@ namespace windows
 
       ASSERT(::IsWindow(get_handle()));
 
-      return ::windows::interaction_impl::from_handle(::GetWindow(get_handle(),nCmd));
+      return System.ui_from_handle(::GetWindow(get_handle(),nCmd));
 
    }
 
@@ -4701,17 +4663,10 @@ namespace windows
 
       ASSERT(::IsWindow(get_handle()));
 
-      return ::windows::interaction_impl::from_handle(::GetLastActivePopup(get_handle()));
+      return System.ui_from_handle(::GetLastActivePopup(get_handle()));
 
    }
 
-
-   ::user::interaction * interaction_impl::WindowFromPoint(POINT point)
-   {
-
-      return ::windows::interaction_impl::from_handle(::WindowFromPoint(point));
-
-   }
 
 
    bool interaction_impl::FlashWindow(bool bInvert)
@@ -4753,21 +4708,21 @@ namespace windows
    ::window_sp interaction_impl::GetOpenClipboardWindow()
    {
 
-      return ::windows::interaction_impl::from_handle(::GetOpenClipboardWindow());
+      return System.ui_from_handle(::GetOpenClipboardWindow());
 
    }
 
    ::window_sp interaction_impl::GetClipboardOwner()
    {
 
-      return ::windows::interaction_impl::from_handle(::GetClipboardOwner());
+      return System.ui_from_handle(::GetClipboardOwner());
 
    }
 
    ::window_sp interaction_impl::GetClipboardViewer()
    {
 
-      return ::windows::interaction_impl::from_handle(::GetClipboardViewer());
+      return System.ui_from_handle(::GetClipboardViewer());
 
    }
 
@@ -4838,7 +4793,7 @@ namespace windows
    ::user::interaction * interaction_impl::GetForegroundWindow()
    {
 
-      return ::windows::interaction_impl::from_handle(::GetForegroundWindow());
+      return System.ui_from_handle(::GetForegroundWindow());
 
    }
 
@@ -5708,7 +5663,7 @@ namespace windows
          if(pwnd != NULL)
          {
 
-            ASSERT(::window_from_handle(oswindow) == NULL);
+            ASSERT(Sys(pwnd->get_app()).ui_from_handle(oswindow) == NULL);
 
             pwnd->m_pui->m_pimpl = pwnd;
 
@@ -5872,7 +5827,7 @@ LRESULT CALLBACK __window_procedure(oswindow oswindow,UINT message,WPARAM wparam
 
 
 
-   ::user::interaction * pui = ::window_from_handle(oswindow);
+   ::user::interaction * pui = ::aura::system::g_p->m_pbasesystem->ui_from_handle(oswindow);
 
    //if(message == WM_SETCURSOR)
    //{
@@ -6160,19 +6115,19 @@ string CLASS_DECL_BASE get_user_interaction_window_class(::user::interaction * p
 //      case WM_INITDIALOG:
 //      {
 //                           rect rectOld;
-//                           ::window_sp pwindow = ::windows::interaction_impl::from_handle(oswindow);
+//                           ::window_sp pwindow = System.ui_from_handle(oswindow);
 //                           bCallDefault = FALSE;
 //                           lResult = CallWindowProc(oldWndProc,oswindow,nMsg,wParam,lParam);
 //      }
 //         break;
 //
 //      case WM_ACTIVATE:
-//         __handle_activate(::windows::interaction_impl::from_handle(oswindow),wParam,
-//            ::windows::interaction_impl::from_handle((::oswindow) lParam));
+//         __handle_activate(System.ui_from_handle(oswindow),wParam,
+//            System.ui_from_handle((::oswindow) lParam));
 //         break;
 //
 //      case WM_SETCURSOR:
-////         bCallDefault = !__handle_set_cursor(::windows::interaction_impl::from_handle(oswindow),
+////         bCallDefault = !__handle_set_cursor(System.ui_from_handle(oswindow),
 //  //          (int16_t)LOWORD(lParam),HIWORD(lParam));
 //         break;
 //

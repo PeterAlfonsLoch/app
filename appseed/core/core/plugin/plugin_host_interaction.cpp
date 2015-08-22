@@ -219,7 +219,7 @@ namespace plugin
 
    ::user::interaction * host_interaction::get_os_focus_uie()
    {
-      return Application.window_from_os_data(m_pplugin->get_host_window());
+      return System.ui_from_handle(m_pplugin->get_host_window());
    }
 
    void host_interaction::_user_message_handler(signal_details * pobj)

@@ -153,9 +153,6 @@ namespace axis
       //virtual string get_license_id();
 
 
-      //virtual ::user::interaction * get_active_guie();
-      //virtual ::user::interaction * get_focus_guie();
-
 
       //virtual sp(::user::interaction) window_from_os_data(void * pdata);
 
@@ -353,7 +350,6 @@ namespace axis
       virtual void on_create_keyboard();
 
 
-      virtual ::user::elemental * get_focus_guie();
 
 
       virtual int32_t simple_message_box(::user::primitive * puiOwner,const char * pszMessage,UINT fuStyle = MB_OK);
@@ -481,8 +477,6 @@ namespace axis
       virtual sp(::message::base) get_message_base(LPMESSAGE lpmsg);
       virtual ::user::primitive * window_from_os_data(void * pdata);
 
-      //virtual ::user::interaction * get_active_guie();
-      //virtual ::user::interaction * get_focus_guie();
 
       virtual bool set_keyboard_layout(const char * pszPath,::action::context actioncontext);
       virtual int32_t hotplugin_host_starter_start_sync(const char * pszCommandLine,::aura::application * papp,hotplugin::host * phost,hotplugin::plugin * pplugin = NULL) override;

@@ -331,7 +331,7 @@ namespace user
       return false;
    }
 
-   string keyboard::process_key(::message::key * pkey)
+   string keyboard::process_key(key * pkey)
    {
 
       if(m_playout == NULL)
@@ -555,7 +555,7 @@ namespace user
 
    }
 
-   void keyboard::translate_os_key_message(::message::key * pkey)
+   void keyboard::translate_os_key_message(key * pkey)
    {
 
 #if defined(WINDOWSEX) || defined(MACOS)

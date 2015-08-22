@@ -848,7 +848,7 @@ namespace axis
 //      oswindow oswindowCapture = ::GetCapture();
 //      if(oswindowCapture == NULL)
 //         return NULL;
-//      return System.window_from_os_data(oswindowCapture)->ReleaseCapture();
+//      return System.ui_from_handle(oswindowCapture)->ReleaseCapture();
 //
 //#elif defined(APPLEOS)
 //
@@ -890,7 +890,7 @@ namespace axis
 //      if(oswindowCapture == NULL)
 //         return NULL;
 //
-//      sp(::user::interaction) pui = System.window_from_os_data(oswindowCapture);
+//      sp(::user::interaction) pui = System.ui_from_handle(oswindowCapture);
 //
 //      if(pui == NULL)
 //         return NULL;
@@ -2994,21 +2994,6 @@ namespace axis
    }
 
 
-   //::user::interaction * application::get_active_guie()
-   //{
-
-   //   return Session.get_active_guie();
-
-   //}
-
-
-   //::user::interaction * application::get_focus_guie()
-   //{
-
-   //   return Session.get_focus_guie();
-
-   //}
-
 
 
    string application::matter_as_string(const char * pszMatter,const char * pszMatter2)
@@ -4482,14 +4467,6 @@ finalize:
          return m_strInstallToken;
 
       return m_strAppId;
-
-   }
-
-
-   ::user::elemental * application::get_focus_guie()
-   {
-
-      return Session.get_focus_guie();
 
    }
 

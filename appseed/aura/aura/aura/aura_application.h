@@ -214,10 +214,6 @@ namespace aura
       virtual void window_graphics_update_window(window_graphics **  ppdata,oswindow interaction_impl,COLORREF * pOsBitmapData,const RECT & rect,int cxParam,int cyParam,int iStride = -1,bool bTransferBuffer = true);
 
 
-      //virtual ::user::primitive * get_active_guie();
-      //virtual ::user::primitive * get_focus_guie();
-
-
       // Wall-eeeeee aliases
       ::command_thread * command_central();
       ::command_thread * command_thread();

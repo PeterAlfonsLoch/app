@@ -873,7 +873,7 @@ namespace user
 
          // either re-activate the current ::user::impact, or set this ::user::impact to be active
          sp(::user::impact) pview = pParentFrame->GetActiveView();
-         sp(::user::interaction) oswindow_Focus = System.get_focus_guie();
+         sp(::user::interaction) oswindow_Focus = Session.get_focus_ui();
          if (pview == this &&
             this != oswindow_Focus && !IsChild(oswindow_Focus))
          {
@@ -904,7 +904,7 @@ namespace user
 
          // either re-activate the current ::user::impact, or set this ::user::impact to be active
          sp(::user::impact) pview = pParentFrame->GetActiveView();
-         sp(::user::interaction) oswindow_Focus = System.get_focus_guie();
+         sp(::user::interaction) oswindow_Focus = Session.get_focus_ui();
          if (pview == this &&
             this != oswindow_Focus && !IsChild(oswindow_Focus))
          {

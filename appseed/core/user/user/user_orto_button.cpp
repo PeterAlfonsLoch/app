@@ -54,7 +54,7 @@ void OrtoButton::_001OnDraw(::draw2d::graphics * pdc)
       crText = ARGB(255,255,255,255);
 
    }
-   else if(System.get_focus_guie() == this)
+   else if(Session.get_keyboard_focus() == this)
    {
 
       pdc->FillSolidRect(rectClient,ARGB(255,255,250,184));

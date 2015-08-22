@@ -2145,7 +2145,16 @@ namespace user
    ::user::interaction * interaction_base::GetFocus()
    {
 
-      return Session.get_focus_guie();
+      ::user::elemental * pelemental = Session.get_keyboard_focus();
+
+      if(pelemental == NULL)
+      {
+
+         return NULL;
+
+      }
+
+      return dynamic_cast < ::user::interaction * > (pelemental);
 
    }
 

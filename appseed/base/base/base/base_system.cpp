@@ -730,82 +730,6 @@ namespace base
 //
 //
 //
-//   ::user::interaction * system::get_active_guie()
-//   {
-//
-//#if defined(WINDOWSEX) || defined(LINUX) || defined(APPLEOS)
-//
-//      return window_from_os_data(::GetActiveWindow());
-//
-//#else
-//
-//      ::user::interaction * pui = NULL;
-//
-//      get_frame(pui);
-//
-//      return pui;
-//
-//#endif
-//
-//   }
-//
-//
-//   ::user::interaction * system::get_focus_guie()
-//   {
-//
-//#if defined (METROWIN)
-//
-//      oswindow window = GetFocus();
-//
-//      if(window == NULL)
-//         return NULL;
-//
-//      return window->m_pui;
-//
-//#elif defined(WINDOWSEX) || defined(LINUX)
-//
-//      ::user::interaction * pwnd = ::window_from_handle(::GetFocus());
-//      if(pwnd != NULL)
-//      {
-//         ::user::interaction * puiActive = System.get_active_guie();
-//         if(puiActive != NULL)
-//         {
-//            if(puiActive->get_safe_handle() == pwnd->get_safe_handle()
-//               || ::user::window_util::IsAscendant(puiActive->get_safe_handle(),pwnd->get_safe_handle()))
-//            {
-//               return pwnd;
-//            }
-//            else
-//            {
-//               return NULL;
-//            }
-//         }
-//         else
-//         {
-//            return NULL;
-//         }
-//      }
-//      pwnd = System.window_from_os_data(::GetFocus());
-//      if(pwnd != NULL)
-//      {
-//         if(System.get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
-//            || ::user::window_util::IsAscendant(System.get_active_guie()->get_safe_handle(),pwnd->get_safe_handle()))
-//         {
-//            return pwnd;
-//         }
-//         else
-//         {
-//            return NULL;
-//         }
-//      }
-//      return NULL;
-//#else
-//
-//      return System.get_active_guie();
-//
-//#endif
-//
-//   }
 //
 ///*
 //
@@ -1057,83 +981,6 @@ namespace base
 
 
 
-   ::user::interaction * system::get_active_guie()
-   {
-
-#if defined(WINDOWSEX) || defined(LINUX) //  || defined(APPLEOS)
-
-      return window_from_os_data(::GetActiveWindow());
-
-#else
-
-      ::user::interaction * pui = NULL;
-
-      get_frame(pui);
-
-      return pui;
-
-#endif
-
-   }
-
-
-   ::user::interaction * system::get_focus_guie()
-   {
-
-#if defined (METROWIN)
-
-      oswindow window = GetFocus();
-
-      if(window == NULL)
-         return NULL;
-
-      return window->m_pui;
-
-#elif defined(WINDOWSEX) || defined(LINUX)
-
-      ::user::interaction * pwnd = ::window_from_handle(::GetFocus());
-      if(pwnd != NULL)
-      {
-         ::user::interaction * puiActive = System.get_active_guie();
-         if(puiActive != NULL)
-         {
-            if(puiActive->get_safe_handle() == pwnd->get_safe_handle()
-               || ::user::window_util::IsAscendant(puiActive->get_safe_handle(),pwnd->get_safe_handle()))
-            {
-               return pwnd;
-            }
-            else
-            {
-               return NULL;
-            }
-         }
-         else
-         {
-            return NULL;
-         }
-      }
-      pwnd = System.window_from_os_data(::GetFocus());
-      if(pwnd != NULL)
-      {
-         if(System.get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
-            || ::user::window_util::IsAscendant(System.get_active_guie()->get_safe_handle(),pwnd->get_safe_handle()))
-         {
-            return pwnd;
-         }
-         else
-         {
-            return NULL;
-         }
-      }
-      return NULL;
-#else
-
-      return System.get_active_guie();
-
-#endif
-
-   }
-
 
 
    void system::set_active_guie(::user::interaction * pui)
@@ -1179,16 +1026,15 @@ namespace base
    void system::set_focus_guie(::user::interaction * pui)
    {
 
-#if defined (METROWIN)
+      if(pui == NULL)
+      {
+         
+         ::SetFocus(NULL);
+         
+         return;
 
-      oswindow window = GetFocus();
+      }
 
-      if(window == NULL)
-         return NULL;
-
-      return window->m_pui;
-
-#elif defined(WINDOWSEX) || defined(LINUX)
 
       ::SetFocus(pui->get_safe_handle());
       if(pui->get_wnd() != NULL)
@@ -1198,11 +1044,6 @@ namespace base
 
       return;
 
-#else
-
-      return System.get_active_guie();
-
-#endif
 
    }
 
@@ -1248,6 +1089,15 @@ namespace base
 	return ::axis::system::get_wkspace_rect(iWkspace, lprect);
 #endif
 }
+
+
+   ::user::interaction * system::ui_from_handle(void * pdata)
+   {
+
+      return oswindow_get((oswindow) pdata);
+
+   }
+
 
 
 } // namespace base

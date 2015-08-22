@@ -2800,7 +2800,7 @@ namespace user
 
       //::simple_message_box(NULL,"d1.b","d1.b",MB_OK);
 
-      ASSERT(::window_from_handle(oswindow_New) == NULL);
+      ASSERT(System.ui_from_handle(oswindow_New) == NULL);
 
       //::simple_message_box(NULL,"d1.c","d1.c",MB_OK);
 
@@ -2820,7 +2820,7 @@ namespace user
       //::simple_message_box(NULL,"d1.f","d1.f",MB_OK);
 
 
-      ASSERT(::window_from_handle(get_handle()) == m_pui);
+      ASSERT(System.ui_from_handle(get_handle()) == m_pui);
 
       //::simple_message_box(NULL,"d1.g","d1.g",MB_OK);
 
@@ -2886,7 +2886,7 @@ namespace user
 
    }
 
-   ::user::interaction * interaction_impl::get_focus_guie()
+   ::user::interaction * interaction_impl::get_focus_ui()
    {
 
       return m_puiFocus;

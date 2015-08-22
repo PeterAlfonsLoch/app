@@ -101,7 +101,7 @@ struct ca2rdp_context :
    int dstBpp;
 
 
-#ifdef WINDOWSEX
+#ifdef _WIN32
    DWORD mainThreadId;
 #else
    pthread_t mainThreadId;

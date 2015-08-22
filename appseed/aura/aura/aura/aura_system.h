@@ -254,9 +254,6 @@ namespace aura
       virtual bool on_assert_failed_line(const char * pszFileName,int32_t iLine);
 
 
-//      virtual ::user::primitive * get_focus_guie();
-
-
       void set_enum_name(sp(type) etype,int32_t i,const char * psz)
       {
          m_mapEnumToName[etype->name()][i] = psz;
@@ -404,6 +401,7 @@ namespace aura
       virtual void request_exit();
 
    };
+
 
 
 } // namespace aura

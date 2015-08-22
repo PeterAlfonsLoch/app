@@ -49,6 +49,12 @@
     <ClCompile Include="client\common\file.cpp">
       <Filter>Source Files\client\common</Filter>
     </ClCompile>
+    <ClCompile Include="client\common\cf_client.cpp">
+      <Filter>Source Files\client\common</Filter>
+    </ClCompile>
+    <ClCompile Include="client\common\cf_channels.cpp">
+      <Filter>Source Files\client\common</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -129,6 +135,12 @@
       <Filter>Header Files\client\common</Filter>
     </ClInclude>
     <ClInclude Include="client\common\graphics.h">
+      <Filter>Header Files\client\common</Filter>
+    </ClInclude>
+    <ClInclude Include="client\common\cf_channels.h">
+      <Filter>Header Files\client\common</Filter>
+    </ClInclude>
+    <ClInclude Include="client\common\cf_client.h">
       <Filter>Header Files\client\common</Filter>
     </ClInclude>
   </ItemGroup>
