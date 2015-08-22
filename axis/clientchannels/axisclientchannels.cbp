@@ -104,9 +104,9 @@
 			<Add directory="../../../nodeapp/thirdparty/library/x64" />
 		</Linker>
 		<ExtraCommands>
-			<Add after="cp ../../../nodeapp/thirdparty/library/x64/libavcodec.so ../../../stage/x86/" />
-			<Add after="cp ../../../nodeapp/thirdparty/library/x64/libavutil.so ../../../stage/x86/" />
-			<Add after="cp ../../../nodeapp/thirdparty/library/x64/libswresample.so ../../../stage/x86/" />
+			<Add after="cp ../../../nodeapp/thirdparty/library/x64/libavcodec.so.56 ../../../stage/x86/" />
+			<Add after="cp ../../../nodeapp/thirdparty/library/x64/libavutil.so.54 ../../../stage/x86/" />
+			<Add after="cp ../../../nodeapp/thirdparty/library/x64/libswresample.so.1 ../../../stage/x86/" />
 			<Mode after="always" />
 		</ExtraCommands>
 		<Unit filename="channels/audin/client/alsa/audin_alsa.c">
