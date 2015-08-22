@@ -1108,6 +1108,7 @@ void ssl_sigpipe_handle( int x );
          {
             SetSSLNegotiate(false);
 
+
             long x509_err = cert_common_name_check(m_strHost);
             if(x509_err != X509_V_OK
             && x509_err != X509_V_ERR_SELF_SIGNED_CERT_IN_CHAIN
