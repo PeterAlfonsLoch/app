@@ -101,8 +101,11 @@ struct ca2rdp_context :
    int dstBpp;
 
 
-
-   IDTHREAD mainThreadId;
+#ifdef WINDOWSEX
+   DWORD mainThreadId;
+#else
+   pthread_t mainThreadId;
+#endif
    HANDLE thread;
    ::aura::application * m_pappRdp;
    rdpclient_view_interface * m_pviewRdp;
