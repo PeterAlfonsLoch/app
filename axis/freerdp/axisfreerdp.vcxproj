@@ -274,7 +274,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../app/include/;$(ProjectDir);$(ProjectDir)../../include;.;framework;$(SolutionDir)../../../include;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../;$(ProjectDir)../../;$(ProjectDir)../;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;WIN32_LEAN_AND_MEAN;WINVER=0x0501;WIN32_WINNT=0x0501;WINPR_EXPORTS;FREERDP_EXPORTS;_DEBUG;HAVE_CONFIG_H;EXT_PATH="C:/Program Files/FreeRDP/lib/freerdp/extensions";CMAKE_BUILD_TYPE=Release;CMAKE_INTDIR="Debug";freerdp_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WITH_OPENH264;WIN32;_WINDOWS;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;WIN32_LEAN_AND_MEAN;WINVER=0x0501;WIN32_WINNT=0x0501;WINPR_EXPORTS;FREERDP_EXPORTS;_DEBUG;HAVE_CONFIG_H;EXT_PATH="C:/Program Files/FreeRDP/lib/freerdp/extensions";CMAKE_BUILD_TYPE=Release;CMAKE_INTDIR="Debug";freerdp_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>false</StringPooling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -346,7 +346,7 @@
     <ClCompile>
       <Optimization>Full</Optimization>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../app/include/;$(ProjectDir);$(ProjectDir)../../include;.;framework;$(SolutionDir)../../../include;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../;$(ProjectDir)../../;$(ProjectDir)../;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;WIN32_LEAN_AND_MEAN;WINVER=0x0501;WIN32_WINNT=0x0501;WINPR_EXPORTS;FREERDP_EXPORTS;_DEBUG;HAVE_CONFIG_H;EXT_PATH="C:/Program Files/FreeRDP/lib/freerdp/extensions";CMAKE_BUILD_TYPE=Release;CMAKE_INTDIR="Debug";freerdp_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WITH_OPENH264;WIN32;_WINDOWS;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;WIN32_LEAN_AND_MEAN;WINVER=0x0501;WIN32_WINNT=0x0501;WINPR_EXPORTS;FREERDP_EXPORTS;_DEBUG;HAVE_CONFIG_H;EXT_PATH="C:/Program Files/FreeRDP/lib/freerdp/extensions";CMAKE_BUILD_TYPE=Release;CMAKE_INTDIR="Debug";freerdp_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>false</StringPooling>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -421,20 +421,11 @@
     <ProjectReference Include="..\crypto\axiscrypto.vcxproj">
       <Project>{39807406-816f-4c0d-a632-4bb8ab13887b}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\openh264\codec\build\win32\dec\WelsDecCore.vcxproj">
-      <Project>{01b4ae41-6ad6-4caf-aeb3-c42f7f9121d5}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\openh264\codec\build\win32\dec\WelsDecPlus.vcxproj">
       <Project>{1131558a-9986-4f4b-a13f-8b7f4c8438bf}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\openh264\codec\build\win32\enc\WelsEncCore.vcxproj">
-      <Project>{59208004-1774-4816-ac24-31ff44c324b4}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\openh264\codec\build\win32\enc\WelsEncPlus.vcxproj">
       <Project>{1e7b4e9a-986e-4167-8c70-6e4f60eaee7f}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\openh264\codec\processing\build\win32\WelsVP.vcxproj">
-      <Project>{e8dfafa1-8dac-4127-8d27-fbd5819ee562}</Project>
     </ProjectReference>
     <ProjectReference Include="..\openssl\axisopenssl.vcxproj">
       <Project>{29676444-4d0f-4dd0-9104-0499d94da2c9}</Project>

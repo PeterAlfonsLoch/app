@@ -1,3 +1,4 @@
+LIBRARY "WelsDecPlus"
 EXPORTS
     WelsGetDecoderCapability
     WelsCreateDecoder
