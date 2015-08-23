@@ -891,7 +891,7 @@ void * g_pf1 = NULL;
 void Free_check_pointer_in_cpp(void * p)
 {
 
-   if((unsigned long) p <  (unsigned long)  g_pf1)
+   if((byte *) p <  (byte *)  g_pf1)
    {
       debug_print("hit g_pf1");
    }

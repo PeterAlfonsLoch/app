@@ -56,9 +56,6 @@ namespace aura
       initialize_primitive_heap();
 
 
-      //	_init_atexit();
-      //	_initterm(__xc_a, __xc_z);			// call C++ constructors
-
       initialize_primitive_trace();
 
       if(!os_initialize())

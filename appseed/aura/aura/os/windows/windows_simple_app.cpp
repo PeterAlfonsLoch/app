@@ -21,8 +21,8 @@ namespace aura
    int32_t simple_app::main()
    {
 
-      __argc = _init_args();
-      __targv = _argv;
+//      __argc = _init_args();
+  //    __targv = _argv;
       _init_file();
 
       TCHAR *cmd = GetCommandLine();
@@ -47,7 +47,7 @@ namespace aura
 
       body();
 
-      _term_args();
+      //_term_args();
 
       //::simple_message_box(NULL,"t3=" + ::str::from(m_iReturnCode),"t3",MB_OK);
 

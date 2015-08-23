@@ -201,27 +201,6 @@
     <Filter Include="Assembler Files">
       <UniqueIdentifier>{ed1652d6-6243-4c53-aad9-093b00530b76}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Assembler Files\aes">
-      <UniqueIdentifier>{d9709819-9f64-4f52-a220-69621bca67e6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Assembler Files\rc4">
-      <UniqueIdentifier>{2074d654-fc2a-457b-a470-c54803f22386}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Assembler Files\md5">
-      <UniqueIdentifier>{5c284f5d-8a3d-4cf4-bd4e-2fda4b1f1919}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Assembler Files\camellia">
-      <UniqueIdentifier>{9d33e760-f816-42b9-9aee-f5df7c885d9a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Assembler Files\bn">
-      <UniqueIdentifier>{af62d56d-1ba9-462e-bcb7-b261cf6107f2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Assembler Files\sha">
-      <UniqueIdentifier>{92079a6e-51f1-4c54-8383-0ecaf61c221f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Assembler Files\whrlpool">
-      <UniqueIdentifier>{5b4aa46f-1c3f-45d5-a91b-5092318e7b80}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\crypto\NewFilter1">
       <UniqueIdentifier>{5654a4a7-659a-4ae1-b227-64ad6e962137}</UniqueIdentifier>
     </Filter>
@@ -251,6 +230,39 @@
     </Filter>
     <Filter Include="Source Files\crypto\NewFilter2">
       <UniqueIdentifier>{517da02a-87fc-4668-ab7c-5256269a3cb6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assembler Files\x86">
+      <UniqueIdentifier>{fb21950f-d5b5-465a-b81c-76e015c45cbf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assembler Files\x86\rc4">
+      <UniqueIdentifier>{7790573d-e82b-44a0-b950-1c0a9b5e0e14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assembler Files\x86\whirlpool">
+      <UniqueIdentifier>{eac8219c-2f54-408b-b5b7-a1a75e32bb4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assembler Files\x64">
+      <UniqueIdentifier>{502281e4-23c0-4561-ba20-c06931a02776}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assembler Files\x64\md5">
+      <UniqueIdentifier>{5c284f5d-8a3d-4cf4-bd4e-2fda4b1f1919}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assembler Files\x64\aes">
+      <UniqueIdentifier>{d9709819-9f64-4f52-a220-69621bca67e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assembler Files\x64\bn">
+      <UniqueIdentifier>{af62d56d-1ba9-462e-bcb7-b261cf6107f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assembler Files\x64\camellia">
+      <UniqueIdentifier>{9d33e760-f816-42b9-9aee-f5df7c885d9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assembler Files\x64\rc4">
+      <UniqueIdentifier>{2074d654-fc2a-457b-a470-c54803f22386}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assembler Files\x64\sha">
+      <UniqueIdentifier>{92079a6e-51f1-4c54-8383-0ecaf61c221f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assembler Files\x64\whrlpool">
+      <UniqueIdentifier>{5b4aa46f-1c3f-45d5-a91b-5092318e7b80}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -2790,47 +2802,28 @@
     <None Include="crypto\bn\asm\modexp512-x86_64-masm.asm">
       <Filter>Source Files\crypto\bn\asm</Filter>
     </None>
-    <None Include="asm\x64-win32-masm\aes\aesni-sha1-x86_64.asm">
-      <Filter>Assembler Files\aes</Filter>
-    </None>
-    <None Include="asm\x64-win32-masm\aes\aesni-x86_64.asm">
-      <Filter>Assembler Files\aes</Filter>
-    </None>
-    <None Include="asm\x64-win32-masm\aes\aes-x86_64.asm">
-      <Filter>Assembler Files\aes</Filter>
-    </None>
-    <None Include="asm\x64-win32-masm\md5\md5-x86_64.asm">
-      <Filter>Assembler Files\md5</Filter>
-    </None>
-    <None Include="asm\x64-win32-masm\camellia\cmll-x86_64.asm">
-      <Filter>Assembler Files\camellia</Filter>
-    </None>
-    <None Include="asm\x64-win32-masm\bn\modexp512-x86_64.asm">
-      <Filter>Assembler Files\bn</Filter>
-    </None>
-    <None Include="asm\x64-win32-masm\bn\x86_64-mont.asm">
-      <Filter>Assembler Files\bn</Filter>
-    </None>
-    <None Include="asm\x64-win32-masm\sha\sha1-x86_64.asm">
-      <Filter>Assembler Files\sha</Filter>
-    </None>
-    <None Include="asm\x64-win32-masm\sha\sha512-x86_64.asm">
-      <Filter>Assembler Files\sha</Filter>
-    </None>
-    <None Include="asm\x64-win32-masm\whrlpool\wp-x86_64.asm">
-      <Filter>Assembler Files\whrlpool</Filter>
-    </None>
-    <None Include="asm\x64-win32-masm\x86_64cpuid.asm">
-      <Filter>Assembler Files</Filter>
-    </None>
-    <None Include="asm\x64-win32-masm\rc4\rc4-md5-x86_64.asm">
-      <Filter>Assembler Files\rc4</Filter>
-    </None>
-    <None Include="asm\x64-win32-masm\rc4\rc4-x86_64.asm">
-      <Filter>Assembler Files\rc4</Filter>
-    </None>
     <None Include="axiscrypto.def">
       <Filter>Source Files</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="asm\x86-win32-masm\rc4\rc4-586.asm">
+      <Filter>Assembler Files\x86\rc4</Filter>
+    </CustomBuild>
+    <CustomBuild Include="asm\x64-win32-masm\whrlpool\wp-x86_64.asm">
+      <Filter>Assembler Files\x64\whrlpool</Filter>
+    </CustomBuild>
+    <CustomBuild Include="asm\x64-win32-masm\aes\aes-x86_64.asm" />
+    <CustomBuild Include="asm\x64-win32-masm\aes\aesni-sha1-x86_64.asm" />
+    <CustomBuild Include="asm\x64-win32-masm\aes\aesni-x86_64.asm" />
+    <CustomBuild Include="asm\x64-win32-masm\bn\modexp512-x86_64.asm" />
+    <CustomBuild Include="asm\x64-win32-masm\bn\x86_64-mont.asm" />
+    <CustomBuild Include="asm\x64-win32-masm\camellia\cmll-x86_64.asm" />
+    <CustomBuild Include="asm\x64-win32-masm\md5\md5-x86_64.asm" />
+    <CustomBuild Include="asm\x64-win32-masm\rc4\rc4-md5-x86_64.asm" />
+    <CustomBuild Include="asm\x64-win32-masm\rc4\rc4-x86_64.asm" />
+    <CustomBuild Include="asm\x64-win32-masm\sha\sha1-x86_64.asm" />
+    <CustomBuild Include="asm\x64-win32-masm\sha\sha512-x86_64.asm" />
+    <CustomBuild Include="asm\x64-win32-masm\x86_64cpuid.asm" />
   </ItemGroup>
 </Project>

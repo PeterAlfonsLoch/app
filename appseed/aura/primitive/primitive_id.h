@@ -307,7 +307,7 @@ namespace comparison
 
       inline static UINT HashKey(const id & key)
       {
-         return (((UINT)key.m_iType) << 24) | (((UINT)key.m_iBody) >> 8);
+         return ((((UINT)(uint_ptr)key.m_iType) << 24) & 0xffffffffu) | ((((UINT)(uint_ptr)key.m_iBody) >> 8) & 0xffffffffu) ;
       }
 
    };
