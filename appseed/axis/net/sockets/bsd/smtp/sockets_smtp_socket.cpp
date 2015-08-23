@@ -73,7 +73,7 @@ namespace sockets
             }
             else if(::str::find_ci("password", strRequest) >= 0)
             {
-               strResponse = System.base64().encode("anos514Lund");
+               strResponse = System.base64().encode(Application.file().as_string("C:\\ca2\\config\\netnodelite\\sendmail.txt"));
                write(strResponse + "\r\n");
             }
          }
