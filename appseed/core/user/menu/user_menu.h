@@ -54,7 +54,7 @@ namespace user
 
       void layout_menu(point pt);
 
-      virtual bool TrackPopupMenu(int32_t iFlags, int32_t x, int32_t y, ::user::interaction * oswindowParent, sp(::user::menu_base) * pthis) override;
+      virtual bool TrackPopupMenu(int32_t iFlags, int32_t x, int32_t y, ::user::interaction * oswindowParent) override;
 
       DECL_GEN_SIGNAL(_001OnLButtonDown);
 

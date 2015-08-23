@@ -23,7 +23,7 @@ namespace user
 
       m_bAutoDelete        = true;
       m_pschema            = NULL;
-      m_pitem              = new ::user::menu_item(papp);
+      //m_pitem              = new ::user::menu_item(papp);
       m_bOwnItem           = true;
       m_oswindowParent         = NULL;
       m_pmenuParent        = NULL;
@@ -65,12 +65,12 @@ namespace user
    }
 
 
-   bool menu::TrackPopupMenu(int32_t iFlags, int32_t x, int32_t y, ::user::interaction * oswindowParent, sp(menu_base) * pthis)
+   bool menu::TrackPopupMenu(int32_t iFlags, int32_t x, int32_t y, ::user::interaction * oswindowParent)
    {
 
       ASSERT(oswindowParent != NULL);
 
-      if (!menu_base::TrackPopupMenu(iFlags, x, y, oswindowParent, pthis))
+      if (!menu_base::TrackPopupMenu(iFlags, x, y, oswindowParent))
          return false;
 
       return _TrackPopupMenu(iFlags, x, y, oswindowParent, NULL);

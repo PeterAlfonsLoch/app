@@ -504,16 +504,16 @@ namespace filemanager
       if(straCommand.get_size() > 0)
       {
 
-         m_spmenuPopup = canew(::user::menu(get_app()));
+         sp(::user::menu_base) pmenu = canew(::user::menu(get_app()));
 
          point ptCursor;
 
          Session.get_cursor_pos(&ptCursor);
 
-         if(m_spmenuPopup->create_menu(straCommand, straCommandTitle))
+         if(pmenu->create_menu(straCommand, straCommandTitle))
          {
 
-            m_spmenuPopup->TrackPopupMenu(0, ptCursor.x, ptCursor.y, GetParentFrame(), &m_spmenuPopup);
+            pmenu->TrackPopupMenu(0, ptCursor.x, ptCursor.y, GetParentFrame());
 
          }
 

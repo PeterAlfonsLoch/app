@@ -5039,7 +5039,7 @@ namespace user
 
       track_mouse_leave();
 
-      if(m_spmenuPopup.is_null())
+      //if(m_spmenuPopup.is_null())
       {
 
          UpdateHover();

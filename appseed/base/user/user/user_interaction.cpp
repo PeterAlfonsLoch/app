@@ -612,22 +612,22 @@ namespace user
    {
 
 
-      if(System.get_active_ui() == this)
-      {
-         // TODO : to be possibly done by camilo : instead of setting active guie to null
-         // you could relinquish (I don't know what it is it) the active window status
-         // to another window by using a function like kill_focus or relinquish_focus.
-         // But, if you set active guie to NULL, Session could ignore the NULL assignment,
-         // and use as a tip to set to a proper alive windows/guie.
-         System.set_active_guie(NULL);
-      }
+      //if(System.get_active_ui() == this)
+      //{
+      //   // TODO : to be possibly done by camilo : instead of setting active guie to null
+      //   // you could relinquish (I don't know what it is it) the active window status
+      //   // to another window by using a function like kill_focus or relinquish_focus.
+      //   // But, if you set active guie to NULL, Session could ignore the NULL assignment,
+      //   // and use as a tip to set to a proper alive windows/guie.
+      //   System.set_active_guie(NULL);
+      //}
 
-      if(Session.get_focus_ui() == this)
-      {
+      //if(Session.get_focus_ui() == this)
+      //{
 
-         System.set_focus_guie(NULL);
+      //   System.set_focus_guie(NULL);
 
-      }
+      //}
 
 
       //if(Session.get_keyboard_focus() == this)
@@ -4981,14 +4981,14 @@ namespace user
    bool interaction::track_popup_menu(::user::menu_base_item * pitem,int32_t iFlags,int32_t x,int32_t y)
    {
 
-      m_spmenuPopup = Application.alloc(System.type_info < ::user::menu_base >());
+      sp(::user::menu_base) pmenu = Application.alloc(System.type_info < ::user::menu_base >());
 
-      m_spmenuPopup->m_pitem = pitem;
+      pmenu->m_pitem = pitem;
 
-      if(!m_spmenuPopup->TrackPopupMenu(iFlags,x,y,this,&m_spmenuPopup))
+      if(!pmenu->TrackPopupMenu(iFlags,x,y,this))
       {
 
-         m_spmenuPopup.release();
+         pmenu.release();
 
          return false;
 
@@ -5001,21 +5001,21 @@ namespace user
    bool interaction::track_popup_menu(::xml::node * lpnode,int32_t iFlags,int32_t x,int32_t y)
    {
 
-      m_spmenuPopup = Application.alloc(System.type_info < ::user::menu_base >());
+      sp(::user::menu_base) pmenu = Application.alloc(System.type_info < ::user::menu_base >());
 
-      if(!m_spmenuPopup->LoadMenu(lpnode))
+      if(!pmenu->LoadMenu(lpnode))
       {
 
-         m_spmenuPopup.release();
+         pmenu.release();
 
          return false;
 
       }
 
-      if(!m_spmenuPopup->TrackPopupMenu(iFlags,x,y,this,&m_spmenuPopup))
+      if(!pmenu->TrackPopupMenu(iFlags,x,y,this))
       {
 
-         m_spmenuPopup.release();
+         pmenu.release();
 
          return false;
 
@@ -5028,21 +5028,21 @@ namespace user
    bool interaction::track_popup_xml_matter_menu(const char * pszMatter,int32_t iFlags,int32_t x,int32_t y)
    {
 
-      m_spmenuPopup = Application.alloc(System.type_info < ::user::menu_base >());
+      sp(::user::menu_base) pmenu = Application.alloc(System.type_info < ::user::menu_base >());
 
-      if(!m_spmenuPopup->LoadXmlMenu(pszMatter))
+      if(!pmenu->LoadXmlMenu(pszMatter))
       {
 
-         m_spmenuPopup.release();
+         pmenu.release();
 
          return false;
 
       }
 
-      if(!m_spmenuPopup->TrackPopupMenu(iFlags,x,y,this,&m_spmenuPopup))
+      if(!pmenu->TrackPopupMenu(iFlags,x,y,this))
       {
 
-         m_spmenuPopup.release();
+         pmenu.release();
 
          return false;
 

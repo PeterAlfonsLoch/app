@@ -5987,7 +5987,7 @@ CLASS_DECL_BASE const char * __register_window_class(::aura::application * papp,
    wndcls.style = nClassStyle;
    wndcls.lpfnWndProc = DefWindowProc;
    wndcls.cbClsExtra = wndcls.cbWndExtra = 0;
-   wndcls.hInstance = papp->m_paxissystem->m_hinstance;
+   wndcls.hInstance = NULL;
    wndcls.hIcon = hIcon;
    //wndcls.hCursor = hCursor;
    wndcls.hCursor = NULL;

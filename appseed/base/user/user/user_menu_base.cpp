@@ -19,8 +19,6 @@ namespace user
 
       m_pitem = Application.alloc(System.type_info < menu_base_item > ());
 
-      m_pmenubaseThis = NULL;
-
    }
 
 
@@ -77,10 +75,8 @@ namespace user
    }
 
 
-   bool menu_base::TrackPopupMenu(int32_t iFlags, int32_t x, int32_t y, ::user::interaction * oswindowParent, sp(menu_base) * pthis)
+   bool menu_base::TrackPopupMenu(int32_t iFlags, int32_t x, int32_t y, ::user::interaction * oswindowParent)
    {
-
-      m_pmenubaseThis = pthis;
 
       return true;
 
@@ -116,25 +112,6 @@ namespace user
        
        UNREFERENCED_PARAMETER(pobj);
        
-
-//      SCAST_PTR(::message::show_window, pshow, pobj);
-
-      //if (!pshow->m_bShow)
-      //{
-
-      if (m_pmenubaseThis != NULL)
-         {
-
-            sp(menu_base) * pthis = m_pmenubaseThis;
-
-            m_pmenubaseThis = NULL;
-
-            pthis->release();
-
-         }
-
-      //}
-
 
    }
 

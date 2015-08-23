@@ -16,7 +16,7 @@ namespace user
 
       sp(menu_base_item)      m_pitem;
 
-      sp(menu_base) *         m_pmenubaseThis;
+      //sp(menu_base) *         m_pmenubaseThis;
 
 
       menu_base();
@@ -36,7 +36,7 @@ namespace user
       virtual void layout_menu(point pt) = 0;
 
 
-      virtual bool TrackPopupMenu(int32_t iFlags, int32_t x, int32_t y, ::user::interaction * oswindowParent, sp(menu_base) * pthis);
+      virtual bool TrackPopupMenu(int32_t iFlags, int32_t x, int32_t y, ::user::interaction * oswindowParent);
 
       DECL_GEN_SIGNAL(_001OnShowWindow);
       DECL_GEN_SIGNAL(_001OnDestroy);
