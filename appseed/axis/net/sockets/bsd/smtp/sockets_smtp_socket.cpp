@@ -39,9 +39,9 @@ namespace sockets
       }
       else if(m_estate == state_hello)
       {
-         if(code == "250")
+         if(code == "250" || code.CompareNoCase("250-Auth") == 0)
          {
-            if(pa.getword().CompareNoCase("auth") == 0)
+            if(code.CompareNoCase("250-Auth") == 0 || pa.getword().CompareNoCase("auth") == 0)
             {
                stringa stra;
                stra.explode(" ", pa.getrest());

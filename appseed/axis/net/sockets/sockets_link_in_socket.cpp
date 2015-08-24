@@ -45,7 +45,7 @@ namespace sockets
    {
       socket_handler & h = dynamic_cast < socket_handler & > (psocket->Handler());
       POSITION pos = h.m_sockets.get_start_position();
-      ::sockets::base_socket * psocket2;
+      sp(::sockets::base_socket) psocket2;
       SOCKET key;
       while(pos != NULL)
       {

@@ -38,7 +38,7 @@ namespace dynamic_source
 #elif defined(DEBUG)
 
       m_strDynamicSourceConfiguration = "basis";
-      m_strDynamicSourceStage = "stage";
+      m_strDynamicSourceStage = "time";
 
 #else
 
@@ -925,6 +925,7 @@ namespace dynamic_source
 
    void script_compiler::compile_library()
    {
+      return;
 
       single_lock slLibrary(&m_mutexLibrary,TRUE);
 

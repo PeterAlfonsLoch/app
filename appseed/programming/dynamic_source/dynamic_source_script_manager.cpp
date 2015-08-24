@@ -1137,7 +1137,7 @@ namespace dynamic_source
       strPath.replace("/",".");
       strPath.replace("\\",".");
 #ifdef WINDOWS
-      return ::file::path("C:\\netnode")/ m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_strStagePlatform / strPath;
+      return ::file::path("C:\\netnode")/ m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_strStagePlatform / m_pcompiler->m_strDynamicSourceConfiguration / strPath;
 #else
       ::str::begins_eat(strPath,".");
       //return "/ca2/stage/"+m_pcompiler->m_strStagePlatform+"/","lib" + strPath);
@@ -1168,11 +1168,11 @@ namespace dynamic_source
 
 #ifdef WINDOWS
 
-      return System.dir().element()/m_pcompiler->m_strDynamicSourceStage /m_pcompiler->m_strStagePlatform /"dynamic_source" /strTransformName.folder()/strScript + ".dll";
+      return System.dir().element()/m_pcompiler->m_strDynamicSourceStage /m_pcompiler->m_strStagePlatform /m_pcompiler->m_strDynamicSourceConfiguration/"dynamic_source" /strTransformName.folder()/strScript + ".dll";
 
 #else
 
-      return System.dir().element() / m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_strStagePlatform / "dynamic_source" / strTransformName.folder() / strScript + ".so";
+      return System.dir().element() / m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_strStagePlatform / m_pcompiler->m_strDynamicSourceConfiguration / "dynamic_source" / strTransformName.folder() / strScript + ".so";
 
 #endif
 
