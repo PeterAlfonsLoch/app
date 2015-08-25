@@ -93,9 +93,10 @@ namespace dynamic_source
       m_strPlatform = "x86";
       m_strStagePlatform = "x86";
       m_strLibPlatform = "x86/";
-      #else
+#else
       m_strPlat1     = "64";
-      strPlat2 = "  x86_amd64";
+//      strPlat2 = "  x86_amd64";
+      strPlat2 = "  amd64";
       m_strPlatform = "x64";
       m_strStagePlatform = "x64";
       m_strLibPlatform = "x64/";
@@ -493,7 +494,8 @@ namespace dynamic_source
       str.replace("%VS_VARS%", m_strEnv);
       string strPlat2;
 #ifdef OS64BIT
-      strPlat2 = "x86_amd64";
+///      strPlat2 = "x86_amd64";
+      strPlat2 = "amd64";
 #else
       strPlat2 = " x86";
 #endif
@@ -838,7 +840,8 @@ namespace dynamic_source
       str.replace("%VS_VARS%", m_strEnv);
       string strPlat2;
 #ifdef OS64BIT
-      strPlat2 = "x86_amd64";
+      //strPlat2 = "x86_amd64";
+      strPlat2 = "amd64";
 #else
       strPlat2 = " x86";
 #endif
