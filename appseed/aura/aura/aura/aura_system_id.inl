@@ -52,11 +52,18 @@ namespace aura
 
 inline id::id(const char * psz)
 {
+   
    m_all ={};
 
+   if(psz != NULL)
+   {
 
-   operator = (::aura::system::id(psz));
+      operator = (::aura::system::id(psz));
+
+   }
+
 }
+
 
 #if defined(_LP64) || defined(_AMD64_)
 inline id & id::operator = (int32_t i)

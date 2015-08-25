@@ -95,7 +95,7 @@ namespace dynamic_source
       m_strLibPlatform = "x86/";
 #else
       m_strPlat1     = "64";
-//      strPlat2 = "  x86_amd64";
+      //strPlat2 = "  x86_amd64";
       strPlat2 = "  amd64";
       m_strPlatform = "x64";
       m_strStagePlatform = "x64";
@@ -434,28 +434,28 @@ namespace dynamic_source
 
 
 
-      ::file::path vars1batSrc;
-      ::file::path vars2batSrc;
-      ::file::path vars1batDst;
-      ::file::path vars2batDst;
-      vars1batSrc = System.dir().element()/"nodeapp/stage/dynamic_source/vc_vars.bat";
-      vars2batSrc = System.dir().element()/"nodeapp/stage/dynamic_source/vc_vars_query_registry.bat";
-      vars1batDst = pscript->m_strBuildBat.folder()/  "vc_vars.bat";
-      vars2batDst = pscript->m_strBuildBat.folder()/ "vc_vars_query_registry.bat";
-      try
-      {
-         Application.file().copy(vars1batDst, vars1batSrc, false);
-      }
-      catch(...)
-      {
-      }
-      try
-      {
-         Application.file().copy(vars2batDst, vars2batSrc, false);
-      }
-      catch(...)
-      {
-      }
+      //::file::path vars1batSrc;
+      //::file::path vars2batSrc;
+      //::file::path vars1batDst;
+      //::file::path vars2batDst;
+      //vars1batSrc = System.dir().element()/"nodeapp/stage/dynamic_source/vc_vars.bat";
+      //vars2batSrc = System.dir().element()/"nodeapp/stage/dynamic_source/vc_vars_query_registry.bat";
+      //vars1batDst = pscript->m_strBuildBat.folder()/  "vc_vars.bat";
+      //vars2batDst = pscript->m_strBuildBat.folder()/ "vc_vars_query_registry.bat";
+      //try
+      //{
+      //   Application.file().copy(vars1batDst, vars1batSrc, false);
+      //}
+      //catch(...)
+      //{
+      //}
+      //try
+      //{
+      //   Application.file().copy(vars2batDst, vars2batSrc, false);
+      //}
+      //catch(...)
+      //{
+      //}
 
 
 #endif
@@ -494,7 +494,7 @@ namespace dynamic_source
       str.replace("%VS_VARS%", m_strEnv);
       string strPlat2;
 #ifdef OS64BIT
-///      strPlat2 = "x86_amd64";
+//      strPlat2 = "x86_amd64";
       strPlat2 = "amd64";
 #else
       strPlat2 = " x86";
@@ -840,7 +840,7 @@ namespace dynamic_source
       str.replace("%VS_VARS%", m_strEnv);
       string strPlat2;
 #ifdef OS64BIT
-      //strPlat2 = "x86_amd64";
+//      strPlat2 = "x86_amd64";
       strPlat2 = "amd64";
 #else
       strPlat2 = " x86";
