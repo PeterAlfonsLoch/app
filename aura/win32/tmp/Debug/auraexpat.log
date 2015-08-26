@@ -1,9 +1,0 @@
-﻿  xmlparse.c
-  xmlrole.c
-  xmltok.c
-  xmltok_impl.c
-  Generating Code...
-C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(1189,5): warning MSB8012: TargetPath(Z:\netnode\app\aura\expat\.\..\win32\bin\Debug\auraexpat.dll) does not match the Linker's OutputFile property value (Z:\netnode\app\aura\win32\bin\Debug\libexpat.dll). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
-C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(1191,5): warning MSB8012: TargetName(auraexpat) does not match the Linker's OutputFile property value (libexpat). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
-xmlparse.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
-LINK : fatal error LNK1104: cannot open file '.\libexpat.def'
