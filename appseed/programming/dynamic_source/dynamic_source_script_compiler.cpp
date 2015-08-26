@@ -201,6 +201,17 @@ namespace dynamic_source
 
    }
 
+
+
+
+
+
+
+
+
+
+
+
    void script_compiler::compile(ds_script * pscript)
    {
 
@@ -233,6 +244,10 @@ namespace dynamic_source
       ::file::path strDVI;
       ::file::path strDVP;
       ::file::path strDPC;
+      ::file::path strSO1;
+      ::file::path strSO2;
+      ::file::path strDO1;
+      ::file::path strDO2;
 
       /*string strScript(strName);
       strScript.replace("\\", ",");
@@ -281,9 +296,13 @@ namespace dynamic_source
       strDVI = strDynamicSourceScriptFolder / strTransformName / m_strSdk1 + ".idb";
       strDVP = strDynamicSourceScriptFolder / strTransformName / m_strSdk1 + ".pdb";
       strDPC = strDynamicSourceScriptFolder / strTransformName / m_pmanager->m_strNamespace + "_dynamic_source_script.pch";
+      strDO1 = strDynamicSourceScriptFolder / strTransformName / "framework.obj";
+      strDO2 = strDynamicSourceScriptFolder / strTransformName / m_pmanager->m_strNamespace + "_dynamic_source_script.obj";
       strSVI = strDynamicSourceScriptFolder / m_strSdk1 + ".idb";
       strSVP = strDynamicSourceScriptFolder / m_strSdk1 + ".pdb";
       strSPC = strDynamicSourceScriptFolder / m_pmanager->m_strNamespace + "_dynamic_source_script.pch";
+      strSO1 = strDynamicSourceScriptFolder / "framework.obj";
+      strSO2 = strDynamicSourceScriptFolder / m_pmanager->m_strNamespace + "_dynamic_source_script.obj";
 
       strO = strDynamicSourceScriptFolder / strTransformName.name() / strTransformName + ".bat";
 
@@ -366,6 +385,26 @@ namespace dynamic_source
       catch(...)
       {
       }
+      try
+      {
+         if(Application.file().exists(strDO1))
+         {
+            Application.file().del(strDO1);
+         }
+      }
+      catch(...)
+      {
+      }
+      try
+      {
+         if(Application.file().exists(strDO2))
+         {
+            Application.file().del(strDO2);
+         }
+      }
+      catch(...)
+      {
+      }
 #endif
       //::DeleteFile(pscript->m_strBuildBat);
       try
@@ -422,6 +461,30 @@ namespace dynamic_source
       try
       {
          Application.file().copy(strDPC, strSPC, false);
+      }
+      catch(...)
+      {
+
+         pscript->m_bHasTempOsError = true;
+
+         return;
+
+      }
+      try
+      {
+         Application.file().copy(strDO1,strSO1,false);
+      }
+      catch(...)
+      {
+
+         pscript->m_bHasTempOsError = true;
+
+         return;
+
+      }
+      try
+      {
+         Application.file().copy(strDO2,strSO2,false);
       }
       catch(...)
       {
@@ -696,13 +759,13 @@ namespace dynamic_source
       strDest = "";
       strDest += "#include \"framework.h\"\r\n";
       strDest += "#include \"11ca2_fontopus.h\"\r\n";
-      for(int32_t i = 0; i < m_straLibIncludePath.get_count(); i++)
-      {
-         string str;
-         str = m_straLibIncludePath[i].relative();
-         ::str::ends_eat_ci(str, ".ds");
-         strDest += "#include \""+str+".h\"\r\n";
-      }
+      //for(int32_t i = 0; i < m_straLibIncludePath.get_count(); i++)
+      //{
+      //   string str;
+      //   str = m_straLibIncludePath[i].relative();
+      //   ::str::ends_eat_ci(str, ".ds");
+      //   strDest += "#include \""+str+".h\"\r\n";
+      //}
       strsize iStart = 0;
       strsize iPos = 0;
       strsize iLastEnd = 0;
