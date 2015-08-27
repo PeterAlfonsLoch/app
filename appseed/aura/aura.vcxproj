@@ -491,7 +491,6 @@
     <ClInclude Include="aura\aura\aura_progress.h" />
     <ClInclude Include="aura\aura\aura_keep_true.h" />
     <ClInclude Include="aura\aura\aura_launcher.h" />
-    <ClInclude Include="aura\aura\aura_libc.h" />
     <ClInclude Include="aura\aura\aura_library.h" />
     <ClInclude Include="aura\aura\aura_live_object.h" />
     <ClInclude Include="aura\aura\aura_live_signal.h" />
