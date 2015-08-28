@@ -792,17 +792,6 @@ namespace file
       ::cres system::copy(const ::file::path & pszNew, const ::file::path & psz, bool bFailIfExists, e_extract eextract, ::aura::application * papp)
       {
 
-         if (bFailIfExists)
-         {
-
-            if (exists(pszNew, papp))
-            {
-               return failure;
-
-            }
-
-         }
-
          if (System.dir().is(psz, papp) && (eextract == extract_first || eextract == extract_all || !(::str::ends_ci(psz, ".zip"))))
          {
             ::file::listing patha(papp);
@@ -843,6 +832,25 @@ namespace file
          }
          else
          {
+
+            if(pszNew.m_epath == ::file::path_file
+               && psz.m_epath == ::file::path_file)
+            {
+
+               return ::file::system::copy(pszNew, psz, bFailIfExists, eextract, papp);
+
+            }
+
+            if(bFailIfExists)
+            {
+
+               if(exists(pszNew,papp))
+               {
+                  return failure;
+
+               }
+
+            }
 
             ::file::path strNew;
 

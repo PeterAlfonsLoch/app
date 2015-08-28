@@ -23,18 +23,19 @@ namespace dynamic_source
       };
 
 
+      
 
-      file::plain_text_stream_memory_buffer     m_memfileLibError;
-      ::file::listing                             m_straLibSourcePath;
+//      file::plain_text_stream_memory_buffer     m_memfileLibError;
+  //    ::file::listing                             m_straLibSourcePath;
       //::file::patha                             m_straLibSourceRelPath;
-      ::file::patha                             m_straLibCppPath;
-      ::file::listing                             m_straLibIncludePath;
+    //  ::file::patha                             m_straLibCppPath;
+      //::file::listing                             m_straLibIncludePath;
       //::file::patha                             m_straLibIncludeRelPath;
-      ::file::patha                             m_straLibHppPath;
-      ::file::path                              m_strLibraryPath;
+//      ::file::patha                             m_straLibHppPath;
+  //    ::file::path                              m_strLibraryPath;
                                                 
-      uint32_t                                  m_dwLastLibraryVersionCheck;
-      bool                                      m_bLastLibraryVersionCheck;
+    //  uint32_t                                  m_dwLastLibraryVersionCheck;
+//      bool                                      m_bLastLibraryVersionCheck;
                                                 
                                                 
       string                                    m_strDynamicSourceConfiguration;
@@ -42,29 +43,30 @@ namespace dynamic_source
       ::file::path                              m_strDynamicSourceStageFolder;
                                                 
                                                 
-      ::aura::library                           m_libraryLib;
+//      ::aura::library                           m_libraryLib;
 
 
-      raw_array < __time_t >                    m_ftaLibCreation;
-      raw_array < __time_t >                    m_ftaLibAccess;
-      raw_array < __time_t >                    m_ftaLibModified;
-                                                
+//      raw_array < __time_t >                    m_ftaLibCreation;
+  //    raw_array < __time_t >                    m_ftaLibAccess;
+    //  raw_array < __time_t >                    m_ftaLibModified;
+              
+
+      semaphore                                 m_sem;
+
                                                 
       stringa                                   m_straSync;
       map_string_to_ptr                         m_mapLib;
       string                                    m_strLibsLibs;
       string                                    m_strEnv;
       sp(script_manager)                        m_pmanager;
-      mutex                                     m_mutexLibrary;
       string                                    m_strSdk1;
       string                                    m_strPlatform;
       string                                    m_strStagePlatform;
-      string                                    m_strLibPlatform;
-      //::file_watcher::thread                  m_folderwatch;
       ::file_watcher::id                        m_filewatchid;
       ::file_watcher::id                        m_filewatchidFribox;
                                                
       string                                    m_strPlat1;
+      string                                    m_strPlat2;
       ::file::path                              m_strTime;
 
 
@@ -98,12 +100,12 @@ namespace dynamic_source
 
       void folder_watch();
 
-      void compile_library();
+//      void compile_library();
       void process_include(const char * pszInclude);
 
-      bool library_DoesMatchVersion();
-      void load_library();
-      void unload_library();
+  //    bool library_DoesMatchVersion();
+    //  void load_library();
+      //void unload_library();
 
 
       virtual void handle_file_action(::file_watcher::id watchid, const char * dir, const char * filename, ::file_watcher::e_action action);

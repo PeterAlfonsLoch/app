@@ -276,8 +276,11 @@ namespace windows
 
       int32_t nErr = 0;
 
-      if (m_pStream != NULL)
+      if(m_pStream != NULL)
+      {
+         fflush(m_pStream);
          nErr = fclose(m_pStream);
+      }
 
       m_hFile = (UINT) hFileNull;
       m_pStream = NULL;

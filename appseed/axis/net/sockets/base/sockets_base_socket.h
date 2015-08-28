@@ -51,6 +51,7 @@ namespace sockets
       {
       public:
 
+         sp(socket_handler)   m_sphandler;
 
          sp(base_socket)      m_spsocket;
 
@@ -58,6 +59,8 @@ namespace sockets
          socket_thread(base_socket * psocket);
          virtual ~socket_thread();
 
+
+         virtual bool pre_run();
 
          sp(base_socket) get_socket() const { return m_spsocket; }
 

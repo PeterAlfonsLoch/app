@@ -44,7 +44,6 @@ namespace windows
 
       if(m_hFile != (UINT)hFileNull)
       {
-         flush();
          close();
       }
 
@@ -303,6 +302,8 @@ retry:
 
    void file::close()
    {
+
+      flush();
 
       ASSERT_VALID(this);
       ASSERT(m_hFile != (UINT)hFileNull);

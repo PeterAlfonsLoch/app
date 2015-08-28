@@ -45,6 +45,7 @@ namespace dynamic_source
    }
 
 
+
    script_manager::script_manager(::aura::application * papp) :
       ::object(papp),
       thread(papp),
@@ -192,14 +193,14 @@ namespace dynamic_source
          pinstance->m_strDebugThisScript = m_strSeed;
          pinstance->initialize(pinstance, NULL, pdssocket, this);
          pinstance->dinit();
-         if(pinstance->m_iDebug > 0)
-         {
-            if(pinstance->get("debug_lib").is_set())
-            {
-               m_pcompiler->m_memfileLibError.seek_to_begin();
-               pdssocket->response().file().transfer_from(m_pcompiler->m_memfileLibError);
-            }
-         }
+         //if(pinstance->m_iDebug > 0)
+         //{
+         //   if(pinstance->get("debug_lib").is_set())
+         //   {
+         //      m_pcompiler->m_memfileLibError.seek_to_begin();
+         //      pdssocket->response().file().transfer_from(m_pcompiler->m_memfileLibError);
+         //   }
+         //}
       }
       if(pinstance != NULL)
       {

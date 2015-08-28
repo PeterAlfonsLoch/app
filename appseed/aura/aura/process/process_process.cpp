@@ -101,6 +101,14 @@ namespace process
    }
 
 
+   bool process::kill()
+   {
+      
+      return false;
+
+   }
+
+
 } // namespace process
 
 

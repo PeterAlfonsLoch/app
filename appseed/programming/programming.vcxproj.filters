@@ -59,6 +59,9 @@
     <ClInclude Include="programming\programming.h">
       <Filter>Header Files\programming</Filter>
     </ClInclude>
+    <ClInclude Include="programming\programming_application.h">
+      <Filter>Header Files\programming</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -92,6 +95,9 @@
       <Filter>Source Files\dynamic_source</Filter>
     </ClCompile>
     <ClCompile Include="dynamic_source\dynamic_source_session.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="programming\programming_application.cpp">
       <Filter>Source Files\dynamic_source</Filter>
     </ClCompile>
   </ItemGroup>

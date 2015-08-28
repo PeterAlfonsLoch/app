@@ -145,7 +145,7 @@ namespace dynamic_source
 
    void ds_script::on_start_build()
    {
-      
+
       single_lock sl(&m_mutex, TRUE);
       
       // Unload library in the context of manager thread

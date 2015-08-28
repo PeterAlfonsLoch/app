@@ -81,7 +81,6 @@ namespace dynamic_source
 
       };
 
-
       spa(plugin_map_item)                      m_pluginmapitema;
 
       mutex                                     m_mutexIncludeMatches;

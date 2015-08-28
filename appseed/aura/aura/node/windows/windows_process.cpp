@@ -126,6 +126,7 @@ namespace windows
          return false;
       else
       {
+         m_iPid = m_pi.dwProcessId;
          // close handles to the child process and its primary thread.
          // Some applications might keep these handles to monitor the status
          // of the child process, for example.
@@ -252,6 +253,17 @@ namespace windows
       return dwExitCode;
 
    }
+
+
+
+   bool process::kill()
+   {
+
+      return TerminateProcess(m_pi.hThread, -1) != FALSE;
+
+   }
+
+
 
 
 } // namespace windows

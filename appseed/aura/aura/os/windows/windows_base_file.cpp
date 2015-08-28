@@ -145,11 +145,7 @@ uint64_t file_length_dup(const char * path)
 int_bool file_copy_dup(const char * pszNew, const char * pszSrc, int_bool bOverwrite)
 {
 
-   wstring wstrNew(pszNew);
-
-   wstring wstrSrc(pszSrc);
-
-   return CopyFileW(wstrSrc, wstrNew, bOverwrite ? FALSE : TRUE) ? true : FALSE;
+   return file_copy_dup(string(pszNew),string(pszSrc), bOverwrite ? true : false) ? TRUE : FALSE;
 
 }
 
@@ -218,14 +214,32 @@ END_EXTERN_C
 
 
 
-int_bool file_copy_dup(const char * pszNew, const char * pszSrc, bool bOverwrite)
+bool file_copy_dup(const string & strNewParam, const string & strSrcParam, bool bOverwrite)
 {
 
-   wstring wstrNew(pszNew);
+   string strNew(strNewParam);
 
-   wstring wstrSrc(pszSrc);
+   if(strNew.get_length() >= MAX_PATH)
+   {
 
-   return ::CopyFileW(wstrSrc, wstrNew, bOverwrite ? FALSE : TRUE) ? true : false;
+      strNew = "\\\\.\\" + strNew;
+
+   }
+
+   string strSrc(strSrcParam);
+
+   if(strSrc.get_length() >= MAX_PATH)
+   {
+
+      strSrc = "\\\\.\\" + strSrc;
+
+   }
+
+   wstring wstrNew(strNew);
+
+   wstring wstrSrc(strSrc);
+
+   return ::CopyFileExW(wstrSrc,wstrNew, NULL, NULL, NULL, COPY_FILE_NO_BUFFERING | (bOverwrite ? 0 : COPY_FILE_FAIL_IF_EXISTS)) ? true : false;
 
 }
 

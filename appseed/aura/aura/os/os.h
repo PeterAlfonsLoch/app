@@ -23,7 +23,7 @@ inline bool IsDirSep(WCHAR ch);
 CLASS_DECL_AURA void set_splash(oswindow oswindow);
 CLASS_DECL_AURA oswindow get_splash();
 
-
+CLASS_DECL_AURA int get_processor_count();
 
 CLASS_DECL_AURA void output_debug_string(const char * psz);
 

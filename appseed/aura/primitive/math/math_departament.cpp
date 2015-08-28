@@ -170,6 +170,27 @@ namespace math
    }
 
 
+   void math::gen_rand_alnum(char * buf,uint32_t dwLen)
+   {
+
+      static unsigned int ui = 0;
+
+      gen_rand(buf,dwLen);
+
+      for(index i = 0 ; i < dwLen; i++)
+      {
+
+         unsigned int ch = (((unsigned int)buf[i]) + ui++) % 36;
+
+         buf[i] = (char) ((ch <= 9) ? (ch + '0') : (ch - 10 + 'a'));
+
+      }
+
+   }
+
+
+
+
    int32_t math::rand_max()
    {
 

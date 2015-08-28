@@ -25,6 +25,7 @@ namespace windows
 
       virtual int32_t synch_elevated(const char * pszCmdLine,int iShow,const ::duration & durationTimeOut,bool * pbTimeOut);
 
+      virtual bool kill();
 
    };
 

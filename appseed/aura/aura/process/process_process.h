@@ -13,6 +13,7 @@ namespace process
 
       bidi_pipe               m_pipe;
       bool                    m_bPiped;
+      int                     m_iPid;
 
 
       process(::aura::application * papp);
@@ -28,6 +29,8 @@ namespace process
       virtual string read(bool bUntilExit = false);
 
       virtual int32_t synch_elevated(const char * pszCmdLine,int iShow,const ::duration & durationTimeOut,bool * pbTimeOut);
+
+      virtual bool kill();
 
    };
 

@@ -819,27 +819,34 @@ namespace sockets
 
    void base_socket::SetSlaveHandler(base_socket_handler *p)
    {
+
       m_slave_handler = p;
+
    }
 
 
    base_socket::socket_thread::socket_thread(base_socket * p) :
       ::object(p->get_app()),
       thread(p->get_app()),
-      m_spsocket(p)
+      m_spsocket(p),
+      m_sphandler(canew(socket_handler(get_app())))
    {
-      begin();
+
+      begin_synch();
+
    }
+
 
    base_socket::socket_thread::~socket_thread()
    {
+
    }
 
 
-   int base_socket::socket_thread::run()
+   bool base_socket::socket_thread::pre_run()
    {
-
-      socket_handler h(get_app());
+      
+      socket_handler & h = *m_sphandler;
 
       h.SetSlave();
 
@@ -848,6 +855,16 @@ namespace sockets
       m_spsocket -> SetSlaveHandler(&h);
 
       m_spsocket -> OnDetached();
+
+      return true;
+
+   }
+
+
+   int base_socket::socket_thread::run()
+   {
+
+      socket_handler & h = *m_sphandler;
 
       while (h.get_count() && get_run())
       {
