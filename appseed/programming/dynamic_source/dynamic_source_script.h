@@ -67,6 +67,7 @@ namespace dynamic_source
       bool                             m_bCalcHasTempError;
       bool                             m_bHasTempError;
       bool                             m_bHasTempOsError;
+      bool                             m_bUnloading;
 
 
 
@@ -84,11 +85,11 @@ namespace dynamic_source
       bool DoesMatchVersion();
       bool ShouldBuild();
       bool HasCompileOrLinkError();
-      bool HasTempError(bool bLock = true);
-      bool CalcHasTempError(bool bLock = true);
+      bool HasTempError();
+      bool CalcHasTempError();
       bool HasTimedOutLastBuild();
-      void Load(bool bLock);
-      void Unload(bool bLock);
+      void Load();
+      void Unload();
 
       string get_stage_path();
 

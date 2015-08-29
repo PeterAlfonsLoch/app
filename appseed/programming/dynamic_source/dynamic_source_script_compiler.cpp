@@ -25,7 +25,7 @@ namespace dynamic_source
   //    m_mutexLibrary(papp),
       m_mutex(papp)//,
 //      m_libraryLib(papp)
-,m_sem(papp,::get_processor_count(),::get_processor_count())
+,m_sem(papp,MIN(1, ::get_processor_count()-2),MIN(1,::get_processor_count()-1))
 
    {
 
@@ -217,8 +217,6 @@ namespace dynamic_source
 
       synch_lock slCompiler(&m_sem);
 
-      synch_lock slScript(&pscript->m_mutex);
-
       TRACE("Compiling script \"%s\"\n", pscript->m_strName.c_str());
 
       ::file::path strName(pscript->m_strName);
@@ -250,6 +248,9 @@ namespace dynamic_source
       ::file::path strSO2;
       ::file::path strDO1;
       ::file::path strDO2;
+      ::file::path strClog;
+      ::file::path strLlog;
+
 
       /*string strScript(strName);
       strScript.replace("\\", ",");
@@ -283,6 +284,12 @@ namespace dynamic_source
 
 
       pscript->m_strCppPath.Format(m_strTime/  "dynamic_source\\%s.cpp", strTransformName);
+
+
+
+      strClog.Format(m_strTime / "dynamic_source/%s-compile-log.txt",strTransformName);
+      strLlog.Format(m_strTime / "dynamic_source/%s-link-log.txt",strTransformName);
+
       //#ifdef DEBUG
 #ifdef LINUX
       strB = System.dir().element() / m_strDynamicSourceStage / "front\\dynamic_source\\BuildBat"/strTransformName.name()/strTransformName+".bat";
@@ -408,6 +415,26 @@ namespace dynamic_source
       {
       }
 #endif
+      try
+      {
+         if(Application.file().exists(strClog))
+         {
+            Application.file().del(strClog);
+         }
+      }
+      catch(...)
+      {
+      }
+      try
+      {
+         if(Application.file().exists(strLlog))
+         {
+            Application.file().del(strLlog);
+         }
+      }
+      catch(...)
+      {
+      }
       //::DeleteFile(pscript->m_strBuildBat);
       try
       {
@@ -500,7 +527,6 @@ namespace dynamic_source
 
 
 
-
 #endif
 
       Application.dir().mk(pscript->m_strScriptPath.folder());
@@ -578,7 +604,7 @@ namespace dynamic_source
 
          Sleep(100);
 
-         if(::get_tick_count() - dwStart > 5 * 60 * 1000) // 5 minutes
+         if(::get_tick_count() - dwStart > 15 * 1000) // 15 seconds
          {
 
             bTimeout = true;
@@ -596,44 +622,98 @@ namespace dynamic_source
 
       }
 
-      //system(strCmd);
 
-      //   TRACE0(strBuildCmd);
-      // var varBuildOutput;
-      //varBuildOutput = System.process().get_output(strBuildCmd);
-
-      /*TRACE0(strLinkCmd);
-      var varLinkOutput;
-      varLinkOutput = System.process().get_output(strLinkCmd);*/
-
-
+      if(!bTimeout && dwExitCode == 0)
+      {
 
 #ifdef LINUX
 
-      //Sleep(1984);
+         //Sleep(1984);
 
 #endif
-      pscript->m_memfileError.m_spbuffer->set_length(0);
-      pscript->m_memfileError << "<pre>";
+         pscript->m_memfileError.m_spbuffer->set_length(0);
+         pscript->m_memfileError << "<pre>";
 
-      pscript->m_memfileError << "Compiling...\n";
-      pscript->m_memfileError << pscript->m_strCppPath;
-      pscript->m_memfileError << "\n";
-      if(bTimeout)
-      {
-         pscript->m_memfileError << "error: Timeout during compilation (If there are the compilation or link errors about the file \"" + pscript->m_strCppPath +"\" following this message, they may be out-of-date)";
+         pscript->m_memfileError << "Compiling...\n";
+         pscript->m_memfileError << pscript->m_strCppPath;
+         pscript->m_memfileError << "\n";
+         if(bTimeout)
+         {
+            pscript->m_memfileError << "error: Timeout during compilation (If there are the compilation or link errors about the file \"" + pscript->m_strCppPath + "\" following this message, they may be out-of-date)";
+         }
+         str = Application.file().as_string(strClog);
+         str.replace("\r\n","\n");
+         pscript->m_memfileError << str;
+
+         pscript->m_memfileError << "Linking...\n";
+         str = Application.file().as_string(strLlog);
+         str.replace("\r\n","\n");
+         pscript->m_memfileError << str;
+         pscript->m_memfileError << "</pre>";
+
+         string strError = pscript->m_memfileError.m_spmemorybuffer->get_memory()->to_string();
+
+         if(strError.find(" error ") < 0)
+         {
+
+            pscript->m_dwLastBuildTime = ::get_tick_count();
+
+            // Wait for finalization of build
+            // or delay in case of error to avoid run conditions due extreme overload.
+            //Sleep(pscript->m_pmanager->m_dwBuildTimeWindow +
+            // System.math().RandRange(0, pscript->m_pmanager->m_dwBuildTimeRandomWindow));
+            pscript->m_bShouldBuild =false;
+
+#ifdef WINDOWSEX
+
+            HANDLE h = create_file(pscript->m_strSourcePath,GENERIC_READ,FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
+
+            try
+            {
+               memset(&pscript->m_ftCreation,0,sizeof(FILETIME));
+               memset(&pscript->m_ftModified,0,sizeof(FILETIME));
+               ::GetFileTime(h,&pscript->m_ftCreation,NULL,&pscript->m_ftModified);
+            }
+            catch(...)
+            {
+            }
+
+            ::CloseHandle(h);
+
+#elif defined(METROWIN)
+
+            ::Windows::Storage::StorageFile ^ h = get_os_file(pscript->m_strSourcePath,GENERIC_READ,FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
+            try
+            {
+               memset(&pscript->m_ftCreation,0,sizeof(FILETIME));
+               memset(&pscript->m_ftModified,0,sizeof(FILETIME));
+               ::get_file_time(h,&pscript->m_ftCreation,NULL,&pscript->m_ftModified);
+            }
+            catch(...)
+            {
+            }
+
+
+#else
+            //      HANDLE h = ::CreateFile(pscript->m_strSourcePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+
+            memset(&pscript->m_ftCreation,0,sizeof(__time_t));
+            memset(&pscript->m_ftAccess,0,sizeof(__time_t));
+            memset(&pscript->m_ftModified,0,sizeof(__time_t));
+
+            struct stat st;
+
+            stat(pscript->m_strSourcePath,&st);
+
+            pscript->m_ftCreation = st.st_ctime;
+            pscript->m_ftAccess = st.st_atime;
+            pscript->m_ftModified = st.st_mtime;
+
+#endif
+
+         }
+
       }
-      str.Format(m_strTime/ "dynamic_source/%s-compile-log.txt",strTransformName);
-      str = Application.file().as_string(str);
-      str.replace("\r\n", "\n");
-      pscript->m_memfileError << str;
-
-      pscript->m_memfileError<< "Linking...\n";
-      str.Format(m_strTime/ "dynamic_source/%s-link-log.txt", strTransformName);
-      str = Application.file().as_string(str);
-      str.replace("\r\n", "\n");
-      pscript->m_memfileError << str;
-      pscript->m_memfileError << "</pre>";
 
 #ifndef LINUX
 
@@ -658,59 +738,6 @@ namespace dynamic_source
       catch(...)
       {
       }
-
-#endif
-      pscript->m_dwLastBuildTime = ::get_tick_count();
-
-      // Wait for finalization of build
-      // or delay in case of error to avoid run conditions due extreme overload.
-      //Sleep(pscript->m_pmanager->m_dwBuildTimeWindow +
-      // System.math().RandRange(0, pscript->m_pmanager->m_dwBuildTimeRandomWindow));
-      pscript->m_bShouldBuild =false;
-#ifdef WINDOWSEX
-
-      HANDLE h = create_file(pscript->m_strSourcePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
-
-      try
-      {
-         memset(&pscript->m_ftCreation, 0, sizeof(FILETIME));
-         memset(&pscript->m_ftModified, 0, sizeof(FILETIME));
-         ::GetFileTime(h, &pscript->m_ftCreation, NULL, &pscript->m_ftModified);
-      }
-      catch(...)
-      {
-      }
-
-      ::CloseHandle(h);
-
-#elif defined(METROWIN)
-
-      ::Windows::Storage::StorageFile ^ h = get_os_file(pscript->m_strSourcePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
-      try
-      {
-         memset(&pscript->m_ftCreation, 0, sizeof(FILETIME));
-         memset(&pscript->m_ftModified, 0, sizeof(FILETIME));
-         ::get_file_time(h, &pscript->m_ftCreation, NULL, &pscript->m_ftModified);
-      }
-      catch(...)
-      {
-      }
-
-
-#else
-      //      HANDLE h = ::CreateFile(pscript->m_strSourcePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
-
-      memset(&pscript->m_ftCreation, 0, sizeof(__time_t));
-      memset(&pscript->m_ftAccess, 0, sizeof(__time_t));
-      memset(&pscript->m_ftModified, 0, sizeof(__time_t));
-
-      struct stat st;
-
-      stat(pscript->m_strSourcePath, &st);
-
-      pscript->m_ftCreation = st.st_ctime;
-      pscript->m_ftAccess = st.st_atime;
-      pscript->m_ftModified = st.st_mtime;
 
 #endif
 

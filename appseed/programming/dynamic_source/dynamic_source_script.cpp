@@ -25,6 +25,8 @@ namespace dynamic_source
       m_memfileError(papp),
       m_mutex(papp)
    {
+
+
    }
 
    script::~script()
@@ -54,6 +56,7 @@ namespace dynamic_source
       m_lpfnCreateInstance    = NULL;
       m_bShouldBuild          = true;
       m_bCalcHasTempError     = false;
+      m_bUnloading = false;
       m_evCreationEnabled.SetEvent();
    }
 
@@ -68,7 +71,7 @@ namespace dynamic_source
 
       m_dwLastVersionCheck = get_tick_count();
 
-      single_lock sl(&m_mutex, TRUE);
+      synch_lock sl(&m_mutex);
 
       bool bMatches = false;
 
@@ -135,7 +138,7 @@ namespace dynamic_source
 
    bool ds_script::ShouldBuild()
    {
-      single_lock sl(&m_mutex, TRUE);
+      synch_lock sl(&m_mutex);
       return  m_pmanager->should_build(m_strScriptPath) && (m_bShouldBuild || (HasTempError() 
          // && HasTimedOutLastBuild()
          
@@ -146,13 +149,9 @@ namespace dynamic_source
    void ds_script::on_start_build()
    {
 
-      single_lock sl(&m_mutex, TRUE);
+      synch_lock sl(&m_mutex);
       
-      // Unload library in the context of manager thread
-      
-      //m_pmanager->m_pmessagewindow->SendMessage(WM_APP + 13, 13, (LPARAM) this);
-      
-      Unload(false);
+      Unload();
       
       m_bCalcHasTempError  = false;
       
@@ -166,14 +165,14 @@ namespace dynamic_source
 
    bool ds_script::HasTimedOutLastBuild()
    {
-      single_lock sl(&m_mutex, TRUE);
+      synch_lock sl(&m_mutex);
       return (::get_tick_count() - m_dwLastBuildTime) >
          (m_pmanager->m_dwBuildTimeWindow + System.math().RandRange(0, m_pmanager->m_dwBuildTimeRandomWindow));
    }
 
    bool ds_script::HasCompileOrLinkError()
    {
-      single_lock sl(&m_mutex, TRUE);
+      synch_lock sl(&m_mutex);
       string str;
       m_memfileError.seek_to_begin();
       str = m_memfileError.to_string();
@@ -186,20 +185,21 @@ namespace dynamic_source
       return false;
    }
 
-   bool ds_script::HasTempError(bool bLock)
+   bool ds_script::HasTempError()
    {
-      single_lock sl(&m_mutex, bLock ? TRUE : FALSE);
+      synch_lock sl(&m_mutex);
       if(!m_bCalcHasTempError)
       {
-         m_bHasTempError = CalcHasTempError(false);
+         m_bHasTempError = CalcHasTempError();
          m_bCalcHasTempError = true;
       }
       return m_bHasTempError;
    }
 
-   bool ds_script::CalcHasTempError(bool bLock)
+   bool ds_script::CalcHasTempError()
    {
-      single_lock sl(&m_mutex, bLock ? TRUE : FALSE);
+
+      synch_lock sl(&m_mutex);
 
       if (m_bHasTempOsError)
          return true;
@@ -267,9 +267,9 @@ namespace dynamic_source
    }
 
 
-   void ds_script::Load(bool bLock)
+   void ds_script::Load()
    {
-      single_lock sl(&m_mutex, bLock ? TRUE : FALSE);
+      synch_lock sl(&m_mutex);
       #ifdef WINDOWS
 
       m_strScriptPath.replace("/", "\\");
@@ -285,7 +285,7 @@ namespace dynamic_source
       //::OutputDebugString(m_strScriptPath);
       if(!Application.file().exists(m_strScriptPath))
       {
-         if(HasTempError(false))
+         if(HasTempError())
          {
             m_memfileError << m_strScriptPath << ": does not exist because of \"temp\" error.";
          }
@@ -353,40 +353,21 @@ namespace dynamic_source
         // m_evCreationEnabled.SetEvent();
       //}
    }
-   void ds_script::Unload(bool bLock)
+   void ds_script::Unload()
    {
+
+      if(m_bUnloading)
+         return;
+
+      keep < bool > unloading(&m_bUnloading,true,false,true);
+
       m_evCreationEnabled.ResetEvent();
-      single_lock sl(&m_mutex);
-      if(bLock)
-      {
-         sl.lock(minutes(0.5));
-      }
-      while(m_scriptinstanceptra.get_size())
-      {
-         if(bLock)
-         {
-            sl.unlock();
-            sl.lock(minutes(0.5));
-         }
-         for(int32_t i = 0; i < m_scriptinstanceptra.get_size();)
-         {
-            if(get_tick_count() > (m_scriptinstanceptra[i]->m_dwCreate + 30 * 1000))
-            {
-               m_scriptinstanceptra.remove_at(i);
-            }
-            else
-            {
-               i++;
-            }
-         }
-      }
-      if(bLock)
-      {
-         sl.unlock();
-         sl.lock();
-      }
+
+      synch_lock sl(&m_mutex);
+
       if(m_library.is_opened())
       {
+
          m_library.close();
 
          string strStagePath = m_pmanager->get_stage_path(m_strScriptPath);
@@ -422,7 +403,9 @@ namespace dynamic_source
 #endif*/
 
          m_lpfnCreateInstance = (NET_NODE_CREATE_INSTANCE_PROC) NULL;
+
       }
+
    }
 
 
@@ -434,9 +417,9 @@ namespace dynamic_source
 
    script_instance * ds_script::create_instance()
    {
-      single_lock sl(&m_mutex);
-      if(!sl.lock(minutes(2)))
-         return NULL;
+      
+      synch_lock sl(&m_mutex);
+
       if(ShouldBuild())
       {
 
@@ -452,7 +435,9 @@ namespace dynamic_source
          }
 
          string str;
+
          int32_t iRetry = 0;
+
          do
          {
 
@@ -482,7 +467,7 @@ namespace dynamic_source
 
          } while(HasTempError() && iRetry < 8);
 
-         Load(false);
+         Load();
          // retried at least 8 times, give up any rebuild attemp until file is changed
          m_bShouldBuild = false;
          m_bCalcHasTempError = true;
@@ -504,10 +489,14 @@ namespace dynamic_source
       }
       else
       {
+         
          if(!m_pmanager->should_build(m_strScriptPath))
          {
+
             m_strScriptPath = m_pmanager->get_script_path(m_strName);
-            Load(false);
+
+            Load();
+
          }
 
       }
