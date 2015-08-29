@@ -465,7 +465,7 @@ namespace dynamic_source
 
             iRetry++;
 
-         } while(HasTempError() && iRetry < 8);
+         } while(HasTempError() && iRetry < 16);
 
          Load();
          // retried at least 8 times, give up any rebuild attemp until file is changed
@@ -504,7 +504,7 @@ namespace dynamic_source
       script_instance * pinstance;
       if(m_lpfnCreateInstance == NULL)
       {
-         pinstance = canew(script_instance(this));
+         return NULL;
       }
       else
       {

@@ -238,16 +238,16 @@ namespace dynamic_source
       ::file::path strP;
       ::file::path strL;
       ::file::path strE;
-      ::file::path strSVI;
-      ::file::path strSVP;
-      ::file::path strSPC;
-      ::file::path strDVI;
+      //::file::path strSVI;
+      //::file::path strSVP;
+      //::file::path strSPC;
+      //::file::path strDVI;
       ::file::path strDVP;
-      ::file::path strDPC;
-      ::file::path strSO1;
-      ::file::path strSO2;
-      ::file::path strDO1;
-      ::file::path strDO2;
+      //::file::path strDPC;
+      //::file::path strSO1;
+      //::file::path strSO2;
+      //::file::path strDO1;
+      //::file::path strDO2;
       ::file::path strClog;
       ::file::path strLlog;
 
@@ -302,16 +302,16 @@ namespace dynamic_source
 
 
       ::file::path strDynamicSourceScriptFolder = m_strTime / "intermediate" / m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strNamespace + "_dynamic_source_script";
-      strDVI = strDynamicSourceScriptFolder / strTransformName / m_strSdk1 + ".idb";
+      //strDVI = strDynamicSourceScriptFolder / strTransformName / m_strSdk1 + ".idb";
       strDVP = strDynamicSourceScriptFolder / strTransformName / m_strSdk1 + ".pdb";
-      strDPC = strDynamicSourceScriptFolder / strTransformName / m_pmanager->m_strNamespace + "_dynamic_source_script.pch";
-      strDO1 = strDynamicSourceScriptFolder / strTransformName / "framework.obj";
-      strDO2 = strDynamicSourceScriptFolder / strTransformName / m_pmanager->m_strNamespace + "_dynamic_source_script.obj";
-      strSVI = strDynamicSourceScriptFolder / m_strSdk1 + ".idb";
-      strSVP = strDynamicSourceScriptFolder / m_strSdk1 + ".pdb";
-      strSPC = strDynamicSourceScriptFolder / m_pmanager->m_strNamespace + "_dynamic_source_script.pch";
-      strSO1 = strDynamicSourceScriptFolder / "framework.obj";
-      strSO2 = strDynamicSourceScriptFolder / m_pmanager->m_strNamespace + "_dynamic_source_script.obj";
+      //strDPC = strDynamicSourceScriptFolder / strTransformName / m_pmanager->m_strNamespace + "_dynamic_source_script.pch";
+      //strDO1 = strDynamicSourceScriptFolder / strTransformName / "framework.obj";
+      //strDO2 = strDynamicSourceScriptFolder / strTransformName / m_pmanager->m_strNamespace + "_dynamic_source_script.obj";
+      //strSVI = strDynamicSourceScriptFolder / m_strSdk1 + ".idb";
+      //strSVP = strDynamicSourceScriptFolder / m_strSdk1 + ".pdb";
+      //strSPC = strDynamicSourceScriptFolder / m_pmanager->m_strNamespace + "_dynamic_source_script.pch";
+      //strSO1 = strDynamicSourceScriptFolder / "framework.obj";
+      //strSO2 = strDynamicSourceScriptFolder / m_pmanager->m_strNamespace + "_dynamic_source_script.obj";
 
       strO = strDynamicSourceScriptFolder / strTransformName.name() / strTransformName + ".bat";
 
@@ -364,56 +364,56 @@ namespace dynamic_source
       catch(...)
       {
       }
-      try
-      {
-         if(Application.file().exists(strDPC))
-         {
-            Application.file().del(strDPC);
-         }
-      }
-      catch(...)
-      {
-      }
-      try
-      {
-         if(Application.file().exists(strDVP))
-         {
-            Application.file().del(strDVP);
-         }
-      }
-      catch(...)
-      {
-      }
-      try
-      {
-         if(Application.file().exists(strDVI))
-         {
-            Application.file().del(strDVI);
-         }
-      }
-      catch(...)
-      {
-      }
-      try
-      {
-         if(Application.file().exists(strDO1))
-         {
-            Application.file().del(strDO1);
-         }
-      }
-      catch(...)
-      {
-      }
-      try
-      {
-         if(Application.file().exists(strDO2))
-         {
-            Application.file().del(strDO2);
-         }
-      }
-      catch(...)
-      {
-      }
+      //try
+      //{
+      //   if(Application.file().exists(strDPC))
+      //   {
+      //      Application.file().del(strDPC);
+      //   }
+      //}
+      //catch(...)
+      //{
+      //}
+      //try
+      //{
+      //   if(Application.file().exists(strDVP))
+      //   {
+      //      Application.file().del(strDVP);
+      //   }
+      //}
+      //catch(...)
+      //{
+      //}
+      //try
+      //{
+      //   if(Application.file().exists(strDVI))
+      //   {
+      //      Application.file().del(strDVI);
+      //   }
+      //}
+      //catch(...)
+      //{
+      //}
+      //try
+      //{
+      //   if(Application.file().exists(strDO1))
+      //   {
+      //      Application.file().del(strDO1);
+      //   }
+      //}
+      //catch(...)
+      //{
+      //}
+      //try
+      //{
+      //   if(Application.file().exists(strDO2))
+      //   {
+      //      Application.file().del(strDO2);
+      //   }
+      //}
+      //catch(...)
+      //{
+      //}
 #endif
       try
       {
@@ -471,58 +471,58 @@ namespace dynamic_source
       }
 #ifndef LINUX
 
-      Application.dir().mk(strDVI.folder());
+//      Application.dir().mk(strDVI.folder());
       Application.dir().mk(pscript->m_strBuildBat.folder());
-      try
-      {
-         //         Application.file().copy(strDVI, strSVI, false);
-      }
-      catch(...)
-      {
-      }
-      try
-      {
-         Application.file().copy(strDVP, strSVP, false);
-      }
-      catch(...)
-      {
-      }
-      try
-      {
-         Application.file().copy(strDPC, strSPC, false);
-      }
-      catch(...)
-      {
+      //try
+      //{
+      //   //         Application.file().copy(strDVI, strSVI, false);
+      //}
+      //catch(...)
+      //{
+      //}
+      //try
+      //{
+      //   Application.file().copy(strDVP, strSVP, false);
+      //}
+      //catch(...)
+      //{
+      //}
+      //try
+      //{
+      //   Application.file().copy(strDPC, strSPC, false);
+      //}
+      //catch(...)
+      //{
 
-         pscript->m_bHasTempOsError = true;
+      //   pscript->m_bHasTempOsError = true;
 
-         return;
+      //   return;
 
-      }
-      try
-      {
-         Application.file().copy(strDO1,strSO1,false);
-      }
-      catch(...)
-      {
+      //}
+      //try
+      //{
+      //   Application.file().copy(strDO1,strSO1,false);
+      //}
+      //catch(...)
+      //{
 
-         pscript->m_bHasTempOsError = true;
+      //   pscript->m_bHasTempOsError = true;
 
-         return;
+      //   return;
 
-      }
-      try
-      {
-         Application.file().copy(strDO2,strSO2,false);
-      }
-      catch(...)
-      {
+      //}
+      //try
+      //{
+      //   Application.file().copy(strDO2,strSO2,false);
+      //}
+      //catch(...)
+      //{
 
-         pscript->m_bHasTempOsError = true;
+      //   pscript->m_bHasTempOsError = true;
 
-         return;
+      //   return;
 
-      }
+      //}
 
 
 
@@ -604,7 +604,7 @@ namespace dynamic_source
 
          Sleep(100);
 
-         if(::get_tick_count() - dwStart > 15 * 1000) // 15 seconds
+         if(::get_tick_count() - dwStart > 84 * 1000) // 1 minute and 24 seconds
          {
 
             bTimeout = true;
@@ -717,13 +717,13 @@ namespace dynamic_source
 
 #ifndef LINUX
 
-      try
-      {
-         Application.file().del(strDVI);
-      }
-      catch(...)
-      {
-      }
+      //try
+      //{
+      //   Application.file().del(strDVI);
+      //}
+      //catch(...)
+      //{
+      //}
       try
       {
          Application.file().del(strDVP);
@@ -731,13 +731,13 @@ namespace dynamic_source
       catch(...)
       {
       }
-      try
-      {
-         Application.file().del(strDPC);
-      }
-      catch(...)
-      {
-      }
+      //try
+      //{
+      //   Application.file().del(strDPC);
+      //}
+      //catch(...)
+      //{
+      //}
 
 #endif
 
@@ -776,8 +776,8 @@ namespace dynamic_source
       stringa straId;
       string strDest;
       strDest = "";
-      strDest += "#include \"framework.h\"\r\n";
-      strDest += "#include \"11ca2_fontopus.h\"\r\n";
+      strDest += "#include \"netnode_dynamic_source_script.h\"\r\n";
+      //strDest += "#include \"11ca2_fontopus.h\"\r\n";
       //for(int32_t i = 0; i < m_straLibIncludePath.get_count(); i++)
       //{
       //   string str;
@@ -888,6 +888,42 @@ namespace dynamic_source
       }
 
       strDest = strDest.Left(iPosId) + strId + strDest.Mid(iPosId);
+
+
+      string strCppPath =  pscript->m_strCppPath;
+
+      strCppPath.replace("\\","\\\\");
+
+      strDest += " \r\n \
+         extern \"C\" int32_t APIENTRY \r\n \
+         DllMain(HINSTANCE hInstance,uint32_t dwReason,LPVOID lpReserved) \r\n \
+      { \r\n \
+\r\n  \
+ \r\n \r\n \
+         UNREFERENCED_PARAMETER(hInstance); \r\n \
+         UNREFERENCED_PARAMETER(lpReserved); \r\n \
+ \r\n \
+ \r\n \
+         if(dwReason == DLL_PROCESS_ATTACH) \r\n \
+         { \r\n \
+ \r\n \
+ \r\n \
+             ::OutputDebugString(\"netnodelite script initializing : " + strCppPath + "!\\n\"); \r\n \
+ \r\n \
+ \r\n \
+         } \r\n \
+         else if(dwReason == DLL_PROCESS_DETACH) \r\n \
+         { \r\n \
+ \r\n \
+ \r\n \
+            ::OutputDebugString(\"netnodelite script terminating : " + strCppPath + "!\\n\"); \r\n \
+ \r\n \
+ \r\n \
+         } \r\n \
+ \r\n \
+         return 1;    \r\n \
+ \r\n \
+      }\r\n\r\n\r\n\r\n\r\n";
 
       //Application.file().put_contents_utf8(pscript->m_strCppPath, strDest);
       Application.file().put_contents(pscript->m_strCppPath, strDest);
@@ -1279,8 +1315,8 @@ namespace dynamic_source
       strDest = "";
       if(e_type == cpptype_source || e_type == cpptype_ds)
       {
-         strDest += "#include \"framework.h\"\r\n";
-         strDest += "#include \"11ca2_fontopus.h\"\r\n";
+         strDest += "#include \"netnode_dynamic_source_script.h\"\r\n";
+         //strDest += "#include \"11ca2_fontopus.h\"\r\n";
          //for(int32_t i = 0; i < m_straLibIncludePath.get_count(); i++)
          //{
          //   string str;
