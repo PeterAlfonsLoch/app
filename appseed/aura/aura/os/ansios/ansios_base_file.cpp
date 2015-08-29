@@ -301,7 +301,12 @@ string file_module_path_dup()
 
 
 
+bool file_copy_dup(const string & strNew, const string & strSrc, bool bOverwrite)
+{
 
+    return file_copy_dup(strNew.c_str(), strSrc.c_str(), bOverwrite ? TRUE : FALSE) ? true : false;
+
+}
 
 
 

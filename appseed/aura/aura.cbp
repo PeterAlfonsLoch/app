@@ -394,9 +394,6 @@
 			<Option compile="1" />
 			<Option weight="0" />
 		</Unit>
-		<Unit filename="framework_c.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="framework_c.h">
 			<Option compilerVar="C" />
 		</Unit>
