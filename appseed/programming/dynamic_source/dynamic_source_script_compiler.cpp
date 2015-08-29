@@ -604,7 +604,7 @@ namespace dynamic_source
 
          Sleep(100);
 
-         if(::get_tick_count() - dwStart > 84 * 1000) // 1 minute and 24 seconds
+         if(::get_tick_count() - dwStart > 840 * 1000) // 14 minutes
          {
 
             bTimeout = true;

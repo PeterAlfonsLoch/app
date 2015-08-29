@@ -18,6 +18,9 @@
     <Filter Include="Source Files\dynamic_source">
       <UniqueIdentifier>{f8f71f30-fd78-499e-bcd4-e54d0f7a4e94}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\programming">
+      <UniqueIdentifier>{87489fad-5c0d-42cc-b82c-970fcdf037f3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -98,7 +101,7 @@
       <Filter>Source Files\dynamic_source</Filter>
     </ClCompile>
     <ClCompile Include="programming\programming_application.cpp">
-      <Filter>Source Files\dynamic_source</Filter>
+      <Filter>Source Files\programming</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
