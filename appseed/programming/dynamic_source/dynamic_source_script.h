@@ -21,6 +21,7 @@ namespace dynamic_source
       string                                    m_strName;
       mutex                                     m_mutex;
       file::plain_text_stream_memory_buffer     m_memfileError;
+      string                                    m_strError;
 
       spa(script_instance)                      m_scriptinstanceptra;
 
@@ -58,7 +59,7 @@ namespace dynamic_source
       manual_reset_event               m_evCreationEnabled;
       uint32_t                         m_dwLastBuildTime;
       bool                             m_bShouldBuild;
-      bool                             m_bCalcHasTempError;
+      bool                             m_bShouldCalcTempError;
       bool                             m_bHasTempError;
       bool                             m_bHasTempOsError;
       bool                             m_bUnloading;
@@ -81,6 +82,7 @@ namespace dynamic_source
       bool HasCompileOrLinkError();
       bool HasTempError();
       bool CalcHasTempError();
+      bool HasDelayedTempError();
       bool HasTimedOutLastBuild();
       void Load();
       void Unload();

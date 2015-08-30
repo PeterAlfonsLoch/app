@@ -258,8 +258,9 @@ namespace windows
 
    bool process::kill()
    {
-
-      return TerminateProcess(m_pi.hThread, -1) != FALSE;
+      ::system(string("taskkill /F /T /PID " ) + ::str::from((int32_t) m_pi.dwProcessId));
+      return true;
+      //return TerminateProcess(m_pi.hThread, -1) != FALSE;
 
    }
 

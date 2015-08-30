@@ -615,7 +615,7 @@ namespace dynamic_source
 
          Sleep(100);
 
-         if(::get_tick_count() - dwStart > 84 * 1000) // 1 minute and 24 seconds to compile a script
+         if(::get_tick_count() - dwStart > 840 * 1000) // 14 minutes
          {
 
             bTimeout = true;
@@ -643,30 +643,46 @@ namespace dynamic_source
 
 #endif
 
-         pscript->m_bCalcHasTempError = false;
-         pscript->m_bHasTempError = false;
 
-         pscript->m_memfileError.m_spbuffer->set_length(0);
-         pscript->m_memfileError << "<pre>";
-
-         pscript->m_memfileError << "Compiling...\n";
-         pscript->m_memfileError << pscript->m_strCppPath;
-         pscript->m_memfileError << "\n";
-         if(bTimeout)
-         {
-            pscript->m_memfileError << "error: Timeout during compilation (If there are the compilation or link errors about the file \"" + pscript->m_strCppPath + "\" following this message, they may be out-of-date)";
-         }
          str = Application.file().as_string(strClog);
-         str.replace("\r\n","\n");
-         pscript->m_memfileError << str;
 
-         pscript->m_memfileError << "Linking...\n";
+         str.trim();
+
+         if(str.has_char())
+         {
+
+            pscript->m_memfileError << "<pre>";
+
+            pscript->m_memfileError << "Compiling...\n";
+            pscript->m_memfileError << pscript->m_strCppPath;
+            pscript->m_memfileError << "\n";
+            if(bTimeout)
+            {
+               pscript->m_memfileError << "error: Timeout during compilation (If there are the compilation or link errors about the file \"" + pscript->m_strCppPath + "\" following this message, they may be out-of-date)";
+            }
+            str.replace("\r\n","\n");
+            pscript->m_memfileError << str;
+
+         }
+
          str = Application.file().as_string(strLlog);
-         str.replace("\r\n","\n");
-         pscript->m_memfileError << str;
-         pscript->m_memfileError << "</pre>";
 
-         string strError = pscript->m_memfileError.m_spmemorybuffer->get_memory()->to_string();
+         str.trim();
+
+         if(str.has_char())
+         {
+
+            pscript->m_memfileError << "Linking...\n";
+            str.replace("\r\n","\n");
+            pscript->m_memfileError << str;
+            pscript->m_memfileError << "</pre>";
+
+
+         }
+
+         pscript->m_strError = pscript->m_memfileError.m_spmemorybuffer->get_memory()->to_string();
+
+         pscript->m_strError.trim();
 
       }
 

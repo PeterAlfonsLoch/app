@@ -73,8 +73,8 @@ namespace dynamic_source
       m_pcompiler = NULL;
       m_pcache = NULL;
 
-      m_dwBuildTimeWindow        = 84;
-      m_dwBuildTimeRandomWindow  = 77;
+      m_dwBuildTimeWindow        = 30 * 1000;
+      m_dwBuildTimeRandomWindow  = 30 * 1000;
       m_iDatabaseWaitTimeOut     = 15 * 1000 * 1000 * 60;
 
 

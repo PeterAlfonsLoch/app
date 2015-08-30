@@ -54,12 +54,12 @@ namespace dynamic_source
       m_library(papp)
    {
       
-      m_lpfnCreateInstance    = NULL;
-      m_bShouldBuild          = true;
-      m_bCalcHasTempError     = true;
-      m_bHasTempError         = false;
-      m_bHasTempOsError       = false;
-      m_bUnloading            = false;
+      m_lpfnCreateInstance       = NULL;
+      m_bShouldBuild             = true;
+      m_bShouldCalcTempError     = true;
+      m_bHasTempError            = false;
+      m_bHasTempOsError          = false;
+      m_bUnloading               = false;
       m_evCreationEnabled.SetEvent();
 
 
@@ -130,10 +130,10 @@ namespace dynamic_source
    bool ds_script::ShouldBuild()
    {
       synch_lock sl(&m_mutex);
-      return  m_pmanager->should_build(m_strScriptPath) && (m_bShouldBuild || ((HasTempError() 
-         && HasTimedOutLastBuild())
-         
-          || !DoesMatchVersion()));
+      return  m_pmanager->should_build(m_strScriptPath) &&
+         (m_bShouldBuild
+         || HasDelayedTempError()
+         || !DoesMatchVersion());
 
    }
 
@@ -142,15 +142,17 @@ namespace dynamic_source
 
       synch_lock sl(&m_mutex);
       
-      Unload();
-      
-      m_bCalcHasTempError  = false;
-      
-      m_bShouldBuild       = false;
-      
-      m_bHasTempOsError    = false;
+      m_bShouldCalcTempError     = true;
+
+      m_bShouldBuild             = false;
+
+      m_bHasTempOsError          = false;
 
       m_memfileError.m_spbuffer->set_length(0);
+
+      m_strError.Empty();
+
+      Unload();
 
    }
 
@@ -164,9 +166,11 @@ namespace dynamic_source
    bool ds_script::HasCompileOrLinkError()
    {
       synch_lock sl(&m_mutex);
+      
       string str;
-      m_memfileError.seek_to_begin();
-      str = m_memfileError.to_string();
+
+      str = m_strError;
+
       if(str.find(" error(") >= 0)
          return true;
       if(str.find(" error ") >= 0)
@@ -176,13 +180,24 @@ namespace dynamic_source
       return false;
    }
 
+   bool ds_script::HasDelayedTempError()
+   {
+
+      return HasTempError() && HasTimedOutLastBuild();
+
+   }
+
+
    bool ds_script::HasTempError()
    {
       synch_lock sl(&m_mutex);
-      if(!m_bCalcHasTempError)
+      // if m_strError is empty, sure there is a error... at least the
+      // successfull compilation/linking message ("error message" => m_strError) should exist
+      // If it is empty, it is considered a temporary error (due locks or race conditions...)
+      if(m_strError.is_empty() || m_bShouldCalcTempError)
       {
+         m_bShouldCalcTempError = false;
          m_bHasTempError = CalcHasTempError();
-         m_bCalcHasTempError = true;
       }
       return m_bHasTempError;
    }
@@ -196,20 +211,26 @@ namespace dynamic_source
          return true;
 
       string str;
-      m_memfileError.seek_to_begin();
-      str = m_memfileError.to_string();
+
+      str = m_strError;
+
+      str.trim();
+
+      if(str.is_empty())
+         return true;
+
       {
-         strsize iFind1 = str.find("fatal error C1033:");
+         strsize iFind1 = str.find(" C1033:");
          if(iFind1 >= 0)
             return true;
       }
       {
-         strsize iFind1 = str.find("fatal error C1083:");
+         strsize iFind1 = str.find(" C1083:"); // Permission Denied
          if(iFind1 >= 0)
             return true;
       }
       {
-         strsize iFind1 = str.find("fatal error C1041:"); // fatal error C1041: cannot open program database
+         strsize iFind1 = str.find(" C1041:"); // fatal error C1041: cannot open program database
          if(iFind1 >= 0)
             return true;
       }
@@ -409,11 +430,7 @@ namespace dynamic_source
    script_instance * ds_script::create_instance()
    {
 
-      int iRetry2 = 0;
-
       synch_lock sl(&m_mutex);
-
-restart:
 
       if(ShouldBuild())
       {
@@ -435,6 +452,8 @@ restart:
 
          int32_t iRetry = 0;
 
+         bool bHasTempError = false;
+
          do
          {
 
@@ -447,9 +466,9 @@ restart:
 
             m_pmanager->m_pcompiler->compile(this);
 
-            m_memfileError.seek_to_begin();
+            str = m_strError;
 
-            str = m_memfileError.to_string();
+            
 
             if(iRetry == 0)
             {
@@ -463,8 +482,7 @@ restart:
             iRetry++;
 
          }
-         while(HasTempError() && iRetry < 8);
-
+         while((bHasTempError = HasTempError()) && iRetry < 8);
 
          m_dwLastBuildTime = ::get_tick_count();
 
@@ -476,9 +494,7 @@ restart:
 
 #ifdef WINDOWSEX
 
-
          m_ft = get_file_time(m_strSourcePath);
-
 
 #elif defined(METROWIN)
 
@@ -514,8 +530,6 @@ restart:
          Load();
          // retried at least 8 times, give up any rebuild attemp until file is changed
          m_bShouldBuild = false;
-         m_bCalcHasTempError = true;
-         m_bHasTempError = false;
 
          // don't bother with sleeps if not compiling even if there are errors
 
@@ -546,22 +560,15 @@ restart:
       }
 
       script_instance * pinstance;
+
       if(m_lpfnCreateInstance == NULL)
       {
 
-         m_bShouldBuild = true;
-
-         iRetry2++;
-
-         if(iRetry2 < 2)
-            goto restart;
-
          return NULL;
+
       }
       else
       {
-
-         m_bShouldBuild =false;
 
          pinstance = m_lpfnCreateInstance(this);
 
