@@ -845,9 +845,4 @@
       <Filter>Header Files\include</Filter>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Text Include="libfreerdp\core\CMakeLists.txt">
-      <Filter>Source Files\libfreerdp\core</Filter>
-    </Text>
-  </ItemGroup>
 </Project>

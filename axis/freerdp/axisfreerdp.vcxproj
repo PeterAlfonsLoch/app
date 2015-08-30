@@ -698,9 +698,6 @@
     <None Include="..\..\include\freerdp\version.h.in" />
     <None Include="axisfreerdp.def" />
   </ItemGroup>
-  <ItemGroup>
-    <Text Include="libfreerdp\core\CMakeLists.txt" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
