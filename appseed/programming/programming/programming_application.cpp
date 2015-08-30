@@ -5,7 +5,8 @@ namespace programming
 {
 
 
-   application::application()
+   application::application() :
+      m_semCompiler(this,MAX(1,::get_processor_count()),MAX(1,::get_processor_count()))
    {
 
       m_pauraapp->m_psignal->connect(this,&application::on_application_signal);

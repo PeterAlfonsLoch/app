@@ -45,14 +45,8 @@ namespace dynamic_source
       ::aura::library                  m_library;
 
 
-#ifdef WINDOWS
-      FILETIME                         m_ftCreation;
-      FILETIME                         m_ftModified;
-#else
-      __time_t                         m_ftCreation;
-      __time_t                         m_ftAccess;
-      __time_t                         m_ftModified;
-#endif
+      file_time                        m_ft;
+      file_time                        m_ftDs;
       
       bool                             m_bLastVersionCheck;
       uint32_t                         m_dwLastVersionCheck;

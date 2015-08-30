@@ -53,11 +53,17 @@ namespace dynamic_source
       m_evCreationEnabled(papp),
       m_library(papp)
    {
+      
       m_lpfnCreateInstance    = NULL;
       m_bShouldBuild          = true;
-      m_bCalcHasTempError     = false;
-      m_bUnloading = false;
+      m_bCalcHasTempError     = true;
+      m_bHasTempError         = false;
+      m_bHasTempOsError       = false;
+      m_bUnloading            = false;
       m_evCreationEnabled.SetEvent();
+
+
+
    }
 
 
@@ -76,25 +82,10 @@ namespace dynamic_source
       bool bMatches = false;
 
 #ifdef WINDOWSEX
-      FILETIME ftCreation;
-      FILETIME ftModified;
-      memset(&ftCreation, 0, sizeof(FILETIME));
-      //memset(&ftAccess, 0, sizeof(FILETIME));
-      memset(&ftModified, 0, sizeof(FILETIME));
-      HANDLE h = create_file(m_strSourcePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
-      try
-      {
-         bMatches = GetFileTime(h, &ftCreation, NULL, &ftModified) != FALSE;
-         if(bMatches)
-         {
-            bMatches = memcmp(&m_ftCreation, &ftCreation, sizeof(FILETIME)) == 0
-                    && memcmp(&m_ftModified, &ftModified, sizeof(FILETIME)) == 0;
-         }
-      }
-      catch(...)
-      {
-      }
-      ::CloseHandle(h);
+
+      auto ft = get_file_time(m_strSourcePath);
+
+      bMatches = m_ft == ft;
 
 #elif defined(METROWIN)
 
@@ -139,8 +130,8 @@ namespace dynamic_source
    bool ds_script::ShouldBuild()
    {
       synch_lock sl(&m_mutex);
-      return  m_pmanager->should_build(m_strScriptPath) && (m_bShouldBuild || (HasTempError() 
-         // && HasTimedOutLastBuild()
+      return  m_pmanager->should_build(m_strScriptPath) && (m_bShouldBuild || ((HasTempError() 
+         && HasTimedOutLastBuild())
          
           || !DoesMatchVersion()));
 
@@ -417,11 +408,17 @@ namespace dynamic_source
 
    script_instance * ds_script::create_instance()
    {
-      
+
+      int iRetry2 = 0;
+
       synch_lock sl(&m_mutex);
+
+restart:
 
       if(ShouldBuild())
       {
+
+         synch_lock slCompiler(&Application.m_semCompiler);
 
          try
          {
@@ -444,7 +441,7 @@ namespace dynamic_source
             if (iRetry > 0)
             {
 
-               Sleep(1000);
+               Sleep(System.math().RandRange(1977, 1977+ 1984));
 
             }
 
@@ -465,7 +462,54 @@ namespace dynamic_source
 
             iRetry++;
 
-         } while(HasTempError() && iRetry < 16);
+         }
+         while(HasTempError() && iRetry < 8);
+
+
+         m_dwLastBuildTime = ::get_tick_count();
+
+         // Wait for finalization of build
+         // or delay in case of error to avoid run conditions due extreme overload.
+         //Sleep(pscript->m_pmanager->m_dwBuildTimeWindow +
+         // System.math().RandRange(0, pscript->m_pmanager->m_dwBuildTimeRandomWindow));
+//         m_bShouldBuild =false;
+
+#ifdef WINDOWSEX
+
+
+         m_ft = get_file_time(m_strSourcePath);
+
+
+#elif defined(METROWIN)
+
+         ::Windows::Storage::StorageFile ^ h = get_os_file(m_strSourcePath,GENERIC_READ,FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
+         try
+         {
+            memset(&m_ftCreation,0,sizeof(FILETIME));
+            memset(&m_ftModified,0,sizeof(FILETIME));
+            ::get_file_time(h,&m_ftCreation,NULL,&m_ftModified);
+         }
+         catch(...)
+         {
+         }
+
+
+#else
+         //      HANDLE h = ::CreateFile(pscript->m_strSourcePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+
+         memset(&pscript->m_ftCreation,0,sizeof(__time_t));
+         memset(&pscript->m_ftAccess,0,sizeof(__time_t));
+         memset(&pscript->m_ftModified,0,sizeof(__time_t));
+
+         struct stat st;
+
+         stat(pscript->m_strSourcePath,&st);
+
+         pscript->m_ftCreation = st.st_ctime;
+         pscript->m_ftAccess = st.st_atime;
+         pscript->m_ftModified = st.st_mtime;
+
+#endif
 
          Load();
          // retried at least 8 times, give up any rebuild attemp until file is changed
@@ -475,7 +519,7 @@ namespace dynamic_source
 
          // don't bother with sleeps if not compiling even if there are errors
 
-         try
+/*         try
          {
 
             ::multithreading::set_priority(::multithreading::priority_normal);
@@ -484,7 +528,7 @@ namespace dynamic_source
          catch(...)
          {
 
-         }
+         }*/
 
       }
       else
@@ -504,13 +548,27 @@ namespace dynamic_source
       script_instance * pinstance;
       if(m_lpfnCreateInstance == NULL)
       {
+
+         m_bShouldBuild = true;
+
+         iRetry2++;
+
+         if(iRetry2 < 2)
+            goto restart;
+
          return NULL;
       }
       else
       {
+
+         m_bShouldBuild =false;
+
          pinstance = m_lpfnCreateInstance(this);
+
       }
+
       pinstance->m_pmanager = m_pmanager;
+
       pinstance->m_dwCreate = get_tick_count();
 
       return pinstance;
@@ -524,5 +582,36 @@ namespace dynamic_source
 
 
 } // namespace dynamic_source
+
+
+
+
+
+void get_file_time(const char * psz,file_time & time)
+{
+   
+   get_file_time(psz,time.creation,time.modified);
+
+}
+
+
+void get_file_time(const char * psz,FILETIME & creation,FILETIME & modified)
+{
+
+   HANDLE h = create_file(psz,GENERIC_READ,FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
+
+   try
+   {
+      ZERO(creation);
+      ZERO(modified);
+      ::GetFileTime(h,&creation,NULL,&modified);
+   }
+   catch(...)
+   {
+   }
+
+   ::CloseHandle(h);
+
+}
 
 

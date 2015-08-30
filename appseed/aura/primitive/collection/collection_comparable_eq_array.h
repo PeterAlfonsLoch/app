@@ -309,7 +309,7 @@ template <class TYPE,class ARG_TYPE,class ARRAY_TYPE,typename EQUALS>
 index comparable_eq_array < TYPE,ARG_TYPE,ARRAY_TYPE,EQUALS>::
 remove_last(ARG_TYPE t)
 {
-   int find;
+   index find;
    if((find = find_last(t)) >= 0)
    {
       this->remove_at(find);
@@ -322,7 +322,7 @@ template <class TYPE,class ARG_TYPE,class ARRAY_TYPE,typename EQUALS>
 index comparable_eq_array < TYPE,ARG_TYPE,ARRAY_TYPE,EQUALS>::
 remove_first(ARG_TYPE t)
 {
-   int find;
+   index find;
    if((find = find_first(t)) >= 0)
    {
       this->remove_at(find);

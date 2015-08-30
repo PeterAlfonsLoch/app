@@ -272,6 +272,21 @@ namespace dynamic_source
             TRACE0("Error: Exception at script_manager::handle destroy pinstance");
          }
       }
+      else
+      {
+         pdssocket->write("<html>");
+         pdssocket->write("<head>");
+         pdssocket->write("<title>");
+         pdssocket->write("Try again soon");
+         pdssocket->write("</title>");
+         pdssocket->write("</head>");
+         pdssocket->write("<body>");
+         pdssocket->write("<h1>");
+         pdssocket->write("Try again soon");
+         pdssocket->write("</h1>");
+         pdssocket->write("</body>");
+         pdssocket->write("</html>");
+      }
 
    }
 

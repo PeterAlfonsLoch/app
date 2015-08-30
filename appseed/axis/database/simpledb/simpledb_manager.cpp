@@ -14,8 +14,8 @@ namespace simpledb
       m_mutexTagId(papp),
       m_mutexTagName(papp)
    {
-      m_dwBuildTimeWindow = 84;
-      m_dwBuildTimeRandomWindow = 77 * 5;
+      m_dwBuildTimeWindow = 770;
+      m_dwBuildTimeRandomWindow = 840;
 
       m_iDatabaseWaitTimeOut = 1000 * 1000 * 60;
 

@@ -788,7 +788,7 @@ bool thread_impl::post_thread_message(UINT message,WPARAM wParam,lparam lParam)
    {
 
       string strName = demangle(typeid(*m_pthread).name());
-      ::output_debug_string("\n\n\nWM_QUIT posted to thread "+strName+"(" + ::str::from((uint64_t)m_uiThread) + ")\n\n\n");
+      //::output_debug_string("\n\n\nWM_QUIT posted to thread "+strName+"(" + ::str::from((uint64_t)m_uiThread) + ")\n\n\n");
       if(strName == "::core::system")
       {
          ::output_debug_string("\n\n\nWM_QUIT at ::core::system\n\n\n");

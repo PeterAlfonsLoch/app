@@ -442,7 +442,7 @@ namespace aura
       char m_szAlloca[8 * 1024];
       char * m_szMerge = m_szAlloca;
       int m_iSize =0;
-      int m_iMaxSize=sizeof(m_szAlloca);
+      strsize m_iMaxSize=sizeof(m_szAlloca);
       bool m_bOwn = false;
 
 

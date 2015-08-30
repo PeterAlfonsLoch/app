@@ -25,7 +25,7 @@ namespace dynamic_source
   //    m_mutexLibrary(papp),
       m_mutex(papp)//,
 //      m_libraryLib(papp)
-,m_sem(papp,MIN(1, ::get_processor_count()-2),MIN(1,::get_processor_count()-1))
+
 
    {
 
@@ -215,9 +215,7 @@ namespace dynamic_source
    void script_compiler::compile(ds_script * pscript)
    {
 
-      synch_lock slCompiler(&m_sem);
-
-      TRACE("Compiling script \"%s\"\n", pscript->m_strName.c_str());
+      TRACE("Compiling script \"%s\"\n",pscript->m_strName.c_str());
 
       ::file::path strName(pscript->m_strName);
 
@@ -225,7 +223,7 @@ namespace dynamic_source
 
 #ifdef WINDOWS
 
-      strName.replace("/", "\\");
+      strName.replace("/","\\");
 
 #endif
 
@@ -250,6 +248,7 @@ namespace dynamic_source
       //::file::path strDO2;
       ::file::path strClog;
       ::file::path strLlog;
+      ::file::path strObj;
 
 
       /*string strScript(strName);
@@ -262,20 +261,20 @@ namespace dynamic_source
       if(Application.file().exists(strName))
       {
          pscript->m_strSourcePath = strName;
-         strTransformName.replace(":", "");
+         strTransformName.replace(":","");
       }
       else
       {
-         pscript->m_strSourcePath.Format(m_pmanager->m_strNetnodePath / "net\\netseed\\%s", false, strName);
+         pscript->m_strSourcePath.Format(m_pmanager->m_strNetnodePath / "net\\netseed\\%s",false,strName);
       }
       pscript->m_strSourceDir = pscript->m_strSourcePath.folder();
 
       if(!Application.file().exists(pscript->m_strSourcePath))
       {
-         pscript->m_memfileError<< "<pre>";
-         str.Format("Source File : \"%s\" does not exist", pscript->m_strSourcePath);
+         pscript->m_memfileError << "<pre>";
+         str.Format("Source File : \"%s\" does not exist",pscript->m_strSourcePath);
          pscript->m_memfileError << str;
-         pscript->m_memfileError<< "</pre>";
+         pscript->m_memfileError << "</pre>";
          return;
       }
 
@@ -283,7 +282,7 @@ namespace dynamic_source
       string strTime = m_strTime;
 
 
-      pscript->m_strCppPath.Format(m_strTime/  "dynamic_source\\%s.cpp", strTransformName);
+      pscript->m_strCppPath.Format(m_strTime / "dynamic_source\\%s.cpp",strTransformName);
 
 
 
@@ -292,13 +291,13 @@ namespace dynamic_source
 
       //#ifdef DEBUG
 #ifdef LINUX
-      strB = System.dir().element() / m_strDynamicSourceStage / "front\\dynamic_source\\BuildBat"/strTransformName.name()/strTransformName+".bat";
+      strB = System.dir().element() / m_strDynamicSourceStage / "front\\dynamic_source\\BuildBat" / strTransformName.name() / strTransformName + ".bat";
       strO = ::file::path(m_strTime) / "intermediate" / m_strPlatform / m_pmanager->m_strNamespace + "_dynamic_source_script" / strTransformName / strTransformName.name() + ".o";
 #else
       strB = m_strDynamicSourceStageFolder / "front\\dynamic_source\\BuildBat" / strTransformName.name() / strTransformName + ".bat";
       strP = m_strDynamicSourceStageFolder / m_strStagePlatform / "dynamic_source" / strTransformName.sibling(strScript.name()) + ".pdb";
-      strL = m_strDynamicSourceStageFolder / m_strStagePlatform / "dynamic_source"/ strTransformName.sibling(strScript.name()) + ".lib";
-      strE = m_strDynamicSourceStageFolder / m_strStagePlatform / "dynamic_source"/ strTransformName.sibling(strScript.name()) + ".exp";
+      strL = m_strDynamicSourceStageFolder / m_strStagePlatform / "dynamic_source" / strTransformName.sibling(strScript.name()) + ".lib";
+      strE = m_strDynamicSourceStageFolder / m_strStagePlatform / "dynamic_source" / strTransformName.sibling(strScript.name()) + ".exp";
 
 
       ::file::path strDynamicSourceScriptFolder = m_strTime / "intermediate" / m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strNamespace + "_dynamic_source_script";
@@ -312,6 +311,8 @@ namespace dynamic_source
       //strSPC = strDynamicSourceScriptFolder / m_pmanager->m_strNamespace + "_dynamic_source_script.pch";
       //strSO1 = strDynamicSourceScriptFolder / "framework.obj";
       //strSO2 = strDynamicSourceScriptFolder / m_pmanager->m_strNamespace + "_dynamic_source_script.obj";
+
+      strObj = strDynamicSourceScriptFolder / strTransformName / strTransformName.name() + ".obj";
 
       strO = strDynamicSourceScriptFolder / strTransformName.name() / strTransformName + ".bat";
 
@@ -328,6 +329,16 @@ namespace dynamic_source
          if(Application.file().exists(strO))
          {
             Application.file().del(strO);
+         }
+      }
+      catch(...)
+      {
+      }
+      try
+      {
+         if(Application.file().exists(strObj))
+         {
+            Application.file().del(strObj);
          }
       }
       catch(...)
@@ -471,7 +482,7 @@ namespace dynamic_source
       }
 #ifndef LINUX
 
-//      Application.dir().mk(strDVI.folder());
+      //      Application.dir().mk(strDVI.folder());
       Application.dir().mk(pscript->m_strBuildBat.folder());
       //try
       //{
@@ -531,13 +542,13 @@ namespace dynamic_source
 
       Application.dir().mk(pscript->m_strScriptPath.folder());
       Application.dir().mk(strL.folder());
-      Application.dir().mk(m_strTime/ "intermediate" / m_strPlatform / m_strDynamicSourceConfiguration /  m_pmanager->m_strNamespace + ::file::path("_dynamic_source_script")/strTransformName);
+      Application.dir().mk(m_strTime / "intermediate" / m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strNamespace + ::file::path("_dynamic_source_script") / strTransformName);
 
       cppize(pscript);
 
       string strV(System.dir().element());
-      strV.replace("\\", "/");
-      if(!::str::ends(strV, "/") && !::str::ends(strV, "\\"))
+      strV.replace("\\","/");
+      if(!::str::ends(strV,"/") && !::str::ends(strV,"\\"))
          strV += "/";
 
       string strN = m_pmanager->m_strNetnodePath;
@@ -555,32 +566,32 @@ namespace dynamic_source
 
       str = Application.file().as_string(strBuildCmd);
       str.replace("%ITEM_NAME%",::str::replace("\\","/",string(strTransformName)));
-      str.replace("%ITEM_TITLE%", strTransformName.name());
-      str.replace("%ITEM_DIR%",::str::replace("\\","/", string(strTransformName.folder())) + "/");
-      str.replace("%LIBS_LIBS%", m_strLibsLibs);
-      str.replace("%VS_VARS%", m_strEnv);
-      str.replace("%VS_VARS_PLAT2%", m_strPlat2);
+      str.replace("%ITEM_TITLE%",strTransformName.name());
+      str.replace("%ITEM_DIR%",::str::replace("\\","/",string(strTransformName.folder())) + "/");
+      str.replace("%LIBS_LIBS%",m_strLibsLibs);
+      str.replace("%VS_VARS%",m_strEnv);
+      str.replace("%VS_VARS_PLAT2%",m_strPlat2);
 
 
-      str.replace("%CA2_ROOT%", strV);
-      str.replace("%NETNODE_ROOT%", strN);
-      str.replace("%CONFIGURATION_NAME%", m_strDynamicSourceConfiguration);
-      str.replace("%CONFIGURATION%", m_strDynamicSourceConfiguration);
-      str.replace("%PLATFORM%", m_strPlatform);
+      str.replace("%CA2_ROOT%",strV);
+      str.replace("%NETNODE_ROOT%",strN);
+      str.replace("%CONFIGURATION_NAME%",m_strDynamicSourceConfiguration);
+      str.replace("%CONFIGURATION%",m_strDynamicSourceConfiguration);
+      str.replace("%PLATFORM%",m_strPlatform);
       str.replace("%STAGEPLATFORM%",m_strStagePlatform);
-//      str.replace("%LIBPLATFORM%", m_strLibPlatform);
-      str.replace("%SDK1%", m_strSdk1);
+      //      str.replace("%LIBPLATFORM%", m_strLibPlatform);
+      str.replace("%SDK1%",m_strSdk1);
       string strTargetPath = pscript->m_strScriptPath;
 #ifdef LINUX
-      ::str::ends_eat_ci(strTargetPath, ".so");
+      ::str::ends_eat_ci(strTargetPath,".so");
 #else
-      ::str::ends_eat_ci(strTargetPath, ".dll");
+      ::str::ends_eat_ci(strTargetPath,".dll");
 #endif
-      str.replace("%TARGET_PATH%", strTargetPath);
+      str.replace("%TARGET_PATH%",strTargetPath);
       strBuildCmd = pscript->m_strBuildBat;
       //Application.file().put_contents_utf8(strBuildCmd, str);
 
-      Application.file().put_contents(strBuildCmd, str);
+      Application.file().put_contents(strBuildCmd,str);
 
 
 
@@ -590,21 +601,21 @@ namespace dynamic_source
 
       set_thread_priority(::multithreading::priority_highest);
 
-      process->create_child_process(strBuildCmd, false, pscript->m_strBuildBat.folder(), ::multithreading::priority_highest);
+      process->create_child_process(strBuildCmd,false,pscript->m_strBuildBat.folder(),::multithreading::priority_highest);
 
       uint32_t dwStart = ::get_tick_count();
-      
+
       uint32_t dwExitCode;
 
       while(true)
       {
-         
+
          if(process->has_exited(&dwExitCode))
             break;
 
          Sleep(100);
 
-         if(::get_tick_count() - dwStart > 840 * 1000) // 14 minutes
+         if(::get_tick_count() - dwStart > 84 * 1000) // 1 minute and 24 seconds to compile a script
          {
 
             bTimeout = true;
@@ -614,16 +625,16 @@ namespace dynamic_source
          }
 
       }
-      
+
       if(bTimeout)
       {
-         
+
          process->kill();
 
       }
 
 
-      if(!bTimeout && dwExitCode == 0)
+      if(!bTimeout)
       {
 
 #ifdef LINUX
@@ -631,6 +642,10 @@ namespace dynamic_source
          //Sleep(1984);
 
 #endif
+
+         pscript->m_bCalcHasTempError = false;
+         pscript->m_bHasTempError = false;
+
          pscript->m_memfileError.m_spbuffer->set_length(0);
          pscript->m_memfileError << "<pre>";
 
@@ -653,67 +668,9 @@ namespace dynamic_source
 
          string strError = pscript->m_memfileError.m_spmemorybuffer->get_memory()->to_string();
 
-         if(strError.find(" error ") < 0)
-         {
-
-            pscript->m_dwLastBuildTime = ::get_tick_count();
-
-            // Wait for finalization of build
-            // or delay in case of error to avoid run conditions due extreme overload.
-            //Sleep(pscript->m_pmanager->m_dwBuildTimeWindow +
-            // System.math().RandRange(0, pscript->m_pmanager->m_dwBuildTimeRandomWindow));
-            pscript->m_bShouldBuild =false;
-
-#ifdef WINDOWSEX
-
-            HANDLE h = create_file(pscript->m_strSourcePath,GENERIC_READ,FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
-
-            try
-            {
-               memset(&pscript->m_ftCreation,0,sizeof(FILETIME));
-               memset(&pscript->m_ftModified,0,sizeof(FILETIME));
-               ::GetFileTime(h,&pscript->m_ftCreation,NULL,&pscript->m_ftModified);
-            }
-            catch(...)
-            {
-            }
-
-            ::CloseHandle(h);
-
-#elif defined(METROWIN)
-
-            ::Windows::Storage::StorageFile ^ h = get_os_file(pscript->m_strSourcePath,GENERIC_READ,FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
-            try
-            {
-               memset(&pscript->m_ftCreation,0,sizeof(FILETIME));
-               memset(&pscript->m_ftModified,0,sizeof(FILETIME));
-               ::get_file_time(h,&pscript->m_ftCreation,NULL,&pscript->m_ftModified);
-            }
-            catch(...)
-            {
-            }
-
-
-#else
-            //      HANDLE h = ::CreateFile(pscript->m_strSourcePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
-
-            memset(&pscript->m_ftCreation,0,sizeof(__time_t));
-            memset(&pscript->m_ftAccess,0,sizeof(__time_t));
-            memset(&pscript->m_ftModified,0,sizeof(__time_t));
-
-            struct stat st;
-
-            stat(pscript->m_strSourcePath,&st);
-
-            pscript->m_ftCreation = st.st_ctime;
-            pscript->m_ftAccess = st.st_atime;
-            pscript->m_ftModified = st.st_mtime;
-
-#endif
-
-         }
-
       }
+
+
 
 #ifndef LINUX
 
@@ -745,8 +702,27 @@ namespace dynamic_source
 
    void script_compiler::cppize(ds_script * pscript)
    {
+
+      auto ftDs = get_file_time(pscript->m_strSourcePath);
+
+      if(Application.file().exists(pscript->m_strCppPath))
+      {
+
+         if(ftDs == pscript->m_ftDs)
+         {
+
+            return; // nothing to do
+
+         }
+
+      }
+
       Application.dir().mk(pscript->m_strCppPath.folder());
+      
       cppize1(pscript);
+
+      pscript->m_ftDs = ftDs;
+
    }
 
    string escape(const char * lpcsz)
@@ -852,7 +828,7 @@ namespace dynamic_source
       strDest += "   \r\n\r\n\r\n";
       strDest += "};\r\n";
       strDest += "\r\n";
-      strDest += "extern \"C\" dynamic_source::script_instance * __cdecl create_dynamic_source_script_instance (dynamic_source::script * pscript)\r\n";
+      strDest += "extern \"C\" __declspec(dllexport) dynamic_source::script_instance * __cdecl create_dynamic_source_script_instance (dynamic_source::script * pscript)\r\n";
       strDest += "{\r\n";
       strDest += "   return dynamic_cast < dynamic_source::script_instance * > (canew(" + m_pmanager->m_strNamespace + "_dynamic_source_script(pscript)));\r\n";
       strDest += "}\r\n";

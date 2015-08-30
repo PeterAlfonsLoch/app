@@ -18,6 +18,52 @@ namespace dynamic_source
 } // namespace dynamic_source
 
 
+
+struct file_time
+{
+
+
+#ifdef WINDOWS
+   FILETIME                         creation;
+   FILETIME                         modified;
+#else
+   __time_t                         creation;
+   __time_t                         access;
+   __time_t                         modified;
+#endif
+
+   file_time()
+   {
+      ZERO(creation);
+      ZERO(modified);
+
+   }
+
+   bool operator == (const file_time & t) const
+   {
+      if(&t == this)
+         return true;
+      return !memcmp(&creation,&t.creation,sizeof(creation))
+         && !memcmp(&modified,&t.modified,sizeof(modified));
+   }
+
+};
+
+void get_file_time(const char * psz,file_time & time);
+
+void get_file_time(const char * psz,FILETIME & creation,FILETIME & modified);
+
+inline file_time get_file_time(const char * psz)
+{
+
+   file_time time ={};
+
+   get_file_time(psz,time);
+
+   return time;
+
+}
+
 #include "dynamic_source_exit_exception.h"
 #include "dynamic_source_session.h"
 
@@ -36,3 +82,7 @@ namespace dynamic_source
 
 
 #include "dynamic_source_script_manager.h"
+
+
+
+

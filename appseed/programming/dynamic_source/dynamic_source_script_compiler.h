@@ -51,7 +51,6 @@ namespace dynamic_source
     //  raw_array < __time_t >                    m_ftaLibModified;
               
 
-      semaphore                                 m_sem;
 
                                                 
       stringa                                   m_straSync;

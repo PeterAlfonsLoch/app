@@ -30,7 +30,9 @@
 
 #ifdef WINDOWSEX
 
-#include <imagehlp.h>
+typedef struct _tagSTACKFRAME64 STACKFRAME64,*LPSTACKFRAME64;
+typedef struct _IMAGEHLP_LINE64 IMAGEHLP_LINE64,*PIMAGEHLP_LINE64;
+//#include <imagehlp.h>
 
 #endif
 

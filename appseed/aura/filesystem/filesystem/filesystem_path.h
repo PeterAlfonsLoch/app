@@ -28,8 +28,8 @@ namespace file
 
       int64_t           m_iSize = -1; // if negative, not set/calculated/retrieved the file size(for directories would be all contained elements total sum size)
       int               m_iDir = -1; // if negative, not set/calculated/retrieved whether is a directory/folder/(file/folder/(...) container)
-      int               m_iName = -1; // if negative, not set/calculated/retrieved where name starts
-      int               m_iRelative = -1; // if negative, not set/calculated/retrieved where relative starts - this information is very, very relative :-) much more than all own other ::file::path cached information (relative to which folders... not stored this information...)
+      strsize           m_iName = -1; // if negative, not set/calculated/retrieved where name starts
+      strsize           m_iRelative = -1; // if negative, not set/calculated/retrieved where relative starts - this information is very, very relative :-) much more than all own other ::file::path cached information (relative to which folders... not stored this information...)
 
    };
 

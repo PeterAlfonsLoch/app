@@ -165,7 +165,7 @@ public:
 
    heap()   {   }
 
-   heap(int iCount): heap_base(iCount * sizeof(T))   {   }
+   heap(uint_ptr iCount): heap_base(iCount * sizeof(T))   {   }
 
    operator T * () { return (T *) m_p;}
    operator const T * () const  { return (T *) m_p; }

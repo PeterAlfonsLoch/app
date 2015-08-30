@@ -16,8 +16,12 @@ It is provided "as is" without express or implied warranty.
 */
 
 //#include "framework.h"
+#ifdef WINDOWSEX
+#pragma warning(disable: 4091) 
+#include <ImageHlp.h>
 
-#ifdef LINUX
+
+#elif defined(LINUX)
 //#include <execinfo.h>
 //#include <cxxabi.h>
 //#include <unistd.h>
@@ -37,6 +41,39 @@ It is provided "as is" without express or implied warranty.
    } while(0);
 
 
+
+
+
+HANDLE SymGetProcessHandle()
+{
+#ifdef _WIN32
+   return GetCurrentProcess();
+#else
+   return (HANDLE)(INT_PTR)getpid();
+#endif
+}
+
+
+size_t engine_symbol(char * sz,int n,DWORD64 * pdisplacement,DWORD64 dwAddress)
+{
+
+   BYTE symbol[4096];
+   PIMAGEHLP_SYMBOL64 pSym = (PIMAGEHLP_SYMBOL64)&symbol;
+   memset(pSym,0,sizeof(symbol)) ;
+   pSym->SizeOfStruct = sizeof(IMAGEHLP_SYMBOL64) ;
+   pSym->MaxNameLength = sizeof(symbol) - sizeof(IMAGEHLP_SYMBOL64);
+
+   HANDLE hprocess = SymGetProcessHandle();
+   DWORD64 displacement = 0;
+   int r = SymGetSymFromAddr64(hprocess,dwAddress,&displacement,pSym);
+   if(!r) return 0;
+   if(pdisplacement)
+      *pdisplacement = displacement;
+
+   strncpy_s(sz,n,pSym->Name,n);
+
+   return strlen(sz);
+}
 
 #define USED_CONTEXT_FLAGS CONTEXT_FULL
 #ifdef WINDOWSEX
@@ -76,18 +113,7 @@ LPDWORD     lpNumberOfBytesRead
 
 
 
-HANDLE SymGetProcessHandle()
-{
-#ifdef WINDOWS
-   if (is_windows_nt())
-      //   if (0)
-         return GetCurrentProcess();
-   else
-      return (HANDLE)GetCurrentProcessId();
-#else
-   return (HANDLE) (int_ptr) getpid();
-#endif
-}
+HANDLE SymGetProcessHandle();
 
 
 //#ifdef AMD64
@@ -204,26 +230,20 @@ namespace exception
 
    size_t engine::symbol(string & str, DWORD64 * pdisplacement)
    {
+
       if (!check())
          return 0;
 
-      BYTE symbol [ 512 ] ;
-      PIMAGEHLP_SYMBOL64 pSym = (PIMAGEHLP_SYMBOL64)&symbol;
-      memset(pSym, 0, sizeof(symbol)) ;
-      pSym->SizeOfStruct = sizeof(IMAGEHLP_SYMBOL64) ;
-      pSym->MaxNameLength = sizeof(symbol) - sizeof(IMAGEHLP_SYMBOL64);
+      char * p = str.GetBufferSetLength(4096);
 
-      HANDLE hprocess = SymGetProcessHandle();
-      DWORD64 displacement = 0;
-      int32_t r = SymGetSymFromAddr64(hprocess, m_uiAddress, &displacement, pSym);
-      if (!r) return 0;
-      if (pdisplacement)
-         *pdisplacement = displacement;
+      engine_symbol(p, 4096, pdisplacement, m_uiAddress);
 
-      str = pSym->Name;
+      str.ReleaseBuffer();
+
       str += "()";
 
       return str.get_length();
+
    }
 
 #endif
@@ -791,7 +811,7 @@ retry_get_base:
       // "Debugging Applications" John Robbins
       // For whatever reason, SymLoadModule can return zero, but it still loads the modules. Sheez.
       SetLastError(ERROR_SUCCESS);
-      if (!SymLoadModule(hProcess, hFile, filename, 0, (uint32_t)hMod, 0) && ERROR_SUCCESS != GetLastError())
+      if (!SymLoadModule(hProcess, hFile, filename, 0, (uint_ptr)hMod, 0) && ERROR_SUCCESS != GetLastError())
       {
          return false;
       }
