@@ -505,84 +505,83 @@ namespace sockets
          m_preverror = -1;
 
       }
-      else
-         if(n > 0)
+      else if(n > 0)
+      {
+         POSITION pos = m_fds.get_head_position();
+         for(; pos != NULL && n;)
          {
-            POSITION pos = m_fds.get_head_position();
-            for(; pos != NULL && n;)
+            SOCKET socket = m_fds.get_next(pos);;
+            if(FD_ISSET(socket,&rfds))
             {
-               SOCKET socket = m_fds.get_next(pos);;
-               if(FD_ISSET(socket,&rfds))
+               sp(base_socket) psocket;
+               if(m_sockets.Lookup(socket,psocket)) // found
                {
-                  sp(base_socket) psocket;
-                  if(m_sockets.Lookup(socket,psocket)) // found
+                  // new SSL negotiate method
+                  if(psocket->IsSSLNegotiate())
                   {
-                     // new SSL negotiate method
-                     if(psocket->IsSSLNegotiate())
-                     {
-                        psocket->SSLNegotiate();
-                     }
-                     else
-                     {
-                        psocket->OnRead();
-                     }
+                     psocket->SSLNegotiate();
                   }
                   else
                   {
-                     log(NULL,"GetSocket/handler/1",(int32_t)socket,"Did not find expected socket using file descriptor",::aura::log::level_warning);
+                     psocket->OnRead();
                   }
-                  n--;
                }
-               if(FD_ISSET(socket,&wfds))
+               else
                {
-                  sp(base_socket) psocket;
-                  if(m_sockets.Lookup(socket,psocket)) // found
+                  log(NULL,"GetSocket/handler/1",(int32_t)socket,"Did not find expected socket using file descriptor",::aura::log::level_warning);
+               }
+               n--;
+            }
+            if(FD_ISSET(socket,&wfds))
+            {
+               sp(base_socket) psocket;
+               if(m_sockets.Lookup(socket,psocket)) // found
+               {
+                  // new SSL negotiate method
+                  if(psocket->IsSSLNegotiate())
                   {
-                     // new SSL negotiate method
-                     if(psocket->IsSSLNegotiate())
-                     {
-                        psocket->SSLNegotiate();
-                     }
-                     else
-                     {
-                        psocket->OnWrite();
-                     }
+                     psocket->SSLNegotiate();
                   }
                   else
                   {
-                     log(NULL,"GetSocket/handler/2",(int32_t)socket,"Did not find expected socket using file descriptor",::aura::log::level_warning);
+                     psocket->OnWrite();
                   }
-                  n--;
                }
-               if(FD_ISSET(socket,&efds))
+               else
                {
-                  sp(base_socket) psocket;
-                  if(m_sockets.Lookup(socket,psocket)) // found
+                  log(NULL,"GetSocket/handler/2",(int32_t)socket,"Did not find expected socket using file descriptor",::aura::log::level_warning);
+               }
+               n--;
+            }
+            if(FD_ISSET(socket,&efds))
+            {
+               sp(base_socket) psocket;
+               if(m_sockets.Lookup(socket,psocket)) // found
+               {
+                  time_t tnow = time(NULL);
+                  if(psocket->Timeout(tnow))
                   {
-                     time_t tnow = time(NULL);
-                     if(psocket->Timeout(tnow))
-                     {
-                        sp(stream_socket) pstreamsocket = (psocket);
-                        if(pstreamsocket != NULL && pstreamsocket->Connecting())
-                           psocket->OnConnectTimeout();
-                        else
-                           psocket->OnTimeout();
-                        psocket->SetTimeout(0);
-                     }
+                     sp(stream_socket) pstreamsocket = (psocket);
+                     if(pstreamsocket != NULL && pstreamsocket->Connecting())
+                        psocket->OnConnectTimeout();
                      else
-                     {
-                        psocket->OnException();
-                     }
+                        psocket->OnTimeout();
+                     psocket->SetTimeout(0);
                   }
                   else
                   {
-                     log(NULL,"GetSocket/handler/3",(int32_t)socket,"Did not find expected socket using file descriptor",::aura::log::level_warning);
+                     psocket->OnException();
                   }
-                  n--;
                }
-            } // m_fds loop
-            m_preverror = -1;
-         } // if (n > 0)
+               else
+               {
+                  log(NULL,"GetSocket/handler/3",(int32_t)socket,"Did not find expected socket using file descriptor",::aura::log::level_warning);
+               }
+               n--;
+            }
+         } // m_fds loop
+         m_preverror = -1;
+      } // if (n > 0)
 
             // check CallOnConnect - EVENT
       if(m_fds_callonconnect.get_size())
@@ -868,19 +867,19 @@ namespace sockets
          if(m_sockets.Lookup(socket,psocket))
          {
             psocket->SetErasedByHandler();
-            /*            if(m_slave)
-                        {
-                           if(psocket != NULL)
-                           {
-                              try
-                              {
-                                 delete psocket;
-                              }
-                              catch(...)
-                              {
-                              }
-                           }
-                        }*/
+            if(m_slave)
+            {
+               if(psocket != NULL)
+               {
+                  try
+                  {
+                     psocket->release();
+                  }
+                  catch(...)
+                  {
+                  }
+               }
+            }
             m_sockets.remove_key(socket);
          }
          check_max_fd = true;
