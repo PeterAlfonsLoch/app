@@ -55,7 +55,7 @@ namespace dynamic_source
       ::file::path                     m_strSourceDir;
       ::file::path                     m_strCppPath;
       ::file::path                     m_strScriptPath;
-      ::file::path                     m_strBuildBat;
+      //::file::path                     m_strBuildBat;
       manual_reset_event               m_evCreationEnabled;
       uint32_t                         m_dwLastBuildTime;
       bool                             m_bShouldBuild;
