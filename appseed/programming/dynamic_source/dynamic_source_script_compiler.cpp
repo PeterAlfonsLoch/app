@@ -1192,6 +1192,8 @@ namespace dynamic_source
 
       stra.add_lines(strLog);
 
+      Sleep(10000);
+
             EnvVarValArray arrEnvVarVal;
             // Seperate values and variables
             CProcessEnvReader::SeparateVariablesAndValues(stra,arrEnvVarVal);
@@ -1201,14 +1203,14 @@ namespace dynamic_source
             for(auto pair : arrEnvVarVal)
             {
                map[pair.m_element1] = pair.m_element2;
+               SetEnvironmentVariable(pair.m_element1,pair.m_element2);
             }
 
 
 
-            string strInclude = map["INCLUDE"];
-            string strLibpath = map["LIBPATH"];
-            SetEnvironmentVariable("INCLUDE",strInclude);
-            SetEnvironmentVariable("LIBPATH",strLibpath);
+            //SetEnvironmentVariable("INCLUDE",map["INCLUDE"]);
+            //SetEnvironmentVariable("LIBPATH",map["LIBPATH"]);
+            //SetEnvironmentVariable("PATH",map["PATH"]);
 
             // UpdateProcessMiscInfo( hProcess, pNMItemActivate->iItem);
             //CProcessEnvReader::ReleaseHandle(hProcess);
