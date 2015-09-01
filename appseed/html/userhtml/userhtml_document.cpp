@@ -101,9 +101,7 @@ void html_document::OnBeforeNavigate2(::html::data * pdata, var & varFile, uint3
 bool html_document::on_open_document(var varFile)
 {
 
-   synch_lock lock(get_html_data()->m_pmutex);
-
-   get_html_data()->m_pform = get_typed_view < html_form > ();
+   get_html_data()->m_pform = get_typed_view < html_form >();
 
    if(get_html_data()->m_pform == NULL)
    {
@@ -131,6 +129,8 @@ bool html_document::on_open_document(var varFile)
    update_all_views(NULL, 0, &uh);
 
    data_set(".local://LastOpenedFile", get_file_path());
+
+   
 
    return TRUE;
 

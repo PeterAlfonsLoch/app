@@ -830,9 +830,6 @@
     <ClInclude Include="axis\fontopus\fontopus_usera.h">
       <Filter>Header Files\axis\fontopus</Filter>
     </ClInclude>
-    <ClInclude Include="axis\fontopus\fontopus_validate.h">
-      <Filter>Header Files\axis\fontopus</Filter>
-    </ClInclude>
     <ClInclude Include="version.config.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1075,6 +1072,12 @@
     </ClInclude>
     <ClInclude Include="axis\node\metrowin\metrowin.h">
       <Filter>Header Files\axis\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\fontopus\fontopus_validate1.h">
+      <Filter>Header Files\axis\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\fontopus\fontopus_validate.h">
+      <Filter>Header Files\axis\fontopus</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1836,6 +1839,9 @@
     </ClCompile>
     <ClCompile Include="axis\node\metrowin\_metrowin_node.cpp">
       <Filter>Source Files\axis\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\fontopus\fontopus_validate1.cpp">
+      <Filter>Source Files\axis\fontopus</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

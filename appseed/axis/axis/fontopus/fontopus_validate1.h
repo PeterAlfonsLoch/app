@@ -7,10 +7,10 @@
 namespace fontopus
 {
 
-
-   enum e_result
+   
+   enum e_result1
    {
-
+      
       result_auth,
       result_registration_deferred,
       result_please_finish_registration,
@@ -19,32 +19,32 @@ namespace fontopus
       result_wrong_password_or_login,
       result_time_out,
       result_fail
-
+         
    };
+   
 
-
-   class CLASS_DECL_AXIS login_callback:
+   class CLASS_DECL_AXIS login_callback1 :
       virtual public ::object
    {
    public:
-
-
-      virtual void on_login_response(e_result iAuth,const char * pszResponse);
+      
+      
+      virtual void on_login_response(e_result iAuth, const char * pszResponse);
       virtual string calc_mod_hash();
       virtual string calc_key_hash();
       virtual string calc_ca2_hash();
       virtual bool get_defer_registration();
-
-
+      
+      
    };
 
 
-   class CLASS_DECL_AXIS http_execute:
+   class CLASS_DECL_AXIS http_execute1 :
       virtual public object
    {
    public:
-
-
+      
+      
       string                  m_strUrl;
       property_set       m_propertysetPost;
       property_set       m_propertysetHeaders;
@@ -52,13 +52,13 @@ namespace fontopus
    };
 
 
-   class CLASS_DECL_AXIS http_execute_array:
+   class CLASS_DECL_AXIS http_execute_array1 :
       public spa(http_execute)
    {
    };
 
 
-   class CLASS_DECL_AXIS login_thread: public simple_thread
+   class CLASS_DECL_AXIS login_thread1 : public simple_thread
    {
    public:
 
@@ -103,7 +103,7 @@ namespace fontopus
    };
 
 
-   class CLASS_DECL_AXIS validate:
+   class CLASS_DECL_AXIS validate1 :
       virtual public login_callback
    {
    public:
@@ -136,16 +136,16 @@ namespace fontopus
       bool                                      m_bLicense;
       bool                                      m_bInteractive;
       bool                                      m_bDeferRegistration;
-      //      ::usernet::network_configuration              m_netcfg;
-      //    sp(::userex::keyboard_layout)                  m_pkeyboardlayout;
+//      ::usernet::network_configuration              m_netcfg;
+  //    sp(::userex::keyboard_layout)                  m_pkeyboardlayout;
       void *                                    m_pvOldWindow;
 
 
-      validate(::aura::application * papp,const char * pszForm,bool bAuth = false,bool bInteractive = true);
-      virtual ~validate();
+      validate1(::aura::application * papp, const char * pszForm, bool bAuth = false, bool bInteractive = true);
+      virtual ~validate1();
 
 
-      virtual void get_mod(stringa & straHash,stringa & straSource);
+      virtual void get_mod(stringa & straHash, stringa & straSource);
       virtual string calc_mod_hash();
       virtual string calc_key_hash();
       virtual string calc_ca2_hash();
@@ -153,14 +153,14 @@ namespace fontopus
       virtual bool check_ca2_hash();
 
 
-      virtual void on_login_response(e_result iAuth,const char * pszResponse);
+      virtual void on_login_response(e_result iAuth, const char * pszResponse);
 
 
-      virtual ::fontopus::user * get_user(const char * pszHost = NULL,const char * pszSessid = NULL);
+      virtual ::fontopus::user * get_user(const char * pszHost = NULL, const char * pszSessid = NULL);
       virtual auth * get_auth();
       virtual bool get_license(const char * pszId);
 
-      virtual void authentication_failed(e_result iAuth,const char * pszResponse);
+      virtual void authentication_failed(e_result iAuth, const char * pszResponse);
       virtual void authentication_succeeded();
 
       virtual void save_authentication_info();

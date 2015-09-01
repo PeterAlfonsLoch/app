@@ -289,7 +289,7 @@ namespace sockets
          {
             log(p,"add",(int32_t)p -> GetSocket(),"Attempt to add socket already in controlled queue",::aura::log::level_fatal);
             // %! it's a dup, don't add to delete queue, just ignore it
-            m_delete.add_tail(p);
+            //m_delete.add_tail(p);
             m_add.remove_key(s);
             ignore++;
             continue;

@@ -430,7 +430,7 @@ namespace fontopus
 
    }
 
-   string fontopus::get_server(const char * pszUrl, int32_t iRetry)
+   string fontopus::get_server(const char * pszUrl,int32_t iRetry)
    {
 
       string strHost(System.url().get_server(pszUrl));
@@ -446,9 +446,18 @@ namespace fontopus
 
       string strFontopusServer;
 
-      if (m_mapFontopusServer.Lookup(strHost, strFontopusServer) && strFontopusServer.has_char())
+      if(strHost == "fontopus.com")
       {
-         return strFontopusServer;
+         strFontopusServer = "fontopus.com";
+      }
+      else
+      {
+
+         if(m_mapFontopusServer.Lookup(strHost,strFontopusServer) && strFontopusServer.has_char())
+         {
+            return strFontopusServer;
+         }
+
       }
 
       sl.unlock();
@@ -457,7 +466,7 @@ namespace fontopus
 
    retry:
 
-      if (iRetry < 0)
+      if(iRetry < 0)
          return ""; // should not retry or lookup is valid and strFontopusServer is really empty
 
       iRetry--;
@@ -498,10 +507,10 @@ namespace fontopus
 
          DWORD dwEnd = ::get_tick_count();
 
-         TRACE("get_fontopus_login HTTP GET time = %dms", dwEnd - dwBeg);
+         TRACE("get_fontopus_login HTTP GET time = %dms",dwEnd - dwBeg);
 
       }
-      catch (...)
+      catch(...)
       {
       }
 
@@ -523,7 +532,12 @@ namespace fontopus
       if(strSessId.is_empty())
          goto retry;
 
-      strFontopusServer = doc.get_root()->attr("fontopus_server");
+      if(strHost != "fontopus.com")
+      {
+
+         strFontopusServer = doc.get_root()->attr("fontopus_server");
+
+      }
 
       string strIgnitionServer = file_as_string_dup("C:\\ca2\\config\\system\\ignition_server.txt");
 
@@ -574,7 +588,7 @@ namespace fontopus
 
             m_mapFontopusServer.set_at(straSomeBrothersAndSisters[i],strFontopusServer);
 
-            Session.sockets().net().m_mapCache.set_at(straSomeBrothersAndSisters[i], item);
+            Session.sockets().net().m_mapCache.set_at(straSomeBrothersAndSisters[i],item);
 
          }
 
@@ -591,7 +605,8 @@ namespace fontopus
 
       }
 
-      m_mapFontopusSession.set_at(strFontopusServer, psession);
+      m_mapFontopusSession.set_at(strFontopusServer,psession);
+      
 
       if(!m_mapFontopusSessId.Lookup(strFontopusServer,strSessId))
       {
@@ -640,8 +655,11 @@ namespace fontopus
 
       domainFontopus.create(strFontopusServer);
 
-      if(domainFontopus.m_strRadix != "ca2")
+      if(domainFontopus.m_strRadix != "ca2" && domainFontopus.m_strRadix != "fontopus")
          return "";
+
+      if(strRequestingServer == "fontopus.com")
+         return "fontopus.com";
 
       DWORD dwGetFontopusEnd = ::get_tick_count();
 

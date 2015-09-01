@@ -159,12 +159,12 @@ namespace fontopus
          }
          else
          {
-         
+
             strHost = Application.file().as_string(System.dir().appdata() / "database\\text\\last_good_known_fontopus_com.txt");
-            
+
             if(!straRequestingServer.contains_ci(strHost))
             {
-            
+
                if(straRequestingServer.has_elements())
                {
 
@@ -194,11 +194,9 @@ namespace fontopus
 
          string strApiServer;
 
-         //strApiServer = Application.command_thread()->m_varTopicQuery["fontopus"];
+         strApiServer = Application.command_thread()->m_varTopicQuery["fontopus"];
 
-         //strApiServer.replace("account","api");
-
-         strApiServer = "fontopus.com/api";
+         strApiServer.replace("account","api");
 
          property_set set(get_app());
 
@@ -226,7 +224,7 @@ namespace fontopus
 
       string strPassword;
 
-      string strResult = Application.get_cred(pszRequestingParty, null_rect(),strUsername,strPassword,"ca2","ca2",m_bInteractive);
+      string strResult = Application.get_cred(pszRequestingParty,null_rect(),strUsername,strPassword,"ca2","ca2",m_bInteractive);
 
       if(strResult != "ok")
       {
@@ -338,14 +336,14 @@ namespace fontopus
       }
       m_strLicense = psz;
       m_loginthread.m_strLicense = m_strLicense;
-      string strHost = Application.file().as_string(System.dir().appdata()/"database\\text\\last_good_known_fontopus_com.txt");
+      string strHost = Application.file().as_string(System.dir().appdata() / "database\\text\\last_good_known_fontopus_com.txt");
       stringa straRequestingServer;
 
       string strFirstFontopusServer = Session.fontopus()->m_strFirstFontopusServer;
 
       if(strFirstFontopusServer.has_char())
       {
-         
+
          straRequestingServer.add(strFirstFontopusServer);
 
          strHost = strFirstFontopusServer;
@@ -382,11 +380,11 @@ namespace fontopus
 
       //strApiHost.replace("account","api");
 
-      strAuthUrl = "https://" + strHost + "/api/account/license3?sessid=" + Session.fontopus()->m_mapFontopusSessId[strHost];
+      strAuthUrl = "https://" + strHost + "/api/account/license2?sessid=" + Session.fontopus()->m_mapFontopusSessId[strHost];
 
       property_set set;
 
-      
+
       set["post"]["entered_license"] = m_strLicense;
       //m_puser->set_sessid(ApplicationUser.m_str, strAuthUrl);
       //      uint32_t dwTimeProfile1 = get_tick_count();
@@ -421,8 +419,33 @@ namespace fontopus
 
          string strId = doc.get_root()->attr("id");
 
-         if(strId.has_char() && atoi64_dup(strId) > 0)
+         if(strId.has_char())
          {
+
+            string strRsaModulus;
+
+            strRsaModulus = Session.fontopus()->m_mapFontopusRsa[m_loginthread.m_strFontopusServer];
+
+            if(strRsaModulus.has_char())
+            {
+
+               strDecrypt = System.crypto().spa_auth_decrypt(strId,strRsaModulus);
+
+            }
+
+         }
+
+         if(strDecrypt.has_char())
+         {
+
+            string strHash = System.crypto().sha1("\"license granted(093a95faf9e0b59bd4fb2dc60da16260)\"::" + ApplicationUser.get_session_secret());
+
+            if((strHash.CompareNoCase(strDecrypt) == 0))
+            {
+
+               return true;
+
+            }
 
          }
 
@@ -590,11 +613,11 @@ namespace fontopus
    {
 
       int iRetryLogin = 0;
-      
+
       ::http::e_status estatus;
 
-      RetryLogin:
-      
+   RetryLogin:
+
       string strResponse = Login(&estatus);
 
       if(m_pcallback == NULL)
@@ -610,8 +633,50 @@ namespace fontopus
 
          string strId = doc.get_root()->attr("id");
 
-         if(strId.has_char() && strId == "auth")
+         if(strId.has_char())
          {
+
+            string strRsaModulus;
+
+            strRsaModulus = Session.fontopus()->m_mapFontopusRsa[m_strFontopusServer];
+
+            if(strRsaModulus.has_char())
+            {
+
+               strDecrypt = System.crypto().spa_auth_decrypt(strId,strRsaModulus);
+
+            }
+
+         }
+
+         if(strDecrypt.has_char() && doc.get_root()->attr("passhash").has_char() && doc.get_root()->attr("secureuserid").has_char())
+         {
+
+            string strHash = System.crypto().sha1("\"authorization granted(71d0e601ae5e787ea898774115b2aa2a)\":" + m_puser->get_session_secret());
+
+            if(strDecrypt.CompareNoCase(strHash) != 0)
+            {
+
+               if(iRetryLogin > 3)
+               {
+
+                  delete m_puser;
+
+                  iAuth = result_fail;
+
+               }
+               else
+               {
+
+                  iRetryLogin++;
+
+                  goto RetryLogin;
+
+               }
+
+            }
+            else
+            {
 
                Session.fontopus()->m_authmap[m_strUsername].m_mapServer[m_strRequestingServer] = strResponse;
                Session.fontopus()->m_authmap[m_strUsername].m_mapFontopus[m_strFontopusServer] = strResponse;
@@ -626,7 +691,7 @@ namespace fontopus
                iAuth = result_auth;
                if(m_bFontopusServer)
                {
-                  Application.file().put_contents(System.dir().appdata()/"database\\text\\last_good_known_fontopus_com.txt",m_strFontopusServer);
+                  Application.file().put_contents(System.dir().appdata() / "database\\text\\last_good_known_fontopus_com.txt",m_strFontopusServer);
                }
                execute();
                if(m_strLicense.has_char())
@@ -634,70 +699,7 @@ namespace fontopus
                   m_strValidUntil = doc.get_root()->attr("valid_until");
                }
 
-            //string strRsaModulus;
-
-            //strRsaModulus = Session.fontopus()->m_mapFontopusRsa[m_strFontopusServer];
-
-            //if(strRsaModulus.has_char())
-            //{
-
-            //   strDecrypt = System.crypto().spa_auth_decrypt(strId,strRsaModulus);
-
-            //}
-
-         }
-
-         else if(strDecrypt.has_char() && doc.get_root()->attr("passhash").has_char() && doc.get_root()->attr("secureuserid").has_char())
-         {
-
-            //string strHash = System.crypto().sha1("\"authorization granted(71d0e601ae5e787ea898774115b2aa2a)\":" + m_puser->get_session_secret());
-
-            //if(strDecrypt.CompareNoCase(strHash) != 0)
-            //{
-
-            //   if(iRetryLogin > 3)
-            //   {
-
-            //      delete m_puser;
-
-            //      iAuth = result_fail;
-
-            //   }
-            //   else
-            //   {
-
-            //      iRetryLogin++;
-
-            //      goto RetryLogin;
-
-               //}
-
-            //}
-            //else
-            //{
-
-            //   Session.fontopus()->m_authmap[m_strUsername].m_mapServer[m_strRequestingServer] = strResponse;
-            //   Session.fontopus()->m_authmap[m_strUsername].m_mapFontopus[m_strFontopusServer] = strResponse;
-            //   m_puser->m_strLogin = m_strUsername;
-            //   m_puser->m_strFontopusServerSessId = doc.get_root()->attr("sessid");
-            //   m_puser->set_sessid(m_puser->m_strFontopusServerSessId,m_strLoginUrl);
-            //   m_puser->m_strRequestingServer = m_strRequestingServer;
-            //   m_puser->set_sessid(m_puser->m_strFontopusServerSessId,m_strRequestingServer);
-            //   m_puser->m_strFunUserId = doc.get_root()->attr("secureuserid");
-            //   m_puser->m_strLoginStats = doc.get_root()->attr("stats");
-            //   m_strPasshash = doc.get_root()->attr("passhash");
-            //   iAuth = result_auth;
-            //   if(m_bFontopusServer)
-            //   {
-            //      Application.file().put_contents(System.dir().appdata()/"database\\text\\last_good_known_fontopus_com.txt",m_strFontopusServer);
-            //   }
-            //   execute();
-            //   if(m_strLicense.has_char())
-            //   {
-            //      m_strValidUntil = doc.get_root()->attr("valid_until");
-            //   }
-
-            //}
+            }
 
          }
          else if(doc.get_root()->attr("id") == "registration_deferred")
@@ -771,7 +773,7 @@ namespace fontopus
       //      char * psz = NULL;
       //    *psz = '2';
       m_pcallback->on_login_response(iAuth,strResponse);
-      
+
       return 0;
 
    }
@@ -788,7 +790,7 @@ namespace fontopus
 
          if(::str::ends_ci(strIgnitionServer,".ca2.cc"))
          {
-            
+
             straRequestingServer.add(strIgnitionServer);
 
          }
@@ -836,8 +838,6 @@ namespace fontopus
          return Session.fontopus()->m_authmap[m_strUsername].m_mapServer[m_strRequestingServer];
       }
 
-      m_strRequestingServer = "fontopus.com";
-
       string strFontopusServer = Session.fontopus()->get_fontopus_server(m_strRequestingServer);
 
       if(strFontopusServer.is_empty())
@@ -875,10 +875,6 @@ namespace fontopus
          strApiServer = m_strFontopusServer;
 
       }
-
-      strApiServer = "fontopus.com";
-
-      m_strFontopusServer = strApiServer;
 
       m_strLoginUrl = "https://" + strApiServer + "/api/account/login";
 
@@ -920,9 +916,9 @@ namespace fontopus
          strPass = m_strPasshash;
       }
 
-//      string strHex = System.crypto().spa_login_crypt(strPass,strRsaModulus);
+      string strHex = System.crypto().spa_login_crypt(strPass,strRsaModulus);
 
-//      string strSec = System.crypto().spa_login_crypt(m_puser == NULL ? string() : m_puser->m_strSessionSecret,strRsaModulus);
+      string strSec = System.crypto().spa_login_crypt(m_puser == NULL ? string() : m_puser->m_strSessionSecret,strRsaModulus);
 
       if(m_puser != NULL)
       {
@@ -936,22 +932,22 @@ namespace fontopus
       DWORD dwAuthBeg = ::get_tick_count();
       {
 
-         string strAuthUrl("https://" + strApiServer + "/api/account/auth3?" + (m_pcallback == NULL ? string() : m_pcallback->oprop("defer_registration").get_string())
+         string strAuthUrl("https://" + strApiServer + "/api/account/auth2?" + (m_pcallback == NULL ? string() : m_pcallback->oprop("defer_registration").get_string())
             + (m_pcallback == NULL ? string() : "&ruri=" + System.url().url_encode((m_pcallback->oprop("ruri").get_string()))));
 
          property_set set;
 
-         //if(m_strPasshash.is_empty())
+         if(m_strPasshash.is_empty())
          {
-            set["post"]["entered_password"] = strPass;
+            set["post"]["entered_password"] = strHex;
          }
-         //else
-         //{
-         //   set["post"]["entered_passhash"] = strPass;
-         //}
+         else
+         {
+            set["post"]["entered_passhash"] = strHex;
+         }
          string strCrypt;
 
-         //set["post"]["session_secret"] = strSec;
+         set["post"]["session_secret"] = strSec;
 
          string strUsername = m_strUsername;
 
@@ -971,16 +967,16 @@ namespace fontopus
 
          set["app"] = get_app();
          set["user"] = m_puser;
-         
+
          if(m_puser != NULL)
          {
 
             set["cookies"] = m_puser->m_phttpcookies;
 
          }
-         
+
          set["get_response"] = "";
-         
+
          uint32_t dwTimeProfile1 = get_tick_count();
 
          psession = System.http().request(psession,strAuthUrl,set);
@@ -1031,10 +1027,10 @@ namespace fontopus
    {
       ::net::address address(m_loginthread.m_strFontopusServer);
       m_loginthread.m_puser->m_strFontopusServerInfo = m_loginthread.m_strFontopusServer + " : " + address.get_display_number() ;
-      TRACE0("The authentication has succeeded (" + m_loginthread.m_strFontopusServer + "[" + address.get_display_number()+ "]).");
+      TRACE0("The authentication has succeeded (" + m_loginthread.m_strFontopusServer + "[" + address.get_display_number() + "]).");
       TRACE0("Fontopus Server info = " + m_loginthread.m_puser->m_strFontopusServerInfo);
 
-      
+
 
       string strUsername = m_loginthread.m_strUsername;
       string strPasshash = m_loginthread.m_strPasshash;

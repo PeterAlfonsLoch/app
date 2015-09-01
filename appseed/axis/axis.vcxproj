@@ -401,6 +401,12 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="axis\fontopus\fontopus_validate1.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="axis\message\message.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -588,6 +594,7 @@
     <ClInclude Include="axis\fontopus\fontopus_user_authentication.h" />
     <ClInclude Include="axis\fontopus\fontopus_user_set.h" />
     <ClInclude Include="axis\fontopus\fontopus_validate.h" />
+    <ClInclude Include="axis\fontopus\fontopus_validate1.h" />
     <ClInclude Include="axis\geoip\geoip.h" />
     <ClInclude Include="axis\geoip\geoip_city.h" />
     <ClInclude Include="axis\geoip\geoip_internal.h" />

@@ -2155,6 +2155,8 @@ namespace base
 
          }
 
+         strRequestUrl = "https://fontopus.com/";
+
       }
 
       pui = canew(::fontopus::simple_ui(this,strRequestUrl));

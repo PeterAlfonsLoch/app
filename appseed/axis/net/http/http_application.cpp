@@ -179,7 +179,7 @@ namespace http
          }
       }
 
-      if(::str::find_wwci("ca2", System.url().get_server(pszUrl)) >= 0 && System.url().get_object(pszUrl).find_ci("/matter/") >= 0)
+      if(::str::find_wwci("ca2", System.url().get_server(pszUrl)) < 0 && System.url().get_object(pszUrl).find_ci("/matter/") < 0)
       {
          set["raw_http"] = true;
       }
