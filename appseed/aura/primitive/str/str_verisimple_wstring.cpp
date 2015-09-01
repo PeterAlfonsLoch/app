@@ -231,9 +231,9 @@ void verisimple_wstring::assign(const char * psz)
 
    ::count iLen = utf16_len(psz);
 
-   alloc(iLen + 1);
+   alloc(iLen);
 
-   utf8_to_utf16(*this, psz);
+   utf8_to_utf16(m_pwsz, psz);
 
    set_length(iLen);
 

@@ -1225,8 +1225,17 @@ namespace user
    void list::_001GetColumnWidth(draw_list_item * pitem)
    {
       pitem->m_pcolumnWidth   = m_columna._001GetVisible(pitem->m_iWidthColumn);
-      pitem->m_iColumnWidth   = pitem->m_pcolumnWidth->m_iWidth;
-      pitem->m_bOk            = true;
+      if(pitem->m_pcolumnWidth == NULL)
+      {
+         pitem->m_iColumnWidth = 0;
+         pitem->m_bOk            = false;
+      }
+      else
+      {
+
+         pitem->m_iColumnWidth   = pitem->m_pcolumnWidth->m_iWidth;
+         pitem->m_bOk            = true;
+      }
    }
 
 
@@ -1257,8 +1266,10 @@ namespace user
          return -1;
       if(iColumn >= m_columna.VisibleGetCount())
          return -1;
-
-      return m_columna._001GetVisible(iColumn)->m_iOrder;
+      auto p = m_columna._001GetVisible(iColumn);
+      if(p == NULL)
+         return -1;
+      return p->m_iOrder;
    }
 
    index list::_001MapSubItemToColumn(index iSubItem)
@@ -2511,6 +2522,7 @@ namespace user
       SCAST_PTR(::message::mouse, pmouse, pobj)
          point pt = pmouse->m_pt;
       ScreenToClient(&pt);
+      KillTimer(12345678);
 
       if(m_bDrag)
       {
@@ -2543,7 +2555,6 @@ namespace user
          m_uiLButtonUpFlags = (UINT) pmouse->m_nFlags;
          m_ptLButtonUp = pt;
          SetTimer(12345679, 500, NULL);
-         KillTimer(12345678);
       }
       pobj->m_bRet = true;
       pmouse->set_lresult(1);

@@ -531,13 +531,14 @@ namespace datetime
    string time::Format(string & str, const string & strFormat) const
    {
 
-      char szBuffer[maxTimeBufferSize];
 #if defined(LINUX)
+      char * szBuffer = str.GetBufferSetLength(maxTimeBufferSize);
       struct tm* ptmTemp = localtime(&m_time);
       if (ptmTemp == NULL || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
       {
          szBuffer[0] = '\0';
       }
+      str.ReleaseBuffer();
 #elif defined(APPLEOS)
 #if __WORDSIZE != 64
 #pragma error "error: long should 8-byte on APPLEOS"
@@ -578,20 +579,19 @@ namespace datetime
 
 #else
 
-      struct tm* ptmTemp = _localtime64(&m_time);
-
-      if (ptmTemp == NULL || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
-      {
-
-         szBuffer[0] = '\0';
-
-      }
+      str = strFormat;
+      
+      str.replace("%Y",::str::from(GetYear()));
+      str.replace("%m",::str::zero_pad(::str::from(GetMonth()), 2));
+      str.replace("%d",::str::zero_pad(::str::from(GetDay()),2));
+      str.replace("%H",::str::zero_pad(::str::from(GetHour()),2));
+      str.replace("%M",::str::zero_pad(::str::from(GetMinute()),2));
+      str.replace("%S",::str::zero_pad(::str::from(GetSecond()),2));
 
 #endif
 
-      str = szBuffer;
 
-      return szBuffer;
+      return str;
 
    }
 

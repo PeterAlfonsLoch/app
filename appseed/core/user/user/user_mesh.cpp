@@ -39,7 +39,7 @@ namespace user
       m_bTopText                 = false;
 
       m_bEmboss                  = true;
-      m_bHoverSelect             = true;
+      m_bHoverSelect             = false;
       m_bMultiSelect             = true;
       m_iLateralGroupWidth       = 200;
 
@@ -2486,7 +2486,7 @@ namespace user
 
             _001EnsureVisible(iItem,range);
 
-            range.add_item(itemrange);
+            //range.add_item(itemrange);
 
             RedrawWindow();
 
@@ -2536,7 +2536,7 @@ namespace user
                int_ptr iLItem = MIN(m_iShiftFirstSelection,iItem);
                int_ptr iUItem = MAX(m_iShiftFirstSelection,iItem);
                itemrange.set(iLItem,iUItem,0,m_nColumnCount - 1,- 1,-1);
-               m_rangeSelection.add_item(itemrange);
+               _001AddSelection(itemrange);
                m_iShiftFirstSelection = iItem;
             }
          }
@@ -2548,7 +2548,7 @@ namespace user
                int_ptr iLItem = MIN(m_iShiftFirstSelection,iItem);
                int_ptr iUItem = MAX(m_iShiftFirstSelection,iItem);
                itemrange.set(iLItem,iUItem,0,m_nColumnCount - 1,- 1,-1);
-               m_rangeSelection.add_item(itemrange);
+               _001AddSelection(itemrange);
                m_iShiftFirstSelection = iItem;
             }
          }
@@ -2562,10 +2562,12 @@ namespace user
                m_iItemFocus = iItem;
                _001DisplayHitTest(pt,m_iItemDrag);
                m_iItemDrop = m_iItemDrag;
-               SetTimer(12345678,400,NULL);
+               m_uiLButtonDownFlags = pmouse->m_nFlags;
+               m_ptLButtonDown = pt;
+               SetTimer(12345678,800,NULL);
                item_range itemrange;
                itemrange.set(iItem,iItem,0,m_nColumnCount - 1,- 1,-1);
-               m_rangeSelection.add_item(itemrange);
+               _001AddSelection(itemrange);
             }
          }
       }
@@ -2654,7 +2656,7 @@ namespace user
                m_iShiftFirstSelection = iItem;
                item_range itemrange;
                itemrange.set(iItem,iItem,0,m_nColumnCount - 1,- 1,-1);
-               m_rangeSelection.add_item(itemrange);
+               _001AddSelection(itemrange);
                RedrawWindow();
             }
          }
@@ -2873,6 +2875,11 @@ namespace user
    {
       SCAST_PTR(::message::mouse,pmouse,pobj)
          m_iClick = 2;
+      point pt = pmouse->m_pt;
+      ScreenToClient(&pt);
+
+      _001OnClick(pmouse->m_nFlags,pt);
+
 
       //   _001OnClick(nFlags, point);
       Redraw();
@@ -3741,43 +3748,46 @@ namespace user
       if(ptimer->m_nIDEvent == 12345679) // left click
       {
          KillTimer(12345679);
-         if(m_iClick == 1)
+         if(m_bHoverSelect)
          {
-            m_iClick = 0;
-            if(!_001IsEditing())
+            if(m_iClick == 1)
             {
-               uint_ptr nFlags = m_uiLButtonUpFlags;
-               point point = m_ptLButtonUp;
-               _001OnClick(nFlags,point);
-               Redraw();
-
-
-               /* trans
-               window_id wndidNotify = pwnd->GetOwner()->GetSafeoswindow_();
-               if(wndidNotify == NULL)
-               wndidNotify = pwnd->GetParent()->GetSafeoswindow_(); */
-
-               //               LRESULT lresult = 0;
-
-               /* trans            if(wndidNotify)
+               m_iClick = 0;
+               if(!_001IsEditing())
                {
-               NMLISTVIEW nm;
-               nm.hdr.idFrom = pwnd->GetDlgCtrlId();
-               nm.hdr.code =   NM_CLICK;
-               nm.hdr.oswindowFrom = pwnd->GetSafeoswindow_();
-               lresult = ::SendMessage(
-               wndidNotify,
-               WM_NOTIFY,
-               nm.hdr.idFrom,
-               (LPARAM) &nm);
-               }*/
-            }
-         }
-         else
-         {
-            m_iClick = 0;
-         }
+                  uint_ptr nFlags = m_uiLButtonUpFlags;
+                  point point = m_ptLButtonUp;
+                  _001OnClick(nFlags,point);
+                  Redraw();
 
+
+                  /* trans
+                  window_id wndidNotify = pwnd->GetOwner()->GetSafeoswindow_();
+                  if(wndidNotify == NULL)
+                  wndidNotify = pwnd->GetParent()->GetSafeoswindow_(); */
+
+                  //               LRESULT lresult = 0;
+
+                  /* trans            if(wndidNotify)
+                  {
+                  NMLISTVIEW nm;
+                  nm.hdr.idFrom = pwnd->GetDlgCtrlId();
+                  nm.hdr.code =   NM_CLICK;
+                  nm.hdr.oswindowFrom = pwnd->GetSafeoswindow_();
+                  lresult = ::SendMessage(
+                  wndidNotify,
+                  WM_NOTIFY,
+                  nm.hdr.idFrom,
+                  (LPARAM) &nm);
+                  }*/
+               }
+            }
+            else
+            {
+               m_iClick = 0;
+            }
+            
+         }
 
       }
       else if(ptimer->m_nIDEvent == 8477) // right click
@@ -3820,7 +3830,13 @@ namespace user
       else if(ptimer->m_nIDEvent == 12345678)
       {
          KillTimer(ptimer->m_nIDEvent);
-         m_bDrag = true;
+         if(!m_bHoverSelect)
+         {
+         }
+         else
+         {
+            m_bDrag = true;
+         }
       }
       else if(ptimer->m_nIDEvent == 12321)
       {
@@ -4423,7 +4439,7 @@ namespace user
       m_rangeSelection.clear();
       item_range itemrange;
       itemrange.set(iItem,iItem,iSubItem,iSubItem,- 1,-1);
-      m_rangeSelection.add_item(itemrange);
+      _001AddSelection(itemrange);
 
    }
 
@@ -5515,7 +5531,7 @@ namespace user
          item_range itemrange;
          itemrange.set_lower_bound(iSel);
          itemrange.set_upper_bound(iSel);
-         m_rangeSelection.add_item(itemrange);
+         _001AddSelection(itemrange);
       }
       return iOld;
    }

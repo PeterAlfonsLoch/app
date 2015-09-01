@@ -251,7 +251,7 @@ namespace str
       from(str, f);
       return str;
    }
-
+   
    inline CLASS_DECL_AURA string from(double d)
    {
       string str;

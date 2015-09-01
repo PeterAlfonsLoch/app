@@ -22,6 +22,8 @@ namespace user
 
       m_pobj         = NULL;
 
+      m_puie         = NULL;
+
    }
 
 

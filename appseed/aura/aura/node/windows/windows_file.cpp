@@ -153,9 +153,15 @@ namespace windows
 
       // map modeNoInherit flag
       SECURITY_ATTRIBUTES sa;
-      sa.nLength = sizeof(sa);
-      sa.lpSecurityDescriptor = NULL;
-      sa.bInheritHandle = (nOpenFlags & ::file::mode_no_inherit) == 0;
+      SECURITY_ATTRIBUTES * psa = NULL;
+      if((nOpenFlags & ::file::mode_no_inherit) != FALSE)
+      {
+         psa = &sa;
+         ZERO(sa);
+         sa.nLength = sizeof(sa);
+         sa.lpSecurityDescriptor = NULL;
+         sa.bInheritHandle = FALSE;
+      }
 
       // map creation flags
       DWORD dwCreateFlag;
@@ -173,10 +179,12 @@ namespace windows
       int iRetrySharingViolation = 0;
       DWORD dwWaitSharingViolation = 84;
       DWORD dwStart = ::get_tick_count();
-retry:
+   retry:
+
+      wstring wstrFileName(m_strFileName);
       // attempt file creation
       //HANDLE hFile = shell::CreateFile(::str::international::utf8_to_unicode(m_strFileName), dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, NULL);
-      hFile = ::CreateFileW(::str::international::utf8_to_unicode(m_strFileName), dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, NULL);
+      hFile = ::CreateFileW(wstrFileName, dwAccess, dwShareMode, psa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, NULL);
       if (hFile == INVALID_HANDLE_VALUE)
       {
          DWORD dwLastError = ::GetLastError();

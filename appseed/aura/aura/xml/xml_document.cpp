@@ -29,7 +29,7 @@ namespace xml
    }
 
 
-   document & document::operator = (document & document)
+   document & document::operator = (const document & document)
    {
       if(this == &document)
          return *this;
@@ -106,7 +106,7 @@ namespace xml
 
    }
 
-   node * document::get_root()
+   node * document::get_root() const
    {
 
       index i = 0;
@@ -114,7 +114,7 @@ namespace xml
       for( ; i < m_nodea.get_size(); i++)
       {
 
-         ::xml::node & node = m_nodea(i);
+         ::xml::node & node = *m_nodea[i].m_p;
 
          e_node e_type = node.m_etype;
 
@@ -127,8 +127,8 @@ namespace xml
       sp(::xml::node) pnodeRoot = new class node(get_app());
       pnodeRoot->m_pnodeParent = (node *)this;
       pnodeRoot->m_etype = node_element;
-      pnodeRoot->m_pdoc = this;
-      m_nodea.add(pnodeRoot);
+      pnodeRoot->m_pdoc = ((document *)this);
+      ((document *)this)->m_nodea.add(pnodeRoot);
 
       return pnodeRoot;
 

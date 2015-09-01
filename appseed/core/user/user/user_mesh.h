@@ -353,6 +353,8 @@ namespace user
 
 
       index                            m_iShiftFirstSelection;
+      uint_ptr                         m_uiLButtonDownFlags;
+      point                            m_ptLButtonDown;
       uint_ptr                         m_uiLButtonUpFlags;
       point                            m_ptLButtonUp;
       UINT                             m_uiRButtonUpFlags;

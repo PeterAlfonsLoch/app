@@ -452,7 +452,7 @@ namespace user
 
       if(spfile.is_null())
       {
-         report_save_load_exception(varFile,NULL,FALSE,"__IDP_FAILED_TO_OPEN_DOC");
+         //report_save_load_exception(varFile,NULL,FALSE,"__IDP_FAILED_TO_OPEN_DOC");
          return false;
       }
 

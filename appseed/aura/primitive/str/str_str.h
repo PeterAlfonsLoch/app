@@ -230,7 +230,7 @@ namespace str
 
    //inline CLASS_DECL_AURA string   i64toa(int64_t i);
 
-
+   CLASS_DECL_AURA  string         zero_pad(const string & strSrc,int iPad);
    CLASS_DECL_AURA  int32_t        get_escaped_char(const char * str, strsize pos, strsize &retPos);
    CLASS_DECL_AURA  bool           get_curly_content(const char * psz, string & str);
    CLASS_DECL_AURA  bool           is_simple_natural(const char * psz, strsize iCount = -1);
@@ -353,6 +353,8 @@ inline c_number < T > & c_number < T >::from(const string & str)
    ::str::to(str, m_number);
    return *this;
 }
+
+
 
 
 

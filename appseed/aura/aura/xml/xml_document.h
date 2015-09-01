@@ -30,13 +30,13 @@ namespace xml
       string consume_entity_ref(const char * & pszXml, string & strName, bool useExtEnt, bool & bExt);
       char * patch_entity_ref(const char * & pszXml, bool useExtEnt, ...);
 
-      node * get_root();
+      node * get_root() const;
       
       bool load_location(const char * psz);
       bool load(::file::istream & is);
       bool load(const char * psz);
 
-      document & operator = (document & document);
+      document & operator = (const document & document);
 
 
       virtual void edit(base_edit * pbaseedit);

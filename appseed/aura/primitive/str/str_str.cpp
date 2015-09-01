@@ -3095,6 +3095,16 @@ namespace str
 
    }
 
+   CLASS_DECL_AURA string zero_pad(const string & strSrc,int iPad)
+   { 
+      
+      string str(strSrc); 
+      
+      ::zero_pad(str,iPad); 
+      
+      return str; 
+
+   }
 
 
 } // namespace str
