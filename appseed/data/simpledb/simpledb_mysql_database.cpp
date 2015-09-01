@@ -287,9 +287,9 @@ namespace mysql
       for(int32_t j = 0; j < iNumFields; j++)
       {
          if(row[j] == NULL)
-            a.propset().add(::str::from(j), ::var(::var::type_null));
+            a.vara().add(::var(::var::type_null));
          else
-            a.propset().add(::str::from(j), var(row[j]));
+            a.vara().add(var(row[j]));
       }
       return a;
    }

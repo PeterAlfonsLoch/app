@@ -319,19 +319,19 @@ namespace dynamic_source
          string strStagePath = m_pmanager->get_full_stage_path(m_strScriptPath);
 
 
-#ifdef WINDOWS
-         string str1 = m_strScriptPath;
-         string str2 = strStagePath;
-         ::str::ends_eat_ci(str1,".dll");
-         ::str::ends_eat_ci(str2,".dll");
-         str1 += ".pdb";
-         str2 += ".pdb";
-         ::file_copy_dup(str2,str1,true);
-#else
-         //Sleep(584);
-
-#endif
-
+//#ifdef WINDOWS
+//         string str1 = m_strScriptPath;
+//         string str2 = strStagePath;
+//         ::str::ends_eat_ci(str1,".dll");
+//         ::str::ends_eat_ci(str2,".dll");
+//         str1 += ".pdb";
+//         str2 += ".pdb";
+//         ::file_copy_dup(str2,str1,true);
+//#else
+//         //Sleep(584);
+//
+//#endif
+//
 
          ::file_copy_dup(strStagePath, m_strScriptPath, true);
 

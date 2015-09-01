@@ -164,6 +164,8 @@ namespace dynamic_source
 
    void script_compiler::prepare_compile_and_link_environment()
    {
+
+      Application.dir().mk("C:\\ca2\\netnodelite\\symbols");
       //string strVars = getenv("VS100COMNTOOLS");
       ::file::path strVars;
 
@@ -748,10 +750,14 @@ namespace dynamic_source
 
          str = strLog;
 
+
+
          str.trim();
 
          if(str.has_char())
          {
+
+            Application.file().put_contents_utf8(strClog, strLog);
 
             pscript->m_memfileError << "<pre>";
 
@@ -799,6 +805,14 @@ namespace dynamic_source
          ::str::ends_eat_ci(strTargetPath,".dll");
 #endif
          str.replace("%TARGET_PATH%",strTargetPath);
+         string strHmhLctvWildPdbPath;
+         string strRndTitle;
+         System.math().gen_rand_alnum(strRndTitle.GetBufferSetLength(64),64);
+         strRndTitle.ReleaseBuffer();
+         strHmhLctvWildPdbPath = ::file::path("C:\\ca2\\netnodelite\\symbols") / strRndTitle;
+         
+         str.replace("%HMH_LCTVWILD_PDB_PATH%",strHmhLctvWildPdbPath);
+
          //strBuildCmd = pscript->m_strBuildBat;
          //Application.file().put_contents_utf8(strBuildCmd, str);
 
@@ -863,6 +877,7 @@ namespace dynamic_source
             if(str.has_char())
             {
 
+               Application.file().put_contents_utf8(strLlog,strLog);
                pscript->m_memfileError << "Linking...\n";
                str.replace("\r\n","\n");
                pscript->m_memfileError << str;
