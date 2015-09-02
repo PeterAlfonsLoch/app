@@ -39,7 +39,7 @@ namespace user
       m_bTopText                 = false;
 
       m_bEmboss                  = true;
-      m_bHoverSelect             = false;
+      m_bHoverSelect             = true;
       m_bMultiSelect             = true;
       m_iLateralGroupWidth       = 200;
 
