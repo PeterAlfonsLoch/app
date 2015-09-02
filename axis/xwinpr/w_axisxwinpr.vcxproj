@@ -272,10 +272,10 @@
     <ClCompile Include="libwinpr\wtsapi\wtsapi_win32.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{8408B221-EB36-4B25-A764-84F5BD143BF4}</ProjectGuid>
+    <ProjectGuid>{EA139AE5-0994-40AD-AF90-E3595A1033C3}</ProjectGuid>
     <Keyword>DynamicLibrary</Keyword>
-    <ProjectName>axiswinpr</ProjectName>
-    <RootNamespace>axiswinpr</RootNamespace>
+    <ProjectName>axisxwinpr</ProjectName>
+    <RootNamespace>axisxwinpr</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
     <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
     <AppContainerApplication>true</AppContainerApplication>
