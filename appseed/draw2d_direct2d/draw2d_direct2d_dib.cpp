@@ -2542,6 +2542,7 @@ namespace draw2d_direct2d
       if (m_spbitmapMap.is_null() || m_spbitmap.is_null())
          return;
 
+      dynamic_cast <::draw2d_direct2d::graphics *> (((dib *) this)->m_spgraphics.m_p)->SaveClip();
 
       ((dib *) this)->m_hrEndDraw = ((ID2D1DeviceContext *)m_spgraphics->get_os_data())->EndDraw();
 
@@ -2687,6 +2688,9 @@ namespace draw2d_direct2d
       if(SUCCEEDED(m_hrEndDraw))
       {
          ((ID2D1DeviceContext *)m_spgraphics->get_os_data())->BeginDraw();
+
+         dynamic_cast <::draw2d_direct2d::graphics *> (((dib *) this)->m_spgraphics.m_p)->RestoreClip();
+
       }
 
       ((dib *) this)->m_bMapped = false;

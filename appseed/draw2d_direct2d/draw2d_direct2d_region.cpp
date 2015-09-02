@@ -236,11 +236,12 @@ namespace draw2d_direct2d
    ID2D1Geometry * region::get_oval()
    {
       
-       const D2D1_ELLIPSE ellipse = D2D1::Ellipse(
-            D2D1::Point2F((FLOAT) (m_x2 + m_x1) / 2.f, (FLOAT) (m_y2 + m_y1) / 2.f),
-            (FLOAT)(m_x2 - m_x1) / 2.f,
-            (FLOAT)(m_y2 - m_y1) / 2.f
-            );
+      D2D1_ELLIPSE ellipse;
+      
+      ellipse.point.x = (m_x2 + m_x1) / 2.f;
+      ellipse.point.y = (m_y2 + m_y1) / 2.f;
+      ellipse.radiusX = (m_x2 - m_x1) / 2.f;
+      ellipse.radiusY = (m_y2 - m_y1) / 2.f;
 
       ID2D1EllipseGeometry * pgeometry = NULL;
 
@@ -337,6 +338,7 @@ namespace draw2d_direct2d
          return NULL;
       }
 
+
       ID2D1Geometry * pgeometry1 = (ID2D1Geometry *) m_pregion1->get_os_data();
       ID2D1Geometry * pgeometry2 = (ID2D1Geometry *) m_pregion2->get_os_data();
 
@@ -363,6 +365,7 @@ namespace draw2d_direct2d
          ppathgeometry->Release();
          return NULL;
       }
+
 
       hr = psink->Close();
 

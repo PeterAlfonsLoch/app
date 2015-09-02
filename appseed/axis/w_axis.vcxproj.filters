@@ -1474,12 +1474,6 @@
     <ClCompile Include="axis\node\metrowin\metrowin_axis_dir.cpp">
       <Filter>Source Files\axis\node\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="axis\node\metrowin\metrowin_directx.cpp">
-      <Filter>Source Files\axis\node\metrowin</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\metrowin\metrowin_directx_application.cpp">
-      <Filter>Source Files\axis\node\metrowin</Filter>
-    </ClCompile>
     <ClCompile Include="axis\node\metrowin\metrowin_factory_exchange.cpp">
       <Filter>Source Files\axis\node\metrowin</Filter>
     </ClCompile>

@@ -22,6 +22,14 @@ namespace draw2d_direct2d
       Microsoft::WRL::ComPtr<ID2D1Layer>                 m_player;
       Microsoft::WRL::ComPtr<ID2D1PathGeometry>          m_ppathgeometryClip;
 
+      spa(::draw2d::region) m_sparegionClip;
+
+      bool m_bSaveClip;
+
+
+      //array <ID2D1Layer * >       m_layerptra;
+
+
       int                              m_iType;
 
       D2D1_BITMAP_INTERPOLATION_MODE   m_bitmapinterpolationmode;
@@ -72,6 +80,9 @@ namespace draw2d_direct2d
       uint32_t GetLayout() const;
       uint32_t SetLayout(uint32_t dwLayout);
 
+
+      virtual bool SaveClip();
+      virtual bool RestoreClip();
 
       virtual double get_dpix() const;
 

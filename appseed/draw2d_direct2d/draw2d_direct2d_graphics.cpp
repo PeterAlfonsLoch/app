@@ -19,7 +19,7 @@ namespace draw2d_direct2d
       ::object(papp),
       ::draw2d::graphics(papp)
    {
-
+      m_bSaveClip = false;
 
       m_hdcAttach = NULL;
 
@@ -1308,6 +1308,8 @@ namespace draw2d_direct2d
          D2D1_RECT_F rectDst = D2D1::RectF((float) x, (float) y, (float) (x + nWidth), (float) (y + nHeight));
          D2D1_RECT_F rectSrc = D2D1::RectF((float) xSrc, (float) ySrc, (float) (xSrc + nWidth), (float) (ySrc + nHeight));
 
+         dynamic_cast <::draw2d_direct2d::graphics *> (pgraphicsSrc)->SaveClip();
+
          HRESULT hr = ((ID2D1DeviceContext *) pgraphicsSrc->get_os_data())->EndDraw();
 
          if(m_prendertarget != NULL)
@@ -1326,6 +1328,8 @@ namespace draw2d_direct2d
          {
           
             ((ID2D1DeviceContext *)pgraphicsSrc->get_os_data())->BeginDraw();
+
+            dynamic_cast <::draw2d_direct2d::graphics *> (pgraphicsSrc)->RestoreClip();
 
          }
 
@@ -1360,6 +1364,8 @@ namespace draw2d_direct2d
          D2D1_RECT_F rectDst = D2D1::RectF((float) xDst, (float) yDst, (float) (xDst + nDstWidth), (float) (yDst + nDstHeight));
          D2D1_RECT_F rectSrc = D2D1::RectF((float) xSrc, (float) ySrc, (float) (xSrc + nSrcWidth), (float) (ySrc + nSrcHeight));
 
+         dynamic_cast <::draw2d_direct2d::graphics *> (pgraphicsSrc)->SaveClip();
+
          HRESULT hr = ((ID2D1DeviceContext *) pgraphicsSrc->get_os_data())->EndDraw();
 
          if(m_prendertarget != NULL)
@@ -1377,6 +1383,8 @@ namespace draw2d_direct2d
          {
 
             ((ID2D1DeviceContext *)pgraphicsSrc->get_os_data())->BeginDraw();
+
+            dynamic_cast <::draw2d_direct2d::graphics *> (pgraphicsSrc)->RestoreClip();
 
          }
 
@@ -2474,6 +2482,8 @@ namespace draw2d_direct2d
          D2D1_RECT_F rectDst = D2D1::RectF((float) xDst, (float) yDst, (float) (xDst + nDstWidth), (float) (yDst + nDstHeight));
          D2D1_RECT_F rectSrc = D2D1::RectF((float) xSrc, (float) ySrc, (float) (xSrc + nSrcWidth), (float) (ySrc + nSrcHeight));
 
+         dynamic_cast <::draw2d_direct2d::graphics *> (pgraphicsSrc)->SaveClip();
+
          HRESULT hr = ((ID2D1DeviceContext *) pgraphicsSrc->get_os_data())->EndDraw();
 
          if(m_pdevicecontext != NULL)
@@ -2492,6 +2502,8 @@ namespace draw2d_direct2d
          {
 
             ((ID2D1DeviceContext *)pgraphicsSrc->get_os_data())->BeginDraw();
+
+            dynamic_cast <::draw2d_direct2d::graphics *> (pgraphicsSrc)->RestoreClip();
 
          }
 
@@ -3460,6 +3472,38 @@ namespace draw2d_direct2d
 
    int graphics::SelectClipRgn(::draw2d::region * pregion)
    {
+
+      synch_lock sl(m_pmutex);
+   
+      for(index i = m_sparegionClip.get_upper_bound(); i >= 0; i--)
+      {
+
+         try
+         {
+
+            m_prendertarget->PopLayer();
+
+         }
+         catch(...)
+         {
+
+         }
+
+         m_sparegionClip.remove_last();
+
+
+      }
+
+      if(pregion != NULL)
+      {
+
+         m_sparegionClip.add(pregion);
+
+         ID2D1Geometry * pgeometry = (ID2D1Geometry *) pregion->get_os_data();
+
+         m_prendertarget->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(),pgeometry),NULL);
+
+      }
       
       return 0;
 
@@ -5017,6 +5061,63 @@ namespace draw2d_direct2d
 #ifdef WINDOWSEX
       my_debug();
 #endif
+
+   }
+
+   bool graphics::SaveClip()
+   {
+
+      synch_lock sl(m_pmutex);
+
+      if(m_bSaveClip)
+         return true;
+
+      if(m_sparegionClip.get_count() > 0)
+      {
+         
+         m_bSaveClip = true;
+         for(index i = m_sparegionClip.get_upper_bound(); i >= 0; i--)
+         {
+
+            try
+            {
+
+               m_prendertarget->PopLayer();
+
+            }
+            catch(...)
+            {
+
+            }
+
+
+         }
+
+
+      }
+
+   }
+   bool graphics::RestoreClip()
+   {
+
+      synch_lock sl(m_pmutex);
+
+      if(!m_bSaveClip)
+         return true;
+
+      if(m_sparegionClip.get_count() > 0)
+      {
+         m_bSaveClip = false;
+
+         for(auto pregion : m_sparegionClip)
+         {
+
+            ID2D1Geometry * pgeometry = (ID2D1Geometry *)pregion->get_os_data();
+
+            m_prendertarget->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(),pgeometry),NULL);
+
+         }
+      }
 
    }
 
