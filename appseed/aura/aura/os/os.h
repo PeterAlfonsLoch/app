@@ -58,3 +58,12 @@ END_EXTERN_C
 #error "Only for test!! Good error!! _POSIX_C_SOURCE still 200809L"
 #endf
 */
+
+//#ifdef __cplusplus
+//
+//class string;
+//
+//CLASS_DECL_AURA bool file_copy_dup(const string & strDup,const string & strSrc, bool bOverwrite = true);
+//
+//#endif // __cplusplus
+

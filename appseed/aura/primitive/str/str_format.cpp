@@ -480,7 +480,7 @@ bool string_format::parse(const char * & s)
 
             int digits = MIN(10,sizeof(sz) - 2);
 
-#ifdef WINDOWSEX
+#ifdef WINDOWS
             if(_gcvt_s(sz,sizeof(sz),fabs(d),digits))
             {
                pformat->append(::str::from(d));

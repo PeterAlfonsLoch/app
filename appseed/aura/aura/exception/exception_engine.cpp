@@ -53,6 +53,7 @@ HANDLE SymGetProcessHandle()
 #endif
 }
 
+#ifdef WINDOWSEX
 
 size_t engine_symbol(char * sz,int n,DWORD64 * pdisplacement,DWORD64 dwAddress)
 {
@@ -76,7 +77,6 @@ size_t engine_symbol(char * sz,int n,DWORD64 * pdisplacement,DWORD64 dwAddress)
 }
 
 #define USED_CONTEXT_FLAGS CONTEXT_FULL
-#ifdef WINDOWSEX
 
 //#include <tlhelp32.h>
 

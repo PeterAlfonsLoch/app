@@ -100,7 +100,7 @@ namespace sockets
          SOCKET s;
          while(pos != NULL)
          {
-            base_socket * p = NULL;
+            sp(base_socket) p;
             m_sockets.get_next_assoc(pos, s, p);
             if(p)
             {
@@ -165,7 +165,7 @@ namespace sockets
          }
          return;
       }
-      base_socket * plookup;
+      sp(base_socket) plookup;
       if (m_add.Lookup(p -> GetSocket(), plookup))
       {
          log(p, "add", (int)p -> GetSocket(), "Attempt to add socket already in add queue", ::aura::log::level_fatal);
@@ -265,19 +265,27 @@ namespace sockets
 
       POSITION pos = m_add.get_start_position();
       SOCKET s;
-      base_socket * psocket;
+      sp(base_socket) psocket;
       while(pos != NULL)
       {
+
          s = 0;
+
          psocket = NULL;
+
          m_add.get_next_assoc(pos, s, psocket);
 
          if(psocket != NULL)
          {
+
             m_sockets.set_at(s, psocket);
+
             m_add.remove_key(s);
+
             break;
+
          }
+
       }
 
       pos = m_sockets.get_start_position();
@@ -299,7 +307,7 @@ namespace sockets
                break;
             }
             psocket->run();
-            stream_socket * pstreamsocket = dynamic_cast < stream_socket * > (psocket);
+            sp(stream_socket) pstreamsocket = psocket;
             if(pstreamsocket != NULL)
             {
                if(pstreamsocket->m_posdata->m_writer != nullptr)
@@ -533,7 +541,7 @@ namespace sockets
       socket_map::pair * ppair = m_sockets.PGetFirstAssoc();
       while(ppair != NULL)
       {
-         pool_socket * pools = dynamic_cast < pool_socket * >(ppair->m_element2);
+         sp(pool_socket) pools = ppair->m_element2;
          if (pools)
          {
             if (pools -> GetSocketType() == type &&

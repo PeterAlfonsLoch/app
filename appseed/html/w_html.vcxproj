@@ -633,6 +633,9 @@
     <ProjectReference Include="..\core\w_core.vcxproj">
       <Project>{b000ffaf-392f-4e32-bf51-fd7ed638991f}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\math\w_math.vcxproj">
+      <Project>{05c5bf74-ed25-4ab8-a8d3-4d680dd9aced}</Project>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{B06E3938-FA19-4D4D-83D5-A36692C93E86}</ProjectGuid>

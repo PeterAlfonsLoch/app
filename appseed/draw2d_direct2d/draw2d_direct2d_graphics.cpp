@@ -1310,18 +1310,24 @@ namespace draw2d_direct2d
 
          HRESULT hr = ((ID2D1DeviceContext *) pgraphicsSrc->get_os_data())->EndDraw();
 
-         if(m_pdevicecontext != NULL)
+         if(m_prendertarget != NULL)
          {
-            m_pdevicecontext->DrawBitmap((ID2D1Bitmap *) pgraphicsSrc->get_current_bitmap()->get_os_data(), rectDst, 1.0, m_interpolationmode, rectSrc);
+            m_prendertarget->DrawBitmap((ID2D1Bitmap *)pgraphicsSrc->get_current_bitmap()->get_os_data(),&rectDst,1.0,m_bitmapinterpolationmode,&rectSrc);
          }
          else
          {
-            m_prendertarget->DrawBitmap((ID2D1Bitmap *) pgraphicsSrc->get_current_bitmap()->get_os_data(), &rectDst, 1.0, m_bitmapinterpolationmode, &rectSrc);
+            m_pdevicecontext->DrawBitmap((ID2D1Bitmap *) pgraphicsSrc->get_current_bitmap()->get_os_data(), rectDst, 1.0, m_interpolationmode, rectSrc);
          }
 
-         hr = m_prendertarget->Flush();
+         //hr = m_prendertarget->Flush();
+         flush();
 
-         ((ID2D1DeviceContext *) pgraphicsSrc->get_os_data())->BeginDraw();
+         if(SUCCEEDED(hr))
+         {
+          
+            ((ID2D1DeviceContext *)pgraphicsSrc->get_os_data())->BeginDraw();
+
+         }
 
          return true;
 
@@ -1356,16 +1362,23 @@ namespace draw2d_direct2d
 
          HRESULT hr = ((ID2D1DeviceContext *) pgraphicsSrc->get_os_data())->EndDraw();
 
-         if(m_pdevicecontext != NULL)
+         if(m_prendertarget != NULL)
          {
-            m_pdevicecontext->DrawBitmap((ID2D1Bitmap *) pgraphicsSrc->get_current_bitmap()->get_os_data(), rectDst, 1.0, m_interpolationmode, rectSrc);
+            m_prendertarget->DrawBitmap((ID2D1Bitmap *)pgraphicsSrc->get_current_bitmap()->get_os_data(),&rectDst,1.0,m_bitmapinterpolationmode,& rectSrc);
          }
          else
          {
-            m_prendertarget->DrawBitmap((ID2D1Bitmap *) pgraphicsSrc->get_current_bitmap()->get_os_data(), &rectDst, 1.0, m_bitmapinterpolationmode,& rectSrc);
+            m_pdevicecontext->DrawBitmap((ID2D1Bitmap *)pgraphicsSrc->get_current_bitmap()->get_os_data(),rectDst,1.0,m_interpolationmode,rectSrc);
          }
 
-         ((ID2D1DeviceContext *) pgraphicsSrc->get_os_data())->BeginDraw();
+         flush();
+
+         if(SUCCEEDED(hr))
+         {
+
+            ((ID2D1DeviceContext *)pgraphicsSrc->get_os_data())->BeginDraw();
+
+         }
 
          //hr = m_prendertarget->Flush();
 
@@ -2465,16 +2478,22 @@ namespace draw2d_direct2d
 
          if(m_pdevicecontext != NULL)
          {
-            m_pdevicecontext->DrawBitmap((ID2D1Bitmap *) pgraphicsSrc->get_current_bitmap()->get_os_data(), rectDst, (float) dRate, m_interpolationmode, rectSrc);
+            m_prendertarget->DrawBitmap((ID2D1Bitmap *)pgraphicsSrc->get_current_bitmap()->get_os_data(),rectDst,(float)dRate,m_bitmapinterpolationmode,rectSrc);
          }
          else
          {
-            m_prendertarget->DrawBitmap((ID2D1Bitmap *) pgraphicsSrc->get_current_bitmap()->get_os_data(), rectDst, (float) dRate, m_bitmapinterpolationmode, rectSrc);
+            m_pdevicecontext->DrawBitmap((ID2D1Bitmap *)pgraphicsSrc->get_current_bitmap()->get_os_data(),rectDst,(float)dRate,m_interpolationmode,rectSrc);
          }
 
          //hr = m_prendertarget->Flush();
+         flush();
 
-         ((ID2D1DeviceContext *) pgraphicsSrc->get_os_data())->BeginDraw();
+         if(SUCCEEDED(hr))
+         {
+
+            ((ID2D1DeviceContext *)pgraphicsSrc->get_os_data())->BeginDraw();
+
+         }
 
          return true;
 
@@ -4191,7 +4210,7 @@ namespace draw2d_direct2d
       HRESULT hr = TlsGetWriteFactory()->CreateTextLayout(
          wstr,                // The string to be laid out and formatted.
          (UINT32) wstr.get_length(),   // The length of the string.
-         (dynamic_cast < ::draw2d_direct2d::font * > (m_spfont.m_p))->m_pformat.Get(),    // The text format to apply to the string (contains font information, etc).
+         get_os_font(m_spfont),    // The text format to apply to the string (contains font information, etc).
          1024.f * 1024.f,               // The width of the layout box.
          1024.f * 1024.f,        // The height of the layout box.
          &playout  // The IDWriteTextLayout interface pointer.
@@ -4396,7 +4415,9 @@ namespace draw2d_direct2d
 
       D2D1::Matrix3x2F mOriginal(m);
 
-      D2D1_RECT_F rectf = D2D1::RectF((FLOAT) (x / m_spfont->m_dFontWidth), (FLOAT)y, (FLOAT) (1024 * 1024), (FLOAT) (1024 * 1024));
+      size sd = GetTextExtent(string(lpszString,nCount));
+
+      D2D1_RECT_F rectf = D2D1::RectF((FLOAT) x, (FLOAT)y, (FLOAT)(x + sd.cx + 1) , (FLOAT)y+ sd.cy + 1);
 
       get_os_font(m_spfont)->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_LEADING);
 
@@ -4410,7 +4431,20 @@ namespace draw2d_direct2d
 
       m_prendertarget->SetTransform(&m);
 
-      m_prendertarget->DrawText(wstr, (UINT32)wstr.get_length(), get_os_font(m_spfont), &rectf, get_os_brush(m_spbrush));
+      LPCWSTR lpcwsz = wstr;
+
+      UINT32 uiLen = wstr.get_length();
+
+      IDWriteTextFormat * pfont = get_os_font(m_spfont);
+
+      ID2D1Brush * pbrush = get_os_brush(m_spbrush);
+
+      if(lpcwsz != NULL && uiLen > 0)
+      {
+
+         m_prendertarget->DrawText(lpcwsz,uiLen,pfont,&rectf,pbrush);
+
+      }
 
       m_prendertarget->SetTransform(mOriginal);
 

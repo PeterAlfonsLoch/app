@@ -11,6 +11,9 @@ namespace metrowin
       public ::object
    {
    public:
+
+      static ::aura::system * s_psystem;
+
       /**
       init openssl
       bio_err

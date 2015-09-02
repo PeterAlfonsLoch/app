@@ -1408,7 +1408,7 @@ namespace draw2d
 
          int iScan = MIN(m_iScan, dib->m_iScan);
 
-         for (int i = 0; i < m_iScan; i++)
+         for (int i = 0; i < m_size.cy; i++)
          {
             memcpy(&((byte *)get_data())[m_iScan * i], &((byte *)dib->get_data())[dib->m_iScan * i], iScan);
          }

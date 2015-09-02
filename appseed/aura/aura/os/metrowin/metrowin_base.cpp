@@ -426,18 +426,19 @@ CLASS_DECL_AURA char* getenv (const char* name)
 }
 END_EXTERN_C
 
-CLASS_DECL_AURA
-HANDLE
-WINAPI
-CreateMutexW(
-    _In_opt_ LPSECURITY_ATTRIBUTES lpMutexAttributes,
-    _In_ BOOL bInitialOwner,
-    _In_opt_ LPCWSTR lpName
-    )
-{
-   return ::CreateMutexEx(lpMutexAttributes, lpName, bInitialOwner ?  CREATE_MUTEX_INITIAL_OWNER : 0, DELETE | SYNCHRONIZE);
-}
-
+//CLASS_DECL_AURA
+//_Ret_maybenull_
+//HANDLE
+//WINAPI
+//CreateMutexW(
+//   _In_opt_ LPSECURITY_ATTRIBUTES lpMutexAttributes,
+//   _In_ BOOL bInitialOwner,
+//   _In_opt_ LPCWSTR lpName
+//   )
+//{
+//   return ::CreateMutexEx(lpMutexAttributes, lpName, bInitialOwner ?  CREATE_MUTEX_INITIAL_OWNER : 0, DELETE | SYNCHRONIZE);
+//}
+//
 
 
 

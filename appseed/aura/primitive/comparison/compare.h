@@ -78,7 +78,11 @@ namespace compare
 		return sh < 0 ? false : ui <= (unsigned int)sh;
 	}
 
-
+   template < >
+   inline bool gt(int i,unsigned int ui)
+   {
+      return i < 0 ? false : ((unsigned int)i) > ui;
+   }
 } // namespace compare
 
 

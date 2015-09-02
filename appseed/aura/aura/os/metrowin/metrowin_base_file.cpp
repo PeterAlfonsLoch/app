@@ -238,48 +238,14 @@ uint64_t file_length_dup(const char * path)
 //
 //
 //
+
 int_bool file_copy_dup(const char * pszNew,const char * pszSrc,int_bool bOverwrite)
 {
 
-   ::Windows::Storage::StorageFolder ^ folder = nullptr;
-   
-   try
-   {
-
-      folder = get_os_folder(::dir::name(pszNew));
-
-      if(folder == nullptr)
-         return FALSE;
-
-   }
-   catch(::Exception ^ ex)
-   {
-
-   }
-
-
-   ::Windows::Storage::StorageFile ^ fileSrc = nullptr;
-
-   try
-   {
-
-      fileSrc = get_os_file(pszSrc,0,0,NULL,OPEN_EXISTING,0,NULL);
-
-      if(fileSrc == nullptr)
-         return FALSE;
-
-   }
-   catch(::Exception ^ ex)
-   {
-      
-   }
-
-   return ::wait(fileSrc->CopyAsync(folder, wstring(pszNew), bOverwrite ?
-      ::Windows::Storage::NameCollisionOption::ReplaceExisting :
-      ::Windows::Storage::NameCollisionOption::FailIfExists )) ? TRUE : FALSE;
-
+   return file_copy_dup(string(pszNew),string(pszSrc),bOverwrite ? true : false) ? TRUE : FALSE;
 
 }
+
 
 /*
 handle create_file(const char * lpcszFileName,dword dwDesiredAccess,dword dwShareMode,LPSECURITY_ATTRIBUTES lpSA,dword dwCreationDisposition,dword dwFlagsAndAttributes,HANDLE hTemplateFile)
@@ -2586,3 +2552,53 @@ uint64_t flen_dup(_FILE *str)
 }
 
 
+
+
+bool file_copy_dup(const string & strNew,const string & strSrc,bool bOverwrite)
+{
+
+   ::Windows::Storage::StorageFolder ^ folder = nullptr;
+
+   try
+   {
+
+      folder = get_os_folder(::dir::name(strNew));
+
+      if(folder == nullptr)
+         return false;
+
+   }
+   catch(::Exception ^ ex)
+   {
+
+      return false;
+
+   }
+
+
+   ::Windows::Storage::StorageFile ^ fileSrc = nullptr;
+
+   try
+   {
+
+      fileSrc = get_os_file(strSrc,0,0,NULL,OPEN_EXISTING,0,NULL);
+
+      if(fileSrc == nullptr)
+         return false;
+
+   }
+   catch(::Exception ^ ex)
+   {
+
+      return false;
+
+   }
+
+   wstring wstrNew(strNew);
+
+   return ::wait(fileSrc->CopyAsync(folder,wstrNew,bOverwrite ?
+      ::Windows::Storage::NameCollisionOption::ReplaceExisting :
+      ::Windows::Storage::NameCollisionOption::FailIfExists)) ? TRUE : FALSE;
+
+
+}

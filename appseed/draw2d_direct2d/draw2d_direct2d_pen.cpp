@@ -391,9 +391,9 @@ namespace draw2d_direct2d
    HRESULT pen::s_RenderPatternToCommandList(ID2D1RenderTarget * pgraphics,D2D1_COLOR_F *pcr)
    {
 
-      HRESULT hr;
+      HRESULT hr = S_OK;
 
-      pgraphics->BeginDraw();
+      //pgraphics->BeginDraw();
 
       pgraphics->Clear(pcr);
 
@@ -405,7 +405,7 @@ namespace draw2d_direct2d
 
       //pbr->Release();
 
-      hr = pgraphics->EndDraw();
+      ///hr = pgraphics->EndDraw();
 
       return hr;
 

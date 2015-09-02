@@ -126,7 +126,7 @@ namespace metrowin
          RAND_METHOD rand_meth;
 
 
-
+         ::aura::system * SSLInitializer::s_psystem = NULL;
 
          SSLInitializer::SSLInitializer(::aura::application * papp):
             ::object(papp)
@@ -139,7 +139,7 @@ namespace metrowin
             bio_err = NULL;
             m_rand_size = 1024;
 
-            g_psystem = papp->m_paurasystem;
+            s_psystem = papp->m_paurasystem;
 
             /* An error write context */
             bio_err = BIO_new_fp(stderr,BIO_NOCLOSE);
@@ -336,7 +336,7 @@ namespace metrowin
 
       extern "C" int32_t SSLInitializer_rand_bytes(uchar * buf,int32_t num)
       {
-         ::metrowin::g_psystem->math().gen_rand(buf,num);
+         ::metrowin::SSLInitializer::s_psystem->math().gen_rand(buf,num);
          return num;
       }
 
@@ -353,7 +353,7 @@ namespace metrowin
 
       extern "C" int32_t SSLInitializer_rand_pseudorand(uchar * buf,int32_t num)
       {
-         ::metrowin::g_psystem->math().gen_rand(buf,num);
+         ::metrowin::SSLInitializer::s_psystem->math().gen_rand(buf,num);
          return num;
       }
 

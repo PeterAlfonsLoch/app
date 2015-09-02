@@ -153,7 +153,7 @@ namespace draw2d_direct2d
 
       //realize(m_spgraphicsMap);
 
-      //((ID2D1DeviceContext *) m_spgraphics->get_os_data())->EndDraw();
+      ((ID2D1DeviceContext *) m_spgraphics->get_os_data())->BeginDraw();
 
       return true;
 
@@ -2543,12 +2543,13 @@ namespace draw2d_direct2d
          return;
 
 
-      HRESULT hr;
+      ((dib *) this)->m_hrEndDraw = ((ID2D1DeviceContext *)m_spgraphics->get_os_data())->EndDraw();
+
+      HRESULT hr = S_OK;
 
       if (m_spbitmap->get_os_data() != NULL)
       {
 
-         hr = ((ID2D1DeviceContext *)m_spgraphics->get_os_data())->EndDraw();
 
          hr = m_spbitmapMap->get_typed_os_data < ID2D1Bitmap1 >(::draw2d_direct2d::bitmap::data_bitmap1)->CopyFromBitmap(NULL, (ID2D1Bitmap *)m_spbitmap->get_os_data(), NULL);
 
@@ -2614,68 +2615,79 @@ namespace draw2d_direct2d
       if (m_spbitmapMap.is_null() || m_spbitmap.is_null())
          return;
 
-      if (m_spbitmap->get_os_data() == NULL)
+      try
       {
 
-         HRESULT hr = m_spbitmapMap->get_typed_os_data < ID2D1Bitmap1 >(::draw2d_direct2d::bitmap::data_bitmap1)->Unmap();
+         if(m_spbitmap->get_os_data() == NULL)
+         {
+
+            HRESULT hr = m_spbitmapMap->get_typed_os_data < ID2D1Bitmap1 >(::draw2d_direct2d::bitmap::data_bitmap1)->Unmap();
+
+            ((dib *) this)->m_pcolorref = NULL;
+
+            ((dib *) this)->m_bMapped = false;
+
+            return;
+
+         }
+
+         int64_t iArea = area();
+
+         byte * p = (byte *)m_pcolorref;
+
+         int64_t i = m_iScan * m_size.cy / sizeof(COLORREF);
+
+         if(m_bTrans)
+         {
+
+            while(i > 0)
+            {
+               p[0] = (p[0] * p[3] / 255);
+               p[1] = (p[1] * p[3] / 255);
+               p[2] = (p[2] * p[3] / 255);
+               p += 4;
+               i--;
+            }
+
+         }
+
+
+         D2D1_RECT_U srcRect;
+
+         srcRect.left = 0;
+         srcRect.right = m_size.cx;
+         srcRect.top = 0;
+         srcRect.bottom = m_size.cy;
+
+         //memset(m_pcolorref, 127, scan * cy / 2);
+
+         HRESULT hr = ((ID2D1Bitmap *)m_spbitmap->get_os_data())->CopyFromMemory(&srcRect,m_pcolorref,m_iScan);
+         //zero(&METROWIN_BITMAP(m_spbitmapMap.m_p)->m_map, sizeof(METROWIN_BITMAP(m_spbitmapMap.m_p)->m_map));
+
+         hr = m_spbitmapMap->get_typed_os_data < ID2D1Bitmap1 >(::draw2d_direct2d::bitmap::data_bitmap1)->Unmap();
 
          ((dib *) this)->m_pcolorref = NULL;
 
-         ((dib *) this)->m_bMapped = false;
-
-         return;
-
-      }
-
-      int64_t iArea = area();
-
-      byte * p = (byte *)m_pcolorref;
-
-      int64_t i = m_iScan * m_size.cy / sizeof(COLORREF);
-
-      if (m_bTrans)
-      {
-
-         while (i > 0)
+         if(FAILED(hr))
          {
-            p[0] = (p[0] * p[3] / 255);
-            p[1] = (p[1] * p[3] / 255);
-            p[2] = (p[2] * p[3] / 255);
-            p += 4;
-            i--;
+
+            ((dib *) this)->m_bMapped = false;
+
+            throw "";
+
          }
 
+         m_spgraphics->SelectObject(m_spbitmap);
+
       }
-
-
-      D2D1_RECT_U srcRect;
-
-      srcRect.left = 0;
-      srcRect.right = m_size.cx;
-      srcRect.top = 0;
-      srcRect.bottom = m_size.cy;
-
-      //memset(m_pcolorref, 127, scan * cy / 2);
-
-      HRESULT hr = ((ID2D1Bitmap *)m_spbitmap->get_os_data())->CopyFromMemory(&srcRect, m_pcolorref, m_iScan);
-      //zero(&METROWIN_BITMAP(m_spbitmapMap.m_p)->m_map, sizeof(METROWIN_BITMAP(m_spbitmapMap.m_p)->m_map));
-
-      hr = m_spbitmapMap->get_typed_os_data < ID2D1Bitmap1 >(::draw2d_direct2d::bitmap::data_bitmap1)->Unmap();
-
-      ((dib *) this)->m_pcolorref = NULL;
-
-      if (FAILED(hr))
+      catch(...)
       {
-
-         ((dib *) this)->m_bMapped = false;
-
-         throw "";
-
       }
 
-      m_spgraphics->SelectObject(m_spbitmap);
-
-      ((ID2D1DeviceContext *)m_spgraphics->get_os_data())->BeginDraw();
+      if(SUCCEEDED(m_hrEndDraw))
+      {
+         ((ID2D1DeviceContext *)m_spgraphics->get_os_data())->BeginDraw();
+      }
 
       ((dib *) this)->m_bMapped = false;
       ((dib *) this)->m_bTrans = false;
@@ -2698,7 +2710,6 @@ namespace draw2d_direct2d
 
       if (is_realized())
       {
-         ((ID2D1DeviceContext *)((dib *) this)->m_spgraphics->get_os_data())->BeginDraw();
          return true;
       }
 
@@ -2790,7 +2801,7 @@ namespace draw2d_direct2d
 
       //hr = METROWIN_BITMAP(m_spbitmap.m_p)->m_pbitmap->CopyFromBitmap(&p, METROWIN_BITMAP(m_spbitmapMap.m_p)->m_pbitmap, &srcRect);
 
-      ((ID2D1DeviceContext *)((dib *) this)->m_spgraphics->get_os_data())->BeginDraw();
+      //((ID2D1DeviceContext *)((dib *) this)->m_spgraphics->get_os_data())->BeginDraw();
 
       return true;
 
@@ -2802,6 +2813,8 @@ namespace draw2d_direct2d
 
       if (!is_realized())
          return false;
+
+      //((ID2D1DeviceContext *)((dib *) this)->m_spgraphics->get_os_data())->EndDraw();
 
       D2D1_POINT_2U p;
 

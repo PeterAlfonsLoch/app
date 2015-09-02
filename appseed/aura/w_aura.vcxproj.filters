@@ -2089,9 +2089,6 @@
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="framework_c.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="teste.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

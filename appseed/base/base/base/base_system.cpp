@@ -986,7 +986,7 @@ namespace base
    void system::set_active_guie(::user::interaction * pui)
    {
 
-#if defined(WINDOWSEX) || defined(LINUX) //  || defined(APPLEOS)
+//#if defined(WINDOWSEX) || defined(LINUX) //  || defined(APPLEOS)
 
       if(pui == NULL)
       {
@@ -1003,22 +1003,22 @@ namespace base
 
       return;
 
-#else
-
-      synch_lock sl(&m_uiptraFrame);
-
-      if(m_uiptraFrame.find(pui) > 0)
-      {
-
-         m_uiptraFrame.remove(pui);
-
-         m_uiptraFrame.insert_at(0,pui);
-
-      }
-
-      return pui;
-
-#endif
+//#else
+//
+//      synch_lock sl(&m_uiptraFrame);
+//
+//      if(m_uiptraFrame.find(pui) > 0)
+//      {
+//
+//         m_uiptraFrame.remove(pui);
+//
+//         m_uiptraFrame.insert_at(0,pui);
+//
+//      }
+//
+//      return pui;
+//
+//#endif
 
    }
 

@@ -16,7 +16,7 @@ namespace draw2d_direct2d
    {
    public:
 
-
+      HRESULT                       m_hrEndDraw;
       BITMAPINFO                    m_info;
       ::draw2d::bitmap_sp           m_spbitmap;
       ::draw2d::bitmap_sp           m_spbitmapMap;
