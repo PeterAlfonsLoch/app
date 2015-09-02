@@ -524,7 +524,11 @@ int nla_server_init(rdpNla* nla)
 		HMODULE hSSPI;
 		INIT_SECURITY_INTERFACE pInitSecurityInterface;
 
-		hSSPI = LoadLibrary(nla->SspiModule);
+#ifdef METROWIN
+		hSSPI = LoadPackagedLibrary(nla->SspiModule, 0);
+#else
+      hSSPI = LoadLibrary(nla->SspiModule);
+#endif
 
 		if (!hSSPI)
 		{

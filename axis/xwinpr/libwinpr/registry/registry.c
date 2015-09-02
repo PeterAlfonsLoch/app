@@ -29,7 +29,7 @@
  * Functions: http://msdn.microsoft.com/en-us/library/windows/desktop/ms724875/
  */
 
-#ifndef _WIN32
+#if !defined(_WIN32) || defined(METROWIN)
 
 #include <stdio.h>
 #include <stdlib.h>

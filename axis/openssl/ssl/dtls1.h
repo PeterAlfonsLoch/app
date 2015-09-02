@@ -60,6 +60,7 @@
 #ifndef HEADER_DTLS1_H
 #define HEADER_DTLS1_H
 
+
 #include <openssl/buffer.h>
 #include <openssl/pqueue.h>
 #ifdef OPENSSL_SYS_VMS
@@ -69,6 +70,7 @@
 #ifdef OPENSSL_SYS_WIN32
 /* Needed for struct timeval */
 #include <windows.h>
+#include <winsock2.h>
 #elif defined(OPENSSL_SYS_NETWARE) && !defined(_WINSOCK2API_)
 #include <sys/timeval.h>
 #else

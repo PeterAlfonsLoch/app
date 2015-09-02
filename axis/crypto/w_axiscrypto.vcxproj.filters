@@ -267,11 +267,11 @@
     <None Include="asm\x64-win32-masm\whrlpool\wp-x86_64.asm">
       <Filter>Assembler Files\whrlpool</Filter>
     </None>
-    <None Include="m_axiscrypto.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="crypto\bn\asm\modexp512-x86_64-masm.asm">
       <Filter>Source Files\crypto\bn\asm</Filter>
+    </None>
+    <None Include="axiscrypto.def">
+      <Filter>Source Files</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -2649,6 +2649,15 @@
     </ClCompile>
     <ClCompile Include="engines\ccgost\_ccgost.c">
       <Filter>Source Files\engines\ccgost</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\LPdir_win32.c">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\LPdir_metrowin.c">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\bio\_bio.c">
+      <Filter>Source Files\crypto\bio</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

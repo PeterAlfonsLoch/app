@@ -268,7 +268,7 @@ extern "C" {
 	* alone, while NT 4.0 and above interfaces ought to be linked with
 	* GetProcAddress at run-time.
 	*/
-#      define _WIN32_WINNT 0x0400
+#      define _WIN32_WINNT 0x0602
 #    endif
 #    if !defined(OPENSSL_NO_SOCK) && defined(_WIN32_WINNT)
        /*
@@ -278,7 +278,7 @@ extern "C" {
         * it's sufficient to check for specific Winsock2 API availability
         * at run-time [DSO_global_lookup is recommended]...
         */
-//#      include <winsock2.h>
+#      include <winsock2.h>
 //#      include <ws2tcpip.h>
        /* yes, they have to be #included prior to <windows.h> */
 #    endif
@@ -526,6 +526,8 @@ static unsigned int _strlen31(const char *str)
 #      define SHUTDOWN(fd)		close_s(fd)
 #      define SHUTDOWN2(fd)		close_s(fd)
 #    endif
+
+#undef AF_INET6
 
 #  elif defined(MAC_OS_pre_X)
 

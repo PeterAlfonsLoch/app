@@ -30,14 +30,14 @@
 #include "mem_dbg.c"
 
 
-#ifdef METROWIN
-int _getpid()
-{
-   return 0;
-}
-#else
+//#ifdef METROWIN
+//int _getpid()
+//{
+//   return 0;
+//}
+//#else
 #include "o_dir.c"
-#endif
+//#endif
 //#include "o_dir_test.c"
 #include "o_fips.c"
 #include "o_init.c"

@@ -34,7 +34,7 @@ typedef PCONTEXT_HANDLE PTUNNEL_CONTEXT_HANDLE_SERIALIZE;
 typedef PCONTEXT_HANDLE PCHANNEL_CONTEXT_HANDLE_NOSERIALIZE;
 typedef PCONTEXT_HANDLE PCHANNEL_CONTEXT_HANDLE_SERIALIZE;
 
-#ifdef _WIN32
+#if defined(_WIN32) && !defined(METROWIN)
 
 #include <rpc.h>
 
@@ -251,6 +251,7 @@ typedef void *RPC_AUTHZ_HANDLE;
 #define RPC_C_SECURITY_QOS_VERSION			1L
 #define RPC_C_SECURITY_QOS_VERSION_1			1L
 
+#ifndef METROWIN
 typedef struct _RPC_SECURITY_QOS
 {
 	unsigned long Version;
@@ -258,7 +259,7 @@ typedef struct _RPC_SECURITY_QOS
 	unsigned long IdentityTracking;
 	unsigned long ImpersonationType;
 } RPC_SECURITY_QOS, *PRPC_SECURITY_QOS;
-
+#endif
 #define RPC_C_SECURITY_QOS_VERSION_2			2L
 
 #define RPC_C_AUTHN_INFO_TYPE_HTTP			1
@@ -276,7 +277,7 @@ typedef struct _RPC_SECURITY_QOS
 #define RPC_C_HTTP_FLAG_USE_SSL				1
 #define RPC_C_HTTP_FLAG_USE_FIRST_AUTH_SCHEME		2
 #define RPC_C_HTTP_FLAG_IGNORE_CERT_CN_INVALID		8
-
+#ifndef METROWIN
 typedef struct _RPC_HTTP_TRANSPORT_CREDENTIALS_W
 {
 	SEC_WINNT_AUTH_IDENTITY_W* TransportCredentials;
@@ -320,9 +321,9 @@ typedef struct _RPC_SECURITY_QOS_V2_A
 		RPC_HTTP_TRANSPORT_CREDENTIALS_A* HttpCredentials;
 	} u;
 } RPC_SECURITY_QOS_V2_A, *PRPC_SECURITY_QOS_V2_A;
-
+#endif
 #define RPC_C_SECURITY_QOS_VERSION_3 3L
-
+#ifndef METROWIN
 typedef struct _RPC_SECURITY_QOS_V3_W
 {
 	unsigned long Version;
@@ -357,7 +358,7 @@ typedef enum _RPC_HTTP_REDIRECTOR_STAGE
 	RPCHTTP_RS_ACCESS_2,
 	RPCHTTP_RS_INTERFACE
 } RPC_HTTP_REDIRECTOR_STAGE;
-
+#endif
 typedef RPC_STATUS (*RPC_NEW_HTTP_PROXY_CHANNEL)(RPC_HTTP_REDIRECTOR_STAGE RedirectorStage,
 		unsigned short* ServerName, unsigned short* ServerPort, unsigned short* RemoteUser,
 		unsigned short* AuthType, void* ResourceUuid, void* Metadata, void* SessionId,

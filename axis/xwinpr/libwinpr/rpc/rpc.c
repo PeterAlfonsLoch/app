@@ -26,7 +26,7 @@
 #include <winpr/crt.h>
 #include <winpr/rpc.h>
 
-#ifndef _WIN32
+#if !defined(_WIN32) || defined(METROWIN)
 
 #include <openssl/rand.h>
 

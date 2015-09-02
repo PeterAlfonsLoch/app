@@ -28,9 +28,9 @@
 
 #include <winpr/crt.h>
 #include <winpr/print.h>
-
+#ifndef METROWIN
 #include "trio.h"
-
+#endif
 #include "../log.h"
 
 void winpr_HexDump(const char* tag, int level, const BYTE* data, int length)

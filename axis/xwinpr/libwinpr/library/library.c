@@ -64,14 +64,18 @@
  * SizeofResource
  */
 
-#ifndef _WIN32
+#if !defined(_WIN32) || defined(METROWIN)
 
+#ifndef METROWIN
 #include <dlfcn.h>
+#endif
 #include <stdio.h>
 #include <stdlib.h>
+#ifndef METROWIN
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#endif
 
 #ifdef __MACOSX__
 #include <mach-o/dyld.h>
@@ -95,11 +99,16 @@ BOOL SetDefaultDllDirectories(DWORD DirectoryFlags)
 HMODULE LoadLibraryA(LPCSTR lpLibFileName)
 {
 	HMODULE library;
+#ifdef METROWIN
+   library  = LoadPackagedLibrary(lpLibFileName, 0);
+#else
 	library = dlopen(lpLibFileName, RTLD_LOCAL | RTLD_LAZY);
-
+#endif
 	if (!library)
 	{
+#ifndef METROWIN
 		WLog_ERR(TAG, "LoadLibraryA: %s", dlerror());
+#endif
 		return NULL;
 	}
 
@@ -114,11 +123,17 @@ HMODULE LoadLibraryW(LPCWSTR lpLibFileName)
 HMODULE LoadLibraryExA(LPCSTR lpLibFileName, HANDLE hFile, DWORD dwFlags)
 {
 	HMODULE library;
-	library = dlopen(lpLibFileName, RTLD_LOCAL | RTLD_LAZY);
+#ifdef METROWIN
+   library  = LoadPackagedLibrary(lpLibFileName,0);
+#else
+   library = dlopen(lpLibFileName, RTLD_LOCAL | RTLD_LAZY);
+#endif
 
 	if (!library)
 	{
+#ifndef METROWIN
 		WLog_ERR(TAG, "LoadLibraryExA: failed to open %s: %s", lpLibFileName, dlerror());
+#endif
 		return NULL;
 	}
 
@@ -129,7 +144,7 @@ HMODULE LoadLibraryExW(LPCWSTR lpLibFileName, HANDLE hFile, DWORD dwFlags)
 {
 	return (HMODULE) NULL;
 }
-
+#ifndef METROWIN
 FARPROC GetProcAddress(HMODULE hModule, LPCSTR lpProcName)
 {
 	FARPROC proc;
@@ -154,6 +169,7 @@ BOOL FreeLibrary(HMODULE hLibModule)
 
 	return TRUE;
 }
+#endif
 
 HMODULE GetModuleHandleA(LPCSTR lpModuleName)
 {
@@ -172,7 +188,7 @@ HMODULE GetModuleHandleW(LPCWSTR lpModuleName)
  * Finding current executable's path without /proc/self/exe:
  * http://stackoverflow.com/questions/1023306/finding-current-executables-path-without-proc-self-exe
  */
-
+#ifndef METROWIN
 DWORD GetModuleFileNameW(HMODULE hModule, LPWSTR lpFilename, DWORD nSize)
 {
 	return 0;
@@ -252,6 +268,7 @@ DWORD GetModuleFileNameA(HMODULE hModule, LPSTR lpFilename, DWORD nSize)
 #endif
 	return 0;
 }
+#endif
 
 #endif
 

@@ -30,7 +30,7 @@
 extern "C" {
 #endif
 
-#ifndef _WIN32
+#if !defined(_WIN32) || defined(METROWIN)
 
 #define PROCESSOR_ARCHITECTURE_INTEL			0
 #define PROCESSOR_ARCHITECTURE_MIPS			1
@@ -69,7 +69,7 @@ extern "C" {
 #define PROCESSOR_ARM920				2336
 #define PROCESSOR_ARM_7TDMI				70001
 #define PROCESSOR_OPTIL					0x494F
-
+#ifndef METROWIN
 typedef struct _SYSTEM_INFO
 {
 	union
@@ -93,12 +93,12 @@ typedef struct _SYSTEM_INFO
 	WORD wProcessorLevel;
 	WORD wProcessorRevision;
 } SYSTEM_INFO, *LPSYSTEM_INFO;
-
+#endif
 #define MAX_COMPUTERNAME_LENGTH 31
-
+#ifndef METROWIN
 WINPR_API void GetSystemInfo(LPSYSTEM_INFO lpSystemInfo);
 WINPR_API void GetNativeSystemInfo(LPSYSTEM_INFO lpSystemInfo);
-
+#endif
 typedef enum _COMPUTER_NAME_FORMAT
 {
 	ComputerNameNetBIOS,
@@ -120,7 +120,7 @@ WINPR_API BOOL GetComputerNameExW(COMPUTER_NAME_FORMAT NameType, LPWSTR lpBuffer
 #else
 #define GetComputerNameEx	GetComputerNameExA
 #endif
-
+#ifndef METROWIN
 typedef struct _OSVERSIONINFOA
 {
 	DWORD dwOSVersionInfoSize;
@@ -224,10 +224,12 @@ WINPR_API BOOL SetLocalTime(CONST SYSTEMTIME* lpSystemTime);
 WINPR_API VOID GetSystemTimeAsFileTime(LPFILETIME lpSystemTimeAsFileTime);
 WINPR_API BOOL GetSystemTimeAdjustment(PDWORD lpTimeAdjustment, PDWORD lpTimeIncrement, PBOOL lpTimeAdjustmentDisabled);
 
+#endif
+
 WINPR_API DWORD GetTickCount(void);
-
+#ifndef METROWIN
 WINPR_API BOOL IsProcessorFeaturePresent(DWORD ProcessorFeature);
-
+#endif
 #define PF_FLOATING_POINT_PRECISION_ERRATA		0
 #define PF_FLOATING_POINT_EMULATED			1
 #define PF_COMPARE_EXCHANGE_DOUBLE			2

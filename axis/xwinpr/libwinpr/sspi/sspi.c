@@ -32,6 +32,8 @@
 
 #include "sspi.h"
 
+#define SEC_ENTRY
+
 static wLog* g_Log = NULL;
 
 static BOOL g_Initialized = FALSE;

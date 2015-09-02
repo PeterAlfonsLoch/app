@@ -28,13 +28,13 @@
 
 /* String Manipulation (CRT): http://msdn.microsoft.com/en-us/library/f0151s4x.aspx */
 
-#ifndef _WIN32
+#if !defined(_WIN32) || defined(METROWIN)
 
 #include "casing.c"
 
 #include "../log.h"
 #define TAG WINPR_TAG("crt")
-
+#ifndef METROWIN
 char* _strdup(const char* strSource)
 {
 	char* strDestination;
@@ -84,7 +84,7 @@ int _strnicmp(const char* string1, const char* string2, size_t count)
 }
 
 /* _wcscmp -> wcscmp */
-
+#endif
 int _wcscmp(const WCHAR* string1, const WCHAR* string2)
 {
 	while (*string1 && (*string1 == *string2))
@@ -110,7 +110,7 @@ size_t _wcslen(const WCHAR* str)
 
 	return (p - str);
 }
-
+#ifndef METROWIN
 /* _wcschr -> wcschr */
 
 WCHAR* _wcschr(const WCHAR* str, WCHAR c)
@@ -152,7 +152,7 @@ WCHAR* wcstok_s(WCHAR* strToken, const WCHAR* strDelimit, WCHAR** context)
 	*context = strToken;
 	return nextToken;
 }
-
+#endif
 /* Windows API Sets - api-ms-win-core-string-l2-1-0.dll
  * http://msdn.microsoft.com/en-us/library/hh802935/
  */

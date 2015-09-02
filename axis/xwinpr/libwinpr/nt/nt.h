@@ -20,7 +20,7 @@
 #ifndef WINPR_NT_PRIVATE_H
 #define WINPR_NT_PRIVATE_H
 
-#ifndef _WIN32
+#if !defined(_WIN32) || defined(METROWIN)
 
 #include <winpr/nt.h>
 

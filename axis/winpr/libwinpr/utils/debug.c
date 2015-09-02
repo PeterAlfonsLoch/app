@@ -220,7 +220,9 @@ void winpr_backtrace_free(void* buffer)
 
 void* winpr_backtrace(DWORD size)
 {
-#if defined(HAVE_EXECINFO_H)
+#if defined(METROWIN)
+   return NULL;
+#elif defined(HAVE_EXECINFO_H)
 	t_execinfo* data = calloc(1, sizeof(t_execinfo));
 
 	if (!data)

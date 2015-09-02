@@ -51,10 +51,12 @@
  * VerSetConditionMask
  */
 
-#ifndef _WIN32
+#if !defined(_WIN32) || defined(METROWIN)
 
 #include <time.h>
+#ifndef METROWIN
 #include <sys/time.h>
+#endif
 
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
@@ -154,6 +156,7 @@ static DWORD GetSystemPageSize()
 	return dwPageSize;
 }
 
+#ifndef METROWIN
 void GetSystemInfo(LPSYSTEM_INFO lpSystemInfo)
 {
 	lpSystemInfo->wProcessorArchitecture = GetProcessorArchitecture();
@@ -173,7 +176,7 @@ void GetNativeSystemInfo(LPSYSTEM_INFO lpSystemInfo)
 {
 	GetSystemInfo(lpSystemInfo);
 }
-
+#endif
 BOOL GetComputerNameA(LPSTR lpBuffer, LPDWORD lpnSize)
 {
 	char* dot;
@@ -288,7 +291,7 @@ BOOL GetVersionExW(LPOSVERSIONINFOW lpVersionInformation)
 	WLog_ERR(TAG, "GetVersionExW unimplemented");
 	return TRUE;
 }
-
+#ifndef METROWIN
 void GetSystemTime(LPSYSTEMTIME lpSystemTime)
 {
 	time_t ct = 0;
@@ -360,7 +363,7 @@ BOOL GetSystemTimeAdjustment(PDWORD lpTimeAdjustment, PDWORD lpTimeIncrement, PB
 {
 	return FALSE;
 }
-
+#endif
 #ifndef CLOCK_MONOTONIC_RAW
 #define CLOCK_MONOTONIC_RAW	4
 #endif

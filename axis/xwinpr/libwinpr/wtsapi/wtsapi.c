@@ -34,7 +34,7 @@
 
 #include "wtsapi.h"
 
-#ifdef _WIN32
+#if defined(_WIN32) && !defined(METROWIN)
 #include "wtsapi_win32.h"
 #endif
 
@@ -135,7 +135,7 @@ int WtsApi32_InitializeWtsApi(void)
 	if (!g_WtsApi32Module)
 		return -1;
 
-#ifdef _WIN32
+#if defined(_WIN32) && !defined(METROWIN)
 	WTSAPI32_LOAD_PROC(StopRemoteControlSession, WTS_STOP_REMOTE_CONTROL_SESSION_FN);
 	WTSAPI32_LOAD_PROC(StartRemoteControlSessionW, WTS_START_REMOTE_CONTROL_SESSION_FN_W);
 	WTSAPI32_LOAD_PROC(StartRemoteControlSessionA, WTS_START_REMOTE_CONTROL_SESSION_FN_A);
@@ -558,7 +558,7 @@ BOOL CDECL WTSLogoffUser(HANDLE hServer)
 	WTSAPI_STUB_CALL_BOOL(LogoffUser, hServer);
 }
 
-#ifndef _WIN32
+#if !defined(_WIN32) || defined(METROWIN)
 
 /**
  * WTSGetActiveConsoleSessionId is declared in WinBase.h and exported by kernel32.dll
@@ -659,7 +659,11 @@ BOOL WTSRegisterWtsApiFunctionTable(PWtsApiFunctionTable table)
 static BOOL LoadAndInitialize(char* library)
 {
 	INIT_WTSAPI_FN pInitWtsApi;
+#ifdef METROWIN
+   g_WtsApiModule = LoadPackagedLibrary(library, 0);
+#else
 	g_WtsApiModule = LoadLibraryA(library);
+#endif
 
 	if (!g_WtsApiModule)
 		return FALSE;
@@ -749,7 +753,7 @@ void InitializeWtsApiStubs(void)
 	g_Initialized = TRUE;
 	InitializeWtsApiStubs_Env();
 
-#ifdef _WIN32
+#if defined(_WIN32) && !defined(METROWIN)
 	WtsApi32_InitializeWtsApi();
 #endif
 

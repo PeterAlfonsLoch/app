@@ -161,8 +161,11 @@ void* freerdp_load_dynamic_addin(LPCSTR pszFileName, LPCSTR pszPath, LPCSTR pszE
 	NativePathCchAppendA((LPSTR) pszFilePath, cchFilePath + 1, pszAddinFile);
 
 	//library = LoadLibraryA(pszFilePath);
-
+#ifdef METROWIN
+   library = LoadPackagedLibrary(pszAddinFile, 0);
+#else
    library = LoadLibraryA(pszAddinFile);
+#endif
 
 	free(pszAddinInstallPath);
 	free(pszAddinFile);

@@ -248,9 +248,6 @@
     <ClCompile Include="channels\audin\client\audin_main.c">
       <Filter>Source Files\channels\audin</Filter>
     </ClCompile>
-    <ClCompile Include="channels\audin\client\winmm\audin_winmm.c">
-      <Filter>Source Files\channels\audin\winmm</Filter>
-    </ClCompile>
     <ClCompile Include="channels\client\addin.c">
       <Filter>Source Files\channels\client</Filter>
     </ClCompile>

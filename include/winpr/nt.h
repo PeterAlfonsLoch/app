@@ -89,7 +89,7 @@
 
 /* Defined in wincred.h, do not redefine */
 
-#ifdef _WIN32
+#if defined(_WIN32) && !defined(METROWIN)
 
 #include <wincred.h>
 
@@ -1336,7 +1336,7 @@ typedef enum _FILE_INFORMATION_CLASS
 	FileShortNameInformation
 } FILE_INFORMATION_CLASS;
 
-#ifndef _WIN32
+#if !defined(_WIN32) || defined(METROWIN)
 
 #define FILE_SUPERSEDE				0x00000000
 #define FILE_OPEN				0x00000001
@@ -1435,7 +1435,7 @@ typedef struct _IO_STATUS_BLOCK
 {
 	union
 	{
-		NTSTATUS status;
+		NTSTATUS Status;
 		PVOID Pointer;
 	};
 	ULONG_PTR Information;
@@ -1528,9 +1528,9 @@ typedef ACCESS_MASK* PACCESS_MASK;
 #ifdef __cplusplus
 extern "C" {
 #endif
-
+#ifndef METROWIN
 WINPR_API PTEB NtCurrentTeb(void);
-
+#endif
 #ifdef __cplusplus
 }
 #endif
@@ -1541,6 +1541,8 @@ WINPR_API PTEB NtCurrentTeb(void);
 extern "C" {
 #endif
 
+#ifndef METROWIN
+
 WINPR_API VOID _RtlInitAnsiString(PANSI_STRING DestinationString, PCSZ SourceString);
 
 WINPR_API VOID _RtlInitUnicodeString(PUNICODE_STRING DestinationString, PCWSTR SourceString);
@@ -1550,7 +1552,11 @@ WINPR_API NTSTATUS _RtlAnsiStringToUnicodeString(PUNICODE_STRING DestinationStri
 
 WINPR_API VOID _RtlFreeUnicodeString(PUNICODE_STRING UnicodeString);
 
+#endif
+
 WINPR_API ULONG _RtlNtStatusToDosError(NTSTATUS status);
+
+#ifndef METROWIN
 
 WINPR_API VOID _InitializeObjectAttributes(POBJECT_ATTRIBUTES InitializedAttributes,
 		PUNICODE_STRING ObjectName, ULONG Attributes, HANDLE RootDirectory,
@@ -1579,6 +1585,8 @@ WINPR_API NTSTATUS _NtDeviceIoControlFile(HANDLE FileHandle, HANDLE Event,
 WINPR_API NTSTATUS _NtClose(HANDLE Handle);
 
 WINPR_API NTSTATUS _NtWaitForSingleObject(HANDLE Handle, BOOLEAN Alertable, PLARGE_INTEGER Timeout);
+
+#endif
 
 #ifdef __cplusplus
 }

@@ -21,7 +21,7 @@
 #include "config.h"
 #endif
 
-#ifdef _WIN32
+#if defined(_WIN32) && !defined(METROWIN)
 #define SEC_ENTRY __stdcall
 #define SSPI_EXPORT	__declspec(dllexport)
 #else

@@ -23,7 +23,7 @@
 #include <winpr/winpr.h>
 #include <winpr/wtypes.h>
 
-#ifndef _WIN32
+#if !defined(_WIN32) || defined(METROWIN)
 
 typedef HANDLE DLL_DIRECTORY_COOKIE;
 
@@ -48,10 +48,10 @@ WINPR_API HMODULE LoadLibraryExW(LPCWSTR lpLibFileName, HANDLE hFile, DWORD dwFl
 
 WINPR_API HMODULE GetModuleHandleA(LPCSTR lpModuleName);
 WINPR_API HMODULE GetModuleHandleW(LPCWSTR lpModuleName);
-
+#ifndef METROWIN
 WINPR_API DWORD GetModuleFileNameA(HMODULE hModule, LPSTR lpFilename, DWORD nSize);
 WINPR_API DWORD GetModuleFileNameW(HMODULE hModule, LPWSTR lpFilename, DWORD nSize);
-
+#endif
 #ifdef UNICODE
 #define LoadLibrary		LoadLibraryW
 #define LoadLibraryEx		LoadLibraryExW
@@ -63,11 +63,11 @@ WINPR_API DWORD GetModuleFileNameW(HMODULE hModule, LPWSTR lpFilename, DWORD nSi
 #define GetModuleHandle		GetModuleHandleA
 #define GetModuleFileName	GetModuleFileNameA
 #endif
-
+#ifndef METROWIN
 WINPR_API FARPROC GetProcAddress(HMODULE hModule, LPCSTR lpProcName);
 
 WINPR_API BOOL FreeLibrary(HMODULE hLibModule);
-
+#endif
 #ifdef __cplusplus
 }
 #endif

@@ -28,7 +28,7 @@
 
 #include <winpr/environment.h>
 
-#ifndef _WIN32
+#if !defined(_WIN32) || defined(METROWIN)
 
 #define stricmp strcasecmp
 #define strnicmp strncasecmp
@@ -46,7 +46,7 @@
 #include <crt_externs.h>
 #define environ (*_NSGetEnviron())
 #endif
-
+#ifndef METROWIN
 DWORD GetCurrentDirectoryA(DWORD nBufferLength, LPSTR lpBuffer)
 {
 	char* cwd;
@@ -100,7 +100,7 @@ BOOL SetCurrentDirectoryW(LPCWSTR lpPathName)
 {
 	return TRUE;
 }
-
+#endif
 DWORD SearchPathA(LPCSTR lpPath, LPCSTR lpFileName, LPCSTR lpExtension, DWORD nBufferLength, LPSTR lpBuffer, LPSTR* lpFilePart)
 {
 	return 0;
@@ -125,7 +125,7 @@ BOOL SetStdHandleEx(DWORD dwStdHandle, HANDLE hNewHandle, HANDLE* phOldHandle)
 {
 	return TRUE;
 }
-
+#if !defined(METROWIN)
 LPSTR GetCommandLineA(VOID)
 {
 	return NULL;
@@ -135,7 +135,7 @@ LPWSTR GetCommandLineW(VOID)
 {
 	return NULL;
 }
-
+#endif
 BOOL NeedCurrentDirectoryForExePathA(LPCSTR ExeName)
 {
 	return TRUE;
@@ -174,8 +174,15 @@ DWORD GetEnvironmentVariableW(LPCWSTR lpName, LPWSTR lpBuffer, DWORD nSize)
 	return 0;
 }
 
+
 BOOL SetEnvironmentVariableA(LPCSTR lpName, LPCSTR lpValue)
 {
+#ifdef METROWIN
+
+   return TRUE;
+#else
+
+
 	if (!lpName)
 		return FALSE;
 
@@ -191,6 +198,7 @@ BOOL SetEnvironmentVariableA(LPCSTR lpName, LPCSTR lpValue)
 	}
 
 	return TRUE;
+#endif
 }
 
 BOOL SetEnvironmentVariableW(LPCWSTR lpName, LPCWSTR lpValue)
@@ -218,6 +226,9 @@ extern char** environ;
 
 LPCH GetEnvironmentStrings(VOID)
 {
+#ifdef METROWIN
+   return NULL;
+#else
 	char* p;
 	int offset;
 	int length;
@@ -266,6 +277,7 @@ LPCH GetEnvironmentStrings(VOID)
 	lpszEnvironmentBlock[offset] = '\0';
 
 	return lpszEnvironmentBlock;
+#endif
 }
 
 LPWCH GetEnvironmentStringsW(VOID)

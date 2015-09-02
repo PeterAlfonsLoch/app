@@ -22,7 +22,7 @@
 
 #include <winpr/windows.h>
 
-#ifdef _WIN32
+#if defined(_WIN32) && !defined(METROWIN)
 
 #include <winreg.h>
 
@@ -102,8 +102,10 @@ extern "C" {
 #define REG_QWORD			11
 #define REG_QWORD_LITTLE_ENDIAN		11
 
+#ifndef METROWIN
 typedef HANDLE HKEY;
 typedef HANDLE* PHKEY;
+#endif
 
 typedef ACCESS_MASK REGSAM;
 

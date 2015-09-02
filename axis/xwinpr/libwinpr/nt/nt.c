@@ -37,7 +37,7 @@
  * InitializeObjectAttributes macro
  * http://msdn.microsoft.com/en-us/library/windows/hardware/ff547804/
  */
-
+#ifndef METROWIN
 VOID _InitializeObjectAttributes(POBJECT_ATTRIBUTES InitializedAttributes,
 		PUNICODE_STRING ObjectName, ULONG Attributes, HANDLE RootDirectory,
 		PSECURITY_DESCRIPTOR SecurityDescriptor)
@@ -54,7 +54,7 @@ VOID _InitializeObjectAttributes(POBJECT_ATTRIBUTES InitializedAttributes,
 	InitializedAttributes->SecurityQualityOfService = NULL;
 #endif
 }
-
+#endif
 #ifndef _WIN32
 
 #include "nt.h"
@@ -319,6 +319,288 @@ NTSTATUS _NtWaitForSingleObject(HANDLE Handle, BOOLEAN Alertable, PLARGE_INTEGER
 {
 	return 0;
 }
+
+#elif defined(METROWIN)
+
+#include "nt.h"
+
+#include <winpr/crt.h>
+
+
+//__declspec(thread) PTEB t_pteb = NULL;
+//
+//
+//PTEB NtCurrentTeb(void)
+//{
+//
+//   return t_pteb;
+//
+//}
+//
+
+BOOL WINAPI DllMain(HINSTANCE hInstance,DWORD dwReason,LPVOID lpReserved)
+{
+
+   UNREFERENCED_PARAMETER(hInstance);
+   UNREFERENCED_PARAMETER(lpReserved);
+
+   if(dwReason == DLL_PROCESS_ATTACH)
+   {
+
+      //output_debug_string("axisxwinpr.dll initializing!\n");
+
+   }
+   else if(dwReason == DLL_PROCESS_DETACH)
+   {
+
+      ///output_debug_string("axisxwinpr.dll terminating!\n");
+
+   }
+   else if(dwReason == DLL_THREAD_ATTACH)
+   {
+
+//      t_pteb = calloc(1,sizeof(TEB));
+
+   }
+   else if(dwReason == DLL_PROCESS_DETACH)
+   {
+
+//      free(t_pteb);
+
+   }
+
+   return 1;   // ok
+
+}
+
+/**
+* RtlInitAnsiString routine:
+* http://msdn.microsoft.com/en-us/library/windows/hardware/ff561918/
+*/
+
+VOID _RtlInitAnsiString(PANSI_STRING DestinationString,PCSZ SourceString)
+{
+   DestinationString->Buffer = (PCHAR)SourceString;
+
+   if(!SourceString)
+   {
+      DestinationString->Length = 0;
+      DestinationString->MaximumLength = 0;
+   }
+   else
+   {
+      USHORT length = (USHORT)strlen(SourceString);
+      DestinationString->Length = length;
+      DestinationString->MaximumLength = length + 1;
+   }
+}
+
+/**
+* RtlInitUnicodeString routine:
+* http://msdn.microsoft.com/en-us/library/windows/hardware/ff561934/
+*/
+
+VOID _RtlInitUnicodeString(PUNICODE_STRING DestinationString,PCWSTR SourceString)
+{
+   DestinationString->Buffer = (PWSTR)SourceString;
+
+   if(!SourceString)
+   {
+      DestinationString->Length = 0;
+      DestinationString->MaximumLength = 0;
+   }
+   else
+   {
+      USHORT length = (USHORT)_wcslen(SourceString);
+      DestinationString->Length = length * 2;
+      DestinationString->MaximumLength = (length + 1) * 2;
+   }
+}
+
+/**
+* RtlAnsiStringToUnicodeString function:
+* http://msdn.microsoft.com/en-us/library/ms648413/
+*/
+
+NTSTATUS _RtlAnsiStringToUnicodeString(PUNICODE_STRING DestinationString,
+   PCANSI_STRING SourceString,BOOLEAN AllocateDestinationString)
+{
+   int index;
+
+   if(!SourceString)
+   {
+      _RtlInitUnicodeString(DestinationString,NULL);
+      return 0;
+   }
+
+   if(AllocateDestinationString)
+   {
+      DestinationString->Length = SourceString->Length * 2;
+      DestinationString->MaximumLength = SourceString->MaximumLength * 2;
+
+      DestinationString->Buffer = (PWSTR)malloc(DestinationString->MaximumLength);
+      if(!DestinationString->Buffer)
+         return STATUS_NO_MEMORY;
+
+      for(index = 0; index < SourceString->MaximumLength; index++)
+      {
+         DestinationString->Buffer[index] = (WCHAR)SourceString->Buffer[index];
+      }
+   }
+   else
+   {
+
+   }
+
+   return 0;
+}
+
+/**
+* RtlFreeUnicodeString function:
+* http://msdn.microsoft.com/en-us/library/ms648418/
+*/
+
+VOID _RtlFreeUnicodeString(PUNICODE_STRING UnicodeString)
+{
+   if(UnicodeString)
+   {
+      free(UnicodeString->Buffer);
+
+      UnicodeString->Length = 0;
+      UnicodeString->MaximumLength = 0;
+   }
+}
+
+/**
+* RtlNtStatusToDosError function:
+* http://msdn.microsoft.com/en-us/library/windows/desktop/ms680600/
+*/
+#ifndef METROWIN
+ULONG _RtlNtStatusToDosError(NTSTATUS status)
+{
+   return status;
+}
+#endif
+/**
+* NtCreateFile function:
+* http://msdn.microsoft.com/en-us/library/bb432380/
+*/
+
+NTSTATUS _NtCreateFile(PHANDLE FileHandle,ACCESS_MASK DesiredAccess,
+   POBJECT_ATTRIBUTES ObjectAttributes,PIO_STATUS_BLOCK IoStatusBlock,
+   PLARGE_INTEGER AllocationSize,ULONG FileAttributes,ULONG ShareAccess,
+   ULONG CreateDisposition,ULONG CreateOptions,PVOID EaBuffer,ULONG EaLength)
+{
+   WINPR_FILE* pFileHandle;
+
+   pFileHandle = (WINPR_FILE*)calloc(1,sizeof(WINPR_FILE));
+   if(!pFileHandle)
+      return STATUS_NO_MEMORY;
+
+   pFileHandle->DesiredAccess = DesiredAccess;
+   pFileHandle->FileAttributes = FileAttributes;
+   pFileHandle->ShareAccess = ShareAccess;
+   pFileHandle->CreateDisposition = CreateDisposition;
+   pFileHandle->CreateOptions = CreateOptions;
+
+   *((PULONG_PTR)FileHandle) = (ULONG_PTR)pFileHandle;
+
+   //STATUS_ACCESS_DENIED
+   //STATUS_OBJECT_NAME_INVALID
+   //STATUS_OBJECT_PATH_NOT_FOUND
+   //STATUS_OBJECT_NAME_NOT_FOUND
+
+   return STATUS_SUCCESS;
+}
+
+/**
+* NtOpenFile function:
+* http://msdn.microsoft.com/en-us/library/bb432381/
+*/
+
+NTSTATUS _NtOpenFile(PHANDLE FileHandle,ACCESS_MASK DesiredAccess,
+   POBJECT_ATTRIBUTES ObjectAttributes,PIO_STATUS_BLOCK IoStatusBlock,
+   ULONG ShareAccess,ULONG OpenOptions)
+{
+   WINPR_FILE* pFileHandle;
+
+   pFileHandle = (WINPR_FILE*)calloc(1,sizeof(WINPR_FILE));
+
+   if(!pFileHandle)
+      return STATUS_NO_MEMORY;
+
+   pFileHandle->DesiredAccess = DesiredAccess;
+   pFileHandle->ShareAccess = ShareAccess;
+
+   *((PULONG_PTR)FileHandle) = (ULONG_PTR)pFileHandle;
+
+   return STATUS_SUCCESS;
+}
+
+/**
+* NtReadFile function:
+* http://msdn.microsoft.com/en-us/library/windows/hardware/ff567072/
+*/
+
+NTSTATUS _NtReadFile(HANDLE FileHandle,HANDLE Event,PIO_APC_ROUTINE ApcRoutine,PVOID ApcContext,
+   PIO_STATUS_BLOCK IoStatusBlock,PVOID Buffer,ULONG Length,PLARGE_INTEGER ByteOffset,PULONG Key)
+{
+   return STATUS_SUCCESS;
+}
+
+/**
+* NtWriteFile function:
+* http://msdn.microsoft.com/en-us/library/windows/hardware/ff567121/
+*/
+
+NTSTATUS _NtWriteFile(HANDLE FileHandle,HANDLE Event,PIO_APC_ROUTINE ApcRoutine,PVOID ApcContext,
+   PIO_STATUS_BLOCK IoStatusBlock,PVOID Buffer,ULONG Length,PLARGE_INTEGER ByteOffset,PULONG Key)
+{
+   return STATUS_SUCCESS;
+}
+
+/**
+* NtDeviceIoControlFile function:
+* http://msdn.microsoft.com/en-us/library/ms648411/
+*/
+
+NTSTATUS _NtDeviceIoControlFile(HANDLE FileHandle,HANDLE Event,
+   PIO_APC_ROUTINE ApcRoutine,PVOID ApcContext,PIO_STATUS_BLOCK IoStatusBlock,
+   ULONG IoControlCode,PVOID InputBuffer,ULONG InputBufferLength,
+   PVOID OutputBuffer,ULONG OutputBufferLength)
+{
+   return 0;
+}
+
+/**
+* NtClose function:
+* http://msdn.microsoft.com/en-us/library/ms648410/
+*/
+
+NTSTATUS _NtClose(HANDLE Handle)
+{
+   WINPR_FILE* pFileHandle;
+
+   if(!Handle)
+      return 0;
+
+   pFileHandle = (WINPR_FILE*)Handle;
+
+   free(pFileHandle);
+
+   return STATUS_SUCCESS;
+}
+
+/**
+* NtWaitForSingleObject function:
+* http://msdn.microsoft.com/en-us/library/ms648412/
+*/
+
+NTSTATUS _NtWaitForSingleObject(HANDLE Handle,BOOLEAN Alertable,PLARGE_INTEGER Timeout)
+{
+   return 0;
+}
+
 
 #else
 

@@ -220,7 +220,9 @@ void winpr_backtrace_free(void* buffer)
 
 void* winpr_backtrace(DWORD size)
 {
-#if defined(HAVE_EXECINFO_H)
+#if defined(METROWIN)
+   return NULL;
+#elif defined(HAVE_EXECINFO_H)
 	t_execinfo* data = calloc(1, sizeof(t_execinfo));
 
 	if (!data)
@@ -352,7 +354,7 @@ char** winpr_backtrace_symbols(void* buffer, size_t* used)
 
 		return (char**) lines;
 	}
-#elif defined(_WIN32) || defined(_WIN64)
+#elif (defined(_WIN32) || defined(_WIN64)) && !defined(METROWIN)
 	{
 		size_t i;
 		size_t line_len = 1024;

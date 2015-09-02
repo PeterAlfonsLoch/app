@@ -147,7 +147,18 @@ static char* GetPath_XDG_CONFIG_HOME(void)
 {
 	char* path = NULL;
 
-#if defined(WIN32)
+#ifdef METROWIN
+   
+   path = calloc(MAX_PATH,sizeof(char));
+   
+   if(!path)
+      return NULL;
+   
+   strcpy(path,"");
+   
+   return path;
+
+#elif defined(WIN32)
 	path = calloc(MAX_PATH, sizeof(char));
 	if (!path)
 		return NULL;
@@ -245,7 +256,18 @@ static char* GetPath_XDG_CACHE_HOME(void)
 char* GetPath_XDG_RUNTIME_DIR(void)
 {
 	char* path = NULL;
-#if defined(WIN32)
+#if defined(METROWIN)
+   
+   path = calloc(MAX_PATH,sizeof(char));
+   
+   if(!path)
+      return NULL;
+
+   strcpy(path,"appdata");
+
+   return path;
+
+#elif defined(WIN32)
 	path = calloc(MAX_PATH, sizeof(char));
 	if (!path)
 		return NULL;

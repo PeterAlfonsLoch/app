@@ -162,7 +162,9 @@ typedef ULONG_PTR DWORD_PTR, *PDWORD_PTR;
 typedef ULONG_PTR SIZE_T;
 typedef unsigned int ULONG32;
 typedef unsigned __int64 ULONG64;
+#ifndef METROWIN
 typedef wchar_t UNICODE;
+#endif
 typedef unsigned short USHORT;
 #define VOID void
 typedef void *PVOID, *LPVOID;

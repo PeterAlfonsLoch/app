@@ -36,9 +36,11 @@
 
 #endif
 
-#ifndef _WIN32
+#if !defined(_WIN32) || defined(METROWIN)
 
+#undef SEC_ENTRY
 #ifndef SEC_ENTRY
+
 #define SEC_ENTRY
 #endif
 
@@ -252,7 +254,7 @@ typedef SecPkgInfoW* PSecPkgInfoW;
 #define SECPKG_ATTR_NEGO_STATUS				32
 #define SECPKG_ATTR_CONTEXT_DELETED			33
 
-#ifndef _WIN32
+#if !defined(_WIN32) || defined(METROWIN)
 
 struct _SecPkgContext_AccessToken
 {
@@ -579,8 +581,9 @@ typedef SecPkgCredentials_NamesW* PSecPkgCredentials_NamesW;
 #define SEC_WINNT_AUTH_IDENTITY_ANSI		0x1
 #define SEC_WINNT_AUTH_IDENTITY_UNICODE		0x2
 
-#ifndef _WIN32
+#if !defined(_WIN32) || defined(METROWIN)
 
+#ifndef METROWIN
 typedef struct _SEC_WINNT_AUTH_IDENTITY_W
 {
 	UINT16* User;
@@ -602,7 +605,6 @@ typedef struct _SEC_WINNT_AUTH_IDENTITY_A
 	UINT32 PasswordLength;
 	UINT32 Flags;
 } SEC_WINNT_AUTH_IDENTITY_A,*PSEC_WINNT_AUTH_IDENTITY_A;
-
 struct _SEC_WINNT_AUTH_IDENTITY
 {
 	UINT16* User;
@@ -613,6 +615,7 @@ struct _SEC_WINNT_AUTH_IDENTITY
 	UINT32 PasswordLength;
 	UINT32 Flags;
 };
+#endif
 typedef struct _SEC_WINNT_AUTH_IDENTITY SEC_WINNT_AUTH_IDENTITY;
 
 struct _SecHandle
@@ -665,7 +668,7 @@ typedef CtxtHandle* PCtxtHandle;
 #define SECBUFFER_READONLY_WITH_CHECKSUM	0x10000000
 #define SECBUFFER_RESERVED			0x60000000
 
-#ifndef _WIN32
+#if !defined(_WIN32) || defined(METROWIN)
 
 struct _SecBuffer
 {

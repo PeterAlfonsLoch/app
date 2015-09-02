@@ -265,7 +265,7 @@ RFX_CONTEXT* rfx_context_new(BOOL encoder)
 	if (!priv->BufferPool)
 		goto error_BufferPool;
 
-#ifdef _WIN32
+#if defined(_WIN32) && !defined(METROWIN)
 	{
 		BOOL isVistaOrLater;
 

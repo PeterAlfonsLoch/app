@@ -62,7 +62,9 @@
 #include <openssl/bio.h>
 
 #ifndef OPENSSL_NO_SOCK
-
+#ifdef METROWIN
+#    define INVALID_SOCKET	(-1)
+#endif
 #ifdef OPENSSL_SYS_WIN16
 #define SOCKET_PROTOCOL 0 /* more microsoft stupidity */
 #else

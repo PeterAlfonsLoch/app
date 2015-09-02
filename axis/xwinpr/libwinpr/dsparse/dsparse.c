@@ -43,7 +43,7 @@
  * DsUnquoteRdnValueW
  */
 
-#ifndef _WIN32
+#if !defined(_WIN32) || defined(METROWIN)
 
 DWORD DsCrackSpnW(LPCWSTR pszSpn, DWORD* pcServiceClass, LPWSTR ServiceClass, DWORD* pcServiceName,
 		LPWSTR ServiceName, DWORD* pcInstanceName, LPWSTR InstanceName, USHORT* pInstancePort)
