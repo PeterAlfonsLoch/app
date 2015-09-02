@@ -111,9 +111,6 @@
     <ProjectReference Include="..\freerdp\m_axisfreerdp.vcxproj">
       <Project>{ddf4b751-19b3-44c2-a32b-d38f02ab458b}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\winpr\m_axiswinpr.vcxproj">
-      <Project>{7d711787-c992-4087-85aa-349c64755f53}</Project>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{EE2BF4B2-E0E7-4133-92E0-F433C1F4EBAC}</ProjectGuid>
