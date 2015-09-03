@@ -988,6 +988,26 @@ namespace crypto
    }
 
 
+   sp(rsa) crypto::read_priv_pem(const string & strFile)
+   {
+      FILE * f = fopen(strFile,"rb");
+      sp(::crypto::rsa) rsa = canew(::crypto::rsa(get_app()));
+      RSA * & prsa = rsa->m_prsa;
+      PEM_read_RSAPrivateKey(f,&prsa,NULL,NULL);
+      fclose(f);
+      return rsa;
+   }
+
+   sp(rsa) crypto::read_pub_pem(const string & strFile)
+   {
+      FILE * f = fopen(strFile,"rb");
+      sp(::crypto::rsa) rsa = canew(::crypto::rsa(get_app()));
+      RSA * & prsa = rsa->m_prsa;
+      PEM_read_RSAPublicKey(f,&prsa,NULL,NULL);
+      fclose(f);
+      return rsa;
+   }
+
 
 
 #else
@@ -1589,6 +1609,33 @@ out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEn
       string strError;
 
       int i = prsa->private_decrypt(memory,memIn,strError);
+
+      if(i < 0 || i >(1024 * 1024))
+      {
+
+         TRACE0(strError);
+
+      }
+
+      return memory.to_hex();
+
+   }
+   string crypto::spa_auth_decrypt(const char * psz,rsa * prsa)
+   {
+
+      primitive::memory memory;
+
+      primitive::memory memIn;
+
+      memIn.from_hex(psz);
+
+      memory.allocate(2048);
+
+      memory.set(0);
+
+      string strError;
+
+      int i = prsa->public_decrypt(memory,memIn,strError);
 
       if(i < 0 || i >(1024 * 1024))
       {

@@ -77,6 +77,10 @@ namespace crypto
 
       virtual sp(rsa) generate_rsa_key();
 
+      virtual sp(rsa) read_priv_pem(const string & strFile);
+
+      virtual sp(rsa) read_pub_pem(const string & strFile);
+
 
       virtual void err_load_rsa_strings();
 
@@ -99,6 +103,7 @@ namespace crypto
       virtual string spa_login_decrypt(const char * psz,const string & pszRsa);
 
       virtual string spa_auth_crypt(const char * psz,rsa * prsa);
+      virtual string spa_auth_decrypt(const char * psz,rsa * prsa);
       virtual string spa_auth_decrypt(const char * psz,const string & pszRsa);
 
 
