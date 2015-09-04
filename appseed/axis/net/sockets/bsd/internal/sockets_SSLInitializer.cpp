@@ -28,6 +28,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <openssl/ssl.h>
 #include <openssl/crypto.h>
 #include <openssl/rand.h>
+#include <openssl/engine.h>
 
 #if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 
@@ -101,6 +102,22 @@ namespace sockets
       OpenSSL_add_all_algorithms();
       CRYPTO_set_locking_callback(SSLInitializer_SSL_locking_function);
       CRYPTO_set_id_callback(SSLInitializer_SSL_id_function);
+
+      ENGINE_load_openssl();
+      ENGINE_load_dynamic();
+#ifndef OPENSSL_NO_STATIC_ENGINE
+      //ENGINE_load_4758cca();
+      //ENGINE_load_aep();
+      //ENGINE_load_atalla();
+      //ENGINE_load_chil();
+      //ENGINE_load_cswift();
+      ////ENGINE_load_gmp();
+      //ENGINE_load_nuron();
+      //ENGINE_load_sureware();
+      //ENGINE_load_ubsec();
+#endif
+      ENGINE_load_cryptodev();
+      ENGINE_load_builtin_engines();
 
 
       /* Ignore broken pipes which would cause our program to terminate
