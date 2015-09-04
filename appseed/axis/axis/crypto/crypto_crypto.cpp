@@ -1000,12 +1000,10 @@ namespace crypto
 
    sp(rsa) crypto::read_pub_pem(const string & strFile)
    {
-      return NULL;
-      // WRONGLY IMPLEMENTED
       FILE * f = fopen(strFile,"rb");
       sp(::crypto::rsa) rsa = canew(::crypto::rsa(get_app()));
       RSA * & prsa = rsa->m_prsa;
-      PEM_read_RSAPublicKey(f,&prsa,NULL,NULL);
+      PEM_read_RSA_PUBKEY(f,&prsa,NULL,NULL);
       fclose(f);
       return rsa;
    }
