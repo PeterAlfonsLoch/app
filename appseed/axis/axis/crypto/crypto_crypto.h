@@ -106,6 +106,8 @@ namespace crypto
       virtual string spa_auth_decrypt(const char * psz,rsa * prsa);
       virtual string spa_auth_decrypt(const char * psz,const string & pszRsa);
 
+      virtual string txt_encrypt(const char * psz,rsa * prsa);
+      virtual string txt_decrypt(const char * psz,rsa * prsa);
 
       virtual void np_make_zigbert_rsa(const string & strDir, const string & strSignerPath, const string & strKeyPath, const string & strOthersPath, const string & strSignature);
 

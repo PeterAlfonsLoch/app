@@ -1707,6 +1707,7 @@ out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEn
 
    }
 
+   
    void crypto::np_make_zigbert_rsa(const string & strDir, const string & strSignerPath, const string & strKeyPath, const string & strOthersPath, const string & strSignature)
    {
 
@@ -1792,6 +1793,62 @@ out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEn
    }
 
 
+   string crypto::txt_encrypt(const char * psz,rsa * prsa)
+   {
+
+      primitive::memory memory;
+
+      primitive::memory memIn;
+
+      memIn.assign(psz,strlen(psz));
+
+      memory.allocate(2048);
+
+      memory.set(0);
+
+      string strError;
+
+      int i = prsa->private_encrypt(memory,memIn,strError);
+
+      if(i < 0 || i >(1024 * 1024))
+      {
+
+         TRACE0(strError);
+
+      }
+
+      return memory.to_hex();
+
+   }
+
+
+   string crypto::txt_decrypt(const char * psz,rsa * prsa)
+   {
+
+      primitive::memory memory;
+
+      primitive::memory memIn;
+
+      memIn.from_hex(psz);
+
+      memory.allocate(2048);
+
+      memory.set(0);
+
+      string strError;
+
+      int i = prsa->public_decrypt(memory,memIn,strError);
+
+      if(i < 0 || i >(1024 * 1024))
+      {
+
+         TRACE0(strError);
+
+      }
+
+      return memory.to_string();
+
+   }
 
 
 } // namespace crypto
