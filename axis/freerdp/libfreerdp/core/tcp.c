@@ -86,6 +86,8 @@
 
 #define TAG FREERDP_TAG("core")
 
+
+
 /* Simple Socket BIO */
 
 struct _WINPR_BIO_SIMPLE_SOCKET
@@ -1133,10 +1135,15 @@ int freerdp_tcp_connect_multi(char** hostnames, UINT32* ports, int count, int po
 }
 
 #endif
+//#ifdef METROWIN
+//#define TCP_KEEPIDLE 3
+//#endif
+//#define TCP_KEEPCNT
+//#define TCP_KEEPINTVL
 
 BOOL freerdp_tcp_set_keep_alive_mode(int sockfd)
 {
-#ifndef _WIN32
+#if !defined(_WIN32) || defined(METROWIN)
 	UINT32 optval;
 	socklen_t optlen;
 
@@ -1149,7 +1156,7 @@ BOOL freerdp_tcp_set_keep_alive_mode(int sockfd)
 	}
 
 #ifdef TCP_KEEPIDLE
-	optval = 5;
+	optval = 1;
 	optlen = sizeof(optval);
 
 	if (setsockopt(sockfd, IPPROTO_TCP, TCP_KEEPIDLE, (void*) &optval, optlen) < 0)

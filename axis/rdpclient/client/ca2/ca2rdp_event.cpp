@@ -18,12 +18,26 @@
  */
 #include "ca2rdp_event.h"
 
+
 #include <winpr/crt.h>
 #include <winpr/input.h>
 
 #include <freerdp/locale/keyboard.h>
 
+CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_mouse_button_event(rdpInput* input,UINT uiMessage,POINT pt);
+CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_keyboard_event(rdpInput* input,BOOL down,UINT scancode);
 
+CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_event(rdpInput* input,BOOL bKey,BOOL down,UINT scancode,UINT uiMessage,POINT pt)
+{
+   if(bKey)
+   {
+      ca2rdp_send_keyboard_event(input,down,scancode);
+   }
+   else
+   {
+      ca2rdp_send_mouse_button_event(input,uiMessage, pt);
+   }
+}
 //static BYTE keymap[256];
 //static BYTE functionmap[128];
 //

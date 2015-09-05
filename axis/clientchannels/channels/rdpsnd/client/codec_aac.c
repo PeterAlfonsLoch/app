@@ -248,7 +248,11 @@ int audio_decode_example2(AAC_CONTEXT* h264,void ** pout,const void * inbuf,int 
       //int ret = av_samples_alloc_array_and_samples(pout,&dst_linesize,sys->c->channels,
       // sys->decoded_frame->nb_samples * 2,AV_SAMPLE_FMT_S16,0);
 
+#ifdef METROWIN
+      *pout = _aligned_malloc(data_size * 2, 4096);
+#else
       *pout = malloc(data_size * 2);
+#endif
       //int b = ret == EAGAIN;
       if(*pout != NULL)
       {

@@ -4339,98 +4339,147 @@ namespace user
 
    ::user::interaction * interaction::first_sibling()
    {
+      try
+      {
+   
+         if(GetParent() == NULL)
+            return NULL;
 
-      single_lock sl(m_pmutex,TRUE);
+         return GetParent()->first_child();
 
-      if(GetParent() == NULL)
-         return NULL;
-
-      return GetParent()->first_child();
+      }
+      catch(...)
+      {
+      }
+      return NULL;
 
    }
 
 
    ::user::interaction * interaction::next_sibling()
    {
-      single_lock sl(m_pmutex,TRUE);
-      ::user::interaction * pui = NULL;
       try
       {
-         pui = GetParent();
+
+         ::user::interaction * pui = NULL;
+         try
+         {
+            pui = GetParent();
+         }
+         catch(...)
+         {
+            return NULL;
+         }
+         if(pui == NULL)
+            return NULL;
+         index i = pui->m_uiptraChild.find_first(this);
+         if(i < 0)
+            return NULL;
+         i++;
+         if(i >= pui->m_uiptraChild.get_count())
+            return NULL;
+         else
+            return pui->m_uiptraChild[i];
+
       }
       catch(...)
       {
-         return NULL;
       }
-      if(pui == NULL)
-         return NULL;
-      index i = pui->m_uiptraChild.find_first(this);
-      if(i < 0)
-         return NULL;
-      i++;
-      if(i >= pui->m_uiptraChild.get_count())
-         return NULL;
-      else
-         return pui->m_uiptraChild[i];
+      return NULL;
+
+
    }
 
    ::user::interaction * interaction::next_sibling(::user::interaction * pui)
    {
-      single_lock sl(m_pmutex,TRUE);
-      index i = m_uiptraChild.find_first(pui);
-      if(i < 0)
-         return NULL;
-      i++;
-   restart:
-      if(i >= m_uiptraChild.get_count())
-         return NULL;
-      else
+
+      try
       {
-         try
+
+         index i = m_uiptraChild.find_first(pui);
+         if(i < 0)
+            return NULL;
+         i++;
+      restart:
+         if(i >= m_uiptraChild.get_count())
+            return NULL;
+         else
          {
-            return m_uiptraChild[i];
-         }
-         catch(...)
-         {
-            m_uiptraChild.remove_at(i);
-            goto restart;
+            try
+            {
+               return m_uiptraChild[i];
+            }
+            catch(...)
+            {
+               m_uiptraChild.remove_at(i);
+               goto restart;
+            }
          }
       }
+      catch(...)
+      {
+
+      }
+
+      return NULL;
+
    }
 
    ::user::interaction * interaction::previous_sibling()
    {
-      single_lock sl(m_pmutex,TRUE);
-      ::user::interaction * pui = NULL;
+      
       try
       {
-         pui = GetParent();
+
+         ::user::interaction * pui = NULL;
+         try
+         {
+            pui = GetParent();
+         }
+         catch(...)
+         {
+            return NULL;
+         }
+         if(pui == NULL)
+            return NULL;
+         index i = pui->m_uiptraChild.find_first(this);
+         if(i < 0)
+            return NULL;
+         i--;
+         if(i < 0)
+            return NULL;
+         else
+            return pui->m_uiptraChild[i];
+
       }
       catch(...)
       {
-         return NULL;
+
       }
-      if(pui == NULL)
-         return NULL;
-      index i = pui->m_uiptraChild.find_first(this);
-      if(i < 0)
-         return NULL;
-      i--;
-      if(i < 0)
-         return NULL;
-      else
-         return pui->m_uiptraChild[i];
+
+      return NULL;
+
    }
 
    ::user::interaction * interaction::last_sibling()
    {
 
-      single_lock sl(m_pmutex,TRUE);
+      try
+      {
+         
+         if(GetParent() == NULL)
+            return NULL;
 
-      if(GetParent() == NULL)
-         return NULL;
+         return GetParent()->last_child();
 
-      return GetParent()->last_child();
+      }
+      catch(...)
+      {
+
+      }
+
+      return NULL;
+
 
    }
 

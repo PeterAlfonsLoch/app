@@ -754,9 +754,13 @@ static void CALLBACK rdpsnd_xaudio_callback_function(HWAVEOUT hwo, UINT uMsg, DW
             //   }
             //}
             //else
+#ifdef METROWIN
+            _aligned_free(lpWaveHdr->lpData);
+#else
             {
                free(lpWaveHdr->lpData);
             }
+#endif
 
 				free(wave);
 			}
@@ -974,6 +978,7 @@ void rdpsnd_xaudio_wave_play(rdpsndDevicePlugin* device, RDPSND_WAVE* wave)
 	if (mmResult != MMSYSERR_NOERROR)
 	{
 		WLog_ERR(TAG,  "waveOutWrite failure: %d", mmResult);
+      _aligned_free(data);
 //		waveOutUnprepareHeader(xaudio->hWaveOut, lpWaveHdr, sizeof(WAVEHDR));
 		return;
 	}
@@ -1025,3 +1030,4 @@ int freerdp_rdpsnd_client_subsystem_entry(PFREERDP_RDPSND_DEVICE_ENTRY_POINTS pE
 
 	return 0;
 }
+

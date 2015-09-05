@@ -50,18 +50,20 @@ typedef struct wavehdr_tag {
 
 xaudio_wave_out::xaudio_wave_out()
 {
-
+   m_pcallback          = NULL;
+   m_instance           = 0;
    m_pxaudio            = NULL;
    m_pvoice             = NULL;
    m_psourcevoice       = NULL;
    m_iBufferedCount     = 0;
    m_estate             = state_initial;
    m_mmr = 0;
+   hsem = CreateSemaphore(NULL,64,64,NULL);
 }
 
 xaudio_wave_out::~xaudio_wave_out()
 {
-
+   ::CloseHandle(hsem);
 }
 
 
@@ -497,9 +499,11 @@ void xaudio_wave_out::OnBufferStart(void* pBufferContext)
 
 void xaudio_wave_out::OnBufferEnd(void* pBufferContext)
 {
-   ::xaudio_wave_out * ho = (::xaudio_wave_out *)pBufferContext;
+   ::LPWAVEHDR phdr = (::LPWAVEHDR)pBufferContext;
+   m_iBufferedCount--;
+   ReleaseSemaphore(hsem, 1, NULL);
 
-   (*ho->m_pcallback)(ho,MM_WOM_DONE,(DWORD_PTR) ho,(DWORD_PTR)pBufferContext,0);
+   (*m_pcallback)((HWAVEOUT) this,MM_WOM_DONE,m_instance,(DWORD_PTR)pBufferContext,0);
 
 }
 
@@ -545,16 +549,40 @@ extern "C"
          XAUDIO2_BUFFER b;
          memset(&b, 0, sizeof(b));
          b.pContext = pwh;
-         b.AudioBytes = pwh->dwBytesRecorded;
+         b.AudioBytes = pwh->dwBufferLength;
          b.pAudioData = (const BYTE *)pwh->lpData;
       
       
-      
-      
-         int mmr = SUCCEEDED(hwo->m_psourcevoice->SubmitSourceBuffer(&b)) ? MMSYSERR_NOERROR : MMSYSERR_ERROR;
+         if(hwo->m_estate != xaudio_wave_out::state_playing)
+         {
+            hwo->wave_out_start();
+            
 
-         return mmr;
+         }
 
+         WaitForSingleObject(hwo->hsem,INFINITE);
+         try
+         {
+
+            if(hwo->m_iBufferedCount < 64)
+            {
+
+               hwo->m_iBufferedCount++;
+
+               int mmr = SUCCEEDED(hwo->m_psourcevoice->SubmitSourceBuffer(&b)) ? MMSYSERR_NOERROR : MMSYSERR_ERROR;
+
+
+            }
+            else
+            {
+            }
+         }
+         catch(...)
+         {
+         }
+
+
+      return MMSYSERR_NOERROR;
    }
 
    MMRESULT waveOutReset(HWAVEOUT h)
@@ -566,5 +594,7 @@ extern "C"
       return h->wave_out_close();
    }
 
-
 } // extern "C"
+
+
+

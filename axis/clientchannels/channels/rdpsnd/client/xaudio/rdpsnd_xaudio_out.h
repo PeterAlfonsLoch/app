@@ -53,8 +53,8 @@ __declspec(dllimport) unsigned int  get_tick_count();
 typedef struct xaudio_wave_out * HWAVEOUT;
 typedef HWAVEOUT * LPHWAVEOUT;
 
-
-typedef void xaudio_callback_function(HWAVEOUT hwo,UINT uMsg,DWORD_PTR dwInstance,DWORD_PTR dwParam1,DWORD_PTR dwParam2);
+extern "C"
+typedef void  CALLBACK xaudio_callback_function(HWAVEOUT hwo,UINT uMsg,DWORD_PTR dwInstance,DWORD_PTR dwParam1,DWORD_PTR dwParam2);
 typedef xaudio_callback_function *  pfn_xaudio_callback_function;
 
 struct xaudio_wave_out:
@@ -80,6 +80,8 @@ public:
    //{
    //CloseHandle(streamEndEventHandle);
    //}
+
+   HANDLE hsem;
 
    // Called when the voice has just finished playing a contiguous audio stream.
    STDMETHOD_(void,OnStreamEnd())

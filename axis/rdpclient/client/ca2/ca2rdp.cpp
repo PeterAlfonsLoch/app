@@ -73,7 +73,7 @@ BOOL ca2rdp_end_paint(rdpContext* context)
 	if (gdi->primary->hdc->hwnd->invalid->null)
 		return 1;
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 	ca2rdpi->update_rect.left = gdi->primary->hdc->hwnd->invalid->x;
 	ca2rdpi->update_rect.top = gdi->primary->hdc->hwnd->invalid->y;
    ca2rdpi->update_rect.right = gdi->primary->hdc->hwnd->invalid->x+gdi->primary->hdc->hwnd->invalid->w;

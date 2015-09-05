@@ -19,10 +19,27 @@
 
 #ifndef __DF_EVENT_H
 #define __DF_EVENT_H
-
+#include "axis/rdpclient/client/common/rdpclient.h"
 #include "ca2rdp.h"
 
-CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_mouse_button_event(rdpInput* input,UINT uiMessage,POINT pt);
-CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_keyboard_event(rdpInput* input,BOOL down,UINT scancode);
+
+
+struct CLASS_DECL_AXIS_RDPCLIENT rdp_event_item
+{
+
+   rdpInput * input;
+   BOOL bKey;
+   BOOL down;
+   UINT scancode;
+   UINT uiMessage;
+   POINT pt;
+   void send();
+};
+CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_queue_event(rdpInput* input,BOOL bKey, BOOL down, UINT scancode, UINT uiMessage,POINT pt);
+CLASS_DECL_AXIS_RDPCLIENT bool  ca2rdp_get_event(rdp_event_item & item,rdpInput* input);
+CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_event(rdpInput* input,BOOL bKey,BOOL down,UINT scancode,UINT uiMessage,POINT pt);
+
+//CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_mouse_button_event(rdpInput* input,UINT uiMessage,POINT pt);
+//CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_keyboard_event(rdpInput* input,BOOL down,UINT scancode);
 
 #endif /* __DF_EVENT_H */

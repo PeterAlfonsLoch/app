@@ -119,6 +119,9 @@
     <ClCompile Include="client\ca2\ca2rdp_graphics.cpp">
       <Filter>Source Files\client\ca2</Filter>
     </ClCompile>
+    <ClCompile Include="client\ca2\ca2rdp_event_queue.cpp">
+      <Filter>Source Files\client\ca2</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="axisrdpclient.def">
