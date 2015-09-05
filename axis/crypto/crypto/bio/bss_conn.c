@@ -59,6 +59,10 @@
 #include <stdio.h>
 #include <errno.h>
 #include "cryptlib.h"
+#ifdef METROWIN
+#include <winsock.h>
+#include <winsock2.h>
+#endif
 #include <openssl/bio.h>
 
 #ifndef OPENSSL_NO_SOCK

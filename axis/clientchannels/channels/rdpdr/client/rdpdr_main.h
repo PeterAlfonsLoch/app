@@ -60,7 +60,7 @@ struct rdpdr_plugin
 
 	/* hotplug support */
 	HANDLE hotplugThread;
-#ifdef _WIN32
+#if defined(_WIN32) && !defined(METROWIN)
 	HWND hotplug_wnd;
 #else
 	HANDLE stopEvent;

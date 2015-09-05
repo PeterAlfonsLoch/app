@@ -20,11 +20,8 @@
 
 #ifdef METROWIN
 
-   string buf;
+   str = ::file::path(::file::path(::Windows::Storage::ApplicationData::Current->LocalFolder->Path));
 
-   buf = "C:\\ProgramData";
-   
-   str = ::file::path(buf) /  "ca2";
    
    //memory_free_dbg(buf, 0);
 

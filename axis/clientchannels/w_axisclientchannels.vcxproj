@@ -52,6 +52,7 @@
     <ClInclude Include="channels\rdpgfx\client\rdpgfx_main.h" />
     <ClInclude Include="channels\rdpsnd\client\codec_aac.h" />
     <ClInclude Include="channels\rdpsnd\client\rdpsnd_main.h" />
+    <ClInclude Include="channels\rdpsnd\client\xaudio\rdpsnd_xaudio_out.h" />
     <ClInclude Include="channels\smartcard\client\smartcard_main.h" />
     <ClInclude Include="channels\tsmf\client\tsmf_audio.h" />
     <ClInclude Include="channels\tsmf\client\tsmf_codec.h" />
@@ -65,19 +66,37 @@
   <ItemGroup>
     <ClCompile Include="channels\audin\client\audin_main.c" />
     <ClCompile Include="channels\client\addin.c" />
-    <ClCompile Include="channels\client\tables.c" />
+    <ClCompile Include="channels\client\table_metrowin.c" />
     <ClCompile Include="channels\cliprdr\client\cliprdr_format.c" />
     <ClCompile Include="channels\cliprdr\client\cliprdr_main.c" />
     <ClCompile Include="channels\disp\client\disp_main.c" />
     <ClCompile Include="channels\drdynvc\client\drdynvc_main.c" />
     <ClCompile Include="channels\drive\client\drive_file.c" />
     <ClCompile Include="channels\drive\client\drive_main.c" />
-    <ClCompile Include="channels\drive\client\statvfs.c" />
+    <ClCompile Include="channels\drive\client\statvfs.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="channels\echo\client\echo_main.c" />
     <ClCompile Include="channels\encomsp\client\encomsp_main.c" />
-    <ClCompile Include="channels\parallel\client\parallel_main.c" />
-    <ClCompile Include="channels\printer\client\printer_main.c" />
-    <ClCompile Include="channels\printer\client\printer_win.c" />
+    <ClCompile Include="channels\parallel\client\parallel_main.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="channels\printer\client\printer_main.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="channels\printer\client\printer_win.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="channels\rail\client\rail_main.c" />
     <ClCompile Include="channels\rail\client\rail_orders.c" />
     <ClCompile Include="channels\rail\rail_common.c" />
@@ -92,7 +111,8 @@
     <ClCompile Include="channels\rdpgfx\client\rdpgfx_main.c" />
     <ClCompile Include="channels\rdpsnd\client\codec_aac.c" />
     <ClCompile Include="channels\rdpsnd\client\rdpsnd_main.c" />
-    <ClCompile Include="channels\rdpsnd\client\winmm\rdpsnd_winmm.c" />
+    <ClCompile Include="channels\rdpsnd\client\xaudio\rdpsnd_xaudio.c" />
+    <ClCompile Include="channels\rdpsnd\client\xaudio\rdpsnd_xaudio_out.cpp" />
     <ClCompile Include="channels\remdesk\client\remdesk_main.c" />
     <ClCompile Include="channels\serial\client\serial_main.c" />
     <ClCompile Include="channels\smartcard\client\smartcard_main.c" />
@@ -163,6 +183,12 @@
     <None Include="axisclientchannels.def" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\appseed\aura\w_aura.vcxproj">
+      <Project>{b3e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\appseed\axis\w_axis.vcxproj">
+      <Project>{b3a245f9-c92f-4487-aef7-cb0531f665bd}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\freerdp\w_axisfreerdp.vcxproj">
       <Project>{79f645cf-2646-4b5c-9c3a-e300c6e84964}</Project>
     </ProjectReference>
@@ -245,8 +271,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
     <GenerateManifest>false</GenerateManifest>
     <IgnoreImportLibrary>false</IgnoreImportLibrary>
-    <OutDir>$(SolutionDir)..\..\..\stage\$(SolutionName)\$(PlatformName)\$(MSBuildProjectName)\</OutDir>
-    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(SolutionName)\$(PlatformName)\$(MSBuildProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)..\..\..\time\$(SolutionName)\$(ConfigurationName)\$(PlatformName)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\$(SolutionName)\$(ConfigurationName)\$(PlatformName)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
     <GenerateManifest>false</GenerateManifest>
@@ -292,10 +318,11 @@
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <AdditionalLibraryDirectories>$(OutDir);$(IntDir);$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../time/library/$(PlatformName)/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(ConfigurationName);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>swresample.lib;avutil.lib;avformat.lib;avcodec.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">

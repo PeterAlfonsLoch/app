@@ -713,7 +713,15 @@ bool dir::mk(const ::file::path & lpcsz)
    {
       tmp = url.substr(oldpos + 1, pos - oldpos -1 );
       dir += tmp + "\\";
-      wstring wstr(unc + dir);
+      wstring wstr;
+      if(is_absolute_path(dir))
+      {
+         wstr = unc + dir;
+      }
+      else
+      {
+         wstr = dir;
+      }
       uint32_t dw = ::GetFileAttributesW(wstr);
       if(dw == INVALID_FILE_ATTRIBUTES)
       {

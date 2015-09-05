@@ -159,6 +159,14 @@ DWORD GetEnvironmentVariableA(LPCSTR lpName, LPSTR lpBuffer, DWORD nSize)
 		return 0;
 	}
 
+#ifdef METROWIN
+   if(!*env)
+   {
+      SetLastError(ERROR_ENVVAR_NOT_FOUND);
+      return 0;
+   }
+#endif
+
 	length = strlen(env);
 
 	if ((length + 1 > nSize) || (!lpBuffer))

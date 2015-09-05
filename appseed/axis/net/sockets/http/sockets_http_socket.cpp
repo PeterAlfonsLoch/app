@@ -478,13 +478,23 @@ namespace sockets
       ::str::parse pa(url_in,"/");
       protocol = pa.getword(); // http
       protocol.trim(":");
-      if (!stricmp_dup(protocol, "https"))
+      if(!stricmp_dup(protocol,"https"))
       {
-   #ifdef HAVE_OPENSSL
+
+#ifdef HAVE_OPENSSL
+
          EnableSSL();
-   #else
-         log("url_this", -1, "SSL not available", ::aura::log::level_warning);
+
+#else
+
+   #ifndef METROWIN
+
+
+         log("url_this",-1,"SSL not available",::aura::log::level_warning);
+
    #endif
+
+#endif
          port = 443;
       }
       else

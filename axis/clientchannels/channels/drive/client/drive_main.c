@@ -694,7 +694,7 @@ int DeviceServiceEntry(PDEVICE_SERVICE_ENTRY_POINTS pEntryPoints)
 
 	drive = (RDPDR_DRIVE*) pEntryPoints->device;
 
-#ifndef WIN32
+#if !defined(WIN32) || defined(METROWIN)
 
 	sys_code_page = CP_UTF8;
 	if (strcmp(drive->Path, "*") == 0)

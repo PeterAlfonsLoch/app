@@ -7,7 +7,7 @@
 #include <openssl/whrlpool.h>
 
 
-#ifdef OPENSSL_CRYPTO
+#if defined(OPENSSL_CRYPTO) || defined(METROWIN)
 
 #include <openssl/rsa.h>
 #include <openssl/md5.h>
@@ -16,10 +16,11 @@
 #include <openssl/err.h>
 #include <openssl/crypto.h>
 #include <openssl/hmac.h>
+#include <openssl/pem.h>
 
 #endif
 
-#ifdef HAVE_OPENSSL
+#ifdef HAVE_OPENSSL || defined(METROWIN)
 
 #include <openssl/ssl.h>
 

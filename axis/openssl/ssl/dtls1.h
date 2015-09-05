@@ -70,7 +70,10 @@
 #ifdef OPENSSL_SYS_WIN32
 /* Needed for struct timeval */
 #include <windows.h>
-//#include <winsock2.h>
+#ifdef METROWIN
+#include <winsock.h>
+#include <winsock2.h>
+#endif
 #elif defined(OPENSSL_SYS_NETWARE) && !defined(_WINSOCK2API_)
 #include <sys/timeval.h>
 #else

@@ -83,7 +83,7 @@ static void rdpdr_send_device_list_remove_request(rdpdrPlugin* rdpdr, UINT32 cou
 	rdpdr_send(rdpdr, s);
 }
 
-#ifdef _WIN32
+#if defined(_WIN32) && !defined(METROWIN)
 
 LRESULT CALLBACK hotplug_proc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
 {
@@ -243,7 +243,9 @@ static void drive_hotplug_thread_terminate(rdpdrPlugin* rdpdr)
 }
 
 #else
-
+#ifdef METROWIN
+#define strdup _strdup
+#endif
 #define MAX_USB_DEVICES 100
 
 typedef struct _hotplug_dev {
@@ -438,6 +440,14 @@ static void handle_hotplug(rdpdrPlugin* rdpdr)
 
 static void* drive_hotplug_thread_func(void* arg)
 {
+
+#ifdef METROWIN
+
+   return NULL;
+
+#else
+
+
 	rdpdrPlugin* rdpdr;
 	int mfd;
 	fd_set rfds;
@@ -481,6 +491,8 @@ static void* drive_hotplug_thread_func(void* arg)
 	}
 
 	return NULL;
+
+#endif
 }
 
 static void drive_hotplug_thread_terminate(rdpdrPlugin* rdpdr)
@@ -495,7 +507,7 @@ static void drive_hotplug_thread_terminate(rdpdrPlugin* rdpdr)
 	}
 }
 
-#endif
+
 
 
 static void rdpdr_process_connect(rdpdrPlugin* rdpdr)
@@ -1116,4 +1128,7 @@ BOOL VCAPITYPE VirtualChannelEntry(PCHANNEL_ENTRY_POINTS pEntryPoints)
 	}
 
 	return rdpdr_add_init_handle_data(rdpdr->InitHandle, (void*) rdpdr);
+
+#endif
+
 }

@@ -119,30 +119,6 @@
     <ClCompile Include="client\ca2\ca2rdp_graphics.cpp">
       <Filter>Source Files\client\ca2</Filter>
     </ClCompile>
-    <ClCompile Include="client\Windows\wf_channels.cpp">
-      <Filter>Source Files\client\Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="client\Windows\wf_client.cpp">
-      <Filter>Source Files\client\Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="client\Windows\wf_cliprdr.cpp">
-      <Filter>Source Files\client\Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="client\Windows\wf_event.cpp">
-      <Filter>Source Files\client\Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="client\Windows\wf_floatbar.cpp">
-      <Filter>Source Files\client\Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="client\Windows\wf_gdi.cpp">
-      <Filter>Source Files\client\Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="client\Windows\wf_graphics.cpp">
-      <Filter>Source Files\client\Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="client\Windows\wf_rail.cpp">
-      <Filter>Source Files\client\Windows</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="axisrdpclient.def">

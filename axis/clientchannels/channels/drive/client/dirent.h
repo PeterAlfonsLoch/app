@@ -200,6 +200,11 @@ static void rewinddir(DIR* dirp);
  */
 static DIR *opendir(const char *dirname)
 {
+#ifdef METROWIN
+
+   return NULL;
+
+#else
    DIR *dirp;
 
    /* ensure that the resulting search pattern will be a valid file name */
@@ -257,6 +262,7 @@ static DIR *opendir(const char *dirname)
    }
 
    return dirp;
+#endif
 }
 
 

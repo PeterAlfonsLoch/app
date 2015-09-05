@@ -13,6 +13,10 @@
 
 BEGIN_EXTERN_C
 
+CLASS_DECL_AURA int_bool dir_mk(const char * psz);
+CLASS_DECL_AURA int_bool dir_appdata(char * psz, size_t size);
+CLASS_DECL_AURA int_bool is_absolute_path(const char * psz);
+
 
 typedef uint64_t  file_size;
 typedef uint64_t  file_position;

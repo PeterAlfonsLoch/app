@@ -45,6 +45,9 @@ static const char certificate_legacy_hosts_file[] = "known_hosts";
 
 #define TAG FREERDP_TAG("crypto")
 
+// from aura
+__declspec(dllimport) int dir_mk(const char * psz);
+
 static BOOL certificate_split_line(char* line, char** host, UINT16* port,
 					 char**subject, char**issuer,
 					 char** fingerprint);
@@ -56,41 +59,56 @@ BOOL certificate_store_init(rdpCertificateStore* certificate_store)
 
 	settings = certificate_store->settings;
 
-	if (!PathFileExistsA(settings->ConfigPath))
-	{
-		if (!PathMakePathA(settings->ConfigPath, 0))
-		{
-			WLog_ERR(TAG, "error creating directory '%s'", settings->ConfigPath);
-			goto fail;
-		}
-		WLog_INFO(TAG, "creating directory %s", settings->ConfigPath);
-	}
+   if(!dir_mk(settings->ConfigPath))
+   {
+      WLog_ERR(TAG,"error creating directory '%s'",settings->ConfigPath);
+   }
+
+	//if (!PathFileExistsA(settings->ConfigPath))
+	//{
+	//	if (!PathMakePathA(settings->ConfigPath, 0))
+	//	{
+	//		WLog_ERR(TAG, "error creating directory '%s'", settings->ConfigPath);
+	//		goto fail;
+	//	}
+	//	WLog_INFO(TAG, "creating directory %s", settings->ConfigPath);
+	//}
 
 	if (!(certificate_store->path = GetCombinedPath(settings->ConfigPath, (char*) certificate_store_dir)))
 		goto fail;
 
-	if (!PathFileExistsA(certificate_store->path))
-	{
-		if (!PathMakePathA(certificate_store->path, 0))
-		{
-			WLog_ERR(TAG, "error creating directory [%s]", certificate_store->path);
-			goto fail;
-		}
-		WLog_INFO(TAG, "creating directory [%s]", certificate_store->path);
-	}
+   if(!dir_mk(certificate_store->path))
+   {
+      WLog_ERR(TAG,"error creating directory [%s]",certificate_store->path);
+   }
+
+ //     if (!PathFileExistsA(certificate_store->path))
+	//{
+	//	if (!PathMakePathA(certificate_store->path, 0))
+	//	{
+	//		WLog_ERR(TAG, "error creating directory [%s]", certificate_store->path);
+	//		goto fail;
+	//	}
+	//	WLog_INFO(TAG, "creating directory [%s]", certificate_store->path);
+	//}
 
 	if (!(server_path = GetCombinedPath(settings->ConfigPath, (char*) certificate_server_dir)))
 		goto fail;
 
-	if (!PathFileExistsA(server_path))
-	{
-		if (!PathMakePathA(server_path, 0))
-		{
-			WLog_ERR(TAG, "error creating directory [%s]", server_path);
-			goto fail;
-		}
-		WLog_INFO(TAG, "created directory [%s]", server_path);
-	}
+   if(!dir_mk(server_path))
+   {
+      WLog_ERR(TAG,"error creating directory [%s]",server_path);
+   }
+
+	//if (!PathFileExistsA(server_path))
+	//{
+	//	if (!PathMakePathA(server_path, 0))
+	//	{
+	//		WLog_ERR(TAG, "error creating directory [%s]", server_path);
+	//		goto fail;
+	//	}
+	//	WLog_INFO(TAG, "created directory [%s]", server_path);
+	//}
 
 	if (!(certificate_store->file = GetCombinedPath(settings->ConfigPath, (char*) certificate_known_hosts_file)))
 		goto fail;

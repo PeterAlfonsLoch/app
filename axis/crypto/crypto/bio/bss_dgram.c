@@ -63,6 +63,11 @@
 //#define USE_SOCKETS
 #include "cryptlib.h"
 
+#ifdef METROWIN
+#include <winsock.h>
+#include <winsock2.h>
+#endif
+
 #include <openssl/bio.h>
 #ifndef OPENSSL_NO_DGRAM
 

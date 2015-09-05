@@ -280,7 +280,7 @@ uint_ptr virtualkey_to_code(::Windows::System::VirtualKey e)
    switch(e)
    {
    case 190:
-      return 52;
+      return '.';
    case ::Windows::System::VirtualKey::Number0:
       return 1;
    case ::Windows::System::VirtualKey::Number1:

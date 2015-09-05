@@ -38,7 +38,11 @@ namespace sockets
 
    #else
 
+#ifndef METROWIN
+
          log("url_this", -1, "SSL not available", ::aura::log::level_warning);
+
+#endif
 
    #endif
 

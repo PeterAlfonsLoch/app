@@ -74,7 +74,12 @@ static char* GetPath_HOME(void)
 {
 	char* path = NULL;
 
-#ifdef _WIN32
+#ifdef METROWIN
+   path = malloc(32);
+   if(!path)
+      return NULL;
+   strcpy(path,"home/");
+#elif defined(_WIN32)
 	path = GetEnvAlloc("UserProfile");
 #elif defined(ANDROID)
 	path = malloc(2);

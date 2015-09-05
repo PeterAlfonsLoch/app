@@ -20,7 +20,7 @@
 #ifndef __DFREERDP_H
 #define __DFREERDP_H
 #include "axis/rdpclient/config.h"
-#ifdef _WIN32
+#if defined(_WIN32) && !defined(METROWIN)
 #include "axis/rdpclient/client/Windows/wf_client.h"
 //#elif defined(ANDROID)
 //#include "axis/rdpclient/client/A"
@@ -90,7 +90,7 @@ namespace draw2d
 }
 
 struct ca2rdp_context :
-#ifdef _WIN32
+#if defined(_WIN32) && !defined(METROWIN)
    public wf_context
 #else
    public rdpContext

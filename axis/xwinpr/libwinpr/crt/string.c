@@ -110,7 +110,6 @@ size_t _wcslen(const WCHAR* str)
 
 	return (p - str);
 }
-#ifndef METROWIN
 /* _wcschr -> wcschr */
 
 WCHAR* _wcschr(const WCHAR* str, WCHAR c)
@@ -122,6 +121,7 @@ WCHAR* _wcschr(const WCHAR* str, WCHAR c)
 
 	return ((*p == c) ? p : NULL);
 }
+#ifndef METROWIN
 
 char* strtok_s(char* strToken, const char* strDelimit, char** context)
 {

@@ -84,3 +84,37 @@ int_bool file_path_is_relative_dup(const char * psz)
 
 
 }
+
+
+
+BEGIN_EXTERN_C
+
+CLASS_DECL_AURA int_bool dir_appdata(char * psz,size_t size)
+{
+   return strncpy_s(psz,size, ::dir::appdata(),size);
+}
+int dir_mk(const char * psz)
+{
+   return ::dir::mk(psz) != 0;
+}
+
+int_bool is_absolute_path(const char * psz)
+{
+   if(psz == NULL)
+      return FALSE;
+   if(*psz == '\0')
+      return FALSE;
+#ifdef WINDOWS
+   if(isalpha(psz[0]) && psz[1] == ':')
+      return TRUE;
+   if(psz[0] == '\\' && psz[1] == '\\')
+      return TRUE;
+#else
+   if(psz[0] == '/')
+      return TRUE;
+#endif
+   return FALSE;
+
+}
+
+END_EXTERN_C

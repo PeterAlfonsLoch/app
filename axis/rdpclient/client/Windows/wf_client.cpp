@@ -60,11 +60,11 @@
 
 int wf_create_console(void)
 {
-	if (!AllocConsole())
-		return 1;
+	//if (!AllocConsole())
+		//return 1;
 
-	freopen("CONOUT$", "w", stdout);
-	freopen("CONOUT$", "w", stderr);
+	//freopen("CONOUT$", "w", stdout);
+	//freopen("CONOUT$", "w", stderr);
 	WLog_INFO(TAG,  "Debug console created.");
 	return 0;
 }

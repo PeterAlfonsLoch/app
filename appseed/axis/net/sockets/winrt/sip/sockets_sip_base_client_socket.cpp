@@ -371,11 +371,22 @@ namespace sockets
       protocol = pa.getword(); // http
       if (!stricmp(protocol, "https:"))
       {
-   #ifdef HAVE_OPENSSL
+
+#ifdef HAVE_OPENSSL
+
          EnableSSL();
-   #else
+
+#else
+
+   #ifndef METROWIN
+
+
          log("url_this", -1, "SSL not available", ::aura::log::level_warning);
+
    #endif
+
+#endif
+
          port = 443;
       }
       else

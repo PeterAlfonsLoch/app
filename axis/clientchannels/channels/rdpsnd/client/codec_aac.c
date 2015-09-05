@@ -122,7 +122,7 @@ int mf_aac_init(AAC_CONTEXT* h264,int rate,int channels,AUDIO_FORMAT * in)
    //sys->c->sample_fmt = AV_SAMPLE_FMT_S16;
    char string[200];
    sprintf(string,"rate = %d, channels = %d",rate,channels);
-   o_debug_string(string);
+   //o_debug_string(string);
    /* open it */
    if(avcodec_open2(sys->c,sys->codec,NULL) < 0) {
       assert_d(0);

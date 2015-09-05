@@ -466,7 +466,9 @@ out_fail:
 
 int dir_empty(const char *path)
 {
-#ifdef _WIN32
+#ifdef METROWIN
+   return 1;
+#elif _WIN32
 	return PathIsDirectoryEmptyA(path);
 #else
 	struct dirent *dp;
