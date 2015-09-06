@@ -72,6 +72,10 @@ public:
    color & operator = (COLORREF cr);
    color & operator = (RGBQUAD rgbquad);
 
+   bool parse_color(const char * psz);
+
+   void set_COLORREF(COLORREF cr);
+
 };
 
 

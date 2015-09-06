@@ -58,7 +58,7 @@ proc hls2rgb {h l s} {
   */
 
 void color::get_hls(
-   double & h, double & l, double & s) const
+   double & h,double & l,double & s) const
 {
 
    double r = m_dR;
@@ -316,26 +316,26 @@ void color::get_hls(
    double dHue)
 {
    /* range check: note values passed add/subtract thirds of range */
-/*   if (dHue < 0.0)
-      dHue += HLSMAX;
-   if (dHue > HLSMAX)
-      dHue -= HLSMAX;
-   /* return r,g, or b value from this tridrant */
-/*   if (dHue < (HLSMAX/6))
-      return ( d1 + (((d2-d1)*dHue+(HLSMAX/12))/(HLSMAX/6)) );
-   if (dHue < (HLSMAX/2))
-      return ( d2 );
-   if (dHue < ((HLSMAX*2)/3))
-      return ( d1 + (((d2-d1)*(((HLSMAX*2)/3)-dHue)+(HLSMAX/12))/(HLSMAX/6)));
-   else
-      return ( d1 );
-} */
+   /*   if (dHue < 0.0)
+         dHue += HLSMAX;
+      if (dHue > HLSMAX)
+         dHue -= HLSMAX;
+      /* return r,g, or b value from this tridrant */
+      /*   if (dHue < (HLSMAX/6))
+            return ( d1 + (((d2-d1)*dHue+(HLSMAX/12))/(HLSMAX/6)) );
+         if (dHue < (HLSMAX/2))
+            return ( d2 );
+         if (dHue < ((HLSMAX*2)/3))
+            return ( d1 + (((d2-d1)*(((HLSMAX*2)/3)-dHue)+(HLSMAX/12))/(HLSMAX/6)));
+         else
+            return ( d1 );
+      } */
 
 double primitive_color_round(double d)
 {
    double n;
    double f;
-   f = modf(d, &n);
+   f = modf(d,&n);
    if(f > 0.5)
       return n + 1.0;
    else if(f < - 0.5)
@@ -359,7 +359,7 @@ void color::set_hls(
    ASSERT(dS <= 1.0);
 
 
-   double dR, dG, dB;
+   double dR,dG,dB;
 
 
    if(dH >= 1.0)
@@ -380,7 +380,7 @@ void color::set_hls(
 
    dH *= 6.0;
 
-   double dA = dH - (double) ((int32_t) dH);
+   double dA = dH - (double)((int32_t)dH);
 
    if(dH >= 3.0)
    {
@@ -462,28 +462,28 @@ void color::set_hls(
    m_dG      = (dCMin + dG * dCAdd);
    m_dB      = (dCMin + dB * dCAdd);
 
-   m_uchR      = (BYTE) primitive_color_round(m_dR * 255.0);
-   m_uchG      = (BYTE) primitive_color_round(m_dG * 255.0);
-   m_uchB      = (BYTE) primitive_color_round(m_dB * 255.0);
-
-/*   double H = dH * 360.0;
-
-
-   double d360 = dsin(360.0);
-
-   double R1 = dsin(H) * dL;
-   double G1 = dsin(H + 120.0) * dL;
-   double B1 = dsin(H + 240.0) * dL;
-
-   double AVERAGE = (R1 + G1 + B1) / 3;
-
-   m_dR = ((R1 - AVERAGE) * dS) + AVERAGE;
-   m_dG = ((G1 - AVERAGE) * dS) + AVERAGE;
-   m_dB = ((B1 - AVERAGE) * dS) + AVERAGE;
-
    m_uchR      = (BYTE)primitive_color_round(m_dR * 255.0);
    m_uchG      = (BYTE)primitive_color_round(m_dG * 255.0);
-   m_uchB      = (BYTE)primitive_color_round(m_dB * 255.0);*/
+   m_uchB      = (BYTE)primitive_color_round(m_dB * 255.0);
+
+   /*   double H = dH * 360.0;
+
+
+      double d360 = dsin(360.0);
+
+      double R1 = dsin(H) * dL;
+      double G1 = dsin(H + 120.0) * dL;
+      double B1 = dsin(H + 240.0) * dL;
+
+      double AVERAGE = (R1 + G1 + B1) / 3;
+
+      m_dR = ((R1 - AVERAGE) * dS) + AVERAGE;
+      m_dG = ((G1 - AVERAGE) * dS) + AVERAGE;
+      m_dB = ((B1 - AVERAGE) * dS) + AVERAGE;
+
+      m_uchR      = (BYTE)primitive_color_round(m_dR * 255.0);
+      m_uchG      = (BYTE)primitive_color_round(m_dG * 255.0);
+      m_uchB      = (BYTE)primitive_color_round(m_dB * 255.0);*/
 
 }
 
@@ -539,6 +539,11 @@ void color::set_rgb(COLORREF cr)
    m_dA     = m_uchA / 255.0;
 }
 
+void color::set_COLORREF(COLORREF cr)
+{
+   set_rgb(cr);
+}
+
 void color::set_bgr(uint32_t bgr)
 {
    m_uchR   = bgr_get_r_value(bgr);
@@ -564,85 +569,85 @@ void color::set_rgbquad(RGBQUAD quad)
    m_dA     = m_uchA / 255.0;
 }
 
-void color::hls_rate(double dRateH, double dRateL, double dRateS)
+void color::hls_rate(double dRateH,double dRateL,double dRateS)
 {
-    double dH, dL, dS;
+   double dH,dL,dS;
 
-    get_hls(dH, dL, dS);
+   get_hls(dH,dL,dS);
 
-    dH = dRateH >= 0 ?
-       (1.0 - dH) * dRateH + dH :
-       (1.0 + dRateH) * dH;
-    dL = dRateL >= 0 ?
-       (1.0 - dL) * dRateL + dL :
-       (1.0 + dRateL) * dL;
-    dS = dRateS >= 0 ?
-       (1.0 - dS) * dRateS + dS :
-       (1.0 + dRateS) * dS;
+   dH = dRateH >= 0 ?
+      (1.0 - dH) * dRateH + dH :
+      (1.0 + dRateH) * dH;
+   dL = dRateL >= 0 ?
+      (1.0 - dL) * dRateL + dL :
+      (1.0 + dRateL) * dL;
+   dS = dRateS >= 0 ?
+      (1.0 - dS) * dRateS + dS :
+      (1.0 + dRateS) * dS;
 
-    if(dH > 1.0)
-        dH = 1.0;
-    else if(dH < 0.0)
-        dH = 0.0;
+   if(dH > 1.0)
+      dH = 1.0;
+   else if(dH < 0.0)
+      dH = 0.0;
 
-    if(dL > 1.0)
-        dL = 1.0;
-    else if(dL < 0.0)
-        dL = 0.0;
+   if(dL > 1.0)
+      dL = 1.0;
+   else if(dL < 0.0)
+      dL = 0.0;
 
-    if(dS > 1.0)
-        dS = 1.0;
-    else if(dS < 0.0)
-        dS = 0.0;
+   if(dS > 1.0)
+      dS = 1.0;
+   else if(dS < 0.0)
+      dS = 0.0;
 
-    set_hls(dH, dL, dS);
+   set_hls(dH,dL,dS);
 }
 
-void color::hls_mult(double dMultH, double dMultL, double dMultS)
+void color::hls_mult(double dMultH,double dMultL,double dMultS)
 {
-    double dH, dL, dS;
+   double dH,dL,dS;
 
-    get_hls(dH, dL, dS);
+   get_hls(dH,dL,dS);
 
-    dH = dMultH * dH;
-    dL = dMultL * dL;
-    dS = dMultS * dS;
+   dH = dMultH * dH;
+   dL = dMultL * dL;
+   dS = dMultS * dS;
 
-    if(dH > 1.0)
-        dH = 1.0;
-    else if(dH < 0.0)
-        dH = 0.0;
+   if(dH > 1.0)
+      dH = 1.0;
+   else if(dH < 0.0)
+      dH = 0.0;
 
-    if(dL > 1.0)
-        dL = 1.0;
-    else if(dL < 0.0)
-        dL = 0.0;
+   if(dL > 1.0)
+      dL = 1.0;
+   else if(dL < 0.0)
+      dL = 0.0;
 
-    if(dS > 1.0)
-        dS = 1.0;
-    else if(dS < 0.0)
-        dS = 0.0;
+   if(dS > 1.0)
+      dS = 1.0;
+   else if(dS < 0.0)
+      dS = 0.0;
 
-    set_hls(dH, dL, dS);
+   set_hls(dH,dL,dS);
 }
 
 void color::hls_mult(hls & hls)
 {
-   hls_mult(hls.m_dH, hls.m_dL, hls.m_dS);
+   hls_mult(hls.m_dH,hls.m_dL,hls.m_dS);
 }
 void color::hls_rate(hls & hls)
 {
-   hls_rate(hls.m_dH, hls.m_dL, hls.m_dS);
+   hls_rate(hls.m_dH,hls.m_dL,hls.m_dS);
 }
 void color::get_hls(
    hls & hls) const
 {
-   get_hls(hls.m_dH, hls.m_dL, hls.m_dS);
+   get_hls(hls.m_dH,hls.m_dL,hls.m_dS);
 }
 void color::set_hls(
    const hls & hls)
 {
-   set_hls(hls.m_dH, hls.m_dL, hls.m_dS);
+   set_hls(hls.m_dH,hls.m_dL,hls.m_dS);
 }
 
 
@@ -809,4 +814,85 @@ color & color::operator = (RGBQUAD rgbquad)
 {
    set_rgbquad(rgbquad);
    return *this;
+}
+
+
+#define duplicate_color_nible(nible) ((nible << 4) | (nible))
+
+bool color::parse_color(const char * psz)
+{
+
+   string str(psz);
+   str.trim();
+   str += " ";
+   if(str.Left(1) == "#" && str.get_length() >= 7 && ishexdigit(str[1]) && ishexdigit(str[2]) && ishexdigit(str[3]) && ishexdigit(str[4])
+      && ishexdigit(str[5]) && ishexdigit(str[6]))
+   {
+      if(str.get_length() >= 9 && ishexdigit(str[7]) && ishexdigit(str[8]) && !ishexdigit(str[9]))
+      {
+         int32_t a,r,g,b;
+         sscanf(str,"#%02x%02x%02x%02x",&a,&r,&g,&b);
+         set_COLORREF(ARGB(a,r,g,b));
+         return true;
+      }
+      else if(!ishexdigit(str[7]))
+      {
+         int32_t r,g,b;
+         sscanf(str,"#%02x%02x%02x",&r,&g,&b);
+         set_COLORREF(ARGB(255,r,g,b));
+         return true;
+      }
+   }
+   else if(str.Left(1) == "#" && str.get_length() >= 4 && ishexdigit(str[1]) && ishexdigit(str[2]) && ishexdigit(str[3]))
+   {
+      if(str.get_length() >= 5 && ishexdigit(str[4]) && !ishexdigit(str[5]))
+      {
+         int32_t a,r,g,b;
+         sscanf(str,"#%1x%1x%1x%1x",&a,&r,&g,&b);
+         set_COLORREF(ARGB(
+            duplicate_color_nible(a),
+            duplicate_color_nible(r),
+            duplicate_color_nible(g),
+            duplicate_color_nible(b)));
+         return true;
+      }
+      else if(!ishexdigit(str[4]))
+      {
+         int32_t r,g,b;
+         sscanf(str,"#%1x%1x%1x",&r,&g,&b);
+         set_COLORREF(ARGB(255,
+            duplicate_color_nible(r),
+            duplicate_color_nible(g),
+            duplicate_color_nible(b)));
+         return true;
+      }
+   }
+   else if(::str::begins_eat_ci(str,"rgb") || ::str::begins_eat_ci(str,"argb"))
+   {
+      str.trim();
+      if(::str::begins_eat_ci(str,"("))
+      {
+         str.trim();
+         if(::str::ends_eat_ci(str,")"))
+         {
+            str.trim();
+            var a;
+            a.stra().explode(",",str);
+            int_array & ia = a.inta();
+            if(ia.get_count() == 3)
+            {
+               set_COLORREF(ARGB(255,ia[0],ia[1],ia[2]));
+               return true;
+            }
+            else if(ia.get_count() == 4)
+            {
+               set_COLORREF(ARGB(ia[0],ia[1],ia[2],ia[3]));
+               return true;
+            }
+         }
+      }
+   }
+   return false;
+
+
 }

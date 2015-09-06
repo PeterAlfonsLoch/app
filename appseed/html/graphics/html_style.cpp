@@ -1,19 +1,6 @@
 #include "framework.h"
 
 
-bool ishexdigit(char ch);
-
-
-bool ishexdigit(char ch)
-{
-   if(ch >= '0' && ch <= '9')
-      return true;
-   if(ch >= 'a' && ch <= 'f')
-      return true;
-   if(ch >= 'A' && ch <= 'F')
-      return true;
-   return false;
-}
 
 
 namespace html
@@ -45,68 +32,17 @@ namespace html
       return *this;
    }
 
-#define n_to_b(nible) ((nible << 4) | (nible))
+
 
    COLORREF style::parse_color(const char * psz)
    {
-      string str(psz);
-      str.trim();
-      str += " ";
-      if(str.Left(1) == "#" && str.get_length() >= 7 && ishexdigit(str[1]) && ishexdigit(str[2]) && ishexdigit(str[3]) && ishexdigit(str[4])
-          && ishexdigit(str[5]) && ishexdigit(str[6]))
-      {
-         if(str.get_length() >= 9 && ishexdigit(str[7]) && ishexdigit(str[8]) && !ishexdigit(str[9]))
-         {
-            int32_t a, r, g, b;
-            sscanf(str, "#%02x%02x%02x%02x", &a, &r, &g, &b);
-            return ARGB(a, r, g, b);
-         }
-         else if(!ishexdigit(str[7]))
-         {
-            int32_t r, g, b;
-            sscanf(str, "#%02x%02x%02x", &r, &g, &b);
-            return ARGB(255, r, g, b);
-         }
-      }
-      else if(str.Left(1) == "#" && str.get_length() >= 4 && ishexdigit(str[1]) && ishexdigit(str[2]) && ishexdigit(str[3]))
-      {
-         if(str.get_length() >= 5 && ishexdigit(str[4]) && !ishexdigit(str[5]))
-         {
-            int32_t a, r, g, b;
-            sscanf(str, "#%1x%1x%1x%1x", &a, &r, &g, &b);
-            return ARGB(n_to_b(a),n_to_b(r),n_to_b(g),n_to_b(b));
-         }
-         else if(!ishexdigit(str[4]))
-         {
-            int32_t r, g, b;
-            sscanf(str, "#%1x%1x%1x", &r, &g, &b);
-            return ARGB(255,n_to_b(r),n_to_b(g),n_to_b(b));
-         }
-      }
-      else if(::str::begins_eat_ci(str, "rgb") || ::str::begins_eat_ci(str, "argb"))
-      {
-         str.trim();
-         if(::str::begins_eat_ci(str, "("))
-         {
-            str.trim();
-            if(::str::ends_eat_ci(str, ")"))
-            {
-               str.trim();
-               var a;
-               a.stra().explode(",", str);
-               int_array & ia = a.inta();
-               if(ia.get_count() == 3)
-               {
-                  return ARGB(255, ia[0], ia[1], ia[2]);
-               }
-               else if(ia.get_count() == 4)
-               {
-                  return ARGB(ia[0], ia[1], ia[2], ia[3]);
-               }
-            }
-         }
-      }
-      return 0;
+
+      color c;
+
+      c.parse_color(psz);
+
+      return c;
+
    }
 
    bool style::get_dimension(bool bParent, id idName, const string & strSubClass, data * pdata, elemental * pelemental, float & f)

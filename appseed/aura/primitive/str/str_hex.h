@@ -1,8 +1,13 @@
 #pragma once
 
 
+
+CLASS_DECL_AURA bool ishexdigit(char ch);
+
+
 namespace hex
 {
+
 
 
    CLASS_DECL_AURA int64_t          to_int64(const char * lpcsz);
