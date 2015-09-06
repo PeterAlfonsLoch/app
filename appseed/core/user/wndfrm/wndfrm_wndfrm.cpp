@@ -46,7 +46,9 @@ namespace user
 
 #endif
 
-         ::aura::library library(get_app(), 0, NULL);
+         ::aura::library * plibrary = new ::aura::library(get_app(),0,NULL);
+
+         ::aura::library & library = *plibrary;
 
          string strLibrary(strId);
 
@@ -83,10 +85,18 @@ namespace user
          if(strAppId.is_empty()) // trivial validity check
             return NULL;
 
-         sp(::user::wndfrm::interaction) pinteraction = library.create_object(get_app(), "wndfrm_core");
+         sp(::user::wndfrm::interaction) pinteraction = library.create_object(get_app(), "wndfrm");
 
          if(pinteraction == NULL)
+         {
+
+            delete plibrary;
+
             return NULL;
+
+         }
+
+         pinteraction->m_plibrary = plibrary;
 
          return pinteraction;
 
@@ -124,13 +134,55 @@ namespace user
       sp(::user::wndfrm::frame::frame) wndfrm::get_frame_schema(const char * pszLibrary, const char * pszFrameSchemaName)
       {
 
-         sp(::user::wndfrm::interaction) pinteraction = get_wndfrm(pszLibrary);
+         string strLibrary(pszLibrary);
+
+         if(strLibrary.is_empty())
+         {
+
+            string strConfig = Application.file().as_string("C:\\ca2\\config\\system\\wndfrm.txt");
+
+            strLibrary = string("wndfrm_") + strConfig;
+
+         }
+
+         sp(::user::wndfrm::interaction) pinteraction = get_wndfrm(strLibrary);
 
          if(pinteraction == NULL)
-            return NULL;
+         {
+
+            wndfrm_core:
+
+            strLibrary = "wndfrm_core";
+
+            pinteraction = get_wndfrm(strLibrary);
+         
+            if(pinteraction == NULL)
+            {
+
+               return NULL;
+
+            }
+
+         }
 
 
-         return pinteraction->get_frame_schema(pszFrameSchemaName);
+         sp(::user::wndfrm::frame::frame) pframe = pinteraction->get_frame_schema(pszFrameSchemaName);
+
+         if(pframe.is_null() && strLibrary != "wndfrm_core")
+         {
+
+            goto wndfrm_core;
+
+         }
+
+         if(pframe.is_set())
+         {
+
+            pframe->m_pinteraction = pinteraction;
+
+         }
+
+         return pframe;
 
       }
 

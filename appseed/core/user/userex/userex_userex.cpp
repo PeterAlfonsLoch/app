@@ -78,7 +78,7 @@ namespace userex
       System.factory().cloneable_small < ::user::split_bar >();
       System.factory().cloneable_small < split_view::Pane >();
       System.factory().cloneable_small < simple_frame_window >();
-      System.factory().creatable_small < MetaButton >();
+//      System.factory().creatable_small < MetaButton >();
       System.factory().creatable_small < ::user::button >();
       System.factory().creatable_small < ::user::menu_list_view >();
       System.factory().cloneable_small < simple_child_frame >();
@@ -113,7 +113,7 @@ namespace userex
       System.factory().creatable_small < ::user::show < ::user::list > >();
       System.factory().creatable_small < ::user::show < ::user::scroll < ::user::list > > >();
 
-      System.factory().creatable_small < MetaControlBox >();
+//      System.factory().creatable_small < MetaControlBox >();
 
 
       // menu

@@ -14,7 +14,7 @@ namespace user
       {
       public:
 
-
+         ::aura::library *         m_plibrary;
          property_set       m_set;
 
 

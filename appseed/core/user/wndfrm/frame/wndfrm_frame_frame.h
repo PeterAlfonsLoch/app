@@ -42,11 +42,11 @@ namespace user
 
 
 
-            sp(type)                                     m_typeinfoControlBoxButton;
-            sp(type)                                     m_typeinfoControlBox;
+            //sp(type)                                     m_typeinfoControlBoxButton;
+            //sp(type)                                     m_typeinfoControlBox;
 
 
-
+            ::user::wndfrm::interaction *                m_pinteraction;
 
             WorkSet *                                    m_pworkset;
 

@@ -16,7 +16,7 @@ namespace user
          frame::frame(::aura::application * papp)
          {
 
-            m_typeinfoControlBox = System.type_info < MetaControlBox >();
+//            m_typeinfoControlBox = System.type_info < MetaControlBox >();
 
             m_rectControlBoxMarginFullScreen.set(0, 0, 0, 0);
             m_rectControlBoxMarginZoomed.set(0, 0, 0, 0);
@@ -822,7 +822,7 @@ namespace user
 
             if (m_spcontrolbox.is_null())
             {
-               m_spcontrolbox = Application.alloc(m_typeinfoControlBox);
+               m_spcontrolbox = m_pinteraction->m_plibrary->create_object(get_app(), "control_box");
                m_spcontrolbox->m_pworkset = m_pworkset;
                sp(::user::interaction) pwnd = m_pworkset->get_draw_window();
                m_spcontrolbox->create_window(null_rect(), pwnd, 1);

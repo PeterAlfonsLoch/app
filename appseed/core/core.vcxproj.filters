@@ -476,9 +476,6 @@
     <ClInclude Include="user\user\user_list_header.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\user_meta_button.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\user\user_multiple_document_template.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
@@ -574,9 +571,6 @@
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\filemanager_data.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_meta_control_box.h">
-      <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user_button.h">
       <Filter>Header Files\user\user</Filter>
@@ -1150,9 +1144,6 @@
     <ClCompile Include="user\user\user_menu_list_view.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\user_meta_button.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\user_multiple_document_template.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -1251,9 +1242,6 @@
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_operation.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_meta_control_box.cpp">
-      <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\menu\user_menu.cpp">
       <Filter>Source Files\user\menu</Filter>
