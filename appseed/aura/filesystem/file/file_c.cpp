@@ -91,8 +91,20 @@ BEGIN_EXTERN_C
 
 CLASS_DECL_AURA int_bool dir_appdata(char * psz,size_t size)
 {
+
+#ifdef WINDOWS
+
    return strncpy_s(psz,size, ::dir::appdata(),size);
+
+#else
+
+   return strncpy(psz,size, ::dir::appdata());
+
+#endif
+
 }
+
+
 int dir_mk(const char * psz)
 {
    return ::dir::mk(psz) != 0;
