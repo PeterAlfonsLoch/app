@@ -1,10 +1,23 @@
 #include "aura/aura/aura.h"
-#include "ca2rdp_event.h"
+
+
+struct CLASS_DECL_AXIS_RDPCLIENT rdp_event_item
+{
+
+   rdpInput * input;
+   BOOL bKey;
+   BOOL down;
+   UINT scancode;
+   UINT uiMessage;
+   POINT pt;
+   void send();
+};
 
 typedef array < rdp_event_item > rdp_event_itema;
 
 mutex g_mutexRdpEvent;
 map < rdpInput *,rdpInput *,rdp_event_itema> g_eventmap;
+
 
 CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_queue_event(rdpInput* input,BOOL bKey,BOOL down,UINT scancode,UINT uiMessage,POINT pt)
 {
