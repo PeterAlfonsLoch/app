@@ -1,5 +1,9 @@
 #pragma once
 
+#ifndef CROSS_WINDOWS_NT_FILE_H
+#define CROSS_WINDOWS_NT_FILE_H
+#define WINPR_FILE_H
+
 
 #define INVALID_HANDLE_VALUE ((HANDLE)(long_ptr)-1)
 #define INVALID_FILE_SIZE ((DWORD)0xFFFFFFFF)
@@ -191,3 +195,4 @@ typedef GENERIC_MAPPING *PGENERIC_MAPPING;*/
 
 
 
+#endif // CROSS_WINDOWS_NT_FILE_H
