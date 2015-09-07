@@ -27,8 +27,9 @@
 CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_mouse_button_event(rdpInput* input,UINT uiMessage,POINT pt);
 CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_keyboard_event(rdpInput* input,BOOL down,UINT scancode);
 
-CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_event(rdpInput* input,BOOL bKey,BOOL down,UINT scancode,UINT uiMessage,POINT pt)
+CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_event(void* vinput,int bKey,int down,UINT scancode,UINT uiMessage,POINT pt)
 {
+rdpInput * input = (rdpInput *) vinput;
    if(bKey)
    {
       ca2rdp_send_keyboard_event(input,down,scancode);

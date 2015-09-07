@@ -27,17 +27,17 @@
 struct CLASS_DECL_AXIS_RDPCLIENT rdp_event_item
 {
 
-   rdpInput * input;
-   BOOL bKey;
-   BOOL down;
+   void * input;
+   int bKey;
+   int down;
    UINT scancode;
    UINT uiMessage;
    POINT pt;
    void send();
 };
-CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_queue_event(rdpInput* input,BOOL bKey, BOOL down, UINT scancode, UINT uiMessage,POINT pt);
-CLASS_DECL_AXIS_RDPCLIENT bool  ca2rdp_get_event(rdp_event_item & item,rdpInput* input);
-CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_event(rdpInput* input,BOOL bKey,BOOL down,UINT scancode,UINT uiMessage,POINT pt);
+CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_queue_event(void * input,int bKey, int down, UINT scancode, UINT uiMessage,POINT pt);
+CLASS_DECL_AXIS_RDPCLIENT int  ca2rdp_get_event(rdp_event_item & item,void * input);
+CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_event(void * input,int bKey,int down,UINT scancode,UINT uiMessage,POINT pt);
 
 //CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_mouse_button_event(rdpInput* input,UINT uiMessage,POINT pt);
 //CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_keyboard_event(rdpInput* input,BOOL down,UINT scancode);
