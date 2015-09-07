@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-#ifndef WINPR_ERROR_H
+#if !defined(WINPR_ERROR_H) && !defined(_WINERROR_)
 #define WINPR_ERROR_H
 
 #include <winpr/winpr.h>
