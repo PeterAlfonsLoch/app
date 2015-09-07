@@ -52,7 +52,7 @@
 			<Add option="-Winvalid-pch" />
 			<Add option="-fPIC" />
 			<Add option="-DLINUX" />
-			<Add option="-DHAVE_CONFIG_H" />
+			<Add option="-DHAVE_EXPAT_CONFIG_H" />
 			<Add directory="../../../include" />
 			<Add directory="../../include" />
 			<Add directory="framework" />
@@ -71,95 +71,58 @@
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 		</Linker>
-		<Unit filename="config.guess.h" />
-		<Unit filename="pcre2-config.in.h" />
-		<Unit filename="src/config.h" />
-		<Unit filename="src/dftables.c">
+		<Unit filename="lib/amigaconfig.h" />
+		<Unit filename="lib/ascii.h" />
+		<Unit filename="lib/asciitab.h" />
+		<Unit filename="lib/expat.h" />
+		<Unit filename="lib/expat_external.h" />
+		<Unit filename="lib/iasciitab.h" />
+		<Unit filename="lib/internal.h" />
+		<Unit filename="lib/latin1tab.h" />
+		<Unit filename="lib/macconfig.h" />
+		<Unit filename="lib/nametab.h" />
+		<Unit filename="lib/utf8tab.h" />
+		<Unit filename="lib/winconfig.h" />
+		<Unit filename="lib/xmlparse.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/pcre2.h" />
-		<Unit filename="src/pcre2_auto_possess.c">
+		<Unit filename="lib/xmlrole.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/pcre2_chartables.c">
+		<Unit filename="lib/xmlrole.h" />
+		<Unit filename="lib/xmltok.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/pcre2_compile.c">
+		<Unit filename="lib/xmltok.h" />
+		<Unit filename="lib/xmltok_impl.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/pcre2_config.c">
+		<Unit filename="lib/xmltok_impl.h" />
+		<Unit filename="lib/xmltok_ns.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/pcre2_context.c">
+		<Unit filename="vms/expat_config.h" />
+		<Unit filename="xmlwf/codepage.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/pcre2_dfa_match.c">
+		<Unit filename="xmlwf/codepage.h" />
+		<Unit filename="xmlwf/filemap.h" />
+		<Unit filename="xmlwf/readfilemap.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/pcre2_error.c">
+		<Unit filename="xmlwf/xmlfile.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/pcre2_internal.h" />
-		<Unit filename="src/pcre2_intmodedep.h" />
-		<Unit filename="src/pcre2_jit_compile.c">
+		<Unit filename="xmlwf/xmlfile.h" />
+		<Unit filename="xmlwf/xmlmime.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/pcre2_maketables.c">
+		<Unit filename="xmlwf/xmlmime.h" />
+		<Unit filename="xmlwf/xmltchar.h" />
+		<Unit filename="xmlwf/xmlurl.h" />
+		<Unit filename="xmlwf/xmlwf.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/pcre2_match.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/pcre2_match_data.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/pcre2_newline.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/pcre2_ord2utf.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/pcre2_pattern_info.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/pcre2_serialize.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/pcre2_string_utils.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/pcre2_study.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/pcre2_substitute.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/pcre2_substring.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/pcre2_tables.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/pcre2_ucd.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/pcre2_ucp.h" />
-		<Unit filename="src/pcre2_valid_utf.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/pcre2_xclass.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/pcre2posix.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/pcre2posix.h" />
-		<Unit filename="src/sljit/sljitConfig.h" />
-		<Unit filename="src/sljit/sljitConfigInternal.h" />
-		<Unit filename="src/sljit/sljitLir.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/sljit/sljitLir.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

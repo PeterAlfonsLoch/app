@@ -17,7 +17,7 @@
 #elif defined(__WATCOMC__)
 #include "watcomconfig.h"
 #elif defined(HAVE_EXPAT_CONFIG_H)
-#include <expat_config.h>
+#include "expat_config.h"
 #endif /* ndef COMPILED_FROM_DSP */
 
 #include "expat.h"
@@ -71,7 +71,7 @@ reportError(XML_Parser parser, const XML_Char *filename)
   else
     ftprintf(stderr, T("%s: (unknown message %d)\n"), filename, code);
 }
- 
+
 /* This implementation will give problems on files larger than INT_MAX. */
 static void
 processFile(const void *data, size_t size,

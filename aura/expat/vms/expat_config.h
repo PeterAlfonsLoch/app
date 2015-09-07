@@ -10,7 +10,7 @@
 #undef const
 
 /* Define if you have a working `mmap' system call.  */
-#undef HAVE_MMAP
+#define HAVE_MMAP
 
 /* Define to `long' if <sys/types.h> doesn't define.  */
 #undef off_t
