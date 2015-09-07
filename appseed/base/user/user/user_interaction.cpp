@@ -6969,6 +6969,31 @@ namespace user
 
    }
 
+
+   bool interaction::has_action_hover()
+   {
+
+      return false;
+
+   }
+
+
+   bool interaction::has_text_input()
+   {
+
+      return false;
+
+   }
+
+
+   COLORREF interaction::get_action_hover_border_color()
+   {
+
+      return 0;
+
+   }
+
+
 } // namespace user
 
 

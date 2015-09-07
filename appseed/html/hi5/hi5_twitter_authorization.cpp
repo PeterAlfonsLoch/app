@@ -13,8 +13,10 @@ namespace hi5
    {
 
       authorization::authorization(::aura::application * papp, const char * pszAuthorizationUrl, const char * pszForm, bool bAuth, bool bInteractive) :
-         ::object(papp)
+         ::object(papp),
+         ::user::schema_simple_impl(papp)
       {
+
          m_strAuthorizationUrl=pszAuthorizationUrl;
          m_bInteractive    = bInteractive;
          m_bAuth    = bAuth;

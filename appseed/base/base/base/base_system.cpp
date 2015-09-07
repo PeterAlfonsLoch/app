@@ -127,7 +127,7 @@ namespace base
 //      draw2d_factory_exchange();
 
 
-      m_pschemaLayeredFrame = new ::user::schema_layered_frame;
+      m_pschemaLayeredFrame = new ::user::schema_layered_frame(this);
 
       #ifdef WINDOWSEX
 

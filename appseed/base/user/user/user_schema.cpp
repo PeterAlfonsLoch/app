@@ -38,7 +38,7 @@ namespace user
 
       }
 
-      if(m_pauraapp != NULL && m_pauraapp->m_pbasesession != NULL && m_pauraapp->m_pbasesession != m_puserschema && m_pauraapp->m_pbasesession->m_pschemasimple != m_puserschema)
+      if( m_pauraapp != NULL && this != m_pauraapp->m_pbasesession &&m_pauraapp->m_pbasesession != NULL && m_pauraapp->m_pbasesession != m_puserschema && m_pauraapp->m_pbasesession->m_pschemasimple != m_puserschema)
       {
 
          if(m_pauraapp->m_pbasesession->get_color(cr,ecolor))
@@ -69,7 +69,7 @@ namespace user
 
       }
 
-      if(m_pauraapp != NULL && m_pauraapp->m_pbasesession != NULL && m_pauraapp->m_pbasesession != m_puserschema && m_pauraapp->m_pbasesession->m_pschemasimple != m_puserschema)
+      if(m_pauraapp != NULL && this != m_pauraapp->m_pbasesession && m_pauraapp->m_pbasesession != NULL && m_pauraapp->m_pbasesession != m_puserschema && m_pauraapp->m_pbasesession->m_pschemasimple != m_puserschema)
       {
 
          if(m_pauraapp->m_pbasesession->get_font(spfont))
@@ -100,7 +100,7 @@ namespace user
 
       }
 
-      if(m_pauraapp != NULL && m_pauraapp->m_pbasesession != NULL && m_pauraapp->m_pbasesession != m_puserschema && m_pauraapp->m_pbasesession->m_pschemasimple != m_puserschema)
+      if(m_pauraapp != NULL && this != m_pauraapp->m_pbasesession && m_pauraapp->m_pbasesession != NULL && m_pauraapp->m_pbasesession != m_puserschema && m_pauraapp->m_pbasesession->m_pschemasimple != m_puserschema)
       {
 
          if(m_pauraapp->m_pbasesession->get_translucency(etranslucency))
@@ -348,6 +348,253 @@ namespace user
    }
 
 
+   bool schema::simple_ui_draw_focus_rect(::user::interaction * pui,::draw2d::graphics * pgraphics)
+   {
+
+      rect rectClient;
+
+      pui->GetClientRect(rectClient);
+
+      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+
+      int32_t iStyle = 1;
+
+      rectClient.left--;
+      rectClient.top--;
+
+      if(m_pauraapp != NULL && (Session.get_keyboard_focus() == pui || pui->has_action_hover()))
+      {
+
+         ::draw2d::brush_sp brush(allocer());
+
+         if(pui->has_action_hover() && !pui->has_text_input())
+         {
+
+            brush->create_solid(ARGB(184,150,230,180));
+
+            pgraphics->SelectObject(brush);
+
+            pgraphics->FillRectangle(rectClient);
+
+         }
+
+         if(iStyle == 1)
+         {
+
+            if(pui->has_action_hover())
+            {
+
+               ::draw2d::pen_sp pen(pgraphics,1.0,pui->get_action_hover_border_color());
+
+               pgraphics->DrawRect(rectClient,pen);
+
+            }
+            else
+            {
+
+               //::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(255, 108, 149, 255));
+               ::draw2d::pen_sp pen(pgraphics,1.0,ARGB(184,84,84,77));
+
+               pgraphics->DrawRect(rectClient,pen);
+
+            }
+
+
+            if(Session.get_keyboard_focus() == pui)
+            {
+
+               rectClient.left--;
+               rectClient.right++;
+               rectClient.top--;
+               rectClient.bottom++;
+
+               {
+
+                  //::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(255, 108, 149, 255));
+                  ::draw2d::pen_sp pen(pgraphics,1.0,ARGB(135,120,190,255));
+
+                  pgraphics->DrawRect(rectClient,pen);
+
+               }
+
+               rectClient.left--;
+               rectClient.right++;
+               rectClient.top--;
+               rectClient.bottom++;
+
+               {
+
+                  /*::draw2d::path_sp pathRound(allocer());
+
+                  pathRound->begin_figure(true, ::draw2d::fill_mode_winding);
+
+                  pathRound->add_round_rect(rectClient, 1 * 2);
+
+                  pathRound->end_figure(true);*/
+
+                  //::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(84, 108, 149, 255));
+                  ::draw2d::pen_sp pen(pgraphics,1.0,ARGB(105,140,200,255));
+
+                  pgraphics->SelectObject(pen);
+
+                  pgraphics->DrawRect(rectClient,pen);
+
+               }
+
+               rectClient.left--;
+               rectClient.right++;
+               rectClient.top--;
+               rectClient.bottom++;
+
+               {
+
+                  ::draw2d::path_sp pathRound(allocer());
+
+                  pathRound->begin_figure(true,::draw2d::fill_mode_winding);
+
+                  pathRound->add_round_rect(rectClient,1 * 2);
+
+                  pathRound->end_figure(true);
+
+                  //::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(72, 108, 149, 255));
+                  ::draw2d::pen_sp pen(pgraphics,1.0,ARGB(95,160,210,255));
+
+                  pgraphics->SelectObject(pen);
+
+                  pgraphics->DrawRect(rectClient,pen);
+
+               }
+
+               rectClient.left--;
+               rectClient.right++;
+               rectClient.top--;
+               rectClient.bottom++;
+
+               {
+
+                  ::draw2d::path_sp pathRound(allocer());
+
+                  pathRound->begin_figure(true,::draw2d::fill_mode_winding);
+
+                  pathRound->add_round_rect(rectClient,1 * 2);
+
+                  pathRound->end_figure(true);
+
+                  //::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(60, 108, 149, 255));
+                  ::draw2d::pen_sp pen(pgraphics,1.0,ARGB(75,180,220,255));
+
+                  pgraphics->SelectObject(pen);
+
+                  pgraphics->DrawRect(rectClient,pen);
+
+               }
+
+
+               rectClient.left--;
+               rectClient.right++;
+               rectClient.top--;
+               rectClient.bottom++;
+
+               {
+
+                  ::draw2d::path_sp pathRound(allocer());
+
+                  pathRound->begin_figure(true,::draw2d::fill_mode_winding);
+
+                  pathRound->add_round_rect(rectClient,1 * 2);
+
+                  pathRound->end_figure(true);
+
+                  //::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(48, 108, 149, 255));
+                  ::draw2d::pen_sp pen(pgraphics,1.0,ARGB(55,200,230,255));
+
+                  pgraphics->SelectObject(pen);
+
+                  pgraphics->DrawRect(rectClient,pen);
+
+               }
+
+
+
+               rectClient.left--;
+               rectClient.right++;
+               rectClient.top--;
+               rectClient.bottom++;
+
+               {
+
+                  ::draw2d::path_sp pathRound(allocer());
+
+                  pathRound->begin_figure(true,::draw2d::fill_mode_winding);
+
+                  pathRound->add_round_rect(rectClient,1 * 2);
+
+                  pathRound->end_figure(true);
+
+                  //::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(36, 108, 149, 255));
+                  ::draw2d::pen_sp pen(pgraphics,1.0,ARGB(45,220,240,255));
+
+                  pgraphics->SelectObject(pen);
+
+                  pgraphics->DrawRect(rectClient,pen);
+
+               }
+
+
+
+
+               /*
+               rectClient.left--;
+               rectClient.right++;
+               rectClient.top--;
+               rectClient.bottom++;
+
+               {
+
+               ::draw2d::path_sp pathRound(allocer());
+
+               pathRound->begin_figure(true, ::draw2d::fill_mode_winding);
+
+               pathRound->add_round_rect(rectClient, 1 * 2);
+
+               pathRound->end_figure(true);
+
+               //::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(24, 108, 149, 255));
+
+               ::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(25, 240, 250, 255));
+
+               pgraphics->SelectObject(pen);
+
+               pgraphics->DrawRect(rectClient, pen);
+
+               }
+               */
+
+            }
+
+         }
+         else
+         {
+
+            ::draw2d::pen_sp pen(pgraphics, 3.0, ARGB(255, 84, 77, 255));
+
+            pgraphics->DrawRect(rectClient, pen);
+
+         }
+
+      }
+      else
+      {
+
+         ::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(255, 149, 149, 123));
+
+         pgraphics->DrawRect(rectClient, pen);
+
+      }
+
+      return true;
+
+   }
 
 
 } // namespace user

@@ -70,24 +70,15 @@ namespace base
 
       m_paxissystem->m_basesessionptra.add_unique(this);
 
-      m_pschemasimple               = canew(::user::schema_simple_impl);
+      m_pschemasimple               = NULL;
 
       m_puserschema                 = m_pschemasimple;
 
-      m_pschemasimple->m_pfont.alloc(allocer());
+      m_pcopydesk                   = NULL;
 
-      m_pschemasimple->m_pfont->create_pixel_font("Helvetica",16);
-
-
-      m_pcopydesk = NULL;
-
-      m_pschemasimple               = canew(::user::schema_simple_impl);
+      m_pschemasimple               = NULL;
 
       m_puserschema                 = m_pschemasimple;
-
-      m_pschemasimple->m_pfont.alloc(allocer());
-
-      m_pschemasimple->m_pfont->create_pixel_font("Helvetica",16);
 
    }
 
@@ -1073,17 +1064,14 @@ namespace base
       //
       //
       //
-      bool session::process_initialize()
+
+   bool session::process_initialize()
    {
 
-
+      m_pschemasimple = get_new_user_schema(NULL);
 
       if(!::axis::session::process_initialize())
          return false;
-
-
-
-
 
       if(!::base::application::process_initialize())
          return false;
@@ -2118,6 +2106,79 @@ namespace base
       //if((bool)oprop("NativeWindowFocus") && puieFocus != m_pkeyboardfocus)
       //   return NULL;
       return m_pkeyboardfocus;
+
+   }
+
+
+   sp(::user::schema) session::get_new_user_schema(const char * pszUinteractionLibrary)
+   {
+
+      stringa stra;
+
+      string strAppId;
+
+      sp(::user::schema) pschema;
+
+      string strId(pszUinteractionLibrary);
+
+      if(strId.is_empty())
+      {
+
+         strId = "wndfrm_" + Application.file().as_string("C:\\ca2\\config\\system\\wndfrm.txt");
+
+      }
+
+      string strLibrary(strId);
+
+      strLibrary.replace("-","_");
+
+      strLibrary.replace("/","_");
+
+      ::aura::library library(get_app(),0,NULL);
+
+restart:
+
+      if(!library.open(strLibrary,false))
+         goto defer_check_wndfrm_core;
+
+      if(!library.open_ca2_library())
+         goto defer_check_wndfrm_core;
+
+      library.get_app_list(stra);
+
+      if(stra.get_size() != 1) // a wndfrm OSLibrary should have one wndfrm
+         goto defer_check_wndfrm_core;
+
+      strAppId = stra[0];
+
+      if(strAppId.is_empty()) // trivial validity check
+         goto defer_check_wndfrm_core;
+
+      pschema = library.create_object(get_app(),"user_schema");
+
+      if(pschema == NULL)
+         goto defer_check_wndfrm_core;
+
+finish:
+
+      //pschema->m_plibrary = plibrary;
+
+      return pschema;
+
+defer_check_wndfrm_core:
+
+      if(strLibrary == "wndfrm_core")
+      {
+
+         pschema = new ::user::schema_simple_impl(get_app());
+
+         goto finish;
+
+      }
+
+      strLibrary = "wndfrm_core";
+
+      goto restart;
 
    }
 

@@ -163,9 +163,14 @@ namespace user
 
    }
 
-   front_end_schema::button::button(::aura::application * papp)
+
+   front_end_schema::button::button(::aura::application * papp) :
+      object(papp),
+      ::user::schema_simple_impl(papp)
    {
+
       m_bBorder = true;
+
    }
 
 

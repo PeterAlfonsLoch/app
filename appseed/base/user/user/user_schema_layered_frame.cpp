@@ -6,6 +6,14 @@ namespace user
 {
 
 
+   schema_layered_frame::schema_layered_frame(::aura::application * papp) :
+      object(papp)
+   {
+
+
+   }
+
+
    bool schema_layered_frame::get_translucency(ETranslucency & etranslucency)
    {
 

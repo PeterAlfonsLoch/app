@@ -6,10 +6,19 @@ namespace user
 {
 
 
-   schema_simple_impl::schema_simple_impl()
+   schema_simple_impl::schema_simple_impl(::aura::application * papp)  :
+      object(papp)
    {
 
       m_etranslucency      = TranslucencyUndefined;
+
+      m_pfont.alloc(allocer());
+
+      m_pfont->create_pixel_font("Helvetica",16);
+
+      m_pfont.alloc(allocer());
+
+      m_pfont->create_pixel_font("Helvetica",16);
 
    }
 

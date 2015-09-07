@@ -98,6 +98,9 @@ namespace user
       virtual bool create_message_queue(const char * pszName);
 
 
+      virtual bool has_action_hover();
+      virtual bool has_text_input();
+      virtual COLORREF get_action_hover_border_color();
 
 
 

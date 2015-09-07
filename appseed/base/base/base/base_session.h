@@ -15,12 +15,8 @@ namespace base
    public:
 
 
-      ::user::user *                                          m_puser;
-
-
-
-
-      ::user::schema_simple_impl *                            m_pschemasimple;
+      ::user::user *                m_puser;
+      ::user::schema *              m_pschemasimple;
 
 
       session(::aura::application * papp);
@@ -50,6 +46,8 @@ namespace base
       virtual ::user::primitive * get_focus_ui();
 
       ::user::elemental * get_keyboard_focus();
+
+      sp(::user::schema) get_new_user_schema(const char * pszUinteractionLibrary);
 
    };
 

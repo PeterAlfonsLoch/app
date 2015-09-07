@@ -16,7 +16,7 @@ namespace user
       ETranslucency                                   m_etranslucency;
 
 
-      schema_simple_impl();
+      schema_simple_impl(::aura::application * papp);
       virtual ~schema_simple_impl();
 
 

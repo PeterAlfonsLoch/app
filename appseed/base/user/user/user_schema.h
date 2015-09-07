@@ -38,7 +38,6 @@ namespace user
       
       ::user::schema *        m_puserschema;
 
-
       schema();
       virtual ~schema();
 
@@ -62,6 +61,7 @@ namespace user
       virtual bool select_text_color(::draw2d::graphics * pgraphics, e_color ecolor = color_text);
       virtual bool select_font(::draw2d::graphics * pgraphics);
 
+      virtual bool simple_ui_draw_focus_rect(::user::interaction * pui,::draw2d::graphics * pgraphics);
 
    };
 
