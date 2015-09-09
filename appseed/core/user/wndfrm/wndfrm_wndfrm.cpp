@@ -92,6 +92,8 @@ namespace user
 
             delete plibrary;
 
+
+
             return NULL;
 
          }
@@ -155,9 +157,11 @@ namespace user
             strLibrary = "wndfrm_core";
 
             pinteraction = get_wndfrm(strLibrary);
-         
+
             if(pinteraction == NULL)
             {
+
+               Application.simple_message_box("no wndfrm plugin", "no wndfrm plugin", MB_OK);
 
                return NULL;
 
@@ -175,12 +179,16 @@ namespace user
 
          }
 
-         if(pframe.is_set())
+         if(pframe.is_null())
          {
 
-            pframe->m_pinteraction = pinteraction;
+            Application.simple_message_box("no wndfrm plugin able to produce window frame", "no wndfrm plugin able to produce window frame", MB_OK);
+
+            return NULL;
 
          }
+
+         pframe->m_pinteraction = pinteraction;
 
          return pframe;
 
