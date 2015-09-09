@@ -460,7 +460,7 @@ namespace console
 
       sp(::user::wndfrm::frame::frame) pschema = Application.wndfrm().get_frame_schema("wndfrm_core","002");
 
-      pschema->m_typeinfoControlBoxButton = System.type_info < MetaButton >();
+//      pschema->m_typeinfoControlBoxButton = System.type_info < MetaButton >();
 
       //      pschema->get_control_box()->hide_button(::user::wndfrm::frame::button_maximize);
       //    pschema->get_control_box()->hide_button(::user::wndfrm::frame::button_minimize);

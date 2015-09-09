@@ -857,6 +857,11 @@ void var::read(::file::istream & is)
          is >> m_i32;
       }
       break;
+   case type_int64:
+   {
+      is >> m_i64;
+   }
+   break;
    case type_bool:
       {
          is >> m_b;
@@ -938,6 +943,9 @@ void var::write(::file::ostream & ostream) const
       break;
    case type_int32:
       ostream << m_i32;
+      break;
+   case type_int64:
+      ostream << m_i64;
       break;
    case type_bool:
       ostream << m_b;
