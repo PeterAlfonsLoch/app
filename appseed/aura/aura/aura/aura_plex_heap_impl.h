@@ -34,7 +34,7 @@ inline void plex_heap_alloc_sync::Free(void * p)
 
    if(p == NULL)
       return;
-   
+
    #ifdef DEBUG
    Free_check_pointer_in_cpp(p);
    #endif
@@ -106,8 +106,8 @@ class CLASS_DECL_AURA plex_heap_alloc :
 public:
 
    // // Now alloc from any pool and release to any pool (not necessaraly the same allocated at) . save four bytes per allocation
-   uint32_t                      m_uiAlloc; // Now alloc from any pool 
-   uint32_t                      m_uiFree; // and release to any pool 
+   uint32_t                      m_uiAlloc; // Now alloc from any pool
+   uint32_t                      m_uiFree; // and release to any pool
    uint32_t                      m_uiShareCount;
    uint32_t                      m_uiShareBound;
    uint32_t                      m_uiAllocSize;
@@ -292,7 +292,7 @@ inline plex_heap_alloc * plex_heap_alloc_array::find(size_t nAllocSize)
    for(; iA < PLEX_HEAP_ALLOC_ARRAY_AINDEX_COUNT; iA++)
    {
 
-      if(compare::ge(m_aaSize[iA], nAllocSize))
+      if(m_aaSize[iA] > nAllocSize)
       {
 
          break;
@@ -310,7 +310,7 @@ inline plex_heap_alloc * plex_heap_alloc_array::find(size_t nAllocSize)
    for(; iB < PLEX_HEAP_ALLOC_ARRAY_BINDEX_COUNT; iB++)
    {
 
-      if(compare::ge(m_bbSize[iB], nAllocSize))
+      if(m_bbSize[iB] > nAllocSize)
       {
 
          break;

@@ -14,30 +14,33 @@ struct CLASS_DECL_AXIS_RDPCLIENT rdp_event_item
 };
 
 
-struct CLASS_DECL_AXIS_RDPCLIENT rdp_event_item
-{
-
-   rdpInput * input;
-   BOOL bKey;
-   BOOL down;
-   UINT scancode;
-   UINT uiMessage;
-   POINT pt;
-   void send();
-};
-
->>>>>>> .r16293
 typedef array < rdp_event_item > rdp_event_itema;
 
-mutex g_mutexRdpEvent;
+mutex * g_pmutexRdpEvent = NULL;
+
 map < void *,void *,rdp_event_itema> g_eventmap;
 
 CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_event(void * input,int bKey,int down,UINT scancode,UINT uiMessage,POINT pt);
 
+mutex * ca2rdp_get_event_queue_mutex()
+{
+
+   if(g_pmutexRdpEvent == NULL)
+   {
+
+      g_pmutexRdpEvent = new mutex();
+
+   }
+
+   return g_pmutexRdpEvent;
+
+
+}
+
 CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_queue_event(void * input,int bKey,int down,UINT scancode,UINT uiMessage,POINT pt)
 {
 
-   synch_lock sl(&g_mutexRdpEvent);
+   synch_lock sl(ca2rdp_get_event_queue_mutex());
 
    rdp_event_item item;
    item.input = input;
@@ -53,7 +56,7 @@ CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_queue_event(void * input,int bKey,int down
 CLASS_DECL_AXIS_RDPCLIENT int  ca2rdp_get_event(rdp_event_item & item,void* input)
 {
 
-   synch_lock sl(&g_mutexRdpEvent);
+   synch_lock sl(ca2rdp_get_event_queue_mutex());
 
    if(g_eventmap[input].has_elements())
    {
@@ -68,5 +71,7 @@ CLASS_DECL_AXIS_RDPCLIENT int  ca2rdp_get_event(rdp_event_item & item,void* inpu
 
 void rdp_event_item::send()
 {
+
    ca2rdp_send_event(input,bKey,down,scancode,uiMessage,pt);
+
 }

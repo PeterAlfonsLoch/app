@@ -161,7 +161,7 @@ namespace user
             if(pinteraction == NULL)
             {
 
-               Application.simple_message_box("no wndfrm plugin", "no wndfrm plugin", MB_OK);
+               Application.simple_message_box(NULL, "no wndfrm plugin", MB_OK);
 
                return NULL;
 
@@ -182,7 +182,7 @@ namespace user
          if(pframe.is_null())
          {
 
-            Application.simple_message_box("no wndfrm plugin able to produce window frame", "no wndfrm plugin able to produce window frame", MB_OK);
+            Application.simple_message_box(NULL, "no wndfrm plugin able to produce window frame", MB_OK);
 
             return NULL;
 
