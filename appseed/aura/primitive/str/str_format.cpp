@@ -486,7 +486,7 @@ bool string_format::parse(const char * & s)
                pformat->append(::str::from(d));
                return;
             }
-#elif defined(LINUX)
+#elif defined(LINUX) || defined(MACOS)
             if(gcvt(fabs(d),digits, sz))
             {
                pformat->append(::str::from(d));

@@ -456,7 +456,6 @@
 		07AD9A6C182FF968005C3335 /* filemanager_update_hint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_update_hint.h; sourceTree = "<group>"; };
 		07AD9A6E182FF968005C3335 /* filemanager_view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_view.h; sourceTree = "<group>"; };
 		07AD9A9B182FF9E1005C3335 /* userfs_item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userfs_item.h; sourceTree = "<group>"; };
-		07B0B293189EED130041FCB1 /* user_meta_control_box.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_meta_control_box.h; sourceTree = "<group>"; };
 		07B2768619A03C9700E822E1 /* user_orto_button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_orto_button.h; sourceTree = "<group>"; };
 		07F5B2E5184A4FA00092C3E1 /* interaction.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = interaction.inl; sourceTree = "<group>"; };
 		07F5B2E7184A4FA00092C3E1 /* user.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user.h; sourceTree = "<group>"; };
@@ -485,7 +484,6 @@
 		07F5B31F184A4FA00092C3E1 /* user_list_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_list_data.h; sourceTree = "<group>"; };
 		07F5B323184A4FA00092C3E1 /* user_list_header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_list_header.h; sourceTree = "<group>"; };
 		07F5B325184A4FA00092C3E1 /* user_main_frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_main_frame.h; sourceTree = "<group>"; };
-		07F5B329184A4FA00092C3E1 /* user_meta_button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_meta_button.h; sourceTree = "<group>"; };
 		07F5B32B184A4FA00092C3E1 /* user_multiple_document_template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_multiple_document_template.h; sourceTree = "<group>"; };
 		07F5B32D184A4FA00092C3E1 /* user_network_configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_network_configuration.h; sourceTree = "<group>"; };
 		07F5B32F184A4FA00092C3E1 /* user_notification_area.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_notification_area.h; sourceTree = "<group>"; };
@@ -915,8 +913,6 @@
 				07F5B31F184A4FA00092C3E1 /* user_list_data.h */,
 				07F5B323184A4FA00092C3E1 /* user_list_header.h */,
 				07F5B325184A4FA00092C3E1 /* user_main_frame.h */,
-				07F5B329184A4FA00092C3E1 /* user_meta_button.h */,
-				07B0B293189EED130041FCB1 /* user_meta_control_box.h */,
 				07F5B32B184A4FA00092C3E1 /* user_multiple_document_template.h */,
 				07F5B32D184A4FA00092C3E1 /* user_network_configuration.h */,
 				07F5B32F184A4FA00092C3E1 /* user_notification_area.h */,
@@ -1651,7 +1647,6 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/core $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../app/base $(WorkspaceDir)/../../../app/axis $(WorkspaceDir)/../../../app/aura $(WorkspaceDir)/../../../app/atom";
 				WARNING_CFLAGS = (
 					"-Wno-comment",
 					"-Wno-unused-value",
@@ -1708,7 +1703,6 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/core $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../app/base $(WorkspaceDir)/../../../app/axis $(WorkspaceDir)/../../../app/aura $(WorkspaceDir)/../../../app/atom";
 				VALIDATE_PRODUCT = YES;
 				WARNING_CFLAGS = (
 					"-Wno-comment",

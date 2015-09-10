@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0730AFD51BA10CEC001D28DB /* calculator_element.h in Headers */ = {isa = PBXBuildFile; fileRef = 0730AFC71BA10CEC001D28DB /* calculator_element.h */; };
+		0730AFD71BA10CEC001D28DB /* calculator_parser_exception.h in Headers */ = {isa = PBXBuildFile; fileRef = 0730AFC91BA10CEC001D28DB /* calculator_parser_exception.h */; };
+		0730AFD91BA10CEC001D28DB /* calculator_parser.h in Headers */ = {isa = PBXBuildFile; fileRef = 0730AFCB1BA10CEC001D28DB /* calculator_parser.h */; };
+		0730AFDB1BA10CEC001D28DB /* calculator_plain_edit_view.h in Headers */ = {isa = PBXBuildFile; fileRef = 0730AFCD1BA10CEC001D28DB /* calculator_plain_edit_view.h */; };
+		0730AFDD1BA10CEC001D28DB /* calculator_scanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 0730AFCF1BA10CEC001D28DB /* calculator_scanner.h */; };
+		0730AFDE1BA10CEC001D28DB /* calculator_token.h in Headers */ = {isa = PBXBuildFile; fileRef = 0730AFD01BA10CEC001D28DB /* calculator_token.h */; };
+		0730AFE01BA10CEC001D28DB /* calculator_value.h in Headers */ = {isa = PBXBuildFile; fileRef = 0730AFD21BA10CEC001D28DB /* calculator_value.h */; };
+		0730AFE21BA10CF9001D28DB /* _math_math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0730AFE11BA10CF9001D28DB /* _math_math.cpp */; };
+		0730AFE51BA10D6C001D28DB /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0730AFC01BA10CAC001D28DB /* libbase.dylib */; };
+		0730AFF51BA11478001D28DB /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2EA37319A62C9E004DAFFC /* libaxis.dylib */; };
 		07B65767190F3CA2002DAADE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65766190F3CA2002DAADE /* Foundation.framework */; };
 		07B65775190F3CA2002DAADE /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65774190F3CA2002DAADE /* XCTest.framework */; };
 		07B65776190F3CA2002DAADE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65766190F3CA2002DAADE /* Foundation.framework */; };
@@ -14,40 +24,56 @@
 		07B6577B190F3CA2002DAADE /* libmath.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65764190F3CA2002DAADE /* libmath.dylib */; };
 		07B65781190F3CA2002DAADE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 07B6577F190F3CA2002DAADE /* InfoPlist.strings */; };
 		07B65783190F3CA2002DAADE /* math_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B65782190F3CA2002DAADE /* math_iosTests.m */; };
-		07C8A4641B71DCD1000226A8 /* kiss_fft.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD4FD6817BD5A480008F751 /* kiss_fft.cpp */; };
-		07C8A4651B71DCD1000226A8 /* kiss_fft_shared.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD4FD6B17BD5A480008F751 /* kiss_fft_shared.cpp */; };
-		07C8A4661B71DCD1000226A8 /* kiss_ifft.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD4FD6C17BD5A480008F751 /* kiss_ifft.cpp */; };
-		07C8A4671B71DCD1000226A8 /* kissfft_fftd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD4FD6F17BD5A480008F751 /* kissfft_fftd.cpp */; };
-		07C8A4681B71DCD1000226A8 /* kissfft_ifftd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD4FD7117BD5A480008F751 /* kissfft_ifftd.cpp */; };
 		07C8A4771B71DD67000226A8 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07C8A4701B71DD45000226A8 /* libaura.dylib */; };
 		07C8A47A1B71DD73000226A8 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07C8A4701B71DD45000226A8 /* libaura.dylib */; };
-		07DA47C61B71EFF7006F27E6 /* _calculator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07DA47B71B71EFF7006F27E6 /* _calculator.cpp */; };
 		07DA47C71B71EFF7006F27E6 /* calculator.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DA47B81B71EFF7006F27E6 /* calculator.h */; };
 		07DA47C91B71EFF7006F27E6 /* calculator_calculator.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DA47BA1B71EFF7006F27E6 /* calculator_calculator.h */; };
-		07DA47CB1B71EFF7006F27E6 /* numeric_element.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DA47BC1B71EFF7006F27E6 /* numeric_element.h */; };
-		07DA47CD1B71EFF7006F27E6 /* numeric_parser.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DA47BE1B71EFF7006F27E6 /* numeric_parser.h */; };
-		07DA47CF1B71EFF7006F27E6 /* numeric_parser_exception.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DA47C01B71EFF7006F27E6 /* numeric_parser_exception.h */; };
-		07DA47D11B71EFF7006F27E6 /* numeric_scanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DA47C21B71EFF7006F27E6 /* numeric_scanner.h */; };
-		07DA47D21B71EFF7006F27E6 /* numeric_token.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DA47C31B71EFF7006F27E6 /* numeric_token.h */; };
-		07DA47D41B71EFF7006F27E6 /* numeric_value.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DA47C51B71EFF7006F27E6 /* numeric_value.h */; };
-		07DA47D51B71F011006F27E6 /* _calculator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07DA47B71B71EFF7006F27E6 /* _calculator.cpp */; };
-		9A57509E16AAB9A1000CC4EF /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A574D2B16AAB99E000CC4EF /* framework.cpp */; };
 		9A57509F16AAB9A1000CC4EF /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A574D2C16AAB99E000CC4EF /* framework.h */; };
-		9AD4FD7817BD5A480008F751 /* kiss_fft.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD4FD6817BD5A480008F751 /* kiss_fft.cpp */; };
 		9AD4FD7917BD5A480008F751 /* kiss_fft.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD4FD6917BD5A480008F751 /* kiss_fft.h */; };
 		9AD4FD7A17BD5A480008F751 /* kiss_fft_guts.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD4FD6A17BD5A480008F751 /* kiss_fft_guts.h */; };
-		9AD4FD7B17BD5A480008F751 /* kiss_fft_shared.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD4FD6B17BD5A480008F751 /* kiss_fft_shared.cpp */; };
-		9AD4FD7C17BD5A480008F751 /* kiss_ifft.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD4FD6C17BD5A480008F751 /* kiss_ifft.cpp */; };
 		9AD4FD7D17BD5A480008F751 /* kiss_ifft.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD4FD6D17BD5A480008F751 /* kiss_ifft.h */; };
 		9AD4FD7E17BD5A480008F751 /* kissfft.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD4FD6E17BD5A480008F751 /* kissfft.h */; };
-		9AD4FD7F17BD5A480008F751 /* kissfft_fftd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD4FD6F17BD5A480008F751 /* kissfft_fftd.cpp */; };
 		9AD4FD8017BD5A480008F751 /* kissfft_fftd.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD4FD7017BD5A480008F751 /* kissfft_fftd.h */; };
-		9AD4FD8117BD5A480008F751 /* kissfft_ifftd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD4FD7117BD5A480008F751 /* kissfft_ifftd.cpp */; };
 		9AD4FD8217BD5A480008F751 /* kissfft_ifftd.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD4FD7217BD5A480008F751 /* kissfft_ifftd.h */; };
 		9AD4FD8517BD5A480008F751 /* math_math.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD4FD7617BD5A480008F751 /* math_math.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		0730AFBF1BA10CAC001D28DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0730AFB51BA10CAC001D28DB /* base.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A98A6151771D67E000AE16E;
+			remoteInfo = base;
+		};
+		0730AFC11BA10CAC001D28DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0730AFB51BA10CAC001D28DB /* base.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AE24D341904CEFE001AEFFB;
+			remoteInfo = ios_base;
+		};
+		0730AFC31BA10CAC001D28DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0730AFB51BA10CAC001D28DB /* base.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AE24D431904CEFE001AEFFB;
+			remoteInfo = base_iosTests;
+		};
+		0730AFE31BA10D62001D28DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0730AFB51BA10CAC001D28DB /* base.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A98A6031771D67E000AE16E;
+			remoteInfo = base;
+		};
+		0730AFF31BA11470001D28DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A2EA36C19A62C9E004DAFFC /* axis.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A98A6031771D67E000AE16E;
+			remoteInfo = axis;
+		};
 		07B65779190F3CA2002DAADE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A574B8F16AAB906000CC4EF /* Project object */;
@@ -126,6 +152,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0730AFB51BA10CAC001D28DB /* base.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = base.xcodeproj; path = ../base/base.xcodeproj; sourceTree = "<group>"; };
+		0730AFC71BA10CEC001D28DB /* calculator_element.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = calculator_element.h; sourceTree = "<group>"; };
+		0730AFC91BA10CEC001D28DB /* calculator_parser_exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = calculator_parser_exception.h; sourceTree = "<group>"; };
+		0730AFCB1BA10CEC001D28DB /* calculator_parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = calculator_parser.h; sourceTree = "<group>"; };
+		0730AFCD1BA10CEC001D28DB /* calculator_plain_edit_view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = calculator_plain_edit_view.h; sourceTree = "<group>"; };
+		0730AFCF1BA10CEC001D28DB /* calculator_scanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = calculator_scanner.h; sourceTree = "<group>"; };
+		0730AFD01BA10CEC001D28DB /* calculator_token.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = calculator_token.h; sourceTree = "<group>"; };
+		0730AFD21BA10CEC001D28DB /* calculator_value.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = calculator_value.h; sourceTree = "<group>"; };
+		0730AFE11BA10CF9001D28DB /* _math_math.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _math_math.cpp; sourceTree = "<group>"; };
 		07B65764190F3CA2002DAADE /* libmath.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libmath.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		07B65766190F3CA2002DAADE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		07B65773190F3CA2002DAADE /* math_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = math_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -135,29 +170,17 @@
 		07B65780190F3CA2002DAADE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		07B65782190F3CA2002DAADE /* math_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = math_iosTests.m; sourceTree = "<group>"; };
 		07C8A4691B71DD44000226A8 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../aura/aura.xcodeproj; sourceTree = "<group>"; };
-		07DA47B71B71EFF7006F27E6 /* _calculator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _calculator.cpp; sourceTree = "<group>"; };
 		07DA47B81B71EFF7006F27E6 /* calculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = calculator.h; sourceTree = "<group>"; };
 		07DA47BA1B71EFF7006F27E6 /* calculator_calculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = calculator_calculator.h; sourceTree = "<group>"; };
-		07DA47BC1B71EFF7006F27E6 /* numeric_element.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = numeric_element.h; sourceTree = "<group>"; };
-		07DA47BE1B71EFF7006F27E6 /* numeric_parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = numeric_parser.h; sourceTree = "<group>"; };
-		07DA47C01B71EFF7006F27E6 /* numeric_parser_exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = numeric_parser_exception.h; sourceTree = "<group>"; };
-		07DA47C21B71EFF7006F27E6 /* numeric_scanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = numeric_scanner.h; sourceTree = "<group>"; };
-		07DA47C31B71EFF7006F27E6 /* numeric_token.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = numeric_token.h; sourceTree = "<group>"; };
-		07DA47C51B71EFF7006F27E6 /* numeric_value.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = numeric_value.h; sourceTree = "<group>"; };
 		9A2EA36C19A62C9E004DAFFC /* axis.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axis.xcodeproj; path = ../axis/axis.xcodeproj; sourceTree = "<group>"; };
 		9A574B9816AAB906000CC4EF /* libmath.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libmath.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A574D2B16AAB99E000CC4EF /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
 		9A574D2C16AAB99E000CC4EF /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
-		9AD4FD6817BD5A480008F751 /* kiss_fft.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = kiss_fft.cpp; sourceTree = "<group>"; };
 		9AD4FD6917BD5A480008F751 /* kiss_fft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kiss_fft.h; sourceTree = "<group>"; };
 		9AD4FD6A17BD5A480008F751 /* kiss_fft_guts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kiss_fft_guts.h; sourceTree = "<group>"; };
-		9AD4FD6B17BD5A480008F751 /* kiss_fft_shared.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = kiss_fft_shared.cpp; sourceTree = "<group>"; };
-		9AD4FD6C17BD5A480008F751 /* kiss_ifft.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = kiss_ifft.cpp; sourceTree = "<group>"; };
 		9AD4FD6D17BD5A480008F751 /* kiss_ifft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kiss_ifft.h; sourceTree = "<group>"; };
 		9AD4FD6E17BD5A480008F751 /* kissfft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kissfft.h; sourceTree = "<group>"; };
-		9AD4FD6F17BD5A480008F751 /* kissfft_fftd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = kissfft_fftd.cpp; sourceTree = "<group>"; };
 		9AD4FD7017BD5A480008F751 /* kissfft_fftd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kissfft_fftd.h; sourceTree = "<group>"; };
-		9AD4FD7117BD5A480008F751 /* kissfft_ifftd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = kissfft_ifftd.cpp; sourceTree = "<group>"; };
 		9AD4FD7217BD5A480008F751 /* kissfft_ifftd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kissfft_ifftd.h; sourceTree = "<group>"; };
 		9AD4FD7617BD5A480008F751 /* math_math.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = math_math.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -188,12 +211,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				07C8A4771B71DD67000226A8 /* libaura.dylib in Frameworks */,
+				0730AFF51BA11478001D28DB /* libaxis.dylib in Frameworks */,
+				0730AFE51BA10D6C001D28DB /* libbase.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0730AFB61BA10CAC001D28DB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0730AFC01BA10CAC001D28DB /* libbase.dylib */,
+				0730AFC21BA10CAC001D28DB /* libbase.dylib */,
+				0730AFC41BA10CAC001D28DB /* base_iosTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		07B65765190F3CA2002DAADE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -235,15 +270,15 @@
 		07DA47B61B71EFF7006F27E6 /* calculator */ = {
 			isa = PBXGroup;
 			children = (
-				07DA47B71B71EFF7006F27E6 /* _calculator.cpp */,
+				0730AFC71BA10CEC001D28DB /* calculator_element.h */,
+				0730AFC91BA10CEC001D28DB /* calculator_parser_exception.h */,
+				0730AFCB1BA10CEC001D28DB /* calculator_parser.h */,
+				0730AFCD1BA10CEC001D28DB /* calculator_plain_edit_view.h */,
+				0730AFCF1BA10CEC001D28DB /* calculator_scanner.h */,
+				0730AFD01BA10CEC001D28DB /* calculator_token.h */,
+				0730AFD21BA10CEC001D28DB /* calculator_value.h */,
 				07DA47B81B71EFF7006F27E6 /* calculator.h */,
 				07DA47BA1B71EFF7006F27E6 /* calculator_calculator.h */,
-				07DA47BC1B71EFF7006F27E6 /* numeric_element.h */,
-				07DA47BE1B71EFF7006F27E6 /* numeric_parser.h */,
-				07DA47C01B71EFF7006F27E6 /* numeric_parser_exception.h */,
-				07DA47C21B71EFF7006F27E6 /* numeric_scanner.h */,
-				07DA47C31B71EFF7006F27E6 /* numeric_token.h */,
-				07DA47C51B71EFF7006F27E6 /* numeric_value.h */,
 			);
 			path = calculator;
 			sourceTree = "<group>";
@@ -261,9 +296,11 @@
 		9A574B8D16AAB906000CC4EF = {
 			isa = PBXGroup;
 			children = (
-				07DA47B61B71EFF7006F27E6 /* calculator */,
 				07C8A4691B71DD44000226A8 /* aura.xcodeproj */,
 				9A2EA36C19A62C9E004DAFFC /* axis.xcodeproj */,
+				0730AFB51BA10CAC001D28DB /* base.xcodeproj */,
+				0730AFE11BA10CF9001D28DB /* _math_math.cpp */,
+				07DA47B61B71EFF7006F27E6 /* calculator */,
 				9ACABEAC17BD04FF004C3F85 /* math */,
 				07B6577C190F3CA2002DAADE /* math_iosTests */,
 				07B65765190F3CA2002DAADE /* Frameworks */,
@@ -295,16 +332,11 @@
 		9AD4FD6617BD5A480008F751 /* kissfft */ = {
 			isa = PBXGroup;
 			children = (
-				9AD4FD6817BD5A480008F751 /* kiss_fft.cpp */,
 				9AD4FD6917BD5A480008F751 /* kiss_fft.h */,
 				9AD4FD6A17BD5A480008F751 /* kiss_fft_guts.h */,
-				9AD4FD6B17BD5A480008F751 /* kiss_fft_shared.cpp */,
-				9AD4FD6C17BD5A480008F751 /* kiss_ifft.cpp */,
 				9AD4FD6D17BD5A480008F751 /* kiss_ifft.h */,
 				9AD4FD6E17BD5A480008F751 /* kissfft.h */,
-				9AD4FD6F17BD5A480008F751 /* kissfft_fftd.cpp */,
 				9AD4FD7017BD5A480008F751 /* kissfft_fftd.h */,
-				9AD4FD7117BD5A480008F751 /* kissfft_ifftd.cpp */,
 				9AD4FD7217BD5A480008F751 /* kissfft_ifftd.h */,
 			);
 			path = kissfft;
@@ -325,22 +357,23 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07DA47CB1B71EFF7006F27E6 /* numeric_element.h in Headers */,
-				07DA47D11B71EFF7006F27E6 /* numeric_scanner.h in Headers */,
 				07DA47C71B71EFF7006F27E6 /* calculator.h in Headers */,
+				0730AFDD1BA10CEC001D28DB /* calculator_scanner.h in Headers */,
+				0730AFDE1BA10CEC001D28DB /* calculator_token.h in Headers */,
 				9A57509F16AAB9A1000CC4EF /* framework.h in Headers */,
-				07DA47D41B71EFF7006F27E6 /* numeric_value.h in Headers */,
 				9AD4FD7917BD5A480008F751 /* kiss_fft.h in Headers */,
-				07DA47CF1B71EFF7006F27E6 /* numeric_parser_exception.h in Headers */,
+				0730AFD71BA10CEC001D28DB /* calculator_parser_exception.h in Headers */,
+				0730AFD51BA10CEC001D28DB /* calculator_element.h in Headers */,
 				9AD4FD7A17BD5A480008F751 /* kiss_fft_guts.h in Headers */,
-				07DA47CD1B71EFF7006F27E6 /* numeric_parser.h in Headers */,
 				9AD4FD7D17BD5A480008F751 /* kiss_ifft.h in Headers */,
 				9AD4FD7E17BD5A480008F751 /* kissfft.h in Headers */,
+				0730AFDB1BA10CEC001D28DB /* calculator_plain_edit_view.h in Headers */,
+				0730AFD91BA10CEC001D28DB /* calculator_parser.h in Headers */,
 				9AD4FD8017BD5A480008F751 /* kissfft_fftd.h in Headers */,
 				9AD4FD8217BD5A480008F751 /* kissfft_ifftd.h in Headers */,
 				07DA47C91B71EFF7006F27E6 /* calculator_calculator.h in Headers */,
 				9AD4FD8517BD5A480008F751 /* math_math.h in Headers */,
-				07DA47D21B71EFF7006F27E6 /* numeric_token.h in Headers */,
+				0730AFE01BA10CEC001D28DB /* calculator_value.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,6 +428,8 @@
 			);
 			dependencies = (
 				07C8A4761B71DD5C000226A8 /* PBXTargetDependency */,
+				0730AFF41BA11470001D28DB /* PBXTargetDependency */,
+				0730AFE41BA10D62001D28DB /* PBXTargetDependency */,
 			);
 			name = math;
 			productName = ca2;
@@ -434,6 +469,10 @@
 					ProductGroup = 9A2EA36D19A62C9E004DAFFC /* Products */;
 					ProjectRef = 9A2EA36C19A62C9E004DAFFC /* axis.xcodeproj */;
 				},
+				{
+					ProductGroup = 0730AFB61BA10CAC001D28DB /* Products */;
+					ProjectRef = 0730AFB51BA10CAC001D28DB /* base.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -445,6 +484,27 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		0730AFC01BA10CAC001D28DB /* libbase.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libbase.dylib;
+			remoteRef = 0730AFBF1BA10CAC001D28DB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0730AFC21BA10CAC001D28DB /* libbase.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libbase.dylib;
+			remoteRef = 0730AFC11BA10CAC001D28DB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0730AFC41BA10CAC001D28DB /* base_iosTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = base_iosTests.xctest;
+			remoteRef = 0730AFC31BA10CAC001D28DB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		07C8A4701B71DD45000226A8 /* libaura.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
@@ -505,12 +565,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07DA47D51B71F011006F27E6 /* _calculator.cpp in Sources */,
-				07C8A4641B71DCD1000226A8 /* kiss_fft.cpp in Sources */,
-				07C8A4651B71DCD1000226A8 /* kiss_fft_shared.cpp in Sources */,
-				07C8A4661B71DCD1000226A8 /* kiss_ifft.cpp in Sources */,
-				07C8A4671B71DCD1000226A8 /* kissfft_fftd.cpp in Sources */,
-				07C8A4681B71DCD1000226A8 /* kissfft_ifftd.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -526,19 +580,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A57509E16AAB9A1000CC4EF /* framework.cpp in Sources */,
-				9AD4FD7817BD5A480008F751 /* kiss_fft.cpp in Sources */,
-				9AD4FD7B17BD5A480008F751 /* kiss_fft_shared.cpp in Sources */,
-				9AD4FD7C17BD5A480008F751 /* kiss_ifft.cpp in Sources */,
-				9AD4FD7F17BD5A480008F751 /* kissfft_fftd.cpp in Sources */,
-				9AD4FD8117BD5A480008F751 /* kissfft_ifftd.cpp in Sources */,
-				07DA47C61B71EFF7006F27E6 /* _calculator.cpp in Sources */,
+				0730AFE21BA10CF9001D28DB /* _math_math.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		0730AFE41BA10D62001D28DB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = base;
+			targetProxy = 0730AFE31BA10D62001D28DB /* PBXContainerItemProxy */;
+		};
+		0730AFF41BA11470001D28DB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = axis;
+			targetProxy = 0730AFF31BA11470001D28DB /* PBXContainerItemProxy */;
+		};
 		07B6577A190F3CA2002DAADE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 07B65763190F3CA2002DAADE /* ios_math */;
@@ -716,7 +774,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = framework.h;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -763,7 +821,7 @@
 				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = framework.h;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -791,6 +849,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INSTALL_PATH = "@executable_path";
 				SKIP_INSTALL = YES;
 			};
@@ -800,6 +859,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INSTALL_PATH = "@executable_path";
 				SKIP_INSTALL = YES;
 			};

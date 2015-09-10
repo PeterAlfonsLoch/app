@@ -94,11 +94,11 @@ CLASS_DECL_AURA int_bool dir_appdata(char * psz,size_t size)
 
 #ifdef WINDOWS
 
-   return strncpy_s(psz,size, ::dir::appdata(),size);
+   return strncpy_s(psz,size, ::dir::appdata(),size) != NULL;
 
 #else
 
-   return strncpy(psz,size, ::dir::appdata());
+   return strncpy(psz,::dir::appdata(), size) != NULL;
 
 #endif
 

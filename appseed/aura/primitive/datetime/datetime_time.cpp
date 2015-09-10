@@ -543,6 +543,7 @@ namespace datetime
 #if __WORDSIZE != 64
 #pragma error "error: long should 8-byte on APPLEOS"
 #endif
+      char * szBuffer = str.GetBufferSetLength(maxTimeBufferSize);
 
       struct tm* ptmTemp = localtime(&m_time);
 

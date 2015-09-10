@@ -21,8 +21,11 @@
 //#endif
 
 #define ssize_t intptr_t
-
+#ifdef _WIN32
 #include <tchar.h>
+#else
+typedef char _TCHAR;
+#endif
 #include <stdlib.h>
 #include <sys/types.h>
 
@@ -31,7 +34,7 @@ typedef long ssize_t;
 #endif
 
 // Needed for Visual Studio versions before VS 2010.
-#if (_MSC_VER < 1600)
+#if defined(_WIN32) && (_MSC_VER < 1600)
 typedef __int32 int32_t;
 typedef unsigned __int32 uint32_t;
 #else

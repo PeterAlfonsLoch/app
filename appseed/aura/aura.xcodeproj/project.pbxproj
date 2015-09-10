@@ -48,7 +48,6 @@
 		077A05C61B4D7403001C85FF /* visual_icon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0747A6461B26375F00E85AC7 /* visual_icon.cpp */; };
 		077A05C71B4D7403001C85FF /* _primitive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 077CEF251B23D151009A57EF /* _primitive.cpp */; };
 		077A05C81B4D7403001C85FF /* aura_timer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07EC4CDE1B4C350E00EB5965 /* aura_timer.mm */; };
-		077A05C91B4D7403001C85FF /* framework_c.c in Sources */ = {isa = PBXBuildFile; fileRef = 077C2A17190F143F00A1F6B0 /* framework_c.c */; };
 		077A05CA1B4D7403001C85FF /* net_url.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07502CA41B251B0A008D207C /* net_url.cpp */; };
 		077A05CB1B4D7403001C85FF /* _colorertake5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 077CEF1A1B23CE2E009A57EF /* _colorertake5.cpp */; };
 		077A05CD1B4D7403001C85FF /* _aura_aura.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 077CEF1C1B23CE5F009A57EF /* _aura_aura.cpp */; };
@@ -614,7 +613,6 @@
 		077A08051B4D7403001C85FF /* data_item.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE4C7EA1996D29C00E50F88 /* data_item.h */; };
 		077A08061B4D7403001C85FF /* exception_exit.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163DF519C4A4CD00966C5E /* exception_exit.h */; };
 		077A08071B4D7403001C85FF /* file_stream.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B171184A3B430092C3E1 /* file_stream.h */; };
-		077C2A1B190F144000A1F6B0 /* framework_c.c in Sources */ = {isa = PBXBuildFile; fileRef = 077C2A17190F143F00A1F6B0 /* framework_c.c */; };
 		077C2A1C190F144000A1F6B0 /* framework_c.h in Headers */ = {isa = PBXBuildFile; fileRef = 077C2A18190F143F00A1F6B0 /* framework_c.h */; };
 		077C2A1D190F144000A1F6B0 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 077C2A19190F143F00A1F6B0 /* framework.cpp */; };
 		077C2A1E190F144000A1F6B0 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 077C2A1A190F144000A1F6B0 /* framework.h */; };
@@ -1291,7 +1289,6 @@
 		077A05621B4D70B7001C85FF /* UncaughtExceptionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UncaughtExceptionHandler.h; sourceTree = "<group>"; };
 		077A05631B4D70B7001C85FF /* UncaughtExceptionHandler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UncaughtExceptionHandler.mm; sourceTree = "<group>"; };
 		077A080B1B4D7403001C85FF /* libaura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		077C2A17190F143F00A1F6B0 /* framework_c.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = framework_c.c; sourceTree = "<group>"; };
 		077C2A18190F143F00A1F6B0 /* framework_c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework_c.h; sourceTree = "<group>"; };
 		077C2A19190F143F00A1F6B0 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
 		077C2A1A190F144000A1F6B0 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
@@ -2949,7 +2946,6 @@
 				07502CA81B251B15008D207C /* net */,
 				9AE722BF17E83B69003E47F9 /* primitive */,
 				9AE7233517E83B69003E47F9 /* user */,
-				077C2A17190F143F00A1F6B0 /* framework_c.c */,
 				077C2A18190F143F00A1F6B0 /* framework_c.h */,
 				077C2A19190F143F00A1F6B0 /* framework.cpp */,
 				077C2A1A190F144000A1F6B0 /* framework.h */,
@@ -4258,7 +4254,6 @@
 				077A05C61B4D7403001C85FF /* visual_icon.cpp in Sources */,
 				077A05C71B4D7403001C85FF /* _primitive.cpp in Sources */,
 				077A05C81B4D7403001C85FF /* aura_timer.mm in Sources */,
-				077A05C91B4D7403001C85FF /* framework_c.c in Sources */,
 				077A05CA1B4D7403001C85FF /* net_url.cpp in Sources */,
 				077A05CB1B4D7403001C85FF /* _colorertake5.cpp in Sources */,
 				077A05CD1B4D7403001C85FF /* _aura_aura.cpp in Sources */,
@@ -4291,7 +4286,6 @@
 				0747A6481B26375F00E85AC7 /* visual_icon.cpp in Sources */,
 				077CEF261B23D151009A57EF /* _primitive.cpp in Sources */,
 				07EC4CDF1B4C350E00EB5965 /* aura_timer.mm in Sources */,
-				077C2A1B190F144000A1F6B0 /* framework_c.c in Sources */,
 				07502CA51B251B0A008D207C /* net_url.cpp in Sources */,
 				077CEF1B1B23CE2E009A57EF /* _colorertake5.cpp in Sources */,
 				9A16447A19C4A4CF00966C5E /* UncaughtExceptionHandler.mm in Sources */,
