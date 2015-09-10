@@ -351,6 +351,14 @@ namespace user
    bool schema::simple_ui_draw_focus_rect(::user::interaction * pui,::draw2d::graphics * pgraphics)
    {
 
+      if(m_puserschema != NULL && m_puserschema != this)
+      {
+
+         if(m_puserschema->simple_ui_draw_focus_rect(pui, pgraphics))
+            return true;
+
+      }
+
       rect rectClient;
 
       pui->GetClientRect(rectClient);

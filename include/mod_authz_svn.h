@@ -27,7 +27,7 @@
 #ifndef MOD_AUTHZ_SVN_H
 #define MOD_AUTHZ_SVN_H
 
-#include <httpd.h>
+//#include <httpd.h>
 
 #ifdef __cplusplus
 extern "C" {

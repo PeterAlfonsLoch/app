@@ -1070,6 +1070,8 @@ namespace base
 
       m_pschemasimple = get_new_user_schema(NULL);
 
+      m_puserschema                 = m_pschemasimple;
+
       if(!::axis::session::process_initialize())
          return false;
 

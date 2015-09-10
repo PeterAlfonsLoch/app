@@ -34,7 +34,15 @@
 #define _SQLITE3_H_
 
 
+#ifdef _SUBVERSION_LIBRARY
+
+#define CLASS_DECL_IMPORT  __declspec(dllimport)
+
+#else
+
 #include "aura/aura/aura.h"
+
+#endif
 
 
 #include <stdarg.h>     /* Needed for the definition of va_list */

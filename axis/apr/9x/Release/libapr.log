@@ -1,0 +1,86 @@
+﻿  Creating gen_test_char.exe and apr_escape_test_char.h
+  gen_test_char.c
+  Creating apr.h from apr.hw
+  apr_atomic.c
+  dso.c
+  apr_escape.c
+  copy.c
+  fileacc.c
+  filepath_util.c
+  fullrw.c
+  mktemp.c
+  tempdir.c
+  buffer.c
+  dir.c
+  filedup.c
+  filepath.c
+  filestat.c
+  filesys.c
+  flock.c
+  open.c
+  pipe.c
+  readwrite.c
+  seek.c
+  Generating Code...
+  Compiling...
+  proc_mutex.c
+  thread_cond.c
+  thread_mutex.c
+  thread_rwlock.c
+  apr_pools.c
+  errorcodes.c
+  getopt.c
+  otherchild.c
+  version.c
+  charset.c
+  env.c
+  internal.c
+  misc.c
+  rand.c
+  start.c
+  utf8.c
+  common.c
+  mmap.c
+  inet_ntop.c
+  inet_pton.c
+  Generating Code...
+  Compiling...
+  multicast.c
+  sockaddr.c
+  socket_util.c
+  sendrecv.c
+  sockets.c
+  sockopt.c
+  apr_getpass.c
+  poll.c
+  pollcb.c
+  pollset.c
+  select.c
+  apr_random.c
+  sha2.c
+  sha2_glue.c
+  shm.c
+  apr_cpystrn.c
+  apr_fnmatch.c
+  apr_snprintf.c
+  apr_strings.c
+  apr_strnatcmp.c
+  Generating Code...
+  Compiling...
+  apr_strtok.c
+  apr_hash.c
+  apr_skiplist.c
+  apr_tables.c
+  proc.c
+  signals.c
+  thread.c
+  threadpriv.c
+  time.c
+  timestr.c
+  groupinfo.c
+  userinfo.c
+  Generating Code...
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(1189,5): warning MSB8012: TargetPath(Z:\ca2\app\axis\apr\.\9x\Release\axislibapr.dll) does not match the Linker's OutputFile property value (Z:\ca2\app\axis\apr\9x\Release\libapr-1.dll). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(1191,5): warning MSB8012: TargetName(axislibapr) does not match the Linker's OutputFile property value (libapr-1). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+     Creating library 9x\Release\libapr-1.lib and object 9x\Release\libapr-1.exp
+  libapr.vcxproj -> Z:\ca2\app\axis\apr\.\9x\Release\axislibapr.dll

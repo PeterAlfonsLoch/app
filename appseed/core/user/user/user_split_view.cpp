@@ -154,46 +154,46 @@ namespace user
       
       rect rect;
       
-      COLORREF cr = ARGB(184, 92, 92, 80);
+      //COLORREF cr = ARGB(184, 92, 92, 80);
 
-      for(i = 0; i < get_pane_count(); i++)
-      {
-        
-         CalcPaneRect(i, &rect);
+      //for(i = 0; i < get_pane_count(); i++)
+      //{
+      //  
+      //   CalcPaneRect(i, &rect);
 
-         // Top
-         pgraphics->FillSolidRect(
-            rect.left,
-            rect.top,
-            rect.width(),
-            m_cyBorder,
-            cr);
+      //   // Top
+      //   pgraphics->FillSolidRect(
+      //      rect.left,
+      //      rect.top,
+      //      rect.width(),
+      //      m_cyBorder,
+      //      cr);
 
-         // Right
-         pgraphics->FillSolidRect(
-            rect.right - m_cxBorder,
-            rect.top,
-            m_cxBorder,
-            rect.height(),
-            cr);
+      //   // Right
+      //   pgraphics->FillSolidRect(
+      //      rect.right - m_cxBorder,
+      //      rect.top,
+      //      m_cxBorder,
+      //      rect.height(),
+      //      cr);
 
-         // Bottom
-         pgraphics->FillSolidRect(
-            rect.left,
-            rect.bottom - m_cyBorder,
-            rect.width(),
-            m_cyBorder,
-            cr);
+      //   // Bottom
+      //   pgraphics->FillSolidRect(
+      //      rect.left,
+      //      rect.bottom - m_cyBorder,
+      //      rect.width(),
+      //      m_cyBorder,
+      //      cr);
 
-         // Left
-         pgraphics->FillSolidRect(
-            rect.left,
-            rect.top,
-            m_cxBorder,
-            rect.height(),
-            cr);
+      //   // Left
+      //   pgraphics->FillSolidRect(
+      //      rect.left,
+      //      rect.top,
+      //      m_cxBorder,
+      //      rect.height(),
+      //      cr);
 
-      }
+      //}
 
    }
 
