@@ -1,0 +1,17 @@
+LIBRARY "axissubversion"
+
+EXPORTS
+svn_error_create
+svn_handle_error2
+svn_config_get_config
+svn_config_ensure
+svn_auth_open
+svn_auth_get_simple_prompt_provider
+svn_auth_get_username_prompt_provider
+svn_auth_get_ssl_server_trust_prompt_provider
+svn_wc_set_adm_dir
+svn_client_create_context
+svn_client_ls
+svn_cmdline_init
+svn_pool_create_ex
+svn_fs_initialize

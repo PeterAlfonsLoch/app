@@ -1,0 +1,993 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{53662ecb-12f0-42c4-825d-f3dfb909d2f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{b175f01c-10a3-4a7b-9a1b-79617516c2ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\lib">
+      <UniqueIdentifier>{67c1b6fe-27dc-4afc-bbc6-489e0276c121}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\lib\libsvn_ra_svn">
+      <UniqueIdentifier>{4e2e3fb7-5a20-44b2-8618-ed7e433fba25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\lib\libsvn_subr">
+      <UniqueIdentifier>{dd953695-32b6-4c37-96f4-7ee07191008b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\lib\libsvn_client">
+      <UniqueIdentifier>{bcdd67c4-543a-47c6-9d6c-d724c26f12f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\lib\libsvn_wc">
+      <UniqueIdentifier>{14b58317-9e62-48bc-9d03-a7d82d708d6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\lib\libsvn_diff">
+      <UniqueIdentifier>{6054cec1-3d29-46ae-a56a-c157cd853343}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\lib\libsvn_ra_local">
+      <UniqueIdentifier>{6e5af843-e81f-4663-9167-75dc6afd9dfa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\lib\libsvn_repos">
+      <UniqueIdentifier>{b015ada8-6cb3-4818-9351-0c70e45e5adf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\lib\libsvn_fs">
+      <UniqueIdentifier>{d879361e-4e0a-48ce-b6bd-a3d5760a2134}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\lib\libsvn_delta">
+      <UniqueIdentifier>{c9fbc682-4de2-4ac2-afd8-160ab34792d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\lib\libsvn_fs_x">
+      <UniqueIdentifier>{00b56f77-f3b8-422f-9a86-353e3bafc88e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\lib\libsvn_fs_fs">
+      <UniqueIdentifier>{f7c37344-00b3-43b5-9014-fb21ac83b4fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\lib\libsvn_fs_util">
+      <UniqueIdentifier>{82b7f70e-4214-414c-8c23-51c7cec8b415}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\lib\libsvn_auth">
+      <UniqueIdentifier>{97fe2035-be9a-48bd-9d39-e32141fbf87d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\lib\lib">
+      <UniqueIdentifier>{75f381b0-6636-427f-8510-a3225a89c4cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\lib\libsvn_ra">
+      <UniqueIdentifier>{c38c2868-fe41-43a5-87ad-e01f2064544a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="subversion\libsvn_ra_svn\client.c">
+      <Filter>Source Files\lib\libsvn_ra_svn</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_ra_svn\cram.c">
+      <Filter>Source Files\lib\libsvn_ra_svn</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_ra_svn\cyrus_auth.c">
+      <Filter>Source Files\lib\libsvn_ra_svn</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_ra_svn\deprecated.c">
+      <Filter>Source Files\lib\libsvn_ra_svn</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_ra_svn\editorp.c">
+      <Filter>Source Files\lib\libsvn_ra_svn</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_ra_svn\internal_auth.c">
+      <Filter>Source Files\lib\libsvn_ra_svn</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_ra_svn\marshal.c">
+      <Filter>Source Files\lib\libsvn_ra_svn</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_ra_svn\streams.c">
+      <Filter>Source Files\lib\libsvn_ra_svn</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_ra_svn\version.c">
+      <Filter>Source Files\lib\libsvn_ra_svn</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\xml.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\x509parse.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\x509info.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\win32_xlate.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\win32_crypto.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\win32_crashrpt.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\version.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\validate.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\utf8proc.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\utf_width.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\utf_validate.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\utf.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\username_providers.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\user.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\types.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\token.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\time.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\temp_serializer.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\target.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\sysinfo.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\subst.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\string.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\stream.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\ssl_server_trust_providers.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\ssl_client_cert_pw_providers.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\ssl_client_cert_providers.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\sqlite3wrapper.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\sqlite.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\spillbuf.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\sorts.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\skel.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\simple_providers.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\root_pools.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\quoprint.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\properties.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\prompt.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\prefix_string.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\pool.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\path.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\packed_data.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\opt.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\object_pool.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\nls.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\mutex.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\mergeinfo.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\md5.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\magic.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\macos_keychain.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\log.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\lock.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\iter.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\io.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\hash.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\gpg_agent.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\fnv1a.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\error.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\eol.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\dso.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\dirent_uri.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\deprecated.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\debug.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\date.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\ctype.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\crypto.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\config_win.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\config_file.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\config_auth.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\config.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\compress.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\compat.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\cmdline.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\checksum.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\cache-memcache.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\cache-membuffer.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\cache-inprocess.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\cache_config.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\cache.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\bit_array.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\base64.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\auth.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\atomic.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_subr\adler32.c">
+      <Filter>Source Files\lib\libsvn_subr</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\add.c">
+      <Filter>Source Files\lib\libsvn_client</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\blame.c">
+      <Filter>Source Files\lib\libsvn_client</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\cat.c">
+      <Filter>Source Files\lib\libsvn_client</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\changelist.c">
+      <Filter>Source Files\lib\libsvn_client</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\checkout.c">
+      <Filter>Source Files\lib\libsvn_client</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\cleanup.c">
+      <Filter>Source Files\lib\libsvn_client</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\cmdline.c">
+      <Filter>Source Files\lib\libsvn_client</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\commit.c">
+      <Filter>Source Files\lib\libsvn_client</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\commit_util.c">
+      <Filter>Source Files\lib\libsvn_client</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\compat_providers.c">
+      <Filter>Source Files\lib\libsvn_client</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\copy.c">
+      <Filter>Source Files\lib\libsvn_client</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\copy_foreign.c">
+      <Filter>Source Files\lib\libsvn_client</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\ctx.c">
+      <Filter>Source Files\lib\libsvn_client</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\delete.c">
+      <Filter>Source Files\lib\libsvn_client</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\deprecated.c">
+      <Filter>Source Files\lib\libsvn_client</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\diff.c">
+      <Filter>Source Files\lib\libsvn_client</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\diff_local.c">
+      <Filter>Source Files\lib\libsvn_client</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\diff_summarize.c">
+      <Filter>Source Files\lib\libsvn_client</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\export.c">
+      <Filter>Source Files\lib\libsvn_client</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\externals.c">
+      <Filter>Source Files\lib\libsvn_client</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\import.c">
+      <Filter>Source Files\lib\libsvn_client</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\info.c">
+      <Filter>Source Files\lib\libsvn_client</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\iprops.c">
+      <Filter>Source Files\lib\libsvn_client</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\list.c">
+      <Filter>Source Files\lib\libsvn_client</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\locking_commands.c">
+      <Filter>Source Files\lib\libsvn_client</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\log.c">
+      <Filter>Source Files\lib\libsvn_client</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\merge.c">
+      <Filter>Source Files\lib\libsvn_client</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\mergeinfo.c">
+      <Filter>Source Files\lib\libsvn_client</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\mtcc.c">
+      <Filter>Source Files\lib\libsvn_client</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\patch.c">
+      <Filter>Source Files\lib\libsvn_client</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\prop_commands.c">
+      <Filter>Source Files\lib\libsvn_client</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\ra.c">
+      <Filter>Source Files\lib\libsvn_client</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\relocate.c">
+      <Filter>Source Files\lib\libsvn_client</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\repos_diff.c">
+      <Filter>Source Files\lib\libsvn_client</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\resolved.c">
+      <Filter>Source Files\lib\libsvn_client</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\revert.c">
+      <Filter>Source Files\lib\libsvn_client</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\revisions.c">
+      <Filter>Source Files\lib\libsvn_client</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\status.c">
+      <Filter>Source Files\lib\libsvn_client</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\switch.c">
+      <Filter>Source Files\lib\libsvn_client</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\update.c">
+      <Filter>Source Files\lib\libsvn_client</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\upgrade.c">
+      <Filter>Source Files\lib\libsvn_client</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\url.c">
+      <Filter>Source Files\lib\libsvn_client</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\util.c">
+      <Filter>Source Files\lib\libsvn_client</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\version.c">
+      <Filter>Source Files\lib\libsvn_client</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_wc\adm_crawler.c">
+      <Filter>Source Files\lib\libsvn_wc</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_wc\adm_files.c">
+      <Filter>Source Files\lib\libsvn_wc</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_wc\adm_ops.c">
+      <Filter>Source Files\lib\libsvn_wc</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_wc\ambient_depth_filter_editor.c">
+      <Filter>Source Files\lib\libsvn_wc</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_wc\cleanup.c">
+      <Filter>Source Files\lib\libsvn_wc</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_wc\conflicts.c">
+      <Filter>Source Files\lib\libsvn_wc</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_wc\context.c">
+      <Filter>Source Files\lib\libsvn_wc</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_wc\copy.c">
+      <Filter>Source Files\lib\libsvn_wc</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_wc\crop.c">
+      <Filter>Source Files\lib\libsvn_wc</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_wc\delete.c">
+      <Filter>Source Files\lib\libsvn_wc</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_wc\deprecated.c">
+      <Filter>Source Files\lib\libsvn_wc</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_wc\diff_editor.c">
+      <Filter>Source Files\lib\libsvn_wc</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_wc\diff_local.c">
+      <Filter>Source Files\lib\libsvn_wc</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_wc\entries.c">
+      <Filter>Source Files\lib\libsvn_wc</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_wc\externals.c">
+      <Filter>Source Files\lib\libsvn_wc</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_wc\info.c">
+      <Filter>Source Files\lib\libsvn_wc</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_wc\lock.c">
+      <Filter>Source Files\lib\libsvn_wc</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_wc\merge.c">
+      <Filter>Source Files\lib\libsvn_wc</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_wc\node.c">
+      <Filter>Source Files\lib\libsvn_wc</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_wc\old-and-busted.c">
+      <Filter>Source Files\lib\libsvn_wc</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_wc\props.c">
+      <Filter>Source Files\lib\libsvn_wc</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_wc\questions.c">
+      <Filter>Source Files\lib\libsvn_wc</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_wc\relocate.c">
+      <Filter>Source Files\lib\libsvn_wc</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_wc\revert.c">
+      <Filter>Source Files\lib\libsvn_wc</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_wc\revision_status.c">
+      <Filter>Source Files\lib\libsvn_wc</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_wc\status.c">
+      <Filter>Source Files\lib\libsvn_wc</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_wc\translate.c">
+      <Filter>Source Files\lib\libsvn_wc</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_wc\tree_conflicts.c">
+      <Filter>Source Files\lib\libsvn_wc</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_wc\update_editor.c">
+      <Filter>Source Files\lib\libsvn_wc</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_wc\upgrade.c">
+      <Filter>Source Files\lib\libsvn_wc</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_wc\util.c">
+      <Filter>Source Files\lib\libsvn_wc</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_wc\wc_db.c">
+      <Filter>Source Files\lib\libsvn_wc</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_wc\wc_db_pristine.c">
+      <Filter>Source Files\lib\libsvn_wc</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_wc\wc_db_update_move.c">
+      <Filter>Source Files\lib\libsvn_wc</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_wc\wc_db_util.c">
+      <Filter>Source Files\lib\libsvn_wc</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_wc\wc_db_wcroot.c">
+      <Filter>Source Files\lib\libsvn_wc</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_wc\wcroot_anchor.c">
+      <Filter>Source Files\lib\libsvn_wc</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_wc\workqueue.c">
+      <Filter>Source Files\lib\libsvn_wc</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_diff\binary_diff.c">
+      <Filter>Source Files\lib\libsvn_diff</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_diff\deprecated.c">
+      <Filter>Source Files\lib\libsvn_diff</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_diff\diff.c">
+      <Filter>Source Files\lib\libsvn_diff</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_diff\diff_file.c">
+      <Filter>Source Files\lib\libsvn_diff</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_diff\diff_memory.c">
+      <Filter>Source Files\lib\libsvn_diff</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_diff\diff_tree.c">
+      <Filter>Source Files\lib\libsvn_diff</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_diff\diff3.c">
+      <Filter>Source Files\lib\libsvn_diff</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_diff\diff4.c">
+      <Filter>Source Files\lib\libsvn_diff</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_diff\lcs.c">
+      <Filter>Source Files\lib\libsvn_diff</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_diff\parse-diff.c">
+      <Filter>Source Files\lib\libsvn_diff</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_diff\token.c">
+      <Filter>Source Files\lib\libsvn_diff</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_diff\util.c">
+      <Filter>Source Files\lib\libsvn_diff</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_ra_local\ra_plugin.c">
+      <Filter>Source Files\lib\libsvn_ra_local</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_ra_local\split_url.c">
+      <Filter>Source Files\lib\libsvn_ra_local</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_repos\authz.c">
+      <Filter>Source Files\lib\libsvn_repos</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_repos\authz_pool.c">
+      <Filter>Source Files\lib\libsvn_repos</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_repos\commit.c">
+      <Filter>Source Files\lib\libsvn_repos</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_repos\config_pool.c">
+      <Filter>Source Files\lib\libsvn_repos</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_repos\delta.c">
+      <Filter>Source Files\lib\libsvn_repos</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_repos\deprecated.c">
+      <Filter>Source Files\lib\libsvn_repos</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_repos\dump.c">
+      <Filter>Source Files\lib\libsvn_repos</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_repos\fs-wrap.c">
+      <Filter>Source Files\lib\libsvn_repos</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_repos\hooks.c">
+      <Filter>Source Files\lib\libsvn_repos</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_repos\load.c">
+      <Filter>Source Files\lib\libsvn_repos</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_repos\load-fs-vtable.c">
+      <Filter>Source Files\lib\libsvn_repos</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_repos\log.c">
+      <Filter>Source Files\lib\libsvn_repos</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_repos\node_tree.c">
+      <Filter>Source Files\lib\libsvn_repos</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_repos\notify.c">
+      <Filter>Source Files\lib\libsvn_repos</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_repos\replay.c">
+      <Filter>Source Files\lib\libsvn_repos</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_repos\reporter.c">
+      <Filter>Source Files\lib\libsvn_repos</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_repos\repos.c">
+      <Filter>Source Files\lib\libsvn_repos</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_repos\rev_hunt.c">
+      <Filter>Source Files\lib\libsvn_repos</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs\access.c">
+      <Filter>Source Files\lib\libsvn_fs</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs\deprecated.c">
+      <Filter>Source Files\lib\libsvn_fs</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs\editor.c">
+      <Filter>Source Files\lib\libsvn_fs</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs\fs-loader.c">
+      <Filter>Source Files\lib\libsvn_fs</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_delta\cancel.c">
+      <Filter>Source Files\lib\libsvn_delta</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_delta\compat.c">
+      <Filter>Source Files\lib\libsvn_delta</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_delta\compose_delta.c">
+      <Filter>Source Files\lib\libsvn_delta</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_delta\debug_editor.c">
+      <Filter>Source Files\lib\libsvn_delta</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_delta\default_editor.c">
+      <Filter>Source Files\lib\libsvn_delta</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_delta\deprecated.c">
+      <Filter>Source Files\lib\libsvn_delta</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_delta\depth_filter_editor.c">
+      <Filter>Source Files\lib\libsvn_delta</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_delta\editor.c">
+      <Filter>Source Files\lib\libsvn_delta</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_delta\path_driver.c">
+      <Filter>Source Files\lib\libsvn_delta</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_delta\svndiff.c">
+      <Filter>Source Files\lib\libsvn_delta</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_delta\text_delta.c">
+      <Filter>Source Files\lib\libsvn_delta</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_delta\version.c">
+      <Filter>Source Files\lib\libsvn_delta</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_delta\xdelta.c">
+      <Filter>Source Files\lib\libsvn_delta</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_x\cached_data.c">
+      <Filter>Source Files\lib\libsvn_fs_x</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_x\caching.c">
+      <Filter>Source Files\lib\libsvn_fs_x</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_x\changes.c">
+      <Filter>Source Files\lib\libsvn_fs_x</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_x\dag.c">
+      <Filter>Source Files\lib\libsvn_fs_x</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_x\fs.c">
+      <Filter>Source Files\lib\libsvn_fs_x</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_x\fs_id.c">
+      <Filter>Source Files\lib\libsvn_fs_x</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_x\fs_x.c">
+      <Filter>Source Files\lib\libsvn_fs_x</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_x\hotcopy.c">
+      <Filter>Source Files\lib\libsvn_fs_x</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_x\id.c">
+      <Filter>Source Files\lib\libsvn_fs_x</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_x\index.c">
+      <Filter>Source Files\lib\libsvn_fs_x</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_x\lock.c">
+      <Filter>Source Files\lib\libsvn_fs_x</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_x\low_level.c">
+      <Filter>Source Files\lib\libsvn_fs_x</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_x\noderevs.c">
+      <Filter>Source Files\lib\libsvn_fs_x</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_x\pack.c">
+      <Filter>Source Files\lib\libsvn_fs_x</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_x\recovery.c">
+      <Filter>Source Files\lib\libsvn_fs_x</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_x\rep-cache.c">
+      <Filter>Source Files\lib\libsvn_fs_x</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_x\reps.c">
+      <Filter>Source Files\lib\libsvn_fs_x</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_x\rev_file.c">
+      <Filter>Source Files\lib\libsvn_fs_x</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_x\revprops.c">
+      <Filter>Source Files\lib\libsvn_fs_x</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_x\string_table.c">
+      <Filter>Source Files\lib\libsvn_fs_x</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_x\temp_serializer.c">
+      <Filter>Source Files\lib\libsvn_fs_x</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_x\transaction.c">
+      <Filter>Source Files\lib\libsvn_fs_x</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_x\tree.c">
+      <Filter>Source Files\lib\libsvn_fs_x</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_x\util.c">
+      <Filter>Source Files\lib\libsvn_fs_x</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_x\verify.c">
+      <Filter>Source Files\lib\libsvn_fs_x</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_fs\cached_data.c">
+      <Filter>Source Files\lib\libsvn_fs_fs</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_fs\caching.c">
+      <Filter>Source Files\lib\libsvn_fs_fs</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_fs\dag.c">
+      <Filter>Source Files\lib\libsvn_fs_fs</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_fs\dump-index.c">
+      <Filter>Source Files\lib\libsvn_fs_fs</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_fs\fs.c">
+      <Filter>Source Files\lib\libsvn_fs_fs</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_fs\fs_fs.c">
+      <Filter>Source Files\lib\libsvn_fs_fs</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_fs\hotcopy.c">
+      <Filter>Source Files\lib\libsvn_fs_fs</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_fs\id.c">
+      <Filter>Source Files\lib\libsvn_fs_fs</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_fs\index.c">
+      <Filter>Source Files\lib\libsvn_fs_fs</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_fs\load-index.c">
+      <Filter>Source Files\lib\libsvn_fs_fs</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_fs\lock.c">
+      <Filter>Source Files\lib\libsvn_fs_fs</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_fs\low_level.c">
+      <Filter>Source Files\lib\libsvn_fs_fs</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_fs\pack.c">
+      <Filter>Source Files\lib\libsvn_fs_fs</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_fs\recovery.c">
+      <Filter>Source Files\lib\libsvn_fs_fs</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_fs\rep-cache.c">
+      <Filter>Source Files\lib\libsvn_fs_fs</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_fs\rev_file.c">
+      <Filter>Source Files\lib\libsvn_fs_fs</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_fs\revprops.c">
+      <Filter>Source Files\lib\libsvn_fs_fs</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_fs\stats.c">
+      <Filter>Source Files\lib\libsvn_fs_fs</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_fs\temp_serializer.c">
+      <Filter>Source Files\lib\libsvn_fs_fs</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_fs\transaction.c">
+      <Filter>Source Files\lib\libsvn_fs_fs</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_fs\tree.c">
+      <Filter>Source Files\lib\libsvn_fs_fs</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_fs\util.c">
+      <Filter>Source Files\lib\libsvn_fs_fs</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_fs\verify.c">
+      <Filter>Source Files\lib\libsvn_fs_fs</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_fs_util\fs-util.c">
+      <Filter>Source Files\lib\libsvn_fs_util</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_ra_serf\blame.c">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_ra_serf\blncache.c">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_ra_serf\commit.c">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_ra_serf\eagain_bucket.c">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_ra_serf\get_deleted_rev.c">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_ra_serf\get_file.c">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_ra_serf\get_lock.c">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_ra_serf\getdate.c">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_ra_serf\getlocations.c">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_ra_serf\getlocationsegments.c">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_ra_serf\getlocks.c">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_ra_serf\inherited_props.c">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_ra_serf\lock.c">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_ra_serf\log.c">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_ra_serf\merge.c">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_ra_serf\mergeinfo.c">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_ra_serf\multistatus.c">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_ra_serf\options.c">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_ra_serf\property.c">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_ra_serf\replay.c">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_ra_serf\sb_bucket.c">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_ra_serf\serf.c">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_ra_serf\stat.c">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_ra_serf\update.c">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_ra_serf\util.c">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_ra_serf\util_error.c">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_ra_serf\xml.c">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_ra\util.c">
+      <Filter>Source Files\lib\libsvn_ra</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_ra\ra_loader.c">
+      <Filter>Source Files\lib\libsvn_ra</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_ra\editor.c">
+      <Filter>Source Files\lib\libsvn_ra</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_ra\deprecated.c">
+      <Filter>Source Files\lib\libsvn_ra</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_ra\debug_reporter.c">
+      <Filter>Source Files\lib\libsvn_ra</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_ra\compat.c">
+      <Filter>Source Files\lib\libsvn_ra</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="subversion\libsvn_ra_svn\protocol">
+      <Filter>Source Files\lib\libsvn_ra_svn</Filter>
+    </None>
+    <None Include="subversion\libsvn_repos\libsvn_repos.pc.in">
+      <Filter>Source Files\lib\libsvn_repos</Filter>
+    </None>
+    <None Include="axissubversion.def" />
+    <None Include="subversion\libsvn_ra\libsvn_ra.pc.in">
+      <Filter>Source Files\lib\libsvn_ra</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="subversion\libsvn_ra_svn\ra_svn.h">
+      <Filter>Source Files\lib\libsvn_ra_svn</Filter>
+    </ClInclude>
+    <ClInclude Include="subversion\libsvn_repos\repos.h">
+      <Filter>Source Files\lib\libsvn_repos</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

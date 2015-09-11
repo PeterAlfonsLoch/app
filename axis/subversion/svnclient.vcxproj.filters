@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{9c6654eb-7116-4a73-8cd8-d02ce0febc11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{88c32888-ce8e-4c09-8acc-c714765d8757}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="subversion\libsvn_client\libsvn_client.pc.in">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="subversion\libsvn_client\add.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\blame.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\cat.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\changelist.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\checkout.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\cleanup.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\cmdline.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\commit.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\commit_util.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\compat_providers.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\copy.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\copy_foreign.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\ctx.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\delete.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\deprecated.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\diff.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\diff_local.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\diff_summarize.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\export.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\externals.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\import.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\info.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\iprops.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\list.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\locking_commands.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\log.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\merge.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\mergeinfo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\mtcc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\patch.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\prop_commands.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\ra.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\relocate.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\repos_diff.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\resolved.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\revert.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\revisions.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\status.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\switch.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\update.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\upgrade.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\url.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\util.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subversion\libsvn_client\version.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="subversion\libsvn_client\mergeinfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="subversion\libsvn_client\client.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
