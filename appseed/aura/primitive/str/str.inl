@@ -534,6 +534,57 @@ namespace str
    }
 
 
+
+   inline bool begins(const char * psz,string & strFed,const string & strPrefix)
+   {
+
+      if(!begins(psz,strPrefix))
+      {
+
+         return false;
+
+      }
+
+      strFed = strPrefix;
+
+      return true;
+
+   }
+
+
+   inline bool begins(const string & str,string & strFed,const string & strPrefix)
+   {
+
+      if(!begins(str,strPrefix))
+      {
+
+         return false;
+
+      }
+
+      strFed = strPrefix;
+
+      return true;
+
+   }
+
+
+   inline bool begins(const id & id,string & strFed,const string & strPrefix)
+   {
+
+      if(!begins(id,strPrefix))
+      {
+
+         return false;
+
+      }
+
+      strFed = strPrefix;
+
+      return true;
+
+   }
+
    inline bool begins_with(const char * psz,const string & strPrefix)
    {
 

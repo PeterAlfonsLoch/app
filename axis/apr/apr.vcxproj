@@ -20,446 +20,446 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="atomic\win32\apr_atomic.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="dso\win32\dso.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="encoding\apr_escape.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="file_io\unix\copy.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="file_io\unix\fileacc.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="file_io\unix\filepath_util.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="file_io\unix\fullrw.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="file_io\unix\mktemp.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="file_io\unix\tempdir.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="file_io\win32\buffer.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="file_io\win32\dir.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="file_io\win32\filedup.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="file_io\win32\filepath.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="file_io\win32\filestat.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="file_io\win32\filesys.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="file_io\win32\flock.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="file_io\win32\open.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="file_io\win32\pipe.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="file_io\win32\readwrite.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="file_io\win32\seek.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="locks\win32\proc_mutex.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="locks\win32\thread_cond.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="locks\win32\thread_mutex.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="locks\win32\thread_rwlock.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="memory\unix\apr_pools.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="misc\unix\errorcodes.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="misc\unix\getopt.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="misc\unix\otherchild.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="misc\unix\version.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="misc\win32\apr_app.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="misc\win32\charset.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="misc\win32\env.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="misc\win32\internal.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="misc\win32\misc.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="misc\win32\rand.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="misc\win32\start.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="misc\win32\utf8.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="mmap\unix\common.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="mmap\win32\mmap.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="network_io\unix\inet_ntop.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="network_io\unix\inet_pton.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="network_io\unix\multicast.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="network_io\unix\sockaddr.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="network_io\unix\socket_util.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="network_io\win32\sendrecv.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="network_io\win32\sockets.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="network_io\win32\sockopt.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="passwd\apr_getpass.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="poll\unix\poll.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="poll\unix\pollcb.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="poll\unix\pollset.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="poll\unix\select.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="random\unix\apr_random.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="random\unix\sha2.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="random\unix\sha2_glue.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="shmem\win32\shm.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="strings\apr_cpystrn.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="strings\apr_fnmatch.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="strings\apr_snprintf.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="strings\apr_strings.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="strings\apr_strnatcmp.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="strings\apr_strtok.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="tables\apr_hash.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="tables\apr_skiplist.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="tables\apr_tables.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="threadproc\win32\proc.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="threadproc\win32\signals.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="threadproc\win32\thread.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="threadproc\win32\threadpriv.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="time\win32\time.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="time\win32\timestr.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="user\win32\groupinfo.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
     <ClCompile Include="user\win32\userinfo.c">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc   /EHsc </AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='stage|x64'"> /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x64'"> /EHsc </AdditionalOptions>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -773,7 +773,7 @@
       <ExceptionHandling>Sync</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <BufferSecurityCheck>true</BufferSecurityCheck>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -797,6 +797,7 @@
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <MinimalRebuild>false</MinimalRebuild>
       <SmallerTypeCheck>false</SmallerTypeCheck>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -816,14 +817,8 @@
       <FixedBaseAddress>false</FixedBaseAddress>
       <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
     </Link>
-    <PreBuildEvent>
-      <Command>
-      </Command>
-    </PreBuildEvent>
-    <PreLinkEvent>
-      <Command>
-      </Command>
-    </PreLinkEvent>
+    <PreBuildEvent />
+    <PreLinkEvent />
     <Xdcmake>
       <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
     </Xdcmake>
@@ -842,7 +837,7 @@
       <PreprocessorDefinitions>NDEBUG;APR_DECLARE_EXPORT;WIN32;WINNT;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -871,6 +866,7 @@
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -894,14 +890,8 @@
       <MergeSections>
       </MergeSections>
     </Link>
-    <PreBuildEvent>
-      <Command>
-      </Command>
-    </PreBuildEvent>
-    <PreLinkEvent>
-      <Command>
-      </Command>
-    </PreLinkEvent>
+    <PreBuildEvent />
+    <PreLinkEvent />
     <Xdcmake>
       <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
     </Xdcmake>
@@ -921,10 +911,7 @@
       <ExceptionHandling>Sync</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <BufferSecurityCheck>true</BufferSecurityCheck>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -949,6 +936,7 @@
       <OmitFramePointers>false</OmitFramePointers>
       <MinimalRebuild>false</MinimalRebuild>
       <SmallerTypeCheck>false</SmallerTypeCheck>
+      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -970,14 +958,8 @@
       <FixedBaseAddress>false</FixedBaseAddress>
       <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
     </Link>
-    <PreBuildEvent>
-      <Command>
-      </Command>
-    </PreBuildEvent>
-    <PreLinkEvent>
-      <Command>
-      </Command>
-    </PreLinkEvent>
+    <PreBuildEvent />
+    <PreLinkEvent />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
     <Midl>
@@ -995,10 +977,8 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <BufferSecurityCheck>
       </BufferSecurityCheck>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -1046,14 +1026,8 @@
       <FixedBaseAddress>false</FixedBaseAddress>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
-    <PreBuildEvent>
-      <Command>
-      </Command>
-    </PreBuildEvent>
-    <PreLinkEvent>
-      <Command>
-      </Command>
-    </PreLinkEvent>
+    <PreBuildEvent />
+    <PreLinkEvent />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|Itanium'">
     <Midl>

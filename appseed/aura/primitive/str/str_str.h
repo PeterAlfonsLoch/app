@@ -61,6 +61,10 @@ namespace str
    string CLASS_DECL_AURA equals_ci_get(const char * psz1, const char * psz2, const char * pszGetOnEqual, const char * pszGetOnDifferent = NULL);
 
 
+   inline bool begins(const char * psz,string & strFed, const string & strPrefix);
+   inline bool begins(const string & str,string & strFed,const string & strPrefix);
+   inline bool begins(const id & id,string & strFed,const string & strPrefix);
+
 
    inline bool begins(const char * psz, const string & strPrefix);
    inline bool begins(const string & str, const string & strPrefix);
