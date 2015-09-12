@@ -114,12 +114,15 @@ namespace aura
 
       }
 
-      inline void __cdecl operator()(const char *pszFmt) const
+      inline void __cdecl operator()(const char *psz) const
       {
 
-         string_format format(this, &trace_add_file_and_line::trace, NULL);
+//         string_format format(this, &trace_add_file_and_line::trace, NULL);
 
-         format.format(pszFmt);
+//         format.format(pszFmt);
+
+         System.log().trace_str(m_pszFileName, m_nLineNo, trace::category_General, 0, psz);
+
 
       }
 
