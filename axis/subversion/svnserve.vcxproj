@@ -48,7 +48,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{4DA0253B-2647-4F4D-88A9-BAA6115DE4BF}</ProjectGuid>
-    <ProjectName>axissubversion</ProjectName>
+    <ProjectName>axissvnserve</ProjectName>
     <RootNamespace>axissvnserve</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>

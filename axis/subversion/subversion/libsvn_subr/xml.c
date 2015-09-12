@@ -39,7 +39,7 @@
 #ifdef SVN_HAVE_OLD_EXPAT
 #include <xmlparse.h>
 #else
-#include "aura/expat/lib/expat.h"
+#include <expat.h>
 #endif
 
 #ifdef XML_UNICODE

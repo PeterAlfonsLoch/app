@@ -1,43 +1,43 @@
 /* Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
- * this work for additional information regarding copyright ownership.
- * The ASF licenses this file to You under the Apache License, Version 2.0
- * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+* contributor license agreements.  See the NOTICE file distributed with
+* this work for additional information regarding copyright ownership.
+* The ASF licenses this file to You under the Apache License, Version 2.0
+* (the "License"); you may not use this file except in compliance with
+* the License.  You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
 
 
 #ifndef APR_H
 #define APR_H
 
 /* GENERATED FILE WARNING!  DO NOT EDIT apr.h
- *
- * You must modify apr.hw instead.
- *
- * And please, make an effort to stub apr.hnw and apr.h.in in the process.
- *
- * This is the Win32 specific version of apr.h.  It is copied from
- * apr.hw by the apr.dsp and libapr.dsp projects. 
- */
+*
+* You must modify apr.hw instead.
+*
+* And please, make an effort to stub apr.hnw and apr.h.in in the process.
+*
+* This is the Win32 specific version of apr.h.  It is copied from
+* apr.hw by the apr.dsp and libapr.dsp projects.
+*/
 
 /**
- * @file apr.h
- * @brief APR Platform Definitions
- * @remark This is a generated header generated from include/apr.h.in by
- * ./configure, or copied from include/apr.hw or include/apr.hnw 
- * for Win32 or Netware by those build environments, respectively.
- */
+* @file apr.h
+* @brief APR Platform Definitions
+* @remark This is a generated header generated from include/apr.h.in by
+* ./configure, or copied from include/apr.hw or include/apr.hnw
+* for Win32 or Netware by those build environments, respectively.
+*/
 
 /* Make sure we have our platform identifier macro defined we ask for later.
- */
+*/
 #if defined(_WIN32) && !defined(WIN32)
 #define WIN32 1
 #endif
@@ -45,26 +45,26 @@
 #if defined(WIN32) || defined(DOXYGEN)
 
 /* Ignore most warnings (back down to /W3) for poorly constructed headers
- */
+*/
 #if defined(_MSC_VER) && _MSC_VER >= 1200
 #pragma warning(push, 3)
 #endif
 
 /* disable or reduce the frequency of...
- *   C4057: indirection to slightly different base types
- *   C4075: slight indirection changes (unsigned short* vs short[])
- *   C4100: unreferenced formal parameter
- *   C4127: conditional expression is constant
- *   C4163: '_rotl64' : not available as an intrinsic function
- *   C4201: nonstandard extension nameless struct/unions
- *   C4244: int to char/short - precision loss
- *   C4514: unreferenced inline function removed
- */
+*   C4057: indirection to slightly different base types
+*   C4075: slight indirection changes (unsigned short* vs short[])
+*   C4100: unreferenced formal parameter
+*   C4127: conditional expression is constant
+*   C4163: '_rotl64' : not available as an intrinsic function
+*   C4201: nonstandard extension nameless struct/unions
+*   C4244: int to char/short - precision loss
+*   C4514: unreferenced inline function removed
+*/
 #pragma warning(disable: 4100 4127 4163 4201 4514; once: 4057 4075 4244)
 
 /* Ignore Microsoft's interpretation of secure development
- * and the POSIX string handling API
- */
+* and the POSIX string handling API
+*/
 #if defined(_MSC_VER) && _MSC_VER >= 1400
 #ifndef _CRT_SECURE_NO_DEPRECATE
 #define _CRT_SECURE_NO_DEPRECATE
@@ -73,9 +73,9 @@
 #endif
 
 /* Has windows.h already been included?  If so, our preferences don't matter,
- * but we will still need the winsock things no matter what was included.
- * If not, include a restricted set of windows headers to our tastes.
- */
+* but we will still need the winsock things no matter what was included.
+* If not, include a restricted set of windows headers to our tastes.
+*/
 #ifndef _WINDOWS_
 #ifndef WIN32_LEAN_AND_MEAN
 #define WIN32_LEAN_AND_MEAN
@@ -83,7 +83,7 @@
 #ifndef _WIN32_WINNT
 
 /* Restrict the server to a subset of Windows XP header files by default
- */
+*/
 #define _WIN32_WINNT 0x0501
 #endif
 #ifndef NOUSER
@@ -96,11 +96,11 @@
 #define NOIME
 #endif
 #include <windows.h>
-/* 
- * Add a _very_few_ declarations missing from the restricted set of headers
- * (If this list becomes extensive, re-enable the required headers above!)
- * winsock headers were excluded by WIN32_LEAN_AND_MEAN, so include them now
- */
+/*
+* Add a _very_few_ declarations missing from the restricted set of headers
+* (If this list becomes extensive, re-enable the required headers above!)
+* winsock headers were excluded by WIN32_LEAN_AND_MEAN, so include them now
+*/
 #define SW_HIDE             0
 #ifndef _WIN32_WCE
 #include <winsock2.h>
@@ -112,16 +112,16 @@
 #endif /* !_WINDOWS_ */
 
 /**
- * @defgroup APR Apache Portability Runtime library
- * @{
- */
+* @defgroup APR Apache Portability Runtime library
+* @{
+*/
 /**
- * @defgroup apr_platform Platform Definitions
- * @{
- * @warning
- * <strong><em>The actual values of macros and typedefs on this page<br>
- * are platform specific and should NOT be relied upon!</em></strong>
- */
+* @defgroup apr_platform Platform Definitions
+* @{
+* @warning
+* <strong><em>The actual values of macros and typedefs on this page<br>
+* are platform specific and should NOT be relied upon!</em></strong>
+*/
 
 #define APR_INLINE __inline
 #define APR_HAS_INLINE          1
@@ -212,9 +212,9 @@
 /** @} */
 /** @} */
 
-/* We don't include our conditional headers within the doxyblocks 
- * or the extern "C" namespace 
- */
+/* We don't include our conditional headers within the doxyblocks
+* or the extern "C" namespace
+*/
 
 #if APR_HAVE_STDLIB_H
 #include <stdlib.h>
@@ -239,11 +239,11 @@
 extern "C" {
 #endif
 
-/**
- * @addtogroup apr_platform
- * @ingroup APR 
- * @{
- */
+   /**
+   * @addtogroup apr_platform
+   * @ingroup APR
+   * @{
+   */
 
 #define APR_HAVE_SHMEM_MMAP_TMP     0
 #define APR_HAVE_SHMEM_MMAP_SHM     0
@@ -307,7 +307,7 @@ extern "C" {
 #define APR_HAVE_STRNICMP       0
 #endif
 
-/*  APR Feature Macros */
+   /*  APR Feature Macros */
 #define APR_HAS_SHARED_MEMORY     1
 #define APR_HAS_THREADS           1
 #define APR_HAS_MMAP              1
@@ -334,54 +334,54 @@ extern "C" {
 #define APR_PROCATTR_USER_SET_REQUIRES_PASSWORD 0
 #endif
 
-/* APR sets APR_FILES_AS_SOCKETS to 1 on systems where it is possible
- * to poll on files/pipes.
- */
+   /* APR sets APR_FILES_AS_SOCKETS to 1 on systems where it is possible
+   * to poll on files/pipes.
+   */
 #define APR_FILES_AS_SOCKETS      0
 
-/* This macro indicates whether or not EBCDIC is the native character set.
- */
+   /* This macro indicates whether or not EBCDIC is the native character set.
+   */
 #define APR_CHARSET_EBCDIC        0
 
-/* If we have a TCP implementation that can be "corked", what flag
- * do we use?
- */
+   /* If we have a TCP implementation that can be "corked", what flag
+   * do we use?
+   */
 #define APR_TCP_NOPUSH_FLAG       @apr_tcp_nopush_flag@
 
-/* Is the TCP_NODELAY socket option inherited from listening sockets?
- */
+   /* Is the TCP_NODELAY socket option inherited from listening sockets?
+   */
 #define APR_TCP_NODELAY_INHERITED 1
 
-/* Is the O_NONBLOCK flag inherited from listening sockets?
- */
+   /* Is the O_NONBLOCK flag inherited from listening sockets?
+   */
 #define APR_O_NONBLOCK_INHERITED  1
 
-/* Typedefs that APR needs. */
+   /* Typedefs that APR needs. */
 
-typedef  unsigned char     apr_byte_t;
+   typedef  unsigned char     apr_byte_t;
 
-typedef  short             apr_int16_t;
-typedef  unsigned short    apr_uint16_t;
+   typedef  short             apr_int16_t;
+   typedef  unsigned short    apr_uint16_t;
 
-typedef  int               apr_int32_t;
-typedef  unsigned int      apr_uint32_t;
+   typedef  int               apr_int32_t;
+   typedef  unsigned int      apr_uint32_t;
 
-typedef  __int64           apr_int64_t;
-typedef  unsigned __int64  apr_uint64_t;
+   typedef  __int64           apr_int64_t;
+   typedef  unsigned __int64  apr_uint64_t;
 
-typedef  size_t      apr_size_t;
+   typedef  size_t      apr_size_t;
 #if APR_HAVE_STDDEF_H
-typedef  ptrdiff_t   apr_ssize_t;
+   typedef  ptrdiff_t   apr_ssize_t;
 #else
-typedef  int         apr_ssize_t;
+   typedef  int         apr_ssize_t;
 #endif
 #if APR_HAS_LARGE_FILES
-typedef  __int64     apr_off_t;
+   typedef  __int64     apr_off_t;
 #else
-typedef  int         apr_off_t;
+   typedef  int         apr_off_t;
 #endif
-typedef  int         apr_socklen_t;
-typedef  apr_uint64_t      apr_ino_t;
+   typedef  int         apr_socklen_t;
+   typedef  apr_uint64_t      apr_ino_t;
 
 #ifdef _WIN64
 #define APR_SIZEOF_VOIDP   8
@@ -390,16 +390,16 @@ typedef  apr_uint64_t      apr_ino_t;
 #endif
 
 #if APR_SIZEOF_VOIDP == 8
-typedef  apr_uint64_t            apr_uintptr_t;
+   typedef  apr_uint64_t            apr_uintptr_t;
 #else
-typedef  apr_uint32_t            apr_uintptr_t;
+   typedef  apr_uint32_t            apr_uintptr_t;
 #endif
 
-/* Are we big endian? */
-/* XXX: Fatal assumption on Alpha platforms */
+   /* Are we big endian? */
+   /* XXX: Fatal assumption on Alpha platforms */
 #define APR_IS_BIGENDIAN	0
 
-/* Mechanisms to properly type numeric literals */
+   /* Mechanisms to properly type numeric literals */
 
 #ifndef __GNUC__
 #define APR_INT64_C(val) (val##i64)
@@ -465,11 +465,11 @@ typedef  apr_uint32_t            apr_uintptr_t;
 
 #define APR_SIZE_MAX    (~((apr_size_t)0))
 
-/* Definitions that APR programs need to work properly. */
+   /* Definitions that APR programs need to work properly. */
 
-/**
- * APR public API wrap for C++ compilers.
- */
+   /**
+   * APR public API wrap for C++ compilers.
+   */
 #ifdef __cplusplus
 #define APR_BEGIN_DECLS     extern "C" {
 #define APR_END_DECLS       }
@@ -478,70 +478,70 @@ typedef  apr_uint32_t            apr_uintptr_t;
 #define APR_END_DECLS
 #endif
 
-/** 
- * Thread callbacks from APR functions must be declared with APR_THREAD_FUNC, 
- * so that they follow the platform's calling convention.
- * <PRE>
- *
- * void* APR_THREAD_FUNC my_thread_entry_fn(apr_thread_t *thd, void *data);
- *
- * </PRE>
- */
+   /**
+   * Thread callbacks from APR functions must be declared with APR_THREAD_FUNC,
+   * so that they follow the platform's calling convention.
+   * <PRE>
+   *
+   * void* APR_THREAD_FUNC my_thread_entry_fn(apr_thread_t *thd, void *data);
+   *
+   * </PRE>
+   */
 #define APR_THREAD_FUNC  __stdcall
 
 
 #if defined(DOXYGEN) || !defined(WIN32)
 
-/**
- * The public APR functions are declared with APR_DECLARE(), so they may
- * use the most appropriate calling convention.  Public APR functions with 
- * variable arguments must use APR_DECLARE_NONSTD().
- *
- * @remark Both the declaration and implementations must use the same macro.
- *
- * <PRE>
- * APR_DECLARE(rettype) apr_func(args)
- * </PRE>
- * @see APR_DECLARE_NONSTD @see APR_DECLARE_DATA
- * @remark Note that when APR compiles the library itself, it passes the 
- * symbol -DAPR_DECLARE_EXPORT to the compiler on some platforms (e.g. Win32) 
- * to export public symbols from the dynamic library build.\n
- * The user must define the APR_DECLARE_STATIC when compiling to target
- * the static APR library on some platforms (e.g. Win32.)  The public symbols 
- * are neither exported nor imported when APR_DECLARE_STATIC is defined.\n
- * By default, compiling an application and including the APR public
- * headers, without defining APR_DECLARE_STATIC, will prepare the code to be
- * linked to the dynamic library.
- */
+   /**
+   * The public APR functions are declared with APR_DECLARE(), so they may
+   * use the most appropriate calling convention.  Public APR functions with
+   * variable arguments must use APR_DECLARE_NONSTD().
+   *
+   * @remark Both the declaration and implementations must use the same macro.
+   *
+   * <PRE>
+   * APR_DECLARE(rettype) apr_func(args)
+   * </PRE>
+   * @see APR_DECLARE_NONSTD @see APR_DECLARE_DATA
+   * @remark Note that when APR compiles the library itself, it passes the
+   * symbol -DAPR_DECLARE_EXPORT to the compiler on some platforms (e.g. Win32)
+   * to export public symbols from the dynamic library build.\n
+   * The user must define the APR_DECLARE_STATIC when compiling to target
+   * the static APR library on some platforms (e.g. Win32.)  The public symbols
+   * are neither exported nor imported when APR_DECLARE_STATIC is defined.\n
+   * By default, compiling an application and including the APR public
+   * headers, without defining APR_DECLARE_STATIC, will prepare the code to be
+   * linked to the dynamic library.
+   */
 #define APR_DECLARE(type)            type 
 
-/**
- * The public APR functions using variable arguments are declared with 
- * APR_DECLARE_NONSTD(), as they must follow the C language calling convention.
- * @see APR_DECLARE @see APR_DECLARE_DATA
- * @remark Both the declaration and implementations must use the same macro.
- * <PRE>
- *
- * APR_DECLARE_NONSTD(rettype) apr_func(args, ...);
- *
- * </PRE>
- */
+   /**
+   * The public APR functions using variable arguments are declared with
+   * APR_DECLARE_NONSTD(), as they must follow the C language calling convention.
+   * @see APR_DECLARE @see APR_DECLARE_DATA
+   * @remark Both the declaration and implementations must use the same macro.
+   * <PRE>
+   *
+   * APR_DECLARE_NONSTD(rettype) apr_func(args, ...);
+   *
+   * </PRE>
+   */
 #define APR_DECLARE_NONSTD(type)     type
 
-/**
- * The public APR variables are declared with AP_MODULE_DECLARE_DATA.
- * This assures the appropriate indirection is invoked at compile time.
- * @see APR_DECLARE @see APR_DECLARE_NONSTD
- * @remark Note that the declaration and implementations use different forms,
- * but both must include the macro.
- * 
- * <PRE>
- *
- * extern APR_DECLARE_DATA type apr_variable;\n
- * APR_DECLARE_DATA type apr_variable = value;
- *
- * </PRE>
- */
+   /**
+   * The public APR variables are declared with AP_MODULE_DECLARE_DATA.
+   * This assures the appropriate indirection is invoked at compile time.
+   * @see APR_DECLARE @see APR_DECLARE_NONSTD
+   * @remark Note that the declaration and implementations use different forms,
+   * but both must include the macro.
+   *
+   * <PRE>
+   *
+   * extern APR_DECLARE_DATA type apr_variable;\n
+   * APR_DECLARE_DATA type apr_variable = value;
+   *
+   * </PRE>
+   */
 #define APR_DECLARE_DATA
 
 #elif defined(APR_DECLARE_STATIC)
@@ -578,16 +578,16 @@ typedef  apr_uint32_t            apr_uintptr_t;
 #define APR_UINT64_T_FMT         "I64u"
 #define APR_UINT64_T_HEX_FMT     "I64x"
 
-/* No difference between PROC and GLOBAL mutex */
+   /* No difference between PROC and GLOBAL mutex */
 #define APR_PROC_MUTEX_IS_GLOBAL      1
 
-/* Local machine definition for console and log output. */
+   /* Local machine definition for console and log output. */
 #define APR_EOL_STR              "\r\n"
 
-typedef int apr_wait_t;
+   typedef int apr_wait_t;
 
 #if APR_HAS_UNICODE_FS
-/* An arbitrary size that is digestable. True max is a bit less than 32000 */
+   /* An arbitrary size that is digestable. True max is a bit less than 32000 */
 #define APR_PATH_MAX 8192
 #else /* !APR_HAS_UNICODE_FS */
 #define APR_PATH_MAX MAX_PATH
@@ -595,27 +595,27 @@ typedef int apr_wait_t;
 
 #define APR_DSOPATH "PATH"
 
-/** @} */
+   /** @} */
 
-/* Definitions that only Win32 programs need to compile properly. */
+   /* Definitions that only Win32 programs need to compile properly. */
 
-/* XXX These simply don't belong here, perhaps in apr_portable.h
- * based on some APR_HAVE_PID/GID/UID?
- */
+   /* XXX These simply don't belong here, perhaps in apr_portable.h
+   * based on some APR_HAVE_PID/GID/UID?
+   */
 #ifndef __GNUC__
-typedef  int         pid_t;
+   typedef  int         pid_t;
 #endif
-typedef  int         uid_t;
-typedef  int         gid_t;
+   typedef  int         uid_t;
+   typedef  int         gid_t;
 
-/* Win32 .h ommissions we really need */
+   /* Win32 .h ommissions we really need */
 #define STDIN_FILENO  0
 #define STDOUT_FILENO 1
 #define STDERR_FILENO 2
 
 #if APR_HAVE_IPV6
 
-/* Appears in later flavors, not the originals. */
+   /* Appears in later flavors, not the originals. */
 #ifndef in_addr6
 #define  in6_addr    in_addr6
 #endif
@@ -633,7 +633,7 @@ typedef  int         gid_t;
 #endif
 
 /* Done with badly written headers
- */
+*/
 #if defined(_MSC_VER) && _MSC_VER >= 1200
 #pragma warning(pop)
 #pragma warning(disable: 4996)
