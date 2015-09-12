@@ -3192,7 +3192,7 @@ namespace user
       for(index iColumn = 0; iColumn < this->get_count(); iColumn++)
       {
          list_column * pcolumn = element_at(iColumn);
-         if(pcolumn->m_bVisible)
+         if(pcolumn != NULL && pcolumn->m_bVisible)
          {
             if(pcolumn->m_iSubItem == iSubItem)
             {

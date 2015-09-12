@@ -3270,8 +3270,10 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
       LPBYTE lpbDst = (LPBYTE)pdibDst->get_data();
       int32_t cx = pdibSrc->m_size.cx;
       int32_t cy = pdibSrc->m_size.cy;
-      int32_t wSrc = cx * 4;
-      int32_t wDest = cx * 4;
+      //int32_t wSrc = cx * 4;
+      //int32_t wDest = cx * 4;
+      int32_t wSrc = pdibSrc->m_iScan;
+      int32_t wDest = pdibDst->m_iScan;
       int32_t maxx1 = cx;
       int32_t maxy1 = cy;
       //   int32_t maxy2 = cy - iFilterWidth;
@@ -3485,8 +3487,10 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
       LPBYTE lpbDst = (LPBYTE)pdibDst->get_data();
       int32_t cx = pdibSrc->m_size.cx;
       int32_t cy = pdibSrc->m_size.cy;
-      int32_t wSrc = cx * 4;
-      int32_t wDest = cx * 4;
+      //int32_t wSrc = cx * 4;
+      //int32_t wDest = cx * 4;
+      int32_t wSrc = pdibSrc->m_iScan;
+      int32_t wDest = pdibDst->m_iScan;
 
       BYTE *lpbSource;
       BYTE *lpwDestination;
@@ -3685,8 +3689,10 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
       LPBYTE lpbDst = (LPBYTE)pdibDst->get_data();
       LPBYTE lpbSrc = (LPBYTE)pdibSrc->get_data();
 
-      int32_t wSrc = cx * 4;
-      int32_t wDst = cx * 4;
+      //int32_t wSrc = cx * 4;
+      //int32_t wDst = cx * 4;
+      int32_t wSrc = pdibSrc->m_iScan;
+      int32_t wDst = pdibDst->m_iScan;
 
       int32_t iFilterW = iRadius * 2 + 1;
       int32_t iFilterH = iRadius * 2 + 1;
@@ -3820,9 +3826,9 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
       iFilterXUpperBound     = iFilterH - 1;
 
       int32_t yL = iFilterHalfH;
-      int32_t yU = cy - iFilterHalfH;
+      int32_t yU = cy - iFilterHalfH + (iFilterHalfH % 2 == 1 ? 0 : 1);
       int32_t xL = iFilterHalfW;
-      int32_t xU = cx - iFilterHalfW;
+      int32_t xU = cx - iFilterHalfW + (iFilterHalfW % 2 == 1 ? 0 : 1);
 
       int32_t y1 = yL;
       int32_t x1;
@@ -3887,8 +3893,10 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
       LPBYTE lpbDst = (LPBYTE)pdibDst->get_data();
       LPBYTE lpbSrc = (LPBYTE)pdibSrc->get_data();
 
-      int32_t wSrc = cx * 4;
-      int32_t wDst = cx * 4;
+      //int32_t wSrc = cx * 4;
+      //int32_t wDst = cx * 4;
+      int32_t wSrc = pdibSrc->m_iScan;
+      int32_t wDst = pdibDst->m_iScan;
 
       int32_t iFilterW = iRadius * 2 + 1;
       int32_t iFilterH = iRadius * 2 + 1;
@@ -4140,8 +4148,10 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
       LPBYTE lpbDst = (LPBYTE)pdibDst->get_data();
       LPBYTE lpbSrc = (LPBYTE)pdibSrc->get_data();
 
-      int32_t wSrc = cx * 4;
-      int32_t wDst = cx * 4;
+      //int32_t wSrc = cx * 4;
+      //int32_t wDst = cx * 4;
+      int32_t wSrc = pdibSrc->m_iScan;
+      int32_t wDst = pdibDst->m_iScan;
 
       int32_t iFilterArea = iFilterWidth * iFilterHeight;
       int32_t divisor;
@@ -5320,8 +5330,8 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
    {
       int32_t iFilterW      = iRadius * 2 + 1;
       int32_t iFilterH      = iRadius * 2 + 1;
-      int32_t iFilterHalfW  = iFilterW / 2;
-      int32_t iFilterHalfH  = iFilterH / 2;
+      int32_t iFilterHalfW  = iRadius;
+      int32_t iFilterHalfH  = iRadius;
       int32_t iFilterArea   = iFilterW * iFilterH;
       int32_t divisor       = iFilterW * iFilterH;
       BYTE *lpbSource;
@@ -5346,9 +5356,9 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
       {
          pFilter = new BYTE[iFilterArea];
          m_alpha_spread__32CC_filterMap.set_at(iRadius,pFilter);
-         for(y = 0; y <= iFilterHalfH; y++)
+         for(y = 0; y < iFilterHalfH; y++)
          {
-            for(x = 0; x <= iFilterHalfW; x++)
+            for(x = 0; x < iFilterHalfW; x++)
             {
                x1 = iFilterHalfW - x;
                y1 = iFilterHalfH - y;
@@ -5358,9 +5368,6 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
                else
                   i = 0;
                pFilter[x + y * iFilterW]                                   = (byte)i;
-               pFilter[iFilterW - 1 - x + y * iFilterW]                    = (byte)i;
-               pFilter[iFilterW - 1 - x + (iFilterH - 1 - y) * iFilterW]   = (byte)i;
-               pFilter[x + (iFilterH - 1 - y) * iFilterW]                  = (byte)i;
             }
          }
       }
@@ -5375,8 +5382,10 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
       LPBYTE lpbDst = (LPBYTE)pdibDst->get_data();
       LPBYTE lpbSrc = (LPBYTE)pdibSrc->get_data();
 
-      int32_t wSrc = cx * 4;
-      int32_t wDst = cx * 4;
+      //int32_t wSrc = cx * 4;
+      //int32_t wDst = cx * 4;
+      int32_t wSrc = pdibSrc->m_iScan;
+      int32_t wDst = pdibDst->m_iScan;
 
       int32_t maxx1 = cx;
       int32_t maxy1 = cy;
@@ -5387,7 +5396,8 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
       //   int32_t max3x3 = (maxx1 - iFilterH / 2) * 4;
       //int32_t w = cx * 4;
 
-      memcpy(lpbDst,lpbSrc,cx * cy * 4);
+      ::draw2d::copy_colorref(cx,cy,(COLORREF *) lpbDst,pdibDst->m_iScan,(COLORREF *)lpbSrc,pdibSrc->m_iScan);
+      //memcpy(lpbDst,lpbSrc,cx * cy * 4);
 
 
       int32_t iFilterXLowerBound;

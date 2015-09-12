@@ -195,8 +195,14 @@ inline list_data < TYPE, ARG_TYPE > list_data < TYPE, ARG_TYPE >::from(node * p)
          iterator & operator ++ ()
          {
 
-            if(m_pos == NULL || m_pos == m_plist->get_tail_position())
+            if(m_pos == NULL)
                return * this;
+
+            if(m_pos == m_plist->get_tail_position())
+            {
+               m_pos = NULL;
+               return *this;
+            }
 
             m_plist->get_next(m_pos);
 
@@ -239,9 +245,9 @@ inline list_data < TYPE, ARG_TYPE > list_data < TYPE, ARG_TYPE >::from(node * p)
             if(m_pos == NULL || m_pos == m_plist->get_head_position())
                return * this;
 
-            m_plist->get_previous(m_pos);
+m_plist->get_previous(m_pos);
 
-            return *this;
+return *this;
 
          }
 
@@ -275,7 +281,7 @@ inline list_data < TYPE, ARG_TYPE > list_data < TYPE, ARG_TYPE >::from(node * p)
             m_plist = NULL;
          }
 
-         const_iterator(POSITION i, const list * plist)
+         const_iterator(POSITION i,const list * plist)
          {
             m_pos = i;
             m_plist = plist;
@@ -335,8 +341,14 @@ inline list_data < TYPE, ARG_TYPE > list_data < TYPE, ARG_TYPE >::from(node * p)
          const_iterator & operator ++()
          {
 
-            if(m_pos == NULL || m_pos == m_plist->get_tail_position())
+            if(m_pos == NULL)
                return * this;
+
+            if(m_pos == m_plist->get_tail_position())
+            {
+               m_pos = NULL;
+               return *this;
+            }
 
             m_plist->get_next(m_pos);
 

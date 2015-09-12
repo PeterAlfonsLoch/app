@@ -1453,11 +1453,12 @@ void XfplayerViewLine::CacheEmboss(::draw2d::graphics * pdc, const char * lpcsz,
 
    if(!pdibCache->create(size))
       return;
+
+   pdibCache->Fill(0,0,0,0);
    ::draw2d::graphics * pdcCache = pdibCache->get_graphics();
    pdcCache->SelectObject(m_font);
 
    pdcCache->set_alpha_mode(::draw2d::alpha_mode_set);
-   pdcCache->FillSolidRect(0, 0, size.cx,size.cy, ARGB(0, 0, 0, 0));
    pdcCache->set_alpha_mode(::draw2d::alpha_mode_blend);
    draw2d::brush_sp brushText(allocer());
    brushText->create_solid(ARGB(84, 84, 84, 84));

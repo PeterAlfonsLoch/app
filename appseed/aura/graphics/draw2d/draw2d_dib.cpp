@@ -2772,7 +2772,7 @@ namespace draw2d
       }
       (j+joff)*m_size.cx+(i+ioff)
       }*/
-
+      int stride_unit = m_iScan / sizeof(COLORREF);
       int32_t k = 0;
       double dCos = ::cos(dAngle * pi() / 180.0) * dScale;
       double dSin = ::sin(dAngle * pi() / 180.0) * dScale;
@@ -2811,8 +2811,8 @@ namespace draw2d
 
 
 
-            get_data()[(j+joff)*m_size.cx+(i+ioff)]=
-               pdib->get_data()[y * m_size.cx + x];
+            get_data()[(j+joff)*stride_unit+(i+ioff)]=
+               pdib->get_data()[y * stride_unit + x];
             k++;
          }
       }
@@ -2840,7 +2840,7 @@ namespace draw2d
       int32_t joff = m_size.cy / 2;
       int32_t ioff = m_size.cx / 2;
 
-
+      int stride_unit = m_iScan / sizeof(COLORREF);
       int32_t k = 0;
       double dCos = ::cos(dAngle * pi() / 180.0) * dScale;
       double dSin = ::sin(dAngle * pi() / 180.0) * dScale;
@@ -2879,8 +2879,8 @@ namespace draw2d
 
 
 
-            get_data()[(j+joff)*m_size.cx+(i+ioff)]=
-               pdib->get_data()[y * m_size.cx + x];
+            get_data()[(j+joff)*stride_unit+(i+ioff)]=
+               pdib->get_data()[y * stride_unit + x];
             k++;
          }
       }
@@ -2908,7 +2908,7 @@ namespace draw2d
 
       int32_t joff = m_size.cy / 2 + rect.left;
       int32_t ioff = m_size.cx / 2 + rect.top;
-
+      int stride_unit = m_iScan / sizeof(COLORREF);
       //int32_t iAngle = iStep % 360;
       //int32_t iAngle = iStep;
       //int32_t iAngle = 1;
@@ -2968,8 +2968,8 @@ namespace draw2d
 
 
 
-            get_data()[(j+joff)*m_size.cx+(i+ioff)]=
-               pdib->get_data()[y * m_size.cx + x];
+            get_data()[(j+joff)*stride_unit+(i+ioff)]=
+               pdib->get_data()[y * stride_unit + x];
             k++;
          }
       }
@@ -2992,7 +2992,7 @@ namespace draw2d
       if(area() <= 0 || get_data() == NULL)
          return;
 
-      memset(get_data(), uch, (::primitive::memory_size) (area() * sizeof(COLORREF)));
+      memset(get_data(), uch, (::primitive::memory_size) (m_iScan * get_size().cy * sizeof(COLORREF)));
 
    }
 
