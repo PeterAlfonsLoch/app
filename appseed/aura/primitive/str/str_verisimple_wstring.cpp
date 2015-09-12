@@ -284,7 +284,7 @@ wstring gen_utf8_to_16(const char * psz)
    if(iLen < 0)
       return wstr;
 
-   wstr.alloc(iLen + 1);
+   wstr.alloc(iLen);
 
    utf8_to_utf16(wstr, psz);
 

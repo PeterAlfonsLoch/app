@@ -71,8 +71,6 @@ namespace file
       if(m_psz == NULL)
          return "";
 
-      m_psz[m_iSize] = '\0';
-
       return string(m_psz, m_iSize);
 
    }
@@ -94,6 +92,81 @@ namespace file
 
       return m_iPos;
 
+   }
+
+
+   void string_buffer::destroy()
+   {
+      if(m_psz != NULL)
+      {
+         memory_free(m_psz);
+         m_iAlloc = 0;
+         m_iSize = 0;
+         m_psz = NULL;
+      }
+   }
+
+
+   void string_buffer::alloc(strsize iSize)
+   {
+
+      if(iSize < 0)
+         return;
+
+      if(iSize + 1 > m_iAlloc)
+      {
+         //            strsize oldAlloc = m_iAlloc;
+         m_iAlloc = iSize + 1024;
+         if(m_psz == NULL)
+         {
+            m_psz = (char *)memory_alloc(m_iAlloc);
+            m_psz[0] = '\0';
+         }
+         else
+         {
+            if(m_iAlloc > 1024 * 1024)
+            {
+               //::output_debug_string("strange string buffer usage");
+            }
+            m_psz = (char *)memory_realloc(m_psz,m_iAlloc);
+         }
+      }
+
+
+   }
+
+   void string_buffer::alloc_up(strsize iAtLeast)
+   {
+
+      if(iAtLeast <= 0)
+         return;
+
+      alloc(m_iSize + iAtLeast);
+
+   }
+
+   void string_buffer::set(const char * psz,strsize len)
+   {
+      if(psz == NULL || *psz == '\0' || len <= 0)
+      {
+         psz = "";
+         len = 0;
+      }
+      alloc(len);
+      memcpy(m_psz,psz,len);
+      m_iSize = len;
+      m_psz[m_iSize] = '\0';
+   }
+
+   void string_buffer::append(const char * psz,strsize len)
+   {
+      if(psz == NULL || *psz == '\0' || len <= 0)
+         return;
+      alloc_up(len);
+      memcpy(&m_psz[m_iSize],psz,len);
+      m_iSize += len;
+      m_psz[m_iSize] = '\0'; // for security/safety the buffer is left with a terminating null, even
+                             // it if haven't finished appending
    }
 
 } // namespace file

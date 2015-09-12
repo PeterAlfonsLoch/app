@@ -72,65 +72,12 @@ namespace file
 
       virtual file_position get_position() const;
 
-      void destroy()
-      {
-         if(m_psz != NULL)
-         {
-            memory_free(m_psz);
-            m_iAlloc = 0;
-            m_iSize = 0;
-            m_psz = NULL;
-         }
-      }
+      void destroy();
+      void alloc(strsize iSize);
 
-      void alloc(strsize iSize)
-      {
+      void alloc_up(strsize iAtLeast);
 
-         if(iSize < 0)
-            return;
-
-         if(iSize + 1 > m_iAlloc)
-         {
-//            strsize oldAlloc = m_iAlloc;
-            m_iAlloc = iSize + 1024;
-            if(m_psz == NULL)
-            {
-               m_psz = (char *) memory_alloc(m_iAlloc);
-            }
-            else
-            {
-               if(m_iAlloc > 1024 * 1024)
-               {
-                  //::output_debug_string("strange string buffer usage");
-               }
-               m_psz = (char *) memory_realloc(m_psz, m_iAlloc);
-            }
-         }
-
-
-      }
-
-      void alloc_up(strsize iAtLeast)
-      {
-
-         if(iAtLeast <= 0)
-            return;
-
-         alloc(m_iSize + iAtLeast);
-
-      }
-
-      void set(const char * psz, strsize len)
-      {
-         if(psz == NULL || *psz == '\0'|| len <= 0)
-         {
-            psz = "";
-            len = 0;
-         }
-         alloc(len);
-         memcpy(m_psz, psz, len);
-         m_iSize = len;
-      }
+      void set(const char * psz,strsize len);
 
       void set(const string & str)
       {
@@ -138,14 +85,7 @@ namespace file
       }
 
 
-      void append(const char * psz, strsize len)
-      {
-         if(psz == NULL || *psz == '\0'|| len <= 0)
-            return;
-         alloc_up(len);
-         memcpy(&m_psz[m_iSize], psz, len);
-         m_iSize += len;
-      }
+      void append(const char * psz,strsize len);
 
       void append(const string & str)
       {
@@ -156,9 +96,6 @@ namespace file
 
       operator const char *() const
       {
-         if(m_psz == NULL)
-            return NULL;
-         m_psz[m_iSize] = '\0';
          return m_psz;
       }
 
