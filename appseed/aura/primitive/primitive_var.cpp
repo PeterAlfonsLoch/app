@@ -755,6 +755,10 @@ bool var::is_true(bool bDefault) const
       return m_i32 != 0;
    case type_uint32:
       return m_ui32 != 0;
+   case type_int64:
+      return m_i64 != 0;
+   case type_uint64:
+      return m_ui64 != 0;
    case type_double:
       return m_d != 0;
    case type_element:
@@ -784,6 +788,10 @@ bool var::is_empty() const
       return m_i32 == 0;
    case type_uint32:
       return m_ui32 == 0;
+   case type_int64:
+      return m_i64 == 0;
+   case type_uint64:
+      return m_ui64 == 0;
    case type_double:
       return m_d == 0.0;
    case type_element:

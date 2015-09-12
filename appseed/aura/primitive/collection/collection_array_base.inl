@@ -18,7 +18,7 @@ template < class TYPE,class ALLOCATOR >
 array_base < TYPE, ALLOCATOR >::array_base(::aura::application * papp, int iTypeSize, bool bRaw):
    object(papp)
 {
-   
+
    m_nGrowBy = 32;
    m_pData = NULL;
    m_nSize = 0;
@@ -118,12 +118,12 @@ void array_base < TYPE, ALLOCATOR >::free_extra()
 template < class TYPE,class ALLOCATOR >
 void array_base < TYPE, ALLOCATOR >::destroy()
 {
-   
+
    ASSERT_VALID(this);
 
    if(m_pData != NULL)
    {
-      
+
       ALLOCATOR::destruct(m_pData, m_nSize);
 
       memory_free(m_pData);
@@ -422,6 +422,14 @@ template < class TYPE,class ALLOCATOR >
    if(nGrowBy >= 0)
       m_nGrowBy = nGrowBy;  // set new size
 
+
+   if(nNewSize == m_nSize)
+   {
+
+      return m_nSize;
+
+   }
+
    if(nNewSize == 0)
    {
       // shrink to nothing
@@ -460,7 +468,7 @@ template < class TYPE,class ALLOCATOR >
    }
    else if(nNewSize <= m_nMaxSize)
    {
-      
+
       if(nNewSize > m_nSize)
       {
 

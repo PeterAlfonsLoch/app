@@ -54,30 +54,40 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // single_document_template commands
 
+   // if lpszPathName == NULL => create new file of this type
    void single_document_template::request_create(sp(::create) pcreatecontext)
-      // if lpszPathName == NULL => create new file of this type
    {
-      pcreatecontext->m_spCommandLine->m_varQuery["document"] = (sp(object)) NULL;
+
+      pcreatecontext->m_spCommandLine->m_varQuery["document"].m_sp.release();
+
       bool bMakeVisible = pcreatecontext->m_spCommandLine->m_varQuery["make_visible_boolean"] || pcreatecontext->m_bMakeVisible;
       //   sp(::user::interaction) pwndParent = pcreatecontext->m_spCommandLine->m_varQuery["parent_user_interaction"].cast < ::user::interaction > ();
       //   sp(::user::impact) pviewAlloc = pcreatecontext->m_spCommandLine->m_varQuery["allocation_view"].cast < ::user::impact > ();
 
       sp(::user::document) pdocument;
-      sp(::user::frame_window) pFrame;
+      ::user::frame_window * pFrame = NULL;
       bool bCreated = FALSE;      // => doc and frame created
       bool bWasModified = FALSE;
 
       if (m_pdocument != NULL)
       {
          // already have a ::user::document - reinit it
+
          pdocument = m_pdocument;
+
          if (!pdocument->save_modified())
             return;        // leave the original one
 
-         pFrame = pdocument->get_view()->GetParentFrame();
+         ::user::impact * pimpact = pdocument->get_view();
+
+         pFrame = pimpact->GetParentFrame();
+
          ASSERT(pFrame != NULL);
+
          ASSERT_KINDOF(frame_window, pFrame);
+
          ASSERT_VALID(pFrame);
+
       }
       else
       {
@@ -105,13 +115,16 @@ namespace user
          // don't destroy if something goes wrong
          pFrame = create_new_frame(pdocument, NULL, pcreatecontext);
          pdocument->m_bAutoDelete = bAutoDelete;
+
          if (pFrame == NULL)
          {
-            // linux System.simple_message_box(__IDP_FAILED_TO_CREATE_DOC);
-            // System.simple_message_box(NULL, "Failed to create ::user::document");
-            pdocument.release();       // explicit delete on error
+
+            System.simple_message_box(NULL, "Failed to create Document");
+
             return;
+
          }
+
       }
 
       if (pcreatecontext->m_spCommandLine->m_varFile.is_empty())
@@ -172,7 +185,7 @@ namespace user
       }
 
 //      thread* pThread = ::get_thread();
-      
+
 if(!pcreatecontext->m_bHold)
       {
          pFrame->oprop("should_not_be_automatically_holded_on_initial_update_frame") = true;

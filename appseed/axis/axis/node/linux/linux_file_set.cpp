@@ -26,7 +26,7 @@ namespace linux
 
       m_baRecursive.add(baRecursive);
 
-      refresh();
+      //refresh();
 
    }
 
@@ -36,7 +36,7 @@ namespace linux
 
       m_straFilter.add(stra);
 
-      refresh();
+      //refresh();
 
    }
 
