@@ -2169,6 +2169,8 @@ namespace base
 
       pui->DestroyWindow();
 
+      ::fontopus::set_cred(this,strToken,strUsername,strPassword);
+
       return strResult;
 
    }

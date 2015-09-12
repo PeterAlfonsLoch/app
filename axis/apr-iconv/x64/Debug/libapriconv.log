@@ -1,9 +1,0 @@
-﻿  iconv.c
-  iconv_ces.c
-  iconv_ces_euc.c
-  iconv_ces_iso2022.c
-  iconv_int.c
-  iconv_module.c
-  iconv_uc.c
-  Generating Code...
-C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppCommon.targets(630,5): error MSB6006: "link.exe" exited with code -1073741502.

@@ -38,9 +38,21 @@
 namespace fontopus
 {
 
+   void process_token(string & strToken)
+   {
+      strToken.replace("<","_lt_");
+      strToken.replace(">","_gt_");
+      strToken.replace(":","_cl_");
+      strToken.replace(".","_dot_");
+      strToken.replace("/","_");
+      strToken.replace(" ","_");
+
+   }
 
    void set_cred_ok(::aura::application * papp,string strToken,bool bOk)
    {
+      
+      process_token(strToken);
 
       if(bOk)
       {
@@ -56,8 +68,11 @@ namespace fontopus
 
    }
 
+
    void set_cred(::aura::application * papp,string strToken,const char * pszUsername,const char * pszPassword)
    {
+
+      process_token(strToken);
 
       string strUsername(pszUsername);
       string strPassword(pszPassword);
@@ -65,6 +80,9 @@ namespace fontopus
       string strPasswordPrevious;
 
       get_cred(papp,strUsernamePrevious,strPasswordPrevious,strToken);
+
+
+
 
       if((strUsername.has_char() && strPassword.has_char())
          && (strUsernamePrevious != strUsername || strPasswordPrevious != strPassword))
@@ -79,6 +97,8 @@ namespace fontopus
 
    string CLASS_DECL_AXIS get_cred(::aura::application * papp,string & strUsername,string & strPassword,string strToken)
    {
+      
+      process_token(strToken);
 
       string str;
       Sys(papp).crypto().file_get(App(papp).dir().userappdata() / "cred" / strToken + "_a.data",strUsername,"", papp);
