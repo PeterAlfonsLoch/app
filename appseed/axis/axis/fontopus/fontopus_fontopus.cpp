@@ -433,199 +433,203 @@ namespace fontopus
    string fontopus::get_server(const char * pszUrl,int32_t iRetry)
    {
 
-      string strHost(System.url().get_server(pszUrl));
+      return "fontopus.com";
 
-      if(strHost.is_empty())
-      {
 
-         strHost = System.url().get_server(pszUrl);
 
-      }
+   //   string strHost(System.url().get_server(pszUrl));
 
-      synch_lock sl(&m_mutex);
+   //   if(strHost.is_empty())
+   //   {
 
-      string strFontopusServer;
+   //      strHost = System.url().get_server(pszUrl);
 
-      if(strHost == "fontopus.com")
-      {
-         strFontopusServer = "fontopus.com";
-      }
-      else
-      {
+   //   }
 
-         if(m_mapFontopusServer.Lookup(strHost,strFontopusServer) && strFontopusServer.has_char())
-         {
-            return strFontopusServer;
-         }
+   //   synch_lock sl(&m_mutex);
 
-      }
+   //   string strFontopusServer;
 
-      sl.unlock();
+   //   if(strHost == "fontopus.com")
+   //   {
+   //      strFontopusServer = "fontopus.com";
+   //   }
+   //   else
+   //   {
 
-      ::sockets::socket_handler h(get_app());
+   //      if(m_mapFontopusServer.Lookup(strHost,strFontopusServer) && strFontopusServer.has_char())
+   //      {
+   //         return strFontopusServer;
+   //      }
 
-   retry:
+   //   }
 
-      if(iRetry < 0)
-         return ""; // should not retry or lookup is valid and strFontopusServer is really empty
+   //   sl.unlock();
 
-      iRetry--;
+   //   ::sockets::socket_handler h(get_app());
 
-      string strGetFontopus;
+   //retry:
 
-      if(::str::ends(strHost,".ca2.cc"))
-      {
-         strGetFontopus = "https://" + strHost + "/get_fontopus_login";
-      }
-      else
-      {
-         strGetFontopus = "http://" + strHost + "/get_fontopus_login";
-      }
+   //   if(iRetry < 0)
+   //      return ""; // should not retry or lookup is valid and strFontopusServer is really empty
 
-      System.url().set_param(strGetFontopus,strGetFontopus,"lang",Session.get_locale());
-      System.url().set_param(strGetFontopus,strGetFontopus,"styl",Session.get_schema());
+   //   iRetry--;
 
-      sp(::sockets::http_session) psession;
+   //   string strGetFontopus;
 
-      string strNode;
+   //   if(::str::ends(strHost,".ca2.cc"))
+   //   {
+   //      strGetFontopus = "https://" + strHost + "/get_fontopus_login";
+   //   }
+   //   else
+   //   {
+   //      strGetFontopus = "http://" + strHost + "/get_fontopus_login";
+   //   }
 
+   //   System.url().set_param(strGetFontopus,strGetFontopus,"lang",Session.get_locale());
+   //   System.url().set_param(strGetFontopus,strGetFontopus,"styl",Session.get_schema());
 
-      try
-      {
+   //   sp(::sockets::http_session) psession;
 
-         DWORD dwBeg = ::get_tick_count();
+   //   string strNode;
 
-         ::property_set set(get_app());
 
-         set["raw_http"] = true;
+   //   try
+   //   {
 
-         set["get_response"] = "";
+   //      DWORD dwBeg = ::get_tick_count();
 
-         psession = System.http().request(psession,strGetFontopus,set);
+   //      ::property_set set(get_app());
 
-         strNode = set["get_response"];
+   //      set["raw_http"] = true;
 
-         DWORD dwEnd = ::get_tick_count();
+   //      set["get_response"] = "";
 
-         TRACE("get_fontopus_login HTTP GET time = %dms",dwEnd - dwBeg);
+   //      psession = System.http().request(psession,strGetFontopus,set);
 
-      }
-      catch(...)
-      {
-      }
+   //      strNode = set["get_response"];
 
-      strNode.trim();
+   //      DWORD dwEnd = ::get_tick_count();
 
-      if(strNode.is_empty())
-         goto retry;
+   //      TRACE("get_fontopus_login HTTP GET time = %dms",dwEnd - dwBeg);
 
-      ::xml::document doc(get_app());
+   //   }
+   //   catch(...)
+   //   {
+   //   }
 
-      if(!doc.load(strNode))
-         goto retry;
+   //   strNode.trim();
 
-      if(doc.get_root()->get_name() != "login")
-         goto retry;
+   //   if(strNode.is_empty())
+   //      goto retry;
 
-      string strSessId = doc.get_root()->attr("sessid");
+   //   ::xml::document doc(get_app());
 
-      if(strSessId.is_empty())
-         goto retry;
+   //   if(!doc.load(strNode))
+   //      goto retry;
 
-      if(strHost != "fontopus.com")
-      {
+   //   if(doc.get_root()->get_name() != "login")
+   //      goto retry;
 
-         strFontopusServer = doc.get_root()->attr("fontopus_server");
+   //   string strSessId = doc.get_root()->attr("sessid");
 
-      }
+   //   if(strSessId.is_empty())
+   //      goto retry;
 
-      string strIgnitionServer = file_as_string_dup("C:\\ca2\\config\\system\\ignition_server.txt");
+   //   if(strHost != "fontopus.com")
+   //   {
 
-      if(::str::ends_ci(strIgnitionServer,".ca2.cc"))
-      {
+   //      strFontopusServer = doc.get_root()->attr("fontopus_server");
 
-         ::net::address addr1(strFontopusServer);
+   //   }
 
-         ::net::address addr2(strIgnitionServer);
+   //   string strIgnitionServer = file_as_string_dup("C:\\ca2\\config\\system\\ignition_server.txt");
 
-         if(addr1 == addr2)
-         {
+   //   if(::str::ends_ci(strIgnitionServer,".ca2.cc"))
+   //   {
 
-            strFontopusServer = strIgnitionServer;
+   //      ::net::address addr1(strFontopusServer);
 
-         }
+   //      ::net::address addr2(strIgnitionServer);
 
-      }
+   //      if(addr1 == addr2)
+   //      {
 
+   //         strFontopusServer = strIgnitionServer;
 
-      if(strFontopusServer.is_empty())
-         goto retry;
+   //      }
 
-      string strRsaModulus;
+   //   }
 
-      strRsaModulus = doc.get_root()->attr("rsa_modulus");
 
-      if(strRsaModulus.length() < 32)
-         goto retry;
+   //   if(strFontopusServer.is_empty())
+   //      goto retry;
 
-      string strSomeBrothersAndSisters;
+   //   string strRsaModulus;
 
-      strSomeBrothersAndSisters = doc.get_root()->attr("some_brothers_and_sisters");
+   //   strRsaModulus = doc.get_root()->attr("rsa_modulus");
 
-      ::sockets::net::dns_cache_item item = Session.sockets().net().m_mapCache[strHost];
+   //   if(strRsaModulus.length() < 32)
+   //      goto retry;
 
-      sl.lock();
+   //   string strSomeBrothersAndSisters;
 
-      if(strSomeBrothersAndSisters.has_char())
-      {
+   //   strSomeBrothersAndSisters = doc.get_root()->attr("some_brothers_and_sisters");
 
-         stringa straSomeBrothersAndSisters;
+   //   ::sockets::net::dns_cache_item item = Session.sockets().net().m_mapCache[strHost];
 
-         straSomeBrothersAndSisters.explode(";",strSomeBrothersAndSisters);
+   //   sl.lock();
 
-         for(index i = 0; i < straSomeBrothersAndSisters; i++)
-         {
+   //   if(strSomeBrothersAndSisters.has_char())
+   //   {
 
-            m_mapFontopusServer.set_at(straSomeBrothersAndSisters[i],strFontopusServer);
+   //      stringa straSomeBrothersAndSisters;
 
-            Session.sockets().net().m_mapCache.set_at(straSomeBrothersAndSisters[i],item);
+   //      straSomeBrothersAndSisters.explode(";",strSomeBrothersAndSisters);
 
-         }
+   //      for(index i = 0; i < straSomeBrothersAndSisters; i++)
+   //      {
 
-      }
+   //         m_mapFontopusServer.set_at(straSomeBrothersAndSisters[i],strFontopusServer);
 
-      ::xml::node * pnodeForm = doc.get_root()->get_child("form");
+   //         Session.sockets().net().m_mapCache.set_at(straSomeBrothersAndSisters[i],item);
 
-      if(pnodeForm != NULL)
-      {
+   //      }
 
-         m_mapLabelUser[strFontopusServer] = pnodeForm->attr("email");
-         m_mapLabelPass[strFontopusServer] = pnodeForm->attr("senha");
-         m_mapLabelOpen[strFontopusServer] = pnodeForm->attr("abrir");
+   //   }
 
-      }
+   //   ::xml::node * pnodeForm = doc.get_root()->get_child("form");
 
-      m_mapFontopusSession.set_at(strFontopusServer,psession);
-      
+   //   if(pnodeForm != NULL)
+   //   {
 
-      if(!m_mapFontopusSessId.Lookup(strFontopusServer,strSessId))
-      {
+   //      m_mapLabelUser[strFontopusServer] = pnodeForm->attr("email");
+   //      m_mapLabelPass[strFontopusServer] = pnodeForm->attr("senha");
+   //      m_mapLabelOpen[strFontopusServer] = pnodeForm->attr("abrir");
 
-         m_mapFontopusSessId.set_at(strFontopusServer,strSessId);
+   //   }
 
-         m_mapFontopusRsa.set_at(strFontopusServer,strRsaModulus);
+   //   m_mapFontopusSession.set_at(strFontopusServer,psession);
+   //   
 
-         m_mapFontopusServer.set_at(strFontopusServer,strFontopusServer);
+   //   if(!m_mapFontopusSessId.Lookup(strFontopusServer,strSessId))
+   //   {
 
-         Session.sockets().net().m_mapCache.set_at(strFontopusServer,item);
+   //      m_mapFontopusSessId.set_at(strFontopusServer,strSessId);
 
-      }
+   //      m_mapFontopusRsa.set_at(strFontopusServer,strRsaModulus);
 
-      m_mapFontopusServer.set_at(strHost, strFontopusServer);
+   //      m_mapFontopusServer.set_at(strFontopusServer,strFontopusServer);
 
-      Session.sockets().net().m_mapCache.set_at(strHost,item);
+   //      Session.sockets().net().m_mapCache.set_at(strFontopusServer,item);
 
-      return strFontopusServer;
+   //   }
+
+   //   m_mapFontopusServer.set_at(strHost, strFontopusServer);
+
+   //   Session.sockets().net().m_mapCache.set_at(strHost,item);
+
+   //   return strFontopusServer;
 
    }
 
