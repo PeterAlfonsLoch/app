@@ -9,9 +9,15 @@ namespace file
       virtual public ::object
    {
    public:
-      
-      
-      set();
+
+
+      stringa           m_straSearch;
+      bool_array        m_baRecursive;
+      stringa           m_straFilter;
+      ::file::listing   m_straFile;
+
+
+      set(::aura::application * papp);
       virtual ~set();
 
 

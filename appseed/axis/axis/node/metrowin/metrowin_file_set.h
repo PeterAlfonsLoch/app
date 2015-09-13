@@ -5,16 +5,12 @@ namespace metrowin
 {
 
 
-   class CLASS_DECL_AXIS file_set : 
+   class CLASS_DECL_AXIS file_set :
       public ::file::set
    {
    public:
 
 
-      stringa        m_straSearch;
-      bool_array     m_baRecursive;
-      stringa        m_straFilter;
-      stringa        m_straFile;
 
 
       file_set(::aura::application * papp);

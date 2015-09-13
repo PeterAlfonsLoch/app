@@ -773,6 +773,9 @@ namespace file
 #include "aura/filesystem/filesystem/filesystem_path.h"
 
 
+
+
+
 #include "aura/aura/aura/aura_library.h"
 
 
@@ -801,9 +804,6 @@ namespace file
 
 
 #include "aura/filesystem/file/file_string_buffer.h"
-
-
-#include "aura/filesystem/file/file_set.h"
 
 
 #include "aura/primitive/primitive_var2.h"
@@ -1089,6 +1089,8 @@ CLASS_DECL_AURA string get_exe_path();
 #include "aura/filesystem/filesystem/filesystem_dir_application.h"
 
 #include "aura/filesystem/filesystem/filesystem_listing.h"
+
+#include "aura/filesystem/file/file_set.h"
 
 #include "aura/primitive/primitive_application_bias.h"
 

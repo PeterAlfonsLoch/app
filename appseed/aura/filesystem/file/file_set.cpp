@@ -5,88 +5,202 @@ namespace file
 {
 
 
-   set::set()
+
+
+   set::set(::aura::application * papp) :
+      ::object(papp)
    {
 
    }
+
 
    set::~set()
    {
 
    }
 
+
    void set::add_search(stringa & stra, bool_array & baRecursive)
    {
-      UNREFERENCED_PARAMETER(stra);
-      UNREFERENCED_PARAMETER(baRecursive);
+
+      m_straSearch.add(stra);
+
+      m_baRecursive.add(baRecursive);
+
+      //refresh();
+
    }
 
    void set::add_filter(stringa & stra)
    {
-      UNREFERENCED_PARAMETER(stra);
+
+      m_straFilter.add(stra);
+
    }
+
+
 
    ::count set::get_file_count()
    {
-      return 0;
+
+      return m_straFile.get_size();
+
    }
+
 
    void set::file_at(::index i, string & str)
    {
-      UNREFERENCED_PARAMETER(i);
-      UNREFERENCED_PARAMETER(str);
+
+      str = m_straFile[i];
+
    }
+
 
    ::index set::find_first_file(const char * lpcsz, ::index iStart)
    {
-      UNREFERENCED_PARAMETER(lpcsz);
-      UNREFERENCED_PARAMETER(iStart);
-      return -1;
+
+      return m_straFile.find_first_ci(lpcsz, iStart);
+
    }
 
-   void set::clear_search()
-   {
-   }
 
-   void set::clear_filter()
-   {
-   }
 
-   void set::clear_file()
-   {
-   }
 
    void set::refresh()
    {
+
+      clear_file();
+
+      string strFilter;
+
+      int32_t i, j;
+
+      string strFile;
+
+      string str;
+
+      for(i = 0; i < m_straSearch.get_size(); i++)
+      {
+
+         bool bRecursive = true;
+
+         if(i < m_baRecursive.get_size())
+         {
+
+            bRecursive = m_baRecursive[i];
+
+         }
+
+         m_straFile.m_pprovider = get_app();
+
+         for(j = 0; j < m_straFilter.get_size(); j++)
+         {
+
+            string strFilter = m_straFilter.element_at(j);
+
+            strFilter.trim("\\/");
+
+            if(bRecursive)
+            {
+
+               m_straFile.rls_pattern(m_straSearch.element_at(i), strFilter);
+
+            }
+            else
+            {
+
+               m_straFile.ls_pattern(m_straSearch.element_at(i), strFilter);
+
+            }
+
+         }
+
+      }
+
    }
 
-   bool set::get_next_file(const char * lpcszCurrentFilePath, string & strNextFilePath)
+
+   void set::clear_file()
    {
-      ::index i = find_first_file(lpcszCurrentFilePath);
-      i++;
-      if(i >= get_file_count())
-         i = 0;
-      if(i >= get_file_count())
+
+      m_straFile.clear();
+
+   }
+
+
+   void set::clear_search()
+   {
+
+      m_straSearch.remove_all();
+
+      m_baRecursive.remove_all();
+
+   }
+
+
+   void set::clear_filter()
+   {
+
+      m_straFilter.remove_all();
+
+   }
+
+
+   bool set::get_next_file(const char * pszFile, string & strNext)
+   {
+
+      index iFind = find_first_file(pszFile);
+
+      if(iFind < 0)
+      {
+
          return false;
-      else
-      {
-         file_at(i, strNextFilePath);
-         return true;
+
       }
+
+      index iNext = iFind + 1;
+
+      if(iNext >= m_straFile.get_count())
+      {
+
+         iNext = 0;
+
+      }
+
+      if(iNext >= m_straFile.get_count())
+      {
+
+         return false;
+
+      }
+
+      strNext =  m_straFile[iNext];
+
+      return true;
+
    }
 
-   string set::get_next_file(const char * pszCurrent)
+
+   string set::get_next_file(const char * pszFile)
    {
-      string strNextFilePath;
-      if(get_next_file(pszCurrent, strNextFilePath))
+
+      string strNext;
+
+      if(!get_next_file(pszFile, strNext))
       {
-         return strNextFilePath;
-      }
-      else
-      {
+
          return "";
+
       }
+
+      return strNext;
+
    }
 
 
 } // namespace file
+
+
+
+
+

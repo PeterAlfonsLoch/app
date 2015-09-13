@@ -385,6 +385,7 @@
 		<Unit filename="filesystem/filesystem/filesystem_dir_system.cpp" />
 		<Unit filename="filesystem/filesystem/filesystem_dir_system.h" />
 		<Unit filename="filesystem/filesystem/filesystem_listing.cpp" />
+		<Unit filename="filesystem/filesystem/filesystem_listing.h" />
 		<Unit filename="filesystem/filesystem/filesystem_path.cpp" />
 		<Unit filename="filesystem/filesystem/filesystem_path.h" />
 		<Unit filename="filesystem/filesystem/filesystem_system.cpp" />

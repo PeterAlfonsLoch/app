@@ -12,7 +12,6 @@ namespace linux
          ::object(papp)
       {
 
-         System.factory().creatable_large < file_set              >  (System. type_info < ::file::set              > ());
          System.factory().cloneable < file_system                 >  (System. type_info < ::file::system           > (), 1);
          System.factory().cloneable < dir                         >  (System. type_info < ::file::dir::system      > (), 1);
          System.factory().creatable < port_forward                >  (System. type_info < ::net::port_forward      > (), 1);

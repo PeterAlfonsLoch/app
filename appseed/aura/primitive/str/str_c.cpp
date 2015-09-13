@@ -1090,7 +1090,9 @@ int_bool matches_wildcard_criteria(const char * pszCriteria, const char * pszVal
          pszStop = wildcard_next_stop(pszFind + 1);
 
          if(pszStop == NULL)
-            return true;
+         {
+            return ::str::ends(pszValue, pszFind+1);
+         }
 
          iLen = pszStop - (pszFind + 1);
 

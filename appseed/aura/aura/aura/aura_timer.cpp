@@ -354,7 +354,7 @@ bool timer::start(int millis, bool bPeriodic)
 
    if (m_ptimer->m_queue == NULL)
       return false;
-   
+
    m_ptimer->m_bFirst = true;
 
    m_ptimer->m_timer = CreateDispatchTimer(millis, MAX(1, millis / 20), m_ptimer->m_queue, aura_timer, m_ptimer);
@@ -371,22 +371,22 @@ bool timer::start(int millis, bool bPeriodic)
 
    its.it_value.tv_nsec = (millis * 1000 * 1000) % (1000 * 1000 * 1000); // expiration
 
-   if (bPeriodic)
-   {
+//   if (bPeriodic)
+  // {
 
       its.it_interval.tv_sec = 0; // no freq
 
       its.it_interval.tv_nsec = 0; // no freq
 
-   }
-   else
-   {
-
-      its.it_value.tv_sec = millis / 1000; // freq period
-
-      its.it_value.tv_nsec = (millis * 1000 * 1000) % (1000 * 1000 * 1000); // freq period
-
-   }
+   //}
+   //else
+//   {
+//
+//      its.it_value.tv_sec = millis / 1000; // freq period
+//
+//      its.it_value.tv_nsec = (millis * 1000 * 1000) % (1000 * 1000 * 1000); // freq period
+//
+//   }
 
    if (timer_settime(m_ptimer->m_timerid, 0, &its, NULL) == -1)
       return false;
@@ -408,7 +408,7 @@ void timer::stop()
    }
    catch(...)
    {
-     
+
    }
 
 
@@ -466,7 +466,7 @@ bool timer::call_on_timer()
 
          if (!m_bDestroying)
          {
-            
+
             m_bDestroying = true;
 
             sl.unlock();
@@ -494,16 +494,16 @@ bool timer::call_on_timer()
       }
 
 #elif defined(__APPLE__)
-      
+
       if (!m_bPeriodic)
       {
 
          stop();
-         
+
          return false;
-         
+
       }
-      
+
 
 #elif defined(METROWIN)
 
@@ -536,6 +536,15 @@ bool timer::call_on_timer()
 
 
          m_ptimer->m_timer = ThreadPoolTimer::CreateTimer(ref new TimerElapsedHandler(pred),span);
+
+      }
+#else
+
+      if (m_bPeriodic)
+      {
+
+         if (timer_settime(m_ptimer->m_timerid, 0, &m_ptimer->m_its, NULL) == -1)
+            return false;
 
       }
 
@@ -617,14 +626,14 @@ void aura_timer(void * p)
 {
 
    ::aura::Timer * ptimer = (::aura::Timer *)p;
-   
+
    if(ptimer->m_bFirst)
    {
-      
+
       ptimer->m_bFirst = false;
-      
+
       return;
-      
+
    }
 
    ptimer->m_ptimer->call_on_timer();

@@ -170,23 +170,23 @@ using namespace ::Windows::System;
 
 
 #elif defined(APPLEOS)
-   
+
    string str;
-   
+
    {
-      
+
       str = ::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libaura.dylib", "rfs"); // readable - normal file - non zero sized
-      
+
       if(str.has_char())
       {
          str = ::file::path(str).folder();
          goto found;
-         
+
       }
-      
+
       str = get_exe_path();
-      
-      
+
+
       if(str.has_char())
       {
          str = ::file::path(str).folder();
@@ -199,16 +199,16 @@ using namespace ::Windows::System;
       {
          str = ::file::path(str).folder();
          goto found;
-         
+
       }
-      
-      
-      
+
+
+
    }
 found:;
-   
+
    return str;
-   
+
 #else
 
    char lpszModuleFolder[MAX_PATH * 8];
@@ -409,9 +409,9 @@ found:;
 #else
 
    unichar lpszModuleFolder[MAX_PATH * 8];
-   
+
    throw todo(::get_thread_app());
-   
+
 //   wcscpy_dup(lpszModuleFolder, unitext("/core/"));
 
    return lpszModuleFolder;
@@ -619,16 +619,16 @@ string ca2_module_dup()
    {
 
       str = get_exe_path();
-      
+
       str = ::dir::pathfind(::file::path(str).folder(), "libaura.dylib", "rfs"); // readable - normal file - non zero sized
 
       if(str.has_char())
       {
-         
+
          goto found;
-         
+
       }
-      
+
       str = ::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libaura.dylib", "rfs"); // readable - normal file - non zero sized
 
       if(str.has_char())
@@ -639,23 +639,23 @@ string ca2_module_dup()
       }
 
       str = get_exe_path();
-      
+
       if(str.has_char())
       {
-         
+
          goto found;
-         
+
       }
 
       str = ::dir::pathfind(getenv("DYLD_FALLBACK_LIBRARY_PATH"), "libaura.dylib", "rfs"); // readable - normal file - non zero sized
 
       if(str.has_char())
       {
-         
+
          goto found;
-         
+
       }
-      
+
    }
 
 found:;
@@ -941,7 +941,7 @@ void dir::ls(::file::patha & stra,const ::file::path & psz)
       return;
 
    dirent * dp;
-
+::file::path path;
    while ((dp = readdir(dirp)) != NULL)
    {
 
@@ -949,7 +949,10 @@ void dir::ls(::file::patha & stra,const ::file::path & psz)
          continue;
       else if(strcmp(dp->d_name, ".") == 0)
          continue;
-      stra.add(::file::path(psz) / dp->d_name);
+      path = psz / dp->d_name;
+      path.m_iDir = is(path);
+      stra.add(path);
+
 
    }
 
@@ -998,7 +1001,7 @@ void dir::ls(::file::patha & stra,const ::file::path & psz)
       string strPath = strPrefix + string(begin(a->GetAt(ui)->Path));
 
       ::file::path path(strPath);
-      
+
       stra.add(path);
 
    }

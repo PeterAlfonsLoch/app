@@ -143,6 +143,13 @@ namespace user
 
             string strConfig = Application.file().as_string("C:\\ca2\\config\\system\\wndfrm.txt");
 
+            if(strConfig.is_empty())
+            {
+
+               strConfig = "core";
+
+            }
+
             strLibrary = string("wndfrm_") + strConfig;
 
          }

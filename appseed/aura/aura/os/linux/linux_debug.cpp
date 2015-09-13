@@ -129,11 +129,11 @@ FormatMessage(
               va_list *Arguments
               )
 {
-    
-    
+
+
     return 0;
-    
-    
+
+
 }
 
 
@@ -143,13 +143,14 @@ OutputDebugStringA(
                    LPCSTR lpOutputString
                    )
 {
-    
-    
-    fprintf(stderr, "%s", lpOutputString);
-    fflush(stderr);
-    //printf("%s", lpOutputString);
-    
-    
+
+
+    //fprintf(stderr, "%s", lpOutputString);
+    //fflush(stderr);
+    printf("%s", lpOutputString);
+    //fflush(stdout);
+
+
 }
 
 
@@ -161,9 +162,9 @@ OutputDebugStringW(
                    LPCWSTR lpOutputString
                    )
 {
-    
-    
+
+
     OutputDebugStringA(string(lpOutputString));
-    
-    
+
+
 }

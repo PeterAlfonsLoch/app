@@ -7,8 +7,11 @@ namespace simpledb
 
    file_set::file_set(::aura::application * papp) :
       ::object(papp),
-      ::file::set_sp(allocer())
+      ::file::set(papp)
    {
+
+      m_straFile.m_bDir      = false;
+      m_straFile.m_bFile     = true;
 
    }
 
@@ -34,24 +37,24 @@ namespace simpledb
    }
 
 
-   bool file_set::refresh()
+   void file_set::refresh()
    {
 
-      m_p->clear_search();
+      ::file::set::clear_search();
 
       stringa stra;
 
       bool_array baRecursive;
 
       if(!data_get(::aura::system::idEmpty, stra))
-         return false;
+         return;
 
       data_load("recursive", baRecursive);
 
       // add_search calls Ex2FileSet refresh internally
-      m_p->add_search(stra, baRecursive);
+      ::file::set::add_search(stra, baRecursive);
 
-      return true;
+      ::file::set::refresh();
 
    }
 
@@ -93,27 +96,21 @@ namespace simpledb
 
       }
 
-
-      if(!refresh())
-         return false;
+      refresh();
 
       return true;
 
    }
 
 
-   bool file_set::clear_search()
+   void file_set::clear_search()
    {
+
+      ::file::set::clear_search();
 
       stringa stra;
 
-      if(!data_set(::aura::system::idEmpty, stra))
-         return false;
-
-      if(!refresh())
-         return false;
-
-      return true;
+      data_set(::aura::system::idEmpty, stra);
 
    }
 
