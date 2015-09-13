@@ -1121,7 +1121,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics * pdcParam)
 
    bool bDib = false;
 
-   if(false && rectClient.area() > 0 && m_uchAlpha != 255 && GetExStyle() & WS_EX_LAYERED)
+   if(rectClient.area() > 0 && m_uchAlpha != 255 && GetExStyle() & WS_EX_LAYERED)
    {
 
       if(m_dibAlpha.is_null())
@@ -1137,14 +1137,14 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics * pdcParam)
 
       pdc = m_dibAlpha->get_graphics();
 
+      pdc->SetViewportOrg(pdcParam->GetViewportOrg());
+
       bDib = true;
 
+   }
 
-   }
-   else
-   {
-      pdc->set_alpha_mode(::draw2d::alpha_mode_set);
-   }
+   pdc->set_alpha_mode(::draw2d::alpha_mode_set);
+   
 
 
 

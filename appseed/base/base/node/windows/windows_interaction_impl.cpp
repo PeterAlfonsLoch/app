@@ -1028,8 +1028,8 @@ namespace windows
 
       if(pbase->m_uiMessage == WM_APP + 1933)
       {
-         ModifyStyleEx(WS_EX_LAYERED, 0);
-         ModifyStyleEx(0,WS_EX_LAYERED);
+         //ModifyStyleEx(WS_EX_LAYERED, 0);
+         //ModifyStyleEx(0,WS_EX_LAYERED);
       }
 
    }
