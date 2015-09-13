@@ -16,7 +16,6 @@ namespace user
    public:
 
 
-      mutex                            m_mutex;
       string                           m_strTitle;
       ::file::path                     m_filepath;
       sp(::user::impact_system)        m_pimpactsystem;
@@ -58,6 +57,7 @@ namespace user
       void remove_view(sp(::user::impact) pview);
       virtual ::count get_view_count() const;
       virtual sp(::user::impact) get_view(index index = 0) const;
+
 
 
       template < class T >

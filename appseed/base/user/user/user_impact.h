@@ -184,7 +184,7 @@ namespace user
 
       virtual void on_simple_view_update_hint(sp(::user::impact) pviewSender, e_hint ehint, object * phint);
 
-
+      virtual void _001CallOnDraw(::draw2d::graphics * pgraphics);
 
       virtual void on_select();
 

@@ -77,30 +77,9 @@ object::object(::aura::application * papp)
 object::~object()
 { 
 
-   if(m_pmutex != NULL)
-   {
+   ::aura::del(m_pmutex);
 
-      delete m_pmutex;
-
-      m_pmutex = NULL;
-
-   }
-
-   try
-   {
-
-      if(m_psetObject != NULL)
-      {
-
-         delete m_psetObject;
-
-      }
-
-   }
-   catch(...)
-   {
-
-   }
+   ::aura::del(m_psetObject);
 
 }
 

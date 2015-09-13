@@ -191,19 +191,19 @@ namespace user
 
       class imaging & imaging = System.visual().imaging();
 
-      imaging.color_blend(pdc, rectClient, RGB(250,255,255), 127);
+      imaging.color_blend(pdc, rectClient, RGB(250,255,255), 127 * m_uchAlpha / 255);
 
       rect rect;
 
       get_slider_rect(rect);
 
-      pdc->Draw3dRect(rect,ARGB(220,84 + 23,77+23,184+ 23),ARGB(220,84,77,184));
+      pdc->Draw3dRect(rect,ARGB(220 * m_uchAlpha / 255,84 + 23,77+23,184+ 23),ARGB(220 * m_uchAlpha / 255,84,77,184));
       rect.deflate(1,1);
-      pdc->Draw3dRect(rect,ARGB(220,177 -13- 49,184 -13- 49,200 - 49),ARGB(220,177-49 - 49,184-49 - 49,200-49));
+      pdc->Draw3dRect(rect,ARGB(220 * m_uchAlpha / 255,177 -13- 49,184 -13- 49,200 - 49),ARGB(220 * m_uchAlpha / 255,177-49 - 49,184-49 - 49,200-49));
       rect.deflate(1,1);
-      pdc->Draw3dRect(rect,ARGB(220,84+23,77+23,184+23),ARGB(220,84,77,184));
+      pdc->Draw3dRect(rect,ARGB(220 * m_uchAlpha / 255,84+23,77+23,184+23),ARGB(220 * m_uchAlpha / 255,84,77,184));
       rect.deflate(1,1);
-      pdc->FillSolidRect(rect,ARGB(128,84 + 49,77 + 49,184 + 49));
+      pdc->FillSolidRect(rect,ARGB(128 * m_uchAlpha / 255,84 + 49,77 + 49,184 + 49));
       //if(m_bSlide)
       //{
       //   pdc->MoveTo(rect.center());

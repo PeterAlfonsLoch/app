@@ -893,6 +893,20 @@ namespace user
 
    }
 
+   void impact::_001CallOnDraw(::draw2d::graphics * pgraphics)
+   {
+
+      on_viewport_offset(pgraphics);
+
+      synch_lock slView(m_pmutex);
+
+      //synch_lock slDocument(get_document()->m_pmutex);
+
+      _001OnDraw(pgraphics);
+
+   }
+
+
    void impact::on_select()
    {
       sp(::user::frame_window) pParentFrame = (GetParentFrame());

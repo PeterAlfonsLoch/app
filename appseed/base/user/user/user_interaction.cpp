@@ -90,6 +90,8 @@ namespace user
 
       m_pvoidUserInteraction     = this;
 
+      m_uchAlpha                 = 255;
+
       m_eupdown                  = type_normal_frame;
 
       m_bMayProDevian            = true;
@@ -1141,15 +1143,7 @@ namespace user
 
          _001OnClip(pgraphics);
 
-         {
-
-            on_viewport_offset(pgraphics);
-
-            synch_lock sl(m_pmutex);
-
-            _001OnDraw(pgraphics);
-
-         }
+         _001CallOnDraw(pgraphics);
 
 
       }
@@ -1166,6 +1160,16 @@ namespace user
 
    }
 
+   void interaction::_001CallOnDraw(::draw2d::graphics * pgraphics)
+   {
+
+      on_viewport_offset(pgraphics);
+
+      synch_lock sl(m_pmutex);
+
+      _001OnDraw(pgraphics);
+
+   }
 
    void interaction::on_viewport_offset(::draw2d::graphics * pgraphics)
    {
@@ -3256,24 +3260,24 @@ namespace user
 
 
 
-   int32_t interaction::SetWindowRgn(HRGN hRgn,bool bRedraw)
-   {
+   //int32_t interaction::SetWindowRgn(HRGN hRgn,bool bRedraw)
+   //{
 
-      if(m_pimpl == NULL)
-         return 0;
-      else
-         return m_pimpl->SetWindowRgn(hRgn,bRedraw);
+   //   if(m_pimpl == NULL)
+   //      return 0;
+   //   else
+   //      return m_pimpl->SetWindowRgn(hRgn,bRedraw);
 
-   }
+   //}
 
 
-   int32_t interaction::GetWindowRgn(HRGN hRgn)
-   {
-      if(m_pimpl == NULL)
-         return 0;
-      else
-         return m_pimpl->GetWindowRgn(hRgn);
-   }
+   //int32_t interaction::GetWindowRgn(HRGN hRgn)
+   //{
+   //   if(m_pimpl == NULL)
+   //      return 0;
+   //   else
+   //      return m_pimpl->GetWindowRgn(hRgn);
+   //}
 
 
    bool interaction::WfiIsZoomed()

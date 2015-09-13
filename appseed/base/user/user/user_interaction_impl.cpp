@@ -1219,22 +1219,22 @@ namespace user
 
    }
 
-   int32_t interaction_impl::SetWindowRgn(HRGN hRgn,bool bRedraw)
-   {
-      UNREFERENCED_PARAMETER(hRgn);
-      UNREFERENCED_PARAMETER(bRedraw);
-      ::exception::throw_interface_only(get_app());
+   //int32_t interaction_impl::SetWindowRgn(HRGN hRgn,bool bRedraw)
+   //{
+   //   UNREFERENCED_PARAMETER(hRgn);
+   //   UNREFERENCED_PARAMETER(bRedraw);
+   //   ::exception::throw_interface_only(get_app());
 
-      return 0;
-   }
+   //   return 0;
+   //}
 
-   int32_t interaction_impl::GetWindowRgn(HRGN hRgn)
-   {
-      UNREFERENCED_PARAMETER(hRgn);
-      ::exception::throw_interface_only(get_app());
+   //int32_t interaction_impl::GetWindowRgn(HRGN hRgn)
+   //{
+   //   UNREFERENCED_PARAMETER(hRgn);
+   //   ::exception::throw_interface_only(get_app());
 
-      return 0;
-   }
+   //   return 0;
+   //}
 
    bool interaction_impl::BringWindowToTop()
    {

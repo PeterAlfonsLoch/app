@@ -74,6 +74,8 @@ namespace filemanager
       GetClientRect(rectClient);
       pdc->FillSolidRect(rectClient, RGB(200, 200, 190));
 
+      if(get_filemanager_manager() == NULL)
+         return;
 
       if (m_iCurFile < 0)
       {

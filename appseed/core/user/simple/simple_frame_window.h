@@ -34,7 +34,7 @@ class CLASS_DECL_CORE simple_frame_window :
 public:
 
 
-
+   ::draw2d::dib_sp               m_dibAlpha;
    ::database::id          m_datakeyFrame;
 
    

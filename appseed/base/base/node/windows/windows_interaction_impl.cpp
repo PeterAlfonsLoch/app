@@ -1023,8 +1023,15 @@ namespace windows
 
    void interaction_impl::pre_translate_message(signal_details * pobj)
    {
-      UNREFERENCED_PARAMETER(pobj);
+      SCAST_PTR(::message::base,pbase,pobj);
       // no default processing
+
+      if(pbase->m_uiMessage == WM_APP + 1933)
+      {
+         ModifyStyleEx(WS_EX_LAYERED, 0);
+         ModifyStyleEx(0,WS_EX_LAYERED);
+      }
+
    }
 
 
@@ -2739,6 +2746,9 @@ namespace windows
 
       //    System.get_event(System.get_twf())->wait(millis(8400));
 
+      //ModifyStyleEx(WS_EX_LAYERED,0);
+      //ModifyStyleEx(0,WS_EX_LAYERED);
+
    }
 
 
@@ -4043,20 +4053,20 @@ namespace windows
    }
 
 
-   int32_t interaction_impl::SetWindowRgn(HRGN hRgn,bool bRedraw)
-   {
+   //int32_t interaction_impl::SetWindowRgn(HRGN hRgn,bool bRedraw)
+   //{
 
-      ASSERT(::IsWindow(get_handle())); return ::SetWindowRgn(get_handle(),hRgn,bRedraw);
+   //   //ASSERT(::IsWindow(get_handle())); return ::SetWindowRgn(get_handle(),hRgn,bRedraw);
 
-   }
+   //}
 
 
-   int32_t interaction_impl::GetWindowRgn(HRGN hRgn)
-   {
+   //int32_t interaction_impl::GetWindowRgn(HRGN hRgn)
+   //{
 
-      ASSERT(::IsWindow(get_handle()) && hRgn != NULL); return ::GetWindowRgn(get_handle(),hRgn);
+   //   //ASSERT(::IsWindow(get_handle()) && hRgn != NULL); return ::GetWindowRgn(get_handle(),hRgn);
 
-   }
+   //}
 
 
    void interaction_impl::BringToTop(int nCmdShow)

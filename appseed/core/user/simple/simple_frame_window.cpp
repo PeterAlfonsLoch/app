@@ -1106,11 +1106,48 @@ void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::draw2d::grap
    }
 }
 
-void simple_frame_window::_000OnDraw(::draw2d::graphics * pdc)
+void simple_frame_window::_000OnDraw(::draw2d::graphics * pdcParam)
 {
-
-   if (!m_bVisible)
+   if(!m_bVisible)
       return;
+
+   ::draw2d::graphics * pdc = pdcParam;
+
+   rect rectClient;
+
+   GetWindowRect(rectClient);
+
+   rectClient -= rectClient.top_left();
+
+   bool bDib = false;
+
+   if(false && rectClient.area() > 0 && m_uchAlpha != 255 && GetExStyle() & WS_EX_LAYERED)
+   {
+
+      if(m_dibAlpha.is_null())
+      {
+
+         m_dibAlpha.alloc(allocer());
+
+      }
+
+      m_dibAlpha->create(rectClient.size());
+
+      m_dibAlpha->Fill(0,0,0,0);
+
+      pdc = m_dibAlpha->get_graphics();
+
+      bDib = true;
+
+
+   }
+   else
+   {
+      pdc->set_alpha_mode(::draw2d::alpha_mode_set);
+   }
+
+
+
    if (m_bblur_Background)
    {
       _001DrawThis(pdc);
@@ -1146,6 +1183,14 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics * pdc)
       pdc->FillSolidRect(10, 60, 50, 50, ARGB(128, 184, 177, 84));
 #endif
    }
+
+   if(bDib)
+   {
+
+      pdcParam->alpha_blend(null_point(),rectClient.size(),pdc,null_point(),m_uchAlpha / 255.0);
+
+   }
+
 }
 
 
@@ -1153,36 +1198,37 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics * pdc)
 {
    single_lock sl(m_pmutex, true);
 
-   if (m_bblur_Background)
+
+   if(m_bblur_Background)
    {
       class imaging & imaging = System.visual().imaging();
       rect rectClient;
       GetClientRect(rectClient);
       //rectClient.offset(rectClient.top_left());
-      if (Session.savings().is_trying_to_save(::aura::resource_translucent_background))
+      if(Session.savings().is_trying_to_save(::aura::resource_translucent_background))
       {
          //pdc->FillSolidRect(rectClient, RGB(150, 220, 140));
       }
-      else if (Session.savings().is_trying_to_save(::aura::resource_processing)
+      else if(Session.savings().is_trying_to_save(::aura::resource_processing)
          || Session.savings().is_trying_to_save(::aura::resource_blur_background))
       {
-         imaging.color_blend(pdc, rectClient, RGB(150, 180, 140), 150);
+         imaging.color_blend(pdc,rectClient,RGB(150,180,140),150);
       }
       else
       {
 #ifndef LINUX
-         if (rectClient.size() != m_dibBk->size())
+         if(rectClient.size() != m_dibBk->size())
          {
             m_dibBk->create(rectClient.size());
-            m_dibBk->Fill(0, 184, 184, 170);
+            m_dibBk->Fill(0,184,184,170);
             //HMODULE hmodule = ::LoadLibrary("ca2performance.dll");
             //::visual::fastblur *( *pfnNew )(sp(::aura::application)) = (::visual::fastblur *(*)(sp(::aura::application))) ::GetProcAddress(hmodule, "new_fastblur");
             m_fastblur.alloc(allocer());
-            m_fastblur.initialize(rectClient.size(), 2);
+            m_fastblur.initialize(rectClient.size(),2);
          }
-         if (m_fastblur.is_set() && m_fastblur->area() > 0)
+         if(m_fastblur.is_set() && m_fastblur->area() > 0)
          {
-            m_fastblur->get_graphics()->BitBlt(0, 0, rectClient.width(), rectClient.height(), pdc, 0, 0, SRCCOPY);
+            m_fastblur->get_graphics()->BitBlt(0,0,rectClient.width(),rectClient.height(),pdc,0,0,SRCCOPY);
             m_fastblur.blur();
             imaging.bitmap_blend(
                m_fastblur->get_graphics(),
@@ -1201,6 +1247,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics * pdc)
    }
 
    _011OnDraw(pdc);
+
 
 }
 

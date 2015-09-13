@@ -108,7 +108,10 @@ namespace user
    {
       ::user::list_column * pcolumn = m_columna._001GetBySubItem(iSubItem);
       if(pcolumn != NULL && pcolumn->m_iControl >= 0)
-         return m_controldescriptorset[pcolumn->m_iControl]->m_pcontrol;
+         if(m_controldescriptorset[pcolumn->m_iControl] != NULL)
+            return m_controldescriptorset[pcolumn->m_iControl]->m_pcontrol;
+         else
+            return NULL;
       else
          return NULL;
    }

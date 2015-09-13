@@ -16,6 +16,8 @@ namespace user
       m_bSlide = false;
       m_iScalar = 0;
 
+      m_uchAlpha = 255;
+
    }
 
    elastic_slider::~elastic_slider()
@@ -36,7 +38,7 @@ namespace user
    void elastic_slider::_001OnCreate(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      SetTimer(1, 50, NULL);
+      SetTimer(84 +77 +51 +33 + 23 + 49, 50, NULL);
    }
 
    void elastic_slider::_001OnTimer(::timer * ptimer)
@@ -44,7 +46,7 @@ namespace user
 
       ::user::interaction::_001OnTimer(ptimer);;
 
-      if(ptimer->m_nIDEvent == 1)
+      if(ptimer->m_nIDEvent == 84 + 77 + 51 + 33 + 23 + 49)
       {
          double dScalar = CalcScalar();
 
@@ -206,16 +208,16 @@ namespace user
          pdc,
          rectClient,
          RGB(250, 255, 255),
-         127);
+         127 * m_uchAlpha / 255);
 
       rect rect;
       GetSliderRect(rect);
 
-      pdc->Draw3dRect(rect,ARGB(128,255,255,255),ARGB(128,255,255,255));
+      pdc->Draw3dRect(rect,ARGB(128 * m_uchAlpha / 255,255,255,255),ARGB(128 * m_uchAlpha / 255,255,255,255));
       rect.deflate(1, 1);
-      pdc->Draw3dRect(rect,ARGB(128,255,255,0),ARGB(128,255,255,0));
+      pdc->Draw3dRect(rect,ARGB(128 * m_uchAlpha / 255,255,255,0),ARGB(128 * m_uchAlpha / 255,255,255,0));
       rect.deflate(1, 1);
-      pdc->Draw3dRect(rect,ARGB(128,255,255,255),ARGB(128,255,255,255));
+      pdc->Draw3dRect(rect,ARGB(128 * m_uchAlpha / 255,255,255,255),ARGB(128 * m_uchAlpha / 255,255,255,255));
       if(m_bSlide)
       {
          pdc->MoveTo(rect.center());

@@ -1413,24 +1413,24 @@ namespace user
    }
 
 
-   int32_t interaction_base::SetWindowRgn(HRGN hRgn,bool bRedraw)
-   {
+   //int32_t interaction_base::SetWindowRgn(HRGN hRgn,bool bRedraw)
+   //{
 
-      ::exception::throw_interface_only(get_app());
+   //   ::exception::throw_interface_only(get_app());
 
-      return -1;
+   //   return -1;
 
-   }
+   //}
 
 
-   int32_t interaction_base::GetWindowRgn(HRGN hRgn)
-   {
+   //int32_t interaction_base::GetWindowRgn(HRGN hRgn)
+   //{
 
-      ::exception::throw_interface_only(get_app());
+   //   ::exception::throw_interface_only(get_app());
 
-      return -1;
+   //   return -1;
 
-   }
+   //}
 
 
    bool interaction_base::WfiIsZoomed()

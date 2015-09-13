@@ -188,8 +188,8 @@ namespace windows
       // Window size and position Functions
       virtual bool WfiIsIconic();
       virtual bool WfiIsZoomed();
-      int32_t SetWindowRgn(HRGN hRgn,bool bRedraw);
-      int32_t GetWindowRgn(HRGN hRgn);
+      //int32_t SetWindowRgn(HRGN hRgn,bool bRedraw);
+      //int32_t GetWindowRgn(HRGN hRgn);
 
       using ::user::interaction_impl::SetWindowPos;
       virtual bool SetWindowPos(int32_t z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags = SWP_SHOWWINDOW);

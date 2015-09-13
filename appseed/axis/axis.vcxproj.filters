@@ -647,9 +647,6 @@
     <ClInclude Include="axis\node\windows\windows_factory_exchange.h">
       <Filter>Header Files\axis\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_file_set.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="axis\node\windows\windows_ip_enum.h">
       <Filter>Header Files\axis\node\windows</Filter>
     </ClInclude>
@@ -1079,6 +1076,9 @@
     <ClInclude Include="axis\fontopus\fontopus_validate.h">
       <Filter>Header Files\axis\fontopus</Filter>
     </ClInclude>
+    <ClInclude Include="axis\node\windows\aaa_want_to_remove_windows_file_set.h">
+      <Filter>Header Files\axis\node\windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="net\net_net.cpp">
@@ -1367,9 +1367,6 @@
       <Filter>Source Files\filesystem\fs</Filter>
     </ClCompile>
     <ClCompile Include="axis\node\windows\windows_factory_exchange.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_file_set.cpp">
       <Filter>Source Files\axis\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="axis\node\windows\windows_ip_enum.cpp">
@@ -1842,6 +1839,9 @@
     </ClCompile>
     <ClCompile Include="axis\fontopus\fontopus_validate1.cpp">
       <Filter>Source Files\axis\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\windows\aaa_want_to_remove_windows_file_set.cpp">
+      <Filter>Source Files\axis\node\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

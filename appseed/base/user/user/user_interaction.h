@@ -31,6 +31,7 @@ namespace user
       bool                                m_bLockWindowUpdate;
       bool                                m_bEnableSaveWindowRect;
       bool                                m_bLayoutEnable;
+      byte                                m_uchAlpha;
 
       point                               m_ptMoveCursor;
 
@@ -220,8 +221,8 @@ namespace user
       virtual bool SetWindowPos(int32_t z,const RECT & rect,UINT nFlags = 0);
       virtual bool SetWindowPos(int32_t z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags = 0);
       virtual bool defer_set_window_pos(int32_t z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags); // only set_windows_pos if get_parent()->ScreenToClient(get_window_rect) different of rect(x, y, cx, cy)      virtual bool set_placement(LPRECT lprect);
-      virtual int32_t SetWindowRgn(HRGN hRgn,bool bRedraw);
-      virtual int32_t GetWindowRgn(HRGN hRgn);
+      //virtual int32_t SetWindowRgn(HRGN hRgn,bool bRedraw);
+      //virtual int32_t GetWindowRgn(HRGN hRgn);
 
       virtual void layout();
 
@@ -316,6 +317,7 @@ namespace user
       virtual void _001DrawThis(::draw2d::graphics *pdc);
       virtual void _001DrawChildren(::draw2d::graphics *pdc);
       virtual void _001OnNcDraw(::draw2d::graphics *pdc);
+      virtual void _001CallOnDraw(::draw2d::graphics *pdc);
       virtual void _001OnDraw(::draw2d::graphics *pdc);
       virtual void _001OnClip(::draw2d::graphics *pdc);
       virtual void draw_control_background(::draw2d::graphics *pdc);

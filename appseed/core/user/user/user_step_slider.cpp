@@ -108,7 +108,7 @@ namespace user
          pdc,
          rectClient,
          RGB(150, 200, 255),
-         127);
+         127 * m_uchAlpha / 255);
       
       int64_t iMin = m_scalar.minimum();
       int64_t iMax = m_scalar.maximum();
@@ -126,7 +126,7 @@ namespace user
                   pdc,
                   rect,
                   RGB(255, 255, 240),
-                  127);
+                  127 * m_uchAlpha / 255);
             }
             else
             {
@@ -134,7 +134,7 @@ namespace user
                   pdc,
                   rect,
                   RGB(255, 255, 150),
-                  127);
+                  127 * m_uchAlpha / 255);
             }
          }
          else
@@ -145,7 +145,7 @@ namespace user
                   pdc,
                   rect,
                   RGB(255, 180, 180),
-                  127);
+                  127 * m_uchAlpha / 255);
             }
             else
             {
@@ -153,7 +153,7 @@ namespace user
                   pdc,
                   rect,
                   RGB(100, 100, 255),
-                  127);
+                  127 * m_uchAlpha / 255);
             }
          }
       }

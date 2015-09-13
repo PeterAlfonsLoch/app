@@ -8,8 +8,7 @@ namespace user
 
    document::document(::aura::application * papp) :
       ::object(papp),
-      ::data::data_container_base(papp),
-      m_mutex(NULL)
+      ::data::data_container_base(papp)
    {
 
       m_pimpactsystem = NULL;
@@ -19,6 +18,8 @@ namespace user
       ASSERT(m_viewptra.is_empty());
 
       m_dataid = typeid(*this).name();
+
+      m_pmutex = new mutex(papp);
          
    }
 
@@ -137,7 +138,7 @@ namespace user
 
    void document::disconnect_views()
    {
-      single_lock sl(&m_mutex, true);
+      single_lock sl(m_pmutex, true);
       for (index index = 0; index < m_viewptra.get_count(); index++)
       {
          sp(::user::impact) pview = m_viewptra[index];
@@ -171,13 +172,14 @@ namespace user
 
    sp(::user::impact) document::get_view(index index) const
    {
-      single_lock sl(&((document *) this)->m_mutex, true);
+      single_lock sl(((document *) this)->m_pmutex, true);
       if (index < 0 || index >= m_viewptra.get_count())
          return NULL;
       sp(::user::impact) pview = m_viewptra[index];
       ASSERT_KINDOF(::user::impact, pview);
       return pview;
    }
+
 
    void document::update_all_views(sp(::user::impact) pSender, LPARAM lHint, ::object * pHint)
       // walk through all views
@@ -246,7 +248,7 @@ namespace user
 
    sp(::user::impact) document::get_typed_view(sp(type) info, index indexFind)
    {
-      single_lock sl(&m_mutex, true);
+      single_lock sl(m_pmutex, true);
       ::count countView = get_view_count();
       ::count countFind = 0;
       sp(::user::impact) pview;
@@ -390,8 +392,8 @@ namespace user
 
    void document::on_changed_view_list(single_lock * psl)
    {
-      single_lock sl(&m_mutex, false);
-      if (psl == NULL || psl->m_pobjectSync != &m_mutex)
+      single_lock sl(m_pmutex, false);
+      if (psl == NULL || psl->m_pobjectSync != m_pmutex)
          psl = &sl;
       psl->lock();
       // if no more views on the document_interface, delete ourself
@@ -566,8 +568,8 @@ namespace user
    void document::on_close_document(single_lock * psl)
       // must close all views now (no prompting) - usually destroys this
    {
-      single_lock sl(&m_mutex, false);
-      if (psl == NULL || psl->m_pobjectSync != &m_mutex)
+      single_lock sl(m_pmutex, false);
+      if (psl == NULL || psl->m_pobjectSync != m_pmutex)
          psl = &sl;
       psl->lock();
       // destroy all frames viewing this document_interface
@@ -715,7 +717,7 @@ namespace user
       // permission to close all views using this frame
       //  (at least one of our views must be in this frame)
    {
-      single_lock sl(&m_mutex, true);
+      single_lock sl(m_pmutex, true);
       ASSERT_VALID(pFrameArg);
       UNUSED(pFrameArg);   // unused in release builds
 
@@ -915,8 +917,8 @@ namespace user
    void document::update_frame_counts(single_lock * psl)
       // assumes 1 doc per frame
    {
-      single_lock sl(&m_mutex, false);
-      if (psl == NULL || psl->m_pobjectSync != &m_mutex)
+      single_lock sl(m_pmutex, false);
+      if (psl == NULL || psl->m_pobjectSync != m_pmutex)
          psl = &sl;
       psl->lock();
       // walk all frames of views (mark and sweep approach)
@@ -1001,7 +1003,7 @@ namespace user
    void document::add_view(sp(::user::impact) pview)
    {
 
-      single_lock sl(&m_mutex, true);
+      single_lock sl(m_pmutex, true);
 
       ASSERT_VALID(pview);
 
@@ -1022,7 +1024,7 @@ namespace user
    void document::remove_view(sp(::user::impact) pview)
    {
       
-      single_lock sl(&m_mutex, true);
+      single_lock sl(m_pmutex, true);
 
       ASSERT_VALID(pview);
 
