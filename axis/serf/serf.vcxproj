@@ -59,12 +59,6 @@
     <None Include="axisserf.def" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\apr-util\aprutil.vcxproj">
-      <Project>{5b851fc7-223f-4b55-9369-770972245733}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\apr\apr.vcxproj">
-      <Project>{56214aad-7cdb-4171-958b-a8daf170256b}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\crypto\axiscrypto.vcxproj">
       <Project>{39807406-816f-4c0d-a632-4bb8ab13887b}</Project>
     </ProjectReference>
