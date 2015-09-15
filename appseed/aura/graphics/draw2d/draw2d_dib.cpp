@@ -2992,7 +2992,14 @@ namespace draw2d
       if(area() <= 0 || get_data() == NULL)
          return;
 
-      memset(get_data(), uch, (::primitive::memory_size) (m_iScan * get_size().cy * sizeof(COLORREF)));
+      int iHeight = get_size().cy;
+
+      int iScan = m_iScan;
+
+      if(iScan <= 0 || iHeight <= 0)
+         return;
+
+      memset(get_data(), uch, (::primitive::memory_size) (iScan * iHeight));
 
    }
 

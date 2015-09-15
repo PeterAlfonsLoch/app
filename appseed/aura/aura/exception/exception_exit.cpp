@@ -21,6 +21,8 @@ exit_exception::exit_exception(::aura::application * papp, const char * pszMessa
 
    }
 
+   
+
 }
 
 
