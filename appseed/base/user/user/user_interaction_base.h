@@ -77,6 +77,8 @@ namespace user
 
       };
 
+      bool                                m_bRedraw;
+      DWORD                               m_dwLastRedraw;
 
 
 
@@ -152,7 +154,7 @@ namespace user
 
 
 
-      virtual void _001RedrawWindow();
+      virtual void _001RedrawWindow(UINT nFlags = 0);
 
 
 

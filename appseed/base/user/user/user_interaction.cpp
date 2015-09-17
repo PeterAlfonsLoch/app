@@ -119,6 +119,8 @@ namespace user
       m_bLockWindowUpdate        = false;
 
 
+      m_bRedraw                  = false;
+
       m_bDefaultWalkPreTranslateParentTree = false;
 
       m_bMoving                  = false;
@@ -1775,7 +1777,7 @@ namespace user
 
             //TRACE("Redraw !m_bMayProDevian");
 
-            _001RedrawWindow();
+            _001RedrawWindow(RDW_UPDATENOW);
 
          }
 
@@ -3935,13 +3937,18 @@ namespace user
    }
 
    
-   void interaction::_001RedrawWindow()
+   void interaction::_001RedrawWindow(UINT nFlags)
    {
+
+      //if(!(nFlags & RDW_UPDATENOW))
+      {
+
+         if(m_bMayProDevian && GetParent() == NULL)
+            return;
+
+      }
       
-      if(m_bMayProDevian && GetParent() == NULL)
-         return;
-      
-      ::user::interaction_base::_001RedrawWindow();
+      ::user::interaction_base::_001RedrawWindow(nFlags);
       
       
    }
@@ -5291,7 +5298,7 @@ namespace user
       catch(::exit_exception &)
       {
 
-         System.post_thread_message(WM_QUIT,0,0);
+         System.post_quit();
 
          return -1;
 

@@ -2,7 +2,8 @@
 //#include "base/user/user.h"
 //#include "aura/user/colorertake5/colorertake5.h"
 
-
+//#define SEARCH_SCROLLING_PROFILING
+//#define PROFILE_CALC_LAYOUT
 void str_fill(string & str,char ch);
 
 extern CLASS_DECL_BASE thread_int_ptr < DWORD_PTR > t_time1;
@@ -69,18 +70,16 @@ namespace user
       m_bActionHover       = false;
 
 
+      m_bCalcLayoutHintNoTextChange = false;
 
-      m_straSep.add("\n");
+
+      /*m_straSep.add("\n");
       m_straSep.add("\r");
       m_straSep.add("\r\n");
-
+      */
 
 
       m_y                  = -1;
-      m_iaLineIndex.allocate(0,100000);
-      m_iaLineEndIndex.allocate(0,100000);
-      m_iaAccumulLineIndex.allocate(0,100000);
-      m_iaCLineIndex.allocate(0,1000);
       m_iViewOffset        = 0;
       m_iViewSize          = 1000;
       m_bMouseDown         = false;
@@ -139,6 +138,7 @@ namespace user
       _001OnUpdate(::action::source_system);
 
       m_bNeedCalcLayout = true;
+      m_bCalcLayoutHintNoTextChange = false;
 
 //      ThreadProcScrollSize((LPVOID) this);
 
@@ -158,6 +158,7 @@ namespace user
       _001OnUpdate(::action::source_system);
 
       m_bNeedCalcLayout = true;
+      m_bCalcLayoutHintNoTextChange = true;
 
 
 
@@ -199,8 +200,12 @@ namespace user
    {
 
       //return;
-
+#ifdef PROFILE_CALC_LAYOUT
+      for(index i = 0; i < 1000; i++)
+#else
       if(m_bNeedCalcLayout)
+
+#endif
       {
 
          _001OnCalcLayout();
@@ -330,10 +335,11 @@ namespace user
       index iLineStart = should_load_full_file() ? m_iLineOffset : 0;
       index iLineEnd = should_load_full_file() ?  iLineStart + m_iLineCount - 1 : straLines.get_size();
       iLineEnd = MIN(iLineEnd,straLines.get_upper_bound());
-      for(index i = iLineStart; i <= iLineEnd; i++)
+      index iLine = m_iLineOffset;
+      for(index i = iLineStart; i <= iLineEnd; i++, iLine++)
       {
          straLineFeed.remove_all();
-         straLineFeed.add_smallest_tokens(straLines[i],m_straSep,FALSE,FALSE);
+         straLineFeed.add_lines(straLines[i],false);
          if(straLineFeed.get_size() > 0)
          {
             strLine = straLineFeed[0];
@@ -493,7 +499,7 @@ namespace user
             }
          }
          y += iLineHeight;
-         lim += straLines[i].get_length();
+         lim += m_iaLineLen[iLine];
          //ASSERT(FALSE);
       }
 
@@ -1005,7 +1011,7 @@ namespace user
 
       str.ReleaseBuffer();
 
-      str.replace("\n","\r\n");
+      //str.replace("\n","\r\n");
 
    }
 
@@ -1037,7 +1043,12 @@ namespace user
 
       _001EnsureVisibleChar(iSelStart);
 
+#ifndef      SEARCH_SCROLLING_PROFILING
+
       RedrawWindow();
+
+
+#endif
 
    }
 
@@ -1053,13 +1064,18 @@ namespace user
    void plain_edit::_001EnsureVisibleLine(index iLine)
    {
 
-      //m_scrolldata.m_ptScroll.y = (MIN(MAX(0, iLine), m_iaLineIndex.get_upper_bound()) - 1) * m_iLineHeight;
+      //m_scrolldata.m_ptScroll.y = (MIN(MAX(0, iLine), m_iaLineLen.get_upper_bound()) - 1) * m_iLineHeight;
 
-      set_viewport_offset_y((MIN(MAX(0,iLine),m_iaLineIndex.get_upper_bound()) - 1) * m_iLineHeight);
+      set_viewport_offset_y((MIN(MAX(0,iLine),m_iaLineLen.get_upper_bound()) - 1) * m_iLineHeight);
 
       m_bNeedCalcLayout = true;
+      m_bCalcLayoutHintNoTextChange = true;
+
+#ifndef SEARCH_SCROLLING_PROFILING
 
       RedrawWindow();
+
+#endif
 
    }
 
@@ -1189,7 +1205,7 @@ namespace user
 
    //   m_ptree->m_editfile.seek(0,::file::seek_begin);
 
-   //   y = (int32_t)(m_iLineHeight * m_iaLineIndex.get_size());
+   //   y = (int32_t)(m_iLineHeight * m_iaLineLen.get_size());
 
    //   if(y <= 0)
    //   {
@@ -1200,19 +1216,43 @@ namespace user
 
    //}
 
+   void debug_func(const string & str)
+   {
 
+   }
    void plain_edit::_001OnCalcLayout()
    {
 
       synch_lock sl(m_pmutex);
 
-      ::draw2d::memory_graphics pdc(allocer());
-
-      m_iViewOffset = 0;
-
       rect rectClient;
 
       GetClientRect(rectClient);
+
+      if(m_ptree == NULL)
+      {
+
+         m_iLineCount = 0;
+
+         m_iLineOffset = 0;
+
+         m_iViewOffset = 0;
+
+         m_iViewSize = 0;
+
+         m_sizeTotal = rectClient.size();
+
+         on_change_view_size();
+
+         return;
+
+      }
+
+      ::index i;
+
+      ::index iLine;
+
+      ::draw2d::memory_graphics pdc(allocer());
 
       select_font(pdc);
 
@@ -1235,71 +1275,81 @@ namespace user
 
       point ptOffset = get_viewport_offset();
 
-      m_iLineOffset = MAX(0,ptOffset.y / m_iLineHeight);
+      m_iLineCount = (rectClient.height() / m_iLineHeight) + 1;
 
-      ::index iLine = 0;
-      ::count iCLine = iLine / 100;
-      ::index i;
+      m_iLineOffset = MIN(MAX(0,ptOffset.y / m_iLineHeight),m_iaLineBeg.get_upper_bound());
 
-      m_iViewOffset = 0;
-
-      for(iLine = 0,i = 0; i < iCLine; i++,iLine += 100)
-      {
-         m_iViewOffset += m_iaCLineIndex[i];
-      }
-      for(; iLine < m_iLineOffset && iLine < m_iaLineIndex.get_size(); iLine++)
-      {
-         m_iViewOffset += m_iaLineIndex[iLine];
-      }
-      m_iViewSize = 0;
-      if(m_iLineHeight == 0)
-      {
-         m_iLineCount = 1;
-      }
-      else
-      {
-         m_iLineCount = (rectClient.height() / m_iLineHeight) + 1;
-      }
-      for(i = 0; i < m_iLineCount && iLine < m_iaLineIndex.get_size(); i++,iLine++)
-      {
-         m_iViewSize += m_iaLineIndex[iLine];
-      }
-      m_plines->lines.set_size(0,100);
-      string str;
-      if(m_ptree == NULL)
-         return;
-      m_ptree->m_editfile.seek(m_iViewOffset,::file::seek_begin);
-      iLine = m_iLineOffset;
-      i = 0;
       ::index iLineStart = should_load_full_file() ? 0 : m_iLineOffset;
-      ::index iLineEnd = should_load_full_file() ? m_iaLineIndex.get_size() - 1 : MIN(m_iaLineIndex.get_size(),m_iLineCount + iLineStart) - 1;
-      for(::index iLine = iLineStart; i <= iLineEnd && iLine < m_iaLineIndex.get_size(); i++,iLine++)
+
+      ::index iLineEnd = should_load_full_file() ? m_iaLineLen.get_size() - 1 : MIN(m_iaLineLen.get_size(),m_iLineCount + iLineStart) - 1;
+
+      int iLineUBound = MIN(iLineEnd,m_iaLineLen.get_size() - iLineStart - 1);
+
+      m_iViewOffset = m_iaLineBeg[m_iLineOffset];
+
+      m_iViewSize = 0;
+
+      i = 0;
+
+      iLine = iLineStart;
+
+      for(; i <= iLineUBound; i++,iLine++)
       {
-         strsize iLen = m_iaLineIndex[iLine];
-         char * lpsz = str.GetBufferSetLength(iLen + 1);
-         m_ptree->m_editfile.read(lpsz,iLen);
-         lpsz[iLen] = '\0';
-         str.ReleaseBuffer();
-         m_plines->lines.add(str);
+
+         m_iViewSize += m_iaLineLen[iLine];
+
+      }
+
+      string strLine;
+
+      ::primitive::memory mem;
+
+      mem.allocate(m_iViewSize + 1);
+
+      m_ptree->m_editfile.seek(m_iViewOffset,::file::seek_begin);
+
+      m_ptree->m_editfile.read(mem.get_data(),m_iViewSize);
+
+      mem.get_data()[m_iViewSize] = 0;
+      
+      int iPos = 0;
+
+      strsize iLen;
+
+      strsize iStrLen;
+
+      m_plines->lines.remove_all();
+
+      i = 0;
+
+      iLine = iLineStart;
+
+      for(; i <= iLineUBound; i++,iLine++)
+      {
+
+         iLen = m_iaLineLen[iLine];
+
+         iStrLen = MAX(0,iLen - (m_iaLineEnd[iLine] & 255));
+
+         m_plines->lines.add(string((const char *) &mem.get_data()[iPos],iStrLen));
+
+         iPos += iLen;
+
       }
 
       m_y = ptOffset.y;
 
       m_peditor->visibleTextEvent(m_iLineOffset,m_iLineCount);
 
-
-
       select_font(pdc);
 
       stringa & straLines = m_plines->lines;
 
-      strsize iSelStart;
+//      strsize iSelStart;
 
-      strsize iSelEnd;
+  //    strsize iSelEnd;
 
-      _001GetViewSel(iSelStart,iSelEnd);
-
-      string strLine;
+    //  _001GetViewSel(iSelStart,iSelEnd);
 
       m_sizeTotal.cx = 0;
 
@@ -1323,13 +1373,11 @@ namespace user
 
       }
 
-      m_sizeTotal.cy = ((int32_t)m_iaLineIndex.get_count() * m_iLineHeight);
+      m_sizeTotal.cy = ((int32_t)m_iaLineLen.get_count() * m_iLineHeight);
 
       class size sizePage;
 
-      sizePage.cx = rectClient.width();
-
-      sizePage.cy = rectClient.height();
+      sizePage = rectClient.size();
 
       if(m_bMultiLine)
       {
@@ -1345,6 +1393,8 @@ namespace user
       on_change_view_size();
 
       m_bNeedCalcLayout = false;
+
+      m_bCalcLayoutHintNoTextChange = false;
 
    }
 
@@ -1392,16 +1442,17 @@ namespace user
 
    index plain_edit::CharToLine(strsize iChar)
    {
+      //return -1;
 
       synch_lock sl(m_pmutex);
 
-      for(index iLine = 0; iLine < m_iaAccumulLineIndex.get_size(); iLine++)
+      for(index iLine = 0; iLine < m_iaLineBeg.get_size(); iLine++)
       {
 
-         if(iChar <= m_iaAccumulLineIndex[iLine])
+         if(iChar >= m_iaLineBeg[iLine] && iChar < m_iaLineBeg[iLine] + m_iaLineLen[iLine])
          {
 
-            return iLine;
+            return MAX(iLine, 0);
 
          }
 
@@ -1505,7 +1556,7 @@ namespace user
 
       stra.remove_all();
 
-      stra.add_smallest_tokens(straLines[iLine],m_straSep,FALSE,FALSE);
+      stra.add_lines(straLines[iLine],false);
 
       if(stra.get_size() > 0)
       {
@@ -1664,7 +1715,7 @@ namespace user
 
          stra.remove_all();
 
-         stra.add_smallest_tokens(straLines[i],m_straSep,FALSE,FALSE);
+         stra.add_lines(straLines[i],false);
 
          if(stra.get_size() > 0)
          {
@@ -1834,6 +1885,16 @@ namespace user
    }
 
 
+   void plain_edit::_001GetSel(strsize & iSelStart,strsize  & iSelEnd)
+   {
+
+      iSelStart   = m_ptree->m_iSelStart;
+
+      iSelEnd     = m_ptree->m_iSelEnd;
+
+   }
+
+
    void plain_edit::on_updata_data(::data::simple_data * pdata,int32_t iHint)
    {
 
@@ -1875,17 +1936,17 @@ namespace user
    void plain_edit::CreateLineIndex()
    {
 
-      int32_t i = 1;
 
-      char buf[1024 * 256 + 1];
+
+      ::primitive::memory m;
+
+      m.allocate(1024 * 1024);
+
+      char * buf = (char *) m.get_data();
 
       ::primitive::memory_size uiRead;
 
       char * lpsz;
-
-      m_iaLineIndex.remove_all();
-
-      m_iaLineEndIndex.remove_all();
 
       m_ptree->m_editfile.seek(0,::file::seek_begin);
 
@@ -1898,64 +1959,84 @@ namespace user
 
       int32_t iLineSize = 0;
 
-      char flags[3];
+      m_iaLineLen.remove_all();
 
-      flags[0] = 3;
+      m_iaLineEnd.remove_all();
 
-      flags[1] = 1;
+      UINT uiPos;
 
-      flags[2] = 2;
+      int iLastR = 0;
 
-      while((uiRead = m_ptree->m_editfile.read(buf,sizeof(buf)- 1)) > 0)
+      while((uiRead = m_ptree->m_editfile.read(buf,m.get_size())) > 0)
       {
 
-         buf[uiRead] = '\0';
+         uiPos = 0;
 
          lpsz = buf;
 
-         while(*lpsz != '\0')
+         while(uiPos < uiRead)
          {
 
-            if(*lpsz == '\r' && (*(lpsz + 1)) == '\n')
+            if(*lpsz == '\r')
             {
 
-               iLineSize +=2;
+               if(iLastR)
+               {
 
-               m_iaLineIndex.add(iLineSize);
+                  iLineSize++;
 
-               m_iaLineEndIndex.add(3);
+                  m_iaLineLen.add(iLineSize);
 
-               iLineSize = 0;
+                  m_iaLineEnd.add(1 | 512);
 
-               lpsz += 2;
+                  iLineSize = 0;
+
+                  lpsz++;
+
+                  uiPos++;
+
+               }
+
+               iLastR = 1;
 
             }
             else if(*lpsz == '\n')
             {
 
-               iLineSize++;
+               if(iLastR)
+               {
 
-               m_iaLineIndex.add(iLineSize);
+                  iLineSize +=2;
 
-               m_iaLineEndIndex.add(1);
+                  m_iaLineLen.add(iLineSize);
 
-               iLineSize = 0;
+                  m_iaLineEnd.add(2 | 1024);
 
-               lpsz++;
+                  iLineSize = 0;
 
-            }
-            else if(*lpsz == '\r')
-            {
+                  lpsz += 2;
 
-               iLineSize++;
+                  uiPos += 2;
 
-               m_iaLineIndex.add(iLineSize);
+               }
+               else
+               {
 
-               m_iaLineEndIndex.add(2);
+                  iLineSize++;
 
-               iLineSize = 0;
+                  m_iaLineLen.add(iLineSize);
 
-               lpsz++;
+                  m_iaLineEnd.add(1 | 256);
+
+                  iLineSize = 0;
+
+                  lpsz++;
+
+                  uiPos++;
+
+               }
+
+               iLastR = 0;
 
             }
             else
@@ -1965,44 +2046,44 @@ namespace user
 
                iLineSize++;
 
+               uiPos++;
+
             }
 
          }
 
-         i++;
 
       }
 
-      m_iaLineIndex.add(iLineSize);
-
-      m_iaLineEndIndex.add(0);
-
-      ::count iAcc = 0;
-      ::count iCAcc;
-
-      ::count iLineCount;
-
-      i = 0;
-
-      while(i < m_iaLineIndex.get_size())
+      if(iLastR)
       {
 
-         iCAcc = 0;
+         iLineSize++;
 
-         iLineCount = 0;
+         m_iaLineLen.add(iLineSize);
 
-         for(; iLineCount < 100 && i < m_iaLineIndex.get_size(); i++,iLineCount++)
-         {
+         m_iaLineEnd.add(1 | 512);
 
-            iAcc += m_iaLineIndex[i];
+         iLineSize = 0;
 
-            iCAcc += m_iaLineIndex[i];
+      }
 
-            m_iaAccumulLineIndex.add(iAcc);
+      m_iaLineLen.add(iLineSize);
 
-         }
+      m_iaLineEnd.add(0);
 
-         m_iaCLineIndex.add(iCAcc);
+      ::count iAcc = 0;
+
+      ::count iLineCount = m_iaLineLen.get_size();
+
+      m_iaLineBeg.set_size(iLineCount);
+
+      for(index iLine = 0; iLine < iLineCount; iLine++)
+      {
+
+         m_iaLineBeg[iLine] = iAcc;
+
+         iAcc += m_iaLineLen[iLine];
 
       }
 
@@ -2439,9 +2520,9 @@ namespace user
       ::count iLineSize;
       ::index i = 0;
       ptOffset = get_viewport_offset();
-      while(ptOffset.y > iHeight && i < m_iaLineIndex.get_size())
+      while(ptOffset.y > iHeight && i < m_iaLineLen.get_size())
       {
-         iLineSize = m_iaLineIndex[i];
+         iLineSize = m_iaLineLen[i];
          iHeight += m_iLineHeight;
          m_iViewOffset += iLineSize;
          i++;
@@ -2466,9 +2547,9 @@ namespace user
          int32_t iLineEndRemain = -1;
          int32_t iLine = 0;
          int32_t i = 0;
-         while(i < m_iaLineIndex.get_size())
+         while(i < m_iaLineLen.get_size())
          {
-         iLineSize = m_iaLineIndex[i];
+         iLineSize = m_iaLineLen[i];
          iLineStart = iLine;
          if(iSel < (iPos + iLineSize))
          {
@@ -2486,9 +2567,9 @@ namespace user
          }
          else
          {
-         while(i < m_iaLineIndex.get_size())
+         while(i < m_iaLineLen.get_size())
          {
-         iLineSize = m_iaLineIndex[i];
+         iLineSize = m_iaLineLen[i];
          iLine++;
          iLineEnd = iLine;
          m_editfileLineIndex.read(&flag, 1);
@@ -2547,6 +2628,7 @@ namespace user
          CreateLineIndex();
          m_y = -1;
 
+         m_bCalcLayoutHintNoTextChange = false;
 
          _001OnCalcLayout();
 
@@ -2760,7 +2842,7 @@ namespace user
 
       string str;
       str = Session.copydesk().get_plain_text();
-      str.replace("\r\n","\n");
+      //str.replace("\r\n","\n");
       _001SetSelText(str,::action::source::user());
       MacroBegin();
       MacroRecord(new plain_text_file_command());
@@ -2775,8 +2857,10 @@ namespace user
    void plain_edit::_001OnVScroll(signal_details * pobj)
    {
 
+      m_bCalcLayoutHintNoTextChange = true;
       m_bNeedCalcLayout = true;
-
+      //RedrawWindow();
+      pobj->m_bRet = true;
    }
 
 
@@ -2789,6 +2873,7 @@ namespace user
       {
 
          m_bNeedScrollUpdate = true;
+         m_bCalcLayoutHintNoTextChange = true;
 
       }
       else
@@ -2805,6 +2890,8 @@ namespace user
    {
 
       m_bNeedCalcLayout = true;
+      m_bCalcLayoutHintNoTextChange = false;
+
 
    }
 
@@ -2977,6 +3064,7 @@ namespace user
    {
 
       m_bNeedCalcLayout = true;
+      m_bCalcLayoutHintNoTextChange = true;
 
    }
 

@@ -22,7 +22,7 @@ namespace user
 
       // elemental
 
-      virtual void _001RedrawWindow();
+      virtual void _001RedrawWindow(UINT nFlags = 0);
 
 
       virtual void pre_translate_message(signal_details * pobj);

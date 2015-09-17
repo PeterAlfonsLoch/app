@@ -27,6 +27,9 @@ public:
    };
 
 
+   bool                             m_bColonPrefix;
+
+
    XfplayerViewLineSelection        m_selection;
    LPBYTE                           m_lpBitmapData;
    ::visual::graphics_extension     m_dcextension;
@@ -35,6 +38,8 @@ public:
    index                            m_iIndex;
 
    string                           m_str;
+   string                           m_strPrefix;
+   string                           m_strRoot;
    int_array                        m_iaPosition;
 
    rect                                m_rect;
@@ -52,6 +57,7 @@ public:
    ::draw2d::graphics_sp                m_dc1;
    ::draw2d::bitmap_sp                  m_bmp1;
    ::draw2d::font_sp                    m_font;
+   ::draw2d::font_sp                    m_fontPrefix;
    ::draw2d::font_sp                    m_fontLink;
    COLORREF                         m_cr;
    COLORREF                         m_crOutline;

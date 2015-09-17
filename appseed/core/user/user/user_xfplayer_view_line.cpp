@@ -9,6 +9,7 @@ XfplayerViewLine::XfplayerViewLine(::aura::application * papp) :
    m_dcextension(papp),
    m_font(allocer())
 {
+   m_bColonPrefix                = false;
    m_pContainer                  = NULL;
    m_bEnhancedEmboss             = true;
    m_bCacheEmboss                = false;
@@ -670,7 +671,7 @@ void XfplayerViewLine::CalcCharsPositions(::draw2d::graphics *             pdc,c
    ::rect rectPlacement;
    GetPlacement(rectPlacement);
    string strMain = m_str;
-//   pdc->SelectObject(fontOriginal);
+   pdc->SelectObject(m_font);
    size = pdc->GetTextExtent(strMain);
    if(size.cx > rectClient.width())
    {
@@ -705,19 +706,75 @@ void XfplayerViewLine::CalcCharsPositions(::draw2d::graphics *             pdc,c
    }
 
 
+   if(m_bColonPrefix)
+   {
+
+      m_fontPrefix.alloc(allocer());
+
+      *m_fontPrefix = *m_font;
+
+      m_fontPrefix->m_dFontSize *= 0.5;
+
+
+   }
+
    m_str.Truncate(MIN(84, m_str.length()));
 
-   pdc->SelectObject(m_font);
-
-   m_iaPosition[0] = 0;
-   for(i = 1; i <= m_str.get_length(); i++)
+   if(m_bColonPrefix)
    {
+
+      m_strPrefix = m_str.Left(MAX(0,m_str.find(":")));
+
+      m_strRoot = m_str.Mid(MAX(0,m_str.find(":") + 1));
+
+      m_strRoot.trim_left();
+
+      pdc->SelectObject(m_fontPrefix);
+
+      m_iaPosition[0] = 0;
+      for(i = 1; i <= m_strPrefix.get_length(); i++)
+      {
+         m_dcextension.GetTextExtent(
+            pdc,
+            m_strPrefix,
+            i,
+            size);
+         m_iaPosition.add(size.cx);
+      }
+      int iSize = size.cx;
       m_dcextension.GetTextExtent(
          pdc,
-         m_str,
-         i,
+         " ",
+         1,
          size);
-      m_iaPosition[i] = size.cx;
+      m_iaPosition.add(iSize + size.cx);
+      pdc->SelectObject(m_font);
+      for(i = 1; i <= m_strRoot.get_length(); i++)
+      {
+         m_dcextension.GetTextExtent(
+            pdc,
+            m_strRoot,
+            i,
+            size);
+         m_iaPosition.add(iSize + size.cx);
+      }
+   }
+   else
+   {
+
+      pdc->SelectObject(m_font);
+
+      m_iaPosition[0] = 0;
+      for(i = 1; i <= m_str.get_length(); i++)
+      {
+         m_dcextension.GetTextExtent(
+            pdc,
+            m_str,
+            i,
+            size);
+         m_iaPosition[i] = size.cx;
+      }
+
    }
 
    /*if(m_iAlign == AlignLeft)
@@ -1407,7 +1464,48 @@ void XfplayerViewLine::EmbossedTextOut(::draw2d::graphics * pdc,::draw2d::dib * 
 
       System.visual().imaging().color_blend(pdc, point(iLeft - 1, iTop - 1), ::size(m_dibMain->m_size.cx, m_dibMain->m_size.cy), m_dibMain->get_graphics(), point(iLeft, 0), dBlend);
 
-      System.visual().imaging().AlphaTextOut(pdc, iLeft, iTop, lpcsz, (int32_t) iLen, cr, dBlend);
+      if(m_bColonPrefix)
+      {
+
+         pdc->SelectFont(m_fontPrefix);
+
+         ::size size;
+
+         size = pdc->GetTextExtent(m_strPrefix);
+
+         System.visual().imaging().AlphaTextOut(pdc,iLeft,iTop + m_rect.height() - size.cy,m_strPrefix,(int32_t)m_strPrefix.get_length(),cr,dBlend);
+
+         pdc->SelectFont(m_font);
+
+         int iOffset;
+
+         if(m_strPrefix.get_length() <= 0)
+         {
+
+            iOffset = 0;
+
+         }
+         else
+         {
+
+            iOffset = size.cx + size.cx / m_strPrefix.get_length();
+
+         }
+
+         System.visual().imaging().AlphaTextOut(pdc,iLeft + iOffset,iTop,m_strRoot,(int32_t)m_strRoot.get_length(),cr,dBlend);
+
+
+
+      }
+      else
+      {
+
+         pdc->SelectFont(m_font);
+
+         System.visual().imaging().AlphaTextOut(pdc,iLeft,iTop,lpcsz,(int32_t)iLen,cr,dBlend);
+
+      }
+
 
    }
 
@@ -1464,8 +1562,24 @@ void XfplayerViewLine::CacheEmboss(::draw2d::graphics * pdc, const char * lpcsz,
    brushText->create_solid(ARGB(84, 84, 84, 84));
    pdcCache->SelectObject(brushText);
    //pdcCache->SetTextColor();
+   ::size s;
+   if(m_bColonPrefix)
+   {
 
-   m_dcextension.TextOut(pdcCache, (int32_t) (int32_t) ((MAX(2.0, m_floatRateX * 8.0)) / 2), (int32_t) 1 * (int32_t) ((MAX(2.0, m_floatRateX * 8.0)) / 2), lpcsz, iLen);
+      pdcCache->select_font(m_fontPrefix);
+      ::size size = pdcCache->GetTextExtent(m_strPrefix);
+      m_dcextension.TextOut(pdcCache,(int32_t)(int32_t)((MAX(2.0,m_floatRateX * 4.0)) / 2),(int32_t)1 * (int32_t)((MAX(2.0,m_floatRateX * 4.0)) / 2)+ m_rect.height() -size.cy,m_strPrefix,m_strPrefix.get_length(), s);
+      pdcCache->select_font(m_font);
+      m_dcextension.TextOut(pdcCache,s.cx + (s.cx / m_strPrefix.get_length()) + (int32_t)(int32_t)((MAX(2.0,m_floatRateX * 8.0)) / 2),(int32_t)1 * (int32_t)((MAX(2.0,m_floatRateX * 8.0)) / 2),m_strRoot,m_strRoot.get_length(),s);
+
+   }
+   else
+   {
+
+      m_dcextension.TextOut(pdcCache,(int32_t)(int32_t)((MAX(2.0,m_floatRateX * 8.0)) / 2),(int32_t)1 * (int32_t)((MAX(2.0,m_floatRateX * 8.0)) / 2),lpcsz,iLen, s);
+
+   }
+
 
    System.visual().imaging().channel_spread_set_color(pdcCache, null_point(), size, pdcCache, null_point(), 0, int32_t (MAX(1.0, m_floatRateX * 2.0)), ARGB(23, 23, 23, 23));
 
@@ -1486,17 +1600,16 @@ void XfplayerViewLine::CacheEmboss(::draw2d::graphics * pdc, const char * lpcsz,
 
 void XfplayerViewLine::SetFont(::draw2d::font * pfont)
 {
-   ASSERT(pfont != NULL);
-   if(m_font.m_p == NULL)
-   {
-      m_font.alloc(allocer());
-   }
-   m_font->operator=(*pfont);
+
+   m_font = pfont;
+
 }
 
 void XfplayerViewLine::SetFont(visual::font * pfont)
 {
+
    SetFont(pfont->GetFont());
+
 }
 
 void XfplayerViewLine::PrepareURLLinks()
@@ -1776,13 +1889,12 @@ void XfplayerViewLine::UpdateHover(point &ptCursor)
    user::e_line_hit etest = hit_test(ptCursor, iChar);
    if(etest == ::user::line_hit_link)
    {
-      if(m_iLinkHoverIndex !=
-         GetLinkIndex(iLine, iChar))
+      if(m_iLinkHoverIndex != GetLinkIndex(iLine, iChar))
       {
          m_iLinkHoverIndex = GetLinkIndex(iLine, iChar);
          rect rect;
          GetPlacement(rect);
-//         get_interaction()->_001RedrawWindow();
+         get_interaction()->RedrawWindow();
       }
    }
    else
@@ -1792,7 +1904,7 @@ void XfplayerViewLine::UpdateHover(point &ptCursor)
          m_iLinkHoverIndex = -1;
          rect rect;
          GetPlacement(rect);
-         //get_interaction()->_001RedrawWindow();
+         get_interaction()->RedrawWindow();
       }
    }
 

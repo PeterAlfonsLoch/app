@@ -38,6 +38,7 @@ namespace user
       size                          m_sizeTotal;
 
       bool                          m_bNeedCalcLayout;
+      bool                          m_bCalcLayoutHintNoTextChange;
 
       bool                          m_bKeyPressed;
       bool                          m_bColorerTake5;
@@ -56,7 +57,7 @@ namespace user
 //      uint32_t                      m_dwLastCaret;
       uint32_t                      m_dwCaretTime;
       index                         m_iLineOffset;
-      stringa                       m_straSep;
+      //stringa                       m_straSep;
       colorertake5::base_editor *   m_peditor;
       colorertake5::text_lines *    m_plines;
       int32_t                       m_y;
@@ -73,14 +74,15 @@ namespace user
       bool                          m_bSendEnterKey;
       bool                          m_bReadOnly;
 
+      ::draw2d::font_sp             m_spfont;
+
       // Used for whatever it can make faster for large files (scroll for example)
       // keep each line size
-      index_array                   m_iaLineIndex;
+      index_array                   m_iaLineLen;
       // Used for whatever it can make faster for large files (scroll for example)
       // keep each line end flag 3 = \r \n     1 = \n  \r = 2
-      index_array                   m_iaLineEndIndex;
-      count_array                   m_iaCLineIndex;
-      index_array                   m_iaAccumulLineIndex;
+      index_array                   m_iaLineEnd;
+      index_array                   m_iaLineBeg;
 
       bool                          m_bOwnData;
       plain_text_tree *             m_ptree;
@@ -163,8 +165,6 @@ namespace user
       virtual void _001OnUpdate(::action::context actioncontext);
       virtual void _001OnSetText(::action::context actioncontext);
 
-
-
       virtual bool has_action_hover();
       virtual bool has_text_input();
 
@@ -186,6 +186,7 @@ namespace user
       void _001SetText(const string & str, ::action::context actioncontext);
       void _001SetSelText(const char * psz, ::action::context actioncontext);
       void _001SetSel(strsize iSelStart, strsize iSelEnd);
+      void _001GetSel(strsize & iSelStart,strsize  & iSelEnd);
 
       void _001EnsureVisibleChar(strsize iChar);
       void _001EnsureVisibleLine(index iLine);
@@ -244,6 +245,7 @@ namespace user
 
 
       virtual size get_total_size();
+
 
    };
 

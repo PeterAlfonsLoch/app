@@ -44,6 +44,7 @@
   <ItemGroup>
     <ClCompile Include="client\ca2\ca2rdp.cpp" />
     <ClCompile Include="client\ca2\ca2rdp_event.cpp" />
+    <ClCompile Include="client\ca2\ca2rdp_event_queue.cpp" />
     <ClCompile Include="client\ca2\ca2rdp_graphics.cpp" />
     <ClCompile Include="client\common\cf_channels.cpp" />
     <ClCompile Include="client\common\cf_client.cpp" />

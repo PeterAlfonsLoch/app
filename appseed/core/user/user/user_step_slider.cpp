@@ -216,7 +216,7 @@ namespace user
       Session.get_cursor_pos(&pt);
       ScreenToClient(&pt);
       m_iHover = hit_test(pt);
-      _001RedrawWindow();
+      RedrawWindow();
       rect rectClient;
       GetClientRect(rectClient);
       m_bHover = rectClient.contains(pt) != FALSE;

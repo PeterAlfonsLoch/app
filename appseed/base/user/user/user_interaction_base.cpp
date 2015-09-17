@@ -8,6 +8,8 @@ namespace user
 
    interaction_base::interaction_base()
    {
+      
+      m_bRedraw = false;
 
    }
 
@@ -52,11 +54,8 @@ namespace user
    }
 
 
-   void interaction_base::_001RedrawWindow()
+   void interaction_base::_001RedrawWindow(UINT nFlags)
    {
-
-      //if(!m_bMayProDevian && GetParent() == NULL)
-        // return;
 
       if(!IsWindow())
       {
@@ -75,13 +74,23 @@ namespace user
          if (pui != this)
          {
 
-            pui->_001RedrawWindow();
+            pui->_001RedrawWindow(nFlags);
 
          }
          else
          {
 
-            synch_lock sl(m_pmutex);
+
+            //if(m_bRedraw && get_tick_count() - m_dwLastRedraw < 1000)
+            //{
+            //   return;
+            //}
+
+            //m_dwLastRedraw = ::get_tick_count();
+
+            //keep < bool > keepRedraw(&m_bRedraw,true,false,true);
+
+            //synch_lock sl(m_pmutex);
 
             _001UpdateBuffer();
 

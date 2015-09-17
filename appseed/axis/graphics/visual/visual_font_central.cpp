@@ -64,6 +64,7 @@ bool font_central::Initialize()
 
    m_pTitleFonts = new ptr_array <  visual::font >;
    m_pSubTitleFonts = new ptr_array <  visual::font >;
+   m_pH3TitleFonts = new ptr_array <  visual::font >;
 
    CreateLyricViewFonts();
 
@@ -149,18 +150,20 @@ visual::font *
    return m_pfontLyricCompact;
 }
 
-ptr_array <  visual::font > *
-   font_central::GetTitleFonts()
+ptr_array <  visual::font > * font_central::GetTitleFonts()
 {
    return m_pTitleFonts;
 }
 
-ptr_array <  visual::font > *
-   font_central::GetSubTitleFonts()
+ptr_array <  visual::font > * font_central::GetSubTitleFonts()
 {
    return m_pSubTitleFonts;
 }
 
+ptr_array <  visual::font > * font_central::GetH3TitleFonts()
+{
+   return m_pH3TitleFonts;
+}
 
 visual::font * font_central::GetTitleFont()
 {
@@ -170,6 +173,11 @@ visual::font * font_central::GetTitleFont()
 visual::font * font_central::GetSubTitleFont()
 {
     return m_pSubTitleFonts->element_at(0);
+}
+
+visual::font * font_central::GetH3TitleFont()
+{
+   return m_pH3TitleFonts->element_at(0);
 }
 
 visual::font * font_central::GetMidiTrackNameFont()
@@ -194,8 +202,8 @@ visual::font * font_central::GetSongListFont()
 
 void font_central::CreateLyricViewFonts()
 {
-   ::draw2d::graphics_sp spgraphics(allocer());
-   spgraphics->CreateCompatibleDC(NULL);
+   //::draw2d::graphics_sp spgraphics(allocer());
+   //spgraphics->CreateCompatibleDC(NULL);
 
 
    string strLucida;
@@ -213,7 +221,7 @@ void font_central::CreateLyricViewFonts()
 
 
    pPlayerFont = new visual::font(get_app());
-   pPlayerFont->GetFont()->create_point_font(FONTFACENAME_LUCIDA, 48, FW_BOLD);
+   pPlayerFont->GetFont()->create_point_font("Tahoma", 56, FW_BOLD);
    pPlayerFont->OnSetFont();
    m_pTitleFonts->add(pPlayerFont);
 
@@ -238,7 +246,7 @@ void font_central::CreateLyricViewFonts()
    m_pTitleFonts->add(pPlayerFont);
 
    pPlayerFont = new visual::font(get_app());
-   pPlayerFont->GetFont()->create_point_font(FONTFACENAME_LUCIDA, 24, FW_NORMAL);
+   pPlayerFont->GetFont()->create_point_font("Tahoma", 24, FW_NORMAL);
    pPlayerFont->OnSetFont();
    m_pSubTitleFonts->add(pPlayerFont);
 
@@ -262,6 +270,13 @@ void font_central::CreateLyricViewFonts()
    pPlayerFont->OnSetFont();
    m_pSubTitleFonts->add(pPlayerFont);
 
+
+   pPlayerFont = new visual::font(get_app());
+   pPlayerFont->GetFont()->create_point_font("Tahoma",12, FW_NORMAL);
+   pPlayerFont->OnSetFont();
+   m_pH3TitleFonts->add(pPlayerFont);
+
+
    pPlayerFont = new visual::font(get_app());
    pPlayerFont->GetFont()->create_point_font(FONTFACENAME_LUCIDA, 12, FW_BOLD);
    pPlayerFont->OnSetFont();
@@ -280,7 +295,7 @@ void font_central::CreateLyricViewFonts()
    m_pxffontMidiTrackName = pPlayerFont;
 
 
-   spgraphics->DeleteDC();
+   //spgraphics->DeleteDC();
 
 }
 

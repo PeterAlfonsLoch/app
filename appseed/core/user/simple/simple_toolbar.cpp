@@ -1562,25 +1562,32 @@ bool simple_toolbar::SetItemStyle(int32_t iItem, BYTE bStyle)
    return false;
 }
 
+
 UINT simple_toolbar::GetButtonStyle(int32_t nIndex)
 {
-   ASSERT_VALID(this);
-   ASSERT(IsWindow());
 
-   ::user::toolbar_item & item = m_itema(nIndex);
-   return MAKELONG(item.m_fsStyle, item.m_fsState);
+   sp(::user::toolbar_item) pitem = m_itema[nIndex];
+
+   if(pitem.is_null())
+      return 0;
+
+   return MAKELONG(pitem->m_fsStyle, pitem->m_fsState);
+
 }
+
 
 void simple_toolbar::SetButtonStyle(int32_t nIndex, UINT nStyle)
 {
-   ASSERT_VALID(this);
-   ASSERT(IsWindow());
 
-   ::user::toolbar_item & item = m_itema(nIndex);
-   if (item.m_fsStyle != (BYTE)LOWORD(nStyle) || item.m_fsState != (BYTE)HIWORD(nStyle))
+   sp(::user::toolbar_item) pitem = m_itema[nIndex];
+
+   if(pitem.is_null())
+      return;
+
+   if (pitem->m_fsStyle != (BYTE)LOWORD(nStyle) || pitem->m_fsState != (BYTE)HIWORD(nStyle))
    {
-      item.m_fsStyle = (BYTE)LOWORD(nStyle);
-      item.m_fsState = (BYTE)HIWORD(nStyle);
+      pitem->m_fsStyle = (BYTE)LOWORD(nStyle);
+      pitem->m_fsState = (BYTE)HIWORD(nStyle);
       m_bDelayedButtonLayout = TRUE;
    }
 

@@ -22,7 +22,7 @@ namespace user
 
    // elemental
 
-   void elemental::_001RedrawWindow()
+   void elemental::_001RedrawWindow(UINT nFlags)
    {
 
    }

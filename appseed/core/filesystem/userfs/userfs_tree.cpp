@@ -250,7 +250,7 @@ namespace userfs
       }
       else if (ptimer->m_nIDEvent == 123)
       {
-         dynamic_cast < ::user::interaction * > (ptimer->m_pcallback)->_001RedrawWindow();
+         dynamic_cast < ::user::interaction * > (ptimer->m_pcallback)->RedrawWindow();
          m_bTimer123 = false;
          dynamic_cast < ::user::interaction * > (ptimer->m_pcallback)->KillTimer(123);
       }

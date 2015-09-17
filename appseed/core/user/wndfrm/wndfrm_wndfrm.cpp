@@ -168,9 +168,7 @@ namespace user
             if(pinteraction == NULL)
             {
 
-               Application.simple_message_box(NULL, "no wndfrm plugin", MB_OK);
-
-               return NULL;
+               throw exit_exception(get_app(),"wndfrm_core plugin or any other wndfrm_* plugin is installed");
 
             }
 

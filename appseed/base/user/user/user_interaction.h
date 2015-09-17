@@ -80,6 +80,7 @@ namespace user
       ptr_array < thread >                m_threadptra;
 
 
+
       //ptr_array < bool >                  m_bptraTellMeDestroyed; // Telmo why!! :-)
 
 
@@ -185,7 +186,7 @@ namespace user
       virtual void on_keyboard_focus(::user::elemental * pfocus);
 
 
-      virtual void _001RedrawWindow();
+      virtual void _001RedrawWindow(UINT nFlags = 0);
       virtual void _001UpdateScreen(bool bUpdateBuffer = true);
       virtual void _001UpdateBuffer();
 

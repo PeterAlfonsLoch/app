@@ -1148,7 +1148,7 @@ namespace filemanager
 
       _001CreateImageList();
 
-      _001RedrawWindow();
+      RedrawWindow();
 
       //file_size_add_request(true);
       /*   for(int32_t i = 0; i < m_itema.get_item_count(); i++)

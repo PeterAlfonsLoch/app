@@ -31,6 +31,7 @@ protected:
    visual::font *             m_pxffontMidiTrackName;
    CVmsGdiFontPtrArray *   m_pTitleFonts;
    CVmsGdiFontPtrArray *   m_pSubTitleFonts;
+   CVmsGdiFontPtrArray *   m_pH3TitleFonts;
    bool                    m_bInitialized;
 public:
    ::draw2d::font * GetListCtrlFont();
@@ -44,6 +45,7 @@ public:
    visual::font * GetSongLabelFont();
    visual::font * GetTitleFont();
    visual::font * GetSubTitleFont();
+   visual::font * GetH3TitleFont();
    visual::font * GetMidiTrackNameFont();
    ::draw2d::font * GetMenuFont();
    void CreateLyricViewFonts();
@@ -51,6 +53,7 @@ public:
    visual::font * GetLyricViewCompactFont();
    CVmsGdiFontPtrArray * GetTitleFonts();
    CVmsGdiFontPtrArray * GetSubTitleFonts();
+   CVmsGdiFontPtrArray * GetH3TitleFonts();
 
    bool IsInitialized();
 };

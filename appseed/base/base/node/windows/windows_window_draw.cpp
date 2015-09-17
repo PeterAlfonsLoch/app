@@ -266,23 +266,25 @@ namespace windows
 
    UINT window_draw::RedrawProc()
    {
-      m_iFramesPerSecond = 120.0;
+
+      
       try
       {
 
          m_bRunning = true;
 
          MSG msg;
-
+         uint32_t ui1;
+         uint32_t ui2;
          while(m_bRun)
          {
             try
             {
                if(m_bProDevianMode)
                {
-                  uint32_t ui1 = ::get_tick_count();
+                  ui1 = ::get_tick_count();
                   _synch_redraw();
-                  uint32_t ui2 = ::get_tick_count();
+                  ui2 = ::get_tick_count();
                   m_dwLastDelay = ui2 - ui1;
                }
             }
@@ -296,20 +298,35 @@ namespace windows
             //}
             //if(msg.message == WM_QUIT)
             //   break;
-            int32_t iUiDataWriteWindowTimeForTheApplicationInThisMachine = 1;
-            if(m_iFramesPerSecond == 0)
+            //int32_t iUiDataWriteWindowTimeForTheApplicationInThisMachine = 1;
+            //if(m_iFramesPerSecond > 0)
+            //{
+            //   Sleep(1000);
+            //}
+            //else if((1000 / m_iFramesPerSecond) > m_dwLastDelay)
+            //{
+            //   DWORD dw = MAX((DWORD)MAX(0,iUiDataWriteWindowTimeForTheApplicationInThisMachine),(1000 / m_iFramesPerSecond) - m_dwLastDelay);
+            //   Sleep(dw);
+            //}
+            //            else
+            if(m_iFramesPerSecond <= 0)
             {
                Sleep(1000);
             }
-            else if((1000 / m_iFramesPerSecond) > m_dwLastDelay)
-            {
-               DWORD dw = MAX((DWORD)MAX(0,iUiDataWriteWindowTimeForTheApplicationInThisMachine),(1000 / m_iFramesPerSecond) - m_dwLastDelay);
-               Sleep(dw);
-            }
             else
             {
-               Sleep(iUiDataWriteWindowTimeForTheApplicationInThisMachine);
+               
+               UINT uiFrameMillis = 1000 / m_iFramesPerSecond;
+
+               if(uiFrameMillis > m_dwLastDelay)
+               {
+
+                  Sleep(uiFrameMillis - m_dwLastDelay);
+
+               }
+
             }
+
          }
       exit:;
 
@@ -357,15 +374,26 @@ namespace windows
          try
          {
 
+            //if(pui->m_bRedraw && ::get_tick_count() - pui->m_dwLastRedraw < 1000)
+            //{
+
+            //   continue;
+
+            //}
+
+            //keep < bool > keepRedraw(&pui->m_bRedraw,true,false,true);
+
+            //pui->m_dwLastRedraw = ::get_tick_count();
+
             if(pui->IsWindowVisible() && pui->m_bMayProDevian && pui->m_psession.is_null())
             {
 
-               if(get_tick_count() - pui->m_dwLastFullUpdate < 25)
-               {
+               //if(get_tick_count() - pui->m_dwLastFullUpdate < 25)
+               //{
 
-                  continue;
+               //   continue;
 
-               }
+               //}
 
 
 

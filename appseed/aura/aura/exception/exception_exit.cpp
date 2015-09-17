@@ -8,6 +8,8 @@ exit_exception::exit_exception(::aura::application * papp, const char * pszMessa
    ::simple_exception(papp, pszMessage)
 {
 
+   m_iCheck = 0;
+
    if(pszMessage == NULL)
    {
 
@@ -32,7 +34,7 @@ exit_exception::exit_exception(const exit_exception & e) :
    ::exception::base(e),
    ::simple_exception(e)
 {
-   
+   m_iCheck = e.m_iCheck;
    debug_print(":exit(copy)");
 
 }

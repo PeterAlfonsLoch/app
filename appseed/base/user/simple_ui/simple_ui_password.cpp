@@ -220,7 +220,7 @@ namespace simple_ui
       for(index i = iLineStart; i <= iLineEnd; i++)
       {
          straLineFeed.remove_all();
-         straLineFeed.add_smallest_tokens(straLines[i],m_straSep,FALSE,FALSE);
+         straLineFeed.add_lines(straLines[i], false);
          if(straLineFeed.get_size() > 0)
          {
             strLine = straLineFeed[0];

@@ -2992,9 +2992,9 @@ namespace draw2d
       if(area() <= 0 || get_data() == NULL)
          return;
 
-      int iHeight = get_size().cy;
-
       int iScan = m_iScan;
+
+      int iHeight = get_size().cy;
 
       if(iScan <= 0 || iHeight <= 0)
          return;

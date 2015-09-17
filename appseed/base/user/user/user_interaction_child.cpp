@@ -767,13 +767,18 @@ namespace user
 
       }
 
-      if(System.get_twf() != NULL && System.get_twf()->m_bProDevianMode && get_wnd()->m_bMayProDevian)
-         return true;
+      //if(!(flags & RDW_UPDATENOW))
+      {
 
-      if(!Session.m_bEnableOnDemandDrawing)
-         return true;
+         if(System.get_twf() != NULL && System.get_twf()->m_bProDevianMode && get_wnd()->m_bMayProDevian)
+            return true;
 
-      _001RedrawWindow();
+         if(!Session.m_bEnableOnDemandDrawing)
+            return true;
+
+      }
+
+      _001RedrawWindow(flags);
 
       return true;
 

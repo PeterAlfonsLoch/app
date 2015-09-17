@@ -18,9 +18,9 @@ namespace visual
    }
 
 
-   bool graphics_extension::TextOut(::draw2d::graphics * pdc, int32_t x, int32_t y, const char * lpcsz, strsize iCount)
+   bool graphics_extension::TextOut(::draw2d::graphics * pdc, int32_t x, int32_t y, const char * lpcsz, strsize iCount, size & s)
    {
-
+      s = pdc->GetTextExtent(string(lpcsz,iCount));
       return pdc->TextOut(x, y, string(lpcsz, iCount));
       //return ::TextOutU((HDC)pdc->get_os_data(), x, y, lpcsz, iCount);
 

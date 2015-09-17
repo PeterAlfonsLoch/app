@@ -356,6 +356,13 @@ namespace file
    void edit_buffer::SetFile(::file::buffer_sp  pfile)
    {
 
+      if(pfile.cast < ::file::memory_buffer >() == NULL || pfile.cast < ::file::buffered_buffer >() == NULL)
+      {
+
+         pfile = canew(::file::buffered_buffer(get_app(),pfile));
+
+      }
+
       if(pfile == NULL)
          throw invalid_argument_exception(get_app());
 
@@ -374,6 +381,8 @@ namespace file
    {
       byte * buf = (byte *)lpBuf;
       UINT uiRead = 0;
+      UINT uiReadCount = 0;
+
       if(m_dwPosition >= m_dwFileLength)
       {
          return uiRead;
@@ -411,21 +420,18 @@ namespace file
                break;
             ptreeitem = m_bRootDirection ? ptreeitem->get_previous() : ptreeitem->get_next();
          }
-         if(nCount > 0 && m_dwPosition < m_dwFileLength)
+         uiReadCount = 0;
+         while(nCount > 0 && m_dwPosition < m_dwFileLength)
          {
             m_pfile->seek((file_offset)m_dwPosition,::file::seek_begin);
-            if(!m_pfile->read(&uiReadItem,1))
+            uiReadCount = m_pfile->read(&buf[uiRead],MAX(0, MIN(m_dwFileLength - m_dwPosition, nCount)));
+            if(uiReadCount <= 0)
                break;
-            buf[uiRead] = (byte)uiReadItem;
-            nCount--;
-            uiRead++;
-            m_dwPosition++;
+            nCount-=uiReadCount;
+            uiRead+=uiReadCount;
+            m_dwPosition+=uiReadCount;
          }
-         else
-         {
-            break;
-         }
-      } while(nCount > 0 && m_dwPosition < m_dwFileLength);
+      } while(nCount > 0 && m_dwPosition < m_dwFileLength && uiReadCount > 0);
       return uiRead;
    }
 
